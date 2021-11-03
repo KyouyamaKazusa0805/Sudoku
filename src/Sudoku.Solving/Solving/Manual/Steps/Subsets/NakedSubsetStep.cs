@@ -26,8 +26,8 @@
 /// </list>
 /// </param>
 public sealed record NakedSubsetStep(
-	in ImmutableArray<Conclusion> Conclusions,
-	in ImmutableArray<PresentationData> Views,
+	ImmutableArray<Conclusion> Conclusions,
+	ImmutableArray<PresentationData> Views,
 	int Region,
 	in Cells Cells,
 	short DigitsMask,

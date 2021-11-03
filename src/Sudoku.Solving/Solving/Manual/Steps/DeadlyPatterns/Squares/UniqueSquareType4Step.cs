@@ -11,8 +11,8 @@
 /// <param name="Digit2">Indicates the digit 2 used.</param>
 /// <param name="ConjugateRegion">Indicates the cells used as the conjugation region.</param>
 public sealed record UniqueSquareType4Step(
-	in ImmutableArray<Conclusion> Conclusions,
-	in ImmutableArray<PresentationData> Views,
+	ImmutableArray<Conclusion> Conclusions,
+	ImmutableArray<PresentationData> Views,
 	in Cells Cells,
 	short DigitsMask,
 	int Digit1,

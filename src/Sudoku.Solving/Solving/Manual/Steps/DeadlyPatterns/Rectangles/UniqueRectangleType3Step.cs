@@ -33,8 +33,8 @@
 /// </para>
 /// </param>
 public sealed record UniqueRectangleType3Step(
-	in ImmutableArray<Conclusion> Conclusions,
-	in ImmutableArray<PresentationData> Views,
+	ImmutableArray<Conclusion> Conclusions,
+	ImmutableArray<PresentationData> Views,
 	int Digit1,
 	int Digit2,
 	in Cells Cells,

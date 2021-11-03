@@ -16,8 +16,8 @@
 /// <param name="LineCells">The map of line cells.</param>
 /// <param name="IntersectionCells">The map of intersection cells.</param>
 public sealed record SueDeCoqStep(
-	in ImmutableArray<Conclusion> Conclusions,
-	in ImmutableArray<PresentationData> Views,
+	ImmutableArray<Conclusion> Conclusions,
+	ImmutableArray<PresentationData> Views,
 	int Block,
 	int Line,
 	short BlockMask,

@@ -9,8 +9,8 @@
 /// <param name="Cells"><inheritdoc/></param>
 /// <param name="DigitsMask"><inheritdoc/></param>
 public sealed record HiddenSubsetStep(
-	in ImmutableArray<Conclusion> Conclusions,
-	in ImmutableArray<PresentationData> Views,
+	ImmutableArray<Conclusion> Conclusions,
+	ImmutableArray<PresentationData> Views,
 	int Region,
 	in Cells Cells,
 	short DigitsMask

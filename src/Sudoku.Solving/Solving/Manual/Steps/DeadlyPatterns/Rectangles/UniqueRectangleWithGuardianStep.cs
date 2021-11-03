@@ -12,8 +12,8 @@
 /// <param name="GuardianDigit">Indicates the digit that the guardians are used.</param>
 /// <param name="AbsoluteOffset"><inheritdoc/></param>
 public sealed record UniqueRectangleWithGuardianStep(
-	in ImmutableArray<Conclusion> Conclusions,
-	in ImmutableArray<PresentationData> Views,
+	ImmutableArray<Conclusion> Conclusions,
+	ImmutableArray<PresentationData> Views,
 	int Digit1,
 	int Digit2,
 	in Cells Cells,

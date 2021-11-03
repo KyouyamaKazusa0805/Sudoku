@@ -7,8 +7,8 @@
 /// <param name="Views"><inheritdoc/></param>
 /// <param name="ContradictionLinks">Indicates the list of contradiction links.</param>
 public sealed record BowmanBingoStep(
-	in ImmutableArray<Conclusion> Conclusions,
-	in ImmutableArray<PresentationData> Views,
+	ImmutableArray<Conclusion> Conclusions,
+	ImmutableArray<PresentationData> Views,
 	ImmutableArray<Conclusion> ContradictionLinks
 ) : LastResortStep(Conclusions, Views)
 {

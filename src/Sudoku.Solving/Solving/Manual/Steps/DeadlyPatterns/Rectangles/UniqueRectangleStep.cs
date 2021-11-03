@@ -36,8 +36,8 @@
 /// </param>
 /// <seealso cref="Step.TechniqueCode"/>
 public abstract record UniqueRectangleStep(
-	in ImmutableArray<Conclusion> Conclusions,
-	in ImmutableArray<PresentationData> Views,
+	ImmutableArray<Conclusion> Conclusions,
+	ImmutableArray<PresentationData> Views,
 	Technique TechniqueCode2,
 	int Digit1,
 	int Digit2,

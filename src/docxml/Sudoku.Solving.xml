@@ -3774,7 +3774,7 @@
             <param name="Conclusions"><inheritdoc/></param>
             <param name="Views"><inheritdoc/></param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Step.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Data.Conclusion}@,System.Collections.Immutable.ImmutableArray{Sudoku.Models.PresentationData}@)">
+        <member name="M:Sudoku.Solving.Manual.Step.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Data.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Models.PresentationData})">
             <summary>
             Provides with a manual solving step that is a technique usage, and contains the conclusions.
             </summary>
@@ -4001,7 +4001,7 @@
             <param name="YEnabled"><inheritdoc/></param>
             <param name="Target">Indicates the target cell.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Steps.Chains.AlternatingInferenceChainStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Data.Conclusion}@,System.Collections.Immutable.ImmutableArray{Sudoku.Models.PresentationData}@,System.Boolean,System.Boolean,Sudoku.Data.ChainNode)">
+        <member name="M:Sudoku.Solving.Manual.Steps.Chains.AlternatingInferenceChainStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Data.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Models.PresentationData},System.Boolean,System.Boolean,Sudoku.Data.ChainNode)">
             <summary>
             Provides with a step that is a <b>Alternating Inference Chain</b> technique.
             </summary>
@@ -4140,7 +4140,7 @@
             </list>
             </param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Steps.Chains.ChainStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Data.Conclusion}@,System.Collections.Immutable.ImmutableArray{Sudoku.Models.PresentationData}@,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Byte)">
+        <member name="M:Sudoku.Solving.Manual.Steps.Chains.ChainStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Data.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Models.PresentationData},System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Byte)">
             <summary>
             Provides with a step that is a <b>Chain</b> technique.
             </summary>
@@ -4240,7 +4240,7 @@
             <param name="YEnabled"><inheritdoc/></param>
             <param name="Target">Indicates the target cell.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Steps.Chains.ContinuousNiceLoopStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Data.Conclusion}@,System.Collections.Immutable.ImmutableArray{Sudoku.Models.PresentationData}@,System.Boolean,System.Boolean,Sudoku.Data.ChainNode)">
+        <member name="M:Sudoku.Solving.Manual.Steps.Chains.ContinuousNiceLoopStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Data.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Models.PresentationData},System.Boolean,System.Boolean,Sudoku.Data.ChainNode)">
             <summary>
             Provides with a step that is a <b>Continuous Nice Loop</b> technique.
             </summary>
@@ -4400,7 +4400,7 @@
             <param name="Conclusions"><inheritdoc/></param>
             <param name="Views"><inheritdoc/></param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Steps.DeadlyPatterns.DeadlyPatternStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Data.Conclusion}@,System.Collections.Immutable.ImmutableArray{Sudoku.Models.PresentationData}@)">
+        <member name="M:Sudoku.Solving.Manual.Steps.DeadlyPatterns.DeadlyPatternStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Data.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Models.PresentationData})">
             <summary>
             Provides with a step that is a <b>Deadly Pattern</b> technique.
             </summary>
@@ -4437,7 +4437,7 @@
             <param name="Cells">Indicates the cells used.</param>
             <param name="DigitsMask">Indicates the mask that contains the digits used.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Steps.DeadlyPatterns.Extended.ExtendedRectangleStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Data.Conclusion}@,System.Collections.Immutable.ImmutableArray{Sudoku.Models.PresentationData}@,Sudoku.Data.Cells@,System.Int16)">
+        <member name="M:Sudoku.Solving.Manual.Steps.DeadlyPatterns.Extended.ExtendedRectangleStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Data.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Models.PresentationData},Sudoku.Data.Cells@,System.Int16)">
             <summary>
             Provides with a step that is a <b>Extended Rectangle</b> technique.
             </summary>
@@ -4482,7 +4482,7 @@
             <param name="Cells"><inheritdoc/></param>
             <param name="DigitsMask"><inheritdoc/></param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Steps.DeadlyPatterns.Extended.ExtendedRectangleType1Step.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Data.Conclusion}@,System.Collections.Immutable.ImmutableArray{Sudoku.Models.PresentationData}@,Sudoku.Data.Cells@,System.Int16)">
+        <member name="M:Sudoku.Solving.Manual.Steps.DeadlyPatterns.Extended.ExtendedRectangleType1Step.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Data.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Models.PresentationData},Sudoku.Data.Cells@,System.Int16)">
             <summary>
             Provides with a step that is an <b>Extended Rectangle Type 1</b> technique.
             </summary>
@@ -4510,7 +4510,7 @@
             <param name="DigitsMask"><inheritdoc/></param>
             <param name="ExtraDigit">Indicates the extra digit used.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Steps.DeadlyPatterns.Extended.ExtendedRectangleType2Step.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Data.Conclusion}@,System.Collections.Immutable.ImmutableArray{Sudoku.Models.PresentationData}@,Sudoku.Data.Cells@,System.Int16,System.Int32)">
+        <member name="M:Sudoku.Solving.Manual.Steps.DeadlyPatterns.Extended.ExtendedRectangleType2Step.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Data.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Models.PresentationData},Sudoku.Data.Cells@,System.Int16,System.Int32)">
             <summary>
             Provides with a step that is an <b>Extended Rectangle Type 2</b> technique.
             </summary>
@@ -4544,7 +4544,7 @@
             <param name="ExtraDigitsMask">Indicates the mask that contains the extra digits.</param>
             <param name="Region">Indicates the region that extra subset formed.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Steps.DeadlyPatterns.Extended.ExtendedRectangleType3Step.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Data.Conclusion}@,System.Collections.Immutable.ImmutableArray{Sudoku.Models.PresentationData}@,Sudoku.Data.Cells@,System.Int16,Sudoku.Data.Cells@,System.Int16,System.Int32)">
+        <member name="M:Sudoku.Solving.Manual.Steps.DeadlyPatterns.Extended.ExtendedRectangleType3Step.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Data.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Models.PresentationData},Sudoku.Data.Cells@,System.Int16,Sudoku.Data.Cells@,System.Int16,System.Int32)">
             <summary>
             Provides with a step that is an <b>Extended Rectangle Type 3</b> technique.
             </summary>
@@ -4578,7 +4578,7 @@
             <param name="DigitsMask"><inheritdoc/></param>
             <param name="ConjugatePair">Indicates the conjugate pair used.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Steps.DeadlyPatterns.Extended.ExtendedRectangleType4Step.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Data.Conclusion}@,System.Collections.Immutable.ImmutableArray{Sudoku.Models.PresentationData}@,Sudoku.Data.Cells@,System.Int16,Sudoku.Data.ConjugatePair@)">
+        <member name="M:Sudoku.Solving.Manual.Steps.DeadlyPatterns.Extended.ExtendedRectangleType4Step.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Data.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Models.PresentationData},Sudoku.Data.Cells@,System.Int16,Sudoku.Data.ConjugatePair@)">
             <summary>
             Provides with a step that is an <b>Extended Rectangle Type 4</b> technique.
             </summary>
@@ -4610,7 +4610,7 @@
             <param name="Digit2">Indicates the second digit.</param>
             <param name="Loop">Indicates the loop that the instance used.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Steps.DeadlyPatterns.Loops.UniqueLoopStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Data.Conclusion}@,System.Collections.Immutable.ImmutableArray{Sudoku.Models.PresentationData}@,System.Int32,System.Int32,Sudoku.Data.Cells@)">
+        <member name="M:Sudoku.Solving.Manual.Steps.DeadlyPatterns.Loops.UniqueLoopStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Data.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Models.PresentationData},System.Int32,System.Int32,Sudoku.Data.Cells@)">
             <summary>
             Provides with a step that is a <b>Unique Loop</b> technique.
             </summary>
@@ -4668,7 +4668,7 @@
             <param name="Digit2"><inheritdoc/></param>
             <param name="Loop"><inheritdoc/></param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Steps.DeadlyPatterns.Loops.UniqueLoopType1Step.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Data.Conclusion}@,System.Collections.Immutable.ImmutableArray{Sudoku.Models.PresentationData}@,System.Int32,System.Int32,Sudoku.Data.Cells@)">
+        <member name="M:Sudoku.Solving.Manual.Steps.DeadlyPatterns.Loops.UniqueLoopType1Step.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Data.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Models.PresentationData},System.Int32,System.Int32,Sudoku.Data.Cells@)">
             <summary>
             Provides with a step that is a <b>Unique Loop Type 1</b> technique.
             </summary>
@@ -4695,7 +4695,7 @@
             <param name="Loop"><inheritdoc/></param>
             <param name="ExtraDigit">Indicates the extra digit.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Steps.DeadlyPatterns.Loops.UniqueLoopType2Step.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Data.Conclusion}@,System.Collections.Immutable.ImmutableArray{Sudoku.Models.PresentationData}@,System.Int32,System.Int32,Sudoku.Data.Cells@,System.Int32)">
+        <member name="M:Sudoku.Solving.Manual.Steps.DeadlyPatterns.Loops.UniqueLoopType2Step.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Data.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Models.PresentationData},System.Int32,System.Int32,Sudoku.Data.Cells@,System.Int32)">
             <summary>
             Provides with a step that is a <b>Unique Loop Type 2</b> technique.
             </summary>
@@ -4724,7 +4724,7 @@
             <param name="SubsetDigitsMask">Indicates the mask that contains the subset digits used in this instance.</param>
             <param name="SubsetCells">Indicates the subset cells.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Steps.DeadlyPatterns.Loops.UniqueLoopType3Step.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Data.Conclusion}@,System.Collections.Immutable.ImmutableArray{Sudoku.Models.PresentationData}@,System.Int32,System.Int32,Sudoku.Data.Cells@,System.Int16,Sudoku.Data.Cells@)">
+        <member name="M:Sudoku.Solving.Manual.Steps.DeadlyPatterns.Loops.UniqueLoopType3Step.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Data.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Models.PresentationData},System.Int32,System.Int32,Sudoku.Data.Cells@,System.Int16,Sudoku.Data.Cells@)">
             <summary>
             Provides with a step that is a <b>Unique Loop Type 3</b> technique.
             </summary>
@@ -4756,7 +4756,7 @@
             <param name="Loop"><inheritdoc/></param>
             <param name="ConjugatePair">Indicates the conjugate pair used.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Steps.DeadlyPatterns.Loops.UniqueLoopType4Step.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Data.Conclusion}@,System.Collections.Immutable.ImmutableArray{Sudoku.Models.PresentationData}@,System.Int32,System.Int32,Sudoku.Data.Cells@,Sudoku.Data.ConjugatePair@)">
+        <member name="M:Sudoku.Solving.Manual.Steps.DeadlyPatterns.Loops.UniqueLoopType4Step.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Data.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Models.PresentationData},System.Int32,System.Int32,Sudoku.Data.Cells@,Sudoku.Data.ConjugatePair@)">
             <summary>
             Provides with a step that is a <b>Unique Loop Type 4</b> technique.
             </summary>
@@ -4782,7 +4782,7 @@
             <param name="Map">The map that contains the cells used for this technique.</param>
             <param name="DigitsMask">The mask that contains all digits used.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Steps.DeadlyPatterns.Polygons.UniquePolygonStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Data.Conclusion}@,System.Collections.Immutable.ImmutableArray{Sudoku.Models.PresentationData}@,Sudoku.Data.Cells@,System.Int16)">
+        <member name="M:Sudoku.Solving.Manual.Steps.DeadlyPatterns.Polygons.UniquePolygonStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Data.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Models.PresentationData},Sudoku.Data.Cells@,System.Int16)">
             <summary>
             Provides with a step that is a <b>Unique Polygon</b> technique.
             </summary>
@@ -4825,7 +4825,7 @@
             <param name="Map"><inheritdoc/></param>
             <param name="DigitsMask"><inheritdoc/></param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Steps.DeadlyPatterns.Polygons.UniquePolygonType1Step.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Data.Conclusion}@,System.Collections.Immutable.ImmutableArray{Sudoku.Models.PresentationData}@,Sudoku.Data.Cells@,System.Int16)">
+        <member name="M:Sudoku.Solving.Manual.Steps.DeadlyPatterns.Polygons.UniquePolygonType1Step.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Data.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Models.PresentationData},Sudoku.Data.Cells@,System.Int16)">
             <summary>
             Provides with a step that is a <b>Unique Polygon Type 1</b> technique.
             </summary>
@@ -4847,7 +4847,7 @@
             <param name="DigitsMask"><inheritdoc/></param>
             <param name="ExtraDigit">The extra digit.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Steps.DeadlyPatterns.Polygons.UniquePolygonType2Step.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Data.Conclusion}@,System.Collections.Immutable.ImmutableArray{Sudoku.Models.PresentationData}@,Sudoku.Data.Cells@,System.Int16,System.Int32)">
+        <member name="M:Sudoku.Solving.Manual.Steps.DeadlyPatterns.Polygons.UniquePolygonType2Step.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Data.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Models.PresentationData},Sudoku.Data.Cells@,System.Int16,System.Int32)">
             <summary>
             Provides with a step that is a <b>Unique Polygon Type 2</b> technique.
             </summary>
@@ -4874,7 +4874,7 @@
             <param name="ExtraCells">Indicates the extra cells used for forming the subset.</param>
             <param name="ExtraDigitsMask">Indicates the extra digits used for forming the subset.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Steps.DeadlyPatterns.Polygons.UniquePolygonType3Step.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Data.Conclusion}@,System.Collections.Immutable.ImmutableArray{Sudoku.Models.PresentationData}@,Sudoku.Data.Cells@,System.Int16,Sudoku.Data.Cells@,System.Int16)">
+        <member name="M:Sudoku.Solving.Manual.Steps.DeadlyPatterns.Polygons.UniquePolygonType3Step.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Data.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Models.PresentationData},Sudoku.Data.Cells@,System.Int16,Sudoku.Data.Cells@,System.Int16)">
             <summary>
             Provides with a step that is a <b>Unique Polygon Type 3</b> technique.
             </summary>
@@ -4902,7 +4902,7 @@
             <param name="ConjugateRegion">Indicates the cells that forms the conjugate region.</param>
             <param name="ExtraMask">Indicates the extra digits mask.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Steps.DeadlyPatterns.Polygons.UniquePolygonType4Step.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Data.Conclusion}@,System.Collections.Immutable.ImmutableArray{Sudoku.Models.PresentationData}@,Sudoku.Data.Cells@,System.Int16,Sudoku.Data.Cells@,System.Int16)">
+        <member name="M:Sudoku.Solving.Manual.Steps.DeadlyPatterns.Polygons.UniquePolygonType4Step.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Data.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Models.PresentationData},Sudoku.Data.Cells@,System.Int16,Sudoku.Data.Cells@,System.Int16)">
             <summary>
             Provides with a step that is a <b>Unique Polygon Type 4</b> technique.
             </summary>
@@ -4933,7 +4933,7 @@
             <param name="Region"></param>
             <param name="AbsoluteOffset"><inheritdoc/></param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Steps.DeadlyPatterns.Rectangles.AvoidableRectangleWithHiddenSingleStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Data.Conclusion}@,System.Collections.Immutable.ImmutableArray{Sudoku.Models.PresentationData}@,System.Int32,System.Int32,Sudoku.Data.Cells@,System.Int32,System.Int32,System.Int32,System.Int32)">
+        <member name="M:Sudoku.Solving.Manual.Steps.DeadlyPatterns.Rectangles.AvoidableRectangleWithHiddenSingleStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Data.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Models.PresentationData},System.Int32,System.Int32,Sudoku.Data.Cells@,System.Int32,System.Int32,System.Int32,System.Int32)">
             <summary>
             Provides with a step that is a <b>Avoidable Rectangle with Hidden Single</b> technique.
             </summary>
@@ -4972,7 +4972,7 @@
             <param name="ConjugatePairs"><inheritdoc/></param>
             <param name="AbsoluteOffset"><inheritdoc/></param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Steps.DeadlyPatterns.Rectangles.HiddenUniqueRectangleStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Data.Conclusion}@,System.Collections.Immutable.ImmutableArray{Sudoku.Models.PresentationData}@,System.Int32,System.Int32,Sudoku.Data.Cells@,System.Boolean,Sudoku.Data.ConjugatePair[],System.Int32)">
+        <member name="M:Sudoku.Solving.Manual.Steps.DeadlyPatterns.Rectangles.HiddenUniqueRectangleStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Data.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Models.PresentationData},System.Int32,System.Int32,Sudoku.Data.Cells@,System.Boolean,Sudoku.Data.ConjugatePair[],System.Int32)">
             <summary>
             Provides with a step that is a <b>Hidden Unique Rectangle</b> technique.
             </summary>
@@ -5001,7 +5001,7 @@
             <param name="XyCell">Indicates the cell XY.</param>
             <param name="AbsoluteOffset"><inheritdoc/></param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Steps.DeadlyPatterns.Rectangles.UniqueRectangle2DOr3XStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Data.Conclusion}@,System.Collections.Immutable.ImmutableArray{Sudoku.Models.PresentationData}@,Sudoku.Techniques.Technique,System.Int32,System.Int32,Sudoku.Data.Cells@,System.Boolean,System.Int32,System.Int32,System.Int32,System.Int32)">
+        <member name="M:Sudoku.Solving.Manual.Steps.DeadlyPatterns.Rectangles.UniqueRectangle2DOr3XStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Data.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Models.PresentationData},Sudoku.Techniques.Technique,System.Int32,System.Int32,Sudoku.Data.Cells@,System.Boolean,System.Int32,System.Int32,System.Int32,System.Int32)">
             <summary>
             Provides with a step that is a <b>Unique Rectangle 2D (or 3X)</b> technique.
             </summary>
@@ -5066,7 +5066,7 @@
             </param>
             <seealso cref="P:Sudoku.Solving.Manual.Step.TechniqueCode"/>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Steps.DeadlyPatterns.Rectangles.UniqueRectangleStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Data.Conclusion}@,System.Collections.Immutable.ImmutableArray{Sudoku.Models.PresentationData}@,Sudoku.Techniques.Technique,System.Int32,System.Int32,Sudoku.Data.Cells@,System.Boolean,System.Int32)">
+        <member name="M:Sudoku.Solving.Manual.Steps.DeadlyPatterns.Rectangles.UniqueRectangleStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Data.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Models.PresentationData},Sudoku.Techniques.Technique,System.Int32,System.Int32,Sudoku.Data.Cells@,System.Boolean,System.Int32)">
             <summary>
             Provides with a step that is a <b>Unique Rectangle</b> technique.
             </summary>
@@ -5139,7 +5139,7 @@
             <param name="IsAvoidable"><inheritdoc/></param>
             <param name="AbsoluteOffset"><inheritdoc/></param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Steps.DeadlyPatterns.Rectangles.UniqueRectangleType1Step.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Data.Conclusion}@,System.Collections.Immutable.ImmutableArray{Sudoku.Models.PresentationData}@,System.Int32,System.Int32,Sudoku.Data.Cells@,System.Boolean,System.Int32)">
+        <member name="M:Sudoku.Solving.Manual.Steps.DeadlyPatterns.Rectangles.UniqueRectangleType1Step.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Data.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Models.PresentationData},System.Int32,System.Int32,Sudoku.Data.Cells@,System.Boolean,System.Int32)">
             <summary>
             Provides with a step that is a <b>Unique Rectangle Type 1</b> technique.
             </summary>
@@ -5174,7 +5174,7 @@
             <param name="ExtraDigit">Indicates the extra digit used.</param>
             <param name="AbsoluteOffset"><inheritdoc/></param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Steps.DeadlyPatterns.Rectangles.UniqueRectangleType2Step.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Data.Conclusion}@,System.Collections.Immutable.ImmutableArray{Sudoku.Models.PresentationData}@,System.Int32,System.Int32,Sudoku.Techniques.Technique,Sudoku.Data.Cells@,System.Boolean,System.Int32,System.Int32)">
+        <member name="M:Sudoku.Solving.Manual.Steps.DeadlyPatterns.Rectangles.UniqueRectangleType2Step.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Data.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Models.PresentationData},System.Int32,System.Int32,Sudoku.Techniques.Technique,Sudoku.Data.Cells@,System.Boolean,System.Int32,System.Int32)">
             <summary>
             Provides with a step that is a <b>Unique Rectangle Type 2</b> technique.
             </summary>
@@ -5231,7 +5231,7 @@
             </para>
             </param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Steps.DeadlyPatterns.Rectangles.UniqueRectangleType3Step.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Data.Conclusion}@,System.Collections.Immutable.ImmutableArray{Sudoku.Models.PresentationData}@,System.Int32,System.Int32,Sudoku.Data.Cells@,Sudoku.Data.Cells@,System.Int16,System.Int32,System.Boolean,System.Int32,System.Boolean)">
+        <member name="M:Sudoku.Solving.Manual.Steps.DeadlyPatterns.Rectangles.UniqueRectangleType3Step.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Data.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Models.PresentationData},System.Int32,System.Int32,Sudoku.Data.Cells@,Sudoku.Data.Cells@,System.Int16,System.Int32,System.Boolean,System.Int32,System.Boolean)">
             <summary>
             Provides with a step that is a <b>Unique Rectangle Type 3</b> technique.
             </summary>
@@ -5288,7 +5288,7 @@
             <param name="ConjugatePairs">Indicates the conjugate pairs used.</param>
             <param name="AbsoluteOffset"><inheritdoc/></param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Steps.DeadlyPatterns.Rectangles.UniqueRectangleWithConjugatePairStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Data.Conclusion}@,System.Collections.Immutable.ImmutableArray{Sudoku.Models.PresentationData}@,Sudoku.Techniques.Technique,System.Int32,System.Int32,Sudoku.Data.Cells@,System.Boolean,Sudoku.Data.ConjugatePair[],System.Int32)">
+        <member name="M:Sudoku.Solving.Manual.Steps.DeadlyPatterns.Rectangles.UniqueRectangleWithConjugatePairStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Data.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Models.PresentationData},Sudoku.Techniques.Technique,System.Int32,System.Int32,Sudoku.Data.Cells@,System.Boolean,Sudoku.Data.ConjugatePair[],System.Int32)">
             <summary>
             Provides with a step that is a <b>Unique Rectangle with Conjugate Pair(s)</b> technique.
             </summary>
@@ -5332,7 +5332,7 @@
             <param name="GuardianDigit">Indicates the digit that the guardians are used.</param>
             <param name="AbsoluteOffset"><inheritdoc/></param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Steps.DeadlyPatterns.Rectangles.UniqueRectangleWithGuardianStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Data.Conclusion}@,System.Collections.Immutable.ImmutableArray{Sudoku.Models.PresentationData}@,System.Int32,System.Int32,Sudoku.Data.Cells@,Sudoku.Data.Cells@,System.Int32,System.Int32)">
+        <member name="M:Sudoku.Solving.Manual.Steps.DeadlyPatterns.Rectangles.UniqueRectangleWithGuardianStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Data.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Models.PresentationData},System.Int32,System.Int32,Sudoku.Data.Cells@,Sudoku.Data.Cells@,System.Int32,System.Int32)">
             <summary>
             Provides with a step that is a <b>Unique Rectangle with Guardians</b> technique.
             </summary>
@@ -5388,7 +5388,7 @@
             </param>
             <param name="AbsoluteOffset"><inheritdoc/></param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Steps.DeadlyPatterns.Rectangles.UniqueRectangleWithSueDeCoqStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Data.Conclusion}@,System.Collections.Immutable.ImmutableArray{Sudoku.Models.PresentationData}@,System.Int32,System.Int32,Sudoku.Data.Cells@,System.Boolean,System.Int32,System.Int32,System.Int16,System.Int16,System.Int16,System.Boolean,System.Int16,Sudoku.Data.Cells@,Sudoku.Data.Cells@,Sudoku.Data.Cells@,System.Int32)">
+        <member name="M:Sudoku.Solving.Manual.Steps.DeadlyPatterns.Rectangles.UniqueRectangleWithSueDeCoqStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Data.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Models.PresentationData},System.Int32,System.Int32,Sudoku.Data.Cells@,System.Boolean,System.Int32,System.Int32,System.Int16,System.Int16,System.Int16,System.Boolean,System.Int16,Sudoku.Data.Cells@,Sudoku.Data.Cells@,Sudoku.Data.Cells@,System.Int32)">
             <summary>
             Provides with a step that is a <b>Unique Rectangle with Sue de Coq</b> technique.
             </summary>
@@ -5444,7 +5444,7 @@
             <param name="ExtraDigit">Indicates the extra digit used.</param>
             <param name="AbsoluteOffset"><inheritdoc/></param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Steps.DeadlyPatterns.Rectangles.UniqueRectangleWithUnknownCoveringStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Data.Conclusion}@,System.Collections.Immutable.ImmutableArray{Sudoku.Models.PresentationData}@,System.Int32,System.Int32,Sudoku.Data.Cells@,System.Int32,System.Int32,System.Int32)">
+        <member name="M:Sudoku.Solving.Manual.Steps.DeadlyPatterns.Rectangles.UniqueRectangleWithUnknownCoveringStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Data.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Models.PresentationData},System.Int32,System.Int32,Sudoku.Data.Cells@,System.Int32,System.Int32,System.Int32)">
             <summary>
             Provides with a step that is a <b>Unique Rectangle with Unknown Covering</b> technique.
             </summary>
@@ -5485,7 +5485,7 @@
             <param name="ExtraDigitsMask">Indicates the mask that contains all extra digits.</param>
             <param name="AbsoluteOffset"><inheritdoc/></param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Steps.DeadlyPatterns.Rectangles.UniqueRectangleWithWingStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Data.Conclusion}@,System.Collections.Immutable.ImmutableArray{Sudoku.Models.PresentationData}@,Sudoku.Techniques.Technique,System.Int32,System.Int32,Sudoku.Data.Cells@,System.Boolean,Sudoku.Data.Cells@,Sudoku.Data.Cells@,System.Int16,System.Int32)">
+        <member name="M:Sudoku.Solving.Manual.Steps.DeadlyPatterns.Rectangles.UniqueRectangleWithWingStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Data.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Models.PresentationData},Sudoku.Techniques.Technique,System.Int32,System.Int32,Sudoku.Data.Cells@,System.Boolean,Sudoku.Data.Cells@,Sudoku.Data.Cells@,System.Int16,System.Int32)">
             <summary>
             Provides with a step that is a <b>Unique Rectangle with Wing</b> technique.
             </summary>
@@ -5522,7 +5522,7 @@
             <param name="Cells">Indicates the cells used.</param>
             <param name="DigitsMask">Indicates the digits used.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Steps.DeadlyPatterns.Squares.UniqueSquareStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Data.Conclusion}@,System.Collections.Immutable.ImmutableArray{Sudoku.Models.PresentationData}@,Sudoku.Data.Cells@,System.Int16)">
+        <member name="M:Sudoku.Solving.Manual.Steps.DeadlyPatterns.Squares.UniqueSquareStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Data.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Models.PresentationData},Sudoku.Data.Cells@,System.Int16)">
             <summary>
             Provides with a step that is a <b>Unique Square</b> technique.
             </summary>
@@ -5569,7 +5569,7 @@
             <param name="DigitsMask"><inheritdoc/></param>
             <param name="Candidate">Indicates the true candidate.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Steps.DeadlyPatterns.Squares.UniqueSquareType1Step.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Data.Conclusion}@,System.Collections.Immutable.ImmutableArray{Sudoku.Models.PresentationData}@,Sudoku.Data.Cells@,System.Int16,System.Int32)">
+        <member name="M:Sudoku.Solving.Manual.Steps.DeadlyPatterns.Squares.UniqueSquareType1Step.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Data.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Models.PresentationData},Sudoku.Data.Cells@,System.Int16,System.Int32)">
             <summary>
             Provides with a step that is a <b>Unique Square Type 1</b> technique.
             </summary>
@@ -5592,7 +5592,7 @@
             <param name="DigitsMask"><inheritdoc/></param>
             <param name="ExtraDigit">Indicates the extra digit used.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Steps.DeadlyPatterns.Squares.UniqueSquareType2Step.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Data.Conclusion}@,System.Collections.Immutable.ImmutableArray{Sudoku.Models.PresentationData}@,Sudoku.Data.Cells@,System.Int16,System.Int32)">
+        <member name="M:Sudoku.Solving.Manual.Steps.DeadlyPatterns.Squares.UniqueSquareType2Step.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Data.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Models.PresentationData},Sudoku.Data.Cells@,System.Int16,System.Int32)">
             <summary>
             Provides with a step that is a <b>Unique Square Type 2</b> technique.
             </summary>
@@ -5621,7 +5621,7 @@
             Indicates the extra digits that forms a subset with <paramref name="DigitsMask"/>.
             </param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Steps.DeadlyPatterns.Squares.UniqueSquareType3Step.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Data.Conclusion}@,System.Collections.Immutable.ImmutableArray{Sudoku.Models.PresentationData}@,Sudoku.Data.Cells@,System.Int16,System.Int16,Sudoku.Data.Cells)">
+        <member name="M:Sudoku.Solving.Manual.Steps.DeadlyPatterns.Squares.UniqueSquareType3Step.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Data.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Models.PresentationData},Sudoku.Data.Cells@,System.Int16,System.Int16,Sudoku.Data.Cells)">
             <summary>
             Provides with a step that is a <b>Unique Square Type 3</b> technique.
             </summary>
@@ -5652,7 +5652,7 @@
             <param name="Digit2">Indicates the digit 2 used.</param>
             <param name="ConjugateRegion">Indicates the cells used as the conjugation region.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Steps.DeadlyPatterns.Squares.UniqueSquareType4Step.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Data.Conclusion}@,System.Collections.Immutable.ImmutableArray{Sudoku.Models.PresentationData}@,Sudoku.Data.Cells@,System.Int16,System.Int32,System.Int32,Sudoku.Data.Cells@)">
+        <member name="M:Sudoku.Solving.Manual.Steps.DeadlyPatterns.Squares.UniqueSquareType4Step.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Data.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Models.PresentationData},Sudoku.Data.Cells@,System.Int16,System.Int32,System.Int32,Sudoku.Data.Cells@)">
             <summary>
             Provides with a step that is a <b>Unique Square Type 4</b> technique.
             </summary>
@@ -5677,7 +5677,7 @@
             <param name="BaseSetsMask">Indicates the mask that contains the base sets.</param>
             <param name="CoverSetsMask">Indicates the mask that contains the cover sets.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Steps.Fishes.FishStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Data.Conclusion}@,System.Collections.Immutable.ImmutableArray{Sudoku.Models.PresentationData}@,System.Int32,System.Int32,System.Int32)">
+        <member name="M:Sudoku.Solving.Manual.Steps.Fishes.FishStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Data.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Models.PresentationData},System.Int32,System.Int32,System.Int32)">
             <summary>
             Provides with a step that is a <b>Fish</b> technique.
             </summary>
@@ -5766,7 +5766,7 @@
             </list>
             </param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Steps.Fishes.NormalFishStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Data.Conclusion}@,System.Collections.Immutable.ImmutableArray{Sudoku.Models.PresentationData}@,System.Int32,System.Int32,System.Int32,Sudoku.Data.Cells@,System.Nullable{System.Boolean})">
+        <member name="M:Sudoku.Solving.Manual.Steps.Fishes.NormalFishStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Data.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Models.PresentationData},System.Int32,System.Int32,System.Int32,Sudoku.Data.Cells@,System.Nullable{System.Boolean})">
             <summary>
             Provides with a step that is an <b>Normal Fish</b> technique.
             </summary>
@@ -5839,7 +5839,7 @@
             <param name="length">The length.</param>
             <returns>The difficulty.</returns>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Steps.IChainStep.ConclusionsEquals(System.Collections.Immutable.ImmutableArray{Sudoku.Data.Conclusion}@,System.Collections.Immutable.ImmutableArray{Sudoku.Data.Conclusion}@,System.Boolean)">
+        <member name="M:Sudoku.Solving.Manual.Steps.IChainStep.ConclusionsEquals(System.Collections.Immutable.ImmutableArray{Sudoku.Data.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Data.Conclusion},System.Boolean)">
             <summary>
             Determines whether two different list of <see cref="T:Sudoku.Data.Conclusion"/>s holds the same values.
             </summary>
@@ -5916,7 +5916,7 @@
             <param name="Conclusions"><inheritdoc/></param>
             <param name="Views"><inheritdoc/></param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Steps.Intersections.IntersectionStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Data.Conclusion}@,System.Collections.Immutable.ImmutableArray{Sudoku.Models.PresentationData}@)">
+        <member name="M:Sudoku.Solving.Manual.Steps.Intersections.IntersectionStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Data.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Models.PresentationData})">
             <summary>
             Provides with a step that is an <b>Intersection</b> technique.
             </summary>
@@ -5949,7 +5949,7 @@
             <param name="TargetCells">Indicates the target cells.</param>
             <param name="HasValueCell">Indicates whether the step contians value cells.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Steps.Intersections.AlmostLockedCandidatesStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Data.Conclusion}@,System.Collections.Immutable.ImmutableArray{Sudoku.Models.PresentationData}@,System.Int16,Sudoku.Data.Cells@,Sudoku.Data.Cells@,System.Boolean)">
+        <member name="M:Sudoku.Solving.Manual.Steps.Intersections.AlmostLockedCandidatesStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Data.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Models.PresentationData},System.Int16,Sudoku.Data.Cells@,Sudoku.Data.Cells@,System.Boolean)">
             <summary>
             Provides with a step that is an <b>Almost Locked Candidates</b> technique.
             </summary>
@@ -5990,7 +5990,7 @@
             <param name="BaseSet">Indicates the region that the current locked candidates forms.</param>
             <param name="CoverSet">Indicates the region that the current locked candidates influences.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Steps.Intersections.LockedCandidatesStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Data.Conclusion}@,System.Collections.Immutable.ImmutableArray{Sudoku.Models.PresentationData}@,System.Int32,System.Int32,System.Int32)">
+        <member name="M:Sudoku.Solving.Manual.Steps.Intersections.LockedCandidatesStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Data.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Models.PresentationData},System.Int32,System.Int32,System.Int32)">
             <summary>
             Provides with a step that is a <b>Locked Candidates</b> technique.
             </summary>
@@ -6226,7 +6226,7 @@
             <param name="Views"><inheritdoc/></param>
             <param name="ContradictionLinks">Indicates the list of contradiction links.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Steps.LastResorts.BowmanBingoStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Data.Conclusion}@,System.Collections.Immutable.ImmutableArray{Sudoku.Models.PresentationData}@,System.Collections.Immutable.ImmutableArray{Sudoku.Data.Conclusion})">
+        <member name="M:Sudoku.Solving.Manual.Steps.LastResorts.BowmanBingoStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Data.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Models.PresentationData},System.Collections.Immutable.ImmutableArray{Sudoku.Data.Conclusion})">
             <summary>
             Provides with a step that is a <b>Bowman's Bingo</b> technique.
             </summary>
@@ -6262,7 +6262,7 @@
             <param name="Conclusions"><inheritdoc/></param>
             <param name="Views"><inheritdoc/></param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Steps.LastResorts.LastResortStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Data.Conclusion}@,System.Collections.Immutable.ImmutableArray{Sudoku.Models.PresentationData}@)">
+        <member name="M:Sudoku.Solving.Manual.Steps.LastResorts.LastResortStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Data.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Models.PresentationData})">
             <summary>
             Provides with a step that is a <b>Last Resort</b> technique.
             </summary>
@@ -6275,7 +6275,7 @@
             </summary>
             <param name="Conclusions"><inheritdoc/></param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Steps.LastResorts.PatternOverlayStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Data.Conclusion}@)">
+        <member name="M:Sudoku.Solving.Manual.Steps.LastResorts.PatternOverlayStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Data.Conclusion})">
             <summary>
             Provides with a step that is a <b>Pattern Overlay</b> technique.
             </summary>
@@ -6317,7 +6317,7 @@
             <param name="Digit1">Indicates the first digit.</param>
             <param name="Digit2">Indicates the second digit.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Steps.RankTheory.BivalueOddagonStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Data.Conclusion}@,System.Collections.Immutable.ImmutableArray{Sudoku.Models.PresentationData}@,Sudoku.Data.Cells@,System.Int32,System.Int32)">
+        <member name="M:Sudoku.Solving.Manual.Steps.RankTheory.BivalueOddagonStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Data.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Models.PresentationData},Sudoku.Data.Cells@,System.Int32,System.Int32)">
             <summary>
             Provides with a step that is a <b>Bi-value Oddagon</b> technique.
             </summary>
@@ -6344,7 +6344,7 @@
             <param name="Digit2"><inheritdoc/></param>
             <param name="ExtraCell">Indicates the extra cell.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Steps.RankTheory.BivalueOddagonType1Step.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Data.Conclusion}@,System.Collections.Immutable.ImmutableArray{Sudoku.Models.PresentationData}@,Sudoku.Data.Cells@,System.Int32,System.Int32,System.Int32)">
+        <member name="M:Sudoku.Solving.Manual.Steps.RankTheory.BivalueOddagonType1Step.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Data.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Models.PresentationData},Sudoku.Data.Cells@,System.Int32,System.Int32,System.Int32)">
             <summary>
             Provides with a step that is a <b>Bi-value Oddagon Type 1</b> technique.
             </summary>
@@ -6378,7 +6378,7 @@
             <param name="Digit2"><inheritdoc/></param>
             <param name="ExtraDigit">Indicates the extra digit.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Steps.RankTheory.BivalueOddagonType2Step.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Data.Conclusion}@,System.Collections.Immutable.ImmutableArray{Sudoku.Models.PresentationData}@,Sudoku.Data.Cells@,System.Int32,System.Int32,System.Int32)">
+        <member name="M:Sudoku.Solving.Manual.Steps.RankTheory.BivalueOddagonType2Step.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Data.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Models.PresentationData},Sudoku.Data.Cells@,System.Int32,System.Int32,System.Int32)">
             <summary>
             Provides with a step that is a <b>Bi-value Oddagon Type 2</b> technique.
             </summary>
@@ -6413,7 +6413,7 @@
             <param name="ExtraCells">Indicates the extra cells used.</param>
             <param name="ExtraDigitsMask">Indicates the mask that contains all extra digits used.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Steps.RankTheory.BivalueOddagonType3Step.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Data.Conclusion}@,System.Collections.Immutable.ImmutableArray{Sudoku.Models.PresentationData}@,Sudoku.Data.Cells@,System.Int32,System.Int32,Sudoku.Data.Cells@,System.Int16)">
+        <member name="M:Sudoku.Solving.Manual.Steps.RankTheory.BivalueOddagonType3Step.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Data.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Models.PresentationData},Sudoku.Data.Cells@,System.Int32,System.Int32,Sudoku.Data.Cells@,System.Int16)">
             <summary>
             Provides with a step that is a <b>Bi-value Oddagon Type 3</b> technique.
             </summary>
@@ -6444,7 +6444,7 @@
             <param name="Conclusions"><inheritdoc/></param>
             <param name="Views"><inheritdoc/></param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Steps.RankTheory.RankTheoryStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Data.Conclusion}@,System.Collections.Immutable.ImmutableArray{Sudoku.Models.PresentationData}@)">
+        <member name="M:Sudoku.Solving.Manual.Steps.RankTheory.RankTheoryStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Data.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Models.PresentationData})">
             <summary>
             Provides with a step that is a <b>Rank Theory</b> technique.
             </summary>
@@ -6486,7 +6486,7 @@
             <param name="LineCells">The map of line cells.</param>
             <param name="IntersectionCells">The map of intersection cells.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Steps.RankTheory.SueDeCoqStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Data.Conclusion}@,System.Collections.Immutable.ImmutableArray{Sudoku.Models.PresentationData}@,System.Int32,System.Int32,System.Int16,System.Int16,System.Int16,System.Boolean,System.Int16,Sudoku.Data.Cells@,Sudoku.Data.Cells@,Sudoku.Data.Cells@)">
+        <member name="M:Sudoku.Solving.Manual.Steps.RankTheory.SueDeCoqStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Data.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Models.PresentationData},System.Int32,System.Int32,System.Int16,System.Int16,System.Int16,System.Boolean,System.Int16,Sudoku.Data.Cells@,Sudoku.Data.Cells@,Sudoku.Data.Cells@)">
             <summary>
             Provides with a step that is a <b>Sue de Coq</b> technique.
             </summary>
@@ -6531,7 +6531,7 @@
             <param name="Block">Indicates the block that the empty rectangle structure formed.</param>
             <param name="ConjugatePair">Indicates the conjugate pair used.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Steps.SingleDigitPatterns.EmptyRectangleStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Data.Conclusion}@,System.Collections.Immutable.ImmutableArray{Sudoku.Models.PresentationData}@,System.Int32,System.Int32,Sudoku.Data.ConjugatePair@)">
+        <member name="M:Sudoku.Solving.Manual.Steps.SingleDigitPatterns.EmptyRectangleStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Data.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Models.PresentationData},System.Int32,System.Int32,Sudoku.Data.ConjugatePair@)">
             <summary>
             Provides with a step that is an <b>Empty Rectangle</b> technique.
             </summary>
@@ -6569,7 +6569,7 @@
             <param name="Loop">Indicates the loop cells used.</param>
             <param name="Guardians">Indicates the guardian cells used.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Steps.SingleDigitPatterns.GuardianStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Data.Conclusion}@,System.Collections.Immutable.ImmutableArray{Sudoku.Models.PresentationData}@,System.Int32,Sudoku.Data.Cells@,Sudoku.Data.Cells@)">
+        <member name="M:Sudoku.Solving.Manual.Steps.SingleDigitPatterns.GuardianStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Data.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Models.PresentationData},System.Int32,Sudoku.Data.Cells@,Sudoku.Data.Cells@)">
             <summary>
             Provides with a step that is a <b>Guardian</b> technique.
             </summary>
@@ -6608,7 +6608,7 @@
             <param name="Views"><inheritdoc/></param>
             <param name="Digit">Indicates the digit used.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Steps.SingleDigitPatterns.SingleDigitPatternStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Data.Conclusion}@,System.Collections.Immutable.ImmutableArray{Sudoku.Models.PresentationData}@,System.Int32)">
+        <member name="M:Sudoku.Solving.Manual.Steps.SingleDigitPatterns.SingleDigitPatternStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Data.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Models.PresentationData},System.Int32)">
             <summary>
             Provides with a step that is a <b>Single Digit Pattern</b> technique.
             </summary>
@@ -6647,7 +6647,7 @@
             <param name="BaseRegion">Indicates the base region used.</param>
             <param name="TargetRegion">Indicates the target region used.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Steps.SingleDigitPatterns.TwoStrongLinksStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Data.Conclusion}@,System.Collections.Immutable.ImmutableArray{Sudoku.Models.PresentationData}@,System.Int32,System.Int32,System.Int32)">
+        <member name="M:Sudoku.Solving.Manual.Steps.SingleDigitPatterns.TwoStrongLinksStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Data.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Models.PresentationData},System.Int32,System.Int32,System.Int32)">
             <summary>
             Provides with a step that is a <b>Single Digit Pattern</b> technique.
             </summary>
@@ -6681,7 +6681,7 @@
             <param name="Conclusions"><inheritdoc/></param>
             <param name="Digit"><inheritdoc/></param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Steps.Singles.FullHouseStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Data.Conclusion}@,System.Collections.Immutable.ImmutableArray{Sudoku.Models.PresentationData}@,System.Int32,System.Int32)">
+        <member name="M:Sudoku.Solving.Manual.Steps.Singles.FullHouseStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Data.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Models.PresentationData},System.Int32,System.Int32)">
             <summary>
             Provides with a step that is a <b>Full House</b> technique.
             </summary>
@@ -6712,7 +6712,7 @@
             Indicates whether the current step is a <b>Last Digit</b> technique usage.
             </param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Steps.Singles.HiddenSingleStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Data.Conclusion}@,System.Collections.Immutable.ImmutableArray{Sudoku.Models.PresentationData}@,System.Int32,System.Int32,System.Int32,System.Boolean)">
+        <member name="M:Sudoku.Solving.Manual.Steps.Singles.HiddenSingleStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Data.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Models.PresentationData},System.Int32,System.Int32,System.Int32,System.Boolean)">
             <summary>
             Provides with a step that is a <b>Hidden Single</b> or <b>Last Digit</b> (for special cases) technique.
             </summary>
@@ -6746,7 +6746,7 @@
             <param name="Cell"><inheritdoc/></param>
             <param name="Digit"><inheritdoc/></param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Steps.Singles.NakedSingleStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Data.Conclusion}@,System.Collections.Immutable.ImmutableArray{Sudoku.Models.PresentationData}@,System.Int32,System.Int32)">
+        <member name="M:Sudoku.Solving.Manual.Steps.Singles.NakedSingleStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Data.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Models.PresentationData},System.Int32,System.Int32)">
             <summary>
             Provides with a step that is a <b>Naked Single</b> technique.
             </summary>
@@ -6773,7 +6773,7 @@
             <param name="Cell">Indicates the cell used.</param>
             <param name="Digit">Indicates the digit used.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Steps.Singles.SingleStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Data.Conclusion}@,System.Collections.Immutable.ImmutableArray{Sudoku.Models.PresentationData}@,System.Int32,System.Int32)">
+        <member name="M:Sudoku.Solving.Manual.Steps.Singles.SingleStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Data.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Models.PresentationData},System.Int32,System.Int32)">
             <summary>
             Provides with a step that is a <b>Single</b> technique.
             </summary>
@@ -6813,7 +6813,7 @@
             <param name="Cells"><inheritdoc/></param>
             <param name="DigitsMask"><inheritdoc/></param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Steps.Subsets.HiddenSubsetStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Data.Conclusion}@,System.Collections.Immutable.ImmutableArray{Sudoku.Models.PresentationData}@,System.Int32,Sudoku.Data.Cells@,System.Int16)">
+        <member name="M:Sudoku.Solving.Manual.Steps.Subsets.HiddenSubsetStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Data.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Models.PresentationData},System.Int32,Sudoku.Data.Cells@,System.Int16)">
             <summary>
             Provides with a step that is a <b>Hidden Subset</b> technique.
             </summary>
@@ -6856,7 +6856,7 @@
             </list>
             </param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Steps.Subsets.NakedSubsetStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Data.Conclusion}@,System.Collections.Immutable.ImmutableArray{Sudoku.Models.PresentationData}@,System.Int32,Sudoku.Data.Cells@,System.Int16,System.Nullable{System.Boolean})">
+        <member name="M:Sudoku.Solving.Manual.Steps.Subsets.NakedSubsetStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Data.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Models.PresentationData},System.Int32,Sudoku.Data.Cells@,System.Int16,System.Nullable{System.Boolean})">
             <summary>
             Provides with a step that is a <b>Hidden Subset</b> technique.
             </summary>
@@ -6899,7 +6899,7 @@
             <param name="Cells">All cells used.</param>
             <param name="DigitsMask">The maks that contains all digits used.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Steps.Subsets.SubsetStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Data.Conclusion}@,System.Collections.Immutable.ImmutableArray{Sudoku.Models.PresentationData}@,System.Int32,Sudoku.Data.Cells@,System.Int16)">
+        <member name="M:Sudoku.Solving.Manual.Steps.Subsets.SubsetStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Data.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Models.PresentationData},System.Int32,Sudoku.Data.Cells@,System.Int16)">
             <summary>
             Provides with a step that is a <b>Subset</b> technique.
             </summary>
@@ -6952,7 +6952,7 @@
             <param name="DigitsMask">Indicates a mask that contins all digits used.</param>
             <param name="Petals">Indicates the petals used.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Steps.Wings.RegularWingStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Data.Conclusion}@,System.Collections.Immutable.ImmutableArray{Sudoku.Models.PresentationData}@,System.Int32,System.Int32,System.Int16,Sudoku.Data.Cells@)">
+        <member name="M:Sudoku.Solving.Manual.Steps.Wings.RegularWingStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Data.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Models.PresentationData},System.Int32,System.Int32,System.Int16,Sudoku.Data.Cells@)">
             <summary>
             Provides with a step that is a <b>Regular Wing</b> technique.
             </summary>
@@ -7037,7 +7037,7 @@
             <param name="Conclusions"><inheritdoc/></param>
             <param name="Views"><inheritdoc/></param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Steps.Wings.WingStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Data.Conclusion}@,System.Collections.Immutable.ImmutableArray{Sudoku.Models.PresentationData}@)">
+        <member name="M:Sudoku.Solving.Manual.Steps.Wings.WingStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Data.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Models.PresentationData})">
             <summary>
             Provides with a step that is a <b>Wing</b> technique.
             </summary>
@@ -7077,7 +7077,7 @@
             Indicates the conjugate pair that connects cells <see cref="P:Sudoku.Solving.Manual.Steps.Wings.WWingStep.StartCell"/> and <see cref="P:Sudoku.Solving.Manual.Steps.Wings.WWingStep.EndCell"/>.
             </param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Steps.Wings.WWingStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Data.Conclusion}@,System.Collections.Immutable.ImmutableArray{Sudoku.Models.PresentationData}@,System.Int32,System.Int32,Sudoku.Data.ConjugatePair@)">
+        <member name="M:Sudoku.Solving.Manual.Steps.Wings.WWingStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Data.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Models.PresentationData},System.Int32,System.Int32,Sudoku.Data.ConjugatePair@)">
             <summary>
             Provides with a step that is a <b>W-Wing</b> technique.
             </summary>

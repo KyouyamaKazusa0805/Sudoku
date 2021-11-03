@@ -8,8 +8,8 @@
 /// <param name="Cells"><inheritdoc/></param>
 /// <param name="DigitsMask"><inheritdoc/></param>
 public sealed record ExtendedRectangleType1Step(
-	in ImmutableArray<Conclusion> Conclusions,
-	in ImmutableArray<PresentationData> Views,
+	ImmutableArray<Conclusion> Conclusions,
+	ImmutableArray<PresentationData> Views,
 	in Cells Cells,
 	short DigitsMask
 ) : ExtendedRectangleStep(Conclusions, Views, Cells, DigitsMask)

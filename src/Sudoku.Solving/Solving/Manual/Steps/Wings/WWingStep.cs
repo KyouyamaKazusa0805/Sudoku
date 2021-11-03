@@ -11,8 +11,8 @@
 /// Indicates the conjugate pair that connects cells <see cref="StartCell"/> and <see cref="EndCell"/>.
 /// </param>
 public sealed record WWingStep(
-	in ImmutableArray<Conclusion> Conclusions,
-	in ImmutableArray<PresentationData> Views,
+	ImmutableArray<Conclusion> Conclusions,
+	ImmutableArray<PresentationData> Views,
 	int StartCell,
 	int EndCell,
 	in ConjugatePair ConjugatePair

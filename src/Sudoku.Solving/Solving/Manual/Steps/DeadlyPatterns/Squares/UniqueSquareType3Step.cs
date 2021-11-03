@@ -12,8 +12,8 @@
 /// Indicates the extra digits that forms a subset with <paramref name="DigitsMask"/>.
 /// </param>
 public sealed record UniqueSquareType3Step(
-	in ImmutableArray<Conclusion> Conclusions,
-	in ImmutableArray<PresentationData> Views,
+	ImmutableArray<Conclusion> Conclusions,
+	ImmutableArray<PresentationData> Views,
 	in Cells Cells,
 	short DigitsMask,
 	short ExtraDigitsMask,

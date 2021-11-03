@@ -8,8 +8,8 @@
 /// <param name="Cell">Indicates the cell used.</param>
 /// <param name="Digit">Indicates the digit used.</param>
 public abstract record SingleStep(
-	in ImmutableArray<Conclusion> Conclusions,
-	in ImmutableArray<PresentationData> Views,
+	ImmutableArray<Conclusion> Conclusions,
+	ImmutableArray<PresentationData> Views,
 	int Cell,
 	int Digit
 ) : Step(Conclusions, Views)

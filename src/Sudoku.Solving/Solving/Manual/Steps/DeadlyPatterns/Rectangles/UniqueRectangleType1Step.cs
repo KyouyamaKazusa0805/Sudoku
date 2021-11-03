@@ -11,8 +11,8 @@
 /// <param name="IsAvoidable"><inheritdoc/></param>
 /// <param name="AbsoluteOffset"><inheritdoc/></param>
 public sealed record UniqueRectangleType1Step(
-	in ImmutableArray<Conclusion> Conclusions,
-	in ImmutableArray<PresentationData> Views,
+	ImmutableArray<Conclusion> Conclusions,
+	ImmutableArray<PresentationData> Views,
 	int Digit1,
 	int Digit2,
 	in Cells Cells,

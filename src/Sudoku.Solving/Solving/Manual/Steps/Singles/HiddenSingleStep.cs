@@ -12,8 +12,8 @@
 /// Indicates whether the current step is a <b>Last Digit</b> technique usage.
 /// </param>
 public sealed record HiddenSingleStep(
-	in ImmutableArray<Conclusion> Conclusions,
-	in ImmutableArray<PresentationData> Views,
+	ImmutableArray<Conclusion> Conclusions,
+	ImmutableArray<PresentationData> Views,
 	int Cell,
 	int Digit,
 	int Region,

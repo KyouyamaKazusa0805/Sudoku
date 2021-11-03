@@ -8,8 +8,8 @@
 /// <param name="Map">The map that contains the cells used for this technique.</param>
 /// <param name="DigitsMask">The mask that contains all digits used.</param>
 public abstract record UniquePolygonStep(
-	in ImmutableArray<Conclusion> Conclusions,
-	in ImmutableArray<PresentationData> Views,
+	ImmutableArray<Conclusion> Conclusions,
+	ImmutableArray<PresentationData> Views,
 	in Cells Map,
 	short DigitsMask
 ) : DeadlyPatternStep(Conclusions, Views)

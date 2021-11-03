@@ -9,8 +9,8 @@
 /// <param name="DigitsMask"><inheritdoc/></param>
 /// <param name="Candidate">Indicates the true candidate.</param>
 public sealed record UniqueSquareType1Step(
-	in ImmutableArray<Conclusion> Conclusions,
-	in ImmutableArray<PresentationData> Views,
+	ImmutableArray<Conclusion> Conclusions,
+	ImmutableArray<PresentationData> Views,
 	in Cells Cells,
 	short DigitsMask,
 	int Candidate

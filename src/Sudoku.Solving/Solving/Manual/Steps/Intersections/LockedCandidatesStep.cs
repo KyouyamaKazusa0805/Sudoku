@@ -9,8 +9,8 @@
 /// <param name="BaseSet">Indicates the region that the current locked candidates forms.</param>
 /// <param name="CoverSet">Indicates the region that the current locked candidates influences.</param>
 public sealed record LockedCandidatesStep(
-	in ImmutableArray<Conclusion> Conclusions,
-	in ImmutableArray<PresentationData> Views,
+	ImmutableArray<Conclusion> Conclusions,
+	ImmutableArray<PresentationData> Views,
 	int Digit,
 	int BaseSet,
 	int CoverSet

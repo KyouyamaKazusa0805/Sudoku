@@ -11,8 +11,8 @@
 /// <param name="ExtraDigitsMask">Indicates the mask that contains the extra digits.</param>
 /// <param name="Region">Indicates the region that extra subset formed.</param>
 public sealed record ExtendedRectangleType3Step(
-	in ImmutableArray<Conclusion> Conclusions,
-	in ImmutableArray<PresentationData> Views,
+	ImmutableArray<Conclusion> Conclusions,
+	ImmutableArray<PresentationData> Views,
 	in Cells Cells,
 	short DigitsMask,
 	in Cells ExtraCells,

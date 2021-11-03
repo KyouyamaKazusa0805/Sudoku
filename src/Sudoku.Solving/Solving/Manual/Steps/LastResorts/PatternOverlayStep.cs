@@ -5,7 +5,7 @@
 /// </summary>
 /// <param name="Conclusions"><inheritdoc/></param>
 public sealed record PatternOverlayStep(
-	in ImmutableArray<Conclusion> Conclusions
+	ImmutableArray<Conclusion> Conclusions
 ) : LastResortStep(Conclusions, ImmutableArray.Create<PresentationData>())
 {
 	/// <summary>

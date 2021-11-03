@@ -9,8 +9,8 @@
 /// <param name="BaseRegion">Indicates the base region used.</param>
 /// <param name="TargetRegion">Indicates the target region used.</param>
 public sealed record TwoStrongLinksStep(
-	in ImmutableArray<Conclusion> Conclusions,
-	in ImmutableArray<PresentationData> Views,
+	ImmutableArray<Conclusion> Conclusions,
+	ImmutableArray<PresentationData> Views,
 	int Digit,
 	int BaseRegion,
 	int TargetRegion

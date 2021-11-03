@@ -6,8 +6,8 @@
 /// <param name="Conclusions"><inheritdoc/></param>
 /// <param name="Views"><inheritdoc/></param>
 public abstract record IntersectionStep(
-	in ImmutableArray<Conclusion> Conclusions,
-	in ImmutableArray<PresentationData> Views
+	ImmutableArray<Conclusion> Conclusions,
+	ImmutableArray<PresentationData> Views
 ) : Step(Conclusions, Views)
 {
 	/// <inheritdoc/>
@@ -36,8 +36,8 @@ public abstract record IntersectionStep(
 /// <param name="TargetCells">Indicates the target cells.</param>
 /// <param name="HasValueCell">Indicates whether the step contians value cells.</param>
 public sealed record AlmostLockedCandidatesStep(
-	in ImmutableArray<Conclusion> Conclusions,
-	in ImmutableArray<PresentationData> Views,
+	ImmutableArray<Conclusion> Conclusions,
+	ImmutableArray<PresentationData> Views,
 	short DigitsMask,
 	in Cells BaseCells,
 	in Cells TargetCells,

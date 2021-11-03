@@ -9,8 +9,8 @@
 /// <param name="Cells">All cells used.</param>
 /// <param name="DigitsMask">The maks that contains all digits used.</param>
 public abstract record SubsetStep(
-	in ImmutableArray<Conclusion> Conclusions,
-	in ImmutableArray<PresentationData> Views,
+	ImmutableArray<Conclusion> Conclusions,
+	ImmutableArray<PresentationData> Views,
 	int Region,
 	in Cells Cells,
 	short DigitsMask

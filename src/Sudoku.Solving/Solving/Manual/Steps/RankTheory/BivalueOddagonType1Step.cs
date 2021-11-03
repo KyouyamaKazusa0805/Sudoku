@@ -10,8 +10,8 @@
 /// <param name="Digit2"><inheritdoc/></param>
 /// <param name="ExtraCell">Indicates the extra cell.</param>
 public sealed record BivalueOddagonType1Step(
-	in ImmutableArray<Conclusion> Conclusions,
-	in ImmutableArray<PresentationData> Views,
+	ImmutableArray<Conclusion> Conclusions,
+	ImmutableArray<PresentationData> Views,
 	in Cells Loop,
 	int Digit1,
 	int Digit2,

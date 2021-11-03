@@ -8,8 +8,8 @@
 /// <param name="Map"><inheritdoc/></param>
 /// <param name="DigitsMask"><inheritdoc/></param>
 public sealed record UniquePolygonType1Step(
-	in ImmutableArray<Conclusion> Conclusions,
-	in ImmutableArray<PresentationData> Views,
+	ImmutableArray<Conclusion> Conclusions,
+	ImmutableArray<PresentationData> Views,
 	in Cells Map,
 	short DigitsMask
 ) : UniquePolygonStep(Conclusions, Views, Map, DigitsMask)

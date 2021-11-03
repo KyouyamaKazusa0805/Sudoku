@@ -11,8 +11,8 @@
 /// <param name="SubsetDigitsMask">Indicates the mask that contains the subset digits used in this instance.</param>
 /// <param name="SubsetCells">Indicates the subset cells.</param>
 public sealed record UniqueLoopType3Step(
-	in ImmutableArray<Conclusion> Conclusions,
-	in ImmutableArray<PresentationData> Views,
+	ImmutableArray<Conclusion> Conclusions,
+	ImmutableArray<PresentationData> Views,
 	int Digit1,
 	int Digit2,
 	in Cells Loop,

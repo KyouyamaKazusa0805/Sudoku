@@ -8,8 +8,8 @@
 /// <param name="Cells">Indicates the cells used.</param>
 /// <param name="DigitsMask">Indicates the digits used.</param>
 public abstract record UniqueSquareStep(
-	in ImmutableArray<Conclusion> Conclusions,
-	in ImmutableArray<PresentationData> Views,
+	ImmutableArray<Conclusion> Conclusions,
+	ImmutableArray<PresentationData> Views,
 	in Cells Cells,
 	short DigitsMask
 ) : DeadlyPatternStep(Conclusions, Views)

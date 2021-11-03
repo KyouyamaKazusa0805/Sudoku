@@ -9,8 +9,8 @@
 /// <param name="YEnabled"><inheritdoc/></param>
 /// <param name="Target">Indicates the target cell.</param>
 public sealed unsafe record AlternatingInferenceChainStep(
-	in ImmutableArray<Conclusion> Conclusions,
-	in ImmutableArray<PresentationData> Views,
+	ImmutableArray<Conclusion> Conclusions,
+	ImmutableArray<PresentationData> Views,
 	bool XEnabled,
 	bool YEnabled,
 	ChainNode Target

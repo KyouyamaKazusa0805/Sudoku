@@ -10,8 +10,8 @@
 /// <param name="DigitsMask">Indicates a mask that contins all digits used.</param>
 /// <param name="Petals">Indicates the petals used.</param>
 public sealed record RegularWingStep(
-	in ImmutableArray<Conclusion> Conclusions,
-	in ImmutableArray<PresentationData> Views,
+	ImmutableArray<Conclusion> Conclusions,
+	ImmutableArray<PresentationData> Views,
 	int Pivot,
 	int PivotCandidatesCount,
 	short DigitsMask,

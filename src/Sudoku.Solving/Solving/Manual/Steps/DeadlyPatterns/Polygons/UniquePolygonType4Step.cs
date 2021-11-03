@@ -10,8 +10,8 @@
 /// <param name="ConjugateRegion">Indicates the cells that forms the conjugate region.</param>
 /// <param name="ExtraMask">Indicates the extra digits mask.</param>
 public sealed record UniquePolygonType4Step(
-	in ImmutableArray<Conclusion> Conclusions,
-	in ImmutableArray<PresentationData> Views,
+	ImmutableArray<Conclusion> Conclusions,
+	ImmutableArray<PresentationData> Views,
 	in Cells Map,
 	short DigitsMask,
 	in Cells ConjugateRegion,

@@ -8,8 +8,8 @@
 /// <param name="Cell"><inheritdoc/></param>
 /// <param name="Digit"><inheritdoc/></param>
 public sealed record NakedSingleStep(
-	in ImmutableArray<Conclusion> Conclusions,
-	in ImmutableArray<PresentationData> Views,
+	ImmutableArray<Conclusion> Conclusions,
+	ImmutableArray<PresentationData> Views,
 	int Cell,
 	int Digit
 ) : SingleStep(Conclusions, Views, Cell, Digit)
