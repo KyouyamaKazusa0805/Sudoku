@@ -1,4 +1,4 @@
-﻿using System.Text.Json;
+﻿extern alias extended;
 
 namespace Sudoku.UI.Data;
 
@@ -11,7 +11,7 @@ namespace Sudoku.UI.Data;
 /// <param name="B">The blue value.</param>
 [AutoDeconstructLambda(nameof(A), nameof(RgbColorInstance))]
 [AutoDeconstruct(nameof(R), nameof(G), nameof(B))]
-public readonly partial record struct UIColor(byte A, byte R, byte G, byte B) : IValueEquatable<UIColor>, IFormattable, IParseable<UIColor>, IMinMaxValue<UIColor>, IJsonSerializable<UIColor, UIColor.JsonConverter>
+public readonly partial record struct UIColor(byte A, byte R, byte G, byte B) : IValueEquatable<UIColor>, IFormattable, extended::System.IParseable<UIColor>, IMinMaxValue<UIColor>, IJsonSerializable<UIColor, UIColor.JsonConverter>
 {
 	/// <summary>
 	/// Indicates the min value of the <see cref="UIColor"/> instance.
@@ -194,6 +194,7 @@ public readonly partial record struct UIColor(byte A, byte R, byte G, byte B) : 
 	/// </summary>
 	private UIColor RgbColorInstance
 	{
+		[LambdaBody]
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => new(R, G, B);
 	}

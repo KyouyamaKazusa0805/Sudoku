@@ -14,27 +14,52 @@ public readonly partial record struct ChainLink(int StartCandidate, int EndCandi
 	/// <summary>
 	/// Indicates the start cell.
 	/// </summary>
-	private int StartCell => StartCandidate / 9;
+	private int StartCell
+	{
+		[LambdaBody]
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		get => StartCandidate / 9;
+	}
 
 	/// <summary>
 	/// Indicates the start digit.
 	/// </summary>
-	private int StartDigit => StartCandidate % 9;
+	private int StartDigit
+	{
+		[LambdaBody]
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		get => StartCandidate % 9;
+	}
 
 	/// <summary>
 	/// Indicates the end cell.
 	/// </summary>
-	private int EndCell => EndCandidate / 9;
+	private int EndCell
+	{
+		[LambdaBody]
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		get => EndCandidate / 9;
+	}
 
 	/// <summary>
 	/// Indicates the end digit.
 	/// </summary>
-	private int EndDigit => EndCandidate % 9;
+	private int EndDigit
+	{
+		[LambdaBody]
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		get => EndCandidate % 9;
+	}
 
 	/// <summary>
 	/// Indicates the eigen value.
 	/// </summary>
-	private int EigenValue => (int)LinkType << 20 | StartCandidate << 10 | EndCandidate;
+	private int EigenValue
+	{
+		[LambdaBody]
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		get => (int)LinkType << 20 | StartCandidate << 10 | EndCandidate;
+	}
 
 
 	/// <inheritdoc cref="object.ToString"/>

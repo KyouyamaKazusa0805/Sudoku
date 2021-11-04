@@ -140,12 +140,22 @@ public readonly partial struct Pattern : IValueEquatable<Pattern>
 	/// <summary>
 	/// Indicates the base cells.
 	/// </summary>
-	private Cells BaseCellsMap => new() { Base1, Base2 };
+	private Cells BaseCellsMap
+	{
+		[LambdaBody]
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		get => new() { Base1, Base2 };
+	}
 
 	/// <summary>
 	/// Indicates the target cells.
 	/// </summary>
-	private Cells TargetCellsMap => new() { TargetQ1, TargetQ2, TargetR1, TargetR2 };
+	private Cells TargetCellsMap
+	{
+		[LambdaBody]
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		get => new() { TargetQ1, TargetQ2, TargetR1, TargetR2 };
+	}
 
 
 	/// <inheritdoc cref="object.ToString"/>

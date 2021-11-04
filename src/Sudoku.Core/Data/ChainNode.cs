@@ -88,8 +88,7 @@ public unsafe partial record struct ChainNode(int Mask) : IValueEquatable<ChainN
 	/// <param name="parents">The parent nodes.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	internal ChainNode(byte cell, byte digit, bool isOn, ChainNode[] parents)
-	: this(ConstructMask(cell, digit, isOn, (byte)parents.Length)) =>
-		_rawParents = parents;
+	: this(ConstructMask(cell, digit, isOn, (byte)parents.Length)) => _rawParents = parents;
 
 
 	/// <summary>
@@ -127,6 +126,7 @@ public unsafe partial record struct ChainNode(int Mask) : IValueEquatable<ChainN
 	/// </remarks>
 	public readonly bool IsOn
 	{
+		[LambdaBody]
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => (Mask >> 16 & 1) != 0;
 	}
@@ -206,6 +206,7 @@ public unsafe partial record struct ChainNode(int Mask) : IValueEquatable<ChainN
 	/// </summary>
 	public readonly short Candidate
 	{
+		[LambdaBody]
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => (short)(Mask & 1023);
 	}

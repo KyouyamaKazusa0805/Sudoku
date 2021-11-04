@@ -39,6 +39,7 @@ public readonly partial record struct Conclusion(ConclusionType ConclusionType, 
 	public int Candidate
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		[LambdaBody]
 		get => Cell * 9 + Digit;
 	}
 
