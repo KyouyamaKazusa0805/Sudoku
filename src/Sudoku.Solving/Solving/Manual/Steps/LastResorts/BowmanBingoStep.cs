@@ -20,7 +20,8 @@ public sealed record BowmanBingoStep(
 	public override DifficultyLevel DifficultyLevel => DifficultyLevel.LastResort;
 
 	/// <inheritdoc/>
-	public override TechniqueTags TechniqueTags => TechniqueTags.LongChaining | TechniqueTags.ForcingChains;
+	public override TechniqueTags TechniqueTags =>
+		base.TechniqueTags | TechniqueTags.LongChaining | TechniqueTags.ForcingChains;
 
 	/// <inheritdoc/>
 	public override Technique TechniqueCode => Technique.BowmanBingo;
@@ -30,9 +31,6 @@ public sealed record BowmanBingoStep(
 
 	/// <inheritdoc/>
 	public override Rarity Rarity => Rarity.Often;
-
-	/// <inheritdoc/>
-	public override Stableness Stableness => Stableness.LessUnstable;
 
 	[FormatItem]
 	private string ContradictionSeriesStr

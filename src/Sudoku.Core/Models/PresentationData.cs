@@ -45,8 +45,7 @@ public partial record struct PresentationData(
 	/// <returns>A <see cref="bool"/> value.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public readonly bool Contains<TStruct>(PresentationDataKind dataKind, TStruct element)
-	where TStruct : struct =>
-		IndexOf(dataKind, element) != -1;
+	where TStruct : struct => IndexOf(dataKind, element) != -1;
 
 	/// <summary>
 	/// Checks whether the collection contains the specified element. If so, return the index of the element.

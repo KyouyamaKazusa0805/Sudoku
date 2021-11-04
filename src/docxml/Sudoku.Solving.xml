@@ -3270,6 +3270,25 @@
             </summary>
             <returns>The templates.</returns>
         </member>
+        <member name="T:Sudoku.Solving.Manual.Searchers.LastResorts.ITemplateStepSearcher">
+            <summary>
+            Defines a step searcher that searches for template steps.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Searchers.LastResorts.ITemplateStepSearcher.TemplateDeleteOnly">
+            <summary>
+            Indicates whether the technique searcher only checks template deletes.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Searchers.LastResorts.ITemplateStepSearcher.Solution">
+            <summary>
+            Indicates the reference of the solution sudoku grid.
+            </summary>
+            <remarks>
+            Please note that the property will be received a pointer value that points to a <see cref="T:Sudoku.Data.Grid"/>,
+            but we recommend you should keep the inner value and only assign once.
+            </remarks>
+        </member>
         <member name="T:Sudoku.Solving.Manual.Searchers.LastResorts.PatternOverlayStepSearcher">
             <summary>
             Provides with a <b>Pattern Overlay</b> step searcher.
@@ -3286,6 +3305,30 @@
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Solving.Manual.Searchers.LastResorts.PatternOverlayStepSearcher.GetAll(System.Collections.Generic.ICollection{Sudoku.Solving.Manual.Step},Sudoku.Data.Grid@,System.Boolean)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Searchers.LastResorts.TemplateStepSearcher">
+            <summary>
+            Provides with a <b>Template</b> step searcher.
+            The step searcher will include the following techniques:
+            <list type="bullet">
+            <item>Template</item>
+            </list>
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Searchers.LastResorts.TemplateStepSearcher.TemplateDeleteOnly">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Searchers.LastResorts.TemplateStepSearcher.Options">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Searchers.LastResorts.TemplateStepSearcher.Solution">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Searchers.LastResorts.TemplateStepSearcher.Predicate">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Searchers.LastResorts.TemplateStepSearcher.GetAll(System.Collections.Generic.ICollection{Sudoku.Solving.Manual.Step},Sudoku.Data.Grid@,System.Boolean)">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Solving.Manual.Searchers.RankTheory.BivalueOddagonStepSearcher">
@@ -6268,9 +6311,6 @@
         <member name="P:Sudoku.Solving.Manual.Steps.LastResorts.BowmanBingoStep.Rarity">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Solving.Manual.Steps.LastResorts.BowmanBingoStep.Stableness">
-            <inheritdoc/>
-        </member>
         <member name="T:Sudoku.Solving.Manual.Steps.LastResorts.LastResortStep">
             <summary>
             Provides with a step that is a <b>Last Resort</b> technique.
@@ -6284,6 +6324,12 @@
             </summary>
             <param name="Conclusions"><inheritdoc/></param>
             <param name="Views"><inheritdoc/></param>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.LastResorts.LastResortStep.TechniqueTags">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.LastResorts.LastResortStep.Stableness">
+            <inheritdoc/>
         </member>
         <member name="T:Sudoku.Solving.Manual.Steps.LastResorts.PatternOverlayStep">
             <summary>
@@ -6314,13 +6360,46 @@
         <member name="P:Sudoku.Solving.Manual.Steps.LastResorts.PatternOverlayStep.TechniqueGroup">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Solving.Manual.Steps.LastResorts.PatternOverlayStep.Stableness">
-            <inheritdoc/>
-        </member>
         <member name="P:Sudoku.Solving.Manual.Steps.LastResorts.PatternOverlayStep.TechniqueTags">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Manual.Steps.LastResorts.PatternOverlayStep.Rarity">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Steps.LastResorts.TemplateStep">
+            <summary>
+            Provides with a step that is a <b>Template</b> technique.
+            </summary>
+            <param name="Conclusions"><inheritdoc/></param>
+            <param name="Views"><inheritdoc/></param>
+            <param name="IsTemplateDeletion">Indicates whether the step is a deletion.</param>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Steps.LastResorts.TemplateStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Data.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Models.PresentationData},System.Boolean)">
+            <summary>
+            Provides with a step that is a <b>Template</b> technique.
+            </summary>
+            <param name="Conclusions"><inheritdoc/></param>
+            <param name="Views"><inheritdoc/></param>
+            <param name="IsTemplateDeletion">Indicates whether the step is a deletion.</param>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.LastResorts.TemplateStep.Digit">
+            <summary>
+            Indicates the digit.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.LastResorts.TemplateStep.Difficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.LastResorts.TemplateStep.DifficultyLevel">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.LastResorts.TemplateStep.TechniqueCode">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.LastResorts.TemplateStep.TechniqueGroup">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.LastResorts.TemplateStep.Rarity">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Solving.Manual.Steps.RankTheory.BivalueOddagonStep">

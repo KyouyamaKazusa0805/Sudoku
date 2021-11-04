@@ -10,4 +10,9 @@ public abstract record LastResortStep(
 	ImmutableArray<PresentationData> Views
 ) : Step(Conclusions, Views)
 {
+	/// <inheritdoc/>
+	public override TechniqueTags TechniqueTags => TechniqueTags.LastResort;
+
+	/// <inheritdoc/>
+	public override Stableness Stableness => Stableness.LessUnstable;
 }

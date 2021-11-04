@@ -26,10 +26,7 @@ public sealed record PatternOverlayStep(
 	public override TechniqueGroup TechniqueGroup => TechniqueGroup.Pom;
 
 	/// <inheritdoc/>
-	public override Stableness Stableness => Stableness.LessUnstable;
-
-	/// <inheritdoc/>
-	public override TechniqueTags TechniqueTags => TechniqueTags.LastResort | TechniqueTags.SingleDigitPatterns;
+	public override TechniqueTags TechniqueTags => base.TechniqueTags | TechniqueTags.SingleDigitPatterns;
 
 	/// <inheritdoc/>
 	public override Rarity Rarity => Rarity.Often;
