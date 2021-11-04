@@ -14,8 +14,7 @@ public unsafe interface ITemplateStepSearcher : IStepSearcher
 	/// Indicates the reference of the solution sudoku grid.
 	/// </summary>
 	/// <remarks>
-	/// Please note that the property will be received a pointer value that points to a <see cref="Grid"/>,
-	/// but we recommend you should keep the inner value and only assign once.
+	/// Please note that the property will be received a pointer value that points to a <see cref="Grid"/>.
 	/// </remarks>
 	Grid* Solution { get; set; }
 }

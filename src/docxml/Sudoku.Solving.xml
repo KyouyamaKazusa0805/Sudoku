@@ -3285,8 +3285,7 @@
             Indicates the reference of the solution sudoku grid.
             </summary>
             <remarks>
-            Please note that the property will be received a pointer value that points to a <see cref="T:Sudoku.Data.Grid"/>,
-            but we recommend you should keep the inner value and only assign once.
+            Please note that the property will be received a pointer value that points to a <see cref="T:Sudoku.Data.Grid"/>.
             </remarks>
         </member>
         <member name="T:Sudoku.Solving.Manual.Searchers.LastResorts.PatternOverlayStepSearcher">
@@ -3312,7 +3311,8 @@
             Provides with a <b>Template</b> step searcher.
             The step searcher will include the following techniques:
             <list type="bullet">
-            <item>Template</item>
+            <item>Template Set</item>
+            <item>Template Delete</item>
             </list>
             </summary>
         </member>
