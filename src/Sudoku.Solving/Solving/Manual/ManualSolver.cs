@@ -239,9 +239,15 @@ public sealed unsafe partial class ManualSolver : IPuzzleSolver
 	/// Throws when the current operation is cancelled.
 	/// </exception>
 	private bool RecordStep(
-		ICollection<Step> steps, Step step, ref Grid playground, Stopwatch stopwatch,
-		ICollection<Grid> stepGrids, ManualSolverResult baseSolverResult, CancellationToken cancellationToken,
-		[NotNullWhen(true)] out ManualSolverResult? result)
+		ICollection<Step> steps,
+		Step step,
+		ref Grid playground,
+		Stopwatch stopwatch,
+		ICollection<Grid> stepGrids,
+		ManualSolverResult baseSolverResult,
+		CancellationToken cancellationToken,
+		[NotNullWhen(true)] out ManualSolverResult? result
+	)
 	{
 		bool atLeastOneStepIsWorth = false;
 		foreach (var (t, c, d) in step.Conclusions)
