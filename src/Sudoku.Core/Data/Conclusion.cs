@@ -38,8 +38,8 @@ public readonly partial record struct Conclusion(ConclusionType ConclusionType, 
 	/// </summary>
 	public int Candidate
 	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		[LambdaBody]
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => Cell * 9 + Digit;
 	}
 
