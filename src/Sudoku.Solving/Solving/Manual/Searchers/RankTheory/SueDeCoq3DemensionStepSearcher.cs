@@ -252,19 +252,21 @@ public sealed unsafe class SueDeCoq3DemensionStepSearcher : ISueDeCoq3DemensionS
 													continue;
 												}
 
-												var cellOffsets = new List<DrawingInfo>();
+#if false
+												var cellOffsets = new List<(int, ColorIdentifier)>();
 												foreach (int cell in currentRowMap | rbCurrentMap)
 												{
-													cellOffsets.Add(new(0, cell));
+													cellOffsets.Add((cell, (ColorIdentifier)0));
 												}
 												foreach (int cell in currentColumnMap | cbCurrentMap)
 												{
-													cellOffsets.Add(new(1, cell));
+													cellOffsets.Add((cell, (ColorIdentifier)1));
 												}
 												foreach (int cell in currentBlockMap)
 												{
-													cellOffsets.Add(new(2, cell));
+													cellOffsets.Add((cell, (ColorIdentifier)2));
 												}
+#endif
 
 												var candidateOffsets = new List<(int, ColorIdentifier)>();
 												foreach (int digit in rowMask)
