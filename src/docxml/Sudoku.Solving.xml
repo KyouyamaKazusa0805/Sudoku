@@ -3362,10 +3362,33 @@
             Defines a step searcher that searches for rank theory steps.
             </summary>
         </member>
+        <member name="T:Sudoku.Solving.Manual.Searchers.RankTheory.ISueDeCoq3DemensionStepSearcher">
+            <summary>
+            Defines a step searcher that searches for 3-demensional sue de coq steps.
+            </summary>
+        </member>
         <member name="T:Sudoku.Solving.Manual.Searchers.RankTheory.ISueDeCoqStepSearcher">
             <summary>
             Defines a step searcher that searches for bi-value oddagon steps.
             </summary>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Searchers.RankTheory.SueDeCoq3DemensionStepSearcher">
+            <summary>
+            Provides with a <b>3-demensional Sue de Coq</b> step searcher.
+            The step searcher will include the following techniques:
+            <list type="bullet">
+            <item>3-demensional Sue de Coq</item>
+            </list>
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Searchers.RankTheory.SueDeCoq3DemensionStepSearcher.Options">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Searchers.RankTheory.SueDeCoq3DemensionStepSearcher.Predicate">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Searchers.RankTheory.SueDeCoq3DemensionStepSearcher.GetAll(System.Collections.Generic.ICollection{Sudoku.Solving.Manual.Step},Sudoku.Data.Grid@,System.Boolean)">
+            <inheritdoc/>
         </member>
         <member name="T:Sudoku.Solving.Manual.Searchers.RankTheory.SueDeCoqStepSearcher">
             <summary>
@@ -6562,6 +6585,50 @@
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Manual.Steps.RankTheory.RankTheoryStep.Stableness">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Steps.RankTheory.SueDeCoq3DemensionStep">
+            <summary>
+            Provides with a step that is a <b>3-demensional Sue de Coq</b> technique.
+            </summary>
+            <param name="Conclusions"><inheritdoc/></param>
+            <param name="Views"><inheritdoc/></param>
+            <param name="RowDigitsMask">The row digits mask.</param>
+            <param name="ColumnDigitsMask">The column digits mask.</param>
+            <param name="BlockDigitsMask">The block digits mask.</param>
+            <param name="RowCells">The row cells map.</param>
+            <param name="ColumnCells">The column cells map.</param>
+            <param name="BlockCells">The block cells map.</param>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Steps.RankTheory.SueDeCoq3DemensionStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Data.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Models.PresentationData},System.Int16,System.Int16,System.Int16,Sudoku.Data.Cells,Sudoku.Data.Cells,Sudoku.Data.Cells)">
+            <summary>
+            Provides with a step that is a <b>3-demensional Sue de Coq</b> technique.
+            </summary>
+            <param name="Conclusions"><inheritdoc/></param>
+            <param name="Views"><inheritdoc/></param>
+            <param name="RowDigitsMask">The row digits mask.</param>
+            <param name="ColumnDigitsMask">The column digits mask.</param>
+            <param name="BlockDigitsMask">The block digits mask.</param>
+            <param name="RowCells">The row cells map.</param>
+            <param name="ColumnCells">The column cells map.</param>
+            <param name="BlockCells">The block cells map.</param>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.RankTheory.SueDeCoq3DemensionStep.Difficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.RankTheory.SueDeCoq3DemensionStep.TechniqueCode">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.RankTheory.SueDeCoq3DemensionStep.TechniqueTags">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.RankTheory.SueDeCoq3DemensionStep.TechniqueGroup">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.RankTheory.SueDeCoq3DemensionStep.DifficultyLevel">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.RankTheory.SueDeCoq3DemensionStep.Rarity">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Solving.Manual.Steps.RankTheory.SueDeCoqStep">

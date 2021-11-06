@@ -1,26 +1,28 @@
-﻿namespace Sudoku.Solving.Manual.RankTheory;
+﻿namespace Sudoku.Solving.Manual.Searchers.RankTheory;
 
 /// <summary>
-/// Encapsulates a <b>3-dimension sue de coq</b> technique.
+/// Provides with a <b>3-demensional Sue de Coq</b> step searcher.
+/// The step searcher will include the following techniques:
+/// <list type="bullet">
+/// <item>3-demensional Sue de Coq</item>
+/// </list>
 /// </summary>
-public sealed class Sdc3dStepSearcher : RankTheoryStepSearcher
+[StepSearcher]
+public sealed unsafe class SueDeCoq3DemensionStepSearcher : ISueDeCoq3DemensionStepSearcher
 {
-	/// <summary>
-	/// Indicates the searcher properties.
-	/// </summary>
-	/// <remarks>
-	/// Please note that all technique searches should contain
-	/// this static property in order to display on settings window. If the searcher doesn't contain,
-	/// when we open the settings window, it'll throw an exception to report about this.
-	/// </remarks>
-	public static TechniqueProperties Properties { get; } = new(22, nameof(Technique.Sdc3d))
+	/// <inheritdoc/>
+	public SearchingOptions Options { get; set; } = new(22, DisplayingLevel.B);
+
+	/// <inheritdoc/>
+	public delegate*<in Grid, bool> Predicate
 	{
-		DisplayLevel = 2
-	};
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		get => null;
+	}
 
 
 	/// <inheritdoc/>
-	public override void GetAll(IList<StepInfo> accumulator, in SudokuGrid grid)
+	public Step? GetAll(ICollection<Step> accumulator, in Grid grid, bool onlyFindOne)
 	{
 		List<Cells> rbList = new(3), cbList = new(3);
 		foreach (int pivot in EmptyMap)
@@ -30,7 +32,12 @@ public sealed class Sdc3dStepSearcher : RankTheoryStepSearcher
 			int b = pivot.ToRegion(RegionLabel.Block);
 			Cells rbMap = RegionMaps[r] & RegionMaps[b], cbMap = RegionMaps[c] & RegionMaps[b];
 			Cells rbEmptyMap = rbMap & EmptyMap, cbEmptyMap = cbMap & EmptyMap;
-			if (rbEmptyMap.Count < 2 || cbEmptyMap.Count < 2)
+			if (
+				(RowBlock: rbEmptyMap.Count, ColumnBlock: cbEmptyMap.Count) is not (
+					RowBlock: >= 2,
+					ColumnBlock: >= 2
+				)
+			)
 			{
 				// The intersection needs at least two cells.
 				continue;
@@ -157,8 +164,7 @@ public sealed class Sdc3dStepSearcher : RankTheoryStepSearcher
 										k++
 									)
 									{
-										foreach (int[] selectedColumnCells in
-											columnMap.ToArray().GetSubsets(k))
+										foreach (int[] selectedColumnCells in columnMap.ToArray().GetSubsets(k))
 										{
 											short columnMask = 0;
 											var currentColumnMap = new Cells(selectedColumnCells);
@@ -182,9 +188,7 @@ public sealed class Sdc3dStepSearcher : RankTheoryStepSearcher
 												continue;
 											}
 
-											var fullMap =
-												rbCurrentMap | cbCurrentMap
-												| currentRowMap | currentColumnMap | currentBlockMap;
+											var fullMap = rbCurrentMap | cbCurrentMap | currentRowMap | currentColumnMap | currentBlockMap;
 											var otherMap_row = fullMap - (currentRowMap | rbCurrentMap);
 											var otherMap_column = fullMap - (currentColumnMap | cbCurrentMap);
 											short mask = 0;
@@ -197,6 +201,7 @@ public sealed class Sdc3dStepSearcher : RankTheoryStepSearcher
 												// At least one digit spanned two regions.
 												continue;
 											}
+
 											mask = 0;
 											foreach (int cell in otherMap_column)
 											{
@@ -210,17 +215,14 @@ public sealed class Sdc3dStepSearcher : RankTheoryStepSearcher
 											mask = (short)((short)(blockMask | rowMask) | columnMask);
 											short rbMaskOnlyInInter = (short)(rbSelectedInterMask & ~mask);
 											short cbMaskOnlyInInter = (short)(cbSelectedInterMask & ~mask);
-											if (
-												cbCurrentMap.Count + rbCurrentMap.Count + i + j + k - 1
-												== PopCount((uint)blockMask)
-												+ PopCount((uint)rowMask) + PopCount((uint)columnMask)
-												+ PopCount((uint)rbMaskOnlyInInter)
-												+ PopCount((uint)cbMaskOnlyInInter)
-												&& (
-													!elimMapRow.IsEmpty || !elimMapColumn.IsEmpty
-													|| !elimMapBlock.IsEmpty
-												)
-											)
+
+											int bCount = PopCount((uint)blockMask);
+											int rCount = PopCount((uint)rowMask);
+											int cCount = PopCount((uint)columnMask);
+											int rbCount = PopCount((uint)rbMaskOnlyInInter);
+											int cbCount = PopCount((uint)cbMaskOnlyInInter);
+											if (cbCurrentMap.Count + rbCurrentMap.Count + i + j + k - 1 == bCount + rCount + cCount + rbCount + cbCount
+												&& !(elimMapRow.IsEmpty && elimMapColumn.IsEmpty && elimMapBlock.IsEmpty))
 											{
 												// Check eliminations.
 												var conclusions = new List<Conclusion>();
@@ -228,27 +230,21 @@ public sealed class Sdc3dStepSearcher : RankTheoryStepSearcher
 												{
 													foreach (int cell in elimMapBlock & CandMaps[digit])
 													{
-														conclusions.Add(
-															new(ConclusionType.Elimination, cell, digit)
-														);
+														conclusions.Add(new(ConclusionType.Elimination, cell, digit));
 													}
 												}
 												foreach (int digit in rowMask)
 												{
 													foreach (int cell in elimMapRow & CandMaps[digit])
 													{
-														conclusions.Add(
-															new(ConclusionType.Elimination, cell, digit)
-														);
+														conclusions.Add(new(ConclusionType.Elimination, cell, digit));
 													}
 												}
 												foreach (int digit in columnMask)
 												{
 													foreach (int cell in elimMapColumn & CandMaps[digit])
 													{
-														conclusions.Add(
-															new(ConclusionType.Elimination, cell, digit)
-														);
+														conclusions.Add(new(ConclusionType.Elimination, cell, digit));
 													}
 												}
 												if (conclusions.Count == 0)
@@ -270,55 +266,69 @@ public sealed class Sdc3dStepSearcher : RankTheoryStepSearcher
 													cellOffsets.Add(new(2, cell));
 												}
 
-												var candidateOffsets = new List<DrawingInfo>();
+												var candidateOffsets = new List<(int, ColorIdentifier)>();
 												foreach (int digit in rowMask)
 												{
-													foreach (int cell in
-														(currentRowMap | rbCurrentMap) & CandMaps[digit])
+													foreach (int cell in (currentRowMap | rbCurrentMap) & CandMaps[digit])
 													{
-														candidateOffsets.Add(new(0, cell * 9 + digit));
+														candidateOffsets.Add(
+															(
+																cell * 9 + digit,
+																(ColorIdentifier)0
+															)
+														);
 													}
 												}
 												foreach (int digit in columnMask)
 												{
-													foreach (int cell in
-														(currentColumnMap | cbCurrentMap) & CandMaps[digit])
+													foreach (int cell in (currentColumnMap | cbCurrentMap) & CandMaps[digit])
 													{
-														candidateOffsets.Add(new(1, cell * 9 + digit));
+														candidateOffsets.Add(
+															(
+																cell * 9 + digit,
+																(ColorIdentifier)1
+															)
+														);
 													}
 												}
 												foreach (int digit in blockMask)
 												{
-													foreach (int cell in
-														(currentBlockMap | rbCurrentMap | cbCurrentMap)
-														& CandMaps[digit])
+													foreach (int cell in (currentBlockMap | rbCurrentMap | cbCurrentMap) & CandMaps[digit])
 													{
-														candidateOffsets.Add(new(2, cell * 9 + digit));
+														candidateOffsets.Add(
+															(
+																cell * 9 + digit,
+																(ColorIdentifier)2
+															)
+														);
 													}
 												}
 
-												accumulator.Add(
-													new Sdc3dStepInfo(
-														conclusions,
-														new View[]
+												var step = new SueDeCoq3DemensionStep(
+													conclusions.ToImmutableArray(),
+													ImmutableArray.Create(new PresentationData
+													{
+														Candidates = candidateOffsets,
+														Regions = new[]
 														{
-															new()
-															{
-																Candidates = candidateOffsets,
-																Regions = new DrawingInfo[]
-																{
-																	new(0, r), new(2, c), new(3, b)
-																}
-															}
-														},
-														rowMask,
-														columnMask,
-														blockMask,
-														currentRowMap | rbCurrentMap,
-														currentColumnMap | cbCurrentMap,
-														currentBlockMap | rbCurrentMap | cbCurrentMap
-													)
+															(r, (ColorIdentifier)0),
+															(c, (ColorIdentifier)2),
+															(b, (ColorIdentifier)3)
+														}
+													}),
+													rowMask,
+													columnMask,
+													blockMask,
+													currentRowMap | rbCurrentMap,
+													currentColumnMap | cbCurrentMap,
+													currentBlockMap | rbCurrentMap | cbCurrentMap
 												);
+												if (onlyFindOne)
+												{
+													return step;
+												}
+
+												accumulator.Add(step);
 											}
 										}
 									}
@@ -329,5 +339,7 @@ public sealed class Sdc3dStepSearcher : RankTheoryStepSearcher
 				}
 			}
 		}
+
+		return null;
 	}
 }
