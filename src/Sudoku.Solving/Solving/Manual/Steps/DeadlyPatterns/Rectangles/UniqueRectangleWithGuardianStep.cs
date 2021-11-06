@@ -10,6 +10,7 @@
 /// <param name="Cells"><inheritdoc/></param>
 /// <param name="GuardianCells">Indicates the cells that the guardians lie in.</param>
 /// <param name="GuardianDigit">Indicates the digit that the guardians are used.</param>
+/// <param name="IsIncomplete">Indicates whether the rectangle is incomplete.</param>
 /// <param name="AbsoluteOffset"><inheritdoc/></param>
 public sealed record UniqueRectangleWithGuardianStep(
 	ImmutableArray<Conclusion> Conclusions,
@@ -19,11 +20,15 @@ public sealed record UniqueRectangleWithGuardianStep(
 	in Cells Cells,
 	in Cells GuardianCells,
 	int GuardianDigit,
+	bool IsIncomplete,
 	int AbsoluteOffset
 ) : UniqueRectangleStep(Conclusions, Views, Technique.UrGuardian, Digit1, Digit2, Cells, false, AbsoluteOffset)
 {
 	/// <inheritdoc/>
-	public override decimal Difficulty => 4.5M + .1M * (GuardianCells.Count >> 1);
+	public override decimal Difficulty =>
+		4.5M
+		+ .1M * (GuardianCells.Count >> 1) // Guardian count difficulty.
+		+ (IsIncomplete ? .1M : 0); // Incompleteness difficulty.
 
 	/// <inheritdoc/>
 	public override DifficultyLevel DifficultyLevel => DifficultyLevel.Fiendish;

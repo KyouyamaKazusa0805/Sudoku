@@ -2742,9 +2742,21 @@
              </para>
              </remarks>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Searchers.DeadlyPatterns.Rectangles.UniqueRectangleStepSearcher.CheckGuardianUnique(System.Collections.Generic.ICollection{Sudoku.Solving.Manual.Steps.DeadlyPatterns.Rectangles.UniqueRectangleStep},Sudoku.Data.Grid@,System.Int32[],System.Int16,System.Int32,System.Int32,System.Int32)">
+        <member name="M:Sudoku.Solving.Manual.Searchers.DeadlyPatterns.Rectangles.UniqueRectangleStepSearcher.CheckGuardianUniqueStandard(System.Collections.Generic.ICollection{Sudoku.Solving.Manual.Steps.DeadlyPatterns.Rectangles.UniqueRectangleStep},Sudoku.Data.Grid@,System.Int32[],System.Int16,System.Int32,System.Int32,System.Int32)">
             <summary>
             Check UR+Guardian.
+            </summary>
+            <param name="accumulator">The technique accumulator.</param>
+            <param name="grid">The grid.</param>
+            <param name="urCells">All UR cells.</param>
+            <param name="comparer">The mask comparer.</param>
+            <param name="d1">The digit 1 used in UR.</param>
+            <param name="d2">The digit 2 used in UR.</param>
+            <param name="index">The index.</param>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Searchers.DeadlyPatterns.Rectangles.UniqueRectangleStepSearcher.CheckGuardianUniqueSubset(System.Collections.Generic.ICollection{Sudoku.Solving.Manual.Steps.DeadlyPatterns.Rectangles.UniqueRectangleStep},Sudoku.Data.Grid@,System.Int32[],System.Int16,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Check UR+Guardian, with the external subset.
             </summary>
             <param name="accumulator">The technique accumulator.</param>
             <param name="grid">The grid.</param>
@@ -2769,6 +2781,19 @@
             The map of other cells during the current UR searching.
             </param>
             <param name="index">The index.</param>
+            <remarks>
+            <para>The structure:</para>
+            <para>
+            <code><![CDATA[
+            ' ↓corner1
+            ' a   | aby  -  -
+            ' abx | a    -  b
+            '     | -    -  -
+            '       ↑corner2(cell 'a')
+            ]]></code>
+            There's only one cell can be filled with the digit 'b' besides the cell 'aby'.
+            </para>
+            </remarks>
         </member>
         <member name="F:Sudoku.Solving.Manual.Searchers.DeadlyPatterns.Rectangles.UniqueRectangleStepSearcher.Patterns">
             <summary>
@@ -5400,9 +5425,10 @@
             <param name="Cells"><inheritdoc/></param>
             <param name="GuardianCells">Indicates the cells that the guardians lie in.</param>
             <param name="GuardianDigit">Indicates the digit that the guardians are used.</param>
+            <param name="IsIncomplete">Indicates whether the rectangle is incomplete.</param>
             <param name="AbsoluteOffset"><inheritdoc/></param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Steps.DeadlyPatterns.Rectangles.UniqueRectangleWithGuardianStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Data.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Models.PresentationData},System.Int32,System.Int32,Sudoku.Data.Cells@,Sudoku.Data.Cells@,System.Int32,System.Int32)">
+        <member name="M:Sudoku.Solving.Manual.Steps.DeadlyPatterns.Rectangles.UniqueRectangleWithGuardianStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Data.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Models.PresentationData},System.Int32,System.Int32,Sudoku.Data.Cells@,Sudoku.Data.Cells@,System.Int32,System.Boolean,System.Int32)">
             <summary>
             Provides with a step that is a <b>Unique Rectangle with Guardians</b> technique.
             </summary>
@@ -5413,6 +5439,7 @@
             <param name="Cells"><inheritdoc/></param>
             <param name="GuardianCells">Indicates the cells that the guardians lie in.</param>
             <param name="GuardianDigit">Indicates the digit that the guardians are used.</param>
+            <param name="IsIncomplete">Indicates whether the rectangle is incomplete.</param>
             <param name="AbsoluteOffset"><inheritdoc/></param>
         </member>
         <member name="P:Sudoku.Solving.Manual.Steps.DeadlyPatterns.Rectangles.UniqueRectangleWithGuardianStep.Difficulty">

@@ -140,9 +140,14 @@ public sealed unsafe class UniqueRectangleStepSearcher : IUniqueRectangleStepSea
 					if (SearchForExtendedUniqueRectangles)
 					{
 						CheckUnknownCoveringUnique(gathered, grid, urCells, comparer, d1, d2, index);
-						CheckGuardianUnique(gathered, grid, urCells, comparer, d1, d2, index);
+						CheckGuardianUniqueStandard(gathered, grid, urCells, comparer, d1, d2, index);
 #if IMPLEMENTED
-						CheckGuardianAvoidable(gathered, grid, urCells, comparer, d1, d2, index);
+						CheckGuardianAvoidableStandard(gathered, grid, urCells, comparer, d1, d2, index);
+						for (int size = 2; size < 4; size++)
+						{
+							CheckGuardianUniqueSubset(gathered, grid, urCells, comparer, d1, d2, index);
+							CheckGuardianAvoidableSubset(gathered, grid, urCells, comparer, d1, d2, index);
+						}
 #endif
 					}
 
@@ -3836,7 +3841,7 @@ public sealed unsafe class UniqueRectangleStepSearcher : IUniqueRectangleStepSea
 	/// <param name="d1">The digit 1 used in UR.</param>
 	/// <param name="d2">The digit 2 used in UR.</param>
 	/// <param name="index">The index.</param>
-	private void CheckGuardianUnique(
+	private void CheckGuardianUniqueStandard(
 		ICollection<UniqueRectangleStep> accumulator,
 		in Grid grid,
 		int[] urCells,
@@ -3848,12 +3853,12 @@ public sealed unsafe class UniqueRectangleStepSearcher : IUniqueRectangleStepSea
 	{
 		var cells = new Cells(urCells);
 
+		// TODO: fix here to support incomplete types.
 		if ((grid.GetCandidates(urCells[0]) & comparer) != comparer
 			|| (grid.GetCandidates(urCells[1]) & comparer) != comparer
 			|| (grid.GetCandidates(urCells[2]) & comparer) != comparer
 			|| (grid.GetCandidates(urCells[3]) & comparer) != comparer)
 		{
-			// Guardian type shouldn't be incomplete.
 			return;
 		}
 
@@ -3923,10 +3928,35 @@ public sealed unsafe class UniqueRectangleStepSearcher : IUniqueRectangleStepSea
 					urCells,
 					guardianMap,
 					guardianDigit,
+					false,
 					index
 				)
 			);
 		}
+	}
+
+	/// <summary>
+	/// Check UR+Guardian, with the external subset.
+	/// </summary>
+	/// <param name="accumulator">The technique accumulator.</param>
+	/// <param name="grid">The grid.</param>
+	/// <param name="urCells">All UR cells.</param>
+	/// <param name="comparer">The mask comparer.</param>
+	/// <param name="d1">The digit 1 used in UR.</param>
+	/// <param name="d2">The digit 2 used in UR.</param>
+	/// <param name="index">The index.</param>
+	private void CheckGuardianUniqueSubset(
+		ICollection<UniqueRectangleStep> accumulator,
+		in Grid grid,
+		int[] urCells,
+		short comparer,
+		int d1,
+		int d2,
+		int index
+	)
+	{
+		// TODO: Implement this.
+
 	}
 
 	/// <summary>
@@ -3943,6 +3973,19 @@ public sealed unsafe class UniqueRectangleStepSearcher : IUniqueRectangleStepSea
 	/// The map of other cells during the current UR searching.
 	/// </param>
 	/// <param name="index">The index.</param>
+	/// <remarks>
+	/// <para>The structure:</para>
+	/// <para>
+	/// <code><![CDATA[
+	/// ' ↓corner1
+	/// ' a   | aby  -  -
+	/// ' abx | a    -  b
+	/// '     | -    -  -
+	/// '       ↑corner2(cell 'a')
+	/// ]]></code>
+	/// There's only one cell can be filled with the digit 'b' besides the cell 'aby'.
+	/// </para>
+	/// </remarks>
 	private void CheckHiddenSingleAvoidable(
 		ICollection<UniqueRectangleStep> accumulator,
 		in Grid grid,
@@ -3955,13 +3998,6 @@ public sealed unsafe class UniqueRectangleStepSearcher : IUniqueRectangleStepSea
 		int index
 	)
 	{
-		// ↓corner1
-		// a   | aby  -  -
-		// abx | a    -  b
-		//     | -    -  -
-		//       ↑corner2(cell 'a')
-		// There's only one cell can be filled with the digit 'b' besides the cell 'aby'.
-
 		if (grid.GetStatus(corner1) != CellStatus.Modifiable
 			|| grid.GetStatus(corner2) != CellStatus.Modifiable
 			|| grid[corner1] != grid[corner2]
