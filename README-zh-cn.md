@@ -38,7 +38,7 @@ var analysisResult = solver.Solve(grid);
 Console.WriteLine(analysisResult.ToString());
 ```
 
-> C# 10 开始使用 global using 指令来按程序集级别添加命名空间的引用，因此 `#if` 和 `#endif` 包裹起来的这段代码此时是可以不写的。虽然项目是按 C# 10 语法书写的，不过这里是为了让你熟悉项目的一些简单的命名空间，我把它们以这种形式写出来了，这样也可以规避编译器产生额外的编译器警告信息。
+> C# 10 开始使用 [`global using` 指令](https://docs.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-10#global-using-directives)来按程序集级别添加命名空间的引用，因此 `#if` 和 `#endif` 包裹起来的这段代码此时是可以不写的。虽然项目是按 C# 10 语法书写的，不过这里是为了让你熟悉项目的一些简单的命名空间，我把它们以这种形式写出来了，这样也可以规避编译器产生额外的编译器警告信息。
 >
 > `NET6_0_OR_GREATER` 是在 .NET 6 里带有的编译符号，用于指示框架的版本是否是 .NET 6 及以上。详情请自行参考 Microsoft Docs 了解[“条件编译符号”的使用](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/preprocessor-directives#conditional-compilation)。
 

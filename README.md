@@ -48,7 +48,7 @@ Please visit [this link](https://sunnieshine.github.io/Sudoku/how-to/How-To-Comp
 
 Of course you can fork my repo and do whatever you want. You can do whatever you want to do under the [MIT license](https://github.com/SunnieShine/Sudoku/blob/main/LICENSE). However, due to the copy of the GitHub repo, Gitee repo doesn't support any PRs. I'm sorry. But you can create the issue on both two platforms. Please visit the following part "Basic Information" for learning about more details.
 
-In addition, this repo may update **frequently** (At least 1 commit in a day), and backupping the repo to Gitee per day or per 2 days.
+In addition, this repo may update **frequently** (At least 1 commit in a day).
 
 ### Basic Information
 
@@ -63,13 +63,13 @@ Please visit the following tables.
 | ------------ | ---------------------------------------------- |
 | Chinese only | [GitHub](https://sunnieshine.github.io/Sudoku) |
 
-| Coding Information                 |                                               |
-| ---------------------------------- | --------------------------------------------- |
-| Programming language and version   | C# 10                                         |
-| Framework                          | .NET 6                                        |
-| Indenting                          | Tabs `\t`                                     |
-| Integrated development environment | Visual Studio 2022 (Version 17.0 Preview 7)   |
-| Natural languages support          | English, Simplified Chinese                   |
+| Coding Information                 |                                     |
+| ---------------------------------- | ----------------------------------- |
+| Programming language and version   | C# 10                               |
+| Framework                          | .NET 6                              |
+| Indenting                          | Tabs `\t`                           |
+| Integrated development environment | Visual Studio 2022 (17.0 Preview 7) |
+| Natural languages support          | English, Simplified Chinese         |
 
 > I'm sorry that I haven't created wiki in English, because it's too complex to me. I have been working for English for many years, but it's so hard to me for some description (especially expression of some detail) to translate into English still.
 >
