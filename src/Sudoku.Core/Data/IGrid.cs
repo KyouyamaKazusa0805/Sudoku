@@ -6,7 +6,7 @@ namespace Sudoku.Data;
 /// Defines a data structure that describes a sudoku grid.
 /// </summary>
 /// <typeparam name="TGrid">The type to implement this interface.</typeparam>
-internal unsafe interface IGrid<TGrid> : IValueEquatable<TGrid>, IFormattable, extended::System.IParseable<TGrid>
+public unsafe interface IGrid<TGrid> : IValueEquatable<TGrid>, IFormattable, extended::System.IParseable<TGrid>
 where TGrid : struct, IGrid<TGrid>
 {
 	/// <summary>
