@@ -19,7 +19,8 @@
 * 添加了很多基本类型的 JSON 序列化和反序列化的嵌套类型提供序列化操作；
 * 为 `Sudoku.Solving.Manual.StepInfo` 类型追加 `Format` 属性用于代替 `ToString` 和 `ToFullString` 方法：提供接入资源字典的该 API 可直接获取资源字典上的对应信息以多语言切换显示不同的输出结果；
 * 添加一些代码生成器用来服务 `Sudoku.UI` 项目，简化代码；
-* 为 `Sudoku.Solving` 项目的所有步骤搜索器类型都追加了 `delegate*<in Grid, bool>` 类型的初步验证属性 `Predicate`，用来直接验证指定的盘面是不是应该去调用笨重的 `GetAll` 方法（#183）。
+* 为 `Sudoku.Solving` 项目的所有步骤搜索器类型都追加了 `delegate*<in Grid, bool>` 类型的初步验证属性 `Predicate`，用来直接验证指定的盘面是不是应该去调用笨重的 `GetAll` 方法（#183）；
+* 为数组支持 `ref` 迭代器对象（详情请参考类型 `OneDimensionalArrayEnumerator<T>`）。
 
 ### 删除
 
