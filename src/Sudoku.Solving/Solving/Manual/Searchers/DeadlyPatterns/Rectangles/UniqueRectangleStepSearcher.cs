@@ -360,12 +360,12 @@ public sealed unsafe class UniqueRectangleStepSearcher : IUniqueRectangleStepSea
 	/// <param name="urCells">The all UR cells used.</param>
 	/// <returns>The list of highlight cells.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	private static IList<(int, ColorIdentifier)> GetHighlightCells(int[] urCells) => new (int, ColorIdentifier)[]
+	private static IList<(int, ColorIdentifier)> GetHighlightCells(int[] urCells) => new[]
 	{
-		new(urCells[0], (ColorIdentifier)0),
-		new(urCells[1], (ColorIdentifier)0),
-		new(urCells[2], (ColorIdentifier)0),
-		new(urCells[3], (ColorIdentifier)0)
+		(urCells[0], (ColorIdentifier)0),
+		(urCells[1], (ColorIdentifier)0),
+		(urCells[2], (ColorIdentifier)0),
+		(urCells[3], (ColorIdentifier)0)
 	};
 	#endregion
 
