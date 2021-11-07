@@ -1564,6 +1564,24 @@
             </returns>
             <exception cref="T:System.ArgumentException">Throws when none possible elements found.</exception>
         </member>
+        <member name="M:System.ArrayExtensions.AsRefEnumerable``1(``0[])">
+            <summary>
+            Creates a <see cref="T:System.OneDimensionalArrayEnumerable`1"/> instance that iterates on each element.
+            Different with the default iteration operation, this type will iterate each element by reference,
+            in order that you can write the code like:
+            <code><![CDATA[
+            foreach (ref int element in new[] { 1, 3, 6, 10 })
+            {
+                Console.WriteLine(++element);
+            }
+            ]]></code>
+            </summary>
+            <typeparam name="T">The type of the array.</typeparam>
+            <param name="this">The array.</param>
+            <returns>
+            The enumerable collection that allows the iteration by reference on an one-dimensional array.
+            </returns>
+        </member>
         <member name="T:System.BitArrayExtensions">
             <summary>
             Provides extension methods on <see cref="T:System.Collections.BitArray"/>.
@@ -3486,6 +3504,84 @@
             <exception cref="T:System.ArgumentNullException">
             Throws when the specified object is <see langword="null"/>.
             </exception>
+        </member>
+        <member name="T:System.OneDimensionalArrayEnumerable`1">
+            <summary>
+            Defines an enumerable collection that is only used for itertion on a one-dimensional array.
+            </summary>
+            <typeparam name="T">The type of the array elements.</typeparam>
+        </member>
+        <member name="F:System.OneDimensionalArrayEnumerable`1._innerArray">
+            <summary>
+            Indicates the array to iterate.
+            </summary>
+        </member>
+        <member name="M:System.OneDimensionalArrayEnumerable`1.#ctor(`0[])">
+            <summary>
+            Initializes a <see cref="T:System.OneDimensionalArrayEnumerable`1"/> instance with the specified array.
+            </summary>
+            <param name="innerArray">The array to iterate.</param>
+        </member>
+        <member name="M:System.OneDimensionalArrayEnumerable`1.GetEnumerator">
+            <summary>
+            Gets the enumerator to iterate on each elements that is with the <see langword="ref"/> keyword.
+            </summary>
+            <returns>The enumerator type.</returns>
+        </member>
+        <member name="T:System.OneDimensionalArrayEnumerable`1.Enumerator">
+            <summary>
+            Defines an enumerator that iterates the one-dimensional array.
+            </summary>
+        </member>
+        <member name="F:System.OneDimensionalArrayEnumerable`1.Enumerator._length">
+            <summary>
+            Indicates the length of the array to iterate.
+            The value is equal to <c><see cref="F:System.OneDimensionalArrayEnumerable`1.Enumerator._innerArray"/>.Length</c>.
+            </summary>
+        </member>
+        <member name="F:System.OneDimensionalArrayEnumerable`1.Enumerator._innerArray">
+            <summary>
+            Indicates the array to iterate.
+            </summary>
+        </member>
+        <member name="F:System.OneDimensionalArrayEnumerable`1.Enumerator._index">
+            <summary>
+            Indicates the current index being iterated.
+            </summary>
+        </member>
+        <member name="M:System.OneDimensionalArrayEnumerable`1.Enumerator.#ctor(`0[])">
+            <summary>
+            Initializes a <see cref="T:System.OneDimensionalArrayEnumerable`1.Enumerator"/> instance
+            via the specified array to iterate.
+            </summary>
+            <param name="innerArray">The array to iterate.</param>
+        </member>
+        <member name="P:System.OneDimensionalArrayEnumerable`1.Enumerator.Current">
+            <summary>
+            Indicates the current instance being iterated. Please note that the value is returned by reference.
+            </summary>
+        </member>
+        <member name="M:System.OneDimensionalArrayEnumerable`1.Enumerator.MoveNext">
+            <summary>
+            Retrieve the iterator to make it points to the next element.
+            </summary>
+            <returns>
+            A <see cref="T:System.Boolean"/> value indicating whether the moving operation is successful.
+            Returns <see langword="false"/> when the last iteration is for the last element,
+            and now there's no elements to be iterated.
+            </returns>
+        </member>
+        <member name="M:System.OneDimensionalArrayEnumerable`1.Equals(System.Object)">
+            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
+            <exception cref="T:System.NotSupportedException">Always throws.</exception>
+        </member>
+        <member name="M:System.OneDimensionalArrayEnumerable`1.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+            <exception cref="T:System.NotSupportedException">Always throws.</exception>
+        </member>
+        <member name="M:System.OneDimensionalArrayEnumerable`1.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+            <exception cref="T:System.NotSupportedException">Always throws.</exception>
         </member>
         <member name="T:System.PointerMarshal">
             <summary>

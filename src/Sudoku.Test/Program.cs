@@ -1,12 +1,12 @@
 ﻿using System;
-using System.Runtime.CompilerServices;
-using System.Text;
 
-Console.WriteLine(StringCatenatation($"{1}, {"2"}, {3F:N2}, {$"{4}"}"));
-
-static partial class Program
+int[] array = { 1, 3, 6, 10, 15, 21, 28 };
+foreach (ref int element in array.AsRefEnumerable())
 {
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	private static string StringCatenatation([InterpolatedStringHandlerArgument] StringHandler handler) =>
-		handler.ToStringAndClear();
+	element++;
+}
+
+foreach (int element in array)
+{
+	Console.WriteLine(element);
 }
