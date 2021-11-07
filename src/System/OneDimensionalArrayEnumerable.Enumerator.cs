@@ -5,7 +5,7 @@ partial struct OneDimensionalArrayEnumerable<T>
 	/// <summary>
 	/// Defines an enumerator that iterates the one-dimensional array.
 	/// </summary>
-	public ref struct Enumerator
+	public ref partial struct Enumerator
 	{
 		/// <summary>
 		/// Indicates the length of the array to iterate.
