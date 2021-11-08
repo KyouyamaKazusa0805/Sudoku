@@ -3,14 +3,16 @@
 /// <summary>
 /// Encapsulates a conclusion representation while solving in logic.
 /// </summary>
-/// <param name="ConclusionType">
-/// The conclusion type to control the action of applying.
-/// If the type is <see cref="ConclusionType.Assignment"/>,
-/// this conclusion will be set value (Set a digit into a cell);
-/// otherwise, a candidate will be removed.
+/// <param name="Mask">
+/// Indicates the mask that holds the information for the cell, digit and the conclusion type.
+/// The bits distribution is like:
+/// <code><![CDATA[
+/// 16      8       0
+/// |-------|-------|
+/// |     |---------|
+/// |/////|   used  |
+/// ]]></code>
 /// </param>
-/// <param name="Cell">Indicates the cell.</param>
-/// <param name="Digit">Indicates the digit.</param>
 /// <remarks>
 /// Two <see cref="Conclusion"/>s can be compared with each other. If one of those two is an elimination
 /// (i.e. holds the value <see cref="ConclusionType.Elimination"/> as the type), the instance
@@ -20,7 +22,7 @@
 /// <seealso cref="ConclusionType.Elimination"/>
 [AutoDeconstructLambda(nameof(ConclusionType), nameof(Candidate))]
 [AutoEquality(nameof(ConclusionType), nameof(Cell), nameof(Digit))]
-public readonly partial record struct Conclusion(ConclusionType ConclusionType, int Cell, int Digit) : IComparable<Conclusion>, IEquatable<Conclusion>, IValueEquatable<Conclusion>, IValueComparable<Conclusion>, IJsonSerializable<Conclusion, Conclusion.JsonConverter>
+public readonly partial record struct Conclusion(int Mask) : IComparable<Conclusion>, IEquatable<Conclusion>, IValueEquatable<Conclusion>, IValueComparable<Conclusion>, IJsonSerializable<Conclusion, Conclusion.JsonConverter>
 {
 	/// <summary>
 	/// Initializes an instance with a conclusion type and a candidate offset.
@@ -28,10 +30,39 @@ public readonly partial record struct Conclusion(ConclusionType ConclusionType, 
 	/// <param name="type">The conclusion type.</param>
 	/// <param name="candidate">The candidate offset.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public Conclusion(ConclusionType type, int candidate) : this(type, candidate / 9, candidate % 9)
+	public Conclusion(ConclusionType type, int candidate) : this(((int)type << 1) + candidate)
 	{
 	}
 
+	/// <summary>
+	/// Initializes the <see cref="Conclusion"/> instance via the specified cell, digit and the conclusion type.
+	/// </summary>
+	/// <param name="type">The conclusion type.</param>
+	/// <param name="cell">The cell.</param>
+	/// <param name="digit">The digit.</param>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public Conclusion(ConclusionType type, int cell, int digit) : this(((int)type << 1) + cell * 9 + digit)
+	{
+	}
+
+
+	/// <summary>
+	/// Indicates the cell.
+	/// </summary>
+	public int Cell
+	{
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		get => Candidate / 9;
+	}
+
+	/// <summary>
+	/// Indicates the digit.
+	/// </summary>
+	public int Digit
+	{
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		get => Candidate % 9;
+	}
 
 	/// <summary>
 	/// Indicates the candidate.
@@ -40,7 +71,19 @@ public readonly partial record struct Conclusion(ConclusionType ConclusionType, 
 	{
 		[LambdaBody]
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => Cell * 9 + Digit;
+		get => Mask & ((1 << 10) - 1);
+	}
+
+	/// <summary>
+	/// The conclusion type to control the action of applying.
+	/// If the type is <see cref="ConclusionType.Assignment"/>,
+	/// this conclusion will be set value (Set a digit into a cell);
+	/// otherwise, a candidate will be removed.
+	/// </summary>
+	public ConclusionType ConclusionType
+	{
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		get => (ConclusionType)(Mask >> 10 & 1);
 	}
 
 

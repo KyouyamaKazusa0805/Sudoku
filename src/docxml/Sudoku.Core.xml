@@ -2176,14 +2176,16 @@
             <summary>
             Encapsulates a conclusion representation while solving in logic.
             </summary>
-            <param name="ConclusionType">
-            The conclusion type to control the action of applying.
-            If the type is <see cref="F:Sudoku.Data.ConclusionType.Assignment"/>,
-            this conclusion will be set value (Set a digit into a cell);
-            otherwise, a candidate will be removed.
+            <param name="Mask">
+            Indicates the mask that holds the information for the cell, digit and the conclusion type.
+            The bits distribution is like:
+            <code><![CDATA[
+            16      8       0
+            |-------|-------|
+            |     |---------|
+            |/////|   used  |
+            ]]></code>
             </param>
-            <param name="Cell">Indicates the cell.</param>
-            <param name="Digit">Indicates the digit.</param>
             <remarks>
             Two <see cref="T:Sudoku.Data.Conclusion"/>s can be compared with each other. If one of those two is an elimination
             (i.e. holds the value <see cref="F:Sudoku.Data.ConclusionType.Elimination"/> as the type), the instance
@@ -2192,18 +2194,20 @@
             </remarks>
             <seealso cref="F:Sudoku.Data.ConclusionType.Elimination"/>
         </member>
-        <member name="M:Sudoku.Data.Conclusion.#ctor(Sudoku.Data.ConclusionType,System.Int32,System.Int32)">
+        <member name="M:Sudoku.Data.Conclusion.#ctor(System.Int32)">
             <summary>
             Encapsulates a conclusion representation while solving in logic.
             </summary>
-            <param name="ConclusionType">
-            The conclusion type to control the action of applying.
-            If the type is <see cref="F:Sudoku.Data.ConclusionType.Assignment"/>,
-            this conclusion will be set value (Set a digit into a cell);
-            otherwise, a candidate will be removed.
+            <param name="Mask">
+            Indicates the mask that holds the information for the cell, digit and the conclusion type.
+            The bits distribution is like:
+            <code><![CDATA[
+            16      8       0
+            |-------|-------|
+            |     |---------|
+            |/////|   used  |
+            ]]></code>
             </param>
-            <param name="Cell">Indicates the cell.</param>
-            <param name="Digit">Indicates the digit.</param>
             <remarks>
             Two <see cref="T:Sudoku.Data.Conclusion"/>s can be compared with each other. If one of those two is an elimination
             (i.e. holds the value <see cref="F:Sudoku.Data.ConclusionType.Elimination"/> as the type), the instance
@@ -2219,9 +2223,35 @@
             <param name="type">The conclusion type.</param>
             <param name="candidate">The candidate offset.</param>
         </member>
+        <member name="M:Sudoku.Data.Conclusion.#ctor(Sudoku.Data.ConclusionType,System.Int32,System.Int32)">
+            <summary>
+            Initializes the <see cref="T:Sudoku.Data.Conclusion"/> instance via the specified cell, digit and the conclusion type.
+            </summary>
+            <param name="type">The conclusion type.</param>
+            <param name="cell">The cell.</param>
+            <param name="digit">The digit.</param>
+        </member>
+        <member name="P:Sudoku.Data.Conclusion.Cell">
+            <summary>
+            Indicates the cell.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Data.Conclusion.Digit">
+            <summary>
+            Indicates the digit.
+            </summary>
+        </member>
         <member name="P:Sudoku.Data.Conclusion.Candidate">
             <summary>
             Indicates the candidate.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Data.Conclusion.ConclusionType">
+            <summary>
+            The conclusion type to control the action of applying.
+            If the type is <see cref="F:Sudoku.Data.ConclusionType.Assignment"/>,
+            this conclusion will be set value (Set a digit into a cell);
+            otherwise, a candidate will be removed.
             </summary>
         </member>
         <member name="M:Sudoku.Data.Conclusion.ApplyTo(Sudoku.Data.Grid@)">

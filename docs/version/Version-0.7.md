@@ -48,7 +48,8 @@
 * ~~给 `ValueStringBuilder` 类型添加 `ToStringAndClear` 方法，原因有二：第一是为了避免和 `ToString` 的基本用法，帮助用户使用代码；第二是为了分离开基本输出字符串和释放内存的逻辑；~~
 * 统一命名，更改 `Grid.CandidateMap` 名字为 `Grid.CandidatesMap`；
 * 使用新的源代码生成器项目 `Sudoku.Diagnostics.CodeGen`（#181）；
-* 添加新的数据类型 `StringHandler`，用来表示一个内插字符串的拼接对象，同时也可以作为 `ValueStringBuilder` 类型的替代品，并弃用 `ValueStringBuilder` 数据类型（#184）。
+* 添加新的数据类型 `StringHandler`，用来表示一个内插字符串的拼接对象，同时也可以作为 `ValueStringBuilder` 类型的替代品，并弃用 `ValueStringBuilder` 数据类型（#184）；
+* 修改 `Conclusion` 数据结构的底层构造。
 
 ## UI 变动
 
