@@ -9,7 +9,6 @@
 
 	<ItemGroup>
 		<ProjectReference Include="..\Sudoku.Diagnostics\Sudoku.Diagnostics.csproj" />
-		<ProjectReference Include="..\Sudoku.Solving.Old\Sudoku.Solving.Old.csproj" />
 	</ItemGroup>
 
 </Project>
