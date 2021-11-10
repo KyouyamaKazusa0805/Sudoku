@@ -34,15 +34,4 @@ public static class CloneableExtensions
 	/// <returns>The cast result.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static TClass CloneAs<TClass>(this ICloneable @this) where TClass : class => (TClass)@this.Clone();
-
-	/// <summary>
-	/// Try to cast the current instance to the generic cloneable type <see cref="ICloneable{T}"/>.
-	/// </summary>
-	/// <typeparam name="TClass">The type of the instance.</typeparam>
-	/// <param name="this">The object.</param>
-	/// <returns>The cast result. If cast is invalid, the return value will be <see langword="null"/>.</returns>
-	/// <seealso cref="ICloneable{T}"/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static ICloneable<TClass>? As<TClass>(this ICloneable @this) where TClass : class =>
-		@this as ICloneable<TClass>;
 }

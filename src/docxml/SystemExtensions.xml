@@ -1627,15 +1627,6 @@
             <param name="this">The object.</param>
             <returns>The cast result.</returns>
         </member>
-        <member name="M:System.CloneableExtensions.As``1(System.ICloneable)">
-            <summary>
-            Try to cast the current instance to the generic cloneable type <see cref="T:System.ICloneable`1"/>.
-            </summary>
-            <typeparam name="TClass">The type of the instance.</typeparam>
-            <param name="this">The object.</param>
-            <returns>The cast result. If cast is invalid, the return value will be <see langword="null"/>.</returns>
-            <seealso cref="T:System.ICloneable`1"/>
-        </member>
         <member name="T:System.IO.DirectoryExtensions">
             <summary>
             The directory extensions.
