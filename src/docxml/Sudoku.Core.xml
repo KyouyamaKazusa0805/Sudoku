@@ -2326,6 +2326,11 @@
             Deconstruct the instance into multiple elements.
             </summary>
         </member>
+        <member name="M:Sudoku.Data.Conclusion.Deconstruct(Sudoku.Data.ConclusionType@,System.Int32@,System.Int32@)">
+            <summary>
+            Deconstruct the instance into multiple elements.
+            </summary>
+        </member>
         <member name="T:Sudoku.Data.ConclusionType">
             <summary>
             Provides a conclusion type.

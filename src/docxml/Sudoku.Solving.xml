@@ -489,6 +489,144 @@
             <param name="puzzle">The puzzle string, with placeholder character '0'.</param>
             <returns>The result strings (i.e. All solutions).</returns>
         </member>
+        <member name="T:Sudoku.Solving.Collections.Als">
+            <summary>
+            Encapsulates a normal ALS.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Collections.Als.StrongRelationsCount">
+            <summary>
+            Indicates an array of the total number of the strong relations in an ALS of the different size.
+            The field is only unsed in the property <see cref="P:Sudoku.Solving.Collections.Als.StrongLinksMask"/>.
+            </summary>
+            <seealso cref="P:Sudoku.Solving.Collections.Als.StrongLinksMask"/>
+        </member>
+        <member name="M:Sudoku.Solving.Collections.Als.#ctor(System.Int16,Sudoku.Data.Cells@)">
+            <summary>
+            Initializes an instance with the specified digit mask and the map of cells.
+            </summary>
+            <param name="digitMask">The digit mask.</param>
+            <param name="map">The map.</param>
+        </member>
+        <member name="M:Sudoku.Solving.Collections.Als.#ctor(System.Int16,Sudoku.Data.Cells@,Sudoku.Data.Cells@)">
+            <summary>
+            Initializes an instance with the specified digit mask and the map of cells.
+            </summary>
+            <param name="digitMask">The digit mask.</param>
+            <param name="map">The map.</param>
+            <param name="possibleEliminationSet">
+            The possible elimination set.
+            </param>
+        </member>
+        <member name="P:Sudoku.Solving.Collections.Als.IsBivalueCell">
+            <summary>
+            Indicates whether this instance is a bi-value-cell ALS.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Collections.Als.Region">
+            <summary>
+            Indicates the region that the instance lies in.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Collections.Als.DigitsMask">
+            <summary>
+            Indicates the mask of each digit.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Collections.Als.Map">
+            <summary>
+            Indicates the map that ALS lying on.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Collections.Als.PossibleEliminationSet">
+            <summary>
+            Indicates the possible elimination set.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Collections.Als.StrongLinksMask">
+            <summary>
+            Indicates all strong links in this ALS. The result will be represented
+            as a <see cref="T:System.Int16"/> mask of 9 bits indicating which bits used.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Collections.Als.ContainsDigit(Sudoku.Data.Grid@,System.Int32,Sudoku.Data.Cells@)">
+            <summary>
+            Indicates whether the specified grid contains the digit.
+            </summary>
+            <param name="grid">The grid.</param>
+            <param name="digit">The digit.</param>
+            <param name="result">The result.</param>
+            <returns>A <see cref="T:System.Boolean"/> value.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.Collections.Als.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+            <remarks>
+            If you want to determine the equality of two instance, I recommend you
+            <b>should</b> use method <see cref="M:Sudoku.Solving.Collections.Als.Equals(Sudoku.Solving.Collections.Als@)"/> instead of this method.
+            </remarks>
+        </member>
+        <member name="M:Sudoku.Solving.Collections.Als.ToString">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Collections.Als.GetAllAlses(Sudoku.Data.Grid@)">
+            <summary>
+            To search for all ALSes in the specified grid.
+            </summary>
+            <param name="grid">The grid.</param>
+            <returns>All ALSes searched.</returns>
+            <remarks>
+            <see cref="T:Sudoku.Solving.Collections.Als"/> is a large-object type. If you want to iterate them, you can use the new feature
+            '<see langword="ref"/> and <see langword="ref readonly"/> iteration variable' to do so, just call
+            the extension method <see cref="M:System.ArrayExtensions.AsRefEnumerable``1(``0[])"/>. Then you can get:
+            <code><![CDATA[
+            var collection = GetAllAlses(grid);
+            foreach (ref readonly var als in collection.AsRefEnumerable())
+            {
+                // ...
+            }
+            ]]></code>
+            </remarks>
+            <seealso cref="M:System.ArrayExtensions.AsRefEnumerable``1(``0[])"/>
+        </member>
+        <member name="M:Sudoku.Solving.Collections.Als.Deconstruct(System.Int32@,System.Int16@,Sudoku.Data.Cells@)">
+            <summary>
+            Deconstruct the instance into multiple elements.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Collections.Als.Deconstruct(System.Boolean@,System.Int32@,System.Int16@,Sudoku.Data.Cells@,Sudoku.Data.Cells@,System.Int16[]@)">
+            <summary>
+            Deconstruct the instance into multiple elements.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Collections.Als.Equals(System.Object)">
+            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
+        </member>
+        <member name="M:Sudoku.Solving.Collections.Als.Equals(Sudoku.Solving.Collections.Als@)">
+            <summary>
+            Indicates whether the current object is equal to another object of the same type.
+            </summary>
+            <param name="other">An object to compare with this object.</param>
+            <returns>
+            <see langword="true"/> if the current object is equal to the other parameter;
+            otherwise, <see langword="false"/>.
+            </returns>
+        </member>
+        <member name="M:Sudoku.Solving.Collections.Als.op_Equality(Sudoku.Solving.Collections.Als@,Sudoku.Solving.Collections.Als@)">
+            <summary>
+            Determines whether the two instances contain a same value.
+            </summary>
+            <param name="left">The left-side-operator instance to compare.</param>
+            <param name="right">The right-side-operator instance to compare.</param>
+            <returns>A <see cref="T:System.Boolean"/> result.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.Collections.Als.op_Inequality(Sudoku.Solving.Collections.Als@,Sudoku.Solving.Collections.Als@)">
+            <summary>
+            Determines whether the two instances don't contain a same value.
+            </summary>
+            <param name="left">The left-side-operator instance to compare.</param>
+            <param name="right">The right-side-operator instance to compare.</param>
+            <returns>A <see cref="T:System.Boolean"/> result.</returns>
+        </member>
         <member name="T:Sudoku.Solving.Collections.IPattern`2">
             <summary>
             Defines a normal pattern.
@@ -1654,6 +1792,53 @@
         <member name="F:Sudoku.Solving.Manual.Rarity.ReplacedByOtherTechniques">
             <summary>
             Indicates the technique can't appear because the technique will be replaced with another technique.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Searchers.AlmostLockedSets.AlmostLockedSetsXzStepSearcher">
+            <summary>
+            Provides with a <b>Almost Locked Sets XZ</b> step searcher.
+            The step searcher will include the following techniques:
+            <list type="bullet">
+            <item>Extended Subset Principle</item>
+            <item>Singly-linked Almost Locked Sets XZ</item>
+            <item>Doubly-linked Almost Locked Sets XZ</item>
+            </list>
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Searchers.AlmostLockedSets.AlmostLockedSetsXzStepSearcher.AllowCollision">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Searchers.AlmostLockedSets.AlmostLockedSetsXzStepSearcher.AllowLoopedPatterns">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Searchers.AlmostLockedSets.AlmostLockedSetsXzStepSearcher.Options">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Searchers.AlmostLockedSets.AlmostLockedSetsXzStepSearcher.Predicate">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Searchers.AlmostLockedSets.AlmostLockedSetsXzStepSearcher.GetAll(System.Collections.Generic.ICollection{Sudoku.Solving.Manual.Step},Sudoku.Data.Grid@,System.Boolean)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Searchers.AlmostLockedSets.IAlmostLockedSetsStepSearcher">
+            <summary>
+            Defines a step searcher that searches for almost locked sets steps.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Searchers.AlmostLockedSets.IAlmostLockedSetsStepSearcher.AllowCollision">
+            <summary>
+            Indicates whether two ALSes make an collision, which means they share the some same cells. 
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Searchers.AlmostLockedSets.IAlmostLockedSetsStepSearcher.AllowLoopedPatterns">
+            <summary>
+            Indicates whether the searcher will enhance the searching to find all possible eliminations
+            for looped-ALS eliminations.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Searchers.AlmostLockedSets.IAlmostLockedSetsXzStepSearcher">
+            <summary>
+            Defines a step searcher that searches for almost locked sets XZ steps.
             </summary>
         </member>
         <member name="T:Sudoku.Solving.Manual.Searchers.Chains.AlternatingInferenceChainStepSearcher">
@@ -4084,6 +4269,83 @@
             <exception cref="T:System.OperationCanceledException">Throws when the operation is cancelled.</exception>
         </member>
         <member name="P:Sudoku.Solving.Manual.StepsGatherer.OnlyShowSameLevelTechniquesInFindAllSteps">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Steps.AlmostLockedSets.AlmostLockedSetsStep">
+            <summary>
+            Provides with a step that is a <b>Almost Locked Sets</b> technique.
+            </summary>
+            <param name="Conclusions"><inheritdoc/></param>
+            <param name="Views"><inheritdoc/></param>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Steps.AlmostLockedSets.AlmostLockedSetsStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Data.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Models.PresentationData})">
+            <summary>
+            Provides with a step that is a <b>Almost Locked Sets</b> technique.
+            </summary>
+            <param name="Conclusions"><inheritdoc/></param>
+            <param name="Views"><inheritdoc/></param>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.AlmostLockedSets.AlmostLockedSetsStep.ShowDifficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.AlmostLockedSets.AlmostLockedSetsStep.IsElementary">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.AlmostLockedSets.AlmostLockedSetsStep.Name">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.AlmostLockedSets.AlmostLockedSetsStep.Format">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.AlmostLockedSets.AlmostLockedSetsStep.TechniqueGroup">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.AlmostLockedSets.AlmostLockedSetsStep.TechniqueTags">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.AlmostLockedSets.AlmostLockedSetsStep.Stableness">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Steps.AlmostLockedSets.AlmostLockedSetsXzStep">
+            <summary>
+            Provides with a step that is a <b>Almost Locked Sets XZ</b> technique.
+            </summary>
+            <param name="Conclusions"><inheritdoc/></param>
+            <param name="Views"><inheritdoc/></param>
+            <param name="Als1">Indicates the first ALS used in this pattern.</param>
+            <param name="Als2">Indicates the second ALS used in this pattern.</param>
+            <param name="XDigitsMask">Indicates the X digit used in this ALS-XZ pattern.</param>
+            <param name="ZDigitsMask">Indicates the Z digit used in this ALS-XZ pattern.</param>
+            <param name="IsDoublyLinked">Indicates whether the ALS-XZ is doubly-linked.</param>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Steps.AlmostLockedSets.AlmostLockedSetsXzStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Data.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Models.PresentationData},Sudoku.Solving.Collections.Als@,Sudoku.Solving.Collections.Als@,System.Int16,System.Int16,System.Nullable{System.Boolean})">
+            <summary>
+            Provides with a step that is a <b>Almost Locked Sets XZ</b> technique.
+            </summary>
+            <param name="Conclusions"><inheritdoc/></param>
+            <param name="Views"><inheritdoc/></param>
+            <param name="Als1">Indicates the first ALS used in this pattern.</param>
+            <param name="Als2">Indicates the second ALS used in this pattern.</param>
+            <param name="XDigitsMask">Indicates the X digit used in this ALS-XZ pattern.</param>
+            <param name="ZDigitsMask">Indicates the Z digit used in this ALS-XZ pattern.</param>
+            <param name="IsDoublyLinked">Indicates whether the ALS-XZ is doubly-linked.</param>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.AlmostLockedSets.AlmostLockedSetsXzStep.Difficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.AlmostLockedSets.AlmostLockedSetsXzStep.Format">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.AlmostLockedSets.AlmostLockedSetsXzStep.TechniqueTags">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.AlmostLockedSets.AlmostLockedSetsXzStep.DifficultyLevel">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.AlmostLockedSets.AlmostLockedSetsXzStep.TechniqueCode">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.AlmostLockedSets.AlmostLockedSetsXzStep.Rarity">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Solving.Manual.Steps.Chains.AlternatingInferenceChainStep">

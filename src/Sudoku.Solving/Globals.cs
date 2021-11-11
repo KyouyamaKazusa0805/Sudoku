@@ -37,6 +37,7 @@ global using Sudoku.Solving.Manual.Searchers.SingleDigitPatterns;
 global using Sudoku.Solving.Manual.Searchers.Singles;
 global using Sudoku.Solving.Manual.Searchers.Wings;
 global using Sudoku.Solving.Manual.Steps;
+global using Sudoku.Solving.Manual.Steps.AlmostLockedSets;
 global using Sudoku.Solving.Manual.Steps.Chains;
 global using Sudoku.Solving.Manual.Steps.DeadlyPatterns.Extended;
 global using Sudoku.Solving.Manual.Steps.DeadlyPatterns.Loops;
@@ -64,4 +65,4 @@ global using static Sudoku.Solving.Manual.Constants;
 [assembly: InternalsVisibleTo("Sudoku.Test")]
 #endif
 
-[module: SkipLocalsInit]
+[module: SkipLocalsInit] 

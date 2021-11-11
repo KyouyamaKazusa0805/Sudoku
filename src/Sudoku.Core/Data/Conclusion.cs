@@ -21,6 +21,7 @@
 /// </remarks>
 /// <seealso cref="ConclusionType.Elimination"/>
 [AutoDeconstructLambda(nameof(ConclusionType), nameof(Candidate))]
+[AutoDeconstructLambda(nameof(ConclusionType), nameof(Cell), nameof(Digit))]
 [AutoEquality(nameof(ConclusionType), nameof(Cell), nameof(Digit))]
 public readonly partial record struct Conclusion(int Mask) : IComparable<Conclusion>, IEquatable<Conclusion>, IValueEquatable<Conclusion>, IValueComparable<Conclusion>, IJsonSerializable<Conclusion, Conclusion.JsonConverter>
 {
