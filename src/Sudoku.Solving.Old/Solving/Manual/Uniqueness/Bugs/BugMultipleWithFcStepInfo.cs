@@ -15,7 +15,7 @@ public sealed record BugMultipleWithFcStepInfo(
 	/// <summary>
 	/// The difficulty for the number of true candidates.
 	/// </summary>
-	public decimal CountDifficulty => Math.Floor((decimal)Math.Sqrt(2 * Candidates.Count + .5)) / 10;
+	public decimal CountDifficulty => Floor((decimal)Sqrt(2 * Candidates.Count + .5)) / 10;
 
 	/// <summary>
 	/// The length difficulty.

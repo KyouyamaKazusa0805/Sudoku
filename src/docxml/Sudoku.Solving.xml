@@ -1195,6 +1195,31 @@
             Indicates the total number of Unique Polygon (Octagon) possible templates of size 4.
             </summary>
         </member>
+        <member name="F:Sudoku.Solving.Manual.Constants.SubsetNames">
+            <summary>
+            <para>The names of all subsets by their sizes.</para>
+            <para>
+            For example, if you want to get the name of the size 3, the code will be
+            <code><![CDATA[string name = TechniqueStrings.SubsetNames[3];]]></code>
+            Here the digit <c>3</c> is the size you want to get.
+            </para>
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.Constants.FishNames">
+            <summary>
+            The names of all fishes by their sizes.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.Constants.RegularWingNames">
+            <summary>
+            <para>The names of all regular wings by their sizes.</para>
+            <para>
+            For example, if you want to get the name of the size 3, the code will be
+            <code><![CDATA[string name = RegularWingNames[3];]]></code>
+            Here the digit <c>3</c> is the size you want to get.
+            </para>
+            </summary>
+        </member>
         <member name="T:Sudoku.Solving.Manual.DifficultyLevel">
             <summary>
             Provides a difficulty kind for a puzzle.
@@ -3020,6 +3045,75 @@
         </member>
         <member name="M:Sudoku.Solving.Manual.Searchers.DeadlyPatterns.Squares.UniqueSquareStepSearcher.GetAll(System.Collections.Generic.ICollection{Sudoku.Solving.Manual.Step},Sudoku.Data.Grid@,System.Boolean)">
             <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Searchers.DeadlyPatterns.Universal.BivalueUniversalGraveStepSearcher">
+            <summary>
+            Provides with a <b>Bivalue Universal Grave</b> step searcher.
+            The step searcher will include the following techniques:
+            <list type="bullet">
+            <item>Bivalue Universal Grave Type 1</item>
+            <item>Bivalue Universal Grave Type 2</item>
+            <item>Bivalue Universal Grave Type 3</item>
+            <item>Bivalue Universal Grave Type 4</item>
+            <item>Bivalue Universal Grave + n</item>
+            <item>Bivalue Universal Grave XZ</item>
+            </list>
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Searchers.DeadlyPatterns.Universal.BivalueUniversalGraveStepSearcher.SearchExtendedTypes">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Searchers.DeadlyPatterns.Universal.BivalueUniversalGraveStepSearcher.Options">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Searchers.DeadlyPatterns.Universal.BivalueUniversalGraveStepSearcher.Predicate">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Searchers.DeadlyPatterns.Universal.BivalueUniversalGraveStepSearcher.GetAll(System.Collections.Generic.ICollection{Sudoku.Solving.Manual.Step},Sudoku.Data.Grid@,System.Boolean)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Searchers.DeadlyPatterns.Universal.BivalueUniversalGraveStepSearcher.CheckSingleDigit(System.Collections.Generic.IReadOnlyList{System.Int32})">
+            <summary>
+            Check whether all candidates in the list has same digit value.
+            </summary>
+            <param name="list">The list of all true candidates.</param>
+            <returns>A <see cref="T:System.Boolean"/> indicating that.</returns>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Searchers.DeadlyPatterns.Universal.IBivalueUniversalGraveStepSearcher">
+            <summary>
+            Defines a step searcher that searches for bi-value universal grave steps.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Searchers.DeadlyPatterns.Universal.IBivalueUniversalGraveStepSearcher.SearchExtendedTypes">
+            <summary>
+            Indicates whether the searcher should call the extended BUG checker
+            to search for all true candidates no matter how difficult searching.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Searchers.DeadlyPatterns.Universal.IBivalueUniversalGraveStepSearcher.FindTrueCandidates(Sudoku.Data.Grid@,System.Collections.Generic.IReadOnlyList{System.Int32}@,System.Int32)">
+            <summary>
+            Finds all possible true candidates in this current grid.
+            </summary>
+            <param name="grid">The grid to find all possible true candidates.</param>
+            <param name="trueCandidates">All possible true candidates returned.</param>
+            <param name="maximumCellsToCheck">Indicates the maximum number of possible cells to check.</param>
+            <returns>
+            A <see cref="T:System.Boolean"/> value indicating whether the grid contains any possible true candidates.
+            If so, the argument <paramref name="trueCandidates"/> won't be <see langword="null"/>.
+            </returns>
+            <remarks>
+            A <b>true candidate</b> is a candidate that makes the puzzle containing no valid solution
+            if it is eliminated from the current puzzle. It is a strict concept, which means sometimes the puzzle
+            doesn't contain any satisfied candidate to make the puzzle containing no solution if being eliminated.
+            </remarks>
+            <exception cref="T:Sudoku.InvalidPuzzleException">
+            Throws when the puzzle contains multiple solutions or even no solution.
+            </exception>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Searchers.DeadlyPatterns.Universal.IUniversalStepSearcher">
+            <summary>
+            Defines a step searcher that searches for universal steps.
+            </summary>
         </member>
         <member name="T:Sudoku.Solving.Manual.Searchers.Fishes.IFishStepSearcher">
             <summary>
@@ -6024,6 +6118,208 @@
             <param name="ConjugateRegion">Indicates the cells used as the conjugation region.</param>
         </member>
         <member name="P:Sudoku.Solving.Manual.Steps.DeadlyPatterns.Squares.UniqueSquareType4Step.TechniqueCode">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Steps.DeadlyPatterns.Universal.BivalueUniversalGraveMultipleStep">
+            <summary>
+            Provides with a step that is a <b>Bivalue Universal Grave + n</b> technique.
+            </summary>
+            <param name="Conclusions"><inheritdoc/></param>
+            <param name="Views"><inheritdoc/></param>
+            <param name="Candidates">Indicates the true candidates.</param>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Steps.DeadlyPatterns.Universal.BivalueUniversalGraveMultipleStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Data.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Models.PresentationData},System.Collections.Generic.IReadOnlyList{System.Int32})">
+            <summary>
+            Provides with a step that is a <b>Bivalue Universal Grave + n</b> technique.
+            </summary>
+            <param name="Conclusions"><inheritdoc/></param>
+            <param name="Views"><inheritdoc/></param>
+            <param name="Candidates">Indicates the true candidates.</param>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.Steps.DeadlyPatterns.Universal.BivalueUniversalGraveMultipleStep.ExtraDifficulty">
+            <summary>
+            The table of extra difficulty values.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.DeadlyPatterns.Universal.BivalueUniversalGraveMultipleStep.Name">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.DeadlyPatterns.Universal.BivalueUniversalGraveMultipleStep.Difficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.DeadlyPatterns.Universal.BivalueUniversalGraveMultipleStep.TechniqueCode">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.DeadlyPatterns.Universal.BivalueUniversalGraveMultipleStep.Rarity">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Steps.DeadlyPatterns.Universal.BivalueUniversalGraveStep">
+            <summary>
+            Provides with a step that is a <b>Bivalue Universal Grave</b> technique.
+            </summary>
+            <param name="Conclusions"><inheritdoc/></param>
+            <param name="Views"><inheritdoc/></param>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Steps.DeadlyPatterns.Universal.BivalueUniversalGraveStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Data.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Models.PresentationData})">
+            <summary>
+            Provides with a step that is a <b>Bivalue Universal Grave</b> technique.
+            </summary>
+            <param name="Conclusions"><inheritdoc/></param>
+            <param name="Views"><inheritdoc/></param>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.DeadlyPatterns.Universal.BivalueUniversalGraveStep.Difficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.DeadlyPatterns.Universal.BivalueUniversalGraveStep.DifficultyLevel">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.DeadlyPatterns.Universal.BivalueUniversalGraveStep.TechniqueGroup">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Steps.DeadlyPatterns.Universal.BivalueUniversalGraveType1Step">
+            <summary>
+            Provides with a step that is a <b>Bivalue Universal Grave Type 1</b> technique.
+            </summary>
+            <param name="Conclusions"><inheritdoc/></param>
+            <param name="Views"><inheritdoc/></param>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Steps.DeadlyPatterns.Universal.BivalueUniversalGraveType1Step.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Data.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Models.PresentationData})">
+            <summary>
+            Provides with a step that is a <b>Bivalue Universal Grave Type 1</b> technique.
+            </summary>
+            <param name="Conclusions"><inheritdoc/></param>
+            <param name="Views"><inheritdoc/></param>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.DeadlyPatterns.Universal.BivalueUniversalGraveType1Step.TechniqueCode">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.DeadlyPatterns.Universal.BivalueUniversalGraveType1Step.Rarity">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Steps.DeadlyPatterns.Universal.BivalueUniversalGraveType2Step">
+            <summary>
+            Provides with a step that is a <b>Bivalue Universal Grave Type 2</b> technique.
+            </summary>
+            <param name="Conclusions"><inheritdoc/></param>
+            <param name="Views"><inheritdoc/></param>
+            <param name="Digit">Indicates the digit used.</param>
+            <param name="Cells">Indicates the cells used.</param>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Steps.DeadlyPatterns.Universal.BivalueUniversalGraveType2Step.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Data.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Models.PresentationData},System.Int32,Sudoku.Data.Cells)">
+            <summary>
+            Provides with a step that is a <b>Bivalue Universal Grave Type 2</b> technique.
+            </summary>
+            <param name="Conclusions"><inheritdoc/></param>
+            <param name="Views"><inheritdoc/></param>
+            <param name="Digit">Indicates the digit used.</param>
+            <param name="Cells">Indicates the cells used.</param>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.Steps.DeadlyPatterns.Universal.BivalueUniversalGraveType2Step.ExtraDifficulty">
+            <summary>
+            The table of extra difficulty values.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.DeadlyPatterns.Universal.BivalueUniversalGraveType2Step.Difficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.DeadlyPatterns.Universal.BivalueUniversalGraveType2Step.TechniqueCode">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.DeadlyPatterns.Universal.BivalueUniversalGraveType2Step.Rarity">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Steps.DeadlyPatterns.Universal.BivalueUniversalGraveType3Step">
+            <summary>
+            Provides with a step that is a <b>Bivalue Universal Grave Type 3</b> technique.
+            </summary>
+            <param name="Conclusions"><inheritdoc/></param>
+            <param name="Views"><inheritdoc/></param>
+            <param name="TrueCandidates">Indicates the true candidates.</param>
+            <param name="DigitsMask">Indicates the digits used.</param>
+            <param name="Cells">Indicates the cells used.</param>
+            <param name="IsNaked">Indicates whether the specified subset is naked subset.</param>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Steps.DeadlyPatterns.Universal.BivalueUniversalGraveType3Step.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Data.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Models.PresentationData},System.Collections.Generic.IReadOnlyList{System.Int32},System.Int16,Sudoku.Data.Cells,System.Boolean)">
+            <summary>
+            Provides with a step that is a <b>Bivalue Universal Grave Type 3</b> technique.
+            </summary>
+            <param name="Conclusions"><inheritdoc/></param>
+            <param name="Views"><inheritdoc/></param>
+            <param name="TrueCandidates">Indicates the true candidates.</param>
+            <param name="DigitsMask">Indicates the digits used.</param>
+            <param name="Cells">Indicates the cells used.</param>
+            <param name="IsNaked">Indicates whether the specified subset is naked subset.</param>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.DeadlyPatterns.Universal.BivalueUniversalGraveType3Step.Difficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.DeadlyPatterns.Universal.BivalueUniversalGraveType3Step.TechniqueCode">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.DeadlyPatterns.Universal.BivalueUniversalGraveType3Step.Rarity">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.DeadlyPatterns.Universal.BivalueUniversalGraveType3Step.Size">
+            <summary>
+            Indicates the size of the subset.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Steps.DeadlyPatterns.Universal.BivalueUniversalGraveType4Step">
+            <summary>
+            Provides with a step that is a <b>Bivalue Universal Grave Type 4</b> technique.
+            </summary>
+            <param name="Conclusions"><inheritdoc/></param>
+            <param name="Views"><inheritdoc/></param>
+            <param name="DigitsMask">Indicates the digits used.</param>
+            <param name="Cells">Indicates the cells used.</param>
+            <param name="ConjugatePair">Indicates the conjugate pair used.</param>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Steps.DeadlyPatterns.Universal.BivalueUniversalGraveType4Step.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Data.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Models.PresentationData},System.Int16,Sudoku.Data.Cells,Sudoku.Data.ConjugatePair@)">
+            <summary>
+            Provides with a step that is a <b>Bivalue Universal Grave Type 4</b> technique.
+            </summary>
+            <param name="Conclusions"><inheritdoc/></param>
+            <param name="Views"><inheritdoc/></param>
+            <param name="DigitsMask">Indicates the digits used.</param>
+            <param name="Cells">Indicates the cells used.</param>
+            <param name="ConjugatePair">Indicates the conjugate pair used.</param>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.DeadlyPatterns.Universal.BivalueUniversalGraveType4Step.Difficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.DeadlyPatterns.Universal.BivalueUniversalGraveType4Step.TechniqueCode">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.DeadlyPatterns.Universal.BivalueUniversalGraveType4Step.Rarity">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Steps.DeadlyPatterns.Universal.BivalueUniversalGraveXzStep">
+            <summary>
+            Provides with a step that is a <b>Bivalue Universal Grave XZ</b> technique.
+            </summary>
+            <param name="Conclusions"><inheritdoc/></param>
+            <param name="Views"><inheritdoc/></param>
+            <param name="DigitsMask">Indicates the digits used.</param>
+            <param name="Cells">Indicates the cells used.</param>
+            <param name="ExtraCell">Indicates the XZ cell.</param>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Steps.DeadlyPatterns.Universal.BivalueUniversalGraveXzStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Data.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Models.PresentationData},System.Int16,Sudoku.Data.Cells,System.Int32)">
+            <summary>
+            Provides with a step that is a <b>Bivalue Universal Grave XZ</b> technique.
+            </summary>
+            <param name="Conclusions"><inheritdoc/></param>
+            <param name="Views"><inheritdoc/></param>
+            <param name="DigitsMask">Indicates the digits used.</param>
+            <param name="Cells">Indicates the cells used.</param>
+            <param name="ExtraCell">Indicates the XZ cell.</param>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.DeadlyPatterns.Universal.BivalueUniversalGraveXzStep.Difficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.DeadlyPatterns.Universal.BivalueUniversalGraveXzStep.TechniqueCode">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.DeadlyPatterns.Universal.BivalueUniversalGraveXzStep.Rarity">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Solving.Manual.Steps.Fishes.FishStep">

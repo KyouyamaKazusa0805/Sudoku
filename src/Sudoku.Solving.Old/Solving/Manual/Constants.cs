@@ -51,7 +51,7 @@ internal static class Constants
 	/// <para>The names of all subsets by their sizes.</para>
 	/// <para>
 	/// For example, if you want to get the name of the size 3, the code will be
-	/// <code><![CDATA[string name = TechniqueStrings.SubsetNames[3];]]></code>
+	/// <code><![CDATA[string name = SubsetNames[3];]]></code>
 	/// Here the digit <c>3</c> is the size you want to get.
 	/// </para>
 	/// </summary>
