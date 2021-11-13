@@ -4318,7 +4318,7 @@
             <list type="bullet">
             <item><see cref="T:Sudoku.Solving.Manual.Searchers.DeadlyPatterns.Rectangles.IUniqueRectangleStepSearcher">Unique rectangle</see> (i.e. Uniqueness test)</item>
             <item><see cref="T:Sudoku.Solving.Manual.Searchers.DeadlyPatterns.Loops.IUniqueLoopStepSearcher">Unique loop</see></item>
-            <item><see cref="!:#">Bi-value universal grave</see></item>
+            <item><see cref="T:Sudoku.Solving.Manual.Searchers.DeadlyPatterns.Universal.IBivalueUniversalGraveStepSearcher">Bi-value universal grave</see></item>
             </list>
             </item>
             <item>
@@ -4329,15 +4329,17 @@
             <item>
             <see cref="T:Sudoku.Solving.Manual.Searchers.DeadlyPatterns.Polygons.IUniquePolygonStepSearcher">Unique polygon</see> (Borescoper's deadly pattern as its alias)
             </item>
-            <item><see cref="!:#">Qiu's deadly pattern</see></item>
+            <item><see cref="T:Sudoku.Solving.Manual.Searchers.DeadlyPatterns.Qiu.IQiuDeadlyPatternStepSearcher">Qiu's deadly pattern</see></item>
             </list>
             </item>
+            <!--
             <item>
             Other deadly patterns
             <list type="bullet">
-            <item><see cref="!:#">Reverse bi-value universal grave</see></item>
+            <item><see cref="#">Reverse bi-value universal grave</see></item>
             </list>
             </item>
+            -->
             </list>
             </summary>
         </member>

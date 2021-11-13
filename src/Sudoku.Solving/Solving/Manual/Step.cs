@@ -71,7 +71,7 @@ public abstract record Step(ImmutableArray<Conclusion> Conclusions, ImmutableArr
 	/// <list type="bullet">
 	/// <item><see cref="IUniqueRectangleStepSearcher">Unique rectangle</see> (i.e. Uniqueness test)</item>
 	/// <item><see cref="IUniqueLoopStepSearcher">Unique loop</see></item>
-	/// <item><see cref="#">Bi-value universal grave</see></item>
+	/// <item><see cref="IBivalueUniversalGraveStepSearcher">Bi-value universal grave</see></item>
 	/// </list>
 	/// </item>
 	/// <item>
@@ -82,15 +82,17 @@ public abstract record Step(ImmutableArray<Conclusion> Conclusions, ImmutableArr
 	/// <item>
 	/// <see cref="IUniquePolygonStepSearcher">Unique polygon</see> (Borescoper's deadly pattern as its alias)
 	/// </item>
-	/// <item><see cref="#">Qiu's deadly pattern</see></item>
+	/// <item><see cref="IQiuDeadlyPatternStepSearcher">Qiu's deadly pattern</see></item>
 	/// </list>
 	/// </item>
+	/// <!--
 	/// <item>
 	/// Other deadly patterns
 	/// <list type="bullet">
 	/// <item><see cref="#">Reverse bi-value universal grave</see></item>
 	/// </list>
 	/// </item>
+	/// -->
 	/// </list>
 	/// </summary>
 	public bool IsDeadlyPattern => HasTag(TechniqueTags.DeadlyPattern);
