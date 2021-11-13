@@ -25,7 +25,7 @@
 [AutoGetHashCode(nameof(Mask))]
 [AutoDeconstruct(nameof(Pair1), nameof(Pair2), nameof(CenterCells))]
 [AutoDeconstruct(nameof(Pair1Map), nameof(Pair2Map), nameof(CenterCellsMap), nameof(Map))]
-public readonly partial record struct UniquePolygonPattern(long Mask) : IPattern<UniquePolygonPattern, long>
+public readonly partial record struct UniquePolygonPattern(long Mask) : IPattern<UniquePolygonPattern>
 {
 	/// <summary>
 	/// Indicates whether the specified pattern is a heptagon.
@@ -108,9 +108,4 @@ public readonly partial record struct UniquePolygonPattern(long Mask) : IPattern
 	/// <inheritdoc cref="object.ToString"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public override string ToString() => Map.ToString();
-
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static implicit operator UniquePolygonPattern(long mask) => new(mask);
 }

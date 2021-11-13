@@ -116,7 +116,7 @@ public sealed unsafe class UniquePolygonStepSearcher : IUniquePolygonStepSearche
 							}
 						}
 
-						Patterns[count++] = v;
+						Patterns[count++] = new(v);
 					}
 				}
 			}
@@ -171,7 +171,7 @@ public sealed unsafe class UniquePolygonStepSearcher : IUniquePolygonStepSearche
 						}
 					}
 
-					Patterns[count++] = v;
+					Patterns[count++] = new(v);
 				}
 			}
 		}

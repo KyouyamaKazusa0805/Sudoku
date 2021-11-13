@@ -627,28 +627,95 @@
             <param name="right">The right-side-operator instance to compare.</param>
             <returns>A <see cref="T:System.Boolean"/> result.</returns>
         </member>
-        <member name="T:Sudoku.Solving.Collections.IPattern`2">
+        <member name="T:Sudoku.Solving.Collections.IPattern`1">
             <summary>
             Defines a normal pattern.
             </summary>
             <typeparam name="TSelf">The type of the pattern itself.</typeparam>
-            <typeparam name="TMask">The type of the mask.</typeparam>
         </member>
-        <member name="P:Sudoku.Solving.Collections.IPattern`2.Mask">
-            <summary>
-            Indicates the mask value.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Solving.Collections.IPattern`2.Map">
+        <member name="P:Sudoku.Solving.Collections.IPattern`1.Map">
             <summary>
             Indicates the summary map that holds all cells of this pattern.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Collections.IPattern`2.op_Implicit(`1)~`0">
+        <member name="T:Sudoku.Solving.Collections.QiuDeadlyPattern">
             <summary>
-            Implicit cast from <typeparamref name="TMask"/> to <typeparamref name="TSelf"/>.
+            Defines a pattern that is a Qiu's deadly pattern technique structure in theory. The sketch is like:
+            <code><![CDATA[
+            .-------.-------.-------.
+            | . . . | . . . | . . . |
+            | . . . | . . . | . . . |
+            | P P . | . . . | . . . |
+            :-------+-------+-------:
+            | S S B | B B B | B B B |
+            | S S B | B B B | B B B |
+            | . . . | . . . | . . . |
+            :-------+-------+-------:
+            | . . . | . . . | . . . |
+            | . . . | . . . | . . . |
+            | . . . | . . . | . . . |
+            '-------'-------'-------'
+            ]]></code>
+            Where:
+            <list type="table">
+            <item><term>P</term><description>Pair Cells.</description></item>
+            <item><term>S</term><description>Square Cells.</description></item>
+            <item><term>B</term><description>Base-line Cells.</description></item>
+            </list>
             </summary>
-            <param name="mask">The mask.</param>
+            <param name="Square">The square cells that is <c>S</c> in that sketch.</param>
+            <param name="BaseLine">The base-line cells that is <c>B</c> in that sketch.</param>
+            <param name="Pair">The pair cells that is <c>P</c> in that sketch.</param>
+        </member>
+        <member name="M:Sudoku.Solving.Collections.QiuDeadlyPattern.#ctor(Sudoku.Data.Cells,Sudoku.Data.Cells,Sudoku.Data.Cells)">
+            <summary>
+            Defines a pattern that is a Qiu's deadly pattern technique structure in theory. The sketch is like:
+            <code><![CDATA[
+            .-------.-------.-------.
+            | . . . | . . . | . . . |
+            | . . . | . . . | . . . |
+            | P P . | . . . | . . . |
+            :-------+-------+-------:
+            | S S B | B B B | B B B |
+            | S S B | B B B | B B B |
+            | . . . | . . . | . . . |
+            :-------+-------+-------:
+            | . . . | . . . | . . . |
+            | . . . | . . . | . . . |
+            | . . . | . . . | . . . |
+            '-------'-------'-------'
+            ]]></code>
+            Where:
+            <list type="table">
+            <item><term>P</term><description>Pair Cells.</description></item>
+            <item><term>S</term><description>Square Cells.</description></item>
+            <item><term>B</term><description>Base-line Cells.</description></item>
+            </list>
+            </summary>
+            <param name="Square">The square cells that is <c>S</c> in that sketch.</param>
+            <param name="BaseLine">The base-line cells that is <c>B</c> in that sketch.</param>
+            <param name="Pair">The pair cells that is <c>P</c> in that sketch.</param>
+        </member>
+        <member name="P:Sudoku.Solving.Collections.QiuDeadlyPattern.Map">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Collections.QiuDeadlyPattern.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
+        <member name="M:Sudoku.Solving.Collections.QiuDeadlyPattern.Deconstruct(Sudoku.Data.Cells@,Sudoku.Data.Cells@,Sudoku.Data.Cells@)">
+            <summary>
+            Deconstruct the instance into multiple elements.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Collections.QiuDeadlyPattern.Equals(Sudoku.Solving.Collections.QiuDeadlyPattern@)">
+            <summary>
+            Indicates whether the current object is equal to another object of the same type.
+            </summary>
+            <param name="other">An object to compare with this object.</param>
+            <returns>
+            <see langword="true"/> if the current object is equal to the other parameter;
+            otherwise, <see langword="false"/>.
+            </returns>
         </member>
         <member name="T:Sudoku.Solving.Collections.UniquePolygonPattern">
             <summary>
@@ -741,9 +808,6 @@
         </member>
         <member name="M:Sudoku.Solving.Collections.UniquePolygonPattern.ToString">
             <inheritdoc cref="M:System.Object.ToString"/>
-        </member>
-        <member name="M:Sudoku.Solving.Collections.UniquePolygonPattern.op_Implicit(System.Int64)~Sudoku.Solving.Collections.UniquePolygonPattern">
-            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Solving.Collections.UniquePolygonPattern.Deconstruct(System.ValueTuple{System.Int32,System.Int32}@,System.ValueTuple{System.Int32,System.Int32}@,System.ValueTuple{System.Int32,System.Int32,System.Int32,System.Int32}@)">
             <summary>
@@ -1183,6 +1247,11 @@
         <member name="F:Sudoku.Solving.Manual.Constants.UniqueSquareTemplatesCount">
             <summary>
             Indicates the number of all possible Unique Square templates.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.Constants.QiuDeadlyPatternTemplatesCount">
+            <summary>
+            Indicates the total number of Qiu's Deadly Pattern possible templates.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Manual.Constants.BdpTemplatesSize3Count">
@@ -2260,6 +2329,38 @@
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Solving.Manual.Searchers.DeadlyPatterns.Polygons.UniquePolygonStepSearcher.GetAll(System.Collections.Generic.ICollection{Sudoku.Solving.Manual.Step},Sudoku.Data.Grid@,System.Boolean)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Searchers.DeadlyPatterns.Qiu.IQiuDeadlyPatternStepSearcher">
+            <summary>
+            Defines a step searcher that searches for Qiu's deadly pattern steps.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Searchers.DeadlyPatterns.Qiu.QiuDeadlyPatternStepSearcher">
+            <summary>
+            Provides with a <b>Qiu's Deadly Pattern</b> step searcher.
+            The step searcher will include the following techniques:
+            <list type="bullet">
+            <item>Qiu's Deadly Pattern Type 1</item>
+            <item>Qiu's Deadly Pattern Type 2</item>
+            <item>Qiu's Deadly Pattern Type 3</item>
+            <item>Qiu's Deadly Pattern Type 4</item>
+            <item>Qiu's Deadly Pattern Locked Type</item>
+            </list>
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.Searchers.DeadlyPatterns.Qiu.QiuDeadlyPatternStepSearcher.Patterns">
+            <summary>
+            All different patterns.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Searchers.DeadlyPatterns.Qiu.QiuDeadlyPatternStepSearcher.Options">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Searchers.DeadlyPatterns.Qiu.QiuDeadlyPatternStepSearcher.Predicate">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Searchers.DeadlyPatterns.Qiu.QiuDeadlyPatternStepSearcher.GetAll(System.Collections.Generic.ICollection{Sudoku.Solving.Manual.Step},Sudoku.Data.Grid@,System.Boolean)">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Solving.Manual.Searchers.DeadlyPatterns.Rectangles.IUniqueRectangleStepSearcher">
@@ -5368,6 +5469,166 @@
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Manual.Steps.DeadlyPatterns.Polygons.UniquePolygonType4Step.TechniqueCode">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Steps.DeadlyPatterns.Qiu.QiuDeadlyPatternLockedTypeStep">
+            <summary>
+            Provides with a step that is a <b>Qiu's Deadly Pattern Locked Type</b> technique.
+            </summary>
+            <param name="Conclusions"><inheritdoc/></param>
+            <param name="Views"><inheritdoc/></param>
+            <param name="Pattern"><inheritdoc/></param>
+            <param name="Candidates">Indicates the candidates used.</param>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Steps.DeadlyPatterns.Qiu.QiuDeadlyPatternLockedTypeStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Data.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Models.PresentationData},Sudoku.Solving.Collections.QiuDeadlyPattern@,System.Collections.Generic.IReadOnlyList{System.Int32})">
+            <summary>
+            Provides with a step that is a <b>Qiu's Deadly Pattern Locked Type</b> technique.
+            </summary>
+            <param name="Conclusions"><inheritdoc/></param>
+            <param name="Views"><inheritdoc/></param>
+            <param name="Pattern"><inheritdoc/></param>
+            <param name="Candidates">Indicates the candidates used.</param>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.DeadlyPatterns.Qiu.QiuDeadlyPatternLockedTypeStep.Difficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.DeadlyPatterns.Qiu.QiuDeadlyPatternLockedTypeStep.TechniqueCode">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Steps.DeadlyPatterns.Qiu.QiuDeadlyPatternStep">
+            <summary>
+            Provides with a step that is a <b>Qiu's Deadly Pattern</b> technique.
+            </summary>
+            <param name="Conclusions"><inheritdoc/></param>
+            <param name="Views"><inheritdoc/></param>
+            <param name="Pattern">Indicates the pattern used.</param>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Steps.DeadlyPatterns.Qiu.QiuDeadlyPatternStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Data.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Models.PresentationData},Sudoku.Solving.Collections.QiuDeadlyPattern@)">
+            <summary>
+            Provides with a step that is a <b>Qiu's Deadly Pattern</b> technique.
+            </summary>
+            <param name="Conclusions"><inheritdoc/></param>
+            <param name="Views"><inheritdoc/></param>
+            <param name="Pattern">Indicates the pattern used.</param>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.DeadlyPatterns.Qiu.QiuDeadlyPatternStep.Difficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.DeadlyPatterns.Qiu.QiuDeadlyPatternStep.Name">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.DeadlyPatterns.Qiu.QiuDeadlyPatternStep.TechniqueCode">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.DeadlyPatterns.Qiu.QiuDeadlyPatternStep.DifficultyLevel">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.DeadlyPatterns.Qiu.QiuDeadlyPatternStep.TechniqueGroup">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.DeadlyPatterns.Qiu.QiuDeadlyPatternStep.Rarity">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.DeadlyPatterns.Qiu.QiuDeadlyPatternStep.PatternStr">
+            <summary>
+            Indicates the pattern string.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Steps.DeadlyPatterns.Qiu.QiuDeadlyPatternType1Step">
+            <summary>
+            Provides with a step that is a <b>Qiu's Deadly Pattern Type 1</b> technique.
+            </summary>
+            <param name="Conclusions"><inheritdoc/></param>
+            <param name="Views"><inheritdoc/></param>
+            <param name="Pattern"><inheritdoc/></param>
+            <param name="Candidate">Indicates the extra candidate used.</param>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Steps.DeadlyPatterns.Qiu.QiuDeadlyPatternType1Step.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Data.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Models.PresentationData},Sudoku.Solving.Collections.QiuDeadlyPattern@,System.Int32)">
+            <summary>
+            Provides with a step that is a <b>Qiu's Deadly Pattern Type 1</b> technique.
+            </summary>
+            <param name="Conclusions"><inheritdoc/></param>
+            <param name="Views"><inheritdoc/></param>
+            <param name="Pattern"><inheritdoc/></param>
+            <param name="Candidate">Indicates the extra candidate used.</param>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.DeadlyPatterns.Qiu.QiuDeadlyPatternType1Step.TechniqueCode">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Steps.DeadlyPatterns.Qiu.QiuDeadlyPatternType2Step">
+            <summary>
+            Provides with a step that is a <b>Qiu's Deadly Pattern Type 2</b> technique.
+            </summary>
+            <param name="Conclusions"><inheritdoc/></param>
+            <param name="Views"><inheritdoc/></param>
+            <param name="Pattern"><inheritdoc/></param>
+            <param name="ExtraDigit">Indicates the extra digit used.</param>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Steps.DeadlyPatterns.Qiu.QiuDeadlyPatternType2Step.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Data.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Models.PresentationData},Sudoku.Solving.Collections.QiuDeadlyPattern@,System.Int32)">
+            <summary>
+            Provides with a step that is a <b>Qiu's Deadly Pattern Type 2</b> technique.
+            </summary>
+            <param name="Conclusions"><inheritdoc/></param>
+            <param name="Views"><inheritdoc/></param>
+            <param name="Pattern"><inheritdoc/></param>
+            <param name="ExtraDigit">Indicates the extra digit used.</param>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.DeadlyPatterns.Qiu.QiuDeadlyPatternType2Step.Difficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.DeadlyPatterns.Qiu.QiuDeadlyPatternType2Step.TechniqueCode">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Steps.DeadlyPatterns.Qiu.QiuDeadlyPatternType3Step">
+            <summary>
+            Provides with a step that is a <b>Qiu's Deadly Pattern Type 3</b> technique.
+            </summary>
+            <param name="Conclusions"><inheritdoc/></param>
+            <param name="Views"><inheritdoc/></param>
+            <param name="Pattern"><inheritdoc/></param>
+            <param name="ExtraDigitsMask">Indicates the extra digits used to form the subset.</param>
+            <param name="ExtraCells">Indicates the extra cells used.</param>
+            <param name="IsNaked">Indicates whether the subset is a naked subset.</param>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Steps.DeadlyPatterns.Qiu.QiuDeadlyPatternType3Step.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Data.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Models.PresentationData},Sudoku.Solving.Collections.QiuDeadlyPattern@,System.Int16,Sudoku.Data.Cells,System.Boolean)">
+            <summary>
+            Provides with a step that is a <b>Qiu's Deadly Pattern Type 3</b> technique.
+            </summary>
+            <param name="Conclusions"><inheritdoc/></param>
+            <param name="Views"><inheritdoc/></param>
+            <param name="Pattern"><inheritdoc/></param>
+            <param name="ExtraDigitsMask">Indicates the extra digits used to form the subset.</param>
+            <param name="ExtraCells">Indicates the extra cells used.</param>
+            <param name="IsNaked">Indicates whether the subset is a naked subset.</param>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.DeadlyPatterns.Qiu.QiuDeadlyPatternType3Step.Difficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.DeadlyPatterns.Qiu.QiuDeadlyPatternType3Step.TechniqueCode">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Steps.DeadlyPatterns.Qiu.QiuDeadlyPatternType4Step">
+            <summary>
+            Provides with a step that is a <b>Qiu's Deadly Pattern Type 4</b> technique.
+            </summary>
+            <param name="Conclusions"><inheritdoc/></param>
+            <param name="Views"><inheritdoc/></param>
+            <param name="Pattern"><inheritdoc/></param>
+            <param name="ConjugatePair">Indicates the conjugate pair used.</param>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Steps.DeadlyPatterns.Qiu.QiuDeadlyPatternType4Step.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Data.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Models.PresentationData},Sudoku.Solving.Collections.QiuDeadlyPattern@,Sudoku.Data.ConjugatePair@)">
+            <summary>
+            Provides with a step that is a <b>Qiu's Deadly Pattern Type 4</b> technique.
+            </summary>
+            <param name="Conclusions"><inheritdoc/></param>
+            <param name="Views"><inheritdoc/></param>
+            <param name="Pattern"><inheritdoc/></param>
+            <param name="ConjugatePair">Indicates the conjugate pair used.</param>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.DeadlyPatterns.Qiu.QiuDeadlyPatternType4Step.Difficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.DeadlyPatterns.Qiu.QiuDeadlyPatternType4Step.TechniqueCode">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Solving.Manual.Steps.DeadlyPatterns.Rectangles.AvoidableRectangleWithHiddenSingleStep">

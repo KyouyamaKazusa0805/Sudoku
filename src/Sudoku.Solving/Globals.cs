@@ -42,6 +42,7 @@ global using Sudoku.Solving.Manual.Steps.Chains;
 global using Sudoku.Solving.Manual.Steps.DeadlyPatterns.Extended;
 global using Sudoku.Solving.Manual.Steps.DeadlyPatterns.Loops;
 global using Sudoku.Solving.Manual.Steps.DeadlyPatterns.Polygons;
+global using Sudoku.Solving.Manual.Steps.DeadlyPatterns.Qiu;
 global using Sudoku.Solving.Manual.Steps.DeadlyPatterns.Rectangles;
 global using Sudoku.Solving.Manual.Steps.DeadlyPatterns.Squares;
 global using Sudoku.Solving.Manual.Steps.DeadlyPatterns.Universal;

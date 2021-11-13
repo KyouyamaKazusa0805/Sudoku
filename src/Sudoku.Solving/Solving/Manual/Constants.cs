@@ -24,6 +24,11 @@ internal static class Constants
 	public const int UniqueSquareTemplatesCount = 162;
 
 	/// <summary>
+	/// Indicates the total number of Qiu's Deadly Pattern possible templates.
+	/// </summary>
+	public const int QiuDeadlyPatternTemplatesCount = 972;
+
+	/// <summary>
 	/// Indicates the total number of Unique Polygon (Heptagon) possible templates of size 3.
 	/// </summary>
 	public const int BdpTemplatesSize3Count = 14580;
