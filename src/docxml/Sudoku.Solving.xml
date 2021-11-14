@@ -1914,25 +1914,48 @@
         <member name="M:Sudoku.Solving.Manual.Searchers.AlmostLockedSets.AlmostLockedSetsXzStepSearcher.GetAll(System.Collections.Generic.ICollection{Sudoku.Solving.Manual.Step},Sudoku.Data.Grid@,System.Boolean)">
             <inheritdoc/>
         </member>
+        <member name="T:Sudoku.Solving.Manual.Searchers.AlmostLockedSets.EmptyRectangleIntersectionPairStepSearcher">
+            <summary>
+            Provides with a <b>Empty Rectangle Intersection Pair</b> step searcher.
+            The step searcher will include the following techniques:
+            <list type="bullet">
+            <item>Empty Rectangle Intersection Pair</item>
+            </list>
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Searchers.AlmostLockedSets.EmptyRectangleIntersectionPairStepSearcher.Options">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Searchers.AlmostLockedSets.EmptyRectangleIntersectionPairStepSearcher.Predicate">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Searchers.AlmostLockedSets.EmptyRectangleIntersectionPairStepSearcher.GetAll(System.Collections.Generic.ICollection{Sudoku.Solving.Manual.Step},Sudoku.Data.Grid@,System.Boolean)">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Solving.Manual.Searchers.AlmostLockedSets.IAlmostLockedSetsStepSearcher">
             <summary>
             Defines a step searcher that searches for almost locked sets steps.
             </summary>
         </member>
-        <member name="P:Sudoku.Solving.Manual.Searchers.AlmostLockedSets.IAlmostLockedSetsStepSearcher.AllowCollision">
+        <member name="T:Sudoku.Solving.Manual.Searchers.AlmostLockedSets.IAlmostLockedSetsXzStepSearcher">
+            <summary>
+            Defines a step searcher that searches for almost locked sets XZ steps.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Searchers.AlmostLockedSets.IAlmostLockedSetsXzStepSearcher.AllowCollision">
             <summary>
             Indicates whether two ALSes make an collision, which means they share the some same cells. 
             </summary>
         </member>
-        <member name="P:Sudoku.Solving.Manual.Searchers.AlmostLockedSets.IAlmostLockedSetsStepSearcher.AllowLoopedPatterns">
+        <member name="P:Sudoku.Solving.Manual.Searchers.AlmostLockedSets.IAlmostLockedSetsXzStepSearcher.AllowLoopedPatterns">
             <summary>
             Indicates whether the searcher will enhance the searching to find all possible eliminations
             for looped-ALS eliminations.
             </summary>
         </member>
-        <member name="T:Sudoku.Solving.Manual.Searchers.AlmostLockedSets.IAlmostLockedSetsXzStepSearcher">
+        <member name="T:Sudoku.Solving.Manual.Searchers.AlmostLockedSets.IEmptyRectangleIntersectionPairStepSearcher">
             <summary>
-            Defines a step searcher that searches for almost locked sets XZ steps.
+            Defines a step searcher that searches for empty rectangle intersection pair steps.
             </summary>
         </member>
         <member name="T:Sudoku.Solving.Manual.Searchers.Chains.AlternatingInferenceChainStepSearcher">
@@ -4543,6 +4566,45 @@
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Manual.Steps.AlmostLockedSets.AlmostLockedSetsXzStep.Rarity">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Steps.AlmostLockedSets.EmptyRectangleIntersectionPairStep">
+            <summary>
+            Provides with a step that is a <b>Empty Rectangle Intersection Pair</b> technique.
+            </summary>
+            <param name="Conclusions"><inheritdoc/></param>
+            <param name="Views"><inheritdoc/></param>
+            <param name="StartCell">Indicates the start cell used.</param>
+            <param name="EndCell">Indicates the end cell used.</param>
+            <param name="Region">The region that forms the dual empty rectangle.</param>
+            <param name="Digit1">Indicates the digit 1 used in this pattern.</param>
+            <param name="Digit2">Indicates the digit 2 used in this pattern.</param>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Steps.AlmostLockedSets.EmptyRectangleIntersectionPairStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Data.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Models.PresentationData},System.Int32,System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Provides with a step that is a <b>Empty Rectangle Intersection Pair</b> technique.
+            </summary>
+            <param name="Conclusions"><inheritdoc/></param>
+            <param name="Views"><inheritdoc/></param>
+            <param name="StartCell">Indicates the start cell used.</param>
+            <param name="EndCell">Indicates the end cell used.</param>
+            <param name="Region">The region that forms the dual empty rectangle.</param>
+            <param name="Digit1">Indicates the digit 1 used in this pattern.</param>
+            <param name="Digit2">Indicates the digit 2 used in this pattern.</param>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.AlmostLockedSets.EmptyRectangleIntersectionPairStep.Difficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.AlmostLockedSets.EmptyRectangleIntersectionPairStep.DifficultyLevel">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.AlmostLockedSets.EmptyRectangleIntersectionPairStep.TechniqueGroup">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.AlmostLockedSets.EmptyRectangleIntersectionPairStep.TechniqueCode">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.AlmostLockedSets.EmptyRectangleIntersectionPairStep.Rarity">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Solving.Manual.Steps.Chains.AlternatingInferenceChainStep">
