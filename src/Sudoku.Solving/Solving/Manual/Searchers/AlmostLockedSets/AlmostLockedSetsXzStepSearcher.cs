@@ -34,12 +34,14 @@ public sealed unsafe class AlmostLockedSetsXzStepSearcher : IAlmostLockedSetsXzS
 	{
 		int* house = stackalloc int[2];
 		var alses = Als.GetAllAlses(grid);
-		int i = 0;
-		foreach (ref readonly var als1 in alses[..^1].AsRefEnumerable())
+
+		for (int i = 0, length = alses.Length, iterationLengthOuter = length - 1; i < iterationLengthOuter; i++)
 		{
+			ref readonly var als1 = ref alses[i];
 			var (_, region1, mask1, map1, possibleElimMap1, _) = als1;
-			foreach (ref readonly var als2 in alses[(i + 1)..].AsRefEnumerable())
+			for (int j = i + 1; j < length; j++)
 			{
+				ref readonly var als2 = ref alses[j];
 				var (_, region2, mask2, map2, possibleElimMap2, _) = als2;
 				short xzMask = (short)(mask1 & mask2);
 				var map = map1 | map2;
