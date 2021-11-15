@@ -1888,6 +1888,27 @@
             Indicates the technique can't appear because the technique will be replaced with another technique.
             </summary>
         </member>
+        <member name="T:Sudoku.Solving.Manual.Searchers.AlmostLockedSets.AlmostLockedSetsXyWingStepSearcher">
+            <summary>
+            Provides with a <b>Almost Locked Sets XY-Wing</b> step searcher.
+            The step searcher will include the following techniques:
+            <list type="bullet">
+            <item>Almost Locked Sets XY-Wing</item>
+            </list>
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Searchers.AlmostLockedSets.AlmostLockedSetsXyWingStepSearcher.AllowCollision">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Searchers.AlmostLockedSets.AlmostLockedSetsXyWingStepSearcher.Options">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Searchers.AlmostLockedSets.AlmostLockedSetsXyWingStepSearcher.Predicate">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Searchers.AlmostLockedSets.AlmostLockedSetsXyWingStepSearcher.GetAll(System.Collections.Generic.ICollection{Sudoku.Solving.Manual.Step},Sudoku.Data.Grid@,System.Boolean)">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Solving.Manual.Searchers.AlmostLockedSets.AlmostLockedSetsXzStepSearcher">
             <summary>
             Provides with a <b>Almost Locked Sets XZ</b> step searcher.
@@ -1935,6 +1956,16 @@
         <member name="T:Sudoku.Solving.Manual.Searchers.AlmostLockedSets.IAlmostLockedSetsStepSearcher">
             <summary>
             Defines a step searcher that searches for almost locked sets steps.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Searchers.AlmostLockedSets.IAlmostLockedSetsXyWingStepSearcher">
+            <summary>
+            Defines a step searcher that searches for almost locked sets XY-Wing steps.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Searchers.AlmostLockedSets.IAlmostLockedSetsXyWingStepSearcher.AllowCollision">
+            <summary>
+            Indicates whether two ALSes make an collision, which means they share the some same cells. 
             </summary>
         </member>
         <member name="T:Sudoku.Solving.Manual.Searchers.AlmostLockedSets.IAlmostLockedSetsXzStepSearcher">
@@ -4524,6 +4555,50 @@
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Manual.Steps.AlmostLockedSets.AlmostLockedSetsStep.Stableness">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Steps.AlmostLockedSets.AlmostLockedSetsXyWingStep">
+            <summary>
+            Provides with a step that is a <b>Almost Locked Sets XY-Wing</b> technique.
+            </summary>
+            <param name="Conclusions"><inheritdoc/></param>
+            <param name="Views"><inheritdoc/></param>
+            <param name="Als1">Indicates the first ALS used in this pattern.</param>
+            <param name="Als2">Indicates the second ALS used in this pattern.</param>
+            <param name="Bridge">Indicates the ALS that is as a bridge.</param>
+            <param name="XDigitsMask">Indicates the mask that holds the digits for the X value.</param>
+            <param name="YDigitsMask">Indicates the mask that holds the digits for the Y value.</param>
+            <param name="ZDigitsMask">Indicates the mask that holds the digits for the Z value.</param>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Steps.AlmostLockedSets.AlmostLockedSetsXyWingStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Data.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Models.PresentationData},Sudoku.Solving.Collections.Als@,Sudoku.Solving.Collections.Als@,Sudoku.Solving.Collections.Als@,System.Int16,System.Int16,System.Int16)">
+            <summary>
+            Provides with a step that is a <b>Almost Locked Sets XY-Wing</b> technique.
+            </summary>
+            <param name="Conclusions"><inheritdoc/></param>
+            <param name="Views"><inheritdoc/></param>
+            <param name="Als1">Indicates the first ALS used in this pattern.</param>
+            <param name="Als2">Indicates the second ALS used in this pattern.</param>
+            <param name="Bridge">Indicates the ALS that is as a bridge.</param>
+            <param name="XDigitsMask">Indicates the mask that holds the digits for the X value.</param>
+            <param name="YDigitsMask">Indicates the mask that holds the digits for the Y value.</param>
+            <param name="ZDigitsMask">Indicates the mask that holds the digits for the Z value.</param>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.AlmostLockedSets.AlmostLockedSetsXyWingStep.Difficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.AlmostLockedSets.AlmostLockedSetsXyWingStep.TechniqueTags">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.AlmostLockedSets.AlmostLockedSetsXyWingStep.TechniqueGroup">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.AlmostLockedSets.AlmostLockedSetsXyWingStep.DifficultyLevel">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.AlmostLockedSets.AlmostLockedSetsXyWingStep.TechniqueCode">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.AlmostLockedSets.AlmostLockedSetsXyWingStep.Rarity">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Solving.Manual.Steps.AlmostLockedSets.AlmostLockedSetsXzStep">

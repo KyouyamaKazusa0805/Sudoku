@@ -232,7 +232,6 @@ public sealed unsafe class AlmostLockedSetsXzStepSearcher : IAlmostLockedSetsXzS
 					conclusions.ToImmutableArray(),
 					ImmutableArray.Create(new PresentationData
 					{
-						Cells = null,
 						Candidates = candidateOffsets,
 						Regions = isEsp ? null : new[]
 						{
