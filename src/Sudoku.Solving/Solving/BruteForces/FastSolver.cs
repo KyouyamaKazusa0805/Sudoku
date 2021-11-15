@@ -63,7 +63,7 @@ public sealed unsafe partial class FastSolver : IPuzzleSolver
 		}
 		stopwatch.Stop();
 
-		var solverResult = new BruteForceSolverResult(puzzle) { ElapsedTime = stopwatch.Elapsed };
+		var solverResult = new BruteForceSolverResult(puzzle, ElapsedTime: stopwatch.Elapsed);
 		return _numSolutions switch
 		{
 			0 => solverResult with { IsSolved = false, FailedReason = FailedReason.PuzzleHasNoSolution },

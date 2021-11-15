@@ -15,7 +15,7 @@ public sealed class OneLineLinqSolver : IPuzzleSolver
 		var results = SolveStrings($"{puzzle:0}");
 		stopwatch.Stop();
 
-		var solverResult = new BruteForceSolverResult(puzzle) { ElapsedTime = stopwatch.Elapsed };
+		var solverResult = new BruteForceSolverResult(puzzle, ElapsedTime: stopwatch.Elapsed);
 		return results.Count switch
 		{
 			0 => solverResult with { IsSolved = false, FailedReason = FailedReason.PuzzleHasNoSolution },

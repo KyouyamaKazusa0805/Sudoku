@@ -46,12 +46,12 @@ public sealed class BacktrackingSolver : IPuzzleSolver
 		{
 			stopwatch.Stop();
 
-			return new BruteForceSolverResult(puzzle)
-			{
-				IsSolved = false,
-				ElapsedTime = stopwatch.Elapsed,
-				FailedReason = FailedReason.PuzzleHasMultipleSolutions
-			};
+			return new BruteForceSolverResult(
+				puzzle,
+				IsSolved: false,
+				ElapsedTime: stopwatch.Elapsed,
+				FailedReason: FailedReason.PuzzleHasMultipleSolutions
+			);
 		}
 	}
 

@@ -174,31 +174,44 @@
             Encapsulates a solver result information that is created by a brute force solver.
             </summary>
             <param name="OriginalPuzzle"><inheritdoc/></param>
+            <param name="IsSolved">
+            <para><inheritdoc/></para>
+            <para>The default value is <see langword="true"/>.</para>
+            </param>
+            <param name="FailedReason">
+            <para><inheritdoc/></para>
+            <para>The default value is <see cref="F:Sudoku.Solving.FailedReason.Nothing"/>.</para>
+            </param>
+            <param name="Solution">
+            <para><inheritdoc/></para>
+            <para>The default value is <see cref="F:Sudoku.Data.Grid.Undefined"/>.</para>
+            </param>
+            <param name="ElapsedTime">
+            <para><inheritdoc/></para>
+            <para>The default value is <see cref="F:System.TimeSpan.Zero"/>.</para>
+            </param>
         </member>
-        <member name="M:Sudoku.Solving.BruteForces.BruteForceSolverResult.#ctor(Sudoku.Data.Grid@)">
+        <member name="M:Sudoku.Solving.BruteForces.BruteForceSolverResult.#ctor(Sudoku.Data.Grid@,System.Boolean,Sudoku.Solving.FailedReason,Sudoku.Data.Grid@,System.TimeSpan)">
             <summary>
             Encapsulates a solver result information that is created by a brute force solver.
             </summary>
             <param name="OriginalPuzzle"><inheritdoc/></param>
-        </member>
-        <member name="P:Sudoku.Solving.BruteForces.BruteForceSolverResult.IsSolved">
-            <inheritdoc/>
-            <remarks>The default value is <see langword="true"/>.</remarks>
-        </member>
-        <member name="P:Sudoku.Solving.BruteForces.BruteForceSolverResult.FailedReason">
-            <inheritdoc/>
-            <remarks>The default value is <see cref="F:Sudoku.Solving.FailedReason.Nothing"/>.</remarks>
-            <seealso cref="F:Sudoku.Solving.FailedReason.Nothing"/>
-        </member>
-        <member name="P:Sudoku.Solving.BruteForces.BruteForceSolverResult.Solution">
-            <inheritdoc/>
-            <remarks>The default value is <see cref="F:Sudoku.Data.Grid.Undefined"/>.</remarks>
-            <seealso cref="F:Sudoku.Data.Grid.Undefined"/>
-        </member>
-        <member name="P:Sudoku.Solving.BruteForces.BruteForceSolverResult.ElapsedTime">
-            <inheritdoc/>
-            <remarks>The default value is <see cref="F:System.TimeSpan.Zero"/>.</remarks>
-            <seealso cref="F:System.TimeSpan.Zero"/>
+            <param name="IsSolved">
+            <para><inheritdoc/></para>
+            <para>The default value is <see langword="true"/>.</para>
+            </param>
+            <param name="FailedReason">
+            <para><inheritdoc/></para>
+            <para>The default value is <see cref="F:Sudoku.Solving.FailedReason.Nothing"/>.</para>
+            </param>
+            <param name="Solution">
+            <para><inheritdoc/></para>
+            <para>The default value is <see cref="F:Sudoku.Data.Grid.Undefined"/>.</para>
+            </param>
+            <param name="ElapsedTime">
+            <para><inheritdoc/></para>
+            <para>The default value is <see cref="F:System.TimeSpan.Zero"/>.</para>
+            </param>
         </member>
         <member name="M:Sudoku.Solving.BruteForces.BruteForceSolverResult.ToDisplayString">
             <inheritdoc/>

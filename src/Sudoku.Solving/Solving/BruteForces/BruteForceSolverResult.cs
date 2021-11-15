@@ -4,28 +4,30 @@
 /// Encapsulates a solver result information that is created by a brute force solver.
 /// </summary>
 /// <param name="OriginalPuzzle"><inheritdoc/></param>
-public sealed record BruteForceSolverResult(in Grid OriginalPuzzle) : ISolverResult
+/// <param name="IsSolved">
+/// <para><inheritdoc/></para>
+/// <para>The default value is <see langword="true"/>.</para>
+/// </param>
+/// <param name="FailedReason">
+/// <para><inheritdoc/></para>
+/// <para>The default value is <see cref="FailedReason.Nothing"/>.</para>
+/// </param>
+/// <param name="Solution">
+/// <para><inheritdoc/></para>
+/// <para>The default value is <see cref="Grid.Undefined"/>.</para>
+/// </param>
+/// <param name="ElapsedTime">
+/// <para><inheritdoc/></para>
+/// <para>The default value is <see cref="TimeSpan.Zero"/>.</para>
+/// </param>
+public sealed record BruteForceSolverResult(
+	in Grid OriginalPuzzle,
+	bool IsSolved = true,
+	FailedReason FailedReason = FailedReason.Nothing,
+	in Grid Solution = default,
+	TimeSpan ElapsedTime = default
+) : ISolverResult
 {
-	/// <inheritdoc/>
-	/// <remarks>The default value is <see langword="true"/>.</remarks>
-	public bool IsSolved { get; init; } = true;
-
-	/// <inheritdoc/>
-	/// <remarks>The default value is <see cref="FailedReason.Nothing"/>.</remarks>
-	/// <seealso cref="FailedReason.Nothing"/>
-	public FailedReason FailedReason { get; init; } = FailedReason.Nothing;
-
-	/// <inheritdoc/>
-	/// <remarks>The default value is <see cref="Grid.Undefined"/>.</remarks>
-	/// <seealso cref="Grid.Undefined"/>
-	public Grid Solution { get; init; } = Grid.Undefined;
-
-	/// <inheritdoc/>
-	/// <remarks>The default value is <see cref="TimeSpan.Zero"/>.</remarks>
-	/// <seealso cref="TimeSpan.Zero"/>
-	public TimeSpan ElapsedTime { get; init; } = TimeSpan.Zero;
-
-
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public string ToDisplayString() => ToDisplayString(CountryCode.Default);
