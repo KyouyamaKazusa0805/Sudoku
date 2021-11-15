@@ -502,6 +502,13 @@
             <param name="puzzle">The puzzle string, with placeholder character '0'.</param>
             <returns>The result strings (i.e. All solutions).</returns>
         </member>
+        <member name="M:Sudoku.Solving.BruteForces.OneLineLinqSolver.SolveStrings(System.Text.StringHandler@)">
+            <summary>
+            Internal solving method.
+            </summary>
+            <param name="handler">The puzzle string, with placeholder character '0'.</param>
+            <returns>The result strings (i.e. All solutions).</returns>
+        </member>
         <member name="T:Sudoku.Solving.Collections.Als">
             <summary>
             Encapsulates a normal ALS.

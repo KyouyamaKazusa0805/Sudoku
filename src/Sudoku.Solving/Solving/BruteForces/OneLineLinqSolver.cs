@@ -60,4 +60,13 @@ public sealed class OneLineLinqSolver : IPuzzleSolver
 
 		return result;
 	}
+
+	/// <summary>
+	/// Internal solving method.
+	/// </summary>
+	/// <param name="handler">The puzzle string, with placeholder character '0'.</param>
+	/// <returns>The result strings (i.e. All solutions).</returns>
+	private static IReadOnlyList<string> SolveStrings(
+		[InterpolatedStringHandlerArgument] in StringHandler handler
+	) => SolveStrings(handler.ToStringAndClear());
 }
