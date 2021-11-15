@@ -66,6 +66,7 @@ public sealed class OneLineLinqSolver : IPuzzleSolver
 	/// </summary>
 	/// <param name="handler">The puzzle string, with placeholder character '0'.</param>
 	/// <returns>The result strings (i.e. All solutions).</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	private static IReadOnlyList<string> SolveStrings(
 		[InterpolatedStringHandlerArgument] in StringHandler handler
 	) => SolveStrings(handler.ToStringAndClear());
