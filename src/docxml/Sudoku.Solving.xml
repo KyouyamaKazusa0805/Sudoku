@@ -1908,6 +1908,24 @@
             Indicates the technique can't appear because the technique will be replaced with another technique.
             </summary>
         </member>
+        <member name="T:Sudoku.Solving.Manual.Searchers.AlmostLockedSets.AlmostLockedSetsWWingStepSearcher">
+            <summary>
+            Provides with a <b>Almost Locked Sets W-Wing</b> step searcher.
+            The step searcher will include the following techniques:
+            <list type="bullet">
+            <item>Almost Locked Sets W-Wing</item>
+            </list>
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Searchers.AlmostLockedSets.AlmostLockedSetsWWingStepSearcher.Options">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Searchers.AlmostLockedSets.AlmostLockedSetsWWingStepSearcher.Predicate">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Searchers.AlmostLockedSets.AlmostLockedSetsWWingStepSearcher.GetAll(System.Collections.Generic.ICollection{Sudoku.Solving.Manual.Step},Sudoku.Data.Grid@,System.Boolean)">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Solving.Manual.Searchers.AlmostLockedSets.AlmostLockedSetsXyWingStepSearcher">
             <summary>
             Provides with a <b>Almost Locked Sets XY-Wing</b> step searcher.
@@ -1976,6 +1994,11 @@
         <member name="T:Sudoku.Solving.Manual.Searchers.AlmostLockedSets.IAlmostLockedSetsStepSearcher">
             <summary>
             Defines a step searcher that searches for almost locked sets steps.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Searchers.AlmostLockedSets.IAlmostLockedSetsWWingStepSearcher">
+            <summary>
+            Defines a step searcher that searches for almost locked sets W-Wing steps.
             </summary>
         </member>
         <member name="T:Sudoku.Solving.Manual.Searchers.AlmostLockedSets.IAlmostLockedSetsXyWingStepSearcher">
@@ -4575,6 +4598,48 @@
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Manual.Steps.AlmostLockedSets.AlmostLockedSetsStep.Stableness">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Steps.AlmostLockedSets.AlmostLockedSetsWWingStep">
+            <summary>
+            Provides with a step that is a <b>Almost Locked Sets W-Wing</b> technique.
+            </summary>
+            <param name="Conclusions"><inheritdoc/></param>
+            <param name="Views"><inheritdoc/></param>
+            <param name="Als1">Indicates the first ALS used in this pattern.</param>
+            <param name="Als2">Indicates the second ALS used in this pattern.</param>
+            <param name="ConjugatePair">Indiactes the conjugate pair used.</param>
+            <param name="WDigitsMask">Indicates the mask that holds the W digit.</param>
+            <param name="X">Indicates the X digit.</param>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Steps.AlmostLockedSets.AlmostLockedSetsWWingStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Data.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Models.PresentationData},Sudoku.Solving.Collections.Als@,Sudoku.Solving.Collections.Als@,Sudoku.Data.ConjugatePair@,System.Int16,System.Int32)">
+            <summary>
+            Provides with a step that is a <b>Almost Locked Sets W-Wing</b> technique.
+            </summary>
+            <param name="Conclusions"><inheritdoc/></param>
+            <param name="Views"><inheritdoc/></param>
+            <param name="Als1">Indicates the first ALS used in this pattern.</param>
+            <param name="Als2">Indicates the second ALS used in this pattern.</param>
+            <param name="ConjugatePair">Indiactes the conjugate pair used.</param>
+            <param name="WDigitsMask">Indicates the mask that holds the W digit.</param>
+            <param name="X">Indicates the X digit.</param>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.AlmostLockedSets.AlmostLockedSetsWWingStep.Difficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.AlmostLockedSets.AlmostLockedSetsWWingStep.TechniqueTags">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.AlmostLockedSets.AlmostLockedSetsWWingStep.DifficultyLevel">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.AlmostLockedSets.AlmostLockedSetsWWingStep.TechniqueGroup">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.AlmostLockedSets.AlmostLockedSetsWWingStep.TechniqueCode">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.AlmostLockedSets.AlmostLockedSetsWWingStep.Rarity">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Solving.Manual.Steps.AlmostLockedSets.AlmostLockedSetsXyWingStep">
