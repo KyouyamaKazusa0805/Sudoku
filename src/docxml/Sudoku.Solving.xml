@@ -1284,6 +1284,21 @@
             Indicates the total number of Unique Polygon (Octagon) possible templates of size 4.
             </summary>
         </member>
+        <member name="F:Sudoku.Solving.Manual.Constants.AllRowsMask">
+            <summary>
+            Indicates the mask that means all rows.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.Constants.AllColumnsMask">
+            <summary>
+            Indicates the mask that means all columns.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.Constants.AllRegionsMask">
+            <summary>
+            Indicates the mask that means all regions.
+            </summary>
+        </member>
         <member name="F:Sudoku.Solving.Manual.Constants.SubsetNames">
             <summary>
             <para>The names of all subsets by their sizes.</para>
@@ -3311,6 +3326,62 @@
         <member name="T:Sudoku.Solving.Manual.Searchers.DeadlyPatterns.Universal.IUniversalStepSearcher">
             <summary>
             Defines a step searcher that searches for universal steps.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Searchers.Fishes.ComplexFishStepSearcher">
+            <summary>
+            Provides with a <b>Complex Fish</b> step searcher.
+            The step searcher will include the following techniques:
+            <list type="bullet">
+            <item>
+            Franken Fishes
+            <list type="bullet">
+            <item>Finned Franken Fish</item>
+            <item>Sashimi Franken Fish</item>
+            </list>
+            </item>
+            <item>
+            Mutant Fishes
+            <list type="bullet">
+            <item>Finned Mutant Fish</item>
+            <item>Sashimi Mutant Fish</item>
+            </list>
+            </item>
+            </list>
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Searchers.Fishes.ComplexFishStepSearcher.MaxSize">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Searchers.Fishes.ComplexFishStepSearcher.Options">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Searchers.Fishes.ComplexFishStepSearcher.Predicate">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Searchers.Fishes.ComplexFishStepSearcher.GetAll(System.Collections.Generic.ICollection{Sudoku.Solving.Manual.Step},Sudoku.Data.Grid@,System.Boolean)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Searchers.Fishes.ComplexFishStepSearcher.GetAll(System.Collections.Generic.ICollection{Sudoku.Solving.Manual.Steps.Fishes.ComplexFishStep},Sudoku.Data.Grid@,System.Collections.Generic.IList{Sudoku.Data.Conclusion}[],System.Int32,System.Boolean)">
+            <summary>
+            Get all possible fish steps.
+            </summary>
+            <param name="accumulator">The accumulator.</param>
+            <param name="grid">The grid.</param>
+            <param name="pomElims">The possible eliminations to check, specified as a dictionary.</param>
+            <param name="digit">The current digit used.</param>
+            <param name="onlyFindOne">Indicates whether the method only find one possible step.</param>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Searchers.Fishes.ComplexFishStepSearcher.GetPomEliminationsFirstly(Sudoku.Data.Grid@)">
+            <summary>
+            Get POM technique eliminations at first.
+            </summary>
+            <param name="grid">The grid.</param>
+            <returns>The dictionary that contains all eliminations grouped by digit used.</returns>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Searchers.Fishes.IComplexFishStepSearcher">
+            <summary>
+            Defines a step searcher that searches for complex fish steps.
             </summary>
         </member>
         <member name="T:Sudoku.Solving.Manual.Searchers.Fishes.IFishStepSearcher">
@@ -6806,6 +6877,164 @@
         </member>
         <member name="P:Sudoku.Solving.Manual.Steps.DeadlyPatterns.Universal.BivalueUniversalGraveXzStep.Rarity">
             <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Steps.Fishes.ComplexFishStep">
+            <summary>
+            Provides with a step that is a <b>Complex Fish</b> technique.
+            </summary>
+            <param name="Conclusions"><inheritdoc/></param>
+            <param name="Views"><inheritdoc/></param>
+            <param name="Digit"><inheritdoc/></param>
+            <param name="BaseSetsMask"><inheritdoc/></param>
+            <param name="CoverSetsMask"><inheritdoc/></param>
+            <param name="Exofins">The exo-fins.</param>
+            <param name="Endofins">The endo-fins.</param>
+            <param name="IsFranken">Indicates whether the fish is a Franken fish.</param>
+            <param name="IsSashimi">Indicates whether the fish is a Sashimi fish.</param>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Steps.Fishes.ComplexFishStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Data.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Models.PresentationData},System.Int32,System.Int32,System.Int32,Sudoku.Data.Cells,Sudoku.Data.Cells,System.Boolean,System.Nullable{System.Boolean})">
+            <summary>
+            Provides with a step that is a <b>Complex Fish</b> technique.
+            </summary>
+            <param name="Conclusions"><inheritdoc/></param>
+            <param name="Views"><inheritdoc/></param>
+            <param name="Digit"><inheritdoc/></param>
+            <param name="BaseSetsMask"><inheritdoc/></param>
+            <param name="CoverSetsMask"><inheritdoc/></param>
+            <param name="Exofins">The exo-fins.</param>
+            <param name="Endofins">The endo-fins.</param>
+            <param name="IsFranken">Indicates whether the fish is a Franken fish.</param>
+            <param name="IsSashimi">Indicates whether the fish is a Sashimi fish.</param>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.Steps.Fishes.ComplexFishStep.BasicDiff">
+            <summary>
+            The basic difficulty rating table.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.Steps.Fishes.ComplexFishStep.FinnedDiff">
+            <summary>
+            The finned difficulty rating table.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.Steps.Fishes.ComplexFishStep.SashimiDiff">
+            <summary>
+            The sashimi difficulty rating table.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.Steps.Fishes.ComplexFishStep.FrankenShapeDiffExtra">
+            <summary>
+            The Franken shape extra difficulty rating table.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.Steps.Fishes.ComplexFishStep.MutantShapeDiffExtra">
+            <summary>
+            The mutant shape extra difficulty rating table.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.Fishes.ComplexFishStep.Difficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.Fishes.ComplexFishStep.DifficultyLevel">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.Fishes.ComplexFishStep.TechniqueCode">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.Fishes.ComplexFishStep.TechniqueGroup">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.Fishes.ComplexFishStep.Rarity">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.Fishes.ComplexFishStep.BaseHashCode">
+            <summary>
+            Indicates the base hash code.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.Fishes.ComplexFishStep.BaseSetHashCode">
+            <summary>
+            Indicates the base set hash code.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.Fishes.ComplexFishStep.CoverSetHashCode">
+            <summary>
+            Indicates the cover set hash code.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.Fishes.ComplexFishStep.InternalName">
+            <summary>
+            The internal name.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.Fishes.ComplexFishStep.FinModifier">
+            <summary>
+            Indicates the fin modifier.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.Fishes.ComplexFishStep.ShapeModifier">
+            <summary>
+            The shape modifier.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.Fishes.ComplexFishStep.BaseRegions">
+            <summary>
+            Indicates the base regions.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.Fishes.ComplexFishStep.CoverRegions">
+            <summary>
+            Indicates the cover regions.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Steps.Fishes.ComplexFishStep.Equals(Sudoku.Solving.Manual.Steps.Fishes.ComplexFishStep,Sudoku.Solving.Manual.Steps.Fishes.ComplexFishStep)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Steps.Fishes.ComplexFishStep.FinModifiers">
+            <summary>
+            Indicates the fin modifiers.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.Steps.Fishes.ComplexFishStep.FinModifiers.Normal">
+            <summary>
+            Indicates the normal fish (i.e. no fins).
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.Steps.Fishes.ComplexFishStep.FinModifiers.Finned">
+            <summary>
+            Indicates the finned fish
+            (i.e. contains fins, but the fish may be regular when the fins are removed).
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.Steps.Fishes.ComplexFishStep.FinModifiers.Sashimi">
+            <summary>
+            Indicates the sashimi fish
+            (i.e. contains fins, and the fish may be degenerated to hidden singles when the fins are removed).
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.Steps.Fishes.ComplexFishStep.FinModifiers.Siamese">
+            <summary>
+            Indicates the siamese fish (i.e. two fish with different cover sets).
+            </summary>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Steps.Fishes.ComplexFishStep.ShapeModifiers">
+            <summary>
+            Indicates the shape modifiers.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.Steps.Fishes.ComplexFishStep.ShapeModifiers.Basic">
+            <summary>
+            Indicates the basic fish.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.Steps.Fishes.ComplexFishStep.ShapeModifiers.Franken">
+            <summary>
+            Indicates the franken fish.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.Steps.Fishes.ComplexFishStep.ShapeModifiers.Mutant">
+            <summary>
+            Indicates the mutant fish.
+            </summary>
         </member>
         <member name="T:Sudoku.Solving.Manual.Steps.Fishes.FishStep">
             <summary>
