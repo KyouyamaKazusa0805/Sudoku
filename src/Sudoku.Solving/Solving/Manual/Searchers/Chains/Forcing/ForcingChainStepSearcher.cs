@@ -4,7 +4,14 @@
 /// Provides with a <b>Forcing Chains</b> step searcher.
 /// The step searcher will include the following techniques:
 /// <list type="bullet">
-/// <item>Forcing Chains</item>
+/// <item>Cell Forcing Chains</item>
+/// <item>Region Forcing Chains</item>
+/// <item>Contradiction Forcing Chains</item>
+/// <item>Dynamic Cell Forcing Chains</item>
+/// <item>Dynamic Region Forcing Chains</item>
+/// <item>Dynamic Contradiction Forcing Chains</item>
+/// <item>Dynamic Double Forcing Chains</item>
+/// <!--<item>Dynamic Forcing Chains (+)</item>-->
 /// </list>
 /// </summary>
 [StepSearcher]
@@ -16,24 +23,16 @@ public unsafe class ForcingChainStepSearcher : IForcingChainStepSearcher
 	private Grid _temp;
 
 
-	/// <summary>
-	/// Indicates whether the step searcher will search for nishio forcing chains.
-	/// </summary>
+	/// <inheritdoc/>
 	public bool IsNishio { get; set; }
 
-	/// <summary>
-	/// Indicates whether the step searcher will search for multiple forcing chains.
-	/// </summary>
+	/// <inheritdoc/>
 	public bool IsMultiple { get; set; }
 
-	/// <summary>
-	/// Indicates whether the step searcher will search for dynamic forcing chains.
-	/// </summary>
+	/// <inheritdoc/>
 	public bool IsDynamic { get; set; }
 
-	/// <summary>
-	/// Indicates the level of the searcher to search.
-	/// </summary>
+	/// <inheritdoc/>
 	public byte Level { get; set; }
 
 	/// <inheritdoc/>

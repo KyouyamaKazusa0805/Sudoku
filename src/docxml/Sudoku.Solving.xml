@@ -2107,7 +2107,14 @@
             Provides with a <b>Forcing Chains</b> step searcher.
             The step searcher will include the following techniques:
             <list type="bullet">
-            <item>Forcing Chains</item>
+            <item>Cell Forcing Chains</item>
+            <item>Region Forcing Chains</item>
+            <item>Contradiction Forcing Chains</item>
+            <item>Dynamic Cell Forcing Chains</item>
+            <item>Dynamic Region Forcing Chains</item>
+            <item>Dynamic Contradiction Forcing Chains</item>
+            <item>Dynamic Double Forcing Chains</item>
+            <!--<item>Dynamic Forcing Chains (+)</item>-->
             </list>
             </summary>
         </member>
@@ -2117,24 +2124,16 @@
             </summary>
         </member>
         <member name="P:Sudoku.Solving.Manual.Searchers.Chains.Forcing.ForcingChainStepSearcher.IsNishio">
-            <summary>
-            Indicates whether the step searcher will search for nishio forcing chains.
-            </summary>
+            <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Manual.Searchers.Chains.Forcing.ForcingChainStepSearcher.IsMultiple">
-            <summary>
-            Indicates whether the step searcher will search for multiple forcing chains.
-            </summary>
+            <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Manual.Searchers.Chains.Forcing.ForcingChainStepSearcher.IsDynamic">
-            <summary>
-            Indicates whether the step searcher will search for dynamic forcing chains.
-            </summary>
+            <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Manual.Searchers.Chains.Forcing.ForcingChainStepSearcher.Level">
-            <summary>
-            Indicates the level of the searcher to search.
-            </summary>
+            <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Manual.Searchers.Chains.Forcing.ForcingChainStepSearcher.Options">
             <inheritdoc/>
@@ -2249,7 +2248,46 @@
         </member>
         <member name="P:Sudoku.Solving.Manual.Searchers.Chains.Forcing.IForcingChainStepSearcher.Level">
             <summary>
-            Indicates the level of the searcher to search.
+            Indicates the level of the dynamic case. The dynamic level contains 6 possible values, which is corresponding
+            to the digit 0, 1, 2, 3, 4 and 5.
+            <list type="table">
+            <item>
+            <term>Level 0</term>
+            <description>The dynamic case is disabled. The chain isn't a dynamic chain at all.</description>
+            </item>
+            <item>
+            <term>Level 1</term>
+            <description>The chain is a normal dynamic forcing chains.</description>
+            </item>
+            <item>
+            <term>Level 2</term>
+            <description>
+            The chain is a dynamic forcing chains with grouped nodes, such as an X-Wing.
+            (i.e. <b>Dynamic Forcing Chains + Generalized Structure</b>)
+            </description>
+            </item>
+            <item>
+            <term>Level 3</term>
+            <description>
+            The chain is a dynamic forcing chains with normal AICs as grouped nodes.
+            (i.e. <b>Dynamic Forcing Chains + Alternating Inference Chain</b>)
+            </description>
+            </item>
+            <item>
+            <term>Level 4</term>
+            <description>
+            The chain is a dynamic forcing chains with normal forcing chains as grouped nodes.
+            (i.e. <b>Dynamic Forcing Chains + Forcing Chains</b>)
+            </description>
+            </item>
+            <item>
+            <term>Level 5</term>
+            <description>
+            The chain is a dynamic forcing chains with dynamic forcing chains as grouped nodes.
+            (i.e. <b>Dynamic Forcing Chains + Dynamic Forcing Chains</b>)
+            </description>
+            </item>
+            </list>
             </summary>
         </member>
         <member name="T:Sudoku.Solving.Manual.Searchers.Chains.IAlternatingInferenceChainStepSearcher">
@@ -5091,45 +5129,8 @@
             </param>
             <param name="Level">
             Indicates the level of the dynamic case. The dynamic level contains 6 possible values, which is corresponding
-            to the digit 0, 1, 2, 3, 4 and 5.
-            <list type="table">
-            <item>
-            <term>Level 0</term>
-            <description>The dynamic case is disabled. The chain isn't a dynamic chain at all.</description>
-            </item>
-            <item>
-            <term>Level 1</term>
-            <description>The chain is a normal dynamic forcing chains.</description>
-            </item>
-            <item>
-            <term>Level 2</term>
-            <description>
-            The chain is a dynamic forcing chains with grouped nodes, such as an X-Wing.
-            (i.e. <b>Dynamic Forcing Chains + Generalized Structure</b>)
-            </description>
-            </item>
-            <item>
-            <term>Level 3</term>
-            <description>
-            The chain is a dynamic forcing chains with normal AICs as grouped nodes.
-            (i.e. <b>Dynamic Forcing Chains + Alternating Inference Chain</b>)
-            </description>
-            </item>
-            <item>
-            <term>Level 4</term>
-            <description>
-            The chain is a dynamic forcing chains with normal forcing chains as grouped nodes.
-            (i.e. <b>Dynamic Forcing Chains + Forcing Chains</b>)
-            </description>
-            </item>
-            <item>
-            <term>Level 5</term>
-            <description>
-            The chain is a dynamic forcing chains with dynamic forcing chains as grouped nodes.
-            (i.e. <b>Dynamic Forcing Chains + Dynamic Forcing Chains</b>)
-            </description>
-            </item>
-            </list>
+            to the digit 0, 1, 2, 3, 4 and 5. For more information, please visit the step searcher to check
+            the property <see cref="P:Sudoku.Solving.Manual.Searchers.Chains.Forcing.IForcingChainStepSearcher.Level"/>
             </param>
         </member>
         <member name="M:Sudoku.Solving.Manual.Steps.Chains.ChainStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Data.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Models.PresentationData},System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Byte)">
@@ -5157,45 +5158,8 @@
             </param>
             <param name="Level">
             Indicates the level of the dynamic case. The dynamic level contains 6 possible values, which is corresponding
-            to the digit 0, 1, 2, 3, 4 and 5.
-            <list type="table">
-            <item>
-            <term>Level 0</term>
-            <description>The dynamic case is disabled. The chain isn't a dynamic chain at all.</description>
-            </item>
-            <item>
-            <term>Level 1</term>
-            <description>The chain is a normal dynamic forcing chains.</description>
-            </item>
-            <item>
-            <term>Level 2</term>
-            <description>
-            The chain is a dynamic forcing chains with grouped nodes, such as an X-Wing.
-            (i.e. <b>Dynamic Forcing Chains + Generalized Structure</b>)
-            </description>
-            </item>
-            <item>
-            <term>Level 3</term>
-            <description>
-            The chain is a dynamic forcing chains with normal AICs as grouped nodes.
-            (i.e. <b>Dynamic Forcing Chains + Alternating Inference Chain</b>)
-            </description>
-            </item>
-            <item>
-            <term>Level 4</term>
-            <description>
-            The chain is a dynamic forcing chains with normal forcing chains as grouped nodes.
-            (i.e. <b>Dynamic Forcing Chains + Forcing Chains</b>)
-            </description>
-            </item>
-            <item>
-            <term>Level 5</term>
-            <description>
-            The chain is a dynamic forcing chains with dynamic forcing chains as grouped nodes.
-            (i.e. <b>Dynamic Forcing Chains + Dynamic Forcing Chains</b>)
-            </description>
-            </item>
-            </list>
+            to the digit 0, 1, 2, 3, 4 and 5. For more information, please visit the step searcher to check
+            the property <see cref="P:Sudoku.Solving.Manual.Searchers.Chains.Forcing.IForcingChainStepSearcher.Level"/>
             </param>
         </member>
         <member name="P:Sudoku.Solving.Manual.Steps.Chains.ChainStep.ShowDifficulty">
