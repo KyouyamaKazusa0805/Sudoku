@@ -2102,9 +2102,154 @@
             Defines a step searcher that searches for dynamic forcing chains steps.
             </summary>
         </member>
+        <member name="T:Sudoku.Solving.Manual.Searchers.Chains.Forcing.ForcingChainStepSearcher">
+            <summary>
+            Provides with a <b>Forcing Chains</b> step searcher.
+            The step searcher will include the following techniques:
+            <list type="bullet">
+            <item>Forcing Chains</item>
+            </list>
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.Searchers.Chains.Forcing.ForcingChainStepSearcher._temp">
+            <summary>
+            Indicates the grid that is used in processing.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Searchers.Chains.Forcing.ForcingChainStepSearcher.IsNishio">
+            <summary>
+            Indicates whether the step searcher will search for nishio forcing chains.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Searchers.Chains.Forcing.ForcingChainStepSearcher.IsMultiple">
+            <summary>
+            Indicates whether the step searcher will search for multiple forcing chains.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Searchers.Chains.Forcing.ForcingChainStepSearcher.IsDynamic">
+            <summary>
+            Indicates whether the step searcher will search for dynamic forcing chains.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Searchers.Chains.Forcing.ForcingChainStepSearcher.Level">
+            <summary>
+            Indicates the level of the searcher to search.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Searchers.Chains.Forcing.ForcingChainStepSearcher.Options">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Searchers.Chains.Forcing.ForcingChainStepSearcher.Predicate">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Searchers.Chains.Forcing.ForcingChainStepSearcher.GetAll(System.Collections.Generic.ICollection{Sudoku.Solving.Manual.Step},Sudoku.Data.Grid@,System.Boolean)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Searchers.Chains.Forcing.ForcingChainStepSearcher.GetAll(System.Collections.Generic.ICollection{Sudoku.Solving.Manual.Steps.Chains.ChainStep},Sudoku.Data.Grid@)">
+            <summary>
+            Search for chains of each type.
+            </summary>
+            <param name="accumulator">The accumulator.</param>
+            <param name="grid">The grid.</param>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Searchers.Chains.Forcing.ForcingChainStepSearcher.DoBinaryChaining(System.Collections.Generic.ICollection{Sudoku.Solving.Manual.Steps.Chains.ChainStep},Sudoku.Data.Grid@,Sudoku.Data.ChainNode@,Sudoku.Data.ChainNode@,System.Collections.Generic.Set{Sudoku.Data.ChainNode},System.Collections.Generic.Set{Sudoku.Data.ChainNode},System.Boolean,System.Boolean)">
+            <summary>
+            Do binary chaining.
+            </summary>
+            <param name="accumulator">The current accumulator.</param>
+            <param name="grid">The grid.</param>
+            <param name="pOn">The on node.</param>
+            <param name="pOff">The off node.</param>
+            <param name="onToOn">The list for <c>on</c> nodes to <c>on</c> nodes.</param>
+            <param name="onToOff">The list for <c>on</c> nodes to <c>off</c> nodes.</param>
+            <param name="doReduction">Indicates whether the method executes double chaining.</param>
+            <param name="doContradiction">Indicates whether the method executes contradiction chaining.</param>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Searchers.Chains.Forcing.ForcingChainStepSearcher.DoRegionChaining(System.Collections.Generic.ICollection{Sudoku.Solving.Manual.Steps.Chains.ChainStep},Sudoku.Data.Grid@,System.Byte,System.Byte,System.Collections.Generic.Set{Sudoku.Data.ChainNode},System.Collections.Generic.Set{Sudoku.Data.ChainNode})">
+            <summary>
+            Do region chaining.
+            </summary>
+            <param name="accumulator">The technique accumulator.</param>
+            <param name="grid"></param>
+            <param name="cell">The cell.</param>
+            <param name="digit">The digit.</param>
+            <param name="onToOn">The list for <c>on</c> nodes to <c>on</c> nodes.</param>
+            <param name="onToOff">The list for <c>on</c> nodes to <c>off</c> nodes.</param>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Searchers.Chains.Forcing.ForcingChainStepSearcher.DoChaining(Sudoku.Data.Grid@,System.Collections.Generic.Set{Sudoku.Data.ChainNode},System.Collections.Generic.Set{Sudoku.Data.ChainNode})">
+            <summary>
+            Do chaining (i.e. multiple chaining).
+            </summary>
+            <param name="grid">The grid.</param>
+            <param name="toOn">The list to <c>on</c> nodes.</param>
+            <param name="toOff">The list to <c>off</c> nodes.</param>
+            <returns>The result.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Searchers.Chains.Forcing.ForcingChainStepSearcher.CreateChainingOnHint(Sudoku.Data.ChainNode@,Sudoku.Data.ChainNode@,Sudoku.Data.ChainNode@,Sudoku.Data.ChainNode@,System.Boolean)">
+            <summary>
+            Create a chaining hint whose conclusion is an on result.
+            </summary>
+            <param name="destOn">The destination on node.</param>
+            <param name="destOff">The destination off node.</param>
+            <param name="source">The source node.</param>
+            <param name="target">The target node.</param>
+            <param name="isAbsurd">Indicates whether the chain is absurd.</param>
+            <returns>The hint.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Searchers.Chains.Forcing.ForcingChainStepSearcher.CreateChainingOffHint(Sudoku.Data.ChainNode@,Sudoku.Data.ChainNode@,Sudoku.Data.ChainNode@,Sudoku.Data.ChainNode@,System.Boolean)">
+            <summary>
+            Create a chaining hint whose conclusion is an off result.
+            </summary>
+            <param name="destOn">The destination on node.</param>
+            <param name="destOff">The destination off node.</param>
+            <param name="source">The source node.</param>
+            <param name="target">The target node.</param>
+            <param name="isAbsurd">Indicates whether the chain is absurd.</param>
+            <returns>The hint.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Searchers.Chains.Forcing.ForcingChainStepSearcher.CreateCellFcHint(Sudoku.Data.Grid@,System.Int32,Sudoku.Data.ChainNode@,System.Collections.Generic.IReadOnlyDictionary{System.Int32,System.Collections.Generic.Set{Sudoku.Data.ChainNode}})">
+            <summary>
+            Create the hint for cell forcing chains.
+            </summary>
+            <param name="grid">The grid.</param>
+            <param name="sourceCell">The source cell.</param>
+            <param name="target">The target elimination node.</param>
+            <param name="outcomes">All outcomes (conclusions).</param>
+            <returns>The information instance.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Searchers.Chains.Forcing.ForcingChainStepSearcher.CreateRegionFcHint(System.Int32,System.Int32,Sudoku.Data.ChainNode@,System.Collections.Generic.IDictionary{System.Int32,System.Collections.Generic.Set{Sudoku.Data.ChainNode}})">
+            <summary>
+            Create a hint of region forcing chains.
+            </summary>
+            <param name="region">The region.</param>
+            <param name="digit">The digit.</param>
+            <param name="target">The target node.</param>
+            <param name="outcomes">All outcomes (conclusions).</param>
+            <returns>The technique information instance.</returns>
+        </member>
         <member name="T:Sudoku.Solving.Manual.Searchers.Chains.Forcing.IForcingChainStepSearcher">
             <summary>
-            Defines a step searcher that searches for forcing chains steps.
+            Defines a step searcher that searches for forcing chain steps.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Searchers.Chains.Forcing.IForcingChainStepSearcher.IsNishio">
+            <summary>
+            Indicates whether the step searcher will search for nishio forcing chains.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Searchers.Chains.Forcing.IForcingChainStepSearcher.IsMultiple">
+            <summary>
+            Indicates whether the step searcher will search for multiple forcing chains.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Searchers.Chains.Forcing.IForcingChainStepSearcher.IsDynamic">
+            <summary>
+            Indicates whether the step searcher will search for dynamic forcing chains.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Searchers.Chains.Forcing.IForcingChainStepSearcher.Level">
+            <summary>
+            Indicates the level of the searcher to search.
             </summary>
         </member>
         <member name="T:Sudoku.Solving.Manual.Searchers.Chains.IAlternatingInferenceChainStepSearcher">
@@ -5062,6 +5207,11 @@
         <member name="P:Sudoku.Solving.Manual.Steps.Chains.ChainStep.FlatComplexity">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.Chains.ChainStep.Complexity">
+            <summary>
+            The total complexity.
+            </summary>
+        </member>
         <member name="P:Sudoku.Solving.Manual.Steps.Chains.ChainStep.Name">
             <inheritdoc/>
         </member>
@@ -5073,6 +5223,19 @@
         </member>
         <member name="P:Sudoku.Solving.Manual.Steps.Chains.ChainStep.Stableness">
             <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.Chains.ChainStep.TechniqueCode">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.Chains.ChainStep.BaseDifficulty">
+            <summary>
+            The base difficulty.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.Chains.ChainStep.LengthDifficulty">
+            <summary>
+            The length difficulty.
+            </summary>
         </member>
         <member name="M:Sudoku.Solving.Manual.Steps.Chains.ChainStep.Equals(Sudoku.Solving.Manual.Steps.Chains.ChainStep,Sudoku.Solving.Manual.Steps.Chains.ChainStep)">
             <inheritdoc/>
@@ -5134,6 +5297,148 @@
             <summary>
             Indicates whether the specified cycle is an X-Cycle.
             </summary>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Steps.Chains.Forcing.BinaryChainingStep">
+            <summary>
+            Provides with a step that is a <b>Binary Forcing Chains</b> technique.
+            </summary>
+            <param name="Conclusions"><inheritdoc/></param>
+            <param name="Views"><inheritdoc/></param>
+            <param name="SourceNode">Indicates the source node.</param>
+            <param name="FromOnNode">Indicates the node that is the destination (on side).</param>
+            <param name="FromOffNode">Indicates the node that is the destination (off side).</param>
+            <param name="IsAbsurd">Indicates whether the chain is absurd.</param>
+            <param name="IsMultiple"><inheritdoc/></param>
+            <param name="IsNishio"><inheritdoc/></param>
+            <param name="Level"><inheritdoc/></param>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Steps.Chains.Forcing.BinaryChainingStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Data.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Models.PresentationData},Sudoku.Data.ChainNode@,Sudoku.Data.ChainNode@,Sudoku.Data.ChainNode@,System.Boolean,System.Boolean,System.Boolean,System.Byte)">
+            <summary>
+            Provides with a step that is a <b>Binary Forcing Chains</b> technique.
+            </summary>
+            <param name="Conclusions"><inheritdoc/></param>
+            <param name="Views"><inheritdoc/></param>
+            <param name="SourceNode">Indicates the source node.</param>
+            <param name="FromOnNode">Indicates the node that is the destination (on side).</param>
+            <param name="FromOffNode">Indicates the node that is the destination (off side).</param>
+            <param name="IsAbsurd">Indicates whether the chain is absurd.</param>
+            <param name="IsMultiple"><inheritdoc/></param>
+            <param name="IsNishio"><inheritdoc/></param>
+            <param name="Level"><inheritdoc/></param>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.Chains.Forcing.BinaryChainingStep.FlatComplexity">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.Chains.Forcing.BinaryChainingStep.Difficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.Chains.Forcing.BinaryChainingStep.Anchor">
+            <summary>
+            Indicates the anchor.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.Chains.Forcing.BinaryChainingStep.SortKey">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.Chains.Forcing.BinaryChainingStep.DifficultyLevel">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.Chains.Forcing.BinaryChainingStep.TechniqueTags">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.Chains.Forcing.BinaryChainingStep.TechniqueGroup">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.Chains.Forcing.BinaryChainingStep.Rarity">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Steps.Chains.Forcing.CellChainingStep">
+            <summary>
+            Provides with a step that is a <b>Cell Forcing Chains</b> technique.
+            </summary>
+            <param name="Conclusions"><inheritdoc/></param>
+            <param name="Views"><inheritdoc/></param>
+            <param name="SourceCell">Indicates the source cell used.</param>
+            <param name="Chains">Indicates the sub-chains that is grouped by each candidate in that cell.</param>
+            <param name="IsDynamic"><inheritdoc/></param>
+            <param name="Level"><inheritdoc/></param>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Steps.Chains.Forcing.CellChainingStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Data.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Models.PresentationData},System.Int32,System.Collections.Generic.IReadOnlyDictionary{System.Int32,Sudoku.Data.ChainNode},System.Boolean,System.Byte)">
+            <summary>
+            Provides with a step that is a <b>Cell Forcing Chains</b> technique.
+            </summary>
+            <param name="Conclusions"><inheritdoc/></param>
+            <param name="Views"><inheritdoc/></param>
+            <param name="SourceCell">Indicates the source cell used.</param>
+            <param name="Chains">Indicates the sub-chains that is grouped by each candidate in that cell.</param>
+            <param name="IsDynamic"><inheritdoc/></param>
+            <param name="Level"><inheritdoc/></param>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.Chains.Forcing.CellChainingStep.FlatComplexity">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.Chains.Forcing.CellChainingStep.Difficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.Chains.Forcing.CellChainingStep.SortKey">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.Chains.Forcing.CellChainingStep.TechniqueTags">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.Chains.Forcing.CellChainingStep.TechniqueGroup">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.Chains.Forcing.CellChainingStep.DifficultyLevel">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.Chains.Forcing.CellChainingStep.Rarity">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Steps.Chains.Forcing.RegionChainingStep">
+            <summary>
+            Provides with a step that is a <b>Region Foring Chains</b> technique.
+            </summary>
+            <param name="Conclusions"><inheritdoc/></param>
+            <param name="Views"><inheritdoc/></param>
+            <param name="Region">Indicates the region that the forcing chains occurs.</param>
+            <param name="Digit">Indicates the digit used in that region.</param>
+            <param name="Chains">IIndicates the regions that binds with the relative position in this region.</param>
+            <param name="IsDynamic"><inheritdoc/></param>
+            <param name="Level"><inheritdoc/></param>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Steps.Chains.Forcing.RegionChainingStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Data.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Models.PresentationData},System.Int32,System.Int32,System.Collections.Generic.IReadOnlyDictionary{System.Int32,Sudoku.Data.ChainNode},System.Boolean,System.Byte)">
+            <summary>
+            Provides with a step that is a <b>Region Foring Chains</b> technique.
+            </summary>
+            <param name="Conclusions"><inheritdoc/></param>
+            <param name="Views"><inheritdoc/></param>
+            <param name="Region">Indicates the region that the forcing chains occurs.</param>
+            <param name="Digit">Indicates the digit used in that region.</param>
+            <param name="Chains">IIndicates the regions that binds with the relative position in this region.</param>
+            <param name="IsDynamic"><inheritdoc/></param>
+            <param name="Level"><inheritdoc/></param>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.Chains.Forcing.RegionChainingStep.Difficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.Chains.Forcing.RegionChainingStep.FlatComplexity">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.Chains.Forcing.RegionChainingStep.SortKey">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.Chains.Forcing.RegionChainingStep.TechniqueTags">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.Chains.Forcing.RegionChainingStep.TechniqueGroup">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.Chains.Forcing.RegionChainingStep.Rarity">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.Chains.Forcing.RegionChainingStep.DifficultyLevel">
+            <inheritdoc/>
         </member>
         <member name="T:Sudoku.Solving.Manual.Steps.ChainTypeCode">
             <summary>

@@ -41,6 +41,7 @@ global using Sudoku.Solving.Manual.Searchers.Wings;
 global using Sudoku.Solving.Manual.Steps;
 global using Sudoku.Solving.Manual.Steps.AlmostLockedSets;
 global using Sudoku.Solving.Manual.Steps.Chains;
+global using Sudoku.Solving.Manual.Steps.Chains.Forcing;
 global using Sudoku.Solving.Manual.Steps.DeadlyPatterns.Extended;
 global using Sudoku.Solving.Manual.Steps.DeadlyPatterns.Loops;
 global using Sudoku.Solving.Manual.Steps.DeadlyPatterns.Polygons;

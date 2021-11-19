@@ -86,6 +86,11 @@ public abstract record ChainStep(
 	/// <inheritdoc/>
 	public abstract int FlatComplexity { get; }
 
+	/// <summary>
+	/// The total complexity.
+	/// </summary>
+	public int Complexity => FlatComplexity;
+
 	/// <inheritdoc/>
 	public sealed override string Name => base.Name;
 
@@ -97,6 +102,60 @@ public abstract record ChainStep(
 
 	/// <inheritdoc/>
 	public sealed override Stableness Stableness => base.Stableness;
+
+	/// <inheritdoc/>
+	public override Technique TechniqueCode => this switch
+	{
+		{ IsNishio: true } => Technique.NishioFc,
+		{ IsDynamic: true } => SortKey switch
+		{
+			ChainTypeCode.DynamicRegionFc => Technique.DynamicRegionFc,
+			ChainTypeCode.DynamicCellFc => Technique.DynamicCellFc,
+			ChainTypeCode.DynamicContradictionFc => Technique.DynamicContradictionFc,
+			ChainTypeCode.DynamicDoubleFc => Technique.DynamicDoubleFc
+		},
+		{ IsMultiple: true } => SortKey switch
+		{
+			ChainTypeCode.RegionFc => Technique.RegionFc,
+			ChainTypeCode.CellFc => Technique.CellFc,
+		},
+		_ => Technique.Aic
+	};
+
+	/// <summary>
+	/// The base difficulty.
+	/// </summary>
+	protected decimal BaseDifficulty => this switch
+	{
+		{ IsNishio: true } => 7.5M,
+		{ IsDynamic: true } => Level switch
+		{
+			0 => 8.5M,
+			1 => 8.5M + .5M * Level,
+			>= 2 => 9.5M + .5M * (Level - 2)
+		},
+		{ IsMultiple: true } => 8.0M
+	};
+
+	/// <summary>
+	/// The length difficulty.
+	/// </summary>
+	protected decimal LengthDifficulty
+	{
+		get
+		{
+			decimal result = 0;
+			int ceil = 4;
+			int length = Complexity - 2;
+			for (bool isOdd = false; length > ceil; isOdd = !isOdd)
+			{
+				result += .1M;
+				ceil = isOdd ? ceil * 4 / 3 : ceil * 3 / 2;
+			}
+
+			return result;
+		}
+	}
 
 
 	/// <inheritdoc/>
