@@ -414,6 +414,9 @@ dotnet_diagnostic.IDE0130.severity = silent
 # IDE0161: Convert to file-scoped namespace
 dotnet_diagnostic.IDE0161.severity = warning
 
+# IDE0180: Use tuple to swap values
+csharp_style_prefer_tuple_swap = false
+
 
 # CA1000: Do not declare static members on generic types
 dotnet_diagnostic.CA1000.severity = none
