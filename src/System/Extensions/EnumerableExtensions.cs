@@ -10,6 +10,34 @@
 /// <seealso cref="Enumerable"/>
 public static class EnumerableExtensions
 {
+	/// <inheritdoc cref="Enumerable.Max(IEnumerable{decimal})"/>
+	public static unsafe decimal Max<T>(this IEnumerable<T> @this, delegate*<T, decimal> selector)
+	{
+		decimal result = decimal.MinValue;
+		foreach (var element in @this)
+		{
+			decimal converted = selector(element);
+			if (converted >= result)
+			{
+				result = converted;
+			}
+		}
+
+		return result;
+	}
+
+	/// <inheritdoc cref="Enumerable.Sum{TSource}(IEnumerable{TSource}, Func{TSource, decimal})"/>
+	public static unsafe decimal Sum<T>(this IEnumerable<T> @this, delegate*<T, decimal> selector)
+	{
+		decimal result = 0;
+		foreach (var element in @this)
+		{
+			result += selector(element);
+		}
+
+		return result;
+	}
+
 	/// <summary>
 	/// Check whether the specified list has only one element.
 	/// </summary>

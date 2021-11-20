@@ -1838,6 +1838,12 @@
             <seealso cref="T:System.Collections.Generic.IEnumerable`1"/>
             <seealso cref="T:System.Linq.Enumerable"/>
         </member>
+        <member name="M:System.Linq.EnumerableExtensions.Max``1(System.Collections.Generic.IEnumerable{``0},)">
+            <inheritdoc cref="M:System.Linq.Enumerable.Max(System.Collections.Generic.IEnumerable{System.Decimal})"/>
+        </member>
+        <member name="M:System.Linq.EnumerableExtensions.Sum``1(System.Collections.Generic.IEnumerable{``0},)">
+            <inheritdoc cref="M:System.Linq.Enumerable.Sum``1(System.Collections.Generic.IEnumerable{``0},System.Func{``0,System.Decimal})"/>
+        </member>
         <member name="M:System.Linq.EnumerableExtensions.HasOnlyOneElement``1(System.Collections.Generic.IEnumerable{``0})">
             <summary>
             Check whether the specified list has only one element.

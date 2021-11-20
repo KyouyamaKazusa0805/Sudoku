@@ -80,7 +80,7 @@ public sealed unsafe partial record ManualSolverResult(in Grid OriginalPuzzle) :
 	/// </para>
 	/// </summary>
 	/// <seealso cref="ManualSolver"/>
-	public decimal MaxDifficulty => Evaluator(&Enumerable.Max<Step>, 20.0M);
+	public decimal MaxDifficulty => Evaluator(&EnumerableExtensions.Max<Step>, 20.0M);
 
 	/// <summary>
 	/// <para>Indicates the total difficulty rating of the puzzle.</para>
@@ -95,7 +95,7 @@ public sealed unsafe partial record ManualSolverResult(in Grid OriginalPuzzle) :
 	/// </summary>
 	/// <seealso cref="ManualSolver"/>
 	/// <seealso cref="Steps"/>
-	public decimal TotalDifficulty => Evaluator(&Enumerable.Sum<Step>, 0);
+	public decimal TotalDifficulty => Evaluator(&EnumerableExtensions.Sum<Step>, 0);
 
 	/// <summary>
 	/// <para>
@@ -289,8 +289,11 @@ public sealed unsafe partial record ManualSolverResult(in Grid OriginalPuzzle) :
 	/// </param>
 	/// <returns>The result.</returns>
 	/// <seealso cref="Steps"/>
-	private decimal Evaluator(delegate*<IEnumerable<Step>, Func<Step, decimal>, decimal> executor, decimal d) =>
-		Steps is not { Length: not 0 }
-			? d
-			: executor(Steps, static step => step.ShowDifficulty ? step.Difficulty : 0);
+	private decimal Evaluator(delegate*<IEnumerable<Step>, delegate*<Step, decimal>, decimal> executor, decimal d)
+	{
+		return Steps is { Length: not 0 } ? executor(Steps, &f) : d;
+
+
+		static decimal f(Step step) => step.ShowDifficulty ? step.Difficulty : 0;
+	}
 }
