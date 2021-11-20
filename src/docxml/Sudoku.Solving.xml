@@ -647,6 +647,307 @@
             <param name="right">The right-side-operator instance to compare.</param>
             <returns>A <see cref="T:System.Boolean"/> result.</returns>
         </member>
+        <member name="T:Sudoku.Solving.Collections.ExocetEliminatedReason">
+            <summary>
+            Encapsulates a type that represents the reason why the exocet eliminations can be removed.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Collections.ExocetEliminatedReason.Basic">
+            <summary>
+            Indicates the elimination is the basic elimination (Target eliminations).
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Collections.ExocetEliminatedReason.TargetInference">
+            <summary>
+            Indicates the target inference eliminations (that is eliminated via mirror cells).
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Collections.ExocetEliminatedReason.Mirror">
+            <summary>
+            Indicates the mirror eliminations.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Collections.ExocetEliminatedReason.BiBiPattern">
+            <summary>
+            Indicates the bi-bi pattern.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Collections.ExocetEliminatedReason.TargetPair">
+            <summary>
+            Indicates the target pair eliminations.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Collections.ExocetEliminatedReason.GeneralizedSwordfish">
+            <summary>
+            Indicates the generalized swordfish eliminations.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Collections.ExocetEliminatedReason.TrueBase">
+            <summary>
+            Indicates the true base eliminations.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Collections.ExocetEliminatedReason.CompatibilityTest">
+            <summary>
+            Indicates the compatibility test eliminations.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Solving.Collections.ExocetElimination">
+            <summary>
+            Defines an elimination that is created by searchers
+            <see cref="T:Sudoku.Solving.Manual.Searchers.Exocets.IJuniorExocetStepSearcher"/> and <see cref="T:Sudoku.Solving.Manual.Searchers.Exocets.ISeniorExocetStepSearcher"/>.
+            </summary>
+            <param name="Eliminations">Indicates the eliminations.</param>
+            <param name="Reason">Indicates the reason why these candidates can be eliminated.</param>
+            <seealso cref="T:Sudoku.Solving.Manual.Searchers.Exocets.IJuniorExocetStepSearcher"/>
+            <seealso cref="T:Sudoku.Solving.Manual.Searchers.Exocets.ISeniorExocetStepSearcher"/>
+        </member>
+        <member name="M:Sudoku.Solving.Collections.ExocetElimination.#ctor(Sudoku.Data.Candidates@,Sudoku.Solving.Collections.ExocetEliminatedReason)">
+            <summary>
+            Defines an elimination that is created by searchers
+            <see cref="T:Sudoku.Solving.Manual.Searchers.Exocets.IJuniorExocetStepSearcher"/> and <see cref="T:Sudoku.Solving.Manual.Searchers.Exocets.ISeniorExocetStepSearcher"/>.
+            </summary>
+            <param name="Eliminations">Indicates the eliminations.</param>
+            <param name="Reason">Indicates the reason why these candidates can be eliminated.</param>
+            <seealso cref="T:Sudoku.Solving.Manual.Searchers.Exocets.IJuniorExocetStepSearcher"/>
+            <seealso cref="T:Sudoku.Solving.Manual.Searchers.Exocets.ISeniorExocetStepSearcher"/>
+        </member>
+        <member name="P:Sudoku.Solving.Collections.ExocetElimination.Count">
+            <summary>
+            Indicates how many eliminations the instance contains.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Collections.ExocetElimination.Header">
+            <summary>
+            Indicates the header of the reason.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Collections.ExocetElimination.ToString">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Collections.ExocetElimination.AsSpan">
+            <summary>
+            Converts all elements to <see cref="T:Sudoku.Data.Conclusion"/>.
+            </summary>
+            <returns>The <see cref="T:System.ReadOnlySpan`1"/> of type <see cref="T:Sudoku.Data.Conclusion"/>.</returns>
+            <seealso cref="T:System.ReadOnlySpan`1"/>
+            <seealso cref="T:Sudoku.Data.Conclusion"/>
+        </member>
+        <member name="M:Sudoku.Solving.Collections.ExocetElimination.op_BitwiseOr(Sudoku.Solving.Collections.ExocetElimination@,Sudoku.Solving.Collections.ExocetElimination@)">
+            <summary>
+            To merge two different instances, and return the merged result.
+            </summary>
+            <param name="left">The left instance.</param>
+            <param name="right">The right instance.</param>
+            <returns>
+            The merged result. The result will contain all eliminations from two instances, and
+            the reason should be same.
+            </returns>
+            <exception cref="T:System.ArgumentException">
+            Throws when two instances contains different eliminated reason.
+            </exception>
+        </member>
+        <member name="M:Sudoku.Solving.Collections.ExocetElimination.Deconstruct(Sudoku.Data.Candidates@,Sudoku.Solving.Collections.ExocetEliminatedReason@)">
+            <summary>
+            Deconstruct the instance into multiple elements.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Collections.ExocetElimination.Equals(Sudoku.Solving.Collections.ExocetElimination@)">
+            <summary>
+            Indicates whether the current object is equal to another object of the same type.
+            </summary>
+            <param name="other">An object to compare with this object.</param>
+            <returns>
+            <see langword="true"/> if the current object is equal to the other parameter;
+            otherwise, <see langword="false"/>.
+            </returns>
+        </member>
+        <member name="M:Sudoku.Solving.Collections.ExocetElimination.GetEnumerator">
+            <summary>
+            Returns an enumerator that iterates through the collection.
+            </summary>
+            <returns>An enumerator that can be used to iterate through the collection.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.Collections.ExocetElimination.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="T:Sudoku.Solving.Collections.ExocetPattern">
+            <summary>
+            <para>
+            Indicates an exocet pattern. The pattern will be like:
+            <code><![CDATA[
+            .-------.-------.-------.
+            | B B E | E . . | E . . |
+            | . . E | Q . . | R . . |
+            | . . E | Q . . | R . . |
+            :-------+-------+-------:
+            | . . S | S . . | S . . |
+            | . . S | S . . | S . . |
+            | . . S | S . . | S . . |
+            :-------+-------+-------:
+            | . . S | S . . | S . . |
+            | . . S | S . . | S . . |
+            | . . S | S . . | S . . |
+            '-------'-------'-------'
+            ]]></code>
+            Where:
+            <list type="table">
+            <item><term>B</term><description>Base Cells.</description></item>
+            <item><term>Q</term><description>1st Object Pair (Target cells pair 1).</description></item>
+            <item><term>R</term><description>2nd Object Pair (Target cells pair 2).</description></item>
+            <item><term>S</term><description>Cross-line Cells.</description></item>
+            <item><term>E</term><description>Escape Cells.</description></item>
+            </list>
+            </para>
+            <para>
+            In the data structure, all letters will be used as the same one in this exemplar.
+            In addition, if senior exocet, one of two target cells will lie in cross-line cells,
+            and the lines of two target cells lying on can't contain any base digits.
+            </para>
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Collections.ExocetPattern.#ctor(System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,Sudoku.Data.Cells@,Sudoku.Data.Cells@,Sudoku.Data.Cells@,Sudoku.Data.Cells@,Sudoku.Data.Cells@)">
+            <summary>
+            Initializes an instance with the specified cells.
+            </summary>
+            <param name="base1">The base cell 1.</param>
+            <param name="base2">The base cell 2.</param>
+            <param name="tq1">The target Q1 cell.</param>
+            <param name="tq2">The target Q2 cell.</param>
+            <param name="tr1">The target R1 cell.</param>
+            <param name="tr2">The target R2 cell.</param>
+            <param name="crossline">The cross line cells.</param>
+            <param name="mq1">The mirror Q1 cell.</param>
+            <param name="mq2">The mirror Q2 cell.</param>
+            <param name="mr1">The mirror R1 cell.</param>
+            <param name="mr2">The mirror R2 cell.</param>
+        </member>
+        <member name="P:Sudoku.Solving.Collections.ExocetPattern.Base1">
+            <summary>
+            Indicates the base cell 1.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Collections.ExocetPattern.Base2">
+            <summary>
+            Indicates the base cell 2.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Collections.ExocetPattern.TargetQ1">
+            <summary>
+            Indicates the target Q1 cell.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Collections.ExocetPattern.TargetQ2">
+            <summary>
+            Indicates the target Q2 cell.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Collections.ExocetPattern.TargetR1">
+            <summary>
+            Indicates the target R1 cell.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Collections.ExocetPattern.TargetR2">
+            <summary>
+            Indicates the target R2 cell.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Collections.ExocetPattern.CrossLine">
+            <summary>
+            Indicates the cross line cells.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Collections.ExocetPattern.MirrorQ1">
+            <summary>
+            Indicates the mirror Q1 cell.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Collections.ExocetPattern.MirrorQ2">
+            <summary>
+            Indicates the mirror Q2 cell.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Collections.ExocetPattern.MirrorR1">
+            <summary>
+            Indicates the mirror R1 cell.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Collections.ExocetPattern.MirrorR2">
+            <summary>
+            Indicates the mirror R2 cell.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Collections.ExocetPattern.Map">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Collections.ExocetPattern.MapWithMirrors">
+            <summary>
+            Indicates the full map, with mirror cells.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Collections.ExocetPattern.BaseCellsMap">
+            <summary>
+            Indicates the base cells.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Collections.ExocetPattern.TargetCellsMap">
+            <summary>
+            Indicates the target cells.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Collections.ExocetPattern.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
+        <member name="M:Sudoku.Solving.Collections.ExocetPattern.System#IEquatable{Sudoku#Solving#Collections#ExocetPattern}#Equals(Sudoku.Solving.Collections.ExocetPattern)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Collections.ExocetPattern.Deconstruct(System.Int32@,System.Int32@,System.Int32@,System.Int32@,System.Int32@,System.Int32@)">
+            <summary>
+            Deconstruct the instance into multiple elements.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Collections.ExocetPattern.Deconstruct(System.Int32@,System.Int32@,System.Int32@,System.Int32@,System.Int32@,System.Int32@,Sudoku.Data.Cells@,Sudoku.Data.Cells@,Sudoku.Data.Cells@,Sudoku.Data.Cells@,Sudoku.Data.Cells@,Sudoku.Data.Cells@,Sudoku.Data.Cells@)">
+            <summary>
+            Deconstruct the instance into multiple elements.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Collections.ExocetPattern.Equals(System.Object)">
+            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
+        </member>
+        <member name="M:Sudoku.Solving.Collections.ExocetPattern.Equals(Sudoku.Solving.Collections.ExocetPattern@)">
+            <summary>
+            Indicates whether the current object is equal to another object of the same type.
+            </summary>
+            <param name="other">An object to compare with this object.</param>
+            <returns>
+            <see langword="true"/> if the current object is equal to the other parameter;
+            otherwise, <see langword="false"/>.
+            </returns>
+        </member>
+        <member name="M:Sudoku.Solving.Collections.ExocetPattern.op_Equality(Sudoku.Solving.Collections.ExocetPattern@,Sudoku.Solving.Collections.ExocetPattern@)">
+            <summary>
+            Determines whether the two instances contain a same value.
+            </summary>
+            <param name="left">The left-side-operator instance to compare.</param>
+            <param name="right">The right-side-operator instance to compare.</param>
+            <returns>A <see cref="T:System.Boolean"/> result.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.Collections.ExocetPattern.op_Inequality(Sudoku.Solving.Collections.ExocetPattern@,Sudoku.Solving.Collections.ExocetPattern@)">
+            <summary>
+            Determines whether the two instances don't contain a same value.
+            </summary>
+            <param name="left">The left-side-operator instance to compare.</param>
+            <param name="right">The right-side-operator instance to compare.</param>
+            <returns>A <see cref="T:System.Boolean"/> result.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.Collections.ExocetPattern.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="M:Sudoku.Solving.Collections.ExocetPattern.Deconstruct(Sudoku.Data.Cells@,Sudoku.Data.Cells@,Sudoku.Data.Cells@)">
+            <summary>
+            Deconstruct the instance into multiple elements.
+            </summary>
+        </member>
         <member name="T:Sudoku.Solving.Collections.IPattern`1">
             <summary>
             Defines a normal pattern.
@@ -1266,12 +1567,17 @@
         </member>
         <member name="F:Sudoku.Solving.Manual.Constants.UniqueSquareTemplatesCount">
             <summary>
-            Indicates the number of all possible Unique Square templates.
+            Indicates the total number of unique square patterns.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Manual.Constants.QiuDeadlyPatternTemplatesCount">
             <summary>
-            Indicates the total number of Qiu's Deadly Pattern possible templates.
+            Indicates the total number of Qiu's deadly patterns.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.Constants.ExocetTemplatesCount">
+            <summary>
+            Indicates the total number of exocet patterns.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Manual.Constants.BdpTemplatesSize3Count">
@@ -3510,6 +3816,78 @@
             <summary>
             Defines a step searcher that searches for universal steps.
             </summary>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Searchers.Exocets.IExocetStepSearcher">
+            <summary>
+            Defines a step searcher that searches for exocet steps.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.Searchers.Exocets.IExocetStepSearcher.Patterns">
+            <summary>
+            Indicates all patterns.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Searchers.Exocets.IExocetStepSearcher.CheckAdvanced">
+            <summary>
+            Indicates whether the searcher will find advanced eliminations.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Searchers.Exocets.IExocetStepSearcher.#cctor">
+            <summary>
+            Indicates the static constructor.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Searchers.Exocets.IJuniorExocetStepSearcher">
+            <summary>
+            Defines a step searcher that searches for junior exocet steps.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Searchers.Exocets.ISeniorExocetStepSearcher">
+            <summary>
+            Defines a step searcher that searches for senior exocet steps.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Searchers.Exocets.JuniorExocetStepSearcher">
+            <summary>
+            Provides with a <b>Junior Exocet</b> step searcher.
+            The step searcher will include the following techniques:
+            <list type="bullet">
+            <item>Junior Exocet</item>
+            </list>
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Searchers.Exocets.JuniorExocetStepSearcher.CheckAdvanced">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Searchers.Exocets.JuniorExocetStepSearcher.Options">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Searchers.Exocets.JuniorExocetStepSearcher.Predicate">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Searchers.Exocets.JuniorExocetStepSearcher.GetAll(System.Collections.Generic.ICollection{Sudoku.Solving.Manual.Step},Sudoku.Data.Grid@,System.Boolean)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Searchers.Exocets.SeniorExocetStepSearcher">
+            <summary>
+            Provides with a <b>Senior Exocet</b> step searcher.
+            The step searcher will include the following techniques:
+            <list type="bullet">
+            <item>Senior Exocet</item>
+            </list>
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Searchers.Exocets.SeniorExocetStepSearcher.CheckAdvanced">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Searchers.Exocets.SeniorExocetStepSearcher.Options">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Searchers.Exocets.SeniorExocetStepSearcher.Predicate">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Searchers.Exocets.SeniorExocetStepSearcher.GetAll(System.Collections.Generic.ICollection{Sudoku.Solving.Manual.Step},Sudoku.Data.Grid@,System.Boolean)">
+            <inheritdoc/>
         </member>
         <member name="T:Sudoku.Solving.Manual.Searchers.Fishes.ComplexFishStepSearcher">
             <summary>
@@ -7145,6 +7523,176 @@
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Manual.Steps.DeadlyPatterns.Universal.BivalueUniversalGraveXzStep.Rarity">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Steps.Exocets.ExocetStep">
+            <summary>
+            Provides with a step that is a <b>Exocet</b> technique.
+            </summary>
+            <param name="Views"><inheritdoc/></param>
+            <param name="Exocet">INdicates the exocet pattern.</param>
+            <param name="DigitsMask">Indicates the mask that holds all possible digits used.</param>
+            <param name="Eliminations">Indicates all possible eliminations.</param>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Steps.Exocets.ExocetStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Models.PresentationData},Sudoku.Solving.Collections.ExocetPattern@,System.Int16,System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Collections.ExocetElimination})">
+            <summary>
+            Provides with a step that is a <b>Exocet</b> technique.
+            </summary>
+            <param name="Views"><inheritdoc/></param>
+            <param name="Exocet">INdicates the exocet pattern.</param>
+            <param name="DigitsMask">Indicates the mask that holds all possible digits used.</param>
+            <param name="Eliminations">Indicates all possible eliminations.</param>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.Exocets.ExocetStep.ShowDifficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.Exocets.ExocetStep.IsElementary">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.Exocets.ExocetStep.Name">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.Exocets.ExocetStep.Format">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.Exocets.ExocetStep.TechniqueGroup">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.Exocets.ExocetStep.TechniqueTags">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.Exocets.ExocetStep.DifficultyLevel">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.Exocets.ExocetStep.Stableness">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.Exocets.ExocetStep.Rarity">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.Exocets.ExocetStep.DigitsStr">
+            <summary>
+            Indiactes the digits string.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.Exocets.ExocetStep.BaseMapStr">
+            <summary>
+            Indicates the base map string.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.Exocets.ExocetStep.TargetMapStr">
+            <summary>
+            Indicates the target map string.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.Exocets.ExocetStep.BaseMap">
+            <summary>
+            Indicates the map of the base cells.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.Exocets.ExocetStep.TargetMap">
+            <summary>
+            Indicates the map of the target cells.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Steps.Exocets.ExocetStep.ToFullString">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Steps.Exocets.ExocetStep.GatherConclusions(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Collections.ExocetElimination})">
+            <summary>
+            Gather conclusions.
+            </summary>
+            <returns>The gathered result.</returns>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Steps.Exocets.JuniorExocetStep">
+            <summary>
+            Provides with a step that is a <b>Junior Exocet</b> technique.
+            </summary>
+            <param name="Views"><inheritdoc/></param>
+            <param name="Exocet"><inheritdoc/></param>
+            <param name="DigitsMask"><inheritdoc/></param>
+            <param name="LockedMemberQ">Indicates the locked member bound with Q cells.</param>
+            <param name="LockedMemberR">Indicates the locked member bound with R cells.</param>
+            <param name="Eliminations"><inheritdoc/></param>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Steps.Exocets.JuniorExocetStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Models.PresentationData},Sudoku.Solving.Collections.ExocetPattern@,System.Int16,System.Int16,System.Int16,System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Collections.ExocetElimination})">
+            <summary>
+            Provides with a step that is a <b>Junior Exocet</b> technique.
+            </summary>
+            <param name="Views"><inheritdoc/></param>
+            <param name="Exocet"><inheritdoc/></param>
+            <param name="DigitsMask"><inheritdoc/></param>
+            <param name="LockedMemberQ">Indicates the locked member bound with Q cells.</param>
+            <param name="LockedMemberR">Indicates the locked member bound with R cells.</param>
+            <param name="Eliminations"><inheritdoc/></param>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.Exocets.JuniorExocetStep.Difficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.Exocets.JuniorExocetStep.TechniqueCode">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.Exocets.JuniorExocetStep.MirrorDifficulty">
+            <summary>
+            Indicates extra difficulty on mirror eliminations.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.Exocets.JuniorExocetStep.BiBiDifficulty">
+            <summary>
+            Indicates extra difficulty on Bi-Bi pattern eliminations.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.Exocets.JuniorExocetStep.TargetPairDifficulty">
+            <summary>
+            Indicates extra difficulty on target pair eliminations.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.Exocets.JuniorExocetStep.GeneralizedSwordfishDifficulty">
+            <summary>
+            Indicates extra difficulty on generalized swordfish eliminations.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.Exocets.JuniorExocetStep.LockedMemberQStr">
+            <summary>
+            Indicates the locked member Q string.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.Exocets.JuniorExocetStep.LockedMemberRStr">
+            <summary>
+            Indicates the locked member R string.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Steps.Exocets.SeniorExocetStep">
+            <summary>
+            Provides with a step that is a <b>Senior Exocet</b> technique.
+            </summary>
+            <param name="Views"><inheritdoc/></param>
+            <param name="Exocet"><inheritdoc/></param>
+            <param name="DigitsMask"><inheritdoc/></param>
+            <param name="EndoTargetCell">Indicates the target cell that is embedded into the cross-line cells.</param>
+            <param name="ExtraRegionsMask">Indicates the mask tnat holds the extra regions used.</param>
+            <param name="Eliminations"><inheritdoc/></param>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Steps.Exocets.SeniorExocetStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Models.PresentationData},Sudoku.Solving.Collections.ExocetPattern@,System.Int16,System.Int32,System.Int32[],System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Collections.ExocetElimination})">
+            <summary>
+            Provides with a step that is a <b>Senior Exocet</b> technique.
+            </summary>
+            <param name="Views"><inheritdoc/></param>
+            <param name="Exocet"><inheritdoc/></param>
+            <param name="DigitsMask"><inheritdoc/></param>
+            <param name="EndoTargetCell">Indicates the target cell that is embedded into the cross-line cells.</param>
+            <param name="ExtraRegionsMask">Indicates the mask tnat holds the extra regions used.</param>
+            <param name="Eliminations"><inheritdoc/></param>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.Exocets.SeniorExocetStep.ContainsExtraRegions">
+            <summary>
+            Indicates whether the specified instance contains any extra regions.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.Exocets.SeniorExocetStep.Difficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.Exocets.SeniorExocetStep.TechniqueCode">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Solving.Manual.Steps.Fishes.ComplexFishStep">

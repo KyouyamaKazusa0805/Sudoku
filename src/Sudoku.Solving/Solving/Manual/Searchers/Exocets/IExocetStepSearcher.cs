@@ -1,23 +1,26 @@
-﻿namespace Sudoku.Solving.Manual.Exocets;
+﻿namespace Sudoku.Solving.Manual.Searchers.Exocets;
 
 /// <summary>
-/// Encapsulates an <b>exocet</b> technique searcher.
+/// Defines a step searcher that searches for exocet steps.
 /// </summary>
-public abstract class ExocetStepSearcher : StepSearcher
+public interface IExocetStepSearcher : IStepSearcher
 {
 	/// <summary>
 	/// Indicates all patterns.
 	/// </summary>
-	protected static readonly Pattern[] Patterns = new Pattern[ExocetTemplatesCount];
+	protected static readonly ExocetPattern[] Patterns = new ExocetPattern[ExocetTemplatesCount];
 
 
 	/// <summary>
 	/// Indicates whether the searcher will find advanced eliminations.
 	/// </summary>
-	public bool CheckAdvanced { get; set; }
+	bool CheckAdvanced { get; set; }
 
 
-	static unsafe ExocetStepSearcher()
+	/// <summary>
+	/// Indicates the static constructor.
+	/// </summary>
+	static unsafe IExocetStepSearcher()
 	{
 		int[,] s = { { 3, 4, 5, 6, 7, 8 }, { 0, 1, 2, 6, 7, 8 }, { 0, 1, 2, 3, 4, 5 } };
 		int[,] b =
@@ -55,7 +58,7 @@ public abstract class ExocetStepSearcher : StepSearcher
 		};
 
 		int* t = stackalloc int[3];
-		var crossline = (stackalloc int[25]); // Only use [7]..[24].
+		var crossline = (stackalloc int[25]); // Only use [7..24].
 		int n = 0;
 		for (int i = 0; i < 18; i++)
 		{
