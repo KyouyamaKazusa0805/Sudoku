@@ -4491,6 +4491,11 @@
             Defines a step searcher that searches for bi-value oddagon steps.
             </summary>
         </member>
+        <member name="T:Sudoku.Solving.Manual.Searchers.RankTheory.IMultisectorLockedSetsStepSearcher">
+            <summary>
+            Defines a step searcher that searches for multi-sector locked sets steps.
+            </summary>
+        </member>
         <member name="T:Sudoku.Solving.Manual.Searchers.RankTheory.IRankTheoryStepSearcher">
             <summary>
             Defines a step searcher that searches for rank theory steps.
@@ -4505,6 +4510,34 @@
             <summary>
             Defines a step searcher that searches for bi-value oddagon steps.
             </summary>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Searchers.RankTheory.MultisectorLockedSetsStepSearcher">
+            <summary>
+            Provides with a <b>Multi-sector Locked Sets</b> step searcher.
+            The step searcher will include the following techniques:
+            <list type="bullet">
+            <item>Multi-sector Locked Sets</item>
+            </list>
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.Searchers.RankTheory.MultisectorLockedSetsStepSearcher.Patterns">
+            <summary>
+            Indicates the list initialized with the static constructor.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Searchers.RankTheory.MultisectorLockedSetsStepSearcher.#cctor">
+            <summary>
+            The static constructor.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Searchers.RankTheory.MultisectorLockedSetsStepSearcher.Options">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Searchers.RankTheory.MultisectorLockedSetsStepSearcher.Predicate">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Searchers.RankTheory.MultisectorLockedSetsStepSearcher.GetAll(System.Collections.Generic.ICollection{Sudoku.Solving.Manual.Step},Sudoku.Data.Grid@,System.Boolean)">
+            <inheritdoc/>
         </member>
         <member name="T:Sudoku.Solving.Manual.Searchers.RankTheory.SueDeCoq3DemensionStepSearcher">
             <summary>
@@ -8669,6 +8702,40 @@
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Manual.Steps.RankTheory.BivalueOddagonType3Step.Rarity">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Steps.RankTheory.MultisectorLockedSetsStep">
+            <summary>
+            Provides with a step that is a <b>Multi-sector Locked Sets</b> technique.
+            </summary>
+            <param name="Conclusions"><inheritdoc/></param>
+            <param name="Views"><inheritdoc/></param>
+            <param name="Cells">Indicates the cells used.</param>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Steps.RankTheory.MultisectorLockedSetsStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Data.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Models.PresentationData},Sudoku.Data.Cells)">
+            <summary>
+            Provides with a step that is a <b>Multi-sector Locked Sets</b> technique.
+            </summary>
+            <param name="Conclusions"><inheritdoc/></param>
+            <param name="Views"><inheritdoc/></param>
+            <param name="Cells">Indicates the cells used.</param>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.RankTheory.MultisectorLockedSetsStep.Difficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.RankTheory.MultisectorLockedSetsStep.TechniqueTags">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.RankTheory.MultisectorLockedSetsStep.TechniqueCode">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.RankTheory.MultisectorLockedSetsStep.TechniqueGroup">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.RankTheory.MultisectorLockedSetsStep.DifficultyLevel">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.RankTheory.MultisectorLockedSetsStep.Rarity">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Solving.Manual.Steps.RankTheory.RankTheoryStep">
