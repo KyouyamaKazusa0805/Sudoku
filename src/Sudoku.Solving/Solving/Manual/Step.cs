@@ -1,6 +1,4 @@
-﻿#pragma warning disable CS1584, CS1658
-
-namespace Sudoku.Solving.Manual;
+﻿namespace Sudoku.Solving.Manual;
 
 /// <summary>
 /// Provides with a manual solving step that is a technique usage, and contains the conclusions.
@@ -38,14 +36,15 @@ public abstract record Step(ImmutableArray<Conclusion> Conclusions, ImmutableArr
 	/// Short chains
 	/// <list type="bullet">
 	/// <item>
-	/// <see cref="ITwoStrongLinksStepSearcher">Two strong links</see>
-	/// (Skyscraper, Two-string kite, Turbot fish)
+	/// <see cref="ITwoStrongLinksStepSearcher">Two strong links</see> (Skyscraper, Two-string kite, Turbot fish)
 	/// </item>
 	/// <item>
 	/// ALS chaining-like techniques
-	/// (<see cref="#">ALS-XZ</see>,
-	/// <see cref="#">ALS-XY-Wing</see>,
-	/// <see cref="#">ALS-W-Wing</see>)
+	/// <list type="bullet">
+	/// <item><see cref="IAlmostLockedSetsXzStepSearcher">ALS-XZ</see></item>
+	/// <item><see cref="IAlmostLockedSetsXyWingStepSearcher">ALS-XY-Wing</see></item>
+	/// <item><see cref="IAlmostLockedSetsWWingStepSearcher">ALS-W-Wing</see></item>
+	/// </list>
 	/// </item>
 	/// <item><see cref="IEmptyRectangleStepSearcher">Empty rectangle</see></item>
 	/// </list>
@@ -53,8 +52,8 @@ public abstract record Step(ImmutableArray<Conclusion> Conclusions, ImmutableArr
 	/// <item>
 	/// Long chains
 	/// <list type="bullet">
-	/// <item><see cref="#">Forcing chains</see></item>
-	/// <item><see cref="#">Dynamic forcing chains</see></item>
+	/// <item><see cref="IForcingChainStepSearcher">Forcing chains</see></item>
+	/// <item><see cref="IDynamicForcingChainStepSearcher">Dynamic forcing chains</see></item>
 	/// </list>
 	/// </item>
 	/// </list>

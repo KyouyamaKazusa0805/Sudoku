@@ -26,6 +26,7 @@ global using Sudoku.Solving.Manual;
 global using Sudoku.Solving.Manual.Buffer;
 global using Sudoku.Solving.Manual.Checkers;
 global using Sudoku.Solving.Manual.Searchers;
+global using Sudoku.Solving.Manual.Searchers.AlmostLockedSets;
 global using Sudoku.Solving.Manual.Searchers.Chains.Forcing;
 global using Sudoku.Solving.Manual.Searchers.DeadlyPatterns;
 global using Sudoku.Solving.Manual.Searchers.DeadlyPatterns.Extended;

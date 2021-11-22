@@ -2403,24 +2403,32 @@
         <member name="M:Sudoku.Solving.Manual.Searchers.Chains.AlternatingInferenceChainStepSearcher.GetAll(System.Collections.Generic.ICollection{Sudoku.Solving.Manual.Step},Sudoku.Data.Grid@,System.Boolean)">
             <inheritdoc/>
         </member>
-        <member name="T:Sudoku.Solving.Manual.Searchers.Chains.Forcing.Dynamic.IDynamicForcingChainStepSearcher">
-            <summary>
-            Defines a step searcher that searches for dynamic forcing chains steps.
-            </summary>
-        </member>
         <member name="T:Sudoku.Solving.Manual.Searchers.Chains.Forcing.ForcingChainStepSearcher">
             <summary>
             Provides with a <b>Forcing Chains</b> step searcher.
             The step searcher will include the following techniques:
             <list type="bullet">
+            <item>
+            Multiple Forcing Chains:
+            <list type="bullet">
             <item>Cell Forcing Chains</item>
             <item>Region Forcing Chains</item>
-            <item>Contradiction Forcing Chains</item>
+            </list>
+            </item>
+            <item>
+            Dynamic Multiple Forcing Chains:
+            <list type="bullet">
             <item>Dynamic Cell Forcing Chains</item>
             <item>Dynamic Region Forcing Chains</item>
+            </list>
+            </item>
+            <item>
+            Dynamic Verifying Forcing Chains:
+            <list type="bullet">
             <item>Dynamic Contradiction Forcing Chains</item>
             <item>Dynamic Double Forcing Chains</item>
-            <!--<item>Dynamic Forcing Chains (+)</item>-->
+            </list>
+            </item>
             </list>
             </summary>
         </member>
@@ -2532,27 +2540,17 @@
             <param name="outcomes">All outcomes (conclusions).</param>
             <returns>The technique information instance.</returns>
         </member>
-        <member name="T:Sudoku.Solving.Manual.Searchers.Chains.Forcing.IForcingChainStepSearcher">
+        <member name="T:Sudoku.Solving.Manual.Searchers.Chains.Forcing.IDynamicForcingChainStepSearcher">
             <summary>
-            Defines a step searcher that searches for forcing chain steps.
+            Defines a step searcher that searches for dynamic forcing chain steps.
             </summary>
         </member>
-        <member name="P:Sudoku.Solving.Manual.Searchers.Chains.Forcing.IForcingChainStepSearcher.IsNishio">
-            <summary>
-            Indicates whether the step searcher will search for nishio forcing chains.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.Searchers.Chains.Forcing.IForcingChainStepSearcher.IsMultiple">
-            <summary>
-            Indicates whether the step searcher will search for multiple forcing chains.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.Searchers.Chains.Forcing.IForcingChainStepSearcher.IsDynamic">
+        <member name="P:Sudoku.Solving.Manual.Searchers.Chains.Forcing.IDynamicForcingChainStepSearcher.IsDynamic">
             <summary>
             Indicates whether the step searcher will search for dynamic forcing chains.
             </summary>
         </member>
-        <member name="P:Sudoku.Solving.Manual.Searchers.Chains.Forcing.IForcingChainStepSearcher.Level">
+        <member name="P:Sudoku.Solving.Manual.Searchers.Chains.Forcing.IDynamicForcingChainStepSearcher.Level">
             <summary>
             Indicates the level of the dynamic case. The dynamic level contains 6 possible values, which is corresponding
             to the digit 0, 1, 2, 3, 4 and 5.
@@ -2594,6 +2592,21 @@
             </description>
             </item>
             </list>
+            </summary>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Searchers.Chains.Forcing.IForcingChainStepSearcher">
+            <summary>
+            Defines a step searcher that searches for forcing chain steps.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Searchers.Chains.Forcing.IForcingChainStepSearcher.IsNishio">
+            <summary>
+            Indicates whether the step searcher will search for nishio forcing chains.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Searchers.Chains.Forcing.IForcingChainStepSearcher.IsMultiple">
+            <summary>
+            Indicates whether the step searcher will search for multiple forcing chains.
             </summary>
         </member>
         <member name="T:Sudoku.Solving.Manual.Searchers.Chains.IAlternatingInferenceChainStepSearcher">
@@ -5086,14 +5099,15 @@
             Short chains
             <list type="bullet">
             <item>
-            <see cref="T:Sudoku.Solving.Manual.Searchers.SingleDigitPatterns.ITwoStrongLinksStepSearcher">Two strong links</see>
-            (Skyscraper, Two-string kite, Turbot fish)
+            <see cref="T:Sudoku.Solving.Manual.Searchers.SingleDigitPatterns.ITwoStrongLinksStepSearcher">Two strong links</see> (Skyscraper, Two-string kite, Turbot fish)
             </item>
             <item>
             ALS chaining-like techniques
-            (<see cref="!:#">ALS-XZ</see>,
-            <see cref="!:#">ALS-XY-Wing</see>,
-            <see cref="!:#">ALS-W-Wing</see>)
+            <list type="bullet">
+            <item><see cref="T:Sudoku.Solving.Manual.Searchers.AlmostLockedSets.IAlmostLockedSetsXzStepSearcher">ALS-XZ</see></item>
+            <item><see cref="T:Sudoku.Solving.Manual.Searchers.AlmostLockedSets.IAlmostLockedSetsXyWingStepSearcher">ALS-XY-Wing</see></item>
+            <item><see cref="T:Sudoku.Solving.Manual.Searchers.AlmostLockedSets.IAlmostLockedSetsWWingStepSearcher">ALS-W-Wing</see></item>
+            </list>
             </item>
             <item><see cref="T:Sudoku.Solving.Manual.Searchers.SingleDigitPatterns.IEmptyRectangleStepSearcher">Empty rectangle</see></item>
             </list>
@@ -5101,8 +5115,8 @@
             <item>
             Long chains
             <list type="bullet">
-            <item><see cref="!:#">Forcing chains</see></item>
-            <item><see cref="!:#">Dynamic forcing chains</see></item>
+            <item><see cref="T:Sudoku.Solving.Manual.Searchers.Chains.Forcing.IForcingChainStepSearcher">Forcing chains</see></item>
+            <item><see cref="T:Sudoku.Solving.Manual.Searchers.Chains.Forcing.IDynamicForcingChainStepSearcher">Dynamic forcing chains</see></item>
             </list>
             </item>
             </list>
@@ -5579,7 +5593,7 @@
             <param name="Level">
             Indicates the level of the dynamic case. The dynamic level contains 6 possible values, which is corresponding
             to the digit 0, 1, 2, 3, 4 and 5. For more information, please visit the step searcher to check
-            the property <see cref="P:Sudoku.Solving.Manual.Searchers.Chains.Forcing.IForcingChainStepSearcher.Level"/>
+            the property <see cref="P:Sudoku.Solving.Manual.Searchers.Chains.Forcing.IDynamicForcingChainStepSearcher.Level"/>
             </param>
         </member>
         <member name="M:Sudoku.Solving.Manual.Steps.Chains.ChainStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Data.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Models.PresentationData},System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Byte)">
@@ -5608,7 +5622,7 @@
             <param name="Level">
             Indicates the level of the dynamic case. The dynamic level contains 6 possible values, which is corresponding
             to the digit 0, 1, 2, 3, 4 and 5. For more information, please visit the step searcher to check
-            the property <see cref="P:Sudoku.Solving.Manual.Searchers.Chains.Forcing.IForcingChainStepSearcher.Level"/>
+            the property <see cref="P:Sudoku.Solving.Manual.Searchers.Chains.Forcing.IDynamicForcingChainStepSearcher.Level"/>
             </param>
         </member>
         <member name="P:Sudoku.Solving.Manual.Steps.Chains.ChainStep.ShowDifficulty">

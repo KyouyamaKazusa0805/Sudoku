@@ -4,18 +4,31 @@
 /// Provides with a <b>Forcing Chains</b> step searcher.
 /// The step searcher will include the following techniques:
 /// <list type="bullet">
+/// <item>
+/// Multiple Forcing Chains:
+/// <list type="bullet">
 /// <item>Cell Forcing Chains</item>
 /// <item>Region Forcing Chains</item>
-/// <item>Contradiction Forcing Chains</item>
+/// </list>
+/// </item>
+/// <item>
+/// Dynamic Multiple Forcing Chains:
+/// <list type="bullet">
 /// <item>Dynamic Cell Forcing Chains</item>
 /// <item>Dynamic Region Forcing Chains</item>
+/// </list>
+/// </item>
+/// <item>
+/// Dynamic Verifying Forcing Chains:
+/// <list type="bullet">
 /// <item>Dynamic Contradiction Forcing Chains</item>
 /// <item>Dynamic Double Forcing Chains</item>
-/// <!--<item>Dynamic Forcing Chains (+)</item>-->
+/// </list>
+/// </item>
 /// </list>
 /// </summary>
 [StepSearcher]
-public unsafe class ForcingChainStepSearcher : IForcingChainStepSearcher
+public unsafe class ForcingChainStepSearcher : IForcingChainStepSearcher, IDynamicForcingChainStepSearcher
 {
 	/// <summary>
 	/// Indicates the grid that is used in processing.

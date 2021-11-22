@@ -27,7 +27,7 @@ namespace Sudoku.Solving.Manual.Steps.Chains;
 /// <param name="Level">
 /// Indicates the level of the dynamic case. The dynamic level contains 6 possible values, which is corresponding
 /// to the digit 0, 1, 2, 3, 4 and 5. For more information, please visit the step searcher to check
-/// the property <see cref="IForcingChainStepSearcher.Level"/>
+/// the property <see cref="IDynamicForcingChainStepSearcher.Level"/>
 /// </param>
 public abstract record ChainStep(
 	ImmutableArray<Conclusion> Conclusions,
