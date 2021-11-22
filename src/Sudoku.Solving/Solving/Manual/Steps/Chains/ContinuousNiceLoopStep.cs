@@ -24,7 +24,7 @@ public sealed record ContinuousNiceLoopStep(
 
 	/// <inheritdoc/>
 	public override decimal Difficulty =>
-		(XEnabled && YEnabled ? 5.0M : 4.5M) + IChainStep.GetExtraDifficultyByLength(FlatComplexity - 2);
+		(XEnabled && YEnabled ? 5.0M : 4.5M) + IChainLikeStep.GetExtraDifficultyByLength(FlatComplexity - 2);
 
 	/// <inheritdoc/>
 	public override Technique TechniqueCode =>

@@ -73,7 +73,8 @@ public interface IStep
 	/// ]]></code>
 	/// You can use the code snippet <c>fitem</c> to create the pattern, whose corresponding file is added
 	/// into the <c>required/vssnippets</c> folder. For more information, please open the markdown file
-	/// <see href="#">README.md</see> in the <c>required</c> folder to learn more information.
+	/// <see href="https://github.com/SunnieShine/Sudoku/blob/main/required/README.md">README.md</see>
+	/// in the <c>required</c> folder to learn more information.
 	/// </para>
 	/// <para>
 	/// Because this property will get the value from the resource dictionary, the property supports

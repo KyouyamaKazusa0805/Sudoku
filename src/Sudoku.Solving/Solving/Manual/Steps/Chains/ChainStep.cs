@@ -38,7 +38,7 @@ public abstract record ChainStep(
 	bool IsMultiple,
 	bool IsDynamic,
 	byte Level
-) : Step(Conclusions, Views), IDistinctableStep<ChainStep>, IChainStep
+) : Step(Conclusions, Views), IDistinctableStep<ChainStep>, IChainStep, IChainLikeStep
 {
 	/// <inheritdoc/>
 	public sealed override bool ShowDifficulty => base.ShowDifficulty;

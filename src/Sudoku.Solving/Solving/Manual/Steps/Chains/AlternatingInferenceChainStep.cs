@@ -8,7 +8,7 @@
 /// <param name="XEnabled"><inheritdoc/></param>
 /// <param name="YEnabled"><inheritdoc/></param>
 /// <param name="Target">Indicates the target cell.</param>
-public sealed unsafe record AlternatingInferenceChainStep(
+public sealed record AlternatingInferenceChainStep(
 	ImmutableArray<Conclusion> Conclusions,
 	ImmutableArray<PresentationData> Views,
 	bool XEnabled,
@@ -21,7 +21,7 @@ public sealed unsafe record AlternatingInferenceChainStep(
 	{
 		Technique.MWing => 4.5M,
 		Technique.SplitWing or Technique.HybridWing or Technique.LocalWing => 4.8M,
-		_ => (XEnabled && YEnabled ? 5.0M : 4.6M) + IChainStep.GetExtraDifficultyByLength(FlatComplexity - 2)
+		_ => (XEnabled && YEnabled ? 5.0M : 4.6M) + IChainLikeStep.GetExtraDifficultyByLength(FlatComplexity - 2)
 	};
 
 	/// <inheritdoc/>
