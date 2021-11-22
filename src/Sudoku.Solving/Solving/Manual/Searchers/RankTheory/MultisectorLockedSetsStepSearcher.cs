@@ -203,13 +203,17 @@ public sealed unsafe class MultisectorLockedSetsStepSearcher : IMultisectorLocke
 					}
 				}
 
-				accumulator.Add(
-					new MultisectorLockedSetsStep(
-						conclusions.ToImmutableArray(),
-						ImmutableArray.Create(new PresentationData { Candidates = candidateOffsets }),
-						map
-					)
+				var step = new MultisectorLockedSetsStep(
+					conclusions.ToImmutableArray(),
+					ImmutableArray.Create(new PresentationData { Candidates = candidateOffsets }),
+					map
 				);
+				if (onlyFindOne)
+				{
+					return step;
+				}
+
+				accumulator.Add(step);
 			}
 		}
 

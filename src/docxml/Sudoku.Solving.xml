@@ -4486,9 +4486,47 @@
         <member name="M:Sudoku.Solving.Manual.Searchers.RankTheory.BivalueOddagonStepSearcher.GetAll(System.Collections.Generic.ICollection{Sudoku.Solving.Manual.Step},Sudoku.Data.Grid@,System.Boolean)">
             <inheritdoc/>
         </member>
+        <member name="T:Sudoku.Solving.Manual.Searchers.RankTheory.DominoLoopStepSearcher">
+            <summary>
+            Provides with a <b>Domino Loop</b> step searcher.
+            The step searcher will include the following techniques:
+            <list type="bullet">
+            <item>Domino Loop</item>
+            </list>
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.Searchers.RankTheory.DominoLoopStepSearcher.SkLoopTable">
+            <summary>
+            The position table of all SK-loops.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.Searchers.RankTheory.DominoLoopStepSearcher.RegionMaps">
+            <summary>
+            The region maps.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Searchers.RankTheory.DominoLoopStepSearcher.#cctor">
+            <summary>
+            The <see langword="static"/> constructor.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Searchers.RankTheory.DominoLoopStepSearcher.Options">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Searchers.RankTheory.DominoLoopStepSearcher.Predicate">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Searchers.RankTheory.DominoLoopStepSearcher.GetAll(System.Collections.Generic.ICollection{Sudoku.Solving.Manual.Step},Sudoku.Data.Grid@,System.Boolean)">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Solving.Manual.Searchers.RankTheory.IBivalueOddagonStepSearcher">
             <summary>
             Defines a step searcher that searches for bi-value oddagon steps.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Searchers.RankTheory.IDominoLoopStepSearcher">
+            <summary>
+            Defines a step searcher that searches for domino loop steps.
             </summary>
         </member>
         <member name="T:Sudoku.Solving.Manual.Searchers.RankTheory.IMultisectorLockedSetsStepSearcher">
@@ -8702,6 +8740,40 @@
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Manual.Steps.RankTheory.BivalueOddagonType3Step.Rarity">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Steps.RankTheory.DominoLoopStep">
+            <summary>
+            Provides with a step that is a <b>Domino Loop</b> technique.
+            </summary>
+            <param name="Conclusions"><inheritdoc/></param>
+            <param name="Views"><inheritdoc/></param>
+            <param name="Cells">Indicates the cells used.</param>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Steps.RankTheory.DominoLoopStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Data.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Models.PresentationData},Sudoku.Data.Cells)">
+            <summary>
+            Provides with a step that is a <b>Domino Loop</b> technique.
+            </summary>
+            <param name="Conclusions"><inheritdoc/></param>
+            <param name="Views"><inheritdoc/></param>
+            <param name="Cells">Indicates the cells used.</param>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.RankTheory.DominoLoopStep.Difficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.RankTheory.DominoLoopStep.TechniqueTags">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.RankTheory.DominoLoopStep.TechniqueGroup">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.RankTheory.DominoLoopStep.DifficultyLevel">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.RankTheory.DominoLoopStep.TechniqueCode">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.RankTheory.DominoLoopStep.Rarity">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Solving.Manual.Steps.RankTheory.MultisectorLockedSetsStep">
