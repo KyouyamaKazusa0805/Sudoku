@@ -3153,6 +3153,13 @@
             <param name="charToInsert">The string to insert.</param>
             <returns>The result string.</returns>
         </member>
+        <member name="M:System.StringExtensions.Unescape(System.String)">
+            <summary>
+            Converts any escaped characters in the input string.
+            </summary>
+            <param name="this">The string to convert.</param>
+            <returns>A string of characters with any escaped characters converted to their unescaped form.</returns>
+        </member>
         <member name="M:System.StringExtensions.SliceViaCharacter(System.String,System.Char)">
             <summary>
             Slices the current <see cref="T:System.String"/> instance, via the specified character.

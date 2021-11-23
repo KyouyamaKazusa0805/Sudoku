@@ -4,7 +4,7 @@
 /// Provides extension methods on <see cref="string"/>.
 /// </summary>
 /// <seealso cref="string"/>
-public static class StringExtensions
+public static unsafe class StringExtensions
 {
 	/// <summary>
 	/// Indicates the regular expression to match all null lines and header spaces in their lines.
@@ -25,7 +25,7 @@ public static class StringExtensions
 	/// <param name="this">The current string.</param>
 	/// <param name="character">The character to count.</param>
 	/// <returns>The number of characters found.</returns>
-	public static unsafe int CountOf(this string @this, char character)
+	public static int CountOf(this string @this, char character)
 	{
 		int count = 0;
 		fixed (char* pThis = @this)
@@ -56,6 +56,7 @@ public static class StringExtensions
 	/// Throws when the specified <paramref name="pattern"/> is not an valid regular
 	/// expression pattern.
 	/// </exception>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static bool SatisfyPattern(this string @this, [NotNullWhen(true)] string? pattern) =>
 		pattern?.IsRegexPattern() ?? false
 			? @this.Match(pattern) == @this
@@ -77,6 +78,7 @@ public static class StringExtensions
 	/// Throws when the specified <paramref name="pattern"/> is not an valid regular
 	/// expression pattern.
 	/// </exception>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static bool IsMatch(this string @this, string pattern) =>
 		pattern.IsRegexPattern()
 			? Regex.IsMatch(@this, pattern, RegexOptions.ExplicitCapture, MatchingTimeSpan)
@@ -90,7 +92,7 @@ public static class StringExtensions
 	/// <param name="charToInsert">The string to insert.</param>
 	/// <returns>The result string.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static unsafe string ReplaceAt(this string @this, int index, char charToInsert)
+	public static string ReplaceAt(this string @this, int index, char charToInsert)
 	{
 		char* resultPtr = stackalloc char[@this.Length + 1];
 		resultPtr[@this.Length] = '\0';
@@ -103,6 +105,14 @@ public static class StringExtensions
 
 		return new(resultPtr);
 	}
+
+	/// <summary>
+	/// Converts any escaped characters in the input string.
+	/// </summary>
+	/// <param name="this">The string to convert.</param>
+	/// <returns>A string of characters with any escaped characters converted to their unescaped form.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static string Unescape(this string @this) => Regex.Unescape(@this);
 
 	/// <summary>
 	/// Slices the current <see cref="string"/> instance, via the specified character.
@@ -118,6 +128,7 @@ public static class StringExtensions
 	/// The slice result. If the character doesn't exist in the string,
 	/// <see langword="null"/> will be returned.
 	/// </returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static string? SliceViaCharacter(this string @this, char ch) =>
 		@this.IndexOf(ch) is var i and not -1 ? @this[..i] : null;
 
@@ -140,6 +151,7 @@ public static class StringExtensions
 	/// Throws when the specified <paramref name="pattern"/> is not an valid regular
 	/// expression pattern.
 	/// </exception>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static string? Match(this string @this, string pattern) =>
 		pattern.IsRegexPattern()
 			? @this.Match(pattern, RegexOptions.None)
@@ -165,6 +177,7 @@ public static class StringExtensions
 	/// expression pattern.
 	/// </exception>
 	/// <seealso cref="Regex.Match(string, string, RegexOptions)"/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static string? Match(this string @this, string pattern, RegexOptions regexOption) =>
 		pattern.IsRegexPattern()
 			? Regex.Match(@this, pattern, regexOption, MatchingTimeSpan) is { Success: true, Value: var value }
@@ -191,6 +204,7 @@ public static class StringExtensions
 	/// expression pattern.
 	/// </exception>
 	/// <seealso cref="Regex.Matches(string, string)"/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static string[] MatchAll(this string @this, string pattern) =>
 		pattern.IsRegexPattern()
 			? @this.MatchAll(pattern, RegexOptions.None)
@@ -217,6 +231,7 @@ public static class StringExtensions
 	/// expression pattern.
 	/// </exception>
 	/// <seealso cref="Regex.Matches(string, string, RegexOptions)"/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static string[] MatchAll(this string @this, string pattern, RegexOptions regexOption) =>
 		pattern.IsRegexPattern()
 			? (from Match m in Regex.Matches(@this, pattern, regexOption, MatchingTimeSpan) select m.Value).ToArray()
@@ -252,7 +267,7 @@ public static class StringExtensions
 	/// Throws when the <paramref name="reservePattern"/> is invalid (Please expand the description
 	/// of the parameter <paramref name="reservePattern"/> to learn about all valid patterns).
 	/// </exception>
-	public static unsafe string Reserve(this string @this, string reservePattern)
+	public static string Reserve(this string @this, string reservePattern)
 	{
 		delegate*<char, bool> predicate = reservePattern switch
 		{
@@ -277,7 +292,7 @@ public static class StringExtensions
 			}
 		}
 
-		return new string(ptr, 0, count);
+		return new(ptr, 0, count);
 
 
 		static bool isTab(char c) => c == '\t';
@@ -311,6 +326,7 @@ public static class StringExtensions
 	/// <remarks>
 	/// Note that all null lines and header spaces are removed.
 	/// </remarks>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static string TrimVerbatim(this string @this) =>
 		Regex.Replace(
 			@this, NullLinesOrHeaderSpaces,
@@ -322,6 +338,7 @@ public static class StringExtensions
 	/// </summary>
 	/// <param name="this">The string.</param>
 	/// <returns>The result.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static string TrimEndNewLine(this string @this) => @this.TrimEnd(new[] { '\r', '\n' });
 
 	/// <summary>
@@ -329,6 +346,7 @@ public static class StringExtensions
 	/// </summary>
 	/// <param name="this">The string.</param>
 	/// <returns>The result.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static string[] SplitByNewLine(this string @this) =>
 		@this.Split(new[] { '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries);
 }
