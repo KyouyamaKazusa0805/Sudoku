@@ -166,8 +166,43 @@ public partial record struct PresentationData(
 	/// </summary>
 	/// <typeparam name="TStruct">The type of the element to add.</typeparam>
 	/// <param name="dataKind">The data kind to append.</param>
-	/// <param name="element">The element to add.</param>
+	/// <param name="element">
+	/// The element to add. Here we require the type of the argument should be:
+	/// <list type="table">
+	/// <listheader>
+	/// <term>The argument <paramref name="dataKind"/> value</term>
+	/// <description>The type of this argument</description>
+	/// </listheader>
+	/// <item>
+	/// <term><see cref="PresentationDataKind.Cells"/></term>
+	/// <description><see cref="int"/></description>
+	/// </item>
+	/// <item>
+	/// <term><see cref="PresentationDataKind.Candidates"/></term>
+	/// <description><see cref="int"/></description>
+	/// </item>
+	/// <item>
+	/// <term><see cref="PresentationDataKind.Regions"/></term>
+	/// <description><see cref="int"/></description>
+	/// </item>
+	/// <item>
+	/// <term><see cref="PresentationDataKind.Links"/></term>
+	/// <description><see cref="ChainLink"/></description>
+	/// </item>
+	/// <item>
+	/// <term><see cref="PresentationDataKind.DirectLines"/></term>
+	/// <description><see cref="Crosshatch"/></description>
+	/// </item>
+	/// <item>
+	/// <term><see cref="PresentationDataKind.UnknownValue"/></term>
+	/// <description><see cref="UnknownValue"/></description>
+	/// </item>
+	/// </list>
+	/// </param>
 	/// <param name="color">The color identifier.</param>
+	/// <exception cref="ArgumentException">
+	/// Throws when the argument <paramref name="element"/> can't be converted to the target type.
+	/// </exception>
 	/// <exception cref="ArgumentOutOfRangeException">
 	/// Throws when the argument <paramref name="dataKind"/> is out of range.
 	/// </exception>
@@ -176,8 +211,10 @@ public partial record struct PresentationData(
 	{
 		switch (dataKind)
 		{
-			case PresentationDataKind.Cells when element is int e:
+			case PresentationDataKind.Cells:
 			{
+				ThrowIfArgTypeIsInvalid(element, out int e);
+
 				var collection = Cells;
 				EnsureNotNull(ref collection);
 				Cells = collection;
@@ -185,8 +222,10 @@ public partial record struct PresentationData(
 
 				break;
 			}
-			case PresentationDataKind.Candidates when element is int e:
+			case PresentationDataKind.Candidates:
 			{
+				ThrowIfArgTypeIsInvalid(element, out int e);
+
 				var collection = Candidates;
 				EnsureNotNull(ref collection);
 				Candidates = collection;
@@ -194,8 +233,10 @@ public partial record struct PresentationData(
 
 				break;
 			}
-			case PresentationDataKind.Regions when element is int e:
+			case PresentationDataKind.Regions:
 			{
+				ThrowIfArgTypeIsInvalid(element, out int e);
+
 				var collection = Regions;
 				EnsureNotNull(ref collection);
 				Regions = collection;
@@ -203,8 +244,10 @@ public partial record struct PresentationData(
 
 				break;
 			}
-			case PresentationDataKind.Links when element is ChainLink e:
+			case PresentationDataKind.Links:
 			{
+				ThrowIfArgTypeIsInvalid(element, out ChainLink e);
+
 				var collection = Links;
 				EnsureNotNull(ref collection);
 				Links = collection;
@@ -212,8 +255,10 @@ public partial record struct PresentationData(
 
 				break;
 			}
-			case PresentationDataKind.DirectLines when element is Crosshatch e:
+			case PresentationDataKind.DirectLines:
 			{
+				ThrowIfArgTypeIsInvalid(element, out Crosshatch e);
+
 				var collection = DirectLines;
 				EnsureNotNull(ref collection);
 				DirectLines = collection;
@@ -221,8 +266,10 @@ public partial record struct PresentationData(
 
 				break;
 			}
-			case PresentationDataKind.UnknownValue when element is UnknownValue e:
+			case PresentationDataKind.UnknownValue:
 			{
+				ThrowIfArgTypeIsInvalid(element, out UnknownValue e);
+
 				var collection = UnknownValues;
 				EnsureNotNull(ref collection);
 				UnknownValues = collection;
@@ -232,7 +279,7 @@ public partial record struct PresentationData(
 			}
 			default:
 			{
-				throw new ArgumentOutOfRangeException("<unknown parameter>", "The specified argument is invalid.");
+				throw new ArgumentOutOfRangeException(nameof(dataKind));
 			}
 		}
 	}
@@ -242,13 +289,53 @@ public partial record struct PresentationData(
 	/// </summary>
 	/// <typeparam name="TStruct">The type of the element to remove.</typeparam>
 	/// <param name="dataKind">The data kind.</param>
-	/// <param name="element">The element.</param>
+	/// <param name="element">
+	/// The element. Here we require the type of the argument should be:
+	/// <list type="table">
+	/// <listheader>
+	/// <term>The argument <paramref name="dataKind"/> value</term>
+	/// <description>The type of this argument</description>
+	/// </listheader>
+	/// <item>
+	/// <term><see cref="PresentationDataKind.Cells"/></term>
+	/// <description><see cref="int"/></description>
+	/// </item>
+	/// <item>
+	/// <term><see cref="PresentationDataKind.Candidates"/></term>
+	/// <description><see cref="int"/></description>
+	/// </item>
+	/// <item>
+	/// <term><see cref="PresentationDataKind.Regions"/></term>
+	/// <description><see cref="int"/></description>
+	/// </item>
+	/// <item>
+	/// <term><see cref="PresentationDataKind.Links"/></term>
+	/// <description><see cref="ChainLink"/></description>
+	/// </item>
+	/// <item>
+	/// <term><see cref="PresentationDataKind.DirectLines"/></term>
+	/// <description><see cref="Crosshatch"/></description>
+	/// </item>
+	/// <item>
+	/// <term><see cref="PresentationDataKind.UnknownValue"/></term>
+	/// <description><see cref="UnknownValue"/></description>
+	/// </item>
+	/// </list>
+	/// </param>
+	/// <exception cref="ArgumentException">
+	/// Throws when the argument <paramref name="element"/> can't be converted to the target type.
+	/// </exception>
+	/// <exception cref="ArgumentOutOfRangeException">
+	/// Throws when the argument <paramref name="dataKind"/> is out of range.
+	/// </exception>
 	public void Remove<TStruct>(PresentationDataKind dataKind, TStruct element) where TStruct : struct
 	{
 		switch (dataKind)
 		{
-			case PresentationDataKind.Cells when element is int e && Cells is not null:
+			case PresentationDataKind.Cells when Cells is not null:
 			{
+				ThrowIfArgTypeIsInvalid(element, out int e);
+
 				int index = -1;
 				for (int i = 0, count = Cells.Count; i < count; i++)
 				{
@@ -265,8 +352,10 @@ public partial record struct PresentationData(
 
 				break;
 			}
-			case PresentationDataKind.Candidates when element is int e && Candidates is not null:
+			case PresentationDataKind.Candidates when Candidates is not null:
 			{
+				ThrowIfArgTypeIsInvalid(element, out int e);
+
 				int index = -1;
 				for (int i = 0, count = Candidates.Count; i < count; i++)
 				{
@@ -283,8 +372,10 @@ public partial record struct PresentationData(
 
 				break;
 			}
-			case PresentationDataKind.Regions when element is int e && Regions is not null:
+			case PresentationDataKind.Regions when Regions is not null:
 			{
+				ThrowIfArgTypeIsInvalid(element, out int e);
+
 				int index = -1;
 				for (int i = 0, count = Regions.Count; i < count; i++)
 				{
@@ -301,8 +392,10 @@ public partial record struct PresentationData(
 
 				break;
 			}
-			case PresentationDataKind.Links when element is ChainLink e && Links is not null:
+			case PresentationDataKind.Links when Links is not null:
 			{
+				ThrowIfArgTypeIsInvalid(element, out ChainLink e);
+
 				int index = -1;
 				for (int i = 0, count = Links.Count; i < count; i++)
 				{
@@ -319,8 +412,10 @@ public partial record struct PresentationData(
 
 				break;
 			}
-			case PresentationDataKind.DirectLines when element is Crosshatch e && DirectLines is not null:
+			case PresentationDataKind.DirectLines when DirectLines is not null:
 			{
+				ThrowIfArgTypeIsInvalid(element, out Crosshatch e);
+
 				int index = -1;
 				for (int i = 0, count = DirectLines.Count; i < count; i++)
 				{
@@ -337,8 +432,10 @@ public partial record struct PresentationData(
 
 				break;
 			}
-			case PresentationDataKind.UnknownValue when element is UnknownValue e && UnknownValues is not null:
+			case PresentationDataKind.UnknownValue when UnknownValues is not null:
 			{
+				ThrowIfArgTypeIsInvalid(element, out UnknownValue e);
+
 				int index = -1;
 				for (int i = 0, count = UnknownValues.Count; i < count; i++)
 				{
@@ -357,7 +454,7 @@ public partial record struct PresentationData(
 			}
 			default:
 			{
-				throw new ArgumentOutOfRangeException("<unknown parameter>", "The specified argument is invalid.");
+				throw new ArgumentOutOfRangeException(nameof(dataKind));
 			}
 		}
 	}
@@ -420,6 +517,29 @@ public partial record struct PresentationData(
 	private static void EnsureNotNull<TStruct>([AllowNull] ref IList<(TStruct, ColorIdentifier)> collection)
 	where TStruct : struct =>
 		collection ??= new List<(TStruct, ColorIdentifier)>();
+
+	/// <summary>
+	/// Just throws when the argument <paramref name="element"/> is a wrong type, which is dismatched to
+	/// the type <typeparamref name="TConverted"/>.
+	/// </summary>
+	/// <typeparam name="TBase">The type to be converted.</typeparam>
+	/// <typeparam name="TConverted">The type to convert to.</typeparam>
+	/// <param name="element">The real value to convert.</param>
+	/// <param name="result">The result value converted.</param>
+	/// <param name="argName">
+	/// The original name of the argument. The argument should keep its <see langword="null"/> value
+	/// because the value will be initialized by compiler.
+	/// </param>
+	/// <exception cref="ArgumentException">Throws when the type dismatches.</exception>
+	[MethodImpl(MethodImplOptions.NoInlining)]
+	private static void ThrowIfArgTypeIsInvalid<TBase, TConverted>(
+		TBase element,
+		out TConverted result,
+		[CallerArgumentExpression("element")] string? argName = null
+	)
+	where TBase : struct
+	where TConverted : struct =>
+		result = element is TConverted r ? r : throw new ArgumentException("The argument type dismatches.", argName);
 
 	/// <inheritdoc/>
 	public static bool operator ==(in PresentationData left, in PresentationData right) => left.Equals(in right);

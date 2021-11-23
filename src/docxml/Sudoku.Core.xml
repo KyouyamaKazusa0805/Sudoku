@@ -7120,8 +7120,43 @@
             </summary>
             <typeparam name="TStruct">The type of the element to add.</typeparam>
             <param name="dataKind">The data kind to append.</param>
-            <param name="element">The element to add.</param>
+            <param name="element">
+            The element to add. Here we require the type of the argument should be:
+            <list type="table">
+            <listheader>
+            <term>The argument <paramref name="dataKind"/> value</term>
+            <description>The type of this argument</description>
+            </listheader>
+            <item>
+            <term><see cref="F:Sudoku.Models.PresentationDataKind.Cells"/></term>
+            <description><see cref="T:System.Int32"/></description>
+            </item>
+            <item>
+            <term><see cref="F:Sudoku.Models.PresentationDataKind.Candidates"/></term>
+            <description><see cref="T:System.Int32"/></description>
+            </item>
+            <item>
+            <term><see cref="F:Sudoku.Models.PresentationDataKind.Regions"/></term>
+            <description><see cref="T:System.Int32"/></description>
+            </item>
+            <item>
+            <term><see cref="F:Sudoku.Models.PresentationDataKind.Links"/></term>
+            <description><see cref="T:Sudoku.Data.ChainLink"/></description>
+            </item>
+            <item>
+            <term><see cref="F:Sudoku.Models.PresentationDataKind.DirectLines"/></term>
+            <description><see cref="T:Sudoku.Data.Crosshatch"/></description>
+            </item>
+            <item>
+            <term><see cref="F:Sudoku.Models.PresentationDataKind.UnknownValue"/></term>
+            <description><see cref="T:Sudoku.Data.UnknownValue"/></description>
+            </item>
+            </list>
+            </param>
             <param name="color">The color identifier.</param>
+            <exception cref="T:System.ArgumentException">
+            Throws when the argument <paramref name="element"/> can't be converted to the target type.
+            </exception>
             <exception cref="T:System.ArgumentOutOfRangeException">
             Throws when the argument <paramref name="dataKind"/> is out of range.
             </exception>
@@ -7132,7 +7167,45 @@
             </summary>
             <typeparam name="TStruct">The type of the element to remove.</typeparam>
             <param name="dataKind">The data kind.</param>
-            <param name="element">The element.</param>
+            <param name="element">
+            The element. Here we require the type of the argument should be:
+            <list type="table">
+            <listheader>
+            <term>The argument <paramref name="dataKind"/> value</term>
+            <description>The type of this argument</description>
+            </listheader>
+            <item>
+            <term><see cref="F:Sudoku.Models.PresentationDataKind.Cells"/></term>
+            <description><see cref="T:System.Int32"/></description>
+            </item>
+            <item>
+            <term><see cref="F:Sudoku.Models.PresentationDataKind.Candidates"/></term>
+            <description><see cref="T:System.Int32"/></description>
+            </item>
+            <item>
+            <term><see cref="F:Sudoku.Models.PresentationDataKind.Regions"/></term>
+            <description><see cref="T:System.Int32"/></description>
+            </item>
+            <item>
+            <term><see cref="F:Sudoku.Models.PresentationDataKind.Links"/></term>
+            <description><see cref="T:Sudoku.Data.ChainLink"/></description>
+            </item>
+            <item>
+            <term><see cref="F:Sudoku.Models.PresentationDataKind.DirectLines"/></term>
+            <description><see cref="T:Sudoku.Data.Crosshatch"/></description>
+            </item>
+            <item>
+            <term><see cref="F:Sudoku.Models.PresentationDataKind.UnknownValue"/></term>
+            <description><see cref="T:Sudoku.Data.UnknownValue"/></description>
+            </item>
+            </list>
+            </param>
+            <exception cref="T:System.ArgumentException">
+            Throws when the argument <paramref name="element"/> can't be converted to the target type.
+            </exception>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+            Throws when the argument <paramref name="dataKind"/> is out of range.
+            </exception>
         </member>
         <member name="M:Sudoku.Models.PresentationData.GetHashCode">
             <inheritdoc/>
@@ -7164,6 +7237,21 @@
             The argument can be passed a <see langword="null"/>-able type,
             and changes to a non-<see langword="null"/> value when the method has been executed wholly.
             </remarks>
+        </member>
+        <member name="M:Sudoku.Models.PresentationData.ThrowIfArgTypeIsInvalid``2(``0,``1@,System.String)">
+            <summary>
+            Just throws when the argument <paramref name="element"/> is a wrong type, which is dismatched to
+            the type <typeparamref name="TConverted"/>.
+            </summary>
+            <typeparam name="TBase">The type to be converted.</typeparam>
+            <typeparam name="TConverted">The type to convert to.</typeparam>
+            <param name="element">The real value to convert.</param>
+            <param name="result">The result value converted.</param>
+            <param name="argName">
+            The original name of the argument. The argument should keep its <see langword="null"/> value
+            because the value will be initialized by compiler.
+            </param>
+            <exception cref="T:System.ArgumentException">Throws when the type dismatches.</exception>
         </member>
         <member name="M:Sudoku.Models.PresentationData.op_Equality(Sudoku.Models.PresentationData@,Sudoku.Models.PresentationData@)">
             <inheritdoc/>
