@@ -1,7 +1,7 @@
 ﻿namespace Sudoku.Solving.Manual.Steps.DeadlyPatterns.Rectangles;
 
 /// <summary>
-/// Provides with a step that is a <b>Avoidable Rectangle with Hidden Single</b> technique.
+/// Provides with a step that is an <b>Avoidable Rectangle with Hidden Single</b> technique.
 /// </summary>
 /// <param name="Conclusions"><inheritdoc/></param>
 /// <param name="Views"><inheritdoc/></param>

@@ -1,7 +1,7 @@
 ﻿namespace Sudoku.Solving.Manual.Steps.AlmostLockedSets;
 
 /// <summary>
-/// Provides with a step that is a <b>Almost Locked Sets W-Wing</b> technique.
+/// Provides with a step that is an <b>Almost Locked Sets W-Wing</b> technique.
 /// </summary>
 /// <param name="Conclusions"><inheritdoc/></param>
 /// <param name="Views"><inheritdoc/></param>

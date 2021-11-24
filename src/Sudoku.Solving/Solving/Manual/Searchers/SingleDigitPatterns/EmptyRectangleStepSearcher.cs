@@ -1,7 +1,7 @@
 ﻿namespace Sudoku.Solving.Manual.Searchers.SingleDigitPatterns;
 
 /// <summary>
-/// Provides with a <b>Empty Rectangle</b> step searcher.
+/// Provides with an <b>Empty Rectangle</b> step searcher.
 /// The step searcher will include the following techniques:
 /// <list type="bullet">
 /// <item>Empty Rectangle</item>

@@ -1,7 +1,7 @@
 ﻿namespace Sudoku.Solving.Manual.Steps.Chains;
 
 /// <summary>
-/// Provides with a step that is a <b>Alternating Inference Chain</b> technique.
+/// Provides with a step that is an <b>Alternating Inference Chain</b> technique.
 /// </summary>
 /// <param name="Conclusions"><inheritdoc/></param>
 /// <param name="Views"><inheritdoc/></param>

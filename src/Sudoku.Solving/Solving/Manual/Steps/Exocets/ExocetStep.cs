@@ -1,7 +1,7 @@
 ﻿namespace Sudoku.Solving.Manual.Steps.Exocets;
 
 /// <summary>
-/// Provides with a step that is a <b>Exocet</b> technique.
+/// Provides with a step that is an <b>Exocet</b> technique.
 /// </summary>
 /// <param name="Views"><inheritdoc/></param>
 /// <param name="Exocet">INdicates the exocet pattern.</param>

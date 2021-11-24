@@ -1,7 +1,7 @@
 ﻿namespace Sudoku.Solving.Manual.Searchers.Chains;
 
 /// <summary>
-/// Provides with a <b>Alternating Inference Chain</b> step searcher.
+/// Provides with an <b>Alternating Inference Chain</b> step searcher.
 /// The step searcher will include the following techniques:
 /// <list type="bullet">
 /// <item>

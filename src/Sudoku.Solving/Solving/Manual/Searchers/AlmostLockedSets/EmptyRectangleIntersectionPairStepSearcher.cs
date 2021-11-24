@@ -1,7 +1,7 @@
 ﻿namespace Sudoku.Solving.Manual.Searchers.AlmostLockedSets;
 
 /// <summary>
-/// Provides with a <b>Empty Rectangle Intersection Pair</b> step searcher.
+/// Provides with an <b>Empty Rectangle Intersection Pair</b> step searcher.
 /// The step searcher will include the following techniques:
 /// <list type="bullet">
 /// <item>Empty Rectangle Intersection Pair</item>

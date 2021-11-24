@@ -1,7 +1,7 @@
 ﻿namespace Sudoku.Solving.Manual.Steps.AlmostLockedSets;
 
 /// <summary>
-/// Provides with a step that is a <b>Empty Rectangle Intersection Pair</b> technique.
+/// Provides with a step that is an <b>Empty Rectangle Intersection Pair</b> technique.
 /// </summary>
 /// <param name="Conclusions"><inheritdoc/></param>
 /// <param name="Views"><inheritdoc/></param>

@@ -1,7 +1,7 @@
 ﻿namespace Sudoku.Solving.Manual.Steps.DeadlyPatterns.Extended;
 
 /// <summary>
-/// Provides with a step that is a <b>Extended Rectangle</b> technique.
+/// Provides with a step that is an <b>Extended Rectangle</b> technique.
 /// </summary>
 /// <param name="Conclusions"><inheritdoc/></param>
 /// <param name="Views"><inheritdoc/></param>

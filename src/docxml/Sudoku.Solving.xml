@@ -2231,7 +2231,7 @@
         </member>
         <member name="T:Sudoku.Solving.Manual.Searchers.AlmostLockedSets.AlmostLockedSetsWWingStepSearcher">
             <summary>
-            Provides with a <b>Almost Locked Sets W-Wing</b> step searcher.
+            Provides with an <b>Almost Locked Sets W-Wing</b> step searcher.
             The step searcher will include the following techniques:
             <list type="bullet">
             <item>Almost Locked Sets W-Wing</item>
@@ -2249,7 +2249,7 @@
         </member>
         <member name="T:Sudoku.Solving.Manual.Searchers.AlmostLockedSets.AlmostLockedSetsXyWingStepSearcher">
             <summary>
-            Provides with a <b>Almost Locked Sets XY-Wing</b> step searcher.
+            Provides with an <b>Almost Locked Sets XY-Wing</b> step searcher.
             The step searcher will include the following techniques:
             <list type="bullet">
             <item>Almost Locked Sets XY-Wing</item>
@@ -2270,7 +2270,7 @@
         </member>
         <member name="T:Sudoku.Solving.Manual.Searchers.AlmostLockedSets.AlmostLockedSetsXzStepSearcher">
             <summary>
-            Provides with a <b>Almost Locked Sets XZ</b> step searcher.
+            Provides with an <b>Almost Locked Sets XZ</b> step searcher.
             The step searcher will include the following techniques:
             <list type="bullet">
             <item>Extended Subset Principle</item>
@@ -2296,7 +2296,7 @@
         </member>
         <member name="T:Sudoku.Solving.Manual.Searchers.AlmostLockedSets.EmptyRectangleIntersectionPairStepSearcher">
             <summary>
-            Provides with a <b>Empty Rectangle Intersection Pair</b> step searcher.
+            Provides with an <b>Empty Rectangle Intersection Pair</b> step searcher.
             The step searcher will include the following techniques:
             <list type="bullet">
             <item>Empty Rectangle Intersection Pair</item>
@@ -2355,7 +2355,7 @@
         </member>
         <member name="T:Sudoku.Solving.Manual.Searchers.Chains.AlternatingInferenceChainStepSearcher">
             <summary>
-            Provides with a <b>Alternating Inference Chain</b> step searcher.
+            Provides with an <b>Alternating Inference Chain</b> step searcher.
             The step searcher will include the following techniques:
             <list type="bullet">
             <item>
@@ -4666,7 +4666,7 @@
         </member>
         <member name="T:Sudoku.Solving.Manual.Searchers.SingleDigitPatterns.EmptyRectangleStepSearcher">
             <summary>
-            Provides with a <b>Empty Rectangle</b> step searcher.
+            Provides with an <b>Empty Rectangle</b> step searcher.
             The step searcher will include the following techniques:
             <list type="bullet">
             <item>Empty Rectangle</item>
@@ -5320,14 +5320,14 @@
         </member>
         <member name="T:Sudoku.Solving.Manual.Steps.AlmostLockedSets.AlmostLockedSetsStep">
             <summary>
-            Provides with a step that is a <b>Almost Locked Sets</b> technique.
+            Provides with a step that is an <b>Almost Locked Sets</b> technique.
             </summary>
             <param name="Conclusions"><inheritdoc/></param>
             <param name="Views"><inheritdoc/></param>
         </member>
         <member name="M:Sudoku.Solving.Manual.Steps.AlmostLockedSets.AlmostLockedSetsStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Data.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Models.PresentationData})">
             <summary>
-            Provides with a step that is a <b>Almost Locked Sets</b> technique.
+            Provides with a step that is an <b>Almost Locked Sets</b> technique.
             </summary>
             <param name="Conclusions"><inheritdoc/></param>
             <param name="Views"><inheritdoc/></param>
@@ -5355,7 +5355,7 @@
         </member>
         <member name="T:Sudoku.Solving.Manual.Steps.AlmostLockedSets.AlmostLockedSetsWWingStep">
             <summary>
-            Provides with a step that is a <b>Almost Locked Sets W-Wing</b> technique.
+            Provides with a step that is an <b>Almost Locked Sets W-Wing</b> technique.
             </summary>
             <param name="Conclusions"><inheritdoc/></param>
             <param name="Views"><inheritdoc/></param>
@@ -5367,7 +5367,7 @@
         </member>
         <member name="M:Sudoku.Solving.Manual.Steps.AlmostLockedSets.AlmostLockedSetsWWingStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Data.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Models.PresentationData},Sudoku.Solving.Collections.AlmostLockedSet@,Sudoku.Solving.Collections.AlmostLockedSet@,Sudoku.Data.ConjugatePair@,System.Int16,System.Int32)">
             <summary>
-            Provides with a step that is a <b>Almost Locked Sets W-Wing</b> technique.
+            Provides with a step that is an <b>Almost Locked Sets W-Wing</b> technique.
             </summary>
             <param name="Conclusions"><inheritdoc/></param>
             <param name="Views"><inheritdoc/></param>
@@ -5397,7 +5397,7 @@
         </member>
         <member name="T:Sudoku.Solving.Manual.Steps.AlmostLockedSets.AlmostLockedSetsXyWingStep">
             <summary>
-            Provides with a step that is a <b>Almost Locked Sets XY-Wing</b> technique.
+            Provides with a step that is an <b>Almost Locked Sets XY-Wing</b> technique.
             </summary>
             <param name="Conclusions"><inheritdoc/></param>
             <param name="Views"><inheritdoc/></param>
@@ -5410,7 +5410,7 @@
         </member>
         <member name="M:Sudoku.Solving.Manual.Steps.AlmostLockedSets.AlmostLockedSetsXyWingStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Data.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Models.PresentationData},Sudoku.Solving.Collections.AlmostLockedSet@,Sudoku.Solving.Collections.AlmostLockedSet@,Sudoku.Solving.Collections.AlmostLockedSet@,System.Int16,System.Int16,System.Int16)">
             <summary>
-            Provides with a step that is a <b>Almost Locked Sets XY-Wing</b> technique.
+            Provides with a step that is an <b>Almost Locked Sets XY-Wing</b> technique.
             </summary>
             <param name="Conclusions"><inheritdoc/></param>
             <param name="Views"><inheritdoc/></param>
@@ -5441,7 +5441,7 @@
         </member>
         <member name="T:Sudoku.Solving.Manual.Steps.AlmostLockedSets.AlmostLockedSetsXzStep">
             <summary>
-            Provides with a step that is a <b>Almost Locked Sets XZ</b> technique.
+            Provides with a step that is an <b>Almost Locked Sets XZ</b> technique.
             </summary>
             <param name="Conclusions"><inheritdoc/></param>
             <param name="Views"><inheritdoc/></param>
@@ -5453,7 +5453,7 @@
         </member>
         <member name="M:Sudoku.Solving.Manual.Steps.AlmostLockedSets.AlmostLockedSetsXzStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Data.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Models.PresentationData},Sudoku.Solving.Collections.AlmostLockedSet@,Sudoku.Solving.Collections.AlmostLockedSet@,System.Int16,System.Int16,System.Nullable{System.Boolean})">
             <summary>
-            Provides with a step that is a <b>Almost Locked Sets XZ</b> technique.
+            Provides with a step that is an <b>Almost Locked Sets XZ</b> technique.
             </summary>
             <param name="Conclusions"><inheritdoc/></param>
             <param name="Views"><inheritdoc/></param>
@@ -5483,7 +5483,7 @@
         </member>
         <member name="T:Sudoku.Solving.Manual.Steps.AlmostLockedSets.EmptyRectangleIntersectionPairStep">
             <summary>
-            Provides with a step that is a <b>Empty Rectangle Intersection Pair</b> technique.
+            Provides with a step that is an <b>Empty Rectangle Intersection Pair</b> technique.
             </summary>
             <param name="Conclusions"><inheritdoc/></param>
             <param name="Views"><inheritdoc/></param>
@@ -5495,7 +5495,7 @@
         </member>
         <member name="M:Sudoku.Solving.Manual.Steps.AlmostLockedSets.EmptyRectangleIntersectionPairStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Data.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Models.PresentationData},System.Int32,System.Int32,System.Int32,System.Int32,System.Int32)">
             <summary>
-            Provides with a step that is a <b>Empty Rectangle Intersection Pair</b> technique.
+            Provides with a step that is an <b>Empty Rectangle Intersection Pair</b> technique.
             </summary>
             <param name="Conclusions"><inheritdoc/></param>
             <param name="Views"><inheritdoc/></param>
@@ -5522,7 +5522,7 @@
         </member>
         <member name="T:Sudoku.Solving.Manual.Steps.Chains.AlternatingInferenceChainStep">
             <summary>
-            Provides with a step that is a <b>Alternating Inference Chain</b> technique.
+            Provides with a step that is an <b>Alternating Inference Chain</b> technique.
             </summary>
             <param name="Conclusions"><inheritdoc/></param>
             <param name="Views"><inheritdoc/></param>
@@ -5532,7 +5532,7 @@
         </member>
         <member name="M:Sudoku.Solving.Manual.Steps.Chains.AlternatingInferenceChainStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Data.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Models.PresentationData},System.Boolean,System.Boolean,Sudoku.Data.ChainNode)">
             <summary>
-            Provides with a step that is a <b>Alternating Inference Chain</b> technique.
+            Provides with a step that is an <b>Alternating Inference Chain</b> technique.
             </summary>
             <param name="Conclusions"><inheritdoc/></param>
             <param name="Views"><inheritdoc/></param>
@@ -6045,7 +6045,7 @@
         </member>
         <member name="T:Sudoku.Solving.Manual.Steps.DeadlyPatterns.Extended.ExtendedRectangleStep">
             <summary>
-            Provides with a step that is a <b>Extended Rectangle</b> technique.
+            Provides with a step that is an <b>Extended Rectangle</b> technique.
             </summary>
             <param name="Conclusions"><inheritdoc/></param>
             <param name="Views"><inheritdoc/></param>
@@ -6054,7 +6054,7 @@
         </member>
         <member name="M:Sudoku.Solving.Manual.Steps.DeadlyPatterns.Extended.ExtendedRectangleStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Data.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Models.PresentationData},Sudoku.Data.Cells@,System.Int16)">
             <summary>
-            Provides with a step that is a <b>Extended Rectangle</b> technique.
+            Provides with a step that is an <b>Extended Rectangle</b> technique.
             </summary>
             <param name="Conclusions"><inheritdoc/></param>
             <param name="Views"><inheritdoc/></param>
@@ -6696,7 +6696,7 @@
         </member>
         <member name="T:Sudoku.Solving.Manual.Steps.DeadlyPatterns.Rectangles.AvoidableRectangleWithHiddenSingleStep">
             <summary>
-            Provides with a step that is a <b>Avoidable Rectangle with Hidden Single</b> technique.
+            Provides with a step that is an <b>Avoidable Rectangle with Hidden Single</b> technique.
             </summary>
             <param name="Conclusions"><inheritdoc/></param>
             <param name="Views"><inheritdoc/></param>
@@ -6710,7 +6710,7 @@
         </member>
         <member name="M:Sudoku.Solving.Manual.Steps.DeadlyPatterns.Rectangles.AvoidableRectangleWithHiddenSingleStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Data.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Models.PresentationData},System.Int32,System.Int32,Sudoku.Data.Cells@,System.Int32,System.Int32,System.Int32,System.Int32)">
             <summary>
-            Provides with a step that is a <b>Avoidable Rectangle with Hidden Single</b> technique.
+            Provides with a step that is an <b>Avoidable Rectangle with Hidden Single</b> technique.
             </summary>
             <param name="Conclusions"><inheritdoc/></param>
             <param name="Views"><inheritdoc/></param>
@@ -7648,7 +7648,7 @@
         </member>
         <member name="T:Sudoku.Solving.Manual.Steps.Exocets.ExocetStep">
             <summary>
-            Provides with a step that is a <b>Exocet</b> technique.
+            Provides with a step that is an <b>Exocet</b> technique.
             </summary>
             <param name="Views"><inheritdoc/></param>
             <param name="Exocet">INdicates the exocet pattern.</param>
@@ -7657,7 +7657,7 @@
         </member>
         <member name="M:Sudoku.Solving.Manual.Steps.Exocets.ExocetStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Models.PresentationData},Sudoku.Solving.Collections.ExocetPattern@,System.Int16,System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Collections.ExocetElimination})">
             <summary>
-            Provides with a step that is a <b>Exocet</b> technique.
+            Provides with a step that is an <b>Exocet</b> technique.
             </summary>
             <param name="Views"><inheritdoc/></param>
             <param name="Exocet">INdicates the exocet pattern.</param>
