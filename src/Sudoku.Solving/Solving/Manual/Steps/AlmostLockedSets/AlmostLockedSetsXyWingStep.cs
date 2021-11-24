@@ -14,9 +14,9 @@
 public sealed record AlmostLockedSetsXyWingStep(
 	ImmutableArray<Conclusion> Conclusions,
 	ImmutableArray<PresentationData> Views,
-	in Als Als1,
-	in Als Als2,
-	in Als Bridge,
+	in AlmostLockedSet Als1,
+	in AlmostLockedSet Als2,
+	in AlmostLockedSet Bridge,
 	short XDigitsMask,
 	short YDigitsMask,
 	short ZDigitsMask

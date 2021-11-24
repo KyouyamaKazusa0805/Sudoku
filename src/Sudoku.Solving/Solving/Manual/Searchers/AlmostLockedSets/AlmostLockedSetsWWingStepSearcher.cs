@@ -24,7 +24,7 @@ public sealed unsafe class AlmostLockedSetsWWingStepSearcher : IAlmostLockedSets
 	/// <inheritdoc/>
 	public Step? GetAll(ICollection<Step> accumulator, in Grid grid, bool onlyFindOne)
 	{
-		var alses = Als.GetAllAlses(grid);
+		var alses = AlmostLockedSet.Gather(grid);
 
 		// Gather all conjugate pairs.
 		var conjugatePairs = new ICollection<ConjugatePair>?[9];

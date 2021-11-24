@@ -33,7 +33,7 @@ public sealed unsafe class AlmostLockedSetsXzStepSearcher : IAlmostLockedSetsXzS
 	public Step? GetAll(ICollection<Step> accumulator, in Grid grid, bool onlyFindOne)
 	{
 		int* house = stackalloc int[2];
-		var alses = Als.GetAllAlses(grid);
+		var alses = AlmostLockedSet.Gather(grid);
 
 		for (int i = 0, length = alses.Length, iterationLengthOuter = length - 1; i < iterationLengthOuter; i++)
 		{

@@ -13,8 +13,8 @@
 public sealed record AlmostLockedSetsWWingStep(
 	ImmutableArray<Conclusion> Conclusions,
 	ImmutableArray<PresentationData> Views,
-	in Als Als1,
-	in Als Als2,
+	in AlmostLockedSet Als1,
+	in AlmostLockedSet Als2,
 	in ConjugatePair ConjugatePair,
 	short WDigitsMask,
 	int X

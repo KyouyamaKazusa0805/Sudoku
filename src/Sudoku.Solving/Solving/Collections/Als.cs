@@ -1,12 +1,12 @@
 ﻿namespace Sudoku.Solving.Collections;
 
 /// <summary>
-/// Encapsulates a normal ALS.
+/// Encapsulates a normal almost locked set (ALS as its abberivation).
 /// </summary>
 [AutoDeconstruct(nameof(Region), nameof(DigitsMask), nameof(Map))]
 [AutoDeconstruct(nameof(IsBivalueCell), nameof(Region), nameof(DigitsMask), nameof(Map), nameof(PossibleEliminationSet), nameof(StrongLinksMask))]
 [AutoEquality(nameof(DigitsMask), nameof(Map))]
-public readonly partial struct Als : IValueEquatable<Als>
+public readonly partial struct AlmostLockedSet : IValueEquatable<AlmostLockedSet>
 {
 	/// <summary>
 	/// Indicates an array of the total number of the strong relations in an ALS of the different size.
@@ -21,7 +21,7 @@ public readonly partial struct Als : IValueEquatable<Als>
 	/// </summary>
 	/// <param name="digitMask">The digit mask.</param>
 	/// <param name="map">The map.</param>
-	public Als(short digitMask, in Cells map) : this(digitMask, map, Cells.Empty)
+	public AlmostLockedSet(short digitMask, in Cells map) : this(digitMask, map, Cells.Empty)
 	{
 	}
 
@@ -33,7 +33,7 @@ public readonly partial struct Als : IValueEquatable<Als>
 	/// <param name="possibleEliminationSet">
 	/// The possible elimination set.
 	/// </param>
-	public Als(short digitMask, in Cells map, in Cells possibleEliminationSet)
+	public AlmostLockedSet(short digitMask, in Cells map, in Cells possibleEliminationSet)
 	{
 		DigitsMask = digitMask;
 		Map = map;
@@ -119,7 +119,7 @@ public readonly partial struct Als : IValueEquatable<Als>
 	/// <inheritdoc cref="object.GetHashCode"/>
 	/// <remarks>
 	/// If you want to determine the equality of two instance, I recommend you
-	/// <b>should</b> use method <see cref="Equals(in Als)"/> instead of this method.
+	/// <b>should</b> use method <see cref="Equals(in AlmostLockedSet)"/> instead of this method.
 	/// </remarks>
 	public override int GetHashCode()
 	{
@@ -146,13 +146,13 @@ public readonly partial struct Als : IValueEquatable<Als>
 
 
 	/// <summary>
-	/// To search for all ALSes in the specified grid.
+	/// To search for all ALSes from the specified grid.
 	/// </summary>
 	/// <param name="grid">The grid.</param>
 	/// <returns>All ALSes searched.</returns>
 	/// <remarks>
-	/// <see cref="Als"/> is a large-object type. If you want to iterate them, you can use the new feature
-	/// '<see langword="ref"/> and <see langword="ref readonly"/> iteration variable' to do so, just call
+	/// <see cref="AlmostLockedSet"/> is a large-object type. If you want to iterate them,
+	/// you can use the new feature '<see langword="ref"/> and <see langword="ref readonly"/> iteration variable' to do so, just call
 	/// the extension method <see cref="ArrayExtensions.AsRefEnumerable{T}(T[])"/>. Then you can get:
 	/// <code><![CDATA[
 	/// var collection = GetAllAlses(grid);
@@ -163,10 +163,10 @@ public readonly partial struct Als : IValueEquatable<Als>
 	/// ]]></code>
 	/// </remarks>
 	/// <seealso cref="ArrayExtensions.AsRefEnumerable{T}(T[])"/>
-	public static Als[] GetAllAlses(in Grid grid)
+	public static AlmostLockedSet[] Gather(in Grid grid)
 	{
 		// Get all bi-value-cell ALSes.
-		var result = new List<Als>();
+		var result = new List<AlmostLockedSet>();
 		foreach (int cell in BivalueMap)
 		{
 			result.Add(new(grid.GetCandidates(cell), new() { cell }, PeerMaps[cell] & EmptyMap));
