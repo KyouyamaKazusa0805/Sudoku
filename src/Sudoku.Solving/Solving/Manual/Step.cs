@@ -243,14 +243,14 @@ public abstract record Step(ImmutableArray<Conclusion> Conclusions, ImmutableArr
 
 					break;
 				}
-				case (Left: '\\', Right: var right) when handleEscaping: // De-escape the escaping characters.
+				case (Left: '\\', var right) when handleEscaping: // Unescape the escaping characters.
 				{
 					sb.Append(right);
 					i++;
 
 					break;
 				}
-				case (Left: var left, _):
+				case (var left, _):
 				{
 					sb.Append(left);
 
