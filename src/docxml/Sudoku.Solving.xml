@@ -4384,6 +4384,32 @@
             <param name="cell">The cell.</param>
             <returns>The result.</returns>
         </member>
+        <member name="T:Sudoku.Solving.Manual.Searchers.LastResorts.BruteForceStepSearcher">
+            <summary>
+            Provides with a <b>Brute Force</b> step searcher.
+            The step searcher will include the following techniques:
+            <list type="bullet">
+            <item>Brute Force</item>
+            </list>
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.Searchers.LastResorts.BruteForceStepSearcher.TryAndErrorOrder">
+            <summary>
+            The order of cell offsets to get values.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Searchers.LastResorts.BruteForceStepSearcher.Solution">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Searchers.LastResorts.BruteForceStepSearcher.Options">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Searchers.LastResorts.BruteForceStepSearcher.Predicate">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Searchers.LastResorts.BruteForceStepSearcher.GetAll(System.Collections.Generic.ICollection{Sudoku.Solving.Manual.Step},Sudoku.Data.Grid@,System.Boolean)">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Solving.Manual.Searchers.LastResorts.IBowmanBingoStepSearcher">
             <summary>
             Defines a step searcher that searches for bowman's bingo steps.
@@ -4392,6 +4418,16 @@
         <member name="P:Sudoku.Solving.Manual.Searchers.LastResorts.IBowmanBingoStepSearcher.MaxLength">
             <summary>
             Indicates the maximum length of the bowman bingo you want to search for.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Searchers.LastResorts.IBruteForceStepSearcher">
+            <summary>
+            Defines a step searcher that searches for brute force steps.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Searchers.LastResorts.IBruteForceStepSearcher.Solution">
+            <summary>
+            Indicates the solution grid. The grid will be used for validating the result.
             </summary>
         </member>
         <member name="T:Sudoku.Solving.Manual.Searchers.LastResorts.ILastResortStepSearcher">
@@ -8527,6 +8563,35 @@
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Manual.Steps.LastResorts.BowmanBingoStep.Rarity">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Steps.LastResorts.BruteForceStep">
+            <summary>
+            Provides with a step that is a <b>Brute Force</b> technique.
+            </summary>
+            <param name="Conclusions"><inheritdoc/></param>
+            <param name="Views"><inheritdoc/></param>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Steps.LastResorts.BruteForceStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Data.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Models.PresentationData})">
+            <summary>
+            Provides with a step that is a <b>Brute Force</b> technique.
+            </summary>
+            <param name="Conclusions"><inheritdoc/></param>
+            <param name="Views"><inheritdoc/></param>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.LastResorts.BruteForceStep.Difficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.LastResorts.BruteForceStep.DifficultyLevel">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.LastResorts.BruteForceStep.TechniqueCode">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.LastResorts.BruteForceStep.TechniqueGroup">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.LastResorts.BruteForceStep.Rarity">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Solving.Manual.Steps.LastResorts.LastResortStep">
