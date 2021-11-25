@@ -2383,9 +2383,13 @@
         <member name="T:System.Text.StringHandler">
             <summary>
             <para>
-            Provides a handler used by the language compiler to process interpolated strings
-            into <see cref="T:System.String"/> instances, or used as a <see cref="T:System.String"/> builder to
-            appending and catenating multiple <see cref="T:System.String"/>s to a whole one.
+            Provides a handler used on two cases:
+            <list type="bullet">
+            <item>By the language compiler to process interpolated strings into <see cref="T:System.String"/> instances.</item>
+            <item>
+            As a <see cref="T:System.String"/> builder to append and catenate multiple <see cref="T:System.String"/>s to a whole one.
+            </item>
+            </list>
             </para>
             <para>
             Different with <see cref="T:System.Runtime.CompilerServices.DefaultInterpolatedStringHandler"/>, this type won't contain
@@ -2397,10 +2401,10 @@
             <code><![CDATA[
             var sb = new StringHandler(initialCapacity: 100);
             
-            sb.AppendFormatted("Hello");
-            sb.AppendChar(',');
-            sb.AppendFormatted("World");
-            sb.AppendChar('!');
+            sb.Append("Hello");
+            sb.Append(',');
+            sb.Append("World");
+            sb.Append('!');
             
             Console.WriteLine(sb.ToStringAndClear());
             ]]></code>
@@ -2568,6 +2572,208 @@
             </para>
             </remarks>
         </member>
+        <member name="M:System.Text.StringHandler.Append(System.Object,System.Int32,System.String)">
+            <inheritdoc cref="M:System.Text.StringHandler.AppendFormatted(System.Object,System.Int32,System.String)"/>
+        </member>
+        <member name="M:System.Text.StringHandler.Append(System.Char)">
+            <summary>
+            Append a character at the tail of the collection.
+            </summary>
+            <param name="c">The character.</param>
+        </member>
+        <member name="M:System.Text.StringHandler.Append(System.Char,System.Int32)">
+            <summary>
+            Append a serial of same characters into the collection.
+            </summary>
+            <param name="c">The character.</param>
+            <param name="count">The number of the character you want to append.</param>
+        </member>
+        <member name="M:System.Text.StringHandler.Append(System.Char*,System.Int32)">
+            <summary>
+            Append a string that is represented as a <see cref="T:System.Char"/>*.
+            </summary>
+            <param name="value">The string.</param>
+            <param name="length">The length of the string.</param>
+        </member>
+        <member name="M:System.Text.StringHandler.Append(System.String)">
+            <inheritdoc cref="M:System.Text.StringHandler.AppendFormatted(System.String)"/>
+        </member>
+        <member name="M:System.Text.StringHandler.Append(System.String,System.Int32,System.String)">
+            <inheritdoc cref="M:System.Text.StringHandler.AppendFormatted(System.String,System.Int32,System.String)"/>
+        </member>
+        <member name="M:System.Text.StringHandler.Append(System.ReadOnlySpan{System.Char})">
+            <inheritdoc cref="M:System.Text.StringHandler.AppendFormatted(System.ReadOnlySpan{System.Char})"/>
+        </member>
+        <member name="M:System.Text.StringHandler.Append(System.ReadOnlySpan{System.Char},System.Int32,System.String)">
+            <inheritdoc cref="M:System.Text.StringHandler.AppendFormatted(System.ReadOnlySpan{System.Char},System.Int32,System.String)"/>
+        </member>
+        <member name="M:System.Text.StringHandler.Append(System.Text.StringHandler@)">
+            <inheritdoc cref="M:System.Text.StringHandler.AppendFormatted(System.Text.StringHandler@)"/>
+        </member>
+        <member name="M:System.Text.StringHandler.Append(System.IFormatProvider,System.Runtime.CompilerServices.DefaultInterpolatedStringHandler@)">
+            <summary>
+            Writes the specified interpolated string with the specified format provider into the handler.
+            </summary>
+            <param name="formatProvider">The format provider used.</param>
+            <param name="handler">The handler that holds the interpolated string processings.</param>
+        </member>
+        <member name="M:System.Text.StringHandler.Append``1(``0)">
+            <inheritdoc cref="M:System.Text.StringHandler.AppendFormatted``1(``0)"/>
+        </member>
+        <member name="M:System.Text.StringHandler.Append``1(``0,System.Int32)">
+            <inheritdoc cref="M:System.Text.StringHandler.AppendFormatted``1(``0,System.Int32)"/>
+        </member>
+        <member name="M:System.Text.StringHandler.Append``1(``0,System.String)">
+            <inheritdoc cref="M:System.Text.StringHandler.AppendFormatted``1(``0,System.String)"/>
+        </member>
+        <member name="M:System.Text.StringHandler.Append``1(``0,System.Int32,System.String)">
+            <inheritdoc cref="M:System.Text.StringHandler.AppendFormatted``1(``0,System.Int32,System.String)"/>
+        </member>
+        <member name="M:System.Text.StringHandler.AppendLine">
+            <summary>
+            Append a new line string <see cref="P:System.Environment.NewLine"/>.
+            </summary>
+            <seealso cref="P:System.Environment.NewLine"/>
+        </member>
+        <member name="M:System.Text.StringHandler.AppendCharacters(System.Collections.Generic.IEnumerable{System.Char})">
+            <summary>
+            Append a serial of characters at the tail of the collection.
+            </summary>
+            <param name="chars">The serial of characters.</param>
+        </member>
+        <member name="M:System.Text.StringHandler.AppendRange``1(System.Collections.Generic.IEnumerable{``0})">
+            <summary>
+            Append a serial of strings from a serial of elements.
+            </summary>
+            <typeparam name="T">The type of each element.</typeparam>
+            <param name="list">The list of elements.</param>
+        </member>
+        <member name="M:System.Text.StringHandler.AppendRange``1(System.Collections.Generic.IEnumerable{``0},)">
+            <summary>
+            Append a serial of strings converted from a serial of elements.
+            </summary>
+            <typeparam name="T">The type of each element.</typeparam>
+            <param name="list">The list of elements.</param>
+            <param name="converter">
+            The converter that allows the instance to convert into the <see cref="T:System.String"/> representation,
+            whose the rule is defined as a method specified as the function pointer as this argument.
+            </param>
+        </member>
+        <member name="M:System.Text.StringHandler.AppendRange``1(System.Collections.Generic.IEnumerable{``0},System.Func{``0,System.String})">
+            <summary>
+            Append a serial of strings converted from a serial of elements.
+            </summary>
+            <typeparam name="T">The type of each element.</typeparam>
+            <param name="list">The list of elements.</param>
+            <param name="converter">
+            The converter that allows the instance to convert into the <see cref="T:System.String"/> representation,
+            whose the rule is defined as a method specified as the delegate instance as this argument.
+            </param>
+        </member>
+        <member name="M:System.Text.StringHandler.AppendRangeWithSeparator``1(System.Collections.Generic.IEnumerable{``0},System.String)">
+            <summary>
+            Append a serial of strings from a serial of elements.
+            </summary>
+            <typeparam name="T">The type of each element.</typeparam>
+            <param name="list">The list of elements.</param>
+            <param name="separator">The separator to append when an element is finished to append.</param>
+        </member>
+        <member name="M:System.Text.StringHandler.AppendRangeWithSeparator``1(System.Collections.Generic.IEnumerable{``0},,System.String)">
+            <summary>
+            Append a serial of strings converted from a serial of elements.
+            </summary>
+            <typeparam name="T">The type of each element.</typeparam>
+            <param name="list">The list of elements.</param>
+            <param name="converter">
+            The converter that allows the instance to convert into the <see cref="T:System.String"/> representation,
+            whose the rule is defined as a method specified as the function pointer as this argument.
+            </param>
+            <param name="separator">The separator to append when an element is finished to append.</param>
+        </member>
+        <member name="M:System.Text.StringHandler.AppendRangeWithSeparator``1(System.Collections.Generic.IEnumerable{``0},System.Func{``0,System.String},System.String)">
+            <summary>
+            Append a serial of strings converted from a serial of elements.
+            </summary>
+            <typeparam name="T">The type of each element.</typeparam>
+            <param name="list">The list of elements.</param>
+            <param name="converter">
+            The converter that allows the instance to convert into the <see cref="T:System.String"/> representation,
+            whose the rule is defined as a method specified as the delegate instance as this argument.
+            </param>
+            <param name="separator">The separator to append when an element is finished to append.</param>
+        </member>
+        <member name="M:System.Text.StringHandler.AppendRangeWithSeparatorUnsafe``1(``0*,System.Int32,,System.String)">
+            <summary>
+            Append a serial of strings converted from a serial of elements.
+            </summary>
+            <typeparam name="TUnmanaged">The type of each element.</typeparam>
+            <param name="list">The list of elements that is represented as a pointer.</param>
+            <param name="length">The length of the list.</param>
+            <param name="converter">
+            The converter that allows the instance to convert into the <see cref="T:System.String"/> representation,
+            whose the rule is defined as a method specified as the delegate instance as this argument.
+            </param>
+            <param name="separator">The separator to append when an element is finished to append.</param>
+        </member>
+        <member name="M:System.Text.StringHandler.AppendRangeWithSeparatorUnsafe``1(``0*,System.Int32,System.Func{``0,System.String},System.String)">
+            <summary>
+            Append a serial of strings converted from a serial of elements.
+            </summary>
+            <typeparam name="TUnmanaged">The type of each element.</typeparam>
+            <param name="list">The list of elements that is represented as a pointer.</param>
+            <param name="length">The length of the list.</param>
+            <param name="converter">
+            The converter that allows the instance to convert into the <see cref="T:System.String"/> representation,
+            whose the rule is defined as a method specified as the delegate instance as this argument.
+            </param>
+            <param name="separator">The separator to append when an element is finished to append.</param>
+        </member>
+        <member name="M:System.Text.StringHandler.AppendRangeWithLines``1(System.Collections.Generic.IEnumerable{``0})">
+            <summary>
+            Append a series of elements into the current collection.
+            In addition, new line characters will be inserted after each element.
+            </summary>
+            <typeparam name="T">The type of each element.</typeparam>
+            <param name="list">The list.</param>
+        </member>
+        <member name="M:System.Text.StringHandler.AppendLargeObjectFormatted``1(``0@)">
+            <summary>
+            Writes the specified large-object value to the handler.
+            </summary>
+            <param name="value">The value to write.</param>
+            <typeparam name="T">The type of the value to write.</typeparam>
+        </member>
+        <member name="M:System.Text.StringHandler.AppendLargeObjectFormatted``1(``0@,System.String)">
+            <summary>
+            Writes the specified large-object value to the handler.
+            </summary>
+            <param name="value">The value to write.</param>
+            <param name="format">The format string.</param>
+            <typeparam name="T">The type of the value to write.</typeparam>
+        </member>
+        <member name="M:System.Text.StringHandler.AppendLargeObjectFormatted``1(``0@,System.Int32)">
+            <summary>
+            Writes the specified value to the handler.
+            </summary>
+            <param name="value">The value to write.</param>
+            <param name="alignment">
+            Minimum number of characters that should be written for this value.
+            If the value is negative, it indicates left-aligned and the required minimum is the absolute value.
+            </param>
+            <typeparam name="T">The type of the value to write.</typeparam>
+        </member>
+        <member name="M:System.Text.StringHandler.AppendLargeObjectFormatted``1(``0,System.Int32,System.String)">
+            <summary>
+            Writes the specified large-object value to the handler.
+            </summary>
+            <param name="value">The value to write.</param>
+            <param name="format">The format string.</param>
+            <param name="alignment">
+            Minimum number of characters that should be written for this value.
+            If the value is negative, it indicates left-aligned and the required minimum is the absolute value.
+            </param>
+            <typeparam name="T">The type of the value to write.</typeparam>
+        </member>
         <member name="M:System.Text.StringHandler.AppendFormatted(System.Object,System.Int32,System.String)">
             <summary>
             Writes the specified value to the handler.
@@ -2689,6 +2895,43 @@
             </param>
             <seealso cref="P:System.Text.StringHandler.Length"/>
         </member>
+        <member name="M:System.Text.StringHandler.Reverse">
+            <summary>
+            Reverse the instance. For example, if the handler holds a string <c>"Hello"</c>,
+            after called this method, the string will be <c>"olleH"</c>.
+            </summary>
+        </member>
+        <member name="M:System.Text.StringHandler.Insert(System.Int32,System.Char,System.Int32)">
+            <summary>
+            Inserts a new character into the collection at the specified index.
+            </summary>
+            <param name="index">The index.</param>
+            <param name="value">The character you want to insert into the collection.</param>
+            <param name="count">The number.</param>
+        </member>
+        <member name="M:System.Text.StringHandler.Insert(System.Int32,System.String)">
+            <summary>
+            Inserts a new string into the collection at the specified index.
+            </summary>
+            <param name="index">The index you want to insert.</param>
+            <param name="s">The string you want to insert.</param>
+        </member>
+        <member name="M:System.Text.StringHandler.Remove(System.Int32,System.Int32)">
+            <summary>
+            Remove a serial of characters from the specified index, with the specified length.
+            </summary>
+            <param name="startIndex">The start index.</param>
+            <param name="length">The length you want to remove.</param>
+            <remarks>
+            This method will be costly (move a lot of elements), so you shouldn't call this method usually.
+            </remarks>
+        </member>
+        <member name="M:System.Text.StringHandler.RemoveFromEnd(System.Int32)">
+            <summary>
+            Removes the specified number of characters from the end of the collection.
+            </summary>
+            <param name="length">The number of characters you want to remove.</param>
+        </member>
         <member name="M:System.Text.StringHandler.ToStringAndClear">
             <summary>
             Gets the built <see cref="T:System.String"/> and clears the handler.
@@ -2700,66 +2943,6 @@
             and may destabilize the process, as may using any other copies of the handler after
             <see cref="M:System.Text.StringHandler.ToStringAndClear"/> is called on any one of them.
             </remarks>
-        </member>
-        <member name="M:System.Text.StringHandler.Equals(System.Text.StringHandler@,System.Text.StringHandler@)">
-            <summary>
-            Determines whether two instances has same values with the other instance.
-            </summary>
-            <param name="left">The left instance.</param>
-            <param name="right">The right instance.</param>
-            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
-        </member>
-        <member name="M:System.Text.StringHandler.GetGreaterNearestPowerOf2(System.Int32)">
-            <summary>
-            Gets the greater nearest value of power of 2 for the specified value.
-            </summary>
-            <param name="base">The base value.</param>
-            <returns>The result.</returns>
-        </member>
-        <member name="T:System.Text.StringHandler.Enumerator">
-            <summary>
-            Encapsulates the enumerator of this collection.
-            </summary>
-        </member>
-        <member name="F:System.Text.StringHandler.Enumerator._length">
-            <summary>
-            Indicates the length.
-            </summary>
-        </member>
-        <member name="F:System.Text.StringHandler.Enumerator._index">
-            <summary>
-            Indicates whether 
-            </summary>
-        </member>
-        <member name="F:System.Text.StringHandler.Enumerator._ptr">
-            <summary>
-            Indicates the pointer that points to the current character.
-            </summary>
-        </member>
-        <member name="M:System.Text.StringHandler.Enumerator.#ctor(System.Text.StringHandler@)">
-            <summary>
-            Initializes an instance with the specified character list specified as a <see cref="T:System.Span`1"/>.
-            </summary>
-            <param name="chars">The characters.</param>
-            <seealso cref="T:System.Span`1"/>
-        </member>
-        <member name="P:System.Text.StringHandler.Enumerator.Current">
-            <inheritdoc cref="P:System.Collections.IEnumerator.Current"/>
-        </member>
-        <member name="M:System.Text.StringHandler.Enumerator.MoveNext">
-            <inheritdoc cref="M:System.Collections.IEnumerator.MoveNext"/>
-        </member>
-        <member name="M:System.Text.StringHandler.Enumerator.Equals(System.Object)">
-            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
-            <exception cref="T:System.NotSupportedException">Always throws.</exception>
-        </member>
-        <member name="M:System.Text.StringHandler.Enumerator.GetHashCode">
-            <inheritdoc cref="M:System.Object.GetHashCode"/>
-            <exception cref="T:System.NotSupportedException">Always throws.</exception>
-        </member>
-        <member name="M:System.Text.StringHandler.Enumerator.ToString">
-            <inheritdoc cref="M:System.Object.ToString"/>
-            <exception cref="T:System.NotSupportedException">Always throws.</exception>
         </member>
         <member name="M:System.Text.StringHandler.AppendStringDirect(System.String)">
             <summary>
@@ -2851,207 +3034,65 @@
             </para>
             </remarks>
         </member>
-        <member name="M:System.Text.StringHandler.Append(System.Char)">
+        <member name="M:System.Text.StringHandler.Equals(System.Text.StringHandler@,System.Text.StringHandler@)">
             <summary>
-            Append a character at the tail of the collection.
+            Determines whether two instances has same values with the other instance.
             </summary>
-            <param name="c">The character.</param>
+            <param name="left">The left instance.</param>
+            <param name="right">The right instance.</param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
         </member>
-        <member name="M:System.Text.StringHandler.Append(System.Char,System.Int32)">
+        <member name="M:System.Text.StringHandler.GetGreaterNearestPowerOf2(System.Int32)">
             <summary>
-            Append a serial of same characters into the collection.
+            Gets the greater nearest value of power of 2 for the specified value.
             </summary>
-            <param name="c">The character.</param>
-            <param name="count">The number of the character you want to append.</param>
+            <param name="base">The base value.</param>
+            <returns>The result.</returns>
         </member>
-        <member name="M:System.Text.StringHandler.Append(System.Char*,System.Int32)">
+        <member name="T:System.Text.StringHandler.Enumerator">
             <summary>
-            Append a string that is represented as a <see cref="T:System.Char"/>*.
-            </summary>
-            <param name="value">The string.</param>
-            <param name="length">The length of the string.</param>
-        </member>
-        <member name="M:System.Text.StringHandler.AppendLargeObjectFormatted``1(``0@)">
-            <summary>
-            Writes the specified large-object value to the handler.
-            </summary>
-            <param name="value">The value to write.</param>
-            <typeparam name="T">The type of the value to write.</typeparam>
-        </member>
-        <member name="M:System.Text.StringHandler.AppendLargeObjectFormatted``1(``0@,System.String)">
-            <summary>
-            Writes the specified large-object value to the handler.
-            </summary>
-            <param name="value">The value to write.</param>
-            <param name="format">The format string.</param>
-            <typeparam name="T">The type of the value to write.</typeparam>
-        </member>
-        <member name="M:System.Text.StringHandler.AppendLargeObjectFormatted``1(``0@,System.Int32)">
-            <summary>
-            Writes the specified value to the handler.
-            </summary>
-            <param name="value">The value to write.</param>
-            <param name="alignment">
-            Minimum number of characters that should be written for this value.
-            If the value is negative, it indicates left-aligned and the required minimum is the absolute value.
-            </param>
-            <typeparam name="T">The type of the value to write.</typeparam>
-        </member>
-        <member name="M:System.Text.StringHandler.AppendLargeObjectFormatted``1(``0,System.Int32,System.String)">
-            <summary>
-            Writes the specified large-object value to the handler.
-            </summary>
-            <param name="value">The value to write.</param>
-            <param name="format">The format string.</param>
-            <param name="alignment">
-            Minimum number of characters that should be written for this value.
-            If the value is negative, it indicates left-aligned and the required minimum is the absolute value.
-            </param>
-            <typeparam name="T">The type of the value to write.</typeparam>
-        </member>
-        <member name="M:System.Text.StringHandler.AppendCharacters(System.Collections.Generic.IEnumerable{System.Char})">
-            <summary>
-            Append a serial of characters at the tail of the collection.
-            </summary>
-            <param name="chars">The serial of characters.</param>
-        </member>
-        <member name="M:System.Text.StringHandler.AppendLine">
-            <summary>
-            Append a new line string <see cref="P:System.Environment.NewLine"/>.
-            </summary>
-            <seealso cref="P:System.Environment.NewLine"/>
-        </member>
-        <member name="M:System.Text.StringHandler.AppendRange``1(System.Collections.Generic.IEnumerable{``0})">
-            <summary>
-            Append a serial of strings from a serial of elements.
-            </summary>
-            <typeparam name="T">The type of each element.</typeparam>
-            <param name="list">The list of elements.</param>
-        </member>
-        <member name="M:System.Text.StringHandler.AppendRange``1(System.Collections.Generic.IEnumerable{``0},)">
-            <summary>
-            Append a serial of strings converted from a serial of elements.
-            </summary>
-            <typeparam name="T">The type of each element.</typeparam>
-            <param name="list">The list of elements.</param>
-            <param name="converter">
-            The converter that allows the instance to convert into the <see cref="T:System.String"/> representation,
-            whose the rule is defined as a method specified as the function pointer as this argument.
-            </param>
-        </member>
-        <member name="M:System.Text.StringHandler.AppendRange``1(System.Collections.Generic.IEnumerable{``0},System.Func{``0,System.String})">
-            <summary>
-            Append a serial of strings converted from a serial of elements.
-            </summary>
-            <typeparam name="T">The type of each element.</typeparam>
-            <param name="list">The list of elements.</param>
-            <param name="converter">
-            The converter that allows the instance to convert into the <see cref="T:System.String"/> representation,
-            whose the rule is defined as a method specified as the delegate instance as this argument.
-            </param>
-        </member>
-        <member name="M:System.Text.StringHandler.AppendRangeWithSeparator``1(System.Collections.Generic.IEnumerable{``0},System.String)">
-            <summary>
-            Append a serial of strings from a serial of elements.
-            </summary>
-            <typeparam name="T">The type of each element.</typeparam>
-            <param name="list">The list of elements.</param>
-            <param name="separator">The separator to append when an element is finished to append.</param>
-        </member>
-        <member name="M:System.Text.StringHandler.AppendRangeWithSeparator``1(System.Collections.Generic.IEnumerable{``0},,System.String)">
-            <summary>
-            Append a serial of strings converted from a serial of elements.
-            </summary>
-            <typeparam name="T">The type of each element.</typeparam>
-            <param name="list">The list of elements.</param>
-            <param name="converter">
-            The converter that allows the instance to convert into the <see cref="T:System.String"/> representation,
-            whose the rule is defined as a method specified as the function pointer as this argument.
-            </param>
-            <param name="separator">The separator to append when an element is finished to append.</param>
-        </member>
-        <member name="M:System.Text.StringHandler.AppendRangeWithSeparator``1(System.Collections.Generic.IEnumerable{``0},System.Func{``0,System.String},System.String)">
-            <summary>
-            Append a serial of strings converted from a serial of elements.
-            </summary>
-            <typeparam name="T">The type of each element.</typeparam>
-            <param name="list">The list of elements.</param>
-            <param name="converter">
-            The converter that allows the instance to convert into the <see cref="T:System.String"/> representation,
-            whose the rule is defined as a method specified as the delegate instance as this argument.
-            </param>
-            <param name="separator">The separator to append when an element is finished to append.</param>
-        </member>
-        <member name="M:System.Text.StringHandler.AppendRangeWithSeparatorUnsafe``1(``0*,System.Int32,,System.String)">
-            <summary>
-            Append a serial of strings converted from a serial of elements.
-            </summary>
-            <typeparam name="TUnmanaged">The type of each element.</typeparam>
-            <param name="list">The list of elements that is represented as a pointer.</param>
-            <param name="length">The length of the list.</param>
-            <param name="converter">
-            The converter that allows the instance to convert into the <see cref="T:System.String"/> representation,
-            whose the rule is defined as a method specified as the delegate instance as this argument.
-            </param>
-            <param name="separator">The separator to append when an element is finished to append.</param>
-        </member>
-        <member name="M:System.Text.StringHandler.AppendRangeWithSeparatorUnsafe``1(``0*,System.Int32,System.Func{``0,System.String},System.String)">
-            <summary>
-            Append a serial of strings converted from a serial of elements.
-            </summary>
-            <typeparam name="TUnmanaged">The type of each element.</typeparam>
-            <param name="list">The list of elements that is represented as a pointer.</param>
-            <param name="length">The length of the list.</param>
-            <param name="converter">
-            The converter that allows the instance to convert into the <see cref="T:System.String"/> representation,
-            whose the rule is defined as a method specified as the delegate instance as this argument.
-            </param>
-            <param name="separator">The separator to append when an element is finished to append.</param>
-        </member>
-        <member name="M:System.Text.StringHandler.AppendRangeWithLines``1(System.Collections.Generic.IEnumerable{``0})">
-            <summary>
-            Append a series of elements into the current collection.
-            In addition, new line characters will be inserted after each element.
-            </summary>
-            <typeparam name="T">The type of each element.</typeparam>
-            <param name="list">The list.</param>
-        </member>
-        <member name="M:System.Text.StringHandler.Reverse">
-            <summary>
-            Reverse the instance. For example, if the handler holds a string <c>"Hello"</c>,
-            after called this method, the string will be <c>"olleH"</c>.
+            Encapsulates the enumerator of this collection.
             </summary>
         </member>
-        <member name="M:System.Text.StringHandler.Insert(System.Int32,System.Char,System.Int32)">
+        <member name="F:System.Text.StringHandler.Enumerator._length">
             <summary>
-            Inserts a new character into the collection at the specified index.
+            Indicates the length.
             </summary>
-            <param name="index">The index.</param>
-            <param name="value">The character you want to insert into the collection.</param>
-            <param name="count">The number.</param>
         </member>
-        <member name="M:System.Text.StringHandler.Insert(System.Int32,System.String)">
+        <member name="F:System.Text.StringHandler.Enumerator._index">
             <summary>
-            Inserts a new string into the collection at the specified index.
+            Indicates whether 
             </summary>
-            <param name="index">The index you want to insert.</param>
-            <param name="s">The string you want to insert.</param>
         </member>
-        <member name="M:System.Text.StringHandler.Remove(System.Int32,System.Int32)">
+        <member name="F:System.Text.StringHandler.Enumerator._ptr">
             <summary>
-            Remove a serial of characters from the specified index, with the specified length.
+            Indicates the pointer that points to the current character.
             </summary>
-            <param name="startIndex">The start index.</param>
-            <param name="length">The length you want to remove.</param>
-            <remarks>
-            This method will be costly (move a lot of elements), so you shouldn't call this method usually.
-            </remarks>
         </member>
-        <member name="M:System.Text.StringHandler.RemoveFromEnd(System.Int32)">
+        <member name="M:System.Text.StringHandler.Enumerator.#ctor(System.Text.StringHandler@)">
             <summary>
-            Removes the specified number of characters from the end of the collection.
+            Initializes an instance with the specified character list specified as a <see cref="T:System.Span`1"/>.
             </summary>
-            <param name="length">The number of characters you want to remove.</param>
+            <param name="chars">The characters.</param>
+            <seealso cref="T:System.Span`1"/>
+        </member>
+        <member name="P:System.Text.StringHandler.Enumerator.Current">
+            <inheritdoc cref="P:System.Collections.IEnumerator.Current"/>
+        </member>
+        <member name="M:System.Text.StringHandler.Enumerator.MoveNext">
+            <inheritdoc cref="M:System.Collections.IEnumerator.MoveNext"/>
+        </member>
+        <member name="M:System.Text.StringHandler.Enumerator.Equals(System.Object)">
+            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
+            <exception cref="T:System.NotSupportedException">Always throws.</exception>
+        </member>
+        <member name="M:System.Text.StringHandler.Enumerator.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+            <exception cref="T:System.NotSupportedException">Always throws.</exception>
+        </member>
+        <member name="M:System.Text.StringHandler.Enumerator.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+            <exception cref="T:System.NotSupportedException">Always throws.</exception>
         </member>
         <member name="M:System.Text.StringHandler.GetEnumerator">
             <summary>
