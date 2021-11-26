@@ -38,7 +38,7 @@ public static class SymmetryTypeExtensions
 			{
 				if (type.Flags(flag))
 				{
-					sb.AppendFormatted(flag.ToString());
+					sb.Append(flag.ToString());
 					sb.AppendLiteral(separator);
 				}
 			}

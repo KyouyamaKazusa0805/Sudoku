@@ -412,11 +412,11 @@ public unsafe partial struct Candidates : ICellsOrCandidates<Candidates>
 					cells.AddAnyway(candidate / 9);
 				}
 
-				sb.AppendFormatted(cells);
+				sb.Append(cells);
 				sb.Append('(');
-				sb.AppendFormatted(digitGroup.Key + 1);
+				sb.Append(digitGroup.Key + 1);
 				sb.Append(')');
-				sb.AppendFormatted(separator);
+				sb.Append(separator);
 			}
 
 			sb.RemoveFromEnd(separator.Length);

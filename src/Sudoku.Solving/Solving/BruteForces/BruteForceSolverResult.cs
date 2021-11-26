@@ -44,25 +44,25 @@ public sealed record BruteForceSolverResult(
 
 		// Print header.
 		var sb = new StringHandler();
-		sb.AppendFormatted((string)TextResources.Current.AnalysisResultPuzzle);
+		sb.Append((string)TextResources.Current.AnalysisResultPuzzle);
 		sb.AppendGridFormatted(OriginalPuzzle, "#");
 		sb.AppendLine();
 
 		// Print the solution (if not null).
 		if (!Solution.IsUndefined)
 		{
-			sb.AppendFormatted((string)TextResources.Current.AnalysisResultPuzzleSolution);
+			sb.Append((string)TextResources.Current.AnalysisResultPuzzleSolution);
 			sb.AppendGridFormatted(Solution, "!");
 			sb.AppendLine();
 		}
 
 		// Print the elapsed time.
-		sb.AppendFormatted((string)TextResources.Current.AnalysisResultPuzzleHas);
-		sb.AppendFormatted(IsSolved ? string.Empty : (string)TextResources.Current.AnalysisResultNot);
-		sb.AppendFormatted((string)TextResources.Current.AnalysisResultBeenSolved);
+		sb.Append((string)TextResources.Current.AnalysisResultPuzzleHas);
+		sb.Append(IsSolved ? string.Empty : (string)TextResources.Current.AnalysisResultNot);
+		sb.Append((string)TextResources.Current.AnalysisResultBeenSolved);
 		sb.AppendLine();
-		sb.AppendFormatted((string)TextResources.Current.AnalysisResultTimeElapsed);
-		sb.AppendFormatted(ElapsedTime, @"hh\:mm\:ss\.ffffff");
+		sb.Append((string)TextResources.Current.AnalysisResultTimeElapsed);
+		sb.Append(ElapsedTime, @"hh\:mm\:ss\.ffffff");
 		sb.AppendLine();
 
 		return sb.ToStringAndClear();

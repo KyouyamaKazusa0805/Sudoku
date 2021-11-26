@@ -19,7 +19,7 @@ partial struct Grid
 				{
 					if (span[i * 9 + j] - '0' is var digit and not 0)
 					{
-						sb.AppendFormatted(digit);
+						sb.Append(digit);
 					}
 
 					sb.Append('\t');
@@ -197,9 +197,9 @@ partial struct Grid
 							if (!grid[c, i])
 							{
 								// The value is 'true', which means the digit has already been deleted.
-								elims.AppendFormatted(i + 1);
-								elims.AppendFormatted(c / 9 + 1);
-								elims.AppendFormatted(c % 9 + 1);
+								elims.Append(i + 1);
+								elims.Append(c / 9 + 1);
+								elims.Append(c % 9 + 1);
 								elims.Append(' ');
 							}
 						}
@@ -217,7 +217,7 @@ partial struct Grid
 							if (WithModifiables)
 							{
 								sb.Append('+');
-								sb.AppendFormatted(grid[c] + 1);
+								sb.Append(grid[c] + 1);
 							}
 							else
 							{
@@ -228,7 +228,7 @@ partial struct Grid
 						}
 						case CellStatus.Given:
 						{
-							sb.AppendFormatted(grid[c] + 1);
+							sb.Append(grid[c] + 1);
 							break;
 						}
 						default:
@@ -428,7 +428,7 @@ partial struct Grid
 												var innerSb = new StringHandler(initialCapacity: 9);
 												foreach (int z in value)
 												{
-													innerSb.AppendFormatted(z + 1);
+													innerSb.Append(z + 1);
 												}
 
 												s = innerSb.ToStringAndClear();
@@ -437,8 +437,8 @@ partial struct Grid
 											}
 										}
 
-										sb.AppendFormatted(s.PadRight(maxLengths[i]));
-										sb.AppendFormatted(i != end ? "  " : " ");
+										sb.Append(s.PadRight(maxLengths[i]));
+										sb.Append(i != end ? "  " : " ");
 									}
 								}
 							}
@@ -453,11 +453,11 @@ partial struct Grid
 				static void printTabLines(ref StringHandler sb, char c1, char c2, char fillingChar, int* m)
 				{
 					sb.Append(c1);
-					sb.AppendFormatted(string.Empty.PadRight(m[0] + m[1] + m[2] + 6, fillingChar));
+					sb.Append(string.Empty.PadRight(m[0] + m[1] + m[2] + 6, fillingChar));
 					sb.Append(c2);
-					sb.AppendFormatted(string.Empty.PadRight(m[3] + m[4] + m[5] + 6, fillingChar));
+					sb.Append(string.Empty.PadRight(m[3] + m[4] + m[5] + 6, fillingChar));
 					sb.Append(c2);
-					sb.AppendFormatted(string.Empty.PadRight(m[6] + m[7] + m[8] + 6, fillingChar));
+					sb.Append(string.Empty.PadRight(m[6] + m[7] + m[8] + 6, fillingChar));
 					sb.Append(c1);
 					sb.AppendLine();
 				}

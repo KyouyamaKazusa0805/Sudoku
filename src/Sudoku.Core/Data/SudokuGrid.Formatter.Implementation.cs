@@ -21,7 +21,7 @@ partial struct SudokuGrid
 				{
 					if (span[i * 9 + j] - '0' is var digit and not 0)
 					{
-						sb.AppendFormatted(digit);
+						sb.Append(digit);
 					}
 
 					sb.Append('\t');
@@ -199,9 +199,9 @@ partial struct SudokuGrid
 							if (!grid[c, i])
 							{
 								// The value is 'true', which means the digit has already been deleted.
-								elims.AppendFormatted(i + 1);
-								elims.AppendFormatted(c / 9 + 1);
-								elims.AppendFormatted(c % 9 + 1);
+								elims.Append(i + 1);
+								elims.Append(c / 9 + 1);
+								elims.Append(c % 9 + 1);
 								elims.Append(' ');
 							}
 						}
@@ -219,7 +219,7 @@ partial struct SudokuGrid
 							if (WithModifiables)
 							{
 								sb.Append('+');
-								sb.AppendFormatted(grid[c] + 1);
+								sb.Append(grid[c] + 1);
 							}
 							else
 							{
@@ -230,7 +230,7 @@ partial struct SudokuGrid
 						}
 						case CellStatus.Given:
 						{
-							sb.AppendFormatted(grid[c] + 1);
+							sb.Append(grid[c] + 1);
 							break;
 						}
 						default:
@@ -427,7 +427,7 @@ partial struct SudokuGrid
 												var innerSb = new StringHandler(initialCapacity: 9);
 												foreach (int z in value)
 												{
-													innerSb.AppendFormatted(z + 1);
+													innerSb.Append(z + 1);
 												}
 
 												s = innerSb.ToStringAndClear();

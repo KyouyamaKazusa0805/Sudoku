@@ -95,16 +95,16 @@ partial record AnalysisResult
 
 			// Print header.
 			var sb = new StringHandler(initialCapacity: 300);
-			sb.AppendFormatted((string)TextResources.Current.AnalysisResultPuzzle);
+			sb.Append((string)TextResources.Current.AnalysisResultPuzzle);
 			sb.AppendGridFormatted(puzzle, "#");
-			sb.AppendFormatted((string)TextResources.Current.AnalysisResultSolvingTool);
-			sb.AppendFormatted(solverName);
+			sb.Append((string)TextResources.Current.AnalysisResultSolvingTool);
+			sb.Append(solverName);
 			sb.AppendLine();
 
 			// Print solving steps (if worth).
 			if (options.Flags(ShowSteps) && steps is { Count: not 0 })
 			{
-				sb.AppendFormatted((string)TextResources.Current.AnalysisResultSolvingSteps);
+				sb.Append((string)TextResources.Current.AnalysisResultSolvingSteps);
 				sb.AppendLine();
 
 				if (getBottleneck() is var (bIndex, bInfo))
@@ -113,7 +113,7 @@ partial record AnalysisResult
 					{
 						if (i > bIndex && options.Flags(ShowStepsAfterBottleneck))
 						{
-							sb.AppendFormatted((string)TextResources.Current.Ellipsis);
+							sb.Append((string)TextResources.Current.Ellipsis);
 							sb.AppendLine();
 
 							break;
@@ -133,8 +133,8 @@ partial record AnalysisResult
 							_ => string.Empty,
 						};
 
-						sb.AppendFormatted(labelInfo);
-						sb.AppendFormatted(infoStr);
+						sb.Append(labelInfo);
+						sb.Append(infoStr);
 						sb.AppendLine();
 					}
 
@@ -142,17 +142,17 @@ partial record AnalysisResult
 					{
 						a(ref sb, options.Flags(ShowSeparators));
 
-						sb.AppendFormatted((string)TextResources.Current.AnalysisResultBottleneckStep);
+						sb.Append((string)TextResources.Current.AnalysisResultBottleneckStep);
 
 						if (options.Flags(ShowStepLabel))
 						{
-							sb.AppendFormatted((string)TextResources.Current.AnalysisResultInStep);
-							sb.AppendFormatted(bIndex + 1);
-							sb.AppendFormatted((string)TextResources.Current.Colon);
+							sb.Append((string)TextResources.Current.AnalysisResultInStep);
+							sb.Append(bIndex + 1);
+							sb.Append((string)TextResources.Current.Colon);
 						}
 
 						sb.Append(' ');
-						sb.AppendFormatted(bInfo);
+						sb.Append(bInfo);
 						sb.AppendLine();
 					}
 
@@ -166,16 +166,16 @@ partial record AnalysisResult
 				var solvingStepsGrouped = new List<IGrouping<string, StepInfo>>(
 					from step in steps orderby step.Difficulty group step by step.Name
 				);
-				sb.AppendFormatted((string)TextResources.Current.AnalysisResultTechniqueUsed);
+				sb.Append((string)TextResources.Current.AnalysisResultTechniqueUsed);
 				sb.AppendLine();
 
 				if (options.Flags(ShowStepDetail))
 				{
-					sb.AppendFormatted((string)TextResources.Current.AnalysisResultMin, 6);
+					sb.Append((string)TextResources.Current.AnalysisResultMin, 6);
 					sb.Append(',');
 					sb.Append(' ');
-					sb.AppendFormatted((string)TextResources.Current.AnalysisResultTotal, 6);
-					sb.AppendFormatted((string)TextResources.Current.AnalysisResultTechniqueUsing);
+					sb.Append((string)TextResources.Current.AnalysisResultTotal, 6);
+					sb.Append((string)TextResources.Current.AnalysisResultTechniqueUsing);
 					sb.AppendLine();
 				}
 
@@ -191,33 +191,33 @@ partial record AnalysisResult
 							currentMinimum = Min(currentMinimum, difficulty);
 						}
 
-						sb.AppendFormatted(currentMinimum, 6, "0.0");
+						sb.Append(currentMinimum, 6, "0.0");
 						sb.Append(',');
 						sb.Append(' ');
-						sb.AppendFormatted(currentTotal, 6, "0.0");
+						sb.Append(currentTotal, 6, "0.0");
 						sb.Append(')');
 						sb.Append(' ');
 					}
 
-					sb.AppendFormatted(solvingStepsGroup.Count(), 3);
+					sb.Append(solvingStepsGroup.Count(), 3);
 					sb.Append(' ');
 					sb.Append('*');
 					sb.Append(' ');
-					sb.AppendFormatted(solvingStepsGroup.Key);
+					sb.Append(solvingStepsGroup.Key);
 					sb.AppendLine();
 				}
 
 				if (options.Flags(ShowStepDetail))
 				{
-					sb.AppendFormatted("  (---");
-					sb.AppendFormatted(total, 8);
+					sb.Append("  (---");
+					sb.Append(total, 8);
 					sb.Append(')');
 					sb.Append(' ');
 				}
 
-				sb.AppendFormatted(stepsCount, 3);
+				sb.Append(stepsCount, 3);
 				sb.Append(' ');
-				sb.AppendFormatted(
+				sb.Append(
 					stepsCount == 1
 						? (string)TextResources.Current.AnalysisResultStepSingular
 						: (string)TextResources.Current.AnalysisResultStepPlural
@@ -229,32 +229,32 @@ partial record AnalysisResult
 			}
 
 			// Print detail data.
-			sb.AppendFormatted((string)TextResources.Current.AnalysisResultPuzzleRating);
-			sb.AppendFormatted(max, "0.0");
+			sb.Append((string)TextResources.Current.AnalysisResultPuzzleRating);
+			sb.Append(max, "0.0");
 			sb.Append('/');
-			sb.AppendFormatted(pearl, "0.0");
+			sb.Append(pearl, "0.0");
 			sb.Append('/');
-			sb.AppendFormatted(diamond, "0.0");
+			sb.Append(diamond, "0.0");
 			sb.AppendLine();
 
 			// Print the solution (if not null).
 			if (solution is { } solutionNotNull)
 			{
-				sb.AppendFormatted((string)TextResources.Current.AnalysisResultPuzzleSolution);
+				sb.Append((string)TextResources.Current.AnalysisResultPuzzleSolution);
 				sb.AppendGridFormatted(solutionNotNull, "!");
 				sb.AppendLine();
 			}
 
 			// Print the elapsed time.
-			sb.AppendFormatted((string)TextResources.Current.AnalysisResultPuzzleHas);
+			sb.Append((string)TextResources.Current.AnalysisResultPuzzleHas);
 			if (hasSolved)
 			{
-				sb.AppendFormatted((string)TextResources.Current.AnalysisResultNot);
+				sb.Append((string)TextResources.Current.AnalysisResultNot);
 			}
-			sb.AppendFormatted((string)TextResources.Current.AnalysisResultBeenSolved);
+			sb.Append((string)TextResources.Current.AnalysisResultBeenSolved);
 			sb.AppendLine();
-			sb.AppendFormatted((string)TextResources.Current.AnalysisResultTimeElapsed);
-			sb.AppendFormatted(elapsed, @"hh\:mm\:ss\.fff");
+			sb.Append((string)TextResources.Current.AnalysisResultTimeElapsed);
+			sb.Append(elapsed, @"hh\:mm\:ss\.fff");
 
 			a(ref sb, options.Flags(ShowSeparators));
 
@@ -263,7 +263,7 @@ partial record AnalysisResult
 			// only one parameter and its type is 'Grid'.
 			if (options.Flags(ShowAttributes))
 			{
-				sb.AppendFormatted((string)TextResources.Current.AnalysisResultAttributes);
+				sb.Append((string)TextResources.Current.AnalysisResultAttributes);
 				sb.AppendLine();
 
 				foreach (var methodInfo in
@@ -276,7 +276,7 @@ partial record AnalysisResult
 					var grid = (SudokuGrid)methodInfo.Invoke(null, new object[] { puzzle })!;
 
 					sb.Append(' ', 4);
-					sb.AppendFormatted(methodInfo.Name);
+					sb.Append(methodInfo.Name);
 					sb.Append(':');
 					sb.Append(' ');
 					sb.AppendGridFormatted(grid, "0");
@@ -289,14 +289,14 @@ partial record AnalysisResult
 			// Print backdoors (if worth).
 			if (options.Flags(ShowBackdoors))
 			{
-				sb.AppendFormatted((string)TextResources.Current.AnalysisResultBackdoors);
+				sb.Append((string)TextResources.Current.AnalysisResultBackdoors);
 				sb.AppendLine();
 
 				var searcher = new BackdoorSearcher();
 				foreach (var assignment in searcher.SearchForBackdoorsExact(puzzle, 0))
 				{
 					sb.Append(' ', 4);
-					sb.AppendFormatted(assignment[0]);
+					sb.Append(assignment[0]);
 					sb.AppendLine();
 				}
 
@@ -306,7 +306,7 @@ partial record AnalysisResult
 			// Print the additional information (if worth).
 			if (additional is not null)
 			{
-				sb.AppendFormatted(additional);
+				sb.Append(additional);
 			}
 
 			return sb.ToStringAndClear();

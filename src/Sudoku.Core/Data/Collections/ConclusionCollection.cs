@@ -94,16 +94,16 @@ public readonly ref partial struct ConclusionCollection
 						from conclusion in typeGroup
 						group conclusion by conclusion.Digit)
 					{
-						sb.AppendFormatted(new Cells(from conclusion in digitGroup select conclusion.Cell));
-						sb.AppendFormatted(op);
-						sb.AppendFormatted(digitGroup.Key + 1);
-						sb.AppendFormatted(separator);
+						sb.Append(new Cells(from conclusion in digitGroup select conclusion.Cell));
+						sb.Append(op);
+						sb.Append(digitGroup.Key + 1);
+						sb.Append(separator);
 					}
 
 					sb.RemoveFromEnd(separator.Length);
 					if (!hasOnlyOneType)
 					{
-						sb.AppendFormatted(separator);
+						sb.Append(separator);
 					}
 				}
 

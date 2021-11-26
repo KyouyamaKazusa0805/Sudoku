@@ -88,14 +88,14 @@ partial record ManualSolverResult
 
 			// Print header.
 			var sb = new StringHandler();
-			sb.AppendFormatted((string)TextResources.Current.AnalysisResultPuzzle);
+			sb.Append((string)TextResources.Current.AnalysisResultPuzzle);
 			sb.AppendGridFormatted(puzzle, "#");
 			sb.AppendLine();
 
 			// Print solving steps (if worth).
 			if (options.Flags(SolverResultFormattingOptions.ShowSteps) && steps.Length != 0)
 			{
-				sb.AppendFormatted((string)TextResources.Current.AnalysisResultSolvingSteps);
+				sb.Append((string)TextResources.Current.AnalysisResultSolvingSteps);
 				sb.AppendLine();
 
 				if (getBottleneck(this) is var (bIndex, bInfo))
@@ -104,7 +104,7 @@ partial record ManualSolverResult
 					{
 						if (i > bIndex && options.Flags(SolverResultFormattingOptions.ShowStepsAfterBottleneck))
 						{
-							sb.AppendFormatted((string)TextResources.Current.Ellipsis);
+							sb.Append((string)TextResources.Current.Ellipsis);
 							sb.AppendLine();
 
 							break;
@@ -130,8 +130,8 @@ partial record ManualSolverResult
 							_ => string.Empty,
 						};
 
-						sb.AppendFormatted(labelInfo);
-						sb.AppendFormatted(infoStr);
+						sb.Append(labelInfo);
+						sb.Append(infoStr);
 						sb.AppendLine();
 					}
 
@@ -139,17 +139,17 @@ partial record ManualSolverResult
 					{
 						a(ref sb, options.Flags(SolverResultFormattingOptions.ShowSeparators));
 
-						sb.AppendFormatted((string)TextResources.Current.AnalysisResultBottleneckStep);
+						sb.Append((string)TextResources.Current.AnalysisResultBottleneckStep);
 
 						if (options.Flags(SolverResultFormattingOptions.ShowStepLabel))
 						{
-							sb.AppendFormatted((string)TextResources.Current.AnalysisResultInStep);
-							sb.AppendFormatted(bIndex + 1);
-							sb.AppendFormatted((string)TextResources.Current.Colon);
+							sb.Append((string)TextResources.Current.AnalysisResultInStep);
+							sb.Append(bIndex + 1);
+							sb.Append((string)TextResources.Current.Colon);
 						}
 
 						sb.Append(' ');
-						sb.AppendFormatted(bInfo);
+						sb.Append(bInfo);
 						sb.AppendLine();
 					}
 
@@ -160,16 +160,16 @@ partial record ManualSolverResult
 			// Print solving step statistics (if worth).
 			if (!steps.IsDefault)
 			{
-				sb.AppendFormatted((string)TextResources.Current.AnalysisResultTechniqueUsed);
+				sb.Append((string)TextResources.Current.AnalysisResultTechniqueUsed);
 				sb.AppendLine();
 
 				if (options.Flags(SolverResultFormattingOptions.ShowStepDetail))
 				{
-					sb.AppendFormatted((string)TextResources.Current.AnalysisResultMin, 6);
+					sb.Append((string)TextResources.Current.AnalysisResultMin, 6);
 					sb.Append(',');
 					sb.Append(' ');
-					sb.AppendFormatted((string)TextResources.Current.AnalysisResultTotal, 6);
-					sb.AppendFormatted((string)TextResources.Current.AnalysisResultTechniqueUsing);
+					sb.Append((string)TextResources.Current.AnalysisResultTotal, 6);
+					sb.Append((string)TextResources.Current.AnalysisResultTechniqueUsing);
 				}
 
 				foreach (var solvingStepsGroup in from s in steps orderby s.Difficulty group s by s.Name)
@@ -184,31 +184,31 @@ partial record ManualSolverResult
 							currentMinimum = Min(currentMinimum, difficulty);
 						}
 
-						sb.AppendFormatted(currentMinimum, 6, "0.0");
+						sb.Append(currentMinimum, 6, "0.0");
 						sb.Append(',');
 						sb.Append(' ');
-						sb.AppendFormatted(currentTotal, 6, "0.0");
+						sb.Append(currentTotal, 6, "0.0");
 						sb.Append(')');
 						sb.Append(' ');
 					}
 
-					sb.AppendFormatted(solvingStepsGroup.Count(), 3);
-					sb.AppendFormatted(" * ");
-					sb.AppendFormatted(solvingStepsGroup.Key);
+					sb.Append(solvingStepsGroup.Count(), 3);
+					sb.Append(" * ");
+					sb.Append(solvingStepsGroup.Key);
 					sb.AppendLine();
 				}
 
 				if (options.Flags(SolverResultFormattingOptions.ShowStepDetail))
 				{
-					sb.AppendFormatted("  (---");
-					sb.AppendFormatted(total, 8);
+					sb.Append("  (---");
+					sb.Append(total, 8);
 					sb.Append(')');
 					sb.Append(' ');
 				}
 
-				sb.AppendFormatted(stepsCount, 3);
+				sb.Append(stepsCount, 3);
 				sb.Append(' ');
-				sb.AppendFormatted(
+				sb.Append(
 					stepsCount == 1
 						? (string)TextResources.Current.AnalysisResultStepSingular
 						: (string)TextResources.Current.AnalysisResultStepPlural
@@ -219,32 +219,32 @@ partial record ManualSolverResult
 			}
 
 			// Print detail data.
-			sb.AppendFormatted((string)TextResources.Current.AnalysisResultPuzzleRating);
-			sb.AppendFormatted(max, "0.0");
+			sb.Append((string)TextResources.Current.AnalysisResultPuzzleRating);
+			sb.Append(max, "0.0");
 			sb.Append('/');
-			sb.AppendFormatted(pearl, "0.0");
+			sb.Append(pearl, "0.0");
 			sb.Append('/');
-			sb.AppendFormatted(diamond, "0.0");
+			sb.Append(diamond, "0.0");
 			sb.AppendLine();
 
 			// Print the solution (if not null).
 			if (!solution.IsUndefined)
 			{
-				sb.AppendFormatted((string)TextResources.Current.AnalysisResultPuzzleSolution);
+				sb.Append((string)TextResources.Current.AnalysisResultPuzzleSolution);
 				sb.AppendGridFormatted(solution, "!");
 			}
 
 			// Print the elapsed time.
-			sb.AppendFormatted((string)TextResources.Current.AnalysisResultPuzzleHas);
+			sb.Append((string)TextResources.Current.AnalysisResultPuzzleHas);
 			if (hasSolved)
 			{
-				sb.AppendFormatted((string)TextResources.Current.AnalysisResultNot);
+				sb.Append((string)TextResources.Current.AnalysisResultNot);
 			}
 
-			sb.AppendFormatted((string)TextResources.Current.AnalysisResultBeenSolved);
+			sb.Append((string)TextResources.Current.AnalysisResultBeenSolved);
 			sb.AppendLine();
-			sb.AppendFormatted((string)TextResources.Current.AnalysisResultTimeElapsed);
-			sb.AppendFormatted(elapsed, @"hh\:mm\:ss\.fff");
+			sb.Append((string)TextResources.Current.AnalysisResultTimeElapsed);
+			sb.Append(elapsed, @"hh\:mm\:ss\.fff");
 			sb.AppendLine();
 
 			a(ref sb, options.Flags(SolverResultFormattingOptions.ShowSeparators));

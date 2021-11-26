@@ -783,7 +783,7 @@ public unsafe partial struct Cells : ICellsOrCandidates<Cells>, IFormattable, IJ
 
 						if (j != 2)
 						{
-							sb.AppendFormatted("| ");
+							sb.Append("| ");
 						}
 						else
 						{
@@ -794,7 +794,7 @@ public unsafe partial struct Cells : ICellsOrCandidates<Cells>, IFormattable, IJ
 
 				if (i != 2)
 				{
-					sb.AppendFormatted("------+-------+------");
+					sb.Append("------+-------+------");
 					sb.AppendLine();
 				}
 			}
@@ -819,20 +819,20 @@ public unsafe partial struct Cells : ICellsOrCandidates<Cells>, IFormattable, IJ
 			bool addCurlyBraces = dic.Count > 1;
 			if (addCurlyBraces)
 			{
-				sbRow.AppendFormatted(leftCurlyBrace);
+				sbRow.Append(leftCurlyBrace);
 			}
 			foreach (int row in dic.Keys)
 			{
 				sbRow.Append('r');
-				sbRow.AppendFormatted(row + 1);
+				sbRow.Append(row + 1);
 				sbRow.Append('c');
 				sbRow.AppendRange(dic[row], static v => (v + 1).ToString());
-				sbRow.AppendFormatted(separator);
+				sbRow.Append(separator);
 			}
 			sbRow.RemoveFromEnd(separator.Length);
 			if (addCurlyBraces)
 			{
-				sbRow.AppendFormatted(rightCurlyBrace);
+				sbRow.Append(rightCurlyBrace);
 			}
 
 			dic.Clear();
@@ -849,7 +849,7 @@ public unsafe partial struct Cells : ICellsOrCandidates<Cells>, IFormattable, IJ
 			addCurlyBraces = dic.Count > 1;
 			if (addCurlyBraces)
 			{
-				sbColumn.AppendFormatted(leftCurlyBrace);
+				sbColumn.Append(leftCurlyBrace);
 			}
 
 			foreach (int column in dic.Keys)
@@ -857,13 +857,13 @@ public unsafe partial struct Cells : ICellsOrCandidates<Cells>, IFormattable, IJ
 				sbColumn.Append('r');
 				sbColumn.AppendRange(dic[column], static v => (v + 1).ToString());
 				sbColumn.Append('c');
-				sbColumn.AppendFormatted(column + 1);
-				sbColumn.AppendFormatted(separator);
+				sbColumn.Append(column + 1);
+				sbColumn.Append(separator);
 			}
 			sbColumn.RemoveFromEnd(separator.Length);
 			if (addCurlyBraces)
 			{
-				sbColumn.AppendFormatted(rightCurlyBrace);
+				sbColumn.Append(rightCurlyBrace);
 			}
 
 			return (sbRow.Length > sbColumn.Length ? sbColumn : sbRow).ToStringAndClear();
@@ -876,7 +876,7 @@ public unsafe partial struct Cells : ICellsOrCandidates<Cells>, IFormattable, IJ
 			long value = @this._low;
 			for (i = 0; i < 27; i++, value >>= 1)
 			{
-				sb.AppendFormatted(value & 1);
+				sb.Append(value & 1);
 			}
 			if (withSeparator)
 			{
@@ -884,11 +884,11 @@ public unsafe partial struct Cells : ICellsOrCandidates<Cells>, IFormattable, IJ
 			}
 			for (; i < 41; i++, value >>= 1)
 			{
-				sb.AppendFormatted(value & 1);
+				sb.Append(value & 1);
 			}
 			for (value = @this._high; i < 54; i++, value >>= 1)
 			{
-				sb.AppendFormatted(value & 1);
+				sb.Append(value & 1);
 			}
 			if (withSeparator)
 			{
@@ -896,7 +896,7 @@ public unsafe partial struct Cells : ICellsOrCandidates<Cells>, IFormattable, IJ
 			}
 			for (; i < 81; i++, value >>= 1)
 			{
-				sb.AppendFormatted(value & 1);
+				sb.Append(value & 1);
 			}
 
 			sb.Reverse();

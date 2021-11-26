@@ -42,10 +42,10 @@ public readonly ref partial struct ChainLinkCollection
 			var sb = new StringHandler(initialCapacity: 100);
 			foreach (var (start, _, type) in links)
 			{
-				sb.AppendFormatted(new Candidates { start });
-				sb.AppendFormatted(type.GetNotation());
+				sb.Append(new Candidates { start }.ToString());
+				sb.Append(type.GetNotation());
 			}
-			sb.AppendFormatted(new Candidates { links[^1].EndCandidate }.ToString());
+			sb.Append(new Candidates { links[^1].EndCandidate }.ToString());
 
 			// Remove redundant digit labels:
 			// r1c1(1) == r1c2(1) --> r1c1 == r1c2(1).

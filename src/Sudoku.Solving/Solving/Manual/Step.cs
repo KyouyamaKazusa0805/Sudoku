@@ -205,14 +205,14 @@ public abstract record Step(ImmutableArray<Conclusion> Conclusions, ImmutableArr
 				}
 				case (Left: '{', Right: '{'):
 				{
-					sb.AppendFormatted("{{");
+					sb.Append("{{");
 					i++;
 
 					break;
 				}
 				case (Left: '}', Right: '}'):
 				{
-					sb.AppendFormatted("}}");
+					sb.Append("}}");
 					i++;
 
 					break;
@@ -234,7 +234,7 @@ public abstract record Step(ImmutableArray<Conclusion> Conclusions, ImmutableArr
 					}
 
 					sb.Append('{');
-					sb.AppendFormatted(formatCount++);
+					sb.Append(formatCount++);
 					sb.Append('}');
 
 					formats.Add(format[(i + 1)..pos]);

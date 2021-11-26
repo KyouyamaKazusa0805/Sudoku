@@ -94,10 +94,10 @@ public readonly ref partial struct RegionCollection
 					continue;
 				}
 
-				sb.AppendFormatted(@this.GetLabel(i));
+				sb.Append(@this.GetLabel(i));
 				foreach (int z in dic[i])
 				{
-					sb.AppendFormatted(z + 1);
+					sb.Append(z + 1);
 				}
 			}
 
@@ -116,7 +116,7 @@ public readonly ref partial struct RegionCollection
 		{
 			if (this[region])
 			{
-				sb.AppendFormatted(GetLabel(region / 9));
+				sb.Append(GetLabel(region / 9));
 			}
 		}
 

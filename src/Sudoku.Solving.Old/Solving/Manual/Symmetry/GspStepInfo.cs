@@ -63,15 +63,15 @@ public sealed record GspStepInfo(
 				{
 					int? value = MappingTable[i];
 
-					sb.AppendFormatted(i + 1);
+					sb.Append(i + 1);
 
 					if (value is { } v && value != i)
 					{
-						sb.AppendFormatted(" -> ");
-						sb.AppendFormatted(v + 1);
+						sb.Append(" -> ");
+						sb.Append(v + 1);
 					}
 
-					sb.AppendFormatted(separator);
+					sb.Append(separator);
 				}
 
 				sb.RemoveFromEnd(separator.Length);

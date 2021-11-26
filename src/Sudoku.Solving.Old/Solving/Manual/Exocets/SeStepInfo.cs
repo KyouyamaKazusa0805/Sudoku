@@ -52,9 +52,9 @@ public sealed record SeStepInfo(
 						continue;
 					}
 
-					sb.AppendFormatted(digit + 1);
-					sb.AppendFormatted(new RegionCollection(mask.GetAllSets()).ToString());
-					sb.AppendFormatted(separator);
+					sb.Append(digit + 1);
+					sb.Append(new RegionCollection(mask.GetAllSets()).ToString());
+					sb.Append(separator);
 
 					count++;
 				}

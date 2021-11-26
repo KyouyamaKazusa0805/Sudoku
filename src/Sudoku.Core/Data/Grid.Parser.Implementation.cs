@@ -91,7 +91,7 @@ partial struct Grid
 					{
 						fixed (char* c = digitString)
 						{
-							sb.AppendFormatted(string.IsNullOrEmpty(digitString) ? '.' : *c);
+							sb.Append(string.IsNullOrEmpty(digitString) ? '.' : *c);
 						}
 					}
 				}

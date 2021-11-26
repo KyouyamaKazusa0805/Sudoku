@@ -80,8 +80,8 @@ public readonly ref partial struct DigitCollection
 		var sb = new StringHandler(initialCapacity: 9);
 		foreach (int digit in this)
 		{
-			sb.AppendFormatted(digit + 1);
-			sb.AppendFormatted(separator);
+			sb.Append(digit + 1);
+			sb.Append(separator);
 		}
 
 		sb.RemoveFromEnd(separator.Length);
