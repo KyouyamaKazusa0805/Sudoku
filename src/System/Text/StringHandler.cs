@@ -36,7 +36,7 @@ namespace System.Text;
 /// <seealso cref="IFormatProvider"/>
 [InterpolatedStringHandler]
 [AutoGetEnumerator("@", MemberConversion = "new(@)", ReturnType = typeof(Enumerator))]
-public ref partial struct StringHandler
+public unsafe ref partial struct StringHandler
 {
 #if USE_NEWER_CONSTANT_VALUES
 	/// <summary>
@@ -197,7 +197,7 @@ public ref partial struct StringHandler
 	/// that is initialized by a string value.
 	/// </summary>
 	/// <param name="initialString">The initialized string.</param>
-	public unsafe StringHandler(string initialString)
+	public StringHandler(string initialString)
 	{
 		fixed (char* pChars = _chars, pInitialString = initialString)
 		{
@@ -236,7 +236,7 @@ public ref partial struct StringHandler
 	/// Copies the current colletion into the specified collection.
 	/// </summary>
 	/// <param name="handler">The collection.</param>
-	public readonly unsafe void CopyTo(ref StringHandler handler)
+	public readonly void CopyTo(ref StringHandler handler)
 	{
 		fixed (char* old = _chars, @new = handler._chars)
 		{
@@ -287,7 +287,7 @@ public ref partial struct StringHandler
 	/// </remarks>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	[EditorBrowsable(EditorBrowsableState.Never)]
-	public unsafe void AppendLiteral(string? value)
+	public void AppendLiteral(string? value)
 	{
 		// TODO: https://github.com/dotnet/runtime/issues/41692#issuecomment-685192193
 
@@ -409,7 +409,7 @@ public ref partial struct StringHandler
 	/// </summary>
 	/// <param name="value">The string.</param>
 	/// <param name="length">The length of the string.</param>
-	public unsafe void Append(char* value, int length)
+	public void Append(char* value, int length)
 	{
 		int pos = Length;
 		if (pos > _chars.Length - length)
@@ -451,13 +451,26 @@ public ref partial struct StringHandler
 	/// <summary>
 	/// Writes the specified interpolated string with the specified format provider into the handler.
 	/// </summary>
-	/// <param name="formatProvider">The format provider used.</param>
+	/// <param name="provider">The format provider used.</param>
 	/// <param name="handler">The handler that holds the interpolated string processings.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public void Append(
-		IFormatProvider? formatProvider,
-		[InterpolatedStringHandlerArgument("formatProvider")] ref DefaultInterpolatedStringHandler handler
-	) => AppendFormatted(string.Create(formatProvider, ref handler));
+		IFormatProvider? provider,
+		[InterpolatedStringHandlerArgument("provider")] ref DefaultInterpolatedStringHandler handler
+	) => AppendFormatted(string.Create(provider, ref handler));
+
+	/// <summary>
+	/// Writes the specified interpolated string with the specified format provider into the handler.
+	/// </summary>
+	/// <param name="provider">The format provider used.</param>
+	/// <param name="initialBuffer">The initial buffer used.</param>
+	/// <param name="handler">The handler that holds the interpolated string processings.</param>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public void Append(
+		IFormatProvider? provider,
+		Span<char> initialBuffer,
+		[InterpolatedStringHandlerArgument("provider", "initialBuffer")] ref DefaultInterpolatedStringHandler handler
+	) => AppendFormatted(string.Create(provider, initialBuffer, ref handler));
 
 	/// <inheritdoc cref="AppendFormatted{T}(T)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -517,7 +530,7 @@ public ref partial struct StringHandler
 	/// The converter that allows the instance to convert into the <see cref="string"/> representation,
 	/// whose the rule is defined as a method specified as the function pointer as this argument.
 	/// </param>
-	public unsafe void AppendRange<T>(IEnumerable<T> list, delegate*<T, string?> converter)
+	public void AppendRange<T>(IEnumerable<T> list, delegate*<T, string?> converter)
 	{
 		foreach (var element in list)
 		{
@@ -569,7 +582,7 @@ public ref partial struct StringHandler
 	/// whose the rule is defined as a method specified as the function pointer as this argument.
 	/// </param>
 	/// <param name="separator">The separator to append when an element is finished to append.</param>
-	public unsafe void AppendRangeWithSeparator<T>(IEnumerable<T> list, delegate*<T, string?> converter, string separator)
+	public void AppendRangeWithSeparator<T>(IEnumerable<T> list, delegate*<T, string?> converter, string separator)
 	{
 		foreach (var element in list)
 		{
@@ -612,7 +625,7 @@ public ref partial struct StringHandler
 	/// whose the rule is defined as a method specified as the delegate instance as this argument.
 	/// </param>
 	/// <param name="separator">The separator to append when an element is finished to append.</param>
-	public unsafe void AppendRangeWithSeparatorUnsafe<TUnmanaged>(
+	public void AppendRangeWithSeparatorUnsafe<TUnmanaged>(
 		TUnmanaged* list,
 		int length,
 		delegate*<TUnmanaged, string?> converter,
@@ -641,7 +654,7 @@ public ref partial struct StringHandler
 	/// whose the rule is defined as a method specified as the delegate instance as this argument.
 	/// </param>
 	/// <param name="separator">The separator to append when an element is finished to append.</param>
-	public unsafe void AppendRangeWithSeparatorUnsafe<TUnmanaged>(
+	public void AppendRangeWithSeparatorUnsafe<TUnmanaged>(
 		TUnmanaged* list,
 		int length,
 		Func<TUnmanaged, string?> converter,
@@ -1024,7 +1037,7 @@ public ref partial struct StringHandler
 	/// Reverse the instance. For example, if the handler holds a string <c>"Hello"</c>,
 	/// after called this method, the string will be <c>"olleH"</c>.
 	/// </summary>
-	public unsafe void Reverse()
+	public void Reverse()
 	{
 		fixed (char* p = _chars)
 		{
@@ -1081,7 +1094,7 @@ public ref partial struct StringHandler
 	/// <remarks>
 	/// This method will be costly (move a lot of elements), so you shouldn't call this method usually.
 	/// </remarks>
-	public unsafe void Remove(int startIndex, int length)
+	public void Remove(int startIndex, int length)
 	{
 		fixed (char* pThis = _chars)
 		{
@@ -1318,7 +1331,7 @@ public ref partial struct StringHandler
 	/// <param name="right">The right instance.</param>
 	/// <returns>A <see cref="bool"/> result indicating that.</returns>
 	[ProxyEquality]
-	public static unsafe bool Equals(in StringHandler left, in StringHandler right)
+	public static bool Equals(in StringHandler left, in StringHandler right)
 	{
 		if (left.Length != right.Length)
 		{

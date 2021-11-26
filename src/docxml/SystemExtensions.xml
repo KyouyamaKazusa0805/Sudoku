@@ -2614,7 +2614,15 @@
             <summary>
             Writes the specified interpolated string with the specified format provider into the handler.
             </summary>
-            <param name="formatProvider">The format provider used.</param>
+            <param name="provider">The format provider used.</param>
+            <param name="handler">The handler that holds the interpolated string processings.</param>
+        </member>
+        <member name="M:System.Text.StringHandler.Append(System.IFormatProvider,System.Span{System.Char},System.Runtime.CompilerServices.DefaultInterpolatedStringHandler@)">
+            <summary>
+            Writes the specified interpolated string with the specified format provider into the handler.
+            </summary>
+            <param name="provider">The format provider used.</param>
+            <param name="initialBuffer">The initial buffer used.</param>
             <param name="handler">The handler that holds the interpolated string processings.</param>
         </member>
         <member name="M:System.Text.StringHandler.Append``1(``0)">

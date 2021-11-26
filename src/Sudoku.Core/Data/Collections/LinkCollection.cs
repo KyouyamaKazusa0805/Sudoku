@@ -43,7 +43,7 @@ public readonly ref partial struct LinkCollection
 			var sb = new StringHandler(initialCapacity: 100);
 			foreach (var (start, _, type) in links)
 			{
-				sb.Append(new Candidates { start });
+				sb.Append(new Candidates { start }.ToString());
 				sb.Append(type.GetNotation());
 			}
 			sb.Append(new Candidates { links[^1].EndCandidate }.ToString());
