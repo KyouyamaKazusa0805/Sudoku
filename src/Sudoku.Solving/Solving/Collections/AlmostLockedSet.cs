@@ -213,8 +213,8 @@ public readonly partial struct AlmostLockedSet : IValueEquatable<AlmostLockedSet
 							digitsMask,
 							map,
 							region < 9 && coveredLine is >= 9 and not InvalidFirstSet
-							? ((RegionMaps[region] | RegionMaps[coveredLine]) & EmptyMap) - map
-							: tempMap - map
+								? ((RegionMaps[region] | RegionMaps[coveredLine]) & EmptyMap) - map
+								: tempMap - map
 						)
 					);
 				}
