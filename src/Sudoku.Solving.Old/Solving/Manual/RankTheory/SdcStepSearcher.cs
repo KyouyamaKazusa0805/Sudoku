@@ -139,13 +139,9 @@ public sealed class SdcStepSearcher : RankTheoryStepSearcher
 									if (
 										!cannibalMode && (
 											(blockMask & lineMask) != 0
-											|| maskIsolated != 0 && (
-												maskIsolated == 0 || (maskIsolated & maskIsolated - 1) != 0
-											)
+											|| maskIsolated != 0 && !IsPow2(maskIsolated)
 										)
-										|| cannibalMode && (
-											maskIsolated == 0 || (maskIsolated & maskIsolated - 1) != 0
-										)
+										|| cannibalMode && !IsPow2(maskIsolated)
 									)
 									{
 										continue;
@@ -157,8 +153,8 @@ public sealed class SdcStepSearcher : RankTheoryStepSearcher
 									{
 										elimMapIsolated = (
 											cannibalMode
-											? (currentBlockMap | currentLineMap)
-											: currentInterMap
+												? (currentBlockMap | currentLineMap)
+												: currentInterMap
 										) % CandMaps[digitIsolated] & EmptyMap;
 									}
 

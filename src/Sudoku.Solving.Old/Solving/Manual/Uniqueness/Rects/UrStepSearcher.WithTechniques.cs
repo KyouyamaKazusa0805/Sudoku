@@ -486,7 +486,7 @@ partial class UrStepSearcher
 
 		// Check whether the corners spanned two blocks. If so, UR+SdC can't be found.
 		short blockMaskInOtherCells = otherCellsMap.BlockMask;
-		if (blockMaskInOtherCells == 0 || (blockMaskInOtherCells & blockMaskInOtherCells - 1) != 0)
+		if (!IsPow2(blockMaskInOtherCells))
 		{
 			return;
 		}
@@ -638,8 +638,8 @@ partial class UrStepSearcher
 			if (
 				!cannibalMode && (
 					(blockMask & lineMask) != 0
-					|| maskIsolated != 0 && (maskIsolated == 0 || (maskIsolated & maskIsolated - 1) != 0)
-				) || cannibalMode && (maskIsolated == 0 || (maskIsolated & maskIsolated - 1) != 0)
+					|| maskIsolated != 0 && !IsPow2(maskIsolated)
+				) || cannibalMode && !IsPow2(maskIsolated)
 			)
 			{
 				return;

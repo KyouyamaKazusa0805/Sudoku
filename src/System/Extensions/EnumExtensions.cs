@@ -161,12 +161,12 @@ public static unsafe class EnumExtensions
 					case 4:
 					{
 						int i = Unsafe.As<TEnum, int>(ref field);
-						if (i == 0 || (i & i - 1) != 0) continue; else break;
+						if (!IsPow2(i)) continue; else break;
 					}
 					case 8:
 					{
 						long l = Unsafe.As<TEnum, long>(ref field);
-						if (l == 0 || (l & l - 1L) != 0) continue; else break;
+						if (!IsPow2(l)) continue; else break;
 					}
 				}
 

@@ -110,8 +110,7 @@ public sealed partial class QdpStepSearcher : UniquenessStepSearcher
 				}
 			}
 
-			if (distinctionMask == 0 || (distinctionMask & distinctionMask - 1) != 0
-				|| appearedParts != PopCount((uint)appearedDigitsMask))
+			if (!IsPow2(distinctionMask) || appearedParts != PopCount((uint)appearedDigitsMask))
 			{
 				continue;
 			}

@@ -144,12 +144,7 @@ public sealed partial class UlStepSearcher : UniquenessStepSearcher
 							// with an extra digit (for type 2 only).
 							// - The cell has extra digits and the maximum number of cells
 							// with extra digits, 2, is not reached.
-							if
-							(
-								digitsCount != 2 && (
-									exDigitsMask == 0 || (exDigitsMask & exDigitsMask - 1) != 0
-								) && allowedExtraCellsCount <= 0
-							)
+							if (digitsCount != 2 && !IsPow2(exDigitsMask) && allowedExtraCellsCount <= 0)
 							{
 								continue;
 							}

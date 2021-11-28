@@ -191,7 +191,7 @@ public unsafe interface IChainStepSearcher : IStepSearcher
 		{
 			// First rule: If there's only two candidates in this cell, the other one gets on.
 			short mask = (short)(grid.GetCandidates(p.Cell) & ~(1 << p.Digit));
-			if (g(grid, p.Cell, isDynamic, enableFastProperties) && mask != 0 && (mask & mask - 1) == 0)
+			if (g(grid, p.Cell, isDynamic, enableFastProperties) && IsPow2(mask))
 			{
 				var pOn = new ChainNode(p.Cell, (byte)TrailingZeroCount(mask), true, p);
 

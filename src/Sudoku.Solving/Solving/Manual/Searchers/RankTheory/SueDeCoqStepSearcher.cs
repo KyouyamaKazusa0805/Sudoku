@@ -142,13 +142,8 @@ public sealed unsafe class SueDeCoqStepSearcher : ISueDeCoqStepSearcher
 									if (
 										!cannibalMode && (
 											(blockMask & lineMask) != 0
-											|| maskIsolated != 0 && (
-												maskIsolated == 0 || (maskIsolated & maskIsolated - 1) != 0
-											)
-										)
-										|| cannibalMode && (
-											maskIsolated == 0 || (maskIsolated & maskIsolated - 1) != 0
-										)
+											|| maskIsolated != 0 && !IsPow2(maskIsolated)
+										) || cannibalMode && !IsPow2(maskIsolated)
 									)
 									{
 										continue;

@@ -26,7 +26,7 @@ partial class QdpStepSearcher
 		short otherDigitsMask
 	)
 	{
-		if (otherDigitsMask == 0 || (otherDigitsMask & otherDigitsMask - 1) != 0)
+		if (!IsPow2(otherDigitsMask))
 		{
 			return;
 		}
@@ -117,7 +117,7 @@ partial class QdpStepSearcher
 		short otherDigitsMask
 	)
 	{
-		if (otherDigitsMask == 0 || (otherDigitsMask & otherDigitsMask - 1) != 0)
+		if (!IsPow2(otherDigitsMask))
 		{
 			return;
 		}

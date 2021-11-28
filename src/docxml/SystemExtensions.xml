@@ -3050,13 +3050,6 @@
             <param name="right">The right instance.</param>
             <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
         </member>
-        <member name="M:System.Text.StringHandler.GetGreaterNearestPowerOf2(System.Int32)">
-            <summary>
-            Gets the greater nearest value of power of 2 for the specified value.
-            </summary>
-            <param name="base">The base value.</param>
-            <returns>The result.</returns>
-        </member>
         <member name="T:System.Text.StringHandler.Enumerator">
             <summary>
             Encapsulates the enumerator of this collection.

@@ -44,7 +44,7 @@ public sealed partial class ErStepSearcher : SdpStepSearcher
 					}
 
 					short blockMask = linkMap.BlockMask;
-					if (blockMask != 0 && (blockMask & blockMask - 1) == 0
+					if (IsPow2(blockMask)
 						|| i < 6 && (linkMap & RegionMaps[column]).IsEmpty
 						|| i >= 6 && (linkMap & RegionMaps[row]).IsEmpty)
 					{

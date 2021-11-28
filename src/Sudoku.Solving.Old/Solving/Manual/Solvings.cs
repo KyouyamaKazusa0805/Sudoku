@@ -100,7 +100,7 @@ public static class Solvings
 			short mask = cell != cellRemoved
 				? @this.GetCandidates(cell)
 				: (short)(@this.GetCandidates(cell) & ~(1 << digitRemoved));
-			if (mask == 0 || (mask & mask - 1) != 0)
+			if (!IsPow2(mask))
 			{
 				continue;
 			}

@@ -176,7 +176,7 @@ public readonly partial struct Als : IValueEquatable<Als>
 				foreach (Cells map in list.GetSubsets(size))
 				{
 					short blockMask = map.BlockMask;
-					if (blockMask != 0 && (blockMask & blockMask - 1) == 0 && region >= 9)
+					if (IsPow2(blockMask) && region >= 9)
 					{
 						// All ALS cells lying on a box-row or a box-column
 						// will be processed as a block ALS.

@@ -202,7 +202,7 @@ public sealed unsafe class BivalueOddagonStepSearcher : IBivalueOddagonStepSearc
 		}
 		mask &= (short)~comparer;
 
-		if (mask == 0 || (mask & mask - 1) != 0)
+		if (!IsPow2(mask))
 		{
 			goto ReturnNull;
 		}

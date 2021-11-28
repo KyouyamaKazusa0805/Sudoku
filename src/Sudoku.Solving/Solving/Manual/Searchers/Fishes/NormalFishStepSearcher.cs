@@ -187,7 +187,7 @@ public sealed unsafe class NormalFishStepSearcher : INormalFishStepSearcher
 						// All fins should be in the same block.
 						fins = baseLine - coverLine;
 						short blockMask = fins.BlockMask;
-						if (fins.IsEmpty || blockMask == 0 || (blockMask & blockMask - 1) != 0)
+						if (fins.IsEmpty || !IsPow2(blockMask))
 						{
 							continue;
 						}

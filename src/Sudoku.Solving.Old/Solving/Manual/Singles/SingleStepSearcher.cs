@@ -165,7 +165,7 @@ public sealed class SingleStepSearcher : StepSearcher
 			}
 
 			short mask = grid.GetCandidates(cell);
-			if (mask == 0 || (mask & mask - 1) != 0)
+			if (!IsPow2(mask))
 			{
 				continue;
 			}

@@ -153,8 +153,7 @@ public sealed unsafe class QiuDeadlyPatternStepSearcher : IQiuDeadlyPatternStepS
 				}
 			}
 
-			if (distinctionMask == 0 || (distinctionMask & distinctionMask - 1) != 0
-				|| appearedParts != PopCount((uint)appearedDigitsMask))
+			if (!IsPow2(distinctionMask) || appearedParts != PopCount((uint)appearedDigitsMask))
 			{
 				continue;
 			}
@@ -249,7 +248,7 @@ public sealed unsafe class QiuDeadlyPatternStepSearcher : IQiuDeadlyPatternStepS
 		bool onlyFindOne
 	)
 	{
-		if (otherDigitsMask == 0 || (otherDigitsMask & otherDigitsMask - 1) != 0)
+		if (!IsPow2(otherDigitsMask))
 		{
 			return null;
 		}
@@ -332,7 +331,7 @@ public sealed unsafe class QiuDeadlyPatternStepSearcher : IQiuDeadlyPatternStepS
 		bool onlyFindOne
 	)
 	{
-		if (otherDigitsMask == 0 || (otherDigitsMask & otherDigitsMask - 1) != 0)
+		if (!IsPow2(otherDigitsMask))
 		{
 			return null;
 		}

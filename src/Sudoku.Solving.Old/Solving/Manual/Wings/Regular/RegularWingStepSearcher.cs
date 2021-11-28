@@ -86,8 +86,7 @@ public sealed class RegularWingStepSearcher : WingStepSearcher
 						inter &= m;
 					}
 
-					if (PopCount((uint)union) != size || inter != 0
-						&& (inter == 0 || (inter & inter - 1) != 0))
+					if (PopCount((uint)union) != size || inter != 0 && !IsPow2(inter))
 					{
 						continue;
 					}
@@ -96,7 +95,7 @@ public sealed class RegularWingStepSearcher : WingStepSearcher
 					bool isIncomplete = inter == 0;
 					short interWithoutPivot = (short)(union & ~grid.GetCandidates(pivot));
 					short maskToCheck = isIncomplete ? interWithoutPivot : inter;
-					if (maskToCheck == 0 || (maskToCheck & maskToCheck - 1) != 0)
+					if (!IsPow2(maskToCheck))
 					{
 						continue;
 					}

@@ -84,7 +84,7 @@ partial class UlStepSearcher
 		}
 		mask &= (short)~comparer;
 
-		if (mask == 0 || (mask & mask - 1) != 0)
+		if (!IsPow2(mask))
 		{
 			return;
 		}
