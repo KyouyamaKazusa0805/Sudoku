@@ -19,9 +19,9 @@ partial record struct UnknownValue
 			JsonSerializerOptions options
 		)
 		{
-			int cell;
-			char identifier;
-			short mask;
+			Unsafe.SkipInit(out int cell);
+			Unsafe.SkipInit(out char identifier);
+			Unsafe.SkipInit(out short mask);
 			string? pos = null;
 			while (reader.Read())
 			{
@@ -58,7 +58,7 @@ partial record struct UnknownValue
 				}
 			}
 
-			return new(*&cell, *&identifier, *&mask);
+			return new(cell, identifier, mask);
 		}
 
 		/// <inheritdoc/>

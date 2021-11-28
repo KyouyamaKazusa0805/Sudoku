@@ -13,13 +13,13 @@ public unsafe interface IUniqueLoopStepSearcher : IDeadlyPatternStepSearcher, IU
 	protected static bool IsValidLoop(IList<int> loopCells)
 	{
 		int visitedOddRegions = 0, visitedEvenRegions = 0;
-		bool isOdd;
+		Unsafe.SkipInit(out bool isOdd);
 		foreach (int cell in loopCells)
 		{
 			for (var label = RegionLabel.Block; label <= RegionLabel.Column; label++)
 			{
 				int region = cell.ToRegion(label);
-				if (*&isOdd)
+				if (isOdd)
 				{
 					if ((visitedOddRegions >> region & 1) != 0)
 					{
@@ -43,7 +43,7 @@ public unsafe interface IUniqueLoopStepSearcher : IDeadlyPatternStepSearcher, IU
 				}
 			}
 
-			*&isOdd = !*&isOdd;
+			isOdd = !isOdd;
 		}
 
 		return visitedEvenRegions == visitedOddRegions;

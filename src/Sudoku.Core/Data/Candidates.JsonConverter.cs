@@ -22,8 +22,19 @@ partial struct Candidates
 			JsonSerializerOptions options
 		)
 		{
-			byte pos;
-			long _0, _1, _2, _3, _4, _5, _6, _7, _8, _9, _10, _11;
+			Unsafe.SkipInit(out byte pos);
+			Unsafe.SkipInit(out long _0);
+			Unsafe.SkipInit(out long _1);
+			Unsafe.SkipInit(out long _2);
+			Unsafe.SkipInit(out long _3);
+			Unsafe.SkipInit(out long _4);
+			Unsafe.SkipInit(out long _5);
+			Unsafe.SkipInit(out long _6);
+			Unsafe.SkipInit(out long _7);
+			Unsafe.SkipInit(out long _8);
+			Unsafe.SkipInit(out long _9);
+			Unsafe.SkipInit(out long _10);
+			Unsafe.SkipInit(out long _11);
 			try
 			{
 				while (reader.Read())
@@ -52,7 +63,7 @@ partial struct Candidates
 						}
 						case JsonTokenType.Number:
 						{
-							*(*&pos switch
+							*(pos switch
 							{
 								0 => &_0,
 								1 => &_1,
@@ -74,10 +85,10 @@ partial struct Candidates
 			}
 			catch (InvalidOperationException ex)
 			{
-				throw new InvalidOperationException($"Data at the specified part is invalid: 'Part{*&pos + 1}'.", ex);
+				throw new InvalidOperationException($"Data at the specified part is invalid: 'Part{pos + 1}'.", ex);
 			}
 
-			return new(*&_0, *&_1, *&_2, *&_3, *&_4, *&_5, *&_6, *&_7, *&_8, *&_9, *&_10, *&_11);
+			return new(_0, _1, _2, _3, _4, _5, _6, _7, _8, _9, _10, _11);
 		}
 
 		/// <inheritdoc/>

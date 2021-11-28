@@ -14,9 +14,9 @@ public sealed class DrawingInfoJsonConverter : JsonConverter<DrawingInfo>
 	[SkipLocalsInit]
 	public override unsafe DrawingInfo Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
 	{
-		long id;
-		int value;
-		byte pos;
+		Unsafe.SkipInit(out long id);
+		Unsafe.SkipInit(out int value);
+		Unsafe.SkipInit(out byte pos);
 		while (reader.Read())
 		{
 			switch (reader.TokenType)
@@ -28,7 +28,7 @@ public sealed class DrawingInfoJsonConverter : JsonConverter<DrawingInfo>
 				}
 				case JsonTokenType.Number:
 				{
-					if (*&pos == 0)
+					if (pos == 0)
 					{
 						id = reader.GetInt64();
 					}
@@ -42,7 +42,7 @@ public sealed class DrawingInfoJsonConverter : JsonConverter<DrawingInfo>
 			}
 		}
 
-		return new(*&id, *&value);
+		return new(id, value);
 	}
 
 	/// <inheritdoc/>

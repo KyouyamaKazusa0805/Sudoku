@@ -33,8 +33,9 @@ public sealed class DirectLineJsonConverter : JsonConverter<(Cells Start, Cells 
 	[SkipLocalsInit]
 	public override unsafe (Cells Start, Cells End) Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
 	{
-		Cells start, end;
-		byte pos;
+		Unsafe.SkipInit(out Cells start);
+		Unsafe.SkipInit(out Cells end);
+		Unsafe.SkipInit(out byte pos);
 		while (reader.Read())
 		{
 			switch (reader.TokenType)
@@ -47,7 +48,7 @@ public sealed class DirectLineJsonConverter : JsonConverter<(Cells Start, Cells 
 				case JsonTokenType.String:
 				{
 					string cellsJson = reader.GetString()!;
-					if (*&pos == 0)
+					if (pos == 0)
 					{
 						start = JsonSerializer.Deserialize<Cells>(cellsJson, InnerOptions);
 					}
@@ -61,7 +62,7 @@ public sealed class DirectLineJsonConverter : JsonConverter<(Cells Start, Cells 
 			}
 		}
 
-		return (*&start, *&end);
+		return (start, end);
 	}
 
 	/// <inheritdoc/>

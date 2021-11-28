@@ -44,19 +44,19 @@ public sealed class SeStepSearcher : ExocetStepSearcher
 			}
 
 			i = 0;
-			Cells temp;
+			Unsafe.SkipInit(out Cells temp);
 			foreach (int digit in baseCandsMask)
 			{
 				if (i++ == 0)
 				{
-					*&temp = DigitMaps[digit];
+					temp = DigitMaps[digit];
 				}
 				else
 				{
-					*&temp |= DigitMaps[digit];
+					temp |= DigitMaps[digit];
 				}
 			}
-			*&temp &= tempCrosslineMap;
+			temp &= tempCrosslineMap;
 
 			var tempTarget = new List<int>();
 			for (i = 0; i < 8; i++)

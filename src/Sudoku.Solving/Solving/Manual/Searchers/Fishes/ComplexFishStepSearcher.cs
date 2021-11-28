@@ -215,7 +215,7 @@ public sealed unsafe class ComplexFishStepSearcher : IComplexFishStepSearcher
 						}
 
 						// Get the mask for checking for mutant fish.
-						RegionLabel baseRegionTypes;
+						Unsafe.SkipInit(out RegionLabel baseRegionTypes);
 						if (searchForMutant)
 						{
 							baseRegionTypes = 0;
@@ -299,7 +299,7 @@ public sealed unsafe class ComplexFishStepSearcher : IComplexFishStepSearcher
 
 								// Add the region into the cover sets, and check the cover region types.
 								usedInCoverSets |= 1 << region;
-								RegionLabel coverRegionTypes;
+								Unsafe.SkipInit(out RegionLabel coverRegionTypes);
 								if (searchForMutant)
 								{
 									coverRegionTypes = 0;
@@ -334,7 +334,7 @@ public sealed unsafe class ComplexFishStepSearcher : IComplexFishStepSearcher
 								}
 
 								if (searchForMutant
-									&& *&baseRegionTypes != bothLines && *&coverRegionTypes != bothLines)
+									&& baseRegionTypes != bothLines && coverRegionTypes != bothLines)
 								{
 									// Not Mutant fish.
 									goto BacktrackValue;

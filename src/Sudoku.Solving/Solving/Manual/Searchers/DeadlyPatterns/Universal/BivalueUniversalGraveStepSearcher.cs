@@ -525,7 +525,8 @@ public sealed unsafe class BivalueUniversalGraveStepSearcher : IBivalueUniversal
 	/// <returns>A <see cref="bool"/> indicating that.</returns>
 	private static bool CheckSingleDigit(IReadOnlyList<int> list)
 	{
-		int i = 0, comparer;
+		int i = 0;
+		Unsafe.SkipInit(out int comparer);
 		foreach (int cand in list)
 		{
 			if (i++ == 0)
@@ -534,7 +535,7 @@ public sealed unsafe class BivalueUniversalGraveStepSearcher : IBivalueUniversal
 				continue;
 			}
 
-			if (*&comparer != cand % 9)
+			if (comparer != cand % 9)
 			{
 				return false;
 			}

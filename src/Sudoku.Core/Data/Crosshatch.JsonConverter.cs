@@ -19,7 +19,8 @@ partial record struct Crosshatch
 			JsonSerializerOptions options
 		)
 		{
-			Cells start, end;
+			Unsafe.SkipInit(out Cells start);
+			Unsafe.SkipInit(out Cells end);
 			string? pos = null;
 			while (reader.Read())
 			{
@@ -52,7 +53,7 @@ partial record struct Crosshatch
 				}
 			}
 
-			return (*&start, *&end);
+			return (start, end);
 		}
 
 		/// <inheritdoc/>

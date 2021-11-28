@@ -18,10 +18,11 @@ public sealed class CellsJsonConverter : JsonConverter<Cells>
 	/// <inheritdoc/>
 	public override unsafe Cells Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
 	{
-		long hi, lo;
+		Unsafe.SkipInit(out long hi);
+		Unsafe.SkipInit(out long lo);
 		while (reader.Read())
 		{
-			byte pos;
+			Unsafe.SkipInit(out byte pos);
 			switch (reader.TokenType)
 			{
 				case JsonTokenType.PropertyName:
@@ -31,14 +32,14 @@ public sealed class CellsJsonConverter : JsonConverter<Cells>
 				}
 				case JsonTokenType.Number:
 				{
-					*(*&pos == 0 ? &hi : &lo) = reader.GetInt64();
+					*(pos == 0 ? &hi : &lo) = reader.GetInt64();
 
 					break;
 				}
 			}
 		}
 
-		return new(*&hi, *&lo);
+		return new(hi, lo);
 	}
 
 	/// <inheritdoc/>

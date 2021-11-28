@@ -14,9 +14,10 @@ public sealed class LinkJsonConverter : JsonConverter<Link>
 	[SkipLocalsInit]
 	public override unsafe Link Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
 	{
-		int start, end;
-		LinkType linkType;
-		byte pos;
+		Unsafe.SkipInit(out int start);
+		Unsafe.SkipInit(out int end);
+		Unsafe.SkipInit(out LinkType linkType);
+		Unsafe.SkipInit(out byte pos);
 		while (reader.Read())
 		{
 			switch (reader.TokenType)
@@ -33,7 +34,7 @@ public sealed class LinkJsonConverter : JsonConverter<Link>
 				}
 				case JsonTokenType.Number:
 				{
-					switch (*&pos)
+					switch (pos)
 					{
 						case 0:
 						{
@@ -57,7 +58,7 @@ public sealed class LinkJsonConverter : JsonConverter<Link>
 			}
 		}
 
-		return new(*&start, *&end, *&linkType);
+		return new(start, end, linkType);
 	}
 
 	/// <inheritdoc/>

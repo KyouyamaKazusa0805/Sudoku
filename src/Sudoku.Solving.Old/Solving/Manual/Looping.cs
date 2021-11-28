@@ -13,13 +13,13 @@ public static class Looping
 	public static unsafe bool IsValidLoop(this IEnumerable<int> loop)
 	{
 		int visitedOddRegions = 0, visitedEvenRegions = 0;
-		bool isOdd;
+		Unsafe.SkipInit(out bool isOdd);
 		foreach (int cell in loop)
 		{
 			for (var label = RegionLabel.Block; label <= RegionLabel.Column; label++)
 			{
 				int region = cell.ToRegion(label);
-				if (*&isOdd)
+				if (isOdd)
 				{
 					if ((visitedOddRegions >> region & 1) != 0)
 					{
@@ -43,7 +43,7 @@ public static class Looping
 				}
 			}
 
-			*&isOdd = !*&isOdd;
+			isOdd = !isOdd;
 		}
 
 		return visitedEvenRegions == visitedOddRegions;

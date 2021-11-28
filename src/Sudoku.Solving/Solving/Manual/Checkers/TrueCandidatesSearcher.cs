@@ -86,7 +86,7 @@ public sealed unsafe class TrueCandidatesSearcher
 		// Store all multivalue cells.
 		// Suppose the pattern is the simplest BUG + 1 pattern (i.e. Only one multi-value cell).
 		// The comments will help you to understand the processing.
-		short mask;
+		Unsafe.SkipInit(out short mask);
 		short[,] pairs = new short[multivalueCellsCount, 37]; // 37 == (1 + 8) * 8 / 2 + 1
 		int[] multivalueCells = (EmptyMap - BivalueMap).ToArray();
 		for (int i = 0, length = multivalueCells.Length; i < length; i++)
@@ -153,7 +153,7 @@ public sealed unsafe class TrueCandidatesSearcher
 				}
 
 				chosen[currentIndex] = i;
-				int pos1 = TrailingZeroCount(*&mask);
+				int pos1 = TrailingZeroCount(mask);
 
 				stack[currentIndex, pos1].AddAnyway(currentCell);
 				stack[currentIndex, mask.GetNextSet(pos1)].AddAnyway(currentCell);

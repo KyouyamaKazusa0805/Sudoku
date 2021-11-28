@@ -1117,13 +1117,9 @@ public unsafe partial struct Cells : ICellsOrCandidates<Cells>, IFormattable, IJ
 
 
 	/// <inheritdoc/>
-	/// <remarks>
-	/// While reversing the higher 40 bits, the unused bits will be fixed and never be modified the state,
-	/// that is why using the code "<c><![CDATA[higherBits & 0xFFFFFFFFFFL]]></c>".
-	/// </remarks>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static Cells operator ~(in Cells offsets) =>
-		new(~offsets._high & 0xFFFFFFFFFFL, ~offsets._low & 0x1FFFFFFFFFFL);
+		new(~offsets._high & 0xFF_FFFF_FFFFL, ~offsets._low & 0x1FF_FFFF_FFFFL);
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

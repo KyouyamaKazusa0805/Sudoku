@@ -1194,10 +1194,6 @@
         </member>
         <member name="M:Sudoku.Data.Cells.op_OnesComplement(Sudoku.Data.Cells@)">
             <inheritdoc/>
-            <remarks>
-            While reversing the higher 40 bits, the unused bits will be fixed and never be modified the state,
-            that is why using the code "<c><![CDATA[higherBits & 0xFFFFFFFFFFL]]></c>".
-            </remarks>
         </member>
         <member name="M:Sudoku.Data.Cells.op_GreaterThan(Sudoku.Data.Cells@,Sudoku.Data.Cells@)">
             <inheritdoc/>
