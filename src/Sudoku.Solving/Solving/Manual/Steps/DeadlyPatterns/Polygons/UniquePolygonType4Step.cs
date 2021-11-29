@@ -22,7 +22,7 @@ public sealed record UniquePolygonType4Step(
 	public override decimal Difficulty => 5.5M;
 
 	/// <inheritdoc/>
-	public override Technique TechniqueCode => Technique.BdpType4;
+	public override Technique TechniqueCode => Technique.UniquePolygonType4;
 
 	[FormatItem]
 	private string ExtraCombStr

@@ -551,10 +551,10 @@ public sealed unsafe class UniqueRectangleStepSearcher : IUniqueRectangleStepSea
 				d2,
 				(IsAvoidableRectangle: arMode, IsType5: isType5) switch
 				{
-					(IsAvoidableRectangle: true, IsType5: true) => Technique.ArType5,
-					(IsAvoidableRectangle: true, IsType5: false) => Technique.ArType2,
-					(IsAvoidableRectangle: false, IsType5: true) => Technique.UrType5,
-					(IsAvoidableRectangle: false, IsType5: false) => Technique.UrType2
+					(IsAvoidableRectangle: true, IsType5: true) => Technique.AvoidableRectangleType5,
+					(IsAvoidableRectangle: true, IsType5: false) => Technique.AvoidableRectangleType2,
+					(IsAvoidableRectangle: false, IsType5: true) => Technique.UniqueRectangleType5,
+					(IsAvoidableRectangle: false, IsType5: false) => Technique.UniqueRectangleType2
 				},
 				urCells,
 				arMode,
@@ -840,7 +840,7 @@ public sealed unsafe class UniqueRectangleStepSearcher : IUniqueRectangleStepSea
 							Candidates = candidateOffsets,
 							Regions = new[] { (region, (ColorIdentifier)0) }
 						}),
-						Technique.UrType4,
+						Technique.UniqueRectangleType4,
 						d1,
 						d2,
 						urCells,
@@ -950,7 +950,7 @@ public sealed unsafe class UniqueRectangleStepSearcher : IUniqueRectangleStepSea
 				}),
 				d1,
 				d2,
-				arMode ? Technique.ArType5 : Technique.UrType5,
+				arMode ? Technique.AvoidableRectangleType5 : Technique.UniqueRectangleType5,
 				urCells,
 				arMode,
 				extraDigit,
@@ -1079,7 +1079,7 @@ public sealed unsafe class UniqueRectangleStepSearcher : IUniqueRectangleStepSea
 						Candidates = candidateOffsets,
 						Regions = new[] { (region1, (ColorIdentifier)0), (region2, (ColorIdentifier)0) }
 					}),
-					Technique.UrType6,
+					Technique.UniqueRectangleType6,
 					d1,
 					d2,
 					urCells,
@@ -1348,7 +1348,7 @@ public sealed unsafe class UniqueRectangleStepSearcher : IUniqueRectangleStepSea
 						Cells = arMode ? GetHighlightCells(urCells) : null,
 						Candidates = candidateOffsets
 					}),
-					arMode ? Technique.ArPlus2D : Technique.UrPlus2D,
+					arMode ? Technique.AvoidableRectangle2D : Technique.UniqueRectangle2D,
 					d1,
 					d2,
 					urCells,
@@ -1519,7 +1519,7 @@ public sealed unsafe class UniqueRectangleStepSearcher : IUniqueRectangleStepSea
 									Candidates = candidateOffsets,
 									Regions = new[] { (region, (ColorIdentifier)0) }
 								}),
-								Technique.UrPlus2B1SL,
+								Technique.UniqueRectangle2B1,
 								d1,
 								d2,
 								urCells,
@@ -1694,7 +1694,7 @@ public sealed unsafe class UniqueRectangleStepSearcher : IUniqueRectangleStepSea
 									Candidates = candidateOffsets,
 									Regions = new[] { (region, (ColorIdentifier)0) }
 								}),
-								Technique.UrPlus2D1SL,
+								Technique.UniqueRectangle2D1,
 								d1,
 								d2,
 								urCells,
@@ -1839,7 +1839,7 @@ public sealed unsafe class UniqueRectangleStepSearcher : IUniqueRectangleStepSea
 						Cells = arMode ? GetHighlightCells(urCells) : null,
 						Candidates = candidateOffsets
 					}),
-					arMode ? Technique.ArPlus3X : Technique.UrPlus3X,
+					arMode ? Technique.AvoidableRectangle3X : Technique.UniqueRectangle3X,
 					d1,
 					d2,
 					urCells,
@@ -1960,7 +1960,7 @@ public sealed unsafe class UniqueRectangleStepSearcher : IUniqueRectangleStepSea
 							(map2.CoveredLine, (ColorIdentifier)1)
 						}
 					}),
-					Technique.UrPlus3X2SL,
+					Technique.UniqueRectangle3X2,
 					d1,
 					d2,
 					urCells,
@@ -2095,7 +2095,7 @@ public sealed unsafe class UniqueRectangleStepSearcher : IUniqueRectangleStepSea
 								(conjugatePairs[1].Line, (ColorIdentifier)1)
 							}
 						}),
-						Technique.UrPlus3N2SL,
+						Technique.UniqueRectangle3N2,
 						d1,
 						d2,
 						urCells,
@@ -2223,7 +2223,7 @@ public sealed unsafe class UniqueRectangleStepSearcher : IUniqueRectangleStepSea
 								(conjugatePairs[1].Line, (ColorIdentifier)1)
 							}
 						}),
-						Technique.UrPlus3U2SL,
+						Technique.UniqueRectangle3U2,
 						d1,
 						d2,
 						urCells,
@@ -2351,7 +2351,7 @@ public sealed unsafe class UniqueRectangleStepSearcher : IUniqueRectangleStepSea
 								(conjugatePairs[1].Line, (ColorIdentifier)1)
 							}
 						}),
-						Technique.UrPlus3E2SL,
+						Technique.UniqueRectangle3E2,
 						d1,
 						d2,
 						urCells,
@@ -2498,7 +2498,7 @@ public sealed unsafe class UniqueRectangleStepSearcher : IUniqueRectangleStepSea
 								(conjugatePairs[2].Line, (ColorIdentifier)0)
 							}
 						}),
-						Technique.UrPlus4X3SL,
+						Technique.UniqueRectangle4X3,
 						d1,
 						d2,
 						urCells,
@@ -2658,7 +2658,7 @@ public sealed unsafe class UniqueRectangleStepSearcher : IUniqueRectangleStepSea
 									(conjugatePairs[2].Line, (ColorIdentifier)1)
 								}
 							}),
-							Technique.UrPlus4C3SL,
+							Technique.UniqueRectangle4C3,
 							d1,
 							d2,
 							urCells,
@@ -2851,7 +2851,9 @@ public sealed unsafe class UniqueRectangleStepSearcher : IUniqueRectangleStepSea
 									Cells = arMode ? GetHighlightCells(urCells) : null,
 									Candidates = candidateOffsets
 								}),
-								arMode ? Technique.ArXyWing : Technique.UrXyWing,
+								arMode
+									? Technique.AvoidableRectangleXyWing
+									: Technique.UniqueRectangleXyWing,
 								d1,
 								d2,
 								urCells,
@@ -2970,7 +2972,9 @@ public sealed unsafe class UniqueRectangleStepSearcher : IUniqueRectangleStepSea
 											Cells = arMode ? GetHighlightCells(urCells) : null,
 											Candidates = candidateOffsets
 										}),
-										arMode ? Technique.ArXyzWing : Technique.UrXyzWing,
+										arMode
+											? Technique.AvoidableRectangleXyzWing
+											: Technique.UniqueRectangleXyzWing,
 										d1,
 										d2,
 										urCells,
@@ -3094,7 +3098,9 @@ public sealed unsafe class UniqueRectangleStepSearcher : IUniqueRectangleStepSea
 												Cells = arMode ? GetHighlightCells(urCells) : null,
 												Candidates = candidateOffsets
 											}),
-											arMode ? Technique.ArWxyzWing : Technique.UrWxyzWing,
+											arMode
+												? Technique.AvoidableRectangleWxyzWing
+												: Technique.UniqueRectangleWxyzWing,
 											d1,
 											d2,
 											urCells,

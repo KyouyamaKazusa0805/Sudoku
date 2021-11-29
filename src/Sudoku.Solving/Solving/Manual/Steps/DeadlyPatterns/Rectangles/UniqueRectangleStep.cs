@@ -54,7 +54,7 @@ public abstract record UniqueRectangleStep(
 	}
 
 	/// <inheritdoc/>
-	public override TechniqueGroup TechniqueGroup => TechniqueGroup.Ur;
+	public override TechniqueGroup TechniqueGroup => TechniqueGroup.UniqueRectangle;
 
 	/// <summary>
 	/// Indicates the digit 1 string.

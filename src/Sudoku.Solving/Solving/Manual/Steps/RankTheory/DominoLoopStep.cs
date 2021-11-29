@@ -20,13 +20,13 @@ public sealed record DominoLoopStep(
 		base.TechniqueTags | TechniqueTags.LongChaining | TechniqueTags.RankTheory;
 
 	/// <inheritdoc/>
-	public override TechniqueGroup TechniqueGroup => TechniqueGroup.SkLoop;
+	public override TechniqueGroup TechniqueGroup => TechniqueGroup.DominoLoop;
 
 	/// <inheritdoc/>
 	public override DifficultyLevel DifficultyLevel => DifficultyLevel.Nightmare;
 
 	/// <inheritdoc/>
-	public override Technique TechniqueCode => Technique.SkLoop;
+	public override Technique TechniqueCode => Technique.DominoLoop;
 
 	/// <inheritdoc/>
 	public override Rarity Rarity => Rarity.OnlyForSpecialPuzzles;

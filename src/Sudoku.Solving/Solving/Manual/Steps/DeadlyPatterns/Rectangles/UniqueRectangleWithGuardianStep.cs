@@ -22,7 +22,10 @@ public sealed record UniqueRectangleWithGuardianStep(
 	int GuardianDigit,
 	bool IsIncomplete,
 	int AbsoluteOffset
-) : UniqueRectangleStep(Conclusions, Views, Technique.UrGuardian, Digit1, Digit2, Cells, false, AbsoluteOffset)
+) : UniqueRectangleStep(
+	Conclusions, Views, Technique.UniqueRectangleBrokenWing,
+	Digit1, Digit2, Cells, false, AbsoluteOffset
+)
 {
 	/// <inheritdoc/>
 	public override decimal Difficulty =>
@@ -34,7 +37,7 @@ public sealed record UniqueRectangleWithGuardianStep(
 	public override DifficultyLevel DifficultyLevel => DifficultyLevel.Fiendish;
 
 	/// <inheritdoc/>
-	public override TechniqueGroup TechniqueGroup => TechniqueGroup.UrPlus;
+	public override TechniqueGroup TechniqueGroup => TechniqueGroup.UniqueRectanglePlus;
 
 	/// <inheritdoc/>
 	public override Rarity Rarity => Rarity.Often;

@@ -26,13 +26,13 @@ public sealed record SueDeCoq3DemensionStep(
 	public override decimal Difficulty => 5.5M;
 
 	/// <inheritdoc/>
-	public override Technique TechniqueCode => Technique.Sdc3d;
+	public override Technique TechniqueCode => Technique.SueDeCoq3Dimension;
 
 	/// <inheritdoc/>
 	public override TechniqueTags TechniqueTags => base.TechniqueTags | TechniqueTags.Als;
 
 	/// <inheritdoc/>
-	public override TechniqueGroup TechniqueGroup => TechniqueGroup.Sdc;
+	public override TechniqueGroup TechniqueGroup => TechniqueGroup.SueDeCoq;
 
 	/// <inheritdoc/>
 	public override DifficultyLevel DifficultyLevel => DifficultyLevel.Fiendish;

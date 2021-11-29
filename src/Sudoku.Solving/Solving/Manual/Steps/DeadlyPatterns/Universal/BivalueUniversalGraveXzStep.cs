@@ -20,7 +20,7 @@ public sealed record BivalueUniversalGraveXzStep(
 	public override decimal Difficulty => base.Difficulty + .2M;
 
 	/// <inheritdoc/>
-	public override Technique TechniqueCode => Technique.BugXz;
+	public override Technique TechniqueCode => Technique.BivalueUniversalGraveXzRule;
 
 	/// <inheritdoc/>
 	public override Rarity Rarity => Rarity.HardlyEver;

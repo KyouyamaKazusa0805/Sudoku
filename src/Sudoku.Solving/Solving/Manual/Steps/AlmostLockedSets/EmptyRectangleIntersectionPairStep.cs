@@ -27,10 +27,10 @@ public sealed record EmptyRectangleIntersectionPairStep(
 	public override DifficultyLevel DifficultyLevel => DifficultyLevel.Fiendish;
 
 	/// <inheritdoc/>
-	public override TechniqueGroup TechniqueGroup => TechniqueGroup.Erip;
+	public override TechniqueGroup TechniqueGroup => TechniqueGroup.EmptyRectangleIntersectionPair;
 
 	/// <inheritdoc/>
-	public override Technique TechniqueCode => Technique.Erip;
+	public override Technique TechniqueCode => Technique.EmptyRectangleIntersectionPair;
 
 	/// <inheritdoc/>
 	public override Rarity Rarity => Rarity.Sometimes;

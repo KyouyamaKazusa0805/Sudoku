@@ -23,7 +23,7 @@ public abstract record AlmostLockedSetsStep(
 	public override string? Format => base.Format;
 
 	/// <inheritdoc/>
-	public override TechniqueGroup TechniqueGroup => TechniqueGroup.AlsChainingLike;
+	public override TechniqueGroup TechniqueGroup => TechniqueGroup.AlmostLockedSetsChainingLike;
 
 	/// <inheritdoc/>
 	public override TechniqueTags TechniqueTags => TechniqueTags.Als;

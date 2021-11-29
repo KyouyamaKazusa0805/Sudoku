@@ -25,7 +25,7 @@ public sealed record BivalueUniversalGraveType3Step(
 			+ (IsNaked ? 0 : .1M); // Hidden subset extra difficulty.
 
 	/// <inheritdoc/>
-	public override Technique TechniqueCode => Technique.BugType3;
+	public override Technique TechniqueCode => Technique.BivalueUniversalGraveType3;
 
 	/// <inheritdoc/>
 	public override Rarity Rarity => Rarity.Seldom;

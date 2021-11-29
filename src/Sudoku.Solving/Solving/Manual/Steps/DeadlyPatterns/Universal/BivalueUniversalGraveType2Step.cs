@@ -28,7 +28,7 @@ public sealed record BivalueUniversalGraveType2Step(
 	public override decimal Difficulty => base.Difficulty + ExtraDifficulty[Cells.Count - 1];
 
 	/// <inheritdoc/>
-	public override Technique TechniqueCode => Technique.BugType2;
+	public override Technique TechniqueCode => Technique.BivalueUniversalGraveType2;
 
 	/// <inheritdoc/>
 	public override Rarity Rarity => Rarity.Seldom;

@@ -1914,17 +1914,35 @@
             <summary>
             The difficulty level of this step.
             </summary>
+            <remarks>
+            Although the type of this property is marked <see cref="T:System.FlagsAttribute"/>,
+            we still can't set multiple flag values into the result. The flags are filtered
+            during generting puzzles.
+            </remarks>
+            <seealso cref="T:System.FlagsAttribute"/>
         </member>
         <member name="P:Sudoku.Solving.Manual.IStep.Stableness">
             <summary>
             Indicates the stableness of this technique. The default value is <see cref="F:Sudoku.Solving.Manual.Stableness.Stable"/>.
             </summary>
+            <remarks>
+            Although the type of this property is marked <see cref="T:System.FlagsAttribute"/>,
+            we still can't set multiple flag values into the result. The flags are filtered
+            during generting puzzles.
+            </remarks>
             <seealso cref="F:Sudoku.Solving.Manual.Stableness.Stable"/>
+            <seealso cref="T:System.FlagsAttribute"/>
         </member>
         <member name="P:Sudoku.Solving.Manual.IStep.Rarity">
             <summary>
             Indicates the rarity of this technique appears.
             </summary>
+            <remarks>
+            Although the type of this property is marked <see cref="T:System.FlagsAttribute"/>,
+            we still can't set multiple flag values into the result. The flags are filtered
+            during generting puzzles.
+            </remarks>
+            <seealso cref="T:System.FlagsAttribute"/>
         </member>
         <member name="P:Sudoku.Solving.Manual.IStep.Conclusions">
             <summary>
@@ -2393,6 +2411,11 @@
         <member name="T:Sudoku.Solving.Manual.Rarity">
             <summary>
             Indicates the rarity of the technique.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.Rarity.Unknown">
+            <summary>
+            Indicates the technique can't be confirmed for its rarity.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Manual.Rarity.Always">
@@ -5270,6 +5293,11 @@
         <member name="T:Sudoku.Solving.Manual.Stableness">
             <summary>
             Defines a stableness of a technique.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.Stableness.Unknown">
+            <summary>
+            Indicates the stableness is unknown.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Manual.Stableness.Stable">

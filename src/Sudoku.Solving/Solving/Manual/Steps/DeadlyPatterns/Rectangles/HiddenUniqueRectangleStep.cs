@@ -21,6 +21,13 @@ public sealed record HiddenUniqueRectangleStep(
 	ConjugatePair[] ConjugatePairs,
 	int AbsoluteOffset
 ) : UniqueRectangleWithConjugatePairStep(
-	Conclusions, Views, IsAvoidable ? Technique.HiddenAr : Technique.HiddenUr,
-	Digit1, Digit2, Cells, IsAvoidable, ConjugatePairs, AbsoluteOffset
+	Conclusions,
+	Views,
+	IsAvoidable ? Technique.HiddenAvoidableRectangle : Technique.HiddenUniqueRectangle,
+	Digit1,
+	Digit2,
+	Cells,
+	IsAvoidable,
+	ConjugatePairs,
+	AbsoluteOffset
 );

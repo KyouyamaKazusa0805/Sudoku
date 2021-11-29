@@ -30,7 +30,8 @@ public sealed record SeniorExocetStep(
 		+ (ContainsExtraRegions ? 0 : .2M); // Extra region difficulty.
 
 	/// <inheritdoc/>
-	public override Technique TechniqueCode => ContainsExtraRegions ? Technique.ComplexSe : Technique.Se;
+	public override Technique TechniqueCode =>
+		ContainsExtraRegions ? Technique.ComplexSeniorExocet : Technique.SeniorExocet;
 
 	[FormatItem]
 	private string AdditionalFormat

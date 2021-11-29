@@ -27,7 +27,7 @@ public sealed record ExtendedRectangleType3Step(
 	public override decimal Difficulty => base.Difficulty + .1M * PopCount((uint)ExtraDigitsMask);
 
 	/// <inheritdoc/>
-	public override Technique TechniqueCode => Technique.XrType3;
+	public override Technique TechniqueCode => Technique.ExtendedRectangleType3;
 
 	/// <inheritdoc/>
 	public override Rarity Rarity => Rarity.Seldom;

@@ -40,13 +40,14 @@ public sealed record SueDeCoqStep(
 	public override TechniqueTags TechniqueTags => TechniqueTags.RankTheory | TechniqueTags.Als;
 
 	/// <inheritdoc/>
-	public override Technique TechniqueCode => IsCannibalistic ? Technique.CannibalizedSdc : Technique.Sdc;
+	public override Technique TechniqueCode =>
+		IsCannibalistic ? Technique.SueDeCoqCannibalism : Technique.SueDeCoq;
 
 	/// <inheritdoc/>
 	public override DifficultyLevel DifficultyLevel => DifficultyLevel.Fiendish;
 
 	/// <inheritdoc/>
-	public override TechniqueGroup TechniqueGroup => TechniqueGroup.Sdc;
+	public override TechniqueGroup TechniqueGroup => TechniqueGroup.SueDeCoq;
 
 	/// <inheritdoc/>
 	public override Rarity Rarity => Rarity.Sometimes;

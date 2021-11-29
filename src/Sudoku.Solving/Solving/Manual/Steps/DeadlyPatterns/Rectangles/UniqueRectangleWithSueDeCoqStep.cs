@@ -48,8 +48,14 @@ public sealed record UniqueRectangleWithSueDeCoqStep(
 	in Cells IntersectionCells,
 	int AbsoluteOffset
 ) : UniqueRectangleStep(
-	Conclusions, Views, IsAvoidable ? Technique.ArSdc : Technique.UrSdc,
-	Digit1, Digit2, Cells, IsAvoidable, AbsoluteOffset
+	Conclusions,
+	Views,
+	IsAvoidable ? Technique.AvoidableRectangleSueDeCoq : Technique.UniqueRectangleSueDeCoq,
+	Digit1,
+	Digit2,
+	Cells,
+	IsAvoidable,
+	AbsoluteOffset
 )
 {
 	/// <inheritdoc/>
@@ -64,7 +70,7 @@ public sealed record UniqueRectangleWithSueDeCoqStep(
 	public override DifficultyLevel DifficultyLevel => DifficultyLevel.Fiendish;
 
 	/// <inheritdoc/>
-	public override TechniqueGroup TechniqueGroup => TechniqueGroup.UrPlus;
+	public override TechniqueGroup TechniqueGroup => TechniqueGroup.UniqueRectanglePlus;
 
 	/// <inheritdoc/>
 	public override Rarity Rarity => Rarity.HardlyEver;

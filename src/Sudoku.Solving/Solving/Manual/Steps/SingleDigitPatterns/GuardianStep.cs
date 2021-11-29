@@ -20,13 +20,13 @@ public sealed record GuardianStep(
 	public override decimal Difficulty => 5.5M + .1M * (Loop.Count + (Guardians.Count >> 1) >> 1);
 
 	/// <inheritdoc/>
-	public override Technique TechniqueCode => Technique.Guardian;
+	public override Technique TechniqueCode => Technique.BrokenWing;
 
 	/// <inheritdoc/>
 	public override TechniqueTags TechniqueTags => base.TechniqueTags | TechniqueTags.LongChaining;
 
 	/// <inheritdoc/>
-	public override TechniqueGroup TechniqueGroup => TechniqueGroup.Guardian;
+	public override TechniqueGroup TechniqueGroup => TechniqueGroup.BrokenWing;
 
 	/// <inheritdoc/>
 	public override DifficultyLevel DifficultyLevel => DifficultyLevel.Fiendish;

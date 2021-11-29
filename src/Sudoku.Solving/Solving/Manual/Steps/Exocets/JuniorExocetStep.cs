@@ -23,7 +23,7 @@ public sealed record JuniorExocetStep(
 		9.4M + MirrorDifficulty + BiBiDifficulty + TargetPairDifficulty + GeneralizedSwordfishDifficulty;
 
 	/// <inheritdoc/>
-	public override Technique TechniqueCode => Technique.Je;
+	public override Technique TechniqueCode => Technique.JuniorExocet;
 
 	/// <summary>
 	/// Indicates extra difficulty on mirror eliminations.

@@ -29,7 +29,7 @@ public sealed record BivalueUniversalGraveMultipleStep(
 	public override decimal Difficulty => base.Difficulty + .1M + ExtraDifficulty[Candidates.Count - 1];
 
 	/// <inheritdoc/>
-	public override Technique TechniqueCode => Technique.BugMultiple;
+	public override Technique TechniqueCode => Technique.BivalueUniversalGravePlusN;
 
 	/// <inheritdoc/>
 	public override Rarity Rarity => Rarity.Seldom;

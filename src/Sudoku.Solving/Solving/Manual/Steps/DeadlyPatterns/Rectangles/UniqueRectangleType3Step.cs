@@ -45,8 +45,14 @@ public sealed record UniqueRectangleType3Step(
 	int AbsoluteOffset,
 	bool IsNaked = true
 ) : UniqueRectangleStep(
-	Conclusions, Views, IsAvoidable ? Technique.ArType3 : Technique.UrType3,
-	Digit1, Digit2, Cells, IsAvoidable, AbsoluteOffset
+	Conclusions,
+	Views,
+	IsAvoidable ? Technique.AvoidableRectangleType3 : Technique.UniqueRectangleType3,
+	Digit1,
+	Digit2,
+	Cells,
+	IsAvoidable,
+	AbsoluteOffset
 )
 {
 	/// <inheritdoc/>

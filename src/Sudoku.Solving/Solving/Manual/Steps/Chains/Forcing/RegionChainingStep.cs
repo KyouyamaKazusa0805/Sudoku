@@ -54,7 +54,7 @@ public sealed record RegionChainingStep(
 	public override TechniqueTags TechniqueTags => TechniqueTags.LongChaining | TechniqueTags.ForcingChains;
 
 	/// <inheritdoc/>
-	public override TechniqueGroup TechniqueGroup => TechniqueGroup.Fc;
+	public override TechniqueGroup TechniqueGroup => TechniqueGroup.ForcingChains;
 
 	/// <inheritdoc/>
 	public override Rarity Rarity => Rarity.Sometimes;

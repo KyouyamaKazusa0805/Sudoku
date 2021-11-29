@@ -46,7 +46,7 @@ public enum TechniqueTags
 	/// <summary>
 	/// Indicates the single digit pattern technique.
 	/// </summary>
-	SingleDigitPatterns = 32,
+	SingleDigitPattern = 32,
 
 	/// <summary>
 	/// Indicates the short chain.

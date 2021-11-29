@@ -26,7 +26,7 @@ public sealed record LockedCandidatesStep(
 	public override Technique TechniqueCode => BaseSet < 9 ? Technique.Pointing : Technique.Claiming;
 
 	/// <inheritdoc/>
-	public override TechniqueGroup TechniqueGroup => TechniqueGroup.Lc;
+	public override TechniqueGroup TechniqueGroup => TechniqueGroup.LockedCandidates;
 
 	/// <inheritdoc/>
 	public override DifficultyLevel DifficultyLevel => DifficultyLevel.Moderate;

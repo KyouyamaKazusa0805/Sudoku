@@ -23,7 +23,7 @@ public sealed record ExtendedRectangleType4Step(
 	public override decimal Difficulty => base.Difficulty + .1M;
 
 	/// <inheritdoc/>
-	public override Technique TechniqueCode => Technique.XrType4;
+	public override Technique TechniqueCode => Technique.ExtendedRectangleType4;
 
 	/// <inheritdoc/>
 	public override Rarity Rarity => Rarity.Sometimes;

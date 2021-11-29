@@ -20,7 +20,7 @@ public sealed record UniqueSquareType2Step(
 	public override decimal Difficulty => base.Difficulty + .1M;
 
 	/// <inheritdoc/>
-	public override Technique TechniqueCode => Technique.UsType2;
+	public override Technique TechniqueCode => Technique.UniqueSquareType2;
 
 	[FormatItem]
 	private string ExtraDigitStr

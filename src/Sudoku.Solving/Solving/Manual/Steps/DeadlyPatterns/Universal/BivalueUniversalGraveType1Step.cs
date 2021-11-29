@@ -11,7 +11,7 @@ public sealed record BivalueUniversalGraveType1Step(
 ) : BivalueUniversalGraveStep(Conclusions, Views)
 {
 	/// <inheritdoc/>
-	public override Technique TechniqueCode => Technique.BugType1;
+	public override Technique TechniqueCode => Technique.BivalueUniversalGraveType1;
 
 	/// <inheritdoc/>
 	public override Rarity Rarity => Rarity.Sometimes;

@@ -15,5 +15,5 @@ public sealed record UniquePolygonType1Step(
 ) : UniquePolygonStep(Conclusions, Views, Map, DigitsMask)
 {
 	/// <inheritdoc/>
-	public override Technique TechniqueCode => Technique.BdpType1;
+	public override Technique TechniqueCode => Technique.UniquePolygonType1;
 }

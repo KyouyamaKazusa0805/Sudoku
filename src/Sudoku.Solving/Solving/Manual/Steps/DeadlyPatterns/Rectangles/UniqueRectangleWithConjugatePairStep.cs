@@ -31,7 +31,7 @@ public record UniqueRectangleWithConjugatePairStep(
 	public sealed override DifficultyLevel DifficultyLevel => DifficultyLevel.Hard;
 
 	/// <inheritdoc/>
-	public sealed override TechniqueGroup TechniqueGroup => TechniqueGroup.UrPlus;
+	public sealed override TechniqueGroup TechniqueGroup => TechniqueGroup.UniqueRectanglePlus;
 
 	/// <inheritdoc/>
 	public override Rarity Rarity => Rarity.Often;

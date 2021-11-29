@@ -25,9 +25,9 @@ public sealed record AvoidableRectangleWithHiddenSingleStep(
 ) : UniqueRectangleStep(
 	Conclusions, Views, Region switch
 	{
-		>= 0 and < 9 => Technique.ArHiddenSingleBlock,
-		>= 9 and < 18 => Technique.ArHiddenSingleRow,
-		>= 18 and < 27 => Technique.ArHiddenSingleColumn
+		>= 0 and < 9 => Technique.AvoidableRectangleHiddenSingleBlock,
+		>= 9 and < 18 => Technique.AvoidableRectangleHiddenSingleRow,
+		>= 18 and < 27 => Technique.AvoidableRectangleHiddenSingleColumn
 	}, Digit1, Digit2, Cells, true, AbsoluteOffset
 )
 {
@@ -38,7 +38,7 @@ public sealed record AvoidableRectangleWithHiddenSingleStep(
 	public override DifficultyLevel DifficultyLevel => DifficultyLevel.Hard;
 
 	/// <inheritdoc/>
-	public override TechniqueGroup TechniqueGroup => TechniqueGroup.UrPlus;
+	public override TechniqueGroup TechniqueGroup => TechniqueGroup.UniqueRectanglePlus;
 
 	/// <inheritdoc/>
 	public override Rarity Rarity => Rarity.Seldom;

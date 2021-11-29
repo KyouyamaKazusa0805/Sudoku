@@ -26,7 +26,7 @@ public abstract record ExtendedRectangleStep(
 	public sealed override DifficultyLevel DifficultyLevel => DifficultyLevel.Hard;
 
 	/// <inheritdoc/>
-	public sealed override TechniqueGroup TechniqueGroup => TechniqueGroup.Xr;
+	public sealed override TechniqueGroup TechniqueGroup => TechniqueGroup.ExtendedRectangle;
 
 	/// <inheritdoc/>
 	public sealed override TechniqueTags TechniqueTags => base.TechniqueTags;

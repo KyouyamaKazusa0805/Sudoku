@@ -42,9 +42,9 @@ public sealed record AlmostLockedSetsXzStep(
 	/// <inheritdoc/>
 	public override Technique TechniqueCode => IsDoublyLinked switch
 	{
-		true => Technique.DoublyLinkedAlsXz,
-		false => Technique.SinglyLinkedAlsXz,
-		null => Technique.Esp
+		true => Technique.DoublyLinkedAlmostLockedSetsXzRule,
+		false => Technique.SinglyLinkedAlmostLockedSetsXzRule,
+		_ => Technique.ExtendedSubsetPrinciple
 	};
 
 	/// <inheritdoc/>

@@ -32,7 +32,7 @@ public sealed record AlternatingInferenceChainStep(
 	{
 		{ IsMWing: true } => TechniqueGroup.Wing,
 		{ IsLocalWing: true } or { IsSplitWing: true } or { IsHybridWing: true } => TechniqueGroup.Wing,
-		_ => TechniqueGroup.Aic
+		_ => TechniqueGroup.AlternatingInferenceChain
 	};
 
 	/// <inheritdoc/>
@@ -51,12 +51,15 @@ public sealed record AlternatingInferenceChainStep(
 		{ IsSplitWing: true } => Technique.SplitWing,
 		{ IsHybridWing: true } => Technique.HybridWing,
 		{ IsLocalWing: true } => Technique.LocalWing,
-		{ Target.WholeChain: var c, IsXyChain: var isXy } when c[^2].Digit == c[1].Digit => isXy ? Technique.XyChain : Technique.Aic,
+		{ Target.WholeChain: var c, IsXyChain: var isXy } when c[^2].Digit == c[1].Digit =>
+			isXy
+				? Technique.XyChain
+				: Technique.AlternatingInferenceChain,
 		_ => Conclusions.Length switch
 		{
 			1 => Technique.DiscontinuousNiceLoop,
 			2 => Technique.XyXChain,
-			_ => Technique.Aic
+			_ => Technique.AlternatingInferenceChain
 		}
 	};
 
@@ -77,7 +80,7 @@ public sealed record AlternatingInferenceChainStep(
 		Technique.XyChain => Rarity.Often,
 		Technique.XyXChain => Rarity.Often,
 		Technique.DiscontinuousNiceLoop => Rarity.Often,
-		Technique.Aic => Rarity.Often
+		Technique.AlternatingInferenceChain => Rarity.Often
 	};
 
 	/// <inheritdoc/>

@@ -110,17 +110,35 @@ public interface IStep
 	/// <summary>
 	/// The difficulty level of this step.
 	/// </summary>
+	/// <remarks>
+	/// Although the type of this property is marked <see cref="FlagsAttribute"/>,
+	/// we still can't set multiple flag values into the result. The flags are filtered
+	/// during generting puzzles.
+	/// </remarks>
+	/// <seealso cref="FlagsAttribute"/>
 	DifficultyLevel DifficultyLevel { get; }
 
 	/// <summary>
 	/// Indicates the stableness of this technique. The default value is <see cref="Stableness.Stable"/>.
 	/// </summary>
+	/// <remarks>
+	/// Although the type of this property is marked <see cref="FlagsAttribute"/>,
+	/// we still can't set multiple flag values into the result. The flags are filtered
+	/// during generting puzzles.
+	/// </remarks>
 	/// <seealso cref="Stableness.Stable"/>
+	/// <seealso cref="FlagsAttribute"/>
 	Stableness Stableness { get; }
 
 	/// <summary>
 	/// Indicates the rarity of this technique appears.
 	/// </summary>
+	/// <remarks>
+	/// Although the type of this property is marked <see cref="FlagsAttribute"/>,
+	/// we still can't set multiple flag values into the result. The flags are filtered
+	/// during generting puzzles.
+	/// </remarks>
+	/// <seealso cref="FlagsAttribute"/>
 	Rarity Rarity { get; }
 
 	/// <summary>

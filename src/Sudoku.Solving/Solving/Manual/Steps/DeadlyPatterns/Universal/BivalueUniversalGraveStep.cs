@@ -17,5 +17,5 @@ public abstract record BivalueUniversalGraveStep(
 	public override DifficultyLevel DifficultyLevel => DifficultyLevel.Hard;
 
 	/// <inheritdoc/>
-	public sealed override TechniqueGroup TechniqueGroup => TechniqueGroup.Bug;
+	public sealed override TechniqueGroup TechniqueGroup => TechniqueGroup.BivalueUniversalGrave;
 }

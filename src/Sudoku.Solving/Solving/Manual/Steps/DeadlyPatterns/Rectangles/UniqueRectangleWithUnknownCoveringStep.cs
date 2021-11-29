@@ -20,7 +20,10 @@ public sealed record UniqueRectangleWithUnknownCoveringStep(
 	int TargetCell,
 	int ExtraDigit,
 	int AbsoluteOffset
-) : UniqueRectangleStep(Conclusions, Views, Technique.UrUnknownCovering, Digit1, Digit2, Cells, false, AbsoluteOffset)
+) : UniqueRectangleStep(
+	Conclusions, Views, Technique.UniqueRectangleUnknownCovering,
+	Digit1, Digit2, Cells, false, AbsoluteOffset
+)
 {
 	/// <inheritdoc/>
 	public override decimal Difficulty => 4.9M;
@@ -29,7 +32,7 @@ public sealed record UniqueRectangleWithUnknownCoveringStep(
 	public override DifficultyLevel DifficultyLevel => DifficultyLevel.Fiendish;
 
 	/// <inheritdoc/>
-	public override TechniqueGroup TechniqueGroup => TechniqueGroup.UrPlus;
+	public override TechniqueGroup TechniqueGroup => TechniqueGroup.UniqueRectanglePlus;
 
 	/// <inheritdoc/>
 	public override Rarity Rarity => Rarity.Seldom;

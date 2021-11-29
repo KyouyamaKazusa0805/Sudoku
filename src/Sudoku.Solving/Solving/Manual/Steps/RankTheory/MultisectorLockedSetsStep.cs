@@ -21,10 +21,10 @@ public sealed record MultisectorLockedSetsStep(
 	public override TechniqueTags TechniqueTags => base.TechniqueTags | TechniqueTags.Msls;
 
 	/// <inheritdoc/>
-	public override Technique TechniqueCode => Technique.Msls;
+	public override Technique TechniqueCode => Technique.MultisectorLockedSets;
 
 	/// <inheritdoc/>
-	public override TechniqueGroup TechniqueGroup => TechniqueGroup.Msls;
+	public override TechniqueGroup TechniqueGroup => TechniqueGroup.MultisectorLockedSets;
 
 	/// <inheritdoc/>
 	public override DifficultyLevel DifficultyLevel => DifficultyLevel.Nightmare;

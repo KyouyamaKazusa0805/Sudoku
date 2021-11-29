@@ -20,7 +20,7 @@ public sealed record UniquePolygonType2Step(
 	public override decimal Difficulty => 5.4M;
 
 	/// <inheritdoc/>
-	public override Technique TechniqueCode => Technique.BdpType2;
+	public override Technique TechniqueCode => Technique.UniquePolygonType2;
 
 	[FormatItem]
 	private string ExtraDigitStr

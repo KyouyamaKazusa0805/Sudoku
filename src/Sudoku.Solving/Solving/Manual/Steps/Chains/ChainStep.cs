@@ -69,20 +69,20 @@ public abstract record ChainStep(
 	/// <inheritdoc/>
 	public override Technique TechniqueCode => this switch
 	{
-		{ IsNishio: true } => Technique.NishioFc,
+		{ IsNishio: true } => Technique.NishioForcingChains,
 		{ IsDynamic: true } => SortKey switch
 		{
-			ChainTypeCode.DynamicRegionFc => Technique.DynamicRegionFc,
-			ChainTypeCode.DynamicCellFc => Technique.DynamicCellFc,
-			ChainTypeCode.DynamicContradictionFc => Technique.DynamicContradictionFc,
-			ChainTypeCode.DynamicDoubleFc => Technique.DynamicDoubleFc
+			ChainTypeCode.DynamicRegionFc => Technique.DynamicRegionForcingChains,
+			ChainTypeCode.DynamicCellFc => Technique.DynamicCellForcingChains,
+			ChainTypeCode.DynamicContradictionFc => Technique.DynamicContradictionForcingChains,
+			ChainTypeCode.DynamicDoubleFc => Technique.DynamicDoubleForcingChains
 		},
 		{ IsMultiple: true } => SortKey switch
 		{
-			ChainTypeCode.RegionFc => Technique.RegionFc,
-			ChainTypeCode.CellFc => Technique.CellFc,
+			ChainTypeCode.RegionFc => Technique.RegionForcingChains,
+			ChainTypeCode.CellFc => Technique.CellForcingChains,
 		},
-		_ => Technique.Aic
+		_ => Technique.AlternatingInferenceChain
 	};
 
 	/// <summary>

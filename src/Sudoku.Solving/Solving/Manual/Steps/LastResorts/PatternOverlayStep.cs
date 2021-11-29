@@ -20,13 +20,13 @@ public sealed record PatternOverlayStep(
 	public override DifficultyLevel DifficultyLevel => DifficultyLevel.LastResort;
 
 	/// <inheritdoc/>
-	public override Technique TechniqueCode => Technique.Pom;
+	public override Technique TechniqueCode => Technique.PatternOverlay;
 
 	/// <inheritdoc/>
-	public override TechniqueGroup TechniqueGroup => TechniqueGroup.Pom;
+	public override TechniqueGroup TechniqueGroup => TechniqueGroup.PatternOverlay;
 
 	/// <inheritdoc/>
-	public override TechniqueTags TechniqueTags => base.TechniqueTags | TechniqueTags.SingleDigitPatterns;
+	public override TechniqueTags TechniqueTags => base.TechniqueTags | TechniqueTags.SingleDigitPattern;
 
 	/// <inheritdoc/>
 	public override Rarity Rarity => Rarity.Often;

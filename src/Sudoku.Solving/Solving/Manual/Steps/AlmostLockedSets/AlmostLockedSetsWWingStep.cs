@@ -30,10 +30,10 @@ public sealed record AlmostLockedSetsWWingStep(
 	public override DifficultyLevel DifficultyLevel => DifficultyLevel.Fiendish;
 
 	/// <inheritdoc/>
-	public override TechniqueGroup TechniqueGroup => TechniqueGroup.AlsChainingLike;
+	public override TechniqueGroup TechniqueGroup => TechniqueGroup.AlmostLockedSetsChainingLike;
 
 	/// <inheritdoc/>
-	public override Technique TechniqueCode => Technique.AlsWWing;
+	public override Technique TechniqueCode => Technique.AlmostLockedSetsWWing;
 
 	/// <inheritdoc/>
 	public override Rarity Rarity => Rarity.Seldom;

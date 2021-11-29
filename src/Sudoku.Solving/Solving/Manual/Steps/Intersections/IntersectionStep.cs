@@ -66,7 +66,7 @@ public sealed record AlmostLockedCandidatesStep(
 	};
 
 	/// <inheritdoc/>
-	public override TechniqueGroup TechniqueGroup => TechniqueGroup.Alc;
+	public override TechniqueGroup TechniqueGroup => TechniqueGroup.AlmostLockedCandidates;
 
 	/// <inheritdoc/>
 	public override Rarity Rarity => Rarity.Sometimes;

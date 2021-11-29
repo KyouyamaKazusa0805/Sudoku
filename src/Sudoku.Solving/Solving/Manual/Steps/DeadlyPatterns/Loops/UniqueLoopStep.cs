@@ -33,7 +33,7 @@ public abstract record UniqueLoopStep(
 	public sealed override Technique TechniqueCode => Enum.Parse<Technique>($"UlType{Type}");
 
 	/// <inheritdoc/>
-	public sealed override TechniqueGroup TechniqueGroup => TechniqueGroup.Ul;
+	public sealed override TechniqueGroup TechniqueGroup => TechniqueGroup.UniqueLoop;
 
 	/// <inheritdoc/>
 	public sealed override TechniqueTags TechniqueTags => TechniqueTags.DeadlyPattern;

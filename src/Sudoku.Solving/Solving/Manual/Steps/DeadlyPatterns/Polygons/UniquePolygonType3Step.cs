@@ -22,7 +22,7 @@ public sealed record UniquePolygonType3Step(
 	public override decimal Difficulty => 5.2M + ExtraCells.Count * .1M;
 
 	/// <inheritdoc/>
-	public override Technique TechniqueCode => Technique.BdpType3;
+	public override Technique TechniqueCode => Technique.UniquePolygonType3;
 
 	[FormatItem]
 	private string ExtraDigitsStr

@@ -29,13 +29,13 @@ public sealed record AlmostLockedSetsXyWingStep(
 	public override TechniqueTags TechniqueTags => base.TechniqueTags | TechniqueTags.ShortChaining;
 
 	/// <inheritdoc/>
-	public override TechniqueGroup TechniqueGroup => TechniqueGroup.AlsChainingLike;
+	public override TechniqueGroup TechniqueGroup => TechniqueGroup.AlmostLockedSetsChainingLike;
 
 	/// <inheritdoc/>
 	public override DifficultyLevel DifficultyLevel => DifficultyLevel.Fiendish;
 
 	/// <inheritdoc/>
-	public override Technique TechniqueCode => Technique.AlsXyWing;
+	public override Technique TechniqueCode => Technique.AlmostLockedSetsXyWing;
 
 	/// <inheritdoc/>
 	public override Rarity Rarity => Rarity.Sometimes;

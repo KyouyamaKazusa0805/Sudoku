@@ -18,7 +18,7 @@ public sealed record QiuDeadlyPatternType2Step(
 	public override decimal Difficulty => base.Difficulty + .1M;
 
 	/// <inheritdoc/>
-	public override Technique TechniqueCode => Technique.QdpType2;
+	public override Technique TechniqueCode => Technique.QiuDeadlyPatternType2;
 
 	[FormatItem]
 	private string ExtraDigitStr

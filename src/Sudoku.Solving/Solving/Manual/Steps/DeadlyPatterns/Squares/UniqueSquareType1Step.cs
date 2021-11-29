@@ -17,7 +17,7 @@ public sealed record UniqueSquareType1Step(
 ) : UniqueSquareStep(Conclusions, Views, Cells, DigitsMask)
 {
 	/// <inheritdoc/>
-	public override Technique TechniqueCode => Technique.UsType1;
+	public override Technique TechniqueCode => Technique.UniqueSquareType1;
 
 	[FormatItem]
 	private string CandidateStr

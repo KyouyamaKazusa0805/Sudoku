@@ -52,7 +52,7 @@ public sealed record CellChainingStep(
 	public override TechniqueTags TechniqueTags => TechniqueTags.LongChaining | TechniqueTags.ForcingChains;
 
 	/// <inheritdoc/>
-	public override TechniqueGroup TechniqueGroup => TechniqueGroup.Fc;
+	public override TechniqueGroup TechniqueGroup => TechniqueGroup.ForcingChains;
 
 	/// <inheritdoc/>
 	public override DifficultyLevel DifficultyLevel => DifficultyLevel.Nightmare;

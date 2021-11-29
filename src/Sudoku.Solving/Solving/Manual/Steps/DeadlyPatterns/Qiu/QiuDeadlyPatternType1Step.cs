@@ -15,7 +15,7 @@ public sealed record QiuDeadlyPatternType1Step(
 ) : QiuDeadlyPatternStep(Conclusions, Views, Pattern)
 {
 	/// <inheritdoc/>
-	public override Technique TechniqueCode => Technique.QdpType1;
+	public override Technique TechniqueCode => Technique.QiuDeadlyPatternType1;
 
 	[FormatItem]
 	private string CandidateStr

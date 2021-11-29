@@ -20,7 +20,7 @@ public sealed record BruteForceStep(
 	public override Technique TechniqueCode => Technique.BruteForce;
 
 	/// <inheritdoc/>
-	public override TechniqueGroup TechniqueGroup => TechniqueGroup.Bf;
+	public override TechniqueGroup TechniqueGroup => TechniqueGroup.BruteForce;
 
 	/// <inheritdoc/>
 	public override Rarity Rarity => Rarity.Always;

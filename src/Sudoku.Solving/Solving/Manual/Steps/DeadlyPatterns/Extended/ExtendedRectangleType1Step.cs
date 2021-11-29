@@ -18,7 +18,7 @@ public sealed record ExtendedRectangleType1Step(
 	public override int Type => 1;
 
 	/// <inheritdoc/>
-	public override Technique TechniqueCode => Technique.XrType1;
+	public override Technique TechniqueCode => Technique.ExtendedRectangleType1;
 
 	/// <inheritdoc/>
 	public override Rarity Rarity => Rarity.Sometimes;
