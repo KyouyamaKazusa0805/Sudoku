@@ -11,16 +11,7 @@ namespace Sudoku.Data;
 /// </param>
 [AutoGetHashCode(nameof(Cell))]
 [AutoEquality(nameof(Cell))]
-public readonly partial record struct Coordinate(byte Cell)
-: IEqualityOperators<Coordinate, Coordinate>
-, IComparisonOperators<Coordinate, Coordinate>
-, IEquatable<Coordinate>
-, IValueEquatable<Coordinate>
-, IComparable<Coordinate>
-, IValueComparable<Coordinate>
-, IFormattable
-, IMinMaxValue<Coordinate>
-, extended::System.IParseable<Coordinate>
+public readonly partial record struct Coordinate(byte Cell) : IEqualityOperators<Coordinate, Coordinate>, IComparisonOperators<Coordinate, Coordinate>, IEquatable<Coordinate>, IValueEquatable<Coordinate>, IComparable<Coordinate>, IValueComparable<Coordinate>, IFormattable, IMinMaxValue<Coordinate>, extended::System.IParseable<Coordinate>
 {
 	/// <summary>
 	/// Indicates the undefined <see cref="Coordinate"/> instance that stands for an invalid <see cref="Coordinate"/> value.
