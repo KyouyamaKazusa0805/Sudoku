@@ -2456,6 +2456,21 @@
         <member name="F:Sudoku.Data.Coordinate.MaxValue">
             <inheritdoc cref="P:System.IMinMaxValue`1.MaxValue"/>
         </member>
+        <member name="P:Sudoku.Data.Coordinate.Row">
+            <summary>
+            Indicates the current row lying in.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Data.Coordinate.Column">
+            <summary>
+            Indicates the current column lying in.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Data.Coordinate.Block">
+            <summary>
+            Indicates the current block lying in.
+            </summary>
+        </member>
         <member name="P:Sudoku.Data.Coordinate.System#IMinMaxValue{Sudoku#Data#Coordinate}#MinValue">
             <inheritdoc/>
         </member>
@@ -2473,6 +2488,24 @@
         </member>
         <member name="M:Sudoku.Data.Coordinate.ToString(System.String,System.IFormatProvider)">
             <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Data.Coordinate.MoveForwardly(System.Byte)">
+            <inheritdoc cref="M:Sudoku.Data.Coordinate.op_Addition(Sudoku.Data.Coordinate,System.Byte)"/>
+        </member>
+        <member name="M:Sudoku.Data.Coordinate.MoveBackwardly(System.Byte)">
+            <inheritdoc cref="M:Sudoku.Data.Coordinate.op_Subtraction(Sudoku.Data.Coordinate,System.Byte)"/>
+        </member>
+        <member name="M:Sudoku.Data.Coordinate.MoveForwardlyThroughBlock">
+            <summary>
+            Moves the current <see cref="T:Sudoku.Data.Coordinate"/> to skip cells to the first cell in its next block forwardly.
+            </summary>
+            <returns>The result <see cref="T:Sudoku.Data.Coordinate"/></returns>
+        </member>
+        <member name="M:Sudoku.Data.Coordinate.MoveBackwardlyThroughBlock">
+            <summary>
+            Moves the current <see cref="T:Sudoku.Data.Coordinate"/> to skip cells to the first cell in its next block backwardly.
+            </summary>
+            <returns>The result <see cref="T:Sudoku.Data.Coordinate"/></returns>
         </member>
         <member name="M:Sudoku.Data.Coordinate.System#IValueComparable{Sudoku#Data#Coordinate}#CompareTo(Sudoku.Data.Coordinate@)">
             <inheritdoc/>
@@ -2497,6 +2530,22 @@
         </member>
         <member name="M:Sudoku.Data.Coordinate.op_LessThan(Sudoku.Data.Coordinate,Sudoku.Data.Coordinate)">
             <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Data.Coordinate.op_Addition(Sudoku.Data.Coordinate,System.Byte)">
+            <summary>
+            Moves the specified <see cref="T:Sudoku.Data.Coordinate"/> forwardly.
+            </summary>
+            <param name="coordinate">The <see cref="T:Sudoku.Data.Coordinate"/> instance to be moved.</param>
+            <param name="offset">The offset that the <see cref="T:Sudoku.Data.Coordinate"/> instance moves.</param>
+            <returns>The result <see cref="T:Sudoku.Data.Coordinate"/>.</returns>
+        </member>
+        <member name="M:Sudoku.Data.Coordinate.op_Subtraction(Sudoku.Data.Coordinate,System.Byte)">
+            <summary>
+            Moves the specified <see cref="T:Sudoku.Data.Coordinate"/> backwardly.
+            </summary>
+            <param name="coordinate">The <see cref="T:Sudoku.Data.Coordinate"/> instance to be moved.</param>
+            <param name="offset">The offset that the <see cref="T:Sudoku.Data.Coordinate"/> instance moves.</param>
+            <returns>The result <see cref="T:Sudoku.Data.Coordinate"/>.</returns>
         </member>
         <member name="M:Sudoku.Data.Coordinate.op_Implicit(Sudoku.Data.Coordinate)~System.Byte">
             <summary>

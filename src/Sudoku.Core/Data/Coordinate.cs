@@ -11,7 +11,7 @@ namespace Sudoku.Data;
 /// </param>
 [AutoGetHashCode(nameof(Cell))]
 [AutoEquality(nameof(Cell))]
-public readonly partial record struct Coordinate(byte Cell) : IEqualityOperators<Coordinate, Coordinate>, IComparisonOperators<Coordinate, Coordinate>, IEquatable<Coordinate>, IValueEquatable<Coordinate>, IComparable<Coordinate>, IValueComparable<Coordinate>, IFormattable, IMinMaxValue<Coordinate>, extended::System.IParseable<Coordinate>
+public readonly partial record struct Coordinate(byte Cell) : IEqualityOperators<Coordinate, Coordinate>, IComparisonOperators<Coordinate, Coordinate>, IAdditionOperators<Coordinate, byte, Coordinate>, ISubtractionOperators<Coordinate, byte, Coordinate>, IEquatable<Coordinate>, IValueEquatable<Coordinate>, IComparable<Coordinate>, IValueComparable<Coordinate>, IFormattable, IMinMaxValue<Coordinate>, extended::System.IParseable<Coordinate>
 {
 	/// <summary>
 	/// Indicates the undefined <see cref="Coordinate"/> instance that stands for an invalid <see cref="Coordinate"/> value.
@@ -24,6 +24,33 @@ public readonly partial record struct Coordinate(byte Cell) : IEqualityOperators
 	/// <inheritdoc cref="IMinMaxValue{TSelf}.MaxValue"/>
 	public static readonly Coordinate MaxValue = new(80);
 
+
+	/// <summary>
+	/// Indicates the current row lying in.
+	/// </summary>
+	public int Row
+	{
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		get => RegionCalculator.ToRegion(Cell, RegionLabel.Row);
+	}
+
+	/// <summary>
+	/// Indicates the current column lying in.
+	/// </summary>
+	public int Column
+	{
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		get => RegionCalculator.ToRegion(Cell, RegionLabel.Column);
+	}
+
+	/// <summary>
+	/// Indicates the current block lying in.
+	/// </summary>
+	public int Block
+	{
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		get => RegionCalculator.ToRegion(Cell, RegionLabel.Block);
+	}
 
 	/// <inheritdoc/>
 	static Coordinate IMinMaxValue<Coordinate>.MinValue
@@ -58,24 +85,56 @@ public readonly partial record struct Coordinate(byte Cell) : IEqualityOperators
 			? result
 			: format switch
 			{
-				null or "rc" => $"r{Cell / 9 + 1}c{Cell % 9 + 1}",
-				"RC" => $"R{Cell / 9 + 1}C{Cell % 9 + 1}",
-				"RCB" => $"R{Cell / 9 + 1}C{Cell % 9 + 1}B{RegionCalculator.ToRegion(Cell, RegionLabel.Block)}",
-				"rcb" => $"r{Cell / 9 + 1}c{Cell % 9 + 1}b{RegionCalculator.ToRegion(Cell, RegionLabel.Block)}",
+				null or "rc" => $"r{Row}c{Column}",
+				"RC" => $"R{Row}C{Column}",
+				"RCB" => $"R{Row}C{Column}B{Block}",
+				"rcb" => $"r{Row}c{Column}b{Block}",
 				{ Length: 1 } when format[0] is var formatChar => formatChar switch
 				{
-					'N' => $"R{Cell / 9 + 1}C{Cell % 9 + 1}",
-					'n' => $"r{Cell / 9 + 1}c{Cell % 9 + 1}",
-					'R' => $"R{Cell / 9 + 1}",
-					'r' => $"r{Cell / 9 + 1}",
-					'C' => $"C{Cell % 9 + 1}",
-					'c' => $"c{Cell % 9 + 1}",
-					'B' => $"B{RegionCalculator.ToRegion(Cell, RegionLabel.Block)}",
-					'b' => $"b{RegionCalculator.ToRegion(Cell, RegionLabel.Block)}",
+					'N' => $"R{Row}C{Column}",
+					'n' => $"r{Row}c{Column}",
+					'R' => $"R{Row}",
+					'r' => $"r{Row}",
+					'C' => $"C{Column}",
+					'c' => $"c{Column}",
+					'B' => $"B{Block}",
+					'b' => $"b{Block}",
 					_ => throw new FormatException($"The specified format '{formatChar}' is invalid or not supported.")
 				},
 				_ => throw new FormatException($"The specified format '{format}' is invalid or not supported.")
 			};
+
+	/// <inheritdoc cref="operator +(Coordinate, byte)"/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public Coordinate MoveForwardly(byte offset) => this + offset;
+
+	/// <inheritdoc cref="operator -(Coordinate, byte)"/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public Coordinate MoveBackwardly(byte offset) => this - offset;
+
+	/// <summary>
+	/// Moves the current <see cref="Coordinate"/> to skip cells to the first cell in its next block forwardly.
+	/// </summary>
+	/// <returns>The result <see cref="Coordinate"/></returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public Coordinate MoveForwardlyThroughBlock() =>
+		new(
+			(byte)(Row * 9 + Column / 3 * 3 + 3) is var newResult && newResult == 81
+				? (byte)(newResult - 81)
+				: newResult
+		);
+
+	/// <summary>
+	/// Moves the current <see cref="Coordinate"/> to skip cells to the first cell in its next block backwardly.
+	/// </summary>
+	/// <returns>The result <see cref="Coordinate"/></returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public Coordinate MoveBackwardlyThroughBlock() =>
+		new(
+			(byte)(Row * 9 + Column / 3 * 3 - 1) is var newResult && newResult == byte.MaxValue
+				? (byte)80
+				: newResult
+		);
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -188,6 +247,34 @@ public readonly partial record struct Coordinate(byte Cell) : IEqualityOperators
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static bool operator <(Coordinate left, Coordinate right) => left.Cell < right.Cell;
+
+	/// <summary>
+	/// Moves the specified <see cref="Coordinate"/> forwardly.
+	/// </summary>
+	/// <param name="coordinate">The <see cref="Coordinate"/> instance to be moved.</param>
+	/// <param name="offset">The offset that the <see cref="Coordinate"/> instance moves.</param>
+	/// <returns>The result <see cref="Coordinate"/>.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static Coordinate operator +(Coordinate coordinate, byte offset) =>
+		new(
+			(byte)(coordinate.Cell + offset) is var newResult && newResult >= 81
+				? (byte)(newResult % 81)
+				: newResult
+		);
+
+	/// <summary>
+	/// Moves the specified <see cref="Coordinate"/> backwardly.
+	/// </summary>
+	/// <param name="coordinate">The <see cref="Coordinate"/> instance to be moved.</param>
+	/// <param name="offset">The offset that the <see cref="Coordinate"/> instance moves.</param>
+	/// <returns>The result <see cref="Coordinate"/>.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static Coordinate operator -(Coordinate coordinate, byte offset) =>
+		new(
+			(byte)(coordinate.Cell - offset) is var newResult && newResult < 0
+				? (byte)(-newResult % 81)
+				: newResult
+		);
 
 
 	/// <summary>
