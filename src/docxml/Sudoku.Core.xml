@@ -2427,6 +2427,102 @@
             otherwise, <see langword="false"/>.
             </returns>
         </member>
+        <member name="T:Sudoku.Data.Coordinate">
+            <summary>
+            Defines a coordinate used in a sudoku grid.
+            </summary>
+            <param name="Cell">
+            Indicates the cell value used. The possible values are between 0 and 80. You can't assign a value out of this range;
+            otherwise, a <see cref="T:System.InvalidOperationException"/> or <see cref="T:System.ArgumentOutOfRangeException"/> will be thrown.
+            </param>
+        </member>
+        <member name="M:Sudoku.Data.Coordinate.#ctor(System.Byte)">
+            <summary>
+            Defines a coordinate used in a sudoku grid.
+            </summary>
+            <param name="Cell">
+            Indicates the cell value used. The possible values are between 0 and 80. You can't assign a value out of this range;
+            otherwise, a <see cref="T:System.InvalidOperationException"/> or <see cref="T:System.ArgumentOutOfRangeException"/> will be thrown.
+            </param>
+        </member>
+        <member name="F:Sudoku.Data.Coordinate.Undefined">
+            <summary>
+            Indicates the undefined <see cref="T:Sudoku.Data.Coordinate"/> instance that stands for an invalid <see cref="T:Sudoku.Data.Coordinate"/> value.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Data.Coordinate.MinValue">
+            <inheritdoc cref="P:System.IMinMaxValue`1.MinValue"/>
+        </member>
+        <member name="F:Sudoku.Data.Coordinate.MaxValue">
+            <inheritdoc cref="P:System.IMinMaxValue`1.MaxValue"/>
+        </member>
+        <member name="P:Sudoku.Data.Coordinate.System#IMinMaxValue{Sudoku#Data#Coordinate}#MinValue">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Data.Coordinate.System#IMinMaxValue{Sudoku#Data#Coordinate}#MaxValue">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Data.Coordinate.CompareTo(Sudoku.Data.Coordinate)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Data.Coordinate.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
+        <member name="M:Sudoku.Data.Coordinate.ToString(System.String)">
+            <inheritdoc cref="M:System.IFormattable.ToString(System.String,System.IFormatProvider)"/>
+        </member>
+        <member name="M:Sudoku.Data.Coordinate.ToString(System.String,System.IFormatProvider)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Data.Coordinate.System#IValueComparable{Sudoku#Data#Coordinate}#CompareTo(Sudoku.Data.Coordinate@)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Data.Coordinate.System#IComparable#CompareTo(System.Object)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Data.Coordinate.Parse(System.String)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Data.Coordinate.TryParse(System.String,Sudoku.Data.Coordinate@)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Data.Coordinate.op_GreaterThanOrEqual(Sudoku.Data.Coordinate,Sudoku.Data.Coordinate)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Data.Coordinate.op_LessThanOrEqual(Sudoku.Data.Coordinate,Sudoku.Data.Coordinate)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Data.Coordinate.op_GreaterThan(Sudoku.Data.Coordinate,Sudoku.Data.Coordinate)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Data.Coordinate.op_LessThan(Sudoku.Data.Coordinate,Sudoku.Data.Coordinate)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Data.Coordinate.op_Implicit(Sudoku.Data.Coordinate)~System.Byte">
+            <summary>
+            Implicit conversion from <see cref="T:Sudoku.Data.Coordinate"/> to <see cref="T:System.Byte"/>.
+            </summary>
+            <param name="coordinate">The <see cref="T:Sudoku.Data.Coordinate"/> instance.</param>
+        </member>
+        <member name="M:Sudoku.Data.Coordinate.op_Explicit(System.Byte)~Sudoku.Data.Coordinate">
+            <summary>
+            Explicit conversion from <see cref="T:System.Byte"/> to <see cref="T:Sudoku.Data.Coordinate"/>.
+            </summary>
+            <param name="cell">The cell value.</param>
+        </member>
+        <member name="M:Sudoku.Data.Coordinate.Equals(Sudoku.Data.Coordinate@)">
+            <summary>
+            Indicates whether the current object is equal to another object of the same type.
+            </summary>
+            <param name="other">An object to compare with this object.</param>
+            <returns>
+            <see langword="true"/> if the current object is equal to the other parameter;
+            otherwise, <see langword="false"/>.
+            </returns>
+        </member>
+        <member name="M:Sudoku.Data.Coordinate.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
         <member name="T:Sudoku.Data.Crosshatch">
             <summary>
             Defines a crosshatching line that used for displaying in a picture.

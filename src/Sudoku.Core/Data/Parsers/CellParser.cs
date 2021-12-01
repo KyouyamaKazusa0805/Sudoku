@@ -13,6 +13,7 @@ public static class CellParser
 	/// <param name="str">The string.</param>
 	/// <param name="cell">The cell.</param>
 	/// <returns>The <see cref="bool"/> indicating that.</returns>
+	[Obsolete($"Please use the method '{nameof(Coordinate)}.{nameof(Coordinate.Parse)}' instead.", false)]
 	public static bool TryParse(string str, [DiscardWhen(false)] out byte cell)
 	{
 		if (string.IsNullOrWhiteSpace(str))
