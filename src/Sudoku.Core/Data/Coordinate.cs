@@ -159,9 +159,15 @@ public readonly partial record struct Coordinate(byte Cell) : IEqualityOperators
 			goto ThrowFormatException;
 		}
 
-		string copied = str.Trim();
-		if (rcb(copied, out byte c)) { return new(c); }
-		if (k9(copied, out c)) { return new(c); }
+		string s = str.Trim();
+		if (rcb(s, out byte c))
+		{
+			return new(c);
+		}
+		if (k9(s, out c))
+		{
+			return new(c);
+		}
 
 	ThrowFormatException:
 		throw new FormatException("The specified string is invalid to parse.");
