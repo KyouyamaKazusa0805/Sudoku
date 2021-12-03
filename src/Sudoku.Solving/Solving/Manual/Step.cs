@@ -164,7 +164,14 @@ public abstract record Step(ImmutableArray<Conclusion> Conclusions, ImmutableArr
 		}
 	}
 
-	/// <inheritdoc/>
+	/// <summary>
+	/// Determine whether the current step information instance with the specified flags.
+	/// </summary>
+	/// <param name="flags">
+	/// The flags. If the argument contains more than one set bit, all flags will be checked
+	/// one by one.
+	/// </param>
+	/// <returns>A <see cref="bool"/> result.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public bool HasTag(TechniqueTags flags) =>
 		flags.IsFlag() ? TechniqueTags.Flags(flags) : TechniqueTags.MultiFlags(flags);

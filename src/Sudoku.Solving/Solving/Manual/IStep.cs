@@ -169,16 +169,6 @@ public interface IStep
 	void ApplyTo(ref Grid grid);
 
 	/// <summary>
-	/// Determine whether the current step information instance with the specified flags.
-	/// </summary>
-	/// <param name="flags">
-	/// The flags. If the argument contains more than one set bit, all flags will be checked
-	/// one by one.
-	/// </param>
-	/// <returns>A <see cref="bool"/> result.</returns>
-	bool HasTag(TechniqueTags flags);
-
-	/// <summary>
 	/// Returns a string that only contains the name and the basic information.
 	/// </summary>
 	/// <returns>The string instance.</returns>
