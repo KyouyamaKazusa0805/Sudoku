@@ -9642,6 +9642,93 @@
             Marks on a property to tell the user the property is only used for the formatting.
             </summary>
         </member>
+        <member name="T:Sudoku.Solving.Manual.Text.StepFormattingInfo`1">
+            <summary>
+            Provides with a tuple that holds the formatting information that is used for formatting a technique step.
+            </summary>
+            <typeparam name="TStep">Indicates the real type of the <see cref="P:Sudoku.Solving.Manual.Text.StepFormattingInfo`1.Step"/> instance.</typeparam>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.Text.StepFormattingInfo`1._propertyValues">
+            <summary>
+            Indicates the result property values used.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.Text.StepFormattingInfo`1._innerType">
+            <summary>
+            Indicates the inner <see cref="T:System.Type"/> instance that binds with the <typeparamref name="TStep"/>.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Text.StepFormattingInfo`1.#ctor(System.Int32,System.String,System.String[],`0)">
+            <summary>
+            Initializes an instance via those arguments.
+            </summary>
+            <exception cref="T:System.TypeInitializationException">
+            Throws when at least one property name in <paramref name="propertyNames"/>
+            can't be found in the instance <paramref name="step"/>.
+            The exception type is <see cref="T:System.TypeInitializationException"/>,
+            whose inner exception is <see cref="T:System.FormatException"/>.
+            </exception>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Text.StepFormattingInfo`1.Lcid">
+            <summary>
+            Indicates the current LCID used.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Text.StepFormattingInfo`1.Format">
+            <summary>
+            Indicates the format string.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Text.StepFormattingInfo`1.LocalizedCultureName">
+            <summary>
+            Indicates the display name for the localized culture.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Text.StepFormattingInfo`1.PropertyNames">
+            <summary>
+            Indicates the property names used.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Text.StepFormattingInfo`1.Step">
+            <summary>
+            Indicates the step instance used.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Text.StepFormattingInfo`1.ToString">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Text.StepFormattingInfo`1.Equals(System.Object)">
+            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Text.StepFormattingInfo`1.Equals(Sudoku.Solving.Manual.Text.StepFormattingInfo{`0})">
+            <summary>
+            Indicates whether the current object is equal to another object of the same type.
+            </summary>
+            <param name="other">An object to compare with this object.</param>
+            <returns>
+            <see langword="true"/> if the current object is equal to the other parameter;
+            otherwise, <see langword="false"/>.
+            </returns>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Text.StepFormattingInfo`1.op_Equality(Sudoku.Solving.Manual.Text.StepFormattingInfo{`0},Sudoku.Solving.Manual.Text.StepFormattingInfo{`0})">
+            <summary>
+            Determines whether the two instances contain a same value.
+            </summary>
+            <param name="left">The left-side-operator instance to compare.</param>
+            <param name="right">The right-side-operator instance to compare.</param>
+            <returns>A <see cref="T:System.Boolean"/> result.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Text.StepFormattingInfo`1.op_Inequality(Sudoku.Solving.Manual.Text.StepFormattingInfo{`0},Sudoku.Solving.Manual.Text.StepFormattingInfo{`0})">
+            <summary>
+            Determines whether the two instances don't contain a same value.
+            </summary>
+            <param name="left">The left-side-operator instance to compare.</param>
+            <param name="right">The right-side-operator instance to compare.</param>
+            <returns>A <see cref="T:System.Boolean"/> result.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Text.StepFormattingInfo`1.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
         <member name="T:Sudoku.Solving.Manual.WrongStepException">
             <summary>
             Indicates an error that throws when a solving step is wrong (may be due to wrong algorithm, bug, etc.).

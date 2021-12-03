@@ -36,7 +36,7 @@ public sealed class AutoEquality : ISourceGenerator
 	[global::System.CodeDom.Compiler.GeneratedCode(""{GetType().FullName}"", ""{VersionValue}"")]
 	[global::System.Runtime.CompilerServices.CompilerGenerated]
 	[global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
-	public override {readOnlyKeyword}bool Equals(object? other) => other is {typeName}{genericParameterList} comparer && Equals(comparer);";
+	public override {readOnlyKeyword}bool Equals(object? other) => other is {typeName}{genericParameterListWithoutConstraint} comparer && Equals(comparer);";
 
 			var memberSymbols = typeSymbol.GetMembers().OfType<IMethodSymbol>();
 			string opEquality = memberSymbols.All(static method => method.Name != OperatorNames.Equality)
