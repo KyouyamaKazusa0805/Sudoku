@@ -21,16 +21,5 @@
             <param name="cancellationToken">The cancellation token to cancel the operation.</param>
             <returns>The task of the operation.</returns>
         </member>
-        <member name="T:Sudoku.Test.PuzzleTechniqueUsageCounter">
-            <summary>
-            Encapsulates the basic batch counter that counts the puzzle technique usages.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Test.PuzzleTechniqueUsageCounter.CountUp(System.Int32)">
-            <summary>
-            Count up the technique usages.
-            </summary>
-            <param name="puzzlesCount">The number of puzzles should be checked.</param>
-        </member>
     </members>
 </doc>

@@ -1,12 +1,13 @@
 ﻿using System;
+using System.IO;
+using System.Text.Json;
 
-int[] array = { 1, 3, 6, 10, 15, 21, 28 };
-foreach (ref int element in array.AsRefEnumerable())
-{
-	element++;
-}
+string desktop = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
+string targetPath = $@"{desktop}\test.json";
+await using var stream = File.OpenRead(targetPath);
+var result = await JsonSerializer.DeserializeAsync<JsonElement>(stream);
 
-foreach (int element in array)
+foreach (var i in result.EnumerateObject())
 {
-	Console.WriteLine(element);
+	Console.WriteLine(i.ToString());
 }
