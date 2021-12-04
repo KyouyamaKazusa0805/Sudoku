@@ -6,7 +6,9 @@
 
 If I'm busy or something goes bad for me, I'll make a notice to you, whose content will be put into here.
 
-> I'm busy recently, so some updates may be slow.
+> I'm sorry that I'll delete all deprecated projects (e.g. `Sudoku.Windows`) in the last day of this year (2021.12.31), because the whole solution is too complex to maintain files. :(
+>
+> However, you can still find the program at the release tag (V0.6 or below).
 
 ## Content
 
