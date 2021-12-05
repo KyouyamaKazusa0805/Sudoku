@@ -88,7 +88,7 @@ Console.WriteLine(analysisResult.ToString());
 * [x] API
 * [ ] UI 项目
   * [ ] 桌面项目
-    * [x] WPF 项目
+    * [x] ~~WPF 项目（这个项目将于年底删除）~~
     * [ ] ~~UWP 项目（这个可能我不会考虑了）~~
     * [ ] Windows UI 项目
     * [x] ~~Winform 项目（已实现，但早已过时，已被移除）~~

@@ -84,8 +84,8 @@ Please visit the following tables.
 * [x] API
 * [ ] UI Projects
   * [ ] Desktop Projects
-    * [x] WPF
-    * [ ] ~~UWP (This may not be considered)~~
+    * [x] ~~WPF (Will be removed by the end of this year)~~
+    * [ ] ~~UWP (May not be considered)~~
     * [ ] Windows UI
     * [x] ~~Winform (Implemented but deprecated, removed)~~
   * [ ] MAUI
