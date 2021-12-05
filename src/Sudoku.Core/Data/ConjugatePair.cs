@@ -13,7 +13,9 @@
 /// <param name="Digit">Indicates the digit used.</param>
 /// <param name="Map">Indicates the pair of maps used.</param>
 [AutoEquality(nameof(Map), nameof(Digit))]
-public readonly partial record struct ConjugatePair(int From, int To, int Digit, in Cells Map) : IValueEquatable<ConjugatePair>, IJsonSerializable<ConjugatePair, ConjugatePair.JsonConverter>
+public readonly partial record struct ConjugatePair(int From, int To, int Digit, in Cells Map)
+: IValueEquatable<ConjugatePair>
+, IJsonSerializable<ConjugatePair, ConjugatePair.JsonConverter>
 {
 	/// <summary>
 	/// Initializes a <see cref="ConjugatePair"/> instance with from and to cell offset and a digit.

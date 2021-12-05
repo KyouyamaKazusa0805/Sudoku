@@ -3,7 +3,9 @@
 /// <summary>
 /// Encapsulates a technique code filter that contains some of technique codes.
 /// </summary>
-public sealed class TechniqueCodeFilter : ICloneable<TechniqueCodeFilter>, IEnumerable<Technique>
+public sealed class TechniqueCodeFilter
+: ICloneable<TechniqueCodeFilter>
+, IEnumerable<Technique>
 {
 	/// <summary>
 	/// The internal list.

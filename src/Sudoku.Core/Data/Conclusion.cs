@@ -23,7 +23,12 @@
 [AutoDeconstructLambda(nameof(ConclusionType), nameof(Candidate))]
 [AutoDeconstructLambda(nameof(ConclusionType), nameof(Cell), nameof(Digit))]
 [AutoEquality(nameof(ConclusionType), nameof(Cell), nameof(Digit))]
-public readonly partial record struct Conclusion(int Mask) : IComparable<Conclusion>, IEquatable<Conclusion>, IValueEquatable<Conclusion>, IValueComparable<Conclusion>, IJsonSerializable<Conclusion, Conclusion.JsonConverter>
+public readonly partial record struct Conclusion(int Mask)
+: IComparable<Conclusion>
+, IEquatable<Conclusion>
+, IValueEquatable<Conclusion>
+, IValueComparable<Conclusion>
+, IJsonSerializable<Conclusion, Conclusion.JsonConverter>
 {
 	/// <summary>
 	/// Initializes an instance with a conclusion type and a candidate offset.

@@ -5,7 +5,9 @@
 /// </summary>
 /// <param name="Start">The start position.</param>
 /// <param name="End">The end position.</param>
-public readonly partial record struct Crosshatch(in Cells Start, in Cells End) : IValueEquatable<Crosshatch>, IJsonSerializable<Crosshatch, Crosshatch.JsonConverter>
+public readonly partial record struct Crosshatch(in Cells Start, in Cells End)
+: IValueEquatable<Crosshatch>
+, IJsonSerializable<Crosshatch, Crosshatch.JsonConverter>
 {
 	/// <inheritdoc/>
 	public bool Equals(in Crosshatch other) => Start == other.Start && End == other.End;

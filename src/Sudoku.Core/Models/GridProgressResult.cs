@@ -7,7 +7,9 @@
 [AutoDeconstruct(nameof(CurrentCandidatesCount), nameof(CurrentCellsCount), nameof(InitialCandidatesCount))]
 [AutoGetHashCode(nameof(BaseHashCode), nameof(InitialCandidatesCount), nameof(CountryCode))]
 [AutoEquality(nameof(CurrentCandidatesCount), nameof(CurrentCellsCount), nameof(InitialCandidatesCount), nameof(CountryCode))]
-public partial struct GridProgressResult : IValueEquatable<GridProgressResult>, IProgressResult
+public partial struct GridProgressResult
+: IValueEquatable<GridProgressResult>
+, IProgressResult
 {
 	/// <summary>
 	/// Initializes an instance with the specified current point and the total point.

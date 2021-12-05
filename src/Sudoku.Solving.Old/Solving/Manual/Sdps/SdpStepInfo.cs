@@ -17,5 +17,5 @@ public abstract record SdpStepInfo(
 	public override TechniqueGroup TechniqueGroup => TechniqueGroup.Sdp;
 
 	/// <inheritdoc/>
-	public override TechniqueTags TechniqueTags => TechniqueTags.SingleDigitPatterns;
+	public override TechniqueTags TechniqueTags => TechniqueTags.SingleDigitPattern;
 }

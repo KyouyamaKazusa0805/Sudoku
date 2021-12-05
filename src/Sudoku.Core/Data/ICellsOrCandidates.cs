@@ -8,7 +8,9 @@
 /// </typeparam>
 /// <seealso cref="Cells"/>
 /// <seealso cref="Candidates"/>
-internal interface ICellsOrCandidates<TCollection> : IEnumerable<int>, IValueEquatable<TCollection>
+internal interface ICellsOrCandidates<TCollection>
+: IEnumerable<int>
+, IValueEquatable<TCollection>
 where TCollection : struct, ICellsOrCandidates<TCollection>
 {
 	/// <summary>

@@ -26,7 +26,9 @@
 /// </param>
 /// <completionlist cref="ChainLinkTypes"/>
 [StructLayout(LayoutKind.Explicit, CharSet = CharSet.Auto, Pack = 0, Size = sizeof(byte))]
-public readonly record struct ChainLinkType([field: FieldOffset(0)] byte TypeKind) : IValueEquatable<ChainLinkType>, IChainLinkType<ChainLinkType>
+public readonly record struct ChainLinkType([field: FieldOffset(0)] byte TypeKind)
+: IValueEquatable<ChainLinkType>
+, IChainLinkType<ChainLinkType>
 {
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

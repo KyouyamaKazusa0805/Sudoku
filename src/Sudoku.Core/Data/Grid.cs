@@ -17,7 +17,12 @@ namespace Sudoku.Data;
 [AutoDeconstruct(nameof(EmptyCells), nameof(BivalueCells), nameof(CandidatesMap), nameof(DigitsMap), nameof(ValuesMap))]
 [AutoFormattable]
 [AutoGetEnumerator(nameof(Candidates), MemberConversion = "@.*", ReturnType = typeof(CandidateCollection.Enumerator))]
-public unsafe partial struct Grid : IGrid<Grid>, IValueEquatable<Grid>, IFormattable, IJsonSerializable<Grid, Grid.JsonConverter>, extended::System.IParseable<Grid>
+public unsafe partial struct Grid
+: IGrid<Grid>
+, IValueEquatable<Grid>
+, IFormattable
+, IJsonSerializable<Grid, Grid.JsonConverter>
+, extended::System.IParseable<Grid>
 {
 	/// <inheritdoc cref="IGrid{TGrid}.DefaultMask"/>
 	public const short DefaultMask = EmptyMask | MaxCandidatesMask;
