@@ -1,6 +1,4 @@
-﻿extern alias extended;
-
-namespace Sudoku.Data;
+﻿namespace Sudoku.Data;
 
 /// <summary>
 /// Defines a data structure that describes a sudoku grid.
@@ -8,7 +6,8 @@ namespace Sudoku.Data;
 /// <typeparam name="TGrid">The type to implement this interface.</typeparam>
 public unsafe interface IGrid<TGrid>
 : IValueEquatable<TGrid>
-, IFormattable, extended::System.IParseable<TGrid>
+, IFormattable
+, ISimpleParseable<TGrid>
 where TGrid : struct, IGrid<TGrid>
 {
 	/// <summary>
@@ -483,5 +482,9 @@ where TGrid : struct, IGrid<TGrid>
 	/// </param>
 	/// <returns>A <see cref="bool"/> value indicating that.</returns>
 	/// <seealso cref="Undefined"/>
-	static abstract bool TryParse([NotNullWhen(true)] string? str, GridParsingOption option, [DiscardWhen(false)] out TGrid result);
+	static abstract bool TryParse(
+		[NotNullWhen(true)] string? str,
+		GridParsingOption option,
+		[DiscardWhen(false)] out TGrid result
+	);
 }

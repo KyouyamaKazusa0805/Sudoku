@@ -12,13 +12,6 @@ public readonly partial record struct UnknownValue(int Cell, char UnknownIdentif
 {
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public bool Equals(in UnknownValue other) =>
+	bool IValueEquatable<UnknownValue>.Equals(in UnknownValue other) =>
 		Cell == other.Cell && UnknownIdentifier == other.UnknownIdentifier && DigitsMask == other.DigitsMask;
-
-
-	/// <inheritdoc/>
-	public static bool operator ==(in UnknownValue left, in UnknownValue right) => left.Equals(in right);
-
-	/// <inheritdoc/>
-	public static bool operator !=(in UnknownValue left, in UnknownValue right) => !left.Equals(in right);
 }

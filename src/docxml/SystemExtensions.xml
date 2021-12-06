@@ -3422,30 +3422,17 @@
         <member name="M:System.ICloneable`1.System#ICloneable#Clone">
             <inheritdoc/>
         </member>
-        <member name="T:System.IParseable`1">
+        <member name="T:System.ISimpleParseable`1">
             <summary>
-            Defines a type that supports the custom parsing operations.
+            Defines an instance that allows the <see cref="T:System.String"/> value
+            to be parsed to the target type <typeparamref name="TSelf"/>.
             </summary>
-            <typeparam name="T">The type to parse.</typeparam>
+            <typeparam name="TSelf">The type of the target result.</typeparam>
         </member>
-        <member name="M:System.IParseable`1.TryParse(System.String,`0@)">
-            <summary>
-            Try to parse the specified string text, and get the same-meaning instance
-            of type <typeparamref name="T"/>.
-            </summary>
-            <param name="str">The string to parse. The value shouldn't be <see langword="null"/>.</param>
-            <param name="result">
-            The result parsed. If failed to parse, the value will keep the <see langword="default"/> value,
-            i.e. <see langword="default"/>(<typeparamref name="T"/>).
-            </param>
-            <returns>
-            A <see cref="T:System.Boolean"/> result indicating whether the operation is successful to execute.
-            </returns>
-        </member>
-        <member name="M:System.IParseable`1.Parse(System.String)">
+        <member name="M:System.ISimpleParseable`1.Parse(System.String)">
             <summary>
             Parse the specified string text, and get the same-meaning instance
-            of type <typeparamref name="T"/>.
+            of type <typeparamref name="TSelf"/>.
             </summary>
             <param name="str">The string to parse. The value shouln't be <see langword="null"/>.</param>
             <returns>The result parsed.</returns>
@@ -3453,6 +3440,20 @@
             <exception cref="T:System.ArgumentNullException">
             Throws when the argument <paramref name="str"/> is <see langword="null"/>.
             </exception>
+        </member>
+        <member name="M:System.ISimpleParseable`1.TryParse(System.String,`0@)">
+            <summary>
+            Try to parse the specified string text, and get the same-meaning instance
+            of type <typeparamref name="TSelf"/>.
+            </summary>
+            <param name="str">The string to parse. The value shouldn't be <see langword="null"/>.</param>
+            <param name="result">
+            The result parsed. If failed to parse, the value will keep the <see langword="default"/> value,
+            i.e. <see langword="default"/>(<typeparamref name="TSelf"/>).
+            </param>
+            <returns>
+            A <see cref="T:System.Boolean"/> result indicating whether the operation is successful to execute.
+            </returns>
         </member>
         <member name="T:System.IValueComparable`1">
             <summary>

@@ -1,6 +1,4 @@
-﻿extern alias extended;
-
-namespace Sudoku.UI.Data;
+﻿namespace Sudoku.UI.Data;
 
 /// <summary>
 /// Defines a <see cref="UIColor"/> instance that can converts to a <see cref="Color"/>.
@@ -11,7 +9,12 @@ namespace Sudoku.UI.Data;
 /// <param name="B">The blue value.</param>
 [AutoDeconstructLambda(nameof(A), nameof(RgbColorInstance))]
 [AutoDeconstruct(nameof(R), nameof(G), nameof(B))]
-public readonly partial record struct UIColor(byte A, byte R, byte G, byte B) : IValueEquatable<UIColor>, IFormattable, extended::System.IParseable<UIColor>, IMinMaxValue<UIColor>, IJsonSerializable<UIColor, UIColor.JsonConverter>
+public readonly partial record struct UIColor(byte A, byte R, byte G, byte B)
+: IValueEquatable<UIColor>
+, IFormattable
+, ISimpleParseable<UIColor>
+, IMinMaxValue<UIColor>
+, IJsonSerializable<UIColor, UIColor.JsonConverter>
 {
 	/// <summary>
 	/// Indicates the min value of the <see cref="UIColor"/> instance.

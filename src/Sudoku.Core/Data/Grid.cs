@@ -1,6 +1,4 @@
-﻿extern alias extended;
-
-namespace Sudoku.Data;
+﻿namespace Sudoku.Data;
 
 /// <summary>
 /// Represents a sudoku grid that contains the mask list of a sudoku grid.
@@ -22,7 +20,7 @@ public unsafe partial struct Grid
 , IValueEquatable<Grid>
 , IFormattable
 , IJsonSerializable<Grid, Grid.JsonConverter>
-, extended::System.IParseable<Grid>
+, ISimpleParseable<Grid>
 {
 	/// <inheritdoc cref="IGrid{TGrid}.DefaultMask"/>
 	public const short DefaultMask = EmptyMask | MaxCandidatesMask;

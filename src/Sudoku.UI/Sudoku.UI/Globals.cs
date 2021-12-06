@@ -1,5 +1,4 @@
-﻿extern alias extended;
-global using System;
+﻿global using System;
 global using System.Collections.Generic;
 global using System.Diagnostics.CodeAnalysis;
 global using System.Dynamic;
@@ -13,9 +12,6 @@ global using System.Text.Json.Serialization;
 global using System.Text.RegularExpressions;
 global using System.Threading;
 global using System.Threading.Tasks;
-global using extended::System;
-global using extended::System.Diagnostics.CodeAnalysis;
-global using extended::System.Text.Json;
 global using Microsoft.UI;
 global using Microsoft.UI.Xaml;
 global using Microsoft.UI.Xaml.Controls;

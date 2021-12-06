@@ -1,6 +1,4 @@
-﻿extern alias extended;
-
-namespace Sudoku.Data;
+﻿namespace Sudoku.Data;
 
 /// <summary>
 /// Defines a coordinate used in a sudoku grid.
@@ -22,7 +20,7 @@ public readonly partial record struct Coordinate(byte Cell)
 , IValueComparable<Coordinate>
 , IFormattable
 , IMinMaxValue<Coordinate>
-, extended::System.IParseable<Coordinate>
+, ISimpleParseable<Coordinate>
 {
 	/// <summary>
 	/// Indicates the undefined <see cref="Coordinate"/> instance that stands for an invalid <see cref="Coordinate"/> value.
@@ -170,12 +168,12 @@ public readonly partial record struct Coordinate(byte Cell)
 			goto ThrowFormatException;
 		}
 
-		string s = str.Trim();
-		if (rcb(s, out byte c))
+		string resultStr = str.Trim();
+		if (rcb(resultStr, out byte c))
 		{
 			return new(c);
 		}
-		if (k9(s, out c))
+		if (k9(resultStr, out c))
 		{
 			return new(c);
 		}
@@ -232,7 +230,7 @@ public readonly partial record struct Coordinate(byte Cell)
 			return false;
 		}
 	}
-
+	
 	/// <inheritdoc/>
 	public static bool TryParse(string? str, [DiscardWhen(false)] out Coordinate result)
 	{

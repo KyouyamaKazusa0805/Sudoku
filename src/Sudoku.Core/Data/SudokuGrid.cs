@@ -1,6 +1,4 @@
-﻿extern alias extended;
-
-namespace Sudoku.Data;
+﻿namespace Sudoku.Data;
 
 /// <summary>
 /// Encapsulates a sudoku grid using value type instead of reference type.
@@ -16,7 +14,7 @@ public unsafe partial struct SudokuGrid
 , IValueEquatable<SudokuGrid>
 , IFormattable
 , IJsonSerializable<SudokuGrid, SudokuGrid.JsonConverter>
-, extended::System.IParseable<SudokuGrid>
+, IParseable<SudokuGrid>
 {
 	/// <inheritdoc cref="IGrid{TGrid}.DefaultMask"/>
 	public const short DefaultMask = EmptyMask | MaxCandidatesMask;
@@ -814,6 +812,10 @@ public unsafe partial struct SudokuGrid
 		return new Parser(str).Parse();
 	}
 
+	/// <inheritdoc/>
+	public static SudokuGrid Parse(string s, IFormatProvider? provider) =>
+		throw new NotSupportedException();
+
 #nullable disable
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -840,6 +842,10 @@ public unsafe partial struct SudokuGrid
 			return false;
 		}
 	}
+
+	/// <inheritdoc/>
+	public static bool TryParse(string? s, IFormatProvider? provider, out SudokuGrid result) =>
+		throw new NotSupportedException();
 
 #nullable disable
 	/// <inheritdoc/>

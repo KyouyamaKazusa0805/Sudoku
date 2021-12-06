@@ -1,6 +1,4 @@
-﻿extern alias extended;
-
-namespace Sudoku.Data;
+﻿namespace Sudoku.Data;
 
 /// <summary>
 /// Encapsulates a binary series of cell status table.
@@ -19,7 +17,7 @@ public unsafe partial struct Cells
 : ICellsOrCandidates<Cells>
 , IFormattable
 , IJsonSerializable<Cells, Cells.JsonConverter>
-, extended::System.IParseable<Cells>
+, ISimpleParseable<Cells>
 {
 	/// <summary>
 	/// <para>Indicates an empty instance (all bits are 0).</para>

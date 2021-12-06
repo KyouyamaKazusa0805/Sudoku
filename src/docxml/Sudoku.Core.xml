@@ -5828,6 +5828,9 @@
         <member name="M:Sudoku.Data.SudokuGrid.Parse(System.String)">
             <inheritdoc/>
         </member>
+        <member name="M:Sudoku.Data.SudokuGrid.Parse(System.String,System.IFormatProvider)">
+            <inheritdoc/>
+        </member>
         <member name="M:Sudoku.Data.SudokuGrid.Parse(System.String,System.Boolean)">
             <inheritdoc/>
         </member>
@@ -5835,6 +5838,9 @@
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Data.SudokuGrid.TryParse(System.String,Sudoku.Data.SudokuGrid@)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Data.SudokuGrid.TryParse(System.String,System.IFormatProvider,Sudoku.Data.SudokuGrid@)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Data.SudokuGrid.TryParse(System.String,Sudoku.Data.GridParsingOption,Sudoku.Data.SudokuGrid@)">
@@ -6788,13 +6794,7 @@
             <param name="UnknownIdentifier">Indicates the identifier that identifies the value range.</param>
             <param name="DigitsMask">Indicates a mask that holds a serial of candidate values.</param>
         </member>
-        <member name="M:Sudoku.Data.UnknownValue.Equals(Sudoku.Data.UnknownValue@)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Data.UnknownValue.op_Equality(Sudoku.Data.UnknownValue@,Sudoku.Data.UnknownValue@)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Data.UnknownValue.op_Inequality(Sudoku.Data.UnknownValue@,Sudoku.Data.UnknownValue@)">
+        <member name="M:Sudoku.Data.UnknownValue.System#IValueEquatable{Sudoku#Data#UnknownValue}#Equals(Sudoku.Data.UnknownValue@)">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Data.UnknownValue.JsonConverter">
