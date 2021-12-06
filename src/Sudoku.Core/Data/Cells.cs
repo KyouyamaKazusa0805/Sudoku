@@ -29,6 +29,15 @@ public unsafe partial struct Cells
 	/// <seealso cref="Cells()"/>
 	public static readonly Cells Empty;
 
+	/// <summary>
+	/// Indicates the regular expression for matching a cell or cell-list.
+	/// </summary>
+	private static readonly Regex CellOrCellListRegex = new(
+		RegularExpressions.CellOrCellList,
+		RegexOptions.ExplicitCapture,
+		TimeSpan.FromSeconds(5)
+	);
+
 
 	/// <summary>
 	/// The value used for shifting.
@@ -131,7 +140,7 @@ public unsafe partial struct Cells
 	/// <code><![CDATA[var map = new Cells(stackalloc[] { 0, 3, 5 });]]></code>
 	/// </para>
 	/// </remarks>
-	public Cells(in Span<int> cells) : this()
+	public Cells(Span<int> cells) : this()
 	{
 		foreach (int offset in cells)
 		{
@@ -156,7 +165,7 @@ public unsafe partial struct Cells
 	/// <code><![CDATA[var map = new Cells(stackalloc[] { 0, 3, 5 });]]></code>
 	/// </para>
 	/// </remarks>
-	public Cells(in ReadOnlySpan<int> cells) : this()
+	public Cells(ReadOnlySpan<int> cells) : this()
 	{
 		foreach (int offset in cells)
 		{
@@ -750,10 +759,9 @@ public unsafe partial struct Cells
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public readonly string ToString(string? format, IFormatProvider? formatProvider)
 	{
-		return formatProvider.HasFormatted(this, format, out string? result) switch
-		{
-			true => result,
-			_ => format switch
+		return formatProvider.HasFormatted(this, format, out string? result)
+			? result
+			: format switch
 			{
 				null or "N" or "n" => Count switch
 				{
@@ -764,8 +772,7 @@ public unsafe partial struct Cells
 				"B" or "b" => binaryToString(this, false),
 				"T" or "t" => tableToString(this),
 				_ => throw new FormatException("The specified format is invalid.")
-			}
-		};
+			};
 
 
 		static string tableToString(in Cells @this)
@@ -946,23 +953,6 @@ public unsafe partial struct Cells
 	}
 
 	/// <inheritdoc/>
-	/// <remarks>
-	/// <para>
-	/// For example, if the offset is <c>-2</c> (<c>~1</c>), the <c>[1]</c>
-	/// will be assigned <see langword="false"/>:
-	/// <code><![CDATA[var map = new Cells(xxx) { ~1 };]]></code>
-	/// which is equivalent to:
-	/// <code><![CDATA[
-	/// var map = new Cells(xxx);
-	/// map[1] = false;
-	/// ]]></code>
-	/// </para>
-	/// <para>
-	/// Note: The argument <paramref name="offset"/> should be with the bit-complement operator <c>~</c>
-	/// to describe the value is a negative one. As the example below, -2 is described as <c>~1</c>,
-	/// so the offset is 1, rather than 2.
-	/// </para>
-	/// </remarks>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	[EditorBrowsable(EditorBrowsableState.Never)]
 	public void Add(int offset)
@@ -1044,14 +1034,8 @@ public unsafe partial struct Cells
 	{
 		Nullability.ThrowIfNull(str);
 
-		var regex = new Regex(
-			RegularExpressions.CellOrCellList,
-			RegexOptions.ExplicitCapture,
-			TimeSpan.FromSeconds(5)
-		);
-
 		// Check whether the match is successful.
-		if (regex.Matches(str) is not { Count: not 0 } matches)
+		if (CellOrCellListRegex.Matches(str) is not { Count: not 0 } matches)
 		{
 			throw new FormatException("The specified string can't match any cell instance.");
 		}

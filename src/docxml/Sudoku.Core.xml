@@ -807,6 +807,11 @@
             </summary>
             <seealso cref="M:Sudoku.Data.Cells.#ctor"/>
         </member>
+        <member name="F:Sudoku.Data.Cells.CellOrCellListRegex">
+            <summary>
+            Indicates the regular expression for matching a cell or cell-list.
+            </summary>
+        </member>
         <member name="F:Sudoku.Data.Cells.Shifting">
             <summary>
             The value used for shifting.
@@ -889,7 +894,7 @@
             </summary>
             <param name="another">Another instance.</param>
         </member>
-        <member name="M:Sudoku.Data.Cells.#ctor(System.Span{System.Int32}@)">
+        <member name="M:Sudoku.Data.Cells.#ctor(System.Span{System.Int32})">
             <summary>
             Initializes an instance with a series of cell offsets.
             </summary>
@@ -908,7 +913,7 @@
             </para>
             </remarks>
         </member>
-        <member name="M:Sudoku.Data.Cells.#ctor(System.ReadOnlySpan{System.Int32}@)">
+        <member name="M:Sudoku.Data.Cells.#ctor(System.ReadOnlySpan{System.Int32})">
             <summary>
             Initializes an instance with a series of cell offsets.
             </summary>
@@ -1146,23 +1151,6 @@
         </member>
         <member name="M:Sudoku.Data.Cells.Add(System.Int32)">
             <inheritdoc/>
-            <remarks>
-            <para>
-            For example, if the offset is <c>-2</c> (<c>~1</c>), the <c>[1]</c>
-            will be assigned <see langword="false"/>:
-            <code><![CDATA[var map = new Cells(xxx) { ~1 };]]></code>
-            which is equivalent to:
-            <code><![CDATA[
-            var map = new Cells(xxx);
-            map[1] = false;
-            ]]></code>
-            </para>
-            <para>
-            Note: The argument <paramref name="offset"/> should be with the bit-complement operator <c>~</c>
-            to describe the value is a negative one. As the example below, -2 is described as <c>~1</c>,
-            so the offset is 1, rather than 2.
-            </para>
-            </remarks>
         </member>
         <member name="M:Sudoku.Data.Cells.AddAnyway(System.Int32)">
             <inheritdoc/>

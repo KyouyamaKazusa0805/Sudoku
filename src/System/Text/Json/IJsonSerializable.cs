@@ -13,15 +13,8 @@ where TConverter : JsonConverter<TSelf>, new()
 	/// Indicates the JSON serializer option instance that used
 	/// during serialization or deserialization operation.
 	/// </summary>
-	protected static readonly JsonSerializerOptions SerializerOptions;
-
-
-	/// <summary>
-	/// Indicates the <see langword="static"/> constructor of this type.
-	/// </summary>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	static IJsonSerializable() =>
-		SerializerOptions = new JsonSerializerOptions { WriteIndented = true }
+	protected static readonly JsonSerializerOptions SerializerOptions =
+		new JsonSerializerOptions { WriteIndented = true }
 			.AppendConverter<TSelf, TConverter>(new TConverter());
 
 

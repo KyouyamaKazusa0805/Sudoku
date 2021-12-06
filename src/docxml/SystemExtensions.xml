@@ -2285,11 +2285,6 @@
             during serialization or deserialization operation.
             </summary>
         </member>
-        <member name="M:System.Text.Json.IJsonSerializable`2.#cctor">
-            <summary>
-            Indicates the <see langword="static"/> constructor of this type.
-            </summary>
-        </member>
         <member name="M:System.Text.Json.IJsonSerializable`2.Serialize(`0)">
             <summary>
             Serializes the current instance, and converts the instance into a JSON string.
