@@ -1,13 +1,35 @@
 ﻿using System;
-using System.IO;
 using System.Text.Json;
 
-string desktop = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
-string targetPath = $@"{desktop}\test.json";
-await using var stream = File.OpenRead(targetPath);
-var result = await JsonSerializer.DeserializeAsync<JsonElement>(stream);
+const string jsonText = @"{
+  ""prop1"": ""a"",
+  ""prop2"": ""b"",
+  ""prop3"": ""c"",
+  ""prop4"": ""d""
+}";
 
-foreach (var i in result.EnumerateObject())
+using var jsonDoc = JsonDocument.Parse(jsonText, new()
 {
-	Console.WriteLine(i.ToString());
+	AllowTrailingCommas = true,
+	CommentHandling = JsonCommentHandling.Skip
+});
+
+var rootElement = jsonDoc.RootElement;
+foreach (var (name, value) in rootElement.EnumerateObject())
+{
+	Console.WriteLine($"{name}: {value}");
+}
+
+Console.WriteLine(new string('-', 30));
+
+var targetElement = rootElement.GetProperty("prop3");
+Console.WriteLine(targetElement.GetString());
+
+static partial class Program
+{
+	public static void Deconstruct(this JsonProperty @this, out string name, out JsonElement value)
+	{
+		name = @this.Name;
+		value = @this.Value;
+	}
 }
