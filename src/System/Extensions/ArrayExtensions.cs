@@ -7,20 +7,6 @@
 public static class ArrayExtensions
 {
 	/// <summary>
-	/// Gets the first element that satisfies the specified condition.
-	/// </summary>
-	/// <typeparam name="T">The type of the each element.</typeparam>
-	/// <param name="this">The array to be iterated.</param>
-	/// <param name="predicate">The condition to be checked.</param>
-	/// <returns>
-	/// The first element that satisfies the specified condition.
-	/// If none found, return <see langword="default"/>(<typeparamref name="T"/>).
-	/// </returns>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static T? First<T>(this T?[] @this, Predicate<T?> predicate) =>
-		Array.FindIndex(@this, predicate) is var i and not -1 ? @this[i] : default;
-
-	/// <summary>
 	/// Gets the first element that satisfies the specified condition, and throws an exception
 	/// to report the invalid case if none possible elements found.
 	/// </summary>
