@@ -89,7 +89,7 @@ partial record ManualSolverResult
 			// Print header.
 			var sb = new StringHandler();
 			sb.Append((string)TextResources.Current.AnalysisResultPuzzle);
-			sb.AppendGridFormatted(puzzle, "#");
+			sb.Append(puzzle.ToString("#"));
 			sb.AppendLine();
 
 			// Print solving steps (if worth).
@@ -231,7 +231,7 @@ partial record ManualSolverResult
 			if (!solution.IsUndefined)
 			{
 				sb.Append((string)TextResources.Current.AnalysisResultPuzzleSolution);
-				sb.AppendGridFormatted(solution, "!");
+				sb.Append(solution.ToString("!"));
 			}
 
 			// Print the elapsed time.

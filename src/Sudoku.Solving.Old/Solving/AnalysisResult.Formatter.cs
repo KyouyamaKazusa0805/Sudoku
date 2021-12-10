@@ -96,7 +96,7 @@ partial record AnalysisResult
 			// Print header.
 			var sb = new StringHandler(initialCapacity: 300);
 			sb.Append((string)TextResources.Current.AnalysisResultPuzzle);
-			sb.AppendGridFormatted(puzzle, "#");
+			sb.Append(puzzle.ToString("#"));
 			sb.Append((string)TextResources.Current.AnalysisResultSolvingTool);
 			sb.Append(solverName);
 			sb.AppendLine();
@@ -241,7 +241,7 @@ partial record AnalysisResult
 			if (solution is { } solutionNotNull)
 			{
 				sb.Append((string)TextResources.Current.AnalysisResultPuzzleSolution);
-				sb.AppendGridFormatted(solutionNotNull, "!");
+				sb.Append(solutionNotNull.ToString("!"));
 				sb.AppendLine();
 			}
 
@@ -279,7 +279,7 @@ partial record AnalysisResult
 					sb.Append(methodInfo.Name);
 					sb.Append(':');
 					sb.Append(' ');
-					sb.AppendGridFormatted(grid, "0");
+					sb.Append(grid.ToString("0"));
 					sb.AppendLine();
 				}
 

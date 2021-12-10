@@ -45,14 +45,14 @@ public sealed record BruteForceSolverResult(
 		// Print header.
 		var sb = new StringHandler();
 		sb.Append((string)TextResources.Current.AnalysisResultPuzzle);
-		sb.AppendGridFormatted(OriginalPuzzle, "#");
+		sb.Append(OriginalPuzzle.ToString("#"));
 		sb.AppendLine();
 
 		// Print the solution (if not null).
 		if (!Solution.IsUndefined)
 		{
 			sb.Append((string)TextResources.Current.AnalysisResultPuzzleSolution);
-			sb.AppendGridFormatted(Solution, "!");
+			sb.Append(Solution.ToString("!"));
 			sb.AppendLine();
 		}
 
