@@ -11,6 +11,8 @@
 internal interface ICellsOrCandidates<TCollection>
 : IEnumerable<int>
 , IValueEquatable<TCollection>
+, IAdditionOperators<TCollection, int, TCollection>
+, ISubtractionOperators<TCollection, int, TCollection>
 where TCollection : struct, ICellsOrCandidates<TCollection>
 {
 	/// <summary>
