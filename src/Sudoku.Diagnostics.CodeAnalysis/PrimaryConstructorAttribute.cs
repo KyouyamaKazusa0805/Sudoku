@@ -1,4 +1,4 @@
-﻿namespace System.Diagnostics.CodeAnalysis;
+﻿namespace Sudoku.Diagnostics.CodeAnalysis;
 
 /// <summary>
 /// <para>

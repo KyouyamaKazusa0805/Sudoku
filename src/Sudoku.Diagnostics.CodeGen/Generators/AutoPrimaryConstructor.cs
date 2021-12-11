@@ -30,8 +30,8 @@ partial class {typeName}{genericParameterList}
 	/// Initializes an instance via those arguments.
 	/// </summary>
 	[global::System.CodeDom.Compiler.GeneratedCode(""{GetType().FullName}"", ""{VersionValue}"")]
-	[global::System.Diagnostics.CodeAnalysis.PrimaryConstructor]
 	[global::System.Runtime.CompilerServices.CompilerGenerated]
+	[Sudoku.Diagnostics.CodeAnalysis.PrimaryConstructor]
 	public {typeName}({parameterList}){baseCtorInheritance}
 	{{
 		{memberAssignments}
