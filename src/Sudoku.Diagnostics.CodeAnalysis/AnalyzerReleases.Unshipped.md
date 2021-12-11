@@ -4,4 +4,4 @@
 ### New Rules
 Rule ID | Category | Severity | Notes
 --------|----------|----------|-------
-SS_DiscardParameter | Sunnie.Style | Warning | DiscardParameterAnalyzer
+SS_DiscardParameter | Sunnie.Style | Error | DiscardParameterAnalyzer
