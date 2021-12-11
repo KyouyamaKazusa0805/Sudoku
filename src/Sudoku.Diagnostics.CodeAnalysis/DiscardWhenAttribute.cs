@@ -5,7 +5,7 @@
 /// and can't be used when the return value is specified value.
 /// </summary>
 [AttributeUsage(AttributeTargets.Parameter, AllowMultiple = false, Inherited = false)]
-public sealed partial class DiscardWhenAttribute : Attribute
+public sealed class DiscardWhenAttribute : Attribute
 {
 	/// <summary>
 	/// Initializes a <see cref="DiscardWhenAttribute"/> instance.
