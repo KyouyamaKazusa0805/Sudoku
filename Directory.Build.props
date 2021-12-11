@@ -10,6 +10,9 @@
 		<!--Syntax configuration-->
 		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
 		<LangVersion>preview</LangVersion>
+	
+		<!--Temporary config-->
+		<NoWarn>IDE0170</NoWarn>
 	</PropertyGroup>
 
 	<!--
