@@ -508,7 +508,7 @@ public sealed partial class BatchExecutor
 	public static bool TryParse(
 		string batch,
 		Settings settings,
-		[NotNullWhen(true), DiscardWhen(false)] out BatchExecutor? result
+		[NotNullWhen(true)] out BatchExecutor? result
 	)
 	{
 		string[] lines = batch.Split(new[] { '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries);

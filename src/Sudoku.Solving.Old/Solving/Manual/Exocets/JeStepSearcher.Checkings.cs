@@ -45,7 +45,7 @@ partial class JeStepSearcher
 		int pos1,
 		int pos2,
 		int baseCands,
-		[DiscardWhen(false)] out short ahsOrConjugatePairCands
+		out short ahsOrConjugatePairCands
 	)
 	{
 		// According to the puzzle, we just describe for the TQ1 and TQ2 ({23567} and 9).

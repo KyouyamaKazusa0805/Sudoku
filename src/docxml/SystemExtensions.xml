@@ -1497,23 +1497,6 @@
             <seealso cref="M:System.Collections.HashHelpers.GetFastModMultiplier(System.UInt32)"/>
             <seealso cref="F:System.Int32.MaxValue"/>
         </member>
-        <member name="T:System.Diagnostics.CodeAnalysis.DiscardWhenAttribute">
-            <summary>
-            To mark onto a parameter, to tell the compiler that the argument must be a discard
-            and can't be used when the return value is specified value.
-            </summary>
-        </member>
-        <member name="M:System.Diagnostics.CodeAnalysis.DiscardWhenAttribute.#ctor(System.Boolean)">
-            <summary>
-            Initializes a <see cref="T:System.Diagnostics.CodeAnalysis.DiscardWhenAttribute"/> instance.
-            </summary>
-            <param name="returnValue">The return value.</param>
-        </member>
-        <member name="P:System.Diagnostics.CodeAnalysis.DiscardWhenAttribute.ReturnValue">
-            <summary>
-            Indicates the return value that makes the parameter a discard.
-            </summary>
-        </member>
         <member name="T:System.ArrayExtensions">
             <summary>
             Provides extension methods on <see cref="T:System.Array"/>.

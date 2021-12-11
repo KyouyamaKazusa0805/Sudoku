@@ -34,13 +34,7 @@ public static class ColorId
 	/// </remarks>
 	/// <seealso cref="DrawingInfo"/>
 	/// <seealso cref="DrawingInfo.Id"/>
-	public static bool IsCustomColorId(
-		long @this,
-		[DiscardWhen(false)] out byte a,
-		[DiscardWhen(false)] out byte r,
-		[DiscardWhen(false)] out byte g,
-		[DiscardWhen(false)] out byte b
-	)
+	public static bool IsCustomColorId(long @this, out byte a, out byte r, out byte g, out byte b)
 	{
 		if ((@this >> 32 & 65535) == 0xDEAD)
 		{

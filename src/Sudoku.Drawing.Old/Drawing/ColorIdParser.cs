@@ -15,12 +15,7 @@ public static class ColorIdParser
 	/// <param name="alpha">The alpha.</param>
 	/// <param name="separators">The separators.</param>
 	/// <returns>The <see cref="bool"/> result.</returns>
-	public static bool TryParse(
-		string str,
-		[DiscardWhen(false)] out long colorId,
-		byte? alpha = null,
-		params char[] separators
-	)
+	public static bool TryParse(string str, out long colorId, byte? alpha = null, params char[] separators)
 	{
 		string[] s = str.Split(separators, StringSplitOptions.RemoveEmptyEntries);
 		if (s.Length != 4)

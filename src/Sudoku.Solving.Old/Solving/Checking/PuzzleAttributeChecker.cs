@@ -46,7 +46,7 @@ public static class PuzzleAttributeChecker
 	/// </param>
 	/// <returns>A <see cref="bool"/> value indicating that.</returns>
 	/// <seealso cref="SudokuGrid.Undefined"/>
-	public static bool IsValid(this in SudokuGrid @this, [DiscardWhen(false)] out SudokuGrid solutionIfValid)
+	public static bool IsValid(this in SudokuGrid @this, out SudokuGrid solutionIfValid)
 	{
 		solutionIfValid = SudokuGrid.Undefined;
 
@@ -73,7 +73,7 @@ public static class PuzzleAttributeChecker
 	/// <returns>A <see cref="bool"/> value indicating that.</returns>
 	public static bool IsValid(
 		this UndoableGrid @this,
-		[NotNullWhen(true), DiscardWhen(false)] out UndoableGrid? solutionIfValid
+		[NotNullWhen(true)] out UndoableGrid? solutionIfValid
 	)
 	{
 		solutionIfValid = null;
@@ -183,7 +183,7 @@ public static class PuzzleAttributeChecker
 	/// <returns>A <see cref="bool"/> value indicating that.</returns>
 	public static bool IsValid(
 		this UndoableGrid @this,
-		[NotNullWhen(true), DiscardWhen(false)] out UndoableGrid? solutionIfValid,
+		[NotNullWhen(true)] out UndoableGrid? solutionIfValid,
 		[NotNullWhen(true)] out bool? sukaku
 	)
 	{
