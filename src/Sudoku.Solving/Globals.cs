@@ -17,6 +17,7 @@ global using System.Threading.Tasks;
 global using Microsoft.CSharp.RuntimeBinder;
 global using Sudoku.Data;
 global using Sudoku.Data.Collections;
+global using Sudoku.Diagnostics.CodeAnalysis;
 global using Sudoku.Diagnostics.CodeGen;
 global using Sudoku.Globalization;
 global using Sudoku.Models;

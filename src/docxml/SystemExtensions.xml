@@ -1497,11 +1497,6 @@
             <seealso cref="M:System.Collections.HashHelpers.GetFastModMultiplier(System.UInt32)"/>
             <seealso cref="F:System.Int32.MaxValue"/>
         </member>
-        <member name="T:System.Diagnostics.CodeAnalysis.DiscardAttribute">
-            <summary>
-            Indicates the marked parameter is a discard and can't be used.
-            </summary>
-        </member>
         <member name="T:System.Diagnostics.CodeAnalysis.DiscardWhenAttribute">
             <summary>
             To mark onto a parameter, to tell the compiler that the argument must be a discard
