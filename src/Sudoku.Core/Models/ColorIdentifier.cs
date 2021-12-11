@@ -116,12 +116,7 @@ public readonly record struct ColorIdentifier(
 	/// <returns>Returns whether the taking operation is successful.</returns>
 	/// <seealso cref="UseId"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public bool TryGetColor(
-		[DiscardWhen(false)] out byte a,
-		[DiscardWhen(false)] out byte r,
-		[DiscardWhen(false)] out byte g,
-		[DiscardWhen(false)] out byte b
-	)
+	public bool TryGetColor(out byte a, out byte r, out byte g, out byte b)
 	{
 		(bool returnValue, a, r, g, b) = UseId ? (false, (byte)0, (byte)0, (byte)0, (byte)0) : (true, A, R, G, B);
 		return returnValue;

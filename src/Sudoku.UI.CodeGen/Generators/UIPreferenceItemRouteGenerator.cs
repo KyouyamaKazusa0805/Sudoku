@@ -115,7 +115,7 @@ partial class SettingsPage
 {{
 	[global::System.CodeDom.Compiler.GeneratedCode(""{typeof(UIPreferenceItemRouteGenerator).FullName}"", ""{VersionValue}"")]
 	[global::System.Runtime.CompilerServices.CompilerGenerated]
-	private partial void {controlName}_Toggled(object sender, [Discard] RoutedEventArgs e)
+	private partial void {controlName}_Toggled(object sender, RoutedEventArgs e)
 	{{
 		if (
 			(Sender: sender, PageIsInitialized: _pageIsInitialized) is not (

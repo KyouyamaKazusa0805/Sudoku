@@ -829,7 +829,7 @@ public unsafe partial struct SudokuGrid
 #nullable restore
 
 	/// <inheritdoc/>
-	public static bool TryParse([NotNullWhen(true)] string? str, [DiscardWhen(false)] out SudokuGrid result)
+	public static bool TryParse([NotNullWhen(true)] string? str, out SudokuGrid result)
 	{
 		try
 		{
@@ -849,7 +849,7 @@ public unsafe partial struct SudokuGrid
 
 #nullable disable
 	/// <inheritdoc/>
-	public static bool TryParse(string str, GridParsingOption option, [DiscardWhen(false)] out SudokuGrid result)
+	public static bool TryParse(string str, GridParsingOption option, out SudokuGrid result)
 	{
 		try
 		{

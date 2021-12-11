@@ -33,6 +33,6 @@ public interface ISimpleParseable<TSelf> where TSelf : ISimpleParseable<TSelf>
 	/// </returns>
 	static abstract bool TryParse(
 		[NotNullWhen(true)] string? str,
-		[NotNullWhen(true), DiscardWhen(false)] out TSelf? result
+		[NotNullWhen(true)] out TSelf? result
 	);
 }

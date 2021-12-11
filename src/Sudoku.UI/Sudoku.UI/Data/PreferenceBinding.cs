@@ -35,7 +35,7 @@ internal readonly record struct PreferenceBinding(
 	: this(
 		control,
 		itemSetter,
-		([Discard] _) => control.Foreground = new SolidColorBrush(ApplicationRequestedThemes.GetForegroundColor())
+		_ => control.Foreground = new SolidColorBrush(ApplicationRequestedThemes.GetForegroundColor())
 	)
 	{
 		control.SetValue(TextBlock.ForegroundProperty, new SolidColorBrush(Colors.Gold));

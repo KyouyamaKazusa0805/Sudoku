@@ -266,7 +266,7 @@ public readonly partial record struct UIColor(byte A, byte R, byte G, byte B)
 				: throw new FormatException("The specified string is invalid to parse.");
 
 
-		static bool parseArgb(string str, [DiscardWhen(false)] out UIColor result)
+		static bool parseArgb(string str, out UIColor result)
 		{
 			if (ArgbValidator.Match(str) is not { Success: true, Value: { Length: var length } value } match)
 			{
@@ -301,7 +301,7 @@ public readonly partial record struct UIColor(byte A, byte R, byte G, byte B)
 			};
 		}
 
-		static bool parseBracket(string str, [DiscardWhen(false)] out UIColor result)
+		static bool parseBracket(string str, out UIColor result)
 		{
 			if (BracketValidator.Match(str) is not { Success: true } match)
 			{
@@ -324,7 +324,7 @@ public readonly partial record struct UIColor(byte A, byte R, byte G, byte B)
 	}
 
 	/// <inheritdoc/>
-	public static bool TryParse([NotNullWhen(true)] string? str, [DiscardWhen(false)] out UIColor result)
+	public static bool TryParse([NotNullWhen(true)] string? str, out UIColor result)
 	{
 		try
 		{

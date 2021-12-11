@@ -172,13 +172,7 @@ public unsafe ref partial struct StringHandler
 	/// </remarks>
 	[EditorBrowsable(EditorBrowsableState.Never)]
 	public StringHandler(
-#if DISCARD_INTERPOLATION_INFO
-		[Discard]
-#endif
 		int literalLength,
-#if DISCARD_INTERPOLATION_INFO
-		[Discard]
-#endif
 		int holeCount,
 		Span<char> initialBuffer
 	)

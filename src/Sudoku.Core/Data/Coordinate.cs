@@ -183,7 +183,7 @@ public readonly partial record struct Coordinate(byte Cell)
 
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		static bool rcb(string str, [DiscardWhen(false)] out byte cell)
+		static bool rcb(string str, out byte cell)
 		{
 			if (str.Length != 4)
 			{
@@ -209,7 +209,7 @@ public readonly partial record struct Coordinate(byte Cell)
 		}
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		static bool k9(string str, [DiscardWhen(false)] out byte cell)
+		static bool k9(string str, out byte cell)
 		{
 			if (str.Length != 2)
 			{
@@ -232,7 +232,7 @@ public readonly partial record struct Coordinate(byte Cell)
 	}
 	
 	/// <inheritdoc/>
-	public static bool TryParse(string? str, [DiscardWhen(false)] out Coordinate result)
+	public static bool TryParse(string? str, out Coordinate result)
 	{
 		try
 		{

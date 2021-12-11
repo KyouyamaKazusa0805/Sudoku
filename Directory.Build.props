@@ -83,23 +83,4 @@
 		<PackageReference Include="Microsoft.CodeAnalysis.CSharp.Workspaces" Version="4.0.0-4.final" />
 	</ItemGroup>
 
-	<!--
-	Make all possible projects reference to 'Sudoku.Diagnostics.CodeAnalysis' unless:
-	* The project is itself.
-
-	In addition, if the project is 'Sudoku.UI', we should append a more '..\' to reference its base directory.
-	-->
-	<Choose>
-		<When Condition="'$(MSBuildProjectFile)'=='Sudoku.UI.csproj'">
-			<ItemGroup>
-				<ProjectReference Include="..\..\Sudoku.Diagnostics.CodeAnalysis\Sudoku.Diagnostics.CodeAnalysis.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="true" />
-			</ItemGroup>
-		</When>
-		<When Condition="'$(MSBuildProjectFile)'!='Sudoku.Diagnostics.CodeAnalysis.csproj'">
-			<ItemGroup Condition="'$(MSBuildProjectFile)'!='Sudoku.Diagnostics.CodeAnalysis.csproj' And '$(MSBuildProjectFile)'!='Sudoku.UI (Package).wapproj'">
-				<ProjectReference Include="..\Sudoku.Diagnostics.CodeAnalysis\Sudoku.Diagnostics.CodeAnalysis.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="true" />
-			</ItemGroup>
-		</When>
-	</Choose>
-
 </Project>

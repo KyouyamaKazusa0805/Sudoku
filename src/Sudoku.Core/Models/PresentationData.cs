@@ -488,7 +488,7 @@ public partial record struct PresentationData(
 #pragma warning restore IDE0022
 
 	/// <inheritdoc/>
-	public static bool TryParse([NotNullWhen(true)] string? str, [DiscardWhen(false)] out PresentationData result)
+	public static bool TryParse([NotNullWhen(true)] string? str, out PresentationData result)
 	{
 		try
 		{

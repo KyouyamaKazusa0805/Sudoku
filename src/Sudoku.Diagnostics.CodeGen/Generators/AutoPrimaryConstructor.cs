@@ -31,7 +31,6 @@ partial class {typeName}{genericParameterList}
 	/// </summary>
 	[global::System.CodeDom.Compiler.GeneratedCode(""{GetType().FullName}"", ""{VersionValue}"")]
 	[global::System.Runtime.CompilerServices.CompilerGenerated]
-	[Sudoku.Diagnostics.CodeAnalysis.PrimaryConstructor]
 	public {typeName}({parameterList}){baseCtorInheritance}
 	{{
 		{memberAssignments}

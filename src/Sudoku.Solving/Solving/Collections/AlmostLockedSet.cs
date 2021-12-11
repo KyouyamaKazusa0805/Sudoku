@@ -102,7 +102,7 @@ public readonly partial struct AlmostLockedSet : IValueEquatable<AlmostLockedSet
 	/// <param name="digit">The digit.</param>
 	/// <param name="result">The result.</param>
 	/// <returns>A <see cref="bool"/> value.</returns>
-	public bool ContainsDigit(in Grid grid, int digit, [DiscardWhen(false)] out Cells result)
+	public bool ContainsDigit(in Grid grid, int digit, out Cells result)
 	{
 		result = Cells.Empty;
 		foreach (int cell in Map)

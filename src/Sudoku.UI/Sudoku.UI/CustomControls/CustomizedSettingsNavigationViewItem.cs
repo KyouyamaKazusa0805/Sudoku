@@ -71,7 +71,7 @@ public partial class CustomizedSettingsNavigationView : NavigationView
 	}
 
 
-	private static void Callback(DependencyObject d, [Discard] DependencyPropertyChangedEventArgs e)
+	private static void Callback(DependencyObject d, DependencyPropertyChangedEventArgs e)
 	{
 		if (d is CustomizedSettingsNavigationView navigationView)
 		{

@@ -482,9 +482,5 @@ where TGrid : struct, IGrid<TGrid>
 	/// </param>
 	/// <returns>A <see cref="bool"/> value indicating that.</returns>
 	/// <seealso cref="Undefined"/>
-	static abstract bool TryParse(
-		[NotNullWhen(true)] string? str,
-		GridParsingOption option,
-		[DiscardWhen(false)] out TGrid result
-	);
+	static abstract bool TryParse([NotNullWhen(true)] string? str, GridParsingOption option, out TGrid result);
 }

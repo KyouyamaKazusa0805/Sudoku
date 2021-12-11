@@ -2,7 +2,7 @@
 
 partial class SudokuPanel
 {
-	private async partial void MainSudokuGrid_DragEnterAsync([Discard] object sender, DragEventArgs e)
+	private async partial void MainSudokuGrid_DragEnterAsync(object sender, DragEventArgs e)
 	{
 		try
 		{

@@ -225,7 +225,7 @@ public unsafe ref partial struct ValueDictionary<TKey, TValue> where TKey : unma
 	/// <see langword="default"/>(<typeparamref name="TValue"/>).
 	/// </param>
 	/// <returns>The <see cref="bool"/> result indicating whether the finding operation is successful.</returns>
-	public readonly bool TryGetValue(TKey key, [DiscardWhen(false)] out TValue value)
+	public readonly bool TryGetValue(TKey key, out TValue value)
 	{
 		fixed (TValue* valuePtr = &FindValue(key))
 		{

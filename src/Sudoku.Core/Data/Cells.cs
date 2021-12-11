@@ -625,7 +625,7 @@ public unsafe partial struct Cells
 	/// use the property <see cref="InOneRegion"/> to improve the performance.
 	/// </remarks>
 	/// <seealso cref="InOneRegion"/>
-	public readonly bool AllSetsAreInOneRegion([DiscardWhen(false)] out int region)
+	public readonly bool AllSetsAreInOneRegion(out int region)
 	{
 #pragma warning disable IDE0055
 		if ((_high &            -1L) == 0 && (_low & ~     0x1C0E07L) == 0) { region =  0; return true; }
@@ -1087,7 +1087,7 @@ public unsafe partial struct Cells
 	}
 
 	/// <inheritdoc/>
-	public static bool TryParse([NotNullWhen(true)] string? str, [DiscardWhen(false)] out Cells result)
+	public static bool TryParse([NotNullWhen(true)] string? str, out Cells result)
 	{
 		try
 		{
