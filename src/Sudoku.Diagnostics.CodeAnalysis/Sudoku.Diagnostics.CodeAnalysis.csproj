@@ -1,9 +1,0 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
-
-	<PropertyGroup>
-		<TargetFramework>netstandard2.0</TargetFramework>
-		<Description>A project that analyzes the code using source generators.</Description>
-		<DocumentationFile>..\docxml\Sudoku.Diagnostics.CodeAnalysis.xml</DocumentationFile>
-	</PropertyGroup>
-
-</Project>
