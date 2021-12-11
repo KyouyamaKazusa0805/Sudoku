@@ -1,5 +1,6 @@
 <Project>
 
+	<!--Basic information-->
 	<PropertyGroup>
 		<!--Project configuration-->
 		<Authors>Sunnie</Authors>
@@ -11,32 +12,91 @@
 		<LangVersion>preview</LangVersion>
 	</PropertyGroup>
 
-	<PropertyGroup Condition="'$(Configuration)'==''">
-		<Configuration>Debug</Configuration>
-	</PropertyGroup>
+	<!--
+	Select the posible configuration if:
+	* The configuration is not set - Set to default case 'Debug'.
+	* The configuration is 'Debug' - Set conditional compilation symbols that contain 'DEBUG'.
+	* The configuration is 'Release' - Set condition compilation symbols that don't contain 'DEBUG'.
+	-->
+	<Choose>
+		<When Condition="'$(Configuration)'==''">
+			<PropertyGroup>
+				<Configuration>Debug</Configuration>
+			</PropertyGroup>
+		</When>
+		<When Condition="'$(Configuration)'=='Debug'">
+			<PropertyGroup>
+				<DefineConstants>DEBUG; AUTHOR_RESERVED; SOLUTION_WIDE_CODE_ANALYSIS</DefineConstants>
+			</PropertyGroup>
+		</When>
+		<When Condition="'$(Configuration)'=='Release'">
+			<PropertyGroup>
+				<DefineConstants>AUTHOR_RESERVED; SOLUTION_WIDE_CODE_ANALYSIS</DefineConstants>
+			</PropertyGroup>
+		</When>
+	</Choose>
 
-	<PropertyGroup Condition="'$(Configuration)'=='Debug'">
-		<DefineConstants>DEBUG; AUTHOR_RESERVED; SOLUTION_WIDE_CODE_ANALYSIS</DefineConstants>
-	</PropertyGroup>
-
-	<PropertyGroup Condition="'$(Configuration)'=='Release'">
-		<DefineConstants>AUTHOR_RESERVED; SOLUTION_WIDE_CODE_ANALYSIS</DefineConstants>
-	</PropertyGroup>
-
+	<!--
+	Set the langugage to preview one, and enable the preview features,
+	such as the preview feature 'static abstracts in interfaces'.
+	-->
 	<PropertyGroup Condition="'$(LangVersion)'=='preview'">
 		<EnablePreviewFeatures>true</EnablePreviewFeatures>
 	</PropertyGroup>
 
+	<!--
+	Set the nullable is enable if the language version is greater than or equals 8.0 (i.e. C# 8).
+	-->
 	<PropertyGroup Condition="'$(LangVersion)'=='preview' Or '$(LangVersion)'=='latest' Or '$(LangVersion)'&gt;='8.0'">
 		<Nullable>enable</Nullable>
 	</PropertyGroup>
 
+	<!--
+	Disable the compiler warnings on deprecated types or members referencing on deprecated projects.
+	-->
 	<PropertyGroup Condition="'$(MSBuildProjectFile.TrimEnd(`.csproj`).EndsWith(`.Old`))'=='true'">
 		<NoWarn>618</NoWarn>
 	</PropertyGroup>
 
-	<PropertyGroup Condition="'$(MSBuildProjectFile.TrimEnd(`.csproj`).EndsWith(`.CodeGen`)'=='true'">
+	<!--
+	Set the root namespace 'Sudoku.Diagnostics.CodeGen' for the source projects, which end with '.CodeGen'.
+	-->
+	<PropertyGroup Condition="'$(MSBuildProjectFile.TrimEnd(`.csproj`).EndsWith(`.CodeGen`))'=='true'">
 		<RootNamespace>Sudoku.Diagnostics.CodeGen</RootNamespace>
 	</PropertyGroup>
+
+	<!--
+	Import Microsoft.CodeAnalysis Package when:
+	* The project is 'Sudoku.Diagnostics.CodeAnalysis'.
+	* The project is other ones which end with '.CodeGen'.
+	-->
+	<ItemGroup Condition="'$(MSBuildProjectFile.TrimEnd(`.csproj`).EndsWith(`.CodeGen`))'=='true' Or '$(MSBuildProjectFile)'=='Sudoku.Diagnostics.CodeAnalysis.csproj'">
+		<PackageReference Include="IsExternalInit" Version="1.0.1">
+			<PrivateAssets>all</PrivateAssets>
+			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+		</PackageReference>
+		<PackageReference Include="Microsoft.CodeAnalysis.Common" Version="4.0.0-4.final" />
+		<PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="4.0.0-4.final" />
+		<PackageReference Include="Microsoft.CodeAnalysis.CSharp.Workspaces" Version="4.0.0-4.final" />
+	</ItemGroup>
+
+	<!--
+	Make all possible projects reference to 'Sudoku.Diagnostics.CodeAnalysis' unless:
+	* The project is itself.
+
+	In addition, if the project is 'Sudoku.UI', we should append a more '..\' to reference its base directory.
+	-->
+	<Choose>
+		<When Condition="'$(MSBuildProjectFile)'=='Sudoku.UI.csproj'">
+			<ItemGroup>
+				<ProjectReference Include="..\..\Sudoku.Diagnostics.CodeAnalysis\Sudoku.Diagnostics.CodeAnalysis.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="true" />
+			</ItemGroup>
+		</When>
+		<When Condition="'$(MSBuildProjectFile)'!='Sudoku.Diagnostics.CodeAnalysis.csproj'">
+			<ItemGroup Condition="'$(MSBuildProjectFile)'!='Sudoku.Diagnostics.CodeAnalysis.csproj' And '$(MSBuildProjectFile)'!='Sudoku.UI (Package).wapproj'">
+				<ProjectReference Include="..\Sudoku.Diagnostics.CodeAnalysis\Sudoku.Diagnostics.CodeAnalysis.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="true" />
+			</ItemGroup>
+		</When>
+	</Choose>
 
 </Project>
