@@ -9,7 +9,7 @@ namespace Sudoku.Data.Stepping;
 [DebuggerDisplay($@"{{{nameof(ToString)}(""#."")}}")]
 #endif
 [Obsolete("In the future, this class won't be used.", false)]
-public sealed unsafe class UndoableGrid : IEquatable<UndoableGrid>, IFormattable, IUndoable
+public sealed unsafe class UndoableGrid : IEquatable<UndoableGrid>, ISimpleFormattable, IUndoable
 {
 	/// <summary>
 	/// The undo and redo stack.
@@ -314,11 +314,6 @@ public sealed unsafe class UndoableGrid : IEquatable<UndoableGrid>, IFormattable
 	/// <returns>The string result.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public string ToString(string? format) => _innerGrid.ToString(format);
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public string ToString(string? format, IFormatProvider? formatProvider) =>
-		_innerGrid.ToString(format, formatProvider);
 
 
 	/// <summary>

@@ -7,12 +7,11 @@
 [DebuggerDisplay($@"{{{nameof(ToString)}("".+:""),nq}}")]
 #endif
 [AutoDeconstruct(nameof(EmptyCells), nameof(BivalueCells), nameof(CandidateMap), nameof(DigitsMap), nameof(ValuesMap))]
-[AutoFormattable]
 [Obsolete($"Please use the type '{nameof(Grid)}' instead.", false)]
 public unsafe partial struct SudokuGrid
 : IGrid<SudokuGrid>
 , IValueEquatable<SudokuGrid>
-, IFormattable
+, ISimpleFormattable
 , IJsonSerializable<SudokuGrid, SudokuGrid.JsonConverter>
 , IParseable<SudokuGrid>
 {
@@ -624,23 +623,23 @@ public unsafe partial struct SudokuGrid
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public readonly string ToString(string? format, IFormatProvider? formatProvider) => this switch
-	{
-		{ IsEmpty: true } => "<Empty>",
-		{ IsUndefined: true } => "<Undefined>",
-#if DEBUG
-		{ IsDebuggerUndefined: true } => "<Debugger can't recognize the fixed buffer>",
-#endif
-		_ when formatProvider.HasFormatted(this, format, out string? result) => result,
-		_ when Formatter.Create(format) is var f => format switch
+	public readonly string ToString(string? format) =>
+		this switch
 		{
-			":" => f.ToString(this).Match(RegularExpressions.ExtendedSusserEliminations) ?? string.Empty,
-			"!" => f.ToString(this).Replace("+", string.Empty),
-			".!" or "!." or "0!" or "!0" => f.ToString(this).Replace("+", string.Empty),
-			".!:" or "!.:" or "0!:" => f.ToString(this).Replace("+", string.Empty),
-			_ => f.ToString(this)
-		}
-	};
+			{ IsEmpty: true } => "<Empty>",
+			{ IsUndefined: true } => "<Undefined>",
+#if DEBUG
+			{ IsDebuggerUndefined: true } => "<Debugger can't recognize the fixed buffer>",
+#endif
+			_ when Formatter.Create(format) is var f => format switch
+			{
+				":" => f.ToString(this).Match(RegularExpressions.ExtendedSusserEliminations) ?? string.Empty,
+				"!" => f.ToString(this).Replace("+", string.Empty),
+				".!" or "!." or "0!" or "!0" => f.ToString(this).Replace("+", string.Empty),
+				".!:" or "!.:" or "0!:" => f.ToString(this).Replace("+", string.Empty),
+				_ => f.ToString(this)
+			}
+		};
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

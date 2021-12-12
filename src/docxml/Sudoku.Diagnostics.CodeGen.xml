@@ -181,14 +181,6 @@
             Indicates the field of property list.
             </summary>
         </member>
-        <member name="T:Sudoku.Diagnostics.CodeGen.AutoFormattableAttribute">
-            <summary>
-            Indicates an attribute that is used for a <see langword="class"/> or <see langword="struct"/>
-            as a mark that interacts with the source generator, to tell the source generator that
-            it'll generate the source code for <c>ToString</c> overriden,
-            and being with <see cref="M:System.IFormattable.ToString(System.String,System.IFormatProvider)"/>.
-            </summary>
-        </member>
         <member name="T:Sudoku.Diagnostics.CodeGen.AutoGetEnumeratorAttribute">
             <summary>
             To mark on a type, to tell the compiler that the compiler will automatically generate
@@ -580,35 +572,6 @@
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Diagnostics.CodeGen.Generators.AutoExtensionDeconstruct.Initialize(Microsoft.CodeAnalysis.GeneratorInitializationContext)">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Diagnostics.CodeGen.Generators.AutoFormattable">
-            <summary>
-            Defines a source generator that generates the source code for formatting methods.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.AutoFormattable.Execute(Microsoft.CodeAnalysis.GeneratorExecutionContext)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.AutoFormattable.Initialize(Microsoft.CodeAnalysis.GeneratorInitializationContext)">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Diagnostics.CodeGen.Generators.AutoFormattable.Receiver">
-            <summary>
-            Defines a syntax context receiver.
-            </summary>
-            <param name="CancellationToken">The cancellation token to cancel the operation.</param>
-        </member>
-        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.AutoFormattable.Receiver.#ctor(System.Threading.CancellationToken)">
-            <summary>
-            Defines a syntax context receiver.
-            </summary>
-            <param name="CancellationToken">The cancellation token to cancel the operation.</param>
-        </member>
-        <member name="P:Sudoku.Diagnostics.CodeGen.Generators.AutoFormattable.Receiver.Collection">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.AutoFormattable.Receiver.OnVisitSyntaxNode(Microsoft.CodeAnalysis.GeneratorSyntaxContext)">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Diagnostics.CodeGen.Generators.AutoGetEnumerator">

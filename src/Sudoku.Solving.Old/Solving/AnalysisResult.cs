@@ -10,15 +10,14 @@
 [AutoDeconstruct(nameof(IsSolved), nameof(SolvingStepsCount), nameof(Steps))]
 [AutoDeconstruct(nameof(SolverName), nameof(IsSolved), nameof(TotalDifficulty), nameof(MaxDifficulty), nameof(PearlDifficulty), nameof(DiamondDifficulty), nameof(Puzzle), nameof(Solution), nameof(ElapsedTime), nameof(SolvingStepsCount), nameof(Steps), nameof(StepGrids), nameof(Additional))]
 [AutoGetEnumerator(nameof(Steps), ExtraNamespaces = new[] { "System", "Sudoku.Solving.Manual" }, MemberConversion = "(@ ?? Array.Empty<StepInfo>()).*")]
-[AutoFormattable]
 public sealed partial record AnalysisResult(
 	string SolverName,
 	in SudokuGrid Puzzle,
-	[property: MemberNotNullWhen(returnValue: true, nameof(AnalysisResult.Solution))] bool IsSolved,
+	[property: MemberNotNullWhen(true, nameof(AnalysisResult.Solution))] bool IsSolved,
 	in TimeSpan ElapsedTime
 )
 : IEnumerable<StepInfo>
-, IFormattable
+, ISimpleFormattable
 {
 	/// <summary>
 	/// Indicates the additional texts that we should describe.
@@ -222,8 +221,7 @@ public sealed partial record AnalysisResult(
 		new Formatter(this).ToString(format, null, countryCode);
 
 	/// <inheritdoc/>
-	public string ToString(string? format, IFormatProvider? formatProvider) =>
-		new Formatter(this).ToString(format, formatProvider);
+	public string ToString(string? format) => new Formatter(this).ToString(format, null);
 
 	/// <inheritdoc cref="Formatter.ToString(AnalysisResultFormattingOptions)"/>
 	public string ToString(AnalysisResultFormattingOptions options) =>
