@@ -481,6 +481,7 @@ public unsafe partial struct Grid
 		{
 			return GetMap(&p);
 
+
 			static bool p(in Grid g, int cell, int digit) => (g.GetCandidates(cell) >> digit & 1) != 0;
 		}
 	}
