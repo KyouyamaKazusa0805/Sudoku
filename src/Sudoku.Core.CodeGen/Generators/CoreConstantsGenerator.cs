@@ -160,7 +160,7 @@ public sealed class CoreConstantsGenerator : ISourceGenerator
 
 
 		context.AddSource(
-			$"Sudoku.Constants.Tables.g.cc.cs",
+			"Sudoku.Constants.Tables.g.cc.cs",
 			$@"#nullable enable
 
 namespace Sudoku;
