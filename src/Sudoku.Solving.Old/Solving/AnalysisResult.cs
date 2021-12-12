@@ -16,7 +16,9 @@ public sealed partial record AnalysisResult(
 	in SudokuGrid Puzzle,
 	[property: MemberNotNullWhen(returnValue: true, nameof(AnalysisResult.Solution))] bool IsSolved,
 	in TimeSpan ElapsedTime
-) : IEnumerable<StepInfo>, IFormattable
+)
+: IEnumerable<StepInfo>
+, IFormattable
 {
 	/// <summary>
 	/// Indicates the additional texts that we should describe.

@@ -688,24 +688,40 @@ public unsafe ref partial struct StringHandler
 	/// <typeparam name="T">The type of the value to write.</typeparam>
 	public void AppendLargeObjectFormatted<T>(in T value)
 	{
-		if (value is ISpanFormattable spanFormattable)
+		switch (value)
 		{
-			int charsWritten;
-
-			// Constrained call avoiding boxing for value types.
-			while (!spanFormattable.TryFormat(_chars[Length..], out charsWritten, null, null))
+			case ISpanFormattable spanFormattable:
 			{
-				Grow();
+				int charsWritten;
+
+				// Constrained call avoiding boxing for value types.
+				while (!spanFormattable.TryFormat(_chars[Length..], out charsWritten, null, null))
+				{
+					Grow();
+				}
+
+				Length += charsWritten;
+
+				break;
 			}
+			case ISimpleFormattable s:
+			{
+				AppendStringDirect(s.ToString(null));
 
-			Length += charsWritten;
+				break;
+			}
+			case IFormattable f:
+			{
+				AppendStringDirect(f.ToString(null, null));
 
-			return;
-		}
+				break;
+			}
+			case var _ when value?.ToString() is { } s:
+			{
+				AppendStringDirect(s);
 
-		if ((value is IFormattable f ? f.ToString(format: null, null) : value?.ToString()) is { } s)
-		{
-			AppendStringDirect(s);
+				break;
+			}
 		}
 	}
 
@@ -717,23 +733,40 @@ public unsafe ref partial struct StringHandler
 	/// <typeparam name="T">The type of the value to write.</typeparam>
 	public void AppendLargeObjectFormatted<T>(in T value, string? format)
 	{
-		if (value is ISpanFormattable spanFormattable)
+		switch (value)
 		{
-			int charsWritten;
-
-			// Constrained call avoiding boxing for value types.
-			while (!spanFormattable.TryFormat(_chars[Length..], out charsWritten, format, null))
+			case ISpanFormattable spanFormattable:
 			{
-				Grow();
+				int charsWritten;
+
+				// Constrained call avoiding boxing for value types.
+				while (!spanFormattable.TryFormat(_chars[Length..], out charsWritten, format, null))
+				{
+					Grow();
+				}
+
+				Length += charsWritten;
+
+				break;
 			}
+			case ISimpleFormattable s:
+			{
+				AppendStringDirect(s.ToString(format));
 
-			Length += charsWritten;
-			return;
-		}
+				break;
+			}
+			case IFormattable f:
+			{
+				AppendStringDirect(f.ToString(format, null));
 
-		if ((value is IFormattable f ? f.ToString(format, null) : value?.ToString()) is { } s)
-		{
-			AppendStringDirect(s);
+				break;
+			}
+			case var _ when value?.ToString() is { } s:
+			{
+				AppendStringDirect(s);
+
+				break;
+			}
 		}
 	}
 
@@ -921,24 +954,40 @@ public unsafe ref partial struct StringHandler
 	/// <typeparam name="T">The type of the value to write.</typeparam>
 	public void AppendFormatted<T>(T value)
 	{
-		if (value is ISpanFormattable spanFormattable)
+		switch (value)
 		{
-			int charsWritten;
-
-			// Constrained call avoiding boxing for value types.
-			while (!spanFormattable.TryFormat(_chars[Length..], out charsWritten, null, null))
+			case ISpanFormattable spanFormattable:
 			{
-				Grow();
+				int charsWritten;
+
+				// Constrained call avoiding boxing for value types.
+				while (!spanFormattable.TryFormat(_chars[Length..], out charsWritten, null, null))
+				{
+					Grow();
+				}
+
+				Length += charsWritten;
+
+				break;
 			}
+			case ISimpleFormattable s:
+			{
+				AppendStringDirect(s.ToString(null));
 
-			Length += charsWritten;
+				break;
+			}
+			case IFormattable f:
+			{
+				AppendStringDirect(f.ToString(null, null));
 
-			return;
-		}
+				break;
+			}
+			case var _ when value?.ToString() is { } s:
+			{
+				AppendStringDirect(s);
 
-		if ((value is IFormattable f ? f.ToString(format: null, null) : value?.ToString()) is { } s)
-		{
-			AppendStringDirect(s);
+				break;
+			}
 		}
 	}
 
@@ -950,23 +999,40 @@ public unsafe ref partial struct StringHandler
 	/// <typeparam name="T">The type of the value to write.</typeparam>
 	public void AppendFormatted<T>(T value, string? format)
 	{
-		if (value is ISpanFormattable spanFormattable)
+		switch (value)
 		{
-			int charsWritten;
-
-			// Constrained call avoiding boxing for value types.
-			while (!spanFormattable.TryFormat(_chars[Length..], out charsWritten, format, null))
+			case ISpanFormattable spanFormattable:
 			{
-				Grow();
+				int charsWritten;
+
+				// Constrained call avoiding boxing for value types.
+				while (!spanFormattable.TryFormat(_chars[Length..], out charsWritten, format, null))
+				{
+					Grow();
+				}
+
+				Length += charsWritten;
+
+				break;
 			}
+			case ISimpleFormattable s:
+			{
+				AppendStringDirect(s.ToString(format));
 
-			Length += charsWritten;
-			return;
-		}
+				break;
+			}
+			case IFormattable f:
+			{
+				AppendStringDirect(f.ToString(format, null));
 
-		if ((value is IFormattable f ? f.ToString(format, null) : value?.ToString()) is { } s)
-		{
-			AppendStringDirect(s);
+				break;
+			}
+			case var _ when value?.ToString() is { } s:
+			{
+				AppendStringDirect(s);
+
+				break;
+			}
 		}
 	}
 

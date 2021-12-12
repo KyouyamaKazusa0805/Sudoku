@@ -6,7 +6,7 @@
 /// <typeparam name="TGrid">The type to implement this interface.</typeparam>
 public unsafe interface IGrid<TGrid>
 : IValueEquatable<TGrid>
-, IFormattable
+, ISimpleFormattable
 , ISimpleParseable<TGrid>
 where TGrid : struct, IGrid<TGrid>
 {

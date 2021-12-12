@@ -10,17 +10,17 @@
 [AutoGetHashCode(nameof(Cell))]
 [AutoEquality(nameof(Cell))]
 public readonly partial record struct Coordinate(byte Cell)
-: IEqualityOperators<Coordinate, Coordinate>
-, IComparisonOperators<Coordinate, Coordinate>
-, IAdditionOperators<Coordinate, byte, Coordinate>
-, ISubtractionOperators<Coordinate, byte, Coordinate>
-, IEquatable<Coordinate>
-, IValueEquatable<Coordinate>
+: IAdditionOperators<Coordinate, byte, Coordinate>
 , IComparable<Coordinate>
-, IValueComparable<Coordinate>
-, IFormattable
+, IComparisonOperators<Coordinate, Coordinate>
+, IEqualityOperators<Coordinate, Coordinate>
+, IEquatable<Coordinate>
 , IMinMaxValue<Coordinate>
+, ISimpleFormattable
 , ISimpleParseable<Coordinate>
+, ISubtractionOperators<Coordinate, byte, Coordinate>
+, IValueEquatable<Coordinate>
+, IValueComparable<Coordinate>
 {
 	/// <summary>
 	/// Indicates the undefined <see cref="Coordinate"/> instance that stands for an invalid <see cref="Coordinate"/> value.
@@ -81,37 +81,31 @@ public readonly partial record struct Coordinate(byte Cell)
 
 	/// <inheritdoc cref="object.ToString"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public override string ToString() => ToString(null, null);
-
-	/// <inheritdoc cref="IFormattable.ToString(string?, IFormatProvider?)"/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public string ToString(string? format) => ToString(format, null);
+	public override string ToString() => ToString(null);
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public string ToString(string? format, IFormatProvider? formatProvider) =>
-		formatProvider.HasFormatted(this, format, out string? result)
-			? result
-			: format switch
+	public string ToString(string? format) =>
+		format switch
+		{
+			null or "rc" => $"r{Row}c{Column}",
+			"RC" => $"R{Row}C{Column}",
+			"RCB" => $"R{Row}C{Column}B{Block}",
+			"rcb" => $"r{Row}c{Column}b{Block}",
+			{ Length: 1 } when format[0] is var formatChar => formatChar switch
 			{
-				null or "rc" => $"r{Row}c{Column}",
-				"RC" => $"R{Row}C{Column}",
-				"RCB" => $"R{Row}C{Column}B{Block}",
-				"rcb" => $"r{Row}c{Column}b{Block}",
-				{ Length: 1 } when format[0] is var formatChar => formatChar switch
-				{
-					'N' => $"R{Row}C{Column}",
-					'n' => $"r{Row}c{Column}",
-					'R' => $"R{Row}",
-					'r' => $"r{Row}",
-					'C' => $"C{Column}",
-					'c' => $"c{Column}",
-					'B' => $"B{Block}",
-					'b' => $"b{Block}",
-					_ => throw new FormatException($"The specified format '{formatChar}' is invalid or not supported.")
-				},
-				_ => throw new FormatException($"The specified format '{format}' is invalid or not supported.")
-			};
+				'N' => $"R{Row}C{Column}",
+				'n' => $"r{Row}c{Column}",
+				'R' => $"R{Row}",
+				'r' => $"r{Row}",
+				'C' => $"C{Column}",
+				'c' => $"c{Column}",
+				'B' => $"B{Block}",
+				'b' => $"b{Block}",
+				_ => throw new FormatException($"The specified format '{formatChar}' is invalid or not supported.")
+			},
+			_ => throw new FormatException($"The specified format '{format}' is invalid or not supported.")
+		};
 
 	/// <inheritdoc cref="operator +(Coordinate, byte)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

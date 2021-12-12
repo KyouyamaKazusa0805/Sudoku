@@ -3369,6 +3369,20 @@
         <member name="M:System.ICloneable`1.System#ICloneable#Clone">
             <inheritdoc/>
         </member>
+        <member name="T:System.ISimpleFormattable">
+            <summary>
+            Defines a type that supports <c>ToString(<see langword="string"/>?)</c>.
+            </summary>
+            <seealso cref="M:System.ISimpleFormattable.ToString(System.String)"/>
+        </member>
+        <member name="M:System.ISimpleFormattable.ToString(System.String)">
+            <summary>
+            Formats the value of the current instance using the specified format.
+            </summary>
+            <param name="format">The format to use, or <see langword="null"/> to use the default format.</param>
+            <returns>The value of the current instance in the specified format.</returns>
+            <exception cref="T:System.FormatException">Throws when the format is invalid.</exception>
+        </member>
         <member name="T:System.ISimpleParseable`1">
             <summary>
             Defines an instance that allows the <see cref="T:System.String"/> value

@@ -9,7 +9,7 @@ partial record ManualSolverResult
 	private readonly record struct Formatter(ManualSolverResult Result)
 	{
 		/// <inheritdoc/>
-		public override string ToString() => ToString(null, null);
+		public override string ToString() => ToString(null);
 
 		/// <summary>
 		/// Returns a string that represents the current object with the specified format string.
@@ -18,30 +18,20 @@ partial record ManualSolverResult
 		/// The format. If available, the parameter can be <see langword="null"/>.
 		/// </param>
 		/// <returns>The string result.</returns>
-		public string ToString(string format) => ToString(format, null);
-
-		/// <inheritdoc/>
-		public string ToString(string? format, IFormatProvider? formatProvider) =>
-			ToString(format, formatProvider, CountryCode.EnUs);
+		public string ToString(string? format) => ToString(format, CountryCode.EnUs);
 
 		/// <summary>
 		/// Get the string result.
 		/// </summary>
 		/// <param name="format">The format.</param>
-		/// <param name="formatProvider">The format provider.</param>
 		/// <param name="countryCode">The country code.</param>
 		/// <returns>The result.</returns>
 		/// <exception cref="FormatException">
 		/// Throws when the specified format contains other invalid characters
 		/// and the format provider can't work.
 		/// </exception>
-		public string ToString(string? format, IFormatProvider? formatProvider, CountryCode countryCode)
+		public string ToString(string? format, CountryCode countryCode)
 		{
-			if (formatProvider.HasFormatted(this, format, out string? result))
-			{
-				return result;
-			}
-
 			format ??= ".-!l";
 			if (format.IsMatch(@"[^\^\-\.\?#@!abdl]"))
 			{

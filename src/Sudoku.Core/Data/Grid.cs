@@ -13,14 +13,13 @@
 #endif // !USE_TO_MASK_STRING_METHOD
 #endif // !DEBUG
 [AutoDeconstruct(nameof(EmptyCells), nameof(BivalueCells), nameof(CandidatesMap), nameof(DigitsMap), nameof(ValuesMap))]
-[AutoFormattable]
 [AutoGetEnumerator(nameof(Candidates), MemberConversion = "@.*", ReturnType = typeof(CandidateCollection.Enumerator))]
 public unsafe partial struct Grid
 : IGrid<Grid>
-, IValueEquatable<Grid>
-, IFormattable
+, ISimpleFormattable
 , IJsonSerializable<Grid, Grid.JsonConverter>
 , ISimpleParseable<Grid>
+, IValueEquatable<Grid>
 {
 	/// <inheritdoc cref="IGrid{TGrid}.DefaultMask"/>
 	public const short DefaultMask = EmptyMask | MaxCandidatesMask;
@@ -741,25 +740,29 @@ public unsafe partial struct Grid
 		}
 	}
 
+	/// <inheritdoc cref="object.ToString"/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public readonly override string ToString() => ToString(null);
+
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public readonly string ToString(string? format, IFormatProvider? formatProvider) => this switch
-	{
-		{ IsEmpty: true } => "<Empty>",
-		{ IsUndefined: true } => "<Undefined>",
-#if DEBUG
-		{ IsDebuggerUndefined: true } => "<Debugger can't recognize the fixed buffer>",
-#endif
-		_ when formatProvider.HasFormatted(this, format, out string? result) => result,
-		_ when Formatter.Create(format) is var f => format switch
+	public readonly string ToString(string? format) =>
+		this switch
 		{
-			":" => f.ToString(this).Match(RegularExpressions.ExtendedSusserEliminations) ?? string.Empty,
-			"!" => f.ToString(this).Replace("+", string.Empty),
-			".!" or "!." or "0!" or "!0" => f.ToString(this).Replace("+", string.Empty),
-			".!:" or "!.:" or "0!:" => f.ToString(this).Replace("+", string.Empty),
-			_ => f.ToString(this)
-		}
-	};
+			{ IsEmpty: true } => "<Empty>",
+			{ IsUndefined: true } => "<Undefined>",
+#if DEBUG
+			{ IsDebuggerUndefined: true } => "<Debugger can't recognize the fixed buffer>",
+#endif
+			_ when Formatter.Create(format) is var f => format switch
+			{
+				":" => f.ToString(this).Match(RegularExpressions.ExtendedSusserEliminations) ?? string.Empty,
+				"!" => f.ToString(this).Replace("+", string.Empty),
+				".!" or "!." or "0!" or "!0" => f.ToString(this).Replace("+", string.Empty),
+				".!:" or "!.:" or "0!:" => f.ToString(this).Replace("+", string.Empty),
+				_ => f.ToString(this)
+			}
+		};
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

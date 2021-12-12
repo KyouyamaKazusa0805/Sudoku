@@ -13,6 +13,7 @@ internal interface ICellsOrCandidates<TCollection>
 , IValueEquatable<TCollection>
 , IAdditionOperators<TCollection, int, TCollection>
 , ISubtractionOperators<TCollection, int, TCollection>
+, ISimpleFormattable
 where TCollection : struct, ICellsOrCandidates<TCollection>
 {
 	/// <summary>

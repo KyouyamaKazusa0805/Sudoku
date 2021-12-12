@@ -2261,6 +2261,12 @@
             Throws when the list doesn't contain any valid instance to get.
             </exception>
         </member>
+        <member name="M:Sudoku.Solving.Manual.ManualSolverResult.ToString">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.ManualSolverResult.ToString(System.String)">
+            <inheritdoc/>
+        </member>
         <member name="M:Sudoku.Solving.Manual.ManualSolverResult.ToString(System.String,Sudoku.Globalization.CountryCode)">
             <summary>
             Get the analysis result string using the specified format and the country code.
@@ -2268,9 +2274,6 @@
             <param name="format">The format.</param>
             <param name="countryCode">The country code.</param>
             <returns>The result string.</returns>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.ManualSolverResult.ToString(System.String,System.IFormatProvider)">
-            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Solving.Manual.ManualSolverResult.ToString(Sudoku.Solving.SolverResultFormattingOptions)">
             <inheritdoc cref="M:Sudoku.Solving.Manual.ManualSolverResult.Formatter.ToString(Sudoku.Solving.SolverResultFormattingOptions)"/>
@@ -2319,15 +2322,11 @@
             </param>
             <returns>The string result.</returns>
         </member>
-        <member name="M:Sudoku.Solving.Manual.ManualSolverResult.Formatter.ToString(System.String,System.IFormatProvider)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.ManualSolverResult.Formatter.ToString(System.String,System.IFormatProvider,Sudoku.Globalization.CountryCode)">
+        <member name="M:Sudoku.Solving.Manual.ManualSolverResult.Formatter.ToString(System.String,Sudoku.Globalization.CountryCode)">
             <summary>
             Get the string result.
             </summary>
             <param name="format">The format.</param>
-            <param name="formatProvider">The format provider.</param>
             <param name="countryCode">The country code.</param>
             <returns>The result.</returns>
             <exception cref="T:System.FormatException">
@@ -2359,18 +2358,6 @@
             <summary>
             Deconstruct the instance into multiple elements.
             </summary>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.ManualSolverResult.ToString">
-            <inheritdoc cref="M:System.Object.ToString"/>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.ManualSolverResult.ToString(System.String)">
-            <summary>
-            Returns a string that represents the current object with the specified format string.
-            </summary>
-            <param name="format">
-            The format. If available, the parameter can be <see langword="null"/>.
-            </param>
-            <returns>The string result.</returns>
         </member>
         <member name="M:Sudoku.Solving.Manual.ManualSolverResult.GetEnumerator">
             <summary>

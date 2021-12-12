@@ -7,8 +7,7 @@
 [AutoDeconstruct(nameof(IsSolved), nameof(SolvingStepsCount), nameof(Steps))]
 [AutoDeconstruct(nameof(IsSolved), nameof(TotalDifficulty), nameof(MaxDifficulty), nameof(PearlDifficulty), nameof(DiamondDifficulty), nameof(OriginalPuzzle), nameof(Solution), nameof(ElapsedTime), nameof(SolvingStepsCount), nameof(Steps), nameof(StepGrids))]
 [AutoGetEnumerator(nameof(Steps), ExtraNamespaces = new[] { "System", "Sudoku.Solving.Manual" }, ReturnType = typeof(ImmutableArray<Step>.Enumerator), MemberConversion = "@.*")]
-[AutoFormattable]
-public sealed unsafe partial record ManualSolverResult(in Grid OriginalPuzzle) : ISolverResult, IFormattable
+public sealed unsafe partial record ManualSolverResult(in Grid OriginalPuzzle) : ISimpleFormattable, ISolverResult
 {
 	/// <inheritdoc/>
 	public bool IsSolved { get; init; }
@@ -253,6 +252,12 @@ public sealed unsafe partial record ManualSolverResult(in Grid OriginalPuzzle) :
 		: throw new InvalidOperationException("The specified instance can't get the result.");
 
 
+	/// <inheritdoc/>
+	public override string ToString() => ToString(null);
+
+	/// <inheritdoc/>
+	public string ToString(string? format) => new Formatter(this).ToString(format);
+
 	/// <summary>
 	/// Get the analysis result string using the specified format and the country code.
 	/// </summary>
@@ -260,11 +265,7 @@ public sealed unsafe partial record ManualSolverResult(in Grid OriginalPuzzle) :
 	/// <param name="countryCode">The country code.</param>
 	/// <returns>The result string.</returns>
 	public string ToString(string format, CountryCode countryCode) =>
-		new Formatter(this).ToString(format, null, countryCode);
-
-	/// <inheritdoc/>
-	public string ToString(string? format, IFormatProvider? formatProvider) =>
-		new Formatter(this).ToString(format, formatProvider);
+		new Formatter(this).ToString(format, countryCode);
 
 	/// <inheritdoc cref="Formatter.ToString(SolverResultFormattingOptions)"/>
 	public string ToString(SolverResultFormattingOptions options) =>
@@ -278,7 +279,7 @@ public sealed unsafe partial record ManualSolverResult(in Grid OriginalPuzzle) :
 	public string ToDisplayString() => ToDisplayString(CountryCode.Default);
 
 	/// <inheritdoc/>
-	public string ToDisplayString(CountryCode countryCode) => new Formatter(this).ToString(null, null, countryCode);
+	public string ToDisplayString(CountryCode countryCode) => new Formatter(this).ToString(null, countryCode);
 
 	/// <summary>
 	/// The inner executor to get the difficulty value (total, average).

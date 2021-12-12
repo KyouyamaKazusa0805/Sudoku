@@ -590,6 +590,9 @@
             <returns>The mask.</returns>
         </member>
         <member name="M:Sudoku.Data.Candidates.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
+        <member name="M:Sudoku.Data.Candidates.ToString(System.String)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Data.Candidates.Reduce(System.Int32)">
@@ -1121,9 +1124,11 @@
             </list>
             </exception>
         </member>
-        <member name="M:Sudoku.Data.Cells.ToString(System.String,System.IFormatProvider)">
+        <member name="M:Sudoku.Data.Cells.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
+        <member name="M:Sudoku.Data.Cells.ToString(System.String)">
             <inheritdoc/>
-            <exception cref="T:System.FormatException">Throws when the format is invalid.</exception>
         </member>
         <member name="M:Sudoku.Data.Cells.ToSpan">
             <inheritdoc/>
@@ -1292,18 +1297,6 @@
             <param name="left">The left-side-operator instance to compare.</param>
             <param name="right">The right-side-operator instance to compare.</param>
             <returns>A <see cref="T:System.Boolean"/> result.</returns>
-        </member>
-        <member name="M:Sudoku.Data.Cells.ToString">
-            <inheritdoc cref="M:System.Object.ToString"/>
-        </member>
-        <member name="M:Sudoku.Data.Cells.ToString(System.String)">
-            <summary>
-            Returns a string that represents the current object with the specified format string.
-            </summary>
-            <param name="format">
-            The format. If available, the parameter can be <see langword="null"/>.
-            </param>
-            <returns>The string result.</returns>
         </member>
         <member name="M:Sudoku.Data.Cells.GetEnumerator">
             <summary>
@@ -2472,9 +2465,6 @@
             <inheritdoc cref="M:System.Object.ToString"/>
         </member>
         <member name="M:Sudoku.Data.Coordinate.ToString(System.String)">
-            <inheritdoc cref="M:System.IFormattable.ToString(System.String,System.IFormatProvider)"/>
-        </member>
-        <member name="M:Sudoku.Data.Coordinate.ToString(System.String,System.IFormatProvider)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Data.Coordinate.MoveForwardly(System.Byte)">
@@ -2981,7 +2971,10 @@
         <member name="M:Sudoku.Data.Grid.ToMaskString">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Data.Grid.ToString(System.String,System.IFormatProvider)">
+        <member name="M:Sudoku.Data.Grid.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
+        <member name="M:Sudoku.Data.Grid.ToString(System.String)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Data.Grid.GetStatus(System.Int32)">
@@ -3536,18 +3529,6 @@
             <summary>
             Deconstruct the instance into multiple elements.
             </summary>
-        </member>
-        <member name="M:Sudoku.Data.Grid.ToString">
-            <inheritdoc cref="M:System.Object.ToString"/>
-        </member>
-        <member name="M:Sudoku.Data.Grid.ToString(System.String)">
-            <summary>
-            Returns a string that represents the current object with the specified format string.
-            </summary>
-            <param name="format">
-            The format. If available, the parameter can be <see langword="null"/>.
-            </param>
-            <returns>The string result.</returns>
         </member>
         <member name="M:Sudoku.Data.Grid.GetEnumerator">
             <summary>

@@ -12,11 +12,10 @@
 [AutoDeconstruct(nameof(_high), nameof(_low))]
 [AutoEquality(nameof(_high), nameof(_low))]
 [AutoGetEnumerator(nameof(Offsets), MemberConversion = "((IEnumerable<int>)@).*")]
-[AutoFormattable]
 public unsafe partial struct Cells
 : ICellsOrCandidates<Cells>
-, IFormattable
 , IJsonSerializable<Cells, Cells.JsonConverter>
+, ISimpleFormattable
 , ISimpleParseable<Cells>
 {
 	/// <summary>
@@ -754,25 +753,25 @@ public unsafe partial struct Cells
 		}
 	}
 
+	/// <inheritdoc cref="object.ToString"/>
+	public readonly override string ToString() => ToString(null);
+
 	/// <inheritdoc/>
-	/// <exception cref="FormatException">Throws when the format is invalid.</exception>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public readonly string ToString(string? format, IFormatProvider? formatProvider)
+	public readonly string ToString(string? format)
 	{
-		return formatProvider.HasFormatted(this, format, out string? result)
-			? result
-			: format switch
+		return format switch
+		{
+			null or "N" or "n" => Count switch
 			{
-				null or "N" or "n" => Count switch
-				{
-					0 => "{ }",
-					1 when Offsets[0] is var cell => $"r{cell / 9 + 1}c{cell % 9 + 1}",
-					_ => normalToString(this)
-				},
-				"B" or "b" => binaryToString(this, false),
-				"T" or "t" => tableToString(this),
-				_ => throw new FormatException("The specified format is invalid.")
-			};
+				0 => "{ }",
+				1 when Offsets[0] is var cell => $"r{cell / 9 + 1}c{cell % 9 + 1}",
+				_ => normalToString(this)
+			},
+			"B" or "b" => binaryToString(this, false),
+			"T" or "t" => tableToString(this),
+			_ => throw new FormatException("The specified format is invalid.")
+		};
 
 
 		static string tableToString(in Cells @this)

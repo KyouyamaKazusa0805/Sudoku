@@ -10,11 +10,11 @@
 [AutoDeconstructLambda(nameof(A), nameof(RgbColorInstance))]
 [AutoDeconstruct(nameof(R), nameof(G), nameof(B))]
 public readonly partial record struct UIColor(byte A, byte R, byte G, byte B)
-: IValueEquatable<UIColor>
-, IFormattable
-, ISimpleParseable<UIColor>
+: IJsonSerializable<UIColor, UIColor.JsonConverter>
+, IValueEquatable<UIColor>
 , IMinMaxValue<UIColor>
-, IJsonSerializable<UIColor, UIColor.JsonConverter>
+, ISimpleFormattable
+, ISimpleParseable<UIColor>
 {
 	/// <summary>
 	/// Indicates the min value of the <see cref="UIColor"/> instance.
@@ -227,21 +227,12 @@ public readonly partial record struct UIColor(byte A, byte R, byte G, byte B)
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public override string ToString() => ToString(null, null);
-
-	/// <summary>
-	/// Formats the value of the current instance using the specified format.
-	/// </summary>
-	/// <param name="format">The format.</param>
-	/// <returns>The value of the current instance in the specified format.</returns>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public string ToString(string? format) => ToString(format, null);
+	public override string ToString() => ToString(null);
 
 	/// <inheritdoc/>
-	/// <exception cref="FormatException">Throws when the <paramref name="format"/> is invalid.</exception>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public string ToString(string? format, IFormatProvider? formatProvider) =>
-		formatProvider.HasFormatted(this, format, out string? result) ? result : format switch
+	public string ToString(string? format) =>
+		format switch
 		{
 			null or "D" or "d" or "#" => Mask.ToString(), // Decimal type.
 			"F" or "f" or ":" => $"A: {A}, R: {R}, G: {G}, B: {B}", // Full format type.

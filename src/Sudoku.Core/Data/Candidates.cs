@@ -384,8 +384,12 @@ public unsafe partial struct Candidates : ICellsOrCandidates<Candidates>
 		return p;
 	}
 
+	/// <inheritdoc cref="object.ToString"/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public override readonly string ToString() => ToString(null);
+
 	/// <inheritdoc/>
-	public override readonly string ToString()
+	public readonly string ToString(string? format)
 	{
 		return Count switch
 		{
