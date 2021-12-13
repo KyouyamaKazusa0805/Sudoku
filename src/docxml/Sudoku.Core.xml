@@ -10066,6 +10066,96 @@
             Indicates the last resort technique.
             </summary>
         </member>
+        <member name="T:Sudoku.Text.ResourceDocument">
+            <summary>
+            Defines a resource document. The resource document should be a JSON document of depth 1,
+            and only holds key-value pairs of type <see cref="T:System.String"/>. For example:
+            <code>
+            {
+              "prop1": "value1",
+              "prop2": "value2",
+              "prop3": "value3"
+            }
+            </code>
+            In this case, we can use the indexer <see cref="P:Sudoku.Text.ResourceDocument.Item(System.String)"/> to fetch the value via the key,
+            for example, <c>document["prop1"]</c> you'll get the value <c>"value1"</c>.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Text.ResourceDocument._firstElement">
+            <summary>
+            Indicates the first element of the document.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Text.ResourceDocument.#ctor(System.String,System.Boolean)">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Text.ResourceDocument"/> instance via the specified JSON string.
+            </summary>
+            <param name="json">The JSON code.</param>
+            <param name="instantValidate">
+            Indicates whether the constructor will validate the JSON code as the regular resource document.
+            The default value is <see langword="false"/>.
+            </param>
+            <exception cref="T:System.Text.Json.JsonException">Throws when the specified string isn't valid JSON code.</exception>
+        </member>
+        <member name="P:Sudoku.Text.ResourceDocument.Item(System.String)">
+            <summary>
+            Try to fetch the property value via the specified property name.
+            </summary>
+            <param name="propertyName">The property name to find.</param>
+            <returns>The value that correspoding to the property.</returns>
+            <exception cref="T:System.Collections.Generic.KeyNotFoundException">Throws when no such property found.</exception>
+            <exception cref="T:System.Text.Json.JsonException">
+            Throws when the return value is <see langword="null"/>, which is disallowed.
+            </exception>
+            <exception cref="T:System.InvalidOperationException">
+            Throws when the return value isn't a <see cref="T:System.String"/>, which is disallowed.
+            </exception>
+        </member>
+        <member name="M:Sudoku.Text.ResourceDocument.GetEnumerator">
+            <inheritdoc cref="M:System.Collections.Generic.IEnumerable`1.GetEnumerator"/>
+        </member>
+        <member name="T:Sudoku.Text.ResourceDocument.Enumerator">
+            <summary>
+            Indicates the enumerator of the current instance to iterate.
+            </summary>
+            <remarks><i>
+            Due to the .NET API design, we can't customize to fetch the inner value, so the data structure
+            will bind a <see cref="T:System.Text.Json.JsonElement.ObjectEnumerator"/> instance to iterate. For more information,
+            please visit the documentation of method <see cref="M:System.Text.Json.JsonElement.EnumerateObject"/> and the type
+            <see cref="T:System.Text.Json.JsonElement.ObjectEnumerator"/>.
+            </i></remarks>
+            <seealso cref="M:System.Text.Json.JsonElement.EnumerateObject"/>
+            <seealso cref="T:System.Text.Json.JsonElement.ObjectEnumerator"/>
+        </member>
+        <member name="F:Sudoku.Text.ResourceDocument.Enumerator._enumerator">
+            <summary>
+            Indicates the first element to iterate.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Text.ResourceDocument.Enumerator.#ctor(System.Text.Json.JsonElement)">
+            <summary>
+            Initializes an <see cref="T:Sudoku.Text.ResourceDocument.Enumerator"/> instance via the first element.
+            </summary>
+            <param name="firstElement">The first element to iterate.</param>
+        </member>
+        <member name="P:Sudoku.Text.ResourceDocument.Enumerator.Current">
+            <inheritdoc cref="P:System.Collections.Generic.IEnumerator`1.Current"/>
+        </member>
+        <member name="M:Sudoku.Text.ResourceDocument.Enumerator.MoveNext">
+            <inheritdoc cref="M:System.Collections.IEnumerator.MoveNext"/>
+        </member>
+        <member name="M:Sudoku.Text.ResourceDocument.Enumerator.Equals(System.Object)">
+            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
+            <exception cref="T:System.NotSupportedException">Always throws.</exception>
+        </member>
+        <member name="M:Sudoku.Text.ResourceDocument.Enumerator.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+            <exception cref="T:System.NotSupportedException">Always throws.</exception>
+        </member>
+        <member name="M:Sudoku.Text.ResourceDocument.Enumerator.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+            <exception cref="T:System.NotSupportedException">Always throws.</exception>
+        </member>
         <member name="T:Sudoku.Versioning.ForStudyingOnlyAttribute">
             <summary>
             To mark onto a type (only for <see langword="class"/> or <see langword="struct"/>), to tell the user

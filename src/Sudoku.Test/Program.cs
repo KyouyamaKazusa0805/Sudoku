@@ -1,5 +1,8 @@
-﻿using System;
+﻿#pragma warning disable CS8321
+
+using System;
 using System.Text.Json;
+using Sudoku.Text;
 
 const string jsonText = @"{
   ""prop1"": ""a"",
@@ -8,22 +11,41 @@ const string jsonText = @"{
   ""prop4"": ""d""
 }";
 
-using var jsonDoc = JsonDocument.Parse(jsonText, new()
-{
-	AllowTrailingCommas = true,
-	CommentHandling = JsonCommentHandling.Skip
-});
+//f();
+g();
 
-var rootElement = jsonDoc.RootElement;
-foreach (var (name, value) in rootElement.EnumerateObject())
+static void f()
 {
-	Console.WriteLine($"{name}: {value}");
+	using var jsonDoc = JsonDocument.Parse(jsonText, new()
+	{
+		AllowTrailingCommas = true,
+		CommentHandling = JsonCommentHandling.Skip
+	});
+
+	var rootElement = jsonDoc.RootElement;
+	foreach (var (name, value) in rootElement.EnumerateObject())
+	{
+		Console.WriteLine($"{name}: {value}");
+	}
+
+	Console.WriteLine(new string('-', 30));
+
+	var targetElement = rootElement.GetProperty("prop3");
+	Console.WriteLine(targetElement.GetString());
 }
 
-Console.WriteLine(new string('-', 30));
+static void g()
+{
+	var doc = new ResourceDocument(jsonText, true);
+	foreach (string value in doc)
+	{
+		Console.WriteLine(value);
+	}
 
-var targetElement = rootElement.GetProperty("prop3");
-Console.WriteLine(targetElement.GetString());
+	string targetValue = doc["prop3"];
+	Console.WriteLine(targetValue);
+}
+
 
 static partial class Program
 {
