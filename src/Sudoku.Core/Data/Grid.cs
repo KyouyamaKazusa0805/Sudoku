@@ -1,10 +1,38 @@
 ﻿namespace Sudoku.Data;
 
 /// <summary>
-/// Represents a sudoku grid that contains the mask list of a sudoku grid.
-/// The type is the substitution plan of type <see cref="SudokuGrid"/>.
+/// Represents a sudoku grid that uses the mask list to construct the data structure.
 /// </summary>
-/// <seealso cref="SudokuGrid"/>
+/// <remarks>
+/// The data structure uses the mask table of length 81 to indicate the status and all possible candidates
+/// holding for each cell. Each mask uses a <see cref="short"/> value, but only uses 11 of 16 bits.
+/// <code>
+/// |xxx|--|--------|
+/// |-------|-------|
+/// 16      8       0
+/// </code>
+/// Here the first-nine bits indicate whether the digit 1-9 is possible candidate in the current cell respectively,
+/// and the higher 3 bits indicate the cell status. The possible cell status are:
+/// <list type="table">
+/// <listheader>
+/// <term>Status name (Value corresponding to <see cref="CellStatus"/> enumeration)</term>
+/// <description>Description</description>
+/// </listheader>
+/// <item>
+/// <term>Empty cell (i.e. <see cref="CellStatus.Empty"/>)</term>
+/// <description>The cell is currently empty, and wait for being filled.</description>
+/// </item>
+/// <item>
+/// <term>Modifiable cell (i.e. <see cref="CellStatus.Modifiable"/>)</term>
+/// <description>The cell is filled by a digit, but the digit isn't the given by the initial grid.</description>
+/// </item>
+/// <item>
+/// <term>Given cell (i.e. <see cref="CellStatus.Given"/>)</term>
+/// <description>The cell is filled by a digit, which is given by the initial grid and can't be modified.</description>
+/// </item>
+/// </list>
+/// </remarks>
+/// <seealso cref="CellStatus"/>
 #if DEBUG
 #if USE_TO_MASK_STRING_METHOD
 [DebuggerDisplay($@"{{{nameof(ToMaskString)}("".+:""),nq}}")]
@@ -13,7 +41,7 @@
 #endif // !USE_TO_MASK_STRING_METHOD
 #endif // !DEBUG
 [AutoDeconstruct(nameof(EmptyCells), nameof(BivalueCells), nameof(CandidatesMap), nameof(DigitsMap), nameof(ValuesMap))]
-[AutoGetEnumerator(nameof(Candidates), MemberConversion = "@.*", ReturnType = typeof(CandidateCollection.Enumerator))]
+[AutoGetEnumerator(nameof(EnumerateCandidates), MemberConversion = "@()", ReturnType = typeof(CandidateCollectionEnumerator))]
 public unsafe partial struct Grid
 : IGrid<Grid>
 , ISimpleFormattable
@@ -513,36 +541,6 @@ public unsafe partial struct Grid
 		}
 	}
 
-	/// <summary>
-	/// Gets an enumerator that iterates the candidates.
-	/// </summary>
-	public readonly CandidateCollection Candidates
-	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get
-		{
-			fixed (short* arr = _values)
-			{
-				return new(arr);
-			}
-		}
-	}
-
-	/// <summary>
-	/// Gets an enumerator that iterates the masks.
-	/// </summary>
-	public readonly MaskCollection Masks
-	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get
-		{
-			fixed (short* arr = _values)
-			{
-				return new(arr);
-			}
-		}
-	}
-
 	/// <inheritdoc/>
 	static short IGrid<Grid>.DefaultMask => DefaultMask;
 
@@ -768,6 +766,47 @@ public unsafe partial struct Grid
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public readonly CellStatus GetStatus(int cell) => _values[cell].MaskToStatus();
+
+	/// <summary>
+	/// Try to enumerate all possible candidates in the current grid.
+	/// </summary>
+	/// <returns>
+	/// An enumerator that allows us using <see langword="foreach"/> statement
+	/// to iterate all possible candidates in the current grid.
+	/// </returns>
+	public readonly CandidateCollectionEnumerator EnumerateCandidates()
+	{
+		fixed (short* arr = _values)
+		{
+			return new(arr);
+		}
+	}
+
+	/// <summary>
+	/// Try to enumerate the mask table of the current grid.
+	/// </summary>
+	/// <returns>
+	/// An enumerator that allows us using <see langword="foreach"/> statement
+	/// to iterate all masks in the current grid. The mask list must contain 81 masks.
+	/// </returns>
+	/// <remarks>
+	/// Please note that the iterator will iterate all masks by reference, which means
+	/// you can use <see langword="ref"/> and <see langword="ref readonly"/> modifier
+	/// onto the iteration variable:
+	/// <code>
+	/// foreach (ref readonly short mask in grid)
+	/// {
+	///     // Do something.
+	/// }
+	/// </code>
+	/// </remarks>
+	public readonly MaskCollectionEnumerator EnumerateMasks()
+	{
+		fixed (short* arr = _values)
+		{
+			return new(arr);
+		}
+	}
 
 	/// <summary>
 	/// Convertes the current instance to a <see cref="SudokuGrid"/>.
