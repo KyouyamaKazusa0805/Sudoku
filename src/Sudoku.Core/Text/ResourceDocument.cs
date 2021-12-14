@@ -13,13 +13,14 @@
 /// In this case, we can use the indexer <see cref="this[string]"/> to fetch the value via the key,
 /// for example, <c>document["prop1"]</c> you'll get the value <c>"value1"</c>.
 /// </summary>
-public readonly partial struct ResourceDocument : IEquatable<ResourceDocument>, IValueEquatable<ResourceDocument>
+[AutoGetEnumerator(nameof(_root), MemberConversion = "new(@)", ReturnType = typeof(Enumerator))]
+public readonly partial struct ResourceDocument
+: IDisposable
+, IEquatable<ResourceDocument>
+, IEqualityOperators<ResourceDocument, ResourceDocument>
+, ISimpleParseable<ResourceDocument>
+, IValueEquatable<ResourceDocument>
 {
-	/// <summary>
-	/// Indicates the default JSON node options.
-	/// </summary>
-	private static readonly JsonNodeOptions DefaultNodeOptions = new() { PropertyNameCaseInsensitive = false };
-
 	/// <summary>
 	/// Indicates the default JSON document options.
 	/// </summary>
@@ -46,14 +47,14 @@ public readonly partial struct ResourceDocument : IEquatable<ResourceDocument>, 
 
 
 	/// <summary>
-	/// Indicates the first JSON node.
+	/// Indicates the root JSON element.
 	/// </summary>
-	private readonly JsonNode _node;
+	private readonly JsonElement _root;
 
 	/// <summary>
-	/// Indicates the current JSON object corresponding to.
+	/// Indicates the corresponding JSON document.
 	/// </summary>
-	private readonly JsonObject _object;
+	private readonly JsonDocument _parentDoc;
 
 
 	/// <summary>
@@ -67,40 +68,28 @@ public readonly partial struct ResourceDocument : IEquatable<ResourceDocument>, 
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public ResourceDocument(string json)
 	{
-		validate(
-			_object = (
-				_node = JsonNode.Parse(json, DefaultNodeOptions, DefaultDocumentOptions)
-					?? throw new ArgumentException("The specified string can't be converted to regular JSON.")
-			).AsObject()
-		);
+		_parentDoc = JsonDocument.Parse(json, DefaultDocumentOptions);
+		_root = _parentDoc.RootElement;
 
-
-		static void validate(JsonObject @object)
+		int count = 0;
+		foreach (var property in _root.EnumerateObject())
 		{
-			foreach (var (key, value) in @object)
+			if (property is { Name: var name, Value.ValueKind: not JsonValueKind.String })
 			{
-				if (value is null || !value.AsValue().TryGetValue<string>(out _))
-				{
-					throw new JsonException(
-						"The specified JSON code isn't regular one and not supported by resource document.",
-						value?.GetPath(),
-						null,
-						null
-					);
-				}
+				throw new JsonException("Parsed failed: values can't be non-strings.");
 			}
+
+			count++;
 		}
+
+		Count = count;
 	}
 
 
 	/// <summary>
-	/// Indicates the number of values stored in this document.
+	/// Indicates the number of elements in the whole document.
 	/// </summary>
-	public int Count
-	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => _node.AsObject().Count;
-	}
+	public int Count { get; }
 
 
 	/// <summary>
@@ -112,63 +101,73 @@ public readonly partial struct ResourceDocument : IEquatable<ResourceDocument>, 
 	public string this[string propertyName]
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => _node[propertyName]?.GetValue<string>() ?? throw new KeyNotFoundException("No such property found.");
+		get => _root.GetProperty(propertyName).GetString()!;
 	}
 
 
-	/// <inheritdoc/>
-	/// <remarks>
-	/// Supported types of the parameter <paramref name="obj"/> are:
-	/// <list type="bullet">
-	/// <item><see cref="string"/> - Compare the JSON raw string formatted and indented.</item>
-	/// <item><see cref="JsonObject"/> - Compare the JSON raw string formatted and indented.</item>
-	/// <item>
-	/// <see cref="JsonNode"/> - Compare the JSON raw string that the object
-	/// converted to <see cref="JsonObject"/>, formatted and indented.
-	/// </item>
-	/// <item><see cref="ResourceDocument"/> - Compare the content.</item>
-	/// <item>Otherwise - <see langword="false"/> will be returned.</item>
-	/// </list>
-	/// </remarks>
+	/// <inheritdoc cref="IDisposable.Dispose"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public override bool Equals([NotNullWhen(true)] object? obj) => obj switch
-	{
-		null => false,
-		string json => _object.ToJsonString() == json,
-		JsonObject @object => _object.ToJsonString() == @object.ToJsonString(),
-		JsonNode node => _node.ToJsonString() == node.ToJsonString(),
-		ResourceDocument doc => Equals(doc),
-		_ => obj.ToString() == ToString()
-	};
+	public void Dispose() => _parentDoc.Dispose();
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public bool Equals(ResourceDocument other) => ToString() == other.ToString();
+	public override bool Equals([NotNullWhen(true)] object? obj) =>
+		obj is ResourceDocument comparer && Equals(comparer);
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public override int GetHashCode() => ToString().GetHashCode();
+	public bool Equals(ResourceDocument other) =>
+		ToString(DefaultSerializerOptions) == other.ToString(DefaultSerializerOptions);
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public override int GetHashCode() => ToString(DefaultSerializerOptions).GetHashCode();
 
 	/// <inheritdoc cref="object.ToString"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public override string ToString() => ToString(DefaultSerializerOptions);
 
 	/// <summary>
-	/// Converts the current instance to <see cref="string"/> representation in JSON format, via the specified
-	/// <see cref="JsonSerializerOptions"/> instance as your customized options.
+	/// Converts the current instance to <see cref="string"/> representation in JSON format,
+	/// via the specified <see cref="JsonSerializerOptions"/> instance as your customized options.
 	/// </summary>
 	/// <param name="options">The customized options being used in this method.</param>
 	/// <returns>The <see cref="string"/> JSON representation.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public string ToString(JsonSerializerOptions? options) => _node.ToJsonString(options ?? DefaultSerializerOptions);
-
-	/// <inheritdoc cref="IEnumerable{T}.GetEnumerator"/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public Enumerator GetEnumerator() => new(_object);
+	public string ToString(JsonSerializerOptions? options) => JsonSerializer.Serialize(_root, options);
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	bool IValueEquatable<ResourceDocument>.Equals(in ResourceDocument other) => Equals(other);
+
+
+	/// <inheritdoc/>
+	public static bool TryParse([NotNullWhen(true)] string? str, out ResourceDocument result)
+	{
+		try
+		{
+			result = Parse(str);
+			return true;
+		}
+		catch (Exception ex) when (ex is JsonException or ArgumentException)
+		{
+			result = default;
+			return false;
+		}
+	}
+
+	/// <inheritdoc/>
+	/// <exception cref="ArgumentException">
+	/// Throws when the specified string isn't a JSON or can't be converted to a regular JSON string.
+	/// </exception>
+	/// <exception cref="JsonException">Throws when the specified string isn't valid JSON code.</exception>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static ResourceDocument Parse(string? str)
+	{
+		Nullability.ThrowIfNull(str);
+
+		return new(str);
+	}
 
 
 	/// <inheritdoc cref="IEqualityOperators{TSelf, TOther}.operator =="/>

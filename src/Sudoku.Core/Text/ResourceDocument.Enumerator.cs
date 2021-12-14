@@ -10,15 +10,15 @@ partial struct ResourceDocument
 		/// <summary>
 		/// Indicates the enumerator instance.
 		/// </summary>
-		private readonly IEnumerator<KeyValuePair<string, JsonNode?>> _enumerator;
+		private JsonElement.ObjectEnumerator _enumerator;
 
 
 		/// <summary>
 		/// Initializes an <see cref="Enumerator"/> instance via the first element.
 		/// </summary>
-		/// <param name="object">The <see cref="JsonObject"/> instance to iterate.</param>
+		/// <param name="root">The root <see cref="JsonElement"/> instance to iterate.</param>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public Enumerator(JsonObject @object) => _enumerator = @object.GetEnumerator();
+		public Enumerator(JsonElement root) => _enumerator = root.EnumerateObject();
 
 
 		/// <summary>
@@ -29,8 +29,8 @@ partial struct ResourceDocument
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			get
 			{
-				var (key, value) = _enumerator.Current;
-				return (key, value!.GetValue<string>());
+				_ = _enumerator.Current is { Name: var name, Value: var value };
+				return (name, value.GetString()!);
 			}
 		}
 

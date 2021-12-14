@@ -10081,11 +10081,6 @@
             for example, <c>document["prop1"]</c> you'll get the value <c>"value1"</c>.
             </summary>
         </member>
-        <member name="F:Sudoku.Text.ResourceDocument.DefaultNodeOptions">
-            <summary>
-            Indicates the default JSON node options.
-            </summary>
-        </member>
         <member name="F:Sudoku.Text.ResourceDocument.DefaultDocumentOptions">
             <summary>
             Indicates the default JSON document options.
@@ -10096,14 +10091,14 @@
             Indicates the default serializer options used for serialization and deserialization operations.
             </summary>
         </member>
-        <member name="F:Sudoku.Text.ResourceDocument._node">
+        <member name="F:Sudoku.Text.ResourceDocument._root">
             <summary>
-            Indicates the first JSON node.
+            Indicates the root JSON element.
             </summary>
         </member>
-        <member name="F:Sudoku.Text.ResourceDocument._object">
+        <member name="F:Sudoku.Text.ResourceDocument._parentDoc">
             <summary>
-            Indicates the current JSON object corresponding to.
+            Indicates the corresponding JSON document.
             </summary>
         </member>
         <member name="M:Sudoku.Text.ResourceDocument.#ctor(System.String)">
@@ -10118,7 +10113,7 @@
         </member>
         <member name="P:Sudoku.Text.ResourceDocument.Count">
             <summary>
-            Indicates the number of values stored in this document.
+            Indicates the number of elements in the whole document.
             </summary>
         </member>
         <member name="P:Sudoku.Text.ResourceDocument.Item(System.String)">
@@ -10129,21 +10124,11 @@
             <returns>The value that correspoding to the property.</returns>
             <exception cref="T:System.Collections.Generic.KeyNotFoundException">Throws when no such property found.</exception>
         </member>
+        <member name="M:Sudoku.Text.ResourceDocument.Dispose">
+            <inheritdoc cref="M:System.IDisposable.Dispose"/>
+        </member>
         <member name="M:Sudoku.Text.ResourceDocument.Equals(System.Object)">
             <inheritdoc/>
-            <remarks>
-            Supported types of the parameter <paramref name="obj"/> are:
-            <list type="bullet">
-            <item><see cref="T:System.String"/> - Compare the JSON raw string formatted and indented.</item>
-            <item><see cref="T:System.Text.Json.Nodes.JsonObject"/> - Compare the JSON raw string formatted and indented.</item>
-            <item>
-            <see cref="T:System.Text.Json.Nodes.JsonNode"/> - Compare the JSON raw string that the object
-            converted to <see cref="T:System.Text.Json.Nodes.JsonObject"/>, formatted and indented.
-            </item>
-            <item><see cref="T:Sudoku.Text.ResourceDocument"/> - Compare the content.</item>
-            <item>Otherwise - <see langword="false"/> will be returned.</item>
-            </list>
-            </remarks>
         </member>
         <member name="M:Sudoku.Text.ResourceDocument.Equals(Sudoku.Text.ResourceDocument)">
             <inheritdoc/>
@@ -10156,17 +10141,24 @@
         </member>
         <member name="M:Sudoku.Text.ResourceDocument.ToString(System.Text.Json.JsonSerializerOptions)">
             <summary>
-            Converts the current instance to <see cref="T:System.String"/> representation in JSON format, via the specified
-            <see cref="T:System.Text.Json.JsonSerializerOptions"/> instance as your customized options.
+            Converts the current instance to <see cref="T:System.String"/> representation in JSON format,
+            via the specified <see cref="T:System.Text.Json.JsonSerializerOptions"/> instance as your customized options.
             </summary>
             <param name="options">The customized options being used in this method.</param>
             <returns>The <see cref="T:System.String"/> JSON representation.</returns>
         </member>
-        <member name="M:Sudoku.Text.ResourceDocument.GetEnumerator">
-            <inheritdoc cref="M:System.Collections.Generic.IEnumerable`1.GetEnumerator"/>
-        </member>
         <member name="M:Sudoku.Text.ResourceDocument.System#IValueEquatable{Sudoku#Text#ResourceDocument}#Equals(Sudoku.Text.ResourceDocument@)">
             <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Text.ResourceDocument.TryParse(System.String,Sudoku.Text.ResourceDocument@)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Text.ResourceDocument.Parse(System.String)">
+            <inheritdoc/>
+            <exception cref="T:System.ArgumentException">
+            Throws when the specified string isn't a JSON or can't be converted to a regular JSON string.
+            </exception>
+            <exception cref="T:System.Text.Json.JsonException">Throws when the specified string isn't valid JSON code.</exception>
         </member>
         <member name="M:Sudoku.Text.ResourceDocument.op_Equality(Sudoku.Text.ResourceDocument,Sudoku.Text.ResourceDocument)">
             <inheritdoc cref="M:System.IEqualityOperators`2.op_Equality(`0,`1)"/>
@@ -10184,11 +10176,11 @@
             Indicates the enumerator instance.
             </summary>
         </member>
-        <member name="M:Sudoku.Text.ResourceDocument.Enumerator.#ctor(System.Text.Json.Nodes.JsonObject)">
+        <member name="M:Sudoku.Text.ResourceDocument.Enumerator.#ctor(System.Text.Json.JsonElement)">
             <summary>
             Initializes an <see cref="T:Sudoku.Text.ResourceDocument.Enumerator"/> instance via the first element.
             </summary>
-            <param name="object">The <see cref="T:System.Text.Json.Nodes.JsonObject"/> instance to iterate.</param>
+            <param name="root">The root <see cref="T:System.Text.Json.JsonElement"/> instance to iterate.</param>
         </member>
         <member name="P:Sudoku.Text.ResourceDocument.Enumerator.Current">
             <summary>
@@ -10209,6 +10201,12 @@
         <member name="M:Sudoku.Text.ResourceDocument.Enumerator.ToString">
             <inheritdoc cref="M:System.Object.ToString"/>
             <exception cref="T:System.NotSupportedException">Always throws.</exception>
+        </member>
+        <member name="M:Sudoku.Text.ResourceDocument.GetEnumerator">
+            <summary>
+            Returns an enumerator that iterates through the collection.
+            </summary>
+            <returns>An enumerator that can be used to iterate through the collection.</returns>
         </member>
         <member name="T:Sudoku.Versioning.ForStudyingOnlyAttribute">
             <summary>
