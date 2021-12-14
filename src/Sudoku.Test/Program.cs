@@ -8,18 +8,13 @@ const string jsonText = @"{
   ""prop4"": ""d""
 }";
 
-g();
-
-static void g()
+var doc = new ResourceDocument(jsonText);
+foreach (var (name, value) in doc)
 {
-	var doc = new ResourceDocument(jsonText);
-	foreach (var (name, value) in doc)
-	{
-		Console.WriteLine($"{name}: {value}");
-	}
-
-	Console.WriteLine(new string('-', 30));
-
-	string targetValue = doc["prop3"];
-	Console.WriteLine(targetValue);
+	Console.WriteLine($"{name}: {value}");
 }
+
+Console.WriteLine(new string('-', 30));
+
+string targetValue = doc["prop3"];
+Console.WriteLine(targetValue);

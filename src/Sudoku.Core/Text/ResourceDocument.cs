@@ -18,7 +18,7 @@ public readonly partial struct ResourceDocument : IEquatable<ResourceDocument>, 
 	/// <summary>
 	/// Indicates the default JSON node options.
 	/// </summary>
-	private static readonly JsonNodeOptions DefaultNodeOptions = new() { PropertyNameCaseInsensitive = true };
+	private static readonly JsonNodeOptions DefaultNodeOptions = new() { PropertyNameCaseInsensitive = false };
 
 	/// <summary>
 	/// Indicates the default JSON document options.
