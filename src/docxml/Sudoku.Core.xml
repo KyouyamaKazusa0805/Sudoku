@@ -10139,7 +10139,9 @@
             <param name="firstElement">The first element to iterate.</param>
         </member>
         <member name="P:Sudoku.Text.ResourceDocument.Enumerator.Current">
-            <inheritdoc cref="P:System.Collections.Generic.IEnumerator`1.Current"/>
+            <summary>
+            Gets the key-value pair in the resource dictionary at the current position of the enumerator.
+            </summary>
         </member>
         <member name="M:Sudoku.Text.ResourceDocument.Enumerator.MoveNext">
             <inheritdoc cref="M:System.Collections.IEnumerator.MoveNext"/>

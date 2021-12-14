@@ -29,11 +29,17 @@ partial struct ResourceDocument
 		public Enumerator(JsonElement firstElement) => _enumerator = firstElement.EnumerateObject();
 
 
-		/// <inheritdoc cref="IEnumerator{T}.Current"/>
-		public readonly string Current
+		/// <summary>
+		/// Gets the key-value pair in the resource dictionary at the current position of the enumerator.
+		/// </summary>
+		public readonly KeyValuePair<string, string> Current
 		{
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
-			get => _enumerator.Current.Value.GetString()!;
+			get
+			{
+				_ = _enumerator.Current is { Name: var name, Value: var value };
+				return new(name, value.GetString()!);
+			}
 		}
 
 

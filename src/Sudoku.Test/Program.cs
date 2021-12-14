@@ -1,7 +1,4 @@
-﻿#pragma warning disable CS8321
-
-using System;
-using System.Text.Json;
+﻿using System;
 using Sudoku.Text;
 
 const string jsonText = @"{
@@ -11,47 +8,18 @@ const string jsonText = @"{
   ""prop4"": ""d""
 }";
 
-//f();
 g();
 
-static void f()
+static void g()
 {
-	using var jsonDoc = JsonDocument.Parse(jsonText, new()
-	{
-		AllowTrailingCommas = true,
-		CommentHandling = JsonCommentHandling.Skip
-	});
-
-	var rootElement = jsonDoc.RootElement;
-	foreach (var (name, value) in rootElement.EnumerateObject())
+	var doc = new ResourceDocument(jsonText, true);
+	foreach (var (name, value) in doc)
 	{
 		Console.WriteLine($"{name}: {value}");
 	}
 
 	Console.WriteLine(new string('-', 30));
 
-	var targetElement = rootElement.GetProperty("prop3");
-	Console.WriteLine(targetElement.GetString());
-}
-
-static void g()
-{
-	var doc = new ResourceDocument(jsonText, true);
-	foreach (string value in doc)
-	{
-		Console.WriteLine(value);
-	}
-
 	string targetValue = doc["prop3"];
 	Console.WriteLine(targetValue);
-}
-
-
-static partial class Program
-{
-	public static void Deconstruct(this JsonProperty @this, out string name, out JsonElement value)
-	{
-		name = @this.Name;
-		value = @this.Value;
-	}
 }
