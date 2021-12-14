@@ -10068,8 +10068,8 @@
         </member>
         <member name="T:Sudoku.Text.ResourceDocument">
             <summary>
-            Defines a resource document. The resource document should be a JSON document of depth 1,
-            and only holds key-value pairs of type <see cref="T:System.String"/>. For example:
+            Defines a resource document. The resource document always holds a JSON string value,
+            and only contains key-value pairs of type <see cref="T:System.String"/>. For example:
             <code>
             {
               "prop1": "value1",
@@ -10081,21 +10081,45 @@
             for example, <c>document["prop1"]</c> you'll get the value <c>"value1"</c>.
             </summary>
         </member>
-        <member name="F:Sudoku.Text.ResourceDocument._firstElement">
+        <member name="F:Sudoku.Text.ResourceDocument.DefaultNodeOptions">
             <summary>
-            Indicates the first element of the document.
+            Indicates the default JSON node options.
             </summary>
         </member>
-        <member name="M:Sudoku.Text.ResourceDocument.#ctor(System.String,System.Boolean)">
+        <member name="F:Sudoku.Text.ResourceDocument.DefaultDocumentOptions">
+            <summary>
+            Indicates the default JSON document options.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Text.ResourceDocument.DefaultSerializerOptions">
+            <summary>
+            Indicates the default serializer options used for serialization and deserialization operations.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Text.ResourceDocument._node">
+            <summary>
+            Indicates the first JSON node.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Text.ResourceDocument._object">
+            <summary>
+            Indicates the current JSON object corresponding to.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Text.ResourceDocument.#ctor(System.String)">
             <summary>
             Initializes a <see cref="T:Sudoku.Text.ResourceDocument"/> instance via the specified JSON string.
             </summary>
-            <param name="json">The JSON code.</param>
-            <param name="instantValidate">
-            Indicates whether the constructor will validate the JSON code as the regular resource document.
-            The default value is <see langword="false"/>.
-            </param>
+            <param name="json">The JSON string.</param>
+            <exception cref="T:System.ArgumentException">
+            Throws when the specified string isn't a JSON or can't be converted to a regular JSON string.
+            </exception>
             <exception cref="T:System.Text.Json.JsonException">Throws when the specified string isn't valid JSON code.</exception>
+        </member>
+        <member name="P:Sudoku.Text.ResourceDocument.Count">
+            <summary>
+            Indicates the number of values stored in this document.
+            </summary>
         </member>
         <member name="P:Sudoku.Text.ResourceDocument.Item(System.String)">
             <summary>
@@ -10104,39 +10128,67 @@
             <param name="propertyName">The property name to find.</param>
             <returns>The value that correspoding to the property.</returns>
             <exception cref="T:System.Collections.Generic.KeyNotFoundException">Throws when no such property found.</exception>
-            <exception cref="T:System.Text.Json.JsonException">
-            Throws when the return value is <see langword="null"/>, which is disallowed.
-            </exception>
-            <exception cref="T:System.InvalidOperationException">
-            Throws when the return value isn't a <see cref="T:System.String"/>, which is disallowed.
-            </exception>
+        </member>
+        <member name="M:Sudoku.Text.ResourceDocument.Equals(System.Object)">
+            <inheritdoc/>
+            <remarks>
+            Supported types of the parameter <paramref name="obj"/> are:
+            <list type="bullet">
+            <item><see cref="T:System.String"/> - Compare the JSON raw string formatted and indented.</item>
+            <item><see cref="T:System.Text.Json.Nodes.JsonObject"/> - Compare the JSON raw string formatted and indented.</item>
+            <item>
+            <see cref="T:System.Text.Json.Nodes.JsonNode"/> - Compare the JSON raw string that the object
+            converted to <see cref="T:System.Text.Json.Nodes.JsonObject"/>, formatted and indented.
+            </item>
+            <item><see cref="T:Sudoku.Text.ResourceDocument"/> - Compare the content.</item>
+            <item>Otherwise - <see langword="false"/> will be returned.</item>
+            </list>
+            </remarks>
+        </member>
+        <member name="M:Sudoku.Text.ResourceDocument.Equals(Sudoku.Text.ResourceDocument)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Text.ResourceDocument.GetHashCode">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Text.ResourceDocument.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
+        <member name="M:Sudoku.Text.ResourceDocument.ToString(System.Text.Json.JsonSerializerOptions)">
+            <summary>
+            Converts the current instance to <see cref="T:System.String"/> representation in JSON format, via the specified
+            <see cref="T:System.Text.Json.JsonSerializerOptions"/> instance as your customized options.
+            </summary>
+            <param name="options">The customized options being used in this method.</param>
+            <returns>The <see cref="T:System.String"/> JSON representation.</returns>
         </member>
         <member name="M:Sudoku.Text.ResourceDocument.GetEnumerator">
             <inheritdoc cref="M:System.Collections.Generic.IEnumerable`1.GetEnumerator"/>
+        </member>
+        <member name="M:Sudoku.Text.ResourceDocument.System#IValueEquatable{Sudoku#Text#ResourceDocument}#Equals(Sudoku.Text.ResourceDocument@)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Text.ResourceDocument.op_Equality(Sudoku.Text.ResourceDocument,Sudoku.Text.ResourceDocument)">
+            <inheritdoc cref="M:System.IEqualityOperators`2.op_Equality(`0,`1)"/>
+        </member>
+        <member name="M:Sudoku.Text.ResourceDocument.op_Inequality(Sudoku.Text.ResourceDocument,Sudoku.Text.ResourceDocument)">
+            <inheritdoc cref="M:System.IEqualityOperators`2.op_Inequality(`0,`1)"/>
         </member>
         <member name="T:Sudoku.Text.ResourceDocument.Enumerator">
             <summary>
             Indicates the enumerator of the current instance to iterate.
             </summary>
-            <remarks><i>
-            Due to the .NET API design, we can't customize to fetch the inner value, so the data structure
-            will bind a <see cref="T:System.Text.Json.JsonElement.ObjectEnumerator"/> instance to iterate. For more information,
-            please visit the documentation of method <see cref="M:System.Text.Json.JsonElement.EnumerateObject"/> and the type
-            <see cref="T:System.Text.Json.JsonElement.ObjectEnumerator"/>.
-            </i></remarks>
-            <seealso cref="M:System.Text.Json.JsonElement.EnumerateObject"/>
-            <seealso cref="T:System.Text.Json.JsonElement.ObjectEnumerator"/>
         </member>
         <member name="F:Sudoku.Text.ResourceDocument.Enumerator._enumerator">
             <summary>
-            Indicates the first element to iterate.
+            Indicates the enumerator instance.
             </summary>
         </member>
-        <member name="M:Sudoku.Text.ResourceDocument.Enumerator.#ctor(System.Text.Json.JsonElement)">
+        <member name="M:Sudoku.Text.ResourceDocument.Enumerator.#ctor(System.Text.Json.Nodes.JsonObject)">
             <summary>
             Initializes an <see cref="T:Sudoku.Text.ResourceDocument.Enumerator"/> instance via the first element.
             </summary>
-            <param name="firstElement">The first element to iterate.</param>
+            <param name="object">The <see cref="T:System.Text.Json.Nodes.JsonObject"/> instance to iterate.</param>
         </member>
         <member name="P:Sudoku.Text.ResourceDocument.Enumerator.Current">
             <summary>

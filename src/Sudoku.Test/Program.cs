@@ -12,7 +12,7 @@ g();
 
 static void g()
 {
-	var doc = new ResourceDocument(jsonText, true);
+	var doc = new ResourceDocument(jsonText);
 	foreach (var (name, value) in doc)
 	{
 		Console.WriteLine($"{name}: {value}");
