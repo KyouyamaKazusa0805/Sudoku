@@ -53,6 +53,7 @@ public sealed class AutoLambdaedDeconstruct : ISourceGenerator
 	/// Deconstruct the instance into multiple elements.
 	/// </summary>
 	[global::System.CodeDom.Compiler.GeneratedCode(""{GetType().FullName}"", ""{VersionValue}"")]
+	[global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
 	[global::System.Runtime.CompilerServices.CompilerGenerated]
 	[global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]{obsoleteAttributeStr}
 	public {readOnlyKeyword}void Deconstruct({paramNamesStr})
