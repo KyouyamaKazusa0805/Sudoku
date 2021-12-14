@@ -79,7 +79,7 @@ public readonly partial struct ResourceDocument : IEquatable<ResourceDocument>, 
 		{
 			foreach (var (key, value) in @object)
 			{
-				if (value is null || value.GetType() != typeof(string))
+				if (value is null || !value.AsValue().TryGetValue<string>(out _))
 				{
 					throw new JsonException(
 						"The specified JSON code isn't regular one and not supported by resource document.",
