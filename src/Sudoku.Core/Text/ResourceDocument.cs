@@ -75,13 +75,12 @@ public readonly partial struct ResourceDocument : IEquatable<ResourceDocument>, 
 		);
 
 
-		static void validate(JsonObject @object, [DoesNotReturnIf(false)] bool _ = true)
+		static void validate(JsonObject @object)
 		{
 			foreach (var (key, value) in @object)
 			{
 				if (value is null || value.GetType() != typeof(string))
 				{
-					_ = false;
 					throw new JsonException(
 						"The specified JSON code isn't regular one and not supported by resource document.",
 						value?.GetPath(),
