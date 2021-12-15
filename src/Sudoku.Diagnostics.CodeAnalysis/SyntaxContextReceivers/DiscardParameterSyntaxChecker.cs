@@ -20,47 +20,6 @@
 public sealed class DiscardParameterSyntaxChecker : ISyntaxContextReceiver
 {
 	/// <summary>
-	/// Indicates the descriptor that reports the reference to a discarded parameter.
-	/// </summary>
-	private static readonly DiagnosticDescriptor Sdc0201 = new(
-		id: "SDC0201",
-		title: "The discarded parameter can't be used or referenced unless a 'nameof' expression",
-		messageFormat: "The discarded parameter can't be used or referenced unless a 'nameof' expression",
-		category: "Sunnie.Usage",
-		defaultSeverity: DiagnosticSeverity.Error,
-		isEnabledByDefault: true,
-		helpLinkUri: null
-	);
-
-	/// <summary>
-	/// Indicates the descriptor that reports the discarded parameter with any modifiers.
-	/// </summary>
-	private static readonly DiagnosticDescriptor Sdc0202 = new(
-		id: "SDC0202",
-		title: "Discard parameter can't be modified",
-		messageFormat: "Discard parameter can't be modified",
-		category: "Sunnie.Usage",
-		defaultSeverity: DiagnosticSeverity.Error,
-		isEnabledByDefault: true,
-		helpLinkUri: null
-	);
-
-	/// <summary>
-	/// Indicates the dsecriptor that reports the wrong usages on a discard parameter <see langword="_"/>
-	/// that is marked <see cref="IsDiscardAttribute"/>.
-	/// </summary>
-	private static readonly DiagnosticDescriptor Sdc0203 = new(
-		id: "SDC0203",
-		title: $"Can't apply '{nameof(IsDiscardAttribute)}' onto a parameter that has already discarded",
-		messageFormat: $"Can't apply '{nameof(IsDiscardAttribute)}' onto a parameter that has already discarded",
-		category: "Sunnie.Usage",
-		defaultSeverity: DiagnosticSeverity.Error,
-		isEnabledByDefault: true,
-		helpLinkUri: null
-	);
-
-
-	/// <summary>
 	/// Indicates the context used.
 	/// </summary>
 	private readonly CancellationToken _cancellationToken;

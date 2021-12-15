@@ -10,8 +10,8 @@ EventHandler _ = ([IsDiscard] _, _) =>
 	Console.WriteLine();
 };
 
-static void f([IsDiscard] int p, [IsDiscard] params int[] parameter)
+static void f([IsDiscard] int p)
 {
 	Console.WriteLine(p);
-	Console.WriteLine(parameter[0]);
+	Console.WriteLine(nameof(p));
 }

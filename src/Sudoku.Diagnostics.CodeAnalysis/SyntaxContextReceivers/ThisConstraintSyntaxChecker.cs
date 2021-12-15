@@ -16,33 +16,6 @@
 internal sealed class ThisConstraintSyntaxChecker : ISyntaxContextReceiver
 {
 	/// <summary>
-	/// Indicates the descriptor that reports the lacks of the CRTP-constraint clause on a type parameter.
-	/// </summary>
-	private static readonly DiagnosticDescriptor Sdc0101 = new(
-		id: "SDC0101",
-		title: "The type parameter lacks a CRTP-constraint clause",
-		messageFormat: "The type parameter lacks a CRTP-constraint clause; you should append the type constraint '{0}' into the whole clause 'where {1} : {0}'",
-		category: "Sunnie.Usage",
-		defaultSeverity: DiagnosticSeverity.Error,
-		isEnabledByDefault: true,
-		helpLinkUri: null
-	);
-
-	/// <summary>
-	/// Indicates the descriptor that reports the invalid type constraint.
-	/// </summary>
-	private static readonly DiagnosticDescriptor Sdc0102 = new(
-		id: "SDC0102",
-		title: "The type parameter lacks a CRTP type constraint",
-		messageFormat: "The type parameter lacks a CRTP type constraint; you should apply the constraint like: 'where {0}: {1}'",
-		category: "Sunnie.Usage",
-		defaultSeverity: DiagnosticSeverity.Error,
-		isEnabledByDefault: true,
-		helpLinkUri: null
-	);
-
-
-	/// <summary>
 	/// Indicates the context used.
 	/// </summary>
 	private readonly CancellationToken _cancellationToken;
