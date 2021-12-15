@@ -952,7 +952,7 @@
             <summary>
             Defines a normal pattern.
             </summary>
-            <typeparam name="TSelf">The type of the pattern itself.</typeparam>
+            <typeparam name="T">The type of the pattern itself.</typeparam>
         </member>
         <member name="P:Sudoku.Solving.Collections.IPattern`1.Map">
             <summary>

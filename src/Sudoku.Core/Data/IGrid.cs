@@ -3,12 +3,12 @@
 /// <summary>
 /// Defines a data structure that describes a sudoku grid.
 /// </summary>
-/// <typeparam name="TGrid">The type to implement this interface.</typeparam>
-public unsafe interface IGrid<TGrid>
-: IValueEquatable<TGrid>
+/// <typeparam name="T">The type to implement this interface.</typeparam>
+public unsafe interface IGrid<[Self] T>
+: IValueEquatable<T>
 , ISimpleFormattable
-, ISimpleParseable<TGrid>
-where TGrid : struct, IGrid<TGrid>
+, ISimpleParseable<T>
+where T : struct, IGrid<T>
 {
 	/// <summary>
 	/// Indicates the default mask of a cell (an empty cell, with all 9 candidates left).
@@ -52,13 +52,13 @@ where TGrid : struct, IGrid<TGrid>
 
 	/// <summary>
 	/// Indicates the default grid that all values are initialized 0, which is same as
-	/// <typeparamref name="TGrid"/>().
+	/// <typeparamref name="T"/>().
 	/// </summary>
 	/// <remarks>
 	/// We recommend you should use this static field instead of the default constructor
 	/// to reduce object creation.
 	/// </remarks>
-	static abstract TGrid Undefined { get; }
+	static abstract T Undefined { get; }
 
 	/// <summary>
 	/// The empty grid that is valid during implementation or running the program
@@ -68,7 +68,7 @@ where TGrid : struct, IGrid<TGrid>
 	/// This field is initialized by the static constructor of this structure.
 	/// </remarks>
 	/// <seealso cref="DefaultMask"/>
-	static abstract TGrid Empty { get; }
+	static abstract T Empty { get; }
 
 	/// <summary>
 	/// Indicates the grid has already solved. If the value is <see langword="true"/>,
@@ -367,9 +367,9 @@ where TGrid : struct, IGrid<TGrid>
 	short GetCandidates(int cell);
 
 	/// <summary>
-	/// Returns a reference to the element of the <typeparamref name="TGrid"/> at index zero.
+	/// Returns a reference to the element of the <typeparamref name="T"/> at index zero.
 	/// </summary>
-	/// <returns>A reference to the element of the <typeparamref name="TGrid"/> at index zero.</returns>
+	/// <returns>A reference to the element of the <typeparamref name="T"/> at index zero.</returns>
 	ref readonly short GetPinnableReference();
 
 	/// <summary>
@@ -422,7 +422,7 @@ where TGrid : struct, IGrid<TGrid>
 	/// <param name="left">The left one.</param>
 	/// <param name="right">The right one.</param>
 	/// <returns>The <see cref="bool"/> result indicating that.</returns>
-	static abstract bool Equals(in TGrid left, in TGrid right);
+	static abstract bool Equals(in T left, in T right);
 
 	/// <summary>
 	/// <para>Parses a string value and converts to this type.</para>
@@ -434,14 +434,14 @@ where TGrid : struct, IGrid<TGrid>
 	/// <param name="str">The string.</param>
 	/// <returns>The result instance had converted.</returns>
 	/// <seealso cref="Parse(string, GridParsingOption)"/>
-	static abstract TGrid Parse(in ReadOnlySpan<char> str);
+	static abstract T Parse(in ReadOnlySpan<char> str);
 
 	/// <summary>
 	/// Parses a pointer that points to a string value and converts to this type.
 	/// </summary>
 	/// <param name="ptrStr">The pointer that points to string.</param>
 	/// <returns>The result instance.</returns>
-	static abstract TGrid Parse(char* ptrStr);
+	static abstract T Parse(char* ptrStr);
 
 	/// <summary>
 	/// <para>
@@ -460,7 +460,7 @@ where TGrid : struct, IGrid<TGrid>
 	/// Indicates whether the parsing operation should use compatible mode to check PM grid.
 	/// </param>
 	/// <returns>The result instance had converted.</returns>
-	static abstract TGrid Parse(string? str, bool compatibleFirst);
+	static abstract T Parse(string? str, bool compatibleFirst);
 
 	/// <summary>
 	/// Parses a string value and converts to this type, using a specified grid parsing type.
@@ -468,7 +468,7 @@ where TGrid : struct, IGrid<TGrid>
 	/// <param name="str">The string.</param>
 	/// <param name="gridParsingOption">The grid parsing type.</param>
 	/// <returns>The result instance had converted.</returns>
-	static abstract TGrid Parse(string? str, GridParsingOption gridParsingOption);
+	static abstract T Parse(string? str, GridParsingOption gridParsingOption);
 
 	/// <summary>
 	/// Try to parse a string and converts to this type, and returns a
@@ -482,5 +482,5 @@ where TGrid : struct, IGrid<TGrid>
 	/// </param>
 	/// <returns>A <see cref="bool"/> value indicating that.</returns>
 	/// <seealso cref="Undefined"/>
-	static abstract bool TryParse([NotNullWhen(true)] string? str, GridParsingOption option, out TGrid result);
+	static abstract bool TryParse([NotNullWhen(true)] string? str, GridParsingOption option, out T result);
 }

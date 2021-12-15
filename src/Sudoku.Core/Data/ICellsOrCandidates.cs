@@ -3,18 +3,18 @@
 /// <summary>
 /// Provides with a basic collection that is a <see cref="Cells"/> or a <see cref="Candidates"/> collection.
 /// </summary>
-/// <typeparam name="TCollection">
+/// <typeparam name="T">
 /// The type. The type should always be <see cref="Cells"/> or <see cref="Candidates"/>.
 /// </typeparam>
 /// <seealso cref="Cells"/>
 /// <seealso cref="Candidates"/>
-internal interface ICellsOrCandidates<TCollection>
+internal interface ICellsOrCandidates<[Self] T>
 : IEnumerable<int>
-, IValueEquatable<TCollection>
-, IAdditionOperators<TCollection, int, TCollection>
-, ISubtractionOperators<TCollection, int, TCollection>
+, IValueEquatable<T>
+, IAdditionOperators<T, int, T>
+, ISubtractionOperators<T, int, T>
 , ISimpleFormattable
-where TCollection : struct, ICellsOrCandidates<TCollection>
+where T : struct, ICellsOrCandidates<T>
 {
 	/// <summary>
 	/// Indicates whether the collection is empty.
@@ -27,9 +27,9 @@ where TCollection : struct, ICellsOrCandidates<TCollection>
 	int Count { get; }
 
 	/// <summary>
-	/// Indicates the <typeparamref name="TCollection"/> of intersections.
+	/// Indicates the <typeparamref name="T"/> of intersections.
 	/// </summary>
-	TCollection PeerIntersection { get; }
+	T PeerIntersection { get; }
 
 
 	/// <summary>
@@ -144,7 +144,7 @@ where TCollection : struct, ICellsOrCandidates<TCollection>
 	/// </summary>
 	/// <param name="offsets">The instance to negate.</param>
 	/// <returns>The negative result.</returns>
-	static abstract TCollection operator ~(in TCollection offsets);
+	static abstract T operator ~(in T offsets);
 
 	/// <summary>
 	/// The syntactic sugar for <c>!(<paramref name="left"/> - <paramref name="right"/>).IsEmpty</c>.
@@ -152,7 +152,7 @@ where TCollection : struct, ICellsOrCandidates<TCollection>
 	/// <param name="left">The subtrahend.</param>
 	/// <param name="right">The subtractor.</param>
 	/// <returns>The <see cref="bool"/> value indicating that.</returns>
-	static abstract bool operator >(in TCollection left, in TCollection right);
+	static abstract bool operator >(in T left, in T right);
 
 	/// <summary>
 	/// The syntactic sugar for <c>(<paramref name="left"/> - <paramref name="right"/>).IsEmpty</c>.
@@ -160,16 +160,16 @@ where TCollection : struct, ICellsOrCandidates<TCollection>
 	/// <param name="left">The subtrahend.</param>
 	/// <param name="right">The subtractor.</param>
 	/// <returns>The <see cref="bool"/> value indicating that.</returns>
-	static abstract bool operator <(in TCollection left, in TCollection right);
+	static abstract bool operator <(in T left, in T right);
 
 	/// <summary>
-	/// Get a <typeparamref name="TCollection"/> that contains all <paramref name="left"/> instance
+	/// Get a <typeparamref name="T"/> that contains all <paramref name="left"/> instance
 	/// but not in <paramref name="right"/> instance.
 	/// </summary>
 	/// <param name="left">The left instance.</param>
 	/// <param name="right">The right instance.</param>
 	/// <returns>The result.</returns>
-	static abstract TCollection operator -(in TCollection left, in TCollection right);
+	static abstract T operator -(in T left, in T right);
 
 	/// <summary>
 	/// <para>
@@ -183,7 +183,7 @@ where TCollection : struct, ICellsOrCandidates<TCollection>
 	/// <param name="collection">The collection.</param>
 	/// <param name="offset">The offset to be removed.</param>
 	/// <returns>The result collection.</returns>
-	static abstract TCollection operator +(TCollection collection, int offset);
+	static abstract T operator +(T collection, int offset);
 
 	/// <summary>
 	/// <para>
@@ -197,31 +197,31 @@ where TCollection : struct, ICellsOrCandidates<TCollection>
 	/// <param name="collection">The collection.</param>
 	/// <param name="offset">The offset to be removed.</param>
 	/// <returns>The result collection.</returns>
-	static abstract TCollection operator -(TCollection collection, int offset);
+	static abstract T operator -(T collection, int offset);
 
 	/// <summary>
-	/// Get all cells that two <typeparamref name="TCollection"/> instances both contain.
+	/// Get all cells that two <typeparamref name="T"/> instances both contain.
 	/// </summary>
 	/// <param name="left">The left instance.</param>
 	/// <param name="right">The right instance.</param>
 	/// <returns>The intersection result.</returns>
-	static abstract TCollection operator &(in TCollection left, in TCollection right);
+	static abstract T operator &(in T left, in T right);
 
 	/// <summary>
-	/// Get all cells from two <typeparamref name="TCollection"/> instances.
+	/// Get all cells from two <typeparamref name="T"/> instances.
 	/// </summary>
 	/// <param name="left">The left instance.</param>
 	/// <param name="right">The right instance.</param>
 	/// <returns>The union result.</returns>
-	static abstract TCollection operator |(in TCollection left, in TCollection right);
+	static abstract T operator |(in T left, in T right);
 
 	/// <summary>
-	/// Get all cells that only appears once in two <typeparamref name="TCollection"/> instances.
+	/// Get all cells that only appears once in two <typeparamref name="T"/> instances.
 	/// </summary>
 	/// <param name="left">The left instance.</param>
 	/// <param name="right">The right instance.</param>
 	/// <returns>The symmetrical difference result.</returns>
-	static abstract TCollection operator ^(in TCollection left, in TCollection right);
+	static abstract T operator ^(in T left, in T right);
 
 	/// <summary>
 	/// Simply calls <c><![CDATA[(a & b).PeerIntersection & b]]></c>.
@@ -231,42 +231,42 @@ where TCollection : struct, ICellsOrCandidates<TCollection>
 	/// <param name="template">The template map that the base map to check and cover.</param>
 	/// <returns>The result map.</returns>
 	/// <seealso cref="PeerIntersection"/>
-	static abstract TCollection operator %(in TCollection @base, in TCollection template);
+	static abstract T operator %(in T @base, in T template);
 
 
 	/// <summary>
-	/// Implicit cast from <see cref="int"/>[] to <typeparamref name="TCollection"/>.
+	/// Implicit cast from <see cref="int"/>[] to <typeparamref name="T"/>.
 	/// </summary>
 	/// <param name="offsets">The offsets.</param>
-	static abstract implicit operator TCollection(int[] offsets);
+	static abstract implicit operator T(int[] offsets);
 
 	/// <summary>
-	/// Implicit cast from <see cref="Span{T}"/> to <typeparamref name="TCollection"/>.
+	/// Implicit cast from <see cref="Span{T}"/> to <typeparamref name="T"/>.
 	/// </summary>
 	/// <param name="offsets">The offsets.</param>
-	static abstract implicit operator TCollection(in Span<int> offsets);
+	static abstract implicit operator T(in Span<int> offsets);
 
 	/// <summary>
-	/// Implicit cast from <see cref="ReadOnlySpan{T}"/> to <typeparamref name="TCollection"/>.
+	/// Implicit cast from <see cref="ReadOnlySpan{T}"/> to <typeparamref name="T"/>.
 	/// </summary>
 	/// <param name="offsets">The offsets.</param>
-	static abstract implicit operator TCollection(in ReadOnlySpan<int> offsets);
+	static abstract implicit operator T(in ReadOnlySpan<int> offsets);
 
 	/// <summary>
-	/// Explicit cast from <typeparamref name="TCollection"/> to <see cref="int"/>[].
+	/// Explicit cast from <typeparamref name="T"/> to <see cref="int"/>[].
 	/// </summary>
 	/// <param name="offsets">The offsets.</param>
-	static abstract explicit operator int[](in TCollection offsets);
+	static abstract explicit operator int[](in T offsets);
 
 	/// <summary>
-	/// Explicit cast from <typeparamref name="TCollection"/> to <see cref="Span{T}"/>.
+	/// Explicit cast from <typeparamref name="T"/> to <see cref="Span{T}"/>.
 	/// </summary>
 	/// <param name="offsets">The offsets.</param>
-	static abstract explicit operator Span<int>(in TCollection offsets);
+	static abstract explicit operator Span<int>(in T offsets);
 
 	/// <summary>
-	/// Explicit cast from <typeparamref name="TCollection"/> to <see cref="ReadOnlySpan{T}"/>.
+	/// Explicit cast from <typeparamref name="T"/> to <see cref="ReadOnlySpan{T}"/>.
 	/// </summary>
 	/// <param name="offsets">The offsets.</param>
-	static abstract explicit operator ReadOnlySpan<int>(in TCollection offsets);
+	static abstract explicit operator ReadOnlySpan<int>(in T offsets);
 }

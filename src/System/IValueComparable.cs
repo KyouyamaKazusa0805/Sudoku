@@ -9,7 +9,7 @@ namespace System;
 /// <typeparam name="TStruct">
 /// The type of objects to compare. Here it should be a <see langword="struct"/>.
 /// </typeparam>
-public interface IValueComparable<TStruct> : IComparable<TStruct>
+public interface IValueComparable<[Self] TStruct> : IComparable<TStruct>
 where TStruct : struct, IValueComparable<TStruct>
 {
 	/// <summary>

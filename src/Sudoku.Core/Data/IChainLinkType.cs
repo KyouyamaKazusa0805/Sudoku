@@ -3,8 +3,8 @@
 /// <summary>
 /// Defines a basic constraint that applied onto a <see cref="ChainLinkType"/>.
 /// </summary>
-/// <typeparam name="TSelf">The type. The type is always <see cref="ChainLinkType"/>.</typeparam>
-internal interface IChainLinkType<TSelf> where TSelf : struct, IChainLinkType<TSelf>
+/// <typeparam name="T">The type. The type is always <see cref="ChainLinkType"/>.</typeparam>
+internal interface IChainLinkType<[Self] T> where T : struct, IChainLinkType<T>
 {
 	/// <summary>
 	/// The type kind.
@@ -26,14 +26,14 @@ internal interface IChainLinkType<TSelf> where TSelf : struct, IChainLinkType<TS
 
 
 	/// <summary>
-	/// Explicit cast from <see cref="byte"/> to <typeparamref name="TSelf"/>.
+	/// Explicit cast from <see cref="byte"/> to <typeparamref name="T"/>.
 	/// </summary>
 	/// <param name="value">The value.</param>
-	static abstract explicit operator TSelf(byte value);
+	static abstract explicit operator T(byte value);
 
 	/// <summary>
-	/// Explicit cast from <typeparamref name="TSelf"/> to <see cref="byte"/>.
+	/// Explicit cast from <typeparamref name="T"/> to <see cref="byte"/>.
 	/// </summary>
 	/// <param name="linkType">The link type.</param>
-	static abstract explicit operator byte(TSelf linkType);
+	static abstract explicit operator byte(T linkType);
 }

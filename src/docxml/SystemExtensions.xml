@@ -2228,7 +2228,7 @@
             <summary>
             Defines a type that can serialize and deserialize.
             </summary>
-            <typeparam name="TSelf">The type of the instance.</typeparam>
+            <typeparam name="T">The type of the instance.</typeparam>
             <typeparam name="TConverter">The type of the converter bound with.</typeparam>
         </member>
         <member name="F:System.Text.Json.IJsonSerializable`2.SerializerOptions">
@@ -2261,14 +2261,14 @@
             <summary>
             Try to get the first JSON converter whose implemented type is specified as the generic argument.
             </summary>
-            <typeparam name="TSelf">
+            <typeparam name="T">
             The type of the data as the result value that JSON converter returns.
             </typeparam>
             <typeparam name="TConverter">The type of the JSON converter.</typeparam>
             <param name="this">The current instance.</param>
             <returns>
             The found JSON converter instance. If none found or the wrong type converting, the method will
-            return a new instance that created by the specified type <typeparamref name="TSelf"/>
+            return a new instance that created by the specified type <typeparamref name="T"/>
             (i.e. a/an <typeparamref name="TConverter"/> instance).
             </returns>
         </member>
@@ -2277,7 +2277,7 @@
             Append the specified JSON converter into the collection, and returns the reference
             of this current instance.
             </summary>
-            <typeparam name="TSelf">
+            <typeparam name="T">
             The type of the data as the result value that JSON converter returns.
             </typeparam>
             <typeparam name="TConverter">The type of the JSON converter.</typeparam>
@@ -3386,14 +3386,14 @@
         <member name="T:System.ISimpleParseable`1">
             <summary>
             Defines an instance that allows the <see cref="T:System.String"/> value
-            to be parsed to the target type <typeparamref name="TSelf"/>.
+            to be parsed to the target type <typeparamref name="T"/>.
             </summary>
-            <typeparam name="TSelf">The type of the target result.</typeparam>
+            <typeparam name="T">The type of the target result.</typeparam>
         </member>
         <member name="M:System.ISimpleParseable`1.Parse(System.String)">
             <summary>
             Parse the specified string text, and get the same-meaning instance
-            of type <typeparamref name="TSelf"/>.
+            of type <typeparamref name="T"/>.
             </summary>
             <param name="str">The string to parse. The value shouln't be <see langword="null"/>.</param>
             <returns>The result parsed.</returns>
@@ -3405,12 +3405,12 @@
         <member name="M:System.ISimpleParseable`1.TryParse(System.String,`0@)">
             <summary>
             Try to parse the specified string text, and get the same-meaning instance
-            of type <typeparamref name="TSelf"/>.
+            of type <typeparamref name="T"/>.
             </summary>
             <param name="str">The string to parse. The value shouldn't be <see langword="null"/>.</param>
             <param name="result">
             The result parsed. If failed to parse, the value will keep the <see langword="default"/> value,
-            i.e. <see langword="default"/>(<typeparamref name="TSelf"/>).
+            i.e. <see langword="default"/>(<typeparamref name="T"/>).
             </param>
             <returns>
             A <see cref="T:System.Boolean"/> result indicating whether the operation is successful to execute.

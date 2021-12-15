@@ -3901,7 +3901,7 @@
             <summary>
             Provides with a basic collection that is a <see cref="T:Sudoku.Data.Cells"/> or a <see cref="T:Sudoku.Data.Candidates"/> collection.
             </summary>
-            <typeparam name="TCollection">
+            <typeparam name="T">
             The type. The type should always be <see cref="T:Sudoku.Data.Cells"/> or <see cref="T:Sudoku.Data.Candidates"/>.
             </typeparam>
             <seealso cref="T:Sudoku.Data.Cells"/>
@@ -3919,7 +3919,7 @@
         </member>
         <member name="P:Sudoku.Data.ICellsOrCandidates`1.PeerIntersection">
             <summary>
-            Indicates the <typeparamref name="TCollection"/> of intersections.
+            Indicates the <typeparamref name="T"/> of intersections.
             </summary>
         </member>
         <member name="P:Sudoku.Data.ICellsOrCandidates`1.Item(System.Int32)">
@@ -4052,7 +4052,7 @@
         </member>
         <member name="M:Sudoku.Data.ICellsOrCandidates`1.op_Subtraction(`0@,`0@)">
             <summary>
-            Get a <typeparamref name="TCollection"/> that contains all <paramref name="left"/> instance
+            Get a <typeparamref name="T"/> that contains all <paramref name="left"/> instance
             but not in <paramref name="right"/> instance.
             </summary>
             <param name="left">The left instance.</param>
@@ -4089,7 +4089,7 @@
         </member>
         <member name="M:Sudoku.Data.ICellsOrCandidates`1.op_BitwiseAnd(`0@,`0@)">
             <summary>
-            Get all cells that two <typeparamref name="TCollection"/> instances both contain.
+            Get all cells that two <typeparamref name="T"/> instances both contain.
             </summary>
             <param name="left">The left instance.</param>
             <param name="right">The right instance.</param>
@@ -4097,7 +4097,7 @@
         </member>
         <member name="M:Sudoku.Data.ICellsOrCandidates`1.op_BitwiseOr(`0@,`0@)">
             <summary>
-            Get all cells from two <typeparamref name="TCollection"/> instances.
+            Get all cells from two <typeparamref name="T"/> instances.
             </summary>
             <param name="left">The left instance.</param>
             <param name="right">The right instance.</param>
@@ -4105,7 +4105,7 @@
         </member>
         <member name="M:Sudoku.Data.ICellsOrCandidates`1.op_ExclusiveOr(`0@,`0@)">
             <summary>
-            Get all cells that only appears once in two <typeparamref name="TCollection"/> instances.
+            Get all cells that only appears once in two <typeparamref name="T"/> instances.
             </summary>
             <param name="left">The left instance.</param>
             <param name="right">The right instance.</param>
@@ -4123,37 +4123,37 @@
         </member>
         <member name="M:Sudoku.Data.ICellsOrCandidates`1.op_Implicit(System.Int32[])~`0">
             <summary>
-            Implicit cast from <see cref="T:System.Int32"/>[] to <typeparamref name="TCollection"/>.
+            Implicit cast from <see cref="T:System.Int32"/>[] to <typeparamref name="T"/>.
             </summary>
             <param name="offsets">The offsets.</param>
         </member>
         <member name="M:Sudoku.Data.ICellsOrCandidates`1.op_Implicit(System.Span{System.Int32}@)~`0">
             <summary>
-            Implicit cast from <see cref="T:System.Span`1"/> to <typeparamref name="TCollection"/>.
+            Implicit cast from <see cref="T:System.Span`1"/> to <typeparamref name="T"/>.
             </summary>
             <param name="offsets">The offsets.</param>
         </member>
         <member name="M:Sudoku.Data.ICellsOrCandidates`1.op_Implicit(System.ReadOnlySpan{System.Int32}@)~`0">
             <summary>
-            Implicit cast from <see cref="T:System.ReadOnlySpan`1"/> to <typeparamref name="TCollection"/>.
+            Implicit cast from <see cref="T:System.ReadOnlySpan`1"/> to <typeparamref name="T"/>.
             </summary>
             <param name="offsets">The offsets.</param>
         </member>
         <member name="M:Sudoku.Data.ICellsOrCandidates`1.op_Explicit(`0@)~System.Int32[]">
             <summary>
-            Explicit cast from <typeparamref name="TCollection"/> to <see cref="T:System.Int32"/>[].
+            Explicit cast from <typeparamref name="T"/> to <see cref="T:System.Int32"/>[].
             </summary>
             <param name="offsets">The offsets.</param>
         </member>
         <member name="M:Sudoku.Data.ICellsOrCandidates`1.op_Explicit(`0@)~System.Span{System.Int32}">
             <summary>
-            Explicit cast from <typeparamref name="TCollection"/> to <see cref="T:System.Span`1"/>.
+            Explicit cast from <typeparamref name="T"/> to <see cref="T:System.Span`1"/>.
             </summary>
             <param name="offsets">The offsets.</param>
         </member>
         <member name="M:Sudoku.Data.ICellsOrCandidates`1.op_Explicit(`0@)~System.ReadOnlySpan{System.Int32}">
             <summary>
-            Explicit cast from <typeparamref name="TCollection"/> to <see cref="T:System.ReadOnlySpan`1"/>.
+            Explicit cast from <typeparamref name="T"/> to <see cref="T:System.ReadOnlySpan`1"/>.
             </summary>
             <param name="offsets">The offsets.</param>
         </member>
@@ -4161,7 +4161,7 @@
             <summary>
             Defines a basic constraint that applied onto a <see cref="T:Sudoku.Data.ChainLinkType"/>.
             </summary>
-            <typeparam name="TSelf">The type. The type is always <see cref="T:Sudoku.Data.ChainLinkType"/>.</typeparam>
+            <typeparam name="T">The type. The type is always <see cref="T:Sudoku.Data.ChainLinkType"/>.</typeparam>
         </member>
         <member name="P:Sudoku.Data.IChainLinkType`1.TypeKind">
             <summary>
@@ -4182,13 +4182,13 @@
         </member>
         <member name="M:Sudoku.Data.IChainLinkType`1.op_Explicit(System.Byte)~`0">
             <summary>
-            Explicit cast from <see cref="T:System.Byte"/> to <typeparamref name="TSelf"/>.
+            Explicit cast from <see cref="T:System.Byte"/> to <typeparamref name="T"/>.
             </summary>
             <param name="value">The value.</param>
         </member>
         <member name="M:Sudoku.Data.IChainLinkType`1.op_Explicit(`0)~System.Byte">
             <summary>
-            Explicit cast from <typeparamref name="TSelf"/> to <see cref="T:System.Byte"/>.
+            Explicit cast from <typeparamref name="T"/> to <see cref="T:System.Byte"/>.
             </summary>
             <param name="linkType">The link type.</param>
         </member>
@@ -4196,7 +4196,7 @@
             <summary>
             Defines a data structure that describes a sudoku grid.
             </summary>
-            <typeparam name="TGrid">The type to implement this interface.</typeparam>
+            <typeparam name="T">The type to implement this interface.</typeparam>
         </member>
         <member name="P:Sudoku.Data.IGrid`1.DefaultMask">
             <summary>
@@ -4241,7 +4241,7 @@
         <member name="P:Sudoku.Data.IGrid`1.Undefined">
             <summary>
             Indicates the default grid that all values are initialized 0, which is same as
-            <typeparamref name="TGrid"/>().
+            <typeparamref name="T"/>().
             </summary>
             <remarks>
             We recommend you should use this static field instead of the default constructor
@@ -4552,9 +4552,9 @@
         </member>
         <member name="M:Sudoku.Data.IGrid`1.GetPinnableReference">
             <summary>
-            Returns a reference to the element of the <typeparamref name="TGrid"/> at index zero.
+            Returns a reference to the element of the <typeparamref name="T"/> at index zero.
             </summary>
-            <returns>A reference to the element of the <typeparamref name="TGrid"/> at index zero.</returns>
+            <returns>A reference to the element of the <typeparamref name="T"/> at index zero.</returns>
         </member>
         <member name="M:Sudoku.Data.IGrid`1.ToMaskString">
             <summary>

@@ -3,11 +3,11 @@
 /// <summary>
 /// Defines a type that can serialize and deserialize.
 /// </summary>
-/// <typeparam name="TSelf">The type of the instance.</typeparam>
+/// <typeparam name="T">The type of the instance.</typeparam>
 /// <typeparam name="TConverter">The type of the converter bound with.</typeparam>
-public interface IJsonSerializable<TSelf, in TConverter>
-where TSelf : IJsonSerializable<TSelf, TConverter>
-where TConverter : JsonConverter<TSelf>, new()
+public interface IJsonSerializable<[Self] T, in TConverter>
+where T : IJsonSerializable<T, TConverter>
+where TConverter : JsonConverter<T>, new()
 {
 	/// <summary>
 	/// Indicates the JSON serializer option instance that used
@@ -15,7 +15,7 @@ where TConverter : JsonConverter<TSelf>, new()
 	/// </summary>
 	protected static readonly JsonSerializerOptions SerializerOptions =
 		new JsonSerializerOptions { WriteIndented = true }
-			.AppendConverter<TSelf, TConverter>(new TConverter());
+			.AppendConverter<T, TConverter>(new TConverter());
 
 
 	/// <summary>
@@ -24,7 +24,7 @@ where TConverter : JsonConverter<TSelf>, new()
 	/// <param name="instance">The instance to serialize.</param>
 	/// <returns>The JSON string result.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static string Serialize(TSelf instance) => JsonSerializer.Serialize(instance, SerializerOptions);
+	public static string Serialize(T instance) => JsonSerializer.Serialize(instance, SerializerOptions);
 
 	/// <summary>
 	/// Deserializes the specified possible JSON string, and parses the string, then return the result.
@@ -32,5 +32,5 @@ where TConverter : JsonConverter<TSelf>, new()
 	/// <param name="json">The JSON string.</param>
 	/// <returns>The instance result.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static TSelf? Deserialize(string json) => JsonSerializer.Deserialize<TSelf>(json, SerializerOptions);
+	public static T? Deserialize(string json) => JsonSerializer.Deserialize<T>(json, SerializerOptions);
 }
