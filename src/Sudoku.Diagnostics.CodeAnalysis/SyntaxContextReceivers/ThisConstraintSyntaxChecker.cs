@@ -52,7 +52,8 @@ internal sealed class ThisConstraintSyntaxChecker : ISyntaxContextReceiver
 	/// Initializes a <see cref="ThisConstraintSyntaxChecker"/> instance using the cancellation token.
 	/// </summary>
 	/// <param name="cancellationToken">The cancellation token to cancel the operation.</param>
-	public ThisConstraintSyntaxChecker(CancellationToken cancellationToken) => _cancellationToken = cancellationToken;
+	public ThisConstraintSyntaxChecker(CancellationToken cancellationToken) =>
+		_cancellationToken = cancellationToken;
 
 
 	/// <summary>
