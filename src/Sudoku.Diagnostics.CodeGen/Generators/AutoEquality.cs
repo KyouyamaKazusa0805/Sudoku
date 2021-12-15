@@ -28,6 +28,8 @@ public sealed class AutoEquality : ISourceGenerator
 				select $"{member} == other.{member}"
 			);
 
+			string notNullWhenTrue = typeSymbol.TypeKind == TypeKind.Class ? "[NotNullWhen(true)] " : string.Empty;
+
 			string objectEqualsMethod = typeSymbol.IsRefLikeType
 				? "// This type is a ref struct, so 'bool Equals(object?) is useless."
 				: typeSymbol.IsRecord && typeSymbol.TypeKind == TypeKind.Struct
@@ -36,7 +38,7 @@ public sealed class AutoEquality : ISourceGenerator
 	[global::System.CodeDom.Compiler.GeneratedCode(""{GetType().FullName}"", ""{VersionValue}"")]
 	[global::System.Runtime.CompilerServices.CompilerGenerated]
 	[global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
-	public override {readOnlyKeyword}bool Equals(object? other) => other is {typeName}{genericParameterListWithoutConstraint} comparer && Equals(comparer);";
+	public override {readOnlyKeyword}bool Equals({notNullWhenTrue}object? other) => other is {typeName}{genericParameterListWithoutConstraint} comparer && Equals(comparer);";
 
 			var memberSymbols = typeSymbol.GetMembers().OfType<IMethodSymbol>();
 			string opEquality = memberSymbols.All(static method => method.Name != OperatorNames.Equality)
@@ -87,7 +89,7 @@ partial {typeKind}{typeName}{genericParameterList}
 	[global::System.CodeDom.Compiler.GeneratedCode(""{GetType().FullName}"", ""{VersionValue}"")]
 	[global::System.Runtime.CompilerServices.CompilerGenerated]
 	[global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
-	public {readOnlyKeyword}bool Equals({inKeyword}{typeName}{genericParameterListWithoutConstraint}{nullableAnnotation} other) => {nullCheck}{memberCheck};
+	public {readOnlyKeyword}bool Equals({notNullWhenTrue}{inKeyword}{typeName}{genericParameterListWithoutConstraint}{nullableAnnotation} other) => {nullCheck}{memberCheck};
 
 
 	{opEquality}
