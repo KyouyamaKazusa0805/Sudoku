@@ -288,8 +288,6 @@ partial struct {type.Name}{genericParameterList}
 			GeneratedFileShortcuts.RefStructDefaultMethod,
 			$@"#pragma warning disable CS0809
 
-using System.ComponentModel;
-
 #nullable enable
 
 namespace {namespaceName};
