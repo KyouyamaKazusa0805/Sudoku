@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Globalization;
 using Sudoku.Data.Resources;
 
 const string jsonText = @"{
@@ -8,7 +9,7 @@ const string jsonText = @"{
   ""prop4"": ""d""
 }";
 
-var doc = new ResourceDocument(jsonText);
+var doc = new ResourceDocument(CultureInfo.CurrentCulture, jsonText);
 foreach (var (name, value) in doc)
 {
 	Console.WriteLine($"{name}: {value}");
