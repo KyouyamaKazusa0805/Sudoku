@@ -3,18 +3,15 @@ using Sudoku.Diagnostics.CodeAnalysis;
 
 Console.WriteLine("Hello, world!");
 
-class A<[Self] T> where T : A<T>
-{
-}
+f(400);
 
-class B<T>
+EventHandler _ = ([IsDiscard] _, _) =>
 {
-}
+	Console.WriteLine();
+};
 
-class C<[Self] T> where T : notnull, C<T>
+static void f([IsDiscard] int p, [IsDiscard] params int[] parameter)
 {
-}
-
-class D<[Self] T, U> where T : D<T, U> where U : class
-{
+	Console.WriteLine(p);
+	Console.WriteLine(parameter[0]);
 }

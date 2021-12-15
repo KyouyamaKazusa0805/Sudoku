@@ -2,8 +2,10 @@
 
 /// <summary>
 /// Indicates the analyzer that checks for CRTP (Curiously Recursive Template Pattern) validity.
-/// For C#, the syntax should be <c><![CDATA[class A<T> where T : A<T>]]></c>.
+/// For C#, the syntax should be <c><![CDATA[class A<[Self] T> where T : A<T>]]></c>, where <c>[Self]</c>
+/// is target to type <see cref="SelfAttribute"/>.
 /// </summary>
+/// <seealso cref="SelfAttribute"/>
 [Generator(LanguageNames.CSharp)]
 public sealed class ThisConstraintAnalyzer : ISourceGenerator
 {
