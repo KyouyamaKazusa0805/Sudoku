@@ -13,9 +13,9 @@
 /// In this case, we can use the indexer <see cref="this[string]"/> to fetch the value via the key,
 /// for example, <c>document["prop1"]</c> you'll get the value <c>"value1"</c>.
 /// </summary>
+[AutoEquality($"{nameof(_culture)}.{nameof(CultureInfo.LCID)}", $"{nameof(ToString)}()")]
 [AutoGetEnumerator(nameof(_root), MemberConversion = "new(@)", ReturnType = typeof(Enumerator))]
 [AutoGetHashCode(nameof(BasicHash), nameof(StringHash))]
-[AutoEquality($"{nameof(_culture)}.{nameof(CultureInfo.LCID)}", $"{nameof(ToString)}()")]
 public sealed partial class ResourceDocument
 : IDisposable
 , IEquatable<ResourceDocument>
