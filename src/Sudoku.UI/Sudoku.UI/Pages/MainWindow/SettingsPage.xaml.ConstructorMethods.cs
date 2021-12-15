@@ -8,7 +8,7 @@ partial class SettingsPage
 	/// </summary>
 	private void InitializeFields()
 	{
-		_boundSteps.ElementAdded += (sender, _) =>
+		_boundSteps.ElementAdded += (sender, [IsDiscard] _) =>
 		{
 			if (sender is NotifyChangedList<PreferenceBinding> { Count: not 0 } i)
 			{

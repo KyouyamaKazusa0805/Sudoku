@@ -19,6 +19,7 @@ global using Microsoft.UI.Xaml.Media;
 global using Microsoft.UI.Xaml.Navigation;
 global using Microsoft.UI.Xaml.Shapes;
 global using Sudoku.Data;
+global using Sudoku.Diagnostics.CodeAnalysis;
 global using Sudoku.Diagnostics.CodeGen;
 global using Sudoku.Models;
 global using Sudoku.Solving.BruteForces;
@@ -35,4 +36,4 @@ global using static Sudoku.UI.Constants.Formats;
 global using Grid = Microsoft.UI.Xaml.Controls.Grid;
 global using SudokuGrid = Sudoku.Data.Grid;
 
-[assembly: AutoDeconstructExtension<CornerRadius>(nameof(CornerRadius.TopLeft), nameof(CornerRadius.TopRight), nameof(CornerRadius.BottomLeft), nameof(CornerRadius.BottomRight))]
+[assembly: AutoDeconstructExtension<CornerRadius>(nameof(CornerRadius.TopLeft), nameof(CornerRadius.TopRight), nameof(CornerRadius.BottomLeft), nameof(CornerRadius.BottomRight))] 

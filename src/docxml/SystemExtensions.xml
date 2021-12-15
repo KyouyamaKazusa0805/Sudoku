@@ -2429,10 +2429,8 @@
             <summary>
             Creates a handler used to translate an interpolated string into a <see cref="T:System.String"/>.
             </summary>
-            <param name="literalLength">
-            The number of constant characters outside of interpolation expressions in the interpolated string.
-            </param>
-            <param name="holeCount">The number of interpolation expressions in the interpolated string.</param>
+            <param name="_"/>
+            <param name="__"/>
             <param name="initialBuffer">
             A buffer temporarily transferred to the handler for use as part of its formatting.
             Contents may be overwritten.

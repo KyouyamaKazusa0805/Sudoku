@@ -72,9 +72,24 @@ public sealed class DiscardParameterSyntaxChecker : ISyntaxContextReceiver
 
 			switch (parameter)
 			{
-				case { IsDiscard: true }: report(parameter, Sdc0203); break;
-				case { IsParams: true } or { RefKind: not RefKind.None }: report(parameter, Sdc0202); break;
-				case { Name: var parameterName }: traverseDescendants(node, parameterName); break;
+				case { IsDiscard: true }:
+				{
+					report(parameter, Sdc0203);
+
+					break;
+				}
+				case { IsParams: true } or { RefKind: not (RefKind.None or RefKind.In) }:
+				{
+					report(parameter, Sdc0202);
+
+					break;
+				}
+				case { Name: var parameterName }:
+				{
+					traverseDescendants(node, parameterName);
+
+					break;
+				}
 			}
 		}
 

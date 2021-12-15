@@ -2,7 +2,7 @@
 
 partial class SudokuPanel
 {
-	private partial void This_Loaded(object sender, RoutedEventArgs e) =>
+	private partial void This_Loaded([IsDiscard] object sender, [IsDiscard] RoutedEventArgs e) =>
 		DispatcherQueue.TryEnqueue(
 			async () =>
 			{

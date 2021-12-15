@@ -45,12 +45,12 @@ internal static class Descriptors
 	);
 
 	/// <summary>
-	/// Indicates the descriptor that reports the discarded parameter with any modifiers.
+	/// Indicates the descriptor that reports the discarded parameter with any modifiers except <see langword="in"/>.
 	/// </summary>
 	public static readonly DiagnosticDescriptor Sdc0202 = new(
 		id: "SDC0202",
-		title: "Discard parameter can't be modified",
-		messageFormat: "Discard parameter can't be modified",
+		title: "Discard parameter can't be 'out', 'ref' or 'params' one",
+		messageFormat: "Discard parameter can't be 'out', 'ref' or 'params' one",
 		category: "Sunnie.Usage",
 		defaultSeverity: DiagnosticSeverity.Error,
 		isEnabledByDefault: true,
