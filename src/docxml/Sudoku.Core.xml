@@ -1948,7 +1948,7 @@
             <param name="format">The format. If available, the parameter can be <see langword="null"/>.</param>
             <returns>The string result.</returns>
         </member>
-        <member name="M:Sudoku.Data.Collections.DigitCollection.op_OnesComplement(Sudoku.Data.Collections.DigitCollection@)">
+        <member name="M:Sudoku.Data.Collections.DigitCollection.op_OnesComplement(Sudoku.Data.Collections.DigitCollection)">
             <summary>
             Make all <see langword="true"/> bits to be set <see langword="false"/>,
             and make all <see langword="false"/> bits to be set <see langword="true"/>.
@@ -1956,7 +1956,7 @@
             <param name="collection">The instance to negate.</param>
             <returns>The negative result.</returns>
         </member>
-        <member name="M:Sudoku.Data.Collections.DigitCollection.op_BitwiseAnd(Sudoku.Data.Collections.DigitCollection@,Sudoku.Data.Collections.DigitCollection@)">
+        <member name="M:Sudoku.Data.Collections.DigitCollection.op_BitwiseAnd(Sudoku.Data.Collections.DigitCollection,Sudoku.Data.Collections.DigitCollection)">
             <summary>
             Apply the intersection from two <see cref="T:Sudoku.Data.Collections.DigitCollection"/>s.
             </summary>
@@ -1964,7 +1964,7 @@
             <param name="right">The right instance.</param>
             <returns>The result collection.</returns>
         </member>
-        <member name="M:Sudoku.Data.Collections.DigitCollection.op_BitwiseOr(Sudoku.Data.Collections.DigitCollection@,Sudoku.Data.Collections.DigitCollection@)">
+        <member name="M:Sudoku.Data.Collections.DigitCollection.op_BitwiseOr(Sudoku.Data.Collections.DigitCollection,Sudoku.Data.Collections.DigitCollection)">
             <summary>
             Apply the union of two <see cref="T:Sudoku.Data.Collections.DigitCollection"/>s.
             </summary>
@@ -1972,7 +1972,7 @@
             <param name="right">The right instance.</param>
             <returns>The result collection.</returns>
         </member>
-        <member name="M:Sudoku.Data.Collections.DigitCollection.op_ExclusiveOr(Sudoku.Data.Collections.DigitCollection@,Sudoku.Data.Collections.DigitCollection@)">
+        <member name="M:Sudoku.Data.Collections.DigitCollection.op_ExclusiveOr(Sudoku.Data.Collections.DigitCollection,Sudoku.Data.Collections.DigitCollection)">
             <summary>
             Apply the exclusive union of two <see cref="T:Sudoku.Data.Collections.DigitCollection"/>s.
             </summary>

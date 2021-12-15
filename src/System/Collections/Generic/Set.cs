@@ -5,7 +5,11 @@
 /// </summary>
 /// <typeparam name="TEquatable">The type of the element.</typeparam>
 [AutoGetEnumerator(nameof(_list), MemberConversion = "@.*")]
-public sealed partial class Set<TEquatable> : IEnumerable<TEquatable>, IEquatable<Set<TEquatable>>, ISet<TEquatable>
+public sealed partial class Set<TEquatable>
+: IEnumerable<TEquatable>
+, IEquatable<Set<TEquatable>>
+, ISet<TEquatable>
+, ISubtractionOperators<Set<TEquatable>, IEnumerable<TEquatable>, Set<TEquatable>>
 where TEquatable : IEquatable<TEquatable>
 {
 	/// <summary>

@@ -95,7 +95,7 @@ public readonly ref partial struct DigitCollection
 	/// </summary>
 	/// <param name="collection">The instance to negate.</param>
 	/// <returns>The negative result.</returns>
-	public static DigitCollection operator ~(in DigitCollection collection) => new((short)~collection._mask);
+	public static DigitCollection operator ~(DigitCollection collection) => new((short)~collection._mask);
 
 	/// <summary>
 	/// Apply the intersection from two <see cref="DigitCollection"/>s.
@@ -103,7 +103,7 @@ public readonly ref partial struct DigitCollection
 	/// <param name="left">The left instance.</param>
 	/// <param name="right">The right instance.</param>
 	/// <returns>The result collection.</returns>
-	public static DigitCollection operator &(in DigitCollection left, in DigitCollection right) =>
+	public static DigitCollection operator &(DigitCollection left, DigitCollection right) =>
 		new((short)(left._mask & right._mask));
 
 	/// <summary>
@@ -112,7 +112,7 @@ public readonly ref partial struct DigitCollection
 	/// <param name="left">The left instance.</param>
 	/// <param name="right">The right instance.</param>
 	/// <returns>The result collection.</returns>
-	public static DigitCollection operator |(in DigitCollection left, in DigitCollection right) =>
+	public static DigitCollection operator |(DigitCollection left, DigitCollection right) =>
 		new((short)(left._mask | right._mask));
 
 	/// <summary>
@@ -121,6 +121,6 @@ public readonly ref partial struct DigitCollection
 	/// <param name="left">The left instance.</param>
 	/// <param name="right">The right instance.</param>
 	/// <returns>The result collection.</returns>
-	public static DigitCollection operator ^(in DigitCollection left, in DigitCollection right) =>
+	public static DigitCollection operator ^(DigitCollection left, DigitCollection right) =>
 		new((short)(left._mask ^ right._mask));
 }
