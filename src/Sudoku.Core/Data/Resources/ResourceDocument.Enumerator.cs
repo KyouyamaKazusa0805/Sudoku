@@ -1,6 +1,6 @@
 ﻿namespace Sudoku.Data.Resources;
 
-partial struct ResourceDocument
+partial class ResourceDocument
 {
 	/// <summary>
 	/// Indicates the enumerator of the current instance to iterate.

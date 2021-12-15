@@ -14,12 +14,12 @@
 /// for example, <c>document["prop1"]</c> you'll get the value <c>"value1"</c>.
 /// </summary>
 [AutoGetEnumerator(nameof(_root), MemberConversion = "new(@)", ReturnType = typeof(Enumerator))]
-public readonly partial struct ResourceDocument
+[AutoGetHashCode(nameof(BasicHash), nameof(StringHash))]
+[AutoEquality($"{nameof(_culture)}.{nameof(CultureInfo.LCID)}", $"{nameof(ToString)}()")]
+public sealed partial class ResourceDocument
 : IDisposable
 , IEquatable<ResourceDocument>
-, IEqualityOperators<ResourceDocument, ResourceDocument>
 , ISimpleParseable<ResourceDocument>
-, IValueEquatable<ResourceDocument>
 {
 	/// <summary>
 	/// Indicates the default JSON document options.
@@ -56,18 +56,25 @@ public readonly partial struct ResourceDocument
 	/// </summary>
 	private readonly JsonDocument _parentDoc;
 
+	/// <summary>
+	/// Indicates the culture used.
+	/// </summary>
+	private readonly CultureInfo _culture;
+
 
 	/// <summary>
 	/// Initializes a <see cref="ResourceDocument"/> instance via the specified JSON string.
 	/// </summary>
+	/// <param name="culture">Indicates the culture specified.</param>
 	/// <param name="json">The JSON string.</param>
 	/// <exception cref="ArgumentException">
 	/// Throws when the specified string isn't a JSON or can't be converted to a regular JSON string.
 	/// </exception>
 	/// <exception cref="JsonException">Throws when the specified string isn't valid JSON code.</exception>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public ResourceDocument(string json)
+	public ResourceDocument(CultureInfo culture, string json)
 	{
+		_culture = culture;
 		_parentDoc = JsonDocument.Parse(json, DefaultDocumentOptions);
 		_root = _parentDoc.RootElement;
 
@@ -91,6 +98,26 @@ public readonly partial struct ResourceDocument
 	/// </summary>
 	public int Count { get; }
 
+	/// <summary>
+	/// Indicates the basic hash that uses the property <see cref="CultureInfo.LCID"/>.
+	/// </summary>
+	private int BasicHash
+	{
+		[LambdaBody]
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		get => _culture.LCID << 3 ^ 0x667788;
+	}
+
+	/// <summary>
+	/// Indicates the hash that corresponds to the string value.
+	/// </summary>
+	private int StringHash
+	{
+		[LambdaBody]
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		get => ToString(DefaultSerializerOptions).GetHashCode();
+	}
+
 
 	/// <summary>
 	/// Try to fetch the property value via the specified property name.
@@ -109,20 +136,6 @@ public readonly partial struct ResourceDocument
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public void Dispose() => _parentDoc.Dispose();
 
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public override bool Equals([NotNullWhen(true)] object? obj) =>
-		obj is ResourceDocument comparer && Equals(comparer);
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public bool Equals(ResourceDocument other) =>
-		ToString(DefaultSerializerOptions) == other.ToString(DefaultSerializerOptions);
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public override int GetHashCode() => ToString(DefaultSerializerOptions).GetHashCode();
-
 	/// <inheritdoc cref="object.ToString"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public override string ToString() => ToString(DefaultSerializerOptions);
@@ -136,45 +149,60 @@ public readonly partial struct ResourceDocument
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public string ToString(JsonSerializerOptions? options) => JsonSerializer.Serialize(_root, options);
 
+
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	bool IValueEquatable<ResourceDocument>.Equals(in ResourceDocument other) => Equals(other);
+	public static bool TryParse([NotNullWhen(true)] string? str, [NotNullWhen(true)] out ResourceDocument? result) =>
+		TryParse(str, CultureInfo.CurrentCulture, out result);
 
-
-	/// <inheritdoc/>
-	public static bool TryParse([NotNullWhen(true)] string? str, out ResourceDocument result)
+	/// <summary>
+	/// Try to parse the specified string text and get the same-meaning instance
+	/// of type <see cref="ResourceDocument"/>, with the specified <see cref="CultureInfo"/>.
+	/// </summary>
+	/// <param name="str">The string to parse. The value shouldn't <see langword="null"/>.</param>
+	/// <param name="culture">The culture specified.</param>
+	/// <param name="result">
+	/// The result parsed. If failed to parse, the value will keep the <see langword="default"/> value,
+	/// i.e. <see langword="default"/>(<see cref="ResourceDocument"/>).
+	/// </param>
+	/// <returns>A <see cref="bool"/> result indicating whether the operation is successful to execute.</returns>
+	public static bool TryParse(
+		[NotNullWhen(true)] string? str,
+		CultureInfo? culture,
+		[NotNullWhen(true)] out ResourceDocument? result
+	)
 	{
 		try
 		{
-			result = Parse(str);
+			result = Parse(str, culture);
 			return true;
 		}
 		catch (Exception ex) when (ex is JsonException or ArgumentException)
 		{
-			result = default;
+			result = null;
 			return false;
 		}
 	}
 
 	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static ResourceDocument Parse(string? str) => Parse(str, CultureInfo.CurrentCulture);
+
+	/// <summary>
+	/// Parse the specified string text, and get the same-meaning instance of type <see cref="ResourceDocument"/>.
+	/// </summary>
+	/// <param name="str">The string to parsed. The value shouldn't be <see langword="null"/>.</param>
+	/// <param name="culture">The culture specified.</param>
+	/// <returns>The result parsed.</returns>
 	/// <exception cref="ArgumentException">
 	/// Throws when the specified string isn't a JSON or can't be converted to a regular JSON string.
 	/// </exception>
 	/// <exception cref="JsonException">Throws when the specified string isn't valid JSON code.</exception>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static ResourceDocument Parse(string? str)
+	public static ResourceDocument Parse(string? str, CultureInfo? culture)
 	{
 		Nullability.ThrowIfNull(str);
 
-		return new(str);
+		return new(culture ?? CultureInfo.CurrentCulture, str);
 	}
-
-
-	/// <inheritdoc cref="IEqualityOperators{TSelf, TOther}.operator =="/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static bool operator ==(ResourceDocument left, ResourceDocument right) => left.Equals(right);
-
-	/// <inheritdoc cref="IEqualityOperators{TSelf, TOther}.operator !="/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static bool operator !=(ResourceDocument left, ResourceDocument right) => !(left == right);
 }
