@@ -10,7 +10,7 @@
 		<!--Syntax configuration-->
 		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
 		<LangVersion>preview</LangVersion>
-	
+
 		<!--Temporary config-->
 		<NoWarn>IDE0170</NoWarn>
 	</PropertyGroup>
@@ -36,6 +36,32 @@
 			<PropertyGroup>
 				<DefineConstants>AUTHOR_RESERVED; SOLUTION_WIDE_CODE_ANALYSIS</DefineConstants>
 			</PropertyGroup>
+		</When>
+	</Choose>
+
+	<!--
+	Set the plug-in code analyzer if:
+	* Sudoku.UI project - 2-times step-out the directory and then reference the project.
+	* Other C# projects that isn't itself - 1-time step-out the directory and then reference the project.
+	* Other non-C# projects - Do nothing.
+	-->
+	<Choose>
+		<When Condition="'$(MSBuildProjectFile)'=='Sudoku.UI.csproj'">
+			<ItemGroup>
+				<ProjectReference
+						Include="..\..\Sudoku.Diagnostics.CodeAnalysis\Sudoku.Diagnostics.CodeAnalysis.csproj"
+						OutputItemType="Analyzer"
+						ReferenceOutputAssembly="true" />
+			</ItemGroup>
+		</When>
+		<When Condition="'$(MSBuildProjectFile.EndsWith(`.csproj`))'=='false'" />
+		<When Condition="'$(MSBuildProjectFile)'!='Sudoku.Diagnostics.CodeAnalysis.csproj'">
+			<ItemGroup>
+				<ProjectReference
+						Include="..\Sudoku.Diagnostics.CodeAnalysis\Sudoku.Diagnostics.CodeAnalysis.csproj"
+						OutputItemType="Analyzer"
+						ReferenceOutputAssembly="true" />
+			</ItemGroup>
 		</When>
 	</Choose>
 

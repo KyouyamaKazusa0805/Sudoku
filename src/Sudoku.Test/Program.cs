@@ -1,21 +1,20 @@
 ﻿using System;
-using System.Globalization;
-using Sudoku.Data.Resources;
+using Sudoku.Diagnostics.CodeAnalysis;
 
-const string jsonText = @"{
-  ""prop1"": ""a"",
-  ""prop2"": ""b"",
-  ""prop3"": ""c"",
-  ""prop4"": ""d""
-}";
+Console.WriteLine("Hello, world!");
 
-var doc = new ResourceDocument(CultureInfo.CurrentCulture, jsonText);
-foreach (var (name, value) in doc)
+class A<[Self] T> where T : A<T>
 {
-	Console.WriteLine($"{name}: {value}");
 }
 
-Console.WriteLine(new string('-', 30));
+class B<T>
+{
+}
 
-string targetValue = doc["prop3"];
-Console.WriteLine(targetValue);
+class C<[Self] T> where T : notnull, C<T>
+{
+}
+
+class D<[Self] T, U> where T : D<T, U> where U : class
+{
+}
