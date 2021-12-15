@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Text;
+﻿namespace Sudoku.Data.Resources;
 
 partial struct ResourceDocument
 {

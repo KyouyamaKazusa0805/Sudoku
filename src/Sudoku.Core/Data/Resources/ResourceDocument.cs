@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Text;
+﻿namespace Sudoku.Data.Resources;
 
 /// <summary>
 /// Defines a resource document. The resource document always holds a JSON string value,

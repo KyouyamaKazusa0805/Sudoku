@@ -1,5 +1,5 @@
 ﻿using System;
-using Sudoku.Text;
+using Sudoku.Data.Resources;
 
 const string jsonText = @"{
   ""prop1"": ""a"",
