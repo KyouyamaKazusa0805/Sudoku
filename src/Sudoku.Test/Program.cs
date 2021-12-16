@@ -8,4 +8,5 @@ f(400);
 static void f([IsDiscard] int p)
 {
 	Console.WriteLine(p);
+	Console.WriteLine(nameof(p));
 }
