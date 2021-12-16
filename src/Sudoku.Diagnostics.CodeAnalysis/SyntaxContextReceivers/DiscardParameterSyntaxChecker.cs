@@ -1,44 +1,8 @@
 ﻿namespace Sudoku.Diagnostics.CodeAnalysis.SyntaxContextReceivers;
 
-/// <summary>
-/// Defines the syntax checker that checks for the diagnostics below:
-/// <list type="table">
-/// <item>
-/// <term><c>SDC0201</c></term>
-/// <description>The discarded parameter can't be used or referenced unless a <see langword="nameof"/> expression.</description>
-/// </item>
-/// <item>
-/// <term><c>SDC0202</c></term>
-/// <description>Discard parameter can't be modified.</description>
-/// </item>
-/// <item>
-/// <term><c>SDC0203</c></term>
-/// <description>Can't apply <see cref="IsDiscardAttribute"/> onto a parameter that has already discarded.</description>
-/// </item>
-/// </list>
-/// </summary>
-public sealed class DiscardParameterSyntaxChecker : ISyntaxContextReceiver
+[SyntaxChecker("SCA0201", "SCA0202", "SCA0203")]
+public sealed partial class DiscardParameterSyntaxChecker : ISyntaxContextReceiver
 {
-	/// <summary>
-	/// Indicates the context used.
-	/// </summary>
-	private readonly CancellationToken _cancellationToken;
-
-
-	/// <summary>
-	/// Initializes a <see cref="ThisConstraintSyntaxChecker"/> instance using the cancellation token.
-	/// </summary>
-	/// <param name="cancellationToken">The cancellation token to cancel the operation.</param>
-	public DiscardParameterSyntaxChecker(CancellationToken cancellationToken) =>
-		_cancellationToken = cancellationToken;
-
-
-	/// <summary>
-	/// Indicates all possible diagnostics types used.
-	/// </summary>
-	public List<Diagnostic> Diagnostics { get; } = new();
-
-
 	/// <inheritdoc/>
 	public void OnVisitSyntaxNode(GeneratorSyntaxContext context)
 	{

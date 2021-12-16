@@ -1,40 +1,8 @@
 ﻿namespace Sudoku.Diagnostics.CodeAnalysis.SyntaxContextReceivers;
 
-/// <summary>
-/// Defines the syntax checker that checks for the diagnostics below:
-/// <list type="table">
-/// <item>
-/// <term><c>SDC0101</c></term>
-/// <description>The type parameter lacks a CRTP-constraint clause.</description>
-/// </item>
-/// <item>
-/// <term><c>SDC0102</c></term>
-/// <description>The type parameter constraint lacks a CRTP-styled type as the constraint.</description>
-/// </item>
-/// </list>
-/// </summary>
-public sealed class ThisConstraintSyntaxChecker : ISyntaxContextReceiver
+[SyntaxChecker("SCA0101", "SCA0102")]
+public sealed partial class ThisConstraintSyntaxChecker : ISyntaxContextReceiver
 {
-	/// <summary>
-	/// Indicates the context used.
-	/// </summary>
-	private readonly CancellationToken _cancellationToken;
-
-
-	/// <summary>
-	/// Initializes a <see cref="ThisConstraintSyntaxChecker"/> instance using the cancellation token.
-	/// </summary>
-	/// <param name="cancellationToken">The cancellation token to cancel the operation.</param>
-	public ThisConstraintSyntaxChecker(CancellationToken cancellationToken) =>
-		_cancellationToken = cancellationToken;
-
-
-	/// <summary>
-	/// Indicates all possible diagnostics types used.
-	/// </summary>
-	public List<Diagnostic> Diagnostics { get; } = new();
-
-
 	/// <inheritdoc/>
 	public void OnVisitSyntaxNode(GeneratorSyntaxContext context)
 	{

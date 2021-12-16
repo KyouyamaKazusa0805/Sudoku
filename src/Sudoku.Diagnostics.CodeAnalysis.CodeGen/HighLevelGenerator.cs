@@ -1,22 +1,37 @@
-﻿namespace Sudoku.Diagnostics.CodeAnalysis.CodeGen;
+﻿namespace Sudoku.Diagnostics.CodeGen;
 
 /// <summary>
 /// Indicates the high-level source generator that generates the source generator.
 /// </summary>
-[Generator]
-public sealed class HighLevelGenerator : ISourceGenerator
+[Generator(LanguageNames.CSharp)]
+public sealed partial class HighLevelGenerator : ISourceGenerator
 {
 	/// <inheritdoc/>
 	public void Execute(GeneratorExecutionContext context)
 	{
-		foreach (string shortName in ((Receiver)context.SyntaxContextReceiver!).Result)
+		if (
+			context is not
+			{
+				AdditionalFiles: { Length: _ } _,
+				SyntaxContextReceiver: Receiver { Diagnostics: var diagnostics, Result: var shortNames }
+			}
+		)
+		{
+			return;
+		}
+
+		// Report compiler diagnostics.
+		diagnostics.ForEach(context.ReportDiagnostic);
+
+		// Append analzyers.
+		foreach (var (shortName, fullName, diagnosticIds) in shortNames)
 		{
 			context.AddSource(
 				$"{shortName}Analyzer.g.cs",
 				$@"namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers;
 
-[Generator(LanguageNames.CSharp)]
 [CompilerGenerated]
+[Generator(LanguageNames.CSharp)]
 public sealed class {shortName}Analyzer : ISourceGenerator
 {{
 	/// <inheritdoc/>
@@ -31,51 +46,42 @@ public sealed class {shortName}Analyzer : ISourceGenerator
 }}
 "
 			);
+
+			context.AddSource(
+				$"{fullName}.g.cs",
+				$@"namespace Sudoku.Diagnostics.CodeAnalysis.SyntaxContextReceivers;
+
+[CompilerGenerated]
+partial class {fullName}
+{{
+	/// <summary>
+	/// Indicates the cancellation token used.
+	/// </summary>
+	[CompilerGenerated]
+	private readonly CancellationToken _cancellationToken;
+
+
+	/// <summary>
+	/// Initializes a <see cref=""{fullName}""/> instance using the cancellation token.
+	/// </summary>
+	/// <param name=""cancellationToken"">The cancellation token to cancel the operation.</param>
+	[CompilerGenerated]
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public {fullName}(CancellationToken cancellationToken) => _cancellationToken = cancellationToken;
+
+
+	/// <summary>
+	/// Indicates all possible diagnostics types used.
+	/// </summary>
+	[CompilerGenerated]
+	public List<Diagnostic> Diagnostics {{ get; }} = new();
+}}
+"
+			);
 		}
 	}
 
 	/// <inheritdoc/>
 	public void Initialize(GeneratorInitializationContext context) =>
 		context.RegisterForSyntaxNotifications(() => new Receiver(context.CancellationToken));
-
-
-	private sealed class Receiver : ISyntaxContextReceiver
-	{
-		private readonly CancellationToken _cancellationToken;
-
-
-		public Receiver(CancellationToken cancellationToken) => _cancellationToken = cancellationToken;
-
-
-		public ICollection<string> Result { get; } = new List<string>();
-
-
-		public void OnVisitSyntaxNode(GeneratorSyntaxContext context)
-		{
-			if (
-				context is not
-				{
-					Node: ClassDeclarationSyntax node,
-					SemanticModel: { Compilation: var compilation } semanticModel
-				}
-			)
-			{
-				return;
-			}
-
-			var receiverSymbol = compilation.GetTypeByMetadataName(typeof(ISyntaxContextReceiver).FullName);
-			var symbol = semanticModel.GetDeclaredSymbol(node, _cancellationToken);
-			if (symbol is not INamedTypeSymbol { Name: var name, AllInterfaces: var interfaces })
-			{
-				return;
-			}
-
-			if (interfaces.All(t => !SymbolEqualityComparer.Default.Equals(t, receiverSymbol)))
-			{
-				return;
-			}
-
-			Result.Add(name.Substring(0, name.IndexOf("SyntaxChecker")));
-		}
-	}
 }
