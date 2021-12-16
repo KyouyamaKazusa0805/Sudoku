@@ -13,7 +13,7 @@
 /// </item>
 /// </list>
 /// </summary>
-internal sealed class ThisConstraintSyntaxChecker : ISyntaxContextReceiver
+public sealed class ThisConstraintSyntaxChecker : ISyntaxContextReceiver
 {
 	/// <summary>
 	/// Indicates the context used.

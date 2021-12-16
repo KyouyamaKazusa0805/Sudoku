@@ -54,6 +54,7 @@
 						ReferenceOutputAssembly="true" />
 			</ItemGroup>
 		</When>
+		<When Condition="'$(MSBuildProjectFile)'=='Sudoku.Diagnostics.CodeAnalysis.CodeGen.csproj'" />
 		<When Condition="'$(MSBuildProjectFile.EndsWith(`.csproj`))'=='false'" />
 		<When Condition="'$(MSBuildProjectFile)'!='Sudoku.Diagnostics.CodeAnalysis.csproj'">
 			<ItemGroup>

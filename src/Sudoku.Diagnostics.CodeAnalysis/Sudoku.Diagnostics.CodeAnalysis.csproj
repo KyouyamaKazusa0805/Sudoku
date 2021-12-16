@@ -4,4 +4,8 @@
 		<TargetFramework>netstandard2.0</TargetFramework>
 	</PropertyGroup>
 
+	<ItemGroup>
+		<ProjectReference Include="..\Sudoku.Diagnostics.CodeAnalysis.CodeGen\Sudoku.Diagnostics.CodeAnalysis.CodeGen.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="true" />
+	</ItemGroup>
+
 </Project>
