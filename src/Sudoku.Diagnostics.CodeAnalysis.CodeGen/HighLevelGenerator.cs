@@ -12,13 +12,34 @@ public sealed partial class HighLevelGenerator : ISourceGenerator
 		if (
 			context is not
 			{
-				AdditionalFiles: { Length: _ } _,
+				AdditionalFiles: { Length: 1 } additionalFiles,
 				SyntaxContextReceiver: Receiver { Diagnostics: var diagnostics, Result: var shortNames }
 			}
 		)
 		{
 			return;
 		}
+
+		// Get the compiler diagnostics and insert into the analyzer types.
+		string descriptorsStr = string.Join(
+			"\r\n\r\n\t",
+			from detail in MarkdownHandler.SplitTable(File.ReadAllText(additionalFiles[0].Path))
+			select detail.ToDescriptor() into descriptor
+			select $@"/// <summary>
+	/// Indicates the descriptor {descriptor.Id} ({descriptor.Title}).
+	/// </summary>
+	[CompilerGenerated]
+	private static readonly DiagnosticDescriptor {descriptor.Id} = new(
+		id: nameof({descriptor.Id}),
+		title: ""{descriptor.Title}"",
+		messageFormat: ""{descriptor.MessageFormat}"",
+		category: ""{descriptor.Category}"",
+		defaultSeverity: DiagnosticSeverity.{descriptor.DefaultSeverity},
+		isEnabledByDefault: true,
+		helpLinkUri: {(descriptor.HelpLinkUri is var s and not "" ? s : "null")}
+	);"
+		);
+
 
 		// Report compiler diagnostics.
 		diagnostics.ForEach(context.ReportDiagnostic);
@@ -54,6 +75,9 @@ public sealed class {shortName}Analyzer : ISourceGenerator
 [CompilerGenerated]
 partial class {fullName}
 {{
+	{descriptorsStr}
+
+
 	/// <summary>
 	/// Indicates the cancellation token used.
 	/// </summary>

@@ -38,13 +38,13 @@ public sealed partial class DiscardParameterSyntaxChecker : ISyntaxContextReceiv
 			{
 				case { IsDiscard: true }:
 				{
-					report(parameter, Sdc0203);
+					report(parameter, SCA0203);
 
 					break;
 				}
 				case { IsParams: true } or { RefKind: not (RefKind.None or RefKind.In) }:
 				{
-					report(parameter, Sdc0202);
+					report(parameter, SCA0202);
 
 					break;
 				}
@@ -92,7 +92,7 @@ public sealed partial class DiscardParameterSyntaxChecker : ISyntaxContextReceiv
 					{
 						Diagnostics.Add(
 							Diagnostic.Create(
-								descriptor: Sdc0201,
+								descriptor: SCA0201,
 								location: usage.GetLocation(),
 								messageArgs: null
 							)

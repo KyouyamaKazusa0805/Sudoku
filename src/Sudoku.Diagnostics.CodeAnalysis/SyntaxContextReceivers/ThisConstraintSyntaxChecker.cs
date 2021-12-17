@@ -57,7 +57,7 @@ public sealed partial class ThisConstraintSyntaxChecker : ISyntaxContextReceiver
 			{
 				Diagnostics.Add(
 					Diagnostic.Create(
-						descriptor: Sdc0101,
+						descriptor: SCA0101,
 						location: locations[0],
 						messageArgs: new[] { shortenTypeName, typeParameterName }
 					)
@@ -73,7 +73,7 @@ public sealed partial class ThisConstraintSyntaxChecker : ISyntaxContextReceiver
 				{
 					Diagnostics.Add(
 						Diagnostic.Create(
-							descriptor: Sdc0101,
+							descriptor: SCA0101,
 							location: locations[0],
 							messageArgs: new[] { shortenTypeName, typeParameterName }
 						)
@@ -89,7 +89,7 @@ public sealed partial class ThisConstraintSyntaxChecker : ISyntaxContextReceiver
 					{
 						Diagnostics.Add(
 							Diagnostic.Create(
-								descriptor: Sdc0102,
+								descriptor: SCA0102,
 								location: locations[0],
 								messageArgs: new[] { typeParameterName, shortenTypeName }
 							)

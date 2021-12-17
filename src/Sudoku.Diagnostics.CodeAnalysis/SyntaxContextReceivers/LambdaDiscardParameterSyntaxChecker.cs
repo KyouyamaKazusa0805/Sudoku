@@ -41,7 +41,7 @@ public sealed partial class LambdaDiscardParameterSyntaxChecker : ISyntaxContext
 
 			Diagnostics.Add(
 				Diagnostic.Create(
-					descriptor: Sdc0203,
+					descriptor: SCA0203,
 					location: parameter.Locations[0],
 					messageArgs: null
 				)
