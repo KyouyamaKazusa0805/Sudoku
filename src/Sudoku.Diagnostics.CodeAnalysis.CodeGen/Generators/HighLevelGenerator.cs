@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Diagnostics.CodeGen;
+﻿namespace Sudoku.Diagnostics.CodeGen.Generators;
 
 /// <summary>
 /// Indicates the high-level source generator that generates the source generator.

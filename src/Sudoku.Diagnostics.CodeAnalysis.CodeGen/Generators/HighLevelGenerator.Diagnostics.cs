@@ -1,6 +1,6 @@
 ﻿#pragma warning disable RS2008
 
-namespace Sudoku.Diagnostics.CodeGen;
+namespace Sudoku.Diagnostics.CodeGen.Generators;
 
 partial class HighLevelGenerator
 {
