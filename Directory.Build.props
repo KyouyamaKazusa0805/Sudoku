@@ -42,6 +42,8 @@
 	<!--
 	Set the plug-in code analyzer if:
 	* Sudoku.UI project - 2-times step-out the directory and then reference the project.
+	* GlobalConfiguration.CodeGen - Do nothing.
+	* Sudoku.Diagnostics.CodeAnalysis.CodeGen - Do nothing.
 	* Other C# projects that isn't itself - 1-time step-out the directory and then reference the project.
 	* Other non-C# projects - Do nothing.
 	-->
@@ -55,6 +57,7 @@
 			</ItemGroup>
 		</When>
 		<When Condition="'$(MSBuildProjectFile)'=='Sudoku.Diagnostics.CodeAnalysis.CodeGen.csproj'" />
+		<When Condition="'$(MSBuildProjectFile)'=='GlobalConfiguration.CodeGen.csproj'" />
 		<When Condition="'$(MSBuildProjectFile.EndsWith(`.csproj`))'=='false'" />
 		<When Condition="'$(MSBuildProjectFile)'!='Sudoku.Diagnostics.CodeAnalysis.csproj'">
 			<ItemGroup>
@@ -108,6 +111,17 @@
 		<PackageReference Include="Microsoft.CodeAnalysis.Common" Version="4.0.0-4.final" />
 		<PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="4.0.0-4.final" />
 		<PackageReference Include="Microsoft.CodeAnalysis.CSharp.Workspaces" Version="4.0.0-4.final" />
+	</ItemGroup>
+
+	<!--
+	Import 'GlobalConfiguration.CodeGen' project into the source genrator projects.
+	-->
+	<ItemGroup Condition="'$(MSBuildProjectFile.TrimEnd(`.csproj`).EndsWith(`.CodeGen`))'=='true' And '$(MSBuildProjectFile)'!='GlobalConfiguration.CodeGen.csproj'">
+		<AdditionalFiles Include="..\..\Directory.Build.props" />
+		<ProjectReference
+				Include="..\GlobalConfiguration.CodeGen\GlobalConfiguration.CodeGen.csproj"
+				OutputItemType="Analyzer"
+				ReferenceOutputAssembly="true" />
 	</ItemGroup>
 
 </Project>

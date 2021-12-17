@@ -59,7 +59,7 @@ public sealed class GlobalConfigValueGenerator : ISourceGenerator
 partial class Constants
 {{
 	/// <summary>
-	/// Indictaes the version of this project.
+	/// Indicates the version of this project.
 	/// </summary>
 	public const string VersionValue = ""{versionResult!}"";
 }}"

@@ -7,12 +7,4 @@
 		<DocumentationFile>..\docxml\SystemExtensions.CodeGen.xml</DocumentationFile>
 	</PropertyGroup>
 
-	<ItemGroup>
-		<AdditionalFiles Include="..\..\Directory.Build.props" />
-	</ItemGroup>
-
-	<ItemGroup>
-		<ProjectReference Include="..\GlobalConfiguration.CodeGen\GlobalConfiguration.CodeGen.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="true" />
-	</ItemGroup>
-
 </Project>

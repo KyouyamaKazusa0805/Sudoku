@@ -480,7 +480,7 @@
         </member>
         <member name="F:Sudoku.Diagnostics.CodeGen.Constants.VersionValue">
             <summary>
-            Indictaes the version of this project.
+            Indicates the version of this project.
             </summary>
         </member>
         <member name="T:Sudoku.Diagnostics.CodeGen.DefaultSyntaxContextReceiver">

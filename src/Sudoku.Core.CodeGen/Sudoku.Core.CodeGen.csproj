@@ -7,12 +7,4 @@
 		<DefineConstants>WINDOWS_APP; SUPPORT_CODE_ANALYZER</DefineConstants>
 	</PropertyGroup>
 
-	<ItemGroup>
-		<AdditionalFiles Include="..\..\Directory.Build.props" />
-	</ItemGroup>
-
-	<ItemGroup>
-		<ProjectReference Include="..\GlobalConfiguration.CodeGen\GlobalConfiguration.CodeGen.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="true" />
-	</ItemGroup>
-
 </Project>

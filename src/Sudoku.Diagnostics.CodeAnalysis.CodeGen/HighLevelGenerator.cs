@@ -35,18 +35,21 @@ public sealed partial class HighLevelGenerator : ISourceGenerator
 				$"{shortName}Analyzer.g.cs",
 				$@"namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers;
 
-[CompilerGenerated]
-[Generator(LanguageNames.CSharp)]
-public sealed class {shortName}Analyzer : ISourceGenerator
+[global::System.CodeDom.Compiler.GeneratedCode(""{GetType().FullName}"", ""{VersionValue}"")]
+[global::System.Runtime.CompilerServices.CompilerGenerated]
+[global::Microsoft.CodeAnalysis.Generator(global::Microsoft.CodeAnalysis.LanguageNames.CSharp)]
+public sealed class {shortName}Analyzer : global::Microsoft.CodeAnalysis.ISourceGenerator
 {{
 	/// <inheritdoc/>
-	[CompilerGenerated]	
-	public void Execute(GeneratorExecutionContext context) =>
+	[global::System.CodeDom.Compiler.GeneratedCode(""{GetType().FullName}"", ""{VersionValue}"")]
+	[global::System.Runtime.CompilerServices.CompilerGenerated]
+	public void Execute(global::Microsoft.CodeAnalysis.GeneratorExecutionContext context) =>
 		(({shortName}SyntaxChecker)context.SyntaxContextReceiver!).Diagnostics.ForEach(context.ReportDiagnostic);
 
 	/// <inheritdoc/>
-	[CompilerGenerated]
-	public void Initialize(GeneratorInitializationContext context) =>
+	[global::System.CodeDom.Compiler.GeneratedCode(""{GetType().FullName}"", ""{VersionValue}"")]
+	[global::System.Runtime.CompilerServices.CompilerGenerated]
+	public void Initialize(global::Microsoft.CodeAnalysis.GeneratorInitializationContext context) =>
 		context.RegisterForSyntaxNotifications(() => new {shortName}SyntaxChecker(context.CancellationToken));
 }}
 "
@@ -59,13 +62,14 @@ public sealed class {shortName}Analyzer : ISourceGenerator
 				select $@"/// <summary>
 	/// Indicates the descriptor {descriptor.Id} ({descriptor.Title}).
 	/// </summary>
-	[CompilerGenerated]
-	private static readonly DiagnosticDescriptor {descriptor.Id} = new(
+	[global::System.CodeDom.Compiler.GeneratedCode(""{GetType().FullName}"", ""{VersionValue}"")]
+	[global::System.Runtime.CompilerServices.CompilerGenerated]
+	private static readonly global::Microsoft.CodeAnalysis.DiagnosticDescriptor {descriptor.Id} = new(
 		id: nameof({descriptor.Id}),
 		title: ""{descriptor.Title}"",
 		messageFormat: ""{descriptor.MessageFormat}"",
 		category: ""{descriptor.Category}"",
-		defaultSeverity: DiagnosticSeverity.{descriptor.DefaultSeverity},
+		defaultSeverity: global::Microsoft.CodeAnalysis.DiagnosticSeverity.{descriptor.DefaultSeverity},
 		isEnabledByDefault: true,
 		helpLinkUri: {(descriptor.HelpLinkUri is var s and not "" ? s : "null")}
 	);"
@@ -75,7 +79,6 @@ public sealed class {shortName}Analyzer : ISourceGenerator
 				$"{fullName}.g.cs",
 				$@"namespace Sudoku.Diagnostics.CodeAnalysis.SyntaxContextReceivers;
 
-[CompilerGenerated]
 partial class {fullName}
 {{
 	{descriptorsStr}
@@ -84,24 +87,28 @@ partial class {fullName}
 	/// <summary>
 	/// Indicates the cancellation token used.
 	/// </summary>
-	[CompilerGenerated]
-	private readonly CancellationToken _cancellationToken;
+	[global::System.CodeDom.Compiler.GeneratedCode(""{GetType().FullName}"", ""{VersionValue}"")]
+	[global::System.Runtime.CompilerServices.CompilerGenerated]
+	private readonly global::System.Threading.CancellationToken _cancellationToken;
 
 
 	/// <summary>
 	/// Initializes a <see cref=""{fullName}""/> instance using the cancellation token.
 	/// </summary>
 	/// <param name=""cancellationToken"">The cancellation token to cancel the operation.</param>
-	[CompilerGenerated]
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public {fullName}(CancellationToken cancellationToken) => _cancellationToken = cancellationToken;
+	[global::System.CodeDom.Compiler.GeneratedCode(""{GetType().FullName}"", ""{VersionValue}"")]
+	[global::System.Runtime.CompilerServices.CompilerGenerated]
+	[global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
+	public {fullName}(global::System.Threading.CancellationToken cancellationToken) =>
+		_cancellationToken = cancellationToken;
 
 
 	/// <summary>
 	/// Indicates all possible diagnostics types used.
 	/// </summary>
-	[CompilerGenerated]
-	public List<Diagnostic> Diagnostics {{ get; }} = new();
+	[global::System.CodeDom.Compiler.GeneratedCode(""{GetType().FullName}"", ""{VersionValue}"")]	
+	[global::System.Runtime.CompilerServices.CompilerGenerated]
+	public global::System.Collections.Generic.List<global::Microsoft.CodeAnalysis.Diagnostic> Diagnostics {{ get; }} = new();
 }}
 "
 			);
