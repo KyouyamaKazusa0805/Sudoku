@@ -55,10 +55,24 @@ public sealed class {shortName}Analyzer : global::Microsoft.CodeAnalysis.ISource
 "
 			);
 
-			string descriptorsStr = string.Join(
-				"\r\n\r\n\t",
+			var selection = (
 				from descriptor in descriptors
 				where Array.IndexOf(diagnosticIds, descriptor.Id) != -1
+				select descriptor
+			).ToArray();
+
+			string descriptorsXmlDocStr = string.Join(
+				"\r\n",
+				from descriptor in selection
+				select $@"/// <item>
+/// <term>{descriptor.Id}</term>
+/// <description>{descriptor.Title}</description>
+/// </item>"
+			);
+
+			string descriptorsStr = string.Join(
+				"\r\n\r\n\t",
+				from descriptor in selection
 				select $@"/// <summary>
 	/// Indicates the descriptor {descriptor.Id} ({descriptor.Title}).
 	/// </summary>
@@ -79,6 +93,17 @@ public sealed class {shortName}Analyzer : global::Microsoft.CodeAnalysis.ISource
 				$"{fullName}.g.cs",
 				$@"namespace Sudoku.Diagnostics.CodeAnalysis.SyntaxContextReceivers;
 
+/// <summary>
+/// Indicates the syntax checker that checks for the code structures and the API usages.
+/// The current analyzer will check the following cases:
+/// <list type=""bullet"">
+/// <listheader>
+/// <term>Diagnostic ID</term>
+/// <description>Description</description>
+/// </listheader>
+{descriptorsXmlDocStr}
+/// </list>
+/// </summary>
 partial class {fullName}
 {{
 	{descriptorsStr}
