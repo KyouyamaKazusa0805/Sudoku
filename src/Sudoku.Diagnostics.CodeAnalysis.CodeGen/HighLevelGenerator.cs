@@ -21,25 +21,9 @@ public sealed partial class HighLevelGenerator : ISourceGenerator
 		}
 
 		// Get the compiler diagnostics and insert into the analyzer types.
-		string descriptorsStr = string.Join(
-			"\r\n\r\n\t",
+		var descriptors = 
 			from detail in MarkdownHandler.SplitTable(File.ReadAllText(additionalFiles[0].Path))
-			select detail.ToDescriptor() into descriptor
-			select $@"/// <summary>
-	/// Indicates the descriptor {descriptor.Id} ({descriptor.Title}).
-	/// </summary>
-	[CompilerGenerated]
-	private static readonly DiagnosticDescriptor {descriptor.Id} = new(
-		id: nameof({descriptor.Id}),
-		title: ""{descriptor.Title}"",
-		messageFormat: ""{descriptor.MessageFormat}"",
-		category: ""{descriptor.Category}"",
-		defaultSeverity: DiagnosticSeverity.{descriptor.DefaultSeverity},
-		isEnabledByDefault: true,
-		helpLinkUri: {(descriptor.HelpLinkUri is var s and not "" ? s : "null")}
-	);"
-		);
-
+			select detail.ToDescriptor();
 
 		// Report compiler diagnostics.
 		diagnostics.ForEach(context.ReportDiagnostic);
@@ -66,6 +50,25 @@ public sealed class {shortName}Analyzer : ISourceGenerator
 		context.RegisterForSyntaxNotifications(() => new {shortName}SyntaxChecker(context.CancellationToken));
 }}
 "
+			);
+
+			string descriptorsStr = string.Join(
+				"\r\n\r\n\t",
+				from descriptor in descriptors
+				where Array.IndexOf(diagnosticIds, descriptor.Id) != -1
+				select $@"/// <summary>
+	/// Indicates the descriptor {descriptor.Id} ({descriptor.Title}).
+	/// </summary>
+	[CompilerGenerated]
+	private static readonly DiagnosticDescriptor {descriptor.Id} = new(
+		id: nameof({descriptor.Id}),
+		title: ""{descriptor.Title}"",
+		messageFormat: ""{descriptor.MessageFormat}"",
+		category: ""{descriptor.Category}"",
+		defaultSeverity: DiagnosticSeverity.{descriptor.DefaultSeverity},
+		isEnabledByDefault: true,
+		helpLinkUri: {(descriptor.HelpLinkUri is var s and not "" ? s : "null")}
+	);"
 			);
 
 			context.AddSource(
