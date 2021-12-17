@@ -153,7 +153,7 @@ public readonly partial record struct Conclusion(int Mask)
 	/// <inheritdoc cref="object.ToString"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public override string ToString() =>
-		$@"r{Cell / 9 + 1}c{Cell % 9 + 1} {ConclusionType switch
+		$"r{Cell / 9 + 1}c{Cell % 9 + 1} {ConclusionType switch
 		{
 			ConclusionType.Assignment => "=",
 			ConclusionType.Elimination => "<>"

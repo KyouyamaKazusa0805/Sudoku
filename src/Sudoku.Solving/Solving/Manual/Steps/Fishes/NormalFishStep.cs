@@ -82,7 +82,7 @@ public sealed record NormalFishStep(
 		{
 			string finModifier = IsSashimi switch { true => "Sashimi ", false => "Finned ", _ => string.Empty };
 			string fishName = Size switch { 2 => "X-Wing", 3 => "Swordfish", 4 => "Jellyfish" };
-			return $@"{finModifier}{fishName}";
+			return $"{finModifier}{fishName}";
 		}
 	}
 

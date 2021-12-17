@@ -65,7 +65,7 @@ public partial struct GridProgressResult
 
 
 	/// <inheritdoc cref="object.ToString"/>
-	public override readonly string ToString() => $@"{
+	public override readonly string ToString() => $"{
 		(string)TextResources.Current.UnsolvedCells
 	}{
 		CurrentCellsCount

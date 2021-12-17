@@ -98,7 +98,7 @@ partial class Preference
 						string? symbol = values[i], value = values[i + 1];
 						if (symbol is not null)
 						{
-							innerLogic.AppendLine($@"{(i == 0 ? "#if" : "#elif")} {symbol}");
+							innerLogic.AppendLine($"{(i == 0 ? "#if" : "#elif")} {symbol}");
 						}
 						if (value != "_")
 						{
