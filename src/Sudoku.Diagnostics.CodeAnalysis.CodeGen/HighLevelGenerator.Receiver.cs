@@ -152,6 +152,7 @@ partial class HighLevelGenerator
 				return;
 			}
 
+			// The type can't be a generic one.
 			if (isGeneric)
 			{
 				Diagnostics.Add(Diagnostic.Create(SCA0006, identifierName.GetLocation(), messageArgs: null));
@@ -183,18 +184,16 @@ partial class HighLevelGenerator
 			var members = typeSymbol.GetMembers();
 
 			// Check the existence of the field '_cancellationToken'.
-			var field = members.OfType<IFieldSymbol>().FirstOrDefault(static field => field.Name == "_cancellationToken");
-			if (field is not null)
+			if (members.ExistField(static field => field.Name == "_cancellationToken", out var field))
 			{
-				Diagnostics.Add(Diagnostic.Create(SCA0010, field.Locations[0], messageArgs: null));
+				Diagnostics.Add(Diagnostic.Create(SCA0010, field!.Locations[0], messageArgs: null));
 				return;
 			}
 
 			// Check the existence of the property 'Diagnostics'.
-			var property = members.OfType<IPropertySymbol>().FirstOrDefault(property => property.Name == "Diagnostics");
-			if (property is not null)
+			if (members.ExistProperty(static property => property.Name == "Diagnostics", out var property))
 			{
-				Diagnostics.Add(Diagnostic.Create(SCA0011, property.Locations[0], messageArgs: null));
+				Diagnostics.Add(Diagnostic.Create(SCA0011, property!.Locations[0], messageArgs: null));
 				return;
 			}
 
@@ -206,7 +205,14 @@ partial class HighLevelGenerator
 			}
 
 			// Valid name. Add it into the collection.
-			Result.Add((name.Substring(0, indexOfSyntaxChecker), name, realValues.ToArray()));
+			// If the name doesn't end with 'SyntaxChecker', just use the full name as the short name instead.
+			Result.Add(
+				(
+					indexOfSyntaxChecker == 1 ? name : name.Substring(0, indexOfSyntaxChecker),
+					name,
+					realValues.ToArray()
+				)
+			);
 		}
 	}
 }
