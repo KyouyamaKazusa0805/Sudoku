@@ -48,12 +48,12 @@ partial struct Grid
 				&OnParsingSusser,
 				&OnParsingExcel,
 				&OnParsingOpenSudoku,
-				&OnParsingSukaku_1,
-				&OnParsingSukaku_2
+				&onParsingSukaku_1,
+				&onParsingSukaku_2
 			};
 
-			static Grid OnParsingSukaku_1(ref Parser @this) => OnParsingSukaku(ref @this, @this.CompatibleFirst);
-			static Grid OnParsingSukaku_2(ref Parser @this) => OnParsingSukaku(ref @this, !@this.CompatibleFirst);
+			static Grid onParsingSukaku_1(ref Parser @this) => OnParsingSukaku(ref @this, @this.CompatibleFirst);
+			static Grid onParsingSukaku_2(ref Parser @this) => OnParsingSukaku(ref @this, !@this.CompatibleFirst);
 		}
 
 

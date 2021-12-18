@@ -1107,6 +1107,7 @@ public unsafe ref partial struct StringHandler
 	/// Ensures that the builder has a null character after <see cref="Length"/>.
 	/// </param>
 	/// <seealso cref="Length"/>
+	[EditorBrowsable(EditorBrowsableState.Never)]
 	public ref readonly char GetPinnableReference(bool withTerminate)
 	{
 		if (withTerminate)

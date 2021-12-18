@@ -22,7 +22,13 @@ public sealed partial class GetPinnableReferenceMethodSyntaxChecker : ISyntaxCon
 		}
 
 		var symbol = semanticModel.GetDeclaredSymbol(node, _cancellationToken);
-		if (symbol is not { IsStatic: false, ReturnType: var returnType })
+		if (symbol is { ContainingType.TypeKind: TypeKind.Interface })
+		{
+			// We don't check any interface members on this case.
+			return;
+		}
+
+		if (symbol is not { IsStatic: false, IsAbstract: false, ReturnType: var returnType })
 		{
 			return;
 		}

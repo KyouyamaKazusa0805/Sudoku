@@ -18,7 +18,13 @@ public sealed partial class PublicFunctionPointerDataMembersSyntaxChecker : ISyn
 		}
 
 		var symbol = semanticModel.GetDeclaredSymbol(memberDeclaration, _cancellationToken);
-		if (symbol is not { DeclaredAccessibility: Accessibility.Public })
+		if (
+			symbol is not
+			{
+				ContainingType.TypeKind: not TypeKind.Interface,
+				DeclaredAccessibility: Accessibility.Public
+			}
+		)
 		{
 			return;
 		}
@@ -26,7 +32,7 @@ public sealed partial class PublicFunctionPointerDataMembersSyntaxChecker : ISyn
 		if (
 			symbol is not (
 				IFieldSymbol { Type: IFunctionPointerTypeSymbol }
-				or IPropertySymbol { Type: IFunctionPointerTypeSymbol }
+				or IPropertySymbol { Type: IFunctionPointerTypeSymbol, IsAbstract: false }
 			)
 		)
 		{
