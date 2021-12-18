@@ -17,4 +17,6 @@
 | SCA0201       | Usage     | Error    | The discarded parameter can't be used or referenced unless a 'nameof' expression |                                                              |
 | SCA0202       | Usage     | Error    | Discard parameter can't be 'out', 'ref' or 'params' one      |                                                              |
 | SCA0203       | Usage     | Error    | Can't apply 'IsDiscardAttribute' onto a parameter that has already discarded |                                                              |
+| SCA0301       | Naming    | Warning  | Please apply camel-casing onto local functions               |                                                              |
+| SCA0302       | Naming    | Warning  | Please name '@this' onto the first argument of the extension deconstruction method |                                                              |
 
