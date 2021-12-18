@@ -2752,15 +2752,16 @@
         <member name="F:Sudoku.Data.Grid.Empty">
             <inheritdoc cref="P:Sudoku.Data.IGrid`1.Empty"/>
         </member>
-        <member name="F:Sudoku.Data.Grid.Lookup">
-            <summary>
-            The lookup table.
-            </summary>
-        </member>
         <member name="F:Sudoku.Data.Grid._values">
             <summary>
             Indicates the inner array that stores the masks of the sudoku grid, which
             stores the in-time sudoku grid inner information.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Data.Grid.#ctor">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Data.Grid"/> instance using the <see langword="default"/> value
+            (i.e. <see cref="F:Sudoku.Data.Grid.Empty"/> instance) to initialize.
             </summary>
         </member>
         <member name="M:Sudoku.Data.Grid.#ctor(System.Int32[])">
@@ -2775,12 +2776,6 @@
             </summary>
             <param name="gridValues">The array of grid values.</param>
             <param name="creatingOption">The grid creating option.</param>
-        </member>
-        <member name="M:Sudoku.Data.Grid.#ctor(System.String)">
-            <summary>
-            Try to parse a token, and converts the token to the sudoku grid instance.
-            </summary>
-            <param name="token">The token.</param>
         </member>
         <member name="M:Sudoku.Data.Grid.#ctor(System.Int16[])">
              <summary>
@@ -2858,9 +2853,6 @@
             the result <see cref="T:System.Int32"/> value, <c>000010000_000010000_000010000</c> as binary.
             </para>
             </summary>
-        </member>
-        <member name="P:Sudoku.Data.Grid.Token">
-            <inheritdoc/>
         </member>
         <member name="P:Sudoku.Data.Grid.EigenString">
             <inheritdoc/>
@@ -4331,11 +4323,6 @@
         <member name="P:Sudoku.Data.IGrid`1.EmptiesCount">
             <summary>
             Indicates the total number of empty cells.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Data.IGrid`1.Token">
-            <summary>
-            Gets the token of this sudoku grid.
             </summary>
         </member>
         <member name="P:Sudoku.Data.IGrid`1.EigenString">

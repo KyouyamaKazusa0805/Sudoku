@@ -19,4 +19,6 @@
 | SCA0203       | Usage     | Error    | Can't apply 'IsDiscardAttribute' onto a parameter that has already discarded |                                                              |
 | SCA0301       | Naming    | Warning  | Please apply camel-casing onto local functions               |                                                              |
 | SCA0302       | Naming    | Warning  | Please name '@this' onto the first argument of the extension deconstruction method |                                                              |
+| SCA0401       | Usage     | Warning  | Prevent exposing exact-typed function pointers as public data members | Prevent exposing exact-typed function pointers as public data members; please use 'void*' instead |
+| SCA0402       | Usage     | Warning  | Method 'GetPinnableReference' lacks '[EditorBrowsable(EditorBrowsableState.Never)]' |                                                              |
 

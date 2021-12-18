@@ -23,10 +23,10 @@ public sealed unsafe class UniqueLoopStepSearcher : IUniqueLoopStepSearcher, IUn
 		get
 		{
 			// A valid unique loop must contain at least 5 bivalue cells.
-			return &IsWorth;
+			return &isWorth;
 
 
-			static bool IsWorth(in Grid grid) => BivalueMap.Count >= 5;
+			static bool isWorth(in Grid grid) => BivalueMap.Count >= 5;
 		}
 	}
 

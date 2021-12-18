@@ -101,11 +101,6 @@ public unsafe partial struct Grid
 	/// <inheritdoc cref="IGrid{TGrid}.Empty"/>
 	public static readonly Grid Empty;
 
-	/// <summary>
-	/// The lookup table.
-	/// </summary>
-	private static readonly IReadOnlyDictionary<char, int> Lookup;
-
 
 	/// <summary>
 	/// Indicates the inner array that stores the masks of the sudoku grid, which
@@ -113,6 +108,13 @@ public unsafe partial struct Grid
 	/// </summary>
 	private fixed short _values[Length];
 
+
+	/// <summary>
+	/// Initializes a <see cref="Grid"/> instance using the <see langword="default"/> value
+	/// (i.e. <see cref="Empty"/> instance) to initialize.
+	/// </summary>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public Grid() => this = Empty;
 
 	/// <summary>
 	/// Creates an instance using grid values.
@@ -142,21 +144,6 @@ public unsafe partial struct Grid
 				SetStatus(i, CellStatus.Given);
 			}
 		}
-	}
-
-	/// <summary>
-	/// Try to parse a token, and converts the token to the sudoku grid instance.
-	/// </summary>
-	/// <param name="token">The token.</param>
-	public Grid(string token)
-	{
-		var bi = BigInteger.Zero;
-		for (int i = 0, length = token.Length; i < length; i++)
-		{
-			bi += Lookup[token[i]] * BigInteger.Pow(Base64Length, i);
-		}
-
-		this = Parse(bi.ToString().PadLeft(Length, '0'));
 	}
 
 	/// <summary>
@@ -220,12 +207,6 @@ public unsafe partial struct Grid
 			int i = 0;
 			for (short* ptrP = p; i < Length; *ptrP++ = DefaultMask, i++) ;
 		}
-
-		// Lookup table.
-		Lookup = new Dictionary<char, int>(
-			from i in Enumerable.Range(0, Base64Length)
-			select new KeyValuePair<char, int>(Base64List[i], i)
-		);
 
 		// Initializes events.
 		ValueChanged = (delegate*<ref Grid, int, short, short, int, void>)&onValueChanged;
@@ -422,22 +403,6 @@ public unsafe partial struct Grid
 			}
 
 			return maskResult;
-		}
-	}
-
-	/// <inheritdoc/>
-	public readonly string Token
-	{
-		get
-		{
-			// The maximum grid as the base 64 is of length 45.
-			var sb = new StringHandler(initialCapacity: 45);
-			for (var temp = BigInteger.Parse(EigenString); temp > 0; temp /= Base64Length)
-			{
-				sb.Append(Base64List[(int)(temp % Base64Length)]);
-			}
-
-			return sb.ToStringAndClear();
 		}
 	}
 

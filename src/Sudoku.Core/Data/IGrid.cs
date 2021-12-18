@@ -148,11 +148,6 @@ where T : struct, IGrid<T>
 	int EmptiesCount { get; }
 
 	/// <summary>
-	/// Gets the token of this sudoku grid.
-	/// </summary>
-	string Token { get; }
-
-	/// <summary>
 	/// Indicates the eigen string value that can introduce the current sudoku grid.
 	/// </summary>
 	string EigenString { get; }

@@ -1,12 +1,13 @@
 ﻿using System;
-using Sudoku.Diagnostics.CodeAnalysis;
+using System.Runtime.CompilerServices;
 
 Console.WriteLine("Hello, world!");
 
-f(400);
-
-static void f([IsDiscard] int p)
+unsafe partial class Program
 {
-	Console.WriteLine(p);
-	Console.WriteLine(nameof(p));
+	public static readonly void* P;
+	private static readonly delegate*<void> Q;
+	public static readonly delegate*<void> R;
+
+	public ref int GetPinnableReferece() => ref *(int*)null;
 }
