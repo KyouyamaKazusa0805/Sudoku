@@ -20,5 +20,8 @@
 | SCA0301       | Naming    | Warning  | Please apply camel-casing onto local functions               |                                                              |
 | SCA0302       | Naming    | Warning  | Please name '@this' onto the first argument of the extension deconstruction method |                                                              |
 | SCA0401       | Usage     | Warning  | Prevent exposing exact-typed function pointers as public data members | Prevent exposing exact-typed function pointers as public data members; please use 'void*' instead |
-| SCA0402       | Usage     | Warning  | Method 'GetPinnableReference' lacks '[EditorBrowsable(EditorBrowsableState.Never)]' |                                                              |
+| SCA0402       | Design    | Warning  | Method 'GetPinnableReference' lacks '[EditorBrowsable(EditorBrowsableState.Never)]' |                                                              |
+| SCA0403       | Design    | Warning  | Method 'GetPinnableReference' cannot be static               |                                                              |
+| SCA0404       | Design    | Warning  | Method 'GetPinnableReference' cannot return void             |                                                              |
+| SCA0405       | Design    | Warning  | Method 'GetPinnableReference' should not expose to user unless it's not parameterless | Method 'GetPinnableReference' should not expose to user unless it's not parameterless; please remove '[EditorBrowsable(EditorBrowsable.Always)]' |
 

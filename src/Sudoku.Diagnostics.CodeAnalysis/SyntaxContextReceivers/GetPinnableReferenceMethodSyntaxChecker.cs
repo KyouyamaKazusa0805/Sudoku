@@ -1,6 +1,6 @@
 ﻿namespace Sudoku.Diagnostics.CodeAnalysis.SyntaxContextReceivers;
 
-[SyntaxChecker("SCA0402")]
+[SyntaxChecker("SCA0402", "SCA0403", "SCA0404", "SCA0405")]
 public sealed partial class GetPinnableReferenceMethodSyntaxChecker : ISyntaxContextReceiver
 {
 	/// <inheritdoc/>
@@ -21,21 +21,40 @@ public sealed partial class GetPinnableReferenceMethodSyntaxChecker : ISyntaxCon
 			return;
 		}
 
-		var symbol = semanticModel.GetDeclaredSymbol(node, _cancellationToken);
-		if (symbol is { ContainingType.TypeKind: TypeKind.Interface })
+		// Deconstruct the symbol.
+		var symbol = semanticModel.GetDeclaredSymbol(node, _cancellationToken)!;
+		if (
+			symbol is not
+			{
+				IsAbstract: var isAbstract,
+				IsStatic: var isStatic,
+				ContainingType.TypeKind: var typeKind,
+				ReturnType: var returnType
+			}
+		)
 		{
-			// We don't check any interface members on this case.
 			return;
 		}
 
-		if (symbol is not { IsStatic: false, IsAbstract: false, ReturnType: var returnType })
+		// We don't check any interface members on this case.
+		if (typeKind == TypeKind.Interface || isAbstract)
 		{
+			return;
+		}
+
+		// Can't be static.
+		if (isStatic)
+		{
+			Diagnostics.Add(Diagnostic.Create(SCA0403, identifier.GetLocation(), messageArgs: null));
 			return;
 		}
 
 		var voidSymbol = compilation.GetSpecialType(SpecialType.System_Void);
+
+		// Can't return void.
 		if (SymbolEqualityComparer.Default.Equals(returnType, voidSymbol))
 		{
+			Diagnostics.Add(Diagnostic.Create(SCA0404, identifier.GetLocation(), messageArgs: null));
 			return;
 		}
 
@@ -44,23 +63,29 @@ public sealed partial class GetPinnableReferenceMethodSyntaxChecker : ISyntaxCon
 		// because 'o is constant' is equivalent to 'o is type && (type)o == constant',
 		// where 'o is type' always returns false (because here 'o' is an 'object' instead of 'type').
 		var attributeSymbol = compilation.GetTypeByMetadataName(typeof(EditorBrowsableAttribute).FullName);
-		if (
-			symbol.GetAttributes().Any(
-				attributeData =>
-					attributeData is
-					{
-						AttributeClass: var attribute,
-						ConstructorArguments: { Length: 1 } constructorArguments
-					}
-					&& SymbolEqualityComparer.Default.Equals(attributeSymbol, attribute)
-					&& (EditorBrowsableState)constructorArguments[0].Value! == EditorBrowsableState.Never
-			)
-		)
-		{
-			return;
-		}
+		var attributeData = symbol.GetAttributes().FirstOrDefault(
+			attributeData =>
+				attributeData is { AttributeClass: var attribute, ConstructorArguments.Length: 1 }
+				&& SymbolEqualityComparer.Default.Equals(attributeSymbol, attribute)
+		);
 
-		// Add it into the collection.
-		Diagnostics.Add(Diagnostic.Create(SCA0402, identifier.GetLocation(), messageArgs: null));
+		var (descriptor, location) = attributeData switch
+		{
+			null => (SCA0402, identifier.GetLocation()),
+
+			{
+				ConstructorArguments: var cArgs,
+				ApplicationSyntaxReference: { Span: var span, SyntaxTree: var syntaxTree }
+			}
+			when (EditorBrowsableState)cArgs[0].Value! == EditorBrowsableState.Always =>
+				(SCA0405, Location.Create(syntaxTree, span)),
+
+			_ => (null, null)
+		};
+
+		if (descriptor is not null)
+		{
+			Diagnostics.Add(Diagnostic.Create(descriptor, location!, messageArgs: null));
+		}
 	}
 }
