@@ -1,5 +1,6 @@
-﻿using System;
-using System.Runtime.CompilerServices;
+﻿#pragma warning disable CS0169, CS0649
+
+using System;
 
 Console.WriteLine("Hello, world!");
 
