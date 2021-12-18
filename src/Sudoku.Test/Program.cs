@@ -1,14 +1,15 @@
-﻿#pragma warning disable CS0169, CS0649
-
-using System;
+﻿using System;
 
 Console.WriteLine("Hello, world!");
 
-unsafe partial class Program
+/// <summary>
+/// 
+/// </summary>
+public class P
 {
-	public static readonly void* P;
-	private static readonly delegate*<void> Q;
-	public static readonly delegate*<void> R;
-
-	public ref int GetPinnableReferece() => ref *(int*)null;
+	/// <summary>
+	/// 
+	/// </summary>
+	/// <returns></returns>
+	public int GetPinnableReferece() => 0;
 }

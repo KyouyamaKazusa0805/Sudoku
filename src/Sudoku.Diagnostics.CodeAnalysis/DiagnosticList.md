@@ -24,4 +24,5 @@
 | SCA0403       | Design    | Warning  | Method 'GetPinnableReference' cannot be static               |                                                              |
 | SCA0404       | Design    | Warning  | Method 'GetPinnableReference' cannot return void             |                                                              |
 | SCA0405       | Design    | Warning  | Method 'GetPinnableReference' should not expose to user unless it's not parameterless | Method 'GetPinnableReference' should not expose to user unless it's not parameterless; please remove '[EditorBrowsable(EditorBrowsable.Always)]' |
+| SCA0406       | Design    | Warning  | Method 'GetPinnableReference' should return ref type or ref readonly type |                                                              |
 

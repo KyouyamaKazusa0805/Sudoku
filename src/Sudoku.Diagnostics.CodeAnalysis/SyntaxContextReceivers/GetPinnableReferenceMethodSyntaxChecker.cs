@@ -1,6 +1,6 @@
 ﻿namespace Sudoku.Diagnostics.CodeAnalysis.SyntaxContextReceivers;
 
-[SyntaxChecker("SCA0402", "SCA0403", "SCA0404", "SCA0405")]
+[SyntaxChecker("SCA0402", "SCA0403", "SCA0404", "SCA0405", "SCA0406")]
 public sealed partial class GetPinnableReferenceMethodSyntaxChecker : ISyntaxContextReceiver
 {
 	/// <inheritdoc/>
@@ -29,7 +29,8 @@ public sealed partial class GetPinnableReferenceMethodSyntaxChecker : ISyntaxCon
 				IsAbstract: var isAbstract,
 				IsStatic: var isStatic,
 				ContainingType.TypeKind: var typeKind,
-				ReturnType: var returnType
+				ReturnType: var returnType,
+				RefKind: var refKind
 			}
 		)
 		{
@@ -55,6 +56,13 @@ public sealed partial class GetPinnableReferenceMethodSyntaxChecker : ISyntaxCon
 		if (SymbolEqualityComparer.Default.Equals(returnType, voidSymbol))
 		{
 			Diagnostics.Add(Diagnostic.Create(SCA0404, identifier.GetLocation(), messageArgs: null));
+			return;
+		}
+
+		// Must return ref or ref-readonly type.
+		if (refKind is not (RefKind.Ref or RefKind.RefReadOnly))
+		{
+			Diagnostics.Add(Diagnostic.Create(SCA0406, identifier.GetLocation(), messageArgs: null));
 			return;
 		}
 
