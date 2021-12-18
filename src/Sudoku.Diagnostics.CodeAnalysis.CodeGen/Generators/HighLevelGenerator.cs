@@ -21,7 +21,7 @@ public sealed partial class HighLevelGenerator : ISourceGenerator
 		}
 
 		// Get the compiler diagnostics and insert into the analyzer types.
-		var descriptors = 
+		var descriptors =
 			from detail in MarkdownHandler.SplitTable(File.ReadAllText(additionalFiles[0].Path))
 			select detail.ToDescriptor();
 
@@ -29,8 +29,29 @@ public sealed partial class HighLevelGenerator : ISourceGenerator
 		diagnostics.ForEach(context.ReportDiagnostic);
 
 		// Append analzyers.
-		foreach (var (shortName, fullName, diagnosticIds) in shortNames)
+		foreach (var (shortName, fullName, diagnosticIds, attributeData) in shortNames)
 		{
+			bool isDebuggingMode =
+				attributeData.NamedArguments is { Length: >= 1 } namedArguments
+				&& namedArguments.FirstOrDefault(static d => d.Key == nameof(SyntaxCheckerAttribute.Debugging)) is
+				{
+					Key: not null,
+					Value: var namedArgument
+				} && (bool)namedArgument.Value!;
+
+			string debuggerCode = isDebuggingMode
+				? $@"
+	{{
+		context.RegisterForSyntaxNotifications(() => new {shortName}SyntaxChecker(context.CancellationToken));
+
+		if (!global::System.Diagnostics.Debugger.IsAttached)
+		{{
+			global::System.Diagnostics.Debugger.Launch();
+		}}
+	}}"
+				: $@" =>
+		context.RegisterForSyntaxNotifications(() => new {shortName}SyntaxChecker(context.CancellationToken));";
+
 			context.AddSource(
 				$"{shortName}Analyzer.g.cs",
 				$@"namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers;
@@ -49,8 +70,7 @@ public sealed class {shortName}Analyzer : global::Microsoft.CodeAnalysis.ISource
 	/// <inheritdoc/>
 	[global::System.CodeDom.Compiler.GeneratedCode(""{GetType().FullName}"", ""{VersionValue}"")]
 	[global::System.Runtime.CompilerServices.CompilerGenerated]
-	public void Initialize(global::Microsoft.CodeAnalysis.GeneratorInitializationContext context) =>
-		context.RegisterForSyntaxNotifications(() => new {shortName}SyntaxChecker(context.CancellationToken));
+	public void Initialize(global::Microsoft.CodeAnalysis.GeneratorInitializationContext context){debuggerCode}
 }}
 "
 			);

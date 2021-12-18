@@ -33,7 +33,7 @@ partial class HighLevelGenerator
 		/// <summary>
 		/// Indicates the valid type names found.
 		/// </summary>
-		public ICollection<(string ShortName, string FullName, string[] DiagnosticIds)> Result { get; } = new List<(string, string, string[])>();
+		public ICollection<(string ShortName, string FullName, string[] DiagnosticIds, AttributeData AttributeData)> Result { get; } = new List<(string, string, string[], AttributeData)>();
 
 		/// <summary>
 		/// Indicates the possible compiler diagnostics found.
@@ -210,7 +210,8 @@ partial class HighLevelGenerator
 				(
 					indexOfSyntaxChecker == 1 ? name : name.Substring(0, indexOfSyntaxChecker),
 					name,
-					realValues.ToArray()
+					realValues.ToArray(),
+					attribute
 				)
 			);
 		}

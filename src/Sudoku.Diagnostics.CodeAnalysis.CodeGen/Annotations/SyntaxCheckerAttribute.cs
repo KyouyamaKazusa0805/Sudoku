@@ -34,6 +34,19 @@ public sealed class SyntaxCheckerAttribute : Attribute
 
 
 	/// <summary>
+	/// Indicates whether the source generator will generates the debugger code snippets
+	/// on method <see cref="ISourceGenerator.Initialize(GeneratorInitializationContext)"/>:
+	/// <code>
+	/// if (!Debugger.IsAttach)
+	/// {
+	///     Debugger.Launch();
+	/// }
+	/// </code>
+	/// </summary>
+	/// <seealso cref="ISourceGenerator.Initialize(GeneratorInitializationContext)"/>
+	public bool Debugging { get; init; }
+
+	/// <summary>
 	/// Indicates the supported diagnostic IDs that the current type.
 	/// </summary>
 	public string[] SupportedDiagnosticIds { get; }
