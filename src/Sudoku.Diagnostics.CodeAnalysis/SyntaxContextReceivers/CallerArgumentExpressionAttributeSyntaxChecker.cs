@@ -1,6 +1,6 @@
 ﻿namespace Sudoku.Diagnostics.CodeAnalysis.SyntaxContextReceivers;
 
-[SyntaxChecker("SCA0407")]
+[SyntaxChecker("SCA0407", "SCA0408", "SCA0409", "SCA0410")]
 public sealed partial class CallerArgumentExpressionAttributeSyntaxChecker : ISyntaxContextReceiver
 {
 	/// <inheritdoc/>
@@ -42,13 +42,29 @@ public sealed partial class CallerArgumentExpressionAttributeSyntaxChecker : ISy
 				continue;
 			}
 
-			if (parameter.GetAttributes().All(a => !SymbolEqualityComparer.Default.Equals(a.AttributeClass, attribute)))
+			var attributesData = parameter.GetAttributes();
+			var attributeData = attributesData.FirstOrDefault(a => SymbolEqualityComparer.Default.Equals(a.AttributeClass, attribute));
+			if (attributeData is null)
 			{
+				continue;
+			}
+
+			string attributeArgumentValue = (string)attributeData.ConstructorArguments[0].Value!;
+			if (argumentNodes.All(a => a.Expression.ToString() != attributeArgumentValue))
+			{
+				Diagnostics.Add(Diagnostic.Create(SCA0410, argument.GetLocation(), messageArgs: null));
+				continue;
+			}
+
+			if (argument is { Expression: IdentifierNameSyntax { Identifier.RawKind: (int)SyntaxKind.ArgListKeyword } })
+			{
+				Diagnostics.Add(Diagnostic.Create(SCA0409, argument.GetLocation(), messageArgs: null));
 				continue;
 			}
 
 			if (!SymbolEqualityComparer.Default.Equals(stringSymbol, parameterType))
 			{
+				Diagnostics.Add(Diagnostic.Create(SCA0408, argument.GetLocation(), messageArgs: null));
 				continue;
 			}
 

@@ -3,7 +3,6 @@ using System.Runtime.CompilerServices;
 
 string? s = "Hello";
 ThrowIfNull(s);
-ThrowIfNull(s, "");
 
 static partial class Program
 {
@@ -11,5 +10,15 @@ static partial class Program
 	{
 		if (obj is null)
 			throw new ArgumentNullException(paramName);
+	}
+
+	private static void ThrowIfNull(object? a, [CallerArgumentExpression("a")] __arglist)
+	{
+
+	}
+
+	private static void ThrowIfNull(object? a, [CallerArgumentExpression("a")] object? p = null)
+	{
+
 	}
 }

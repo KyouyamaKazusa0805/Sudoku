@@ -25,7 +25,10 @@
 | SCA0404       | Design    | Warning  | Method 'GetPinnableReference' cannot return void             |                                                              |
 | SCA0405       | Design    | Warning  | Method 'GetPinnableReference' should not expose to user unless it's not parameterless | Method 'GetPinnableReference' should not expose to user unless it's not parameterless; please remove '[EditorBrowsable(EditorBrowsable.Always)]' |
 | SCA0406       | Design    | Warning  | Method 'GetPinnableReference' should return ref type or ref readonly type |                                                              |
-| SCA0407       | Design    | Warning  | You should not assign any values on parameters having marked '[CallerArgumentExpression]' | You should not assign any values on parameters having marked '[CallerArgumentExpression]'; they are of control by compiler |
+| SCA0407       | Design    | Error    | You should not assign any values on parameters having marked '[CallerArgumentExpression]' | You should not assign any values on parameters having marked '[CallerArgumentExpression]'; they are of control by compiler |
+| SCA0408       | Design    | Warning  | Parameter having marked '[CallerArgumentExpression]' should be of type 'string?' |                                                              |
+| SCA0409       | Design    | Warning  | '__arglist' cannot be marked '[CallerArgumentExpression]'    |                                                              |
+| SCA0410       | Design    | Error    | Argument in '[CallerArgumentExpression]' must be a real parameter name |                                                              |
 | SCA0501       | Usage     | Warning  | Use 'Undefined' property instead                             |                                                              |
 | SCA0502       | Usage     | Warning  | Use 'IsUndefined' property instead                           |                                                              |
 | SCA0503       | Usage     | Warning  | 'Grid.EnumerateCandidates' can be simplified to 'Grid.GetEnumerator' |                                                              |
