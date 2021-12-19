@@ -1,15 +1,15 @@
 ﻿using System;
+using System.Runtime.CompilerServices;
 
-Console.WriteLine("Hello, world!");
+string? s = "Hello";
+ThrowIfNull(s);
+ThrowIfNull(s, "");
 
-/// <summary>
-/// 
-/// </summary>
-public class P
+static partial class Program
 {
-	/// <summary>
-	/// 
-	/// </summary>
-	/// <returns></returns>
-	public int GetPinnableReferece() => 0;
+	private static void ThrowIfNull<T>(T? obj, [CallerArgumentExpression("obj")] string? paramName = null) where T : class
+	{
+		if (obj is null)
+			throw new ArgumentNullException(paramName);
+	}
 }
