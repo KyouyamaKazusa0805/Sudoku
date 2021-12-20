@@ -1,11 +1,7 @@
 ﻿using Sudoku.Data;
 
-var grid = Grid.Empty;
-foreach (int candidate in grid.EnumerateCandidates())
-{
-
-}
-
+_ = Grid.Equals(new(), default);
+_ = default(Grid).Equals(new());
 
 static partial class Program
 {
