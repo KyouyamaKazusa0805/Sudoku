@@ -17,164 +17,80 @@ public sealed partial class GridSyntaxChecker : ISyntaxContextReceiver
 			return;
 		}
 
-		CheckUsageOnUndefined(node, semanticModel, gridSymbol);
-		CheckUsageOnIsUndefined(node, semanticModel, gridSymbol);
-		CheckUsageOnEnumerator(node, semanticModel, gridSymbol);
-		CheckUsageOnEquals(node, semanticModel, gridSymbol);
+		CheckPlainDefaultExpression(node, semanticModel, gridSymbol);
+		CheckDefaultExpressionUsages(node, semanticModel, gridSymbol);
+		CheckEnumerator(node, semanticModel, gridSymbol);
 		CheckNullAsFirstParseArgument(node, semanticModel, compilation, gridSymbol);
 	}
 
-	private void CheckUsageOnUndefined(SyntaxNode node, SemanticModel semanticModel, INamedTypeSymbol gridSymbol)
+	private void CheckPlainDefaultExpression(SyntaxNode node, SemanticModel semanticModel, INamedTypeSymbol gridSymbol)
 	{
-		switch (node)
+		var nodeOperation = semanticModel.GetOperation(node, _cancellationToken);
+		if (
+			nodeOperation is not IDefaultValueOperation
+			{
+				Type: var typeSymbol,
+				//Parent: not IParameterInitializerOperation
+			}
+		)
 		{
-			// default(Grid)
-			case DefaultExpressionSyntax
-			{
-				Type: var typeNode,
-				Parent: not EqualsValueClauseSyntax { Parent: ParameterSyntax }
-			}:
-			{
-				var symbol = semanticModel.GetTypeInfo(typeNode, _cancellationToken).Type!;
-				if (!SymbolEqualityComparer.Default.Equals(symbol, gridSymbol))
-				{
-					return;
-				}
-
-				if (ContainingTypeIsGrid(node, gridSymbol))
-				{
-					return;
-				}
-
-				Diagnostics.Add(Diagnostic.Create(SCA0501, node.GetLocation(), messageArgs: null));
-
-				break;
-			}
-
-			// default
-			case LiteralExpressionSyntax
-			{
-				RawKind: (int)SyntaxKind.DefaultLiteralExpression,
-				Parent: not EqualsValueClauseSyntax { Parent: ParameterSyntax }
-			}:
-			{
-				var symbol = semanticModel.GetTypeInfo(node, _cancellationToken).Type!;
-				if (!SymbolEqualityComparer.Default.Equals(symbol, gridSymbol))
-				{
-					return;
-				}
-
-				if (ContainingTypeIsGrid(node, gridSymbol))
-				{
-					return;
-				}
-
-				Diagnostics.Add(Diagnostic.Create(SCA0501, node.GetLocation(), messageArgs: null));
-
-				break;
-			}
+			return;
 		}
+
+		if (node.Parent is EqualsValueClauseSyntax { Parent: ParameterSyntax })
+		{
+			return;
+		}
+
+		if (!SymbolEqualityComparer.Default.Equals(typeSymbol, gridSymbol))
+		{
+			return;
+		}
+
+		if (ContainingTypeIsGrid(node, gridSymbol))
+		{
+			return;
+		}
+
+		Diagnostics.Add(Diagnostic.Create(SCA0501, node.GetLocation(), messageArgs: null));
 	}
 
-	private void CheckUsageOnIsUndefined(SyntaxNode node, SemanticModel semanticModel, INamedTypeSymbol gridSymbol)
+	private void CheckDefaultExpressionUsages(SyntaxNode node, SemanticModel semanticModel, INamedTypeSymbol gridSymbol)
 	{
-		switch (node)
+		var nodeOperation = semanticModel.GetOperation(node, _cancellationToken);
+		switch (nodeOperation)
 		{
-			// obj == default(Grid)
-			// obj != default(Grid)
-			case BinaryExpressionSyntax
-			{
-				Left: var leftExpr,
-				Right: DefaultExpressionSyntax { Type: var rightType },
-				RawKind: (int)SyntaxKind.EqualsExpression or (int)SyntaxKind.NotEqualsExpression
-			}:
-			{
-				var leftSymbol = semanticModel.GetTypeInfo(leftExpr, _cancellationToken).Type!;
-				if (!SymbolEqualityComparer.Default.Equals(gridSymbol, leftSymbol))
-				{
-					return;
-				}
-
-				var rightSymbol = semanticModel.GetTypeInfo(rightType, _cancellationToken).Type!;
-				if (!SymbolEqualityComparer.Default.Equals(gridSymbol, rightSymbol))
-				{
-					return;
-				}
-
-				Diagnostics.Add(Diagnostic.Create(SCA0502, node.GetLocation(), messageArgs: null));
-
-				break;
-			}
-
-			// default(Grid) == obj
-			// default(Grid) != obj
-			case BinaryExpressionSyntax
-			{
-				Left: DefaultExpressionSyntax { Type: var leftType },
-				Right: var rightExpr,
-				RawKind: (int)SyntaxKind.EqualsExpression or (int)SyntaxKind.NotEqualsExpression
-			}:
-			{
-				var rightSymbol = semanticModel.GetTypeInfo(rightExpr, _cancellationToken).Type!;
-				if (!SymbolEqualityComparer.Default.Equals(gridSymbol, rightSymbol))
-				{
-					return;
-				}
-
-				var leftSymbol = semanticModel.GetTypeInfo(leftType, _cancellationToken).Type!;
-				if (!SymbolEqualityComparer.Default.Equals(gridSymbol, leftSymbol))
-				{
-					return;
-				}
-
-				Diagnostics.Add(Diagnostic.Create(SCA0502, node.GetLocation(), messageArgs: null));
-
-				break;
-			}
-
 			// obj == default
 			// obj != default
-			case BinaryExpressionSyntax
-			{
-				Left: var leftExpr,
-				Right: LiteralExpressionSyntax { RawKind: (int)SyntaxKind.DefaultLiteralExpression } rightExpr,
-				RawKind: (int)SyntaxKind.EqualsExpression or (int)SyntaxKind.NotEqualsExpression
-			}:
-			{
-				var rightSymbol = semanticModel.GetTypeInfo(rightExpr, _cancellationToken).Type!;
-				if (!SymbolEqualityComparer.Default.Equals(gridSymbol, rightSymbol))
-				{
-					return;
-				}
-
-				var leftSymbol = semanticModel.GetTypeInfo(leftExpr, _cancellationToken).Type!;
-				if (!SymbolEqualityComparer.Default.Equals(gridSymbol, leftSymbol))
-				{
-					return;
-				}
-
-				Diagnostics.Add(Diagnostic.Create(SCA0502, node.GetLocation(), messageArgs: null));
-
-				break;
-			}
-
+			// obj == default(Grid)
+			// obj != default(Grid)
 			// default == obj
 			// default != obj
-			case BinaryExpressionSyntax
+			// default(Grid) == obj
+			// default(Grid) != obj
+			case IBinaryOperation
 			{
-				Left: LiteralExpressionSyntax { RawKind: (int)SyntaxKind.DefaultLiteralExpression } leftExpr,
-				Right: var rightExpr,
-				RawKind: (int)SyntaxKind.EqualsExpression or (int)SyntaxKind.NotEqualsExpression
+				LeftOperand: { Type: var leftSymbol } leftOperand,
+				RightOperand: { Type: var rightSymbol } rightOperand,
+				OperatorKind: BinaryOperatorKind.Equals or BinaryOperatorKind.NotEquals
 			}:
 			{
-				var leftSymbol = semanticModel.GetOperation(leftExpr, _cancellationToken)!.Type!;
 				if (!SymbolEqualityComparer.Default.Equals(gridSymbol, leftSymbol))
 				{
 					return;
 				}
 
-				var rightSymbol = semanticModel.GetOperation(rightExpr, _cancellationToken)!.Type!;
 				if (!SymbolEqualityComparer.Default.Equals(gridSymbol, rightSymbol))
+				{
+					return;
+				}
+
+				if (
+					(Left: leftOperand, Right: rightOperand) is not (
+						(Left: IDefaultValueOperation, Right: not IDefaultValueOperation)
+						or (Left: not IDefaultValueOperation, Right: IDefaultValueOperation)
+					)
+				)
 				{
 					return;
 				}
@@ -185,231 +101,142 @@ public sealed partial class GridSyntaxChecker : ISyntaxContextReceiver
 			}
 
 			// obj.Equals(default(Grid))
-			case InvocationExpressionSyntax
-			{
-				Expression: MemberAccessExpressionSyntax
-				{
-					RawKind: (int)SyntaxKind.SimpleMemberAccessExpression,
-					Expression: var expr
-				},
-				ArgumentList.Arguments: { Count: 1 } argumentNodes
-			}
-			when argumentNodes[0].Expression is DefaultExpressionSyntax { Type: { } type }:
-			{
-				var instanceSymbol = semanticModel.GetTypeInfo(expr, _cancellationToken).Type!;
-				if (!SymbolEqualityComparer.Default.Equals(instanceSymbol, gridSymbol))
-				{
-					return;
-				}
-
-				var argumentSymbol = semanticModel.GetTypeInfo(type, _cancellationToken).Type!;
-				if (!SymbolEqualityComparer.Default.Equals(argumentSymbol, gridSymbol))
-				{
-					return;
-				}
-
-				Diagnostics.Add(Diagnostic.Create(SCA0502, node.GetLocation(), messageArgs: null));
-
-				break;
-			}
-
 			// default(Grid).Equals(obj)
-			case InvocationExpressionSyntax
+			case IInvocationOperation
 			{
-				Expression: DefaultExpressionSyntax { Type: var type },
-				ArgumentList.Arguments: { Count: 1 } argumentNodes
-			}
-			when argumentNodes[0].Expression is var argumentExpression:
+				TargetMethod: { Name: "Equals", IsStatic: false },
+				Instance: var instanceOperation,
+				Type: var typeSymbol,
+				Arguments: { Length: 1 } arguments
+			}:
 			{
-				var instanceSymbol = semanticModel.GetTypeInfo(type, _cancellationToken).Type!;
-				if (!SymbolEqualityComparer.Default.Equals(instanceSymbol, gridSymbol))
+				if (!SymbolEqualityComparer.Default.Equals(typeSymbol, gridSymbol))
 				{
 					return;
 				}
 
-				var argumentSymbol = semanticModel.GetTypeInfo(argumentExpression, _cancellationToken).Type!;
-				if (!SymbolEqualityComparer.Default.Equals(argumentSymbol, gridSymbol))
+				var argumentOperation = arguments[0];
+
+				if (
+					(Left: instanceOperation!, Right: argumentOperation) switch
+					{
+						(
+							Left: IDefaultValueOperation { Type: var leftOperationType },
+							Right: { Type: var rightOperationType } r
+						)
+						when f(leftOperationType, rightOperationType) => r is not IDefaultValueOperation,
+
+						(
+							Left: { Type: var leftOperationType } l,
+							Right: IDefaultValueOperation { Type: var rightOperationType }
+						)
+						when f(leftOperationType, rightOperationType) => l is not IDefaultValueOperation,
+
+						_ => default(bool?)
+					} is not { } status
+				)
 				{
 					return;
 				}
 
-				Diagnostics.Add(Diagnostic.Create(SCA0502, node.GetLocation(), messageArgs: null));
+				Diagnostics.Add(
+					Diagnostic.Create(
+						status switch { true => SCA0502, false => SCA0504 },
+						node.GetLocation(),
+						messageArgs: null
+					)
+				);
 
 				break;
+
+
+				[MethodImpl(MethodImplOptions.AggressiveInlining)]
+				bool f(ITypeSymbol? a, ITypeSymbol? b) =>
+					SymbolEqualityComparer.Default.Equals(a, gridSymbol)
+					&& SymbolEqualityComparer.Default.Equals(b, gridSymbol);
 			}
 
 			// Grid.Equals(obj, default)
-			case InvocationExpressionSyntax
-			{
-				Expression: MemberAccessExpressionSyntax
-				{
-					RawKind: (int)SyntaxKind.SimpleMemberAccessExpression,
-					Expression: TypeSyntax type,
-					Name.Identifier.ValueText: "Equals"
-				},
-				ArgumentList.Arguments: { Count: 2 } arguments
-			}
-			when arguments[0].Expression is var argumentExpression and not DefaultExpressionSyntax
-			&& arguments[1].Expression is DefaultExpressionSyntax { Type: var defaultType }:
-			{
-				var typeSymbol = semanticModel.GetTypeInfo(type, _cancellationToken).Type!;
-				if (!SymbolEqualityComparer.Default.Equals(typeSymbol, gridSymbol))
-				{
-					return;
-				}
-
-				var firstArgumentSymbol = semanticModel.GetTypeInfo(argumentExpression, _cancellationToken).Type!;
-				if (!SymbolEqualityComparer.Default.Equals(firstArgumentSymbol, gridSymbol))
-				{
-					return;
-				}
-
-				var defaultTypeSymbol = semanticModel.GetTypeInfo(defaultType, _cancellationToken).Type!;
-				if (!SymbolEqualityComparer.Default.Equals(defaultTypeSymbol, gridSymbol))
-				{
-					return;
-				}
-
-				Diagnostics.Add(Diagnostic.Create(SCA0502, node.GetLocation(), messageArgs: null));
-
-				break;
-			}
-
+			// Grid.Equals(obj, default(Grid))
 			// Grid.Equals(default, obj)
-			case InvocationExpressionSyntax
+			// Grid.Equals(default(Grid), obj)
+			case IInvocationOperation
 			{
-				Expression: MemberAccessExpressionSyntax
-				{
-					RawKind: (int)SyntaxKind.SimpleMemberAccessExpression,
-					Expression: TypeSyntax type,
-					Name.Identifier.ValueText: "Equals"
-				},
-				ArgumentList.Arguments: { Count: 2 } arguments
-			}
-			when arguments[0].Expression is DefaultExpressionSyntax { Type: var defaultType }
-			&& arguments[1].Expression is var argumentExpression and not DefaultExpressionSyntax:
+				TargetMethod: { Name: "Equals", IsStatic: true },
+				Instance: null,
+				Type: var typeSymbol,
+				Arguments: { Length: 2 } arguments
+			}:
 			{
-				var typeSymbol = semanticModel.GetTypeInfo(type, _cancellationToken).Type!;
 				if (!SymbolEqualityComparer.Default.Equals(typeSymbol, gridSymbol))
 				{
 					return;
 				}
 
-				var firstArgumentSymbol = semanticModel.GetTypeInfo(argumentExpression, _cancellationToken).Type!;
-				if (!SymbolEqualityComparer.Default.Equals(firstArgumentSymbol, gridSymbol))
+				var argument1Operation = arguments[0];
+				var argument2Operation = arguments[1];
+				if (
+					(Left: argument1Operation, Right: argument2Operation) switch
+					{
+						(
+							Left: IDefaultValueOperation { Type: var leftOperationType },
+							Right: { Type: var rightOperationType } r
+						)
+						when f(leftOperationType, rightOperationType) => r is not IDefaultValueOperation,
+
+						(
+							Left: { Type: var leftOperationType } l,
+							Right: IDefaultValueOperation { Type: var rightOperationType }
+						)
+						when f(leftOperationType, rightOperationType) => l is not IDefaultValueOperation,
+
+						_ => default(bool?)
+					} is not { } status
+				)
 				{
 					return;
 				}
 
-				var defaultTypeSymbol = semanticModel.GetTypeInfo(defaultType, _cancellationToken).Type!;
-				if (!SymbolEqualityComparer.Default.Equals(defaultTypeSymbol, gridSymbol))
-				{
-					return;
-				}
-
-				Diagnostics.Add(Diagnostic.Create(SCA0502, node.GetLocation(), messageArgs: null));
+				Diagnostics.Add(
+					Diagnostic.Create(
+						status switch { true => SCA0502, false => SCA0504 },
+						node.GetLocation(),
+						messageArgs: null
+					)
+				);
 
 				break;
+
+
+				[MethodImpl(MethodImplOptions.AggressiveInlining)]
+				bool f(ITypeSymbol? a, ITypeSymbol? b) =>
+					SymbolEqualityComparer.Default.Equals(a, gridSymbol)
+					&& SymbolEqualityComparer.Default.Equals(b, gridSymbol);
 			}
 		}
 	}
 
-	private void CheckUsageOnEnumerator(SyntaxNode node, SemanticModel semanticModel, INamedTypeSymbol gridSymbol)
+	private void CheckEnumerator(SyntaxNode node, SemanticModel semanticModel, INamedTypeSymbol gridSymbol)
 	{
+		var nodeOperation = semanticModel.GetOperation(node, _cancellationToken);
 		if (
-			node is not InvocationExpressionSyntax
+			nodeOperation is not IInvocationOperation
 			{
-				Expression: MemberAccessExpressionSyntax
-				{
-					Expression: var expr,
-					Name.Identifier.ValueText: "EnumerateCandidates"
-				},
-				ArgumentList.Arguments.Count: 0
+				TargetMethod.Name: "EnumerateCandidates",
+				Arguments.IsEmpty: true,
+				Type: var typeSymbol
 			}
 		)
 		{
 			return;
 		}
 
-		var symbol = semanticModel.GetOperation(expr, _cancellationToken)!.Type!;
-		if (!SymbolEqualityComparer.Default.Equals(gridSymbol, symbol))
+		if (!SymbolEqualityComparer.Default.Equals(gridSymbol, typeSymbol))
 		{
 			return;
 		}
 
 		Diagnostics.Add(Diagnostic.Create(SCA0503, node.GetLocation(), messageArgs: null));
-	}
-
-	private void CheckUsageOnEquals(SyntaxNode node, SemanticModel semanticModel, INamedTypeSymbol gridSymbol)
-	{
-		switch (node)
-		{
-			// obj.Equals(another)
-			case InvocationExpressionSyntax
-			{
-				Expression: MemberAccessExpressionSyntax
-				{
-					RawKind: (int)SyntaxKind.SimpleMemberAccessExpression,
-					Expression: var expr,
-					Name.Identifier.ValueText: "Equals"
-				},
-				ArgumentList.Arguments: { Count: 1 } arguments
-			}
-			when arguments[0].Expression is var argumentExpression:
-			{
-				var obj1Symbol = semanticModel.GetTypeInfo(expr, _cancellationToken).Type;
-				if (!SymbolEqualityComparer.Default.Equals(obj1Symbol, gridSymbol))
-				{
-					return;
-				}
-
-				var obj2Symbol = semanticModel.GetTypeInfo(argumentExpression, _cancellationToken).Type;
-				if (!SymbolEqualityComparer.Default.Equals(obj2Symbol, gridSymbol))
-				{
-					return;
-				}
-
-				Diagnostics.Add(Diagnostic.Create(SCA0504, node.GetLocation(), messageArgs: null));
-
-				break;
-			}
-
-			// Grid.Equals(obj, another)
-			case InvocationExpressionSyntax
-			{
-				Expression: MemberAccessExpressionSyntax
-				{
-					RawKind: (int)SyntaxKind.SimpleMemberAccessExpression,
-					Expression: TypeSyntax type,
-					Name.Identifier.ValueText: "Equals"
-				},
-				ArgumentList.Arguments: { Count: 2 } arguments
-			}
-			when arguments[0].Expression is var obj1Expression && arguments[1].Expression is var obj2Expression:
-			{
-				var typeSymbol = semanticModel.GetTypeInfo(type, _cancellationToken).Type;
-				if (!SymbolEqualityComparer.Default.Equals(typeSymbol, gridSymbol))
-				{
-					return;
-				}
-
-				var obj1Symbol = semanticModel.GetTypeInfo(obj1Expression, _cancellationToken).Type;
-				if (!SymbolEqualityComparer.Default.Equals(obj1Symbol, gridSymbol))
-				{
-					return;
-				}
-
-				var obj2Symbol = semanticModel.GetTypeInfo(obj2Expression, _cancellationToken).Type;
-				if (!SymbolEqualityComparer.Default.Equals(obj2Symbol, gridSymbol))
-				{
-					return;
-				}
-
-				Diagnostics.Add(Diagnostic.Create(SCA0504, node.GetLocation(), messageArgs: null));
-
-				break;
-			}
-		}
 	}
 
 	private void CheckNullAsFirstParseArgument(
