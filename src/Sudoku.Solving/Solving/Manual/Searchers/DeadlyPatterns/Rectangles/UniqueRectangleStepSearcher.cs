@@ -3934,6 +3934,7 @@ public sealed unsafe class UniqueRectangleStepSearcher : IUniqueRectangleStepSea
 		}
 	}
 
+#pragma warning disable IDE0060
 	/// <summary>
 	/// Check UR+Guardian, with the external subset.
 	/// </summary>
@@ -3957,6 +3958,7 @@ public sealed unsafe class UniqueRectangleStepSearcher : IUniqueRectangleStepSea
 		// TODO: Implement this.
 
 	}
+#pragma warning restore IDE0060
 
 	/// <summary>
 	/// Check AR+Hidden single.
