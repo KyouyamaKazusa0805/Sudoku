@@ -1,7 +1,6 @@
 ﻿using Sudoku.Data;
 
-_ = Grid.Equals(new(), default);
-_ = default(Grid).Equals(new());
+var grid = Grid.Parse((string?)null);
 
 static partial class Program
 {

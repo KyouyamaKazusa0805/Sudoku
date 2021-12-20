@@ -21,6 +21,7 @@ public sealed partial class GridSyntaxChecker : ISyntaxContextReceiver
 		CheckUsageOnIsUndefined(node, semanticModel, gridSymbol);
 		CheckUsageOnEnumerator(node, semanticModel, gridSymbol);
 		CheckUsageOnEquals(node, semanticModel, gridSymbol);
+		CheckNullAsFirstParseArgument(node, semanticModel, compilation, gridSymbol);
 	}
 
 	private void CheckUsageOnUndefined(SyntaxNode node, SemanticModel semanticModel, INamedTypeSymbol gridSymbol)
@@ -409,6 +410,42 @@ public sealed partial class GridSyntaxChecker : ISyntaxContextReceiver
 				break;
 			}
 		}
+	}
+
+	private void CheckNullAsFirstParseArgument(
+		SyntaxNode node,
+		SemanticModel semanticModel,
+		Compilation compilation,
+		INamedTypeSymbol gridSymbol
+	)
+	{
+		var operation = semanticModel.GetOperation(node, _cancellationToken);
+		if (
+			operation is not IInvocationOperation
+			{
+				TargetMethod.Name: "Parse" or "TryParse",
+				Type: var operationTypeSymbol,
+				Arguments: { Length: >= 1 } arguments
+			}
+		)
+		{
+			return;
+		}
+
+		if (!SymbolEqualityComparer.Default.Equals(operationTypeSymbol, gridSymbol))
+		{
+			return;
+		}
+
+		var argumentTypeSymbol = arguments[0].Type;
+		var pCharSymbol = compilation.CreatePointerTypeSymbol(compilation.GetSpecialType(SpecialType.System_Char));
+		if (argumentTypeSymbol?.SpecialType != SpecialType.System_String
+			&& !SymbolEqualityComparer.Default.Equals(argumentTypeSymbol, pCharSymbol))
+		{
+			return;
+		}
+
+		Diagnostics.Add(Diagnostic.Create(SCA0505, node.GetLocation(), messageArgs: null));
 	}
 
 
