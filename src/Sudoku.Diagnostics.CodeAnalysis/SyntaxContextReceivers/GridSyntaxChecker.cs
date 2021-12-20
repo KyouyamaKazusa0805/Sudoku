@@ -56,12 +56,7 @@ public sealed partial class GridSyntaxChecker : ISyntaxContextReceiver
 				Parent: not EqualsValueClauseSyntax { Parent: ParameterSyntax }
 			}:
 			{
-				var operation = semanticModel.GetOperation(node, _cancellationToken);
-				if (operation is not { Type: var symbol })
-				{
-					return;
-				}
-
+				var symbol = semanticModel.GetTypeInfo(node, _cancellationToken).Type!;
 				if (!SymbolEqualityComparer.Default.Equals(symbol, gridSymbol))
 				{
 					return;
@@ -92,13 +87,13 @@ public sealed partial class GridSyntaxChecker : ISyntaxContextReceiver
 				RawKind: (int)SyntaxKind.EqualsExpression or (int)SyntaxKind.NotEqualsExpression
 			}:
 			{
-				var leftSymbol = semanticModel.GetOperation(leftExpr, _cancellationToken)!.Type!;
+				var leftSymbol = semanticModel.GetTypeInfo(leftExpr, _cancellationToken).Type!;
 				if (!SymbolEqualityComparer.Default.Equals(gridSymbol, leftSymbol))
 				{
 					return;
 				}
 
-				var rightSymbol = semanticModel.GetOperation(rightType, _cancellationToken)!.Type!;
+				var rightSymbol = semanticModel.GetTypeInfo(rightType, _cancellationToken).Type!;
 				if (!SymbolEqualityComparer.Default.Equals(gridSymbol, rightSymbol))
 				{
 					return;
@@ -118,13 +113,13 @@ public sealed partial class GridSyntaxChecker : ISyntaxContextReceiver
 				RawKind: (int)SyntaxKind.EqualsExpression or (int)SyntaxKind.NotEqualsExpression
 			}:
 			{
-				var rightSymbol = semanticModel.GetOperation(rightExpr, _cancellationToken)!.Type!;
+				var rightSymbol = semanticModel.GetTypeInfo(rightExpr, _cancellationToken).Type!;
 				if (!SymbolEqualityComparer.Default.Equals(gridSymbol, rightSymbol))
 				{
 					return;
 				}
 
-				var leftSymbol = semanticModel.GetOperation(leftType, _cancellationToken)!.Type!;
+				var leftSymbol = semanticModel.GetTypeInfo(leftType, _cancellationToken).Type!;
 				if (!SymbolEqualityComparer.Default.Equals(gridSymbol, leftSymbol))
 				{
 					return;
@@ -144,13 +139,13 @@ public sealed partial class GridSyntaxChecker : ISyntaxContextReceiver
 				RawKind: (int)SyntaxKind.EqualsExpression or (int)SyntaxKind.NotEqualsExpression
 			}:
 			{
-				var rightSymbol = semanticModel.GetOperation(rightExpr, _cancellationToken)!.Type!;
+				var rightSymbol = semanticModel.GetTypeInfo(rightExpr, _cancellationToken).Type!;
 				if (!SymbolEqualityComparer.Default.Equals(gridSymbol, rightSymbol))
 				{
 					return;
 				}
 
-				var leftSymbol = semanticModel.GetOperation(leftExpr, _cancellationToken)!.Type!;
+				var leftSymbol = semanticModel.GetTypeInfo(leftExpr, _cancellationToken).Type!;
 				if (!SymbolEqualityComparer.Default.Equals(gridSymbol, leftSymbol))
 				{
 					return;
@@ -199,13 +194,13 @@ public sealed partial class GridSyntaxChecker : ISyntaxContextReceiver
 			}
 			when argumentNodes[0].Expression is DefaultExpressionSyntax { Type: { } type }:
 			{
-				var instanceSymbol = semanticModel.GetOperation(expr, _cancellationToken)!.Type!;
+				var instanceSymbol = semanticModel.GetTypeInfo(expr, _cancellationToken).Type!;
 				if (!SymbolEqualityComparer.Default.Equals(instanceSymbol, gridSymbol))
 				{
 					return;
 				}
 
-				var argumentSymbol = semanticModel.GetOperation(type, _cancellationToken)!.Type!;
+				var argumentSymbol = semanticModel.GetTypeInfo(type, _cancellationToken).Type!;
 				if (!SymbolEqualityComparer.Default.Equals(argumentSymbol, gridSymbol))
 				{
 					return;
@@ -230,7 +225,7 @@ public sealed partial class GridSyntaxChecker : ISyntaxContextReceiver
 					return;
 				}
 
-				var argumentSymbol = semanticModel.GetOperation(argumentExpression, _cancellationToken)!.Type!;
+				var argumentSymbol = semanticModel.GetTypeInfo(argumentExpression, _cancellationToken).Type!;
 				if (!SymbolEqualityComparer.Default.Equals(argumentSymbol, gridSymbol))
 				{
 					return;
@@ -261,7 +256,7 @@ public sealed partial class GridSyntaxChecker : ISyntaxContextReceiver
 					return;
 				}
 
-				var firstArgumentSymbol = semanticModel.GetOperation(argumentExpression, _cancellationToken)!.Type!;
+				var firstArgumentSymbol = semanticModel.GetTypeInfo(argumentExpression, _cancellationToken).Type!;
 				if (!SymbolEqualityComparer.Default.Equals(firstArgumentSymbol, gridSymbol))
 				{
 					return;
@@ -298,7 +293,7 @@ public sealed partial class GridSyntaxChecker : ISyntaxContextReceiver
 					return;
 				}
 
-				var firstArgumentSymbol = semanticModel.GetOperation(argumentExpression, _cancellationToken)!.Type!;
+				var firstArgumentSymbol = semanticModel.GetTypeInfo(argumentExpression, _cancellationToken).Type!;
 				if (!SymbolEqualityComparer.Default.Equals(firstArgumentSymbol, gridSymbol))
 				{
 					return;
