@@ -45,13 +45,6 @@ public sealed unsafe class AlternatingInferenceChainStepSearcher : IAlternatingI
 	/// <inheritdoc/>
 	public SearchingOptions Options { get; set; } = new(13, DisplayingLevel.B);
 
-	/// <inheritdoc/>
-	public delegate*<in Grid, bool> Predicate
-	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => null;
-	}
-
 
 	/// <inheritdoc/>
 	public Step? GetAll(ICollection<Step> accumulator, in Grid grid, bool onlyFindOne)

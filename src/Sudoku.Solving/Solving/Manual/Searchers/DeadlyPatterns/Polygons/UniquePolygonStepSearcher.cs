@@ -202,23 +202,15 @@ public sealed unsafe class UniquePolygonStepSearcher : IUniquePolygonStepSearche
 	/// <inheritdoc/>
 	public SearchingOptions Options { get; set; } = new(17, DisplayingLevel.B);
 
-	/// <inheritdoc/>
-	public delegate*<in Grid, bool> Predicate
-	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get
-		{
-			return &isWorth;
-
-
-			static bool isWorth(in Grid grid) => EmptyMap.Count >= 7;
-		}
-	}
-
 
 	/// <inheritdoc/>
 	public Step? GetAll(ICollection<Step> accumulator, in Grid grid, bool onlyFindOne)
 	{
+		if (EmptyMap.Count < 7)
+		{
+			return null;
+		}
+
 		for (int i = 0, end = EmptyMap.Count == 7 ? BdpTemplatesSize3Count : BdpTemplatesSize4Count; i < end; i++)
 		{
 			var pattern = Patterns[i];

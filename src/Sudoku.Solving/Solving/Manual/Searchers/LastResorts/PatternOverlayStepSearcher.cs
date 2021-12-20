@@ -14,13 +14,6 @@ public sealed unsafe class PatternOverlayStepSearcher : IPatternOverlayStepSearc
 	public SearchingOptions Options { get; set; } =
 		new(20, DisplayingLevel.C, EnabledAreas: EnabledAreas.Gathering, DisabledReason: DisabledReason.LastResort);
 
-	/// <inheritdoc/>
-	public delegate*<in Grid, bool> Predicate
-	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => null;
-	}
-
 
 	/// <inheritdoc/>
 	public Step? GetAll(ICollection<Step> accumulator, in Grid grid, bool onlyFindOne)

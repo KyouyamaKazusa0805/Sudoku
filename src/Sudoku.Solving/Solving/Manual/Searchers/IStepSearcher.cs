@@ -10,35 +10,6 @@ public unsafe interface IStepSearcher
 	/// </summary>
 	SearchingOptions Options { get; set; }
 
-	/// <summary>
-	/// Checks the specified grid to get the result whether the specified grid can use this technique.
-	/// </summary>
-	/// <returns>
-	/// Returns a function pointer that executes and checks a sudoku grid puzzle,
-	/// and then returns a <see cref="bool"/> result when:
-	/// <list type="table">
-	/// <listheader>
-	/// <term>Value</term>
-	/// <description>The description</description>
-	/// </listheader>
-	/// <item>
-	/// <term><c><see langword="true"/></c></term>
-	/// <description>The grid can use this step searcher.</description>
-	/// </item>
-	/// <item>
-	/// <term><c><see langword="false"/></c></term>
-	/// <description>
-	/// The grid may be useless to use this step searcher because it doesn't satisfy the certain pre-conditions.
-	/// </description>
-	/// </item>
-	/// </list>
-	/// </returns>
-	/// <remarks>
-	/// Please note that the property will return a function pointer,
-	/// not a method result after being executed.
-	/// </remarks>
-	delegate*<in Grid, bool> Predicate { get; }
-
 
 	/// <summary>
 	/// Accumulate all possible steps into the specified accumulator.

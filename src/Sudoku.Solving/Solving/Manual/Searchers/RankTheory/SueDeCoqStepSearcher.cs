@@ -15,25 +15,19 @@ public sealed unsafe class SueDeCoqStepSearcher : ISueDeCoqStepSearcher
 	/// <inheritdoc/>
 	public SearchingOptions Options { get; set; } = new(15, DisplayingLevel.C);
 
-	/// <inheritdoc/>
-	public delegate*<in Grid, bool> Predicate
-	{
-		get
-		{
-			// A vaild SdC needs at least 4 cells like:
-			//
-			//     abcd abcd | ab
-			//     cd        |
-			return &isWorth;
-
-
-			static bool isWorth(in Grid grid) => EmptyMap.Count >= 4;
-		}
-	}
 
 	/// <inheritdoc/>
 	public Step? GetAll(ICollection<Step> accumulator, in Grid grid, bool onlyFindOne)
 	{
+		// A vaild SdC needs at least 4 cells like:
+		//
+		//     abcd abcd | ab
+		//     cd        |
+		if (EmptyMap.Count < 4)
+		{
+			return null;
+		}
+
 		var list = new List<Cells>(4);
 		foreach (bool cannibalMode in stackalloc[] { false, true })
 		{

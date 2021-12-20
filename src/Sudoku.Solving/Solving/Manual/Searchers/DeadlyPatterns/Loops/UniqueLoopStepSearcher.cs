@@ -16,24 +16,15 @@ public sealed unsafe class UniqueLoopStepSearcher : IUniqueLoopStepSearcher, IUn
 	/// <inheritdoc/>
 	public SearchingOptions Options { get; set; } = new(10, DisplayingLevel.B);
 
-	/// <inheritdoc/>
-	public delegate*<in Grid, bool> Predicate
-	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get
-		{
-			// A valid unique loop must contain at least 5 bivalue cells.
-			return &isWorth;
-
-
-			static bool isWorth(in Grid grid) => BivalueMap.Count >= 5;
-		}
-	}
-
 
 	/// <inheritdoc/>
 	public Step? GetAll(ICollection<Step> accumulator, in Grid grid, bool onlyFindOne)
 	{
+		if (BivalueMap.Count < 5)
+		{
+			return null;
+		}
+
 		var resultAccumulator = new List<UniqueLoopStep>();
 		var loops = new List<(Cells, IList<(ChainLink, ColorIdentifier)>)>();
 		var tempLoop = new List<int>(14);

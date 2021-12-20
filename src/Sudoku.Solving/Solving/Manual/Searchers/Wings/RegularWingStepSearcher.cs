@@ -28,18 +28,12 @@ public sealed unsafe class RegularWingStepSearcher : IRegularWingStepSearcher
 	public int MaxSize
 	{
 		get => _maxSize;
+
 		set => _maxSize = value > 9 ? throw new ArgumentOutOfRangeException(nameof(value)) : value;
 	}
 
 	/// <inheritdoc/>
 	public SearchingOptions Options { get; set; } = new(6, DisplayingLevel.B);
-
-	/// <inheritdoc/>
-	public delegate*<in Grid, bool> Predicate
-	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => null;
-	}
 
 
 	/// <inheritdoc/>

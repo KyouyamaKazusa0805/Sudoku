@@ -21,13 +21,6 @@ public sealed unsafe class NormalFishStepSearcher : INormalFishStepSearcher
 	public SearchingOptions Options { get; set; } = new(4, DisplayingLevel.B);
 
 	/// <inheritdoc/>
-	public delegate*<in Grid, bool> Predicate
-	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => null;
-	}
-
-	/// <inheritdoc/>
 	/// <remarks>
 	/// I hide this member on purpose because 4 is the maximum size of subsets found in practice.
 	/// </remarks>

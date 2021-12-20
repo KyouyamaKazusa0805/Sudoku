@@ -16,13 +16,6 @@ public sealed unsafe class SeniorExocetStepSearcher : ISeniorExocetStepSearcher
 	/// <inheritdoc/>
 	public SearchingOptions Options { get; set; } = new(32, DisplayingLevel.D);
 
-	/// <inheritdoc/>
-	public delegate*<in Grid, bool> Predicate
-	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => null;
-	}
-
 
 	/// <inheritdoc/>
 	public Step? GetAll(ICollection<Step> accumulator, in Grid grid, bool onlyFindOne)

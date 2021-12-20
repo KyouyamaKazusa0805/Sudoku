@@ -16,22 +16,15 @@ public sealed unsafe class BivalueOddagonStepSearcher : IBivalueOddagonStepSearc
 	/// <inheritdoc/>
 	public SearchingOptions Options { get; set; } = new(14, DisplayingLevel.B);
 
-	/// <inheritdoc/>
-	public delegate*<in Grid, bool> Predicate
-	{
-		get
-		{
-			return &isWorth;
-
-
-			static bool isWorth(in Grid grid) => BivalueMap.Count >= 4;
-		}
-	}
-
 
 	/// <inheritdoc/>
 	public Step? GetAll(ICollection<Step> accumulator, in Grid grid, bool onlyFindOne)
 	{
+		if (BivalueMap.Count < 4)
+		{
+			return null;
+		}
+
 		var resultAccumulator = new List<BivalueOddagonStep>();
 		var loops = new List<(Cells, IList<(ChainLink, ColorIdentifier)>)>();
 		var tempLoop = new List<int>(14);

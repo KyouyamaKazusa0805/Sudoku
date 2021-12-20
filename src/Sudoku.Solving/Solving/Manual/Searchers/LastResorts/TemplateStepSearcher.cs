@@ -24,13 +24,6 @@ public sealed unsafe class TemplateStepSearcher : ITemplateStepSearcher
 	/// <inheritdoc/>
 	public Grid* Solution { get; set; }
 
-	/// <inheritdoc/>
-	public delegate*<in Grid, bool> Predicate
-	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => null;
-	}
-
 
 	/// <inheritdoc/>
 	public Step? GetAll(ICollection<Step> accumulator, in Grid grid, bool onlyFindOne)

@@ -14,13 +14,6 @@ public sealed unsafe class LockedCandidatesStepSearcher : ILockedCandidatesStepS
 	/// <inheritdoc/>
 	public SearchingOptions Options { get; set; } = new(2, DisplayingLevel.A);
 
-	/// <inheritdoc/>
-	public delegate*<in Grid, bool> Predicate
-	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => null;
-	}
-
 
 	/// <inheritdoc/>
 	/// <remarks>

@@ -19,13 +19,6 @@ public sealed unsafe class AlmostLockedCandidatesStepSearcher : IAlmostLockedCan
 	public SearchingOptions Options { get; set; } = new(9, DisplayingLevel.B);
 
 	/// <inheritdoc/>
-	public delegate*<in Grid, bool> Predicate
-	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => null;
-	}
-
-	/// <inheritdoc/>
 	bool IAlmostLockedCandidatesStepSearcher.CheckForValues { get; set; } = false;
 
 

@@ -31,13 +31,6 @@ public sealed unsafe class BowmanBingoStepSearcher : IBowmanBingoStepSearcher
 		DisabledReason = DisabledReason.LastResort | DisabledReason.TooSlow
 	};
 
-	/// <inheritdoc/>
-	public delegate*<in Grid, bool> Predicate
-	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => null;
-	}
-
 
 	/// <inheritdoc/>
 	public Step? GetAll(ICollection<Step> accumulator, in Grid grid, bool onlyFindOne)

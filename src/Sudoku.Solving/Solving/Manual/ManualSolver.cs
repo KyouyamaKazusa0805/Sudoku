@@ -113,12 +113,7 @@ public sealed unsafe partial class ManualSolver : IPuzzleSolver
 					// If the searcher is currently disabled, just skip it.
 					continue;
 				}
-				case (
-					_,
-					Searcher: { Predicate: var predicate },
-					This: { IsFastSearching: var isFastSearching }
-				)
-				when predicate != null && predicate(playground) || predicate == null:
+				case (_, _, This: { IsFastSearching: var isFastSearching }):
 				{
 					searcher.GetAll(tempSteps, playground, false);
 					if (tempSteps.Count == 0)
