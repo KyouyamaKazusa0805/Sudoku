@@ -1,24 +1,11 @@
-﻿using System;
-using System.Runtime.CompilerServices;
+﻿#pragma warning disable CS0219, IDE0059
 
-string? s = "Hello";
-ThrowIfNull(s);
+using Sudoku.Data;
+
+_ = new Grid();
+_ = default(Grid);
+Grid discard = default;
 
 static partial class Program
 {
-	private static void ThrowIfNull<T>(T? obj, [CallerArgumentExpression("obj")] string? paramName = null) where T : class
-	{
-		if (obj is null)
-			throw new ArgumentNullException(paramName);
-	}
-
-	private static void ThrowIfNull(object? a, [CallerArgumentExpression("a")] __arglist)
-	{
-
-	}
-
-	private static void ThrowIfNull(object? a, [CallerArgumentExpression("a")] object? p = null)
-	{
-
-	}
 }

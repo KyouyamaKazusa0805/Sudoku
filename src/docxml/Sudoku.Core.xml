@@ -2760,8 +2760,7 @@
         </member>
         <member name="M:Sudoku.Data.Grid.#ctor">
             <summary>
-            Initializes a <see cref="T:Sudoku.Data.Grid"/> instance using the <see langword="default"/> value
-            (i.e. <see cref="F:Sudoku.Data.Grid.Empty"/> instance) to initialize.
+            Initializes a <see cref="T:Sudoku.Data.Grid"/> instance using the <see cref="F:Sudoku.Data.Grid.Empty"/> instance to initialize.
             </summary>
         </member>
         <member name="M:Sudoku.Data.Grid.#ctor(System.Int32[])">

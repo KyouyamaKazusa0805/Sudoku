@@ -110,8 +110,7 @@ public unsafe partial struct Grid
 
 
 	/// <summary>
-	/// Initializes a <see cref="Grid"/> instance using the <see langword="default"/> value
-	/// (i.e. <see cref="Empty"/> instance) to initialize.
+	/// Initializes a <see cref="Grid"/> instance using the <see cref="Empty"/> instance to initialize.
 	/// </summary>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public Grid() => this = Empty;
