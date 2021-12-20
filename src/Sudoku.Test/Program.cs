@@ -1,10 +1,11 @@
-﻿#pragma warning disable CS0219, IDE0059
+﻿using Sudoku.Data;
 
-using Sudoku.Data;
+var grid = Grid.Empty;
+foreach (int candidate in grid.EnumerateCandidates())
+{
 
-_ = new Grid();
-_ = default(Grid);
-Grid discard = default;
+}
+
 
 static partial class Program
 {

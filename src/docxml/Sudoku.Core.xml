@@ -2689,6 +2689,9 @@
             in the collection.
             </summary>
         </member>
+        <member name="M:Sudoku.Data.Grid.CandidateCollectionEnumerator.GetEnumerator">
+            <inheritdoc cref="M:System.Collections.Generic.IEnumerable`1.GetEnumerator"/>
+        </member>
         <member name="M:Sudoku.Data.Grid.CandidateCollectionEnumerator.Equals(System.Object)">
             <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
             <exception cref="T:System.NotSupportedException">Always throws.</exception>
@@ -3371,6 +3374,9 @@
             Sets the enumerator to its initial position, which is before the first element
             in the collection.
             </summary>
+        </member>
+        <member name="M:Sudoku.Data.Grid.MaskCollectionEnumerator.GetEnumerator">
+            <inheritdoc cref="M:System.Collections.Generic.IEnumerable`1.GetEnumerator"/>
         </member>
         <member name="M:Sudoku.Data.Grid.MaskCollectionEnumerator.Equals(System.Object)">
             <inheritdoc cref="M:System.Object.Equals(System.Object)"/>

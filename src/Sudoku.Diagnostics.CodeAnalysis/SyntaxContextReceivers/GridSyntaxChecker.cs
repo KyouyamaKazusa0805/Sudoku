@@ -19,6 +19,7 @@ public sealed partial class GridSyntaxChecker : ISyntaxContextReceiver
 
 		CheckUsageOnUndefined(node, semanticModel, gridSymbol);
 		CheckUsageOnIsUndefined(node, semanticModel, gridSymbol);
+		CheckUsageOnEnumerator(node, semanticModel, gridSymbol);
 	}
 
 	private void CheckUsageOnUndefined(SyntaxNode node, SemanticModel semanticModel, INamedTypeSymbol gridSymbol)
@@ -196,6 +197,32 @@ public sealed partial class GridSyntaxChecker : ISyntaxContextReceiver
 				break;
 			}
 		}
+	}
+
+	private void CheckUsageOnEnumerator(SyntaxNode node, SemanticModel semanticModel, INamedTypeSymbol gridSymbol)
+	{
+		if (
+			node is not InvocationExpressionSyntax
+			{
+				Expression: MemberAccessExpressionSyntax
+				{
+					Expression: var expr,
+					Name.Identifier.ValueText: "EnumerateCandidates"
+				},
+				ArgumentList.Arguments.Count: 0
+			}
+		)
+		{
+			return;
+		}
+
+		var symbol = semanticModel.GetTypeInfo(expr, _cancellationToken).Type!;
+		if (!SymbolEqualityComparer.Default.Equals(gridSymbol, symbol))
+		{
+			return;
+		}
+
+		Diagnostics.Add(Diagnostic.Create(SCA0503, node.GetLocation(), messageArgs: null));
 	}
 
 

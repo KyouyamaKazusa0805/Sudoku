@@ -93,5 +93,9 @@ partial struct Grid
 			_currentPointer = _start;
 			_currentIndex = -1;
 		}
+
+		/// <inheritdoc cref="IEnumerable{T}.GetEnumerator"/>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public readonly MaskCollectionEnumerator GetEnumerator() => this;
 	}
 }
