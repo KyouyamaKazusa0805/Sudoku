@@ -48,12 +48,12 @@ partial struct SudokuGrid
 				&OnParsingSusser,
 				&OnParsingExcel,
 				&OnParsingOpenSudoku,
-				&OnParsingSukaku_1,
-				&OnParsingSukaku_2
+				&onParsingSukaku_1,
+				&onParsingSukaku_2
 			};
 
-			static SudokuGrid OnParsingSukaku_1(ref Parser @this) => OnParsingSukaku(ref @this, @this.CompatibleFirst);
-			static SudokuGrid OnParsingSukaku_2(ref Parser @this) => OnParsingSukaku(ref @this, !@this.CompatibleFirst);
+			static SudokuGrid onParsingSukaku_1(ref Parser @this) => OnParsingSukaku(ref @this, @this.CompatibleFirst);
+			static SudokuGrid onParsingSukaku_2(ref Parser @this) => OnParsingSukaku(ref @this, !@this.CompatibleFirst);
 		}
 
 
