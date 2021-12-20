@@ -1,6 +1,6 @@
-﻿using Sudoku.Data;
+﻿using System;
 
-var grid = Grid.Parse((string?)null);
+Console.WriteLine("Hello, world!");
 
 static partial class Program
 {
