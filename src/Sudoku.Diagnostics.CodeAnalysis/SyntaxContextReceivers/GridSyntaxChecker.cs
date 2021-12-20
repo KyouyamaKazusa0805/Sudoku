@@ -20,6 +20,7 @@ public sealed partial class GridSyntaxChecker : ISyntaxContextReceiver
 		CheckUsageOnUndefined(node, semanticModel, gridSymbol);
 		CheckUsageOnIsUndefined(node, semanticModel, gridSymbol);
 		CheckUsageOnEnumerator(node, semanticModel, gridSymbol);
+		CheckUsageOnEquals(node, semanticModel, gridSymbol);
 	}
 
 	private void CheckUsageOnUndefined(SyntaxNode node, SemanticModel semanticModel, INamedTypeSymbol gridSymbol)
@@ -336,6 +337,78 @@ public sealed partial class GridSyntaxChecker : ISyntaxContextReceiver
 		}
 
 		Diagnostics.Add(Diagnostic.Create(SCA0503, node.GetLocation(), messageArgs: null));
+	}
+
+	private void CheckUsageOnEquals(SyntaxNode node, SemanticModel semanticModel, INamedTypeSymbol gridSymbol)
+	{
+		switch (node)
+		{
+			// obj.Equals(another)
+			case InvocationExpressionSyntax
+			{
+				Expression: MemberAccessExpressionSyntax
+				{
+					RawKind: (int)SyntaxKind.SimpleMemberAccessExpression,
+					Expression: var expr,
+					Name.Identifier.ValueText: "Equals"
+				},
+				ArgumentList.Arguments: { Count: 1 } arguments
+			}
+			when arguments[0].Expression is var argumentExpression:
+			{
+				var obj1Symbol = semanticModel.GetTypeInfo(expr, _cancellationToken).Type;
+				if (!SymbolEqualityComparer.Default.Equals(obj1Symbol, gridSymbol))
+				{
+					return;
+				}
+
+				var obj2Symbol = semanticModel.GetTypeInfo(argumentExpression, _cancellationToken).Type;
+				if (!SymbolEqualityComparer.Default.Equals(obj2Symbol, gridSymbol))
+				{
+					return;
+				}
+
+				Diagnostics.Add(Diagnostic.Create(SCA0504, node.GetLocation(), messageArgs: null));
+
+				break;
+			}
+
+			// Grid.Equals(obj, another)
+			case InvocationExpressionSyntax
+			{
+				Expression: MemberAccessExpressionSyntax
+				{
+					RawKind: (int)SyntaxKind.SimpleMemberAccessExpression,
+					Expression: TypeSyntax type,
+					Name.Identifier.ValueText: "Equals"
+				},
+				ArgumentList.Arguments: { Count: 2 } arguments
+			}
+			when arguments[0].Expression is var obj1Expression && arguments[1].Expression is var obj2Expression:
+			{
+				var typeSymbol = semanticModel.GetTypeInfo(type, _cancellationToken).Type;
+				if (!SymbolEqualityComparer.Default.Equals(typeSymbol, gridSymbol))
+				{
+					return;
+				}
+
+				var obj1Symbol = semanticModel.GetTypeInfo(obj1Expression, _cancellationToken).Type;
+				if (!SymbolEqualityComparer.Default.Equals(obj1Symbol, gridSymbol))
+				{
+					return;
+				}
+
+				var obj2Symbol = semanticModel.GetTypeInfo(obj2Expression, _cancellationToken).Type;
+				if (!SymbolEqualityComparer.Default.Equals(obj2Symbol, gridSymbol))
+				{
+					return;
+				}
+
+				Diagnostics.Add(Diagnostic.Create(SCA0504, node.GetLocation(), messageArgs: null));
+
+				break;
+			}
+		}
 	}
 
 
