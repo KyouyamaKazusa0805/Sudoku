@@ -30,7 +30,8 @@ public sealed partial class GetPinnableReferenceMethodSyntaxChecker : ISyntaxCon
 				IsStatic: var isStatic,
 				ContainingType.TypeKind: var typeKind,
 				ReturnType: var returnType,
-				RefKind: var refKind
+				RefKind: var refKind,
+				Parameters.IsEmpty: true
 			}
 		)
 		{
@@ -50,10 +51,9 @@ public sealed partial class GetPinnableReferenceMethodSyntaxChecker : ISyntaxCon
 			return;
 		}
 
-		var voidSymbol = compilation.GetSpecialType(SpecialType.System_Void);
 
 		// Can't return void.
-		if (SymbolEqualityComparer.Default.Equals(returnType, voidSymbol))
+		if (returnType.SpecialType == SpecialType.System_Void)
 		{
 			Diagnostics.Add(Diagnostic.Create(SCA0404, identifier.GetLocation(), messageArgs: null));
 			return;
