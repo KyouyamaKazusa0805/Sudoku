@@ -2322,11 +2322,6 @@
         <member name="P:System.Text.RegularExpressions.InvalidRegexStringException.Message">
             <inheritdoc/>
         </member>
-        <member name="T:System.Text.RegularExpressions.RegexAttribute">
-            <summary>
-            Indicates a data member is a regular expression value that represents using a <see cref="T:System.String"/>.
-            </summary>
-        </member>
         <member name="T:System.Text.StringHandler">
             <summary>
             <para>

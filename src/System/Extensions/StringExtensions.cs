@@ -9,7 +9,7 @@ public static unsafe class StringExtensions
 	/// <summary>
 	/// Indicates the regular expression to match all null lines and header spaces in their lines.
 	/// </summary>
-	[Regex]
+	[IsRegex]
 	private const string NullLinesOrHeaderSpaces = @"(^\s*|(?<=\r\n)\s+)";
 
 
