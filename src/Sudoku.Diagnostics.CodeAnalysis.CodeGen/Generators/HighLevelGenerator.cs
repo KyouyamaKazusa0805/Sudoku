@@ -94,7 +94,7 @@ public sealed class {shortName}Analyzer : global::Microsoft.CodeAnalysis.ISource
 				"\r\n\r\n\t",
 				from descriptor in selection
 				select $@"/// <summary>
-	/// Indicates the descriptor {descriptor.Id} ({descriptor.Title}).
+	/// Indicates the <see cref=""DiagnosticDescriptor""/> instance that describes for the diagnostic result {descriptor.Id} ({descriptor.Title}).
 	/// </summary>
 	[global::System.CodeDom.Compiler.GeneratedCode(""{GetType().FullName}"", ""{VersionValue}"")]
 	[global::System.Runtime.CompilerServices.CompilerGenerated]

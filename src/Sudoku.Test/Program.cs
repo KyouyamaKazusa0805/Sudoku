@@ -1,6 +1,7 @@
 ﻿using Sudoku.Data;
 
-_ = new Grid().ToString("1");
+var grid = Grid.Parse("Test");
+_ = grid.ToString();
 
 static partial class Program
 {
