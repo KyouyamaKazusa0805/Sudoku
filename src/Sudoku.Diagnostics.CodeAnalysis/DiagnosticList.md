@@ -34,4 +34,7 @@
 | SCA0503       | Usage     | Warning  | 'Grid.EnumerateCandidates' can be simplified to 'Grid.GetEnumerator' |                                                              |
 | SCA0504       | Usage     | Warning  | Use equality operators instead of method 'Equals'            |                                                              |
 | SCA0505       | Usage     | Warning  | Please don't assign 'null' as the parameter into the 'Parse' method group |                                                              |
+| SCA0506       | Usage     | Warning  | Use 'Empty' property instead                                 |                                                              |
+| SCA0507       | Usage     | Warning  | Use 'IsEmpty' property instead                               |                                                              |
+| SCA0508       | Usage     | Warning  | Specified constant string cannot be parsed to a valid 'Grid' instance | Specified constant string cannot be parsed to a valid 'Grid' instance; please verify the validity of the sudoku grid code |
 
