@@ -1,6 +1,6 @@
 ﻿namespace Sudoku.Diagnostics.CodeAnalysis.SyntaxContextReceivers;
 
-[SyntaxChecker("SCA0501", "SCA0502", "SCA0503", "SCA0504", "SCA0505")]
+[SyntaxChecker("SCA0501", "SCA0502", "SCA0503", "SCA0504", "SCA0505", "SCA0506", "SCA0507", "SCA0508")]
 public sealed partial class GridSyntaxChecker : ISyntaxContextReceiver
 {
 	/// <inheritdoc/>
@@ -18,7 +18,9 @@ public sealed partial class GridSyntaxChecker : ISyntaxContextReceiver
 		}
 
 		CheckPlainDefaultExpression(node, semanticModel, gridSymbol);
+		CheckPlainNew(node, semanticModel, gridSymbol);
 		CheckDefaultExpressionUsages(node, semanticModel, gridSymbol);
+		CheckNewUsages(node, semanticModel, gridSymbol);
 		CheckEnumerator(node, semanticModel, gridSymbol);
 		CheckNullAsFirstParseArgument(node, semanticModel, compilation, gridSymbol);
 	}
@@ -53,6 +55,29 @@ public sealed partial class GridSyntaxChecker : ISyntaxContextReceiver
 		}
 
 		Diagnostics.Add(Diagnostic.Create(SCA0501, node.GetLocation(), messageArgs: null));
+	}
+
+	private void CheckPlainNew(SyntaxNode node, SemanticModel semanticModel, INamedTypeSymbol gridSymbol)
+	{
+		var nodeOperation = semanticModel.GetOperation(node, _cancellationToken);
+		if (
+			nodeOperation is not IObjectCreationOperation
+			{
+				Type: var typeSymbol,
+				Arguments.IsEmpty: true,
+				Initializer: null
+			}
+		)
+		{
+			return;
+		}
+
+		if (!SymbolEqualityComparer.Default.Equals(typeSymbol, gridSymbol))
+		{
+			return;
+		}
+
+		Diagnostics.Add(Diagnostic.Create(SCA0506, node.GetLocation(), messageArgs: null));
 	}
 
 	private void CheckDefaultExpressionUsages(SyntaxNode node, SemanticModel semanticModel, INamedTypeSymbol gridSymbol)
@@ -116,7 +141,6 @@ public sealed partial class GridSyntaxChecker : ISyntaxContextReceiver
 				}
 
 				var argumentOperation = arguments[0];
-
 				if (
 					(Left: instanceOperation!, Right: argumentOperation) switch
 					{
@@ -200,6 +224,171 @@ public sealed partial class GridSyntaxChecker : ISyntaxContextReceiver
 				Diagnostics.Add(
 					Diagnostic.Create(
 						status switch { true => SCA0502, false => SCA0504 },
+						node.GetLocation(),
+						messageArgs: null
+					)
+				);
+
+				break;
+
+
+				[MethodImpl(MethodImplOptions.AggressiveInlining)]
+				bool f(ITypeSymbol? a, ITypeSymbol? b) =>
+					SymbolEqualityComparer.Default.Equals(a, gridSymbol)
+					&& SymbolEqualityComparer.Default.Equals(b, gridSymbol);
+			}
+		}
+	}
+
+	private void CheckNewUsages(SyntaxNode node, SemanticModel semanticModel, INamedTypeSymbol gridSymbol)
+	{
+		var nodeOperation = semanticModel.GetOperation(node, _cancellationToken);
+		switch (nodeOperation)
+		{
+			// obj == new Grid()
+			// obj != new Grid()
+			// new Grid() == obj
+			// new Grid() != obj
+			case IBinaryOperation
+			{
+				LeftOperand: { Type: var leftSymbol } leftOperand,
+				RightOperand: { Type: var rightSymbol } rightOperand,
+				OperatorKind: BinaryOperatorKind.Equals or BinaryOperatorKind.NotEquals
+			}:
+			{
+				if (!SymbolEqualityComparer.Default.Equals(gridSymbol, leftSymbol))
+				{
+					return;
+				}
+
+				if (!SymbolEqualityComparer.Default.Equals(gridSymbol, rightSymbol))
+				{
+					return;
+				}
+
+				if (
+					(Left: leftOperand, Right: rightOperand) is not (
+						(
+							Left: IObjectCreationOperation { Initializer: null },
+							Right: not IObjectCreationOperation { Initializer: null }
+						) or (
+							Left: not IObjectCreationOperation { Initializer: null },
+							Right: IObjectCreationOperation { Initializer: null }
+						)
+					)
+				)
+				{
+					return;
+				}
+
+				Diagnostics.Add(Diagnostic.Create(SCA0507, node.GetLocation(), messageArgs: null));
+
+				break;
+			}
+
+			// obj.Equals(new Grid())
+			// new Grid().Equals(obj)
+			case IInvocationOperation
+			{
+				TargetMethod: { Name: "Equals", IsStatic: false },
+				Instance: var instanceOperation,
+				Type: var typeSymbol,
+				Arguments: { Length: 1 } arguments
+			}:
+			{
+				if (!SymbolEqualityComparer.Default.Equals(typeSymbol, gridSymbol))
+				{
+					return;
+				}
+
+				var argumentOperation = arguments[0];
+				if (
+					(Left: instanceOperation!, Right: argumentOperation) switch
+					{
+						(
+							Left: IObjectCreationOperation { Type: var leftOperationType, Initializer: null },
+							Right: { Type: var rightOperationType } r
+						)
+						when f(leftOperationType, rightOperationType) =>
+							r is not IObjectCreationOperation { Initializer: null },
+
+						(
+							Left: { Type: var leftOperationType } l,
+							Right: IObjectCreationOperation { Type: var rightOperationType, Initializer: null }
+						)
+						when f(leftOperationType, rightOperationType) =>
+							l is not IObjectCreationOperation { Initializer: null },
+
+						_ => default(bool?)
+					} is not { } status
+				)
+				{
+					return;
+				}
+
+				Diagnostics.Add(
+					Diagnostic.Create(
+						status switch { true => SCA0507, false => SCA0504 },
+						node.GetLocation(),
+						messageArgs: null
+					)
+				);
+
+				break;
+
+
+				[MethodImpl(MethodImplOptions.AggressiveInlining)]
+				bool f(ITypeSymbol? a, ITypeSymbol? b) =>
+					SymbolEqualityComparer.Default.Equals(a, gridSymbol)
+					&& SymbolEqualityComparer.Default.Equals(b, gridSymbol);
+			}
+
+			// Grid.Equals(obj, new())
+			// Grid.Equals(obj, new Grid())
+			// Grid.Equals(new(), obj)
+			// Grid.Equals(new Grid(), obj)
+			case IInvocationOperation
+			{
+				TargetMethod: { Name: "Equals", IsStatic: true },
+				Instance: null,
+				Type: var typeSymbol,
+				Arguments: { Length: 2 } arguments
+			}:
+			{
+				if (!SymbolEqualityComparer.Default.Equals(typeSymbol, gridSymbol))
+				{
+					return;
+				}
+
+				var argument1Operation = arguments[0];
+				var argument2Operation = arguments[1];
+				if (
+					(Left: argument1Operation, Right: argument2Operation) switch
+					{
+						(
+							Left: IObjectCreationOperation { Type: var leftOperationType, Initializer: null },
+							Right: { Type: var rightOperationType } r
+						)
+						when f(leftOperationType, rightOperationType) =>
+							r is not IObjectCreationOperation { Initializer: null },
+
+						(
+							Left: { Type: var leftOperationType } l,
+							Right: IObjectCreationOperation { Type: var rightOperationType, Initializer: null }
+						)
+						when f(leftOperationType, rightOperationType) =>
+							l is not IObjectCreationOperation { Initializer: null },
+
+						_ => default(bool?)
+					} is not { } status
+				)
+				{
+					return;
+				}
+
+				Diagnostics.Add(
+					Diagnostic.Create(
+						status switch { true => SCA0507, false => SCA0504 },
 						node.GetLocation(),
 						messageArgs: null
 					)
