@@ -37,4 +37,9 @@
 | SCA0506       | Usage     | Warning  | Use 'Empty' property instead                                 |                                                              |
 | SCA0507       | Usage     | Warning  | Use 'IsEmpty' property instead                               |                                                              |
 | SCA0508       | Usage     | Warning  | Specified constant string cannot be parsed to a valid 'Grid' instance | Specified constant string cannot be parsed to a valid 'Grid' instance; please verify the validity of the sudoku grid code |
+| SCA0509       | Design    | Warning  | The string is invalid as the format                          | The string '{0}' is invalid as the format in the method 'Grid.ToString' or interpolated part |
+| SCA0601       | Format    | Warning  | At least 2 null lines to separate and local function statements and other statements |                                                              |
+| SCA0602       | Format    | Warning  | At least 1 null lines to insert into two different local function statements |                                                              |
+| SCA0603       | Format    | Warning  | The property must start with getter, and then setter (or initer) |                                                              |
+| SCA0604       | Format    | Warning  | At least 1 null lines to insert into getter and setter (or initer) in a property |                                                              |
 

@@ -1,8 +1,23 @@
 ﻿namespace Sudoku.Diagnostics.CodeAnalysis.SyntaxContextReceivers;
 
-[SyntaxChecker("SCA0501", "SCA0502", "SCA0503", "SCA0504", "SCA0505", "SCA0506", "SCA0507", "SCA0508")]
+[SyntaxChecker("SCA0501", "SCA0502", "SCA0503", "SCA0504", "SCA0505", "SCA0506", "SCA0507", "SCA0508", "SCA0509")]
 public sealed partial class GridSyntaxChecker : ISyntaxContextReceiver
 {
+	/// <summary>
+	/// All possible format strings to check.
+	/// </summary>
+	private static readonly string[] PossibleFormats = new[]
+	{
+		".", "+", ".+", "+.", "0", ":", "!", ".!", "!.", "0!", "!0",
+		".:", "0:", "0+", "+0", "+:", "+.:", ".+:", "#", "#.", "0+:",
+		"+0:", "#0", ".!:", "!.:", "0!:", "!0:", "@", "@.", "@0", "@!",
+		"@.!", "@!.", "@0!", "@!0", "@*", "@*.", "@.*", "@0*", "@*0",
+		"@!*", "@*!", "@:", "@:!", "@!:", "@*:", "@:*", "@!*:", "@*!:",
+		"@!:*", "@:!*", "@:!*", "@:*!", "~", "~0", "~.", "@~", "~@", "@~0",
+		"@0~", "~@0", "~0@", "@~.", "@.~", "~@.", "~.@", "%", "^"
+	};
+
+
 	/// <inheritdoc/>
 	public void OnVisitSyntaxNode(GeneratorSyntaxContext context)
 	{
@@ -23,6 +38,7 @@ public sealed partial class GridSyntaxChecker : ISyntaxContextReceiver
 		CheckNewUsages(node, semanticModel, gridSymbol);
 		CheckEnumerator(node, semanticModel, gridSymbol);
 		CheckNullAsFirstParseArgument(node, semanticModel, compilation, gridSymbol);
+		CheckFormat(node, semanticModel, gridSymbol);
 	}
 
 	private void CheckPlainDefaultExpression(SyntaxNode node, SemanticModel semanticModel, INamedTypeSymbol gridSymbol)
@@ -462,6 +478,47 @@ public sealed partial class GridSyntaxChecker : ISyntaxContextReceiver
 		}
 
 		Diagnostics.Add(Diagnostic.Create(SCA0505, node.GetLocation(), messageArgs: null));
+	}
+
+	private void CheckFormat(SyntaxNode node, SemanticModel semanticModel, INamedTypeSymbol gridSymbol)
+	{
+		var nodeOperation = semanticModel.GetOperation(node);
+		if (
+			nodeOperation is not IInvocationOperation
+			{
+				TargetMethod: { Name: "ToString" },
+				Instance.Type: var typeSymbol,
+				Arguments: { IsEmpty: false } arguments
+			}
+		)
+		{
+			return;
+		}
+
+		if (!SymbolEqualityComparer.Default.Equals(typeSymbol, gridSymbol))
+		{
+			return;
+		}
+
+		var argumentOperation = arguments[0];
+		if (
+			argumentOperation is not
+			{
+				ArgumentKind: ArgumentKind.Explicit,
+				Value: ILiteralOperation { ConstantValue: { HasValue: true, Value: string format } },
+				Syntax: var argumentNode
+			}
+		)
+		{
+			return;
+		}
+
+		if (Array.IndexOf(PossibleFormats, format) != -1)
+		{
+			return;
+		}
+
+		Diagnostics.Add(Diagnostic.Create(SCA0509, argumentNode.GetLocation(), messageArgs: null));
 	}
 
 
