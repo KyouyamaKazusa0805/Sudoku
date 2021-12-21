@@ -518,7 +518,7 @@ public sealed partial class GridSyntaxChecker : ISyntaxContextReceiver
 			return;
 		}
 
-		Diagnostics.Add(Diagnostic.Create(SCA0509, argumentNode.GetLocation(), messageArgs: null));
+		Diagnostics.Add(Diagnostic.Create(SCA0509, argumentNode.GetLocation(), messageArgs: new[] { format }));
 	}
 
 
