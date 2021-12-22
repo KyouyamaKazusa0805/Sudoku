@@ -34,21 +34,22 @@ public sealed partial class PropertyStyleSyntaxChecker : ISyntaxContextReceiver
 
 		if (getterKeyword == "get" && setterKeyword == "set")
 		{
-			bool setterHasLeadingCrLf = modifiersCount switch
-			{
-				0 when setterLeadingTrivia.Any(SyntaxKind.EndOfLineTrivia) => true,
-				not 0 when modifiers[0].LeadingTrivia.Any(SyntaxKind.EndOfLineTrivia) => true,
-				_ => attributesCount != 0 && attributeLists[0].OpenBracketToken.LeadingTrivia.Any(SyntaxKind.EndOfLineTrivia)
-			};
-
-			bool getterHasTrailingCrLf = getterBody switch
-			{
-				null when getter.SemicolonToken.TrailingTrivia.Any(SyntaxKind.EndOfLineTrivia) => true,
-				{ CloseBraceToken.TrailingTrivia: var a } when a.Any(SyntaxKind.EndOfLineTrivia) => true,
-				_ => false
-			};
-
-			if (getterHasTrailingCrLf && !setterHasLeadingCrLf)
+			if (
+				getterBody switch
+				{
+					null when getter.SemicolonToken.TrailingTrivia.Any(SyntaxKind.EndOfLineTrivia) => true,
+					{ CloseBraceToken.TrailingTrivia: var a } when a.Any(SyntaxKind.EndOfLineTrivia) => true,
+					_ => false
+				} && !(
+					(Modifiers: modifiersCount, Attributes: attributesCount) switch
+					{
+						(Modifiers: 0, _) when setterLeadingTrivia.Any(SyntaxKind.EndOfLineTrivia) => true,
+						(Modifiers: not 0, _) when modifiers[0].LeadingTrivia.Any(SyntaxKind.EndOfLineTrivia) => true,
+						(_, Attributes: not 0) => attributeLists[0].OpenBracketToken.LeadingTrivia.Any(SyntaxKind.EndOfLineTrivia),
+						_ => false
+					}
+				)
+			)
 			{
 				Diagnostics.Add(Diagnostic.Create(SCA0604, identifier.GetLocation(), messageArgs: null));
 			}
