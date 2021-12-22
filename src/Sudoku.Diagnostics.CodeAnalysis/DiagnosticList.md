@@ -16,9 +16,8 @@
 | SCA0102       | Usage     | Error    | The type parameter lacks a CRTP-style type constraint        | The type parameter lacks a CRTP-style type constraint; you should apply the constraint like: 'where {0}: {1}' |
 | SCA0103       | Usage     | Error    | The field having marked '[IsRegex]' must be of type 'string' |                                                              |
 | SCA0104       | Usage     | Warning  | The field having marked '[IsRegex]' isn't a valid regular expression |                                                              |
-| SCA0105       | Usage     | Warning  | The field having marked '[IsRegex]' should use verbatim or verbatim interpolated string instead of a regular one |                                                              |
-| SCA0106       | Usage     | Warning  | The interpolated part of the string field having marked '[IsRegex]' is an invalid regular expression |                                                              |
-| SCA0107       | Usage     | Warning  | The field having marked '[IsRegex]' should be modified 'static readonly' or 'const' |                                                              |
+| SCA0105       | Usage     | Warning  | The field having marked '[IsRegex]' should use verbatim string identifier '@' |                                                              |
+| SCA0106       | Usage     | Warning  | The field having marked '[IsRegex]' should be modified 'const' |                                                              |
 | SCA0201       | Usage     | Error    | The discarded parameter can't be used or referenced unless a 'nameof' expression |                                                              |
 | SCA0202       | Usage     | Error    | Discard parameter can't be 'out', 'ref' or 'params' one      |                                                              |
 | SCA0203       | Usage     | Error    | Can't apply 'IsDiscardAttribute' onto a parameter that has already discarded |                                                              |

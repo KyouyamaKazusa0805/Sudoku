@@ -15,6 +15,12 @@ internal static class RegexExtensions
 	/// <param name="pattern">The pattern to match.</param>
 	/// <param name="result">The result <see cref="Match"/> instance.</param>
 	/// <returns>The <see cref="bool"/> value indicating whether the operation is successful.</returns>
+	/// <remarks>
+	/// Please note that <see cref="Group.Success"/> being <see langword="false"/> doesn't mean
+	/// the return value is also <see langword="false"/>. The return value just check for the case
+	/// whether any exceptions thrown.
+	/// </remarks>
+	/// <seealso cref="Group.Success"/>
 	public static bool TryMatch(string input, string pattern, out Match? result)
 	{
 		try
