@@ -32,7 +32,7 @@ public sealed partial class PropertyStyleSyntaxChecker : ISyntaxContextReceiver
 			return;
 		}
 
-		if (getterKeyword == "get" && setterKeyword == "set")
+		if (getterKeyword == "get" && setterKeyword is "set" or "init")
 		{
 			if (
 				getterBody switch
@@ -54,7 +54,7 @@ public sealed partial class PropertyStyleSyntaxChecker : ISyntaxContextReceiver
 				Diagnostics.Add(Diagnostic.Create(SCA0604, identifier.GetLocation(), messageArgs: null));
 			}
 		}
-		else if (setterKeyword == "get" && getterKeyword == "set")
+		else if (setterKeyword == "get" && getterKeyword is "set" or "init")
 		{
 			Diagnostics.Add(Diagnostic.Create(SCA0603, identifier.GetLocation(), messageArgs: null));
 		}
