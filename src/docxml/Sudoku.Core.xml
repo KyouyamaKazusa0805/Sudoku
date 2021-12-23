@@ -87,6 +87,11 @@
             Indicates the susser format.
             </summary>
         </member>
+        <member name="F:Sudoku.Constants.RegularExpressions.ShortenSusser">
+            <summary>
+            Indicates the shorten susser format.
+            </summary>
+        </member>
         <member name="F:Sudoku.Constants.RegularExpressions.OpenSudoku">
             <summary>
             Indicates the open sudoku format.
@@ -3082,7 +3087,7 @@
             </summary>
             <param name="flags">The flags.</param>
         </member>
-        <member name="M:Sudoku.Data.Grid.Formatter.#ctor(System.Char,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Boolean)">
+        <member name="M:Sudoku.Data.Grid.Formatter.#ctor(System.Char,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Boolean)">
             <summary>
             Initialize an instance with the specified information.
             </summary>
@@ -3105,6 +3110,9 @@
             <param name="excel">Indicates whether the formatter will output as excel.</param>
             <param name="openSudoku">
             Indicates whether the formatter will output as open sudoku format.
+            </param>
+            <param name="shortenSusser">
+            Indicates whether the formatter will shorten the susser format.
             </param>
         </member>
         <member name="P:Sudoku.Data.Grid.Formatter.Placeholder">
@@ -3202,6 +3210,16 @@
             </returns>
             <value>A <see cref="T:System.Boolean"/> value to set.</value>
         </member>
+        <member name="P:Sudoku.Data.Grid.Formatter.ShortenSusser">
+            <summary>
+            Indicates whether the current output mode will shorten the susser format.
+            </summary>
+            <returns>
+            The <see cref="T:System.Boolean"/> result indicating whether the current output mode
+            will shorten the susser format.
+            </returns>
+            <value>A <see cref="T:System.Boolean"/> value to set.</value>
+        </member>
         <member name="M:Sudoku.Data.Grid.Formatter.ToString(Sudoku.Data.Grid@)">
             <summary>
             Represents a string value indicating this instance.
@@ -3284,6 +3302,12 @@
             </summary>
             <param name="grid">The grid.</param>
             <returns>The result.</returns>
+        </member>
+        <member name="T:Sudoku.Data.Grid.Formatter.MatchLengthComparer">
+            <summary>
+            Indicates the inner equality comparer to determine the equality of length
+            of 2 <see cref="T:System.Text.RegularExpressions.Match"/>es to compare.
+            </summary>
         </member>
         <member name="M:Sudoku.Data.Grid.Formatter.Equals(System.Object)">
             <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
@@ -3418,6 +3442,19 @@
             </param>
             <seealso cref="P:Sudoku.Data.Grid.Parser.CompatibleFirst"/>
         </member>
+        <member name="M:Sudoku.Data.Grid.Parser.#ctor(System.String,System.Boolean,System.Boolean)">
+            <summary>
+            Initializes an instance with parsing data and a bool value
+            indicating whether the parsing operation should use compatible mode.
+            </summary>
+            <param name="parsingValue">The string to parse.</param>
+            <param name="compatibleFirst">
+            Indicates whether the parsing operation should use compatible mode to check
+            PM grid. See <see cref="P:Sudoku.Data.Grid.Parser.CompatibleFirst"/> to learn more.
+            </param>
+            <param name="shortenSusser">Indicates the parser will shorten the susser format result.</param>
+            <seealso cref="P:Sudoku.Data.Grid.Parser.CompatibleFirst"/>
+        </member>
         <member name="P:Sudoku.Data.Grid.Parser.ParsingValue">
             <summary>
             The string value to parse.
@@ -3428,6 +3465,13 @@
             Indicates whether the parser will change the execution order of PM grid.
             If the value is <see langword="true"/>, the parser will check compatible one
             first, and then check recommended parsing plan ('<c><![CDATA[<d>]]></c>' and '<c>*d*</c>').
+            </summary>
+        </member>
+        <member name="P:Sudoku.Data.Grid.Parser.ShortenSusserFormat">
+            <summary>
+            Indicates whether the parser will use shorten mode to parse a susser format grid.
+            If the value is <see langword="true"/>, the parser will omit the continuous empty notation
+            <c>.</c>s or <c>0</c>s to a <c>*</c>.
             </summary>
         </member>
         <member name="M:Sudoku.Data.Grid.Parser.Parse">
@@ -3478,11 +3522,12 @@
             <param name="parser">The parser.</param>
             <returns>The grid.</returns>
         </member>
-        <member name="M:Sudoku.Data.Grid.Parser.OnParsingSusser(Sudoku.Data.Grid.Parser@)">
+        <member name="M:Sudoku.Data.Grid.Parser.OnParsingSusser(Sudoku.Data.Grid.Parser@,System.Boolean)">
             <summary>
             Parse the susser format string.
             </summary>
             <param name="parser">The parser.</param>
+            <param name="shortenSusser">Indicates whether the parser will shorten the susser format.</param>
             <returns>The result.</returns>
         </member>
         <member name="M:Sudoku.Data.Grid.Parser.OnParsingSukaku(Sudoku.Data.Grid.Parser@,System.Boolean)">
@@ -3645,6 +3690,11 @@
             if the cell is empty, the triplet is always <c>001</c>.
             </remarks>
         </member>
+        <member name="F:Sudoku.Data.GridFormattingOptions.Shorten">
+            <summary>
+            Indicates the shorten susser format.
+            </summary>
+        </member>
         <member name="T:Sudoku.Data.GridParsingOption">
             <summary>
             Represents a grid parsing type.
@@ -3665,6 +3715,26 @@
             </para>
             <para>
             2) <c>4+80002+306+31000+9004000+4030109+38+24+675+1+75+1+39+8+46+2+2640708+3902090000010000002080+36+20007:713 723 533 633 537 575 176 576 577 579 583 784 586 587 496 997</c>
+            </para>
+            </summary>
+        </member>
+        <member name="F:Sudoku.Data.GridParsingOption.ShortenSusser">
+            <summary>
+            <para>
+            Indicates the shorten susser format, which means all grid values
+            will be displayed in one line with empty cell character <c>'0'</c> or <c>'.'</c>.
+            Different with the option <see cref="F:Sudoku.Data.GridParsingOption.Susser"/>, this option will continue
+            shortening the code. The option will omit the continuous empty cells to a <c>*</c>
+            in a single line. For example, the code
+            <code>
+            080630040200085009090000081000300800000020000006001000970000030400850007010094050
+            </code>
+            will be displayed as
+            <code>
+            08063*40,2*85009,09*81,*300800,*2*,006001*,97*30,40085*7,01*94050
+            </code>
+            via this option. We use the colon <c>,</c> to separate each line of 9 numbers,
+            and then omit the most continuous empty cells to a <c>*</c>.
             </para>
             </summary>
         </member>

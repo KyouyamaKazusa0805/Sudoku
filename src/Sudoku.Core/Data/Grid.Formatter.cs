@@ -25,7 +25,8 @@ partial struct Grid
 		public Formatter(bool multiline) : this(
 			placeholder: '.', multiline: multiline, withModifiables: false,
 			withCandidates: false, treatValueAsGiven: false, subtleGridLines: false,
-			hodokuCompatible: false, sukaku: false, excel: false, openSudoku: false
+			hodokuCompatible: false, sukaku: false, excel: false, openSudoku: false,
+			shortenSusser: false
 		)
 		{
 		}
@@ -60,6 +61,9 @@ partial struct Grid
 		/// <param name="openSudoku">
 		/// Indicates whether the formatter will output as open sudoku format.
 		/// </param>
+		/// <param name="shortenSusser">
+		/// Indicates whether the formatter will shorten the susser format.
+		/// </param>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		private Formatter(
 			char placeholder,
@@ -71,19 +75,21 @@ partial struct Grid
 			bool hodokuCompatible,
 			bool sukaku,
 			bool excel,
-			bool openSudoku
+			bool openSudoku,
+			bool shortenSusser
 		)
 		{
-			_flags = placeholder switch { '.' => 0, '0' => 512 };
-			_flags |= (short)(multiline ? 256 : 0);
-			_flags |= (short)(withModifiables ? 128 : 0);
-			_flags |= (short)(withCandidates ? 64 : 0);
-			_flags |= (short)(treatValueAsGiven ? 32 : 0);
-			_flags |= (short)(subtleGridLines ? 16 : 0);
-			_flags |= (short)(hodokuCompatible ? 8 : 0);
-			_flags |= (short)(sukaku ? 4 : 0);
-			_flags |= (short)(excel ? 2 : 0);
-			_flags |= (short)(openSudoku ? 1 : 0);
+			_flags = placeholder switch { '.' => 0, '0' => 1024 };
+			_flags |= (short)(multiline ? 512 : 0);
+			_flags |= (short)(withModifiables ? 256 : 0);
+			_flags |= (short)(withCandidates ? 128 : 0);
+			_flags |= (short)(treatValueAsGiven ? 64 : 0);
+			_flags |= (short)(subtleGridLines ? 32 : 0);
+			_flags |= (short)(hodokuCompatible ? 16 : 0);
+			_flags |= (short)(sukaku ? 8 : 0);
+			_flags |= (short)(excel ? 4 : 0);
+			_flags |= (short)(openSudoku ? 2 : 0);
+			_flags |= (short)(shortenSusser ? 1 : 0);
 		}
 
 
@@ -95,10 +101,10 @@ partial struct Grid
 		public char Placeholder
 		{
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
-			get => (_flags >> 9 & 1) != 0 ? '.' : '0';
+			get => (_flags >> 10 & 1) != 0 ? '.' : '0';
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
-			init => _flags = value switch { '.' => (short)(_flags & 511 | 512), '0' => (short)(_flags & 511) };
+			init => _flags = value switch { '.' => (short)(_flags & 1023 | 1024), '0' => (short)(_flags & 1023) };
 		}
 
 		/// <summary>
@@ -107,11 +113,11 @@ partial struct Grid
 		public bool Multiline
 		{
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
-			get => (_flags >> 8 & 1) != 0;
+			get => (_flags >> 9 & 1) != 0;
 
 #if false
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
-			init => _flags |= (short)(value ? 256 : 0);
+			init => _flags |= (short)(value ? 512 : 0);
 #endif
 		}
 
@@ -123,10 +129,10 @@ partial struct Grid
 		public bool WithModifiables
 		{
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
-			get => (_flags >> 7 & 1) != 0;
+			get => (_flags >> 8 & 1) != 0;
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
-			init => _flags |= (short)(value ? 128 : 0);
+			init => _flags |= (short)(value ? 256 : 0);
 		}
 
 		/// <summary>
@@ -149,10 +155,10 @@ partial struct Grid
 		public bool WithCandidates
 		{
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
-			get => (_flags >> 6 & 1) != 0;
+			get => (_flags >> 7 & 1) != 0;
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
-			init => _flags |= (short)(value ? 64 : 0);
+			init => _flags |= (short)(value ? 128 : 0);
 		}
 
 		/// <summary>
@@ -166,10 +172,10 @@ partial struct Grid
 		public bool TreatValueAsGiven
 		{
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
-			get => (_flags >> 5 & 1) != 0;
+			get => (_flags >> 6 & 1) != 0;
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
-			init => _flags |= (short)(value ? 32 : 0);
+			init => _flags |= (short)(value ? 64 : 0);
 		}
 
 		/// <summary>
@@ -182,10 +188,10 @@ partial struct Grid
 		public bool SubtleGridLines
 		{
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
-			get => (_flags >> 4 & 1) != 0;
+			get => (_flags >> 5 & 1) != 0;
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
-			init => _flags |= (short)(value ? 16 : 0);
+			init => _flags |= (short)(value ? 32 : 0);
 		}
 
 		/// <summary>
@@ -199,10 +205,10 @@ partial struct Grid
 		public bool HodokuCompatible
 		{
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
-			get => (_flags >> 3 & 1) != 0;
+			get => (_flags >> 4 & 1) != 0;
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
-			init => _flags |= (short)(value ? 8 : 0);
+			init => _flags |= (short)(value ? 16 : 0);
 		}
 
 		/// <summary>
@@ -217,10 +223,10 @@ partial struct Grid
 		public bool Sukaku
 		{
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
-			get => (_flags >> 2 & 1) != 0;
+			get => (_flags >> 3 & 1) != 0;
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
-			init => _flags |= (short)(value ? 4 : 0);
+			init => _flags |= (short)(value ? 8 : 0);
 		}
 
 		/// <summary>
@@ -231,10 +237,10 @@ partial struct Grid
 		public bool Excel
 		{
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
-			get => (_flags >> 1 & 1) != 0;
+			get => (_flags >> 2 & 1) != 0;
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
-			init => _flags |= (short)(value ? 2 : 0);
+			init => _flags |= (short)(value ? 4 : 0);
 		}
 
 		/// <summary>
@@ -246,6 +252,23 @@ partial struct Grid
 		/// </returns>
 		/// <value>A <see cref="bool"/> value to set.</value>
 		public bool OpenSudoku
+		{
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			get => (_flags >> 1 & 1) != 0;
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			init => _flags |= (short)(value ? 2 : 0);
+		}
+
+		/// <summary>
+		/// Indicates whether the current output mode will shorten the susser format.
+		/// </summary>
+		/// <returns>
+		/// The <see cref="bool"/> result indicating whether the current output mode
+		/// will shorten the susser format.
+		/// </returns>
+		/// <value>A <see cref="bool"/> value to set.</value>
+		public bool ShortenSusser
 		{
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			get => (_flags & 1) != 0;
@@ -308,6 +331,8 @@ partial struct Grid
 			"0+:" or "+0:" or "#0" => new(false) { Placeholder = '0', WithModifiables = true, WithCandidates = true },
 			".!:" or "!.:" => new(false) { WithModifiables = true, TreatValueAsGiven = true },
 			"0!:" or "!0:" => new(false) { Placeholder = '0', WithModifiables = true, TreatValueAsGiven = true },
+			".*" or "*." => new(false) { Placeholder = '.', ShortenSusser = true },
+			"0*" or "*0" => new(false) { Placeholder = '0', ShortenSusser = true },
 			"@" or "@." => new(true) { SubtleGridLines = true },
 			"@0" => new(true) { Placeholder = '0', SubtleGridLines = true },
 			"@!" or "@.!" or "@!." => new(true) { TreatValueAsGiven = true, SubtleGridLines = true },
@@ -343,6 +368,7 @@ partial struct Grid
 			{
 				WithModifiables = gridOutputOption.Flags(GridFormattingOptions.WithModifiers),
 				WithCandidates = gridOutputOption.Flags(GridFormattingOptions.WithCandidates),
+				ShortenSusser = gridOutputOption.Flags(GridFormattingOptions.Shorten),
 				TreatValueAsGiven = gridOutputOption.Flags(GridFormattingOptions.TreatValueAsGiven),
 				SubtleGridLines = gridOutputOption.Flags(GridFormattingOptions.SubtleGridLines),
 				HodokuCompatible = gridOutputOption.Flags(GridFormattingOptions.HodokuCompatible),

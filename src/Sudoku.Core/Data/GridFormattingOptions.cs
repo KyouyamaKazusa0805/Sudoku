@@ -90,4 +90,9 @@ public enum GridFormattingOptions : short
 	/// if the cell is empty, the triplet is always <c>001</c>.
 	/// </remarks>
 	OpenSudoku = 512,
+
+	/// <summary>
+	/// Indicates the shorten susser format.
+	/// </summary>
+	Shorten = 1024,
 }

@@ -180,7 +180,7 @@ partial struct Grid
 		{
 			var sb = new StringHandler(initialCapacity: 162);
 			var elims = new StringHandler();
-			var originalGrid = WithCandidates ? Parse(grid.ToString(".+")) : Undefined;
+			var originalGrid = WithCandidates && !ShortenSusser ? Parse(grid.ToString(".+")) : Undefined;
 
 			unsafe
 			{
@@ -214,7 +214,7 @@ partial struct Grid
 						}
 						case CellStatus.Modifiable:
 						{
-							if (WithModifiables)
+							if (WithModifiables && !ShortenSusser)
 							{
 								sb.Append('+');
 								sb.Append(grid[c] + 1);
@@ -250,7 +250,80 @@ partial struct Grid
 				elimsStr = elims.ToStringAndClear();
 			}
 
-			return $"{sb.ToStringAndClear()}{(string.IsNullOrEmpty(elimsStr) ? string.Empty : $":{elimsStr}")}";
+			string @base = sb.ToStringAndClear();
+			return ShortenSusser
+				? shorten(@base, Placeholder)
+				: $"{@base}{(string.IsNullOrEmpty(elimsStr) ? string.Empty : $":{elimsStr}")}";
+
+
+			static unsafe string shorten(string @base, char placeholder)
+			{
+				var resultSpan = (stackalloc char[Length]);
+				int index = 0;
+				for (int i = 0; i < 9; i++)
+				{
+					string sliced = @base.Substring(i * 9, 9);
+					var collection = Regex.Matches(sliced, $"{(placeholder == '.' ? @"\." : "0")}+");
+					if (collection.Count == 0)
+					{
+						// Can't find any simplifications.
+						fixed (char* p = resultSpan.Slice(i * 9, 9), q = sliced)
+						{
+							Unsafe.CopyBlock(p, q, sizeof(char) * 9);
+						}
+
+						index += 9;
+					}
+					else
+					{
+						var set = new HashSet<Match>(collection, new MatchLengthComparer());
+						if (set.Count == 1)
+						{
+							// All matches are same-length.
+							int j = 0;
+							while (j < 9)
+							{
+								if (sliced[j] == placeholder)
+								{
+									resultSpan[index++] = '*';
+									j += set.First().Length;
+								}
+								else
+								{
+									resultSpan[index++] = sliced[j];
+									j++;
+								}
+							}
+						}
+						else
+						{
+							string match = set.MaxBy(static m => m.Length)!.Value;
+							int pos = sliced.IndexOf(match);
+							int j = 0;
+							while (j < 9)
+							{
+								if (j == pos)
+								{
+									resultSpan[index++] = '*';
+									j += match.Length;
+								}
+								else
+								{
+									resultSpan[index++] = sliced[j];
+									j++;
+								}
+							}
+						}
+					}
+
+					if (i != 8)
+					{
+						resultSpan[index++] = ',';
+					}
+				}
+
+				return resultSpan[..index].ToString();
+			}
 		}
 
 		/// <summary>
@@ -514,6 +587,18 @@ partial struct Grid
 				.AppendLine(" |")
 				.AppendLine(SubtleGridLines ? "'-------+-------+-------'" : "+-------+-------+-------+")
 				.ToString();
+		}
+
+
+		/// <summary>
+		/// Indicates the inner equality comparer to determine the equality of length
+		/// of 2 <see cref="Match"/>es to compare.
+		/// </summary>
+		private sealed class MatchLengthComparer : IEqualityComparer<Match>
+		{
+			public bool Equals(Match? x, Match? y) => (x?.Value.Length ?? -1) == (y?.Value.Length ?? -1);
+
+			public int GetHashCode(Match? obj) => obj?.Value.Length ?? -1;
 		}
 	}
 }

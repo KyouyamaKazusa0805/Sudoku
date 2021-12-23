@@ -17,7 +17,7 @@ partial struct Grid
 		/// Initializes an instance with parsing data.
 		/// </summary>
 		/// <param name="parsingValue">The string to parse.</param>
-		public Parser(string parsingValue) : this(parsingValue, false)
+		public Parser(string parsingValue) : this(parsingValue, false, false)
 		{
 		}
 
@@ -31,10 +31,26 @@ partial struct Grid
 		/// PM grid. See <see cref="CompatibleFirst"/> to learn more.
 		/// </param>
 		/// <seealso cref="CompatibleFirst"/>
-		public Parser(string parsingValue, bool compatibleFirst)
+		public Parser(string parsingValue, bool compatibleFirst) : this(parsingValue, compatibleFirst, false)
+		{
+		}
+
+		/// <summary>
+		/// Initializes an instance with parsing data and a bool value
+		/// indicating whether the parsing operation should use compatible mode.
+		/// </summary>
+		/// <param name="parsingValue">The string to parse.</param>
+		/// <param name="compatibleFirst">
+		/// Indicates whether the parsing operation should use compatible mode to check
+		/// PM grid. See <see cref="CompatibleFirst"/> to learn more.
+		/// </param>
+		/// <param name="shortenSusser">Indicates the parser will shorten the susser format result.</param>
+		/// <seealso cref="CompatibleFirst"/>
+		public Parser(string parsingValue, bool compatibleFirst, bool shortenSusser)
 		{
 			ParsingValue = parsingValue;
 			CompatibleFirst = compatibleFirst;
+			ShortenSusserFormat = shortenSusser;
 		}
 
 
@@ -45,15 +61,19 @@ partial struct Grid
 				&OnParsingSimpleTable,
 				&OnParsingSimpleMultilineGrid,
 				&OnParsingPencilMarked,
-				&OnParsingSusser,
+				&onParsingSusser_1,
+				&onParsingSusser_2,
 				&OnParsingExcel,
 				&OnParsingOpenSudoku,
 				&onParsingSukaku_1,
 				&onParsingSukaku_2
 			};
 
+
 			static Grid onParsingSukaku_1(ref Parser @this) => OnParsingSukaku(ref @this, @this.CompatibleFirst);
 			static Grid onParsingSukaku_2(ref Parser @this) => OnParsingSukaku(ref @this, !@this.CompatibleFirst);
+			static Grid onParsingSusser_1(ref Parser @this) => OnParsingSusser(ref @this, !@this.ShortenSusserFormat);
+			static Grid onParsingSusser_2(ref Parser @this) => OnParsingSusser(ref @this, @this.ShortenSusserFormat);
 		}
 
 
@@ -68,6 +88,13 @@ partial struct Grid
 		/// first, and then check recommended parsing plan ('<c><![CDATA[<d>]]></c>' and '<c>*d*</c>').
 		/// </summary>
 		public bool CompatibleFirst { get; }
+
+		/// <summary>
+		/// Indicates whether the parser will use shorten mode to parse a susser format grid.
+		/// If the value is <see langword="true"/>, the parser will omit the continuous empty notation
+		/// <c>.</c>s or <c>0</c>s to a <c>*</c>.
+		/// </summary>
+		public bool ShortenSusserFormat { get; private set; }
 
 
 		/// <summary>
@@ -130,7 +157,8 @@ partial struct Grid
 		/// <returns>The grid.</returns>
 		public Grid Parse(GridParsingOption gridParsingOption) => gridParsingOption switch
 		{
-			GridParsingOption.Susser => OnParsingSusser(ref this),
+			GridParsingOption.Susser => OnParsingSusser(ref this, false),
+			GridParsingOption.ShortenSusser => OnParsingSusser(ref this, true),
 			GridParsingOption.Table => OnParsingSimpleMultilineGrid(ref this),
 			GridParsingOption.PencilMarked => OnParsingPencilMarked(ref this),
 			GridParsingOption.SimpleTable => OnParsingSimpleTable(ref this),
@@ -146,7 +174,7 @@ partial struct Grid
 		private static partial Grid OnParsingOpenSudoku(ref Parser parser);
 		private static partial Grid OnParsingPencilMarked(ref Parser parser);
 		private static partial Grid OnParsingSimpleTable(ref Parser parser);
-		private static partial Grid OnParsingSusser(ref Parser parser);
+		private static partial Grid OnParsingSusser(ref Parser parser, bool shortenSusser);
 		private static partial Grid OnParsingSukaku(ref Parser parser, bool compatibleFirst);
 	}
 }

@@ -25,6 +25,26 @@ public enum GridParsingOption : byte
 
 	/// <summary>
 	/// <para>
+	/// Indicates the shorten susser format, which means all grid values
+	/// will be displayed in one line with empty cell character <c>'0'</c> or <c>'.'</c>.
+	/// Different with the option <see cref="Susser"/>, this option will continue
+	/// shortening the code. The option will omit the continuous empty cells to a <c>*</c>
+	/// in a single line. For example, the code
+	/// <code>
+	/// 080630040200085009090000081000300800000020000006001000970000030400850007010094050
+	/// </code>
+	/// will be displayed as
+	/// <code>
+	/// 08063*40,2*85009,09*81,*300800,*2*,006001*,97*30,40085*7,01*94050
+	/// </code>
+	/// via this option. We use the colon <c>,</c> to separate each line of 9 numbers,
+	/// and then omit the most continuous empty cells to a <c>*</c>.
+	/// </para>
+	/// </summary>
+	ShortenSusser,
+
+	/// <summary>
+	/// <para>
 	/// Indicates the pencil marked grid (PM grid), which means all
 	/// grid candidates will be displayed using a table.
 	/// </para>

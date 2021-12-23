@@ -38,6 +38,12 @@ partial class Constants
 		public const string Susser = @"[\d\.\+]{80,}(\:(\d{3}\s+)*\d{3})?";
 
 		/// <summary>
+		/// Indicates the shorten susser format.
+		/// </summary>
+		[IsRegex]
+		public const string ShortenSusser = @"[\d\.\*]{1,9}(,[\d\.\*]{1,9}){8}";
+
+		/// <summary>
 		/// Indicates the open sudoku format.
 		/// </summary>
 		[IsRegex]

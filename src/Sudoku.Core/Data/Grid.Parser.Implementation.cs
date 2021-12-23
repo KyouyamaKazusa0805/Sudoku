@@ -267,20 +267,30 @@ partial struct Grid
 			var sb = new StringHandler(initialCapacity: 81 + (9 << 1));
 			sb.AppendCharacters(from @char in match where @char is not ('\r' or '\n') select @char);
 			parser.ParsingValue = sb.ToStringAndClear();
-			return OnParsingSusser(ref parser);
+			return OnParsingSusser(ref parser, false);
 		}
 
 		/// <summary>
 		/// Parse the susser format string.
 		/// </summary>
 		/// <param name="parser">The parser.</param>
+		/// <param name="shortenSusser">Indicates whether the parser will shorten the susser format.</param>
 		/// <returns>The result.</returns>
-		private static partial Grid OnParsingSusser(ref Parser parser)
+		private static partial Grid OnParsingSusser(ref Parser parser, bool shortenSusser)
 		{
-			string? match = parser.ParsingValue.Match(RegularExpressions.Susser);
-			if (match is not { Length: <= 405 })
+			string? match = parser.ParsingValue.Match(
+				shortenSusser
+					? RegularExpressions.ShortenSusser
+					: RegularExpressions.Susser
+			);
+
+			switch (shortenSusser)
 			{
-				return Undefined;
+				case false when match is not { Length: <= 405 }:
+				case true when match is not { Length: <= 81 } || !expandCode(match, out match):
+				{
+					return Undefined;
+				}
 			}
 
 			// Step 1: fills all digits.
@@ -369,6 +379,84 @@ partial struct Grid
 			}
 
 			return result;
+
+
+			static bool expandCode(string? original, [NotNullWhen(true)] out string? result)
+			{
+				// We must the string code holds 8 ','s and is with no ':' or '+'.
+				if (original is null || original.Contains(':') || original.Contains('+') || original.CountOf(',') != 8)
+				{
+					result = null;
+					return false;
+				}
+
+				var resultSpan = (stackalloc char[Length]);
+				string[] lines = original.Split(',');
+				if (lines.Length != 9)
+				{
+					result = null;
+					return false;
+				}
+
+				// Check per line, and expand it.
+				char placeholder = original.IndexOf('0') == -1 ? '.' : '0';
+				for (int i = 0; i < 9; i++)
+				{
+					string line = lines[i];
+					switch (line.CountOf('*'))
+					{
+						case 1 when (10 - line.Length, 0, 0) is var (empties, j, k):
+						{
+							foreach (char c in line)
+							{
+								if (c == '*')
+								{
+									resultSpan.Slice(i * 9 + k, empties).Fill(placeholder);
+
+									j++;
+									k += empties;
+								}
+								else
+								{
+									resultSpan[i * 9 + k] = line[j];
+
+									j++;
+									k++;
+								}
+							}
+
+							break;
+						}
+
+						case var n when (9 + n - line.Length, 0, 0) is var (empties, j, k):
+						{
+							int emptiesPerStar = empties / n;
+							foreach (char c in line)
+							{
+								if (c == '*')
+								{
+									resultSpan.Slice(i * 9 + k, emptiesPerStar).Fill(placeholder);
+
+									j++;
+									k += emptiesPerStar;
+								}
+								else
+								{
+									resultSpan[i * 9 + k] = line[j];
+
+									j++;
+									k++;
+								}
+							}
+
+							break;
+						}
+					}
+				}
+
+				result = resultSpan.ToString();
+				return true;
+			}
 		}
 
 		/// <summary>
