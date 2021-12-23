@@ -65,11 +65,6 @@ public unsafe partial struct Grid
 	public const short GivenMask = (int)CellStatus.Given << RegionCellsCount;
 
 	/// <summary>
-	/// The list of 64-based characters.
-	/// </summary>
-	private const string Base64List = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ,.";
-
-	/// <summary>
 	/// Indicates the size of each region.
 	/// </summary>
 	private const byte RegionCellsCount = 9;
@@ -78,12 +73,6 @@ public unsafe partial struct Grid
 	/// Indicates the size of each grid.
 	/// </summary>
 	private const byte Length = 81;
-
-	/// <summary>
-	/// Indicates the length of the string <see cref="Base64List"/>.
-	/// </summary>
-	/// <seealso cref="Base64List"/>
-	private const byte Base64Length = 64;
 
 
 	/// <inheritdoc cref="IGrid{TGrid}.EmptyString"/>

@@ -2724,11 +2724,6 @@
         <member name="F:Sudoku.Data.Grid.GivenMask">
             <inheritdoc cref="P:Sudoku.Data.IGrid`1.GivenMask"/>
         </member>
-        <member name="F:Sudoku.Data.Grid.Base64List">
-            <summary>
-            The list of 64-based characters.
-            </summary>
-        </member>
         <member name="F:Sudoku.Data.Grid.RegionCellsCount">
             <summary>
             Indicates the size of each region.
@@ -2738,12 +2733,6 @@
             <summary>
             Indicates the size of each grid.
             </summary>
-        </member>
-        <member name="F:Sudoku.Data.Grid.Base64Length">
-            <summary>
-            Indicates the length of the string <see cref="F:Sudoku.Data.Grid.Base64List"/>.
-            </summary>
-            <seealso cref="F:Sudoku.Data.Grid.Base64List"/>
         </member>
         <member name="F:Sudoku.Data.Grid.EmptyString">
             <inheritdoc cref="P:Sudoku.Data.IGrid`1.EmptyString"/>
