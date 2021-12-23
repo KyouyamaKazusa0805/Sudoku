@@ -65,14 +65,14 @@ public unsafe partial struct Grid
 	public const short GivenMask = (int)CellStatus.Given << RegionCellsCount;
 
 	/// <summary>
-	/// Indicates the size of each region.
-	/// </summary>
-	private const byte RegionCellsCount = 9;
-
-	/// <summary>
 	/// Indicates the size of each grid.
 	/// </summary>
-	private const byte Length = 81;
+	internal const byte Length = 81;
+
+	/// <summary>
+	/// Indicates the size of each region.
+	/// </summary>
+	internal const byte RegionCellsCount = 9;
 
 
 	/// <inheritdoc cref="IGrid{TGrid}.EmptyString"/>
@@ -706,7 +706,7 @@ public unsafe partial struct Grid
 #if DEBUG
 			{ IsDebuggerUndefined: true } => "<Debugger can't recognize the fixed buffer>",
 #endif
-			_ when Formatter.Create(format) is var f => format switch
+			_ when GridFormatter.Create(format) is var f => format switch
 			{
 				":" => f.ToString(this).Match(RegularExpressions.ExtendedSusserEliminations) ?? string.Empty,
 				"!" => f.ToString(this).Replace("+", string.Empty),
@@ -915,7 +915,7 @@ public unsafe partial struct Grid
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static Grid Parse(in ReadOnlySpan<char> str) => new Parser(str.ToString()).Parse();
+	public static Grid Parse(in ReadOnlySpan<char> str) => new GridParser(str.ToString()).Parse();
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -927,7 +927,7 @@ public unsafe partial struct Grid
 	{
 		Nullability.ThrowIfNull(str);
 
-		return new Parser(str).Parse();
+		return new GridParser(str).Parse();
 	}
 
 	/// <inheritdoc/>
@@ -936,7 +936,7 @@ public unsafe partial struct Grid
 	{
 		Nullability.ThrowIfNull(str);
 
-		return new Parser(str, compatibleFirst).Parse();
+		return new GridParser(str, compatibleFirst).Parse();
 	}
 
 	/// <inheritdoc/>
@@ -945,7 +945,7 @@ public unsafe partial struct Grid
 	{
 		Nullability.ThrowIfNull(str);
 
-		return new Parser(str).Parse(gridParsingOption);
+		return new GridParser(str).Parse(gridParsingOption);
 	}
 
 	/// <inheritdoc/>
