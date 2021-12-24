@@ -18,6 +18,9 @@
 | SCA0104       | Usage     | Warning  | The field having marked '[IsRegex]' isn't a valid regular expression |                                                              |
 | SCA0105       | Usage     | Warning  | The field having marked '[IsRegex]' should use verbatim string identifier '@' |                                                              |
 | SCA0106       | Usage     | Warning  | The field having marked '[IsRegex]' should be modified 'const' |                                                              |
+| SCA0107       | Usage     | Error    | Attribute '[Restrict]' must be applied onto a pointer-typed parameter |                                                              |
+| SCA0108       | Usage     | Error    | Attribute '[Restrict]' must be applied onto at least 2 parameters in a method |                                                              |
+| SCA0109       | Usage     | Error    | Arguments applied '[Restrict]' cannot hold a same pointer value |                                                              |
 | SCA0201       | Usage     | Error    | The discarded parameter can't be used or referenced unless a 'nameof' expression |                                                              |
 | SCA0202       | Usage     | Error    | Discard parameter can't be 'out', 'ref' or 'params' one      |                                                              |
 | SCA0203       | Usage     | Error    | Can't apply 'IsDiscardAttribute' onto a parameter that has already discarded |                                                              |
