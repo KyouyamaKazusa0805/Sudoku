@@ -796,7 +796,7 @@ public unsafe partial struct SudokuGrid
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static SudokuGrid Parse(in ReadOnlySpan<char> str) => new Parser(str.ToString()).Parse();
+	public static SudokuGrid Parse(ReadOnlySpan<char> str) => new Parser(str.ToString()).Parse();
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

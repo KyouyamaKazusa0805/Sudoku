@@ -22,12 +22,12 @@ partial struct Grid
 		/// <summary>
 		/// Indicates the current mask.
 		/// </summary>
-		private short _currentMask;
+		private short _currentMask = 0;
 
 		/// <summary>
 		/// The current index.
 		/// </summary>
-		private int _currentIndex;
+		private int _currentIndex = -1;
 
 
 		/// <summary>
@@ -38,11 +38,7 @@ partial struct Grid
 		/// Note here we should point at the one-unit-lengthed memory before the array start.
 		/// </remarks>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public CandidateCollectionEnumerator(short* arr) : this()
-		{
-			_currentPointer = _start = arr - 1;
-			_currentIndex = -1;
-		}
+		public CandidateCollectionEnumerator(short* arr) => _currentPointer = _start = arr - 1;
 
 
 		/// <summary>
@@ -97,7 +93,8 @@ partial struct Grid
 				goto ReturnFalse;
 			}
 
-			_currentMask = (short)(*(_currentPointer = _start + _currentIndex + 1) & MaxCandidatesMask);
+			_currentPointer = _start + _currentIndex + 1;
+			_currentMask = (short)(*_currentPointer & MaxCandidatesMask);
 
 		ReturnTrue:
 			return true;

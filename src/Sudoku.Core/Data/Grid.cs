@@ -915,7 +915,7 @@ public unsafe partial struct Grid
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static Grid Parse(in ReadOnlySpan<char> str) => new GridParser(str.ToString()).Parse();
+	public static Grid Parse(ReadOnlySpan<char> str) => new GridParser(str.ToString()).Parse();
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -976,5 +976,44 @@ public unsafe partial struct Grid
 			result = Undefined;
 			return false;
 		}
+	}
+
+
+	/// <summary>
+	/// Gets the grid that uses the specified grid as the template,
+	/// and a <see cref="Cells"/> instance as the pattern.
+	/// </summary>
+	/// <param name="grid">The grid.</param>
+	/// <param name="pattern">The pattern.</param>
+	/// <returns>The result grid.</returns>
+	/// <exception cref="InvalidOperationException">
+	/// Throws when the specified grid contains the empty cells on the pattern cells.
+	/// </exception>
+	public static Grid operator &(in Grid grid, in Cells pattern)
+	{
+		bool isValid = true;
+		foreach (int cell in pattern)
+		{
+			if (grid[cell] < 0)
+			{
+				isValid = false;
+			}
+		}
+		if (!isValid)
+		{
+			throw new InvalidOperationException(
+				"Can't operate because the grid contains the empty cells on the pattern cells."
+			);
+		}
+
+		var span = (stackalloc char[Length]);
+		span.Fill('.');
+
+		foreach (int cell in pattern)
+		{
+			span[cell] = (char)(grid[cell] + '0');
+		}
+
+		return Parse(span);
 	}
 }

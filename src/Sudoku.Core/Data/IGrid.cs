@@ -429,7 +429,7 @@ where T : struct, IGrid<T>
 	/// <param name="str">The string.</param>
 	/// <returns>The result instance had converted.</returns>
 	/// <seealso cref="Parse(string, GridParsingOption)"/>
-	static abstract T Parse(in ReadOnlySpan<char> str);
+	static abstract T Parse(ReadOnlySpan<char> str);
 
 	/// <summary>
 	/// Parses a pointer that points to a string value and converts to this type.

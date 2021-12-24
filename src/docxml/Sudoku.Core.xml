@@ -3029,7 +3029,7 @@
         <member name="M:Sudoku.Data.Grid.Equals(Sudoku.Data.Grid@,Sudoku.Data.Grid@)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Data.Grid.Parse(System.ReadOnlySpan{System.Char}@)">
+        <member name="M:Sudoku.Data.Grid.Parse(System.ReadOnlySpan{System.Char})">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Data.Grid.Parse(System.Char*)">
@@ -3049,6 +3049,18 @@
         </member>
         <member name="M:Sudoku.Data.Grid.TryParse(System.String,Sudoku.Data.GridParsingOption,Sudoku.Data.Grid@)">
             <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Data.Grid.op_BitwiseAnd(Sudoku.Data.Grid@,Sudoku.Data.Cells@)">
+            <summary>
+            Gets the grid that uses the specified grid as the template,
+            and a <see cref="T:Sudoku.Data.Cells"/> instance as the pattern.
+            </summary>
+            <param name="grid">The grid.</param>
+            <param name="pattern">The pattern.</param>
+            <returns>The result grid.</returns>
+            <exception cref="T:System.InvalidOperationException">
+            Throws when the specified grid contains the empty cells on the pattern cells.
+            </exception>
         </member>
         <member name="T:Sudoku.Data.Grid.JsonConverter">
             <summary>
@@ -4661,7 +4673,7 @@
             <param name="right">The right one.</param>
             <returns>The <see cref="T:System.Boolean"/> result indicating that.</returns>
         </member>
-        <member name="M:Sudoku.Data.IGrid`1.Parse(System.ReadOnlySpan{System.Char}@)">
+        <member name="M:Sudoku.Data.IGrid`1.Parse(System.ReadOnlySpan{System.Char})">
             <summary>
             <para>Parses a string value and converts to this type.</para>
             <para>
@@ -6016,7 +6028,7 @@
         <member name="M:Sudoku.Data.SudokuGrid.Equals(Sudoku.Data.SudokuGrid@,Sudoku.Data.SudokuGrid@)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Data.SudokuGrid.Parse(System.ReadOnlySpan{System.Char}@)">
+        <member name="M:Sudoku.Data.SudokuGrid.Parse(System.ReadOnlySpan{System.Char})">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Data.SudokuGrid.Parse(System.Char*)">

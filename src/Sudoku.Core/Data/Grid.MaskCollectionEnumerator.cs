@@ -22,7 +22,7 @@ partial struct Grid
 		/// <summary>
 		/// The current index.
 		/// </summary>
-		private int _currentIndex;
+		private int _currentIndex = -1;
 
 
 		/// <summary>
@@ -33,11 +33,7 @@ partial struct Grid
 		/// Note here we should point at the one-unit-lengthed memory before the array start.
 		/// </remarks>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public MaskCollectionEnumerator(short* arr)
-		{
-			_currentPointer = _start = arr - 1;
-			_currentIndex = -1;
-		}
+		public MaskCollectionEnumerator(short* arr) => _currentPointer = _start = arr - 1;
 
 
 		/// <summary>
