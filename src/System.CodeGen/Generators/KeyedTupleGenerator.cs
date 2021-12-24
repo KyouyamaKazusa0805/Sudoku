@@ -20,7 +20,7 @@ public sealed class KeyedTupleGenerator : ISourceGenerator
 			);
 			string commentsForParams = string.Join(
 				"\r\n",
-				from i in values select $@"/// <param name=""Item{i}"">The {i}{getOrderSuffix(i)} item.</param>"
+				from i in values select $@"/// <param name=""Item{i}"">The {i}{getOrdinalIndicator(i)} item.</param>"
 			);
 			string typeParams = string.Join(", ", from i in values select $"T{i}");
 			string primaryConstructorParamListWithoutPriorKey = string.Join(
@@ -96,7 +96,7 @@ public readonly record struct KeyedTuple<{typeParams}>({primaryConstructorParamL
 
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		static string getOrderSuffix(int i) => i switch
+		static string getOrdinalIndicator(int i) => i switch
 		{
 			1 when i / 10 is 0 or 1 => "st",
 			2 when i / 10 is 0 or 1 => "nd",
