@@ -484,42 +484,67 @@ public sealed partial class GridSyntaxChecker : ISyntaxContextReceiver
 	private void CheckFormat(SyntaxNode node, SemanticModel semanticModel, INamedTypeSymbol gridSymbol)
 	{
 		var nodeOperation = semanticModel.GetOperation(node);
-		if (
-			nodeOperation is not IInvocationOperation
+		switch (nodeOperation)
+		{
+			case IInvocationOperation
 			{
 				TargetMethod: { Name: "ToString" },
 				Instance.Type: var typeSymbol,
 				Arguments: { IsEmpty: false } arguments
-			}
-		)
-		{
-			return;
-		}
-
-		if (!SymbolEqualityComparer.Default.Equals(typeSymbol, gridSymbol))
-		{
-			return;
-		}
-
-		var argumentOperation = arguments[0];
-		if (
-			argumentOperation is not
+			}:
 			{
-				ArgumentKind: ArgumentKind.Explicit,
-				Value: ILiteralOperation { ConstantValue: { HasValue: true, Value: string format } },
-				Syntax: var argumentNode
+				if (!SymbolEqualityComparer.Default.Equals(typeSymbol, gridSymbol))
+				{
+					return;
+				}
+
+				var argumentOperation = arguments[0];
+				if (
+					argumentOperation is not
+					{
+						ArgumentKind: ArgumentKind.Explicit,
+						Value: ILiteralOperation { ConstantValue: { HasValue: true, Value: string format } },
+						Syntax: var argumentNode
+					}
+				)
+				{
+					return;
+				}
+
+				if (Array.IndexOf(PossibleFormats, format) != -1)
+				{
+					return;
+				}
+
+				Diagnostics.Add(Diagnostic.Create(SCA0509, argumentNode.GetLocation(), messageArgs: new[] { format }));
+
+				break;
 			}
-		)
-		{
-			return;
-		}
 
-		if (Array.IndexOf(PossibleFormats, format) != -1)
-		{
-			return;
-		}
+			// Used in interpolated string.
+			case IInterpolationOperation
+			{
+				Expression.Syntax: var expressionNode,
+				FormatString.ConstantValue: { HasValue: true, Value: string format },
+				Syntax: var interpolationNode
+			}:
+			{
+				var typeSymbol = semanticModel.GetTypeInfo(expressionNode, _cancellationToken).Type!;
+				if (!SymbolEqualityComparer.Default.Equals(typeSymbol, gridSymbol))
+				{
+					return;
+				}
 
-		Diagnostics.Add(Diagnostic.Create(SCA0509, argumentNode.GetLocation(), messageArgs: new[] { format }));
+				if (Array.IndexOf(PossibleFormats, format) != -1)
+				{
+					return;
+				}
+
+				Diagnostics.Add(Diagnostic.Create(SCA0509, interpolationNode.GetLocation(), messageArgs: new[] { format }));
+
+				break;
+			}
+		}
 	}
 
 
