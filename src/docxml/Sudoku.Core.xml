@@ -4565,10 +4565,18 @@
             </list>
             </returns>
             <remarks>
+            <para>
             Note that the method will return a <see cref="T:System.Boolean"/>?, so you should use the code
             '<c>grid.Exists(cell, digit) is true</c>' or '<c>grid.Exists(cell, digit) == true</c>'
             to decide whether a condition is true.
+            </para>
+            <para>
+            In addition, because the type is <see cref="T:System.Boolean"/>? rather than <see cref="T:System.Boolean"/>,
+            the result case will be more precisely than the indexer <see cref="P:Sudoku.Data.IGrid`1.Item(System.Int32,System.Int32)"/>,
+            which is the main difference between this method and that indexer.
+            </para>
             </remarks>
+            <seealso cref="P:Sudoku.Data.IGrid`1.Item(System.Int32,System.Int32)"/>
         </member>
         <member name="M:Sudoku.Data.IGrid`1.GetHashCode">
             <inheritdoc cref="M:System.Object.GetHashCode"/>

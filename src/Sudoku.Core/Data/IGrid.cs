@@ -310,10 +310,18 @@ where T : struct, IGrid<T>
 	/// </list>
 	/// </returns>
 	/// <remarks>
+	/// <para>
 	/// Note that the method will return a <see cref="bool"/>?, so you should use the code
 	/// '<c>grid.Exists(cell, digit) is true</c>' or '<c>grid.Exists(cell, digit) == true</c>'
 	/// to decide whether a condition is true.
+	/// </para>
+	/// <para>
+	/// In addition, because the type is <see cref="bool"/>? rather than <see cref="bool"/>,
+	/// the result case will be more precisely than the indexer <see cref="this[int, int]"/>,
+	/// which is the main difference between this method and that indexer.
+	/// </para>
 	/// </remarks>
+	/// <seealso cref="this[int, int]"/>
 	bool? Exists(int cell, int digit);
 
 	/// <inheritdoc cref="object.GetHashCode"/>
