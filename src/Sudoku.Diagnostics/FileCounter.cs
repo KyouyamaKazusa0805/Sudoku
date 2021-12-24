@@ -97,7 +97,7 @@ public sealed class FileCounter
 		stopwatch.Start();
 		g(new(Root));
 
-		(int filesCount, int resultLines, long charactersCount, long bytes) = default((int, int, long, long));
+		var (filesCount, resultLines, charactersCount, bytes) = default((int, int, long, long));
 		foreach (string fileName in FileList)
 		{
 			StreamReader? sr = null;
@@ -131,6 +131,7 @@ public sealed class FileCounter
 		stopwatch.Stop();
 		return new(resultLines, filesCount, charactersCount, bytes, stopwatch.Elapsed, FileList);
 
+
 		void g(DirectoryInfo directory)
 		{
 			FileList.AddRange(
@@ -154,18 +155,4 @@ public sealed class FileCounter
 			}
 		}
 	}
-
-	/// <summary>
-	/// Count up for all files in the specified root directory, and return the result asynchronously.
-	/// </summary>
-	/// <returns>The task of the operation.</returns>
-	public async Task<FileCounterResult> CountUpAsync() => await Task.Run(CountUp);
-
-	/// <summary>
-	/// Count up for all files in the specified root directory, and return the result asynchronously.
-	/// </summary>
-	/// <param name="cancellationToken">The cancellation token to cancel the operation.</param>
-	/// <returns>The task of the operation.</returns>
-	public async Task<FileCounterResult> CountUpAsync(CancellationToken cancellationToken) =>
-		await Task.Run(CountUp, cancellationToken);
 }
