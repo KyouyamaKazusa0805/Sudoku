@@ -592,6 +592,7 @@ partial struct GridFormatter
 	/// Indicates the inner equality comparer to determine the equality of length
 	/// of 2 <see cref="Match"/>es to compare.
 	/// </summary>
+	[AnonymousInnerType]
 	private sealed class MatchLengthComparer : IEqualityComparer<Match>
 	{
 		public bool Equals(Match? x, Match? y) => (x?.Value.Length ?? -1) == (y?.Value.Length ?? -1);

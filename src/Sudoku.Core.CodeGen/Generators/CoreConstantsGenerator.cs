@@ -225,6 +225,7 @@ partial class Constants
 		/// <seealso cref=""IntersectionMaps""/>
 		[global::System.CodeDom.Compiler.GeneratedCode(""{GetType().FullName}"", ""0.7"")]
 		[global::System.Runtime.CompilerServices.CompilerGenerated]
+		[global::Sudoku.Diagnostics.CodeAnalysis.AnonymousInnerType]
 		private readonly struct ValueTupleComparer : IEqualityComparer<(byte Value1, byte Value2)>
 		{{
 			/// <inheritdoc/>
