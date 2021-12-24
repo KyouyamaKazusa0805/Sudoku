@@ -12,7 +12,7 @@ public static unsafe class PointerMarshal
 	/// <param name="left">The left variable.</param>
 	/// <param name="right">The right variable.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static void Swap<TUnmanaged>(TUnmanaged* /*restrict*/left, TUnmanaged* /*restrict*/right)
+	public static void Swap<TUnmanaged>([Restrict] TUnmanaged* left, [Restrict] TUnmanaged* right)
 	where TUnmanaged : unmanaged
 	{
 		var temp = *left;

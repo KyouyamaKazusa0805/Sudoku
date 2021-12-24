@@ -83,7 +83,7 @@ public sealed unsafe partial class FastSolver : IPuzzleSolver
 	/// <param name="solution">The solution. <see langword="null"/> if you don't want to use the value.</param>
 	/// <param name="limit">The limit.</param>
 	/// <returns>The number of all solutions.</returns>
-	public long Solve(char* /*restrict*/puzzle, char* /*restrict*/solution, int limit)
+	public long Solve([Restrict] char* puzzle, [Restrict] char* solution, int limit)
 	{
 		char* solutionStr = stackalloc char[BufferLength];
 		try
@@ -733,7 +733,7 @@ public sealed unsafe partial class FastSolver : IPuzzleSolver
 	/// <param name="solutionPtr">The pointer to the solution string.</param>
 	/// <param name="limit">The limitation for the number of all final solutions.</param>
 	/// <returns>The number of solutions found.</returns>
-	private long InternalSolve(char* /*restrict*/puzzle, char* /*restrict*/solutionPtr, int limit)
+	private long InternalSolve([Restrict] char* puzzle, [Restrict] char* solutionPtr, int limit)
 	{
 		_numSolutions = 0;
 		_limitSolutions = limit;

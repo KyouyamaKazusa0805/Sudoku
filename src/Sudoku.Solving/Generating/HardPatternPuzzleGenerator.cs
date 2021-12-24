@@ -78,7 +78,7 @@ public sealed unsafe class HardPatternPuzzleGenerator : IPuzzleGenerator
 	/// <param name="pSolution">
 	/// The pointer that points to the solution. The result value will be changed here.
 	/// </param>
-	private void GenerateAnswerGrid(char* /*restrict*/pPuzzle, char* /*restrict*/pSolution)
+	private void GenerateAnswerGrid([Restrict] char* pPuzzle, [Restrict] char* pSolution)
 	{
 		do
 		{
