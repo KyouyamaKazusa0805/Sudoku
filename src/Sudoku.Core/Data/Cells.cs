@@ -754,7 +754,7 @@ public unsafe partial struct Cells
 	}
 
 	/// <inheritdoc cref="object.ToString"/>
-	public readonly override string ToString() => ToString(null);
+	public override readonly string ToString() => ToString(null);
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
