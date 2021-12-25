@@ -276,6 +276,11 @@
             </para>
             </summary>
         </member>
+        <member name="F:Sudoku.Constants.Tables.Combinatorials">
+            <summary>
+            Indicates the combinatorial numbers from <c>C(1, 1)</c> to <c>C(30, 30)</c>.
+            </summary>
+        </member>
         <member name="F:Sudoku.Constants.Tables.IntersectionBlockTable">
             <summary>
             <para>The table of all blocks to iterate for each blocks.</para>
@@ -1101,6 +1106,12 @@
         <member name="M:Sudoku.Data.Cells.ToArray">
             <inheritdoc/>
         </member>
+        <member name="M:Sudoku.Data.Cells.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
+        <member name="M:Sudoku.Data.Cells.ToString(System.String)">
+            <inheritdoc/>
+        </member>
         <member name="M:Sudoku.Data.Cells.PeerIntersectionLimitsWith(Sudoku.Data.Cells@)">
             <summary>
             To gets the cells that is in the cells that both <see langword="this"/>
@@ -1117,8 +1128,18 @@
             Gets the subsets of the current collection, via the specified size
             indicating the number of elements of the each subset.
             </summary>
-            <param name="size">The size to get.</param>
+            <param name="size">
+            The size to get. Due to the limitation of the algorithm, you can only pass the value between 1 and 30.
+            Otherwise, an <see cref="T:System.InvalidOperationException"/> will be thrown.
+            </param>
             <returns>All possible subsets.</returns>
+            <exception cref="T:System.InvalidOperationException">
+            Throws when:
+            <list type="bullet">
+            <item>The argument <paramref name="size"/> is greater than 30</item>
+            <item>The result state of combinatorial number is too large.</item>
+            </list>
+            </exception>
             <exception cref="T:System.ArgumentException">
             Throws when:
             <list type="bullet">
@@ -1129,12 +1150,6 @@
             </item>
             </list>
             </exception>
-        </member>
-        <member name="M:Sudoku.Data.Cells.ToString">
-            <inheritdoc cref="M:System.Object.ToString"/>
-        </member>
-        <member name="M:Sudoku.Data.Cells.ToString(System.String)">
-            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Data.Cells.ToSpan">
             <inheritdoc/>

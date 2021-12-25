@@ -681,84 +681,6 @@ public unsafe partial struct Cells
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public readonly int[] ToArray() => Offsets;
 
-	/// <summary>
-	/// To gets the cells that is in the cells that both <see langword="this"/>
-	/// and <paramref name="limit"/> sees (i.e. peer intersection of <c><![CDATA[this & limit]]></c>),
-	/// and gets the result map that is in the map above, and only lies in <paramref name="limit"/>.
-	/// </summary>
-	/// <param name="limit">
-	/// The map to limit the result peer intersection.
-	/// </param>
-	/// <returns>The result map.</returns>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public readonly Cells PeerIntersectionLimitsWith(in Cells limit) => this % limit;
-
-	/// <summary>
-	/// Gets the subsets of the current collection, via the specified size
-	/// indicating the number of elements of the each subset.
-	/// </summary>
-	/// <param name="size">The size to get.</param>
-	/// <returns>All possible subsets.</returns>
-	/// <exception cref="ArgumentException">
-	/// Throws when:
-	/// <list type="bullet">
-	/// <item>The current collection is empty.</item>
-	/// <item>The argument <paramref name="size"/> is below or equal to 0.</item>
-	/// <item>
-	/// The argument <paramref name="size"/> is greater than the value of expression '<see cref="Count"/>'.
-	/// </item>
-	/// </list>
-	/// </exception>
-	public readonly IEnumerable<int[]> SubsetOfSize(int size)
-	{
-		if (size != 0 && Count == 0)
-		{
-			throw new ArgumentException("The collection cannot be empty.", nameof(size));
-		}
-
-		if (size <= 0)
-		{
-			throw new ArgumentException("The specified argument value is invalid.", nameof(size));
-		}
-
-		int n = Count;
-		if (size > n)
-		{
-			throw new ArgumentException("The argument must less than or equal to 'Count'.", nameof(size));
-		}
-
-		int* buffer = stackalloc int[size];
-		var result = new List<int[]>(
-			size <= 10 && n <= 10 ? Factorizes[n] / (Factorizes[size] * Factorizes[n - size]) : 16
-		);
-
-		f(size, n, size, Offsets);
-		return result;
-
-
-		void f(int size, int last, int index, int[] offsets)
-		{
-			for (int i = last; i >= index; i--)
-			{
-				buffer[index - 1] = i - 1;
-				if (index > 1)
-				{
-					f(size, i - 1, index - 1, offsets);
-				}
-				else
-				{
-					int[] temp = new int[size];
-					for (int j = 0; j < size; j++)
-					{
-						temp[j] = offsets[buffer[j]];
-					}
-
-					result.Add(temp);
-				}
-			}
-		}
-	}
-
 	/// <inheritdoc cref="object.ToString"/>
 	public override readonly string ToString() => ToString(null);
 
@@ -915,6 +837,98 @@ public unsafe partial struct Cells
 
 			sb.Reverse();
 			return sb.ToStringAndClear();
+		}
+	}
+
+	/// <summary>
+	/// To gets the cells that is in the cells that both <see langword="this"/>
+	/// and <paramref name="limit"/> sees (i.e. peer intersection of <c><![CDATA[this & limit]]></c>),
+	/// and gets the result map that is in the map above, and only lies in <paramref name="limit"/>.
+	/// </summary>
+	/// <param name="limit">
+	/// The map to limit the result peer intersection.
+	/// </param>
+	/// <returns>The result map.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public readonly Cells PeerIntersectionLimitsWith(in Cells limit) => this % limit;
+
+	/// <summary>
+	/// Gets the subsets of the current collection, via the specified size
+	/// indicating the number of elements of the each subset.
+	/// </summary>
+	/// <param name="size">
+	/// The size to get. Due to the limitation of the algorithm, you can only pass the value between 1 and 30.
+	/// Otherwise, an <see cref="InvalidOperationException"/> will be thrown.
+	/// </param>
+	/// <returns>All possible subsets.</returns>
+	/// <exception cref="InvalidOperationException">
+	/// Throws when:
+	/// <list type="bullet">
+	/// <item>The argument <paramref name="size"/> is greater than 30</item>
+	/// <item>The result state of combinatorial number is too large.</item>
+	/// </list>
+	/// </exception>
+	/// <exception cref="ArgumentException">
+	/// Throws when:
+	/// <list type="bullet">
+	/// <item>The current collection is empty.</item>
+	/// <item>The argument <paramref name="size"/> is below or equal to 0.</item>
+	/// <item>
+	/// The argument <paramref name="size"/> is greater than the value of expression '<see cref="Count"/>'.
+	/// </item>
+	/// </list>
+	/// </exception>
+	public readonly Cells[] SubsetOfSize(int size)
+	{
+		if (size <= 0)
+		{
+			throw new ArgumentException("The specified argument value is invalid.", nameof(size));
+		}
+
+		int n = Count;
+		if (n == 0)
+		{
+			throw new ArgumentException("The collection cannot be empty.", nameof(size));
+		}
+
+		if (size > n)
+		{
+			throw new ArgumentException("The argument must less than or equal to 'Count'.", nameof(size));
+		}
+
+		int casesCount = Combinatorials[n - 1, size - 1];
+		if (size > 30 || casesCount == -1)
+		{
+			throw new InvalidOperationException("Can't operate because the result array is too large.");
+		}
+
+		int* buffer = stackalloc int[size];
+		var result = new Cells[casesCount];
+
+		f(size, n, size, Offsets);
+		return result;
+
+
+		void f(int size, int last, int index, int[] offsets)
+		{
+			for (int i = last, totalIndex = 0; i >= index; i--)
+			{
+				buffer[index - 1] = i - 1;
+				if (index > 1)
+				{
+					f(size, i - 1, index - 1, offsets);
+				}
+				else
+				{
+					int[] temp = new int[size];
+					for (int j = 0; j < size; j++)
+					{
+						temp[j] = offsets[buffer[j]];
+					}
+
+					result[totalIndex++] = temp;
+				}
+			}
 		}
 	}
 
