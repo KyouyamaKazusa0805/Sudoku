@@ -28,6 +28,8 @@
 | SCA0114       | Usage     | Warning  | Use 'sealed' modifier to prevent any derivations             |                                                              |
 | SCA0115       | Usage     | Error    | Anonymous inner type is used as an argument of interface type or abstract type, so you must give the base type or interface explicitly |                                                              |
 | SCA0116       | Usage     | Error    | Anonymous inner types cannot be used as the parameter type, return type or so on | Anonymous inner types cannot be used as the parameter type, return type or so on; please use its base type or interface instead |
+| SCA0117       | Usage     | Warning  | 'LambdaBodyAttribute' can only applied onto the property getter or method |                                                              |
+| SCA0118       | Usage     | Warning  | The property getter or method applied '[LambdaBody]' can only use expression-bodied statement to declare the value |                                                              |
 | SCA0201       | Usage     | Error    | The discarded parameter can't be used or referenced unless a 'nameof' expression |                                                              |
 | SCA0202       | Usage     | Error    | Discard parameter can't be 'out', 'ref' or 'params' one      |                                                              |
 | SCA0203       | Usage     | Error    | Can't apply 'IsDiscardAttribute' onto a parameter that has already discarded |                                                              |
