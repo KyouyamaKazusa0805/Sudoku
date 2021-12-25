@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Data;
+﻿namespace Sudoku.Presentation;
 
 /// <summary>
 /// Defines a crosshatching line that used for displaying in a picture.

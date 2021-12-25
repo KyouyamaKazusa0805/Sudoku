@@ -2435,185 +2435,6 @@
             otherwise, <see langword="false"/>.
             </returns>
         </member>
-        <member name="T:Sudoku.Data.Coordinate">
-            <summary>
-            Defines a coordinate used in a sudoku grid.
-            </summary>
-            <param name="Cell">
-            Indicates the cell value used. The possible values are between 0 and 80. You can't assign a value out of this range;
-            otherwise, an <see cref="T:System.InvalidOperationException"/> or <see cref="T:System.ArgumentOutOfRangeException"/> will be thrown.
-            </param>
-        </member>
-        <member name="M:Sudoku.Data.Coordinate.#ctor(System.Byte)">
-            <summary>
-            Defines a coordinate used in a sudoku grid.
-            </summary>
-            <param name="Cell">
-            Indicates the cell value used. The possible values are between 0 and 80. You can't assign a value out of this range;
-            otherwise, an <see cref="T:System.InvalidOperationException"/> or <see cref="T:System.ArgumentOutOfRangeException"/> will be thrown.
-            </param>
-        </member>
-        <member name="F:Sudoku.Data.Coordinate.Undefined">
-            <summary>
-            Indicates the undefined <see cref="T:Sudoku.Data.Coordinate"/> instance that stands for an invalid <see cref="T:Sudoku.Data.Coordinate"/> value.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Data.Coordinate.MinValue">
-            <inheritdoc cref="P:System.IMinMaxValue`1.MinValue"/>
-        </member>
-        <member name="F:Sudoku.Data.Coordinate.MaxValue">
-            <inheritdoc cref="P:System.IMinMaxValue`1.MaxValue"/>
-        </member>
-        <member name="P:Sudoku.Data.Coordinate.Row">
-            <summary>
-            Indicates the current row lying in.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Data.Coordinate.Column">
-            <summary>
-            Indicates the current column lying in.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Data.Coordinate.Block">
-            <summary>
-            Indicates the current block lying in.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Data.Coordinate.System#IMinMaxValue{Sudoku#Data#Coordinate}#MinValue">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Data.Coordinate.System#IMinMaxValue{Sudoku#Data#Coordinate}#MaxValue">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Data.Coordinate.CompareTo(Sudoku.Data.Coordinate)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Data.Coordinate.ToString">
-            <inheritdoc cref="M:System.Object.ToString"/>
-        </member>
-        <member name="M:Sudoku.Data.Coordinate.ToString(System.String)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Data.Coordinate.MoveForwardly(System.Byte)">
-            <inheritdoc cref="M:Sudoku.Data.Coordinate.op_Addition(Sudoku.Data.Coordinate,System.Byte)"/>
-        </member>
-        <member name="M:Sudoku.Data.Coordinate.MoveBackwardly(System.Byte)">
-            <inheritdoc cref="M:Sudoku.Data.Coordinate.op_Subtraction(Sudoku.Data.Coordinate,System.Byte)"/>
-        </member>
-        <member name="M:Sudoku.Data.Coordinate.MoveForwardlyThroughBlock">
-            <summary>
-            Moves the current <see cref="T:Sudoku.Data.Coordinate"/> to skip cells to the first cell in its next block forwardly.
-            </summary>
-            <returns>The result <see cref="T:Sudoku.Data.Coordinate"/></returns>
-        </member>
-        <member name="M:Sudoku.Data.Coordinate.MoveBackwardlyThroughBlock">
-            <summary>
-            Moves the current <see cref="T:Sudoku.Data.Coordinate"/> to skip cells to the first cell in its next block backwardly.
-            </summary>
-            <returns>The result <see cref="T:Sudoku.Data.Coordinate"/></returns>
-        </member>
-        <member name="M:Sudoku.Data.Coordinate.System#IValueComparable{Sudoku#Data#Coordinate}#CompareTo(Sudoku.Data.Coordinate@)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Data.Coordinate.System#IComparable#CompareTo(System.Object)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Data.Coordinate.Parse(System.String)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Data.Coordinate.TryParse(System.String,Sudoku.Data.Coordinate@)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Data.Coordinate.op_GreaterThanOrEqual(Sudoku.Data.Coordinate,Sudoku.Data.Coordinate)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Data.Coordinate.op_LessThanOrEqual(Sudoku.Data.Coordinate,Sudoku.Data.Coordinate)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Data.Coordinate.op_GreaterThan(Sudoku.Data.Coordinate,Sudoku.Data.Coordinate)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Data.Coordinate.op_LessThan(Sudoku.Data.Coordinate,Sudoku.Data.Coordinate)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Data.Coordinate.op_Addition(Sudoku.Data.Coordinate,System.Byte)">
-            <summary>
-            Moves the specified <see cref="T:Sudoku.Data.Coordinate"/> forwardly.
-            </summary>
-            <param name="coordinate">The <see cref="T:Sudoku.Data.Coordinate"/> instance to be moved.</param>
-            <param name="offset">The offset that the <see cref="T:Sudoku.Data.Coordinate"/> instance moves.</param>
-            <returns>The result <see cref="T:Sudoku.Data.Coordinate"/>.</returns>
-        </member>
-        <member name="M:Sudoku.Data.Coordinate.op_Subtraction(Sudoku.Data.Coordinate,System.Byte)">
-            <summary>
-            Moves the specified <see cref="T:Sudoku.Data.Coordinate"/> backwardly.
-            </summary>
-            <param name="coordinate">The <see cref="T:Sudoku.Data.Coordinate"/> instance to be moved.</param>
-            <param name="offset">The offset that the <see cref="T:Sudoku.Data.Coordinate"/> instance moves.</param>
-            <returns>The result <see cref="T:Sudoku.Data.Coordinate"/>.</returns>
-        </member>
-        <member name="M:Sudoku.Data.Coordinate.op_Implicit(Sudoku.Data.Coordinate)~System.Byte">
-            <summary>
-            Implicit conversion from <see cref="T:Sudoku.Data.Coordinate"/> to <see cref="T:System.Byte"/>.
-            </summary>
-            <param name="coordinate">The <see cref="T:Sudoku.Data.Coordinate"/> instance.</param>
-        </member>
-        <member name="M:Sudoku.Data.Coordinate.op_Explicit(System.Byte)~Sudoku.Data.Coordinate">
-            <summary>
-            Explicit conversion from <see cref="T:System.Byte"/> to <see cref="T:Sudoku.Data.Coordinate"/>.
-            </summary>
-            <param name="cell">The cell value.</param>
-        </member>
-        <member name="M:Sudoku.Data.Coordinate.Equals(Sudoku.Data.Coordinate@)">
-            <summary>
-            Indicates whether the current object is equal to another object of the same type.
-            </summary>
-            <param name="other">An object to compare with this object.</param>
-            <returns>
-            <see langword="true"/> if the current object is equal to the other parameter;
-            otherwise, <see langword="false"/>.
-            </returns>
-        </member>
-        <member name="M:Sudoku.Data.Coordinate.GetHashCode">
-            <inheritdoc cref="M:System.Object.GetHashCode"/>
-        </member>
-        <member name="T:Sudoku.Data.Crosshatch">
-            <summary>
-            Defines a crosshatching line that used for displaying in a picture.
-            </summary>
-            <param name="Start">The start position.</param>
-            <param name="End">The end position.</param>
-        </member>
-        <member name="M:Sudoku.Data.Crosshatch.#ctor(Sudoku.Data.Cells@,Sudoku.Data.Cells@)">
-            <summary>
-            Defines a crosshatching line that used for displaying in a picture.
-            </summary>
-            <param name="Start">The start position.</param>
-            <param name="End">The end position.</param>
-        </member>
-        <member name="M:Sudoku.Data.Crosshatch.Equals(Sudoku.Data.Crosshatch@)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Data.Crosshatch.op_Implicit(System.ValueTuple{Sudoku.Data.Cells,Sudoku.Data.Cells}@)~Sudoku.Data.Crosshatch">
-            <summary>
-            Implicit cast from <see cref="T:System.ValueTuple`2"/> to <see cref="T:Sudoku.Data.Crosshatch"/>.
-            </summary>
-            <param name="pair">The pair of crosshatching line data.</param>
-        </member>
-        <member name="T:Sudoku.Data.Crosshatch.JsonConverter">
-            <summary>
-            Indicates the JSON converter.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Data.Crosshatch.JsonConverter.HandleNull">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Data.Crosshatch.JsonConverter.Read(System.Text.Json.Utf8JsonReader@,System.Type,System.Text.Json.JsonSerializerOptions)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Data.Crosshatch.JsonConverter.Write(System.Text.Json.Utf8JsonWriter,Sudoku.Data.Crosshatch,System.Text.Json.JsonSerializerOptions)">
-            <inheritdoc/>
-        </member>
         <member name="T:Sudoku.Data.Grid">
             <summary>
             Represents a sudoku grid that uses the mask list to construct the data structure.
@@ -7430,7 +7251,7 @@
             <param name="DirectLines">The direct lines.</param>
             <param name="UnknownValues">The unknown values.</param>
         </member>
-        <member name="M:Sudoku.Models.PresentationData.#ctor(System.Collections.Generic.IList{System.ValueTuple{System.Int32,Sudoku.Models.ColorIdentifier}},System.Collections.Generic.IList{System.ValueTuple{System.Int32,Sudoku.Models.ColorIdentifier}},System.Collections.Generic.IList{System.ValueTuple{System.Int32,Sudoku.Models.ColorIdentifier}},System.Collections.Generic.IList{System.ValueTuple{Sudoku.Data.ChainLink,Sudoku.Models.ColorIdentifier}},System.Collections.Generic.IList{System.ValueTuple{Sudoku.Data.Crosshatch,Sudoku.Models.ColorIdentifier}},System.Collections.Generic.IList{System.ValueTuple{Sudoku.Data.UnknownValue,Sudoku.Models.ColorIdentifier}})">
+        <member name="M:Sudoku.Models.PresentationData.#ctor(System.Collections.Generic.IList{System.ValueTuple{System.Int32,Sudoku.Models.ColorIdentifier}},System.Collections.Generic.IList{System.ValueTuple{System.Int32,Sudoku.Models.ColorIdentifier}},System.Collections.Generic.IList{System.ValueTuple{System.Int32,Sudoku.Models.ColorIdentifier}},System.Collections.Generic.IList{System.ValueTuple{Sudoku.Data.ChainLink,Sudoku.Models.ColorIdentifier}},System.Collections.Generic.IList{System.ValueTuple{Sudoku.Presentation.Crosshatch,Sudoku.Models.ColorIdentifier}},System.Collections.Generic.IList{System.ValueTuple{Sudoku.Data.UnknownValue,Sudoku.Models.ColorIdentifier}})">
             <summary>
             Indicates the presentation data that is used for present the information.
             </summary>
@@ -7513,7 +7334,7 @@
             </item>
             <item>
             <term><see cref="F:Sudoku.Models.PresentationDataKind.DirectLines"/></term>
-            <description><see cref="T:Sudoku.Data.Crosshatch"/></description>
+            <description><see cref="T:Sudoku.Presentation.Crosshatch"/></description>
             </item>
             <item>
             <term><see cref="F:Sudoku.Models.PresentationDataKind.UnknownValue"/></term>
@@ -7560,7 +7381,7 @@
             </item>
             <item>
             <term><see cref="F:Sudoku.Models.PresentationDataKind.DirectLines"/></term>
-            <description><see cref="T:Sudoku.Data.Crosshatch"/></description>
+            <description><see cref="T:Sudoku.Presentation.Crosshatch"/></description>
             </item>
             <item>
             <term><see cref="F:Sudoku.Models.PresentationDataKind.UnknownValue"/></term>
@@ -7826,6 +7647,185 @@
             <seealso cref="P:System.Exception.Data"/>
         </member>
         <member name="M:Sudoku.NoSolutionException.GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Presentation.Coordinate">
+            <summary>
+            Defines a coordinate used in a sudoku grid.
+            </summary>
+            <param name="Cell">
+            Indicates the cell value used. The possible values are between 0 and 80. You can't assign a value out of this range;
+            otherwise, an <see cref="T:System.InvalidOperationException"/> or <see cref="T:System.ArgumentOutOfRangeException"/> will be thrown.
+            </param>
+        </member>
+        <member name="M:Sudoku.Presentation.Coordinate.#ctor(System.Byte)">
+            <summary>
+            Defines a coordinate used in a sudoku grid.
+            </summary>
+            <param name="Cell">
+            Indicates the cell value used. The possible values are between 0 and 80. You can't assign a value out of this range;
+            otherwise, an <see cref="T:System.InvalidOperationException"/> or <see cref="T:System.ArgumentOutOfRangeException"/> will be thrown.
+            </param>
+        </member>
+        <member name="F:Sudoku.Presentation.Coordinate.Undefined">
+            <summary>
+            Indicates the undefined <see cref="T:Sudoku.Presentation.Coordinate"/> instance that stands for an invalid <see cref="T:Sudoku.Presentation.Coordinate"/> value.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Presentation.Coordinate.MinValue">
+            <inheritdoc cref="P:System.IMinMaxValue`1.MinValue"/>
+        </member>
+        <member name="F:Sudoku.Presentation.Coordinate.MaxValue">
+            <inheritdoc cref="P:System.IMinMaxValue`1.MaxValue"/>
+        </member>
+        <member name="P:Sudoku.Presentation.Coordinate.Row">
+            <summary>
+            Indicates the current row lying in.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Presentation.Coordinate.Column">
+            <summary>
+            Indicates the current column lying in.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Presentation.Coordinate.Block">
+            <summary>
+            Indicates the current block lying in.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Presentation.Coordinate.System#IMinMaxValue{Sudoku#Presentation#Coordinate}#MinValue">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Presentation.Coordinate.System#IMinMaxValue{Sudoku#Presentation#Coordinate}#MaxValue">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Presentation.Coordinate.CompareTo(Sudoku.Presentation.Coordinate)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Presentation.Coordinate.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
+        <member name="M:Sudoku.Presentation.Coordinate.ToString(System.String)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Presentation.Coordinate.MoveForwardly(System.Byte)">
+            <inheritdoc cref="M:Sudoku.Presentation.Coordinate.op_Addition(Sudoku.Presentation.Coordinate,System.Byte)"/>
+        </member>
+        <member name="M:Sudoku.Presentation.Coordinate.MoveBackwardly(System.Byte)">
+            <inheritdoc cref="M:Sudoku.Presentation.Coordinate.op_Subtraction(Sudoku.Presentation.Coordinate,System.Byte)"/>
+        </member>
+        <member name="M:Sudoku.Presentation.Coordinate.MoveForwardlyThroughBlock">
+            <summary>
+            Moves the current <see cref="T:Sudoku.Presentation.Coordinate"/> to skip cells to the first cell in its next block forwardly.
+            </summary>
+            <returns>The result <see cref="T:Sudoku.Presentation.Coordinate"/></returns>
+        </member>
+        <member name="M:Sudoku.Presentation.Coordinate.MoveBackwardlyThroughBlock">
+            <summary>
+            Moves the current <see cref="T:Sudoku.Presentation.Coordinate"/> to skip cells to the first cell in its next block backwardly.
+            </summary>
+            <returns>The result <see cref="T:Sudoku.Presentation.Coordinate"/></returns>
+        </member>
+        <member name="M:Sudoku.Presentation.Coordinate.System#IValueComparable{Sudoku#Presentation#Coordinate}#CompareTo(Sudoku.Presentation.Coordinate@)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Presentation.Coordinate.System#IComparable#CompareTo(System.Object)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Presentation.Coordinate.Parse(System.String)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Presentation.Coordinate.TryParse(System.String,Sudoku.Presentation.Coordinate@)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Presentation.Coordinate.op_GreaterThanOrEqual(Sudoku.Presentation.Coordinate,Sudoku.Presentation.Coordinate)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Presentation.Coordinate.op_LessThanOrEqual(Sudoku.Presentation.Coordinate,Sudoku.Presentation.Coordinate)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Presentation.Coordinate.op_GreaterThan(Sudoku.Presentation.Coordinate,Sudoku.Presentation.Coordinate)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Presentation.Coordinate.op_LessThan(Sudoku.Presentation.Coordinate,Sudoku.Presentation.Coordinate)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Presentation.Coordinate.op_Addition(Sudoku.Presentation.Coordinate,System.Byte)">
+            <summary>
+            Moves the specified <see cref="T:Sudoku.Presentation.Coordinate"/> forwardly.
+            </summary>
+            <param name="coordinate">The <see cref="T:Sudoku.Presentation.Coordinate"/> instance to be moved.</param>
+            <param name="offset">The offset that the <see cref="T:Sudoku.Presentation.Coordinate"/> instance moves.</param>
+            <returns>The result <see cref="T:Sudoku.Presentation.Coordinate"/>.</returns>
+        </member>
+        <member name="M:Sudoku.Presentation.Coordinate.op_Subtraction(Sudoku.Presentation.Coordinate,System.Byte)">
+            <summary>
+            Moves the specified <see cref="T:Sudoku.Presentation.Coordinate"/> backwardly.
+            </summary>
+            <param name="coordinate">The <see cref="T:Sudoku.Presentation.Coordinate"/> instance to be moved.</param>
+            <param name="offset">The offset that the <see cref="T:Sudoku.Presentation.Coordinate"/> instance moves.</param>
+            <returns>The result <see cref="T:Sudoku.Presentation.Coordinate"/>.</returns>
+        </member>
+        <member name="M:Sudoku.Presentation.Coordinate.op_Implicit(Sudoku.Presentation.Coordinate)~System.Byte">
+            <summary>
+            Implicit conversion from <see cref="T:Sudoku.Presentation.Coordinate"/> to <see cref="T:System.Byte"/>.
+            </summary>
+            <param name="coordinate">The <see cref="T:Sudoku.Presentation.Coordinate"/> instance.</param>
+        </member>
+        <member name="M:Sudoku.Presentation.Coordinate.op_Explicit(System.Byte)~Sudoku.Presentation.Coordinate">
+            <summary>
+            Explicit conversion from <see cref="T:System.Byte"/> to <see cref="T:Sudoku.Presentation.Coordinate"/>.
+            </summary>
+            <param name="cell">The cell value.</param>
+        </member>
+        <member name="M:Sudoku.Presentation.Coordinate.Equals(Sudoku.Presentation.Coordinate@)">
+            <summary>
+            Indicates whether the current object is equal to another object of the same type.
+            </summary>
+            <param name="other">An object to compare with this object.</param>
+            <returns>
+            <see langword="true"/> if the current object is equal to the other parameter;
+            otherwise, <see langword="false"/>.
+            </returns>
+        </member>
+        <member name="M:Sudoku.Presentation.Coordinate.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="T:Sudoku.Presentation.Crosshatch">
+            <summary>
+            Defines a crosshatching line that used for displaying in a picture.
+            </summary>
+            <param name="Start">The start position.</param>
+            <param name="End">The end position.</param>
+        </member>
+        <member name="M:Sudoku.Presentation.Crosshatch.#ctor(Sudoku.Data.Cells@,Sudoku.Data.Cells@)">
+            <summary>
+            Defines a crosshatching line that used for displaying in a picture.
+            </summary>
+            <param name="Start">The start position.</param>
+            <param name="End">The end position.</param>
+        </member>
+        <member name="M:Sudoku.Presentation.Crosshatch.Equals(Sudoku.Presentation.Crosshatch@)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Presentation.Crosshatch.op_Implicit(System.ValueTuple{Sudoku.Data.Cells,Sudoku.Data.Cells}@)~Sudoku.Presentation.Crosshatch">
+            <summary>
+            Implicit cast from <see cref="T:System.ValueTuple`2"/> to <see cref="T:Sudoku.Presentation.Crosshatch"/>.
+            </summary>
+            <param name="pair">The pair of crosshatching line data.</param>
+        </member>
+        <member name="T:Sudoku.Presentation.Crosshatch.JsonConverter">
+            <summary>
+            Indicates the JSON converter.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Presentation.Crosshatch.JsonConverter.HandleNull">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Presentation.Crosshatch.JsonConverter.Read(System.Text.Json.Utf8JsonReader@,System.Type,System.Text.Json.JsonSerializerOptions)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Presentation.Crosshatch.JsonConverter.Write(System.Text.Json.Utf8JsonWriter,Sudoku.Presentation.Crosshatch,System.Text.Json.JsonSerializerOptions)">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.PuzzleShouldHaveBeenSolvedException">
