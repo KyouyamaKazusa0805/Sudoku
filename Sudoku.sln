@@ -11,7 +11,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Global Files", "Global File
 		LICENSE = LICENSE
 		README-zh-cn.md = README-zh-cn.md
 		README.md = README.md
-		docs\version\Version-0.7.md = docs\version\Version-0.7.md
 	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sudoku.Core", "src\Sudoku.Core\Sudoku.Core.csproj", "{FCD247BE-77B3-4091-BDB5-1EEB768938B7}"
