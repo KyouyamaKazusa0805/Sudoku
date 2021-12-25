@@ -702,6 +702,7 @@ public unsafe partial struct Cells
 	/// <exception cref="ArgumentException">
 	/// Throws when:
 	/// <list type="bullet">
+	/// <item>The current collection is empty.</item>
 	/// <item>The argument <paramref name="size"/> is below or equal to 0.</item>
 	/// <item>
 	/// The argument <paramref name="size"/> is greater than the value of expression '<see cref="Count"/>'.
@@ -710,6 +711,11 @@ public unsafe partial struct Cells
 	/// </exception>
 	public readonly IEnumerable<int[]> SubsetOfSize(int size)
 	{
+		if (size != 0 && Count == 0)
+		{
+			throw new ArgumentException("The collection cannot be empty.", nameof(size));
+		}
+
 		if (size <= 0)
 		{
 			throw new ArgumentException("The specified argument value is invalid.", nameof(size));
@@ -963,6 +969,20 @@ public unsafe partial struct Cells
 		else // Negative values.
 		{
 			InternalAdd(~offset, false);
+		}
+	}
+
+	/// <summary>
+	/// Set the specified cell as <see langword="true"/> value.
+	/// </summary>
+	/// <param name="offset">The cell to add, represented as a <see cref="string"/> value.</param>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	[EditorBrowsable(EditorBrowsableState.Never)]
+	public void Add(string offset)
+	{
+		if (Coordinate.TryParse(offset, out var result))
+		{
+			InternalAdd(result, true);
 		}
 	}
 

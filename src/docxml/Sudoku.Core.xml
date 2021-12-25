@@ -1122,6 +1122,7 @@
             <exception cref="T:System.ArgumentException">
             Throws when:
             <list type="bullet">
+            <item>The current collection is empty.</item>
             <item>The argument <paramref name="size"/> is below or equal to 0.</item>
             <item>
             The argument <paramref name="size"/> is greater than the value of expression '<see cref="P:Sudoku.Data.Cells.Count"/>'.
@@ -1161,6 +1162,12 @@
         </member>
         <member name="M:Sudoku.Data.Cells.Add(System.Int32)">
             <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Data.Cells.Add(System.String)">
+            <summary>
+            Set the specified cell as <see langword="true"/> value.
+            </summary>
+            <param name="offset">The cell to add, represented as a <see cref="T:System.String"/> value.</param>
         </member>
         <member name="M:Sudoku.Data.Cells.AddAnyway(System.Int32)">
             <inheritdoc/>
@@ -2419,7 +2426,7 @@
             </summary>
             <param name="Cell">
             Indicates the cell value used. The possible values are between 0 and 80. You can't assign a value out of this range;
-            otherwise, a <see cref="T:System.InvalidOperationException"/> or <see cref="T:System.ArgumentOutOfRangeException"/> will be thrown.
+            otherwise, an <see cref="T:System.InvalidOperationException"/> or <see cref="T:System.ArgumentOutOfRangeException"/> will be thrown.
             </param>
         </member>
         <member name="M:Sudoku.Data.Coordinate.#ctor(System.Byte)">
@@ -2428,7 +2435,7 @@
             </summary>
             <param name="Cell">
             Indicates the cell value used. The possible values are between 0 and 80. You can't assign a value out of this range;
-            otherwise, a <see cref="T:System.InvalidOperationException"/> or <see cref="T:System.ArgumentOutOfRangeException"/> will be thrown.
+            otherwise, an <see cref="T:System.InvalidOperationException"/> or <see cref="T:System.ArgumentOutOfRangeException"/> will be thrown.
             </param>
         </member>
         <member name="F:Sudoku.Data.Coordinate.Undefined">

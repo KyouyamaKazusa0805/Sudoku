@@ -5,7 +5,7 @@
 /// </summary>
 /// <param name="Cell">
 /// Indicates the cell value used. The possible values are between 0 and 80. You can't assign a value out of this range;
-/// otherwise, a <see cref="InvalidOperationException"/> or <see cref="ArgumentOutOfRangeException"/> will be thrown.
+/// otherwise, an <see cref="InvalidOperationException"/> or <see cref="ArgumentOutOfRangeException"/> will be thrown.
 /// </param>
 [AutoGetHashCode(nameof(Cell))]
 [AutoEquality(nameof(Cell))]
@@ -189,7 +189,7 @@ public readonly partial record struct Coordinate(byte Cell)
 				goto DefaultReturn;
 			}
 
-			if (!char.IsDigit(str[1]) || !char.IsDigit(str[2]))
+			if (!char.IsDigit(str[1]) || !char.IsDigit(str[3]))
 			{
 				goto DefaultReturn;
 			}
