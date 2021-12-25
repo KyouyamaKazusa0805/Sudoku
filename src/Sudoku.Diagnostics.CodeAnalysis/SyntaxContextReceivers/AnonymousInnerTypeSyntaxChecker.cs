@@ -177,6 +177,61 @@ public sealed partial class AnonymousInnerTypeSyntaxChecker : ISyntaxContextRece
 				break;
 			}
 
+			case NullableTypeSyntax { ElementType: var elementType }:
+			{
+				var symbol = semanticModel.GetTypeInfo(elementType, _cancellationToken).Type!;
+				if (
+					symbol is not INamedTypeSymbol
+					{
+						TypeKind: TypeKind.Struct,
+						TypeArguments: { Length: not 0 } typeArguments
+					}
+				)
+				{
+					return;
+				}
+
+				foreach (var typeArgument in typeArguments)
+				{
+					var attributesData = typeArgument.GetAttributes();
+					if (attributesData.All(a => !SymbolEqualityComparer.Default.Equals(a.AttributeClass, attribute)))
+					{
+						continue;
+					}
+
+					Diagnostics.Add(Diagnostic.Create(SCA0116, node.GetLocation(), messageArgs: null));
+				}
+
+				break;
+			}
+
+			case ArrayTypeSyntax { ElementType: var elementType }:
+			{
+				var symbol = semanticModel.GetTypeInfo(elementType, _cancellationToken).Type!;
+				if (
+					symbol is not INamedTypeSymbol
+					{
+						TypeArguments: { Length: not 0 } typeArguments
+					}
+				)
+				{
+					return;
+				}
+
+				foreach (var typeArgument in typeArguments)
+				{
+					var attributesData = typeArgument.GetAttributes();
+					if (attributesData.All(a => !SymbolEqualityComparer.Default.Equals(a.AttributeClass, attribute)))
+					{
+						continue;
+					}
+
+					Diagnostics.Add(Diagnostic.Create(SCA0116, node.GetLocation(), messageArgs: null));
+				}
+
+				break;
+			}
+
 			case MethodDeclarationSyntax:
 			{
 				var symbol = semanticModel.GetDeclaredSymbol(node, _cancellationToken);
