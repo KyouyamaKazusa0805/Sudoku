@@ -207,6 +207,11 @@
             All fields will be initialized in the static constructor, which is declared in the source generator.
             </i></remarks>
         </member>
+        <member name="F:Sudoku.Constants.Tables.RegionFirst">
+            <summary>
+            Indicates the first cell offset for each region.
+            </summary>
+        </member>
         <member name="F:Sudoku.Constants.Tables.Peers">
             <summary>
             <para>Indicates a table for each cell's peers.</para>
@@ -240,11 +245,6 @@
             '<c>RegionTable[0]</c>': all cell offsets in the region 0 (block 1).
             </example>
         </member>
-        <member name="F:Sudoku.Constants.Tables.RegionFirst">
-            <summary>
-            Indicates the first cell offset for each region.
-            </summary>
-        </member>
         <member name="F:Sudoku.Constants.Tables.RegionMaps">
             <summary>
             Indicates all grid maps that a grid contains.
@@ -276,11 +276,6 @@
             </para>
             </summary>
         </member>
-        <member name="F:Sudoku.Constants.Tables.Combinatorials">
-            <summary>
-            Indicates the combinatorial numbers from <c>C(1, 1)</c> to <c>C(30, 30)</c>.
-            </summary>
-        </member>
         <member name="F:Sudoku.Constants.Tables.IntersectionBlockTable">
             <summary>
             <para>The table of all blocks to iterate for each blocks.</para>
@@ -289,6 +284,11 @@
             </para>
             </summary>
             <seealso cref="F:Sudoku.Constants.Tables.IntersectionMaps"/>
+        </member>
+        <member name="F:Sudoku.Constants.Tables.Combinatorials">
+            <summary>
+            Indicates the combinatorial numbers from <c>C(1, 1)</c> to <c>C(30, 30)</c>.
+            </summary>
         </member>
         <member name="M:Sudoku.Constants.Tables.#cctor">
             <summary>
