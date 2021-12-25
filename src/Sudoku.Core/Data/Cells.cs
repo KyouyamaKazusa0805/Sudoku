@@ -902,16 +902,16 @@ public unsafe partial struct Cells
 			throw new InvalidOperationException("Can't operate because the result array is too large.");
 		}
 
+		int totalIndex = 0;
 		int* buffer = stackalloc int[size];
 		var result = new Cells[casesCount];
-
 		f(size, n, size, Offsets);
 		return result;
 
 
 		void f(int size, int last, int index, int[] offsets)
 		{
-			for (int i = last, totalIndex = 0; i >= index; i--)
+			for (int i = last; i >= index; i--)
 			{
 				buffer[index - 1] = i - 1;
 				if (index > 1)
