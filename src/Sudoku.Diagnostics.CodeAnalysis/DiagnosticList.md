@@ -21,6 +21,13 @@
 | SCA0107       | Usage     | Error    | Attribute '[Restrict]' must be applied onto a pointer-typed parameter |                                                              |
 | SCA0108       | Usage     | Error    | Attribute '[Restrict]' must be applied onto at least 2 parameters in a method |                                                              |
 | SCA0109       | Usage     | Error    | Arguments applied '[Restrict]' cannot hold a same pointer value |                                                              |
+| SCA0110       | Usage     | Warning  | You shouldn't initialize an instance as the local variable of type applied '[AnonymousInnerType]' |                                                              |
+| SCA0111       | Usage     | Error    | The type applied '[AnonymousInnerType]' must contain a synthesized parameterless constructor |                                                              |
+| SCA0112       | Usage     | Warning  | Use classes or interfaces instead of structs to define an anonymous inner type to prevent any box and unbox operations |                                                              |
+| SCA0113       | Usage     | Warning  | Don't use 'public' access modifier in order not to expose the type outside the solution |                                                              |
+| SCA0114       | Usage     | Warning  | Use 'sealed' modifier to prevent any derivations             |                                                              |
+| SCA0115       | Usage     | Error    | Anonymous inner type is used as an argument of interface type or abstract type, so you must give the base type or interface explicitly |                                                              |
+| SCA0116       | Usage     | Error    | Anonymous inner types cannot be used as the parameter type, return type or so on | Anonymous inner types cannot be used as the parameter type, return type or so on; please use its base type or interface instead |
 | SCA0201       | Usage     | Error    | The discarded parameter can't be used or referenced unless a 'nameof' expression |                                                              |
 | SCA0202       | Usage     | Error    | Discard parameter can't be 'out', 'ref' or 'params' one      |                                                              |
 | SCA0203       | Usage     | Error    | Can't apply 'IsDiscardAttribute' onto a parameter that has already discarded |                                                              |
