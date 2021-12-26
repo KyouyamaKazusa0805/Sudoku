@@ -740,7 +740,7 @@ public unsafe partial struct Grid
 	/// </returns>
 	/// <remarks>
 	/// Please note that the iterator will iterate all masks by reference, which means
-	/// you can use <see langword="ref"/> and <see langword="ref readonly"/> modifier
+	/// you can apply <see langword="ref"/> and <see langword="ref readonly"/> modifier
 	/// onto the iteration variable:
 	/// <code>
 	/// foreach (ref readonly short mask in grid)
