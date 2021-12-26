@@ -3,36 +3,6 @@
 /// <summary>
 /// Represents a sudoku grid that uses the mask list to construct the data structure.
 /// </summary>
-/// <remarks>
-/// The data structure uses the mask table of length 81 to indicate the status and all possible candidates
-/// holding for each cell. Each mask uses a <see cref="short"/> value, but only uses 11 of 16 bits.
-/// <code>
-/// |xxx|--|--------|
-/// |-------|-------|
-/// 16      8       0
-/// </code>
-/// Here the first-nine bits indicate whether the digit 1-9 is possible candidate in the current cell respectively,
-/// and the higher 3 bits indicate the cell status. The possible cell status are:
-/// <list type="table">
-/// <listheader>
-/// <term>Status name (Value corresponding to <see cref="CellStatus"/> enumeration)</term>
-/// <description>Description</description>
-/// </listheader>
-/// <item>
-/// <term>Empty cell (i.e. <see cref="CellStatus.Empty"/>)</term>
-/// <description>The cell is currently empty, and wait for being filled.</description>
-/// </item>
-/// <item>
-/// <term>Modifiable cell (i.e. <see cref="CellStatus.Modifiable"/>)</term>
-/// <description>The cell is filled by a digit, but the digit isn't the given by the initial grid.</description>
-/// </item>
-/// <item>
-/// <term>Given cell (i.e. <see cref="CellStatus.Given"/>)</term>
-/// <description>The cell is filled by a digit, which is given by the initial grid and can't be modified.</description>
-/// </item>
-/// </list>
-/// </remarks>
-/// <seealso cref="CellStatus"/>
 #if DEBUG
 #if USE_TO_MASK_STRING_METHOD
 [DebuggerDisplay($@"{{{nameof(ToMaskString)}("".+:""),nq}}")]
@@ -100,6 +70,36 @@ public unsafe partial struct Grid
 	/// Indicates the inner array that stores the masks of the sudoku grid, which
 	/// stores the in-time sudoku grid inner information.
 	/// </summary>
+	/// <remarks>
+	/// The field uses the mask table of length 81 to indicate the status and all possible candidates
+	/// holding for each cell. Each mask uses a <see cref="short"/> value, but only uses 11 of 16 bits.
+	/// <code>
+	/// |xxx|--|--------|
+	/// |-------|-------|
+	/// 16      8       0
+	/// </code>
+	/// Here the first-nine bits indicate whether the digit 1-9 is possible candidate in the current cell respectively,
+	/// and the higher 3 bits indicate the cell status. The possible cell status are:
+	/// <list type="table">
+	/// <listheader>
+	/// <term>Status name (Value corresponding to <see cref="CellStatus"/> enumeration)</term>
+	/// <description>Description</description>
+	/// </listheader>
+	/// <item>
+	/// <term>Empty cell (i.e. <see cref="CellStatus.Empty"/>)</term>
+	/// <description>The cell is currently empty, and wait for being filled.</description>
+	/// </item>
+	/// <item>
+	/// <term>Modifiable cell (i.e. <see cref="CellStatus.Modifiable"/>)</term>
+	/// <description>The cell is filled by a digit, but the digit isn't the given by the initial grid.</description>
+	/// </item>
+	/// <item>
+	/// <term>Given cell (i.e. <see cref="CellStatus.Given"/>)</term>
+	/// <description>The cell is filled by a digit, which is given by the initial grid and can't be modified.</description>
+	/// </item>
+	/// </list>
+	/// </remarks>
+	/// <seealso cref="CellStatus"/>
 	private fixed short _values[Length];
 
 
@@ -476,7 +476,18 @@ public unsafe partial struct Grid
 	public readonly Grid ResetGrid
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => this & GivenCells;
+		get
+		{
+			int[] arr = new int[Length];
+			Array.Fill(arr, -1);
+
+			foreach (int cell in GivenCells)
+			{
+				arr[cell] = this[cell];
+			}
+
+			return new(arr);
+		}
 	}
 
 	/// <summary>
@@ -715,6 +726,42 @@ public unsafe partial struct Grid
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public readonly CellStatus GetStatus(int cell) => _values[cell].MaskToStatus();
+
+	/// <summary>
+	/// Forms a slice out of the current grid that begins at a specified cell as the index.
+	/// </summary>
+	/// <param name="startCell">The cell as the index at which to begin the slice.</param>
+	/// <returns>
+	/// A grid segment that consists of all elements of the current grid from <paramref name="startCell"/>
+	/// to the end of the grid.
+	/// </returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public readonly GridSegment Slice(int startCell) => Slice(startCell, 81 - startCell);
+
+	/// <summary>
+	/// Forms a slice out of the current grid starting at a specified cell as the index for a specified length.
+	/// </summary>
+	/// <param name="startCell">The cell as the index at which to begin this slice.</param>
+	/// <param name="length">The desired length for the slice.</param>
+	/// <returns>
+	/// A grid segment that consists of <paramref name="length"/> elements from the current grid
+	/// starting at <paramref name="startCell"/>.
+	/// </returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public readonly GridSegment Slice(int startCell, int length) =>
+		new(this, new Cells(startCell..(startCell + length)));
+
+	/// <summary>
+	/// Filters the cells that only satisfy the specified condition.
+	/// </summary>
+	/// <param name="predicate">The condition to filter cells.</param>
+	/// <returns>
+	/// The <see cref="GridSegment"/> instance that holds the specified cells
+	/// having satisfied the specified condition.
+	/// </returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public readonly GridSegment Where(delegate*<in Grid, int, bool> predicate) =>
+		new(this, GetCells(predicate));
 
 	/// <summary>
 	/// Try to enumerate all possible candidates in the current grid.
@@ -976,40 +1023,12 @@ public unsafe partial struct Grid
 
 
 	/// <summary>
-	/// Gets the grid that uses the specified grid as the template,
+	/// Gets the grid segment that uses the specified grid as the template,
 	/// and a <see cref="Cells"/> instance as the pattern.
 	/// </summary>
 	/// <param name="grid">The grid.</param>
 	/// <param name="pattern">The pattern.</param>
 	/// <returns>The result grid.</returns>
-	/// <exception cref="InvalidOperationException">
-	/// Throws when the specified grid contains the empty cells on the pattern cells.
-	/// </exception>
-	public static Grid operator &(in Grid grid, in Cells pattern)
-	{
-		bool isValid = true;
-		foreach (int cell in pattern)
-		{
-			if (grid[cell] < 0)
-			{
-				isValid = false;
-			}
-		}
-		if (!isValid)
-		{
-			throw new InvalidOperationException(
-				"Can't operate because the grid contains the empty cells on the pattern cells."
-			);
-		}
-
-		var span = (stackalloc char[Length]);
-		span.Fill('.');
-
-		foreach (int cell in pattern)
-		{
-			span[cell] = (char)(grid[cell] + '0');
-		}
-
-		return Parse(span);
-	}
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static GridSegment operator &(in Grid grid, in Cells pattern) => new(grid, pattern);
 }

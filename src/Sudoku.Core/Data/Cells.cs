@@ -115,6 +115,16 @@ public unsafe partial struct Cells
 	}
 
 	/// <summary>
+	/// Initializes an instance with the cell offset specified as an <see cref="Index"/>
+	/// (Sets itself and all peers).
+	/// </summary>
+	/// <param name="cellIndex">The cell offset specified as an <see cref="Index"/>.</param>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public Cells(Index cellIndex) : this(cellIndex.GetOffset(81))
+	{
+	}
+
+	/// <summary>
 	/// Initializes an instance with the specified instance.
 	/// </summary>
 	/// <param name="another">Another instance.</param>
@@ -185,6 +195,20 @@ public unsafe partial struct Cells
 		foreach (int offset in cells)
 		{
 			InternalAdd(offset, true);
+		}
+	}
+
+	/// <summary>
+	/// Initializes an instance with the specified range.
+	/// </summary>
+	/// <param name="range">The range.</param>
+	public Cells(Range range)
+	{
+		int start = range.Start.GetOffset(81);
+		int end = range.End.GetOffset(81);
+		for (int i = start; i < end; i++)
+		{
+			InternalAdd(i, true);
 		}
 	}
 
@@ -1218,6 +1242,45 @@ public unsafe partial struct Cells
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static implicit operator Cells(in ReadOnlySpan<int> offsets) => new(offsets);
+
+	/// <summary>
+	/// Explicit cast from <see cref="Range"/> to <see cref="Cells"/>.
+	/// </summary>
+	/// <param name="range">The range.</param>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static explicit operator Cells(Range range) => new(range);
+
+	/// <summary>
+	/// Explicit cast from <see cref="Cells"/> to <see cref="Range"/>.
+	/// </summary>
+	/// <param name="offsets">The offsets.</param>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static explicit operator Range(in Cells offsets)
+	{
+		int first = offsets[0];
+		int lastCell = first;
+		foreach (int cell in offsets)
+		{
+			if (cell == first)
+			{
+				continue;
+			}
+
+			if (cell - lastCell != 1)
+			{
+				throw new InvalidOperationException("Cannot operate because the result slice is discontinuous.");
+			}
+
+			lastCell = cell;
+		}
+
+		return (81 - lastCell) switch
+		{
+			1 => first..,
+			var indexFromLast and (2 or 3) => first..^(indexFromLast - 1),
+			_ => first..lastCell
+		};
+	}
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
