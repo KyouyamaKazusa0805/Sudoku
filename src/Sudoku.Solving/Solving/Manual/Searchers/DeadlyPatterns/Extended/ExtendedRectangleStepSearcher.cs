@@ -316,10 +316,7 @@ public sealed unsafe class ExtendedRectangleStepSearcher : IExtendedRectangleSte
 
 		var step = new ExtendedRectangleType1Step(
 			ImmutableArray.CreateRange(conclusions),
-			ImmutableArray.Create(new PresentationData
-			{
-				Candidates = candidateOffsets
-			}),
+			ImmutableArray.Create(new PresentationData { Candidates = candidateOffsets }),
 			allCellsMap,
 			normalDigits
 		);
@@ -373,10 +370,7 @@ public sealed unsafe class ExtendedRectangleStepSearcher : IExtendedRectangleSte
 
 		var step = new ExtendedRectangleType2Step(
 			elimMap.ToImmutableConclusions(extraDigit),
-			ImmutableArray.Create(new PresentationData
-			{
-				Candidates = candidateOffsets
-			}),
+			ImmutableArray.Create(new PresentationData { Candidates = candidateOffsets }),
 			allCellsMap,
 			normalDigits,
 			extraDigit
@@ -418,7 +412,7 @@ public sealed unsafe class ExtendedRectangleStepSearcher : IExtendedRectangleSte
 			var otherCells = (RegionMaps[region] & EmptyMap) - allCellsMap;
 			for (int size = 1, length = otherCells.Count; size < length; size++)
 			{
-				foreach (int[] cells in otherCells.SubsetOfSize(size))
+				foreach (var cells in otherCells & size)
 				{
 					short mask = 0;
 					foreach (int cell in cells)

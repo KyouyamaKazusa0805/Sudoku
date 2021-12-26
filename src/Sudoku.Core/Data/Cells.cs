@@ -852,86 +852,6 @@ public unsafe partial struct Cells
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public readonly Cells PeerIntersectionLimitsWith(in Cells limit) => this % limit;
 
-	/// <summary>
-	/// Gets the subsets of the current collection, via the specified size
-	/// indicating the number of elements of the each subset.
-	/// </summary>
-	/// <param name="size">
-	/// The size to get. Due to the limitation of the algorithm, you can only pass the value between 1 and 30.
-	/// Otherwise, an <see cref="InvalidOperationException"/> will be thrown.
-	/// </param>
-	/// <returns>All possible subsets.</returns>
-	/// <exception cref="InvalidOperationException">
-	/// Throws when:
-	/// <list type="bullet">
-	/// <item>The argument <paramref name="size"/> is greater than 30</item>
-	/// <item>The result state of combinatorial number is too large.</item>
-	/// </list>
-	/// </exception>
-	/// <exception cref="ArgumentException">
-	/// Throws when:
-	/// <list type="bullet">
-	/// <item>The current collection is empty.</item>
-	/// <item>The argument <paramref name="size"/> is below or equal to 0.</item>
-	/// <item>
-	/// The argument <paramref name="size"/> is greater than the value of expression '<see cref="Count"/>'.
-	/// </item>
-	/// </list>
-	/// </exception>
-	public readonly Cells[] SubsetOfSize(int size)
-	{
-		if (size <= 0)
-		{
-			throw new ArgumentException("The specified argument value is invalid.", nameof(size));
-		}
-
-		int n = Count;
-		if (n == 0)
-		{
-			throw new ArgumentException("The collection cannot be empty.", nameof(size));
-		}
-
-		if (size > n)
-		{
-			throw new ArgumentException("The argument must less than or equal to 'Count'.", nameof(size));
-		}
-
-		int casesCount = Combinatorials[n - 1, size - 1];
-		if (size > 30 || casesCount == -1)
-		{
-			throw new InvalidOperationException("Can't operate because the result array is too large.");
-		}
-
-		int totalIndex = 0;
-		int* buffer = stackalloc int[size];
-		var result = new Cells[casesCount];
-		f(size, n, size, Offsets);
-		return result;
-
-
-		void f(int size, int last, int index, int[] offsets)
-		{
-			for (int i = last; i >= index; i--)
-			{
-				buffer[index - 1] = i - 1;
-				if (index > 1)
-				{
-					f(size, i - 1, index - 1, offsets);
-				}
-				else
-				{
-					int[] temp = new int[size];
-					for (int j = 0; j < size; j++)
-					{
-						temp[j] = offsets[buffer[j]];
-					}
-
-					result[totalIndex++] = temp;
-				}
-			}
-		}
-	}
-
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public readonly Span<int> ToSpan() => Offsets.AsSpan();
@@ -1181,6 +1101,46 @@ public unsafe partial struct Cells
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static Cells operator -(in Cells left, in Cells right) => left & ~right;
+
+	/// <summary>
+	/// Gets the subsets of the current collection via the specified size
+	/// indicating the number of elements of the each subset.
+	/// </summary>
+	/// <param name="cell">Indicates the base template cells.</param>
+	/// <param name="subsetSize">The size to get.</param>
+	/// <returns>All possible subsets.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static Cells[] operator &(in Cells cell, int subsetSize)
+	{
+		int totalIndex = 0, n = cell.Count;
+		int* buffer = stackalloc int[subsetSize];
+		var result = new Cells[Combinatorials[n - 1, subsetSize - 1]];
+		f(subsetSize, n, subsetSize, cell.Offsets);
+		return result;
+
+
+		void f(int size, int last, int index, int[] offsets)
+		{
+			for (int i = last; i >= index; i--)
+			{
+				buffer[index - 1] = i - 1;
+				if (index > 1)
+				{
+					f(size, i - 1, index - 1, offsets);
+				}
+				else
+				{
+					int[] temp = new int[size];
+					for (int j = 0; j < size; j++)
+					{
+						temp[j] = offsets[buffer[j]];
+					}
+
+					result[totalIndex++] = temp;
+				}
+			}
+		}
+	}
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

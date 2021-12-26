@@ -43,7 +43,7 @@ public sealed unsafe class SubsetStepSearcher : ISubsetStepSearcher
 				}
 
 				// Iterate on each combination.
-				foreach (int[] cells in currentEmptyMap.SubsetOfSize(size))
+				foreach (var cells in currentEmptyMap & size)
 				{
 					short mask = 0;
 					foreach (int cell in cells)
@@ -91,7 +91,7 @@ public sealed unsafe class SubsetStepSearcher : ISubsetStepSearcher
 							Regions = new[] { (region, (ColorIdentifier)0) }
 						}),
 						region,
-						new(cells),
+						cells,
 						mask,
 						isLocked
 					);

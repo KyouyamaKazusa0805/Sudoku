@@ -1,10 +1,10 @@
 ﻿using System;
 using Sudoku.Data;
 
-var cells = new Cells { "r1c1", "r1c2", "r1c4", "r1c6", "r1c9" };
+var cells = new Cells { 0, 1, 2, 3, 4 };
 Console.WriteLine(cells);
 
-foreach (var set in cells.SubsetOfSize(3))
+foreach (var set in cells & 3)
 {
 	Console.WriteLine(set);
 }

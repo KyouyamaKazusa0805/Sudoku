@@ -95,7 +95,7 @@ public sealed unsafe class AlmostLockedCandidatesStepSearcher : IAlmostLockedCan
 	)
 	{
 		// Iterate on each cell combination.
-		foreach (int[] cells in (a & EmptyMap).SubsetOfSize(size - 1))
+		foreach (var cells in a & EmptyMap & size - 1)
 		{
 			// Gather the mask. The cell combination must contain the specified number of digits.
 			short mask = 0;
@@ -143,11 +143,10 @@ public sealed unsafe class AlmostLockedCandidatesStepSearcher : IAlmostLockedCan
 			}
 
 			// Gather all eliminations.
-			var cellsMap = new Cells(cells);
 			var conclusions = new List<Conclusion>();
 			foreach (int aCell in a)
 			{
-				if (cellsMap.Contains(aCell))
+				if (cells.Contains(aCell))
 				{
 					continue;
 				}
@@ -175,7 +174,7 @@ public sealed unsafe class AlmostLockedCandidatesStepSearcher : IAlmostLockedCan
 			var candidateOffsets = new List<(int, ColorIdentifier)>();
 			foreach (int digit in mask)
 			{
-				foreach (int cell in cellsMap & CandMaps[digit])
+				foreach (int cell in cells & CandMaps[digit])
 				{
 					candidateOffsets.Add((cell * 9 + digit, (ColorIdentifier)0));
 				}
@@ -195,7 +194,7 @@ public sealed unsafe class AlmostLockedCandidatesStepSearcher : IAlmostLockedCan
 				}
 			}
 
-			var map = (cellsMap | ahsCells) - EmptyMap;
+			var map = (cells | ahsCells) - EmptyMap;
 			var valueCells = new List<(int, ColorIdentifier)>(map.Count);
 			foreach (int cell in map)
 			{
@@ -212,7 +211,7 @@ public sealed unsafe class AlmostLockedCandidatesStepSearcher : IAlmostLockedCan
 					Regions = new[] { (baseSet, (ColorIdentifier)0), (coverSet, (ColorIdentifier)2) }
 				}),
 				mask,
-				cellsMap,
+				cells,
 				ahsCells,
 				hasValueCell
 			);
