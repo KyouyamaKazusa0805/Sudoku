@@ -23,6 +23,7 @@ global using Sudoku.Diagnostics.CodeGen;
 global using Sudoku.Globalization;
 global using Sudoku.Presentation;
 global using Sudoku.Resources;
+global using Sudoku.Solving;
 global using static System.Numerics.BitOperations;
 global using static Sudoku.Constants;
 global using static Sudoku.Constants.Tables;

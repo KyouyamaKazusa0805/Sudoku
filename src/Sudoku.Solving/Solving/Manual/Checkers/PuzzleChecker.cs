@@ -8,7 +8,7 @@ public static class PuzzleChecker
 	/// <summary>
 	/// Indicates the inner solver.
 	/// </summary>
-	private static readonly FastSolver Solver = new();
+	private static readonly BitwiseSolver Solver = new();
 
 
 	/// <summary>

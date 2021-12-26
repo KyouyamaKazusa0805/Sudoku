@@ -8,7 +8,7 @@ public static class MissingCandidateSearcher
 	/// <summary>
 	/// Indicates the inner solver.
 	/// </summary>
-	private static readonly FastSolver Solver = new();
+	private static readonly BitwiseSolver Solver = new();
 
 
 	/// <summary>
@@ -44,7 +44,7 @@ public static class MissingCandidateSearcher
 
 		static int? testSymmetry(in Grid grid, delegate*<in Grid, Grid> transform)
 		{
-			if ((grid.ResetGrid.Pattern ^ transform(grid).ResetGrid.Pattern) is not { Count: 1 } xorPattern)
+			if ((grid.GivenCells ^ transform(grid).GivenCells) is not { Count: 1 } xorPattern)
 			{
 				goto ReturnNull;
 			}

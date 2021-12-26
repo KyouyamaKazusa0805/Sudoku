@@ -148,11 +148,6 @@ where T : struct, IGrid<T>
 	int EmptiesCount { get; }
 
 	/// <summary>
-	/// Indicates the eigen string value that can introduce the current sudoku grid.
-	/// </summary>
-	string EigenString { get; }
-
-	/// <summary>
 	/// Indicates the cells that corresponding position in this grid is empty.
 	/// </summary>
 	Cells EmptyCells { get; }

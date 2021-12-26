@@ -90,6 +90,11 @@ public unsafe partial struct Grid
 	/// <inheritdoc cref="IGrid{TGrid}.Empty"/>
 	public static readonly Grid Empty;
 
+	/// <summary>
+	/// Indicates the solver that uses the bitwise algorithm to solve a puzzle as fast as possible.
+	/// </summary>
+	private static readonly BitwiseSolver Solver = new();
+
 
 	/// <summary>
 	/// Indicates the inner array that stores the masks of the sudoku grid, which
@@ -258,6 +263,15 @@ public unsafe partial struct Grid
 		}
 	}
 
+	/// <summary>
+	/// Indicates whether the puzzle is valid, which means the puzzle contains a unique solution.
+	/// </summary>
+	public readonly bool IsValid
+	{
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		get => Solver.CheckValidity(ToString("0"));
+	}
+
 	/// <inheritdoc/>
 	public readonly bool IsUndefined
 	{
@@ -317,55 +331,22 @@ public unsafe partial struct Grid
 	/// <inheritdoc/>
 	public readonly int GivensCount
 	{
-		get
-		{
-			int result = 0;
-			for (int i = 0; i < Length; i++)
-			{
-				if (GetStatus(i) == CellStatus.Given)
-				{
-					result++;
-				}
-			}
-
-			return result;
-		}
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		get => GivenCells.Count;
 	}
 
 	/// <inheritdoc/>
 	public readonly int ModifiablesCount
 	{
-		get
-		{
-			int result = 0;
-			for (int i = 0; i < Length; i++)
-			{
-				if (GetStatus(i) == CellStatus.Modifiable)
-				{
-					result++;
-				}
-			}
-
-			return result;
-		}
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		get => ModifiableCells.Count;
 	}
 
 	/// <inheritdoc/>
 	public readonly int EmptiesCount
 	{
-		get
-		{
-			int result = 0;
-			for (int i = 0; i < Length; i++)
-			{
-				if (GetStatus(i) == CellStatus.Empty)
-				{
-					result++;
-				}
-			}
-
-			return result;
-		}
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		get => EmptyCells.Count;
 	}
 
 	/// <summary>
@@ -394,25 +375,34 @@ public unsafe partial struct Grid
 		}
 	}
 
-	/// <inheritdoc/>
-	public readonly string EigenString
+	/// <summary>
+	/// Gets the cell template that only contains the given cells.
+	/// </summary>
+	public readonly Cells GivenCells
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => ToString("0").TrimStart('0');
+		get
+		{
+			return GetCells(&p);
+
+
+			static bool p(in Grid g, int cell) => g.GetStatus(cell) == CellStatus.Given;
+		}
 	}
 
 	/// <summary>
-	/// Gets the pattern of the current sudoku grid.
+	/// Gets the cell template that only contains the modifiable cells.
 	/// </summary>
-	/// <remarks>
-	/// A <b>pattern</b> is a template that holds the values (i.e. givens and modifiables).
-	/// This property is equivalent to the expression <c>~EmptyCells</c>,
-	/// but useful in some cases you want to create a puzzle with the specified pattern.
-	/// </remarks>
-	public readonly Cells Pattern
+	public readonly Cells ModifiableCells
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => ~EmptyCells;
+		get
+		{
+			return GetCells(&p);
+
+
+			static bool p(in Grid g, int cell) => g.GetStatus(cell) == CellStatus.Modifiable;
+		}
 	}
 
 	/// <inheritdoc/>
@@ -485,13 +475,19 @@ public unsafe partial struct Grid
 	/// </summary>
 	public readonly Grid ResetGrid
 	{
-		get
-		{
-			var result = this; // Copy an instance.
-			result.Reset();
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		get => this & GivenCells;
+	}
 
-			return result;
-		}
+	/// <summary>
+	/// Indicates the solution of the grid. If failed to solve (for example,
+	/// the puzzle contains multiple solutions), the property will return <see cref="Undefined"/>.
+	/// </summary>
+	/// <see cref="Undefined"/>
+	public readonly Grid Solution
+	{
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		get => Solver.Solve(this);
 	}
 
 	/// <inheritdoc/>

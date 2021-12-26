@@ -2573,6 +2573,11 @@
         <member name="F:Sudoku.Data.Grid.Empty">
             <inheritdoc cref="P:Sudoku.Data.IGrid`1.Empty"/>
         </member>
+        <member name="F:Sudoku.Data.Grid.Solver">
+            <summary>
+            Indicates the solver that uses the bitwise algorithm to solve a puzzle as fast as possible.
+            </summary>
+        </member>
         <member name="F:Sudoku.Data.Grid._values">
             <summary>
             Indicates the inner array that stores the masks of the sudoku grid, which
@@ -2642,6 +2647,11 @@
         <member name="P:Sudoku.Data.Grid.IsSolved">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Data.Grid.IsValid">
+            <summary>
+            Indicates whether the puzzle is valid, which means the puzzle contains a unique solution.
+            </summary>
+        </member>
         <member name="P:Sudoku.Data.Grid.IsUndefined">
             <inheritdoc/>
         </member>
@@ -2674,18 +2684,15 @@
             </para>
             </summary>
         </member>
-        <member name="P:Sudoku.Data.Grid.EigenString">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Data.Grid.Pattern">
+        <member name="P:Sudoku.Data.Grid.GivenCells">
             <summary>
-            Gets the pattern of the current sudoku grid.
+            Gets the cell template that only contains the given cells.
             </summary>
-            <remarks>
-            A <b>pattern</b> is a template that holds the values (i.e. givens and modifiables).
-            This property is equivalent to the expression <c>~EmptyCells</c>,
-            but useful in some cases you want to create a puzzle with the specified pattern.
-            </remarks>
+        </member>
+        <member name="P:Sudoku.Data.Grid.ModifiableCells">
+            <summary>
+            Gets the cell template that only contains the modifiable cells.
+            </summary>
         </member>
         <member name="P:Sudoku.Data.Grid.EmptyCells">
             <inheritdoc/>
@@ -2706,6 +2713,13 @@
             <summary>
             Gets the grid where all modifiable cells are empty cells (i.e. the initial one).
             </summary>
+        </member>
+        <member name="P:Sudoku.Data.Grid.Solution">
+            <summary>
+            Indicates the solution of the grid. If failed to solve (for example,
+            the puzzle contains multiple solutions), the property will return <see cref="F:Sudoku.Data.Grid.Undefined"/>.
+            </summary>
+            <see cref="F:Sudoku.Data.Grid.Undefined"/>
         </member>
         <member name="P:Sudoku.Data.Grid.Sudoku#Data#IGrid{Sudoku#Data#Grid}#DefaultMask">
             <inheritdoc/>
@@ -4225,11 +4239,6 @@
         <member name="P:Sudoku.Data.IGrid`1.EmptiesCount">
             <summary>
             Indicates the total number of empty cells.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Data.IGrid`1.EigenString">
-            <summary>
-            Indicates the eigen string value that can introduce the current sudoku grid.
             </summary>
         </member>
         <member name="P:Sudoku.Data.IGrid`1.EmptyCells">
@@ -8007,6 +8016,265 @@
             The value. If the key can't be found in neither the current language dictionary
             nor the default dictionary, the return value will be <see langword="null"/>.
             </returns>
+        </member>
+        <member name="T:Sudoku.Solving.BitwiseSolver">
+            <summary>
+            Defines a fast solver.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.BitwiseSolver.BitSet27">
+            <summary>
+            All pencil marks set - 27 bits per band.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.BitwiseSolver.BufferLength">
+            <summary>
+            The buffer length of a solution puzzle.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.BitwiseSolver._stack">
+            <summary>
+            Stack to store current and previous states.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.BitwiseSolver._singleApplied">
+            <summary>
+            Nasty global flag telling if <see cref="M:Sudoku.Solving.BitwiseSolver.ApplySingleOrEmptyCells"/> found anything.
+            </summary>
+            <seealso cref="M:Sudoku.Solving.BitwiseSolver.ApplySingleOrEmptyCells"/>
+        </member>
+        <member name="F:Sudoku.Solving.BitwiseSolver._solution">
+            <summary>
+            Pointer to where to store the first solution. This value can be <see langword="null"/>.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.BitwiseSolver._numSolutions">
+            <summary>
+            The number of solutions found so far.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.BitwiseSolver._limitSolutions">
+            <summary>
+            The max number of solution we're looking for.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.BitwiseSolver._g">
+            <summary>
+            Pointer to the currently active slot.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.BitwiseSolver.Solve(Sudoku.Data.Grid@)">
+            <summary>
+            To solve the puzzle, and get the solution.
+            </summary>
+            <param name="puzzle">The puzzle to solve.</param>
+            <returns>The solution. If failed to solve, <see cref="F:Sudoku.Data.Grid.Undefined"/>.</returns>
+            <seealso cref="F:Sudoku.Data.Grid.Undefined"/>
+        </member>
+        <member name="M:Sudoku.Solving.BitwiseSolver.Solve(System.Char*,System.Char*,System.Int32)">
+            <summary>
+            The inner solver.
+            </summary>
+            <param name="puzzle">The pointer to the puzzle.</param>
+            <param name="solution">The solution. <see langword="null"/> if you don't want to use the value.</param>
+            <param name="limit">The limit.</param>
+            <returns>The number of all solutions.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.BitwiseSolver.Solve(System.String,System.Char*,System.Int32)">
+            <summary>
+            The inner solver.
+            </summary>
+            <param name="puzzle">The puzzle.</param>
+            <param name="solution">The solution. <see langword="null"/> if you don't want to use the value.</param>
+            <param name="limit">The limit.</param>
+            <returns>The number of all solutions.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.BitwiseSolver.Solve(System.String,System.String@,System.Int32)">
+            <summary>
+            The inner solver.
+            </summary>
+            <param name="puzzle">The puzzle.</param>
+            <param name="solution">
+            The solution. The value keeps <see langword="null"/> if you doesn't want to use this result.
+            </param>
+            <param name="limit">The limit.</param>
+            <returns>The number of all solutions.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.BitwiseSolver.CheckValidity(System.Char*)">
+            <summary>
+            Same as <see cref="M:Sudoku.Solving.BitwiseSolver.CheckValidity(System.String,System.String@)"/>, but doesn't contain
+            any <see langword="out"/> parameters.
+            </summary>
+            <param name="grid">The grid.</param>
+            <returns>The <see cref="T:System.Boolean"/> result. <see langword="true"/> for unique solution.</returns>
+            <seealso cref="M:Sudoku.Solving.BitwiseSolver.CheckValidity(System.String,System.String@)"/>
+        </member>
+        <member name="M:Sudoku.Solving.BitwiseSolver.CheckValidity(System.String)">
+            <summary>
+            Same as <see cref="M:Sudoku.Solving.BitwiseSolver.CheckValidity(System.String,System.String@)"/>, but doesn't contain
+            any <see langword="out"/> parameters.
+            </summary>
+            <param name="grid">The grid.</param>
+            <returns>The <see cref="T:System.Boolean"/> result. <see langword="true"/> for unique solution.</returns>
+            <seealso cref="M:Sudoku.Solving.BitwiseSolver.CheckValidity(System.String,System.String@)"/>
+        </member>
+        <member name="M:Sudoku.Solving.BitwiseSolver.CheckValidity(System.String,System.String@)">
+            <summary>
+            Check the validity of the puzzle.
+            </summary>
+            <param name="grid">The grid.</param>
+            <param name="solutionIfUnique">The solution if the puzzle is unique.</param>
+            <returns>The <see cref="T:System.Boolean"/> result. <see langword="true"/> for unique solution.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.BitwiseSolver.SetSolvedDigit(System.Int32,System.Int32)">
+            <summary>
+            Set a cell as solved - used in <see cref="M:Sudoku.Solving.BitwiseSolver.InitSudoku(System.Char*)"/>.
+            </summary>
+            <param name="cell">The cell.</param>
+            <param name="digit">The digit.</param>
+            <returns>The <see cref="T:System.Boolean"/> result.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.BitwiseSolver.EliminateDigit(System.Int32,System.Int32)">
+            <summary>
+            Eliminate a digit - used in <see cref="M:Sudoku.Solving.BitwiseSolver.InitSudoku(System.Char*)"/>.
+            </summary>
+            <param name="cell">The cell.</param>
+            <param name="digit">The digit.</param>
+            <returns>The <see cref="T:System.Boolean"/> result.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.BitwiseSolver.SetSolvedMask(System.Int32,System.UInt32)">
+            <summary>
+            Set a cell as solved - used in various guess routines.
+            </summary>
+            <param name="band">The band.</param>
+            <param name="mask">The mask.</param>
+            <returns>The <see cref="T:System.Boolean"/> result.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.BitwiseSolver.InitSudoku(System.Char*)">
+            <summary>
+            Setup everything and load the puzzle.
+            </summary>
+            <param name="puzzle">The pointer that points to a puzzle buffer.</param>
+            <returns>The <see cref="T:System.Boolean"/> result.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.BitwiseSolver.Update">
+            <summary>
+            Core of fast processing.
+            </summary>
+            <returns>The <see cref="T:System.Boolean"/> value.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.BitwiseSolver.ApplySingleOrEmptyCells">
+            <summary>
+            Find singles, bi-value cells, and impossible cells.
+            </summary>
+            <returns>A <see cref="T:System.Boolean"/> result.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.BitwiseSolver.InternalSolve(System.Char*,System.Char*,System.Int32)">
+            <summary>
+            The internal solving method.
+            </summary>
+            <param name="puzzle">The pointer to the puzzle string.</param>
+            <param name="solutionPtr">The pointer to the solution string.</param>
+            <param name="limit">The limitation for the number of all final solutions.</param>
+            <returns>The number of solutions found.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.BitwiseSolver.ExtractSolution(System.Char*)">
+            <summary>
+            Extract solution as a string.
+            </summary>
+            <param name="solution">
+            The solution pointer. <b>The buffer should be at least <see cref="F:Sudoku.Solving.BitwiseSolver.BufferLength"/>
+            of value of length.</b>
+            </param>
+        </member>
+        <member name="M:Sudoku.Solving.BitwiseSolver.GuessBiValueInCell">
+            <summary>
+            Try both options for cells with exactly two pencil marks.
+            </summary>
+            <returns>A <see cref="T:System.Boolean"/> result.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.BitwiseSolver.GuessFirstCell">
+            <summary>
+            Guess all possibilities in first unsolved cell.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.BitwiseSolver.Guess">
+            <summary>
+            Either already solved, or guess and recurse.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.BitwiseSolver.FullUpdate">
+            <summary>
+            Get as far as possible without guessing.
+            </summary>
+            <returns>An <see cref="T:System.Byte"/> result.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.BitwiseSolver.BitPos(System.UInt32)">
+            <summary>
+            Get the bit position.
+            </summary>
+            <param name="map">The map.</param>
+            <returns>The position.</returns>
+        </member>
+        <member name="T:Sudoku.Solving.BitwiseSolver.State">
+            <summary>
+            To describe a state for a current grid using binary values.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.BitwiseSolver.State.Bands">
+            <summary>
+            Pencil marks in bands by digit.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.BitwiseSolver.State.PrevBands">
+            <summary>
+            Value of bands last time it was calculated.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.BitwiseSolver.State.UnsolvedCells">
+            <summary>
+            Bit vector of unsolved cells.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.BitwiseSolver.State.UnsolvedRows">
+            <summary>
+            Bit vector of unsolved rows - three bits per band.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.BitwiseSolver.State.Pairs">
+            <summary>
+            Bit vector of cells with exactly two pencil marks.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.BitwiseSolver.TblComplexMask">
+            <summary>
+            To keep mini rows still valid.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.BitwiseSolver.TblMaskSingle">
+            <summary>
+            Kill in other blocks locked column/box.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.BitwiseSolver.TblShrinkSingle">
+            <summary>
+            Keep only rows with single.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.BitwiseSolver.TblRowUniq">
+            <remarks>
+            1 is row not defined in block mode <c>1</c> to <c>111</c>.
+            </remarks>
+        </member>
+        <member name="F:Sudoku.Solving.BitwiseSolver.TblColumnSingle">
+            <summary>
+            Single in column applied to shrunk block.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.BitwiseSolver.TblRowMask">
+            <summary>
+            Rows where single found: <c>000</c> to <c>111</c>.
+            </summary>
         </member>
         <member name="T:Sudoku.Techniques.Technique">
             <summary>
