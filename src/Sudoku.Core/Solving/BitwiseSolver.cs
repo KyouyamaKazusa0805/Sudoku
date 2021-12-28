@@ -6,14 +6,14 @@
 public sealed unsafe partial class BitwiseSolver
 {
 	/// <summary>
+	/// The buffer length of a solution puzzle.
+	/// </summary>
+	internal const int BufferLength = 82;
+
+	/// <summary>
 	/// All pencil marks set - 27 bits per band.
 	/// </summary>
 	private const int BitSet27 = 0x7FFFFFF;
-
-	/// <summary>
-	/// The buffer length of a solution puzzle.
-	/// </summary>
-	private const int BufferLength = 82;
 
 
 	/// <summary>
@@ -40,12 +40,19 @@ public sealed unsafe partial class BitwiseSolver
 	/// <summary>
 	/// The max number of solution we're looking for.
 	/// </summary>
+	[SuppressMessage("Style", "IDE0032:Use auto property", Justification = "<Pending>")]
 	private long _limitSolutions;
 
 	/// <summary>
 	/// Pointer to the currently active slot.
 	/// </summary>
 	private State* _g;
+
+
+	/// <summary>
+	/// Indicates the number of solutions found.
+	/// </summary>
+	internal long LimitSolutions => _limitSolutions;
 
 
 	/// <summary>

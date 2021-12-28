@@ -8177,14 +8177,14 @@
             Defines a fast solver.
             </summary>
         </member>
-        <member name="F:Sudoku.Solving.BitwiseSolver.BitSet27">
-            <summary>
-            All pencil marks set - 27 bits per band.
-            </summary>
-        </member>
         <member name="F:Sudoku.Solving.BitwiseSolver.BufferLength">
             <summary>
             The buffer length of a solution puzzle.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.BitwiseSolver.BitSet27">
+            <summary>
+            All pencil marks set - 27 bits per band.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.BitwiseSolver._stack">
@@ -8216,6 +8216,11 @@
         <member name="F:Sudoku.Solving.BitwiseSolver._g">
             <summary>
             Pointer to the currently active slot.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.BitwiseSolver.LimitSolutions">
+            <summary>
+            Indicates the number of solutions found.
             </summary>
         </member>
         <member name="M:Sudoku.Solving.BitwiseSolver.Solve(Sudoku.Data.Grid@)">
