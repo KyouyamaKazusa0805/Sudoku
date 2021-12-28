@@ -1,6 +1,6 @@
 ﻿namespace Sudoku.Diagnostics.CodeAnalysis.SyntaxContextReceivers;
 
-[SyntaxChecker("SCA0401")]
+[SyntaxChecker("SCA0305")]
 public sealed partial class PublicFunctionPointerDataMembersSyntaxChecker : ISyntaxContextReceiver
 {
 	/// <inheritdoc/>
@@ -39,6 +39,6 @@ public sealed partial class PublicFunctionPointerDataMembersSyntaxChecker : ISyn
 			return;
 		}
 
-		Diagnostics.Add(Diagnostic.Create(SCA0401, memberDeclaration.GetLocation(), messageArgs: null));
+		Diagnostics.Add(Diagnostic.Create(SCA0305, memberDeclaration.GetLocation(), messageArgs: null));
 	}
 }

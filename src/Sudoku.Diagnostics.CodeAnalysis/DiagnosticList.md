@@ -37,7 +37,7 @@
 | SCA0302       | Naming    | Warning  | Please name '@this' onto the first argument of the extension deconstruction method |                                                              |
 | SCA0303       | Design    | Warning  | Unnecessary modifier 'readonly' on this member because the containing type has been already read-only |                                                              |
 | SCA0304       | Design    | Warning  | Available 'readonly' modifier to apply to this member        |                                                              |
-| SCA0401       | Usage     | Warning  | Prevent exposing exact-typed function pointers as public data members | Prevent exposing exact-typed function pointers as public data members; please use 'void*' instead |
+| SCA0305       | Usage     | Warning  | Prevent exposing exact-typed function pointers as public data members | Prevent exposing exact-typed function pointers as public data members; please use 'void*' instead |
 | SCA0402       | Design    | Warning  | Method 'GetPinnableReference' lacks '[EditorBrowsable(EditorBrowsableState.Never)]' |                                                              |
 | SCA0403       | Design    | Warning  | Method 'GetPinnableReference' cannot be static               |                                                              |
 | SCA0404       | Design    | Warning  | Method 'GetPinnableReference' cannot return void             |                                                              |
