@@ -1272,6 +1272,9 @@
             Explicit cast from <see cref="T:Sudoku.Data.Cells"/> to <see cref="T:System.Range"/>.
             </summary>
             <param name="offsets">The offsets.</param>
+            <exception cref="T:System.InvalidOperationException">
+            Throws when the result slice is discontinuous.
+            </exception>
         </member>
         <member name="M:Sudoku.Data.Cells.op_Explicit(Sudoku.Data.Cells@)~System.Int32[]">
             <inheritdoc/>

@@ -1254,6 +1254,9 @@ public unsafe partial struct Cells
 	/// Explicit cast from <see cref="Cells"/> to <see cref="Range"/>.
 	/// </summary>
 	/// <param name="offsets">The offsets.</param>
+	/// <exception cref="InvalidOperationException">
+	/// Throws when the result slice is discontinuous.
+	/// </exception>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static explicit operator Range(in Cells offsets)
 	{
