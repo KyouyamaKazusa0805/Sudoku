@@ -111,7 +111,9 @@ public readonly unsafe struct GridSegment
 	public ref readonly ushort GetPinnableReference() => ref _values[0];
 
 	/// <inheritdoc/>
-	public override bool Equals([NotNullWhen(true)] object? obj) => base.Equals(obj);
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public override bool Equals([NotNullWhen(true)] object? obj) =>
+		obj is GridSegment comparer && Equals(comparer);
 
 	/// <inheritdoc/>
 	public bool Equals(GridSegment other)
@@ -144,6 +146,7 @@ public readonly unsafe struct GridSegment
 	}
 
 	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public override int GetHashCode()
 	{
 		var @base = new HashCode();
@@ -156,15 +159,19 @@ public readonly unsafe struct GridSegment
 	}
 
 	/// <inheritdoc cref="object.ToString"/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public override string ToString() => $"{{ {nameof(GridSegment)} ({_gridCode} at {Cells}) }}";
 
 	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	bool IValueEquatable<GridSegment>.Equals(in GridSegment other) => Equals(other);
 
 
 	/// <inheritdoc cref="IEqualityOperators{TSelf, TOther}.operator =="/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static bool operator ==(GridSegment left, GridSegment right) => left.Equals(right);
 
 	/// <inheritdoc cref="IEqualityOperators{TSelf, TOther}.operator !="/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static bool operator !=(GridSegment left, GridSegment right) => !(left == right);
 }
