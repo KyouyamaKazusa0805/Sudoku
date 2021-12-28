@@ -1,8 +1,12 @@
 ﻿namespace Sudoku.Solving;
 
 /// <summary>
-/// Defines a fast solver.
+/// Indicates the solver that is able to solve a sudoku puzzle, and then get the solution of that sudoku.
 /// </summary>
+/// <remarks>
+/// The reason why the type name contains the word <i>bitwise</i> is that the solver uses the bitwise algorithm
+/// to handle a sudoku grid, which is efficient.
+/// </remarks>
 public sealed unsafe partial class BitwiseSolver
 {
 	/// <summary>
@@ -40,6 +44,9 @@ public sealed unsafe partial class BitwiseSolver
 	/// <summary>
 	/// The max number of solution we're looking for.
 	/// </summary>
+	/// <remarks>
+	/// For the consideration on the performance, I have refused to use auto-implemented property instead.
+	/// </remarks>
 	[SuppressMessage("Style", "IDE0032:Use auto property", Justification = "<Pending>")]
 	private long _limitSolutions;
 

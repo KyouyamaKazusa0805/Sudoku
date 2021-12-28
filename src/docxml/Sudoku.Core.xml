@@ -8174,8 +8174,12 @@
         </member>
         <member name="T:Sudoku.Solving.BitwiseSolver">
             <summary>
-            Defines a fast solver.
+            Indicates the solver that is able to solve a sudoku puzzle, and then get the solution of that sudoku.
             </summary>
+            <remarks>
+            The reason why the type name contains the word <i>bitwise</i> is that the solver uses the bitwise algorithm
+            to handle a sudoku grid, which is efficient.
+            </remarks>
         </member>
         <member name="F:Sudoku.Solving.BitwiseSolver.BufferLength">
             <summary>
@@ -8212,6 +8216,9 @@
             <summary>
             The max number of solution we're looking for.
             </summary>
+            <remarks>
+            For the consideration on the performance, I have refused to use auto-implemented property instead.
+            </remarks>
         </member>
         <member name="F:Sudoku.Solving.BitwiseSolver._g">
             <summary>
