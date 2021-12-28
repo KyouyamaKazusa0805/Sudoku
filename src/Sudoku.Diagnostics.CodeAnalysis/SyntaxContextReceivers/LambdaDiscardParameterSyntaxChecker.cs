@@ -1,6 +1,6 @@
 ﻿namespace Sudoku.Diagnostics.CodeAnalysis.SyntaxContextReceivers;
 
-[SyntaxChecker("SCA0203")]
+[SyntaxChecker("SCA0121")]
 public sealed partial class LambdaDiscardParameterSyntaxChecker : ISyntaxContextReceiver
 {
 	/// <inheritdoc/>
@@ -41,7 +41,7 @@ public sealed partial class LambdaDiscardParameterSyntaxChecker : ISyntaxContext
 
 			Diagnostics.Add(
 				Diagnostic.Create(
-					descriptor: SCA0203,
+					descriptor: SCA0121,
 					location: parameter.Locations[0],
 					messageArgs: null
 				)

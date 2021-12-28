@@ -1,6 +1,6 @@
 ﻿namespace Sudoku.Diagnostics.CodeAnalysis.SyntaxContextReceivers;
 
-[SyntaxChecker("SCA0201", "SCA0202", "SCA0203")]
+[SyntaxChecker("SCA0119", "SCA0120", "SCA0121")]
 public sealed partial class DiscardParameterSyntaxChecker : ISyntaxContextReceiver
 {
 	/// <inheritdoc/>
@@ -38,13 +38,13 @@ public sealed partial class DiscardParameterSyntaxChecker : ISyntaxContextReceiv
 			{
 				case { IsDiscard: true }:
 				{
-					report(parameter, SCA0203);
+					report(parameter, SCA0121);
 
 					break;
 				}
 				case { IsParams: true } or { RefKind: not (RefKind.None or RefKind.In) }:
 				{
-					report(parameter, SCA0202);
+					report(parameter, SCA0120);
 
 					break;
 				}
@@ -92,7 +92,7 @@ public sealed partial class DiscardParameterSyntaxChecker : ISyntaxContextReceiv
 					{
 						Diagnostics.Add(
 							Diagnostic.Create(
-								descriptor: SCA0201,
+								descriptor: SCA0119,
 								location: usage.GetLocation(),
 								messageArgs: null
 							)

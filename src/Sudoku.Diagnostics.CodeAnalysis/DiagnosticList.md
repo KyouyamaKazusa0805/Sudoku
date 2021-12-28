@@ -30,9 +30,9 @@
 | SCA0116       | Usage     | Error    | Anonymous inner types cannot be used as the parameter type, return type or so on | Anonymous inner types cannot be used as the parameter type, return type or so on; please use its base type or interface instead |
 | SCA0117       | Usage     | Warning  | 'LambdaBodyAttribute' can only applied onto the property getter or method |                                                              |
 | SCA0118       | Usage     | Warning  | The property getter or method applied '[LambdaBody]' can only use expression-bodied statement to declare the value |                                                              |
-| SCA0201       | Usage     | Error    | The discarded parameter can't be used or referenced unless a 'nameof' expression |                                                              |
-| SCA0202       | Usage     | Error    | Discard parameter can't be 'out', 'ref' or 'params' one      |                                                              |
-| SCA0203       | Usage     | Error    | Can't apply 'IsDiscardAttribute' onto a parameter that has already discarded |                                                              |
+| SCA0119       | Usage     | Error    | The discard parameter can't be used or referenced unless a 'nameof' expression |                                                              |
+| SCA0120       | Usage     | Error    | Discard parameter can't be modified by keyword 'out', 'ref' or 'params' |                                                              |
+| SCA0121       | Usage     | Error    | Can't apply '[IsDiscard]' onto a parameter that has already discarded |                                                              |
 | SCA0301       | Naming    | Warning  | Please apply camel-casing onto local functions               |                                                              |
 | SCA0302       | Naming    | Warning  | Please name '@this' onto the first argument of the extension deconstruction method |                                                              |
 | SCA0401       | Usage     | Warning  | Prevent exposing exact-typed function pointers as public data members | Prevent exposing exact-typed function pointers as public data members; please use 'void*' instead |
