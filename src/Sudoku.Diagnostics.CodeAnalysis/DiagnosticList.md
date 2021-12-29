@@ -44,9 +44,16 @@
 | SCA0405       | Design    | Warning  | Method 'GetPinnableReference' should not expose to user unless it's not parameterless | Method 'GetPinnableReference' should not expose to user unless it's not parameterless; please remove '[EditorBrowsable(EditorBrowsable.Always)]' |
 | SCA0406       | Design    | Warning  | Method 'GetPinnableReference' should return ref type or ref readonly type |                                                              |
 | SCA0407       | Design    | Error    | You should not assign any values on parameters having marked '[CallerArgumentExpression]' | You should not assign any values on parameters having marked '[CallerArgumentExpression]'; they are of control by compiler |
-| SCA0408       | Design    | Warning  | Parameter having marked '[CallerArgumentExpression]' should be of type 'string?' |                                                              |
+| SCA0408       | Design    | Warning  | Parameter having been applied '[CallerArgumentExpression]' should be of type 'string?' |                                                              |
 | SCA0409       | Design    | Warning  | '__arglist' cannot be marked '[CallerArgumentExpression]'    |                                                              |
 | SCA0410       | Design    | Error    | Argument in '[CallerArgumentExpression]' must be a real parameter name |                                                              |
+| SCA0411       | Design    | Error    | Method 'Deconstruct' must return 'void'                      |                                                              |
+| SCA0412       | Design    | Error    | Method 'Deconstruct' must contain only 'out' parameters; any other modifiers or no modifier are disallowed |                                                              |
+| SCA0413       | Usage     | Warning  | Parameters in method 'Deconstruct' cannot be applied '[IsDiscard]' |                                                              |
+| SCA0414       | Design    | Warning  | Avoid parameterless method 'Deconstruct'                     | Avoid parameterless deconstruction method; if you just want to check nullability, please use empty property pattern instead |
+| SCA0415       | Design    | Warning  | Avoid one-parameter method 'Deconstruct'                     | Avoid one-parameter deconstruction method; if you want to use the pattern matching, please use property reference or method invocation instead |
+| SCA0416       | Usage     | Warning  | Method 'Deconstruct' lacks '[EditorBrowsable(EditorBrowsableState.Never)]' |                                                              |
+| SCA0417       | Design    | Warning  | Method 'Deconstruct' cannot be generic if it is not an extension method |                                                              |
 | SCA0501       | Usage     | Warning  | Use 'Undefined' property instead                             |                                                              |
 | SCA0502       | Usage     | Warning  | Use 'IsUndefined' property instead                           |                                                              |
 | SCA0503       | Usage     | Warning  | 'Grid.EnumerateCandidates' can be simplified to 'Grid.GetEnumerator' |                                                              |
