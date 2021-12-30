@@ -6,9 +6,7 @@
 
 If I'm busy or something goes bad for me, I'll make a notice to you, whose content will be put into here.
 
-> I'm sorry that I'll delete all deprecated projects (e.g. `Sudoku.Windows`) in the last day of this year (2021.12.31), because the whole solution is too complex to maintain files. :(
->
-> However, you can still find the program at the release tag (V0.6 or below).
+> Everything looks good!
 
 ## Content
 
@@ -84,7 +82,7 @@ Please visit the following tables.
 * [x] API
 * [ ] UI Projects
   * [ ] Desktop Projects
-    * [x] ~~WPF (Will be removed by the end of this year)~~
+    * [x] ~~WPF (Implemented but deprecated, removed)~~
     * [ ] ~~UWP (May not be considered)~~
     * [ ] Windows UI
     * [x] ~~Winform (Implemented but deprecated, removed)~~
