@@ -850,12 +850,6 @@
             The value of offsets.
             </summary>
         </member>
-        <member name="F:Sudoku.Data.Cells.Factorizes">
-            <summary>
-            Indicates the number list of all possible factorize results from 0 to 10.
-            The value may be used while getting subsets of the current instance to optimize the performance.
-            </summary>
-        </member>
         <member name="F:Sudoku.Data.Cells._high">
             <summary>
             Indicates the internal two <see cref="T:System.Int64"/> values,
@@ -919,38 +913,12 @@
             Initializes an instance with a series of cell offsets.
             </summary>
             <param name="cells">cell offsets.</param>
-            <remarks>
-            <para>
-            Note that all offsets will be set <see langword="true"/>, but their own peers
-            won't be set <see langword="true"/>.
-            </para>
-            <para>
-            In some case, you can use object initializer instead.
-            You can use the code
-            <code><![CDATA[var map = new Cells { 0, 3, 5 };]]></code>
-            instead of the code
-            <code><![CDATA[var map = new Cells(stackalloc[] { 0, 3, 5 });]]></code>
-            </para>
-            </remarks>
         </member>
         <member name="M:Sudoku.Data.Cells.#ctor(System.ReadOnlySpan{System.Int32})">
             <summary>
             Initializes an instance with a series of cell offsets.
             </summary>
             <param name="cells">cell offsets.</param>
-            <remarks>
-            <para>
-            Note that all offsets will be set <see langword="true"/>, but their own peers
-            won't be set <see langword="true"/>.
-            </para>
-            <para>
-            In some case, you can use object initializer instead.
-            You can use the code
-            <code><![CDATA[var map = new Cells { 0, 3, 5 };]]></code>
-            instead of the code
-            <code><![CDATA[var map = new Cells(stackalloc[] { 0, 3, 5 });]]></code>
-            </para>
-            </remarks>
         </member>
         <member name="M:Sudoku.Data.Cells.#ctor(System.Collections.Generic.IEnumerable{System.Int32})">
             <summary>
@@ -1128,7 +1096,7 @@
         <member name="M:Sudoku.Data.Cells.PeerIntersectionLimitsWith(Sudoku.Data.Cells@)">
             <summary>
             To gets the cells that is in the cells that both <see langword="this"/>
-            and <paramref name="limit"/> sees (i.e. peer intersection of <c><![CDATA[this & limit]]></c>),
+            and <paramref name="limit"/> see (i.e. peer intersection of <c><![CDATA[this & limit]]></c>),
             and gets the result map that is in the map above, and only lies in <paramref name="limit"/>.
             </summary>
             <param name="limit">
@@ -1267,14 +1235,13 @@
             </summary>
             <param name="range">The range.</param>
         </member>
-        <member name="M:Sudoku.Data.Cells.op_Explicit(Sudoku.Data.Cells@)~System.Range">
+        <member name="M:Sudoku.Data.Cells.op_Explicit(Sudoku.Data.Cells@)~System.Nullable{System.Range}">
             <summary>
-            Explicit cast from <see cref="T:Sudoku.Data.Cells"/> to <see cref="T:System.Range"/>.
+            Explicit cast from <see cref="T:Sudoku.Data.Cells"/> to <see cref="T:System.Range"/>?.
+            Returns <see langword="null"/> if the cells are discontinuous,
+            which cannot be converted to a valid <see cref="T:System.Range"/> result.
             </summary>
             <param name="offsets">The offsets.</param>
-            <exception cref="T:System.InvalidOperationException">
-            Throws when the result slice is discontinuous.
-            </exception>
         </member>
         <member name="M:Sudoku.Data.Cells.op_Explicit(Sudoku.Data.Cells@)~System.Int32[]">
             <inheritdoc/>

@@ -50,13 +50,6 @@ public unsafe partial struct Cells
 
 
 	/// <summary>
-	/// Indicates the number list of all possible factorize results from 0 to 10.
-	/// The value may be used while getting subsets of the current instance to optimize the performance.
-	/// </summary>
-	private static readonly int[] Factorizes = { 1, 1, 2, 6, 24, 120, 720, 5040, 40320, 362880, 3628800 };
-
-
-	/// <summary>
 	/// Indicates the internal two <see cref="long"/> values,
 	/// which represents 81 bits. <see cref="_high"/> represent the higher
 	/// 40 bits and <see cref="_low"/> represents the lower 41 bits.
@@ -136,19 +129,6 @@ public unsafe partial struct Cells
 	/// Initializes an instance with a series of cell offsets.
 	/// </summary>
 	/// <param name="cells">cell offsets.</param>
-	/// <remarks>
-	/// <para>
-	/// Note that all offsets will be set <see langword="true"/>, but their own peers
-	/// won't be set <see langword="true"/>.
-	/// </para>
-	/// <para>
-	/// In some case, you can use object initializer instead.
-	/// You can use the code
-	/// <code><![CDATA[var map = new Cells { 0, 3, 5 };]]></code>
-	/// instead of the code
-	/// <code><![CDATA[var map = new Cells(stackalloc[] { 0, 3, 5 });]]></code>
-	/// </para>
-	/// </remarks>
 	public Cells(Span<int> cells) : this()
 	{
 		foreach (int offset in cells)
@@ -161,19 +141,6 @@ public unsafe partial struct Cells
 	/// Initializes an instance with a series of cell offsets.
 	/// </summary>
 	/// <param name="cells">cell offsets.</param>
-	/// <remarks>
-	/// <para>
-	/// Note that all offsets will be set <see langword="true"/>, but their own peers
-	/// won't be set <see langword="true"/>.
-	/// </para>
-	/// <para>
-	/// In some case, you can use object initializer instead.
-	/// You can use the code
-	/// <code><![CDATA[var map = new Cells { 0, 3, 5 };]]></code>
-	/// instead of the code
-	/// <code><![CDATA[var map = new Cells(stackalloc[] { 0, 3, 5 });]]></code>
-	/// </para>
-	/// </remarks>
 	public Cells(ReadOnlySpan<int> cells) : this()
 	{
 		foreach (int offset in cells)
@@ -866,7 +833,7 @@ public unsafe partial struct Cells
 
 	/// <summary>
 	/// To gets the cells that is in the cells that both <see langword="this"/>
-	/// and <paramref name="limit"/> sees (i.e. peer intersection of <c><![CDATA[this & limit]]></c>),
+	/// and <paramref name="limit"/> see (i.e. peer intersection of <c><![CDATA[this & limit]]></c>),
 	/// and gets the result map that is in the map above, and only lies in <paramref name="limit"/>.
 	/// </summary>
 	/// <param name="limit">
@@ -1251,14 +1218,13 @@ public unsafe partial struct Cells
 	public static explicit operator Cells(Range range) => new(range);
 
 	/// <summary>
-	/// Explicit cast from <see cref="Cells"/> to <see cref="Range"/>.
+	/// Explicit cast from <see cref="Cells"/> to <see cref="Range"/>?.
+	/// Returns <see langword="null"/> if the cells are discontinuous,
+	/// which cannot be converted to a valid <see cref="Range"/> result.
 	/// </summary>
 	/// <param name="offsets">The offsets.</param>
-	/// <exception cref="InvalidOperationException">
-	/// Throws when the result slice is discontinuous.
-	/// </exception>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static explicit operator Range(in Cells offsets)
+	public static explicit operator Range?(in Cells offsets)
 	{
 		int first = offsets[0];
 		int lastCell = first;
@@ -1271,7 +1237,7 @@ public unsafe partial struct Cells
 
 			if (cell - lastCell != 1)
 			{
-				throw new InvalidOperationException("Cannot operate because the result slice is discontinuous.");
+				return null;
 			}
 
 			lastCell = cell;
