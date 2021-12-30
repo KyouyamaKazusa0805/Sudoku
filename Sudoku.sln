@@ -35,6 +35,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sudoku.Diagnostics.CodeAnal
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sudoku.Diagnostics.CodeAnalysis.CodeGen", "src\Sudoku.Diagnostics.CodeAnalysis.CodeGen\Sudoku.Diagnostics.CodeAnalysis.CodeGen.csproj", "{5103C052-B032-4C98-9E27-8F47797AEBB4}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Source Generator Projects", "Source Generator Projects", "{F5E3D8C6-83D3-4AAB-BCAE-0546B0AB42BC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -269,6 +271,13 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{D9245FB8-31D4-4ED7-BCAF-DF21033A2D93} = {F5E3D8C6-83D3-4AAB-BCAE-0546B0AB42BC}
+		{884E2E00-6D66-4478-BA97-F5E38D2CD91E} = {F5E3D8C6-83D3-4AAB-BCAE-0546B0AB42BC}
+		{F57DE449-8AB7-4C19-881C-0F81D9106D75} = {F5E3D8C6-83D3-4AAB-BCAE-0546B0AB42BC}
+		{B510DBAC-88BA-4645-8032-A4BFDA724737} = {F5E3D8C6-83D3-4AAB-BCAE-0546B0AB42BC}
+		{5103C052-B032-4C98-9E27-8F47797AEBB4} = {F5E3D8C6-83D3-4AAB-BCAE-0546B0AB42BC}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {E2B6A644-F820-4AB3-8508-C3C59838C955}

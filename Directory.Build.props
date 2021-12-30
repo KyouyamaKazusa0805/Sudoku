@@ -4,7 +4,7 @@
 	<PropertyGroup>
 		<!--Project configuration-->
 		<Authors>Sunnie</Authors>
-		<Copyright>Copyright (c) Sunnie 2019-2021</Copyright>
+		<Copyright>Copyright (c) Sunnie 2019-2022</Copyright>
 		<Version>0.7</Version>
 
 		<!--Syntax configuration-->
@@ -29,26 +29,26 @@
 		</When>
 		<When Condition="'$(Configuration)'=='Debug'">
 			<PropertyGroup>
-				<DefineConstants>DEBUG; AUTHOR_RESERVED; SOLUTION_WIDE_CODE_ANALYSIS</DefineConstants>
+				<DefineConstants>DEBUG; AUTHOR_RESERVED</DefineConstants>
 			</PropertyGroup>
 		</When>
 		<When Condition="'$(Configuration)'=='Release'">
 			<PropertyGroup>
-				<DefineConstants>AUTHOR_RESERVED; SOLUTION_WIDE_CODE_ANALYSIS</DefineConstants>
+				<DefineConstants>AUTHOR_RESERVED</DefineConstants>
 			</PropertyGroup>
 		</When>
 	</Choose>
 
 	<!--
 	Set the plug-in code analyzer if:
-	* Sudoku.UI project - 2-times step-out the directory and then reference the project.
+	* Sudoku.UI ('Nano' as its alias name) - 2-times step-out the directory and then reference the project.
 	* GlobalConfiguration.CodeGen - Do nothing.
 	* Sudoku.Diagnostics.CodeAnalysis.CodeGen - Do nothing.
 	* Other C# projects that isn't itself - 1-time step-out the directory and then reference the project.
 	* Other non-C# projects - Do nothing.
 	-->
 	<Choose>
-		<When Condition="'$(MSBuildProjectFile)'=='Sudoku.UI.csproj'">
+		<When Condition="'$(MSBuildProjectFile)'=='Nano.csproj'">
 			<ItemGroup>
 				<ProjectReference
 						Include="..\..\Sudoku.Diagnostics.CodeAnalysis\Sudoku.Diagnostics.CodeAnalysis.csproj"
@@ -85,13 +85,6 @@
 	</PropertyGroup>
 
 	<!--
-	Disable the compiler warnings on deprecated types or members referencing on deprecated projects.
-	-->
-	<PropertyGroup Condition="'$(MSBuildProjectFile.TrimEnd(`.csproj`).EndsWith(`.Old`))'=='true'">
-		<NoWarn>618</NoWarn>
-	</PropertyGroup>
-
-	<!--
 	Set the root namespace 'Sudoku.Diagnostics.CodeGen' for the source projects, which end with '.CodeGen'.
 	-->
 	<PropertyGroup Condition="'$(MSBuildProjectFile.TrimEnd(`.csproj`).EndsWith(`.CodeGen`))'=='true'">
@@ -108,9 +101,9 @@
 			<PrivateAssets>all</PrivateAssets>
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 		</PackageReference>
-		<PackageReference Include="Microsoft.CodeAnalysis.Common" Version="4.0.0-4.final" />
-		<PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="4.0.0-4.final" />
-		<PackageReference Include="Microsoft.CodeAnalysis.CSharp.Workspaces" Version="4.0.0-4.final" />
+		<PackageReference Include="Microsoft.CodeAnalysis.Common" Version="4.0.1" />
+		<PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="4.0.1" />
+		<PackageReference Include="Microsoft.CodeAnalysis.CSharp.Workspaces" Version="4.0.1" />
 	</ItemGroup>
 
 	<!--
