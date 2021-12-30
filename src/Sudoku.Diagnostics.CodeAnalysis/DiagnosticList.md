@@ -73,6 +73,7 @@
 | SCA0517       | Usage     | Warning  | Use equality operators instead of method 'Equals'            |                                                              |
 | SCA0518       | Usage     | Warning  | Please don't assign 'null' as the parameter into the 'Parse' method group |                                                              |
 | SCA0519       | Usage     | Warning  | Usage 'operator -' instead                                   |                                                              |
+| SCA0520       | Design    | Warning  | Object initializer can only be used with parameterless constructor unless the constructor argument type is an array of type 'int' |                                                              |
 | SCA0601       | Style     | Warning  | At least 2 null lines to separate and local function statements and other statements |                                                              |
 | SCA0602       | Style     | Warning  | At least 1 null lines to insert into two different local function statements |                                                              |
 | SCA0603       | Style     | Warning  | The property must start with getter, and then setter (or initer) |                                                              |
