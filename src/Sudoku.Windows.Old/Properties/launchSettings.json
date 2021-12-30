@@ -1,8 +1,0 @@
-{
-  "profiles": {
-    "Sudoku.Windows": {
-      "commandName": "Project",
-      "commandLineArgs": "--dynamic"
-    }
-  }
-}
