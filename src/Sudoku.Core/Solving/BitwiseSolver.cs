@@ -7,6 +7,7 @@
 /// The reason why the type name contains the word <i>bitwise</i> is that the solver uses the bitwise algorithm
 /// to handle a sudoku grid, which is efficient.
 /// </remarks>
+[SuppressMessage("Style", "IDE0032:Use auto property", Justification = "<Pending>")]
 public sealed unsafe partial class BitwiseSolver
 {
 	/// <summary>
@@ -47,7 +48,6 @@ public sealed unsafe partial class BitwiseSolver
 	/// <remarks>
 	/// For the consideration on the performance, I have refused to use auto-implemented property instead.
 	/// </remarks>
-	[SuppressMessage("Style", "IDE0032:Use auto property", Justification = "<Pending>")]
 	private long _limitSolutions;
 
 	/// <summary>
