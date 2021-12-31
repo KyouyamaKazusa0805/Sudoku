@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Data.Resources;
+﻿namespace Sudoku.Resources;
 
 /// <summary>
 /// Defines a resource document. The resource document always holds a JSON string value,
@@ -97,6 +97,11 @@ public sealed partial class ResourceDocument
 	/// Indicates the number of elements in the whole document.
 	/// </summary>
 	public int Count { get; }
+
+	/// <summary>
+	/// Indicates the LCID the current document holds.
+	/// </summary>
+	public int Lcid => _culture.LCID;
 
 	/// <summary>
 	/// Indicates the basic hash that uses the property <see cref="CultureInfo.LCID"/>.

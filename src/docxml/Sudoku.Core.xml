@@ -4632,199 +4632,6 @@
             <param name="region">The region.</param>
             <returns>The region label.</returns>
         </member>
-        <member name="T:Sudoku.Data.Resources.ResourceDocument">
-            <summary>
-            Defines a resource document. The resource document always holds a JSON string value,
-            and only contains key-value pairs of type <see cref="T:System.String"/>. For example:
-            <code>
-            {
-              "prop1": "value1",
-              "prop2": "value2",
-              "prop3": "value3"
-            }
-            </code>
-            In this case, we can use the indexer <see cref="P:Sudoku.Data.Resources.ResourceDocument.Item(System.String)"/> to fetch the value via the key,
-            for example, <c>document["prop1"]</c> you'll get the value <c>"value1"</c>.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Data.Resources.ResourceDocument.DefaultDocumentOptions">
-            <summary>
-            Indicates the default JSON document options.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Data.Resources.ResourceDocument.DefaultSerializerOptions">
-            <summary>
-            Indicates the default serializer options used for serialization and deserialization operations.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Data.Resources.ResourceDocument._root">
-            <summary>
-            Indicates the root JSON element.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Data.Resources.ResourceDocument._parentDoc">
-            <summary>
-            Indicates the corresponding JSON document.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Data.Resources.ResourceDocument._culture">
-            <summary>
-            Indicates the culture used.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Data.Resources.ResourceDocument.#ctor(System.Globalization.CultureInfo,System.String)">
-            <summary>
-            Initializes a <see cref="T:Sudoku.Data.Resources.ResourceDocument"/> instance via the specified JSON string.
-            </summary>
-            <param name="culture">Indicates the culture specified.</param>
-            <param name="json">The JSON string.</param>
-            <exception cref="T:System.ArgumentException">
-            Throws when the specified string isn't a JSON or can't be converted to a regular JSON string.
-            </exception>
-            <exception cref="T:System.Text.Json.JsonException">Throws when the specified string isn't valid JSON code.</exception>
-        </member>
-        <member name="P:Sudoku.Data.Resources.ResourceDocument.Count">
-            <summary>
-            Indicates the number of elements in the whole document.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Data.Resources.ResourceDocument.BasicHash">
-            <summary>
-            Indicates the basic hash that uses the property <see cref="P:System.Globalization.CultureInfo.LCID"/>.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Data.Resources.ResourceDocument.StringHash">
-            <summary>
-            Indicates the hash that corresponds to the string value.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Data.Resources.ResourceDocument.Item(System.String)">
-            <summary>
-            Try to fetch the property value via the specified property name.
-            </summary>
-            <param name="propertyName">The property name to find.</param>
-            <returns>The value that correspoding to the property.</returns>
-            <exception cref="T:System.Collections.Generic.KeyNotFoundException">Throws when no such property found.</exception>
-        </member>
-        <member name="M:Sudoku.Data.Resources.ResourceDocument.Dispose">
-            <inheritdoc cref="M:System.IDisposable.Dispose"/>
-        </member>
-        <member name="M:Sudoku.Data.Resources.ResourceDocument.ToString">
-            <inheritdoc cref="M:System.Object.ToString"/>
-        </member>
-        <member name="M:Sudoku.Data.Resources.ResourceDocument.ToString(System.Text.Json.JsonSerializerOptions)">
-            <summary>
-            Converts the current instance to <see cref="T:System.String"/> representation in JSON format,
-            via the specified <see cref="T:System.Text.Json.JsonSerializerOptions"/> instance as your customized options.
-            </summary>
-            <param name="options">The customized options being used in this method.</param>
-            <returns>The <see cref="T:System.String"/> JSON representation.</returns>
-        </member>
-        <member name="M:Sudoku.Data.Resources.ResourceDocument.TryParse(System.String,Sudoku.Data.Resources.ResourceDocument@)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Data.Resources.ResourceDocument.TryParse(System.String,System.Globalization.CultureInfo,Sudoku.Data.Resources.ResourceDocument@)">
-            <summary>
-            Try to parse the specified string text and get the same-meaning instance
-            of type <see cref="T:Sudoku.Data.Resources.ResourceDocument"/>, with the specified <see cref="T:System.Globalization.CultureInfo"/>.
-            </summary>
-            <param name="str">The string to parse. The value shouldn't <see langword="null"/>.</param>
-            <param name="culture">The culture specified.</param>
-            <param name="result">
-            The result parsed. If failed to parse, the value will keep the <see langword="default"/> value,
-            i.e. <see langword="default"/>(<see cref="T:Sudoku.Data.Resources.ResourceDocument"/>).
-            </param>
-            <returns>A <see cref="T:System.Boolean"/> result indicating whether the operation is successful to execute.</returns>
-        </member>
-        <member name="M:Sudoku.Data.Resources.ResourceDocument.Parse(System.String)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Data.Resources.ResourceDocument.Parse(System.String,System.Globalization.CultureInfo)">
-            <summary>
-            Parse the specified string text, and get the same-meaning instance of type <see cref="T:Sudoku.Data.Resources.ResourceDocument"/>.
-            </summary>
-            <param name="str">The string to parsed. The value shouldn't be <see langword="null"/>.</param>
-            <param name="culture">The culture specified.</param>
-            <returns>The result parsed.</returns>
-            <exception cref="T:System.ArgumentException">
-            Throws when the specified string isn't a JSON or can't be converted to a regular JSON string.
-            </exception>
-            <exception cref="T:System.Text.Json.JsonException">Throws when the specified string isn't valid JSON code.</exception>
-        </member>
-        <member name="T:Sudoku.Data.Resources.ResourceDocument.Enumerator">
-            <summary>
-            Indicates the enumerator of the current instance to iterate.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Data.Resources.ResourceDocument.Enumerator._enumerator">
-            <summary>
-            Indicates the enumerator instance.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Data.Resources.ResourceDocument.Enumerator.#ctor(System.Text.Json.JsonElement)">
-            <summary>
-            Initializes an <see cref="T:Sudoku.Data.Resources.ResourceDocument.Enumerator"/> instance via the first element.
-            </summary>
-            <param name="root">The root <see cref="T:System.Text.Json.JsonElement"/> instance to iterate.</param>
-        </member>
-        <member name="P:Sudoku.Data.Resources.ResourceDocument.Enumerator.Current">
-            <summary>
-            Gets the key-value pair in the resource dictionary at the current position of the enumerator.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Data.Resources.ResourceDocument.Enumerator.MoveNext">
-            <inheritdoc cref="M:System.Collections.IEnumerator.MoveNext"/>
-        </member>
-        <member name="M:Sudoku.Data.Resources.ResourceDocument.Enumerator.Equals(System.Object)">
-            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
-            <exception cref="T:System.NotSupportedException">Always throws.</exception>
-        </member>
-        <member name="M:Sudoku.Data.Resources.ResourceDocument.Enumerator.GetHashCode">
-            <inheritdoc cref="M:System.Object.GetHashCode"/>
-            <exception cref="T:System.NotSupportedException">Always throws.</exception>
-        </member>
-        <member name="M:Sudoku.Data.Resources.ResourceDocument.Enumerator.ToString">
-            <inheritdoc cref="M:System.Object.ToString"/>
-            <exception cref="T:System.NotSupportedException">Always throws.</exception>
-        </member>
-        <member name="M:Sudoku.Data.Resources.ResourceDocument.Equals(System.Object)">
-            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
-        </member>
-        <member name="M:Sudoku.Data.Resources.ResourceDocument.Equals(Sudoku.Data.Resources.ResourceDocument)">
-            <summary>
-            Indicates whether the current object is equal to another object of the same type.
-            </summary>
-            <param name="other">An object to compare with this object.</param>
-            <returns>
-            <see langword="true"/> if the current object is equal to the other parameter;
-            otherwise, <see langword="false"/>.
-            </returns>
-        </member>
-        <member name="M:Sudoku.Data.Resources.ResourceDocument.op_Equality(Sudoku.Data.Resources.ResourceDocument,Sudoku.Data.Resources.ResourceDocument)">
-            <summary>
-            Determines whether the two instances contain a same value.
-            </summary>
-            <param name="left">The left-side-operator instance to compare.</param>
-            <param name="right">The right-side-operator instance to compare.</param>
-            <returns>A <see cref="T:System.Boolean"/> result.</returns>
-        </member>
-        <member name="M:Sudoku.Data.Resources.ResourceDocument.op_Inequality(Sudoku.Data.Resources.ResourceDocument,Sudoku.Data.Resources.ResourceDocument)">
-            <summary>
-            Determines whether the two instances don't contain a same value.
-            </summary>
-            <param name="left">The left-side-operator instance to compare.</param>
-            <param name="right">The right-side-operator instance to compare.</param>
-            <returns>A <see cref="T:System.Boolean"/> result.</returns>
-        </member>
-        <member name="M:Sudoku.Data.Resources.ResourceDocument.GetEnumerator">
-            <summary>
-            Returns an enumerator that iterates through the collection.
-            </summary>
-            <returns>An enumerator that can be used to iterate through the collection.</returns>
-        </member>
-        <member name="M:Sudoku.Data.Resources.ResourceDocument.GetHashCode">
-            <inheritdoc cref="M:System.Object.GetHashCode"/>
-        </member>
         <member name="T:Sudoku.Data.SymmetryType">
             <summary>
             Define a symmetry type.
@@ -5444,6 +5251,42 @@
         <member name="M:Sudoku.Models.TechniqueProgressResult.ToString">
             <inheritdoc cref="M:System.Object.ToString"/>
         </member>
+        <member name="T:Sudoku.ModuleInitializer">
+            <summary>
+            <para>Provides with the type that contains a module initializer.</para>
+            <para><b>
+            The type is called by the compiler and the CLR (Common Language Runtime),
+            which means you cannot use any members in this type manually.
+            </b></para>
+            </summary>
+        </member>
+        <member name="F:Sudoku.ModuleInitializer.ResourceFileNamePattern">
+            <summary>
+            Indicates the pattern that matches the name of the resource file names.
+            </summary>
+        </member>
+        <member name="M:Sudoku.ModuleInitializer.Initialize">
+            <summary>
+            Initializes the current module.
+            </summary>
+            <exception cref="T:System.IO.DirectoryNotFoundException">
+            Throws when the language resource folder cannot be found.
+            </exception>
+            <exception cref="T:System.IO.FileNotFoundException">
+            Throws when the language resource file cannot be found.
+            </exception>
+            <exception cref="T:System.InvalidOperationException">
+            <para>
+            Throws when the found resource file doesn't satisfy some condition, which leads to a failure
+            to parse and convert it into a valid <see cref="T:Sudoku.Resources.ResourceDocument"/> instance.
+            </para>
+            <para>
+            In addition, the exception will be thrown if the compilation symbol
+            <c>STRICT_RESOURCE_FILE_PATH_CHECKING</c> is enabled; if failed to parse without the symbol,
+            the file will be skipped directly instead.
+            </para>
+            </exception>
+        </member>
         <member name="T:Sudoku.Presentation.Coordinate">
             <summary>
             Defines a coordinate used in a sudoku grid.
@@ -5621,6 +5464,280 @@
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Presentation.Crosshatch.JsonConverter.Write(System.Text.Json.Utf8JsonWriter,Sudoku.Presentation.Crosshatch,System.Text.Json.JsonSerializerOptions)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Resources.ResourceDocument">
+            <summary>
+            Defines a resource document. The resource document always holds a JSON string value,
+            and only contains key-value pairs of type <see cref="T:System.String"/>. For example:
+            <code>
+            {
+              "prop1": "value1",
+              "prop2": "value2",
+              "prop3": "value3"
+            }
+            </code>
+            In this case, we can use the indexer <see cref="P:Sudoku.Resources.ResourceDocument.Item(System.String)"/> to fetch the value via the key,
+            for example, <c>document["prop1"]</c> you'll get the value <c>"value1"</c>.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Resources.ResourceDocument.DefaultDocumentOptions">
+            <summary>
+            Indicates the default JSON document options.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Resources.ResourceDocument.DefaultSerializerOptions">
+            <summary>
+            Indicates the default serializer options used for serialization and deserialization operations.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Resources.ResourceDocument._root">
+            <summary>
+            Indicates the root JSON element.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Resources.ResourceDocument._parentDoc">
+            <summary>
+            Indicates the corresponding JSON document.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Resources.ResourceDocument._culture">
+            <summary>
+            Indicates the culture used.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Resources.ResourceDocument.#ctor(System.Globalization.CultureInfo,System.String)">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Resources.ResourceDocument"/> instance via the specified JSON string.
+            </summary>
+            <param name="culture">Indicates the culture specified.</param>
+            <param name="json">The JSON string.</param>
+            <exception cref="T:System.ArgumentException">
+            Throws when the specified string isn't a JSON or can't be converted to a regular JSON string.
+            </exception>
+            <exception cref="T:System.Text.Json.JsonException">Throws when the specified string isn't valid JSON code.</exception>
+        </member>
+        <member name="P:Sudoku.Resources.ResourceDocument.Count">
+            <summary>
+            Indicates the number of elements in the whole document.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.ResourceDocument.Lcid">
+            <summary>
+            Indicates the LCID the current document holds.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.ResourceDocument.BasicHash">
+            <summary>
+            Indicates the basic hash that uses the property <see cref="P:System.Globalization.CultureInfo.LCID"/>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.ResourceDocument.StringHash">
+            <summary>
+            Indicates the hash that corresponds to the string value.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.ResourceDocument.Item(System.String)">
+            <summary>
+            Try to fetch the property value via the specified property name.
+            </summary>
+            <param name="propertyName">The property name to find.</param>
+            <returns>The value that correspoding to the property.</returns>
+            <exception cref="T:System.Collections.Generic.KeyNotFoundException">Throws when no such property found.</exception>
+        </member>
+        <member name="M:Sudoku.Resources.ResourceDocument.Dispose">
+            <inheritdoc cref="M:System.IDisposable.Dispose"/>
+        </member>
+        <member name="M:Sudoku.Resources.ResourceDocument.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
+        <member name="M:Sudoku.Resources.ResourceDocument.ToString(System.Text.Json.JsonSerializerOptions)">
+            <summary>
+            Converts the current instance to <see cref="T:System.String"/> representation in JSON format,
+            via the specified <see cref="T:System.Text.Json.JsonSerializerOptions"/> instance as your customized options.
+            </summary>
+            <param name="options">The customized options being used in this method.</param>
+            <returns>The <see cref="T:System.String"/> JSON representation.</returns>
+        </member>
+        <member name="M:Sudoku.Resources.ResourceDocument.TryParse(System.String,Sudoku.Resources.ResourceDocument@)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Resources.ResourceDocument.TryParse(System.String,System.Globalization.CultureInfo,Sudoku.Resources.ResourceDocument@)">
+            <summary>
+            Try to parse the specified string text and get the same-meaning instance
+            of type <see cref="T:Sudoku.Resources.ResourceDocument"/>, with the specified <see cref="T:System.Globalization.CultureInfo"/>.
+            </summary>
+            <param name="str">The string to parse. The value shouldn't <see langword="null"/>.</param>
+            <param name="culture">The culture specified.</param>
+            <param name="result">
+            The result parsed. If failed to parse, the value will keep the <see langword="default"/> value,
+            i.e. <see langword="default"/>(<see cref="T:Sudoku.Resources.ResourceDocument"/>).
+            </param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating whether the operation is successful to execute.</returns>
+        </member>
+        <member name="M:Sudoku.Resources.ResourceDocument.Parse(System.String)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Resources.ResourceDocument.Parse(System.String,System.Globalization.CultureInfo)">
+            <summary>
+            Parse the specified string text, and get the same-meaning instance of type <see cref="T:Sudoku.Resources.ResourceDocument"/>.
+            </summary>
+            <param name="str">The string to parsed. The value shouldn't be <see langword="null"/>.</param>
+            <param name="culture">The culture specified.</param>
+            <returns>The result parsed.</returns>
+            <exception cref="T:System.ArgumentException">
+            Throws when the specified string isn't a JSON or can't be converted to a regular JSON string.
+            </exception>
+            <exception cref="T:System.Text.Json.JsonException">Throws when the specified string isn't valid JSON code.</exception>
+        </member>
+        <member name="T:Sudoku.Resources.ResourceDocument.Enumerator">
+            <summary>
+            Indicates the enumerator of the current instance to iterate.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Resources.ResourceDocument.Enumerator._enumerator">
+            <summary>
+            Indicates the enumerator instance.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Resources.ResourceDocument.Enumerator.#ctor(System.Text.Json.JsonElement)">
+            <summary>
+            Initializes an <see cref="T:Sudoku.Resources.ResourceDocument.Enumerator"/> instance via the first element.
+            </summary>
+            <param name="root">The root <see cref="T:System.Text.Json.JsonElement"/> instance to iterate.</param>
+        </member>
+        <member name="P:Sudoku.Resources.ResourceDocument.Enumerator.Current">
+            <summary>
+            Gets the key-value pair in the resource dictionary at the current position of the enumerator.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Resources.ResourceDocument.Enumerator.MoveNext">
+            <inheritdoc cref="M:System.Collections.IEnumerator.MoveNext"/>
+        </member>
+        <member name="M:Sudoku.Resources.ResourceDocument.Enumerator.Equals(System.Object)">
+            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
+            <exception cref="T:System.NotSupportedException">Always throws.</exception>
+        </member>
+        <member name="M:Sudoku.Resources.ResourceDocument.Enumerator.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+            <exception cref="T:System.NotSupportedException">Always throws.</exception>
+        </member>
+        <member name="M:Sudoku.Resources.ResourceDocument.Enumerator.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+            <exception cref="T:System.NotSupportedException">Always throws.</exception>
+        </member>
+        <member name="M:Sudoku.Resources.ResourceDocument.Equals(System.Object)">
+            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
+        </member>
+        <member name="M:Sudoku.Resources.ResourceDocument.Equals(Sudoku.Resources.ResourceDocument)">
+            <summary>
+            Indicates whether the current object is equal to another object of the same type.
+            </summary>
+            <param name="other">An object to compare with this object.</param>
+            <returns>
+            <see langword="true"/> if the current object is equal to the other parameter;
+            otherwise, <see langword="false"/>.
+            </returns>
+        </member>
+        <member name="M:Sudoku.Resources.ResourceDocument.op_Equality(Sudoku.Resources.ResourceDocument,Sudoku.Resources.ResourceDocument)">
+            <summary>
+            Determines whether the two instances contain a same value.
+            </summary>
+            <param name="left">The left-side-operator instance to compare.</param>
+            <param name="right">The right-side-operator instance to compare.</param>
+            <returns>A <see cref="T:System.Boolean"/> result.</returns>
+        </member>
+        <member name="M:Sudoku.Resources.ResourceDocument.op_Inequality(Sudoku.Resources.ResourceDocument,Sudoku.Resources.ResourceDocument)">
+            <summary>
+            Determines whether the two instances don't contain a same value.
+            </summary>
+            <param name="left">The left-side-operator instance to compare.</param>
+            <param name="right">The right-side-operator instance to compare.</param>
+            <returns>A <see cref="T:System.Boolean"/> result.</returns>
+        </member>
+        <member name="M:Sudoku.Resources.ResourceDocument.GetEnumerator">
+            <summary>
+            Returns an enumerator that iterates through the collection.
+            </summary>
+            <returns>An enumerator that can be used to iterate through the collection.</returns>
+        </member>
+        <member name="M:Sudoku.Resources.ResourceDocument.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="T:Sudoku.Resources.ResourceDocumentManager">
+            <summary>
+            Defines a resource document manager.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Resources.ResourceDocumentManager._list">
+            <summary>
+            Defines the inner collection to store documents.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Resources.ResourceDocumentManager.#ctor">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Resources.ResourceDocumentManager"/> instance.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.ResourceDocumentManager.Count">
+            <summary>
+            Indicates the number of all possible resource documents having stored in this manager.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.ResourceDocumentManager.CurrentLcid">
+            <summary>
+            Indicates the current LCID used.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.ResourceDocumentManager.Shared">
+            <summary>
+            Defines a manager that is initialized by the module initializer.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.ResourceDocumentManager.Item(System.String)">
+            <summary>
+            Try to get the property value via the property value, using the specified LCID.
+            </summary>
+            <param name="propertyName">The property name.</param>
+            <returns>The property value found.</returns>
+            <exception cref="T:System.Collections.Generic.KeyNotFoundException">
+            Throws when the specified property name cannot be found.
+            </exception>
+        </member>
+        <member name="P:Sudoku.Resources.ResourceDocumentManager.Item(System.Int32)">
+            <summary>
+            Gets the specified resource document via the LCID value.
+            </summary>
+            <param name="lcid">The LCID.</param>
+            <returns>
+            The resource document. If the specified LCID cannot be found,
+            the return value will be <see langword="null"/>.
+            </returns>
+        </member>
+        <member name="M:Sudoku.Resources.ResourceDocumentManager.Add(Sudoku.Resources.ResourceDocument)">
+            <summary>
+            Add the specified resource document into the collection.
+            </summary>
+            <param name="element">The resource document instance.</param>
+        </member>
+        <member name="M:Sudoku.Resources.ResourceDocumentManager.Remove(System.Int32)">
+            <summary>
+            To remove the specified resource document from the current collection via the LCID value.
+            </summary>
+            <param name="lcid">The resource document whose LCID is the current argument value specified.</param>
+            <returns>Indicates whether the removing operation is successful.</returns>
+        </member>
+        <member name="M:Sudoku.Resources.ResourceDocumentManager.Contains(System.Int32)">
+            <summary>
+            Determine whether the collection contains the resource document whose LCID is the specified one.
+            </summary>
+            <param name="lcid">The LCID to determine.</param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
+        </member>
+        <member name="M:Sudoku.Resources.ResourceDocumentManager.GetEnumerator">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Resources.ResourceDocumentManager.System#Collections#IEnumerable#GetEnumerator">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Solving.BitwiseSolver">

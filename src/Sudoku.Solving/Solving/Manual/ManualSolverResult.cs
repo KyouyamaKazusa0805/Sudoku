@@ -258,28 +258,12 @@ public sealed unsafe partial record ManualSolverResult(in Grid OriginalPuzzle) :
 	/// <inheritdoc/>
 	public string ToString(string? format) => new Formatter(this).ToString(format);
 
-	/// <summary>
-	/// Get the analysis result string using the specified format and the country code.
-	/// </summary>
-	/// <param name="format">The format.</param>
-	/// <param name="countryCode">The country code.</param>
-	/// <returns>The result string.</returns>
-	public string ToString(string format, CountryCode countryCode) =>
-		new Formatter(this).ToString(format, countryCode);
-
 	/// <inheritdoc cref="Formatter.ToString(SolverResultFormattingOptions)"/>
 	public string ToString(SolverResultFormattingOptions options) =>
 		new Formatter(this).ToString(options);
 
-	/// <inheritdoc cref="Formatter.ToString(SolverResultFormattingOptions, CountryCode)"/>
-	public string ToString(SolverResultFormattingOptions options, CountryCode countryCode) =>
-		new Formatter(this).ToString(options, countryCode);
-
 	/// <inheritdoc/>
-	public string ToDisplayString() => ToDisplayString(CountryCode.Default);
-
-	/// <inheritdoc/>
-	public string ToDisplayString(CountryCode countryCode) => new Formatter(this).ToString(null, countryCode);
+	public string ToDisplayString() => ToString();
 
 	/// <summary>
 	/// The inner executor to get the difficulty value (total, average).

@@ -2181,6 +2181,20 @@
             from the base one.
             </exception>
         </member>
+        <member name="T:System.Text.StringHandlerExtensions">
+            <summary>
+            Provides the extension methods on <see cref="T:System.Text.StringHandler"/>.
+            </summary>
+            <seealso cref="T:System.Text.StringHandler"/>
+        </member>
+        <member name="M:System.Text.StringHandlerExtensions.AppendWhen(System.Text.StringHandler@,System.Boolean,System.String)">
+            <summary>
+            Append the content into the handler if the specified condition is satisfied.
+            </summary>
+            <param name="this">The handler.</param>
+            <param name="condition">The condition.</param>
+            <param name="value">The value to append.</param>
+        </member>
         <member name="T:System.Text.Json.Utf8JsonReaderExtensions">
             <summary>
             Provides extension methods on <see cref="T:System.Text.Json.Utf8JsonReader"/>.

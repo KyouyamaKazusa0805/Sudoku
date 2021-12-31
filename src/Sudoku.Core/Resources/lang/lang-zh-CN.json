@@ -1,0 +1,43 @@
+﻿{
+  // 语言配置。
+  "language": "zh-CN",
+
+  // 标点符号。
+  "ellipsis": "……",
+  "colon": "：",
+
+  // 结果类型的相关文字内容。
+  "bruteForceSolverResultPuzzle": "题目：",
+  "bruteForceSolverResultSolution": "解：",
+  "bruteForceSolverResultPuzzleHas": "题目",
+  "bruteForceSolverResultNot": "没有",
+  "bruteForceSolverResultBeenSolved": "被解出。",
+  "bruteForceSolverResultTimeElapsed": "耗时：",
+  "analysisResultPuzzle": "题目：",
+  "analysisResultSolvingSteps": "解题步骤：",
+  "analysisResultBottleneckStep": "卡点：",
+  "analysisResultInStep": "于步骤编号 ",
+  "analysisResultTechniqueUsed": "技巧使用情况：",
+  "analysisResultMin": "最小",
+  "analysisResultTotal": "总分",
+  "analysisResultTechniqueUsing": "          次数",
+  "analysisResultStepSingular": " 个步骤",
+  "analysisResultStepPlural": " 个步骤",
+  "analysisResultPuzzleRating": "题目评分：",
+  "analysisResultPuzzleSolution": "解：",
+  "analysisResultPuzzleHas": "题目",
+  "analysisResultNot": "没有",
+  "analysisResultBeenSolved": "被解出。",
+  "analysisResultTimeElapsed": "耗时：",
+
+  // 技巧相关文字内容。
+  "exocetElimination": "删数：",
+  "exocetBasicEliminationName": "基本删数：",
+  "exocetTargetInferenceEliminationName": "目标单元格删数：",
+  "exocetMirrorEliminationName": "镜面单元格删数：",
+  "exocetBiBiPatternEliminationName": "X 致命删数：",
+  "exocetTargetPairEliminationName": "目标单元格数对删数：",
+  "exocetGeneralizedSwordfishEliminationName": "广义三阶鱼结构删数：",
+  "exocetTrueBaseEliminationName": "基准单元格永真删数：",
+  "exocetCompatibilityTestEliminationName": "兼容性测试删数："
+}

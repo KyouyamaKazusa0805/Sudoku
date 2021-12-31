@@ -30,38 +30,28 @@ public sealed record BruteForceSolverResult(
 {
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public string ToDisplayString() => ToDisplayString(CountryCode.Default);
-
-	/// <summary>
-	/// Get the string representataion of the current instance using the specified formatting options
-	/// and the country code to specify the country information.
-	/// </summary>
-	/// <param name="countryCode">The country code.</param>
-	/// <returns>The string representation of the current instance.</returns>
-	public string ToDisplayString(CountryCode countryCode)
+	public string ToDisplayString()
 	{
-		TextResources.Current.ChangeLanguage(countryCode);
-
 		// Print header.
 		var sb = new StringHandler();
-		sb.Append((string)TextResources.Current.AnalysisResultPuzzle);
+		sb.Append(ResourceDocumentManager.Shared["bruteForceSolverResultPuzzle"]);
 		sb.Append(OriginalPuzzle.ToString("#"));
 		sb.AppendLine();
 
 		// Print the solution (if not null).
 		if (!Solution.IsUndefined)
 		{
-			sb.Append((string)TextResources.Current.AnalysisResultPuzzleSolution);
+			sb.Append(ResourceDocumentManager.Shared["bruteForceSolverResultSolution"]);
 			sb.Append(Solution.ToString("!"));
 			sb.AppendLine();
 		}
 
 		// Print the elapsed time.
-		sb.Append((string)TextResources.Current.AnalysisResultPuzzleHas);
-		sb.Append(IsSolved ? string.Empty : (string)TextResources.Current.AnalysisResultNot);
-		sb.Append((string)TextResources.Current.AnalysisResultBeenSolved);
+		sb.Append(ResourceDocumentManager.Shared["bruteForceSolverResultPuzzleHas"]);
+		sb.AppendWhen(IsSolved, ResourceDocumentManager.Shared["bruteForceSolverResultNot"]);
+		sb.Append(ResourceDocumentManager.Shared["bruteForceSolverResultBeenSolved"]);
 		sb.AppendLine();
-		sb.Append((string)TextResources.Current.AnalysisResultTimeElapsed);
+		sb.Append(ResourceDocumentManager.Shared["bruteForceSolverResultTimeElapsed"]);
 		sb.Append(ElapsedTime, @"hh\:mm\:ss\.ffffff");
 		sb.AppendLine();
 

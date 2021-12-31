@@ -18,19 +18,11 @@ partial record ManualSolverResult
 		/// The format. If available, the parameter can be <see langword="null"/>.
 		/// </param>
 		/// <returns>The string result.</returns>
-		public string ToString(string? format) => ToString(format, CountryCode.EnUs);
-
-		/// <summary>
-		/// Get the string result.
-		/// </summary>
-		/// <param name="format">The format.</param>
-		/// <param name="countryCode">The country code.</param>
-		/// <returns>The result.</returns>
 		/// <exception cref="FormatException">
 		/// Throws when the specified format contains other invalid characters
 		/// and the format provider can't work.
 		/// </exception>
-		public string ToString(string? format, CountryCode countryCode)
+		public string ToString(string? format)
 		{
 			format ??= ".-!l";
 			if (format.IsMatch(@"[^\^\-\.\?#@!abdl]"))
@@ -49,7 +41,7 @@ partial record ManualSolverResult
 			options |= c(in formatLower, 'd') ? SolverResultFormattingOptions.ShowStepDetail : 0;
 			options |= c(in formatLower, 'l') ? SolverResultFormattingOptions.ShowSteps : 0;
 
-			return ToString(options, countryCode);
+			return ToString(options);
 
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -61,31 +53,21 @@ partial record ManualSolverResult
 		/// </summary>
 		/// <param name="options">The options.</param>
 		/// <returns>The result.</returns>
-		public string ToString(SolverResultFormattingOptions options) => ToString(options, CountryCode.EnUs);
-
-		/// <summary>
-		/// Get the string result with the specified formatting options and the country code.
-		/// </summary>
-		/// <param name="options">The options.</param>
-		/// <param name="countryCode">The country code.</param>
-		/// <returns>The result.</returns>
-		public string ToString(SolverResultFormattingOptions options, CountryCode countryCode)
+		public string ToString(SolverResultFormattingOptions options)
 		{
-			TextResources.Current.ChangeLanguage(countryCode);
-
 			// Get all information.
 			var (hasSolved, total, max, pearl, diamond, puzzle, solution, elapsed, stepsCount, steps, _) = Result;
 
 			// Print header.
 			var sb = new StringHandler();
-			sb.Append((string)TextResources.Current.AnalysisResultPuzzle);
+			sb.Append(ResourceDocumentManager.Shared["analysisResultPuzzle"]);
 			sb.Append(puzzle.ToString("#"));
 			sb.AppendLine();
 
 			// Print solving steps (if worth).
 			if (options.Flags(SolverResultFormattingOptions.ShowSteps) && steps.Length != 0)
 			{
-				sb.Append((string)TextResources.Current.AnalysisResultSolvingSteps);
+				sb.Append(ResourceDocumentManager.Shared["analysisResultSolvingSteps"]);
 				sb.AppendLine();
 
 				if (getBottleneck(this) is var (bIndex, bInfo))
@@ -94,7 +76,7 @@ partial record ManualSolverResult
 					{
 						if (i > bIndex && options.Flags(SolverResultFormattingOptions.ShowStepsAfterBottleneck))
 						{
-							sb.Append((string)TextResources.Current.Ellipsis);
+							sb.Append(ResourceDocumentManager.Shared["ellipsis"]);
 							sb.AppendLine();
 
 							break;
@@ -129,13 +111,13 @@ partial record ManualSolverResult
 					{
 						a(ref sb, options.Flags(SolverResultFormattingOptions.ShowSeparators));
 
-						sb.Append((string)TextResources.Current.AnalysisResultBottleneckStep);
+						sb.Append(ResourceDocumentManager.Shared["analysisResultBottleneckStep"]);
 
 						if (options.Flags(SolverResultFormattingOptions.ShowStepLabel))
 						{
-							sb.Append((string)TextResources.Current.AnalysisResultInStep);
+							sb.Append(ResourceDocumentManager.Shared["analysisResultInStep"]);
 							sb.Append(bIndex + 1);
-							sb.Append((string)TextResources.Current.Colon);
+							sb.Append(ResourceDocumentManager.Shared["colon"]);
 						}
 
 						sb.Append(' ');
@@ -150,16 +132,16 @@ partial record ManualSolverResult
 			// Print solving step statistics (if worth).
 			if (!steps.IsDefault)
 			{
-				sb.Append((string)TextResources.Current.AnalysisResultTechniqueUsed);
+				sb.Append(ResourceDocumentManager.Shared["analysisResultTechniqueUsed"]);
 				sb.AppendLine();
 
 				if (options.Flags(SolverResultFormattingOptions.ShowStepDetail))
 				{
-					sb.Append((string)TextResources.Current.AnalysisResultMin, 6);
+					sb.Append(ResourceDocumentManager.Shared["analysisResultMin"], 6);
 					sb.Append(',');
 					sb.Append(' ');
-					sb.Append((string)TextResources.Current.AnalysisResultTotal, 6);
-					sb.Append((string)TextResources.Current.AnalysisResultTechniqueUsing);
+					sb.Append(ResourceDocumentManager.Shared["analysisResultTotal"], 6);
+					sb.Append(ResourceDocumentManager.Shared["analysisResultTechniqueUsing"]);
 				}
 
 				foreach (var solvingStepsGroup in from s in steps orderby s.Difficulty group s by s.Name)
@@ -198,18 +180,14 @@ partial record ManualSolverResult
 
 				sb.Append(stepsCount, 3);
 				sb.Append(' ');
-				sb.Append(
-					stepsCount == 1
-						? (string)TextResources.Current.AnalysisResultStepSingular
-						: (string)TextResources.Current.AnalysisResultStepPlural
-				);
+				sb.Append(ResourceDocumentManager.Shared[stepsCount == 1 ? "analysisResultStepSingular" : "analysisResultStepPlural"]);
 				sb.AppendLine();
 
 				a(ref sb, options.Flags(SolverResultFormattingOptions.ShowSeparators));
 			}
 
 			// Print detail data.
-			sb.Append((string)TextResources.Current.AnalysisResultPuzzleRating);
+			sb.Append(ResourceDocumentManager.Shared["analysisResultPuzzleRating"]);
 			sb.Append(max, "0.0");
 			sb.Append('/');
 			sb.Append(pearl, "0.0");
@@ -220,20 +198,16 @@ partial record ManualSolverResult
 			// Print the solution (if not null).
 			if (!solution.IsUndefined)
 			{
-				sb.Append((string)TextResources.Current.AnalysisResultPuzzleSolution);
+				sb.Append(ResourceDocumentManager.Shared["analysisResultPuzzleSolution"]);
 				sb.Append(solution.ToString("!"));
 			}
 
 			// Print the elapsed time.
-			sb.Append((string)TextResources.Current.AnalysisResultPuzzleHas);
-			if (hasSolved)
-			{
-				sb.Append((string)TextResources.Current.AnalysisResultNot);
-			}
-
-			sb.Append((string)TextResources.Current.AnalysisResultBeenSolved);
+			sb.Append(ResourceDocumentManager.Shared["analysisResultPuzzleHas"]);
+			sb.AppendWhen(hasSolved, ResourceDocumentManager.Shared["analysisResultNot"]);
+			sb.Append(ResourceDocumentManager.Shared["analysisResultBeenSolved"]);
 			sb.AppendLine();
-			sb.Append((string)TextResources.Current.AnalysisResultTimeElapsed);
+			sb.Append(ResourceDocumentManager.Shared["analysisResultTimeElapsed"]);
 			sb.Append(elapsed, @"hh\:mm\:ss\.fff");
 			sb.AppendLine();
 

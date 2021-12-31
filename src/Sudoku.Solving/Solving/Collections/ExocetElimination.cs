@@ -11,7 +11,7 @@
 [AutoDeconstruct(nameof(Eliminations), nameof(Reason))]
 [AutoGetHashCode(nameof(Eliminations), nameof(Reason))]
 [AutoEquality(nameof(Eliminations), nameof(Reason))]
-[AutoGetEnumerator("@", MemberConversion = "@.AsSpan().*", ReturnType = typeof(ReadOnlySpan<Conclusion>.Enumerator))]
+[AutoGetEnumerator("@", MemberConversion = $"@.{nameof(AsSpan)}().*", ReturnType = typeof(ReadOnlySpan<Conclusion>.Enumerator))]
 public readonly partial record struct ExocetElimination(in Candidates Eliminations, ExocetEliminatedReason Reason)
 {
 	/// <summary>
@@ -26,14 +26,14 @@ public readonly partial record struct ExocetElimination(in Candidates Eliminatio
 	/// <summary>
 	/// Indicates the header of the reason.
 	/// </summary>
-	private string Header => TextResources.Current[$"Exocet{Reason}EliminationName"];
+	private string Header => ResourceDocumentManager.Shared[$"exocet{Reason}EliminationName"];
 
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public override string ToString()
 	{
-		string snippet = TextResources.Current.ExocetEliminationSnippet;
+		string snippet = ResourceDocumentManager.Shared["exocetElimination"];
 		string elim = new ConclusionCollection(AsSpan()).ToString();
 		return $"* {Header}{snippet}{elim}";
 	}

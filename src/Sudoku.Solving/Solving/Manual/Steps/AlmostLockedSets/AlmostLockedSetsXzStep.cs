@@ -40,12 +40,13 @@ public sealed record AlmostLockedSetsXzStep(
 	public override DifficultyLevel DifficultyLevel => DifficultyLevel.Fiendish;
 
 	/// <inheritdoc/>
-	public override Technique TechniqueCode => IsDoublyLinked switch
-	{
-		true => Technique.DoublyLinkedAlmostLockedSetsXzRule,
-		false => Technique.SinglyLinkedAlmostLockedSetsXzRule,
-		_ => Technique.ExtendedSubsetPrinciple
-	};
+	public override Technique TechniqueCode =>
+		IsDoublyLinked switch
+		{
+			true => Technique.DoublyLinkedAlmostLockedSetsXzRule,
+			false => Technique.SinglyLinkedAlmostLockedSetsXzRule,
+			_ => Technique.ExtendedSubsetPrinciple
+		};
 
 	/// <inheritdoc/>
 	public override Rarity Rarity => Rarity.Often;

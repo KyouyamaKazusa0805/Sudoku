@@ -1,0 +1,43 @@
+﻿{
+  // Language configuration.
+  "language": "en-US",
+
+  // Punctuation marks.
+  "ellipsis": "...",
+  "colon": ":",
+
+  // Solver result snippet.
+  "bruteForceSolverResultPuzzle": "Puzzle: ",
+  "bruteForceSolverResultSolution": "Solution: ",
+  "bruteForceSolverResultPuzzleHas": "The puzzle has",
+  "bruteForceSolverResultNot": " not",
+  "bruteForceSolverResultBeenSolved": " been solved.",
+  "bruteForceSolverResultTimeElapsed": "Time elapsed: ",
+  "analysisResultPuzzle": "Puzzle: ",
+  "analysisResultSolvingSteps": "Solving steps: ",
+  "analysisResultBottleneckStep": "Bottleneck: ",
+  "analysisResultInStep": " In step ",
+  "analysisResultTechniqueUsed": "Technique Used: ",
+  "analysisResultMin": "Min",
+  "analysisResultTotal": "Total",
+  "analysisResultTechniqueUsing": "  technique using",
+  "analysisResultStepSingular": " step",
+  "analysisResultStepPlural": " steps",
+  "analysisResultPuzzleRating": "Puzzle rating: ",
+  "analysisResultPuzzleSolution": "Solution: ",
+  "analysisResultPuzzleHas": "The puzzle has",
+  "analysisResultNot": " not",
+  "analysisResultBeenSolved": " been solved.",
+  "analysisResultTimeElapsed": "Time elapsed: ",
+
+  // Technique snippet.
+  "exocetElimination": "Eliminations: ",
+  "exocetBasicEliminationName": "Basic eliminations: ",
+  "exocetTargetInferenceEliminationName": "Target inference: ",
+  "exocetMirrorEliminationName": "Mirroring: ",
+  "exocetBiBiPatternEliminationName": "Bi-Bi pattern: ",
+  "exocetTargetPairEliminationName": "Target pair: ",
+  "exocetGeneralizedSwordfishEliminationName": "Generalized swordfish: ",
+  "exocetTrueBaseEliminationName": "True base: ",
+  "exocetCompatibilityTestEliminationName": "Compatibility test: "
+}

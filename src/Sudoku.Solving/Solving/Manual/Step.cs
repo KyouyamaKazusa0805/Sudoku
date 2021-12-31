@@ -97,7 +97,7 @@ public abstract record Step(ImmutableArray<Conclusion> Conclusions, ImmutableArr
 	public bool IsDeadlyPattern => HasTag(TechniqueTags.DeadlyPattern);
 
 	/// <inheritdoc/>
-	public virtual string Name => TextResources.Current[TechniqueCode.ToString()];
+	public virtual string Name => ResourceDocumentManager.Shared[TechniqueCode.ToString()];
 
 	/// <inheritdoc/>
 	public virtual string? Format
@@ -108,10 +108,10 @@ public abstract record Step(ImmutableArray<Conclusion> Conclusions, ImmutableArr
 			{
 				var type = GetType();
 
-				return TextResources.Current[
+				return ResourceDocumentManager.Shared[
 					type.GetCustomAttribute<FormatForwardAttribute>() is { IdentifierName: var name }
-						? $"Format_{name}"
-						: $"Format_{type.Name}"
+						? $"techniqueFormat_{name}"
+						: $"techniqueFormat_{type.Name}"
 				];
 			}
 			catch (RuntimeBinderException)

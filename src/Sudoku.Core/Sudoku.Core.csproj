@@ -8,6 +8,18 @@
 	</PropertyGroup>
 
 	<ItemGroup>
+		<None Include="$(SolutionDir)Resources\lang\**" CopyToOutputDirectory="PreserveNewest" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <None Remove="Resources\lang\lang-zh-CN.json" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Compile Include="Resources\lang\lang-zh-CN.json" />
+	</ItemGroup>
+
+	<ItemGroup>
 		<ProjectReference Include="..\System\SystemExtensions.csproj" />
 		<ProjectReference Include="..\Sudoku.Core.CodeGen\Sudoku.Core.CodeGen.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="true" />
 		<ProjectReference Include="..\Sudoku.Diagnostics.CodeGen\Sudoku.Diagnostics.CodeGen.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="true" />

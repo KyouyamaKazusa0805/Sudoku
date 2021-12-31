@@ -43,12 +43,4 @@ public interface ISolverResult
 	/// </summary>
 	/// <returns>The string representation of the current instance.</returns>
 	string ToDisplayString();
-
-	/// <summary>
-	/// Get the string representataion of the current instance using the country code
-	/// to specify the country information.
-	/// </summary>
-	/// <param name="countryCode">The country code.</param>
-	/// <returns>The string representation of the current instance.</returns>
-	string ToDisplayString(CountryCode countryCode);
 }

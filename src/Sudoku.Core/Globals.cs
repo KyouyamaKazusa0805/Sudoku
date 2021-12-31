@@ -7,8 +7,10 @@ global using System.ComponentModel;
 global using System.Diagnostics;
 global using System.Diagnostics.CodeAnalysis;
 global using System.Globalization;
+global using System.IO;
 global using System.Linq;
 global using System.Numerics;
+global using System.Reflection;
 global using System.Runtime.CompilerServices;
 global using System.Runtime.InteropServices;
 global using System.Runtime.Serialization;
@@ -21,6 +23,7 @@ global using Sudoku.Diagnostics.CodeAnalysis;
 global using Sudoku.Diagnostics.CodeGen;
 global using Sudoku.Globalization;
 global using Sudoku.Presentation;
+global using Sudoku.Resources;
 global using Sudoku.Solving;
 global using static System.Numerics.BitOperations;
 global using static Sudoku.Constants;
@@ -33,4 +36,4 @@ global using static Sudoku.Constants.Tables;
 [assembly: InternalsVisibleTo("Sudoku.Test")]
 #endif
 
-[module: SkipLocalsInit]
+[module: SkipLocalsInit] 
