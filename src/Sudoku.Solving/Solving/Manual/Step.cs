@@ -107,14 +107,13 @@ public abstract record Step(ImmutableArray<Conclusion> Conclusions, ImmutableArr
 			try
 			{
 				var type = GetType();
-
 				return ResourceDocumentManager.Shared[
 					type.GetCustomAttribute<FormatForwardAttribute>() is { IdentifierName: var name }
 						? $"techniqueFormat_{name}"
 						: $"techniqueFormat_{type.Name}"
 				];
 			}
-			catch (RuntimeBinderException)
+			catch (KeyNotFoundException)
 			{
 				return null;
 			}
