@@ -805,29 +805,6 @@ public unsafe partial struct Grid
 	}
 
 	/// <summary>
-	/// Convertes the current instance to a <see cref="SudokuGrid"/>.
-	/// </summary>
-	/// <returns>The sudoku grid result.</returns>
-	[Obsolete($"The method is deprecated due to the usage of type '{nameof(SudokuGrid)}'.", false)]
-	public readonly SudokuGrid ToSudokuGrid()
-	{
-		short[] arr = ArrayPool<short>.Shared.Rent(Length);
-		fixed (short* pArr = arr, pGrid = this)
-		{
-			Unsafe.CopyBlock(pArr, pGrid, sizeof(short) * Length);
-		}
-
-		try
-		{
-			return new(arr);
-		}
-		finally
-		{
-			ArrayPool<short>.Shared.Return(arr);
-		}
-	}
-
-	/// <summary>
 	/// Reset the sudoku grid, to set all modifiable values to empty ones.
 	/// </summary>
 	public void Reset()

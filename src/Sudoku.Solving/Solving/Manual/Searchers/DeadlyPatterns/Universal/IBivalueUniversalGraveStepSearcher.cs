@@ -27,7 +27,7 @@ public unsafe interface IBivalueUniversalGraveStepSearcher : IUniversalStepSearc
 	/// if it is eliminated from the current puzzle. It is a strict concept, which means sometimes the puzzle
 	/// doesn't contain any satisfied candidate to make the puzzle containing no solution if being eliminated.
 	/// </remarks>
-	/// <exception cref="InvalidPuzzleException">
+	/// <exception cref="InvalidOperationException">
 	/// Throws when the puzzle contains multiple solutions or even no solution.
 	/// </exception>
 	public static bool FindTrueCandidates(
@@ -38,7 +38,7 @@ public unsafe interface IBivalueUniversalGraveStepSearcher : IUniversalStepSearc
 	{
 		if (!grid.IsValid())
 		{
-			throw new InvalidPuzzleException(grid, "the puzzle must be valid (containing a unique solution).");
+			throw new InvalidOperationException("The puzzle must be valid (containing a unique solution).");
 		}
 
 		InitializeMaps(grid);

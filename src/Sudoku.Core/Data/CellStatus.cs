@@ -35,10 +35,10 @@ public enum CellStatus : byte
 	/// </summary>
 	/// <remarks>
 	/// You had better use this field on cases when processing
-	/// the bitwise operations in a <see cref="SudokuGrid"/>.
+	/// the bitwise operations in a <see cref="Grid"/>.
 	/// This field should not be used to process cell status comparison.
 	/// </remarks>
-	/// <seealso cref="SudokuGrid.GetStatus(int)"/>
+	/// <seealso cref="Grid.GetStatus(int)"/>
 	[EditorBrowsable(EditorBrowsableState.Never)]
 	All = Empty | Modifiable | Given
 }

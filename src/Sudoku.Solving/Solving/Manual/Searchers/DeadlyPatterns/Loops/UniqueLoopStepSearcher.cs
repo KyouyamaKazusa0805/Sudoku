@@ -60,7 +60,7 @@ public sealed unsafe class UniqueLoopStepSearcher : IUniqueLoopStepSearcher, IUn
 				{
 					case 0:
 					{
-						throw new NoSolutionException(grid);
+						throw new InvalidOperationException("The current grid has no solution.");
 					}
 					case 1:
 					{

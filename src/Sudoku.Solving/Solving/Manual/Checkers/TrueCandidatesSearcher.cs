@@ -9,10 +9,11 @@ public sealed unsafe class TrueCandidatesSearcher
 	/// Initializes an instance with the specified grid.
 	/// </summary>
 	/// <param name="grid">The current puzzle grid.</param>
-	/// <exception cref="InvalidPuzzleException">Throws when the puzzle is invalid.</exception>
-	public TrueCandidatesSearcher(in Grid grid) => Puzzle = grid.IsValid()
-		? grid
-		: throw new InvalidPuzzleException(grid, "the puzzle must contain unique solution before checking.");
+	/// <exception cref="InvalidOperationException">Throws when the puzzle is invalid.</exception>
+	public TrueCandidatesSearcher(in Grid grid) =>
+		Puzzle = grid.IsValid()
+			? grid
+			: throw new InvalidOperationException("The puzzle must contain unique solution before checking.");
 
 
 	/// <summary>

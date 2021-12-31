@@ -6,7 +6,6 @@
 		<Description>Provides the extension methods for the System library instances.</Description>
 		<RootNamespace>System</RootNamespace>
 		<DocumentationFile>..\docxml\SystemExtensions.xml</DocumentationFile>
-		<DefineConstants>WINDOWS_APP</DefineConstants>
 	</PropertyGroup>
 
 	<ItemGroup>

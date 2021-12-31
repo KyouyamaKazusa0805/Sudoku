@@ -21,8 +21,4 @@ global using static System.Numerics.BitOperations;
 
 [assembly: InternalsVisibleTo("Sudoku.Core")]
 
-#if WINDOWS_APP
-[assembly: InternalsVisibleTo("Sudoku.UI")]
-#endif
-
 [assembly: AutoDeconstructExtension<Index>(nameof(Index.IsFromEnd), nameof(Index.Value))] 

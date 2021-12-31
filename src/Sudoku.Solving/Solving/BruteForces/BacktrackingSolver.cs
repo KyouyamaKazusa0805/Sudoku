@@ -42,7 +42,7 @@ public sealed class BacktrackingSolver : IPuzzleSolver
 					Solution = new(result, GridCreatingOption.MinusOne)
 				};
 		}
-		catch (MultipleSolutionsException)
+		catch (InvalidOperationException)
 		{
 			stopwatch.Stop();
 
@@ -66,7 +66,7 @@ public sealed class BacktrackingSolver : IPuzzleSolver
 	/// <param name="result">The result array.</param>
 	/// <param name="gridValues">All grid values.</param>
 	/// <param name="finishedCellsCount">The number of cells had finished.</param>
-	/// <exception cref="MultipleSolutionsException">Throws when the puzzle contains multiple solutions.</exception>
+	/// <exception cref="InvalidOperationException">Throws when the puzzle contains multiple solutions.</exception>
 	private void InternalSolve(
 		ref int solutionsCount,
 		ref int[]? result,
@@ -79,7 +79,7 @@ public sealed class BacktrackingSolver : IPuzzleSolver
 			// Solution found.
 			if (++solutionsCount > 1)
 			{
-				throw new MultipleSolutionsException(_grid);
+				throw new InvalidOperationException($"{nameof(_grid)} contains multiple solutions.");
 			}
 
 			// We should catch the result.

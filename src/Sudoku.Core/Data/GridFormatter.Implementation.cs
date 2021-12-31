@@ -35,7 +35,7 @@ partial struct GridFormatter
 	/// </summary>
 	/// <param name="grid">The grid.</param>
 	/// <returns>The string.</returns>
-	/// <exception cref="InvalidPuzzleException">Throws when the specified grid is invalid.</exception>
+	/// <exception cref="FormatException">Throws when the specified grid is invalid.</exception>
 	private partial string ToOpenSudokuString(in Grid grid)
 	{
 		// Calculates the length of the result string.
@@ -79,10 +79,7 @@ partial struct GridFormatter
 						}
 						default:
 						{
-							throw new InvalidPuzzleException(
-								grid,
-								"The specified grid is invalid to output the formatted string."
-							);
+							throw new FormatException("The specified grid is invalid.");
 						}
 					}
 				}

@@ -5,7 +5,6 @@
 		<RootNamespace>Sudoku</RootNamespace>
 		<Description>Provides all core implementations of sudokus, such as a grid.</Description>
 		<DocumentationFile>..\docxml\Sudoku.Core.xml</DocumentationFile>
-		<DefineConstants>WINDOWS_APP</DefineConstants>
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -13,21 +12,5 @@
 		<ProjectReference Include="..\Sudoku.Core.CodeGen\Sudoku.Core.CodeGen.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="true" />
 		<ProjectReference Include="..\Sudoku.Diagnostics.CodeGen\Sudoku.Diagnostics.CodeGen.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="true" />
 	</ItemGroup>
-
-	<!--Load external files. The file doesn't exist in the solution, but in the logical folder.-->
-	<!--Loading start-->
-	<ItemGroup>
-		<Compile Remove="Resources\TextResources.RealImpl.cs" Visible="false" />
-		<Compile Remove="Resources\TextResources.NonpublicStaticMembers.cs" Visible="false" />
-	</ItemGroup>
-
-	<Target Name="ResourceHandlingMethods" BeforeTargets="BeforeBuild">
-		<ItemGroup>
-			<Compile Remove="Resources\TextResources.cs" Visible="false" />
-			<Compile Include="Resources\TextResources.RealImpl.cs" Visible="false" />
-			<Compile Include="Resources\TextResources.NonpublicStaticMembers.cs" Visible="false" />
-		</ItemGroup>
-	</Target>
-	<!--Loading end-->
 
 </Project>

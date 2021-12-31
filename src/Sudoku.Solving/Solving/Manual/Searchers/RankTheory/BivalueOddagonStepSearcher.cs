@@ -60,7 +60,7 @@ public sealed unsafe class BivalueOddagonStepSearcher : IBivalueOddagonStepSearc
 				{
 					case 0:
 					{
-						throw new NoSolutionException(grid);
+						throw new InvalidOperationException("The current grid has no solution.");
 					}
 					case 1:
 					{

@@ -28,7 +28,6 @@ public readonly partial record struct Conclusion(int Mask)
 , IEquatable<Conclusion>
 , IValueEquatable<Conclusion>
 , IValueComparable<Conclusion>
-, IJsonSerializable<Conclusion, Conclusion.JsonConverter>
 {
 	/// <summary>
 	/// Initializes an instance with a conclusion type and a candidate offset.
@@ -99,29 +98,6 @@ public readonly partial record struct Conclusion(int Mask)
 	/// <param name="grid">The grid.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public void ApplyTo(ref Grid grid)
-	{
-		switch (ConclusionType)
-		{
-			case ConclusionType.Assignment:
-			{
-				grid[Cell] = Digit;
-				break;
-			}
-			case ConclusionType.Elimination:
-			{
-				grid[Cell, Digit] = false;
-				break;
-			}
-		}
-	}
-
-	/// <summary>
-	/// Put this instance into the specified grid.
-	/// </summary>
-	/// <param name="grid">The grid.</param>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	[Obsolete($"Please use the method '{nameof(ApplyTo)}(ref {nameof(Grid)})' instead.", false)]
-	public void ApplyTo(ref SudokuGrid grid)
 	{
 		switch (ConclusionType)
 		{

@@ -21,14 +21,14 @@ public static class MissingCandidateSearcher
 	/// <c>-1</c> will be returned if no possible missing candidate found. For example,
 	/// at least two missing candidates should be checked.
 	/// </returns>
-	/// <exception cref="InvalidPuzzleException">
+	/// <exception cref="InvalidOperationException">
 	/// Throws when the puzzle contain no solution or a unique solution.
 	/// </exception>
 	public static unsafe int GetMissingCandidate(in Grid grid)
 	{
 		// Optimization: Check the symmetry. User-created sudoku puzzles often contain patterns with symmetry.
 		return Solver.Solve(grid.ToString("0"), null, 2) is 0 or 1
-			? throw new InvalidPuzzleException(grid, "the puzzle must contain more than one solution.")
+			? throw new InvalidOperationException($"The {nameof(grid)} must contain more than one solution.")
 			: (
 				testSymmetry(grid, &GridTransformations.RotatePi)
 				?? testSymmetry(grid, &GridTransformations.MirrorLeftRight)
