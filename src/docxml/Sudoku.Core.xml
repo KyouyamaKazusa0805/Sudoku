@@ -4689,30 +4689,6 @@
             <param name="this">The type.</param>
             <returns>The name.</returns>
         </member>
-        <member name="T:Sudoku.Globalization.CountryCode">
-            <summary>
-            Encapsulates a country code to tell different countries.
-            </summary>
-            <remarks>
-            This <see langword="enum"/> is used for some formatted string output, i.e. a
-            multi-language string.
-            </remarks>
-        </member>
-        <member name="F:Sudoku.Globalization.CountryCode.Default">
-            <summary>
-            Indicates the language is none of them, which is the default value of this type.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Globalization.CountryCode.EnUs">
-            <summary>
-            Indicates the American English.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Globalization.CountryCode.ZhCn">
-            <summary>
-            Indicates the Chinese (Mainland).
-            </summary>
-        </member>
         <member name="T:Sudoku.Models.ColorIdentifier">
             <summary>
             Indicates the color identifier that used to identify the color.
@@ -4840,93 +4816,6 @@
             The value is initialized as the ID value.
             </summary>
             <param name="id">The ID.</param>
-        </member>
-        <member name="T:Sudoku.Models.DrawingInfo">
-            <summary>
-            Encapsulates a drawing information pair for highlighting cells,
-            candidates and regions.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Models.DrawingInfo.#ctor(System.Int64,System.Int32)">
-            <summary>
-            Initializes an instance with ID and value.
-            </summary>
-            <param name="id">The ID.</param>
-            <param name="value">The value.</param>
-        </member>
-        <member name="P:Sudoku.Models.DrawingInfo.Id">
-            <summary>
-            Indicates the ID value. The ID is the unique key corresponding to one color.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Models.DrawingInfo.Value">
-            <summary>
-            Indicates the value.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Models.DrawingInfo.GetHashCode">
-            <inheritdoc cref="M:System.Object.GetHashCode"/>
-        </member>
-        <member name="M:Sudoku.Models.DrawingInfo.ToString">
-            <inheritdoc cref="M:System.Object.ToString"/>
-        </member>
-        <member name="M:Sudoku.Models.DrawingInfo.op_Implicit(System.ValueTuple{System.Int64,System.Int32}@)~Sudoku.Models.DrawingInfo">
-            <summary>
-            Implicit cast from <see cref="T:System.ValueTuple`2"/> to <see cref="T:Sudoku.Models.DrawingInfo"/>.
-            </summary>
-            <param name="pair">The pair value.</param>
-        </member>
-        <member name="M:Sudoku.Models.DrawingInfo.Deconstruct(System.Int64@,System.Int32@)">
-            <summary>
-            Deconstruct the instance into multiple elements.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Models.DrawingInfo.Equals(System.Object)">
-            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
-        </member>
-        <member name="M:Sudoku.Models.DrawingInfo.Equals(Sudoku.Models.DrawingInfo@)">
-            <summary>
-            Indicates whether the current object is equal to another object of the same type.
-            </summary>
-            <param name="other">An object to compare with this object.</param>
-            <returns>
-            <see langword="true"/> if the current object is equal to the other parameter;
-            otherwise, <see langword="false"/>.
-            </returns>
-        </member>
-        <member name="M:Sudoku.Models.DrawingInfo.op_Equality(Sudoku.Models.DrawingInfo@,Sudoku.Models.DrawingInfo@)">
-            <summary>
-            Determines whether the two instances contain a same value.
-            </summary>
-            <param name="left">The left-side-operator instance to compare.</param>
-            <param name="right">The right-side-operator instance to compare.</param>
-            <returns>A <see cref="T:System.Boolean"/> result.</returns>
-        </member>
-        <member name="M:Sudoku.Models.DrawingInfo.op_Inequality(Sudoku.Models.DrawingInfo@,Sudoku.Models.DrawingInfo@)">
-            <summary>
-            Determines whether the two instances don't contain a same value.
-            </summary>
-            <param name="left">The left-side-operator instance to compare.</param>
-            <param name="right">The right-side-operator instance to compare.</param>
-            <returns>A <see cref="T:System.Boolean"/> result.</returns>
-        </member>
-        <member name="T:Sudoku.Models.IProgressResult">
-            <summary>
-            Encapsulates and provides with a progress result instance.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Models.IProgressResult.Percentage">
-            <summary>
-            Indicates the current percentage.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Models.IProgressResult.CountryCode">
-            <summary>
-            The country code.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Models.IProgressResult.ToString">
-            <inheritdoc cref="M:System.Object.ToString"/>
         </member>
         <member name="T:Sudoku.Models.PresentationData">
             <summary>
@@ -5175,42 +5064,6 @@
             <summary>
             Indicates the data kind is for unknown value.
             </summary>
-        </member>
-        <member name="T:Sudoku.Models.TechniqueProgressResult">
-            <summary>
-            Indicates a technique progress result.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Models.TechniqueProgressResult.#ctor(System.Int32,Sudoku.Globalization.CountryCode)">
-            <summary>
-            Initializes an instance with the specified technique count.
-            </summary>
-            <param name="totalSearchers">The total number of searchers.</param>
-            <param name="countryCode">The country code.</param>
-        </member>
-        <member name="P:Sudoku.Models.TechniqueProgressResult.Percentage">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Models.TechniqueProgressResult.CurrentTechnique">
-            <summary>
-            Indicates the current technique.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Models.TechniqueProgressResult.CurrentIndex">
-            <summary>
-            The current index.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Models.TechniqueProgressResult.CountryCode">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Models.TechniqueProgressResult.TotalSearchers">
-            <summary>
-            The total number of searchers.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Models.TechniqueProgressResult.ToString">
-            <inheritdoc cref="M:System.Object.ToString"/>
         </member>
         <member name="T:Sudoku.ModuleInitializer">
             <summary>

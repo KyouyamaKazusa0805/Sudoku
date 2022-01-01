@@ -21,7 +21,6 @@ global using System.Text.RegularExpressions;
 global using Sudoku.Data;
 global using Sudoku.Diagnostics.CodeAnalysis;
 global using Sudoku.Diagnostics.CodeGen;
-global using Sudoku.Globalization;
 global using Sudoku.Presentation;
 global using Sudoku.Resources;
 global using Sudoku.Solving;
