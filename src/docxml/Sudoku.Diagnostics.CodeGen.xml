@@ -473,11 +473,6 @@
             Indicates the project <c>Sudoku.Diagnostics.CodeAnalysis</c>.
             </summary>
         </member>
-        <member name="F:Sudoku.Diagnostics.CodeGen.Constants.ProjectNames.Solving">
-            <summary>
-            Indicates the project <c>Sudoku.Solving</c>.
-            </summary>
-        </member>
         <member name="F:Sudoku.Diagnostics.CodeGen.Constants.VersionValue">
             <summary>
             Indicates the version of this project.
