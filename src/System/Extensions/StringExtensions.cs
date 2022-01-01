@@ -107,32 +107,6 @@ public static unsafe class StringExtensions
 	}
 
 	/// <summary>
-	/// Converts any escaped characters in the input string.
-	/// </summary>
-	/// <param name="this">The string to convert.</param>
-	/// <returns>A string of characters with any escaped characters converted to their unescaped form.</returns>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static string Unescape(this string @this) => Regex.Unescape(@this);
-
-	/// <summary>
-	/// Slices the current <see cref="string"/> instance, via the specified character.
-	/// If the string contains that character, we'll slice the string to get the segment.
-	/// </summary>
-	/// <remarks>
-	/// Please note that even if the character exists in the string, we won't get the segment
-	/// containing that character.
-	/// </remarks>
-	/// <param name="this">The string.</param>
-	/// <param name="ch">The character to check.</param>
-	/// <returns>
-	/// The slice result. If the character doesn't exist in the string,
-	/// <see langword="null"/> will be returned.
-	/// </returns>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static string? SliceViaCharacter(this string @this, char ch) =>
-		@this.IndexOf(ch) is var i and not -1 ? @this[..i] : null;
-
-	/// <summary>
 	/// Searches the specified input string for the first occurrence of
 	/// the specified regular expression pattern.
 	/// </summary>
@@ -317,36 +291,4 @@ public static unsafe class StringExtensions
 			return false;
 		}
 	}
-
-	/// <summary>
-	/// Trim all spaces when they started a new line, or null lines.
-	/// </summary>
-	/// <param name="this">The string.</param>
-	/// <returns>The trimmed result.</returns>
-	/// <remarks>
-	/// Note that all null lines and header spaces are removed.
-	/// </remarks>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static string TrimVerbatim(this string @this) =>
-		Regex.Replace(
-			@this, NullLinesOrHeaderSpaces,
-			string.Empty, RegexOptions.ExplicitCapture, MatchingTimeSpan
-		);
-
-	/// <summary>
-	/// Trim new-line characters from the tail of the string.
-	/// </summary>
-	/// <param name="this">The string.</param>
-	/// <returns>The result.</returns>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static string TrimEndNewLine(this string @this) => @this.TrimEnd(new[] { '\r', '\n' });
-
-	/// <summary>
-	/// Split the string with the fixed characters (new line).
-	/// </summary>
-	/// <param name="this">The string.</param>
-	/// <returns>The result.</returns>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static string[] SplitByNewLine(this string @this) =>
-		@this.Split(new[] { '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries);
 }

@@ -59,23 +59,4 @@ public static class ListExtensions
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static void RemoveAt<T>(this IList<T?> @this, in Index index) =>
 		@this.RemoveAt(index.GetOffset(@this.Count));
-
-	/// <summary>
-	/// Try to convert the current list to a <see cref="IReadOnlyList{T}"/>.
-	/// </summary>
-	/// <typeparam name="T">The type of each element.</typeparam>
-	/// <param name="this">The list.</param>
-	/// <returns>The result of the conversion.</returns>
-	/// <exception cref="InvalidCastException">
-	/// Throws when the specified list is neither <see cref="List{T}"/> nor <typeparamref name="T"/>[].
-	/// </exception>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static IReadOnlyList<T> AsReadOnlyList<T>(this IList<T> @this) => @this switch
-	{
-		List<T> list => list,
-		T[] array => array,
-		_ => throw new InvalidCastException(
-			$"Can't convert {nameof(@this)} to {typeof(IReadOnlyList<>).Name} because the element isn't a normal {typeof(List<>).Name}."
-		)
-	};
 }

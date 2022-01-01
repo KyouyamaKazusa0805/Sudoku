@@ -14,8 +14,7 @@ where TConverter : JsonConverter<T>, new()
 	/// during serialization or deserialization operation.
 	/// </summary>
 	protected static readonly JsonSerializerOptions SerializerOptions =
-		new JsonSerializerOptions { WriteIndented = true }
-			.AppendConverter<T, TConverter>(new TConverter());
+		new JsonSerializerOptions { WriteIndented = true }.AppendConverter<T, TConverter>(new TConverter());
 
 
 	/// <summary>

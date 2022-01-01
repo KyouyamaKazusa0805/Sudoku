@@ -86,7 +86,7 @@ public sealed class BacktrackingSolver : IPuzzleSolver
 			// If we use normal assignment, we well get the
 			// initial grid rather a solution, because
 			// this is a recursive function!!!
-			result = gridValues.CloneAs<int[]>();
+			result = (int[])gridValues.Clone();
 			return; // Exit the recursion.
 		}
 

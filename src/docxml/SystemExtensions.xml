@@ -1164,30 +1164,6 @@
             <param name="this">The list.</param>
             <param name="item">The item to add.</param>
         </member>
-        <member name="T:System.Collections.Generic.DictionaryExtensions">
-            <summary>
-            Provides extension methods on <see cref="T:System.Collections.Generic.Dictionary`2"/>.
-            </summary>
-            <seealso cref="T:System.Collections.Generic.Dictionary`2"/>
-        </member>
-        <member name="M:System.Collections.Generic.DictionaryExtensions.ToArray``2(System.Collections.Generic.IDictionary{``0,System.Collections.Generic.IList{``1}})">
-            <summary>
-            Converts the specified dictionary to an array, if each value can be iterated.
-            </summary>
-            <typeparam name="TKey">The type of the key of the dictionary.</typeparam>
-            <typeparam name="TElement">The type of each element.</typeparam>
-            <param name="this">The dictionary.</param>
-            <returns>The result array.</returns>
-        </member>
-        <member name="M:System.Collections.Generic.DictionaryExtensions.ToArray``2(System.Collections.Generic.IDictionary{``0,System.Collections.Generic.IEnumerable{``1}})">
-            <summary>
-            Converts the specified dictionary to an array, if each value can be iterated.
-            </summary>
-            <typeparam name="TKey">The type of the key of the dictionary.</typeparam>
-            <typeparam name="TElement">The type of each element.</typeparam>
-            <param name="this">The dictionary.</param>
-            <returns>The result array.</returns>
-        </member>
         <member name="T:System.Collections.Generic.ListExtensions">
             <summary>
             Provides extension methods on <see cref="T:System.Collections.Generic.IList`1"/>.
@@ -1228,46 +1204,6 @@
             <typeparam name="T">The type of each element.</typeparam>
             <param name="this">The list.</param>
             <param name="index">The index to remove.</param>
-        </member>
-        <member name="M:System.Collections.Generic.ListExtensions.AsReadOnlyList``1(System.Collections.Generic.IList{``0})">
-            <summary>
-            Try to convert the current list to a <see cref="T:System.Collections.Generic.IReadOnlyList`1"/>.
-            </summary>
-            <typeparam name="T">The type of each element.</typeparam>
-            <param name="this">The list.</param>
-            <returns>The result of the conversion.</returns>
-            <exception cref="T:System.InvalidCastException">
-            Throws when the specified list is neither <see cref="T:System.Collections.Generic.List`1"/> nor <typeparamref name="T"/>[].
-            </exception>
-        </member>
-        <member name="T:System.Collections.Generic.ReadOnlyListExtensions">
-            <summary>
-            Provides extension methods on <see cref="T:System.Collections.Generic.IReadOnlyList`1"/>.
-            </summary>
-            <seealso cref="T:System.Collections.Generic.IReadOnlyList`1"/>
-        </member>
-        <member name="M:System.Collections.Generic.ReadOnlyListExtensions.Slice``1(System.Collections.Generic.IReadOnlyList{``0},System.Int32,System.Int32)">
-            <summary>
-            Returns the list that is in the range specified as two parameters called
-            <paramref name="start"/> and <paramref name="length"/>.
-            </summary>
-            <typeparam name="T">The type of each element.</typeparam>
-            <param name="this">The list.</param>
-            <param name="start">The start index.</param>
-            <param name="length">The end index.</param>
-            <returns>The list of the elements that is in the specified range.</returns>
-        </member>
-        <member name="M:System.Collections.Generic.ReadOnlyListExtensions.FindIndexOf``1(System.Collections.Generic.IReadOnlyList{``0},System.Predicate{``0})">
-            <summary>
-            Find the index of an element that satisfy the specified condition.
-            </summary>
-            <typeparam name="T">The type of each element.</typeparam>
-            <param name="this">The list.</param>
-            <param name="predicate">The condition.</param>
-            <returns>
-            The result index of that element. If the list doesn't contain any element to satisfy the condition,
-            the method will return -1 as the result.
-            </returns>
         </member>
         <member name="T:System.Collections.Generic.KeyedTuple`2">
             <summary>
@@ -1503,19 +1439,6 @@
             </summary>
             <seealso cref="T:System.Array"/>
         </member>
-        <member name="M:System.ArrayExtensions.FirstOnThrow``1(``0[],System.Predicate{``0})">
-            <summary>
-            Gets the first element that satisfies the specified condition, and throws an exception
-            to report the invalid case if none possible elements found.
-            </summary>
-            <typeparam name="T">The type of the each element.</typeparam>
-            <param name="this">The array to be interated.</param>
-            <param name="predicate">The condition to be checked.</param>
-            <returns>
-            The first element that satisfies the specified condition.
-            </returns>
-            <exception cref="T:System.ArgumentException">Throws when none possible elements found.</exception>
-        </member>
         <member name="M:System.ArrayExtensions.AsRefEnumerable``1(``0[])">
             <summary>
             Creates a <see cref="T:System.OneDimensionalArrayEnumerable`1"/> instance that iterates on each element.
@@ -1546,214 +1469,6 @@
             </summary>
             <param name="this">The array.</param>
             <returns>The total number of bits set <see langword="true"/>.</returns>
-        </member>
-        <member name="T:System.CloneableExtensions">
-            <summary>
-            Provides extension methods on <see cref="T:System.ICloneable"/>.
-            </summary>
-            <seealso cref="T:System.ICloneable"/>
-        </member>
-        <member name="M:System.CloneableExtensions.TryCloneAs``1(System.ICloneable)">
-            <summary>
-            Clone this object and try to cast to the specified type.
-            If the type is invalid to cast, the return value will be <see langword="null"/>.
-            </summary>
-            <typeparam name="TClass">
-            The type to cast. The type should be a <see langword="class"/> because the type
-            to implement <see cref="T:System.ICloneable"/> should be a reference type.
-            </typeparam>
-            <param name="this">The object.</param>
-            <returns>
-            The cast result. If cast is valid, the value will be so valid; otherwise,
-            <see langword="null"/>.
-            </returns>
-        </member>
-        <member name="M:System.CloneableExtensions.CloneAs``1(System.ICloneable)">
-            <summary>
-            Clone this object and cast to the specified type no matter how.
-            </summary>
-            <typeparam name="TClass">
-            The type to cast. The type should be a <see langword="class"/> because the type
-            to implement <see cref="T:System.ICloneable"/> should be a reference type.
-            </typeparam>
-            <param name="this">The object.</param>
-            <returns>The cast result.</returns>
-        </member>
-        <member name="T:System.IO.DirectoryExtensions">
-            <summary>
-            The directory extensions.
-            </summary>
-        </member>
-        <member name="M:System.IO.DirectoryExtensions.CreateIfDoesNotExist(System.String)">
-            <summary>
-            Create the specified directory path when the path doesn't exist.
-            </summary>
-            <param name="path">The path.</param>
-        </member>
-        <member name="M:System.IO.DirectoryExtensions.DeleteWhenNoFilesInIt(System.String)">
-            <summary>
-            Delete the directory when the current directory doesn't contain any files.
-            </summary>
-            <param name="path">The path.</param>
-            <returns>The <see cref="T:System.Boolean"/> result indicating whether the deletion is successful.</returns>
-        </member>
-        <member name="T:System.IO.Csv.CsvDocument">
-            <summary>
-            Introduces a <c>*.csv</c> document.
-            </summary>
-        </member>
-        <member name="T:System.IO.Csv.CsvDocument.AsyncEnumerator">
-            <summary>
-            Indicates the enumerator that bounds with <see cref="M:System.IO.Csv.CsvDocument.GetAsyncEnumerator"/>.
-            </summary>
-            <seealso cref="M:System.IO.Csv.CsvDocument.GetAsyncEnumerator"/>
-        </member>
-        <member name="F:System.IO.Csv.CsvDocument.AsyncEnumerator._parser">
-            <summary>
-            Indicates the parser.
-            </summary>
-        </member>
-        <member name="M:System.IO.Csv.CsvDocument.AsyncEnumerator.#ctor(Microsoft.VisualBasic.FileIO.TextFieldParser)">
-            <summary>
-            Initializes a <see cref="T:System.IO.Csv.CsvDocument.AsyncEnumerator"/> instance using the specified text parser.
-            </summary>
-            <param name="parser">The text field parser.</param>
-        </member>
-        <member name="P:System.IO.Csv.CsvDocument.AsyncEnumerator.Current">
-            <inheritdoc cref="P:System.Collections.Generic.IAsyncEnumerator`1.Current"/>
-        </member>
-        <member name="M:System.IO.Csv.CsvDocument.AsyncEnumerator.MoveNextAsync">
-            <inheritdoc cref="M:System.Collections.Generic.IAsyncEnumerator`1.MoveNextAsync"/>
-        </member>
-        <member name="F:System.IO.Csv.CsvDocument._parser">
-            <summary>
-            Indicates the reader of the document.
-            </summary>
-        </member>
-        <member name="F:System.IO.Csv.CsvDocument._hasBeenDisposed">
-            <summary>
-            Indicates the value that suggests whether the document instance has been already disposed.
-            </summary>
-        </member>
-        <member name="M:System.IO.Csv.CsvDocument.#ctor(System.String,System.Boolean,System.Char)">
-            <summary>
-            Initializes the <see cref="T:System.IO.Csv.CsvDocument"/> with the specified path, with two optional parameters.
-            </summary>
-            <param name="path">The path.</param>
-            <param name="withHeader">Indicates whether the table contain the table header at the first line.</param>
-            <param name="delimiter">
-            The delimiter. This delimiter will be processed in splitting the line and
-            separating to the multiple values. The default value is <see langword="default"/>(<see cref="T:System.Char"/>)
-            (i.e. <c>'\0'</c>) as the undefined character.
-            </param>
-            <exception cref="T:System.IO.FileNotFoundException">Throws when the file can't be found.</exception>
-        </member>
-        <member name="P:System.IO.Csv.CsvDocument.WithHeader">
-            <summary>
-            Indicates whether the table contains the header.
-            </summary>
-        </member>
-        <member name="P:System.IO.Csv.CsvDocument.LineNumber">
-            <summary>
-            Indicates the current line number.
-            </summary>
-        </member>
-        <member name="P:System.IO.Csv.CsvDocument.Path">
-            <summary>
-            Indicates the path.
-            </summary>
-        </member>
-        <member name="P:System.IO.Csv.CsvDocument.Delimiter">
-            <summary>
-            Indicates the delimiter.
-            </summary>
-        </member>
-        <member name="M:System.IO.Csv.CsvDocument.Close">
-            <summary>
-            Closes the file, and releases the memory.
-            </summary>
-            <exception cref="T:System.ObjectDisposedException">Throws when the memory has been already released.</exception>
-        </member>
-        <member name="M:System.IO.Csv.CsvDocument.GetFields">
-            <summary>
-            Try to get the fields of the table if worth. The table may contain those fields or not
-            displayed at the first line.
-            </summary>
-            <returns>The result value. The value can be:
-            <list type="table">
-            <item>
-            <term><see langword="null"/></term>
-            <description>
-            The property <see cref="P:System.IO.Csv.CsvDocument.WithHeader"/> is <see langword="false"/>, or the table is empty.
-            </description>
-            </item>
-            <item>
-            <term>The string of the field names</term>
-            <description>Otherwise.</description>
-            </item>
-            </list>
-            </returns>
-            <seealso cref="P:System.IO.Csv.CsvDocument.WithHeader"/>
-        </member>
-        <member name="M:System.IO.Csv.CsvDocument.ReadLine">
-            <summary>
-            Reads a line of values.
-            </summary>
-            <returns>The values.</returns>
-        </member>
-        <member name="M:System.IO.Csv.CsvDocument.GetEnumerator">
-            <summary>
-            Returns an enumerator that iterates through the collection.
-            </summary>
-            <returns>An enumerator that iterates through the collection.</returns>
-        </member>
-        <member name="M:System.IO.Csv.CsvDocument.GetAsyncEnumerator">
-            <summary>
-            Returns an enumerator that iterates asynchronously through the collection.
-            </summary>
-            <returns>An enumerator that iterates asynchronously through the collection.</returns>
-        </member>
-        <member name="M:System.IO.Csv.CsvDocument.System#IDisposable#Dispose">
-            <inheritdoc/>
-            <exception cref="T:System.ObjectDisposedException">Throws when the object has been already disposed.</exception>
-        </member>
-        <member name="T:System.IO.Csv.CsvDocument.Enumerator">
-            <summary>
-            Indicates the enumerator that bounds with <see cref="M:System.IO.Csv.CsvDocument.GetEnumerator"/>.
-            </summary>
-            <seealso cref="M:System.IO.Csv.CsvDocument.GetEnumerator"/>
-        </member>
-        <member name="F:System.IO.Csv.CsvDocument.Enumerator._parser">
-            <summary>
-            Indicates the parser.
-            </summary>
-        </member>
-        <member name="M:System.IO.Csv.CsvDocument.Enumerator.#ctor(Microsoft.VisualBasic.FileIO.TextFieldParser)">
-            <summary>
-            Initializes a <see cref="T:System.IO.Csv.CsvDocument.Enumerator"/> instance using the specified text parser.
-            </summary>
-            <param name="parser">The text field parser.</param>
-        </member>
-        <member name="P:System.IO.Csv.CsvDocument.Enumerator.Current">
-            <inheritdoc cref="P:System.Collections.IEnumerator.Current"/>
-        </member>
-        <member name="M:System.IO.Csv.CsvDocument.Enumerator.MoveNext">
-            <summary>
-            Advances the enumerator to the next element of the collection.
-            </summary>
-            <returns>
-            Returns the value if:
-            <list type="table">
-            <item>
-            <term><see langword="true"/></term>
-            <description>If the enumerator was sucessfuly advanced to the next element.</description>
-            </item>
-            <item>
-            <term><see langword="false"/></term>
-            <description>If the enumerator has passed the end of the collection.</description>
-            </item>
-            </list>
-            </returns>
         </member>
         <member name="T:System.DoubleExtensions">
             <summary>
@@ -1803,18 +1518,6 @@
             <typeparam name="T">The type of the element.</typeparam>
             <param name="this">The list.</param>
             <returns>A <see cref="T:System.Boolean"/> result.</returns>
-        </member>
-        <member name="M:System.Linq.EnumerableExtensions.IndexOf``1(System.Collections.Generic.IEnumerable{``0},System.Predicate{``0})">
-            <summary>
-            Get the index of the whole list, whose corresponding element is satisfy the specified condition.
-            </summary>
-            <typeparam name="T">The type of each element.</typeparam>
-            <param name="this">The list.</param>
-            <param name="predicate">The condition to check.</param>
-            <returns>
-            The index of the element satisfied the condition. If the list can't find that element,
-            return -1 as the result.
-            </returns>
         </member>
         <member name="T:System.EnumExtensions">
             <summary>
@@ -1886,36 +1589,6 @@
             <param name="this">The instance.</param>
             <param name="flags">All flags used.</param>
             <returns>A <see cref="T:System.Boolean"/> result.</returns>
-        </member>
-        <member name="T:System.FormatProviderExtensions">
-            <summary>
-            Provides extension methods on <see cref="T:System.IFormatProvider"/>.
-            </summary>
-            <seealso cref="T:System.IFormatProvider"/>
-        </member>
-        <member name="M:System.FormatProviderExtensions.HasFormatted``1(System.IFormatProvider,``0@,System.String,System.String@)">
-            <summary>
-            To check whether the format provider has defined the format rule.
-            If the rule is defined, this method will return the string representation
-            according to the format rule.
-            </summary>
-            <param name="this">The format provider.</param>
-            <param name="obj">The object.</param>
-            <param name="format">The format string.</param>
-            <param name="result">
-            The result. If the format has been defined,
-            this value won't be <see langword="null"/>.
-            </param>
-            <returns>The <see cref="T:System.Boolean"/> value indicating that.</returns>
-            <remarks>
-            You should use this as:
-            <code><![CDATA[
-            if (formatProvider.HasFormatted(this, format, out string? result))
-            {
-                return result;
-            }
-            ]]></code>
-            </remarks>
         </member>
         <member name="T:System.MathExtensions">
             <summary>
@@ -2022,15 +1695,6 @@
             </summary>
             <seealso cref="T:System.Text.StringBuilder"/>
         </member>
-        <member name="M:System.Text.StringBuilderExtensions.Reverse(System.Text.StringBuilder)">
-            <summary>
-            Reverse all characters in a specified string builder instance.
-            </summary>
-            <param name="this">
-            The instance to reverse all characters.
-            </param>
-            <returns>The reference of the current instance.</returns>
-        </member>
         <member name="M:System.Text.StringBuilderExtensions.RemoveFrom(System.Text.StringBuilder,System.Int32)">
             <summary>
             Remove all characters hehind the character whose index is specified.
@@ -2046,140 +1710,6 @@
             <param name="this">The instance to remove characters.</param>
             <param name="startIndex">The start index.</param>
             <returns>The reference of the current instance.</returns>
-        </member>
-        <member name="M:System.Text.StringBuilderExtensions.RemoveFromEnd(System.Text.StringBuilder,System.Int32)">
-            <summary>
-            Remove the specified number of characters from the end of the string builder
-            instance.
-            </summary>
-            <param name="this">The instance to remove characters.</param>
-            <param name="length">The number of characters you want to remove.</param>
-            <returns>The reference of the current instance.</returns>
-        </member>
-        <member name="M:System.Text.StringBuilderExtensions.AppendLine(System.Text.StringBuilder,System.Char)">
-            <summary>
-            Append a character to the end of the specified string builder instance,
-            and then append a <see cref="P:System.Environment.NewLine"/>.
-            </summary>
-            <param name="this">The instance.</param>
-            <param name="value">The character you want to append.</param>
-            <returns>The reference of the current instance.</returns>
-            <remarks>
-            The extension method is used in order to avoid implicit conversion from
-            <see cref="T:System.Char"/> to <see cref="T:System.Int32"/>. If you want to append everything,
-            please use the method <see cref="M:System.Text.StringBuilderExtensions.AppendLine``1(System.Text.StringBuilder,``0)"/>.
-            </remarks>
-            <seealso cref="P:System.Environment.NewLine"/>
-            <seealso cref="M:System.Text.StringBuilderExtensions.AppendLine``1(System.Text.StringBuilder,``0)"/>
-        </member>
-        <member name="M:System.Text.StringBuilderExtensions.AppendLine``1(System.Text.StringBuilder,``0)">
-            <summary>
-            Append a <see cref="T:System.String"/> representation of an object
-            to the end of the specified string builder instance,
-            and then append a <see cref="P:System.Environment.NewLine"/>.
-            </summary>
-            <typeparam name="T">The type of the instance to add.</typeparam>
-            <param name="this">The instance.</param>
-            <param name="obj">
-            The <see cref="T:System.String"/> representation of an object you want to append.
-            </param>
-            <returns>The reference of the current instance.</returns>
-            <remarks>
-            This method can solve the problem of boxing and unboxing.
-            </remarks>
-        </member>
-        <member name="M:System.Text.StringBuilderExtensions.AppendLines(System.Text.StringBuilder,System.Int32)">
-            <summary>
-            Append several lines into the <see cref="T:System.Text.StringBuilder"/> instance.
-            </summary>
-            <param name="this">The instance.</param>
-            <param name="lines">The lines you want to add.</param>
-            <returns>The reference of the parameter <paramref name="this"/>.</returns>
-        </member>
-        <member name="M:System.Text.StringBuilderExtensions.NullableAppend(System.Text.StringBuilder,System.String)">
-            <summary>
-            Append the text into the tail of the <see cref="T:System.Text.StringBuilder"/> object if
-            the text is not <see langword="null"/>; otherwise, do nothing.
-            </summary>
-            <param name="this">The string builder.</param>
-            <param name="text">The text to add.</param>
-            <returns>The reference of the current instance.</returns>
-        </member>
-        <member name="M:System.Text.StringBuilderExtensions.NullableAppendLine(System.Text.StringBuilder,System.String)">
-            <summary>
-            Append the text into the tail of the <see cref="T:System.Text.StringBuilder"/> object if
-            the text is not <see langword="null"/>, and then add a terminator at the tail;
-            otherwise, do nothing.
-            </summary>
-            <param name="this">The string builder.</param>
-            <param name="text">The text to add.</param>
-            <returns>The reference of the current instance.</returns>
-        </member>
-        <member name="M:System.Text.StringBuilderExtensions.AppendRange``1(System.Text.StringBuilder,System.Collections.Generic.IEnumerable{``0})">
-            <summary>
-            Append a series of elements, and convert them to a <see cref="T:System.String"/> representation.
-            </summary>
-            <typeparam name="T">The type of each element.</typeparam>
-            <param name="this">The list.</param>
-            <param name="contentList">All contents.</param>
-            <returns>The reference of the current instance.</returns>
-        </member>
-        <member name="M:System.Text.StringBuilderExtensions.AppendRange``1(System.Text.StringBuilder,System.Collections.Generic.IEnumerable{``0},System.Func{``0,System.String})">
-            <summary>
-            Append a series of elements, and convert them to a <see cref="T:System.String"/> representation.
-            This method allows you defining a custom converter to convert the specified value into
-            a string to be appended.
-            </summary>
-            <typeparam name="TElement">The type of each element.</typeparam>
-            <param name="this">The list.</param>
-            <param name="contentList">All contents.</param>
-            <param name="converter">The converter method specified as a function pointer.</param>
-            <returns>The reference of the current instance.</returns>
-        </member>
-        <member name="M:System.Text.StringBuilderExtensions.AppendRange``1(System.Text.StringBuilder,System.Collections.Generic.IEnumerable{``0},System.Func{``0,System.Text.StringBuilder})">
-            <summary>
-            Append a series of elements, and convert them to a <see cref="T:System.Text.StringBuilder"/> representation.
-            This method allows you defining a custom converter to convert the specified value into
-            a string to be appended.
-            </summary>
-            <typeparam name="TElement">The type of each element.</typeparam>
-            <param name="this">The list.</param>
-            <param name="contentList">All contents.</param>
-            <param name="converter">The converter method specified as a function pointer.</param>
-            <returns>The reference of the current instance.</returns>
-        </member>
-        <member name="M:System.Text.StringBuilderExtensions.AppendLineRange``1(System.Text.StringBuilder,System.Collections.Generic.IEnumerable{``0},System.Func{``0,System.String})">
-            <summary>
-            Append a series of elements, and convert them to a <see cref="T:System.String"/> representation,
-            and then append a new line as a separator. This method allows you defining a custom converter
-            to convert the specified value into a string to be appended.
-            </summary>
-            <typeparam name="TElement">The type of each element.</typeparam>
-            <param name="this">The list.</param>
-            <param name="contentList">All contents.</param>
-            <param name="converter">The converter method specified as a function pointer.</param>
-            <returns>The reference of the current instance.</returns>
-        </member>
-        <member name="M:System.Text.StringBuilderExtensions.AppendLineRange``1(System.Text.StringBuilder,System.Collections.Generic.IEnumerable{``0})">
-            <summary>
-            Append a series of elements, and convert them to a <see cref="T:System.String"/> representation, and then
-            append a new line as a separator.
-            </summary>
-            <typeparam name="T">The type of each element.</typeparam>
-            <param name="this">The list.</param>
-            <param name="contentList">All contents.</param>
-            <returns>The reference of the current instance.</returns>
-        </member>
-        <member name="M:System.Text.StringBuilderExtensions.CopyTo(System.Text.StringBuilder,System.Text.StringBuilder)">
-            <summary>
-            Copy the specified string builder to the specified target.
-            </summary>
-            <param name="this">The base string builder.</param>
-            <param name="to">The target builder.</param>
-            <exception cref="T:System.ArgumentException">
-            Throws if the target instance doesn't have enough space to store all characters
-            from the base one.
-            </exception>
         </member>
         <member name="T:System.Text.StringHandlerExtensions">
             <summary>
@@ -2225,16 +1755,6 @@
             <typeparam name="T">The type of the value.</typeparam>
             <param name="this">The instance.</param>
             <param name="value">The value to serialize.</param>
-            <param name="converter">The converter.</param>
-            <param name="options">The options on serialization.</param>
-        </member>
-        <member name="M:System.Text.Json.Utf8JsonWriterExtensions.WriteObjects``1(System.Text.Json.Utf8JsonWriter,System.Collections.Generic.IEnumerable{``0},System.Text.Json.Serialization.JsonConverter{``0},System.Text.Json.JsonSerializerOptions)">
-            <summary>
-            Try to write a series of objects.
-            </summary>
-            <typeparam name="T">The type of the value.</typeparam>
-            <param name="this">The instance.</param>
-            <param name="values">Values to serialize.</param>
             <param name="converter">The converter.</param>
             <param name="options">The options on serialization.</param>
         </member>
@@ -3149,29 +2669,6 @@
             <param name="charToInsert">The string to insert.</param>
             <returns>The result string.</returns>
         </member>
-        <member name="M:System.StringExtensions.Unescape(System.String)">
-            <summary>
-            Converts any escaped characters in the input string.
-            </summary>
-            <param name="this">The string to convert.</param>
-            <returns>A string of characters with any escaped characters converted to their unescaped form.</returns>
-        </member>
-        <member name="M:System.StringExtensions.SliceViaCharacter(System.String,System.Char)">
-            <summary>
-            Slices the current <see cref="T:System.String"/> instance, via the specified character.
-            If the string contains that character, we'll slice the string to get the segment.
-            </summary>
-            <remarks>
-            Please note that even if the character exists in the string, we won't get the segment
-            containing that character.
-            </remarks>
-            <param name="this">The string.</param>
-            <param name="ch">The character to check.</param>
-            <returns>
-            The slice result. If the character doesn't exist in the string,
-            <see langword="null"/> will be returned.
-            </returns>
-        </member>
         <member name="M:System.StringExtensions.Match(System.String,System.String)">
             <summary>
             Searches the specified input string for the first occurrence of
@@ -3298,30 +2795,6 @@
             </summary>
             <param name="this">The value to check.</param>
             <returns>A <see cref="T:System.Boolean"/> indicating that.</returns>
-        </member>
-        <member name="M:System.StringExtensions.TrimVerbatim(System.String)">
-            <summary>
-            Trim all spaces when they started a new line, or null lines.
-            </summary>
-            <param name="this">The string.</param>
-            <returns>The trimmed result.</returns>
-            <remarks>
-            Note that all null lines and header spaces are removed.
-            </remarks>
-        </member>
-        <member name="M:System.StringExtensions.TrimEndNewLine(System.String)">
-            <summary>
-            Trim new-line characters from the tail of the string.
-            </summary>
-            <param name="this">The string.</param>
-            <returns>The result.</returns>
-        </member>
-        <member name="M:System.StringExtensions.SplitByNewLine(System.String)">
-            <summary>
-            Split the string with the fixed characters (new line).
-            </summary>
-            <param name="this">The string.</param>
-            <returns>The result.</returns>
         </member>
         <member name="T:System.TypeExtensions">
             <summary>
