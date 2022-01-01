@@ -97,7 +97,25 @@ public abstract record Step(ImmutableArray<Conclusion> Conclusions, ImmutableArr
 	public bool IsDeadlyPattern => HasTag(TechniqueTags.DeadlyPattern);
 
 	/// <inheritdoc/>
-	public virtual string Name => ResourceDocumentManager.Shared[TechniqueCode.ToString()];
+	public virtual unsafe string Name
+	{
+		get
+		{
+			// The resource document stores the values with the camel-casing key.
+			// Therefore, we should convert the code into the camel-casing one
+			// to match the key in the resource document.
+			string techniqueCodeStr = TechniqueCode.ToString();
+			fixed (char* p = techniqueCodeStr)
+			{
+				if (*p is >= 'A' and <= 'Z')
+				{
+					*p += ' ';
+				}
+			}
+
+			return ResourceDocumentManager.Shared[techniqueCodeStr];
+		}
+	}
 
 	/// <inheritdoc/>
 	public virtual string? Format
