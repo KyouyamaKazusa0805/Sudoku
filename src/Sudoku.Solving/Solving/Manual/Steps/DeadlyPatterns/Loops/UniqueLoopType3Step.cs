@@ -44,7 +44,7 @@ public sealed record UniqueLoopType3Step(
 	private string SubsetName
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => TextResources.Current[$"SubsetNames{SubsetCells.Count + 1}"];
+		get => ResourceDocumentManager.Shared[$"subsetNames{SubsetCells.Count + 1}"];
 	}
 
 	/// <inheritdoc/>

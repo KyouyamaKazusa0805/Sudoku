@@ -46,7 +46,7 @@ public sealed record BivalueUniversalGraveType3Step(
 	private string SubsetTypeStr
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => IsNaked ? TextResources.Current.NakedKeyword : TextResources.Current.HiddenKeyword;
+		get => ResourceDocumentManager.Shared[IsNaked ? "nakedKeyword" : "hiddenKeyword"];
 	}
 
 	[FormatItem]
@@ -60,7 +60,7 @@ public sealed record BivalueUniversalGraveType3Step(
 	private string SizeStrZhCn
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => TextResources.Current[$"SubsetNamesSize{Size}"];
+		get => ResourceDocumentManager.Shared[$"subsetNames{Size}"];
 	}
 
 	[FormatItem]

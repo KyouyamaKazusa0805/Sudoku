@@ -81,9 +81,17 @@ public interface IStep
 	/// multiple language switching, which is better than the normal methods <see cref="ToString"/>
 	/// and <see cref="ToFullString"/>. Therefore, this property is the substitution plan of those two methods.
 	/// </para>
+	/// <para>
+	/// If you want to use the values in the resource documents, just use the property
+	/// <see cref="ResourceDocumentManager.Shared"/> is okay:
+	/// <code>
+	/// public override string Format => ResourceDocumentManager.Shared["TheKeyYouWantToSearch"];
+	/// </code>
+	/// </para>
 	/// </remarks>
 	/// <seealso cref="ToString"/>
 	/// <seealso cref="ToFullString"/>
+	/// <seealso cref="ResourceDocumentManager.Shared"/>
 	string? Format { get; }
 
 	/// <summary>

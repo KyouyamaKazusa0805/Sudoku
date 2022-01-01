@@ -32,9 +32,8 @@ public sealed record HiddenSingleStep(
 		: (Technique)((int)Technique.HiddenSingleBlock + (int)Region.ToLabel());
 
 	/// <inheritdoc/>
-	public override string Format => EnableAndIsLastDigit
-		? TextResources.Current.Format_HiddenSingleStepInfo_1
-		: TextResources.Current.Format_HiddenSingleStepInfo_2;
+	public override string Format =>
+		ResourceDocumentManager.Shared[EnableAndIsLastDigit ? "techniqueFormat_LastDigit" : "techniqueFormat_HiddenSingle"];
 
 	[FormatItem]
 	private string CellStr

@@ -39,5 +39,25 @@
   "exocetTargetPairEliminationName": "Target pair: ",
   "exocetGeneralizedSwordfishEliminationName": "Generalized swordfish: ",
   "exocetTrueBaseEliminationName": "True base: ",
-  "exocetCompatibilityTestEliminationName": "Compatibility test: "
+  "exocetCompatibilityTestEliminationName": "Compatibility test: ",
+  "endoTarget": "endo-target: ",
+  "includedExtraRegions": ". Extra regions will be included: ",
+  "lockedMember1": ", locked member #1: ",
+  "lockedMember2": ", locked member #2: ",
+  "nakedKeyword": "naked",
+  "hiddenKeyword": "hidden",
+  "subsetNames2": "pair",
+  "subsetNames3": "triple",
+  "subsetNames4": "quadruple",
+  "subsetNames5": "quintuple",
+  "subsetNames6": "sextuple",
+  "subsetNames7": "septuple",
+  "guardianSingular": "a guardian",
+  "guardianPlural": "guardians",
+
+  "techniqueFormat_LastDigit": "{Name}：{CellStr} = {DigitStr}",
+  "techniqueFormat_HiddenSingle": "{Name}: {CellStr} = {DigitStr} in {RegionStr}",
+  "techniqueFormat_ExtendedSubsetPrincipleWithoutDuplicate": "{Name}: All digits can't be duplicate in cells {CellsStr} => {ElimStr}",
+  "techniqueFormat_ExtendedSubsetPrincipleWithDuplicate": "{Name}: Only the digit {EspDigitStr} can be duplicate in cells {CellsStr} => {ElimStr}",
+  "techniqueFormat_AlmostLockedSetsXzRule": "{Name}: ALS #1: {Als1Str}, ALS #2: {Als2Str}, X = {XStr}{ZResultStr} => {ElimStr}"
 }

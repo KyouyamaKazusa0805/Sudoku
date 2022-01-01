@@ -44,6 +44,6 @@ public sealed record UniqueSquareType3Step(
 	private string SubsetName
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => TextResources.Current[$"SubsetNames{ExtraCells.Count + 1}"];
+		get => ResourceDocumentManager.Shared[$"subsetNames{ExtraCells.Count + 1}"];
 	}
 }

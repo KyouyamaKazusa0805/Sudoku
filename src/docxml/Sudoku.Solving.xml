@@ -167,7 +167,7 @@
             <param name="result">The result array.</param>
             <param name="gridValues">All grid values.</param>
             <param name="finishedCellsCount">The number of cells had finished.</param>
-            <exception cref="T:Sudoku.MultipleSolutionsException">Throws when the puzzle contains multiple solutions.</exception>
+            <exception cref="T:System.InvalidOperationException">Throws when the puzzle contains multiple solutions.</exception>
         </member>
         <member name="T:Sudoku.Solving.BruteForces.BruteForceSolverResult">
             <summary>
@@ -215,14 +215,6 @@
         </member>
         <member name="M:Sudoku.Solving.BruteForces.BruteForceSolverResult.ToDisplayString">
             <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Solving.BruteForces.BruteForceSolverResult.ToDisplayString(Sudoku.Globalization.CountryCode)">
-            <summary>
-            Get the string representataion of the current instance using the specified formatting options
-            and the country code to specify the country information.
-            </summary>
-            <param name="countryCode">The country code.</param>
-            <returns>The string representation of the current instance.</returns>
         </member>
         <member name="M:Sudoku.Solving.BruteForces.BruteForceSolverResult.ToString">
             <inheritdoc/>
@@ -1041,14 +1033,6 @@
             </summary>
             <returns>The string representation of the current instance.</returns>
         </member>
-        <member name="M:Sudoku.Solving.ISolverResult.ToDisplayString(Sudoku.Globalization.CountryCode)">
-            <summary>
-            Get the string representataion of the current instance using the country code
-            to specify the country information.
-            </summary>
-            <param name="countryCode">The country code.</param>
-            <returns>The string representation of the current instance.</returns>
-        </member>
         <member name="T:Sudoku.Solving.Manual.Buffer.FastProperties">
             <summary>
             Provides and encapsulates the fast properties that is used in solving and analyzing a sudoku puzzle.
@@ -1192,7 +1176,7 @@
             <c>-1</c> will be returned if no possible missing candidate found. For example,
             at least two missing candidates should be checked.
             </returns>
-            <exception cref="T:Sudoku.InvalidPuzzleException">
+            <exception cref="T:System.InvalidOperationException">
             Throws when the puzzle contain no solution or a unique solution.
             </exception>
         </member>
@@ -1219,7 +1203,7 @@
             </summary>
             <param name="this">The puzzle to check.</param>
             <param name="solutionIfValid">
-            The solution if the puzzle is valid; otherwise, <see cref="F:Sudoku.Data.SudokuGrid.Undefined"/>.
+            The solution if the puzzle is valid; otherwise, <see cref="F:Sudoku.Data.Grid.Undefined"/>.
             </param>
             <param name="sukaku">
             Indicates whether the current mode is sukaku mode.
@@ -1239,7 +1223,7 @@
             </list>
             </param>
             <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
-            <seealso cref="F:Sudoku.Data.SudokuGrid.Undefined"/>
+            <seealso cref="F:Sudoku.Data.Grid.Undefined"/>
         </member>
         <member name="T:Sudoku.Solving.Manual.Checkers.TrueCandidatesSearcher">
             <summary>
@@ -1251,7 +1235,7 @@
             Initializes an instance with the specified grid.
             </summary>
             <param name="grid">The current puzzle grid.</param>
-            <exception cref="T:Sudoku.InvalidPuzzleException">Throws when the puzzle is invalid.</exception>
+            <exception cref="T:System.InvalidOperationException">Throws when the puzzle is invalid.</exception>
         </member>
         <member name="P:Sudoku.Solving.Manual.Checkers.TrueCandidatesSearcher.IsBugPattern">
             <summary>
@@ -1653,9 +1637,17 @@
             multiple language switching, which is better than the normal methods <see cref="M:Sudoku.Solving.Manual.IStep.ToString"/>
             and <see cref="M:Sudoku.Solving.Manual.IStep.ToFullString"/>. Therefore, this property is the substitution plan of those two methods.
             </para>
+            <para>
+            If you want to use the values in the resource documents, just use the property
+            <see cref="P:Sudoku.Resources.ResourceDocumentManager.Shared"/> is okay:
+            <code>
+            public override string Format => ResourceDocumentManager.Shared["TheKeyYouWantToSearch"];
+            </code>
+            </para>
             </remarks>
             <seealso cref="M:Sudoku.Solving.Manual.IStep.ToString"/>
             <seealso cref="M:Sudoku.Solving.Manual.IStep.ToFullString"/>
+            <seealso cref="P:Sudoku.Resources.ResourceDocumentManager.Shared"/>
         </member>
         <member name="P:Sudoku.Solving.Manual.IStep.Difficulty">
             <summary>
@@ -2035,24 +2027,10 @@
         <member name="M:Sudoku.Solving.Manual.ManualSolverResult.ToString(System.String)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Solving.Manual.ManualSolverResult.ToString(System.String,Sudoku.Globalization.CountryCode)">
-            <summary>
-            Get the analysis result string using the specified format and the country code.
-            </summary>
-            <param name="format">The format.</param>
-            <param name="countryCode">The country code.</param>
-            <returns>The result string.</returns>
-        </member>
         <member name="M:Sudoku.Solving.Manual.ManualSolverResult.ToString(Sudoku.Solving.SolverResultFormattingOptions)">
             <inheritdoc cref="M:Sudoku.Solving.Manual.ManualSolverResult.Formatter.ToString(Sudoku.Solving.SolverResultFormattingOptions)"/>
         </member>
-        <member name="M:Sudoku.Solving.Manual.ManualSolverResult.ToString(Sudoku.Solving.SolverResultFormattingOptions,Sudoku.Globalization.CountryCode)">
-            <inheritdoc cref="M:Sudoku.Solving.Manual.ManualSolverResult.Formatter.ToString(Sudoku.Solving.SolverResultFormattingOptions,Sudoku.Globalization.CountryCode)"/>
-        </member>
         <member name="M:Sudoku.Solving.Manual.ManualSolverResult.ToDisplayString">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.ManualSolverResult.ToDisplayString(Sudoku.Globalization.CountryCode)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Solving.Manual.ManualSolverResult.Evaluator(,System.Decimal)">
@@ -2089,14 +2067,6 @@
             The format. If available, the parameter can be <see langword="null"/>.
             </param>
             <returns>The string result.</returns>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.ManualSolverResult.Formatter.ToString(System.String,Sudoku.Globalization.CountryCode)">
-            <summary>
-            Get the string result.
-            </summary>
-            <param name="format">The format.</param>
-            <param name="countryCode">The country code.</param>
-            <returns>The result.</returns>
             <exception cref="T:System.FormatException">
             Throws when the specified format contains other invalid characters
             and the format provider can't work.
@@ -2107,14 +2077,6 @@
             Get the string result with the specified formatting options.
             </summary>
             <param name="options">The options.</param>
-            <returns>The result.</returns>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.ManualSolverResult.Formatter.ToString(Sudoku.Solving.SolverResultFormattingOptions,Sudoku.Globalization.CountryCode)">
-            <summary>
-            Get the string result with the specified formatting options and the country code.
-            </summary>
-            <param name="options">The options.</param>
-            <param name="countryCode">The country code.</param>
             <returns>The result.</returns>
         </member>
         <member name="M:Sudoku.Solving.Manual.ManualSolverResult.Deconstruct(System.Boolean@,System.Int32@,System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Manual.Step}@)">
@@ -3751,7 +3713,7 @@
             if it is eliminated from the current puzzle. It is a strict concept, which means sometimes the puzzle
             doesn't contain any satisfied candidate to make the puzzle containing no solution if being eliminated.
             </remarks>
-            <exception cref="T:Sudoku.InvalidPuzzleException">
+            <exception cref="T:System.InvalidOperationException">
             Throws when the puzzle contains multiple solutions or even no solution.
             </exception>
         </member>

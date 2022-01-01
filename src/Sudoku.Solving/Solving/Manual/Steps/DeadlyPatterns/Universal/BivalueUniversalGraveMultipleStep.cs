@@ -23,7 +23,7 @@ public sealed record BivalueUniversalGraveMultipleStep(
 
 
 	/// <inheritdoc/>
-	public override string Name => $"{(string)TextResources.Current.Bug} + {Candidates.Count}";
+	public override string Name => $"{base.Name} + {Candidates.Count}";
 
 	/// <inheritdoc/>
 	public override decimal Difficulty => base.Difficulty + .1M + ExtraDifficulty[Candidates.Count - 1];

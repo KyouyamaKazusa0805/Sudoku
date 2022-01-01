@@ -25,7 +25,7 @@ public static class PuzzleChecker
 	/// </summary>
 	/// <param name="this">The puzzle to check.</param>
 	/// <param name="solutionIfValid">
-	/// The solution if the puzzle is valid; otherwise, <see cref="SudokuGrid.Undefined"/>.
+	/// The solution if the puzzle is valid; otherwise, <see cref="Grid.Undefined"/>.
 	/// </param>
 	/// <param name="sukaku">
 	/// Indicates whether the current mode is sukaku mode.
@@ -45,7 +45,7 @@ public static class PuzzleChecker
 	/// </list>
 	/// </param>
 	/// <returns>A <see cref="bool"/> value indicating that.</returns>
-	/// <seealso cref="SudokuGrid.Undefined"/>
+	/// <seealso cref="Grid.Undefined"/>
 	public static bool IsValid(this in Grid @this, out Grid solutionIfValid, [NotNullWhen(true)] out bool? sukaku)
 	{
 		if (Solver.CheckValidity(@this.ToString(null), out string? solution))

@@ -25,13 +25,13 @@ public sealed record AlmostLockedSetsXzStep(
 
 	/// <inheritdoc/>
 	public override string? Format =>
-		IsDoublyLinked is null
-			// Extended Subset Principle.
-			? ZDigitsMask == 0
-				? TextResources.Current.Format_AlsXzStepInfo_1
-				: TextResources.Current.Format_AlsXzStepInfo_2
-			// Normal ALS-XZ.
-			: TextResources.Current.Format_AlsXzStepInfo_3;
+		ResourceDocumentManager.Shared[
+			IsDoublyLinked is null
+				? ZDigitsMask == 0
+					? "techniqueFormat_ExtendedSubsetPrincipleWithoutDuplicate"
+					: "techniqueFormat_ExtendedSubsetPrincipleWithDuplicate"
+				: "techniqueFormat_AlmostLockedSetsXzRule"
+		];
 
 	/// <inheritdoc/>
 	public override TechniqueTags TechniqueTags => base.TechniqueTags | TechniqueTags.ShortChaining;

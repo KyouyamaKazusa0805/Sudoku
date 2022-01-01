@@ -45,17 +45,18 @@ public sealed record NakedSubsetStep(
 		}; // Locked difficulty.
 
 	/// <inheritdoc/>
-	public override Technique TechniqueCode => (IsLocked, Size) switch
-	{
-		(IsLocked: true, Size: 2) => Technique.LockedPair,
-		(IsLocked: false, Size: 2) => Technique.NakedPairPlus,
-		(IsLocked: null, Size: 2) => Technique.NakedPair,
-		(IsLocked: true, Size: 3) => Technique.LockedTriple,
-		(IsLocked: false, Size: 3) => Technique.NakedTriplePlus,
-		(IsLocked: null, Size: 3) => Technique.NakedTriple,
-		(IsLocked: false, Size: 4) => Technique.NakedQuadruplePlus,
-		(IsLocked: null, Size: 4) => Technique.NakedQuadruple
-	};
+	public override Technique TechniqueCode =>
+		(IsLocked, Size) switch
+		{
+			(IsLocked: true, Size: 2) => Technique.LockedPair,
+			(IsLocked: false, Size: 2) => Technique.NakedPairPlus,
+			(IsLocked: null, Size: 2) => Technique.NakedPair,
+			(IsLocked: true, Size: 3) => Technique.LockedTriple,
+			(IsLocked: false, Size: 3) => Technique.NakedTriplePlus,
+			(IsLocked: null, Size: 3) => Technique.NakedTriple,
+			(IsLocked: false, Size: 4) => Technique.NakedQuadruplePlus,
+			(IsLocked: null, Size: 4) => Technique.NakedQuadruple
+		};
 
 	[FormatItem]
 	private string DigitsStr
@@ -75,6 +76,6 @@ public sealed record NakedSubsetStep(
 	private string SubsetName
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => TextResources.Current[$"SubsetNamesSize{Size}"];
+		get => ResourceDocumentManager.Shared[$"subsetNames{Size}"];
 	}
 }
