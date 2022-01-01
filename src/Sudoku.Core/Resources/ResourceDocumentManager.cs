@@ -44,7 +44,20 @@ public sealed class ResourceDocumentManager : IEnumerable<ResourceDocument>
 	/// <exception cref="KeyNotFoundException">
 	/// Throws when the specified property name cannot be found.
 	/// </exception>
-	public string this[string propertyName] => _list[CurrentLcid][propertyName];
+	public string this[string propertyName]
+	{
+		get
+		{
+			try
+			{
+				return _list[CurrentLcid][propertyName];
+			}
+			catch (KeyNotFoundException)
+			{
+				return _list[1033][propertyName];
+			}
+		}
+	}
 
 	/// <summary>
 	/// Gets the specified resource document via the LCID value.
