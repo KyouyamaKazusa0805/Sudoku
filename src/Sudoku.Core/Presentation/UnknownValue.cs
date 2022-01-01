@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Data;
+﻿namespace Sudoku.Presentation;
 
 /// <summary>
 /// Encapsulates an unknown value that used in the technique <b>Unknown Covering</b>.

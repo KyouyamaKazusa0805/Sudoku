@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Data.Collections;
+﻿namespace Sudoku.Collections;
 
 /// <summary>
 /// Indicates a collection that contains the several digits.

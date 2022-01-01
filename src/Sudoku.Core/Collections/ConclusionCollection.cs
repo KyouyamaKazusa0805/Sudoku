@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Data.Collections;
+﻿namespace Sudoku.Collections;
 
 /// <summary>
 /// Provides a collection that contains the conclusions.

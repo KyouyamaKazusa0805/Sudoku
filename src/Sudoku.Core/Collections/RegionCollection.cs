@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Data.Collections;
+﻿namespace Sudoku.Collections;
 
 /// <summary>
 /// Indicates a region collection.

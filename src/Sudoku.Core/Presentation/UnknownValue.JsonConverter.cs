@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Data;
+﻿namespace Sudoku.Presentation;
 
 partial record struct UnknownValue
 {

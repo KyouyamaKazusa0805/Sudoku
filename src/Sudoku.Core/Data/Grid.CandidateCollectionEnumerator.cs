@@ -86,7 +86,7 @@ partial struct Grid
 			{
 				_currentIndex++;
 			}
-			while (_start[_currentIndex + 1].MaskToStatus() != CellStatus.Empty && _currentIndex != Length + 1);
+			while (MaskToStatus(_start[_currentIndex + 1]) != CellStatus.Empty && _currentIndex != Length + 1);
 
 			if (_currentIndex == Length + 1)
 			{

@@ -725,7 +725,7 @@ public unsafe partial struct Grid
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public readonly CellStatus GetStatus(int cell) => _values[cell].MaskToStatus();
+	public readonly CellStatus GetStatus(int cell) => MaskToStatus(_values[cell]);
 
 	/// <summary>
 	/// Forms a slice out of the current grid that begins at a specified cell as the index.
@@ -997,6 +997,14 @@ public unsafe partial struct Grid
 			return false;
 		}
 	}
+
+	/// <summary>
+	/// To get the cell status through a mask.
+	/// </summary>
+	/// <param name="mask">The mask.</param>
+	/// <returns>The cell status.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	internal static CellStatus MaskToStatus(short mask) => (CellStatus)(mask >> 9 & (int)CellStatus.All);
 
 
 	/// <summary>

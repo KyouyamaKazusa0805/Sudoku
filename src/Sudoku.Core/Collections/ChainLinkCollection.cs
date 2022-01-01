@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Data.Collections;
+﻿namespace Sudoku.Collections;
 
 /// <summary>
 /// Provides a collection that contains the chain links.
@@ -35,6 +35,7 @@ public readonly ref partial struct ChainLinkCollection
 			1 => _collection[0].ToString(),
 			_ => f(_collection)
 		};
+
 
 		static string f(in Span<ChainLink> collection)
 		{

@@ -384,8 +384,9 @@ partial struct GridFormatter
 					candidatesCount += PopCount((uint)value);
 
 					// Compares the values.
-					if (
-						Math.Max(candidatesCount, value.MaskToStatus() switch
+					int comparer = Math.Max(
+						candidatesCount,
+						Grid.MaskToStatus(value) switch
 						{
 							// The output will be '<digit>' and consist of 3 characters.
 							CellStatus.Given => Math.Max(candidatesCount, 3),
@@ -393,8 +394,9 @@ partial struct GridFormatter
 							CellStatus.Modifiable => Math.Max(candidatesCount, 3),
 							// Normal output: 'series' (at least 1 character).
 							_ => candidatesCount,
-						}) is var comparer && comparer > *maxLength
-					)
+						}
+					);
+					if (comparer > *maxLength)
 					{
 						*maxLength = comparer;
 					}
@@ -471,7 +473,7 @@ partial struct GridFormatter
 								{
 									// Get digit.
 									short value = valuesByRow[i];
-									var status = value.MaskToStatus();
+									var status = Grid.MaskToStatus(value);
 
 									value &= Grid.MaxCandidatesMask;
 									int d = value == 0

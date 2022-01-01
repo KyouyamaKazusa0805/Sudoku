@@ -4,6 +4,340 @@
         <name>Sudoku.Core</name>
     </assembly>
     <members>
+        <member name="T:Sudoku.Collections.ChainLinkCollection">
+            <summary>
+            Provides a collection that contains the chain links.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Collections.ChainLinkCollection._collection">
+            <summary>
+            The internal collection.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Collections.ChainLinkCollection.#ctor(System.Span{Sudoku.Data.ChainLink}@)">
+            <summary>
+            Initializes an instance with the specified collection.
+            </summary>
+            <param name="collection">The collection.</param>
+        </member>
+        <member name="M:Sudoku.Collections.ChainLinkCollection.#ctor(System.Collections.Generic.IEnumerable{Sudoku.Data.ChainLink})">
+            <summary>
+            Initializes an instance with the specified collection.
+            </summary>
+            <param name="collection">The collection.</param>
+        </member>
+        <member name="M:Sudoku.Collections.ChainLinkCollection.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
+        <member name="M:Sudoku.Collections.ChainLinkCollection.Equals(Sudoku.Collections.ChainLinkCollection@)">
+            <summary>
+            Indicates whether the current object is equal to another object of the same type.
+            </summary>
+            <param name="other">An object to compare with this object.</param>
+            <returns>
+            <see langword="true"/> if the current object is equal to the other parameter;
+            otherwise, <see langword="false"/>.
+            </returns>
+        </member>
+        <member name="M:Sudoku.Collections.ChainLinkCollection.op_Equality(Sudoku.Collections.ChainLinkCollection@,Sudoku.Collections.ChainLinkCollection@)">
+            <summary>
+            Determines whether the two instances contain a same value.
+            </summary>
+            <param name="left">The left-side-operator instance to compare.</param>
+            <param name="right">The right-side-operator instance to compare.</param>
+            <returns>A <see cref="T:System.Boolean"/> result.</returns>
+        </member>
+        <member name="M:Sudoku.Collections.ChainLinkCollection.op_Inequality(Sudoku.Collections.ChainLinkCollection@,Sudoku.Collections.ChainLinkCollection@)">
+            <summary>
+            Determines whether the two instances don't contain a same value.
+            </summary>
+            <param name="left">The left-side-operator instance to compare.</param>
+            <param name="right">The right-side-operator instance to compare.</param>
+            <returns>A <see cref="T:System.Boolean"/> result.</returns>
+        </member>
+        <member name="M:Sudoku.Collections.ChainLinkCollection.Equals(System.Object)">
+            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
+            <exception cref="T:System.NotSupportedException">Always throws.</exception>
+        </member>
+        <member name="M:Sudoku.Collections.ChainLinkCollection.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+            <exception cref="T:System.NotSupportedException">Always throws.</exception>
+        </member>
+        <member name="T:Sudoku.Collections.ConclusionCollection">
+            <summary>
+            Provides a collection that contains the conclusions.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Collections.ConclusionCollection._collection">
+            <summary>
+            The internal collection.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Collections.ConclusionCollection.#ctor(System.ReadOnlySpan{Sudoku.Data.Conclusion}@)">
+            <summary>
+            Initializes an instance with the specified collection.
+            </summary>
+            <param name="collection">The collection.</param>
+        </member>
+        <member name="M:Sudoku.Collections.ConclusionCollection.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Data.Conclusion}@)">
+            <summary>
+            Initializes an instance with the specified collection. 
+            </summary>
+            <param name="collection">The collection.</param>
+        </member>
+        <member name="M:Sudoku.Collections.ConclusionCollection.#ctor(System.Collections.Generic.IEnumerable{Sudoku.Data.Conclusion})">
+            <summary>
+            Initializes an instance with the specified collection.
+            </summary>
+            <param name="collection">The collection.</param>
+        </member>
+        <member name="P:Sudoku.Collections.ConclusionCollection.Cells">
+            <summary>
+            Indicates all cells used in this conclusions list.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Collections.ConclusionCollection.Digits">
+            <summary>
+            Indicates all digits used in this conclusions list, represented as a mask.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Collections.ConclusionCollection.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
+        <member name="M:Sudoku.Collections.ConclusionCollection.ToString(System.Boolean,System.String)">
+            <summary>
+            Converts the current instance to <see cref="T:System.String"/> with the specified separator.
+            </summary>
+            <param name="shouldSort">Indicates whether the specified collection should be sorted first.</param>
+            <param name="separator">The separator.</param>
+            <returns>The string result.</returns>
+        </member>
+        <member name="M:Sudoku.Collections.ConclusionCollection.Equals(Sudoku.Collections.ConclusionCollection@)">
+            <summary>
+            Indicates whether the current object is equal to another object of the same type.
+            </summary>
+            <param name="other">An object to compare with this object.</param>
+            <returns>
+            <see langword="true"/> if the current object is equal to the other parameter;
+            otherwise, <see langword="false"/>.
+            </returns>
+        </member>
+        <member name="M:Sudoku.Collections.ConclusionCollection.op_Equality(Sudoku.Collections.ConclusionCollection@,Sudoku.Collections.ConclusionCollection@)">
+            <summary>
+            Determines whether the two instances contain a same value.
+            </summary>
+            <param name="left">The left-side-operator instance to compare.</param>
+            <param name="right">The right-side-operator instance to compare.</param>
+            <returns>A <see cref="T:System.Boolean"/> result.</returns>
+        </member>
+        <member name="M:Sudoku.Collections.ConclusionCollection.op_Inequality(Sudoku.Collections.ConclusionCollection@,Sudoku.Collections.ConclusionCollection@)">
+            <summary>
+            Determines whether the two instances don't contain a same value.
+            </summary>
+            <param name="left">The left-side-operator instance to compare.</param>
+            <param name="right">The right-side-operator instance to compare.</param>
+            <returns>A <see cref="T:System.Boolean"/> result.</returns>
+        </member>
+        <member name="M:Sudoku.Collections.ConclusionCollection.Equals(System.Object)">
+            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
+            <exception cref="T:System.NotSupportedException">Always throws.</exception>
+        </member>
+        <member name="M:Sudoku.Collections.ConclusionCollection.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+            <exception cref="T:System.NotSupportedException">Always throws.</exception>
+        </member>
+        <member name="T:Sudoku.Collections.DigitCollection">
+            <summary>
+            Indicates a collection that contains the several digits.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Collections.DigitCollection._mask">
+            <summary>
+            Indicates the inner mask.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Collections.DigitCollection.#ctor(System.Int16)">
+            <summary>
+            Initializes the collection using a mask.
+            </summary>
+            <param name="mask">The mask.</param>
+        </member>
+        <member name="M:Sudoku.Collections.DigitCollection.#ctor(System.ReadOnlySpan{System.Int32}@)">
+            <summary>
+            Initializes an instance with the specified digits.
+            </summary>
+            <param name="digits">The digits.</param>
+        </member>
+        <member name="M:Sudoku.Collections.DigitCollection.#ctor(System.Collections.Generic.IEnumerable{System.Int32})">
+            <summary>
+            Initializes an instance with the specified digits.
+            </summary>
+            <param name="digits">The digits.</param>
+        </member>
+        <member name="P:Sudoku.Collections.DigitCollection.Count">
+            <summary>
+            Get the number of digits in the collection.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Collections.DigitCollection.Contains(System.Int32)">
+            <summary>
+            Indicates whether the specified collection contains the digit.
+            </summary>
+            <param name="digit">The digit.</param>
+            <returns>A <see cref="T:System.Boolean"/> value.</returns>
+        </member>
+        <member name="M:Sudoku.Collections.DigitCollection.ToString">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Collections.DigitCollection.ToString(System.String)">
+            <summary>
+            Returns a string that represents the current object with the specified format string.
+            </summary>
+            <param name="format">The format. If available, the parameter can be <see langword="null"/>.</param>
+            <returns>The string result.</returns>
+        </member>
+        <member name="M:Sudoku.Collections.DigitCollection.op_OnesComplement(Sudoku.Collections.DigitCollection)">
+            <summary>
+            Make all <see langword="true"/> bits to be set <see langword="false"/>,
+            and make all <see langword="false"/> bits to be set <see langword="true"/>.
+            </summary>
+            <param name="collection">The instance to negate.</param>
+            <returns>The negative result.</returns>
+        </member>
+        <member name="M:Sudoku.Collections.DigitCollection.op_BitwiseAnd(Sudoku.Collections.DigitCollection,Sudoku.Collections.DigitCollection)">
+            <summary>
+            Apply the intersection from two <see cref="T:Sudoku.Collections.DigitCollection"/>s.
+            </summary>
+            <param name="left">The left instance.</param>
+            <param name="right">The right instance.</param>
+            <returns>The result collection.</returns>
+        </member>
+        <member name="M:Sudoku.Collections.DigitCollection.op_BitwiseOr(Sudoku.Collections.DigitCollection,Sudoku.Collections.DigitCollection)">
+            <summary>
+            Apply the union of two <see cref="T:Sudoku.Collections.DigitCollection"/>s.
+            </summary>
+            <param name="left">The left instance.</param>
+            <param name="right">The right instance.</param>
+            <returns>The result collection.</returns>
+        </member>
+        <member name="M:Sudoku.Collections.DigitCollection.op_ExclusiveOr(Sudoku.Collections.DigitCollection,Sudoku.Collections.DigitCollection)">
+            <summary>
+            Apply the exclusive union of two <see cref="T:Sudoku.Collections.DigitCollection"/>s.
+            </summary>
+            <param name="left">The left instance.</param>
+            <param name="right">The right instance.</param>
+            <returns>The result collection.</returns>
+        </member>
+        <member name="M:Sudoku.Collections.DigitCollection.GetEnumerator">
+            <summary>
+            Returns an enumerator that iterates through the collection.
+            </summary>
+            <returns>An enumerator that can be used to iterate through the collection.</returns>
+        </member>
+        <member name="M:Sudoku.Collections.DigitCollection.Equals(System.Object)">
+            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
+            <exception cref="T:System.NotSupportedException">Always throws.</exception>
+        </member>
+        <member name="M:Sudoku.Collections.DigitCollection.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+            <exception cref="T:System.NotSupportedException">Always throws.</exception>
+        </member>
+        <member name="T:Sudoku.Collections.RegionCollection">
+            <summary>
+            Indicates a region collection.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Collections.RegionCollection._mask">
+            <summary>
+            The inner mask.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Collections.RegionCollection.#ctor(System.Int32)">
+            <summary>
+            Initializes an empty collection and add one region into the list.
+            </summary>
+            <param name="region">The region.</param>
+        </member>
+        <member name="M:Sudoku.Collections.RegionCollection.#ctor(System.ReadOnlySpan{System.Int32}@)">
+            <summary>
+            Initializes an instance with the specified regions.
+            </summary>
+            <param name="regions">The regions.</param>
+        </member>
+        <member name="M:Sudoku.Collections.RegionCollection.#ctor(System.Collections.Generic.IEnumerable{System.Int32})">
+            <summary>
+            Initializes an instance with the specified regions.
+            </summary>
+            <param name="regions">The regions.</param>
+        </member>
+        <member name="P:Sudoku.Collections.RegionCollection.Count">
+            <summary>
+            Indicates the number of regions that contain in this collection.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Collections.RegionCollection.Item(System.Int32)">
+            <summary>
+            Gets a <see cref="T:System.Boolean"/> value indicating whether the bit of the corresponding specified region
+            is set <see langword="true"/>.
+            </summary>
+            <param name="region">The region.</param>
+            <returns>A <see cref="T:System.Boolean"/> value.</returns>
+        </member>
+        <member name="M:Sudoku.Collections.RegionCollection.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="M:Sudoku.Collections.RegionCollection.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
+        <member name="M:Sudoku.Collections.RegionCollection.ToSimpleString">
+            <summary>
+            To string but only output the labels ('r', 'c' or 'b').
+            </summary>
+            <returns>The labels.</returns>
+        </member>
+        <member name="M:Sudoku.Collections.RegionCollection.GetLabel(System.Int32)">
+            <summary>
+            Get the label of each region.
+            </summary>
+            <param name="index">The index.</param>
+            <returns>The label.</returns>
+        </member>
+        <member name="M:Sudoku.Collections.RegionCollection.Equals(Sudoku.Collections.RegionCollection@)">
+            <summary>
+            Indicates whether the current object is equal to another object of the same type.
+            </summary>
+            <param name="other">An object to compare with this object.</param>
+            <returns>
+            <see langword="true"/> if the current object is equal to the other parameter;
+            otherwise, <see langword="false"/>.
+            </returns>
+        </member>
+        <member name="M:Sudoku.Collections.RegionCollection.op_Equality(Sudoku.Collections.RegionCollection@,Sudoku.Collections.RegionCollection@)">
+            <summary>
+            Determines whether the two instances contain a same value.
+            </summary>
+            <param name="left">The left-side-operator instance to compare.</param>
+            <param name="right">The right-side-operator instance to compare.</param>
+            <returns>A <see cref="T:System.Boolean"/> result.</returns>
+        </member>
+        <member name="M:Sudoku.Collections.RegionCollection.op_Inequality(Sudoku.Collections.RegionCollection@,Sudoku.Collections.RegionCollection@)">
+            <summary>
+            Determines whether the two instances don't contain a same value.
+            </summary>
+            <param name="left">The left-side-operator instance to compare.</param>
+            <param name="right">The right-side-operator instance to compare.</param>
+            <returns>A <see cref="T:System.Boolean"/> result.</returns>
+        </member>
+        <member name="M:Sudoku.Collections.RegionCollection.GetEnumerator">
+            <summary>
+            Returns an enumerator that iterates through the collection.
+            </summary>
+            <returns>An enumerator that can be used to iterate through the collection.</returns>
+        </member>
+        <member name="M:Sudoku.Collections.RegionCollection.Equals(System.Object)">
+            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
+            <exception cref="T:System.NotSupportedException">Always throws.</exception>
+        </member>
         <member name="T:Sudoku.Constants">
             <summary>
             Encapsulates the class that stores all constants used in the whole project.
@@ -1723,340 +2057,6 @@
             Deconstruct the instance into multiple elements.
             </summary>
         </member>
-        <member name="T:Sudoku.Data.Collections.ChainLinkCollection">
-            <summary>
-            Provides a collection that contains the chain links.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Data.Collections.ChainLinkCollection._collection">
-            <summary>
-            The internal collection.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Data.Collections.ChainLinkCollection.#ctor(System.Span{Sudoku.Data.ChainLink}@)">
-            <summary>
-            Initializes an instance with the specified collection.
-            </summary>
-            <param name="collection">The collection.</param>
-        </member>
-        <member name="M:Sudoku.Data.Collections.ChainLinkCollection.#ctor(System.Collections.Generic.IEnumerable{Sudoku.Data.ChainLink})">
-            <summary>
-            Initializes an instance with the specified collection.
-            </summary>
-            <param name="collection">The collection.</param>
-        </member>
-        <member name="M:Sudoku.Data.Collections.ChainLinkCollection.ToString">
-            <inheritdoc cref="M:System.Object.ToString"/>
-        </member>
-        <member name="M:Sudoku.Data.Collections.ChainLinkCollection.Equals(Sudoku.Data.Collections.ChainLinkCollection@)">
-            <summary>
-            Indicates whether the current object is equal to another object of the same type.
-            </summary>
-            <param name="other">An object to compare with this object.</param>
-            <returns>
-            <see langword="true"/> if the current object is equal to the other parameter;
-            otherwise, <see langword="false"/>.
-            </returns>
-        </member>
-        <member name="M:Sudoku.Data.Collections.ChainLinkCollection.op_Equality(Sudoku.Data.Collections.ChainLinkCollection@,Sudoku.Data.Collections.ChainLinkCollection@)">
-            <summary>
-            Determines whether the two instances contain a same value.
-            </summary>
-            <param name="left">The left-side-operator instance to compare.</param>
-            <param name="right">The right-side-operator instance to compare.</param>
-            <returns>A <see cref="T:System.Boolean"/> result.</returns>
-        </member>
-        <member name="M:Sudoku.Data.Collections.ChainLinkCollection.op_Inequality(Sudoku.Data.Collections.ChainLinkCollection@,Sudoku.Data.Collections.ChainLinkCollection@)">
-            <summary>
-            Determines whether the two instances don't contain a same value.
-            </summary>
-            <param name="left">The left-side-operator instance to compare.</param>
-            <param name="right">The right-side-operator instance to compare.</param>
-            <returns>A <see cref="T:System.Boolean"/> result.</returns>
-        </member>
-        <member name="M:Sudoku.Data.Collections.ChainLinkCollection.Equals(System.Object)">
-            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
-            <exception cref="T:System.NotSupportedException">Always throws.</exception>
-        </member>
-        <member name="M:Sudoku.Data.Collections.ChainLinkCollection.GetHashCode">
-            <inheritdoc cref="M:System.Object.GetHashCode"/>
-            <exception cref="T:System.NotSupportedException">Always throws.</exception>
-        </member>
-        <member name="T:Sudoku.Data.Collections.ConclusionCollection">
-            <summary>
-            Provides a collection that contains the conclusions.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Data.Collections.ConclusionCollection._collection">
-            <summary>
-            The internal collection.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Data.Collections.ConclusionCollection.#ctor(System.ReadOnlySpan{Sudoku.Data.Conclusion}@)">
-            <summary>
-            Initializes an instance with the specified collection.
-            </summary>
-            <param name="collection">The collection.</param>
-        </member>
-        <member name="M:Sudoku.Data.Collections.ConclusionCollection.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Data.Conclusion}@)">
-            <summary>
-            Initializes an instance with the specified collection. 
-            </summary>
-            <param name="collection">The collection.</param>
-        </member>
-        <member name="M:Sudoku.Data.Collections.ConclusionCollection.#ctor(System.Collections.Generic.IEnumerable{Sudoku.Data.Conclusion})">
-            <summary>
-            Initializes an instance with the specified collection.
-            </summary>
-            <param name="collection">The collection.</param>
-        </member>
-        <member name="P:Sudoku.Data.Collections.ConclusionCollection.Cells">
-            <summary>
-            Indicates all cells used in this conclusions list.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Data.Collections.ConclusionCollection.Digits">
-            <summary>
-            Indicates all digits used in this conclusions list, represented as a mask.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Data.Collections.ConclusionCollection.ToString">
-            <inheritdoc cref="M:System.Object.ToString"/>
-        </member>
-        <member name="M:Sudoku.Data.Collections.ConclusionCollection.ToString(System.Boolean,System.String)">
-            <summary>
-            Converts the current instance to <see cref="T:System.String"/> with the specified separator.
-            </summary>
-            <param name="shouldSort">Indicates whether the specified collection should be sorted first.</param>
-            <param name="separator">The separator.</param>
-            <returns>The string result.</returns>
-        </member>
-        <member name="M:Sudoku.Data.Collections.ConclusionCollection.Equals(Sudoku.Data.Collections.ConclusionCollection@)">
-            <summary>
-            Indicates whether the current object is equal to another object of the same type.
-            </summary>
-            <param name="other">An object to compare with this object.</param>
-            <returns>
-            <see langword="true"/> if the current object is equal to the other parameter;
-            otherwise, <see langword="false"/>.
-            </returns>
-        </member>
-        <member name="M:Sudoku.Data.Collections.ConclusionCollection.op_Equality(Sudoku.Data.Collections.ConclusionCollection@,Sudoku.Data.Collections.ConclusionCollection@)">
-            <summary>
-            Determines whether the two instances contain a same value.
-            </summary>
-            <param name="left">The left-side-operator instance to compare.</param>
-            <param name="right">The right-side-operator instance to compare.</param>
-            <returns>A <see cref="T:System.Boolean"/> result.</returns>
-        </member>
-        <member name="M:Sudoku.Data.Collections.ConclusionCollection.op_Inequality(Sudoku.Data.Collections.ConclusionCollection@,Sudoku.Data.Collections.ConclusionCollection@)">
-            <summary>
-            Determines whether the two instances don't contain a same value.
-            </summary>
-            <param name="left">The left-side-operator instance to compare.</param>
-            <param name="right">The right-side-operator instance to compare.</param>
-            <returns>A <see cref="T:System.Boolean"/> result.</returns>
-        </member>
-        <member name="M:Sudoku.Data.Collections.ConclusionCollection.Equals(System.Object)">
-            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
-            <exception cref="T:System.NotSupportedException">Always throws.</exception>
-        </member>
-        <member name="M:Sudoku.Data.Collections.ConclusionCollection.GetHashCode">
-            <inheritdoc cref="M:System.Object.GetHashCode"/>
-            <exception cref="T:System.NotSupportedException">Always throws.</exception>
-        </member>
-        <member name="T:Sudoku.Data.Collections.DigitCollection">
-            <summary>
-            Indicates a collection that contains the several digits.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Data.Collections.DigitCollection._mask">
-            <summary>
-            Indicates the inner mask.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Data.Collections.DigitCollection.#ctor(System.Int16)">
-            <summary>
-            Initializes the collection using a mask.
-            </summary>
-            <param name="mask">The mask.</param>
-        </member>
-        <member name="M:Sudoku.Data.Collections.DigitCollection.#ctor(System.ReadOnlySpan{System.Int32}@)">
-            <summary>
-            Initializes an instance with the specified digits.
-            </summary>
-            <param name="digits">The digits.</param>
-        </member>
-        <member name="M:Sudoku.Data.Collections.DigitCollection.#ctor(System.Collections.Generic.IEnumerable{System.Int32})">
-            <summary>
-            Initializes an instance with the specified digits.
-            </summary>
-            <param name="digits">The digits.</param>
-        </member>
-        <member name="P:Sudoku.Data.Collections.DigitCollection.Count">
-            <summary>
-            Get the number of digits in the collection.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Data.Collections.DigitCollection.Contains(System.Int32)">
-            <summary>
-            Indicates whether the specified collection contains the digit.
-            </summary>
-            <param name="digit">The digit.</param>
-            <returns>A <see cref="T:System.Boolean"/> value.</returns>
-        </member>
-        <member name="M:Sudoku.Data.Collections.DigitCollection.ToString">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Data.Collections.DigitCollection.ToString(System.String)">
-            <summary>
-            Returns a string that represents the current object with the specified format string.
-            </summary>
-            <param name="format">The format. If available, the parameter can be <see langword="null"/>.</param>
-            <returns>The string result.</returns>
-        </member>
-        <member name="M:Sudoku.Data.Collections.DigitCollection.op_OnesComplement(Sudoku.Data.Collections.DigitCollection)">
-            <summary>
-            Make all <see langword="true"/> bits to be set <see langword="false"/>,
-            and make all <see langword="false"/> bits to be set <see langword="true"/>.
-            </summary>
-            <param name="collection">The instance to negate.</param>
-            <returns>The negative result.</returns>
-        </member>
-        <member name="M:Sudoku.Data.Collections.DigitCollection.op_BitwiseAnd(Sudoku.Data.Collections.DigitCollection,Sudoku.Data.Collections.DigitCollection)">
-            <summary>
-            Apply the intersection from two <see cref="T:Sudoku.Data.Collections.DigitCollection"/>s.
-            </summary>
-            <param name="left">The left instance.</param>
-            <param name="right">The right instance.</param>
-            <returns>The result collection.</returns>
-        </member>
-        <member name="M:Sudoku.Data.Collections.DigitCollection.op_BitwiseOr(Sudoku.Data.Collections.DigitCollection,Sudoku.Data.Collections.DigitCollection)">
-            <summary>
-            Apply the union of two <see cref="T:Sudoku.Data.Collections.DigitCollection"/>s.
-            </summary>
-            <param name="left">The left instance.</param>
-            <param name="right">The right instance.</param>
-            <returns>The result collection.</returns>
-        </member>
-        <member name="M:Sudoku.Data.Collections.DigitCollection.op_ExclusiveOr(Sudoku.Data.Collections.DigitCollection,Sudoku.Data.Collections.DigitCollection)">
-            <summary>
-            Apply the exclusive union of two <see cref="T:Sudoku.Data.Collections.DigitCollection"/>s.
-            </summary>
-            <param name="left">The left instance.</param>
-            <param name="right">The right instance.</param>
-            <returns>The result collection.</returns>
-        </member>
-        <member name="M:Sudoku.Data.Collections.DigitCollection.GetEnumerator">
-            <summary>
-            Returns an enumerator that iterates through the collection.
-            </summary>
-            <returns>An enumerator that can be used to iterate through the collection.</returns>
-        </member>
-        <member name="M:Sudoku.Data.Collections.DigitCollection.Equals(System.Object)">
-            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
-            <exception cref="T:System.NotSupportedException">Always throws.</exception>
-        </member>
-        <member name="M:Sudoku.Data.Collections.DigitCollection.GetHashCode">
-            <inheritdoc cref="M:System.Object.GetHashCode"/>
-            <exception cref="T:System.NotSupportedException">Always throws.</exception>
-        </member>
-        <member name="T:Sudoku.Data.Collections.RegionCollection">
-            <summary>
-            Indicates a region collection.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Data.Collections.RegionCollection._mask">
-            <summary>
-            The inner mask.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Data.Collections.RegionCollection.#ctor(System.Int32)">
-            <summary>
-            Initializes an empty collection and add one region into the list.
-            </summary>
-            <param name="region">The region.</param>
-        </member>
-        <member name="M:Sudoku.Data.Collections.RegionCollection.#ctor(System.ReadOnlySpan{System.Int32}@)">
-            <summary>
-            Initializes an instance with the specified regions.
-            </summary>
-            <param name="regions">The regions.</param>
-        </member>
-        <member name="M:Sudoku.Data.Collections.RegionCollection.#ctor(System.Collections.Generic.IEnumerable{System.Int32})">
-            <summary>
-            Initializes an instance with the specified regions.
-            </summary>
-            <param name="regions">The regions.</param>
-        </member>
-        <member name="P:Sudoku.Data.Collections.RegionCollection.Count">
-            <summary>
-            Indicates the number of regions that contain in this collection.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Data.Collections.RegionCollection.Item(System.Int32)">
-            <summary>
-            Gets a <see cref="T:System.Boolean"/> value indicating whether the bit of the corresponding specified region
-            is set <see langword="true"/>.
-            </summary>
-            <param name="region">The region.</param>
-            <returns>A <see cref="T:System.Boolean"/> value.</returns>
-        </member>
-        <member name="M:Sudoku.Data.Collections.RegionCollection.GetHashCode">
-            <inheritdoc cref="M:System.Object.GetHashCode"/>
-        </member>
-        <member name="M:Sudoku.Data.Collections.RegionCollection.ToString">
-            <inheritdoc cref="M:System.Object.ToString"/>
-        </member>
-        <member name="M:Sudoku.Data.Collections.RegionCollection.ToSimpleString">
-            <summary>
-            To string but only output the labels ('r', 'c' or 'b').
-            </summary>
-            <returns>The labels.</returns>
-        </member>
-        <member name="M:Sudoku.Data.Collections.RegionCollection.GetLabel(System.Int32)">
-            <summary>
-            Get the label of each region.
-            </summary>
-            <param name="index">The index.</param>
-            <returns>The label.</returns>
-        </member>
-        <member name="M:Sudoku.Data.Collections.RegionCollection.Equals(Sudoku.Data.Collections.RegionCollection@)">
-            <summary>
-            Indicates whether the current object is equal to another object of the same type.
-            </summary>
-            <param name="other">An object to compare with this object.</param>
-            <returns>
-            <see langword="true"/> if the current object is equal to the other parameter;
-            otherwise, <see langword="false"/>.
-            </returns>
-        </member>
-        <member name="M:Sudoku.Data.Collections.RegionCollection.op_Equality(Sudoku.Data.Collections.RegionCollection@,Sudoku.Data.Collections.RegionCollection@)">
-            <summary>
-            Determines whether the two instances contain a same value.
-            </summary>
-            <param name="left">The left-side-operator instance to compare.</param>
-            <param name="right">The right-side-operator instance to compare.</param>
-            <returns>A <see cref="T:System.Boolean"/> result.</returns>
-        </member>
-        <member name="M:Sudoku.Data.Collections.RegionCollection.op_Inequality(Sudoku.Data.Collections.RegionCollection@,Sudoku.Data.Collections.RegionCollection@)">
-            <summary>
-            Determines whether the two instances don't contain a same value.
-            </summary>
-            <param name="left">The left-side-operator instance to compare.</param>
-            <param name="right">The right-side-operator instance to compare.</param>
-            <returns>A <see cref="T:System.Boolean"/> result.</returns>
-        </member>
-        <member name="M:Sudoku.Data.Collections.RegionCollection.GetEnumerator">
-            <summary>
-            Returns an enumerator that iterates through the collection.
-            </summary>
-            <returns>An enumerator that can be used to iterate through the collection.</returns>
-        </member>
-        <member name="M:Sudoku.Data.Collections.RegionCollection.Equals(System.Object)">
-            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
-            <exception cref="T:System.NotSupportedException">Always throws.</exception>
-        </member>
         <member name="T:Sudoku.Data.Conclusion">
             <summary>
             Encapsulates a conclusion representation while solving in logic.
@@ -2774,6 +2774,13 @@
         </member>
         <member name="M:Sudoku.Data.Grid.TryParse(System.String,Sudoku.Data.GridParsingOption,Sudoku.Data.Grid@)">
             <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Data.Grid.MaskToStatus(System.Int16)">
+            <summary>
+            To get the cell status through a mask.
+            </summary>
+            <param name="mask">The mask.</param>
+            <returns>The cell status.</returns>
         </member>
         <member name="M:Sudoku.Data.Grid.op_BitwiseAnd(Sudoku.Data.Grid@,Sudoku.Data.Cells@)">
             <summary>
@@ -4557,19 +4564,6 @@
             <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
             <seealso cref="P:Sudoku.Data.IGrid`1.Undefined"/>
         </member>
-        <member name="T:Sudoku.Data.MaskMarshal">
-            <summary>
-            Provides extension methods on <see cref="T:System.Int16"/> value as a mask.
-            </summary>
-            <seealso cref="T:System.Int16"/>
-        </member>
-        <member name="M:Sudoku.Data.MaskMarshal.MaskToStatus(System.Int16)">
-            <summary>
-            To get the cell status through a mask.
-            </summary>
-            <param name="mask">The mask.</param>
-            <returns>The cell status.</returns>
-        </member>
         <member name="T:Sudoku.Data.RegionCalculator">
             <summary>
             Provides extension methods on conversions between a cell and a region.
@@ -4694,39 +4688,6 @@
             </summary>
             <param name="this">The type.</param>
             <returns>The name.</returns>
-        </member>
-        <member name="T:Sudoku.Data.UnknownValue">
-            <summary>
-            Encapsulates an unknown value that used in the technique <b>Unknown Covering</b>.
-            </summary>
-            <param name="Cell">Indicates the cell that used and marked.</param>
-            <param name="UnknownIdentifier">Indicates the identifier that identifies the value range.</param>
-            <param name="DigitsMask">Indicates a mask that holds a serial of candidate values.</param>
-        </member>
-        <member name="M:Sudoku.Data.UnknownValue.#ctor(System.Int32,System.Char,System.Int16)">
-            <summary>
-            Encapsulates an unknown value that used in the technique <b>Unknown Covering</b>.
-            </summary>
-            <param name="Cell">Indicates the cell that used and marked.</param>
-            <param name="UnknownIdentifier">Indicates the identifier that identifies the value range.</param>
-            <param name="DigitsMask">Indicates a mask that holds a serial of candidate values.</param>
-        </member>
-        <member name="M:Sudoku.Data.UnknownValue.System#IValueEquatable{Sudoku#Data#UnknownValue}#Equals(Sudoku.Data.UnknownValue@)">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Data.UnknownValue.JsonConverter">
-            <summary>
-            Indicates the JSON converter.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Data.UnknownValue.JsonConverter.HandleNull">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Data.UnknownValue.JsonConverter.Read(System.Text.Json.Utf8JsonReader@,System.Type,System.Text.Json.JsonSerializerOptions)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Data.UnknownValue.JsonConverter.Write(System.Text.Json.Utf8JsonWriter,Sudoku.Data.UnknownValue,System.Text.Json.JsonSerializerOptions)">
-            <inheritdoc/>
         </member>
         <member name="T:Sudoku.Globalization.CountryCode">
             <summary>
@@ -4978,7 +4939,7 @@
             <param name="DirectLines">The direct lines.</param>
             <param name="UnknownValues">The unknown values.</param>
         </member>
-        <member name="M:Sudoku.Models.PresentationData.#ctor(System.Collections.Generic.IList{System.ValueTuple{System.Int32,Sudoku.Models.ColorIdentifier}},System.Collections.Generic.IList{System.ValueTuple{System.Int32,Sudoku.Models.ColorIdentifier}},System.Collections.Generic.IList{System.ValueTuple{System.Int32,Sudoku.Models.ColorIdentifier}},System.Collections.Generic.IList{System.ValueTuple{Sudoku.Data.ChainLink,Sudoku.Models.ColorIdentifier}},System.Collections.Generic.IList{System.ValueTuple{Sudoku.Presentation.Crosshatch,Sudoku.Models.ColorIdentifier}},System.Collections.Generic.IList{System.ValueTuple{Sudoku.Data.UnknownValue,Sudoku.Models.ColorIdentifier}})">
+        <member name="M:Sudoku.Models.PresentationData.#ctor(System.Collections.Generic.IList{System.ValueTuple{System.Int32,Sudoku.Models.ColorIdentifier}},System.Collections.Generic.IList{System.ValueTuple{System.Int32,Sudoku.Models.ColorIdentifier}},System.Collections.Generic.IList{System.ValueTuple{System.Int32,Sudoku.Models.ColorIdentifier}},System.Collections.Generic.IList{System.ValueTuple{Sudoku.Data.ChainLink,Sudoku.Models.ColorIdentifier}},System.Collections.Generic.IList{System.ValueTuple{Sudoku.Presentation.Crosshatch,Sudoku.Models.ColorIdentifier}},System.Collections.Generic.IList{System.ValueTuple{Sudoku.Presentation.UnknownValue,Sudoku.Models.ColorIdentifier}})">
             <summary>
             Indicates the presentation data that is used for present the information.
             </summary>
@@ -5065,7 +5026,7 @@
             </item>
             <item>
             <term><see cref="F:Sudoku.Models.PresentationDataKind.UnknownValue"/></term>
-            <description><see cref="T:Sudoku.Data.UnknownValue"/></description>
+            <description><see cref="T:Sudoku.Presentation.UnknownValue"/></description>
             </item>
             </list>
             </param>
@@ -5112,7 +5073,7 @@
             </item>
             <item>
             <term><see cref="F:Sudoku.Models.PresentationDataKind.UnknownValue"/></term>
-            <description><see cref="T:Sudoku.Data.UnknownValue"/></description>
+            <description><see cref="T:Sudoku.Presentation.UnknownValue"/></description>
             </item>
             </list>
             </param>
@@ -5464,6 +5425,39 @@
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Presentation.Crosshatch.JsonConverter.Write(System.Text.Json.Utf8JsonWriter,Sudoku.Presentation.Crosshatch,System.Text.Json.JsonSerializerOptions)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Presentation.UnknownValue">
+            <summary>
+            Encapsulates an unknown value that used in the technique <b>Unknown Covering</b>.
+            </summary>
+            <param name="Cell">Indicates the cell that used and marked.</param>
+            <param name="UnknownIdentifier">Indicates the identifier that identifies the value range.</param>
+            <param name="DigitsMask">Indicates a mask that holds a serial of candidate values.</param>
+        </member>
+        <member name="M:Sudoku.Presentation.UnknownValue.#ctor(System.Int32,System.Char,System.Int16)">
+            <summary>
+            Encapsulates an unknown value that used in the technique <b>Unknown Covering</b>.
+            </summary>
+            <param name="Cell">Indicates the cell that used and marked.</param>
+            <param name="UnknownIdentifier">Indicates the identifier that identifies the value range.</param>
+            <param name="DigitsMask">Indicates a mask that holds a serial of candidate values.</param>
+        </member>
+        <member name="M:Sudoku.Presentation.UnknownValue.System#IValueEquatable{Sudoku#Presentation#UnknownValue}#Equals(Sudoku.Presentation.UnknownValue@)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Presentation.UnknownValue.JsonConverter">
+            <summary>
+            Indicates the JSON converter.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Presentation.UnknownValue.JsonConverter.HandleNull">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Presentation.UnknownValue.JsonConverter.Read(System.Text.Json.Utf8JsonReader@,System.Type,System.Text.Json.JsonSerializerOptions)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Presentation.UnknownValue.JsonConverter.Write(System.Text.Json.Utf8JsonWriter,Sudoku.Presentation.UnknownValue,System.Text.Json.JsonSerializerOptions)">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Resources.ResourceDocument">
