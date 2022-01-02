@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Data;
+﻿namespace Sudoku.Data.Abstractions;
 
 /// <summary>
 /// Defines a data structure that describes a sudoku grid.

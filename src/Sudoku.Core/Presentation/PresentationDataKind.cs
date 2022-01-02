@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Models;
+﻿namespace Sudoku.Presentation;
 
 /// <summary>
 /// Presents a kind to identify the inner presentation data.

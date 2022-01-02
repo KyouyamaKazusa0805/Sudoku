@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Data;
+﻿namespace Sudoku.Data.Abstractions;
 
 /// <summary>
 /// Defines a basic constraint that applied onto a <see cref="LinkType"/>.

@@ -19,6 +19,7 @@ global using System.Text.Json;
 global using System.Text.Json.Serialization;
 global using System.Text.RegularExpressions;
 global using Sudoku.Data;
+global using Sudoku.Data.Abstractions;
 global using Sudoku.Diagnostics.CodeAnalysis;
 global using Sudoku.Diagnostics.CodeGen;
 global using Sudoku.Presentation;

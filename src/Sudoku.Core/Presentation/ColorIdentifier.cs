@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Models;
+﻿namespace Sudoku.Presentation;
 
 /// <summary>
 /// Indicates the color identifier that used to identify the color.

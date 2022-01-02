@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Data;
+﻿namespace Sudoku.Data.Abstractions;
 
 /// <summary>
 /// Provides with a basic collection that is a <see cref="Cells"/> or a <see cref="Candidates"/> collection.

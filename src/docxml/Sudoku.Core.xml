@@ -833,6 +833,775 @@
         <member name="M:Sudoku.Constants.Tables.ValueTupleComparer.GetHashCode(System.ValueTuple{System.Byte,System.Byte})">
             <inheritdoc/>
         </member>
+        <member name="T:Sudoku.Data.Abstractions.ICellsOrCandidates`1">
+            <summary>
+            Provides with a basic collection that is a <see cref="T:Sudoku.Data.Cells"/> or a <see cref="T:Sudoku.Data.Candidates"/> collection.
+            </summary>
+            <typeparam name="T">
+            The type. The type should always be <see cref="T:Sudoku.Data.Cells"/> or <see cref="T:Sudoku.Data.Candidates"/>.
+            </typeparam>
+            <seealso cref="T:Sudoku.Data.Cells"/>
+            <seealso cref="T:Sudoku.Data.Candidates"/>
+        </member>
+        <member name="P:Sudoku.Data.Abstractions.ICellsOrCandidates`1.IsEmpty">
+            <summary>
+            Indicates whether the collection is empty.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Data.Abstractions.ICellsOrCandidates`1.Count">
+            <summary>
+            Indicates the number of the values stored in this collection.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Data.Abstractions.ICellsOrCandidates`1.PeerIntersection">
+            <summary>
+            Indicates the <typeparamref name="T"/> of intersections.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Data.Abstractions.ICellsOrCandidates`1.Item(System.Int32)">
+            <summary>
+            Get the offset at the specified position index.
+            </summary>
+            <param name="index">The index.</param>
+            <returns>
+            The offset at the specified position index. If the value is invalid, the return value will be <c>-1</c>.
+            </returns>
+        </member>
+        <member name="M:Sudoku.Data.Abstractions.ICellsOrCandidates`1.CopyTo(System.Int32*,System.Int32)">
+            <summary>
+            Copies the current instance to the target array specified as an <see cref="T:System.Int32"/>*.
+            </summary>
+            <param name="arr">The pointer that points to an array of type <see cref="T:System.Int32"/>.</param>
+            <param name="length">The length of that array.</param>
+            <exception cref="T:System.InvalidOperationException">
+            Throws when the capacity isn't enough to store all values.
+            </exception>
+        </member>
+        <member name="M:Sudoku.Data.Abstractions.ICellsOrCandidates`1.CopyTo(System.Span{System.Int32}@)">
+            <summary>
+            Copies the current instance to the target <see cref="T:System.Span`1"/> instance.
+            </summary>
+            <param name="span">
+            The target <see cref="T:System.Span`1"/> instance.
+            </param>
+        </member>
+        <member name="M:Sudoku.Data.Abstractions.ICellsOrCandidates`1.Contains(System.Int32)">
+            <summary>
+            Determine whether the map contains the specified offset.
+            </summary>
+            <param name="offset">The offset.</param>
+            <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
+        </member>
+        <member name="M:Sudoku.Data.Abstractions.ICellsOrCandidates`1.ToArray">
+            <summary>
+            Get all offsets whose bits are set <see langword="true"/>.
+            </summary>
+            <returns>An array of offsets.</returns>
+        </member>
+        <member name="M:Sudoku.Data.Abstractions.ICellsOrCandidates`1.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
+        <member name="M:Sudoku.Data.Abstractions.ICellsOrCandidates`1.Add(System.Int32)">
+            <summary>
+            Set the specified offset as <see langword="true"/> or <see langword="false"/> value.
+            </summary>
+            <param name="offset">
+            The offset. This value can be positive and negative. If 
+            negative, the offset will be assigned <see langword="false"/>
+            into the corresponding bit position of its absolute value.
+            </param>
+        </member>
+        <member name="M:Sudoku.Data.Abstractions.ICellsOrCandidates`1.AddAnyway(System.Int32)">
+            <summary>
+            Set the specified offset as <see langword="true"/> value.
+            </summary>
+            <param name="offset">The offset.</param>
+            <remarks>
+            Different with <see cref="M:Sudoku.Data.Abstractions.ICellsOrCandidates`1.Add(System.Int32)"/>, the method will process negative values,
+            but this won't.
+            </remarks>
+            <seealso cref="M:Sudoku.Data.Abstractions.ICellsOrCandidates`1.Add(System.Int32)"/>
+        </member>
+        <member name="M:Sudoku.Data.Abstractions.ICellsOrCandidates`1.AddRange(System.ReadOnlySpan{System.Int32}@)">
+            <summary>
+            Set the specified offsets as <see langword="true"/> value.
+            </summary>
+            <param name="offsets">The offsets to add.</param>
+        </member>
+        <member name="M:Sudoku.Data.Abstractions.ICellsOrCandidates`1.AddRange(System.Collections.Generic.IEnumerable{System.Int32})">
+            <summary>
+            Set the specified offsets as <see langword="true"/> value.
+            </summary>
+            <param name="offsets">The offsets to add.</param>
+        </member>
+        <member name="M:Sudoku.Data.Abstractions.ICellsOrCandidates`1.Remove(System.Int32)">
+            <summary>
+            Set the specified offset as <see langword="false"/> value.
+            </summary>
+            <param name="offset">The offset.</param>
+            <remarks>
+            Different with <see cref="M:Sudoku.Data.Abstractions.ICellsOrCandidates`1.Add(System.Int32)"/>, this method <b>can't</b> receive the negative value as the parameter.
+            </remarks>
+            <seealso cref="M:Sudoku.Data.Abstractions.ICellsOrCandidates`1.Add(System.Int32)"/>
+        </member>
+        <member name="M:Sudoku.Data.Abstractions.ICellsOrCandidates`1.Clear">
+            <summary>
+            Clear all bits.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Data.Abstractions.ICellsOrCandidates`1.ToSpan">
+            <summary>
+            Converts the current instance to a <see cref="T:System.Span`1"/> of type <see cref="T:System.Int32"/>.
+            </summary>
+            <returns>The <see cref="T:System.Span`1"/> of <see cref="T:System.Int32"/> result.</returns>
+        </member>
+        <member name="M:Sudoku.Data.Abstractions.ICellsOrCandidates`1.ToReadOnlySpan">
+            <summary>
+            Converts the current instance to a <see cref="T:System.ReadOnlySpan`1"/> of type <see cref="T:System.Int32"/>.
+            </summary>
+            <returns>The <see cref="T:System.ReadOnlySpan`1"/> of <see cref="T:System.Int32"/> result.</returns>
+        </member>
+        <member name="M:Sudoku.Data.Abstractions.ICellsOrCandidates`1.op_OnesComplement(`0@)">
+            <summary>
+            Reverse status for all offsets, which means all <see langword="true"/> bits
+            will be set <see langword="false"/>, and all <see langword="false"/> bits
+            will be set <see langword="true"/>.
+            </summary>
+            <param name="offsets">The instance to negate.</param>
+            <returns>The negative result.</returns>
+        </member>
+        <member name="M:Sudoku.Data.Abstractions.ICellsOrCandidates`1.op_GreaterThan(`0@,`0@)">
+            <summary>
+            The syntactic sugar for <c>!(<paramref name="left"/> - <paramref name="right"/>).IsEmpty</c>.
+            </summary>
+            <param name="left">The subtrahend.</param>
+            <param name="right">The subtractor.</param>
+            <returns>The <see cref="T:System.Boolean"/> value indicating that.</returns>
+        </member>
+        <member name="M:Sudoku.Data.Abstractions.ICellsOrCandidates`1.op_LessThan(`0@,`0@)">
+            <summary>
+            The syntactic sugar for <c>(<paramref name="left"/> - <paramref name="right"/>).IsEmpty</c>.
+            </summary>
+            <param name="left">The subtrahend.</param>
+            <param name="right">The subtractor.</param>
+            <returns>The <see cref="T:System.Boolean"/> value indicating that.</returns>
+        </member>
+        <member name="M:Sudoku.Data.Abstractions.ICellsOrCandidates`1.op_Subtraction(`0@,`0@)">
+            <summary>
+            Get a <typeparamref name="T"/> that contains all <paramref name="left"/> instance
+            but not in <paramref name="right"/> instance.
+            </summary>
+            <param name="left">The left instance.</param>
+            <param name="right">The right instance.</param>
+            <returns>The result.</returns>
+        </member>
+        <member name="M:Sudoku.Data.Abstractions.ICellsOrCandidates`1.op_Addition(`0,System.Int32)">
+            <summary>
+            <para>
+            Adds the specified <paramref name="offset"/> to the <paramref name="collection"/>,
+            and returns the added result.
+            </para>
+            <para>
+            The operator is same as the expression <c>new(collection) { cell }</c>, but with optimization.
+            </para>
+            </summary>
+            <param name="collection">The collection.</param>
+            <param name="offset">The offset to be removed.</param>
+            <returns>The result collection.</returns>
+        </member>
+        <member name="M:Sudoku.Data.Abstractions.ICellsOrCandidates`1.op_Subtraction(`0,System.Int32)">
+            <summary>
+            <para>
+            Removes the specified <paramref name="offset"/> from the <paramref name="collection"/>,
+            and returns the removed result.
+            </para>
+            <para>
+            The operator is same as the expression <c>new(collection) { ~cell }</c>, but with optimization.
+            </para>
+            </summary>
+            <param name="collection">The collection.</param>
+            <param name="offset">The offset to be removed.</param>
+            <returns>The result collection.</returns>
+        </member>
+        <member name="M:Sudoku.Data.Abstractions.ICellsOrCandidates`1.op_BitwiseAnd(`0@,`0@)">
+            <summary>
+            Get all cells that two <typeparamref name="T"/> instances both contain.
+            </summary>
+            <param name="left">The left instance.</param>
+            <param name="right">The right instance.</param>
+            <returns>The intersection result.</returns>
+        </member>
+        <member name="M:Sudoku.Data.Abstractions.ICellsOrCandidates`1.op_BitwiseOr(`0@,`0@)">
+            <summary>
+            Get all cells from two <typeparamref name="T"/> instances.
+            </summary>
+            <param name="left">The left instance.</param>
+            <param name="right">The right instance.</param>
+            <returns>The union result.</returns>
+        </member>
+        <member name="M:Sudoku.Data.Abstractions.ICellsOrCandidates`1.op_ExclusiveOr(`0@,`0@)">
+            <summary>
+            Get all cells that only appears once in two <typeparamref name="T"/> instances.
+            </summary>
+            <param name="left">The left instance.</param>
+            <param name="right">The right instance.</param>
+            <returns>The symmetrical difference result.</returns>
+        </member>
+        <member name="M:Sudoku.Data.Abstractions.ICellsOrCandidates`1.op_Modulus(`0@,`0@)">
+            <summary>
+            Simply calls <c><![CDATA[(a & b).PeerIntersection & b]]></c>.
+            The operator is used for searching for and checking eliminations.
+            </summary>
+            <param name="base">The base map.</param>
+            <param name="template">The template map that the base map to check and cover.</param>
+            <returns>The result map.</returns>
+            <seealso cref="P:Sudoku.Data.Abstractions.ICellsOrCandidates`1.PeerIntersection"/>
+        </member>
+        <member name="M:Sudoku.Data.Abstractions.ICellsOrCandidates`1.op_Implicit(System.Int32[])~`0">
+            <summary>
+            Implicit cast from <see cref="T:System.Int32"/>[] to <typeparamref name="T"/>.
+            </summary>
+            <param name="offsets">The offsets.</param>
+        </member>
+        <member name="M:Sudoku.Data.Abstractions.ICellsOrCandidates`1.op_Implicit(System.Span{System.Int32}@)~`0">
+            <summary>
+            Implicit cast from <see cref="T:System.Span`1"/> to <typeparamref name="T"/>.
+            </summary>
+            <param name="offsets">The offsets.</param>
+        </member>
+        <member name="M:Sudoku.Data.Abstractions.ICellsOrCandidates`1.op_Implicit(System.ReadOnlySpan{System.Int32}@)~`0">
+            <summary>
+            Implicit cast from <see cref="T:System.ReadOnlySpan`1"/> to <typeparamref name="T"/>.
+            </summary>
+            <param name="offsets">The offsets.</param>
+        </member>
+        <member name="M:Sudoku.Data.Abstractions.ICellsOrCandidates`1.op_Explicit(`0@)~System.Int32[]">
+            <summary>
+            Explicit cast from <typeparamref name="T"/> to <see cref="T:System.Int32"/>[].
+            </summary>
+            <param name="offsets">The offsets.</param>
+        </member>
+        <member name="M:Sudoku.Data.Abstractions.ICellsOrCandidates`1.op_Explicit(`0@)~System.Span{System.Int32}">
+            <summary>
+            Explicit cast from <typeparamref name="T"/> to <see cref="T:System.Span`1"/>.
+            </summary>
+            <param name="offsets">The offsets.</param>
+        </member>
+        <member name="M:Sudoku.Data.Abstractions.ICellsOrCandidates`1.op_Explicit(`0@)~System.ReadOnlySpan{System.Int32}">
+            <summary>
+            Explicit cast from <typeparamref name="T"/> to <see cref="T:System.ReadOnlySpan`1"/>.
+            </summary>
+            <param name="offsets">The offsets.</param>
+        </member>
+        <member name="T:Sudoku.Data.Abstractions.IGrid`1">
+            <summary>
+            Defines a data structure that describes a sudoku grid.
+            </summary>
+            <typeparam name="T">The type to implement this interface.</typeparam>
+        </member>
+        <member name="P:Sudoku.Data.Abstractions.IGrid`1.DefaultMask">
+            <summary>
+            Indicates the default mask of a cell (an empty cell, with all 9 candidates left).
+            </summary>
+        </member>
+        <member name="P:Sudoku.Data.Abstractions.IGrid`1.MaxCandidatesMask">
+            <summary>
+            Indicates the maximum candidate mask that used.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Data.Abstractions.IGrid`1.EmptyMask">
+            <summary>
+            Indicates the empty mask, modifiable mask and given mask.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Data.Abstractions.IGrid`1.ModifiableMask">
+            <summary>
+            Indicates the modifiable mask.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Data.Abstractions.IGrid`1.GivenMask">
+            <summary>
+            Indicates the given mask.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Data.Abstractions.IGrid`1.EmptyString">
+            <summary>
+            Indicates the empty grid string.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Data.Abstractions.IGrid`1.ValueChanged">
+            <summary>
+            Indicates the event triggered when the value is changed.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Data.Abstractions.IGrid`1.RefreshingCandidates">
+            <summary>
+            Indicates the event triggered when should re-compute candidates.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Data.Abstractions.IGrid`1.Undefined">
+            <summary>
+            Indicates the default grid that all values are initialized 0, which is same as
+            <typeparamref name="T"/>().
+            </summary>
+            <remarks>
+            We recommend you should use this static field instead of the default constructor
+            to reduce object creation.
+            </remarks>
+        </member>
+        <member name="P:Sudoku.Data.Abstractions.IGrid`1.Empty">
+            <summary>
+            The empty grid that is valid during implementation or running the program
+            (all values are <see cref="P:Sudoku.Data.Abstractions.IGrid`1.DefaultMask"/>, i.e. empty cells).
+            </summary>
+            <remarks>
+            This field is initialized by the static constructor of this structure.
+            </remarks>
+            <seealso cref="P:Sudoku.Data.Abstractions.IGrid`1.DefaultMask"/>
+        </member>
+        <member name="P:Sudoku.Data.Abstractions.IGrid`1.IsSolved">
+            <summary>
+            Indicates the grid has already solved. If the value is <see langword="true"/>,
+            the grid is solved; otherwise, <see langword="false"/>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Data.Abstractions.IGrid`1.IsUndefined">
+            <summary>
+            Indicates whether the grid is <see cref="P:Sudoku.Data.Abstractions.IGrid`1.Undefined"/>, which means the grid
+            holds totally same value with <see cref="P:Sudoku.Data.Abstractions.IGrid`1.Undefined"/>.
+            </summary>
+            <seealso cref="P:Sudoku.Data.Abstractions.IGrid`1.Undefined"/>
+        </member>
+        <member name="P:Sudoku.Data.Abstractions.IGrid`1.IsEmpty">
+            <summary>
+            Indicates whether the grid is <see cref="P:Sudoku.Data.Abstractions.IGrid`1.Empty"/>, which means the grid
+            holds totally same value with <see cref="P:Sudoku.Data.Abstractions.IGrid`1.Empty"/>.
+            </summary>
+            <seealso cref="P:Sudoku.Data.Abstractions.IGrid`1.Empty"/>
+        </member>
+        <member name="P:Sudoku.Data.Abstractions.IGrid`1.IsDebuggerUndefined">
+            <summary>
+            Indicates whether the grid is as same behaviors as <see cref="P:Sudoku.Data.Abstractions.IGrid`1.Undefined"/>
+            in debugging mode.
+            </summary>
+            <remarks>
+            <para>
+            This property checks whether all non-first masks are all 0. This checking behavior
+            is aiming to the debugger because the debugger can't recognize the fixed buffer.
+            </para>
+            <para>
+            The debugger can't recognize fixed buffer.
+            The fixed buffer whose code is like:
+            <code><![CDATA[
+            private fixed short _values[81];
+            ]]></code>
+            However, internally, the field <c>_values</c> is implemented
+            with a fixed buffer using a inner struct, which is just like:
+            <code><![CDATA[
+            [StructLayout(LayoutKind.Explicit, Size = 81 * sizeof(short))]
+            private struct FixedBuffer
+            {
+                public short _internalValue;
+            }
+            ]]></code>
+            And that field:
+            <code><![CDATA[
+            private FixedBuffer _fixedField;
+            ]]></code>
+            From the code we can learn that only 2 bytes of the inner struct can be detected,
+            because the buffer struct only contains 2 bytes data.
+            </para>
+            </remarks>
+            <see cref="P:Sudoku.Data.Abstractions.IGrid`1.Undefined"/>
+        </member>
+        <member name="P:Sudoku.Data.Abstractions.IGrid`1.CandidatesCount">
+            <summary>
+            Indicates the number of total candidates.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Data.Abstractions.IGrid`1.GivensCount">
+            <summary>
+            Indicates the total number of given cells.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Data.Abstractions.IGrid`1.ModifiablesCount">
+            <summary>
+            Indicates the total number of modifiable cells.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Data.Abstractions.IGrid`1.EmptiesCount">
+            <summary>
+            Indicates the total number of empty cells.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Data.Abstractions.IGrid`1.EmptyCells">
+            <summary>
+            Indicates the cells that corresponding position in this grid is empty.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Data.Abstractions.IGrid`1.BivalueCells">
+            <summary>
+            Indicates the cells that corresponding position in this grid contain two candidates.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Data.Abstractions.IGrid`1.CandidatesMap">
+            <summary>
+            Indicates the map of possible positions of the existence of the candidate value for each digit.
+            The return value will be an array of 9 elements, which stands for the statuses of 9 digits.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Data.Abstractions.IGrid`1.DigitsMap">
+            <summary>
+            <para>
+            Indicates the map of possible positions of the existence of each digit. The return value will
+            be an array of 9 elements, which stands for the statuses of 9 digits.
+            </para>
+            <para>
+            Different with <see cref="P:Sudoku.Data.Abstractions.IGrid`1.CandidatesMap"/>, this property contains all givens, modifiables and
+            empty cells only if it contains the digit in the mask.
+            </para>
+            </summary>
+            <seealso cref="P:Sudoku.Data.Abstractions.IGrid`1.CandidatesMap"/>
+        </member>
+        <member name="P:Sudoku.Data.Abstractions.IGrid`1.ValuesMap">
+            <summary>
+            <para>
+            Indicates the map of possible positions of the existence of that value of each digit.
+            The return value will be an array of 9 elements, which stands for the statuses of 9 digits.
+            </para>
+            <para>
+            Different with <see cref="P:Sudoku.Data.Abstractions.IGrid`1.CandidatesMap"/>, the value only contains the given or modifiable
+            cells whose mask contain the set bit of that digit.
+            </para>
+            </summary>
+            <seealso cref="P:Sudoku.Data.Abstractions.IGrid`1.CandidatesMap"/>
+        </member>
+        <member name="P:Sudoku.Data.Abstractions.IGrid`1.Item(System.Int32)">
+            <summary>
+            Gets or sets the value in the specified cell.
+            </summary>
+            <param name="cell">The cell you want to get or set a value.</param>
+            <value>
+            The value you want to set. The value should be between 0 and 8. If assigning -1,
+            that means to re-compute all candidates.
+            </value>
+            <returns>
+            The value that the cell filled with. The possible values are:
+            <list type="table">
+            <item>
+            <term>-2</term>
+            <description>The status of the specified cell is <see cref="F:Sudoku.Data.CellStatus.Undefined"/>.</description>
+            </item>
+            <item>
+            <term>-1</term>
+            <description>The status of the specified cell is <see cref="F:Sudoku.Data.CellStatus.Empty"/>.</description>
+            </item>
+            <item>
+            <term>0 to 8</term>
+            <description>
+            The actual value that the cell filled with. 0 is for the digit 1, 1 is for the digit 2, etc..
+            </description>
+            </item>
+            </list>
+            </returns>
+        </member>
+        <member name="P:Sudoku.Data.Abstractions.IGrid`1.Item(System.Int32,System.Int32)">
+            <summary>
+            Gets or sets a candidate existence case with a <see cref="T:System.Boolean"/> value.
+            </summary>
+            <param name="cell">The cell offset between 0 and 80.</param>
+            <param name="digit">The digit between 0 and 8.</param>
+            <value>
+            The case you want to set. <see langword="false"/> means that this candidate
+            doesn't exist in this current sudoku grid; otherwise, <see langword="true"/>.
+            </value>
+            <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
+        </member>
+        <member name="M:Sudoku.Data.Abstractions.IGrid`1.SimplyValidate">
+            <summary>
+            Check whether the current grid is valid (no duplicate values on same row, column or block).
+            </summary>
+            <returns>The <see cref="T:System.Boolean"/> result.</returns>
+        </member>
+        <member name="M:Sudoku.Data.Abstractions.IGrid`1.Exists(System.Int32)">
+            <summary>
+            Indicates whether the current grid contains the specified candidate offset.
+            </summary>
+            <param name="candidate">The candidate offset.</param>
+            <returns>
+            The method will return a <see cref="T:System.Boolean"/>? value (contains three possible cases:
+            <see langword="true"/>, <see langword="false"/> and <see langword="null"/>).
+            All values corresponding to the cases are below:
+            <list type="table">
+            <item>
+            <term><see langword="true"/></term>
+            <description>
+            The cell that the candidate specified is an empty cell <b>and</b> contains the specified digit
+            that the candidate specified.
+            </description>
+            </item>
+            <item>
+            <term><see langword="false"/></term>
+            <description>
+            The cell that the candidate specified is an empty cell <b>but doesn't</b> contain the specified digit
+            that the candidate specified.
+            </description>
+            </item>
+            <item>
+            <term><see langword="null"/></term>
+            <description>
+            The cell that the candidate specified is <b>not</b> an empty cell that the candidate specified.
+            </description>
+            </item>
+            </list>
+            </returns>
+            <remarks>
+            Note that the method will return a <see cref="T:System.Boolean"/>?, so you should use the code
+            '<c>grid.Exists(candidate) is true</c>' or '<c>grid.Exists(candidate) == true</c>'
+            to decide whether a condition is true.
+            </remarks>
+        </member>
+        <member name="M:Sudoku.Data.Abstractions.IGrid`1.Exists(System.Int32,System.Int32)">
+            <summary>
+            Indicates whether the current grid contains the digit in the specified cell.
+            </summary>
+            <param name="cell">The cell offset.</param>
+            <param name="digit">The digit.</param>
+            <returns>
+            The method will return a <see cref="T:System.Boolean"/>? value (contains three possible cases:
+            <see langword="true"/>, <see langword="false"/> and <see langword="null"/>).
+            All values corresponding to the cases are below:
+            <list type="table">
+            <item>
+            <term><see langword="true"/></term>
+            <description>
+            The cell is an empty cell <b>and</b> contains the specified digit.
+            </description>
+            </item>
+            <item>
+            <term><see langword="false"/></term>
+            <description>
+            The cell is an empty cell <b>but doesn't</b> contain the specified digit.
+            </description>
+            </item>
+            <item>
+            <term><see langword="null"/></term>
+            <description>The cell is <b>not</b> an empty cell.</description>
+            </item>
+            </list>
+            </returns>
+            <remarks>
+            <para>
+            Note that the method will return a <see cref="T:System.Boolean"/>?, so you should use the code
+            '<c>grid.Exists(cell, digit) is true</c>' or '<c>grid.Exists(cell, digit) == true</c>'
+            to decide whether a condition is true.
+            </para>
+            <para>
+            In addition, because the type is <see cref="T:System.Boolean"/>? rather than <see cref="T:System.Boolean"/>,
+            the result case will be more precisely than the indexer <see cref="P:Sudoku.Data.Abstractions.IGrid`1.Item(System.Int32,System.Int32)"/>,
+            which is the main difference between this method and that indexer.
+            </para>
+            </remarks>
+            <seealso cref="P:Sudoku.Data.Abstractions.IGrid`1.Item(System.Int32,System.Int32)"/>
+        </member>
+        <member name="M:Sudoku.Data.Abstractions.IGrid`1.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="M:Sudoku.Data.Abstractions.IGrid`1.ToArray">
+            <summary>
+            Serializes this instance to an array, where all digit value will be stored.
+            </summary>
+            <returns>
+            This array. All elements are between 0 to 9, where 0 means the
+            cell is <see cref="F:Sudoku.Data.CellStatus.Empty"/> now.
+            </returns>
+        </member>
+        <member name="M:Sudoku.Data.Abstractions.IGrid`1.GetMask(System.Int32)">
+            <summary>
+            Get a mask at the specified cell.
+            </summary>
+            <param name="offset">The cell offset you want to get.</param>
+            <returns>The mask.</returns>
+        </member>
+        <member name="M:Sudoku.Data.Abstractions.IGrid`1.GetCandidates(System.Int32)">
+            <summary>
+            Get the candidate mask part of the specified cell.
+            </summary>
+            <param name="cell">The cell offset you want to get.</param>
+            <returns>
+            <para>
+            The candidate mask. The return value is a 9-bit <see cref="T:System.Int16"/>
+            value, where each bit will be:
+            <list type="table">
+            <item>
+            <term><c>0</c></term>
+            <description>The cell <b>doesn't contain</b> the possibility of the digit.</description>
+            </item>
+            <item>
+            <term><c>1</c></term>
+            <description>The cell <b>contains</b> the possibility of the digit.</description>
+            </item>
+            </list>
+            </para>
+            <para>
+            For example, if the result mask is 266 (i.e. <c>0b<b>1</b>00_00<b>1</b>_0<b>1</b>0</c> in binary),
+            the value will indicate the cell contains the digit 2, 4 and 9.
+            </para>
+            </returns>
+        </member>
+        <member name="M:Sudoku.Data.Abstractions.IGrid`1.GetPinnableReference">
+            <summary>
+            Returns a reference to the element of the <typeparamref name="T"/> at index zero.
+            </summary>
+            <returns>A reference to the element of the <typeparamref name="T"/> at index zero.</returns>
+        </member>
+        <member name="M:Sudoku.Data.Abstractions.IGrid`1.ToMaskString">
+            <summary>
+            Get all masks and print them.
+            </summary>
+            <returns>The result.</returns>
+            <remarks>
+            Please note that the method cannot be called with a correct behavior using
+            <see cref="T:System.Diagnostics.DebuggerDisplayAttribute"/> to output. It seems that Visual Studio
+            doesn't print correct values when indices of this grid aren't 0. In other words,
+            when we call this method using <see cref="T:System.Diagnostics.DebuggerDisplayAttribute"/>, only <c>grid[0]</c>
+            can be output correctly, and other values will be incorrect: they're always 0.
+            </remarks>
+        </member>
+        <member name="M:Sudoku.Data.Abstractions.IGrid`1.GetStatus(System.Int32)">
+            <summary>
+            Get the cell status at the specified cell.
+            </summary>
+            <param name="cell">The cell.</param>
+            <returns>The cell status.</returns>
+        </member>
+        <member name="M:Sudoku.Data.Abstractions.IGrid`1.Fix">
+            <summary>
+            To fix the current grid (all modifiable values will be changed to given ones).
+            </summary>
+        </member>
+        <member name="M:Sudoku.Data.Abstractions.IGrid`1.Unfix">
+            <summary>
+            To unfix the current grid (all given values will be changed to modifiable ones).
+            </summary>
+        </member>
+        <member name="M:Sudoku.Data.Abstractions.IGrid`1.SetStatus(System.Int32,Sudoku.Data.CellStatus)">
+            <summary>
+            Set the specified cell to the specified status.
+            </summary>
+            <param name="cell">The cell.</param>
+            <param name="status">The status.</param>
+        </member>
+        <member name="M:Sudoku.Data.Abstractions.IGrid`1.SetMask(System.Int32,System.Int16)">
+            <summary>
+            Set the specified cell to the specified mask.
+            </summary>
+            <param name="cell">The cell.</param>
+            <param name="mask">The mask to set.</param>
+        </member>
+        <member name="M:Sudoku.Data.Abstractions.IGrid`1.Equals(`0@,`0@)">
+            <summary>
+            To determine whether two sudoku grid is totally same.
+            </summary>
+            <param name="left">The left one.</param>
+            <param name="right">The right one.</param>
+            <returns>The <see cref="T:System.Boolean"/> result indicating that.</returns>
+        </member>
+        <member name="M:Sudoku.Data.Abstractions.IGrid`1.Parse(System.ReadOnlySpan{System.Char})">
+            <summary>
+            <para>Parses a string value and converts to this type.</para>
+            <para>
+            If you want to parse a PM grid, we recommend you use the method
+            <see cref="M:Sudoku.Data.Abstractions.IGrid`1.Parse(System.String,Sudoku.Data.GridParsingOption)"/> instead of this method.
+            </para>
+            </summary>
+            <param name="str">The string.</param>
+            <returns>The result instance had converted.</returns>
+            <seealso cref="M:Sudoku.Data.Abstractions.IGrid`1.Parse(System.String,Sudoku.Data.GridParsingOption)"/>
+        </member>
+        <member name="M:Sudoku.Data.Abstractions.IGrid`1.Parse(System.Char*)">
+            <summary>
+            Parses a pointer that points to a string value and converts to this type.
+            </summary>
+            <param name="ptrStr">The pointer that points to string.</param>
+            <returns>The result instance.</returns>
+        </member>
+        <member name="M:Sudoku.Data.Abstractions.IGrid`1.Parse(System.String,System.Boolean)">
+            <summary>
+            <para>
+            Parses a string value and converts to this type.
+            </para>
+            <para>
+            If you want to parse a PM grid, you should decide the mode to parse.
+            If you use compatible mode to parse, all single values will be treated as
+            given values; otherwise, recommended mode, which uses '<c><![CDATA[<d>]]></c>'
+            or '<c>*d*</c>' to represent a value be a given or modifiable one. The decision
+            will be indicated and passed by the second parameter <paramref name="compatibleFirst"/>.
+            </para>
+            </summary>
+            <param name="str">The string.</param>
+            <param name="compatibleFirst">
+            Indicates whether the parsing operation should use compatible mode to check PM grid.
+            </param>
+            <returns>The result instance had converted.</returns>
+        </member>
+        <member name="M:Sudoku.Data.Abstractions.IGrid`1.Parse(System.String,Sudoku.Data.GridParsingOption)">
+            <summary>
+            Parses a string value and converts to this type, using a specified grid parsing type.
+            </summary>
+            <param name="str">The string.</param>
+            <param name="gridParsingOption">The grid parsing type.</param>
+            <returns>The result instance had converted.</returns>
+        </member>
+        <member name="M:Sudoku.Data.Abstractions.IGrid`1.TryParse(System.String,Sudoku.Data.GridParsingOption,`0@)">
+            <summary>
+            Try to parse a string and converts to this type, and returns a
+            <see cref="T:System.Boolean"/> value indicating the result of the conversion.
+            </summary>
+            <param name="str">The string.</param>
+            <param name="option">The grid parsing type.</param>
+            <param name="result">
+            The result parsed. If the conversion is failed,
+            this argument will be <see cref="P:Sudoku.Data.Abstractions.IGrid`1.Undefined"/>.
+            </param>
+            <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
+            <seealso cref="P:Sudoku.Data.Abstractions.IGrid`1.Undefined"/>
+        </member>
+        <member name="T:Sudoku.Data.Abstractions.ILinkType`1">
+            <summary>
+            Defines a basic constraint that applied onto a <see cref="T:Sudoku.Data.LinkType"/>.
+            </summary>
+            <typeparam name="T">The type. The type is always <see cref="T:Sudoku.Data.LinkType"/>.</typeparam>
+        </member>
+        <member name="P:Sudoku.Data.Abstractions.ILinkType`1.TypeKind">
+            <summary>
+            The type kind.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Data.Abstractions.ILinkType`1.GetNotation">
+            <summary>
+            Gets the notation of the chain link that combines 2 <see cref="T:Sudoku.Data.Node"/>s.
+            </summary>
+            <returns>The notation <see cref="T:System.String"/> representation.</returns>
+        </member>
+        <member name="M:Sudoku.Data.Abstractions.ILinkType`1.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
+        <member name="M:Sudoku.Data.Abstractions.ILinkType`1.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="M:Sudoku.Data.Abstractions.ILinkType`1.op_Explicit(System.Byte)~`0">
+            <summary>
+            Explicit cast from <see cref="T:System.Byte"/> to <typeparamref name="T"/>.
+            </summary>
+            <param name="value">The value.</param>
+        </member>
+        <member name="M:Sudoku.Data.Abstractions.ILinkType`1.op_Explicit(`0)~System.Byte">
+            <summary>
+            Explicit cast from <typeparamref name="T"/> to <see cref="T:System.Byte"/>.
+            </summary>
+            <param name="linkType">The link type.</param>
+        </member>
         <member name="T:Sudoku.Data.BitSubsetsGenerator">
             <summary>
             Encapsulates a bit combination generator.
@@ -2177,19 +2946,19 @@
             <exception cref="T:System.NotSupportedException">Always throws.</exception>
         </member>
         <member name="F:Sudoku.Data.Grid.DefaultMask">
-            <inheritdoc cref="P:Sudoku.Data.IGrid`1.DefaultMask"/>
+            <inheritdoc cref="P:Sudoku.Data.Abstractions.IGrid`1.DefaultMask"/>
         </member>
         <member name="F:Sudoku.Data.Grid.MaxCandidatesMask">
-            <inheritdoc cref="P:Sudoku.Data.IGrid`1.MaxCandidatesMask"/>
+            <inheritdoc cref="P:Sudoku.Data.Abstractions.IGrid`1.MaxCandidatesMask"/>
         </member>
         <member name="F:Sudoku.Data.Grid.EmptyMask">
-            <inheritdoc cref="P:Sudoku.Data.IGrid`1.EmptyMask"/>
+            <inheritdoc cref="P:Sudoku.Data.Abstractions.IGrid`1.EmptyMask"/>
         </member>
         <member name="F:Sudoku.Data.Grid.ModifiableMask">
-            <inheritdoc cref="P:Sudoku.Data.IGrid`1.ModifiableMask"/>
+            <inheritdoc cref="P:Sudoku.Data.Abstractions.IGrid`1.ModifiableMask"/>
         </member>
         <member name="F:Sudoku.Data.Grid.GivenMask">
-            <inheritdoc cref="P:Sudoku.Data.IGrid`1.GivenMask"/>
+            <inheritdoc cref="P:Sudoku.Data.Abstractions.IGrid`1.GivenMask"/>
         </member>
         <member name="F:Sudoku.Data.Grid.Length">
             <summary>
@@ -2202,19 +2971,19 @@
             </summary>
         </member>
         <member name="F:Sudoku.Data.Grid.EmptyString">
-            <inheritdoc cref="P:Sudoku.Data.IGrid`1.EmptyString"/>
+            <inheritdoc cref="P:Sudoku.Data.Abstractions.IGrid`1.EmptyString"/>
         </member>
         <member name="F:Sudoku.Data.Grid.ValueChanged">
-            <inheritdoc cref="P:Sudoku.Data.IGrid`1.ValueChanged"/>
+            <inheritdoc cref="P:Sudoku.Data.Abstractions.IGrid`1.ValueChanged"/>
         </member>
         <member name="F:Sudoku.Data.Grid.RefreshingCandidates">
-            <inheritdoc cref="P:Sudoku.Data.IGrid`1.RefreshingCandidates"/>
+            <inheritdoc cref="P:Sudoku.Data.Abstractions.IGrid`1.RefreshingCandidates"/>
         </member>
         <member name="F:Sudoku.Data.Grid.Undefined">
-            <inheritdoc cref="P:Sudoku.Data.IGrid`1.Undefined"/>
+            <inheritdoc cref="P:Sudoku.Data.Abstractions.IGrid`1.Undefined"/>
         </member>
         <member name="F:Sudoku.Data.Grid.Empty">
-            <inheritdoc cref="P:Sudoku.Data.IGrid`1.Empty"/>
+            <inheritdoc cref="P:Sudoku.Data.Abstractions.IGrid`1.Empty"/>
         </member>
         <member name="F:Sudoku.Data.Grid.Solver">
             <summary>
@@ -2394,34 +3163,34 @@
             </summary>
             <see cref="F:Sudoku.Data.Grid.Undefined"/>
         </member>
-        <member name="P:Sudoku.Data.Grid.Sudoku#Data#IGrid{Sudoku#Data#Grid}#DefaultMask">
+        <member name="P:Sudoku.Data.Grid.Sudoku#Data#Abstractions#IGrid{Sudoku#Data#Grid}#DefaultMask">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Data.Grid.Sudoku#Data#IGrid{Sudoku#Data#Grid}#MaxCandidatesMask">
+        <member name="P:Sudoku.Data.Grid.Sudoku#Data#Abstractions#IGrid{Sudoku#Data#Grid}#MaxCandidatesMask">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Data.Grid.Sudoku#Data#IGrid{Sudoku#Data#Grid}#EmptyMask">
+        <member name="P:Sudoku.Data.Grid.Sudoku#Data#Abstractions#IGrid{Sudoku#Data#Grid}#EmptyMask">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Data.Grid.Sudoku#Data#IGrid{Sudoku#Data#Grid}#ModifiableMask">
+        <member name="P:Sudoku.Data.Grid.Sudoku#Data#Abstractions#IGrid{Sudoku#Data#Grid}#ModifiableMask">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Data.Grid.Sudoku#Data#IGrid{Sudoku#Data#Grid}#GivenMask">
+        <member name="P:Sudoku.Data.Grid.Sudoku#Data#Abstractions#IGrid{Sudoku#Data#Grid}#GivenMask">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Data.Grid.Sudoku#Data#IGrid{Sudoku#Data#Grid}#EmptyString">
+        <member name="P:Sudoku.Data.Grid.Sudoku#Data#Abstractions#IGrid{Sudoku#Data#Grid}#EmptyString">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Data.Grid.Sudoku#Data#IGrid{Sudoku#Data#Grid}#ValueChanged">
+        <member name="P:Sudoku.Data.Grid.Sudoku#Data#Abstractions#IGrid{Sudoku#Data#Grid}#ValueChanged">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Data.Grid.Sudoku#Data#IGrid{Sudoku#Data#Grid}#RefreshingCandidates">
+        <member name="P:Sudoku.Data.Grid.Sudoku#Data#Abstractions#IGrid{Sudoku#Data#Grid}#RefreshingCandidates">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Data.Grid.Sudoku#Data#IGrid{Sudoku#Data#Grid}#Undefined">
+        <member name="P:Sudoku.Data.Grid.Sudoku#Data#Abstractions#IGrid{Sudoku#Data#Grid}#Undefined">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Data.Grid.Sudoku#Data#IGrid{Sudoku#Data#Grid}#Empty">
+        <member name="P:Sudoku.Data.Grid.Sudoku#Data#Abstractions#IGrid{Sudoku#Data#Grid}#Empty">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Data.Grid.Item(System.Int32)">
@@ -3606,775 +4375,6 @@
             or two regions are not in same region type.
             </exception>
         </member>
-        <member name="T:Sudoku.Data.ICellsOrCandidates`1">
-            <summary>
-            Provides with a basic collection that is a <see cref="T:Sudoku.Data.Cells"/> or a <see cref="T:Sudoku.Data.Candidates"/> collection.
-            </summary>
-            <typeparam name="T">
-            The type. The type should always be <see cref="T:Sudoku.Data.Cells"/> or <see cref="T:Sudoku.Data.Candidates"/>.
-            </typeparam>
-            <seealso cref="T:Sudoku.Data.Cells"/>
-            <seealso cref="T:Sudoku.Data.Candidates"/>
-        </member>
-        <member name="P:Sudoku.Data.ICellsOrCandidates`1.IsEmpty">
-            <summary>
-            Indicates whether the collection is empty.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Data.ICellsOrCandidates`1.Count">
-            <summary>
-            Indicates the number of the values stored in this collection.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Data.ICellsOrCandidates`1.PeerIntersection">
-            <summary>
-            Indicates the <typeparamref name="T"/> of intersections.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Data.ICellsOrCandidates`1.Item(System.Int32)">
-            <summary>
-            Get the offset at the specified position index.
-            </summary>
-            <param name="index">The index.</param>
-            <returns>
-            The offset at the specified position index. If the value is invalid, the return value will be <c>-1</c>.
-            </returns>
-        </member>
-        <member name="M:Sudoku.Data.ICellsOrCandidates`1.CopyTo(System.Int32*,System.Int32)">
-            <summary>
-            Copies the current instance to the target array specified as an <see cref="T:System.Int32"/>*.
-            </summary>
-            <param name="arr">The pointer that points to an array of type <see cref="T:System.Int32"/>.</param>
-            <param name="length">The length of that array.</param>
-            <exception cref="T:System.InvalidOperationException">
-            Throws when the capacity isn't enough to store all values.
-            </exception>
-        </member>
-        <member name="M:Sudoku.Data.ICellsOrCandidates`1.CopyTo(System.Span{System.Int32}@)">
-            <summary>
-            Copies the current instance to the target <see cref="T:System.Span`1"/> instance.
-            </summary>
-            <param name="span">
-            The target <see cref="T:System.Span`1"/> instance.
-            </param>
-        </member>
-        <member name="M:Sudoku.Data.ICellsOrCandidates`1.Contains(System.Int32)">
-            <summary>
-            Determine whether the map contains the specified offset.
-            </summary>
-            <param name="offset">The offset.</param>
-            <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
-        </member>
-        <member name="M:Sudoku.Data.ICellsOrCandidates`1.ToArray">
-            <summary>
-            Get all offsets whose bits are set <see langword="true"/>.
-            </summary>
-            <returns>An array of offsets.</returns>
-        </member>
-        <member name="M:Sudoku.Data.ICellsOrCandidates`1.ToString">
-            <inheritdoc cref="M:System.Object.ToString"/>
-        </member>
-        <member name="M:Sudoku.Data.ICellsOrCandidates`1.Add(System.Int32)">
-            <summary>
-            Set the specified offset as <see langword="true"/> or <see langword="false"/> value.
-            </summary>
-            <param name="offset">
-            The offset. This value can be positive and negative. If 
-            negative, the offset will be assigned <see langword="false"/>
-            into the corresponding bit position of its absolute value.
-            </param>
-        </member>
-        <member name="M:Sudoku.Data.ICellsOrCandidates`1.AddAnyway(System.Int32)">
-            <summary>
-            Set the specified offset as <see langword="true"/> value.
-            </summary>
-            <param name="offset">The offset.</param>
-            <remarks>
-            Different with <see cref="M:Sudoku.Data.ICellsOrCandidates`1.Add(System.Int32)"/>, the method will process negative values,
-            but this won't.
-            </remarks>
-            <seealso cref="M:Sudoku.Data.ICellsOrCandidates`1.Add(System.Int32)"/>
-        </member>
-        <member name="M:Sudoku.Data.ICellsOrCandidates`1.AddRange(System.ReadOnlySpan{System.Int32}@)">
-            <summary>
-            Set the specified offsets as <see langword="true"/> value.
-            </summary>
-            <param name="offsets">The offsets to add.</param>
-        </member>
-        <member name="M:Sudoku.Data.ICellsOrCandidates`1.AddRange(System.Collections.Generic.IEnumerable{System.Int32})">
-            <summary>
-            Set the specified offsets as <see langword="true"/> value.
-            </summary>
-            <param name="offsets">The offsets to add.</param>
-        </member>
-        <member name="M:Sudoku.Data.ICellsOrCandidates`1.Remove(System.Int32)">
-            <summary>
-            Set the specified offset as <see langword="false"/> value.
-            </summary>
-            <param name="offset">The offset.</param>
-            <remarks>
-            Different with <see cref="M:Sudoku.Data.ICellsOrCandidates`1.Add(System.Int32)"/>, this method <b>can't</b> receive the negative value as the parameter.
-            </remarks>
-            <seealso cref="M:Sudoku.Data.ICellsOrCandidates`1.Add(System.Int32)"/>
-        </member>
-        <member name="M:Sudoku.Data.ICellsOrCandidates`1.Clear">
-            <summary>
-            Clear all bits.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Data.ICellsOrCandidates`1.ToSpan">
-            <summary>
-            Converts the current instance to a <see cref="T:System.Span`1"/> of type <see cref="T:System.Int32"/>.
-            </summary>
-            <returns>The <see cref="T:System.Span`1"/> of <see cref="T:System.Int32"/> result.</returns>
-        </member>
-        <member name="M:Sudoku.Data.ICellsOrCandidates`1.ToReadOnlySpan">
-            <summary>
-            Converts the current instance to a <see cref="T:System.ReadOnlySpan`1"/> of type <see cref="T:System.Int32"/>.
-            </summary>
-            <returns>The <see cref="T:System.ReadOnlySpan`1"/> of <see cref="T:System.Int32"/> result.</returns>
-        </member>
-        <member name="M:Sudoku.Data.ICellsOrCandidates`1.op_OnesComplement(`0@)">
-            <summary>
-            Reverse status for all offsets, which means all <see langword="true"/> bits
-            will be set <see langword="false"/>, and all <see langword="false"/> bits
-            will be set <see langword="true"/>.
-            </summary>
-            <param name="offsets">The instance to negate.</param>
-            <returns>The negative result.</returns>
-        </member>
-        <member name="M:Sudoku.Data.ICellsOrCandidates`1.op_GreaterThan(`0@,`0@)">
-            <summary>
-            The syntactic sugar for <c>!(<paramref name="left"/> - <paramref name="right"/>).IsEmpty</c>.
-            </summary>
-            <param name="left">The subtrahend.</param>
-            <param name="right">The subtractor.</param>
-            <returns>The <see cref="T:System.Boolean"/> value indicating that.</returns>
-        </member>
-        <member name="M:Sudoku.Data.ICellsOrCandidates`1.op_LessThan(`0@,`0@)">
-            <summary>
-            The syntactic sugar for <c>(<paramref name="left"/> - <paramref name="right"/>).IsEmpty</c>.
-            </summary>
-            <param name="left">The subtrahend.</param>
-            <param name="right">The subtractor.</param>
-            <returns>The <see cref="T:System.Boolean"/> value indicating that.</returns>
-        </member>
-        <member name="M:Sudoku.Data.ICellsOrCandidates`1.op_Subtraction(`0@,`0@)">
-            <summary>
-            Get a <typeparamref name="T"/> that contains all <paramref name="left"/> instance
-            but not in <paramref name="right"/> instance.
-            </summary>
-            <param name="left">The left instance.</param>
-            <param name="right">The right instance.</param>
-            <returns>The result.</returns>
-        </member>
-        <member name="M:Sudoku.Data.ICellsOrCandidates`1.op_Addition(`0,System.Int32)">
-            <summary>
-            <para>
-            Adds the specified <paramref name="offset"/> to the <paramref name="collection"/>,
-            and returns the added result.
-            </para>
-            <para>
-            The operator is same as the expression <c>new(collection) { cell }</c>, but with optimization.
-            </para>
-            </summary>
-            <param name="collection">The collection.</param>
-            <param name="offset">The offset to be removed.</param>
-            <returns>The result collection.</returns>
-        </member>
-        <member name="M:Sudoku.Data.ICellsOrCandidates`1.op_Subtraction(`0,System.Int32)">
-            <summary>
-            <para>
-            Removes the specified <paramref name="offset"/> from the <paramref name="collection"/>,
-            and returns the removed result.
-            </para>
-            <para>
-            The operator is same as the expression <c>new(collection) { ~cell }</c>, but with optimization.
-            </para>
-            </summary>
-            <param name="collection">The collection.</param>
-            <param name="offset">The offset to be removed.</param>
-            <returns>The result collection.</returns>
-        </member>
-        <member name="M:Sudoku.Data.ICellsOrCandidates`1.op_BitwiseAnd(`0@,`0@)">
-            <summary>
-            Get all cells that two <typeparamref name="T"/> instances both contain.
-            </summary>
-            <param name="left">The left instance.</param>
-            <param name="right">The right instance.</param>
-            <returns>The intersection result.</returns>
-        </member>
-        <member name="M:Sudoku.Data.ICellsOrCandidates`1.op_BitwiseOr(`0@,`0@)">
-            <summary>
-            Get all cells from two <typeparamref name="T"/> instances.
-            </summary>
-            <param name="left">The left instance.</param>
-            <param name="right">The right instance.</param>
-            <returns>The union result.</returns>
-        </member>
-        <member name="M:Sudoku.Data.ICellsOrCandidates`1.op_ExclusiveOr(`0@,`0@)">
-            <summary>
-            Get all cells that only appears once in two <typeparamref name="T"/> instances.
-            </summary>
-            <param name="left">The left instance.</param>
-            <param name="right">The right instance.</param>
-            <returns>The symmetrical difference result.</returns>
-        </member>
-        <member name="M:Sudoku.Data.ICellsOrCandidates`1.op_Modulus(`0@,`0@)">
-            <summary>
-            Simply calls <c><![CDATA[(a & b).PeerIntersection & b]]></c>.
-            The operator is used for searching for and checking eliminations.
-            </summary>
-            <param name="base">The base map.</param>
-            <param name="template">The template map that the base map to check and cover.</param>
-            <returns>The result map.</returns>
-            <seealso cref="P:Sudoku.Data.ICellsOrCandidates`1.PeerIntersection"/>
-        </member>
-        <member name="M:Sudoku.Data.ICellsOrCandidates`1.op_Implicit(System.Int32[])~`0">
-            <summary>
-            Implicit cast from <see cref="T:System.Int32"/>[] to <typeparamref name="T"/>.
-            </summary>
-            <param name="offsets">The offsets.</param>
-        </member>
-        <member name="M:Sudoku.Data.ICellsOrCandidates`1.op_Implicit(System.Span{System.Int32}@)~`0">
-            <summary>
-            Implicit cast from <see cref="T:System.Span`1"/> to <typeparamref name="T"/>.
-            </summary>
-            <param name="offsets">The offsets.</param>
-        </member>
-        <member name="M:Sudoku.Data.ICellsOrCandidates`1.op_Implicit(System.ReadOnlySpan{System.Int32}@)~`0">
-            <summary>
-            Implicit cast from <see cref="T:System.ReadOnlySpan`1"/> to <typeparamref name="T"/>.
-            </summary>
-            <param name="offsets">The offsets.</param>
-        </member>
-        <member name="M:Sudoku.Data.ICellsOrCandidates`1.op_Explicit(`0@)~System.Int32[]">
-            <summary>
-            Explicit cast from <typeparamref name="T"/> to <see cref="T:System.Int32"/>[].
-            </summary>
-            <param name="offsets">The offsets.</param>
-        </member>
-        <member name="M:Sudoku.Data.ICellsOrCandidates`1.op_Explicit(`0@)~System.Span{System.Int32}">
-            <summary>
-            Explicit cast from <typeparamref name="T"/> to <see cref="T:System.Span`1"/>.
-            </summary>
-            <param name="offsets">The offsets.</param>
-        </member>
-        <member name="M:Sudoku.Data.ICellsOrCandidates`1.op_Explicit(`0@)~System.ReadOnlySpan{System.Int32}">
-            <summary>
-            Explicit cast from <typeparamref name="T"/> to <see cref="T:System.ReadOnlySpan`1"/>.
-            </summary>
-            <param name="offsets">The offsets.</param>
-        </member>
-        <member name="T:Sudoku.Data.IGrid`1">
-            <summary>
-            Defines a data structure that describes a sudoku grid.
-            </summary>
-            <typeparam name="T">The type to implement this interface.</typeparam>
-        </member>
-        <member name="P:Sudoku.Data.IGrid`1.DefaultMask">
-            <summary>
-            Indicates the default mask of a cell (an empty cell, with all 9 candidates left).
-            </summary>
-        </member>
-        <member name="P:Sudoku.Data.IGrid`1.MaxCandidatesMask">
-            <summary>
-            Indicates the maximum candidate mask that used.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Data.IGrid`1.EmptyMask">
-            <summary>
-            Indicates the empty mask, modifiable mask and given mask.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Data.IGrid`1.ModifiableMask">
-            <summary>
-            Indicates the modifiable mask.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Data.IGrid`1.GivenMask">
-            <summary>
-            Indicates the given mask.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Data.IGrid`1.EmptyString">
-            <summary>
-            Indicates the empty grid string.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Data.IGrid`1.ValueChanged">
-            <summary>
-            Indicates the event triggered when the value is changed.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Data.IGrid`1.RefreshingCandidates">
-            <summary>
-            Indicates the event triggered when should re-compute candidates.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Data.IGrid`1.Undefined">
-            <summary>
-            Indicates the default grid that all values are initialized 0, which is same as
-            <typeparamref name="T"/>().
-            </summary>
-            <remarks>
-            We recommend you should use this static field instead of the default constructor
-            to reduce object creation.
-            </remarks>
-        </member>
-        <member name="P:Sudoku.Data.IGrid`1.Empty">
-            <summary>
-            The empty grid that is valid during implementation or running the program
-            (all values are <see cref="P:Sudoku.Data.IGrid`1.DefaultMask"/>, i.e. empty cells).
-            </summary>
-            <remarks>
-            This field is initialized by the static constructor of this structure.
-            </remarks>
-            <seealso cref="P:Sudoku.Data.IGrid`1.DefaultMask"/>
-        </member>
-        <member name="P:Sudoku.Data.IGrid`1.IsSolved">
-            <summary>
-            Indicates the grid has already solved. If the value is <see langword="true"/>,
-            the grid is solved; otherwise, <see langword="false"/>.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Data.IGrid`1.IsUndefined">
-            <summary>
-            Indicates whether the grid is <see cref="P:Sudoku.Data.IGrid`1.Undefined"/>, which means the grid
-            holds totally same value with <see cref="P:Sudoku.Data.IGrid`1.Undefined"/>.
-            </summary>
-            <seealso cref="P:Sudoku.Data.IGrid`1.Undefined"/>
-        </member>
-        <member name="P:Sudoku.Data.IGrid`1.IsEmpty">
-            <summary>
-            Indicates whether the grid is <see cref="P:Sudoku.Data.IGrid`1.Empty"/>, which means the grid
-            holds totally same value with <see cref="P:Sudoku.Data.IGrid`1.Empty"/>.
-            </summary>
-            <seealso cref="P:Sudoku.Data.IGrid`1.Empty"/>
-        </member>
-        <member name="P:Sudoku.Data.IGrid`1.IsDebuggerUndefined">
-            <summary>
-            Indicates whether the grid is as same behaviors as <see cref="P:Sudoku.Data.IGrid`1.Undefined"/>
-            in debugging mode.
-            </summary>
-            <remarks>
-            <para>
-            This property checks whether all non-first masks are all 0. This checking behavior
-            is aiming to the debugger because the debugger can't recognize the fixed buffer.
-            </para>
-            <para>
-            The debugger can't recognize fixed buffer.
-            The fixed buffer whose code is like:
-            <code><![CDATA[
-            private fixed short _values[81];
-            ]]></code>
-            However, internally, the field <c>_values</c> is implemented
-            with a fixed buffer using a inner struct, which is just like:
-            <code><![CDATA[
-            [StructLayout(LayoutKind.Explicit, Size = 81 * sizeof(short))]
-            private struct FixedBuffer
-            {
-                public short _internalValue;
-            }
-            ]]></code>
-            And that field:
-            <code><![CDATA[
-            private FixedBuffer _fixedField;
-            ]]></code>
-            From the code we can learn that only 2 bytes of the inner struct can be detected,
-            because the buffer struct only contains 2 bytes data.
-            </para>
-            </remarks>
-            <see cref="P:Sudoku.Data.IGrid`1.Undefined"/>
-        </member>
-        <member name="P:Sudoku.Data.IGrid`1.CandidatesCount">
-            <summary>
-            Indicates the number of total candidates.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Data.IGrid`1.GivensCount">
-            <summary>
-            Indicates the total number of given cells.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Data.IGrid`1.ModifiablesCount">
-            <summary>
-            Indicates the total number of modifiable cells.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Data.IGrid`1.EmptiesCount">
-            <summary>
-            Indicates the total number of empty cells.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Data.IGrid`1.EmptyCells">
-            <summary>
-            Indicates the cells that corresponding position in this grid is empty.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Data.IGrid`1.BivalueCells">
-            <summary>
-            Indicates the cells that corresponding position in this grid contain two candidates.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Data.IGrid`1.CandidatesMap">
-            <summary>
-            Indicates the map of possible positions of the existence of the candidate value for each digit.
-            The return value will be an array of 9 elements, which stands for the statuses of 9 digits.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Data.IGrid`1.DigitsMap">
-            <summary>
-            <para>
-            Indicates the map of possible positions of the existence of each digit. The return value will
-            be an array of 9 elements, which stands for the statuses of 9 digits.
-            </para>
-            <para>
-            Different with <see cref="P:Sudoku.Data.IGrid`1.CandidatesMap"/>, this property contains all givens, modifiables and
-            empty cells only if it contains the digit in the mask.
-            </para>
-            </summary>
-            <seealso cref="P:Sudoku.Data.IGrid`1.CandidatesMap"/>
-        </member>
-        <member name="P:Sudoku.Data.IGrid`1.ValuesMap">
-            <summary>
-            <para>
-            Indicates the map of possible positions of the existence of that value of each digit.
-            The return value will be an array of 9 elements, which stands for the statuses of 9 digits.
-            </para>
-            <para>
-            Different with <see cref="P:Sudoku.Data.IGrid`1.CandidatesMap"/>, the value only contains the given or modifiable
-            cells whose mask contain the set bit of that digit.
-            </para>
-            </summary>
-            <seealso cref="P:Sudoku.Data.IGrid`1.CandidatesMap"/>
-        </member>
-        <member name="P:Sudoku.Data.IGrid`1.Item(System.Int32)">
-            <summary>
-            Gets or sets the value in the specified cell.
-            </summary>
-            <param name="cell">The cell you want to get or set a value.</param>
-            <value>
-            The value you want to set. The value should be between 0 and 8. If assigning -1,
-            that means to re-compute all candidates.
-            </value>
-            <returns>
-            The value that the cell filled with. The possible values are:
-            <list type="table">
-            <item>
-            <term>-2</term>
-            <description>The status of the specified cell is <see cref="F:Sudoku.Data.CellStatus.Undefined"/>.</description>
-            </item>
-            <item>
-            <term>-1</term>
-            <description>The status of the specified cell is <see cref="F:Sudoku.Data.CellStatus.Empty"/>.</description>
-            </item>
-            <item>
-            <term>0 to 8</term>
-            <description>
-            The actual value that the cell filled with. 0 is for the digit 1, 1 is for the digit 2, etc..
-            </description>
-            </item>
-            </list>
-            </returns>
-        </member>
-        <member name="P:Sudoku.Data.IGrid`1.Item(System.Int32,System.Int32)">
-            <summary>
-            Gets or sets a candidate existence case with a <see cref="T:System.Boolean"/> value.
-            </summary>
-            <param name="cell">The cell offset between 0 and 80.</param>
-            <param name="digit">The digit between 0 and 8.</param>
-            <value>
-            The case you want to set. <see langword="false"/> means that this candidate
-            doesn't exist in this current sudoku grid; otherwise, <see langword="true"/>.
-            </value>
-            <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
-        </member>
-        <member name="M:Sudoku.Data.IGrid`1.SimplyValidate">
-            <summary>
-            Check whether the current grid is valid (no duplicate values on same row, column or block).
-            </summary>
-            <returns>The <see cref="T:System.Boolean"/> result.</returns>
-        </member>
-        <member name="M:Sudoku.Data.IGrid`1.Exists(System.Int32)">
-            <summary>
-            Indicates whether the current grid contains the specified candidate offset.
-            </summary>
-            <param name="candidate">The candidate offset.</param>
-            <returns>
-            The method will return a <see cref="T:System.Boolean"/>? value (contains three possible cases:
-            <see langword="true"/>, <see langword="false"/> and <see langword="null"/>).
-            All values corresponding to the cases are below:
-            <list type="table">
-            <item>
-            <term><see langword="true"/></term>
-            <description>
-            The cell that the candidate specified is an empty cell <b>and</b> contains the specified digit
-            that the candidate specified.
-            </description>
-            </item>
-            <item>
-            <term><see langword="false"/></term>
-            <description>
-            The cell that the candidate specified is an empty cell <b>but doesn't</b> contain the specified digit
-            that the candidate specified.
-            </description>
-            </item>
-            <item>
-            <term><see langword="null"/></term>
-            <description>
-            The cell that the candidate specified is <b>not</b> an empty cell that the candidate specified.
-            </description>
-            </item>
-            </list>
-            </returns>
-            <remarks>
-            Note that the method will return a <see cref="T:System.Boolean"/>?, so you should use the code
-            '<c>grid.Exists(candidate) is true</c>' or '<c>grid.Exists(candidate) == true</c>'
-            to decide whether a condition is true.
-            </remarks>
-        </member>
-        <member name="M:Sudoku.Data.IGrid`1.Exists(System.Int32,System.Int32)">
-            <summary>
-            Indicates whether the current grid contains the digit in the specified cell.
-            </summary>
-            <param name="cell">The cell offset.</param>
-            <param name="digit">The digit.</param>
-            <returns>
-            The method will return a <see cref="T:System.Boolean"/>? value (contains three possible cases:
-            <see langword="true"/>, <see langword="false"/> and <see langword="null"/>).
-            All values corresponding to the cases are below:
-            <list type="table">
-            <item>
-            <term><see langword="true"/></term>
-            <description>
-            The cell is an empty cell <b>and</b> contains the specified digit.
-            </description>
-            </item>
-            <item>
-            <term><see langword="false"/></term>
-            <description>
-            The cell is an empty cell <b>but doesn't</b> contain the specified digit.
-            </description>
-            </item>
-            <item>
-            <term><see langword="null"/></term>
-            <description>The cell is <b>not</b> an empty cell.</description>
-            </item>
-            </list>
-            </returns>
-            <remarks>
-            <para>
-            Note that the method will return a <see cref="T:System.Boolean"/>?, so you should use the code
-            '<c>grid.Exists(cell, digit) is true</c>' or '<c>grid.Exists(cell, digit) == true</c>'
-            to decide whether a condition is true.
-            </para>
-            <para>
-            In addition, because the type is <see cref="T:System.Boolean"/>? rather than <see cref="T:System.Boolean"/>,
-            the result case will be more precisely than the indexer <see cref="P:Sudoku.Data.IGrid`1.Item(System.Int32,System.Int32)"/>,
-            which is the main difference between this method and that indexer.
-            </para>
-            </remarks>
-            <seealso cref="P:Sudoku.Data.IGrid`1.Item(System.Int32,System.Int32)"/>
-        </member>
-        <member name="M:Sudoku.Data.IGrid`1.GetHashCode">
-            <inheritdoc cref="M:System.Object.GetHashCode"/>
-        </member>
-        <member name="M:Sudoku.Data.IGrid`1.ToArray">
-            <summary>
-            Serializes this instance to an array, where all digit value will be stored.
-            </summary>
-            <returns>
-            This array. All elements are between 0 to 9, where 0 means the
-            cell is <see cref="F:Sudoku.Data.CellStatus.Empty"/> now.
-            </returns>
-        </member>
-        <member name="M:Sudoku.Data.IGrid`1.GetMask(System.Int32)">
-            <summary>
-            Get a mask at the specified cell.
-            </summary>
-            <param name="offset">The cell offset you want to get.</param>
-            <returns>The mask.</returns>
-        </member>
-        <member name="M:Sudoku.Data.IGrid`1.GetCandidates(System.Int32)">
-            <summary>
-            Get the candidate mask part of the specified cell.
-            </summary>
-            <param name="cell">The cell offset you want to get.</param>
-            <returns>
-            <para>
-            The candidate mask. The return value is a 9-bit <see cref="T:System.Int16"/>
-            value, where each bit will be:
-            <list type="table">
-            <item>
-            <term><c>0</c></term>
-            <description>The cell <b>doesn't contain</b> the possibility of the digit.</description>
-            </item>
-            <item>
-            <term><c>1</c></term>
-            <description>The cell <b>contains</b> the possibility of the digit.</description>
-            </item>
-            </list>
-            </para>
-            <para>
-            For example, if the result mask is 266 (i.e. <c>0b<b>1</b>00_00<b>1</b>_0<b>1</b>0</c> in binary),
-            the value will indicate the cell contains the digit 2, 4 and 9.
-            </para>
-            </returns>
-        </member>
-        <member name="M:Sudoku.Data.IGrid`1.GetPinnableReference">
-            <summary>
-            Returns a reference to the element of the <typeparamref name="T"/> at index zero.
-            </summary>
-            <returns>A reference to the element of the <typeparamref name="T"/> at index zero.</returns>
-        </member>
-        <member name="M:Sudoku.Data.IGrid`1.ToMaskString">
-            <summary>
-            Get all masks and print them.
-            </summary>
-            <returns>The result.</returns>
-            <remarks>
-            Please note that the method cannot be called with a correct behavior using
-            <see cref="T:System.Diagnostics.DebuggerDisplayAttribute"/> to output. It seems that Visual Studio
-            doesn't print correct values when indices of this grid aren't 0. In other words,
-            when we call this method using <see cref="T:System.Diagnostics.DebuggerDisplayAttribute"/>, only <c>grid[0]</c>
-            can be output correctly, and other values will be incorrect: they're always 0.
-            </remarks>
-        </member>
-        <member name="M:Sudoku.Data.IGrid`1.GetStatus(System.Int32)">
-            <summary>
-            Get the cell status at the specified cell.
-            </summary>
-            <param name="cell">The cell.</param>
-            <returns>The cell status.</returns>
-        </member>
-        <member name="M:Sudoku.Data.IGrid`1.Fix">
-            <summary>
-            To fix the current grid (all modifiable values will be changed to given ones).
-            </summary>
-        </member>
-        <member name="M:Sudoku.Data.IGrid`1.Unfix">
-            <summary>
-            To unfix the current grid (all given values will be changed to modifiable ones).
-            </summary>
-        </member>
-        <member name="M:Sudoku.Data.IGrid`1.SetStatus(System.Int32,Sudoku.Data.CellStatus)">
-            <summary>
-            Set the specified cell to the specified status.
-            </summary>
-            <param name="cell">The cell.</param>
-            <param name="status">The status.</param>
-        </member>
-        <member name="M:Sudoku.Data.IGrid`1.SetMask(System.Int32,System.Int16)">
-            <summary>
-            Set the specified cell to the specified mask.
-            </summary>
-            <param name="cell">The cell.</param>
-            <param name="mask">The mask to set.</param>
-        </member>
-        <member name="M:Sudoku.Data.IGrid`1.Equals(`0@,`0@)">
-            <summary>
-            To determine whether two sudoku grid is totally same.
-            </summary>
-            <param name="left">The left one.</param>
-            <param name="right">The right one.</param>
-            <returns>The <see cref="T:System.Boolean"/> result indicating that.</returns>
-        </member>
-        <member name="M:Sudoku.Data.IGrid`1.Parse(System.ReadOnlySpan{System.Char})">
-            <summary>
-            <para>Parses a string value and converts to this type.</para>
-            <para>
-            If you want to parse a PM grid, we recommend you use the method
-            <see cref="M:Sudoku.Data.IGrid`1.Parse(System.String,Sudoku.Data.GridParsingOption)"/> instead of this method.
-            </para>
-            </summary>
-            <param name="str">The string.</param>
-            <returns>The result instance had converted.</returns>
-            <seealso cref="M:Sudoku.Data.IGrid`1.Parse(System.String,Sudoku.Data.GridParsingOption)"/>
-        </member>
-        <member name="M:Sudoku.Data.IGrid`1.Parse(System.Char*)">
-            <summary>
-            Parses a pointer that points to a string value and converts to this type.
-            </summary>
-            <param name="ptrStr">The pointer that points to string.</param>
-            <returns>The result instance.</returns>
-        </member>
-        <member name="M:Sudoku.Data.IGrid`1.Parse(System.String,System.Boolean)">
-            <summary>
-            <para>
-            Parses a string value and converts to this type.
-            </para>
-            <para>
-            If you want to parse a PM grid, you should decide the mode to parse.
-            If you use compatible mode to parse, all single values will be treated as
-            given values; otherwise, recommended mode, which uses '<c><![CDATA[<d>]]></c>'
-            or '<c>*d*</c>' to represent a value be a given or modifiable one. The decision
-            will be indicated and passed by the second parameter <paramref name="compatibleFirst"/>.
-            </para>
-            </summary>
-            <param name="str">The string.</param>
-            <param name="compatibleFirst">
-            Indicates whether the parsing operation should use compatible mode to check PM grid.
-            </param>
-            <returns>The result instance had converted.</returns>
-        </member>
-        <member name="M:Sudoku.Data.IGrid`1.Parse(System.String,Sudoku.Data.GridParsingOption)">
-            <summary>
-            Parses a string value and converts to this type, using a specified grid parsing type.
-            </summary>
-            <param name="str">The string.</param>
-            <param name="gridParsingOption">The grid parsing type.</param>
-            <returns>The result instance had converted.</returns>
-        </member>
-        <member name="M:Sudoku.Data.IGrid`1.TryParse(System.String,Sudoku.Data.GridParsingOption,`0@)">
-            <summary>
-            Try to parse a string and converts to this type, and returns a
-            <see cref="T:System.Boolean"/> value indicating the result of the conversion.
-            </summary>
-            <param name="str">The string.</param>
-            <param name="option">The grid parsing type.</param>
-            <param name="result">
-            The result parsed. If the conversion is failed,
-            this argument will be <see cref="P:Sudoku.Data.IGrid`1.Undefined"/>.
-            </param>
-            <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
-            <seealso cref="P:Sudoku.Data.IGrid`1.Undefined"/>
-        </member>
-        <member name="T:Sudoku.Data.ILinkType`1">
-            <summary>
-            Defines a basic constraint that applied onto a <see cref="T:Sudoku.Data.LinkType"/>.
-            </summary>
-            <typeparam name="T">The type. The type is always <see cref="T:Sudoku.Data.LinkType"/>.</typeparam>
-        </member>
-        <member name="P:Sudoku.Data.ILinkType`1.TypeKind">
-            <summary>
-            The type kind.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Data.ILinkType`1.GetNotation">
-            <summary>
-            Gets the notation of the chain link that combines 2 <see cref="T:Sudoku.Data.Node"/>s.
-            </summary>
-            <returns>The notation <see cref="T:System.String"/> representation.</returns>
-        </member>
-        <member name="M:Sudoku.Data.ILinkType`1.ToString">
-            <inheritdoc cref="M:System.Object.ToString"/>
-        </member>
-        <member name="M:Sudoku.Data.ILinkType`1.GetHashCode">
-            <inheritdoc cref="M:System.Object.GetHashCode"/>
-        </member>
-        <member name="M:Sudoku.Data.ILinkType`1.op_Explicit(System.Byte)~`0">
-            <summary>
-            Explicit cast from <see cref="T:System.Byte"/> to <typeparamref name="T"/>.
-            </summary>
-            <param name="value">The value.</param>
-        </member>
-        <member name="M:Sudoku.Data.ILinkType`1.op_Explicit(`0)~System.Byte">
-            <summary>
-            Explicit cast from <typeparamref name="T"/> to <see cref="T:System.Byte"/>.
-            </summary>
-            <param name="linkType">The link type.</param>
-        </member>
         <member name="T:Sudoku.Data.Link">
             <summary>
             Encapsulates a link used for drawing.
@@ -4914,382 +4914,6 @@
             <param name="this">The type.</param>
             <returns>The name.</returns>
         </member>
-        <member name="T:Sudoku.Models.ColorIdentifier">
-            <summary>
-            Indicates the color identifier that used to identify the color.
-            </summary>
-            <param name="UseId">Indicates whether the current instance suggests an ID using.</param>
-            <param name="Id">
-            Indicates the ID label. The property has a useful value
-            if and only if the property <see cref="P:Sudoku.Models.ColorIdentifier.UseId"/> is <see langword="true"/>.
-            </param>
-            <param name="Color">
-            Indicates the color. The property has a useful value
-            if and only if the property <see cref="P:Sudoku.Models.ColorIdentifier.UseId"/> is <see langword="false"/>.
-            </param>
-            <seealso cref="P:Sudoku.Models.ColorIdentifier.UseId"/>
-        </member>
-        <member name="M:Sudoku.Models.ColorIdentifier.#ctor(System.Boolean,System.Int32,System.Int32)">
-            <summary>
-            Indicates the color identifier that used to identify the color.
-            </summary>
-            <param name="UseId">Indicates whether the current instance suggests an ID using.</param>
-            <param name="Id">
-            Indicates the ID label. The property has a useful value
-            if and only if the property <see cref="P:Sudoku.Models.ColorIdentifier.UseId"/> is <see langword="true"/>.
-            </param>
-            <param name="Color">
-            Indicates the color. The property has a useful value
-            if and only if the property <see cref="P:Sudoku.Models.ColorIdentifier.UseId"/> is <see langword="false"/>.
-            </param>
-            <seealso cref="P:Sudoku.Models.ColorIdentifier.UseId"/>
-        </member>
-        <member name="F:Sudoku.Models.ColorIdentifier.UnexpectedOperationException">
-            <summary>
-            Returns the <see cref="T:System.InvalidOperationException"/> instance to report the unexpected operation
-            for getting the A, R, G, B value.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Models.ColorIdentifier.#ctor(System.Byte,System.Byte,System.Byte)">
-            <summary>
-            Initializes a <see cref="T:Sudoku.Models.ColorIdentifier"/> with the specified R, G, B value.
-            </summary>
-            <param name="r">The red value.</param>
-            <param name="g">The green value.</param>
-            <param name="b">The blue value.</param>
-        </member>
-        <member name="M:Sudoku.Models.ColorIdentifier.#ctor(System.Byte,System.Byte,System.Byte,System.Byte)">
-            <summary>
-            Initializes a <see cref="T:Sudoku.Models.ColorIdentifier"/> with the specified A, R, G, B value.
-            </summary>
-            <param name="a">The alpha value.</param>
-            <param name="r">The red value.</param>
-            <param name="g">The green value.</param>
-            <param name="b">The blue value.</param>
-        </member>
-        <member name="P:Sudoku.Models.ColorIdentifier.A">
-            <summary>
-            Gets the alpha value.
-            </summary>
-            <exception cref="T:System.InvalidOperationException">
-            Throws when <see cref="P:Sudoku.Models.ColorIdentifier.UseId"/> is <see langword="true"/>.
-            </exception>
-            <seealso cref="P:Sudoku.Models.ColorIdentifier.UseId"/>
-        </member>
-        <member name="P:Sudoku.Models.ColorIdentifier.R">
-            <summary>
-            Gets the red value.
-            </summary>
-            <exception cref="T:System.InvalidOperationException">
-            Throws when <see cref="P:Sudoku.Models.ColorIdentifier.UseId"/> is <see langword="true"/>.
-            </exception>
-            <seealso cref="P:Sudoku.Models.ColorIdentifier.UseId"/>
-        </member>
-        <member name="P:Sudoku.Models.ColorIdentifier.G">
-            <summary>
-            Gets the green value.
-            </summary>
-            <exception cref="T:System.InvalidOperationException">
-            Throws when <see cref="P:Sudoku.Models.ColorIdentifier.UseId"/> is <see langword="true"/>.
-            </exception>
-            <seealso cref="P:Sudoku.Models.ColorIdentifier.UseId"/>
-        </member>
-        <member name="P:Sudoku.Models.ColorIdentifier.B">
-            <summary>
-            Gets the blue value.
-            </summary>
-            <exception cref="T:System.InvalidOperationException">
-            Throws when <see cref="P:Sudoku.Models.ColorIdentifier.UseId"/> is <see langword="true"/>.
-            </exception>
-            <seealso cref="P:Sudoku.Models.ColorIdentifier.UseId"/>
-        </member>
-        <member name="M:Sudoku.Models.ColorIdentifier.TryGetColor(System.Byte@,System.Byte@,System.Byte@,System.Byte@)">
-            <summary>
-            Try to get the color value. If the property <see cref="P:Sudoku.Models.ColorIdentifier.UseId"/> is <see langword="true"/>,
-            the return value will be <see langword="false"/>.
-            </summary>
-            <param name="a">The alpha value.</param>
-            <param name="r">The red value.</param>
-            <param name="g">The green value.</param>
-            <param name="b">The blue value.</param>
-            <returns>Returns whether the taking operation is successful.</returns>
-            <seealso cref="P:Sudoku.Models.ColorIdentifier.UseId"/>
-        </member>
-        <member name="M:Sudoku.Models.ColorIdentifier.Equals(Sudoku.Models.ColorIdentifier@)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Models.ColorIdentifier.GetHashCode">
-            <inheritdoc/>
-            <remarks>
-            We on purpose show the another property value. For example, if we uses ID
-            as the instance representing, the result value of get hash code will be the color value,
-            and vice versa.
-            </remarks>
-        </member>
-        <member name="M:Sudoku.Models.ColorIdentifier.ToString">
-            <inheritdoc cref="M:System.Object.ToString"/>
-        </member>
-        <member name="M:Sudoku.Models.ColorIdentifier.op_Equality(Sudoku.Models.ColorIdentifier@,Sudoku.Models.ColorIdentifier@)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Models.ColorIdentifier.op_Inequality(Sudoku.Models.ColorIdentifier@,Sudoku.Models.ColorIdentifier@)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Models.ColorIdentifier.op_Explicit(System.Int32)~Sudoku.Models.ColorIdentifier">
-            <summary>
-            Explicit cast from <see cref="T:System.Int32"/> to <see cref="T:Sudoku.Models.ColorIdentifier"/>.
-            The value is initialized as the ID value.
-            </summary>
-            <param name="id">The ID.</param>
-        </member>
-        <member name="T:Sudoku.Models.PresentationData">
-            <summary>
-            Indicates the presentation data that is used for present the information.
-            </summary>
-            <param name="Cells">The cells.</param>
-            <param name="Candidates">The candidates.</param>
-            <param name="Regions">The regions.</param>
-            <param name="Links">The links.</param>
-            <param name="DirectLines">The direct lines.</param>
-            <param name="UnknownValues">The unknown values.</param>
-        </member>
-        <member name="M:Sudoku.Models.PresentationData.#ctor(System.Collections.Generic.IList{System.ValueTuple{System.Int32,Sudoku.Models.ColorIdentifier}},System.Collections.Generic.IList{System.ValueTuple{System.Int32,Sudoku.Models.ColorIdentifier}},System.Collections.Generic.IList{System.ValueTuple{System.Int32,Sudoku.Models.ColorIdentifier}},System.Collections.Generic.IList{System.ValueTuple{Sudoku.Data.Link,Sudoku.Models.ColorIdentifier}},System.Collections.Generic.IList{System.ValueTuple{Sudoku.Presentation.Crosshatch,Sudoku.Models.ColorIdentifier}},System.Collections.Generic.IList{System.ValueTuple{Sudoku.Presentation.UnknownValue,Sudoku.Models.ColorIdentifier}})">
-            <summary>
-            Indicates the presentation data that is used for present the information.
-            </summary>
-            <param name="Cells">The cells.</param>
-            <param name="Candidates">The candidates.</param>
-            <param name="Regions">The regions.</param>
-            <param name="Links">The links.</param>
-            <param name="DirectLines">The direct lines.</param>
-            <param name="UnknownValues">The unknown values.</param>
-        </member>
-        <member name="F:Sudoku.Models.PresentationData.Undefined">
-            <summary>
-            Indicates the default instance of this type.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Models.PresentationData.IsUndefiened">
-            <summary>
-            Indicates whether the current instance is undefined.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Models.PresentationData.Equals(Sudoku.Models.PresentationData@)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Models.PresentationData.Contains``1(Sudoku.Models.PresentationDataKind,``0)">
-            <summary>
-            Checks whether the collection contains the specified element.
-            </summary>
-            <typeparam name="TStruct">The type of the element.</typeparam>
-            <param name="dataKind">The data kind.</param>
-            <param name="element">The element to check.</param>
-            <returns>A <see cref="T:System.Boolean"/> value.</returns>
-        </member>
-        <member name="M:Sudoku.Models.PresentationData.IndexOf``1(Sudoku.Models.PresentationDataKind,``0)">
-            <summary>
-            Checks whether the collection contains the specified element. If so, return the index of the element.
-            </summary>
-            <typeparam name="TStruct">The type of the element.</typeparam>
-            <param name="dataKind">The data kind.</param>
-            <param name="element">The element to check.</param>
-            <returns>An <see cref="T:System.Int32"/> index. If not found, return -1.</returns>
-        </member>
-        <member name="M:Sudoku.Models.PresentationData.UnknownIdentifierOverlapsWithCell(System.Int32)">
-            <summary>
-            Determines whether the unknown identifiers of the current instance
-            overlaps the specified cell. Of course the property <see cref="P:Sudoku.Models.PresentationData.UnknownValues"/>
-            shouldn't be <see langword="null"/>.
-            </summary>
-            <param name="cell">The cell.</param>
-            <returns>A <see cref="T:System.Boolean"/> result.</returns>
-            <seealso cref="P:Sudoku.Models.PresentationData.UnknownValues"/>
-        </member>
-        <member name="M:Sudoku.Models.PresentationData.Add``1(Sudoku.Models.PresentationDataKind,``0,Sudoku.Models.ColorIdentifier)">
-            <summary>
-            Append an element into the collection.
-            </summary>
-            <typeparam name="TStruct">The type of the element to add.</typeparam>
-            <param name="dataKind">The data kind to append.</param>
-            <param name="element">
-            The element to add. Here we require the type of the argument should be:
-            <list type="table">
-            <listheader>
-            <term>The argument <paramref name="dataKind"/> value</term>
-            <description>The type of this argument</description>
-            </listheader>
-            <item>
-            <term><see cref="F:Sudoku.Models.PresentationDataKind.Cells"/></term>
-            <description><see cref="T:System.Int32"/></description>
-            </item>
-            <item>
-            <term><see cref="F:Sudoku.Models.PresentationDataKind.Candidates"/></term>
-            <description><see cref="T:System.Int32"/></description>
-            </item>
-            <item>
-            <term><see cref="F:Sudoku.Models.PresentationDataKind.Regions"/></term>
-            <description><see cref="T:System.Int32"/></description>
-            </item>
-            <item>
-            <term><see cref="F:Sudoku.Models.PresentationDataKind.Links"/></term>
-            <description><see cref="T:Sudoku.Data.Link"/></description>
-            </item>
-            <item>
-            <term><see cref="F:Sudoku.Models.PresentationDataKind.DirectLines"/></term>
-            <description><see cref="T:Sudoku.Presentation.Crosshatch"/></description>
-            </item>
-            <item>
-            <term><see cref="F:Sudoku.Models.PresentationDataKind.UnknownValue"/></term>
-            <description><see cref="T:Sudoku.Presentation.UnknownValue"/></description>
-            </item>
-            </list>
-            </param>
-            <param name="color">The color identifier.</param>
-            <exception cref="T:System.ArgumentException">
-            Throws when the argument <paramref name="element"/> can't be converted to the target type.
-            </exception>
-            <exception cref="T:System.ArgumentOutOfRangeException">
-            Throws when the argument <paramref name="dataKind"/> is out of range.
-            </exception>
-        </member>
-        <member name="M:Sudoku.Models.PresentationData.Remove``1(Sudoku.Models.PresentationDataKind,``0)">
-            <summary>
-            Removes the element out of the collection.
-            </summary>
-            <typeparam name="TStruct">The type of the element to remove.</typeparam>
-            <param name="dataKind">The data kind.</param>
-            <param name="element">
-            The element. Here we require the type of the argument should be:
-            <list type="table">
-            <listheader>
-            <term>The argument <paramref name="dataKind"/> value</term>
-            <description>The type of this argument</description>
-            </listheader>
-            <item>
-            <term><see cref="F:Sudoku.Models.PresentationDataKind.Cells"/></term>
-            <description><see cref="T:System.Int32"/></description>
-            </item>
-            <item>
-            <term><see cref="F:Sudoku.Models.PresentationDataKind.Candidates"/></term>
-            <description><see cref="T:System.Int32"/></description>
-            </item>
-            <item>
-            <term><see cref="F:Sudoku.Models.PresentationDataKind.Regions"/></term>
-            <description><see cref="T:System.Int32"/></description>
-            </item>
-            <item>
-            <term><see cref="F:Sudoku.Models.PresentationDataKind.Links"/></term>
-            <description><see cref="T:Sudoku.Data.Link"/></description>
-            </item>
-            <item>
-            <term><see cref="F:Sudoku.Models.PresentationDataKind.DirectLines"/></term>
-            <description><see cref="T:Sudoku.Presentation.Crosshatch"/></description>
-            </item>
-            <item>
-            <term><see cref="F:Sudoku.Models.PresentationDataKind.UnknownValue"/></term>
-            <description><see cref="T:Sudoku.Presentation.UnknownValue"/></description>
-            </item>
-            </list>
-            </param>
-            <exception cref="T:System.ArgumentException">
-            Throws when the argument <paramref name="element"/> can't be converted to the target type.
-            </exception>
-            <exception cref="T:System.ArgumentOutOfRangeException">
-            Throws when the argument <paramref name="dataKind"/> is out of range.
-            </exception>
-        </member>
-        <member name="M:Sudoku.Models.PresentationData.GetHashCode">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Models.PresentationData.ToString">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Models.PresentationData.ToSvgCode">
-            <summary>
-            Fetch the SVG-format <see cref="T:System.String"/> instance that can represent this instance.
-            </summary>
-            <returns>The SVG-format <see cref="T:System.String"/> result.</returns>
-        </member>
-        <member name="M:Sudoku.Models.PresentationData.Parse(System.String)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Models.PresentationData.TryParse(System.String,Sudoku.Models.PresentationData@)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Models.PresentationData.EnsureNotNull``1(System.Collections.Generic.IList{System.ValueTuple{``0,Sudoku.Models.ColorIdentifier}}@)">
-            <summary>
-            To ensure the collection isn't <see langword="null"/>. If <see langword="null"/>, the method
-            will initialize the instance specified as the parameter with the modifier <see langword="ref"/>,
-            which means the value can be re-assigned in this method.
-            </summary>
-            <typeparam name="TStruct">The type of the element.</typeparam>
-            <param name="collection">The collection to initialize when <see langword="null"/>.</param>
-            <remarks>
-            The argument can be passed a <see langword="null"/>-able type,
-            and changes to a non-<see langword="null"/> value when the method has been executed wholly.
-            </remarks>
-        </member>
-        <member name="M:Sudoku.Models.PresentationData.ThrowIfArgTypeIsInvalid``2(``0,``1@,System.String)">
-            <summary>
-            Just throws when the argument <paramref name="element"/> is a wrong type, which is dismatched to
-            the type <typeparamref name="TConverted"/>.
-            </summary>
-            <typeparam name="TBase">The type to be converted.</typeparam>
-            <typeparam name="TConverted">The type to convert to.</typeparam>
-            <param name="element">The real value to convert.</param>
-            <param name="result">The result value converted.</param>
-            <param name="argName">
-            The original name of the argument. The argument should keep its <see langword="null"/> value
-            because the value will be initialized by compiler.
-            </param>
-            <exception cref="T:System.ArgumentException">Throws when the type dismatches.</exception>
-        </member>
-        <member name="M:Sudoku.Models.PresentationData.op_Equality(Sudoku.Models.PresentationData@,Sudoku.Models.PresentationData@)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Models.PresentationData.op_Inequality(Sudoku.Models.PresentationData@,Sudoku.Models.PresentationData@)">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Models.PresentationDataKind">
-            <summary>
-            Presents a kind to identify the inner presentation data.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Models.PresentationDataKind.None">
-            <summary>
-            Indicates the data kind is none.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Models.PresentationDataKind.Cells">
-            <summary>
-            Indicates the data kind is for cells.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Models.PresentationDataKind.Candidates">
-            <summary>
-            Indicates the data kind is for candidates.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Models.PresentationDataKind.Regions">
-            <summary>
-            Indicates the data kind is for regions.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Models.PresentationDataKind.Links">
-            <summary>
-            Indicates the data kind is for links.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Models.PresentationDataKind.DirectLines">
-            <summary>
-            Indicates the data kind is for direct lines.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Models.PresentationDataKind.UnknownValue">
-            <summary>
-            Indicates the data kind is for unknown value.
-            </summary>
-        </member>
         <member name="T:Sudoku.ModuleInitializer">
             <summary>
             <para>Provides with the type that contains a module initializer.</para>
@@ -5325,6 +4949,134 @@
             the file will be skipped directly instead.
             </para>
             </exception>
+        </member>
+        <member name="T:Sudoku.Presentation.ColorIdentifier">
+            <summary>
+            Indicates the color identifier that used to identify the color.
+            </summary>
+            <param name="UseId">Indicates whether the current instance suggests an ID using.</param>
+            <param name="Id">
+            Indicates the ID label. The property has a useful value
+            if and only if the property <see cref="P:Sudoku.Presentation.ColorIdentifier.UseId"/> is <see langword="true"/>.
+            </param>
+            <param name="Color">
+            Indicates the color. The property has a useful value
+            if and only if the property <see cref="P:Sudoku.Presentation.ColorIdentifier.UseId"/> is <see langword="false"/>.
+            </param>
+            <seealso cref="P:Sudoku.Presentation.ColorIdentifier.UseId"/>
+        </member>
+        <member name="M:Sudoku.Presentation.ColorIdentifier.#ctor(System.Boolean,System.Int32,System.Int32)">
+            <summary>
+            Indicates the color identifier that used to identify the color.
+            </summary>
+            <param name="UseId">Indicates whether the current instance suggests an ID using.</param>
+            <param name="Id">
+            Indicates the ID label. The property has a useful value
+            if and only if the property <see cref="P:Sudoku.Presentation.ColorIdentifier.UseId"/> is <see langword="true"/>.
+            </param>
+            <param name="Color">
+            Indicates the color. The property has a useful value
+            if and only if the property <see cref="P:Sudoku.Presentation.ColorIdentifier.UseId"/> is <see langword="false"/>.
+            </param>
+            <seealso cref="P:Sudoku.Presentation.ColorIdentifier.UseId"/>
+        </member>
+        <member name="F:Sudoku.Presentation.ColorIdentifier.UnexpectedOperationException">
+            <summary>
+            Returns the <see cref="T:System.InvalidOperationException"/> instance to report the unexpected operation
+            for getting the A, R, G, B value.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Presentation.ColorIdentifier.#ctor(System.Byte,System.Byte,System.Byte)">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Presentation.ColorIdentifier"/> with the specified R, G, B value.
+            </summary>
+            <param name="r">The red value.</param>
+            <param name="g">The green value.</param>
+            <param name="b">The blue value.</param>
+        </member>
+        <member name="M:Sudoku.Presentation.ColorIdentifier.#ctor(System.Byte,System.Byte,System.Byte,System.Byte)">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Presentation.ColorIdentifier"/> with the specified A, R, G, B value.
+            </summary>
+            <param name="a">The alpha value.</param>
+            <param name="r">The red value.</param>
+            <param name="g">The green value.</param>
+            <param name="b">The blue value.</param>
+        </member>
+        <member name="P:Sudoku.Presentation.ColorIdentifier.A">
+            <summary>
+            Gets the alpha value.
+            </summary>
+            <exception cref="T:System.InvalidOperationException">
+            Throws when <see cref="P:Sudoku.Presentation.ColorIdentifier.UseId"/> is <see langword="true"/>.
+            </exception>
+            <seealso cref="P:Sudoku.Presentation.ColorIdentifier.UseId"/>
+        </member>
+        <member name="P:Sudoku.Presentation.ColorIdentifier.R">
+            <summary>
+            Gets the red value.
+            </summary>
+            <exception cref="T:System.InvalidOperationException">
+            Throws when <see cref="P:Sudoku.Presentation.ColorIdentifier.UseId"/> is <see langword="true"/>.
+            </exception>
+            <seealso cref="P:Sudoku.Presentation.ColorIdentifier.UseId"/>
+        </member>
+        <member name="P:Sudoku.Presentation.ColorIdentifier.G">
+            <summary>
+            Gets the green value.
+            </summary>
+            <exception cref="T:System.InvalidOperationException">
+            Throws when <see cref="P:Sudoku.Presentation.ColorIdentifier.UseId"/> is <see langword="true"/>.
+            </exception>
+            <seealso cref="P:Sudoku.Presentation.ColorIdentifier.UseId"/>
+        </member>
+        <member name="P:Sudoku.Presentation.ColorIdentifier.B">
+            <summary>
+            Gets the blue value.
+            </summary>
+            <exception cref="T:System.InvalidOperationException">
+            Throws when <see cref="P:Sudoku.Presentation.ColorIdentifier.UseId"/> is <see langword="true"/>.
+            </exception>
+            <seealso cref="P:Sudoku.Presentation.ColorIdentifier.UseId"/>
+        </member>
+        <member name="M:Sudoku.Presentation.ColorIdentifier.TryGetColor(System.Byte@,System.Byte@,System.Byte@,System.Byte@)">
+            <summary>
+            Try to get the color value. If the property <see cref="P:Sudoku.Presentation.ColorIdentifier.UseId"/> is <see langword="true"/>,
+            the return value will be <see langword="false"/>.
+            </summary>
+            <param name="a">The alpha value.</param>
+            <param name="r">The red value.</param>
+            <param name="g">The green value.</param>
+            <param name="b">The blue value.</param>
+            <returns>Returns whether the taking operation is successful.</returns>
+            <seealso cref="P:Sudoku.Presentation.ColorIdentifier.UseId"/>
+        </member>
+        <member name="M:Sudoku.Presentation.ColorIdentifier.Equals(Sudoku.Presentation.ColorIdentifier@)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Presentation.ColorIdentifier.GetHashCode">
+            <inheritdoc/>
+            <remarks>
+            We on purpose show the another property value. For example, if we uses ID
+            as the instance representing, the result value of get hash code will be the color value,
+            and vice versa.
+            </remarks>
+        </member>
+        <member name="M:Sudoku.Presentation.ColorIdentifier.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
+        <member name="M:Sudoku.Presentation.ColorIdentifier.op_Equality(Sudoku.Presentation.ColorIdentifier@,Sudoku.Presentation.ColorIdentifier@)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Presentation.ColorIdentifier.op_Inequality(Sudoku.Presentation.ColorIdentifier@,Sudoku.Presentation.ColorIdentifier@)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Presentation.ColorIdentifier.op_Explicit(System.Int32)~Sudoku.Presentation.ColorIdentifier">
+            <summary>
+            Explicit cast from <see cref="T:System.Int32"/> to <see cref="T:Sudoku.Presentation.ColorIdentifier"/>.
+            The value is initialized as the ID value.
+            </summary>
+            <param name="id">The ID.</param>
         </member>
         <member name="T:Sudoku.Presentation.Coordinate">
             <summary>
@@ -5504,6 +5256,254 @@
         </member>
         <member name="M:Sudoku.Presentation.Crosshatch.JsonConverter.Write(System.Text.Json.Utf8JsonWriter,Sudoku.Presentation.Crosshatch,System.Text.Json.JsonSerializerOptions)">
             <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Presentation.PresentationData">
+            <summary>
+            Indicates the presentation data that is used for present the information.
+            </summary>
+            <param name="Cells">The cells.</param>
+            <param name="Candidates">The candidates.</param>
+            <param name="Regions">The regions.</param>
+            <param name="Links">The links.</param>
+            <param name="DirectLines">The direct lines.</param>
+            <param name="UnknownValues">The unknown values.</param>
+        </member>
+        <member name="M:Sudoku.Presentation.PresentationData.#ctor(System.Collections.Generic.IList{System.ValueTuple{System.Int32,Sudoku.Presentation.ColorIdentifier}},System.Collections.Generic.IList{System.ValueTuple{System.Int32,Sudoku.Presentation.ColorIdentifier}},System.Collections.Generic.IList{System.ValueTuple{System.Int32,Sudoku.Presentation.ColorIdentifier}},System.Collections.Generic.IList{System.ValueTuple{Sudoku.Data.Link,Sudoku.Presentation.ColorIdentifier}},System.Collections.Generic.IList{System.ValueTuple{Sudoku.Presentation.Crosshatch,Sudoku.Presentation.ColorIdentifier}},System.Collections.Generic.IList{System.ValueTuple{Sudoku.Presentation.UnknownValue,Sudoku.Presentation.ColorIdentifier}})">
+            <summary>
+            Indicates the presentation data that is used for present the information.
+            </summary>
+            <param name="Cells">The cells.</param>
+            <param name="Candidates">The candidates.</param>
+            <param name="Regions">The regions.</param>
+            <param name="Links">The links.</param>
+            <param name="DirectLines">The direct lines.</param>
+            <param name="UnknownValues">The unknown values.</param>
+        </member>
+        <member name="F:Sudoku.Presentation.PresentationData.Undefined">
+            <summary>
+            Indicates the default instance of this type.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Presentation.PresentationData.IsUndefiened">
+            <summary>
+            Indicates whether the current instance is undefined.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Presentation.PresentationData.Equals(Sudoku.Presentation.PresentationData@)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Presentation.PresentationData.Contains``1(Sudoku.Presentation.PresentationDataKind,``0)">
+            <summary>
+            Checks whether the collection contains the specified element.
+            </summary>
+            <typeparam name="TStruct">The type of the element.</typeparam>
+            <param name="dataKind">The data kind.</param>
+            <param name="element">The element to check.</param>
+            <returns>A <see cref="T:System.Boolean"/> value.</returns>
+        </member>
+        <member name="M:Sudoku.Presentation.PresentationData.IndexOf``1(Sudoku.Presentation.PresentationDataKind,``0)">
+            <summary>
+            Checks whether the collection contains the specified element. If so, return the index of the element.
+            </summary>
+            <typeparam name="TStruct">The type of the element.</typeparam>
+            <param name="dataKind">The data kind.</param>
+            <param name="element">The element to check.</param>
+            <returns>An <see cref="T:System.Int32"/> index. If not found, return -1.</returns>
+        </member>
+        <member name="M:Sudoku.Presentation.PresentationData.UnknownIdentifierOverlapsWithCell(System.Int32)">
+            <summary>
+            Determines whether the unknown identifiers of the current instance
+            overlaps the specified cell. Of course the property <see cref="P:Sudoku.Presentation.PresentationData.UnknownValues"/>
+            shouldn't be <see langword="null"/>.
+            </summary>
+            <param name="cell">The cell.</param>
+            <returns>A <see cref="T:System.Boolean"/> result.</returns>
+            <seealso cref="P:Sudoku.Presentation.PresentationData.UnknownValues"/>
+        </member>
+        <member name="M:Sudoku.Presentation.PresentationData.Add``1(Sudoku.Presentation.PresentationDataKind,``0,Sudoku.Presentation.ColorIdentifier)">
+            <summary>
+            Append an element into the collection.
+            </summary>
+            <typeparam name="TStruct">The type of the element to add.</typeparam>
+            <param name="dataKind">The data kind to append.</param>
+            <param name="element">
+            The element to add. Here we require the type of the argument should be:
+            <list type="table">
+            <listheader>
+            <term>The argument <paramref name="dataKind"/> value</term>
+            <description>The type of this argument</description>
+            </listheader>
+            <item>
+            <term><see cref="F:Sudoku.Presentation.PresentationDataKind.Cells"/></term>
+            <description><see cref="T:System.Int32"/></description>
+            </item>
+            <item>
+            <term><see cref="F:Sudoku.Presentation.PresentationDataKind.Candidates"/></term>
+            <description><see cref="T:System.Int32"/></description>
+            </item>
+            <item>
+            <term><see cref="F:Sudoku.Presentation.PresentationDataKind.Regions"/></term>
+            <description><see cref="T:System.Int32"/></description>
+            </item>
+            <item>
+            <term><see cref="F:Sudoku.Presentation.PresentationDataKind.Links"/></term>
+            <description><see cref="T:Sudoku.Data.Link"/></description>
+            </item>
+            <item>
+            <term><see cref="F:Sudoku.Presentation.PresentationDataKind.DirectLines"/></term>
+            <description><see cref="T:Sudoku.Presentation.Crosshatch"/></description>
+            </item>
+            <item>
+            <term><see cref="F:Sudoku.Presentation.PresentationDataKind.UnknownValue"/></term>
+            <description><see cref="T:Sudoku.Presentation.UnknownValue"/></description>
+            </item>
+            </list>
+            </param>
+            <param name="color">The color identifier.</param>
+            <exception cref="T:System.ArgumentException">
+            Throws when the argument <paramref name="element"/> can't be converted to the target type.
+            </exception>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+            Throws when the argument <paramref name="dataKind"/> is out of range.
+            </exception>
+        </member>
+        <member name="M:Sudoku.Presentation.PresentationData.Remove``1(Sudoku.Presentation.PresentationDataKind,``0)">
+            <summary>
+            Removes the element out of the collection.
+            </summary>
+            <typeparam name="TStruct">The type of the element to remove.</typeparam>
+            <param name="dataKind">The data kind.</param>
+            <param name="element">
+            The element. Here we require the type of the argument should be:
+            <list type="table">
+            <listheader>
+            <term>The argument <paramref name="dataKind"/> value</term>
+            <description>The type of this argument</description>
+            </listheader>
+            <item>
+            <term><see cref="F:Sudoku.Presentation.PresentationDataKind.Cells"/></term>
+            <description><see cref="T:System.Int32"/></description>
+            </item>
+            <item>
+            <term><see cref="F:Sudoku.Presentation.PresentationDataKind.Candidates"/></term>
+            <description><see cref="T:System.Int32"/></description>
+            </item>
+            <item>
+            <term><see cref="F:Sudoku.Presentation.PresentationDataKind.Regions"/></term>
+            <description><see cref="T:System.Int32"/></description>
+            </item>
+            <item>
+            <term><see cref="F:Sudoku.Presentation.PresentationDataKind.Links"/></term>
+            <description><see cref="T:Sudoku.Data.Link"/></description>
+            </item>
+            <item>
+            <term><see cref="F:Sudoku.Presentation.PresentationDataKind.DirectLines"/></term>
+            <description><see cref="T:Sudoku.Presentation.Crosshatch"/></description>
+            </item>
+            <item>
+            <term><see cref="F:Sudoku.Presentation.PresentationDataKind.UnknownValue"/></term>
+            <description><see cref="T:Sudoku.Presentation.UnknownValue"/></description>
+            </item>
+            </list>
+            </param>
+            <exception cref="T:System.ArgumentException">
+            Throws when the argument <paramref name="element"/> can't be converted to the target type.
+            </exception>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+            Throws when the argument <paramref name="dataKind"/> is out of range.
+            </exception>
+        </member>
+        <member name="M:Sudoku.Presentation.PresentationData.GetHashCode">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Presentation.PresentationData.ToString">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Presentation.PresentationData.ToSvgCode">
+            <summary>
+            Fetch the SVG-format <see cref="T:System.String"/> instance that can represent this instance.
+            </summary>
+            <returns>The SVG-format <see cref="T:System.String"/> result.</returns>
+        </member>
+        <member name="M:Sudoku.Presentation.PresentationData.Parse(System.String)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Presentation.PresentationData.TryParse(System.String,Sudoku.Presentation.PresentationData@)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Presentation.PresentationData.EnsureNotNull``1(System.Collections.Generic.IList{System.ValueTuple{``0,Sudoku.Presentation.ColorIdentifier}}@)">
+            <summary>
+            To ensure the collection isn't <see langword="null"/>. If <see langword="null"/>, the method
+            will initialize the instance specified as the parameter with the modifier <see langword="ref"/>,
+            which means the value can be re-assigned in this method.
+            </summary>
+            <typeparam name="TStruct">The type of the element.</typeparam>
+            <param name="collection">The collection to initialize when <see langword="null"/>.</param>
+            <remarks>
+            The argument can be passed a <see langword="null"/>-able type,
+            and changes to a non-<see langword="null"/> value when the method has been executed wholly.
+            </remarks>
+        </member>
+        <member name="M:Sudoku.Presentation.PresentationData.ThrowIfArgTypeIsInvalid``2(``0,``1@,System.String)">
+            <summary>
+            Just throws when the argument <paramref name="element"/> is a wrong type, which is dismatched to
+            the type <typeparamref name="TConverted"/>.
+            </summary>
+            <typeparam name="TBase">The type to be converted.</typeparam>
+            <typeparam name="TConverted">The type to convert to.</typeparam>
+            <param name="element">The real value to convert.</param>
+            <param name="result">The result value converted.</param>
+            <param name="argName">
+            The original name of the argument. The argument should keep its <see langword="null"/> value
+            because the value will be initialized by compiler.
+            </param>
+            <exception cref="T:System.ArgumentException">Throws when the type dismatches.</exception>
+        </member>
+        <member name="M:Sudoku.Presentation.PresentationData.op_Equality(Sudoku.Presentation.PresentationData@,Sudoku.Presentation.PresentationData@)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Presentation.PresentationData.op_Inequality(Sudoku.Presentation.PresentationData@,Sudoku.Presentation.PresentationData@)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Presentation.PresentationDataKind">
+            <summary>
+            Presents a kind to identify the inner presentation data.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Presentation.PresentationDataKind.None">
+            <summary>
+            Indicates the data kind is none.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Presentation.PresentationDataKind.Cells">
+            <summary>
+            Indicates the data kind is for cells.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Presentation.PresentationDataKind.Candidates">
+            <summary>
+            Indicates the data kind is for candidates.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Presentation.PresentationDataKind.Regions">
+            <summary>
+            Indicates the data kind is for regions.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Presentation.PresentationDataKind.Links">
+            <summary>
+            Indicates the data kind is for links.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Presentation.PresentationDataKind.DirectLines">
+            <summary>
+            Indicates the data kind is for direct lines.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Presentation.PresentationDataKind.UnknownValue">
+            <summary>
+            Indicates the data kind is for unknown value.
+            </summary>
         </member>
         <member name="T:Sudoku.Presentation.UnknownValue">
             <summary>

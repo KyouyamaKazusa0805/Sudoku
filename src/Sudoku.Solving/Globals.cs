@@ -18,7 +18,6 @@ global using Sudoku.Collections;
 global using Sudoku.Data;
 global using Sudoku.Diagnostics.CodeAnalysis;
 global using Sudoku.Diagnostics.CodeGen;
-global using Sudoku.Models;
 global using Sudoku.Presentation;
 global using Sudoku.Resources;
 global using Sudoku.Solving.BruteForces;
