@@ -1,0 +1,238 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Nano</name>
+    </assembly>
+    <members>
+        <member name="T:Nano.App">
+            <summary>
+            Provides application-specific behavior to supplement the default <see cref="T:Microsoft.UI.Xaml.Application"/> class.
+            </summary>
+        </member>
+        <member name="F:Nano.App._window">
+            <summary>
+            Indicates the main window.
+            </summary>
+        </member>
+        <member name="M:Nano.App.#ctor">
+            <summary>
+            <para>Initializes the singleton application object.</para>
+            <para>
+            This is the first line of authored code
+            executed, and as such is the logical equivalent of <c>main()</c> or <c>WinMain()</c>.
+            </para>
+            </summary>
+        </member>
+        <member name="M:Nano.App.OnLaunched(Microsoft.UI.Xaml.LaunchActivatedEventArgs)">
+            <summary>
+            Invoked when the application is launched normally by the end user.
+            Other entry points will be used such as when the application is launched to open a specific file.
+            </summary>
+            <param name="args">Details about the launch request and process.</param>
+        </member>
+        <member name="M:Nano.App.InitializeComponent">
+            <summary>
+            InitializeComponent()
+            </summary>
+        </member>
+        <member name="M:Nano.App.GetXamlType(System.Type)">
+            <summary>
+            GetXamlType(Type)
+            </summary>
+        </member>
+        <member name="M:Nano.App.GetXamlType(System.String)">
+            <summary>
+            GetXamlType(String)
+            </summary>
+        </member>
+        <member name="M:Nano.App.GetXmlnsDefinitions">
+            <summary>
+            GetXmlnsDefinitions()
+            </summary>
+        </member>
+        <member name="T:Nano.Commands.DelegateCommand">
+            <summary>
+            Provides with the type that handles a command.
+            </summary>
+        </member>
+        <member name="P:Nano.Commands.DelegateCommand.CanExecuteCommand">
+            <summary>
+            Indicates the property holding a method that checks whether the current state
+            can execute the command or not.
+            </summary>
+        </member>
+        <member name="P:Nano.Commands.DelegateCommand.ExecuteCommand">
+            <summary>
+            Indicates the property holding a method that handles the command.
+            </summary>
+        </member>
+        <member name="E:Nano.Commands.DelegateCommand.CanExecuteChanged">
+            <inheritdoc/>
+        </member>
+        <member name="M:Nano.Commands.DelegateCommand.Execute(System.Object)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Nano.Commands.DelegateCommand.CanExecute(System.Object)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Nano.MainWindow">
+            <summary>
+            An empty window that can be used on its own or navigated to within a <see cref="T:Microsoft.UI.Xaml.Controls.Frame"/>.
+            </summary>
+        </member>
+        <member name="M:Nano.MainWindow.#ctor">
+            <summary>
+            Initializes a <see cref="T:Nano.MainWindow"/> instance.
+            </summary>
+        </member>
+        <member name="M:Nano.MainWindow.InitializeComponent">
+            <summary>
+            InitializeComponent()
+            </summary>
+        </member>
+        <member name="M:Nano.MainWindow.Connect(System.Int32,System.Object)">
+            <summary>
+            Connect()
+            </summary>
+        </member>
+        <member name="M:Nano.MainWindow.GetBindingConnector(System.Int32,System.Object)">
+            <summary>
+            GetBindingConnector(int connectionId, object target)
+            </summary>
+        </member>
+        <member name="T:Nano.Pages.DemoPage">
+            <summary>
+            An empty page that can be used on its own or navigated to within a <see cref="T:Microsoft.UI.Xaml.Controls.Frame"/>.
+            </summary>
+        </member>
+        <member name="M:Nano.Pages.DemoPage.#ctor">
+            <summary>
+            Initializes a <see cref="T:Nano.Pages.DemoPage"/> instance.
+            </summary>
+        </member>
+        <member name="M:Nano.Pages.DemoPage.InitializeComponent">
+            <summary>
+            InitializeComponent()
+            </summary>
+        </member>
+        <member name="M:Nano.Pages.DemoPage.Connect(System.Int32,System.Object)">
+            <summary>
+            Connect()
+            </summary>
+        </member>
+        <member name="M:Nano.Pages.DemoPage.GetBindingConnector(System.Int32,System.Object)">
+            <summary>
+            GetBindingConnector(int connectionId, object target)
+            </summary>
+        </member>
+        <member name="T:Nano.ViewModels.DemoPageViewModel">
+            <summary>
+            Indicates the view model that binds with <see cref="T:Nano.Pages.DemoPage"/>.
+            </summary>
+            <seealso cref="T:Nano.Pages.DemoPage"/>
+        </member>
+        <member name="M:Nano.ViewModels.DemoPageViewModel.#ctor">
+            <summary>
+            Initializes a <see cref="T:Nano.ViewModels.DemoPageViewModel"/> instance.
+            </summary>
+        </member>
+        <member name="F:Nano.ViewModels.DemoPageViewModel._first">
+            <summary>
+            The back field for the property <see cref="P:Nano.ViewModels.DemoPageViewModel.First"/>.
+            </summary>
+            <seealso cref="P:Nano.ViewModels.DemoPageViewModel.First"/>
+        </member>
+        <member name="F:Nano.ViewModels.DemoPageViewModel._second">
+            <summary>
+            The back field for the property <see cref="P:Nano.ViewModels.DemoPageViewModel.Second"/>.
+            </summary>
+            <seealso cref="P:Nano.ViewModels.DemoPageViewModel.Second"/>
+        </member>
+        <member name="F:Nano.ViewModels.DemoPageViewModel._result">
+            <summary>
+            The back field for the property <see cref="P:Nano.ViewModels.DemoPageViewModel.Result"/>.
+            </summary>
+            <seealso cref="P:Nano.ViewModels.DemoPageViewModel.Result"/>
+        </member>
+        <member name="P:Nano.ViewModels.DemoPageViewModel.First">
+            <summary>
+            Indicates the first number.
+            </summary>
+        </member>
+        <member name="P:Nano.ViewModels.DemoPageViewModel.Second">
+            <summary>
+            Indicates the second number.
+            </summary>
+        </member>
+        <member name="P:Nano.ViewModels.DemoPageViewModel.Result">
+            <summary>
+            Indicates the result number.
+            </summary>
+        </member>
+        <member name="P:Nano.ViewModels.DemoPageViewModel.AddCommand">
+            <summary>
+            Indicates the command that handles the adding operation.
+            </summary>
+        </member>
+        <member name="M:Nano.ViewModels.DemoPageViewModel.Add(System.Object)">
+            <summary>
+            The back method binds with the property <see cref="P:Nano.ViewModels.DemoPageViewModel.AddCommand"/>.
+            </summary>
+            <param name="parameter"></param>
+            <seealso cref="P:Nano.ViewModels.DemoPageViewModel.AddCommand"/>
+        </member>
+        <member name="T:Nano.ViewModels.NotificationObject">
+            <summary>
+            Defines an abstraction on view models.
+            The type will be used to provide with inheritance on all view models, including the members
+            about executing and raising events on property changed.
+            </summary>
+        </member>
+        <member name="F:Nano.ViewModels.NotificationObject.SyncRoot">
+            <summary>
+            Indicates the object that is only used on synchronization.
+            </summary>
+        </member>
+        <member name="F:Nano.ViewModels.NotificationObject._propertyChangedHandler">
+            <summary>
+            Indicates the back field for the event <see cref="E:Nano.ViewModels.NotificationObject.PropertyChanged"/>.
+            </summary>
+            <seealso cref="E:Nano.ViewModels.NotificationObject.PropertyChanged"/>
+        </member>
+        <member name="E:Nano.ViewModels.NotificationObject.PropertyChanged">
+            <inheritdoc/>
+        </member>
+        <member name="M:Nano.ViewModels.NotificationObject.RaiseNotification(System.String)">
+            <summary>
+            To raise the event <see cref="E:Nano.ViewModels.NotificationObject.PropertyChanged"/> during the notification.
+            </summary>
+            <param name="propertyName">Indicates the property name.</param>
+            <seealso cref="E:Nano.ViewModels.NotificationObject.PropertyChanged"/>
+        </member>
+        <member name="T:Nano.Program">
+            <summary>
+            Program class
+            </summary>
+        </member>
+        <member name="T:Nano.Nano_XamlTypeInfo.XamlMetaDataProvider">
+            <summary>
+            Main class for providing metadata for the app or library
+            </summary>
+        </member>
+        <member name="M:Nano.Nano_XamlTypeInfo.XamlMetaDataProvider.GetXamlType(System.Type)">
+            <summary>
+            GetXamlType(Type)
+            </summary>
+        </member>
+        <member name="M:Nano.Nano_XamlTypeInfo.XamlMetaDataProvider.GetXamlType(System.String)">
+            <summary>
+            GetXamlType(String)
+            </summary>
+        </member>
+        <member name="M:Nano.Nano_XamlTypeInfo.XamlMetaDataProvider.GetXmlnsDefinitions">
+            <summary>
+            GetXmlnsDefinitions()
+            </summary>
+        </member>
+    </members>
+</doc>

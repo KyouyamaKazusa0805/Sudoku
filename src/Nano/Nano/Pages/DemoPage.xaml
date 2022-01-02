@@ -1,0 +1,27 @@
+﻿<Page
+	x:Class="Nano.Pages.DemoPage"
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	xmlns:vm="using:Nano.ViewModels"
+	mc:Ignorable="d"
+	Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+	<Page.DataContext>
+		<vm:DemoPageViewModel />
+	</Page.DataContext>
+
+	<Grid>
+		<Grid.RowDefinitions>
+			<RowDefinition />
+			<RowDefinition />
+			<RowDefinition />
+			<RowDefinition />
+		</Grid.RowDefinitions>
+		
+		<Slider x:Name="_Slider1" Grid.Row="0" Value="{Binding First,Mode=TwoWay}" />
+		<Slider x:Name="_Slider2" Grid.Row="1" Value="{Binding Second,Mode=TwoWay}" />
+		<Slider x:Name="_SliderResult" Grid.Row="2" Value="{Binding Result,Mode=TwoWay}" />
+		<Button x:Name="_ButtonAdd" Grid.Row="3" Content="Add" Command="{Binding AddCommand}" />
+	</Grid>
+</Page>

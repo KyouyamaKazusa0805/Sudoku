@@ -9,8 +9,4 @@ public sealed partial class MainWindow : Window
 	/// Initializes a <see cref="MainWindow"/> instance.
 	/// </summary>
 	public MainWindow() => InitializeComponent();
-
-
-	private void MyButton_Click([IsDiscard] object sender, [IsDiscard] RoutedEventArgs e) =>
-		_MyButton.Content = "Clicked";
 }

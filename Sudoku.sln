@@ -41,7 +41,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Windows 10 Projects", "Wind
 EndProject
 Project("{C7167F0D-BC9F-4E6E-AFE1-012C56B48DB5}") = "Nano (Package)", "src\Nano\Nano (Package)\Nano (Package).wapproj", "{8647EB29-E715-4869-B6F4-B0368B45F852}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nano", "src\Nano\Nano\Nano.csproj", "{59260C80-1883-4ABE-9ACF-5261F4B64B6F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Nano", "src\Nano\Nano\Nano.csproj", "{59260C80-1883-4ABE-9ACF-5261F4B64B6F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
