@@ -166,6 +166,11 @@
             </summary>
             <exception cref="T:System.InvalidOperationException">Throws when the list has already been empty.</exception>
         </member>
+        <member name="M:Sudoku.Collections.ChainNodeSet.Sort">
+            <summary>
+            To sort the collection.
+            </summary>
+        </member>
         <member name="M:Sudoku.Collections.ChainNodeSet.Contains(Sudoku.Data.ChainNode)">
             <summary>
             Determine whether the collection contains the specified chain node,

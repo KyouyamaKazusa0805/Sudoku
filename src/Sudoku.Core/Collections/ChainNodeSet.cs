@@ -175,6 +175,18 @@ public partial struct ChainNodeSet : IEnumerable
 		_ = Count > 0 ? Count-- : throw new InvalidOperationException("The list has already been empty.");
 
 	/// <summary>
+	/// To sort the collection.
+	/// </summary>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public unsafe void Sort()
+	{
+		Algorithms.Sort(_chainNodes, &cmp, 0, Count - 1);
+
+
+		static int cmp(ChainNode l, ChainNode r) => l.Mask > r.Mask ? 1 : l.Mask < r.Mask ? -1 : 0;
+	}
+
+	/// <summary>
 	/// Determine whether the collection contains the specified chain node,
 	/// whose mask exists in this collection.
 	/// </summary>

@@ -9,6 +9,16 @@
             Provides all algorithm processing methods.
             </summary>
         </member>
+        <member name="M:System.Algorithms.Sort``1(``0[],,System.Int32,System.Int32)">
+            <summary>
+            Sort the specified array by quick sort.
+            </summary>
+            <typeparam name="T">The type of each element.</typeparam>
+            <param name="this">The array.</param>
+            <param name="comparer">The method to compare two elements.</param>
+            <param name="startIndex">Indicates the start index.</param>
+            <param name="endIndex">Indicates the end index.</param>
+        </member>
         <member name="M:System.Algorithms.Sort``1(``0[],)">
             <summary>
             Sort the specified array by quick sort.
@@ -17,10 +27,10 @@
             <param name="this">The array.</param>
             <param name="comparer">The method to compare two elements.</param>
             <remarks>
-            If you want to use this method, please note that the <typeparamref name="T"/>
-            may not be the built-in types such as <see cref="T:System.Int32"/>, <see cref="T:System.Single"/> or so on,
-            because they can use operators directly.
+            If you want to use this method, please call the other method
+            <see cref="!:Sort&lt;T&gt;(T[], delegate*&lt;T, T, int&gt;, int, int)"/> instead.
             </remarks>
+            <seealso cref="!:Sort&lt;T&gt;(T[], delegate*&lt;T, T, int&gt;, int, int)"/>
         </member>
         <member name="M:System.Algorithms.GetSubsets``1(System.Collections.Generic.IReadOnlyList{``0})">
             <summary>
