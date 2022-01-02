@@ -37,34 +37,34 @@
 [AutoEquality(nameof(Mask))]
 [AutoDeconstructLambda(nameof(Candidate), nameof(IsOn))]
 [AutoDeconstruct(nameof(Cell), nameof(Digit), nameof(IsOn))]
-public unsafe partial record struct ChainNode(int Mask) : IValueEquatable<ChainNode>
+public unsafe partial record struct Node(int Mask) : IValueEquatable<Node>
 {
 	/// <summary>
 	/// Indicates the undefined instance that is used for providing with a value that only used in an invalid case.
 	/// </summary>
-	public static readonly ChainNode Undefined;
+	public static readonly Node Undefined;
 
 
 	/// <summary>
 	/// Indicates the parents.
 	/// </summary>
-	private ChainNode[]? _rawParents = null;
+	private Node[]? _rawParents = null;
 
 
 	/// <summary>
-	/// Initializes a <see cref="ChainNode"/> instance using the specified cell, digit and the status
+	/// Initializes a <see cref="Node"/> instance using the specified cell, digit and the status
 	/// value as a <see cref="bool"/> value.
 	/// </summary>
 	/// <param name="cell">The cell used.</param>
 	/// <param name="digit">The digit used.</param>
 	/// <param name="isOn">A <see cref="bool"/> result indicating whether the node is on.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public ChainNode(byte cell, byte digit, bool isOn) : this(ConstructMask(cell, digit, isOn))
+	public Node(byte cell, byte digit, bool isOn) : this(ConstructMask(cell, digit, isOn))
 	{
 	}
 
 	/// <summary>
-	/// Initializes a <see cref="ChainNode"/> instance using the specified cell, digit,
+	/// Initializes a <see cref="Node"/> instance using the specified cell, digit,
 	/// the status value as a <see cref="bool"/> value, and a parent node.
 	/// </summary>
 	/// <param name="cell">The cell used.</param>
@@ -72,14 +72,14 @@ public unsafe partial record struct ChainNode(int Mask) : IValueEquatable<ChainN
 	/// <param name="isOn">A <see cref="bool"/> result indicating whether the node is on.</param>
 	/// <param name="parent">The parent node.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public ChainNode(byte cell, byte digit, bool isOn, in ChainNode parent) : this(ConstructMask(cell, digit, isOn, 1))
+	public Node(byte cell, byte digit, bool isOn, in Node parent) : this(ConstructMask(cell, digit, isOn, 1))
 	{
-		_rawParents = new ChainNode[7];
+		_rawParents = new Node[7];
 		_rawParents[0] = parent;
 	}
 
 	/// <summary>
-	/// Initializes a <see cref="ChainNode"/> instance using the specified cell, digit,
+	/// Initializes a <see cref="Node"/> instance using the specified cell, digit,
 	/// the status value as a <see cref="bool"/> value, and the parent nodes.
 	/// </summary>
 	/// <param name="cell">The cell used.</param>
@@ -87,14 +87,14 @@ public unsafe partial record struct ChainNode(int Mask) : IValueEquatable<ChainN
 	/// <param name="isOn">A <see cref="bool"/> result indicating whether the node is on.</param>
 	/// <param name="parents">The parent nodes.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	internal ChainNode(byte cell, byte digit, bool isOn, ChainNode[] parents)
+	internal Node(byte cell, byte digit, bool isOn, Node[] parents)
 	: this(ConstructMask(cell, digit, isOn, (byte)parents.Length)) => _rawParents = parents;
 
 
 	/// <summary>
 	/// Gets the possible useful parents.
 	/// </summary>
-	public readonly ChainNode[]? Parents
+	public readonly Node[]? Parents
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => _rawParents?[..ParentsCount];
@@ -170,8 +170,8 @@ public unsafe partial record struct ChainNode(int Mask) : IValueEquatable<ChainN
 	{
 		get
 		{
-			var ancestors = new List<ChainNode>();
-			for (List<ChainNode> todo = new() { this }, next; todo.Count != 0; todo = next)
+			var ancestors = new List<Node>();
+			for (List<Node> todo = new() { this }, next; todo.Count != 0; todo = next)
 			{
 				next = new();
 				foreach (var p in todo)
@@ -222,7 +222,7 @@ public unsafe partial record struct ChainNode(int Mask) : IValueEquatable<ChainN
 	/// <returns>Returns the root of the chain.</returns>
 	/// <seealso cref="Parents"/>
 	/// <seealso cref="ParentsCount"/>
-	public readonly ChainNode Root
+	public readonly Node Root
 	{
 		get
 		{
@@ -244,11 +244,11 @@ public unsafe partial record struct ChainNode(int Mask) : IValueEquatable<ChainN
 	/// <summary>
 	/// Indicates the nodes that the current node lies in.
 	/// </summary>
-	public readonly IReadOnlyList<ChainNode> WholeChain
+	public readonly IReadOnlyList<Node> WholeChain
 	{
 		get
 		{
-			List<ChainNode> todo = new() { this }, tempList = new(), done = new(), next = new();
+			List<Node> todo = new() { this }, tempList = new(), done = new(), next = new();
 			while (todo.Count != 0)
 			{
 				next.Clear();
@@ -289,7 +289,7 @@ public unsafe partial record struct ChainNode(int Mask) : IValueEquatable<ChainN
 	/// </summary>
 	/// <param name="node">The chain node.</param>
 	/// <returns>A <see cref="bool"/> result.</returns>
-	public readonly bool IsParentOf(ChainNode node)
+	public readonly bool IsParentOf(Node node)
 	{
 		var temp = node;
 		while (temp.ParentsCount != 0)
@@ -336,13 +336,13 @@ public unsafe partial record struct ChainNode(int Mask) : IValueEquatable<ChainN
 	/// Throws when the inner parent nodes collection is full.
 	/// </exception>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public void AddParent(ChainNode chain)
+	public void AddParent(Node chain)
 	{
 		switch (ParentsCount)
 		{
 			case 0:
 			{
-				_rawParents = new ChainNode[7];
+				_rawParents = new Node[7];
 				ParentsCount = 1;
 
 				break;

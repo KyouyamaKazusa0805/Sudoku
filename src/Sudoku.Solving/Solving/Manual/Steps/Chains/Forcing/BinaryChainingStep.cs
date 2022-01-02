@@ -15,9 +15,9 @@
 public sealed record BinaryChainingStep(
 	ImmutableArray<Conclusion> Conclusions,
 	ImmutableArray<PresentationData> Views,
-	in ChainNode SourceNode,
-	in ChainNode FromOnNode,
-	in ChainNode FromOffNode,
+	in Node SourceNode,
+	in Node FromOnNode,
+	in Node FromOffNode,
 	bool IsAbsurd,
 	bool IsMultiple,
 	bool IsNishio,
@@ -33,7 +33,7 @@ public sealed record BinaryChainingStep(
 	/// <summary>
 	/// Indicates the anchor.
 	/// </summary>
-	public ChainNode Anchor =>
+	public Node Anchor =>
 		IsNishio || IsAbsurd ? new(SourceNode.Cell, SourceNode.Digit, !SourceNode.IsOn) : FromOnNode;
 
 	/// <inheritdoc/>

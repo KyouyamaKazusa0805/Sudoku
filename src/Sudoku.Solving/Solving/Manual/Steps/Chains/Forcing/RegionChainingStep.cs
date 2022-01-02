@@ -15,7 +15,7 @@ public sealed record RegionChainingStep(
 	ImmutableArray<PresentationData> Views,
 	int Region,
 	int Digit,
-	IReadOnlyDictionary<int, ChainNode> Chains,
+	IReadOnlyDictionary<int, Node> Chains,
 	bool IsDynamic,
 	byte Level
 ) : ChainStep(

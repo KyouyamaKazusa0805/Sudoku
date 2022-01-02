@@ -86,7 +86,7 @@ public sealed unsafe class AlternatingInferenceChainStepSearcher : IAlternatingI
 				// Iterate on all candidates that aren't alone.
 				foreach (byte digit in mask)
 				{
-					var pOn = new ChainNode(cell, digit, true);
+					var pOn = new Node(cell, digit, true);
 					if (DoUnaryChaining(accumulator, grid, pOn, xEnabled, yEnabled, onlyFindOne) is { } step)
 					{
 						return step;
@@ -101,7 +101,7 @@ public sealed unsafe class AlternatingInferenceChainStepSearcher : IAlternatingI
 	private Step? DoUnaryChaining(
 		ICollection<ChainStep> accumulator,
 		in Grid grid,
-		ChainNode pOn,
+		Node pOn,
 		bool xEnabled,
 		bool yEnabled,
 		bool onlyFindOne
@@ -113,8 +113,8 @@ public sealed unsafe class AlternatingInferenceChainStepSearcher : IAlternatingI
 			goto ReturnNull;
 		}
 
-		ChainNodeSet loops = new(), chains = new();
-		ChainNodeSet onToOn = new() { pOn }, onToOff = new();
+		NodeSet loops = new(), chains = new();
+		NodeSet onToOn = new() { pOn }, onToOff = new();
 		DoLoops(grid, ref onToOn, ref onToOff, xEnabled, yEnabled, ref loops, pOn);
 
 		if (xEnabled)
@@ -124,7 +124,7 @@ public sealed unsafe class AlternatingInferenceChainStepSearcher : IAlternatingI
 			DoAic(grid, ref onToOn, ref onToOff, yEnabled, ref chains, pOn);
 
 			// AICs with on implication.
-			var pOff = new ChainNode(pOn.Cell, pOn.Digit, false);
+			var pOff = new Node(pOn.Cell, pOn.Digit, false);
 			(onToOn, onToOff) = (new(), new() { pOff });
 			DoAic(grid, ref onToOn, ref onToOff, yEnabled, ref chains, pOff);
 		}
@@ -161,14 +161,14 @@ public sealed unsafe class AlternatingInferenceChainStepSearcher : IAlternatingI
 
 	private void DoAic(
 		in Grid grid,
-		ref ChainNodeSet onToOn,
-		ref ChainNodeSet onToOff,
+		ref NodeSet onToOn,
+		ref NodeSet onToOff,
 		bool yEnabled,
-		ref ChainNodeSet chains,
-		ChainNode source
+		ref NodeSet chains,
+		Node source
 	)
 	{
-		ChainNodeSet pendingOn = new(onToOn), pendingOff = new(onToOff);
+		NodeSet pendingOn = new(onToOn), pendingOff = new(onToOff);
 
 		while (pendingOn.Count != 0 || pendingOff.Count != 0)
 		{
@@ -205,7 +205,7 @@ public sealed unsafe class AlternatingInferenceChainStepSearcher : IAlternatingI
 				var makeOn = IChainStepSearcher.GetOffToOn(grid, p, true, yEnabled, true);
 				foreach (var pOn in makeOn)
 				{
-					var pOff = new ChainNode(pOn.Cell, pOn.Digit, false);
+					var pOff = new Node(pOn.Cell, pOn.Digit, false);
 					if (source == pOff)
 					{
 						// Loopy contradiction (AIC) found.
@@ -225,15 +225,15 @@ public sealed unsafe class AlternatingInferenceChainStepSearcher : IAlternatingI
 
 	private void DoLoops(
 		in Grid grid,
-		ref ChainNodeSet onToOn,
-		ref ChainNodeSet onToOff,
+		ref NodeSet onToOn,
+		ref NodeSet onToOff,
 		bool xEnabled,
 		bool yEnabled,
-		ref ChainNodeSet loops,
-		ChainNode source
+		ref NodeSet loops,
+		Node source
 	)
 	{
-		ChainNodeSet pendingOn = new(onToOn), pendingOff = new(onToOff);
+		NodeSet pendingOn = new(onToOn), pendingOff = new(onToOff);
 
 		int length = 0;
 		while (pendingOn.Count != 0 || pendingOff.Count != 0)
@@ -279,13 +279,13 @@ public sealed unsafe class AlternatingInferenceChainStepSearcher : IAlternatingI
 		}
 	}
 
-	private ContinuousNiceLoopStep? CreateLoopHint(in Grid grid, ChainNode destOn, bool xEnabled, bool yEnabled)
+	private ContinuousNiceLoopStep? CreateLoopHint(in Grid grid, Node destOn, bool xEnabled, bool yEnabled)
 	{
 		var conclusions = new List<Conclusion>();
 		var links = IChainStepSearcher.GetLinks(destOn, true); //! Maybe wrong when adding grouped nodes.
 		foreach (var ((start, end, type), _) in links)
 		{
-			if (type == ChainLinkTypes.Weak
+			if (type == LinkTypes.Weak
 				&& new Candidates { start, end }.PeerIntersection is { IsEmpty: false } elimMap)
 			{
 				foreach (int candidate in elimMap)
@@ -317,7 +317,7 @@ public sealed unsafe class AlternatingInferenceChainStepSearcher : IAlternatingI
 		);
 	}
 
-	private AlternatingInferenceChainStep? CreateAicHint(in Grid grid, ChainNode target, bool xEnabled, bool yEnabled)
+	private AlternatingInferenceChainStep? CreateAicHint(in Grid grid, Node target, bool xEnabled, bool yEnabled)
 	{
 		var conclusions = new List<Conclusion>();
 		if (!target.IsOn)

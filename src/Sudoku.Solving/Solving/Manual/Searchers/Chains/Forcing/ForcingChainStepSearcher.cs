@@ -100,14 +100,14 @@ public unsafe class ForcingChainStepSearcher : IForcingChainStepSearcher, IDynam
 				case > 1 when IsDynamic:
 				{
 					// Prepare storage and accumulator for cell eliminations.
-					Dictionary<int, ChainNodeSet> valueToOn = new(), valueToOff = new();
-					ChainNodeSet cellToOn = ChainNodeSet.Uninitialized, cellToOff = ChainNodeSet.Uninitialized;
+					Dictionary<int, NodeSet> valueToOn = new(), valueToOff = new();
+					NodeSet cellToOn = NodeSet.Uninitialized, cellToOff = NodeSet.Uninitialized;
 
 					// Iterate on all candidates that aren't alone.
 					foreach (byte digit in mask)
 					{
-						ChainNode pOn = new(cell, digit, true), pOff = new(cell, digit, false);
-						ChainNodeSet onToOn = new(), onToOff = new();
+						Node pOn = new(cell, digit, true), pOff = new(cell, digit, false);
+						NodeSet onToOn = new(), onToOff = new();
 
 						bool doDouble = count >= 3 && !IsNishio && IsDynamic;
 						bool doContradiction = IsDynamic || IsNishio;
@@ -177,15 +177,15 @@ public unsafe class ForcingChainStepSearcher : IForcingChainStepSearcher, IDynam
 	private void DoBinaryChaining(
 		ICollection<ChainStep> accumulator,
 		ref Grid grid,
-		in ChainNode pOn,
-		in ChainNode pOff,
-		ref ChainNodeSet onToOn,
-		ref ChainNodeSet onToOff,
+		in Node pOn,
+		in Node pOff,
+		ref NodeSet onToOn,
+		ref NodeSet onToOff,
 		bool doReduction,
 		bool doContradiction
 	)
 	{
-		ChainNodeSet offToOn = new(), offToOff = new();
+		NodeSet offToOn = new(), offToOff = new();
 
 		// Circular Forcing Chains (hypothesis implying its negation)
 		// are already covered by Cell Forcing Chains, and are therefore
@@ -251,8 +251,8 @@ public unsafe class ForcingChainStepSearcher : IForcingChainStepSearcher, IDynam
 		ref Grid grid,
 		byte cell,
 		byte digit,
-		ref ChainNodeSet onToOn,
-		ref ChainNodeSet onToOff
+		ref NodeSet onToOn,
+		ref NodeSet onToOff
 	)
 	{
 		for (var label = RegionLabel.Block; label <= RegionLabel.Column; label++)
@@ -267,8 +267,8 @@ public unsafe class ForcingChainStepSearcher : IForcingChainStepSearcher, IDynam
 					if (worthMap[0] == cell)
 					{
 						// Determine whether we meet this region for the first time.
-						Dictionary<int, ChainNodeSet> posToOn = new(), posToOff = new();
-						ChainNodeSet regionToOn = new(), regionToOff = new();
+						Dictionary<int, NodeSet> posToOn = new(), posToOff = new();
+						NodeSet regionToOn = new(), regionToOff = new();
 
 						// Iterate on node positions within the region.
 						foreach (byte otherCell in worthMap)
@@ -282,8 +282,8 @@ public unsafe class ForcingChainStepSearcher : IForcingChainStepSearcher, IDynam
 							}
 							else
 							{
-								var other = new ChainNode(otherCell, digit, true);
-								ChainNodeSet otherToOn = new() { other }, otherToOff = new();
+								var other = new Node(otherCell, digit, true);
+								NodeSet otherToOn = new() { other }, otherToOff = new();
 
 								DoChaining(ref grid, ref otherToOn, ref otherToOff);
 
@@ -320,17 +320,17 @@ public unsafe class ForcingChainStepSearcher : IForcingChainStepSearcher, IDynam
 	/// <param name="toOn">The list to <c>on</c> nodes.</param>
 	/// <param name="toOff">The list to <c>off</c> nodes.</param>
 	/// <returns>The result.</returns>
-	private (ChainNode On, ChainNode Off)? DoChaining(
+	private (Node On, Node Off)? DoChaining(
 		ref Grid grid,
-		ref ChainNodeSet toOn,
-		ref ChainNodeSet toOff
+		ref NodeSet toOn,
+		ref NodeSet toOff
 	)
 	{
 		_temp = grid;
 
 		try
 		{
-			ChainNodeSet pendingOn = new(toOn), pendingOff = new(toOff);
+			NodeSet pendingOn = new(toOn), pendingOff = new(toOff);
 			while (pendingOn.Count != 0 || pendingOff.Count != 0)
 			{
 				if (pendingOn.Count != 0)
@@ -340,7 +340,7 @@ public unsafe class ForcingChainStepSearcher : IForcingChainStepSearcher, IDynam
 
 					foreach (var pOff in makeOff)
 					{
-						var pOn = new ChainNode(pOff.Cell, pOff.Digit, true); // Conjugate
+						var pOn = new Node(pOff.Cell, pOff.Digit, true); // Conjugate
 						ref var pOnResult = ref toOn[pOn];
 						if (!Unsafe.IsNullRef(ref pOnResult))
 						{
@@ -370,7 +370,7 @@ public unsafe class ForcingChainStepSearcher : IForcingChainStepSearcher, IDynam
 
 					foreach (var pOn in makeOn)
 					{
-						var pOff = new ChainNode(pOn.Cell, pOn.Digit, false); // Conjugate.
+						var pOff = new Node(pOn.Cell, pOn.Digit, false); // Conjugate.
 						ref var pOffResult = ref toOff[pOff];
 						if (!Unsafe.IsNullRef(ref pOffResult))
 						{
@@ -405,10 +405,10 @@ public unsafe class ForcingChainStepSearcher : IForcingChainStepSearcher, IDynam
 	/// <param name="isAbsurd">Indicates whether the chain is absurd.</param>
 	/// <returns>The hint.</returns>
 	private BinaryChainingStep CreateChainingOnHint(
-		in ChainNode destOn,
-		in ChainNode destOff,
-		in ChainNode source,
-		in ChainNode target,
+		in Node destOn,
+		in Node destOff,
+		in Node source,
+		in Node target,
 		bool isAbsurd
 	)
 	{
@@ -417,7 +417,7 @@ public unsafe class ForcingChainStepSearcher : IForcingChainStepSearcher, IDynam
 		var cellOffset = new[] { ((int)destOn.Cell, (ColorIdentifier)0) };
 		var views = new List<PresentationData>();
 		var globalCandidates = new List<(int, ColorIdentifier)> { appendedInfo };
-		var globalLinks = new List<(ChainLink, ColorIdentifier)>();
+		var globalLinks = new List<(Link, ColorIdentifier)>();
 
 		var candidateOffsets = new List<(int, ColorIdentifier)>(IChainStepSearcher.GetCandidateOffsets(destOn))
 		{
@@ -490,10 +490,10 @@ public unsafe class ForcingChainStepSearcher : IForcingChainStepSearcher, IDynam
 	/// <param name="isAbsurd">Indicates whether the chain is absurd.</param>
 	/// <returns>The hint.</returns>
 	private BinaryChainingStep CreateChainingOffHint(
-		in ChainNode destOn,
-		in ChainNode destOff,
-		in ChainNode source,
-		in ChainNode target,
+		in Node destOn,
+		in Node destOff,
+		in Node source,
+		in Node target,
 		bool isAbsurd
 	)
 	{
@@ -501,7 +501,7 @@ public unsafe class ForcingChainStepSearcher : IForcingChainStepSearcher, IDynam
 		var cellOffset = new[] { ((int)destOn.Cell, (ColorIdentifier)0) };
 		var views = new List<PresentationData>();
 		var globalCandidates = new List<(int, ColorIdentifier)>();
-		var globalLinks = new List<(ChainLink, ColorIdentifier)>();
+		var globalLinks = new List<(Link, ColorIdentifier)>();
 
 		var candidateOffsets = IChainStepSearcher.GetCandidateOffsets(destOn);
 		var links = IChainStepSearcher.GetLinks(destOn, true);
@@ -559,14 +559,14 @@ public unsafe class ForcingChainStepSearcher : IForcingChainStepSearcher, IDynam
 	private CellChainingStep CreateCellFcHint(
 		in Grid grid,
 		int sourceCell,
-		in ChainNode target,
-		Dictionary<int, ChainNodeSet> outcomes
+		in Node target,
+		Dictionary<int, NodeSet> outcomes
 	)
 	{
 		var (targetCandidate, targetIsOn) = target;
 
 		// Build chains.
-		var chains = new Dictionary<int, ChainNode>();
+		var chains = new Dictionary<int, Node>();
 		foreach (int digit in grid.GetCandidates(sourceCell))
 		{
 			// Get the node that contains the same cell, digit and isOn property.
@@ -577,7 +577,7 @@ public unsafe class ForcingChainStepSearcher : IForcingChainStepSearcher, IDynam
 		// Get views.
 		var views = new List<PresentationData>();
 		var globalCandidates = new List<(int, ColorIdentifier)> { (targetCandidate, (ColorIdentifier)0) };
-		var globalLinks = new List<(ChainLink, ColorIdentifier)>();
+		var globalLinks = new List<(Link, ColorIdentifier)>();
 		foreach (var (digit, node) in chains)
 		{
 			var candidateOffsets = new List<(int, ColorIdentifier)>(IChainStepSearcher.GetCandidateOffsets(node))
@@ -639,14 +639,14 @@ public unsafe class ForcingChainStepSearcher : IForcingChainStepSearcher, IDynam
 	private RegionChainingStep CreateRegionFcHint(
 		int region,
 		int digit,
-		in ChainNode target,
-		Dictionary<int, ChainNodeSet> outcomes
+		in Node target,
+		Dictionary<int, NodeSet> outcomes
 	)
 	{
 		var (targetCandidate, targetIsOn) = target;
 
 		// Build chains.
-		var chains = new Dictionary<int, ChainNode>();
+		var chains = new Dictionary<int, Node>();
 		var map = RegionMaps[region] & CandMaps[digit];
 		foreach (int cell in map)
 		{
@@ -658,7 +658,7 @@ public unsafe class ForcingChainStepSearcher : IForcingChainStepSearcher, IDynam
 		// Get views.
 		var views = new List<PresentationData>();
 		var globalCandidates = new List<(int, ColorIdentifier)> { (targetCandidate, (ColorIdentifier)0) };
-		var globalLinks = new List<(ChainLink, ColorIdentifier)>();
+		var globalLinks = new List<(Link, ColorIdentifier)>();
 		foreach (var (cell, node) in chains)
 		{
 			var candidateOffsets = new List<(int, ColorIdentifier)>(IChainStepSearcher.GetCandidateOffsets(node))

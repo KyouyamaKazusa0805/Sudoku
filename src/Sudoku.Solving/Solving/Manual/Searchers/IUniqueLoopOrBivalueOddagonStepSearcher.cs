@@ -24,7 +24,7 @@ public interface IUniqueLoopOrBivalueOddagonStepSearcher : IStepSearcher, ILoopL
 	protected static void SearchForPossibleLoopPatterns(
 		in Grid grid, int d1, int d2, int cell, RegionLabel lastLabel, short exDigitsMask,
 		int allowedExtraCellsCount, ref Cells loopMap, List<int> tempLoop,
-		Func<bool> predicate, List<(Cells, IList<(ChainLink, ColorIdentifier)>)> loops)
+		Func<bool> predicate, List<(Cells, IList<(Link, ColorIdentifier)>)> loops)
 	{
 		loopMap.AddAnyway(cell);
 		tempLoop.Add(cell);

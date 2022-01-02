@@ -9,9 +9,9 @@
 [AutoDeconstructLambda(nameof(StartCell), nameof(StartDigit), nameof(EndCell), nameof(EndDigit), nameof(LinkType))]
 [AutoGetHashCode(nameof(EigenValue))]
 [AutoEquality(nameof(StartCandidate), nameof(EndCandidate), nameof(LinkType))]
-public readonly partial record struct ChainLink(int StartCandidate, int EndCandidate, ChainLinkType LinkType)
-: IValueEquatable<ChainLink>
-, IJsonSerializable<ChainLink, ChainLink.JsonConverter>
+public readonly partial record struct Link(int StartCandidate, int EndCandidate, LinkType LinkType)
+: IValueEquatable<Link>
+, IJsonSerializable<Link, Link.JsonConverter>
 {
 	/// <summary>
 	/// Indicates the start cell.

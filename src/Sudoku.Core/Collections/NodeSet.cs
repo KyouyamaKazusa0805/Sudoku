@@ -3,12 +3,12 @@
 /// <summary>
 /// Defines a set that stores the chain nodes.
 /// </summary>
-public partial struct ChainNodeSet : IEnumerable
+public partial struct NodeSet : IEnumerable
 {
 	/// <summary>
 	/// Indicates the uninitalized instance that is used for checking whether the collection hasn't been initialized.
 	/// </summary>
-	public static readonly ChainNodeSet Uninitialized;
+	public static readonly NodeSet Uninitialized;
 
 
 	/// <summary>
@@ -19,27 +19,27 @@ public partial struct ChainNodeSet : IEnumerable
 	/// <summary>
 	/// Indicates the inner data structure.
 	/// </summary>
-	private ChainNode[] _chainNodes;
+	private Node[] _chainNodes;
 
 
 	/// <summary>
-	/// Initializes a <see cref="ChainNodeSet"/> instance, with the default capacity 16.
+	/// Initializes a <see cref="NodeSet"/> instance, with the default capacity 16.
 	/// </summary>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public ChainNodeSet()
+	public NodeSet()
 	{
-		_chainNodes = new ChainNode[16];
+		_chainNodes = new Node[16];
 		_capacity = 16;
 	}
 
 	/// <summary>
-	/// Initializes a <see cref="ChainNodeSet"/> instance via the set of chain nodes.
+	/// Initializes a <see cref="NodeSet"/> instance via the set of chain nodes.
 	/// </summary>
 	/// <param name="nodes">The chain nodes.</param>
-	public ChainNodeSet(ChainNode[] nodes)
+	public NodeSet(Node[] nodes)
 	{
 		_capacity = nodes.Length;
-		_chainNodes = new ChainNode[_capacity];
+		_chainNodes = new Node[_capacity];
 		for (int i = 1, length = nodes.Length; i < length; i++)
 		{
 			int s = i - 1;
@@ -64,11 +64,11 @@ public partial struct ChainNodeSet : IEnumerable
 	/// </summary>
 	/// <param name="another">The another collection.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public ChainNodeSet(in ChainNodeSet another)
+	public NodeSet(in NodeSet another)
 	{
 		_capacity = another._capacity;
 		Count = another.Count;
-		_chainNodes = new ChainNode[_capacity];
+		_chainNodes = new Node[_capacity];
 		Buffer.BlockCopy(_chainNodes, 0, another._chainNodes, 0, Count);
 	}
 
@@ -100,7 +100,7 @@ public partial struct ChainNodeSet : IEnumerable
 	/// If you remove the top element, you can call the method <see cref="Remove"/>,
 	/// and then the current element will be removed at first.
 	/// </summary>
-	public readonly ChainNode Top
+	public readonly Node Top
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => this[^1];
@@ -110,7 +110,7 @@ public partial struct ChainNodeSet : IEnumerable
 	/// Indicates the bottom element in this collection stored.
 	/// The element is the earliest element added into the current collection.
 	/// </summary>
-	public readonly ChainNode Bottom
+	public readonly Node Bottom
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => this[0];
@@ -122,7 +122,7 @@ public partial struct ChainNodeSet : IEnumerable
 	/// </summary>
 	/// <param name="index">The desired index.</param>
 	/// <returns>The result chain node as reference.</returns>
-	public readonly ChainNode this[int index]
+	public readonly Node this[int index]
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => _chainNodes[index];
@@ -140,7 +140,7 @@ public partial struct ChainNodeSet : IEnumerable
 	/// <param name="node">The node to check the equality.</param>
 	/// <returns>The reference to the chain.</returns>
 	/// <seealso cref="Unsafe.IsNullRef{T}(ref T)"/>
-	public readonly unsafe ref ChainNode this[ChainNode node]
+	public readonly unsafe ref Node this[Node node]
 	{
 		get
 		{
@@ -153,7 +153,7 @@ public partial struct ChainNodeSet : IEnumerable
 				}
 			}
 
-			return ref Unsafe.NullRef<ChainNode>();
+			return ref Unsafe.NullRef<Node>();
 		}
 	}
 
@@ -183,7 +183,7 @@ public partial struct ChainNodeSet : IEnumerable
 		Algorithms.Sort(_chainNodes, &cmp, 0, Count - 1);
 
 
-		static int cmp(ChainNode l, ChainNode r) => l.Mask > r.Mask ? 1 : l.Mask < r.Mask ? -1 : 0;
+		static int cmp(Node l, Node r) => l.Mask > r.Mask ? 1 : l.Mask < r.Mask ? -1 : 0;
 	}
 
 	/// <summary>
@@ -192,7 +192,7 @@ public partial struct ChainNodeSet : IEnumerable
 	/// </summary>
 	/// <param name="node">The node to check.</param>
 	/// <returns>A <see cref="bool"/> result indicating that.</returns>
-	public readonly bool Contains(ChainNode node)
+	public readonly bool Contains(Node node)
 	{
 		for (int i = 0; i < Count; i++)
 		{
@@ -231,7 +231,7 @@ public partial struct ChainNodeSet : IEnumerable
 	/// </list>
 	/// </returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public bool Add(ChainNode node)
+	public bool Add(Node node)
 	{
 		if (Contains(node))
 		{
@@ -251,7 +251,7 @@ public partial struct ChainNodeSet : IEnumerable
 	/// Remove the node at the specified index.
 	/// </summary>
 	/// <param name="index">The desired index.</param>
-	public ChainNode RemoveAt(int index)
+	public Node RemoveAt(int index)
 	{
 		if (index >= Count)
 		{
@@ -269,19 +269,19 @@ public partial struct ChainNodeSet : IEnumerable
 
 	/// <summary>
 	/// Gets the pinnable reference that is the reference to the first element in this collection,
-	/// in order to use <see langword="fixed"/> statement on <see cref="ChainNodeSet"/> instances.
+	/// in order to use <see langword="fixed"/> statement on <see cref="NodeSet"/> instances.
 	/// </summary>
 	/// <returns>The reference to the first element in this collection.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	[EditorBrowsable(EditorBrowsableState.Never)]
-	public readonly ref readonly ChainNode GetPinnableReference() => ref _chainNodes[..Count][0];
+	public readonly ref readonly Node GetPinnableReference() => ref _chainNodes[..Count][0];
 
 	/// <summary>
-	/// Gets the array of <see cref="ChainNode"/>s.
+	/// Gets the array of <see cref="Node"/>s.
 	/// </summary>
-	/// <returns>The array of <see cref="ChainNode"/>s.</returns>
+	/// <returns>The array of <see cref="Node"/>s.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public readonly ChainNode[] ToArray() => _chainNodes[..Count];
+	public readonly Node[] ToArray() => _chainNodes[..Count];
 
 	/// <inheritdoc cref="IEnumerable{T}.GetEnumerator"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -304,15 +304,15 @@ public partial struct ChainNodeSet : IEnumerable
 
 
 	/// <summary>
-	/// Merges two different <see cref="ChainNodeSet"/>s into one, and checks and stores once that
-	/// both <see cref="ChainNodeSet"/>s store the node.
+	/// Merges two different <see cref="NodeSet"/>s into one, and checks and stores once that
+	/// both <see cref="NodeSet"/>s store the node.
 	/// </summary>
 	/// <param name="left">The left-side collection to merge.</param>
 	/// <param name="right">The right-side collection to merge.</param>
 	/// <returns>The merged result.</returns>
-	public static ChainNodeSet operator &(in ChainNodeSet left, in ChainNodeSet right)
+	public static NodeSet operator &(in NodeSet left, in NodeSet right)
 	{
-		var result = new ChainNodeSet();
+		var result = new NodeSet();
 		foreach (var leftNode in left)
 		{
 			if (right.Contains(leftNode))
@@ -325,14 +325,14 @@ public partial struct ChainNodeSet : IEnumerable
 	}
 
 	/// <summary>
-	/// Merges two different <see cref="ChainNodeSet"/> into one. Same nodes will be stored only once.
+	/// Merges two different <see cref="NodeSet"/> into one. Same nodes will be stored only once.
 	/// </summary>
 	/// <param name="left">The left-side collection to merge.</param>
 	/// <param name="right">The right-side collection to merge.</param>
 	/// <returns>The merged result.</returns>
-	public static ChainNodeSet operator |(in ChainNodeSet left, in ChainNodeSet right)
+	public static NodeSet operator |(in NodeSet left, in NodeSet right)
 	{
-		var result = new ChainNodeSet(left);
+		var result = new NodeSet(left);
 		foreach (var node in right)
 		{
 			result.Add(node);

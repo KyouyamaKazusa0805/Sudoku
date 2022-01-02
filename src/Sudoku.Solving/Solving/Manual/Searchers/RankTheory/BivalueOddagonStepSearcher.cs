@@ -26,7 +26,7 @@ public sealed unsafe class BivalueOddagonStepSearcher : IBivalueOddagonStepSearc
 		}
 
 		var resultAccumulator = new List<BivalueOddagonStep>();
-		var loops = new List<(Cells, IList<(ChainLink, ColorIdentifier)>)>();
+		var loops = new List<(Cells, IList<(Link, ColorIdentifier)>)>();
 		var tempLoop = new List<int>(14);
 		var loopMap = Cells.Empty;
 
@@ -135,7 +135,7 @@ public sealed unsafe class BivalueOddagonStepSearcher : IBivalueOddagonStepSearc
 		int d1,
 		int d2,
 		in Cells loop,
-		IList<(ChainLink, ColorIdentifier)> links,
+		IList<(Link, ColorIdentifier)> links,
 		in Cells extraCellsMap,
 		bool onlyFindOne
 	)
@@ -182,7 +182,7 @@ public sealed unsafe class BivalueOddagonStepSearcher : IBivalueOddagonStepSearc
 		int d1,
 		int d2,
 		in Cells loop,
-		IList<(ChainLink, ColorIdentifier)> links,
+		IList<(Link, ColorIdentifier)> links,
 		in Cells extraCellsMap,
 		short comparer,
 		bool onlyFindOne
@@ -242,7 +242,7 @@ public sealed unsafe class BivalueOddagonStepSearcher : IBivalueOddagonStepSearc
 		int d1,
 		int d2,
 		in Cells loop,
-		IList<(ChainLink, ColorIdentifier)> links,
+		IList<(Link, ColorIdentifier)> links,
 		in Cells extraCellsMap,
 		short comparer,
 		bool onlyFindOne

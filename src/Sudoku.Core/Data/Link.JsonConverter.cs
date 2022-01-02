@@ -1,12 +1,12 @@
 ﻿namespace Sudoku.Data;
 
-partial record struct ChainLink
+partial record struct Link
 {
 	/// <summary>
 	/// Defines a JSON converter that allows the current instance being serialized.
 	/// </summary>
-	[JsonConverter(typeof(ChainLink))]
-	public sealed unsafe class JsonConverter : JsonConverter<ChainLink>
+	[JsonConverter(typeof(Link))]
+	public sealed unsafe class JsonConverter : JsonConverter<Link>
 	{
 		/// <inheritdoc/>
 		public override bool HandleNull => false;
@@ -14,9 +14,9 @@ partial record struct ChainLink
 
 		/// <inheritdoc/>
 		/// <exception cref="InvalidOperationException">Throws when the specified data is invalid.</exception>
-		public override ChainLink Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
+		public override Link Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
 		{
-			var (start, end, linkType, propName) = default((int, int, ChainLinkType, string?));
+			var (start, end, linkType, propName) = default((int, int, LinkType, string?));
 			while (reader.Read())
 			{
 				switch (reader.TokenType)
@@ -42,7 +42,7 @@ partial record struct ChainLink
 							}
 							case nameof(LinkType):
 							{
-								linkType = (ChainLinkType)reader.GetByte();
+								linkType = (LinkType)reader.GetByte();
 								break;
 							}
 							default:
@@ -60,7 +60,7 @@ partial record struct ChainLink
 		}
 
 		/// <inheritdoc/>
-		public override void Write(Utf8JsonWriter writer, ChainLink value, JsonSerializerOptions options)
+		public override void Write(Utf8JsonWriter writer, Link value, JsonSerializerOptions options)
 		{
 			writer.WriteStartObject();
 			writer.WriteNumber(nameof(StartCandidate), value.StartCandidate);

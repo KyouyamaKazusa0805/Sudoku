@@ -13,7 +13,7 @@ public sealed record AlternatingInferenceChainStep(
 	ImmutableArray<PresentationData> Views,
 	bool XEnabled,
 	bool YEnabled,
-	ChainNode Target
+	Node Target
 ) : ChainStep(Conclusions, Views, XEnabled, YEnabled, false, false, false, 0)
 {
 	/// <inheritdoc/>

@@ -2378,7 +2378,7 @@
             <param name="accumulator">The accumulator.</param>
             <param name="grid">The grid.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Searchers.Chains.Forcing.ForcingChainStepSearcher.DoBinaryChaining(System.Collections.Generic.ICollection{Sudoku.Solving.Manual.Steps.Chains.ChainStep},Sudoku.Data.Grid@,Sudoku.Data.ChainNode@,Sudoku.Data.ChainNode@,Sudoku.Collections.ChainNodeSet@,Sudoku.Collections.ChainNodeSet@,System.Boolean,System.Boolean)">
+        <member name="M:Sudoku.Solving.Manual.Searchers.Chains.Forcing.ForcingChainStepSearcher.DoBinaryChaining(System.Collections.Generic.ICollection{Sudoku.Solving.Manual.Steps.Chains.ChainStep},Sudoku.Data.Grid@,Sudoku.Data.Node@,Sudoku.Data.Node@,Sudoku.Collections.NodeSet@,Sudoku.Collections.NodeSet@,System.Boolean,System.Boolean)">
             <summary>
             Do binary chaining.
             </summary>
@@ -2391,7 +2391,7 @@
             <param name="doReduction">Indicates whether the method executes double chaining.</param>
             <param name="doContradiction">Indicates whether the method executes contradiction chaining.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Searchers.Chains.Forcing.ForcingChainStepSearcher.DoRegionChaining(System.Collections.Generic.ICollection{Sudoku.Solving.Manual.Steps.Chains.ChainStep},Sudoku.Data.Grid@,System.Byte,System.Byte,Sudoku.Collections.ChainNodeSet@,Sudoku.Collections.ChainNodeSet@)">
+        <member name="M:Sudoku.Solving.Manual.Searchers.Chains.Forcing.ForcingChainStepSearcher.DoRegionChaining(System.Collections.Generic.ICollection{Sudoku.Solving.Manual.Steps.Chains.ChainStep},Sudoku.Data.Grid@,System.Byte,System.Byte,Sudoku.Collections.NodeSet@,Sudoku.Collections.NodeSet@)">
             <summary>
             Do region chaining.
             </summary>
@@ -2402,7 +2402,7 @@
             <param name="onToOn">The list for <c>on</c> nodes to <c>on</c> nodes.</param>
             <param name="onToOff">The list for <c>on</c> nodes to <c>off</c> nodes.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Searchers.Chains.Forcing.ForcingChainStepSearcher.DoChaining(Sudoku.Data.Grid@,Sudoku.Collections.ChainNodeSet@,Sudoku.Collections.ChainNodeSet@)">
+        <member name="M:Sudoku.Solving.Manual.Searchers.Chains.Forcing.ForcingChainStepSearcher.DoChaining(Sudoku.Data.Grid@,Sudoku.Collections.NodeSet@,Sudoku.Collections.NodeSet@)">
             <summary>
             Do chaining (i.e. multiple chaining).
             </summary>
@@ -2411,7 +2411,7 @@
             <param name="toOff">The list to <c>off</c> nodes.</param>
             <returns>The result.</returns>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Searchers.Chains.Forcing.ForcingChainStepSearcher.CreateChainingOnHint(Sudoku.Data.ChainNode@,Sudoku.Data.ChainNode@,Sudoku.Data.ChainNode@,Sudoku.Data.ChainNode@,System.Boolean)">
+        <member name="M:Sudoku.Solving.Manual.Searchers.Chains.Forcing.ForcingChainStepSearcher.CreateChainingOnHint(Sudoku.Data.Node@,Sudoku.Data.Node@,Sudoku.Data.Node@,Sudoku.Data.Node@,System.Boolean)">
             <summary>
             Create a chaining hint whose conclusion is an on result.
             </summary>
@@ -2422,7 +2422,7 @@
             <param name="isAbsurd">Indicates whether the chain is absurd.</param>
             <returns>The hint.</returns>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Searchers.Chains.Forcing.ForcingChainStepSearcher.CreateChainingOffHint(Sudoku.Data.ChainNode@,Sudoku.Data.ChainNode@,Sudoku.Data.ChainNode@,Sudoku.Data.ChainNode@,System.Boolean)">
+        <member name="M:Sudoku.Solving.Manual.Searchers.Chains.Forcing.ForcingChainStepSearcher.CreateChainingOffHint(Sudoku.Data.Node@,Sudoku.Data.Node@,Sudoku.Data.Node@,Sudoku.Data.Node@,System.Boolean)">
             <summary>
             Create a chaining hint whose conclusion is an off result.
             </summary>
@@ -2433,7 +2433,7 @@
             <param name="isAbsurd">Indicates whether the chain is absurd.</param>
             <returns>The hint.</returns>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Searchers.Chains.Forcing.ForcingChainStepSearcher.CreateCellFcHint(Sudoku.Data.Grid@,System.Int32,Sudoku.Data.ChainNode@,System.Collections.Generic.Dictionary{System.Int32,Sudoku.Collections.ChainNodeSet})">
+        <member name="M:Sudoku.Solving.Manual.Searchers.Chains.Forcing.ForcingChainStepSearcher.CreateCellFcHint(Sudoku.Data.Grid@,System.Int32,Sudoku.Data.Node@,System.Collections.Generic.Dictionary{System.Int32,Sudoku.Collections.NodeSet})">
             <summary>
             Create the hint for cell forcing chains.
             </summary>
@@ -2443,7 +2443,7 @@
             <param name="outcomes">All outcomes (conclusions).</param>
             <returns>The information instance.</returns>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Searchers.Chains.Forcing.ForcingChainStepSearcher.CreateRegionFcHint(System.Int32,System.Int32,Sudoku.Data.ChainNode@,System.Collections.Generic.Dictionary{System.Int32,Sudoku.Collections.ChainNodeSet})">
+        <member name="M:Sudoku.Solving.Manual.Searchers.Chains.Forcing.ForcingChainStepSearcher.CreateRegionFcHint(System.Int32,System.Int32,Sudoku.Data.Node@,System.Collections.Generic.Dictionary{System.Int32,Sudoku.Collections.NodeSet})">
             <summary>
             Create a hint of region forcing chains.
             </summary>
@@ -2532,7 +2532,7 @@
             Defines a step searcher that searches for chain steps.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Searchers.Chains.IChainStepSearcher.GetCandidateOffsets(Sudoku.Data.ChainNode,System.Boolean)">
+        <member name="M:Sudoku.Solving.Manual.Searchers.Chains.IChainStepSearcher.GetCandidateOffsets(Sudoku.Data.Node,System.Boolean)">
             <summary>
             Get highlight candidate offsets through the specified target node.
             </summary>
@@ -2544,7 +2544,7 @@
             <returns>The candidate offsets.</returns>
             <seealso cref="T:Sudoku.Solving.Manual.Searchers.Chains.IAlternatingInferenceChainStepSearcher"/>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Searchers.Chains.IChainStepSearcher.GetLinks(Sudoku.Data.ChainNode,System.Boolean)">
+        <member name="M:Sudoku.Solving.Manual.Searchers.Chains.IChainStepSearcher.GetLinks(Sudoku.Data.Node,System.Boolean)">
             <summary>
             Get the links through the specified target node.
             </summary>
@@ -2556,7 +2556,7 @@
             </param>
             <returns>The link.</returns>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Searchers.Chains.IChainStepSearcher.ListContainsNode(Sudoku.Collections.ChainNodeSet@,Sudoku.Data.ChainNode)">
+        <member name="M:Sudoku.Solving.Manual.Searchers.Chains.IChainStepSearcher.ListContainsNode(Sudoku.Collections.NodeSet@,Sudoku.Data.Node)">
             <summary>
             Determine whether the specified list contains the specified node value.
             </summary>
@@ -2564,7 +2564,7 @@
             <param name="node">The node to check.</param>
             <returns>A <see cref="T:System.Boolean"/> result.</returns>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Searchers.Chains.IChainStepSearcher.GetOnToOff(Sudoku.Data.Grid@,Sudoku.Data.ChainNode,System.Boolean)">
+        <member name="M:Sudoku.Solving.Manual.Searchers.Chains.IChainStepSearcher.GetOnToOff(Sudoku.Data.Grid@,Sudoku.Data.Node,System.Boolean)">
             <summary>
             Get all available weak links.
             </summary>
@@ -2573,7 +2573,7 @@
             <param name="yEnabled">Indicates whether the Y-Chains are enabled.</param>
             <returns>All possible weak links.</returns>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Searchers.Chains.IChainStepSearcher.GetOffToOn(Sudoku.Data.Grid@,Sudoku.Data.ChainNode,System.Boolean,System.Boolean,System.Boolean,Sudoku.Data.Grid@,Sudoku.Collections.ChainNodeSet,System.Boolean)">
+        <member name="M:Sudoku.Solving.Manual.Searchers.Chains.IChainStepSearcher.GetOffToOn(Sudoku.Data.Grid@,Sudoku.Data.Node,System.Boolean,System.Boolean,System.Boolean,Sudoku.Data.Grid@,Sudoku.Collections.NodeSet,System.Boolean)">
             <summary>
             Get all available strong links.
             </summary>
@@ -2592,7 +2592,7 @@
             </param>
             <returns>All possible strong links.</returns>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Searchers.Chains.IChainStepSearcher.AddHiddenParentsOfCell(Sudoku.Data.ChainNode@,Sudoku.Data.Grid@,Sudoku.Data.Grid@,Sudoku.Collections.ChainNodeSet@)">
+        <member name="M:Sudoku.Solving.Manual.Searchers.Chains.IChainStepSearcher.AddHiddenParentsOfCell(Sudoku.Data.Node@,Sudoku.Data.Grid@,Sudoku.Data.Grid@,Sudoku.Collections.NodeSet@)">
             <summary>
             Add hidden parents of a cell.
             </summary>
@@ -2602,7 +2602,7 @@
             <param name="offNodes">All off nodes.</param>
             <exception cref="T:System.Exception">Throws when the parent node of the specified node cannot be found.</exception>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Searchers.Chains.IChainStepSearcher.AddHiddenParentsOfRegion(Sudoku.Data.ChainNode@,Sudoku.Data.Grid@,Sudoku.Data.Grid@,Sudoku.Data.RegionLabel,Sudoku.Collections.ChainNodeSet@)">
+        <member name="M:Sudoku.Solving.Manual.Searchers.Chains.IChainStepSearcher.AddHiddenParentsOfRegion(Sudoku.Data.Node@,Sudoku.Data.Grid@,Sudoku.Data.Grid@,Sudoku.Data.RegionLabel,Sudoku.Collections.NodeSet@)">
             <summary>
             Add hidden parents of a region.
             </summary>
@@ -2754,7 +2754,7 @@
         <member name="M:Sudoku.Solving.Manual.Searchers.DeadlyPatterns.Loops.UniqueLoopStepSearcher.GetAll(System.Collections.Generic.ICollection{Sudoku.Solving.Manual.Step},Sudoku.Data.Grid@,System.Boolean)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Searchers.DeadlyPatterns.Loops.UniqueLoopStepSearcher.CheckType1(System.Collections.Generic.ICollection{Sudoku.Solving.Manual.Steps.DeadlyPatterns.Loops.UniqueLoopStep},Sudoku.Data.Grid@,System.Int32,System.Int32,Sudoku.Data.Cells@,System.Collections.Generic.IList{System.ValueTuple{Sudoku.Data.ChainLink,Sudoku.Models.ColorIdentifier}},Sudoku.Data.Cells@,System.Boolean)">
+        <member name="M:Sudoku.Solving.Manual.Searchers.DeadlyPatterns.Loops.UniqueLoopStepSearcher.CheckType1(System.Collections.Generic.ICollection{Sudoku.Solving.Manual.Steps.DeadlyPatterns.Loops.UniqueLoopStep},Sudoku.Data.Grid@,System.Int32,System.Int32,Sudoku.Data.Cells@,System.Collections.Generic.IList{System.ValueTuple{Sudoku.Data.Link,Sudoku.Models.ColorIdentifier}},Sudoku.Data.Cells@,System.Boolean)">
             <summary>
             Check type 1.
             </summary>
@@ -2768,7 +2768,7 @@
             <param name="onlyFindOne">Indicates whether the searcher only searching for one step is okay.</param>
             <returns>The step is worth.</returns>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Searchers.DeadlyPatterns.Loops.UniqueLoopStepSearcher.CheckType2(System.Collections.Generic.ICollection{Sudoku.Solving.Manual.Steps.DeadlyPatterns.Loops.UniqueLoopStep},Sudoku.Data.Grid@,System.Int32,System.Int32,Sudoku.Data.Cells@,System.Collections.Generic.IList{System.ValueTuple{Sudoku.Data.ChainLink,Sudoku.Models.ColorIdentifier}},Sudoku.Data.Cells@,System.Int16,System.Boolean)">
+        <member name="M:Sudoku.Solving.Manual.Searchers.DeadlyPatterns.Loops.UniqueLoopStepSearcher.CheckType2(System.Collections.Generic.ICollection{Sudoku.Solving.Manual.Steps.DeadlyPatterns.Loops.UniqueLoopStep},Sudoku.Data.Grid@,System.Int32,System.Int32,Sudoku.Data.Cells@,System.Collections.Generic.IList{System.ValueTuple{Sudoku.Data.Link,Sudoku.Models.ColorIdentifier}},Sudoku.Data.Cells@,System.Int16,System.Boolean)">
             <summary>
             Check type 2.
             </summary>
@@ -2783,7 +2783,7 @@
             <param name="onlyFindOne">Indicates whether the searcher only searching for one step is okay.</param>
             <returns>The step is worth.</returns>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Searchers.DeadlyPatterns.Loops.UniqueLoopStepSearcher.CheckType3(System.Collections.Generic.ICollection{Sudoku.Solving.Manual.Steps.DeadlyPatterns.Loops.UniqueLoopStep},Sudoku.Data.Grid@,System.Int32,System.Int32,Sudoku.Data.Cells@,System.Collections.Generic.IList{System.ValueTuple{Sudoku.Data.ChainLink,Sudoku.Models.ColorIdentifier}},Sudoku.Data.Cells@,System.Int16,System.Boolean)">
+        <member name="M:Sudoku.Solving.Manual.Searchers.DeadlyPatterns.Loops.UniqueLoopStepSearcher.CheckType3(System.Collections.Generic.ICollection{Sudoku.Solving.Manual.Steps.DeadlyPatterns.Loops.UniqueLoopStep},Sudoku.Data.Grid@,System.Int32,System.Int32,Sudoku.Data.Cells@,System.Collections.Generic.IList{System.ValueTuple{Sudoku.Data.Link,Sudoku.Models.ColorIdentifier}},Sudoku.Data.Cells@,System.Int16,System.Boolean)">
             <summary>
             Check type 3.
             </summary>
@@ -2798,7 +2798,7 @@
             <param name="onlyFindOne">Indicates whether the searcher only searching for one step is okay.</param>
             <returns>The step is worth.</returns>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Searchers.DeadlyPatterns.Loops.UniqueLoopStepSearcher.CheckType4(System.Collections.Generic.ICollection{Sudoku.Solving.Manual.Steps.DeadlyPatterns.Loops.UniqueLoopStep},Sudoku.Data.Grid@,System.Int32,System.Int32,Sudoku.Data.Cells@,System.Collections.Generic.IList{System.ValueTuple{Sudoku.Data.ChainLink,Sudoku.Models.ColorIdentifier}},Sudoku.Data.Cells@,System.Int16,System.Boolean)">
+        <member name="M:Sudoku.Solving.Manual.Searchers.DeadlyPatterns.Loops.UniqueLoopStepSearcher.CheckType4(System.Collections.Generic.ICollection{Sudoku.Solving.Manual.Steps.DeadlyPatterns.Loops.UniqueLoopStep},Sudoku.Data.Grid@,System.Int32,System.Int32,Sudoku.Data.Cells@,System.Collections.Generic.IList{System.ValueTuple{Sudoku.Data.Link,Sudoku.Models.ColorIdentifier}},Sudoku.Data.Cells@,System.Int16,System.Boolean)">
             <summary>
             Check type 4.
             </summary>
@@ -4147,7 +4147,7 @@
             Defines a step searcher that searches for unique loop or bi-value oddagon steps.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Searchers.IUniqueLoopOrBivalueOddagonStepSearcher.SearchForPossibleLoopPatterns(Sudoku.Data.Grid@,System.Int32,System.Int32,System.Int32,Sudoku.Data.RegionLabel,System.Int16,System.Int32,Sudoku.Data.Cells@,System.Collections.Generic.List{System.Int32},System.Func{System.Boolean},System.Collections.Generic.List{System.ValueTuple{Sudoku.Data.Cells,System.Collections.Generic.IList{System.ValueTuple{Sudoku.Data.ChainLink,Sudoku.Models.ColorIdentifier}}}})">
+        <member name="M:Sudoku.Solving.Manual.Searchers.IUniqueLoopOrBivalueOddagonStepSearcher.SearchForPossibleLoopPatterns(Sudoku.Data.Grid@,System.Int32,System.Int32,System.Int32,Sudoku.Data.RegionLabel,System.Int16,System.Int32,Sudoku.Data.Cells@,System.Collections.Generic.List{System.Int32},System.Func{System.Boolean},System.Collections.Generic.List{System.ValueTuple{Sudoku.Data.Cells,System.Collections.Generic.IList{System.ValueTuple{Sudoku.Data.Link,Sudoku.Models.ColorIdentifier}}}})">
             <summary>
             Searches for possible bi-value oddagon or unique loop patterns.
             </summary>
@@ -5339,7 +5339,7 @@
             <param name="YEnabled"><inheritdoc/></param>
             <param name="Target">Indicates the target cell.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Steps.Chains.AlternatingInferenceChainStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Data.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Models.PresentationData},System.Boolean,System.Boolean,Sudoku.Data.ChainNode)">
+        <member name="M:Sudoku.Solving.Manual.Steps.Chains.AlternatingInferenceChainStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Data.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Models.PresentationData},System.Boolean,System.Boolean,Sudoku.Data.Node)">
             <summary>
             Provides with a step that is an <b>Alternating Inference Chain</b> technique.
             </summary>
@@ -5522,7 +5522,7 @@
             <param name="YEnabled"><inheritdoc/></param>
             <param name="Target">Indicates the target cell.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Steps.Chains.ContinuousNiceLoopStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Data.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Models.PresentationData},System.Boolean,System.Boolean,Sudoku.Data.ChainNode)">
+        <member name="M:Sudoku.Solving.Manual.Steps.Chains.ContinuousNiceLoopStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Data.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Models.PresentationData},System.Boolean,System.Boolean,Sudoku.Data.Node)">
             <summary>
             Provides with a step that is a <b>Continuous Nice Loop</b> technique.
             </summary>
@@ -5584,7 +5584,7 @@
             <param name="IsNishio"><inheritdoc/></param>
             <param name="Level"><inheritdoc/></param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Steps.Chains.Forcing.BinaryChainingStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Data.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Models.PresentationData},Sudoku.Data.ChainNode@,Sudoku.Data.ChainNode@,Sudoku.Data.ChainNode@,System.Boolean,System.Boolean,System.Boolean,System.Byte)">
+        <member name="M:Sudoku.Solving.Manual.Steps.Chains.Forcing.BinaryChainingStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Data.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Models.PresentationData},Sudoku.Data.Node@,Sudoku.Data.Node@,Sudoku.Data.Node@,System.Boolean,System.Boolean,System.Boolean,System.Byte)">
             <summary>
             Provides with a step that is a <b>Binary Forcing Chains</b> technique.
             </summary>
@@ -5635,7 +5635,7 @@
             <param name="IsDynamic"><inheritdoc/></param>
             <param name="Level"><inheritdoc/></param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Steps.Chains.Forcing.CellChainingStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Data.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Models.PresentationData},System.Int32,System.Collections.Generic.IReadOnlyDictionary{System.Int32,Sudoku.Data.ChainNode},System.Boolean,System.Byte)">
+        <member name="M:Sudoku.Solving.Manual.Steps.Chains.Forcing.CellChainingStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Data.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Models.PresentationData},System.Int32,System.Collections.Generic.IReadOnlyDictionary{System.Int32,Sudoku.Data.Node},System.Boolean,System.Byte)">
             <summary>
             Provides with a step that is a <b>Cell Forcing Chains</b> technique.
             </summary>
@@ -5679,7 +5679,7 @@
             <param name="IsDynamic"><inheritdoc/></param>
             <param name="Level"><inheritdoc/></param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Steps.Chains.Forcing.RegionChainingStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Data.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Models.PresentationData},System.Int32,System.Int32,System.Collections.Generic.IReadOnlyDictionary{System.Int32,Sudoku.Data.ChainNode},System.Boolean,System.Byte)">
+        <member name="M:Sudoku.Solving.Manual.Steps.Chains.Forcing.RegionChainingStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Data.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Models.PresentationData},System.Int32,System.Int32,System.Collections.Generic.IReadOnlyDictionary{System.Int32,Sudoku.Data.Node},System.Boolean,System.Byte)">
             <summary>
             Provides with a step that is a <b>Region Foring Chains</b> technique.
             </summary>

@@ -15,7 +15,7 @@ public unsafe interface IChainStepSearcher : IStepSearcher
 	/// </param>
 	/// <returns>The candidate offsets.</returns>
 	/// <seealso cref="IAlternatingInferenceChainStepSearcher"/>
-	protected static IList<(int, ColorIdentifier)> GetCandidateOffsets(ChainNode target, bool isSimpleAic = false)
+	protected static IList<(int, ColorIdentifier)> GetCandidateOffsets(Node target, bool isSimpleAic = false)
 	{
 		var result = new List<(int, ColorIdentifier)>();
 		var chain = target.WholeChain;
@@ -53,9 +53,9 @@ public unsafe interface IChainStepSearcher : IStepSearcher
 	/// draw the AIC, the elimination weak links don't need drawing.
 	/// </param>
 	/// <returns>The link.</returns>
-	protected static IList<(ChainLink, ColorIdentifier)> GetLinks(ChainNode target, bool showAllLinks = false)
+	protected static IList<(Link, ColorIdentifier)> GetLinks(Node target, bool showAllLinks = false)
 	{
-		var result = new List<(ChainLink, ColorIdentifier)>();
+		var result = new List<(Link, ColorIdentifier)>();
 		var chain = target.WholeChain;
 		for (int i = showAllLinks ? 0 : 1, count = chain.Count - (showAllLinks ? 0 : 2); i < count; i++)
 		{
@@ -69,9 +69,9 @@ public unsafe interface IChainStepSearcher : IStepSearcher
 					(
 						new(pCandidate, prCandidate, (A: prIsOn, B: pIsOn) switch
 						{
-							(A: false, B: true) => ChainLinkTypes.Strong,
-							(A: true, B: false) => ChainLinkTypes.Weak,
-							_ => ChainLinkTypes.Default
+							(A: false, B: true) => LinkTypes.Strong,
+							(A: true, B: false) => LinkTypes.Weak,
+							_ => LinkTypes.Default
 						}),
 						(ColorIdentifier)0
 					)
@@ -88,7 +88,7 @@ public unsafe interface IChainStepSearcher : IStepSearcher
 	/// <param name="list">The list of nodes.</param>
 	/// <param name="node">The node to check.</param>
 	/// <returns>A <see cref="bool"/> result.</returns>
-	protected static bool ListContainsNode(in ChainNodeSet list, ChainNode node)
+	protected static bool ListContainsNode(in NodeSet list, Node node)
 	{
 		foreach (var pNode in list)
 		{
@@ -108,9 +108,9 @@ public unsafe interface IChainStepSearcher : IStepSearcher
 	/// <param name="p">The current node.</param>
 	/// <param name="yEnabled">Indicates whether the Y-Chains are enabled.</param>
 	/// <returns>All possible weak links.</returns>
-	protected static ChainNodeSet GetOnToOff(in Grid grid, ChainNode p, bool yEnabled)
+	protected static NodeSet GetOnToOff(in Grid grid, Node p, bool yEnabled)
 	{
-		var result = new ChainNodeSet();
+		var result = new NodeSet();
 
 		if (yEnabled)
 		{
@@ -177,27 +177,27 @@ public unsafe interface IChainStepSearcher : IStepSearcher
 	/// </param>
 	/// <returns>All possible strong links.</returns>
 #endif
-	protected static ChainNodeSet GetOffToOn(
+	protected static NodeSet GetOffToOn(
 		in Grid grid,
-		ChainNode p,
+		Node p,
 		bool xEnabled,
 		bool yEnabled,
 		bool enableFastProperties,
 		in Grid source = default,
 #if DEBUG
-		ChainNodeSet offNodes = default,
+		NodeSet offNodes = default,
 #endif
 		bool isDynamic = false
 	)
 	{
-		var result = new ChainNodeSet();
+		var result = new NodeSet();
 		if (yEnabled)
 		{
 			// First rule: If there's only two candidates in this cell, the other one gets on.
 			short mask = (short)(grid.GetCandidates(p.Cell) & ~(1 << p.Digit));
 			if (g(grid, p.Cell, isDynamic, enableFastProperties) && IsPow2(mask))
 			{
-				var pOn = new ChainNode(p.Cell, (byte)TrailingZeroCount(mask), true, p);
+				var pOn = new Node(p.Cell, (byte)TrailingZeroCount(mask), true, p);
 
 				if (
 #if DEBUG
@@ -228,7 +228,7 @@ public unsafe interface IChainStepSearcher : IStepSearcher
 				var cells = (h(grid, pd, region, isDynamic, enableFastProperties) & RegionMaps[region]) - pc;
 				if (cells.Count == 1)
 				{
-					var pOn = new ChainNode((byte)cells[0], pd, true, p);
+					var pOn = new Node((byte)cells[0], pd, true, p);
 
 					if (
 #if DEBUG
@@ -254,9 +254,10 @@ public unsafe interface IChainStepSearcher : IStepSearcher
 
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		static bool g(in Grid grid, int cell, bool isDynamic, bool enableFastProperties) => isDynamic
-			? PopCount((uint)grid.GetCandidates(cell)) == 2
-			: enableFastProperties ? BivalueMap.Contains(cell) : grid.BivalueCells.Contains(cell);
+		static bool g(in Grid grid, int cell, bool isDynamic, bool enableFastProperties) =>
+			isDynamic
+				? PopCount((uint)grid.GetCandidates(cell)) == 2
+				: enableFastProperties ? BivalueMap.Contains(cell) : grid.BivalueCells.Contains(cell);
 
 		static Cells h(in Grid grid, int digit, int region, bool isDynamic, bool enableFastProperties)
 		{
@@ -299,7 +300,7 @@ public unsafe interface IChainStepSearcher : IStepSearcher
 #endif
 	private static void AddHiddenParentsOfCell(
 #if DEBUG
-		ref ChainNode p, in Grid grid, in Grid source, ref ChainNodeSet offNodes
+		ref Node p, in Grid grid, in Grid source, ref NodeSet offNodes
 #else
 		ref ChainNode p, in Grid grid, in Grid source
 #endif
@@ -308,7 +309,7 @@ public unsafe interface IChainStepSearcher : IStepSearcher
 		foreach (byte digit in (short)(source.GetCandidates(p.Cell) & ~grid.GetCandidates(p.Cell)))
 		{
 			// Add a hidden parent.
-			var parent = new ChainNode(p.Cell, digit, false);
+			var parent = new Node(p.Cell, digit, false);
 
 #if DEBUG
 			bool alreadyContains = false;
@@ -352,7 +353,7 @@ public unsafe interface IChainStepSearcher : IStepSearcher
 #endif
 	private static void AddHiddenParentsOfRegion(
 #if DEBUG
-		ref ChainNode p, in Grid grid, in Grid source, RegionLabel currRegion, ref ChainNodeSet offNodes
+		ref Node p, in Grid grid, in Grid source, RegionLabel currRegion, ref NodeSet offNodes
 #else
 		ref ChainNode p, in Grid grid, in Grid source, RegionLabel currRegion
 #endif
@@ -362,7 +363,7 @@ public unsafe interface IChainStepSearcher : IStepSearcher
 		foreach (int pos in (short)(m(source, p.Digit, region) & ~m(grid, p.Digit, region)))
 		{
 			// Add a hidden parent.
-			var parent = new ChainNode((byte)RegionCells[region][pos], p.Digit, false);
+			var parent = new Node((byte)RegionCells[region][pos], p.Digit, false);
 
 #if DEBUG
 			bool alreadyContains = false;

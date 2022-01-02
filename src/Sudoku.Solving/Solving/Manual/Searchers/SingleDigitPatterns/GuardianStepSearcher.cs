@@ -42,7 +42,7 @@ public sealed unsafe class GuardianStepSearcher : IGuardianStepSearcher
 
 			foreach (int elimination in eliminations)
 			{
-				var loops = new List<(Cells, Cells, IList<(ChainLink, ColorIdentifier)>)>();
+				var loops = new List<(Cells, Cells, IList<(Link, ColorIdentifier)>)>();
 				var tempLoop = new List<int>();
 				var globalMap = CandMaps[digit] - new Cells(elimination);
 				foreach (int cell in globalMap)

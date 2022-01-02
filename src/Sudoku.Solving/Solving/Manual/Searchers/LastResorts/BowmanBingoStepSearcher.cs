@@ -161,14 +161,14 @@ public sealed unsafe class BowmanBingoStepSearcher : IBowmanBingoStepSearcher
 	/// Get links.
 	/// </summary>
 	/// <returns>The links.</returns>
-	private IList<(ChainLink, ColorIdentifier)> GetLinks()
+	private IList<(Link, ColorIdentifier)> GetLinks()
 	{
-		var result = new List<(ChainLink, ColorIdentifier)>();
+		var result = new List<(Link, ColorIdentifier)>();
 		for (int i = 0, iterationCount = _tempConclusions.Count - 1; i < iterationCount; i++)
 		{
 			var (_, c1) = _tempConclusions[i];
 			var (_, c2) = _tempConclusions[i + 1];
-			result.Add((new(c1, c2, ChainLinkTypes.Default), (ColorIdentifier)0));
+			result.Add((new(c1, c2, LinkTypes.Default), (ColorIdentifier)0));
 		}
 
 		return result;

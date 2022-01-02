@@ -1,6 +1,6 @@
 ﻿namespace Sudoku.Collections;
 
-partial struct ChainNodeSet
+partial struct NodeSet
 {
 	/// <summary>
 	/// Indicates the enumerator.
@@ -15,7 +15,7 @@ partial struct ChainNodeSet
 		/// <summary>
 		/// Indicates the list of nodes.
 		/// </summary>
-		private readonly ChainNode[] _chainNodes;
+		private readonly Node[] _chainNodes;
 
 
 		/// <summary>
@@ -25,11 +25,11 @@ partial struct ChainNodeSet
 
 
 		/// <summary>
-		/// Initializes a set of <see cref="ChainNode"/>s.
+		/// Initializes a set of <see cref="Node"/>s.
 		/// </summary>
 		/// <param name="chainNodes">The chain nodes.</param>
 		/// <param name="length">Indicates the number of nodes to iterate.</param>
-		internal Enumerator(ChainNode[] chainNodes, int length)
+		internal Enumerator(Node[] chainNodes, int length)
 		{
 			_chainNodes = chainNodes;
 			_length = length;
@@ -37,7 +37,7 @@ partial struct ChainNodeSet
 
 
 		/// <inheritdoc cref="IEnumerator{T}.Current"/>
-		public readonly ChainNode Current => _chainNodes[_index];
+		public readonly Node Current => _chainNodes[_index];
 
 
 		/// <inheritdoc cref="IEnumerator.MoveNext"/>

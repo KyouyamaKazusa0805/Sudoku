@@ -1,10 +1,10 @@
 ﻿namespace Sudoku.Data;
 
 /// <summary>
-/// Defines a basic constraint that applied onto a <see cref="ChainLinkType"/>.
+/// Defines a basic constraint that applied onto a <see cref="LinkType"/>.
 /// </summary>
-/// <typeparam name="T">The type. The type is always <see cref="ChainLinkType"/>.</typeparam>
-internal interface IChainLinkType<[Self] T> where T : struct, IChainLinkType<T>
+/// <typeparam name="T">The type. The type is always <see cref="LinkType"/>.</typeparam>
+internal interface ILinkType<[Self] T> where T : struct, ILinkType<T>
 {
 	/// <summary>
 	/// The type kind.
@@ -13,7 +13,7 @@ internal interface IChainLinkType<[Self] T> where T : struct, IChainLinkType<T>
 
 
 	/// <summary>
-	/// Gets the notation of the chain link that combines 2 <see cref="ChainNode"/>s.
+	/// Gets the notation of the chain link that combines 2 <see cref="Node"/>s.
 	/// </summary>
 	/// <returns>The notation <see cref="string"/> representation.</returns>
 	string GetNotation();

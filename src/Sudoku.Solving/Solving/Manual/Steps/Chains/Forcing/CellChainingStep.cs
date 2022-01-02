@@ -13,7 +13,7 @@ public sealed record CellChainingStep(
 	ImmutableArray<Conclusion> Conclusions,
 	ImmutableArray<PresentationData> Views,
 	int SourceCell,
-	IReadOnlyDictionary<int, ChainNode> Chains,
+	IReadOnlyDictionary<int, Node> Chains,
 	bool IsDynamic,
 	byte Level
 ) : ChainStep(

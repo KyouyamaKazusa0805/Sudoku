@@ -9,20 +9,20 @@ public readonly ref partial struct ChainLinkCollection
 	/// <summary>
 	/// The internal collection.
 	/// </summary>
-	private readonly Span<ChainLink> _collection;
+	private readonly Span<Link> _collection;
 
 
 	/// <summary>
 	/// Initializes an instance with the specified collection.
 	/// </summary>
 	/// <param name="collection">The collection.</param>
-	public ChainLinkCollection(in Span<ChainLink> collection) : this() => _collection = collection;
+	public ChainLinkCollection(in Span<Link> collection) : this() => _collection = collection;
 
 	/// <summary>
 	/// Initializes an instance with the specified collection.
 	/// </summary>
 	/// <param name="collection">The collection.</param>
-	public ChainLinkCollection(IEnumerable<ChainLink> collection) : this() =>
+	public ChainLinkCollection(IEnumerable<Link> collection) : this() =>
 		_collection = collection.ToArray().AsSpan();
 
 
@@ -37,7 +37,7 @@ public readonly ref partial struct ChainLinkCollection
 		};
 
 
-		static string f(in Span<ChainLink> collection)
+		static string f(in Span<Link> collection)
 		{
 			var links = collection.ToArray();
 			var sb = new StringHandler(initialCapacity: 100);

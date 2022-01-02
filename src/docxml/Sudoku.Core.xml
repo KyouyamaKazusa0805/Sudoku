@@ -14,13 +14,13 @@
             The internal collection.
             </summary>
         </member>
-        <member name="M:Sudoku.Collections.ChainLinkCollection.#ctor(System.Span{Sudoku.Data.ChainLink}@)">
+        <member name="M:Sudoku.Collections.ChainLinkCollection.#ctor(System.Span{Sudoku.Data.Link}@)">
             <summary>
             Initializes an instance with the specified collection.
             </summary>
             <param name="collection">The collection.</param>
         </member>
-        <member name="M:Sudoku.Collections.ChainLinkCollection.#ctor(System.Collections.Generic.IEnumerable{Sudoku.Data.ChainLink})">
+        <member name="M:Sudoku.Collections.ChainLinkCollection.#ctor(System.Collections.Generic.IEnumerable{Sudoku.Data.Link})">
             <summary>
             Initializes an instance with the specified collection.
             </summary>
@@ -62,230 +62,6 @@
         <member name="M:Sudoku.Collections.ChainLinkCollection.GetHashCode">
             <inheritdoc cref="M:System.Object.GetHashCode"/>
             <exception cref="T:System.NotSupportedException">Always throws.</exception>
-        </member>
-        <member name="T:Sudoku.Collections.ChainNodeSet">
-            <summary>
-            Defines a set that stores the chain nodes.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Collections.ChainNodeSet.Uninitialized">
-            <summary>
-            Indicates the uninitalized instance that is used for checking whether the collection hasn't been initialized.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Collections.ChainNodeSet._capacity">
-            <summary>
-            Indicates the capacity of the collection.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Collections.ChainNodeSet._chainNodes">
-            <summary>
-            Indicates the inner data structure.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Collections.ChainNodeSet.#ctor">
-            <summary>
-            Initializes a <see cref="T:Sudoku.Collections.ChainNodeSet"/> instance, with the default capacity 16.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Collections.ChainNodeSet.#ctor(Sudoku.Data.ChainNode[])">
-            <summary>
-            Initializes a <see cref="T:Sudoku.Collections.ChainNodeSet"/> instance via the set of chain nodes.
-            </summary>
-            <param name="nodes">The chain nodes.</param>
-        </member>
-        <member name="M:Sudoku.Collections.ChainNodeSet.#ctor(Sudoku.Collections.ChainNodeSet@)">
-            <summary>
-            The copy constructor that allows copying the elements from the specified collection
-            to the current collection.
-            </summary>
-            <param name="another">The another collection.</param>
-        </member>
-        <member name="P:Sudoku.Collections.ChainNodeSet.IsUninitialized">
-            <summary>
-            Indicates whether the current instance has been uninitialized.
-            </summary>
-            <remarks>
-            Here we use a simple way to check. C# 10 allows us using parameterless constructor
-            to intialize a <see langword="struct"/> to change the default behavior.
-            However, we can also use <see langword="default"/> expressions to initialize a default instance,
-            whose fields of reference type will be initialized by 0 (or <see langword="null"/> literally).
-            The only way to check whether the set is uninitialized is to use this property
-            to check whether the reference-typed property is <see langword="null"/>.
-            </remarks>
-        </member>
-        <member name="P:Sudoku.Collections.ChainNodeSet.Count">
-            <summary>
-            Indicates the number of elements in this collection.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Collections.ChainNodeSet.Top">
-            <summary>
-            Indicates the top element in this collection stored.
-            If you remove the top element, you can call the method <see cref="M:Sudoku.Collections.ChainNodeSet.Remove"/>,
-            and then the current element will be removed at first.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Collections.ChainNodeSet.Bottom">
-            <summary>
-            Indicates the bottom element in this collection stored.
-            The element is the earliest element added into the current collection.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Collections.ChainNodeSet.Item(System.Int32)">
-            <summary>
-            Get the chain node at the specified index.
-            </summary>
-            <param name="index">The desired index.</param>
-            <returns>The result chain node as reference.</returns>
-        </member>
-        <member name="P:Sudoku.Collections.ChainNodeSet.Item(Sudoku.Data.ChainNode)">
-            <summary>
-            <para>Get the reference of the chain node that equals to the specified chain node.</para>
-            <para>
-            If the collection doesn't contain such node, the return value will be null reference.
-            Therefore, if you want to check the existence of the node, you should call the method
-            <see cref="M:System.Runtime.CompilerServices.Unsafe.IsNullRef``1(``0@)"/> firstly. If the return value is <see langword="true"/>,
-            you can use the inner properties safely.
-            </para>
-            </summary>
-            <param name="node">The node to check the equality.</param>
-            <returns>The reference to the chain.</returns>
-            <seealso cref="M:System.Runtime.CompilerServices.Unsafe.IsNullRef``1(``0@)"/>
-        </member>
-        <member name="M:Sudoku.Collections.ChainNodeSet.RemoveAt(System.Index)">
-            <summary>
-            Remove the node at the specified index.
-            </summary>
-            <param name="index">The desired index.</param>
-        </member>
-        <member name="M:Sudoku.Collections.ChainNodeSet.Remove">
-            <summary>
-            Removes the last element. If the collection has already been empty,
-            an <see cref="T:System.InvalidOperationException"/> instance will be created and thrown.
-            </summary>
-            <exception cref="T:System.InvalidOperationException">Throws when the list has already been empty.</exception>
-        </member>
-        <member name="M:Sudoku.Collections.ChainNodeSet.Sort">
-            <summary>
-            To sort the collection.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Collections.ChainNodeSet.Contains(Sudoku.Data.ChainNode)">
-            <summary>
-            Determine whether the collection contains the specified chain node,
-            whose mask exists in this collection.
-            </summary>
-            <param name="node">The node to check.</param>
-            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
-        </member>
-        <member name="M:Sudoku.Collections.ChainNodeSet.Add(Sudoku.Data.ChainNode)">
-            <summary>
-            Adds the specified node into the collection. If the specified node exists in the collection,
-            the method will do nothing but return <see langword="false"/>; otherwise, add it
-            into the collection and then return <see langword="true"/>.
-            </summary>
-            <param name="node">The node.</param>
-            <returns>
-            A <see cref="T:System.Boolean"/> value indicating whether the operation is successful. Details:
-            <list type="table">
-            <listheader>
-            <term>Return value</term>
-            <description>Description</description>
-            </listheader>
-            <item>
-            <term><see langword="true"/></term>
-            <description>
-            If the current collection contains the specified element to add.
-            </description>
-            </item>
-            <item>
-            <term><see langword="false"/></term>
-            <description>Otherwise.</description>
-            </item>
-            </list>
-            </returns>
-        </member>
-        <member name="M:Sudoku.Collections.ChainNodeSet.RemoveAt(System.Int32)">
-            <summary>
-            Remove the node at the specified index.
-            </summary>
-            <param name="index">The desired index.</param>
-        </member>
-        <member name="M:Sudoku.Collections.ChainNodeSet.GetPinnableReference">
-            <summary>
-            Gets the pinnable reference that is the reference to the first element in this collection,
-            in order to use <see langword="fixed"/> statement on <see cref="T:Sudoku.Collections.ChainNodeSet"/> instances.
-            </summary>
-            <returns>The reference to the first element in this collection.</returns>
-        </member>
-        <member name="M:Sudoku.Collections.ChainNodeSet.ToArray">
-            <summary>
-            Gets the array of <see cref="T:Sudoku.Data.ChainNode"/>s.
-            </summary>
-            <returns>The array of <see cref="T:Sudoku.Data.ChainNode"/>s.</returns>
-        </member>
-        <member name="M:Sudoku.Collections.ChainNodeSet.GetEnumerator">
-            <inheritdoc cref="M:System.Collections.Generic.IEnumerable`1.GetEnumerator"/>
-        </member>
-        <member name="M:Sudoku.Collections.ChainNodeSet.Grow">
-            <summary>
-            Grow the collection to make the capacity be the 2-time value than before.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Collections.ChainNodeSet.System#Collections#IEnumerable#GetEnumerator">
-            <inheritdoc cref="M:System.Collections.IEnumerable.GetEnumerator"/>
-            <exception cref="T:System.NotImplementedException">Always throws.</exception>
-        </member>
-        <member name="M:Sudoku.Collections.ChainNodeSet.op_BitwiseAnd(Sudoku.Collections.ChainNodeSet@,Sudoku.Collections.ChainNodeSet@)">
-            <summary>
-            Merges two different <see cref="T:Sudoku.Collections.ChainNodeSet"/>s into one, and checks and stores once that
-            both <see cref="T:Sudoku.Collections.ChainNodeSet"/>s store the node.
-            </summary>
-            <param name="left">The left-side collection to merge.</param>
-            <param name="right">The right-side collection to merge.</param>
-            <returns>The merged result.</returns>
-        </member>
-        <member name="M:Sudoku.Collections.ChainNodeSet.op_BitwiseOr(Sudoku.Collections.ChainNodeSet@,Sudoku.Collections.ChainNodeSet@)">
-            <summary>
-            Merges two different <see cref="T:Sudoku.Collections.ChainNodeSet"/> into one. Same nodes will be stored only once.
-            </summary>
-            <param name="left">The left-side collection to merge.</param>
-            <param name="right">The right-side collection to merge.</param>
-            <returns>The merged result.</returns>
-        </member>
-        <member name="T:Sudoku.Collections.ChainNodeSet.Enumerator">
-            <summary>
-            Indicates the enumerator.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Collections.ChainNodeSet.Enumerator._length">
-            <summary>
-            Indicates the length of elements to iterate.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Collections.ChainNodeSet.Enumerator._chainNodes">
-            <summary>
-            Indicates the list of nodes.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Collections.ChainNodeSet.Enumerator._index">
-            <summary>
-            Indicates the index that the current enumerator points to.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Collections.ChainNodeSet.Enumerator.#ctor(Sudoku.Data.ChainNode[],System.Int32)">
-            <summary>
-            Initializes a set of <see cref="T:Sudoku.Data.ChainNode"/>s.
-            </summary>
-            <param name="chainNodes">The chain nodes.</param>
-            <param name="length">Indicates the number of nodes to iterate.</param>
-        </member>
-        <member name="P:Sudoku.Collections.ChainNodeSet.Enumerator.Current">
-            <inheritdoc cref="P:System.Collections.Generic.IEnumerator`1.Current"/>
-        </member>
-        <member name="M:Sudoku.Collections.ChainNodeSet.Enumerator.MoveNext">
-            <inheritdoc cref="M:System.Collections.IEnumerator.MoveNext"/>
         </member>
         <member name="T:Sudoku.Collections.ConclusionCollection">
             <summary>
@@ -465,6 +241,230 @@
         <member name="M:Sudoku.Collections.DigitCollection.GetHashCode">
             <inheritdoc cref="M:System.Object.GetHashCode"/>
             <exception cref="T:System.NotSupportedException">Always throws.</exception>
+        </member>
+        <member name="T:Sudoku.Collections.NodeSet">
+            <summary>
+            Defines a set that stores the chain nodes.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Collections.NodeSet.Uninitialized">
+            <summary>
+            Indicates the uninitalized instance that is used for checking whether the collection hasn't been initialized.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Collections.NodeSet._capacity">
+            <summary>
+            Indicates the capacity of the collection.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Collections.NodeSet._chainNodes">
+            <summary>
+            Indicates the inner data structure.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Collections.NodeSet.#ctor">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Collections.NodeSet"/> instance, with the default capacity 16.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Collections.NodeSet.#ctor(Sudoku.Data.Node[])">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Collections.NodeSet"/> instance via the set of chain nodes.
+            </summary>
+            <param name="nodes">The chain nodes.</param>
+        </member>
+        <member name="M:Sudoku.Collections.NodeSet.#ctor(Sudoku.Collections.NodeSet@)">
+            <summary>
+            The copy constructor that allows copying the elements from the specified collection
+            to the current collection.
+            </summary>
+            <param name="another">The another collection.</param>
+        </member>
+        <member name="P:Sudoku.Collections.NodeSet.IsUninitialized">
+            <summary>
+            Indicates whether the current instance has been uninitialized.
+            </summary>
+            <remarks>
+            Here we use a simple way to check. C# 10 allows us using parameterless constructor
+            to intialize a <see langword="struct"/> to change the default behavior.
+            However, we can also use <see langword="default"/> expressions to initialize a default instance,
+            whose fields of reference type will be initialized by 0 (or <see langword="null"/> literally).
+            The only way to check whether the set is uninitialized is to use this property
+            to check whether the reference-typed property is <see langword="null"/>.
+            </remarks>
+        </member>
+        <member name="P:Sudoku.Collections.NodeSet.Count">
+            <summary>
+            Indicates the number of elements in this collection.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Collections.NodeSet.Top">
+            <summary>
+            Indicates the top element in this collection stored.
+            If you remove the top element, you can call the method <see cref="M:Sudoku.Collections.NodeSet.Remove"/>,
+            and then the current element will be removed at first.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Collections.NodeSet.Bottom">
+            <summary>
+            Indicates the bottom element in this collection stored.
+            The element is the earliest element added into the current collection.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Collections.NodeSet.Item(System.Int32)">
+            <summary>
+            Get the chain node at the specified index.
+            </summary>
+            <param name="index">The desired index.</param>
+            <returns>The result chain node as reference.</returns>
+        </member>
+        <member name="P:Sudoku.Collections.NodeSet.Item(Sudoku.Data.Node)">
+            <summary>
+            <para>Get the reference of the chain node that equals to the specified chain node.</para>
+            <para>
+            If the collection doesn't contain such node, the return value will be null reference.
+            Therefore, if you want to check the existence of the node, you should call the method
+            <see cref="M:System.Runtime.CompilerServices.Unsafe.IsNullRef``1(``0@)"/> firstly. If the return value is <see langword="true"/>,
+            you can use the inner properties safely.
+            </para>
+            </summary>
+            <param name="node">The node to check the equality.</param>
+            <returns>The reference to the chain.</returns>
+            <seealso cref="M:System.Runtime.CompilerServices.Unsafe.IsNullRef``1(``0@)"/>
+        </member>
+        <member name="M:Sudoku.Collections.NodeSet.RemoveAt(System.Index)">
+            <summary>
+            Remove the node at the specified index.
+            </summary>
+            <param name="index">The desired index.</param>
+        </member>
+        <member name="M:Sudoku.Collections.NodeSet.Remove">
+            <summary>
+            Removes the last element. If the collection has already been empty,
+            an <see cref="T:System.InvalidOperationException"/> instance will be created and thrown.
+            </summary>
+            <exception cref="T:System.InvalidOperationException">Throws when the list has already been empty.</exception>
+        </member>
+        <member name="M:Sudoku.Collections.NodeSet.Sort">
+            <summary>
+            To sort the collection.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Collections.NodeSet.Contains(Sudoku.Data.Node)">
+            <summary>
+            Determine whether the collection contains the specified chain node,
+            whose mask exists in this collection.
+            </summary>
+            <param name="node">The node to check.</param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
+        </member>
+        <member name="M:Sudoku.Collections.NodeSet.Add(Sudoku.Data.Node)">
+            <summary>
+            Adds the specified node into the collection. If the specified node exists in the collection,
+            the method will do nothing but return <see langword="false"/>; otherwise, add it
+            into the collection and then return <see langword="true"/>.
+            </summary>
+            <param name="node">The node.</param>
+            <returns>
+            A <see cref="T:System.Boolean"/> value indicating whether the operation is successful. Details:
+            <list type="table">
+            <listheader>
+            <term>Return value</term>
+            <description>Description</description>
+            </listheader>
+            <item>
+            <term><see langword="true"/></term>
+            <description>
+            If the current collection contains the specified element to add.
+            </description>
+            </item>
+            <item>
+            <term><see langword="false"/></term>
+            <description>Otherwise.</description>
+            </item>
+            </list>
+            </returns>
+        </member>
+        <member name="M:Sudoku.Collections.NodeSet.RemoveAt(System.Int32)">
+            <summary>
+            Remove the node at the specified index.
+            </summary>
+            <param name="index">The desired index.</param>
+        </member>
+        <member name="M:Sudoku.Collections.NodeSet.GetPinnableReference">
+            <summary>
+            Gets the pinnable reference that is the reference to the first element in this collection,
+            in order to use <see langword="fixed"/> statement on <see cref="T:Sudoku.Collections.NodeSet"/> instances.
+            </summary>
+            <returns>The reference to the first element in this collection.</returns>
+        </member>
+        <member name="M:Sudoku.Collections.NodeSet.ToArray">
+            <summary>
+            Gets the array of <see cref="T:Sudoku.Data.Node"/>s.
+            </summary>
+            <returns>The array of <see cref="T:Sudoku.Data.Node"/>s.</returns>
+        </member>
+        <member name="M:Sudoku.Collections.NodeSet.GetEnumerator">
+            <inheritdoc cref="M:System.Collections.Generic.IEnumerable`1.GetEnumerator"/>
+        </member>
+        <member name="M:Sudoku.Collections.NodeSet.Grow">
+            <summary>
+            Grow the collection to make the capacity be the 2-time value than before.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Collections.NodeSet.System#Collections#IEnumerable#GetEnumerator">
+            <inheritdoc cref="M:System.Collections.IEnumerable.GetEnumerator"/>
+            <exception cref="T:System.NotImplementedException">Always throws.</exception>
+        </member>
+        <member name="M:Sudoku.Collections.NodeSet.op_BitwiseAnd(Sudoku.Collections.NodeSet@,Sudoku.Collections.NodeSet@)">
+            <summary>
+            Merges two different <see cref="T:Sudoku.Collections.NodeSet"/>s into one, and checks and stores once that
+            both <see cref="T:Sudoku.Collections.NodeSet"/>s store the node.
+            </summary>
+            <param name="left">The left-side collection to merge.</param>
+            <param name="right">The right-side collection to merge.</param>
+            <returns>The merged result.</returns>
+        </member>
+        <member name="M:Sudoku.Collections.NodeSet.op_BitwiseOr(Sudoku.Collections.NodeSet@,Sudoku.Collections.NodeSet@)">
+            <summary>
+            Merges two different <see cref="T:Sudoku.Collections.NodeSet"/> into one. Same nodes will be stored only once.
+            </summary>
+            <param name="left">The left-side collection to merge.</param>
+            <param name="right">The right-side collection to merge.</param>
+            <returns>The merged result.</returns>
+        </member>
+        <member name="T:Sudoku.Collections.NodeSet.Enumerator">
+            <summary>
+            Indicates the enumerator.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Collections.NodeSet.Enumerator._length">
+            <summary>
+            Indicates the length of elements to iterate.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Collections.NodeSet.Enumerator._chainNodes">
+            <summary>
+            Indicates the list of nodes.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Collections.NodeSet.Enumerator._index">
+            <summary>
+            Indicates the index that the current enumerator points to.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Collections.NodeSet.Enumerator.#ctor(Sudoku.Data.Node[],System.Int32)">
+            <summary>
+            Initializes a set of <see cref="T:Sudoku.Data.Node"/>s.
+            </summary>
+            <param name="chainNodes">The chain nodes.</param>
+            <param name="length">Indicates the number of nodes to iterate.</param>
+        </member>
+        <member name="P:Sudoku.Collections.NodeSet.Enumerator.Current">
+            <inheritdoc cref="P:System.Collections.Generic.IEnumerator`1.Current"/>
+        </member>
+        <member name="M:Sudoku.Collections.NodeSet.Enumerator.MoveNext">
+            <inheritdoc cref="M:System.Collections.IEnumerator.MoveNext"/>
         </member>
         <member name="T:Sudoku.Collections.RegionCollection">
             <summary>
@@ -1867,419 +1867,6 @@
             This field should not be used to process cell status comparison.
             </remarks>
             <seealso cref="M:Sudoku.Data.Grid.GetStatus(System.Int32)"/>
-        </member>
-        <member name="T:Sudoku.Data.ChainLink">
-            <summary>
-            Encapsulates a link used for drawing.
-            </summary>
-            <param name="StartCandidate">Indicates the start candidate.</param>
-            <param name="EndCandidate">Indicates the end candidate.</param>
-            <param name="LinkType">Indicates the link type.</param>
-        </member>
-        <member name="M:Sudoku.Data.ChainLink.#ctor(System.Int32,System.Int32,Sudoku.Data.ChainLinkType)">
-            <summary>
-            Encapsulates a link used for drawing.
-            </summary>
-            <param name="StartCandidate">Indicates the start candidate.</param>
-            <param name="EndCandidate">Indicates the end candidate.</param>
-            <param name="LinkType">Indicates the link type.</param>
-        </member>
-        <member name="P:Sudoku.Data.ChainLink.StartCell">
-            <summary>
-            Indicates the start cell.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Data.ChainLink.StartDigit">
-            <summary>
-            Indicates the start digit.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Data.ChainLink.EndCell">
-            <summary>
-            Indicates the end cell.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Data.ChainLink.EndDigit">
-            <summary>
-            Indicates the end digit.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Data.ChainLink.EigenValue">
-            <summary>
-            Indicates the eigen value.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Data.ChainLink.ToString">
-            <inheritdoc cref="M:System.Object.ToString"/>
-        </member>
-        <member name="T:Sudoku.Data.ChainLink.JsonConverter">
-            <summary>
-            Defines a JSON converter that allows the current instance being serialized.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Data.ChainLink.JsonConverter.HandleNull">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Data.ChainLink.JsonConverter.Read(System.Text.Json.Utf8JsonReader@,System.Type,System.Text.Json.JsonSerializerOptions)">
-            <inheritdoc/>
-            <exception cref="T:System.InvalidOperationException">Throws when the specified data is invalid.</exception>
-        </member>
-        <member name="M:Sudoku.Data.ChainLink.JsonConverter.Write(System.Text.Json.Utf8JsonWriter,Sudoku.Data.ChainLink,System.Text.Json.JsonSerializerOptions)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Data.ChainLink.Equals(Sudoku.Data.ChainLink@)">
-            <summary>
-            Indicates whether the current object is equal to another object of the same type.
-            </summary>
-            <param name="other">An object to compare with this object.</param>
-            <returns>
-            <see langword="true"/> if the current object is equal to the other parameter;
-            otherwise, <see langword="false"/>.
-            </returns>
-        </member>
-        <member name="M:Sudoku.Data.ChainLink.GetHashCode">
-            <inheritdoc cref="M:System.Object.GetHashCode"/>
-        </member>
-        <member name="M:Sudoku.Data.ChainLink.Deconstruct(System.Int32@,System.Int32@,System.Int32@,System.Int32@,Sudoku.Data.ChainLinkType@)">
-            <summary>
-            Deconstruct the instance into multiple elements.
-            </summary>
-        </member>
-        <member name="T:Sudoku.Data.ChainLinkType">
-            <summary>
-            Defines a type of a link that constructed by 2 <see cref="T:Sudoku.Data.ChainNode"/>s.
-            </summary>
-            <param name="TypeKind">
-            The <see cref="T:System.Byte"/> value as the eigenvalue of the type. All possible values are:
-            <list type="table">
-            <item>
-            <term>0</term>
-            <description>The link is <see cref="F:Sudoku.Data.ChainLinkTypes.Default"/>.</description>
-            </item>
-            <item>
-            <term>1</term>
-            <description>The link is <see cref="F:Sudoku.Data.ChainLinkTypes.Weak"/>.</description>
-            </item>
-            <item>
-            <term>2</term>
-            <description>The link is <see cref="F:Sudoku.Data.ChainLinkTypes.Strong"/>.</description>
-            </item>
-            <item>
-            <term>3</term>
-            <description>The link is <see cref="F:Sudoku.Data.ChainLinkTypes.Line"/>.</description>
-            </item>
-            </list>
-            </param>
-            <completionlist cref="T:Sudoku.Data.ChainLinkTypes"/>
-        </member>
-        <member name="M:Sudoku.Data.ChainLinkType.#ctor(System.Byte)">
-            <summary>
-            Defines a type of a link that constructed by 2 <see cref="T:Sudoku.Data.ChainNode"/>s.
-            </summary>
-            <param name="TypeKind">
-            The <see cref="T:System.Byte"/> value as the eigenvalue of the type. All possible values are:
-            <list type="table">
-            <item>
-            <term>0</term>
-            <description>The link is <see cref="F:Sudoku.Data.ChainLinkTypes.Default"/>.</description>
-            </item>
-            <item>
-            <term>1</term>
-            <description>The link is <see cref="F:Sudoku.Data.ChainLinkTypes.Weak"/>.</description>
-            </item>
-            <item>
-            <term>2</term>
-            <description>The link is <see cref="F:Sudoku.Data.ChainLinkTypes.Strong"/>.</description>
-            </item>
-            <item>
-            <term>3</term>
-            <description>The link is <see cref="F:Sudoku.Data.ChainLinkTypes.Line"/>.</description>
-            </item>
-            </list>
-            </param>
-            <completionlist cref="T:Sudoku.Data.ChainLinkTypes"/>
-        </member>
-        <member name="M:Sudoku.Data.ChainLinkType.GetHashCode">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Data.ChainLinkType.ToString">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Data.ChainLinkType.GetNotation">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Data.ChainLinkType.System#IValueEquatable{Sudoku#Data#ChainLinkType}#Equals(Sudoku.Data.ChainLinkType@)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Data.ChainLinkType.op_Explicit(System.Byte)~Sudoku.Data.ChainLinkType">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Data.ChainLinkType.op_Explicit(Sudoku.Data.ChainLinkType)~System.Byte">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Data.ChainLinkTypes">
-            <summary>
-            Defines the <see langword="static"/> data for <see cref="T:Sudoku.Data.ChainLinkType"/> instances.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Data.ChainLinkTypes.Default">
-            <summary>
-            Indicates the default link.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Data.ChainLinkTypes.Weak">
-            <summary>
-            Indicates the weak link.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Data.ChainLinkTypes.Strong">
-            <summary>
-            Indicates the strong link.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Data.ChainLinkTypes.Line">
-            <summary>
-            Indicates the line link.
-            </summary>
-        </member>
-        <member name="T:Sudoku.Data.ChainNode">
-            <summary>
-            Defines a chain node, with basic information about the node. At the same time you can get the root node
-            of the chain, using the current node as the tail node.
-            </summary>
-            <remarks>
-            The data structure uses an <see cref="T:System.Int32"/> value to represent an instance. The bit usage details is as below:
-            <code><![CDATA[
-            |  (4)  |  (3)  |  (2)  |  (1)  |
-            |-------|-------|-------|-------|
-            32     24      16       8       0
-            ]]></code>
-            Where:
-            <list type="table">
-            <item>
-            <term>Part <c>(1)</c>, bits 0..8</term>
-            <description>The mask of the digit used. The value only uses 4 bits.</description>
-            </item>
-            <item>
-            <term>Part <c>(2)</c>, bits 8..16</term>
-            <description>The mask of the cell used. The value only uses 7 bits.</description>
-            </item>
-            <item>
-            <term>Part <c>(3)</c>, bits 16..24</term>
-            <description>
-            The mask of the on/off status indicating whether the node is currently on. The value only uses 1 bit.
-            </description>
-            </item>
-            <item>
-            <term>Part <c>(4)</c>, bits 24..32</term>
-            <description>The mask of the number of parent nodes stored. The value only uses 3 bits.</description>
-            </item>
-            </list>
-            </remarks>
-            <param name="Mask">Indicates the mask that handles and stores the basic information of the current node.</param>
-        </member>
-        <member name="M:Sudoku.Data.ChainNode.#ctor(System.Int32)">
-            <summary>
-            Defines a chain node, with basic information about the node. At the same time you can get the root node
-            of the chain, using the current node as the tail node.
-            </summary>
-            <remarks>
-            The data structure uses an <see cref="T:System.Int32"/> value to represent an instance. The bit usage details is as below:
-            <code><![CDATA[
-            |  (4)  |  (3)  |  (2)  |  (1)  |
-            |-------|-------|-------|-------|
-            32     24      16       8       0
-            ]]></code>
-            Where:
-            <list type="table">
-            <item>
-            <term>Part <c>(1)</c>, bits 0..8</term>
-            <description>The mask of the digit used. The value only uses 4 bits.</description>
-            </item>
-            <item>
-            <term>Part <c>(2)</c>, bits 8..16</term>
-            <description>The mask of the cell used. The value only uses 7 bits.</description>
-            </item>
-            <item>
-            <term>Part <c>(3)</c>, bits 16..24</term>
-            <description>
-            The mask of the on/off status indicating whether the node is currently on. The value only uses 1 bit.
-            </description>
-            </item>
-            <item>
-            <term>Part <c>(4)</c>, bits 24..32</term>
-            <description>The mask of the number of parent nodes stored. The value only uses 3 bits.</description>
-            </item>
-            </list>
-            </remarks>
-            <param name="Mask">Indicates the mask that handles and stores the basic information of the current node.</param>
-        </member>
-        <member name="F:Sudoku.Data.ChainNode.Undefined">
-            <summary>
-            Indicates the undefined instance that is used for providing with a value that only used in an invalid case.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Data.ChainNode._rawParents">
-            <summary>
-            Indicates the parents.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Data.ChainNode.#ctor(System.Byte,System.Byte,System.Boolean)">
-            <summary>
-            Initializes a <see cref="T:Sudoku.Data.ChainNode"/> instance using the specified cell, digit and the status
-            value as a <see cref="T:System.Boolean"/> value.
-            </summary>
-            <param name="cell">The cell used.</param>
-            <param name="digit">The digit used.</param>
-            <param name="isOn">A <see cref="T:System.Boolean"/> result indicating whether the node is on.</param>
-        </member>
-        <member name="M:Sudoku.Data.ChainNode.#ctor(System.Byte,System.Byte,System.Boolean,Sudoku.Data.ChainNode@)">
-            <summary>
-            Initializes a <see cref="T:Sudoku.Data.ChainNode"/> instance using the specified cell, digit,
-            the status value as a <see cref="T:System.Boolean"/> value, and a parent node.
-            </summary>
-            <param name="cell">The cell used.</param>
-            <param name="digit">The digit used.</param>
-            <param name="isOn">A <see cref="T:System.Boolean"/> result indicating whether the node is on.</param>
-            <param name="parent">The parent node.</param>
-        </member>
-        <member name="M:Sudoku.Data.ChainNode.#ctor(System.Byte,System.Byte,System.Boolean,Sudoku.Data.ChainNode[])">
-            <summary>
-            Initializes a <see cref="T:Sudoku.Data.ChainNode"/> instance using the specified cell, digit,
-            the status value as a <see cref="T:System.Boolean"/> value, and the parent nodes.
-            </summary>
-            <param name="cell">The cell used.</param>
-            <param name="digit">The digit used.</param>
-            <param name="isOn">A <see cref="T:System.Boolean"/> result indicating whether the node is on.</param>
-            <param name="parents">The parent nodes.</param>
-        </member>
-        <member name="P:Sudoku.Data.ChainNode.Parents">
-            <summary>
-            Gets the possible useful parents.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Data.ChainNode.IsOn">
-            <summary>
-            Indicates whether the node is at the <b>on</b> status.
-            </summary>
-            <remarks>
-            The possible <b>status</b>es of the node are <b>on</b> and <b>off</b>, where:
-            <list type="table">
-            <listheader>
-            <term>Status</term>
-            <description>Meaning</description>
-            </listheader>
-            <item>
-            <term>On</term>
-            <description>
-            The digit is true in the cell, which means the digit should be filled in this cell.
-            </description>
-            </item>
-            <item>
-            <term>Off</term>
-            <description>
-            The digit is false in the cell, which means the digit should be eliminated from this cell.
-            </description>
-            </item>
-            </list>
-            </remarks>
-        </member>
-        <member name="P:Sudoku.Data.ChainNode.Cell">
-            <summary>
-            Indicates the cell used.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Data.ChainNode.Digit">
-            <summary>
-            Indicates the digit used.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Data.ChainNode.ParentsCount">
-            <summary>
-            Indicates the total number of parent nodes.
-            </summary>
-            <!--<value>The number of cells to assign.</value>-->
-            <!--<returns>The number of parents.</returns>-->
-        </member>
-        <member name="P:Sudoku.Data.ChainNode.AncestorsCount">
-            <summary>
-            Indicates the total number of the ancestors.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Data.ChainNode.Candidate">
-            <summary>
-            Indicates the candidate used.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Data.ChainNode.Root">
-            <summary>
-            <para>Indicates the root of the current chain.</para>
-            <para>
-            If the property <see cref="P:Sudoku.Data.ChainNode.Parents"/> isn't <see langword="null"/>,
-            then the property will search for the parent node and check its parent node recursively
-            (i.e. checks the grandparents, great-grandparents, etc.).
-            </para>
-            </summary>
-            <returns>Returns the root of the chain.</returns>
-            <seealso cref="P:Sudoku.Data.ChainNode.Parents"/>
-            <seealso cref="P:Sudoku.Data.ChainNode.ParentsCount"/>
-        </member>
-        <member name="P:Sudoku.Data.ChainNode.WholeChain">
-            <summary>
-            Indicates the nodes that the current node lies in.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Data.ChainNode.IsParentOf(Sudoku.Data.ChainNode)">
-            <summary>
-            Determine whether the node is the parent of the specified node.
-            </summary>
-            <param name="node">The chain node.</param>
-            <returns>A <see cref="T:System.Boolean"/> result.</returns>
-        </member>
-        <member name="M:Sudoku.Data.ChainNode.GetHashCode">
-            <inheritdoc cref="M:System.Object.GetHashCode"/>
-        </member>
-        <member name="M:Sudoku.Data.ChainNode.ToString">
-            <inheritdoc cref="M:System.Object.ToString"/>
-        </member>
-        <member name="M:Sudoku.Data.ChainNode.AddParent(Sudoku.Data.ChainNode)">
-            <summary>
-            Append a chain node into the collection, as one of the parent nodes.
-            </summary>
-            <param name="chain">The chain node to be added.</param>
-            <exception cref="T:System.InvalidOperationException">
-            Throws when the inner parent nodes collection is full.
-            </exception>
-        </member>
-        <member name="M:Sudoku.Data.ChainNode.ConstructMask(System.Byte,System.Byte,System.Boolean,System.Byte)">
-            <summary>
-            Constructs the mask.
-            </summary>
-            <param name="cell">The cell.</param>
-            <param name="digit">The digit.</param>
-            <param name="isOn">The on/off status.</param>
-            <param name="parentsCount">The number of parents.</param>
-            <returns>The mask.</returns>
-        </member>
-        <member name="M:Sudoku.Data.ChainNode.Deconstruct(System.Byte@,System.Byte@,System.Boolean@)">
-            <summary>
-            Deconstruct the instance into multiple elements.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Data.ChainNode.Equals(Sudoku.Data.ChainNode@)">
-            <summary>
-            Indicates whether the current object is equal to another object of the same type.
-            </summary>
-            <param name="other">An object to compare with this object.</param>
-            <returns>
-            <see langword="true"/> if the current object is equal to the other parameter;
-            otherwise, <see langword="false"/>.
-            </returns>
-        </member>
-        <member name="M:Sudoku.Data.ChainNode.Deconstruct(System.Int16@,System.Boolean@)">
-            <summary>
-            Deconstruct the instance into multiple elements.
-            </summary>
         </member>
         <member name="T:Sudoku.Data.Conclusion">
             <summary>
@@ -4279,41 +3866,6 @@
             </summary>
             <param name="offsets">The offsets.</param>
         </member>
-        <member name="T:Sudoku.Data.IChainLinkType`1">
-            <summary>
-            Defines a basic constraint that applied onto a <see cref="T:Sudoku.Data.ChainLinkType"/>.
-            </summary>
-            <typeparam name="T">The type. The type is always <see cref="T:Sudoku.Data.ChainLinkType"/>.</typeparam>
-        </member>
-        <member name="P:Sudoku.Data.IChainLinkType`1.TypeKind">
-            <summary>
-            The type kind.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Data.IChainLinkType`1.GetNotation">
-            <summary>
-            Gets the notation of the chain link that combines 2 <see cref="T:Sudoku.Data.ChainNode"/>s.
-            </summary>
-            <returns>The notation <see cref="T:System.String"/> representation.</returns>
-        </member>
-        <member name="M:Sudoku.Data.IChainLinkType`1.ToString">
-            <inheritdoc cref="M:System.Object.ToString"/>
-        </member>
-        <member name="M:Sudoku.Data.IChainLinkType`1.GetHashCode">
-            <inheritdoc cref="M:System.Object.GetHashCode"/>
-        </member>
-        <member name="M:Sudoku.Data.IChainLinkType`1.op_Explicit(System.Byte)~`0">
-            <summary>
-            Explicit cast from <see cref="T:System.Byte"/> to <typeparamref name="T"/>.
-            </summary>
-            <param name="value">The value.</param>
-        </member>
-        <member name="M:Sudoku.Data.IChainLinkType`1.op_Explicit(`0)~System.Byte">
-            <summary>
-            Explicit cast from <typeparamref name="T"/> to <see cref="T:System.Byte"/>.
-            </summary>
-            <param name="linkType">The link type.</param>
-        </member>
         <member name="T:Sudoku.Data.IGrid`1">
             <summary>
             Defines a data structure that describes a sudoku grid.
@@ -4788,6 +4340,455 @@
             <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
             <seealso cref="P:Sudoku.Data.IGrid`1.Undefined"/>
         </member>
+        <member name="T:Sudoku.Data.ILinkType`1">
+            <summary>
+            Defines a basic constraint that applied onto a <see cref="T:Sudoku.Data.LinkType"/>.
+            </summary>
+            <typeparam name="T">The type. The type is always <see cref="T:Sudoku.Data.LinkType"/>.</typeparam>
+        </member>
+        <member name="P:Sudoku.Data.ILinkType`1.TypeKind">
+            <summary>
+            The type kind.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Data.ILinkType`1.GetNotation">
+            <summary>
+            Gets the notation of the chain link that combines 2 <see cref="T:Sudoku.Data.Node"/>s.
+            </summary>
+            <returns>The notation <see cref="T:System.String"/> representation.</returns>
+        </member>
+        <member name="M:Sudoku.Data.ILinkType`1.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
+        <member name="M:Sudoku.Data.ILinkType`1.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="M:Sudoku.Data.ILinkType`1.op_Explicit(System.Byte)~`0">
+            <summary>
+            Explicit cast from <see cref="T:System.Byte"/> to <typeparamref name="T"/>.
+            </summary>
+            <param name="value">The value.</param>
+        </member>
+        <member name="M:Sudoku.Data.ILinkType`1.op_Explicit(`0)~System.Byte">
+            <summary>
+            Explicit cast from <typeparamref name="T"/> to <see cref="T:System.Byte"/>.
+            </summary>
+            <param name="linkType">The link type.</param>
+        </member>
+        <member name="T:Sudoku.Data.Link">
+            <summary>
+            Encapsulates a link used for drawing.
+            </summary>
+            <param name="StartCandidate">Indicates the start candidate.</param>
+            <param name="EndCandidate">Indicates the end candidate.</param>
+            <param name="LinkType">Indicates the link type.</param>
+        </member>
+        <member name="M:Sudoku.Data.Link.#ctor(System.Int32,System.Int32,Sudoku.Data.LinkType)">
+            <summary>
+            Encapsulates a link used for drawing.
+            </summary>
+            <param name="StartCandidate">Indicates the start candidate.</param>
+            <param name="EndCandidate">Indicates the end candidate.</param>
+            <param name="LinkType">Indicates the link type.</param>
+        </member>
+        <member name="P:Sudoku.Data.Link.StartCell">
+            <summary>
+            Indicates the start cell.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Data.Link.StartDigit">
+            <summary>
+            Indicates the start digit.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Data.Link.EndCell">
+            <summary>
+            Indicates the end cell.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Data.Link.EndDigit">
+            <summary>
+            Indicates the end digit.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Data.Link.EigenValue">
+            <summary>
+            Indicates the eigen value.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Data.Link.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
+        <member name="T:Sudoku.Data.Link.JsonConverter">
+            <summary>
+            Defines a JSON converter that allows the current instance being serialized.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Data.Link.JsonConverter.HandleNull">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Data.Link.JsonConverter.Read(System.Text.Json.Utf8JsonReader@,System.Type,System.Text.Json.JsonSerializerOptions)">
+            <inheritdoc/>
+            <exception cref="T:System.InvalidOperationException">Throws when the specified data is invalid.</exception>
+        </member>
+        <member name="M:Sudoku.Data.Link.JsonConverter.Write(System.Text.Json.Utf8JsonWriter,Sudoku.Data.Link,System.Text.Json.JsonSerializerOptions)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Data.Link.Equals(Sudoku.Data.Link@)">
+            <summary>
+            Indicates whether the current object is equal to another object of the same type.
+            </summary>
+            <param name="other">An object to compare with this object.</param>
+            <returns>
+            <see langword="true"/> if the current object is equal to the other parameter;
+            otherwise, <see langword="false"/>.
+            </returns>
+        </member>
+        <member name="M:Sudoku.Data.Link.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="M:Sudoku.Data.Link.Deconstruct(System.Int32@,System.Int32@,System.Int32@,System.Int32@,Sudoku.Data.LinkType@)">
+            <summary>
+            Deconstruct the instance into multiple elements.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Data.LinkType">
+            <summary>
+            Defines a type of a link that constructed by 2 <see cref="T:Sudoku.Data.Node"/>s.
+            </summary>
+            <param name="TypeKind">
+            The <see cref="T:System.Byte"/> value as the eigenvalue of the type. All possible values are:
+            <list type="table">
+            <item>
+            <term>0</term>
+            <description>The link is <see cref="F:Sudoku.Data.LinkTypes.Default"/>.</description>
+            </item>
+            <item>
+            <term>1</term>
+            <description>The link is <see cref="F:Sudoku.Data.LinkTypes.Weak"/>.</description>
+            </item>
+            <item>
+            <term>2</term>
+            <description>The link is <see cref="F:Sudoku.Data.LinkTypes.Strong"/>.</description>
+            </item>
+            <item>
+            <term>3</term>
+            <description>The link is <see cref="F:Sudoku.Data.LinkTypes.Line"/>.</description>
+            </item>
+            </list>
+            </param>
+            <completionlist cref="T:Sudoku.Data.LinkTypes"/>
+        </member>
+        <member name="M:Sudoku.Data.LinkType.#ctor(System.Byte)">
+            <summary>
+            Defines a type of a link that constructed by 2 <see cref="T:Sudoku.Data.Node"/>s.
+            </summary>
+            <param name="TypeKind">
+            The <see cref="T:System.Byte"/> value as the eigenvalue of the type. All possible values are:
+            <list type="table">
+            <item>
+            <term>0</term>
+            <description>The link is <see cref="F:Sudoku.Data.LinkTypes.Default"/>.</description>
+            </item>
+            <item>
+            <term>1</term>
+            <description>The link is <see cref="F:Sudoku.Data.LinkTypes.Weak"/>.</description>
+            </item>
+            <item>
+            <term>2</term>
+            <description>The link is <see cref="F:Sudoku.Data.LinkTypes.Strong"/>.</description>
+            </item>
+            <item>
+            <term>3</term>
+            <description>The link is <see cref="F:Sudoku.Data.LinkTypes.Line"/>.</description>
+            </item>
+            </list>
+            </param>
+            <completionlist cref="T:Sudoku.Data.LinkTypes"/>
+        </member>
+        <member name="M:Sudoku.Data.LinkType.GetHashCode">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Data.LinkType.ToString">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Data.LinkType.GetNotation">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Data.LinkType.System#IValueEquatable{Sudoku#Data#LinkType}#Equals(Sudoku.Data.LinkType@)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Data.LinkType.op_Explicit(System.Byte)~Sudoku.Data.LinkType">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Data.LinkType.op_Explicit(Sudoku.Data.LinkType)~System.Byte">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Data.LinkTypes">
+            <summary>
+            Defines the <see langword="static"/> data for <see cref="T:Sudoku.Data.LinkType"/> instances.
+            </summary>
+            <completionlist cref="T:Sudoku.Data.LinkType"/>
+        </member>
+        <member name="F:Sudoku.Data.LinkTypes.Default">
+            <summary>
+            Indicates the default link.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Data.LinkTypes.Weak">
+            <summary>
+            Indicates the weak link.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Data.LinkTypes.Strong">
+            <summary>
+            Indicates the strong link.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Data.LinkTypes.Line">
+            <summary>
+            Indicates the line link.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Data.Node">
+            <summary>
+            Defines a chain node, with basic information about the node. At the same time you can get the root node
+            of the chain, using the current node as the tail node.
+            </summary>
+            <remarks>
+            The data structure uses an <see cref="T:System.Int32"/> value to represent an instance. The bit usage details is as below:
+            <code><![CDATA[
+            |  (4)  |  (3)  |  (2)  |  (1)  |
+            |-------|-------|-------|-------|
+            32     24      16       8       0
+            ]]></code>
+            Where:
+            <list type="table">
+            <item>
+            <term>Part <c>(1)</c>, bits 0..8</term>
+            <description>The mask of the digit used. The value only uses 4 bits.</description>
+            </item>
+            <item>
+            <term>Part <c>(2)</c>, bits 8..16</term>
+            <description>The mask of the cell used. The value only uses 7 bits.</description>
+            </item>
+            <item>
+            <term>Part <c>(3)</c>, bits 16..24</term>
+            <description>
+            The mask of the on/off status indicating whether the node is currently on. The value only uses 1 bit.
+            </description>
+            </item>
+            <item>
+            <term>Part <c>(4)</c>, bits 24..32</term>
+            <description>The mask of the number of parent nodes stored. The value only uses 3 bits.</description>
+            </item>
+            </list>
+            </remarks>
+            <param name="Mask">Indicates the mask that handles and stores the basic information of the current node.</param>
+        </member>
+        <member name="M:Sudoku.Data.Node.#ctor(System.Int32)">
+            <summary>
+            Defines a chain node, with basic information about the node. At the same time you can get the root node
+            of the chain, using the current node as the tail node.
+            </summary>
+            <remarks>
+            The data structure uses an <see cref="T:System.Int32"/> value to represent an instance. The bit usage details is as below:
+            <code><![CDATA[
+            |  (4)  |  (3)  |  (2)  |  (1)  |
+            |-------|-------|-------|-------|
+            32     24      16       8       0
+            ]]></code>
+            Where:
+            <list type="table">
+            <item>
+            <term>Part <c>(1)</c>, bits 0..8</term>
+            <description>The mask of the digit used. The value only uses 4 bits.</description>
+            </item>
+            <item>
+            <term>Part <c>(2)</c>, bits 8..16</term>
+            <description>The mask of the cell used. The value only uses 7 bits.</description>
+            </item>
+            <item>
+            <term>Part <c>(3)</c>, bits 16..24</term>
+            <description>
+            The mask of the on/off status indicating whether the node is currently on. The value only uses 1 bit.
+            </description>
+            </item>
+            <item>
+            <term>Part <c>(4)</c>, bits 24..32</term>
+            <description>The mask of the number of parent nodes stored. The value only uses 3 bits.</description>
+            </item>
+            </list>
+            </remarks>
+            <param name="Mask">Indicates the mask that handles and stores the basic information of the current node.</param>
+        </member>
+        <member name="F:Sudoku.Data.Node.Undefined">
+            <summary>
+            Indicates the undefined instance that is used for providing with a value that only used in an invalid case.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Data.Node._rawParents">
+            <summary>
+            Indicates the parents.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Data.Node.#ctor(System.Byte,System.Byte,System.Boolean)">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Data.Node"/> instance using the specified cell, digit and the status
+            value as a <see cref="T:System.Boolean"/> value.
+            </summary>
+            <param name="cell">The cell used.</param>
+            <param name="digit">The digit used.</param>
+            <param name="isOn">A <see cref="T:System.Boolean"/> result indicating whether the node is on.</param>
+        </member>
+        <member name="M:Sudoku.Data.Node.#ctor(System.Byte,System.Byte,System.Boolean,Sudoku.Data.Node@)">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Data.Node"/> instance using the specified cell, digit,
+            the status value as a <see cref="T:System.Boolean"/> value, and a parent node.
+            </summary>
+            <param name="cell">The cell used.</param>
+            <param name="digit">The digit used.</param>
+            <param name="isOn">A <see cref="T:System.Boolean"/> result indicating whether the node is on.</param>
+            <param name="parent">The parent node.</param>
+        </member>
+        <member name="M:Sudoku.Data.Node.#ctor(System.Byte,System.Byte,System.Boolean,Sudoku.Data.Node[])">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Data.Node"/> instance using the specified cell, digit,
+            the status value as a <see cref="T:System.Boolean"/> value, and the parent nodes.
+            </summary>
+            <param name="cell">The cell used.</param>
+            <param name="digit">The digit used.</param>
+            <param name="isOn">A <see cref="T:System.Boolean"/> result indicating whether the node is on.</param>
+            <param name="parents">The parent nodes.</param>
+        </member>
+        <member name="P:Sudoku.Data.Node.Parents">
+            <summary>
+            Gets the possible useful parents.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Data.Node.IsOn">
+            <summary>
+            Indicates whether the node is at the <b>on</b> status.
+            </summary>
+            <remarks>
+            The possible <b>status</b>es of the node are <b>on</b> and <b>off</b>, where:
+            <list type="table">
+            <listheader>
+            <term>Status</term>
+            <description>Meaning</description>
+            </listheader>
+            <item>
+            <term>On</term>
+            <description>
+            The digit is true in the cell, which means the digit should be filled in this cell.
+            </description>
+            </item>
+            <item>
+            <term>Off</term>
+            <description>
+            The digit is false in the cell, which means the digit should be eliminated from this cell.
+            </description>
+            </item>
+            </list>
+            </remarks>
+        </member>
+        <member name="P:Sudoku.Data.Node.Cell">
+            <summary>
+            Indicates the cell used.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Data.Node.Digit">
+            <summary>
+            Indicates the digit used.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Data.Node.ParentsCount">
+            <summary>
+            Indicates the total number of parent nodes.
+            </summary>
+            <!--<value>The number of cells to assign.</value>-->
+            <!--<returns>The number of parents.</returns>-->
+        </member>
+        <member name="P:Sudoku.Data.Node.AncestorsCount">
+            <summary>
+            Indicates the total number of the ancestors.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Data.Node.Candidate">
+            <summary>
+            Indicates the candidate used.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Data.Node.Root">
+            <summary>
+            <para>Indicates the root of the current chain.</para>
+            <para>
+            If the property <see cref="P:Sudoku.Data.Node.Parents"/> isn't <see langword="null"/>,
+            then the property will search for the parent node and check its parent node recursively
+            (i.e. checks the grandparents, great-grandparents, etc.).
+            </para>
+            </summary>
+            <returns>Returns the root of the chain.</returns>
+            <seealso cref="P:Sudoku.Data.Node.Parents"/>
+            <seealso cref="P:Sudoku.Data.Node.ParentsCount"/>
+        </member>
+        <member name="P:Sudoku.Data.Node.WholeChain">
+            <summary>
+            Indicates the nodes that the current node lies in.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Data.Node.IsParentOf(Sudoku.Data.Node)">
+            <summary>
+            Determine whether the node is the parent of the specified node.
+            </summary>
+            <param name="node">The chain node.</param>
+            <returns>A <see cref="T:System.Boolean"/> result.</returns>
+        </member>
+        <member name="M:Sudoku.Data.Node.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="M:Sudoku.Data.Node.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
+        <member name="M:Sudoku.Data.Node.AddParent(Sudoku.Data.Node)">
+            <summary>
+            Append a chain node into the collection, as one of the parent nodes.
+            </summary>
+            <param name="chain">The chain node to be added.</param>
+            <exception cref="T:System.InvalidOperationException">
+            Throws when the inner parent nodes collection is full.
+            </exception>
+        </member>
+        <member name="M:Sudoku.Data.Node.ConstructMask(System.Byte,System.Byte,System.Boolean,System.Byte)">
+            <summary>
+            Constructs the mask.
+            </summary>
+            <param name="cell">The cell.</param>
+            <param name="digit">The digit.</param>
+            <param name="isOn">The on/off status.</param>
+            <param name="parentsCount">The number of parents.</param>
+            <returns>The mask.</returns>
+        </member>
+        <member name="M:Sudoku.Data.Node.Deconstruct(System.Byte@,System.Byte@,System.Boolean@)">
+            <summary>
+            Deconstruct the instance into multiple elements.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Data.Node.Equals(Sudoku.Data.Node@)">
+            <summary>
+            Indicates whether the current object is equal to another object of the same type.
+            </summary>
+            <param name="other">An object to compare with this object.</param>
+            <returns>
+            <see langword="true"/> if the current object is equal to the other parameter;
+            otherwise, <see langword="false"/>.
+            </returns>
+        </member>
+        <member name="M:Sudoku.Data.Node.Deconstruct(System.Int16@,System.Boolean@)">
+            <summary>
+            Deconstruct the instance into multiple elements.
+            </summary>
+        </member>
         <member name="T:Sudoku.Data.RegionCalculator">
             <summary>
             Provides extension methods on conversions between a cell and a region.
@@ -5052,7 +5053,7 @@
             <param name="DirectLines">The direct lines.</param>
             <param name="UnknownValues">The unknown values.</param>
         </member>
-        <member name="M:Sudoku.Models.PresentationData.#ctor(System.Collections.Generic.IList{System.ValueTuple{System.Int32,Sudoku.Models.ColorIdentifier}},System.Collections.Generic.IList{System.ValueTuple{System.Int32,Sudoku.Models.ColorIdentifier}},System.Collections.Generic.IList{System.ValueTuple{System.Int32,Sudoku.Models.ColorIdentifier}},System.Collections.Generic.IList{System.ValueTuple{Sudoku.Data.ChainLink,Sudoku.Models.ColorIdentifier}},System.Collections.Generic.IList{System.ValueTuple{Sudoku.Presentation.Crosshatch,Sudoku.Models.ColorIdentifier}},System.Collections.Generic.IList{System.ValueTuple{Sudoku.Presentation.UnknownValue,Sudoku.Models.ColorIdentifier}})">
+        <member name="M:Sudoku.Models.PresentationData.#ctor(System.Collections.Generic.IList{System.ValueTuple{System.Int32,Sudoku.Models.ColorIdentifier}},System.Collections.Generic.IList{System.ValueTuple{System.Int32,Sudoku.Models.ColorIdentifier}},System.Collections.Generic.IList{System.ValueTuple{System.Int32,Sudoku.Models.ColorIdentifier}},System.Collections.Generic.IList{System.ValueTuple{Sudoku.Data.Link,Sudoku.Models.ColorIdentifier}},System.Collections.Generic.IList{System.ValueTuple{Sudoku.Presentation.Crosshatch,Sudoku.Models.ColorIdentifier}},System.Collections.Generic.IList{System.ValueTuple{Sudoku.Presentation.UnknownValue,Sudoku.Models.ColorIdentifier}})">
             <summary>
             Indicates the presentation data that is used for present the information.
             </summary>
@@ -5131,7 +5132,7 @@
             </item>
             <item>
             <term><see cref="F:Sudoku.Models.PresentationDataKind.Links"/></term>
-            <description><see cref="T:Sudoku.Data.ChainLink"/></description>
+            <description><see cref="T:Sudoku.Data.Link"/></description>
             </item>
             <item>
             <term><see cref="F:Sudoku.Models.PresentationDataKind.DirectLines"/></term>
@@ -5178,7 +5179,7 @@
             </item>
             <item>
             <term><see cref="F:Sudoku.Models.PresentationDataKind.Links"/></term>
-            <description><see cref="T:Sudoku.Data.ChainLink"/></description>
+            <description><see cref="T:Sudoku.Data.Link"/></description>
             </item>
             <item>
             <term><see cref="F:Sudoku.Models.PresentationDataKind.DirectLines"/></term>

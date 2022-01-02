@@ -1,34 +1,34 @@
 ﻿namespace Sudoku.Data;
 
 /// <summary>
-/// Defines a type of a link that constructed by 2 <see cref="ChainNode"/>s.
+/// Defines a type of a link that constructed by 2 <see cref="Node"/>s.
 /// </summary>
 /// <param name="TypeKind">
 /// The <see cref="byte"/> value as the eigenvalue of the type. All possible values are:
 /// <list type="table">
 /// <item>
 /// <term>0</term>
-/// <description>The link is <see cref="ChainLinkTypes.Default"/>.</description>
+/// <description>The link is <see cref="LinkTypes.Default"/>.</description>
 /// </item>
 /// <item>
 /// <term>1</term>
-/// <description>The link is <see cref="ChainLinkTypes.Weak"/>.</description>
+/// <description>The link is <see cref="LinkTypes.Weak"/>.</description>
 /// </item>
 /// <item>
 /// <term>2</term>
-/// <description>The link is <see cref="ChainLinkTypes.Strong"/>.</description>
+/// <description>The link is <see cref="LinkTypes.Strong"/>.</description>
 /// </item>
 /// <item>
 /// <term>3</term>
-/// <description>The link is <see cref="ChainLinkTypes.Line"/>.</description>
+/// <description>The link is <see cref="LinkTypes.Line"/>.</description>
 /// </item>
 /// </list>
 /// </param>
-/// <completionlist cref="ChainLinkTypes"/>
+/// <completionlist cref="LinkTypes"/>
 [StructLayout(LayoutKind.Explicit, CharSet = CharSet.Auto, Pack = 0, Size = sizeof(byte))]
-public readonly record struct ChainLinkType([field: FieldOffset(0)] byte TypeKind)
-: IValueEquatable<ChainLinkType>
-, IChainLinkType<ChainLinkType>
+public readonly record struct LinkType([field: FieldOffset(0)] byte TypeKind)
+: IValueEquatable<LinkType>
+, ILinkType<LinkType>
 {
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -39,10 +39,10 @@ public readonly record struct ChainLinkType([field: FieldOffset(0)] byte TypeKin
 	public override string ToString() =>
 		TypeKind switch
 		{
-			0 => nameof(ChainLinkTypes.Default),
-			1 => nameof(ChainLinkTypes.Weak),
-			2 => nameof(ChainLinkTypes.Strong),
-			3 => nameof(ChainLinkTypes.Line),
+			0 => nameof(LinkTypes.Default),
+			1 => nameof(LinkTypes.Weak),
+			2 => nameof(LinkTypes.Strong),
+			3 => nameof(LinkTypes.Line),
 			_ => throw new InvalidOperationException("The value is out of range.")
 		};
 
@@ -52,14 +52,14 @@ public readonly record struct ChainLinkType([field: FieldOffset(0)] byte TypeKin
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	bool IValueEquatable<ChainLinkType>.Equals(in ChainLinkType other) => this == other;
+	bool IValueEquatable<LinkType>.Equals(in LinkType other) => this == other;
 
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static explicit operator ChainLinkType(byte value) => new(value);
+	public static explicit operator LinkType(byte value) => new(value);
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static explicit operator byte(ChainLinkType linkType) => linkType.TypeKind;
+	public static explicit operator byte(LinkType linkType) => linkType.TypeKind;
 }

@@ -13,7 +13,7 @@ public partial record struct PresentationData(
 	IList<(int Cell, ColorIdentifier Color)>? Cells,
 	IList<(int Candidate, ColorIdentifier Color)>? Candidates,
 	IList<(int Region, ColorIdentifier Color)>? Regions,
-	IList<(ChainLink Link, ColorIdentifier Color)>? Links,
+	IList<(Link Link, ColorIdentifier Color)>? Links,
 	IList<(Crosshatch DirectLine, ColorIdentifier Color)>? DirectLines,
 	IList<(UnknownValue UnknownValue, ColorIdentifier Color)>? UnknownValues
 )
@@ -100,7 +100,7 @@ public partial record struct PresentationData(
 
 				return index;
 			}
-			case PresentationDataKind.Links when element is ChainLink e && Links is not null:
+			case PresentationDataKind.Links when element is Link e && Links is not null:
 			{
 				int index = -1;
 				for (int i = 0, count = Links.Count; i < count; i++)
@@ -187,7 +187,7 @@ public partial record struct PresentationData(
 	/// </item>
 	/// <item>
 	/// <term><see cref="PresentationDataKind.Links"/></term>
-	/// <description><see cref="ChainLink"/></description>
+	/// <description><see cref="Link"/></description>
 	/// </item>
 	/// <item>
 	/// <term><see cref="PresentationDataKind.DirectLines"/></term>
@@ -246,7 +246,7 @@ public partial record struct PresentationData(
 			}
 			case PresentationDataKind.Links:
 			{
-				ThrowIfArgTypeIsInvalid(element, out ChainLink e);
+				ThrowIfArgTypeIsInvalid(element, out Link e);
 
 				var collection = Links;
 				EnsureNotNull(ref collection);
@@ -310,7 +310,7 @@ public partial record struct PresentationData(
 	/// </item>
 	/// <item>
 	/// <term><see cref="PresentationDataKind.Links"/></term>
-	/// <description><see cref="ChainLink"/></description>
+	/// <description><see cref="Link"/></description>
 	/// </item>
 	/// <item>
 	/// <term><see cref="PresentationDataKind.DirectLines"/></term>
@@ -394,7 +394,7 @@ public partial record struct PresentationData(
 			}
 			case PresentationDataKind.Links when Links is not null:
 			{
-				ThrowIfArgTypeIsInvalid(element, out ChainLink e);
+				ThrowIfArgTypeIsInvalid(element, out Link e);
 
 				int index = -1;
 				for (int i = 0, count = Links.Count; i < count; i++)
