@@ -113,22 +113,20 @@ public sealed unsafe class AlternatingInferenceChainStepSearcher : IAlternatingI
 			goto ReturnNull;
 		}
 
-		List<ChainNode> loops = new(), chains = new();
-		Set<ChainNode> onToOn = new() { pOn }, onToOff = new();
-		DoLoops(grid, onToOn, onToOff, xEnabled, yEnabled, loops, pOn);
+		ChainNodeSet loops = new(), chains = new();
+		ChainNodeSet onToOn = new() { pOn }, onToOff = new();
+		DoLoops(grid, ref onToOn, ref onToOff, xEnabled, yEnabled, ref loops, pOn);
 
 		if (xEnabled)
 		{
 			// AICs with off implication.
-			onToOn = new() { pOn };
-			onToOff = new();
-			DoAic(grid, onToOn, onToOff, yEnabled, chains, pOn);
+			(onToOn, onToOff) = (new() { pOn }, new());
+			DoAic(grid, ref onToOn, ref onToOff, yEnabled, ref chains, pOn);
 
 			// AICs with on implication.
 			var pOff = new ChainNode(pOn.Cell, pOn.Digit, false);
-			onToOn = new();
-			onToOff = new() { pOff };
-			DoAic(grid, onToOn, onToOff, yEnabled, chains, pOff);
+			(onToOn, onToOff) = (new(), new() { pOff });
+			DoAic(grid, ref onToOn, ref onToOff, yEnabled, ref chains, pOff);
 		}
 
 		foreach (var pDestOn in loops)
@@ -163,21 +161,21 @@ public sealed unsafe class AlternatingInferenceChainStepSearcher : IAlternatingI
 
 	private void DoAic(
 		in Grid grid,
-		ISet<ChainNode> onToOn,
-		ISet<ChainNode> onToOff,
+		ref ChainNodeSet onToOn,
+		ref ChainNodeSet onToOff,
 		bool yEnabled,
-		IList<ChainNode> chains,
+		ref ChainNodeSet chains,
 		ChainNode source
 	)
 	{
-		List<ChainNode> pendingOn = new(onToOn), pendingOff = new(onToOff);
+		ChainNodeSet pendingOn = new(onToOn), pendingOff = new(onToOff);
 
 		while (pendingOn.Count != 0 || pendingOff.Count != 0)
 		{
 			while (pendingOn.Count != 0)
 			{
 				var p = pendingOn[^1];
-				pendingOn.RemoveLastElement();
+				pendingOn.Remove();
 
 				var makeOff = IChainStepSearcher.GetOnToOff(grid, p, yEnabled);
 				foreach (var pOff in makeOff)
@@ -188,14 +186,13 @@ public sealed unsafe class AlternatingInferenceChainStepSearcher : IAlternatingI
 					if (sourceCell == pOffCell && sourceDigit == pOffDigit && sourceIsOn)
 					{
 						// Loopy contradiction (AIC) found.
-						chains.AddIfDoesNotContain(pOff);
+						chains.Add(pOff);
 					}
 
-					if (!onToOff.Contains(pOff))
+					if (onToOff.Add(pOff))
 					{
 						// Not processed yet.
 						pendingOff.Add(pOff);
-						onToOff.Add(pOff);
 					}
 				}
 			}
@@ -203,7 +200,7 @@ public sealed unsafe class AlternatingInferenceChainStepSearcher : IAlternatingI
 			while (pendingOff.Count != 0)
 			{
 				var p = pendingOff[^1];
-				pendingOff.RemoveLastElement();
+				pendingOff.Remove();
 
 				var makeOn = IChainStepSearcher.GetOffToOn(grid, p, true, yEnabled, true);
 				foreach (var pOn in makeOn)
@@ -212,7 +209,7 @@ public sealed unsafe class AlternatingInferenceChainStepSearcher : IAlternatingI
 					if (source == pOff)
 					{
 						// Loopy contradiction (AIC) found.
-						chains.AddIfDoesNotContain(pOn);
+						chains.Add(pOn);
 					}
 
 					if (!pOff.IsParentOf(p) && !IChainStepSearcher.ListContainsNode(onToOn, pOn))
@@ -228,15 +225,15 @@ public sealed unsafe class AlternatingInferenceChainStepSearcher : IAlternatingI
 
 	private void DoLoops(
 		in Grid grid,
-		ISet<ChainNode> onToOn,
-		ISet<ChainNode> onToOff,
+		ref ChainNodeSet onToOn,
+		ref ChainNodeSet onToOff,
 		bool xEnabled,
 		bool yEnabled,
-		IList<ChainNode> loops,
+		ref ChainNodeSet loops,
 		ChainNode source
 	)
 	{
-		List<ChainNode> pendingOn = new(onToOn), pendingOff = new(onToOff);
+		ChainNodeSet pendingOn = new(onToOn), pendingOff = new(onToOff);
 
 		int length = 0;
 		while (pendingOn.Count != 0 || pendingOff.Count != 0)
@@ -245,13 +242,13 @@ public sealed unsafe class AlternatingInferenceChainStepSearcher : IAlternatingI
 			while (pendingOn.Count != 0)
 			{
 				var p = pendingOn[^1];
-				pendingOn.RemoveLastElement();
+				pendingOn.Remove();
 
 				var makeOff = IChainStepSearcher.GetOnToOff(grid, p, yEnabled);
 				foreach (var pOff in makeOff)
 				{
 					// Not processed yet.
-					pendingOff.AddIfDoesNotContain(pOff);
+					pendingOff.Add(pOff);
 					onToOff.Add(pOff);
 				}
 			}
@@ -260,7 +257,7 @@ public sealed unsafe class AlternatingInferenceChainStepSearcher : IAlternatingI
 			while (pendingOff.Count != 0)
 			{
 				var p = pendingOff[^1];
-				pendingOff.RemoveLastElement();
+				pendingOff.Remove();
 
 				var makeOn = IChainStepSearcher.GetOffToOn(grid, p, xEnabled, yEnabled, true);
 				foreach (var pOn in makeOn)
@@ -274,7 +271,7 @@ public sealed unsafe class AlternatingInferenceChainStepSearcher : IAlternatingI
 					if (!IChainStepSearcher.ListContainsNode(onToOn, pOn))
 					{
 						// Not processed yet.
-						pendingOn.AddIfDoesNotContain(pOn);
+						pendingOn.Add(pOn);
 						onToOn.Add(pOn);
 					}
 				}

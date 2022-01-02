@@ -100,31 +100,32 @@ public unsafe class ForcingChainStepSearcher : IForcingChainStepSearcher, IDynam
 				case > 1 when IsDynamic:
 				{
 					// Prepare storage and accumulator for cell eliminations.
-					Dictionary<int, Set<ChainNode>> valueToOn = new(), valueToOff = new();
-					Set<ChainNode>? cellToOn = null, cellToOff = null;
+					Dictionary<int, ChainNodeSet> valueToOn = new(), valueToOff = new();
+					ChainNodeSet cellToOn = ChainNodeSet.Uninitialized, cellToOff = ChainNodeSet.Uninitialized;
 
 					// Iterate on all candidates that aren't alone.
 					foreach (byte digit in mask)
 					{
 						ChainNode pOn = new(cell, digit, true), pOff = new(cell, digit, false);
-						Set<ChainNode> onToOn = new(), onToOff = new();
+						ChainNodeSet onToOn = new(), onToOff = new();
 
 						bool doDouble = count >= 3 && !IsNishio && IsDynamic;
 						bool doContradiction = IsDynamic || IsNishio;
 
 						DoBinaryChaining(
-							accumulator, ref grid, pOn, pOff, onToOn, onToOff, doDouble, doContradiction
+							accumulator, ref grid, pOn, pOff, ref onToOn, ref onToOff,
+							doDouble, doContradiction
 						);
 
 						if (!IsNishio)
 						{
-							DoRegionChaining(accumulator, ref grid, cell, digit, onToOn, onToOff);
+							DoRegionChaining(accumulator, ref grid, cell, digit, ref onToOn, ref onToOff);
 						}
 
 						// Collect results for cell chaining.
 						valueToOn.Add(digit, onToOn);
 						valueToOff.Add(digit, onToOff);
-						if (cellToOn is null || cellToOff is null)
+						if (cellToOn.IsUninitialized || cellToOff.IsUninitialized)
 						{
 							cellToOn = new(onToOn);
 							cellToOff = new(onToOff);
@@ -139,7 +140,7 @@ public unsafe class ForcingChainStepSearcher : IForcingChainStepSearcher, IDynam
 					// Do cell eliminations.
 					if (!IsNishio && (count == 2 || IsMultiple))
 					{
-						if (cellToOn is not null)
+						if (!cellToOn.IsUninitialized)
 						{
 							foreach (var p in cellToOn)
 							{
@@ -147,7 +148,7 @@ public unsafe class ForcingChainStepSearcher : IForcingChainStepSearcher, IDynam
 								accumulator.Add(hint);
 							}
 						}
-						if (cellToOff is not null)
+						if (!cellToOff.IsUninitialized)
 						{
 							foreach (var p in cellToOff)
 							{
@@ -178,13 +179,13 @@ public unsafe class ForcingChainStepSearcher : IForcingChainStepSearcher, IDynam
 		ref Grid grid,
 		in ChainNode pOn,
 		in ChainNode pOff,
-		Set<ChainNode> onToOn,
-		Set<ChainNode> onToOff,
+		ref ChainNodeSet onToOn,
+		ref ChainNodeSet onToOff,
 		bool doReduction,
 		bool doContradiction
 	)
 	{
-		Set<ChainNode> offToOn = new(), offToOff = new();
+		ChainNodeSet offToOn = new(), offToOff = new();
 
 		// Circular Forcing Chains (hypothesis implying its negation)
 		// are already covered by Cell Forcing Chains, and are therefore
@@ -192,7 +193,7 @@ public unsafe class ForcingChainStepSearcher : IForcingChainStepSearcher, IDynam
 
 		// Test 'p' is on.
 		onToOn.Add(pOn);
-		var absurdNodes = DoChaining(ref grid, onToOn, onToOff);
+		var absurdNodes = DoChaining(ref grid, ref onToOn, ref onToOff);
 		if (doContradiction && absurdNodes is var (on1, off1))
 		{
 			// 'p' can't hold its value, otherwise it'd lead to a contradiction.
@@ -202,7 +203,7 @@ public unsafe class ForcingChainStepSearcher : IForcingChainStepSearcher, IDynam
 
 		// Test 'p' is off.
 		offToOff.Add(pOff);
-		absurdNodes = DoChaining(ref grid, offToOn, offToOff);
+		absurdNodes = DoChaining(ref grid, ref offToOn, ref offToOff);
 		if (doContradiction && absurdNodes is var (on2, off2))
 		{
 			// 'p' must hold its value, otherwise it'd lead to a contradiction.
@@ -215,7 +216,8 @@ public unsafe class ForcingChainStepSearcher : IForcingChainStepSearcher, IDynam
 			// Check candidates that must be on in both cases.
 			foreach (var pFromOn in onToOn)
 			{
-				if (offToOn.TryGetValue(pFromOn, out var pFromOff))
+				ref var pFromOff = ref offToOn[pFromOn];
+				if (!Unsafe.IsNullRef(ref pFromOff))
 				{
 					var hint = CreateChainingOnHint(pFromOn, pFromOff, pOn, pFromOn, false);
 					accumulator.Add(hint);
@@ -225,7 +227,8 @@ public unsafe class ForcingChainStepSearcher : IForcingChainStepSearcher, IDynam
 			// Check candidates that must be off in both cases.
 			foreach (var pFromOn in onToOff)
 			{
-				if (offToOff.TryGetValue(pFromOn, out var pFromOff))
+				ref var pFromOff = ref offToOff[pFromOn];
+				if (!Unsafe.IsNullRef(ref pFromOff))
 				{
 					var hint = CreateChainingOffHint(pFromOn, pFromOff, pOff, pFromOff, false);
 					accumulator.Add(hint);
@@ -248,8 +251,8 @@ public unsafe class ForcingChainStepSearcher : IForcingChainStepSearcher, IDynam
 		ref Grid grid,
 		byte cell,
 		byte digit,
-		Set<ChainNode> onToOn,
-		Set<ChainNode> onToOff
+		ref ChainNodeSet onToOn,
+		ref ChainNodeSet onToOff
 	)
 	{
 		for (var label = RegionLabel.Block; label <= RegionLabel.Column; label++)
@@ -264,8 +267,8 @@ public unsafe class ForcingChainStepSearcher : IForcingChainStepSearcher, IDynam
 					if (worthMap[0] == cell)
 					{
 						// Determine whether we meet this region for the first time.
-						Dictionary<int, Set<ChainNode>> posToOn = new(), posToOff = new();
-						Set<ChainNode> regionToOn = new(), regionToOff = new();
+						Dictionary<int, ChainNodeSet> posToOn = new(), posToOff = new();
+						ChainNodeSet regionToOn = new(), regionToOff = new();
 
 						// Iterate on node positions within the region.
 						foreach (byte otherCell in worthMap)
@@ -280,9 +283,9 @@ public unsafe class ForcingChainStepSearcher : IForcingChainStepSearcher, IDynam
 							else
 							{
 								var other = new ChainNode(otherCell, digit, true);
-								Set<ChainNode> otherToOn = new() { other }, otherToOff = new();
+								ChainNodeSet otherToOn = new() { other }, otherToOff = new();
 
-								DoChaining(ref grid, otherToOn, otherToOff);
+								DoChaining(ref grid, ref otherToOn, ref otherToOff);
 
 								posToOn.Add(otherCell, otherToOn);
 								posToOff.Add(otherCell, otherToOff);
@@ -317,13 +320,17 @@ public unsafe class ForcingChainStepSearcher : IForcingChainStepSearcher, IDynam
 	/// <param name="toOn">The list to <c>on</c> nodes.</param>
 	/// <param name="toOff">The list to <c>off</c> nodes.</param>
 	/// <returns>The result.</returns>
-	private (ChainNode On, ChainNode Off)? DoChaining(ref Grid grid, Set<ChainNode> toOn, Set<ChainNode> toOff)
+	private (ChainNode On, ChainNode Off)? DoChaining(
+		ref Grid grid,
+		ref ChainNodeSet toOn,
+		ref ChainNodeSet toOff
+	)
 	{
 		_temp = grid;
 
 		try
 		{
-			Set<ChainNode> pendingOn = new(toOn), pendingOff = new(toOff);
+			ChainNodeSet pendingOn = new(toOn), pendingOff = new(toOff);
 			while (pendingOn.Count != 0 || pendingOff.Count != 0)
 			{
 				if (pendingOn.Count != 0)
@@ -334,10 +341,11 @@ public unsafe class ForcingChainStepSearcher : IForcingChainStepSearcher, IDynam
 					foreach (var pOff in makeOff)
 					{
 						var pOn = new ChainNode(pOff.Cell, pOff.Digit, true); // Conjugate
-						if (toOn.TryGetValue(pOn, out pOn))
+						ref var pOnResult = ref toOn[pOn];
+						if (!Unsafe.IsNullRef(ref pOnResult))
 						{
 							// Contradiction found.
-							return (pOn, pOff); // Cannot be both on and off at the same time.
+							return (pOnResult, pOff); // Cannot be both on and off at the same time.
 						}
 						else if (!toOff.Contains(pOff))
 						{
@@ -363,10 +371,11 @@ public unsafe class ForcingChainStepSearcher : IForcingChainStepSearcher, IDynam
 					foreach (var pOn in makeOn)
 					{
 						var pOff = new ChainNode(pOn.Cell, pOn.Digit, false); // Conjugate.
-						if (toOff.TryGetValue(pOff, out pOff))
+						ref var pOffResult = ref toOff[pOff];
+						if (!Unsafe.IsNullRef(ref pOffResult))
 						{
 							// Contradiction found.
-							return (pOn, pOff); // Cannot be both on and off at the same time.
+							return (pOn, pOffResult); // Cannot be both on and off at the same time.
 						}
 						else if (!toOn.Contains(pOn))
 						{
@@ -497,20 +506,10 @@ public unsafe class ForcingChainStepSearcher : IForcingChainStepSearcher, IDynam
 		links = IChainStepSearcher.GetLinks(destOff, true);
 		globalCandidates.AddRange(candidateOffsets.RemoveDuplicateItems());
 		globalLinks.AddRange(links);
-		views.Add(new()
-		{
-			Cells = cellOffset,
-			Candidates = candidateOffsets,
-			Links = links
-		});
+		views.Add(new() { Cells = cellOffset, Candidates = candidateOffsets, Links = links });
 
 		// Insert the global view at head.
-		views.Insert(0, new()
-		{
-			Cells = cellOffset,
-			Candidates = globalCandidates,
-			Links = globalLinks
-		});
+		views.Insert(0, new() { Cells = cellOffset, Candidates = globalCandidates, Links = globalLinks });
 
 		return new(
 			ImmutableArray.Create(new Conclusion(ConclusionType.Elimination, target.Cell, target.Digit)),
@@ -537,7 +536,7 @@ public unsafe class ForcingChainStepSearcher : IForcingChainStepSearcher, IDynam
 		in Grid grid,
 		int sourceCell,
 		in ChainNode target,
-		IReadOnlyDictionary<int, Set<ChainNode>> outcomes
+		Dictionary<int, ChainNodeSet> outcomes
 	)
 	{
 		var (targetCandidate, targetIsOn) = target;
@@ -611,7 +610,7 @@ public unsafe class ForcingChainStepSearcher : IForcingChainStepSearcher, IDynam
 		int region,
 		int digit,
 		in ChainNode target,
-		IDictionary<int, Set<ChainNode>> outcomes
+		Dictionary<int, ChainNodeSet> outcomes
 	)
 	{
 		var (targetCandidate, targetIsOn) = target;

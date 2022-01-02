@@ -63,6 +63,225 @@
             <inheritdoc cref="M:System.Object.GetHashCode"/>
             <exception cref="T:System.NotSupportedException">Always throws.</exception>
         </member>
+        <member name="T:Sudoku.Collections.ChainNodeSet">
+            <summary>
+            Defines a set that stores the chain nodes.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Collections.ChainNodeSet.Uninitialized">
+            <summary>
+            Indicates the uninitalized instance that is used for checking whether the collection hasn't been initialized.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Collections.ChainNodeSet._capacity">
+            <summary>
+            Indicates the capacity of the collection.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Collections.ChainNodeSet._chainNodes">
+            <summary>
+            Indicates the inner data structure.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Collections.ChainNodeSet.#ctor">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Collections.ChainNodeSet"/> instance, with the default capacity 16.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Collections.ChainNodeSet.#ctor(Sudoku.Data.ChainNode[])">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Collections.ChainNodeSet"/> instance via the set of chain nodes.
+            </summary>
+            <param name="nodes">The chain nodes.</param>
+        </member>
+        <member name="M:Sudoku.Collections.ChainNodeSet.#ctor(Sudoku.Collections.ChainNodeSet@)">
+            <summary>
+            The copy constructor that allows copying the elements from the specified collection
+            to the current collection.
+            </summary>
+            <param name="another">The another collection.</param>
+        </member>
+        <member name="P:Sudoku.Collections.ChainNodeSet.IsUninitialized">
+            <summary>
+            Indicates whether the current instance has been uninitialized.
+            </summary>
+            <remarks>
+            Here we use a simple way to check. C# 10 allows us using parameterless constructor
+            to intialize a <see langword="struct"/> to change the default behavior.
+            However, we can also use <see langword="default"/> expressions to initialize a default instance,
+            whose fields of reference type will be initialized by 0 (or <see langword="null"/> literally).
+            The only way to check whether the set is uninitialized is to use this property
+            to check whether the reference-typed property is <see langword="null"/>.
+            </remarks>
+        </member>
+        <member name="P:Sudoku.Collections.ChainNodeSet.Count">
+            <summary>
+            Indicates the number of elements in this collection.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Collections.ChainNodeSet.Top">
+            <summary>
+            Indicates the top element in this collection stored.
+            If you remove the top element, you can call the method <see cref="M:Sudoku.Collections.ChainNodeSet.Remove"/>,
+            and then the current element will be removed at first.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Collections.ChainNodeSet.Bottom">
+            <summary>
+            Indicates the bottom element in this collection stored.
+            The element is the earliest element added into the current collection.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Collections.ChainNodeSet.Item(System.Int32)">
+            <summary>
+            Get the chain node at the specified index.
+            </summary>
+            <param name="index">The desired index.</param>
+            <returns>The result chain node as reference.</returns>
+        </member>
+        <member name="P:Sudoku.Collections.ChainNodeSet.Item(Sudoku.Data.ChainNode)">
+            <summary>
+            <para>Get the reference of the chain node that equals to the specified chain node.</para>
+            <para>
+            If the collection doesn't contain such node, the return value will be null reference.
+            Therefore, if you want to check the existence of the node, you should call the method
+            <see cref="M:System.Runtime.CompilerServices.Unsafe.IsNullRef``1(``0@)"/> firstly. If the return value is <see langword="true"/>,
+            you can use the inner properties safely.
+            </para>
+            </summary>
+            <param name="node">The node to check the equality.</param>
+            <returns>The reference to the chain.</returns>
+            <seealso cref="M:System.Runtime.CompilerServices.Unsafe.IsNullRef``1(``0@)"/>
+        </member>
+        <member name="M:Sudoku.Collections.ChainNodeSet.Add(Sudoku.Data.ChainNode)">
+            <summary>
+            Adds the specified node into the collection. If the specified node exists in the collection,
+            the method will do nothing but return <see langword="false"/>; otherwise, add it
+            into the collection and then return <see langword="true"/>.
+            </summary>
+            <param name="node">The node.</param>
+            <returns>
+            A <see cref="T:System.Boolean"/> value indicating whether the operation is successful. Details:
+            <list type="table">
+            <listheader>
+            <term>Return value</term>
+            <description>Description</description>
+            </listheader>
+            <item>
+            <term><see langword="true"/></term>
+            <description>
+            If the current collection contains the specified element to add.
+            </description>
+            </item>
+            <item>
+            <term><see langword="false"/></term>
+            <description>Otherwise.</description>
+            </item>
+            </list>
+            </returns>
+        </member>
+        <member name="M:Sudoku.Collections.ChainNodeSet.RemoveAt(System.Int32)">
+            <summary>
+            Remove the node at the specified index.
+            </summary>
+            <param name="index">The desired index.</param>
+        </member>
+        <member name="M:Sudoku.Collections.ChainNodeSet.RemoveAt(System.Index)">
+            <summary>
+            Remove the node at the specified index.
+            </summary>
+            <param name="index">The desired index.</param>
+        </member>
+        <member name="M:Sudoku.Collections.ChainNodeSet.Remove">
+            <summary>
+            Removes the last element. If the collection has already been empty,
+            an <see cref="T:System.InvalidOperationException"/> instance will be created and thrown.
+            </summary>
+            <exception cref="T:System.InvalidOperationException">Throws when the list has already been empty.</exception>
+        </member>
+        <member name="M:Sudoku.Collections.ChainNodeSet.Contains(Sudoku.Data.ChainNode)">
+            <summary>
+            Determine whether the collection contains the specified chain node,
+            whose mask exists in this collection.
+            </summary>
+            <param name="node">The node to check.</param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
+        </member>
+        <member name="M:Sudoku.Collections.ChainNodeSet.GetPinnableReference">
+            <summary>
+            Gets the pinnable reference that is the reference to the first element in this collection,
+            in order to use <see langword="fixed"/> statement on <see cref="T:Sudoku.Collections.ChainNodeSet"/> instances.
+            </summary>
+            <returns>The reference to the first element in this collection.</returns>
+        </member>
+        <member name="M:Sudoku.Collections.ChainNodeSet.ToArray">
+            <summary>
+            Gets the array of <see cref="T:Sudoku.Data.ChainNode"/>s.
+            </summary>
+            <returns>The array of <see cref="T:Sudoku.Data.ChainNode"/>s.</returns>
+        </member>
+        <member name="M:Sudoku.Collections.ChainNodeSet.Grow">
+            <summary>
+            Grow the collection to make the capacity be the 2-time value than before.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Collections.ChainNodeSet.GetEnumerator">
+            <inheritdoc cref="M:System.Collections.Generic.IEnumerable`1.GetEnumerator"/>
+        </member>
+        <member name="M:Sudoku.Collections.ChainNodeSet.System#Collections#IEnumerable#GetEnumerator">
+            <inheritdoc cref="M:System.Collections.IEnumerable.GetEnumerator"/>
+            <exception cref="T:System.NotImplementedException">Always throws.</exception>
+        </member>
+        <member name="M:Sudoku.Collections.ChainNodeSet.op_BitwiseAnd(Sudoku.Collections.ChainNodeSet@,Sudoku.Collections.ChainNodeSet@)">
+            <summary>
+            Merges two different <see cref="T:Sudoku.Collections.ChainNodeSet"/>s into one, and checks and stores once that
+            both <see cref="T:Sudoku.Collections.ChainNodeSet"/>s store the node.
+            </summary>
+            <param name="left">The left-side collection to merge.</param>
+            <param name="right">The right-side collection to merge.</param>
+            <returns>The merged result.</returns>
+        </member>
+        <member name="M:Sudoku.Collections.ChainNodeSet.op_BitwiseOr(Sudoku.Collections.ChainNodeSet@,Sudoku.Collections.ChainNodeSet@)">
+            <summary>
+            Merges two different <see cref="T:Sudoku.Collections.ChainNodeSet"/> into one. Same nodes will be stored only once.
+            </summary>
+            <param name="left">The left-side collection to merge.</param>
+            <param name="right">The right-side collection to merge.</param>
+            <returns>The merged result.</returns>
+        </member>
+        <member name="T:Sudoku.Collections.ChainNodeSet.Enumerator">
+            <summary>
+            Indicates the enumerator.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Collections.ChainNodeSet.Enumerator._length">
+            <summary>
+            Indicates the length of elements to iterate.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Collections.ChainNodeSet.Enumerator._chainNodes">
+            <summary>
+            Indicates the list of nodes.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Collections.ChainNodeSet.Enumerator._index">
+            <summary>
+            Indicates the index that the current enumerator points to.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Collections.ChainNodeSet.Enumerator.#ctor(Sudoku.Data.ChainNode[],System.Int32)">
+            <summary>
+            Initializes a set of <see cref="T:Sudoku.Data.ChainNode"/>s.
+            </summary>
+            <param name="chainNodes">The chain nodes.</param>
+            <param name="length">Indicates the number of nodes to iterate.</param>
+        </member>
+        <member name="P:Sudoku.Collections.ChainNodeSet.Enumerator.Current">
+            <inheritdoc cref="P:System.Collections.Generic.IEnumerator`1.Current"/>
+        </member>
+        <member name="M:Sudoku.Collections.ChainNodeSet.Enumerator.MoveNext">
+            <inheritdoc cref="M:System.Collections.IEnumerator.MoveNext"/>
+        </member>
         <member name="T:Sudoku.Collections.ConclusionCollection">
             <summary>
             Provides a collection that contains the conclusions.

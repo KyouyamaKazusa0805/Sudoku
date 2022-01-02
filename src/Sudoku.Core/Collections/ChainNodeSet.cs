@@ -1,0 +1,331 @@
+﻿namespace Sudoku.Collections;
+
+/// <summary>
+/// Defines a set that stores the chain nodes.
+/// </summary>
+public partial struct ChainNodeSet : IEnumerable
+{
+	/// <summary>
+	/// Indicates the uninitalized instance that is used for checking whether the collection hasn't been initialized.
+	/// </summary>
+	public static readonly ChainNodeSet Uninitialized;
+
+
+	/// <summary>
+	/// Indicates the capacity of the collection.
+	/// </summary>
+	private int _capacity;
+
+	/// <summary>
+	/// Indicates the inner data structure.
+	/// </summary>
+	private ChainNode[] _chainNodes;
+
+
+	/// <summary>
+	/// Initializes a <see cref="ChainNodeSet"/> instance, with the default capacity 16.
+	/// </summary>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public ChainNodeSet()
+	{
+		_chainNodes = new ChainNode[16];
+		_capacity = 16;
+	}
+
+	/// <summary>
+	/// Initializes a <see cref="ChainNodeSet"/> instance via the set of chain nodes.
+	/// </summary>
+	/// <param name="nodes">The chain nodes.</param>
+	public ChainNodeSet(ChainNode[] nodes)
+	{
+		_capacity = nodes.Length;
+		_chainNodes = new ChainNode[_capacity];
+		for (int i = 1, length = nodes.Length; i < length; i++)
+		{
+			int s = i - 1;
+			bool exists = false;
+			for (int j = s; j < i; j++)
+			{
+				if (_chainNodes[j].Mask == nodes[i].Mask)
+				{
+					exists = true;
+				}
+			}
+			if (!exists)
+			{
+				_chainNodes[Count++] = _chainNodes[s];
+			}
+		}
+	}
+
+	/// <summary>
+	/// The copy constructor that allows copying the elements from the specified collection
+	/// to the current collection.
+	/// </summary>
+	/// <param name="another">The another collection.</param>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public ChainNodeSet(in ChainNodeSet another)
+	{
+		_capacity = another._capacity;
+		Count = another.Count;
+		_chainNodes = new ChainNode[_capacity];
+		Buffer.BlockCopy(_chainNodes, 0, another._chainNodes, 0, Count);
+	}
+
+
+	/// <summary>
+	/// Indicates whether the current instance has been uninitialized.
+	/// </summary>
+	/// <remarks>
+	/// Here we use a simple way to check. C# 10 allows us using parameterless constructor
+	/// to intialize a <see langword="struct"/> to change the default behavior.
+	/// However, we can also use <see langword="default"/> expressions to initialize a default instance,
+	/// whose fields of reference type will be initialized by 0 (or <see langword="null"/> literally).
+	/// The only way to check whether the set is uninitialized is to use this property
+	/// to check whether the reference-typed property is <see langword="null"/>.
+	/// </remarks>
+	public readonly bool IsUninitialized
+	{
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		get => _chainNodes is null;
+	}
+
+	/// <summary>
+	/// Indicates the number of elements in this collection.
+	/// </summary>
+	public int Count { get; private set; } = 0;
+
+	/// <summary>
+	/// Indicates the top element in this collection stored.
+	/// If you remove the top element, you can call the method <see cref="Remove"/>,
+	/// and then the current element will be removed at first.
+	/// </summary>
+	public readonly ChainNode Top
+	{
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		get => this[^1];
+	}
+
+	/// <summary>
+	/// Indicates the bottom element in this collection stored.
+	/// The element is the earliest element added into the current collection.
+	/// </summary>
+	public readonly ChainNode Bottom
+	{
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		get => this[0];
+	}
+
+
+	/// <summary>
+	/// Get the chain node at the specified index.
+	/// </summary>
+	/// <param name="index">The desired index.</param>
+	/// <returns>The result chain node as reference.</returns>
+	public readonly ChainNode this[int index]
+	{
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		get => _chainNodes[index];
+	}
+
+	/// <summary>
+	/// <para>Get the reference of the chain node that equals to the specified chain node.</para>
+	/// <para>
+	/// If the collection doesn't contain such node, the return value will be null reference.
+	/// Therefore, if you want to check the existence of the node, you should call the method
+	/// <see cref="Unsafe.IsNullRef{T}(ref T)"/> firstly. If the return value is <see langword="true"/>,
+	/// you can use the inner properties safely.
+	/// </para>
+	/// </summary>
+	/// <param name="node">The node to check the equality.</param>
+	/// <returns>The reference to the chain.</returns>
+	/// <seealso cref="Unsafe.IsNullRef{T}(ref T)"/>
+	public readonly unsafe ref ChainNode this[ChainNode node]
+	{
+		get
+		{
+			for (int i = 0; i < Count; i++)
+			{
+				ref var currentNode = ref _chainNodes[i];
+				if (currentNode.Mask == node.Mask)
+				{
+					return ref currentNode;
+				}
+			}
+
+			return ref Unsafe.NullRef<ChainNode>();
+		}
+	}
+
+
+	/// <summary>
+	/// Adds the specified node into the collection. If the specified node exists in the collection,
+	/// the method will do nothing but return <see langword="false"/>; otherwise, add it
+	/// into the collection and then return <see langword="true"/>.
+	/// </summary>
+	/// <param name="node">The node.</param>
+	/// <returns>
+	/// A <see cref="bool"/> value indicating whether the operation is successful. Details:
+	/// <list type="table">
+	/// <listheader>
+	/// <term>Return value</term>
+	/// <description>Description</description>
+	/// </listheader>
+	/// <item>
+	/// <term><see langword="true"/></term>
+	/// <description>
+	/// If the current collection contains the specified element to add.
+	/// </description>
+	/// </item>
+	/// <item>
+	/// <term><see langword="false"/></term>
+	/// <description>Otherwise.</description>
+	/// </item>
+	/// </list>
+	/// </returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public bool Add(ChainNode node)
+	{
+		if (Contains(node))
+		{
+			return false;
+		}
+
+		if (Count >= _capacity)
+		{
+			Grow();
+		}
+
+		_chainNodes[Count++] = node;
+		return true;
+	}
+
+	/// <summary>
+	/// Remove the node at the specified index.
+	/// </summary>
+	/// <param name="index">The desired index.</param>
+	public ChainNode RemoveAt(int index)
+	{
+		if (index >= Count)
+		{
+			throw new ArgumentOutOfRangeException(nameof(index));
+		}
+
+		var result = _chainNodes[Count--];
+		if (index < Count)
+		{
+			Array.Copy(_chainNodes, index + 1, _chainNodes, index, Count - index);
+		}
+
+		return result;
+	}
+
+	/// <summary>
+	/// Remove the node at the specified index.
+	/// </summary>
+	/// <param name="index">The desired index.</param>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public void RemoveAt(Index index) => RemoveAt(index.GetOffset(Count));
+
+	/// <summary>
+	/// Removes the last element. If the collection has already been empty,
+	/// an <see cref="InvalidOperationException"/> instance will be created and thrown.
+	/// </summary>
+	/// <exception cref="InvalidOperationException">Throws when the list has already been empty.</exception>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public void Remove() =>
+		_ = Count > 0 ? Count-- : throw new InvalidOperationException("The list has already been empty.");
+
+	/// <summary>
+	/// Determine whether the collection contains the specified chain node,
+	/// whose mask exists in this collection.
+	/// </summary>
+	/// <param name="node">The node to check.</param>
+	/// <returns>A <see cref="bool"/> result indicating that.</returns>
+	public readonly bool Contains(ChainNode node)
+	{
+		for (int i = 0; i < Count; i++)
+		{
+			if (_chainNodes[i].Mask == node.Mask)
+			{
+				return true;
+			}
+		}
+
+		return false;
+	}
+
+	/// <summary>
+	/// Gets the pinnable reference that is the reference to the first element in this collection,
+	/// in order to use <see langword="fixed"/> statement on <see cref="ChainNodeSet"/> instances.
+	/// </summary>
+	/// <returns>The reference to the first element in this collection.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	[EditorBrowsable(EditorBrowsableState.Never)]
+	public readonly ref readonly ChainNode GetPinnableReference() => ref _chainNodes[..Count][0];
+
+	/// <summary>
+	/// Gets the array of <see cref="ChainNode"/>s.
+	/// </summary>
+	/// <returns>The array of <see cref="ChainNode"/>s.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public readonly ChainNode[] ToArray() => _chainNodes[..Count];
+
+	/// <summary>
+	/// Grow the collection to make the capacity be the 2-time value than before.
+	/// </summary>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	private void Grow()
+	{
+		_capacity <<= 1;
+		Array.Resize(ref _chainNodes, _capacity);
+	}
+
+	/// <inheritdoc cref="IEnumerable{T}.GetEnumerator"/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public readonly Enumerator GetEnumerator() => new(_chainNodes, Count);
+
+	/// <inheritdoc cref="IEnumerable.GetEnumerator"/>
+	/// <exception cref="NotImplementedException">Always throws.</exception>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	readonly IEnumerator IEnumerable.GetEnumerator() => throw new NotImplementedException();
+
+
+	/// <summary>
+	/// Merges two different <see cref="ChainNodeSet"/>s into one, and checks and stores once that
+	/// both <see cref="ChainNodeSet"/>s store the node.
+	/// </summary>
+	/// <param name="left">The left-side collection to merge.</param>
+	/// <param name="right">The right-side collection to merge.</param>
+	/// <returns>The merged result.</returns>
+	public static ChainNodeSet operator &(in ChainNodeSet left, in ChainNodeSet right)
+	{
+		var result = new ChainNodeSet();
+		foreach (var leftNode in left)
+		{
+			if (right.Contains(leftNode))
+			{
+				result.Add(leftNode);
+			}
+		}
+
+		return result;
+	}
+
+	/// <summary>
+	/// Merges two different <see cref="ChainNodeSet"/> into one. Same nodes will be stored only once.
+	/// </summary>
+	/// <param name="left">The left-side collection to merge.</param>
+	/// <param name="right">The right-side collection to merge.</param>
+	/// <returns>The merged result.</returns>
+	public static ChainNodeSet operator |(in ChainNodeSet left, in ChainNodeSet right)
+	{
+		var result = new ChainNodeSet(left);
+		foreach (var node in right)
+		{
+			result.Add(node);
+		}
+
+		return result;
+	}
+}

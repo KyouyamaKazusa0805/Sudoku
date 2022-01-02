@@ -88,7 +88,7 @@ public unsafe interface IChainStepSearcher : IStepSearcher
 	/// <param name="list">The list of nodes.</param>
 	/// <param name="node">The node to check.</param>
 	/// <returns>A <see cref="bool"/> result.</returns>
-	protected static bool ListContainsNode(ICollection<ChainNode> list, ChainNode node)
+	protected static bool ListContainsNode(in ChainNodeSet list, ChainNode node)
 	{
 		foreach (var pNode in list)
 		{
@@ -108,9 +108,9 @@ public unsafe interface IChainStepSearcher : IStepSearcher
 	/// <param name="p">The current node.</param>
 	/// <param name="yEnabled">Indicates whether the Y-Chains are enabled.</param>
 	/// <returns>All possible weak links.</returns>
-	protected static ISet<ChainNode> GetOnToOff(in Grid grid, ChainNode p, bool yEnabled)
+	protected static ChainNodeSet GetOnToOff(in Grid grid, ChainNode p, bool yEnabled)
 	{
-		var result = new Set<ChainNode>();
+		var result = new ChainNodeSet();
 
 		if (yEnabled)
 		{
@@ -177,16 +177,20 @@ public unsafe interface IChainStepSearcher : IStepSearcher
 	/// </param>
 	/// <returns>All possible strong links.</returns>
 #endif
-	protected static ISet<ChainNode> GetOffToOn(
-		in Grid grid, ChainNode p, bool xEnabled, bool yEnabled,
-		bool enableFastProperties, in Grid source = default,
+	protected static ChainNodeSet GetOffToOn(
+		in Grid grid,
+		ChainNode p,
+		bool xEnabled,
+		bool yEnabled,
+		bool enableFastProperties,
+		in Grid source = default,
 #if DEBUG
-		ISet<ChainNode>? offNodes = null,
+		ChainNodeSet offNodes = default,
 #endif
 		bool isDynamic = false
 	)
 	{
-		var result = new Set<ChainNode>();
+		var result = new ChainNodeSet();
 		if (yEnabled)
 		{
 			// First rule: If there's only two candidates in this cell, the other one gets on.
@@ -197,14 +201,14 @@ public unsafe interface IChainStepSearcher : IStepSearcher
 
 				if (
 #if DEBUG
-					!source.IsUndefined && offNodes is not null
+					!source.IsUndefined && !offNodes.IsUninitialized
 #else
 					!source.IsUndefined
 #endif
 				)
 				{
 #if DEBUG
-					AddHiddenParentsOfCell(ref pOn, grid, source, offNodes);
+					AddHiddenParentsOfCell(ref pOn, grid, source, ref offNodes);
 #else
 					AddHiddenParentsOfCell(ref pOn, grid, source);
 #endif
@@ -228,14 +232,14 @@ public unsafe interface IChainStepSearcher : IStepSearcher
 
 					if (
 #if DEBUG
-						!source.IsUndefined && offNodes is not null
+						!source.IsUndefined && !offNodes.IsUninitialized
 #else
 						!source.IsUndefined
 #endif
 					)
 					{
 #if DEBUG
-						AddHiddenParentsOfRegion(ref pOn, grid, source, label, offNodes);
+						AddHiddenParentsOfRegion(ref pOn, grid, source, label, ref offNodes);
 #else
 						AddHiddenParentsOfRegion(ref pOn, grid, source, label);
 #endif
@@ -295,7 +299,7 @@ public unsafe interface IChainStepSearcher : IStepSearcher
 #endif
 	private static void AddHiddenParentsOfCell(
 #if DEBUG
-		ref ChainNode p, in Grid grid, in Grid source, ISet<ChainNode> offNodes
+		ref ChainNode p, in Grid grid, in Grid source, ref ChainNodeSet offNodes
 #else
 		ref ChainNode p, in Grid grid, in Grid source
 #endif
@@ -348,7 +352,7 @@ public unsafe interface IChainStepSearcher : IStepSearcher
 #endif
 	private static void AddHiddenParentsOfRegion(
 #if DEBUG
-		ref ChainNode p, in Grid grid, in Grid source, RegionLabel currRegion, ISet<ChainNode> offNodes
+		ref ChainNode p, in Grid grid, in Grid source, RegionLabel currRegion, ref ChainNodeSet offNodes
 #else
 		ref ChainNode p, in Grid grid, in Grid source, RegionLabel currRegion
 #endif

@@ -41,22 +41,9 @@ public static class ListExtensions
 	/// <summary>
 	/// Remove the last element of the specified list, which is equivalent to code:
 	/// <code><![CDATA[list.RemoveAt(list.Count - 1);]]></code>
-	/// or
-	/// <code><![CDATA[list.RemoveAt(^1); // Call extension method 'RemoveAt'.]]></code>
 	/// </summary>
 	/// <typeparam name="T">The type of each element.</typeparam>
 	/// <param name="this">The list.</param>
-	/// <seealso cref="RemoveAt{T}(IList{T}, in Index)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static void RemoveLastElement<T>(this IList<T?> @this) => @this.RemoveAt(@this.Count - 1);
-
-	/// <summary>
-	/// Remove at the element in the specified index.
-	/// </summary>
-	/// <typeparam name="T">The type of each element.</typeparam>
-	/// <param name="this">The list.</param>
-	/// <param name="index">The index to remove.</param>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static void RemoveAt<T>(this IList<T?> @this, in Index index) =>
-		@this.RemoveAt(index.GetOffset(@this.Count));
 }

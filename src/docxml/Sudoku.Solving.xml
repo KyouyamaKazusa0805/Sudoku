@@ -2378,7 +2378,7 @@
             <param name="accumulator">The accumulator.</param>
             <param name="grid">The grid.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Searchers.Chains.Forcing.ForcingChainStepSearcher.DoBinaryChaining(System.Collections.Generic.ICollection{Sudoku.Solving.Manual.Steps.Chains.ChainStep},Sudoku.Data.Grid@,Sudoku.Data.ChainNode@,Sudoku.Data.ChainNode@,System.Collections.Generic.Set{Sudoku.Data.ChainNode},System.Collections.Generic.Set{Sudoku.Data.ChainNode},System.Boolean,System.Boolean)">
+        <member name="M:Sudoku.Solving.Manual.Searchers.Chains.Forcing.ForcingChainStepSearcher.DoBinaryChaining(System.Collections.Generic.ICollection{Sudoku.Solving.Manual.Steps.Chains.ChainStep},Sudoku.Data.Grid@,Sudoku.Data.ChainNode@,Sudoku.Data.ChainNode@,Sudoku.Collections.ChainNodeSet@,Sudoku.Collections.ChainNodeSet@,System.Boolean,System.Boolean)">
             <summary>
             Do binary chaining.
             </summary>
@@ -2391,7 +2391,7 @@
             <param name="doReduction">Indicates whether the method executes double chaining.</param>
             <param name="doContradiction">Indicates whether the method executes contradiction chaining.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Searchers.Chains.Forcing.ForcingChainStepSearcher.DoRegionChaining(System.Collections.Generic.ICollection{Sudoku.Solving.Manual.Steps.Chains.ChainStep},Sudoku.Data.Grid@,System.Byte,System.Byte,System.Collections.Generic.Set{Sudoku.Data.ChainNode},System.Collections.Generic.Set{Sudoku.Data.ChainNode})">
+        <member name="M:Sudoku.Solving.Manual.Searchers.Chains.Forcing.ForcingChainStepSearcher.DoRegionChaining(System.Collections.Generic.ICollection{Sudoku.Solving.Manual.Steps.Chains.ChainStep},Sudoku.Data.Grid@,System.Byte,System.Byte,Sudoku.Collections.ChainNodeSet@,Sudoku.Collections.ChainNodeSet@)">
             <summary>
             Do region chaining.
             </summary>
@@ -2402,7 +2402,7 @@
             <param name="onToOn">The list for <c>on</c> nodes to <c>on</c> nodes.</param>
             <param name="onToOff">The list for <c>on</c> nodes to <c>off</c> nodes.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Searchers.Chains.Forcing.ForcingChainStepSearcher.DoChaining(Sudoku.Data.Grid@,System.Collections.Generic.Set{Sudoku.Data.ChainNode},System.Collections.Generic.Set{Sudoku.Data.ChainNode})">
+        <member name="M:Sudoku.Solving.Manual.Searchers.Chains.Forcing.ForcingChainStepSearcher.DoChaining(Sudoku.Data.Grid@,Sudoku.Collections.ChainNodeSet@,Sudoku.Collections.ChainNodeSet@)">
             <summary>
             Do chaining (i.e. multiple chaining).
             </summary>
@@ -2433,7 +2433,7 @@
             <param name="isAbsurd">Indicates whether the chain is absurd.</param>
             <returns>The hint.</returns>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Searchers.Chains.Forcing.ForcingChainStepSearcher.CreateCellFcHint(Sudoku.Data.Grid@,System.Int32,Sudoku.Data.ChainNode@,System.Collections.Generic.IReadOnlyDictionary{System.Int32,System.Collections.Generic.Set{Sudoku.Data.ChainNode}})">
+        <member name="M:Sudoku.Solving.Manual.Searchers.Chains.Forcing.ForcingChainStepSearcher.CreateCellFcHint(Sudoku.Data.Grid@,System.Int32,Sudoku.Data.ChainNode@,System.Collections.Generic.Dictionary{System.Int32,Sudoku.Collections.ChainNodeSet})">
             <summary>
             Create the hint for cell forcing chains.
             </summary>
@@ -2443,7 +2443,7 @@
             <param name="outcomes">All outcomes (conclusions).</param>
             <returns>The information instance.</returns>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Searchers.Chains.Forcing.ForcingChainStepSearcher.CreateRegionFcHint(System.Int32,System.Int32,Sudoku.Data.ChainNode@,System.Collections.Generic.IDictionary{System.Int32,System.Collections.Generic.Set{Sudoku.Data.ChainNode}})">
+        <member name="M:Sudoku.Solving.Manual.Searchers.Chains.Forcing.ForcingChainStepSearcher.CreateRegionFcHint(System.Int32,System.Int32,Sudoku.Data.ChainNode@,System.Collections.Generic.Dictionary{System.Int32,Sudoku.Collections.ChainNodeSet})">
             <summary>
             Create a hint of region forcing chains.
             </summary>
@@ -2556,7 +2556,7 @@
             </param>
             <returns>The link.</returns>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Searchers.Chains.IChainStepSearcher.ListContainsNode(System.Collections.Generic.ICollection{Sudoku.Data.ChainNode},Sudoku.Data.ChainNode)">
+        <member name="M:Sudoku.Solving.Manual.Searchers.Chains.IChainStepSearcher.ListContainsNode(Sudoku.Collections.ChainNodeSet@,Sudoku.Data.ChainNode)">
             <summary>
             Determine whether the specified list contains the specified node value.
             </summary>
@@ -2573,7 +2573,7 @@
             <param name="yEnabled">Indicates whether the Y-Chains are enabled.</param>
             <returns>All possible weak links.</returns>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Searchers.Chains.IChainStepSearcher.GetOffToOn(Sudoku.Data.Grid@,Sudoku.Data.ChainNode,System.Boolean,System.Boolean,System.Boolean,Sudoku.Data.Grid@,System.Collections.Generic.ISet{Sudoku.Data.ChainNode},System.Boolean)">
+        <member name="M:Sudoku.Solving.Manual.Searchers.Chains.IChainStepSearcher.GetOffToOn(Sudoku.Data.Grid@,Sudoku.Data.ChainNode,System.Boolean,System.Boolean,System.Boolean,Sudoku.Data.Grid@,Sudoku.Collections.ChainNodeSet,System.Boolean)">
             <summary>
             Get all available strong links.
             </summary>
@@ -2592,7 +2592,7 @@
             </param>
             <returns>All possible strong links.</returns>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Searchers.Chains.IChainStepSearcher.AddHiddenParentsOfCell(Sudoku.Data.ChainNode@,Sudoku.Data.Grid@,Sudoku.Data.Grid@,System.Collections.Generic.ISet{Sudoku.Data.ChainNode})">
+        <member name="M:Sudoku.Solving.Manual.Searchers.Chains.IChainStepSearcher.AddHiddenParentsOfCell(Sudoku.Data.ChainNode@,Sudoku.Data.Grid@,Sudoku.Data.Grid@,Sudoku.Collections.ChainNodeSet@)">
             <summary>
             Add hidden parents of a cell.
             </summary>
@@ -2602,7 +2602,7 @@
             <param name="offNodes">All off nodes.</param>
             <exception cref="T:System.Exception">Throws when the parent node of the specified node cannot be found.</exception>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Searchers.Chains.IChainStepSearcher.AddHiddenParentsOfRegion(Sudoku.Data.ChainNode@,Sudoku.Data.Grid@,Sudoku.Data.Grid@,Sudoku.Data.RegionLabel,System.Collections.Generic.ISet{Sudoku.Data.ChainNode})">
+        <member name="M:Sudoku.Solving.Manual.Searchers.Chains.IChainStepSearcher.AddHiddenParentsOfRegion(Sudoku.Data.ChainNode@,Sudoku.Data.Grid@,Sudoku.Data.Grid@,Sudoku.Data.RegionLabel,Sudoku.Collections.ChainNodeSet@)">
             <summary>
             Add hidden parents of a region.
             </summary>
