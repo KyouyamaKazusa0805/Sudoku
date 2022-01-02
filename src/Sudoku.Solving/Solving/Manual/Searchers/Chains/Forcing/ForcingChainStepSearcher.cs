@@ -424,7 +424,13 @@ public unsafe class ForcingChainStepSearcher : IForcingChainStepSearcher, IDynam
 			appendedInfo
 		};
 		var links = IChainStepSearcher.GetLinks(destOn, true);
-		globalCandidates.AddRange(candidateOffsets.RemoveDuplicateItems());
+		foreach (var candidateOffset in candidateOffsets)
+		{
+			if (!globalCandidates.Contains(candidateOffset))
+			{
+				globalCandidates.Add(candidateOffset);
+			}
+		}
 		globalLinks.AddRange(links);
 		views.Add(new()
 		{
@@ -438,7 +444,13 @@ public unsafe class ForcingChainStepSearcher : IForcingChainStepSearcher, IDynam
 			appendedInfo
 		};
 		links = IChainStepSearcher.GetLinks(destOff, true);
-		globalCandidates.AddRange(candidateOffsets.RemoveDuplicateItems());
+		foreach (var candidateOffset in candidateOffsets)
+		{
+			if (!globalCandidates.Contains(candidateOffset))
+			{
+				globalCandidates.Add(candidateOffset);
+			}
+		}
 		globalLinks.AddRange(links);
 		views.Add(new()
 		{
@@ -493,7 +505,13 @@ public unsafe class ForcingChainStepSearcher : IForcingChainStepSearcher, IDynam
 
 		var candidateOffsets = IChainStepSearcher.GetCandidateOffsets(destOn);
 		var links = IChainStepSearcher.GetLinks(destOn, true);
-		globalCandidates.AddRange(candidateOffsets.RemoveDuplicateItems());
+		foreach (var candidateOffset in candidateOffsets)
+		{
+			if (!globalCandidates.Contains(candidateOffset))
+			{
+				globalCandidates.Add(candidateOffset);
+			}
+		}
 		globalLinks.AddRange(links);
 		views.Add(new()
 		{
@@ -504,7 +522,13 @@ public unsafe class ForcingChainStepSearcher : IForcingChainStepSearcher, IDynam
 
 		candidateOffsets = IChainStepSearcher.GetCandidateOffsets(destOff);
 		links = IChainStepSearcher.GetLinks(destOff, true);
-		globalCandidates.AddRange(candidateOffsets.RemoveDuplicateItems());
+		foreach (var candidateOffset in candidateOffsets)
+		{
+			if (!globalCandidates.Contains(candidateOffset))
+			{
+				globalCandidates.Add(candidateOffset);
+			}
+		}
 		globalLinks.AddRange(links);
 		views.Add(new() { Cells = cellOffset, Candidates = candidateOffsets, Links = links });
 
@@ -569,8 +593,14 @@ public unsafe class ForcingChainStepSearcher : IForcingChainStepSearcher, IDynam
 				Candidates = candidateOffsets,
 				Links = links
 			});
-			candidateOffsets.RemoveLastElement();
-			globalCandidates.AddRange(candidateOffsets.RemoveDuplicateItems());
+			candidateOffsets.RemoveAt(candidateOffsets.Count - 1);
+			foreach (var candidateOffset in candidateOffsets)
+			{
+				if (!globalCandidates.Contains(candidateOffset))
+				{
+					globalCandidates.Add(candidateOffset);
+				}
+			}
 			globalLinks.AddRange(links);
 		}
 
@@ -644,8 +674,14 @@ public unsafe class ForcingChainStepSearcher : IForcingChainStepSearcher, IDynam
 				Regions = new[] { (region, (ColorIdentifier)0) },
 				Links = links
 			});
-			candidateOffsets.RemoveLastElement();
-			globalCandidates.AddRange(candidateOffsets.RemoveDuplicateItems());
+			candidateOffsets.RemoveAt(candidateOffsets.Count - 1);
+			foreach (var candidateOffset in candidateOffsets)
+			{
+				if (!globalCandidates.Contains(candidateOffset))
+				{
+					globalCandidates.Add(candidateOffset);
+				}
+			}
 			globalLinks.AddRange(links);
 		}
 

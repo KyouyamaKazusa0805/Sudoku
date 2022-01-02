@@ -148,7 +148,7 @@ public sealed unsafe class GuardianStepSearcher : IGuardianStepSearcher
 						}
 
 						loopMap.Remove(cell);
-						tempLoop.RemoveLastElement();
+						tempLoop.RemoveAt(tempLoop.Count - 1);
 					}
 				}
 			}

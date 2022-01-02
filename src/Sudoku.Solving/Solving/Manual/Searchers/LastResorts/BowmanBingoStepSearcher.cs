@@ -75,7 +75,7 @@ public sealed unsafe class BowmanBingoStepSearcher : IBowmanBingoStepSearcher
 				}
 
 				// Undo the operation.
-				_tempConclusions.RemoveLastElement();
+				_tempConclusions.RemoveAt(_tempConclusions.Count - 1);
 				UndoGrid(ref tempGrid, candList, cell, mask);
 			}
 		}
@@ -149,7 +149,7 @@ public sealed unsafe class BowmanBingoStepSearcher : IBowmanBingoStepSearcher
 		}
 
 		// Undo grid.
-		_tempConclusions.RemoveLastElement();
+		_tempConclusions.RemoveAt(_tempConclusions.Count - 1);
 		UndoGrid(ref grid, candList, c, mask);
 
 	ReturnNull:
