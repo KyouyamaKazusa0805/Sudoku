@@ -153,6 +153,27 @@
             <returns>The reference to the chain.</returns>
             <seealso cref="M:System.Runtime.CompilerServices.Unsafe.IsNullRef``1(``0@)"/>
         </member>
+        <member name="M:Sudoku.Collections.ChainNodeSet.RemoveAt(System.Index)">
+            <summary>
+            Remove the node at the specified index.
+            </summary>
+            <param name="index">The desired index.</param>
+        </member>
+        <member name="M:Sudoku.Collections.ChainNodeSet.Remove">
+            <summary>
+            Removes the last element. If the collection has already been empty,
+            an <see cref="T:System.InvalidOperationException"/> instance will be created and thrown.
+            </summary>
+            <exception cref="T:System.InvalidOperationException">Throws when the list has already been empty.</exception>
+        </member>
+        <member name="M:Sudoku.Collections.ChainNodeSet.Contains(Sudoku.Data.ChainNode)">
+            <summary>
+            Determine whether the collection contains the specified chain node,
+            whose mask exists in this collection.
+            </summary>
+            <param name="node">The node to check.</param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
+        </member>
         <member name="M:Sudoku.Collections.ChainNodeSet.Add(Sudoku.Data.ChainNode)">
             <summary>
             Adds the specified node into the collection. If the specified node exists in the collection,
@@ -186,27 +207,6 @@
             </summary>
             <param name="index">The desired index.</param>
         </member>
-        <member name="M:Sudoku.Collections.ChainNodeSet.RemoveAt(System.Index)">
-            <summary>
-            Remove the node at the specified index.
-            </summary>
-            <param name="index">The desired index.</param>
-        </member>
-        <member name="M:Sudoku.Collections.ChainNodeSet.Remove">
-            <summary>
-            Removes the last element. If the collection has already been empty,
-            an <see cref="T:System.InvalidOperationException"/> instance will be created and thrown.
-            </summary>
-            <exception cref="T:System.InvalidOperationException">Throws when the list has already been empty.</exception>
-        </member>
-        <member name="M:Sudoku.Collections.ChainNodeSet.Contains(Sudoku.Data.ChainNode)">
-            <summary>
-            Determine whether the collection contains the specified chain node,
-            whose mask exists in this collection.
-            </summary>
-            <param name="node">The node to check.</param>
-            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
-        </member>
         <member name="M:Sudoku.Collections.ChainNodeSet.GetPinnableReference">
             <summary>
             Gets the pinnable reference that is the reference to the first element in this collection,
@@ -220,13 +220,13 @@
             </summary>
             <returns>The array of <see cref="T:Sudoku.Data.ChainNode"/>s.</returns>
         </member>
+        <member name="M:Sudoku.Collections.ChainNodeSet.GetEnumerator">
+            <inheritdoc cref="M:System.Collections.Generic.IEnumerable`1.GetEnumerator"/>
+        </member>
         <member name="M:Sudoku.Collections.ChainNodeSet.Grow">
             <summary>
             Grow the collection to make the capacity be the 2-time value than before.
             </summary>
-        </member>
-        <member name="M:Sudoku.Collections.ChainNodeSet.GetEnumerator">
-            <inheritdoc cref="M:System.Collections.Generic.IEnumerable`1.GetEnumerator"/>
         </member>
         <member name="M:Sudoku.Collections.ChainNodeSet.System#Collections#IEnumerable#GetEnumerator">
             <inheritdoc cref="M:System.Collections.IEnumerable.GetEnumerator"/>

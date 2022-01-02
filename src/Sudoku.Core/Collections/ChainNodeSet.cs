@@ -159,6 +159,41 @@ public partial struct ChainNodeSet : IEnumerable
 
 
 	/// <summary>
+	/// Remove the node at the specified index.
+	/// </summary>
+	/// <param name="index">The desired index.</param>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public void RemoveAt(Index index) => RemoveAt(index.GetOffset(Count));
+
+	/// <summary>
+	/// Removes the last element. If the collection has already been empty,
+	/// an <see cref="InvalidOperationException"/> instance will be created and thrown.
+	/// </summary>
+	/// <exception cref="InvalidOperationException">Throws when the list has already been empty.</exception>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public void Remove() =>
+		_ = Count > 0 ? Count-- : throw new InvalidOperationException("The list has already been empty.");
+
+	/// <summary>
+	/// Determine whether the collection contains the specified chain node,
+	/// whose mask exists in this collection.
+	/// </summary>
+	/// <param name="node">The node to check.</param>
+	/// <returns>A <see cref="bool"/> result indicating that.</returns>
+	public readonly bool Contains(ChainNode node)
+	{
+		for (int i = 0; i < Count; i++)
+		{
+			if (_chainNodes[i].Mask == node.Mask)
+			{
+				return true;
+			}
+		}
+
+		return false;
+	}
+
+	/// <summary>
 	/// Adds the specified node into the collection. If the specified node exists in the collection,
 	/// the method will do nothing but return <see langword="false"/>; otherwise, add it
 	/// into the collection and then return <see langword="true"/>.
@@ -221,41 +256,6 @@ public partial struct ChainNodeSet : IEnumerable
 	}
 
 	/// <summary>
-	/// Remove the node at the specified index.
-	/// </summary>
-	/// <param name="index">The desired index.</param>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public void RemoveAt(Index index) => RemoveAt(index.GetOffset(Count));
-
-	/// <summary>
-	/// Removes the last element. If the collection has already been empty,
-	/// an <see cref="InvalidOperationException"/> instance will be created and thrown.
-	/// </summary>
-	/// <exception cref="InvalidOperationException">Throws when the list has already been empty.</exception>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public void Remove() =>
-		_ = Count > 0 ? Count-- : throw new InvalidOperationException("The list has already been empty.");
-
-	/// <summary>
-	/// Determine whether the collection contains the specified chain node,
-	/// whose mask exists in this collection.
-	/// </summary>
-	/// <param name="node">The node to check.</param>
-	/// <returns>A <see cref="bool"/> result indicating that.</returns>
-	public readonly bool Contains(ChainNode node)
-	{
-		for (int i = 0; i < Count; i++)
-		{
-			if (_chainNodes[i].Mask == node.Mask)
-			{
-				return true;
-			}
-		}
-
-		return false;
-	}
-
-	/// <summary>
 	/// Gets the pinnable reference that is the reference to the first element in this collection,
 	/// in order to use <see langword="fixed"/> statement on <see cref="ChainNodeSet"/> instances.
 	/// </summary>
@@ -271,6 +271,10 @@ public partial struct ChainNodeSet : IEnumerable
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public readonly ChainNode[] ToArray() => _chainNodes[..Count];
 
+	/// <inheritdoc cref="IEnumerable{T}.GetEnumerator"/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public readonly Enumerator GetEnumerator() => new(_chainNodes, Count);
+
 	/// <summary>
 	/// Grow the collection to make the capacity be the 2-time value than before.
 	/// </summary>
@@ -280,10 +284,6 @@ public partial struct ChainNodeSet : IEnumerable
 		_capacity <<= 1;
 		Array.Resize(ref _chainNodes, _capacity);
 	}
-
-	/// <inheritdoc cref="IEnumerable{T}.GetEnumerator"/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public readonly Enumerator GetEnumerator() => new(_chainNodes, Count);
 
 	/// <inheritdoc cref="IEnumerable.GetEnumerator"/>
 	/// <exception cref="NotImplementedException">Always throws.</exception>
