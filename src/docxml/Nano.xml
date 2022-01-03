@@ -112,6 +112,16 @@
             <returns>The sudoku grid got.</returns>
             <value>The value to replace with.</value>
         </member>
+        <member name="P:Nano.CustomControls.SudokuPane.Preference">
+            <summary>
+            Indicates the preferences.
+            </summary>
+        </member>
+        <member name="P:Nano.CustomControls.SudokuPane.ShapePool">
+            <summary>
+            Indicates the shape pool.
+            </summary>
+        </member>
         <member name="E:Nano.CustomControls.SudokuPane.GridChanging">
             <summary>
             Indicates the event that will be triggered when the current sudoku grid information
@@ -211,6 +221,62 @@
             <param name="sender">The sender that triggers the event.</param>
             <param name="e">The event arguments provided.</param>
         </member>
+        <member name="T:Nano.GridShapePool">
+            <summary>
+            Defines a pool that stores the basic <see cref="T:Microsoft.UI.Xaml.Shapes.Shape"/>s.
+            </summary>
+            <seealso cref="T:Microsoft.UI.Xaml.Shapes.Shape"/>
+            <param name="Preference">Indicates the preferences.</param>
+            <param name="BaseGrid">
+            The <see cref="T:Microsoft.UI.Xaml.Controls.Grid"/> instance that stores and displays the <see cref="T:Microsoft.UI.Xaml.Shapes.Shape"/>s.
+            </param>
+            <param name="CandidateTexts">Indicates the pool of candidate <see cref="T:Microsoft.UI.Xaml.Controls.TextBlock"/>s.</param>
+            <param name="CellTexts">Indicates the pool of cell <see cref="T:Microsoft.UI.Xaml.Controls.TextBlock"/>s.</param>
+            <param name="HighlightCells">
+            Indicates the pool of highlight cells displaying via <see cref="T:Microsoft.UI.Xaml.Controls.Border"/>s.
+            </param>
+            <param name="HighlightCandidates">
+            Indicates the pool of highlight candidates displaying via <see cref="T:Microsoft.UI.Xaml.Shapes.Ellipse"/>s.
+            </param>
+            <param name="HighlightRegions">
+            Indicates the pool of highlight regions displaying via <see cref="T:Microsoft.UI.Xaml.Controls.Border"/>s.
+            </param>
+        </member>
+        <member name="M:Nano.GridShapePool.#ctor(Nano.Properties.Preference,Microsoft.UI.Xaml.Controls.Grid,Microsoft.UI.Xaml.Controls.TextBlock[],Microsoft.UI.Xaml.Controls.TextBlock[],Microsoft.UI.Xaml.Controls.Border[],Microsoft.UI.Xaml.Shapes.Ellipse[],Microsoft.UI.Xaml.Controls.Border[])">
+            <summary>
+            Defines a pool that stores the basic <see cref="T:Microsoft.UI.Xaml.Shapes.Shape"/>s.
+            </summary>
+            <seealso cref="T:Microsoft.UI.Xaml.Shapes.Shape"/>
+            <param name="Preference">Indicates the preferences.</param>
+            <param name="BaseGrid">
+            The <see cref="T:Microsoft.UI.Xaml.Controls.Grid"/> instance that stores and displays the <see cref="T:Microsoft.UI.Xaml.Shapes.Shape"/>s.
+            </param>
+            <param name="CandidateTexts">Indicates the pool of candidate <see cref="T:Microsoft.UI.Xaml.Controls.TextBlock"/>s.</param>
+            <param name="CellTexts">Indicates the pool of cell <see cref="T:Microsoft.UI.Xaml.Controls.TextBlock"/>s.</param>
+            <param name="HighlightCells">
+            Indicates the pool of highlight cells displaying via <see cref="T:Microsoft.UI.Xaml.Controls.Border"/>s.
+            </param>
+            <param name="HighlightCandidates">
+            Indicates the pool of highlight candidates displaying via <see cref="T:Microsoft.UI.Xaml.Shapes.Ellipse"/>s.
+            </param>
+            <param name="HighlightRegions">
+            Indicates the pool of highlight regions displaying via <see cref="T:Microsoft.UI.Xaml.Controls.Border"/>s.
+            </param>
+        </member>
+        <member name="M:Nano.GridShapePool.#ctor(Nano.Properties.Preference,Microsoft.UI.Xaml.Controls.Grid)">
+            <summary>
+            Initializes a <see cref="T:Nano.GridShapePool"/> instance with the specified
+            <see cref="T:Microsoft.UI.Xaml.Controls.Grid"/> instance indicating the base control stores those values.
+            </summary>
+            <param name="preference">Indicates the preferences.</param>
+            <param name="baseGrid">The base <see cref="T:Microsoft.UI.Xaml.Controls.Grid"/> instance.</param>
+        </member>
+        <member name="M:Nano.GridShapePool.RefreshCandidates(Sudoku.Data.Grid@)">
+            <summary>
+            To refresh given and candidate controls via the <see cref="T:Sudoku.Data.Grid"/> instance.
+            </summary>
+            <param name="sudoku">The base sudoku grid.</param>
+        </member>
         <member name="T:Nano.MainWindow">
             <summary>
             An empty window that can be used on its own or navigated to within a <see cref="T:Microsoft.UI.Xaml.Controls.Frame"/>.
@@ -234,6 +300,288 @@
         <member name="M:Nano.MainWindow.GetBindingConnector(System.Int32,System.Object)">
             <summary>
             GetBindingConnector(int connectionId, object target)
+            </summary>
+        </member>
+        <member name="T:Nano.Properties.Preference">
+            <summary>
+            Defines a set of properties that is the main settings in the program.
+            </summary>
+        </member>
+        <member name="M:Nano.Properties.Preference.#ctor">
+            <summary>
+            Initializes a <see cref="T:Nano.Properties.Preference"/> instance.
+            </summary>
+        </member>
+        <member name="P:Nano.Properties.Preference.LightOrDarkMode">
+            <summary>
+            Indicates the current UI project uses the light mode or the dark mode.
+            </summary>
+        </member>
+        <member name="P:Nano.Properties.Preference.BlockLineWidth">
+            <summary>
+            <para>Indicates the width of the block lines.</para>
+            <para><i>The default value is 3.</i></para>
+            </summary>
+        </member>
+        <member name="P:Nano.Properties.Preference.GridLineWidth">
+            <summary>
+            <para>Indicates the width of the cell border lines.</para>
+            <para><i>The default value is 1.</i></para>
+            </summary>
+        </member>
+        <member name="P:Nano.Properties.Preference.CellBorderWidth">
+            <summary>
+            <para>Indicates the width of the highlight cell border.</para>
+            <para><i>The default value is 1.5.</i></para>
+            </summary>
+        </member>
+        <member name="P:Nano.Properties.Preference.CandidateBorderWidth">
+            <summary>
+            <para>Indicates the width of the highlight candidate border.</para>
+            <para><i>The default value is 1.5.</i></para>
+            </summary>
+        </member>
+        <member name="P:Nano.Properties.Preference.RegionBorderWidth">
+            <summary>
+            <para>Indicates the width of the highlight region border.</para>
+            <para><i>The default value is 1.5.</i></para>
+            </summary>
+        </member>
+        <member name="P:Nano.Properties.Preference.ValueScale">
+            <summary>
+            <para>Indicates the scale value on rendering given or modifiable numbers in a grid.</para>
+            <para><i>The default value is 0.6.</i></para>
+            </summary>
+        </member>
+        <member name="P:Nano.Properties.Preference.CandidateScale">
+            <summary>
+            <para>Indicates the scale value on rendering candidate numbers in a grid.</para>
+            <para><i>The default value is 0.8.</i></para>
+            </summary>
+        </member>
+        <member name="P:Nano.Properties.Preference.GivenFontName">
+            <summary>
+            <para>Indicates the font name for the given numbers on rendering.</para>
+            <para><i>The default value is "Fira Code".</i></para>
+            </summary>
+        </member>
+        <member name="P:Nano.Properties.Preference.CandidateFontName">
+            <summary>
+            <para>Indicates the font name for the candidate numbers on rendering.</para>
+            <para><i>The default value is "Times New Roman".</i></para>
+            </summary>
+        </member>
+        <member name="P:Nano.Properties.Preference.GridLineColor">
+            <summary>
+            Indicates the color of the cell border lines.
+            </summary>
+            <remarks>
+            The property will route the real values via the current theme kind.
+            </remarks>
+        </member>
+        <member name="P:Nano.Properties.Preference.GridLineColorLight">
+            <summary>
+            <para>Indicates the color of the cell border lines in the light theme.</para>
+            <para><i>The default value is <see cref="P:Microsoft.UI.Colors.Black"/>.</i></para>
+            </summary>
+        </member>
+        <member name="P:Nano.Properties.Preference.GridLineColorDark">
+            <summary>
+            <para>Indicates the color of the cell border lines in the dark theme.</para>
+            <para><i>The default value is <see cref="P:Microsoft.UI.Colors.LightGray"/>.</i></para>
+            </summary>
+        </member>
+        <member name="P:Nano.Properties.Preference.GivenColor">
+            <summary>
+            Indicates the color of the given values on rendering.
+            </summary>
+            <remarks>
+            The property will route the real values via the current theme kind.
+            </remarks>
+        </member>
+        <member name="P:Nano.Properties.Preference.GivenColorLight">
+            <summary>
+            <para>Indicates the color of the given values on rendering in the light theme.</para>
+            <para><i>The default value is <see cref="P:Microsoft.UI.Colors.Black"/>.</i></para>
+            </summary>
+        </member>
+        <member name="P:Nano.Properties.Preference.GivenColorDark">
+            <summary>
+            <para>Indicates the color of the given values on rendering in the dark theme.</para>
+            <para><i>The default value is <see cref="P:Microsoft.UI.Colors.LightGray"/>.</i></para>
+            </summary>
+        </member>
+        <member name="P:Nano.Properties.Preference.CandidateColor">
+            <summary>
+            Indicates the color of the candidate values on rendering.
+            </summary>
+            <remarks>
+            The property will route the real values via the current theme kind.
+            </remarks>
+        </member>
+        <member name="P:Nano.Properties.Preference.CandidateColorLight">
+            <summary>
+            <para>Indicates the color of the candidate values on rendering in the light theme.</para>
+            <para><i>The default value is <see cref="P:Microsoft.UI.Colors.DimGray"/>.</i></para>
+            </summary>
+        </member>
+        <member name="P:Nano.Properties.Preference.CandidateColorDark">
+            <summary>
+            <para>Indicates the color of the candidate values on rendering in the dark theme.</para>
+            <para><i>The default value is <see cref="P:Microsoft.UI.Colors.Gray"/>.</i></para>
+            </summary>
+        </member>
+        <member name="P:Nano.Properties.Preference.CellBorderColor">
+            <summary>
+            Indicates the color of the highlight cell border lines on rendering.
+            </summary>
+            <remarks>
+            The property will route the real values via the current theme kind.
+            </remarks>
+        </member>
+        <member name="P:Nano.Properties.Preference.CellBorderColorLight">
+            <summary>
+            <para>Indicates the color of the highlight cell border lines on rendering in the light theme.</para>
+            <para><i>The default value is <see cref="P:Microsoft.UI.Colors.Blue"/>.</i></para>
+            </summary>
+        </member>
+        <member name="P:Nano.Properties.Preference.CellBorderColorDark">
+            <summary>
+            <para>Indicates the color of the highlight cell border lines on rendering in the dark theme.</para>
+            <para><i>The default value is <c>{ R = 86, G = 156, B = 214 }</c>.</i></para>
+            </summary>
+        </member>
+        <member name="P:Nano.Properties.Preference.CandidateBorderColor">
+            <summary>
+            Indicates the color of the highlight candidate border lines on rendering.
+            </summary>
+            <remarks>
+            The property will route the real values via the current theme kind.
+            </remarks>
+        </member>
+        <member name="P:Nano.Properties.Preference.CandidateBorderColorLight">
+            <summary>
+            <para>Indicates the color of the highlight candidate border lines on rendering in the light theme.</para>
+            <para><i>The default value is <see cref="P:Microsoft.UI.Colors.Blue"/>.</i></para>
+            </summary>
+        </member>
+        <member name="P:Nano.Properties.Preference.CandidateBorderColorDark">
+            <summary>
+            <para>Indicates the color of the highlight candidate border lines on rendering in the dark theme.</para>
+            <para><i>The default value is <c>{ R = 86, G = 156, B = 214 }</c>.</i></para>
+            </summary>
+        </member>
+        <member name="P:Nano.Properties.Preference.RegionBorderColor">
+            <summary>
+            Indicates the color of the highlight region border lines on rendering.
+            </summary>
+            <remarks>
+            The property will route the real values via the current theme kind.
+            </remarks>
+        </member>
+        <member name="P:Nano.Properties.Preference.RegionBorderColorLight">
+            <summary>
+            <para>Indicates the color of the highlight region border lines on rendering in the light theme.</para>
+            <para><i>The default value is <see cref="P:Microsoft.UI.Colors.Blue"/>.</i></para>
+            </summary>
+        </member>
+        <member name="P:Nano.Properties.Preference.RegionBorderColorDark">
+            <summary>
+            <para>Indicates the color of the highlight region border lines on rendering in the dark theme.</para>
+            <para><i>The default value is <c>{ R = 86, G = 156, B = 214 }</c>.</i></para>
+            </summary>
+        </member>
+        <member name="P:Nano.Properties.Preference.CellBorderBackgroundColor">
+            <summary>
+            Indicates the color of the background color surrounding by the highlight cell border lines
+            on rendering.
+            </summary>
+            <remarks>
+            The property will route the real values via the current theme kind.
+            </remarks>
+        </member>
+        <member name="P:Nano.Properties.Preference.CellBorderBackgroundColorLight">
+            <summary>
+            <para>
+            Indicates the color of the background color surrounding by the highlight cell border lines
+            on rendering in the light mode.
+            </para>
+            <para><i>The default value is <see cref="P:Microsoft.UI.Colors.Blue"/> with the alpha 64.</i></para>
+            </summary>
+        </member>
+        <member name="P:Nano.Properties.Preference.CellBorderBackgroundColorDark">
+            <summary>
+            <para>
+            Indicates the color of the background color surrounding by the highlight cell border lines
+            on rendering in the dark mode.
+            </para>
+            <para><i>The default value is <c>{ A = 64, R = 86, G = 156, B = 214 }</c>.</i></para>
+            </summary>
+        </member>
+        <member name="P:Nano.Properties.Preference.CandidateBorderBackgroundColor">
+            <summary>
+            Indicates the color of the background color surrounding by the highlight candidate border lines
+            on rendering.
+            </summary>
+            <remarks>
+            The property will route the real values via the current theme kind.
+            </remarks>
+        </member>
+        <member name="P:Nano.Properties.Preference.CandidateBorderBackgroundColorLight">
+            <summary>
+            <para>
+            Indicates the color of the background color surrounding by the highlight candidate border lines
+            on rendering in the light mode.
+            </para>
+            <para><i>The default value is <see cref="P:Microsoft.UI.Colors.Blue"/> with the alpha 64.</i></para>
+            </summary>
+        </member>
+        <member name="P:Nano.Properties.Preference.CandidateBorderBackgroundColorDark">
+            <summary>
+            <para>
+            Indicates the color of the background color surrounding by the highlight candidate border lines
+            on rendering in the dark mode.
+            </para>
+            <para><i>The default value is <c>{ A = 64, R = 86, G = 156, B = 214 }</c>.</i></para>
+            </summary>
+        </member>
+        <member name="P:Nano.Properties.Preference.RegionBorderBackgroundColor">
+            <summary>
+            Indicates the color of the background color surrounding by the highlight region border lines
+            on rendering.
+            </summary>
+            <remarks>
+            The property will route the real values via the current theme kind.
+            </remarks>
+        </member>
+        <member name="P:Nano.Properties.Preference.RegionBorderBackgroundColorLight">
+            <summary>
+            <para>
+            Indicates the color of the background color surrounding by the highlight region border lines
+            on rendering in the light mode.
+            </para>
+            <para><i>The default value is <see cref="P:Microsoft.UI.Colors.Blue"/> with the alpha 64.</i></para>
+            </summary>
+        </member>
+        <member name="P:Nano.Properties.Preference.RegionBorderBackgroundColorDark">
+            <summary>
+            <para>
+            Indicates the color of the background color surrounding by the highlight region border lines
+            on rendering in the dark mode.
+            </para>
+            <para><i>The default value is <c>{ A = 64, R = 86, G = 156, B = 214 }</c>.</i></para>
+            </summary>
+        </member>
+        <member name="P:Nano.Properties.Preference.GivenFontStyle">
+            <summary>
+            <para>Indicates the font style on rendering given numbers.</para>
+            <para><i>The default value is <see cref="F:Windows.UI.Text.FontStyle.Normal"/>.</i></para>
+            </summary>
+        </member>
+        <member name="P:Nano.Properties.Preference.CandidateFontStyle">
+            <summary>
+            <para>Indicates the font style on rendering candidate numbers.</para>
+            <para><i>The default value is <see cref="F:Windows.UI.Text.FontStyle.Normal"/>.</i></para>
             </summary>
         </member>
         <member name="T:Nano.Program">

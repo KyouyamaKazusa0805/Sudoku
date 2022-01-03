@@ -41,6 +41,16 @@ public partial class SudokuPane : UserControl
 		}
 	}
 
+	/// <summary>
+	/// Indicates the preferences.
+	/// </summary>
+	public Preference Preference { get; } = new();
+
+	/// <summary>
+	/// Indicates the shape pool.
+	/// </summary>
+	public GridShapePool ShapePool { get; private set; } = null!;
+
 
 	/// <summary>
 	/// Indicates the event that will be triggered when the current sudoku grid information
@@ -62,7 +72,6 @@ public partial class SudokuPane : UserControl
 	/// <param name="e">The data provided on this trigger.</param>
 	protected virtual void OnGridChanging(object? sender, GridChangingEventArgs e)
 	{
-
 	}
 
 	/// <summary>
@@ -70,24 +79,14 @@ public partial class SudokuPane : UserControl
 	/// </summary>
 	/// <param name="sender">The object to trigger the event.</param>
 	/// <param name="e">The data provided on this trigger.</param>
-	protected virtual void OnGridChanged(object? sender, GridChangedEventArgs e)
-	{
-
-	}
+	protected virtual void OnGridChanged(object? sender, GridChangedEventArgs e) =>
+		ShapePool.RefreshCandidates(e.NewGrid);
 
 	/// <summary>
 	/// To initialize the controls. The method is only used by the constructor <see cref="SudokuPane()"/>.
 	/// </summary>
 	/// <seealso cref="SudokuPane()"/>
-	private void InitializeControls()
-	{
-		// Initializes '_Grid'.
-		for (int i = 0; i < 27; i++)
-		{
-			_GridBase.RowDefinitions.Add(new());
-			_GridBase.ColumnDefinitions.Add(new());
-		}
-	}
+	private void InitializeControls() => ShapePool = new(Preference, _GridBase);
 
 	/// <summary>
 	/// To initialize the events. The method is only used by the constructor <see cref="SudokuPane()"/>.

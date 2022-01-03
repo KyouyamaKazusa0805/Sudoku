@@ -1,5 +1,16 @@
-﻿global using System.Runtime.CompilerServices;
+﻿global using System;
+global using System.Numerics;
+global using System.Runtime.CompilerServices;
+global using System.Text.Json.Serialization;
+global using Microsoft.UI;
 global using Microsoft.UI.Xaml;
 global using Microsoft.UI.Xaml.Controls;
+global using Microsoft.UI.Xaml.Media;
+global using Microsoft.UI.Xaml.Shapes;
+global using Nano.Properties;
+global using Sudoku.Data;
 global using Sudoku.Diagnostics.CodeAnalysis;
+global using Windows.UI;
+global using Windows.UI.Text;
+global using Grid = Microsoft.UI.Xaml.Controls.Grid;
 global using SudokuGrid = Sudoku.Data.Grid;
