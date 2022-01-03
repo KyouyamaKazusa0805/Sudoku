@@ -14,10 +14,11 @@
 
 	<ItemGroup>
 		<ProjectReference Include="..\..\Nano.CodeGen\Nano.CodeGen.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="true" />
+		<ProjectReference Include="..\..\Sudoku.Core\Sudoku.Core.csproj" />
 	</ItemGroup>
 
 	<ItemGroup>
-		<None Remove="Pages\DemoPage.xaml" />
+		<None Remove="CustomControls\SudokuPane.xaml" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -29,9 +30,13 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<Page Update="Pages\DemoPage.xaml">
-			<Generator>MSBuild:Compile</Generator>
-		</Page>
+	  <Page Update="CustomControls\SudokuPane.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </Page>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Folder Include="Pages\" />
 	</ItemGroup>
 
 </Project>

@@ -5,4 +5,9 @@
 		<RootNamespace>Nano.Diagnostics.CodeGen</RootNamespace>
 	</PropertyGroup>
 
+	<ItemGroup>
+	  <Folder Include="Annotations\" />
+	  <Folder Include="Generators\" />
+	</ItemGroup>
+
 </Project>

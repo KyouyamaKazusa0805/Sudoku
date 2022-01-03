@@ -50,30 +50,65 @@
             GetXmlnsDefinitions()
             </summary>
         </member>
-        <member name="T:Nano.Commands.DelegateCommand">
+        <member name="T:Nano.CustomControls.SudokuPane">
             <summary>
-            Provides with the type that handles a command.
+            Defines a custom control that holds a sudoku grid.
             </summary>
         </member>
-        <member name="P:Nano.Commands.DelegateCommand.CanExecuteCommand">
+        <member name="M:Nano.CustomControls.SudokuPane.#ctor">
             <summary>
-            Indicates the property holding a method that checks whether the current state
-            can execute the command or not.
+            Initializes a <see cref="T:Nano.CustomControls.SudokuPane"/> instance.
             </summary>
         </member>
-        <member name="P:Nano.Commands.DelegateCommand.ExecuteCommand">
+        <member name="E:Nano.CustomControls.SudokuPane.GridChanged">
             <summary>
-            Indicates the property holding a method that handles the command.
+            Indicates the event that will be triggered when the current sudoku grid information
+            has been changed its status.
             </summary>
         </member>
-        <member name="E:Nano.Commands.DelegateCommand.CanExecuteChanged">
-            <inheritdoc/>
+        <member name="M:Nano.CustomControls.SudokuPane.InitializeControls">
+            <summary>
+            To initialize the controls. The method is only used by the constructor <see cref="M:Nano.CustomControls.SudokuPane.#ctor"/>.
+            </summary>
+            <seealso cref="M:Nano.CustomControls.SudokuPane.#ctor"/>
         </member>
-        <member name="M:Nano.Commands.DelegateCommand.Execute(System.Object)">
-            <inheritdoc/>
+        <member name="M:Nano.CustomControls.SudokuPane.InitializeComponent">
+            <summary>
+            InitializeComponent()
+            </summary>
         </member>
-        <member name="M:Nano.Commands.DelegateCommand.CanExecute(System.Object)">
-            <inheritdoc/>
+        <member name="M:Nano.CustomControls.SudokuPane.Connect(System.Int32,System.Object)">
+            <summary>
+            Connect()
+            </summary>
+        </member>
+        <member name="M:Nano.CustomControls.SudokuPane.GetBindingConnector(System.Int32,System.Object)">
+            <summary>
+            GetBindingConnector(int connectionId, object target)
+            </summary>
+        </member>
+        <member name="T:Nano.GridChangedEventArgs">
+            <summary>
+            Encapsulates a type that holds a sudoku grid that is used on changing the original grid.
+            </summary>
+        </member>
+        <member name="M:Nano.GridChangedEventArgs.#ctor(Sudoku.Data.Grid@)">
+            <summary>
+            Initializes a <see cref="T:Nano.GridChangedEventArgs"/> instance via the specified grid puzzle.
+            </summary>
+            <param name="grid">The grid.</param>
+        </member>
+        <member name="P:Nano.GridChangedEventArgs.NewGrid">
+            <summary>
+            Indicates the new grid to change the older one.
+            </summary>
+        </member>
+        <member name="T:Nano.GridChangedEventHandler">
+            <summary>
+            Indicates the event handler that is bound with the concept on sudoku grid being changed.
+            </summary>
+            <param name="sender">The sender that triggers the event.</param>
+            <param name="e">The event arguments provided.</param>
         </member>
         <member name="T:Nano.MainWindow">
             <summary>
@@ -99,54 +134,6 @@
             <summary>
             GetBindingConnector(int connectionId, object target)
             </summary>
-        </member>
-        <member name="T:Nano.Pages.DemoPage">
-            <summary>
-            An empty page that can be used on its own or navigated to within a <see cref="T:Microsoft.UI.Xaml.Controls.Frame"/>.
-            </summary>
-        </member>
-        <member name="M:Nano.Pages.DemoPage.#ctor">
-            <summary>
-            Initializes a <see cref="T:Nano.Pages.DemoPage"/> instance.
-            </summary>
-        </member>
-        <member name="M:Nano.Pages.DemoPage.InitializeComponent">
-            <summary>
-            InitializeComponent()
-            </summary>
-        </member>
-        <member name="M:Nano.Pages.DemoPage.Connect(System.Int32,System.Object)">
-            <summary>
-            Connect()
-            </summary>
-        </member>
-        <member name="M:Nano.Pages.DemoPage.GetBindingConnector(System.Int32,System.Object)">
-            <summary>
-            GetBindingConnector(int connectionId, object target)
-            </summary>
-        </member>
-        <member name="T:Nano.ViewModels.DemoPageViewModel">
-            <summary>
-            Indicates the view model that binds with <see cref="T:Nano.Pages.DemoPage"/>.
-            </summary>
-            <seealso cref="T:Nano.Pages.DemoPage"/>
-        </member>
-        <member name="M:Nano.ViewModels.DemoPageViewModel.#ctor">
-            <summary>
-            Initializes a <see cref="T:Nano.ViewModels.DemoPageViewModel"/> instance.
-            </summary>
-        </member>
-        <member name="P:Nano.ViewModels.DemoPageViewModel.AddCommand">
-            <summary>
-            Indicates the command that handles the adding operation.
-            </summary>
-        </member>
-        <member name="M:Nano.ViewModels.DemoPageViewModel.Add(System.Object)">
-            <summary>
-            The back method binds with the property <see cref="P:Nano.ViewModels.DemoPageViewModel.AddCommand"/>.
-            </summary>
-            <param name="parameter"></param>
-            <seealso cref="P:Nano.ViewModels.DemoPageViewModel.AddCommand"/>
         </member>
         <member name="T:Nano.Program">
             <summary>
