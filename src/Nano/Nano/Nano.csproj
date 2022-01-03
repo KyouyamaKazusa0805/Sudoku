@@ -29,11 +29,6 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<Folder Include="Models\" />
-		<Folder Include="Views\" />
-	</ItemGroup>
-
-	<ItemGroup>
 		<Page Update="Pages\DemoPage.xaml">
 			<Generator>MSBuild:Compile</Generator>
 		</Page>

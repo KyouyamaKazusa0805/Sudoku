@@ -43,7 +43,7 @@ Project("{C7167F0D-BC9F-4E6E-AFE1-012C56B48DB5}") = "Nano (Package)", "src\Nano\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Nano", "src\Nano\Nano\Nano.csproj", "{59260C80-1883-4ABE-9ACF-5261F4B64B6F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nano.CodeGen", "src\Nano.CodeGen\Nano.CodeGen.csproj", "{01BD4B6A-1201-4983-8408-9034DC10B968}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Nano.CodeGen", "src\Nano.CodeGen\Nano.CodeGen.csproj", "{01BD4B6A-1201-4983-8408-9034DC10B968}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
