@@ -6,12 +6,6 @@
 /// <seealso cref="DemoPage"/>
 public sealed partial class DemoPageViewModel : NotificationObject
 {
-	/// <summary>
-	/// Initializes a <see cref="DemoPageViewModel"/> instance.
-	/// </summary>
-	public DemoPageViewModel() => AddCommand = new() { CanExecuteCommand = null, ExecuteCommand = Add };
-
-
 	[PropertyAutoNotify]
 	private double _first;
 
@@ -20,6 +14,12 @@ public sealed partial class DemoPageViewModel : NotificationObject
 
 	[PropertyAutoNotify]
 	private double _result;
+
+
+	/// <summary>
+	/// Initializes a <see cref="DemoPageViewModel"/> instance.
+	/// </summary>
+	public DemoPageViewModel() => AddCommand = new() { CanExecuteCommand = null, ExecuteCommand = Add };
 
 
 	/// <summary>
