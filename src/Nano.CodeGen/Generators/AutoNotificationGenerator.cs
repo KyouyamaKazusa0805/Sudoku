@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Diagnostics.CodeGen;
+﻿namespace Nano.Diagnostics.CodeGen.Generators;
 
 /// <summary>
 /// Defines a source generator that generates the source code on auto-notifications.
@@ -53,7 +53,11 @@ partial class {typeName}
 	{{
 		get => {name};
 
-		set {{ {name} = value; RaiseNotification(nameof({targetName})); }}
+		set
+		{{
+			{name} = value;
+			RaiseNotification(nameof({targetName}));
+		}}
 	}}
 }}"
 			);

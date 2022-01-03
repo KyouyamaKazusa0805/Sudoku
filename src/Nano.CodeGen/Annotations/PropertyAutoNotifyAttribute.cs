@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Diagnostics.CodeGen;
+﻿namespace Nano.Diagnostics.CodeGen;
 
 /// <summary>
 /// To define an attribute that allows the source generator generating the source code
