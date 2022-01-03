@@ -3,8 +3,14 @@
 /// <summary>
 /// Defines a custom control that holds a sudoku grid.
 /// </summary>
-public sealed partial class SudokuPane : UserControl
+public partial class SudokuPane : UserControl
 {
+	/// <summary>
+	/// Indicates the inner grid used.
+	/// </summary>
+	private SudokuGrid _grid;
+
+
 	/// <summary>
 	/// Initializes a <see cref="SudokuPane"/> instance.
 	/// </summary>
@@ -12,8 +18,35 @@ public sealed partial class SudokuPane : UserControl
 	{
 		InitializeComponent();
 		InitializeControls();
+		InitializeEvents();
 	}
 
+
+	/// <summary>
+	/// Indicates the sudoku grid.
+	/// </summary>
+	/// <returns>The sudoku grid got.</returns>
+	/// <value>The value to replace with.</value>
+	public SudokuGrid Grid
+	{
+		get => _grid;
+
+		set
+		{
+			GridChanging?.Invoke(this, new(_grid));
+
+			_grid = value;
+
+			GridChanged?.Invoke(this, new(value));
+		}
+	}
+
+
+	/// <summary>
+	/// Indicates the event that will be triggered when the current sudoku grid information
+	/// will be changed in a second.
+	/// </summary>
+	public event GridChangingEventHandler? GridChanging;
 
 	/// <summary>
 	/// Indicates the event that will be triggered when the current sudoku grid information
@@ -21,6 +54,26 @@ public sealed partial class SudokuPane : UserControl
 	/// </summary>
 	public event GridChangedEventHandler? GridChanged;
 
+
+	/// <summary>
+	/// The default method that is triggered and invoked if the grid is changing.
+	/// </summary>
+	/// <param name="sender">The object to trigger the event.</param>
+	/// <param name="e">The data provided on this trigger.</param>
+	protected virtual void OnGridChanging(object? sender, GridChangingEventArgs e)
+	{
+
+	}
+
+	/// <summary>
+	/// The default method that is triggered and invoked if the grid is changed.
+	/// </summary>
+	/// <param name="sender">The object to trigger the event.</param>
+	/// <param name="e">The data provided on this trigger.</param>
+	protected virtual void OnGridChanged(object? sender, GridChangedEventArgs e)
+	{
+
+	}
 
 	/// <summary>
 	/// To initialize the controls. The method is only used by the constructor <see cref="SudokuPane()"/>.
@@ -34,5 +87,15 @@ public sealed partial class SudokuPane : UserControl
 			_GridBase.RowDefinitions.Add(new());
 			_GridBase.ColumnDefinitions.Add(new());
 		}
+	}
+
+	/// <summary>
+	/// To initialize the events. The method is only used by the constructor <see cref="SudokuPane()"/>.
+	/// </summary>
+	/// <seealso cref="SudokuPane()"/>
+	private void InitializeEvents()
+	{
+		GridChanging += OnGridChanging;
+		GridChanged += OnGridChanged;
 	}
 }

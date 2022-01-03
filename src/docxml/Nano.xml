@@ -50,14 +50,72 @@
             GetXmlnsDefinitions()
             </summary>
         </member>
+        <member name="T:Nano.CustomControls.CustomizedSettingsNavigationView">
+            <summary>
+            Defines a customized settings option navigation view.
+            </summary>
+        </member>
+        <member name="F:Nano.CustomControls.CustomizedSettingsNavigationView.SettingsNavigationViewItemName">
+            <summary>
+            Indicates the settings navigation view item default name.
+            </summary>
+        </member>
+        <member name="F:Nano.CustomControls.CustomizedSettingsNavigationView.SettingsItemTextProperty">
+            <summary>
+            Indicates the dependency object that binds with the property <see cref="P:Nano.CustomControls.CustomizedSettingsNavigationView.SettingsItemText"/>.
+            </summary>
+            <seealso cref="P:Nano.CustomControls.CustomizedSettingsNavigationView.SettingsItemText"/>
+        </member>
+        <member name="F:Nano.CustomControls.CustomizedSettingsNavigationView._settingsItem">
+            <summary>
+            Indicates the inner settings view item.
+            </summary>
+        </member>
+        <member name="M:Nano.CustomControls.CustomizedSettingsNavigationView.#ctor">
+            <summary>
+            Initializes a <see cref="T:Nano.CustomControls.CustomizedSettingsNavigationView"/> instance.
+            </summary>
+        </member>
+        <member name="P:Nano.CustomControls.CustomizedSettingsNavigationView.SettingsItemText">
+            <summary>
+            Indicates the text content that displays in the menu item.
+            </summary>
+        </member>
+        <member name="M:Nano.CustomControls.CustomizedSettingsNavigationView.OnApplyTemplate">
+            <inheritdoc/>
+        </member>
+        <member name="M:Nano.CustomControls.CustomizedSettingsNavigationView.UpdateSettingsItemText">
+            <summary>
+            Update the property <see cref="P:Nano.CustomControls.CustomizedSettingsNavigationView.SettingsItemText"/>.
+            </summary>
+            <seealso cref="P:Nano.CustomControls.CustomizedSettingsNavigationView.SettingsItemText"/>
+        </member>
         <member name="T:Nano.CustomControls.SudokuPane">
             <summary>
             Defines a custom control that holds a sudoku grid.
             </summary>
         </member>
+        <member name="F:Nano.CustomControls.SudokuPane._grid">
+            <summary>
+            Indicates the inner grid used.
+            </summary>
+        </member>
         <member name="M:Nano.CustomControls.SudokuPane.#ctor">
             <summary>
             Initializes a <see cref="T:Nano.CustomControls.SudokuPane"/> instance.
+            </summary>
+        </member>
+        <member name="P:Nano.CustomControls.SudokuPane.Grid">
+            <summary>
+            Indicates the sudoku grid.
+            </summary>
+            <returns>The sudoku grid got.</returns>
+            <value>The value to replace with.</value>
+        </member>
+        <member name="E:Nano.CustomControls.SudokuPane.GridChanging">
+            <summary>
+            Indicates the event that will be triggered when the current sudoku grid information
+            will be changed in a second.
             </summary>
         </member>
         <member name="E:Nano.CustomControls.SudokuPane.GridChanged">
@@ -66,9 +124,29 @@
             has been changed its status.
             </summary>
         </member>
+        <member name="M:Nano.CustomControls.SudokuPane.OnGridChanging(System.Object,Nano.GridChangingEventArgs)">
+            <summary>
+            The default method that is triggered and invoked if the grid is changing.
+            </summary>
+            <param name="sender">The object to trigger the event.</param>
+            <param name="e">The data provided on this trigger.</param>
+        </member>
+        <member name="M:Nano.CustomControls.SudokuPane.OnGridChanged(System.Object,Nano.GridChangedEventArgs)">
+            <summary>
+            The default method that is triggered and invoked if the grid is changed.
+            </summary>
+            <param name="sender">The object to trigger the event.</param>
+            <param name="e">The data provided on this trigger.</param>
+        </member>
         <member name="M:Nano.CustomControls.SudokuPane.InitializeControls">
             <summary>
             To initialize the controls. The method is only used by the constructor <see cref="M:Nano.CustomControls.SudokuPane.#ctor"/>.
+            </summary>
+            <seealso cref="M:Nano.CustomControls.SudokuPane.#ctor"/>
+        </member>
+        <member name="M:Nano.CustomControls.SudokuPane.InitializeEvents">
+            <summary>
+            To initialize the events. The method is only used by the constructor <see cref="M:Nano.CustomControls.SudokuPane.#ctor"/>.
             </summary>
             <seealso cref="M:Nano.CustomControls.SudokuPane.#ctor"/>
         </member>
@@ -104,6 +182,29 @@
             </summary>
         </member>
         <member name="T:Nano.GridChangedEventHandler">
+            <summary>
+            Indicates the event handler that is bound with the concept on sudoku grid being changed.
+            </summary>
+            <param name="sender">The sender that triggers the event.</param>
+            <param name="e">The event arguments provided.</param>
+        </member>
+        <member name="T:Nano.GridChangingEventArgs">
+            <summary>
+            Encapsulates a type that holds a sudoku grid that is used on changing the original grid.
+            </summary>
+        </member>
+        <member name="M:Nano.GridChangingEventArgs.#ctor(Sudoku.Data.Grid@)">
+            <summary>
+            Initializes a <see cref="T:Nano.GridChangedEventArgs"/> instance via the specified grid puzzle.
+            </summary>
+            <param name="grid">The grid.</param>
+        </member>
+        <member name="P:Nano.GridChangingEventArgs.OldGrid">
+            <summary>
+            Indicates the original grid to be replaced later.
+            </summary>
+        </member>
+        <member name="T:Nano.GridChangingEventHandler">
             <summary>
             Indicates the event handler that is bound with the concept on sudoku grid being changed.
             </summary>
