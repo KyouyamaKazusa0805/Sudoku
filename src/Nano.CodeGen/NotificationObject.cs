@@ -1,4 +1,4 @@
-﻿namespace Nano.ViewModels;
+﻿namespace Sudoku.Diagnostics.CodeGen;
 
 /// <summary>
 /// Defines an abstraction on view models.

@@ -136,39 +136,6 @@
             Initializes a <see cref="T:Nano.ViewModels.DemoPageViewModel"/> instance.
             </summary>
         </member>
-        <member name="F:Nano.ViewModels.DemoPageViewModel._first">
-            <summary>
-            The back field for the property <see cref="P:Nano.ViewModels.DemoPageViewModel.First"/>.
-            </summary>
-            <seealso cref="P:Nano.ViewModels.DemoPageViewModel.First"/>
-        </member>
-        <member name="F:Nano.ViewModels.DemoPageViewModel._second">
-            <summary>
-            The back field for the property <see cref="P:Nano.ViewModels.DemoPageViewModel.Second"/>.
-            </summary>
-            <seealso cref="P:Nano.ViewModels.DemoPageViewModel.Second"/>
-        </member>
-        <member name="F:Nano.ViewModels.DemoPageViewModel._result">
-            <summary>
-            The back field for the property <see cref="P:Nano.ViewModels.DemoPageViewModel.Result"/>.
-            </summary>
-            <seealso cref="P:Nano.ViewModels.DemoPageViewModel.Result"/>
-        </member>
-        <member name="P:Nano.ViewModels.DemoPageViewModel.First">
-            <summary>
-            Indicates the first number.
-            </summary>
-        </member>
-        <member name="P:Nano.ViewModels.DemoPageViewModel.Second">
-            <summary>
-            Indicates the second number.
-            </summary>
-        </member>
-        <member name="P:Nano.ViewModels.DemoPageViewModel.Result">
-            <summary>
-            Indicates the result number.
-            </summary>
-        </member>
         <member name="P:Nano.ViewModels.DemoPageViewModel.AddCommand">
             <summary>
             Indicates the command that handles the adding operation.
@@ -180,34 +147,6 @@
             </summary>
             <param name="parameter"></param>
             <seealso cref="P:Nano.ViewModels.DemoPageViewModel.AddCommand"/>
-        </member>
-        <member name="T:Nano.ViewModels.NotificationObject">
-            <summary>
-            Defines an abstraction on view models.
-            The type will be used to provide with inheritance on all view models, including the members
-            about executing and raising events on property changed.
-            </summary>
-        </member>
-        <member name="F:Nano.ViewModels.NotificationObject.SyncRoot">
-            <summary>
-            Indicates the object that is only used on synchronization.
-            </summary>
-        </member>
-        <member name="F:Nano.ViewModels.NotificationObject._propertyChangedHandler">
-            <summary>
-            Indicates the back field for the event <see cref="E:Nano.ViewModels.NotificationObject.PropertyChanged"/>.
-            </summary>
-            <seealso cref="E:Nano.ViewModels.NotificationObject.PropertyChanged"/>
-        </member>
-        <member name="E:Nano.ViewModels.NotificationObject.PropertyChanged">
-            <inheritdoc/>
-        </member>
-        <member name="M:Nano.ViewModels.NotificationObject.RaiseNotification(System.String)">
-            <summary>
-            To raise the event <see cref="E:Nano.ViewModels.NotificationObject.PropertyChanged"/> during the notification.
-            </summary>
-            <param name="propertyName">Indicates the property name.</param>
-            <seealso cref="E:Nano.ViewModels.NotificationObject.PropertyChanged"/>
         </member>
         <member name="T:Nano.Program">
             <summary>

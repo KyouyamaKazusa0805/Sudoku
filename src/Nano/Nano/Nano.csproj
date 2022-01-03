@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
 		<OutputType>WinExe</OutputType>
@@ -11,6 +11,10 @@
 		<DocumentationFile>..\..\docxml\Nano.xml</DocumentationFile>
 		<UseWinUI>true</UseWinUI>
 	</PropertyGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\..\Nano.CodeGen\Nano.CodeGen.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="true" />
+	</ItemGroup>
 
 	<ItemGroup>
 		<None Remove="Pages\DemoPage.xaml" />
