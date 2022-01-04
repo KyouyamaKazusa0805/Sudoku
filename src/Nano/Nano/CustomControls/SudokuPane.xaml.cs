@@ -17,8 +17,19 @@ public partial class SudokuPane : UserControl
 	public SudokuPane()
 	{
 		InitializeComponent();
-		InitializeControls();
-		InitializeEvents();
+		initializeControls();
+		initializeEvents();
+
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		void initializeControls() => ShapePool = new(Preference, _GridBase);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		void initializeEvents()
+		{
+			GridChanging += OnGridChanging;
+			GridChanged += OnGridChanged;
+		}
 	}
 
 
@@ -81,20 +92,4 @@ public partial class SudokuPane : UserControl
 	/// <param name="e">The data provided on this trigger.</param>
 	protected virtual void OnGridChanged(object? sender, GridChangedEventArgs e) =>
 		ShapePool.RefreshCandidates(e.NewGrid);
-
-	/// <summary>
-	/// To initialize the controls. The method is only used by the constructor <see cref="SudokuPane()"/>.
-	/// </summary>
-	/// <seealso cref="SudokuPane()"/>
-	private void InitializeControls() => ShapePool = new(Preference, _GridBase);
-
-	/// <summary>
-	/// To initialize the events. The method is only used by the constructor <see cref="SudokuPane()"/>.
-	/// </summary>
-	/// <seealso cref="SudokuPane()"/>
-	private void InitializeEvents()
-	{
-		GridChanging += OnGridChanging;
-		GridChanged += OnGridChanged;
-	}
 }
