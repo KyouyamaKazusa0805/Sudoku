@@ -148,18 +148,6 @@
             <param name="sender">The object to trigger the event.</param>
             <param name="e">The data provided on this trigger.</param>
         </member>
-        <member name="M:Nano.CustomControls.SudokuPane.InitializeControls">
-            <summary>
-            To initialize the controls. The method is only used by the constructor <see cref="M:Nano.CustomControls.SudokuPane.#ctor"/>.
-            </summary>
-            <seealso cref="M:Nano.CustomControls.SudokuPane.#ctor"/>
-        </member>
-        <member name="M:Nano.CustomControls.SudokuPane.InitializeEvents">
-            <summary>
-            To initialize the events. The method is only used by the constructor <see cref="M:Nano.CustomControls.SudokuPane.#ctor"/>.
-            </summary>
-            <seealso cref="M:Nano.CustomControls.SudokuPane.#ctor"/>
-        </member>
         <member name="M:Nano.CustomControls.SudokuPane.InitializeComponent">
             <summary>
             InitializeComponent()
@@ -277,6 +265,64 @@
             </summary>
             <param name="sudoku">The base sudoku grid.</param>
         </member>
+        <member name="T:Nano.Data.ShapeGenerator">
+            <summary>
+            Provides with a set of methods that creates a <see cref="T:Microsoft.UI.Xaml.Shapes.Shape"/> instance
+            via the specified information of <see cref="T:Sudoku.Data.Grid"/>.
+            </summary>
+            <seealso cref="T:Microsoft.UI.Xaml.Shapes.Shape"/>
+            <seealso cref="T:Sudoku.Data.Grid"/>
+        </member>
+        <member name="M:Nano.Data.ShapeGenerator.CreateCellText(System.Int32,Nano.Properties.Preference,System.Int32)">
+            <summary>
+            Creates a <see cref="T:Microsoft.UI.Xaml.Controls.TextBlock"/> control that displays for a cell.
+            </summary>
+            <param name="cell">Indicates the cell value. The value must be between 0 and 80.</param>
+            <param name="preference">
+            The preference to define the settings.
+            If <see langword="null"/>, default settings are enabled and applied.
+            </param>
+            <param name="textSizeFactor">The default text size. The default value is 60.</param>
+            <returns>The <see cref="T:Microsoft.UI.Xaml.Controls.TextBlock"/> result.</returns>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+            Throws when the argument <paramref name="cell"/> is not between 0 and 80,
+            or the argument <paramref name="textSizeFactor"/> is below 0.
+            </exception>
+        </member>
+        <member name="M:Nano.Data.ShapeGenerator.CreateCandidateText(System.Int32,System.Int32,Nano.Properties.Preference,System.Int32)">
+            <summary>
+            Creates a <see cref="T:Microsoft.UI.Xaml.Controls.TextBlock"/> control that displays for a candidate.
+            </summary>
+            <param name="cell">Indicates the cell value. The value must be between 0 and 80.</param>
+            <param name="digit">Indicates the digit value. The value must be between 0 and 8.</param>
+            <param name="preference">
+            The preference to define the settings.
+            If <see langword="null"/>, default settings are enabled and applied.
+            </param>
+            <param name="textSizeFactor">The default text size. The default value is 60.</param>
+            <returns>The <see cref="T:Microsoft.UI.Xaml.Controls.TextBlock"/> result.</returns>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+            Throws when the argument <paramref name="cell"/> is not between 0 and 80,
+            or the argument <paramref name="digit"/> is not between 0 and 8,
+            or the argument <paramref name="textSizeFactor"/> is below 0.
+            </exception>
+        </member>
+        <member name="M:Nano.Data.ShapeGenerator.CreateCandidateText(System.Int32,Nano.Properties.Preference,System.Int32)">
+            <summary>
+            Creates a <see cref="T:Microsoft.UI.Xaml.Controls.TextBlock"/> control that displays for a candidate.
+            </summary>
+            <param name="candidate">The candidate value. The value must be betweeen 0 and 728.</param>
+            <param name="preference">
+            The preference to define the settings.
+            If <see langword="null"/>, default settings are enabled and applied.
+            </param>
+            <param name="textSizeFactor">The default text size. The default value is 60.</param>
+            <returns>The <see cref="T:Microsoft.UI.Xaml.Controls.TextBlock"/> result.</returns>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+            Throws when the argument <paramref name="candidate"/> is not between 0 and 728,
+            or the argument <paramref name="textSizeFactor"/> is below 0.
+            </exception>
+        </member>
         <member name="T:Nano.MainWindow">
             <summary>
             An empty window that can be used on its own or navigated to within a <see cref="T:Microsoft.UI.Xaml.Controls.Frame"/>.
@@ -310,11 +356,6 @@
         <member name="M:Nano.Properties.Preference.#ctor">
             <summary>
             Initializes a <see cref="T:Nano.Properties.Preference"/> instance.
-            </summary>
-        </member>
-        <member name="P:Nano.Properties.Preference.LightOrDarkMode">
-            <summary>
-            Indicates the current UI project uses the light mode or the dark mode.
             </summary>
         </member>
         <member name="P:Nano.Properties.Preference.BlockLineWidth">
@@ -408,7 +449,7 @@
         <member name="P:Nano.Properties.Preference.GivenColorDark">
             <summary>
             <para>Indicates the color of the given values on rendering in the dark theme.</para>
-            <para><i>The default value is <see cref="P:Microsoft.UI.Colors.LightGray"/>.</i></para>
+            <para><i>The default value is <see cref="P:Microsoft.UI.Colors.White"/>.</i></para>
             </summary>
         </member>
         <member name="P:Nano.Properties.Preference.CandidateColor">
@@ -428,7 +469,7 @@
         <member name="P:Nano.Properties.Preference.CandidateColorDark">
             <summary>
             <para>Indicates the color of the candidate values on rendering in the dark theme.</para>
-            <para><i>The default value is <see cref="P:Microsoft.UI.Colors.Gray"/>.</i></para>
+            <para><i>The default value is <see cref="P:Microsoft.UI.Colors.LightGray"/>.</i></para>
             </summary>
         </member>
         <member name="P:Nano.Properties.Preference.CellBorderColor">
@@ -584,6 +625,16 @@
             <para><i>The default value is <see cref="F:Windows.UI.Text.FontStyle.Normal"/>.</i></para>
             </summary>
         </member>
+        <member name="P:Nano.Properties.Preference.IsLightTheme">
+            <summary>
+            Indicates whether the current theme is light theme.
+            </summary>
+        </member>
+        <member name="P:Nano.Properties.Preference.LightOrDarkMode">
+            <summary>
+            Indicates the current UI project uses the light mode or the dark mode.
+            </summary>
+        </member>
         <member name="T:Nano.Program">
             <summary>
             Program class
@@ -608,6 +659,12 @@
             <summary>
             GetXmlnsDefinitions()
             </summary>
+        </member>
+        <member name="T:Microsoft.UI.Xaml.Controls.GridExtensions">
+            <summary>
+            Provides with the extension method on <see cref="T:Microsoft.UI.Xaml.Controls.Grid"/>.
+            </summary>
+            <seealso cref="T:Microsoft.UI.Xaml.Controls.Grid"/>
         </member>
     </members>
 </doc>

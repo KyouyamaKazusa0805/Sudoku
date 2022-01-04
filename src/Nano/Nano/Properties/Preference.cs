@@ -14,65 +14,58 @@ public sealed partial class Preference
 
 
 	/// <summary>
-	/// Indicates the current UI project uses the light mode or the dark mode.
-	/// </summary>
-	[JsonIgnore]
-	public static ApplicationTheme LightOrDarkMode => Application.Current.RequestedTheme;
-
-
-	/// <summary>
 	/// <para>Indicates the width of the block lines.</para>
 	/// <para><i>The default value is 3.</i></para>
 	/// </summary>
-	public double BlockLineWidth { get; set; } = 3;
+	public double BlockLineWidth { get; set; } = BlockLineWidth_Default;
 
 	/// <summary>
 	/// <para>Indicates the width of the cell border lines.</para>
 	/// <para><i>The default value is 1.</i></para>
 	/// </summary>
-	public double GridLineWidth { get; set; } = 1;
+	public double GridLineWidth { get; set; } = GridLineWidth_Default;
 
 	/// <summary>
 	/// <para>Indicates the width of the highlight cell border.</para>
 	/// <para><i>The default value is 1.5.</i></para>
 	/// </summary>
-	public double CellBorderWidth { get; set; } = 1.5;
+	public double CellBorderWidth { get; set; } = CellBorderWidth_Default;
 
 	/// <summary>
 	/// <para>Indicates the width of the highlight candidate border.</para>
 	/// <para><i>The default value is 1.5.</i></para>
 	/// </summary>
-	public double CandidateBorderWidth { get; set; } = 1.5;
+	public double CandidateBorderWidth { get; set; } = CandidateBorderWidth_Default;
 
 	/// <summary>
 	/// <para>Indicates the width of the highlight region border.</para>
 	/// <para><i>The default value is 1.5.</i></para>
 	/// </summary>
-	public double RegionBorderWidth { get; set; } = 1.5;
+	public double RegionBorderWidth { get; set; } = RegionBorderWidth_Default;
 
 	/// <summary>
 	/// <para>Indicates the scale value on rendering given or modifiable numbers in a grid.</para>
 	/// <para><i>The default value is 0.6.</i></para>
 	/// </summary>
-	public decimal ValueScale { get; set; } = .6M;
+	public decimal ValueScale { get; set; } = ValueScale_Default;
 
 	/// <summary>
 	/// <para>Indicates the scale value on rendering candidate numbers in a grid.</para>
 	/// <para><i>The default value is 0.8.</i></para>
 	/// </summary>
-	public decimal CandidateScale { get; set; } = .8M;
+	public decimal CandidateScale { get; set; } = CandidateScale_Default;
 
 	/// <summary>
 	/// <para>Indicates the font name for the given numbers on rendering.</para>
 	/// <para><i>The default value is "Fira Code".</i></para>
 	/// </summary>
-	public string GivenFontName { get; set; } = "Fira Code";
+	public string GivenFontName { get; set; } = GivenFontName_Default;
 
 	/// <summary>
 	/// <para>Indicates the font name for the candidate numbers on rendering.</para>
 	/// <para><i>The default value is "Times New Roman".</i></para>
 	/// </summary>
-	public string CandidateFontName { get; set; } = "Times New Roman";
+	public string CandidateFontName { get; set; } = CandidateFontName_Default;
 
 	/// <summary>
 	/// Indicates the color of the cell border lines.
@@ -81,20 +74,19 @@ public sealed partial class Preference
 	/// The property will route the real values via the current theme kind.
 	/// </remarks>
 	[JsonIgnore]
-	public Color GridLineColor =>
-		LightOrDarkMode == ApplicationTheme.Light ? GridLineColorLight : GridLineColorDark;
+	public Color GridLineColor => IsLightTheme ? GridLineColorLight : GridLineColorDark;
 
 	/// <summary>
 	/// <para>Indicates the color of the cell border lines in the light theme.</para>
 	/// <para><i>The default value is <see cref="Colors.Black"/>.</i></para>
 	/// </summary>
-	public Color GridLineColorLight { get; set; } = Colors.Black;
+	public Color GridLineColorLight { get; set; } = GridLineColorLight_Default;
 
 	/// <summary>
 	/// <para>Indicates the color of the cell border lines in the dark theme.</para>
 	/// <para><i>The default value is <see cref="Colors.LightGray"/>.</i></para>
 	/// </summary>
-	public Color GridLineColorDark { get; set; } = Colors.LightGray;
+	public Color GridLineColorDark { get; set; } = GridLineColorDark_Default;
 
 	/// <summary>
 	/// Indicates the color of the given values on rendering.
@@ -103,19 +95,19 @@ public sealed partial class Preference
 	/// The property will route the real values via the current theme kind.
 	/// </remarks>
 	[JsonIgnore]
-	public Color GivenColor => LightOrDarkMode == ApplicationTheme.Light ? GivenColorLight : GivenColorDark;
+	public Color GivenColor => IsLightTheme ? GivenColorLight : GivenColorDark;
 
 	/// <summary>
 	/// <para>Indicates the color of the given values on rendering in the light theme.</para>
 	/// <para><i>The default value is <see cref="Colors.Black"/>.</i></para>
 	/// </summary>
-	public Color GivenColorLight { get; set; } = Colors.Black;
+	public Color GivenColorLight { get; set; } = GivenColorLight_Default;
 
 	/// <summary>
 	/// <para>Indicates the color of the given values on rendering in the dark theme.</para>
-	/// <para><i>The default value is <see cref="Colors.LightGray"/>.</i></para>
+	/// <para><i>The default value is <see cref="Colors.White"/>.</i></para>
 	/// </summary>
-	public Color GivenColorDark { get; set; } = Colors.LightGray;
+	public Color GivenColorDark { get; set; } = GivenColorDark_Default;
 
 	/// <summary>
 	/// Indicates the color of the candidate values on rendering.
@@ -124,20 +116,19 @@ public sealed partial class Preference
 	/// The property will route the real values via the current theme kind.
 	/// </remarks>
 	[JsonIgnore]
-	public Color CandidateColor =>
-		LightOrDarkMode == ApplicationTheme.Light ? CandidateColorLight : CandidateColorDark;
+	public Color CandidateColor => IsLightTheme ? CandidateColorLight : CandidateColorDark;
 
 	/// <summary>
 	/// <para>Indicates the color of the candidate values on rendering in the light theme.</para>
 	/// <para><i>The default value is <see cref="Colors.DimGray"/>.</i></para>
 	/// </summary>
-	public Color CandidateColorLight { get; set; } = Colors.DimGray;
+	public Color CandidateColorLight { get; set; } = CandidateColorLight_Default;
 
 	/// <summary>
 	/// <para>Indicates the color of the candidate values on rendering in the dark theme.</para>
-	/// <para><i>The default value is <see cref="Colors.Gray"/>.</i></para>
+	/// <para><i>The default value is <see cref="Colors.LightGray"/>.</i></para>
 	/// </summary>
-	public Color CandidateColorDark { get; set; } = Colors.Gray;
+	public Color CandidateColorDark { get; set; } = CandidateColorDark_Default;
 
 	/// <summary>
 	/// Indicates the color of the highlight cell border lines on rendering.
@@ -146,20 +137,19 @@ public sealed partial class Preference
 	/// The property will route the real values via the current theme kind.
 	/// </remarks>
 	[JsonIgnore]
-	public Color CellBorderColor =>
-		LightOrDarkMode == ApplicationTheme.Light ? CellBorderColorLight : CellBorderColorDark;
+	public Color CellBorderColor => IsLightTheme ? CellBorderColorLight : CellBorderColorDark;
 
 	/// <summary>
 	/// <para>Indicates the color of the highlight cell border lines on rendering in the light theme.</para>
 	/// <para><i>The default value is <see cref="Colors.Blue"/>.</i></para>
 	/// </summary>
-	public Color CellBorderColorLight { get; set; } = Colors.Blue;
+	public Color CellBorderColorLight { get; set; } = CellBorderColorLight_Default;
 
 	/// <summary>
 	/// <para>Indicates the color of the highlight cell border lines on rendering in the dark theme.</para>
 	/// <para><i>The default value is <c>{ R = 86, G = 156, B = 214 }</c>.</i></para>
 	/// </summary>
-	public Color CellBorderColorDark { get; set; } = Color.FromArgb(255, 86, 156, 214);
+	public Color CellBorderColorDark { get; set; } = CellBorderColorDark_Default;
 
 	/// <summary>
 	/// Indicates the color of the highlight candidate border lines on rendering.
@@ -168,20 +158,19 @@ public sealed partial class Preference
 	/// The property will route the real values via the current theme kind.
 	/// </remarks>
 	[JsonIgnore]
-	public Color CandidateBorderColor =>
-		LightOrDarkMode == ApplicationTheme.Light ? CandidateBorderColorLight : CandidateBorderColorDark;
+	public Color CandidateBorderColor => IsLightTheme ? CandidateBorderColorLight : CandidateBorderColorDark;
 
 	/// <summary>
 	/// <para>Indicates the color of the highlight candidate border lines on rendering in the light theme.</para>
 	/// <para><i>The default value is <see cref="Colors.Blue"/>.</i></para>
 	/// </summary>
-	public Color CandidateBorderColorLight { get; set; } = Colors.Blue;
+	public Color CandidateBorderColorLight { get; set; } = CandidateBorderColorLight_Default;
 
 	/// <summary>
 	/// <para>Indicates the color of the highlight candidate border lines on rendering in the dark theme.</para>
 	/// <para><i>The default value is <c>{ R = 86, G = 156, B = 214 }</c>.</i></para>
 	/// </summary>
-	public Color CandidateBorderColorDark { get; set; } = Color.FromArgb(255, 86, 156, 214);
+	public Color CandidateBorderColorDark { get; set; } = CandidateBorderColorDark_Default;
 
 	/// <summary>
 	/// Indicates the color of the highlight region border lines on rendering.
@@ -190,20 +179,19 @@ public sealed partial class Preference
 	/// The property will route the real values via the current theme kind.
 	/// </remarks>
 	[JsonIgnore]
-	public Color RegionBorderColor =>
-		LightOrDarkMode == ApplicationTheme.Light ? RegionBorderColorLight : RegionBorderColorDark;
+	public Color RegionBorderColor => IsLightTheme ? RegionBorderColorLight : RegionBorderColorDark;
 
 	/// <summary>
 	/// <para>Indicates the color of the highlight region border lines on rendering in the light theme.</para>
 	/// <para><i>The default value is <see cref="Colors.Blue"/>.</i></para>
 	/// </summary>
-	public Color RegionBorderColorLight { get; set; } = Colors.Blue;
+	public Color RegionBorderColorLight { get; set; } = RegionBorderColorLight_Default;
 
 	/// <summary>
 	/// <para>Indicates the color of the highlight region border lines on rendering in the dark theme.</para>
 	/// <para><i>The default value is <c>{ R = 86, G = 156, B = 214 }</c>.</i></para>
 	/// </summary>
-	public Color RegionBorderColorDark { get; set; } = Color.FromArgb(255, 86, 156, 214);
+	public Color RegionBorderColorDark { get; set; } = RegionBorderColorDark_Default;
 
 	/// <summary>
 	/// Indicates the color of the background color surrounding by the highlight cell border lines
@@ -214,9 +202,7 @@ public sealed partial class Preference
 	/// </remarks>
 	[JsonIgnore]
 	public Color CellBorderBackgroundColor =>
-		LightOrDarkMode == ApplicationTheme.Light
-			? CellBorderBackgroundColorLight
-			: CellBorderBackgroundColorDark;
+		IsLightTheme ? CellBorderBackgroundColorLight : CellBorderBackgroundColorDark;
 
 	/// <summary>
 	/// <para>
@@ -225,7 +211,7 @@ public sealed partial class Preference
 	/// </para>
 	/// <para><i>The default value is <see cref="Colors.Blue"/> with the alpha 64.</i></para>
 	/// </summary>
-	public Color CellBorderBackgroundColorLight { get; set; } = Color.FromArgb(64, 0, 0, 255);
+	public Color CellBorderBackgroundColorLight { get; set; } = CellBorderBackgroundColorLight_Default;
 
 	/// <summary>
 	/// <para>
@@ -234,7 +220,7 @@ public sealed partial class Preference
 	/// </para>
 	/// <para><i>The default value is <c>{ A = 64, R = 86, G = 156, B = 214 }</c>.</i></para>
 	/// </summary>
-	public Color CellBorderBackgroundColorDark { get; set; } = Color.FromArgb(64, 86, 156, 214);
+	public Color CellBorderBackgroundColorDark { get; set; } = CellBorderBackgroundColorDark_Default;
 
 	/// <summary>
 	/// Indicates the color of the background color surrounding by the highlight candidate border lines
@@ -245,9 +231,7 @@ public sealed partial class Preference
 	/// </remarks>
 	[JsonIgnore]
 	public Color CandidateBorderBackgroundColor =>
-		LightOrDarkMode == ApplicationTheme.Light
-			? CandidateBorderBackgroundColorLight
-			: CandidateBorderBackgroundColorDark;
+		IsLightTheme ? CandidateBorderBackgroundColorLight : CandidateBorderBackgroundColorDark;
 
 	/// <summary>
 	/// <para>
@@ -256,7 +240,7 @@ public sealed partial class Preference
 	/// </para>
 	/// <para><i>The default value is <see cref="Colors.Blue"/> with the alpha 64.</i></para>
 	/// </summary>
-	public Color CandidateBorderBackgroundColorLight { get; set; } = Color.FromArgb(64, 0, 0, 255);
+	public Color CandidateBorderBackgroundColorLight { get; set; } = CandidateBorderBackgroundColorLight_Default;
 
 	/// <summary>
 	/// <para>
@@ -265,7 +249,7 @@ public sealed partial class Preference
 	/// </para>
 	/// <para><i>The default value is <c>{ A = 64, R = 86, G = 156, B = 214 }</c>.</i></para>
 	/// </summary>
-	public Color CandidateBorderBackgroundColorDark { get; set; } = Color.FromArgb(64, 86, 156, 214);
+	public Color CandidateBorderBackgroundColorDark { get; set; } = CandidateBorderBackgroundColorDark_Default;
 
 	/// <summary>
 	/// Indicates the color of the background color surrounding by the highlight region border lines
@@ -276,9 +260,7 @@ public sealed partial class Preference
 	/// </remarks>
 	[JsonIgnore]
 	public Color RegionBorderBackgroundColor =>
-		LightOrDarkMode == ApplicationTheme.Light
-			? RegionBorderBackgroundColorLight
-			: RegionBorderBackgroundColorDark;
+		IsLightTheme ? RegionBorderBackgroundColorLight : RegionBorderBackgroundColorDark;
 
 	/// <summary>
 	/// <para>
@@ -287,7 +269,7 @@ public sealed partial class Preference
 	/// </para>
 	/// <para><i>The default value is <see cref="Colors.Blue"/> with the alpha 64.</i></para>
 	/// </summary>
-	public Color RegionBorderBackgroundColorLight { get; set; } = Color.FromArgb(64, 0, 0, 255);
+	public Color RegionBorderBackgroundColorLight { get; set; } = RegionBorderBackgroundColorLight_Default;
 
 	/// <summary>
 	/// <para>
@@ -296,17 +278,17 @@ public sealed partial class Preference
 	/// </para>
 	/// <para><i>The default value is <c>{ A = 64, R = 86, G = 156, B = 214 }</c>.</i></para>
 	/// </summary>
-	public Color RegionBorderBackgroundColorDark { get; set; } = Color.FromArgb(64, 86, 156, 214);
+	public Color RegionBorderBackgroundColorDark { get; set; } = RegionBorderBackgroundColorDark_Default;
 
 	/// <summary>
 	/// <para>Indicates the font style on rendering given numbers.</para>
 	/// <para><i>The default value is <see cref="FontStyle.Normal"/>.</i></para>
 	/// </summary>
-	public FontStyle GivenFontStyle { get; set; } = FontStyle.Normal;
+	public FontStyle GivenFontStyle { get; set; } = GivenFontStyle_Default;
 
 	/// <summary>
 	/// <para>Indicates the font style on rendering candidate numbers.</para>
 	/// <para><i>The default value is <see cref="FontStyle.Normal"/>.</i></para>
 	/// </summary>
-	public FontStyle CandidateFontStyle { get; set; } = FontStyle.Normal;
+	public FontStyle CandidateFontStyle { get; set; } = CandidateFontStyle_Default;
 }
