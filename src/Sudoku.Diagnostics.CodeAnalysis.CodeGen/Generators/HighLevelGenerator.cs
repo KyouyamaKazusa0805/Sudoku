@@ -54,7 +54,9 @@ public sealed partial class HighLevelGenerator : ISourceGenerator
 
 			context.AddSource(
 				$"{shortName}Analyzer.g.cs",
-				$@"namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers;
+				$@"using Sudoku.Diagnostics.CodeAnalysis.SyntaxContextReceivers;
+
+namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers;
 
 [global::System.CodeDom.Compiler.GeneratedCode(""{GetType().FullName}"", ""{VersionValue}"")]
 [global::System.Runtime.CompilerServices.CompilerGenerated]

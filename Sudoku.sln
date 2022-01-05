@@ -39,7 +39,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Source Generator Projects",
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "User Interface Projects", "User Interface Projects", "{9A4543D8-419E-4EBF-8AEC-C4E92609793C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sudoku.UI.Windows", "src\Sudoku.UI.Windows\Sudoku.UI.Windows.csproj", "{5B47087A-BE11-47AF-8195-BD2388541FCD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sudoku.UI.Windows", "src\Sudoku.UI.Windows\Sudoku.UI.Windows.csproj", "{5B47087A-BE11-47AF-8195-BD2388541FCD}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Windows", "Windows", "{4401E959-5D3F-495B-A30B-3E9DA9ABA345}"
 EndProject
