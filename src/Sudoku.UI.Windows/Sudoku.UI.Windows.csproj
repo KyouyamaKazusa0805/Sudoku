@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
 		<OutputType>WinExe</OutputType>
 		<TargetFramework>net6.0-windows10.0.19041.0</TargetFramework>
@@ -12,6 +12,10 @@
 		<EnablePreviewMsixTooling>true</EnablePreviewMsixTooling>
 		<DocumentationFile>..\docxml\Sudoku.UI.Windows.xml</DocumentationFile>
 	</PropertyGroup>
+	<ItemGroup>
+		<None Remove="Controls\SudokuGridPane.xaml" />
+		<None Remove="Pages\MainPage.xaml" />
+	</ItemGroup>
 
 	<ItemGroup>
 		<AppxManifest Include="Package.appxmanifest">
@@ -32,5 +36,21 @@
 		<PackageReference Include="Microsoft.WindowsAppSDK" Version="1.0.0-preview3" />
 		<PackageReference Include="Microsoft.Windows.SDK.BuildTools" Version="10.0.20348.19" />
 		<Manifest Include="$(ApplicationManifest)" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\Sudoku.Core\Sudoku.Core.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Page Update="Controls\SudokuGridPane.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</Page>
+	</ItemGroup>
+
+	<ItemGroup>
+		<Page Update="Pages\MainPage.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</Page>
 	</ItemGroup>
 </Project>
