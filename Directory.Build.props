@@ -97,10 +97,6 @@
 	* The project is other ones which end with '.CodeGen'.
 	-->
 	<ItemGroup Condition="'$(MSBuildProjectFile.TrimEnd(`.csproj`).EndsWith(`.CodeGen`))'=='true' Or '$(MSBuildProjectFile)'=='Sudoku.Diagnostics.CodeAnalysis.csproj'">
-		<PackageReference Include="IsExternalInit" Version="1.0.1">
-			<PrivateAssets>all</PrivateAssets>
-			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-		</PackageReference>
 		<PackageReference Include="Microsoft.CodeAnalysis.Common" Version="4.0.1" />
 		<PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="4.0.1" />
 		<PackageReference Include="Microsoft.CodeAnalysis.CSharp.Workspaces" Version="4.0.1" />

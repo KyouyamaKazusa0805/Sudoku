@@ -1412,12 +1412,12 @@
         </member>
         <member name="T:System.Runtime.CompilerServices.IsExternalInit">
             <summary>
-                Reserved to be used by the compiler for tracking metadata.
-                This class should not be used by developers in source code.
+            Declare this to get init properties.
             </summary>
             <remarks>
-                This definition is provided by the <i>IsExternalInit</i> NuGet package (https://www.nuget.org/packages/IsExternalInit).
-                Please see https://github.com/manuelroemer/IsExternalInit for more information.
+            Please see
+            <see href="https://github.com/dotnet/roslyn/issues/45510#issuecomment-694977239">this link</see>
+            to learn more details about this type.
             </remarks>
         </member>
     </members>
