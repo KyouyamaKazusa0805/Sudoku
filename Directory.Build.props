@@ -41,21 +41,12 @@
 
 	<!--
 	Set the plug-in code analyzer if:
-	* Sudoku.UI ('Nano' as its alias name) - 2-times step-out the directory and then reference the project.
 	* GlobalConfiguration.CodeGen - Do nothing.
 	* Sudoku.Diagnostics.CodeAnalysis.CodeGen - Do nothing.
 	* Other C# projects that isn't itself - 1-time step-out the directory and then reference the project.
 	* Other non-C# projects - Do nothing.
 	-->
 	<Choose>
-		<When Condition="'$(MSBuildProjectFile)'=='Nano.csproj'">
-			<ItemGroup>
-				<ProjectReference
-						Include="..\..\Sudoku.Diagnostics.CodeAnalysis\Sudoku.Diagnostics.CodeAnalysis.csproj"
-						OutputItemType="Analyzer"
-						ReferenceOutputAssembly="true" />
-			</ItemGroup>
-		</When>
 		<When Condition="'$(MSBuildProjectFile)'=='Sudoku.Diagnostics.CodeAnalysis.CodeGen.csproj'" />
 		<When Condition="'$(MSBuildProjectFile)'=='GlobalConfiguration.CodeGen.csproj'" />
 		<When Condition="'$(MSBuildProjectFile.EndsWith(`.csproj`))'=='false'" />

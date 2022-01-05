@@ -1,0 +1,7 @@
+{
+  "profiles": {
+    "Sudoku.UI.Windows": {
+      "commandName": "MsixPackage"
+    }
+  }
+}
