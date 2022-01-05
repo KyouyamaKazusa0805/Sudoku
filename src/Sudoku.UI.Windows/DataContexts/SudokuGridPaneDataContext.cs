@@ -24,6 +24,8 @@ public sealed class SudokuGridPaneDataContext : UserControlDataContext
 	/// <summary>
 	/// Indicates the sudoku grid that influences the pane.
 	/// </summary>
+	/// <value>The sudoku grid to set.</value>
+	/// <returns>The current sudoku grid.</returns>
 	public SudokuGrid CurrentGrid
 	{
 		get => _currentGrid;

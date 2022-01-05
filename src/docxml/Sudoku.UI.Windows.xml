@@ -32,6 +32,105 @@
             InitializeComponent()
             </summary>
         </member>
+        <member name="M:Sudoku.UI.Windows.App.GetXamlType(System.Type)">
+            <summary>
+            GetXamlType(Type)
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Windows.App.GetXamlType(System.String)">
+            <summary>
+            GetXamlType(String)
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Windows.App.GetXmlnsDefinitions">
+            <summary>
+            GetXmlnsDefinitions()
+            </summary>
+        </member>
+        <member name="T:Sudoku.UI.Windows.Controls.SudokuGridPane">
+            <summary>
+            Defines a pane that displays a sudoku grid.
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Windows.Controls.SudokuGridPane.#ctor">
+            <summary>
+            Initializes a <see cref="T:Sudoku.UI.Windows.Controls.SudokuGridPane"/> instance.
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Windows.Controls.SudokuGridPane.InitializeComponent">
+            <summary>
+            InitializeComponent()
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Windows.Controls.SudokuGridPane.Connect(System.Int32,System.Object)">
+            <summary>
+            Connect()
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Windows.Controls.SudokuGridPane.GetBindingConnector(System.Int32,System.Object)">
+            <summary>
+            GetBindingConnector(int connectionId, object target)
+            </summary>
+        </member>
+        <member name="T:Sudoku.UI.Windows.DataContexts.DataContext">
+            <summary>
+            Defines a base type for data context.
+            The type will be used to provide with inheritance on all data contexts, including the members
+            about executing and raising events on property changed.
+            </summary>
+        </member>
+        <member name="E:Sudoku.UI.Windows.DataContexts.DataContext.PropertyChanged">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.UI.Windows.DataContexts.DataContext.RaiseNotification(System.String)">
+            <summary>
+            To raise the event <see cref="E:Sudoku.UI.Windows.DataContexts.DataContext.PropertyChanged"/>.
+            </summary>
+            <param name="propertyName">Indicates the name of the property that triggers the event.</param>
+            <seealso cref="E:Sudoku.UI.Windows.DataContexts.DataContext.PropertyChanged"/>
+        </member>
+        <member name="T:Sudoku.UI.Windows.DataContexts.MainPageDataContext">
+            <summary>
+            Defines a <see cref="T:Sudoku.UI.Windows.DataContexts.DataContext"/> that is applied to a <see cref="T:Sudoku.UI.Windows.Pages.MainPage"/> instance.
+            </summary>
+            <seealso cref="T:Sudoku.UI.Windows.Pages.MainPage"/>
+        </member>
+        <member name="T:Sudoku.UI.Windows.DataContexts.PageDataContext">
+            <summary>
+            Defines a <see cref="T:Sudoku.UI.Windows.DataContexts.DataContext"/> that is used for pages.
+            </summary>
+            <seealso cref="T:Microsoft.UI.Xaml.Controls.Page"/>
+        </member>
+        <member name="T:Sudoku.UI.Windows.DataContexts.SudokuGridPaneDataContext">
+            <summary>
+            Defines a <see cref="T:Sudoku.UI.Windows.DataContexts.DataContext"/> type that is applied to <see cref="T:Sudoku.UI.Windows.Controls.SudokuGridPane"/>.
+            </summary>
+            <seealso cref="T:Sudoku.UI.Windows.Controls.SudokuGridPane"/>
+        </member>
+        <member name="F:Sudoku.UI.Windows.DataContexts.SudokuGridPaneDataContext._currentGrid">
+            <summary>
+            The back field of the property <see cref="P:Sudoku.UI.Windows.DataContexts.SudokuGridPaneDataContext.CurrentGrid"/>.
+            </summary>
+            <seealso cref="P:Sudoku.UI.Windows.DataContexts.SudokuGridPaneDataContext.CurrentGrid"/>
+        </member>
+        <member name="M:Sudoku.UI.Windows.DataContexts.SudokuGridPaneDataContext.#ctor">
+            <summary>
+            Initializes a <see cref="T:Sudoku.UI.Windows.DataContexts.SudokuGridPaneDataContext"/> instance.
+            </summary>
+        </member>
+        <member name="P:Sudoku.UI.Windows.DataContexts.SudokuGridPaneDataContext.CurrentGrid">
+            <summary>
+            Indicates the sudoku grid that influences the pane.
+            </summary>
+            <value>The sudoku grid to set.</value>
+            <returns>The current sudoku grid.</returns>
+        </member>
+        <member name="T:Sudoku.UI.Windows.DataContexts.UserControlDataContext">
+            <summary>
+            Defines a <see cref="T:Sudoku.UI.Windows.DataContexts.DataContext"/> that is used for a user-defined control.
+            </summary>
+            <seealso cref="T:Microsoft.UI.Xaml.Controls.UserControl"/>
+        </member>
         <member name="T:Sudoku.UI.Windows.MainWindow">
             <summary>
             An empty window that can be used on its own or navigated to within a Frame.
@@ -47,9 +146,64 @@
             InitializeComponent()
             </summary>
         </member>
+        <member name="M:Sudoku.UI.Windows.MainWindow.Connect(System.Int32,System.Object)">
+            <summary>
+            Connect()
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Windows.MainWindow.GetBindingConnector(System.Int32,System.Object)">
+            <summary>
+            GetBindingConnector(int connectionId, object target)
+            </summary>
+        </member>
+        <member name="T:Sudoku.UI.Windows.Pages.MainPage">
+            <summary>
+            An empty page that can be used on its own or navigated to within a Frame.
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Windows.Pages.MainPage.#ctor">
+            <summary>
+            Initializes a <see cref="T:Sudoku.UI.Windows.Pages.MainPage"/> instance.
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Windows.Pages.MainPage.InitializeComponent">
+            <summary>
+            InitializeComponent()
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Windows.Pages.MainPage.Connect(System.Int32,System.Object)">
+            <summary>
+            Connect()
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Windows.Pages.MainPage.GetBindingConnector(System.Int32,System.Object)">
+            <summary>
+            GetBindingConnector(int connectionId, object target)
+            </summary>
+        </member>
         <member name="T:Sudoku.UI.Windows.Program">
             <summary>
             Program class
+            </summary>
+        </member>
+        <member name="T:Sudoku.UI.Windows.Sudoku_UI_Windows_XamlTypeInfo.XamlMetaDataProvider">
+            <summary>
+            Main class for providing metadata for the app or library
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Windows.Sudoku_UI_Windows_XamlTypeInfo.XamlMetaDataProvider.GetXamlType(System.Type)">
+            <summary>
+            GetXamlType(Type)
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Windows.Sudoku_UI_Windows_XamlTypeInfo.XamlMetaDataProvider.GetXamlType(System.String)">
+            <summary>
+            GetXamlType(String)
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Windows.Sudoku_UI_Windows_XamlTypeInfo.XamlMetaDataProvider.GetXmlnsDefinitions">
+            <summary>
+            GetXmlnsDefinitions()
             </summary>
         </member>
     </members>
