@@ -1,0 +1,56 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Sudoku.UI.Windows</name>
+    </assembly>
+    <members>
+        <member name="T:Sudoku.UI.Windows.App">
+            <summary>
+            Provides application-specific behavior to supplement the default Application class.
+            </summary>
+        </member>
+        <member name="F:Sudoku.UI.Windows.App._window">
+            <summary>
+            Indicates the main window instance. The value will be initialized later instead of the constructor.
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Windows.App.#ctor">
+            <summary>
+            Initializes the singleton application object.  This is the first line of authored code
+            executed, and as such is the logical equivalent of main() or WinMain().
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Windows.App.OnLaunched(Microsoft.UI.Xaml.LaunchActivatedEventArgs)">
+            <summary>
+            Invoked when the application is launched normally by the end user.
+            Other entry points will be used such as when the application is launched to open a specific file.
+            </summary>
+            <param name="args">Details about the launch request and process.</param>
+        </member>
+        <member name="M:Sudoku.UI.Windows.App.InitializeComponent">
+            <summary>
+            InitializeComponent()
+            </summary>
+        </member>
+        <member name="T:Sudoku.UI.Windows.MainWindow">
+            <summary>
+            An empty window that can be used on its own or navigated to within a Frame.
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Windows.MainWindow.#ctor">
+            <summary>
+            Initializes a <see cref="T:Sudoku.UI.Windows.MainWindow"/> instance.
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Windows.MainWindow.InitializeComponent">
+            <summary>
+            InitializeComponent()
+            </summary>
+        </member>
+        <member name="T:Sudoku.UI.Windows.Program">
+            <summary>
+            Program class
+            </summary>
+        </member>
+    </members>
+</doc>
