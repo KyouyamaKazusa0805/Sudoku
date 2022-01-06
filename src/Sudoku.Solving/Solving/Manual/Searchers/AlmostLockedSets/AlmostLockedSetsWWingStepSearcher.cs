@@ -25,7 +25,7 @@ public sealed unsafe class AlmostLockedSetsWWingStepSearcher : IAlmostLockedSets
 		{
 			for (int region = 0; region < 27; region++)
 			{
-				if ((RegionMaps[region] & CandMaps[digit]) is { Count: 2 } temp)
+				if ((RegionMaps[region] & CandMaps[digit]) is [_, _] temp)
 				{
 					(conjugatePairs[digit] ??= new List<ConjugatePair>()).Add(new(temp, digit));
 				}

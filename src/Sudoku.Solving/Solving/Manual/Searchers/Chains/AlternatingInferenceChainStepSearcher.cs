@@ -239,9 +239,8 @@ public sealed unsafe class AlternatingInferenceChainStepSearcher : IAlternatingI
 		while (pendingOn.Count != 0 || pendingOff.Count != 0)
 		{
 			length++;
-			while (pendingOn.Count != 0)
+			while (pendingOn is [.., var p])
 			{
-				var p = pendingOn[^1];
 				pendingOn.Remove();
 
 				var makeOff = IChainStepSearcher.GetOnToOff(grid, p, yEnabled);
@@ -254,9 +253,8 @@ public sealed unsafe class AlternatingInferenceChainStepSearcher : IAlternatingI
 			}
 
 			length++;
-			while (pendingOff.Count != 0)
+			while (pendingOff is [.., var p])
 			{
-				var p = pendingOff[^1];
 				pendingOff.Remove();
 
 				var makeOn = IChainStepSearcher.GetOffToOn(grid, p, xEnabled, yEnabled, true);

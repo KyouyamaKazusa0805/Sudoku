@@ -171,8 +171,8 @@ public partial struct NodeSet : IEnumerable
 	/// </summary>
 	/// <exception cref="InvalidOperationException">Throws when the list has already been empty.</exception>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public void Remove() =>
-		_ = Count > 0 ? Count-- : throw new InvalidOperationException("The list has already been empty.");
+	public Node Remove() =>
+		Count > 0 ? _chainNodes[--Count] : throw new InvalidOperationException("The list has already been empty.");
 
 	/// <summary>
 	/// To sort the collection.

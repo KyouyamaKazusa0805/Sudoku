@@ -92,7 +92,7 @@ public readonly partial record struct Coordinate(byte Cell)
 			"RC" => $"R{Row}C{Column}",
 			"RCB" => $"R{Row}C{Column}B{Block}",
 			"rcb" => $"r{Row}c{Column}b{Block}",
-			{ Length: 1 } when format[0] is var formatChar => formatChar switch
+			[var formatChar] => formatChar switch
 			{
 				'N' => $"R{Row}C{Column}",
 				'n' => $"r{Row}c{Column}",
@@ -179,22 +179,17 @@ public readonly partial record struct Coordinate(byte Cell)
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		static bool rcb(string str, out byte cell)
 		{
-			if (str.Length != 4)
+			if (str is not ['R' or 'r', var rowChar, 'C' or 'c', var columnChar])
 			{
 				goto DefaultReturn;
 			}
 
-			if (str[0] is not ('R' or 'r') || str[2] is not ('C' or 'c'))
+			if (!char.IsDigit(rowChar) || !char.IsDigit(columnChar))
 			{
 				goto DefaultReturn;
 			}
 
-			if (!char.IsDigit(str[1]) || !char.IsDigit(str[3]))
-			{
-				goto DefaultReturn;
-			}
-
-			cell = (byte)((str[1] - '1') * 9 + (str[3] - '1'));
+			cell = (byte)((rowChar - '1') * 9 + (columnChar - '1'));
 			return true;
 
 		DefaultReturn:
@@ -205,18 +200,18 @@ public readonly partial record struct Coordinate(byte Cell)
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		static bool k9(string str, out byte cell)
 		{
-			if (str.Length != 2)
+			if (str is not [var rowChar and (>= 'a' and <= 'i' or >= 'A' and <= 'I'), var columnChar])
 			{
 				goto DefaultReturn;
 			}
 
-			if (str[0] is not (>= 'a' and <= 'i' or >= 'A' and <= 'I') || !char.IsDigit(str[1]))
+			if (!char.IsDigit(columnChar))
 			{
 				goto DefaultReturn;
 			}
 
-			char start = str[0] is >= 'A' and <= 'I' ? 'A' : 'a';
-			cell = (byte)((str[0] - start) * 9 + str[1] - '1');
+			char start = rowChar is >= 'A' and <= 'I' ? 'A' : 'a';
+			cell = (byte)((rowChar - start) * 9 + columnChar - '1');
 			return true;
 
 		DefaultReturn:

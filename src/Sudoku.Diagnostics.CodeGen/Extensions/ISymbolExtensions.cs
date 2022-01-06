@@ -15,8 +15,8 @@ internal static class ISymbolExtensions
 	/// <returns>The result.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	internal static bool HasInitializer(this ISymbol @this, CancellationToken cancellationToken = default) =>
-		@this is { DeclaringSyntaxReferences: { Length: not 0 } list }
-		&& list[0].GetSyntax(cancellationToken) is VariableDeclaratorSyntax { Initializer: not null };
+		@this is { DeclaringSyntaxReferences: [var syntaxRef] }
+		&& syntaxRef.GetSyntax(cancellationToken) is VariableDeclaratorSyntax { Initializer: not null };
 
 	/// <summary>
 	/// Gets the member type string representation.

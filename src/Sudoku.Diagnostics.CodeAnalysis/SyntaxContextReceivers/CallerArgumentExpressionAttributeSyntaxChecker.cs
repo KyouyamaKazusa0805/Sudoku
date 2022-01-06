@@ -44,12 +44,11 @@ public sealed partial class CallerArgumentExpressionAttributeSyntaxChecker : ISy
 
 			var attributesData = parameter.GetAttributes();
 			var attributeData = attributesData.FirstOrDefault(a => SymbolEqualityComparer.Default.Equals(a.AttributeClass, attribute));
-			if (attributeData is null)
+			if (attributeData is not { ConstructorArguments: [{ Value: string attributeArgumentValue }, ..] })
 			{
 				continue;
 			}
 
-			string attributeArgumentValue = (string)attributeData.ConstructorArguments[0].Value!;
 			if (argumentNodes.All(a => a.Expression.ToString() != attributeArgumentValue))
 			{
 				Diagnostics.Add(Diagnostic.Create(SCA0410, argument.GetLocation(), messageArgs: null));

@@ -117,7 +117,7 @@ public sealed partial class DeconstructionMethodSyntaxChecker : ISyntaxContextRe
 				methodAttributeData switch
 				{
 					null => true,
-					{ ConstructorArguments: var cArgs } when (EditorBrowsableState)cArgs[0].Value! == EditorBrowsableState.Always => true,
+					{ ConstructorArguments: [{ Value: EditorBrowsableState cArg }, ..] } when cArg == EditorBrowsableState.Always => true,
 					_ => false
 				}
 			)

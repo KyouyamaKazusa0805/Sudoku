@@ -51,10 +51,8 @@ public sealed record AlternatingInferenceChainStep(
 		{ IsSplitWing: true } => Technique.SplitWing,
 		{ IsHybridWing: true } => Technique.HybridWing,
 		{ IsLocalWing: true } => Technique.LocalWing,
-		{ Target.WholeChain: var c, IsXyChain: var isXy } when c[^2].Digit == c[1].Digit =>
-			isXy
-				? Technique.XyChain
-				: Technique.AlternatingInferenceChain,
+		{ Target.WholeChain: [_, { Digit: var a }, .., { Digit: var b }, _], IsXyChain: var isXy } when a == b =>
+			isXy ? Technique.XyChain : Technique.AlternatingInferenceChain,
 		_ => Conclusions.Length switch
 		{
 			1 => Technique.DiscontinuousNiceLoop,

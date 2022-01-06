@@ -80,14 +80,13 @@ public sealed unsafe class WWingStepSearcher : IIregularWingStepSearcher
 					foreach (int digit in digits)
 					{
 						// Now search for conjugate pair.
-						if ((CandMaps[digit] & RegionMaps[region]) is not { Count: 2 } conjugate)
+						if ((CandMaps[digit] & RegionMaps[region]) is not [var a, var b] conjugate)
 						{
 							// The current region doesn't contain the conjugate pair of this digit.
 							continue;
 						}
 
 						// Check whether the cells are the same region as the head and the tail cell.
-						int a = conjugate[0], b = conjugate[1];
 						if (!new Cells { c1, a }.InOneRegion || !new Cells { c2, b }.InOneRegion
 							&& !new Cells { c1, b }.InOneRegion || !new Cells { c2, a }.InOneRegion)
 						{

@@ -232,9 +232,9 @@ public unsafe partial record struct Node(int Mask) : IValueEquatable<Node>
 			}
 
 			var result = _rawParents![0];
-			while (result._rawParents is { } p)
+			while (result._rawParents is [var parentNode, ..])
 			{
-				result = p[0];
+				result = parentNode;
 			}
 
 			return result;

@@ -248,12 +248,11 @@ public sealed unsafe class QiuDeadlyPatternStepSearcher : IQiuDeadlyPatternStepS
 
 		int extraDigit = TrailingZeroCount(otherDigitsMask);
 		var map = pair & CandMaps[extraDigit];
-		if (map.Count != 1)
+		if (map is not [var elimCell])
 		{
 			return null;
 		}
 
-		int elimCell = map[0];
 		short mask = (short)(grid.GetCandidates(elimCell) & ~(1 << extraDigit));
 		if (mask == 0)
 		{

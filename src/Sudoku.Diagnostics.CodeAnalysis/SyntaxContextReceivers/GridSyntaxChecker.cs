@@ -149,7 +149,7 @@ public sealed partial class GridSyntaxChecker : ISyntaxContextReceiver
 				TargetMethod: { Name: "Equals", IsStatic: false },
 				Instance: var instanceOperation,
 				Type: var typeSymbol,
-				Arguments: { Length: 1 } arguments
+				Arguments: [var argumentOperation]
 			}:
 			{
 				if (!SymbolEqualityComparer.Default.Equals(typeSymbol, gridSymbol))
@@ -157,7 +157,6 @@ public sealed partial class GridSyntaxChecker : ISyntaxContextReceiver
 					return;
 				}
 
-				var argumentOperation = arguments[0];
 				if (
 					(Left: instanceOperation!, Right: argumentOperation) switch
 					{
@@ -206,7 +205,7 @@ public sealed partial class GridSyntaxChecker : ISyntaxContextReceiver
 				TargetMethod: { Name: "Equals", IsStatic: true },
 				Instance: null,
 				Type: var typeSymbol,
-				Arguments: { Length: 2 } arguments
+				Arguments: [var argument1Operation, var argument2Operation]
 			}:
 			{
 				if (!SymbolEqualityComparer.Default.Equals(typeSymbol, gridSymbol))
@@ -214,8 +213,6 @@ public sealed partial class GridSyntaxChecker : ISyntaxContextReceiver
 					return;
 				}
 
-				var argument1Operation = arguments[0];
-				var argument2Operation = arguments[1];
 				if (
 					(Left: argument1Operation, Right: argument2Operation) switch
 					{
@@ -310,7 +307,7 @@ public sealed partial class GridSyntaxChecker : ISyntaxContextReceiver
 				TargetMethod: { Name: "Equals", IsStatic: false },
 				Instance: var instanceOperation,
 				Type: var typeSymbol,
-				Arguments: { Length: 1 } arguments
+				Arguments: [var argumentOperation]
 			}:
 			{
 				if (!SymbolEqualityComparer.Default.Equals(typeSymbol, gridSymbol))
@@ -318,7 +315,6 @@ public sealed partial class GridSyntaxChecker : ISyntaxContextReceiver
 					return;
 				}
 
-				var argumentOperation = arguments[0];
 				if (
 					(Left: instanceOperation!, Right: argumentOperation) switch
 					{
@@ -369,7 +365,7 @@ public sealed partial class GridSyntaxChecker : ISyntaxContextReceiver
 				TargetMethod: { Name: "Equals", IsStatic: true },
 				Instance: null,
 				Type: var typeSymbol,
-				Arguments: { Length: 2 } arguments
+				Arguments: [var argument1Operation, var argument2Operation]
 			}:
 			{
 				if (!SymbolEqualityComparer.Default.Equals(typeSymbol, gridSymbol))
@@ -377,8 +373,6 @@ public sealed partial class GridSyntaxChecker : ISyntaxContextReceiver
 					return;
 				}
 
-				var argument1Operation = arguments[0];
-				var argument2Operation = arguments[1];
 				if (
 					(Left: argument1Operation, Right: argument2Operation) switch
 					{
@@ -458,7 +452,7 @@ public sealed partial class GridSyntaxChecker : ISyntaxContextReceiver
 			{
 				TargetMethod.Name: "Parse" or "TryParse",
 				Type: var operationTypeSymbol,
-				Arguments: { Length: >= 1 } arguments
+				Arguments: [{ Type: var argumentTypeSymbol }, ..]
 			}
 		)
 		{
@@ -470,7 +464,6 @@ public sealed partial class GridSyntaxChecker : ISyntaxContextReceiver
 			return;
 		}
 
-		var argumentTypeSymbol = arguments[0].Type;
 		var pCharSymbol = compilation.CreatePointerTypeSymbol(compilation.GetSpecialType(SpecialType.System_Char));
 		if (argumentTypeSymbol?.SpecialType != SpecialType.System_String
 			&& !SymbolEqualityComparer.Default.Equals(argumentTypeSymbol, pCharSymbol))
@@ -490,23 +483,15 @@ public sealed partial class GridSyntaxChecker : ISyntaxContextReceiver
 			{
 				TargetMethod: { Name: "ToString" },
 				Instance.Type: var typeSymbol,
-				Arguments: { IsEmpty: false } arguments
+				Arguments: [
+				{
+					ArgumentKind: ArgumentKind.Explicit,
+					Value: ILiteralOperation { ConstantValue: { HasValue: true, Value: string format } },
+					Syntax: var argumentNode
+				}, ..]
 			}:
 			{
 				if (!SymbolEqualityComparer.Default.Equals(typeSymbol, gridSymbol))
-				{
-					return;
-				}
-
-				var argumentOperation = arguments[0];
-				if (
-					argumentOperation is not
-					{
-						ArgumentKind: ArgumentKind.Explicit,
-						Value: ILiteralOperation { ConstantValue: { HasValue: true, Value: string format } },
-						Syntax: var argumentNode
-					}
-				)
 				{
 					return;
 				}

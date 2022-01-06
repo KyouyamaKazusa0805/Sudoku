@@ -12,7 +12,7 @@ public sealed partial class HighLevelGenerator : ISourceGenerator
 		if (
 			context is not
 			{
-				AdditionalFiles: { Length: 1 } additionalFiles,
+				AdditionalFiles: [var additionalFile],
 				SyntaxContextReceiver: Receiver { Diagnostics: var diagnostics, Result: var shortNames }
 			}
 		)
@@ -22,7 +22,7 @@ public sealed partial class HighLevelGenerator : ISourceGenerator
 
 		// Get the compiler diagnostics and insert into the analyzer types.
 		var descriptors =
-			from detail in MarkdownHandler.SplitTable(File.ReadAllText(additionalFiles[0].Path))
+			from detail in MarkdownHandler.SplitTable(File.ReadAllText(additionalFile.Path))
 			select detail.ToDescriptor();
 
 		// Report compiler diagnostics.

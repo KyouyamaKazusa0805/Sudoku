@@ -30,20 +30,20 @@ public sealed unsafe class BivalueUniversalGraveStepSearcher : IBivalueUniversal
 			return null;
 		}
 
-		switch (trueCandidates.Count)
+		switch (trueCandidates)
 		{
-			case 0:
+			case []:
 			{
 				return null;
 			}
-			case 1:
+			case [var trueCandidate]:
 			{
 				// BUG + 1 found.
 				var step = new BivalueUniversalGraveType1Step(
-					ImmutableArray.Create(new Conclusion(ConclusionType.Assignment, trueCandidates[0])),
+					ImmutableArray.Create(new Conclusion(ConclusionType.Assignment, trueCandidate)),
 					ImmutableArray.Create(new PresentationData
 					{
-						Candidates = new[] { (trueCandidates[0], (ColorIdentifier)0) }
+						Candidates = new[] { (trueCandidate, (ColorIdentifier)0) }
 					})
 				);
 				if (onlyFindOne)

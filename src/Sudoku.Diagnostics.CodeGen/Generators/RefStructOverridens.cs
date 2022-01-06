@@ -40,18 +40,16 @@ public sealed class RefStructOverridens : ISourceGenerator
 			_, _, namespaceName, genericParameterList, _, _, readOnlyKeyword, _, _, _
 		) = SymbolOutputInfo.FromSymbol(type);
 
-		var intSymbol = compilation.GetSpecialType(SpecialType.System_Int32);
-		var boolSymbol = compilation.GetSpecialType(SpecialType.System_Boolean);
-		var stringSymbol = compilation.GetSpecialType(SpecialType.System_String);
-		var objectSymbol = compilation.GetSpecialType(SpecialType.System_Object);
-
 		var methods = type.GetMembers().OfType<IMethodSymbol>().ToArray();
 		string equalsMethod = Array.Exists(
 			methods,
-			symbol =>
-				symbol is { IsStatic: false, Name: nameof(Equals), Parameters: { Length: 1 } parameters }
-				&& SymbolEqualityComparer.Default.Equals(parameters[0].Type, objectSymbol)
-				&& SymbolEqualityComparer.Default.Equals(symbol.ReturnType, boolSymbol)
+			static symbol => symbol is
+			{
+				IsStatic: false,
+				Name: nameof(Equals),
+				Parameters: [{ Type.SpecialType: SpecialType.System_Object }],
+				ReturnType.SpecialType: SpecialType.System_Boolean
+			}
 		)
 			? $@"// Can't generate '{nameof(Equals)}' because the method is impl'ed by user."
 			: $@"/// <inheritdoc cref=""object.Equals(object?)""/>
@@ -67,9 +65,13 @@ public sealed class RefStructOverridens : ISourceGenerator
 
 		string getHashCodeMethod = Array.Exists(
 			methods,
-			symbol =>
-				symbol is { IsStatic: false, Name: nameof(GetHashCode), Parameters: { Length: 0 } parameters }
-				&& SymbolEqualityComparer.Default.Equals(symbol.ReturnType, intSymbol)
+			static symbol => symbol is
+			{
+				IsStatic: false,
+				Name: nameof(GetHashCode),
+				Parameters: [],
+				ReturnType.SpecialType: SpecialType.System_Int32
+			}
 		)
 			? $@"// Can't generate '{nameof(GetHashCode)}' because the method is impl'ed by user."
 			: $@"/// <inheritdoc cref=""object.GetHashCode""/>
@@ -85,9 +87,13 @@ public sealed class RefStructOverridens : ISourceGenerator
 
 		string toStringMethod = Array.Exists(
 			methods,
-			symbol =>
-				symbol is { IsStatic: false, Name: nameof(ToString), Parameters: { Length: 0 } parameters }
-				&& SymbolEqualityComparer.Default.Equals(symbol.ReturnType, stringSymbol)
+			static symbol => symbol is
+			{
+				IsStatic: false,
+				Name: nameof(ToString),
+				Parameters: [],
+				ReturnType.SpecialType: SpecialType.System_String
+			}
 		)
 			? $@"// Can't generate '{nameof(ToString)}' because the method is impl'ed by user."
 			: $@"/// <inheritdoc cref=""object.ToString""/>
@@ -141,7 +147,7 @@ partial struct {type.Name}{genericParameterList}
 				return;
 			}
 
-			genericParameterList = genericParameterList.Substring(dot + 1);
+			genericParameterList = genericParameterList[(dot + 1)..];
 			if (genericParameterList.IndexOf('<') == -1)
 			{
 				genericParameterList = string.Empty;
@@ -194,7 +200,7 @@ partial struct {type.Name}{genericParameterList}
 					continue;
 				}
 
-				string temp = outerFullTypeName.Substring(start);
+				string temp = outerFullTypeName[start..];
 				int lt = temp.IndexOf('<'), gt = temp.IndexOf('>');
 				if (lt == -1)
 				{
@@ -228,18 +234,16 @@ partial struct {type.Name}{genericParameterList}
 		outerTypeDeclarationsStart.Remove(outerTypeDeclarationsStart.Length - 2, 2);
 		outerTypeDeclarationsEnd.Remove(outerTypeDeclarationsEnd.Length - 2, 2);
 
-		var intSymbol = compilation.GetSpecialType(SpecialType.System_Int32);
-		var boolSymbol = compilation.GetSpecialType(SpecialType.System_Boolean);
-		var stringSymbol = compilation.GetSpecialType(SpecialType.System_String);
-		var objectSymbol = compilation.GetSpecialType(SpecialType.System_Object);
-
 		var methods = type.GetMembers().OfType<IMethodSymbol>().ToArray();
 		string equalsMethod = Array.Exists(
 			methods,
-			symbol =>
-				symbol is { IsStatic: false, Name: nameof(Equals), Parameters: { Length: 1 } parameters }
-				&& SymbolEqualityComparer.Default.Equals(parameters[0].Type, objectSymbol)
-				&& SymbolEqualityComparer.Default.Equals(symbol.ReturnType, boolSymbol)
+			static symbol => symbol is
+			{
+				IsStatic: false,
+				Name: nameof(Equals),
+				Parameters: [{ Type.SpecialType: SpecialType.System_Object }, ..],
+				ReturnType.SpecialType: SpecialType.System_Boolean
+			}
 		)
 			? $"{methodIndenting}// Can't generate '{nameof(Equals)}' because the method is impl'ed by user."
 			: $@"{methodIndenting}/// <inheritdoc cref=""object.Equals(object?)""/>
@@ -253,9 +257,13 @@ partial struct {type.Name}{genericParameterList}
 
 		string getHashCodeMethod = Array.Exists(
 			methods,
-			symbol =>
-				symbol is { IsStatic: false, Name: nameof(GetHashCode), Parameters: { Length: 0 } parameters }
-				&& SymbolEqualityComparer.Default.Equals(symbol.ReturnType, intSymbol)
+			static symbol => symbol is
+			{
+				IsStatic: false,
+				Name: nameof(GetHashCode),
+				Parameters: [],
+				ReturnType.SpecialType: SpecialType.System_Int32
+			}
 		)
 			? $"{methodIndenting}// Can't generate '{nameof(GetHashCode)}' because the method is impl'ed by user."
 			: $@"{methodIndenting}/// <inheritdoc cref=""object.GetHashCode""/>
@@ -269,9 +277,13 @@ partial struct {type.Name}{genericParameterList}
 
 		string toStringMethod = Array.Exists(
 			methods,
-			symbol =>
-				symbol is { IsStatic: false, Name: nameof(ToString), Parameters: { Length: 0 } parameters }
-				&& SymbolEqualityComparer.Default.Equals(symbol.ReturnType, stringSymbol)
+			static symbol => symbol is
+			{
+				IsStatic: false,
+				Name: nameof(ToString),
+				Parameters: [],
+				ReturnType.SpecialType: SpecialType.System_String
+			}
 		)
 			? $"{methodIndenting}// Can't generate '{nameof(ToString)}' because the method is impl'ed by user."
 			: $@"{methodIndenting}/// <inheritdoc cref=""object.ToString""/>
@@ -323,7 +335,7 @@ namespace {namespaceName};
 			if (
 				context is not
 				{
-					Node: StructDeclarationSyntax { Modifiers: { Count: not 0 } modifiers } n,
+					Node: StructDeclarationSyntax { Modifiers: [_, ..] modifiers } n,
 					SemanticModel: { Compilation: { } compilation } semanticModel
 				}
 			)

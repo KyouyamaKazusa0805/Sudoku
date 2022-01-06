@@ -59,15 +59,15 @@ public unsafe class ForcingChainStepSearcher : IForcingChainStepSearcher, IDynam
 		var tempAccumulator = new List<ChainStep>();
 		GetAll(tempAccumulator, ref tempGrid);
 
-		switch (tempAccumulator.Count)
+		switch (tempAccumulator)
 		{
-			case 0:
+			case []:
 			{
 				return null;
 			}
-			case 1 when onlyFindOne:
+			case [var firstStep] when onlyFindOne:
 			{
-				return tempAccumulator[0];
+				return firstStep;
 			}
 			default:
 			{
@@ -259,10 +259,10 @@ public unsafe class ForcingChainStepSearcher : IForcingChainStepSearcher, IDynam
 		{
 			int region = ((int)cell).ToRegion(label);
 			var worthMap = CandMaps[digit] & RegionMaps[region];
-			switch (worthMap.Count)
+			switch (worthMap)
 			{
-				case 2:
-				case > 2 when IsMultiple:
+				case [_, _]:
+				case [_, _, ..] when IsMultiple:
 				{
 					if (worthMap[0] == cell)
 					{
@@ -335,7 +335,7 @@ public unsafe class ForcingChainStepSearcher : IForcingChainStepSearcher, IDynam
 			{
 				if (pendingOn.Count != 0)
 				{
-					var p = pendingOn.RemoveAt(0);
+					var p = pendingOn.Remove();
 					var makeOff = IChainStepSearcher.GetOnToOff(grid, p, !IsNishio);
 
 					foreach (var pOff in makeOff)
@@ -357,7 +357,7 @@ public unsafe class ForcingChainStepSearcher : IForcingChainStepSearcher, IDynam
 				}
 				else
 				{
-					var p = pendingOff.RemoveAt(0);
+					var p = pendingOff.Remove();
 					var makeOn = IChainStepSearcher.GetOffToOn(
 						grid, p, true, !IsNishio, true, _temp, toOff, IsDynamic
 					);

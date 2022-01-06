@@ -67,12 +67,13 @@ public readonly ref partial struct ConclusionCollection
 	/// <returns>The string result.</returns>
 	public string ToString(bool shouldSort, string separator)
 	{
-		return _collection.Length switch
+		return _collection switch
 		{
-			0 => string.Empty,
-			1 => _collection[0].ToString(),
+			[] => string.Empty,
+			[var conclusion] => conclusion.ToString(),
 			_ => internalToString(_collection)
 		};
+
 
 		unsafe string internalToString(in ReadOnlySpan<Conclusion> collection)
 		{

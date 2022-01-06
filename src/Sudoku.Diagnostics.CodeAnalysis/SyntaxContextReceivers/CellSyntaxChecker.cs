@@ -157,9 +157,17 @@ public sealed partial class CellSyntaxChecker : ISyntaxContextReceiver
 		if (
 			operation is not IObjectCreationOperation
 			{
-				Constructor: { ContainingType: var containingTypeSymbol, Parameters.Length: 1 },
+				Constructor: { ContainingType: var containingTypeSymbol },
 				Initializer: null,
-				Arguments: var arguments
+				Arguments: [
+				{
+					Syntax: ArgumentSyntax
+					{
+						Expression:
+						StackAllocArrayCreationExpressionSyntax
+						or ImplicitStackAllocArrayCreationExpressionSyntax
+					} argumentNode
+				}]
 			}
 		)
 		{
@@ -167,22 +175,6 @@ public sealed partial class CellSyntaxChecker : ISyntaxContextReceiver
 		}
 
 		if (!SymbolEqualityComparer.Default.Equals(containingTypeSymbol, cellsSymbol))
-		{
-			return;
-		}
-
-		var firstArgument = arguments[0];
-		if (
-			firstArgument is not
-			{
-				Syntax: ArgumentSyntax
-				{
-					Expression:
-						StackAllocArrayCreationExpressionSyntax
-						or ImplicitStackAllocArrayCreationExpressionSyntax
-				} argumentNode
-			}
-		)
 		{
 			return;
 		}
@@ -300,7 +292,13 @@ public sealed partial class CellSyntaxChecker : ISyntaxContextReceiver
 			operation is not IInvocationOperation
 			{
 				TargetMethod: { Name: "TrailingZerosCount", ContainingType: var containingTypeSymbol },
-				Arguments: { Length: 1 } arguments
+				Arguments: [IBinaryOperation
+				{
+					OperatorKind: BinaryOperatorKind.And,
+					LeftOperand: var leftOperand,
+					RightOperand: var rightOperand,
+					Syntax: var syntaxNode
+				}] arguments
 			}
 		)
 		{
@@ -314,20 +312,6 @@ public sealed partial class CellSyntaxChecker : ISyntaxContextReceiver
 		}
 
 		if (!SymbolEqualityComparer.Default.Equals(bitOperationsSymbol, containingTypeSymbol))
-		{
-			return;
-		}
-
-		var argument = arguments[0];
-		if (
-			argument is not IBinaryOperation
-			{
-				OperatorKind: BinaryOperatorKind.And,
-				LeftOperand: var leftOperand,
-				RightOperand: var rightOperand,
-				Syntax: var syntaxNode
-			}
-		)
 		{
 			return;
 		}
@@ -428,7 +412,7 @@ public sealed partial class CellSyntaxChecker : ISyntaxContextReceiver
 		if (
 			operation is not IObjectOrCollectionInitializerOperation
 			{
-				Initializers: { Length: not 0 } initializers,
+				Initializers: [.., _] initializers,
 				Type: var typeSymbol
 			}
 		)
@@ -443,22 +427,28 @@ public sealed partial class CellSyntaxChecker : ISyntaxContextReceiver
 
 		foreach (var initializer in initializers)
 		{
-			if (initializer is not { ConstantValue: { HasValue: true, Value: var value } })
+			if (
+				initializer is not
+				{
+					ConstantValue: { HasValue: true, Value: var value },
+					Syntax: var initializerSyntax
+				}
+			)
 			{
 				continue;
 			}
 
 			switch (value)
 			{
-				case int i when i is < 0 or >= 81:
+				case int and (< 0 or >= 81):
 				{
-					Diagnostics.Add(Diagnostic.Create(SCA0516, initializer.Syntax.GetLocation(), messageArgs: null));
+					Diagnostics.Add(Diagnostic.Create(SCA0516, initializerSyntax.GetLocation(), messageArgs: null));
 
 					break;
 				}
 				case string s when !CellPatternRegex.IsMatch(s):
 				{
-					Diagnostics.Add(Diagnostic.Create(SCA0516, initializer.Syntax.GetLocation(), messageArgs: null));
+					Diagnostics.Add(Diagnostic.Create(SCA0516, initializerSyntax.GetLocation(), messageArgs: null));
 
 					break;
 				}
@@ -480,11 +470,10 @@ public sealed partial class CellSyntaxChecker : ISyntaxContextReceiver
 				{
 					Name: "Equals",
 					IsStatic: false,
-					Parameters.Length: 1,
 					ReturnType.SpecialType: SpecialType.System_Boolean
 				},
 				Instance.Type: var instanceType,
-				Arguments: var arguments,
+				Arguments: [{ Type: var argumentType } argument],
 				Syntax: var syntaxNode
 			}
 		)
@@ -492,13 +481,8 @@ public sealed partial class CellSyntaxChecker : ISyntaxContextReceiver
 			return;
 		}
 
-		if (!SymbolEqualityComparer.Default.Equals(instanceType, cellsSymbol))
-		{
-			return;
-		}
-
-		var argument = arguments[0];
-		if (!SymbolEqualityComparer.Default.Equals(argument.Type, cellsSymbol))
+		if (!SymbolEqualityComparer.Default.Equals(instanceType, cellsSymbol)
+			|| !SymbolEqualityComparer.Default.Equals(argumentType, cellsSymbol))
 		{
 			return;
 		}
@@ -523,7 +507,11 @@ public sealed partial class CellSyntaxChecker : ISyntaxContextReceiver
 					Parameters.Length: not 0,
 					IsStatic: true
 				},
-				Arguments: var arguments
+				Arguments: [
+				{
+					ConstantValue: { HasValue: true, Value: null },
+					Syntax: var argumentSyntaxNode
+				}, ..] arguments
 			}
 		)
 		{
@@ -531,18 +519,6 @@ public sealed partial class CellSyntaxChecker : ISyntaxContextReceiver
 		}
 
 		if (!SymbolEqualityComparer.Default.Equals(containingTypeSymbol, cellsSymbol))
-		{
-			return;
-		}
-
-		var argument = arguments[0];
-		if (
-			argument is not
-			{
-				ConstantValue: { HasValue: true, Value: null },
-				Syntax: var argumentSyntaxNode
-			}
-		)
 		{
 			return;
 		}
@@ -618,26 +594,19 @@ public sealed partial class CellSyntaxChecker : ISyntaxContextReceiver
 		if (
 			operation is not IObjectCreationOperation
 			{
-				Constructor:
-				{
-					Parameters.Length: not 0,
-					ContainingType: var containingTypeSymbol
-				},
+				Constructor.ContainingType: var containingTypeSymbol,
 				Initializer: not null,
-				Arguments: var arguments,
+				Arguments: [
+					not
+					{
+						Value.Type: IArrayTypeSymbol
+						{
+							Rank: 1,
+							ElementType.SpecialType: SpecialType.System_Int32
+						}
+					}
+				] arguments,
 				Syntax: var syntaxNode
-			}
-		)
-		{
-			return;
-		}
-
-		var argumentType = arguments[0].Value.Type;
-		if (
-			argumentType is IArrayTypeSymbol
-			{
-				Rank: 1,
-				ElementType.SpecialType: SpecialType.System_Int32
 			}
 		)
 		{

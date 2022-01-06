@@ -16,10 +16,10 @@ public sealed class OneLineLinqSolver : IPuzzleSolver
 		stopwatch.Stop();
 
 		var solverResult = new BruteForceSolverResult(puzzle, ElapsedTime: stopwatch.Elapsed);
-		return results.Count switch
+		return results switch
 		{
-			0 => solverResult with { IsSolved = false, FailedReason = FailedReason.PuzzleHasNoSolution },
-			1 => solverResult with { Solution = Grid.Parse(results[0]) },
+			[] => solverResult with { IsSolved = false, FailedReason = FailedReason.PuzzleHasNoSolution },
+			[var result] => solverResult with { Solution = Grid.Parse(result) },
 			_ => solverResult with { IsSolved = false, FailedReason = FailedReason.PuzzleHasNoSolution }
 		};
 	}
@@ -39,7 +39,7 @@ public sealed class OneLineLinqSolver : IPuzzleSolver
 		const string digits = "123456789";
 		var result = new List<string> { puzzle };
 
-		while (result.Count != 0 && result[0].IndexOf('0', StringComparison.OrdinalIgnoreCase) != -1)
+		while (result is [var r, ..] && r.IndexOf('0', StringComparison.OrdinalIgnoreCase) != -1)
 		{
 			result = (
 				from solution in result

@@ -36,7 +36,7 @@ public sealed partial class ThisConstraintSyntaxChecker : ISyntaxContextReceiver
 		var selfType = compilation.GetTypeByMetadataName(typeof(SelfAttribute).FullName)!;
 		foreach (var typeParameter in typeParameters)
 		{
-			if (typeParameter is not { Name: var typeParameterName, Locations: { Length: >= 1 } locations })
+			if (typeParameter is not { Name: var typeParameterName, Locations: [var location, ..] })
 			{
 				continue;
 			}
@@ -58,7 +58,7 @@ public sealed partial class ThisConstraintSyntaxChecker : ISyntaxContextReceiver
 				Diagnostics.Add(
 					Diagnostic.Create(
 						descriptor: SCA0101,
-						location: locations[0],
+						location: location,
 						messageArgs: new[] { shortenTypeName, typeParameterName }
 					)
 				);
@@ -74,7 +74,7 @@ public sealed partial class ThisConstraintSyntaxChecker : ISyntaxContextReceiver
 					Diagnostics.Add(
 						Diagnostic.Create(
 							descriptor: SCA0101,
-							location: locations[0],
+							location: location,
 							messageArgs: new[] { shortenTypeName, typeParameterName }
 						)
 					);
@@ -90,7 +90,7 @@ public sealed partial class ThisConstraintSyntaxChecker : ISyntaxContextReceiver
 						Diagnostics.Add(
 							Diagnostic.Create(
 								descriptor: SCA0102,
-								location: locations[0],
+								location: location,
 								messageArgs: new[] { typeParameterName, shortenTypeName }
 							)
 						);

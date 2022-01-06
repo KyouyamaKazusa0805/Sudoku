@@ -681,10 +681,10 @@ public unsafe partial struct Cells
 	{
 		return format switch
 		{
-			null or "N" or "n" => Count switch
+			null or "N" or "n" => this switch
 			{
-				0 => "{ }",
-				1 when Offsets[0] is var cell => $"r{cell / 9 + 1}c{cell % 9 + 1}",
+				[] => "{ }",
+				[var cell] => $"r{cell / 9 + 1}c{cell % 9 + 1}",
 				_ => normalToString(this)
 			},
 			"B" or "b" => binaryToString(this, false),

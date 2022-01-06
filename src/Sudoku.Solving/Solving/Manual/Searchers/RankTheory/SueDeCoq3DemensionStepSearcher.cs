@@ -42,17 +42,16 @@ public sealed unsafe class SueDeCoq3DemensionStepSearcher : ISueDeCoq3DemensionS
 
 			static void a(IList<Cells> list, in Cells emptyMap)
 			{
-				switch (emptyMap.Count)
+				switch (emptyMap)
 				{
-					case 2:
+					case [var i, var j]:
 					{
-						list.Add(new() { emptyMap[0], emptyMap[1] });
+						list.Add(new() { i, j });
 
 						break;
 					}
-					case 3:
+					case [var i, var j, var k]:
 					{
-						int i = emptyMap[0], j = emptyMap[1], k = emptyMap[2];
 						list.Add(new() { i, j });
 						list.Add(new() { i, k });
 						list.Add(new() { j, k });

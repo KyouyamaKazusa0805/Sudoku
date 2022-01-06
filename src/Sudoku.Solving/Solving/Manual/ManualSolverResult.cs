@@ -202,7 +202,7 @@ public sealed unsafe partial record ManualSolverResult(in Grid OriginalPuzzle) :
 	{
 		get
 		{
-			if (Steps.IsDefaultOrEmpty)
+			if (Steps is not [var firstStep, ..])
 			{
 				return null;
 			}
@@ -218,7 +218,7 @@ public sealed unsafe partial record ManualSolverResult(in Grid OriginalPuzzle) :
 
 			// If code goes to here, all steps are more difficult than single techniques.
 			// Get the first one is okay.
-			return Steps[0];
+			return firstStep;
 		}
 	}
 
@@ -233,7 +233,7 @@ public sealed unsafe partial record ManualSolverResult(in Grid OriginalPuzzle) :
 	/// </exception>
 	/// <exception cref="IndexOutOfRangeException">Throws when the index is out of range.</exception>
 	/// <seealso cref="Steps"/>
-	public Step this[int index] => Steps is not { Length: not 0 }
+	public Step this[int index] => Steps is not [_, ..]
 		? throw new InvalidOperationException("You can't extract any elements because of being null or empty.")
 		: index >= Steps.Length || index < 0
 			? throw new IndexOutOfRangeException($"Parameter '{nameof(index)}' is out of range.")

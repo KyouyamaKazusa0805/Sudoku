@@ -22,7 +22,13 @@ public sealed partial class ReadOnlyMemberSyntaxChecker : ISyntaxContextReceiver
 			case StructDeclarationSyntax:
 			{
 				var symbol = semanticModel.GetDeclaredSymbol(node, _cancellationToken);
-				if (symbol is not INamedTypeSymbol { TypeKind: TypeKind.Struct } typeSymbol)
+				if (
+					symbol is not INamedTypeSymbol
+					{
+						TypeKind: TypeKind.Struct,
+						DeclaringSyntaxReferences: [var symbolSyntaxRef, ..]
+					} typeSymbol
+				)
 				{
 					return;
 				}
@@ -31,7 +37,11 @@ public sealed partial class ReadOnlyMemberSyntaxChecker : ISyntaxContextReceiver
 				{
 					switch (member)
 					{
-						case IPropertySymbol { GetMethod: { } getter, IsStatic: false }:
+						case IPropertySymbol
+						{
+							GetMethod: { DeclaringSyntaxReferences: [var syntaxRef, ..] } getter,
+							IsStatic: false
+						}:
 						{
 							var attributesData = getter.GetAttributes();
 							if (attributesData.All(a => !SymbolEqualityComparer.Default.Equals(a.AttributeClass, attribute)))
@@ -39,7 +49,7 @@ public sealed partial class ReadOnlyMemberSyntaxChecker : ISyntaxContextReceiver
 								continue;
 							}
 
-							var syntaxNode = getter.DeclaringSyntaxReferences[0].GetSyntax(_cancellationToken);
+							var syntaxNode = syntaxRef.GetSyntax(_cancellationToken);
 							if (syntaxNode is not AccessorDeclarationSyntax { Keyword: var keywordToken })
 							{
 								continue;
@@ -57,7 +67,7 @@ public sealed partial class ReadOnlyMemberSyntaxChecker : ISyntaxContextReceiver
 								continue;
 							}
 
-							var syntaxNode = symbol.DeclaringSyntaxReferences[0].GetSyntax(_cancellationToken);
+							var syntaxNode = symbolSyntaxRef.GetSyntax(_cancellationToken);
 							if (syntaxNode is not EventDeclarationSyntax { Identifier: var identifier })
 							{
 								continue;
@@ -75,7 +85,7 @@ public sealed partial class ReadOnlyMemberSyntaxChecker : ISyntaxContextReceiver
 								continue;
 							}
 
-							var syntaxNode = symbol.DeclaringSyntaxReferences[0].GetSyntax(_cancellationToken);
+							var syntaxNode = symbolSyntaxRef.GetSyntax(_cancellationToken);
 							if (syntaxNode is not MethodDeclarationSyntax { Identifier: var identifier })
 							{
 								continue;

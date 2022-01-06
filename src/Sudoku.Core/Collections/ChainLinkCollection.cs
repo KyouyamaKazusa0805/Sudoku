@@ -29,10 +29,10 @@ public readonly ref partial struct ChainLinkCollection
 	/// <inheritdoc cref="object.ToString"/>
 	public override string ToString()
 	{
-		return _collection.Length switch
+		return _collection switch
 		{
-			0 => string.Empty,
-			1 => _collection[0].ToString(),
+			[] => string.Empty,
+			[var link] => link.ToString(),
 			_ => f(_collection)
 		};
 

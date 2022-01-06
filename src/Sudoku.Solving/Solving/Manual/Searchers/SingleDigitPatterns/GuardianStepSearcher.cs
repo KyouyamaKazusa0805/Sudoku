@@ -121,12 +121,11 @@ public sealed unsafe class GuardianStepSearcher : IGuardianStepSearcher
 
 							int region = cell.ToRegion(label);
 							var otherCellsMap = RegionMaps[region] & globalMap - cell;
-							if (otherCellsMap.Count != 1)
+							if (otherCellsMap is not [var anotherCell])
 							{
 								continue;
 							}
 
-							int anotherCell = otherCellsMap[0];
 							if (tempLoop.Count >= 5 && (tempLoop.Count & 1) != 0 && tempLoop[0] == anotherCell)
 							{
 								loops.Add(

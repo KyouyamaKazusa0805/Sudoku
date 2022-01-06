@@ -520,14 +520,13 @@ public sealed unsafe class ExtendedRectangleStepSearcher : IExtendedRectangleSte
 		bool onlyFindOne
 	)
 	{
-		switch (extraCellsMap.Count)
+		switch (extraCellsMap)
 		{
-			case 1:
+			case [var extraCell]:
 			{
 				// Type 1 found.
 				// Check eliminations.
 				var conclusions = new List<Conclusion>();
-				int extraCell = extraCellsMap[0];
 				foreach (int digit in normalDigits)
 				{
 					if (grid.Exists(extraCell, digit) is true)
@@ -572,10 +571,10 @@ public sealed unsafe class ExtendedRectangleStepSearcher : IExtendedRectangleSte
 
 				break;
 			}
-			case 2:
+			case [var extraCell1, var extraCell2]:
 			{
 				// Type 4.
-				short m1 = grid.GetCandidates(extraCellsMap[0]), m2 = grid.GetCandidates(extraCellsMap[1]);
+				short m1 = grid.GetCandidates(extraCell1), m2 = grid.GetCandidates(extraCell2);
 				short conjugateMask = (short)(m1 & m2 & normalDigits);
 				if (conjugateMask == 0)
 				{

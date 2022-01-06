@@ -82,11 +82,10 @@ public sealed partial class GetPinnableReferenceMethodSyntaxChecker : ISyntaxCon
 			null => (SCA0402, identifier.GetLocation()),
 
 			{
-				ConstructorArguments: var cArgs,
+				ConstructorArguments: [{ Value: EditorBrowsableState cArg }],
 				ApplicationSyntaxReference: { Span: var span, SyntaxTree: var syntaxTree }
 			}
-			when (EditorBrowsableState)cArgs[0].Value! == EditorBrowsableState.Always =>
-				(SCA0405, Location.Create(syntaxTree, span)),
+			when cArg == EditorBrowsableState.Always => (SCA0405, Location.Create(syntaxTree, span)),
 
 			_ => (null, null)
 		};

@@ -391,10 +391,10 @@ public unsafe partial struct Candidates : ICellsOrCandidates<Candidates>
 	/// <inheritdoc/>
 	public readonly string ToString(string? format)
 	{
-		return Count switch
+		return this switch
 		{
-			0 => "{ }",
-			1 when this[0] is var a && (a / 9, a % 9) is (var c, var d) => $"r{c / 9 + 1}c{c % 9 + 1}({d + 1})",
+			[] => "{ }",
+			[var a] when (a / 9, a % 9) is (var c, var d) => $"r{c / 9 + 1}c{c % 9 + 1}({d + 1})",
 			_ => f(Offsets)
 		};
 
@@ -590,9 +590,10 @@ public unsafe partial struct Candidates : ICellsOrCandidates<Candidates>
 		{
 			string value = match.Value;
 			if (options.Flags(CandidatesParsingOptions.ShortForm)
-				&& value.SatisfyPattern(RegularExpressions.CandidateListShortForm))
+				&& value.SatisfyPattern(RegularExpressions.CandidateListShortForm)
+				&& value is [var a, var b, var c, ..])
 			{
-				result.AddAnyway((value[1] - '1') * 81 + (value[2] - '1') * 9 + value[0] - '1');
+				result.AddAnyway((b - '1') * 81 + (c - '1') * 9 + a - '1');
 			}
 			else if (
 				options.Flags(CandidatesParsingOptions.BracketForm)

@@ -30,11 +30,14 @@ public sealed partial class RaiseNotificationSyntaxChecker : ISyntaxContextRecei
 				TargetMethod:
 				{
 					Name: "RaiseNotification",
-					ReturnType.SpecialType: SpecialType.System_Void,
-					Parameters.Length: 1
+					ReturnType.SpecialType: SpecialType.System_Void
 				},
 				Instance.Type: var instanceType,
-				Arguments: var arguments,
+				Arguments: [
+				{
+					Type.SpecialType: SpecialType.System_String,
+					ConstantValue: { HasValue: true, Value: string value }
+				}],
 				Syntax.Parent.Parent.Parent.Parent.Parent: PropertyDeclarationSyntax
 				{
 					Identifier: { ValueText: var propertyName } identifier
@@ -55,18 +58,6 @@ public sealed partial class RaiseNotificationSyntaxChecker : ISyntaxContextRecei
 			}
 		}
 		if (!baseTypeMatches)
-		{
-			return;
-		}
-
-		var argument = arguments[0];
-		if (
-			argument is not
-			{
-				Type.SpecialType: SpecialType.System_String,
-				ConstantValue: { HasValue: true, Value: string value }
-			}
-		)
 		{
 			return;
 		}

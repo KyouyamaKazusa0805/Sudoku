@@ -21,20 +21,20 @@ partial struct GridParser
 		for (int i = 0; i < Grid.Length; i++)
 		{
 			string currentMatch = matches[length - Grid.Length + i];
-			switch (currentMatch.Length)
+			switch (currentMatch)
 			{
-				case 1 when currentMatch[0] is var match and not ('.' or '0'):
+				case [var match and not ('.' or '0')]:
 				{
 					result[i] = match - '1';
 					result.SetStatus(i, CellStatus.Given);
 
 					break;
 				}
-				case 1:
+				case [_]:
 				{
 					continue;
 				}
-				case 2 when currentMatch[1] is var match:
+				case [_, var match]:
 				{
 					if (match is '.' or '0')
 					{
@@ -373,7 +373,12 @@ partial struct GridParser
 			foreach (string elimBlock in elimMatch.MatchAll(RegularExpressions.ThreeDigitsCandidate))
 			{
 				// Set the candidate true value to eliminate the candidate.
-				result[(elimBlock[1] - '1') * 9 + elimBlock[2] - '1', elimBlock[0] - '1'] = false;
+				if (elimBlock is not [var a, var b, var c, ..])
+				{
+					continue;
+				}
+
+				result[(b - '1') * 9 + c - '1', a - '1'] = false;
 			}
 		}
 

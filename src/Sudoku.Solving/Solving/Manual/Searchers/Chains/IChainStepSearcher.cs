@@ -226,9 +226,9 @@ public unsafe interface IChainStepSearcher : IStepSearcher
 				var (pc, pd, _) = p;
 				int region = RegionCalculator.ToRegion(pc, label);
 				var cells = (h(grid, pd, region, isDynamic, enableFastProperties) & RegionMaps[region]) - pc;
-				if (cells.Count == 1)
+				if (cells is [var onlyCell])
 				{
-					var pOn = new Node((byte)cells[0], pd, true, p);
+					var pOn = new Node((byte)onlyCell, pd, true, p);
 
 					if (
 #if DEBUG

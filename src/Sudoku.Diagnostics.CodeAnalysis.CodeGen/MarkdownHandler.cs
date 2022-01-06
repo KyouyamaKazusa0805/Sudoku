@@ -19,20 +19,22 @@ internal static class MarkdownHandler
 		var diagnostics = new DiagnosticDetail[lines.Length];
 		for (int i = 0, length = diagnostics.Length; i < length; i++)
 		{
-			if (splitLine(lines[i]) is not { Length: 5 } p)
+#nullable disable
+			if (splitLine(lines[i]) is not [var id, var category, var severity, var title, var messageFormat])
 			{
 				throw new FormatException();
 			}
 
-			bool containsPlaceholders = !string.IsNullOrEmpty(p[4]);
+			bool containsPlaceholders = !string.IsNullOrEmpty(messageFormat);
 			diagnostics[i] = new(
-				p[0],
-				p[1],
-				(DiagnosticSeverity)Enum.Parse(typeof(DiagnosticSeverity), p[2]),
-				p[3],
-				containsPlaceholders ? p[4] : p[3],
+				id,
+				category,
+				(DiagnosticSeverity)Enum.Parse(typeof(DiagnosticSeverity), severity),
+				title,
+				containsPlaceholders ? messageFormat : title,
 				containsPlaceholders
 			);
+#nullable restore
 		}
 
 		return diagnostics;

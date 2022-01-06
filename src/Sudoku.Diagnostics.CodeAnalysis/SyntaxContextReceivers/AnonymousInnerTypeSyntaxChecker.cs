@@ -39,14 +39,14 @@ public sealed partial class AnonymousInnerTypeSyntaxChecker : ISyntaxContextRece
 
 		switch ((Block: blockBody, Expression: expressionBody))
 		{
-			case (Block: { Locals: { Length: not 0 } locals }, Expression: null):
+			case (Block: { Locals: [.., _] locals }, Expression: null):
 			{
 				f(locals);
 
 				break;
 			}
 
-			case (Block: null, Expression: { Locals: { Length: not 0 } locals }):
+			case (Block: null, Expression: { Locals: [.., _] locals }):
 			{
 				f(locals);
 
@@ -58,15 +58,24 @@ public sealed partial class AnonymousInnerTypeSyntaxChecker : ISyntaxContextRece
 			{
 				foreach (var local in locals)
 				{
-					var type = local.Type;
+					if (
+						local is not
+						{
+							Type: var type,
+							DeclaringSyntaxReferences: [{ SyntaxTree: var syntaxTree, Span: var span }, ..]
+						}
+					)
+					{
+						continue;
+					}
+
 					var attributesData = type.GetAttributes();
 					if (attributesData.All(a => !SymbolEqualityComparer.Default.Equals(a.AttributeClass, attribute)))
 					{
 						continue;
 					}
 
-					var syntaxReference = local.DeclaringSyntaxReferences[0];
-					var location = Location.Create(syntaxReference.SyntaxTree, syntaxReference.Span);
+					var location = Location.Create(syntaxTree, span);
 					Diagnostics.Add(Diagnostic.Create(SCA0110, location, messageArgs: null));
 				}
 			}
@@ -131,7 +140,7 @@ public sealed partial class AnonymousInnerTypeSyntaxChecker : ISyntaxContextRece
 
 		switch ((BaseType: baseType, BaseInterfaces: baseInterfaces))
 		{
-			case (BaseType: null, BaseInterfaces: { Length: not 0 }):
+			case (BaseType: null, BaseInterfaces: [_, ..]):
 			case (BaseType: not null, _):
 			{
 				return;

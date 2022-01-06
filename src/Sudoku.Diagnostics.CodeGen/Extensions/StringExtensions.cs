@@ -14,7 +14,7 @@ internal static class StringExtensions
 	/// <param name="character">The character to check.</param>
 	/// <returns>A <see cref="bool"/> result</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static bool EndsWith(this string @this, char character) => @this[@this.Length - 1] == character;
+	public static bool EndsWith(this string @this, char character) => @this[^1] == character;
 #endif
 
 	/// <summary>
@@ -74,7 +74,7 @@ internal static class StringExtensions
 			return null;
 		}
 
-		result[0] = result[0].Substring(2);
+		result[0] = result[0][2..];
 		return result;
 	}
 

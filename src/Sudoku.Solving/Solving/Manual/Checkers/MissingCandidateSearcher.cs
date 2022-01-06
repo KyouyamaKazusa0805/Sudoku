@@ -44,12 +44,11 @@ public static class MissingCandidateSearcher
 
 		static int? testSymmetry(in Grid grid, delegate*<in Grid, Grid> transform)
 		{
-			if ((grid.GivenCells ^ transform(grid).GivenCells) is not { Count: 1 } xorPattern)
+			if ((grid.GivenCells ^ transform(grid).GivenCells) is not [var cell])
 			{
 				goto ReturnNull;
 			}
 
-			int cell = xorPattern[0];
 			foreach (int digit in grid.GetCandidates(cell))
 			{
 				var newGrid = grid;

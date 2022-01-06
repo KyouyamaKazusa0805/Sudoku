@@ -49,7 +49,7 @@ public sealed partial class RestrictArgumentsSyntaxChecker : ISyntaxContextRecei
 				parameter is not
 				{
 					Type: var parameterType,
-					DeclaringSyntaxReferences: { Length: not 0 } syntaxReferences
+					DeclaringSyntaxReferences: [{ SyntaxTree: var syntaxTree, Span: var span }, ..]
 				}
 			)
 			{
@@ -69,8 +69,7 @@ public sealed partial class RestrictArgumentsSyntaxChecker : ISyntaxContextRecei
 				continue;
 			}
 
-			var syntaxReference = parameter.DeclaringSyntaxReferences[0];
-			var location = Location.Create(syntaxReference.SyntaxTree, syntaxReference.Span);
+			var location = Location.Create(syntaxTree, span);
 			Diagnostics.Add(Diagnostic.Create(SCA0107, location, messageArgs: null));
 		}
 
@@ -86,8 +85,8 @@ public sealed partial class RestrictArgumentsSyntaxChecker : ISyntaxContextRecei
 		if (
 			nodeOperation is not IInvocationOperation
 			{
-				TargetMethod: { Parameters: { Length: not 0 } parameters, IsAbstract: false, IsExtern: false },
-				Arguments: var arguments
+				TargetMethod: { IsAbstract: false, IsExtern: false },
+				Arguments: [_, ..] arguments
 			}
 		)
 		{
@@ -101,7 +100,7 @@ public sealed partial class RestrictArgumentsSyntaxChecker : ISyntaxContextRecei
 				argument is not
 				{
 					ArgumentKind: ArgumentKind.Explicit,
-					Parameter: { Type: var parameterType } parameter
+					Parameter: { Type: IPointerTypeSymbol or IFunctionPointerTypeSymbol } parameter
 				}
 			)
 			{
@@ -110,11 +109,6 @@ public sealed partial class RestrictArgumentsSyntaxChecker : ISyntaxContextRecei
 
 			var attributesData = parameter.GetAttributes();
 			if (attributesData.All(a => !SymbolEqualityComparer.Default.Equals(a.AttributeClass, attribute)))
-			{
-				continue;
-			}
-
-			if (parameterType is not (IPointerTypeSymbol or IFunctionPointerTypeSymbol))
 			{
 				continue;
 			}

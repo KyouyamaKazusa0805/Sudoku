@@ -124,18 +124,19 @@ public static class {typeResult}_LambdaedDeconstructionMethods
 		static string? getExpression(IMethodSymbol methodSymbol, CancellationToken ct) =>
 			methodSymbol.Locations[0] switch
 			{
-				{ SourceTree: { } st } l => (MethodDeclarationSyntax?)st.GetRoot(ct)?.FindNode(l.SourceSpan) switch
-				{
-					// public int Method() => value;
-					{ ExpressionBody.Expression: var expressionNode } => expressionNode.ToString(),
-
-					// public int Method() { return value; }
-					{ Body.Statements: { Count: 1 } statements } when statements[0] is ReturnStatementSyntax
+				{ SourceTree: { } st } l =>
+					(MethodDeclarationSyntax?)st.GetRoot(ct)?.FindNode(l.SourceSpan) switch
 					{
-						Expression: { } expressionNode
-					} => expressionNode.ToString(),
-					_ => null
-				},
+						// public int Method() => value;
+						{ ExpressionBody.Expression: var expressionNode } => expressionNode.ToString(),
+
+						// public int Method() { return value; }
+						{ Body.Statements: [ReturnStatementSyntax { Expression: { } expressionNode }] } =>
+							expressionNode.ToString(),
+
+						_ => null
+					},
+
 				_ => null
 			};
 	}

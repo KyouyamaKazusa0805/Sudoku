@@ -277,12 +277,11 @@ public sealed unsafe class UniquePolygonStepSearcher : IUniquePolygonStepSearche
 
 			int otherDigit = TrailingZeroCount(orMask & ~tempMask);
 			var mapContainingThatDigit = map & CandMaps[otherDigit];
-			if (mapContainingThatDigit.Count != 1)
+			if (mapContainingThatDigit is not [var elimCell])
 			{
 				continue;
 			}
 
-			int elimCell = mapContainingThatDigit[0];
 			short elimMask = (short)(grid.GetCandidates(elimCell) & tempMask);
 			if (elimMask == 0)
 			{

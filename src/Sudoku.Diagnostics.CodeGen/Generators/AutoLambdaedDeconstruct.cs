@@ -82,20 +82,21 @@ partial {typeKind}{typeName}{genericParameterList}
 		static string? getExpression(ISymbol fieldOrPropertySymbol, CancellationToken ct) =>
 			fieldOrPropertySymbol switch
 			{
-				IPropertySymbol { GetMethod: not null } p when !p.IsAutoImplemented() && p.Locations[0] is { SourceTree: { } st } l =>
+				IPropertySymbol { GetMethod: not null, Locations: [{ SourceTree: { } st } l, ..] } p
+				when !p.IsAutoImplemented() =>
 					(PropertyDeclarationSyntax?)st.GetRoot(ct)?.FindNode(l.SourceSpan) switch
 					{
 						// public int Property => value;
 						{ ExpressionBody.Expression: var expressionNode } =>
 							expressionNode.ToString(),
 
-						{ AccessorList.Accessors: { Count: not 0 } a } when a.FirstOrDefault(isGetKeyword) is { } getAccessor =>
+						{ AccessorList.Accessors: [_, ..] a }
+						when a.FirstOrDefault(isGetKeyword) is { } getAccessor =>
 							getAccessor switch
 							{
 								// public int Property { get { return value; } }
-								{ Body.Statements: { Count: 1 } statements } when statements[0] is ReturnStatementSyntax
 								{
-									Expression: { } expressionNode
+									Body.Statements: [ReturnStatementSyntax { Expression: { } expressionNode }]
 								} => expressionNode.ToString(),
 
 								// public int Property { get => value; }

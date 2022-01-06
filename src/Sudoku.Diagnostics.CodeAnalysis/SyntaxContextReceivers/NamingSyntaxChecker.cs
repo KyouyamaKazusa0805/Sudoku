@@ -32,12 +32,12 @@ public sealed partial class NamingSyntaxChecker : ISyntaxContextReceiver
 	/// <param name="semanticModel">The semantic model.</param>
 	private void CheckLocalFunction(SyntaxNode node, [IsDiscard] Compilation compilation, [IsDiscard] SemanticModel semanticModel)
 	{
-		if (node is not LocalFunctionStatementSyntax { Identifier: { ValueText: var name } identifier })
-		{
-			return;
-		}
-
-		if (name[0] is >= 'a' and <= 'z')
+		if (
+			node is not LocalFunctionStatementSyntax
+			{
+				Identifier: { ValueText: [not (>= 'a' and <= 'z'), ..] } identifier
+			}
+		)
 		{
 			return;
 		}
@@ -57,26 +57,15 @@ public sealed partial class NamingSyntaxChecker : ISyntaxContextReceiver
 			node is not MethodDeclarationSyntax
 			{
 				Identifier: { ValueText: "Deconstruct" } methodIdentifier,
-				ParameterList.Parameters: { Count: >= 1 } parameters
+				ParameterList.Parameters: [{ Identifier.ValueText: not "this" }, ..]
 			}
 		)
 		{
 			return;
 		}
 
-		if (parameters[0].Identifier.ValueText == "this")
-		{
-			return;
-		}
-
 		var symbol = semanticModel.GetDeclaredSymbol(node, _cancellationToken);
-		if (symbol is not IMethodSymbol { ReturnType: var returnType })
-		{
-			return;
-		}
-
-		var voidSymbol = compilation.GetSpecialType(SpecialType.System_Void);
-		if (!SymbolEqualityComparer.Default.Equals(voidSymbol, returnType))
+		if (symbol is not IMethodSymbol { ReturnType.SpecialType: SpecialType.System_Void })
 		{
 			return;
 		}
