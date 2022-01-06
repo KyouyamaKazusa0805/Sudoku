@@ -146,7 +146,7 @@ partial class {typeName}{genericParameterList}
 					&& baseTypeAttributesData.Any(a => SymbolEqualityComparer.Default.Equals(a.AttributeClass, attribute))
 						? GetMembers(baseType, true, includes, excludes, CancellationToken)
 						: null;
-			string? baseCtorInheritance = baseClassCtorArgs is not { Count: not 0 }
+			string? baseCtorInheritance = baseClassCtorArgs is not [_, ..]
 				? null
 				: $" : base({string.Join(", ", from x in baseClassCtorArgs select x.ParameterName)})";
 

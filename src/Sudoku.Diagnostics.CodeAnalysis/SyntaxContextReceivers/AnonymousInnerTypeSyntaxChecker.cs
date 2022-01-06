@@ -162,12 +162,7 @@ public sealed partial class AnonymousInnerTypeSyntaxChecker : ISyntaxContextRece
 			case GenericNameSyntax:
 			{
 				var symbol = semanticModel.GetTypeInfo(node, _cancellationToken).Type!;
-				if (
-					symbol is not INamedTypeSymbol
-					{
-						TypeArguments: { Length: not 0 } typeArguments
-					}
-				)
+				if (symbol is not INamedTypeSymbol { TypeArguments: [_, ..] typeArguments })
 				{
 					return;
 				}
@@ -193,7 +188,7 @@ public sealed partial class AnonymousInnerTypeSyntaxChecker : ISyntaxContextRece
 					symbol is not INamedTypeSymbol
 					{
 						TypeKind: TypeKind.Struct,
-						TypeArguments: { Length: not 0 } typeArguments
+						TypeArguments: [_, ..] typeArguments
 					}
 				)
 				{
@@ -217,12 +212,7 @@ public sealed partial class AnonymousInnerTypeSyntaxChecker : ISyntaxContextRece
 			case ArrayTypeSyntax { ElementType: var elementType }:
 			{
 				var symbol = semanticModel.GetTypeInfo(elementType, _cancellationToken).Type!;
-				if (
-					symbol is not INamedTypeSymbol
-					{
-						TypeArguments: { Length: not 0 } typeArguments
-					}
-				)
+				if (symbol is not INamedTypeSymbol { TypeArguments: [_, ..] typeArguments })
 				{
 					return;
 				}

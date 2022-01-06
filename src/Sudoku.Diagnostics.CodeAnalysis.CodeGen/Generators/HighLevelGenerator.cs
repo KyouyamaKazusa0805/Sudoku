@@ -32,7 +32,7 @@ public sealed partial class HighLevelGenerator : ISourceGenerator
 		foreach (var (shortName, fullName, diagnosticIds, attributeData) in shortNames)
 		{
 			bool isDebuggingMode =
-				attributeData.NamedArguments is { Length: >= 1 } namedArguments
+				attributeData.NamedArguments is [_, ..] namedArguments
 				&& namedArguments.FirstOrDefault(static d => d.Key == nameof(SyntaxCheckerAttribute.Debugging)) is
 				{
 					Key: not null,

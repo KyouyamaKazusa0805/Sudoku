@@ -15,7 +15,7 @@ internal static class AttributeDataExtensions
 	/// <returns>A <see cref="bool"/> result indicating whether the operation is successful.</returns>
 	public static bool TryGetNamedArgument(this AttributeData @this, string namedArg, out TypedConstant result)
 	{
-		if (@this is not { NamedArguments: { Length: not 0 } namedArgs })
+		if (@this is not { NamedArguments: [_, ..] namedArgs })
 		{
 			goto ReturnDefault;
 		}

@@ -33,7 +33,7 @@ public sealed partial class RestrictArgumentsSyntaxChecker : ISyntaxContextRecei
 		if (
 			methodSymbol is not IMethodSymbol
 			{
-				Parameters: { Length: not 0 } parameters,
+				Parameters: [_, ..] parameters,
 				IsAbstract: false,
 				IsExtern: false
 			}

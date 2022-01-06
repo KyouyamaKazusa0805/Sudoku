@@ -9,10 +9,7 @@ public sealed partial class CallerArgumentExpressionAttributeSyntaxChecker : ISy
 		if (
 			context is not
 			{
-				Node: InvocationExpressionSyntax
-				{
-					ArgumentList.Arguments: { Count: >= 1 } argumentNodes
-				} node,
+				Node: InvocationExpressionSyntax { ArgumentList.Arguments: [_, ..] argumentNodes } node,
 				SemanticModel: { Compilation: var compilation } semanticModel
 			}
 		)
@@ -21,23 +18,16 @@ public sealed partial class CallerArgumentExpressionAttributeSyntaxChecker : ISy
 		}
 
 		var operation = semanticModel.GetOperation(node, _cancellationToken);
-		if (
-			operation is not IInvocationOperation
-			{
-				TargetMethod: var methodSymbol,
-				Arguments: { Length: >= 1 } arguments
-			}
-		)
+		if (operation is not IInvocationOperation { TargetMethod: var methodSymbol, Arguments: [_, ..] arguments })
 		{
 			return;
 		}
 
-		var stringSymbol = compilation.GetSpecialType(SpecialType.System_String);
 		var attribute = compilation.GetTypeByMetadataName("System.Runtime.CompilerServices.CallerArgumentExpressionAttribute")!;
 		foreach (var argument in argumentNodes)
 		{
 			var argumentOperation = semanticModel.GetOperation(argument, _cancellationToken);
-			if (argumentOperation is not IArgumentOperation { Parameter: { Type: var parameterType } parameter })
+			if (argumentOperation is not IArgumentOperation { Parameter: { Type.SpecialType: var specialType } parameter })
 			{
 				continue;
 			}
@@ -61,7 +51,7 @@ public sealed partial class CallerArgumentExpressionAttributeSyntaxChecker : ISy
 				continue;
 			}
 
-			if (!SymbolEqualityComparer.Default.Equals(stringSymbol, parameterType))
+			if (specialType != SpecialType.System_String)
 			{
 				Diagnostics.Add(Diagnostic.Create(SCA0408, argument.GetLocation(), messageArgs: null));
 				continue;

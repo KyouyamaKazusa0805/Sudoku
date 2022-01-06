@@ -32,7 +32,7 @@ public sealed class GlobalConfigValueGenerator : ISourceGenerator
 			return;
 		}
 
-		if (propertyGroupList.Cast<XmlNode>().FirstOrDefault() is not { ChildNodes: { Count: not 0 } elements })
+		if (propertyGroupList.Cast<XmlNode>().FirstOrDefault() is not { ChildNodes: [_, ..] elements })
 		{
 			return;
 		}

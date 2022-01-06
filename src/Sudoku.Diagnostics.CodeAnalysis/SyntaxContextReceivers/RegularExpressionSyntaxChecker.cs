@@ -9,7 +9,7 @@ public sealed partial class RegularExpressionSyntaxChecker : ISyntaxContextRecei
 		if (
 			context is not
 			{
-				Node: FieldDeclarationSyntax { Declaration.Variables: { Count: not 0 } variables },
+				Node: FieldDeclarationSyntax { Declaration.Variables: [_, ..] variables },
 				SemanticModel: { Compilation: var compilation } semanticModel
 			}
 		)
@@ -42,7 +42,7 @@ public sealed partial class RegularExpressionSyntaxChecker : ISyntaxContextRecei
 				symbol is not IFieldSymbol
 				{
 					Type: { SpecialType: var specialTypeOfTypeSymbol },
-					DeclaringSyntaxReferences: { Length: not 0 } syntaxReferences,
+					DeclaringSyntaxReferences: [_, ..],
 					IsConst: var isConstant,
 					HasConstantValue: var hasConstant,
 					ConstantValue: var constantValue

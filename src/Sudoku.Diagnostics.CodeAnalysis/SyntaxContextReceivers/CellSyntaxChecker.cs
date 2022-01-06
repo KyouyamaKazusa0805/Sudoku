@@ -375,7 +375,11 @@ public sealed partial class CellSyntaxChecker : ISyntaxContextReceiver
 			operation is not IPropertyReferenceOperation
 			{
 				Property.ContainingType: var containingTypeSymbol,
-				Arguments: { Length: 1 } arguments
+				Arguments: [
+				{
+					ConstantValue: { HasValue: true, Value: >= 0 and < 81 },
+					Syntax: var argumentSyntaxNode
+				}] arguments
 			}
 		)
 		{
@@ -383,18 +387,6 @@ public sealed partial class CellSyntaxChecker : ISyntaxContextReceiver
 		}
 
 		if (!SymbolEqualityComparer.Default.Equals(containingTypeSymbol, cellsSymbol))
-		{
-			return;
-		}
-
-		var argument = arguments[0];
-		if (
-			argument is not
-			{
-				ConstantValue: { HasValue: true, Value: >= 0 and < 81 },
-				Syntax: var argumentSyntaxNode
-			}
-		)
 		{
 			return;
 		}

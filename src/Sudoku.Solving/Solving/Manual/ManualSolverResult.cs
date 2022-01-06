@@ -276,7 +276,7 @@ public sealed unsafe partial record ManualSolverResult(in Grid OriginalPuzzle) :
 	/// <seealso cref="Steps"/>
 	private decimal Evaluator(delegate*<IEnumerable<Step>, delegate*<Step, decimal>, decimal> executor, decimal d)
 	{
-		return Steps is { Length: not 0 } ? executor(Steps, &f) : d;
+		return Steps is [_, ..] ? executor(Steps, &f) : d;
 
 
 		static decimal f(Step step) => step.ShowDifficulty ? step.Difficulty : 0;

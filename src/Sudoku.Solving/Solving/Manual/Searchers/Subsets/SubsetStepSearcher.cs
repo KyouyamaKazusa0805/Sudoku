@@ -37,7 +37,7 @@ public sealed unsafe class SubsetStepSearcher : ISubsetStepSearcher
 			// Naked subsets.
 			for (int region = 0; region < 27; region++)
 			{
-				if ((RegionMaps[region] & EmptyMap) is not { Count: >= 2 } currentEmptyMap)
+				if ((RegionMaps[region] & EmptyMap) is not [_, _, ..] currentEmptyMap)
 				{
 					continue;
 				}

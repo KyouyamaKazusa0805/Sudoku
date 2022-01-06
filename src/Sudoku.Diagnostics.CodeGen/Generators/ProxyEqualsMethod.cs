@@ -126,7 +126,7 @@ partial {typeKind}{typeName}{genericParameterList}
 			var attribute = compilation.GetTypeByMetadataName(typeof(ProxyEqualityAttribute).FullName);
 			var methodSymbol = typeSymbol.GetMembers().OfType<IMethodSymbol>().SingleOrDefault(
 				methodSymbol =>
-					methodSymbol is { ReturnType: var returnType, Parameters: { Length: 2 } parameters }
+					methodSymbol is { ReturnType: var returnType, Parameters: [_, _] parameters }
 						&& methodSymbol.GetAttributes() is var attributesData
 						&& attributesData.Any(a => SymbolEqualityComparer.Default.Equals(a.AttributeClass, attribute))
 						&& SymbolEqualityComparer.Default.Equals(returnType, @bool)

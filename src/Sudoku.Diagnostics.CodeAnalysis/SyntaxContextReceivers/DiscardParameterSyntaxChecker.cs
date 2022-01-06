@@ -21,7 +21,7 @@ public sealed partial class DiscardParameterSyntaxChecker : ISyntaxContextReceiv
 		var attribute = compilation.GetTypeByMetadataName(typeof(IsDiscardAttribute).FullName);
 
 		var symbol = semanticModel.GetDeclaredSymbol(node, _cancellationToken);
-		if (symbol is not IMethodSymbol { Parameters: { Length: not 0 } parameters })
+		if (symbol is not IMethodSymbol { Parameters: [_, ..] parameters })
 		{
 			return;
 		}
@@ -108,28 +108,28 @@ public sealed partial class DiscardParameterSyntaxChecker : ISyntaxContextReceiv
 					//   3) a static local function    'static void f(T v) { }'
 					//
 					// If so, the whole expression should be skipped the checking.
-					case SimpleLambdaExpressionSyntax { Modifiers: { Count: not 0 } modifiers } d
+					case SimpleLambdaExpressionSyntax { Modifiers: [_, ..] modifiers } d
 					when modifiers.Any(static m => m is { RawKind: (int)SyntaxKind.StaticKeyword }):
 					{
 						// Skip the whole expression.
 						skipNodes(d, ref i);
 						continue;
 					}
-					case ParenthesizedLambdaExpressionSyntax { Modifiers: { Count: not 0 } modifiers } d
+					case ParenthesizedLambdaExpressionSyntax { Modifiers: [_, ..] modifiers } d
 					when modifiers.Any(static m => m is { RawKind: (int)SyntaxKind.StaticKeyword }):
 					{
 						// Skip the whole expression.
 						skipNodes(d, ref i);
 						continue;
 					}
-					case AnonymousFunctionExpressionSyntax { Modifiers: { Count: not 0 } modifiers } d
+					case AnonymousFunctionExpressionSyntax { Modifiers: [_, ..] modifiers } d
 					when modifiers.Any(static m => m is { RawKind: (int)SyntaxKind.StaticKeyword }):
 					{
 						// Skip the whole expression.
 						skipNodes(d, ref i);
 						continue;
 					}
-					case LocalFunctionStatementSyntax { Modifiers: { Count: not 0 } modifiers } d
+					case LocalFunctionStatementSyntax { Modifiers: [_, ..] modifiers } d
 					when modifiers.Any(static m => m is { RawKind: (int)SyntaxKind.StaticKeyword }):
 					{
 						// Skip the whole expression.
