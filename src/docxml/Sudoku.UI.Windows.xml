@@ -47,6 +47,63 @@
             GetXmlnsDefinitions()
             </summary>
         </member>
+        <member name="T:Sudoku.UI.Windows.Commands.Command">
+            <summary>
+            Defines a base type that handles a <see cref="T:System.Windows.Input.ICommand"/>.
+            </summary>
+            <seealso cref="T:System.Windows.Input.ICommand"/>
+        </member>
+        <member name="F:Sudoku.UI.Windows.Commands.Command._canExecute">
+            <summary>
+            The inner field to check the status.
+            </summary>
+        </member>
+        <member name="F:Sudoku.UI.Windows.Commands.Command._action">
+            <summary>
+            The inner field to handle the operation.
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Windows.Commands.Command.#ctor(,)">
+            <summary>
+            Initializes an instance via two methods specified as function pointers.
+            The first one is aiming to check whether the later operation can be executed
+            and the second one is aiming to execute the operation.
+            </summary>
+            <param name="canExecute">
+            The predicate to check whether the later operation can be executed at the current status.
+            </param>
+            <param name="action">The operation to be handled.</param>
+        </member>
+        <member name="M:Sudoku.UI.Windows.Commands.Command.#ctor(System.Predicate{System.Object},System.Action{System.Object})">
+            <summary>
+            Initializes an instance via two methods.
+            The first one is aiming to check whether the later operation can be executed
+            and the second one is aiming to execute the operation.
+            </summary>
+            <param name="canExecute">
+            The predicate to check whether the later operation can be executed at the current status.
+            </param>
+            <param name="action">The operation to be handled.</param>
+            <exception cref="T:System.ArgumentException">
+            Throws when the argument <paramref name="canExecute"/> or <paramref name="action"/>
+            holds more than 1 method to be invoked.
+            </exception>
+        </member>
+        <member name="E:Sudoku.UI.Windows.Commands.Command.CanExecuteChanged">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.UI.Windows.Commands.Command.RaiseCanExecuteChanged">
+            <summary>
+            Raise the event <see cref="E:Sudoku.UI.Windows.Commands.Command.CanExecuteChanged"/>.
+            </summary>
+            <seealso cref="E:Sudoku.UI.Windows.Commands.Command.CanExecuteChanged"/>
+        </member>
+        <member name="M:Sudoku.UI.Windows.Commands.Command.Execute(System.Object)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.UI.Windows.Commands.Command.CanExecute(System.Object)">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.UI.Windows.Controls.SudokuGridPane">
             <summary>
             Defines a pane that displays a sudoku grid.

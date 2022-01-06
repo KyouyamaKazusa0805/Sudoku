@@ -1,0 +1,9 @@
+{
+  // Visual Studio 2022 (version 17.1 preview 2) can't compile generic math operators,
+  // The temporary solution is set the rollForward property to disable.
+  // See https://github.com/dotnet/runtime/issues/62840
+  "sdk": {
+    "version": "6.0.100",
+    "rollForward": "disable"
+  }
+}
