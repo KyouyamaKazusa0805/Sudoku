@@ -4550,6 +4550,114 @@
             Indicates the line link.
             </summary>
         </member>
+        <member name="T:Sudoku.Data.Models.CellInfo">
+            <summary>
+            Defines a cell information in a sudoku grid.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Data.Models.CellInfo.#ctor(System.Byte,System.Int16)">
+            <summary>
+            Creates a <see cref="T:Sudoku.Data.Models.CellInfo"/> instance via the cell and the candidates list.
+            </summary>
+            <param name="cell">The current cell.</param>
+            <param name="candidatesMask">The candidates.</param>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+            Throws when the argument <paramref name="candidatesMask"/> is below 0 (or 0) or greater than 511.
+            </exception>
+        </member>
+        <member name="M:Sudoku.Data.Models.CellInfo.#ctor(System.Byte,System.Byte,Sudoku.Data.CellStatus)">
+            <summary>
+            Creates a <see cref="T:Sudoku.Data.Models.CellInfo"/> instance via the cell, digit and the current status.
+            </summary>
+            <param name="cell">Indicates the current cell.</param>
+            <param name="digit">Indicates the current digit.</param>
+            <param name="status">
+            Indicates the current status.
+            The value must be <see cref="F:Sudoku.Data.CellStatus.Modifiable"/> or <see cref="F:Sudoku.Data.CellStatus.Given"/>.
+            </param>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+            Throws when the argument <paramref name="status"/> is not <see cref="F:Sudoku.Data.CellStatus.Modifiable"/>
+            or <see cref="F:Sudoku.Data.CellStatus.Given"/>.
+            </exception>
+        </member>
+        <member name="P:Sudoku.Data.Models.CellInfo.Cell">
+            <summary>
+            Indicates the cell used. The value is between 0 and 80.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Data.Models.CellInfo.Digit">
+            <summary>
+            Indicates the digit filled in the current cell. If the current cell is empty, the value will be -1;
+            otherwise, this property will hold the real value.
+            </summary>
+            <remarks><i>
+            Please check the property <see cref="P:Sudoku.Data.Models.CellInfo.Status"/> before using this property.
+            </i></remarks>
+            <seealso cref="P:Sudoku.Data.Models.CellInfo.Status"/>
+        </member>
+        <member name="P:Sudoku.Data.Models.CellInfo.CandidatesList">
+            <summary>
+            Indicates the list of the candidates.
+            </summary>
+            <remarks><i>
+            Please check the property <see cref="P:Sudoku.Data.Models.CellInfo.Status"/> before using this property.
+            </i></remarks>
+            <seealso cref="P:Sudoku.Data.Models.CellInfo.Status"/>
+        </member>
+        <member name="P:Sudoku.Data.Models.CellInfo.Status">
+            <summary>
+            Indicates the current status of the cell.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Data.Models.CellInfo.Equals(System.Object)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Data.Models.CellInfo.Equals(Sudoku.Data.Models.CellInfo)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Data.Models.CellInfo.GetHashCode">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Data.Models.CellInfo.ToString">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Data.Models.CellInfo.System#IValueEquatable{Sudoku#Data#Models#CellInfo}#Equals(Sudoku.Data.Models.CellInfo@)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Data.Models.CellInfo.GetCellInfo(Sudoku.Data.Grid@,System.Int32)">
+            <summary>
+            Gets the <see cref="T:Sudoku.Data.Models.CellInfo"/> instance via the specified grid and the desired cell.
+            </summary>
+            <param name="grid">The grid to get the cell information.</param>
+            <param name="cell">The desired cell.</param>
+            <returns>The <see cref="T:Sudoku.Data.Models.CellInfo"/> result.</returns>
+            <exception cref="T:System.ArgumentException">
+            Throws when:
+            <list type="bullet">
+            <item>The current cell status is invalid.</item>
+            <item>At the current status the candidate mask isn't the power of 2.</item>
+            </list>
+            </exception>
+        </member>
+        <member name="M:Sudoku.Data.Models.CellInfo.op_Equality(Sudoku.Data.Models.CellInfo,Sudoku.Data.Models.CellInfo)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Data.Models.CellInfo.op_Inequality(Sudoku.Data.Models.CellInfo,Sudoku.Data.Models.CellInfo)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Data.Models.GridExtensions">
+            <summary>
+            Provides extension methods on <see cref="T:Sudoku.Data.Grid"/>.
+            </summary>
+            <seealso cref="T:Sudoku.Data.Grid"/>
+        </member>
+        <member name="M:Sudoku.Data.Models.GridExtensions.ToCellInfoList(Sudoku.Data.Grid@)">
+            <summary>
+            Converts the current grid into the <see cref="T:Sudoku.Data.Models.CellInfo"/> list.
+            </summary>
+            <param name="this">The current grid.</param>
+            <returns>The list of <see cref="T:Sudoku.Data.Models.CellInfo"/> instances.</returns>
+        </member>
         <member name="T:Sudoku.Data.Node">
             <summary>
             Defines a chain node, with basic information about the node. At the same time you can get the root node

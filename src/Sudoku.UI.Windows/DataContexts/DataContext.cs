@@ -16,5 +16,5 @@ public abstract class DataContext : INotifyPropertyChanged
 	/// </summary>
 	/// <param name="propertyName">Indicates the name of the property that triggers the event.</param>
 	/// <seealso cref="PropertyChanged"/>
-	public void RaiseNotification(string propertyName) => PropertyChanged?.Invoke(this, new(propertyName));
+	protected void RaiseNotification(string propertyName) => PropertyChanged?.Invoke(this, new(propertyName));
 }

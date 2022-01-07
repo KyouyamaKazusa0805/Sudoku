@@ -11,7 +11,5 @@
 		<dc:SudokuGridPaneDataContext />
 	</UserControl.DataContext>
 
-	<Grid>
-
-	</Grid>
+	<Grid x:Name="_GridBase" x:FieldModifier="Private" />
 </UserControl>

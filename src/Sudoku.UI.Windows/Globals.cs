@@ -1,4 +1,5 @@
 ﻿global using System;
+global using System.Collections.Specialized;
 global using System.ComponentModel;
 global using System.Runtime.CompilerServices;
 global using System.Windows.Input;
