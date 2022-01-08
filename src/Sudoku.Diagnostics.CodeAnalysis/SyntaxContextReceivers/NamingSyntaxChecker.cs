@@ -17,7 +17,7 @@ public sealed partial class NamingSyntaxChecker : ISyntaxContextReceiver
 			return;
 		}
 
-		Action<SyntaxNode, Compilation, SemanticModel> action = CheckLocalFunction;
+		var action = CheckLocalFunction;
 		action += CheckExtensionDeconstructionMethodFirstParameter;
 
 		action(node, compilation, semanticModel);
@@ -65,7 +65,13 @@ public sealed partial class NamingSyntaxChecker : ISyntaxContextReceiver
 		}
 
 		var symbol = semanticModel.GetDeclaredSymbol(node, _cancellationToken);
-		if (symbol is not IMethodSymbol { ReturnType.SpecialType: SpecialType.System_Void })
+		if (
+			symbol is not IMethodSymbol
+			{
+				IsExtensionMethod: true,
+				ReturnType.SpecialType: SpecialType.System_Void
+			}
+		)
 		{
 			return;
 		}

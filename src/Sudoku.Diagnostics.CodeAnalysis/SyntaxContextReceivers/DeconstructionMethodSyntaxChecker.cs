@@ -63,13 +63,18 @@ public sealed partial class DeconstructionMethodSyntaxChecker : ISyntaxContextRe
 					return;
 				}
 
-				if (parameters.Length == 0)
+				switch (parameters)
 				{
-					Diagnostics.Add(Diagnostic.Create(SCA0414, location, messageArgs: null));
-				}
-				else if (parameters.Length == 1)
-				{
-					Diagnostics.Add(Diagnostic.Create(SCA0415, location, messageArgs: null));
+					case []:
+					{
+						Diagnostics.Add(Diagnostic.Create(SCA0414, location, messageArgs: null));
+						break;
+					}
+					case [_]:
+					{
+						Diagnostics.Add(Diagnostic.Create(SCA0415, location, messageArgs: null));
+						break;
+					}
 				}
 
 				break;
@@ -117,7 +122,9 @@ public sealed partial class DeconstructionMethodSyntaxChecker : ISyntaxContextRe
 				methodAttributeData switch
 				{
 					null => true,
-					{ ConstructorArguments: [{ Value: EditorBrowsableState cArg }, ..] } when cArg == EditorBrowsableState.Always => true,
+					{
+						ConstructorArguments: [{ Value: EditorBrowsableState cArg }, ..]
+					} when cArg == EditorBrowsableState.Always => true,
 					_ => false
 				}
 			)
