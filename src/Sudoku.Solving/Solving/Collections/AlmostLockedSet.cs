@@ -3,8 +3,6 @@
 /// <summary>
 /// Encapsulates a normal almost locked set (ALS as its abberivation).
 /// </summary>
-[AutoDeconstruct(nameof(Region), nameof(DigitsMask), nameof(Map))]
-[AutoDeconstruct(nameof(IsBivalueCell), nameof(Region), nameof(DigitsMask), nameof(Map), nameof(PossibleEliminationSet), nameof(StrongLinksMask))]
 [AutoEquality(nameof(DigitsMask), nameof(Map))]
 public readonly partial struct AlmostLockedSet : IValueEquatable<AlmostLockedSet>
 {

@@ -180,9 +180,8 @@ public sealed unsafe class AlternatingInferenceChainStepSearcher : IAlternatingI
 				var makeOff = IChainStepSearcher.GetOnToOff(grid, p, yEnabled);
 				foreach (var pOff in makeOff)
 				{
-					var (sourceCell, sourceDigit, sourceIsOn) = source;
-					var (pOffCell, pOffDigit, _) = pOff;
-
+					_ = source is { Cell: var sourceCell, Digit: var sourceDigit, IsOn: var sourceIsOn };
+					_ = pOff is { Cell: var pOffCell, Digit: var pOffDigit };
 					if (sourceCell == pOffCell && sourceDigit == pOffDigit && sourceIsOn)
 					{
 						// Loopy contradiction (AIC) found.

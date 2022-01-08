@@ -36,11 +36,11 @@ public sealed unsafe class AlmostLockedSetsWWingStepSearcher : IAlmostLockedSets
 		for (int i = 0, length = alses.Length, iterationLength = length - 1; i < iterationLength; i++)
 		{
 			ref readonly var als1 = ref alses[i];
-			var (_, region1, mask1, map1, _, _) = als1;
+			_ = als1 is { Region: var region1, DigitsMask: var mask1, Map: var map1 };
 			for (int j = i + 1; j < length; j++)
 			{
 				ref readonly var als2 = ref alses[j];
-				var (_, region2, mask2, map2, _, _) = als2;
+				_ = als2 is { Region: var region2, DigitsMask: var mask2, Map: var map2 };
 
 				// Now we have got two ALSes to check.
 				// Firstly, we should check whether two ALSes overlap with each other.

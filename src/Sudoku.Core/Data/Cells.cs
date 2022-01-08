@@ -9,7 +9,6 @@
 /// and the <see langword="false"/> bit (0) is for the cell not containing
 /// the digit.
 /// </remarks>
-[AutoDeconstruct(nameof(_high), nameof(_low))]
 [AutoEquality(nameof(_high), nameof(_low))]
 [AutoGetEnumerator(nameof(Offsets), MemberConversion = "((IEnumerable<int>)@).*")]
 public unsafe partial struct Cells

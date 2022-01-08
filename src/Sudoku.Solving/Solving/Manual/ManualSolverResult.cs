@@ -4,8 +4,6 @@
 /// Provides the solver result after <see cref="ManualSolver"/> solves a puzzle.
 /// </summary>
 /// <param name="OriginalPuzzle"><inheritdoc/></param>
-[AutoDeconstruct(nameof(IsSolved), nameof(SolvingStepsCount), nameof(Steps))]
-[AutoDeconstruct(nameof(IsSolved), nameof(TotalDifficulty), nameof(MaxDifficulty), nameof(PearlDifficulty), nameof(DiamondDifficulty), nameof(OriginalPuzzle), nameof(Solution), nameof(ElapsedTime), nameof(SolvingStepsCount), nameof(Steps), nameof(StepGrids))]
 [AutoGetEnumerator(nameof(Steps), ExtraNamespaces = new[] { "System", "Sudoku.Solving.Manual" }, ReturnType = typeof(ImmutableArray<Step>.Enumerator), MemberConversion = "@.*")]
 public sealed unsafe partial record ManualSolverResult(in Grid OriginalPuzzle) : ISimpleFormattable, ISolverResult
 {
@@ -247,9 +245,10 @@ public sealed unsafe partial record ManualSolverResult(in Grid OriginalPuzzle) :
 	/// <exception cref="InvalidOperationException">
 	/// Throws when the list doesn't contain any valid instance to get.
 	/// </exception>
-	public Step this[Technique code] => IsSolved
-		? Steps.First(step => step.TechniqueCode == code)
-		: throw new InvalidOperationException("The specified instance can't get the result.");
+	public Step this[Technique code] =>
+		IsSolved
+			? Steps.First(step => step.TechniqueCode == code)
+			: throw new InvalidOperationException("The specified instance can't get the result.");
 
 
 	/// <inheritdoc/>

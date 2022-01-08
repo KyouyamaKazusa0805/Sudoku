@@ -47,7 +47,7 @@ partial struct Cells
 		/// <inheritdoc/>
 		public override void Write(Utf8JsonWriter writer, Cells value, JsonSerializerOptions options)
 		{
-			var (hi, lo) = value;
+			_ = value is { _low: var lo, _high: var hi };
 
 			writer.WriteStartObject();
 			writer.WriteNumber("HighBits", hi);

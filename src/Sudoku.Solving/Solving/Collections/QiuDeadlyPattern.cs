@@ -28,7 +28,6 @@
 /// <param name="BaseLine">The base-line cells that is <c>B</c> in that sketch.</param>
 /// <param name="Pair">The pair cells that is <c>P</c> in that sketch.</param>
 [AutoEquality(nameof(Pair), nameof(Square), nameof(BaseLine))]
-[AutoDeconstruct(nameof(Pair), nameof(Square), nameof(BaseLine))]
 public readonly partial record struct QiuDeadlyPattern(Cells Square, Cells BaseLine, Cells Pair) : IPattern<QiuDeadlyPattern>
 {
 	/// <inheritdoc/>

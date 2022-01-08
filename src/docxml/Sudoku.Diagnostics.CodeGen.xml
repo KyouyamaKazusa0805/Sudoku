@@ -4,24 +4,6 @@
         <name>Sudoku.Diagnostics.CodeGen</name>
     </assembly>
     <members>
-        <member name="T:Sudoku.Diagnostics.CodeGen.AutoDeconstructAttribute">
-            <summary>
-            Indicates an attribute that is used for a <see langword="class"/> or <see langword="struct"/>
-            as a mark that interacts with the source generator, to tell the source generator that
-            it'll generate the source code for deconstruction methods.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Diagnostics.CodeGen.AutoDeconstructAttribute.#ctor(System.String[])">
-            <summary>
-            Initializes an instance with the specified member list.
-            </summary>
-            <param name="members">The members.</param>
-        </member>
-        <member name="P:Sudoku.Diagnostics.CodeGen.AutoDeconstructAttribute.FieldOrPropertyList">
-            <summary>
-            All members to deconstruct.
-            </summary>
-        </member>
         <member name="T:Sudoku.Diagnostics.CodeGen.AutoDeconstructExtensionAttribute`1">
             <summary>
             Used on an assembly, to tell the compiler this assembly will generate a serial of extension methods called
@@ -60,7 +42,7 @@
         </member>
         <member name="M:Sudoku.Diagnostics.CodeGen.AutoDeconstructExtensionAttribute`1.#ctor(System.String[])">
             <summary>
-            Initializes an <see cref="T:Sudoku.Diagnostics.CodeGen.AutoDeconstructAttribute"/> instance with the members.
+            Initializes an <see cref="T:Sudoku.Diagnostics.CodeGen.AutoDeconstructExtensionAttribute`1"/> instance with the members.
             </summary>
             <param name="memberNames">The member names.</param>
         </member>
@@ -497,35 +479,6 @@
             </param>
         </member>
         <member name="M:Sudoku.Diagnostics.CodeGen.DefaultSyntaxContextReceiver.OnVisitSyntaxNode(Microsoft.CodeAnalysis.GeneratorSyntaxContext)">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Diagnostics.CodeGen.Generators.AutoDeconstruct">
-            <summary>
-            Defines a source generator that generates the source code for deconstruction methods.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.AutoDeconstruct.Execute(Microsoft.CodeAnalysis.GeneratorExecutionContext)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.AutoDeconstruct.Initialize(Microsoft.CodeAnalysis.GeneratorInitializationContext)">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Diagnostics.CodeGen.Generators.AutoDeconstruct.Receiver">
-            <summary>
-            Defines a syntax context receiver.
-            </summary>
-            <param name="CancellationToken">The cancellation token to cancel the operation.</param>
-        </member>
-        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.AutoDeconstruct.Receiver.#ctor(System.Threading.CancellationToken)">
-            <summary>
-            Defines a syntax context receiver.
-            </summary>
-            <param name="CancellationToken">The cancellation token to cancel the operation.</param>
-        </member>
-        <member name="P:Sudoku.Diagnostics.CodeGen.Generators.AutoDeconstruct.Receiver.Collection">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.AutoDeconstruct.Receiver.OnVisitSyntaxNode(Microsoft.CodeAnalysis.GeneratorSyntaxContext)">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Diagnostics.CodeGen.Generators.AutoEquality">

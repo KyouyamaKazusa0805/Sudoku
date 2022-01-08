@@ -7,10 +7,9 @@
 #if USE_TO_MASK_STRING_METHOD
 [DebuggerDisplay($@"{{{nameof(ToMaskString)}("".+:""),nq}}")]
 #else
-[DebuggerDisplay($@"{{{nameof(ToString)}("".+:""),nq}}")]	
+[DebuggerDisplay($@"{{{nameof(ToString)}("".+:""),nq}}")]
 #endif // !USE_TO_MASK_STRING_METHOD
 #endif // !DEBUG
-[AutoDeconstruct(nameof(EmptyCells), nameof(BivalueCells), nameof(CandidatesMap), nameof(DigitsMap), nameof(ValuesMap))]
 [AutoGetEnumerator(nameof(EnumerateCandidates), MemberConversion = "@()", ReturnType = typeof(CandidateCollectionEnumerator))]
 public unsafe partial struct Grid
 : IGrid<Grid>

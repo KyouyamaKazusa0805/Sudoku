@@ -89,7 +89,7 @@ public sealed unsafe class QiuDeadlyPatternStepSearcher : IQiuDeadlyPatternStepS
 		{
 			var pattern = Patterns[i];
 			bool isRow = i < length >> 1;
-			var (pair, square, baseLine) = pattern;
+			_ = pattern is { Pair: var pair, Square: var square, BaseLine: var baseLine };
 
 			// To check whether both two pair cells are empty.
 			int[] offsets = pair.ToArray();

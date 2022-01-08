@@ -27,11 +27,11 @@ public sealed unsafe class AlmostLockedSetsXyWingStepSearcher : IAlmostLockedSet
 		for (int i = 0, length = alses.Length, iterationLengthOuter = length - 1; i < iterationLengthOuter; i++)
 		{
 			ref readonly var als1 = ref alses[i];
-			var (_, mask1, map1) = als1;
+			_ = als1 is { DigitsMask: var mask1, Map: var map1 };
 			for (int j = i + 1; j < length; j++)
 			{
 				ref readonly var als2 = ref alses[j];
-				var (_, mask2, map2) = als2;
+				_ = als2 is { DigitsMask: var mask2, Map: var map2 };
 				var map = map1 | map2;
 				if (map.InOneRegion || !(map1 & map2).IsEmpty)
 				{
@@ -85,9 +85,9 @@ public sealed unsafe class AlmostLockedSetsXyWingStepSearcher : IAlmostLockedSet
 							? (als11, als22, als12)
 							: (als11, als21, als12);
 
-				var (_, aRegion, aMask, aMap, _, _) = a;
-				var (_, bRegion, bMask, bMap, _, _) = b;
-				var (_, cRegion, _, cMap, _, _) = c;
+				_ = a is { Region: var aRegion, DigitsMask: var aMask, Map: var aMap };
+				_ = b is { Region: var bRegion, DigitsMask: var bMask, Map: var bMap };
+				_ = c is { Region: var cRegion, Map: var cMap };
 				var map = aMap | bMap;
 				if (map == aMap || map == bMap)
 				{

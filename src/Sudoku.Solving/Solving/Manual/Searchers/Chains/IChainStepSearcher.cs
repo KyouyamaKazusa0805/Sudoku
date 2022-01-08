@@ -223,7 +223,7 @@ public unsafe interface IChainStepSearcher : IStepSearcher
 			// Second rule: If there's only two positions for this candidate, the other ont gets on.
 			for (var label = RegionLabel.Block; label <= RegionLabel.Column; label++)
 			{
-				var (pc, pd, _) = p;
+				_ = p is { Cell: var pc, Digit: var pd };
 				int region = RegionCalculator.ToRegion(pc, label);
 				var cells = (h(grid, pd, region, isDynamic, enableFastProperties) & RegionMaps[region]) - pc;
 				if (cells is [var onlyCell])

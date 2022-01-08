@@ -38,7 +38,7 @@
 public sealed class AutoDeconstructExtensionAttribute<T> : Attribute
 {
 	/// <summary>
-	/// Initializes an <see cref="AutoDeconstructAttribute"/> instance with the members.
+	/// Initializes an <see cref="AutoDeconstructExtensionAttribute{T}"/> instance with the members.
 	/// </summary>
 	/// <param name="memberNames">The member names.</param>
 	public AutoDeconstructExtensionAttribute(params string[] memberNames) => MemberNames = memberNames;

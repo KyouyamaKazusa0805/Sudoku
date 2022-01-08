@@ -23,8 +23,6 @@
 /// </para>
 /// </remarks>
 [AutoGetHashCode(nameof(Mask))]
-[AutoDeconstruct(nameof(Pair1), nameof(Pair2), nameof(CenterCells))]
-[AutoDeconstruct(nameof(Pair1Map), nameof(Pair2Map), nameof(CenterCellsMap), nameof(Map))]
 public readonly partial record struct UniquePolygonPattern(long Mask) : IPattern<UniquePolygonPattern>
 {
 	/// <summary>
@@ -104,6 +102,18 @@ public readonly partial record struct UniquePolygonPattern(long Mask) : IPattern
 		get => ((int)(Mask >> 49 & 127), (int)(Mask >> 42 & 127), (int)(Mask >> 35 & 127), (int)(Mask >> 28 & 127));
 	}
 
+
+	/// <summary>
+	/// Deconstruct the instance to multiple values.
+	/// </summary>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	[EditorBrowsable(EditorBrowsableState.Never)]
+	public void Deconstruct(out (int A, int B) pair1, out (int A, int B) pair2, out (int A, int B, int C, int D) centerCells)
+	{
+		pair1 = Pair1;
+		pair2 = Pair2;
+		centerCells = CenterCells;
+	}
 
 	/// <inheritdoc cref="object.ToString"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

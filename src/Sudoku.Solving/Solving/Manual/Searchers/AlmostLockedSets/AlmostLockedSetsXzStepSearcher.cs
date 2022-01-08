@@ -31,11 +31,11 @@ public sealed unsafe class AlmostLockedSetsXzStepSearcher : IAlmostLockedSetsXzS
 		for (int i = 0, length = alses.Length, iterationLengthOuter = length - 1; i < iterationLengthOuter; i++)
 		{
 			ref readonly var als1 = ref alses[i];
-			var (_, region1, mask1, map1, possibleElimMap1, _) = als1;
+			_ = als1 is { Region: var region1, DigitsMask: var mask1, Map: var map1, PossibleEliminationSet: var possibleElimMap1 };
 			for (int j = i + 1; j < length; j++)
 			{
 				ref readonly var als2 = ref alses[j];
-				var (_, region2, mask2, map2, possibleElimMap2, _) = als2;
+				_ = als2 is { Region: var region2, DigitsMask: var mask2, Map: var map2, PossibleEliminationSet: var possibleElimMap2 };
 				short xzMask = (short)(mask1 & mask2);
 				var map = map1 | map2;
 				var overlapMap = map1 & map2;

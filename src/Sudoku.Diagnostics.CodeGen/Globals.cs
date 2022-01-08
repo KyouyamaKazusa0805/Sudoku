@@ -18,11 +18,6 @@ global using AutoEqualityInfo = System.ValueTuple<
 	Microsoft.CodeAnalysis.AttributeData,
 	Microsoft.CodeAnalysis.SymbolOutputInfo
 >;
-global using AutoFormattableInfo = System.ValueTuple<
-	Microsoft.CodeAnalysis.INamedTypeSymbol,
-	Microsoft.CodeAnalysis.AttributeData,
-	Microsoft.CodeAnalysis.SymbolOutputInfo
->;
 global using AutoGetEnumeratorInfo = System.ValueTuple<
 	Microsoft.CodeAnalysis.INamedTypeSymbol,
 	Microsoft.CodeAnalysis.AttributeData,
@@ -43,11 +38,11 @@ global using ProxyEqualsMethodInfo = System.ValueTuple<
 	Microsoft.CodeAnalysis.SymbolOutputInfo,
 	string
 >;
-global using AutoDeconstructInfo = System.ValueTuple<
+global using AutoLambdaedDeconstructInfo = System.ValueTuple<
 	Microsoft.CodeAnalysis.INamedTypeSymbol,
 	System.Collections.Generic.IEnumerable<Microsoft.CodeAnalysis.AttributeData>,
 	Microsoft.CodeAnalysis.SymbolOutputInfo,
-	System.Collections.Generic.IReadOnlyCollection<Sudoku.Diagnostics.CodeGen.MemberDetail>
+	Sudoku.Diagnostics.CodeGen.MemberDetail[]
 >;
 global using AutoPrimaryConstructorInfo = System.ValueTuple<
 	Microsoft.CodeAnalysis.INamedTypeSymbol,
@@ -58,10 +53,4 @@ global using AutoPrimaryConstructorInfo = System.ValueTuple<
 	string?,
 	string,
 	System.ValueTuple<string>
->;
-global using AutoLambdaedDeconstructInfo = System.ValueTuple<
-	Microsoft.CodeAnalysis.INamedTypeSymbol,
-	System.Collections.Generic.IEnumerable<Microsoft.CodeAnalysis.AttributeData>,
-	Microsoft.CodeAnalysis.SymbolOutputInfo,
-	Sudoku.Diagnostics.CodeGen.MemberDetail[]
 >;

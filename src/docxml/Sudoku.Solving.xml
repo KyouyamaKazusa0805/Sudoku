@@ -368,16 +368,6 @@
             </remarks>
             <seealso cref="M:System.ArrayExtensions.AsRefEnumerable``1(``0[])"/>
         </member>
-        <member name="M:Sudoku.Solving.Collections.AlmostLockedSet.Deconstruct(System.Int32@,System.Int16@,Sudoku.Data.Cells@)">
-            <summary>
-            Deconstruct the instance into multiple elements.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Solving.Collections.AlmostLockedSet.Deconstruct(System.Boolean@,System.Int32@,System.Int16@,Sudoku.Data.Cells@,Sudoku.Data.Cells@,System.Int16[]@)">
-            <summary>
-            Deconstruct the instance into multiple elements.
-            </summary>
-        </member>
         <member name="M:Sudoku.Solving.Collections.AlmostLockedSet.Equals(System.Object)">
             <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
         </member>
@@ -506,11 +496,6 @@
             <exception cref="T:System.ArgumentException">
             Throws when two instances contains different eliminated reason.
             </exception>
-        </member>
-        <member name="M:Sudoku.Solving.Collections.ExocetElimination.Deconstruct(Sudoku.Data.Candidates@,Sudoku.Solving.Collections.ExocetEliminatedReason@)">
-            <summary>
-            Deconstruct the instance into multiple elements.
-            </summary>
         </member>
         <member name="M:Sudoku.Solving.Collections.ExocetElimination.Equals(Sudoku.Solving.Collections.ExocetElimination@)">
             <summary>
@@ -661,16 +646,6 @@
         <member name="M:Sudoku.Solving.Collections.ExocetPattern.System#IEquatable{Sudoku#Solving#Collections#ExocetPattern}#Equals(Sudoku.Solving.Collections.ExocetPattern)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Solving.Collections.ExocetPattern.Deconstruct(System.Int32@,System.Int32@,System.Int32@,System.Int32@,System.Int32@,System.Int32@)">
-            <summary>
-            Deconstruct the instance into multiple elements.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Solving.Collections.ExocetPattern.Deconstruct(System.Int32@,System.Int32@,System.Int32@,System.Int32@,System.Int32@,System.Int32@,Sudoku.Data.Cells@,Sudoku.Data.Cells@,Sudoku.Data.Cells@,Sudoku.Data.Cells@,Sudoku.Data.Cells@,Sudoku.Data.Cells@,Sudoku.Data.Cells@)">
-            <summary>
-            Deconstruct the instance into multiple elements.
-            </summary>
-        </member>
         <member name="M:Sudoku.Solving.Collections.ExocetPattern.Equals(System.Object)">
             <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
         </member>
@@ -783,11 +758,6 @@
         <member name="M:Sudoku.Solving.Collections.QiuDeadlyPattern.ToString">
             <inheritdoc cref="M:System.Object.ToString"/>
         </member>
-        <member name="M:Sudoku.Solving.Collections.QiuDeadlyPattern.Deconstruct(Sudoku.Data.Cells@,Sudoku.Data.Cells@,Sudoku.Data.Cells@)">
-            <summary>
-            Deconstruct the instance into multiple elements.
-            </summary>
-        </member>
         <member name="M:Sudoku.Solving.Collections.QiuDeadlyPattern.Equals(Sudoku.Solving.Collections.QiuDeadlyPattern@)">
             <summary>
             Indicates whether the current object is equal to another object of the same type.
@@ -887,18 +857,13 @@
             <b>If and only if</b> the fourth value in the returned quadruple is available.
             </remarks>
         </member>
-        <member name="M:Sudoku.Solving.Collections.UniquePolygonPattern.ToString">
-            <inheritdoc cref="M:System.Object.ToString"/>
-        </member>
         <member name="M:Sudoku.Solving.Collections.UniquePolygonPattern.Deconstruct(System.ValueTuple{System.Int32,System.Int32}@,System.ValueTuple{System.Int32,System.Int32}@,System.ValueTuple{System.Int32,System.Int32,System.Int32,System.Int32}@)">
             <summary>
-            Deconstruct the instance into multiple elements.
+            Deconstruct the instance to multiple values.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Collections.UniquePolygonPattern.Deconstruct(Sudoku.Data.Cells@,Sudoku.Data.Cells@,Sudoku.Data.Cells@,Sudoku.Data.Cells@)">
-            <summary>
-            Deconstruct the instance into multiple elements.
-            </summary>
+        <member name="M:Sudoku.Solving.Collections.UniquePolygonPattern.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
         </member>
         <member name="M:Sudoku.Solving.Collections.UniquePolygonPattern.GetHashCode">
             <inheritdoc cref="M:System.Object.GetHashCode"/>
@@ -2078,16 +2043,6 @@
             </summary>
             <param name="options">The options.</param>
             <returns>The result.</returns>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.ManualSolverResult.Deconstruct(System.Boolean@,System.Int32@,System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Manual.Step}@)">
-            <summary>
-            Deconstruct the instance into multiple elements.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.ManualSolverResult.Deconstruct(System.Boolean@,System.Decimal@,System.Decimal@,System.Decimal@,System.Decimal@,Sudoku.Data.Grid@,Sudoku.Data.Grid@,System.TimeSpan@,System.Int32@,System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Manual.Step}@,System.Collections.Immutable.ImmutableArray{Sudoku.Data.Grid}@)">
-            <summary>
-            Deconstruct the instance into multiple elements.
-            </summary>
         </member>
         <member name="M:Sudoku.Solving.Manual.ManualSolverResult.GetEnumerator">
             <summary>

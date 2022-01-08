@@ -8,7 +8,6 @@
 /// <param name="Reason">Indicates the reason why these candidates can be eliminated.</param>
 /// <seealso cref="IJuniorExocetStepSearcher"/>
 /// <seealso cref="ISeniorExocetStepSearcher"/>
-[AutoDeconstruct(nameof(Eliminations), nameof(Reason))]
 [AutoGetHashCode(nameof(Eliminations), nameof(Reason))]
 [AutoEquality(nameof(Eliminations), nameof(Reason))]
 [AutoGetEnumerator("@", MemberConversion = $"@.{nameof(AsSpan)}().*", ReturnType = typeof(ReadOnlySpan<Conclusion>.Enumerator))]
@@ -70,9 +69,8 @@ public readonly partial record struct ExocetElimination(in Candidates Eliminatio
 	/// </exception>
 	public static unsafe ExocetElimination operator |(in ExocetElimination left, in ExocetElimination right)
 	{
-		var (le, lr) = left;
-		var (re, rr) = right;
-
+		_ = left is { Eliminations: var le, Reason: var lr };
+		_ = right is { Eliminations: var re, Reason: var rr };
 		if (lr != rr)
 		{
 			throw new ArgumentException("Two arguments should contains same eliminated reason.");

@@ -56,7 +56,24 @@ partial record ManualSolverResult
 		public string ToString(SolverResultFormattingOptions options)
 		{
 			// Get all information.
-			var (hasSolved, total, max, pearl, diamond, puzzle, solution, elapsed, stepsCount, steps, _) = Result;
+			if (
+				Result is not
+				{
+					IsSolved: var isSolved,
+					TotalDifficulty: var total,
+					MaxDifficulty: var max,
+					PearlDifficulty: var pearl,
+					DiamondDifficulty: var diamond,
+					OriginalPuzzle: var puzzle,
+					Solution: var solution,
+					ElapsedTime: var elapsed,
+					SolvingStepsCount: var stepsCount,
+					Steps: var steps
+				}
+			)
+			{
+				throw new();
+			}
 
 			// Print header.
 			var sb = new StringHandler();
@@ -204,7 +221,7 @@ partial record ManualSolverResult
 
 			// Print the elapsed time.
 			sb.Append(ResourceDocumentManager.Shared["analysisResultPuzzleHas"]);
-			sb.AppendWhen(hasSolved, ResourceDocumentManager.Shared["analysisResultNot"]);
+			sb.AppendWhen(isSolved, ResourceDocumentManager.Shared["analysisResultNot"]);
 			sb.Append(ResourceDocumentManager.Shared["analysisResultBeenSolved"]);
 			sb.AppendLine();
 			sb.Append(ResourceDocumentManager.Shared["analysisResultTimeElapsed"]);

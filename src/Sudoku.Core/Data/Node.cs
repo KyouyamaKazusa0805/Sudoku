@@ -36,7 +36,6 @@
 /// <param name="Mask">Indicates the mask that handles and stores the basic information of the current node.</param>
 [AutoEquality(nameof(Mask))]
 [AutoDeconstructLambda(nameof(Candidate), nameof(IsOn))]
-[AutoDeconstruct(nameof(Cell), nameof(Digit), nameof(IsOn))]
 public unsafe partial record struct Node(int Mask) : IValueEquatable<Node>
 {
 	/// <summary>
@@ -126,7 +125,6 @@ public unsafe partial record struct Node(int Mask) : IValueEquatable<Node>
 	/// </remarks>
 	public readonly bool IsOn
 	{
-		[LambdaBody]
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => (Mask >> 16 & 1) != 0;
 	}
