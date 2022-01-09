@@ -12,8 +12,7 @@
 /// <param name="To">Indicates the cell that is end cell.</param>
 /// <param name="Digit">Indicates the digit used.</param>
 /// <param name="Map">Indicates the pair of maps used.</param>
-[AutoEquality(nameof(Map), nameof(Digit))]
-public readonly partial record struct ConjugatePair(int From, int To, int Digit, in Cells Map)
+public readonly record struct ConjugatePair(int From, int To, int Digit, in Cells Map)
 : IValueEquatable<ConjugatePair>
 {
 	/// <summary>
@@ -57,6 +56,19 @@ public readonly partial record struct ConjugatePair(int From, int To, int Digit,
 	}
 
 
+	/// <summary>
+	/// Determine whether the two conjugate pairs are same.
+	/// </summary>
+	/// <param name="other">The other instance to compare.</param>
+	/// <returns>A <see cref="bool"/> result.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public bool Equals(in ConjugatePair other) => Map == other.Map && Digit == other.Digit;
+
+	/// <inheritdoc cref="object.GetHashCode"/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public override int GetHashCode() => HashCode.Combine(Map, Digit);
+
 	/// <inheritdoc cref="object.ToString"/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public override string ToString() => $"{new Cells { From }} == {new Cells { To }}({Digit + 1})";
 }

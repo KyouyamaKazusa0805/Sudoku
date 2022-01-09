@@ -22,12 +22,13 @@
 /// <seealso cref="ConclusionType.Elimination"/>
 [AutoDeconstructLambda(nameof(ConclusionType), nameof(Candidate))]
 [AutoDeconstructLambda(nameof(ConclusionType), nameof(Cell), nameof(Digit))]
-[AutoEquality(nameof(ConclusionType), nameof(Cell), nameof(Digit))]
 public readonly partial record struct Conclusion(int Mask)
 : IComparable<Conclusion>
+, IComparisonOperators<Conclusion, Conclusion>
+, IEqualityOperators<Conclusion, Conclusion>
 , IEquatable<Conclusion>
-, IValueEquatable<Conclusion>
 , IValueComparable<Conclusion>
+, IValueEquatable<Conclusion>
 {
 	/// <summary>
 	/// Initializes an instance with a conclusion type and a candidate offset.
@@ -137,6 +138,12 @@ public readonly partial record struct Conclusion(int Mask)
 
 	/// <inheritdoc/>
 	bool IValueEquatable<Conclusion>.Equals(in Conclusion other) => GetHashCode() == other.GetHashCode();
+
+	/// <inheritdoc/>
+	int IComparable.CompareTo(object? obj) =>
+		obj is not Conclusion comparer
+			? throw new ArgumentException("The argument must be of type 'Conclusion'", nameof(obj))
+			: CompareTo(comparer);
 
 	/// <inheritdoc/>
 	int IValueComparable<Conclusion>.CompareTo(in Conclusion other) => GetHashCode() - other.GetHashCode();

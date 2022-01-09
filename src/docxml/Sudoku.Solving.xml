@@ -329,6 +329,17 @@
             as a <see cref="T:System.Int16"/> mask of 9 bits indicating which bits used.
             </summary>
         </member>
+        <member name="M:Sudoku.Solving.Collections.AlmostLockedSet.Equals(System.Object)">
+            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
+        </member>
+        <member name="M:Sudoku.Solving.Collections.AlmostLockedSet.Equals(Sudoku.Solving.Collections.AlmostLockedSet@)">
+            <summary>
+            Determine whether the specified <see cref="T:Sudoku.Solving.Collections.AlmostLockedSet"/> instance holds the same
+            <see cref="P:Sudoku.Solving.Collections.AlmostLockedSet.DigitsMask"/> and <see cref="P:Sudoku.Solving.Collections.AlmostLockedSet.Map"/> property values as the current instance.
+            </summary>
+            <param name="other">The instance to compare.</param>
+            <returns>A <see cref="T:System.Boolean"/> result.</returns>
+        </member>
         <member name="M:Sudoku.Solving.Collections.AlmostLockedSet.ContainsDigit(Sudoku.Data.Grid@,System.Int32,Sudoku.Data.Cells@)">
             <summary>
             Indicates whether the specified grid contains the digit.
@@ -368,33 +379,22 @@
             </remarks>
             <seealso cref="M:System.ArrayExtensions.AsRefEnumerable``1(``0[])"/>
         </member>
-        <member name="M:Sudoku.Solving.Collections.AlmostLockedSet.Equals(System.Object)">
-            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
-        </member>
-        <member name="M:Sudoku.Solving.Collections.AlmostLockedSet.Equals(Sudoku.Solving.Collections.AlmostLockedSet@)">
-            <summary>
-            Indicates whether the current object is equal to another object of the same type.
-            </summary>
-            <param name="other">An object to compare with this object.</param>
-            <returns>
-            <see langword="true"/> if the current object is equal to the other parameter;
-            otherwise, <see langword="false"/>.
-            </returns>
-        </member>
         <member name="M:Sudoku.Solving.Collections.AlmostLockedSet.op_Equality(Sudoku.Solving.Collections.AlmostLockedSet@,Sudoku.Solving.Collections.AlmostLockedSet@)">
             <summary>
-            Determines whether the two instances contain a same value.
+            Determine whether two <see cref="T:Sudoku.Solving.Collections.AlmostLockedSet"/>s hold a same <see cref="P:Sudoku.Solving.Collections.AlmostLockedSet.DigitsMask"/>
+            and <see cref="P:Sudoku.Solving.Collections.AlmostLockedSet.Map"/> property values.
             </summary>
-            <param name="left">The left-side-operator instance to compare.</param>
-            <param name="right">The right-side-operator instance to compare.</param>
+            <param name="left">The left-side instance to compare.</param>
+            <param name="right">The right-side instance to compare.</param>
             <returns>A <see cref="T:System.Boolean"/> result.</returns>
         </member>
         <member name="M:Sudoku.Solving.Collections.AlmostLockedSet.op_Inequality(Sudoku.Solving.Collections.AlmostLockedSet@,Sudoku.Solving.Collections.AlmostLockedSet@)">
             <summary>
-            Determines whether the two instances don't contain a same value.
+            Determine whether two <see cref="T:Sudoku.Solving.Collections.AlmostLockedSet"/>s don't hold a same <see cref="P:Sudoku.Solving.Collections.AlmostLockedSet.DigitsMask"/>
+            and <see cref="P:Sudoku.Solving.Collections.AlmostLockedSet.Map"/> property values.
             </summary>
-            <param name="left">The left-side-operator instance to compare.</param>
-            <param name="right">The right-side-operator instance to compare.</param>
+            <param name="left">The left-side instance to compare.</param>
+            <param name="right">The right-side instance to compare.</param>
             <returns>A <see cref="T:System.Boolean"/> result.</returns>
         </member>
         <member name="T:Sudoku.Solving.Collections.ExocetEliminatedReason">
@@ -472,6 +472,17 @@
             Indicates the header of the reason.
             </summary>
         </member>
+        <member name="M:Sudoku.Solving.Collections.ExocetElimination.Equals(Sudoku.Solving.Collections.ExocetElimination@)">
+            <summary>
+            Determine whether the specified <see cref="T:Sudoku.Solving.Collections.ExocetElimination"/> instance holds a same set of eliminations
+            and the eliminated reason as the current instance.
+            </summary>
+            <param name="other">The instance to compare.</param>
+            <returns>A <see cref="T:System.Boolean"/> result.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.Collections.ExocetElimination.GetHashCode">
+            <inheritdoc/>
+        </member>
         <member name="M:Sudoku.Solving.Collections.ExocetElimination.ToString">
             <inheritdoc/>
         </member>
@@ -497,24 +508,11 @@
             Throws when two instances contains different eliminated reason.
             </exception>
         </member>
-        <member name="M:Sudoku.Solving.Collections.ExocetElimination.Equals(Sudoku.Solving.Collections.ExocetElimination@)">
-            <summary>
-            Indicates whether the current object is equal to another object of the same type.
-            </summary>
-            <param name="other">An object to compare with this object.</param>
-            <returns>
-            <see langword="true"/> if the current object is equal to the other parameter;
-            otherwise, <see langword="false"/>.
-            </returns>
-        </member>
         <member name="M:Sudoku.Solving.Collections.ExocetElimination.GetEnumerator">
             <summary>
             Returns an enumerator that iterates through the collection.
             </summary>
             <returns>An enumerator that can be used to iterate through the collection.</returns>
-        </member>
-        <member name="M:Sudoku.Solving.Collections.ExocetElimination.GetHashCode">
-            <inheritdoc cref="M:System.Object.GetHashCode"/>
         </member>
         <member name="T:Sudoku.Solving.Collections.ExocetPattern">
             <summary>
@@ -640,43 +638,38 @@
             Indicates the target cells.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Collections.ExocetPattern.ToString">
-            <inheritdoc cref="M:System.Object.ToString"/>
-        </member>
-        <member name="M:Sudoku.Solving.Collections.ExocetPattern.System#IEquatable{Sudoku#Solving#Collections#ExocetPattern}#Equals(Sudoku.Solving.Collections.ExocetPattern)">
-            <inheritdoc/>
-        </member>
         <member name="M:Sudoku.Solving.Collections.ExocetPattern.Equals(System.Object)">
             <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
         </member>
         <member name="M:Sudoku.Solving.Collections.ExocetPattern.Equals(Sudoku.Solving.Collections.ExocetPattern@)">
             <summary>
-            Indicates whether the current object is equal to another object of the same type.
+            Determine whether the specified <see cref="T:Sudoku.Solving.Collections.ExocetPattern"/> instance holds the same cell maps
+            as the current instance.
             </summary>
-            <param name="other">An object to compare with this object.</param>
-            <returns>
-            <see langword="true"/> if the current object is equal to the other parameter;
-            otherwise, <see langword="false"/>.
-            </returns>
-        </member>
-        <member name="M:Sudoku.Solving.Collections.ExocetPattern.op_Equality(Sudoku.Solving.Collections.ExocetPattern@,Sudoku.Solving.Collections.ExocetPattern@)">
-            <summary>
-            Determines whether the two instances contain a same value.
-            </summary>
-            <param name="left">The left-side-operator instance to compare.</param>
-            <param name="right">The right-side-operator instance to compare.</param>
-            <returns>A <see cref="T:System.Boolean"/> result.</returns>
-        </member>
-        <member name="M:Sudoku.Solving.Collections.ExocetPattern.op_Inequality(Sudoku.Solving.Collections.ExocetPattern@,Sudoku.Solving.Collections.ExocetPattern@)">
-            <summary>
-            Determines whether the two instances don't contain a same value.
-            </summary>
-            <param name="left">The left-side-operator instance to compare.</param>
-            <param name="right">The right-side-operator instance to compare.</param>
+            <param name="other">The instance to compare.</param>
             <returns>A <see cref="T:System.Boolean"/> result.</returns>
         </member>
         <member name="M:Sudoku.Solving.Collections.ExocetPattern.GetHashCode">
             <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="M:Sudoku.Solving.Collections.ExocetPattern.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
+        <member name="M:Sudoku.Solving.Collections.ExocetPattern.op_Equality(Sudoku.Solving.Collections.ExocetPattern@,Sudoku.Solving.Collections.ExocetPattern@)">
+            <summary>
+            Determine whether two <see cref="T:Sudoku.Solving.Collections.ExocetPattern"/>s hold same cell map sets.
+            </summary>
+            <param name="left">The left-side instance to compare.</param>
+            <param name="right">The right-side instance to compare.</param>
+            <returns>A <see cref="T:System.Boolean"/> result.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.Collections.ExocetPattern.op_Inequality(Sudoku.Solving.Collections.ExocetPattern@,Sudoku.Solving.Collections.ExocetPattern@)">
+            <summary>
+            Determine whether two <see cref="T:Sudoku.Solving.Collections.ExocetPattern"/>s don't hold same cell map sets.
+            </summary>
+            <param name="left">The left-side instance to compare.</param>
+            <param name="right">The right-side instance to compare.</param>
+            <returns>A <see cref="T:System.Boolean"/> result.</returns>
         </member>
         <member name="M:Sudoku.Solving.Collections.ExocetPattern.Deconstruct(Sudoku.Data.Cells@,Sudoku.Data.Cells@,Sudoku.Data.Cells@)">
             <summary>
@@ -755,18 +748,19 @@
         <member name="P:Sudoku.Solving.Collections.QiuDeadlyPattern.Map">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Solving.Collections.QiuDeadlyPattern.ToString">
-            <inheritdoc cref="M:System.Object.ToString"/>
-        </member>
         <member name="M:Sudoku.Solving.Collections.QiuDeadlyPattern.Equals(Sudoku.Solving.Collections.QiuDeadlyPattern@)">
             <summary>
-            Indicates whether the current object is equal to another object of the same type.
+            Determine whether the specified <see cref="T:Sudoku.Solving.Collections.QiuDeadlyPattern"/> instance holds the same
+            cell maps as the current instance.
             </summary>
-            <param name="other">An object to compare with this object.</param>
-            <returns>
-            <see langword="true"/> if the current object is equal to the other parameter;
-            otherwise, <see langword="false"/>.
-            </returns>
+            <param name="other">The instance to compare.</param>
+            <returns>A <see cref="T:System.Boolean"/> result.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.Collections.QiuDeadlyPattern.GetHashCode">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Collections.QiuDeadlyPattern.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
         </member>
         <member name="T:Sudoku.Solving.Collections.UniquePolygonPattern">
             <summary>
@@ -9179,93 +9173,6 @@
             <summary>
             Marks on a property to tell the user the property is only used for the formatting.
             </summary>
-        </member>
-        <member name="T:Sudoku.Solving.Manual.Text.StepFormattingInfo`1">
-            <summary>
-            Provides with a tuple that holds the formatting information that is used for formatting a technique step.
-            </summary>
-            <typeparam name="TStep">Indicates the real type of the <see cref="P:Sudoku.Solving.Manual.Text.StepFormattingInfo`1.Step"/> instance.</typeparam>
-        </member>
-        <member name="F:Sudoku.Solving.Manual.Text.StepFormattingInfo`1._propertyValues">
-            <summary>
-            Indicates the result property values used.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Solving.Manual.Text.StepFormattingInfo`1._innerType">
-            <summary>
-            Indicates the inner <see cref="T:System.Type"/> instance that binds with the <typeparamref name="TStep"/>.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Text.StepFormattingInfo`1.#ctor(System.Int32,System.String,System.String[],`0)">
-            <summary>
-            Initializes an instance via those arguments.
-            </summary>
-            <exception cref="T:System.TypeInitializationException">
-            Throws when at least one property name in <paramref name="propertyNames"/>
-            can't be found in the instance <paramref name="step"/>.
-            The exception type is <see cref="T:System.TypeInitializationException"/>,
-            whose inner exception is <see cref="T:System.FormatException"/>.
-            </exception>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.Text.StepFormattingInfo`1.Lcid">
-            <summary>
-            Indicates the current LCID used.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.Text.StepFormattingInfo`1.Format">
-            <summary>
-            Indicates the format string.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.Text.StepFormattingInfo`1.LocalizedCultureName">
-            <summary>
-            Indicates the display name for the localized culture.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.Text.StepFormattingInfo`1.PropertyNames">
-            <summary>
-            Indicates the property names used.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.Text.StepFormattingInfo`1.Step">
-            <summary>
-            Indicates the step instance used.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Text.StepFormattingInfo`1.ToString">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Text.StepFormattingInfo`1.Equals(System.Object)">
-            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Text.StepFormattingInfo`1.Equals(Sudoku.Solving.Manual.Text.StepFormattingInfo{`0})">
-            <summary>
-            Indicates whether the current object is equal to another object of the same type.
-            </summary>
-            <param name="other">An object to compare with this object.</param>
-            <returns>
-            <see langword="true"/> if the current object is equal to the other parameter;
-            otherwise, <see langword="false"/>.
-            </returns>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Text.StepFormattingInfo`1.op_Equality(Sudoku.Solving.Manual.Text.StepFormattingInfo{`0},Sudoku.Solving.Manual.Text.StepFormattingInfo{`0})">
-            <summary>
-            Determines whether the two instances contain a same value.
-            </summary>
-            <param name="left">The left-side-operator instance to compare.</param>
-            <param name="right">The right-side-operator instance to compare.</param>
-            <returns>A <see cref="T:System.Boolean"/> result.</returns>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Text.StepFormattingInfo`1.op_Inequality(Sudoku.Solving.Manual.Text.StepFormattingInfo{`0},Sudoku.Solving.Manual.Text.StepFormattingInfo{`0})">
-            <summary>
-            Determines whether the two instances don't contain a same value.
-            </summary>
-            <param name="left">The left-side-operator instance to compare.</param>
-            <param name="right">The right-side-operator instance to compare.</param>
-            <returns>A <see cref="T:System.Boolean"/> result.</returns>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Text.StepFormattingInfo`1.GetHashCode">
-            <inheritdoc cref="M:System.Object.GetHashCode"/>
         </member>
         <member name="T:Sudoku.Solving.Manual.WrongStepException">
             <summary>

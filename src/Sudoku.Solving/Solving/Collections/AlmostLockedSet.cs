@@ -3,8 +3,7 @@
 /// <summary>
 /// Encapsulates a normal almost locked set (ALS as its abberivation).
 /// </summary>
-[AutoEquality(nameof(DigitsMask), nameof(Map))]
-public readonly partial struct AlmostLockedSet : IValueEquatable<AlmostLockedSet>
+public readonly struct AlmostLockedSet : IValueEquatable<AlmostLockedSet>
 {
 	/// <summary>
 	/// Indicates an array of the total number of the strong relations in an ALS of the different size.
@@ -92,6 +91,20 @@ public readonly partial struct AlmostLockedSet : IValueEquatable<AlmostLockedSet
 		}
 	}
 
+
+	/// <inheritdoc cref="object.Equals(object?)"/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public override readonly bool Equals([NotNullWhen(true)] object? obj) =>
+		obj is AlmostLockedSet comparer && Equals(comparer);
+
+	/// <summary>
+	/// Determine whether the specified <see cref="AlmostLockedSet"/> instance holds the same
+	/// <see cref="DigitsMask"/> and <see cref="Map"/> property values as the current instance.
+	/// </summary>
+	/// <param name="other">The instance to compare.</param>
+	/// <returns>A <see cref="bool"/> result.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public readonly bool Equals(in AlmostLockedSet other) => DigitsMask == other.DigitsMask && Map == other.Map;
 
 	/// <summary>
 	/// Indicates whether the specified grid contains the digit.
@@ -221,4 +234,25 @@ public readonly partial struct AlmostLockedSet : IValueEquatable<AlmostLockedSet
 
 		return result.ToArray();
 	}
+
+
+	/// <summary>
+	/// Determine whether two <see cref="AlmostLockedSet"/>s hold a same <see cref="DigitsMask"/>
+	/// and <see cref="Map"/> property values.
+	/// </summary>
+	/// <param name="left">The left-side instance to compare.</param>
+	/// <param name="right">The right-side instance to compare.</param>
+	/// <returns>A <see cref="bool"/> result.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static bool operator ==(in AlmostLockedSet left, in AlmostLockedSet right) => left.Equals(right);
+
+	/// <summary>
+	/// Determine whether two <see cref="AlmostLockedSet"/>s don't hold a same <see cref="DigitsMask"/>
+	/// and <see cref="Map"/> property values.
+	/// </summary>
+	/// <param name="left">The left-side instance to compare.</param>
+	/// <param name="right">The right-side instance to compare.</param>
+	/// <returns>A <see cref="bool"/> result.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static bool operator !=(in AlmostLockedSet left, in AlmostLockedSet right) => !(left == right);
 }

@@ -820,6 +820,14 @@
             </summary>
             <param name="handler">The collection.</param>
         </member>
+        <member name="M:System.Text.StringHandler.Equals(System.Text.StringHandler@)">
+            <summary>
+            Determine whether the specified <see cref="T:System.Text.StringHandler"/> instance hold a same character set
+            as the current instance.
+            </summary>
+            <param name="other">The instance to compare.</param>
+            <returns>A <see cref="T:System.Boolean"/> result.</returns>
+        </member>
         <member name="M:System.Text.StringHandler.GetPinnableReference">
             <summary>
             <para>
@@ -1340,6 +1348,22 @@
             <param name="right">The right instance.</param>
             <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
         </member>
+        <member name="M:System.Text.StringHandler.op_Equality(System.Text.StringHandler@,System.Text.StringHandler@)">
+            <summary>
+            Determine whether two <see cref="T:System.Text.StringHandler"/>s hold a same character set.
+            </summary>
+            <param name="left">The left-side instance to compare.</param>
+            <param name="right">The right-side instance to compare.</param>
+            <returns>A <see cref="T:System.Boolean"/> result.</returns>
+        </member>
+        <member name="M:System.Text.StringHandler.op_Inequality(System.Text.StringHandler@,System.Text.StringHandler@)">
+            <summary>
+            Determine whether two <see cref="T:System.Text.StringHandler"/>s don't hold a same character set.
+            </summary>
+            <param name="left">The left-side instance to compare.</param>
+            <param name="right">The right-side instance to compare.</param>
+            <returns>A <see cref="T:System.Boolean"/> result.</returns>
+        </member>
         <member name="T:System.Text.StringHandler.Enumerator">
             <summary>
             Encapsulates the enumerator of this collection.
@@ -1390,25 +1414,6 @@
             Returns an enumerator that iterates through the collection.
             </summary>
             <returns>An enumerator that can be used to iterate through the collection.</returns>
-        </member>
-        <member name="M:System.Text.StringHandler.Equals(System.Text.StringHandler@)">
-            <inheritdoc cref="M:System.IEquatable`1.Equals(`0)" />
-        </member>
-        <member name="M:System.Text.StringHandler.op_Equality(System.Text.StringHandler@,System.Text.StringHandler@)">
-            <summary>
-            Determine whether two instances hold a same value.
-            </summary>
-            <param name="left">The left-side instance to compare.</param>
-            <param name="right">The right-side instance to compare.</param>
-            <returns>A <see cref="T:System.Boolean"/> result.</returns>
-        </member>
-        <member name="M:System.Text.StringHandler.op_Inequality(System.Text.StringHandler@,System.Text.StringHandler@)">
-            <summary>
-            Determine whether two instances don't hold a same value.
-            </summary>
-            <param name="left">The left-side instance to compare.</param>
-            <param name="right">The right-side instance to compare.</param>
-            <returns>A <see cref="T:System.Boolean"/> result.</returns>
         </member>
         <member name="M:System.Text.StringHandler.Equals(System.Object)">
             <inheritdoc cref="M:System.Object.Equals(System.Object)"/>

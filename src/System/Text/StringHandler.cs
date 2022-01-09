@@ -264,6 +264,15 @@ public unsafe ref partial struct StringHandler
 	}
 
 	/// <summary>
+	/// Determine whether the specified <see cref="StringHandler"/> instance hold a same character set
+	/// as the current instance.
+	/// </summary>
+	/// <param name="other">The instance to compare.</param>
+	/// <returns>A <see cref="bool"/> result.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public readonly bool Equals(in StringHandler other) => Equals(this, other);
+
+	/// <summary>
 	/// <para>
 	/// Get a pinnable reference to the handler.
 	/// The operation does not ensure there is a null char after <see cref="Length"/>.
@@ -1416,7 +1425,6 @@ public unsafe ref partial struct StringHandler
 	/// <param name="left">The left instance.</param>
 	/// <param name="right">The right instance.</param>
 	/// <returns>A <see cref="bool"/> result indicating that.</returns>
-	[ProxyEquality]
 	public static bool Equals(in StringHandler left, in StringHandler right)
 	{
 		if (left.Length != right.Length)
@@ -1439,4 +1447,23 @@ public unsafe ref partial struct StringHandler
 
 		return true;
 	}
+
+
+	/// <summary>
+	/// Determine whether two <see cref="StringHandler"/>s hold a same character set.
+	/// </summary>
+	/// <param name="left">The left-side instance to compare.</param>
+	/// <param name="right">The right-side instance to compare.</param>
+	/// <returns>A <see cref="bool"/> result.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static bool operator ==(in StringHandler left, in StringHandler right) => Equals(left, right);
+
+	/// <summary>
+	/// Determine whether two <see cref="StringHandler"/>s don't hold a same character set.
+	/// </summary>
+	/// <param name="left">The left-side instance to compare.</param>
+	/// <param name="right">The right-side instance to compare.</param>
+	/// <returns>A <see cref="bool"/> result.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static bool operator !=(in StringHandler left, in StringHandler right) => !(left == right);
 }

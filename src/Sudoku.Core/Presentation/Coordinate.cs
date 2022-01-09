@@ -4,12 +4,11 @@
 /// Defines a coordinate used in a sudoku grid.
 /// </summary>
 /// <param name="Cell">
-/// Indicates the cell value used. The possible values are between 0 and 80. You can't assign a value out of this range;
-/// otherwise, an <see cref="InvalidOperationException"/> or <see cref="ArgumentOutOfRangeException"/> will be thrown.
+/// Indicates the cell value used. The possible values are between 0 and 80. You can't assign a value
+/// out of this range; otherwise, an <see cref="InvalidOperationException"/> or
+/// <see cref="ArgumentOutOfRangeException"/> will be thrown.
 /// </param>
-[AutoGetHashCode(nameof(Cell))]
-[AutoEquality(nameof(Cell))]
-public readonly partial record struct Coordinate(byte Cell)
+public readonly record struct Coordinate(byte Cell)
 : IAdditionOperators<Coordinate, byte, Coordinate>
 , IComparable<Coordinate>
 , IComparisonOperators<Coordinate, Coordinate>
@@ -19,8 +18,6 @@ public readonly partial record struct Coordinate(byte Cell)
 , ISimpleFormattable
 , ISimpleParseable<Coordinate>
 , ISubtractionOperators<Coordinate, byte, Coordinate>
-, IValueEquatable<Coordinate>
-, IValueComparable<Coordinate>
 {
 	/// <summary>
 	/// Indicates the undefined <see cref="Coordinate"/> instance that stands for an invalid <see cref="Coordinate"/> value.
@@ -76,7 +73,21 @@ public readonly partial record struct Coordinate(byte Cell)
 	}
 
 
+	/// <summary>
+	/// Determine whether the specified <see cref="Coordinate"/> instance holds the same cell
+	/// as the current instance.
+	/// </summary>
+	/// <param name="other">The instance to compare.</param>
+	/// <returns>A <see cref="bool"/> result.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public bool Equals(Coordinate other) => Cell == other.Cell;
+
+	/// <inheritdoc cref="object.GetHashCode"/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public override int GetHashCode() => Cell;
+
 	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public int CompareTo(Coordinate other) => Cell.CompareTo(other.Cell);
 
 	/// <inheritdoc cref="object.ToString"/>
@@ -138,10 +149,6 @@ public readonly partial record struct Coordinate(byte Cell)
 				? (byte)80
 				: newResult
 		);
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	int IValueComparable<Coordinate>.CompareTo(in Coordinate other) => CompareTo(other);
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -287,7 +294,6 @@ public readonly partial record struct Coordinate(byte Cell)
 	/// <param name="coordinate">The <see cref="Coordinate"/> instance.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static implicit operator byte(Coordinate coordinate) => coordinate.Cell;
-
 
 	/// <summary>
 	/// Explicit conversion from <see cref="byte"/> to <see cref="Coordinate"/>.

@@ -27,8 +27,7 @@
 /// <param name="Square">The square cells that is <c>S</c> in that sketch.</param>
 /// <param name="BaseLine">The base-line cells that is <c>B</c> in that sketch.</param>
 /// <param name="Pair">The pair cells that is <c>P</c> in that sketch.</param>
-[AutoEquality(nameof(Pair), nameof(Square), nameof(BaseLine))]
-public readonly partial record struct QiuDeadlyPattern(Cells Square, Cells BaseLine, Cells Pair) : IPattern<QiuDeadlyPattern>
+public readonly record struct QiuDeadlyPattern(Cells Square, Cells BaseLine, Cells Pair) : IPattern<QiuDeadlyPattern>
 {
 	/// <inheritdoc/>
 	public Cells Map
@@ -38,6 +37,21 @@ public readonly partial record struct QiuDeadlyPattern(Cells Square, Cells BaseL
 	}
 
 
+	/// <summary>
+	/// Determine whether the specified <see cref="QiuDeadlyPattern"/> instance holds the same
+	/// cell maps as the current instance.
+	/// </summary>
+	/// <param name="other">The instance to compare.</param>
+	/// <returns>A <see cref="bool"/> result.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public bool Equals(in QiuDeadlyPattern other) =>
+		Square == other.Square && BaseLine == other.BaseLine && Pair == other.Pair;
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public override int GetHashCode() => HashCode.Combine(Square, BaseLine, Pair);
+
 	/// <inheritdoc cref="object.ToString"/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public override string ToString() => Map.ToString();
 }

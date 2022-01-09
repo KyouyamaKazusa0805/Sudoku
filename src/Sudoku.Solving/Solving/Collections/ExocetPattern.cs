@@ -34,9 +34,7 @@
 /// </para>
 /// </summary>
 [AutoDeconstructLambda(nameof(BaseCellsMap), nameof(TargetCellsMap), nameof(CrossLine))]
-[AutoGetHashCode(nameof(Base1), nameof(Base2), nameof(TargetQ1), nameof(TargetQ2), nameof(TargetR1), nameof(TargetR2), nameof(CrossLine), nameof(MirrorQ1), nameof(MirrorQ2), nameof(MirrorR1), nameof(MirrorR2), nameof(BaseCellsMap), nameof(TargetCellsMap))]
-[AutoEquality(nameof(Base1), nameof(Base2), nameof(TargetQ1), nameof(TargetQ2), nameof(TargetR1), nameof(TargetR2), nameof(CrossLine), nameof(MirrorQ1), nameof(MirrorQ2), nameof(MirrorR1), nameof(MirrorR2), nameof(BaseCellsMap), nameof(TargetCellsMap))]
-public readonly partial struct ExocetPattern : IPattern<ExocetPattern>, IEquatable<ExocetPattern>
+public readonly partial struct ExocetPattern : IPattern<ExocetPattern>, IValueEquatable<ExocetPattern>
 {
 	/// <summary>
 	/// Initializes an instance with the specified cells.
@@ -164,7 +162,46 @@ public readonly partial struct ExocetPattern : IPattern<ExocetPattern>, IEquatab
 	}
 
 
+	/// <inheritdoc cref="object.Equals(object?)"/>
+	public override bool Equals([NotNullWhen(true)] object? obj) => base.Equals(obj);
+
+	/// <summary>
+	/// Determine whether the specified <see cref="ExocetPattern"/> instance holds the same cell maps
+	/// as the current instance.
+	/// </summary>
+	/// <param name="other">The instance to compare.</param>
+	/// <returns>A <see cref="bool"/> result.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public bool Equals(in ExocetPattern other) =>
+		Base1 == other.Base1 && Base2 == other.Base2 && TargetQ1 == other.TargetQ1
+		&& TargetQ2 == other.TargetQ2 && TargetR1 == other.TargetR1 && TargetR2 == other.TargetR2
+		&& CrossLine == other.CrossLine && MirrorQ1 == other.MirrorQ1 && MirrorQ2 == other.MirrorQ2
+		&& other.MirrorR1 == other.MirrorR1 && MirrorR2 == other.MirrorR2
+		&& BaseCellsMap == other.BaseCellsMap && TargetCellsMap == other.TargetCellsMap;
+
+	/// <inheritdoc cref="object.GetHashCode"/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public override int GetHashCode()
+	{
+		var result = new HashCode();
+		result.Add(Base1);
+		result.Add(Base2);
+		result.Add(TargetQ1);
+		result.Add(TargetQ2);
+		result.Add(TargetR1);
+		result.Add(TargetR2);
+		result.Add(MirrorQ1);
+		result.Add(MirrorQ2);
+		result.Add(MirrorR1);
+		result.Add(MirrorR2);
+		result.Add(BaseCellsMap);
+		result.Add(TargetCellsMap);
+
+		return result.ToHashCode();
+	}
+
 	/// <inheritdoc cref="object.ToString"/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public override string ToString()
 	{
 		string baseCellsStr = new Cells { Base1, Base2 }.ToString();
@@ -172,6 +209,22 @@ public readonly partial struct ExocetPattern : IPattern<ExocetPattern>, IEquatab
 		return $"Exocet: base {baseCellsStr}, target {targetCellsStr}";
 	}
 
-	/// <inheritdoc/>
-	bool IEquatable<ExocetPattern>.Equals(ExocetPattern other) => Equals(in other);
+
+	/// <summary>
+	/// Determine whether two <see cref="ExocetPattern"/>s hold same cell map sets.
+	/// </summary>
+	/// <param name="left">The left-side instance to compare.</param>
+	/// <param name="right">The right-side instance to compare.</param>
+	/// <returns>A <see cref="bool"/> result.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static bool operator ==(in ExocetPattern left, in ExocetPattern right) => left.Equals(right);
+
+	/// <summary>
+	/// Determine whether two <see cref="ExocetPattern"/>s don't hold same cell map sets.
+	/// </summary>
+	/// <param name="left">The left-side instance to compare.</param>
+	/// <param name="right">The right-side instance to compare.</param>
+	/// <returns>A <see cref="bool"/> result.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static bool operator !=(in ExocetPattern left, in ExocetPattern right) => !(left == right);
 }

@@ -604,6 +604,19 @@ public unsafe partial struct Grid
 	}
 
 
+	/// <inheritdoc cref="object.Equals(object?)"/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public override bool Equals([NotNullWhen(true)] object? obj) => obj is Grid comparer && Equals(comparer);
+
+	/// <summary>
+	/// Determine whether the specified <see cref="Grid"/> instance hold the same values
+	/// as the current instance.
+	/// </summary>
+	/// <param name="other">The instance to compare.</param>
+	/// <returns>A <see cref="bool"/> result.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public bool Equals(in Grid other) => Equals(this, other);
+
 	/// <inheritdoc/>
 	public readonly bool SimplyValidate()
 	{
@@ -914,7 +927,6 @@ public unsafe partial struct Grid
 
 
 	/// <inheritdoc/>
-	[ProxyEquality]
 	public static bool Equals(in Grid left, in Grid right)
 	{
 		fixed (short* pThis = left, pOther = right)
@@ -1015,4 +1027,22 @@ public unsafe partial struct Grid
 	/// <returns>The result grid.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static GridSegment operator &(in Grid grid, in Cells pattern) => new(grid, pattern);
+
+	/// <summary>
+	/// Determine whether two <see cref="Grid"/>s are same.
+	/// </summary>
+	/// <param name="left">The left-side instance to compare.</param>
+	/// <param name="right">The right-side instance to compare.</param>
+	/// <returns>A <see cref="bool"/> result.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static bool operator ==(in Grid left, in Grid right) => Equals(left, right);
+
+	/// <summary>
+	/// Determine whether two <see cref="Grid"/>s aren't same.
+	/// </summary>
+	/// <param name="left">The left-side instance to compare.</param>
+	/// <param name="right">The right-side instance to compare.</param>
+	/// <returns>A <see cref="bool"/> result.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static bool operator !=(in Grid left, in Grid right) => !(left == right);
 }

@@ -3,7 +3,6 @@
 /// <summary>
 /// Provides a collection that contains the conclusions.
 /// </summary>
-[AutoEquality(nameof(_collection))]
 public readonly ref partial struct ConclusionCollection
 {
 	/// <summary>
@@ -56,6 +55,13 @@ public readonly ref partial struct ConclusionCollection
 	}
 
 
+	/// <summary>
+	/// Determine whether the two collections are equal.
+	/// </summary>
+	/// <param name="other">The collection to compare.</param>
+	/// <returns>A <see cref="bool"/> result.</returns>
+	public bool Equals(in ConclusionCollection other) => _collection == other._collection;
+
 	/// <inheritdoc cref="object.ToString"/>
 	public override string ToString() => ToString(true, ", ");
 
@@ -71,11 +77,11 @@ public readonly ref partial struct ConclusionCollection
 		{
 			[] => string.Empty,
 			[var conclusion] => conclusion.ToString(),
-			_ => internalToString(_collection)
+			_ => f(_collection)
 		};
 
 
-		unsafe string internalToString(in ReadOnlySpan<Conclusion> collection)
+		unsafe string f(in ReadOnlySpan<Conclusion> collection)
 		{
 			var conclusions = collection.ToArray();
 			var sb = new StringHandler(initialCapacity: 50);

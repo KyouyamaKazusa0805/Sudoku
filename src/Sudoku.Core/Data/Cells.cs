@@ -9,7 +9,6 @@
 /// and the <see langword="false"/> bit (0) is for the cell not containing
 /// the digit.
 /// </remarks>
-[AutoEquality(nameof(_high), nameof(_low))]
 [AutoGetEnumerator(nameof(Offsets), MemberConversion = "((IEnumerable<int>)@).*")]
 public unsafe partial struct Cells
 : ICellsOrCandidates<Cells>
@@ -655,6 +654,18 @@ public unsafe partial struct Cells
 	public readonly bool Contains(int offset) =>
 		((offset / Shifting == 0 ? _low : _high) >> offset % Shifting & 1) != 0;
 
+	/// <inheritdoc cref="object.Equals(object?)"/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public override bool Equals([NotNullWhen(true)] object? obj) => obj is Cells comparer && Equals(comparer);
+
+	/// <summary>
+	/// Determine whether the two elements are equal.
+	/// </summary>
+	/// <param name="other">The object to compare.</param>
+	/// <returns>A <see cref="bool"/> result.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public readonly bool Equals(in Cells other) => _low == other._low && _high == other._high;
+
 	/// <summary>
 	/// Get the subview mask of this map.
 	/// </summary>
@@ -1195,6 +1206,25 @@ public unsafe partial struct Cells
 
 		return p;
 	}
+
+	/// <summary>
+	/// Indicates whether the two <see cref="Cells"/> collection hold a same set of cells.
+	/// </summary>
+	/// <param name="left">The left-side instance to compare.</param>
+	/// <param name="right">The right-side instance to compare.</param>
+	/// <returns>A <see cref="bool"/> result.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static bool operator ==(Cells left, Cells right) =>
+		left._low == right._low && left._high == right._high;
+
+	/// <summary>
+	/// Indicates whether the two <see cref="Cells"/> collection don't hold a same set of cells.
+	/// </summary>
+	/// <param name="left">The left-side instance to compare.</param>
+	/// <param name="right">The right-side instance to compare.</param>
+	/// <returns>A <see cref="bool"/> result.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static bool operator !=(Cells left, Cells right) => !(left == right);
 
 
 	/// <inheritdoc/>

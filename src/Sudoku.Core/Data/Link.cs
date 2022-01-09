@@ -8,10 +8,8 @@
 /// <param name="LinkType">Indicates the link type.</param>
 [AutoDeconstructLambda(nameof(StartCell), nameof(StartDigit), nameof(EndCell), nameof(EndDigit), nameof(LinkType))]
 [AutoGetHashCode(nameof(EigenValue))]
-[AutoEquality(nameof(StartCandidate), nameof(EndCandidate), nameof(LinkType))]
 public readonly partial record struct Link(int StartCandidate, int EndCandidate, LinkType LinkType)
-: IValueEquatable<Link>
-, IJsonSerializable<Link, Link.JsonConverter>
+: IJsonSerializable<Link, Link.JsonConverter>
 {
 	/// <summary>
 	/// Indicates the start cell.
@@ -63,6 +61,18 @@ public readonly partial record struct Link(int StartCandidate, int EndCandidate,
 		get => (int)LinkType << 20 | StartCandidate << 10 | EndCandidate;
 	}
 
+
+	/// <summary>
+	/// Determine whether the specified <see cref="Link"/> instance holds the same start cell,
+	/// end cell and the link type as the current instance.
+	/// </summary>
+	/// <param name="other">The instance to compare.</param>
+	/// <returns>A <see cref="bool"/> result.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public bool Equals(Link other) =>
+		StartCandidate == other.StartCandidate
+		&& EndCandidate == other.EndCandidate
+		&& LinkType == other.LinkType;
 
 	/// <inheritdoc cref="object.ToString"/>
 	public override string ToString() =>

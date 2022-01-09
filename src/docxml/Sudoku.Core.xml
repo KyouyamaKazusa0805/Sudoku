@@ -26,34 +26,15 @@
             </summary>
             <param name="collection">The collection.</param>
         </member>
-        <member name="M:Sudoku.Collections.ChainLinkCollection.ToString">
-            <inheritdoc cref="M:System.Object.ToString"/>
-        </member>
         <member name="M:Sudoku.Collections.ChainLinkCollection.Equals(Sudoku.Collections.ChainLinkCollection@)">
             <summary>
-            Indicates whether the current object is equal to another object of the same type.
+            Determine whether two collections are equal.
             </summary>
-            <param name="other">An object to compare with this object.</param>
-            <returns>
-            <see langword="true"/> if the current object is equal to the other parameter;
-            otherwise, <see langword="false"/>.
-            </returns>
-        </member>
-        <member name="M:Sudoku.Collections.ChainLinkCollection.op_Equality(Sudoku.Collections.ChainLinkCollection@,Sudoku.Collections.ChainLinkCollection@)">
-            <summary>
-            Determines whether the two instances contain a same value.
-            </summary>
-            <param name="left">The left-side-operator instance to compare.</param>
-            <param name="right">The right-side-operator instance to compare.</param>
+            <param name="other">The collection to compare.</param>
             <returns>A <see cref="T:System.Boolean"/> result.</returns>
         </member>
-        <member name="M:Sudoku.Collections.ChainLinkCollection.op_Inequality(Sudoku.Collections.ChainLinkCollection@,Sudoku.Collections.ChainLinkCollection@)">
-            <summary>
-            Determines whether the two instances don't contain a same value.
-            </summary>
-            <param name="left">The left-side-operator instance to compare.</param>
-            <param name="right">The right-side-operator instance to compare.</param>
-            <returns>A <see cref="T:System.Boolean"/> result.</returns>
+        <member name="M:Sudoku.Collections.ChainLinkCollection.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
         </member>
         <member name="M:Sudoku.Collections.ChainLinkCollection.Equals(System.Object)">
             <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
@@ -101,6 +82,13 @@
             Indicates all digits used in this conclusions list, represented as a mask.
             </summary>
         </member>
+        <member name="M:Sudoku.Collections.ConclusionCollection.Equals(Sudoku.Collections.ConclusionCollection@)">
+            <summary>
+            Determine whether the two collections are equal.
+            </summary>
+            <param name="other">The collection to compare.</param>
+            <returns>A <see cref="T:System.Boolean"/> result.</returns>
+        </member>
         <member name="M:Sudoku.Collections.ConclusionCollection.ToString">
             <inheritdoc cref="M:System.Object.ToString"/>
         </member>
@@ -111,32 +99,6 @@
             <param name="shouldSort">Indicates whether the specified collection should be sorted first.</param>
             <param name="separator">The separator.</param>
             <returns>The string result.</returns>
-        </member>
-        <member name="M:Sudoku.Collections.ConclusionCollection.Equals(Sudoku.Collections.ConclusionCollection@)">
-            <summary>
-            Indicates whether the current object is equal to another object of the same type.
-            </summary>
-            <param name="other">An object to compare with this object.</param>
-            <returns>
-            <see langword="true"/> if the current object is equal to the other parameter;
-            otherwise, <see langword="false"/>.
-            </returns>
-        </member>
-        <member name="M:Sudoku.Collections.ConclusionCollection.op_Equality(Sudoku.Collections.ConclusionCollection@,Sudoku.Collections.ConclusionCollection@)">
-            <summary>
-            Determines whether the two instances contain a same value.
-            </summary>
-            <param name="left">The left-side-operator instance to compare.</param>
-            <param name="right">The right-side-operator instance to compare.</param>
-            <returns>A <see cref="T:System.Boolean"/> result.</returns>
-        </member>
-        <member name="M:Sudoku.Collections.ConclusionCollection.op_Inequality(Sudoku.Collections.ConclusionCollection@,Sudoku.Collections.ConclusionCollection@)">
-            <summary>
-            Determines whether the two instances don't contain a same value.
-            </summary>
-            <param name="left">The left-side-operator instance to compare.</param>
-            <param name="right">The right-side-operator instance to compare.</param>
-            <returns>A <see cref="T:System.Boolean"/> result.</returns>
         </member>
         <member name="M:Sudoku.Collections.ConclusionCollection.Equals(System.Object)">
             <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
@@ -507,6 +469,13 @@
             <param name="region">The region.</param>
             <returns>A <see cref="T:System.Boolean"/> value.</returns>
         </member>
+        <member name="M:Sudoku.Collections.RegionCollection.Equals(Sudoku.Collections.RegionCollection@)">
+            <summary>
+            Determine whether the two collections are equal.
+            </summary>
+            <param name="other">The collection to compare.</param>
+            <returns>A <see cref="T:System.Boolean"/> result.</returns>
+        </member>
         <member name="M:Sudoku.Collections.RegionCollection.GetHashCode">
             <inheritdoc cref="M:System.Object.GetHashCode"/>
         </member>
@@ -525,32 +494,6 @@
             </summary>
             <param name="index">The index.</param>
             <returns>The label.</returns>
-        </member>
-        <member name="M:Sudoku.Collections.RegionCollection.Equals(Sudoku.Collections.RegionCollection@)">
-            <summary>
-            Indicates whether the current object is equal to another object of the same type.
-            </summary>
-            <param name="other">An object to compare with this object.</param>
-            <returns>
-            <see langword="true"/> if the current object is equal to the other parameter;
-            otherwise, <see langword="false"/>.
-            </returns>
-        </member>
-        <member name="M:Sudoku.Collections.RegionCollection.op_Equality(Sudoku.Collections.RegionCollection@,Sudoku.Collections.RegionCollection@)">
-            <summary>
-            Determines whether the two instances contain a same value.
-            </summary>
-            <param name="left">The left-side-operator instance to compare.</param>
-            <param name="right">The right-side-operator instance to compare.</param>
-            <returns>A <see cref="T:System.Boolean"/> result.</returns>
-        </member>
-        <member name="M:Sudoku.Collections.RegionCollection.op_Inequality(Sudoku.Collections.RegionCollection@,Sudoku.Collections.RegionCollection@)">
-            <summary>
-            Determines whether the two instances don't contain a same value.
-            </summary>
-            <param name="left">The left-side-operator instance to compare.</param>
-            <param name="right">The right-side-operator instance to compare.</param>
-            <returns>A <see cref="T:System.Boolean"/> result.</returns>
         </member>
         <member name="M:Sudoku.Collections.RegionCollection.GetEnumerator">
             <summary>
@@ -1778,12 +1721,6 @@
             The inner binary values.
             </summary>
         </member>
-        <member name="M:Sudoku.Data.Candidates.#ctor(Sudoku.Data.Candidates@)">
-            <summary>
-             Initializes an instance with another one.
-            </summary>
-            <param name="another">The another instance.</param>
-        </member>
         <member name="M:Sudoku.Data.Candidates.#ctor(System.Int32)">
             <summary>
             Initializes an instance with the specified candidate and its peers.
@@ -1877,6 +1814,20 @@
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Data.Candidates.Contains(System.Int32)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Data.Candidates.Equals(System.Object)">
+            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
+        </member>
+        <member name="M:Sudoku.Data.Candidates.Equals(Sudoku.Data.Candidates@)">
+            <summary>
+            Determine whether the specified <see cref="T:Sudoku.Data.Candidates"/> instance holds the same
+            bits as the current instance.
+            </summary>
+            <param name="other">The instance to compare.</param>
+            <returns>A <see cref="T:System.Boolean"/> result.</returns>
+        </member>
+        <member name="M:Sudoku.Data.Candidates.GetHashCode">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Data.Candidates.ToArray">
@@ -1986,6 +1937,22 @@
             <returns>The cells.</returns>
             <seealso cref="M:Sudoku.Data.Candidates.Reduce(System.Int32)"/>
         </member>
+        <member name="M:Sudoku.Data.Candidates.op_Equality(Sudoku.Data.Candidates@,Sudoku.Data.Candidates@)">
+            <summary>
+            Determine whether the two <see cref="T:Sudoku.Data.Candidates"/> instance hold same bits.
+            </summary>
+            <param name="left">The left-side instance to compare.</param>
+            <param name="right">The right-side instance to compare.</param>
+            <returns>A <see cref="T:System.Boolean"/> result.</returns>
+        </member>
+        <member name="M:Sudoku.Data.Candidates.op_Inequality(Sudoku.Data.Candidates@,Sudoku.Data.Candidates@)">
+            <summary>
+            Determine whether the two <see cref="T:Sudoku.Data.Candidates"/> instance don't hold same bits.
+            </summary>
+            <param name="left">The left-side instance to compare.</param>
+            <param name="right">The right-side instance to compare.</param>
+            <returns>A <see cref="T:System.Boolean"/> result.</returns>
+        </member>
         <member name="M:Sudoku.Data.Candidates.op_Implicit(System.Int32[])~Sudoku.Data.Candidates">
             <inheritdoc/>
         </member>
@@ -2021,43 +1988,11 @@
         <member name="M:Sudoku.Data.Candidates.JsonConverter.Write(System.Text.Json.Utf8JsonWriter,Sudoku.Data.Candidates,System.Text.Json.JsonSerializerOptions)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Data.Candidates.Equals(System.Object)">
-            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
-        </member>
-        <member name="M:Sudoku.Data.Candidates.Equals(Sudoku.Data.Candidates@)">
-            <summary>
-            Indicates whether the current object is equal to another object of the same type.
-            </summary>
-            <param name="other">An object to compare with this object.</param>
-            <returns>
-            <see langword="true"/> if the current object is equal to the other parameter;
-            otherwise, <see langword="false"/>.
-            </returns>
-        </member>
-        <member name="M:Sudoku.Data.Candidates.op_Equality(Sudoku.Data.Candidates@,Sudoku.Data.Candidates@)">
-            <summary>
-            Determines whether the two instances contain a same value.
-            </summary>
-            <param name="left">The left-side-operator instance to compare.</param>
-            <param name="right">The right-side-operator instance to compare.</param>
-            <returns>A <see cref="T:System.Boolean"/> result.</returns>
-        </member>
-        <member name="M:Sudoku.Data.Candidates.op_Inequality(Sudoku.Data.Candidates@,Sudoku.Data.Candidates@)">
-            <summary>
-            Determines whether the two instances don't contain a same value.
-            </summary>
-            <param name="left">The left-side-operator instance to compare.</param>
-            <param name="right">The right-side-operator instance to compare.</param>
-            <returns>A <see cref="T:System.Boolean"/> result.</returns>
-        </member>
         <member name="M:Sudoku.Data.Candidates.GetEnumerator">
             <summary>
             Returns an enumerator that iterates through the collection.
             </summary>
             <returns>An enumerator that can be used to iterate through the collection.</returns>
-        </member>
-        <member name="M:Sudoku.Data.Candidates.GetHashCode">
-            <inheritdoc cref="M:System.Object.GetHashCode"/>
         </member>
         <member name="T:Sudoku.Data.CandidatesParsingOptions">
             <summary>
@@ -2365,6 +2300,16 @@
         <member name="M:Sudoku.Data.Cells.Contains(System.Int32)">
             <inheritdoc/>
         </member>
+        <member name="M:Sudoku.Data.Cells.Equals(System.Object)">
+            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
+        </member>
+        <member name="M:Sudoku.Data.Cells.Equals(Sudoku.Data.Cells@)">
+            <summary>
+            Determine whether the two elements are equal.
+            </summary>
+            <param name="other">The object to compare.</param>
+            <returns>A <see cref="T:System.Boolean"/> result.</returns>
+        </member>
         <member name="M:Sudoku.Data.Cells.GetSubviewMask(System.Int32)">
             <summary>
             Get the subview mask of this map.
@@ -2511,6 +2456,22 @@
             <param name="region">The region.</param>
             <returns>The mask.</returns>
         </member>
+        <member name="M:Sudoku.Data.Cells.op_Equality(Sudoku.Data.Cells,Sudoku.Data.Cells)">
+            <summary>
+            Indicates whether the two <see cref="T:Sudoku.Data.Cells"/> collection hold a same set of cells.
+            </summary>
+            <param name="left">The left-side instance to compare.</param>
+            <param name="right">The right-side instance to compare.</param>
+            <returns>A <see cref="T:System.Boolean"/> result.</returns>
+        </member>
+        <member name="M:Sudoku.Data.Cells.op_Inequality(Sudoku.Data.Cells,Sudoku.Data.Cells)">
+            <summary>
+            Indicates whether the two <see cref="T:Sudoku.Data.Cells"/> collection don't hold a same set of cells.
+            </summary>
+            <param name="left">The left-side instance to compare.</param>
+            <param name="right">The right-side instance to compare.</param>
+            <returns>A <see cref="T:System.Boolean"/> result.</returns>
+        </member>
         <member name="M:Sudoku.Data.Cells.op_Implicit(System.Int32[])~Sudoku.Data.Cells">
             <inheritdoc/>
         </member>
@@ -2557,35 +2518,6 @@
         </member>
         <member name="M:Sudoku.Data.Cells.JsonConverter.Write(System.Text.Json.Utf8JsonWriter,Sudoku.Data.Cells,System.Text.Json.JsonSerializerOptions)">
             <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Data.Cells.Equals(System.Object)">
-            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
-        </member>
-        <member name="M:Sudoku.Data.Cells.Equals(Sudoku.Data.Cells@)">
-            <summary>
-            Indicates whether the current object is equal to another object of the same type.
-            </summary>
-            <param name="other">An object to compare with this object.</param>
-            <returns>
-            <see langword="true"/> if the current object is equal to the other parameter;
-            otherwise, <see langword="false"/>.
-            </returns>
-        </member>
-        <member name="M:Sudoku.Data.Cells.op_Equality(Sudoku.Data.Cells@,Sudoku.Data.Cells@)">
-            <summary>
-            Determines whether the two instances contain a same value.
-            </summary>
-            <param name="left">The left-side-operator instance to compare.</param>
-            <param name="right">The right-side-operator instance to compare.</param>
-            <returns>A <see cref="T:System.Boolean"/> result.</returns>
-        </member>
-        <member name="M:Sudoku.Data.Cells.op_Inequality(Sudoku.Data.Cells@,Sudoku.Data.Cells@)">
-            <summary>
-            Determines whether the two instances don't contain a same value.
-            </summary>
-            <param name="left">The left-side-operator instance to compare.</param>
-            <param name="right">The right-side-operator instance to compare.</param>
-            <returns>A <see cref="T:System.Boolean"/> result.</returns>
         </member>
         <member name="M:Sudoku.Data.Cells.GetEnumerator">
             <summary>
@@ -2735,6 +2667,9 @@
         <member name="M:Sudoku.Data.Conclusion.System#IValueEquatable{Sudoku#Data#Conclusion}#Equals(Sudoku.Data.Conclusion@)">
             <inheritdoc/>
         </member>
+        <member name="M:Sudoku.Data.Conclusion.System#IComparable#CompareTo(System.Object)">
+            <inheritdoc/>
+        </member>
         <member name="M:Sudoku.Data.Conclusion.System#IValueComparable{Sudoku#Data#Conclusion}#CompareTo(Sudoku.Data.Conclusion@)">
             <inheritdoc/>
         </member>
@@ -2749,16 +2684,6 @@
         </member>
         <member name="M:Sudoku.Data.Conclusion.op_GreaterThanOrEqual(Sudoku.Data.Conclusion,Sudoku.Data.Conclusion)">
             <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Data.Conclusion.Equals(Sudoku.Data.Conclusion@)">
-            <summary>
-            Indicates whether the current object is equal to another object of the same type.
-            </summary>
-            <param name="other">An object to compare with this object.</param>
-            <returns>
-            <see langword="true"/> if the current object is equal to the other parameter;
-            otherwise, <see langword="false"/>.
-            </returns>
         </member>
         <member name="M:Sudoku.Data.Conclusion.Deconstruct(Sudoku.Data.ConclusionType@,System.Int32@)">
             <summary>
@@ -2840,18 +2765,18 @@
             </summary>
             <remarks><inheritdoc cref="P:Sudoku.Data.Cells.CoveredRegions"/></remarks>
         </member>
-        <member name="M:Sudoku.Data.ConjugatePair.ToString">
-            <inheritdoc cref="M:System.Object.ToString"/>
-        </member>
         <member name="M:Sudoku.Data.ConjugatePair.Equals(Sudoku.Data.ConjugatePair@)">
             <summary>
-            Indicates whether the current object is equal to another object of the same type.
+            Determine whether the two conjugate pairs are same.
             </summary>
-            <param name="other">An object to compare with this object.</param>
-            <returns>
-            <see langword="true"/> if the current object is equal to the other parameter;
-            otherwise, <see langword="false"/>.
-            </returns>
+            <param name="other">The other instance to compare.</param>
+            <returns>A <see cref="T:System.Boolean"/> result.</returns>
+        </member>
+        <member name="M:Sudoku.Data.ConjugatePair.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="M:Sudoku.Data.ConjugatePair.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
         </member>
         <member name="T:Sudoku.Data.Grid">
             <summary>
@@ -3194,6 +3119,17 @@
         <member name="P:Sudoku.Data.Grid.Item(System.Int32,System.Int32)">
             <inheritdoc/>
         </member>
+        <member name="M:Sudoku.Data.Grid.Equals(System.Object)">
+            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
+        </member>
+        <member name="M:Sudoku.Data.Grid.Equals(Sudoku.Data.Grid@)">
+            <summary>
+            Determine whether the specified <see cref="T:Sudoku.Data.Grid"/> instance hold the same values
+            as the current instance.
+            </summary>
+            <param name="other">The instance to compare.</param>
+            <returns>A <see cref="T:System.Boolean"/> result.</returns>
+        </member>
         <member name="M:Sudoku.Data.Grid.SimplyValidate">
             <inheritdoc/>
         </member>
@@ -3366,6 +3302,22 @@
             <param name="pattern">The pattern.</param>
             <returns>The result grid.</returns>
         </member>
+        <member name="M:Sudoku.Data.Grid.op_Equality(Sudoku.Data.Grid@,Sudoku.Data.Grid@)">
+            <summary>
+            Determine whether two <see cref="T:Sudoku.Data.Grid"/>s are same.
+            </summary>
+            <param name="left">The left-side instance to compare.</param>
+            <param name="right">The right-side instance to compare.</param>
+            <returns>A <see cref="T:System.Boolean"/> result.</returns>
+        </member>
+        <member name="M:Sudoku.Data.Grid.op_Inequality(Sudoku.Data.Grid@,Sudoku.Data.Grid@)">
+            <summary>
+            Determine whether two <see cref="T:Sudoku.Data.Grid"/>s aren't same.
+            </summary>
+            <param name="left">The left-side instance to compare.</param>
+            <param name="right">The right-side instance to compare.</param>
+            <returns>A <see cref="T:System.Boolean"/> result.</returns>
+        </member>
         <member name="T:Sudoku.Data.Grid.JsonConverter">
             <summary>
             Defines a JSON converter that allows the current instance being serialized.
@@ -3464,28 +3416,6 @@
             Returns an enumerator that iterates through the collection.
             </summary>
             <returns>An enumerator that can be used to iterate through the collection.</returns>
-        </member>
-        <member name="M:Sudoku.Data.Grid.Equals(System.Object)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Data.Grid.Equals(Sudoku.Data.Grid@)">
-            <inheritdoc cref="M:System.IEquatable`1.Equals(`0)" />
-        </member>
-        <member name="M:Sudoku.Data.Grid.op_Equality(Sudoku.Data.Grid@,Sudoku.Data.Grid@)">
-            <summary>
-            Determine whether two instances hold a same value.
-            </summary>
-            <param name="left">The left-side instance to compare.</param>
-            <param name="right">The right-side instance to compare.</param>
-            <returns>A <see cref="T:System.Boolean"/> result.</returns>
-        </member>
-        <member name="M:Sudoku.Data.Grid.op_Inequality(Sudoku.Data.Grid@,Sudoku.Data.Grid@)">
-            <summary>
-            Determine whether two instances don't hold a same value.
-            </summary>
-            <param name="left">The left-side instance to compare.</param>
-            <param name="right">The right-side instance to compare.</param>
-            <returns>A <see cref="T:System.Boolean"/> result.</returns>
         </member>
         <member name="T:Sudoku.Data.GridCreatingOption">
             <summary>
@@ -4406,6 +4336,14 @@
             Indicates the eigen value.
             </summary>
         </member>
+        <member name="M:Sudoku.Data.Link.Equals(Sudoku.Data.Link)">
+            <summary>
+            Determine whether the specified <see cref="T:Sudoku.Data.Link"/> instance holds the same start cell,
+            end cell and the link type as the current instance.
+            </summary>
+            <param name="other">The instance to compare.</param>
+            <returns>A <see cref="T:System.Boolean"/> result.</returns>
+        </member>
         <member name="M:Sudoku.Data.Link.ToString">
             <inheritdoc cref="M:System.Object.ToString"/>
         </member>
@@ -4423,16 +4361,6 @@
         </member>
         <member name="M:Sudoku.Data.Link.JsonConverter.Write(System.Text.Json.Utf8JsonWriter,Sudoku.Data.Link,System.Text.Json.JsonSerializerOptions)">
             <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Data.Link.Equals(Sudoku.Data.Link@)">
-            <summary>
-            Indicates whether the current object is equal to another object of the same type.
-            </summary>
-            <param name="other">An object to compare with this object.</param>
-            <returns>
-            <see langword="true"/> if the current object is equal to the other parameter;
-            otherwise, <see langword="false"/>.
-            </returns>
         </member>
         <member name="M:Sudoku.Data.Link.GetHashCode">
             <inheritdoc cref="M:System.Object.GetHashCode"/>
@@ -4467,7 +4395,6 @@
             </item>
             </list>
             </param>
-            <completionlist cref="T:Sudoku.Data.LinkTypes"/>
         </member>
         <member name="M:Sudoku.Data.LinkType.#ctor(System.Byte)">
             <summary>
@@ -4494,7 +4421,14 @@
             </item>
             </list>
             </param>
-            <completionlist cref="T:Sudoku.Data.LinkTypes"/>
+        </member>
+        <member name="M:Sudoku.Data.LinkType.Equals(Sudoku.Data.LinkType)">
+            <summary>
+            Determine whether the specified <see cref="T:Sudoku.Data.LinkType"/> instance
+            holds the same type kind as the current one.
+            </summary>
+            <param name="other">The other instance to compare.</param>
+            <returns>A <see cref="T:System.Boolean"/> result.</returns>
         </member>
         <member name="M:Sudoku.Data.LinkType.GetHashCode">
             <inheritdoc/>
@@ -4503,9 +4437,6 @@
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Data.LinkType.GetNotation">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Data.LinkType.System#IValueEquatable{Sudoku#Data#LinkType}#Equals(Sudoku.Data.LinkType@)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Data.LinkType.op_Explicit(System.Byte)~Sudoku.Data.LinkType">
@@ -4654,7 +4585,8 @@
             of the chain, using the current node as the tail node.
             </summary>
             <remarks>
-            The data structure uses an <see cref="T:System.Int32"/> value to represent an instance. The bit usage details is as below:
+            The data structure uses an <see cref="T:System.Int32"/> value to represent an instance.
+            The bit usage details is as below:
             <code><![CDATA[
             |  (4)  |  (3)  |  (2)  |  (1)  |
             |-------|-------|-------|-------|
@@ -4682,7 +4614,9 @@
             </item>
             </list>
             </remarks>
-            <param name="Mask">Indicates the mask that handles and stores the basic information of the current node.</param>
+            <param name="Mask">
+            Indicates the mask that handles and stores the basic information of the current node.
+            </param>
         </member>
         <member name="M:Sudoku.Data.Node.#ctor(System.Int32)">
             <summary>
@@ -4690,7 +4624,8 @@
             of the chain, using the current node as the tail node.
             </summary>
             <remarks>
-            The data structure uses an <see cref="T:System.Int32"/> value to represent an instance. The bit usage details is as below:
+            The data structure uses an <see cref="T:System.Int32"/> value to represent an instance.
+            The bit usage details is as below:
             <code><![CDATA[
             |  (4)  |  (3)  |  (2)  |  (1)  |
             |-------|-------|-------|-------|
@@ -4718,11 +4653,14 @@
             </item>
             </list>
             </remarks>
-            <param name="Mask">Indicates the mask that handles and stores the basic information of the current node.</param>
+            <param name="Mask">
+            Indicates the mask that handles and stores the basic information of the current node.
+            </param>
         </member>
         <member name="F:Sudoku.Data.Node.Undefined">
             <summary>
-            Indicates the undefined instance that is used for providing with a value that only used in an invalid case.
+            Indicates the undefined instance that is used for providing with a value
+            that only used in an invalid case.
             </summary>
         </member>
         <member name="F:Sudoku.Data.Node._rawParents">
@@ -4835,6 +4773,14 @@
             Indicates the nodes that the current node lies in.
             </summary>
         </member>
+        <member name="M:Sudoku.Data.Node.Equals(Sudoku.Data.Node)">
+            <summary>
+            Determine whether the specified <see cref="T:Sudoku.Data.Node"/> instance holds the same mask value
+            as the current instance.
+            </summary>
+            <param name="other">The instance to compare.</param>
+            <returns>A <see cref="T:System.Boolean"/> result.</returns>
+        </member>
         <member name="M:Sudoku.Data.Node.IsParentOf(Sudoku.Data.Node)">
             <summary>
             Determine whether the node is the parent of the specified node.
@@ -4866,16 +4812,6 @@
             <param name="isOn">The on/off status.</param>
             <param name="parentsCount">The number of parents.</param>
             <returns>The mask.</returns>
-        </member>
-        <member name="M:Sudoku.Data.Node.Equals(Sudoku.Data.Node@)">
-            <summary>
-            Indicates whether the current object is equal to another object of the same type.
-            </summary>
-            <param name="other">An object to compare with this object.</param>
-            <returns>
-            <see langword="true"/> if the current object is equal to the other parameter;
-            otherwise, <see langword="false"/>.
-            </returns>
         </member>
         <member name="M:Sudoku.Data.Node.Deconstruct(System.Int16@,System.Boolean@)">
             <summary>
@@ -5176,8 +5112,9 @@
             Defines a coordinate used in a sudoku grid.
             </summary>
             <param name="Cell">
-            Indicates the cell value used. The possible values are between 0 and 80. You can't assign a value out of this range;
-            otherwise, an <see cref="T:System.InvalidOperationException"/> or <see cref="T:System.ArgumentOutOfRangeException"/> will be thrown.
+            Indicates the cell value used. The possible values are between 0 and 80. You can't assign a value
+            out of this range; otherwise, an <see cref="T:System.InvalidOperationException"/> or
+            <see cref="T:System.ArgumentOutOfRangeException"/> will be thrown.
             </param>
         </member>
         <member name="M:Sudoku.Presentation.Coordinate.#ctor(System.Byte)">
@@ -5185,8 +5122,9 @@
             Defines a coordinate used in a sudoku grid.
             </summary>
             <param name="Cell">
-            Indicates the cell value used. The possible values are between 0 and 80. You can't assign a value out of this range;
-            otherwise, an <see cref="T:System.InvalidOperationException"/> or <see cref="T:System.ArgumentOutOfRangeException"/> will be thrown.
+            Indicates the cell value used. The possible values are between 0 and 80. You can't assign a value
+            out of this range; otherwise, an <see cref="T:System.InvalidOperationException"/> or
+            <see cref="T:System.ArgumentOutOfRangeException"/> will be thrown.
             </param>
         </member>
         <member name="F:Sudoku.Presentation.Coordinate.Undefined">
@@ -5221,6 +5159,17 @@
         <member name="P:Sudoku.Presentation.Coordinate.System#IMinMaxValue{Sudoku#Presentation#Coordinate}#MaxValue">
             <inheritdoc/>
         </member>
+        <member name="M:Sudoku.Presentation.Coordinate.Equals(Sudoku.Presentation.Coordinate)">
+            <summary>
+            Determine whether the specified <see cref="T:Sudoku.Presentation.Coordinate"/> instance holds the same cell
+            as the current instance.
+            </summary>
+            <param name="other">The instance to compare.</param>
+            <returns>A <see cref="T:System.Boolean"/> result.</returns>
+        </member>
+        <member name="M:Sudoku.Presentation.Coordinate.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
         <member name="M:Sudoku.Presentation.Coordinate.CompareTo(Sudoku.Presentation.Coordinate)">
             <inheritdoc/>
         </member>
@@ -5247,9 +5196,6 @@
             Moves the current <see cref="T:Sudoku.Presentation.Coordinate"/> to skip cells to the first cell in its next block backwardly.
             </summary>
             <returns>The result <see cref="T:Sudoku.Presentation.Coordinate"/></returns>
-        </member>
-        <member name="M:Sudoku.Presentation.Coordinate.System#IValueComparable{Sudoku#Presentation#Coordinate}#CompareTo(Sudoku.Presentation.Coordinate@)">
-            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Presentation.Coordinate.System#IComparable#CompareTo(System.Object)">
             <inheritdoc/>
@@ -5299,19 +5245,6 @@
             Explicit conversion from <see cref="T:System.Byte"/> to <see cref="T:Sudoku.Presentation.Coordinate"/>.
             </summary>
             <param name="cell">The cell value.</param>
-        </member>
-        <member name="M:Sudoku.Presentation.Coordinate.Equals(Sudoku.Presentation.Coordinate@)">
-            <summary>
-            Indicates whether the current object is equal to another object of the same type.
-            </summary>
-            <param name="other">An object to compare with this object.</param>
-            <returns>
-            <see langword="true"/> if the current object is equal to the other parameter;
-            otherwise, <see langword="false"/>.
-            </returns>
-        </member>
-        <member name="M:Sudoku.Presentation.Coordinate.GetHashCode">
-            <inheritdoc cref="M:System.Object.GetHashCode"/>
         </member>
         <member name="T:Sudoku.Presentation.Crosshatch">
             <summary>
@@ -5692,16 +5625,6 @@
             Indicates the LCID the current document holds.
             </summary>
         </member>
-        <member name="P:Sudoku.Resources.ResourceDocument.BasicHash">
-            <summary>
-            Indicates the basic hash that uses the property <see cref="P:System.Globalization.CultureInfo.LCID"/>.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Resources.ResourceDocument.StringHash">
-            <summary>
-            Indicates the hash that corresponds to the string value.
-            </summary>
-        </member>
         <member name="P:Sudoku.Resources.ResourceDocument.Item(System.String)">
             <summary>
             Try to fetch the property value via the specified property name.
@@ -5712,6 +5635,17 @@
         </member>
         <member name="M:Sudoku.Resources.ResourceDocument.Dispose">
             <inheritdoc cref="M:System.IDisposable.Dispose"/>
+        </member>
+        <member name="M:Sudoku.Resources.ResourceDocument.Equals(Sudoku.Resources.ResourceDocument)">
+            <summary>
+            Determine whether the specified <see cref="T:Sudoku.Resources.ResourceDocument"/> instance holds the same value
+            as the current instance.
+            </summary>
+            <param name="other">The instance to compare.</param>
+            <returns>A <see cref="T:System.Boolean"/> result.</returns>
+        </member>
+        <member name="M:Sudoku.Resources.ResourceDocument.GetHashCode">
+            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Resources.ResourceDocument.ToString">
             <inheritdoc cref="M:System.Object.ToString"/>
@@ -5791,43 +5725,11 @@
             <inheritdoc cref="M:System.Object.ToString"/>
             <exception cref="T:System.NotSupportedException">Always throws.</exception>
         </member>
-        <member name="M:Sudoku.Resources.ResourceDocument.Equals(System.Object)">
-            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
-        </member>
-        <member name="M:Sudoku.Resources.ResourceDocument.Equals(Sudoku.Resources.ResourceDocument)">
-            <summary>
-            Indicates whether the current object is equal to another object of the same type.
-            </summary>
-            <param name="other">An object to compare with this object.</param>
-            <returns>
-            <see langword="true"/> if the current object is equal to the other parameter;
-            otherwise, <see langword="false"/>.
-            </returns>
-        </member>
-        <member name="M:Sudoku.Resources.ResourceDocument.op_Equality(Sudoku.Resources.ResourceDocument,Sudoku.Resources.ResourceDocument)">
-            <summary>
-            Determines whether the two instances contain a same value.
-            </summary>
-            <param name="left">The left-side-operator instance to compare.</param>
-            <param name="right">The right-side-operator instance to compare.</param>
-            <returns>A <see cref="T:System.Boolean"/> result.</returns>
-        </member>
-        <member name="M:Sudoku.Resources.ResourceDocument.op_Inequality(Sudoku.Resources.ResourceDocument,Sudoku.Resources.ResourceDocument)">
-            <summary>
-            Determines whether the two instances don't contain a same value.
-            </summary>
-            <param name="left">The left-side-operator instance to compare.</param>
-            <param name="right">The right-side-operator instance to compare.</param>
-            <returns>A <see cref="T:System.Boolean"/> result.</returns>
-        </member>
         <member name="M:Sudoku.Resources.ResourceDocument.GetEnumerator">
             <summary>
             Returns an enumerator that iterates through the collection.
             </summary>
             <returns>An enumerator that can be used to iterate through the collection.</returns>
-        </member>
-        <member name="M:Sudoku.Resources.ResourceDocument.GetHashCode">
-            <inheritdoc cref="M:System.Object.GetHashCode"/>
         </member>
         <member name="T:Sudoku.Resources.ResourceDocumentManager">
             <summary>

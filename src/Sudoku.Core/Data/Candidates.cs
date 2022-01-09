@@ -3,8 +3,6 @@
 /// <summary>
 /// Encapsulates a map that contains 729 positions to represent a candidate.
 /// </summary>
-[AutoGetHashCode(nameof(_1), nameof(_2), nameof(_3), nameof(_4), nameof(_5), nameof(_6), nameof(_7), nameof(_8), nameof(_9), nameof(_10), nameof(_11))]
-[AutoEquality(nameof(_1), nameof(_2), nameof(_3), nameof(_4), nameof(_5), nameof(_6), nameof(_7), nameof(_8), nameof(_9), nameof(_10), nameof(_11))]
 [AutoGetEnumerator(nameof(Offsets), MemberConversion = "((IEnumerable<int>)@).*")]
 public unsafe partial struct Candidates : ICellsOrCandidates<Candidates>
 {
@@ -40,13 +38,6 @@ public unsafe partial struct Candidates : ICellsOrCandidates<Candidates>
 	/// </summary>
 	private long _0 = 0, _1 = 0, _2 = 0, _3 = 0, _4 = 0, _5 = 0, _6 = 0, _7 = 0, _8 = 0, _9 = 0, _10 = 0, _11 = 0;
 
-
-	/// <summary>
-	///  Initializes an instance with another one.
-	/// </summary>
-	/// <param name="another">The another instance.</param>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public Candidates(in Candidates another) => this = another;
 
 	/// <summary>
 	/// Initializes an instance with the specified candidate and its peers.
@@ -359,6 +350,33 @@ public unsafe partial struct Candidates : ICellsOrCandidates<Candidates>
 			11 => _11
 		} >> offset % Shifting & 1
 	) != 0;
+
+	/// <inheritdoc cref="object.Equals(object?)"/>
+	public override readonly bool Equals([NotNullWhen(true)] object? obj) => base.Equals(obj);
+
+	/// <summary>
+	/// Determine whether the specified <see cref="Candidates"/> instance holds the same
+	/// bits as the current instance.
+	/// </summary>
+	/// <param name="other">The instance to compare.</param>
+	/// <returns>A <see cref="bool"/> result.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public readonly bool Equals(in Candidates other) =>
+		_0 == other._0 && _1 == other._1 && _2 == other._2 && _3 == other._3
+		&& _4 == other._4 && _5 == other._5 && _6 == other._6 && _7 == other._7
+		&& _8 == other._8 && _9 == other._9 && _10 == other._10 && _11 == other._11;
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public override int GetHashCode() =>
+		(int)(
+			RotateLeft((ulong)_0, 3) ^ RotateRight((ulong)_1, 3)
+			^ RotateLeft((ulong)_2, 6) ^ RotateRight((ulong)_3, 6)
+			^ RotateLeft((ulong)_4, 9) ^ RotateRight((ulong)_5, 9)
+			^ RotateLeft((ulong)_6, 12) ^ RotateRight((ulong)_7, 12)
+			^ RotateLeft((ulong)_8, 15) ^ RotateRight((ulong)_9, 15)
+			^ RotateLeft((ulong)_10, 18) ^ RotateRight((ulong)_11, 18)
+		);
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -849,6 +867,24 @@ public unsafe partial struct Candidates : ICellsOrCandidates<Candidates>
 	/// <seealso cref="Reduce(int)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static Cells operator /(in Candidates candidates, int digit) => candidates.Reduce(digit);
+
+	/// <summary>
+	/// Determine whether the two <see cref="Candidates"/> instance hold same bits.
+	/// </summary>
+	/// <param name="left">The left-side instance to compare.</param>
+	/// <param name="right">The right-side instance to compare.</param>
+	/// <returns>A <see cref="bool"/> result.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static bool operator ==(in Candidates left, in Candidates right) => left.Equals(right);
+
+	/// <summary>
+	/// Determine whether the two <see cref="Candidates"/> instance don't hold same bits.
+	/// </summary>
+	/// <param name="left">The left-side instance to compare.</param>
+	/// <param name="right">The right-side instance to compare.</param>
+	/// <returns>A <see cref="bool"/> result.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static bool operator !=(in Candidates left, in Candidates right) => !(left == right);
 
 
 	/// <inheritdoc/>

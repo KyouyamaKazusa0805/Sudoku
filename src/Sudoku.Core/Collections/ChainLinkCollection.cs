@@ -3,7 +3,6 @@
 /// <summary>
 /// Provides a collection that contains the chain links.
 /// </summary>
-[AutoEquality(nameof(_collection))]
 public readonly ref partial struct ChainLinkCollection
 {
 	/// <summary>
@@ -25,6 +24,14 @@ public readonly ref partial struct ChainLinkCollection
 	public ChainLinkCollection(IEnumerable<Link> collection) : this() =>
 		_collection = collection.ToArray().AsSpan();
 
+
+	/// <summary>
+	/// Determine whether two collections are equal.
+	/// </summary>
+	/// <param name="other">The collection to compare.</param>
+	/// <returns>A <see cref="bool"/> result.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public bool Equals(in ChainLinkCollection other) => _collection == other._collection;
 
 	/// <inheritdoc cref="object.ToString"/>
 	public override string ToString()

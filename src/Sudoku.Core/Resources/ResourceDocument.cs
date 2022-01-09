@@ -13,9 +13,7 @@
 /// In this case, we can use the indexer <see cref="this[string]"/> to fetch the value via the key,
 /// for example, <c>document["prop1"]</c> you'll get the value <c>"value1"</c>.
 /// </summary>
-[AutoEquality($"{nameof(_culture)}.{nameof(CultureInfo.LCID)}", $"{nameof(ToString)}()")]
 [AutoGetEnumerator(nameof(_root), MemberConversion = "new(@)", ReturnType = typeof(Enumerator))]
-[AutoGetHashCode(nameof(BasicHash), nameof(StringHash))]
 public sealed partial class ResourceDocument
 : IDisposable
 , IEquatable<ResourceDocument>
@@ -103,26 +101,6 @@ public sealed partial class ResourceDocument
 	/// </summary>
 	public int Lcid => _culture.LCID;
 
-	/// <summary>
-	/// Indicates the basic hash that uses the property <see cref="CultureInfo.LCID"/>.
-	/// </summary>
-	private int BasicHash
-	{
-		[LambdaBody]
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => _culture.LCID << 3 ^ 0x667788;
-	}
-
-	/// <summary>
-	/// Indicates the hash that corresponds to the string value.
-	/// </summary>
-	private int StringHash
-	{
-		[LambdaBody]
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => ToString(DefaultSerializerOptions).GetHashCode();
-	}
-
 
 	/// <summary>
 	/// Try to fetch the property value via the specified property name.
@@ -140,6 +118,20 @@ public sealed partial class ResourceDocument
 	/// <inheritdoc cref="IDisposable.Dispose"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public void Dispose() => _parentDoc.Dispose();
+
+	/// <summary>
+	/// Determine whether the specified <see cref="ResourceDocument"/> instance holds the same value
+	/// as the current instance.
+	/// </summary>
+	/// <param name="other">The instance to compare.</param>
+	/// <returns>A <see cref="bool"/> result.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public bool Equals([NotNullWhen(true)] ResourceDocument? other) =>
+		other is not null && _culture.LCID == other._culture.LCID && ToString() == other.ToString();
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public override int GetHashCode() => HashCode.Combine(_culture.LCID, ToString(DefaultSerializerOptions));
 
 	/// <inheritdoc cref="object.ToString"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

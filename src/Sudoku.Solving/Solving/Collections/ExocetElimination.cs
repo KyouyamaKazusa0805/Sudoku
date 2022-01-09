@@ -8,10 +8,9 @@
 /// <param name="Reason">Indicates the reason why these candidates can be eliminated.</param>
 /// <seealso cref="IJuniorExocetStepSearcher"/>
 /// <seealso cref="ISeniorExocetStepSearcher"/>
-[AutoGetHashCode(nameof(Eliminations), nameof(Reason))]
-[AutoEquality(nameof(Eliminations), nameof(Reason))]
 [AutoGetEnumerator("@", MemberConversion = $"@.{nameof(AsSpan)}().*", ReturnType = typeof(ReadOnlySpan<Conclusion>.Enumerator))]
 public readonly partial record struct ExocetElimination(in Candidates Eliminations, ExocetEliminatedReason Reason)
+: IValueEquatable<ExocetElimination>
 {
 	/// <summary>
 	/// Indicates how many eliminations the instance contains.
@@ -27,6 +26,20 @@ public readonly partial record struct ExocetElimination(in Candidates Eliminatio
 	/// </summary>
 	private string Header => ResourceDocumentManager.Shared[$"exocet{Reason}EliminationName"];
 
+
+	/// <summary>
+	/// Determine whether the specified <see cref="ExocetElimination"/> instance holds a same set of eliminations
+	/// and the eliminated reason as the current instance.
+	/// </summary>
+	/// <param name="other">The instance to compare.</param>
+	/// <returns>A <see cref="bool"/> result.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public bool Equals(in ExocetElimination other) =>
+		Eliminations == other.Eliminations && Reason == other.Reason;
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public override int GetHashCode() => HashCode.Combine(Eliminations, Reason);
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

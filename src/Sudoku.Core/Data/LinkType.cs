@@ -24,12 +24,17 @@
 /// </item>
 /// </list>
 /// </param>
-/// <completionlist cref="LinkTypes"/>
-[StructLayout(LayoutKind.Explicit, CharSet = CharSet.Auto, Pack = 0, Size = sizeof(byte))]
-public readonly record struct LinkType([field: FieldOffset(0)] byte TypeKind)
-: IValueEquatable<LinkType>
-, ILinkType<LinkType>
+public readonly record struct LinkType(byte TypeKind) : ILinkType<LinkType>
 {
+	/// <summary>
+	/// Determine whether the specified <see cref="LinkType"/> instance
+	/// holds the same type kind as the current one.
+	/// </summary>
+	/// <param name="other">The other instance to compare.</param>
+	/// <returns>A <see cref="bool"/> result.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public bool Equals(LinkType other) => TypeKind == other.TypeKind;
+
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public override int GetHashCode() => TypeKind;
@@ -49,10 +54,6 @@ public readonly record struct LinkType([field: FieldOffset(0)] byte TypeKind)
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public string GetNotation() => TypeKind switch { 0 => " -> ", 1 => " -- ", 2 => " == ", 3 => " -- " };
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	bool IValueEquatable<LinkType>.Equals(in LinkType other) => this == other;
 
 
 	/// <inheritdoc/>

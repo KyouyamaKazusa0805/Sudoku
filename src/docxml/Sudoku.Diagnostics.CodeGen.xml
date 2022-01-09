@@ -145,24 +145,6 @@
             Indicates the member names to deconstruct.
             </summary>
         </member>
-        <member name="T:Sudoku.Diagnostics.CodeGen.AutoEqualityAttribute">
-            <summary>
-            Indicates an attribute that is used for a <see langword="class"/> or <see langword="struct"/>
-            as a mark that interacts with the source generator, to tell the source generator that
-            it'll generate the source code for equality methods.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Diagnostics.CodeGen.AutoEqualityAttribute.#ctor(System.String[])">
-            <summary>
-            Initializes an instance with the specified members.
-            </summary>
-            <param name="members">The members.</param>
-        </member>
-        <member name="P:Sudoku.Diagnostics.CodeGen.AutoEqualityAttribute.FieldOrPropertyList">
-            <summary>
-            Indicates the field of property list.
-            </summary>
-        </member>
         <member name="T:Sudoku.Diagnostics.CodeGen.AutoGetEnumeratorAttribute">
             <summary>
             To mark on a type, to tell the compiler that the compiler will automatically generate
@@ -268,18 +250,6 @@
             Marks onto a <see langword="class"/> type, to tell the source generator the type should contain
             a <see langword="private"/> parameterless constructor that can't be accessed out of its type field.
             </summary>
-        </member>
-        <member name="T:Sudoku.Diagnostics.CodeGen.ProxyEqualityAttribute">
-            <summary>
-            Indicates an attribute instance which is marked on a method,
-            to tell the users and the compiler that this method is an equality
-            method to judge whether two instances contain the same value.
-            </summary>
-            <remarks>
-            Because of the limitation of the algorithm and the source generator, the method marked this
-            attribute must be <see langword="static"/>. If you marks on a method
-            that isn't a <see langword="static"/> method, the source generator will do nothing.
-            </remarks>
         </member>
         <member name="T:Sudoku.Diagnostics.CodeGen.Constants">
             <summary>
@@ -479,36 +449,6 @@
             </param>
         </member>
         <member name="M:Sudoku.Diagnostics.CodeGen.DefaultSyntaxContextReceiver.OnVisitSyntaxNode(Microsoft.CodeAnalysis.GeneratorSyntaxContext)">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Diagnostics.CodeGen.Generators.AutoEquality">
-            <summary>
-            Defines a source generator that generates the source code
-            for equality methods and the equality operator overloading.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.AutoEquality.Execute(Microsoft.CodeAnalysis.GeneratorExecutionContext)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.AutoEquality.Initialize(Microsoft.CodeAnalysis.GeneratorInitializationContext)">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Diagnostics.CodeGen.Generators.AutoEquality.Receiver">
-            <summary>
-            Defines a syntax context receiver.
-            </summary>
-            <param name="CancellationToken">The cancellation token to cancel the operation.</param>
-        </member>
-        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.AutoEquality.Receiver.#ctor(System.Threading.CancellationToken)">
-            <summary>
-            Defines a syntax context receiver.
-            </summary>
-            <param name="CancellationToken">The cancellation token to cancel the operation.</param>
-        </member>
-        <member name="P:Sudoku.Diagnostics.CodeGen.Generators.AutoEquality.Receiver.Collection">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.AutoEquality.Receiver.OnVisitSyntaxNode(Microsoft.CodeAnalysis.GeneratorSyntaxContext)">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Diagnostics.CodeGen.Generators.AutoExtensionDeconstruct">
@@ -784,41 +724,6 @@
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Diagnostics.CodeGen.Generators.PrivatizeParameterlessConstructor.Receiver.OnVisitSyntaxNode(Microsoft.CodeAnalysis.GeneratorSyntaxContext)">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Diagnostics.CodeGen.Generators.ProxyEqualsMethod">
-            <summary>
-            Indicates a generator that generates the code about the equality method.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.ProxyEqualsMethod.Execute(Microsoft.CodeAnalysis.GeneratorExecutionContext)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.ProxyEqualsMethod.Initialize(Microsoft.CodeAnalysis.GeneratorInitializationContext)">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Diagnostics.CodeGen.Generators.ProxyEqualsMethod.Receiver">
-            <summary>
-            Defines a syntax context receiver.
-            </summary>
-            <param name="CancellationToken">The cancellation token to cancel the operation.</param>
-        </member>
-        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.ProxyEqualsMethod.Receiver.#ctor(System.Threading.CancellationToken)">
-            <summary>
-            Defines a syntax context receiver.
-            </summary>
-            <param name="CancellationToken">The cancellation token to cancel the operation.</param>
-        </member>
-        <member name="F:Sudoku.Diagnostics.CodeGen.Generators.ProxyEqualsMethod.Receiver._processedList">
-            <summary>
-            Indicates the processed list that records the type symbols had been handled,
-            which is used for removing duplicate cases.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Diagnostics.CodeGen.Generators.ProxyEqualsMethod.Receiver.Collection">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.ProxyEqualsMethod.Receiver.OnVisitSyntaxNode(Microsoft.CodeAnalysis.GeneratorSyntaxContext)">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Diagnostics.CodeGen.Generators.RefStructOverridens">

@@ -5,7 +5,8 @@
 /// of the chain, using the current node as the tail node.
 /// </summary>
 /// <remarks>
-/// The data structure uses an <see cref="int"/> value to represent an instance. The bit usage details is as below:
+/// The data structure uses an <see cref="int"/> value to represent an instance.
+/// The bit usage details is as below:
 /// <code><![CDATA[
 /// |  (4)  |  (3)  |  (2)  |  (1)  |
 /// |-------|-------|-------|-------|
@@ -33,13 +34,15 @@
 /// </item>
 /// </list>
 /// </remarks>
-/// <param name="Mask">Indicates the mask that handles and stores the basic information of the current node.</param>
-[AutoEquality(nameof(Mask))]
+/// <param name="Mask">
+/// Indicates the mask that handles and stores the basic information of the current node.
+/// </param>
 [AutoDeconstructLambda(nameof(Candidate), nameof(IsOn))]
-public unsafe partial record struct Node(int Mask) : IValueEquatable<Node>
+public unsafe partial record struct Node(int Mask)
 {
 	/// <summary>
-	/// Indicates the undefined instance that is used for providing with a value that only used in an invalid case.
+	/// Indicates the undefined instance that is used for providing with a value
+	/// that only used in an invalid case.
 	/// </summary>
 	public static readonly Node Undefined;
 
@@ -281,6 +284,15 @@ public unsafe partial record struct Node(int Mask) : IValueEquatable<Node>
 		}
 	}
 
+
+	/// <summary>
+	/// Determine whether the specified <see cref="Node"/> instance holds the same mask value
+	/// as the current instance.
+	/// </summary>
+	/// <param name="other">The instance to compare.</param>
+	/// <returns>A <see cref="bool"/> result.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public readonly bool Equals(Node other) => Mask == other.Mask;
 
 	/// <summary>
 	/// Determine whether the node is the parent of the specified node.

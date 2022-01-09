@@ -3,7 +3,6 @@
 /// <summary>
 /// Indicates a region collection.
 /// </summary>
-[AutoEquality(nameof(_mask))]
 [AutoGetEnumerator(nameof(_mask), MemberConversion = "@.*", ReturnType = typeof(ReadOnlySpan<int>.Enumerator), ExtraNamespaces = new[] { "System.Numerics" })]
 public readonly ref partial struct RegionCollection
 {
@@ -58,6 +57,13 @@ public readonly ref partial struct RegionCollection
 	/// <returns>A <see cref="bool"/> value.</returns>
 	public bool this[int region] => (_mask >> region & 1) != 0;
 
+
+	/// <summary>
+	/// Determine whether the two collections are equal.
+	/// </summary>
+	/// <param name="other">The collection to compare.</param>
+	/// <returns>A <see cref="bool"/> result.</returns>
+	public bool Equals(in RegionCollection other) => _mask == other._mask;
 
 	/// <inheritdoc cref="object.GetHashCode"/>
 	public override int GetHashCode() => _mask;
