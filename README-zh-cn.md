@@ -17,11 +17,9 @@
 比如说，你可以使用如下的代码来解一道题：
 
 ```csharp
-#if !NET6_0_OR_GREATER
 using System;
 using Sudoku.Data;
 using Sudoku.Solving.Manual;
-#endif
 
 // 读取一个字符串形式的数独盘面的代码信息，并解析为 'SudokuGrid' 类型的对象。
 var grid = SudokuGrid.Parse("........6.....158...8.4.21.5..8..39.6.1.7.8.5.89..5..1.24.5.9...659.....9........");
@@ -37,10 +35,6 @@ var analysisResult = solver.Solve(grid);
 // 输出分析结果。
 Console.WriteLine(analysisResult.ToString());
 ```
-
-> C# 10 开始使用 [`global using` 指令](https://docs.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-10#global-using-directives)来按程序集级别添加命名空间的引用，因此 `#if` 和 `#endif` 包裹起来的这段代码此时是可以不写的。虽然项目是按 C# 10 语法书写的，不过这里是为了让你熟悉项目的一些简单的命名空间，我把它们以这种形式写出来了，这样也可以规避编译器产生额外的编译器警告信息。
->
-> `NET6_0_OR_GREATER` 是在 .NET 6 里带有的编译符号，用于指示框架的版本是否是 .NET 6 及以上。详情请自行参考 Microsoft Docs 了解[“条件编译符号”的使用](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/preprocessor-directives#conditional-compilation)。
 
 以后，我想把这个解决方案用于**几乎所有平台**上。我可能会完成 Win10 App 项目、安卓项目、常用网络平台上的机器人（比如可能 QQ 啊，哔哩哔哩之类的）。
 
@@ -103,8 +97,6 @@ Console.WriteLine(analysisResult.ToString());
 * [ ] Wiki 文档
   * [x] 基本文档
   * [ ] 数独教程
-* [x] Visual Studio 数独相关插件
-  * [x] ~~数独解决方案的代码分析器（Sudoku Solution Guardian，暂时删掉了）~~
 
 ### 项目开源许可证
 
