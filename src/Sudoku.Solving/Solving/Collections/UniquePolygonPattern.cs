@@ -22,8 +22,7 @@
 /// Due to the rendering engine, you have to check this file rather than the tip window.
 /// </para>
 /// </remarks>
-[AutoGetHashCode(nameof(Mask))]
-public readonly partial record struct UniquePolygonPattern(long Mask) : IPattern<UniquePolygonPattern>
+public readonly record struct UniquePolygonPattern(long Mask) : IPattern<UniquePolygonPattern>
 {
 	/// <summary>
 	/// Indicates whether the specified pattern is a heptagon.
@@ -114,6 +113,10 @@ public readonly partial record struct UniquePolygonPattern(long Mask) : IPattern
 		pair2 = Pair2;
 		centerCells = CenterCells;
 	}
+
+	/// <inheritdoc cref="object.GetHashCode"/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public override int GetHashCode() => (int)Mask;
 
 	/// <inheritdoc cref="object.ToString"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

@@ -7,7 +7,6 @@
 /// <param name="EndCandidate">Indicates the end candidate.</param>
 /// <param name="LinkType">Indicates the link type.</param>
 [AutoDeconstructLambda(nameof(StartCell), nameof(StartDigit), nameof(EndCell), nameof(EndDigit), nameof(LinkType))]
-[AutoGetHashCode(nameof(EigenValue))]
 public readonly partial record struct Link(int StartCandidate, int EndCandidate, LinkType LinkType)
 : IJsonSerializable<Link, Link.JsonConverter>
 {
@@ -51,16 +50,6 @@ public readonly partial record struct Link(int StartCandidate, int EndCandidate,
 		get => EndCandidate % 9;
 	}
 
-	/// <summary>
-	/// Indicates the eigen value.
-	/// </summary>
-	private int EigenValue
-	{
-		[LambdaBody]
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => (int)LinkType << 20 | StartCandidate << 10 | EndCandidate;
-	}
-
 
 	/// <summary>
 	/// Determine whether the specified <see cref="Link"/> instance holds the same start cell,
@@ -73,6 +62,10 @@ public readonly partial record struct Link(int StartCandidate, int EndCandidate,
 		StartCandidate == other.StartCandidate
 		&& EndCandidate == other.EndCandidate
 		&& LinkType == other.LinkType;
+
+	/// <inheritdoc cref="object.GetHashCode"/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public override int GetHashCode() => (int)LinkType << 20 | StartCandidate << 10 | EndCandidate;
 
 	/// <inheritdoc cref="object.ToString"/>
 	public override string ToString() =>

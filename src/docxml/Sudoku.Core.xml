@@ -4331,11 +4331,6 @@
             Indicates the end digit.
             </summary>
         </member>
-        <member name="P:Sudoku.Data.Link.EigenValue">
-            <summary>
-            Indicates the eigen value.
-            </summary>
-        </member>
         <member name="M:Sudoku.Data.Link.Equals(Sudoku.Data.Link)">
             <summary>
             Determine whether the specified <see cref="T:Sudoku.Data.Link"/> instance holds the same start cell,
@@ -4343,6 +4338,9 @@
             </summary>
             <param name="other">The instance to compare.</param>
             <returns>A <see cref="T:System.Boolean"/> result.</returns>
+        </member>
+        <member name="M:Sudoku.Data.Link.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
         </member>
         <member name="M:Sudoku.Data.Link.ToString">
             <inheritdoc cref="M:System.Object.ToString"/>
@@ -4361,9 +4359,6 @@
         </member>
         <member name="M:Sudoku.Data.Link.JsonConverter.Write(System.Text.Json.Utf8JsonWriter,Sudoku.Data.Link,System.Text.Json.JsonSerializerOptions)">
             <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Data.Link.GetHashCode">
-            <inheritdoc cref="M:System.Object.GetHashCode"/>
         </member>
         <member name="M:Sudoku.Data.Link.Deconstruct(System.Int32@,System.Int32@,System.Int32@,System.Int32@,Sudoku.Data.LinkType@)">
             <summary>

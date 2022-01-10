@@ -201,24 +201,6 @@
             </summary>
             <seealso cref="T:System.Collections.Generic.IEnumerable`1"/>
         </member>
-        <member name="T:Sudoku.Diagnostics.CodeGen.AutoGetHashCodeAttribute">
-            <summary>
-            Indicates an attribute that is used for a <see langword="class"/> or <see langword="struct"/>
-            as a mark that interacts with the source generator, to tell the source generator that
-            it'll generate the source code for <c>GetHashCode</c> overriden.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Diagnostics.CodeGen.AutoGetHashCodeAttribute.#ctor(System.String[])">
-            <summary>
-            Initializes an instance with the specified member list.
-            </summary>
-            <param name="dataMembers">The data members.</param>
-        </member>
-        <member name="P:Sudoku.Diagnostics.CodeGen.AutoGetHashCodeAttribute.DataMembers">
-            <summary>
-            All members to generate.
-            </summary>
-        </member>
         <member name="T:Sudoku.Diagnostics.CodeGen.AutoPrimaryConstructorAttribute">
             <summary>
             Indicates the marked <see langword="class"/> should generate primary constructor automatically.
@@ -494,35 +476,6 @@
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Diagnostics.CodeGen.Generators.AutoGetEnumerator.Receiver.OnVisitSyntaxNode(Microsoft.CodeAnalysis.GeneratorSyntaxContext)">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Diagnostics.CodeGen.Generators.AutoGetHashCode">
-            <summary>
-            Defines a source generator that generates the source code for getting hash code.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.AutoGetHashCode.Execute(Microsoft.CodeAnalysis.GeneratorExecutionContext)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.AutoGetHashCode.Initialize(Microsoft.CodeAnalysis.GeneratorInitializationContext)">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Diagnostics.CodeGen.Generators.AutoGetHashCode.Receiver">
-            <summary>
-            Defines a syntax context receiver.
-            </summary>
-            <param name="CancellationToken">The cancellation token to cancel the operation.</param>
-        </member>
-        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.AutoGetHashCode.Receiver.#ctor(System.Threading.CancellationToken)">
-            <summary>
-            Defines a syntax context receiver.
-            </summary>
-            <param name="CancellationToken">The cancellation token to cancel the operation.</param>
-        </member>
-        <member name="P:Sudoku.Diagnostics.CodeGen.Generators.AutoGetHashCode.Receiver.Collection">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.AutoGetHashCode.Receiver.OnVisitSyntaxNode(Microsoft.CodeAnalysis.GeneratorSyntaxContext)">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Diagnostics.CodeGen.Generators.AutoLambdaedDeconstruct">

@@ -856,11 +856,11 @@
             Deconstruct the instance to multiple values.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Collections.UniquePolygonPattern.ToString">
-            <inheritdoc cref="M:System.Object.ToString"/>
-        </member>
         <member name="M:Sudoku.Solving.Collections.UniquePolygonPattern.GetHashCode">
             <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="M:Sudoku.Solving.Collections.UniquePolygonPattern.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
         </member>
         <member name="T:Sudoku.Solving.FailedReason">
             <summary>
