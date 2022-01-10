@@ -169,7 +169,7 @@ public sealed unsafe class TrueCandidatesSearcher
 						map = CandMaps[digit] - stack[currentIndex, digit];
 						foreach (int cell in map)
 						{
-							result.Add(cell * 9 + digit);
+							result.AddAnyway(cell * 9 + digit);
 						}
 					}
 
