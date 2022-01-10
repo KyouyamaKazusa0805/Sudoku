@@ -5,7 +5,7 @@ partial struct NodeSet
 	/// <summary>
 	/// Indicates the enumerator.
 	/// </summary>
-	public ref struct Enumerator
+	public ref partial struct Enumerator
 	{
 		/// <summary>
 		/// Indicates the length of elements to iterate.

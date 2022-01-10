@@ -1,32 +1,61 @@
-﻿using Handler = System.Action<
-	Microsoft.CodeAnalysis.GeneratorExecutionContext,
-	Microsoft.CodeAnalysis.INamedTypeSymbol,
-	Microsoft.CodeAnalysis.Compilation
->;
-
-namespace Sudoku.Diagnostics.CodeGen.Generators;
+﻿namespace Sudoku.Diagnostics.CodeGen.Generators;
 
 /// <summary>
 /// Indicates the generator that generates the default overriden methods in a <see langword="ref struct"/>.
 /// </summary>
 [Generator(LanguageNames.CSharp)]
-public sealed class RefStructOverridens : ISourceGenerator
+public sealed class RefStructOverridensGenerator : ISourceGenerator
 {
+	/// <summary>
+	/// Indicates the descriptor <c>SCA0013</c>
+	/// (<see langword="ref struct"/>s requires the keyword <see langword="partial"/>).
+	/// </summary>
+	[SuppressMessage("MicrosoftCodeAnalysisReleaseTracking", "RS2008:Enable analyzer release tracking", Justification = "<Pending>")]
+	private static readonly DiagnosticDescriptor SCA0013 = new(
+		id: nameof(SCA0013),
+		title: "Ref structs requires the keyword 'partial'",
+		messageFormat: "Ref structs requires the keyword 'partial'",
+		category: "SourceGen",
+		defaultSeverity: DiagnosticSeverity.Error,
+		isEnabledByDefault: true,
+		helpLinkUri: null
+	);
+
+
 	/// <inheritdoc/>
-	public unsafe void Execute(GeneratorExecutionContext context)
+	[SuppressMessage("MicrosoftCodeAnalysisCorrectness", "RS1024:Compare symbols correctly", Justification = "<Pending>")]
+	public void Execute(GeneratorExecutionContext context)
 	{
-		var compilation = context.Compilation;
-		foreach (var typeGroup in
-			from typeSymbol in ((Receiver)context.SyntaxContextReceiver!).Collection
-			let whetherSymbolIsNull = typeSymbol.ContainingType is null
-			group typeSymbol by whetherSymbolIsNull)
-		{
-			Handler f = typeGroup.Key ? OnTopLevel : OnNested;
-			foreach (var type in typeGroup)
+		if (
+			context is not
 			{
-				f(context, type, compilation);
+				SyntaxContextReceiver: Receiver
+				{
+					Diagnostics: var diagnostics,
+					Collection: var typeSymbols
+				} receiver,
+				Compilation: var compilation
 			}
+		)
+		{
+			return;
 		}
+
+		if (diagnostics is [_, ..])
+		{
+			diagnostics.ForEach(context.ReportDiagnostic);
+
+			return;
+		}
+
+		(
+			from typeSymbol in typeSymbols
+			group typeSymbol by typeSymbol.ContainingType is null into @group
+			let key = @group.Key
+			let f = key ? new Action<GeneratorExecutionContext, INamedTypeSymbol, Compilation>(OnTopLevel) : OnNested
+			from type in @group
+			select (Action: f, Type: type)
+		).ForEach(e => e.Action(context, e.Type, compilation));
 	}
 
 	/// <inheritdoc/>
@@ -36,9 +65,7 @@ public sealed class RefStructOverridens : ISourceGenerator
 
 	private void OnTopLevel(GeneratorExecutionContext context, INamedTypeSymbol type, Compilation compilation)
 	{
-		var (
-			_, _, namespaceName, genericParameterList, _, _, readOnlyKeyword, _, _, _
-		) = SymbolOutputInfo.FromSymbol(type);
+		var (_, _, namespaceName, genericParameterList, _, _, readOnlyKeyword, _, _, _) = SymbolOutputInfo.FromSymbol(type);
 
 		var methods = type.GetMembers().OfType<IMethodSymbol>().ToArray();
 		string equalsMethod = Array.Exists(
@@ -130,9 +157,7 @@ partial struct {type.Name}{genericParameterList}
 
 	private void OnNested(GeneratorExecutionContext context, INamedTypeSymbol type, Compilation compilation)
 	{
-		var (
-			_, _, namespaceName, genericParameterList, _, _, readOnlyKeyword, _, _, _
-		) = SymbolOutputInfo.FromSymbol(type);
+		var (_, _, namespaceName, genericParameterList, _, _, readOnlyKeyword, _, _, _) = SymbolOutputInfo.FromSymbol(type);
 
 		// If nested type, the 'genericParametersList' may contain the dot '.' such as
 		//
@@ -170,9 +195,7 @@ partial struct {type.Name}{genericParameterList}
 		var indentingStack = new Stack<string>();
 		foreach (var (outerType, currentIndenting) in outerTypes)
 		{
-			var (
-				_, outerFullTypeName, _, _, _, outerTypeKind, _, _, _, _
-			) = SymbolOutputInfo.FromSymbol(outerType);
+			var (_, outerFullTypeName, _, _, _, outerTypeKind, _, _, _, _) = SymbolOutputInfo.FromSymbol(outerType);
 
 			string outerGenericParametersList;
 			int lastDot = outerFullTypeName.LastIndexOf('.');
@@ -323,10 +346,16 @@ namespace {namespaceName};
 	/// Defines a syntax context receiver.
 	/// </summary>
 	/// <param name="CancellationToken">The cancellation token to cancel the operation.</param>
-	private sealed record Receiver(CancellationToken CancellationToken) : IResultCollectionReceiver<RefStructInfo>
+	private sealed record Receiver(CancellationToken CancellationToken)
+	: IResultCollectionReceiver<INamedTypeSymbol>
 	{
 		/// <inheritdoc/>
-		public ICollection<RefStructInfo> Collection { get; } = new List<RefStructInfo>();
+		public ICollection<INamedTypeSymbol> Collection { get; } = new List<INamedTypeSymbol>();
+
+		/// <summary>
+		/// Indicates the diagnostic results found.
+		/// </summary>
+		internal List<Diagnostic> Diagnostics { get; } = new();
 
 
 		/// <inheritdoc/>
@@ -335,7 +364,11 @@ namespace {namespaceName};
 			if (
 				context is not
 				{
-					Node: StructDeclarationSyntax { Modifiers: [_, ..] modifiers } n,
+					Node: TypeDeclarationSyntax
+					{
+						Identifier: var identifier,
+						Modifiers: [_, ..] modifiers
+					} n,
 					SemanticModel: { Compilation: { } compilation } semanticModel
 				}
 			)
@@ -343,13 +376,21 @@ namespace {namespaceName};
 				return;
 			}
 
-			if (!(modifiers.Any(SyntaxKind.RefKeyword) && modifiers.Any(SyntaxKind.PartialKeyword)))
+			if (!modifiers.Any(SyntaxKind.RefKeyword))
 			{
 				return;
 			}
 
-			if (semanticModel.GetDeclaredSymbol(n, CancellationToken) is not { } typeSymbol)
+			var symbol = semanticModel.GetDeclaredSymbol(n, CancellationToken);
+			if (symbol is not { TypeKind: TypeKind.Struct } typeSymbol)
 			{
+				return;
+			}
+
+			if (!modifiers.Any(SyntaxKind.PartialKeyword))
+			{
+				Diagnostics.Add(Diagnostic.Create(SCA0013, identifier.GetLocation(), messageArgs: null));
+
 				return;
 			}
 

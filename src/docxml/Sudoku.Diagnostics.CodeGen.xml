@@ -285,33 +285,44 @@
         <member name="M:Sudoku.Diagnostics.CodeGen.Generators.AutoLambdaedExtensionDeconstruct.Initialize(Microsoft.CodeAnalysis.GeneratorInitializationContext)">
             <inheritdoc/>
         </member>
-        <member name="T:Sudoku.Diagnostics.CodeGen.Generators.RefStructOverridens">
+        <member name="T:Sudoku.Diagnostics.CodeGen.Generators.RefStructOverridensGenerator">
             <summary>
             Indicates the generator that generates the default overriden methods in a <see langword="ref struct"/>.
             </summary>
         </member>
-        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.RefStructOverridens.Execute(Microsoft.CodeAnalysis.GeneratorExecutionContext)">
+        <member name="F:Sudoku.Diagnostics.CodeGen.Generators.RefStructOverridensGenerator.SCA0013">
+            <summary>
+            Indicates the descriptor <c>SCA0013</c>
+            (<see langword="ref struct"/>s requires the keyword <see langword="partial"/>).
+            </summary>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.RefStructOverridensGenerator.Execute(Microsoft.CodeAnalysis.GeneratorExecutionContext)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.RefStructOverridens.Initialize(Microsoft.CodeAnalysis.GeneratorInitializationContext)">
+        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.RefStructOverridensGenerator.Initialize(Microsoft.CodeAnalysis.GeneratorInitializationContext)">
             <inheritdoc/>
         </member>
-        <member name="T:Sudoku.Diagnostics.CodeGen.Generators.RefStructOverridens.Receiver">
+        <member name="T:Sudoku.Diagnostics.CodeGen.Generators.RefStructOverridensGenerator.Receiver">
             <summary>
             Defines a syntax context receiver.
             </summary>
             <param name="CancellationToken">The cancellation token to cancel the operation.</param>
         </member>
-        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.RefStructOverridens.Receiver.#ctor(System.Threading.CancellationToken)">
+        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.RefStructOverridensGenerator.Receiver.#ctor(System.Threading.CancellationToken)">
             <summary>
             Defines a syntax context receiver.
             </summary>
             <param name="CancellationToken">The cancellation token to cancel the operation.</param>
         </member>
-        <member name="P:Sudoku.Diagnostics.CodeGen.Generators.RefStructOverridens.Receiver.Collection">
+        <member name="P:Sudoku.Diagnostics.CodeGen.Generators.RefStructOverridensGenerator.Receiver.Collection">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.RefStructOverridens.Receiver.OnVisitSyntaxNode(Microsoft.CodeAnalysis.GeneratorSyntaxContext)">
+        <member name="P:Sudoku.Diagnostics.CodeGen.Generators.RefStructOverridensGenerator.Receiver.Diagnostics">
+            <summary>
+            Indicates the diagnostic results found.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.RefStructOverridensGenerator.Receiver.OnVisitSyntaxNode(Microsoft.CodeAnalysis.GeneratorSyntaxContext)">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Diagnostics.CodeGen.IResultCollectionReceiver`1">
@@ -624,6 +635,20 @@
             is a <see langword="ref struct"/>.
             </param>
             <returns>The <see cref="T:Microsoft.CodeAnalysis.SymbolOutputInfo"/> instance.</returns>
+        </member>
+        <member name="T:System.Collections.Generic.EnumerableExtensions">
+            <summary>
+            Provides extension methods on <see cref="T:System.Collections.Generic.IEnumerable`1"/>.
+            </summary>
+            <seealso cref="T:System.Collections.Generic.IEnumerable`1"/>
+        </member>
+        <member name="M:System.Collections.Generic.EnumerableExtensions.ForEach``1(System.Collections.Generic.IEnumerable{``0},System.Action{``0})">
+            <summary>
+            The method to replace with <see langword="foreach"/> loop.
+            </summary>
+            <typeparam name="T">The type of each element.</typeparam>
+            <param name="this">The collection to iterate.</param>
+            <param name="action">The action that is executed while iterating.</param>
         </member>
         <member name="T:System.StringExtensions">
             <summary>
