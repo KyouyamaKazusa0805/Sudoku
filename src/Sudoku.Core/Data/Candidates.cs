@@ -479,7 +479,7 @@ public unsafe partial struct Candidates : ICellsOrCandidates<Candidates>
 	/// <returns>The enumerator instance.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public readonly OneDimensionalArrayEnumerable<int>.Enumerator GetEnumerator() =>
-		Offsets.AsRefEnumerable().GetEnumerator();
+		Offsets.AsEnumerable().GetEnumerator();
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

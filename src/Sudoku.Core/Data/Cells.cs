@@ -866,7 +866,7 @@ public unsafe partial struct Cells
 	/// <returns>The enumerator instance.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public readonly OneDimensionalArrayEnumerable<int>.Enumerator GetEnumerator() =>
-		Offsets.AsRefEnumerable().GetEnumerator();
+		Offsets.AsEnumerable().GetEnumerator();
 
 	/// <summary>
 	/// Expands the current instance, using the specified digit.

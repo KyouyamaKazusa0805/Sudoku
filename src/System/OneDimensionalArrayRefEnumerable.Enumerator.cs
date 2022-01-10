@@ -1,6 +1,6 @@
 ﻿namespace System;
 
-partial struct OneDimensionalArrayEnumerable<TStruct>
+partial struct OneDimensionalArrayRefEnumerable<T>
 {
 	/// <summary>
 	/// Defines an enumerator that iterates the one-dimensional array.
@@ -16,7 +16,7 @@ partial struct OneDimensionalArrayEnumerable<TStruct>
 		/// <summary>
 		/// Indicates the array to iterate.
 		/// </summary>
-		private readonly TStruct[] _innerArray;
+		private readonly T[] _innerArray;
 
 		/// <summary>
 		/// Indicates the current index being iterated.
@@ -30,7 +30,7 @@ partial struct OneDimensionalArrayEnumerable<TStruct>
 		/// </summary>
 		/// <param name="innerArray">The array to iterate.</param>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public Enumerator(TStruct[] innerArray)
+		public Enumerator(T[] innerArray)
 		{
 			_innerArray = innerArray;
 			_length = innerArray.Length;
@@ -40,10 +40,10 @@ partial struct OneDimensionalArrayEnumerable<TStruct>
 		/// <summary>
 		/// Indicates the current instance being iterated. Please note that the value is returned by reference.
 		/// </summary>
-		public readonly TStruct Current
+		public readonly ref T Current
 		{
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
-			get => _innerArray[_index];
+			get => ref _innerArray[_index];
 		}
 
 
