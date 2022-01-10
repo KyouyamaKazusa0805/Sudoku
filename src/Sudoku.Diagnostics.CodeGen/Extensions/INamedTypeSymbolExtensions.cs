@@ -47,18 +47,20 @@ internal static class INamedTypeSymbolExtensions
 		Compilation compilation
 	) where TAttribute : Attribute
 	{
-		var obsolete = compilation.GetTypeByMetadataName(typeof(TAttribute).FullName)!;
-		Func<ISymbol?, ISymbol?, bool> e = SymbolEqualityComparer.Default.Equals;
-
+		var attribute = compilation.GetTypeByMetadataName(typeof(TAttribute).FullName)!;
 		return f(symbol);
 
 
-		bool f(INamedTypeSymbol? symbol) => symbol switch
-		{
-			null => false,
-			{ IsGenericType: false } => symbol.GetAttributes().Any(a => e(a.AttributeClass, obsolete)),
-			{ TypeArguments: var typeArgs } => typeArgs.All(t => f(t as INamedTypeSymbol))
-		};
+		bool f(INamedTypeSymbol? symbol) =>
+			symbol switch
+			{
+				null => false,
+				{ IsGenericType: false } =>
+					symbol.GetAttributes().Any(
+						a => SymbolEqualityComparer.Default.Equals(a.AttributeClass, attribute)
+					),
+				{ TypeArguments: var typeArgs } => typeArgs.All(t => f(t as INamedTypeSymbol))
+			};
 	}
 
 	/// <summary>
@@ -94,6 +96,6 @@ internal static class INamedTypeSymbolExtensions
 			}
 		}
 
-		return buffer.Slice(0, pointer).ToString();
+		return buffer[..pointer].ToString();
 	}
 }

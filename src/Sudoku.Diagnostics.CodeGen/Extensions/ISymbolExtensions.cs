@@ -7,18 +7,6 @@
 internal static class ISymbolExtensions
 {
 	/// <summary>
-	/// To determine whether the specified symbol (should be property or field members)
-	/// has an initializer.
-	/// </summary>
-	/// <param name="this">The symbol to check.</param>
-	/// <param name="cancellationToken">The cancellation token used for cancelling the operation.</param>
-	/// <returns>The result.</returns>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	internal static bool HasInitializer(this ISymbol @this, CancellationToken cancellationToken = default) =>
-		@this is { DeclaringSyntaxReferences: [var syntaxRef] }
-		&& syntaxRef.GetSyntax(cancellationToken) is VariableDeclaratorSyntax { Initializer: not null };
-
-	/// <summary>
 	/// Gets the member type string representation.
 	/// </summary>
 	/// <param name="this">The symbol.</param>

@@ -456,50 +456,6 @@
             <param name="result">The result got.</param>
             <returns>A <see cref="T:System.Boolean"/> result indicating whether the operation is successful.</returns>
         </member>
-        <member name="T:Microsoft.CodeAnalysis.CompilationExtensions">
-            <summary>
-            Provides extension methods on <see cref="T:Microsoft.CodeAnalysis.Compilation"/>.
-            </summary>
-            <seealso cref="T:Microsoft.CodeAnalysis.Compilation"/>
-        </member>
-        <member name="M:Microsoft.CodeAnalysis.CompilationExtensions.TypeArgumentMarked``1(Microsoft.CodeAnalysis.Compilation,Microsoft.CodeAnalysis.INamedTypeSymbol)">
-            <summary>
-            <para>
-            Check all type arguments recursively whether any types are marked specified attribute type.
-            </para>
-            <para>
-            This method will check all type arguments for this type symbol recursively.
-            For example, if the type symbol is like this:
-            <code><![CDATA[IReadOnlyDictionary<string, IReadOnlyList<IReadOnlyList<int>>>]]></code>
-            this method will check those parts:
-            <list type="bullet">
-            <item><c><![CDATA[IReadOnlyDictionary<string, IReadOnlyList<IReadOnlyList<int>>>]]></c></item>
-            <item><c>string</c></item>
-            <item><c><![CDATA[IReadOnlyList<IReadOnlyList<int>>]]></c></item>
-            <item><c><![CDATA[IReadOnlyList<int>]]></c></item>
-            <item><c>int</c></item>
-            </list>
-            </para>
-            </summary>
-            <typeparam name="TAttribute">The type of the attribute to check.</typeparam>
-            <param name="this">The compilation.</param>
-            <param name="symbol">The symbol to check.</param>
-            <returns>
-            A <see cref="T:System.Boolean"/> result indicating:
-            <list type="table">
-            <item>
-            <term><see langword="true"/></term>
-            <description>
-            The type symbol contains a argument that is marked <typeparamref name="TAttribute"/>.
-            </description>
-            </item>
-            <item>
-            <term><see langword="false"/></term>
-            <description>All type arguments aren't marked <typeparamref name="TAttribute"/>.</description>
-            </item>
-            </list>
-            </returns>
-        </member>
         <member name="T:Microsoft.CodeAnalysis.GeneratorExecutionContextExtensions">
             <summary>
             Provides extension methods on <see cref="T:Microsoft.CodeAnalysis.GeneratorExecutionContext"/>.
@@ -515,17 +471,6 @@
             <param name="sourceGeneratorName">The source generator name.</param>
             <param name="sourceCode">The source code.</param>
             <seealso cref="M:Microsoft.CodeAnalysis.GeneratorExecutionContext.AddSource(System.String,System.String)"/>
-        </member>
-        <member name="M:Microsoft.CodeAnalysis.GeneratorExecutionContextExtensions.AddSource(Microsoft.CodeAnalysis.GeneratorExecutionContext@,System.String,System.String,System.String,System.Text.Encoding)">
-            <summary>
-            Simply calls <see cref="M:Microsoft.CodeAnalysis.GeneratorExecutionContext.AddSource(System.String,Microsoft.CodeAnalysis.Text.SourceText)"/>,
-            </summary>
-            <param name="this">The current context.</param>
-            <param name="fileName">The file name. The file name may be same as the symbol name</param>
-            <param name="sourceGeneratorName">The source generator name.</param>
-            <param name="sourceCode">The source code.</param>
-            <param name="encoding">The encoding.</param>
-            <seealso cref="M:Microsoft.CodeAnalysis.GeneratorExecutionContext.AddSource(System.String,Microsoft.CodeAnalysis.Text.SourceText)"/>
         </member>
         <member name="T:Microsoft.CodeAnalysis.INamedTypeSymbolExtensions">
             <summary>
@@ -614,15 +559,6 @@
             Provides extension methods on <see cref="T:Microsoft.CodeAnalysis.ISymbol"/>.
             </summary>
             <seealso cref="T:Microsoft.CodeAnalysis.ISymbol"/>
-        </member>
-        <member name="M:Microsoft.CodeAnalysis.ISymbolExtensions.HasInitializer(Microsoft.CodeAnalysis.ISymbol,System.Threading.CancellationToken)">
-            <summary>
-            To determine whether the specified symbol (should be property or field members)
-            has an initializer.
-            </summary>
-            <param name="this">The symbol to check.</param>
-            <param name="cancellationToken">The cancellation token used for cancelling the operation.</param>
-            <returns>The result.</returns>
         </member>
         <member name="M:Microsoft.CodeAnalysis.ISymbolExtensions.GetMemberType(Microsoft.CodeAnalysis.ISymbol)">
             <summary>
@@ -758,58 +694,11 @@
             </param>
             <returns>The <see cref="T:Microsoft.CodeAnalysis.SymbolOutputInfo"/> instance.</returns>
         </member>
-        <member name="T:System.Collections.Immutable.ImmutableArrayExtensions">
-            <summary>
-            Provides extension methods on <see cref="T:System.Collections.Immutable.ImmutableArray`1"/>
-            </summary>
-            <seealso cref="T:System.Collections.Immutable.ImmutableArray`1"/>
-        </member>
-        <member name="M:System.Collections.Immutable.ImmutableArrayExtensions.NullableMatches(System.Collections.Immutable.ImmutableArray{Microsoft.CodeAnalysis.IParameterSymbol}@,Microsoft.CodeAnalysis.NullableAnnotation[])">
-            <summary>
-            Matches the array of <see cref="T:Microsoft.CodeAnalysis.IParameterSymbol"/> instances, to check whether the
-            types matches the nullable annotation list.
-            </summary>
-            <param name="this">The array of parameter symbols.</param>
-            <param name="nullableAnnotations">The nullable annotation list to check.</param>
-            <returns>
-            Returns <see langword="true"/> when all parameters matches the corresponding nullable annotation;
-            otherwise, <see langword="false"/>.
-            </returns>
-            <exception cref="T:System.ArgumentException">
-            Throws when the current length isn't equal to <paramref name="nullableAnnotations"/>.Length.
-            </exception>
-        </member>
-        <member name="M:System.Collections.Immutable.ImmutableArrayExtensions.GetPath(System.Collections.Immutable.ImmutableArray{Microsoft.CodeAnalysis.AdditionalText}@,System.Predicate{System.String})">
-            <summary>
-            Try to get the path in the additional file list that satisify the specified condition.
-            </summary>
-            <param name="this">The list of additional files.</param>
-            <param name="predicate">The condition</param>
-            <returns>
-            The file name found. If none of all files satisfies the condition, <see langword="null"/>.
-            </returns>
-        </member>
         <member name="T:System.StringExtensions">
             <summary>
             Provides extension methods on <see cref="T:System.String"/>.
             </summary>
             <seealso cref="T:System.String"/>
-        </member>
-        <member name="M:System.StringExtensions.EndsWith(System.String,System.Char)">
-            <summary>
-            Check whether the last character is the specified character.
-            </summary>
-            <param name="this">The string.</param>
-            <param name="character">The character to check.</param>
-            <returns>A <see cref="T:System.Boolean"/> result</returns>
-        </member>
-        <member name="M:System.StringExtensions.CountOf(System.String,System.Char)">
-            <summary>
-            Count how many specified characters are in the current string.
-            </summary>
-            <param name="this">The current string.</param>
-            <param name="character">The character to count.</param>
-            <returns>The number of characters found.</returns>
         </member>
         <member name="M:System.StringExtensions.ToCamelCase(System.String)">
             <summary>
@@ -817,23 +706,6 @@
             </summary>
             <param name="this">The string.</param>
             <returns>The result.</returns>
-        </member>
-        <member name="M:System.StringExtensions.GetMemberValues(System.String,System.Int32)">
-            <summary>
-            Separate the attribute string representation into multiple elements.
-            The attribute string will be like <c>Type({value1, value2, value3})</c>.
-            </summary>
-            <param name="this">The attribute string.</param>
-            <param name="tokenStartIndex">The token start index.</param>
-            <returns>The array of separated values.</returns>
-        </member>
-        <member name="M:System.StringExtensions.SplitInfo(System.String)">
-            <summary>
-            To split the info on the <c>*.csv</c> file line.
-            </summary>
-            <param name="this">A line of the file.</param>
-            <returns>The <see cref="T:System.String"/>[] result.</returns>
-            <exception cref="T:System.ArgumentException">Throws when the specified string is invalid to split.</exception>
         </member>
     </members>
 </doc>
