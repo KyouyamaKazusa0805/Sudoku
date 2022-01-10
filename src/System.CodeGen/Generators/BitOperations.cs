@@ -21,79 +21,28 @@ partial class BitOperationsExensions
 {
 	";
 
-	/// <summary>
-	/// Indicates the trailing text.
-	/// </summary>
-	private const string TrailingText = "}\r\n";
 
+	private static readonly string[]
+		GetAllSetsTypes = new[] { "sbyte", "byte", "short", "ushort", "int", "uint", "long", "ulong" },
+		GetEnumeratorTypes = new[] { "sbyte", "byte", "short", "ushort", "int", "uint", "long", "ulong" },
+		SetAtTypes = new[] { "byte", "short", "int", "long" },
+		SkipSetBitTypes = new[] { "byte", "short", "int", "long" };
 
-	/// <summary>
-	/// Indicates the type names of the method <c>GetAllSets</c> to be used.
-	/// </summary>
-	private static readonly string[] GetAllSetsTypes = new[]
-	{
-		"sbyte", "byte", "short", "ushort", "int", "uint", "long", "ulong"
-	};
-
-	/// <summary>
-	/// Indicates the type names of the method <c>GetEnumerator</c> to be used.
-	/// </summary>
-	private static readonly string[] GetEnumeratorTypes = new[]
-	{
-		"sbyte", "byte", "short", "ushort", "int", "uint", "long", "ulong"
-	};
-
-	/// <summary>
-	/// Indicates the type names of the method <c>NextSetTypes</c> to be used.
-	/// </summary>
-	private static readonly (string TypeName, int Size)[] GetNextSetTypes = new[]
-	{
-		("byte", 8), ("short", 16), ("int", 32), ("long", 64)
-	};
-
-	/// <summary>
-	/// Indicates the type names of the method <c>ReverseBits</c> to be used.
-	/// </summary>
-	private static readonly (string TypeName, int Size)[] ReverseBitsTypes = new[]
-	{
-		("byte", 4), ("short", 8), ("int", 16), ("long", 32)
-	};
-
-	/// <summary>
-	/// Indicates the type names of the method <c>SetAt</c> to be used.
-	/// </summary>
-	private static readonly string[] SetAtTypes = new[]
-	{
-		"byte", "short", "int", "long"
-	};
-
-	/// <summary>
-	/// Indicates the type names of the method <c>SkipSetBit</c> to be used.
-	/// </summary>
-	private static readonly string[] SkipSetBitTypes = new[]
-	{
-		"byte", "short", "int", "long"
-	};
+	private static readonly (string TypeName, int Size)[]
+		GetNextSetTypes = new[] { ("byte", 8), ("short", 16), ("int", 32), ("long", 64) },
+		ReverseBitsTypes = new[] { ("byte", 4), ("short", 8), ("int", 16), ("long", 32) };
 
 
 	/// <inheritdoc/>
 	public void Execute(GeneratorExecutionContext context)
 	{
-		if (context.IsNotInProject(ProjectNames.SystemExtensions))
-		{
-			return;
-		}
-
 		const string separator = "\r\n\r\n\t";
 		const string typeName = "System.Numerics.BitOperationsExensions";
 
-		context.AddSource(typeName, null, G_GlobalFile());
+		context.AddSource($"{typeName}.g.cs", G_GlobalFile());
 
 		var sb = new StringBuilder();
-		foreach (var action in new[] { a, b, c, d, e, f })
-		{
-			action();
-		}
+		(new Action(a) + b + c + d + e + f)();
 
 		void a()
 		{
@@ -101,7 +50,7 @@ partial class BitOperationsExensions
 			context.AddSource(
 				typeName,
 				GeneratedFileShortcuts.BitOperations_GetAllSets,
-				$"{LeadingText}{code}\r\n{TrailingText}"
+				$"{LeadingText}{code}\r\n}}\r\n"
 			);
 		}
 
@@ -111,7 +60,7 @@ partial class BitOperationsExensions
 			context.AddSource(
 				typeName,
 				GeneratedFileShortcuts.BitOperations_GetEnumerator,
-				$"{LeadingText}{code}\r\n{TrailingText}"
+				$"{LeadingText}{code}\r\n}}\r\n"
 			);
 		}
 
@@ -121,7 +70,7 @@ partial class BitOperationsExensions
 			context.AddSource(
 				typeName,
 				GeneratedFileShortcuts.BitOperations_GetNextSet,
-				$"{LeadingText}{code}\r\n{TrailingText}"
+				$"{LeadingText}{code}\r\n}}\r\n"
 			);
 		}
 
@@ -131,7 +80,7 @@ partial class BitOperationsExensions
 			context.AddSource(
 				typeName,
 				GeneratedFileShortcuts.BitOperations_ReverseBits,
-				$"{LeadingText}{code}\r\n{TrailingText}"
+				$"{LeadingText}{code}\r\n}}\r\n"
 			);
 		}
 
@@ -141,7 +90,7 @@ partial class BitOperationsExensions
 			context.AddSource(
 				typeName,
 				GeneratedFileShortcuts.BitOperations_SetAt,
-				$"{LeadingText}{code}\r\n{TrailingText}"
+				$"{LeadingText}{code}\r\n}}\r\n"
 			);
 		}
 
@@ -151,7 +100,7 @@ partial class BitOperationsExensions
 			context.AddSource(
 				typeName,
 				GeneratedFileShortcuts.BitOperations_SkipSetBit,
-				$"{LeadingText}{code}\r\n{TrailingText}"
+				$"{LeadingText}{code}\r\n}}\r\n"
 			);
 		}
 	}
@@ -168,8 +117,6 @@ partial class BitOperationsExensions
 	/// <returns>The string text of the code.</returns>
 	private string G_GlobalFile()
 	{
-		const string baseModifiers = "\tpublic static partial";
-
 		var sb = new StringBuilder();
 		sb.AppendLine($@"#pragma warning disable CS1591
 
@@ -186,35 +133,23 @@ public static partial class BitOperationsExensions
 		);
 
 		foreach (string name in GetAllSetsTypes)
-		{
-			sb.AppendLine($"{baseModifiers} ReadOnlySpan<int> GetAllSets(this {name} @this);");
-		}
+			sb.AppendLine($"\tpublic static partial ReadOnlySpan<int> GetAllSets(this {name} @this);");
 		sb.AppendLine();
 		foreach (string name in GetEnumeratorTypes)
-		{
-			sb.AppendLine($"{baseModifiers} ReadOnlySpan<int>.Enumerator GetEnumerator(this {name} @this);");
-		}
+			sb.AppendLine($"\tpublic static partial ReadOnlySpan<int>.Enumerator GetEnumerator(this {name} @this);");
 		sb.AppendLine();
 		foreach (var (name, _) in GetNextSetTypes)
-		{
-			sb.AppendLine($"{baseModifiers} int GetNextSet(this {name} @this, int index);");
-		}
+			sb.AppendLine($"\tpublic static partial int GetNextSet(this {name} @this, int index);");
 		sb.AppendLine();
 		foreach (var (name, _) in ReverseBitsTypes)
-		{
-			sb.AppendLine($"{baseModifiers} void ReverseBits(this ref {name} @this);");
-		}
+			sb.AppendLine($"\tpublic static partial void ReverseBits(this ref {name} @this);");
 		sb.AppendLine();
 		foreach (string name in SetAtTypes)
-		{
-			sb.AppendLine($"{baseModifiers} int SetAt(this {name} @this, int order);");
-		}
+			sb.AppendLine($"\tpublic static partial int SetAt(this {name} @this, int order);");
 		sb.AppendLine();
 		foreach (string name in SkipSetBitTypes)
-		{
-			sb.AppendLine($"{baseModifiers} {name} SkipSetBit(this {name} @this, int setBitPosCount);");
-		}
-		return sb.Append(TrailingText).ToString();
+			sb.AppendLine($"\tpublic static partial {name} SkipSetBit(this {name} @this, int setBitPosCount);");
+		return sb.Append("}\r\n").ToString();
 	}
 
 	/// <summary>
@@ -264,7 +199,8 @@ public static partial class BitOperationsExensions
 	/// </summary>
 	/// <param name="typeName">The type name.</param>
 	/// <returns>The code.</returns>
-	private string G_GetEnumerator(string typeName) => $@"/// <summary>
+	private string G_GetEnumerator(string typeName) =>
+		$@"/// <summary>
 	/// <para>Extension get enumerator of the type <see cref=""{typeName}""/>.</para>
 	/// <para>
 	/// This method will allow you to use <see langword=""foreach""/> loop to iterate on
@@ -294,7 +230,8 @@ public static partial class BitOperationsExensions
 	/// <param name="typeName">The type name.</param>
 	/// <param name="size">The size of the type.</param>
 	/// <returns>The code.</returns>
-	private string G_GetNextSet(string typeName, int size) => $@"/// <summary>
+	private string G_GetNextSet(string typeName, int size) =>
+		$@"/// <summary>
 	/// Find a index of the binary representation of a value after the specified index,
 	/// whose bit is set <see langword=""true""/>.
 	/// </summary>
@@ -324,12 +261,12 @@ public static partial class BitOperationsExensions
 	/// <returns>The code.</returns>
 	private string G_ReverseBits(string typeName, int size)
 	{
-		IReadOnlyDictionary<int, string[]> defaults = new Dictionary<int, string[]>()
+		var defaults = new Dictionary<int, string[]>()
 		{
-			[4] = new string[] { "0x55", "0x33" },
-			[8] = new string[] { "0x5555", "0x3333", "0x0F0F" },
-			[16] = new string[] { "0x55555555", "0x33333333", "0x0F0F0F0F", "0x00FF00FF" },
-			[32] = new string[] { "0x55555555_55555555L", "0x33333333_33333333L", "0x0F0F0F0F_0F0F0F0FL", "0x00FF00FF_00FF00FFL", "0x0000FFFF_0000FFFFL" }
+			[4] = new[] { "0x55", "0x33" },
+			[8] = new[] { "0x5555", "0x3333", "0x0F0F" },
+			[16] = new[] { "0x55555555", "0x33333333", "0x0F0F0F0F", "0x00FF00FF" },
+			[32] = new[] { "0x55555555_55555555L", "0x33333333_33333333L", "0x0F0F0F0F_0F0F0F0FL", "0x00FF00FF_00FF00FFL", "0x0000FFFF_0000FFFFL" }
 		};
 
 		var sb = new StringBuilder()
@@ -367,7 +304,8 @@ public static partial class BitOperationsExensions
 	/// </summary>
 	/// <param name="typeName">The type name.</param>
 	/// <returns>The code.</returns>
-	private string G_SetAt(string typeName) => $@"/// <summary>
+	private string G_SetAt(string typeName) =>
+		$@"/// <summary>
 	/// Get an <see cref=""int""/> value, indicating that the absolute position of
 	/// all set bits with the specified set bit order.
 	/// </summary>

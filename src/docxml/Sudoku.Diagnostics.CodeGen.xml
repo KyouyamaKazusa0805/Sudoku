@@ -244,11 +244,6 @@
             Indicates the shortcuts for the generated files.
             </summary>
         </member>
-        <member name="F:Sudoku.Diagnostics.CodeGen.Constants.GeneratedFileShortcuts.GetHashCode">
-            <summary>
-            Indicates the source generator is for get hash code.
-            </summary>
-        </member>
         <member name="F:Sudoku.Diagnostics.CodeGen.Constants.GeneratedFileShortcuts.BitOperations_GetAllSets">
             <summary>
             Indicates the source generator is for bit operations get all sets.
@@ -299,11 +294,6 @@
             Indicates the source generator is for deconstruction methods.
             </summary>
         </member>
-        <member name="F:Sudoku.Diagnostics.CodeGen.Constants.GeneratedFileShortcuts.EqualsMethod">
-            <summary>
-            Indicates the source generator is for equals methods.
-            </summary>
-        </member>
         <member name="F:Sudoku.Diagnostics.CodeGen.Constants.GeneratedFileShortcuts.ExtensionDeconstructionMethod">
             <summary>
             Indicates the source generator is for extension deconstruction methods.
@@ -317,16 +307,6 @@
         <member name="F:Sudoku.Diagnostics.CodeGen.Constants.GeneratedFileShortcuts.GetEnumeratorMethod">
             <summary>
             Indicates the source generator is for auto get enumerator methods.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Diagnostics.CodeGen.Constants.GeneratedFileShortcuts.PrimaryConstructorMethod">
-            <summary>
-            Indicates the source generator is for primary constructors for <see langword="class"/>.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Diagnostics.CodeGen.Constants.GeneratedFileShortcuts.ProxyEqualsMethod">
-            <summary>
-            Indicates the source generator is for auto equals method that binds with a proxy equality method.
             </summary>
         </member>
         <member name="F:Sudoku.Diagnostics.CodeGen.Constants.GeneratedFileShortcuts.RefStructDefaultMethod">
@@ -344,73 +324,10 @@
             Indicates the source generator is for extension deconstruction methods with expressions.
             </summary>
         </member>
-        <member name="F:Sudoku.Diagnostics.CodeGen.Constants.GeneratedFileShortcuts.PrivateParameterlessConstructor">
-            <summary>
-            Indicates the source generator is for parameterless constructors.
-            </summary>
-        </member>
-        <member name="T:Sudoku.Diagnostics.CodeGen.Constants.OperatorNames">
-            <summary>
-            Indicates the operator names.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Diagnostics.CodeGen.Constants.OperatorNames.Equality">
-            <summary>
-            Indicates the name of the <see langword="operator"/> <c>==</c>.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Diagnostics.CodeGen.Constants.OperatorNames.Inequality">
-            <summary>
-            Indicates the name of the <see langword="operator"/> <c>!=</c>.
-            </summary>
-        </member>
-        <member name="T:Sudoku.Diagnostics.CodeGen.Constants.ProjectNames">
-            <summary>
-            Indicates the project names.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Diagnostics.CodeGen.Constants.ProjectNames.SystemExtensions">
-            <summary>
-            Indicates the project <c>SystemExtensions</c>.
-            The project uses the namespace <c>System</c> to store types.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Diagnostics.CodeGen.Constants.ProjectNames.Core">
-            <summary>
-            Indicates the project <c>Sudouk.Core</c>.
-            The project uses the namespace <c>Sudoku</c> to store types.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Diagnostics.CodeGen.Constants.ProjectNames.CodeAnalysis">
-            <summary>
-            Indicates the project <c>Sudoku.Diagnostics.CodeAnalysis</c>.
-            </summary>
-        </member>
         <member name="F:Sudoku.Diagnostics.CodeGen.Constants.VersionValue">
             <summary>
             Indicates the version of this project.
             </summary>
-        </member>
-        <member name="T:Sudoku.Diagnostics.CodeGen.DefaultSyntaxContextReceiver">
-            <summary>
-            Indicates the default syntax context receiver.
-            </summary>
-            <param name="SyntaxNodeVisitor">
-            The syntax node visitor method that determines
-            whether the syntax node can be used by a source generator.
-            </param>
-        </member>
-        <member name="M:Sudoku.Diagnostics.CodeGen.DefaultSyntaxContextReceiver.#ctor(System.Action{Microsoft.CodeAnalysis.SyntaxNode,Microsoft.CodeAnalysis.SemanticModel})">
-            <summary>
-            Indicates the default syntax context receiver.
-            </summary>
-            <param name="SyntaxNodeVisitor">
-            The syntax node visitor method that determines
-            whether the syntax node can be used by a source generator.
-            </param>
-        </member>
-        <member name="M:Sudoku.Diagnostics.CodeGen.DefaultSyntaxContextReceiver.OnVisitSyntaxNode(Microsoft.CodeAnalysis.GeneratorSyntaxContext)">
-            <inheritdoc/>
         </member>
         <member name="T:Sudoku.Diagnostics.CodeGen.Generators.AutoExtensionDeconstruct">
             <summary>
@@ -497,107 +414,6 @@
         </member>
         <member name="M:Sudoku.Diagnostics.CodeGen.Generators.AutoLambdaedExtensionDeconstruct.Initialize(Microsoft.CodeAnalysis.GeneratorInitializationContext)">
             <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Diagnostics.CodeGen.Generators.BitOperations">
-            <summary>
-            Indicates the generator that generates the code about extended methods of type <c>BitOperations</c>.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Diagnostics.CodeGen.Generators.BitOperations.LeadingText">
-            <summary>
-            Indicates the leading text.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Diagnostics.CodeGen.Generators.BitOperations.TrailingText">
-            <summary>
-            Indicates the trailing text.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Diagnostics.CodeGen.Generators.BitOperations.GetAllSetsTypes">
-            <summary>
-            Indicates the type names of the method <c>GetAllSets</c> to be used.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Diagnostics.CodeGen.Generators.BitOperations.GetEnumeratorTypes">
-            <summary>
-            Indicates the type names of the method <c>GetEnumerator</c> to be used.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Diagnostics.CodeGen.Generators.BitOperations.GetNextSetTypes">
-            <summary>
-            Indicates the type names of the method <c>NextSetTypes</c> to be used.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Diagnostics.CodeGen.Generators.BitOperations.ReverseBitsTypes">
-            <summary>
-            Indicates the type names of the method <c>ReverseBits</c> to be used.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Diagnostics.CodeGen.Generators.BitOperations.SetAtTypes">
-            <summary>
-            Indicates the type names of the method <c>SetAt</c> to be used.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Diagnostics.CodeGen.Generators.BitOperations.SkipSetBitTypes">
-            <summary>
-            Indicates the type names of the method <c>SkipSetBit</c> to be used.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.BitOperations.Execute(Microsoft.CodeAnalysis.GeneratorExecutionContext)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.BitOperations.Initialize(Microsoft.CodeAnalysis.GeneratorInitializationContext)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.BitOperations.G_GlobalFile">
-            <summary>
-            Generates the global file.
-            </summary>
-            <returns>The string text of the code.</returns>
-        </member>
-        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.BitOperations.G_GetAllSets(System.String)">
-            <summary>
-            Generates the file of the method <c>GetAllSets</c>.
-            </summary>
-            <param name="typeName">The type name.</param>
-            <returns>The code.</returns>
-        </member>
-        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.BitOperations.G_GetEnumerator(System.String)">
-            <summary>
-            Generates the file of the method <c>GetEnumerator</c>.
-            </summary>
-            <param name="typeName">The type name.</param>
-            <returns>The code.</returns>
-        </member>
-        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.BitOperations.G_GetNextSet(System.String,System.Int32)">
-            <summary>
-            Generates the file of the method <c>GetNextSet</c>.
-            </summary>
-            <param name="typeName">The type name.</param>
-            <param name="size">The size of the type.</param>
-            <returns>The code.</returns>
-        </member>
-        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.BitOperations.G_ReverseBits(System.String,System.Int32)">
-            <summary>
-            Generates the file of the method <c>ReverseBits</c>.
-            </summary>
-            <param name="typeName">The type name.</param>
-            <param name="size">The size of the type.</param>
-            <returns>The code.</returns>
-        </member>
-        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.BitOperations.G_SetAt(System.String)">
-            <summary>
-            Generates the file of the method <c>SetAt</c>.
-            </summary>
-            <param name="typeName">The type name.</param>
-            <returns>The code.</returns>
-        </member>
-        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.BitOperations.G_SkipSetBit(System.String)">
-            <summary>
-            Generates the file of the method <c>SkipSetBit</c>.
-            </summary>
-            <param name="typeName">The type name.</param>
-            <returns>The code.</returns>
         </member>
         <member name="T:Sudoku.Diagnostics.CodeGen.Generators.RefStructOverridens">
             <summary>
@@ -790,14 +606,6 @@
             Provides extension methods on <see cref="T:Microsoft.CodeAnalysis.GeneratorExecutionContext"/>.
             </summary>
             <seealso cref="T:Microsoft.CodeAnalysis.GeneratorExecutionContext"/>
-        </member>
-        <member name="M:Microsoft.CodeAnalysis.GeneratorExecutionContextExtensions.IsNotInProject(Microsoft.CodeAnalysis.GeneratorExecutionContext@,System.String[])">
-            <summary>
-            To check whether the context isn't executed on the specified projects.
-            </summary>
-            <param name="this">The context.</param>
-            <param name="projectNames">The project names to check.</param>
-            <returns>A <see cref="T:System.Boolean"/> result.</returns>
         </member>
         <member name="M:Microsoft.CodeAnalysis.GeneratorExecutionContextExtensions.AddSource(Microsoft.CodeAnalysis.GeneratorExecutionContext@,System.String,System.String,System.String)">
             <summary>

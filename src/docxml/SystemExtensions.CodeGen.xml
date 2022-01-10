@@ -4,6 +4,112 @@
         <name>SystemExtensions.CodeGen</name>
     </assembly>
     <members>
+        <member name="T:Sudoku.Diagnostics.CodeGen.Constants.GeneratedFileShortcuts">
+            <summary>
+            Indicates the shortcuts for the generated files.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeGen.Constants.GeneratedFileShortcuts.BitOperations_GetAllSets">
+            <summary>
+            Indicates the source generator is for bit operations get all sets.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeGen.Constants.GeneratedFileShortcuts.BitOperations_GetEnumerator">
+            <summary>
+            Indicates the source generator is for bit operations get enumerator.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeGen.Constants.GeneratedFileShortcuts.BitOperations_GetNextSet">
+            <summary>
+            Indicates the source generator is for bit operations get next set.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeGen.Constants.GeneratedFileShortcuts.BitOperations_ReverseBits">
+            <summary>
+            Indicates the source generator is for bit operations reverse bits.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeGen.Constants.GeneratedFileShortcuts.BitOperations_SetAt">
+            <summary>
+            Indicates the source generator is for bit operations set at.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeGen.Constants.GeneratedFileShortcuts.BitOperations_SkipSetBit">
+            <summary>
+            Indicates the source generator is for bit operations skip set bit.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeGen.Constants.VersionValue">
+            <summary>
+            Indicates the version of this project.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Diagnostics.CodeGen.Generators.BitOperations">
+            <summary>
+            Indicates the generator that generates the code about extended methods of type <c>BitOperations</c>.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeGen.Generators.BitOperations.LeadingText">
+            <summary>
+            Indicates the leading text.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.BitOperations.Execute(Microsoft.CodeAnalysis.GeneratorExecutionContext)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.BitOperations.Initialize(Microsoft.CodeAnalysis.GeneratorInitializationContext)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.BitOperations.G_GlobalFile">
+            <summary>
+            Generates the global file.
+            </summary>
+            <returns>The string text of the code.</returns>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.BitOperations.G_GetAllSets(System.String)">
+            <summary>
+            Generates the file of the method <c>GetAllSets</c>.
+            </summary>
+            <param name="typeName">The type name.</param>
+            <returns>The code.</returns>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.BitOperations.G_GetEnumerator(System.String)">
+            <summary>
+            Generates the file of the method <c>GetEnumerator</c>.
+            </summary>
+            <param name="typeName">The type name.</param>
+            <returns>The code.</returns>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.BitOperations.G_GetNextSet(System.String,System.Int32)">
+            <summary>
+            Generates the file of the method <c>GetNextSet</c>.
+            </summary>
+            <param name="typeName">The type name.</param>
+            <param name="size">The size of the type.</param>
+            <returns>The code.</returns>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.BitOperations.G_ReverseBits(System.String,System.Int32)">
+            <summary>
+            Generates the file of the method <c>ReverseBits</c>.
+            </summary>
+            <param name="typeName">The type name.</param>
+            <param name="size">The size of the type.</param>
+            <returns>The code.</returns>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.BitOperations.G_SetAt(System.String)">
+            <summary>
+            Generates the file of the method <c>SetAt</c>.
+            </summary>
+            <param name="typeName">The type name.</param>
+            <returns>The code.</returns>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.BitOperations.G_SkipSetBit(System.String)">
+            <summary>
+            Generates the file of the method <c>SkipSetBit</c>.
+            </summary>
+            <param name="typeName">The type name.</param>
+            <returns>The code.</returns>
+        </member>
         <member name="T:Sudoku.Diagnostics.CodeGen.Generators.KeyedTupleGenerator">
             <summary>
             Define a source generator that generates the source code for tuples with the key.
@@ -15,10 +121,21 @@
         <member name="M:Sudoku.Diagnostics.CodeGen.Generators.KeyedTupleGenerator.Initialize(Microsoft.CodeAnalysis.GeneratorInitializationContext)">
             <inheritdoc/>
         </member>
-        <member name="F:Sudoku.Diagnostics.CodeGen.Constants.VersionValue">
+        <member name="T:Microsoft.CodeAnalysis.GeneratorExecutionContextExtensions">
             <summary>
-            Indicates the version of this project.
+            Provides extension methods on <see cref="T:Microsoft.CodeAnalysis.GeneratorExecutionContext"/>.
             </summary>
+            <seealso cref="T:Microsoft.CodeAnalysis.GeneratorExecutionContext"/>
+        </member>
+        <member name="M:Microsoft.CodeAnalysis.GeneratorExecutionContextExtensions.AddSource(Microsoft.CodeAnalysis.GeneratorExecutionContext@,System.String,System.String,System.String)">
+            <summary>
+            Simply calls <see cref="M:Microsoft.CodeAnalysis.GeneratorExecutionContext.AddSource(System.String,System.String)"/>,
+            </summary>
+            <param name="this">The current context.</param>
+            <param name="fileName">The file name. The file name may be same as the symbol name</param>
+            <param name="sourceGeneratorName">The source generator name.</param>
+            <param name="sourceCode">The source code.</param>
+            <seealso cref="M:Microsoft.CodeAnalysis.GeneratorExecutionContext.AddSource(System.String,System.String)"/>
         </member>
     </members>
 </doc>

@@ -68,13 +68,10 @@ internal sealed record SymbolOutputInfo(
 
 		int i = fullTypeName.IndexOf('<');
 		bool isGeneric = i != -1;
-		string genericParametersList = i == -1 ? string.Empty : fullTypeName.Substring(i);
+		string genericParametersList = i == -1 ? string.Empty : fullTypeName[i..];
 
 		int j = fullTypeName.IndexOf('>');
-		string genericParametersListWithoutConstraint =
-			i == -1
-				? string.Empty
-				: fullTypeName.Substring(i, j - i + 1);
+		string genericParametersListWithoutConstraint = i == -1 ? string.Empty : fullTypeName[i..j];
 
 		string typeKind = (symbol.IsRecord, symbol.TypeKind) switch
 		{
