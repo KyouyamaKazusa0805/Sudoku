@@ -452,46 +452,6 @@
             </param>
             <returns>The list of <see cref="T:Sudoku.Diagnostics.CodeGen.MemberDetail"/>s.</returns>
         </member>
-        <member name="T:Sudoku.Diagnostics.CodeGen.Reflection.MemberAccessibility">
-            <summary>
-            Indicates the accessibility of a member.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Diagnostics.CodeGen.Reflection.MemberAccessibility.None">
-            <summary>
-            Indicates the accessibility is none.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Diagnostics.CodeGen.Reflection.MemberAccessibility.Public">
-            <summary>
-            Indicates the <see langword="public"/> modifier.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Diagnostics.CodeGen.Reflection.MemberAccessibility.Internal">
-            <summary>
-            Indicates the <see langword="internal"/> modifier.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Diagnostics.CodeGen.Reflection.MemberAccessibility.Protected">
-            <summary>
-            Indicates the <see langword="protected"/> modifier.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Diagnostics.CodeGen.Reflection.MemberAccessibility.ProtectedInternal">
-            <summary>
-            Indicates the <see langword="protected internal"/> modifier.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Diagnostics.CodeGen.Reflection.MemberAccessibility.Private">
-            <summary>
-            Indicates the <see langword="private"/> modifier.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Diagnostics.CodeGen.Reflection.MemberAccessibility.PrivateProtected">
-            <summary>
-            Indicates the <see langword="private protected"/> modifier.
-            </summary>
-        </member>
         <member name="T:Microsoft.CodeAnalysis.AttributeDataExtensions">
             <summary>
             Provides extension methods on <see cref="T:Microsoft.CodeAnalysis.AttributeData"/>.
