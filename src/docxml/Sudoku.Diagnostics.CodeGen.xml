@@ -4,59 +4,6 @@
         <name>Sudoku.Diagnostics.CodeGen</name>
     </assembly>
     <members>
-        <member name="T:Sudoku.Diagnostics.CodeGen.AutoDeconstructExtensionAttribute`1">
-            <summary>
-            Used on an assembly, to tell the compiler this assembly will generate a serial of extension methods called
-            <c>Deconstruct</c> that used for deconstruction of an instance.
-            </summary>
-            <typeparam name="T">
-            The type that is the aim for the source generator to generate the extension deconstruction methods.
-            </typeparam>
-            <remarks>
-            <para>
-            For example, if you write the code like:
-            <code><![CDATA[[assembly: AutoDeconstructExtension<Class>(nameof(Class.A), nameof(Class.B), nameof(Class.C))]]]></code>
-            then you'll get the generated code:
-            <code><![CDATA[
-            public static partial class ClassExtensions
-            {
-                [CompilerGenerated, MethodImpl(MethodImplOptions.AggressiveInlining)]
-                public static void Deconstruct(this Class @this, out int a, out int b, out int c)
-                {
-                    a = @this.A;
-                    b = @this.B;
-                    c = @this.C;
-                }
-            }
-            ]]></code>
-            </para>
-            <para>
-            Please note that this attribute is a generic attribute, which is introduced in C# 10.
-            If you don't know this feature (generic attribute), please visit
-            <see href="https://github.com/dotnet/csharplang/blob/main/proposals/csharp-10.0/generic-attributes.md">
-            this link
-            </see>
-            for more information.
-            </para>
-            </remarks>
-        </member>
-        <member name="M:Sudoku.Diagnostics.CodeGen.AutoDeconstructExtensionAttribute`1.#ctor(System.String[])">
-            <summary>
-            Initializes an <see cref="T:Sudoku.Diagnostics.CodeGen.AutoDeconstructExtensionAttribute`1"/> instance with the members.
-            </summary>
-            <param name="memberNames">The member names.</param>
-        </member>
-        <member name="P:Sudoku.Diagnostics.CodeGen.AutoDeconstructExtensionAttribute`1.Namespace">
-            <summary>
-            Indicates the namespace that the output extension class stored. If the value is
-            <see langword="null"/>, the namespace will use the basic namespace of the type itself.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Diagnostics.CodeGen.AutoDeconstructExtensionAttribute`1.MemberNames">
-            <summary>
-            Indicates the member names.
-            </summary>
-        </member>
         <member name="T:Sudoku.Diagnostics.CodeGen.AutoDeconstructExtensionLambdaAttribute`2">
             <summary>
             Mark this attribute onto a type, to tell the source generator that the source generator will
@@ -262,17 +209,6 @@
             <summary>
             Indicates the version of this project.
             </summary>
-        </member>
-        <member name="T:Sudoku.Diagnostics.CodeGen.Generators.AutoExtensionDeconstruct">
-            <summary>
-            Provides a generator that generates the deconstruction methods that are extension methods.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.AutoExtensionDeconstruct.Execute(Microsoft.CodeAnalysis.GeneratorExecutionContext)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.AutoExtensionDeconstruct.Initialize(Microsoft.CodeAnalysis.GeneratorInitializationContext)">
-            <inheritdoc/>
         </member>
         <member name="T:Sudoku.Diagnostics.CodeGen.Generators.AutoGetEnumerator">
             <summary>

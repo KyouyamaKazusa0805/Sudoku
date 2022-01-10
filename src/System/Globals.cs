@@ -11,14 +11,10 @@ global using System.Runtime.CompilerServices;
 global using System.Runtime.InteropServices;
 global using System.Text.Json.Serialization;
 global using System.Text.RegularExpressions;
-global using System.Threading.Tasks;
 global using Microsoft.CodeAnalysis;
-global using Microsoft.VisualBasic.FileIO;
 global using Sudoku.Diagnostics.CodeAnalysis;
 global using Sudoku.Diagnostics.CodeGen;
 global using static System.Math;
 global using static System.Numerics.BitOperations;
 
 [assembly: InternalsVisibleTo("Sudoku.Core")]
-
-[assembly: AutoDeconstructExtension<Index>(nameof(Index.IsFromEnd), nameof(Index.Value))] 
