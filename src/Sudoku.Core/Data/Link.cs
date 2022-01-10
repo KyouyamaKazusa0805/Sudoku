@@ -15,7 +15,6 @@ public readonly partial record struct Link(int StartCandidate, int EndCandidate,
 	/// </summary>
 	private int StartCell
 	{
-		[LambdaBody]
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => StartCandidate / 9;
 	}
@@ -25,7 +24,6 @@ public readonly partial record struct Link(int StartCandidate, int EndCandidate,
 	/// </summary>
 	private int StartDigit
 	{
-		[LambdaBody]
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => StartCandidate % 9;
 	}
@@ -35,7 +33,6 @@ public readonly partial record struct Link(int StartCandidate, int EndCandidate,
 	/// </summary>
 	private int EndCell
 	{
-		[LambdaBody]
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => EndCandidate / 9;
 	}
@@ -45,7 +42,6 @@ public readonly partial record struct Link(int StartCandidate, int EndCandidate,
 	/// </summary>
 	private int EndDigit
 	{
-		[LambdaBody]
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => EndCandidate % 9;
 	}

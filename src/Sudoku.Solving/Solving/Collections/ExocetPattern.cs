@@ -146,7 +146,6 @@ public readonly partial struct ExocetPattern : IPattern<ExocetPattern>, IValueEq
 	/// </summary>
 	private Cells BaseCellsMap
 	{
-		[LambdaBody]
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => new() { Base1, Base2 };
 	}
@@ -156,7 +155,6 @@ public readonly partial struct ExocetPattern : IPattern<ExocetPattern>, IValueEq
 	/// </summary>
 	private Cells TargetCellsMap
 	{
-		[LambdaBody]
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => new() { TargetQ1, TargetQ2, TargetR1, TargetR2 };
 	}

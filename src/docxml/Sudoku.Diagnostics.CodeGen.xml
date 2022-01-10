@@ -244,56 +244,6 @@
             Indicates the shortcuts for the generated files.
             </summary>
         </member>
-        <member name="F:Sudoku.Diagnostics.CodeGen.Constants.GeneratedFileShortcuts.BitOperations_GetAllSets">
-            <summary>
-            Indicates the source generator is for bit operations get all sets.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Diagnostics.CodeGen.Constants.GeneratedFileShortcuts.BitOperations_GetEnumerator">
-            <summary>
-            Indicates the source generator is for bit operations get enumerator.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Diagnostics.CodeGen.Constants.GeneratedFileShortcuts.BitOperations_GetNextSet">
-            <summary>
-            Indicates the source generator is for bit operations get next set.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Diagnostics.CodeGen.Constants.GeneratedFileShortcuts.BitOperations_ReverseBits">
-            <summary>
-            Indicates the source generator is for bit operations reverse bits.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Diagnostics.CodeGen.Constants.GeneratedFileShortcuts.BitOperations_SetAt">
-            <summary>
-            Indicates the source generator is for bit operations set at.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Diagnostics.CodeGen.Constants.GeneratedFileShortcuts.BitOperations_SkipSetBit">
-            <summary>
-            Indicates the source generator is for bit operations skip set bit.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Diagnostics.CodeGen.Constants.GeneratedFileShortcuts.CodeAnalyzer">
-            <summary>
-            Indicates the source generator is for code analyzer.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Diagnostics.CodeGen.Constants.GeneratedFileShortcuts.CodeFixer">
-            <summary>
-            Indicates the source generator is for code fixer.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Diagnostics.CodeGen.Constants.GeneratedFileShortcuts.CoreConstants">
-            <summary>
-            Indicates the source generator is for core constants.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Diagnostics.CodeGen.Constants.GeneratedFileShortcuts.DeconstructionMethod">
-            <summary>
-            Indicates the source generator is for deconstruction methods.
-            </summary>
-        </member>
         <member name="F:Sudoku.Diagnostics.CodeGen.Constants.GeneratedFileShortcuts.ExtensionDeconstructionMethod">
             <summary>
             Indicates the source generator is for extension deconstruction methods.

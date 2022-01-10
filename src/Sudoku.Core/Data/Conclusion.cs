@@ -75,7 +75,6 @@ public readonly partial record struct Conclusion(int Mask)
 	/// </summary>
 	public int Candidate
 	{
-		[LambdaBody]
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => Mask & ((1 << 10) - 1);
 	}

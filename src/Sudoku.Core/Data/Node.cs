@@ -207,7 +207,6 @@ public unsafe partial record struct Node(int Mask)
 	/// </summary>
 	public readonly short Candidate
 	{
-		[LambdaBody]
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => (short)(Mask & 1023);
 	}
