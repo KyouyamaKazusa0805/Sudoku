@@ -1,4 +1,4 @@
-﻿namespace System;
+﻿namespace System.Collections.Generic;
 
 partial struct OneDimensionalArrayEnumerable<TStruct>
 {
