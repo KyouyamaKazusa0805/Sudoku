@@ -167,7 +167,7 @@ public readonly struct AlmostLockedSet : IValueEquatable<AlmostLockedSet>
 	/// the extension method <see cref="ArrayExtensions.EnumerateRef{T}(T[])"/>. Then you can get:
 	/// <code><![CDATA[
 	/// var collection = GetAllAlses(grid);
-	/// foreach (ref readonly var als in collection.AsRefEnumerable())
+	/// foreach (ref readonly var als in collection.EnumerateRef())
 	/// {
 	///     // ...
 	/// }

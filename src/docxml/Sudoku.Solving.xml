@@ -371,7 +371,7 @@
             the extension method <see cref="M:System.ArrayExtensions.EnumerateRef``1(``0[])"/>. Then you can get:
             <code><![CDATA[
             var collection = GetAllAlses(grid);
-            foreach (ref readonly var als in collection.AsRefEnumerable())
+            foreach (ref readonly var als in collection.EnumerateRef())
             {
                 // ...
             }
