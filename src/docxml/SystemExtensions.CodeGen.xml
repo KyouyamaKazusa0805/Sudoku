@@ -44,43 +44,43 @@
             Indicates the version of this project.
             </summary>
         </member>
-        <member name="T:Sudoku.Diagnostics.CodeGen.Generators.BitOperations">
+        <member name="T:Sudoku.Diagnostics.CodeGen.Generators.BitOperationsGenerator">
             <summary>
             Indicates the generator that generates the code about extended methods of type <c>BitOperations</c>.
             </summary>
         </member>
-        <member name="F:Sudoku.Diagnostics.CodeGen.Generators.BitOperations.LeadingText">
+        <member name="F:Sudoku.Diagnostics.CodeGen.Generators.BitOperationsGenerator.LeadingText">
             <summary>
             Indicates the leading text.
             </summary>
         </member>
-        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.BitOperations.Execute(Microsoft.CodeAnalysis.GeneratorExecutionContext)">
+        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.BitOperationsGenerator.Execute(Microsoft.CodeAnalysis.GeneratorExecutionContext)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.BitOperations.Initialize(Microsoft.CodeAnalysis.GeneratorInitializationContext)">
+        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.BitOperationsGenerator.Initialize(Microsoft.CodeAnalysis.GeneratorInitializationContext)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.BitOperations.G_GlobalFile">
+        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.BitOperationsGenerator.G_GlobalFile">
             <summary>
             Generates the global file.
             </summary>
             <returns>The string text of the code.</returns>
         </member>
-        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.BitOperations.G_GetAllSets(System.String)">
+        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.BitOperationsGenerator.G_GetAllSets(System.String)">
             <summary>
             Generates the file of the method <c>GetAllSets</c>.
             </summary>
             <param name="typeName">The type name.</param>
             <returns>The code.</returns>
         </member>
-        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.BitOperations.G_GetEnumerator(System.String)">
+        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.BitOperationsGenerator.G_GetEnumerator(System.String)">
             <summary>
             Generates the file of the method <c>GetEnumerator</c>.
             </summary>
             <param name="typeName">The type name.</param>
             <returns>The code.</returns>
         </member>
-        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.BitOperations.G_GetNextSet(System.String,System.Int32)">
+        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.BitOperationsGenerator.G_GetNextSet(System.String,System.Int32)">
             <summary>
             Generates the file of the method <c>GetNextSet</c>.
             </summary>
@@ -88,7 +88,7 @@
             <param name="size">The size of the type.</param>
             <returns>The code.</returns>
         </member>
-        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.BitOperations.G_ReverseBits(System.String,System.Int32)">
+        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.BitOperationsGenerator.G_ReverseBits(System.String,System.Int32)">
             <summary>
             Generates the file of the method <c>ReverseBits</c>.
             </summary>
@@ -96,14 +96,14 @@
             <param name="size">The size of the type.</param>
             <returns>The code.</returns>
         </member>
-        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.BitOperations.G_SetAt(System.String)">
+        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.BitOperationsGenerator.G_SetAt(System.String)">
             <summary>
             Generates the file of the method <c>SetAt</c>.
             </summary>
             <param name="typeName">The type name.</param>
             <returns>The code.</returns>
         </member>
-        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.BitOperations.G_SkipSetBit(System.String)">
+        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.BitOperationsGenerator.G_SkipSetBit(System.String)">
             <summary>
             Generates the file of the method <c>SkipSetBit</c>.
             </summary>

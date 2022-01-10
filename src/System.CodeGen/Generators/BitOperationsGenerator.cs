@@ -4,7 +4,7 @@
 /// Indicates the generator that generates the code about extended methods of type <c>BitOperations</c>.
 /// </summary>
 [Generator(LanguageNames.CSharp)]
-public sealed class BitOperations : ISourceGenerator
+public sealed class BitOperationsGenerator : ISourceGenerator
 {
 	/// <summary>
 	/// Indicates the leading text.
@@ -36,17 +36,20 @@ partial class BitOperationsExensions
 	/// <inheritdoc/>
 	public void Execute(GeneratorExecutionContext context)
 	{
-		const string separator = "\r\n\r\n\t";
-		const string typeName = "System.Numerics.BitOperationsExensions";
+		const string typeName = "System.Numerics.BitOperationsExtensions";
 
 		context.AddSource($"{typeName}.g.cs", G_GlobalFile());
 
 		var sb = new StringBuilder();
 		(new Action(a) + b + c + d + e + f)();
 
+
 		void a()
 		{
-			string code = string.Join(separator, from name in GetAllSetsTypes select G_GetAllSets(name));
+			string code = string.Join(
+				"\r\n\r\n\t",
+				from name in GetAllSetsTypes select G_GetAllSets(name)
+			);
 			context.AddSource(
 				typeName,
 				GeneratedFileShortcuts.BitOperations_GetAllSets,
@@ -56,7 +59,10 @@ partial class BitOperationsExensions
 
 		void b()
 		{
-			string code = string.Join(separator, from name in GetEnumeratorTypes select G_GetEnumerator(name));
+			string code = string.Join(
+				"\r\n\r\n\t",
+				from name in GetEnumeratorTypes select G_GetEnumerator(name)
+			);
 			context.AddSource(
 				typeName,
 				GeneratedFileShortcuts.BitOperations_GetEnumerator,
@@ -66,7 +72,10 @@ partial class BitOperationsExensions
 
 		void c()
 		{
-			string code = string.Join(separator, from pair in GetNextSetTypes select G_GetNextSet(pair.TypeName, pair.Size));
+			string code = string.Join(
+				"\r\n\r\n\t",
+				from pair in GetNextSetTypes select G_GetNextSet(pair.TypeName, pair.Size)
+			);
 			context.AddSource(
 				typeName,
 				GeneratedFileShortcuts.BitOperations_GetNextSet,
@@ -76,7 +85,10 @@ partial class BitOperationsExensions
 
 		void d()
 		{
-			string code = string.Join(separator, from pair in ReverseBitsTypes select G_ReverseBits(pair.TypeName, pair.Size));
+			string code = string.Join(
+				"\r\n\r\n\t",
+				from pair in ReverseBitsTypes select G_ReverseBits(pair.TypeName, pair.Size)
+			);
 			context.AddSource(
 				typeName,
 				GeneratedFileShortcuts.BitOperations_ReverseBits,
@@ -86,7 +98,7 @@ partial class BitOperationsExensions
 
 		void e()
 		{
-			string code = string.Join(separator, from name in SetAtTypes select G_SetAt(name));
+			string code = string.Join("\r\n\r\n\t", from name in SetAtTypes select G_SetAt(name));
 			context.AddSource(
 				typeName,
 				GeneratedFileShortcuts.BitOperations_SetAt,
@@ -96,7 +108,7 @@ partial class BitOperationsExensions
 
 		void f()
 		{
-			string code = string.Join(separator, from name in SkipSetBitTypes select G_SkipSetBit(name));
+			string code = string.Join("\r\n\r\n\t", from name in SkipSetBitTypes select G_SkipSetBit(name));
 			context.AddSource(
 				typeName,
 				GeneratedFileShortcuts.BitOperations_SkipSetBit,
