@@ -61,7 +61,7 @@ public static class {typeResult}_DeconstructionMethods
 					var (_, _, _, _, genericParameterListWithoutConstraint, _, _, inKeyword, _, _) = SymbolOutputInfo.FromSymbol(typeArgument);
 					string fullTypeNameWithoutConstraint = typeArgument.ToDisplayString(TypeFormats.FullNameWithConstraints);
 					string constraint = fullTypeNameWithoutConstraint.IndexOf("where") is var index and not -1
-						? fullTypeNameWithoutConstraint.Substring(index)
+						? fullTypeNameWithoutConstraint[index..]
 						: string.Empty;
 					string parameterList = string.Join(
 						", ",
