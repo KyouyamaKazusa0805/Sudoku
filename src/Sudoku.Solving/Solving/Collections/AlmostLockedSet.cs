@@ -164,7 +164,7 @@ public readonly struct AlmostLockedSet : IValueEquatable<AlmostLockedSet>
 	/// <remarks>
 	/// <see cref="AlmostLockedSet"/> is a large-object type. If you want to iterate them,
 	/// you can use the new feature '<see langword="ref"/> and <see langword="ref readonly"/> iteration variable' to do so, just call
-	/// the extension method <see cref="ArrayExtensions.AsRefEnumerable{T}(T[])"/>. Then you can get:
+	/// the extension method <see cref="ArrayExtensions.EnumerateRef{T}(T[])"/>. Then you can get:
 	/// <code><![CDATA[
 	/// var collection = GetAllAlses(grid);
 	/// foreach (ref readonly var als in collection.AsRefEnumerable())
@@ -173,7 +173,7 @@ public readonly struct AlmostLockedSet : IValueEquatable<AlmostLockedSet>
 	/// }
 	/// ]]></code>
 	/// </remarks>
-	/// <seealso cref="ArrayExtensions.AsRefEnumerable{T}(T[])"/>
+	/// <seealso cref="ArrayExtensions.EnumerateRef{T}(T[])"/>
 	public static AlmostLockedSet[] Gather(in Grid grid)
 	{
 		// Get all bi-value-cell ALSes.

@@ -7,18 +7,19 @@
 public static class ArrayExtensions
 {
 	/// <summary>
-	/// Creates a <see cref="OneDimensionalArrayEnumerable{T}"/> instance that iterates on each element.
+	/// Creates a <see cref="OneDimensionalArrayEnumerator{T}"/> instance that iterates on each element.
 	/// </summary>
-	/// <typeparam name="T">The type of the array elements.</typeparam>
+	/// <typeparam name="TStruct">The type of the array elements.</typeparam>
 	/// <param name="this">The array.</param>
 	/// <returns>
 	/// The enumerable collection that allows the iteration on an one-dimensional array.
 	/// </returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static OneDimensionalArrayEnumerable<T> AsEnumerable<T>(this T[] @this) where T : struct => new(@this);
+	public static OneDimensionalArrayEnumerator<TStruct> EnumerateImmutable<TStruct>(this TStruct[] @this)
+	where TStruct : struct => new(@this);
 
 	/// <summary>
-	/// Creates a <see cref="OneDimensionalArrayRefEnumerable{T}"/> instance that iterates on each element.
+	/// Creates a <see cref="OneDimensionalArrayRefEnumerator{T}"/> instance that iterates on each element.
 	/// Different with the default iteration operation, this type will iterate each element by reference,
 	/// in order that you can write the code like:
 	/// <code><![CDATA[
@@ -34,5 +35,5 @@ public static class ArrayExtensions
 	/// The enumerable collection that allows the iteration by reference on an one-dimensional array.
 	/// </returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static OneDimensionalArrayRefEnumerable<T> AsRefEnumerable<T>(this T[] @this) => new(@this);
+	public static OneDimensionalArrayRefEnumerator<T> EnumerateRef<T>(this T[] @this) => new(@this);
 }
