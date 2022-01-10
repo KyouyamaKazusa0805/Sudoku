@@ -1,19 +1,43 @@
 // This file stores all file nesting rules based on this whole solution.
-//
-// For more information, please visit this website:
-// https://docs.microsoft.com/en-us/visualstudio/ide/file-nesting-solution-explorer
-// for details.
-//
 // Visual Studio version 16.9+ supports custom file nesting.
 
 {
+  // The global name of the setting. You should configure the contents into it.
   "dependentFileProviders": {
+
+    // Sets the rules.
     "add": {
+
+      // Path-segment rule. The rule will influence the files with the same suffix.
+      // For example, if two files is named 'a.cs' and 'a.Impl.cs',
+      // the "pathSegment" rule will hide the file 'a.Impl.cs' and toggle it to the file 'a.cs'.
       "pathSegment": {
         "add": {
           ".cs": [ ".cs" ]
         }
       }
+      
+      // More rules:
+      //
+      //   * extensionToExtension: Use this type of rule to nest file.js under file.ts
+      //   * fileSuffixToExtension: Use this type of rule to nest file-vsdoc.js under file.js
+      //   * addedExtension: Use this type of rule to nest file.html.css under file.html
+      //   * pathSegment: Use this type of rule to nest jquery.min.js under jquery.js
+      //   * allExtensions: Use this type of rule to nest file.* under file.js
+      //   * fileToFile: Use this type of rule to nest bower.json under .bowerrc
+      //
+      // Usage for example:
+      //
+      //   "fileSuffixToExtension": {
+      //     "add": {
+      //       "-vsdoc.js": [ ".js" ]
+      //     }
+      //   }
+      //
+      // If you want to add more file-nesting rules, you can choose the settings from here.
+      // For more information, please visit the following link:
+      // https://docs.microsoft.com/en-us/visualstudio/ide/file-nesting-solution-explorer
+      // for details.
     }
   }
 }
