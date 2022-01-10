@@ -201,27 +201,6 @@
             </summary>
             <seealso cref="T:System.Collections.Generic.IEnumerable`1"/>
         </member>
-        <member name="T:Sudoku.Diagnostics.CodeGen.AutoPrimaryConstructorAttribute">
-            <summary>
-            Indicates the marked <see langword="class"/> should generate primary constructor automatically.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Diagnostics.CodeGen.AutoPrimaryConstructorAttribute.Accessibility">
-            <summary>
-            <para>Indicates the custom accessibility.</para>
-            <para>The default value is <see cref="F:Sudoku.Diagnostics.CodeGen.Reflection.MemberAccessibility.Public"/>.</para>
-            </summary>
-        </member>
-        <member name="P:Sudoku.Diagnostics.CodeGen.AutoPrimaryConstructorAttribute.IncludedMemberNames">
-            <summary>
-            Indicates the included member names.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Diagnostics.CodeGen.AutoPrimaryConstructorAttribute.ExcludedMemberNames">
-            <summary>
-            Indicates the excluded member names.
-            </summary>
-        </member>
         <member name="T:Sudoku.Diagnostics.CodeGen.LambdaBodyAttribute">
             <summary>
             Indicates the method is provided as a lambda conversion that is used by source generators.
@@ -519,35 +498,6 @@
         <member name="M:Sudoku.Diagnostics.CodeGen.Generators.AutoLambdaedExtensionDeconstruct.Initialize(Microsoft.CodeAnalysis.GeneratorInitializationContext)">
             <inheritdoc/>
         </member>
-        <member name="T:Sudoku.Diagnostics.CodeGen.Generators.AutoPrimaryConstructor">
-            <summary>
-            Defines a source generator that generates the source code for primary constructors.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.AutoPrimaryConstructor.Execute(Microsoft.CodeAnalysis.GeneratorExecutionContext)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.AutoPrimaryConstructor.Initialize(Microsoft.CodeAnalysis.GeneratorInitializationContext)">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Diagnostics.CodeGen.Generators.AutoPrimaryConstructor.Receiver">
-            <summary>
-            Defines a syntax context receiver.
-            </summary>
-            <param name="CancellationToken">The cancellation token to cancel the operation.</param>
-        </member>
-        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.AutoPrimaryConstructor.Receiver.#ctor(System.Threading.CancellationToken)">
-            <summary>
-            Defines a syntax context receiver.
-            </summary>
-            <param name="CancellationToken">The cancellation token to cancel the operation.</param>
-        </member>
-        <member name="P:Sudoku.Diagnostics.CodeGen.Generators.AutoPrimaryConstructor.Receiver.Collection">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.AutoPrimaryConstructor.Receiver.OnVisitSyntaxNode(Microsoft.CodeAnalysis.GeneratorSyntaxContext)">
-            <inheritdoc/>
-        </member>
         <member name="T:Sudoku.Diagnostics.CodeGen.Generators.BitOperations">
             <summary>
             Indicates the generator that generates the code about extended methods of type <c>BitOperations</c>.
@@ -648,36 +598,6 @@
             </summary>
             <param name="typeName">The type name.</param>
             <returns>The code.</returns>
-        </member>
-        <member name="T:Sudoku.Diagnostics.CodeGen.Generators.PrivatizeParameterlessConstructor">
-            <summary>
-            Provides a source generator that automatically generates the source code for disability of the
-            usage of the parameterless constructor outside the type range.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.PrivatizeParameterlessConstructor.Execute(Microsoft.CodeAnalysis.GeneratorExecutionContext)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.PrivatizeParameterlessConstructor.Initialize(Microsoft.CodeAnalysis.GeneratorInitializationContext)">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Diagnostics.CodeGen.Generators.PrivatizeParameterlessConstructor.Receiver">
-            <summary>
-            Defines a syntax context receiver.
-            </summary>
-            <param name="CancellationToken">The cancellation token to cancel the operation.</param>
-        </member>
-        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.PrivatizeParameterlessConstructor.Receiver.#ctor(System.Threading.CancellationToken)">
-            <summary>
-            Defines a syntax context receiver.
-            </summary>
-            <param name="CancellationToken">The cancellation token to cancel the operation.</param>
-        </member>
-        <member name="P:Sudoku.Diagnostics.CodeGen.Generators.PrivatizeParameterlessConstructor.Receiver.Collection">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.PrivatizeParameterlessConstructor.Receiver.OnVisitSyntaxNode(Microsoft.CodeAnalysis.GeneratorSyntaxContext)">
-            <inheritdoc/>
         </member>
         <member name="T:Sudoku.Diagnostics.CodeGen.Generators.RefStructOverridens">
             <summary>
@@ -805,19 +725,6 @@
             <summary>
             Indicates the <see langword="private protected"/> modifier.
             </summary>
-        </member>
-        <member name="T:Sudoku.CodeGenerating.Generators.PrivatizeParameterlessConstructorGenerator.SyntaxReceiver">
-            <summary>
-            Defines the syntax receiver.
-            </summary>
-        </member>
-        <member name="P:Sudoku.CodeGenerating.Generators.PrivatizeParameterlessConstructorGenerator.SyntaxReceiver.Candidates">
-            <summary>
-            Indicates all possible candidate types used.
-            </summary>
-        </member>
-        <member name="M:Sudoku.CodeGenerating.Generators.PrivatizeParameterlessConstructorGenerator.SyntaxReceiver.OnVisitSyntaxNode(Microsoft.CodeAnalysis.SyntaxNode)">
-            <inheritdoc/>
         </member>
         <member name="T:Microsoft.CodeAnalysis.AttributeDataExtensions">
             <summary>
