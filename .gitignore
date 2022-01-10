@@ -9,7 +9,6 @@
 *.user
 *.userosscache
 *.sln.docstates
-src/Sudoku.Test/
 
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
