@@ -238,11 +238,6 @@
             Indicates the source generator is for extension deconstruction methods.
             </summary>
         </member>
-        <member name="F:Sudoku.Diagnostics.CodeGen.Constants.GeneratedFileShortcuts.FormattedMethods">
-            <summary>
-            Indicates the source generator is for auto format methods.
-            </summary>
-        </member>
         <member name="F:Sudoku.Diagnostics.CodeGen.Constants.GeneratedFileShortcuts.GetEnumeratorMethod">
             <summary>
             Indicates the source generator is for auto get enumerator methods.

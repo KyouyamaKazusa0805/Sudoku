@@ -13,11 +13,6 @@ partial class Constants
 		public const string ExtensionDeconstructionMethod = "ed";
 
 		/// <summary>
-		/// Indicates the source generator is for auto format methods.
-		/// </summary>
-		public const string FormattedMethods = "t";
-
-		/// <summary>
 		/// Indicates the source generator is for auto get enumerator methods.
 		/// </summary>
 		public const string GetEnumeratorMethod = "ge";
