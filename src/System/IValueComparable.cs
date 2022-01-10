@@ -1,6 +1,4 @@
-﻿#undef SUPPORT_COMPARISON_OPERATORS
-
-namespace System;
+﻿namespace System;
 
 /// <summary>
 /// Defines a generalized comparison method that a <see langword="struct"/> implements
@@ -43,44 +41,6 @@ where TStruct : struct, IValueComparable<TStruct>
 	int CompareTo(in TStruct other);
 
 	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	int IComparable<TStruct>.CompareTo(TStruct other) => CompareTo(other);
-
-
-#if SUPPORT_COMPARISON_OPERATORS
-	/// <summary>
-	/// Determines whetehr the left-side <typeparamref name="TStruct"/>-typed instance holds a greater value
-	/// than the same-typed right-side one.
-	/// </summary>
-	/// <param name="left">The left instance to compare.</param>
-	/// <param name="right">The right instance to compare.</param>
-	/// <returns>A <see cref="bool"/> result indicating that.</returns>
-	static abstract bool operator >(in TStruct left, in TStruct right);
-
-	/// <summary>
-	/// Determines whetehr the left-side <typeparamref name="TStruct"/>-typed instance holds a less value
-	/// than the right-side same-typed one.
-	/// </summary>
-	/// <param name="left">The left instance to compare.</param>
-	/// <param name="right">The right instance to compare.</param>
-	/// <returns>A <see cref="bool"/> result indicating that.</returns>
-	static abstract bool operator <(in TStruct left, in TStruct right);
-
-	/// <summary>
-	/// Determines whetehr the left-side <typeparamref name="TStruct"/>-typed instance holds a greater value
-	/// than the right-side same-typed one, or two values are equal.
-	/// </summary>
-	/// <param name="left">The left instance to compare.</param>
-	/// <param name="right">The right instance to compare.</param>
-	/// <returns>A <see cref="bool"/> result indicating that.</returns>
-	static abstract bool operator >=(in TStruct left, in TStruct right);
-
-	/// <summary>
-	/// Determines whetehr the left-side <typeparamref name="TStruct"/>-typed instance holds a less value
-	/// than the right-side same-typed one, or two values are equal.
-	/// </summary>
-	/// <param name="left">The left instance to compare.</param>
-	/// <param name="right">The right instance to compare.</param>
-	/// <returns>A <see cref="bool"/> result indicating that.</returns>
-	static abstract bool operator <=(in TStruct left, in TStruct right);
-#endif
 }
