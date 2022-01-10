@@ -10,47 +10,16 @@ global using Microsoft.CodeAnalysis;
 global using Microsoft.CodeAnalysis.CSharp;
 global using Microsoft.CodeAnalysis.CSharp.Syntax;
 global using Microsoft.CodeAnalysis.Text;
-global using Sudoku.Diagnostics.CodeGen.Reflection;
 global using static Sudoku.Diagnostics.CodeGen.Constants;
 global using RefStructInfo = Microsoft.CodeAnalysis.INamedTypeSymbol;
-global using AutoEqualityInfo = System.ValueTuple<
-	Microsoft.CodeAnalysis.INamedTypeSymbol,
-	Microsoft.CodeAnalysis.AttributeData,
-	Microsoft.CodeAnalysis.SymbolOutputInfo
->;
 global using AutoGetEnumeratorInfo = System.ValueTuple<
 	Microsoft.CodeAnalysis.INamedTypeSymbol,
 	Microsoft.CodeAnalysis.AttributeData,
 	Microsoft.CodeAnalysis.SymbolOutputInfo
->;
-global using AutoGetHashCodeInfo = System.ValueTuple<
-	Microsoft.CodeAnalysis.INamedTypeSymbol,
-	Microsoft.CodeAnalysis.AttributeData,
-	Microsoft.CodeAnalysis.SymbolOutputInfo
->;
-global using PrivatizeParameterlessConstructorInfo = System.ValueTuple<
-	Microsoft.CodeAnalysis.INamedTypeSymbol,
-	Microsoft.CodeAnalysis.AttributeData,
-	Microsoft.CodeAnalysis.SymbolOutputInfo
->;
-global using ProxyEqualsMethodInfo = System.ValueTuple<
-	Microsoft.CodeAnalysis.INamedTypeSymbol,
-	Microsoft.CodeAnalysis.SymbolOutputInfo,
-	string
 >;
 global using AutoLambdaedDeconstructInfo = System.ValueTuple<
 	Microsoft.CodeAnalysis.INamedTypeSymbol,
 	System.Collections.Generic.IEnumerable<Microsoft.CodeAnalysis.AttributeData>,
 	Microsoft.CodeAnalysis.SymbolOutputInfo,
 	Sudoku.Diagnostics.CodeGen.MemberDetail[]
->;
-global using AutoPrimaryConstructorInfo = System.ValueTuple<
-	Microsoft.CodeAnalysis.INamedTypeSymbol,
-	Sudoku.Diagnostics.CodeGen.Reflection.MemberAccessibility,
-	System.Collections.Generic.IEnumerable<string>,
-	System.Collections.Generic.IEnumerable<string>,
-	Microsoft.CodeAnalysis.SymbolOutputInfo,
-	string?,
-	string,
-	System.ValueTuple<string>
 >;
