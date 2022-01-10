@@ -201,17 +201,6 @@
             </summary>
             <seealso cref="T:System.Collections.Generic.IEnumerable`1"/>
         </member>
-        <member name="T:Sudoku.Diagnostics.CodeGen.LambdaBodyAttribute">
-            <summary>
-            Indicates the method is provided as a lambda conversion that is used by source generators.
-            </summary>
-        </member>
-        <member name="T:Sudoku.Diagnostics.CodeGen.PrivatizeParameterlessConstructorAttribute">
-            <summary>
-            Marks onto a <see langword="class"/> type, to tell the source generator the type should contain
-            a <see langword="private"/> parameterless constructor that can't be accessed out of its type field.
-            </summary>
-        </member>
         <member name="T:Sudoku.Diagnostics.CodeGen.Constants">
             <summary>
             Defines the constants used in this project.
