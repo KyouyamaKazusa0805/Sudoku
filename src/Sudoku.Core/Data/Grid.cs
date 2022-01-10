@@ -10,7 +10,6 @@
 [DebuggerDisplay($@"{{{nameof(ToString)}("".+:""),nq}}")]
 #endif // !USE_TO_MASK_STRING_METHOD
 #endif // !DEBUG
-[AutoGetEnumerator(nameof(EnumerateCandidates), MemberConversion = "@()", ReturnType = typeof(CandidateCollectionEnumerator))]
 public unsafe partial struct Grid
 : IGrid<Grid>
 , ISimpleFormattable
@@ -772,8 +771,14 @@ public unsafe partial struct Grid
 	/// having satisfied the specified condition.
 	/// </returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public readonly GridSegment Where(delegate*<in Grid, int, bool> predicate) =>
-		new(this, GetCells(predicate));
+	public readonly GridSegment Where(delegate*<in Grid, int, bool> predicate) => new(this, GetCells(predicate));
+
+	/// <summary>
+	/// Gets the enumerator of the current instance in order to use <see langword="foreach"/> loop.
+	/// </summary>
+	/// <returns>The enumerator instance.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public readonly CandidateCollectionEnumerator GetEnumerator() => EnumerateCandidates();
 
 	/// <summary>
 	/// Try to enumerate all possible candidates in the current grid.
@@ -782,6 +787,7 @@ public unsafe partial struct Grid
 	/// An enumerator that allows us using <see langword="foreach"/> statement
 	/// to iterate all possible candidates in the current grid.
 	/// </returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public readonly CandidateCollectionEnumerator EnumerateCandidates()
 	{
 		fixed (short* arr = _values)
@@ -808,6 +814,7 @@ public unsafe partial struct Grid
 	/// }
 	/// </code>
 	/// </remarks>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public readonly MaskCollectionEnumerator EnumerateMasks()
 	{
 		fixed (short* arr = _values)

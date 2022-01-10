@@ -3,7 +3,6 @@
 /// <summary>
 /// Indicates a region collection.
 /// </summary>
-[AutoGetEnumerator(nameof(_mask), MemberConversion = "@.*", ReturnType = typeof(ReadOnlySpan<int>.Enumerator), ExtraNamespaces = new[] { "System.Numerics" })]
 public readonly ref partial struct RegionCollection
 {
 	/// <summary>
@@ -128,6 +127,13 @@ public readonly ref partial struct RegionCollection
 
 		return sb.ToStringAndClear();
 	}
+
+	/// <summary>
+	/// Gets the enumerator of the instance in order to use <see langword="foreach"/> loop.
+	/// </summary>
+	/// <returns>The enumerator instance.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public ReadOnlySpan<int>.Enumerator GetEnumerator() => _mask.GetEnumerator();
 
 	/// <summary>
 	/// Get the label of each region.

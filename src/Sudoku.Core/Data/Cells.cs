@@ -9,7 +9,6 @@
 /// and the <see langword="false"/> bit (0) is for the cell not containing
 /// the digit.
 /// </remarks>
-[AutoGetEnumerator(nameof(Offsets), MemberConversion = "((IEnumerable<int>)@).*")]
 public unsafe partial struct Cells
 : ICellsOrCandidates<Cells>
 , IJsonSerializable<Cells, Cells.JsonConverter>
@@ -862,6 +861,14 @@ public unsafe partial struct Cells
 	public readonly ReadOnlySpan<int> ToReadOnlySpan() => Offsets.AsSpan();
 
 	/// <summary>
+	/// Gets the enumerator of the current instance in order to use <see langword="foreach"/> loop.
+	/// </summary>
+	/// <returns>The enumerator instance.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public readonly OneDimensionalArrayEnumerable<int>.Enumerator GetEnumerator() =>
+		Offsets.AsRefEnumerable().GetEnumerator();
+
+	/// <summary>
 	/// Expands the current instance, using the specified digit.
 	/// </summary>
 	/// <param name="digit">The digit.</param>
@@ -950,6 +957,14 @@ public unsafe partial struct Cells
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public void Clear() => _low = _high = Count = 0;
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	readonly IEnumerator<int> IEnumerable<int>.GetEnumerator() => ((IEnumerable<int>)Offsets).GetEnumerator();
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	readonly IEnumerator IEnumerable.GetEnumerator() => Offsets.GetEnumerator();
 
 	/// <summary>
 	/// The internal operation for adding an offset into the current collection.

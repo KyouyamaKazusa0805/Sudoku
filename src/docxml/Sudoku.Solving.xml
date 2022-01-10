@@ -486,6 +486,12 @@
         <member name="M:Sudoku.Solving.Collections.ExocetElimination.ToString">
             <inheritdoc/>
         </member>
+        <member name="M:Sudoku.Solving.Collections.ExocetElimination.GetEnumerator">
+            <summary>
+            Gets the enumerator of the current instance in order to use <see langword="foreach"/> loop.
+            </summary>
+            <returns>The enumerator instance.</returns>
+        </member>
         <member name="M:Sudoku.Solving.Collections.ExocetElimination.AsSpan">
             <summary>
             Converts all elements to <see cref="T:Sudoku.Data.Conclusion"/>.
@@ -507,12 +513,6 @@
             <exception cref="T:System.ArgumentException">
             Throws when two instances contains different eliminated reason.
             </exception>
-        </member>
-        <member name="M:Sudoku.Solving.Collections.ExocetElimination.GetEnumerator">
-            <summary>
-            Returns an enumerator that iterates through the collection.
-            </summary>
-            <returns>An enumerator that can be used to iterate through the collection.</returns>
         </member>
         <member name="T:Sudoku.Solving.Collections.ExocetPattern">
             <summary>
@@ -1992,6 +1992,12 @@
         <member name="M:Sudoku.Solving.Manual.ManualSolverResult.ToDisplayString">
             <inheritdoc/>
         </member>
+        <member name="M:Sudoku.Solving.Manual.ManualSolverResult.GetEnumerator">
+            <summary>
+            Gets the enumerator of the current instance in order to use <see langword="foreach"/> loop.
+            </summary>
+            <returns>The enumerator instance.</returns>
+        </member>
         <member name="M:Sudoku.Solving.Manual.ManualSolverResult.Evaluator(,System.Decimal)">
             <summary>
             The inner executor to get the difficulty value (total, average).
@@ -2037,12 +2043,6 @@
             </summary>
             <param name="options">The options.</param>
             <returns>The result.</returns>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.ManualSolverResult.GetEnumerator">
-            <summary>
-            Returns an enumerator that iterates through the collection.
-            </summary>
-            <returns>An enumerator that can be used to iterate through the collection.</returns>
         </member>
         <member name="T:Sudoku.Solving.Manual.MaskMarshal">
             <summary>

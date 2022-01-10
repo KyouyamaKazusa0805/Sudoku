@@ -158,6 +158,12 @@
             <param name="format">The format. If available, the parameter can be <see langword="null"/>.</param>
             <returns>The string result.</returns>
         </member>
+        <member name="M:Sudoku.Collections.DigitCollection.GetEnumerator">
+            <summary>
+            Get the enumerator of the current instance in order to use <see langword="foreach"/> loop.
+            </summary>
+            <returns>The enumerator instance.</returns>
+        </member>
         <member name="M:Sudoku.Collections.DigitCollection.op_OnesComplement(Sudoku.Collections.DigitCollection)">
             <summary>
             Make all <see langword="true"/> bits to be set <see langword="false"/>,
@@ -189,12 +195,6 @@
             <param name="left">The left instance.</param>
             <param name="right">The right instance.</param>
             <returns>The result collection.</returns>
-        </member>
-        <member name="M:Sudoku.Collections.DigitCollection.GetEnumerator">
-            <summary>
-            Returns an enumerator that iterates through the collection.
-            </summary>
-            <returns>An enumerator that can be used to iterate through the collection.</returns>
         </member>
         <member name="M:Sudoku.Collections.DigitCollection.Equals(System.Object)">
             <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
@@ -500,18 +500,18 @@
             </summary>
             <returns>The labels.</returns>
         </member>
+        <member name="M:Sudoku.Collections.RegionCollection.GetEnumerator">
+            <summary>
+            Gets the enumerator of the instance in order to use <see langword="foreach"/> loop.
+            </summary>
+            <returns>The enumerator instance.</returns>
+        </member>
         <member name="M:Sudoku.Collections.RegionCollection.GetLabel(System.Int32)">
             <summary>
             Get the label of each region.
             </summary>
             <param name="index">The index.</param>
             <returns>The label.</returns>
-        </member>
-        <member name="M:Sudoku.Collections.RegionCollection.GetEnumerator">
-            <summary>
-            Returns an enumerator that iterates through the collection.
-            </summary>
-            <returns>An enumerator that can be used to iterate through the collection.</returns>
         </member>
         <member name="M:Sudoku.Collections.RegionCollection.Equals(System.Object)">
             <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
@@ -1584,6 +1584,12 @@
             <param name="bitCount">The number of bits.</param>
             <param name="oneCount">The number of <see langword="true"/> bits.</param>
         </member>
+        <member name="M:Sudoku.Data.BitSubsetsGenerator.GetEnumerator">
+            <summary>
+            Gets the enumerator of the current instance in order to use <see langword="foreach"/> loop.
+            </summary>
+            <returns>The enumerator instance.</returns>
+        </member>
         <member name="T:Sudoku.Data.BitSubsetsGenerator.Enumerator">
             <summary>
             Indicates the enumerator of the current instance.
@@ -1624,12 +1630,6 @@
         <member name="M:Sudoku.Data.BitSubsetsGenerator.Enumerator.ToString">
             <inheritdoc cref="M:System.Object.ToString"/>
             <exception cref="T:System.NotSupportedException">Always throws.</exception>
-        </member>
-        <member name="M:Sudoku.Data.BitSubsetsGenerator.GetEnumerator">
-            <summary>
-            Returns an enumerator that iterates through the collection.
-            </summary>
-            <returns>An enumerator that can be used to iterate through the collection.</returns>
         </member>
         <member name="M:Sudoku.Data.BitSubsetsGenerator.Equals(System.Object)">
             <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
@@ -1873,6 +1873,12 @@
         <member name="M:Sudoku.Data.Candidates.ToReadOnlySpan">
             <inheritdoc/>
         </member>
+        <member name="M:Sudoku.Data.Candidates.GetEnumerator">
+            <summary>
+            Gets the enumerator of the current instance in order to use <see langword="foreach"/> loop.
+            </summary>
+            <returns>The enumerator instance.</returns>
+        </member>
         <member name="M:Sudoku.Data.Candidates.Add(System.Int32)">
             <inheritdoc/>
         </member>
@@ -1889,6 +1895,12 @@
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Data.Candidates.Clear">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Data.Candidates.System#Collections#Generic#IEnumerable{System#Int32}#GetEnumerator">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Data.Candidates.System#Collections#IEnumerable#GetEnumerator">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Data.Candidates.InternalAdd(System.Int32,System.Boolean)">
@@ -1999,12 +2011,6 @@
         </member>
         <member name="M:Sudoku.Data.Candidates.JsonConverter.Write(System.Text.Json.Utf8JsonWriter,Sudoku.Data.Candidates,System.Text.Json.JsonSerializerOptions)">
             <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Data.Candidates.GetEnumerator">
-            <summary>
-            Returns an enumerator that iterates through the collection.
-            </summary>
-            <returns>An enumerator that can be used to iterate through the collection.</returns>
         </member>
         <member name="T:Sudoku.Data.CandidatesParsingOptions">
             <summary>
@@ -2358,6 +2364,12 @@
         <member name="M:Sudoku.Data.Cells.ToReadOnlySpan">
             <inheritdoc/>
         </member>
+        <member name="M:Sudoku.Data.Cells.GetEnumerator">
+            <summary>
+            Gets the enumerator of the current instance in order to use <see langword="foreach"/> loop.
+            </summary>
+            <returns>The enumerator instance.</returns>
+        </member>
         <member name="M:Sudoku.Data.Cells.Expand(System.Int32)">
             <summary>
             Expands the current instance, using the specified digit.
@@ -2398,6 +2410,12 @@
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Data.Cells.Clear">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Data.Cells.System#Collections#Generic#IEnumerable{System#Int32}#GetEnumerator">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Data.Cells.System#Collections#IEnumerable#GetEnumerator">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Data.Cells.InternalAdd(System.Int32,System.Boolean)">
@@ -2530,12 +2548,6 @@
         </member>
         <member name="M:Sudoku.Data.Cells.JsonConverter.Write(System.Text.Json.Utf8JsonWriter,Sudoku.Data.Cells,System.Text.Json.JsonSerializerOptions)">
             <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Data.Cells.GetEnumerator">
-            <summary>
-            Returns an enumerator that iterates through the collection.
-            </summary>
-            <returns>An enumerator that can be used to iterate through the collection.</returns>
         </member>
         <member name="T:Sudoku.Data.CellStatus">
             <summary>
@@ -3209,6 +3221,12 @@
             having satisfied the specified condition.
             </returns>
         </member>
+        <member name="M:Sudoku.Data.Grid.GetEnumerator">
+            <summary>
+            Gets the enumerator of the current instance in order to use <see langword="foreach"/> loop.
+            </summary>
+            <returns>The enumerator instance.</returns>
+        </member>
         <member name="M:Sudoku.Data.Grid.EnumerateCandidates">
             <summary>
             Try to enumerate all possible candidates in the current grid.
@@ -3422,12 +3440,6 @@
         <member name="M:Sudoku.Data.Grid.MaskCollectionEnumerator.ToString">
             <inheritdoc cref="M:System.Object.ToString"/>
             <exception cref="T:System.NotSupportedException">Always throws.</exception>
-        </member>
-        <member name="M:Sudoku.Data.Grid.GetEnumerator">
-            <summary>
-            Returns an enumerator that iterates through the collection.
-            </summary>
-            <returns>An enumerator that can be used to iterate through the collection.</returns>
         </member>
         <member name="T:Sudoku.Data.GridCreatingOption">
             <summary>
@@ -5665,6 +5677,12 @@
             <param name="options">The customized options being used in this method.</param>
             <returns>The <see cref="T:System.String"/> JSON representation.</returns>
         </member>
+        <member name="M:Sudoku.Resources.ResourceDocument.GetEnumerator">
+            <summary>
+            Gets the enumerator of the current instance in order to use <see langword="foreach"/> loop.
+            </summary>
+            <returns>The enumerator instance.</returns>
+        </member>
         <member name="M:Sudoku.Resources.ResourceDocument.TryParse(System.String,Sudoku.Resources.ResourceDocument@)">
             <inheritdoc/>
         </member>
@@ -5731,12 +5749,6 @@
         <member name="M:Sudoku.Resources.ResourceDocument.Enumerator.ToString">
             <inheritdoc cref="M:System.Object.ToString"/>
             <exception cref="T:System.NotSupportedException">Always throws.</exception>
-        </member>
-        <member name="M:Sudoku.Resources.ResourceDocument.GetEnumerator">
-            <summary>
-            Returns an enumerator that iterates through the collection.
-            </summary>
-            <returns>An enumerator that can be used to iterate through the collection.</returns>
         </member>
         <member name="T:Sudoku.Resources.ResourceDocumentManager">
             <summary>

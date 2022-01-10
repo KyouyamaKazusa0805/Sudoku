@@ -3,7 +3,6 @@
 /// <summary>
 /// Indicates a collection that contains the several digits.
 /// </summary>
-[AutoGetEnumerator(nameof(_mask), MemberConversion = "@.*", ReturnType = typeof(ReadOnlySpan<int>.Enumerator), ExtraNamespaces = new[] { "System.Numerics" })]
 public readonly ref partial struct DigitCollection
 {
 	/// <summary>
@@ -78,7 +77,7 @@ public readonly ref partial struct DigitCollection
 
 		string separator = format ?? string.Empty;
 		var sb = new StringHandler(initialCapacity: 9);
-		foreach (int digit in this)
+		foreach (int digit in _mask)
 		{
 			sb.Append(digit + 1);
 			sb.Append(separator);
@@ -87,6 +86,13 @@ public readonly ref partial struct DigitCollection
 		sb.RemoveFromEnd(separator.Length);
 		return sb.ToStringAndClear();
 	}
+
+	/// <summary>
+	/// Get the enumerator of the current instance in order to use <see langword="foreach"/> loop.
+	/// </summary>
+	/// <returns>The enumerator instance.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public ReadOnlySpan<int>.Enumerator GetEnumerator() => _mask.GetEnumerator();
 
 
 	/// <summary>

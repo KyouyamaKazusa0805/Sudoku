@@ -840,11 +840,26 @@
             </para>
             </summary>
         </member>
+        <member name="M:System.Text.StringHandler.GetPinnableReference(System.Boolean)">
+            <summary>
+            Get a pinnable reference to the builder.
+            </summary>
+            <param name="withTerminate">
+            Ensures that the builder has a null character after <see cref="P:System.Text.StringHandler.Length"/>.
+            </param>
+            <seealso cref="P:System.Text.StringHandler.Length"/>
+        </member>
         <member name="M:System.Text.StringHandler.ToString">
             <summary>
             Gets the built <see cref="T:System.String"/>.
             </summary>
             <returns>The built string.</returns>
+        </member>
+        <member name="M:System.Text.StringHandler.GetEnumerator">
+            <summary>
+            Gets the enumerator of the current instance in order to use <see langword="foreach"/> loop.
+            </summary>
+            <returns>The enumerator instance.</returns>
         </member>
         <member name="M:System.Text.StringHandler.AppendLiteral(System.String)">
             <summary>
@@ -1192,15 +1207,6 @@
             </param>
             <typeparam name="T">The type of the value to write.</typeparam>
         </member>
-        <member name="M:System.Text.StringHandler.GetPinnableReference(System.Boolean)">
-            <summary>
-            Get a pinnable reference to the builder.
-            </summary>
-            <param name="withTerminate">
-            Ensures that the builder has a null character after <see cref="P:System.Text.StringHandler.Length"/>.
-            </param>
-            <seealso cref="P:System.Text.StringHandler.Length"/>
-        </member>
         <member name="M:System.Text.StringHandler.Reverse">
             <summary>
             Reverse the instance. For example, if the handler holds a string <c>"Hello"</c>,
@@ -1408,12 +1414,6 @@
         <member name="M:System.Text.StringHandler.Enumerator.ToString">
             <inheritdoc cref="M:System.Object.ToString"/>
             <exception cref="T:System.NotSupportedException">Always throws.</exception>
-        </member>
-        <member name="M:System.Text.StringHandler.GetEnumerator">
-            <summary>
-            Returns an enumerator that iterates through the collection.
-            </summary>
-            <returns>An enumerator that can be used to iterate through the collection.</returns>
         </member>
         <member name="M:System.Text.StringHandler.Equals(System.Object)">
             <inheritdoc cref="M:System.Object.Equals(System.Object)"/>

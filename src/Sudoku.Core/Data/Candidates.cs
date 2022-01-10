@@ -3,7 +3,6 @@
 /// <summary>
 /// Encapsulates a map that contains 729 positions to represent a candidate.
 /// </summary>
-[AutoGetEnumerator(nameof(Offsets), MemberConversion = "((IEnumerable<int>)@).*")]
 public unsafe partial struct Candidates : ICellsOrCandidates<Candidates>
 {
 	/// <summary>
@@ -467,10 +466,20 @@ public unsafe partial struct Candidates : ICellsOrCandidates<Candidates>
 	}
 
 	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public readonly Span<int> ToSpan() => Offsets.AsSpan();
 
 	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public readonly ReadOnlySpan<int> ToReadOnlySpan() => Offsets.AsSpan();
+
+	/// <summary>
+	/// Gets the enumerator of the current instance in order to use <see langword="foreach"/> loop.
+	/// </summary>
+	/// <returns>The enumerator instance.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public readonly OneDimensionalArrayEnumerable<int>.Enumerator GetEnumerator() =>
+		Offsets.AsRefEnumerable().GetEnumerator();
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -525,6 +534,14 @@ public unsafe partial struct Candidates : ICellsOrCandidates<Candidates>
 		_0 = _1 = _2 = _3 = _4 = _5 = _6 = _7 = _8 = _9 = _10 = _11 = 0;
 		Count = 0;
 	}
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	readonly IEnumerator<int> IEnumerable<int>.GetEnumerator() => ((IEnumerable<int>)Offsets).GetEnumerator();
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	readonly IEnumerator IEnumerable.GetEnumerator() => Offsets.GetEnumerator();
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

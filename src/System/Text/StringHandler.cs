@@ -35,7 +35,6 @@ namespace System.Text;
 /// <seealso cref="DefaultInterpolatedStringHandler"/>
 /// <seealso cref="IFormatProvider"/>
 [InterpolatedStringHandler]
-[AutoGetEnumerator("@", MemberConversion = "new(@)", ReturnType = typeof(Enumerator))]
 public unsafe ref partial struct StringHandler
 {
 #if USE_NEWER_CONSTANT_VALUES
@@ -286,10 +285,36 @@ public unsafe ref partial struct StringHandler
 	public readonly ref readonly char GetPinnableReference() => ref MemoryMarshal.GetReference(_chars);
 
 	/// <summary>
+	/// Get a pinnable reference to the builder.
+	/// </summary>
+	/// <param name="withTerminate">
+	/// Ensures that the builder has a null character after <see cref="Length"/>.
+	/// </param>
+	/// <seealso cref="Length"/>
+	[EditorBrowsable(EditorBrowsableState.Never)]
+	public ref readonly char GetPinnableReference(bool withTerminate)
+	{
+		if (withTerminate)
+		{
+			EnsureCapacityForAdditionalChars(1);
+			_chars[Length] = '\0';
+		}
+
+		return ref MemoryMarshal.GetReference(_chars);
+	}
+
+	/// <summary>
 	/// Gets the built <see cref="string"/>.
 	/// </summary>
 	/// <returns>The built string.</returns>
 	public override readonly string ToString() => new(Text);
+
+	/// <summary>
+	/// Gets the enumerator of the current instance in order to use <see langword="foreach"/> loop.
+	/// </summary>
+	/// <returns>The enumerator instance.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public readonly Enumerator GetEnumerator() => new(this);
 
 	/// <summary>
 	/// Writes the specified string to the handler.
@@ -1107,25 +1132,6 @@ public unsafe ref partial struct StringHandler
 		{
 			AppendOrInsertAlignmentIfNeeded(startingPos, alignment);
 		}
-	}
-
-	/// <summary>
-	/// Get a pinnable reference to the builder.
-	/// </summary>
-	/// <param name="withTerminate">
-	/// Ensures that the builder has a null character after <see cref="Length"/>.
-	/// </param>
-	/// <seealso cref="Length"/>
-	[EditorBrowsable(EditorBrowsableState.Never)]
-	public ref readonly char GetPinnableReference(bool withTerminate)
-	{
-		if (withTerminate)
-		{
-			EnsureCapacityForAdditionalChars(1);
-			_chars[Length] = '\0';
-		}
-
-		return ref MemoryMarshal.GetReference(_chars);
 	}
 
 	/// <summary>

@@ -13,7 +13,6 @@
 /// In this case, we can use the indexer <see cref="this[string]"/> to fetch the value via the key,
 /// for example, <c>document["prop1"]</c> you'll get the value <c>"value1"</c>.
 /// </summary>
-[AutoGetEnumerator(nameof(_root), MemberConversion = "new(@)", ReturnType = typeof(Enumerator))]
 public sealed partial class ResourceDocument
 : IDisposable
 , IEquatable<ResourceDocument>
@@ -145,6 +144,13 @@ public sealed partial class ResourceDocument
 	/// <returns>The <see cref="string"/> JSON representation.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public string ToString(JsonSerializerOptions? options) => JsonSerializer.Serialize(_root, options);
+
+	/// <summary>
+	/// Gets the enumerator of the current instance in order to use <see langword="foreach"/> loop.
+	/// </summary>
+	/// <returns>The enumerator instance.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public Enumerator GetEnumerator() => new(_root);
 
 
 	/// <inheritdoc/>

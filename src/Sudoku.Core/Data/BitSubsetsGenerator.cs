@@ -12,7 +12,6 @@
 /// }
 /// ]]></code>
 /// </remarks>
-[AutoGetEnumerator(nameof(_enumerator), ReturnType = typeof(Enumerator))]
 public readonly ref partial struct BitSubsetsGenerator
 {
 	/// <summary>
@@ -27,5 +26,14 @@ public readonly ref partial struct BitSubsetsGenerator
 	/// </summary>
 	/// <param name="bitCount">The number of bits.</param>
 	/// <param name="oneCount">The number of <see langword="true"/> bits.</param>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public BitSubsetsGenerator(int bitCount, int oneCount) => _enumerator = new(bitCount, oneCount);
+
+
+	/// <summary>
+	/// Gets the enumerator of the current instance in order to use <see langword="foreach"/> loop.
+	/// </summary>
+	/// <returns>The enumerator instance.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public Enumerator GetEnumerator() => _enumerator;
 }

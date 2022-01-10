@@ -8,8 +8,7 @@
 /// <param name="Reason">Indicates the reason why these candidates can be eliminated.</param>
 /// <seealso cref="IJuniorExocetStepSearcher"/>
 /// <seealso cref="ISeniorExocetStepSearcher"/>
-[AutoGetEnumerator("@", MemberConversion = $"@.{nameof(AsSpan)}().*", ReturnType = typeof(ReadOnlySpan<Conclusion>.Enumerator))]
-public readonly partial record struct ExocetElimination(in Candidates Eliminations, ExocetEliminatedReason Reason)
+public readonly record struct ExocetElimination(in Candidates Eliminations, ExocetEliminatedReason Reason)
 : IValueEquatable<ExocetElimination>
 {
 	/// <summary>
@@ -49,6 +48,13 @@ public readonly partial record struct ExocetElimination(in Candidates Eliminatio
 		string elim = new ConclusionCollection(AsSpan()).ToString();
 		return $"* {Header}{snippet}{elim}";
 	}
+
+	/// <summary>
+	/// Gets the enumerator of the current instance in order to use <see langword="foreach"/> loop.
+	/// </summary>
+	/// <returns>The enumerator instance.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public ReadOnlySpan<Conclusion>.Enumerator GetEnumerator() => AsSpan().GetEnumerator();
 
 	/// <summary>
 	/// Converts all elements to <see cref="Conclusion"/>.

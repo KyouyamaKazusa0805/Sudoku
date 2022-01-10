@@ -4,7 +4,6 @@
 /// Provides the solver result after <see cref="ManualSolver"/> solves a puzzle.
 /// </summary>
 /// <param name="OriginalPuzzle"><inheritdoc/></param>
-[AutoGetEnumerator(nameof(Steps), ExtraNamespaces = new[] { "System", "Sudoku.Solving.Manual" }, ReturnType = typeof(ImmutableArray<Step>.Enumerator), MemberConversion = "@.*")]
 public sealed unsafe partial record ManualSolverResult(in Grid OriginalPuzzle) : ISimpleFormattable, ISolverResult
 {
 	/// <inheritdoc/>
@@ -106,9 +105,10 @@ public sealed unsafe partial record ManualSolverResult(in Grid OriginalPuzzle) :
 	/// </para>
 	/// </summary>
 	/// <seealso cref="ManualSolver"/>
-	public decimal PearlDifficulty => Steps.IsDefaultOrEmpty
-		? 0
-		: Steps.FirstOrDefault(static info => info.ShowDifficulty)?.Difficulty ?? 0;
+	public decimal PearlDifficulty =>
+		Steps.IsDefaultOrEmpty
+			? 0
+			: Steps.FirstOrDefault(static info => info.ShowDifficulty)?.Difficulty ?? 0;
 
 	/// <summary>
 	/// <para>
@@ -231,11 +231,12 @@ public sealed unsafe partial record ManualSolverResult(in Grid OriginalPuzzle) :
 	/// </exception>
 	/// <exception cref="IndexOutOfRangeException">Throws when the index is out of range.</exception>
 	/// <seealso cref="Steps"/>
-	public Step this[int index] => Steps is not [_, ..]
-		? throw new InvalidOperationException("You can't extract any elements because of being null or empty.")
-		: index >= Steps.Length || index < 0
-			? throw new IndexOutOfRangeException($"Parameter '{nameof(index)}' is out of range.")
-			: Steps[index];
+	public Step this[int index] =>
+		Steps is not [_, ..]
+			? throw new InvalidOperationException("You can't extract any elements because of being null or empty.")
+			: index >= Steps.Length || index < 0
+				? throw new IndexOutOfRangeException($"Parameter '{nameof(index)}' is out of range.")
+				: Steps[index];
 
 	/// <summary>
 	/// Gets the first <see cref="Step"/> instance that matches the specified technique.
@@ -252,17 +253,27 @@ public sealed unsafe partial record ManualSolverResult(in Grid OriginalPuzzle) :
 
 
 	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public override string ToString() => ToString(null);
 
 	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public string ToString(string? format) => new Formatter(this).ToString(format);
 
 	/// <inheritdoc cref="Formatter.ToString(SolverResultFormattingOptions)"/>
-	public string ToString(SolverResultFormattingOptions options) =>
-		new Formatter(this).ToString(options);
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public string ToString(SolverResultFormattingOptions options) => new Formatter(this).ToString(options);
 
 	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public string ToDisplayString() => ToString();
+
+	/// <summary>
+	/// Gets the enumerator of the current instance in order to use <see langword="foreach"/> loop.
+	/// </summary>
+	/// <returns>The enumerator instance.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public ImmutableArray<Step>.Enumerator GetEnumerator() => Steps.GetEnumerator();
 
 	/// <summary>
 	/// The inner executor to get the difficulty value (total, average).
