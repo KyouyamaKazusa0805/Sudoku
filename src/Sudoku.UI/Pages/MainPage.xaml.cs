@@ -1,4 +1,4 @@
-﻿namespace Sudoku.UI;
+﻿namespace Sudoku.UI.Pages;
 
 /// <summary>
 /// Indicates the main page.

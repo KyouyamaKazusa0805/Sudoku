@@ -17,9 +17,9 @@
         <member name="T:Sudoku.UI.DataTypes.MainPageDataType">
             <summary>
             The data type that is used on XAML code for the special property <c>x:DataType</c>
-            of <see cref="T:Sudoku.UI.MainPage"/> instance.
+            of <see cref="T:Sudoku.UI.Pages.MainPage"/> instance.
             </summary>
-            <seealso cref="T:Sudoku.UI.MainPage"/>
+            <seealso cref="T:Sudoku.UI.Pages.MainPage"/>
         </member>
         <member name="T:Sudoku.UI.DataTypes.NotificationObject">
             <summary>
@@ -36,16 +36,6 @@
             <param name="propertyName">The name of the property whose value has been changed.</param>
             <seealso cref="E:Sudoku.UI.DataTypes.NotificationObject.PropertyChanged"/>
         </member>
-        <member name="T:Sudoku.UI.MainPage">
-            <summary>
-            Indicates the main page.
-            </summary>
-        </member>
-        <member name="M:Sudoku.UI.MainPage.#ctor">
-            <summary>
-            Initializes a <see cref="T:Sudoku.UI.MainPage"/> instance.
-            </summary>
-        </member>
         <member name="T:Sudoku.UI.MauiProgram">
             <summary>
             Indicates the main program configuration.
@@ -56,6 +46,16 @@
             Creates the MAUI application.
             </summary>
             <returns>The MAUI application instance.</returns>
+        </member>
+        <member name="T:Sudoku.UI.Pages.MainPage">
+            <summary>
+            Indicates the main page.
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Pages.MainPage.#ctor">
+            <summary>
+            Initializes a <see cref="T:Sudoku.UI.Pages.MainPage"/> instance.
+            </summary>
         </member>
         <member name="T:Sudoku.UI.WinUI.App">
             <summary>
@@ -82,9 +82,44 @@
             InitializeComponent()
             </summary>
         </member>
+        <member name="M:Sudoku.UI.WinUI.App.GetXamlType(System.Type)">
+            <summary>
+            GetXamlType(Type)
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.WinUI.App.GetXamlType(System.String)">
+            <summary>
+            GetXamlType(String)
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.WinUI.App.GetXmlnsDefinitions">
+            <summary>
+            GetXmlnsDefinitions()
+            </summary>
+        </member>
         <member name="T:Sudoku.UI.WinUI.Program">
             <summary>
             Program class
+            </summary>
+        </member>
+        <member name="T:Sudoku.UI.Sudoku_UI_XamlTypeInfo.XamlMetaDataProvider">
+            <summary>
+            Main class for providing metadata for the app or library
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Sudoku_UI_XamlTypeInfo.XamlMetaDataProvider.GetXamlType(System.Type)">
+            <summary>
+            GetXamlType(Type)
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Sudoku_UI_XamlTypeInfo.XamlMetaDataProvider.GetXamlType(System.String)">
+            <summary>
+            GetXamlType(String)
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Sudoku_UI_XamlTypeInfo.XamlMetaDataProvider.GetXmlnsDefinitions">
+            <summary>
+            GetXmlnsDefinitions()
             </summary>
         </member>
     </members>
