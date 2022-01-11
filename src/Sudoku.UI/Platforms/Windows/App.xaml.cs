@@ -4,9 +4,9 @@ namespace Sudoku.UI.WinUI;
 
 /// <summary>
 /// Provides application-specific behavior to supplement the default
-/// <see cref="Microsoft.UI.Xaml.Application"/> class.
+/// <see cref="Microsoft.Maui.Controls.Application"/> class.
 /// </summary>
-/// <seealso cref="Microsoft.UI.Xaml.Application"/>
+/// <seealso cref="Microsoft.Maui.Controls.Application"/>
 public partial class App : MauiWinUIApplication
 {
 	/// <summary>

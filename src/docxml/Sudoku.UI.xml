@@ -14,6 +14,28 @@
             Initializes an <see cref="T:Sudoku.UI.App"/> instance.
             </summary>
         </member>
+        <member name="T:Sudoku.UI.DataTypes.MainPageDataType">
+            <summary>
+            The data type that is used on XAML code for the special property <c>x:DataType</c>
+            of <see cref="T:Sudoku.UI.MainPage"/> instance.
+            </summary>
+            <seealso cref="T:Sudoku.UI.MainPage"/>
+        </member>
+        <member name="T:Sudoku.UI.DataTypes.NotificationObject">
+            <summary>
+            Defines a base type that is the notification object.
+            </summary>
+        </member>
+        <member name="E:Sudoku.UI.DataTypes.NotificationObject.PropertyChanged">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.UI.DataTypes.NotificationObject.RaisePropertyChanged(System.String)">
+            <summary>
+            To raise the event <see cref="E:Sudoku.UI.DataTypes.NotificationObject.PropertyChanged"/>.
+            </summary>
+            <param name="propertyName">The name of the property whose value has been changed.</param>
+            <seealso cref="E:Sudoku.UI.DataTypes.NotificationObject.PropertyChanged"/>
+        </member>
         <member name="T:Sudoku.UI.MainPage">
             <summary>
             Indicates the main page.
@@ -38,9 +60,9 @@
         <member name="T:Sudoku.UI.WinUI.App">
             <summary>
             Provides application-specific behavior to supplement the default
-            <see cref="T:Microsoft.UI.Xaml.Application"/> class.
+            <see cref="T:Microsoft.Maui.Controls.Application"/> class.
             </summary>
-            <seealso cref="T:Microsoft.UI.Xaml.Application"/>
+            <seealso cref="T:Microsoft.Maui.Controls.Application"/>
         </member>
         <member name="M:Sudoku.UI.WinUI.App.#ctor">
             <summary>
