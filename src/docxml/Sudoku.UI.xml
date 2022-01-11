@@ -37,14 +37,23 @@
         </member>
         <member name="T:Sudoku.UI.WinUI.App">
             <summary>
-            Provides application-specific behavior to supplement the default Application class.
+            Provides application-specific behavior to supplement the default
+            <see cref="T:Microsoft.UI.Xaml.Application"/> class.
             </summary>
+            <seealso cref="T:Microsoft.UI.Xaml.Application"/>
         </member>
         <member name="M:Sudoku.UI.WinUI.App.#ctor">
             <summary>
-            Initializes the singleton application object.  This is the first line of authored code
-            executed, and as such is the logical equivalent of main() or WinMain().
+            Initializes the singleton application object.
+            This is the first line of authored code executed,
+            and as such is the logical equivalent of <c>main()</c> or <c>WinMain()</c>.
             </summary>
+        </member>
+        <member name="M:Sudoku.UI.WinUI.App.CreateMauiApp">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.UI.WinUI.App.OnLaunched(Microsoft.UI.Xaml.LaunchActivatedEventArgs)">
+            <inheritdoc/>
         </member>
         <member name="M:Sudoku.UI.WinUI.App.InitializeComponent">
             <summary>

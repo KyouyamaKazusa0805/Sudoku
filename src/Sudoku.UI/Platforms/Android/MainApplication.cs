@@ -2,13 +2,19 @@
 using Android.Runtime;
 
 namespace Sudoku.UI;
+
+/// <summary>
+/// Indicates the main application on android.
+/// </summary>
 [Application]
 public class MainApplication : MauiApplication
 {
-    public MainApplication(IntPtr handle, JniHandleOwnership ownership)
-        : base(handle, ownership)
-    {
-    }
+	/// <inheritdoc/>
+	public MainApplication(IntPtr handle, JniHandleOwnership ownership) : base(handle, ownership)
+	{
+	}
 
-    protected override MauiApp CreateMauiApp() => MauiProgram.CreateMauiApp();
+
+	/// <inheritdoc/>
+	protected override MauiApp CreateMauiApp() => MauiProgram.CreateMauiApp();
 }
