@@ -136,7 +136,7 @@ public sealed class RefStructOverridensGenerator : ISourceGenerator
 
 		context.AddSource(
 			type.ToFileName(),
-			GeneratedFileShortcuts.RefStructDefaultMethod,
+			"rsd",
 			$@"#pragma warning disable CS0809
 
 #nullable enable
@@ -320,7 +320,7 @@ partial struct {type.Name}{genericParameterList}
 
 		context.AddSource(
 			type.ToFileName(),
-			GeneratedFileShortcuts.RefStructDefaultMethod,
+			"rsd",
 			$@"#pragma warning disable CS0809
 
 #nullable enable

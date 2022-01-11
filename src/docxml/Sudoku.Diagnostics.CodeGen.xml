@@ -4,85 +4,9 @@
         <name>Sudoku.Diagnostics.CodeGen</name>
     </assembly>
     <members>
-        <member name="T:Sudoku.Diagnostics.CodeGen.AutoDeconstructExtensionLambdaAttribute`2">
-            <summary>
-            Mark this attribute onto a type, to tell the source generator that the source generator will
-            generates the extension deconstruction methods, with expressions.
-            </summary>
-            <typeparam name="T">
-            The type of the element as the type of the generated code for the deconstruction methods.
-            </typeparam>
-            <typeparam name="TProvider">
-            The type of the provider class that provides the extension methods for the argument provider
-            of extension deconstruction methods.
-            </typeparam>
-            <remarks>
-            <para>
-            For example, if you write the code like:
-            <code><![CDATA[
-            [assembly: AutoDeconstructExtensionLambda<Class, Provider>(nameof(Class.A), nameof(Class.B), $".{nameof(Provider.C)}")]
-            ]]></code>
-            (Real arguments are <c>"A"</c>, <c>"B"</c> and <c>".C"</c>.)
-            </para>
-            <para>
-            We suppose that the value <c>.C</c> is an expression that is defined by ours:
-            <code><![CDATA[
-            [PrivatizeParameterlessConstructor]
-            internal sealed partial class Provider
-            {
-            	[LambdaBody]
-                internal static int C(Class instance) => instance.A + instance.B;
-            }
-            ]]></code>
-            then you'll get the generated code:
-            <code><![CDATA[
-            public static partial class ClassExtensions
-            {
-                [CompilerGenerated, MethodImpl(MethodImplOptions.AggressiveInlining)]
-                public static void Deconstruct(this Class @this, out int a, out int b, out int c)
-                {
-                    a = @this.A;
-                    b = @this.B;
-                    c = Provider.C(@this); // Translated into '@this.A + @this.B' here.
-                }
-            }
-            ]]></code>
-            </para>
-            <para>
-            Please note that this attribute is a generic attribute, which is introduced in C# 10.
-            If you don't know this feature (generic attribute), please visit
-            <see href="https://github.com/dotnet/csharplang/blob/main/proposals/csharp-10.0/generic-attributes.md">
-            this link
-            </see>
-            for more information.
-            </para>
-            </remarks>
-        </member>
-        <member name="M:Sudoku.Diagnostics.CodeGen.AutoDeconstructExtensionLambdaAttribute`2.#ctor(System.String[])">
-            <summary>
-            Initializes an <see cref="T:Sudoku.Diagnostics.CodeGen.AutoDeconstructExtensionLambdaAttribute`2"/> instance via the member names.
-            </summary>
-            <param name="memberNames">The member names.</param>
-        </member>
-        <member name="P:Sudoku.Diagnostics.CodeGen.AutoDeconstructExtensionLambdaAttribute`2.Namespace">
-            <summary>
-            Indicates the namespace that the output extension class stored. If the value is
-            <see langword="null"/>, the namespace will use the basic namespace of the type itself.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Diagnostics.CodeGen.AutoDeconstructExtensionLambdaAttribute`2.MemberNames">
-            <summary>
-            Indicates the member names to deconstruct.
-            </summary>
-        </member>
         <member name="T:Sudoku.Diagnostics.CodeGen.Constants">
             <summary>
             Defines the constants used in this project.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Diagnostics.CodeGen.Constants.KeywordsToBclNames">
-            <summary>
-            Indicates the collection that stores the conversion relations from type keywords to their BCL names.
             </summary>
         </member>
         <member name="T:Sudoku.Diagnostics.CodeGen.Constants.TypeFormats">
@@ -102,52 +26,10 @@
             and is without type argument constraints.
             </summary>
         </member>
-        <member name="T:Sudoku.Diagnostics.CodeGen.Constants.GeneratedFileShortcuts">
-            <summary>
-            Indicates the shortcuts for the generated files.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Diagnostics.CodeGen.Constants.GeneratedFileShortcuts.ExtensionDeconstructionMethod">
-            <summary>
-            Indicates the source generator is for extension deconstruction methods.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Diagnostics.CodeGen.Constants.GeneratedFileShortcuts.GetEnumeratorMethod">
-            <summary>
-            Indicates the source generator is for auto get enumerator methods.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Diagnostics.CodeGen.Constants.GeneratedFileShortcuts.RefStructDefaultMethod">
-            <summary>
-            Indicates the source generator is for <see langword="ref struct"/> default overriden methods.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Diagnostics.CodeGen.Constants.GeneratedFileShortcuts.LambdaedDeconstructionMethod">
-            <summary>
-            Indicates the source generator is for deconstruction methods with expressions.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Diagnostics.CodeGen.Constants.GeneratedFileShortcuts.LambdaedExtensionDeconstructionMethod">
-            <summary>
-            Indicates the source generator is for extension deconstruction methods with expressions.
-            </summary>
-        </member>
         <member name="F:Sudoku.Diagnostics.CodeGen.Constants.VersionValue">
             <summary>
             Indicates the version of this project.
             </summary>
-        </member>
-        <member name="T:Sudoku.Diagnostics.CodeGen.Generators.AutoLambdaedExtensionDeconstruct">
-            <summary>
-            Provides a source generator that generates the source code for extension deconstruction methods
-            with expressions.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.AutoLambdaedExtensionDeconstruct.Execute(Microsoft.CodeAnalysis.GeneratorExecutionContext)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.AutoLambdaedExtensionDeconstruct.Initialize(Microsoft.CodeAnalysis.GeneratorInitializationContext)">
-            <inheritdoc/>
         </member>
         <member name="T:Sudoku.Diagnostics.CodeGen.Generators.RefStructOverridensGenerator">
             <summary>
@@ -200,67 +82,19 @@
             Indicates the result collection.
             </summary>
         </member>
-        <member name="T:Sudoku.Diagnostics.CodeGen.MemberDetail">
+        <member name="T:System.Collections.Generic.EnumerableExtensions">
             <summary>
-            Encapsulates the member detail.
+            Provides extension methods on <see cref="T:System.Collections.Generic.IEnumerable`1"/>.
             </summary>
-            <param name="MemberSymbol">The member symbol.</param>
-            <param name="TypeSymbol">The type symbol.</param>
-            <param name="FullTypeName">The full type name.</param>
-            <param name="Name">The simple type name.</param>
-            <param name="Attributes">The attributes of the type.</param>
-            <param name="OutParameterDeclaration">
-            The string representation of the <see langword="out"/> parameter declaration.
-            </param>
+            <seealso cref="T:System.Collections.Generic.IEnumerable`1"/>
         </member>
-        <member name="M:Sudoku.Diagnostics.CodeGen.MemberDetail.#ctor(Microsoft.CodeAnalysis.ISymbol,Microsoft.CodeAnalysis.INamedTypeSymbol,System.String,System.String,System.Collections.Immutable.ImmutableArray{Microsoft.CodeAnalysis.AttributeData},System.String)">
+        <member name="M:System.Collections.Generic.EnumerableExtensions.ForEach``1(System.Collections.Generic.IEnumerable{``0},System.Action{``0})">
             <summary>
-            Encapsulates the member detail.
+            The method to replace with <see langword="foreach"/> loop.
             </summary>
-            <param name="MemberSymbol">The member symbol.</param>
-            <param name="TypeSymbol">The type symbol.</param>
-            <param name="FullTypeName">The full type name.</param>
-            <param name="Name">The simple type name.</param>
-            <param name="Attributes">The attributes of the type.</param>
-            <param name="OutParameterDeclaration">
-            The string representation of the <see langword="out"/> parameter declaration.
-            </param>
-        </member>
-        <member name="M:Sudoku.Diagnostics.CodeGen.MemberDetail.GetDetailList(Microsoft.CodeAnalysis.INamedTypeSymbol,Microsoft.CodeAnalysis.INamedTypeSymbol)">
-            <summary>
-            Creates the <see cref="T:Sudoku.Diagnostics.CodeGen.MemberDetail"/> instance via the specified type, and the attribute marks onto
-            the type.
-            </summary>
-            <param name="typeSymbol">The type symbol.</param>
-            <param name="attributeSymbol">The type symbol which means the type is an attribute marks onto.</param>
-            <returns>The list of <see cref="T:Sudoku.Diagnostics.CodeGen.MemberDetail"/>s.</returns>
-        </member>
-        <member name="M:Sudoku.Diagnostics.CodeGen.MemberDetail.GetDetailList(Microsoft.CodeAnalysis.INamedTypeSymbol,Microsoft.CodeAnalysis.INamedTypeSymbol,System.Boolean)">
-            <summary>
-            Creates the <see cref="T:Sudoku.Diagnostics.CodeGen.MemberDetail"/> instance via the specified type, and the attribute marks onto
-            the type.
-            </summary>
-            <param name="typeSymbol">The type symbol.</param>
-            <param name="attributeSymbol">The type symbol which means the type is an attribute marks onto.</param>
-            <param name="handleRecursively">
-            Indicates whether the method will handle all nested types recursively.
-            </param>
-            <returns>The list of <see cref="T:Sudoku.Diagnostics.CodeGen.MemberDetail"/>s.</returns>
-        </member>
-        <member name="T:Microsoft.CodeAnalysis.AttributeDataExtensions">
-            <summary>
-            Provides extension methods on <see cref="T:Microsoft.CodeAnalysis.AttributeData"/>.
-            </summary>
-            <seealso cref="T:Microsoft.CodeAnalysis.AttributeData"/>
-        </member>
-        <member name="M:Microsoft.CodeAnalysis.AttributeDataExtensions.TryGetNamedArgument(Microsoft.CodeAnalysis.AttributeData,System.String,Microsoft.CodeAnalysis.TypedConstant@)">
-            <summary>
-            Try to get the named argument using the specified name.
-            </summary>
-            <param name="this">The attribute data instance.</param>
-            <param name="namedArg">The named argument name.</param>
-            <param name="result">The result got.</param>
-            <returns>A <see cref="T:System.Boolean"/> result indicating whether the operation is successful.</returns>
+            <typeparam name="T">The type of each element.</typeparam>
+            <param name="this">The collection to iterate.</param>
+            <param name="action">The action that is executed while iterating.</param>
         </member>
         <member name="T:Microsoft.CodeAnalysis.GeneratorExecutionContextExtensions">
             <summary>
@@ -284,44 +118,6 @@
             </summary>
             <seealso cref="T:Microsoft.CodeAnalysis.INamedTypeSymbol"/>
         </member>
-        <member name="M:Microsoft.CodeAnalysis.INamedTypeSymbolExtensions.CheckAnyTypeArgumentIsMarked``1(Microsoft.CodeAnalysis.INamedTypeSymbol,Microsoft.CodeAnalysis.Compilation)">
-            <summary>
-            <para>
-            Check all type arguments recursively whether any types are marked specified attribute type.
-            </para>
-            <para>
-            This method will check all type arguments for this type symbol.
-            For example, if the type symbol is like this:
-            <code><![CDATA[IReadOnlyDictionary<string, IReadOnlyList<IReadOnlyList<int>>>]]></code>
-            this method will check those parts:
-            <list type="bullet">
-            <item><c><![CDATA[IReadOnlyDictionary<string, IReadOnlyList<IReadOnlyList<int>>>]]></c></item>
-            <item><c>string</c></item>
-            <item><c><![CDATA[IReadOnlyList<IReadOnlyList<int>>]]></c></item>
-            <item><c><![CDATA[IReadOnlyList<int>]]></c></item>
-            <item><c>int</c></item>
-            </list>
-            </para>
-            </summary>
-            <typeparam name="TAttribute">The type of the attribute to check.</typeparam>
-            <param name="symbol">The symbol to check.</param>
-            <param name="compilation">The compilation.</param>
-            <returns>
-            A <see cref="T:System.Boolean"/> result indicating:
-            <list type="table">
-            <item>
-            <term><see langword="true"/></term>
-            <description>
-            The type symbol contains a argument that is marked <typeparamref name="TAttribute"/>.
-            </description>
-            </item>
-            <item>
-            <term><see langword="false"/></term>
-            <description>All type arguments aren't marked <typeparamref name="TAttribute"/>.</description>
-            </item>
-            </list>
-            </returns>
-        </member>
         <member name="M:Microsoft.CodeAnalysis.INamedTypeSymbolExtensions.ToFileName(Microsoft.CodeAnalysis.INamedTypeSymbol)">
             <summary>
             Get the file name of the type symbol.
@@ -338,82 +134,6 @@
             <item>The character is <c>' '</c>: Remove it.</item>
             </list>
             </returns>
-        </member>
-        <member name="T:Microsoft.CodeAnalysis.IPropertySymbolExtensions">
-            <summary>
-            Provides extension methods on <see cref="T:Microsoft.CodeAnalysis.IPropertySymbol"/>.
-            </summary>
-            <see cref="T:Microsoft.CodeAnalysis.IPropertySymbol"/>
-        </member>
-        <member name="M:Microsoft.CodeAnalysis.IPropertySymbolExtensions.IsAutoImplemented(Microsoft.CodeAnalysis.IPropertySymbol)">
-            <summary>
-            <para>
-            Checks whether the property member that specified as an <see cref="T:Microsoft.CodeAnalysis.IPropertySymbol"/> instance
-            is an auto-implemented property.
-            </para>
-            <para>
-            An <b>auto-implemented property</b> is a property that only contains the keyword <see langword="get"/>,
-            <see langword="set"/> or <see langword="init"/> as the body,
-            e.g. <c>public int Property { get; set; }</c>.
-            </para>
-            </summary>
-            <param name="this">The property symbol to be checked.</param>
-            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
-        </member>
-        <member name="T:Microsoft.CodeAnalysis.ISymbolExtensions">
-            <summary>
-            Provides extension methods on <see cref="T:Microsoft.CodeAnalysis.ISymbol"/>.
-            </summary>
-            <seealso cref="T:Microsoft.CodeAnalysis.ISymbol"/>
-        </member>
-        <member name="M:Microsoft.CodeAnalysis.ISymbolExtensions.GetMemberType(Microsoft.CodeAnalysis.ISymbol)">
-            <summary>
-            Gets the member type string representation.
-            </summary>
-            <param name="this">The symbol.</param>
-            <returns>
-            The result string that is the string representation of the type gotten.
-            <list type="table">
-            <listheader>
-            <term>Type</term>
-            <description>Description</description>
-            </listheader>
-            <item>
-            <term><see cref="T:Microsoft.CodeAnalysis.IFieldSymbol"/></term>
-            <description>The property <see cref="P:Microsoft.CodeAnalysis.IFieldSymbol.Type"/> will be returned.</description>
-            </item>
-            <item>
-            <term><see cref="T:Microsoft.CodeAnalysis.IPropertySymbol"/></term>
-            <description>The property <see cref="P:Microsoft.CodeAnalysis.IPropertySymbol.Type"/> will be returned.</description>
-            </item>
-            <item>
-            <term><see cref="T:Microsoft.CodeAnalysis.IMethodSymbol"/></term>
-            <description>The property <see cref="P:Microsoft.CodeAnalysis.IMethodSymbol.ReturnType"/> will be returned.</description>
-            </item>
-            <item>
-            <term><see cref="T:Microsoft.CodeAnalysis.IEventSymbol"/></term>
-            <description>The property <see cref="P:Microsoft.CodeAnalysis.IEventSymbol.Type"/> will be returned.</description>
-            </item>
-            <item>
-            <term>Other cases</term>
-            <description>Constant value <see langword="null"/> will be returned.</description>
-            </item>
-            </list>
-            </returns>
-        </member>
-        <member name="T:Microsoft.CodeAnalysis.ITypeSymbolExtensions">
-            <summary>
-            Provides extension methods on <see cref="T:Microsoft.CodeAnalysis.ITypeSymbol"/>.
-            </summary>
-            <seealso cref="T:Microsoft.CodeAnalysis.ITypeSymbol"/>
-        </member>
-        <member name="M:Microsoft.CodeAnalysis.ITypeSymbolExtensions.GetAllMembers(Microsoft.CodeAnalysis.ITypeSymbol)">
-            <summary>
-            Get all members that belongs to the type and its base types
-            (but interfaces checks the property <see cref="P:Microsoft.CodeAnalysis.ITypeSymbol.AllInterfaces"/>).
-            </summary>
-            <param name="this">The symbol.</param>
-            <returns>All members.</returns>
         </member>
         <member name="T:Microsoft.CodeAnalysis.SymbolOutputInfo">
             <summary>
@@ -499,33 +219,6 @@
             is a <see langword="ref struct"/>.
             </param>
             <returns>The <see cref="T:Microsoft.CodeAnalysis.SymbolOutputInfo"/> instance.</returns>
-        </member>
-        <member name="T:System.Collections.Generic.EnumerableExtensions">
-            <summary>
-            Provides extension methods on <see cref="T:System.Collections.Generic.IEnumerable`1"/>.
-            </summary>
-            <seealso cref="T:System.Collections.Generic.IEnumerable`1"/>
-        </member>
-        <member name="M:System.Collections.Generic.EnumerableExtensions.ForEach``1(System.Collections.Generic.IEnumerable{``0},System.Action{``0})">
-            <summary>
-            The method to replace with <see langword="foreach"/> loop.
-            </summary>
-            <typeparam name="T">The type of each element.</typeparam>
-            <param name="this">The collection to iterate.</param>
-            <param name="action">The action that is executed while iterating.</param>
-        </member>
-        <member name="T:System.StringExtensions">
-            <summary>
-            Provides extension methods on <see cref="T:System.String"/>.
-            </summary>
-            <seealso cref="T:System.String"/>
-        </member>
-        <member name="M:System.StringExtensions.ToCamelCase(System.String)">
-            <summary>
-            Converts the current string into the camel case.
-            </summary>
-            <param name="this">The string.</param>
-            <returns>The result.</returns>
         </member>
     </members>
 </doc>
