@@ -1,17 +1,18 @@
 ﻿namespace Sudoku.UI;
 
+/// <summary>
+/// Indicates the main program configuration.
+/// </summary>
 public static class MauiProgram
 {
-    public static MauiApp CreateMauiApp()
-    {
-        var builder = MauiApp.CreateBuilder();
-        builder
-            .UseMauiApp<App>()
-            .ConfigureFonts(fonts =>
-            {
-                fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
-            });
-
-        return builder.Build();
-    }
+	/// <summary>
+	/// Creates the MAUI application.
+	/// </summary>
+	/// <returns>The MAUI application instance.</returns>
+	public static MauiApp CreateMauiApp() =>
+		MauiApp
+			.CreateBuilder()
+			.UseMauiApp<App>()
+			.ConfigureFonts(static fonts => fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular"))
+			.Build();
 }

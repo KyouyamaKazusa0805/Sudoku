@@ -1,0 +1,60 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Sudoku.UI</name>
+    </assembly>
+    <members>
+        <member name="T:Sudoku.UI.App">
+            <summary>
+            Indicates the current application.
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.App.#ctor">
+            <summary>
+            Initializes an <see cref="T:Sudoku.UI.App"/> instance.
+            </summary>
+        </member>
+        <member name="T:Sudoku.UI.MainPage">
+            <summary>
+            Indicates the main page.
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.MainPage.#ctor">
+            <summary>
+            Initializes a <see cref="T:Sudoku.UI.MainPage"/> instance.
+            </summary>
+        </member>
+        <member name="T:Sudoku.UI.MauiProgram">
+            <summary>
+            Indicates the main program configuration.
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.MauiProgram.CreateMauiApp">
+            <summary>
+            Creates the MAUI application.
+            </summary>
+            <returns>The MAUI application instance.</returns>
+        </member>
+        <member name="T:Sudoku.UI.WinUI.App">
+            <summary>
+            Provides application-specific behavior to supplement the default Application class.
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.WinUI.App.#ctor">
+            <summary>
+            Initializes the singleton application object.  This is the first line of authored code
+            executed, and as such is the logical equivalent of main() or WinMain().
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.WinUI.App.InitializeComponent">
+            <summary>
+            InitializeComponent()
+            </summary>
+        </member>
+        <member name="T:Sudoku.UI.WinUI.Program">
+            <summary>
+            Program class
+            </summary>
+        </member>
+    </members>
+</doc>

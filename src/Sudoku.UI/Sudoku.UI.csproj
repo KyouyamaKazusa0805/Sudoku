@@ -9,6 +9,7 @@
 		<SingleProject>true</SingleProject>
 		<ImplicitUsings>enable</ImplicitUsings>
 		<EnablePreviewMsixTooling>true</EnablePreviewMsixTooling>
+		<DocumentationFile>..\docxml\Sudoku.UI.xml</DocumentationFile>
 		<NoWarn>NU1703</NoWarn>
 
 		<!-- Display name -->
