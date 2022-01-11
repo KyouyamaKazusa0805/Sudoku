@@ -8424,11 +8424,5 @@
             Indicates the last resort technique.
             </summary>
         </member>
-        <member name="T:Sudoku.Versioning.ForStudyingOnlyAttribute">
-            <summary>
-            To mark onto a type (only for <see langword="class"/> or <see langword="struct"/>), to tell the user
-            and the compiler that the type is only used in algorithms-studying scenarios.
-            </summary>
-        </member>
     </members>
 </doc>

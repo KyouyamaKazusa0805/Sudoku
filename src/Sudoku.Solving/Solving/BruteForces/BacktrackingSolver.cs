@@ -3,7 +3,6 @@
 /// <summary>
 /// Provides a solver using backtracking method.
 /// </summary>
-[ForStudyingOnly]
 public sealed class BacktrackingSolver : IPuzzleSolver
 {
 	/// <summary>
