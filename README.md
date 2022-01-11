@@ -38,10 +38,6 @@ Console.WriteLine(analysisResult.ToString());
 
 In the future, I'd like to apply this solution to **almost every platform**. I may finish the Win10 app project, android app project, bot on common online platforms (QQ, Bilibili and so on).
 
-### How to Compile the Solution
-
-Please visit [this link](https://sunnieshine.github.io/Sudoku/how-to/How-To-Compile-The-Solution).
-
 ### Fork & PRs (Pull Requests) for This Repo
 
 Of course you can fork my repo and do whatever you want. You can do whatever you want to do under the [MIT license](https://github.com/SunnieShine/Sudoku/blob/main/LICENSE). However, due to the copy of the GitHub repo, Gitee repo doesn't support any PRs. I'm sorry. But you can create the issue on both two platforms. Please visit the following part "Basic Information" for learning about more details.
