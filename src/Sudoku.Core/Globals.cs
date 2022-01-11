@@ -22,7 +22,6 @@ global using Sudoku.Collections;
 global using Sudoku.Data;
 global using Sudoku.Data.Abstractions;
 global using Sudoku.Diagnostics.CodeAnalysis;
-global using Sudoku.Diagnostics.CodeGen;
 global using Sudoku.Presentation;
 global using Sudoku.Resources;
 global using Sudoku.Solving;
