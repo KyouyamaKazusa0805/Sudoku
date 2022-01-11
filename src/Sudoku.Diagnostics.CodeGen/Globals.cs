@@ -9,4 +9,5 @@ global using Microsoft.CodeAnalysis;
 global using Microsoft.CodeAnalysis.CSharp;
 global using Microsoft.CodeAnalysis.CSharp.Syntax;
 global using Microsoft.CodeAnalysis.Text;
+global using Sudoku.Diagnostics.CodeGen;
 global using static Sudoku.Diagnostics.CodeGen.Constants;

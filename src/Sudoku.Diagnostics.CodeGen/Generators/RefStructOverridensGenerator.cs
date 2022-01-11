@@ -88,7 +88,7 @@ public sealed class RefStructOverridensGenerator : ISourceGenerator
 #endif
 	[global::System.Obsolete(""You can't use or call this method."", true, DiagnosticId = ""BAN"")]
 	[global::System.Runtime.CompilerServices.CompilerGenerated]
-	public override {readOnlyKeyword}bool Equals(object? other) => throw new NotSupportedException();";
+	public override {readOnlyKeyword}bool Equals(object? obj) => throw new NotSupportedException();";
 
 		string getHashCodeMethod = Array.Exists(
 			methods,
@@ -276,7 +276,7 @@ partial struct {type.Name}{genericParameterList}
 {methodIndenting}[global::System.Diagnostics.CodeAnalysis.DoesNotReturn]
 {methodIndenting}[global::System.Obsolete(""You can't use or call this method."", true, DiagnosticId = ""BAN"")]
 {methodIndenting}[global::System.Runtime.CompilerServices.CompilerGenerated]
-{methodIndenting}public override {readOnlyKeyword}bool Equals(object? other) => throw new NotSupportedException();";
+{methodIndenting}public override {readOnlyKeyword}bool Equals(object? obj) => throw new NotSupportedException();";
 
 		string getHashCodeMethod = Array.Exists(
 			methods,
