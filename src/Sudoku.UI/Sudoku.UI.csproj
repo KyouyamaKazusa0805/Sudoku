@@ -66,8 +66,4 @@
 		<RuntimeIdentifier>win10-x64</RuntimeIdentifier>
 	</PropertyGroup>
 
-	<ItemGroup>
-	  <_MauiCompileToAdd Remove="Platforms\Android\GlobalUsings.cs" />
-	</ItemGroup>
-
 </Project>
