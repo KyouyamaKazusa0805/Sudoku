@@ -63,20 +63,15 @@
             The inner field to handle the operation.
             </summary>
         </member>
-        <member name="M:Sudoku.UI.Windows.Commands.Command.#ctor(,)">
+        <member name="M:Sudoku.UI.Windows.Commands.Command.#ctor(System.Action{System.Object})">
             <summary>
-            Initializes an instance via two methods specified as function pointers.
-            The first one is aiming to check whether the later operation can be executed
-            and the second one is aiming to execute the operation.
+            Initializes a <see cref="T:Sudoku.UI.Windows.Commands.Command"/> instance via the specified action to operate.
             </summary>
-            <param name="canExecute">
-            The predicate to check whether the later operation can be executed at the current status.
-            </param>
             <param name="action">The operation to be handled.</param>
         </member>
         <member name="M:Sudoku.UI.Windows.Commands.Command.#ctor(System.Predicate{System.Object},System.Action{System.Object})">
             <summary>
-            Initializes an instance via two methods.
+            Initializes a <see cref="T:Sudoku.UI.Windows.Commands.Command"/> instance via two methods.
             The first one is aiming to check whether the later operation can be executed
             and the second one is aiming to execute the operation.
             </summary>

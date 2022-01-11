@@ -18,26 +18,16 @@ public abstract class Command : ICommand
 
 
 	/// <summary>
-	/// Initializes an instance via two methods specified as function pointers.
-	/// The first one is aiming to check whether the later operation can be executed
-	/// and the second one is aiming to execute the operation.
+	/// Initializes a <see cref="Command"/> instance via the specified action to operate.
 	/// </summary>
-	/// <param name="canExecute">
-	/// The predicate to check whether the later operation can be executed at the current status.
-	/// </param>
 	/// <param name="action">The operation to be handled.</param>
-	public unsafe Command(delegate*<object?, bool> canExecute, delegate*<object?, void> action)
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public Command(Action<object?>? action) : this(null, action)
 	{
-		_canExecute = f;
-		_action = g;
-
-
-		bool f(object? parameter) => canExecute(parameter);
-		void g(object? parameter) => action(parameter);
 	}
 
 	/// <summary>
-	/// Initializes an instance via two methods.
+	/// Initializes a <see cref="Command"/> instance via two methods.
 	/// The first one is aiming to check whether the later operation can be executed
 	/// and the second one is aiming to execute the operation.
 	/// </summary>
@@ -49,6 +39,7 @@ public abstract class Command : ICommand
 	/// Throws when the argument <paramref name="canExecute"/> or <paramref name="action"/>
 	/// holds more than 1 method to be invoked.
 	/// </exception>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public Command(Predicate<object?>? canExecute, Action<object?>? action)
 	{
 		f(canExecute);
