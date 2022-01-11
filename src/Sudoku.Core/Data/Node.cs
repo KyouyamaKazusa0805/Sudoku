@@ -37,7 +37,6 @@
 /// <param name="Mask">
 /// Indicates the mask that handles and stores the basic information of the current node.
 /// </param>
-[AutoDeconstructLambda(nameof(Candidate), nameof(IsOn))]
 public unsafe partial record struct Node(int Mask)
 {
 	/// <summary>
@@ -283,6 +282,17 @@ public unsafe partial record struct Node(int Mask)
 		}
 	}
 
+
+	/// <summary>
+	/// Deconstruct the instance into multiple values.
+	/// </summary>
+	[EditorBrowsable(EditorBrowsableState.Never)]
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public readonly void Deconstruct(out short candidate, out bool isOn)
+	{
+		candidate = (short)(Mask & 1023);
+		isOn = (Mask >> 16 & 1) != 0;
+	}
 
 	/// <summary>
 	/// Determine whether the specified <see cref="Node"/> instance holds the same mask value

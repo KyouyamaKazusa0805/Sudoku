@@ -110,7 +110,7 @@ public sealed unsafe class BowmanBingoStepSearcher : IBowmanBingoStepSearcher
 		// Try to fill.
 		var conclusion = singleInfo.Conclusions[0];
 		_tempConclusions.Add(conclusion);
-		var (_, c, d) = conclusion;
+		_ = conclusion is { Cell: var c, Digit: var d };
 		var (candList, mask) = RecordUndoInfo(grid, c, d);
 
 		grid[c] = d;
@@ -166,8 +166,8 @@ public sealed unsafe class BowmanBingoStepSearcher : IBowmanBingoStepSearcher
 		var result = new List<(Link, ColorIdentifier)>();
 		for (int i = 0, iterationCount = _tempConclusions.Count - 1; i < iterationCount; i++)
 		{
-			var (_, c1) = _tempConclusions[i];
-			var (_, c2) = _tempConclusions[i + 1];
+			var c1 = _tempConclusions[i].Candidate;
+			var c2 = _tempConclusions[i + 1].Candidate;
 			result.Add((new(c1, c2, LinkTypes.Default), (ColorIdentifier)0));
 		}
 

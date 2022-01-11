@@ -60,7 +60,7 @@
         </member>
         <member name="M:Sudoku.Diagnostics.CodeGen.AutoDeconstructExtensionLambdaAttribute`2.#ctor(System.String[])">
             <summary>
-            Initializes an <see cref="T:Sudoku.Diagnostics.CodeGen.AutoDeconstructLambdaAttribute"/> instance via the member names.
+            Initializes an <see cref="T:Sudoku.Diagnostics.CodeGen.AutoDeconstructExtensionLambdaAttribute`2"/> instance via the member names.
             </summary>
             <param name="memberNames">The member names.</param>
         </member>
@@ -71,23 +71,6 @@
             </summary>
         </member>
         <member name="P:Sudoku.Diagnostics.CodeGen.AutoDeconstructExtensionLambdaAttribute`2.MemberNames">
-            <summary>
-            Indicates the member names to deconstruct.
-            </summary>
-        </member>
-        <member name="T:Sudoku.Diagnostics.CodeGen.AutoDeconstructLambdaAttribute">
-            <summary>
-            Mark this attribute onto a type, to tell the source generator that the source generator will
-            generates the deconstruction methods, with expressions.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Diagnostics.CodeGen.AutoDeconstructLambdaAttribute.#ctor(System.String[])">
-            <summary>
-            Initializes an <see cref="T:Sudoku.Diagnostics.CodeGen.AutoDeconstructLambdaAttribute"/> instance via the member names.
-            </summary>
-            <param name="memberNames">The member names.</param>
-        </member>
-        <member name="P:Sudoku.Diagnostics.CodeGen.AutoDeconstructLambdaAttribute.MemberNames">
             <summary>
             Indicates the member names to deconstruct.
             </summary>
@@ -153,35 +136,6 @@
             <summary>
             Indicates the version of this project.
             </summary>
-        </member>
-        <member name="T:Sudoku.Diagnostics.CodeGen.Generators.AutoLambdaedDeconstruct">
-            <summary>
-            Defines a source generator that generates the deconstruction methods with expressions.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.AutoLambdaedDeconstruct.Execute(Microsoft.CodeAnalysis.GeneratorExecutionContext)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.AutoLambdaedDeconstruct.Initialize(Microsoft.CodeAnalysis.GeneratorInitializationContext)">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Diagnostics.CodeGen.Generators.AutoLambdaedDeconstruct.Receiver">
-            <summary>
-            Defines a syntax context receiver.
-            </summary>
-            <param name="CancellationToken">The cancellation token to cancel the operation.</param>
-        </member>
-        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.AutoLambdaedDeconstruct.Receiver.#ctor(System.Threading.CancellationToken)">
-            <summary>
-            Defines a syntax context receiver.
-            </summary>
-            <param name="CancellationToken">The cancellation token to cancel the operation.</param>
-        </member>
-        <member name="P:Sudoku.Diagnostics.CodeGen.Generators.AutoLambdaedDeconstruct.Receiver.Collection">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.AutoLambdaedDeconstruct.Receiver.OnVisitSyntaxNode(Microsoft.CodeAnalysis.GeneratorSyntaxContext)">
-            <inheritdoc/>
         </member>
         <member name="T:Sudoku.Diagnostics.CodeGen.Generators.AutoLambdaedExtensionDeconstruct">
             <summary>

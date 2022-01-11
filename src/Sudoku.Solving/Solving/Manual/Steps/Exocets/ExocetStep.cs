@@ -77,11 +77,7 @@ public abstract record ExocetStep(
 	private Cells BaseMap
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get
-		{
-			var (baseMap, _, _) = Exocet;
-			return baseMap;
-		}
+		get => Exocet.BaseCellsMap;
 	}
 
 	/// <summary>
@@ -90,11 +86,7 @@ public abstract record ExocetStep(
 	private Cells TargetMap
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get
-		{
-			var (_, targetMap, _) = Exocet;
-			return targetMap;
-		}
+		get => Exocet.TargetCellsMap;
 	}
 
 

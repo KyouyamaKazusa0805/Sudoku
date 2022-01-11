@@ -56,7 +56,7 @@
 public sealed class AutoDeconstructExtensionLambdaAttribute<T, TProvider> : Attribute where TProvider : class
 {
 	/// <summary>
-	/// Initializes an <see cref="AutoDeconstructLambdaAttribute"/> instance via the member names.
+	/// Initializes an <see cref="AutoDeconstructExtensionLambdaAttribute{T, TProvider}"/> instance via the member names.
 	/// </summary>
 	/// <param name="memberNames">The member names.</param>
 	public AutoDeconstructExtensionLambdaAttribute(params string[] memberNames) => MemberNames = memberNames;

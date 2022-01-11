@@ -20,9 +20,7 @@
 /// the global index of the candidate position is greater, it is greater.
 /// </remarks>
 /// <seealso cref="ConclusionType.Elimination"/>
-[AutoDeconstructLambda(nameof(ConclusionType), nameof(Candidate))]
-[AutoDeconstructLambda(nameof(ConclusionType), nameof(Cell), nameof(Digit))]
-public readonly partial record struct Conclusion(int Mask)
+public readonly record struct Conclusion(int Mask)
 : IComparable<Conclusion>
 , IComparisonOperators<Conclusion, Conclusion>
 , IEqualityOperators<Conclusion, Conclusion>
@@ -91,6 +89,29 @@ public readonly partial record struct Conclusion(int Mask)
 		get => (ConclusionType)(Mask >> 10 & 1);
 	}
 
+
+	/// <summary>
+	/// Deconstruct the instance into multiple values.
+	/// </summary>
+	[EditorBrowsable(EditorBrowsableState.Never)]
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public void Deconstruct(out ConclusionType conclusionType, out int candidate)
+	{
+		conclusionType = (ConclusionType)(Mask >> 10 & 1);
+		candidate = Mask & ((1 << 10) - 1);
+	}
+
+	/// <summary>
+	/// Deconstruct the instance into multiple values.
+	/// </summary>
+	[EditorBrowsable(EditorBrowsableState.Never)]
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public void Deconstruct(out ConclusionType conclusionType, out int cell, out int digit)
+	{
+		conclusionType = (ConclusionType)(Mask >> 10 & 1);
+		cell = Candidate / 9;
+		digit = Candidate % 9;
+	}
 
 	/// <summary>
 	/// Put this instance into the specified grid.

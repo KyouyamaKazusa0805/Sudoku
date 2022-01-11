@@ -671,11 +671,6 @@
             <param name="right">The right-side instance to compare.</param>
             <returns>A <see cref="T:System.Boolean"/> result.</returns>
         </member>
-        <member name="M:Sudoku.Solving.Collections.ExocetPattern.Deconstruct(Sudoku.Data.Cells@,Sudoku.Data.Cells@,Sudoku.Data.Cells@)">
-            <summary>
-            Deconstruct the instance into multiple elements.
-            </summary>
-        </member>
         <member name="T:Sudoku.Solving.Collections.IPattern`1">
             <summary>
             Defines a normal pattern.

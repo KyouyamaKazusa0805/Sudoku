@@ -6,14 +6,13 @@
 /// <param name="StartCandidate">Indicates the start candidate.</param>
 /// <param name="EndCandidate">Indicates the end candidate.</param>
 /// <param name="LinkType">Indicates the link type.</param>
-[AutoDeconstructLambda(nameof(StartCell), nameof(StartDigit), nameof(EndCell), nameof(EndDigit), nameof(LinkType))]
 public readonly partial record struct Link(int StartCandidate, int EndCandidate, LinkType LinkType)
 : IJsonSerializable<Link, Link.JsonConverter>
 {
 	/// <summary>
 	/// Indicates the start cell.
 	/// </summary>
-	private int StartCell
+	public int StartCell
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => StartCandidate / 9;
@@ -22,7 +21,7 @@ public readonly partial record struct Link(int StartCandidate, int EndCandidate,
 	/// <summary>
 	/// Indicates the start digit.
 	/// </summary>
-	private int StartDigit
+	public int StartDigit
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => StartCandidate % 9;
@@ -31,7 +30,7 @@ public readonly partial record struct Link(int StartCandidate, int EndCandidate,
 	/// <summary>
 	/// Indicates the end cell.
 	/// </summary>
-	private int EndCell
+	public int EndCell
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => EndCandidate / 9;
@@ -40,7 +39,7 @@ public readonly partial record struct Link(int StartCandidate, int EndCandidate,
 	/// <summary>
 	/// Indicates the end digit.
 	/// </summary>
-	private int EndDigit
+	public int EndDigit
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => EndCandidate % 9;
@@ -55,9 +54,7 @@ public readonly partial record struct Link(int StartCandidate, int EndCandidate,
 	/// <returns>A <see cref="bool"/> result.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public bool Equals(Link other) =>
-		StartCandidate == other.StartCandidate
-		&& EndCandidate == other.EndCandidate
-		&& LinkType == other.LinkType;
+		StartCandidate == other.StartCandidate && EndCandidate == other.EndCandidate && LinkType == other.LinkType;
 
 	/// <inheritdoc cref="object.GetHashCode"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

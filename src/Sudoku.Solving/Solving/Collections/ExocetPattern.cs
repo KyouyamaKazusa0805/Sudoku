@@ -33,8 +33,7 @@
 /// and the lines of two target cells lying on can't contain any base digits.
 /// </para>
 /// </summary>
-[AutoDeconstructLambda(nameof(BaseCellsMap), nameof(TargetCellsMap), nameof(CrossLine))]
-public readonly partial struct ExocetPattern : IPattern<ExocetPattern>, IValueEquatable<ExocetPattern>
+public readonly struct ExocetPattern : IPattern<ExocetPattern>, IValueEquatable<ExocetPattern>
 {
 	/// <summary>
 	/// Initializes an instance with the specified cells.
@@ -144,7 +143,7 @@ public readonly partial struct ExocetPattern : IPattern<ExocetPattern>, IValueEq
 	/// <summary>
 	/// Indicates the base cells.
 	/// </summary>
-	private Cells BaseCellsMap
+	public Cells BaseCellsMap
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => new() { Base1, Base2 };
@@ -153,7 +152,7 @@ public readonly partial struct ExocetPattern : IPattern<ExocetPattern>, IValueEq
 	/// <summary>
 	/// Indicates the target cells.
 	/// </summary>
-	private Cells TargetCellsMap
+	public Cells TargetCellsMap
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => new() { TargetQ1, TargetQ2, TargetR1, TargetR2 };
