@@ -78,13 +78,8 @@ Please visit the following tables.
   * [ ] Desktop Projects
     * [x] ~~WPF (Implemented but deprecated, removed)~~
     * [ ] ~~UWP (May not be considered)~~
-    * [ ] Windows UI
     * [x] ~~Winform (Implemented but deprecated, removed)~~
-  * [ ] MAUI
-    * [ ] Android
-    * [ ] iOS
-    * [ ] Mac Catalyst
-    * [ ] Other
+  * [ ] **MAUI (I'm working on this)**
 * [ ] Platform Robots (Dependabot)
   * [ ] Bilibili (Should the platform provide APIs)
   * [x] ~~QICQ (Implemented, but I has removed yet, but don't worry because I'll re-upload them)~~
