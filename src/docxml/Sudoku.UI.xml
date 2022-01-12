@@ -14,6 +14,16 @@
             Initializes an <see cref="T:Sudoku.UI.App"/> instance.
             </summary>
         </member>
+        <member name="T:Sudoku.UI.Controls.GridOutline">
+            <summary>
+            Indicates the grid outline.
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Controls.GridOutline.#ctor">
+            <summary>
+            Initializes a <see cref="T:Sudoku.UI.Controls.GridOutline"/> instance.
+            </summary>
+        </member>
         <member name="T:Sudoku.UI.Layers.GridOutlineLayer">
             <summary>
             Defines the grid outline layer that only handles and draws the outlines of the grid,

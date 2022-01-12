@@ -78,6 +78,12 @@
 		<Folder Include="Resources\Images\" />
 	</ItemGroup>
 
+	<ItemGroup>
+		<MauiXaml Update="Controls\GridOutline.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+	</ItemGroup>
+
 	<PropertyGroup Condition="$(TargetFramework.Contains('-windows'))">
 		<OutputType>WinExe</OutputType>
 		<RuntimeIdentifier>win10-x64</RuntimeIdentifier>
