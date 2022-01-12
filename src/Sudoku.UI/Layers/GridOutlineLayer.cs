@@ -1,4 +1,7 @@
-﻿namespace Sudoku.UI.Layers;
+﻿using System;
+using Microsoft.Maui.Graphics;
+
+namespace Sudoku.UI.Layers;
 
 /// <summary>
 /// Defines the grid outline layer that only handles and draws the outlines of the grid,

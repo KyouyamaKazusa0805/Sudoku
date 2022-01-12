@@ -1,0 +1,24 @@
+<svg width="1240" height="1240" xmlns="http://www.w3.org/2000/svg">
+
+	<g>
+		<rect id="whole_block" stroke="#000" height="1228" width="1228" y="6" x="6" fill-opacity="null" stroke-opacity="null" stroke-width="3" fill="none"/>
+		<rect id="cell1" height="409.333333" width="409.333333" y="6" x="6" fill-opacity="null" stroke-opacity="null" stroke-width="5" stroke="#000" fill="none"/>
+		<rect id="cell2" height="409.333333" width="409.333333" y="6" x="417.833333" fill-opacity="null" stroke-opacity="null" stroke-width="5" stroke="#000" fill="none"/>
+		<rect id="cell3" height="409.333333" width="409.333333" y="6" x="829.666666" fill-opacity="null" stroke-opacity="null" stroke-width="5" stroke="#000" fill="none"/>
+		<rect id="cell4" height="409.333333" width="409.333333" y="417.833333" x="6" fill-opacity="null" stroke-opacity="null" stroke-width="5" stroke="#000" fill="none"/>
+		<rect id="cell5" height="409.333333" width="409.333333" y="417.833333" x="417.833333" fill-opacity="null" stroke-opacity="null" stroke-width="5" stroke="#000" fill="none"/>
+		<rect id="cell6" height="409.333333" width="409.333333" y="417.833333" x="829.666666" fill-opacity="null" stroke-opacity="null" stroke-width="5" stroke="#000" fill="none"/>
+		<rect id="cell7" height="409.333333" width="409.333333" y="829.666666" x="6" fill-opacity="null" stroke-opacity="null" stroke-width="5" stroke="#000" fill="none"/>
+		<rect id="cell8" height="409.333333" width="409.333333" y="829.666666" x="417.833333" fill-opacity="null" stroke-opacity="null" stroke-width="5" stroke="#000" fill="none"/>
+		<rect id="cell9" height="409.333333" width="409.333333" y="829.666666" x="829.666666" fill-opacity="null" stroke-opacity="null" stroke-width="5" stroke="#000" fill="none"/>
+		<text id="digit1shadow" font-style="normal" font-weight="normal" xml:space="preserve" text-anchor="start" font-family="'Times New Roman', Times, serif" font-size="400" y="340.666667" x="110.666667" fill-opacity="null" stroke-opacity="null" stroke-width="20" stroke="#CCC" fill="#CCC">1</text>
+		<text id="digit1" font-style="normal" font-weight="normal" xml:space="preserve" text-anchor="start" font-family="'Times New Roman', Times, serif" font-size="400" y="330.666667" x="100.666667" fill-opacity="null" stroke-opacity="null" stroke-width="20" stroke="#F00" fill="#F00">1</text>
+		<text id="digit2shadow" font-style="normal" font-weight="normal" xml:space="preserve" text-anchor="start" font-family="'Times New Roman', Times, serif" font-size="400" y="340.666667" x="530.666667" fill-opacity="null" stroke-opacity="null" stroke-width="20" stroke="#CCC" fill="#CCC">2</text>
+		<text id="digit2" font-style="normal" font-weight="normal" xml:space="preserve" text-anchor="start" font-family="'Times New Roman', Times, serif" font-size="400" y="330.666667" x="520.666667" fill-opacity="null" stroke-opacity="null" stroke-width="20" stroke="#0F0" fill="#0F0">2</text>
+		<text id="digit4shadow" font-style="normal" font-weight="normal" xml:space="preserve" text-anchor="start" font-family="'Times New Roman', Times, serif" font-size="400" y="760.666667" x="110.666667" fill-opacity="null" stroke-opacity="null" stroke-width="20" stroke="#CCC" fill="#CCC">4</text>
+		<text id="digit4" font-style="normal" font-weight="normal" xml:space="preserve" text-anchor="start" font-family="'Times New Roman', Times, serif" font-size="400" y="750.666667" x="100.666667" fill-opacity="null" stroke-opacity="null" stroke-width="20" stroke="#00F" fill="#00F">4</text>
+		<text id="digit9shadow" font-style="normal" font-weight="normal" xml:space="preserve" text-anchor="start" font-family="'Times New Roman', Times, serif" font-size="400" y="1180" x="950" fill-opacity="null" stroke-opacity="null" stroke-width="20" stroke="#CCC" fill="#CCC">9</text>
+		<text id="digit9" font-style="normal" font-weight="normal" xml:space="preserve" text-anchor="start" font-family="'Times New Roman', Times, serif" font-size="400" y="1170" x="940" fill-opacity="null" stroke-opacity="null" stroke-width="20" stroke="#FF0" fill="#FF0">9</text>
+	</g>
+
+</svg>

@@ -1,4 +1,7 @@
-﻿using Microsoft.UI.Xaml;
+﻿using Microsoft.Maui;
+using Microsoft.Maui.Essentials;
+using Microsoft.Maui.Hosting;
+using Microsoft.UI.Xaml;
 
 namespace Sudoku.UI.WinUI;
 

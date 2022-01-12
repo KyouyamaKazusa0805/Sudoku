@@ -1,4 +1,6 @@
-﻿namespace Sudoku.UI;
+﻿using UIKit;
+
+namespace Sudoku.UI;
 
 /// <summary>
 /// Indicates the main method provider class that is running on Mac catalyst platform.

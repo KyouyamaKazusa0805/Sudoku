@@ -1,4 +1,6 @@
-﻿namespace Sudoku.UI.Pages;
+﻿using Microsoft.Maui.Controls;
+
+namespace Sudoku.UI.Pages;
 
 /// <summary>
 /// Indicates the main page.

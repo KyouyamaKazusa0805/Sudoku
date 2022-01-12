@@ -114,5 +114,35 @@
             GetXmlnsDefinitions()
             </summary>
         </member>
+        <member name="T:Microsoft.Maui.IWindowNative">
+            <summary>
+            Indicates the window data.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Maui.IWindowNative.WindowHandle">
+            <summary>
+            The handle of the current window.
+            </summary>
+        </member>
+        <member name="T:Microsoft.Maui.MauiWinUIWindowExtensions">
+            <summary>
+            Provides extension methods on <see cref="T:Microsoft.Maui.MauiWinUIWindow"/>.
+            </summary>
+            <seealso cref="T:Microsoft.Maui.MauiWinUIWindow"/>
+        </member>
+        <member name="M:Microsoft.Maui.MauiWinUIWindowExtensions.GetNativeWindowHandle(Microsoft.Maui.MauiWinUIWindow)">
+            <summary>
+            Gets the handle of the window.
+            </summary>
+            <param name="window">The window.</param>
+            <returns>The handle.</returns>
+        </member>
+        <member name="M:Microsoft.Maui.MauiWinUIWindowExtensions.SetIcon(Microsoft.Maui.MauiWinUIWindow,System.String)">
+            <summary>
+            Sets the icon onto the window.
+            </summary>
+            <param name="window">The specified window.</param>
+            <param name="fileName">The file name of the icon.</param>
+        </member>
     </members>
 </doc>

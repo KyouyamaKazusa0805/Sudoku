@@ -1,4 +1,7 @@
-﻿namespace Sudoku.UI;
+﻿using Microsoft.Maui.Controls;
+using Sudoku.UI.Pages;
+
+namespace Sudoku.UI;
 
 /// <summary>
 /// Indicates the current application.

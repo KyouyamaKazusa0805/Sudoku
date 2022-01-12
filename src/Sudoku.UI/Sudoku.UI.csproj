@@ -10,6 +10,13 @@
 		<EnablePreviewMsixTooling>true</EnablePreviewMsixTooling>
 		<DocumentationFile>..\docxml\Sudoku.UI.xml</DocumentationFile>
 		<NoWarn>NU1703</NoWarn>
+		<Description>The MAUI project that displays for sudoku.</Description>
+		<PackageReadmeFile>..\..\README.md</PackageReadmeFile>
+		<PackageLicenseFile>..\..\LICENSE</PackageLicenseFile>
+		<PackageProjectUrl>https://github.com/SunnieShine/Sudoku</PackageProjectUrl>
+		<RepositoryUrl>https://github.com/SunnieShine/Sudoku</RepositoryUrl>
+		<RepositoryType>git</RepositoryType>
+		<PackageTags>sudoku;algorithms;maui</PackageTags>
 
 		<!-- Display name -->
 		<ApplicationTitle>Sudoku.UI</ApplicationTitle>
@@ -32,10 +39,12 @@
 
 	<ItemGroup>
 		<!-- App Icon -->
-		<MauiIcon Include="Resources\appicon.svg" ForegroundFile="Resources\appiconfg.svg" Color="#512BD4" />
+		<MauiIcon Include="Resources\Icons\appicon.svg" IsAppIcon="true" />
 
 		<!-- Splash Screen -->
-		<MauiSplashScreen Include="Resources\appiconfg.svg" Color="#512BD4" />
+		<!--
+		<MauiSplashScreen Include="Resources\Icons\appicon.svg" />
+		-->
 
 		<!-- Images -->
 		<MauiImage Include="Resources\Images\*" />
@@ -58,10 +67,15 @@
 
 	<ItemGroup>
 		<PackageReference Include="Microsoft.Maui.Graphics" Version="6.0.200-preview.12.852" />
+		<PackageReference Include="PInvoke.User32" Version="0.7.104" />
 	</ItemGroup>
 
 	<ItemGroup>
 		<ProjectReference Include="..\Sudoku.Core\Sudoku.Core.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Folder Include="Resources\Images\" />
 	</ItemGroup>
 
 	<PropertyGroup Condition="$(TargetFramework.Contains('-windows'))">
