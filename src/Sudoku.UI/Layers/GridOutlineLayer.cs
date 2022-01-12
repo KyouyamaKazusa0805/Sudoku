@@ -31,6 +31,7 @@ public sealed class GridOutlineLayer : IDrawable
 			throw new ArgumentException("The drawing must require the width equals to the height.");
 		}
 
+		canvas.Antialias = true;
 		canvas.StrokeLineJoin = LineJoin.Miter;
 		canvas.StrokeColor = Colors.Black;
 
