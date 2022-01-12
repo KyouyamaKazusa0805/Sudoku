@@ -14,27 +14,71 @@
             Initializes an <see cref="T:Sudoku.UI.App"/> instance.
             </summary>
         </member>
-        <member name="T:Sudoku.UI.DataTypes.MainPageDataType">
+        <member name="T:Sudoku.UI.Controls.CellDigitLabel">
             <summary>
-            The data type that is used on XAML code for the special property <c>x:DataType</c>
-            of <see cref="T:Sudoku.UI.Pages.MainPage"/> instance.
-            </summary>
-            <seealso cref="T:Sudoku.UI.Pages.MainPage"/>
-        </member>
-        <member name="T:Sudoku.UI.DataTypes.NotificationObject">
-            <summary>
-            Defines a base type that is the notification object.
+            Defines a label control that only displays a cell.
             </summary>
         </member>
-        <member name="E:Sudoku.UI.DataTypes.NotificationObject.PropertyChanged">
+        <member name="F:Sudoku.UI.Controls.CellDigitLabel._status">
+            <summary>
+            Indicates the current cell status.
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Controls.CellDigitLabel.#ctor">
+            <summary>
+            Initializes a <see cref="T:Sudoku.UI.Controls.CellDigitLabel"/> instance.
+            </summary>
+        </member>
+        <member name="P:Sudoku.UI.Controls.CellDigitLabel.Digit">
+            <summary>
+            Gets or sets the current digit.
+            </summary>
+            <value>The value to set. The possible values are between -1 and 8.</value>
+            <returns>The digit that the current label displays.</returns>
+            <exception cref="T:System.ArgumentOutOfRangeException">Throws when the value is not between -1 and 8.</exception>
+        </member>
+        <member name="P:Sudoku.UI.Controls.CellDigitLabel.Status">
+            <summary>
+            Indicates the current status of the cell.
+            </summary>
+            <value>
+            The value to set. The possible values are <see cref="F:Sudoku.Data.CellStatus.Given"/>
+            or <see cref="F:Sudoku.Data.CellStatus.Modifiable"/>.
+            </value>
+            <returns>The current status.</returns>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+            Throws when the value is not <see cref="F:Sudoku.Data.CellStatus.Given"/> or <see cref="F:Sudoku.Data.CellStatus.Modifiable"/>.
+            </exception>
+        </member>
+        <member name="T:Sudoku.UI.Layers.GridOutlineLayer">
+            <summary>
+            Defines the grid outline layer that only handles and draws the outlines of the grid,
+            i.e. the block outlines and the cell outlines.
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Layers.GridOutlineLayer.#ctor">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.UI.DataTypes.NotificationObject.RaisePropertyChanged(System.String)">
+        <member name="M:Sudoku.UI.Layers.GridOutlineLayer.Draw(Microsoft.Maui.Graphics.ICanvas,Microsoft.Maui.Graphics.RectangleF)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.UI.Layers.Layer">
             <summary>
-            To raise the event <see cref="E:Sudoku.UI.DataTypes.NotificationObject.PropertyChanged"/>.
+            Defines a layer that is used for drawing a sudoku grid.
             </summary>
-            <param name="propertyName">The name of the property whose value has been changed.</param>
-            <seealso cref="E:Sudoku.UI.DataTypes.NotificationObject.PropertyChanged"/>
+        </member>
+        <member name="M:Sudoku.UI.Layers.Layer.#ctor">
+            <summary>
+            Creates a <see cref="T:Sudoku.UI.Layers.Layer"/> instance.
+            </summary>
+        </member>
+        <member name="P:Sudoku.UI.Layers.Layer.Offset">
+            <summary>
+            Indicates the offset that makes the blank outside the grid outlines.
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Layers.Layer.Draw(Microsoft.Maui.Graphics.ICanvas,Microsoft.Maui.Graphics.RectangleF)">
+            <inheritdoc/>
         </member>
         <member name="T:Sudoku.UI.MauiProgram">
             <summary>

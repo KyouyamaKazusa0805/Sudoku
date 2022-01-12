@@ -60,6 +60,16 @@
 		<PackageReference Include="Microsoft.Maui.Graphics" Version="6.0.200-preview.12.852" />
 	</ItemGroup>
 
+	<ItemGroup>
+		<ProjectReference Include="..\Sudoku.Core\Sudoku.Core.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<MauiXaml Update="Controls\CellDigitLabel.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+	</ItemGroup>
+
 	<PropertyGroup Condition="$(TargetFramework.Contains('-windows'))">
 		<OutputType>WinExe</OutputType>
 		<RuntimeIdentifier>win10-x64</RuntimeIdentifier>

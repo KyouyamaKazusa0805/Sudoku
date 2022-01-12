@@ -1,13 +1,16 @@
 <ContentPage
 	xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
 	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-	xmlns:dt="clr-namespace:Sudoku.UI.DataTypes"
-	x:Class="Sudoku.UI.Pages.MainPage" x:DataType="dt:MainPageDataType"
+	xmlns:layer="clr-namespace:Sudoku.UI.Layers"
+	x:Class="Sudoku.UI.Pages.MainPage"
+	Title="Project Nano (Sunnie's Sudoku Solution)"
 	BackgroundColor="{DynamicResource SecondaryColor}">
 
-	<Grid>
-		<Label
-			Text="Proj. Nano (Sunnie's Sudoku Solution)" TextColor="#80000000"
-			FontSize="48" HorizontalOptions="Center" VerticalOptions="Center" Rotation="345" />
-	</Grid>
+	<GridLayout RowDefinitions="*" ColumnDefinitions="{OnIdiom Phone='*',Default='540,*'}">
+		<GridLayout.Resources>
+			<layer:GridOutlineLayer x:Key="GridOutlineLayer" Offset="10" />
+		</GridLayout.Resources>
+
+		<GraphicsView Drawable="{StaticResource GridOutlineLayer}" WidthRequest="540" HeightRequest="540" />
+	</GridLayout>
 </ContentPage>
