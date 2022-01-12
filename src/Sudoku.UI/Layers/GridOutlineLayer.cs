@@ -4,14 +4,16 @@
 /// Defines the grid outline layer that only handles and draws the outlines of the grid,
 /// i.e. the block outlines and the cell outlines.
 /// </summary>
-public sealed class GridOutlineLayer : Layer
+public sealed class GridOutlineLayer : IDrawable
 {
-	/// <inheritdoc/>
-	public GridOutlineLayer() : base() { }
+	/// <summary>
+	/// Indicates the outline offset.
+	/// </summary>
+	public float Offset { get; set; }
 
 
 	/// <inheritdoc/>
-	public override void Draw(ICanvas canvas, RectangleF dirtyRect)
+	public void Draw(ICanvas canvas, RectangleF dirtyRect)
 	{
 		const float epsilon = 1E-3F;
 
@@ -29,7 +31,7 @@ public sealed class GridOutlineLayer : Layer
 		canvas.StrokeLineJoin = LineJoin.Miter;
 		canvas.StrokeColor = Colors.Black;
 
-		float gridSize = width - (Offset << 1);
+		float gridSize = width - Offset * 2;
 		float blockSize = gridSize / 3;
 		float cellSize = gridSize / 9;
 		//float candidateSize = gridSize / 27;

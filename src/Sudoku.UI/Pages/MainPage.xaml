@@ -8,9 +8,13 @@
 
 	<GridLayout RowDefinitions="*" ColumnDefinitions="{OnIdiom Phone='*',Default='540,*'}">
 		<GridLayout.Resources>
+			<x:Double x:Key="DefaultSizeRequest">540</x:Double>
 			<layer:GridOutlineLayer x:Key="GridOutlineLayer" Offset="10" />
 		</GridLayout.Resources>
 
-		<GraphicsView Drawable="{StaticResource GridOutlineLayer}" WidthRequest="540" HeightRequest="540" />
+		<GraphicsView
+			Drawable="{StaticResource GridOutlineLayer}"
+			WidthRequest="{StaticResource DefaultSizeRequest}"
+			HeightRequest="{StaticResource DefaultSizeRequest}" />
 	</GridLayout>
 </ContentPage>
