@@ -9,7 +9,7 @@
 		<SingleProject>true</SingleProject>
 		<EnablePreviewMsixTooling>true</EnablePreviewMsixTooling>
 		<DocumentationFile>..\docxml\Sudoku.UI.xml</DocumentationFile>
-		<NoWarn>NU1703</NoWarn>
+		<NoWarn>NU1703;IDE0079</NoWarn>
 		<Description>The MAUI project that displays for sudoku.</Description>
 		<PackageReadmeFile>..\..\README.md</PackageReadmeFile>
 		<PackageLicenseFile>..\..\LICENSE</PackageLicenseFile>
