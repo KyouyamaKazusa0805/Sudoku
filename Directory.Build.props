@@ -10,17 +10,36 @@
 		<!--Syntax configuration-->
 		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
 		<LangVersion>preview</LangVersion>
-
-		<!--Temporary config-->
-		<NoWarn>IDE0170</NoWarn>
 	</PropertyGroup>
 
 	<!--
-	Select the posible configuration if:
-	* The configuration is not set - Set to default case 'Debug'.
-	* The configuration is 'Debug' - Set conditional compilation symbols that contain 'DEBUG'.
-	* The configuration is 'Release' - Set condition compilation symbols that don't contain 'DEBUG'.
+	If the language version is set 'preview', we will allow it using preview runtime features,
+	such as the preview feature 'static abstracts in interfaces'.
 	-->
+	<PropertyGroup Condition="'$(LangVersion)'=='preview'">
+		<EnablePreviewFeatures>true</EnablePreviewFeatures>
+	</PropertyGroup>
+
+	<!--Set the nullable is enable if the language version is greater than or equals to C# 8.0.-->
+	<PropertyGroup Condition="'$(LangVersion)'=='preview' Or '$(LangVersion)'=='latest' Or '$(LangVersion)'&gt;='8.0'">
+		<Nullable>enable</Nullable>
+	</PropertyGroup>
+
+	<!--Set the root namespaces.-->
+	<Choose>
+		<When Condition="'$(MSBuildProjectFile.TrimEnd(`.csproj`).EndsWith(`.CodeGen`))'=='true'">
+			<PropertyGroup>
+				<RootNamespace>Sudoku.Diagnostics.CodeGen</RootNamespace>
+			</PropertyGroup>
+		</When>
+		<When Condition="'$(MSBuildProjectFile.TrimEnd(`.csproj`).EndsWith(`.CodeAnalysis`))'=='true'">
+			<PropertyGroup>
+				<RootNamespace>Sudoku.Diagnostics.CodeAnalysis</RootNamespace>
+			</PropertyGroup>
+		</When>
+	</Choose>
+
+	<!--Select the default configuration as 'DEBUG'.-->
 	<Choose>
 		<When Condition="'$(Configuration)'==''">
 			<PropertyGroup>
@@ -29,27 +48,29 @@
 		</When>
 		<When Condition="'$(Configuration)'=='Debug'">
 			<PropertyGroup>
-				<DefineConstants>DEBUG; AUTHOR_RESERVED</DefineConstants>
-			</PropertyGroup>
-		</When>
-		<When Condition="'$(Configuration)'=='Release'">
-			<PropertyGroup>
-				<DefineConstants>AUTHOR_RESERVED</DefineConstants>
+				<DefineConstants>DEBUG</DefineConstants>
 			</PropertyGroup>
 		</When>
 	</Choose>
 
-	<!--
-	Set the plug-in code analyzer if:
-	* GlobalConfiguration.CodeGen - Do nothing.
-	* Sudoku.Diagnostics.CodeAnalysis.CodeGen - Do nothing.
-	* Other C# projects that isn't itself - 1-time step-out the directory and then reference the project.
-	* Other non-C# projects - Do nothing.
-	-->
+	<!--Import 'Microsoft.CodeAnalysis.*' packages if the project is a source generator project.-->
+	<ItemGroup Condition="'$(MSBuildProjectFile.TrimEnd(`.csproj`).EndsWith(`.CodeGen`))'=='true' Or '$(MSBuildProjectFile)'=='Sudoku.Diagnostics.CodeAnalysis.csproj'">
+		<PackageReference Include="Microsoft.CodeAnalysis.Common" Version="4.0.1" />
+		<PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="4.0.1" />
+		<PackageReference Include="Microsoft.CodeAnalysis.CSharp.Workspaces" Version="4.0.1" />
+		<PackageReference Include="IndexRange" Version="1.0.0" />
+	</ItemGroup>
+
+	<!--Try to reference the code analysis project.-->
 	<Choose>
+		<!--We will skip to reference code analysis project to prevent a cycle referencing.-->
 		<When Condition="'$(MSBuildProjectFile)'=='Sudoku.Diagnostics.CodeAnalysis.CodeGen.csproj'" />
 		<When Condition="'$(MSBuildProjectFile)'=='GlobalConfiguration.CodeGen.csproj'" />
+
+		<!--If the project is not a C# project, just skip it.-->
 		<When Condition="'$(MSBuildProjectFile.EndsWith(`.csproj`))'=='false'" />
+
+		<!--Other C# projects, reference it.-->
 		<When Condition="'$(MSBuildProjectFile)'!='Sudoku.Diagnostics.CodeAnalysis.csproj'">
 			<ItemGroup>
 				<ProjectReference
@@ -60,43 +81,7 @@
 		</When>
 	</Choose>
 
-	<!--
-	Set the langugage to preview one, and enable the preview features,
-	such as the preview feature 'static abstracts in interfaces'.
-	-->
-	<PropertyGroup Condition="'$(LangVersion)'=='preview'">
-		<EnablePreviewFeatures>true</EnablePreviewFeatures>
-	</PropertyGroup>
-
-	<!--
-	Set the nullable is enable if the language version is greater than or equals 8.0 (i.e. C# 8).
-	-->
-	<PropertyGroup Condition="'$(LangVersion)'=='preview' Or '$(LangVersion)'=='latest' Or '$(LangVersion)'&gt;='8.0'">
-		<Nullable>enable</Nullable>
-	</PropertyGroup>
-
-	<!--
-	Set the root namespace 'Sudoku.Diagnostics.CodeGen' for the source projects, which end with '.CodeGen'.
-	-->
-	<PropertyGroup Condition="'$(MSBuildProjectFile.TrimEnd(`.csproj`).EndsWith(`.CodeGen`))'=='true'">
-		<RootNamespace>Sudoku.Diagnostics.CodeGen</RootNamespace>
-	</PropertyGroup>
-
-	<!--
-	Import Microsoft.CodeAnalysis Package when:
-	* The project is 'Sudoku.Diagnostics.CodeAnalysis'.
-	* The project is other ones which end with '.CodeGen'.
-	-->
-	<ItemGroup Condition="'$(MSBuildProjectFile.TrimEnd(`.csproj`).EndsWith(`.CodeGen`))'=='true' Or '$(MSBuildProjectFile)'=='Sudoku.Diagnostics.CodeAnalysis.csproj'">
-		<PackageReference Include="Microsoft.CodeAnalysis.Common" Version="4.0.1" />
-		<PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="4.0.1" />
-		<PackageReference Include="Microsoft.CodeAnalysis.CSharp.Workspaces" Version="4.0.1" />
-		<PackageReference Include="IndexRange" Version="1.0.0" />
-	</ItemGroup>
-
-	<!--
-	Import 'GlobalConfiguration.CodeGen' project into the source genrator projects.
-	-->
+	<!--Import 'GlobalConfiguration.CodeGen' project into the source genrator projects.-->
 	<ItemGroup Condition="'$(MSBuildProjectFile.TrimEnd(`.csproj`).EndsWith(`.CodeGen`))'=='true' And '$(MSBuildProjectFile)'!='GlobalConfiguration.CodeGen.csproj'">
 		<AdditionalFiles Include="..\..\Directory.Build.props" />
 		<ProjectReference
