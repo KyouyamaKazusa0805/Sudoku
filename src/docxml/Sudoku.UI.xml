@@ -14,6 +14,9 @@
             Initializes an <see cref="T:Sudoku.UI.App"/> instance.
             </summary>
         </member>
+        <member name="M:Sudoku.UI.App.CreateWindow(Microsoft.Maui.IActivationState)">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.UI.Controls.GridPane">
             <summary>
             Indicates the grid pane.

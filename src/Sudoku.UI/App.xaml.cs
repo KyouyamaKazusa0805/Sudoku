@@ -1,5 +1,7 @@
-﻿using Microsoft.Maui.Controls;
+﻿using Microsoft.Maui;
+using Microsoft.Maui.Controls;
 using Sudoku.UI.Pages;
+using Sudoku.Diagnostics.CodeAnalysis;
 
 namespace Sudoku.UI;
 
@@ -17,4 +19,9 @@ public partial class App : Application
 
 		MainPage = new MainPage();
 	}
+
+
+	/// <inheritdoc/>
+	protected override Window CreateWindow([IsDiscard] IActivationState? activationState) =>
+		new(MainPage ??= new MainPage()) { Title = "Project Nano (Sunnie's Sudoku Solution)" };
 }
