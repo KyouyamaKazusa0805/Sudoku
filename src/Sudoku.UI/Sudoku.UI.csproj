@@ -72,6 +72,7 @@
 
 	<ItemGroup>
 		<ProjectReference Include="..\Sudoku.Core\Sudoku.Core.csproj" />
+		<ProjectReference Include="..\Sudoku.Graphics\Sudoku.Graphics.csproj" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -79,7 +80,13 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<MauiXaml Update="Controls\GridOutline.xaml">
+		<Compile Update="Controls\GridPane.xaml.cs">
+			<DependentUpon>GridPane.xaml</DependentUpon>
+		</Compile>
+	</ItemGroup>
+
+	<ItemGroup>
+		<MauiXaml Update="Controls\GridPane.xaml">
 			<Generator>MSBuild:Compile</Generator>
 		</MauiXaml>
 	</ItemGroup>

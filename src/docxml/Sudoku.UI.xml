@@ -14,29 +14,15 @@
             Initializes an <see cref="T:Sudoku.UI.App"/> instance.
             </summary>
         </member>
-        <member name="T:Sudoku.UI.Controls.GridOutline">
+        <member name="T:Sudoku.UI.Controls.GridPane">
             <summary>
-            Indicates the grid outline.
+            Indicates the grid pane.
             </summary>
         </member>
-        <member name="M:Sudoku.UI.Controls.GridOutline.#ctor">
+        <member name="M:Sudoku.UI.Controls.GridPane.#ctor">
             <summary>
-            Initializes a <see cref="T:Sudoku.UI.Controls.GridOutline"/> instance.
+            Initializes a <see cref="T:Sudoku.UI.Controls.GridPane"/> instance.
             </summary>
-        </member>
-        <member name="T:Sudoku.UI.Layers.GridOutlineLayer">
-            <summary>
-            Defines the grid outline layer that only handles and draws the outlines of the grid,
-            i.e. the block outlines and the cell outlines.
-            </summary>
-        </member>
-        <member name="P:Sudoku.UI.Layers.GridOutlineLayer.Offset">
-            <summary>
-            Indicates the outline offset.
-            </summary>
-        </member>
-        <member name="M:Sudoku.UI.Layers.GridOutlineLayer.Draw(Microsoft.Maui.Graphics.ICanvas,Microsoft.Maui.Graphics.RectangleF)">
-            <inheritdoc/>
         </member>
         <member name="T:Sudoku.UI.MauiProgram">
             <summary>

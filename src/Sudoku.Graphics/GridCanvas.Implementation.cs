@@ -2,7 +2,7 @@
 
 namespace Sudoku.Graphics;
 
-partial class GridCanvas
+partial record struct GridCanvas
 {
 	/// <summary>
 	/// Draw the grid, block and cell outlines.

@@ -6,5 +6,5 @@
 	Title="Project Nano (Sunnie's Sudoku Solution)"
 	BackgroundColor="{DynamicResource SecondaryColor}">
 
-	<c:GridOutline />
+	<c:GridPane />
 </ContentPage>
