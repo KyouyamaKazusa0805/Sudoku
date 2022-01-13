@@ -82,23 +82,6 @@
 		<RootNamespace>Sudoku.Diagnostics.CodeGen</RootNamespace>
 	</PropertyGroup>
 
-	<!--Import MAUI packages.-->
-	<ItemGroup Condition="'$(UseMaui)'=='true' And $(TargetFramework.Contains('-windows'))">
-		<!-- Required - WinUI does not yet have buildTransitive for everything -->
-		<PackageReference Include="Microsoft.WindowsAppSDK" Version="1.0.0" />
-		<PackageReference Include="Microsoft.Graphics.Win2D" Version="1.0.0.30" />
-	</ItemGroup>
-
-	<ItemGroup Condition="'$(UseMaui)'=='true' And '$(TargetFramework)' == 'net6.0-windows10.0.19041'">
-		<PackageReference Include="Microsoft.Maui.Graphics.Win2D.WinUI.Desktop">
-			<Version>6.0.200-preview.12.852</Version>
-		</PackageReference>
-	</ItemGroup>
-
-	<ItemGroup Condition="'$(UseMaui)'=='true'">
-		<PackageReference Include="Microsoft.Maui.Graphics" Version="6.0.200-preview.12.852" />
-	</ItemGroup>
-
 	<!--
 	Import Microsoft.CodeAnalysis Package when:
 	* The project is 'Sudoku.Diagnostics.CodeAnalysis'.

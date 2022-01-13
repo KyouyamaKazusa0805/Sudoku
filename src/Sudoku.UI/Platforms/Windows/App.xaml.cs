@@ -2,14 +2,15 @@
 using Microsoft.Maui.Essentials;
 using Microsoft.Maui.Hosting;
 using Microsoft.UI.Xaml;
+using WindowsApplication = Microsoft.Maui.Controls.Application;
 
 namespace Sudoku.UI.WinUI;
 
 /// <summary>
 /// Provides application-specific behavior to supplement the default
-/// <see cref="Microsoft.Maui.Controls.Application"/> class.
+/// <see cref="WindowsApplication"/> class.
 /// </summary>
-/// <seealso cref="Microsoft.Maui.Controls.Application"/>
+/// <seealso cref="WindowsApplication"/>
 public partial class App : MauiWinUIApplication
 {
 	/// <summary>
