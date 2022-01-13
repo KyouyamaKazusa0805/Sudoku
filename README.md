@@ -2,12 +2,6 @@
 
 # Sunnie's Sudoku Solution
 
-## Bulletin for Specials
-
-If I'm busy or something goes bad for me, I'll make a notice to you, whose content will be put into here.
-
-> Everything looks good!
-
 ## Content
 
 ### Introduction
@@ -57,15 +51,17 @@ Please visit the following tables.
 | ------------ | ---------------------------------------------- |
 | Chinese only | [GitHub](https://sunnieshine.github.io/Sudoku) |
 
+> I'm sorry that I haven't created wiki in English, because it's too complex to me. I have been working for English for many years, but it's so hard to me for some description (especially expression of some detail) to translate into English still.
+
 | Coding Information                 |                                     |
 | ---------------------------------- | ----------------------------------- |
 | Programming language and version   | C# 10                               |
 | Framework                          | .NET 6                              |
-| Indenting                          | Tabs `\t`                           |
+| Indenting                          | Tabs                                |
 | Integrated development environment | Visual Studio 2022 (17.1 Preview 2) |
 | Natural languages support          | English, Simplified Chinese         |
 
-> I'm sorry that I haven't created wiki in English, because it's too complex to me. I have been working for English for many years, but it's so hard to me for some description (especially expression of some detail) to translate into English still.
+> Please note that the programming language version is always used as 'preview', which means some preview features are still used in this solution.
 >
 > You can also use JetBrains Rider as your IDE. Use whatever you want to use, even Notepad :D
 >
@@ -86,7 +82,7 @@ Please visit the following tables.
   * [ ] WeChat
   * [ ] Others...
 * [ ] Wiki Documentation
-  * [x] Basic Docs
+  * [ ] Basic Docs
   * [ ] Sudoku Tutorial
 
 ### Open Resource License
