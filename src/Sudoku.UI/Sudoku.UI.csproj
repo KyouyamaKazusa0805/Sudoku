@@ -76,10 +76,6 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<Folder Include="Resources\Images\" />
-	</ItemGroup>
-
-	<ItemGroup>
 		<Compile Update="Controls\GridPane.xaml.cs">
 			<DependentUpon>GridPane.xaml</DependentUpon>
 		</Compile>
