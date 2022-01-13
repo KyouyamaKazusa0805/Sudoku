@@ -16,7 +16,7 @@ using Sudoku.Data;
 using Sudoku.Solving.Manual;
 
 // Parse a puzzle from the string text.
-var grid = SudokuGrid.Parse("........6.....158...8.4.21.5..8..39.6.1.7.8.5.89..5..1.24.5.9...659.....9........");
+var grid = Grid.Parse("........6.....158...8.4.21.5..8..39.6.1.7.8.5.89..5..1.24.5.9...659.....9........");
 
 // Declare a manual solver that uses techniques used by humans to solve a puzzle.
 var solver = new ManualSolver();

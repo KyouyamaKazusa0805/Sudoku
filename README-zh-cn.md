@@ -15,8 +15,8 @@ using System;
 using Sudoku.Data;
 using Sudoku.Solving.Manual;
 
-// 读取一个字符串形式的数独盘面的代码信息，并解析为 'SudokuGrid' 类型的对象。
-var grid = SudokuGrid.Parse("........6.....158...8.4.21.5..8..39.6.1.7.8.5.89..5..1.24.5.9...659.....9........");
+// 读取一个字符串形式的数独盘面的代码信息，并解析为 'Grid' 类型的对象。
+var grid = Grid.Parse("........6.....158...8.4.21.5..8..39.6.1.7.8.5.89..5..1.24.5.9...659.....9........");
 
 // 声明实例化一个 'ManualSolver' 类型的实例，用于稍后的解题。
 var solver = new ManualSolver();
@@ -57,7 +57,7 @@ Console.WriteLine(analysisResult.ToString());
 | -------------- | ------------------------------------- |
 | 编程语言和版本 | C# 10                                  |
 | 框架           | .NET 6                                |
-| 缩进           | Tab                                   |
+| 缩进           | Tab（制表符）                              |
 | 集成开发环境   | Visual Studio 2022（17.1 预览版 2） |
 | 自然语言支持   | 英语、简体中文                        |
 
