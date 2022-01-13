@@ -5,6 +5,7 @@
 	x:Class="Sudoku.UI.Pages.MainPage"
 	Title="Project Nano (Sunnie's Sudoku Solution)"
 	BackgroundColor="{DynamicResource SecondaryColor}">
-
-	<c:GridPane />
+	<ContentPage.Content>
+		<c:GridPane />
+	</ContentPage.Content>
 </ContentPage>

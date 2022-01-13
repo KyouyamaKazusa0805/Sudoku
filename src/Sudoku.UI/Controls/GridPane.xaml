@@ -4,13 +4,10 @@
 	xmlns:g="clr-namespace:Sudoku.Graphics;assembly=Sudoku.Graphics"
 	x:Class="Sudoku.UI.Controls.GridPane"
 	RowDefinitions="*" ColumnDefinitions="{OnIdiom Phone='*',Default='540,*'}">
-	<GridLayout.Resources>
-		<x:Double x:Key="DefaultSizeRequest">540</x:Double>
-		<g:GridDrawable x:Key="GridOutlineLayer" Offset="10" />
-	</GridLayout.Resources>
 
-	<GraphicsView
-		Drawable="{StaticResource GridOutlineLayer}"
-		WidthRequest="{StaticResource DefaultSizeRequest}"
-		HeightRequest="{StaticResource DefaultSizeRequest}" />
+	<GraphicsView WidthRequest="540" HeightRequest="540">
+		<GraphicsView.Drawable>
+			<g:GridDrawable Offset="10" />
+		</GraphicsView.Drawable>
+	</GraphicsView>
 </GridLayout>
