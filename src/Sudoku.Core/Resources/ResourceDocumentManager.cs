@@ -33,13 +33,8 @@ public sealed class ResourceDocumentManager : IEnumerable<ResourceDocument>
 	/// <summary>
 	/// Defines a manager that is initialized by the module initializer.
 	/// </summary>
-	public static ResourceDocumentManager Shared
-	{
-		get;
-
-		[InitializationOnly(InitializationCaller.ModuleInitializer)]
-		internal set;
-	} = null!;
+	[InitializationOnly(InitializationCaller.ModuleInitializer)]
+	public static ResourceDocumentManager Shared { get; internal set; } = null!;
 
 
 	/// <summary>

@@ -4,7 +4,7 @@
 /// Used for applying onto a setter to tell the compiler that the setter is only used for the invocation
 /// by compiler rather than users.
 /// </summary>
-[AttributeUsage(AttributeTargets.Method, AllowMultiple = false, Inherited = false)]
+[AttributeUsage(AttributeTargets.Field | AttributeTargets.Property, AllowMultiple = false, Inherited = false)]
 public sealed class InitializationOnlyAttribute : Attribute
 {
 	/// <summary>
