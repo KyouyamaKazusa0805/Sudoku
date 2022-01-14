@@ -1,6 +1,4 @@
-﻿#pragma warning disable CS0618
-
-namespace Sudoku.Techniques;
+﻿namespace Sudoku.Techniques;
 
 /// <summary>
 /// Indicates a technique group.
@@ -25,13 +23,7 @@ public enum TechniqueGroup : byte
 	/// <summary>
 	/// Indicates the locked candidates (LC) technique.
 	/// </summary>
-	[Obsolete("In the future, we don't use any abbreviations in this solution.", false)]
-	Lc,
-
-	/// <summary>
-	/// Indicates the locked candidates (LC) technique.
-	/// </summary>
-	LockedCandidates = Lc,
+	LockedCandidates,
 
 	/// <summary>
 	/// Indicates the subset technique.
@@ -61,123 +53,57 @@ public enum TechniqueGroup : byte
 	/// <summary>
 	/// Indicates the single digit pattern (SDP) technique.
 	/// </summary>
-	[Obsolete("In the future, we don't use any abbreviations in this solution.", false)]
-	Sdp,
-
-	/// <summary>
-	/// Indicates the single digit pattern (SDP) technique.
-	/// </summary>
-	SingleDigitPattern = Sdp,
+	SingleDigitPattern,
 
 	/// <summary>
 	/// Indicates the empty rectangle intersection pair (ERIP) technique.
 	/// </summary>
-	[Obsolete("In the future, we don't use any abbreviations in this solution.", false)]
-	Erip,
-
-	/// <summary>
-	/// Indicates the empty rectangle intersection pair (ERIP) technique.
-	/// </summary>
-	EmptyRectangleIntersectionPair = Erip,
+	EmptyRectangleIntersectionPair,
 
 	/// <summary>
 	/// Indicates the almost locked candidates (ALC) technique.
 	/// </summary>
-	[Obsolete("In the future, we don't use any abbreviations in this solution.", false)]
-	Alc,
-
-	/// <summary>
-	/// Indicates the almost locked candidates (ALC) technique.
-	/// </summary>
-	AlmostLockedCandidates = Alc,
+	AlmostLockedCandidates,
 
 	/// <summary>
 	/// Indicates the alternating inference chain (AIC) technique.
 	/// </summary>
-	[Obsolete("In the future, we don't use any abbreviations in this solution.", false)]
-	Aic,
-
-	/// <summary>
-	/// Indicates the alternating inference chain (AIC) technique.
-	/// </summary>
-	AlternatingInferenceChain = Aic,
+	AlternatingInferenceChain,
 
 	/// <summary>
 	/// Indicates the forcing chains (FC) technique.
 	/// </summary>
-	[Obsolete("In the future, we don't use any abbreviations in this solution.", false)]
-	Fc,
-
-	/// <summary>
-	/// Indicates the forcing chains (FC) technique.
-	/// </summary>
-	ForcingChains = Fc,
+	ForcingChains,
 
 	/// <summary>
 	/// Indicates the unique rectangle (UR) technique.
 	/// </summary>
-	[Obsolete("In the future, we don't use any abbreviations in this solution.", false)]
-	Ur,
-
-	/// <summary>
-	/// Indicates the unique rectangle (UR) technique.
-	/// </summary>
-	UniqueRectangle = Ur,
+	UniqueRectangle,
 
 	/// <summary>
 	/// Indicates the unique rectangle plus (UR+) technique.
 	/// </summary>
-	[Obsolete("In the future, we don't use any abbreviations in this solution.", false)]
-	UrPlus,
-
-	/// <summary>
-	/// Indicates the unique rectangle plus (UR+) technique.
-	/// </summary>
-	UniqueRectanglePlus = UrPlus,
+	UniqueRectanglePlus,
 
 	/// <summary>
 	/// Indicates the unique loop (UL) technique.
 	/// </summary>
-	[Obsolete("In the future, we don't use any abbreviations in this solution.", false)]
-	Ul,
-
-	/// <summary>
-	/// Indicates the unique loop (UL) technique.
-	/// </summary>
-	UniqueLoop = Ul,
+	UniqueLoop,
 
 	/// <summary>
 	/// Indicates the extended rectangle (XR) technique.
 	/// </summary>
-	[Obsolete("In the future, we don't use any abbreviations in this solution.", false)]
-	Xr,
-
-	/// <summary>
-	/// Indicates the extended rectangle (XR) technique.
-	/// </summary>
-	ExtendedRectangle = Xr,
+	ExtendedRectangle,
 
 	/// <summary>
 	/// Indicates the bi-value universal grave (BUG) technique.
 	/// </summary>
-	[Obsolete("In the future, we don't use any abbreviations in this solution.", false)]
-	Bug,
-
-	/// <summary>
-	/// Indicates the bi-value universal grave (BUG) technique.
-	/// </summary>
-	BivalueUniversalGrave = Bug,
+	BivalueUniversalGrave,
 
 	/// <summary>
 	/// Indicates the reverse bi-value universal grave (Reverse BUG) technique.
 	/// </summary>
-	[Obsolete("In the future, we don't use any abbreviations in this solution.", false)]
-	ReverseBug,
-
-	/// <summary>
-	/// Indicates the reverse bi-value universal grave (Reverse BUG) technique.
-	/// </summary>
-	ReverseBivalueUniversalGrave = ReverseBug,
+	ReverseBivalueUniversalGrave,
 
 	/// <summary>
 	/// Indicates the deadly pattern technique.
@@ -192,57 +118,27 @@ public enum TechniqueGroup : byte
 	/// <summary>
 	/// Indicates the sue de coq (SdC) technique.
 	/// </summary>
-	[Obsolete("In the future, we don't use any abbreviations in this solution.", false)]
-	Sdc,
-
-	/// <summary>
-	/// Indicates the sue de coq (SdC) technique.
-	/// </summary>
-	SueDeCoq = Sdc,
-
-	/// <summary>
-	/// Indicates the guardian technique.
-	/// </summary>
-	[Obsolete("In the future, we don't use any abbreviations in this solution.", false)]
-	Guardian,
+	SueDeCoq,
 
 	/// <summary>
 	/// Indicates the broken wing technique.
 	/// </summary>
-	BrokenWing = Guardian,
+	BrokenWing,
 
 	/// <summary>
 	/// Indicates the ALS chaining-like (ALS-XZ, ALS-XY-Wing, ALS-W-Wing) technique.
 	/// </summary>
-	[Obsolete("In the future, we don't use any abbreviations in this solution.", false)]
-	AlsChainingLike,
-
-	/// <summary>
-	/// Indicates the ALS chaining-like (ALS-XZ, ALS-XY-Wing, ALS-W-Wing) technique.
-	/// </summary>
-	AlmostLockedSetsChainingLike = AlsChainingLike,
+	AlmostLockedSetsChainingLike,
 
 	/// <summary>
 	/// Indicates the SK-Loop technique.
 	/// </summary>
-	[Obsolete("In the future, we don't use any abbreviations in this solution.", false)]
-	SkLoop,
-
-	/// <summary>
-	/// Indicates the SK-Loop technique.
-	/// </summary>
-	DominoLoop = SkLoop,
+	DominoLoop,
 
 	/// <summary>
 	/// Indicates the multi-sector locked sets (MSLS) technique.
 	/// </summary>
-	[Obsolete("In the future, we don't use any abbreviations in this solution.", false)]
-	Msls,
-
-	/// <summary>
-	/// Indicates the multi-sector locked sets (MSLS) technique.
-	/// </summary>
-	MultisectorLockedSets = Msls,
+	MultisectorLockedSets,
 
 	/// <summary>
 	/// Indicates the exocet technique.
@@ -267,13 +163,7 @@ public enum TechniqueGroup : byte
 	/// <summary>
 	/// Indicates the pattern overlay method (POM) technique.
 	/// </summary>
-	[Obsolete("In the future, we don't use any abbreviations in this solution.", false)]
-	Pom,
-
-	/// <summary>
-	/// Indicates the pattern overlay method (POM) technique.
-	/// </summary>
-	PatternOverlay = Pom,
+	PatternOverlay,
 
 	/// <summary>
 	/// Indicates the templating technique.
@@ -283,11 +173,5 @@ public enum TechniqueGroup : byte
 	/// <summary>
 	/// Indicates the brute force (BF) technique.
 	/// </summary>
-	[Obsolete("In the future, we don't use any abbreviations in this solution.", false)]
-	Bf,
-
-	/// <summary>
-	/// Indicates the brute force (BF) technique.
-	/// </summary>
-	BruteForce = Bf
+	BruteForce
 }

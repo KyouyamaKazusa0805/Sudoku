@@ -6822,19 +6822,9 @@
             Indicates the grouped hybrid wing.
             </summary>
         </member>
-        <member name="F:Sudoku.Techniques.Technique.UrType1">
-            <summary>
-            Indicates the UR type 1.
-            </summary>
-        </member>
         <member name="F:Sudoku.Techniques.Technique.UniqueRectangleType1">
             <summary>
             Indicates the unique rectangle type 1.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Techniques.Technique.UrType2">
-            <summary>
-            Indicates the UR type 2.
             </summary>
         </member>
         <member name="F:Sudoku.Techniques.Technique.UniqueRectangleType2">
@@ -6842,19 +6832,9 @@
             Indicates the unique rectangle type 2.
             </summary>
         </member>
-        <member name="F:Sudoku.Techniques.Technique.UrType3">
-            <summary>
-            Indicates the UR type 3.
-            </summary>
-        </member>
         <member name="F:Sudoku.Techniques.Technique.UniqueRectangleType3">
             <summary>
             Indicates the unique rectangle type 3.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Techniques.Technique.UrType4">
-            <summary>
-            Indicates the UR type 4.
             </summary>
         </member>
         <member name="F:Sudoku.Techniques.Technique.UniqueRectangleType4">
@@ -6862,19 +6842,9 @@
             Indicates the unique rectangle type 4.
             </summary>
         </member>
-        <member name="F:Sudoku.Techniques.Technique.UrType5">
-            <summary>
-            Indicates the UR type 5.
-            </summary>
-        </member>
         <member name="F:Sudoku.Techniques.Technique.UniqueRectangleType5">
             <summary>
             Indicates the unique rectangle type 5.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Techniques.Technique.UrType6">
-            <summary>
-            Indicates the UR type 6.
             </summary>
         </member>
         <member name="F:Sudoku.Techniques.Technique.UniqueRectangleType6">
@@ -6882,549 +6852,274 @@
             Indicates the unique rectangle type 6.
             </summary>
         </member>
-        <member name="F:Sudoku.Techniques.Technique.HiddenUr">
-            <summary>
-            Indicates the hidden UR.
-            </summary>
-        </member>
         <member name="F:Sudoku.Techniques.Technique.HiddenUniqueRectangle">
             <summary>
             Indicates the hidden unique rectangle.
             </summary>
         </member>
-        <member name="F:Sudoku.Techniques.Technique.UrPlus2D">
-            <summary>
-            Indicates the UR + 2D.
-            </summary>
-        </member>
         <member name="F:Sudoku.Techniques.Technique.UniqueRectangle2D">
             <summary>
-            Indicates the UR + 2D.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Techniques.Technique.UrPlus2B1SL">
-            <summary>
-            Indicates the UR + 2B / 1SL.
+            Indicates the unique rectangle + 2D.
             </summary>
         </member>
         <member name="F:Sudoku.Techniques.Technique.UniqueRectangle2B1">
             <summary>
-            Indicates the UR + 2B / 1SL.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Techniques.Technique.UrPlus2D1SL">
-            <summary>
-            Indicates the UR + 2D / 1SL.
+            Indicates the unique rectangle + 2B / 1SL.
             </summary>
         </member>
         <member name="F:Sudoku.Techniques.Technique.UniqueRectangle2D1">
             <summary>
-            Indicates the UR + 2D / 1SL.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Techniques.Technique.UrPlus3X">
-            <summary>
-            Indicates the UR + 3X.
+            Indicates the unique rectangle + 2D / 1SL.
             </summary>
         </member>
         <member name="F:Sudoku.Techniques.Technique.UniqueRectangle3X">
             <summary>
-            Indicates the UR + 3X.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Techniques.Technique.UrPlus3x1SL_Lower">
-            <summary>
-            Indicates the UR + 3x / 1SL.
+            Indicates the unique rectangle + 3X.
             </summary>
         </member>
         <member name="F:Sudoku.Techniques.Technique.UniqueRectangle3X1L">
             <summary>
-            Indicates the UR + 3x / 1SL.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Techniques.Technique.UrPlus3X1SL_Upper">
-            <summary>
-            Indicates the UR + 3X / 1SL.
+            Indicates the unique rectangle + 3x / 1SL.
             </summary>
         </member>
         <member name="F:Sudoku.Techniques.Technique.UniqueRectangle3X1U">
             <summary>
-            Indicates the UR + 3X / 1SL.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Techniques.Technique.UrPlus3X2SL">
-            <summary>
-            Indicates the UR + 3X / 2SL.
+            Indicates the unique rectangle + 3X / 1SL.
             </summary>
         </member>
         <member name="F:Sudoku.Techniques.Technique.UniqueRectangle3X2">
             <summary>
-            Indicates the UR + 3X / 2SL.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Techniques.Technique.UrPlus3N2SL">
-            <summary>
-            Indicates the UR + 3N / 2SL.
+            Indicates the unique rectangle + 3X / 2SL.
             </summary>
         </member>
         <member name="F:Sudoku.Techniques.Technique.UniqueRectangle3N2">
             <summary>
-            Indicates the UR + 3N / 2SL.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Techniques.Technique.UrPlus3U2SL">
-            <summary>
-            Indicates the UR + 3U / 2SL.
+            Indicates the unique rectangle + 3N / 2SL.
             </summary>
         </member>
         <member name="F:Sudoku.Techniques.Technique.UniqueRectangle3U2">
             <summary>
-            Indicates the UR + 3U / 2SL.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Techniques.Technique.UrPlus3E2SL">
-            <summary>
-            Indicates the UR + 3E / 2SL.
+            Indicates the unique rectangle + 3U / 2SL.
             </summary>
         </member>
         <member name="F:Sudoku.Techniques.Technique.UniqueRectangle3E2">
             <summary>
-            Indicates the UR + 3E / 2SL.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Techniques.Technique.UrPlus4x1SL_Lower">
-            <summary>
-            Indicates the UR + 4x / 1SL.
+            Indicates the unique rectangle + 3E / 2SL.
             </summary>
         </member>
         <member name="F:Sudoku.Techniques.Technique.UniqueRectangle4X1L">
             <summary>
-            Indicates the UR + 4x / 1SL.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Techniques.Technique.UrPlus4X1SL_Upper">
-            <summary>
-            Indicates the UR + 4X / 1SL.
+            Indicates the unique rectangle + 4x / 1SL.
             </summary>
         </member>
         <member name="F:Sudoku.Techniques.Technique.UniqueRectangle4X1U">
             <summary>
-            Indicates the UR + 4X / 1SL.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Techniques.Technique.UrPlus4x2SL_Lower">
-            <summary>
-            Indicates the UR + 4x / 2SL.
+            Indicates the unique rectangle + 4X / 1SL.
             </summary>
         </member>
         <member name="F:Sudoku.Techniques.Technique.UniqueRectangle4X2L">
             <summary>
-            Indicates the UR + 4x / 2SL.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Techniques.Technique.UrPlus4X2SL_Upper">
-            <summary>
-            Indicates the UR + 4X / 2SL.
+            Indicates the unique rectangle + 4x / 2SL.
             </summary>
         </member>
         <member name="F:Sudoku.Techniques.Technique.UniqueRectangle4X2U">
             <summary>
-            Indicates the UR + 4X / 2SL.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Techniques.Technique.UrPlus4X3SL">
-            <summary>
-            Indicates the UR + 4X / 3SL.
+            Indicates the unique rectangle + 4X / 2SL.
             </summary>
         </member>
         <member name="F:Sudoku.Techniques.Technique.UniqueRectangle4X3">
             <summary>
-            Indicates the UR + 4X / 3SL.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Techniques.Technique.UrPlus4C3SL">
-            <summary>
-            Indicates the UR + 4C / 3SL.
+            Indicates the unique rectangle + 4X / 3SL.
             </summary>
         </member>
         <member name="F:Sudoku.Techniques.Technique.UniqueRectangle4C3">
             <summary>
-            Indicates the UR + 4C / 3SL.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Techniques.Technique.UrXyWing">
-            <summary>
-            Indicates the UR-XY-Wing.
+            Indicates the unique rectangle + 4C / 3SL.
             </summary>
         </member>
         <member name="F:Sudoku.Techniques.Technique.UniqueRectangleXyWing">
             <summary>
-            Indicates the UR-XY-Wing.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Techniques.Technique.UrXyzWing">
-            <summary>
-            Indicates the UR-XYZ-Wing.
+            Indicates the unique rectangle-XY-Wing.
             </summary>
         </member>
         <member name="F:Sudoku.Techniques.Technique.UniqueRectangleXyzWing">
             <summary>
-            Indicates the UR-XYZ-Wing.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Techniques.Technique.UrWxyzWing">
-            <summary>
-            Indicates the UR-WXYZ-Wing.
+            Indicates the unique rectangle-XYZ-Wing.
             </summary>
         </member>
         <member name="F:Sudoku.Techniques.Technique.UniqueRectangleWxyzWing">
             <summary>
-            Indicates the UR-WXYZ-Wing.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Techniques.Technique.UrSdc">
-            <summary>
-            Indicates the UR sue de coq.
+            Indicates the unique rectangle-WXYZ-Wing.
             </summary>
         </member>
         <member name="F:Sudoku.Techniques.Technique.UniqueRectangleSueDeCoq">
             <summary>
-            Indicates the UR sue de coq.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Techniques.Technique.UrUnknownCovering">
-            <summary>
-            Indicates the UR unknown covering.
+            Indicates the unique rectangle sue de coq.
             </summary>
         </member>
         <member name="F:Sudoku.Techniques.Technique.UniqueRectangleUnknownCovering">
             <summary>
-            Indicates the UR unknown covering.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Techniques.Technique.UrGuardian">
-            <summary>
-            Indicates the UR guardian.
+            Indicates the unique rectangle unknown covering.
             </summary>
         </member>
         <member name="F:Sudoku.Techniques.Technique.UniqueRectangleBrokenWing">
             <summary>
-            Indicates the UR guardian.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Techniques.Technique.ArType1">
-            <summary>
-            Indicates the AR type 1.
+            Indicates the unique rectangle guardian.
             </summary>
         </member>
         <member name="F:Sudoku.Techniques.Technique.AvoidableRectangleType1">
             <summary>
-            Indicates the AR type 1.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Techniques.Technique.ArType2">
-            <summary>
-            Indicates the AR type 2.
+            Indicates the avoidable rectangle type 1.
             </summary>
         </member>
         <member name="F:Sudoku.Techniques.Technique.AvoidableRectangleType2">
             <summary>
-            Indicates the AR type 2.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Techniques.Technique.ArType3">
-            <summary>
-            Indicates the AR type 3.
+            Indicates the avoidable rectangle type 2.
             </summary>
         </member>
         <member name="F:Sudoku.Techniques.Technique.AvoidableRectangleType3">
             <summary>
-            Indicates the AR type 3.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Techniques.Technique.ArType5">
-            <summary>
-            Indicates the AR type 5.
+            Indicates the avoidable rectangle type 3.
             </summary>
         </member>
         <member name="F:Sudoku.Techniques.Technique.AvoidableRectangleType5">
             <summary>
-            Indicates the AR type 5.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Techniques.Technique.HiddenAr">
-            <summary>
-            Indicates the hidden AR.
+            Indicates the avoidable rectangle type 5.
             </summary>
         </member>
         <member name="F:Sudoku.Techniques.Technique.HiddenAvoidableRectangle">
             <summary>
-            Indicates the hidden AR.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Techniques.Technique.ArPlus2D">
-            <summary>
-            Indicates the AR + 2D.
+            Indicates the hidden avoidable rectangle.
             </summary>
         </member>
         <member name="F:Sudoku.Techniques.Technique.AvoidableRectangle2D">
             <summary>
-            Indicates the AR + 2D.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Techniques.Technique.ArPlus3X">
-            <summary>
-            Indicates the AR + 3X.
+            Indicates the avoidable rectangle + 2D.
             </summary>
         </member>
         <member name="F:Sudoku.Techniques.Technique.AvoidableRectangle3X">
             <summary>
-            Indicates the AR + 3X.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Techniques.Technique.ArXyWing">
-            <summary>
-            Indicates the AR-XY-Wing.
+            Indicates the avoidable rectangle + 3X.
             </summary>
         </member>
         <member name="F:Sudoku.Techniques.Technique.AvoidableRectangleXyWing">
             <summary>
-            Indicates the AR-XY-Wing.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Techniques.Technique.ArXyzWing">
-            <summary>
-            Indicates the AR-XYZ-Wing.
+            Indicates the avoidable rectangle XY-Wing.
             </summary>
         </member>
         <member name="F:Sudoku.Techniques.Technique.AvoidableRectangleXyzWing">
             <summary>
-            Indicates the AR-XYZ-Wing.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Techniques.Technique.ArWxyzWing">
-            <summary>
-            Indicates the AR-WXYZ-Wing.
+            Indicates the avoidable rectangle XYZ-Wing.
             </summary>
         </member>
         <member name="F:Sudoku.Techniques.Technique.AvoidableRectangleWxyzWing">
             <summary>
-            Indicates the AR-WXYZ-Wing.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Techniques.Technique.ArSdc">
-            <summary>
-            Indicates the AR sue de coq.
+            Indicates the avoidable rectangle WXYZ-Wing.
             </summary>
         </member>
         <member name="F:Sudoku.Techniques.Technique.AvoidableRectangleSueDeCoq">
             <summary>
-            Indicates the AR sue de coq.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Techniques.Technique.ArGuardian">
-            <summary>
-            Indicates the AR guardian.
+            Indicates the avoidable rectangle sue de coq.
             </summary>
         </member>
         <member name="F:Sudoku.Techniques.Technique.AvoidableRectangleBrokenWing">
             <summary>
-            Indicates the AR guardian.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Techniques.Technique.ArHiddenSingleBlock">
-            <summary>
-            Indicates the AR hidden single in block.
+            Indicates the avoidable rectangle guardian.
             </summary>
         </member>
         <member name="F:Sudoku.Techniques.Technique.AvoidableRectangleHiddenSingleBlock">
             <summary>
-            Indicates the AR hidden single in block.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Techniques.Technique.ArHiddenSingleRow">
-            <summary>
-            Indicates the AR hidden single in row.
+            Indicates the avoidable rectangle hidden single in block.
             </summary>
         </member>
         <member name="F:Sudoku.Techniques.Technique.AvoidableRectangleHiddenSingleRow">
             <summary>
-            Indicates the AR hidden single in row.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Techniques.Technique.ArHiddenSingleColumn">
-            <summary>
-            Indicates the AR hidden single in column.
+            Indicates the avoidable rectangle hidden single in row.
             </summary>
         </member>
         <member name="F:Sudoku.Techniques.Technique.AvoidableRectangleHiddenSingleColumn">
             <summary>
-            Indicates the AR hidden single in column.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Techniques.Technique.UlType1">
-            <summary>
-            Indicates the UL type 1.
+            Indicates the avoidable rectangle hidden single in column.
             </summary>
         </member>
         <member name="F:Sudoku.Techniques.Technique.UniqueLoopType1">
             <summary>
-            Indicates the UL type 1.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Techniques.Technique.UlType2">
-            <summary>
-            Indicates the UL type 2.
+            Indicates the unique loop type 1.
             </summary>
         </member>
         <member name="F:Sudoku.Techniques.Technique.UniqueLoopType2">
             <summary>
-            Indicates the UL type 2.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Techniques.Technique.UlType3">
-            <summary>
-            Indicates the UL type 3.
+            Indicates the unique loop type 2.
             </summary>
         </member>
         <member name="F:Sudoku.Techniques.Technique.UniqueLoopType3">
             <summary>
-            Indicates the UL type 3.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Techniques.Technique.UlType4">
-            <summary>
-            Indicates the UL type 4.
+            Indicates the unique loop type 3.
             </summary>
         </member>
         <member name="F:Sudoku.Techniques.Technique.UniqueLoopType4">
             <summary>
-            Indicates the UL type 4.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Techniques.Technique.XrType1">
-            <summary>
-            Indicates the XR type 1.
+            Indicates the unique loop type 4.
             </summary>
         </member>
         <member name="F:Sudoku.Techniques.Technique.ExtendedRectangleType1">
             <summary>
-            Indicates the XR type 1.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Techniques.Technique.XrType2">
-            <summary>
-            Indicates the XR type 2.
+            Indicates the extended rectangle type 1.
             </summary>
         </member>
         <member name="F:Sudoku.Techniques.Technique.ExtendedRectangleType2">
             <summary>
-            Indicates the XR type 2.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Techniques.Technique.XrType3">
-            <summary>
-            Indicates the XR type 3.
+            Indicates the extended rectangle type 2.
             </summary>
         </member>
         <member name="F:Sudoku.Techniques.Technique.ExtendedRectangleType3">
             <summary>
-            Indicates the XR type 3.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Techniques.Technique.XrType4">
-            <summary>
-            Indicates the XR type 4.
+            Indicates the extended rectangle type 3.
             </summary>
         </member>
         <member name="F:Sudoku.Techniques.Technique.ExtendedRectangleType4">
             <summary>
-            Indicates the XR type 4.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Techniques.Technique.BugType1">
-            <summary>
-            Indicates the BUG type 1.
+            Indicates the extended rectangle type 4.
             </summary>
         </member>
         <member name="F:Sudoku.Techniques.Technique.BivalueUniversalGraveType1">
             <summary>
-            Indicates the BUG type 1.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Techniques.Technique.BugType2">
-            <summary>
-            Indicates the BUG type 2.
+            Indicates the bi-value universal grave type 1.
             </summary>
         </member>
         <member name="F:Sudoku.Techniques.Technique.BivalueUniversalGraveType2">
             <summary>
-            Indicates the BUG type 2.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Techniques.Technique.BugType3">
-            <summary>
-            Indicates the BUG type 3.
+            Indicates the bi-value universal grave type 2.
             </summary>
         </member>
         <member name="F:Sudoku.Techniques.Technique.BivalueUniversalGraveType3">
             <summary>
-            Indicates the BUG type 3.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Techniques.Technique.BugType4">
-            <summary>
-            Indicates the BUG type 4.
+            Indicates the bi-value universal grave type 3.
             </summary>
         </member>
         <member name="F:Sudoku.Techniques.Technique.BivalueUniversalGraveType4">
             <summary>
-            Indicates the BUG type 4.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Techniques.Technique.BugMultiple">
-            <summary>
-            Indicates the BUG + n.
+            Indicates the bi-value universal grave type 4.
             </summary>
         </member>
         <member name="F:Sudoku.Techniques.Technique.BivalueUniversalGravePlusN">
             <summary>
-            Indicates the BUG + n.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Techniques.Technique.BugMultipleFc">
-            <summary>
-            Indicates the BUG + n with forcing chains.
+            Indicates the bi-value universal grave + n.
             </summary>
         </member>
         <member name="F:Sudoku.Techniques.Technique.BivalueUniversalGravePlusNForcingChains">
             <summary>
-            Indicates the BUG + n with forcing chains.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Techniques.Technique.BugXz">
-            <summary>
-            Indicates the BUG-XZ.
+            Indicates the bi-value universal grave + n with forcing chains.
             </summary>
         </member>
         <member name="F:Sudoku.Techniques.Technique.BivalueUniversalGraveXzRule">
             <summary>
-            Indicates the BUG-XZ.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Techniques.Technique.BugXyWing">
-            <summary>
-            Indicates the BUG-XY-Wing.
+            Indicates the bi-value universal grave XZ rule.
             </summary>
         </member>
         <member name="F:Sudoku.Techniques.Technique.BivalueUniversalGraveXyWing">
             <summary>
-            Indicates the BUG-XY-Wing.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Techniques.Technique.BdpType1">
-            <summary>
-            Indicates the BDP type 1.
+            Indicates the bi-value universal grave XY-Wing.
             </summary>
         </member>
         <member name="F:Sudoku.Techniques.Technique.UniquePolygonType1">
@@ -7432,19 +7127,9 @@
             Indicates the unique polygon type 1.
             </summary>
         </member>
-        <member name="F:Sudoku.Techniques.Technique.BdpType2">
-            <summary>
-            Indicates the BDP type 2.
-            </summary>
-        </member>
         <member name="F:Sudoku.Techniques.Technique.UniquePolygonType2">
             <summary>
             Indicates the unique polygon type 2.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Techniques.Technique.BdpType3">
-            <summary>
-            Indicates the BDP type 3.
             </summary>
         </member>
         <member name="F:Sudoku.Techniques.Technique.UniquePolygonType3">
@@ -7452,19 +7137,9 @@
             Indicates the unique polygon type 3.
             </summary>
         </member>
-        <member name="F:Sudoku.Techniques.Technique.BdpType4">
-            <summary>
-            Indicates the BDP type 4.
-            </summary>
-        </member>
         <member name="F:Sudoku.Techniques.Technique.UniquePolygonType4">
             <summary>
             Indicates the unique polygon type 4.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Techniques.Technique.QdpType1">
-            <summary>
-            Indicates the QDP type 1.
             </summary>
         </member>
         <member name="F:Sudoku.Techniques.Technique.QiuDeadlyPatternType1">
@@ -7472,19 +7147,9 @@
             Indicates the Qiu's deadly pattern type 1.
             </summary>
         </member>
-        <member name="F:Sudoku.Techniques.Technique.QdpType2">
-            <summary>
-            Indicates the QDP type 2.
-            </summary>
-        </member>
         <member name="F:Sudoku.Techniques.Technique.QiuDeadlyPatternType2">
             <summary>
             Indicates the Qiu's deadly pattern type 2.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Techniques.Technique.QdpType3">
-            <summary>
-            Indicates the QDP type 3.
             </summary>
         </member>
         <member name="F:Sudoku.Techniques.Technique.QiuDeadlyPatternType3">
@@ -7492,19 +7157,9 @@
             Indicates the Qiu's deadly pattern type 3.
             </summary>
         </member>
-        <member name="F:Sudoku.Techniques.Technique.QdpType4">
-            <summary>
-            Indicates the QDP type 4.
-            </summary>
-        </member>
         <member name="F:Sudoku.Techniques.Technique.QiuDeadlyPatternType4">
             <summary>
             Indicates the Qiu's deadly pattern type 4.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Techniques.Technique.LockedQdp">
-            <summary>
-            Indicates the locked QDP.
             </summary>
         </member>
         <member name="F:Sudoku.Techniques.Technique.LockedQiuDeadlyPattern">
@@ -7512,19 +7167,9 @@
             Indicates the locked Qiu's deadly pattern.
             </summary>
         </member>
-        <member name="F:Sudoku.Techniques.Technique.UsType1">
-            <summary>
-            Indicates the US type 1.
-            </summary>
-        </member>
         <member name="F:Sudoku.Techniques.Technique.UniqueSquareType1">
             <summary>
             Indicates the unique square type 1.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Techniques.Technique.UsType2">
-            <summary>
-            Indicates the US type 2.
             </summary>
         </member>
         <member name="F:Sudoku.Techniques.Technique.UniqueSquareType2">
@@ -7532,19 +7177,9 @@
             Indicates the unique square type 2.
             </summary>
         </member>
-        <member name="F:Sudoku.Techniques.Technique.UsType3">
-            <summary>
-            Indicates the US type 3.
-            </summary>
-        </member>
         <member name="F:Sudoku.Techniques.Technique.UniqueSquareType3">
             <summary>
             Indicates the unique square type 3.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Techniques.Technique.UsType4">
-            <summary>
-            Indicates the US type 4.
             </summary>
         </member>
         <member name="F:Sudoku.Techniques.Technique.UniqueSquareType4">
@@ -7552,19 +7187,9 @@
             Indicates the unique square type 4.
             </summary>
         </member>
-        <member name="F:Sudoku.Techniques.Technique.ReverseUrType1">
-            <summary>
-            Indicates the reverse UR type 1.
-            </summary>
-        </member>
         <member name="F:Sudoku.Techniques.Technique.ReverseUniqueRectangleType1">
             <summary>
             Indicates the reverse unique rectangle type 1.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Techniques.Technique.ReverseUrType2">
-            <summary>
-            Indicates the reverse UR type 2.
             </summary>
         </member>
         <member name="F:Sudoku.Techniques.Technique.ReverseUniqueRectangleType2">
@@ -7572,19 +7197,9 @@
             Indicates the reverse unique rectangle type 2.
             </summary>
         </member>
-        <member name="F:Sudoku.Techniques.Technique.ReverseUrType3">
-            <summary>
-            Indicates the reverse UR type 3.
-            </summary>
-        </member>
         <member name="F:Sudoku.Techniques.Technique.ReverseUniqueRectangleType3">
             <summary>
             Indicates the reverse unique rectangle type 3.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Techniques.Technique.ReverseUrType4">
-            <summary>
-            Indicates the reverse UR type 4.
             </summary>
         </member>
         <member name="F:Sudoku.Techniques.Technique.ReverseUniqueRectangleType4">
@@ -7592,19 +7207,9 @@
             Indicates the reverse unique rectangle type 4.
             </summary>
         </member>
-        <member name="F:Sudoku.Techniques.Technique.ReverseUlType1">
-            <summary>
-            Indicates the reverse UL type 1.
-            </summary>
-        </member>
         <member name="F:Sudoku.Techniques.Technique.ReverseUniqueLoopType1">
             <summary>
             Indicates the reverse unique loop type 1.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Techniques.Technique.ReverseUlType2">
-            <summary>
-            Indicates the reverse UL type 2.
             </summary>
         </member>
         <member name="F:Sudoku.Techniques.Technique.ReverseUniqueLoopType2">
@@ -7612,29 +7217,14 @@
             Indicates the reverse unique loop type 2.
             </summary>
         </member>
-        <member name="F:Sudoku.Techniques.Technique.ReverseUlType3">
-            <summary>
-            Indicates the reverse UL type 3.
-            </summary>
-        </member>
         <member name="F:Sudoku.Techniques.Technique.ReverseUniqueLoopType3">
             <summary>
             Indicates the reverse unique loop type 3.
             </summary>
         </member>
-        <member name="F:Sudoku.Techniques.Technique.ReverseUlType4">
-            <summary>
-            Indicates the reverse UL type 4.
-            </summary>
-        </member>
         <member name="F:Sudoku.Techniques.Technique.ReverseUniqueLoopType4">
             <summary>
             Indicates the reverse unique loop type 4.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Techniques.Technique.Sdc">
-            <summary>
-            Indicates the SdC.
             </summary>
         </member>
         <member name="F:Sudoku.Techniques.Technique.SueDeCoq">
@@ -7647,19 +7237,9 @@
             Indicates the sue de coq with isolated digit.
             </summary>
         </member>
-        <member name="F:Sudoku.Techniques.Technique.Sdc3d">
-            <summary>
-            Indicates the 3-dimension SdC.
-            </summary>
-        </member>
         <member name="F:Sudoku.Techniques.Technique.SueDeCoq3Dimension">
             <summary>
             Indicates the 3-dimensional sue de coq.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Techniques.Technique.CannibalizedSdc">
-            <summary>
-            Indicates the cannibalized SdC.
             </summary>
         </member>
         <member name="F:Sudoku.Techniques.Technique.SueDeCoqCannibalism">
@@ -7685,11 +7265,6 @@
         <member name="F:Sudoku.Techniques.Technique.EmptyRectangle">
             <summary>
             Indicates the empty rectangle.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Techniques.Technique.Guardian">
-            <summary>
-            Indicates the guardian.
             </summary>
         </member>
         <member name="F:Sudoku.Techniques.Technique.BrokenWing">
@@ -7762,11 +7337,6 @@
             Indicates the continuous nice loop.
             </summary>
         </member>
-        <member name="F:Sudoku.Techniques.Technique.Aic">
-            <summary>
-            Indicates the AIC.
-            </summary>
-        </member>
         <member name="F:Sudoku.Techniques.Technique.AlternatingInferenceChain">
             <summary>
             Indicates the alternating inference chain.
@@ -7812,19 +7382,9 @@
             Indicates the grouped continuous nice loop.
             </summary>
         </member>
-        <member name="F:Sudoku.Techniques.Technique.GroupedAic">
-            <summary>
-            Indicates the grouped AIC.
-            </summary>
-        </member>
         <member name="F:Sudoku.Techniques.Technique.GroupedAlternatingInferenceChain">
             <summary>
             Indicates the grouped alternating inference chain.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Techniques.Technique.NishioFc">
-            <summary>
-            Indicates the nishio FCs.
             </summary>
         </member>
         <member name="F:Sudoku.Techniques.Technique.NishioForcingChains">
@@ -7832,19 +7392,9 @@
             Indicates the nishio forcing chains.
             </summary>
         </member>
-        <member name="F:Sudoku.Techniques.Technique.RegionFc">
-            <summary>
-            Indicates the region FCs.
-            </summary>
-        </member>
         <member name="F:Sudoku.Techniques.Technique.RegionForcingChains">
             <summary>
             Indicates the region forcing chains.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Techniques.Technique.CellFc">
-            <summary>
-            Indicates the cell FCs.
             </summary>
         </member>
         <member name="F:Sudoku.Techniques.Technique.CellForcingChains">
@@ -7852,19 +7402,9 @@
             Indicates the cell forcing chains.
             </summary>
         </member>
-        <member name="F:Sudoku.Techniques.Technique.DynamicRegionFc">
-            <summary>
-            Indicates the dynamic region FCs.
-            </summary>
-        </member>
         <member name="F:Sudoku.Techniques.Technique.DynamicRegionForcingChains">
             <summary>
             Indicates the dynamic region forcing chains.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Techniques.Technique.DynamicCellFc">
-            <summary>
-            Indicates the dynamic cell FCs.
             </summary>
         </member>
         <member name="F:Sudoku.Techniques.Technique.DynamicCellForcingChains">
@@ -7872,19 +7412,9 @@
             Indicates the dynamic cell forcing chains.
             </summary>
         </member>
-        <member name="F:Sudoku.Techniques.Technique.DynamicContradictionFc">
-            <summary>
-            Indicates the dynamic contradiction FCs.
-            </summary>
-        </member>
         <member name="F:Sudoku.Techniques.Technique.DynamicContradictionForcingChains">
             <summary>
             Indicates the dynamic contradiction forcing chains.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Techniques.Technique.DynamicDoubleFc">
-            <summary>
-            Indicates the dynamic double FCs.
             </summary>
         </member>
         <member name="F:Sudoku.Techniques.Technique.DynamicDoubleForcingChains">
@@ -7892,19 +7422,9 @@
             Indicates the dynamic double forcing chains.
             </summary>
         </member>
-        <member name="F:Sudoku.Techniques.Technique.DynamicFc">
-            <summary>
-            Indicates the dynamic FCs.
-            </summary>
-        </member>
         <member name="F:Sudoku.Techniques.Technique.DynamicForcingChains">
             <summary>
             Indicates the dynamic forcing chains.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Techniques.Technique.Erip">
-            <summary>
-            Indicates the ERIP.
             </summary>
         </member>
         <member name="F:Sudoku.Techniques.Technique.EmptyRectangleIntersectionPair">
@@ -7912,19 +7432,9 @@
             Indicates the empty rectangle intersection pair.
             </summary>
         </member>
-        <member name="F:Sudoku.Techniques.Technique.Esp">
-            <summary>
-            Indicates the ESP.
-            </summary>
-        </member>
         <member name="F:Sudoku.Techniques.Technique.ExtendedSubsetPrinciple">
             <summary>
             Indicates the extended subset principle.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Techniques.Technique.SinglyLinkedAlsXz">
-            <summary>
-            Indicates the singly linked ALS-XZ.
             </summary>
         </member>
         <member name="F:Sudoku.Techniques.Technique.SinglyLinkedAlmostLockedSetsXzRule">
@@ -7932,29 +7442,14 @@
             Indicates the singly linked ALS-XZ.
             </summary>
         </member>
-        <member name="F:Sudoku.Techniques.Technique.DoublyLinkedAlsXz">
-            <summary>
-            Indicates the doubly linked ALS-XZ.
-            </summary>
-        </member>
         <member name="F:Sudoku.Techniques.Technique.DoublyLinkedAlmostLockedSetsXzRule">
             <summary>
             Indicates the doubly linked ALS-XZ.
             </summary>
         </member>
-        <member name="F:Sudoku.Techniques.Technique.AlsXyWing">
-            <summary>
-            Indicates the ALS-XY-Wing.
-            </summary>
-        </member>
         <member name="F:Sudoku.Techniques.Technique.AlmostLockedSetsXyWing">
             <summary>
             Indicates the ALS-XY-Wing.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Techniques.Technique.AlsWWing">
-            <summary>
-            Indicates the ALS-W-Wing.
             </summary>
         </member>
         <member name="F:Sudoku.Techniques.Technique.AlmostLockedSetsWWing">
@@ -7967,19 +7462,9 @@
             Indicates the death blossom.
             </summary>
         </member>
-        <member name="F:Sudoku.Techniques.Technique.Gsp">
-            <summary>
-            Indicates the GSP.
-            </summary>
-        </member>
         <member name="F:Sudoku.Techniques.Technique.GurthSymmetricalPlacement">
             <summary>
             Indicates the Gurth's symmetrical placement.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Techniques.Technique.Gsp2">
-            <summary>
-            Indicates the GSP2.
             </summary>
         </member>
         <member name="F:Sudoku.Techniques.Technique.ExtendedGurthSymmetricalPlacement">
@@ -7987,19 +7472,9 @@
             Indicates the extended Gurth's symmetrical placement.
             </summary>
         </member>
-        <member name="F:Sudoku.Techniques.Technique.Je">
-            <summary>
-            Indicates the JE.
-            </summary>
-        </member>
         <member name="F:Sudoku.Techniques.Technique.JuniorExocet">
             <summary>
             Indicates the junior exocet.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Techniques.Technique.Se">
-            <summary>
-            Indicates the SE.
             </summary>
         </member>
         <member name="F:Sudoku.Techniques.Technique.SeniorExocet">
@@ -8007,19 +7482,9 @@
             Indicates the senior exocet.
             </summary>
         </member>
-        <member name="F:Sudoku.Techniques.Technique.ComplexSe">
-            <summary>
-            Indicates the complex SE.
-            </summary>
-        </member>
         <member name="F:Sudoku.Techniques.Technique.ComplexSeniorExocet">
             <summary>
             Indicates the complex senior exocet.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Techniques.Technique.SiameseJe">
-            <summary>
-            Indicates the siamese JE. 
             </summary>
         </member>
         <member name="F:Sudoku.Techniques.Technique.SiameseJuniorExocet">
@@ -8027,19 +7492,9 @@
             Indicates the siamese junior exocet.
             </summary>
         </member>
-        <member name="F:Sudoku.Techniques.Technique.SiameseSe">
-            <summary>
-            Indicates the siamese SE.
-            </summary>
-        </member>
         <member name="F:Sudoku.Techniques.Technique.SiameseSeniorExocet">
             <summary>
             Indicates the siamese senior exocet.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Techniques.Technique.SkLoop">
-            <summary>
-            Indicates the SK-Loop.
             </summary>
         </member>
         <member name="F:Sudoku.Techniques.Technique.DominoLoop">
@@ -8047,19 +7502,9 @@
             Indicates the domino loop.
             </summary>
         </member>
-        <member name="F:Sudoku.Techniques.Technique.Msls">
-            <summary>
-            Indicates the multi-sector locked sets.
-            </summary>
-        </member>
         <member name="F:Sudoku.Techniques.Technique.MultisectorLockedSets">
             <summary>
             Indicates the multi-sector locked sets.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Techniques.Technique.Pom">
-            <summary>
-            Indicates the POM.
             </summary>
         </member>
         <member name="F:Sudoku.Techniques.Technique.PatternOverlay">
@@ -8107,11 +7552,6 @@
             Indicates the singles technique.
             </summary>
         </member>
-        <member name="F:Sudoku.Techniques.TechniqueGroup.Lc">
-            <summary>
-            Indicates the locked candidates (LC) technique.
-            </summary>
-        </member>
         <member name="F:Sudoku.Techniques.TechniqueGroup.LockedCandidates">
             <summary>
             Indicates the locked candidates (LC) technique.
@@ -8142,19 +7582,9 @@
             Indicates the empty rectangle technique.
             </summary>
         </member>
-        <member name="F:Sudoku.Techniques.TechniqueGroup.Sdp">
-            <summary>
-            Indicates the single digit pattern (SDP) technique.
-            </summary>
-        </member>
         <member name="F:Sudoku.Techniques.TechniqueGroup.SingleDigitPattern">
             <summary>
             Indicates the single digit pattern (SDP) technique.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Techniques.TechniqueGroup.Erip">
-            <summary>
-            Indicates the empty rectangle intersection pair (ERIP) technique.
             </summary>
         </member>
         <member name="F:Sudoku.Techniques.TechniqueGroup.EmptyRectangleIntersectionPair">
@@ -8162,19 +7592,9 @@
             Indicates the empty rectangle intersection pair (ERIP) technique.
             </summary>
         </member>
-        <member name="F:Sudoku.Techniques.TechniqueGroup.Alc">
-            <summary>
-            Indicates the almost locked candidates (ALC) technique.
-            </summary>
-        </member>
         <member name="F:Sudoku.Techniques.TechniqueGroup.AlmostLockedCandidates">
             <summary>
             Indicates the almost locked candidates (ALC) technique.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Techniques.TechniqueGroup.Aic">
-            <summary>
-            Indicates the alternating inference chain (AIC) technique.
             </summary>
         </member>
         <member name="F:Sudoku.Techniques.TechniqueGroup.AlternatingInferenceChain">
@@ -8182,19 +7602,9 @@
             Indicates the alternating inference chain (AIC) technique.
             </summary>
         </member>
-        <member name="F:Sudoku.Techniques.TechniqueGroup.Fc">
-            <summary>
-            Indicates the forcing chains (FC) technique.
-            </summary>
-        </member>
         <member name="F:Sudoku.Techniques.TechniqueGroup.ForcingChains">
             <summary>
             Indicates the forcing chains (FC) technique.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Techniques.TechniqueGroup.Ur">
-            <summary>
-            Indicates the unique rectangle (UR) technique.
             </summary>
         </member>
         <member name="F:Sudoku.Techniques.TechniqueGroup.UniqueRectangle">
@@ -8202,19 +7612,9 @@
             Indicates the unique rectangle (UR) technique.
             </summary>
         </member>
-        <member name="F:Sudoku.Techniques.TechniqueGroup.UrPlus">
-            <summary>
-            Indicates the unique rectangle plus (UR+) technique.
-            </summary>
-        </member>
         <member name="F:Sudoku.Techniques.TechniqueGroup.UniqueRectanglePlus">
             <summary>
             Indicates the unique rectangle plus (UR+) technique.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Techniques.TechniqueGroup.Ul">
-            <summary>
-            Indicates the unique loop (UL) technique.
             </summary>
         </member>
         <member name="F:Sudoku.Techniques.TechniqueGroup.UniqueLoop">
@@ -8222,29 +7622,14 @@
             Indicates the unique loop (UL) technique.
             </summary>
         </member>
-        <member name="F:Sudoku.Techniques.TechniqueGroup.Xr">
-            <summary>
-            Indicates the extended rectangle (XR) technique.
-            </summary>
-        </member>
         <member name="F:Sudoku.Techniques.TechniqueGroup.ExtendedRectangle">
             <summary>
             Indicates the extended rectangle (XR) technique.
             </summary>
         </member>
-        <member name="F:Sudoku.Techniques.TechniqueGroup.Bug">
-            <summary>
-            Indicates the bi-value universal grave (BUG) technique.
-            </summary>
-        </member>
         <member name="F:Sudoku.Techniques.TechniqueGroup.BivalueUniversalGrave">
             <summary>
             Indicates the bi-value universal grave (BUG) technique.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Techniques.TechniqueGroup.ReverseBug">
-            <summary>
-            Indicates the reverse bi-value universal grave (Reverse BUG) technique.
             </summary>
         </member>
         <member name="F:Sudoku.Techniques.TechniqueGroup.ReverseBivalueUniversalGrave">
@@ -8262,19 +7647,9 @@
             Indicates the bi-value oddagon technique.
             </summary>
         </member>
-        <member name="F:Sudoku.Techniques.TechniqueGroup.Sdc">
-            <summary>
-            Indicates the sue de coq (SdC) technique.
-            </summary>
-        </member>
         <member name="F:Sudoku.Techniques.TechniqueGroup.SueDeCoq">
             <summary>
             Indicates the sue de coq (SdC) technique.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Techniques.TechniqueGroup.Guardian">
-            <summary>
-            Indicates the guardian technique.
             </summary>
         </member>
         <member name="F:Sudoku.Techniques.TechniqueGroup.BrokenWing">
@@ -8282,29 +7657,14 @@
             Indicates the broken wing technique.
             </summary>
         </member>
-        <member name="F:Sudoku.Techniques.TechniqueGroup.AlsChainingLike">
-            <summary>
-            Indicates the ALS chaining-like (ALS-XZ, ALS-XY-Wing, ALS-W-Wing) technique.
-            </summary>
-        </member>
         <member name="F:Sudoku.Techniques.TechniqueGroup.AlmostLockedSetsChainingLike">
             <summary>
             Indicates the ALS chaining-like (ALS-XZ, ALS-XY-Wing, ALS-W-Wing) technique.
             </summary>
         </member>
-        <member name="F:Sudoku.Techniques.TechniqueGroup.SkLoop">
-            <summary>
-            Indicates the SK-Loop technique.
-            </summary>
-        </member>
         <member name="F:Sudoku.Techniques.TechniqueGroup.DominoLoop">
             <summary>
             Indicates the SK-Loop technique.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Techniques.TechniqueGroup.Msls">
-            <summary>
-            Indicates the multi-sector locked sets (MSLS) technique.
             </summary>
         </member>
         <member name="F:Sudoku.Techniques.TechniqueGroup.MultisectorLockedSets">
@@ -8332,11 +7692,6 @@
             Indicates the bowman bingo technique.
             </summary>
         </member>
-        <member name="F:Sudoku.Techniques.TechniqueGroup.Pom">
-            <summary>
-            Indicates the pattern overlay method (POM) technique.
-            </summary>
-        </member>
         <member name="F:Sudoku.Techniques.TechniqueGroup.PatternOverlay">
             <summary>
             Indicates the pattern overlay method (POM) technique.
@@ -8345,11 +7700,6 @@
         <member name="F:Sudoku.Techniques.TechniqueGroup.Templating">
             <summary>
             Indicates the templating technique.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Techniques.TechniqueGroup.Bf">
-            <summary>
-            Indicates the brute force (BF) technique.
             </summary>
         </member>
         <member name="F:Sudoku.Techniques.TechniqueGroup.BruteForce">

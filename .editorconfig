@@ -474,8 +474,6 @@ dotnet_diagnostic.CA2255.severity = none
 
 [*.json]
 
-#### Core EditorConfig Options ####
-
 # Indentation and spacing
 indent_size = 2
 indent_style = space
