@@ -1,6 +1,6 @@
 ﻿# C# and XAML files
 
-[*.{cs,xaml}]
+[*.cs]
 
 #### Core EditorConfig Options ####
 
@@ -478,6 +478,17 @@ dotnet_diagnostic.CA2255.severity = none
 indent_size = 2
 indent_style = space
 tab_width = 2
+
+# New line preferences
+end_of_line = crlf
+insert_final_newline = false
+
+[*.xaml]
+
+# Indentation and spacing
+indent_size = 4
+indent_style = tab
+tab_width = 4
 
 # New line preferences
 end_of_line = crlf
