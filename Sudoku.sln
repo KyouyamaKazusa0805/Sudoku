@@ -10,6 +10,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Global Files", "Global File
 		Directory.Build.props = Directory.Build.props
 		global.json = global.json
 		LICENSE = LICENSE
+		NuGet.config = NuGet.config
 		README-zh-cn.md = README-zh-cn.md
 		README.md = README.md
 	EndProjectSection
@@ -40,7 +41,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sudoku.UI", "src\Sudoku.UI\
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UI Projects", "UI Projects", "{319301BA-08D0-4603-82D9-5001BD6359F4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sudoku.Graphics", "src\Sudoku.Graphics\Sudoku.Graphics.csproj", "{AC0ADD5C-C7C1-4D00-833B-B39E5E1AE6C5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sudoku.Graphics", "src\Sudoku.Graphics\Sudoku.Graphics.csproj", "{AC0ADD5C-C7C1-4D00-833B-B39E5E1AE6C5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
