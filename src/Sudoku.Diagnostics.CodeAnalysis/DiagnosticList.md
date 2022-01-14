@@ -34,6 +34,10 @@
 | SCA0119       | Usage     | Error    | The discard parameter can't be used or referenced unless a 'nameof' expression |                                                              |
 | SCA0120       | Usage     | Error    | Discard parameter can't be modified by keyword 'out', 'ref' or 'params' |                                                              |
 | SCA0121       | Usage     | Error    | Can't apply '[IsDiscard]' onto a parameter that has already discarded |                                                              |
+| SCA0122       | Usage     | Error    | Attribute '[InitializationOnly]' can only apply to an auto-implemented property or a field |                                                              |
+| SCA0123       | Usage     | Warning  | Field marked '[InitializationOnly]' shouldn't expose outside the project | Field marked '[InitializationOnly]' shouldn't expose outside the project; suggested access modifiers is 'internal' |
+| SCA0124       | Usage     | Warning  | Property marked '[InitializationOnly]' shouldn't expose its setter outside the project | Property marked '[InitializationOnly]' shouldn't expose its setter outside the project; suggested access modifiers is 'internal' |
+| SCA0125       | Usage     | Error    | Cannot assign the value to the field or property if it is marked '[InitializationOnly]' | Cannot assign the value to the field or property if it is marked '[InitializationOnly]'; they are initialized only by a source generator or a module initializer |
 | SCA0301       | Naming    | Warning  | Please apply camel-casing onto local functions               |                                                              |
 | SCA0302       | Naming    | Warning  | Please name '@this' onto the first argument of the extension deconstruction method |                                                              |
 | SCA0303       | Design    | Warning  | Unnecessary modifier 'readonly' on this member because the containing type has been already read-only |                                                              |
