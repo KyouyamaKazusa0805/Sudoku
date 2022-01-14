@@ -481,7 +481,7 @@ public sealed partial class GridSyntaxChecker : ISyntaxContextReceiver
 		{
 			case IInvocationOperation
 			{
-				TargetMethod: { Name: "ToString" },
+				TargetMethod.Name: "ToString",
 				Instance.Type: var typeSymbol,
 				Arguments: [
 				{

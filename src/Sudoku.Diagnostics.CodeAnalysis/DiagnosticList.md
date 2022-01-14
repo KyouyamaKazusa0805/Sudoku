@@ -34,7 +34,6 @@
 | SCA0119       | Usage     | Error    | The discard parameter can't be used or referenced unless a 'nameof' expression |                                                              |
 | SCA0120       | Usage     | Error    | Discard parameter can't be modified by keyword 'out', 'ref' or 'params' |                                                              |
 | SCA0121       | Usage     | Error    | Can't apply '[IsDiscard]' onto a parameter that has already discarded |                                                              |
-| SCA0201       | Usage     | Warning  | Method 'RaiseNotification' should trigger with the current property name as the argument value |                                                              |
 | SCA0301       | Naming    | Warning  | Please apply camel-casing onto local functions               |                                                              |
 | SCA0302       | Naming    | Warning  | Please name '@this' onto the first argument of the extension deconstruction method |                                                              |
 | SCA0303       | Design    | Warning  | Unnecessary modifier 'readonly' on this member because the containing type has been already read-only |                                                              |

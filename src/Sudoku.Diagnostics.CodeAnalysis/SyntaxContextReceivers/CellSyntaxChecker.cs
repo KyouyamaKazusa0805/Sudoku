@@ -157,7 +157,7 @@ public sealed partial class CellSyntaxChecker : ISyntaxContextReceiver
 		if (
 			operation is not IObjectCreationOperation
 			{
-				Constructor: { ContainingType: var containingTypeSymbol },
+				Constructor.ContainingType: var containingTypeSymbol,
 				Initializer: null,
 				Arguments: [
 				{

@@ -23,14 +23,11 @@ public sealed partial class RegularExpressionSyntaxChecker : ISyntaxContextRecei
 			if (
 				variable is not
 				{
-					Initializer:
+					Initializer.Value: LiteralExpressionSyntax
 					{
-						Value: LiteralExpressionSyntax
-						{
-							RawKind: (int)SyntaxKind.StringLiteralExpression,
-							Token: var literalToken
-						} stringLiteralExpression
-					}
+						RawKind: (int)SyntaxKind.StringLiteralExpression,
+						Token: var literalToken
+					} stringLiteralExpression
 				}
 			)
 			{
@@ -41,7 +38,7 @@ public sealed partial class RegularExpressionSyntaxChecker : ISyntaxContextRecei
 			if (
 				symbol is not IFieldSymbol
 				{
-					Type: { SpecialType: var specialTypeOfTypeSymbol },
+					Type.SpecialType: var specialTypeOfTypeSymbol,
 					DeclaringSyntaxReferences: [_, ..],
 					IsConst: var isConstant,
 					HasConstantValue: var hasConstant,
