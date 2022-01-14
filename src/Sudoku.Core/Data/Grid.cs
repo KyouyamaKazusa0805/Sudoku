@@ -21,30 +21,20 @@ public unsafe partial struct Grid
 	public const short DefaultMask = EmptyMask | MaxCandidatesMask;
 
 	/// <inheritdoc cref="IGrid{TGrid}.MaxCandidatesMask"/>
-	public const short MaxCandidatesMask = (1 << RegionCellsCount) - 1;
+	public const short MaxCandidatesMask = (1 << 9) - 1;
 
 	/// <inheritdoc cref="IGrid{TGrid}.EmptyMask"/>
-	public const short EmptyMask = (int)CellStatus.Empty << RegionCellsCount;
+	public const short EmptyMask = (int)CellStatus.Empty << 9;
 
 	/// <inheritdoc cref="IGrid{TGrid}.ModifiableMask"/>
-	public const short ModifiableMask = (int)CellStatus.Modifiable << RegionCellsCount;
+	public const short ModifiableMask = (int)CellStatus.Modifiable << 9;
 
 	/// <inheritdoc cref="IGrid{TGrid}.GivenMask"/>
-	public const short GivenMask = (int)CellStatus.Given << RegionCellsCount;
-
-	/// <summary>
-	/// Indicates the size of each grid.
-	/// </summary>
-	internal const byte Length = 81;
-
-	/// <summary>
-	/// Indicates the size of each region.
-	/// </summary>
-	internal const byte RegionCellsCount = 9;
+	public const short GivenMask = (int)CellStatus.Given << 9;
 
 
 	/// <inheritdoc cref="IGrid{TGrid}.EmptyString"/>
-	public static readonly string EmptyString = new('0', Length);
+	public static readonly string EmptyString = new('0', 81);
 
 	/// <inheritdoc cref="IGrid{TGrid}.ValueChanged"/>
 	public static readonly void* ValueChanged;
@@ -98,11 +88,12 @@ public unsafe partial struct Grid
 	/// </list>
 	/// </remarks>
 	/// <seealso cref="CellStatus"/>
-	private fixed short _values[Length];
+	private fixed short _values[81];
 
 
 	/// <summary>
-	/// Initializes a <see cref="Grid"/> instance using the <see cref="Empty"/> instance to initialize.
+	/// Initializes a <see cref="Grid"/> instance using the <see cref="Empty"/> instance to initialize,
+	/// which is equivalent to assignment <c>this = Empty;</c>.
 	/// </summary>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public Grid() => this = Empty;
@@ -111,30 +102,31 @@ public unsafe partial struct Grid
 	/// Creates an instance using grid values.
 	/// </summary>
 	/// <param name="gridValues">The array of grid values.</param>
-	public Grid(int[] gridValues) : this(gridValues, GridCreatingOption.None)
+	/// <param name="creatingOption">The grid creating option.</param>
+	public Grid(int[] gridValues, GridCreatingOption creatingOption = GridCreatingOption.None)
+	: this(gridValues[0], creatingOption)
 	{
 	}
 
 	/// <summary>
-	/// Creates an instance using grid values.
+	/// Initializes a <see cref="Grid"/> instance via the array of cell digits of type <see cref="int"/>*.
 	/// </summary>
-	/// <param name="gridValues">The array of grid values.</param>
+	/// <param name="pGridValues">The pointer parameter indicating the array of cell digits.</param>
 	/// <param name="creatingOption">The grid creating option.</param>
-	public Grid(int[] gridValues, GridCreatingOption creatingOption)
+	public Grid(int* pGridValues, GridCreatingOption creatingOption = GridCreatingOption.None)
+	: this(*pGridValues, creatingOption)
 	{
-		this = Empty;
-		for (int i = 0; i < Length; i++)
-		{
-			if (gridValues[i] is var value and not 0)
-			{
-				// Calls the indexer to trigger the event
-				// (Clear the candidates in peer cells).
-				this[i] = creatingOption == GridCreatingOption.MinusOne ? value - 1 : value;
+	}
 
-				// Set the status to 'CellStatus.Given'.
-				SetStatus(i, CellStatus.Given);
-			}
-		}
+	/// <summary>
+	/// Initializes a <see cref="Grid"/> instance via the array of cell digits
+	/// of type <see cref="ReadOnlySpan{T}"/>.
+	/// </summary>
+	/// <param name="gridValues">The list of cell digits.</param>
+	/// <param name="creatingOption">The grid creating option.</param>
+	public Grid(ReadOnlySpan<int> gridValues, GridCreatingOption creatingOption = GridCreatingOption.None)
+	: this(gridValues[0], creatingOption)
+	{
 	}
 
 	/// <summary>
@@ -172,14 +164,66 @@ public unsafe partial struct Grid
 	/// <exception cref="ArgumentException">Throws when <see cref="Array.Length"/> is not 81.</exception>
 	public Grid(short[] masks)
 	{
-		if (masks.Length != Length)
+		if (masks.Length != 81)
 		{
-			throw new ArgumentException($"The length of the array argument should be {Length}.", nameof(masks));
+			throw new ArgumentException("The length of the array argument should be 81.", nameof(masks));
 		}
 
 		fixed (short* pArray = masks, pValues = _values)
 		{
-			Unsafe.CopyBlock(pValues, pArray, sizeof(short) * Length);
+			Unsafe.CopyBlock(pValues, pArray, sizeof(short) * 81);
+		}
+	}
+
+	/// <summary>
+	/// Creates a <see cref="Grid"/> instance via the pointer of the first element of the cell digit,
+	/// and the creating option.
+	/// </summary>
+	/// <param name="firstElement">
+	/// <para>The reference of the first element.</para>
+	/// <para><i>
+	/// Please note that the parameter is an <see langword="in"/> parameter, which has the same meaning
+	/// for <see langword="ref readonly"/> returns or locals. You can treat it as the first element
+	/// in an array of elements. Different with <see langword="ref"/> parameter, <see langword="in"/>
+	/// modifier has the same semantic as <see langword="ref readonly var"/>
+	/// instead of <see langword="ref var"/>.
+	/// </i></para>
+	/// </param>
+	/// <param name="creatingOption">The creating option.</param>
+	/// <remarks><i>
+	/// C# 7.3 introduces a new keyword <see langword="in"/> as the parameter modifier to make the parameter
+	/// pass by reference and be read-only. Therefore, this keyword contains 2 usages:
+	/// <list type="number">
+	/// <item>
+	/// Ensure the argument to <b>be read-only</b> and cannot be modified. Otherwise,
+	/// a new copied instance will be created to prevent any modifications on the original variable.
+	/// </item>
+	/// <item>
+	/// Ensure the argument to <b>pass by reference</b> in order to treat it as the pointer or array of elements
+	/// of this type, and treat the argument as the first element of the whole element series.
+	/// </item>
+	/// </list>
+	/// From the above meaning on this keyword, we can conclude that
+	/// we should regard it as <see langword="ref readonly"/> parameters,
+	/// but C# requires us using the keyword <see langword="in"/> as the modifier
+	/// on a parameter rather than <see langword="ref readonly"/>.
+	/// </i></remarks>
+	private Grid(in int firstElement, GridCreatingOption creatingOption = GridCreatingOption.None)
+	{
+		fixed (int* p = &firstElement)
+		{
+			for (int i = 0; i < 81; i++)
+			{
+				if (p[i] is var value and not 0)
+				{
+					// Calls the indexer to trigger the event
+					// (Clear the candidates in peer cells).
+					this[i] = creatingOption == GridCreatingOption.MinusOne ? value - 1 : value;
+
+					// Set the status to 'CellStatus.Given'.
+					SetStatus(i, CellStatus.Given);
+				}
+			}
 		}
 	}
 
@@ -196,7 +240,7 @@ public unsafe partial struct Grid
 		fixed (short* p = Empty._values)
 		{
 			int i = 0;
-			for (short* ptrP = p; i < Length; *ptrP++ = DefaultMask, i++) ;
+			for (short* ptrP = p; i < 81; *ptrP++ = DefaultMask, i++) ;
 		}
 
 		// Initializes events.
@@ -223,7 +267,7 @@ public unsafe partial struct Grid
 
 		static void onRefreshingCandidates(ref Grid @this)
 		{
-			for (int i = 0; i < Length; i++)
+			for (int i = 0; i < 81; i++)
 			{
 				if (@this.GetStatus(i) == CellStatus.Empty)
 				{
@@ -249,7 +293,7 @@ public unsafe partial struct Grid
 	{
 		get
 		{
-			for (int i = 0; i < Length; i++)
+			for (int i = 0; i < 81; i++)
 			{
 				if (GetStatus(i) == CellStatus.Empty)
 				{
@@ -294,7 +338,7 @@ public unsafe partial struct Grid
 			{
 				int i = 1;
 				short* p = pGrid + 1;
-				while (i < Length)
+				while (i < 81)
 				{
 					if (p++[i++] != 0)
 					{
@@ -314,7 +358,7 @@ public unsafe partial struct Grid
 		get
 		{
 			int count = 0;
-			for (int i = 0; i < Length; i++)
+			for (int i = 0; i < 81; i++)
 			{
 				if (GetStatus(i) == CellStatus.Empty)
 				{
@@ -476,8 +520,8 @@ public unsafe partial struct Grid
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get
 		{
-			int[] arr = new int[Length];
-			Array.Fill(arr, -1);
+			var arr = (stackalloc int[81]);
+			arr.Fill(-1);
 
 			foreach (int cell in GivenCells)
 			{
@@ -556,7 +600,7 @@ public unsafe partial struct Grid
 
 					break;
 				}
-				case >= 0 and < RegionCellsCount:
+				case >= 0 and < 9:
 				{
 					ref short result = ref _values[cell];
 					short copied = result;
@@ -583,7 +627,7 @@ public unsafe partial struct Grid
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		set
 		{
-			if (cell is >= 0 and < Length && digit is >= 0 and < RegionCellsCount)
+			if (cell is >= 0 and < 81 && digit is >= 0 and < 9)
 			{
 				short copied = _values[cell];
 				if (value)
@@ -619,7 +663,7 @@ public unsafe partial struct Grid
 	/// <inheritdoc/>
 	public readonly bool SimplyValidate()
 	{
-		for (int i = 0; i < Length; i++)
+		for (int i = 0; i < 81; i++)
 		{
 			switch (GetStatus(i))
 			{
@@ -675,8 +719,8 @@ public unsafe partial struct Grid
 	/// <inheritdoc/>
 	public readonly int[] ToArray()
 	{
-		int[] result = new int[Length];
-		for (int i = 0; i < Length; i++)
+		int[] result = new int[81];
+		for (int i = 0; i < 81; i++)
 		{
 			// 'this[i]' is always between -1 and 8 (-1 is empty, and 0 to 8 is 1 to 9 for human representation).
 			result[i] = this[i] + 1;
@@ -705,7 +749,7 @@ public unsafe partial struct Grid
 		fixed (short* pArr = _values)
 		{
 			var sb = new StringHandler(initialCapacity: 400);
-			sb.AppendRangeWithSeparatorUnsafe(pArr, Length, static v => v.ToString(), separator);
+			sb.AppendRangeWithSeparatorUnsafe(pArr, 81, static v => v.ToString(), separator);
 			return sb.ToStringAndClear();
 		}
 	}
@@ -828,7 +872,7 @@ public unsafe partial struct Grid
 	/// </summary>
 	public void Reset()
 	{
-		for (int i = 0; i < Length; i++)
+		for (int i = 0; i < 81; i++)
 		{
 			if (GetStatus(i) == CellStatus.Modifiable)
 			{
@@ -840,7 +884,7 @@ public unsafe partial struct Grid
 	/// <inheritdoc/>
 	public void Fix()
 	{
-		for (int i = 0; i < Length; i++)
+		for (int i = 0; i < 81; i++)
 		{
 			if (GetStatus(i) == CellStatus.Modifiable)
 			{
@@ -852,7 +896,7 @@ public unsafe partial struct Grid
 	/// <inheritdoc/>
 	public void Unfix()
 	{
-		for (int i = 0; i < Length; i++)
+		for (int i = 0; i < 81; i++)
 		{
 			if (GetStatus(i) == CellStatus.Given)
 			{
@@ -867,7 +911,7 @@ public unsafe partial struct Grid
 	{
 		ref short mask = ref _values[cell];
 		short copied = mask;
-		mask = (short)((int)status << RegionCellsCount | mask & MaxCandidatesMask);
+		mask = (short)((int)status << 9 | mask & MaxCandidatesMask);
 
 		var f = (delegate*<ref Grid, int, short, short, int, void>)ValueChanged;
 		f(ref this, cell, copied, mask, -1);
@@ -895,11 +939,11 @@ public unsafe partial struct Grid
 	/// <seealso cref="ValuesMap"/>
 	private readonly Cells[] GetMap(delegate*<in Grid, int, int, bool> predicate)
 	{
-		var result = new Cells[RegionCellsCount];
-		for (int digit = 0; digit < RegionCellsCount; digit++)
+		var result = new Cells[9];
+		for (int digit = 0; digit < 9; digit++)
 		{
 			ref var map = ref result[digit];
-			for (int cell = 0; cell < Length; cell++)
+			for (int cell = 0; cell < 81; cell++)
 			{
 				if (predicate(this, cell, digit))
 				{
@@ -921,7 +965,7 @@ public unsafe partial struct Grid
 	private readonly Cells GetCells(delegate*<in Grid, int, bool> predicate)
 	{
 		var result = Cells.Empty;
-		for (int cell = 0; cell < Length; cell++)
+		for (int cell = 0; cell < 81; cell++)
 		{
 			if (predicate(this, cell))
 			{
@@ -939,7 +983,7 @@ public unsafe partial struct Grid
 		fixed (short* pThis = left, pOther = right)
 		{
 			int i = 0;
-			for (short* l = pThis, r = pOther; i < Length; i++, l++, r++)
+			for (short* l = pThis, r = pOther; i < 81; i++, l++, r++)
 			{
 				if (*l != *r)
 				{

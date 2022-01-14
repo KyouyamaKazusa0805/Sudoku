@@ -253,7 +253,7 @@ partial struct GridFormatter
 
 		static unsafe string shorten(string @base, char placeholder)
 		{
-			var resultSpan = (stackalloc char[Grid.Length]);
+			var resultSpan = (stackalloc char[81]);
 			int index = 0;
 			for (int i = 0; i < 9; i++)
 			{

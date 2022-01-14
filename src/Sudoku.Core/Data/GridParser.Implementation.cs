@@ -11,16 +11,16 @@ partial struct GridParser
 	{
 		string[] matches = parser.ParsingValue.MatchAll(RegularExpressions.DigitOrEmptyCell);
 		int length = matches.Length;
-		if (length is not (Grid.Length or Grid.Length + 4))
+		if (length is not (81 or 85))
 		{
 			// Subtle grid outline will bring 2 '.'s on first line of the grid.
 			return Grid.Undefined;
 		}
 
 		var result = Grid.Empty;
-		for (int i = 0; i < Grid.Length; i++)
+		for (int i = 0; i < 81; i++)
 		{
-			string currentMatch = matches[length - Grid.Length + i];
+			string currentMatch = matches[length - 81 + i];
 			switch (currentMatch)
 			{
 				case [var match and not ('.' or '0')]:
@@ -75,12 +75,12 @@ partial struct GridParser
 		}
 
 		string[] values = parsingValue.Split(new[] { '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries);
-		if (values.Length != Grid.RegionCellsCount)
+		if (values.Length != 9)
 		{
 			return Grid.Undefined;
 		}
 
-		var sb = new StringHandler(initialCapacity: Grid.Length);
+		var sb = new StringHandler(initialCapacity: 81);
 		foreach (string value in values)
 		{
 			foreach (string digitString in value.Split(new[] { '\t' }))
@@ -150,15 +150,15 @@ partial struct GridParser
 	private static partial Grid OnParsingPencilMarked(ref GridParser parser)
 	{
 		// Older regular expression pattern:
-		if (parser.ParsingValue.MatchAll(RegularExpressions.PmGridUnit) is not { Length: Grid.Length } matches)
+		if (parser.ParsingValue.MatchAll(RegularExpressions.PmGridUnit) is not { Length: 81 } matches)
 		{
 			return Grid.Undefined;
 		}
 
 		var result = Grid.Empty;
-		for (int cell = 0; cell < Grid.Length; cell++)
+		for (int cell = 0; cell < 81; cell++)
 		{
-			if (matches[cell] is not { Length: var length and <= Grid.RegionCellsCount } s)
+			if (matches[cell] is not { Length: var length and <= 9 } s)
 			{
 				// More than 9 characters.
 				return Grid.Undefined;
@@ -234,7 +234,7 @@ partial struct GridParser
 				}
 				else
 				{
-					for (int digit = 0; digit < Grid.RegionCellsCount; digit++)
+					for (int digit = 0; digit < 9; digit++)
 					{
 						result[cell, digit] = (mask >> digit & 1) != 0;
 					}
@@ -263,7 +263,7 @@ partial struct GridParser
 		}
 
 		// Remove all '\r's and '\n's.
-		var sb = new StringHandler(initialCapacity: Grid.Length + (Grid.RegionCellsCount << 1));
+		var sb = new StringHandler(initialCapacity: 81 + (9 << 1));
 		sb.AppendCharacters(from @char in match where @char is not ('\r' or '\n') select @char);
 		parser.ParsingValue = sb.ToStringAndClear();
 		return OnParsingSusser(ref parser, false);
@@ -286,7 +286,7 @@ partial struct GridParser
 		switch (shortenSusser)
 		{
 			case false when match is not { Length: <= 405 }:
-			case true when match is not { Length: <= Grid.Length } || !expandCode(match, out match):
+			case true when match is not { Length: <= 81 } || !expandCode(match, out match):
 			{
 				return Grid.Undefined;
 			}
@@ -394,9 +394,9 @@ partial struct GridParser
 				return false;
 			}
 
-			var resultSpan = (stackalloc char[Grid.Length]);
+			var resultSpan = (stackalloc char[81]);
 			string[] lines = original.Split(',');
-			if (lines.Length != Grid.RegionCellsCount)
+			if (lines.Length != 9)
 			{
 				result = null;
 				return false;
@@ -404,25 +404,25 @@ partial struct GridParser
 
 			// Check per line, and expand it.
 			char placeholder = original.IndexOf('0') == -1 ? '.' : '0';
-			for (int i = 0; i < Grid.RegionCellsCount; i++)
+			for (int i = 0; i < 9; i++)
 			{
 				string line = lines[i];
 				switch (line.CountOf('*'))
 				{
-					case 1 when (Grid.RegionCellsCount + 1 - line.Length, 0, 0) is var (empties, j, k):
+					case 1 when (9 + 1 - line.Length, 0, 0) is var (empties, j, k):
 					{
 						foreach (char c in line)
 						{
 							if (c == '*')
 							{
-								resultSpan.Slice(i * Grid.RegionCellsCount + k, empties).Fill(placeholder);
+								resultSpan.Slice(i * 9 + k, empties).Fill(placeholder);
 
 								j++;
 								k += empties;
 							}
 							else
 							{
-								resultSpan[i * Grid.RegionCellsCount + k] = line[j];
+								resultSpan[i * 9 + k] = line[j];
 
 								j++;
 								k++;
@@ -432,21 +432,21 @@ partial struct GridParser
 						break;
 					}
 
-					case var n when (Grid.RegionCellsCount + n - line.Length, 0, 0) is var (empties, j, k):
+					case var n when (9 + n - line.Length, 0, 0) is var (empties, j, k):
 					{
 						int emptiesPerStar = empties / n;
 						foreach (char c in line)
 						{
 							if (c == '*')
 							{
-								resultSpan.Slice(i * Grid.RegionCellsCount + k, emptiesPerStar).Fill(placeholder);
+								resultSpan.Slice(i * 9 + k, emptiesPerStar).Fill(placeholder);
 
 								j++;
 								k += emptiesPerStar;
 							}
 							else
 							{
-								resultSpan[i * Grid.RegionCellsCount + k] = line[j];
+								resultSpan[i * 9 + k] = line[j];
 
 								j++;
 								k++;
@@ -473,7 +473,7 @@ partial struct GridParser
 	/// <returns>The result.</returns>
 	private static partial Grid OnParsingSukaku(ref GridParser parser, bool compatibleFirst)
 	{
-		const int candidatesCount = Grid.RegionCellsCount * Grid.RegionCellsCount * Grid.RegionCellsCount;
+		const int candidatesCount = 729;
 		if (compatibleFirst)
 		{
 			string parsingValue = parser.ParsingValue;
@@ -498,7 +498,7 @@ partial struct GridParser
 
 						if (c is '0' or '.')
 						{
-							result[i / Grid.RegionCellsCount, i % Grid.RegionCellsCount] = false;
+							result[i / 9, i % 9] = false;
 						}
 					}
 				}
@@ -509,16 +509,16 @@ partial struct GridParser
 		else
 		{
 			string[] matches = parser.ParsingValue.MatchAll(RegularExpressions.PmGridCandidatesUnit);
-			if (matches is { Length: not Grid.Length })
+			if (matches is { Length: not 81 })
 			{
 				return Grid.Undefined;
 			}
 
 			var result = Grid.Empty;
-			for (int offset = 0; offset < Grid.Length; offset++)
+			for (int offset = 0; offset < 81; offset++)
 			{
 				string s = matches[offset].Reserve(RegularExpressions.Digit);
-				if (s.Length > Grid.RegionCellsCount)
+				if (s.Length > 9)
 				{
 					// More than 9 characters.
 					return Grid.Undefined;
@@ -543,7 +543,7 @@ partial struct GridParser
 				//	result.SetStatus(offset, CellStatus.Given);
 				//}
 
-				for (int digit = 0; digit < Grid.RegionCellsCount; digit++)
+				for (int digit = 0; digit < 9; digit++)
 				{
 					result[offset, digit] = (mask >> digit & 1) != 0;
 				}
