@@ -2,7 +2,10 @@
 	xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
 	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
 	xmlns:c="clr-namespace:Sudoku.UI.Controls"
+	xmlns:ios="clr-namespace:Microsoft.Maui.Controls.PlatformConfiguration.iOSSpecific;assembly=Microsoft.Maui.Controls"
 	x:Class="Sudoku.UI.Pages.MainPage"
+    ios:Page.UseSafeArea="True"
+	Title="Main Page"
 	BackgroundColor="{DynamicResource SecondaryColor}">
 	<ContentPage.Content>
 		<c:GridPane />

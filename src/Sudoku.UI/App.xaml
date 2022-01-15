@@ -1,12 +1,59 @@
 ﻿<Application
 	xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
 	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+	xmlns:pages="clr-namespace:Sudoku.UI.Pages"
 	xmlns:w="clr-namespace:Microsoft.Maui.Controls.PlatformConfiguration.WindowsSpecific;assembly=Microsoft.Maui.Controls"
-	x:Class="Sudoku.UI.App" w:Application.ImageDirectory="Assets">
+	x:Class="Sudoku.UI.App"
+	w:Application.ImageDirectory="Assets">
 	<Application.Resources>
 		<ResourceDictionary>
 			<Color x:Key="PrimaryColor">Black</Color>
 			<Color x:Key="SecondaryColor">White</Color>
 		</ResourceDictionary>
 	</Application.Resources>
+	<Application.MainPage>
+		<Shell
+			FlyoutWidth="68" FlyoutBackgroundColor="{StaticResource SecondaryColor}"
+			FlyoutBehavior="{OnIdiom Phone=Disabled,Default=Locked}">
+			<Shell.ItemTemplate>
+				<DataTemplate>
+					<GridLayout RowDefinitions="68" HeightRequest="68">
+						<Image
+							Source="{Binding FlyoutIcon}"
+							VerticalOptions="Center" HorizontalOptions="Center" />
+					</GridLayout>
+				</DataTemplate>
+			</Shell.ItemTemplate>
+			<Shell.FlyoutFooterTemplate>
+				<DataTemplate>
+					<GridLayout RowDefinitions="68">
+						<GridLayout.GestureRecognizers>
+							<TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" />
+						</GridLayout.GestureRecognizers>
+						<Image
+							Source="tab_settings.png" HorizontalOptions="Center" VerticalOptions="Center"
+							WidthRequest="40" HeightRequest="40" />
+					</GridLayout>
+				</DataTemplate>
+			</Shell.FlyoutFooterTemplate>
+
+			<!--Desktop/Tablet-->
+			<FlyoutItem Title="Main">
+				<ShellContent ContentTemplate="{DataTemplate pages:MainPage}"/>
+			</FlyoutItem>
+			<FlyoutItem Route="settings" FlyoutItemIsVisible="False">
+				<ShellContent ContentTemplate="{DataTemplate pages:SettingsPage}"/>
+			</FlyoutItem>
+
+			<!--Phone-->
+			<TabBar x:Name="PhoneTabs">
+				<Tab Title="Main" Icon="tab_settings.png">
+					<ShellContent ContentTemplate="{DataTemplate pages:MainPage}"/>
+				</Tab>
+				<Tab Title="Settings" Icon="tab_settings.png">
+					<ShellContent ContentTemplate="{DataTemplate pages:SettingsPage}"/>
+				</Tab>
+			</TabBar>
+		</Shell>
+	</Application.MainPage>
 </Application>

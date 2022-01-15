@@ -1,7 +1,7 @@
-﻿using Microsoft.Maui;
+﻿using System;
 using Microsoft.Maui.Controls;
-using Sudoku.UI.Pages;
 using Sudoku.Diagnostics.CodeAnalysis;
+using Sudoku.UI.Pages;
 
 namespace Sudoku.UI;
 
@@ -10,6 +10,7 @@ namespace Sudoku.UI;
 /// </summary>
 public partial class App : Application
 {
+#nullable disable
 	/// <summary>
 	/// Initializes an <see cref="App"/> instance.
 	/// </summary>
@@ -17,11 +18,16 @@ public partial class App : Application
 	{
 		InitializeComponent();
 
-		MainPage = new MainPage();
+		if (Device.Idiom == TargetIdiom.Phone)
+		{
+			Shell.Current.CurrentItem = PhoneTabs;
+		}
+
+		Routing.RegisterRoute("settings", typeof(SettingsPage));
 	}
+#nullable restore
 
 
-	/// <inheritdoc/>
-	protected override Window CreateWindow([IsDiscard] IActivationState? activationState) =>
-		new(MainPage ??= new MainPage()) { Title = "Project Nano (Sunnie's Sudoku Solution)" };
+	private void TapGestureRecognizer_Tapped([IsDiscard] object? sender, [IsDiscard] EventArgs e) =>
+		Shell.Current.GoToAsync("///settings");
 }
