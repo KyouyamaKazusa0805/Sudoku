@@ -28,6 +28,6 @@ public partial class App : Application
 #nullable restore
 
 
-	private void TapGestureRecognizer_Tapped([IsDiscard] object? sender, [IsDiscard] EventArgs e) =>
+	private void TapGestureRecognizer_Tapped([IsDiscard] object? _, [IsDiscard] EventArgs __) =>
 		Shell.Current.GoToAsync("///settings");
 }

@@ -45,6 +45,16 @@
             Initializes a <see cref="T:Sudoku.UI.Pages.MainPage"/> instance.
             </summary>
         </member>
+        <member name="T:Sudoku.UI.Pages.SettingsPage">
+            <summary>
+            Indicates the page that displays the settings.
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Pages.SettingsPage.#ctor">
+            <summary>
+            Initializes a <see cref="T:Sudoku.UI.Pages.SettingsPage"/> instance.
+            </summary>
+        </member>
         <member name="T:Sudoku.UI.WinUI.App">
             <summary>
             Provides application-specific behavior to supplement the default

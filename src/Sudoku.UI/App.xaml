@@ -38,7 +38,7 @@
 			</Shell.FlyoutFooterTemplate>
 
 			<!--Desktop/Tablet-->
-			<FlyoutItem Title="Main">
+			<FlyoutItem Title="Main" Icon="tab_home.png">
 				<ShellContent ContentTemplate="{DataTemplate pages:MainPage}"/>
 			</FlyoutItem>
 			<FlyoutItem Route="settings" FlyoutItemIsVisible="False">
@@ -47,7 +47,7 @@
 
 			<!--Phone-->
 			<TabBar x:Name="PhoneTabs">
-				<Tab Title="Main" Icon="tab_settings.png">
+				<Tab Title="Main" Icon="tab_home.png">
 					<ShellContent ContentTemplate="{DataTemplate pages:MainPage}"/>
 				</Tab>
 				<Tab Title="Settings" Icon="tab_settings.png">

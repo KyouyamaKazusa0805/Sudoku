@@ -35,6 +35,8 @@ public static class MauiProgram
 		{
 			var app = (MauiWinUIWindow)MauiWinUIApplication.Current.Application.Windows[0].Handler!.NativeView!;
 			app.SetIcon("Resources/Icon/appicon.ico");
+
+			app.ExtendsContentIntoTitleBar = false;
 		}
 #endif
 	}
