@@ -66,8 +66,4 @@ global using static Sudoku.Constants.Tables;
 global using static Sudoku.Solving.Manual.Buffer.FastProperties;
 global using static Sudoku.Solving.Manual.Constants;
 
-#if DEBUG
-[assembly: InternalsVisibleTo("Sudoku.Test")]
-#endif
-
 [module: SkipLocalsInit] 

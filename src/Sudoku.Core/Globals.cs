@@ -31,9 +31,4 @@ global using static Sudoku.Constants.Tables;
 
 [assembly: InternalsVisibleTo("Sudoku.Diagnostics")]
 [assembly: InternalsVisibleTo("Sudoku.Solving")]
-
-#if DEBUG
-[assembly: InternalsVisibleTo("Sudoku.Test")]
-#endif
-
 [module: SkipLocalsInit] 
