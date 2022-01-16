@@ -358,9 +358,12 @@ public unsafe class ForcingChainStepSearcher : IForcingChainStepSearcher, IDynam
 				else
 				{
 					var p = pendingOff.Remove();
-					var makeOn = IChainStepSearcher.GetOffToOn(
-						grid, p, true, !IsNishio, true, _temp, toOff, IsDynamic
-					);
+					var makeOn =
+#if DEBUG
+						IChainStepSearcher.GetOffToOn(grid, p, true, !IsNishio, true, _temp, toOff, IsDynamic);
+#else
+						IChainStepSearcher.GetOffToOn(grid, p, true, !IsNishio, true, _temp, IsDynamic);
+#endif
 
 					if (IsDynamic)
 					{

@@ -302,7 +302,7 @@ public unsafe interface IChainStepSearcher : IStepSearcher
 #if DEBUG
 		ref Node p, in Grid grid, in Grid source, ref NodeSet offNodes
 #else
-		ref ChainNode p, in Grid grid, in Grid source
+		ref Node p, in Grid grid, in Grid source
 #endif
 	)
 	{
@@ -355,7 +355,7 @@ public unsafe interface IChainStepSearcher : IStepSearcher
 #if DEBUG
 		ref Node p, in Grid grid, in Grid source, RegionLabel currRegion, ref NodeSet offNodes
 #else
-		ref ChainNode p, in Grid grid, in Grid source, RegionLabel currRegion
+		ref Node p, in Grid grid, in Grid source, RegionLabel currRegion
 #endif
 	)
 	{

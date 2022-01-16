@@ -55,27 +55,100 @@
             Initializes a <see cref="T:Sudoku.UI.Pages.SettingsPage"/> instance.
             </summary>
         </member>
-        <member name="T:Sudoku.UI.MainActivity">
+        <member name="T:Sudoku.UI.WinUI.App">
             <summary>
-            Indicates the main activity of the android app.
+            Provides application-specific behavior to supplement the default
+            <see cref="T:Microsoft.Maui.Controls.Application"/> class.
+            </summary>
+            <seealso cref="T:Microsoft.Maui.Controls.Application"/>
+        </member>
+        <member name="M:Sudoku.UI.WinUI.App.#ctor">
+            <summary>
+            Initializes the singleton application object.
+            This is the first line of authored code executed,
+            and as such is the logical equivalent of <c>main()</c> or <c>WinMain()</c>.
             </summary>
         </member>
-        <member name="M:Sudoku.UI.MainActivity.OnCreate(Android.OS.Bundle)">
+        <member name="M:Sudoku.UI.WinUI.App.CreateMauiApp">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.UI.MainActivity.OnRequestPermissionsResult(System.Int32,System.String[],Android.Content.PM.Permission[])">
+        <member name="M:Sudoku.UI.WinUI.App.OnLaunched(Microsoft.UI.Xaml.LaunchActivatedEventArgs)">
             <inheritdoc/>
         </member>
-        <member name="T:Sudoku.UI.MainApplication">
+        <member name="M:Sudoku.UI.WinUI.App.InitializeComponent">
             <summary>
-            Indicates the main application on android.
+            InitializeComponent()
             </summary>
         </member>
-        <member name="M:Sudoku.UI.MainApplication.#ctor(System.IntPtr,Android.Runtime.JniHandleOwnership)">
-            <inheritdoc/>
+        <member name="M:Sudoku.UI.WinUI.App.GetXamlType(System.Type)">
+            <summary>
+            GetXamlType(Type)
+            </summary>
         </member>
-        <member name="M:Sudoku.UI.MainApplication.CreateMauiApp">
-            <inheritdoc/>
+        <member name="M:Sudoku.UI.WinUI.App.GetXamlType(System.String)">
+            <summary>
+            GetXamlType(String)
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.WinUI.App.GetXmlnsDefinitions">
+            <summary>
+            GetXmlnsDefinitions()
+            </summary>
+        </member>
+        <member name="T:Sudoku.UI.WinUI.Program">
+            <summary>
+            Program class
+            </summary>
+        </member>
+        <member name="T:Sudoku.UI.Sudoku_UI_XamlTypeInfo.XamlMetaDataProvider">
+            <summary>
+            Main class for providing metadata for the app or library
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Sudoku_UI_XamlTypeInfo.XamlMetaDataProvider.GetXamlType(System.Type)">
+            <summary>
+            GetXamlType(Type)
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Sudoku_UI_XamlTypeInfo.XamlMetaDataProvider.GetXamlType(System.String)">
+            <summary>
+            GetXamlType(String)
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Sudoku_UI_XamlTypeInfo.XamlMetaDataProvider.GetXmlnsDefinitions">
+            <summary>
+            GetXmlnsDefinitions()
+            </summary>
+        </member>
+        <member name="T:Microsoft.Maui.IWindowNative">
+            <summary>
+            Indicates the window data.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Maui.IWindowNative.WindowHandle">
+            <summary>
+            The handle of the current window.
+            </summary>
+        </member>
+        <member name="T:Microsoft.Maui.MauiWinUIWindowExtensions">
+            <summary>
+            Provides extension methods on <see cref="T:Microsoft.Maui.MauiWinUIWindow"/>.
+            </summary>
+            <seealso cref="T:Microsoft.Maui.MauiWinUIWindow"/>
+        </member>
+        <member name="M:Microsoft.Maui.MauiWinUIWindowExtensions.GetNativeWindowHandle(Microsoft.Maui.MauiWinUIWindow)">
+            <summary>
+            Gets the handle of the window.
+            </summary>
+            <param name="window">The window.</param>
+            <returns>The handle.</returns>
+        </member>
+        <member name="M:Microsoft.Maui.MauiWinUIWindowExtensions.SetIcon(Microsoft.Maui.MauiWinUIWindow,System.String)">
+            <summary>
+            Sets the icon onto the window.
+            </summary>
+            <param name="window">The specified window.</param>
+            <param name="fileName">The file name of the icon.</param>
         </member>
     </members>
 </doc>
