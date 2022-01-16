@@ -55,35 +55,27 @@
             Initializes a <see cref="T:Sudoku.UI.Pages.SettingsPage"/> instance.
             </summary>
         </member>
-        <member name="T:Sudoku.UI.WinUI.App">
+        <member name="T:Sudoku.UI.MainActivity">
             <summary>
-            Provides application-specific behavior to supplement the default
-            <see cref="T:Microsoft.Maui.Controls.Application"/> class.
-            </summary>
-            <seealso cref="T:Microsoft.Maui.Controls.Application"/>
-        </member>
-        <member name="M:Sudoku.UI.WinUI.App.#ctor">
-            <summary>
-            Initializes the singleton application object.
-            This is the first line of authored code executed,
-            and as such is the logical equivalent of <c>main()</c> or <c>WinMain()</c>.
+            Indicates the main activity of the android app.
             </summary>
         </member>
-        <member name="M:Sudoku.UI.WinUI.App.CreateMauiApp">
+        <member name="M:Sudoku.UI.MainActivity.OnCreate(Android.OS.Bundle)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.UI.WinUI.App.OnLaunched(Microsoft.UI.Xaml.LaunchActivatedEventArgs)">
+        <member name="M:Sudoku.UI.MainActivity.OnRequestPermissionsResult(System.Int32,System.String[],Android.Content.PM.Permission[])">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.UI.WinUI.App.InitializeComponent">
+        <member name="T:Sudoku.UI.MainApplication">
             <summary>
-            InitializeComponent()
+            Indicates the main application on android.
             </summary>
         </member>
-        <member name="T:Sudoku.UI.WinUI.Program">
-            <summary>
-            Program class
-            </summary>
+        <member name="M:Sudoku.UI.MainApplication.#ctor(System.IntPtr,Android.Runtime.JniHandleOwnership)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.UI.MainApplication.CreateMauiApp">
+            <inheritdoc/>
         </member>
     </members>
 </doc>

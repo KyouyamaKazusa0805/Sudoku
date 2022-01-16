@@ -1,24 +1,20 @@
-<svg width="1240" height="1240" xmlns="http://www.w3.org/2000/svg">
+<svg width="560" height="560" xmlns="http://www.w3.org/2000/svg">
 
 	<g>
-		<rect id="whole_block" stroke="#000" height="1228" width="1228" y="6" x="6" fill-opacity="null" stroke-opacity="null" stroke-width="3" fill="none"/>
-		<rect id="cell1" height="409.333333" width="409.333333" y="6" x="6" fill-opacity="null" stroke-opacity="null" stroke-width="5" stroke="#000" fill="none"/>
-		<rect id="cell2" height="409.333333" width="409.333333" y="6" x="417.833333" fill-opacity="null" stroke-opacity="null" stroke-width="5" stroke="#000" fill="none"/>
-		<rect id="cell3" height="409.333333" width="409.333333" y="6" x="829.666666" fill-opacity="null" stroke-opacity="null" stroke-width="5" stroke="#000" fill="none"/>
-		<rect id="cell4" height="409.333333" width="409.333333" y="417.833333" x="6" fill-opacity="null" stroke-opacity="null" stroke-width="5" stroke="#000" fill="none"/>
-		<rect id="cell5" height="409.333333" width="409.333333" y="417.833333" x="417.833333" fill-opacity="null" stroke-opacity="null" stroke-width="5" stroke="#000" fill="none"/>
-		<rect id="cell6" height="409.333333" width="409.333333" y="417.833333" x="829.666666" fill-opacity="null" stroke-opacity="null" stroke-width="5" stroke="#000" fill="none"/>
-		<rect id="cell7" height="409.333333" width="409.333333" y="829.666666" x="6" fill-opacity="null" stroke-opacity="null" stroke-width="5" stroke="#000" fill="none"/>
-		<rect id="cell8" height="409.333333" width="409.333333" y="829.666666" x="417.833333" fill-opacity="null" stroke-opacity="null" stroke-width="5" stroke="#000" fill="none"/>
-		<rect id="cell9" height="409.333333" width="409.333333" y="829.666666" x="829.666666" fill-opacity="null" stroke-opacity="null" stroke-width="5" stroke="#000" fill="none"/>
-		<text id="digit1shadow" font-style="normal" font-weight="normal" xml:space="preserve" text-anchor="start" font-family="'Times New Roman', Times, serif" font-size="400" y="340.666667" x="110.666667" fill-opacity="null" stroke-opacity="null" stroke-width="20" stroke="#CCC" fill="#CCC">1</text>
-		<text id="digit1" font-style="normal" font-weight="normal" xml:space="preserve" text-anchor="start" font-family="'Times New Roman', Times, serif" font-size="400" y="330.666667" x="100.666667" fill-opacity="null" stroke-opacity="null" stroke-width="20" stroke="#F00" fill="#F00">1</text>
-		<text id="digit2shadow" font-style="normal" font-weight="normal" xml:space="preserve" text-anchor="start" font-family="'Times New Roman', Times, serif" font-size="400" y="340.666667" x="530.666667" fill-opacity="null" stroke-opacity="null" stroke-width="20" stroke="#CCC" fill="#CCC">2</text>
-		<text id="digit2" font-style="normal" font-weight="normal" xml:space="preserve" text-anchor="start" font-family="'Times New Roman', Times, serif" font-size="400" y="330.666667" x="520.666667" fill-opacity="null" stroke-opacity="null" stroke-width="20" stroke="#0F0" fill="#0F0">2</text>
-		<text id="digit4shadow" font-style="normal" font-weight="normal" xml:space="preserve" text-anchor="start" font-family="'Times New Roman', Times, serif" font-size="400" y="760.666667" x="110.666667" fill-opacity="null" stroke-opacity="null" stroke-width="20" stroke="#CCC" fill="#CCC">4</text>
-		<text id="digit4" font-style="normal" font-weight="normal" xml:space="preserve" text-anchor="start" font-family="'Times New Roman', Times, serif" font-size="400" y="750.666667" x="100.666667" fill-opacity="null" stroke-opacity="null" stroke-width="20" stroke="#00F" fill="#00F">4</text>
-		<text id="digit9shadow" font-style="normal" font-weight="normal" xml:space="preserve" text-anchor="start" font-family="'Times New Roman', Times, serif" font-size="400" y="1180" x="950" fill-opacity="null" stroke-opacity="null" stroke-width="20" stroke="#CCC" fill="#CCC">9</text>
-		<text id="digit9" font-style="normal" font-weight="normal" xml:space="preserve" text-anchor="start" font-family="'Times New Roman', Times, serif" font-size="400" y="1170" x="940" fill-opacity="null" stroke-opacity="null" stroke-width="20" stroke="#FF0" fill="#FF0">9</text>
+		<title>AppIcon</title>
+		<!--
+		<ellipse ry="180" rx="180" id="svg_17" cy="370" cx="370" stroke-width="3" stroke="#000" fill="#fff"/>
+		<ellipse ry="179.5" rx="179.5" id="svg_15" cy="189.3" cx="189.5" stroke-width="3" stroke="#000" fill="#fff"/>
+		-->
+		<rect stroke-width="3" id="svg_3" height="180" width="180" y="10" x="190" stroke="#000" fill="#fff"/>
+		<rect stroke-width="3" id="svg_4" height="180" width="180" y="10" x="370" stroke="#000" fill="#fff"/>
+		<rect stroke-width="3" id="svg_5" height="180" width="180" y="190" x="10" stroke="#000" fill="#fff"/>
+		<rect stroke-width="3" id="svg_6" height="180" width="180" y="190" x="190" stroke="#000" fill="#fff"/>
+		<rect stroke-width="3" id="svg_8" height="180" width="180" y="370" x="10" stroke="#000" fill="#fff"/>
+		<rect stroke-width="3" id="svg_9" height="180" width="180" y="190" x="370" stroke="#000" fill="#fff"/>
+		<rect stroke-width="3" id="svg_10" height="180" width="180" y="370" x="190" stroke="#000" fill="#fff"/>
+		<!--<ellipse rx="1" id="svg_16" cy="214.8" cx="784" stroke-width="3" stroke="#000" fill="#fff"/>-->
+		<path id="svg_18" d="m433.51808,298.08093l-20.5463,-12.91394c-5.1839,-3.25503 -12.01458,-1.68838 -15.28097,3.49659l-8.09846,12.88984l39.30594,24.68719l8.10485,-12.88386c3.25399,-5.19115 1.70098,-12.02805 -3.48506,-15.27583l0,0zm-113.87078,114.83484l39.30808,24.68693l64.06566,-101.98738l-39.32679,-24.69338l-64.04695,101.99382l0.00001,0.00001zm-6.0043,31.36567l-0.86817,23.18801l20.51478,-10.85093l19.06406,-10.06577l-37.92177,-23.83134l-0.78889,21.56004l0,0l-0.00001,-0.00001z" stroke-width="6" stroke="#000" fill="#fff"/>
 	</g>
 
 </svg>

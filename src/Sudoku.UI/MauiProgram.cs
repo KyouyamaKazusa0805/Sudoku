@@ -1,11 +1,14 @@
 ﻿#pragma warning disable IDE0005
 
-using Microsoft.Maui; // Windows
 using Microsoft.Maui.Controls.Hosting;
 using Microsoft.Maui.Hosting;
+
+#if WINDOWS
+using Microsoft.Maui; // Windows
 using Microsoft.Maui.LifecycleEvents; // Windows
 using Microsoft.UI.Xaml; // Windows
 using Sudoku.Diagnostics.CodeAnalysis; // Windows
+#endif
 
 namespace Sudoku.UI;
 

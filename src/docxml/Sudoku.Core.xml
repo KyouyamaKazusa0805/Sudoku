@@ -1134,41 +1134,6 @@
             </summary>
             <seealso cref="P:Sudoku.Data.Abstractions.IGrid`1.Empty"/>
         </member>
-        <member name="P:Sudoku.Data.Abstractions.IGrid`1.IsDebuggerUndefined">
-            <summary>
-            Indicates whether the grid is as same behaviors as <see cref="P:Sudoku.Data.Abstractions.IGrid`1.Undefined"/>
-            in debugging mode.
-            </summary>
-            <remarks>
-            <para>
-            This property checks whether all non-first masks are all 0. This checking behavior
-            is aiming to the debugger because the debugger can't recognize the fixed buffer.
-            </para>
-            <para>
-            The debugger can't recognize fixed buffer.
-            The fixed buffer whose code is like:
-            <code><![CDATA[
-            private fixed short _values[81];
-            ]]></code>
-            However, internally, the field <c>_values</c> is implemented
-            with a fixed buffer using a inner struct, which is just like:
-            <code><![CDATA[
-            [StructLayout(LayoutKind.Explicit, Size = 81 * sizeof(short))]
-            private struct FixedBuffer
-            {
-                public short _internalValue;
-            }
-            ]]></code>
-            And that field:
-            <code><![CDATA[
-            private FixedBuffer _fixedField;
-            ]]></code>
-            From the code we can learn that only 2 bytes of the inner struct can be detected,
-            because the buffer struct only contains 2 bytes data.
-            </para>
-            </remarks>
-            <see cref="P:Sudoku.Data.Abstractions.IGrid`1.Undefined"/>
-        </member>
         <member name="P:Sudoku.Data.Abstractions.IGrid`1.CandidatesCount">
             <summary>
             Indicates the number of total candidates.
@@ -3077,9 +3042,6 @@
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Data.Grid.IsEmpty">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Data.Grid.IsDebuggerUndefined">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Data.Grid.CandidatesCount">
