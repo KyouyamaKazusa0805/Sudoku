@@ -121,21 +121,5 @@
         <member name="M:Sudoku.Diagnostics.CodeGen.Generators.KeyedTupleGenerator.Initialize(Microsoft.CodeAnalysis.GeneratorInitializationContext)">
             <inheritdoc/>
         </member>
-        <member name="T:Microsoft.CodeAnalysis.GeneratorExecutionContextExtensions">
-            <summary>
-            Provides extension methods on <see cref="T:Microsoft.CodeAnalysis.GeneratorExecutionContext"/>.
-            </summary>
-            <seealso cref="T:Microsoft.CodeAnalysis.GeneratorExecutionContext"/>
-        </member>
-        <member name="M:Microsoft.CodeAnalysis.GeneratorExecutionContextExtensions.AddSource(Microsoft.CodeAnalysis.GeneratorExecutionContext@,System.String,System.String,System.String)">
-            <summary>
-            Simply calls <see cref="M:Microsoft.CodeAnalysis.GeneratorExecutionContext.AddSource(System.String,System.String)"/>,
-            </summary>
-            <param name="this">The current context.</param>
-            <param name="fileName">The file name. The file name may be same as the symbol name</param>
-            <param name="sourceGeneratorName">The source generator name.</param>
-            <param name="sourceCode">The source code.</param>
-            <seealso cref="M:Microsoft.CodeAnalysis.GeneratorExecutionContext.AddSource(System.String,System.String)"/>
-        </member>
     </members>
 </doc>

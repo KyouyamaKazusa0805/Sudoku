@@ -14,14 +14,13 @@ public sealed class GlobalConfigValueGenerator : ISourceGenerator
 			return;
 		}
 
-		var additionalFile = additionalFiles.FirstOrDefault(static a => a.Path.EndsWith("Directory.Build.props"));
+		var additionalFile = additionalFiles.FirstOrDefault(globalConfigurationFileChecker);
 		if (additionalFile is not { Path: var path })
 		{
 			return;
 		}
 
-		var xmlDocument = new XmlDocument();
-		xmlDocument.Load(path);
+		var xmlDocument = new XmlDocument().OnLoading(path);
 		if (xmlDocument is not { DocumentElement: { } root })
 		{
 			return;
@@ -39,9 +38,10 @@ public sealed class GlobalConfigValueGenerator : ISourceGenerator
 
 		Version? versionResult = null;
 		bool found = false;
-		foreach (XmlNode element in elements)
+		foreach (object element in elements)
 		{
-			if (element is { Name: "Version", InnerText: var v } && Version.TryParse(v, out versionResult))
+			if (element is XmlNode { Name: "Version", InnerText: var v }
+				&& Version.TryParse(v, out versionResult))
 			{
 				found = true;
 				break;
@@ -64,6 +64,13 @@ partial class Constants
 	public const string VersionValue = ""{versionResult!}"";
 }}"
 		);
+
+
+		static bool globalConfigurationFileChecker(AdditionalText additionalText)
+		{
+			const string comparer = "Directory.Build.props";
+			return additionalText.Path is var path && (path == comparer || path.EndsWith(comparer));
+		}
 	}
 
 	/// <inheritdoc/>

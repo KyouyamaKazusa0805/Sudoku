@@ -4,58 +4,65 @@
         <name>Sudoku.Diagnostics.CodeGen</name>
     </assembly>
     <members>
-        <member name="T:System.Collections.Generic.EnumerableExtensions">
+        <member name="T:Sudoku.Diagnostics.CodeGen.Generators.RefStructOverridensGenerator">
             <summary>
-            Provides extension methods on <see cref="T:System.Collections.Generic.IEnumerable`1"/>.
+            Indicates the generator that generates the default overriden methods in a <see langword="ref struct"/>.
             </summary>
-            <seealso cref="T:System.Collections.Generic.IEnumerable`1"/>
         </member>
-        <member name="M:System.Collections.Generic.EnumerableExtensions.ForEach``1(System.Collections.Generic.IEnumerable{``0},System.Action{``0})">
-            <summary>
-            The method to replace with <see langword="foreach"/> loop.
-            </summary>
-            <typeparam name="T">The type of each element.</typeparam>
-            <param name="this">The collection to iterate.</param>
-            <param name="action">The action that is executed while iterating.</param>
+        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.RefStructOverridensGenerator.Execute(Microsoft.CodeAnalysis.GeneratorExecutionContext)">
+            <inheritdoc/>
         </member>
-        <member name="T:Microsoft.CodeAnalysis.GeneratorExecutionContextExtensions">
-            <summary>
-            Provides extension methods on <see cref="T:Microsoft.CodeAnalysis.GeneratorExecutionContext"/>.
-            </summary>
-            <seealso cref="T:Microsoft.CodeAnalysis.GeneratorExecutionContext"/>
+        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.RefStructOverridensGenerator.Initialize(Microsoft.CodeAnalysis.GeneratorInitializationContext)">
+            <inheritdoc/>
         </member>
-        <member name="M:Microsoft.CodeAnalysis.GeneratorExecutionContextExtensions.AddSource(Microsoft.CodeAnalysis.GeneratorExecutionContext@,System.String,System.String,System.String)">
+        <member name="T:Sudoku.Diagnostics.CodeGen.Generators.RefStructOverridensReceiver">
             <summary>
-            Simply calls <see cref="M:Microsoft.CodeAnalysis.GeneratorExecutionContext.AddSource(System.String,System.String)"/>,
+            Defines a syntax context receiver that provides the gathered node for the usages on the source generator
+            <see cref="T:Sudoku.Diagnostics.CodeGen.Generators.RefStructOverridensGenerator"/>.
             </summary>
-            <param name="this">The current context.</param>
-            <param name="fileName">The file name. The file name may be same as the symbol name</param>
-            <param name="sourceGeneratorName">The source generator name.</param>
-            <param name="sourceCode">The source code.</param>
-            <seealso cref="M:Microsoft.CodeAnalysis.GeneratorExecutionContext.AddSource(System.String,System.String)"/>
+            <param name="CancellationToken">The cancellation token to cancel the operation.</param>
+            <seealso cref="T:Sudoku.Diagnostics.CodeGen.Generators.RefStructOverridensGenerator"/>
         </member>
-        <member name="T:Microsoft.CodeAnalysis.INamedTypeSymbolExtensions">
+        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.RefStructOverridensReceiver.#ctor(System.Threading.CancellationToken)">
             <summary>
-            Provides extension methods for <see cref="T:Microsoft.CodeAnalysis.INamedTypeSymbol"/>.
+            Defines a syntax context receiver that provides the gathered node for the usages on the source generator
+            <see cref="T:Sudoku.Diagnostics.CodeGen.Generators.RefStructOverridensGenerator"/>.
             </summary>
-            <seealso cref="T:Microsoft.CodeAnalysis.INamedTypeSymbol"/>
+            <param name="CancellationToken">The cancellation token to cancel the operation.</param>
+            <seealso cref="T:Sudoku.Diagnostics.CodeGen.Generators.RefStructOverridensGenerator"/>
         </member>
-        <member name="M:Microsoft.CodeAnalysis.INamedTypeSymbolExtensions.ToFileName(Microsoft.CodeAnalysis.INamedTypeSymbol)">
+        <member name="F:Sudoku.Diagnostics.CodeGen.Generators.RefStructOverridensReceiver.SCA0013">
             <summary>
-            Get the file name of the type symbol.
+            Indicates the descriptor <c>SCA0013</c>
+            (<see langword="ref struct"/>s requires the keyword <see langword="partial"/>).
             </summary>
-            <param name="this">The symbol.</param>
-            <returns>
-            The file name. Due to the limited file name and the algorithm, if:
-            <list type="bullet">
-            <item>
-            The character is <c><![CDATA['<']]></c> or <c><![CDATA['>']]></c>:
-            Change them to <c>'['</c> and <c>']'</c>.
-            </item>
-            <item>The character is <c>','</c>: Change it to <c>'_'</c>.</item>
-            <item>The character is <c>' '</c>: Remove it.</item>
-            </list>
-            </returns>
+        </member>
+        <member name="P:Sudoku.Diagnostics.CodeGen.Generators.RefStructOverridensReceiver.Collection">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Diagnostics.CodeGen.Generators.RefStructOverridensReceiver.Diagnostics">
+            <summary>
+            Indicates the diagnostic results found.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.RefStructOverridensReceiver.OnVisitSyntaxNode(Microsoft.CodeAnalysis.GeneratorSyntaxContext)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Diagnostics.CodeGen.IResultCollectionReceiver`1">
+            <summary>
+            Defines a result collection receiver.
+            </summary>
+            <typeparam name="T">The type of each result value.</typeparam>
+        </member>
+        <member name="P:Sudoku.Diagnostics.CodeGen.IResultCollectionReceiver`1.Collection">
+            <summary>
+            Indicates the result collection.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeGen.Constants.VersionValue">
+            <summary>
+            Indicates the version of this project.
+            </summary>
         </member>
         <member name="T:Microsoft.CodeAnalysis.SymbolOutputInfo">
             <summary>
@@ -141,83 +148,6 @@
             is a <see langword="ref struct"/>.
             </param>
             <returns>The <see cref="T:Microsoft.CodeAnalysis.SymbolOutputInfo"/> instance.</returns>
-        </member>
-        <member name="T:Sudoku.Diagnostics.CodeGen.Generators.RefStructOverridensGenerator">
-            <summary>
-            Indicates the generator that generates the default overriden methods in a <see langword="ref struct"/>.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.RefStructOverridensGenerator.Execute(Microsoft.CodeAnalysis.GeneratorExecutionContext)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.RefStructOverridensGenerator.Initialize(Microsoft.CodeAnalysis.GeneratorInitializationContext)">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Diagnostics.CodeGen.Generators.RefStructOverridensReceiver">
-            <summary>
-            Defines a syntax context receiver that provides the gathered node for the usages on the source generator
-            <see cref="T:Sudoku.Diagnostics.CodeGen.Generators.RefStructOverridensGenerator"/>.
-            </summary>
-            <param name="CancellationToken">The cancellation token to cancel the operation.</param>
-            <seealso cref="T:Sudoku.Diagnostics.CodeGen.Generators.RefStructOverridensGenerator"/>
-        </member>
-        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.RefStructOverridensReceiver.#ctor(System.Threading.CancellationToken)">
-            <summary>
-            Defines a syntax context receiver that provides the gathered node for the usages on the source generator
-            <see cref="T:Sudoku.Diagnostics.CodeGen.Generators.RefStructOverridensGenerator"/>.
-            </summary>
-            <param name="CancellationToken">The cancellation token to cancel the operation.</param>
-            <seealso cref="T:Sudoku.Diagnostics.CodeGen.Generators.RefStructOverridensGenerator"/>
-        </member>
-        <member name="F:Sudoku.Diagnostics.CodeGen.Generators.RefStructOverridensReceiver.SCA0013">
-            <summary>
-            Indicates the descriptor <c>SCA0013</c>
-            (<see langword="ref struct"/>s requires the keyword <see langword="partial"/>).
-            </summary>
-        </member>
-        <member name="P:Sudoku.Diagnostics.CodeGen.Generators.RefStructOverridensReceiver.Collection">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Diagnostics.CodeGen.Generators.RefStructOverridensReceiver.Diagnostics">
-            <summary>
-            Indicates the diagnostic results found.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.RefStructOverridensReceiver.OnVisitSyntaxNode(Microsoft.CodeAnalysis.GeneratorSyntaxContext)">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Diagnostics.CodeGen.IResultCollectionReceiver`1">
-            <summary>
-            Defines a result collection receiver.
-            </summary>
-            <typeparam name="T">The type of each result value.</typeparam>
-        </member>
-        <member name="P:Sudoku.Diagnostics.CodeGen.IResultCollectionReceiver`1.Collection">
-            <summary>
-            Indicates the result collection.
-            </summary>
-        </member>
-        <member name="T:Sudoku.Diagnostics.CodeGen.TypeFormats">
-            <summary>
-            Provides <see cref="T:Microsoft.CodeAnalysis.SymbolDisplayFormat"/> instance that is for types.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Diagnostics.CodeGen.TypeFormats.FullNameWithConstraints">
-            <summary>
-            Indicates the type format that is the full name of the type,
-            and is with type argument constraints.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Diagnostics.CodeGen.TypeFormats.FullName">
-            <summary>
-            Indicates the type format that is the full name of the type,
-            and is without type argument constraints.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Diagnostics.CodeGen.Constants.VersionValue">
-            <summary>
-            Indicates the version of this project.
-            </summary>
         </member>
     </members>
 </doc>

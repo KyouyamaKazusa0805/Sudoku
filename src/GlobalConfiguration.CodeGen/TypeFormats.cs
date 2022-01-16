@@ -3,7 +3,7 @@
 /// <summary>
 /// Provides <see cref="SymbolDisplayFormat"/> instance that is for types.
 /// </summary>
-public static class TypeFormats
+internal static class TypeFormats
 {
 	/// <summary>
 	/// Indicates the type format that is the full name of the type,

@@ -4,7 +4,7 @@
 /// Proivdes extension methods on <see cref="IPropertySymbol"/>.
 /// </summary>
 /// <seealso cref="IPropertySymbol"/>
-public static class PropertySymbolExtensions
+internal static class PropertySymbolExtensions
 {
 	/// <summary>
 	/// Determine whether the current property is auto-implemented property.
