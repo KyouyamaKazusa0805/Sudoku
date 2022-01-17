@@ -226,7 +226,7 @@ public static partial class BitOperationsExensions
 	/// <code><![CDATA[
 	/// foreach (int setIndex in 17)
 	/// {{
-	/// 	// Do something...
+	///     // Do something...
 	/// }}
 	/// ]]></code>
 	/// </remarks>
