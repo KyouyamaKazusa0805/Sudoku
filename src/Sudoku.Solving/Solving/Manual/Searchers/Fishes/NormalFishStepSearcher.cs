@@ -286,7 +286,7 @@ public sealed unsafe class NormalFishStepSearcher : INormalFishStepSearcher
 						{
 							if (
 								RegionMaps[
-									c.ToRegion(searchRow ? RegionLabel.Column : RegionLabel.Row)
+									RegionLabel.ToRegion(c, searchRow ? RegionLabels.Column : RegionLabels.Row)
 								].Contains(cell)
 							)
 							{

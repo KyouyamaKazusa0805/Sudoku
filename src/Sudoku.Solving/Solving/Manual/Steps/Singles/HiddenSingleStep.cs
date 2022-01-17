@@ -27,9 +27,10 @@ public sealed record HiddenSingleStep(
 	public override Rarity Rarity => EnableAndIsLastDigit || Region < 9 ? Rarity.Always : Rarity.Often;
 
 	/// <inheritdoc/>
-	public override Technique TechniqueCode => EnableAndIsLastDigit
-		? Technique.LastDigit
-		: (Technique)((int)Technique.HiddenSingleBlock + (int)Region.ToLabel());
+	public override Technique TechniqueCode =>
+		EnableAndIsLastDigit
+			? Technique.LastDigit
+			: (Technique)((int)Technique.HiddenSingleBlock + (int)RegionLabel.ToLabel(Region));
 
 	/// <inheritdoc/>
 	public override string Format =>

@@ -57,8 +57,8 @@ public sealed unsafe class QiuDeadlyPatternStepSearcher : IQiuDeadlyPatternStepS
 						!(baseLineMap & pairMap).IsEmpty
 						|| !(
 							baseLineMap & (
-								RegionMaps[c1.ToRegion(RegionLabel.Block)]
-								| RegionMaps[c2.ToRegion(RegionLabel.Block)]
+								RegionMaps[RegionLabel.ToRegion(c1, RegionLabels.Block)]
+								| RegionMaps[RegionLabel.ToRegion(c2, RegionLabels.Block)]
 							)
 						).IsEmpty
 					)
@@ -67,8 +67,8 @@ public sealed unsafe class QiuDeadlyPatternStepSearcher : IQiuDeadlyPatternStepS
 					}
 
 					var squareMap = baseLineMap & (
-						RegionMaps[c1.ToRegion(isRow ? RegionLabel.Column : RegionLabel.Row)]
-						| RegionMaps[c2.ToRegion(isRow ? RegionLabel.Column : RegionLabel.Row)]
+						RegionMaps[RegionLabel.ToRegion(c1, isRow ? RegionLabels.Column : RegionLabels.Row)]
+						| RegionMaps[RegionLabel.ToRegion(c2, isRow ? RegionLabels.Column : RegionLabels.Row)]
 					);
 
 					Patterns[n++] = new(squareMap, baseLineMap - squareMap, pairMap);

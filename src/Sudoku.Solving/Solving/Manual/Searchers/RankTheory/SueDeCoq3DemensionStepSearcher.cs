@@ -20,9 +20,9 @@ public sealed unsafe class SueDeCoq3DemensionStepSearcher : ISueDeCoq3DemensionS
 		List<Cells> rbList = new(3), cbList = new(3);
 		foreach (int pivot in EmptyMap)
 		{
-			int r = pivot.ToRegion(RegionLabel.Row);
-			int c = pivot.ToRegion(RegionLabel.Column);
-			int b = pivot.ToRegion(RegionLabel.Block);
+			int r = RegionLabel.ToRegion(pivot, RegionLabels.Row);
+			int c = RegionLabel.ToRegion(pivot, RegionLabels.Column);
+			int b = RegionLabel.ToRegion(pivot, RegionLabels.Block);
 			Cells rbMap = RegionMaps[r] & RegionMaps[b], cbMap = RegionMaps[c] & RegionMaps[b];
 			Cells rbEmptyMap = rbMap & EmptyMap, cbEmptyMap = cbMap & EmptyMap;
 			if (

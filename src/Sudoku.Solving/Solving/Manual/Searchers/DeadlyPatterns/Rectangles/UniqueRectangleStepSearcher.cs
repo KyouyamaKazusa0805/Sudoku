@@ -995,8 +995,10 @@ public sealed unsafe class UniqueRectangleStepSearcher : IUniqueRectangleStepSea
 		}
 
 		int o1 = otherCellsMap[0], o2 = otherCellsMap[1];
-		int r1 = corner1.ToRegion(RegionLabel.Row), c1 = corner1.ToRegion(RegionLabel.Column);
-		int r2 = corner2.ToRegion(RegionLabel.Row), c2 = corner2.ToRegion(RegionLabel.Column);
+		int r1 = RegionLabel.ToRegion(corner1, RegionLabels.Row);
+		int c1 = RegionLabel.ToRegion(corner1, RegionLabels.Column);
+		int r2 = RegionLabel.ToRegion(corner2, RegionLabels.Row);
+		int c2 = RegionLabel.ToRegion(corner2, RegionLabels.Column);
 		int* p = stackalloc[] { d1, d2 };
 		var q = stackalloc[] { (r1, r2), (c1, c2) };
 		for (int digitIndex = 0; digitIndex < 2; digitIndex++)
@@ -1130,7 +1132,8 @@ public sealed unsafe class UniqueRectangleStepSearcher : IUniqueRectangleStepSea
 		int abzCell = GetDiagonalCell(urCells, cornerCell);
 		var adjacentCellsMap = otherCellsMap - abzCell;
 		int abxCell = adjacentCellsMap[0], abyCell = adjacentCellsMap[1];
-		int r = abzCell.ToRegion(RegionLabel.Row), c = abzCell.ToRegion(RegionLabel.Column);
+		int r = RegionLabel.ToRegion(abzCell, RegionLabels.Row);
+		int c = RegionLabel.ToRegion(abzCell, RegionLabels.Column);
 		int* p = stackalloc[] { d1, d2 };
 		for (int digitIndex = 0; digitIndex < 2; digitIndex++)
 		{
@@ -3530,7 +3533,7 @@ public sealed unsafe class UniqueRectangleStepSearcher : IUniqueRectangleStepSea
 			// Iterate on each cell.
 			foreach (int targetCell in cells)
 			{
-				int block = targetCell.ToRegion(RegionLabel.Block);
+				int block = RegionLabel.ToRegion(targetCell, RegionLabels.Block);
 				var bivalueCellsToCheck = (PeerMaps[targetCell] & RegionMaps[block] & BivalueMap) - cells;
 				if (bivalueCellsToCheck.IsEmpty)
 				{
@@ -4021,9 +4024,9 @@ public sealed unsafe class UniqueRectangleStepSearcher : IUniqueRectangleStepSea
 				: (otherCellsMap[1], otherCellsMap[0]);
 
 			// Iterate on each region type.
-			for (var label = RegionLabel.Block; label <= RegionLabel.Column; label++)
+			for (var label = RegionLabels.Block; label <= RegionLabels.Column; label++)
 			{
-				int region = baseCell.ToRegion(label);
+				int region = RegionLabel.ToRegion(baseCell, label);
 
 				// If the region doesn't overlap with the specified region, just skip it.
 				if ((cellsThatTwoOtherCellsBothCanSee & RegionMaps[region]).IsEmpty)

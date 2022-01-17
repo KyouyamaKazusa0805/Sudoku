@@ -119,7 +119,7 @@ public sealed unsafe class ComplexFishStepSearcher : IComplexFishStepSearcher
 		bool onlyFindOne
 	)
 	{
-		const RegionLabel bothLines = (RegionLabel)3;
+		const byte bothLines = 3;
 
 		int* currentCoverSets = stackalloc int[MaxSize];
 
@@ -208,17 +208,17 @@ public sealed unsafe class ComplexFishStepSearcher : IComplexFishStepSearcher
 						}
 
 						// Get the mask for checking for mutant fish.
-						Unsafe.SkipInit(out RegionLabel baseRegionTypes);
+						Unsafe.SkipInit(out byte baseRegionTypes);
 						if (searchForMutant)
 						{
-							baseRegionTypes = 0;
+							baseRegionTypes = (byte)RegionLabels.Block;
 							if ((baseSetsMask & AllRowsMask) != 0)
 							{
-								baseRegionTypes |= RegionLabel.Row;
+								baseRegionTypes |= (byte)RegionLabels.Row;
 							}
 							if ((baseSetsMask & AllColumnsMask) != 0)
 							{
-								baseRegionTypes |= RegionLabel.Column;
+								baseRegionTypes |= (byte)RegionLabels.Column;
 							}
 						}
 
@@ -279,30 +279,29 @@ public sealed unsafe class ComplexFishStepSearcher : IComplexFishStepSearcher
 
 							// Now iterate on three different region types, to check the final region
 							// that is the elimination lies in.
-							for (var label = RegionLabel.Block; label <= RegionLabel.Column; label++)
+							for (var label = RegionLabels.Block; label <= RegionLabels.Column; label++)
 							{
-								int region = cell.ToRegion(label);
+								int region = RegionLabel.ToRegion(cell, label);
 
 								// Check whether the region is both used in base sets and cover sets.
-								if ((usedInBaseSets >> region & 1) != 0
-									|| (usedInCoverSets >> region & 1) != 0)
+								if ((usedInBaseSets >> region & 1) != 0 || (usedInCoverSets >> region & 1) != 0)
 								{
 									continue;
 								}
 
 								// Add the region into the cover sets, and check the cover region types.
 								usedInCoverSets |= 1 << region;
-								Unsafe.SkipInit(out RegionLabel coverRegionTypes);
+								Unsafe.SkipInit(out byte coverRegionTypes);
 								if (searchForMutant)
 								{
-									coverRegionTypes = 0;
+									coverRegionTypes = (byte)RegionLabels.Block;
 									if ((usedInCoverSets & AllRowsMask) != 0)
 									{
-										coverRegionTypes |= RegionLabel.Row;
+										coverRegionTypes |= (byte)RegionLabels.Row;
 									}
 									if ((usedInCoverSets & AllColumnsMask) != 0)
 									{
-										coverRegionTypes |= RegionLabel.Column;
+										coverRegionTypes |= (byte)RegionLabels.Column;
 									}
 								}
 

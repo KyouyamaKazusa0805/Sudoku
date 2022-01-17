@@ -37,7 +37,7 @@ public readonly record struct Coordinate(byte Cell)
 	public int Row
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => RegionCalculator.ToRegion(Cell, RegionLabel.Row);
+		get => RegionLabel.ToRegion(Cell, RegionLabels.Row);
 	}
 
 	/// <summary>
@@ -46,7 +46,7 @@ public readonly record struct Coordinate(byte Cell)
 	public int Column
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => RegionCalculator.ToRegion(Cell, RegionLabel.Column);
+		get => RegionLabel.ToRegion(Cell, RegionLabels.Column);
 	}
 
 	/// <summary>
@@ -55,7 +55,7 @@ public readonly record struct Coordinate(byte Cell)
 	public int Block
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => RegionCalculator.ToRegion(Cell, RegionLabel.Block);
+		get => RegionLabel.ToRegion(Cell, RegionLabels.Block);
 	}
 
 	/// <inheritdoc/>

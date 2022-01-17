@@ -69,9 +69,10 @@ public unsafe interface IBivalueUniversalGraveStepSearcher : IUniversalStepSearc
 				ref var map = ref stack[0, digit];
 				map.AddAnyway(cell);
 
-				span[0] = cell.ToRegion(RegionLabel.Row);
-				span[1] = cell.ToRegion(RegionLabel.Column);
-				span[2] = cell.ToRegion(RegionLabel.Block);
+				fixed (int* p = span)
+				{
+					RegionLabel.ToRegion(cell, p);
+				}
 				foreach (int region in span)
 				{
 					if ((map & RegionMaps[region]).Count > 2)
@@ -128,9 +129,10 @@ public unsafe interface IBivalueUniversalGraveStepSearcher : IUniversalStepSearc
 					var temp = stack[currentIndex - 1, digit];
 					temp.AddAnyway(currentCell);
 
-					playground[0] = currentCell.ToRegion(RegionLabel.Block);
-					playground[1] = currentCell.ToRegion(RegionLabel.Row);
-					playground[2] = currentCell.ToRegion(RegionLabel.Column);
+					fixed (int* p = playground)
+					{
+						RegionLabel.ToRegion(currentCell, p);
+					}
 					foreach (int region in playground)
 					{
 						if ((temp & RegionMaps[region]).Count > 2)

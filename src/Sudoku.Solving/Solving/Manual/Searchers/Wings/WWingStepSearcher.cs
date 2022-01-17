@@ -64,12 +64,12 @@ public sealed unsafe class WWingStepSearcher : IIregularWingStepSearcher
 				// Iterate on each region.
 				for (int region = 0; region < 27; region++)
 				{
-					if (region == c1.ToRegion(RegionLabel.Block)
-						|| region == c1.ToRegion(RegionLabel.Row)
-						|| region == c1.ToRegion(RegionLabel.Column)
-						|| region == c2.ToRegion(RegionLabel.Block)
-						|| region == c2.ToRegion(RegionLabel.Row)
-						|| region == c2.ToRegion(RegionLabel.Column))
+					if (region == RegionLabel.ToRegion(c1, RegionLabels.Block)
+						|| region == RegionLabel.ToRegion(c1, RegionLabels.Row)
+						|| region == RegionLabel.ToRegion(c1, RegionLabels.Column)
+						|| region == RegionLabel.ToRegion(c2, RegionLabels.Block)
+						|| region == RegionLabel.ToRegion(c2, RegionLabels.Row)
+						|| region == RegionLabel.ToRegion(c2, RegionLabels.Column))
 					{
 						// The region to search for conjugate pairs shouldn't
 						// be the same as those two cells' regions.

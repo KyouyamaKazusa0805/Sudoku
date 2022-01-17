@@ -1533,6 +1533,14 @@
             The type kind.
             </summary>
         </member>
+        <member name="M:Sudoku.Data.Abstractions.ILinkType`1.Equals(`0)">
+            <summary>
+            Determine whether the specified <see cref="T:Sudoku.Data.LinkType"/> instance
+            holds the same type kind as the current one.
+            </summary>
+            <param name="other">The other instance to compare.</param>
+            <returns>A <see cref="T:System.Boolean"/> result.</returns>
+        </member>
         <member name="M:Sudoku.Data.Abstractions.ILinkType`1.GetNotation">
             <summary>
             Gets the notation of the chain link that combines 2 <see cref="T:Sudoku.Data.Node"/>s.
@@ -1556,6 +1564,72 @@
             Explicit cast from <typeparamref name="T"/> to <see cref="T:System.Byte"/>.
             </summary>
             <param name="linkType">The link type.</param>
+        </member>
+        <member name="T:Sudoku.Data.Abstractions.IRegionLabel`1">
+            <summary>
+            Defines a basic constraint that applied onto a <see cref="T:Sudoku.Data.RegionLabel"/>.
+            </summary>
+            <typeparam name="T">The type. The type is always <see cref="T:Sudoku.Data.RegionLabel"/>.</typeparam>
+        </member>
+        <member name="F:Sudoku.Data.Abstractions.IRegionLabel`1.BlockTable">
+            <summary>
+            The block table.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Data.Abstractions.IRegionLabel`1.RowTable">
+            <summary>
+            The row table.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Data.Abstractions.IRegionLabel`1.ColumnTable">
+            <summary>
+            The column table.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Data.Abstractions.IRegionLabel`1.RegionKind">
+            <summary>
+            The region kind.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Data.Abstractions.IRegionLabel`1.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
+        <member name="M:Sudoku.Data.Abstractions.IRegionLabel`1.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="M:Sudoku.Data.Abstractions.IRegionLabel`1.ToRegion(System.Int32,System.Int32*)">
+            <summary>
+            Gets the row, column and block value and copies to the specified pointer.
+            </summary>
+            <param name="cell">The cell.</param>
+            <param name="ptr">The pointer.</param>
+        </member>
+        <member name="M:Sudoku.Data.Abstractions.IRegionLabel`1.ToRegion(System.Int32,Sudoku.Data.RegionLabel)">
+            <summary>
+            Get the region index for the specified cell and the region type.
+            </summary>
+            <param name="cell">The cell.</param>
+            <param name="label">The label to represent a region type.</param>
+            <returns>The region index.</returns>
+        </member>
+        <member name="M:Sudoku.Data.Abstractions.IRegionLabel`1.ToLabel(System.Int32)">
+            <summary>
+            Get the label in the specified region.
+            </summary>
+            <param name="region">The region.</param>
+            <returns>The region label.</returns>
+        </member>
+        <member name="M:Sudoku.Data.Abstractions.IRegionLabel`1.op_Explicit(System.Byte)~`0">
+            <summary>
+            Explicit cast from <see cref="T:System.Byte"/> to <typeparamref name="T"/>.
+            </summary>
+            <param name="value">The value.</param>
+        </member>
+        <member name="M:Sudoku.Data.Abstractions.IRegionLabel`1.op_Explicit(`0)~System.Byte">
+            <summary>
+            Explicit cast from <typeparamref name="T"/> to <see cref="T:System.Byte"/>.
+            </summary>
+            <param name="regionLabel">The region label.</param>
         </member>
         <member name="T:Sudoku.Data.BitSubsetsGenerator">
             <summary>
@@ -4472,12 +4546,7 @@
             </param>
         </member>
         <member name="M:Sudoku.Data.LinkType.Equals(Sudoku.Data.LinkType)">
-            <summary>
-            Determine whether the specified <see cref="T:Sudoku.Data.LinkType"/> instance
-            holds the same type kind as the current one.
-            </summary>
-            <param name="other">The other instance to compare.</param>
-            <returns>A <see cref="T:System.Boolean"/> result.</returns>
+            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Data.LinkType.GetHashCode">
             <inheritdoc/>
@@ -4867,67 +4936,115 @@
             <param name="parentsCount">The number of parents.</param>
             <returns>The mask.</returns>
         </member>
-        <member name="T:Sudoku.Data.RegionCalculator">
-            <summary>
-            Provides extension methods on conversions between a cell and a region.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Data.RegionCalculator.BlockTable">
-            <summary>
-            The block table.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Data.RegionCalculator.RowTable">
-            <summary>
-            The row table.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Data.RegionCalculator.ColumnTable">
-            <summary>
-            The column table.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Data.RegionCalculator.ToRegion(System.Int32,Sudoku.Data.RegionLabel)">
-            <summary>
-            Get the region index for the specified cell and the region type.
-            </summary>
-            <param name="this">The cell.</param>
-            <param name="label">The label to represent a region type.</param>
-            <returns>The region index.</returns>
-        </member>
         <member name="T:Sudoku.Data.RegionLabel">
             <summary>
             Indicates the region label.
             </summary>
+            <param name="RegionKind">
+            The <see cref="T:System.Byte"/> value as the eigenvalue of the type. All possible values are:
+            <list type="table">
+            <item>
+            <term>0</term>
+            <description>The link is <see cref="F:Sudoku.Data.RegionLabels.Block"/>.</description>
+            </item>
+            <item>
+            <term>1</term>
+            <description>The link is <see cref="F:Sudoku.Data.RegionLabels.Row"/>.</description>
+            </item>
+            <item>
+            <term>2</term>
+            <description>The link is <see cref="F:Sudoku.Data.RegionLabels.Column"/>.</description>
+            </item>
+            </list>
+            </param>
         </member>
-        <member name="F:Sudoku.Data.RegionLabel.Block">
+        <member name="M:Sudoku.Data.RegionLabel.#ctor(System.Byte)">
             <summary>
-            Indicates the block.
+            Indicates the region label.
+            </summary>
+            <param name="RegionKind">
+            The <see cref="T:System.Byte"/> value as the eigenvalue of the type. All possible values are:
+            <list type="table">
+            <item>
+            <term>0</term>
+            <description>The link is <see cref="F:Sudoku.Data.RegionLabels.Block"/>.</description>
+            </item>
+            <item>
+            <term>1</term>
+            <description>The link is <see cref="F:Sudoku.Data.RegionLabels.Row"/>.</description>
+            </item>
+            <item>
+            <term>2</term>
+            <description>The link is <see cref="F:Sudoku.Data.RegionLabels.Column"/>.</description>
+            </item>
+            </list>
+            </param>
+        </member>
+        <member name="M:Sudoku.Data.RegionLabel.Equals(Sudoku.Data.RegionLabel)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Data.RegionLabel.GetHashCode">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Data.RegionLabel.CompareTo(Sudoku.Data.RegionLabel)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Data.RegionLabel.ToString">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Data.RegionLabel.System#IComparable#CompareTo(System.Object)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Data.RegionLabel.ToRegion(System.Int32,System.Int32*)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Data.RegionLabel.ToRegion(System.Int32,Sudoku.Data.RegionLabel)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Data.RegionLabel.ToLabel(System.Int32)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Data.RegionLabel.op_GreaterThan(Sudoku.Data.RegionLabel,Sudoku.Data.RegionLabel)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Data.RegionLabel.op_GreaterThanOrEqual(Sudoku.Data.RegionLabel,Sudoku.Data.RegionLabel)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Data.RegionLabel.op_LessThan(Sudoku.Data.RegionLabel,Sudoku.Data.RegionLabel)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Data.RegionLabel.op_LessThanOrEqual(Sudoku.Data.RegionLabel,Sudoku.Data.RegionLabel)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Data.RegionLabel.op_Increment(Sudoku.Data.RegionLabel)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Data.RegionLabel.op_Explicit(System.Byte)~Sudoku.Data.RegionLabel">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Data.RegionLabel.op_Explicit(Sudoku.Data.RegionLabel)~System.Byte">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Data.RegionLabels">
+            <summary>
+            Defines the <see langword="static"/> data for <see cref="T:Sudoku.Data.RegionLabel"/> instances.
+            </summary>
+            <completionlist cref="T:Sudoku.Data.RegionLabel"/>
+        </member>
+        <member name="F:Sudoku.Data.RegionLabels.Block">
+            <summary>
+            Indicates the region is the block.
             </summary>
         </member>
-        <member name="F:Sudoku.Data.RegionLabel.Row">
+        <member name="F:Sudoku.Data.RegionLabels.Row">
             <summary>
-            Indicates the row.
+            Indicates the region is the row.
             </summary>
         </member>
-        <member name="F:Sudoku.Data.RegionLabel.Column">
+        <member name="F:Sudoku.Data.RegionLabels.Column">
             <summary>
-            Indicates the column.
+            Indicates the region is the column.
             </summary>
-        </member>
-        <member name="T:Sudoku.Data.RegionLabelConverter">
-            <summary>
-            Encapsulates the converter methods of conversions between <see cref="T:System.Int32"/>
-            and <see cref="T:Sudoku.Data.RegionLabel"/>.
-            </summary>
-            <seealso cref="T:Sudoku.Data.RegionLabel"/>
-        </member>
-        <member name="M:Sudoku.Data.RegionLabelConverter.ToLabel(System.Int32)">
-            <summary>
-            Get the label in the specified region.
-            </summary>
-            <param name="region">The region.</param>
-            <returns>The region label.</returns>
         </member>
         <member name="T:Sudoku.Data.SymmetryType">
             <summary>

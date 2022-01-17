@@ -29,14 +29,14 @@ public interface IUniqueLoopOrBivalueOddagonStepSearcher : IStepSearcher, ILoopL
 		loopMap.AddAnyway(cell);
 		tempLoop.Add(cell);
 
-		for (var label = RegionLabel.Block; label <= RegionLabel.Column; label++)
+		for (var label = RegionLabels.Block; label <= RegionLabels.Column; label++)
 		{
 			if (label == lastLabel)
 			{
 				continue;
 			}
 
-			int region = cell.ToRegion(label);
+			int region = RegionLabel.ToRegion(cell, label);
 			var cellsMap = RegionMaps[region] & EmptyMap - cell;
 			if (cellsMap.IsEmpty)
 			{

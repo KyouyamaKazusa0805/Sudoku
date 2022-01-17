@@ -125,9 +125,9 @@ public unsafe interface IChainStepSearcher : IStepSearcher
 		}
 
 		// Second rule: Other positions for this digit get off.
-		for (var label = RegionLabel.Block; label <= RegionLabel.Column; label++)
+		for (var label = RegionLabels.Block; label <= RegionLabels.Column; label++)
 		{
-			int region = RegionCalculator.ToRegion(p.Cell, label);
+			int region = RegionLabel.ToRegion(p.Cell, label);
 			for (int pos = 0; pos < 9; pos++)
 			{
 				byte cell = (byte)RegionCells[region][pos];
@@ -221,10 +221,10 @@ public unsafe interface IChainStepSearcher : IStepSearcher
 		if (xEnabled)
 		{
 			// Second rule: If there's only two positions for this candidate, the other ont gets on.
-			for (var label = RegionLabel.Block; label <= RegionLabel.Column; label++)
+			for (var label = RegionLabels.Block; label <= RegionLabels.Column; label++)
 			{
 				_ = p is { Cell: var pc, Digit: var pd };
-				int region = RegionCalculator.ToRegion(pc, label);
+				int region = RegionLabel.ToRegion(pc, label);
 				var cells = (h(grid, pd, region, isDynamic, enableFastProperties) & RegionMaps[region]) - pc;
 				if (cells is [var onlyCell])
 				{
@@ -359,7 +359,7 @@ public unsafe interface IChainStepSearcher : IStepSearcher
 #endif
 	)
 	{
-		int region = RegionCalculator.ToRegion(p.Cell, currRegion);
+		int region = RegionLabel.ToRegion(p.Cell, currRegion);
 		foreach (int pos in (short)(m(source, p.Digit, region) & ~m(grid, p.Digit, region)))
 		{
 			// Add a hidden parent.

@@ -39,7 +39,8 @@ public sealed unsafe class EmptyRectangleIntersectionPairStepSearcher : IEmptyRe
 					continue;
 				}
 
-				int block1 = c1.ToRegion(RegionLabel.Block), block2 = c2.ToRegion(RegionLabel.Block);
+				int block1 = RegionLabel.ToRegion(c1, RegionLabels.Block);
+				int block2 = RegionLabel.ToRegion(c2, RegionLabels.Block);
 				if (block1 % 3 == block2 % 3 || block1 / 3 == block2 / 3)
 				{
 					continue;
@@ -49,7 +50,7 @@ public sealed unsafe class EmptyRectangleIntersectionPairStepSearcher : IEmptyRe
 				Cells interMap = new Cells { c1, c2 }.PeerIntersection, unionMap = new Cells(c1) | new Cells(c2);
 				foreach (int interCell in interMap)
 				{
-					int block = interCell.ToRegion(RegionLabel.Block);
+					int block = RegionLabel.ToRegion(interCell, RegionLabels.Block);
 					Cells regionMap = RegionMaps[block], checkingMap = regionMap - unionMap & regionMap;
 					if (!(checkingMap & CandMaps[d1]).IsEmpty || !(checkingMap & CandMaps[d2]).IsEmpty)
 					{
@@ -58,7 +59,8 @@ public sealed unsafe class EmptyRectangleIntersectionPairStepSearcher : IEmptyRe
 
 					// Check whether two digits are both in the same empty rectangle.
 					int inter1 = interMap[0], inter2 = interMap[1];
-					int b1 = inter1.ToRegion(RegionLabel.Block), b2 = inter2.ToRegion(RegionLabel.Block);
+					int b1 = RegionLabel.ToRegion(inter1, RegionLabels.Block);
+					int b2 = RegionLabel.ToRegion(inter2, RegionLabels.Block);
 					var erMap = (unionMap & RegionMaps[b1] - interMap) | (unionMap & RegionMaps[b2] - interMap);
 					var erCellsMap = regionMap & erMap;
 					short m = 0;

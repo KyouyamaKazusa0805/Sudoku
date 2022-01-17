@@ -13,6 +13,14 @@ internal interface ILinkType<[Self] T> where T : struct, ILinkType<T>
 
 
 	/// <summary>
+	/// Determine whether the specified <see cref="LinkType"/> instance
+	/// holds the same type kind as the current one.
+	/// </summary>
+	/// <param name="other">The other instance to compare.</param>
+	/// <returns>A <see cref="bool"/> result.</returns>
+	bool Equals(T other);
+
+	/// <summary>
 	/// Gets the notation of the chain link that combines 2 <see cref="Node"/>s.
 	/// </summary>
 	/// <returns>The notation <see cref="string"/> representation.</returns>

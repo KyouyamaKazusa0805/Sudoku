@@ -26,12 +26,7 @@
 /// </param>
 public readonly record struct LinkType(byte TypeKind) : ILinkType<LinkType>
 {
-	/// <summary>
-	/// Determine whether the specified <see cref="LinkType"/> instance
-	/// holds the same type kind as the current one.
-	/// </summary>
-	/// <param name="other">The other instance to compare.</param>
-	/// <returns>A <see cref="bool"/> result.</returns>
+	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public bool Equals(LinkType other) => TypeKind == other.TypeKind;
 

@@ -255,9 +255,9 @@ public unsafe class ForcingChainStepSearcher : IForcingChainStepSearcher, IDynam
 		ref NodeSet onToOff
 	)
 	{
-		for (var label = RegionLabel.Block; label <= RegionLabel.Column; label++)
+		for (var label = RegionLabels.Block; label <= RegionLabels.Column; label++)
 		{
-			int region = ((int)cell).ToRegion(label);
+			int region = RegionLabel.ToRegion(cell, label);
 			var worthMap = CandMaps[digit] & RegionMaps[region];
 			switch (worthMap)
 			{
