@@ -160,7 +160,9 @@ public readonly struct ExocetPattern : IPattern<ExocetPattern>, IValueEquatable<
 
 
 	/// <inheritdoc cref="object.Equals(object?)"/>
-	public override bool Equals([NotNullWhen(true)] object? obj) => base.Equals(obj);
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public override bool Equals([NotNullWhen(true)] object? obj) =>
+		obj is ExocetPattern comparer && Equals(comparer);
 
 	/// <summary>
 	/// Determine whether the specified <see cref="ExocetPattern"/> instance holds the same cell maps
