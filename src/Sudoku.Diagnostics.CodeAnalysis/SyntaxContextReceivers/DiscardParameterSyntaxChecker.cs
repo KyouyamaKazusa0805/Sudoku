@@ -18,14 +18,13 @@ public sealed partial class DiscardParameterSyntaxChecker : ISyntaxContextReceiv
 			return;
 		}
 
-		var attribute = compilation.GetTypeByMetadataName(typeof(IsDiscardAttribute).FullName);
-
 		var symbol = semanticModel.GetDeclaredSymbol(node, _cancellationToken);
 		if (symbol is not IMethodSymbol { Parameters: [_, ..] parameters })
 		{
 			return;
 		}
 
+		var attribute = compilation.GetTypeSymbol<IsDiscardAttribute>();
 		foreach (var parameter in parameters)
 		{
 			var attributesData = parameter.GetAttributes();

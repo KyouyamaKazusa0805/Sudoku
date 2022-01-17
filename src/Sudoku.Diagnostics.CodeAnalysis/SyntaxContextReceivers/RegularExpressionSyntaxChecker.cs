@@ -17,7 +17,7 @@ public sealed partial class RegularExpressionSyntaxChecker : ISyntaxContextRecei
 			return;
 		}
 
-		var attribute = compilation.GetTypeByMetadataName(typeof(IsRegexAttribute).FullName);
+		var attribute = compilation.GetTypeSymbol<IsRegexAttribute>();
 		foreach (var variable in variables)
 		{
 			if (

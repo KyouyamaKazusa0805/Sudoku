@@ -70,7 +70,7 @@ public sealed partial class GetPinnableReferenceMethodSyntaxChecker : ISyntaxCon
 		// Please note that 'object' typed value can't use 'is constant' pattern to check,
 		// because 'o is constant' is equivalent to 'o is type && (type)o == constant',
 		// where 'o is type' always returns false (because here 'o' is an 'object' instead of 'type').
-		var attributeSymbol = compilation.GetTypeByMetadataName(typeof(EditorBrowsableAttribute).FullName);
+		var attributeSymbol = compilation.GetTypeSymbol<EditorBrowsableAttribute>();
 		var attributeData = symbol.GetAttributes().FirstOrDefault(
 			attributeData =>
 				attributeData is { AttributeClass: var attribute, ConstructorArguments.Length: 1 }

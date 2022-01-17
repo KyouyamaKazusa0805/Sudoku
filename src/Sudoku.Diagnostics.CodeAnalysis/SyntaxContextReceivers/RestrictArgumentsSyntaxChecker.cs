@@ -17,7 +17,7 @@ public sealed partial class RestrictArgumentsSyntaxChecker : ISyntaxContextRecei
 			return;
 		}
 
-		var attribute = compilation.GetTypeByMetadataName(typeof(RestrictAttribute).FullName)!;
+		var attribute = compilation.GetTypeSymbol<RestrictAttribute>();
 		CheckOnMethodDeclaration(node, semanticModel, attribute);
 		CheckOnMethodInvocation(node, semanticModel, attribute);
 	}

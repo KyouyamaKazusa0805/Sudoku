@@ -23,7 +23,13 @@ public sealed partial class CallerArgumentExpressionAttributeSyntaxChecker : ISy
 			return;
 		}
 
-		var attribute = compilation.GetTypeByMetadataName("System.Runtime.CompilerServices.CallerArgumentExpressionAttribute")!;
+		const string attributeFullName = "System.Runtime.CompilerServices.CallerArgumentExpressionAttribute";
+		var attribute = compilation.GetTypeByMetadataName(attributeFullName);
+		if (attribute is null)
+		{
+			return;
+		}
+
 		foreach (var argument in argumentNodes)
 		{
 			var argumentOperation = semanticModel.GetOperation(argument, _cancellationToken);

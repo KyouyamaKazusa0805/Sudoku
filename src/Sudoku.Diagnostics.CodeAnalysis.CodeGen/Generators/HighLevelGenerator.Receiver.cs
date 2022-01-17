@@ -79,8 +79,8 @@ partial class HighLevelGenerator
 			}
 
 			// Check the existence of type 'SyntaxCheckerAttribute'.
+			var attributeTypeSymbol = compilation.GetTypeSymbol<SyntaxCheckerAttribute>();
 			var attributesData = symbol.GetAttributes();
-			var attributeTypeSymbol = compilation.GetTypeByMetadataName(typeof(SyntaxCheckerAttribute).FullName);
 			var attribute = attributesData.FirstOrDefault(a => SymbolEqualityComparer.Default.Equals(a.AttributeClass, attributeTypeSymbol));
 			if (
 				attribute is not
@@ -173,7 +173,7 @@ partial class HighLevelGenerator
 			}
 
 			// The type must implement the interface 'ISyntaxContextReceiver'.
-			var receiverSymbol = compilation.GetTypeByMetadataName(typeof(ISyntaxContextReceiver).FullName);
+			var receiverSymbol = compilation.GetTypeSymbol<ISyntaxContextReceiver>();
 			if (interfaces.All(t => !SymbolEqualityComparer.Default.Equals(t, receiverSymbol)))
 			{
 				Diagnostics.Add(Diagnostic.Create(SCA0009, identifierName.GetLocation(), messageArgs: null));
@@ -208,7 +208,7 @@ partial class HighLevelGenerator
 			// If the name doesn't end with 'SyntaxChecker', just use the full name as the short name instead.
 			Result.Add(
 				(
-					indexOfSyntaxChecker == 1 ? name : name.Substring(0, indexOfSyntaxChecker),
+					indexOfSyntaxChecker == 1 ? name : name[..indexOfSyntaxChecker],
 					name,
 					realValues.ToArray(),
 					attribute

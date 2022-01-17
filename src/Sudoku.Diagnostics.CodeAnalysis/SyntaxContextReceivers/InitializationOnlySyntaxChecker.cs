@@ -17,7 +17,7 @@ public sealed partial class InitializationOnlySyntaxChecker : ISyntaxContextRece
 			return;
 		}
 
-		var attribute = compilation.GetTypeByMetadataName(typeof(InitializationOnlyAttribute).FullName)!;
+		var attribute = compilation.GetTypeSymbol<InitializationOnlyAttribute>();
 		switch (node)
 		{
 			case TypeDeclarationSyntax:
@@ -36,13 +36,14 @@ public sealed partial class InitializationOnlySyntaxChecker : ISyntaxContextRece
 			}
 			default:
 			{
-				var operation = semanticModel.GetOperation(node, _cancellationToken);
-				var moduleInitializerAttribute = compilation.GetTypeByMetadataName("System.Runtime.CompilerServices.ModuleInitializerAttribute");
+				const string moduleInitializerAttributeFullName = "System.Runtime.CompilerServices.ModuleInitializerAttribute";
+				var moduleInitializerAttribute = compilation.GetTypeByMetadataName(moduleInitializerAttributeFullName);
 				if (moduleInitializerAttribute is null)
 				{
 					break;
 				}
 
+				var operation = semanticModel.GetOperation(node, _cancellationToken);
 				CheckUsages(operation, attribute, semanticModel, moduleInitializerAttribute);
 
 				break;

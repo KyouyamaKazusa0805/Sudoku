@@ -27,7 +27,8 @@ public sealed partial class CellSyntaxChecker : ISyntaxContextReceiver
 			return;
 		}
 
-		var cellsSymbol = compilation.GetTypeByMetadataName("Sudoku.Data.Cells");
+		const string cellsSymbolFullName = "Sudoku.Data.Cells";
+		var cellsSymbol = compilation.GetTypeByMetadataName(cellsSymbolFullName);
 		if (cellsSymbol is null)
 		{
 			return;
@@ -305,7 +306,8 @@ public sealed partial class CellSyntaxChecker : ISyntaxContextReceiver
 			return;
 		}
 
-		var bitOperationsSymbol = compilation.GetTypeByMetadataName("System.Numerics.BitOperations");
+		const string bitOperationsSymbolFullName = "System.Numerics.BitOperations";
+		var bitOperationsSymbol = compilation.GetTypeByMetadataName(bitOperationsSymbolFullName);
 		if (bitOperationsSymbol is null)
 		{
 			return;

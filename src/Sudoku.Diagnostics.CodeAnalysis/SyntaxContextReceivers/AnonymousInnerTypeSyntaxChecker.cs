@@ -17,7 +17,7 @@ public sealed partial class AnonymousInnerTypeSyntaxChecker : ISyntaxContextRece
 			return;
 		}
 
-		var attribute = compilation.GetTypeByMetadataName(typeof(AnonymousInnerTypeAttribute).FullName)!;
+		var attribute = compilation.GetTypeSymbol<AnonymousInnerTypeAttribute>();
 		CheckLocalVariables(node, semanticModel, attribute);
 		CheckPropetiesOnSymbol(node, semanticModel, attribute);
 		CheckUsages(node, semanticModel, attribute);

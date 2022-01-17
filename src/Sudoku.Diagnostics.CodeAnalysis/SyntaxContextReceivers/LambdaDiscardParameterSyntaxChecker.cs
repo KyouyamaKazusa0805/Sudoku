@@ -18,14 +18,13 @@ public sealed partial class LambdaDiscardParameterSyntaxChecker : ISyntaxContext
 			return;
 		}
 
-		var attribute = compilation.GetTypeByMetadataName(typeof(IsDiscardAttribute).FullName);
-
 		var operation = semanticModel.GetOperation(node, _cancellationToken);
 		if (operation is not IAnonymousFunctionOperation { Symbol.Parameters: var parameters })
 		{
 			return;
 		}
 
+		var attribute = compilation.GetTypeSymbol<IsDiscardAttribute>();
 		foreach (var parameter in parameters)
 		{
 			var attributesData = parameter.GetAttributes();

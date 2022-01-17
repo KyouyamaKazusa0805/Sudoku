@@ -17,7 +17,13 @@ public sealed partial class LambdaBodyAttributeSyntaxChecker : ISyntaxContextRec
 			return;
 		}
 
-		var attribute = compilation.GetTypeByMetadataName("Sudoku.Diagnostics.CodeGen.LambdaBodyAttribute")!;
+		const string attributeFullName = "Sudoku.Diagnostics.CodeGen.LambdaBodyAttribute";
+		var attribute = compilation.GetTypeByMetadataName(attributeFullName);
+		if (attribute is null)
+		{
+			return;
+		}
+
 		switch (node)
 		{
 			case AccessorDeclarationSyntax { Keyword: { RawKind: (int)SyntaxKind.SetKeyword } keyword }

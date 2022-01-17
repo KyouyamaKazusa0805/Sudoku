@@ -32,8 +32,8 @@ public sealed partial class ThisConstraintSyntaxChecker : ISyntaxContextReceiver
 		}
 
 		// Checks for each type parameter, to determine whether the type parameter
-		// has marked the attribute [SelfTypeParameter].
-		var selfType = compilation.GetTypeByMetadataName(typeof(SelfAttribute).FullName)!;
+		// has marked the attribute [Self].
+		var selfType = compilation.GetTypeSymbol<SelfAttribute>();
 		foreach (var typeParameter in typeParameters)
 		{
 			if (typeParameter is not { Name: var typeParameterName, Locations: [var location, ..] })

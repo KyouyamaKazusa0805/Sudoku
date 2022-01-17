@@ -11,7 +11,8 @@ public sealed partial class ReadOnlyMemberSyntaxChecker : ISyntaxContextReceiver
 			return;
 		}
 
-		var attribute = compilation.GetTypeByMetadataName("System.Runtime.CompilerServices.IsReadOnlyAttribute");
+		const string attributeFullName = "System.Runtime.CompilerServices.IsReadOnlyAttribute";
+		var attribute = compilation.GetTypeByMetadataName(attributeFullName);
 		if (attribute is null)
 		{
 			return;

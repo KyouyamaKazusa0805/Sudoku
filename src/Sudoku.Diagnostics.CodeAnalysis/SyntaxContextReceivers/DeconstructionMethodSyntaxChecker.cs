@@ -43,7 +43,7 @@ public sealed partial class DeconstructionMethodSyntaxChecker : ISyntaxContextRe
 			return;
 		}
 
-		var isDiscardAttribute = compilation.GetTypeByMetadataName(typeof(IsDiscardAttribute).FullName)!;
+		var isDiscardAttribute = compilation.GetTypeSymbol<IsDiscardAttribute>();
 		reportWrongUsagesOnEditorBrowsableNever(symbol);
 
 		switch (symbol)
@@ -111,7 +111,7 @@ public sealed partial class DeconstructionMethodSyntaxChecker : ISyntaxContextRe
 
 		void reportWrongUsagesOnEditorBrowsableNever(ISymbol symbol)
 		{
-			var editorBrowsableAttribute = compilation.GetTypeByMetadataName(typeof(EditorBrowsableAttribute).FullName)!;
+			var editorBrowsableAttribute = compilation.GetTypeSymbol<EditorBrowsableAttribute>();
 			var methodAttributeData = symbol.GetAttributes().FirstOrDefault(
 				attributeData =>
 					attributeData is { AttributeClass: var attribute, ConstructorArguments.Length: 1 }
