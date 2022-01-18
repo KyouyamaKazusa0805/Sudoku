@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Diagnostics.CodeGen;
+﻿namespace Sudoku.Diagnostics.CodeGen.SyntaxContextReceivers;
 
 /// <summary>
 /// Defines a result collection receiver.
