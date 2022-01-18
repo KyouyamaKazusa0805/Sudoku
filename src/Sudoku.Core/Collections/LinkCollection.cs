@@ -3,7 +3,7 @@
 /// <summary>
 /// Provides a collection that contains the chain links.
 /// </summary>
-public readonly ref partial struct ChainLinkCollection
+public readonly ref partial struct LinkCollection
 {
 	/// <summary>
 	/// The internal collection.
@@ -15,14 +15,13 @@ public readonly ref partial struct ChainLinkCollection
 	/// Initializes an instance with the specified collection.
 	/// </summary>
 	/// <param name="collection">The collection.</param>
-	public ChainLinkCollection(in Span<Link> collection) : this() => _collection = collection;
+	public LinkCollection(in Span<Link> collection) : this() => _collection = collection;
 
 	/// <summary>
 	/// Initializes an instance with the specified collection.
 	/// </summary>
 	/// <param name="collection">The collection.</param>
-	public ChainLinkCollection(IEnumerable<Link> collection) : this() =>
-		_collection = collection.ToArray().AsSpan();
+	public LinkCollection(IEnumerable<Link> collection) : this() => _collection = collection.ToArray().AsSpan();
 
 
 	/// <summary>
@@ -31,7 +30,7 @@ public readonly ref partial struct ChainLinkCollection
 	/// <param name="other">The collection to compare.</param>
 	/// <returns>A <see cref="bool"/> result.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public bool Equals(in ChainLinkCollection other) => _collection == other._collection;
+	public bool Equals(in LinkCollection other) => _collection == other._collection;
 
 	/// <inheritdoc cref="object.ToString"/>
 	public override string ToString()
@@ -46,14 +45,13 @@ public readonly ref partial struct ChainLinkCollection
 
 		static string f(in Span<Link> collection)
 		{
-			var links = collection.ToArray();
 			var sb = new StringHandler(initialCapacity: 100);
-			foreach (var (start, _, type) in links)
+			foreach (var (start, _, type) in collection)
 			{
 				sb.Append(new Candidates { start }.ToString());
 				sb.Append(type.GetNotation());
 			}
-			sb.Append(new Candidates { links[^1].EndCandidate }.ToString());
+			sb.Append(new Candidates { collection[^1].EndCandidate }.ToString());
 
 			// Remove redundant digit labels:
 			// r1c1(1) == r1c2(1) --> r1c1 == r1c2(1).

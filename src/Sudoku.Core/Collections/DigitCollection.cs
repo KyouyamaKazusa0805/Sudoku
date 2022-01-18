@@ -70,7 +70,7 @@ public readonly ref partial struct DigitCollection
 			return "{ }";
 		}
 
-		if ((_mask & _mask - 1) == 0)
+		if (IsPow2(_mask))
 		{
 			return (TrailingZeroCount(_mask) + 1).ToString();
 		}

@@ -140,7 +140,7 @@ public partial struct NodeSet : IEnumerable
 	/// <param name="node">The node to check the equality.</param>
 	/// <returns>The reference to the chain.</returns>
 	/// <seealso cref="Unsafe.IsNullRef{T}(ref T)"/>
-	public readonly unsafe ref Node this[Node node]
+	public readonly ref Node this[Node node]
 	{
 		get
 		{

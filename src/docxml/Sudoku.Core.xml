@@ -4,46 +4,6 @@
         <name>Sudoku.Core</name>
     </assembly>
     <members>
-        <member name="T:Sudoku.Collections.ChainLinkCollection">
-            <summary>
-            Provides a collection that contains the chain links.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Collections.ChainLinkCollection._collection">
-            <summary>
-            The internal collection.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Collections.ChainLinkCollection.#ctor(System.Span{Sudoku.Data.Link}@)">
-            <summary>
-            Initializes an instance with the specified collection.
-            </summary>
-            <param name="collection">The collection.</param>
-        </member>
-        <member name="M:Sudoku.Collections.ChainLinkCollection.#ctor(System.Collections.Generic.IEnumerable{Sudoku.Data.Link})">
-            <summary>
-            Initializes an instance with the specified collection.
-            </summary>
-            <param name="collection">The collection.</param>
-        </member>
-        <member name="M:Sudoku.Collections.ChainLinkCollection.Equals(Sudoku.Collections.ChainLinkCollection@)">
-            <summary>
-            Determine whether two collections are equal.
-            </summary>
-            <param name="other">The collection to compare.</param>
-            <returns>A <see cref="T:System.Boolean"/> result.</returns>
-        </member>
-        <member name="M:Sudoku.Collections.ChainLinkCollection.ToString">
-            <inheritdoc cref="M:System.Object.ToString"/>
-        </member>
-        <member name="M:Sudoku.Collections.ChainLinkCollection.Equals(System.Object)">
-            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
-            <exception cref="T:System.NotSupportedException">Always throws.</exception>
-        </member>
-        <member name="M:Sudoku.Collections.ChainLinkCollection.GetHashCode">
-            <inheritdoc cref="M:System.Object.GetHashCode"/>
-            <exception cref="T:System.NotSupportedException">Always throws.</exception>
-        </member>
         <member name="T:Sudoku.Collections.ConclusionCollection">
             <summary>
             Provides a collection that contains the conclusions.
@@ -201,6 +161,46 @@
             <exception cref="T:System.NotSupportedException">Always throws.</exception>
         </member>
         <member name="M:Sudoku.Collections.DigitCollection.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+            <exception cref="T:System.NotSupportedException">Always throws.</exception>
+        </member>
+        <member name="T:Sudoku.Collections.LinkCollection">
+            <summary>
+            Provides a collection that contains the chain links.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Collections.LinkCollection._collection">
+            <summary>
+            The internal collection.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Collections.LinkCollection.#ctor(System.Span{Sudoku.Data.Link}@)">
+            <summary>
+            Initializes an instance with the specified collection.
+            </summary>
+            <param name="collection">The collection.</param>
+        </member>
+        <member name="M:Sudoku.Collections.LinkCollection.#ctor(System.Collections.Generic.IEnumerable{Sudoku.Data.Link})">
+            <summary>
+            Initializes an instance with the specified collection.
+            </summary>
+            <param name="collection">The collection.</param>
+        </member>
+        <member name="M:Sudoku.Collections.LinkCollection.Equals(Sudoku.Collections.LinkCollection@)">
+            <summary>
+            Determine whether two collections are equal.
+            </summary>
+            <param name="other">The collection to compare.</param>
+            <returns>A <see cref="T:System.Boolean"/> result.</returns>
+        </member>
+        <member name="M:Sudoku.Collections.LinkCollection.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
+        <member name="M:Sudoku.Collections.LinkCollection.Equals(System.Object)">
+            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
+            <exception cref="T:System.NotSupportedException">Always throws.</exception>
+        </member>
+        <member name="M:Sudoku.Collections.LinkCollection.GetHashCode">
             <inheritdoc cref="M:System.Object.GetHashCode"/>
             <exception cref="T:System.NotSupportedException">Always throws.</exception>
         </member>

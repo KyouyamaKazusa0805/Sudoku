@@ -86,6 +86,6 @@ public sealed record ContinuousNiceLoopStep(
 	private string ChainStr
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => new ChainLinkCollection(from pair in Views[0].Links! select pair.Link).ToString();
+		get => new LinkCollection(from pair in Views[0].Links! select pair.Link).ToString();
 	}
 }
