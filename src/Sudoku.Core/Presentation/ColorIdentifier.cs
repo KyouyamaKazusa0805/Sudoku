@@ -124,7 +124,7 @@ public readonly record struct ColorIdentifier(
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public bool Equals(in ColorIdentifier other) => UseId && Id == other.Id || !UseId && Color == other.Color;
+	public bool Equals(ColorIdentifier other) => UseId && Id == other.Id || !UseId && Color == other.Color;
 
 	/// <inheritdoc/>
 	/// <remarks>
@@ -139,14 +139,9 @@ public readonly record struct ColorIdentifier(
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public override string ToString() => UseId ? $"ID = {Id}" : $"Color = #{A:X2}{R:X2}{G:X2}{B:X2}";
 
-
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static bool operator ==(in ColorIdentifier left, in ColorIdentifier right) => left.Equals(in right);
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static bool operator !=(in ColorIdentifier left, in ColorIdentifier right) => !left.Equals(in right);
+	bool IValueEquatable<ColorIdentifier>.Equals(in ColorIdentifier other) => Equals(other);
 
 
 	/// <summary>

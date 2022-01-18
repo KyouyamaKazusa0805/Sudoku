@@ -5246,7 +5246,7 @@
             <returns>Returns whether the taking operation is successful.</returns>
             <seealso cref="P:Sudoku.Presentation.ColorIdentifier.UseId"/>
         </member>
-        <member name="M:Sudoku.Presentation.ColorIdentifier.Equals(Sudoku.Presentation.ColorIdentifier@)">
+        <member name="M:Sudoku.Presentation.ColorIdentifier.Equals(Sudoku.Presentation.ColorIdentifier)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Presentation.ColorIdentifier.GetHashCode">
@@ -5260,10 +5260,7 @@
         <member name="M:Sudoku.Presentation.ColorIdentifier.ToString">
             <inheritdoc cref="M:System.Object.ToString"/>
         </member>
-        <member name="M:Sudoku.Presentation.ColorIdentifier.op_Equality(Sudoku.Presentation.ColorIdentifier@,Sudoku.Presentation.ColorIdentifier@)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Presentation.ColorIdentifier.op_Inequality(Sudoku.Presentation.ColorIdentifier@,Sudoku.Presentation.ColorIdentifier@)">
+        <member name="M:Sudoku.Presentation.ColorIdentifier.System#IValueEquatable{Sudoku#Presentation#ColorIdentifier}#Equals(Sudoku.Presentation.ColorIdentifier@)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Presentation.ColorIdentifier.op_Explicit(System.Int32)~Sudoku.Presentation.ColorIdentifier">
