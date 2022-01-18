@@ -6,10 +6,10 @@ namespace Sudoku;
 
 /// <summary>
 /// <para>Provides with the type that contains a module initializer.</para>
-/// <para><b>
+/// <para><i>
 /// The type is called by the compiler and the CLR (Common Language Runtime),
 /// which means you cannot use any members in this type manually.
-/// </b></para>
+/// </i></para>
 /// </summary>
 internal static class ModuleInitializer
 {
