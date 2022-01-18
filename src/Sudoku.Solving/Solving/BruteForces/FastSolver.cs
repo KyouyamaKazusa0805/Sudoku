@@ -37,7 +37,6 @@ public sealed unsafe class FastSolver : IPuzzleSolver
 	public ValueTask<ISolverResult> SolveAsync(in Grid puzzle, CancellationToken cancellationToken = default) =>
 		new(Solve(puzzle, cancellationToken));
 
-
 	/// <inheritdoc cref="BitwiseSolver.Solve(char*, char*, int)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	internal long Solve(char* puzzle, char* solution, int limit) =>

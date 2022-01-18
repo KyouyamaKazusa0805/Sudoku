@@ -3,7 +3,7 @@
 /// <summary>
 /// Provides a solver using LINQ method.
 /// </summary>
-public sealed class OneLineLinqSolver : IPuzzleSolver
+public sealed class LinqSolver : IPuzzleSolver
 {
 	/// <inheritdoc/>
 	public ISolverResult Solve(in Grid puzzle, CancellationToken cancellationToken = default)
