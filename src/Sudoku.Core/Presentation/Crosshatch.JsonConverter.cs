@@ -31,12 +31,11 @@ partial record struct Crosshatch
 						pos = reader.GetString();
 						break;
 					}
-					case JsonTokenType.String:
+					case JsonTokenType.String when reader.GetString() is { } cellsJson:
 					{
-						string cellsJson = reader.GetString()!;
 						switch (pos)
 						{
-							case nameof(Start):
+							case nameof(start):
 							{
 								start = JsonSerializer.Deserialize<Cells>(cellsJson, options);
 								break;
@@ -53,13 +52,13 @@ partial record struct Crosshatch
 				}
 			}
 
-			return (start, end);
+			return new(start, end);
 		}
 
 		/// <inheritdoc/>
 		public override void Write(Utf8JsonWriter writer, Crosshatch value, JsonSerializerOptions options)
 		{
-			var converter = options.GetConverter<Cells, Cells.JsonConverter>();
+			var converter = options.GetConverter(typeof(Cells)) as JsonConverter<Cells> ?? new Cells.JsonConverter();
 
 			writer.WriteStartObject();
 			writer.WriteObject(value.Start, converter, options);

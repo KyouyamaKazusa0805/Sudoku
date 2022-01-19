@@ -6,12 +6,4 @@
 /// <param name="Cell">Indicates the cell that used and marked.</param>
 /// <param name="UnknownIdentifier">Indicates the identifier that identifies the value range.</param>
 /// <param name="DigitsMask">Indicates a mask that holds a serial of candidate values.</param>
-public readonly partial record struct UnknownValue(int Cell, char UnknownIdentifier, short DigitsMask)
-: IValueEquatable<UnknownValue>
-, IJsonSerializable<UnknownValue, UnknownValue.JsonConverter>
-{
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	bool IValueEquatable<UnknownValue>.Equals(in UnknownValue other) =>
-		Cell == other.Cell && UnknownIdentifier == other.UnknownIdentifier && DigitsMask == other.DigitsMask;
-}
+public readonly partial record struct UnknownValue(int Cell, char UnknownIdentifier, short DigitsMask);

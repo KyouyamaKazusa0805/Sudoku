@@ -7,7 +7,6 @@
 /// <param name="EndCandidate">Indicates the end candidate.</param>
 /// <param name="LinkType">Indicates the link type.</param>
 public readonly partial record struct Link(int StartCandidate, int EndCandidate, LinkType LinkType)
-: IJsonSerializable<Link, Link.JsonConverter>
 {
 	/// <summary>
 	/// Indicates the start cell.

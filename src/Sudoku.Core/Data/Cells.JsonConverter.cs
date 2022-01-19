@@ -6,7 +6,7 @@ partial struct Cells
 	/// Defines a JSON converter that allows the current instance being serialized.
 	/// </summary>
 	[JsonConverter(typeof(Cells))]
-	public sealed unsafe class JsonConverter : JsonConverter<Cells>
+	public sealed class JsonConverter : JsonConverter<Cells>
 	{
 		/// <inheritdoc/>
 		public override bool HandleNull => false;
@@ -35,7 +35,7 @@ partial struct Cells
 					}
 					case JsonTokenType.Number:
 					{
-						*(pos == 0 ? &hi : &lo) = reader.GetInt64();
+						(pos == 0 ? ref hi : ref lo) = reader.GetInt64();
 						break;
 					}
 				}

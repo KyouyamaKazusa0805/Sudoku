@@ -5426,12 +5426,6 @@
         <member name="M:Sudoku.Presentation.Crosshatch.Equals(Sudoku.Presentation.Crosshatch@)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Presentation.Crosshatch.op_Implicit(System.ValueTuple{Sudoku.Data.Cells,Sudoku.Data.Cells}@)~Sudoku.Presentation.Crosshatch">
-            <summary>
-            Implicit cast from <see cref="T:System.ValueTuple`2"/> to <see cref="T:Sudoku.Presentation.Crosshatch"/>.
-            </summary>
-            <param name="pair">The pair of crosshatching line data.</param>
-        </member>
         <member name="T:Sudoku.Presentation.Crosshatch.JsonConverter">
             <summary>
             Indicates the JSON converter.
@@ -5709,9 +5703,6 @@
             <param name="Cell">Indicates the cell that used and marked.</param>
             <param name="UnknownIdentifier">Indicates the identifier that identifies the value range.</param>
             <param name="DigitsMask">Indicates a mask that holds a serial of candidate values.</param>
-        </member>
-        <member name="M:Sudoku.Presentation.UnknownValue.System#IValueEquatable{Sudoku#Presentation#UnknownValue}#Equals(Sudoku.Presentation.UnknownValue@)">
-            <inheritdoc/>
         </member>
         <member name="T:Sudoku.Presentation.UnknownValue.JsonConverter">
             <summary>

@@ -13,7 +13,6 @@
 public unsafe partial struct Grid
 : IGrid<Grid>
 , ISimpleFormattable
-, IJsonSerializable<Grid, Grid.JsonConverter>
 , ISimpleParseable<Grid>
 , IValueEquatable<Grid>
 {

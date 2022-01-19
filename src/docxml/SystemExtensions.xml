@@ -707,67 +707,6 @@
             <param name="converter">The converter.</param>
             <param name="options">The options on serialization.</param>
         </member>
-        <member name="T:System.Text.Json.IJsonSerializable`2">
-            <summary>
-            Defines a type that can serialize and deserialize.
-            </summary>
-            <typeparam name="T">The type of the instance.</typeparam>
-            <typeparam name="TConverter">The type of the converter bound with.</typeparam>
-        </member>
-        <member name="F:System.Text.Json.IJsonSerializable`2.SerializerOptions">
-            <summary>
-            Indicates the JSON serializer option instance that used
-            during serialization or deserialization operation.
-            </summary>
-        </member>
-        <member name="M:System.Text.Json.IJsonSerializable`2.Serialize(`0)">
-            <summary>
-            Serializes the current instance, and converts the instance into a JSON string.
-            </summary>
-            <param name="instance">The instance to serialize.</param>
-            <returns>The JSON string result.</returns>
-        </member>
-        <member name="M:System.Text.Json.IJsonSerializable`2.Deserialize(System.String)">
-            <summary>
-            Deserializes the specified possible JSON string, and parses the string, then return the result.
-            </summary>
-            <param name="json">The JSON string.</param>
-            <returns>The instance result.</returns>
-        </member>
-        <member name="T:System.Text.Json.JsonSerializerOptionsExtensions">
-            <summary>
-            Prpvides extension methods on <see cref="T:System.Text.Json.JsonSerializerOptions"/>.
-            </summary>
-            <seealso cref="T:System.Text.Json.JsonSerializerOptions"/>
-        </member>
-        <member name="M:System.Text.Json.JsonSerializerOptionsExtensions.GetConverter``2(System.Text.Json.JsonSerializerOptions)">
-            <summary>
-            Try to get the first JSON converter whose implemented type is specified as the generic argument.
-            </summary>
-            <typeparam name="T">
-            The type of the data as the result value that JSON converter returns.
-            </typeparam>
-            <typeparam name="TConverter">The type of the JSON converter.</typeparam>
-            <param name="this">The current instance.</param>
-            <returns>
-            The found JSON converter instance. If none found or the wrong type converting, the method will
-            return a new instance that created by the specified type <typeparamref name="T"/>
-            (i.e. a/an <typeparamref name="TConverter"/> instance).
-            </returns>
-        </member>
-        <member name="M:System.Text.Json.JsonSerializerOptionsExtensions.AppendConverter``2(System.Text.Json.JsonSerializerOptions,``1)">
-            <summary>
-            Append the specified JSON converter into the collection, and returns the reference
-            of this current instance.
-            </summary>
-            <typeparam name="T">
-            The type of the data as the result value that JSON converter returns.
-            </typeparam>
-            <typeparam name="TConverter">The type of the JSON converter.</typeparam>
-            <param name="this">The current instance.</param>
-            <param name="converter">The JSON converter to append.</param>
-            <returns>The reference of the current instance.</returns>
-        </member>
         <member name="T:System.Text.RegularExpressions.InvalidRegexStringException">
             <summary>
             Indicates an error for reporting a string is an invalid regular expression.

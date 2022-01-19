@@ -11,7 +11,6 @@
 /// </remarks>
 public unsafe partial struct Cells
 : ICellsOrCandidates<Cells>
-, IJsonSerializable<Cells, Cells.JsonConverter>
 , ISimpleFormattable
 , ISimpleParseable<Cells>
 {

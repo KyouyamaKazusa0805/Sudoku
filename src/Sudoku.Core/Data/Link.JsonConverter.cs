@@ -6,7 +6,7 @@ partial record struct Link
 	/// Defines a JSON converter that allows the current instance being serialized.
 	/// </summary>
 	[JsonConverter(typeof(Link))]
-	public sealed unsafe class JsonConverter : JsonConverter<Link>
+	public sealed class JsonConverter : JsonConverter<Link>
 	{
 		/// <inheritdoc/>
 		public override bool HandleNull => false;
