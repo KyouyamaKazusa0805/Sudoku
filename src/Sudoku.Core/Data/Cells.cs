@@ -9,10 +9,7 @@
 /// and the <see langword="false"/> bit (0) is for the cell not containing
 /// the digit.
 /// </remarks>
-public unsafe partial struct Cells
-: ICellsOrCandidates<Cells>
-, ISimpleFormattable
-, ISimpleParseable<Cells>
+public unsafe partial struct Cells : ICellsOrCandidates<Cells>, ISimpleFormattable, ISimpleParseable<Cells>
 {
 	/// <summary>
 	/// <para>Indicates an empty instance (all bits are 0).</para>

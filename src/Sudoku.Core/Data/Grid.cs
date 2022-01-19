@@ -87,6 +87,7 @@ public unsafe partial struct Grid
 	/// </list>
 	/// </remarks>
 	/// <seealso cref="CellStatus"/>
+	[JsonIgnore]
 	private fixed short _values[81];
 
 
@@ -414,6 +415,16 @@ public unsafe partial struct Grid
 
 			return maskResult;
 		}
+	}
+
+	/// <summary>
+	/// Gets the text code for the current sudoku grid, that can be used for parsing or formatting
+	/// a sudoku grid, interacting with type <see cref="string"/>.
+	/// </summary>
+	public readonly string TextCode
+	{
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		get => ToString("#");
 	}
 
 	/// <summary>

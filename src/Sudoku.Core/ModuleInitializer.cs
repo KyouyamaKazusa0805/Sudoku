@@ -47,9 +47,9 @@ internal static class ModuleInitializer
 	public static void Initialize()
 	{
 #if USE_CALLING_ASSEMBLY
-		string directory = Assembly.GetCallingAssembly().Location;
+		string directory = Path.GetDirectoryName(Assembly.GetCallingAssembly().Location)!;
 #elif USE_EXECUTING_ASSEMBLY
-		string directory = Assembly.GetExecutingAssembly().Location;
+		string directory = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)!;
 #else
 		string directory = null!;
 #error You must set one symbol in either 'USE_CALLING_ASSEMBLY' or 'USE_EXECUTING_ASSEMBLY'.
@@ -57,19 +57,31 @@ internal static class ModuleInitializer
 
 		if (string.IsNullOrEmpty(directory))
 		{
+#if DEBUG
+			return;
+#else
 			throw new DirectoryNotFoundException("The language resource folder cannot be found.");
+#endif
 		}
 
 		var targetDirectory = new DirectoryInfo($@"{directory}\lang");
 		if (!targetDirectory.Exists)
 		{
+#if DEBUG
+			return;
+#else
 			throw new DirectoryNotFoundException("The language resource folder cannot be found.");
+#endif
 		}
 
 		var files = targetDirectory.GetFiles("*.json", SearchOption.TopDirectoryOnly);
 		if (files.Length == 0)
 		{
+#if DEBUG
+			return;
+#else
 			throw new FileNotFoundException("The resource document file cannot be found.");
+#endif
 		}
 
 		var targetManager = new ResourceDocumentManager();

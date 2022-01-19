@@ -2608,21 +2608,6 @@
         <member name="M:Sudoku.Data.Cells.op_Explicit(Sudoku.Data.Cells@)~System.ReadOnlySpan{System.Int32}">
             <inheritdoc/>
         </member>
-        <member name="T:Sudoku.Data.Cells.JsonConverter">
-            <summary>
-            Defines a JSON converter that allows the current instance being serialized.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Data.Cells.JsonConverter.HandleNull">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Data.Cells.JsonConverter.Read(System.Text.Json.Utf8JsonReader@,System.Type,System.Text.Json.JsonSerializerOptions)">
-            <inheritdoc/>
-            <exception cref="T:System.InvalidOperationException">Throws when the specified data is invalid.</exception>
-        </member>
-        <member name="M:Sudoku.Data.Cells.JsonConverter.Write(System.Text.Json.Utf8JsonWriter,Sudoku.Data.Cells,System.Text.Json.JsonSerializerOptions)">
-            <inheritdoc/>
-        </member>
         <member name="T:Sudoku.Data.CellStatus">
             <summary>
             Represents a cell status.
@@ -3179,6 +3164,12 @@
             </para>
             </summary>
         </member>
+        <member name="P:Sudoku.Data.Grid.TextCode">
+            <summary>
+            Gets the text code for the current sudoku grid, that can be used for parsing or formatting
+            a sudoku grid, interacting with type <see cref="T:System.String"/>.
+            </summary>
+        </member>
         <member name="P:Sudoku.Data.Grid.GivenCells">
             <summary>
             Gets the cell template that only contains the given cells.
@@ -3456,22 +3447,6 @@
             <param name="left">The left-side instance to compare.</param>
             <param name="right">The right-side instance to compare.</param>
             <returns>A <see cref="T:System.Boolean"/> result.</returns>
-        </member>
-        <member name="T:Sudoku.Data.Grid.JsonConverter">
-            <summary>
-            Defines a JSON converter that allows the current instance being serialized.
-            </summary>
-            <seealso cref="T:Sudoku.Data.Grid"/>
-        </member>
-        <member name="P:Sudoku.Data.Grid.JsonConverter.HandleNull">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Data.Grid.JsonConverter.Read(System.Text.Json.Utf8JsonReader@,System.Type,System.Text.Json.JsonSerializerOptions)">
-            <inheritdoc/>
-            <exception cref="T:System.InvalidOperationException">Throws when the specified data is invalid.</exception>
-        </member>
-        <member name="M:Sudoku.Data.Grid.JsonConverter.Write(System.Text.Json.Utf8JsonWriter,Sudoku.Data.Grid,System.Text.Json.JsonSerializerOptions)">
-            <inheritdoc/>
         </member>
         <member name="T:Sudoku.Data.Grid.MaskCollectionEnumerator">
             <summary>
@@ -4478,21 +4453,6 @@
         <member name="M:Sudoku.Data.Link.ToString">
             <inheritdoc cref="M:System.Object.ToString"/>
         </member>
-        <member name="T:Sudoku.Data.Link.JsonConverter">
-            <summary>
-            Defines a JSON converter that allows the current instance being serialized.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Data.Link.JsonConverter.HandleNull">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Data.Link.JsonConverter.Read(System.Text.Json.Utf8JsonReader@,System.Type,System.Text.Json.JsonSerializerOptions)">
-            <inheritdoc/>
-            <exception cref="T:System.InvalidOperationException">Throws when the specified data is invalid.</exception>
-        </member>
-        <member name="M:Sudoku.Data.Link.JsonConverter.Write(System.Text.Json.Utf8JsonWriter,Sudoku.Data.Link,System.Text.Json.JsonSerializerOptions)">
-            <inheritdoc/>
-        </member>
         <member name="T:Sudoku.Data.LinkType">
             <summary>
             Defines a type of a link that constructed by 2 <see cref="T:Sudoku.Data.Node"/>s.
@@ -5426,20 +5386,6 @@
         <member name="M:Sudoku.Presentation.Crosshatch.Equals(Sudoku.Presentation.Crosshatch@)">
             <inheritdoc/>
         </member>
-        <member name="T:Sudoku.Presentation.Crosshatch.JsonConverter">
-            <summary>
-            Indicates the JSON converter.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Presentation.Crosshatch.JsonConverter.HandleNull">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Presentation.Crosshatch.JsonConverter.Read(System.Text.Json.Utf8JsonReader@,System.Type,System.Text.Json.JsonSerializerOptions)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Presentation.Crosshatch.JsonConverter.Write(System.Text.Json.Utf8JsonWriter,Sudoku.Presentation.Crosshatch,System.Text.Json.JsonSerializerOptions)">
-            <inheritdoc/>
-        </member>
         <member name="T:Sudoku.Presentation.PresentationData">
             <summary>
             Indicates the presentation data that is used for present the information.
@@ -5704,20 +5650,6 @@
             <param name="UnknownIdentifier">Indicates the identifier that identifies the value range.</param>
             <param name="DigitsMask">Indicates a mask that holds a serial of candidate values.</param>
         </member>
-        <member name="T:Sudoku.Presentation.UnknownValue.JsonConverter">
-            <summary>
-            Indicates the JSON converter.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Presentation.UnknownValue.JsonConverter.HandleNull">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Presentation.UnknownValue.JsonConverter.Read(System.Text.Json.Utf8JsonReader@,System.Type,System.Text.Json.JsonSerializerOptions)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Presentation.UnknownValue.JsonConverter.Write(System.Text.Json.Utf8JsonWriter,Sudoku.Presentation.UnknownValue,System.Text.Json.JsonSerializerOptions)">
-            <inheritdoc/>
-        </member>
         <member name="T:Sudoku.Resources.ResourceDocument">
             <summary>
             Defines a resource document. The resource document always holds a JSON string value,
@@ -5960,6 +5892,52 @@
         </member>
         <member name="M:Sudoku.Resources.ResourceDocumentManager.System#Collections#IEnumerable#GetEnumerator">
             <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Serialization.CellsJsonSerializerContext">
+            <summary>
+            Provides a serializer context on type <see cref="T:Sudoku.Data.Cells"/>.
+            </summary>
+            <seealso cref="T:Sudoku.Data.Cells"/>
+        </member>
+        <member name="T:Sudoku.Serialization.CrosshatchJsonSerializerContext">
+            <summary>
+            Provides a serializer context on type <see cref="T:Sudoku.Presentation.Crosshatch"/>.
+            </summary>
+            <seealso cref="T:Sudoku.Presentation.Crosshatch"/>
+        </member>
+        <member name="T:Sudoku.Serialization.GridJsonConverter">
+            <summary>
+            Defines a JSON converter that parses the string to a sudoku grid or vice versa.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Serialization.GridJsonConverter.Read(System.Text.Json.Utf8JsonReader@,System.Type,System.Text.Json.JsonSerializerOptions)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Serialization.GridJsonConverter.Write(System.Text.Json.Utf8JsonWriter,Sudoku.Data.Grid,System.Text.Json.JsonSerializerOptions)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Serialization.LinkTypeJsonConverter">
+            <summary>
+            Defines a JSON converter that parses the string to a link type or vice versa.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Serialization.LinkTypeJsonConverter.Read(System.Text.Json.Utf8JsonReader@,System.Type,System.Text.Json.JsonSerializerOptions)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Serialization.LinkTypeJsonConverter.Write(System.Text.Json.Utf8JsonWriter,Sudoku.Data.LinkType,System.Text.Json.JsonSerializerOptions)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Serialization.LinkJsonSerializerContext">
+            <summary>
+            Provides a serializer context on type <see cref="T:Sudoku.Data.Link"/>.
+            </summary>
+            <seealso cref="T:Sudoku.Data.Link"/>
+        </member>
+        <member name="T:Sudoku.Serialization.UnknownValueJsonSerializerContext">
+            <summary>
+            Provides a serializer context on type <see cref="T:Sudoku.Presentation.UnknownValue"/>.
+            </summary>
+            <seealso cref="T:Sudoku.Presentation.UnknownValue"/>
         </member>
         <member name="T:Sudoku.Solving.BitwiseSolver">
             <summary>
