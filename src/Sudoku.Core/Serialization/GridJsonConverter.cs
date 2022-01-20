@@ -16,7 +16,7 @@ public sealed class GridJsonConverter : JsonConverter<Grid>
 
 		if (reader.Read())
 		{
-			if (reader.TokenType == JsonTokenType.String && Grid.TryParse(reader.GetString(), out var grid))
+			if (reader.TokenType == JsonTokenType.String && Grid.TryParse(reader.GetString()!, out var grid))
 			{
 				return grid;
 			}

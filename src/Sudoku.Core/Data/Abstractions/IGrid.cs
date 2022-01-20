@@ -458,7 +458,7 @@ where T : struct, IGrid<T>
 	/// Indicates whether the parsing operation should use compatible mode to check PM grid.
 	/// </param>
 	/// <returns>The result instance had converted.</returns>
-	static abstract T Parse(string? str, bool compatibleFirst);
+	static abstract T Parse(string str, bool compatibleFirst);
 
 	/// <summary>
 	/// Parses a string value and converts to this type, using a specified grid parsing type.
@@ -466,7 +466,7 @@ where T : struct, IGrid<T>
 	/// <param name="str">The string.</param>
 	/// <param name="gridParsingOption">The grid parsing type.</param>
 	/// <returns>The result instance had converted.</returns>
-	static abstract T Parse(string? str, GridParsingOption gridParsingOption);
+	static abstract T Parse(string str, GridParsingOption gridParsingOption);
 
 	/// <summary>
 	/// Try to parse a string and converts to this type, and returns a
@@ -480,5 +480,5 @@ where T : struct, IGrid<T>
 	/// </param>
 	/// <returns>A <see cref="bool"/> value indicating that.</returns>
 	/// <seealso cref="Undefined"/>
-	static abstract bool TryParse([NotNullWhen(true)] string? str, GridParsingOption option, out T result);
+	static abstract bool TryParse(string str, GridParsingOption option, out T result);
 }

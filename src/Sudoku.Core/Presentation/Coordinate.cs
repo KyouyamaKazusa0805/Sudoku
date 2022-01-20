@@ -160,10 +160,8 @@ public readonly record struct Coordinate(byte Cell)
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static Coordinate Parse(string? str)
+	public static Coordinate Parse(string str)
 	{
-		Nullability.ThrowIfNull(str);
-
 		if (string.IsNullOrWhiteSpace(str))
 		{
 			goto ThrowFormatException;
@@ -228,7 +226,7 @@ public readonly record struct Coordinate(byte Cell)
 	}
 	
 	/// <inheritdoc/>
-	public static bool TryParse(string? str, out Coordinate result)
+	public static bool TryParse(string str, out Coordinate result)
 	{
 		try
 		{

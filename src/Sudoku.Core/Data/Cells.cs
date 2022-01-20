@@ -994,10 +994,8 @@ public unsafe partial struct Cells : ICellsOrCandidates<Cells>, ISimpleFormattab
 
 
 	/// <inheritdoc/>
-	public static Cells Parse(string? str)
+	public static Cells Parse(string str)
 	{
-		Nullability.ThrowIfNull(str);
-
 		// Check whether the match is successful.
 		if (CellOrCellListRegex.Matches(str) is not [_, ..] matches)
 		{
@@ -1051,7 +1049,7 @@ public unsafe partial struct Cells : ICellsOrCandidates<Cells>, ISimpleFormattab
 	}
 
 	/// <inheritdoc/>
-	public static bool TryParse([NotNullWhen(true)] string? str, out Cells result)
+	public static bool TryParse(string str, out Cells result)
 	{
 		try
 		{

@@ -155,7 +155,7 @@ public sealed partial class ResourceDocument
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static bool TryParse([NotNullWhen(true)] string? str, [NotNullWhen(true)] out ResourceDocument? result) =>
+	public static bool TryParse(string str, [NotNullWhen(true)] out ResourceDocument? result) =>
 		TryParse(str, CultureInfo.CurrentCulture, out result);
 
 	/// <summary>
@@ -170,7 +170,7 @@ public sealed partial class ResourceDocument
 	/// </param>
 	/// <returns>A <see cref="bool"/> result indicating whether the operation is successful to execute.</returns>
 	public static bool TryParse(
-		[NotNullWhen(true)] string? str,
+		string str,
 		CultureInfo? culture,
 		[NotNullWhen(true)] out ResourceDocument? result
 	)
@@ -189,7 +189,7 @@ public sealed partial class ResourceDocument
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static ResourceDocument Parse(string? str) => Parse(str, CultureInfo.CurrentCulture);
+	public static ResourceDocument Parse(string str) => Parse(str, CultureInfo.CurrentCulture);
 
 	/// <summary>
 	/// Parse the specified string text, and get the same-meaning instance of type <see cref="ResourceDocument"/>.
@@ -202,10 +202,6 @@ public sealed partial class ResourceDocument
 	/// </exception>
 	/// <exception cref="JsonException">Throws when the specified string isn't valid JSON code.</exception>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static ResourceDocument Parse(string? str, CultureInfo? culture)
-	{
-		Nullability.ThrowIfNull(str);
-
-		return new(culture ?? CultureInfo.CurrentCulture, str);
-	}
+	public static ResourceDocument Parse(string str, CultureInfo? culture) =>
+		new(culture ?? CultureInfo.CurrentCulture, str);
 }
