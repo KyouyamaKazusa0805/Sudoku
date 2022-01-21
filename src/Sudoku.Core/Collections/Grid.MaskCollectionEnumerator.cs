@@ -1,12 +1,12 @@
-﻿namespace Sudoku.Data;
+﻿namespace Sudoku.Collections;
 
 partial struct Grid
 {
 	/// <summary>
 	/// Defines the default enumerator that iterates the <see cref="Grid"/>
-	/// through the candidates in the current <see cref="Grid"/> instance.
+	/// through the masks in the current <see cref="Grid"/> instance.
 	/// </summary>
-	public unsafe ref partial struct CandidateCollectionEnumerator
+	public unsafe ref partial struct MaskCollectionEnumerator
 	{
 		/// <summary>
 		/// The pointer to the start value.
@@ -18,11 +18,6 @@ partial struct Grid
 		/// The current pointer.
 		/// </summary>
 		private short* _currentPointer;
-
-		/// <summary>
-		/// Indicates the current mask.
-		/// </summary>
-		private short _currentMask = 0;
 
 		/// <summary>
 		/// The current index.
@@ -38,16 +33,16 @@ partial struct Grid
 		/// Note here we should point at the one-unit-lengthed memory before the array start.
 		/// </remarks>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public CandidateCollectionEnumerator(short* arr) => _currentPointer = _start = arr - 1;
+		public MaskCollectionEnumerator(short* arr) => _currentPointer = _start = arr - 1;
 
 
 		/// <summary>
 		/// Gets the element in the collection at the current position of the enumerator.
 		/// </summary>
-		public readonly int Current
+		public readonly ref short Current
 		{
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
-			get => _currentIndex * 9 + TrailingZeroCount(_currentMask);
+			get => ref *_currentPointer;
 		}
 
 
@@ -70,37 +65,18 @@ partial struct Grid
 		/// </item>
 		/// </list>
 		/// </returns>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public bool MoveNext()
 		{
-			if (_currentMask == 0 || (_currentMask &= (short)~(1 << TrailingZeroCount(_currentMask))) == 0)
+			if (++_currentIndex >= 81)
 			{
-				goto MovePointer;
+				return false;
 			}
 			else
 			{
-				goto ReturnTrue;
+				_currentPointer++;
+				return true;
 			}
-
-		MovePointer:
-			do
-			{
-				_currentIndex++;
-			}
-			while (MaskToStatus(_start[_currentIndex + 1]) != CellStatus.Empty && _currentIndex != 81 + 1);
-
-			if (_currentIndex == 81 + 1)
-			{
-				goto ReturnFalse;
-			}
-
-			_currentPointer = _start + _currentIndex + 1;
-			_currentMask = (short)(*_currentPointer & MaxCandidatesMask);
-
-		ReturnTrue:
-			return true;
-
-		ReturnFalse:
-			return false;
 		}
 
 		/// <summary>
@@ -112,11 +88,10 @@ partial struct Grid
 		{
 			_currentPointer = _start;
 			_currentIndex = -1;
-			_currentMask = default;
 		}
 
 		/// <inheritdoc cref="IEnumerable{T}.GetEnumerator"/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public readonly CandidateCollectionEnumerator GetEnumerator() => this;
+		public readonly MaskCollectionEnumerator GetEnumerator() => this;
 	}
 }
