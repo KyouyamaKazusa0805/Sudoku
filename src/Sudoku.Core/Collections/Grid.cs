@@ -184,14 +184,14 @@ public unsafe partial struct Grid
 	/// <para>
 	/// <include
 	///     file='../../global-doc-comments.xml'
-	///     path='g/csharp7[@feature="ref-returns" and @target="in-parameter"]'/>
+	///     path='g/csharp7/feature[@name="ref-returns"]/target[@name="in-parameter"]'/>
 	/// </para>
 	/// </param>
 	/// <param name="creatingOption">The creating option.</param>
 	/// <remarks>
 	/// <include
 	///     file='../../global-doc-comments.xml'
-	///     path='g/csharp7[@feature="ref-returns"]'/>
+	///     path='g/csharp7/feature[@name="ref-returns"]/target[@name="method"]'/>
 	/// </remarks>
 	private Grid(in int firstElement, GridCreatingOption creatingOption = GridCreatingOption.None)
 	{

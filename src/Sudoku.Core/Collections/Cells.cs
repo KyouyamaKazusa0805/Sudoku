@@ -185,14 +185,14 @@ public unsafe struct Cells : ICellsOrCandidates<Cells>, ISimpleFormattable, ISim
 	/// <para>
 	/// <include
 	///     file='../../global-doc-comments.xml'
-	///     path='g/csharp7[@feature="ref-returns" and @target="in-parameter"]'/>
+	///     path='g/csharp7/feature[@name="ref-returns"]/target[@name="in-parameter"]'/>
 	/// </para>
 	/// </param>
 	/// <param name="length">The length of the array.</param>
 	/// <remarks>
 	/// <include
 	///     file='../../global-doc-comments.xml'
-	///     path='g/csharp7[@feature="ref-returns"]'/>
+	///     path='g/csharp7/feature[@name="ref-returns"]/target[@name="method"]'/>
 	/// </remarks>
 	private Cells(in int cell, int length)
 	{

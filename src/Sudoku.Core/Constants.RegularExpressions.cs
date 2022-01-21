@@ -56,12 +56,6 @@ partial class Constants
 		public const string DigitOrEmptyCell = @"(\+?\d|\.)";
 
 		/// <summary>
-		/// Indicates the unit in the basic PM grid.
-		/// </summary>
-		[IsRegex, Obsolete($"Please use the field '{nameof(PmGridUnit)}' instead.", false)]
-		public const string PmGridUnit_Old = @"(\<\d\>|\*\d\*|\d{1,9})";
-
-		/// <summary>
 		/// Indicates the unit in the extended PM grid.
 		/// </summary>
 		[IsRegex]

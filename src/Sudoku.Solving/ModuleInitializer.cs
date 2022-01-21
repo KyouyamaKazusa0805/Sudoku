@@ -1,13 +1,13 @@
 ﻿namespace Sudoku.Solving;
 
-/// <summary>
-/// Indicates the module initializer of this project.
-/// </summary>
+/// <include
+///     file='../../global-doc-comments.xml'
+///     path='g/csharp9/feature[@name="module-initializer"]/target[@name="type"]' />
 internal static class ModuleInitializer
 {
-	/// <summary>
-	/// The initialize method.
-	/// </summary>
+	/// <include
+	///     file='../../global-doc-comments.xml'
+	///     path='g/csharp9/feature[@name="module-initializer"]/target[@name="method"]' />
 	[ModuleInitializer]
 	public static void Initialize() =>
 		StepSearcherPool.Collection = (

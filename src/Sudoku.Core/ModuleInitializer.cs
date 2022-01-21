@@ -4,13 +4,9 @@
 
 namespace Sudoku;
 
-/// <summary>
-/// <para>Provides with the type that contains a module initializer.</para>
-/// <para><i>
-/// The type is called by the compiler and the CLR (Common Language Runtime),
-/// which means you cannot use any members in this type manually.
-/// </i></para>
-/// </summary>
+/// <include
+///     file='../../global-doc-comments.xml'
+///     path='g/csharp9/feature[@name="module-initializer"]/target[@name="type"]' />
 internal static class ModuleInitializer
 {
 	/// <summary>
@@ -23,9 +19,9 @@ internal static class ModuleInitializer
 	);
 
 
-	/// <summary>
-	/// Initializes the current module.
-	/// </summary>
+	/// <include
+	///     file='../../global-doc-comments.xml'
+	///     path='g/csharp9/feature[@name="module-initializer"]/target[@name="method"]' />
 	/// <exception cref="DirectoryNotFoundException">
 	/// Throws when the language resource folder cannot be found.
 	/// </exception>
@@ -57,7 +53,7 @@ internal static class ModuleInitializer
 
 		if (string.IsNullOrEmpty(directory))
 		{
-#if DEBUG
+#if !STRICT_RESOURCE_FILE_PATH_CHECKING
 			return;
 #else
 			throw new DirectoryNotFoundException("The language resource folder cannot be found.");
@@ -67,7 +63,7 @@ internal static class ModuleInitializer
 		var targetDirectory = new DirectoryInfo($@"{directory}\lang");
 		if (!targetDirectory.Exists)
 		{
-#if DEBUG
+#if !STRICT_RESOURCE_FILE_PATH_CHECKING
 			return;
 #else
 			throw new DirectoryNotFoundException("The language resource folder cannot be found.");

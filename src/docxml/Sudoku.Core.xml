@@ -618,47 +618,39 @@
             <param name="cell">
             <para>The reference to the array of cells.</para>
             <para>
-            <csharp7 feature="ref-returns" target="in-parameter">
-		<i>
-			Please note that the parameter is an <see langword="in" /> parameter, which has the same meaning
-			for <see langword="ref readonly" /> returns or locals. You can treat it as the first element
-			in an array of elements. Different with <see langword="ref" /> parameter, <see langword="in" />
-			modifier has the same semantic as <see langword="ref readonly var" />
-			instead of <see langword="ref var" />.
-		</i>
-	</csharp7>
+            <target name="in-parameter">
+				<i>
+					Please note that the parameter is an <see langword="in" /> parameter, which has the same meaning
+					for <see langword="ref readonly" /> returns or locals. You can treat it as the first element
+					in an array of elements. Different with <see langword="ref" /> parameter, <see langword="in" />
+					modifier has the same semantic as <see langword="ref readonly var" />
+					instead of <see langword="ref var" />.
+				</i>
+			</target>
             </para>
             </param>
             <param name="length">The length of the array.</param>
             <remarks>
-            <csharp7 feature="ref-returns">
-		<i>
-			C# 7.3 introduces a new keyword <see langword="in" /> as the parameter modifier to make the parameter
-			pass by reference and be read-only. Therefore, this keyword contains 2 usages:
-			<list type="number">
-				<item>
-					Ensure the argument to <b>be read-only</b> and cannot be modified. Otherwise,
-					a new copied instance will be created to prevent any modifications on the original variable.
-				</item>
-				<item>
-					Ensure the argument to <b>pass by reference</b> in order to treat it as the pointer or array of elements
-					of this type, and treat the argument as the first element of the whole element series.
-				</item>
-			</list>
-			From the above meaning on this keyword, we can conclude that
-			we should regard it as <see langword="ref readonly" /> parameters,
-			but C# requires us using the keyword <see langword="in" /> as the modifier
-			on a parameter rather than <see langword="ref readonly" />.
-		</i>
-	</csharp7><csharp7 feature="ref-returns" target="in-parameter">
-		<i>
-			Please note that the parameter is an <see langword="in" /> parameter, which has the same meaning
-			for <see langword="ref readonly" /> returns or locals. You can treat it as the first element
-			in an array of elements. Different with <see langword="ref" /> parameter, <see langword="in" />
-			modifier has the same semantic as <see langword="ref readonly var" />
-			instead of <see langword="ref var" />.
-		</i>
-	</csharp7>
+            <target name="method">
+				<i>
+					C# 7.3 introduces a new keyword <see langword="in" /> as the parameter modifier to make the parameter
+					pass by reference and be read-only. Therefore, this keyword contains 2 usages:
+					<list type="number">
+						<item>
+							Ensure the argument to <b>be read-only</b> and cannot be modified. Otherwise,
+							a new copied instance will be created to prevent any modifications on the original variable.
+						</item>
+						<item>
+							Ensure the argument to <b>pass by reference</b> in order to treat it as the pointer or array of elements
+							of this type, and treat the argument as the first element of the whole element series.
+						</item>
+					</list>
+					From the above meaning on this keyword, we can conclude that
+					we should regard it as <see langword="ref readonly" /> parameters,
+					but C# requires us using the keyword <see langword="in" /> as the modifier
+					on a parameter rather than <see langword="ref readonly" />.
+				</i>
+			</target>
             </remarks>
         </member>
         <member name="M:Sudoku.Collections.Cells.#ctor(System.Int32,System.Boolean)">
@@ -1389,47 +1381,39 @@
             <param name="firstElement">
             <para>The reference of the first element.</para>
             <para>
-            <csharp7 feature="ref-returns" target="in-parameter">
-		<i>
-			Please note that the parameter is an <see langword="in" /> parameter, which has the same meaning
-			for <see langword="ref readonly" /> returns or locals. You can treat it as the first element
-			in an array of elements. Different with <see langword="ref" /> parameter, <see langword="in" />
-			modifier has the same semantic as <see langword="ref readonly var" />
-			instead of <see langword="ref var" />.
-		</i>
-	</csharp7>
+            <target name="in-parameter">
+				<i>
+					Please note that the parameter is an <see langword="in" /> parameter, which has the same meaning
+					for <see langword="ref readonly" /> returns or locals. You can treat it as the first element
+					in an array of elements. Different with <see langword="ref" /> parameter, <see langword="in" />
+					modifier has the same semantic as <see langword="ref readonly var" />
+					instead of <see langword="ref var" />.
+				</i>
+			</target>
             </para>
             </param>
             <param name="creatingOption">The creating option.</param>
             <remarks>
-            <csharp7 feature="ref-returns">
-		<i>
-			C# 7.3 introduces a new keyword <see langword="in" /> as the parameter modifier to make the parameter
-			pass by reference and be read-only. Therefore, this keyword contains 2 usages:
-			<list type="number">
-				<item>
-					Ensure the argument to <b>be read-only</b> and cannot be modified. Otherwise,
-					a new copied instance will be created to prevent any modifications on the original variable.
-				</item>
-				<item>
-					Ensure the argument to <b>pass by reference</b> in order to treat it as the pointer or array of elements
-					of this type, and treat the argument as the first element of the whole element series.
-				</item>
-			</list>
-			From the above meaning on this keyword, we can conclude that
-			we should regard it as <see langword="ref readonly" /> parameters,
-			but C# requires us using the keyword <see langword="in" /> as the modifier
-			on a parameter rather than <see langword="ref readonly" />.
-		</i>
-	</csharp7><csharp7 feature="ref-returns" target="in-parameter">
-		<i>
-			Please note that the parameter is an <see langword="in" /> parameter, which has the same meaning
-			for <see langword="ref readonly" /> returns or locals. You can treat it as the first element
-			in an array of elements. Different with <see langword="ref" /> parameter, <see langword="in" />
-			modifier has the same semantic as <see langword="ref readonly var" />
-			instead of <see langword="ref var" />.
-		</i>
-	</csharp7>
+            <target name="method">
+				<i>
+					C# 7.3 introduces a new keyword <see langword="in" /> as the parameter modifier to make the parameter
+					pass by reference and be read-only. Therefore, this keyword contains 2 usages:
+					<list type="number">
+						<item>
+							Ensure the argument to <b>be read-only</b> and cannot be modified. Otherwise,
+							a new copied instance will be created to prevent any modifications on the original variable.
+						</item>
+						<item>
+							Ensure the argument to <b>pass by reference</b> in order to treat it as the pointer or array of elements
+							of this type, and treat the argument as the first element of the whole element series.
+						</item>
+					</list>
+					From the above meaning on this keyword, we can conclude that
+					we should regard it as <see langword="ref readonly" /> parameters,
+					but C# requires us using the keyword <see langword="in" /> as the modifier
+					on a parameter rather than <see langword="ref readonly" />.
+				</i>
+			</target>
             </remarks>
         </member>
         <member name="M:Sudoku.Collections.Grid.#cctor">
@@ -2993,11 +2977,6 @@
         <member name="F:Sudoku.Constants.RegularExpressions.DigitOrEmptyCell">
             <summary>
             Indicates the regular expression of a digit or empty cell placeholder.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Constants.RegularExpressions.PmGridUnit_Old">
-            <summary>
-            Indicates the unit in the basic PM grid.
             </summary>
         </member>
         <member name="F:Sudoku.Constants.RegularExpressions.PmGridUnit">
@@ -5160,13 +5139,20 @@
             <returns>The name.</returns>
         </member>
         <member name="T:Sudoku.ModuleInitializer">
-            <summary>
-            <para>Provides with the type that contains a module initializer.</para>
-            <para><i>
-            The type is called by the compiler and the CLR (Common Language Runtime),
-            which means you cannot use any members in this type manually.
-            </i></para>
-            </summary>
+            <target name="type">
+				<summary>
+					<para>
+						Provides with the type that contains a module initializer method, called automatically by the CLR
+						(Common Language Runtime) to initialize some values.
+					</para>
+					<para>
+						<i>
+							The type is called by the compiler and the CLR (Common Language Runtime),
+							which means you cannot use any members in this type manually.
+						</i>
+					</para>
+				</summary>
+			</target>
         </member>
         <member name="F:Sudoku.ModuleInitializer.ResourceFileNamePattern">
             <summary>
@@ -5174,9 +5160,18 @@
             </summary>
         </member>
         <member name="M:Sudoku.ModuleInitializer.Initialize">
-            <summary>
-            Initializes the current module.
-            </summary>
+            <target name="method">
+				<summary>
+					Called by the runtime automatically while booting on this solution to initialize the values,
+					data members or any other things that can or should be initialized here.
+				</summary>
+				<remarks>
+					The concept <b>module</b> is different with <b>assembly</b>.
+					The solution can contain multiple assemblies, while each assembly can contain multiple modules.
+					However, due to the design of Visual Studio project file system, each assembly will only contain
+					one module by default.
+				</remarks>
+			</target>
             <exception cref="T:System.IO.DirectoryNotFoundException">
             Throws when the language resource folder cannot be found.
             </exception>
@@ -5186,7 +5181,7 @@
             <exception cref="T:System.InvalidOperationException">
             <para>
             Throws when the found resource file doesn't satisfy some condition, which leads to a failure
-            to parse and convert it into a valid <see cref="T:Sudoku.Resources.ResourceDocument"/> instance.
+            to parse and convert it into a valid <see cref="T:Sudoku.Resources.ResourceDocument" /> instance.
             </para>
             <para>
             In addition, the exception will be thrown if the compilation symbol
@@ -5985,9 +5980,9 @@
         </member>
         <member name="T:Sudoku.Serialization.CellsJsonSerializerContext">
             <summary>
-            Provides a serializer context on type <see cref="!:Data.Cells"/>.
+            Provides a serializer context on type <see cref="T:Sudoku.Collections.Cells"/>.
             </summary>
-            <seealso cref="!:Data.Cells"/>
+            <seealso cref="T:Sudoku.Collections.Cells"/>
         </member>
         <member name="T:Sudoku.Serialization.CrosshatchJsonSerializerContext">
             <summary>
