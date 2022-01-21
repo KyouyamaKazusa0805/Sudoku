@@ -378,6 +378,22 @@
             </summary>
             <seealso cref="T:System.Array"/>
         </member>
+        <member name="M:System.ArrayExtensions.GetPinnableReference``1(``0[])">
+            <summary>
+            Gets the reference that points to the first element in the current array.
+            </summary>
+            <typeparam name="T">The type of each element.</typeparam>
+            <param name="this">The array.</param>
+            <returns>The reference to the first element of the array.</returns>
+        </member>
+        <member name="M:System.ArrayExtensions.GetPinnableReadOnlyReference``1(``0[])">
+            <summary>
+            Gets the read-only reference that points to the first element in the current array.
+            </summary>
+            <typeparam name="T">The type of each element.</typeparam>
+            <param name="this">The array.</param>
+            <returns>The read-only reference to the first element of the array.</returns>
+        </member>
         <member name="M:System.ArrayExtensions.EnumerateImmutable``1(``0[])">
             <summary>
             Creates a <see cref="T:System.Collections.Generic.OneDimensionalArrayEnumerator`1"/> instance that iterates on each element.

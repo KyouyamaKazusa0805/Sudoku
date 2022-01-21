@@ -53,6 +53,7 @@ public unsafe ref partial struct GridParser
 	}
 
 
+	/// <include file='../../global-doc-comments.xml' path='g/static-constructor' />
 	static GridParser()
 	{
 		ParseFunctions = new delegate*<ref GridParser, Grid>[]

@@ -169,12 +169,7 @@ partial class Constants
 {{
 	partial class Tables
 	{{
-		/// <summary>
-		/// Initializes all constants for this type.
-		/// </summary>
-		/// <remarks><i>
-		/// The interactive logic is implemented by source generator, so you can't modify the inner logic.
-		/// </i></remarks>
+		/// <include file='../../global-doc-comments.xml' path='g/static-constructor' />
 		[global::System.CodeDom.Compiler.GeneratedCode(""{GetType().FullName}"", ""{VersionValue}"")]
 		[global::System.Runtime.CompilerServices.CompilerGenerated]
 		static Tables()

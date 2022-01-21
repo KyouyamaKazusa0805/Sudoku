@@ -768,12 +768,17 @@
             </summary>
         </member>
         <member name="M:Sudoku.Constants.Tables.#cctor">
-            <summary>
-            Initializes all constants for this type.
-            </summary>
-            <remarks><i>
-            The interactive logic is implemented by source generator, so you can't modify the inner logic.
-            </i></remarks>
+            <static-constructor>
+		<summary>
+			<para>
+				Indicates the <see langword="static" /> constructor of the current type.
+			</para>
+			<para>
+				This construtcor will initialize some <see langword="static readonly" /> data members
+				of this type that can't use a simple expression to describe the initial value.
+			</para>
+		</summary>
+	</static-constructor>
         </member>
         <member name="T:Sudoku.Constants.Tables.ValueTupleComparer">
             <summary>
@@ -2269,6 +2274,56 @@
             <param name="mid">Medium 27 bits.</param>
             <param name="low">Lower 27 bits.</param>
         </member>
+        <member name="M:Sudoku.Data.Cells.#ctor(System.Int32@,System.Int32)">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Data.Cells" /> instance using the specified reference for the array of cells.
+            </summary>
+            <param name="cell">
+            <para>The reference to the array of cells.</para>
+            <para>
+            <csharp7 feature="ref-returns" target="in-parameter">
+		<i>
+			Please note that the parameter is an <see langword="in" /> parameter, which has the same meaning
+			for <see langword="ref readonly" /> returns or locals. You can treat it as the first element
+			in an array of elements. Different with <see langword="ref" /> parameter, <see langword="in" />
+			modifier has the same semantic as <see langword="ref readonly var" />
+			instead of <see langword="ref var" />.
+		</i>
+	</csharp7>
+            </para>
+            </param>
+            <param name="length">The length of the array.</param>
+            <remarks>
+            <csharp7 feature="ref-returns">
+		<i>
+			C# 7.3 introduces a new keyword <see langword="in" /> as the parameter modifier to make the parameter
+			pass by reference and be read-only. Therefore, this keyword contains 2 usages:
+			<list type="number">
+				<item>
+					Ensure the argument to <b>be read-only</b> and cannot be modified. Otherwise,
+					a new copied instance will be created to prevent any modifications on the original variable.
+				</item>
+				<item>
+					Ensure the argument to <b>pass by reference</b> in order to treat it as the pointer or array of elements
+					of this type, and treat the argument as the first element of the whole element series.
+				</item>
+			</list>
+			From the above meaning on this keyword, we can conclude that
+			we should regard it as <see langword="ref readonly" /> parameters,
+			but C# requires us using the keyword <see langword="in" /> as the modifier
+			on a parameter rather than <see langword="ref readonly" />.
+		</i>
+	</csharp7><csharp7 feature="ref-returns" target="in-parameter">
+		<i>
+			Please note that the parameter is an <see langword="in" /> parameter, which has the same meaning
+			for <see langword="ref readonly" /> returns or locals. You can treat it as the first element
+			in an array of elements. Different with <see langword="ref" /> parameter, <see langword="in" />
+			modifier has the same semantic as <see langword="ref readonly var" />
+			instead of <see langword="ref var" />.
+		</i>
+	</csharp7>
+            </remarks>
+        </member>
         <member name="M:Sudoku.Data.Cells.#ctor(System.Int32,System.Boolean)">
             <summary>
             Initializes an instance with the specified cell offset.
@@ -3084,45 +3139,67 @@
         </member>
         <member name="M:Sudoku.Data.Grid.#ctor(System.Int32@,Sudoku.Data.GridCreatingOption)">
             <summary>
-            Creates a <see cref="T:Sudoku.Data.Grid"/> instance via the pointer of the first element of the cell digit,
+            Creates a <see cref="T:Sudoku.Data.Grid" /> instance via the pointer of the first element of the cell digit,
             and the creating option.
             </summary>
             <param name="firstElement">
             <para>The reference of the first element.</para>
-            <para><i>
-            Please note that the parameter is an <see langword="in"/> parameter, which has the same meaning
-            for <see langword="ref readonly"/> returns or locals. You can treat it as the first element
-            in an array of elements. Different with <see langword="ref"/> parameter, <see langword="in"/>
-            modifier has the same semantic as <see langword="ref readonly var"/>
-            instead of <see langword="ref var"/>.
-            </i></para>
+            <para>
+            <csharp7 feature="ref-returns" target="in-parameter">
+		<i>
+			Please note that the parameter is an <see langword="in" /> parameter, which has the same meaning
+			for <see langword="ref readonly" /> returns or locals. You can treat it as the first element
+			in an array of elements. Different with <see langword="ref" /> parameter, <see langword="in" />
+			modifier has the same semantic as <see langword="ref readonly var" />
+			instead of <see langword="ref var" />.
+		</i>
+	</csharp7>
+            </para>
             </param>
             <param name="creatingOption">The creating option.</param>
-            <remarks><i>
-            C# 7.3 introduces a new keyword <see langword="in"/> as the parameter modifier to make the parameter
-            pass by reference and be read-only. Therefore, this keyword contains 2 usages:
-            <list type="number">
-            <item>
-            Ensure the argument to <b>be read-only</b> and cannot be modified. Otherwise,
-            a new copied instance will be created to prevent any modifications on the original variable.
-            </item>
-            <item>
-            Ensure the argument to <b>pass by reference</b> in order to treat it as the pointer or array of elements
-            of this type, and treat the argument as the first element of the whole element series.
-            </item>
-            </list>
-            From the above meaning on this keyword, we can conclude that
-            we should regard it as <see langword="ref readonly"/> parameters,
-            but C# requires us using the keyword <see langword="in"/> as the modifier
-            on a parameter rather than <see langword="ref readonly"/>.
-            </i></remarks>
+            <remarks>
+            <csharp7 feature="ref-returns">
+		<i>
+			C# 7.3 introduces a new keyword <see langword="in" /> as the parameter modifier to make the parameter
+			pass by reference and be read-only. Therefore, this keyword contains 2 usages:
+			<list type="number">
+				<item>
+					Ensure the argument to <b>be read-only</b> and cannot be modified. Otherwise,
+					a new copied instance will be created to prevent any modifications on the original variable.
+				</item>
+				<item>
+					Ensure the argument to <b>pass by reference</b> in order to treat it as the pointer or array of elements
+					of this type, and treat the argument as the first element of the whole element series.
+				</item>
+			</list>
+			From the above meaning on this keyword, we can conclude that
+			we should regard it as <see langword="ref readonly" /> parameters,
+			but C# requires us using the keyword <see langword="in" /> as the modifier
+			on a parameter rather than <see langword="ref readonly" />.
+		</i>
+	</csharp7><csharp7 feature="ref-returns" target="in-parameter">
+		<i>
+			Please note that the parameter is an <see langword="in" /> parameter, which has the same meaning
+			for <see langword="ref readonly" /> returns or locals. You can treat it as the first element
+			in an array of elements. Different with <see langword="ref" /> parameter, <see langword="in" />
+			modifier has the same semantic as <see langword="ref readonly var" />
+			instead of <see langword="ref var" />.
+		</i>
+	</csharp7>
+            </remarks>
         </member>
         <member name="M:Sudoku.Data.Grid.#cctor">
-            <summary>
-            Indicates the <see langword="static"/> constructor of type <see cref="T:Sudoku.Data.Grid"/>. This construtcor will
-            initialize some <see langword="static readonly"/> data members of this type that can't use
-            a simple expression to describe the initial value.
-            </summary>
+            <static-constructor>
+		<summary>
+			<para>
+				Indicates the <see langword="static" /> constructor of the current type.
+			</para>
+			<para>
+				This construtcor will initialize some <see langword="static readonly" /> data members
+				of this type that can't use a simple expression to describe the initial value.
+			</para>
+		</summary>
+	</static-constructor>
         </member>
         <member name="P:Sudoku.Data.Grid.IsSolved">
             <inheritdoc/>
@@ -3937,6 +4014,19 @@
             </param>
             <param name="shortenSusser">Indicates the parser will shorten the susser format result.</param>
             <seealso cref="P:Sudoku.Data.GridParser.CompatibleFirst"/>
+        </member>
+        <member name="M:Sudoku.Data.GridParser.#cctor">
+            <static-constructor>
+		<summary>
+			<para>
+				Indicates the <see langword="static" /> constructor of the current type.
+			</para>
+			<para>
+				This construtcor will initialize some <see langword="static readonly" /> data members
+				of this type that can't use a simple expression to describe the initial value.
+			</para>
+		</summary>
+	</static-constructor>
         </member>
         <member name="P:Sudoku.Data.GridParser.ParsingValue">
             <summary>

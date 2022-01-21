@@ -19,9 +19,7 @@ public sealed unsafe class UniqueSquareStepSearcher : IUniqueSquareStepSearcher
 	private static readonly Cells[] Patterns = new Cells[UniqueSquareTemplatesCount];
 
 
-	/// <summary>
-	/// Indicates the <see langword="static"/> constructor.
-	/// </summary>
+	/// <include file='../../global-doc-comments.xml' path='g/static-constructor' />
 	static UniqueSquareStepSearcher()
 	{
 		int[,] ChuteIterator =

@@ -2593,11 +2593,17 @@
             </remarks>
         </member>
         <member name="M:Sudoku.Solving.Manual.Searchers.DeadlyPatterns.Extended.ExtendedRectangleStepSearcher.#cctor">
-            <summary>
-            Defines a <see langword="static"/> constructor that initializes
-            the <see langword="static readonly"/> field <see cref="F:Sudoku.Solving.Manual.Searchers.DeadlyPatterns.Extended.ExtendedRectangleStepSearcher.PatternInfos"/>.
-            </summary>
-            <seealso cref="F:Sudoku.Solving.Manual.Searchers.DeadlyPatterns.Extended.ExtendedRectangleStepSearcher.PatternInfos"/>
+            <static-constructor>
+		<summary>
+			<para>
+				Indicates the <see langword="static" /> constructor of the current type.
+			</para>
+			<para>
+				This construtcor will initialize some <see langword="static readonly" /> data members
+				of this type that can't use a simple expression to describe the initial value.
+			</para>
+		</summary>
+	</static-constructor>
         </member>
         <member name="P:Sudoku.Solving.Manual.Searchers.DeadlyPatterns.Extended.ExtendedRectangleStepSearcher.Options">
             <inheritdoc/>
@@ -2783,9 +2789,17 @@
             </remarks>
         </member>
         <member name="M:Sudoku.Solving.Manual.Searchers.DeadlyPatterns.Polygons.UniquePolygonStepSearcher.#cctor">
-            <summary>
-            Indicates the static constructor of this type.
-            </summary>
+            <static-constructor>
+		<summary>
+			<para>
+				Indicates the <see langword="static" /> constructor of the current type.
+			</para>
+			<para>
+				This construtcor will initialize some <see langword="static readonly" /> data members
+				of this type that can't use a simple expression to describe the initial value.
+			</para>
+		</summary>
+	</static-constructor>
         </member>
         <member name="P:Sudoku.Solving.Manual.Searchers.DeadlyPatterns.Polygons.UniquePolygonStepSearcher.Options">
             <inheritdoc/>
@@ -2815,6 +2829,19 @@
             <summary>
             All different patterns.
             </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Searchers.DeadlyPatterns.Qiu.QiuDeadlyPatternStepSearcher.#cctor">
+            <static-constructor>
+		<summary>
+			<para>
+				Indicates the <see langword="static" /> constructor of the current type.
+			</para>
+			<para>
+				This construtcor will initialize some <see langword="static readonly" /> data members
+				of this type that can't use a simple expression to describe the initial value.
+			</para>
+		</summary>
+	</static-constructor>
         </member>
         <member name="P:Sudoku.Solving.Manual.Searchers.DeadlyPatterns.Qiu.QiuDeadlyPatternStepSearcher.Options">
             <inheritdoc/>
@@ -3590,9 +3617,17 @@
             </summary>
         </member>
         <member name="M:Sudoku.Solving.Manual.Searchers.DeadlyPatterns.Squares.UniqueSquareStepSearcher.#cctor">
-            <summary>
-            Indicates the <see langword="static"/> constructor.
-            </summary>
+            <static-constructor>
+		<summary>
+			<para>
+				Indicates the <see langword="static" /> constructor of the current type.
+			</para>
+			<para>
+				This construtcor will initialize some <see langword="static readonly" /> data members
+				of this type that can't use a simple expression to describe the initial value.
+			</para>
+		</summary>
+	</static-constructor>
         </member>
         <member name="P:Sudoku.Solving.Manual.Searchers.DeadlyPatterns.Squares.UniqueSquareStepSearcher.Options">
             <inheritdoc/>
@@ -4329,9 +4364,17 @@
             </summary>
         </member>
         <member name="M:Sudoku.Solving.Manual.Searchers.RankTheory.DominoLoopStepSearcher.#cctor">
-            <summary>
-            The <see langword="static"/> constructor.
-            </summary>
+            <static-constructor>
+		<summary>
+			<para>
+				Indicates the <see langword="static" /> constructor of the current type.
+			</para>
+			<para>
+				This construtcor will initialize some <see langword="static readonly" /> data members
+				of this type that can't use a simple expression to describe the initial value.
+			</para>
+		</summary>
+	</static-constructor>
         </member>
         <member name="P:Sudoku.Solving.Manual.Searchers.RankTheory.DominoLoopStepSearcher.Options">
             <inheritdoc/>
@@ -4384,9 +4427,17 @@
             </summary>
         </member>
         <member name="M:Sudoku.Solving.Manual.Searchers.RankTheory.MultisectorLockedSetsStepSearcher.#cctor">
-            <summary>
-            The static constructor.
-            </summary>
+            <static-constructor>
+		<summary>
+			<para>
+				Indicates the <see langword="static" /> constructor of the current type.
+			</para>
+			<para>
+				This construtcor will initialize some <see langword="static readonly" /> data members
+				of this type that can't use a simple expression to describe the initial value.
+			</para>
+		</summary>
+	</static-constructor>
         </member>
         <member name="P:Sudoku.Solving.Manual.Searchers.RankTheory.MultisectorLockedSetsStepSearcher.Options">
             <inheritdoc/>

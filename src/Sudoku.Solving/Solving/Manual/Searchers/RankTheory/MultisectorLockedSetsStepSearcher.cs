@@ -16,9 +16,7 @@ public sealed unsafe class MultisectorLockedSetsStepSearcher : IMultisectorLocke
 	private static readonly IReadOnlyList<Cells> Patterns;
 
 
-	/// <summary>
-	/// The static constructor.
-	/// </summary>
+	/// <include file='../../global-doc-comments.xml' path='g/static-constructor' />
 	static MultisectorLockedSetsStepSearcher()
 	{
 		const int a = ~7, b = ~56, c = ~448;

@@ -20,6 +20,7 @@ public sealed unsafe class QiuDeadlyPatternStepSearcher : IQiuDeadlyPatternStepS
 	private static readonly QiuDeadlyPattern[] Patterns = new QiuDeadlyPattern[QiuDeadlyPatternTemplatesCount];
 
 
+	/// <include file='../../global-doc-comments.xml' path='g/static-constructor' />
 	static QiuDeadlyPatternStepSearcher()
 	{
 		int[,] BaseLineIterator =

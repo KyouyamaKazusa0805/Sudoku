@@ -22,9 +22,7 @@ public sealed unsafe class UniquePolygonStepSearcher : IUniquePolygonStepSearche
 	private static readonly UniquePolygonPattern[] Patterns = new UniquePolygonPattern[BdpTemplatesSize3Count];
 
 
-	/// <summary>
-	/// Indicates the static constructor of this type.
-	/// </summary>
+	/// <include file='../../global-doc-comments.xml' path='g/static-constructor' />
 	static UniquePolygonStepSearcher()
 	{
 		int[][] quads =

@@ -37,11 +37,7 @@ public sealed unsafe class ExtendedRectangleStepSearcher : IExtendedRectangleSte
 	private static readonly IReadOnlyList<(Cells Cells, IReadOnlyList<(int Left, int Right)> PairCells, int Size)> PatternInfos;
 
 
-	/// <summary>
-	/// Defines a <see langword="static"/> constructor that initializes
-	/// the <see langword="static readonly"/> field <see cref="PatternInfos"/>.
-	/// </summary>
-	/// <seealso cref="PatternInfos"/>
+	/// <include file='../../global-doc-comments.xml' path='g/static-constructor' />
 	static ExtendedRectangleStepSearcher()
 	{
 		int[,] regions =

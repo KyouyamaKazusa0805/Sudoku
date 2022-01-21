@@ -8,6 +8,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Global Files", "Global File
 		.editorconfig = .editorconfig
 		.filenesting.json = .filenesting.json
 		Directory.Build.props = Directory.Build.props
+		global-doc-comments.xml = global-doc-comments.xml
 		global.json = global.json
 		LICENSE = LICENSE
 		NuGet.config = NuGet.config

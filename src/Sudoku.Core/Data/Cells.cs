@@ -9,7 +9,7 @@
 /// and the <see langword="false"/> bit (0) is for the cell not containing
 /// the digit.
 /// </remarks>
-public unsafe partial struct Cells : ICellsOrCandidates<Cells>, ISimpleFormattable, ISimpleParseable<Cells>
+public unsafe struct Cells : ICellsOrCandidates<Cells>, ISimpleFormattable, ISimpleParseable<Cells>
 {
 	/// <summary>
 	/// <para>Indicates an empty instance (all bits are 0).</para>
@@ -65,12 +65,8 @@ public unsafe partial struct Cells : ICellsOrCandidates<Cells>, ISimpleFormattab
 	/// </summary>
 	/// <param name="cells">The pointer points to an array of elements.</param>
 	/// <param name="length">The length of the array.</param>
-	public Cells(int* cells, int length) : this()
+	public Cells(int* cells, int length) : this(in *cells, length)
 	{
-		for (int i = 0; i < length; i++)
-		{
-			InternalAdd(cells[i], true);
-		}
 	}
 
 	/// <summary>
@@ -88,16 +84,8 @@ public unsafe partial struct Cells : ICellsOrCandidates<Cells>, ISimpleFormattab
 	/// doesn't implemented the interface <see cref="IEnumerable{T}"/>.
 	/// </remarks>
 	/// <seealso cref="Cells(IEnumerable{int})"/>
-	public Cells(int[] cells) : this()
+	public Cells(int[] cells) : this(cells.GetPinnableReadOnlyReference(), cells.Length)
 	{
-		fixed (int* ptr = cells)
-		{
-			int i = 0;
-			for (int* p = ptr; i < cells.Length; i++, p++)
-			{
-				InternalAdd(*p, true);
-			}
-		}
 	}
 
 	/// <summary>
@@ -122,24 +110,16 @@ public unsafe partial struct Cells : ICellsOrCandidates<Cells>, ISimpleFormattab
 	/// Initializes an instance with a series of cell offsets.
 	/// </summary>
 	/// <param name="cells">cell offsets.</param>
-	public Cells(Span<int> cells) : this()
+	public Cells(Span<int> cells) : this(in cells.GetPinnableReference(), cells.Length)
 	{
-		foreach (int offset in cells)
-		{
-			InternalAdd(offset, true);
-		}
 	}
 
 	/// <summary>
 	/// Initializes an instance with a series of cell offsets.
 	/// </summary>
 	/// <param name="cells">cell offsets.</param>
-	public Cells(ReadOnlySpan<int> cells) : this()
+	public Cells(ReadOnlySpan<int> cells) : this(in cells.GetPinnableReference(), cells.Length)
 	{
-		foreach (int offset in cells)
-		{
-			InternalAdd(offset, true);
-		}
 	}
 
 	/// <summary>
@@ -195,6 +175,34 @@ public unsafe partial struct Cells : ICellsOrCandidates<Cells>, ISimpleFormattab
 	public Cells(int high, int mid, int low)
 	: this((high & 0x7FFFFFFL) << 13 | (mid >> 14 & 0x1FFFL), (mid & 0x3FFFL) << 27 | (low & 0x7FFFFFFL))
 	{
+	}
+
+	/// <summary>
+	/// Initializes a <see cref="Cells"/> instance using the specified reference for the array of cells.
+	/// </summary>
+	/// <param name="cell">
+	/// <para>The reference to the array of cells.</para>
+	/// <para>
+	/// <include
+	///     file='../../global-doc-comments.xml'
+	///     path='g/csharp7[@feature="ref-returns" and @target="in-parameter"]'/>
+	/// </para>
+	/// </param>
+	/// <param name="length">The length of the array.</param>
+	/// <remarks>
+	/// <include
+	///     file='../../global-doc-comments.xml'
+	///     path='g/csharp7[@feature="ref-returns"]'/>
+	/// </remarks>
+	private Cells(in int cell, int length)
+	{
+		fixed (int* p = &cell)
+		{
+			for (int i = 0; i < length; i++)
+			{
+				InternalAdd(p[i], true);
+			}
+		}
 	}
 
 	/// <summary>

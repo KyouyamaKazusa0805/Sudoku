@@ -21,9 +21,7 @@ public sealed unsafe class DominoLoopStepSearcher : IDominoLoopStepSearcher
 	private static readonly Cells[] RegionMaps;
 
 
-	/// <summary>
-	/// The <see langword="static"/> constructor.
-	/// </summary>
+	/// <include file='../../global-doc-comments.xml' path='g/static-constructor' />
 	static DominoLoopStepSearcher()
 	{
 		// Initialize for region maps.

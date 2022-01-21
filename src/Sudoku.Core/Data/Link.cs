@@ -6,7 +6,7 @@
 /// <param name="StartCandidate">Indicates the start candidate.</param>
 /// <param name="EndCandidate">Indicates the end candidate.</param>
 /// <param name="LinkType">Indicates the link type.</param>
-public readonly partial record struct Link(int StartCandidate, int EndCandidate, LinkType LinkType)
+public readonly record struct Link(int StartCandidate, int EndCandidate, LinkType LinkType)
 {
 	/// <summary>
 	/// Indicates the start cell.

@@ -181,33 +181,18 @@ public unsafe partial struct Grid
 	/// </summary>
 	/// <param name="firstElement">
 	/// <para>The reference of the first element.</para>
-	/// <para><i>
-	/// Please note that the parameter is an <see langword="in"/> parameter, which has the same meaning
-	/// for <see langword="ref readonly"/> returns or locals. You can treat it as the first element
-	/// in an array of elements. Different with <see langword="ref"/> parameter, <see langword="in"/>
-	/// modifier has the same semantic as <see langword="ref readonly var"/>
-	/// instead of <see langword="ref var"/>.
-	/// </i></para>
+	/// <para>
+	/// <include
+	///     file='../../global-doc-comments.xml'
+	///     path='g/csharp7[@feature="ref-returns" and @target="in-parameter"]'/>
+	/// </para>
 	/// </param>
 	/// <param name="creatingOption">The creating option.</param>
-	/// <remarks><i>
-	/// C# 7.3 introduces a new keyword <see langword="in"/> as the parameter modifier to make the parameter
-	/// pass by reference and be read-only. Therefore, this keyword contains 2 usages:
-	/// <list type="number">
-	/// <item>
-	/// Ensure the argument to <b>be read-only</b> and cannot be modified. Otherwise,
-	/// a new copied instance will be created to prevent any modifications on the original variable.
-	/// </item>
-	/// <item>
-	/// Ensure the argument to <b>pass by reference</b> in order to treat it as the pointer or array of elements
-	/// of this type, and treat the argument as the first element of the whole element series.
-	/// </item>
-	/// </list>
-	/// From the above meaning on this keyword, we can conclude that
-	/// we should regard it as <see langword="ref readonly"/> parameters,
-	/// but C# requires us using the keyword <see langword="in"/> as the modifier
-	/// on a parameter rather than <see langword="ref readonly"/>.
-	/// </i></remarks>
+	/// <remarks>
+	/// <include
+	///     file='../../global-doc-comments.xml'
+	///     path='g/csharp7[@feature="ref-returns"]'/>
+	/// </remarks>
 	private Grid(in int firstElement, GridCreatingOption creatingOption = GridCreatingOption.None)
 	{
 		fixed (int* p = &firstElement)
@@ -228,11 +213,7 @@ public unsafe partial struct Grid
 	}
 
 
-	/// <summary>
-	/// Indicates the <see langword="static"/> constructor of type <see cref="Grid"/>. This construtcor will
-	/// initialize some <see langword="static readonly"/> data members of this type that can't use
-	/// a simple expression to describe the initial value.
-	/// </summary>
+	/// <include file='../../global-doc-comments.xml' path='g/static-constructor' />
 	static Grid()
 	{
 		// Initializes the empty grid.

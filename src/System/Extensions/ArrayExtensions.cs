@@ -7,6 +7,24 @@
 public static class ArrayExtensions
 {
 	/// <summary>
+	/// Gets the reference that points to the first element in the current array.
+	/// </summary>
+	/// <typeparam name="T">The type of each element.</typeparam>
+	/// <param name="this">The array.</param>
+	/// <returns>The reference to the first element of the array.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static ref T GetPinnableReference<T>(this T[] @this) => ref @this[0];
+
+	/// <summary>
+	/// Gets the read-only reference that points to the first element in the current array.
+	/// </summary>
+	/// <typeparam name="T">The type of each element.</typeparam>
+	/// <param name="this">The array.</param>
+	/// <returns>The read-only reference to the first element of the array.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static ref readonly T GetPinnableReadOnlyReference<T>(this T[] @this) => ref @this[0];
+
+	/// <summary>
 	/// Creates a <see cref="OneDimensionalArrayEnumerator{T}"/> instance that iterates on each element.
 	/// </summary>
 	/// <typeparam name="TStruct">The type of the array elements.</typeparam>

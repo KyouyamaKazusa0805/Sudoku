@@ -37,7 +37,7 @@
 /// <param name="Mask">
 /// Indicates the mask that handles and stores the basic information of the current node.
 /// </param>
-public unsafe partial record struct Node(int Mask)
+public unsafe record struct Node(int Mask)
 {
 	/// <summary>
 	/// Indicates the undefined instance that is used for providing with a value
@@ -243,11 +243,12 @@ public unsafe partial record struct Node(int Mask)
 	/// <summary>
 	/// Indicates the nodes that the current node lies in.
 	/// </summary>
-	public readonly IReadOnlyList<Node> WholeChain
+	public readonly NodeSet WholeChain
 	{
 		get
 		{
-			List<Node> todo = new() { this }, tempList = new(), done = new(), next = new();
+			List<Node> todo = new() { this }, done = new(), next = new();
+			var tempList = new NodeSet();
 			while (todo.Count != 0)
 			{
 				next.Clear();
