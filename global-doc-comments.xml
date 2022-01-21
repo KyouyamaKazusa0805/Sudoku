@@ -8,8 +8,8 @@ For example, you should use <include> tag to import the global doc comments:
 /// </summary>
 /// <param name="arg">
 /// <include
-///    file='../../global-doc-comments.xml'
-///    path='g/csharp7/feature[@name="ref-returns"]/target[@name="in-parameter"]' />
+///     file='../../global-doc-comments.xml'
+///     path='g/csharp7/feature[@name="ref-returns"]/target[@name="in-parameter"]' />
 /// </param>
 static void F(in int arg)
 {
