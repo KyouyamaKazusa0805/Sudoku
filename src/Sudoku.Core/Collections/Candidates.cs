@@ -3,7 +3,7 @@
 /// <summary>
 /// Encapsulates a map that contains 729 positions to represent a candidate.
 /// </summary>
-public unsafe partial struct Candidates : ICellsOrCandidates<Candidates>
+public unsafe struct Candidates : ICellsOrCandidates<Candidates>
 {
 	/// <summary>
 	/// Indicates the size of each unit.

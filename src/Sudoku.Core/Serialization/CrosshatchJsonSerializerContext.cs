@@ -6,6 +6,6 @@
 /// <seealso cref="Presentation.Crosshatch"/>
 [JsonSerializable(typeof(Crosshatch), GenerationMode = JsonSourceGenerationMode.Metadata)]
 [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
-public sealed partial class CrosshatchJsonSerializerContext : JsonSerializerContext
+internal sealed partial class CrosshatchJsonSerializerContext : JsonSerializerContext
 {
 }

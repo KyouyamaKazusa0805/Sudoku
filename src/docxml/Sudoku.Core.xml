@@ -442,23 +442,6 @@
         <member name="M:Sudoku.Collections.Candidates.op_Explicit(Sudoku.Collections.Candidates@)~System.ReadOnlySpan{System.Int32}">
             <inheritdoc/>
         </member>
-        <member name="T:Sudoku.Collections.Candidates.JsonConverter">
-            <summary>
-            Defines a JSON converter that allows the current instance being serialized.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Collections.Candidates.JsonConverter.HandleNull">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Collections.Candidates.JsonConverter.Read(System.Text.Json.Utf8JsonReader@,System.Type,System.Text.Json.JsonSerializerOptions)">
-            <inheritdoc/>
-            <exception cref="T:System.InvalidOperationException">
-            Throws when the specified part contains the invalid data (such as the wrong type) while reading.
-            </exception>
-        </member>
-        <member name="M:Sudoku.Collections.Candidates.JsonConverter.Write(System.Text.Json.Utf8JsonWriter,Sudoku.Collections.Candidates,System.Text.Json.JsonSerializerOptions)">
-            <inheritdoc/>
-        </member>
         <member name="T:Sudoku.Collections.Cells">
             <summary>
             Encapsulates a binary series of cell status table.
@@ -5967,28 +5950,47 @@
         <member name="M:Sudoku.Resources.ResourceDocumentManager.System#Collections#IEnumerable#GetEnumerator">
             <inheritdoc/>
         </member>
-        <member name="T:Sudoku.Serialization.CellsJsonSerializerContext">
+        <member name="T:Sudoku.Serialization.Converters.CandidatesConverter">
             <summary>
-            Provides a serializer context on type <see cref="T:Sudoku.Collections.Cells"/>.
+            Defines a serialization converter to convert the <see cref="T:Sudoku.Collections.Candidates"/>
+            to a JSON <see cref="T:System.String"/> or vice versa.
             </summary>
-            <seealso cref="T:Sudoku.Collections.Cells"/>
+        </member>
+        <member name="M:Sudoku.Serialization.Converters.CandidatesConverter.Read(System.Text.Json.Utf8JsonReader@,System.Type,System.Text.Json.JsonSerializerOptions)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Serialization.Converters.CandidatesConverter.Write(System.Text.Json.Utf8JsonWriter,Sudoku.Collections.Candidates,System.Text.Json.JsonSerializerOptions)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Serialization.Converters.CellsConverter">
+            <summary>
+            Defines a serialization converter to convert the <see cref="T:Sudoku.Collections.Cells"/>
+            to a JSON <see cref="T:System.String"/> or vice versa.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Serialization.Converters.CellsConverter.Read(System.Text.Json.Utf8JsonReader@,System.Type,System.Text.Json.JsonSerializerOptions)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Serialization.Converters.CellsConverter.Write(System.Text.Json.Utf8JsonWriter,Sudoku.Collections.Cells,System.Text.Json.JsonSerializerOptions)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Serialization.Converters.GridConverter">
+            <summary>
+            Defines a serialization converter to convert the <see cref="T:Sudoku.Collections.Grid"/>
+            to a JSON <see cref="T:System.String"/> or vice versa.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Serialization.Converters.GridConverter.Read(System.Text.Json.Utf8JsonReader@,System.Type,System.Text.Json.JsonSerializerOptions)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Serialization.Converters.GridConverter.Write(System.Text.Json.Utf8JsonWriter,Sudoku.Collections.Grid,System.Text.Json.JsonSerializerOptions)">
+            <inheritdoc/>
         </member>
         <member name="T:Sudoku.Serialization.CrosshatchJsonSerializerContext">
             <summary>
             Provides a serializer context on type <see cref="T:Sudoku.Presentation.Crosshatch"/>.
             </summary>
             <seealso cref="T:Sudoku.Presentation.Crosshatch"/>
-        </member>
-        <member name="T:Sudoku.Serialization.GridJsonConverter">
-            <summary>
-            Defines a JSON converter that parses the string to a sudoku grid or vice versa.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Serialization.GridJsonConverter.Read(System.Text.Json.Utf8JsonReader@,System.Type,System.Text.Json.JsonSerializerOptions)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Serialization.GridJsonConverter.Write(System.Text.Json.Utf8JsonWriter,Sudoku.Collections.Grid,System.Text.Json.JsonSerializerOptions)">
-            <inheritdoc/>
         </member>
         <member name="T:Sudoku.Serialization.LinkTypeJsonConverter">
             <summary>

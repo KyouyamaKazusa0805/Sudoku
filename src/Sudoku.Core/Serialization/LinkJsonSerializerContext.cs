@@ -35,6 +35,6 @@ public sealed class LinkTypeJsonConverter : JsonConverter<LinkType>
 /// </summary>
 /// <seealso cref="Data.Link"/>
 [JsonSerializable(typeof(Link), GenerationMode = JsonSourceGenerationMode.Metadata)]
-public sealed partial class LinkJsonSerializerContext : JsonSerializerContext
+internal sealed partial class LinkJsonSerializerContext : JsonSerializerContext
 {
 }

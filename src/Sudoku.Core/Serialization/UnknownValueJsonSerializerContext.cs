@@ -5,6 +5,6 @@
 /// </summary>
 /// <seealso cref="Presentation.UnknownValue"/>
 [JsonSerializable(typeof(UnknownValue), GenerationMode = JsonSourceGenerationMode.Metadata)]
-public sealed partial class UnknownValueJsonSerializerContext : JsonSerializerContext
+internal sealed partial class UnknownValueJsonSerializerContext : JsonSerializerContext
 {
 }
