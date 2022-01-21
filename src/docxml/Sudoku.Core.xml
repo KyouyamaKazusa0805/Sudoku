@@ -3356,17 +3356,6 @@
             other words, the value is a given (or a hint, clue, etc.).
             </summary>
         </member>
-        <member name="F:Sudoku.Data.CellStatus.All">
-            <summary>
-            Indicates all cases of cell statuses.
-            </summary>
-            <remarks>
-            You had better use this field on cases when processing
-            the bitwise operations in a <see cref="T:Sudoku.Collections.Grid"/>.
-            This field should not be used to process cell status comparison.
-            </remarks>
-            <seealso cref="M:Sudoku.Collections.Grid.GetStatus(System.Int32)"/>
-        </member>
         <member name="T:Sudoku.Data.Conclusion">
             <summary>
             Encapsulates a conclusion representation while solving in logic.

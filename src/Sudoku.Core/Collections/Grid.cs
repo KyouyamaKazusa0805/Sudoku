@@ -1043,7 +1043,7 @@ public unsafe partial struct Grid
 	/// <param name="mask">The mask.</param>
 	/// <returns>The cell status.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	internal static CellStatus MaskToStatus(short mask) => (CellStatus)(mask >> 9 & (int)CellStatus.All);
+	internal static CellStatus MaskToStatus(short mask) => (CellStatus)(mask >> 9 & 7);
 
 
 	/// <summary>
