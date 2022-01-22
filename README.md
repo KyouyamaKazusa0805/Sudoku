@@ -1,5 +1,7 @@
 <center>语言切换：<a href="README-zh-cn.md">简体中文</a></center>
 
+> Happy 2022 Chunjie (Chinese New Year)!
+
 # Sunnie's Sudoku Solution
 
 ## Content
@@ -58,7 +60,7 @@ Please visit the following tables.
 | Programming language and version   | C# 10                               |
 | Framework                          | .NET 6                              |
 | Indenting                          | Tabs                                |
-| Integrated development environment | Visual Studio 2022 (17.1 Preview 2) |
+| Integrated development environment | Visual Studio 2022 (17.1 Preview 3) |
 | Natural languages support          | English, Simplified Chinese         |
 
 > Please note that the programming language version is always used as 'preview', which means some preview features are still used in this solution.
