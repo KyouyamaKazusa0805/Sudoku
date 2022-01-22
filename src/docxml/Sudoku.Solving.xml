@@ -2520,14 +2520,6 @@
             </param>
             <returns>The link.</returns>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Searchers.Chains.IChainStepSearcher.ListContainsNode(Sudoku.Collections.NodeSet@,Sudoku.Data.Node)">
-            <summary>
-            Determine whether the specified list contains the specified node value.
-            </summary>
-            <param name="list">The list of nodes.</param>
-            <param name="node">The node to check.</param>
-            <returns>A <see cref="T:System.Boolean"/> result.</returns>
-        </member>
         <member name="M:Sudoku.Solving.Manual.Searchers.Chains.IChainStepSearcher.GetOnToOff(Sudoku.Collections.Grid@,Sudoku.Data.Node,System.Boolean)">
             <summary>
             Get all available weak links.

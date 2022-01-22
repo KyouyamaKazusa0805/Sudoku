@@ -19,7 +19,7 @@ public unsafe interface IChainStepSearcher : IStepSearcher
 	{
 		var result = new List<(int, ColorIdentifier)>();
 		var chain = target.WholeChain;
-		var (pCandidate, _) = chain[0];
+		var (pCandidate, _) = chain.Top;
 		if (!isSimpleAic)
 		{
 			result.Add((pCandidate, (ColorIdentifier)2));
@@ -34,7 +34,11 @@ public unsafe interface IChainStepSearcher : IStepSearcher
 					var (prCandidate, prIsOn) = pr;
 					if (isSimpleAic && i != count - 2 || !isSimpleAic)
 					{
-						result.AddIfDoesNotContain((prCandidate, (ColorIdentifier)(prIsOn ? 1 : 0)));
+						var pair = (prCandidate, (ColorIdentifier)(prIsOn ? 1 : 0));
+						if (!result.Contains(pair))
+						{
+							result.Add(pair);
+						}
 					}
 				}
 			}
@@ -80,25 +84,6 @@ public unsafe interface IChainStepSearcher : IStepSearcher
 		}
 
 		return result;
-	}
-
-	/// <summary>
-	/// Determine whether the specified list contains the specified node value.
-	/// </summary>
-	/// <param name="list">The list of nodes.</param>
-	/// <param name="node">The node to check.</param>
-	/// <returns>A <see cref="bool"/> result.</returns>
-	protected static bool ListContainsNode(in NodeSet list, Node node)
-	{
-		foreach (var pNode in list)
-		{
-			if (pNode == node)
-			{
-				return true;
-			}
-		}
-
-		return false;
 	}
 
 	/// <summary>

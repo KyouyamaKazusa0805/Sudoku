@@ -174,7 +174,7 @@ public sealed unsafe class AlternatingInferenceChainStepSearcher : IAlternatingI
 		{
 			while (pendingOn.Count != 0)
 			{
-				var p = pendingOn[^1];
+				var p = pendingOn.Bottom;
 				pendingOn.Remove();
 
 				var makeOff = IChainStepSearcher.GetOnToOff(grid, p, yEnabled);
@@ -198,7 +198,7 @@ public sealed unsafe class AlternatingInferenceChainStepSearcher : IAlternatingI
 
 			while (pendingOff.Count != 0)
 			{
-				var p = pendingOff[^1];
+				var p = pendingOff.Bottom;
 				pendingOff.Remove();
 
 				var makeOn = IChainStepSearcher.GetOffToOn(grid, p, true, yEnabled, true);
@@ -211,7 +211,7 @@ public sealed unsafe class AlternatingInferenceChainStepSearcher : IAlternatingI
 						chains.Add(pOn);
 					}
 
-					if (!pOff.IsParentOf(p) && !IChainStepSearcher.ListContainsNode(onToOn, pOn))
+					if (!pOff.IsParentOf(p) && !onToOn.Contains(pOn))
 					{
 						// Not processed yet.
 						pendingOn.Add(pOn);
@@ -265,7 +265,7 @@ public sealed unsafe class AlternatingInferenceChainStepSearcher : IAlternatingI
 						loops.Add(pOn);
 					}
 
-					if (!IChainStepSearcher.ListContainsNode(onToOn, pOn))
+					if (!onToOn.Contains(pOn))
 					{
 						// Not processed yet.
 						pendingOn.Add(pOn);
@@ -302,7 +302,7 @@ public sealed unsafe class AlternatingInferenceChainStepSearcher : IAlternatingI
 
 		var candidateOffsets = IChainStepSearcher.GetCandidateOffsets(destOn, true);
 
-		var (destCandidate, _) = destOn.WholeChain[^1];
+		var (destCandidate, _) = destOn.WholeChain.Bottom;
 		candidateOffsets.Add((destCandidate, (ColorIdentifier)0));
 
 		return new(

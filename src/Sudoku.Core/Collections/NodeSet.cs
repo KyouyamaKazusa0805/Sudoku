@@ -103,7 +103,7 @@ public partial struct NodeSet : IEnumerable
 	public readonly Node Top
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => this[^1];
+		get => this[0];
 	}
 
 	/// <summary>
@@ -113,7 +113,7 @@ public partial struct NodeSet : IEnumerable
 	public readonly Node Bottom
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => this[0];
+		get => this[^1];
 	}
 
 

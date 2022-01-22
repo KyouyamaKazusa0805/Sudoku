@@ -17,49 +17,55 @@ public sealed record AlternatingInferenceChainStep(
 ) : ChainStep(Conclusions, Views, XEnabled, YEnabled, false, false, false, 0)
 {
 	/// <inheritdoc/>
-	public override decimal Difficulty => TechniqueCode switch
-	{
-		Technique.MWing => 4.5M,
-		Technique.SplitWing or Technique.HybridWing or Technique.LocalWing => 4.8M,
-		_ => (XEnabled && YEnabled ? 5.0M : 4.6M) + IChainLikeStep.GetExtraDifficultyByLength(FlatComplexity - 2)
-	};
+	public override decimal Difficulty =>
+		TechniqueCode switch
+		{
+			Technique.MWing => 4.5M,
+			Technique.SplitWing or Technique.HybridWing or Technique.LocalWing => 4.8M,
+			_ => (XEnabled && YEnabled ? 5.0M : 4.6M) + IChainLikeStep.GetExtraDifficultyByLength(FlatComplexity - 2)
+		};
 
 	/// <inheritdoc/>
 	public override int FlatComplexity => Target.AncestorsCount;
 
 	/// <inheritdoc/>
-	public override TechniqueGroup TechniqueGroup => this switch
-	{
-		{ IsMWing: true } => TechniqueGroup.Wing,
-		{ IsLocalWing: true } or { IsSplitWing: true } or { IsHybridWing: true } => TechniqueGroup.Wing,
-		_ => TechniqueGroup.AlternatingInferenceChain
-	};
-
-	/// <inheritdoc/>
-	public override TechniqueTags TechniqueTags => this switch
-	{
-		{ IsMWing: true } => TechniqueTags.Wings,
-		{ IsLocalWing: true } or { IsSplitWing: true } or { IsHybridWing: true } => TechniqueTags.Wings,
-		_ => TechniqueTags.LongChaining
-	};
-
-	/// <inheritdoc/>
-	public override Technique TechniqueCode => this switch
-	{
-		{ IsXChain: true } => Technique.XChain,
-		{ IsMWing: true } => Technique.MWing,
-		{ IsSplitWing: true } => Technique.SplitWing,
-		{ IsHybridWing: true } => Technique.HybridWing,
-		{ IsLocalWing: true } => Technique.LocalWing,
-		{ Target.WholeChain: [_, { Digit: var a }, .., { Digit: var b }, _], IsXyChain: var isXy } when a == b =>
-			isXy ? Technique.XyChain : Technique.AlternatingInferenceChain,
-		_ => Conclusions.Length switch
+	public override TechniqueGroup TechniqueGroup =>
+		this switch
 		{
-			1 => Technique.DiscontinuousNiceLoop,
-			2 => Technique.XyXChain,
-			_ => Technique.AlternatingInferenceChain
-		}
-	};
+			{ IsMWing: true } => TechniqueGroup.Wing,
+			{ IsLocalWing: true } or { IsSplitWing: true } or { IsHybridWing: true } => TechniqueGroup.Wing,
+			_ => TechniqueGroup.AlternatingInferenceChain
+		};
+
+	/// <inheritdoc/>
+	public override TechniqueTags TechniqueTags =>
+		this switch
+		{
+			{ IsMWing: true } => TechniqueTags.Wings,
+			{ IsLocalWing: true } or { IsSplitWing: true } or { IsHybridWing: true } => TechniqueTags.Wings,
+			_ => TechniqueTags.LongChaining
+		};
+
+	/// <inheritdoc/>
+	public override Technique TechniqueCode =>
+		this switch
+		{
+			{ IsXChain: true } => Technique.XChain,
+			{ IsMWing: true } => Technique.MWing,
+			{ IsSplitWing: true } => Technique.SplitWing,
+			{ IsHybridWing: true } => Technique.HybridWing,
+			{ IsLocalWing: true } => Technique.LocalWing,
+			{
+				Target.WholeChain: [_, { Digit: var a }, .., { Digit: var b }, _],
+				IsXyChain: var isXy
+			} when a == b => isXy ? Technique.XyChain : Technique.AlternatingInferenceChain,
+			_ => Conclusions.Length switch
+			{
+				1 => Technique.DiscontinuousNiceLoop,
+				2 => Technique.XyXChain,
+				_ => Technique.AlternatingInferenceChain
+			}
+		};
 
 	/// <inheritdoc/>
 	public override DifficultyLevel DifficultyLevel =>
@@ -68,18 +74,19 @@ public sealed record AlternatingInferenceChainStep(
 			: DifficultyLevel.Fiendish;
 
 	/// <inheritdoc/>
-	public override Rarity Rarity => TechniqueCode switch
-	{
-		Technique.MWing => Rarity.Sometimes,
-		Technique.SplitWing => Rarity.Sometimes,
-		Technique.HybridWing => Rarity.Often,
-		Technique.LocalWing => Rarity.Sometimes,
-		Technique.XChain => Rarity.Often,
-		Technique.XyChain => Rarity.Often,
-		Technique.XyXChain => Rarity.Often,
-		Technique.DiscontinuousNiceLoop => Rarity.Often,
-		Technique.AlternatingInferenceChain => Rarity.Often
-	};
+	public override Rarity Rarity =>
+		TechniqueCode switch
+		{
+			Technique.MWing => Rarity.Sometimes,
+			Technique.SplitWing => Rarity.Sometimes,
+			Technique.HybridWing => Rarity.Often,
+			Technique.LocalWing => Rarity.Sometimes,
+			Technique.XChain => Rarity.Often,
+			Technique.XyChain => Rarity.Often,
+			Technique.XyXChain => Rarity.Often,
+			Technique.DiscontinuousNiceLoop => Rarity.Often,
+			Technique.AlternatingInferenceChain => Rarity.Often
+		};
 
 	/// <inheritdoc/>
 	public override ChainTypeCode SortKey => Enum.Parse<ChainTypeCode>(TechniqueCode.ToString());
@@ -98,14 +105,13 @@ public sealed record AlternatingInferenceChainStep(
 					var (link, _) = links[i];
 					if (link.StartCandidate / 9 != link.EndCandidate / 9)
 					{
-						goto ReturnFalse;
+						return false;
 					}
 				}
 
 				return true;
 			}
 
-		ReturnFalse:
 			return false;
 		}
 	}
@@ -119,58 +125,34 @@ public sealed record AlternatingInferenceChainStep(
 	/// Indicates whether the chain is M-Wing (<c>(x = y) - y = (y - x) = x</c>).
 	/// </summary>
 	/// <returns>A <see cref="bool"/> value indicating that.</returns>
-	private bool IsMWing
-	{
-		get
+	private bool IsMWing =>
+		Target is
 		{
-			if (FlatComplexity != 8)
-			{
-				return false;
-			}
-
-			var chain = Target.WholeChain;
-			var (a, _) = chain[1];
-			var (b, _) = chain[2];
-			var (c, _) = chain[3];
-			var (d, _) = chain[4];
-			var (e, _) = chain[5];
-			var (f, _) = chain[6];
-
-			return a / 9 == b / 9 && d / 9 == e / 9
-				&& b % 9 == c % 9 && c % 9 == d % 9
-				&& a % 9 == e % 9 && e % 9 == f % 9
-				|| f / 9 == e / 9 && c / 9 == b / 9 // Reverse case.
-				&& d % 9 == e % 9 && c % 9 == d % 9
-				&& b % 9 == f % 9 && a % 9 == b % 9;
+			AncestorsCount: 8,
+			WholeChain: [_, var (a, _), var (b, _), var (c, _), var (d, _), var (e, _), var (f, _), ..]
 		}
-	}
+		&& (
+			a / 9 == b / 9 && d / 9 == e / 9
+			&& b % 9 == c % 9 && c % 9 == d % 9
+			&& a % 9 == e % 9 && e % 9 == f % 9
+			|| f / 9 == e / 9 && c / 9 == b / 9 // Reverse case.
+			&& d % 9 == e % 9 && c % 9 == d % 9
+			&& b % 9 == f % 9 && a % 9 == b % 9
+		);
 
 	/// <summary>
 	/// Indicates whether the chain is Split-Wing (<c>x = x - (x = y) - y = y</c>).
 	/// </summary>
 	/// <returns>A <see cref="bool"/> value indicating that.</returns>
-	private bool IsSplitWing
-	{
-		get
+	private bool IsSplitWing =>
+		Target is
 		{
-			if (FlatComplexity != 8)
-			{
-				return false;
-			}
-
-			var chain = Target.WholeChain;
-			var (a, _) = chain[1];
-			var (b, _) = chain[2];
-			var (c, _) = chain[3];
-			var (d, _) = chain[4];
-			var (e, _) = chain[5];
-			var (f, _) = chain[6];
-
-			return a % 9 == b % 9 && b % 9 == c % 9 // First three nodes hold a same digit.
-				&& d % 9 == e % 9 && e % 9 == f % 9 // Last three nodes hold a same digit.
-				&& c / 9 == d / 9; // In same cell.
+			AncestorsCount: 8,
+			WholeChain: [_, var (a, _), var (b, _), var (c, _), var (d, _), var (e, _), var (f, _), ..]
 		}
-	}
+		&& a % 9 == b % 9 && b % 9 == c % 9 // First three nodes hold a same digit.
+		&& d % 9 == e % 9 && e % 9 == f % 9 // Last three nodes hold a same digit.
+		&& c / 9 == d / 9; // In same cell.
 
 	/// <summary>
 	/// Indicates whether the chain is Hybrid-Wing.
@@ -181,63 +163,39 @@ public sealed record AlternatingInferenceChainStep(
 	/// </list>
 	/// </summary>
 	/// <returns>A <see cref="bool"/> value indicating that.</returns>
-	private bool IsHybridWing
-	{
-		get
+	private bool IsHybridWing =>
+		Target is
 		{
-			if (FlatComplexity != 8)
-			{
-				return false;
-			}
-
-			var chain = Target.WholeChain;
-			var (a, _) = chain[1];
-			var (b, _) = chain[2];
-			var (c, _) = chain[3];
-			var (d, _) = chain[4];
-			var (e, _) = chain[5];
-			var (f, _) = chain[6];
-
-			return a / 9 == b / 9 && d / 9 == e / 9
-				&& b % 9 == c % 9 && c % 9 == d % 9
-				&& e % 9 == f % 9
-				|| e / 9 == f / 9 && b / 9 == c / 9
-				&& d % 9 == e % 9 && c % 9 == d % 9
-				&& a % 9 == b % 9
-				|| a / 9 == b / 9 && c / 9 == d / 9 // Reverse case.
-				&& b % 9 == c % 9
-				&& d % 9 == e % 9 && e % 9 == f % 9
-				|| e / 9 == f / 9 && c / 9 == d / 9
-				&& d % 9 == e % 9
-				&& b % 9 == c % 9 && a % 9 == b % 9;
+			AncestorsCount: 8,
+			WholeChain: [_, var (a, _), var (b, _), var (c, _), var (d, _), var (e, _), var (f, _), ..]
 		}
-	}
+		&& (
+			a / 9 == b / 9 && d / 9 == e / 9
+			&& b % 9 == c % 9 && c % 9 == d % 9
+			&& e % 9 == f % 9
+			|| e / 9 == f / 9 && b / 9 == c / 9
+			&& d % 9 == e % 9 && c % 9 == d % 9
+			&& a % 9 == b % 9
+			|| a / 9 == b / 9 && c / 9 == d / 9 // Reverse case.
+			&& b % 9 == c % 9
+			&& d % 9 == e % 9 && e % 9 == f % 9
+			|| e / 9 == f / 9 && c / 9 == d / 9
+			&& d % 9 == e % 9
+			&& b % 9 == c % 9 && a % 9 == b % 9
+		);
 
 	/// <summary>
 	/// Indicates whether the chain is Local-Wing (<c>x = (x - z) = (z - y) = y</c>).
 	/// </summary>
 	/// <returns>A <see cref="bool"/> value indicating that.</returns>
-	private bool IsLocalWing
-	{
-		get
+	private bool IsLocalWing =>
+		Target is
 		{
-			if (FlatComplexity != 8)
-			{
-				return false;
-			}
-
-			var chain = Target.WholeChain;
-			var (a, _) = chain[1];
-			var (b, _) = chain[2];
-			var (c, _) = chain[3];
-			var (d, _) = chain[4];
-			var (e, _) = chain[5];
-			var (f, _) = chain[6];
-
-			return b / 9 == c / 9 && d / 9 == e / 9
-				&& a % 9 == b % 9 && c % 9 == d % 9 && e % 9 == f % 9;
+			AncestorsCount: 8,
+			WholeChain: [_, var (a, _), var (b, _), var (c, _), var (d, _), var (e, _), var (f, _), ..]
 		}
-	}
+		&& b / 9 == c / 9 && d / 9 == e / 9
+		&& a % 9 == b % 9 && c % 9 == d % 9 && e % 9 == f % 9;
 
 	[FormatItem]
 	private string ChainStr

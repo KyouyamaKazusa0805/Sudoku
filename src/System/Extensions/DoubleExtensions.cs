@@ -13,7 +13,8 @@ public static class DoubleExtensions
 	/// <param name="other">The other value.</param>
 	/// <returns>A <see cref="bool"/> result indicating that.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static bool NearlyEquals(this double @this, double other) => @this.NearlyEquals(other, double.Epsilon);
+	public static bool NearlyEquals(this double @this, double other) =>
+		@this.NearlyEquals(other, double.Epsilon);
 
 	/// <summary>
 	/// Indicates whether the specified value is nearly equals to the current value.
@@ -25,5 +26,6 @@ public static class DoubleExtensions
 	/// <param name="epsilon">The epsilon value (the minimal differ).</param>
 	/// <returns>A <see cref="bool"/> result indicating that.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static bool NearlyEquals(this double @this, double other, double epsilon) => Abs(@this - other) < epsilon;
+	public static bool NearlyEquals(this double @this, double other, double epsilon) =>
+		Abs(@this - other) < epsilon;
 }

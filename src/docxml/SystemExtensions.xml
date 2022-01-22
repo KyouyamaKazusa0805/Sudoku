@@ -234,15 +234,6 @@
             The values you want to add to the end of the collection.
             </param>
         </member>
-        <member name="M:System.Collections.Generic.CollectionExtensions.AddIfDoesNotContain``1(System.Collections.Generic.ICollection{``0},``0)">
-            <summary>
-            Adds an object to the end of the <see cref="T:System.Collections.Generic.ICollection`1"/> when
-            the specified list doesn't contain the specified element.
-            </summary>
-            <typeparam name="T">The type of all elements.</typeparam>
-            <param name="this">The list.</param>
-            <param name="item">The item to add.</param>
-        </member>
         <member name="T:System.Collections.Generic.KeyedTuple`2">
             <summary>
             Provides a tuple with a primary element, which means the tuple contains multiple items,
