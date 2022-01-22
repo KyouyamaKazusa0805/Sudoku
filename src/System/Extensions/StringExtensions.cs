@@ -18,6 +18,12 @@ public static unsafe class StringExtensions
 	/// </summary>
 	private static readonly TimeSpan MatchingTimeSpan = TimeSpan.FromSeconds(5);
 
+	/// <summary>
+	/// Indicates the exception that will be thrown when a certain regular expression is invalid.
+	/// </summary>
+	private static readonly InvalidOperationException InvalidOperation =
+		new("The specified regular expression pattern is invalid.");
+
 
 	/// <summary>
 	/// Count how many specified characters are in the current string.
@@ -52,15 +58,13 @@ public static unsafe class StringExtensions
 	/// the return value is always <see langword="false"/>.
 	/// </param>
 	/// <returns>A <see cref="bool"/> value indicating that.</returns>
-	/// <exception cref="InvalidRegexStringException">
-	/// Throws when the specified <paramref name="pattern"/> is not an valid regular
+	/// <exception cref="InvalidOperationException">
+	/// Throws when the specified <paramref name="pattern"/> is not a valid regular
 	/// expression pattern.
 	/// </exception>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static bool SatisfyPattern(this string @this, [NotNullWhen(true)] string? pattern) =>
-		pattern?.IsRegexPattern() ?? false
-			? @this.Match(pattern) == @this
-			: throw new InvalidRegexStringException { WrongRegexString = pattern };
+		pattern?.IsRegexPattern() ?? false ? @this.Match(pattern) == @this : throw InvalidOperation;
 
 	/// <summary>
 	/// Check whether the specified string instance can match the value
@@ -74,15 +78,15 @@ public static unsafe class StringExtensions
 	/// method <see cref="Regex.IsMatch(string, string)"/>.
 	/// </remarks>
 	/// <seealso cref="Regex.IsMatch(string, string)"/>
-	/// <exception cref="InvalidRegexStringException">
-	/// Throws when the specified <paramref name="pattern"/> is not an valid regular
+	/// <exception cref="InvalidOperationException">
+	/// Throws when the specified <paramref name="pattern"/> is not a valid regular
 	/// expression pattern.
 	/// </exception>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static bool IsMatch(this string @this, string pattern) =>
 		pattern.IsRegexPattern()
 			? Regex.IsMatch(@this, pattern, RegexOptions.ExplicitCapture, MatchingTimeSpan)
-			: throw new InvalidRegexStringException { WrongRegexString = pattern };
+			: throw InvalidOperation;
 
 	/// <summary>
 	/// Replace the character at the specified index with the new value.
@@ -121,15 +125,13 @@ public static unsafe class StringExtensions
 	/// method <see cref="Regex.Match(string, string)"/>.
 	/// </remarks>
 	/// <seealso cref="Regex.Match(string, string)"/>
-	/// <exception cref="InvalidRegexStringException">
-	/// Throws when the specified <paramref name="pattern"/> is not an valid regular
+	/// <exception cref="InvalidOperationException">
+	/// Throws when the specified <paramref name="pattern"/> is not a valid regular
 	/// expression pattern.
 	/// </exception>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static string? Match(this string @this, string pattern) =>
-		pattern.IsRegexPattern()
-			? @this.Match(pattern, RegexOptions.None)
-			: throw new InvalidRegexStringException { WrongRegexString = pattern };
+		pattern.IsRegexPattern() ? @this.Match(pattern, RegexOptions.None) : throw InvalidOperation;
 
 	/// <summary>
 	/// Searches the input string for the first occurrence of the specified regular
@@ -146,8 +148,8 @@ public static unsafe class StringExtensions
 	/// This method is a syntactic sugar of the calling
 	/// method <see cref="Regex.Match(string, string, RegexOptions)"/>.
 	/// </remarks>
-	/// <exception cref="InvalidRegexStringException">
-	/// Throws when the specified <paramref name="pattern"/> is not an valid regular
+	/// <exception cref="InvalidOperationException">
+	/// Throws when the specified <paramref name="pattern"/> is not a valid regular
 	/// expression pattern.
 	/// </exception>
 	/// <seealso cref="Regex.Match(string, string, RegexOptions)"/>
@@ -157,7 +159,7 @@ public static unsafe class StringExtensions
 			? Regex.Match(@this, pattern, regexOption, MatchingTimeSpan) is { Success: true, Value: var value }
 				? value
 				: null
-			: throw new InvalidRegexStringException { WrongRegexString = pattern };
+			: throw InvalidOperation;
 
 	/// <summary>
 	/// Searches the specified input string for all occurrences of a
@@ -173,16 +175,14 @@ public static unsafe class StringExtensions
 	/// This method is a syntactic sugar of the calling
 	/// method <see cref="Regex.Matches(string, string)"/>.
 	/// </remarks>
-	/// <exception cref="InvalidRegexStringException">
-	/// Throws when the specified <paramref name="pattern"/> is not an valid regular
+	/// <exception cref="InvalidOperationException">
+	/// Throws when the specified <paramref name="pattern"/> is not a valid regular
 	/// expression pattern.
 	/// </exception>
 	/// <seealso cref="Regex.Matches(string, string)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static string[] MatchAll(this string @this, string pattern) =>
-		pattern.IsRegexPattern()
-			? @this.MatchAll(pattern, RegexOptions.None)
-			: throw new InvalidRegexStringException { WrongRegexString = pattern };
+		pattern.IsRegexPattern() ? @this.MatchAll(pattern, RegexOptions.None) : throw InvalidOperation;
 
 	/// <summary>
 	/// Searches the specified input string for all occurrences of a
@@ -200,16 +200,17 @@ public static unsafe class StringExtensions
 	/// This method is a syntactic sugar of the calling
 	/// method <see cref="Regex.Matches(string, string, RegexOptions)"/>.
 	/// </remarks>
-	/// <exception cref="InvalidRegexStringException">
-	/// Throws when the specified <paramref name="pattern"/> is not an valid regular
+	/// <exception cref="InvalidOperationException">
+	/// Throws when the specified <paramref name="pattern"/> is not a valid regular
 	/// expression pattern.
 	/// </exception>
 	/// <seealso cref="Regex.Matches(string, string, RegexOptions)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static string[] MatchAll(this string @this, string pattern, RegexOptions regexOption) =>
-		pattern.IsRegexPattern()
-			? (from Match m in Regex.Matches(@this, pattern, regexOption, MatchingTimeSpan) select m.Value).ToArray()
-			: throw new InvalidRegexStringException { WrongRegexString = pattern };
+		pattern.IsRegexPattern() ? (
+			from Match m in Regex.Matches(@this, pattern, regexOption, MatchingTimeSpan)
+			select m.Value
+		).ToArray() : throw InvalidOperation;
 
 	/// <summary>
 	/// Reserve all characters that satisfy the specified pattern.
@@ -235,11 +236,12 @@ public static unsafe class StringExtensions
 	/// <returns>The result string.</returns>
 	/// <remarks>
 	/// For example, if code is <c>"Hello, world!".Reserve(@"\w")</c>, the return value
-	/// won't contain any punctuation marks (i.e. <c>"Helloworld"</c>).
+	/// will only contain the letters, digits or the underscore character '<c>_</c>'
+	/// (i.e. <c>"Helloworld"</c> as the result of this example).
 	/// </remarks>
-	/// <exception cref="InvalidRegexStringException">
-	/// Throws when the <paramref name="reservePattern"/> is invalid (Please expand the description
-	/// of the parameter <paramref name="reservePattern"/> to learn about all valid patterns).
+	/// <exception cref="InvalidOperationException">
+	/// Throws when the <paramref name="reservePattern"/> is invalid.
+	/// All possible patterns are shown in the tip for the parameter <paramref name="reservePattern"/>.
 	/// </exception>
 	public static string Reserve(this string @this, string reservePattern)
 	{
@@ -248,7 +250,7 @@ public static unsafe class StringExtensions
 			@"\d" => &char.IsDigit,
 			@"\t" => &isTab,
 			@"\w" => &isLetterDigitOrUnderscore,
-			_ => throw new InvalidRegexStringException("The current reserved pattern is invalid.")
+			_ => throw InvalidOperation
 		};
 
 		int length = @this.Length;

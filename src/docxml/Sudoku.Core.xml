@@ -545,12 +545,6 @@
             </summary>
             <param name="cellIndex">The cell offset specified as an <see cref="T:System.Index"/>.</param>
         </member>
-        <member name="M:Sudoku.Collections.Cells.#ctor(Sudoku.Collections.Cells@)">
-            <summary>
-            Initializes an instance with the specified instance.
-            </summary>
-            <param name="another">Another instance.</param>
-        </member>
         <member name="M:Sudoku.Collections.Cells.#ctor(System.Span{System.Int32})">
             <summary>
             Initializes an instance with a series of cell offsets.
@@ -3042,16 +3036,6 @@
         <member name="F:Sudoku.Constants.RegularExpressions.ConjugatePair">
             <summary>
             Indicates the regular expression to match a conjugate pair.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Constants.RegularExpressions.Digit">
-            <summary>
-            Indicates the regular expression to match a digit.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Constants.RegularExpressions.Tab">
-            <summary>
-            Indicates the regular expression to match a tab character.
             </summary>
         </member>
         <member name="T:Sudoku.Constants.Tables">

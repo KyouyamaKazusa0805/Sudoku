@@ -84,7 +84,7 @@ public unsafe struct Cells : ICellsOrCandidates<Cells>, ISimpleFormattable, ISim
 	/// doesn't implemented the interface <see cref="IEnumerable{T}"/>.
 	/// </remarks>
 	/// <seealso cref="Cells(IEnumerable{int})"/>
-	public Cells(int[] cells) : this(cells.GetPinnableReadOnlyReference(), cells.Length)
+	public Cells(int[] cells) : this(in cells[0], cells.Length)
 	{
 	}
 
@@ -97,14 +97,6 @@ public unsafe struct Cells : ICellsOrCandidates<Cells>, ISimpleFormattable, ISim
 	public Cells(Index cellIndex) : this(cellIndex.GetOffset(81))
 	{
 	}
-
-	/// <summary>
-	/// Initializes an instance with the specified instance.
-	/// </summary>
-	/// <param name="another">Another instance.</param>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	[Obsolete("Please use the 'operator +' and 'operator -' instead.", false)]
-	public Cells(in Cells another) => this = another;
 
 	/// <summary>
 	/// Initializes an instance with a series of cell offsets.

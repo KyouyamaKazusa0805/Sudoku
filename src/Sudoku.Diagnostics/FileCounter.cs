@@ -112,7 +112,7 @@ public sealed class FileCounter
 					charactersCount += s.Length;
 
 					// Remove leading \t.
-					charactersCount -= s.Reserve(RegularExpressions.Tab).Length;
+					charactersCount -= s.Reserve(@"\t").Length;
 				}
 
 				resultLines += fileLines;

@@ -517,7 +517,7 @@ partial struct GridParser
 			var result = Grid.Empty;
 			for (int offset = 0; offset < 81; offset++)
 			{
-				string s = matches[offset].Reserve(RegularExpressions.Digit);
+				string s = matches[offset].Reserve(@"\d");
 				if (s.Length > 9)
 				{
 					// More than 9 characters.

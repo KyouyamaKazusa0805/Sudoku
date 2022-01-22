@@ -369,22 +369,6 @@
             </summary>
             <seealso cref="T:System.Array"/>
         </member>
-        <member name="M:System.ArrayExtensions.GetPinnableReference``1(``0[])">
-            <summary>
-            Gets the reference that points to the first element in the current array.
-            </summary>
-            <typeparam name="T">The type of each element.</typeparam>
-            <param name="this">The array.</param>
-            <returns>The reference to the first element of the array.</returns>
-        </member>
-        <member name="M:System.ArrayExtensions.GetPinnableReadOnlyReference``1(``0[])">
-            <summary>
-            Gets the read-only reference that points to the first element in the current array.
-            </summary>
-            <typeparam name="T">The type of each element.</typeparam>
-            <param name="this">The array.</param>
-            <returns>The read-only reference to the first element of the array.</returns>
-        </member>
         <member name="M:System.ArrayExtensions.EnumerateImmutable``1(``0[])">
             <summary>
             Creates a <see cref="T:System.Collections.Generic.OneDimensionalArrayEnumerator`1"/> instance that iterates on each element.
@@ -713,43 +697,6 @@
             <param name="value">The value to serialize.</param>
             <param name="converter">The converter.</param>
             <param name="options">The options on serialization.</param>
-        </member>
-        <member name="T:System.Text.RegularExpressions.InvalidRegexStringException">
-            <summary>
-            Indicates an error for reporting a string is an invalid regular expression.
-            </summary>
-        </member>
-        <member name="M:System.Text.RegularExpressions.InvalidRegexStringException.#ctor">
-            <inheritdoc/>
-        </member>
-        <member name="M:System.Text.RegularExpressions.InvalidRegexStringException.#ctor(System.String)">
-            <inheritdoc/>
-        </member>
-        <member name="M:System.Text.RegularExpressions.InvalidRegexStringException.#ctor(System.String,System.String)">
-            <summary>
-            Initializes an instance with the message and the regular expression.
-            </summary>
-            <param name="message">The message.</param>
-            <param name="regex">The regular expression.</param>
-        </member>
-        <member name="M:System.Text.RegularExpressions.InvalidRegexStringException.#ctor(System.String,System.Exception)">
-            <inheritdoc/>
-        </member>
-        <member name="M:System.Text.RegularExpressions.InvalidRegexStringException.#ctor(System.String,System.String,System.Exception)">
-            <summary>
-            Initializes an instance with the message, wrong regular expression and the inner exception.
-            </summary>
-            <param name="message">The message.</param>
-            <param name="regex">The regular expression.</param>
-            <param name="innerException">The inner expression.</param>
-        </member>
-        <member name="P:System.Text.RegularExpressions.InvalidRegexStringException.WrongRegexString">
-            <summary>
-            Indicates the wrong regex string.
-            </summary>
-        </member>
-        <member name="P:System.Text.RegularExpressions.InvalidRegexStringException.Message">
-            <inheritdoc/>
         </member>
         <member name="T:System.Text.StringHandler">
             <summary>
@@ -1518,6 +1465,11 @@
             Indicates the time span that is used for matching.
             </summary>
         </member>
+        <member name="F:System.StringExtensions.InvalidOperation">
+            <summary>
+            Indicates the exception that will be thrown when a certain regular expression is invalid.
+            </summary>
+        </member>
         <member name="M:System.StringExtensions.CountOf(System.String,System.Char)">
             <summary>
             Count how many specified characters are in the current string.
@@ -1537,8 +1489,8 @@
             the return value is always <see langword="false"/>.
             </param>
             <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
-            <exception cref="T:System.Text.RegularExpressions.InvalidRegexStringException">
-            Throws when the specified <paramref name="pattern"/> is not an valid regular
+            <exception cref="T:System.InvalidOperationException">
+            Throws when the specified <paramref name="pattern"/> is not a valid regular
             expression pattern.
             </exception>
         </member>
@@ -1555,8 +1507,8 @@
             method <see cref="M:System.Text.RegularExpressions.Regex.IsMatch(System.String,System.String)"/>.
             </remarks>
             <seealso cref="M:System.Text.RegularExpressions.Regex.IsMatch(System.String,System.String)"/>
-            <exception cref="T:System.Text.RegularExpressions.InvalidRegexStringException">
-            Throws when the specified <paramref name="pattern"/> is not an valid regular
+            <exception cref="T:System.InvalidOperationException">
+            Throws when the specified <paramref name="pattern"/> is not a valid regular
             expression pattern.
             </exception>
         </member>
@@ -1585,8 +1537,8 @@
             method <see cref="M:System.Text.RegularExpressions.Regex.Match(System.String,System.String)"/>.
             </remarks>
             <seealso cref="M:System.Text.RegularExpressions.Regex.Match(System.String,System.String)"/>
-            <exception cref="T:System.Text.RegularExpressions.InvalidRegexStringException">
-            Throws when the specified <paramref name="pattern"/> is not an valid regular
+            <exception cref="T:System.InvalidOperationException">
+            Throws when the specified <paramref name="pattern"/> is not a valid regular
             expression pattern.
             </exception>
         </member>
@@ -1606,8 +1558,8 @@
             This method is a syntactic sugar of the calling
             method <see cref="M:System.Text.RegularExpressions.Regex.Match(System.String,System.String,System.Text.RegularExpressions.RegexOptions)"/>.
             </remarks>
-            <exception cref="T:System.Text.RegularExpressions.InvalidRegexStringException">
-            Throws when the specified <paramref name="pattern"/> is not an valid regular
+            <exception cref="T:System.InvalidOperationException">
+            Throws when the specified <paramref name="pattern"/> is not a valid regular
             expression pattern.
             </exception>
             <seealso cref="M:System.Text.RegularExpressions.Regex.Match(System.String,System.String,System.Text.RegularExpressions.RegexOptions)"/>
@@ -1627,8 +1579,8 @@
             This method is a syntactic sugar of the calling
             method <see cref="M:System.Text.RegularExpressions.Regex.Matches(System.String,System.String)"/>.
             </remarks>
-            <exception cref="T:System.Text.RegularExpressions.InvalidRegexStringException">
-            Throws when the specified <paramref name="pattern"/> is not an valid regular
+            <exception cref="T:System.InvalidOperationException">
+            Throws when the specified <paramref name="pattern"/> is not a valid regular
             expression pattern.
             </exception>
             <seealso cref="M:System.Text.RegularExpressions.Regex.Matches(System.String,System.String)"/>
@@ -1650,8 +1602,8 @@
             This method is a syntactic sugar of the calling
             method <see cref="M:System.Text.RegularExpressions.Regex.Matches(System.String,System.String,System.Text.RegularExpressions.RegexOptions)"/>.
             </remarks>
-            <exception cref="T:System.Text.RegularExpressions.InvalidRegexStringException">
-            Throws when the specified <paramref name="pattern"/> is not an valid regular
+            <exception cref="T:System.InvalidOperationException">
+            Throws when the specified <paramref name="pattern"/> is not a valid regular
             expression pattern.
             </exception>
             <seealso cref="M:System.Text.RegularExpressions.Regex.Matches(System.String,System.String,System.Text.RegularExpressions.RegexOptions)"/>
@@ -1681,11 +1633,12 @@
             <returns>The result string.</returns>
             <remarks>
             For example, if code is <c>"Hello, world!".Reserve(@"\w")</c>, the return value
-            won't contain any punctuation marks (i.e. <c>"Helloworld"</c>).
+            will only contain the letters, digits or the underscore character '<c>_</c>'
+            (i.e. <c>"Helloworld"</c> as the result of this example).
             </remarks>
-            <exception cref="T:System.Text.RegularExpressions.InvalidRegexStringException">
-            Throws when the <paramref name="reservePattern"/> is invalid (Please expand the description
-            of the parameter <paramref name="reservePattern"/> to learn about all valid patterns).
+            <exception cref="T:System.InvalidOperationException">
+            Throws when the <paramref name="reservePattern"/> is invalid.
+            All possible patterns are shown in the tip for the parameter <paramref name="reservePattern"/>.
             </exception>
         </member>
         <member name="M:System.StringExtensions.IsRegexPattern(System.String)">

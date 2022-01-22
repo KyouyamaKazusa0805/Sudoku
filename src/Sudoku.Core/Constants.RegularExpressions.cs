@@ -149,17 +149,5 @@ partial class Constants
 		/// </summary>
 		[IsRegex]
 		public const string ConjugatePair = @"(R[1-9]C[1-9]|r[1-9]c[1-9])\s*==\s*(R[1-9]C[1-9]|r[1-9]c[1-9])\(([1-9])\)";
-
-		/// <summary>
-		/// Indicates the regular expression to match a digit.
-		/// </summary>
-		[IsRegex]
-		public const string Digit = @"\d";
-
-		/// <summary>
-		/// Indicates the regular expression to match a tab character.
-		/// </summary>
-		[IsRegex]
-		public const string Tab = @"\t";
 	}
 }
