@@ -8,7 +8,7 @@ partial class Constants
 	/// The tables for grid processing.
 	/// </summary>
 	/// <remarks><i>
-	/// All fields will be initialized in the static constructor, which is declared in the source generator.
+	/// All fields will be initialized in the static constructor declared in the source generator.
 	/// </i></remarks>
 	public static partial class Tables
 	{
@@ -67,7 +67,7 @@ partial class Constants
 		/// <summary>
 		/// Indicates the possible region types to iterate.
 		/// </summary>
-		public static readonly Region[] Regions = new[] { Region.Block, Region.Row, Region.Column };
+		public static readonly Region[] Regions;
 
 		/// <summary>
 		/// <para>

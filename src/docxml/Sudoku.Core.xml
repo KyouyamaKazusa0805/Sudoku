@@ -3143,7 +3143,7 @@
             The tables for grid processing.
             </summary>
             <remarks><i>
-            All fields will be initialized in the static constructor, which is declared in the source generator.
+            All fields will be initialized in the static constructor declared in the source generator.
             </i></remarks>
         </member>
         <member name="F:Sudoku.Constants.Tables.RegionFirst">

@@ -180,6 +180,8 @@ partial class Constants
 
 			RegionCells = {regionCellsSb};
 
+			Regions = new[] {{ Region.Block,Region.Row, Region.Column }};
+
 			RegionFirst = new[]
 			{{
 				0, 3,  6, 27, 30, 33, 54, 57, 60,
