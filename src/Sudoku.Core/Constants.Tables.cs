@@ -65,6 +65,11 @@ partial class Constants
 		public static readonly Cells[] PeerMaps;
 
 		/// <summary>
+		/// Indicates the possible region types to iterate.
+		/// </summary>
+		public static readonly Region[] Regions = new[] { Region.Block, Region.Row, Region.Column };
+
+		/// <summary>
 		/// <para>
 		/// Indicates all maps that forms the each intersection. The pattern will be like:
 		/// <code><![CDATA[

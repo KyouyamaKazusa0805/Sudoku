@@ -12,7 +12,7 @@ public interface IUniqueLoopOrBivalueOddagonStepSearcher : IStepSearcher, ILoopL
 	/// <param name="d1">The first digit used.</param>
 	/// <param name="d2">The second digit used.</param>
 	/// <param name="cell">The current cell calculated.</param>
-	/// <param name="lastLabel">Indicates the last label used.</param>
+	/// <param name="lastRegion">Indicates the last region type used.</param>
 	/// <param name="exDigitsMask">The extra digits mask.</param>
 	/// <param name="allowedExtraCellsCount">Indicates the number of cells can be with extra digits.</param>
 	/// <param name="loopMap">Indicates the map of the loop.</param>
@@ -22,22 +22,22 @@ public interface IUniqueLoopOrBivalueOddagonStepSearcher : IStepSearcher, ILoopL
 	/// </param>
 	/// <param name="loops">The possible loops found.</param>
 	protected static void SearchForPossibleLoopPatterns(
-		in Grid grid, int d1, int d2, int cell, RegionLabel lastLabel, short exDigitsMask,
+		in Grid grid, int d1, int d2, int cell, Region lastRegion, short exDigitsMask,
 		int allowedExtraCellsCount, ref Cells loopMap, List<int> tempLoop,
 		Func<bool> predicate, List<(Cells, IList<(Link, ColorIdentifier)>)> loops)
 	{
 		loopMap.AddAnyway(cell);
 		tempLoop.Add(cell);
 
-		for (var label = RegionLabels.Block; label <= RegionLabels.Column; label++)
+		foreach (var region in Regions)
 		{
-			if (label == lastLabel)
+			if (region == lastRegion)
 			{
 				continue;
 			}
 
-			int region = RegionLabel.ToRegion(cell, label);
-			var cellsMap = RegionMaps[region] & EmptyMap - cell;
+			int regionIndex = cell.ToRegionIndex(region);
+			var cellsMap = RegionMaps[regionIndex] & EmptyMap - cell;
 			if (cellsMap.IsEmpty)
 			{
 				continue;
@@ -72,7 +72,7 @@ public interface IUniqueLoopOrBivalueOddagonStepSearcher : IStepSearcher, ILoopL
 					}
 
 					SearchForPossibleLoopPatterns(
-						grid, d1, d2, nextCell, label, exDigitsMask,
+						grid, d1, d2, nextCell, region, exDigitsMask,
 						digitsCount > 2 ? allowedExtraCellsCount - 1 : allowedExtraCellsCount,
 						ref loopMap, tempLoop, predicate, loops
 					);

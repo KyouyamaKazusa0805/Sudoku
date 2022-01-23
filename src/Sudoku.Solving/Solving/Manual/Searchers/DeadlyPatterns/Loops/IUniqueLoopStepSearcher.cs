@@ -3,7 +3,7 @@
 /// <summary>
 /// Defines a step searcher that searches for unique loop steps.
 /// </summary>
-public unsafe interface IUniqueLoopStepSearcher : IDeadlyPatternStepSearcher, IUniqueLoopOrBivalueOddagonStepSearcher
+public interface IUniqueLoopStepSearcher : IDeadlyPatternStepSearcher, IUniqueLoopOrBivalueOddagonStepSearcher
 {
 	/// <summary>
 	/// Checks whether the specified loop of cells is a valid loop.
@@ -16,29 +16,29 @@ public unsafe interface IUniqueLoopStepSearcher : IDeadlyPatternStepSearcher, IU
 		Unsafe.SkipInit(out bool isOdd);
 		foreach (int cell in loopCells)
 		{
-			for (var label = RegionLabels.Block; label <= RegionLabels.Column; label++)
+			foreach (var region in Regions)
 			{
-				int region = RegionLabel.ToRegion(cell, label);
+				int regionIndex = cell.ToRegionIndex(region);
 				if (isOdd)
 				{
-					if ((visitedOddRegions >> region & 1) != 0)
+					if ((visitedOddRegions >> regionIndex & 1) != 0)
 					{
 						return false;
 					}
 					else
 					{
-						visitedOddRegions |= 1 << region;
+						visitedOddRegions |= 1 << regionIndex;
 					}
 				}
 				else
 				{
-					if ((visitedEvenRegions >> region & 1) != 0)
+					if ((visitedEvenRegions >> regionIndex & 1) != 0)
 					{
 						return false;
 					}
 					else
 					{
-						visitedEvenRegions |= 1 << region;
+						visitedEvenRegions |= 1 << regionIndex;
 					}
 				}
 			}

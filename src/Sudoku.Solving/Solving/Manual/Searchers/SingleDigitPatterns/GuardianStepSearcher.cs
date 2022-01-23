@@ -50,7 +50,7 @@ public sealed unsafe class GuardianStepSearcher : IGuardianStepSearcher
 					var loopMap = Cells.Empty;
 					loops.Clear();
 					tempLoop.Clear();
-					f(cell, (RegionLabel)byte.MaxValue, Cells.Empty);
+					f(cell, (Region)255, Cells.Empty);
 
 					if (loops.Count == 0)
 					{
@@ -107,20 +107,20 @@ public sealed unsafe class GuardianStepSearcher : IGuardianStepSearcher
 					// because it'll cause stack-overflowing.
 					// One example is:
 					// 009050007060030080000009200100700800002400005080000040010820600000010000300007010
-					void f(int cell, RegionLabel lastLabel, Cells guardians)
+					void f(int cell, Region lastRegion, Cells guardians)
 					{
 						loopMap.AddAnyway(cell);
 						tempLoop.Add(cell);
 
-						for (var label = RegionLabels.Block; label <= RegionLabels.Column; label++)
+						foreach (var region in Regions)
 						{
-							if (label == lastLabel)
+							if (region == lastRegion)
 							{
 								continue;
 							}
 
-							int region = RegionLabel.ToRegion(cell, label);
-							var otherCellsMap = RegionMaps[region] & globalMap - cell;
+							int regionIndex = cell.ToRegionIndex(region);
+							var otherCellsMap = RegionMaps[regionIndex] & globalMap - cell;
 							if (otherCellsMap is not [var anotherCell])
 							{
 								continue;
@@ -140,7 +140,7 @@ public sealed unsafe class GuardianStepSearcher : IGuardianStepSearcher
 							{
 								f(
 									anotherCell,
-									label,
+									region,
 									IGuardianStepSearcher.CreateGuardianMap(cell, anotherCell, digit, guardians)
 								);
 							}

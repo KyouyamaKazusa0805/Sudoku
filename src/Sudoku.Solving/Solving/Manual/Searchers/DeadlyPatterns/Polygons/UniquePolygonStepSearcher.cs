@@ -179,7 +179,7 @@ public sealed unsafe class UniquePolygonStepSearcher : IUniquePolygonStepSearche
 			for (int i = 0, cur = 0; i < 9; i++)
 			{
 				int cell = RegionCells[region][i];
-				if (block == RegionLabel.ToRegion(cell, RegionLabels.Block))
+				if (block == cell.ToRegionIndex(Region.Block))
 				{
 					continue;
 				}

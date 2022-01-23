@@ -19,7 +19,7 @@ public interface IGuardianStepSearcher : ISingleDigitPatternStepSearcher
 		{
 			result.Add(
 				(
-					new(cells[i] * 9 + offset, cells[i + 1] * 9 + offset, LinkTypes.Line),
+					new(cells[i] * 9 + offset, cells[i + 1] * 9 + offset, LinkKind.Line),
 					(ColorIdentifier)0
 				)
 			);
@@ -27,7 +27,7 @@ public interface IGuardianStepSearcher : ISingleDigitPatternStepSearcher
 
 		result.Add(
 			(
-				new(cells[^1] * 9 + offset, cells[0] * 9 + offset, LinkTypes.Line),
+				new(cells[^1] * 9 + offset, cells[0] * 9 + offset, LinkKind.Line),
 				(ColorIdentifier)0
 			)
 		);

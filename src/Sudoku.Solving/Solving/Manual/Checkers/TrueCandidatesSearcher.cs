@@ -69,7 +69,7 @@ public sealed unsafe class TrueCandidatesSearcher
 				ref var map = ref stack[0, digit];
 				map.AddAnyway(cell);
 
-				RegionLabel.ToRegion(cell, peerRegions);
+				cell.RopyRegionInfo(peerRegions);
 				for (int i = 0; i < 3; i++)
 				{
 					if ((map & RegionMaps[peerRegions[i]]).Count > 2)
@@ -128,7 +128,7 @@ public sealed unsafe class TrueCandidatesSearcher
 
 					fixed (int* p = playground)
 					{
-						RegionLabel.ToRegion(currentCell, p);
+						currentCell.RopyRegionInfo(p);
 					}
 					foreach (int region in playground)
 					{

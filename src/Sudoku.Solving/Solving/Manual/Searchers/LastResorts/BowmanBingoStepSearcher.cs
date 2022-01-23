@@ -166,9 +166,8 @@ public sealed unsafe class BowmanBingoStepSearcher : IBowmanBingoStepSearcher
 		var result = new List<(Link, ColorIdentifier)>();
 		for (int i = 0, iterationCount = _tempConclusions.Count - 1; i < iterationCount; i++)
 		{
-			var c1 = _tempConclusions[i].Candidate;
-			var c2 = _tempConclusions[i + 1].Candidate;
-			result.Add((new(c1, c2, LinkTypes.Default), (ColorIdentifier)0));
+			int c1 = _tempConclusions[i].Candidate, c2 = _tempConclusions[i + 1].Candidate;
+			result.Add((new(c1, c2, LinkKind.Default), (ColorIdentifier)0));
 		}
 
 		return result;

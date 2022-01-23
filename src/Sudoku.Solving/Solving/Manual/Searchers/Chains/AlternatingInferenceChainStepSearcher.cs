@@ -280,9 +280,10 @@ public sealed unsafe class AlternatingInferenceChainStepSearcher : IAlternatingI
 	{
 		var conclusions = new List<Conclusion>();
 		var links = IChainStepSearcher.GetLinks(destOn, true); //! Maybe wrong when adding grouped nodes.
-		foreach (var ((start, end, type), _) in links)
+		foreach (var (link, _) in links)
 		{
-			if (type == LinkTypes.Weak
+			_ = link is { StartCandidate: var start, EndCandidate: var end, Kind: var kind };
+			if (kind == LinkKind.Weak
 				&& new Candidates { start, end }.PeerIntersection is { IsEmpty: false } elimMap)
 			{
 				foreach (int candidate in elimMap)

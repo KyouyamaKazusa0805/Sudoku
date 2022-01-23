@@ -3198,6 +3198,11 @@
             </summary>
             <seealso cref="F:Sudoku.Constants.Tables.Peers"/>
         </member>
+        <member name="F:Sudoku.Constants.Tables.Regions">
+            <summary>
+            Indicates the possible region types to iterate.
+            </summary>
+        </member>
         <member name="F:Sudoku.Constants.Tables.IntersectionMaps">
             <summary>
             <para>
@@ -3254,115 +3259,6 @@
         </member>
         <member name="M:Sudoku.Constants.Tables.ValueTupleComparer.GetHashCode(System.ValueTuple{System.Byte,System.Byte})">
             <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Data.Abstractions.ILinkType`1">
-            <summary>
-            Defines a basic constraint that applied onto a <see cref="T:Sudoku.Data.LinkType"/>.
-            </summary>
-            <typeparam name="T">The type. The type is always <see cref="T:Sudoku.Data.LinkType"/>.</typeparam>
-        </member>
-        <member name="P:Sudoku.Data.Abstractions.ILinkType`1.TypeKind">
-            <summary>
-            The type kind.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Data.Abstractions.ILinkType`1.Equals(`0)">
-            <summary>
-            Determine whether the specified <see cref="T:Sudoku.Data.LinkType"/> instance
-            holds the same type kind as the current one.
-            </summary>
-            <param name="other">The other instance to compare.</param>
-            <returns>A <see cref="T:System.Boolean"/> result.</returns>
-        </member>
-        <member name="M:Sudoku.Data.Abstractions.ILinkType`1.GetNotation">
-            <summary>
-            Gets the notation of the chain link that combines 2 <see cref="T:Sudoku.Data.Node"/>s.
-            </summary>
-            <returns>The notation <see cref="T:System.String"/> representation.</returns>
-        </member>
-        <member name="M:Sudoku.Data.Abstractions.ILinkType`1.ToString">
-            <inheritdoc cref="M:System.Object.ToString"/>
-        </member>
-        <member name="M:Sudoku.Data.Abstractions.ILinkType`1.GetHashCode">
-            <inheritdoc cref="M:System.Object.GetHashCode"/>
-        </member>
-        <member name="M:Sudoku.Data.Abstractions.ILinkType`1.op_Explicit(System.Byte)~`0">
-            <summary>
-            Explicit cast from <see cref="T:System.Byte"/> to <typeparamref name="T"/>.
-            </summary>
-            <param name="value">The value.</param>
-        </member>
-        <member name="M:Sudoku.Data.Abstractions.ILinkType`1.op_Explicit(`0)~System.Byte">
-            <summary>
-            Explicit cast from <typeparamref name="T"/> to <see cref="T:System.Byte"/>.
-            </summary>
-            <param name="linkType">The link type.</param>
-        </member>
-        <member name="T:Sudoku.Data.Abstractions.IRegionLabel`1">
-            <summary>
-            Defines a basic constraint that applied onto a <see cref="T:Sudoku.Data.RegionLabel"/>.
-            </summary>
-            <typeparam name="T">The type. The type is always <see cref="T:Sudoku.Data.RegionLabel"/>.</typeparam>
-        </member>
-        <member name="F:Sudoku.Data.Abstractions.IRegionLabel`1.BlockTable">
-            <summary>
-            The block table.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Data.Abstractions.IRegionLabel`1.RowTable">
-            <summary>
-            The row table.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Data.Abstractions.IRegionLabel`1.ColumnTable">
-            <summary>
-            The column table.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Data.Abstractions.IRegionLabel`1.RegionKind">
-            <summary>
-            The region kind.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Data.Abstractions.IRegionLabel`1.ToString">
-            <inheritdoc cref="M:System.Object.ToString"/>
-        </member>
-        <member name="M:Sudoku.Data.Abstractions.IRegionLabel`1.GetHashCode">
-            <inheritdoc cref="M:System.Object.GetHashCode"/>
-        </member>
-        <member name="M:Sudoku.Data.Abstractions.IRegionLabel`1.ToRegion(System.Int32,System.Int32*)">
-            <summary>
-            Gets the row, column and block value and copies to the specified pointer.
-            </summary>
-            <param name="cell">The cell.</param>
-            <param name="ptr">The pointer.</param>
-        </member>
-        <member name="M:Sudoku.Data.Abstractions.IRegionLabel`1.ToRegion(System.Int32,Sudoku.Data.RegionLabel)">
-            <summary>
-            Get the region index for the specified cell and the region type.
-            </summary>
-            <param name="cell">The cell.</param>
-            <param name="label">The label to represent a region type.</param>
-            <returns>The region index.</returns>
-        </member>
-        <member name="M:Sudoku.Data.Abstractions.IRegionLabel`1.ToLabel(System.Int32)">
-            <summary>
-            Get the label in the specified region.
-            </summary>
-            <param name="region">The region.</param>
-            <returns>The region label.</returns>
-        </member>
-        <member name="M:Sudoku.Data.Abstractions.IRegionLabel`1.op_Explicit(System.Byte)~`0">
-            <summary>
-            Explicit cast from <see cref="T:System.Byte"/> to <typeparamref name="T"/>.
-            </summary>
-            <param name="value">The value.</param>
-        </member>
-        <member name="M:Sudoku.Data.Abstractions.IRegionLabel`1.op_Explicit(`0)~System.Byte">
-            <summary>
-            Explicit cast from <typeparamref name="T"/> to <see cref="T:System.Byte"/>.
-            </summary>
-            <param name="regionLabel">The region label.</param>
         </member>
         <member name="T:Sudoku.Data.CandidatesParsingOptions">
             <summary>
@@ -4554,17 +4450,47 @@
             <summary>
             Encapsulates a link used for drawing.
             </summary>
-            <param name="StartCandidate">Indicates the start candidate.</param>
-            <param name="EndCandidate">Indicates the end candidate.</param>
-            <param name="LinkType">Indicates the link type.</param>
+            <param name="Mask">
+            The mask of the link. The mask contains 21 bits used:
+            <code>
+            24      16      8       0
+            |       |       |       |
+            |-------|-------|-------|
+            |   ||        |         |
+            24 2120       10        0
+            </code>
+            </param>
         </member>
-        <member name="M:Sudoku.Data.Link.#ctor(System.Int32,System.Int32,Sudoku.Data.LinkType)">
+        <member name="M:Sudoku.Data.Link.#ctor(System.Int32)">
             <summary>
             Encapsulates a link used for drawing.
             </summary>
-            <param name="StartCandidate">Indicates the start candidate.</param>
-            <param name="EndCandidate">Indicates the end candidate.</param>
-            <param name="LinkType">Indicates the link type.</param>
+            <param name="Mask">
+            The mask of the link. The mask contains 21 bits used:
+            <code>
+            24      16      8       0
+            |       |       |       |
+            |-------|-------|-------|
+            |   ||        |         |
+            24 2120       10        0
+            </code>
+            </param>
+        </member>
+        <member name="F:Sudoku.Data.Link.Default">
+            <inheritdoc cref="P:System.IDefaultable`1.Default"/>
+        </member>
+        <member name="M:Sudoku.Data.Link.#ctor(System.Int32,System.Int32,Sudoku.Data.LinkKind)">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Data.Link"/> instance via the start and end candidate, and the kind of the link.
+            </summary>
+            <param name="startCandidate">The start candidate.</param>
+            <param name="endCandidate">The end candidate.</param>
+            <param name="kind">The kind of the link.</param>
+        </member>
+        <member name="P:Sudoku.Data.Link.StartCandidate">
+            <summary>
+            Indicates the start candidate.
+            </summary>
         </member>
         <member name="P:Sudoku.Data.Link.StartCell">
             <summary>
@@ -4576,6 +4502,11 @@
             Indicates the start digit.
             </summary>
         </member>
+        <member name="P:Sudoku.Data.Link.EndCandidate">
+            <summary>
+            Indicates the end candidate.
+            </summary>
+        </member>
         <member name="P:Sudoku.Data.Link.EndCell">
             <summary>
             Indicates the end cell.
@@ -4585,6 +4516,17 @@
             <summary>
             Indicates the end digit.
             </summary>
+        </member>
+        <member name="P:Sudoku.Data.Link.Kind">
+            <summary>
+            Indicates the link kind.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Data.Link.System#IDefaultable{Sudoku#Data#Link}#IsDefault">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Data.Link.System#IDefaultable{Sudoku#Data#Link}#Default">
+            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Data.Link.Equals(Sudoku.Data.Link)">
             <summary>
@@ -4600,101 +4542,49 @@
         <member name="M:Sudoku.Data.Link.ToString">
             <inheritdoc cref="M:System.Object.ToString"/>
         </member>
-        <member name="T:Sudoku.Data.LinkType">
+        <member name="T:Sudoku.Data.LinkKind">
             <summary>
-            Defines a type of a link that constructed by 2 <see cref="T:Sudoku.Data.Node"/>s.
-            </summary>
-            <param name="TypeKind">
-            The <see cref="T:System.Byte"/> value as the eigenvalue of the type. All possible values are:
-            <list type="table">
-            <item>
-            <term>0</term>
-            <description>The link is <see cref="F:Sudoku.Data.LinkTypes.Default"/>.</description>
-            </item>
-            <item>
-            <term>1</term>
-            <description>The link is <see cref="F:Sudoku.Data.LinkTypes.Weak"/>.</description>
-            </item>
-            <item>
-            <term>2</term>
-            <description>The link is <see cref="F:Sudoku.Data.LinkTypes.Strong"/>.</description>
-            </item>
-            <item>
-            <term>3</term>
-            <description>The link is <see cref="F:Sudoku.Data.LinkTypes.Line"/>.</description>
-            </item>
-            </list>
-            </param>
-        </member>
-        <member name="M:Sudoku.Data.LinkType.#ctor(System.Byte)">
-            <summary>
-            Defines a type of a link that constructed by 2 <see cref="T:Sudoku.Data.Node"/>s.
-            </summary>
-            <param name="TypeKind">
-            The <see cref="T:System.Byte"/> value as the eigenvalue of the type. All possible values are:
-            <list type="table">
-            <item>
-            <term>0</term>
-            <description>The link is <see cref="F:Sudoku.Data.LinkTypes.Default"/>.</description>
-            </item>
-            <item>
-            <term>1</term>
-            <description>The link is <see cref="F:Sudoku.Data.LinkTypes.Weak"/>.</description>
-            </item>
-            <item>
-            <term>2</term>
-            <description>The link is <see cref="F:Sudoku.Data.LinkTypes.Strong"/>.</description>
-            </item>
-            <item>
-            <term>3</term>
-            <description>The link is <see cref="F:Sudoku.Data.LinkTypes.Line"/>.</description>
-            </item>
-            </list>
-            </param>
-        </member>
-        <member name="M:Sudoku.Data.LinkType.Equals(Sudoku.Data.LinkType)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Data.LinkType.GetHashCode">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Data.LinkType.ToString">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Data.LinkType.GetNotation">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Data.LinkType.op_Explicit(System.Byte)~Sudoku.Data.LinkType">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Data.LinkType.op_Explicit(Sudoku.Data.LinkType)~System.Byte">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Data.LinkTypes">
-            <summary>
-            Defines the <see langword="static"/> data for <see cref="T:Sudoku.Data.LinkType"/> instances.
-            </summary>
-            <completionlist cref="T:Sudoku.Data.LinkType"/>
-        </member>
-        <member name="F:Sudoku.Data.LinkTypes.Default">
-            <summary>
-            Indicates the default link.
+            Defines a link kind.
             </summary>
         </member>
-        <member name="F:Sudoku.Data.LinkTypes.Weak">
+        <member name="F:Sudoku.Data.LinkKind.Default">
+            <summary>
+            Indicates the default-kind link.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Data.LinkKind.Weak">
             <summary>
             Indicates the weak link.
             </summary>
         </member>
-        <member name="F:Sudoku.Data.LinkTypes.Strong">
+        <member name="F:Sudoku.Data.LinkKind.Strong">
             <summary>
             Indicates the strong link.
             </summary>
         </member>
-        <member name="F:Sudoku.Data.LinkTypes.Line">
+        <member name="F:Sudoku.Data.LinkKind.ConjugatePair">
             <summary>
-            Indicates the line link.
+            Indicates the conjugate pair.
             </summary>
+        </member>
+        <member name="F:Sudoku.Data.LinkKind.Line">
+            <summary>
+            Indicates the line-kind link.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Data.LinkKindExtensions">
+            <summary>
+            Provides extension methods on <see cref="T:Sudoku.Data.LinkKind"/>.
+            </summary>
+            <seealso cref="T:Sudoku.Data.LinkKind"/>
+        </member>
+        <member name="M:Sudoku.Data.LinkKindExtensions.GetNotation(Sudoku.Data.LinkKind)">
+            <summary>
+            Gets the notation of the link kind.
+            </summary>
+            <param name="this">The link kind.</param>
+            <returns>The notation.</returns>
+            <exception cref="T:System.ArgumentOutOfRangeException">Throws when the link kind is not defined.</exception>
         </member>
         <member name="T:Sudoku.Data.Models.CellInfo">
             <summary>
@@ -5047,115 +4937,94 @@
             <param name="parentsCount">The number of parents.</param>
             <returns>The mask.</returns>
         </member>
-        <member name="T:Sudoku.Data.RegionLabel">
+        <member name="T:Sudoku.Data.Region">
             <summary>
-            Indicates the region label.
+            Defines a region type.
             </summary>
-            <param name="RegionKind">
-            The <see cref="T:System.Byte"/> value as the eigenvalue of the type. All possible values are:
+        </member>
+        <member name="F:Sudoku.Data.Region.Block">
+            <summary>
+            Indicates the region type is a block.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Data.Region.Row">
+            <summary>
+            Indicates the region type is a row.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Data.Region.Column">
+            <summary>
+            Indicates the region type is a column.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Data.RegionExtensions">
+            <summary>
+            Provides extension methods on <see cref="T:Sudoku.Data.Region"/>.
+            </summary>
+            <seealso cref="T:Sudoku.Data.Region"/>
+        </member>
+        <member name="F:Sudoku.Data.RegionExtensions.BlockTable">
+            <summary>
+            The tables.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Data.RegionExtensions.RowTable">
+            <summary>
+            The tables.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Data.RegionExtensions.ColumnTable">
+            <summary>
+            The tables.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Data.RegionExtensions.RopyRegionInfo(System.Int32,System.Int32*)">
+            <summary>
+            Gets the row, column and block value and copies to the specified array that represents by a pointer
+            of 3 elements, where the first element stores the block index, second element stores the row index
+            and the third element stores the column index.
+            </summary>
+            <param name="cell">The cell. The available values must be between 0 and 80.</param>
+            <param name="ptr">The specified array that represents by a pointer of 3 elements.</param>
+        </member>
+        <member name="M:Sudoku.Data.RegionExtensions.ToRegionIndex(System.Byte,Sudoku.Data.Region)">
+            <summary>
+            Get the region index (0..27 for block 1-9, row 1-9 and column 1-9)
+            for the specified cell and the region type.
+            </summary>
+            <param name="cell">The cell. The available values must be between 0 and 80.</param>
+            <param name="region">The region type.</param>
+            <returns>The region index. The return value must be between 0 and 26.</returns>
+        </member>
+        <member name="M:Sudoku.Data.RegionExtensions.ToRegionIndex(System.Int32,Sudoku.Data.Region)">
+            <inheritdoc cref="M:Sudoku.Data.RegionExtensions.ToRegionIndex(System.Byte,Sudoku.Data.Region)"/>
+        </member>
+        <member name="M:Sudoku.Data.RegionExtensions.ToRegion(System.Int32)">
+            <summary>
+            Get the region type for the specified region index.
+            </summary>
+            <param name="regionIndex">The region index.</param>
+            <returns>
+            The region type. The possible return values are:
             <list type="table">
+            <listheader>
+            <term>Range for the region index</term>
+            <description>Return value</description>
+            </listheader>
             <item>
-            <term>0</term>
-            <description>The link is <see cref="F:Sudoku.Data.RegionLabels.Block"/>.</description>
+            <term><paramref name="regionIndex"/> is <![CDATA[>= 0 and < 9]]></term>
+            <description><see cref="F:Sudoku.Data.Region.Block"/></description>
             </item>
             <item>
-            <term>1</term>
-            <description>The link is <see cref="F:Sudoku.Data.RegionLabels.Row"/>.</description>
+            <term><paramref name="regionIndex"/> is <![CDATA[>= 9 and < 18]]></term>
+            <description><see cref="F:Sudoku.Data.Region.Row"/></description>
             </item>
             <item>
-            <term>2</term>
-            <description>The link is <see cref="F:Sudoku.Data.RegionLabels.Column"/>.</description>
+            <term><paramref name="regionIndex"/> is <![CDATA[>= 18 and < 27]]></term>
+            <description><see cref="F:Sudoku.Data.Region.Column"/></description>
             </item>
             </list>
-            </param>
-        </member>
-        <member name="M:Sudoku.Data.RegionLabel.#ctor(System.Byte)">
-            <summary>
-            Indicates the region label.
-            </summary>
-            <param name="RegionKind">
-            The <see cref="T:System.Byte"/> value as the eigenvalue of the type. All possible values are:
-            <list type="table">
-            <item>
-            <term>0</term>
-            <description>The link is <see cref="F:Sudoku.Data.RegionLabels.Block"/>.</description>
-            </item>
-            <item>
-            <term>1</term>
-            <description>The link is <see cref="F:Sudoku.Data.RegionLabels.Row"/>.</description>
-            </item>
-            <item>
-            <term>2</term>
-            <description>The link is <see cref="F:Sudoku.Data.RegionLabels.Column"/>.</description>
-            </item>
-            </list>
-            </param>
-        </member>
-        <member name="M:Sudoku.Data.RegionLabel.Equals(Sudoku.Data.RegionLabel)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Data.RegionLabel.GetHashCode">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Data.RegionLabel.CompareTo(Sudoku.Data.RegionLabel)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Data.RegionLabel.ToString">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Data.RegionLabel.System#IComparable#CompareTo(System.Object)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Data.RegionLabel.ToRegion(System.Int32,System.Int32*)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Data.RegionLabel.ToRegion(System.Int32,Sudoku.Data.RegionLabel)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Data.RegionLabel.ToLabel(System.Int32)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Data.RegionLabel.op_GreaterThan(Sudoku.Data.RegionLabel,Sudoku.Data.RegionLabel)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Data.RegionLabel.op_GreaterThanOrEqual(Sudoku.Data.RegionLabel,Sudoku.Data.RegionLabel)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Data.RegionLabel.op_LessThan(Sudoku.Data.RegionLabel,Sudoku.Data.RegionLabel)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Data.RegionLabel.op_LessThanOrEqual(Sudoku.Data.RegionLabel,Sudoku.Data.RegionLabel)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Data.RegionLabel.op_Increment(Sudoku.Data.RegionLabel)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Data.RegionLabel.op_Explicit(System.Byte)~Sudoku.Data.RegionLabel">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Data.RegionLabel.op_Explicit(Sudoku.Data.RegionLabel)~System.Byte">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Data.RegionLabels">
-            <summary>
-            Defines the <see langword="static"/> data for <see cref="T:Sudoku.Data.RegionLabel"/> instances.
-            </summary>
-            <completionlist cref="T:Sudoku.Data.RegionLabel"/>
-        </member>
-        <member name="F:Sudoku.Data.RegionLabels.Block">
-            <summary>
-            Indicates the region is the block.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Data.RegionLabels.Row">
-            <summary>
-            Indicates the region is the row.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Data.RegionLabels.Column">
-            <summary>
-            Indicates the region is the column.
-            </summary>
+            </returns>
         </member>
         <member name="T:Sudoku.Data.SymmetryType">
             <summary>
@@ -5419,7 +5288,8 @@
         </member>
         <member name="F:Sudoku.Presentation.Coordinate.Undefined">
             <summary>
-            Indicates the undefined <see cref="T:Sudoku.Presentation.Coordinate"/> instance that stands for an invalid <see cref="T:Sudoku.Presentation.Coordinate"/> value.
+            Indicates the undefined <see cref="T:Sudoku.Presentation.Coordinate"/> instance that stands
+            for an invalid <see cref="T:Sudoku.Presentation.Coordinate"/> value.
             </summary>
         </member>
         <member name="F:Sudoku.Presentation.Coordinate.MinValue">
@@ -6132,23 +6002,6 @@
         </member>
         <member name="M:Sudoku.Serialization.Converters.UnknownValueConverter.Write(System.Text.Json.Utf8JsonWriter,Sudoku.Presentation.UnknownValue,System.Text.Json.JsonSerializerOptions)">
             <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Serialization.LinkTypeJsonConverter">
-            <summary>
-            Defines a JSON converter that parses the string to a link type or vice versa.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Serialization.LinkTypeJsonConverter.Read(System.Text.Json.Utf8JsonReader@,System.Type,System.Text.Json.JsonSerializerOptions)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Serialization.LinkTypeJsonConverter.Write(System.Text.Json.Utf8JsonWriter,Sudoku.Data.LinkType,System.Text.Json.JsonSerializerOptions)">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Serialization.LinkJsonSerializerContext">
-            <summary>
-            Provides a serializer context on type <see cref="T:Sudoku.Data.Link"/>.
-            </summary>
-            <seealso cref="T:Sudoku.Data.Link"/>
         </member>
         <member name="T:Sudoku.Solving.BitwiseSolver">
             <summary>

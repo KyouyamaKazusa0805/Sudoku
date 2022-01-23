@@ -3,18 +3,51 @@
 /// <summary>
 /// Encapsulates a link used for drawing.
 /// </summary>
-/// <param name="StartCandidate">Indicates the start candidate.</param>
-/// <param name="EndCandidate">Indicates the end candidate.</param>
-/// <param name="LinkType">Indicates the link type.</param>
-public readonly record struct Link(int StartCandidate, int EndCandidate, LinkType LinkType)
+/// <param name="Mask">
+/// The mask of the link. The mask contains 21 bits used:
+/// <code>
+/// 24      16      8       0
+/// |       |       |       |
+/// |-------|-------|-------|
+/// |   ||        |         |
+/// 24 2120       10        0
+/// </code>
+/// </param>
+public readonly record struct Link(int Mask) : IDefaultable<Link>, IEqualityOperators<Link, Link>
 {
+	/// <inheritdoc cref="IDefaultable{T}.Default"/>
+	public static readonly Link Default;
+
+
+	/// <summary>
+	/// Initializes a <see cref="Link"/> instance via the start and end candidate, and the kind of the link.
+	/// </summary>
+	/// <param name="startCandidate">The start candidate.</param>
+	/// <param name="endCandidate">The end candidate.</param>
+	/// <param name="kind">The kind of the link.</param>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public Link(int startCandidate, int endCandidate, LinkKind kind)
+	: this((int)kind << 20 | startCandidate << 10 | endCandidate)
+	{
+	}
+
+
+	/// <summary>
+	/// Indicates the start candidate.
+	/// </summary>
+	public int StartCandidate
+	{
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		get => Mask >> 10 & 1023;
+	}
+
 	/// <summary>
 	/// Indicates the start cell.
 	/// </summary>
 	public int StartCell
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => StartCandidate / 9;
+		get => (Mask >> 10 & 1023) / 9;
 	}
 
 	/// <summary>
@@ -23,7 +56,16 @@ public readonly record struct Link(int StartCandidate, int EndCandidate, LinkTyp
 	public int StartDigit
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => StartCandidate % 9;
+		get => (Mask >> 10 & 1023) % 9;
+	}
+
+	/// <summary>
+	/// Indicates the end candidate.
+	/// </summary>
+	public int EndCandidate
+	{
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		get => Mask & 1023;
 	}
 
 	/// <summary>
@@ -32,7 +74,7 @@ public readonly record struct Link(int StartCandidate, int EndCandidate, LinkTyp
 	public int EndCell
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => EndCandidate / 9;
+		get => (Mask & 1023) / 9;
 	}
 
 	/// <summary>
@@ -41,8 +83,23 @@ public readonly record struct Link(int StartCandidate, int EndCandidate, LinkTyp
 	public int EndDigit
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => EndCandidate % 9;
+		get => (Mask & 1023) % 9;
 	}
+
+	/// <summary>
+	/// Indicates the link kind.
+	/// </summary>
+	public LinkKind Kind
+	{
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		get => (LinkKind)(Mask >> 20 & 3);
+	}
+
+	/// <inheritdoc/>
+	bool IDefaultable<Link>.IsDefault => this == Default;
+
+	/// <inheritdoc/>
+	static Link IDefaultable<Link>.Default => Default;
 
 
 	/// <summary>
@@ -52,14 +109,14 @@ public readonly record struct Link(int StartCandidate, int EndCandidate, LinkTyp
 	/// <param name="other">The instance to compare.</param>
 	/// <returns>A <see cref="bool"/> result.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public bool Equals(Link other) =>
-		StartCandidate == other.StartCandidate && EndCandidate == other.EndCandidate && LinkType == other.LinkType;
+	public bool Equals(Link other) => Mask == other.Mask;
 
 	/// <inheritdoc cref="object.GetHashCode"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public override int GetHashCode() => (int)LinkType << 20 | StartCandidate << 10 | EndCandidate;
+	public override int GetHashCode() => Mask;
 
 	/// <inheritdoc cref="object.ToString"/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public override string ToString() =>
-		$"{new Candidates { StartCandidate }}{LinkType.GetNotation()}{new Candidates { EndCandidate }}";
+		$"{new Candidates { StartCandidate }}{Kind.GetNotation()}{new Candidates { EndCandidate }}";
 }

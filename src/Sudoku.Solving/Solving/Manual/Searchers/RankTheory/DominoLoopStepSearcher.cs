@@ -206,14 +206,14 @@ public sealed unsafe class DominoLoopStepSearcher : IDominoLoopStepSearcher
 				}
 
 				// Check elimination map.
-				linkRegion[0] = RegionLabel.ToRegion(cells[0], RegionLabels.Row);
-				linkRegion[1] = RegionLabel.ToRegion(cells[2], RegionLabels.Block);
-				linkRegion[2] = RegionLabel.ToRegion(cells[4], RegionLabels.Column);
-				linkRegion[3] = RegionLabel.ToRegion(cells[6], RegionLabels.Block);
-				linkRegion[4] = RegionLabel.ToRegion(cells[8], RegionLabels.Row);
-				linkRegion[5] = RegionLabel.ToRegion(cells[10], RegionLabels.Block);
-				linkRegion[6] = RegionLabel.ToRegion(cells[12], RegionLabels.Column);
-				linkRegion[7] = RegionLabel.ToRegion(cells[14], RegionLabels.Block);
+				linkRegion[0] = cells[0].ToRegionIndex(Region.Row);
+				linkRegion[1] = cells[2].ToRegionIndex(Region.Block);
+				linkRegion[2] = cells[4].ToRegionIndex(Region.Column);
+				linkRegion[3] = cells[6].ToRegionIndex(Region.Block);
+				linkRegion[4] = cells[8].ToRegionIndex(Region.Row);
+				linkRegion[5] = cells[10].ToRegionIndex(Region.Block);
+				linkRegion[6] = cells[12].ToRegionIndex(Region.Column);
+				linkRegion[7] = cells[14].ToRegionIndex(Region.Block);
 				var conclusions = new List<Conclusion>();
 				var map = cells & EmptyMap;
 				for (k = 0; k < 8; k++)

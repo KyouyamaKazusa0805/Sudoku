@@ -119,7 +119,7 @@ public sealed unsafe class ComplexFishStepSearcher : IComplexFishStepSearcher
 		bool onlyFindOne
 	)
 	{
-		const byte bothLines = 3;
+		const Region bothLines = (Region)3;
 
 		int* currentCoverSets = stackalloc int[MaxSize];
 
@@ -208,17 +208,17 @@ public sealed unsafe class ComplexFishStepSearcher : IComplexFishStepSearcher
 						}
 
 						// Get the mask for checking for mutant fish.
-						Unsafe.SkipInit(out byte baseRegionTypes);
+						Unsafe.SkipInit(out Region baseRegionTypes);
 						if (searchForMutant)
 						{
-							baseRegionTypes = (byte)RegionLabels.Block;
+							baseRegionTypes = Region.Block;
 							if ((baseSetsMask & AllRowsMask) != 0)
 							{
-								baseRegionTypes |= (byte)RegionLabels.Row;
+								baseRegionTypes |= Region.Row;
 							}
 							if ((baseSetsMask & AllColumnsMask) != 0)
 							{
-								baseRegionTypes |= (byte)RegionLabels.Column;
+								baseRegionTypes |= Region.Column;
 							}
 						}
 
@@ -279,29 +279,30 @@ public sealed unsafe class ComplexFishStepSearcher : IComplexFishStepSearcher
 
 							// Now iterate on three different region types, to check the final region
 							// that is the elimination lies in.
-							for (var label = RegionLabels.Block; label <= RegionLabels.Column; label++)
+							foreach (var region in Regions)
 							{
-								int region = RegionLabel.ToRegion(cell, label);
+								int regionIndex = cell.ToRegionIndex(region);
 
 								// Check whether the region is both used in base sets and cover sets.
-								if ((usedInBaseSets >> region & 1) != 0 || (usedInCoverSets >> region & 1) != 0)
+								if ((usedInBaseSets >> regionIndex & 1) != 0
+									|| (usedInCoverSets >> regionIndex & 1) != 0)
 								{
 									continue;
 								}
 
 								// Add the region into the cover sets, and check the cover region types.
-								usedInCoverSets |= 1 << region;
-								Unsafe.SkipInit(out byte coverRegionTypes);
+								usedInCoverSets |= 1 << regionIndex;
+								Unsafe.SkipInit(out Region coverRegionTypes);
 								if (searchForMutant)
 								{
-									coverRegionTypes = (byte)RegionLabels.Block;
+									coverRegionTypes = Region.Block;
 									if ((usedInCoverSets & AllRowsMask) != 0)
 									{
-										coverRegionTypes |= (byte)RegionLabels.Row;
+										coverRegionTypes |= Region.Row;
 									}
 									if ((usedInCoverSets & AllColumnsMask) != 0)
 									{
-										coverRegionTypes |= (byte)RegionLabels.Column;
+										coverRegionTypes |= Region.Column;
 									}
 								}
 
@@ -333,7 +334,7 @@ public sealed unsafe class ComplexFishStepSearcher : IComplexFishStepSearcher
 								}
 
 								// Now actual base sets must overlap the current region.
-								if ((actualBaseMap & RegionMaps[region]).IsEmpty)
+								if ((actualBaseMap & RegionMaps[regionIndex]).IsEmpty)
 								{
 									goto BacktrackValue;
 								}
@@ -347,19 +348,19 @@ public sealed unsafe class ComplexFishStepSearcher : IComplexFishStepSearcher
 								int j = size - 2;
 								for (; j >= 0; j--)
 								{
-									if (currentCoverSets[j] >= region)
+									if (currentCoverSets[j] >= regionIndex)
 									{
 										currentCoverSets[j + 1] = currentCoverSets[j];
 									}
 									else
 									{
-										currentCoverSets[j + 1] = region;
+										currentCoverSets[j + 1] = regionIndex;
 										break;
 									}
 								}
 								if (j < 0)
 								{
-									currentCoverSets[0] = region;
+									currentCoverSets[0] = regionIndex;
 								}
 
 								// Collect all endo-fins firstly.
@@ -382,7 +383,7 @@ public sealed unsafe class ComplexFishStepSearcher : IComplexFishStepSearcher
 								endofins &= CandMaps[digit];
 
 								// Add the new region into the cover sets map.
-								var nowCoverMap = coverMap | RegionMaps[region];
+								var nowCoverMap = coverMap | RegionMaps[regionIndex];
 
 								// Collect all exo-fins, in order to get all eliminations.
 								var exofins = actualBaseMap - nowCoverMap - endofins;
@@ -428,7 +429,7 @@ public sealed unsafe class ComplexFishStepSearcher : IComplexFishStepSearcher
 								{
 									actualCoverSets[p] = coverSets[p];
 								}
-								actualCoverSets[^1] = region;
+								actualCoverSets[^1] = regionIndex;
 
 								// Collect highlighting regions.
 								int coverSetsMask = 0;
@@ -467,7 +468,7 @@ public sealed unsafe class ComplexFishStepSearcher : IComplexFishStepSearcher
 
 							// Backtracking.
 							BacktrackValue:
-								usedInCoverSets &= ~(1 << region);
+								usedInCoverSets &= ~(1 << regionIndex);
 							}
 						}
 					}

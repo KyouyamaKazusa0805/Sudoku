@@ -20,7 +20,8 @@ public readonly record struct Coordinate(byte Cell)
 , ISubtractionOperators<Coordinate, byte, Coordinate>
 {
 	/// <summary>
-	/// Indicates the undefined <see cref="Coordinate"/> instance that stands for an invalid <see cref="Coordinate"/> value.
+	/// Indicates the undefined <see cref="Coordinate"/> instance that stands
+	/// for an invalid <see cref="Coordinate"/> value.
 	/// </summary>
 	public static readonly Coordinate Undefined = new(byte.MaxValue);
 
@@ -37,7 +38,7 @@ public readonly record struct Coordinate(byte Cell)
 	public int Row
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => RegionLabel.ToRegion(Cell, RegionLabels.Row);
+		get => Cell.ToRegionIndex(Region.Row);
 	}
 
 	/// <summary>
@@ -46,7 +47,7 @@ public readonly record struct Coordinate(byte Cell)
 	public int Column
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => RegionLabel.ToRegion(Cell, RegionLabels.Column);
+		get => Cell.ToRegionIndex(Region.Column);
 	}
 
 	/// <summary>
@@ -55,7 +56,7 @@ public readonly record struct Coordinate(byte Cell)
 	public int Block
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => RegionLabel.ToRegion(Cell, RegionLabels.Block);
+		get => Cell.ToRegionIndex(Region.Block);
 	}
 
 	/// <inheritdoc/>
@@ -224,7 +225,7 @@ public readonly record struct Coordinate(byte Cell)
 			return false;
 		}
 	}
-	
+
 	/// <inheritdoc/>
 	public static bool TryParse(string str, out Coordinate result)
 	{

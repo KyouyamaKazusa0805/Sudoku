@@ -255,10 +255,10 @@ public unsafe class ForcingChainStepSearcher : IForcingChainStepSearcher, IDynam
 		ref NodeSet onToOff
 	)
 	{
-		for (var label = RegionLabels.Block; label <= RegionLabels.Column; label++)
+		foreach (var region in Regions)
 		{
-			int region = RegionLabel.ToRegion(cell, label);
-			var worthMap = CandMaps[digit] & RegionMaps[region];
+			int regionIndex = cell.ToRegionIndex(region);
+			var worthMap = CandMaps[digit] & RegionMaps[regionIndex];
 			switch (worthMap)
 			{
 				case [_, _]:
@@ -297,12 +297,12 @@ public unsafe class ForcingChainStepSearcher : IForcingChainStepSearcher, IDynam
 						// Gather results.
 						foreach (var p in regionToOn)
 						{
-							var hint = CreateRegionFcHint(region, digit, p, posToOn);
+							var hint = CreateRegionFcHint(regionIndex, digit, p, posToOn);
 							accumulator.Add(hint);
 						}
 						foreach (var p in regionToOff)
 						{
-							var hint = CreateRegionFcHint(region, digit, p, posToOff);
+							var hint = CreateRegionFcHint(regionIndex, digit, p, posToOff);
 							accumulator.Add(hint);
 						}
 					}

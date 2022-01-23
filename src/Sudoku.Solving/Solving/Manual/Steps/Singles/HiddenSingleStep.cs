@@ -30,7 +30,7 @@ public sealed record HiddenSingleStep(
 	public override Technique TechniqueCode =>
 		EnableAndIsLastDigit
 			? Technique.LastDigit
-			: (Technique)((int)Technique.HiddenSingleBlock + (int)RegionLabel.ToLabel(Region));
+			: (Technique)((int)Technique.HiddenSingleBlock + (int)Region.ToRegion());
 
 	/// <inheritdoc/>
 	public override string Format =>

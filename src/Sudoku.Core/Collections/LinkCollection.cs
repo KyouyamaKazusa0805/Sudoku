@@ -46,10 +46,11 @@ public readonly ref partial struct LinkCollection
 		static string f(in Span<Link> collection)
 		{
 			var sb = new StringHandler(initialCapacity: 100);
-			foreach (var (start, _, type) in collection)
+			foreach (var link in collection)
 			{
+				_ = link is { StartCandidate: var start, Kind: var kind };
 				sb.Append(new Candidates { start }.ToString());
-				sb.Append(type.GetNotation());
+				sb.Append(kind.GetNotation());
 			}
 			sb.Append(new Candidates { collection[^1].EndCandidate }.ToString());
 

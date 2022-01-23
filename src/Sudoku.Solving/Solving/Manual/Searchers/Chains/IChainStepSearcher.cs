@@ -73,9 +73,9 @@ public unsafe interface IChainStepSearcher : IStepSearcher
 					(
 						new(pCandidate, prCandidate, (A: prIsOn, B: pIsOn) switch
 						{
-							(A: false, B: true) => LinkTypes.Strong,
-							(A: true, B: false) => LinkTypes.Weak,
-							_ => LinkTypes.Default
+							(A: false, B: true) => LinkKind.Strong,
+							(A: true, B: false) => LinkKind.Weak,
+							_ => LinkKind.Default
 						}),
 						(ColorIdentifier)0
 					)
@@ -110,12 +110,12 @@ public unsafe interface IChainStepSearcher : IStepSearcher
 		}
 
 		// Second rule: Other positions for this digit get off.
-		for (var label = RegionLabels.Block; label <= RegionLabels.Column; label++)
+		foreach (var region in Regions)
 		{
-			int region = RegionLabel.ToRegion(p.Cell, label);
+			int regionIndex = p.Cell.ToRegionIndex(region);
 			for (int pos = 0; pos < 9; pos++)
 			{
-				byte cell = (byte)RegionCells[region][pos];
+				byte cell = (byte)RegionCells[regionIndex][pos];
 				if (cell != p.Cell && grid.Exists(cell, p.Digit) is true)
 				{
 					result.Add(new(cell, p.Digit, false, p));
@@ -206,11 +206,11 @@ public unsafe interface IChainStepSearcher : IStepSearcher
 		if (xEnabled)
 		{
 			// Second rule: If there's only two positions for this candidate, the other ont gets on.
-			for (var label = RegionLabels.Block; label <= RegionLabels.Column; label++)
+			foreach (var region in Regions)
 			{
 				_ = p is { Cell: var pc, Digit: var pd };
-				int region = RegionLabel.ToRegion(pc, label);
-				var cells = (h(grid, pd, region, isDynamic, enableFastProperties) & RegionMaps[region]) - pc;
+				int regionIndex = pc.ToRegionIndex(region);
+				var cells = (h(grid, pd, regionIndex, isDynamic, enableFastProperties) & RegionMaps[regionIndex]) - pc;
 				if (cells is [var onlyCell])
 				{
 					var pOn = new Node((byte)onlyCell, pd, true, p);
@@ -224,9 +224,9 @@ public unsafe interface IChainStepSearcher : IStepSearcher
 					)
 					{
 #if DEBUG
-						AddHiddenParentsOfRegion(ref pOn, grid, source, label, ref offNodes);
+						AddHiddenParentsOfRegion(ref pOn, grid, source, region, ref offNodes);
 #else
-						AddHiddenParentsOfRegion(ref pOn, grid, source, label);
+						AddHiddenParentsOfRegion(ref pOn, grid, source, region);
 #endif
 					}
 
@@ -338,13 +338,13 @@ public unsafe interface IChainStepSearcher : IStepSearcher
 #endif
 	private static void AddHiddenParentsOfRegion(
 #if DEBUG
-		ref Node p, in Grid grid, in Grid source, RegionLabel currRegion, ref NodeSet offNodes
+		ref Node p, in Grid grid, in Grid source, Region currRegion, ref NodeSet offNodes
 #else
-		ref Node p, in Grid grid, in Grid source, RegionLabel currRegion
+		ref Node p, in Grid grid, in Grid source, Region currRegion
 #endif
 	)
 	{
-		int region = RegionLabel.ToRegion(p.Cell, currRegion);
+		int region = p.Cell.ToRegionIndex(currRegion);
 		foreach (int pos in (short)(m(source, p.Digit, region) & ~m(grid, p.Digit, region)))
 		{
 			// Add a hidden parent.
