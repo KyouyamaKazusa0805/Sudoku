@@ -3,10 +3,15 @@
 /// <summary>
 /// Defines a set that stores the chain nodes.
 /// </summary>
-public partial struct NodeSet : IEnumerable
+public partial struct NodeSet
+: IEnumerable
+, IDefaultable<NodeSet>
+, IEqualityOperators<NodeSet, NodeSet>
+, IEquatable<NodeSet>
 {
 	/// <summary>
-	/// Indicates the uninitalized instance that is used for checking whether the collection hasn't been initialized.
+	/// Indicates the uninitalized instance that is used for checking whether the collection
+	/// hasn't been initialized.
 	/// </summary>
 	public static readonly NodeSet Uninitialized;
 
@@ -116,6 +121,12 @@ public partial struct NodeSet : IEnumerable
 		get => this[^1];
 	}
 
+	/// <inheritdoc/>
+	readonly bool IDefaultable<NodeSet>.IsDefault => IsUninitialized;
+
+	/// <inheritdoc/>
+	static NodeSet IDefaultable<NodeSet>.Default => Uninitialized;
+
 
 	/// <summary>
 	/// Get the chain node at the specified index.
@@ -205,6 +216,41 @@ public partial struct NodeSet : IEnumerable
 		return false;
 	}
 
+	/// <inheritdoc cref="object.Equals(object?)"/>
+	public override bool Equals([NotNullWhen(true)] object? obj) =>
+		obj is NodeSet comparer && Equals(comparer);
+
+	/// <inheritdoc/>
+	public readonly bool Equals(NodeSet other)
+	{
+		if (Count != other.Count)
+		{
+			return false;
+		}
+
+		for (int i = 0; i < Count; i++)
+		{
+			if (this[i] != other[i])
+			{
+				return false;
+			}
+		}
+
+		return true;
+	}
+
+	/// <inheritdoc/>
+	public override readonly int GetHashCode()
+	{
+		var resultHash = new HashCode();
+		foreach (var node in this)
+		{
+			resultHash.Add(node);
+		}
+
+		return resultHash.ToHashCode();
+	}
+
 	/// <summary>
 	/// Adds the specified node into the collection. If the specified node exists in the collection,
 	/// the method will do nothing but return <see langword="false"/>; otherwise, add it
@@ -287,6 +333,12 @@ public partial struct NodeSet : IEnumerable
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public readonly Enumerator GetEnumerator() => new(_chainNodes, Count);
 
+	/// <inheritdoc cref="IEnumerable.GetEnumerator"/>
+	/// <exception cref="NotSupportedException">Always throws.</exception>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	readonly IEnumerator IEnumerable.GetEnumerator() =>
+		throw new NotSupportedException("The current type has an enumerator of ref struct type.");
+
 	/// <summary>
 	/// Grow the collection to make the capacity be the 2-time value than before.
 	/// </summary>
@@ -297,12 +349,7 @@ public partial struct NodeSet : IEnumerable
 		Array.Resize(ref _chainNodes, _capacity);
 	}
 
-	/// <inheritdoc cref="IEnumerable.GetEnumerator"/>
-	/// <exception cref="NotImplementedException">Always throws.</exception>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	readonly IEnumerator IEnumerable.GetEnumerator() => throw new NotImplementedException();
-
-
+	
 	/// <summary>
 	/// Merges two different <see cref="NodeSet"/>s into one, and checks and stores once that
 	/// both <see cref="NodeSet"/>s store the node.
@@ -340,4 +387,12 @@ public partial struct NodeSet : IEnumerable
 
 		return result;
 	}
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static bool operator ==(NodeSet left, NodeSet right) => left.Equals(right);
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static bool operator !=(NodeSet left, NodeSet right) => !(left == right);
 }

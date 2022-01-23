@@ -14,7 +14,15 @@
 /// <param name="Map">Indicates the pair of maps used.</param>
 public readonly record struct ConjugatePair(int From, int To, int Digit, in Cells Map)
 : IValueEquatable<ConjugatePair>
+, IDefaultable<ConjugatePair>
+, IEqualityOperators<ConjugatePair, ConjugatePair>
 {
+	/// <summary>
+	/// <inheritdoc cref="IDefaultable{T}.Default"/>
+	/// </summary>
+	public static readonly ConjugatePair Default = new(-1, -1, -1, Cells.Empty);
+
+
 	/// <summary>
 	/// Initializes a <see cref="ConjugatePair"/> instance with from and to cell offset and a digit.
 	/// </summary>
@@ -54,6 +62,12 @@ public readonly record struct ConjugatePair(int From, int To, int Digit, in Cell
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => Map.CoveredRegions;
 	}
+
+	/// <inheritdoc/>
+	readonly bool IDefaultable<ConjugatePair>.IsDefault => this == Default;
+
+	/// <inheritdoc/>
+	static ConjugatePair IDefaultable<ConjugatePair>.Default => Default;
 
 
 	/// <summary>

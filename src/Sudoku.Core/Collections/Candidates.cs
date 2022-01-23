@@ -3,7 +3,10 @@
 /// <summary>
 /// Encapsulates a map that contains 729 positions to represent a candidate.
 /// </summary>
-public unsafe struct Candidates : ICellsOrCandidates<Candidates>
+public unsafe struct Candidates
+: ICellsOrCandidates<Candidates>
+, IDefaultable<Candidates>
+, IEqualityOperators<Candidates, Candidates>
 {
 	/// <summary>
 	/// Indicates the size of each unit.
@@ -277,6 +280,12 @@ public unsafe struct Candidates : ICellsOrCandidates<Candidates>
 			return result;
 		}
 	}
+
+	/// <inheritdoc/>
+	readonly bool IDefaultable<Candidates>.IsDefault => IsEmpty;
+
+	/// <inheritdoc/>
+	static Candidates IDefaultable<Candidates>.Default => Empty;
 
 
 	/// <inheritdoc/>
@@ -901,6 +910,16 @@ public unsafe struct Candidates : ICellsOrCandidates<Candidates>
 	/// <returns>A <see cref="bool"/> result.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static bool operator !=(in Candidates left, in Candidates right) => !(left == right);
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	static bool IEqualityOperators<Candidates, Candidates>.operator ==(Candidates left, Candidates right) =>
+		left == right;
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	static bool IEqualityOperators<Candidates, Candidates>.operator !=(Candidates left, Candidates right) =>
+		left != right;
 
 
 	/// <inheritdoc/>

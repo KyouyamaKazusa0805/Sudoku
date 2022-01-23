@@ -11,7 +11,9 @@
 #endif // !USE_TO_MASK_STRING_METHOD
 #endif // !DEBUG
 public unsafe partial struct Grid
-: IGrid<Grid>
+: IDefaultable<Grid>
+, IEqualityOperators<Grid, Grid>
+, IGrid<Grid>
 , ISimpleFormattable
 , ISimpleParseable<Grid>
 , IValueEquatable<Grid>
@@ -533,6 +535,12 @@ public unsafe partial struct Grid
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => Solver.Solve(this);
 	}
+
+	/// <inheritdoc/>
+	bool IDefaultable<Grid>.IsDefault => IsUndefined;
+
+	/// <inheritdoc/>
+	static Grid IDefaultable<Grid>.Default => Undefined;
 
 	/// <inheritdoc/>
 	static short IGrid<Grid>.DefaultMask => DefaultMask;
@@ -1073,4 +1081,12 @@ public unsafe partial struct Grid
 	/// <returns>A <see cref="bool"/> result.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static bool operator !=(in Grid left, in Grid right) => !(left == right);
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	static bool IEqualityOperators<Grid, Grid>.operator ==(Grid left, Grid right) => left == right;
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	static bool IEqualityOperators<Grid, Grid>.operator !=(Grid left, Grid right) => left != right;
 }

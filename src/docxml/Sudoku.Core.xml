@@ -263,6 +263,12 @@
             Indicates all indices of set bits.
             </summary>
         </member>
+        <member name="P:Sudoku.Collections.Candidates.System#IDefaultable{Sudoku#Collections#Candidates}#IsDefault">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Collections.Candidates.System#IDefaultable{Sudoku#Collections#Candidates}#Default">
+            <inheritdoc/>
+        </member>
         <member name="P:Sudoku.Collections.Candidates.Item(System.Int32)">
             <inheritdoc/>
         </member>
@@ -423,6 +429,12 @@
             <param name="left">The left-side instance to compare.</param>
             <param name="right">The right-side instance to compare.</param>
             <returns>A <see cref="T:System.Boolean"/> result.</returns>
+        </member>
+        <member name="M:Sudoku.Collections.Candidates.System#IEqualityOperators{Sudoku#Collections#Candidates,Sudoku#Collections#Candidates}#op_Equality(Sudoku.Collections.Candidates,Sudoku.Collections.Candidates)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Collections.Candidates.System#IEqualityOperators{Sudoku#Collections#Candidates,Sudoku#Collections#Candidates}#op_Inequality(Sudoku.Collections.Candidates,Sudoku.Collections.Candidates)">
+            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Collections.Candidates.op_Implicit(System.Int32[])~Sudoku.Collections.Candidates">
             <inheritdoc/>
@@ -719,6 +731,12 @@
             </summary>
         </member>
         <member name="P:Sudoku.Collections.Cells.PeerIntersection">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Collections.Cells.System#IDefaultable{Sudoku#Collections#Cells}#IsDefault">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Collections.Cells.System#IDefaultable{Sudoku#Collections#Cells}#Default">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Collections.Cells.Offsets">
@@ -1489,6 +1507,12 @@
             </summary>
             <see cref="F:Sudoku.Collections.Grid.Undefined"/>
         </member>
+        <member name="P:Sudoku.Collections.Grid.System#IDefaultable{Sudoku#Collections#Grid}#IsDefault">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Collections.Grid.System#IDefaultable{Sudoku#Collections#Grid}#Default">
+            <inheritdoc/>
+        </member>
         <member name="P:Sudoku.Collections.Grid.Sudoku#Collections#IGrid{Sudoku#Collections#Grid}#DefaultMask">
             <inheritdoc/>
         </member>
@@ -1729,6 +1753,12 @@
             <param name="left">The left-side instance to compare.</param>
             <param name="right">The right-side instance to compare.</param>
             <returns>A <see cref="T:System.Boolean"/> result.</returns>
+        </member>
+        <member name="M:Sudoku.Collections.Grid.System#IEqualityOperators{Sudoku#Collections#Grid,Sudoku#Collections#Grid}#op_Equality(Sudoku.Collections.Grid,Sudoku.Collections.Grid)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Collections.Grid.System#IEqualityOperators{Sudoku#Collections#Grid,Sudoku#Collections#Grid}#op_Inequality(Sudoku.Collections.Grid,Sudoku.Collections.Grid)">
+            <inheritdoc/>
         </member>
         <member name="T:Sudoku.Collections.Grid.MaskCollectionEnumerator">
             <summary>
@@ -2588,7 +2618,8 @@
         </member>
         <member name="F:Sudoku.Collections.NodeSet.Uninitialized">
             <summary>
-            Indicates the uninitalized instance that is used for checking whether the collection hasn't been initialized.
+            Indicates the uninitalized instance that is used for checking whether the collection
+            hasn't been initialized.
             </summary>
         </member>
         <member name="F:Sudoku.Collections.NodeSet._capacity">
@@ -2650,6 +2681,12 @@
             The element is the earliest element added into the current collection.
             </summary>
         </member>
+        <member name="P:Sudoku.Collections.NodeSet.System#IDefaultable{Sudoku#Collections#NodeSet}#IsDefault">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Collections.NodeSet.System#IDefaultable{Sudoku#Collections#NodeSet}#Default">
+            <inheritdoc/>
+        </member>
         <member name="P:Sudoku.Collections.NodeSet.Item(System.Int32)">
             <summary>
             Get the chain node at the specified index.
@@ -2696,6 +2733,15 @@
             </summary>
             <param name="node">The node to check.</param>
             <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
+        </member>
+        <member name="M:Sudoku.Collections.NodeSet.Equals(System.Object)">
+            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
+        </member>
+        <member name="M:Sudoku.Collections.NodeSet.Equals(Sudoku.Collections.NodeSet)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Collections.NodeSet.GetHashCode">
+            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Collections.NodeSet.Add(Sudoku.Data.Node)">
             <summary>
@@ -2746,14 +2792,14 @@
         <member name="M:Sudoku.Collections.NodeSet.GetEnumerator">
             <inheritdoc cref="M:System.Collections.Generic.IEnumerable`1.GetEnumerator"/>
         </member>
+        <member name="M:Sudoku.Collections.NodeSet.System#Collections#IEnumerable#GetEnumerator">
+            <inheritdoc cref="M:System.Collections.IEnumerable.GetEnumerator"/>
+            <exception cref="T:System.NotSupportedException">Always throws.</exception>
+        </member>
         <member name="M:Sudoku.Collections.NodeSet.Grow">
             <summary>
             Grow the collection to make the capacity be the 2-time value than before.
             </summary>
-        </member>
-        <member name="M:Sudoku.Collections.NodeSet.System#Collections#IEnumerable#GetEnumerator">
-            <inheritdoc cref="M:System.Collections.IEnumerable.GetEnumerator"/>
-            <exception cref="T:System.NotImplementedException">Always throws.</exception>
         </member>
         <member name="M:Sudoku.Collections.NodeSet.op_BitwiseAnd(Sudoku.Collections.NodeSet@,Sudoku.Collections.NodeSet@)">
             <summary>
@@ -2771,6 +2817,12 @@
             <param name="left">The left-side collection to merge.</param>
             <param name="right">The right-side collection to merge.</param>
             <returns>The merged result.</returns>
+        </member>
+        <member name="M:Sudoku.Collections.NodeSet.op_Equality(Sudoku.Collections.NodeSet,Sudoku.Collections.NodeSet)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Collections.NodeSet.op_Inequality(Sudoku.Collections.NodeSet,Sudoku.Collections.NodeSet)">
+            <inheritdoc/>
         </member>
         <member name="T:Sudoku.Collections.NodeSet.Enumerator">
             <summary>
@@ -3367,6 +3419,11 @@
             </remarks>
             <seealso cref="F:Sudoku.Data.ConclusionType.Elimination"/>
         </member>
+        <member name="F:Sudoku.Data.Conclusion.Default">
+            <summary>
+            <inheritdoc cref="P:System.IDefaultable`1.Default"/>
+            </summary>
+        </member>
         <member name="M:Sudoku.Data.Conclusion.#ctor(Sudoku.Data.ConclusionType,System.Int32)">
             <summary>
             Initializes an instance with a conclusion type and a candidate offset.
@@ -3404,6 +3461,12 @@
             this conclusion will be set value (Set a digit into a cell);
             otherwise, a candidate will be removed.
             </summary>
+        </member>
+        <member name="P:Sudoku.Data.Conclusion.System#IDefaultable{Sudoku#Data#Conclusion}#IsDefault">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Data.Conclusion.System#IDefaultable{Sudoku#Data#Conclusion}#Default">
+            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Data.Conclusion.Deconstruct(Sudoku.Data.ConclusionType@,System.Int32@)">
             <summary>
@@ -3497,6 +3560,11 @@
             <param name="Digit">Indicates the digit used.</param>
             <param name="Map">Indicates the pair of maps used.</param>
         </member>
+        <member name="F:Sudoku.Data.ConjugatePair.Default">
+            <summary>
+            <inheritdoc cref="P:System.IDefaultable`1.Default"/>
+            </summary>
+        </member>
         <member name="M:Sudoku.Data.ConjugatePair.#ctor(System.Int32,System.Int32,System.Int32)">
             <summary>
             Initializes a <see cref="T:Sudoku.Data.ConjugatePair"/> instance with from and to cell offset and a digit.
@@ -3523,6 +3591,12 @@
             Indicates the region that two cells lie in.
             </summary>
             <remarks><inheritdoc cref="P:Sudoku.Collections.Cells.CoveredRegions"/></remarks>
+        </member>
+        <member name="P:Sudoku.Data.ConjugatePair.System#IDefaultable{Sudoku#Data#ConjugatePair}#IsDefault">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Data.ConjugatePair.System#IDefaultable{Sudoku#Data#ConjugatePair}#Default">
+            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Data.ConjugatePair.Equals(Sudoku.Data.ConjugatePair@)">
             <summary>
@@ -4875,6 +4949,12 @@
             <summary>
             Indicates the nodes that the current node lies in.
             </summary>
+        </member>
+        <member name="P:Sudoku.Data.Node.System#IDefaultable{Sudoku#Data#Node}#IsDefault">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Data.Node.System#IDefaultable{Sudoku#Data#Node}#Default">
+            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Data.Node.Deconstruct(System.Int16@,System.Boolean@)">
             <summary>

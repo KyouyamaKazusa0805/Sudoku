@@ -23,11 +23,18 @@
 public readonly record struct Conclusion(int Mask)
 : IComparable<Conclusion>
 , IComparisonOperators<Conclusion, Conclusion>
+, IDefaultable<Conclusion>
 , IEqualityOperators<Conclusion, Conclusion>
 , IEquatable<Conclusion>
 , IValueComparable<Conclusion>
 , IValueEquatable<Conclusion>
 {
+	/// <summary>
+	/// <inheritdoc cref="IDefaultable{T}.Default"/>
+	/// </summary>
+	public static readonly Conclusion Default = default;
+
+
 	/// <summary>
 	/// Initializes an instance with a conclusion type and a candidate offset.
 	/// </summary>
@@ -88,6 +95,12 @@ public readonly record struct Conclusion(int Mask)
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => (ConclusionType)(Mask >> 10 & 1);
 	}
+
+	/// <inheritdoc/>
+	bool IDefaultable<Conclusion>.IsDefault => this == default;
+
+	/// <inheritdoc/>
+	static Conclusion IDefaultable<Conclusion>.Default => Default;
 
 
 	/// <summary>

@@ -9,7 +9,12 @@
 /// and the <see langword="false"/> bit (0) is for the cell not containing
 /// the digit.
 /// </remarks>
-public unsafe struct Cells : ICellsOrCandidates<Cells>, ISimpleFormattable, ISimpleParseable<Cells>
+public unsafe struct Cells
+: ICellsOrCandidates<Cells>
+, IDefaultable<Cells>
+, IEqualityOperators<Cells, Cells>
+, ISimpleFormattable
+, ISimpleParseable<Cells>
 {
 	/// <summary>
 	/// <para>Indicates an empty instance (all bits are 0).</para>
@@ -465,6 +470,12 @@ public unsafe struct Cells : ICellsOrCandidates<Cells>, ISimpleFormattable, ISim
 			return new(higherBits, lowerBits);
 		}
 	}
+
+	/// <inheritdoc/>
+	readonly bool IDefaultable<Cells>.IsDefault => IsEmpty;
+
+	/// <inheritdoc/>
+	static Cells IDefaultable<Cells>.Default => Empty;
 
 	/// <summary>
 	/// Indicates the cell offsets in this collection.

@@ -37,7 +37,7 @@
 /// <param name="Mask">
 /// Indicates the mask that handles and stores the basic information of the current node.
 /// </param>
-public unsafe record struct Node(int Mask)
+public unsafe record struct Node(int Mask) : IDefaultable<Node>, IEqualityOperators<Node, Node>
 {
 	/// <summary>
 	/// Indicates the undefined instance that is used for providing with a value
@@ -282,6 +282,12 @@ public unsafe record struct Node(int Mask)
 			return tempList;
 		}
 	}
+
+	/// <inheritdoc/>
+	readonly bool IDefaultable<Node>.IsDefault => this == Undefined;
+
+	/// <inheritdoc/>
+	static Node IDefaultable<Node>.Default => Undefined;
 
 
 	/// <summary>
