@@ -121,5 +121,27 @@
         <member name="M:Sudoku.Diagnostics.CodeGen.Generators.KeyedTupleGenerator.Initialize(Microsoft.CodeAnalysis.GeneratorInitializationContext)">
             <inheritdoc/>
         </member>
+        <member name="T:Sudoku.Diagnostics.CodeGen.Generators.Utf8JsonReaderBitOperationsGenerator">
+            <summary>
+            Defines a source generator that generates the source code on JSON serializations for bit operations.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.Utf8JsonReaderBitOperationsGenerator.Execute(Microsoft.CodeAnalysis.GeneratorExecutionContext)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.Utf8JsonReaderBitOperationsGenerator.Initialize(Microsoft.CodeAnalysis.GeneratorInitializationContext)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Diagnostics.CodeGen.Generators.Utf8JsonWriterBitOperationsGenerator">
+            <summary>
+            Defines a source generator that generates the source code on JSON serializations for bit operations.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.Utf8JsonWriterBitOperationsGenerator.Execute(Microsoft.CodeAnalysis.GeneratorExecutionContext)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.Utf8JsonWriterBitOperationsGenerator.Initialize(Microsoft.CodeAnalysis.GeneratorInitializationContext)">
+            <inheritdoc/>
+        </member>
     </members>
 </doc>

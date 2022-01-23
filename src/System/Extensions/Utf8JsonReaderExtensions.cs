@@ -7,35 +7,6 @@
 public static class Utf8JsonReaderExtensions
 {
 	/// <summary>
-	/// Reads the array of <see cref="int"/>s.
-	/// </summary>
-	/// <param name="this">The reader.</param>
-	/// <returns>The array of <see cref="int"/>s.</returns>
-	/// <exception cref="JsonException">
-	/// Throws when the next token is invalid while parsing the array.
-	/// </exception>
-	public static int[] GetInt32Array(this ref Utf8JsonReader @this)
-	{
-		if (!@this.Read() || @this.TokenType != JsonTokenType.StartArray)
-		{
-			throw new JsonException("The next token is invalid while parsing the array.");
-		}
-
-		var result = new List<int>();
-		while (@this.TokenType != JsonTokenType.EndArray)
-		{
-			result.Add(@this.GetInt32());
-
-			if (!@this.Read())
-			{
-				throw new JsonException("The next token is invalid while parsing the array.");
-			}
-		}
-
-		return result.ToArray();
-	}
-
-	/// <summary>
 	/// Try to read an object.
 	/// </summary>
 	/// <typeparam name="T">The object to read.</typeparam>

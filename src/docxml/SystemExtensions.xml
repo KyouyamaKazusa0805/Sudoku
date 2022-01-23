@@ -602,16 +602,6 @@
             </summary>
             <seealso cref="T:System.Text.Json.Utf8JsonReader"/>
         </member>
-        <member name="M:System.Text.Json.Utf8JsonReaderExtensions.GetInt32Array(System.Text.Json.Utf8JsonReader@)">
-            <summary>
-            Reads the array of <see cref="T:System.Int32"/>s.
-            </summary>
-            <param name="this">The reader.</param>
-            <returns>The array of <see cref="T:System.Int32"/>s.</returns>
-            <exception cref="T:System.Text.Json.JsonException">
-            Throws when the next token is invalid while parsing the array.
-            </exception>
-        </member>
         <member name="M:System.Text.Json.Utf8JsonReaderExtensions.ReadObject``1(System.Text.Json.Utf8JsonReader@,System.Text.Json.Serialization.JsonConverter{``0},System.Text.Json.JsonSerializerOptions)">
             <summary>
             Try to read an object.
@@ -654,70 +644,6 @@
             </summary>
             <seealso cref="T:System.Text.Json.Utf8JsonWriter"/>
         </member>
-        <member name="M:System.Text.Json.Utf8JsonWriterExtensions.WriteBitCollection(System.Text.Json.Utf8JsonWriter,System.String,System.Byte)">
-            <summary>
-            Writes the bit collection of type <see cref="T:System.Byte"/> into the JSON stream.
-            </summary>
-            <param name="this">The writer.</param>
-            <param name="propertyName">The property name.</param>
-            <param name="bits">The bits to write.</param>
-        </member>
-        <member name="M:System.Text.Json.Utf8JsonWriterExtensions.WriteBitCollection(System.Text.Json.Utf8JsonWriter,System.String,System.SByte)">
-            <summary>
-            Writes the bit collection of type <see cref="T:System.SByte"/> into the JSON stream.
-            </summary>
-            <param name="this">The writer.</param>
-            <param name="propertyName">The property name.</param>
-            <param name="bits">The bits to write.</param>
-        </member>
-        <member name="M:System.Text.Json.Utf8JsonWriterExtensions.WriteBitCollection(System.Text.Json.Utf8JsonWriter,System.String,System.UInt16)">
-            <summary>
-            Writes the bit collection of type <see cref="T:System.UInt16"/> into the JSON stream.
-            </summary>
-            <param name="this">The writer.</param>
-            <param name="propertyName">The property name.</param>
-            <param name="bits">The bits to write.</param>
-        </member>
-        <member name="M:System.Text.Json.Utf8JsonWriterExtensions.WriteBitCollection(System.Text.Json.Utf8JsonWriter,System.String,System.Int16)">
-            <summary>
-            Writes the bit collection of type <see cref="T:System.Int16"/> into the JSON stream.
-            </summary>
-            <param name="this">The writer.</param>
-            <param name="propertyName">The property name.</param>
-            <param name="bits">The bits to write.</param>
-        </member>
-        <member name="M:System.Text.Json.Utf8JsonWriterExtensions.WriteBitCollection(System.Text.Json.Utf8JsonWriter,System.String,System.UInt32)">
-            <summary>
-            Writes the bit collection of type <see cref="T:System.UInt32"/> into the JSON stream.
-            </summary>
-            <param name="this">The writer.</param>
-            <param name="propertyName">The property name.</param>
-            <param name="bits">The bits to write.</param>
-        </member>
-        <member name="M:System.Text.Json.Utf8JsonWriterExtensions.WriteBitCollection(System.Text.Json.Utf8JsonWriter,System.String,System.Int32)">
-            <summary>
-            Writes the bit collection of type <see cref="T:System.Int32"/> into the JSON stream.
-            </summary>
-            <param name="this">The writer.</param>
-            <param name="propertyName">The property name.</param>
-            <param name="bits">The bits to write.</param>
-        </member>
-        <member name="M:System.Text.Json.Utf8JsonWriterExtensions.WriteBitCollection(System.Text.Json.Utf8JsonWriter,System.String,System.UInt64)">
-            <summary>
-            Writes the bit collection of type <see cref="T:System.UInt64"/> into the JSON stream.
-            </summary>
-            <param name="this">The writer.</param>
-            <param name="propertyName">The property name.</param>
-            <param name="bits">The bits to write.</param>
-        </member>
-        <member name="M:System.Text.Json.Utf8JsonWriterExtensions.WriteBitCollection(System.Text.Json.Utf8JsonWriter,System.String,System.Int64)">
-            <summary>
-            Writes the bit collection of type <see cref="T:System.Int64"/> into the JSON stream.
-            </summary>
-            <param name="this">The writer.</param>
-            <param name="propertyName">The property name.</param>
-            <param name="bits">The bits to write.</param>
-        </member>
         <member name="M:System.Text.Json.Utf8JsonWriterExtensions.WriteObject``1(System.Text.Json.Utf8JsonWriter,``0,System.Text.Json.Serialization.JsonConverter{``0},System.Text.Json.JsonSerializerOptions)">
             <summary>
             Try to write an object.
@@ -727,6 +653,162 @@
             <param name="value">The value to serialize.</param>
             <param name="converter">The converter.</param>
             <param name="options">The options on serialization.</param>
+        </member>
+        <member name="T:System.Text.Json.Utf8JsonReaderBitOperationsExensions">
+            <summary>
+            Defines a set of methods that handles the bits and the type <see cref="T:System.Text.Json.Utf8JsonReader"/>.
+            </summary>
+            <seealso cref="T:System.Text.Json.Utf8JsonReader"/>
+        </member>
+        <member name="M:System.Text.Json.Utf8JsonReaderBitOperationsExensions.GetSByteArray(System.Text.Json.Utf8JsonReader@)">
+            <summary>
+            Reads the array of <see cref="T:System.SByte"/>s.
+            </summary>
+            <param name="this">The reader.</param>
+            <returns>The array of <see cref="T:System.SByte"/>s.</returns>
+            <exception cref="T:System.Text.Json.JsonException">
+            Throws when the next token is invalid while parsing the array.
+            </exception>
+        </member>
+        <member name="M:System.Text.Json.Utf8JsonReaderBitOperationsExensions.GetByteArray(System.Text.Json.Utf8JsonReader@)">
+            <summary>
+            Reads the array of <see cref="T:System.Byte"/>s.
+            </summary>
+            <param name="this">The reader.</param>
+            <returns>The array of <see cref="T:System.Byte"/>s.</returns>
+            <exception cref="T:System.Text.Json.JsonException">
+            Throws when the next token is invalid while parsing the array.
+            </exception>
+        </member>
+        <member name="M:System.Text.Json.Utf8JsonReaderBitOperationsExensions.GetInt16Array(System.Text.Json.Utf8JsonReader@)">
+            <summary>
+            Reads the array of <see cref="T:System.Int16"/>s.
+            </summary>
+            <param name="this">The reader.</param>
+            <returns>The array of <see cref="T:System.Int16"/>s.</returns>
+            <exception cref="T:System.Text.Json.JsonException">
+            Throws when the next token is invalid while parsing the array.
+            </exception>
+        </member>
+        <member name="M:System.Text.Json.Utf8JsonReaderBitOperationsExensions.GetUInt16Array(System.Text.Json.Utf8JsonReader@)">
+            <summary>
+            Reads the array of <see cref="T:System.UInt16"/>s.
+            </summary>
+            <param name="this">The reader.</param>
+            <returns>The array of <see cref="T:System.UInt16"/>s.</returns>
+            <exception cref="T:System.Text.Json.JsonException">
+            Throws when the next token is invalid while parsing the array.
+            </exception>
+        </member>
+        <member name="M:System.Text.Json.Utf8JsonReaderBitOperationsExensions.GetInt32Array(System.Text.Json.Utf8JsonReader@)">
+            <summary>
+            Reads the array of <see cref="T:System.Int32"/>s.
+            </summary>
+            <param name="this">The reader.</param>
+            <returns>The array of <see cref="T:System.Int32"/>s.</returns>
+            <exception cref="T:System.Text.Json.JsonException">
+            Throws when the next token is invalid while parsing the array.
+            </exception>
+        </member>
+        <member name="M:System.Text.Json.Utf8JsonReaderBitOperationsExensions.GetUInt32Array(System.Text.Json.Utf8JsonReader@)">
+            <summary>
+            Reads the array of <see cref="T:System.UInt32"/>s.
+            </summary>
+            <param name="this">The reader.</param>
+            <returns>The array of <see cref="T:System.UInt32"/>s.</returns>
+            <exception cref="T:System.Text.Json.JsonException">
+            Throws when the next token is invalid while parsing the array.
+            </exception>
+        </member>
+        <member name="M:System.Text.Json.Utf8JsonReaderBitOperationsExensions.GetInt64Array(System.Text.Json.Utf8JsonReader@)">
+            <summary>
+            Reads the array of <see cref="T:System.Int64"/>s.
+            </summary>
+            <param name="this">The reader.</param>
+            <returns>The array of <see cref="T:System.Int64"/>s.</returns>
+            <exception cref="T:System.Text.Json.JsonException">
+            Throws when the next token is invalid while parsing the array.
+            </exception>
+        </member>
+        <member name="M:System.Text.Json.Utf8JsonReaderBitOperationsExensions.GetUInt64Array(System.Text.Json.Utf8JsonReader@)">
+            <summary>
+            Reads the array of <see cref="T:System.UInt64"/>s.
+            </summary>
+            <param name="this">The reader.</param>
+            <returns>The array of <see cref="T:System.UInt64"/>s.</returns>
+            <exception cref="T:System.Text.Json.JsonException">
+            Throws when the next token is invalid while parsing the array.
+            </exception>
+        </member>
+        <member name="T:System.Text.Json.Utf8JsonWriterBitOperationsExensions">
+            <summary>
+            Defines a set of methods that handles the bits and the type <see cref="T:System.Text.Json.Utf8JsonWriter"/>.
+            </summary>
+            <seealso cref="T:System.Text.Json.Utf8JsonWriter"/>
+        </member>
+        <member name="M:System.Text.Json.Utf8JsonWriterBitOperationsExensions.WriteBitCollection(System.Text.Json.Utf8JsonWriter,System.String,System.SByte)">
+            <summary>
+            Writes the bit collection of type <see cref="T:System.SByte"/> into the JSON stream.
+            </summary>
+            <param name="this">The writer.</param>
+            <param name="propertyName">The property name.</param>
+            <param name="bits">The bits to write.</param>
+        </member>
+        <member name="M:System.Text.Json.Utf8JsonWriterBitOperationsExensions.WriteBitCollection(System.Text.Json.Utf8JsonWriter,System.String,System.Byte)">
+            <summary>
+            Writes the bit collection of type <see cref="T:System.Byte"/> into the JSON stream.
+            </summary>
+            <param name="this">The writer.</param>
+            <param name="propertyName">The property name.</param>
+            <param name="bits">The bits to write.</param>
+        </member>
+        <member name="M:System.Text.Json.Utf8JsonWriterBitOperationsExensions.WriteBitCollection(System.Text.Json.Utf8JsonWriter,System.String,System.Int16)">
+            <summary>
+            Writes the bit collection of type <see cref="T:System.Int16"/> into the JSON stream.
+            </summary>
+            <param name="this">The writer.</param>
+            <param name="propertyName">The property name.</param>
+            <param name="bits">The bits to write.</param>
+        </member>
+        <member name="M:System.Text.Json.Utf8JsonWriterBitOperationsExensions.WriteBitCollection(System.Text.Json.Utf8JsonWriter,System.String,System.UInt16)">
+            <summary>
+            Writes the bit collection of type <see cref="T:System.UInt16"/> into the JSON stream.
+            </summary>
+            <param name="this">The writer.</param>
+            <param name="propertyName">The property name.</param>
+            <param name="bits">The bits to write.</param>
+        </member>
+        <member name="M:System.Text.Json.Utf8JsonWriterBitOperationsExensions.WriteBitCollection(System.Text.Json.Utf8JsonWriter,System.String,System.Int32)">
+            <summary>
+            Writes the bit collection of type <see cref="T:System.Int32"/> into the JSON stream.
+            </summary>
+            <param name="this">The writer.</param>
+            <param name="propertyName">The property name.</param>
+            <param name="bits">The bits to write.</param>
+        </member>
+        <member name="M:System.Text.Json.Utf8JsonWriterBitOperationsExensions.WriteBitCollection(System.Text.Json.Utf8JsonWriter,System.String,System.UInt32)">
+            <summary>
+            Writes the bit collection of type <see cref="T:System.UInt32"/> into the JSON stream.
+            </summary>
+            <param name="this">The writer.</param>
+            <param name="propertyName">The property name.</param>
+            <param name="bits">The bits to write.</param>
+        </member>
+        <member name="M:System.Text.Json.Utf8JsonWriterBitOperationsExensions.WriteBitCollection(System.Text.Json.Utf8JsonWriter,System.String,System.Int64)">
+            <summary>
+            Writes the bit collection of type <see cref="T:System.Int64"/> into the JSON stream.
+            </summary>
+            <param name="this">The writer.</param>
+            <param name="propertyName">The property name.</param>
+            <param name="bits">The bits to write.</param>
+        </member>
+        <member name="M:System.Text.Json.Utf8JsonWriterBitOperationsExensions.WriteBitCollection(System.Text.Json.Utf8JsonWriter,System.String,System.UInt64)">
+            <summary>
+            Writes the bit collection of type <see cref="T:System.UInt64"/> into the JSON stream.
+            </summary>
+            <param name="this">The writer.</param>
+            <param name="propertyName">The property name.</param>
+            <param name="bits">The bits to write.</param>
         </member>
         <member name="T:System.Text.StringBuilderExtensions">
             <summary>
