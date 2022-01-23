@@ -410,6 +410,48 @@
             <param name="this">The array.</param>
             <returns>The total number of bits set <see langword="true"/>.</returns>
         </member>
+        <member name="T:System.Casing">
+            <summary>
+            Provides a set of methods that handles for a <see cref="T:System.String"/>, to convert the value
+            into the specified case.
+            </summary>
+        </member>
+        <member name="F:System.Casing.Utf8IdentifierPattern">
+            <summary>
+            Defines a regular expression pattern that matches for an identifier based on UTF-8 format.
+            </summary>
+        </member>
+        <member name="M:System.Casing.IsValidIdentifier(System.String)">
+            <summary>
+            Checks whether the specified string value is a valid identifier name.
+            </summary>
+            <param name="str">The string to check.</param>
+            <returns>A <see cref="T:System.Boolean"/> result.</returns>
+        </member>
+        <member name="M:System.Casing.ToCamelCase(System.String)">
+            <summary>
+            Converts the current string identifier into the camel-casing (like <c>camelCasingVariable</c>).
+            If the first character is the underscore, the return value will remove the underscore,
+            and treat the last characters as the identifier and converts into the camel-casing.
+            </summary>
+            <param name="str">The string to convert.</param>
+            <returns>The result string.</returns>
+            <exception cref="T:System.ArgumentException">
+            Throws when the argument <paramref name="str"/> is not an identifier.
+            </exception>
+        </member>
+        <member name="M:System.Casing.ToPascalCase(System.String)">
+            <summary>
+            Converts the current string identifier into the pascal-casing (like <c>PascalCasingVariable</c>).
+            If the first character is the underscore, the return value will remove the underscore,
+            and treat the last characters as the identifier and converts into the pascal-casing.
+            </summary>
+            <param name="str">The string to convert.</param>
+            <returns>The result string.</returns>
+            <exception cref="T:System.ArgumentException">
+            Throws when the argument <paramref name="str"/> is not an identifier.
+            </exception>
+        </member>
         <member name="T:System.DoubleExtensions">
             <summary>
             Provides extension methods on <see cref="T:System.Double"/>.
@@ -530,104 +572,161 @@
             <param name="flags">All flags used.</param>
             <returns>A <see cref="T:System.Boolean"/> result.</returns>
         </member>
-        <member name="T:System.MathExtensions">
+        <member name="T:System.Text.Json.JsonSerializerOptionsExtensions">
             <summary>
-            Provides extension methods on <see cref="T:System.Math"/>.
+            Provdies extension methods on <see cref="T:System.Text.Json.JsonSerializerOptions"/>.
             </summary>
-            <seealso cref="T:System.Math"/>
+            <seealso cref="T:System.Text.Json.JsonSerializerOptions"/>
         </member>
-        <member name="M:System.MathExtensions.Min(System.Int32,System.Int32,System.Int32)">
+        <member name="M:System.Text.Json.JsonSerializerOptionsExtensions.GetConverter``2(System.Text.Json.JsonSerializerOptions)">
             <summary>
-            Get the minimal one of three values.
+            Returns the converter that supports the givent type, or the <typeparamref name="TConverter"/>
+            will be used when the property <see cref="P:System.Text.Json.JsonSerializerOptions.Converters"/>
+            doesn't contain any valid converters.
             </summary>
-            <param name="a">The first value.</param>
-            <param name="b">The second value.</param>
-            <param name="c">The third value.</param>
-            <returns>Which is the minimal value.</returns>
+            <typeparam name="T">The type to get converter.</typeparam>
+            <typeparam name="TConverter">
+            The type that is the converter type to convert the instance of type <typeparamref name="T"/>.
+            </typeparam>
+            <param name="this">The options to check the existence of the converter.</param>
+            <returns>
+            The converter that supports the givent type, or the <typeparamref name="TConverter"/>
+            will be used when the property <see cref="P:System.Text.Json.JsonSerializerOptions.Converters"/>
+            doesn't contain any valid converters.
+            </returns>
+            <seealso cref="P:System.Text.Json.JsonSerializerOptions.Converters"/>
         </member>
-        <member name="M:System.MathExtensions.Max(System.Int32,System.Int32,System.Int32)">
+        <member name="T:System.Text.Json.Utf8JsonReaderExtensions">
             <summary>
-            Get the maximum one of three values.
+            Provides extension methods on <see cref="T:System.Text.Json.Utf8JsonReader"/>.
             </summary>
-            <param name="a">The first value.</param>
-            <param name="b">The second value.</param>
-            <param name="c">The third value.</param>
-            <returns>Which is the maximum value.</returns>
+            <seealso cref="T:System.Text.Json.Utf8JsonReader"/>
         </member>
-        <member name="T:System.ReadOnlySpanExtensions">
+        <member name="M:System.Text.Json.Utf8JsonReaderExtensions.GetInt32Array(System.Text.Json.Utf8JsonReader@)">
             <summary>
-            Provides extension methods on <see cref="T:System.ReadOnlySpan`1"/>.
+            Reads the array of <see cref="T:System.Int32"/>s.
             </summary>
-            <seealso cref="T:System.ReadOnlySpan`1"/>
+            <param name="this">The reader.</param>
+            <returns>The array of <see cref="T:System.Int32"/>s.</returns>
+            <exception cref="T:System.Text.Json.JsonException">
+            Throws when the next token is invalid while parsing the array.
+            </exception>
         </member>
-        <member name="M:System.ReadOnlySpanExtensions.Select``2(System.ReadOnlySpan{``0}@,System.Func{``0,``1})">
+        <member name="M:System.Text.Json.Utf8JsonReaderExtensions.ReadObject``1(System.Text.Json.Utf8JsonReader@,System.Text.Json.Serialization.JsonConverter{``0},System.Text.Json.JsonSerializerOptions)">
             <summary>
-            The select method used in <see langword="from"/>-<see langword="in"/>-<see langword="select"/>
-            clause.
+            Try to read an object.
             </summary>
-            <typeparam name="T">The element type.</typeparam>
-            <typeparam name="TResult">The result type.</typeparam>
-            <param name="this">The list.</param>
-            <param name="selector">The selector that is used for conversion.</param>
-            <returns>The array of target result elements.</returns>
+            <typeparam name="T">The object to read.</typeparam>
+            <param name="this">The reader instance.</param>
+            <param name="converter">
+            The converter to convert the value. If the value is <see langword="null"/>,
+            the default deserialization method
+            <see cref="M:System.Text.Json.JsonSerializer.Deserialize``1(System.Text.Json.Utf8JsonReader@,System.Text.Json.JsonSerializerOptions)"/>
+            will be invoked.
+            </param>
+            <param name="options">
+            The options on deserialization. The argument cannot be <see langword="null"/>
+            when the argument <paramref name="converter"/> is not <see langword="null"/>;
+            otherwise, a <see cref="T:System.Text.Json.JsonException"/> will be thrown.
+            </param>
+            <returns>The instance.</returns>
+            <remarks><i>
+            Please note that the method will implicitly
+            invoke the method <see cref="M:System.Text.Json.Utf8JsonReader.Read"/> once
+            when the argument <paramref name="converter"/> is not <see langword="null"/>.
+            </i></remarks>
+            <exception cref="T:System.Text.Json.JsonException">
+            Throws when:
+            <list type="bullet">
+            <item>The current JSON value is mal-formed.</item>
+            <item>
+            The argument <paramref name="options"/> is <see langword="null"/>
+            when the arguemnt <paramref name="converter"/> is not <see langword="null"/>.
+            </item>
+            </list>
+            </exception>
+            <seealso cref="M:System.Text.Json.Utf8JsonReader.Read"/>
+            <seealso cref="M:System.Text.Json.JsonSerializer.Deserialize``1(System.Text.Json.Utf8JsonReader@,System.Text.Json.JsonSerializerOptions)"/>
         </member>
-        <member name="M:System.ReadOnlySpanExtensions.GetSubsets``1(System.ReadOnlySpan{``0}@,System.Int32)">
+        <member name="T:System.Text.Json.Utf8JsonWriterExtensions">
             <summary>
-            Get all subsets from the specified number of the values to take.
+            Provides extension methods on <see cref="T:System.Text.Json.Utf8JsonWriter"/>.
             </summary>
-            <param name="this">The array.</param>
-            <param name="count">The number of elements you want to take.</param>
-            <returns>All subsets.</returns>
+            <seealso cref="T:System.Text.Json.Utf8JsonWriter"/>
         </member>
-        <member name="T:System.SingleExtensions">
+        <member name="M:System.Text.Json.Utf8JsonWriterExtensions.WriteBitCollection(System.Text.Json.Utf8JsonWriter,System.String,System.Byte)">
             <summary>
-            Provides extension methods on <see cref="T:System.Single"/>.
+            Writes the bit collection of type <see cref="T:System.Byte"/> into the JSON stream.
             </summary>
-            <seealso cref="T:System.Single"/>
+            <param name="this">The writer.</param>
+            <param name="propertyName">The property name.</param>
+            <param name="bits">The bits to write.</param>
         </member>
-        <member name="M:System.SingleExtensions.NearlyEquals(System.Single,System.Single)">
+        <member name="M:System.Text.Json.Utf8JsonWriterExtensions.WriteBitCollection(System.Text.Json.Utf8JsonWriter,System.String,System.SByte)">
             <summary>
-            Indicates whether the specified value is nearly equals to the current value.
+            Writes the bit collection of type <see cref="T:System.SByte"/> into the JSON stream.
             </summary>
-            <param name="this">The value.</param>
-            <param name="other">The other value.</param>
-            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
+            <param name="this">The writer.</param>
+            <param name="propertyName">The property name.</param>
+            <param name="bits">The bits to write.</param>
         </member>
-        <member name="M:System.SingleExtensions.NearlyEquals(System.Single,System.Single,System.Single)">
+        <member name="M:System.Text.Json.Utf8JsonWriterExtensions.WriteBitCollection(System.Text.Json.Utf8JsonWriter,System.String,System.UInt16)">
             <summary>
-            Indicates whether the specified value is nearly equals to the current value.
-            If the differ of two values to compare is lower than the specified epsilon value,
-            the method will return <see langword="true"/>.
+            Writes the bit collection of type <see cref="T:System.UInt16"/> into the JSON stream.
             </summary>
-            <param name="this">The value.</param>
-            <param name="other">The other value to compare.</param>
-            <param name="epsilon">The epsilon value (the minimal differ).</param>
-            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
+            <param name="this">The writer.</param>
+            <param name="propertyName">The property name.</param>
+            <param name="bits">The bits to write.</param>
         </member>
-        <member name="T:System.SpanExtensions">
+        <member name="M:System.Text.Json.Utf8JsonWriterExtensions.WriteBitCollection(System.Text.Json.Utf8JsonWriter,System.String,System.Int16)">
             <summary>
-            Provides extension methods on <see cref="T:System.Span`1"/>.
+            Writes the bit collection of type <see cref="T:System.Int16"/> into the JSON stream.
             </summary>
-            <seealso cref="T:System.Span`1"/>
+            <param name="this">The writer.</param>
+            <param name="propertyName">The property name.</param>
+            <param name="bits">The bits to write.</param>
         </member>
-        <member name="M:System.SpanExtensions.Select``2(System.Span{``0}@,System.Func{``0,``1})">
+        <member name="M:System.Text.Json.Utf8JsonWriterExtensions.WriteBitCollection(System.Text.Json.Utf8JsonWriter,System.String,System.UInt32)">
             <summary>
-            The select method used in <see langword="from"/>-<see langword="in"/>-<see langword="select"/>
-            clause.
+            Writes the bit collection of type <see cref="T:System.UInt32"/> into the JSON stream.
             </summary>
-            <typeparam name="T">The element type.</typeparam>
-            <typeparam name="TResult">The result type.</typeparam>
-            <param name="this">The list.</param>
-            <param name="selector">The selector that is used for conversion.</param>
-            <returns>The array of target result elements.</returns>
+            <param name="this">The writer.</param>
+            <param name="propertyName">The property name.</param>
+            <param name="bits">The bits to write.</param>
         </member>
-        <member name="M:System.SpanExtensions.GetSubsets``1(System.Span{``0}@,System.Int32)">
+        <member name="M:System.Text.Json.Utf8JsonWriterExtensions.WriteBitCollection(System.Text.Json.Utf8JsonWriter,System.String,System.Int32)">
             <summary>
-            Get all subsets from the specified number of the values to take.
+            Writes the bit collection of type <see cref="T:System.Int32"/> into the JSON stream.
             </summary>
-            <param name="this">The array.</param>
-            <param name="count">The number of elements you want to take.</param>
-            <returns>All subsets.</returns>
+            <param name="this">The writer.</param>
+            <param name="propertyName">The property name.</param>
+            <param name="bits">The bits to write.</param>
+        </member>
+        <member name="M:System.Text.Json.Utf8JsonWriterExtensions.WriteBitCollection(System.Text.Json.Utf8JsonWriter,System.String,System.UInt64)">
+            <summary>
+            Writes the bit collection of type <see cref="T:System.UInt64"/> into the JSON stream.
+            </summary>
+            <param name="this">The writer.</param>
+            <param name="propertyName">The property name.</param>
+            <param name="bits">The bits to write.</param>
+        </member>
+        <member name="M:System.Text.Json.Utf8JsonWriterExtensions.WriteBitCollection(System.Text.Json.Utf8JsonWriter,System.String,System.Int64)">
+            <summary>
+            Writes the bit collection of type <see cref="T:System.Int64"/> into the JSON stream.
+            </summary>
+            <param name="this">The writer.</param>
+            <param name="propertyName">The property name.</param>
+            <param name="bits">The bits to write.</param>
+        </member>
+        <member name="M:System.Text.Json.Utf8JsonWriterExtensions.WriteObject``1(System.Text.Json.Utf8JsonWriter,``0,System.Text.Json.Serialization.JsonConverter{``0},System.Text.Json.JsonSerializerOptions)">
+            <summary>
+            Try to write an object.
+            </summary>
+            <typeparam name="T">The type of the value.</typeparam>
+            <param name="this">The instance.</param>
+            <param name="value">The value to serialize.</param>
+            <param name="converter">The converter.</param>
+            <param name="options">The options on serialization.</param>
         </member>
         <member name="T:System.Text.StringBuilderExtensions">
             <summary>
@@ -664,39 +763,6 @@
             <param name="this">The handler.</param>
             <param name="condition">The condition.</param>
             <param name="value">The value to append.</param>
-        </member>
-        <member name="T:System.Text.Json.Utf8JsonReaderExtensions">
-            <summary>
-            Provides extension methods on <see cref="T:System.Text.Json.Utf8JsonReader"/>.
-            </summary>
-            <seealso cref="T:System.Text.Json.Utf8JsonReader"/>
-        </member>
-        <member name="M:System.Text.Json.Utf8JsonReaderExtensions.ReadObject``1(System.Text.Json.Utf8JsonReader@,System.Text.Json.Serialization.JsonConverter{``0},System.Type,System.Text.Json.JsonSerializerOptions)">
-            <summary>
-            Try to read an object.
-            </summary>
-            <typeparam name="T">The object to read.</typeparam>
-            <param name="this">The reader instance.</param>
-            <param name="converter">The converter to convert the value.</param>
-            <param name="type">The type to convert.</param>
-            <param name="options">The options on deserialization.</param>
-            <returns>The instance.</returns>
-        </member>
-        <member name="T:System.Text.Json.Utf8JsonWriterExtensions">
-            <summary>
-            Provides extension methods on <see cref="T:System.Text.Json.Utf8JsonWriter"/>.
-            </summary>
-            <seealso cref="T:System.Text.Json.Utf8JsonWriter"/>
-        </member>
-        <member name="M:System.Text.Json.Utf8JsonWriterExtensions.WriteObject``1(System.Text.Json.Utf8JsonWriter,``0,System.Text.Json.Serialization.JsonConverter{``0},System.Text.Json.JsonSerializerOptions)">
-            <summary>
-            Try to write an object.
-            </summary>
-            <typeparam name="T">The type of the value.</typeparam>
-            <param name="this">The instance.</param>
-            <param name="value">The value to serialize.</param>
-            <param name="converter">The converter.</param>
-            <param name="options">The options on serialization.</param>
         </member>
         <member name="T:System.Text.StringHandler">
             <summary>
@@ -1449,6 +1515,105 @@
             <inheritdoc cref="M:System.Object.GetHashCode"/>
             <exception cref="T:System.NotSupportedException">Always throws.</exception>
         </member>
+        <member name="T:System.MathExtensions">
+            <summary>
+            Provides extension methods on <see cref="T:System.Math"/>.
+            </summary>
+            <seealso cref="T:System.Math"/>
+        </member>
+        <member name="M:System.MathExtensions.Min(System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Get the minimal one of three values.
+            </summary>
+            <param name="a">The first value.</param>
+            <param name="b">The second value.</param>
+            <param name="c">The third value.</param>
+            <returns>Which is the minimal value.</returns>
+        </member>
+        <member name="M:System.MathExtensions.Max(System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Get the maximum one of three values.
+            </summary>
+            <param name="a">The first value.</param>
+            <param name="b">The second value.</param>
+            <param name="c">The third value.</param>
+            <returns>Which is the maximum value.</returns>
+        </member>
+        <member name="T:System.ReadOnlySpanExtensions">
+            <summary>
+            Provides extension methods on <see cref="T:System.ReadOnlySpan`1"/>.
+            </summary>
+            <seealso cref="T:System.ReadOnlySpan`1"/>
+        </member>
+        <member name="M:System.ReadOnlySpanExtensions.Select``2(System.ReadOnlySpan{``0}@,System.Func{``0,``1})">
+            <summary>
+            The select method used in <see langword="from"/>-<see langword="in"/>-<see langword="select"/>
+            clause.
+            </summary>
+            <typeparam name="T">The element type.</typeparam>
+            <typeparam name="TResult">The result type.</typeparam>
+            <param name="this">The list.</param>
+            <param name="selector">The selector that is used for conversion.</param>
+            <returns>The array of target result elements.</returns>
+        </member>
+        <member name="M:System.ReadOnlySpanExtensions.GetSubsets``1(System.ReadOnlySpan{``0}@,System.Int32)">
+            <summary>
+            Get all subsets from the specified number of the values to take.
+            </summary>
+            <param name="this">The array.</param>
+            <param name="count">The number of elements you want to take.</param>
+            <returns>All subsets.</returns>
+        </member>
+        <member name="T:System.SingleExtensions">
+            <summary>
+            Provides extension methods on <see cref="T:System.Single"/>.
+            </summary>
+            <seealso cref="T:System.Single"/>
+        </member>
+        <member name="M:System.SingleExtensions.NearlyEquals(System.Single,System.Single)">
+            <summary>
+            Indicates whether the specified value is nearly equals to the current value.
+            </summary>
+            <param name="this">The value.</param>
+            <param name="other">The other value.</param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
+        </member>
+        <member name="M:System.SingleExtensions.NearlyEquals(System.Single,System.Single,System.Single)">
+            <summary>
+            Indicates whether the specified value is nearly equals to the current value.
+            If the differ of two values to compare is lower than the specified epsilon value,
+            the method will return <see langword="true"/>.
+            </summary>
+            <param name="this">The value.</param>
+            <param name="other">The other value to compare.</param>
+            <param name="epsilon">The epsilon value (the minimal differ).</param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
+        </member>
+        <member name="T:System.SpanExtensions">
+            <summary>
+            Provides extension methods on <see cref="T:System.Span`1"/>.
+            </summary>
+            <seealso cref="T:System.Span`1"/>
+        </member>
+        <member name="M:System.SpanExtensions.Select``2(System.Span{``0}@,System.Func{``0,``1})">
+            <summary>
+            The select method used in <see langword="from"/>-<see langword="in"/>-<see langword="select"/>
+            clause.
+            </summary>
+            <typeparam name="T">The element type.</typeparam>
+            <typeparam name="TResult">The result type.</typeparam>
+            <param name="this">The list.</param>
+            <param name="selector">The selector that is used for conversion.</param>
+            <returns>The array of target result elements.</returns>
+        </member>
+        <member name="M:System.SpanExtensions.GetSubsets``1(System.Span{``0}@,System.Int32)">
+            <summary>
+            Get all subsets from the specified number of the values to take.
+            </summary>
+            <param name="this">The array.</param>
+            <param name="count">The number of elements you want to take.</param>
+            <returns>All subsets.</returns>
+        </member>
         <member name="T:System.StringExtensions">
             <summary>
             Provides extension methods on <see cref="T:System.String"/>.
@@ -1676,6 +1841,42 @@
             <c><see cref="F:System.Reflection.BindingFlags.Instance"/> | <see cref="F:System.Reflection.BindingFlags.Public"/></c>.
             </param>
             <returns>The <see cref="T:System.Boolean"/> result.</returns>
+        </member>
+        <member name="T:System.IDefaultable`1">
+            <summary>
+            Defines a type that holds a property with the default value of the type.
+            </summary>
+            <typeparam name="T">The type that contains the default instance.</typeparam>
+        </member>
+        <member name="P:System.IDefaultable`1.IsDefault">
+            <summary>
+            <para>
+            Indicates whether the current instance holds the default value that equals
+            to the property <see cref="P:System.IDefaultable`1.Default"/>.
+            </para>
+            <para>
+            Generally, the implementation will be like <c>this == Default</c> or <c>Equals(Default)</c>.
+            </para>
+            </summary>
+            <seealso cref="P:System.IDefaultable`1.Default"/>
+        </member>
+        <member name="P:System.IDefaultable`1.Default">
+            <summary>
+            Indicates the default-value instance of this type.
+            </summary>
+            <remarks>
+            Due to the design of the C# feature "<see langword="static abstract"/>s in interface",
+            we suggest you use explicit implementation to implement this property, and makes the value
+            referencing to the field that is named <c>Default</c>.
+            Here is an example code to describe the above words:
+            <code><![CDATA[
+            // The static read-only field to introduce the default value.
+            public static readonly T Default = default(T);
+            
+            // An explicit implementation on the default-value property.
+            static T IDefaultable<T>.Default => Default;
+            ]]></code>
+            </remarks>
         </member>
         <member name="T:System.ISimpleFormattable">
             <summary>

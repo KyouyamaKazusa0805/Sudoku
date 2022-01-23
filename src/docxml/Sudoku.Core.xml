@@ -5691,6 +5691,17 @@
             <param name="UnknownIdentifier">Indicates the identifier that identifies the value range.</param>
             <param name="DigitsMask">Indicates a mask that holds a serial of candidate values.</param>
         </member>
+        <member name="F:Sudoku.Presentation.UnknownValue.Default">
+            <summary>
+            <inheritdoc cref="P:System.IDefaultable`1.Default"/>
+            </summary>
+        </member>
+        <member name="P:Sudoku.Presentation.UnknownValue.IsDefault">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Presentation.UnknownValue.System#IDefaultable{Sudoku#Presentation#UnknownValue}#Default">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Resources.ResourceDocument">
             <summary>
             Defines a resource document. The resource document always holds a JSON string value,
@@ -5958,6 +5969,19 @@
         <member name="M:Sudoku.Serialization.Converters.CellsConverter.Write(System.Text.Json.Utf8JsonWriter,Sudoku.Collections.Cells,System.Text.Json.JsonSerializerOptions)">
             <inheritdoc/>
         </member>
+        <member name="T:Sudoku.Serialization.Converters.CrosshatchConverter">
+            <summary>
+            Defines a serialization converter to convert the <see cref="T:Sudoku.Presentation.Crosshatch"/>
+            to a JSON <see cref="T:System.String"/> or vice versa.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Serialization.Converters.CrosshatchConverter.Read(System.Text.Json.Utf8JsonReader@,System.Type,System.Text.Json.JsonSerializerOptions)">
+            <inheritdoc/>
+            <exception cref="T:System.Text.Json.JsonException">Throws when the JSON text is mal-formed.</exception>
+        </member>
+        <member name="M:Sudoku.Serialization.Converters.CrosshatchConverter.Write(System.Text.Json.Utf8JsonWriter,Sudoku.Presentation.Crosshatch,System.Text.Json.JsonSerializerOptions)">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Serialization.Converters.GridConverter">
             <summary>
             Defines a serialization converter to convert the <see cref="T:Sudoku.Collections.Grid"/>
@@ -5970,11 +5994,18 @@
         <member name="M:Sudoku.Serialization.Converters.GridConverter.Write(System.Text.Json.Utf8JsonWriter,Sudoku.Collections.Grid,System.Text.Json.JsonSerializerOptions)">
             <inheritdoc/>
         </member>
-        <member name="T:Sudoku.Serialization.CrosshatchJsonSerializerContext">
+        <member name="T:Sudoku.Serialization.Converters.UnknownValueConverter">
             <summary>
-            Provides a serializer context on type <see cref="T:Sudoku.Presentation.Crosshatch"/>.
+            Defines a serialization converter to convert the <see cref="T:Sudoku.Presentation.UnknownValue"/>
+            to a JSON <see cref="T:System.String"/> or vice versa.
             </summary>
-            <seealso cref="T:Sudoku.Presentation.Crosshatch"/>
+        </member>
+        <member name="M:Sudoku.Serialization.Converters.UnknownValueConverter.Read(System.Text.Json.Utf8JsonReader@,System.Type,System.Text.Json.JsonSerializerOptions)">
+            <inheritdoc/>
+            <exception cref="T:System.Text.Json.JsonException">Throws when the current JSON value is mal-formed.</exception>
+        </member>
+        <member name="M:Sudoku.Serialization.Converters.UnknownValueConverter.Write(System.Text.Json.Utf8JsonWriter,Sudoku.Presentation.UnknownValue,System.Text.Json.JsonSerializerOptions)">
+            <inheritdoc/>
         </member>
         <member name="T:Sudoku.Serialization.LinkTypeJsonConverter">
             <summary>
@@ -5992,12 +6023,6 @@
             Provides a serializer context on type <see cref="T:Sudoku.Data.Link"/>.
             </summary>
             <seealso cref="T:Sudoku.Data.Link"/>
-        </member>
-        <member name="T:Sudoku.Serialization.UnknownValueJsonSerializerContext">
-            <summary>
-            Provides a serializer context on type <see cref="T:Sudoku.Presentation.UnknownValue"/>.
-            </summary>
-            <seealso cref="T:Sudoku.Presentation.UnknownValue"/>
         </member>
         <member name="T:Sudoku.Solving.BitwiseSolver">
             <summary>
