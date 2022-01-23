@@ -28,14 +28,6 @@ public sealed class CellsConverter : JsonConverter<Cells>
 	}
 
 	/// <inheritdoc/>
-	public override void Write(Utf8JsonWriter writer, Cells value, JsonSerializerOptions options)
-	{
-		writer.WriteStartArray();
-		foreach (byte cell in value)
-		{
-			writer.WriteStringValue(new Coordinate(cell).ToString());
-		}
-
-		writer.WriteEndArray();
-	}
+	public override void Write(Utf8JsonWriter writer, Cells value, JsonSerializerOptions options) =>
+		writer.WriteCollection(value);
 }

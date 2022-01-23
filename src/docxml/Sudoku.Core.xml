@@ -2994,6 +2994,26 @@
             <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
             <exception cref="T:System.NotSupportedException">Always throws.</exception>
         </member>
+        <member name="T:Sudoku.Collections.Utf8JsonWriterExtensionsOnSudokuCollections">
+            <summary>
+            Provides extension methods on <see cref="T:System.Text.Json.Utf8JsonWriter"/>, and writes the collection values
+            as an array into it.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Collections.Utf8JsonWriterExtensionsOnSudokuCollections.WriteCollection(System.Text.Json.Utf8JsonWriter,Sudoku.Collections.Cells@)">
+            <summary>
+            Writes an array of <see cref="T:Sudoku.Collections.Cells"/> into the JSON stream.
+            </summary>
+            <param name="this">The writer.</param>
+            <param name="cells">The cells to be written.</param>
+        </member>
+        <member name="M:Sudoku.Collections.Utf8JsonWriterExtensionsOnSudokuCollections.WriteCollection(System.Text.Json.Utf8JsonWriter,Sudoku.Collections.Candidates@)">
+            <summary>
+            Writes an array of <see cref="T:Sudoku.Collections.Candidates"/> into the JSON stream.
+            </summary>
+            <param name="this">The writer.</param>
+            <param name="candidates">The candidates to be written.</param>
+        </member>
         <member name="T:Sudoku.Constants">
             <summary>
             Encapsulates the class that stores all constants used in the whole project.
