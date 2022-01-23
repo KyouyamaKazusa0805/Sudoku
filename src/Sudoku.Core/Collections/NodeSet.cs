@@ -30,6 +30,11 @@ public partial struct NodeSet
 	/// <summary>
 	/// Initializes a <see cref="NodeSet"/> instance, with the default capacity 16.
 	/// </summary>
+	/// <remarks>
+	/// <include
+	///     file='../../global-doc-comments.xml'
+	///     path='g/csharp9/feature[@name="parameterless-struct-constructor"]/target[@name="constructor"]' />
+	/// </remarks>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public NodeSet()
 	{

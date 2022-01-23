@@ -37,7 +37,7 @@
 /// <param name="Mask">
 /// Indicates the mask that handles and stores the basic information of the current node.
 /// </param>
-public unsafe record struct Node(int Mask) : IDefaultable<Node>, IEqualityOperators<Node, Node>
+public record struct Node(int Mask) : IDefaultable<Node>, IEqualityOperators<Node, Node>
 {
 	/// <summary>
 	/// Indicates the undefined instance that is used for providing with a value
@@ -152,8 +152,6 @@ public unsafe record struct Node(int Mask) : IDefaultable<Node>, IEqualityOperat
 	/// <summary>
 	/// Indicates the total number of parent nodes.
 	/// </summary>
-	/// <!--<value>The number of cells to assign.</value>-->
-	/// <!--<returns>The number of parents.</returns>-->
 	public byte ParentsCount
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -350,7 +348,8 @@ public unsafe record struct Node(int Mask) : IDefaultable<Node>, IEqualityOperat
 				nodes.AddAnyway(parent.Candidate);
 			}
 
-			return $"Candidate: {new Cells { Cell }}({Digit + 1}), Parent(s): {nodes}";
+			char? plural = nodes.Count == 1 ? 's' : null;
+			return $"Candidate: {new Cells { Cell }}({Digit + 1}), Parent{plural}: {nodes}";
 		}
 	}
 

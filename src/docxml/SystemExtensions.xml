@@ -919,9 +919,18 @@
         </member>
         <member name="M:System.Text.StringHandler.#ctor">
             <summary>
-            Creates a handler used to translate an interpolated string into a <see cref="T:System.String"/>,
+            Creates a handler used to translate an interpolated string into a <see cref="T:System.String" />,
             with the default-sized buffer 256.
             </summary>
+            <remarks>
+            <target name="constructor">
+				<i>
+					The feature "Custom parameterless struct constructor" makes the parameterless struct constructor
+					different with <c>default(T)</c>. If you has defined a parameterless struct constructor,
+					<c>new T()</c> is no longer with the same meaning as <c>default(T)</c>.
+				</i>
+			</target>
+            </remarks>
         </member>
         <member name="M:System.Text.StringHandler.#ctor(System.Int32)">
             <summary>

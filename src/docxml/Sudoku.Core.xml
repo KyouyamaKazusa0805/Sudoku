@@ -180,6 +180,21 @@
             The inner binary values.
             </summary>
         </member>
+        <member name="M:Sudoku.Collections.Candidates.#ctor">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Collections.Candidates" /> instance via the read-only field <see cref="F:Sudoku.Collections.Candidates.Empty" />.
+            </summary>
+            <remarks>
+            <target name="constructor">
+				<i>
+					The feature "Custom parameterless struct constructor" makes the parameterless struct constructor
+					different with <c>default(T)</c>. If you has defined a parameterless struct constructor,
+					<c>new T()</c> is no longer with the same meaning as <c>default(T)</c>.
+				</i>
+			</target>
+            </remarks>
+            <seealso cref="F:Sudoku.Collections.Candidates.Empty" />
+        </member>
         <member name="M:Sudoku.Collections.Candidates.#ctor(System.Int32)">
             <summary>
             Initializes an instance with the specified candidate and its peers.
@@ -518,6 +533,21 @@
             which represents 81 bits. <see cref="F:Sudoku.Collections.Cells._high"/> represent the higher
             40 bits and <see cref="F:Sudoku.Collections.Cells._low"/> represents the lower 41 bits.
             </summary>
+        </member>
+        <member name="M:Sudoku.Collections.Cells.#ctor">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Collections.Cells" /> instance via the read-only field <see cref="F:Sudoku.Collections.Cells.Empty" />.
+            </summary>
+            <remarks>
+            <target name="constructor">
+				<i>
+					The feature "Custom parameterless struct constructor" makes the parameterless struct constructor
+					different with <c>default(T)</c>. If you has defined a parameterless struct constructor,
+					<c>new T()</c> is no longer with the same meaning as <c>default(T)</c>.
+				</i>
+			</target>
+            </remarks>
+            <seealso cref="F:Sudoku.Collections.Cells.Empty" />
         </member>
         <member name="M:Sudoku.Collections.Cells.#ctor(System.Int32)">
             <summary>
@@ -1307,9 +1337,18 @@
         </member>
         <member name="M:Sudoku.Collections.Grid.#ctor">
             <summary>
-            Initializes a <see cref="T:Sudoku.Collections.Grid"/> instance using the <see cref="F:Sudoku.Collections.Grid.Empty"/> instance to initialize,
+            Initializes a <see cref="T:Sudoku.Collections.Grid" /> instance using the <see cref="F:Sudoku.Collections.Grid.Empty" /> instance to initialize,
             which is equivalent to assignment <c>this = Empty;</c>.
             </summary>
+            <remarks>
+            <target name="constructor">
+				<i>
+					The feature "Custom parameterless struct constructor" makes the parameterless struct constructor
+					different with <c>default(T)</c>. If you has defined a parameterless struct constructor,
+					<c>new T()</c> is no longer with the same meaning as <c>default(T)</c>.
+				</i>
+			</target>
+            </remarks>
         </member>
         <member name="M:Sudoku.Collections.Grid.#ctor(System.Int32[],Sudoku.Data.GridCreatingOption)">
             <summary>
@@ -2634,8 +2673,17 @@
         </member>
         <member name="M:Sudoku.Collections.NodeSet.#ctor">
             <summary>
-            Initializes a <see cref="T:Sudoku.Collections.NodeSet"/> instance, with the default capacity 16.
+            Initializes a <see cref="T:Sudoku.Collections.NodeSet" /> instance, with the default capacity 16.
             </summary>
+            <remarks>
+            <target name="constructor">
+				<i>
+					The feature "Custom parameterless struct constructor" makes the parameterless struct constructor
+					different with <c>default(T)</c>. If you has defined a parameterless struct constructor,
+					<c>new T()</c> is no longer with the same meaning as <c>default(T)</c>.
+				</i>
+			</target>
+            </remarks>
         </member>
         <member name="M:Sudoku.Collections.NodeSet.#ctor(Sudoku.Data.Node[])">
             <summary>
@@ -4919,8 +4967,6 @@
             <summary>
             Indicates the total number of parent nodes.
             </summary>
-            <!--<value>The number of cells to assign.</value>-->
-            <!--<returns>The number of parents.</returns>-->
         </member>
         <member name="P:Sudoku.Data.Node.AncestorsCount">
             <summary>

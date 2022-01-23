@@ -155,18 +155,19 @@ public unsafe ref partial struct GridParser
 	/// </summary>
 	/// <param name="gridParsingOption">A specified parsing type.</param>
 	/// <returns>The grid.</returns>
-	public Grid Parse(GridParsingOption gridParsingOption) => gridParsingOption switch
-	{
-		GridParsingOption.Susser => OnParsingSusser(ref this, false),
-		GridParsingOption.ShortenSusser => OnParsingSusser(ref this, true),
-		GridParsingOption.Table => OnParsingSimpleMultilineGrid(ref this),
-		GridParsingOption.PencilMarked => OnParsingPencilMarked(ref this),
-		GridParsingOption.SimpleTable => OnParsingSimpleTable(ref this),
-		GridParsingOption.Sukaku => OnParsingSukaku(ref this, compatibleFirst: false),
-		GridParsingOption.SukakuSingleLine => OnParsingSukaku(ref this, compatibleFirst: true),
-		GridParsingOption.Excel => OnParsingExcel(ref this),
-		GridParsingOption.OpenSudoku => OnParsingOpenSudoku(ref this)
-	};
+	public Grid Parse(GridParsingOption gridParsingOption) =>
+		gridParsingOption switch
+		{
+			GridParsingOption.Susser => OnParsingSusser(ref this, false),
+			GridParsingOption.ShortenSusser => OnParsingSusser(ref this, true),
+			GridParsingOption.Table => OnParsingSimpleMultilineGrid(ref this),
+			GridParsingOption.PencilMarked => OnParsingPencilMarked(ref this),
+			GridParsingOption.SimpleTable => OnParsingSimpleTable(ref this),
+			GridParsingOption.Sukaku => OnParsingSukaku(ref this, compatibleFirst: false),
+			GridParsingOption.SukakuSingleLine => OnParsingSukaku(ref this, compatibleFirst: true),
+			GridParsingOption.Excel => OnParsingExcel(ref this),
+			GridParsingOption.OpenSudoku => OnParsingOpenSudoku(ref this)
+		};
 
 
 	private static partial Grid OnParsingSimpleMultilineGrid(ref GridParser parser);

@@ -56,6 +56,19 @@ public unsafe struct Cells
 
 
 	/// <summary>
+	/// Initializes a <see cref="Cells"/> instance via the read-only field <see cref="Empty"/>.
+	/// </summary>
+	/// <remarks>
+	/// <include
+	///     file='../../global-doc-comments.xml'
+	///     path='g/csharp9/feature[@name="parameterless-struct-constructor"]/target[@name="constructor"]' />
+	/// </remarks>
+	/// <seealso cref="Empty"/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	[EditorBrowsable(EditorBrowsableState.Never)]
+	public Cells() => this = Empty;
+
+	/// <summary>
 	/// Initializes an instance with the specified cell offset
 	/// (Sets itself and all peers).
 	/// </summary>

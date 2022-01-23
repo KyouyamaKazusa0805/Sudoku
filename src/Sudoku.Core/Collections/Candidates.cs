@@ -42,6 +42,19 @@ public unsafe struct Candidates
 
 
 	/// <summary>
+	/// Initializes a <see cref="Candidates"/> instance via the read-only field <see cref="Empty"/>.
+	/// </summary>
+	/// <remarks>
+	/// <include
+	///     file='../../global-doc-comments.xml'
+	///     path='g/csharp9/feature[@name="parameterless-struct-constructor"]/target[@name="constructor"]' />
+	/// </remarks>
+	/// <seealso cref="Empty"/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	[EditorBrowsable(EditorBrowsableState.Never)]
+	public Candidates() => this = Empty;
+
+	/// <summary>
 	/// Initializes an instance with the specified candidate and its peers.
 	/// </summary>
 	/// <param name="candidate">The candidate.</param>

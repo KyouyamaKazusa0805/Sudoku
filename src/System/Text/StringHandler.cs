@@ -119,6 +119,11 @@ public unsafe ref partial struct StringHandler
 	/// Creates a handler used to translate an interpolated string into a <see cref="string"/>,
 	/// with the default-sized buffer 256.
 	/// </summary>
+	/// <remarks>
+	/// <include
+	///     file='../../global-doc-comments.xml'
+	///     path='g/csharp9/feature[@name="parameterless-struct-constructor"]/target[@name="constructor"]' />
+	/// </remarks>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public StringHandler() : this(MinimumArrayPoolLength)
 	{
@@ -963,7 +968,7 @@ public unsafe ref partial struct StringHandler
 		{
 			// The value is as large or larger than the required amount of padding,
 			// so just write the value.
-			AppendFormatted(value);
+			AppendFormatted(value, format: format);
 			return;
 		}
 

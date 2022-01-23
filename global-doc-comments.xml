@@ -67,6 +67,15 @@ Then you can reference the doc here.
 		</feature>
 	</csharp7>
 	<csharp9>
+		<feature name="parameterless-struct-constructor">
+			<target name="constructor">
+				<i>
+					The feature "Custom parameterless struct constructor" makes the parameterless struct constructor
+					different with <c>default(T)</c>. If you has defined a parameterless struct constructor,
+					<c>new T()</c> is no longer with the same meaning as <c>default(T)</c>.
+				</i>
+			</target>
+		</feature>
 		<feature name="module-initializer">
 			<target name="type">
 				<summary>

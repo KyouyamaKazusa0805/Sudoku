@@ -97,6 +97,11 @@ public unsafe partial struct Grid
 	/// Initializes a <see cref="Grid"/> instance using the <see cref="Empty"/> instance to initialize,
 	/// which is equivalent to assignment <c>this = Empty;</c>.
 	/// </summary>
+	/// <remarks>
+	/// <include
+	///     file='../../global-doc-comments.xml'
+	///     path='g/csharp9/feature[@name="parameterless-struct-constructor"]/target[@name="constructor"]' />
+	/// </remarks>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public Grid() => this = Empty;
 
