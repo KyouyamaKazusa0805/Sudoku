@@ -43,7 +43,7 @@ public sealed unsafe class BivalueOddagonStepSearcher : IBivalueOddagonStepSearc
 			tempLoop.Clear();
 
 			IUniqueLoopOrBivalueOddagonStepSearcher.SearchForPossibleLoopPatterns(
-				grid, d1, d2, cell, (RegionLabel)255, 0, 2, ref loopMap,
+				grid, d1, d2, cell, (Region)255, 0, 2, ref loopMap,
 				tempLoop, () => isValid(ref loopMap), loops
 			);
 

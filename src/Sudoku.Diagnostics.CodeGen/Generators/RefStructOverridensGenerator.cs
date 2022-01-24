@@ -7,7 +7,6 @@
 public sealed class RefStructOverridensGenerator : ISourceGenerator
 {
 	/// <inheritdoc/>
-	[SuppressMessage("MicrosoftCodeAnalysisCorrectness", "RS1024:Compare symbols correctly", Justification = "<Pending>")]
 	public void Execute(GeneratorExecutionContext context)
 	{
 		if (
@@ -32,6 +31,7 @@ public sealed class RefStructOverridensGenerator : ISourceGenerator
 			return;
 		}
 
+#pragma warning disable RS1024
 		(
 			from typeSymbol in typeSymbols
 			group typeSymbol by typeSymbol.ContainingType is null into @group
@@ -40,6 +40,7 @@ public sealed class RefStructOverridensGenerator : ISourceGenerator
 			from type in @group
 			select (Action: f, Type: type)
 		).ForEach(e => e.Action(context, e.Type, compilation));
+#pragma warning restore RS1024
 	}
 
 	/// <inheritdoc/>
@@ -196,7 +197,7 @@ partial struct {type.Name}{genericParameterList}
 				}
 				else
 				{
-					outerGenericParametersList = outerFullTypeName.Substring(lt, gt - lt + 1);
+					outerGenericParametersList = outerFullTypeName[lt..gt];
 				}
 			}
 			else
@@ -219,7 +220,7 @@ partial struct {type.Name}{genericParameterList}
 				}
 				else
 				{
-					outerGenericParametersList = temp[lt..gt];
+					outerGenericParametersList = temp[lt..(gt + 1)];
 				}
 			}
 

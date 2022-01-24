@@ -216,6 +216,149 @@
             <inheritdoc cref="M:System.Object.ToString"/>
             <exception cref="T:System.NotSupportedException">Always throws.</exception>
         </member>
+        <member name="T:System.Collections.Generic.ValueList`1">
+            <summary>
+            Defines a value-type sequence list.
+            </summary>
+            <typeparam name="TUnmanaged">The element type.</typeparam>
+        </member>
+        <member name="F:System.Collections.Generic.ValueList`1._capacity">
+            <summary>
+            Indicates the length of the list.
+            </summary>
+        </member>
+        <member name="F:System.Collections.Generic.ValueList`1._length">
+            <summary>
+            Indicates the current length.
+            </summary>
+        </member>
+        <member name="F:System.Collections.Generic.ValueList`1._startPtr">
+            <summary>
+            Indicates the pointer that points to the first element.
+            </summary>
+        </member>
+        <member name="M:System.Collections.Generic.ValueList`1.#ctor(System.Byte)">
+            <summary>
+            Initializes a list that stores the specified number of elements.
+            </summary>
+            <param name="capacity">The initial capacity.</param>
+            <remarks>
+            If you call this constructor to initialize an instance, please append keyword <see langword="using"/>
+            to implicitly call the dispose method.
+            </remarks>
+        </member>
+        <member name="M:System.Collections.Generic.ValueList`1.#ctor(`0@,System.Int32)">
+            <summary>
+            Initializes a list that stores the specified elements.
+            </summary>
+            <param name="list">
+            <para>The reference to the first element in a certain array to add into.</para>
+            <para>
+            <target name="in-parameter">
+				<i>
+					Please note that the parameter is an <see langword="in" /> parameter, which has the same meaning
+					for <see langword="ref readonly" /> returns or locals. You can treat it as the first element
+					in an array of elements. Different with <see langword="ref" /> parameter, <see langword="in" />
+					modifier has the same semantic as <see langword="ref readonly var" />
+					instead of <see langword="ref var" />.
+				</i>
+			</target>
+            </para>
+            </param>
+            <param name="length">The length of the list.</param>
+        </member>
+        <member name="P:System.Collections.Generic.ValueList`1.Count">
+            <summary>
+            Indicates the length of the list.
+            </summary>
+        </member>
+        <member name="P:System.Collections.Generic.ValueList`1.Item(System.Byte)">
+            <summary>
+            Gets the element from the current list, or sets the element to the current list,
+            with the specified index.
+            </summary>
+            <param name="index">The index.</param>
+            <returns>The reference to the element at the specified index.</returns>
+        </member>
+        <member name="M:System.Collections.Generic.ValueList`1.Add(`0)">
+            <summary>
+            Adds the element to the current list.
+            </summary>
+            <param name="element">The element.</param>
+        </member>
+        <member name="M:System.Collections.Generic.ValueList`1.Remove">
+            <summary>
+            Removes the last element from the collection.
+            </summary>
+        </member>
+        <member name="M:System.Collections.Generic.ValueList`1.Clear">
+            <summary>
+            Removes all elements in this collection.
+            </summary>
+        </member>
+        <member name="M:System.Collections.Generic.ValueList`1.Dispose">
+            <summary>
+            To dispose the current list.
+            </summary>
+            <remarks><i>
+            This method should be called when the constructor <see cref="M:System.Collections.Generic.ValueList`1.#ctor(System.Byte)"/> is called.
+            </i></remarks>
+            <seealso cref="M:System.Collections.Generic.ValueList`1.#ctor(System.Byte)"/>
+        </member>
+        <member name="M:System.Collections.Generic.ValueList`1.GetEnumerator">
+            <inheritdoc cref="M:System.Collections.Generic.IEnumerable`1.GetEnumerator"/>
+        </member>
+        <member name="T:System.Collections.Generic.ValueList`1.Enumerator">
+            <summary>
+            Defines the enumerator of this type.
+            </summary>
+        </member>
+        <member name="F:System.Collections.Generic.ValueList`1.Enumerator._ptr">
+            <summary>
+            Indicates the inner pointer.
+            </summary>
+        </member>
+        <member name="F:System.Collections.Generic.ValueList`1.Enumerator._current">
+            <summary>
+            Indicates the current position.
+            </summary>
+        </member>
+        <member name="M:System.Collections.Generic.ValueList`1.Enumerator.#ctor(System.Collections.Generic.ValueList{`0}@)">
+            <summary>
+            Intialzies the <see cref="T:System.Collections.Generic.ValueList`1.Enumerator"/> type via the current instance.
+            </summary>
+            <param name="ptr">The pointer that points to the list.</param>
+        </member>
+        <member name="P:System.Collections.Generic.ValueList`1.Enumerator.Current">
+            <inheritdoc cref="P:System.Collections.Generic.IEnumerator`1.Current"/>
+        </member>
+        <member name="M:System.Collections.Generic.ValueList`1.Enumerator.MoveNext">
+            <inheritdoc cref="M:System.Collections.IEnumerator.MoveNext"/>
+        </member>
+        <member name="M:System.Collections.Generic.ValueList`1.Enumerator.Equals(System.Object)">
+            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
+            <exception cref="T:System.NotSupportedException">Always throws.</exception>
+        </member>
+        <member name="M:System.Collections.Generic.ValueList`1.Enumerator.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+            <exception cref="T:System.NotSupportedException">Always throws.</exception>
+        </member>
+        <member name="M:System.Collections.Generic.ValueList`1.Enumerator.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+            <exception cref="T:System.NotSupportedException">Always throws.</exception>
+        </member>
+        <member name="M:System.Collections.Generic.ValueList`1.Equals(System.Object)">
+            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
+            <exception cref="T:System.NotSupportedException">Always throws.</exception>
+        </member>
+        <member name="M:System.Collections.Generic.ValueList`1.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+            <exception cref="T:System.NotSupportedException">Always throws.</exception>
+        </member>
+        <member name="M:System.Collections.Generic.ValueList`1.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+            <exception cref="T:System.NotSupportedException">Always throws.</exception>
+        </member>
         <member name="T:System.Collections.Generic.CollectionExtensions">
             <summary>
             Provides extension methods on <see cref="T:System.Collections.Generic.ICollection`1"/> and <see cref="T:System.Collections.Generic.IReadOnlyCollection`1"/>.

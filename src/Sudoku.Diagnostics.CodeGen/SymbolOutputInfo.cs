@@ -71,7 +71,7 @@ internal sealed record SymbolOutputInfo(
 		string genericParametersList = i == -1 ? string.Empty : fullTypeName[i..];
 
 		int j = fullTypeName.IndexOf('>');
-		string genericParametersListWithoutConstraint = i == -1 ? string.Empty : fullTypeName[i..j];
+		string genericParametersListWithoutConstraint = i == -1 ? string.Empty : fullTypeName[i..(j + 1)];
 
 		string typeKind = (symbol.IsRecord, symbol.TypeKind) switch
 		{

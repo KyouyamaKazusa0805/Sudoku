@@ -17,7 +17,7 @@ public sealed unsafe class SueDeCoq3DemensionStepSearcher : ISueDeCoq3DemensionS
 	/// <inheritdoc/>
 	public Step? GetAll(ICollection<Step> accumulator, in Grid grid, bool onlyFindOne)
 	{
-		List<Cells> rbList = new(3), cbList = new(3);
+		using ValueList<Cells> rbList = new(3), cbList = new(3);
 		foreach (int pivot in EmptyMap)
 		{
 			int r = pivot.ToRegionIndex(Region.Row);
@@ -25,44 +25,14 @@ public sealed unsafe class SueDeCoq3DemensionStepSearcher : ISueDeCoq3DemensionS
 			int b = pivot.ToRegionIndex(Region.Block);
 			Cells rbMap = RegionMaps[r] & RegionMaps[b], cbMap = RegionMaps[c] & RegionMaps[b];
 			Cells rbEmptyMap = rbMap & EmptyMap, cbEmptyMap = cbMap & EmptyMap;
-			if (
-				(RowBlock: rbEmptyMap.Count, ColumnBlock: cbEmptyMap.Count) is not (
-					RowBlock: >= 2,
-					ColumnBlock: >= 2
-				)
-			)
+			if (rbEmptyMap.Count < 2 || cbEmptyMap.Count < 2)
 			{
 				// The intersection needs at least two cells.
 				continue;
 			}
 
-			rbList.Clear();
-			cbList.Clear();
-
-
-			static void a(IList<Cells> list, in Cells emptyMap)
-			{
-				switch (emptyMap)
-				{
-					case [var i, var j]:
-					{
-						list.Add(new() { i, j });
-
-						break;
-					}
-					case [var i, var j, var k]:
-					{
-						list.Add(new() { i, j });
-						list.Add(new() { i, k });
-						list.Add(new() { j, k });
-
-						break;
-					}
-				}
-			}
-
-			a(rbList, rbEmptyMap);
-			a(cbList, cbEmptyMap);
+			reinitializeList(&rbList, &rbEmptyMap);
+			reinitializeList(&cbList, &cbEmptyMap);
 
 			foreach (var rbCurrentMap in rbList)
 			{
@@ -120,17 +90,9 @@ public sealed unsafe class SueDeCoq3DemensionStepSearcher : ISueDeCoq3DemensionS
 							}
 							elimMapBlock &= blockMap - currentBlockMap;
 
-							for (
-								int
-									j = 1,
-									limit = MathExtensions.Min(
-										9 - i - currentBlockMap.Count, rowMap.Count, columnMap.Count
-									);
-								j < limit;
-								j++
-							)
+							for (int j = 1, limit = MathExtensions.Min(9 - i - currentBlockMap.Count, rowMap.Count, columnMap.Count); j < limit; j++)
 							{
-								foreach (int[] selectedRowCells in rowMap.ToArray().GetSubsets(j))
+								foreach (int[] selectedRowCells in rowMap & j)
 								{
 									short rowMask = 0;
 									var currentRowMap = new Cells(selectedRowCells);
@@ -147,16 +109,9 @@ public sealed unsafe class SueDeCoq3DemensionStepSearcher : ISueDeCoq3DemensionS
 									}
 									elimMapRow &= RegionMaps[r] - rbCurrentMap - currentRowMap;
 
-									for (
-										int k = 1;
-										k <= MathExtensions.Min(
-											9 - i - j - currentBlockMap.Count - currentRowMap.Count,
-											rowMap.Count, columnMap.Count
-										);
-										k++
-									)
+									for (int k = 1; k <= MathExtensions.Min(9 - i - j - currentBlockMap.Count - currentRowMap.Count, rowMap.Count, columnMap.Count); k++)
 									{
-										foreach (int[] selectedColumnCells in columnMap.ToArray().GetSubsets(k))
+										foreach (int[] selectedColumnCells in columnMap & k)
 										{
 											short columnMask = 0;
 											var currentColumnMap = new Cells(selectedColumnCells);
@@ -335,5 +290,29 @@ public sealed unsafe class SueDeCoq3DemensionStepSearcher : ISueDeCoq3DemensionS
 		}
 
 		return null;
+
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		static void reinitializeList(ValueList<Cells>* list, Cells* emptyMap)
+		{
+			list->Clear();
+			switch (*emptyMap)
+			{
+				case [var i, var j]:
+				{
+					list->Add(new() { i, j });
+
+					break;
+				}
+				case [var i, var j, var k]:
+				{
+					list->Add(new() { i, j });
+					list->Add(new() { i, k });
+					list->Add(new() { j, k });
+
+					break;
+				}
+			}
+		}
 	}
 }

@@ -28,7 +28,7 @@ public sealed unsafe class SueDeCoqStepSearcher : ISueDeCoqStepSearcher
 			return null;
 		}
 
-		var list = new List<Cells>(4);
+		using var list = new ValueList<Cells>(4);
 		foreach (bool cannibalMode in stackalloc[] { false, true })
 		{
 			foreach (var ((baseSet, coverSet), (a, b, c, _)) in IntersectionMaps)
@@ -82,14 +82,13 @@ public sealed unsafe class SueDeCoqStepSearcher : ISueDeCoqStepSearcher
 					for (int i = 1, count = blockMap.Count; i < count; i++)
 					{
 						// Iterate on each combination in block.
-						foreach (int[] selectedCellsInBlock in blockMap.ToArray().GetSubsets(i))
+						foreach (var currentBlockMap in blockMap & i)
 						{
 							short blockMask = 0;
-							var currentBlockMap = new Cells(selectedCellsInBlock);
 							var elimMapBlock = Cells.Empty;
 
 							// Get the links of the block.
-							foreach (int cell in selectedCellsInBlock)
+							foreach (int cell in currentBlockMap)
 							{
 								blockMask |= grid.GetCandidates(cell);
 							}
@@ -105,14 +104,13 @@ public sealed unsafe class SueDeCoqStepSearcher : ISueDeCoqStepSearcher
 							for (int j = 1; j <= 9 - i - currentInterMap.Count && j <= lineMap.Count; j++)
 							{
 								// Iterate on each combination in line.
-								foreach (int[] selectedCellsInLine in lineMap.ToArray().GetSubsets(j))
+								foreach (var currentLineMap in lineMap & j)
 								{
 									short lineMask = 0;
-									var currentLineMap = new Cells(selectedCellsInLine);
 									var elimMapLine = Cells.Empty;
 
 									// Get the links of the line.
-									foreach (int cell in selectedCellsInLine)
+									foreach (int cell in currentLineMap)
 									{
 										lineMask |= grid.GetCandidates(cell);
 									}
@@ -151,15 +149,8 @@ public sealed unsafe class SueDeCoqStepSearcher : ISueDeCoqStepSearcher
 										) % CandMaps[digitIsolated] & EmptyMap;
 									}
 
-									if (
-										currentInterMap.Count + i + j
-										== PopCount((uint)blockMask) + PopCount((uint)lineMask)
-											+ PopCount((uint)maskOnlyInInter)
-										&& (
-											!elimMapBlock.IsEmpty || !elimMapLine.IsEmpty
-											|| !elimMapIsolated.IsEmpty
-										)
-									)
+									if (currentInterMap.Count + i + j == PopCount((uint)blockMask) + PopCount((uint)lineMask) + PopCount((uint)maskOnlyInInter)
+										&& (!elimMapBlock.IsEmpty || !elimMapLine.IsEmpty || !elimMapIsolated.IsEmpty))
 									{
 										// Check eliminations.
 										var conclusions = new List<Conclusion>();

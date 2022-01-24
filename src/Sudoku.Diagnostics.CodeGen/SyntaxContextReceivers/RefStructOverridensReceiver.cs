@@ -13,7 +13,6 @@ internal sealed record RefStructOverridensReceiver(CancellationToken Cancellatio
 	/// Indicates the descriptor <c>SCA0013</c>
 	/// (<see langword="ref struct"/>s requires the keyword <see langword="partial"/>).
 	/// </summary>
-	[SuppressMessage("MicrosoftCodeAnalysisReleaseTracking", "RS2008:Enable analyzer release tracking", Justification = "<Pending>")]
 	private static readonly DiagnosticDescriptor SCA0013 = new(
 		id: nameof(SCA0013),
 		title: "Ref structs requires the keyword 'partial'",

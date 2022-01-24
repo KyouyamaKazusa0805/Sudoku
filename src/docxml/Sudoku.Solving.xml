@@ -2558,7 +2558,7 @@
             <param name="offNodes">All off nodes.</param>
             <exception cref="T:System.Exception">Throws when the parent node of the specified node cannot be found.</exception>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Searchers.Chains.IChainStepSearcher.AddHiddenParentsOfRegion(Sudoku.Data.Node@,Sudoku.Collections.Grid@,Sudoku.Collections.Grid@,Sudoku.Data.RegionLabel,Sudoku.Collections.NodeSet@)">
+        <member name="M:Sudoku.Solving.Manual.Searchers.Chains.IChainStepSearcher.AddHiddenParentsOfRegion(Sudoku.Data.Node@,Sudoku.Collections.Grid@,Sudoku.Collections.Grid@,Sudoku.Data.Region,Sudoku.Collections.NodeSet@)">
             <summary>
             Add hidden parents of a region.
             </summary>
@@ -4138,7 +4138,7 @@
             Defines a step searcher that searches for unique loop or bi-value oddagon steps.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Searchers.IUniqueLoopOrBivalueOddagonStepSearcher.SearchForPossibleLoopPatterns(Sudoku.Collections.Grid@,System.Int32,System.Int32,System.Int32,Sudoku.Data.RegionLabel,System.Int16,System.Int32,Sudoku.Collections.Cells@,System.Collections.Generic.List{System.Int32},System.Func{System.Boolean},System.Collections.Generic.List{System.ValueTuple{Sudoku.Collections.Cells,System.Collections.Generic.IList{System.ValueTuple{Sudoku.Data.Link,Sudoku.Presentation.ColorIdentifier}}}})">
+        <member name="M:Sudoku.Solving.Manual.Searchers.IUniqueLoopOrBivalueOddagonStepSearcher.SearchForPossibleLoopPatterns(Sudoku.Collections.Grid@,System.Int32,System.Int32,System.Int32,Sudoku.Data.Region,System.Int16,System.Int32,Sudoku.Collections.Cells@,System.Collections.Generic.List{System.Int32},System.Func{System.Boolean},System.Collections.Generic.List{System.ValueTuple{Sudoku.Collections.Cells,System.Collections.Generic.IList{System.ValueTuple{Sudoku.Data.Link,Sudoku.Presentation.ColorIdentifier}}}})">
             <summary>
             Searches for possible bi-value oddagon or unique loop patterns.
             </summary>
@@ -4146,7 +4146,7 @@
             <param name="d1">The first digit used.</param>
             <param name="d2">The second digit used.</param>
             <param name="cell">The current cell calculated.</param>
-            <param name="lastLabel">Indicates the last label used.</param>
+            <param name="lastRegion">Indicates the last region type used.</param>
             <param name="exDigitsMask">The extra digits mask.</param>
             <param name="allowedExtraCellsCount">Indicates the number of cells can be with extra digits.</param>
             <param name="loopMap">Indicates the map of the loop.</param>
