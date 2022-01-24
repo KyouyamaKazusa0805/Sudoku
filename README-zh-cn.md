@@ -1,6 +1,6 @@
 <center>Language switch to: <a href="README.md">English</a></center>
 
-> 2022 年春节快乐！
+<center><p style="font-size:48pt;color:#f00">祝各位 2022 年新春快乐！❀</p></center>
 
 # 向向的数独解决方案
 
@@ -77,7 +77,8 @@ Console.WriteLine(analysisResult.ToString());
     * [x] ~~WPF 项目（已实现，但早已过时，已被移除）~~
     * [ ] ~~UWP 项目（这个可能我不会考虑了）~~
     * [x] ~~Winform 项目（已实现，但早已过时，已被移除）~~
-  * [ ] **MAUI 项目（我正在做这个）**
+    * [ ] **Windows UI（我正在做这个）**
+  * [ ] MAUI 项目
 * [ ] 一些常见平台的机器人
   * [ ] 哔哩哔哩（这个可能需要网站自己提供 API 给我们用才行）
   * [x] ~~QQ（这个已经实现了，不过我删掉了……之后再说吧）~~

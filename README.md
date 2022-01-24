@@ -1,6 +1,6 @@
 <center>语言切换：<a href="README-zh-cn.md">简体中文</a></center>
 
-> Happy 2022 Chunjie (Chinese New Year)!
+<center><p style="font-size:48pt;color:#f00">Happy 2022 Chinese New Year!</p></center>
 
 # Sunnie's Sudoku Solution
 
@@ -77,7 +77,8 @@ Please visit the following tables.
     * [x] ~~WPF (Implemented but deprecated, removed)~~
     * [ ] ~~UWP (May not be considered)~~
     * [x] ~~Winform (Implemented but deprecated, removed)~~
-  * [ ] **MAUI (I'm working on this)**
+    * [ ] **Windows UI (I'm working on this)**
+  * [ ] MAUI
 * [ ] Platform Robots (Dependabot)
   * [ ] Bilibili (Should the platform provide APIs)
   * [x] ~~QICQ (Implemented, but I has removed yet, but don't worry because I'll re-upload them)~~
