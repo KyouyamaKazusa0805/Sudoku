@@ -115,8 +115,8 @@ public readonly ref partial struct GridFormatter
 		get => (_flags >> 9 & 1) != 0;
 
 #if false
-			[MethodImpl(MethodImplOptions.AggressiveInlining)]
-			init => _flags |= (short)(value ? 512 : 0);
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		init => _flags |= (short)(value ? 512 : 0);
 #endif
 	}
 

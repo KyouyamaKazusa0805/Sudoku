@@ -608,7 +608,7 @@ public unsafe struct Candidates
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static Candidates Parse(string str) => Parse(str, CandidatesParsingOptions.All);
+	public static Candidates Parse(string str) => Parse(str, (CandidatesParsingOptions)7);
 
 	/// <summary>
 	/// Parse a <see cref="string"/> and convert to the <see cref="Candidates"/> instance.
@@ -620,7 +620,7 @@ public unsafe struct Candidates
 	/// <exception cref="FormatException">Throws when the specified text is invalid to parse.</exception>
 	public static Candidates Parse(string str, CandidatesParsingOptions options)
 	{
-		if (options is CandidatesParsingOptions.None or > CandidatesParsingOptions.All)
+		if (options is (CandidatesParsingOptions)0 or > (CandidatesParsingOptions)7)
 		{
 			throw new ArgumentException("The option is invalid.", nameof(options));
 		}

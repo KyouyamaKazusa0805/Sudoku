@@ -12,6 +12,7 @@ public readonly record struct Coordinate(byte Cell)
 : IAdditionOperators<Coordinate, byte, Coordinate>
 , IComparable<Coordinate>
 , IComparisonOperators<Coordinate, Coordinate>
+, IDefaultable<Coordinate>
 , IEqualityOperators<Coordinate, Coordinate>
 , IEquatable<Coordinate>
 , IMinMaxValue<Coordinate>
@@ -60,6 +61,13 @@ public readonly record struct Coordinate(byte Cell)
 	}
 
 	/// <inheritdoc/>
+	bool IDefaultable<Coordinate>.IsDefault
+	{
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		get => this == Undefined;
+	}
+
+	/// <inheritdoc/>
 	static Coordinate IMinMaxValue<Coordinate>.MinValue
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -71,6 +79,13 @@ public readonly record struct Coordinate(byte Cell)
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => MaxValue;
+	}
+
+	/// <inheritdoc/>
+	static Coordinate IDefaultable<Coordinate>.Default
+	{
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		get => Undefined;
 	}
 
 
@@ -89,7 +104,7 @@ public readonly record struct Coordinate(byte Cell)
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public int CompareTo(Coordinate other) => Cell.CompareTo(other.Cell);
+	public int CompareTo(Coordinate other) => Cell - other.Cell;
 
 	/// <inheritdoc cref="object.ToString"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

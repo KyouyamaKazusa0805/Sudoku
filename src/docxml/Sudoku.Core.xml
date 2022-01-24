@@ -3286,11 +3286,6 @@
             </summary>
             <seealso cref="T:Sudoku.Collections.Candidates"/>
         </member>
-        <member name="F:Sudoku.Data.CandidatesParsingOptions.None">
-            <summary>
-            Indicates the empty option.
-            </summary>
-        </member>
         <member name="F:Sudoku.Data.CandidatesParsingOptions.ShortForm">
             <summary>
             Indicates the short form, such as <c>312</c>.
@@ -3304,11 +3299,6 @@
         <member name="F:Sudoku.Data.CandidatesParsingOptions.PrepositionalForm">
             <summary>
             Indicates the prepositional form, such as <c>12{ r1c1, r3c3 }</c>.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Data.CandidatesParsingOptions.All">
-            <summary>
-            Indicates all forms.
             </summary>
         </member>
         <member name="T:Sudoku.Data.CellStatus">
@@ -3448,10 +3438,10 @@
             </summary>
             <param name="grid">The grid.</param>
         </member>
-        <member name="M:Sudoku.Data.Conclusion.GetHashCode">
+        <member name="M:Sudoku.Data.Conclusion.Equals(Sudoku.Data.Conclusion)">
             <inheritdoc cref="M:System.Object.GetHashCode"/>
         </member>
-        <member name="M:Sudoku.Data.Conclusion.Equals(Sudoku.Data.Conclusion)">
+        <member name="M:Sudoku.Data.Conclusion.GetHashCode">
             <inheritdoc cref="M:System.Object.GetHashCode"/>
         </member>
         <member name="M:Sudoku.Data.Conclusion.CompareTo(Sudoku.Data.Conclusion)">
@@ -3460,13 +3450,7 @@
         <member name="M:Sudoku.Data.Conclusion.ToString">
             <inheritdoc cref="M:System.Object.ToString"/>
         </member>
-        <member name="M:Sudoku.Data.Conclusion.System#IValueEquatable{Sudoku#Data#Conclusion}#Equals(Sudoku.Data.Conclusion@)">
-            <inheritdoc/>
-        </member>
         <member name="M:Sudoku.Data.Conclusion.System#IComparable#CompareTo(System.Object)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Data.Conclusion.System#IValueComparable{Sudoku#Data#Conclusion}#CompareTo(Sudoku.Data.Conclusion@)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Data.Conclusion.op_LessThan(Sudoku.Data.Conclusion,Sudoku.Data.Conclusion)">
@@ -3495,6 +3479,23 @@
             <summary>
             Indicates the conclusion is a candidate being remove from a cell.
             </summary>
+        </member>
+        <member name="T:Sudoku.Data.ConclusionTypeExtensions">
+            <summary>
+            Provides extension methods on <see cref="T:Sudoku.Data.ConclusionType"/>.
+            </summary>
+            <seealso cref="T:Sudoku.Data.ConclusionType"/>
+        </member>
+        <member name="M:Sudoku.Data.ConclusionTypeExtensions.GetNotation(Sudoku.Data.ConclusionType)">
+            <summary>
+            Gets the notation of the conclusion type.
+            </summary>
+            <param name="this">The conclusion type.</param>
+            <returns>The notation of the conclusion type.</returns>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+            Throws when the argument is not <see cref="F:Sudoku.Data.ConclusionType.Assignment"/>
+            or <see cref="F:Sudoku.Data.ConclusionType.Elimination"/>.
+            </exception>
         </member>
         <member name="T:Sudoku.Data.ConjugatePair">
             <summary>
@@ -3955,6 +3956,11 @@
         <member name="F:Sudoku.Data.GridParser.ParseFunctions">
             <summary>
             The list of all methods to parse.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Data.GridParser.MultilineParseFunctions">
+            <summary>
+            The list of all methods to parse multiple-line grid.
             </summary>
         </member>
         <member name="M:Sudoku.Data.GridParser.#ctor(System.String)">
@@ -5333,10 +5339,16 @@
             Indicates the current block lying in.
             </summary>
         </member>
+        <member name="P:Sudoku.Presentation.Coordinate.System#IDefaultable{Sudoku#Presentation#Coordinate}#IsDefault">
+            <inheritdoc/>
+        </member>
         <member name="P:Sudoku.Presentation.Coordinate.System#IMinMaxValue{Sudoku#Presentation#Coordinate}#MinValue">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Presentation.Coordinate.System#IMinMaxValue{Sudoku#Presentation#Coordinate}#MaxValue">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Presentation.Coordinate.System#IDefaultable{Sudoku#Presentation#Coordinate}#Default">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Presentation.Coordinate.Equals(Sudoku.Presentation.Coordinate)">

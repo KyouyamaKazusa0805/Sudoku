@@ -26,8 +26,6 @@ public readonly record struct Conclusion(int Mask)
 , IDefaultable<Conclusion>
 , IEqualityOperators<Conclusion, Conclusion>
 , IEquatable<Conclusion>
-, IValueComparable<Conclusion>
-, IValueEquatable<Conclusion>
 {
 	/// <summary>
 	/// <inheritdoc cref="IDefaultable{T}.Default"/>
@@ -97,10 +95,18 @@ public readonly record struct Conclusion(int Mask)
 	}
 
 	/// <inheritdoc/>
-	bool IDefaultable<Conclusion>.IsDefault => this == default;
+	bool IDefaultable<Conclusion>.IsDefault
+	{
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		get => this == default;
+	}
 
 	/// <inheritdoc/>
-	static Conclusion IDefaultable<Conclusion>.Default => Default;
+	static Conclusion IDefaultable<Conclusion>.Default
+	{
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		get => Default;
+	}
 
 
 	/// <summary>
@@ -150,36 +156,27 @@ public readonly record struct Conclusion(int Mask)
 
 	/// <inheritdoc cref="object.GetHashCode"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public override int GetHashCode() => ((int)ConclusionType + 1) * (Cell * 9 + Digit);
+	public bool Equals(Conclusion other) => Mask == other.Mask;
 
 	/// <inheritdoc cref="object.GetHashCode"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public bool Equals(Conclusion other) => GetHashCode() == other.GetHashCode();
+	public override int GetHashCode() => Mask;
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public int CompareTo(Conclusion other) => GetHashCode() - other.GetHashCode();
+	public int CompareTo(Conclusion other) => Mask - other.Mask;
 
 	/// <inheritdoc cref="object.ToString"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public override string ToString() =>
-		$"r{Cell / 9 + 1}c{Cell % 9 + 1} {ConclusionType switch
-		{
-			ConclusionType.Assignment => "=",
-			ConclusionType.Elimination => "<>"
-		}} {Digit + 1}";
+		$"{new Coordinate((byte)Cell)}{ConclusionType.GetNotation()}{Digit + 1}";
 
 	/// <inheritdoc/>
-	bool IValueEquatable<Conclusion>.Equals(in Conclusion other) => GetHashCode() == other.GetHashCode();
-
-	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	int IComparable.CompareTo(object? obj) =>
-		obj is not Conclusion comparer
-			? throw new ArgumentException("The argument must be of type 'Conclusion'", nameof(obj))
-			: CompareTo(comparer);
-
-	/// <inheritdoc/>
-	int IValueComparable<Conclusion>.CompareTo(in Conclusion other) => GetHashCode() - other.GetHashCode();
+		obj is Conclusion comparer
+			? CompareTo(comparer)
+			: throw new ArgumentException($"The argument must be of type '{nameof(Conclusion)}'", nameof(obj));
 
 
 	/// <inheritdoc/>

@@ -11,6 +11,11 @@ public unsafe ref partial struct GridParser
 	/// </summary>
 	private static readonly delegate*<ref GridParser, Grid>[] ParseFunctions;
 
+	/// <summary>
+	/// The list of all methods to parse multiple-line grid.
+	/// </summary>
+	private static readonly delegate*<ref GridParser, Grid>[] MultilineParseFunctions;
+
 
 	/// <summary>
 	/// Initializes an instance with parsing data.
@@ -69,6 +74,8 @@ public unsafe ref partial struct GridParser
 			&onParsingSukaku_2
 		};
 
+		MultilineParseFunctions = ParseFunctions[1..3];
+
 
 		static Grid onParsingSukaku_1(ref GridParser @this) => OnParsingSukaku(ref @this, @this.CompatibleFirst);
 		static Grid onParsingSukaku_2(ref GridParser @this) => OnParsingSukaku(ref @this, !@this.CompatibleFirst);
@@ -103,47 +110,38 @@ public unsafe ref partial struct GridParser
 	/// <returns>The grid.</returns>
 	public Grid Parse()
 	{
-		// Optimization: We can check some concrete type to reduce the unnecessary parsing.
-		switch (ParsingValue)
+		if (ParsingValue.Length == 729)
 		{
-			case { Length: 729 } when OnParsingExcel(ref this) is { IsUndefined: false } grid:
+			if (OnParsingExcel(ref this) is { IsUndefined: false } grid)
 			{
-				// The sukaku should be of length 729.
 				return grid;
 			}
-			case var _ when ParsingValue.Contains("-+-"):
+		}
+		else if (ParsingValue.Contains("-+-"))
+		{
+			foreach (var parseMethod in MultilineParseFunctions)
 			{
-				// The multi-line grid should be with the mark '-' and '+'.
-				for (int trial = 1; trial <= 3; trial++)
+				if (parseMethod(ref this) is { IsUndefined: false } grid)
 				{
-					if (ParseFunctions[trial](ref this) is { IsUndefined: false } grid)
-					{
-						return grid;
-					}
+					return grid;
 				}
-
-				break;
 			}
-			case var _ when ParsingValue.Contains('\t') && OnParsingExcel(ref this) is
+		}
+		else if (ParsingValue.Contains('\t'))
+		{
+			if (OnParsingExcel(ref this) is { IsUndefined: false } grid)
 			{
-				IsUndefined: false
-			} grid:
-			{
-				// The excel grid should be with '\t'.
 				return grid;
 			}
-			default:
+		}
+		else
+		{
+			for (int trial = 0, length = ParseFunctions.Length; trial < length; trial++)
 			{
-				// Other cases.
-				for (int trial = 0, length = ParseFunctions.Length; trial < length; trial++)
+				if (ParseFunctions[trial](ref this) is { IsUndefined: false } grid)
 				{
-					if (ParseFunctions[trial](ref this) is { IsUndefined: false } grid)
-					{
-						return grid;
-					}
+					return grid;
 				}
-
-				break;
 			}
 		}
 
