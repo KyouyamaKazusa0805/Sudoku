@@ -71,10 +71,9 @@ public sealed unsafe class SueDeCoq3DemensionStepSearcher : ISueDeCoq3DemensionS
 					// Iterate on the number of the cells that should be selected in block.
 					for (int i = 0, count = blockMap.Count; i < count; i++)
 					{
-						foreach (int[] selectedBlockCells in blockMap.ToArray().GetSubsets(i))
+						foreach (var selectedBlockCells in blockMap & i)
 						{
 							short blockMask = 0;
-							var currentBlockMap = new Cells(selectedBlockCells);
 							var elimMapBlock = Cells.Empty;
 
 							// Get the links of the block.
@@ -88,14 +87,13 @@ public sealed unsafe class SueDeCoq3DemensionStepSearcher : ISueDeCoq3DemensionS
 							{
 								elimMapBlock |= CandMaps[digit];
 							}
-							elimMapBlock &= blockMap - currentBlockMap;
+							elimMapBlock &= blockMap - selectedBlockCells;
 
-							for (int j = 1, limit = MathExtensions.Min(9 - i - currentBlockMap.Count, rowMap.Count, columnMap.Count); j < limit; j++)
+							for (int j = 1, limit = MathExtensions.Min(9 - i - selectedBlockCells.Count, rowMap.Count, columnMap.Count); j < limit; j++)
 							{
-								foreach (int[] selectedRowCells in rowMap & j)
+								foreach (var selectedRowCells in rowMap & j)
 								{
 									short rowMask = 0;
-									var currentRowMap = new Cells(selectedRowCells);
 									var elimMapRow = Cells.Empty;
 
 									foreach (int cell in selectedRowCells)
@@ -107,14 +105,13 @@ public sealed unsafe class SueDeCoq3DemensionStepSearcher : ISueDeCoq3DemensionS
 									{
 										elimMapRow |= CandMaps[digit];
 									}
-									elimMapRow &= RegionMaps[r] - rbCurrentMap - currentRowMap;
+									elimMapRow &= RegionMaps[r] - rbCurrentMap - selectedRowCells;
 
-									for (int k = 1; k <= MathExtensions.Min(9 - i - j - currentBlockMap.Count - currentRowMap.Count, rowMap.Count, columnMap.Count); k++)
+									for (int k = 1; k <= MathExtensions.Min(9 - i - j - selectedBlockCells.Count - selectedRowCells.Count, rowMap.Count, columnMap.Count); k++)
 									{
-										foreach (int[] selectedColumnCells in columnMap & k)
+										foreach (var selectedColumnCells in columnMap & k)
 										{
 											short columnMask = 0;
-											var currentColumnMap = new Cells(selectedColumnCells);
 											var elimMapColumn = Cells.Empty;
 
 											foreach (int cell in selectedColumnCells)
@@ -126,7 +123,7 @@ public sealed unsafe class SueDeCoq3DemensionStepSearcher : ISueDeCoq3DemensionS
 											{
 												elimMapColumn |= CandMaps[digit];
 											}
-											elimMapColumn &= RegionMaps[c] - cbCurrentMap - currentColumnMap;
+											elimMapColumn &= RegionMaps[c] - cbCurrentMap - selectedColumnCells;
 
 											if ((blockMask & rowMask) != 0
 												&& (rowMask & columnMask) != 0
@@ -135,9 +132,9 @@ public sealed unsafe class SueDeCoq3DemensionStepSearcher : ISueDeCoq3DemensionS
 												continue;
 											}
 
-											var fullMap = rbCurrentMap | cbCurrentMap | currentRowMap | currentColumnMap | currentBlockMap;
-											var otherMap_row = fullMap - (currentRowMap | rbCurrentMap);
-											var otherMap_column = fullMap - (currentColumnMap | cbCurrentMap);
+											var fullMap = rbCurrentMap | cbCurrentMap | selectedRowCells | selectedColumnCells | selectedBlockCells;
+											var otherMap_row = fullMap - (selectedRowCells | rbCurrentMap);
+											var otherMap_column = fullMap - (selectedColumnCells | cbCurrentMap);
 											short mask = 0;
 											foreach (int cell in otherMap_row)
 											{
@@ -201,15 +198,15 @@ public sealed unsafe class SueDeCoq3DemensionStepSearcher : ISueDeCoq3DemensionS
 
 #if false
 												var cellOffsets = new List<(int, ColorIdentifier)>();
-												foreach (int cell in currentRowMap | rbCurrentMap)
+												foreach (int cell in selectedRowCells | rbCurrentMap)
 												{
 													cellOffsets.Add((cell, (ColorIdentifier)0));
 												}
-												foreach (int cell in currentColumnMap | cbCurrentMap)
+												foreach (int cell in selectedColumnCells | cbCurrentMap)
 												{
 													cellOffsets.Add((cell, (ColorIdentifier)1));
 												}
-												foreach (int cell in currentBlockMap)
+												foreach (int cell in selectedBlockCells)
 												{
 													cellOffsets.Add((cell, (ColorIdentifier)2));
 												}
@@ -218,7 +215,7 @@ public sealed unsafe class SueDeCoq3DemensionStepSearcher : ISueDeCoq3DemensionS
 												var candidateOffsets = new List<(int, ColorIdentifier)>();
 												foreach (int digit in rowMask)
 												{
-													foreach (int cell in (currentRowMap | rbCurrentMap) & CandMaps[digit])
+													foreach (int cell in (selectedRowCells | rbCurrentMap) & CandMaps[digit])
 													{
 														candidateOffsets.Add(
 															(
@@ -230,7 +227,7 @@ public sealed unsafe class SueDeCoq3DemensionStepSearcher : ISueDeCoq3DemensionS
 												}
 												foreach (int digit in columnMask)
 												{
-													foreach (int cell in (currentColumnMap | cbCurrentMap) & CandMaps[digit])
+													foreach (int cell in (selectedColumnCells | cbCurrentMap) & CandMaps[digit])
 													{
 														candidateOffsets.Add(
 															(
@@ -242,7 +239,7 @@ public sealed unsafe class SueDeCoq3DemensionStepSearcher : ISueDeCoq3DemensionS
 												}
 												foreach (int digit in blockMask)
 												{
-													foreach (int cell in (currentBlockMap | rbCurrentMap | cbCurrentMap) & CandMaps[digit])
+													foreach (int cell in (selectedBlockCells | rbCurrentMap | cbCurrentMap) & CandMaps[digit])
 													{
 														candidateOffsets.Add(
 															(
@@ -268,9 +265,9 @@ public sealed unsafe class SueDeCoq3DemensionStepSearcher : ISueDeCoq3DemensionS
 													rowMask,
 													columnMask,
 													blockMask,
-													currentRowMap | rbCurrentMap,
-													currentColumnMap | cbCurrentMap,
-													currentBlockMap | rbCurrentMap | cbCurrentMap
+													selectedRowCells | rbCurrentMap,
+													selectedColumnCells | cbCurrentMap,
+													selectedBlockCells | rbCurrentMap | cbCurrentMap
 												);
 												if (onlyFindOne)
 												{
@@ -298,9 +295,9 @@ public sealed unsafe class SueDeCoq3DemensionStepSearcher : ISueDeCoq3DemensionS
 			list->Clear();
 			switch (*emptyMap)
 			{
-				case [var i, var j]:
+				case [_, _]:
 				{
-					list->Add(new() { i, j });
+					list->Add(*emptyMap);
 
 					break;
 				}

@@ -337,7 +337,7 @@ public record struct Node(int Mask) : IDefaultable<Node>, IEqualityOperators<Nod
 	{
 		if (ParentsCount == 0)
 		{
-			return $"Candidate: {new Cells { Cell }}({Digit + 1})";
+			return $"Candidate: {new Coordinate(Cell)}({Digit + 1})";
 		}
 		else
 		{
@@ -349,7 +349,7 @@ public record struct Node(int Mask) : IDefaultable<Node>, IEqualityOperators<Nod
 			}
 
 			char? plural = nodes.Count == 1 ? 's' : null;
-			return $"Candidate: {new Cells { Cell }}({Digit + 1}), Parent{plural}: {nodes}";
+			return $"Candidate: {new Coordinate(Cell)}({Digit + 1}), Parent{plural}: {nodes}";
 		}
 	}
 

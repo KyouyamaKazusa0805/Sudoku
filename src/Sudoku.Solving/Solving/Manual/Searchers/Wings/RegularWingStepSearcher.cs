@@ -63,7 +63,7 @@ public sealed unsafe class RegularWingStepSearcher : IRegularWingStepSearcher
 				}
 
 				// Iterate on each cell combination.
-				foreach (int[] cells in map.ToArray().GetSubsets(size - 1))
+				foreach (int[] cells in map & size - 1)
 				{
 					// Check duplicate.
 					// If two cells contain same candidates, the wing can't be formed.

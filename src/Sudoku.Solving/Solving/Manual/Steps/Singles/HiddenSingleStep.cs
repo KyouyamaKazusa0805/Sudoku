@@ -40,7 +40,7 @@ public sealed record HiddenSingleStep(
 	private string CellStr
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => new Cells { Cell }.ToString();
+		get => new Coordinate((byte)Cell).ToString();
 	}
 
 	[FormatItem]

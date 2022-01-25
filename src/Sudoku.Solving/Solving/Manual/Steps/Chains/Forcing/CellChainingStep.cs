@@ -64,6 +64,6 @@ public sealed record CellChainingStep(
 	private string SourceCellStr
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => new Cells { SourceCell }.ToString();
+		get => new Coordinate((byte)SourceCell).ToString();
 	}
 }

@@ -404,14 +404,9 @@ public sealed unsafe class QiuDeadlyPatternStepSearcher : IQiuDeadlyPatternStepS
 		foreach (int region in pair.CoveredRegions)
 		{
 			var allCellsMap = (RegionMaps[region] & EmptyMap) - pair;
-			int[] allCells = allCellsMap.ToArray();
-			for (
-				int size = PopCount((uint)otherDigitsMask) - 1, length = allCells.Length;
-				size < length;
-				size++
-			)
+			for (int size = PopCount((uint)otherDigitsMask) - 1, length = allCellsMap.Count; size < length; size++)
 			{
-				foreach (int[] cells in allCells.GetSubsets(size))
+				foreach (var cells in allCellsMap & size)
 				{
 					short mask = 0;
 					foreach (int cell in cells)

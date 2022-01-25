@@ -43,9 +43,9 @@ public sealed unsafe class SueDeCoqStepSearcher : ISueDeCoqStepSearcher
 				list.Clear();
 				switch (emptyCellsInInterMap)
 				{
-					case [var i, var j]:
+					case [_, _]:
 					{
-						list.Add(new() { i, i });
+						list.Add(emptyCellsInInterMap);
 
 						break;
 					}
@@ -54,7 +54,7 @@ public sealed unsafe class SueDeCoqStepSearcher : ISueDeCoqStepSearcher
 						list.Add(new() { i, j });
 						list.Add(new() { j, k });
 						list.Add(new() { i, k });
-						list.Add(new() { i, j, k });
+						list.Add(emptyCellsInInterMap);
 
 						break;
 					}

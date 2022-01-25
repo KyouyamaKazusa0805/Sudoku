@@ -168,7 +168,7 @@ public sealed unsafe class SingleStepSearcher : ISingleStepSearcher
 						{
 							if (grid[peerCell] == i)
 							{
-								directLines.Add((new(new Cells { peerCell }, Cells.Empty), (ColorIdentifier)0));
+								directLines.Add((new(new() { peerCell }, Cells.Empty), (ColorIdentifier)0));
 								flag = true;
 								break;
 							}

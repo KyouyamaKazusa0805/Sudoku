@@ -254,10 +254,10 @@ public sealed unsafe class UniqueSquareStepSearcher : IUniqueSquareStepSearcher
 
 			foreach (int region in tempMap.CoveredRegions)
 			{
-				int[] allCells = ((RegionMaps[region] & EmptyMap) - pattern).ToArray();
-				for (int size = PopCount((uint)extraDigitsMask) - 1, count = allCells.Length; size < count; size++)
+				var allCells = (RegionMaps[region] & EmptyMap) - pattern;
+				for (int size = PopCount((uint)extraDigitsMask) - 1, count = allCells.Count; size < count; size++)
 				{
-					foreach (int[] cells in allCells.GetSubsets(size))
+					foreach (var cells in allCells & size)
 					{
 						short tempMask = 0;
 						foreach (int cell in cells)
@@ -270,11 +270,10 @@ public sealed unsafe class UniqueSquareStepSearcher : IUniqueSquareStepSearcher
 							continue;
 						}
 
-						var cellsMap = new Cells(cells);
 						var conclusions = new List<Conclusion>();
 						foreach (int digit in tempMask)
 						{
-							foreach (int cell in (allCells - cellsMap) & CandMaps[digit])
+							foreach (int cell in (allCells - cells) & CandMaps[digit])
 							{
 								conclusions.Add(new(ConclusionType.Elimination, cell, digit));
 							}

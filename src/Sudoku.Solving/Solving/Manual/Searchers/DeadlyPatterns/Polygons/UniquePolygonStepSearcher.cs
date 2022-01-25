@@ -53,19 +53,28 @@ public sealed unsafe class UniquePolygonStepSearcher : IUniquePolygonStepSearche
 
 		static void gatherHeptagons(int block, int i, int[] quad, ref int count)
 		{
+			if (quad is not [var q1, var q2, var q3, var q4])
+			{
+				return;
+			}
+
 			int[][] triplets = new int[4][]
 			{
-				new[] { quad[0], quad[1], quad[2] }, // (0, 1) and (0, 2) is same region.
-				new[] { quad[1], quad[0], quad[3] }, // (0, 1) and (1, 3) is same region.
-				new[] { quad[2], quad[0], quad[3] }, // (0, 2) and (2, 3) is same region.
-				new[] { quad[3], quad[1], quad[2] }, // (1, 3) and (2, 3) is same region.
+				new[] { q1, q2, q3 }, // (0, 1) and (0, 2) is same region.
+				new[] { q2, q1, q4 }, // (0, 1) and (1, 3) is same region.
+				new[] { q3, q1, q4 }, // (0, 2) and (2, 3) is same region.
+				new[] { q4, q2, q3 }, // (1, 3) and (2, 3) is same region.
 			};
 
 			for (int j = 0; j < 4; j++)
 			{
-				int[] triplet = triplets[j];
-				int region1 = new Cells { triplet[0], triplet[1] }.CoveredLine;
-				int region2 = new Cells { triplet[0], triplet[2] }.CoveredLine;
+				if (triplets[j] is not [var t1, var t2, var t3] triplet)
+				{
+					continue;
+				}
+
+				int region1 = new Cells { t1, t2 }.CoveredLine;
+				int region2 = new Cells { t1, t3 }.CoveredLine;
 				int[,] pair1 = new int[6, 2], pair2 = new int[6, 2];
 				var (incre1, incre2) = i switch
 				{
@@ -122,15 +131,20 @@ public sealed unsafe class UniquePolygonStepSearcher : IUniquePolygonStepSearche
 
 		static void gatherOctagons(int block, int i, int[] quad, ref int count)
 		{
-			int region1 = new Cells { quad[0], quad[1] }.CoveredLine;
-			int region2 = new Cells { quad[0], quad[2] }.CoveredLine;
+			if (quad is not [var t1, var t2, var t3, _])
+			{
+				return;
+			}
+
+			int region1 = new Cells { t1, t2 }.CoveredLine;
+			int region2 = new Cells { t1, t3 }.CoveredLine;
 			int[,] pair1 = new int[6, 2], pair2 = new int[6, 2];
 			var (incre1, incre2) = i switch
 			{
 				0 or 1 or 2 or 3 => (9, 1),
 				4 or 5 => (9, 2),
 				6 or 7 => (18, 1),
-				8 => (18, 2),
+				8 => (18, 2)
 			};
 			if (region1 is >= 9 and < 18)
 			{
@@ -427,15 +441,10 @@ public sealed unsafe class UniquePolygonStepSearcher : IUniquePolygonStepSearche
 
 				// Iterate on the cells by the specified size.
 				var iterationCellsMap = (RegionMaps[region] - currentMap) & EmptyMap;
-				int[] iterationCells = iterationCellsMap.ToArray();
 				short otherDigitsMask = (short)(orMask & ~tempMask);
-				for (
-					int size = PopCount((uint)otherDigitsMask) - 1, count = iterationCellsMap.Count;
-					size < count;
-					size++
-				)
+				for (int size = PopCount((uint)otherDigitsMask) - 1, count = iterationCellsMap.Count; size < count; size++)
 				{
-					foreach (int[] combination in iterationCells.GetSubsets(size))
+					foreach (var combination in iterationCellsMap & size)
 					{
 						short comparer = 0;
 						foreach (int cell in combination)

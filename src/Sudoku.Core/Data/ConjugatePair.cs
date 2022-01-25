@@ -83,5 +83,6 @@ public readonly record struct ConjugatePair(int From, int To, int Digit, in Cell
 
 	/// <inheritdoc cref="object.ToString"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public override string ToString() => $"{new Cells { From }} == {new Cells { To }}({Digit + 1})";
+	public override string ToString() =>
+		$"{new Coordinate((byte)From)} == {new Coordinate((byte)To)}({Digit + 1})";
 }

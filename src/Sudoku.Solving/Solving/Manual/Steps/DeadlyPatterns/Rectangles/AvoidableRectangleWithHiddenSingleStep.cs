@@ -47,14 +47,14 @@ public sealed record AvoidableRectangleWithHiddenSingleStep(
 	private string BaseCellStr
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => new Cells { BaseCell }.ToString();
+		get => new Coordinate((byte)BaseCell).ToString();
 	}
 
 	[FormatItem]
 	private string TargetCellStr
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => new Cells { TargetCell }.ToString();
+		get => new Coordinate((byte)TargetCell).ToString();
 	}
 
 	[FormatItem]

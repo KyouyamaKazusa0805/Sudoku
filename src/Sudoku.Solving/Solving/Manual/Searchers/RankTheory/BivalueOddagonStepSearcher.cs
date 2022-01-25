@@ -282,10 +282,10 @@ public sealed unsafe class BivalueOddagonStepSearcher : IBivalueOddagonStepSearc
 				goto ReturnNull;
 			}
 
-			int[] otherCells = ((RegionMaps[region] & EmptyMap) - loop).ToArray();
-			for (int size = PopCount((uint)otherDigitsMask) - 1, count = otherCells.Length; size < count; size++)
+			var otherCells = (RegionMaps[region] & EmptyMap) - loop;
+			for (int size = PopCount((uint)otherDigitsMask) - 1, count = otherCells.Count; size < count; size++)
 			{
-				foreach (int[] cells in otherCells.GetSubsets(size))
+				foreach (var cells in otherCells & size)
 				{
 					short mask = 0;
 					foreach (int cell in cells)
@@ -323,7 +323,10 @@ public sealed unsafe class BivalueOddagonStepSearcher : IBivalueOddagonStepSearc
 						foreach (int digit in grid.GetCandidates(cell))
 						{
 							candidateOffsets.Add(
-								(cell * 9 + digit, (ColorIdentifier)((otherDigitsMask >> digit & 1) != 0 ? 1 : 0))
+								(
+									cell * 9 + digit,
+									(ColorIdentifier)((otherDigitsMask >> digit & 1) != 0 ? 1 : 0)
+								)
 							);
 						}
 					}

@@ -181,10 +181,9 @@ public sealed unsafe class BivalueUniversalGraveStepSearcher : IBivalueUniversal
 			}
 
 			// Iterate on each size.
-			int[] otherCells = otherCellsMap.ToArray();
-			for (int size = 1, length = otherCells.Length; size < length; size++)
+			for (int size = 1, length = otherCellsMap.Count; size < length; size++)
 			{
-				foreach (int[] cells in otherCells.GetSubsets(size))
+				foreach (var cells in otherCellsMap & size)
 				{
 					short mask = digitsMask;
 					foreach (int cell in cells)

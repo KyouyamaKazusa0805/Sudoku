@@ -53,14 +53,14 @@ public sealed record EmptyRectangleIntersectionPairStep(
 	private string StartCellStr
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => new Cells { StartCell }.ToString();
+		get => new Coordinate((byte)StartCell).ToString();
 	}
 
 	[FormatItem]
 	private string EndCellStr
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => new Cells { EndCell }.ToString();
+		get => new Coordinate((byte)EndCell).ToString();
 	}
 
 	[FormatItem]

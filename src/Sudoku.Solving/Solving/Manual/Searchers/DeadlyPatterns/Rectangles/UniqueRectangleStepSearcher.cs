@@ -630,13 +630,9 @@ public sealed unsafe class UniqueRectangleStepSearcher : IUniqueRectangleStepSea
 			}
 
 			var iterationMap = (RegionMaps[region] & EmptyMap) - otherCellsMap;
-			for (
-				int size = PopCount((uint)otherDigitsMask) - 1, count = iterationMap.Count;
-				size < count;
-				size++
-			)
+			for (int size = PopCount((uint)otherDigitsMask) - 1, count = iterationMap.Count; size < count; size++)
 			{
-				foreach (int[] iteratedCells in iterationMap.ToArray().GetSubsets(size))
+				foreach (var iteratedCells in iterationMap & size)
 				{
 					short tempMask = 0;
 					foreach (int cell in iteratedCells)
@@ -3192,7 +3188,7 @@ public sealed unsafe class UniqueRectangleStepSearcher : IUniqueRectangleStepSea
 		byte line = (byte)otherCellsMap.CoveredLine;
 		byte block = (byte)TrailingZeroCount(otherCellsMap.CoveredRegions & ~(1 << line));
 		var (a, _, _, d) = IntersectionMaps[(line, block)];
-		var list = new List<Cells>(4);
+		var list = new ValueList<Cells>(4);
 		bool* cannibalModes = stackalloc[] { false, true };
 		for (int cannibalModeIndex = 0; cannibalModeIndex < 2; cannibalModeIndex++)
 		{
@@ -3209,22 +3205,20 @@ public sealed unsafe class UniqueRectangleStepSearcher : IUniqueRectangleStepSea
 				Cells b = RegionMaps[otherBlock] - RegionMaps[line], c = a & b;
 
 				list.Clear();
-				int[] offsets = emptyCellsInInterMap.ToArray();
-				switch (emptyCellsInInterMap.Count)
+				switch (emptyCellsInInterMap)
 				{
-					case 2:
+					case [_, _]:
 					{
-						list.Add(new() { offsets[0], offsets[1] });
+						list.Add(emptyCellsInInterMap);
 
 						break;
 					}
-					case 3:
+					case [var i, var j, var k]:
 					{
-						int i = offsets[0], j = offsets[1], k = offsets[2];
 						list.Add(new() { i, j });
 						list.Add(new() { j, k });
 						list.Add(new() { i, k });
-						list.Add(new() { i, j, k });
+						list.Add(emptyCellsInInterMap);
 
 						break;
 					}
@@ -3252,7 +3246,7 @@ public sealed unsafe class UniqueRectangleStepSearcher : IUniqueRectangleStepSea
 					for (int i = 1; i <= blockMap.Count - 1; i++)
 					{
 						// Iterate on each combination in block.
-						foreach (int[] selectedCellsInBlock in blockMap.ToArray().GetSubsets(i))
+						foreach (var selectedCellsInBlock in blockMap & i)
 						{
 							bool flag = false;
 							foreach (int digit in otherDigitsMask)
