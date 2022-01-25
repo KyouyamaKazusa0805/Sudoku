@@ -5,8 +5,7 @@
 /// </summary>
 public readonly unsafe struct GridSegment :
 	IEqualityOperators<GridSegment, GridSegment>,
-	IEquatable<GridSegment>,
-	IValueEquatable<GridSegment>
+	IEquatable<GridSegment>
 {
 	/// <summary>
 	/// Indicates the list of masks used.
@@ -161,10 +160,6 @@ public readonly unsafe struct GridSegment :
 	/// <inheritdoc cref="object.ToString"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public override string ToString() => $"{{ {nameof(GridSegment)} ({_gridCode} at {Cells}) }}";
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	bool IValueEquatable<GridSegment>.Equals(in GridSegment other) => Equals(other);
 
 
 	/// <inheritdoc cref="IEqualityOperators{TSelf, TOther}.operator =="/>

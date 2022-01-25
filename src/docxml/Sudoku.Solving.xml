@@ -293,6 +293,21 @@
             <summary>
             Encapsulates a normal almost locked set (ALS as its abberivation).
             </summary>
+            <param name="DigitsMask">Indicates the mask of each digit.</param>
+            <param name="Map">Indicates the map that ALS lying on.</param>
+            <param name="PossibleEliminationSet">Indicates the possible elimination set.</param>
+            <param name="IsBivalueCell">Indicates whether this instance is a bi-value-cell ALS.</param>
+            <param name="Region">Indicates the region that the instance lies in.</param>
+        </member>
+        <member name="M:Sudoku.Solving.Collections.AlmostLockedSet.#ctor(System.Int16,Sudoku.Collections.Cells@,Sudoku.Collections.Cells@,System.Boolean,System.Int32)">
+            <summary>
+            Encapsulates a normal almost locked set (ALS as its abberivation).
+            </summary>
+            <param name="DigitsMask">Indicates the mask of each digit.</param>
+            <param name="Map">Indicates the map that ALS lying on.</param>
+            <param name="PossibleEliminationSet">Indicates the possible elimination set.</param>
+            <param name="IsBivalueCell">Indicates whether this instance is a bi-value-cell ALS.</param>
+            <param name="Region">Indicates the region that the instance lies in.</param>
         </member>
         <member name="F:Sudoku.Solving.Collections.AlmostLockedSet.StrongRelationsCount">
             <summary>
@@ -301,56 +316,19 @@
             </summary>
             <seealso cref="P:Sudoku.Solving.Collections.AlmostLockedSet.StrongLinksMask"/>
         </member>
-        <member name="M:Sudoku.Solving.Collections.AlmostLockedSet.#ctor(System.Int16,Sudoku.Collections.Cells@)">
-            <summary>
-            Initializes an instance with the specified digit mask and the map of cells.
-            </summary>
-            <param name="digitMask">The digit mask.</param>
-            <param name="map">The map.</param>
-        </member>
         <member name="M:Sudoku.Solving.Collections.AlmostLockedSet.#ctor(System.Int16,Sudoku.Collections.Cells@,Sudoku.Collections.Cells@)">
             <summary>
             Initializes an instance with the specified digit mask and the map of cells.
             </summary>
             <param name="digitMask">The digit mask.</param>
             <param name="map">The map.</param>
-            <param name="possibleEliminationSet">
-            The possible elimination set.
-            </param>
-        </member>
-        <member name="P:Sudoku.Solving.Collections.AlmostLockedSet.IsBivalueCell">
-            <summary>
-            Indicates whether this instance is a bi-value-cell ALS.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Solving.Collections.AlmostLockedSet.Region">
-            <summary>
-            Indicates the region that the instance lies in.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Solving.Collections.AlmostLockedSet.DigitsMask">
-            <summary>
-            Indicates the mask of each digit.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Solving.Collections.AlmostLockedSet.Map">
-            <summary>
-            Indicates the map that ALS lying on.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Solving.Collections.AlmostLockedSet.PossibleEliminationSet">
-            <summary>
-            Indicates the possible elimination set.
-            </summary>
+            <param name="possibleEliminationSet">The possible elimination set.</param>
         </member>
         <member name="P:Sudoku.Solving.Collections.AlmostLockedSet.StrongLinksMask">
             <summary>
             Indicates all strong links in this ALS. The result will be represented
             as a <see cref="T:System.Int16"/> mask of 9 bits indicating which bits used.
             </summary>
-        </member>
-        <member name="M:Sudoku.Solving.Collections.AlmostLockedSet.Equals(System.Object)">
-            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
         </member>
         <member name="M:Sudoku.Solving.Collections.AlmostLockedSet.Equals(Sudoku.Solving.Collections.AlmostLockedSet@)">
             <summary>
@@ -398,6 +376,15 @@
             ]]></code>
             </remarks>
             <seealso cref="M:System.ArrayExtensions.EnumerateRef``1(``0[])"/>
+        </member>
+        <member name="M:Sudoku.Solving.Collections.AlmostLockedSet.InitRegionProperty(Sudoku.Collections.Cells@)">
+            <summary>
+            To initialize the property <see cref="P:Sudoku.Solving.Collections.AlmostLockedSet.Region"/>.
+            </summary>
+            <param name="map">The value of property <see cref="P:Sudoku.Solving.Collections.AlmostLockedSet.Map"/>.</param>
+            <returns>The region value.</returns>
+            <seealso cref="P:Sudoku.Solving.Collections.AlmostLockedSet.Region"/>
+            <seealso cref="P:Sudoku.Solving.Collections.AlmostLockedSet.Map"/>
         </member>
         <member name="M:Sudoku.Solving.Collections.AlmostLockedSet.op_Equality(Sudoku.Solving.Collections.AlmostLockedSet@,Sudoku.Solving.Collections.AlmostLockedSet@)">
             <summary>
@@ -568,77 +555,63 @@
             and the lines of two target cells lying on can't contain any base digits.
             </para>
             </summary>
+            <param name="Base1">Indicates the first base cell.</param>
+            <param name="Base2">Indicates the second base cell.</param>
+            <param name="TargetQ1">Indicates the first target cell in the Q part.</param>
+            <param name="TargetQ2">Indicates the second target cell in the Q part.</param>
+            <param name="TargetR1">Indicates the first target cell in the R part.</param>
+            <param name="TargetR2">Indicates the second target cell in the R part.</param>
+            <param name="MirrorQ1">Indicates the first mirror cell in the Q part.</param>
+            <param name="MirrorQ2">Indicates the second mirror cell in the Q part.</param>
+            <param name="MirrorR1">Indicates the first mirror cell in the R part.</param>
+            <param name="MirrorR2">Indicates the second mirror cell in the R part.</param>
+            <param name="CrossLine">Indicates the cross-line cells.</param>
         </member>
-        <member name="M:Sudoku.Solving.Collections.ExocetPattern.#ctor(System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,Sudoku.Collections.Cells@,Sudoku.Collections.Cells@,Sudoku.Collections.Cells@,Sudoku.Collections.Cells@,Sudoku.Collections.Cells@)">
+        <member name="M:Sudoku.Solving.Collections.ExocetPattern.#ctor(System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,Sudoku.Collections.Cells,Sudoku.Collections.Cells,Sudoku.Collections.Cells,Sudoku.Collections.Cells,Sudoku.Collections.Cells)">
             <summary>
-            Initializes an instance with the specified cells.
+            <para>
+            Indicates an exocet pattern. The pattern will be like:
+            <code><![CDATA[
+            .-------.-------.-------.
+            | B B E | E . . | E . . |
+            | . . E | Q . . | R . . |
+            | . . E | Q . . | R . . |
+            :-------+-------+-------:
+            | . . S | S . . | S . . |
+            | . . S | S . . | S . . |
+            | . . S | S . . | S . . |
+            :-------+-------+-------:
+            | . . S | S . . | S . . |
+            | . . S | S . . | S . . |
+            | . . S | S . . | S . . |
+            '-------'-------'-------'
+            ]]></code>
+            Where:
+            <list type="table">
+            <item><term>B</term><description>Base Cells.</description></item>
+            <item><term>Q</term><description>1st Object Pair (Target cells pair 1).</description></item>
+            <item><term>R</term><description>2nd Object Pair (Target cells pair 2).</description></item>
+            <item><term>S</term><description>Cross-line Cells.</description></item>
+            <item><term>E</term><description>Escape Cells.</description></item>
+            </list>
+            </para>
+            <para>
+            In the data structure, all letters will be used as the same one in this exemplar.
+            In addition, if senior exocet, one of two target cells will lie in cross-line cells,
+            and the lines of two target cells lying on can't contain any base digits.
+            </para>
             </summary>
-            <param name="base1">The base cell 1.</param>
-            <param name="base2">The base cell 2.</param>
-            <param name="tq1">The target Q1 cell.</param>
-            <param name="tq2">The target Q2 cell.</param>
-            <param name="tr1">The target R1 cell.</param>
-            <param name="tr2">The target R2 cell.</param>
-            <param name="crossline">The cross line cells.</param>
-            <param name="mq1">The mirror Q1 cell.</param>
-            <param name="mq2">The mirror Q2 cell.</param>
-            <param name="mr1">The mirror R1 cell.</param>
-            <param name="mr2">The mirror R2 cell.</param>
-        </member>
-        <member name="P:Sudoku.Solving.Collections.ExocetPattern.Base1">
-            <summary>
-            Indicates the base cell 1.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Solving.Collections.ExocetPattern.Base2">
-            <summary>
-            Indicates the base cell 2.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Solving.Collections.ExocetPattern.TargetQ1">
-            <summary>
-            Indicates the target Q1 cell.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Solving.Collections.ExocetPattern.TargetQ2">
-            <summary>
-            Indicates the target Q2 cell.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Solving.Collections.ExocetPattern.TargetR1">
-            <summary>
-            Indicates the target R1 cell.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Solving.Collections.ExocetPattern.TargetR2">
-            <summary>
-            Indicates the target R2 cell.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Solving.Collections.ExocetPattern.CrossLine">
-            <summary>
-            Indicates the cross line cells.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Solving.Collections.ExocetPattern.MirrorQ1">
-            <summary>
-            Indicates the mirror Q1 cell.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Solving.Collections.ExocetPattern.MirrorQ2">
-            <summary>
-            Indicates the mirror Q2 cell.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Solving.Collections.ExocetPattern.MirrorR1">
-            <summary>
-            Indicates the mirror R1 cell.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Solving.Collections.ExocetPattern.MirrorR2">
-            <summary>
-            Indicates the mirror R2 cell.
-            </summary>
+            <param name="Base1">Indicates the first base cell.</param>
+            <param name="Base2">Indicates the second base cell.</param>
+            <param name="TargetQ1">Indicates the first target cell in the Q part.</param>
+            <param name="TargetQ2">Indicates the second target cell in the Q part.</param>
+            <param name="TargetR1">Indicates the first target cell in the R part.</param>
+            <param name="TargetR2">Indicates the second target cell in the R part.</param>
+            <param name="MirrorQ1">Indicates the first mirror cell in the Q part.</param>
+            <param name="MirrorQ2">Indicates the second mirror cell in the Q part.</param>
+            <param name="MirrorR1">Indicates the first mirror cell in the R part.</param>
+            <param name="MirrorR2">Indicates the second mirror cell in the R part.</param>
+            <param name="CrossLine">Indicates the cross-line cells.</param>
         </member>
         <member name="P:Sudoku.Solving.Collections.ExocetPattern.Map">
             <inheritdoc/>
@@ -658,9 +631,6 @@
             Indicates the target cells.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Collections.ExocetPattern.Equals(System.Object)">
-            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
-        </member>
         <member name="M:Sudoku.Solving.Collections.ExocetPattern.Equals(Sudoku.Solving.Collections.ExocetPattern@)">
             <summary>
             Determine whether the specified <see cref="T:Sudoku.Solving.Collections.ExocetPattern"/> instance holds the same cell maps
@@ -674,22 +644,6 @@
         </member>
         <member name="M:Sudoku.Solving.Collections.ExocetPattern.ToString">
             <inheritdoc cref="M:System.Object.ToString"/>
-        </member>
-        <member name="M:Sudoku.Solving.Collections.ExocetPattern.op_Equality(Sudoku.Solving.Collections.ExocetPattern@,Sudoku.Solving.Collections.ExocetPattern@)">
-            <summary>
-            Determine whether two <see cref="T:Sudoku.Solving.Collections.ExocetPattern"/>s hold same cell map sets.
-            </summary>
-            <param name="left">The left-side instance to compare.</param>
-            <param name="right">The right-side instance to compare.</param>
-            <returns>A <see cref="T:System.Boolean"/> result.</returns>
-        </member>
-        <member name="M:Sudoku.Solving.Collections.ExocetPattern.op_Inequality(Sudoku.Solving.Collections.ExocetPattern@,Sudoku.Solving.Collections.ExocetPattern@)">
-            <summary>
-            Determine whether two <see cref="T:Sudoku.Solving.Collections.ExocetPattern"/>s don't hold same cell map sets.
-            </summary>
-            <param name="left">The left-side instance to compare.</param>
-            <param name="right">The right-side instance to compare.</param>
-            <returns>A <see cref="T:System.Boolean"/> result.</returns>
         </member>
         <member name="T:Sudoku.Solving.Collections.IPattern`1">
             <summary>
@@ -779,7 +733,34 @@
         </member>
         <member name="T:Sudoku.Solving.Collections.UniquePolygonPattern">
             <summary>
-            Defines a pattern that is a unique polygon technique structure in theory.
+            Defines a pattern that is a unique polygon technique structure in theory. The sketch is like:
+            <code><![CDATA[
+            .-------.-------.-------.
+            | . . . | . . . | . . . |
+            | . . . | . . . | . . . |
+            | . . . | . . . | . . . |
+            :-------+-------+-------:
+            | . . . | . . . | . . . |
+            | . . . | . . . | . . . |
+            | . . . | . . . | P P . |
+            :-------+-------+-------:
+            | . . . | . . Q | S S . |
+            | . . . | . . Q | S(S). |
+            | . . . | . . . | . . . |
+            '-------'-------'-------'
+            ]]></code>
+            Where:
+            <list type="table">
+            <item><term>P</term><description>The first group of cells.</description></item>
+            <item><term>Q</term><description>The second group of cells.</description></item>
+            <item>
+            <term>S</term>
+            <description>
+            The square cells of size 3 or 4. The cell with the bracket (r8c8 in the picture)
+            is optional.
+            </description>
+            </item>
+            </list>
             </summary>
             <param name="Mask">The mask that forms a structure.</param>
             <remarks>
@@ -803,7 +784,34 @@
         </member>
         <member name="M:Sudoku.Solving.Collections.UniquePolygonPattern.#ctor(System.Int64)">
             <summary>
-            Defines a pattern that is a unique polygon technique structure in theory.
+            Defines a pattern that is a unique polygon technique structure in theory. The sketch is like:
+            <code><![CDATA[
+            .-------.-------.-------.
+            | . . . | . . . | . . . |
+            | . . . | . . . | . . . |
+            | . . . | . . . | . . . |
+            :-------+-------+-------:
+            | . . . | . . . | . . . |
+            | . . . | . . . | . . . |
+            | . . . | . . . | P P . |
+            :-------+-------+-------:
+            | . . . | . . Q | S S . |
+            | . . . | . . Q | S(S). |
+            | . . . | . . . | . . . |
+            '-------'-------'-------'
+            ]]></code>
+            Where:
+            <list type="table">
+            <item><term>P</term><description>The first group of cells.</description></item>
+            <item><term>Q</term><description>The second group of cells.</description></item>
+            <item>
+            <term>S</term>
+            <description>
+            The square cells of size 3 or 4. The cell with the bracket (r8c8 in the picture)
+            is optional.
+            </description>
+            </item>
+            </list>
             </summary>
             <param name="Mask">The mask that forms a structure.</param>
             <remarks>

@@ -4,10 +4,7 @@
 /// Defines a data structure that describes a sudoku grid.
 /// </summary>
 /// <typeparam name="T">The type to implement this interface.</typeparam>
-public unsafe interface IGrid<[Self] T> :
-	ISimpleFormattable,
-	ISimpleParseable<T>,
-	IValueEquatable<T>
+public unsafe interface IGrid<[Self] T> : IDefaultable<T>, ISimpleFormattable, ISimpleParseable<T>
 	where T : struct, IGrid<T>
 {
 	/// <summary>
@@ -237,6 +234,9 @@ public unsafe interface IGrid<[Self] T> :
 	/// </summary>
 	/// <returns>The <see cref="bool"/> result.</returns>
 	bool SimplyValidate();
+
+	/// <inheritdoc cref="IEquatable{T}.Equals(T)"/>
+	bool Equals(in T other);
 
 	/// <summary>
 	/// Indicates whether the current grid contains the specified candidate offset.

@@ -3,10 +3,7 @@
 /// <summary>
 /// Encapsulates a map that contains 729 positions to represent a candidate.
 /// </summary>
-public unsafe struct Candidates :
-	ICellsOrCandidates<Candidates>,
-	IDefaultable<Candidates>,
-	IEqualityOperators<Candidates, Candidates>
+public unsafe struct Candidates : ICellsOrCandidates<Candidates>
 {
 	/// <summary>
 	/// Indicates the size of each unit.
@@ -923,16 +920,6 @@ public unsafe struct Candidates :
 	/// <returns>A <see cref="bool"/> result.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static bool operator !=(in Candidates left, in Candidates right) => !(left == right);
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	static bool IEqualityOperators<Candidates, Candidates>.operator ==(Candidates left, Candidates right) =>
-		left == right;
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	static bool IEqualityOperators<Candidates, Candidates>.operator !=(Candidates left, Candidates right) =>
-		left != right;
 
 
 	/// <inheritdoc/>

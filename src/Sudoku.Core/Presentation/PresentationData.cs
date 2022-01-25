@@ -16,7 +16,7 @@ public partial record struct PresentationData(
 	IList<(Link Link, ColorIdentifier Color)>? Links,
 	IList<(Crosshatch DirectLine, ColorIdentifier Color)>? DirectLines,
 	IList<(UnknownValue UnknownValue, ColorIdentifier Color)>? UnknownValues
-) : IValueEquatable<PresentationData>, ISimpleParseable<PresentationData>
+) : ISimpleParseable<PresentationData>
 {
 	/// <summary>
 	/// Indicates the default instance of this type.

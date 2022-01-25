@@ -4,7 +4,7 @@
 /// Defines a type that holds a property with the default value of the type.
 /// </summary>
 /// <typeparam name="T">The type that contains the default instance.</typeparam>
-public interface IDefaultable<[Self] T> where T : IDefaultable<T>, IEqualityOperators<T, T>
+public interface IDefaultable<[Self] T> where T : IDefaultable<T>
 {
 	/// <summary>
 	/// <para>

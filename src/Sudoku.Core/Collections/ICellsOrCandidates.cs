@@ -10,10 +10,10 @@
 /// <seealso cref="Candidates"/>
 internal interface ICellsOrCandidates<[Self] T> :
 	IAdditionOperators<T, int, T>,
+	IDefaultable<T>,
 	IEnumerable<int>,
 	ISubtractionOperators<T, int, T>,
-	ISimpleFormattable,
-	IValueEquatable<T>
+	ISimpleFormattable
 	where T : struct, ICellsOrCandidates<T>
 {
 	/// <summary>
@@ -123,6 +123,9 @@ internal interface ICellsOrCandidates<[Self] T> :
 	/// Clear all bits.
 	/// </summary>
 	void Clear();
+
+	/// <inheritdoc cref="IEquatable{T}.Equals(T)"/>
+	bool Equals(in T other);
 
 	/// <summary>
 	/// Converts the current instance to a <see cref="Span{T}"/> of type <see cref="int"/>.

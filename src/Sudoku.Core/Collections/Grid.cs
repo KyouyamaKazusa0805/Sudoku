@@ -10,13 +10,7 @@
 [DebuggerDisplay($@"{{{nameof(ToString)}("".+:""),nq}}")]
 #endif // !USE_TO_MASK_STRING_METHOD
 #endif // !DEBUG
-public unsafe partial struct Grid :
-	IDefaultable<Grid>,
-	IEqualityOperators<Grid, Grid>,
-	IGrid<Grid>,
-	ISimpleFormattable,
-	ISimpleParseable<Grid>,
-	IValueEquatable<Grid>
+public unsafe partial struct Grid : IGrid<Grid>
 {
 	/// <inheritdoc cref="IGrid{TGrid}.DefaultMask"/>
 	public const short DefaultMask = EmptyMask | MaxCandidatesMask;
@@ -65,7 +59,7 @@ public unsafe partial struct Grid :
 	/// <code>
 	/// 16       8       0
 	///  |-------|-------|
-	///  |   |  |        |
+	///  |   |--|--------|
 	/// 16  12  9        0
 	/// </code>
 	/// Here the first-nine bits indicate whether the digit 1-9 is possible candidate in the current cell respectively,
@@ -1086,12 +1080,4 @@ public unsafe partial struct Grid :
 	/// <returns>A <see cref="bool"/> result.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static bool operator !=(in Grid left, in Grid right) => !(left == right);
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	static bool IEqualityOperators<Grid, Grid>.operator ==(Grid left, Grid right) => left == right;
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	static bool IEqualityOperators<Grid, Grid>.operator !=(Grid left, Grid right) => left != right;
 }

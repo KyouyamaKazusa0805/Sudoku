@@ -3,7 +3,18 @@
 /// <summary>
 /// Encapsulates a normal almost locked set (ALS as its abberivation).
 /// </summary>
-public readonly struct AlmostLockedSet : IValueEquatable<AlmostLockedSet>
+/// <param name="DigitsMask">Indicates the mask of each digit.</param>
+/// <param name="Map">Indicates the map that ALS lying on.</param>
+/// <param name="PossibleEliminationSet">Indicates the possible elimination set.</param>
+/// <param name="IsBivalueCell">Indicates whether this instance is a bi-value-cell ALS.</param>
+/// <param name="Region">Indicates the region that the instance lies in.</param>
+public readonly record struct AlmostLockedSet(
+	short DigitsMask,
+	in Cells Map,
+	in Cells PossibleEliminationSet,
+	bool IsBivalueCell,
+	int Region = -1
+)
 {
 	/// <summary>
 	/// Indicates an array of the total number of the strong relations in an ALS of the different size.
@@ -18,53 +29,12 @@ public readonly struct AlmostLockedSet : IValueEquatable<AlmostLockedSet>
 	/// </summary>
 	/// <param name="digitMask">The digit mask.</param>
 	/// <param name="map">The map.</param>
-	public AlmostLockedSet(short digitMask, in Cells map) : this(digitMask, map, Cells.Empty)
+	/// <param name="possibleEliminationSet">The possible elimination set.</param>
+	public AlmostLockedSet(short digitMask, in Cells map, in Cells possibleEliminationSet) :
+		this(digitMask, map, possibleEliminationSet, map.Count == 1, InitRegionProperty(map))
 	{
 	}
 
-	/// <summary>
-	/// Initializes an instance with the specified digit mask and the map of cells.
-	/// </summary>
-	/// <param name="digitMask">The digit mask.</param>
-	/// <param name="map">The map.</param>
-	/// <param name="possibleEliminationSet">
-	/// The possible elimination set.
-	/// </param>
-	public AlmostLockedSet(short digitMask, in Cells map, in Cells possibleEliminationSet)
-	{
-		DigitsMask = digitMask;
-		Map = map;
-		IsBivalueCell = map.Count == 1;
-		PossibleEliminationSet = possibleEliminationSet;
-		Map.AllSetsAreInOneRegion(out int region);
-		Region = region;
-	}
-
-
-	/// <summary>
-	/// Indicates whether this instance is a bi-value-cell ALS.
-	/// </summary>
-	public bool IsBivalueCell { get; }
-
-	/// <summary>
-	/// Indicates the region that the instance lies in.
-	/// </summary>
-	public int Region { get; }
-
-	/// <summary>
-	/// Indicates the mask of each digit.
-	/// </summary>
-	public short DigitsMask { get; }
-
-	/// <summary>
-	/// Indicates the map that ALS lying on.
-	/// </summary>
-	public Cells Map { get; }
-
-	/// <summary>
-	/// Indicates the possible elimination set.
-	/// </summary>
-	public Cells PossibleEliminationSet { get; }
 
 	/// <summary>
 	/// Indicates all strong links in this ALS. The result will be represented
@@ -91,11 +61,6 @@ public readonly struct AlmostLockedSet : IValueEquatable<AlmostLockedSet>
 		}
 	}
 
-
-	/// <inheritdoc cref="object.Equals(object?)"/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public override readonly bool Equals([NotNullWhen(true)] object? obj) =>
-		obj is AlmostLockedSet comparer && Equals(comparer);
 
 	/// <summary>
 	/// Determine whether the specified <see cref="AlmostLockedSet"/> instance holds the same
@@ -184,7 +149,6 @@ public readonly struct AlmostLockedSet : IValueEquatable<AlmostLockedSet>
 		}
 
 		// Get all non-bi-value-cell ALSes.
-		var list = new List<int>();
 		for (int region = 0; region < 27; region++)
 		{
 			if ((RegionMaps[region] & EmptyMap) is not { Count: >= 3 } tempMap)
@@ -192,12 +156,9 @@ public readonly struct AlmostLockedSet : IValueEquatable<AlmostLockedSet>
 				continue;
 			}
 
-			int[] emptyCells = tempMap.ToArray();
-			list.Clear();
-			list.AddRange(emptyCells);
-			for (int size = 2; size <= emptyCells.Length - 1; size++)
+			for (int size = 2; size <= tempMap.Count - 1; size++)
 			{
-				foreach (Cells map in list.GetSubsets(size))
+				foreach (var map in tempMap & size)
 				{
 					short blockMask = map.BlockMask;
 					if (IsPow2(blockMask) && region >= 9)
@@ -233,6 +194,20 @@ public readonly struct AlmostLockedSet : IValueEquatable<AlmostLockedSet>
 		}
 
 		return result.ToArray();
+	}
+
+	/// <summary>
+	/// To initialize the property <see cref="Region"/>.
+	/// </summary>
+	/// <param name="map">The value of property <see cref="Map"/>.</param>
+	/// <returns>The region value.</returns>
+	/// <seealso cref="Region"/>
+	/// <seealso cref="Map"/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	private static int InitRegionProperty(in Cells map)
+	{
+		map.AllSetsAreInOneRegion(out int region);
+		return region;
 	}
 
 

@@ -33,105 +33,31 @@
 /// and the lines of two target cells lying on can't contain any base digits.
 /// </para>
 /// </summary>
-public readonly struct ExocetPattern : IPattern<ExocetPattern>, IValueEquatable<ExocetPattern>
+/// <param name="Base1">Indicates the first base cell.</param>
+/// <param name="Base2">Indicates the second base cell.</param>
+/// <param name="TargetQ1">Indicates the first target cell in the Q part.</param>
+/// <param name="TargetQ2">Indicates the second target cell in the Q part.</param>
+/// <param name="TargetR1">Indicates the first target cell in the R part.</param>
+/// <param name="TargetR2">Indicates the second target cell in the R part.</param>
+/// <param name="MirrorQ1">Indicates the first mirror cell in the Q part.</param>
+/// <param name="MirrorQ2">Indicates the second mirror cell in the Q part.</param>
+/// <param name="MirrorR1">Indicates the first mirror cell in the R part.</param>
+/// <param name="MirrorR2">Indicates the second mirror cell in the R part.</param>
+/// <param name="CrossLine">Indicates the cross-line cells.</param>
+public readonly record struct ExocetPattern(
+	int Base1,
+	int Base2,
+	int TargetQ1,
+	int TargetQ2,
+	int TargetR1,
+	int TargetR2,
+	Cells CrossLine,
+	Cells MirrorQ1,
+	Cells MirrorQ2,
+	Cells MirrorR1,
+	Cells MirrorR2
+) : IPattern<ExocetPattern>
 {
-	/// <summary>
-	/// Initializes an instance with the specified cells.
-	/// </summary>
-	/// <param name="base1">The base cell 1.</param>
-	/// <param name="base2">The base cell 2.</param>
-	/// <param name="tq1">The target Q1 cell.</param>
-	/// <param name="tq2">The target Q2 cell.</param>
-	/// <param name="tr1">The target R1 cell.</param>
-	/// <param name="tr2">The target R2 cell.</param>
-	/// <param name="crossline">The cross line cells.</param>
-	/// <param name="mq1">The mirror Q1 cell.</param>
-	/// <param name="mq2">The mirror Q2 cell.</param>
-	/// <param name="mr1">The mirror R1 cell.</param>
-	/// <param name="mr2">The mirror R2 cell.</param>
-	public ExocetPattern(
-		int base1,
-		int base2,
-		int tq1,
-		int tq2,
-		int tr1,
-		int tr2,
-		in Cells crossline,
-		in Cells mq1,
-		in Cells mq2,
-		in Cells mr1,
-		in Cells mr2
-	)
-	{
-		CrossLine = crossline;
-		Base1 = base1;
-		Base2 = base2;
-		TargetQ1 = tq1;
-		TargetQ2 = tq2;
-		TargetR1 = tr1;
-		TargetR2 = tr2;
-		MirrorQ1 = mq1;
-		MirrorQ2 = mq2;
-		MirrorR1 = mr1;
-		MirrorR2 = mr2;
-	}
-
-
-	/// <summary>
-	/// Indicates the base cell 1.
-	/// </summary>
-	public int Base1 { get; }
-
-	/// <summary>
-	/// Indicates the base cell 2.
-	/// </summary>
-	public int Base2 { get; }
-
-	/// <summary>
-	/// Indicates the target Q1 cell.
-	/// </summary>
-	public int TargetQ1 { get; }
-
-	/// <summary>
-	/// Indicates the target Q2 cell.
-	/// </summary>
-	public int TargetQ2 { get; }
-
-	/// <summary>
-	/// Indicates the target R1 cell.
-	/// </summary>
-	public int TargetR1 { get; }
-
-	/// <summary>
-	/// Indicates the target R2 cell.
-	/// </summary>
-	public int TargetR2 { get; }
-
-	/// <summary>
-	/// Indicates the cross line cells.
-	/// </summary>
-	public Cells CrossLine { get; }
-
-	/// <summary>
-	/// Indicates the mirror Q1 cell.
-	/// </summary>
-	public Cells MirrorQ1 { get; }
-
-	/// <summary>
-	/// Indicates the mirror Q2 cell.
-	/// </summary>
-	public Cells MirrorQ2 { get; }
-
-	/// <summary>
-	/// Indicates the mirror R1 cell.
-	/// </summary>
-	public Cells MirrorR1 { get; }
-
-	/// <summary>
-	/// Indicates the mirror R2 cell.
-	/// </summary>
-	public Cells MirrorR2 { get; }
-
 	/// <inheritdoc/>
 	public Cells Map => CrossLine + TargetQ1 + TargetQ2 + TargetR1 + TargetR2 + Base1 + Base2;
 
@@ -158,11 +84,6 @@ public readonly struct ExocetPattern : IPattern<ExocetPattern>, IValueEquatable<
 		get => new() { TargetQ1, TargetQ2, TargetR1, TargetR2 };
 	}
 
-
-	/// <inheritdoc cref="object.Equals(object?)"/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public override bool Equals([NotNullWhen(true)] object? obj) =>
-		obj is ExocetPattern comparer && Equals(comparer);
 
 	/// <summary>
 	/// Determine whether the specified <see cref="ExocetPattern"/> instance holds the same cell maps
@@ -207,23 +128,4 @@ public readonly struct ExocetPattern : IPattern<ExocetPattern>, IValueEquatable<
 		string targetCellsStr = new Cells { TargetQ1, TargetQ2, TargetR1, TargetR2 }.ToString();
 		return $"Exocet: base {baseCellsStr}, target {targetCellsStr}";
 	}
-
-
-	/// <summary>
-	/// Determine whether two <see cref="ExocetPattern"/>s hold same cell map sets.
-	/// </summary>
-	/// <param name="left">The left-side instance to compare.</param>
-	/// <param name="right">The right-side instance to compare.</param>
-	/// <returns>A <see cref="bool"/> result.</returns>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static bool operator ==(in ExocetPattern left, in ExocetPattern right) => left.Equals(right);
-
-	/// <summary>
-	/// Determine whether two <see cref="ExocetPattern"/>s don't hold same cell map sets.
-	/// </summary>
-	/// <param name="left">The left-side instance to compare.</param>
-	/// <param name="right">The right-side instance to compare.</param>
-	/// <returns>A <see cref="bool"/> result.</returns>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static bool operator !=(in ExocetPattern left, in ExocetPattern right) => !(left == right);
 }

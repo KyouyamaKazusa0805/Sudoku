@@ -18,7 +18,7 @@ public readonly record struct ColorIdentifier(
 	[field: FieldOffset(0)] bool UseId,
 	[field: FieldOffset(4)] int Id,
 	[field: FieldOffset(4)] int Color
-) : IValueEquatable<ColorIdentifier>
+)
 {
 	/// <summary>
 	/// Returns the <see cref="InvalidOperationException"/> instance to report the unexpected operation
@@ -47,7 +47,8 @@ public readonly record struct ColorIdentifier(
 	/// <param name="g">The green value.</param>
 	/// <param name="b">The blue value.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public ColorIdentifier(byte a, byte r, byte g, byte b) : this(false, default, a << 24 | r << 16 | g << 8 | b)
+	public ColorIdentifier(byte a, byte r, byte g, byte b) :
+		this(false, default, a << 24 | r << 16 | g << 8 | b)
 	{
 	}
 
@@ -138,10 +139,6 @@ public readonly record struct ColorIdentifier(
 	/// <inheritdoc cref="object.ToString"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public override string ToString() => UseId ? $"ID = {Id}" : $"Color = #{A:X2}{R:X2}{G:X2}{B:X2}";
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	bool IValueEquatable<ColorIdentifier>.Equals(in ColorIdentifier other) => Equals(other);
 
 
 	/// <summary>

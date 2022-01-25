@@ -445,12 +445,6 @@
             <param name="right">The right-side instance to compare.</param>
             <returns>A <see cref="T:System.Boolean"/> result.</returns>
         </member>
-        <member name="M:Sudoku.Collections.Candidates.System#IEqualityOperators{Sudoku#Collections#Candidates,Sudoku#Collections#Candidates}#op_Equality(Sudoku.Collections.Candidates,Sudoku.Collections.Candidates)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Collections.Candidates.System#IEqualityOperators{Sudoku#Collections#Candidates,Sudoku#Collections#Candidates}#op_Inequality(Sudoku.Collections.Candidates,Sudoku.Collections.Candidates)">
-            <inheritdoc/>
-        </member>
         <member name="M:Sudoku.Collections.Candidates.op_Implicit(System.Int32[])~Sudoku.Collections.Candidates">
             <inheritdoc/>
         </member>
@@ -1310,7 +1304,7 @@
             <code>
             16       8       0
              |-------|-------|
-             |   |  |        |
+             |   |--|--------|
             16  12  9        0
             </code>
             Here the first-nine bits indicate whether the digit 1-9 is possible candidate in the current cell respectively,
@@ -1794,12 +1788,6 @@
             <param name="right">The right-side instance to compare.</param>
             <returns>A <see cref="T:System.Boolean"/> result.</returns>
         </member>
-        <member name="M:Sudoku.Collections.Grid.System#IEqualityOperators{Sudoku#Collections#Grid,Sudoku#Collections#Grid}#op_Equality(Sudoku.Collections.Grid,Sudoku.Collections.Grid)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Collections.Grid.System#IEqualityOperators{Sudoku#Collections#Grid,Sudoku#Collections#Grid}#op_Inequality(Sudoku.Collections.Grid,Sudoku.Collections.Grid)">
-            <inheritdoc/>
-        </member>
         <member name="T:Sudoku.Collections.Grid.MaskCollectionEnumerator">
             <summary>
             Defines the default enumerator that iterates the <see cref="T:Sudoku.Collections.Grid"/>
@@ -1992,6 +1980,9 @@
             <summary>
             Clear all bits.
             </summary>
+        </member>
+        <member name="M:Sudoku.Collections.ICellsOrCandidates`1.Equals(`0@)">
+            <inheritdoc cref="M:System.IEquatable`1.Equals(`0)"/>
         </member>
         <member name="M:Sudoku.Collections.ICellsOrCandidates`1.ToSpan">
             <summary>
@@ -2366,6 +2357,9 @@
             Check whether the current grid is valid (no duplicate values on same row, column or block).
             </summary>
             <returns>The <see cref="T:System.Boolean"/> result.</returns>
+        </member>
+        <member name="M:Sudoku.Collections.IGrid`1.Equals(`0@)">
+            <inheritdoc cref="M:System.IEquatable`1.Equals(`0)"/>
         </member>
         <member name="M:Sudoku.Collections.IGrid`1.Exists(System.Int32)">
             <summary>
@@ -4358,9 +4352,6 @@
         <member name="M:Sudoku.Data.GridSegment.ToString">
             <inheritdoc cref="M:System.Object.ToString"/>
         </member>
-        <member name="M:Sudoku.Data.GridSegment.System#IValueEquatable{Sudoku#Data#GridSegment}#Equals(Sudoku.Data.GridSegment@)">
-            <inheritdoc/>
-        </member>
         <member name="M:Sudoku.Data.GridSegment.op_Equality(Sudoku.Data.GridSegment,Sudoku.Data.GridSegment)">
             <inheritdoc cref="M:System.IEqualityOperators`2.op_Equality(`0,`1)"/>
         </member>
@@ -4614,114 +4605,6 @@
             <param name="this">The link kind.</param>
             <returns>The notation.</returns>
             <exception cref="T:System.ArgumentOutOfRangeException">Throws when the link kind is not defined.</exception>
-        </member>
-        <member name="T:Sudoku.Data.Models.CellInfo">
-            <summary>
-            Defines a cell information in a sudoku grid.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Data.Models.CellInfo.#ctor(System.Byte,System.Int16)">
-            <summary>
-            Creates a <see cref="T:Sudoku.Data.Models.CellInfo"/> instance via the cell and the candidates list.
-            </summary>
-            <param name="cell">The current cell.</param>
-            <param name="candidatesMask">The candidates.</param>
-            <exception cref="T:System.ArgumentOutOfRangeException">
-            Throws when the argument <paramref name="candidatesMask"/> is below 0 (or 0) or greater than 511.
-            </exception>
-        </member>
-        <member name="M:Sudoku.Data.Models.CellInfo.#ctor(System.Byte,System.Byte,Sudoku.Data.CellStatus)">
-            <summary>
-            Creates a <see cref="T:Sudoku.Data.Models.CellInfo"/> instance via the cell, digit and the current status.
-            </summary>
-            <param name="cell">Indicates the current cell.</param>
-            <param name="digit">Indicates the current digit.</param>
-            <param name="status">
-            Indicates the current status.
-            The value must be <see cref="F:Sudoku.Data.CellStatus.Modifiable"/> or <see cref="F:Sudoku.Data.CellStatus.Given"/>.
-            </param>
-            <exception cref="T:System.ArgumentOutOfRangeException">
-            Throws when the argument <paramref name="status"/> is not <see cref="F:Sudoku.Data.CellStatus.Modifiable"/>
-            or <see cref="F:Sudoku.Data.CellStatus.Given"/>.
-            </exception>
-        </member>
-        <member name="P:Sudoku.Data.Models.CellInfo.Cell">
-            <summary>
-            Indicates the cell used. The value is between 0 and 80.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Data.Models.CellInfo.Digit">
-            <summary>
-            Indicates the digit filled in the current cell. If the current cell is empty, the value will be -1;
-            otherwise, this property will hold the real value.
-            </summary>
-            <remarks><i>
-            Please check the property <see cref="P:Sudoku.Data.Models.CellInfo.Status"/> before using this property.
-            </i></remarks>
-            <seealso cref="P:Sudoku.Data.Models.CellInfo.Status"/>
-        </member>
-        <member name="P:Sudoku.Data.Models.CellInfo.CandidatesList">
-            <summary>
-            Indicates the list of the candidates.
-            </summary>
-            <remarks><i>
-            Please check the property <see cref="P:Sudoku.Data.Models.CellInfo.Status"/> before using this property.
-            </i></remarks>
-            <seealso cref="P:Sudoku.Data.Models.CellInfo.Status"/>
-        </member>
-        <member name="P:Sudoku.Data.Models.CellInfo.Status">
-            <summary>
-            Indicates the current status of the cell.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Data.Models.CellInfo.Equals(System.Object)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Data.Models.CellInfo.Equals(Sudoku.Data.Models.CellInfo)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Data.Models.CellInfo.GetHashCode">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Data.Models.CellInfo.ToString">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Data.Models.CellInfo.System#IValueEquatable{Sudoku#Data#Models#CellInfo}#Equals(Sudoku.Data.Models.CellInfo@)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Data.Models.CellInfo.GetCellInfo(Sudoku.Collections.Grid@,System.Int32)">
-            <summary>
-            Gets the <see cref="T:Sudoku.Data.Models.CellInfo"/> instance via the specified grid and the desired cell.
-            </summary>
-            <param name="grid">The grid to get the cell information.</param>
-            <param name="cell">The desired cell.</param>
-            <returns>The <see cref="T:Sudoku.Data.Models.CellInfo"/> result.</returns>
-            <exception cref="T:System.ArgumentException">
-            Throws when:
-            <list type="bullet">
-            <item>The current cell status is invalid.</item>
-            <item>At the current status the candidate mask isn't the power of 2.</item>
-            </list>
-            </exception>
-        </member>
-        <member name="M:Sudoku.Data.Models.CellInfo.op_Equality(Sudoku.Data.Models.CellInfo,Sudoku.Data.Models.CellInfo)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Data.Models.CellInfo.op_Inequality(Sudoku.Data.Models.CellInfo,Sudoku.Data.Models.CellInfo)">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Data.Models.GridExtensions">
-            <summary>
-            Provides extension methods on <see cref="T:Sudoku.Collections.Grid"/>.
-            </summary>
-            <seealso cref="T:Sudoku.Collections.Grid"/>
-        </member>
-        <member name="M:Sudoku.Data.Models.GridExtensions.ToCellInfoList(Sudoku.Collections.Grid@)">
-            <summary>
-            Converts the current grid into the <see cref="T:Sudoku.Data.Models.CellInfo"/> list.
-            </summary>
-            <param name="this">The current grid.</param>
-            <returns>The list of <see cref="T:Sudoku.Data.Models.CellInfo"/> instances.</returns>
         </member>
         <member name="T:Sudoku.Data.Node">
             <summary>
@@ -5284,9 +5167,6 @@
         </member>
         <member name="M:Sudoku.Presentation.ColorIdentifier.ToString">
             <inheritdoc cref="M:System.Object.ToString"/>
-        </member>
-        <member name="M:Sudoku.Presentation.ColorIdentifier.System#IValueEquatable{Sudoku#Presentation#ColorIdentifier}#Equals(Sudoku.Presentation.ColorIdentifier@)">
-            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Presentation.ColorIdentifier.op_Explicit(System.Int32)~Sudoku.Presentation.ColorIdentifier">
             <summary>

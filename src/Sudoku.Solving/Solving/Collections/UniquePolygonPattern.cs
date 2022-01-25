@@ -1,7 +1,34 @@
 ﻿namespace Sudoku.Solving.Collections;
 
 /// <summary>
-/// Defines a pattern that is a unique polygon technique structure in theory.
+/// Defines a pattern that is a unique polygon technique structure in theory. The sketch is like:
+/// <code><![CDATA[
+/// .-------.-------.-------.
+/// | . . . | . . . | . . . |
+/// | . . . | . . . | . . . |
+/// | . . . | . . . | . . . |
+/// :-------+-------+-------:
+/// | . . . | . . . | . . . |
+/// | . . . | . . . | . . . |
+/// | . . . | . . . | P P . |
+/// :-------+-------+-------:
+/// | . . . | . . Q | S S . |
+/// | . . . | . . Q | S(S). |
+/// | . . . | . . . | . . . |
+/// '-------'-------'-------'
+/// ]]></code>
+/// Where:
+/// <list type="table">
+/// <item><term>P</term><description>The first group of cells.</description></item>
+/// <item><term>Q</term><description>The second group of cells.</description></item>
+/// <item>
+/// <term>S</term>
+/// <description>
+/// The square cells of size 3 or 4. The cell with the bracket (r8c8 in the picture)
+/// is optional.
+/// </description>
+/// </item>
+/// </list>
 /// </summary>
 /// <param name="Mask">The mask that forms a structure.</param>
 /// <remarks>
