@@ -63,9 +63,10 @@ public unsafe partial struct Grid
 	/// The field uses the mask table of length 81 to indicate the status and all possible candidates
 	/// holding for each cell. Each mask uses a <see cref="short"/> value, but only uses 11 of 16 bits.
 	/// <code>
-	/// |xxx|--|--------|
-	/// |-------|-------|
-	/// 16      8       0
+	/// 16       8       0
+	///  |-------|-------|
+	///  |   |  |        |
+	/// 16  12  9        0
 	/// </code>
 	/// Here the first-nine bits indicate whether the digit 1-9 is possible candidate in the current cell respectively,
 	/// and the higher 3 bits indicate the cell status. The possible cell status are:
@@ -89,7 +90,6 @@ public unsafe partial struct Grid
 	/// </list>
 	/// </remarks>
 	/// <seealso cref="CellStatus"/>
-	[JsonIgnore]
 	private fixed short _values[81];
 
 
