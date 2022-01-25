@@ -26,8 +26,8 @@ public readonly record struct Link(int Mask) : IDefaultable<Link>, IEqualityOper
 	/// <param name="endCandidate">The end candidate.</param>
 	/// <param name="kind">The kind of the link.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public Link(int startCandidate, int endCandidate, LinkKind kind)
-	: this((int)kind << 20 | startCandidate << 10 | endCandidate)
+	public Link(int startCandidate, int endCandidate, LinkKind kind) :
+		this((int)kind << 20 | startCandidate << 10 | endCandidate)
 	{
 	}
 

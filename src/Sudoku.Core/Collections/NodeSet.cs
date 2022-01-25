@@ -3,11 +3,11 @@
 /// <summary>
 /// Defines a set that stores the chain nodes.
 /// </summary>
-public partial struct NodeSet
-: IEnumerable
-, IDefaultable<NodeSet>
-, IEqualityOperators<NodeSet, NodeSet>
-, IEquatable<NodeSet>
+public partial struct NodeSet :
+	IDefaultable<NodeSet>,
+	IEnumerable,
+	IEqualityOperators<NodeSet, NodeSet>,
+	IEquatable<NodeSet>
 {
 	/// <summary>
 	/// Indicates the uninitalized instance that is used for checking whether the collection

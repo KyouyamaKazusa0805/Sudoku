@@ -4,10 +4,10 @@
 /// Defines a cell information in a sudoku grid.
 /// </summary>
 [StructLayout(LayoutKind.Explicit)]
-public readonly struct CellInfo
-: IEqualityOperators<CellInfo, CellInfo>
-, IEquatable<CellInfo>
-, IValueEquatable<CellInfo>
+public readonly struct CellInfo :
+	IEqualityOperators<CellInfo, CellInfo>,
+	IEquatable<CellInfo>,
+	IValueEquatable<CellInfo>
 {
 	/// <summary>
 	/// Creates a <see cref="CellInfo"/> instance via the cell and the candidates list.

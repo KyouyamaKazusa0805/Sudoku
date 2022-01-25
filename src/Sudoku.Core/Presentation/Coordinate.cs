@@ -8,17 +8,17 @@
 /// out of this range; otherwise, an <see cref="InvalidOperationException"/> or
 /// <see cref="ArgumentOutOfRangeException"/> will be thrown.
 /// </param>
-public readonly record struct Coordinate(byte Cell)
-: IAdditionOperators<Coordinate, byte, Coordinate>
-, IComparable<Coordinate>
-, IComparisonOperators<Coordinate, Coordinate>
-, IDefaultable<Coordinate>
-, IEqualityOperators<Coordinate, Coordinate>
-, IEquatable<Coordinate>
-, IMinMaxValue<Coordinate>
-, ISimpleFormattable
-, ISimpleParseable<Coordinate>
-, ISubtractionOperators<Coordinate, byte, Coordinate>
+public readonly record struct Coordinate(byte Cell) :
+	IAdditionOperators<Coordinate, byte, Coordinate>,
+	IComparable<Coordinate>,
+	IComparisonOperators<Coordinate, Coordinate>,
+	IDefaultable<Coordinate>,
+	IEqualityOperators<Coordinate, Coordinate>,
+	IEquatable<Coordinate>,
+	IMinMaxValue<Coordinate>,
+	ISimpleFormattable,
+	ISimpleParseable<Coordinate>,
+	ISubtractionOperators<Coordinate, byte, Coordinate>
 {
 	/// <summary>
 	/// Indicates the undefined <see cref="Coordinate"/> instance that stands

@@ -8,13 +8,13 @@
 /// </typeparam>
 /// <seealso cref="Cells"/>
 /// <seealso cref="Candidates"/>
-internal interface ICellsOrCandidates<[Self] T>
-: IEnumerable<int>
-, IValueEquatable<T>
-, IAdditionOperators<T, int, T>
-, ISubtractionOperators<T, int, T>
-, ISimpleFormattable
-where T : struct, ICellsOrCandidates<T>
+internal interface ICellsOrCandidates<[Self] T> :
+	IAdditionOperators<T, int, T>,
+	IEnumerable<int>,
+	ISubtractionOperators<T, int, T>,
+	ISimpleFormattable,
+	IValueEquatable<T>
+	where T : struct, ICellsOrCandidates<T>
 {
 	/// <summary>
 	/// Indicates whether the collection is empty.

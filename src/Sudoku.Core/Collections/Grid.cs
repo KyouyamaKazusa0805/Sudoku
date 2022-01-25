@@ -10,13 +10,13 @@
 [DebuggerDisplay($@"{{{nameof(ToString)}("".+:""),nq}}")]
 #endif // !USE_TO_MASK_STRING_METHOD
 #endif // !DEBUG
-public unsafe partial struct Grid
-: IDefaultable<Grid>
-, IEqualityOperators<Grid, Grid>
-, IGrid<Grid>
-, ISimpleFormattable
-, ISimpleParseable<Grid>
-, IValueEquatable<Grid>
+public unsafe partial struct Grid :
+	IDefaultable<Grid>,
+	IEqualityOperators<Grid, Grid>,
+	IGrid<Grid>,
+	ISimpleFormattable,
+	ISimpleParseable<Grid>,
+	IValueEquatable<Grid>
 {
 	/// <inheritdoc cref="IGrid{TGrid}.DefaultMask"/>
 	public const short DefaultMask = EmptyMask | MaxCandidatesMask;
@@ -110,8 +110,8 @@ public unsafe partial struct Grid
 	/// </summary>
 	/// <param name="gridValues">The array of grid values.</param>
 	/// <param name="creatingOption">The grid creating option.</param>
-	public Grid(int[] gridValues, GridCreatingOption creatingOption = GridCreatingOption.None)
-	: this(gridValues[0], creatingOption)
+	public Grid(int[] gridValues, GridCreatingOption creatingOption = GridCreatingOption.None) :
+		this(gridValues[0], creatingOption)
 	{
 	}
 
@@ -120,8 +120,8 @@ public unsafe partial struct Grid
 	/// </summary>
 	/// <param name="pGridValues">The pointer parameter indicating the array of cell digits.</param>
 	/// <param name="creatingOption">The grid creating option.</param>
-	public Grid(int* pGridValues, GridCreatingOption creatingOption = GridCreatingOption.None)
-	: this(*pGridValues, creatingOption)
+	public Grid(int* pGridValues, GridCreatingOption creatingOption = GridCreatingOption.None) :
+		this(*pGridValues, creatingOption)
 	{
 	}
 
@@ -131,8 +131,8 @@ public unsafe partial struct Grid
 	/// </summary>
 	/// <param name="gridValues">The list of cell digits.</param>
 	/// <param name="creatingOption">The grid creating option.</param>
-	public Grid(ReadOnlySpan<int> gridValues, GridCreatingOption creatingOption = GridCreatingOption.None)
-	: this(gridValues[0], creatingOption)
+	public Grid(ReadOnlySpan<int> gridValues, GridCreatingOption creatingOption = GridCreatingOption.None) :
+		this(gridValues[0], creatingOption)
 	{
 	}
 

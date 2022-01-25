@@ -7,10 +7,11 @@
 /// Indicates the mask that holds the information for the cell, digit and the conclusion type.
 /// The bits distribution is like:
 /// <code><![CDATA[
-/// 16      8       0
-/// |-------|-------|
-/// |     |---------|
-/// |/////|   used  |
+/// 16       8       0
+///  |-------|-------|
+///  |     |---------|
+/// 16    10         0
+///        |   used  |
 /// ]]></code>
 /// </param>
 /// <remarks>
@@ -20,12 +21,12 @@
 /// the global index of the candidate position is greater, it is greater.
 /// </remarks>
 /// <seealso cref="ConclusionType.Elimination"/>
-public readonly record struct Conclusion(int Mask)
-: IComparable<Conclusion>
-, IComparisonOperators<Conclusion, Conclusion>
-, IDefaultable<Conclusion>
-, IEqualityOperators<Conclusion, Conclusion>
-, IEquatable<Conclusion>
+public readonly record struct Conclusion(int Mask) :
+	IComparable<Conclusion>,
+	IComparisonOperators<Conclusion, Conclusion>,
+	IDefaultable<Conclusion>,
+	IEqualityOperators<Conclusion, Conclusion>,
+	IEquatable<Conclusion>
 {
 	/// <summary>
 	/// <inheritdoc cref="IDefaultable{T}.Default"/>

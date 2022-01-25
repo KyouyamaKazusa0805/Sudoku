@@ -88,8 +88,8 @@ public record struct Node(int Mask) : IDefaultable<Node>, IEqualityOperators<Nod
 	/// <param name="isOn">A <see cref="bool"/> result indicating whether the node is on.</param>
 	/// <param name="parents">The parent nodes.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	internal Node(byte cell, byte digit, bool isOn, Node[] parents)
-	: this(ConstructMask(cell, digit, isOn, (byte)parents.Length)) => _rawParents = parents;
+	internal Node(byte cell, byte digit, bool isOn, Node[] parents) :
+		this(ConstructMask(cell, digit, isOn, (byte)parents.Length)) => _rawParents = parents;
 
 
 	/// <summary>

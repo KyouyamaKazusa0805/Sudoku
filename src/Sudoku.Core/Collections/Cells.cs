@@ -9,12 +9,12 @@
 /// and the <see langword="false"/> bit (0) is for the cell not containing
 /// the digit.
 /// </remarks>
-public unsafe struct Cells
-: ICellsOrCandidates<Cells>
-, IDefaultable<Cells>
-, IEqualityOperators<Cells, Cells>
-, ISimpleFormattable
-, ISimpleParseable<Cells>
+public unsafe struct Cells :
+	ICellsOrCandidates<Cells>,
+	IDefaultable<Cells>,
+	IEqualityOperators<Cells, Cells>,
+	ISimpleFormattable,
+	ISimpleParseable<Cells>
 {
 	/// <summary>
 	/// <para>Indicates an empty instance (all bits are 0).</para>
@@ -182,8 +182,8 @@ public unsafe struct Cells
 	/// <param name="mid">Medium 27 bits.</param>
 	/// <param name="low">Lower 27 bits.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public Cells(int high, int mid, int low)
-	: this((high & 0x7FFFFFFL) << 13 | (mid >> 14 & 0x1FFFL), (mid & 0x3FFFL) << 27 | (low & 0x7FFFFFFL))
+	public Cells(int high, int mid, int low) :
+		this((high & 0x7FFFFFFL) << 13 | (mid >> 14 & 0x1FFFL), (mid & 0x3FFFL) << 27 | (low & 0x7FFFFFFL))
 	{
 	}
 

@@ -4,11 +4,11 @@
 /// Defines a data structure that describes a sudoku grid.
 /// </summary>
 /// <typeparam name="T">The type to implement this interface.</typeparam>
-public unsafe interface IGrid<[Self] T>
-: IValueEquatable<T>
-, ISimpleFormattable
-, ISimpleParseable<T>
-where T : struct, IGrid<T>
+public unsafe interface IGrid<[Self] T> :
+	ISimpleFormattable,
+	ISimpleParseable<T>,
+	IValueEquatable<T>
+	where T : struct, IGrid<T>
 {
 	/// <summary>
 	/// Indicates the default mask of a cell (an empty cell, with all 9 candidates left).

@@ -3,10 +3,10 @@
 /// <summary>
 /// Provides a segment that holds a list of candidate states for a certain set of cells.
 /// </summary>
-public readonly unsafe struct GridSegment
-: IEqualityOperators<GridSegment, GridSegment>
-, IEquatable<GridSegment>
-, IValueEquatable<GridSegment>
+public readonly unsafe struct GridSegment :
+	IEqualityOperators<GridSegment, GridSegment>,
+	IEquatable<GridSegment>,
+	IValueEquatable<GridSegment>
 {
 	/// <summary>
 	/// Indicates the list of masks used.

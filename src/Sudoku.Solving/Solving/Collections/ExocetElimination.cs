@@ -8,8 +8,8 @@
 /// <param name="Reason">Indicates the reason why these candidates can be eliminated.</param>
 /// <seealso cref="IJuniorExocetStepSearcher"/>
 /// <seealso cref="ISeniorExocetStepSearcher"/>
-public readonly record struct ExocetElimination(in Candidates Eliminations, ExocetEliminatedReason Reason)
-: IValueEquatable<ExocetElimination>
+public readonly record struct ExocetElimination(in Candidates Eliminations, ExocetEliminatedReason Reason) :
+	IValueEquatable<ExocetElimination>
 {
 	/// <summary>
 	/// Indicates how many eliminations the instance contains.

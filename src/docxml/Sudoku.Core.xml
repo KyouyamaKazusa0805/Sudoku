@@ -3338,10 +3338,11 @@
             Indicates the mask that holds the information for the cell, digit and the conclusion type.
             The bits distribution is like:
             <code><![CDATA[
-            16      8       0
-            |-------|-------|
-            |     |---------|
-            |/////|   used  |
+            16       8       0
+             |-------|-------|
+             |     |---------|
+            16    10         0
+                   |   used  |
             ]]></code>
             </param>
             <remarks>
@@ -3360,10 +3361,11 @@
             Indicates the mask that holds the information for the cell, digit and the conclusion type.
             The bits distribution is like:
             <code><![CDATA[
-            16      8       0
-            |-------|-------|
-            |     |---------|
-            |/////|   used  |
+            16       8       0
+             |-------|-------|
+             |     |---------|
+            16    10         0
+                   |   used  |
             ]]></code>
             </param>
             <remarks>

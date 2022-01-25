@@ -3,10 +3,10 @@
 /// <summary>
 /// Encapsulates a map that contains 729 positions to represent a candidate.
 /// </summary>
-public unsafe struct Candidates
-: ICellsOrCandidates<Candidates>
-, IDefaultable<Candidates>
-, IEqualityOperators<Candidates, Candidates>
+public unsafe struct Candidates :
+	ICellsOrCandidates<Candidates>,
+	IDefaultable<Candidates>,
+	IEqualityOperators<Candidates, Candidates>
 {
 	/// <summary>
 	/// Indicates the size of each unit.

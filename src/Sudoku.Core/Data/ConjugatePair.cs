@@ -12,10 +12,10 @@
 /// <param name="To">Indicates the cell that is end cell.</param>
 /// <param name="Digit">Indicates the digit used.</param>
 /// <param name="Map">Indicates the pair of maps used.</param>
-public readonly record struct ConjugatePair(int From, int To, int Digit, in Cells Map)
-: IValueEquatable<ConjugatePair>
-, IDefaultable<ConjugatePair>
-, IEqualityOperators<ConjugatePair, ConjugatePair>
+public readonly record struct ConjugatePair(int From, int To, int Digit, in Cells Map) :
+	IValueEquatable<ConjugatePair>,
+	IDefaultable<ConjugatePair>,
+	IEqualityOperators<ConjugatePair, ConjugatePair>
 {
 	/// <summary>
 	/// <inheritdoc cref="IDefaultable{T}.Default"/>

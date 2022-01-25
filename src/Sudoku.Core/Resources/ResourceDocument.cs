@@ -13,10 +13,10 @@
 /// In this case, we can use the indexer <see cref="this[string]"/> to fetch the value via the key,
 /// for example, <c>document["prop1"]</c> you'll get the value <c>"value1"</c>.
 /// </summary>
-public sealed partial class ResourceDocument
-: IDisposable
-, IEquatable<ResourceDocument>
-, ISimpleParseable<ResourceDocument>
+public sealed partial class ResourceDocument :
+	IDisposable,
+	IEquatable<ResourceDocument>,
+	ISimpleParseable<ResourceDocument>
 {
 	/// <summary>
 	/// Indicates the default JSON document options.
