@@ -20,7 +20,7 @@
 					<Default>MyRecord</Default>
 				</Literal>
 			</Declarations>
-			<Code Language="csharp" Delimiter="$"><![CDATA[record $keyword$ $typeName$;]]></Code>
+			<Code Language="csharp" Delimiter="$"><![CDATA[record $keyword$ $typeName$() : IEquatable<$typeName$>, IEqualityOperators<$typeName$, $typeName$>;]]></Code>
 		</Snippet>
 	</CodeSnippet>
 </CodeSnippets>

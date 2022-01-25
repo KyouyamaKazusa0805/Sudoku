@@ -3,7 +3,7 @@
 /// <summary>
 /// Provides all algorithm processing methods.
 /// </summary>
-public static class Algorithms
+public static unsafe class Algorithms
 {
 	/// <summary>
 	/// Sort the specified array by quick sort.
@@ -13,7 +13,7 @@ public static class Algorithms
 	/// <param name="comparer">The method to compare two elements.</param>
 	/// <param name="startIndex">Indicates the start index.</param>
 	/// <param name="endIndex">Indicates the end index.</param>
-	public static unsafe void Sort<T>(this T[] @this, delegate*<T, T, int> comparer, int startIndex, int endIndex)
+	public static void Sort<T>(this T[] @this, delegate*<T, T, int> comparer, int startIndex, int endIndex)
 	{
 		q(startIndex, endIndex, @this, comparer);
 
@@ -56,7 +56,7 @@ public static class Algorithms
 	/// <see cref="Sort{T}(T[], delegate*{T, T, int}, int, int)"/> instead.
 	/// </remarks>
 	/// <seealso cref="Sort{T}(T[], delegate*{T, T, int}, int, int)"/>
-	public static unsafe void Sort<T>(this T[] @this, delegate*<in T, in T, int> comparer)
+	public static void Sort<T>(this T[] @this, delegate*<in T, in T, int> comparer)
 #pragma warning restore CS1658, CS1584
 	{
 		q(0, @this.Length - 1, @this, comparer);
@@ -196,7 +196,7 @@ public static class Algorithms
 	/// with the whole array.
 	/// </remarks>
 	[SkipLocalsInit]
-	public static unsafe IEnumerable<T[]> GetExtractedCombinations<T>(this T[][] @this)
+	public static IEnumerable<T[]> GetExtractedCombinations<T>(this T[][] @this)
 	{
 		int length = @this.GetLength(0), resultCount = 1;
 		int* tempArray = stackalloc int[length];
