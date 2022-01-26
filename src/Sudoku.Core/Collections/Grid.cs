@@ -66,7 +66,7 @@ public unsafe partial struct Grid : IGrid<Grid>
 	/// and the higher 3 bits indicate the cell status. The possible cell status are:
 	/// <list type="table">
 	/// <listheader>
-	/// <term>Status name (Value corresponding to <see cref="CellStatus"/> enumeration)</term>
+	/// <term>Status name</term>
 	/// <description>Description</description>
 	/// </listheader>
 	/// <item>
@@ -75,11 +75,15 @@ public unsafe partial struct Grid : IGrid<Grid>
 	/// </item>
 	/// <item>
 	/// <term>Modifiable cell (i.e. <see cref="CellStatus.Modifiable"/>)</term>
-	/// <description>The cell is filled by a digit, but the digit isn't the given by the initial grid.</description>
+	/// <description>
+	/// The cell is filled by a digit, but the digit isn't the given by the initial grid.
+	/// </description>
 	/// </item>
 	/// <item>
 	/// <term>Given cell (i.e. <see cref="CellStatus.Given"/>)</term>
-	/// <description>The cell is filled by a digit, which is given by the initial grid and can't be modified.</description>
+	/// <description>
+	/// The cell is filled by a digit, which is given by the initial grid and can't be modified.
+	/// </description>
 	/// </item>
 	/// </list>
 	/// </remarks>
