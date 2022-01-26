@@ -1,13 +1,31 @@
 ﻿<Window
-    x:Class="Sudoku.UI.Views.Windows.MainWindow"
-    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="using:Sudoku.UI"
-    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d">
+	x:Class="Sudoku.UI.Views.Windows.MainWindow"
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	mc:Ignorable="d">
 
-    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
-        <Button x:Name="myButton" Click="MyButton_Click">Click Me</Button>
-    </StackPanel>
+	<NavigationView
+		x:Name="_viewRouter" x:FieldModifier="Private" Header="Sudoku" IsBackButtonVisible="Collapsed"
+		IsBackEnabled="False" PaneDisplayMode="Left" IsSettingsVisible="False"
+		ItemInvoked="ViewRouter_ItemInvoked"
+		SelectionChanged="ViewRouter_SelectionChanged">
+		<NavigationView.MenuItems>
+			<NavigationViewItem
+				x:Name="_itemHomePage" x:FieldModifier="Private" Icon="Home"
+				Tag="MainPage" Content="Home" />
+		</NavigationView.MenuItems>
+		<NavigationView.FooterMenuItems>
+			<!--No corresponding page-->
+			<NavigationViewItem
+				x:Name="_itemSettingsPage" x:FieldModifier="Private" Icon="Setting"
+				Tag="SettingsPage" Content="Settings" />
+		</NavigationView.FooterMenuItems>
+
+		<Frame
+			x:Name="_viewRouterFrame" x:FieldModifier="Private"
+			Navigated="ViewRouterFrame_Navigated"
+			NavigationFailed="ViewRouterFrame_NavigationFailed" />
+	</NavigationView>
 </Window>

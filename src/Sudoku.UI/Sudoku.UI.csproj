@@ -1,17 +1,32 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
+		<!--Basic configurations-->
 		<OutputType>WinExe</OutputType>
 		<TargetFramework>net6.0-windows10.0.19041.0</TargetFramework>
 		<TargetPlatformMinVersion>10.0.17763.0</TargetPlatformMinVersion>
-		<RootNamespace>Sudoku.UI</RootNamespace>
 		<ApplicationManifest>app.manifest</ApplicationManifest>
 		<Platforms>x86;x64;arm64</Platforms>
 		<RuntimeIdentifiers>win10-x86;win10-x64;win10-arm64</RuntimeIdentifiers>
 		<PublishProfile>win10-$(Platform).pubxml</PublishProfile>
 		<UseWinUI>true</UseWinUI>
 		<EnablePreviewMsixTooling>true</EnablePreviewMsixTooling>
+		<Description>The solution that plays with the sudoku.</Description>
+		
+		<!--Syntax configurations-->
+		<RootNamespace>Sudoku.UI</RootNamespace>
 		<DocumentationFile>..\docxml\Sudoku.UI.xml</DocumentationFile>
+		
+		<!--Repository configurations-->
+		<PackageReadmeFile>README.md</PackageReadmeFile>
+		<RepositoryUrl>https://github.com/SunnieShine/Sudoku</RepositoryUrl>
+		<RepositoryType>git</RepositoryType>
+		<PackageTags>algorithms;sudoku;puzzle-solving</PackageTags>
+		<PackageLicenseFile>..\..\LICENSE</PackageLicenseFile>
 	</PropertyGroup>
+	<ItemGroup>
+		<None Remove="Views\Pages\MainPage.xaml" />
+		<None Remove="Views\Pages\SettingsPage.xaml" />
+	</ItemGroup>
 
 	<ItemGroup>
 		<Content Include="Assets\SplashScreen.scale-200.png" />
@@ -29,10 +44,31 @@
 		<Manifest Include="$(ApplicationManifest)" />
 	</ItemGroup>
 
-	<!-- Defining the "Msix" ProjectCapability here allows the Single-project MSIX Packaging
-       Tools extension to be activated for this project even if the Windows App SDK Nuget
-       package has not yet been restored -->
+	<!--
+	Defining the "Msix" ProjectCapability here allows the Single-project MSIX Packaging
+    Tools extension to be activated for this project even if the Windows App SDK Nuget
+    package has not yet been restored
+	-->
 	<ItemGroup Condition="'$(DisableMsixProjectCapabilityAddedByProject)'!='true' and '$(EnablePreviewMsixTooling)'=='true'">
 		<ProjectCapability Include="Msix" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\System\SystemExtensions.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Folder Include="Models\" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Page Update="Views\Pages\MainPage.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</Page>
+	</ItemGroup>
+	<ItemGroup>
+		<Page Update="Views\Pages\SettingsPage.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</Page>
 	</ItemGroup>
 </Project>

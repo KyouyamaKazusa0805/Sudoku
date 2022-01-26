@@ -1,0 +1,11 @@
+﻿global using System;
+global using System.ComponentModel;
+global using System.Linq;
+global using System.Runtime.CompilerServices;
+global using Microsoft.UI.Xaml;
+global using Microsoft.UI.Xaml.Controls;
+global using Microsoft.UI.Xaml.Media.Animation;
+global using Microsoft.UI.Xaml.Navigation;
+global using Sudoku.Diagnostics.CodeAnalysis;
+global using Sudoku.UI.Views.Pages;
+global using Sudoku.UI.Views.Windows;

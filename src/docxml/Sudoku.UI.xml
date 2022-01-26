@@ -6,19 +6,30 @@
     <members>
         <member name="T:Sudoku.UI.App">
             <summary>
-            Provides application-specific behavior to supplement the default Application class.
+            Provides application-specific behavior to supplement the default <see cref="T:Microsoft.UI.Xaml.Application"/> class.
+            </summary>
+            <seealso cref="T:Microsoft.UI.Xaml.Application"/>
+        </member>
+        <member name="F:Sudoku.UI.App._window">
+            <summary>
+            Indicates the main window in this application in the current interaction logic.
             </summary>
         </member>
         <member name="M:Sudoku.UI.App.#ctor">
             <summary>
-            Initializes the singleton application object.  This is the first line of authored code
-            executed, and as such is the logical equivalent of main() or WinMain().
+            <para>Initializes the singleton application object.</para>
+            <para>
+            This is the first line of authored code executed,
+            and as such is the logical equivalent of <c>main()</c> or <c>WinMain()</c>.
+            </para>
             </summary>
         </member>
         <member name="M:Sudoku.UI.App.OnLaunched(Microsoft.UI.Xaml.LaunchActivatedEventArgs)">
             <summary>
-            Invoked when the application is launched normally by the end user.  Other entry points
-            will be used such as when the application is launched to open a specific file.
+            <para>Invoked when the application is launched normally by the end user.</para>
+            <para>
+            Other entry points will be used such as when the application is launched to open a specific file.
+            </para>
             </summary>
             <param name="args">Details about the launch request and process.</param>
         </member>
@@ -42,15 +53,121 @@
             GetXmlnsDefinitions()
             </summary>
         </member>
+        <member name="T:Sudoku.UI.ViewModels.MainPageViewModel">
+            <summary>
+            Indicates the view model that binds with the <see cref="T:Sudoku.UI.Views.Pages.MainPage"/> instances.
+            </summary>
+            <seealso cref="T:Sudoku.UI.Views.Pages.MainPage"/>
+        </member>
+        <member name="T:Sudoku.UI.ViewModels.NotificationObject">
+            <summary>
+            Defines a base object type that holds and handles the action on notifications.
+            </summary>
+        </member>
+        <member name="E:Sudoku.UI.ViewModels.NotificationObject.PropertyChanged">
+            <inheritdoc/>
+        </member>
+        <member name="E:Sudoku.UI.ViewModels.NotificationObject.PropertyChanging">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.UI.ViewModels.NotificationObject.RaisePropertyChanged(System.String)">
+            <summary>
+            To trigger the event <see cref="E:Sudoku.UI.ViewModels.NotificationObject.PropertyChanged"/>.
+            </summary>
+            <param name="propertyName">
+            Indicates the property name whose corresponding property status is changed.
+            </param>
+            <seealso cref="E:Sudoku.UI.ViewModels.NotificationObject.PropertyChanged"/>
+        </member>
+        <member name="M:Sudoku.UI.ViewModels.NotificationObject.RaisePropertyChanging(System.String)">
+            <summary>
+            To trigger the event <see cref="E:Sudoku.UI.ViewModels.NotificationObject.PropertyChanging"/>.
+            </summary>
+            <param name="propertyName">
+            Indicates the property name whose corresponding property status is changed.
+            </param>
+            <seealso cref="E:Sudoku.UI.ViewModels.NotificationObject.PropertyChanging"/>
+        </member>
+        <member name="T:Sudoku.UI.ViewModels.SettingsPageViewModel">
+            <summary>
+            Indicates the view model that binds with the <see cref="T:Sudoku.UI.Views.Pages.SettingsPage"/> instances.
+            </summary>
+            <seealso cref="T:Sudoku.UI.Views.Pages.SettingsPage"/>
+        </member>
+        <member name="T:Sudoku.UI.Views.Pages.MainPage">
+            <summary>
+            An empty page that can be used on its own or navigated to within a <see cref="T:Microsoft.UI.Xaml.Controls.Frame"/>.
+            </summary>
+            <seealso cref="T:Microsoft.UI.Xaml.Controls.Frame"/>
+        </member>
+        <member name="M:Sudoku.UI.Views.Pages.MainPage.#ctor">
+            <summary>
+            Initializes a <see cref="T:Sudoku.UI.Views.Pages.MainPage"/> instance.
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Views.Pages.MainPage.InitializeComponent">
+            <summary>
+            InitializeComponent()
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Views.Pages.MainPage.Connect(System.Int32,System.Object)">
+            <summary>
+            Connect()
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Views.Pages.MainPage.GetBindingConnector(System.Int32,System.Object)">
+            <summary>
+            GetBindingConnector(int connectionId, object target)
+            </summary>
+        </member>
+        <member name="T:Sudoku.UI.Views.Pages.SettingsPage">
+            <summary>
+            An empty page that can be used on its own or navigated to within a <see cref="T:Microsoft.UI.Xaml.Controls.Frame"/>.
+            </summary>
+            <seealso cref="T:Microsoft.UI.Xaml.Controls.Frame"/>
+        </member>
+        <member name="M:Sudoku.UI.Views.Pages.SettingsPage.#ctor">
+            <summary>
+            Initializes a <see cref="T:Sudoku.UI.Views.Pages.SettingsPage"/> instance.
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Views.Pages.SettingsPage.InitializeComponent">
+            <summary>
+            InitializeComponent()
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Views.Pages.SettingsPage.Connect(System.Int32,System.Object)">
+            <summary>
+            Connect()
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Views.Pages.SettingsPage.GetBindingConnector(System.Int32,System.Object)">
+            <summary>
+            GetBindingConnector(int connectionId, object target)
+            </summary>
+        </member>
         <member name="T:Sudoku.UI.Views.Windows.MainWindow">
             <summary>
-            An empty window that can be used on its own or navigated to within a Frame.
+            An empty window that can be used on its own or navigated to within a <see cref="T:Microsoft.UI.Xaml.Controls.Frame"/>.
+            </summary>
+            <seealso cref="T:Microsoft.UI.Xaml.Controls.Frame"/>
+        </member>
+        <member name="F:Sudoku.UI.Views.Windows.MainWindow._navigationPairs">
+            <summary>
+            Indicates the navigation pairs that controls to route pages.
             </summary>
         </member>
         <member name="M:Sudoku.UI.Views.Windows.MainWindow.#ctor">
             <summary>
             Initializes a <see cref="T:Sudoku.UI.Views.Windows.MainWindow"/> instance.
             </summary>
+        </member>
+        <member name="M:Sudoku.UI.Views.Windows.MainWindow.OnNavigate(System.String,Microsoft.UI.Xaml.Media.Animation.NavigationTransitionInfo)">
+            <summary>
+            Try to navigate the pages.
+            </summary>
+            <param name="tag">The specified tag of the navigate page item.</param>
+            <param name="transitionInfo">The transition information.</param>
         </member>
         <member name="M:Sudoku.UI.Views.Windows.MainWindow.InitializeComponent">
             <summary>
