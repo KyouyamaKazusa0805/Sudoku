@@ -13,7 +13,7 @@
 
 	<StackPanel>
 		<TextBlock
-			Text="Project Nano (Sunnie's Sudoku Solution)" Foreground="#FFFFFFFF" FontSize="36"
+			Text="Project Nano (Sunnie's Sudoku Solution)" FontSize="36"
 			HorizontalAlignment="Center" VerticalAlignment="Center" />
 	</StackPanel>
 </Page>

@@ -31,8 +31,7 @@ public sealed partial class MainWindow : Window
 	{
 		var (_, pageType) = _navigationPairs.FirstOrDefault(p => p.ViewItemTag == tag);
 
-		// Get the page type before navigation so you can prevent duplicate
-		// entries in the backstack.
+		// Get the page type before navigation so you can prevent duplicate entries in the backstack.
 		// Only navigate if the selected page isn't currently loaded.
 		var preNavPageType = _viewRouterFrame.CurrentSourcePageType;
 		if (pageType is not null && preNavPageType != pageType)
