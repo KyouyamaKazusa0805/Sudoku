@@ -12,7 +12,8 @@ public sealed partial class MainWindow : Window
 	private readonly (string ViewItemTag, Type PageType)[] _navigationPairs =
 	{
 		(nameof(MainPage), typeof(MainPage)),
-		(nameof(SettingsPage), typeof(SettingsPage))
+		(nameof(SettingsPage), typeof(SettingsPage)),
+		(nameof(AboutPage), typeof(AboutPage))
 	};
 
 

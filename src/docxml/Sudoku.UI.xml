@@ -53,6 +53,67 @@
             GetXmlnsDefinitions()
             </summary>
         </member>
+        <member name="T:Sudoku.UI.Converters.Path2BrushConverter">
+            <summary>
+            Encapsulates the converter that converts the specified <see cref="T:System.String"/>
+            value as the path and the <see cref="T:Microsoft.UI.Xaml.Media.Brush"/> as the result.
+            </summary>
+            <seealso cref="T:Microsoft.UI.Xaml.Media.Brush"/>
+        </member>
+        <member name="F:Sudoku.UI.Converters.Path2BrushConverter.MsAppxProtocol">
+            <summary>
+            Indicates the prefix of the <c>ms-appx</c> protocol.
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Converters.Path2BrushConverter.Convert(System.Object,System.Type,System.Object,System.String)">
+            <inheritdoc/>
+            <exception cref="T:System.ArgumentException">
+            Throws when the argument <paramref name="value"/> is not a <see cref="T:System.String"/> value.
+            The argument <paramref name="value"/> can be <see langword="null"/>.
+            </exception>
+        </member>
+        <member name="M:Sudoku.UI.Converters.Path2BrushConverter.ConvertBack(System.Object,System.Type,System.Object,System.String)">
+            <inheritdoc/>
+            <exception cref="T:System.NotSupportedException">Throws always.</exception>
+        </member>
+        <member name="T:Sudoku.UI.Website">
+            <summary>
+            Provides methods on website visiting.
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Website.Visit(System.String)">
+            <summary>
+            Visit the specified website.
+            </summary>
+            <param name="uri">The URI website.</param>
+            <returns>The process.</returns>
+        </member>
+        <member name="T:Sudoku.UI.Models.ImageInfo">
+            <summary>
+            Defines a set of properties to describe an image.
+            </summary>
+        </member>
+        <member name="P:Sudoku.UI.Models.ImageInfo.Name">
+            <summary>
+            Indicates the name of the image.
+            </summary>
+        </member>
+        <member name="P:Sudoku.UI.Models.ImageInfo.Site">
+            <summary>
+            Indicates the website which name is corresponding to.
+            </summary>
+        </member>
+        <member name="P:Sudoku.UI.Models.ImageInfo.Path">
+            <summary>
+            Indicates the path of the image to show. The field can be <see langword="null"/>.
+            </summary>
+        </member>
+        <member name="T:Sudoku.UI.ViewModels.AboutPageViewModel">
+            <summary>
+            Indicates the view model that binds with the <see cref="T:Sudoku.UI.Views.Pages.AboutPage"/> instances.
+            </summary>
+            <seealso cref="T:Sudoku.UI.Views.Pages.AboutPage"/>
+        </member>
         <member name="T:Sudoku.UI.ViewModels.MainPageViewModel">
             <summary>
             Indicates the view model that binds with the <see cref="T:Sudoku.UI.Views.Pages.MainPage"/> instances.
@@ -94,9 +155,35 @@
             </summary>
             <seealso cref="T:Sudoku.UI.Views.Pages.SettingsPage"/>
         </member>
+        <member name="T:Sudoku.UI.Views.Pages.AboutPage">
+            <summary>
+            A page that can be used on its own or navigated to within a <see cref="T:Microsoft.UI.Xaml.Controls.Frame"/>.
+            </summary>
+            <seealso cref="T:Microsoft.UI.Xaml.Controls.Frame"/>
+        </member>
+        <member name="M:Sudoku.UI.Views.Pages.AboutPage.#ctor">
+            <summary>
+            Initializes an <see cref="T:Sudoku.UI.Views.Pages.AboutPage"/> instance.
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Views.Pages.AboutPage.InitializeComponent">
+            <summary>
+            InitializeComponent()
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Views.Pages.AboutPage.Connect(System.Int32,System.Object)">
+            <summary>
+            Connect()
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Views.Pages.AboutPage.GetBindingConnector(System.Int32,System.Object)">
+            <summary>
+            GetBindingConnector(int connectionId, object target)
+            </summary>
+        </member>
         <member name="T:Sudoku.UI.Views.Pages.MainPage">
             <summary>
-            An empty page that can be used on its own or navigated to within a <see cref="T:Microsoft.UI.Xaml.Controls.Frame"/>.
+            A page that can be used on its own or navigated to within a <see cref="T:Microsoft.UI.Xaml.Controls.Frame"/>.
             </summary>
             <seealso cref="T:Microsoft.UI.Xaml.Controls.Frame"/>
         </member>
@@ -122,7 +209,7 @@
         </member>
         <member name="T:Sudoku.UI.Views.Pages.SettingsPage">
             <summary>
-            An empty page that can be used on its own or navigated to within a <see cref="T:Microsoft.UI.Xaml.Controls.Frame"/>.
+            A page that can be used on its own or navigated to within a <see cref="T:Microsoft.UI.Xaml.Controls.Frame"/>.
             </summary>
             <seealso cref="T:Microsoft.UI.Xaml.Controls.Frame"/>
         </member>

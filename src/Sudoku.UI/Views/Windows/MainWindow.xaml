@@ -17,10 +17,8 @@
 				Tag="MainPage" Content="Home" />
 		</NavigationView.MenuItems>
 		<NavigationView.FooterMenuItems>
-			<!--No corresponding page-->
-			<NavigationViewItem
-				x:Name="_itemSettingsPage" x:FieldModifier="Private" Icon="Setting"
-				Tag="SettingsPage" Content="Settings" />
+			<NavigationViewItem x:FieldModifier="Private" Icon="Setting" Tag="SettingsPage" Content="Settings" />
+			<NavigationViewItem x:FieldModifier="Private" Icon="People" Tag="AboutPage" Content="About" />
 		</NavigationView.FooterMenuItems>
 
 		<Frame

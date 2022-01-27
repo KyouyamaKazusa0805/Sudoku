@@ -11,11 +11,11 @@
 		<UseWinUI>true</UseWinUI>
 		<EnablePreviewMsixTooling>true</EnablePreviewMsixTooling>
 		<Description>The solution that plays with the sudoku.</Description>
-		
+
 		<!--Syntax configurations-->
 		<RootNamespace>Sudoku.UI</RootNamespace>
 		<DocumentationFile>..\docxml\Sudoku.UI.xml</DocumentationFile>
-		
+
 		<!--Repository configurations-->
 		<PackageReadmeFile>README.md</PackageReadmeFile>
 		<RepositoryUrl>https://github.com/SunnieShine/Sudoku</RepositoryUrl>
@@ -24,6 +24,12 @@
 		<PackageLicenseFile>..\..\LICENSE</PackageLicenseFile>
 	</PropertyGroup>
 	<ItemGroup>
+	  <Content Remove="Assets\images\dotnet.png" />
+	</ItemGroup>
+	<ItemGroup>
+		<None Remove="Assets\images\dotnet.png" />
+		<None Remove="BasicProperties.xaml" />
+		<None Remove="Views\Pages\AboutPage.xaml" />
 		<None Remove="Views\Pages\MainPage.xaml" />
 		<None Remove="Views\Pages\SettingsPage.xaml" />
 	</ItemGroup>
@@ -36,6 +42,10 @@
 		<Content Include="Assets\Square44x44Logo.targetsize-24_altform-unplated.png" />
 		<Content Include="Assets\StoreLogo.png" />
 		<Content Include="Assets\Wide310x150Logo.scale-200.png" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <EmbeddedResource Include="Assets\images\dotnet.png" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -58,7 +68,15 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<Folder Include="Models\" />
+		<Page Update="BasicProperties.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</Page>
+	</ItemGroup>
+
+	<ItemGroup>
+		<Page Update="Views\Pages\AboutPage.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</Page>
 	</ItemGroup>
 
 	<ItemGroup>
