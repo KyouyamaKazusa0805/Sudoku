@@ -90,8 +90,7 @@
 				</DataTemplate>
 			</ListView.ItemTemplate>
 
-			<!--<m:ImageInfo Name=".NET Runtime" Site="https://github.com/dotnet/runtime" Path="images/dotnet.png" />-->
-			<m:ImageInfo Name=".NET Runtime" Site="https://github.com/dotnet/runtime" />
+			<m:ImageInfo Name=".NET Runtime" Site="https://github.com/dotnet/runtime" Path="images/dotnet.png" />
 		</ListView>
 	</StackPanel>
 </Page>
