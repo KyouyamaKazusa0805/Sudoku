@@ -44,7 +44,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<EmbeddedResource Include="Assets\images\dotnet.png" />
+		<Resource Include="Assets\images\dotnet.png" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -67,18 +67,12 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Page Update="ResourceDictionaries\TextResources-zh-cn.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </Page>
-	</ItemGroup>
-
-	<ItemGroup>
-	  <Page Update="ResourceDictionaries\TextResources-en-us.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </Page>
-	</ItemGroup>
-
-	<ItemGroup>
+		<Page Update="ResourceDictionaries\TextResources-zh-cn.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</Page>
+		<Page Update="ResourceDictionaries\TextResources-en-us.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</Page>
 		<Page Update="ResourceDictionaries\BasicProperties.xaml">
 			<Generator>MSBuild:Compile</Generator>
 		</Page>

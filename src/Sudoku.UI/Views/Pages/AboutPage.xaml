@@ -51,20 +51,20 @@
 				Grid.Row="1" Grid.Column="0" Text="{StaticResource AboutPage_GitHub}"
 				HorizontalAlignment="Center" Style="{ThemeResource TablePlainText}" />
 			<HyperlinkButton
-				Grid.Row="1" Grid.Column="1" Content="{StaticResource AboutPage_AuthorName}"
-				NavigateUri="https://github.com/SunnieShine" />
+				x:Name="_githubLink" Grid.Row="1" Grid.Column="1" NavigateUri="https://github.com/SunnieShine"
+				Content="{x:Bind _githubLink.NavigateUri}" />
 			<TextBlock
 				Grid.Row="2" Grid.Column="0" Text="{StaticResource AboutPage_Gitee}"
 				HorizontalAlignment="Center" Style="{ThemeResource TablePlainText}" />
 			<HyperlinkButton
-				Grid.Row="2" Grid.Column="1" Content="{StaticResource AboutPage_AuthorName}"
-				NavigateUri="https://gitee.com/SunnieShine" />
+				x:Name="_giteeLink" Grid.Row="2" Grid.Column="1" NavigateUri="https://gitee.com/SunnieShine"
+				Content="{x:Bind _giteeLink.NavigateUri}" />
 			<TextBlock
 				Grid.Row="3" Grid.Column="0" Text="{StaticResource AboutPage_Bilibili}"
 				HorizontalAlignment="Center" Style="{ThemeResource TablePlainText}" />
 			<HyperlinkButton
-				Grid.Row="3" Grid.Column="1" Content="{StaticResource AboutPage_AuthorName}"
-				NavigateUri="https://space.bilibili.com/23736703" />
+				x:Name="_bilibiliLink" Grid.Row="3" Grid.Column="1" NavigateUri="https://space.bilibili.com/23736703"
+				Content="{x:Bind _bilibiliLink.NavigateUri}" />
 		</Grid>
 		<TextBlock Text="{StaticResource AboutPage_SpecialThanks}" Style="{ThemeResource Header2Text}" />
 		<TextBlock Text="{StaticResource AboutPage_SpecialThanksDescription}" Style="{ThemeResource PlainText}" />
@@ -86,13 +86,12 @@
 							HorizontalAlignment="Center" VerticalAlignment="Center"
 							Fill="{x:Bind Path,Converter={StaticResource Path2BrushConverter}}" />
 						<TextBlock
-							x:Name="_ContentNameDisplayer"
 							Grid.Row="0" Grid.Column="1" Margin="12,6,0,0"
 							Text="{x:Bind Name}" Style="{StaticResource BaseTextBlockStyle}" />
 						<HyperlinkButton
 							Grid.Row="1" Grid.Column="1" Margin="12,0,0,6"
-							Content="{x:Bind Site}"
-							NavigateUri="{x:Bind Site}" Style="{StaticResource BodyTextBlockStyle}" />
+							Content="{x:Bind Site}" NavigateUri="{x:Bind Site}"
+							Style="{StaticResource BodyTextBlockStyle}" />
 					</Grid>
 				</DataTemplate>
 			</ListView.ItemTemplate>
