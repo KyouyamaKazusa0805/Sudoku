@@ -79,7 +79,7 @@
 						<Ellipse
 							Grid.RowSpan="2" Width="32" Height="32" Margin="6"
 							HorizontalAlignment="Center" VerticalAlignment="Center"
-							Fill="{x:Bind Path,Converter={StaticResource Path2BrushConverter},Mode=OneWay}" />
+							Fill="{x:Bind Path,Converter={StaticResource Path2BrushConverter}}" />
 						<TextBlock
 							Grid.Row="0" Grid.Column="1" Margin="12,6,0,0"
 							Text="{x:Bind Name}" Style="{StaticResource BaseTextBlockStyle}" />
