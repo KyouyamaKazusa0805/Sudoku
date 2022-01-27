@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CodeSnippets xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+	<CodeSnippet Format="1.0.0">
+		<Header>
+			<SnippetTypes>
+				<SnippetType>Expansion</SnippetType>
+			</SnippetTypes>
+			<Title>Custom Record Class or Structs</Title>
+			<Shortcut>record</Shortcut>
+			<Description>The snippet that allows you creating the custom records or record structs.</Description>
+		</Header>
+		<Snippet>
+			<Declarations>
+				<Literal Editable="true">
+					<ID>keyword</ID>
+					<Default>class</Default>
+				</Literal>
+				<Literal Editable="true">
+					<ID>typeName</ID>
+					<Default>MyRecord</Default>
+				</Literal>
+			</Declarations>
+			<Code Language="csharp" Delimiter="$"><![CDATA[record $keyword$ $typeName$() : IEquatable<$typeName$>, IEqualityOperators<$typeName$, $typeName$>;]]></Code>
+		</Snippet>
+	</CodeSnippet>
+</CodeSnippets>

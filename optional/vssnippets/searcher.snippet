@@ -1,0 +1,72 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CodeSnippets xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+	<CodeSnippet Format="1.0.0">
+		<Header>
+			<SnippetTypes>
+				<SnippetType>Expansion</SnippetType>
+			</SnippetTypes>
+			<Title>Custom Searcher</Title>
+			<Shortcut>searcher</Shortcut>
+			<Description>The snippet that allows you creating the custom step searcher.</Description>
+		</Header>
+		<Snippet>
+			<Declarations>
+				<Literal Editable="true">
+					<ID>step_searcher_name</ID>
+					<Default>My</Default>
+				</Literal>
+				<Literal Editable="true">
+					<ID>priority</ID>
+					<Default>default(int)</Default>
+				</Literal>
+				<Literal Editable="true">
+					<ID>level</ID>
+					<Default>default(DisplayingLevel)</Default>
+				</Literal>
+				<Literal Editable="true">
+					<ID>detail</ID>
+				</Literal>
+				<Literal Editable="true">
+					<ID>base_type</ID>
+				</Literal>
+			</Declarations>
+			<Code Language="csharp" Delimiter="$">
+				<![CDATA[/// <summary>
+/// Provides with a <b>$step_searcher_name$</b> step searcher.
+/// The step searcher will include the following techniques:
+/// <list type="bullet">
+/// <item>$step_searcher_name$</item>
+/// </list>
+/// </summary>
+[StepSearcher]
+public sealed unsafe class $detail$StepSearcher : I$detail$StepSearcher
+{
+	/// <inheritdoc/>
+	public SearchingOptions Options { get; set; } = new($priority$, $level$);
+
+	/// <inheritdoc/>
+	public delegate*<in Grid, bool> Predicate
+	{
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		get => null;
+	}
+
+
+	/// <inheritdoc/>
+	public Step? GetAll(ICollection<Step> accumulator, in Grid grid, bool onlyFindOne)
+	{
+		return null;$end$
+	}
+}
+
+/// <summary>
+/// Defines a step searcher that searches for $detail$ steps.
+/// </summary>
+public interface I$detail$StepSearcher : I$base_type$StepSearcher
+{
+}
+]]>
+			</Code>
+		</Snippet>
+	</CodeSnippet>
+</CodeSnippets>
