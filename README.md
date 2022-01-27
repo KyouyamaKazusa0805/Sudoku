@@ -60,7 +60,7 @@ Please visit the following tables.
 | Programming language and version   | C# 10                               |
 | Framework                          | .NET 6                              |
 | Indenting                          | Tabs                                |
-| Integrated development environment | Visual Studio 2022 (17.1 Preview 3) |
+| Integrated development environment | Visual Studio 2022 (17.1 Preview 4) |
 | Natural languages support          | English, Simplified Chinese         |
 
 > Please note that the programming language version is always used as 'preview', which means some preview features are still used in this solution.
