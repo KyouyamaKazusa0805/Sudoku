@@ -7,23 +7,21 @@
 	mc:Ignorable="d">
 
 	<NavigationView
-		x:Name="_viewRouter" x:FieldModifier="Private" Header="Sudoku" IsBackButtonVisible="Collapsed"
+		x:Name="_viewRouter" Header="{StaticResource ProgramName}" IsBackButtonVisible="Collapsed"
 		IsBackEnabled="False" PaneDisplayMode="Left" IsSettingsVisible="False"
-		ItemInvoked="ViewRouter_ItemInvoked"
-		SelectionChanged="ViewRouter_SelectionChanged">
+		ItemInvoked="ViewRouter_ItemInvoked" SelectionChanged="ViewRouter_SelectionChanged">
 		<NavigationView.MenuItems>
 			<NavigationViewItem
-				x:Name="_itemHomePage" x:FieldModifier="Private" Icon="Home"
-				Tag="MainPage" Content="Home" />
+				x:Name="_itemHomePage" Icon="Home" Tag="MainPage"
+				Content="{StaticResource HomePage_Home}" />
 		</NavigationView.MenuItems>
 		<NavigationView.FooterMenuItems>
-			<NavigationViewItem x:FieldModifier="Private" Icon="Setting" Tag="SettingsPage" Content="Settings" />
-			<NavigationViewItem x:FieldModifier="Private" Icon="People" Tag="AboutPage" Content="About" />
+			<NavigationViewItem Icon="Setting" Tag="SettingsPage" Content="{StaticResource HomePage_Settings}" />
+			<NavigationViewItem Icon="People" Tag="AboutPage" Content="{StaticResource HomePage_About}" />
 		</NavigationView.FooterMenuItems>
 
 		<Frame
-			x:Name="_viewRouterFrame" x:FieldModifier="Private"
-			Navigated="ViewRouterFrame_Navigated"
+			x:Name="_viewRouterFrame" Navigated="ViewRouterFrame_Navigated"
 			NavigationFailed="ViewRouterFrame_NavigationFailed" />
 	</NavigationView>
 </Window>

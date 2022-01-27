@@ -1,0 +1,20 @@
+﻿<ResourceDictionary
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+	<x:String x:Key="ProgramName">Project Nano (Sunnie's Sudoku Solution)</x:String>
+	<x:String x:Key="HomePage_Home">Home</x:String>
+	<x:String x:Key="HomePage_Settings">Settings</x:String>
+	<x:String x:Key="HomePage_About">About</x:String>
+	<x:String x:Key="AboutPage_DetailDescription">Here displays the details about the application.</x:String>
+	<x:String x:Key="AboutPage_Author">Author</x:String>
+	<x:String x:Key="AboutPage_AuthorName">Sunnie-Shine</x:String>
+	<x:String x:Key="AboutPage_AuthorMoreInfo">You can visit those links to learn more about me:</x:String>
+	<x:String x:Key="AboutPage_Platform">Platform</x:String>
+	<x:String x:Key="AboutPage_Site">Site</x:String>
+	<x:String x:Key="AboutPage_GitHub">GitHub</x:String>
+	<x:String x:Key="AboutPage_Gitee">Gitee</x:String>
+	<x:String x:Key="AboutPage_Bilibili">Bilibili</x:String>
+	<x:String x:Key="AboutPage_SpecialThanks">Special Thanks</x:String>
+	<x:String x:Key="AboutPage_SpecialThanksDescription">This project uses the following open-source code for references:</x:String>
+	<x:String x:Key="AboutPage_SpecialThanks_DotnetRuntime">.NET Runtime</x:String>
+</ResourceDictionary>

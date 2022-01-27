@@ -11,9 +11,6 @@
 		<vm:MainPageViewModel />
 	</Page.DataContext>
 
-	<StackPanel>
-		<TextBlock
-			Text="Project Nano (Sunnie's Sudoku Solution)" FontSize="36"
-			HorizontalAlignment="Center" VerticalAlignment="Center" />
-	</StackPanel>
+	<Grid>
+	</Grid>
 </Page>

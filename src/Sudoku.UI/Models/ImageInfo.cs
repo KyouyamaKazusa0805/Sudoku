@@ -13,7 +13,7 @@ public sealed class ImageInfo
 	/// <summary>
 	/// Indicates the website which name is corresponding to.
 	/// </summary>
-	public string? Site { get; set; }
+	public Uri? Site { get; set; }
 
 	/// <summary>
 	/// Indicates the path of the image to show. The field can be <see langword="null"/>.

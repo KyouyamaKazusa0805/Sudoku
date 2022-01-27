@@ -1,0 +1,20 @@
+﻿<ResourceDictionary
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+	<x:String x:Key="ProgramName">向日葵的数独解决方案（代号“名乃”）</x:String>
+	<x:String x:Key="HomePage_Home">主页</x:String>
+	<x:String x:Key="HomePage_Settings">设置</x:String>
+	<x:String x:Key="HomePage_About">关于</x:String>
+	<x:String x:Key="AboutPage_DetailDescription">本页面列举一些关于整个程序有关的作者或项目信息。</x:String>
+	<x:String x:Key="AboutPage_Author">作者</x:String>
+	<x:String x:Key="AboutPage_AuthorName">小向（Sunnie-Shine）</x:String>
+	<x:String x:Key="AboutPage_AuthorMoreInfo">你可以查看这些链接：</x:String>
+	<x:String x:Key="AboutPage_Platform">平台</x:String>
+	<x:String x:Key="AboutPage_Site">网站</x:String>
+	<x:String x:Key="AboutPage_GitHub">GitHub</x:String>
+	<x:String x:Key="AboutPage_Gitee">Gitee</x:String>
+	<x:String x:Key="AboutPage_Bilibili">哔哩哔哩</x:String>
+	<x:String x:Key="AboutPage_SpecialThanks">鸣谢</x:String>
+	<x:String x:Key="AboutPage_SpecialThanksDescription">这个项目使用了如下给出的仓库的开源代码作为参考：</x:String>
+	<x:String x:Key="AboutPage_SpecialThanks_DotnetRuntime">.NET 运行时</x:String>
+</ResourceDictionary>

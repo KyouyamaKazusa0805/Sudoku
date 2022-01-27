@@ -6,9 +6,10 @@
 		<ResourceDictionary>
 			<ResourceDictionary.MergedDictionaries>
 				<XamlControlsResources xmlns="using:Microsoft.UI.Xaml.Controls" />
-				<ResourceDictionary Source="BasicProperties.xaml" />
+				<ResourceDictionary Source="ResourceDictionaries/BasicProperties.xaml" />
+				<ResourceDictionary Source="ResourceDictionaries/TextResources-en-us.xaml" />
+				<ResourceDictionary Source="ResourceDictionaries/TextResources-zh-cn.xaml" />
 			</ResourceDictionary.MergedDictionaries>
-			<!-- Other app resources here -->
 		</ResourceDictionary>
 	</Application.Resources>
 </Application>

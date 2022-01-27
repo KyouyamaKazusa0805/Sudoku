@@ -26,6 +26,8 @@
 
 	<ItemGroup>
 		<None Remove="BasicProperties.xaml" />
+		<None Remove="TextResources-en-us.xaml" />
+		<None Remove="TextResources-zh-cn.xaml" />
 		<None Remove="Views\Pages\AboutPage.xaml" />
 		<None Remove="Views\Pages\MainPage.xaml" />
 		<None Remove="Views\Pages\SettingsPage.xaml" />
@@ -65,7 +67,19 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<Page Update="BasicProperties.xaml">
+	  <Page Update="ResourceDictionaries\TextResources-zh-cn.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </Page>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Page Update="ResourceDictionaries\TextResources-en-us.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </Page>
+	</ItemGroup>
+
+	<ItemGroup>
+		<Page Update="ResourceDictionaries\BasicProperties.xaml">
 			<Generator>MSBuild:Compile</Generator>
 		</Page>
 	</ItemGroup>

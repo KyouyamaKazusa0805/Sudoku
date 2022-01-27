@@ -18,10 +18,10 @@
 
 	<!--Window begin-->
 	<StackPanel>
-		<TextBlock Text="Here displays the details about the application." Style="{ThemeResource PlainText}" />
-		<TextBlock Text="Author" Style="{ThemeResource Header2Text}" />
-		<TextBlock Text="Sunnie-Shine" Style="{ThemeResource BoldText}" />
-		<TextBlock Text="You can visit those links to learn more about me:" Style="{ThemeResource PlainText}" />
+		<TextBlock Text="{StaticResource AboutPage_DetailDescription}" Style="{ThemeResource PlainText}" />
+		<TextBlock Text="{StaticResource AboutPage_Author}" Style="{ThemeResource Header2Text}" />
+		<TextBlock Text="{StaticResource AboutPage_AuthorName}" Style="{ThemeResource BoldText}" />
+		<TextBlock Text="{StaticResource AboutPage_AuthorMoreInfo}" Style="{ThemeResource PlainText}" />
 		<Grid HorizontalAlignment="Left" Margin="{StaticResource ParagraphOffset}">
 			<Grid.RowDefinitions>
 				<RowDefinition />
@@ -34,35 +34,40 @@
 				<ColumnDefinition />
 			</Grid.ColumnDefinitions>
 
+			<!--Border lines-->
 			<Border Grid.Row="0" Grid.ColumnSpan="2" BorderBrush="DimGray" BorderThickness="0,1,0,0" />
 			<Border Grid.Row="1" Grid.ColumnSpan="2" BorderBrush="DimGray" BorderThickness="0,1,0,0" />
 			<Border Grid.Row="2" Grid.ColumnSpan="2" BorderBrush="DimGray" BorderThickness="0,1,0,0" />
 			<Border Grid.Row="3" Grid.ColumnSpan="2" BorderBrush="DimGray" BorderThickness="0,1,0,1" />
-			<TextBlock Grid.Row="0" Grid.Column="0" Text="Platform" Style="{ThemeResource TableHeader}" />
-			<TextBlock Grid.Row="0" Grid.Column="1" Text="Site" Style="{ThemeResource TableHeader}" />
+
+			<!--Table rows-->
 			<TextBlock
-				Grid.Row="1" Grid.Column="0" Text="GitHub" HorizontalAlignment="Center"
-				Style="{ThemeResource TablePlainText}" />
-			<HyperlinkButton
-				Grid.Row="1" Grid.Column="1" Content="https://github.com/SunnieShine"
-				Click="HyperlinkButton_Click" />
+				Grid.Row="0" Grid.Column="0" Text="{StaticResource AboutPage_Platform}"
+				Style="{ThemeResource TableHeader}" />
 			<TextBlock
-				Grid.Row="2" Grid.Column="0" Text="Gitee" HorizontalAlignment="Center"
-				Style="{ThemeResource TablePlainText}" />
-			<HyperlinkButton
-				Grid.Row="2" Grid.Column="1" Content="https://gitee.com/SunnieShine"
-				Click="HyperlinkButton_Click" />
+				Grid.Row="0" Grid.Column="1" Text="{StaticResource AboutPage_Site}"
+				Style="{ThemeResource TableHeader}" />
 			<TextBlock
-				Grid.Row="3" Grid.Column="0" Text="Bilibili" HorizontalAlignment="Center"
-				Style="{ThemeResource TablePlainText}" />
+				Grid.Row="1" Grid.Column="0" Text="{StaticResource AboutPage_GitHub}"
+				HorizontalAlignment="Center" Style="{ThemeResource TablePlainText}" />
 			<HyperlinkButton
-				Grid.Row="3" Grid.Column="1" Content="https://space.bilibili.com/23736703"
-				Click="HyperlinkButton_Click" />
+				Grid.Row="1" Grid.Column="1" Content="{StaticResource AboutPage_AuthorName}"
+				NavigateUri="https://github.com/SunnieShine" />
+			<TextBlock
+				Grid.Row="2" Grid.Column="0" Text="{StaticResource AboutPage_Gitee}"
+				HorizontalAlignment="Center" Style="{ThemeResource TablePlainText}" />
+			<HyperlinkButton
+				Grid.Row="2" Grid.Column="1" Content="{StaticResource AboutPage_AuthorName}"
+				NavigateUri="https://gitee.com/SunnieShine" />
+			<TextBlock
+				Grid.Row="3" Grid.Column="0" Text="{StaticResource AboutPage_Bilibili}"
+				HorizontalAlignment="Center" Style="{ThemeResource TablePlainText}" />
+			<HyperlinkButton
+				Grid.Row="3" Grid.Column="1" Content="{StaticResource AboutPage_AuthorName}"
+				NavigateUri="https://space.bilibili.com/23736703" />
 		</Grid>
-		<TextBlock Text="Special Thanks" Style="{ThemeResource Header2Text}" />
-		<TextBlock
-			Text="This project uses the following open-source code:"
-			Style="{ThemeResource PlainText}" />
+		<TextBlock Text="{StaticResource AboutPage_SpecialThanks}" Style="{ThemeResource Header2Text}" />
+		<TextBlock Text="{StaticResource AboutPage_SpecialThanksDescription}" Style="{ThemeResource PlainText}" />
 		<ListView Margin="{StaticResource ParagraphOffset}" SelectionMode="None">
 			<ListView.ItemTemplate>
 				<DataTemplate x:DataType="m:ImageInfo">
@@ -81,16 +86,20 @@
 							HorizontalAlignment="Center" VerticalAlignment="Center"
 							Fill="{x:Bind Path,Converter={StaticResource Path2BrushConverter}}" />
 						<TextBlock
+							x:Name="_ContentNameDisplayer"
 							Grid.Row="0" Grid.Column="1" Margin="12,6,0,0"
 							Text="{x:Bind Name}" Style="{StaticResource BaseTextBlockStyle}" />
-						<TextBlock
+						<HyperlinkButton
 							Grid.Row="1" Grid.Column="1" Margin="12,0,0,6"
-							Text="{x:Bind Site}" Style="{StaticResource BodyTextBlockStyle}" />
+							Content="{x:Bind Site}"
+							NavigateUri="{x:Bind Site}" Style="{StaticResource BodyTextBlockStyle}" />
 					</Grid>
 				</DataTemplate>
 			</ListView.ItemTemplate>
 
-			<m:ImageInfo Name=".NET Runtime" Site="https://github.com/dotnet/runtime" Path="images/dotnet.png" />
+			<m:ImageInfo
+				Name="{StaticResource AboutPage_SpecialThanks_DotnetRuntime}"
+				Site="https://github.com/dotnet/runtime" Path="images/dotnet.png" />
 		</ListView>
 	</StackPanel>
 </Page>
