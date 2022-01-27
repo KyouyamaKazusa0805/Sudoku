@@ -23,11 +23,8 @@
 		<PackageTags>algorithms;sudoku;puzzle-solving</PackageTags>
 		<PackageLicenseFile>..\..\LICENSE</PackageLicenseFile>
 	</PropertyGroup>
+
 	<ItemGroup>
-	  <Content Remove="Assets\images\dotnet.png" />
-	</ItemGroup>
-	<ItemGroup>
-		<None Remove="Assets\images\dotnet.png" />
 		<None Remove="BasicProperties.xaml" />
 		<None Remove="Views\Pages\AboutPage.xaml" />
 		<None Remove="Views\Pages\MainPage.xaml" />
@@ -45,7 +42,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <EmbeddedResource Include="Assets\images\dotnet.png" />
+		<EmbeddedResource Include="Assets\images\dotnet.png" />
 	</ItemGroup>
 
 	<ItemGroup>
