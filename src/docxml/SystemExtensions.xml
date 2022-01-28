@@ -595,6 +595,20 @@
             Throws when the argument <paramref name="str"/> is not an identifier.
             </exception>
         </member>
+        <member name="T:System.DelegateExtensions">
+            <summary>
+            Provides extension methods on <see cref="T:System.Delegate"/>.
+            </summary>
+            <seealso cref="T:System.Delegate"/>
+        </member>
+        <member name="M:System.DelegateExtensions.GetInvocations``1(``0)">
+            <summary>
+            Returns the invocation list of the delegate.
+            </summary>
+            <typeparam name="TDelegate">The type of the delegate.</typeparam>
+            <param name="this">The instance.</param>
+            <returns>An array of delegates representing the invocation list of the current delegate.</returns>
+        </member>
         <member name="T:System.DoubleExtensions">
             <summary>
             Provides extension methods on <see cref="T:System.Double"/>.

@@ -338,6 +338,9 @@ dotnet_diagnostic.CS8631.severity = error
 # CS8643: Nullability of reference types in explicit interface specifier doesn't match interface implemented by the type.
 dotnet_diagnostic.CS8643.severity = error
 
+# CS8645: Interface is already listed in the interface list with different nullability of reference types.
+dotnet_diagnostic.CS8645.severity = error
+
 # CS8653: A default expression introduces a null value for a type parameter.
 dotnet_diagnostic.CS8653.severity = error
 
@@ -470,7 +473,7 @@ dotnet_diagnostic.CA2249.severity = silent
 dotnet_diagnostic.CA2255.severity = none
 
 
-# JSON files
+### JSON files
 
 [*.json]
 

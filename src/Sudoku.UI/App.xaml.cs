@@ -19,7 +19,12 @@ public partial class App : Application
 	/// and as such is the logical equivalent of <c>main()</c> or <c>WinMain()</c>.
 	/// </para>
 	/// </summary>
-	public App() => InitializeComponent();
+	public App()
+	{
+		InitializeComponent();
+
+		ExternalResourceManager.Shared.Routers += static key => Current.Resources[key] as string;
+	}
 
 
 	/// <summary>
@@ -31,7 +36,7 @@ public partial class App : Application
 	/// <param name="args">Details about the launch request and process.</param>
 	protected override void OnLaunched(LaunchActivatedEventArgs args)
 	{
-		_window = new MainWindow { Title = (string)Current.Resources["ProgramName"] };
+		_window = new MainWindow { Title = ExternalResourceManager.Shared["ProgramName"] };
 		_window.Activate();
 	}
 }
