@@ -5682,12 +5682,45 @@
             <summary>
             Try to fetch the property value via the specified property name.
             </summary>
-            <param name="propertyName">The property name to find.</param>
+            <param name="propertyName">The property name to be found.</param>
             <returns>The value that correspoding to the property.</returns>
             <exception cref="T:System.Collections.Generic.KeyNotFoundException">Throws when no such property found.</exception>
         </member>
+        <member name="P:Sudoku.Resources.ResourceDocument.Item(System.String,Sudoku.Resources.ResourceDocumentIndexerMode)">
+            <summary>
+            Try to fetch the property value via the specified property name.
+            This indexer can also define the indexing mode as the second parameter <paramref name="indexerMode"/>.
+            </summary>
+            <param name="propertyName">The property name to be found.</param>
+            <param name="indexerMode">
+            The indexer mode to find keys. If:
+            <list type="table">
+            <listheader>
+            <term>The mode</term>
+            <description>Description</description>
+            </listheader>
+            <item>
+            <term><see cref="F:Sudoku.Resources.ResourceDocumentIndexerMode.Basic"/></term>
+            <description>Same behavior with the indexer <see cref="P:Sudoku.Resources.ResourceDocument.Item(System.String)"/>.</description>
+            </item>
+            <item>
+            <term><see cref="F:Sudoku.Resources.ResourceDocumentIndexerMode.NullableReturn"/></term>
+            <description>If none found, <see langword="null"/> will be returned.</description>
+            </item>
+            </list>
+            </param>
+            <returns>The value that corresponding to the property.</returns>
+            <exception cref="T:System.Collections.Generic.KeyNotFoundException">
+            Throws when no such property found, and the argument <paramref name="indexerMode"/>
+            is <see cref="F:Sudoku.Resources.ResourceDocumentIndexerMode.Basic"/>.
+            </exception>
+            <seealso cref="P:Sudoku.Resources.ResourceDocument.Item(System.String)"/>
+        </member>
         <member name="M:Sudoku.Resources.ResourceDocument.Dispose">
             <inheritdoc cref="M:System.IDisposable.Dispose"/>
+        </member>
+        <member name="M:Sudoku.Resources.ResourceDocument.Equals(System.Object)">
+            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Resources.ResourceDocument.Equals(Sudoku.Resources.ResourceDocument)">
             <summary>
@@ -5748,6 +5781,20 @@
             </exception>
             <exception cref="T:System.Text.Json.JsonException">Throws when the specified string isn't valid JSON code.</exception>
         </member>
+        <member name="M:Sudoku.Resources.ResourceDocument.Equals(Sudoku.Resources.ResourceDocument,Sudoku.Resources.ResourceDocument)">
+            <summary>
+            Determine whether two <see cref="T:Sudoku.Resources.ResourceDocument"/> is same.
+            </summary>
+            <param name="left">The left-side instance to check.</param>
+            <param name="right">The return-side instance to check.</param>
+            <returns>A <see cref="T:System.Boolean"/> result.</returns>
+        </member>
+        <member name="M:Sudoku.Resources.ResourceDocument.op_Equality(Sudoku.Resources.ResourceDocument,Sudoku.Resources.ResourceDocument)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Resources.ResourceDocument.op_Inequality(Sudoku.Resources.ResourceDocument,Sudoku.Resources.ResourceDocument)">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Resources.ResourceDocument.Enumerator">
             <summary>
             Indicates the enumerator of the current instance to iterate.
@@ -5783,6 +5830,33 @@
         <member name="M:Sudoku.Resources.ResourceDocument.Enumerator.ToString">
             <inheritdoc cref="M:System.Object.ToString"/>
             <exception cref="T:System.NotSupportedException">Always throws.</exception>
+        </member>
+        <member name="T:Sudoku.Resources.ResourceDocumentIndexerMode">
+            <summary>
+            Defines an indexer mode on resource document.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Resources.ResourceDocumentIndexerMode.Basic">
+            <summary>
+            Indicates the mode is the basic mode. If the key cannot be found in the document,
+            the indexer will throw a <see cref="T:System.Collections.Generic.KeyNotFoundException"/>.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Resources.ResourceDocumentIndexerMode.NullableReturn">
+            <summary>
+            Indicates the mode is the nullable-return mode. If the key cannot be found in the document,
+            the indexer will return <see langword="null"/> instead of throwing.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Resources.ResourceDocumentKeyNotFoundEventHandler">
+            <summary>
+            Defines a handler that is triggered when the specified key in the base resource documents cannot be found.
+            </summary>
+            <param name="manager">The manager that controls the resource document.</param>
+            <param name="key">The key to be found.</param>
+            <returns>
+            The <see cref="T:System.String"/>? result indicating the external resource value.
+            </returns>
         </member>
         <member name="T:Sudoku.Resources.ResourceDocumentManager">
             <summary>
@@ -5834,6 +5908,11 @@
             the return value will be <see langword="null"/>.
             </returns>
         </member>
+        <member name="E:Sudoku.Resources.ResourceDocumentManager.KeyNotFound">
+            <summary>
+            Indicates the event that is triggered when the key cannot be found.
+            </summary>
+        </member>
         <member name="M:Sudoku.Resources.ResourceDocumentManager.Add(Sudoku.Resources.ResourceDocument)">
             <summary>
             Add the specified resource document into the collection.
@@ -5852,6 +5931,13 @@
             Determine whether the collection contains the resource document whose LCID is the specified one.
             </summary>
             <param name="lcid">The LCID to determine.</param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
+        </member>
+        <member name="M:Sudoku.Resources.ResourceDocumentManager.ContainsKey(System.String)">
+            <summary>
+            Determine whether at least one dictionary can find the specified key.
+            </summary>
+            <param name="key">The key to be found.</param>
             <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
         </member>
         <member name="M:Sudoku.Resources.ResourceDocumentManager.GetEnumerator">

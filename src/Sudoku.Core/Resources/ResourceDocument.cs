@@ -15,6 +15,7 @@
 /// </summary>
 public sealed partial class ResourceDocument :
 	IDisposable,
+	IEqualityOperators<ResourceDocument, ResourceDocument>,
 	IEquatable<ResourceDocument>,
 	ISimpleParseable<ResourceDocument>
 {
@@ -104,7 +105,7 @@ public sealed partial class ResourceDocument :
 	/// <summary>
 	/// Try to fetch the property value via the specified property name.
 	/// </summary>
-	/// <param name="propertyName">The property name to find.</param>
+	/// <param name="propertyName">The property name to be found.</param>
 	/// <returns>The value that correspoding to the property.</returns>
 	/// <exception cref="KeyNotFoundException">Throws when no such property found.</exception>
 	public string this[string propertyName]
@@ -113,10 +114,55 @@ public sealed partial class ResourceDocument :
 		get => _root.GetProperty(propertyName).GetString()!;
 	}
 
+	/// <summary>
+	/// Try to fetch the property value via the specified property name.
+	/// This indexer can also define the indexing mode as the second parameter <paramref name="indexerMode"/>.
+	/// </summary>
+	/// <param name="propertyName">The property name to be found.</param>
+	/// <param name="indexerMode">
+	/// The indexer mode to find keys. If:
+	/// <list type="table">
+	/// <listheader>
+	/// <term>The mode</term>
+	/// <description>Description</description>
+	/// </listheader>
+	/// <item>
+	/// <term><see cref="ResourceDocumentIndexerMode.Basic"/></term>
+	/// <description>Same behavior with the indexer <see cref="this[string]"/>.</description>
+	/// </item>
+	/// <item>
+	/// <term><see cref="ResourceDocumentIndexerMode.NullableReturn"/></term>
+	/// <description>If none found, <see langword="null"/> will be returned.</description>
+	/// </item>
+	/// </list>
+	/// </param>
+	/// <returns>The value that corresponding to the property.</returns>
+	/// <exception cref="KeyNotFoundException">
+	/// Throws when no such property found, and the argument <paramref name="indexerMode"/>
+	/// is <see cref="ResourceDocumentIndexerMode.Basic"/>.
+	/// </exception>
+	/// <seealso cref="this[string]"/>
+	public string? this[string propertyName, ResourceDocumentIndexerMode indexerMode]
+	{
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		get => indexerMode switch
+		{
+			ResourceDocumentIndexerMode.Basic => this[propertyName],
+			ResourceDocumentIndexerMode.NullableReturn
+			when _root.TryGetProperty(propertyName, out var result) => result.GetString()!,
+			_ => null
+		};
+	}
+
 
 	/// <inheritdoc cref="IDisposable.Dispose"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public void Dispose() => _parentDoc.Dispose();
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public override bool Equals([NotNullWhen(true)] object? obj) =>
+		obj is ResourceDocument comparer && Equals(comparer);
 
 	/// <summary>
 	/// Determine whether the specified <see cref="ResourceDocument"/> instance holds the same value
@@ -204,4 +250,28 @@ public sealed partial class ResourceDocument :
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static ResourceDocument Parse(string str, CultureInfo? culture) =>
 		new(culture ?? CultureInfo.CurrentCulture, str);
+
+	/// <summary>
+	/// Determine whether two <see cref="ResourceDocument"/> is same.
+	/// </summary>
+	/// <param name="left">The left-side instance to check.</param>
+	/// <param name="right">The return-side instance to check.</param>
+	/// <returns>A <see cref="bool"/> result.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	private static bool Equals(ResourceDocument? left, ResourceDocument? right) =>
+		(Left: left, Right: right) switch
+		{
+			(Left: null, Right: null) => true,
+			(Left: not null, Right: not null) => left.Equals(right),
+			_ => false
+		};
+
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static bool operator ==(ResourceDocument? left, ResourceDocument? right) => Equals(left, right);
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static bool operator !=(ResourceDocument? left, ResourceDocument? right) => !Equals(left, right);
 }

@@ -1,4 +1,6 @@
-﻿namespace Sudoku.Resources;
+﻿using Handler = Sudoku.Resources.ResourceDocumentKeyNotFoundEventHandler;
+
+namespace Sudoku.Resources;
 
 /// <summary>
 /// Defines a resource document manager.
@@ -49,14 +51,29 @@ public sealed class ResourceDocumentManager : IEnumerable<ResourceDocument>
 	{
 		get
 		{
-			try
+			// Searching for the target resource document.
+			if (_list[CurrentLcid][propertyName, ResourceDocumentIndexerMode.NullableReturn] is { } r1)
 			{
-				return _list[CurrentLcid][propertyName];
+				return r1;
 			}
-			catch (KeyNotFoundException)
+
+			// Searching for the base resource document.
+			if (_list[1033][propertyName, ResourceDocumentIndexerMode.NullableReturn] is { } r2)
 			{
-				return _list[1033][propertyName];
+				return r2;
 			}
+
+			// Searching for external resources.
+			foreach (Handler invocation in KeyNotFound?.GetInvocationList() ?? Array.Empty<Handler>())
+			{
+				if (invocation(this, propertyName) is { } r3)
+				{
+					return r3;
+				}
+			}
+
+			// The key cannot be found in all dictionaries. Just throw exceptions to report the wrong case.
+			throw new KeyNotFoundException($"The specified key cannot be found: {propertyName}.");
 		}
 	}
 
@@ -68,13 +85,24 @@ public sealed class ResourceDocumentManager : IEnumerable<ResourceDocument>
 	/// The resource document. If the specified LCID cannot be found,
 	/// the return value will be <see langword="null"/>.
 	/// </returns>
-	public ResourceDocument? this[int lcid] => _list.TryGetValue(lcid, out var result) ? result : null;
+	public ResourceDocument? this[int lcid]
+	{
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		get => _list.TryGetValue(lcid, out var result) ? result : null;
+	}
+
+
+	/// <summary>
+	/// Indicates the event that is triggered when the key cannot be found.
+	/// </summary>
+	public event Handler? KeyNotFound;
 
 
 	/// <summary>
 	/// Add the specified resource document into the collection.
 	/// </summary>
 	/// <param name="element">The resource document instance.</param>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public void Add(ResourceDocument element) => _list.Add(element.Lcid, element);
 
 	/// <summary>
@@ -82,6 +110,7 @@ public sealed class ResourceDocumentManager : IEnumerable<ResourceDocument>
 	/// </summary>
 	/// <param name="lcid">The resource document whose LCID is the current argument value specified.</param>
 	/// <returns>Indicates whether the removing operation is successful.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public bool Remove(int lcid) => _list.Remove(lcid);
 
 	/// <summary>
@@ -89,11 +118,23 @@ public sealed class ResourceDocumentManager : IEnumerable<ResourceDocument>
 	/// </summary>
 	/// <param name="lcid">The LCID to determine.</param>
 	/// <returns>A <see cref="bool"/> result indicating that.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public bool Contains(int lcid) => _list.ContainsKey(lcid);
 
+	/// <summary>
+	/// Determine whether at least one dictionary can find the specified key.
+	/// </summary>
+	/// <param name="key">The key to be found.</param>
+	/// <returns>A <see cref="bool"/> result indicating that.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public bool ContainsKey(string key) =>
+		_list.Values.Any(dic => dic[key, ResourceDocumentIndexerMode.NullableReturn] is not null);
+
 	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public IEnumerator<ResourceDocument> GetEnumerator() => _list.Values.GetEnumerator();
 
 	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
 }
