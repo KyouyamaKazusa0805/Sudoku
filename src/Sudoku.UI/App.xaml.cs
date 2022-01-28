@@ -21,8 +21,13 @@ public partial class App : Application
 	/// </summary>
 	public App()
 	{
+		// Calls the base initialization method.
 		InitializeComponent();
 
+		// Then we should append a new router method to get the resource.
+		// In this way, we can just use the unified code to get the resource.
+		// The classic way to get the resource is 'Application.Current.Resources[key]',
+		// Now we can use 'ExternalResourceManager.Shared[key]'.
 		ExternalResourceManager.Shared.Routers += static key => Current.Resources[key] as string;
 	}
 
