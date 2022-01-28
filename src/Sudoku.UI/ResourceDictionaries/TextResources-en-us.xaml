@@ -2,9 +2,9 @@
 	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
 	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 	<x:String x:Key="ProgramName">Project Nano (Sunnie's Sudoku Solution)</x:String>
-	<x:String x:Key="HomePage_Home">Home</x:String>
-	<x:String x:Key="HomePage_Settings">Settings</x:String>
-	<x:String x:Key="HomePage_About">About</x:String>
+	<x:String x:Key="MainPage_Sudoku">Sudoku</x:String>
+	<x:String x:Key="MainPage_Settings">Settings</x:String>
+	<x:String x:Key="MainPage_About">About</x:String>
 	<x:String x:Key="AboutPage_DetailDescription">Here displays the details about the application.</x:String>
 	<x:String x:Key="AboutPage_Author">Author</x:String>
 	<x:String x:Key="AboutPage_AuthorName">Sunnie-Shine</x:String>

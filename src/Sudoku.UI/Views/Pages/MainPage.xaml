@@ -11,6 +11,22 @@
 		<vm:MainPageViewModel />
 	</Page.DataContext>
 
-	<Grid>
-	</Grid>
+	<NavigationView
+		x:Name="_viewRouter" Header="{StaticResource ProgramName}" IsBackButtonVisible="Collapsed"
+		IsBackEnabled="False" PaneDisplayMode="Left" IsSettingsVisible="False"
+		ItemInvoked="ViewRouter_ItemInvoked" SelectionChanged="ViewRouter_SelectionChanged">
+		<NavigationView.MenuItems>
+			<NavigationViewItem
+				x:Name="_itemHomePage" Icon="Home" Tag="SudokuPage"
+				Content="{StaticResource MainPage_Sudoku}" />
+		</NavigationView.MenuItems>
+		<NavigationView.FooterMenuItems>
+			<NavigationViewItem Icon="Setting" Tag="SettingsPage" Content="{StaticResource MainPage_Settings}" />
+			<NavigationViewItem Icon="People" Tag="AboutPage" Content="{StaticResource MainPage_About}" />
+		</NavigationView.FooterMenuItems>
+
+		<Frame
+			x:Name="_viewRouterFrame" Navigated="ViewRouterFrame_Navigated"
+			NavigationFailed="ViewRouterFrame_NavigationFailed" />
+	</NavigationView>
 </Page>

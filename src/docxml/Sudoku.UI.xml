@@ -187,10 +187,22 @@
             </summary>
             <seealso cref="T:Microsoft.UI.Xaml.Controls.Frame"/>
         </member>
+        <member name="F:Sudoku.UI.Views.Pages.MainPage._navigationPairs">
+            <summary>
+            Indicates the navigation pairs that controls to route pages.
+            </summary>
+        </member>
         <member name="M:Sudoku.UI.Views.Pages.MainPage.#ctor">
             <summary>
             Initializes a <see cref="T:Sudoku.UI.Views.Pages.MainPage"/> instance.
             </summary>
+        </member>
+        <member name="M:Sudoku.UI.Views.Pages.MainPage.OnNavigate(System.String,Microsoft.UI.Xaml.Media.Animation.NavigationTransitionInfo)">
+            <summary>
+            Try to navigate the pages.
+            </summary>
+            <param name="tag">The specified tag of the navigate page item.</param>
+            <param name="transitionInfo">The transition information.</param>
         </member>
         <member name="M:Sudoku.UI.Views.Pages.MainPage.InitializeComponent">
             <summary>
@@ -239,22 +251,10 @@
             </summary>
             <seealso cref="T:Microsoft.UI.Xaml.Controls.Frame"/>
         </member>
-        <member name="F:Sudoku.UI.Views.Windows.MainWindow._navigationPairs">
-            <summary>
-            Indicates the navigation pairs that controls to route pages.
-            </summary>
-        </member>
         <member name="M:Sudoku.UI.Views.Windows.MainWindow.#ctor">
             <summary>
             Initializes a <see cref="T:Sudoku.UI.Views.Windows.MainWindow"/> instance.
             </summary>
-        </member>
-        <member name="M:Sudoku.UI.Views.Windows.MainWindow.OnNavigate(System.String,Microsoft.UI.Xaml.Media.Animation.NavigationTransitionInfo)">
-            <summary>
-            Try to navigate the pages.
-            </summary>
-            <param name="tag">The specified tag of the navigate page item.</param>
-            <param name="transitionInfo">The transition information.</param>
         </member>
         <member name="M:Sudoku.UI.Views.Windows.MainWindow.InitializeComponent">
             <summary>

@@ -4,24 +4,8 @@
 	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	xmlns:p="using:Sudoku.UI.Views.Pages"
 	mc:Ignorable="d">
 
-	<NavigationView
-		x:Name="_viewRouter" Header="{StaticResource ProgramName}" IsBackButtonVisible="Collapsed"
-		IsBackEnabled="False" PaneDisplayMode="Left" IsSettingsVisible="False"
-		ItemInvoked="ViewRouter_ItemInvoked" SelectionChanged="ViewRouter_SelectionChanged">
-		<NavigationView.MenuItems>
-			<NavigationViewItem
-				x:Name="_itemHomePage" Icon="Home" Tag="MainPage"
-				Content="{StaticResource HomePage_Home}" />
-		</NavigationView.MenuItems>
-		<NavigationView.FooterMenuItems>
-			<NavigationViewItem Icon="Setting" Tag="SettingsPage" Content="{StaticResource HomePage_Settings}" />
-			<NavigationViewItem Icon="People" Tag="AboutPage" Content="{StaticResource HomePage_About}" />
-		</NavigationView.FooterMenuItems>
-
-		<Frame
-			x:Name="_viewRouterFrame" Navigated="ViewRouterFrame_Navigated"
-			NavigationFailed="ViewRouterFrame_NavigationFailed" />
-	</NavigationView>
+	<p:MainPage />
 </Window>
