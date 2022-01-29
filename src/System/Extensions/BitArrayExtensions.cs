@@ -1,4 +1,5 @@
 ﻿using System.Buffers;
+using static System.Numerics.BitOperations;
 
 namespace System;
 

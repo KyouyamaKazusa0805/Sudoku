@@ -7,6 +7,7 @@ using System.ComponentModel;
 using System.Runtime.InteropServices;
 using Sudoku.Diagnostics.CodeAnalysis;
 using static System.Math;
+using static System.Numerics.BitOperations;
 
 namespace System.Text;
 
