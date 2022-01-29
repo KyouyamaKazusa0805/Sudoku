@@ -6,7 +6,7 @@
 	xmlns:m="using:Sudoku.UI.Models"
 	xmlns:c="using:Sudoku.UI.Converters"
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-	xmlns:vm="using:Sudoku.UI.ViewModels"
+	xmlns:vm="using:Sudoku.UI.ViewModels" xmlns:ui="using:Sudoku.UI"
 	d:DataContext="{d:DesignInstance Type=vm:AboutPageViewModel}"
 	mc:Ignorable="d">
 	<Page.DataContext>
@@ -16,89 +16,109 @@
 		<c:Path2BrushConverter x:Key="Path2BrushConverter" />
 	</Page.Resources>
 
-	<!--Window begin-->
-	<StackPanel>
-		<TextBlock Text="{StaticResource AboutPage_DetailDescription}" Style="{ThemeResource PlainText}" />
-		<TextBlock Text="{StaticResource AboutPage_Author}" Style="{ThemeResource Header2Text}" />
-		<TextBlock Text="{StaticResource AboutPage_AuthorName}" Style="{ThemeResource BoldText}" />
-		<TextBlock Text="{StaticResource AboutPage_AuthorMoreInfo}" Style="{ThemeResource PlainText}" />
-		<Grid HorizontalAlignment="Left" Margin="{StaticResource ParagraphOffset}">
-			<Grid.RowDefinitions>
-				<RowDefinition />
-				<RowDefinition />
-				<RowDefinition />
-				<RowDefinition />
-			</Grid.RowDefinitions>
-			<Grid.ColumnDefinitions>
-				<ColumnDefinition />
-				<ColumnDefinition />
-			</Grid.ColumnDefinitions>
+	<ScrollViewer>
+		<StackPanel>
+			<TextBlock Text="{StaticResource AboutPage_DetailDescription}" Style="{ThemeResource PlainText}" />
+			<TextBlock Text="{StaticResource AboutPage_Author}" Style="{ThemeResource Header2Text}" />
+			<TextBlock Text="{StaticResource AboutPage_AuthorName}" Style="{ThemeResource BoldText}" />
+			<TextBlock Text="{StaticResource AboutPage_AuthorMoreInfo}" Style="{ThemeResource PlainText}" />
+			<Grid HorizontalAlignment="Left" Margin="{StaticResource ParagraphOffset}">
+				<Grid.RowDefinitions>
+					<RowDefinition />
+					<RowDefinition />
+					<RowDefinition />
+					<RowDefinition />
+				</Grid.RowDefinitions>
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition />
+					<ColumnDefinition />
+				</Grid.ColumnDefinitions>
 
-			<!--Border lines-->
-			<Border Grid.Row="0" Grid.ColumnSpan="2" BorderBrush="DimGray" BorderThickness="0,1,0,0" />
-			<Border Grid.Row="1" Grid.ColumnSpan="2" BorderBrush="DimGray" BorderThickness="0,1,0,0" />
-			<Border Grid.Row="2" Grid.ColumnSpan="2" BorderBrush="DimGray" BorderThickness="0,1,0,0" />
-			<Border Grid.Row="3" Grid.ColumnSpan="2" BorderBrush="DimGray" BorderThickness="0,1,0,1" />
+				<!--Border lines-->
+				<Border Grid.Row="0" Grid.ColumnSpan="2" BorderBrush="DimGray" BorderThickness="0,1,0,0" />
+				<Border Grid.Row="1" Grid.ColumnSpan="2" BorderBrush="DimGray" BorderThickness="0,1,0,0" />
+				<Border Grid.Row="2" Grid.ColumnSpan="2" BorderBrush="DimGray" BorderThickness="0,1,0,0" />
+				<Border Grid.Row="3" Grid.ColumnSpan="2" BorderBrush="DimGray" BorderThickness="0,1,0,1" />
 
-			<!--Table rows-->
+				<!--Table rows-->
+				<TextBlock
+					Grid.Row="0" Grid.Column="0" Text="{StaticResource AboutPage_Platform}"
+					Style="{ThemeResource TableHeader}" />
+				<TextBlock
+					Grid.Row="0" Grid.Column="1" Text="{StaticResource AboutPage_Site}"
+					Style="{ThemeResource TableHeader}" />
+				<TextBlock
+					Grid.Row="1" Grid.Column="0" Text="{StaticResource AboutPage_GitHub}"
+					HorizontalAlignment="Center" Style="{ThemeResource TablePlainText}" />
+				<HyperlinkButton
+					x:Name="_githubLink" Grid.Row="1" Grid.Column="1"
+					NavigateUri="https://github.com/SunnieShine"
+					Content="{x:Bind _githubLink.NavigateUri}" />
+				<TextBlock
+					Grid.Row="2" Grid.Column="0" Text="{StaticResource AboutPage_Gitee}"
+					HorizontalAlignment="Center" Style="{ThemeResource TablePlainText}" />
+				<HyperlinkButton
+					x:Name="_giteeLink" Grid.Row="2" Grid.Column="1" NavigateUri="https://gitee.com/SunnieShine"
+					Content="{x:Bind _giteeLink.NavigateUri}" />
+				<TextBlock
+					Grid.Row="3" Grid.Column="0" Text="{StaticResource AboutPage_Bilibili}"
+					HorizontalAlignment="Center" Style="{ThemeResource TablePlainText}" />
+				<HyperlinkButton
+					x:Name="_bilibiliLink" Grid.Row="3" Grid.Column="1"
+					NavigateUri="https://space.bilibili.com/23736703"
+					Content="{x:Bind _bilibiliLink.NavigateUri}" />
+			</Grid>
+			<TextBlock Text="{StaticResource AboutPage_SpecialThanks}" Style="{ThemeResource Header2Text}" />
 			<TextBlock
-				Grid.Row="0" Grid.Column="0" Text="{StaticResource AboutPage_Platform}"
-				Style="{ThemeResource TableHeader}" />
-			<TextBlock
-				Grid.Row="0" Grid.Column="1" Text="{StaticResource AboutPage_Site}"
-				Style="{ThemeResource TableHeader}" />
-			<TextBlock
-				Grid.Row="1" Grid.Column="0" Text="{StaticResource AboutPage_GitHub}"
-				HorizontalAlignment="Center" Style="{ThemeResource TablePlainText}" />
-			<HyperlinkButton
-				x:Name="_githubLink" Grid.Row="1" Grid.Column="1" NavigateUri="https://github.com/SunnieShine"
-				Content="{x:Bind _githubLink.NavigateUri}" />
-			<TextBlock
-				Grid.Row="2" Grid.Column="0" Text="{StaticResource AboutPage_Gitee}"
-				HorizontalAlignment="Center" Style="{ThemeResource TablePlainText}" />
-			<HyperlinkButton
-				x:Name="_giteeLink" Grid.Row="2" Grid.Column="1" NavigateUri="https://gitee.com/SunnieShine"
-				Content="{x:Bind _giteeLink.NavigateUri}" />
-			<TextBlock
-				Grid.Row="3" Grid.Column="0" Text="{StaticResource AboutPage_Bilibili}"
-				HorizontalAlignment="Center" Style="{ThemeResource TablePlainText}" />
-			<HyperlinkButton
-				x:Name="_bilibiliLink" Grid.Row="3" Grid.Column="1" NavigateUri="https://space.bilibili.com/23736703"
-				Content="{x:Bind _bilibiliLink.NavigateUri}" />
-		</Grid>
-		<TextBlock Text="{StaticResource AboutPage_SpecialThanks}" Style="{ThemeResource Header2Text}" />
-		<TextBlock Text="{StaticResource AboutPage_SpecialThanksDescription}" Style="{ThemeResource PlainText}" />
-		<ListView Margin="{StaticResource ParagraphOffset}" SelectionMode="None">
-			<ListView.ItemTemplate>
-				<DataTemplate x:DataType="m:ImageInfo">
-					<Grid>
-						<Grid.RowDefinitions>
-							<RowDefinition />
-							<RowDefinition />
-						</Grid.RowDefinitions>
-						<Grid.ColumnDefinitions>
-							<ColumnDefinition Width="Auto" />
-							<ColumnDefinition />
-						</Grid.ColumnDefinitions>
+				Text="{StaticResource AboutPage_SpecialThanksDescription}"
+				Style="{ThemeResource PlainText}" />
+			<ListView Margin="{StaticResource ParagraphOffset}" SelectionMode="None">
+				<ListView.ItemTemplate>
+					<DataTemplate x:DataType="m:RepositoryInfo">
+						<Grid>
+							<Grid.RowDefinitions>
+								<RowDefinition />
+								<RowDefinition />
+								<RowDefinition />
+							</Grid.RowDefinitions>
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition Width="Auto" />
+								<ColumnDefinition Width="Auto" />
+								<ColumnDefinition />
+							</Grid.ColumnDefinitions>
 
-						<Ellipse
-							Grid.RowSpan="2" Width="32" Height="32" Margin="6"
-							HorizontalAlignment="Center" VerticalAlignment="Center"
-							Fill="{x:Bind Path,Converter={StaticResource Path2BrushConverter}}" />
-						<TextBlock
-							Grid.Row="0" Grid.Column="1" Margin="12,6,0,0"
-							Text="{x:Bind Name}" Style="{StaticResource BaseTextBlockStyle}" />
-						<HyperlinkButton
-							Grid.Row="1" Grid.Column="1" Margin="12,0,0,6"
-							Content="{x:Bind Site}" NavigateUri="{x:Bind Site}"
-							Style="{StaticResource BodyTextBlockStyle}" />
-					</Grid>
-				</DataTemplate>
-			</ListView.ItemTemplate>
+							<Ellipse
+								Grid.RowSpan="3" Width="48" Height="48" Margin="6"
+								HorizontalAlignment="Center" VerticalAlignment="Center"
+								Fill="{x:Bind IconPath,Converter={StaticResource Path2BrushConverter}}" />
+							<TextBlock
+								Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" Margin="12,6,0,0"
+								Text="{x:Bind Name}" Style="{StaticResource BaseTextBlockStyle}" />
+							<TextBlock
+								Grid.Row="1" Grid.Column="1" Margin="12,6,0,0"
+								Text="{x:Bind ui:BindingConversions.License(OpenSourceLicense)}"
+								Style="{StaticResource BodyTextBlockStyle}" />
+							<TextBlock
+								Grid.Row="1" Grid.Column="2" Margin="12,6,0,0"
+								Text="{x:Bind ui:BindingConversions.ForReference(IsForReference)}"
+								Style="{StaticResource BaseTextBlockStyle}" />
+							<HyperlinkButton
+								Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" Margin="12,0,0,6"
+								Content="{x:Bind Site}" NavigateUri="{x:Bind Site}"
+								Style="{StaticResource BodyTextBlockStyle}" />
+						</Grid>
+					</DataTemplate>
+				</ListView.ItemTemplate>
 
-			<m:ImageInfo
-				Name="{StaticResource AboutPage_SpecialThanks_DotnetRuntime}"
-				Site="https://github.com/dotnet/runtime" Path="images/dotnet.png" />
-		</ListView>
-	</StackPanel>
+				<m:RepositoryInfo
+					Name="{StaticResource AboutPage_SpecialThanks_DotnetRuntime}"
+					Site="https://github.com/dotnet/runtime"
+					OpenSourceLicense="MIT" IconPath="images/dotnet.png" />
+				<m:RepositoryInfo
+					Name="{StaticResource AboutPage_SpecialThanks_LearnWinUI3}"
+					Site="https://github.com/PacktPublishing/-Learn-WinUI-3.0"
+					OpenSourceLicense="MIT" IsForReference="True" />
+			</ListView>
+		</StackPanel>
+	</ScrollViewer>
 </Page>

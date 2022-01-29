@@ -18,6 +18,8 @@
 	<x:String x:Key="AboutPage_SpecialThanks">鸣谢</x:String>
 	<x:String x:Key="AboutPage_SpecialThanksDescription">这个项目使用了如下给出的仓库的开源代码作为参考：</x:String>
 	<x:String x:Key="AboutPage_SpecialThanks_DotnetRuntime">.NET 运行时</x:String>
+	<x:String x:Key="AboutPage_ForReference">代码用作参考</x:String>
+	<x:String x:Key="AboutPage_License">开源协议</x:String>
 
 	<!--其它字面量-->
 	<x:String x:Key="Ellipsis">……</x:String>
