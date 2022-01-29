@@ -1,4 +1,6 @@
-﻿namespace Sudoku.Collections;
+﻿using Sudoku.Data;
+
+namespace Sudoku.Collections;
 
 partial struct NodeSet
 {

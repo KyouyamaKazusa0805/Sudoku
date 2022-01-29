@@ -1,4 +1,6 @@
-﻿namespace Sudoku.Data;
+﻿using System.ComponentModel;
+
+namespace Sudoku.Data;
 
 /// <summary>
 /// Represents a cell status.

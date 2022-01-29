@@ -1,4 +1,6 @@
-﻿namespace Sudoku.Presentation;
+﻿using System.Runtime.InteropServices;
+
+namespace Sudoku.Presentation;
 
 /// <summary>
 /// Indicates the color identifier that used to identify the color.

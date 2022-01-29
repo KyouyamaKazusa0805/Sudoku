@@ -1,4 +1,6 @@
-﻿namespace Sudoku.Presentation;
+﻿using Sudoku.Data;
+
+namespace Sudoku.Presentation;
 
 /// <summary>
 /// Indicates the presentation data that is used for present the information.

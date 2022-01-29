@@ -1,4 +1,6 @@
-﻿namespace Sudoku;
+﻿using Sudoku.Diagnostics.CodeAnalysis;
+
+namespace Sudoku;
 
 partial class Constants
 {

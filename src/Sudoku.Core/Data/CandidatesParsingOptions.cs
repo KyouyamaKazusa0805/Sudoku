@@ -1,4 +1,6 @@
-﻿namespace Sudoku.Data;
+﻿using Sudoku.Collections;
+
+namespace Sudoku.Data;
 
 /// <summary>
 /// Encapsulates an option that is specified to parse the <see cref="Candidates"/> instance.

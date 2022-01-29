@@ -1,4 +1,8 @@
-﻿namespace Sudoku.Data;
+﻿using System.ComponentModel;
+using Sudoku.Collections;
+using Sudoku.Presentation;
+
+namespace Sudoku.Data;
 
 /// <summary>
 /// Defines a chain node, with basic information about the node. At the same time you can get the root node

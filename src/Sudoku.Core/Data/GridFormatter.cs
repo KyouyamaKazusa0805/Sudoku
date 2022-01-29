@@ -1,4 +1,6 @@
-﻿namespace Sudoku.Data;
+﻿using Sudoku.Collections;
+
+namespace Sudoku.Data;
 
 /// <summary>
 /// Provides a formatter that gathers the main information for a <see cref="Grid"/> instance,
@@ -32,7 +34,7 @@ public readonly ref partial struct GridFormatter
 	}
 
 	/// <summary>
-	/// Initializes a <see cref="Formatter"/> instance using the specified mask storing all possible flags.
+	/// Initializes a <see cref="GridFormatter"/> instance using the specified mask storing all possible flags.
 	/// </summary>
 	/// <param name="flags">The flags.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

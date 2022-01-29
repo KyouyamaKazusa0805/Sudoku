@@ -1,4 +1,6 @@
-﻿namespace Sudoku;
+﻿using static System.Numerics.BitOperations;
+
+namespace Sudoku;
 
 /// <summary>
 /// Encapsulates the class that stores all constants used in the whole project.

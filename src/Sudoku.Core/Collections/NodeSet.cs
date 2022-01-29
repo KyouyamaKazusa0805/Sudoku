@@ -1,4 +1,7 @@
-﻿namespace Sudoku.Collections;
+﻿using System.ComponentModel;
+using Sudoku.Data;
+
+namespace Sudoku.Collections;
 
 /// <summary>
 /// Defines a set that stores the chain nodes.

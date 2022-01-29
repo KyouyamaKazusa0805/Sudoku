@@ -1,4 +1,7 @@
-﻿namespace Sudoku.Data;
+﻿using Sudoku.Collections;
+using Sudoku.Presentation;
+
+namespace Sudoku.Data;
 
 /// <summary>
 /// Encapsulates a conjugate pair.

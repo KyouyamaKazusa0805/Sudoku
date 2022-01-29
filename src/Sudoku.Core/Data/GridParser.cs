@@ -1,4 +1,6 @@
-﻿namespace Sudoku.Data;
+﻿using Sudoku.Collections;
+
+namespace Sudoku.Data;
 
 /// <summary>
 /// Encapsulates a grid parser that can parse a string value and convert it

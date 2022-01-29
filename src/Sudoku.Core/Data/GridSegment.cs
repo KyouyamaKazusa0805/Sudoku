@@ -1,4 +1,7 @@
-﻿namespace Sudoku.Data;
+﻿using System.ComponentModel;
+using Sudoku.Collections;
+
+namespace Sudoku.Data;
 
 /// <summary>
 /// Provides a segment that holds a list of candidate states for a certain set of cells.

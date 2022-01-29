@@ -1,4 +1,7 @@
-﻿namespace Sudoku.Collections;
+﻿using Sudoku.Data;
+using Sudoku.Diagnostics.CodeAnalysis;
+
+namespace Sudoku.Collections;
 
 /// <summary>
 /// Defines a data structure that describes a sudoku grid.

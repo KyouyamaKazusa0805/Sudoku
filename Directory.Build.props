@@ -42,14 +42,13 @@
 	</ItemGroup>
 
 	<!--Import custom global using directives on source generator projects.-->
-	<ItemGroup Condition="'$(MSBuildProjectFile.TrimEnd(`.csproj`).EndsWith(`.CodeGen`))'=='true' Or '$(MSBuildProjectFile)'=='Sudoku.Diagnostics.CodeAnalysis.csproj' And ('$(LangVersion)'=='preview' Or '$(LangVersion)'=='latest' Or '$(LangVersion)'&gt;='10.0')">
+	<ItemGroup Condition="('$(MSBuildProjectFile.TrimEnd(`.csproj`).EndsWith(`.CodeGen`))'=='true' Or '$(MSBuildProjectFile)'=='Sudoku.Diagnostics.CodeAnalysis.csproj') And ('$(LangVersion)'=='preview' Or '$(LangVersion)'=='latest' Or '$(LangVersion)'&gt;='10.0')">
 		<Using Include="Microsoft.CodeAnalysis"/>
 		<Using Include="Microsoft.CodeAnalysis.CSharp"/>
 		<Using Include="Microsoft.CodeAnalysis.CSharp.Syntax"/>
 		<Using Include="Microsoft.CodeAnalysis.Text"/>
 		<Using Remove="System.Text.Json"/>
 		<Using Remove="System.Text.Json.Serialization"/>
-		<Using Remove="System.Net.Http"/>
 	</ItemGroup>
 
 	<!--

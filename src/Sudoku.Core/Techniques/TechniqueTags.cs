@@ -1,11 +1,13 @@
-﻿namespace Sudoku.Techniques;
+﻿using System.ComponentModel;
+
+namespace Sudoku.Techniques;
 
 /// <summary>
 /// Provides a series of tags to mark on a technique.
 /// </summary>
 /// <remarks>
 /// For example, a <see cref="Technique.DeathBlossom"/> can be categorized
-/// as two flags <see cref="Als"/> and <see cref="LongChaining"/>.
+/// as both <see cref="Als"/> and <see cref="LongChaining"/>.
 /// </remarks>
 /// <seealso cref="Als"/>
 /// <seealso cref="LongChaining"/>

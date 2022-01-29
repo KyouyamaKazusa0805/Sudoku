@@ -1,4 +1,10 @@
-﻿namespace Sudoku.Collections;
+﻿using System.ComponentModel;
+using Sudoku.Data;
+using static System.Numerics.BitOperations;
+using static Sudoku.Constants;
+using static Sudoku.Constants.Tables;
+
+namespace Sudoku.Collections;
 
 /// <summary>
 /// Encapsulates a map that contains 729 positions to represent a candidate.
@@ -617,7 +623,7 @@ public unsafe struct Candidates : ICellsOrCandidates<Candidates>
 	/// <exception cref="FormatException">Throws when the specified text is invalid to parse.</exception>
 	public static Candidates Parse(string str, CandidatesParsingOptions options)
 	{
-		if (options is (CandidatesParsingOptions)0 or > (CandidatesParsingOptions)7)
+		if (options is 0 or > (CandidatesParsingOptions)7)
 		{
 			throw new ArgumentException("The option is invalid.", nameof(options));
 		}

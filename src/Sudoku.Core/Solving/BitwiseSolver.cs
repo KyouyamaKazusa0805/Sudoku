@@ -1,4 +1,7 @@
-﻿namespace Sudoku.Solving;
+﻿using Sudoku.Collections;
+using Sudoku.Diagnostics.CodeAnalysis;
+
+namespace Sudoku.Solving;
 
 /// <summary>
 /// Indicates the solver that is able to solve a sudoku puzzle, and then get the solution of that sudoku.

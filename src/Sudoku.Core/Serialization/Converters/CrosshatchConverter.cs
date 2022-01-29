@@ -1,4 +1,7 @@
-﻿namespace Sudoku.Serialization.Converters;
+﻿using Sudoku.Collections;
+using Sudoku.Presentation;
+
+namespace Sudoku.Serialization.Converters;
 
 /// <summary>
 /// Defines a serialization converter to convert the <see cref="Crosshatch"/>

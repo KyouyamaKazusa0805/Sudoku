@@ -1,4 +1,8 @@
-﻿namespace Sudoku.Data;
+﻿using Sudoku.Collections;
+using Sudoku.Diagnostics.CodeAnalysis;
+using static System.Numerics.BitOperations;
+
+namespace Sudoku.Data;
 
 partial struct GridFormatter
 {

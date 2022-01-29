@@ -1,4 +1,7 @@
-﻿namespace Sudoku.Data;
+﻿using Sudoku.Collections;
+using static Sudoku.Constants.Tables;
+
+namespace Sudoku.Data;
 
 /// <summary>
 /// Provides methods for <see cref="Grid"/> instances on transformations.

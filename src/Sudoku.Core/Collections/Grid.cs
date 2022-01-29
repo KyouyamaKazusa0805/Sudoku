@@ -1,4 +1,11 @@
-﻿namespace Sudoku.Collections;
+﻿using System.ComponentModel;
+using Sudoku.Data;
+using Sudoku.Solving;
+using static System.Numerics.BitOperations;
+using static Sudoku.Constants;
+using static Sudoku.Constants.Tables;
+
+namespace Sudoku.Collections;
 
 /// <summary>
 /// Represents a sudoku grid that uses the mask list to construct the data structure.

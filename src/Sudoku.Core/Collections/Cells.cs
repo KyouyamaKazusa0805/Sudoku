@@ -1,4 +1,10 @@
-﻿namespace Sudoku.Collections;
+﻿using System.ComponentModel;
+using Sudoku.Presentation;
+using static System.Numerics.BitOperations;
+using static Sudoku.Constants;
+using static Sudoku.Constants.Tables;
+
+namespace Sudoku.Collections;
 
 /// <summary>
 /// Encapsulates a binary series of cell status table.
