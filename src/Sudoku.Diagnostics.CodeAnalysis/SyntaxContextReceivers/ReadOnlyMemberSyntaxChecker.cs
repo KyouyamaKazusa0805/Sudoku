@@ -206,7 +206,10 @@ public sealed partial class ReadOnlyMemberSyntaxChecker : ISyntaxContextReceiver
 
 				[MethodImpl(MethodImplOptions.AggressiveInlining)]
 				bool isReadOnlyMethodRef(SyntaxNode methodRef) =>
-					semanticModel.GetOperation(methodRef, _cancellationToken) is IMethodReferenceOperation { Method.IsReadOnly: true };
+					semanticModel.GetOperation(methodRef, _cancellationToken) is IMethodReferenceOperation
+					{
+						Method.IsReadOnly: true
+					};
 
 				[MethodImpl(MethodImplOptions.AggressiveInlining)]
 				bool isReadOnlyDataMemberRef(SyntaxNode dataMemberRef) =>

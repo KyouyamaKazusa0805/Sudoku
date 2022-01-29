@@ -1,4 +1,6 @@
-﻿namespace Sudoku.Diagnostics.CodeAnalysis.SyntaxContextReceivers;
+﻿using System.ComponentModel;
+
+namespace Sudoku.Diagnostics.CodeAnalysis.SyntaxContextReceivers;
 
 [SyntaxChecker("SCA0402", "SCA0403", "SCA0404", "SCA0405", "SCA0406")]
 public sealed partial class GetPinnableReferenceMethodSyntaxChecker : ISyntaxContextReceiver
@@ -80,13 +82,11 @@ public sealed partial class GetPinnableReferenceMethodSyntaxChecker : ISyntaxCon
 		var (descriptor, location) = attributeData switch
 		{
 			null => (SCA0402, identifier.GetLocation()),
-
 			{
 				ConstructorArguments: [{ Value: EditorBrowsableState cArg }],
 				ApplicationSyntaxReference: { Span: var span, SyntaxTree: var syntaxTree }
 			}
 			when cArg == EditorBrowsableState.Always => (SCA0405, Location.Create(syntaxTree, span)),
-
 			_ => (null, null)
 		};
 

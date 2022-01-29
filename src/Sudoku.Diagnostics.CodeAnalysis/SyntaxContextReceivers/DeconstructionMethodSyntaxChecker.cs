@@ -1,4 +1,6 @@
-﻿namespace Sudoku.Diagnostics.CodeAnalysis.SyntaxContextReceivers;
+﻿using System.ComponentModel;
+
+namespace Sudoku.Diagnostics.CodeAnalysis.SyntaxContextReceivers;
 
 [SyntaxChecker("SCA0411", "SCA0412", "SCA0413", "SCA0414", "SCA0415", "SCA0416", "SCA0417")]
 public sealed partial class DeconstructionMethodSyntaxChecker : ISyntaxContextReceiver
