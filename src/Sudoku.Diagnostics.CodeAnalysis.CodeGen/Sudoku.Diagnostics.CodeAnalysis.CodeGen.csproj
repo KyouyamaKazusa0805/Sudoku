@@ -2,6 +2,7 @@
 
 	<PropertyGroup>
 		<TargetFramework>netstandard2.0</TargetFramework>
+		<DocumentationFile>..\docxml\Sudoku.Diagnostics.CodeAnalysis.CodeGen.xml</DocumentationFile>
 	</PropertyGroup>
 
 </Project>

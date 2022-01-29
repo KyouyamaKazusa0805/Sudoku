@@ -1,0 +1,1367 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Sudoku.Diagnostics.CodeAnalysis</name>
+    </assembly>
+    <members>
+        <member name="T:Sudoku.Diagnostics.CodeAnalysis.AnonymousInnerTypeAttribute">
+            <summary>
+            Defines an attribute to tell the source generator the type applied this attribute
+            is an anonymous inner type.
+            </summary>
+            <remarks>
+            An <b>anonymous inner type</b> is a type that is only used for the compiler or .NET API using,
+            or an instant type that will be thrown after having been used.
+            </remarks>
+        </member>
+        <member name="T:Sudoku.Diagnostics.CodeAnalysis.InitializationOnlyAttribute">
+            <summary>
+            Used for applying onto a setter to tell the compiler that the setter is only used for the invocation
+            by compiler rather than users.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.InitializationOnlyAttribute.#ctor(Sudoku.Diagnostics.CodeAnalysis.InitializationCaller)">
+            <summary>
+            Initializes an <see cref="T:Sudoku.Diagnostics.CodeAnalysis.InitializationOnlyAttribute"/> instance via a caller enumeration field.
+            </summary>
+            <param name="caller">The caller.</param>
+        </member>
+        <member name="P:Sudoku.Diagnostics.CodeAnalysis.InitializationOnlyAttribute.Caller">
+            <summary>
+            Indicates the caller.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Diagnostics.CodeAnalysis.IsDiscardAttribute">
+            <summary>
+            Defines an attribute that is marked onto a parameter, to indicate the parameter is a discard
+            and can't be used later in any way.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Diagnostics.CodeAnalysis.IsRegexAttribute">
+            <summary>
+            Indicates a field holds a regular expression that represents using a <see cref="T:System.String"/>.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Diagnostics.CodeAnalysis.RestrictAttribute">
+            <summary>
+            Defines an attribute that applies to a set of pointer-typed parameters, to tell the compiler that
+            those parameters disallow a same pointer value to pass into.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Diagnostics.CodeAnalysis.SelfAttribute">
+            <summary>
+            Defines an attribute, to apply to a type parameter, which means the type parameter should satisfy
+            CRTP (Curiously Recursive Template Pattern) in C#.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Diagnostics.CodeAnalysis.InitializationCaller">
+            <summary>
+            Defines a caller that means the object calls the setter.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.InitializationCaller.SourceGenerator">
+            <summary>
+            Indicates the caller is the source generator.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.InitializationCaller.ModuleInitializer">
+            <summary>
+            Indicates the caller is the module initializer.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Diagnostics.CodeAnalysis.SyntaxContextReceivers.AnonymousInnerTypeSyntaxChecker">
+            <summary>
+            Indicates the syntax checker that checks for the code structures and the API usages.
+            The current analyzer will check the following cases:
+            <list type="bullet">
+            <listheader>
+            <term>Diagnostic ID</term>
+            <description>Description</description>
+            </listheader>
+            <item>
+            <term>SCA0110</term>
+            <description>You shouldn't initialize an instance as the local variable of type applied '[AnonymousInnerType]'</description>
+            </item>
+            <item>
+            <term>SCA0111</term>
+            <description>The type applied '[AnonymousInnerType]' must contain a synthesized parameterless constructor</description>
+            </item>
+            <item>
+            <term>SCA0112</term>
+            <description>Use classes or interfaces instead of structs to define an anonymous inner type to prevent any box and unbox operations</description>
+            </item>
+            <item>
+            <term>SCA0113</term>
+            <description>Don't use 'public' access modifier in order not to expose the type outside the solution</description>
+            </item>
+            <item>
+            <term>SCA0114</term>
+            <description>Use 'sealed' modifier to prevent any derivations</description>
+            </item>
+            <item>
+            <term>SCA0115</term>
+            <description>Anonymous inner type is used as an argument of interface type or abstract type, so you must give the base type or interface explicitly</description>
+            </item>
+            <item>
+            <term>SCA0116</term>
+            <description>Anonymous inner types cannot be used as the parameter type, return type or so on</description>
+            </item>
+            </list>
+            </summary>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.SyntaxContextReceivers.AnonymousInnerTypeSyntaxChecker.OnVisitSyntaxNode(Microsoft.CodeAnalysis.GeneratorSyntaxContext)">
+            <inheritdoc/>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.SyntaxContextReceivers.AnonymousInnerTypeSyntaxChecker.SCA0110">
+            <summary>
+            Indicates the <see cref="T:Microsoft.CodeAnalysis.DiagnosticDescriptor"/> instance that describes for the diagnostic result SCA0110 (You shouldn't initialize an instance as the local variable of type applied '[AnonymousInnerType]').
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.SyntaxContextReceivers.AnonymousInnerTypeSyntaxChecker.SCA0111">
+            <summary>
+            Indicates the <see cref="T:Microsoft.CodeAnalysis.DiagnosticDescriptor"/> instance that describes for the diagnostic result SCA0111 (The type applied '[AnonymousInnerType]' must contain a synthesized parameterless constructor).
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.SyntaxContextReceivers.AnonymousInnerTypeSyntaxChecker.SCA0112">
+            <summary>
+            Indicates the <see cref="T:Microsoft.CodeAnalysis.DiagnosticDescriptor"/> instance that describes for the diagnostic result SCA0112 (Use classes or interfaces instead of structs to define an anonymous inner type to prevent any box and unbox operations).
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.SyntaxContextReceivers.AnonymousInnerTypeSyntaxChecker.SCA0113">
+            <summary>
+            Indicates the <see cref="T:Microsoft.CodeAnalysis.DiagnosticDescriptor"/> instance that describes for the diagnostic result SCA0113 (Don't use 'public' access modifier in order not to expose the type outside the solution).
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.SyntaxContextReceivers.AnonymousInnerTypeSyntaxChecker.SCA0114">
+            <summary>
+            Indicates the <see cref="T:Microsoft.CodeAnalysis.DiagnosticDescriptor"/> instance that describes for the diagnostic result SCA0114 (Use 'sealed' modifier to prevent any derivations).
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.SyntaxContextReceivers.AnonymousInnerTypeSyntaxChecker.SCA0115">
+            <summary>
+            Indicates the <see cref="T:Microsoft.CodeAnalysis.DiagnosticDescriptor"/> instance that describes for the diagnostic result SCA0115 (Anonymous inner type is used as an argument of interface type or abstract type, so you must give the base type or interface explicitly).
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.SyntaxContextReceivers.AnonymousInnerTypeSyntaxChecker.SCA0116">
+            <summary>
+            Indicates the <see cref="T:Microsoft.CodeAnalysis.DiagnosticDescriptor"/> instance that describes for the diagnostic result SCA0116 (Anonymous inner types cannot be used as the parameter type, return type or so on).
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.SyntaxContextReceivers.AnonymousInnerTypeSyntaxChecker._cancellationToken">
+            <summary>
+            Indicates the cancellation token used.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.SyntaxContextReceivers.AnonymousInnerTypeSyntaxChecker.#ctor(System.Threading.CancellationToken)">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Diagnostics.CodeAnalysis.SyntaxContextReceivers.AnonymousInnerTypeSyntaxChecker"/> instance using the cancellation token.
+            </summary>
+            <param name="cancellationToken">The cancellation token to cancel the operation.</param>
+        </member>
+        <member name="P:Sudoku.Diagnostics.CodeAnalysis.SyntaxContextReceivers.AnonymousInnerTypeSyntaxChecker.Diagnostics">
+            <summary>
+            Indicates all possible diagnostics types used.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Diagnostics.CodeAnalysis.SyntaxContextReceivers.CallerArgumentExpressionAttributeSyntaxChecker">
+            <summary>
+            Indicates the syntax checker that checks for the code structures and the API usages.
+            The current analyzer will check the following cases:
+            <list type="bullet">
+            <listheader>
+            <term>Diagnostic ID</term>
+            <description>Description</description>
+            </listheader>
+            <item>
+            <term>SCA0407</term>
+            <description>You should not assign any values on parameters having marked '[CallerArgumentExpression]'</description>
+            </item>
+            <item>
+            <term>SCA0408</term>
+            <description>Parameter having been applied '[CallerArgumentExpression]' should be of type 'string?'</description>
+            </item>
+            <item>
+            <term>SCA0409</term>
+            <description>'__arglist' cannot be marked '[CallerArgumentExpression]'</description>
+            </item>
+            <item>
+            <term>SCA0410</term>
+            <description>Argument in '[CallerArgumentExpression]' must be a real parameter name</description>
+            </item>
+            </list>
+            </summary>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.SyntaxContextReceivers.CallerArgumentExpressionAttributeSyntaxChecker.OnVisitSyntaxNode(Microsoft.CodeAnalysis.GeneratorSyntaxContext)">
+            <inheritdoc/>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.SyntaxContextReceivers.CallerArgumentExpressionAttributeSyntaxChecker.SCA0407">
+            <summary>
+            Indicates the <see cref="T:Microsoft.CodeAnalysis.DiagnosticDescriptor"/> instance that describes for the diagnostic result SCA0407 (You should not assign any values on parameters having marked '[CallerArgumentExpression]').
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.SyntaxContextReceivers.CallerArgumentExpressionAttributeSyntaxChecker.SCA0408">
+            <summary>
+            Indicates the <see cref="T:Microsoft.CodeAnalysis.DiagnosticDescriptor"/> instance that describes for the diagnostic result SCA0408 (Parameter having been applied '[CallerArgumentExpression]' should be of type 'string?').
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.SyntaxContextReceivers.CallerArgumentExpressionAttributeSyntaxChecker.SCA0409">
+            <summary>
+            Indicates the <see cref="T:Microsoft.CodeAnalysis.DiagnosticDescriptor"/> instance that describes for the diagnostic result SCA0409 ('__arglist' cannot be marked '[CallerArgumentExpression]').
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.SyntaxContextReceivers.CallerArgumentExpressionAttributeSyntaxChecker.SCA0410">
+            <summary>
+            Indicates the <see cref="T:Microsoft.CodeAnalysis.DiagnosticDescriptor"/> instance that describes for the diagnostic result SCA0410 (Argument in '[CallerArgumentExpression]' must be a real parameter name).
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.SyntaxContextReceivers.CallerArgumentExpressionAttributeSyntaxChecker._cancellationToken">
+            <summary>
+            Indicates the cancellation token used.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.SyntaxContextReceivers.CallerArgumentExpressionAttributeSyntaxChecker.#ctor(System.Threading.CancellationToken)">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Diagnostics.CodeAnalysis.SyntaxContextReceivers.CallerArgumentExpressionAttributeSyntaxChecker"/> instance using the cancellation token.
+            </summary>
+            <param name="cancellationToken">The cancellation token to cancel the operation.</param>
+        </member>
+        <member name="P:Sudoku.Diagnostics.CodeAnalysis.SyntaxContextReceivers.CallerArgumentExpressionAttributeSyntaxChecker.Diagnostics">
+            <summary>
+            Indicates all possible diagnostics types used.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Diagnostics.CodeAnalysis.SyntaxContextReceivers.CellSyntaxChecker">
+            <summary>
+            Indicates the syntax checker that checks for the code structures and the API usages.
+            The current analyzer will check the following cases:
+            <list type="bullet">
+            <listheader>
+            <term>Diagnostic ID</term>
+            <description>Description</description>
+            </listheader>
+            <item>
+            <term>SCA0510</term>
+            <description>Invalid data on parameter</description>
+            </item>
+            <item>
+            <term>SCA0511</term>
+            <description>Don't initialize by 'stackalloc' expression</description>
+            </item>
+            <item>
+            <term>SCA0512</term>
+            <description>Use 'Empty' property instead</description>
+            </item>
+            <item>
+            <term>SCA0513</term>
+            <description>Use 'IsEmpty' property instead</description>
+            </item>
+            <item>
+            <term>SCA0514</term>
+            <description>Use 'CoveredLine' property instead</description>
+            </item>
+            <item>
+            <term>SCA0515</term>
+            <description>Argument 'index' must be between 0 and 80</description>
+            </item>
+            <item>
+            <term>SCA0516</term>
+            <description>Invalid coordinate value to initialize</description>
+            </item>
+            <item>
+            <term>SCA0517</term>
+            <description>Use equality operators instead of method 'Equals'</description>
+            </item>
+            <item>
+            <term>SCA0518</term>
+            <description>Please don't assign 'null' as the parameter into the 'Parse' method group</description>
+            </item>
+            <item>
+            <term>SCA0519</term>
+            <description>Usage 'operator -' instead</description>
+            </item>
+            <item>
+            <term>SCA0520</term>
+            <description>Object initializer can only be used with parameterless constructor unless the constructor argument type is an array of type 'int'</description>
+            </item>
+            </list>
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.SyntaxContextReceivers.CellSyntaxChecker.CellPatternRegex">
+            <summary>
+            Indicates the regular expression pattern to match a cell (coordinate) string.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.SyntaxContextReceivers.CellSyntaxChecker.OnVisitSyntaxNode(Microsoft.CodeAnalysis.GeneratorSyntaxContext)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.SyntaxContextReceivers.CellSyntaxChecker.ContainingTypeIsCells(Microsoft.CodeAnalysis.SyntaxNode,Microsoft.CodeAnalysis.INamedTypeSymbol)">
+            <summary>
+            Determines whether the specified <see cref="T:Microsoft.CodeAnalysis.SyntaxNode"/> is located in the source code files
+            of type <c>Cells</c>.
+            </summary>
+            <param name="node">The node.</param>
+            <param name="cellsSymbol">The symbol that corresponding to type <c>Cells</c>.</param>
+            <returns>A <see cref="T:System.Boolean"/> result.</returns>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.SyntaxContextReceivers.CellSyntaxChecker.SCA0510">
+            <summary>
+            Indicates the <see cref="T:Microsoft.CodeAnalysis.DiagnosticDescriptor"/> instance that describes for the diagnostic result SCA0510 (Invalid data on parameter).
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.SyntaxContextReceivers.CellSyntaxChecker.SCA0511">
+            <summary>
+            Indicates the <see cref="T:Microsoft.CodeAnalysis.DiagnosticDescriptor"/> instance that describes for the diagnostic result SCA0511 (Don't initialize by 'stackalloc' expression).
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.SyntaxContextReceivers.CellSyntaxChecker.SCA0512">
+            <summary>
+            Indicates the <see cref="T:Microsoft.CodeAnalysis.DiagnosticDescriptor"/> instance that describes for the diagnostic result SCA0512 (Use 'Empty' property instead).
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.SyntaxContextReceivers.CellSyntaxChecker.SCA0513">
+            <summary>
+            Indicates the <see cref="T:Microsoft.CodeAnalysis.DiagnosticDescriptor"/> instance that describes for the diagnostic result SCA0513 (Use 'IsEmpty' property instead).
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.SyntaxContextReceivers.CellSyntaxChecker.SCA0514">
+            <summary>
+            Indicates the <see cref="T:Microsoft.CodeAnalysis.DiagnosticDescriptor"/> instance that describes for the diagnostic result SCA0514 (Use 'CoveredLine' property instead).
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.SyntaxContextReceivers.CellSyntaxChecker.SCA0515">
+            <summary>
+            Indicates the <see cref="T:Microsoft.CodeAnalysis.DiagnosticDescriptor"/> instance that describes for the diagnostic result SCA0515 (Argument 'index' must be between 0 and 80).
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.SyntaxContextReceivers.CellSyntaxChecker.SCA0516">
+            <summary>
+            Indicates the <see cref="T:Microsoft.CodeAnalysis.DiagnosticDescriptor"/> instance that describes for the diagnostic result SCA0516 (Invalid coordinate value to initialize).
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.SyntaxContextReceivers.CellSyntaxChecker.SCA0517">
+            <summary>
+            Indicates the <see cref="T:Microsoft.CodeAnalysis.DiagnosticDescriptor"/> instance that describes for the diagnostic result SCA0517 (Use equality operators instead of method 'Equals').
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.SyntaxContextReceivers.CellSyntaxChecker.SCA0518">
+            <summary>
+            Indicates the <see cref="T:Microsoft.CodeAnalysis.DiagnosticDescriptor"/> instance that describes for the diagnostic result SCA0518 (Please don't assign 'null' as the parameter into the 'Parse' method group).
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.SyntaxContextReceivers.CellSyntaxChecker.SCA0519">
+            <summary>
+            Indicates the <see cref="T:Microsoft.CodeAnalysis.DiagnosticDescriptor"/> instance that describes for the diagnostic result SCA0519 (Usage 'operator -' instead).
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.SyntaxContextReceivers.CellSyntaxChecker.SCA0520">
+            <summary>
+            Indicates the <see cref="T:Microsoft.CodeAnalysis.DiagnosticDescriptor"/> instance that describes for the diagnostic result SCA0520 (Object initializer can only be used with parameterless constructor unless the constructor argument type is an array of type 'int').
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.SyntaxContextReceivers.CellSyntaxChecker._cancellationToken">
+            <summary>
+            Indicates the cancellation token used.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.SyntaxContextReceivers.CellSyntaxChecker.#ctor(System.Threading.CancellationToken)">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Diagnostics.CodeAnalysis.SyntaxContextReceivers.CellSyntaxChecker"/> instance using the cancellation token.
+            </summary>
+            <param name="cancellationToken">The cancellation token to cancel the operation.</param>
+        </member>
+        <member name="P:Sudoku.Diagnostics.CodeAnalysis.SyntaxContextReceivers.CellSyntaxChecker.Diagnostics">
+            <summary>
+            Indicates all possible diagnostics types used.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Diagnostics.CodeAnalysis.SyntaxContextReceivers.DeconstructionMethodSyntaxChecker">
+            <summary>
+            Indicates the syntax checker that checks for the code structures and the API usages.
+            The current analyzer will check the following cases:
+            <list type="bullet">
+            <listheader>
+            <term>Diagnostic ID</term>
+            <description>Description</description>
+            </listheader>
+            <item>
+            <term>SCA0411</term>
+            <description>Method 'Deconstruct' must return 'void'</description>
+            </item>
+            <item>
+            <term>SCA0412</term>
+            <description>Method 'Deconstruct' must contain only 'out' parameters; any other modifiers or no modifier are disallowed</description>
+            </item>
+            <item>
+            <term>SCA0413</term>
+            <description>Parameters in method 'Deconstruct' cannot be applied '[IsDiscard]'</description>
+            </item>
+            <item>
+            <term>SCA0414</term>
+            <description>Avoid parameterless method 'Deconstruct'</description>
+            </item>
+            <item>
+            <term>SCA0415</term>
+            <description>Avoid one-parameter method 'Deconstruct'</description>
+            </item>
+            <item>
+            <term>SCA0416</term>
+            <description>Method 'Deconstruct' lacks '[EditorBrowsable(EditorBrowsableState.Never)]'</description>
+            </item>
+            <item>
+            <term>SCA0417</term>
+            <description>Method 'Deconstruct' cannot be generic if it is not an extension method</description>
+            </item>
+            </list>
+            </summary>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.SyntaxContextReceivers.DeconstructionMethodSyntaxChecker.OnVisitSyntaxNode(Microsoft.CodeAnalysis.GeneratorSyntaxContext)">
+            <inheritdoc/>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.SyntaxContextReceivers.DeconstructionMethodSyntaxChecker.SCA0411">
+            <summary>
+            Indicates the <see cref="T:Microsoft.CodeAnalysis.DiagnosticDescriptor"/> instance that describes for the diagnostic result SCA0411 (Method 'Deconstruct' must return 'void').
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.SyntaxContextReceivers.DeconstructionMethodSyntaxChecker.SCA0412">
+            <summary>
+            Indicates the <see cref="T:Microsoft.CodeAnalysis.DiagnosticDescriptor"/> instance that describes for the diagnostic result SCA0412 (Method 'Deconstruct' must contain only 'out' parameters; any other modifiers or no modifier are disallowed).
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.SyntaxContextReceivers.DeconstructionMethodSyntaxChecker.SCA0413">
+            <summary>
+            Indicates the <see cref="T:Microsoft.CodeAnalysis.DiagnosticDescriptor"/> instance that describes for the diagnostic result SCA0413 (Parameters in method 'Deconstruct' cannot be applied '[IsDiscard]').
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.SyntaxContextReceivers.DeconstructionMethodSyntaxChecker.SCA0414">
+            <summary>
+            Indicates the <see cref="T:Microsoft.CodeAnalysis.DiagnosticDescriptor"/> instance that describes for the diagnostic result SCA0414 (Avoid parameterless method 'Deconstruct').
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.SyntaxContextReceivers.DeconstructionMethodSyntaxChecker.SCA0415">
+            <summary>
+            Indicates the <see cref="T:Microsoft.CodeAnalysis.DiagnosticDescriptor"/> instance that describes for the diagnostic result SCA0415 (Avoid one-parameter method 'Deconstruct').
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.SyntaxContextReceivers.DeconstructionMethodSyntaxChecker.SCA0416">
+            <summary>
+            Indicates the <see cref="T:Microsoft.CodeAnalysis.DiagnosticDescriptor"/> instance that describes for the diagnostic result SCA0416 (Method 'Deconstruct' lacks '[EditorBrowsable(EditorBrowsableState.Never)]').
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.SyntaxContextReceivers.DeconstructionMethodSyntaxChecker.SCA0417">
+            <summary>
+            Indicates the <see cref="T:Microsoft.CodeAnalysis.DiagnosticDescriptor"/> instance that describes for the diagnostic result SCA0417 (Method 'Deconstruct' cannot be generic if it is not an extension method).
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.SyntaxContextReceivers.DeconstructionMethodSyntaxChecker._cancellationToken">
+            <summary>
+            Indicates the cancellation token used.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.SyntaxContextReceivers.DeconstructionMethodSyntaxChecker.#ctor(System.Threading.CancellationToken)">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Diagnostics.CodeAnalysis.SyntaxContextReceivers.DeconstructionMethodSyntaxChecker"/> instance using the cancellation token.
+            </summary>
+            <param name="cancellationToken">The cancellation token to cancel the operation.</param>
+        </member>
+        <member name="P:Sudoku.Diagnostics.CodeAnalysis.SyntaxContextReceivers.DeconstructionMethodSyntaxChecker.Diagnostics">
+            <summary>
+            Indicates all possible diagnostics types used.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Diagnostics.CodeAnalysis.SyntaxContextReceivers.DiscardParameterSyntaxChecker">
+            <summary>
+            Indicates the syntax checker that checks for the code structures and the API usages.
+            The current analyzer will check the following cases:
+            <list type="bullet">
+            <listheader>
+            <term>Diagnostic ID</term>
+            <description>Description</description>
+            </listheader>
+            <item>
+            <term>SCA0119</term>
+            <description>The discard parameter can't be used or referenced unless a 'nameof' expression</description>
+            </item>
+            <item>
+            <term>SCA0120</term>
+            <description>Discard parameter can't be modified by keyword 'out', 'ref' or 'params'</description>
+            </item>
+            <item>
+            <term>SCA0121</term>
+            <description>Can't apply '[IsDiscard]' onto a parameter that has already discarded</description>
+            </item>
+            </list>
+            </summary>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.SyntaxContextReceivers.DiscardParameterSyntaxChecker.OnVisitSyntaxNode(Microsoft.CodeAnalysis.GeneratorSyntaxContext)">
+            <inheritdoc/>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.SyntaxContextReceivers.DiscardParameterSyntaxChecker.SCA0119">
+            <summary>
+            Indicates the <see cref="T:Microsoft.CodeAnalysis.DiagnosticDescriptor"/> instance that describes for the diagnostic result SCA0119 (The discard parameter can't be used or referenced unless a 'nameof' expression).
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.SyntaxContextReceivers.DiscardParameterSyntaxChecker.SCA0120">
+            <summary>
+            Indicates the <see cref="T:Microsoft.CodeAnalysis.DiagnosticDescriptor"/> instance that describes for the diagnostic result SCA0120 (Discard parameter can't be modified by keyword 'out', 'ref' or 'params').
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.SyntaxContextReceivers.DiscardParameterSyntaxChecker.SCA0121">
+            <summary>
+            Indicates the <see cref="T:Microsoft.CodeAnalysis.DiagnosticDescriptor"/> instance that describes for the diagnostic result SCA0121 (Can't apply '[IsDiscard]' onto a parameter that has already discarded).
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.SyntaxContextReceivers.DiscardParameterSyntaxChecker._cancellationToken">
+            <summary>
+            Indicates the cancellation token used.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.SyntaxContextReceivers.DiscardParameterSyntaxChecker.#ctor(System.Threading.CancellationToken)">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Diagnostics.CodeAnalysis.SyntaxContextReceivers.DiscardParameterSyntaxChecker"/> instance using the cancellation token.
+            </summary>
+            <param name="cancellationToken">The cancellation token to cancel the operation.</param>
+        </member>
+        <member name="P:Sudoku.Diagnostics.CodeAnalysis.SyntaxContextReceivers.DiscardParameterSyntaxChecker.Diagnostics">
+            <summary>
+            Indicates all possible diagnostics types used.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Diagnostics.CodeAnalysis.SyntaxContextReceivers.GetPinnableReferenceMethodSyntaxChecker">
+            <summary>
+            Indicates the syntax checker that checks for the code structures and the API usages.
+            The current analyzer will check the following cases:
+            <list type="bullet">
+            <listheader>
+            <term>Diagnostic ID</term>
+            <description>Description</description>
+            </listheader>
+            <item>
+            <term>SCA0402</term>
+            <description>Method 'GetPinnableReference' lacks '[EditorBrowsable(EditorBrowsableState.Never)]'</description>
+            </item>
+            <item>
+            <term>SCA0403</term>
+            <description>Method 'GetPinnableReference' cannot be static</description>
+            </item>
+            <item>
+            <term>SCA0404</term>
+            <description>Method 'GetPinnableReference' cannot return void</description>
+            </item>
+            <item>
+            <term>SCA0405</term>
+            <description>Method 'GetPinnableReference' should not expose to user unless it's not parameterless</description>
+            </item>
+            <item>
+            <term>SCA0406</term>
+            <description>Method 'GetPinnableReference' should return ref type or ref readonly type</description>
+            </item>
+            </list>
+            </summary>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.SyntaxContextReceivers.GetPinnableReferenceMethodSyntaxChecker.OnVisitSyntaxNode(Microsoft.CodeAnalysis.GeneratorSyntaxContext)">
+            <inheritdoc/>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.SyntaxContextReceivers.GetPinnableReferenceMethodSyntaxChecker.SCA0402">
+            <summary>
+            Indicates the <see cref="T:Microsoft.CodeAnalysis.DiagnosticDescriptor"/> instance that describes for the diagnostic result SCA0402 (Method 'GetPinnableReference' lacks '[EditorBrowsable(EditorBrowsableState.Never)]').
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.SyntaxContextReceivers.GetPinnableReferenceMethodSyntaxChecker.SCA0403">
+            <summary>
+            Indicates the <see cref="T:Microsoft.CodeAnalysis.DiagnosticDescriptor"/> instance that describes for the diagnostic result SCA0403 (Method 'GetPinnableReference' cannot be static).
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.SyntaxContextReceivers.GetPinnableReferenceMethodSyntaxChecker.SCA0404">
+            <summary>
+            Indicates the <see cref="T:Microsoft.CodeAnalysis.DiagnosticDescriptor"/> instance that describes for the diagnostic result SCA0404 (Method 'GetPinnableReference' cannot return void).
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.SyntaxContextReceivers.GetPinnableReferenceMethodSyntaxChecker.SCA0405">
+            <summary>
+            Indicates the <see cref="T:Microsoft.CodeAnalysis.DiagnosticDescriptor"/> instance that describes for the diagnostic result SCA0405 (Method 'GetPinnableReference' should not expose to user unless it's not parameterless).
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.SyntaxContextReceivers.GetPinnableReferenceMethodSyntaxChecker.SCA0406">
+            <summary>
+            Indicates the <see cref="T:Microsoft.CodeAnalysis.DiagnosticDescriptor"/> instance that describes for the diagnostic result SCA0406 (Method 'GetPinnableReference' should return ref type or ref readonly type).
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.SyntaxContextReceivers.GetPinnableReferenceMethodSyntaxChecker._cancellationToken">
+            <summary>
+            Indicates the cancellation token used.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.SyntaxContextReceivers.GetPinnableReferenceMethodSyntaxChecker.#ctor(System.Threading.CancellationToken)">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Diagnostics.CodeAnalysis.SyntaxContextReceivers.GetPinnableReferenceMethodSyntaxChecker"/> instance using the cancellation token.
+            </summary>
+            <param name="cancellationToken">The cancellation token to cancel the operation.</param>
+        </member>
+        <member name="P:Sudoku.Diagnostics.CodeAnalysis.SyntaxContextReceivers.GetPinnableReferenceMethodSyntaxChecker.Diagnostics">
+            <summary>
+            Indicates all possible diagnostics types used.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Diagnostics.CodeAnalysis.SyntaxContextReceivers.GridSyntaxChecker">
+            <summary>
+            Indicates the syntax checker that checks for the code structures and the API usages.
+            The current analyzer will check the following cases:
+            <list type="bullet">
+            <listheader>
+            <term>Diagnostic ID</term>
+            <description>Description</description>
+            </listheader>
+            <item>
+            <term>SCA0501</term>
+            <description>Use 'Undefined' property instead</description>
+            </item>
+            <item>
+            <term>SCA0502</term>
+            <description>Use 'IsUndefined' property instead</description>
+            </item>
+            <item>
+            <term>SCA0503</term>
+            <description>'Grid.EnumerateCandidates' can be simplified to 'Grid.GetEnumerator'</description>
+            </item>
+            <item>
+            <term>SCA0504</term>
+            <description>Use equality operators instead of method 'Equals'</description>
+            </item>
+            <item>
+            <term>SCA0505</term>
+            <description>Please don't assign 'null' as the parameter into the 'Parse' method group</description>
+            </item>
+            <item>
+            <term>SCA0506</term>
+            <description>Use 'Empty' property instead</description>
+            </item>
+            <item>
+            <term>SCA0507</term>
+            <description>Use 'IsEmpty' property instead</description>
+            </item>
+            <item>
+            <term>SCA0508</term>
+            <description>Specified constant string cannot be parsed to a valid 'Grid' instance</description>
+            </item>
+            <item>
+            <term>SCA0509</term>
+            <description>The string is invalid as the format</description>
+            </item>
+            </list>
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.SyntaxContextReceivers.GridSyntaxChecker.PossibleFormats">
+            <summary>
+            All possible format strings to check.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.SyntaxContextReceivers.GridSyntaxChecker.OnVisitSyntaxNode(Microsoft.CodeAnalysis.GeneratorSyntaxContext)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.SyntaxContextReceivers.GridSyntaxChecker.ContainingTypeIsGrid(Microsoft.CodeAnalysis.SyntaxNode,Microsoft.CodeAnalysis.INamedTypeSymbol)">
+            <summary>
+            Determines whether the specified <see cref="T:Microsoft.CodeAnalysis.SyntaxNode"/> is located in the source code files
+            of type <c>Grid</c>.
+            </summary>
+            <param name="node">The node.</param>
+            <param name="gridSymbol">The symbol that corresponding to type <c>Grid</c>.</param>
+            <returns>A <see cref="T:System.Boolean"/> result.</returns>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.SyntaxContextReceivers.GridSyntaxChecker.SCA0501">
+            <summary>
+            Indicates the <see cref="T:Microsoft.CodeAnalysis.DiagnosticDescriptor"/> instance that describes for the diagnostic result SCA0501 (Use 'Undefined' property instead).
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.SyntaxContextReceivers.GridSyntaxChecker.SCA0502">
+            <summary>
+            Indicates the <see cref="T:Microsoft.CodeAnalysis.DiagnosticDescriptor"/> instance that describes for the diagnostic result SCA0502 (Use 'IsUndefined' property instead).
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.SyntaxContextReceivers.GridSyntaxChecker.SCA0503">
+            <summary>
+            Indicates the <see cref="T:Microsoft.CodeAnalysis.DiagnosticDescriptor"/> instance that describes for the diagnostic result SCA0503 ('Grid.EnumerateCandidates' can be simplified to 'Grid.GetEnumerator').
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.SyntaxContextReceivers.GridSyntaxChecker.SCA0504">
+            <summary>
+            Indicates the <see cref="T:Microsoft.CodeAnalysis.DiagnosticDescriptor"/> instance that describes for the diagnostic result SCA0504 (Use equality operators instead of method 'Equals').
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.SyntaxContextReceivers.GridSyntaxChecker.SCA0505">
+            <summary>
+            Indicates the <see cref="T:Microsoft.CodeAnalysis.DiagnosticDescriptor"/> instance that describes for the diagnostic result SCA0505 (Please don't assign 'null' as the parameter into the 'Parse' method group).
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.SyntaxContextReceivers.GridSyntaxChecker.SCA0506">
+            <summary>
+            Indicates the <see cref="T:Microsoft.CodeAnalysis.DiagnosticDescriptor"/> instance that describes for the diagnostic result SCA0506 (Use 'Empty' property instead).
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.SyntaxContextReceivers.GridSyntaxChecker.SCA0507">
+            <summary>
+            Indicates the <see cref="T:Microsoft.CodeAnalysis.DiagnosticDescriptor"/> instance that describes for the diagnostic result SCA0507 (Use 'IsEmpty' property instead).
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.SyntaxContextReceivers.GridSyntaxChecker.SCA0508">
+            <summary>
+            Indicates the <see cref="T:Microsoft.CodeAnalysis.DiagnosticDescriptor"/> instance that describes for the diagnostic result SCA0508 (Specified constant string cannot be parsed to a valid 'Grid' instance).
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.SyntaxContextReceivers.GridSyntaxChecker.SCA0509">
+            <summary>
+            Indicates the <see cref="T:Microsoft.CodeAnalysis.DiagnosticDescriptor"/> instance that describes for the diagnostic result SCA0509 (The string is invalid as the format).
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.SyntaxContextReceivers.GridSyntaxChecker._cancellationToken">
+            <summary>
+            Indicates the cancellation token used.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.SyntaxContextReceivers.GridSyntaxChecker.#ctor(System.Threading.CancellationToken)">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Diagnostics.CodeAnalysis.SyntaxContextReceivers.GridSyntaxChecker"/> instance using the cancellation token.
+            </summary>
+            <param name="cancellationToken">The cancellation token to cancel the operation.</param>
+        </member>
+        <member name="P:Sudoku.Diagnostics.CodeAnalysis.SyntaxContextReceivers.GridSyntaxChecker.Diagnostics">
+            <summary>
+            Indicates all possible diagnostics types used.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Diagnostics.CodeAnalysis.SyntaxContextReceivers.InitializationOnlySyntaxChecker">
+            <summary>
+            Indicates the syntax checker that checks for the code structures and the API usages.
+            The current analyzer will check the following cases:
+            <list type="bullet">
+            <listheader>
+            <term>Diagnostic ID</term>
+            <description>Description</description>
+            </listheader>
+            <item>
+            <term>SCA0122</term>
+            <description>Attribute '[InitializationOnly]' can only apply to an auto-implemented property or a field</description>
+            </item>
+            <item>
+            <term>SCA0123</term>
+            <description>Field marked '[InitializationOnly]' shouldn't expose outside the project</description>
+            </item>
+            <item>
+            <term>SCA0124</term>
+            <description>Property marked '[InitializationOnly]' shouldn't expose its setter outside the project</description>
+            </item>
+            <item>
+            <term>SCA0125</term>
+            <description>Cannot assign the value to the field or property if it is marked '[InitializationOnly]'</description>
+            </item>
+            </list>
+            </summary>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.SyntaxContextReceivers.InitializationOnlySyntaxChecker.OnVisitSyntaxNode(Microsoft.CodeAnalysis.GeneratorSyntaxContext)">
+            <inheritdoc/>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.SyntaxContextReceivers.InitializationOnlySyntaxChecker.SCA0122">
+            <summary>
+            Indicates the <see cref="T:Microsoft.CodeAnalysis.DiagnosticDescriptor"/> instance that describes for the diagnostic result SCA0122 (Attribute '[InitializationOnly]' can only apply to an auto-implemented property or a field).
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.SyntaxContextReceivers.InitializationOnlySyntaxChecker.SCA0123">
+            <summary>
+            Indicates the <see cref="T:Microsoft.CodeAnalysis.DiagnosticDescriptor"/> instance that describes for the diagnostic result SCA0123 (Field marked '[InitializationOnly]' shouldn't expose outside the project).
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.SyntaxContextReceivers.InitializationOnlySyntaxChecker.SCA0124">
+            <summary>
+            Indicates the <see cref="T:Microsoft.CodeAnalysis.DiagnosticDescriptor"/> instance that describes for the diagnostic result SCA0124 (Property marked '[InitializationOnly]' shouldn't expose its setter outside the project).
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.SyntaxContextReceivers.InitializationOnlySyntaxChecker.SCA0125">
+            <summary>
+            Indicates the <see cref="T:Microsoft.CodeAnalysis.DiagnosticDescriptor"/> instance that describes for the diagnostic result SCA0125 (Cannot assign the value to the field or property if it is marked '[InitializationOnly]').
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.SyntaxContextReceivers.InitializationOnlySyntaxChecker._cancellationToken">
+            <summary>
+            Indicates the cancellation token used.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.SyntaxContextReceivers.InitializationOnlySyntaxChecker.#ctor(System.Threading.CancellationToken)">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Diagnostics.CodeAnalysis.SyntaxContextReceivers.InitializationOnlySyntaxChecker"/> instance using the cancellation token.
+            </summary>
+            <param name="cancellationToken">The cancellation token to cancel the operation.</param>
+        </member>
+        <member name="P:Sudoku.Diagnostics.CodeAnalysis.SyntaxContextReceivers.InitializationOnlySyntaxChecker.Diagnostics">
+            <summary>
+            Indicates all possible diagnostics types used.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Diagnostics.CodeAnalysis.SyntaxContextReceivers.LambdaBodyAttributeSyntaxChecker">
+            <summary>
+            Indicates the syntax checker that checks for the code structures and the API usages.
+            The current analyzer will check the following cases:
+            <list type="bullet">
+            <listheader>
+            <term>Diagnostic ID</term>
+            <description>Description</description>
+            </listheader>
+            <item>
+            <term>SCA0117</term>
+            <description>'LambdaBodyAttribute' can only applied onto the property getter or method</description>
+            </item>
+            <item>
+            <term>SCA0118</term>
+            <description>The property getter or method applied '[LambdaBody]' can only use expression-bodied statement to declare the value</description>
+            </item>
+            </list>
+            </summary>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.SyntaxContextReceivers.LambdaBodyAttributeSyntaxChecker.OnVisitSyntaxNode(Microsoft.CodeAnalysis.GeneratorSyntaxContext)">
+            <inheritdoc/>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.SyntaxContextReceivers.LambdaBodyAttributeSyntaxChecker.SCA0117">
+            <summary>
+            Indicates the <see cref="T:Microsoft.CodeAnalysis.DiagnosticDescriptor"/> instance that describes for the diagnostic result SCA0117 ('LambdaBodyAttribute' can only applied onto the property getter or method).
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.SyntaxContextReceivers.LambdaBodyAttributeSyntaxChecker.SCA0118">
+            <summary>
+            Indicates the <see cref="T:Microsoft.CodeAnalysis.DiagnosticDescriptor"/> instance that describes for the diagnostic result SCA0118 (The property getter or method applied '[LambdaBody]' can only use expression-bodied statement to declare the value).
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.SyntaxContextReceivers.LambdaBodyAttributeSyntaxChecker._cancellationToken">
+            <summary>
+            Indicates the cancellation token used.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.SyntaxContextReceivers.LambdaBodyAttributeSyntaxChecker.#ctor(System.Threading.CancellationToken)">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Diagnostics.CodeAnalysis.SyntaxContextReceivers.LambdaBodyAttributeSyntaxChecker"/> instance using the cancellation token.
+            </summary>
+            <param name="cancellationToken">The cancellation token to cancel the operation.</param>
+        </member>
+        <member name="P:Sudoku.Diagnostics.CodeAnalysis.SyntaxContextReceivers.LambdaBodyAttributeSyntaxChecker.Diagnostics">
+            <summary>
+            Indicates all possible diagnostics types used.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Diagnostics.CodeAnalysis.SyntaxContextReceivers.LambdaDiscardParameterSyntaxChecker">
+            <summary>
+            Indicates the syntax checker that checks for the code structures and the API usages.
+            The current analyzer will check the following cases:
+            <list type="bullet">
+            <listheader>
+            <term>Diagnostic ID</term>
+            <description>Description</description>
+            </listheader>
+            <item>
+            <term>SCA0121</term>
+            <description>Can't apply '[IsDiscard]' onto a parameter that has already discarded</description>
+            </item>
+            </list>
+            </summary>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.SyntaxContextReceivers.LambdaDiscardParameterSyntaxChecker.OnVisitSyntaxNode(Microsoft.CodeAnalysis.GeneratorSyntaxContext)">
+            <inheritdoc/>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.SyntaxContextReceivers.LambdaDiscardParameterSyntaxChecker.SCA0121">
+            <summary>
+            Indicates the <see cref="T:Microsoft.CodeAnalysis.DiagnosticDescriptor"/> instance that describes for the diagnostic result SCA0121 (Can't apply '[IsDiscard]' onto a parameter that has already discarded).
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.SyntaxContextReceivers.LambdaDiscardParameterSyntaxChecker._cancellationToken">
+            <summary>
+            Indicates the cancellation token used.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.SyntaxContextReceivers.LambdaDiscardParameterSyntaxChecker.#ctor(System.Threading.CancellationToken)">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Diagnostics.CodeAnalysis.SyntaxContextReceivers.LambdaDiscardParameterSyntaxChecker"/> instance using the cancellation token.
+            </summary>
+            <param name="cancellationToken">The cancellation token to cancel the operation.</param>
+        </member>
+        <member name="P:Sudoku.Diagnostics.CodeAnalysis.SyntaxContextReceivers.LambdaDiscardParameterSyntaxChecker.Diagnostics">
+            <summary>
+            Indicates all possible diagnostics types used.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Diagnostics.CodeAnalysis.SyntaxContextReceivers.NamingSyntaxChecker">
+            <summary>
+            Indicates the syntax checker that checks for the code structures and the API usages.
+            The current analyzer will check the following cases:
+            <list type="bullet">
+            <listheader>
+            <term>Diagnostic ID</term>
+            <description>Description</description>
+            </listheader>
+            <item>
+            <term>SCA0301</term>
+            <description>Please apply camel-casing onto local functions</description>
+            </item>
+            <item>
+            <term>SCA0302</term>
+            <description>Please name '@this' onto the first argument of the extension deconstruction method</description>
+            </item>
+            </list>
+            </summary>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.SyntaxContextReceivers.NamingSyntaxChecker.OnVisitSyntaxNode(Microsoft.CodeAnalysis.GeneratorSyntaxContext)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.SyntaxContextReceivers.NamingSyntaxChecker.CheckLocalFunction(Microsoft.CodeAnalysis.SyntaxNode,Microsoft.CodeAnalysis.Compilation,Microsoft.CodeAnalysis.SemanticModel)">
+            <summary>
+            Checks for the name of the local function.
+            </summary>
+            <param name="node">The node to check.</param>
+            <param name="compilation">The compilation.</param>
+            <param name="semanticModel">The semantic model.</param>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.SyntaxContextReceivers.NamingSyntaxChecker.CheckExtensionDeconstructionMethodFirstParameter(Microsoft.CodeAnalysis.SyntaxNode,Microsoft.CodeAnalysis.Compilation,Microsoft.CodeAnalysis.SemanticModel)">
+            <summary>
+            Checks for the name of the first parameter in an extension deconstruction method.
+            </summary>
+            <param name="node">The node to check.</param>
+            <param name="compilation">The compilation.</param>
+            <param name="semanticModel">The semantic model.</param>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.SyntaxContextReceivers.NamingSyntaxChecker.SCA0301">
+            <summary>
+            Indicates the <see cref="T:Microsoft.CodeAnalysis.DiagnosticDescriptor"/> instance that describes for the diagnostic result SCA0301 (Please apply camel-casing onto local functions).
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.SyntaxContextReceivers.NamingSyntaxChecker.SCA0302">
+            <summary>
+            Indicates the <see cref="T:Microsoft.CodeAnalysis.DiagnosticDescriptor"/> instance that describes for the diagnostic result SCA0302 (Please name '@this' onto the first argument of the extension deconstruction method).
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.SyntaxContextReceivers.NamingSyntaxChecker._cancellationToken">
+            <summary>
+            Indicates the cancellation token used.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.SyntaxContextReceivers.NamingSyntaxChecker.#ctor(System.Threading.CancellationToken)">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Diagnostics.CodeAnalysis.SyntaxContextReceivers.NamingSyntaxChecker"/> instance using the cancellation token.
+            </summary>
+            <param name="cancellationToken">The cancellation token to cancel the operation.</param>
+        </member>
+        <member name="P:Sudoku.Diagnostics.CodeAnalysis.SyntaxContextReceivers.NamingSyntaxChecker.Diagnostics">
+            <summary>
+            Indicates all possible diagnostics types used.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Diagnostics.CodeAnalysis.SyntaxContextReceivers.PropertyStyleSyntaxChecker">
+            <summary>
+            Indicates the syntax checker that checks for the code structures and the API usages.
+            The current analyzer will check the following cases:
+            <list type="bullet">
+            <listheader>
+            <term>Diagnostic ID</term>
+            <description>Description</description>
+            </listheader>
+            <item>
+            <term>SCA0603</term>
+            <description>The property must start with getter, and then setter (or initer)</description>
+            </item>
+            <item>
+            <term>SCA0604</term>
+            <description>At least 1 null lines to insert into getter and setter (or initer) in a property</description>
+            </item>
+            </list>
+            </summary>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.SyntaxContextReceivers.PropertyStyleSyntaxChecker.OnVisitSyntaxNode(Microsoft.CodeAnalysis.GeneratorSyntaxContext)">
+            <inheritdoc/>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.SyntaxContextReceivers.PropertyStyleSyntaxChecker.SCA0603">
+            <summary>
+            Indicates the <see cref="T:Microsoft.CodeAnalysis.DiagnosticDescriptor"/> instance that describes for the diagnostic result SCA0603 (The property must start with getter, and then setter (or initer)).
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.SyntaxContextReceivers.PropertyStyleSyntaxChecker.SCA0604">
+            <summary>
+            Indicates the <see cref="T:Microsoft.CodeAnalysis.DiagnosticDescriptor"/> instance that describes for the diagnostic result SCA0604 (At least 1 null lines to insert into getter and setter (or initer) in a property).
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.SyntaxContextReceivers.PropertyStyleSyntaxChecker._cancellationToken">
+            <summary>
+            Indicates the cancellation token used.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.SyntaxContextReceivers.PropertyStyleSyntaxChecker.#ctor(System.Threading.CancellationToken)">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Diagnostics.CodeAnalysis.SyntaxContextReceivers.PropertyStyleSyntaxChecker"/> instance using the cancellation token.
+            </summary>
+            <param name="cancellationToken">The cancellation token to cancel the operation.</param>
+        </member>
+        <member name="P:Sudoku.Diagnostics.CodeAnalysis.SyntaxContextReceivers.PropertyStyleSyntaxChecker.Diagnostics">
+            <summary>
+            Indicates all possible diagnostics types used.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Diagnostics.CodeAnalysis.SyntaxContextReceivers.PublicFunctionPointerDataMembersSyntaxChecker">
+            <summary>
+            Indicates the syntax checker that checks for the code structures and the API usages.
+            The current analyzer will check the following cases:
+            <list type="bullet">
+            <listheader>
+            <term>Diagnostic ID</term>
+            <description>Description</description>
+            </listheader>
+            <item>
+            <term>SCA0305</term>
+            <description>Prevent exposing exact-typed function pointers as public data members</description>
+            </item>
+            </list>
+            </summary>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.SyntaxContextReceivers.PublicFunctionPointerDataMembersSyntaxChecker.OnVisitSyntaxNode(Microsoft.CodeAnalysis.GeneratorSyntaxContext)">
+            <inheritdoc/>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.SyntaxContextReceivers.PublicFunctionPointerDataMembersSyntaxChecker.SCA0305">
+            <summary>
+            Indicates the <see cref="T:Microsoft.CodeAnalysis.DiagnosticDescriptor"/> instance that describes for the diagnostic result SCA0305 (Prevent exposing exact-typed function pointers as public data members).
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.SyntaxContextReceivers.PublicFunctionPointerDataMembersSyntaxChecker._cancellationToken">
+            <summary>
+            Indicates the cancellation token used.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.SyntaxContextReceivers.PublicFunctionPointerDataMembersSyntaxChecker.#ctor(System.Threading.CancellationToken)">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Diagnostics.CodeAnalysis.SyntaxContextReceivers.PublicFunctionPointerDataMembersSyntaxChecker"/> instance using the cancellation token.
+            </summary>
+            <param name="cancellationToken">The cancellation token to cancel the operation.</param>
+        </member>
+        <member name="P:Sudoku.Diagnostics.CodeAnalysis.SyntaxContextReceivers.PublicFunctionPointerDataMembersSyntaxChecker.Diagnostics">
+            <summary>
+            Indicates all possible diagnostics types used.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Diagnostics.CodeAnalysis.SyntaxContextReceivers.ReadOnlyMemberSyntaxChecker">
+            <summary>
+            Indicates the syntax checker that checks for the code structures and the API usages.
+            The current analyzer will check the following cases:
+            <list type="bullet">
+            <listheader>
+            <term>Diagnostic ID</term>
+            <description>Description</description>
+            </listheader>
+            <item>
+            <term>SCA0303</term>
+            <description>Unnecessary modifier 'readonly' on this member because the containing type has been already read-only</description>
+            </item>
+            <item>
+            <term>SCA0304</term>
+            <description>Available 'readonly' modifier to apply to this member</description>
+            </item>
+            </list>
+            </summary>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.SyntaxContextReceivers.ReadOnlyMemberSyntaxChecker.OnVisitSyntaxNode(Microsoft.CodeAnalysis.GeneratorSyntaxContext)">
+            <inheritdoc/>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.SyntaxContextReceivers.ReadOnlyMemberSyntaxChecker.SCA0303">
+            <summary>
+            Indicates the <see cref="T:Microsoft.CodeAnalysis.DiagnosticDescriptor"/> instance that describes for the diagnostic result SCA0303 (Unnecessary modifier 'readonly' on this member because the containing type has been already read-only).
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.SyntaxContextReceivers.ReadOnlyMemberSyntaxChecker.SCA0304">
+            <summary>
+            Indicates the <see cref="T:Microsoft.CodeAnalysis.DiagnosticDescriptor"/> instance that describes for the diagnostic result SCA0304 (Available 'readonly' modifier to apply to this member).
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.SyntaxContextReceivers.ReadOnlyMemberSyntaxChecker._cancellationToken">
+            <summary>
+            Indicates the cancellation token used.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.SyntaxContextReceivers.ReadOnlyMemberSyntaxChecker.#ctor(System.Threading.CancellationToken)">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Diagnostics.CodeAnalysis.SyntaxContextReceivers.ReadOnlyMemberSyntaxChecker"/> instance using the cancellation token.
+            </summary>
+            <param name="cancellationToken">The cancellation token to cancel the operation.</param>
+        </member>
+        <member name="P:Sudoku.Diagnostics.CodeAnalysis.SyntaxContextReceivers.ReadOnlyMemberSyntaxChecker.Diagnostics">
+            <summary>
+            Indicates all possible diagnostics types used.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Diagnostics.CodeAnalysis.SyntaxContextReceivers.RegularExpressionSyntaxChecker">
+            <summary>
+            Indicates the syntax checker that checks for the code structures and the API usages.
+            The current analyzer will check the following cases:
+            <list type="bullet">
+            <listheader>
+            <term>Diagnostic ID</term>
+            <description>Description</description>
+            </listheader>
+            <item>
+            <term>SCA0103</term>
+            <description>The field having marked '[IsRegex]' must be of type 'string'</description>
+            </item>
+            <item>
+            <term>SCA0104</term>
+            <description>The field having marked '[IsRegex]' isn't a valid regular expression</description>
+            </item>
+            <item>
+            <term>SCA0105</term>
+            <description>The field having marked '[IsRegex]' should use verbatim string identifier '@'</description>
+            </item>
+            <item>
+            <term>SCA0106</term>
+            <description>The field having marked '[IsRegex]' should be modified 'const'</description>
+            </item>
+            </list>
+            </summary>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.SyntaxContextReceivers.RegularExpressionSyntaxChecker.OnVisitSyntaxNode(Microsoft.CodeAnalysis.GeneratorSyntaxContext)">
+            <inheritdoc/>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.SyntaxContextReceivers.RegularExpressionSyntaxChecker.SCA0103">
+            <summary>
+            Indicates the <see cref="T:Microsoft.CodeAnalysis.DiagnosticDescriptor"/> instance that describes for the diagnostic result SCA0103 (The field having marked '[IsRegex]' must be of type 'string').
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.SyntaxContextReceivers.RegularExpressionSyntaxChecker.SCA0104">
+            <summary>
+            Indicates the <see cref="T:Microsoft.CodeAnalysis.DiagnosticDescriptor"/> instance that describes for the diagnostic result SCA0104 (The field having marked '[IsRegex]' isn't a valid regular expression).
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.SyntaxContextReceivers.RegularExpressionSyntaxChecker.SCA0105">
+            <summary>
+            Indicates the <see cref="T:Microsoft.CodeAnalysis.DiagnosticDescriptor"/> instance that describes for the diagnostic result SCA0105 (The field having marked '[IsRegex]' should use verbatim string identifier '@').
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.SyntaxContextReceivers.RegularExpressionSyntaxChecker.SCA0106">
+            <summary>
+            Indicates the <see cref="T:Microsoft.CodeAnalysis.DiagnosticDescriptor"/> instance that describes for the diagnostic result SCA0106 (The field having marked '[IsRegex]' should be modified 'const').
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.SyntaxContextReceivers.RegularExpressionSyntaxChecker._cancellationToken">
+            <summary>
+            Indicates the cancellation token used.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.SyntaxContextReceivers.RegularExpressionSyntaxChecker.#ctor(System.Threading.CancellationToken)">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Diagnostics.CodeAnalysis.SyntaxContextReceivers.RegularExpressionSyntaxChecker"/> instance using the cancellation token.
+            </summary>
+            <param name="cancellationToken">The cancellation token to cancel the operation.</param>
+        </member>
+        <member name="P:Sudoku.Diagnostics.CodeAnalysis.SyntaxContextReceivers.RegularExpressionSyntaxChecker.Diagnostics">
+            <summary>
+            Indicates all possible diagnostics types used.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Diagnostics.CodeAnalysis.SyntaxContextReceivers.RestrictArgumentsSyntaxChecker">
+            <summary>
+            Indicates the syntax checker that checks for the code structures and the API usages.
+            The current analyzer will check the following cases:
+            <list type="bullet">
+            <listheader>
+            <term>Diagnostic ID</term>
+            <description>Description</description>
+            </listheader>
+            <item>
+            <term>SCA0107</term>
+            <description>Attribute '[Restrict]' must be applied onto a pointer-typed parameter</description>
+            </item>
+            <item>
+            <term>SCA0108</term>
+            <description>Attribute '[Restrict]' must be applied onto at least 2 parameters in a method</description>
+            </item>
+            <item>
+            <term>SCA0109</term>
+            <description>Arguments applied '[Restrict]' cannot hold a same pointer value</description>
+            </item>
+            </list>
+            </summary>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.SyntaxContextReceivers.RestrictArgumentsSyntaxChecker.OnVisitSyntaxNode(Microsoft.CodeAnalysis.GeneratorSyntaxContext)">
+            <inheritdoc/>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.SyntaxContextReceivers.RestrictArgumentsSyntaxChecker.SCA0107">
+            <summary>
+            Indicates the <see cref="T:Microsoft.CodeAnalysis.DiagnosticDescriptor"/> instance that describes for the diagnostic result SCA0107 (Attribute '[Restrict]' must be applied onto a pointer-typed parameter).
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.SyntaxContextReceivers.RestrictArgumentsSyntaxChecker.SCA0108">
+            <summary>
+            Indicates the <see cref="T:Microsoft.CodeAnalysis.DiagnosticDescriptor"/> instance that describes for the diagnostic result SCA0108 (Attribute '[Restrict]' must be applied onto at least 2 parameters in a method).
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.SyntaxContextReceivers.RestrictArgumentsSyntaxChecker.SCA0109">
+            <summary>
+            Indicates the <see cref="T:Microsoft.CodeAnalysis.DiagnosticDescriptor"/> instance that describes for the diagnostic result SCA0109 (Arguments applied '[Restrict]' cannot hold a same pointer value).
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.SyntaxContextReceivers.RestrictArgumentsSyntaxChecker._cancellationToken">
+            <summary>
+            Indicates the cancellation token used.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.SyntaxContextReceivers.RestrictArgumentsSyntaxChecker.#ctor(System.Threading.CancellationToken)">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Diagnostics.CodeAnalysis.SyntaxContextReceivers.RestrictArgumentsSyntaxChecker"/> instance using the cancellation token.
+            </summary>
+            <param name="cancellationToken">The cancellation token to cancel the operation.</param>
+        </member>
+        <member name="P:Sudoku.Diagnostics.CodeAnalysis.SyntaxContextReceivers.RestrictArgumentsSyntaxChecker.Diagnostics">
+            <summary>
+            Indicates all possible diagnostics types used.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Diagnostics.CodeAnalysis.SyntaxContextReceivers.ThisConstraintSyntaxChecker">
+            <summary>
+            Indicates the syntax checker that checks for the code structures and the API usages.
+            The current analyzer will check the following cases:
+            <list type="bullet">
+            <listheader>
+            <term>Diagnostic ID</term>
+            <description>Description</description>
+            </listheader>
+            <item>
+            <term>SCA0101</term>
+            <description>The type parameter lacks a CRTP-constraint clause</description>
+            </item>
+            <item>
+            <term>SCA0102</term>
+            <description>The type parameter lacks a CRTP-style type constraint</description>
+            </item>
+            </list>
+            </summary>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.SyntaxContextReceivers.ThisConstraintSyntaxChecker.OnVisitSyntaxNode(Microsoft.CodeAnalysis.GeneratorSyntaxContext)">
+            <inheritdoc/>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.SyntaxContextReceivers.ThisConstraintSyntaxChecker.SCA0101">
+            <summary>
+            Indicates the <see cref="T:Microsoft.CodeAnalysis.DiagnosticDescriptor"/> instance that describes for the diagnostic result SCA0101 (The type parameter lacks a CRTP-constraint clause).
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.SyntaxContextReceivers.ThisConstraintSyntaxChecker.SCA0102">
+            <summary>
+            Indicates the <see cref="T:Microsoft.CodeAnalysis.DiagnosticDescriptor"/> instance that describes for the diagnostic result SCA0102 (The type parameter lacks a CRTP-style type constraint).
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.SyntaxContextReceivers.ThisConstraintSyntaxChecker._cancellationToken">
+            <summary>
+            Indicates the cancellation token used.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.SyntaxContextReceivers.ThisConstraintSyntaxChecker.#ctor(System.Threading.CancellationToken)">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Diagnostics.CodeAnalysis.SyntaxContextReceivers.ThisConstraintSyntaxChecker"/> instance using the cancellation token.
+            </summary>
+            <param name="cancellationToken">The cancellation token to cancel the operation.</param>
+        </member>
+        <member name="P:Sudoku.Diagnostics.CodeAnalysis.SyntaxContextReceivers.ThisConstraintSyntaxChecker.Diagnostics">
+            <summary>
+            Indicates all possible diagnostics types used.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.Analyzers.AnonymousInnerTypeAnalyzer.Execute(Microsoft.CodeAnalysis.GeneratorExecutionContext)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.Analyzers.AnonymousInnerTypeAnalyzer.Initialize(Microsoft.CodeAnalysis.GeneratorInitializationContext)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.Analyzers.CallerArgumentExpressionAttributeAnalyzer.Execute(Microsoft.CodeAnalysis.GeneratorExecutionContext)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.Analyzers.CallerArgumentExpressionAttributeAnalyzer.Initialize(Microsoft.CodeAnalysis.GeneratorInitializationContext)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.Analyzers.CellAnalyzer.Execute(Microsoft.CodeAnalysis.GeneratorExecutionContext)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.Analyzers.CellAnalyzer.Initialize(Microsoft.CodeAnalysis.GeneratorInitializationContext)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.Analyzers.DeconstructionMethodAnalyzer.Execute(Microsoft.CodeAnalysis.GeneratorExecutionContext)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.Analyzers.DeconstructionMethodAnalyzer.Initialize(Microsoft.CodeAnalysis.GeneratorInitializationContext)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.Analyzers.DiscardParameterAnalyzer.Execute(Microsoft.CodeAnalysis.GeneratorExecutionContext)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.Analyzers.DiscardParameterAnalyzer.Initialize(Microsoft.CodeAnalysis.GeneratorInitializationContext)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.Analyzers.GetPinnableReferenceMethodAnalyzer.Execute(Microsoft.CodeAnalysis.GeneratorExecutionContext)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.Analyzers.GetPinnableReferenceMethodAnalyzer.Initialize(Microsoft.CodeAnalysis.GeneratorInitializationContext)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.Analyzers.GridAnalyzer.Execute(Microsoft.CodeAnalysis.GeneratorExecutionContext)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.Analyzers.GridAnalyzer.Initialize(Microsoft.CodeAnalysis.GeneratorInitializationContext)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.Analyzers.InitializationOnlyAnalyzer.Execute(Microsoft.CodeAnalysis.GeneratorExecutionContext)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.Analyzers.InitializationOnlyAnalyzer.Initialize(Microsoft.CodeAnalysis.GeneratorInitializationContext)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.Analyzers.LambdaBodyAttributeAnalyzer.Execute(Microsoft.CodeAnalysis.GeneratorExecutionContext)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.Analyzers.LambdaBodyAttributeAnalyzer.Initialize(Microsoft.CodeAnalysis.GeneratorInitializationContext)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.Analyzers.LambdaDiscardParameterAnalyzer.Execute(Microsoft.CodeAnalysis.GeneratorExecutionContext)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.Analyzers.LambdaDiscardParameterAnalyzer.Initialize(Microsoft.CodeAnalysis.GeneratorInitializationContext)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.Analyzers.NamingAnalyzer.Execute(Microsoft.CodeAnalysis.GeneratorExecutionContext)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.Analyzers.NamingAnalyzer.Initialize(Microsoft.CodeAnalysis.GeneratorInitializationContext)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.Analyzers.PropertyStyleAnalyzer.Execute(Microsoft.CodeAnalysis.GeneratorExecutionContext)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.Analyzers.PropertyStyleAnalyzer.Initialize(Microsoft.CodeAnalysis.GeneratorInitializationContext)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.Analyzers.PublicFunctionPointerDataMembersAnalyzer.Execute(Microsoft.CodeAnalysis.GeneratorExecutionContext)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.Analyzers.PublicFunctionPointerDataMembersAnalyzer.Initialize(Microsoft.CodeAnalysis.GeneratorInitializationContext)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.Analyzers.ReadOnlyMemberAnalyzer.Execute(Microsoft.CodeAnalysis.GeneratorExecutionContext)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.Analyzers.ReadOnlyMemberAnalyzer.Initialize(Microsoft.CodeAnalysis.GeneratorInitializationContext)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.Analyzers.RegularExpressionAnalyzer.Execute(Microsoft.CodeAnalysis.GeneratorExecutionContext)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.Analyzers.RegularExpressionAnalyzer.Initialize(Microsoft.CodeAnalysis.GeneratorInitializationContext)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.Analyzers.RestrictArgumentsAnalyzer.Execute(Microsoft.CodeAnalysis.GeneratorExecutionContext)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.Analyzers.RestrictArgumentsAnalyzer.Initialize(Microsoft.CodeAnalysis.GeneratorInitializationContext)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.Analyzers.ThisConstraintAnalyzer.Execute(Microsoft.CodeAnalysis.GeneratorExecutionContext)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.Analyzers.ThisConstraintAnalyzer.Initialize(Microsoft.CodeAnalysis.GeneratorInitializationContext)">
+            <inheritdoc/>
+        </member>
+    </members>
+</doc>

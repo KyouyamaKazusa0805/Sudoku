@@ -29,7 +29,7 @@ public sealed class SyntaxCheckerAttribute : Attribute
 	/// Initializes a <see cref="SyntaxCheckerAttribute"/> via a <see cref="string"/>[]
 	/// indicating the possible diagnostic IDs that the current type supports.
 	/// </summary>
-	/// <param name="names">The possible diagnostic IDs that the type support.</param>
+	/// <param name="diagnosticIds">The possible diagnostic IDs that the type support.</param>
 	public SyntaxCheckerAttribute(params string[] diagnosticIds) => SupportedDiagnosticIds = diagnosticIds;
 
 

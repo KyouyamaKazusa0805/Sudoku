@@ -56,7 +56,9 @@ public sealed partial class HighLevelGenerator : ISourceGenerator
 
 			context.AddSource(
 				$"{shortName}Analyzer.g.cs",
-				$@"using Sudoku.Diagnostics.CodeAnalysis.SyntaxContextReceivers;
+				$@"#pragma warning disable CS1591
+
+using Sudoku.Diagnostics.CodeAnalysis.SyntaxContextReceivers;
 
 namespace Sudoku.Diagnostics.CodeAnalysis.Analyzers;
 

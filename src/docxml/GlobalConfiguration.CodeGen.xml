@@ -1,0 +1,221 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>GlobalConfiguration.CodeGen</name>
+    </assembly>
+    <members>
+        <member name="T:Microsoft.CodeAnalysis.CompilationExtensions">
+            <summary>
+            Provides extension methods on <see cref="T:Microsoft.CodeAnalysis.Compilation"/>.
+            </summary>
+            <seealso cref="T:Microsoft.CodeAnalysis.Compilation"/>
+        </member>
+        <member name="M:Microsoft.CodeAnalysis.CompilationExtensions.GetTypeSymbol``1(Microsoft.CodeAnalysis.Compilation)">
+            <summary>
+            Try to get the <see cref="T:Microsoft.CodeAnalysis.INamedTypeSymbol"/> result via the specified type instance
+            specified as the type argument.
+            </summary>
+            <typeparam name="TNotNull">
+            The type to get its corresponding <see cref="T:Microsoft.CodeAnalysis.INamedTypeSymbol"/> instance as the return value.
+            Due to the design of Roslyn, the type should be <see langword="notnull"/>, which means you cannot
+            append nullable notation <c>?</c> onto the type, such as <see cref="T:System.Int32"/>? or <see cref="T:System.Object"/>?
+            won't be compiled.
+            </typeparam>
+            <param name="this">The compilation instance.</param>
+            <returns>The corresponding <see cref="T:Microsoft.CodeAnalysis.INamedTypeSymbol"/> result.</returns>
+            <seealso cref="T:Microsoft.CodeAnalysis.INamedTypeSymbol"/>
+        </member>
+        <member name="T:Microsoft.CodeAnalysis.GeneratorExecutionContextExtensions">
+            <summary>
+            Provides extension methods on <see cref="T:Microsoft.CodeAnalysis.GeneratorExecutionContext"/>.
+            </summary>
+            <seealso cref="T:Microsoft.CodeAnalysis.GeneratorExecutionContext"/>
+        </member>
+        <member name="M:Microsoft.CodeAnalysis.GeneratorExecutionContextExtensions.AddSource(Microsoft.CodeAnalysis.GeneratorExecutionContext@,System.String,System.String,System.String)">
+            <summary>
+            Simply calls <see cref="M:Microsoft.CodeAnalysis.GeneratorExecutionContext.AddSource(System.String,System.String)"/>,
+            </summary>
+            <param name="this">The current context.</param>
+            <param name="fileName">The file name. The file name may be same as the symbol name</param>
+            <param name="sourceGeneratorName">The source generator name.</param>
+            <param name="sourceCode">The source code.</param>
+            <seealso cref="M:Microsoft.CodeAnalysis.GeneratorExecutionContext.AddSource(System.String,System.String)"/>
+        </member>
+        <member name="T:Microsoft.CodeAnalysis.INamedTypeSymbolExtensions">
+            <summary>
+            Provides extension methods for <see cref="T:Microsoft.CodeAnalysis.INamedTypeSymbol"/>.
+            </summary>
+            <seealso cref="T:Microsoft.CodeAnalysis.INamedTypeSymbol"/>
+        </member>
+        <member name="M:Microsoft.CodeAnalysis.INamedTypeSymbolExtensions.ToFileName(Microsoft.CodeAnalysis.INamedTypeSymbol)">
+            <summary>
+            Get the file name of the type symbol.
+            </summary>
+            <param name="this">The symbol.</param>
+            <returns>
+            The file name. Due to the limited file name and the algorithm, if:
+            <list type="bullet">
+            <item>
+            The character is <c><![CDATA['<']]></c> or <c><![CDATA['>']]></c>:
+            Change them to <c>'['</c> and <c>']'</c>.
+            </item>
+            <item>The character is <c>','</c>: Change it to <c>'_'</c>.</item>
+            <item>The character is <c>' '</c>: Remove it.</item>
+            </list>
+            </returns>
+        </member>
+        <member name="T:Microsoft.CodeAnalysis.MemberExistence">
+            <summary>
+            Provides extension methods on member existence checking.
+            </summary>
+        </member>
+        <member name="M:Microsoft.CodeAnalysis.MemberExistence.ExistField(System.Collections.Immutable.ImmutableArray{Microsoft.CodeAnalysis.ISymbol},System.Func{Microsoft.CodeAnalysis.IFieldSymbol,System.Boolean},Microsoft.CodeAnalysis.IFieldSymbol@)">
+            <summary>
+            Determines whether the member symbol collection contains a specified field.
+            </summary>
+            <param name="this">The collection.</param>
+            <param name="predicate">The condition to satisfy.</param>
+            <param name="result">The found result.</param>
+            <returns>A <see cref="T:System.Boolean"/> result.</returns>
+        </member>
+        <member name="M:Microsoft.CodeAnalysis.MemberExistence.ExistProperty(System.Collections.Immutable.ImmutableArray{Microsoft.CodeAnalysis.ISymbol},System.Func{Microsoft.CodeAnalysis.IPropertySymbol,System.Boolean},Microsoft.CodeAnalysis.IPropertySymbol@)">
+            <summary>
+            Determines whether the member symbol collection contains a specified property.
+            </summary>
+            <param name="this">The collection.</param>
+            <param name="predicate">The condition to satisfy.</param>
+            <param name="result">The found result.</param>
+            <returns>A <see cref="T:System.Boolean"/> result.</returns>
+        </member>
+        <member name="T:Microsoft.CodeAnalysis.PropertySymbolExtensions">
+            <summary>
+            Proivdes extension methods on <see cref="T:Microsoft.CodeAnalysis.IPropertySymbol"/>.
+            </summary>
+            <seealso cref="T:Microsoft.CodeAnalysis.IPropertySymbol"/>
+        </member>
+        <member name="M:Microsoft.CodeAnalysis.PropertySymbolExtensions.IsAutoProperty(Microsoft.CodeAnalysis.IPropertySymbol)">
+            <summary>
+            Determine whether the current property is auto-implemented property.
+            </summary>
+            <param name="this">The property symbol.</param>
+            <returns>A <see cref="T:System.Boolean"/> result.</returns>
+        </member>
+        <member name="T:Microsoft.CodeAnalysis.SyntaxReferenceExtensions">
+            <summary>
+            Provides extension methods on <see cref="T:Microsoft.CodeAnalysis.SyntaxReference"/>.
+            </summary>
+            <seealso cref="T:Microsoft.CodeAnalysis.SyntaxReference"/>
+        </member>
+        <member name="M:Microsoft.CodeAnalysis.SyntaxReferenceExtensions.ToLocation(Microsoft.CodeAnalysis.SyntaxReference)">
+            <summary>
+            Creates a <see cref="T:Microsoft.CodeAnalysis.Location"/> instance as the result value
+            via the specified <see cref="T:Microsoft.CodeAnalysis.SyntaxReference"/>.
+            </summary>
+            <param name="this">The instance.</param>
+            <returns>The <see cref="T:Microsoft.CodeAnalysis.Location"/> result.</returns>
+        </member>
+        <member name="T:System.Collections.Generic.EnumerableExtensions">
+            <summary>
+            Provides extension methods on <see cref="T:System.Collections.Generic.IEnumerable`1"/>.
+            </summary>
+            <seealso cref="T:System.Collections.Generic.IEnumerable`1"/>
+        </member>
+        <member name="M:System.Collections.Generic.EnumerableExtensions.ForEach``1(System.Collections.Generic.IEnumerable{``0},System.Action{``0})">
+            <summary>
+            The method to replace with <see langword="foreach"/> loop.
+            </summary>
+            <typeparam name="T">The type of each element.</typeparam>
+            <param name="this">The collection to iterate.</param>
+            <param name="action">The action that is executed while iterating.</param>
+        </member>
+        <member name="T:System.Collections.Generic.ICollectionExtensions">
+            <summary>
+            Provides extension methods on <see cref="T:System.Collections.Generic.ICollection`1"/>.
+            </summary>
+            <seealso cref="T:System.Collections.Generic.ICollection`1"/>
+        </member>
+        <member name="M:System.Collections.Generic.ICollectionExtensions.ForEach``1(System.Collections.Generic.ICollection{``0},System.Action{``0})">
+            <summary>
+            Performs the specified action on each element of the <see cref="T:System.Collections.Generic.ICollection`1"/>.
+            </summary>
+            <typeparam name="T">The type of the each element.</typeparam>
+            <param name="this">The collection itself.</param>
+            <param name="action">The action.</param>
+        </member>
+        <member name="T:System.Text.RegularExpressions.RegexExtensions">
+            <summary>
+            Provides extension methods on <see cref="T:System.Text.RegularExpressions.Regex"/>.
+            </summary>
+            <seealso cref="T:System.Text.RegularExpressions.Regex"/>
+        </member>
+        <member name="M:System.Text.RegularExpressions.RegexExtensions.TryMatch(System.String,System.String,System.Text.RegularExpressions.Match@)">
+            <summary>
+            Try to match the specified pattern using the specified input value, and gets the result.
+            If failed to match or even any exceptions thrown, the method will return <see langword="false"/>,
+            and the argument <paramref name="result"/> will keep the <see langword="null"/> value.
+            </summary>
+            <param name="input">The input string.</param>
+            <param name="pattern">The pattern to match.</param>
+            <param name="result">The result <see cref="T:System.Text.RegularExpressions.Match"/> instance.</param>
+            <returns>The <see cref="T:System.Boolean"/> value indicating whether the operation is successful.</returns>
+            <remarks>
+            Please note that <see cref="P:System.Text.RegularExpressions.Group.Success"/> being <see langword="false"/> doesn't mean
+            the return value is also <see langword="false"/>. The return value just check for the case
+            whether any exceptions thrown.
+            </remarks>
+            <seealso cref="P:System.Text.RegularExpressions.Group.Success"/>
+        </member>
+        <member name="T:System.Xml.XmlDocumentExtensions">
+            <summary>
+            Provides extension methods on <see cref="T:System.Xml.XmlDocument"/>.
+            </summary>
+            <seealso cref="T:System.Xml.XmlDocument"/>
+        </member>
+        <member name="M:System.Xml.XmlDocumentExtensions.OnLoading(System.Xml.XmlDocument,System.String)">
+            <summary>
+            Try to load the XML document located to the specified path.
+            </summary>
+            <param name="this">The current XML document instance.</param>
+            <param name="path">The path to load.</param>
+            <returns>The current reference to the XML document.</returns>
+        </member>
+        <member name="T:System.Runtime.CompilerServices.IsExternalInit">
+            <summary>
+            Declare this to get init properties.
+            </summary>
+            <remarks>
+            Please see
+            <see href="https://github.com/dotnet/roslyn/issues/45510#issuecomment-694977239">this link</see>
+            to learn more details about this type.
+            </remarks>
+        </member>
+        <member name="T:Sudoku.Diagnostics.CodeGen.Generators.GlobalConfigValueGenerator">
+            <summary>
+            Defines the global configuration value source generator.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.GlobalConfigValueGenerator.Execute(Microsoft.CodeAnalysis.GeneratorExecutionContext)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.GlobalConfigValueGenerator.Initialize(Microsoft.CodeAnalysis.GeneratorInitializationContext)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Diagnostics.CodeGen.TypeFormats">
+            <summary>
+            Provides <see cref="T:Microsoft.CodeAnalysis.SymbolDisplayFormat"/> instance that is for types.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeGen.TypeFormats.FullNameWithConstraints">
+            <summary>
+            Indicates the type format that is the full name of the type,
+            and is with type argument constraints.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeGen.TypeFormats.FullName">
+            <summary>
+            Indicates the type format that is the full name of the type,
+            and is without type argument constraints.
+            </summary>
+        </member>
+    </members>
+</doc>

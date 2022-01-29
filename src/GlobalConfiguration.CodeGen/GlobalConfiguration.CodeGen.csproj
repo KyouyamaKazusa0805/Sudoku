@@ -3,6 +3,7 @@
 	<PropertyGroup>
 		<TargetFramework>netstandard2.0</TargetFramework>
 		<Description>A project that generates the source code.</Description>
+		<DocumentationFile>..\docxml\GlobalConfiguration.CodeGen.xml</DocumentationFile>
 	</PropertyGroup>
 
 </Project>

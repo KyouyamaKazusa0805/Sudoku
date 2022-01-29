@@ -1,0 +1,168 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Sudoku.Diagnostics.CodeAnalysis.CodeGen</name>
+    </assembly>
+    <members>
+        <member name="T:Sudoku.Diagnostics.CodeAnalysis.SyntaxCheckerAttribute">
+            <summary>
+            Defines an attribute that applies to a syntax checker, to tell the source generator that the type:
+            <list type="number">
+            <item>Has explicitly implemented the interface <see cref="T:Microsoft.CodeAnalysis.ISyntaxContextReceiver"/>.</item>
+            <item>
+            Contains an extra <see langword="get"/>-only property named <c>Diagnostics</c> of type
+            <see cref="T:System.Collections.Generic.List`1"/> of <see cref="T:Microsoft.CodeAnalysis.Diagnostic"/>, i.e. <c><![CDATA[public List<Diagnostic> Diagnostics { get; } = new();]]></c>.
+            </item>
+            <item>
+            Contains an extra <see langword="private readonly"/> field named <c>_cancellationToken</c>
+            of type <see cref="T:System.Threading.CancellationToken"/>, i.e. <c><![CDATA[private readonly CancellationToken _cancellationToken]]></c>.
+            </item>
+            <item>
+            Contains a constructor that initializes the field <c>_cancellationToken</c>,
+            i.e. <c><![CDATA[public SyntaxChecker(CancellationToken cancellationToken) => _cancellationToken = cancellationToken]]></c>.
+            </item>
+            </list>
+            </summary>
+            <seealso cref="T:Microsoft.CodeAnalysis.ISyntaxContextReceiver"/>
+            <seealso cref="T:System.Collections.Generic.List`1"/>
+            <seealso cref="T:Microsoft.CodeAnalysis.Diagnostic"/>
+            <seealso cref="T:System.Threading.CancellationToken"/>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.SyntaxCheckerAttribute.#ctor(System.String[])">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Diagnostics.CodeAnalysis.SyntaxCheckerAttribute"/> via a <see cref="T:System.String"/>[]
+            indicating the possible diagnostic IDs that the current type supports.
+            </summary>
+            <param name="diagnosticIds">The possible diagnostic IDs that the type support.</param>
+        </member>
+        <member name="P:Sudoku.Diagnostics.CodeAnalysis.SyntaxCheckerAttribute.Debugging">
+            <summary>
+            Indicates whether the source generator will generates the debugger code snippets
+            on method <see cref="M:Microsoft.CodeAnalysis.ISourceGenerator.Initialize(Microsoft.CodeAnalysis.GeneratorInitializationContext)"/>:
+            <code>
+            if (!Debugger.IsAttach)
+            {
+                Debugger.Launch();
+            }
+            </code>
+            </summary>
+            <seealso cref="M:Microsoft.CodeAnalysis.ISourceGenerator.Initialize(Microsoft.CodeAnalysis.GeneratorInitializationContext)"/>
+        </member>
+        <member name="P:Sudoku.Diagnostics.CodeAnalysis.SyntaxCheckerAttribute.SupportedDiagnosticIds">
+            <summary>
+            Indicates the supported diagnostic IDs that the current type.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Diagnostics.CodeGen.Data.DiagnosticDetail">
+            <summary>
+            Provides and encapsulates a data structure that holds the detail of a diagnostic,
+            extracted by the markdown file <c>DiagnosticList.md</c>.
+            </summary>
+            <param name="Id">
+            Indicates the compiler diagnostic ID used always starting with "SCA" indicating "Solution-wide Code Analysis".
+            </param>
+            <param name="Category">Indicates the category.</param>
+            <param name="Severity">Indicates the severity to report.</param>
+            <param name="Title">Indicates the title displaying on "Error List" window.</param>
+            <param name="MessageFormat">
+            Indicates the message format. The message can contain include placeholders such as <c>{0}</c> and so on
+            to insert whatever you want.
+            </param>
+            <param name="ContainsPlaceholders">
+            Indicates whether the property <see cref="P:Sudoku.Diagnostics.CodeGen.Data.DiagnosticDetail.MessageFormat"/> includes any placeholders.
+            The default value is <see langword="false"/>.
+            </param>
+            <param name="HelpLinkUri">Indicates the URL site of the diagnostic introduction.</param>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeGen.Data.DiagnosticDetail.#ctor(System.String,System.String,Microsoft.CodeAnalysis.DiagnosticSeverity,System.String,System.String,System.Boolean,System.String)">
+            <summary>
+            Provides and encapsulates a data structure that holds the detail of a diagnostic,
+            extracted by the markdown file <c>DiagnosticList.md</c>.
+            </summary>
+            <param name="Id">
+            Indicates the compiler diagnostic ID used always starting with "SCA" indicating "Solution-wide Code Analysis".
+            </param>
+            <param name="Category">Indicates the category.</param>
+            <param name="Severity">Indicates the severity to report.</param>
+            <param name="Title">Indicates the title displaying on "Error List" window.</param>
+            <param name="MessageFormat">
+            Indicates the message format. The message can contain include placeholders such as <c>{0}</c> and so on
+            to insert whatever you want.
+            </param>
+            <param name="ContainsPlaceholders">
+            Indicates whether the property <see cref="P:Sudoku.Diagnostics.CodeGen.Data.DiagnosticDetail.MessageFormat"/> includes any placeholders.
+            The default value is <see langword="false"/>.
+            </param>
+            <param name="HelpLinkUri">Indicates the URL site of the diagnostic introduction.</param>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeGen.Data.DiagnosticDetail.ToDescriptor">
+            <summary>
+            Converts the current instance into a <see cref="T:Microsoft.CodeAnalysis.DiagnosticDescriptor"/>.
+            </summary>
+            <returns>The <see cref="T:Microsoft.CodeAnalysis.DiagnosticDescriptor"/> result.</returns>
+        </member>
+        <member name="T:Sudoku.Diagnostics.CodeGen.Generators.HighLevelGenerator">
+            <summary>
+            Indicates the high-level source generator that generates the source generator.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.HighLevelGenerator.Execute(Microsoft.CodeAnalysis.GeneratorExecutionContext)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.HighLevelGenerator.Initialize(Microsoft.CodeAnalysis.GeneratorInitializationContext)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Diagnostics.CodeGen.Generators.HighLevelGenerator.Receiver">
+            <summary>
+            Indicates the inner receiver used.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeGen.Generators.HighLevelGenerator.Receiver.DiagnosticIdRegex">
+            <summary>
+            Indicates the regular expression instance to match a valid diagnostic ID value.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeGen.Generators.HighLevelGenerator.Receiver._cancellationToken">
+            <summary>
+            Indicates the cancellation token to cancel the operation.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.HighLevelGenerator.Receiver.#ctor(System.Threading.CancellationToken)">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Diagnostics.CodeGen.Generators.HighLevelGenerator.Receiver"/> instance via a cancellation token.
+            </summary>
+            <param name="cancellationToken">The cancellation token.</param>
+        </member>
+        <member name="P:Sudoku.Diagnostics.CodeGen.Generators.HighLevelGenerator.Receiver.Result">
+            <summary>
+            Indicates the valid type names found.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Diagnostics.CodeGen.Generators.HighLevelGenerator.Receiver.Diagnostics">
+            <summary>
+            Indicates the possible compiler diagnostics found.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.HighLevelGenerator.Receiver.OnVisitSyntaxNode(Microsoft.CodeAnalysis.GeneratorSyntaxContext)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Diagnostics.CodeGen.MarkdownHandler">
+            <summary>
+            Provides with a Markdown handler that handles for a diagnostic list Markdown file.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeGen.MarkdownHandler.SplitTable(System.String)">
+            <summary>
+            To split the whole markdown table.
+            </summary>
+            <param name="markdown">The markdown code.</param>
+            <returns>The result list.</returns>
+            <exception cref="T:System.FormatException">Throws when any wrong operation has encountered.</exception>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeGen.Constants.VersionValue">
+            <summary>
+            Indicates the version of this project.
+            </summary>
+        </member>
+    </members>
+</doc>
