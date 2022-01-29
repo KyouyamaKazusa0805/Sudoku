@@ -16,6 +16,11 @@ public sealed class RepositoryInfo
 	public string? OpenSourceLicense { get; set; }
 
 	/// <summary>
+	/// Indicates the initials displaying on the <see cref="PersonPicture"/> control.
+	/// </summary>
+	public string? Initials { get; set; }
+
+	/// <summary>
 	/// Indicates the name of the image.
 	/// </summary>
 	public string? Name { get; set; }

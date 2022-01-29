@@ -19,6 +19,8 @@
 	<x:String x:Key="AboutPage_SpecialThanksDescription">This project uses the following open-source code for references:</x:String>
 	<x:String x:Key="AboutPage_SpecialThanks_DotnetRuntime">.NET Runtime</x:String>
 	<x:String x:Key="AboutPage_SpecialThanks_LearnWinUI3">Learn WinUI 3</x:String>
+	<x:String x:Key="AboutPage_SpecialThanks_WpfSamples">WPF Samples</x:String>
+	<x:String x:Key="AboutPage_SpecialThanks_UWPSamples">Universal Windows Samples</x:String>
 	<x:String x:Key="AboutPage_ForReference">For reference</x:String>
 	<x:String x:Key="AboutPage_License">License</x:String>
 

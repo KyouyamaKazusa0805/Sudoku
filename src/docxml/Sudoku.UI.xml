@@ -53,29 +53,6 @@
             GetXmlnsDefinitions()
             </summary>
         </member>
-        <member name="T:Sudoku.UI.Converters.Path2BrushConverter">
-            <summary>
-            Encapsulates the converter that converts the specified <see cref="T:System.String"/>
-            value as the path and the <see cref="T:Microsoft.UI.Xaml.Media.Brush"/> as the result.
-            </summary>
-            <seealso cref="T:Microsoft.UI.Xaml.Media.Brush"/>
-        </member>
-        <member name="F:Sudoku.UI.Converters.Path2BrushConverter.MsAppxProtocol">
-            <summary>
-            Indicates the prefix of the <c>ms-appx</c> protocol.
-            </summary>
-        </member>
-        <member name="M:Sudoku.UI.Converters.Path2BrushConverter.Convert(System.Object,System.Type,System.Object,System.String)">
-            <inheritdoc/>
-            <exception cref="T:System.ArgumentException">
-            Throws when the argument <paramref name="value"/> is not a <see cref="T:System.String"/> value.
-            The argument <paramref name="value"/> can be <see langword="null"/>.
-            </exception>
-        </member>
-        <member name="M:Sudoku.UI.Converters.Path2BrushConverter.ConvertBack(System.Object,System.Type,System.Object,System.String)">
-            <inheritdoc/>
-            <exception cref="T:System.NotSupportedException">Throws always.</exception>
-        </member>
         <member name="T:Sudoku.UI.BindingConversions">
             <summary>
             Provides a set of methods to convert the information.
@@ -122,6 +99,11 @@
         <member name="P:Sudoku.UI.Models.RepositoryInfo.OpenSourceLicense">
             <summary>
             Indicates the open-source license being used for this repository.
+            </summary>
+        </member>
+        <member name="P:Sudoku.UI.Models.RepositoryInfo.Initials">
+            <summary>
+            Indicates the initials displaying on the <see cref="T:Microsoft.UI.Xaml.Controls.PersonPicture"/> control.
             </summary>
         </member>
         <member name="P:Sudoku.UI.Models.RepositoryInfo.Name">

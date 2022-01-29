@@ -4,7 +4,6 @@
 	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 	xmlns:m="using:Sudoku.UI.Models"
-	xmlns:c="using:Sudoku.UI.Converters"
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 	xmlns:vm="using:Sudoku.UI.ViewModels" xmlns:ui="using:Sudoku.UI"
 	d:DataContext="{d:DesignInstance Type=vm:AboutPageViewModel}"
@@ -12,9 +11,6 @@
 	<Page.DataContext>
 		<vm:AboutPageViewModel />
 	</Page.DataContext>
-	<Page.Resources>
-		<c:Path2BrushConverter x:Key="Path2BrushConverter" />
-	</Page.Resources>
 
 	<ScrollViewer>
 		<StackPanel>
@@ -87,10 +83,10 @@
 								<ColumnDefinition />
 							</Grid.ColumnDefinitions>
 
-							<Ellipse
+							<PersonPicture
 								Grid.RowSpan="3" Width="48" Height="48" Margin="6"
 								HorizontalAlignment="Center" VerticalAlignment="Center"
-								Fill="{x:Bind IconPath,Converter={StaticResource Path2BrushConverter}}" />
+								Initials="{x:Bind Initials}" />
 							<TextBlock
 								Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" Margin="12,6,0,0"
 								Text="{x:Bind Name}" Style="{StaticResource BaseTextBlockStyle}" />
@@ -112,11 +108,19 @@
 
 				<m:RepositoryInfo
 					Name="{StaticResource AboutPage_SpecialThanks_DotnetRuntime}"
-					Site="https://github.com/dotnet/runtime"
+					Site="https://github.com/dotnet/runtime" Initials="A"
 					OpenSourceLicense="MIT" IconPath="images/dotnet.png" />
 				<m:RepositoryInfo
 					Name="{StaticResource AboutPage_SpecialThanks_LearnWinUI3}"
-					Site="https://github.com/PacktPublishing/-Learn-WinUI-3.0"
+					Site="https://github.com/PacktPublishing/-Learn-WinUI-3.0" Initials="B"
+					OpenSourceLicense="MIT" IsForReference="True" />
+				<m:RepositoryInfo
+					Name="{StaticResource AboutPage_SpecialThanks_WpfSamples}"
+					Site="https://github.com/microsoft/WPF-Samples" Initials="C"
+					OpenSourceLicense="MIT" IsForReference="True" />
+				<m:RepositoryInfo
+					Name="{StaticResource AboutPage_SpecialThanks_UWPSamples}"
+					Site="https://github.com/microsoft/Windows-universal-samples" Initials="D"
 					OpenSourceLicense="MIT" IsForReference="True" />
 			</ListView>
 		</StackPanel>
