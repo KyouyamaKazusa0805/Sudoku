@@ -28,7 +28,7 @@ partial struct StringHandler
 		/// </summary>
 		/// <param name="chars">The characters.</param>
 		/// <seealso cref="Span{T}"/>
-		public Enumerator(in StringHandler chars) : this()
+		internal Enumerator(in StringHandler chars) : this()
 		{
 			_length = chars.Length;
 			_index = -1;

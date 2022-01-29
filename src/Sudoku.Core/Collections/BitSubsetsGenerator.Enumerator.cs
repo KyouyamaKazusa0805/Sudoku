@@ -25,7 +25,7 @@ partial struct BitSubsetsGenerator
 		/// </summary>
 		/// <param name="bitCount">The number of bits.</param>
 		/// <param name="oneCount">The number of <see langword="true"/> bits.</param>
-		public Enumerator(int bitCount, int oneCount)
+		internal Enumerator(int bitCount, int oneCount)
 		{
 			Current = (1 << oneCount) - 1;
 			_mask = (1 << bitCount - oneCount) - 1;

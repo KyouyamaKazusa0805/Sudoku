@@ -23,7 +23,7 @@ partial struct ValueList<TUnmanaged>
 		/// </summary>
 		/// <param name="ptr">The pointer that points to the list.</param>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public Enumerator(in ValueList<TUnmanaged> ptr)
+		internal Enumerator(in ValueList<TUnmanaged> ptr)
 		{
 			fixed (ValueList<TUnmanaged>* p = &ptr)
 			{
