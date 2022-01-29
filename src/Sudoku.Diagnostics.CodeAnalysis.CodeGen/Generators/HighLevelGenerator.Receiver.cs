@@ -1,4 +1,6 @@
-﻿namespace Sudoku.Diagnostics.CodeGen.Generators;
+﻿using Sudoku.Diagnostics.CodeAnalysis;
+
+namespace Sudoku.Diagnostics.CodeGen.Generators;
 
 partial class HighLevelGenerator
 {

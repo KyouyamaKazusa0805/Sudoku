@@ -1,4 +1,6 @@
-﻿namespace Sudoku.Diagnostics.CodeGen;
+﻿using Sudoku.Diagnostics.CodeGen.Data;
+
+namespace Sudoku.Diagnostics.CodeGen;
 
 /// <summary>
 /// Provides with a Markdown handler that handles for a diagnostic list Markdown file.
