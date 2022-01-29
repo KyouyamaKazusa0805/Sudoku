@@ -3769,7 +3769,7 @@
         </member>
         <member name="M:Sudoku.Data.GridFormatter.Create(System.String)">
             <summary>
-            Create a <see cref="T:System.Runtime.Serialization.Formatter"/> according to the specified format.
+            Create a <see cref="T:Sudoku.Data.GridFormatter"/> according to the specified format.
             </summary>
             <param name="format">The format.</param>
             <returns>The grid formatter.</returns>

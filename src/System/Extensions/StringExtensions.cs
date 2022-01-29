@@ -111,6 +111,16 @@ public static unsafe class StringExtensions
 	}
 
 	/// <summary>
+	/// Removes all specified characters.
+	/// </summary>
+	/// <param name="this">The string value.</param>
+	/// <param name="character">The character to be removed from the base string.</param>
+	/// <returns>The result string value after removal.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static string RemoveAll(this string @this, char character) =>
+		@this.Replace(character.ToString(), string.Empty);
+
+	/// <summary>
 	/// Searches the specified input string for the first occurrence of
 	/// the specified regular expression pattern.
 	/// </summary>

@@ -773,9 +773,9 @@ public unsafe partial struct Grid : IGrid<Grid>
 			_ when GridFormatter.Create(format) is var f => format switch
 			{
 				":" => f.ToString(this).Match(RegularExpressions.ExtendedSusserEliminations) ?? string.Empty,
-				"!" => f.ToString(this).Replace("+", string.Empty),
-				".!" or "!." or "0!" or "!0" => f.ToString(this).Replace("+", string.Empty),
-				".!:" or "!.:" or "0!:" => f.ToString(this).Replace("+", string.Empty),
+				"!" => f.ToString(this).RemoveAll('+'),
+				".!" or "!." or "0!" or "!0" => f.ToString(this).RemoveAll('+'),
+				".!:" or "!.:" or "0!:" => f.ToString(this).RemoveAll('+'),
 				_ => f.ToString(this)
 			}
 		};

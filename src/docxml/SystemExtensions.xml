@@ -1934,6 +1934,14 @@
             <param name="charToInsert">The string to insert.</param>
             <returns>The result string.</returns>
         </member>
+        <member name="M:System.StringExtensions.RemoveAll(System.String,System.Char)">
+            <summary>
+            Removes all specified characters.
+            </summary>
+            <param name="this">The string value.</param>
+            <param name="character">The character to be removed from the base string.</param>
+            <returns>The result string value after removal.</returns>
+        </member>
         <member name="M:System.StringExtensions.Match(System.String,System.String)">
             <summary>
             Searches the specified input string for the first occurrence of

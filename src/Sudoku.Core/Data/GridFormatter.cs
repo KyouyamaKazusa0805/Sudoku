@@ -310,7 +310,7 @@ public readonly ref partial struct GridFormatter
 
 
 	/// <summary>
-	/// Create a <see cref="Formatter"/> according to the specified format.
+	/// Create a <see cref="GridFormatter"/> according to the specified format.
 	/// </summary>
 	/// <param name="format">The format.</param>
 	/// <returns>The grid formatter.</returns>
