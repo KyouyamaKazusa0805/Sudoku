@@ -1,4 +1,6 @@
-﻿namespace System;
+﻿using Sudoku.Diagnostics.CodeAnalysis;
+
+namespace System;
 
 /// <summary>
 /// Defines an instance that allows the <see cref="string"/> value

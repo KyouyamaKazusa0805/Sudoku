@@ -1,4 +1,6 @@
-﻿namespace System;
+﻿using Sudoku.Diagnostics.CodeAnalysis;
+
+namespace System;
 
 /// <summary>
 /// Provides extension methods on <see cref="string"/>.

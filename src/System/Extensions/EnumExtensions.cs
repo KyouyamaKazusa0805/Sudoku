@@ -1,4 +1,6 @@
-﻿namespace System;
+﻿using System.Reflection;
+
+namespace System;
 
 /// <summary>
 /// Provides extension methods on <see cref="Enum"/>.
@@ -144,11 +146,11 @@ public static unsafe class EnumExtensions
 	public static IEnumerator<TEnum> GetEnumerator<TEnum>(this TEnum @this) where TEnum : unmanaged, Enum
 	{
 		return (
-			typeof(TEnum).IsDefined(typeof(FlagsAttribute)) ? inner(@this, sizeof(TEnum)) : Array.Empty<TEnum>()
+			typeof(TEnum).IsDefined(typeof(FlagsAttribute)) ? f(@this, sizeof(TEnum)) : Array.Empty<TEnum>()
 		).GetEnumerator();
 
 
-		static IEnumerable<TEnum> inner(TEnum @this, int size)
+		static IEnumerable<TEnum> f(TEnum @this, int size)
 		{
 			var array = Enum.GetValues<TEnum>();
 			for (int index = 0, length = array.Length; index < length; index++)

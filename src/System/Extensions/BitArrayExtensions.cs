@@ -1,4 +1,6 @@
-﻿namespace System;
+﻿using System.Buffers;
+
+namespace System;
 
 /// <summary>
 /// Provides extension methods on <see cref="BitArray"/>.

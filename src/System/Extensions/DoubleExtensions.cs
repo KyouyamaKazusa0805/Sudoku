@@ -1,4 +1,6 @@
-﻿namespace System;
+﻿using static System.Math;
+
+namespace System;
 
 /// <summary>
 /// Provides extension methods on <see cref="double"/>.

@@ -1,4 +1,6 @@
-﻿namespace System;
+﻿using Sudoku.Diagnostics.CodeAnalysis;
+
+namespace System;
 
 /// <summary>
 /// Provides methods for pointer handling.

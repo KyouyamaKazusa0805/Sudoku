@@ -1,4 +1,6 @@
-﻿namespace System;
+﻿using Sudoku.Diagnostics.CodeAnalysis;
+
+namespace System;
 
 /// <summary>
 /// Defines a type that holds a property with the default value of the type.
