@@ -1,4 +1,6 @@
-﻿namespace Sudoku.Diagnostics.CodeGen.Generators;
+﻿using System.Xml;
+
+namespace Sudoku.Diagnostics.CodeGen.Generators;
 
 /// <summary>
 /// Defines the global configuration value source generator.
