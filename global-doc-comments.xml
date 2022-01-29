@@ -33,6 +33,37 @@ Then you can reference the doc here.
 	</static-constructor>
 
 	<!-- C# features -->
+	<csharp5>
+		<feature name="caller-member-name">
+			<target name="argument">
+				<para>
+					Indicates the name of the caller member to invoke this method.
+				</para>
+				<para>
+					<i>
+						The attribute <see cref="CallerMemberNameAttribute"/> allows the argument automatically
+						getting the name of the caller. For example, if the property raises the event, the argument
+						will pass the name of the property automatically if the argument is marked the attribute.
+					</i>
+				</para>
+				<para>
+					<i>
+						For the above reason, the argument will use <see langword="null"/> as the initial value
+						as the placeholder to allow the syntax valid during the compile time.
+					</i>
+				</para>
+				<para>
+					<i>
+						For more information, please visit
+						<see href="https://docs.microsoft.com/en-us/dotnet/api/system.runtime.compilerservices.callermembernameattribute">
+							The Microsoft Docs
+						</see>
+						for more info.
+					</i>
+				</para>
+			</target>
+		</feature>
+	</csharp5>
 	<csharp7>
 		<feature name="ref-returns">
 			<target name="method">

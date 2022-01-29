@@ -128,26 +128,86 @@
         <member name="E:Sudoku.UI.ViewModels.NotificationObject.PropertyChanged">
             <inheritdoc/>
         </member>
-        <member name="E:Sudoku.UI.ViewModels.NotificationObject.PropertyChanging">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.UI.ViewModels.NotificationObject.RaisePropertyChanged(System.String)">
+        <member name="M:Sudoku.UI.ViewModels.NotificationObject.OnPropertyChanged(System.String)">
             <summary>
-            To trigger the event <see cref="E:Sudoku.UI.ViewModels.NotificationObject.PropertyChanged"/>.
+            The internal method that will raise the event <see cref="E:Sudoku.UI.ViewModels.NotificationObject.PropertyChanged" />.
             </summary>
             <param name="propertyName">
-            Indicates the property name whose corresponding property status is changed.
+            <target name="argument">
+				<para>
+					Indicates the name of the caller member to invoke this method.
+				</para>
+				<para>
+					<i>
+						The attribute <see cref="T:System.Runtime.CompilerServices.CallerMemberNameAttribute" /> allows the argument automatically
+						getting the name of the caller. For example, if the property raises the event, the argument
+						will pass the name of the property automatically if the argument is marked the attribute.
+					</i>
+				</para>
+				<para>
+					<i>
+						For the above reason, the argument will use <see langword="null" /> as the initial value
+						as the placeholder to allow the syntax valid during the compile time.
+					</i>
+				</para>
+				<para>
+					<i>
+						For more information, please visit
+						<see href="https://docs.microsoft.com/en-us/dotnet/api/system.runtime.compilerservices.callermembernameattribute">
+							The Microsoft Docs
+						</see>
+						for more info.
+					</i>
+				</para>
+			</target>
             </param>
-            <seealso cref="E:Sudoku.UI.ViewModels.NotificationObject.PropertyChanged"/>
+            <seealso cref="E:Sudoku.UI.ViewModels.NotificationObject.PropertyChanged" />
+            <seealso cref="T:System.Runtime.CompilerServices.CallerMemberNameAttribute" />
         </member>
-        <member name="M:Sudoku.UI.ViewModels.NotificationObject.RaisePropertyChanging(System.String)">
+        <member name="M:Sudoku.UI.ViewModels.NotificationObject.SetProperty``1(``0@,``0,System.String)">
             <summary>
-            To trigger the event <see cref="E:Sudoku.UI.ViewModels.NotificationObject.PropertyChanging"/>.
+            Try to set the property with the new value, and calls <see cref="M:Sudoku.UI.ViewModels.NotificationObject.OnPropertyChanged(System.String)" />
+            to raise the event <see cref="E:Sudoku.UI.ViewModels.NotificationObject.PropertyChanged" />.
             </summary>
+            <typeparam name="TNotNull">The type of the property.</typeparam>
+            <param name="originalValue">The original value of the property.</param>
+            <param name="newValue">The new value to set.</param>
             <param name="propertyName">
-            Indicates the property name whose corresponding property status is changed.
+            <target name="argument">
+				<para>
+					Indicates the name of the caller member to invoke this method.
+				</para>
+				<para>
+					<i>
+						The attribute <see cref="T:System.Runtime.CompilerServices.CallerMemberNameAttribute" /> allows the argument automatically
+						getting the name of the caller. For example, if the property raises the event, the argument
+						will pass the name of the property automatically if the argument is marked the attribute.
+					</i>
+				</para>
+				<para>
+					<i>
+						For the above reason, the argument will use <see langword="null" /> as the initial value
+						as the placeholder to allow the syntax valid during the compile time.
+					</i>
+				</para>
+				<para>
+					<i>
+						For more information, please visit
+						<see href="https://docs.microsoft.com/en-us/dotnet/api/system.runtime.compilerservices.callermembernameattribute">
+							The Microsoft Docs
+						</see>
+						for more info.
+					</i>
+				</para>
+			</target>
             </param>
-            <seealso cref="E:Sudoku.UI.ViewModels.NotificationObject.PropertyChanging"/>
+            <returns>
+            A <see cref="T:System.Boolean" /> result indicating whether the assignment is successful.
+            If the argument <paramref name="originalValue" /> is same as <paramref name="newValue" />,
+            the return value will be <see langword="false" />; otherwise, <see langword="true" />.
+            </returns>
+            <seealso cref="M:Sudoku.UI.ViewModels.NotificationObject.OnPropertyChanged(System.String)" />
+            <seealso cref="E:Sudoku.UI.ViewModels.NotificationObject.PropertyChanged" />
         </member>
         <member name="T:Sudoku.UI.ViewModels.SettingsPageViewModel">
             <summary>
