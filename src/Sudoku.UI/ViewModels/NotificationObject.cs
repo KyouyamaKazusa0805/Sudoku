@@ -1,4 +1,6 @@
-﻿namespace Sudoku.UI.ViewModels;
+﻿using System.ComponentModel;
+
+namespace Sudoku.UI.ViewModels;
 
 /// <summary>
 /// Defines a base object type that holds and handles the action on notifications.

@@ -10,15 +10,4 @@ public sealed partial class AboutPage : Page
 	/// Initializes an <see cref="AboutPage"/> instance.
 	/// </summary>
 	public AboutPage() => InitializeComponent();
-
-
-	private void HyperlinkButton_Click([IsDiscard] object sender, RoutedEventArgs e)
-	{
-		if (e is not { OriginalSource: HyperlinkButton { Content: string link } })
-		{
-			return;
-		}
-
-		Website.Visit(link);
-	}
 }

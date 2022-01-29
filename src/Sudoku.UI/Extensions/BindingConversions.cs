@@ -1,4 +1,7 @@
-﻿namespace Sudoku.UI;
+﻿using Sudoku.Resources;
+using Sudoku.UI.Models;
+
+namespace Sudoku.UI;
 
 /// <summary>
 /// Provides a set of methods to convert the information.

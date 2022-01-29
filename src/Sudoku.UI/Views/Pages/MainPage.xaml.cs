@@ -1,4 +1,8 @@
-﻿namespace Sudoku.UI.Views.Pages;
+﻿using Microsoft.UI.Xaml.Media.Animation;
+using Microsoft.UI.Xaml.Navigation;
+using Sudoku.Diagnostics.CodeAnalysis;
+
+namespace Sudoku.UI.Views.Pages;
 
 /// <summary>
 /// A page that can be used on its own or navigated to within a <see cref="Frame"/>.

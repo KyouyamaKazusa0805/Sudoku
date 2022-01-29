@@ -1,4 +1,6 @@
-﻿namespace Sudoku.UI.ViewModels;
+﻿using Sudoku.UI.Views.Pages;
+
+namespace Sudoku.UI.ViewModels;
 
 /// <summary>
 /// Indicates the view model that binds with the <see cref="AboutPage"/> instances.
