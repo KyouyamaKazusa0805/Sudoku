@@ -10,6 +10,7 @@
 		<!--Syntax configuration-->
 		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
 		<LangVersion>preview</LangVersion>
+		<ImplicitUsings>enable</ImplicitUsings>
 	</PropertyGroup>
 
 	<!--
@@ -24,6 +25,46 @@
 	<PropertyGroup Condition="'$(LangVersion)'=='preview' Or '$(LangVersion)'=='latest' Or '$(LangVersion)'&gt;='8.0'">
 		<Nullable>enable</Nullable>
 	</PropertyGroup>
+
+	<!--Import custom global using directives.-->
+	<ItemGroup Condition="'$(LangVersion)'=='preview' Or '$(LangVersion)'=='latest' Or '$(LangVersion)'&gt;='10.0'">
+		<Using Include="System.Collections.Immutable"/>
+		<Using Include="System.Diagnostics"/>
+		<Using Include="System.Diagnostics.CodeAnalysis"/>
+		<Using Include="System.Collections"/>
+		<Using Include="System.Numerics"/>
+		<Using Include="System.Runtime.CompilerServices"/>
+		<Using Include="System.Text"/>
+		<Using Include="System.Text.Json"/>
+		<Using Include="System.Text.Json.Serialization"/>
+		<Using Include="System.Text.RegularExpressions"/>
+		<Using Remove="System.Net.Http"/>
+	</ItemGroup>
+
+	<!--Import custom global using directives on source generator projects.-->
+	<ItemGroup Condition="'$(MSBuildProjectFile.TrimEnd(`.csproj`).EndsWith(`.CodeGen`))'=='true' Or '$(MSBuildProjectFile)'=='Sudoku.Diagnostics.CodeAnalysis.csproj' And ('$(LangVersion)'=='preview' Or '$(LangVersion)'=='latest' Or '$(LangVersion)'&gt;='10.0')">
+		<Using Include="Microsoft.CodeAnalysis"/>
+		<Using Include="Microsoft.CodeAnalysis.CSharp"/>
+		<Using Include="Microsoft.CodeAnalysis.CSharp.Syntax"/>
+		<Using Include="Microsoft.CodeAnalysis.Text"/>
+		<Using Remove="System.Text.Json"/>
+		<Using Remove="System.Text.Json.Serialization"/>
+		<Using Remove="System.Net.Http"/>
+	</ItemGroup>
+
+	<!--
+	Import custom global using directives on source generator projects,
+	which is not 'GlobalConfiguration.CodeGen'.
+	-->
+	<ItemGroup Condition="'$(MSBuildProjectFile.TrimEnd(`.csproj`).EndsWith(`.CodeGen`))'=='true' And '$(MSBuildProjectFile)'!='GlobalConfiguration.CodeGen.csproj' And ('$(LangVersion)'=='preview' Or '$(LangVersion)'=='latest' Or '$(LangVersion)'&gt;='10.0')">
+		<Using Include="Sudoku.Diagnostics.CodeGen.Constants" Static="true"/>
+	</ItemGroup>
+
+	<!--Import custom global using directives on UI project.-->
+	<ItemGroup Condition="'$(MSBuildProjectFile)'=='Sudoku.UI.csproj' And ('$(LangVersion)'=='preview' Or '$(LangVersion)'=='latest' Or '$(LangVersion)'&gt;='10.0')">
+		<Using Include="Microsoft.UI.Xaml"/>
+		<Using Include="Microsoft.UI.Xaml.Controls"/>
+	</ItemGroup>
 
 	<!--Set the root namespaces.-->
 	<Choose>
