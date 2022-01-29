@@ -64,6 +64,22 @@
 					NavigateUri="https://space.bilibili.com/23736703"
 					Content="{x:Bind _bilibiliLink.NavigateUri}" />
 			</Grid>
+
+			<!--Framework info-->
+			<TextBlock Text="{StaticResource AboutPage_Framework}" Style="{ThemeResource Header2Text}" />
+			<TextBlock Text="{StaticResource AboutPage_FrameworkDescription}" Style="{ThemeResource PlainText}" />
+			<TextBlock Text="{StaticResource AboutPage_Framework_WindowsUI}" Style="{ThemeResource BoldText}" />
+			<HyperlinkButton
+				x:Name="_winUILink" NavigateUri="https://github.com/microsoft/microsoft-ui-xaml"
+				Margin="{StaticResource ParagraphOffset}"
+				Content="{x:Bind _winUILink.NavigateUri}" />
+			<TextBlock Text="{StaticResource AboutPage_Framework_DotnetRuntime}" Style="{ThemeResource BoldText}" />
+			<HyperlinkButton
+				x:Name="_dotnetRuntimeLink" NavigateUri="https://github.com/dotnet/runtime"
+				Margin="{StaticResource ParagraphOffset}"
+				Content="{x:Bind _dotnetRuntimeLink.NavigateUri}" />
+
+			<!--Special thanks-->
 			<TextBlock Text="{StaticResource AboutPage_SpecialThanks}" Style="{ThemeResource Header2Text}" />
 			<TextBlock
 				Text="{StaticResource AboutPage_SpecialThanksDescription}"

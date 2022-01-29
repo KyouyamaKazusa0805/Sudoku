@@ -23,6 +23,10 @@
 	<x:String x:Key="AboutPage_SpecialThanks_UWPSamples">Universal Windows Samples</x:String>
 	<x:String x:Key="AboutPage_ForReference">For reference</x:String>
 	<x:String x:Key="AboutPage_License">License</x:String>
+	<x:String x:Key="AboutPage_Framework">Programming Framework</x:String>
+	<x:String x:Key="AboutPage_FrameworkDescription">This application uses .NET 6 + Windows UI.</x:String>
+	<x:String x:Key="AboutPage_Framework_WindowsUI" xml:space="preserve">Windows UI 3: </x:String>
+	<x:String x:Key="AboutPage_Framework_DotnetRuntime" xml:space="preserve">.NET APIs: </x:String>
 
 	<!--Other values-->
 	<x:String x:Key="Ellipsis">...</x:String>

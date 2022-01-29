@@ -23,6 +23,10 @@
 	<x:String x:Key="AboutPage_SpecialThanks_UWPSamples">UWP 学习样例仓库（Universal Windows Samples）</x:String>
 	<x:String x:Key="AboutPage_ForReference">代码用作参考</x:String>
 	<x:String x:Key="AboutPage_License">开源协议</x:String>
+	<x:String x:Key="AboutPage_Framework">程序框架</x:String>
+	<x:String x:Key="AboutPage_FrameworkDescription">本应用程序使用 .NET 6 + Windows UI 框架搭建。</x:String>
+	<x:String x:Key="AboutPage_Framework_WindowsUI">Windows UI 3：</x:String>
+	<x:String x:Key="AboutPage_Framework_DotnetRuntime">.NET 框架 API：</x:String>
 
 	<!--其它字面量-->
 	<x:String x:Key="Ellipsis">……</x:String>
