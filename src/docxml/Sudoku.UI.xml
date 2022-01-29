@@ -147,7 +147,8 @@
 				<para>
 					<i>
 						For the above reason, the argument will use <see langword="null" /> as the initial value
-						as the placeholder to allow the syntax valid during the compile time.
+						as the placeholder to allow the syntax valid during the compile time on one hand.
+						On the other hand, you shouldn't pass any values to this argument.
 					</i>
 				</para>
 				<para>
@@ -187,7 +188,8 @@
 				<para>
 					<i>
 						For the above reason, the argument will use <see langword="null" /> as the initial value
-						as the placeholder to allow the syntax valid during the compile time.
+						as the placeholder to allow the syntax valid during the compile time on one hand.
+						On the other hand, you shouldn't pass any values to this argument.
 					</i>
 				</para>
 				<para>
