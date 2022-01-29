@@ -1,4 +1,5 @@
-﻿using Kind = Microsoft.CodeAnalysis.TypeKind;
+﻿using Sudoku.Diagnostics.CodeGen;
+using Kind = Microsoft.CodeAnalysis.TypeKind;
 
 namespace Microsoft.CodeAnalysis;
 
