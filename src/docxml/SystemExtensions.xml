@@ -2070,34 +2070,6 @@
             <param name="this">The value to check.</param>
             <returns>A <see cref="T:System.Boolean"/> indicating that.</returns>
         </member>
-        <member name="T:System.TypeExtensions">
-            <summary>
-            Provides extension method on <see cref="T:System.Type"/>.
-            </summary>
-            <seealso cref="T:System.Type"/>
-        </member>
-        <member name="M:System.TypeExtensions.HasImplemented``1(System.Type)">
-            <summary>
-            Determine whether the type has implemented the specified typed interface.
-            </summary>
-            <typeparam name="TInterface">The type of the interface.</typeparam>
-            <param name="this">The type to check.</param>
-            <returns>The <see cref="T:System.Boolean"/> result.</returns>
-            <exception cref="T:System.InvalidOperationException">
-            Throws when the specified type argument isn't an <see langword="interface"/> type.
-            </exception>
-        </member>
-        <member name="M:System.TypeExtensions.ContainsParameterlessConstructor(System.Type,System.Reflection.BindingFlags)">
-            <summary>
-            Determine whether the type contains a parameterless constructor.
-            </summary>
-            <param name="this">The type.</param>
-            <param name="flags">
-            The flags. The default value is
-            <c><see cref="F:System.Reflection.BindingFlags.Instance"/> | <see cref="F:System.Reflection.BindingFlags.Public"/></c>.
-            </param>
-            <returns>The <see cref="T:System.Boolean"/> result.</returns>
-        </member>
         <member name="T:System.IDefaultable`1">
             <summary>
             Defines a type that holds a property with the default value of the type.
