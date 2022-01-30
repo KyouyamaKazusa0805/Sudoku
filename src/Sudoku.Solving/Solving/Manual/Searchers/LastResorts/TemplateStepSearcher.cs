@@ -1,4 +1,10 @@
-﻿namespace Sudoku.Solving.Manual.Searchers.LastResorts;
+﻿using Sudoku.Collections;
+using Sudoku.Data;
+using Sudoku.Presentation;
+using Sudoku.Solving.Manual.Steps.LastResorts;
+using static Sudoku.Solving.Manual.Buffer.FastProperties;
+
+namespace Sudoku.Solving.Manual.Searchers.LastResorts;
 
 /// <summary>
 /// Provides with a <b>Template</b> step searcher.

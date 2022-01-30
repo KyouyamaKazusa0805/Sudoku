@@ -1,4 +1,7 @@
-﻿namespace Sudoku.Solving.BruteForces;
+﻿using Sudoku.Collections;
+using static System.Math;
+
+namespace Sudoku.Solving.BruteForces;
 
 /// <summary>
 /// Provides a solver using LINQ method.

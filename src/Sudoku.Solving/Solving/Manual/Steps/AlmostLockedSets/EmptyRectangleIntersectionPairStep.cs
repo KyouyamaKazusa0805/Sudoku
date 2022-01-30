@@ -1,4 +1,10 @@
-﻿namespace Sudoku.Solving.Manual.Steps.AlmostLockedSets;
+﻿using Sudoku.Collections;
+using Sudoku.Data;
+using Sudoku.Presentation;
+using Sudoku.Solving.Manual.Text;
+using Sudoku.Techniques;
+
+namespace Sudoku.Solving.Manual.Steps.AlmostLockedSets;
 
 /// <summary>
 /// Provides with a step that is an <b>Empty Rectangle Intersection Pair</b> technique.

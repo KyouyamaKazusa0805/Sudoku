@@ -1,4 +1,8 @@
-﻿namespace Sudoku.Solving.Manual.Steps.Wings;
+﻿using Sudoku.Data;
+using Sudoku.Presentation;
+using Sudoku.Techniques;
+
+namespace Sudoku.Solving.Manual.Steps.Wings;
 
 /// <summary>
 /// Provides with a step that is a <b>Wing</b> technique.

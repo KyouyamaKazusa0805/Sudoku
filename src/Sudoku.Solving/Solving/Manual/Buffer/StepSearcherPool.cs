@@ -1,5 +1,7 @@
 ﻿#nullable disable warnings
 
+using Sudoku.Solving.Manual.Searchers;
+
 namespace Sudoku.Solving.Manual.Buffer;
 
 /// <summary>

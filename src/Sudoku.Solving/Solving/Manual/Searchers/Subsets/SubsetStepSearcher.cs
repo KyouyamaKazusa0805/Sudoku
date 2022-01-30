@@ -1,4 +1,12 @@
-﻿namespace Sudoku.Solving.Manual.Searchers.Subsets;
+﻿using Sudoku.Collections;
+using Sudoku.Data;
+using Sudoku.Presentation;
+using Sudoku.Solving.Manual.Steps.Subsets;
+using static System.Numerics.BitOperations;
+using static Sudoku.Constants.Tables;
+using static Sudoku.Solving.Manual.Buffer.FastProperties;
+
+namespace Sudoku.Solving.Manual.Searchers.Subsets;
 
 /// <summary>
 /// Provides with a <b>Subset</b> step searcher. The step searcher will include the following techniques:

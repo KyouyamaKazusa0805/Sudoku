@@ -1,4 +1,9 @@
-﻿namespace Sudoku.Solving.Manual.Steps.Fishes;
+﻿using Sudoku.Data;
+using Sudoku.Presentation;
+using Sudoku.Techniques;
+using static System.Numerics.BitOperations;
+
+namespace Sudoku.Solving.Manual.Steps.Fishes;
 
 /// <summary>
 /// Provides with a step that is a <b>Fish</b> technique.

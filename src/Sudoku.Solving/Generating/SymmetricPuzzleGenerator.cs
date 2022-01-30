@@ -1,4 +1,7 @@
-﻿using static Sudoku.Generating.IPuzzleGenerator;
+﻿using Sudoku.Collections;
+using Sudoku.Data;
+using static Sudoku.Constants.Tables;
+using static Sudoku.Generating.IPuzzleGenerator;
 
 namespace Sudoku.Generating;
 

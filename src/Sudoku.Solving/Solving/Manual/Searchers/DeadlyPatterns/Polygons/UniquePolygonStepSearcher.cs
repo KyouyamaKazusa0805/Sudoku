@@ -1,4 +1,14 @@
-﻿namespace Sudoku.Solving.Manual.Searchers.DeadlyPatterns.Polygons;
+﻿using Sudoku.Collections;
+using Sudoku.Data;
+using Sudoku.Presentation;
+using Sudoku.Solving.Collections;
+using Sudoku.Solving.Manual.Steps.DeadlyPatterns.Polygons;
+using static System.Numerics.BitOperations;
+using static Sudoku.Constants.Tables;
+using static Sudoku.Solving.Manual.Buffer.FastProperties;
+using static Sudoku.Solving.Manual.Constants;
+
+namespace Sudoku.Solving.Manual.Searchers.DeadlyPatterns.Polygons;
 
 /// <summary>
 /// Provides with a <b>Unique Polygon</b> step searcher.

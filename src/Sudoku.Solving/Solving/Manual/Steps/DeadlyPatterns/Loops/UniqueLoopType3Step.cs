@@ -1,4 +1,10 @@
-﻿namespace Sudoku.Solving.Manual.Steps.DeadlyPatterns.Loops;
+﻿using Sudoku.Collections;
+using Sudoku.Data;
+using Sudoku.Presentation;
+using Sudoku.Resources;
+using Sudoku.Solving.Manual.Text;
+
+namespace Sudoku.Solving.Manual.Steps.DeadlyPatterns.Loops;
 
 /// <summary>
 /// Provides with a step that is a <b>Unique Loop Type 3</b> technique.

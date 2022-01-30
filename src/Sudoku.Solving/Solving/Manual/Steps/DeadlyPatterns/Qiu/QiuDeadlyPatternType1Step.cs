@@ -1,4 +1,11 @@
-﻿namespace Sudoku.Solving.Manual.Steps.DeadlyPatterns.Qiu;
+﻿using Sudoku.Collections;
+using Sudoku.Data;
+using Sudoku.Presentation;
+using Sudoku.Solving.Collections;
+using Sudoku.Solving.Manual.Text;
+using Sudoku.Techniques;
+
+namespace Sudoku.Solving.Manual.Steps.DeadlyPatterns.Qiu;
 
 /// <summary>
 /// Provides with a step that is a <b>Qiu's Deadly Pattern Type 1</b> technique.

@@ -1,4 +1,11 @@
-﻿namespace Sudoku.Solving.Manual;
+﻿using Sudoku.Collections;
+using Sudoku.Data;
+using Sudoku.Presentation;
+using Sudoku.Resources;
+using Sudoku.Solving.Manual.Text;
+using Sudoku.Techniques;
+
+namespace Sudoku.Solving.Manual;
 
 /// <summary>
 /// Provides a basic manual solving step.

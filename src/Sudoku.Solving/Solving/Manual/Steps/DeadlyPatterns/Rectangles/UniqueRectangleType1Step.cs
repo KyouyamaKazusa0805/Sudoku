@@ -1,4 +1,9 @@
-﻿namespace Sudoku.Solving.Manual.Steps.DeadlyPatterns.Rectangles;
+﻿using Sudoku.Collections;
+using Sudoku.Data;
+using Sudoku.Presentation;
+using Sudoku.Techniques;
+
+namespace Sudoku.Solving.Manual.Steps.DeadlyPatterns.Rectangles;
 
 /// <summary>
 /// Provides with a step that is a <b>Unique Rectangle Type 1</b> technique.

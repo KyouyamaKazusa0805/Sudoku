@@ -1,4 +1,13 @@
-﻿namespace Sudoku.Solving.Manual.Searchers.RankTheory;
+﻿using Sudoku.Collections;
+using Sudoku.Data;
+using Sudoku.Presentation;
+using Sudoku.Solving.Manual.Steps;
+using Sudoku.Solving.Manual.Steps.RankTheory;
+using static System.Numerics.BitOperations;
+using static Sudoku.Constants.Tables;
+using static Sudoku.Solving.Manual.Buffer.FastProperties;
+
+namespace Sudoku.Solving.Manual.Searchers.RankTheory;
 
 /// <summary>
 /// Provides with a <b>Bi-value Oddagon</b> step searcher.

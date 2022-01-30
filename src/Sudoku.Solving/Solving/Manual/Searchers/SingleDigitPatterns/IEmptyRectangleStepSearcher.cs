@@ -1,4 +1,7 @@
-﻿namespace Sudoku.Solving.Manual.Searchers.SingleDigitPatterns;
+﻿using Sudoku.Collections;
+using static Sudoku.Constants.Tables;
+
+namespace Sudoku.Solving.Manual.Searchers.SingleDigitPatterns;
 
 /// <summary>
 /// Defines a step searcher that searches for an empty rectangle step.

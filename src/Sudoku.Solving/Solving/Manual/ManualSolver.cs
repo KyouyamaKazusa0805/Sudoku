@@ -1,4 +1,11 @@
-﻿namespace Sudoku.Solving.Manual;
+﻿using Sudoku.Collections;
+using Sudoku.Data;
+using Sudoku.Solving.Manual.Buffer;
+using Sudoku.Solving.Manual.Checkers;
+using Sudoku.Solving.Manual.Searchers.DeadlyPatterns;
+using static Sudoku.Solving.Manual.Buffer.FastProperties;
+
+namespace Sudoku.Solving.Manual;
 
 /// <summary>
 /// Provides a manual solver that solves a sudoku puzzle using the human minds and ways

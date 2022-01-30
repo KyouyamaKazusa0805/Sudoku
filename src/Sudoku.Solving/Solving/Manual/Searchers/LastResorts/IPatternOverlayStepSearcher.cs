@@ -1,4 +1,7 @@
-﻿namespace Sudoku.Solving.Manual.Searchers.LastResorts;
+﻿using Sudoku.Collections;
+using static Sudoku.Solving.Manual.Buffer.FastProperties;
+
+namespace Sudoku.Solving.Manual.Searchers.LastResorts;
 
 /// <summary>
 /// Defines a step searcher that searches for pattern overlay steps.

@@ -1,4 +1,7 @@
-﻿namespace Sudoku.Solving.Manual;
+﻿using System.Runtime.InteropServices;
+using Sudoku.Solving.Manual.Searchers;
+
+namespace Sudoku.Solving.Manual;
 
 /// <summary>
 /// Indicates the options aiming to <see cref="IStepSearcher"/>s while searching.

@@ -1,9 +1,11 @@
-﻿namespace Sudoku.Solving.Manual.Searchers;
+﻿using Sudoku.Collections;
+
+namespace Sudoku.Solving.Manual.Searchers;
 
 /// <summary>
 /// Defines a step searcher.
 /// </summary>
-public unsafe interface IStepSearcher
+public interface IStepSearcher
 {
 	/// <summary>
 	/// Indicates the step searching options.

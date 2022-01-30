@@ -1,4 +1,9 @@
-﻿namespace Sudoku.Solving.Manual.Steps.DeadlyPatterns.Extended;
+﻿using Sudoku.Collections;
+using Sudoku.Data;
+using Sudoku.Presentation;
+using Sudoku.Techniques;
+
+namespace Sudoku.Solving.Manual.Steps.DeadlyPatterns.Extended;
 
 /// <summary>
 /// Provides with a step that is an <b>Extended Rectangle Type 1</b> technique.

@@ -1,4 +1,12 @@
-﻿namespace Sudoku.Solving.Manual.Steps.Fishes;
+﻿using Sudoku.Collections;
+using Sudoku.Data;
+using Sudoku.Presentation;
+using Sudoku.Solving.Manual.Text;
+using Sudoku.Techniques;
+using static System.Numerics.BitOperations;
+using static Sudoku.Solving.Manual.Constants;
+
+namespace Sudoku.Solving.Manual.Steps.Fishes;
 
 /// <summary>
 /// Provides with a step that is a <b>Complex Fish</b> technique.
@@ -18,8 +26,8 @@ public sealed partial record ComplexFishStep(
 	int Digit,
 	int BaseSetsMask,
 	int CoverSetsMask,
-	Cells Exofins,
-	Cells Endofins,
+	in Cells Exofins,
+	in Cells Endofins,
 	bool IsFranken,
 	bool? IsSashimi
 ) : FishStep(Conclusions, Views, Digit, BaseSetsMask, CoverSetsMask), IDistinctableStep<ComplexFishStep>

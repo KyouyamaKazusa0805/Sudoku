@@ -1,4 +1,12 @@
-﻿namespace Sudoku.Solving.Manual.Searchers.SingleDigitPatterns;
+﻿using Sudoku.Collections;
+using Sudoku.Diagnostics.CodeAnalysis;
+using Sudoku.Presentation;
+using Sudoku.Solving.Manual.Steps.SingleDigitPatterns;
+using static System.Numerics.BitOperations;
+using static Sudoku.Constants.Tables;
+using static Sudoku.Solving.Manual.Buffer.FastProperties;
+
+namespace Sudoku.Solving.Manual.Searchers.SingleDigitPatterns;
 
 /// <summary>
 /// Provides with a <b>Two-strong Links</b> step searcher.

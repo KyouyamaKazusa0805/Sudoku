@@ -1,4 +1,11 @@
-﻿namespace Sudoku.Solving.Manual.Steps.RankTheory;
+﻿using Sudoku.Collections;
+using Sudoku.Data;
+using Sudoku.Presentation;
+using Sudoku.Solving.Manual.Text;
+using Sudoku.Techniques;
+using static System.Math;
+
+namespace Sudoku.Solving.Manual.Steps.RankTheory;
 
 /// <summary>
 /// Provides with a step that is a <b>Multi-sector Locked Sets</b> technique.
@@ -9,7 +16,7 @@
 public sealed record MultisectorLockedSetsStep(
 	ImmutableArray<Conclusion> Conclusions,
 	ImmutableArray<PresentationData> Views,
-	Cells Cells
+	in Cells Cells
 ) : RankTheoryStep(Conclusions, Views)
 {
 	/// <inheritdoc/>

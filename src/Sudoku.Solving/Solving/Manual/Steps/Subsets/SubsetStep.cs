@@ -1,4 +1,10 @@
-﻿namespace Sudoku.Solving.Manual.Steps.Subsets;
+﻿using Sudoku.Collections;
+using Sudoku.Data;
+using Sudoku.Presentation;
+using Sudoku.Techniques;
+using static System.Numerics.BitOperations;
+
+namespace Sudoku.Solving.Manual.Steps.Subsets;
 
 /// <summary>
 /// Provides with a step that is a <b>Subset</b> technique.
@@ -46,10 +52,11 @@ public abstract record SubsetStep(
 	public sealed override Stableness Stableness => base.Stableness;
 
 	/// <inheritdoc/>
-	public sealed override Rarity Rarity => Size switch
-	{
-		2 => Rarity.Often,
-		3 => Rarity.Sometimes,
-		4 => Rarity.Seldom
-	};
+	public sealed override Rarity Rarity =>
+		Size switch
+		{
+			2 => Rarity.Often,
+			3 => Rarity.Sometimes,
+			4 => Rarity.Seldom
+		};
 }

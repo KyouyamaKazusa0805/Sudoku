@@ -1,4 +1,8 @@
-﻿namespace Sudoku.Solving.Manual;
+﻿using Sudoku.Collections;
+using Sudoku.Data;
+using Sudoku.Techniques;
+
+namespace Sudoku.Solving.Manual;
 
 /// <summary>
 /// Provides the solver result after <see cref="ManualSolver"/> solves a puzzle.

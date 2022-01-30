@@ -1,4 +1,6 @@
-﻿namespace Sudoku.Solving.Manual.Searchers.LastResorts;
+﻿using Sudoku.Collections;
+
+namespace Sudoku.Solving.Manual.Searchers.LastResorts;
 
 /// <summary>
 /// Defines a step searcher that searches for template steps.

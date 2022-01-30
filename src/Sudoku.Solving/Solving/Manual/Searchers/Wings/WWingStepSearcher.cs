@@ -1,4 +1,12 @@
-﻿namespace Sudoku.Solving.Manual.Searchers.Wings;
+﻿using Sudoku.Collections;
+using Sudoku.Data;
+using Sudoku.Presentation;
+using Sudoku.Solving.Manual.Steps.Wings;
+using static System.Numerics.BitOperations;
+using static Sudoku.Constants.Tables;
+using static Sudoku.Solving.Manual.Buffer.FastProperties;
+
+namespace Sudoku.Solving.Manual.Searchers.Wings;
 
 /// <summary>
 /// Provides with a <b>W-Wing</b> step searcher.

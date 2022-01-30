@@ -1,4 +1,12 @@
-﻿namespace Sudoku.Solving.Manual.Searchers.Fishes;
+﻿using Sudoku.Collections;
+using Sudoku.Data;
+using Sudoku.Presentation;
+using Sudoku.Solving.Manual.Steps.Fishes;
+using static System.Numerics.BitOperations;
+using static Sudoku.Constants.Tables;
+using static Sudoku.Solving.Manual.Buffer.FastProperties;
+
+namespace Sudoku.Solving.Manual.Searchers.Fishes;
 
 /// <summary>
 /// Provides with a <b>Normal Fish</b> step searcher. The step searcher will include the following techniques:
@@ -284,10 +292,7 @@ public sealed unsafe class NormalFishStepSearcher : INormalFishStepSearcher
 						bool flag = false;
 						foreach (int c in ValueMaps[digit])
 						{
-							if (
-								RegionMaps[c.ToRegionIndex(searchRow ? Region.Column : Region.Row)]
-									.Contains(cell)
-							)
+							if (RegionMaps[c.ToRegionIndex(searchRow ? Region.Column : Region.Row)].Contains(cell))
 							{
 								flag = true;
 								break;

@@ -1,4 +1,13 @@
-﻿namespace Sudoku.Solving.Manual.Steps.DeadlyPatterns.Qiu;
+﻿using Sudoku.Collections;
+using Sudoku.Data;
+using Sudoku.Presentation;
+using Sudoku.Resources;
+using Sudoku.Solving.Collections;
+using Sudoku.Solving.Manual.Text;
+using Sudoku.Techniques;
+using static System.Numerics.BitOperations;
+
+namespace Sudoku.Solving.Manual.Steps.DeadlyPatterns.Qiu;
 
 /// <summary>
 /// Provides with a step that is a <b>Qiu's Deadly Pattern Type 3</b> technique.
@@ -14,7 +23,7 @@ public sealed record QiuDeadlyPatternType3Step(
 	ImmutableArray<PresentationData> Views,
 	in QiuDeadlyPattern Pattern,
 	short ExtraDigitsMask,
-	Cells ExtraCells,
+	in Cells ExtraCells,
 	bool IsNaked
 ) : QiuDeadlyPatternStep(Conclusions, Views, Pattern)
 {

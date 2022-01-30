@@ -1,4 +1,7 @@
-﻿namespace Sudoku.Solving.Collections;
+﻿using System.ComponentModel;
+using Sudoku.Collections;
+
+namespace Sudoku.Solving.Collections;
 
 /// <summary>
 /// Defines a pattern that is a unique polygon technique structure in theory. The sketch is like:
@@ -87,7 +90,7 @@ public readonly record struct UniquePolygonPattern(long Mask) : IPattern<UniqueP
 		get
 		{
 			var (a, b, c, d) = CenterCells;
-			return IsHeptagon ? new() { a, b, c } : new Cells { a, b, c, d };
+			return IsHeptagon ? new() { a, b, c } : new() { a, b, c, d };
 		}
 	}
 

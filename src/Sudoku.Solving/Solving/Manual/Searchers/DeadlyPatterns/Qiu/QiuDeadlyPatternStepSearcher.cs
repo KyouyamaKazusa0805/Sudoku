@@ -1,4 +1,14 @@
-﻿namespace Sudoku.Solving.Manual.Searchers.DeadlyPatterns.Qiu;
+﻿using Sudoku.Collections;
+using Sudoku.Data;
+using Sudoku.Presentation;
+using Sudoku.Solving.Collections;
+using Sudoku.Solving.Manual.Steps.DeadlyPatterns.Qiu;
+using static System.Numerics.BitOperations;
+using static Sudoku.Constants.Tables;
+using static Sudoku.Solving.Manual.Buffer.FastProperties;
+using static Sudoku.Solving.Manual.Constants;
+
+namespace Sudoku.Solving.Manual.Searchers.DeadlyPatterns.Qiu;
 
 /// <summary>
 /// Provides with a <b>Qiu's Deadly Pattern</b> step searcher.

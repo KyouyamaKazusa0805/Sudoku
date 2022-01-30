@@ -1,4 +1,6 @@
-﻿namespace Sudoku.Solving.BruteForces;
+﻿using Sudoku.Collections;
+
+namespace Sudoku.Solving.BruteForces;
 
 /// <summary>
 /// Defines a fast solver.

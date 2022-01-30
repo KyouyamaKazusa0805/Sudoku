@@ -1,4 +1,10 @@
-﻿namespace Sudoku.Solving.Manual.Searchers.SingleDigitPatterns;
+﻿using Sudoku.Collections;
+using Sudoku.Data;
+using Sudoku.Presentation;
+using static Sudoku.Constants.Tables;
+using static Sudoku.Solving.Manual.Buffer.FastProperties;
+
+namespace Sudoku.Solving.Manual.Searchers.SingleDigitPatterns;
 
 /// <summary>
 /// Defines a step searcher that searches for guardian steps.

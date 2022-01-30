@@ -1,4 +1,13 @@
-﻿namespace Sudoku.Solving.Manual.Searchers.DeadlyPatterns.Loops;
+﻿using Sudoku.Collections;
+using Sudoku.Data;
+using Sudoku.Presentation;
+using Sudoku.Solving.Manual.Steps;
+using Sudoku.Solving.Manual.Steps.DeadlyPatterns.Loops;
+using static System.Numerics.BitOperations;
+using static Sudoku.Constants.Tables;
+using static Sudoku.Solving.Manual.Buffer.FastProperties;
+
+namespace Sudoku.Solving.Manual.Searchers.DeadlyPatterns.Loops;
 
 /// <summary>
 /// Provides with a <b>Unique Loop</b> step searcher.
@@ -153,11 +162,7 @@ public sealed unsafe class UniqueLoopStepSearcher : IUniqueLoopStepSearcher, IUn
 
 		var step = new UniqueLoopType1Step(
 			ImmutableArray.CreateRange(conclusions),
-			ImmutableArray.Create(new PresentationData
-			{
-				Candidates = candidateOffsets,
-				Links = links
-			}),
+			ImmutableArray.Create(new PresentationData { Candidates = candidateOffsets, Links = links }),
 			d1,
 			d2,
 			loop
@@ -221,11 +226,7 @@ public sealed unsafe class UniqueLoopStepSearcher : IUniqueLoopStepSearcher, IUn
 
 		var step = new UniqueLoopType2Step(
 			elimMap.ToImmutableConclusions(extraDigit),
-			ImmutableArray.Create(new PresentationData
-			{
-				Candidates = candidateOffsets,
-				Links = links
-			}),
+			ImmutableArray.Create(new PresentationData { Candidates = candidateOffsets, Links = links }),
 			d1,
 			d2,
 			loop,

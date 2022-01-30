@@ -1,4 +1,6 @@
-﻿namespace Sudoku.Solving.Manual.Searchers.Exocets;
+﻿using Sudoku.Collections;
+
+namespace Sudoku.Solving.Manual.Searchers.Exocets;
 
 /// <summary>
 /// Provides with a <b>Senior Exocet</b> step searcher.

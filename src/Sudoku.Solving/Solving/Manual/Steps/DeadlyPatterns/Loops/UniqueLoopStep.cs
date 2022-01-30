@@ -1,4 +1,9 @@
-﻿using U3 = Sudoku.Solving.Manual.Steps.DeadlyPatterns.Loops.UniqueLoopType3Step;
+﻿using Sudoku.Collections;
+using Sudoku.Data;
+using Sudoku.Presentation;
+using Sudoku.Solving.Manual.Text;
+using Sudoku.Techniques;
+using U3 = Sudoku.Solving.Manual.Steps.DeadlyPatterns.Loops.UniqueLoopType3Step;
 using U4 = Sudoku.Solving.Manual.Steps.DeadlyPatterns.Loops.UniqueLoopType4Step;
 
 namespace Sudoku.Solving.Manual.Steps.DeadlyPatterns.Loops;

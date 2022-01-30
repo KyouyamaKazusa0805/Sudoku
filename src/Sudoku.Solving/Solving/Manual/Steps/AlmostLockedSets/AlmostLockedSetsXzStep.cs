@@ -1,4 +1,13 @@
-﻿namespace Sudoku.Solving.Manual.Steps.AlmostLockedSets;
+﻿using Sudoku.Collections;
+using Sudoku.Data;
+using Sudoku.Presentation;
+using Sudoku.Resources;
+using Sudoku.Solving.Collections;
+using Sudoku.Solving.Manual.Text;
+using Sudoku.Techniques;
+using static System.Numerics.BitOperations;
+
+namespace Sudoku.Solving.Manual.Steps.AlmostLockedSets;
 
 /// <summary>
 /// Provides with a step that is an <b>Almost Locked Sets XZ</b> technique.

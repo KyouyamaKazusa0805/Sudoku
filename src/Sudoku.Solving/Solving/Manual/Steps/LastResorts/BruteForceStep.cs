@@ -1,4 +1,10 @@
-﻿namespace Sudoku.Solving.Manual.Steps.LastResorts;
+﻿using Sudoku.Collections;
+using Sudoku.Data;
+using Sudoku.Presentation;
+using Sudoku.Solving.Manual.Text;
+using Sudoku.Techniques;
+
+namespace Sudoku.Solving.Manual.Steps.LastResorts;
 
 /// <summary>
 /// Provides with a step that is a <b>Brute Force</b> technique.

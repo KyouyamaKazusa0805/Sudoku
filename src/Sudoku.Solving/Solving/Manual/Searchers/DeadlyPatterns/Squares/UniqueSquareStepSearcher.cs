@@ -1,4 +1,13 @@
-﻿namespace Sudoku.Solving.Manual.Searchers.DeadlyPatterns.Squares;
+﻿using Sudoku.Collections;
+using Sudoku.Data;
+using Sudoku.Presentation;
+using Sudoku.Solving.Manual.Steps.DeadlyPatterns.Squares;
+using static System.Numerics.BitOperations;
+using static Sudoku.Constants.Tables;
+using static Sudoku.Solving.Manual.Buffer.FastProperties;
+using static Sudoku.Solving.Manual.Constants;
+
+namespace Sudoku.Solving.Manual.Searchers.DeadlyPatterns.Squares;
 
 /// <summary>
 /// Provides with a <b>Unique Square</b> step searcher.

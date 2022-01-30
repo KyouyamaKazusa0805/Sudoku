@@ -1,4 +1,9 @@
-﻿namespace Sudoku.Solving.Manual.Steps.RankTheory;
+﻿using Sudoku.Collections;
+using Sudoku.Data;
+using Sudoku.Presentation;
+using Sudoku.Techniques;
+
+namespace Sudoku.Solving.Manual.Steps.RankTheory;
 
 /// <summary>
 /// Provides with a step that is a <b>Bi-value Oddagon</b> technique.

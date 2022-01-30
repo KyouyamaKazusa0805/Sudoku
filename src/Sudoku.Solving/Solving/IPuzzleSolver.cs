@@ -1,4 +1,6 @@
-﻿namespace Sudoku.Solving;
+﻿using Sudoku.Collections;
+
+namespace Sudoku.Solving;
 
 /// <summary>
 /// Defines and provides with a solver that used for solving a sudoku puzzle.

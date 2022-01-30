@@ -1,4 +1,12 @@
-﻿namespace Sudoku.Solving.Manual.Steps.DeadlyPatterns.Squares;
+﻿using Sudoku.Collections;
+using Sudoku.Data;
+using Sudoku.Presentation;
+using Sudoku.Resources;
+using Sudoku.Solving.Manual.Text;
+using Sudoku.Techniques;
+using static System.Numerics.BitOperations;
+
+namespace Sudoku.Solving.Manual.Steps.DeadlyPatterns.Squares;
 
 /// <summary>
 /// Provides with a step that is a <b>Unique Square Type 3</b> technique.
@@ -17,7 +25,7 @@ public sealed record UniqueSquareType3Step(
 	in Cells Cells,
 	short DigitsMask,
 	short ExtraDigitsMask,
-	Cells ExtraCells
+	in Cells ExtraCells
 ) : UniqueSquareStep(Conclusions, Views, Cells, DigitsMask)
 {
 	/// <inheritdoc/>

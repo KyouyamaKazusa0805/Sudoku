@@ -1,4 +1,10 @@
-﻿namespace Sudoku.Solving.Manual.Searchers.Intersections;
+﻿using Sudoku.Collections;
+using Sudoku.Presentation;
+using Sudoku.Solving.Manual.Steps.Intersections;
+using static Sudoku.Constants.Tables;
+using static Sudoku.Solving.Manual.Buffer.FastProperties;
+
+namespace Sudoku.Solving.Manual.Searchers.Intersections;
 
 /// <summary>
 /// Provides with a <b>Locked Candidates</b> step searcher.

@@ -1,4 +1,6 @@
-﻿namespace Sudoku.Solving.Manual;
+﻿using static System.Numerics.BitOperations;
+
+namespace Sudoku.Solving.Manual;
 
 /// <summary>
 /// Provides with the constants.

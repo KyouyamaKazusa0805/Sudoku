@@ -1,4 +1,11 @@
-﻿namespace Sudoku.Solving.Manual.Steps.Exocets;
+﻿using Sudoku.Collections;
+using Sudoku.Presentation;
+using Sudoku.Resources;
+using Sudoku.Solving.Collections;
+using Sudoku.Solving.Manual.Text;
+using Sudoku.Techniques;
+
+namespace Sudoku.Solving.Manual.Steps.Exocets;
 
 /// <summary>
 /// Provides with a step that is a <b>Junior Exocet</b> technique.

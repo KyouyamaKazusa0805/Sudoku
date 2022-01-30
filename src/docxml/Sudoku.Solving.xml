@@ -567,7 +567,7 @@
             <param name="MirrorR2">Indicates the second mirror cell in the R part.</param>
             <param name="CrossLine">Indicates the cross-line cells.</param>
         </member>
-        <member name="M:Sudoku.Solving.Collections.ExocetPattern.#ctor(System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,Sudoku.Collections.Cells,Sudoku.Collections.Cells,Sudoku.Collections.Cells,Sudoku.Collections.Cells,Sudoku.Collections.Cells)">
+        <member name="M:Sudoku.Solving.Collections.ExocetPattern.#ctor(System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,Sudoku.Collections.Cells@,Sudoku.Collections.Cells@,Sudoku.Collections.Cells@,Sudoku.Collections.Cells@,Sudoku.Collections.Cells@)">
             <summary>
             <para>
             Indicates an exocet pattern. The pattern will be like:
@@ -685,7 +685,7 @@
             <param name="BaseLine">The base-line cells that is <c>B</c> in that sketch.</param>
             <param name="Pair">The pair cells that is <c>P</c> in that sketch.</param>
         </member>
-        <member name="M:Sudoku.Solving.Collections.QiuDeadlyPattern.#ctor(Sudoku.Collections.Cells,Sudoku.Collections.Cells,Sudoku.Collections.Cells)">
+        <member name="M:Sudoku.Solving.Collections.QiuDeadlyPattern.#ctor(Sudoku.Collections.Cells@,Sudoku.Collections.Cells@,Sudoku.Collections.Cells@)">
             <summary>
             Defines a pattern that is a Qiu's deadly pattern technique structure in theory. The sketch is like:
             <code><![CDATA[
@@ -3737,9 +3737,17 @@
             </summary>
         </member>
         <member name="M:Sudoku.Solving.Manual.Searchers.Exocets.IExocetStepSearcher.#cctor">
-            <summary>
-            Indicates the static constructor.
-            </summary>
+            <static-constructor>
+		<summary>
+			<para>
+				Indicates the <see langword="static" /> constructor of the current type.
+			</para>
+			<para>
+				This construtcor will initialize some <see langword="static readonly" /> data members
+				of this type that can't use a simple expression to describe the initial value.
+			</para>
+		</summary>
+	</static-constructor>
         </member>
         <member name="T:Sudoku.Solving.Manual.Searchers.Exocets.IJuniorExocetStepSearcher">
             <summary>
@@ -6477,7 +6485,7 @@
             <param name="ExtraCells">Indicates the extra cells used.</param>
             <param name="IsNaked">Indicates whether the subset is a naked subset.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Steps.DeadlyPatterns.Qiu.QiuDeadlyPatternType3Step.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Data.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.PresentationData},Sudoku.Solving.Collections.QiuDeadlyPattern@,System.Int16,Sudoku.Collections.Cells,System.Boolean)">
+        <member name="M:Sudoku.Solving.Manual.Steps.DeadlyPatterns.Qiu.QiuDeadlyPatternType3Step.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Data.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.PresentationData},Sudoku.Solving.Collections.QiuDeadlyPattern@,System.Int16,Sudoku.Collections.Cells@,System.Boolean)">
             <summary>
             Provides with a step that is a <b>Qiu's Deadly Pattern Type 3</b> technique.
             </summary>
@@ -7222,7 +7230,7 @@
             Indicates the extra digits that forms a subset with <paramref name="DigitsMask"/>.
             </param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Steps.DeadlyPatterns.Squares.UniqueSquareType3Step.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Data.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.PresentationData},Sudoku.Collections.Cells@,System.Int16,System.Int16,Sudoku.Collections.Cells)">
+        <member name="M:Sudoku.Solving.Manual.Steps.DeadlyPatterns.Squares.UniqueSquareType3Step.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Data.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.PresentationData},Sudoku.Collections.Cells@,System.Int16,System.Int16,Sudoku.Collections.Cells@)">
             <summary>
             Provides with a step that is a <b>Unique Square Type 3</b> technique.
             </summary>
@@ -7353,7 +7361,7 @@
             <param name="Digit">Indicates the digit used.</param>
             <param name="Cells">Indicates the cells used.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Steps.DeadlyPatterns.Universal.BivalueUniversalGraveType2Step.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Data.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.PresentationData},System.Int32,Sudoku.Collections.Cells)">
+        <member name="M:Sudoku.Solving.Manual.Steps.DeadlyPatterns.Universal.BivalueUniversalGraveType2Step.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Data.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.PresentationData},System.Int32,Sudoku.Collections.Cells@)">
             <summary>
             Provides with a step that is a <b>Bivalue Universal Grave Type 2</b> technique.
             </summary>
@@ -7387,7 +7395,7 @@
             <param name="Cells">Indicates the cells used.</param>
             <param name="IsNaked">Indicates whether the specified subset is naked subset.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Steps.DeadlyPatterns.Universal.BivalueUniversalGraveType3Step.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Data.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.PresentationData},System.Collections.Generic.IReadOnlyList{System.Int32},System.Int16,Sudoku.Collections.Cells,System.Boolean)">
+        <member name="M:Sudoku.Solving.Manual.Steps.DeadlyPatterns.Universal.BivalueUniversalGraveType3Step.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Data.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.PresentationData},System.Collections.Generic.IReadOnlyList{System.Int32},System.Int16,Sudoku.Collections.Cells@,System.Boolean)">
             <summary>
             Provides with a step that is a <b>Bivalue Universal Grave Type 3</b> technique.
             </summary>
@@ -7422,7 +7430,7 @@
             <param name="Cells">Indicates the cells used.</param>
             <param name="ConjugatePair">Indicates the conjugate pair used.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Steps.DeadlyPatterns.Universal.BivalueUniversalGraveType4Step.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Data.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.PresentationData},System.Int16,Sudoku.Collections.Cells,Sudoku.Data.ConjugatePair@)">
+        <member name="M:Sudoku.Solving.Manual.Steps.DeadlyPatterns.Universal.BivalueUniversalGraveType4Step.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Data.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.PresentationData},System.Int16,Sudoku.Collections.Cells@,Sudoku.Data.ConjugatePair@)">
             <summary>
             Provides with a step that is a <b>Bivalue Universal Grave Type 4</b> technique.
             </summary>
@@ -7451,7 +7459,7 @@
             <param name="Cells">Indicates the cells used.</param>
             <param name="ExtraCell">Indicates the XZ cell.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Steps.DeadlyPatterns.Universal.BivalueUniversalGraveXzStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Data.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.PresentationData},System.Int16,Sudoku.Collections.Cells,System.Int32)">
+        <member name="M:Sudoku.Solving.Manual.Steps.DeadlyPatterns.Universal.BivalueUniversalGraveXzStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Data.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.PresentationData},System.Int16,Sudoku.Collections.Cells@,System.Int32)">
             <summary>
             Provides with a step that is a <b>Bivalue Universal Grave XZ</b> technique.
             </summary>
@@ -7654,7 +7662,7 @@
             <param name="IsFranken">Indicates whether the fish is a Franken fish.</param>
             <param name="IsSashimi">Indicates whether the fish is a Sashimi fish.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Steps.Fishes.ComplexFishStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Data.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.PresentationData},System.Int32,System.Int32,System.Int32,Sudoku.Collections.Cells,Sudoku.Collections.Cells,System.Boolean,System.Nullable{System.Boolean})">
+        <member name="M:Sudoku.Solving.Manual.Steps.Fishes.ComplexFishStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Data.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.PresentationData},System.Int32,System.Int32,System.Int32,Sudoku.Collections.Cells@,Sudoku.Collections.Cells@,System.Boolean,System.Nullable{System.Boolean})">
             <summary>
             Provides with a step that is a <b>Complex Fish</b> technique.
             </summary>
@@ -8045,35 +8053,6 @@
             (if possible removable candidates exist).
             </remarks>
         </member>
-        <member name="T:Sudoku.Solving.Manual.Steps.Intersections.IntersectionStep">
-            <summary>
-            Provides with a step that is an <b>Intersection</b> technique.
-            </summary>
-            <param name="Conclusions"><inheritdoc/></param>
-            <param name="Views"><inheritdoc/></param>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Steps.Intersections.IntersectionStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Data.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.PresentationData})">
-            <summary>
-            Provides with a step that is an <b>Intersection</b> technique.
-            </summary>
-            <param name="Conclusions"><inheritdoc/></param>
-            <param name="Views"><inheritdoc/></param>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.Steps.Intersections.IntersectionStep.ShowDifficulty">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.Steps.Intersections.IntersectionStep.Name">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.Steps.Intersections.IntersectionStep.Format">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.Steps.Intersections.IntersectionStep.Stableness">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.Steps.Intersections.IntersectionStep.TechniqueTags">
-            <inheritdoc/>
-        </member>
         <member name="T:Sudoku.Solving.Manual.Steps.Intersections.AlmostLockedCandidatesStep">
             <summary>
             Provides with a step that is an <b>Almost Locked Candidates</b> technique.
@@ -8114,6 +8093,35 @@
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Manual.Steps.Intersections.AlmostLockedCandidatesStep.Rarity">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Steps.Intersections.IntersectionStep">
+            <summary>
+            Provides with a step that is an <b>Intersection</b> technique.
+            </summary>
+            <param name="Conclusions"><inheritdoc/></param>
+            <param name="Views"><inheritdoc/></param>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Steps.Intersections.IntersectionStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Data.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.PresentationData})">
+            <summary>
+            Provides with a step that is an <b>Intersection</b> technique.
+            </summary>
+            <param name="Conclusions"><inheritdoc/></param>
+            <param name="Views"><inheritdoc/></param>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.Intersections.IntersectionStep.ShowDifficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.Intersections.IntersectionStep.Name">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.Intersections.IntersectionStep.Format">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.Intersections.IntersectionStep.Stableness">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.Intersections.IntersectionStep.TechniqueTags">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Solving.Manual.Steps.Intersections.LockedCandidatesStep">
@@ -8480,7 +8488,7 @@
             <param name="Views"><inheritdoc/></param>
             <param name="Cells">Indicates the cells used.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Steps.RankTheory.MultisectorLockedSetsStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Data.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.PresentationData},Sudoku.Collections.Cells)">
+        <member name="M:Sudoku.Solving.Manual.Steps.RankTheory.MultisectorLockedSetsStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Data.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.PresentationData},Sudoku.Collections.Cells@)">
             <summary>
             Provides with a step that is a <b>Multi-sector Locked Sets</b> technique.
             </summary>

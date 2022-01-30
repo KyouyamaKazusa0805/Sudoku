@@ -1,4 +1,7 @@
-﻿namespace Sudoku.Solving.Manual.Searchers.Exocets;
+﻿using Sudoku.Solving.Collections;
+using static Sudoku.Solving.Manual.Constants;
+
+namespace Sudoku.Solving.Manual.Searchers.Exocets;
 
 /// <summary>
 /// Defines a step searcher that searches for exocet steps.
@@ -17,9 +20,7 @@ public interface IExocetStepSearcher : IStepSearcher
 	bool CheckAdvanced { get; set; }
 
 
-	/// <summary>
-	/// Indicates the static constructor.
-	/// </summary>
+	/// <include file='../../global-doc-comments.xml' path='g/static-constructor'/>
 	static unsafe IExocetStepSearcher()
 	{
 		int[,] s = { { 3, 4, 5, 6, 7, 8 }, { 0, 1, 2, 6, 7, 8 }, { 0, 1, 2, 3, 4, 5 } };

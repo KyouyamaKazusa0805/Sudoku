@@ -1,4 +1,8 @@
-﻿namespace Sudoku.Solving.Manual.Steps.RankTheory;
+﻿using Sudoku.Data;
+using Sudoku.Presentation;
+using Sudoku.Techniques;
+
+namespace Sudoku.Solving.Manual.Steps.RankTheory;
 
 /// <summary>
 /// Provides with a step that is a <b>Rank Theory</b> technique.

@@ -1,4 +1,8 @@
-﻿namespace Sudoku.Solving.Manual.Steps.Singles;
+﻿using Sudoku.Data;
+using Sudoku.Presentation;
+using Sudoku.Techniques;
+
+namespace Sudoku.Solving.Manual.Steps.Singles;
 
 /// <summary>
 /// Provides with a step that is a <b>Single</b> technique.

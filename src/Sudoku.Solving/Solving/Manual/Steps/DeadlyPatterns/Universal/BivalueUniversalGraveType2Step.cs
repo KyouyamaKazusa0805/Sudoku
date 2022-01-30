@@ -1,4 +1,10 @@
-﻿namespace Sudoku.Solving.Manual.Steps.DeadlyPatterns.Universal;
+﻿using Sudoku.Collections;
+using Sudoku.Data;
+using Sudoku.Presentation;
+using Sudoku.Solving.Manual.Text;
+using Sudoku.Techniques;
+
+namespace Sudoku.Solving.Manual.Steps.DeadlyPatterns.Universal;
 
 /// <summary>
 /// Provides with a step that is a <b>Bivalue Universal Grave Type 2</b> technique.
@@ -11,7 +17,7 @@ public sealed record BivalueUniversalGraveType2Step(
 	ImmutableArray<Conclusion> Conclusions,
 	ImmutableArray<PresentationData> Views,
 	int Digit,
-	Cells Cells
+	in Cells Cells
 ) : BivalueUniversalGraveStep(Conclusions, Views)
 {
 	/// <summary>

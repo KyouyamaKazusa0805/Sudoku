@@ -1,4 +1,8 @@
-﻿namespace Sudoku.Solving.Manual.Searchers.Fishes;
+﻿using Sudoku.Collections;
+using static Sudoku.Constants.Tables;
+using static Sudoku.Solving.Manual.Buffer.FastProperties;
+
+namespace Sudoku.Solving.Manual.Searchers.Fishes;
 
 /// <summary>
 /// Defines a step searcher that searches for fish steps.

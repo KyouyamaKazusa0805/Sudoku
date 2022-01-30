@@ -1,4 +1,6 @@
-﻿namespace Sudoku.Solving.Collections;
+﻿using Sudoku.Collections;
+
+namespace Sudoku.Solving.Collections;
 
 /// <summary>
 /// Defines a pattern that is a Qiu's deadly pattern technique structure in theory. The sketch is like:
@@ -27,7 +29,11 @@
 /// <param name="Square">The square cells that is <c>S</c> in that sketch.</param>
 /// <param name="BaseLine">The base-line cells that is <c>B</c> in that sketch.</param>
 /// <param name="Pair">The pair cells that is <c>P</c> in that sketch.</param>
-public readonly record struct QiuDeadlyPattern(Cells Square, Cells BaseLine, Cells Pair) : IPattern<QiuDeadlyPattern>
+public readonly record struct QiuDeadlyPattern(
+	in Cells Square, 
+	in Cells BaseLine, 
+	in Cells Pair
+) : IPattern<QiuDeadlyPattern>
 {
 	/// <inheritdoc/>
 	public Cells Map

@@ -1,4 +1,12 @@
-﻿namespace Sudoku.Solving.Manual.Searchers.DeadlyPatterns.Extended;
+﻿using Sudoku.Collections;
+using Sudoku.Data;
+using Sudoku.Presentation;
+using Sudoku.Solving.Manual.Steps.DeadlyPatterns.Extended;
+using static System.Numerics.BitOperations;
+using static Sudoku.Constants.Tables;
+using static Sudoku.Solving.Manual.Buffer.FastProperties;
+
+namespace Sudoku.Solving.Manual.Searchers.DeadlyPatterns.Extended;
 
 /// <summary>
 /// Provides with an <b>Extended Rectangle</b> step searcher.

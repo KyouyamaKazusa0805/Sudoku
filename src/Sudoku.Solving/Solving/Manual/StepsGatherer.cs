@@ -1,4 +1,10 @@
-﻿namespace Sudoku.Solving.Manual;
+﻿using Sudoku.Collections;
+using Sudoku.Solving.Manual.Buffer;
+using Sudoku.Solving.Manual.Checkers;
+using Sudoku.Solving.Manual.Searchers.DeadlyPatterns.Rectangles;
+using static Sudoku.Solving.Manual.Buffer.FastProperties;
+
+namespace Sudoku.Solving.Manual;
 
 /// <summary>
 /// Defines a steps gatherer.

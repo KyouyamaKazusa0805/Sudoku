@@ -1,4 +1,12 @@
-﻿namespace Sudoku.Solving.Manual.Searchers.Chains;
+﻿using Sudoku.Collections;
+using Sudoku.Data;
+using Sudoku.Presentation;
+using Sudoku.Solving.Manual.Buffer;
+using static System.Numerics.BitOperations;
+using static Sudoku.Constants.Tables;
+using static Sudoku.Solving.Manual.Buffer.FastProperties;
+
+namespace Sudoku.Solving.Manual.Searchers.Chains;
 
 /// <summary>
 /// Defines a step searcher that searches for chain steps.

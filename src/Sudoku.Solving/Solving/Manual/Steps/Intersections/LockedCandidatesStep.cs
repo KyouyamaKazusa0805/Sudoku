@@ -1,4 +1,10 @@
-﻿namespace Sudoku.Solving.Manual.Steps.Intersections;
+﻿using Sudoku.Collections;
+using Sudoku.Data;
+using Sudoku.Presentation;
+using Sudoku.Solving.Manual.Text;
+using Sudoku.Techniques;
+
+namespace Sudoku.Solving.Manual.Steps.Intersections;
 
 /// <summary>
 /// Provides with a step that is a <b>Locked Candidates</b> technique.

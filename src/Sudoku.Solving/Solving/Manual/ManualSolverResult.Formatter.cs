@@ -1,4 +1,8 @@
-﻿namespace Sudoku.Solving.Manual;
+﻿using Sudoku.Resources;
+using Sudoku.Solving.Manual.Steps.Singles;
+using static System.Math;
+
+namespace Sudoku.Solving.Manual;
 
 partial record ManualSolverResult
 {

@@ -1,4 +1,10 @@
-﻿namespace Sudoku.Solving.Manual.Steps.DeadlyPatterns.Squares;
+﻿using Sudoku.Collections;
+using Sudoku.Data;
+using Sudoku.Presentation;
+using Sudoku.Solving.Manual.Text;
+using Sudoku.Techniques;
+
+namespace Sudoku.Solving.Manual.Steps.DeadlyPatterns.Squares;
 
 /// <summary>
 /// Provides with a step that is a <b>Unique Square Type 2</b> technique.

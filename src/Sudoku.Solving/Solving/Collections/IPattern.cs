@@ -1,4 +1,7 @@
-﻿namespace Sudoku.Solving.Collections;
+﻿using Sudoku.Collections;
+using Sudoku.Diagnostics.CodeAnalysis;
+
+namespace Sudoku.Solving.Collections;
 
 /// <summary>
 /// Defines a normal pattern.

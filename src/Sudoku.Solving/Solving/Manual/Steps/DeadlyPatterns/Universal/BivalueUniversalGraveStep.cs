@@ -1,4 +1,8 @@
-﻿namespace Sudoku.Solving.Manual.Steps.DeadlyPatterns.Universal;
+﻿using Sudoku.Data;
+using Sudoku.Presentation;
+using Sudoku.Techniques;
+
+namespace Sudoku.Solving.Manual.Steps.DeadlyPatterns.Universal;
 
 /// <summary>
 /// Provides with a step that is a <b>Bivalue Universal Grave</b> technique.

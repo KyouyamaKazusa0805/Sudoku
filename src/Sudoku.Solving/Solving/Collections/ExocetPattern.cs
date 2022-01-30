@@ -1,4 +1,6 @@
-﻿namespace Sudoku.Solving.Collections;
+﻿using Sudoku.Collections;
+
+namespace Sudoku.Solving.Collections;
 
 /// <summary>
 /// <para>
@@ -51,11 +53,11 @@ public readonly record struct ExocetPattern(
 	int TargetQ2,
 	int TargetR1,
 	int TargetR2,
-	Cells CrossLine,
-	Cells MirrorQ1,
-	Cells MirrorQ2,
-	Cells MirrorR1,
-	Cells MirrorR2
+	in Cells CrossLine,
+	in Cells MirrorQ1,
+	in Cells MirrorQ2,
+	in Cells MirrorR1,
+	in Cells MirrorR2
 ) : IPattern<ExocetPattern>
 {
 	/// <inheritdoc/>

@@ -1,4 +1,6 @@
-﻿namespace Sudoku.Solving.Manual.Steps;
+﻿using Sudoku.Data;
+
+namespace Sudoku.Solving.Manual.Steps;
 
 /// <summary>
 /// Defines a chain step.

@@ -1,4 +1,8 @@
-﻿namespace Sudoku.Solving.Manual.Steps.SingleDigitPatterns;
+﻿using Sudoku.Data;
+using Sudoku.Presentation;
+using Sudoku.Techniques;
+
+namespace Sudoku.Solving.Manual.Steps.SingleDigitPatterns;
 
 /// <summary>
 /// Provides with a step that is a <b>Single Digit Pattern</b> technique.

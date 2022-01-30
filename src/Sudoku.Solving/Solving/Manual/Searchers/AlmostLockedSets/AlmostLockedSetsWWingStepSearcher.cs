@@ -1,4 +1,13 @@
-﻿namespace Sudoku.Solving.Manual.Searchers.AlmostLockedSets;
+﻿using Sudoku.Collections;
+using Sudoku.Data;
+using Sudoku.Presentation;
+using Sudoku.Solving.Collections;
+using Sudoku.Solving.Manual.Steps.AlmostLockedSets;
+using static System.Numerics.BitOperations;
+using static Sudoku.Constants.Tables;
+using static Sudoku.Solving.Manual.Buffer.FastProperties;
+
+namespace Sudoku.Solving.Manual.Searchers.AlmostLockedSets;
 
 /// <summary>
 /// Provides with an <b>Almost Locked Sets W-Wing</b> step searcher.

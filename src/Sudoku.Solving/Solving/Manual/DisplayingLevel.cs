@@ -1,4 +1,6 @@
-﻿namespace Sudoku.Solving.Manual;
+﻿using System.ComponentModel;
+
+namespace Sudoku.Solving.Manual;
 
 /// <summary>
 /// Indicates the difficulty level of the step.

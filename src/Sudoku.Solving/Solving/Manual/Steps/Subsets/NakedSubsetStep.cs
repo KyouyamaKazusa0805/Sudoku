@@ -1,4 +1,11 @@
-﻿namespace Sudoku.Solving.Manual.Steps.Subsets;
+﻿using Sudoku.Collections;
+using Sudoku.Data;
+using Sudoku.Presentation;
+using Sudoku.Resources;
+using Sudoku.Solving.Manual.Text;
+using Sudoku.Techniques;
+
+namespace Sudoku.Solving.Manual.Steps.Subsets;
 
 /// <summary>
 /// Provides with a step that is a <b>Hidden Subset</b> technique.

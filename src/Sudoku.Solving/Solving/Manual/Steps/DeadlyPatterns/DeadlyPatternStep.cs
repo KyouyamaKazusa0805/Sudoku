@@ -1,4 +1,8 @@
-﻿namespace Sudoku.Solving.Manual.Steps.DeadlyPatterns;
+﻿using Sudoku.Data;
+using Sudoku.Presentation;
+using Sudoku.Techniques;
+
+namespace Sudoku.Solving.Manual.Steps.DeadlyPatterns;
 
 /// <summary>
 /// Provides with a step that is a <b>Deadly Pattern</b> technique.

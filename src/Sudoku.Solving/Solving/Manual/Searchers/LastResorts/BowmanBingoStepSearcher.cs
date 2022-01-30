@@ -1,4 +1,13 @@
-﻿namespace Sudoku.Solving.Manual.Searchers.LastResorts;
+﻿using Sudoku.Collections;
+using Sudoku.Data;
+using Sudoku.Presentation;
+using Sudoku.Solving.Manual.Searchers.Singles;
+using Sudoku.Solving.Manual.Steps.LastResorts;
+using Sudoku.Solving.Manual.Steps.Singles;
+using static Sudoku.Constants.Tables;
+using static Sudoku.Solving.Manual.Buffer.FastProperties;
+
+namespace Sudoku.Solving.Manual.Searchers.LastResorts;
 
 /// <summary>
 /// Provides with a <b>Bowman's Bingo</b> step searcher.
@@ -133,11 +142,7 @@ public sealed unsafe class BowmanBingoStepSearcher : IBowmanBingoStepSearcher
 
 			var step = new BowmanBingoStep(
 				ImmutableArray.Create(new Conclusion(ConclusionType.Elimination, startCand)),
-				ImmutableArray.Create(new PresentationData
-				{
-					Candidates = candidateOffsets,
-					Links = GetLinks()
-				}),
+				ImmutableArray.Create(new PresentationData { Candidates = candidateOffsets, Links = GetLinks() }),
 				_tempConclusions.ToImmutableArray()
 			);
 			if (onlyFindOne)

@@ -1,4 +1,11 @@
-﻿namespace Sudoku.Solving.Manual.Steps.Wings;
+﻿using Sudoku.Collections;
+using Sudoku.Data;
+using Sudoku.Presentation;
+using Sudoku.Solving.Manual.Text;
+using Sudoku.Techniques;
+using static System.Numerics.BitOperations;
+
+namespace Sudoku.Solving.Manual.Steps.Wings;
 
 /// <summary>
 /// Provides with a step that is a <b>Regular Wing</b> technique.

@@ -1,4 +1,7 @@
-﻿namespace Sudoku.Solving.Manual;
+﻿using Sudoku.Collections;
+using Sudoku.Data;
+
+namespace Sudoku.Solving.Manual;
 
 /// <summary>
 /// Provides the extension methods that used and called while gathering the conclusions.

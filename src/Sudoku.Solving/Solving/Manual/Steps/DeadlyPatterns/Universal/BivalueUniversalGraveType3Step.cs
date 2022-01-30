@@ -1,4 +1,13 @@
-﻿namespace Sudoku.Solving.Manual.Steps.DeadlyPatterns.Universal;
+﻿using Sudoku.Collections;
+using Sudoku.Data;
+using Sudoku.Presentation;
+using Sudoku.Resources;
+using Sudoku.Solving.Manual.Text;
+using Sudoku.Techniques;
+using static System.Numerics.BitOperations;
+using static Sudoku.Solving.Manual.Constants;
+
+namespace Sudoku.Solving.Manual.Steps.DeadlyPatterns.Universal;
 
 /// <summary>
 /// Provides with a step that is a <b>Bivalue Universal Grave Type 3</b> technique.
@@ -14,7 +23,7 @@ public sealed record BivalueUniversalGraveType3Step(
 	ImmutableArray<PresentationData> Views,
 	IReadOnlyList<int> TrueCandidates,
 	short DigitsMask,
-	Cells Cells,
+	in Cells Cells,
 	bool IsNaked
 ) : BivalueUniversalGraveStep(Conclusions, Views)
 {
