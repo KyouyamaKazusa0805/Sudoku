@@ -29,8 +29,6 @@
 | SCA0114       | Usage     | Warning  | Use 'sealed' modifier to prevent any derivations             |                                                              |
 | SCA0115       | Usage     | Error    | Anonymous inner type is used as an argument of interface type or abstract type, so you must give the base type or interface explicitly |                                                              |
 | SCA0116       | Usage     | Error    | Anonymous inner types cannot be used as the parameter type, return type or so on | Anonymous inner types cannot be used as the parameter type, return type or so on; please use its base type or interface instead |
-| SCA0117       | Usage     | Warning  | 'LambdaBodyAttribute' can only applied onto the property getter or method |                                                              |
-| SCA0118       | Usage     | Warning  | The property getter or method applied '[LambdaBody]' can only use expression-bodied statement to declare the value |                                                              |
 | SCA0119       | Usage     | Error    | The discard parameter can't be used or referenced unless a 'nameof' expression |                                                              |
 | SCA0120       | Usage     | Error    | Discard parameter can't be modified by keyword 'out', 'ref' or 'params' |                                                              |
 | SCA0121       | Usage     | Error    | Can't apply '[IsDiscard]' onto a parameter that has already discarded |                                                              |
@@ -38,6 +36,13 @@
 | SCA0123       | Usage     | Warning  | Field marked '[InitializationOnly]' shouldn't expose outside the project | Field marked '[InitializationOnly]' shouldn't expose outside the project; suggested access modifiers is 'internal' |
 | SCA0124       | Usage     | Warning  | Property marked '[InitializationOnly]' shouldn't expose its setter outside the project | Property marked '[InitializationOnly]' shouldn't expose its setter outside the project; suggested access modifiers is 'internal' |
 | SCA0125       | Usage     | Error    | Cannot assign the value to the field or property if it is marked '[InitializationOnly]' | Cannot assign the value to the field or property if it is marked '[InitializationOnly]'; they are initialized only by a source generator or a module initializer |
+| SCA0126       | Usage     | Error    | Type being marked '[StepSearcher]' must implement the interface 'IStepSearcher' |                                                              |
+| SCA0127       | Usage     | Warning  | Type having implemented 'IStepSearcher' should be applied the attribute '[StepSearcher]' |                                                              |
+| SCA0128       | Usage     | Warning  | The step searcher cannot be used by another type as a data member | The step searcher cannot be used by another type as a data member because it is not direct searcher, which means it don't hold the attribute '[StepSearcher]' with the attribute property 'IsDirect' true value; unless you call the method 'FastProperties.Initialize' firstly |
+| SCA0129       | Usage     | Error    | The type with the property 'StepSearcherAttribute.PuzzleNotRelying' true value in attribute applied onto cannot use the parameter 'grid' |                                                              |
+| SCA0130       | Usage     | Error    | The type marked '[StepSearcher]' cannot be abstract          |                                                              |
+| SCA0131       | Usage     | Error    | The type marked '[StepSearcher]' must contain a parameterless constructor |                                                              |
+| SCA0132       | Usage     | Error    | The type marked '[StepSearcher]' cannot be static            |                                                              |
 | SCA0301       | Naming    | Warning  | Please apply camel-casing onto local functions               |                                                              |
 | SCA0302       | Naming    | Warning  | Please name '@this' onto the first argument of the extension deconstruction method |                                                              |
 | SCA0303       | Design    | Warning  | Unnecessary modifier 'readonly' on this member because the containing type has been already read-only |                                                              |

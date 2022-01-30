@@ -58,8 +58,8 @@ public sealed class StepSearcherAttribute : Attribute
 	public bool IsDirect { get; init; }
 
 	/// <summary>
-	/// Indicates whether the specified step searcher doesn't rely on the puzzle.
-	/// The default value is <see langword="false"/>.
+	/// <para>Indicates whether the specified step searcher doesn't rely on the puzzle.</para>
+	/// <para><i>The default value is <see langword="false"/>.</i></para>
 	/// </summary>
 	public bool PuzzleNotRelying { get; init; }
 }

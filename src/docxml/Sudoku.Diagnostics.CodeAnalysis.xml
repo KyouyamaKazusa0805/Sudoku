@@ -795,55 +795,6 @@
             Indicates all possible diagnostics types used.
             </summary>
         </member>
-        <member name="T:Sudoku.Diagnostics.CodeAnalysis.SyntaxContextReceivers.LambdaBodyAttributeSyntaxChecker">
-            <summary>
-            Indicates the syntax checker that checks for the code structures and the API usages.
-            The current analyzer will check the following cases:
-            <list type="bullet">
-            <listheader>
-            <term>Diagnostic ID</term>
-            <description>Description</description>
-            </listheader>
-            <item>
-            <term>SCA0117</term>
-            <description>'LambdaBodyAttribute' can only applied onto the property getter or method</description>
-            </item>
-            <item>
-            <term>SCA0118</term>
-            <description>The property getter or method applied '[LambdaBody]' can only use expression-bodied statement to declare the value</description>
-            </item>
-            </list>
-            </summary>
-        </member>
-        <member name="M:Sudoku.Diagnostics.CodeAnalysis.SyntaxContextReceivers.LambdaBodyAttributeSyntaxChecker.OnVisitSyntaxNode(Microsoft.CodeAnalysis.GeneratorSyntaxContext)">
-            <inheritdoc/>
-        </member>
-        <member name="F:Sudoku.Diagnostics.CodeAnalysis.SyntaxContextReceivers.LambdaBodyAttributeSyntaxChecker.SCA0117">
-            <summary>
-            Indicates the <see cref="T:Microsoft.CodeAnalysis.DiagnosticDescriptor"/> instance that describes for the diagnostic result SCA0117 ('LambdaBodyAttribute' can only applied onto the property getter or method).
-            </summary>
-        </member>
-        <member name="F:Sudoku.Diagnostics.CodeAnalysis.SyntaxContextReceivers.LambdaBodyAttributeSyntaxChecker.SCA0118">
-            <summary>
-            Indicates the <see cref="T:Microsoft.CodeAnalysis.DiagnosticDescriptor"/> instance that describes for the diagnostic result SCA0118 (The property getter or method applied '[LambdaBody]' can only use expression-bodied statement to declare the value).
-            </summary>
-        </member>
-        <member name="F:Sudoku.Diagnostics.CodeAnalysis.SyntaxContextReceivers.LambdaBodyAttributeSyntaxChecker._cancellationToken">
-            <summary>
-            Indicates the cancellation token used.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Diagnostics.CodeAnalysis.SyntaxContextReceivers.LambdaBodyAttributeSyntaxChecker.#ctor(System.Threading.CancellationToken)">
-            <summary>
-            Initializes a <see cref="T:Sudoku.Diagnostics.CodeAnalysis.SyntaxContextReceivers.LambdaBodyAttributeSyntaxChecker"/> instance using the cancellation token.
-            </summary>
-            <param name="cancellationToken">The cancellation token to cancel the operation.</param>
-        </member>
-        <member name="P:Sudoku.Diagnostics.CodeAnalysis.SyntaxContextReceivers.LambdaBodyAttributeSyntaxChecker.Diagnostics">
-            <summary>
-            Indicates all possible diagnostics types used.
-            </summary>
-        </member>
         <member name="T:Sudoku.Diagnostics.CodeAnalysis.SyntaxContextReceivers.LambdaDiscardParameterSyntaxChecker">
             <summary>
             Indicates the syntax checker that checks for the code structures and the API usages.
@@ -1212,6 +1163,100 @@
             Indicates all possible diagnostics types used.
             </summary>
         </member>
+        <member name="T:Sudoku.Diagnostics.CodeAnalysis.SyntaxContextReceivers.StepSearcherAttributeSyntaxChecker">
+            <summary>
+            Indicates the syntax checker that checks for the code structures and the API usages.
+            The current analyzer will check the following cases:
+            <list type="bullet">
+            <listheader>
+            <term>Diagnostic ID</term>
+            <description>Description</description>
+            </listheader>
+            <item>
+            <term>SCA0126</term>
+            <description>Type being marked '[StepSearcher]' must implement the interface 'IStepSearcher'</description>
+            </item>
+            <item>
+            <term>SCA0127</term>
+            <description>Type having implemented 'IStepSearcher' should be applied the attribute '[StepSearcher]'</description>
+            </item>
+            <item>
+            <term>SCA0128</term>
+            <description>The step searcher cannot be used by another type as a data member</description>
+            </item>
+            <item>
+            <term>SCA0129</term>
+            <description>The type with the property 'StepSearcherAttribute.PuzzleNotRelying' true value in attribute applied onto cannot use the parameter 'grid'</description>
+            </item>
+            <item>
+            <term>SCA0130</term>
+            <description>The type marked '[StepSearcher]' cannot be abstract</description>
+            </item>
+            <item>
+            <term>SCA0131</term>
+            <description>The type marked '[StepSearcher]' must contain a parameterless constructor</description>
+            </item>
+            <item>
+            <term>SCA0132</term>
+            <description>The type marked '[StepSearcher]' cannot be static</description>
+            </item>
+            </list>
+            </summary>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.SyntaxContextReceivers.StepSearcherAttributeSyntaxChecker.OnVisitSyntaxNode(Microsoft.CodeAnalysis.GeneratorSyntaxContext)">
+            <inheritdoc/>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.SyntaxContextReceivers.StepSearcherAttributeSyntaxChecker.SCA0126">
+            <summary>
+            Indicates the <see cref="T:Microsoft.CodeAnalysis.DiagnosticDescriptor"/> instance that describes for the diagnostic result SCA0126 (Type being marked '[StepSearcher]' must implement the interface 'IStepSearcher').
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.SyntaxContextReceivers.StepSearcherAttributeSyntaxChecker.SCA0127">
+            <summary>
+            Indicates the <see cref="T:Microsoft.CodeAnalysis.DiagnosticDescriptor"/> instance that describes for the diagnostic result SCA0127 (Type having implemented 'IStepSearcher' should be applied the attribute '[StepSearcher]').
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.SyntaxContextReceivers.StepSearcherAttributeSyntaxChecker.SCA0128">
+            <summary>
+            Indicates the <see cref="T:Microsoft.CodeAnalysis.DiagnosticDescriptor"/> instance that describes for the diagnostic result SCA0128 (The step searcher cannot be used by another type as a data member).
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.SyntaxContextReceivers.StepSearcherAttributeSyntaxChecker.SCA0129">
+            <summary>
+            Indicates the <see cref="T:Microsoft.CodeAnalysis.DiagnosticDescriptor"/> instance that describes for the diagnostic result SCA0129 (The type with the property 'StepSearcherAttribute.PuzzleNotRelying' true value in attribute applied onto cannot use the parameter 'grid').
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.SyntaxContextReceivers.StepSearcherAttributeSyntaxChecker.SCA0130">
+            <summary>
+            Indicates the <see cref="T:Microsoft.CodeAnalysis.DiagnosticDescriptor"/> instance that describes for the diagnostic result SCA0130 (The type marked '[StepSearcher]' cannot be abstract).
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.SyntaxContextReceivers.StepSearcherAttributeSyntaxChecker.SCA0131">
+            <summary>
+            Indicates the <see cref="T:Microsoft.CodeAnalysis.DiagnosticDescriptor"/> instance that describes for the diagnostic result SCA0131 (The type marked '[StepSearcher]' must contain a parameterless constructor).
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.SyntaxContextReceivers.StepSearcherAttributeSyntaxChecker.SCA0132">
+            <summary>
+            Indicates the <see cref="T:Microsoft.CodeAnalysis.DiagnosticDescriptor"/> instance that describes for the diagnostic result SCA0132 (The type marked '[StepSearcher]' cannot be static).
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.SyntaxContextReceivers.StepSearcherAttributeSyntaxChecker._cancellationToken">
+            <summary>
+            Indicates the cancellation token used.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.SyntaxContextReceivers.StepSearcherAttributeSyntaxChecker.#ctor(System.Threading.CancellationToken)">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Diagnostics.CodeAnalysis.SyntaxContextReceivers.StepSearcherAttributeSyntaxChecker"/> instance using the cancellation token.
+            </summary>
+            <param name="cancellationToken">The cancellation token to cancel the operation.</param>
+        </member>
+        <member name="P:Sudoku.Diagnostics.CodeAnalysis.SyntaxContextReceivers.StepSearcherAttributeSyntaxChecker.Diagnostics">
+            <summary>
+            Indicates all possible diagnostics types used.
+            </summary>
+        </member>
         <member name="T:Sudoku.Diagnostics.CodeAnalysis.SyntaxContextReceivers.ThisConstraintSyntaxChecker">
             <summary>
             Indicates the syntax checker that checks for the code structures and the API usages.
@@ -1309,12 +1354,6 @@
         <member name="M:Sudoku.Diagnostics.CodeAnalysis.Analyzers.InitializationOnlyAnalyzer.Initialize(Microsoft.CodeAnalysis.GeneratorInitializationContext)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Diagnostics.CodeAnalysis.Analyzers.LambdaBodyAttributeAnalyzer.Execute(Microsoft.CodeAnalysis.GeneratorExecutionContext)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Diagnostics.CodeAnalysis.Analyzers.LambdaBodyAttributeAnalyzer.Initialize(Microsoft.CodeAnalysis.GeneratorInitializationContext)">
-            <inheritdoc/>
-        </member>
         <member name="M:Sudoku.Diagnostics.CodeAnalysis.Analyzers.LambdaDiscardParameterAnalyzer.Execute(Microsoft.CodeAnalysis.GeneratorExecutionContext)">
             <inheritdoc/>
         </member>
@@ -1355,6 +1394,12 @@
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Diagnostics.CodeAnalysis.Analyzers.RestrictArgumentsAnalyzer.Initialize(Microsoft.CodeAnalysis.GeneratorInitializationContext)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.Analyzers.StepSearcherAttributeAnalyzer.Execute(Microsoft.CodeAnalysis.GeneratorExecutionContext)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.Analyzers.StepSearcherAttributeAnalyzer.Initialize(Microsoft.CodeAnalysis.GeneratorInitializationContext)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Diagnostics.CodeAnalysis.Analyzers.ThisConstraintAnalyzer.Execute(Microsoft.CodeAnalysis.GeneratorExecutionContext)">

@@ -4108,7 +4108,10 @@
         </member>
         <member name="M:Sudoku.Solving.Manual.Searchers.IStepSearcher.GetAll(System.Collections.Generic.ICollection{Sudoku.Solving.Manual.Step},Sudoku.Collections.Grid@,System.Boolean)">
             <summary>
-            Accumulate all possible steps into the specified accumulator.
+            Accumulate all possible steps into the argument <paramref name="accumulator"/> if
+            the argument <paramref name="onlyFindOne"/> is <see langword="false"/>,
+            or return the first found step if the argument <paramref name="onlyFindOne"/>
+            is <see langword="true"/>.
             </summary>
             <param name="accumulator">
             <para>
@@ -5129,8 +5132,8 @@
         </member>
         <member name="P:Sudoku.Solving.Manual.StepSearcherAttribute.PuzzleNotRelying">
             <summary>
-            Indicates whether the specified step searcher doesn't rely on the puzzle.
-            The default value is <see langword="false"/>.
+            <para>Indicates whether the specified step searcher doesn't rely on the puzzle.</para>
+            <para><i>The default value is <see langword="false"/>.</i></para>
             </summary>
         </member>
         <member name="T:Sudoku.Solving.Manual.StepsGatherer">

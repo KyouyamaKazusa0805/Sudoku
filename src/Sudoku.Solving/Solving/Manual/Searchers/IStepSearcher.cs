@@ -14,7 +14,10 @@ public interface IStepSearcher
 
 
 	/// <summary>
-	/// Accumulate all possible steps into the specified accumulator.
+	/// Accumulate all possible steps into the argument <paramref name="accumulator"/> if
+	/// the argument <paramref name="onlyFindOne"/> is <see langword="false"/>,
+	/// or return the first found step if the argument <paramref name="onlyFindOne"/>
+	/// is <see langword="true"/>.
 	/// </summary>
 	/// <param name="accumulator">
 	/// <para>
