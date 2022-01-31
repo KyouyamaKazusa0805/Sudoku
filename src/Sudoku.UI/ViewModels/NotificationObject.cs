@@ -44,10 +44,8 @@ public abstract class NotificationObject : INotifyPropertyChanged
 	/// <seealso cref="OnPropertyChanged(string?)"/>
 	/// <seealso cref="PropertyChanged"/>
 	protected bool SetProperty<TNotNull>(
-		ref TNotNull? originalValue,
-		TNotNull? newValue,
-		[CallerMemberName] string? propertyName = null
-	) where TNotNull : notnull
+		ref TNotNull? originalValue, TNotNull? newValue, [CallerMemberName] string? propertyName = null)
+		where TNotNull : notnull
 	{
 		// Compare two values.
 		// If two values are same, the assignment won't be successful. Therefore, return false.

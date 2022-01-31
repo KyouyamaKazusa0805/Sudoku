@@ -16,7 +16,7 @@ public static class ArrayExtensions
 	/// </returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static OneDimensionalArrayEnumerator<TStruct> EnumerateImmutable<TStruct>(this TStruct[] @this)
-	where TStruct : struct => new(@this);
+		where TStruct : struct => new(@this);
 
 	/// <summary>
 	/// Creates a <see cref="OneDimensionalArrayRefEnumerator{T}"/> instance that iterates on each element.

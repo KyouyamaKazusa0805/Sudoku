@@ -691,12 +691,8 @@ public unsafe ref partial struct StringHandler
 	/// </param>
 	/// <param name="separator">The separator to append when an element is finished to append.</param>
 	public void AppendRangeWithSeparatorUnsafe<TUnmanaged>(
-		TUnmanaged* list,
-		int length,
-		delegate*<TUnmanaged, string?> converter,
-		string separator
-	)
-	where TUnmanaged : unmanaged
+		TUnmanaged* list, int length, delegate*<TUnmanaged, string?> converter, string separator)
+		where TUnmanaged : unmanaged
 	{
 		for (int i = 0; i < length; i++)
 		{
@@ -720,12 +716,8 @@ public unsafe ref partial struct StringHandler
 	/// </param>
 	/// <param name="separator">The separator to append when an element is finished to append.</param>
 	public void AppendRangeWithSeparatorUnsafe<TUnmanaged>(
-		TUnmanaged* list,
-		int length,
-		Func<TUnmanaged, string?> converter,
-		string separator
-	)
-	where TUnmanaged : unmanaged
+		TUnmanaged* list, int length, Func<TUnmanaged, string?> converter, string separator)
+		where TUnmanaged : unmanaged
 	{
 		for (int i = 0; i < length; i++)
 		{

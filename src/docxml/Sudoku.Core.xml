@@ -5495,12 +5495,6 @@
             </param>
             <exception cref="T:System.ArgumentException">Throws when the type dismatches.</exception>
         </member>
-        <member name="M:Sudoku.Presentation.PresentationData.op_Equality(Sudoku.Presentation.PresentationData@,Sudoku.Presentation.PresentationData@)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Presentation.PresentationData.op_Inequality(Sudoku.Presentation.PresentationData@,Sudoku.Presentation.PresentationData@)">
-            <inheritdoc/>
-        </member>
         <member name="T:Sudoku.Presentation.PresentationDataKind">
             <summary>
             Presents a kind to identify the inner presentation data.

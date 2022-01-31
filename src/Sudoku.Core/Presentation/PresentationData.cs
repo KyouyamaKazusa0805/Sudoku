@@ -532,18 +532,9 @@ public partial record struct PresentationData(
 	/// <exception cref="ArgumentException">Throws when the type dismatches.</exception>
 	[MethodImpl(MethodImplOptions.NoInlining)]
 	private static void ThrowIfArgTypeIsInvalid<TBase, TConverted>(
-		TBase element,
-		out TConverted result,
-		[CallerArgumentExpression("element")] string? argName = null
-	) where TBase : struct where TConverted : struct =>
-		result = element is TConverted r 
-			? r
-			: throw new ArgumentException("The argument type dismatches.", argName);
-
-
-	/// <inheritdoc/>
-	public static bool operator ==(in PresentationData left, in PresentationData right) => left.Equals(in right);
-
-	/// <inheritdoc/>
-	public static bool operator !=(in PresentationData left, in PresentationData right) => !left.Equals(in right);
+		TBase element, out TConverted result,
+		[CallerArgumentExpression("element")] string? argName = null)
+		where TBase : struct
+		where TConverted : struct =>
+		result = element is TConverted r ? r : throw new ArgumentException("The argument type dismatches.", argName);
 }

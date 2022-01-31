@@ -15,7 +15,7 @@ public static unsafe class PointerMarshal
 	/// <param name="right">The right variable.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static void Swap<TUnmanaged>([Restrict] TUnmanaged* left, [Restrict] TUnmanaged* right)
-	where TUnmanaged : unmanaged
+		where TUnmanaged : unmanaged
 	{
 		var temp = *left;
 		*left = *right;
@@ -59,7 +59,7 @@ public static unsafe class PointerMarshal
 	/// 5 elements in this case.
 	/// </remarks>
 	public static TUnmanaged[] GetArrayFromStart<TUnmanaged>(TUnmanaged* ptr, int length, int index)
-	where TUnmanaged : unmanaged
+		where TUnmanaged : unmanaged
 	{
 		var result = new TUnmanaged[length - index];
 		for (int i = index; i < length; i++)
