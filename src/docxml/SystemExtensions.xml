@@ -4,35 +4,12 @@
         <name>SystemExtensions</name>
     </assembly>
     <members>
-        <member name="T:System.Algorithms">
+        <member name="T:System.Algorithm.Combinatorics">
             <summary>
-            Provides all algorithm processing methods.
+            Provides operations on Combinatorics.
             </summary>
         </member>
-        <member name="M:System.Algorithms.Sort``1(``0[],,System.Int32,System.Int32)">
-            <summary>
-            Sort the specified array by quick sort.
-            </summary>
-            <typeparam name="T">The type of each element.</typeparam>
-            <param name="this">The array.</param>
-            <param name="comparer">The method to compare two elements.</param>
-            <param name="startIndex">Indicates the start index.</param>
-            <param name="endIndex">Indicates the end index.</param>
-        </member>
-        <member name="M:System.Algorithms.Sort``1(``0[],)">
-            <summary>
-            Sort the specified array by quick sort.
-            </summary>
-            <typeparam name="T">The type of each element.</typeparam>
-            <param name="this">The array.</param>
-            <param name="comparer">The method to compare two elements.</param>
-            <remarks>
-            If you want to use this method, please call the other method
-            <see cref="!:Sort&lt;T&gt;(T[], delegate*&lt;T, T, int&gt;, int, int)"/> instead.
-            </remarks>
-            <seealso cref="!:Sort&lt;T&gt;(T[], delegate*&lt;T, T, int&gt;, int, int)"/>
-        </member>
-        <member name="M:System.Algorithms.GetSubsets``1(System.Collections.Generic.IReadOnlyList{``0})">
+        <member name="M:System.Algorithm.Combinatorics.GetSubsets``1(System.Collections.Generic.IReadOnlyList{``0})">
             <summary>
             Get all subsets that each element is chosen at most once.
             Note that the null set <c>{ }</c> doesn't belong to the result.
@@ -53,7 +30,7 @@
             7 cases (without null set) in total.
             </returns>
         </member>
-        <member name="M:System.Algorithms.GetSubsets``1(System.Collections.Generic.IReadOnlyList{``0},System.Int32)">
+        <member name="M:System.Algorithm.Combinatorics.GetSubsets``1(System.Collections.Generic.IReadOnlyList{``0},System.Int32)">
             <summary>
             Get all subsets from the specified number of the values to take.
             </summary>
@@ -70,7 +47,7 @@
             3 cases in total.
             </returns>
         </member>
-        <member name="M:System.Algorithms.GetExtractedCombinations``1(``0[][])">
+        <member name="M:System.Algorithm.Combinatorics.GetExtractedCombinations``1(``0[][])">
             <summary>
             Get all combinations that each sub-array only choose one.
             </summary>
@@ -107,6 +84,34 @@
             </summary>
             <param name="index">The index of the sequence. The index is 0-based.</param>
             <returns>The result value at the specified index.</returns>
+        </member>
+        <member name="T:System.Algorithm.Sorting">
+            <summary>
+            Provides all algorithm processing methods.
+            </summary>
+        </member>
+        <member name="M:System.Algorithm.Sorting.Sort``1(``0[],,System.Int32,System.Int32)">
+            <summary>
+            Sort the specified array by quick sort.
+            </summary>
+            <typeparam name="T">The type of each element.</typeparam>
+            <param name="this">The array.</param>
+            <param name="comparer">The method to compare two elements.</param>
+            <param name="startIndex">Indicates the start index.</param>
+            <param name="endIndex">Indicates the end index.</param>
+        </member>
+        <member name="M:System.Algorithm.Sorting.Sort``1(``0[],)">
+            <summary>
+            Sort the specified array by quick sort.
+            </summary>
+            <typeparam name="T">The type of each element.</typeparam>
+            <param name="this">The array.</param>
+            <param name="comparer">The method to compare two elements.</param>
+            <remarks>
+            If you want to use this method, please call the other method
+            <see cref="!:Sort&lt;T&gt;(T[], delegate*&lt;T, T, int&gt;, int, int)"/> instead.
+            </remarks>
+            <seealso cref="!:Sort&lt;T&gt;(T[], delegate*&lt;T, T, int&gt;, int, int)"/>
         </member>
         <member name="T:System.Collections.Generic.OneDimensionalArrayEnumerator`1">
             <summary>

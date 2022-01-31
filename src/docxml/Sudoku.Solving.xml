@@ -1324,6 +1324,11 @@
             Indicates the total number of Unique Polygon (Octagon) possible templates of size 4.
             </summary>
         </member>
+        <member name="F:Sudoku.Solving.Manual.Constants.MultisectorLockedSetsTemplatesCount">
+            <summary>
+            Indicates the total number of multi-sector locked sets possible templates.
+            </summary>
+        </member>
         <member name="F:Sudoku.Solving.Manual.Constants.AllRowsMask">
             <summary>
             Indicates the mask that means all rows.

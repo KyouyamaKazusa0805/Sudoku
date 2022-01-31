@@ -299,10 +299,10 @@ public sealed unsafe class UniqueLoopStepSearcher : IUniqueLoopStepSearcher, IUn
 				continue;
 			}
 
-			int[] otherCells = ((RegionMaps[region] & EmptyMap) - loop).ToArray();
-			for (int size = PopCount((uint)otherDigitsMask) - 1, count = otherCells.Length; size < count; size++)
+			var otherCells = (RegionMaps[region] & EmptyMap) - loop;
+			for (int size = PopCount((uint)otherDigitsMask) - 1, count = otherCells.Count; size < count; size++)
 			{
-				foreach (int[] cells in otherCells.GetSubsets(size))
+				foreach (int[] cells in otherCells & size)
 				{
 					short mask = 0;
 					foreach (int cell in cells)

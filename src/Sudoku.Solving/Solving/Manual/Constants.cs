@@ -46,6 +46,11 @@ internal static class Constants
 	public const int BdpTemplatesSize4Count = 11664;
 
 	/// <summary>
+	/// Indicates the total number of multi-sector locked sets possible templates.
+	/// </summary>
+	public const int MultisectorLockedSetsTemplatesCount = 74601;
+
+	/// <summary>
 	/// Indicates the mask that means all rows.
 	/// </summary>
 	public const int AllRowsMask = 0b000_000_000__111_111_111__000_000_000;

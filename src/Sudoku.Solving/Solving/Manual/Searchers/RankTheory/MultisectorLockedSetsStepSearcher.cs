@@ -2,9 +2,11 @@
 using Sudoku.Data;
 using Sudoku.Presentation;
 using Sudoku.Solving.Manual.Steps;
+using static System.Algorithm.Combinatorics;
 using static System.Numerics.BitOperations;
 using static Sudoku.Constants.Tables;
 using static Sudoku.Solving.Manual.Buffer.FastProperties;
+using static Sudoku.Solving.Manual.Constants;
 
 namespace Sudoku.Solving.Manual.Searchers;
 
@@ -30,7 +32,7 @@ public sealed unsafe class MultisectorLockedSetsStepSearcher : IMultisectorLocke
 		const int a = ~7, b = ~56, c = ~448;
 		int[,] sizeList = { { 3, 3 }, { 3, 4 }, { 4, 3 }, { 4, 4 }, { 4, 5 }, { 5, 4 } };
 		int[] z = { 0, 1, 2, 3, 4, 5, 6, 7, 8 };
-		var result = new Cells[74601];
+		var result = new Cells[MultisectorLockedSetsTemplatesCount];
 		int n = 0;
 		for (int i = 0, iterationLength = sizeList.Length >> 1; i < iterationLength; i++)
 		{

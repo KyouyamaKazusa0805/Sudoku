@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel;
 using Sudoku.Data;
+using static System.Algorithm.Sorting;
 
 namespace Sudoku.Collections;
 
@@ -199,7 +200,7 @@ public partial struct NodeSet :
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public unsafe void Sort()
 	{
-		Algorithms.Sort(_chainNodes, &cmp, 0, Count - 1);
+		_chainNodes.Sort(&cmp, 0, Count - 1);
 
 
 		static int cmp(Node l, Node r) => l.Mask > r.Mask ? 1 : l.Mask < r.Mask ? -1 : 0;
