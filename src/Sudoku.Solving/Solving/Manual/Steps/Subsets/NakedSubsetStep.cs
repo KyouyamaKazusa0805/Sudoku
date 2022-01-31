@@ -5,7 +5,7 @@ using Sudoku.Resources;
 using Sudoku.Solving.Manual.Text;
 using Sudoku.Techniques;
 
-namespace Sudoku.Solving.Manual.Steps.Subsets;
+namespace Sudoku.Solving.Manual.Steps;
 
 /// <summary>
 /// Provides with a step that is a <b>Hidden Subset</b> technique.

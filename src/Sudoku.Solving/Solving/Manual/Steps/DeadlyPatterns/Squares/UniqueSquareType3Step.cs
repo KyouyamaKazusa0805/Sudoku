@@ -6,7 +6,7 @@ using Sudoku.Solving.Manual.Text;
 using Sudoku.Techniques;
 using static System.Numerics.BitOperations;
 
-namespace Sudoku.Solving.Manual.Steps.DeadlyPatterns.Squares;
+namespace Sudoku.Solving.Manual.Steps;
 
 /// <summary>
 /// Provides with a step that is a <b>Unique Square Type 3</b> technique.

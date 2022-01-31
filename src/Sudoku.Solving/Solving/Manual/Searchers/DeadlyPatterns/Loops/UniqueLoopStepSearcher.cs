@@ -2,12 +2,11 @@
 using Sudoku.Data;
 using Sudoku.Presentation;
 using Sudoku.Solving.Manual.Steps;
-using Sudoku.Solving.Manual.Steps.DeadlyPatterns.Loops;
 using static System.Numerics.BitOperations;
 using static Sudoku.Constants.Tables;
 using static Sudoku.Solving.Manual.Buffer.FastProperties;
 
-namespace Sudoku.Solving.Manual.Searchers.DeadlyPatterns.Loops;
+namespace Sudoku.Solving.Manual.Searchers;
 
 /// <summary>
 /// Provides with a <b>Unique Loop</b> step searcher.

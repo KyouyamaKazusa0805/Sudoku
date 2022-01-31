@@ -3,7 +3,7 @@ using Sudoku.Presentation;
 using Sudoku.Solving.Manual.Text;
 using Sudoku.Techniques;
 
-namespace Sudoku.Solving.Manual.Steps.Chains.Forcing;
+namespace Sudoku.Solving.Manual.Steps;
 
 /// <summary>
 /// Provides with a step that is a <b>Cell Forcing Chains</b> technique.

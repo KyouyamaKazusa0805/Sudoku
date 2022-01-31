@@ -1,12 +1,12 @@
 ﻿using Sudoku.Collections;
 using Sudoku.Data;
 using Sudoku.Presentation;
-using Sudoku.Solving.Manual.Steps.RankTheory;
+using Sudoku.Solving.Manual.Steps;
 using static System.Numerics.BitOperations;
 using static Sudoku.Constants.Tables;
 using static Sudoku.Solving.Manual.Buffer.FastProperties;
 
-namespace Sudoku.Solving.Manual.Searchers.RankTheory;
+namespace Sudoku.Solving.Manual.Searchers;
 
 /// <summary>
 /// Provides with a <b>Domino Loop</b> step searcher.

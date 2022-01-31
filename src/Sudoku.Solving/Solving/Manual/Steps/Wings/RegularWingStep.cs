@@ -5,7 +5,7 @@ using Sudoku.Solving.Manual.Text;
 using Sudoku.Techniques;
 using static System.Numerics.BitOperations;
 
-namespace Sudoku.Solving.Manual.Steps.Wings;
+namespace Sudoku.Solving.Manual.Steps;
 
 /// <summary>
 /// Provides with a step that is a <b>Regular Wing</b> technique.

@@ -5,7 +5,7 @@ using Sudoku.Solving.Manual.Text;
 using Sudoku.Techniques;
 using static System.Numerics.BitOperations;
 
-namespace Sudoku.Solving.Manual.Steps.Intersections;
+namespace Sudoku.Solving.Manual.Steps;
 
 /// <summary>
 /// Provides with a step that is an <b>Almost Locked Candidates</b> technique.
@@ -15,7 +15,7 @@ namespace Sudoku.Solving.Manual.Steps.Intersections;
 /// <param name="DigitsMask">Indicates the mask that contains the digits used.</param>
 /// <param name="BaseCells">Indicates the base cells.</param>
 /// <param name="TargetCells">Indicates the target cells.</param>
-/// <param name="HasValueCell">Indicates whether the step contians value cells.</param>
+/// <param name="HasValueCell">Indicates whether the step contains value cells.</param>
 public sealed record AlmostLockedCandidatesStep(
 	ImmutableArray<Conclusion> Conclusions,
 	ImmutableArray<PresentationData> Views,

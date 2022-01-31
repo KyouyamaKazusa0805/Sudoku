@@ -7,7 +7,7 @@ using Sudoku.Techniques;
 using static System.Numerics.BitOperations;
 using static Sudoku.Solving.Manual.Constants;
 
-namespace Sudoku.Solving.Manual.Steps.DeadlyPatterns.Universal;
+namespace Sudoku.Solving.Manual.Steps;
 
 /// <summary>
 /// Provides with a step that is a <b>Bivalue Universal Grave Type 3</b> technique.

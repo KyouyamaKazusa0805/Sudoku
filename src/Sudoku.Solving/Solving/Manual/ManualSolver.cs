@@ -2,7 +2,7 @@
 using Sudoku.Data;
 using Sudoku.Solving.Manual.Buffer;
 using Sudoku.Solving.Manual.Checkers;
-using Sudoku.Solving.Manual.Searchers.DeadlyPatterns;
+using Sudoku.Solving.Manual.Searchers;
 using static Sudoku.Solving.Manual.Buffer.FastProperties;
 
 namespace Sudoku.Solving.Manual;

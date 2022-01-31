@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Solving.Manual.Searchers.Intersections;
+﻿namespace Sudoku.Solving.Manual.Searchers;
 
 /// <summary>
 /// Defines a step searcher that searches for almost locked candidates steps.

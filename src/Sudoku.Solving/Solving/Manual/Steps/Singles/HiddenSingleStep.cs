@@ -5,7 +5,7 @@ using Sudoku.Resources;
 using Sudoku.Solving.Manual.Text;
 using Sudoku.Techniques;
 
-namespace Sudoku.Solving.Manual.Steps.Singles;
+namespace Sudoku.Solving.Manual.Steps;
 
 /// <summary>
 /// Provides with a step that is a <b>Hidden Single</b> or <b>Last Digit</b> (for special cases) technique.

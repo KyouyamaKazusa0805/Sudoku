@@ -1,11 +1,11 @@
 ﻿using Sudoku.Collections;
 using Sudoku.Data;
 using Sudoku.Presentation;
-using Sudoku.Solving.Manual.Steps.Singles;
+using Sudoku.Solving.Manual.Steps;
 using static System.Numerics.BitOperations;
 using static Sudoku.Constants.Tables;
 
-namespace Sudoku.Solving.Manual.Searchers.Singles;
+namespace Sudoku.Solving.Manual.Searchers;
 
 /// <summary>
 /// Provides with a <b>Single</b> step searcher. The step searcher will include the following techniques:

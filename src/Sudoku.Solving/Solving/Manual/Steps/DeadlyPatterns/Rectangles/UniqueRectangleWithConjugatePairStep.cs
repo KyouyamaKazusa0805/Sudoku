@@ -4,7 +4,7 @@ using Sudoku.Presentation;
 using Sudoku.Solving.Manual.Text;
 using Sudoku.Techniques;
 
-namespace Sudoku.Solving.Manual.Steps.DeadlyPatterns.Rectangles;
+namespace Sudoku.Solving.Manual.Steps;
 
 /// <summary>
 /// Provides with a step that is a <b>Unique Rectangle with Conjugate Pair(s)</b> technique.

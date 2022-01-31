@@ -2,7 +2,7 @@
 using Sudoku.Presentation;
 using Sudoku.Techniques;
 
-namespace Sudoku.Solving.Manual.Steps.DeadlyPatterns.Universal;
+namespace Sudoku.Solving.Manual.Steps;
 
 /// <summary>
 /// Provides with a step that is a <b>Bivalue Universal Grave Type 1</b> technique.

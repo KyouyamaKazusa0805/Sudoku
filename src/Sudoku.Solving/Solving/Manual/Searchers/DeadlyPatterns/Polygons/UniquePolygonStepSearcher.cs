@@ -2,13 +2,13 @@
 using Sudoku.Data;
 using Sudoku.Presentation;
 using Sudoku.Solving.Collections;
-using Sudoku.Solving.Manual.Steps.DeadlyPatterns.Polygons;
+using Sudoku.Solving.Manual.Steps;
 using static System.Numerics.BitOperations;
 using static Sudoku.Constants.Tables;
 using static Sudoku.Solving.Manual.Buffer.FastProperties;
 using static Sudoku.Solving.Manual.Constants;
 
-namespace Sudoku.Solving.Manual.Searchers.DeadlyPatterns.Polygons;
+namespace Sudoku.Solving.Manual.Searchers;
 
 /// <summary>
 /// Provides with a <b>Unique Polygon</b> step searcher.

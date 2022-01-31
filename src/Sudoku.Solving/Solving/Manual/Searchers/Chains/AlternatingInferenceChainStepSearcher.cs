@@ -2,11 +2,10 @@
 using Sudoku.Data;
 using Sudoku.Presentation;
 using Sudoku.Solving.Manual.Steps;
-using Sudoku.Solving.Manual.Steps.Chains;
 using static System.Numerics.BitOperations;
 using static Sudoku.Solving.Manual.Buffer.FastProperties;
 
-namespace Sudoku.Solving.Manual.Searchers.Chains;
+namespace Sudoku.Solving.Manual.Searchers;
 
 /// <summary>
 /// Provides with an <b>Alternating Inference Chain</b> step searcher.

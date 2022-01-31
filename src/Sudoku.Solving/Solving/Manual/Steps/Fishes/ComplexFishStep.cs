@@ -6,7 +6,7 @@ using Sudoku.Techniques;
 using static System.Numerics.BitOperations;
 using static Sudoku.Solving.Manual.Constants;
 
-namespace Sudoku.Solving.Manual.Steps.Fishes;
+namespace Sudoku.Solving.Manual.Steps;
 
 /// <summary>
 /// Provides with a step that is a <b>Complex Fish</b> technique.

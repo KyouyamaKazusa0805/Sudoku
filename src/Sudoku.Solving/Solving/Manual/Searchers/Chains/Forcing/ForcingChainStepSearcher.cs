@@ -2,13 +2,11 @@
 using Sudoku.Data;
 using Sudoku.Presentation;
 using Sudoku.Solving.Manual.Steps;
-using Sudoku.Solving.Manual.Steps.Chains;
-using Sudoku.Solving.Manual.Steps.Chains.Forcing;
 using static System.Numerics.BitOperations;
 using static Sudoku.Constants.Tables;
 using static Sudoku.Solving.Manual.Buffer.FastProperties;
 
-namespace Sudoku.Solving.Manual.Searchers.Chains.Forcing;
+namespace Sudoku.Solving.Manual.Searchers;
 
 /// <summary>
 /// Provides with a <b>Forcing Chains</b> step searcher.

@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Solving.Manual.Searchers.Singles;
+﻿namespace Sudoku.Solving.Manual.Searchers;
 
 /// <summary>
 /// Defines a step searcher that searches for single steps.

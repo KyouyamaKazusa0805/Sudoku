@@ -2,7 +2,7 @@
 using Sudoku.Data;
 using Sudoku.Presentation;
 
-namespace Sudoku.Solving.Manual.Steps.DeadlyPatterns.Loops;
+namespace Sudoku.Solving.Manual.Steps;
 
 /// <summary>
 /// Provides with a step that is a <b>Unique Loop Type 1</b> technique.

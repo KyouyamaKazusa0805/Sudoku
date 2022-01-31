@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Solving.Manual.Steps.Fishes;
+﻿namespace Sudoku.Solving.Manual.Steps;
 
 partial record ComplexFishStep
 {

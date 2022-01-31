@@ -1,5 +1,5 @@
 ﻿using Sudoku.Resources;
-using Sudoku.Solving.Manual.Steps.Singles;
+using Sudoku.Solving.Manual.Steps;
 using static System.Math;
 
 namespace Sudoku.Solving.Manual;

@@ -7,7 +7,7 @@ using Sudoku.Solving.Manual.Text;
 using Sudoku.Techniques;
 using static System.Numerics.BitOperations;
 
-namespace Sudoku.Solving.Manual.Steps.DeadlyPatterns.Qiu;
+namespace Sudoku.Solving.Manual.Steps;
 
 /// <summary>
 /// Provides with a step that is a <b>Qiu's Deadly Pattern Type 3</b> technique.

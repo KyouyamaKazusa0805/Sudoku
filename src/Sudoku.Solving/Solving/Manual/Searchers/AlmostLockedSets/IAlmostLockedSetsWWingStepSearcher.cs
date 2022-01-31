@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Solving.Manual.Searchers.AlmostLockedSets;
+﻿namespace Sudoku.Solving.Manual.Searchers;
 
 /// <summary>
 /// Defines a step searcher that searches for almost locked sets W-Wing steps.

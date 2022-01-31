@@ -5,7 +5,7 @@ using Sudoku.Solving.Collections;
 using Sudoku.Solving.Manual.Text;
 using Sudoku.Techniques;
 
-namespace Sudoku.Solving.Manual.Steps.AlmostLockedSets;
+namespace Sudoku.Solving.Manual.Steps;
 
 /// <summary>
 /// Provides with a step that is an <b>Almost Locked Sets XY-Wing</b> technique.

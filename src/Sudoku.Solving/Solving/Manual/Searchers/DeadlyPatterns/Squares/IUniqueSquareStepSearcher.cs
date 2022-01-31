@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Solving.Manual.Searchers.DeadlyPatterns.Squares;
+﻿namespace Sudoku.Solving.Manual.Searchers;
 
 /// <summary>
 /// Defines a step searcher that searches for unique sqaure steps.

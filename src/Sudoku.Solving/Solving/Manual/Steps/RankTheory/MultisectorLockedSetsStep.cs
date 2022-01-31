@@ -5,7 +5,7 @@ using Sudoku.Solving.Manual.Text;
 using Sudoku.Techniques;
 using static System.Math;
 
-namespace Sudoku.Solving.Manual.Steps.RankTheory;
+namespace Sudoku.Solving.Manual.Steps;
 
 /// <summary>
 /// Provides with a step that is a <b>Multi-sector Locked Sets</b> technique.

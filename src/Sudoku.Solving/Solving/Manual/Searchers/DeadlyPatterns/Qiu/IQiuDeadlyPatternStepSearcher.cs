@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Solving.Manual.Searchers.DeadlyPatterns.Qiu;
+﻿namespace Sudoku.Solving.Manual.Searchers;
 
 /// <summary>
 /// Defines a step searcher that searches for Qiu's deadly pattern steps.

@@ -1,8 +1,8 @@
 ﻿using Sudoku.Collections;
 using Sudoku.Data;
-using Sudoku.Solving.Manual.Steps.LastResorts;
+using Sudoku.Solving.Manual.Steps;
 
-namespace Sudoku.Solving.Manual.Searchers.LastResorts;
+namespace Sudoku.Solving.Manual.Searchers;
 
 /// <summary>
 /// Provides with a <b>Pattern Overlay</b> step searcher.

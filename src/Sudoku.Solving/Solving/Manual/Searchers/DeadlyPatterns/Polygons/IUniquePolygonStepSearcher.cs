@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Solving.Manual.Searchers.DeadlyPatterns.Polygons;
+﻿namespace Sudoku.Solving.Manual.Searchers;
 
 /// <summary>
 /// Defines a step that searches for unique polygon steps.

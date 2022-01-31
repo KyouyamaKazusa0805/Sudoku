@@ -1,13 +1,11 @@
 ﻿using Sudoku.Collections;
 using Sudoku.Data;
 using Sudoku.Presentation;
-using Sudoku.Solving.Manual.Searchers.Singles;
-using Sudoku.Solving.Manual.Steps.LastResorts;
-using Sudoku.Solving.Manual.Steps.Singles;
+using Sudoku.Solving.Manual.Steps;
 using static Sudoku.Constants.Tables;
 using static Sudoku.Solving.Manual.Buffer.FastProperties;
 
-namespace Sudoku.Solving.Manual.Searchers.LastResorts;
+namespace Sudoku.Solving.Manual.Searchers;
 
 /// <summary>
 /// Provides with a <b>Bowman's Bingo</b> step searcher.

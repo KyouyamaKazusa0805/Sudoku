@@ -2,7 +2,7 @@
 using Sudoku.Presentation;
 using Sudoku.Techniques;
 
-namespace Sudoku.Solving.Manual.Steps.Intersections;
+namespace Sudoku.Solving.Manual.Steps;
 
 /// <summary>
 /// Provides with a step that is an <b>Intersection</b> technique.

@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Solving.Manual.Searchers.DeadlyPatterns.Rectangles;
+﻿namespace Sudoku.Solving.Manual.Searchers;
 
 /// <summary>
 /// Defines a step searcher that searches for unique rectangle steps.

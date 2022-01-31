@@ -2,14 +2,13 @@
 using Sudoku.Data;
 using Sudoku.Presentation;
 using Sudoku.Solving.Manual.Steps;
-using Sudoku.Solving.Manual.Steps.DeadlyPatterns.Rectangles;
 using Sudoku.Techniques;
 using static System.Numerics.BitOperations;
 using static Sudoku.Constants.Tables;
 using static Sudoku.Solving.Manual.Buffer.FastProperties;
 using static Sudoku.Solving.Manual.Constants;
 
-namespace Sudoku.Solving.Manual.Searchers.DeadlyPatterns.Rectangles;
+namespace Sudoku.Solving.Manual.Searchers;
 
 /// <summary>
 /// Provides with a <b>Unique Rectangle</b> step searcher.

@@ -3,7 +3,7 @@ using Sudoku.Data;
 using Sudoku.Presentation;
 using Sudoku.Techniques;
 
-namespace Sudoku.Solving.Manual.Steps.RankTheory;
+namespace Sudoku.Solving.Manual.Steps;
 
 /// <summary>
 /// Provides with a step that is a <b>Bi-value Oddagon</b> technique.

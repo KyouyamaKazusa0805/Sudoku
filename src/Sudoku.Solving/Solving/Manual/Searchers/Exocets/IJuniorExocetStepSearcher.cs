@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Solving.Manual.Searchers.Exocets;
+﻿namespace Sudoku.Solving.Manual.Searchers;
 
 /// <summary>
 /// Defines a step searcher that searches for junior exocet steps.

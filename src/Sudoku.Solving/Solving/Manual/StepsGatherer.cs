@@ -1,7 +1,7 @@
 ﻿using Sudoku.Collections;
 using Sudoku.Solving.Manual.Buffer;
 using Sudoku.Solving.Manual.Checkers;
-using Sudoku.Solving.Manual.Searchers.DeadlyPatterns.Rectangles;
+using Sudoku.Solving.Manual.Searchers;
 using static Sudoku.Solving.Manual.Buffer.FastProperties;
 
 namespace Sudoku.Solving.Manual;

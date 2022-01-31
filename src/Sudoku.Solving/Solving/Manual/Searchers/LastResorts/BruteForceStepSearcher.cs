@@ -1,9 +1,9 @@
 ﻿using Sudoku.Collections;
 using Sudoku.Data;
 using Sudoku.Presentation;
-using Sudoku.Solving.Manual.Steps.LastResorts;
+using Sudoku.Solving.Manual.Steps;
 
-namespace Sudoku.Solving.Manual.Searchers.LastResorts;
+namespace Sudoku.Solving.Manual.Searchers;
 
 /// <summary>
 /// Provides with a <b>Brute Force</b> step searcher.

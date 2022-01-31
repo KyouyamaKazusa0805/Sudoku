@@ -1,7 +1,7 @@
 ﻿using Sudoku.Data;
 using static Sudoku.Constants.Tables;
 
-namespace Sudoku.Solving.Manual.Searchers.DeadlyPatterns.Loops;
+namespace Sudoku.Solving.Manual.Searchers;
 
 /// <summary>
 /// Defines a step searcher that searches for unique loop steps.

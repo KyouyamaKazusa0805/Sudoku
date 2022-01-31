@@ -1,12 +1,12 @@
 ﻿using Sudoku.Collections;
 using Sudoku.Data;
 using Sudoku.Presentation;
-using Sudoku.Solving.Manual.Steps.Intersections;
+using Sudoku.Solving.Manual.Steps;
 using static System.Numerics.BitOperations;
 using static Sudoku.Constants.Tables;
 using static Sudoku.Solving.Manual.Buffer.FastProperties;
 
-namespace Sudoku.Solving.Manual.Searchers.Intersections;
+namespace Sudoku.Solving.Manual.Searchers;
 
 /// <summary>
 /// Provides with an <b>Almost Locked Candidates</b> step searcher.

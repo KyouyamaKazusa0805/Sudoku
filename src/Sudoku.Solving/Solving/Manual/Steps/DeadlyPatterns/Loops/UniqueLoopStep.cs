@@ -3,10 +3,8 @@ using Sudoku.Data;
 using Sudoku.Presentation;
 using Sudoku.Solving.Manual.Text;
 using Sudoku.Techniques;
-using U3 = Sudoku.Solving.Manual.Steps.DeadlyPatterns.Loops.UniqueLoopType3Step;
-using U4 = Sudoku.Solving.Manual.Steps.DeadlyPatterns.Loops.UniqueLoopType4Step;
 
-namespace Sudoku.Solving.Manual.Steps.DeadlyPatterns.Loops;
+namespace Sudoku.Solving.Manual.Steps;
 
 /// <summary>
 /// Provides with a step that is a <b>Unique Loop</b> technique.
@@ -84,8 +82,14 @@ public abstract record UniqueLoopStep(
 		&& (1 << left.Digit1 | 1 << left.Digit2) == (1 << right.Digit1 | 1 << right.Digit2)
 		&& (Left: left, Right: right) switch
 		{
-			(Left: U3 { SubsetDigitsMask: var a }, Right: U3 { SubsetDigitsMask: var b }) => a == b,
-			(Left: U4 { ConjugatePair: var a }, Right: U4 { ConjugatePair: var b }) => a == b,
+			(
+				Left: UniqueLoopType3Step { SubsetDigitsMask: var a },
+				Right: UniqueLoopType3Step { SubsetDigitsMask: var b }
+			) => a == b,
+			(
+				Left: UniqueLoopType4Step { ConjugatePair: var a },
+				Right: UniqueLoopType4Step { ConjugatePair: var b }
+			) => a == b,
 			_ => true
 		};
 }

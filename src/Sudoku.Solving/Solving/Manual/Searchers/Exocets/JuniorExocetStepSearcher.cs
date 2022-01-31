@@ -1,6 +1,6 @@
 ﻿using Sudoku.Collections;
 
-namespace Sudoku.Solving.Manual.Searchers.Exocets;
+namespace Sudoku.Solving.Manual.Searchers;
 
 /// <summary>
 /// Provides with a <b>Junior Exocet</b> step searcher.

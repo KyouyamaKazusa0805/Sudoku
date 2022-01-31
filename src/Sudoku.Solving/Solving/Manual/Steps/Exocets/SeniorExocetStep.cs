@@ -5,7 +5,7 @@ using Sudoku.Solving.Collections;
 using Sudoku.Solving.Manual.Text;
 using Sudoku.Techniques;
 
-namespace Sudoku.Solving.Manual.Steps.Exocets;
+namespace Sudoku.Solving.Manual.Steps;
 
 /// <summary>
 /// Provides with a step that is a <b>Senior Exocet</b> technique.

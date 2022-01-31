@@ -3,17 +3,6 @@ using Sudoku.Collections;
 using Sudoku.Data;
 using Sudoku.Presentation;
 using Sudoku.Resources;
-using Sudoku.Solving.Manual.Searchers.AlmostLockedSets;
-using Sudoku.Solving.Manual.Searchers.Chains.Forcing;
-using Sudoku.Solving.Manual.Searchers.DeadlyPatterns.Extended;
-using Sudoku.Solving.Manual.Searchers.DeadlyPatterns.Loops;
-using Sudoku.Solving.Manual.Searchers.DeadlyPatterns.Polygons;
-using Sudoku.Solving.Manual.Searchers.DeadlyPatterns.Qiu;
-using Sudoku.Solving.Manual.Searchers.DeadlyPatterns.Rectangles;
-using Sudoku.Solving.Manual.Searchers.DeadlyPatterns.Squares;
-using Sudoku.Solving.Manual.Searchers.DeadlyPatterns.Universal;
-using Sudoku.Solving.Manual.Searchers.SingleDigitPatterns;
-using Sudoku.Solving.Manual.Searchers.Wings;
 using Sudoku.Solving.Manual.Text;
 using Sudoku.Techniques;
 
