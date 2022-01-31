@@ -125,8 +125,8 @@ public unsafe partial struct Grid : IGrid<Grid>
 	/// </summary>
 	/// <param name="pGridValues">The pointer parameter indicating the array of cell digits.</param>
 	/// <param name="creatingOption">The grid creating option.</param>
-	public Grid(int* pGridValues, GridCreatingOption creatingOption = GridCreatingOption.None) :
-		this(*pGridValues, creatingOption)
+	public Grid(int* pGridValues, GridCreatingOption creatingOption = GridCreatingOption.None)
+		: this(*pGridValues, creatingOption)
 	{
 	}
 
@@ -233,7 +233,10 @@ public unsafe partial struct Grid : IGrid<Grid>
 		fixed (short* p = Empty._values)
 		{
 			int i = 0;
-			for (short* ptrP = p; i < 81; *ptrP++ = DefaultMask, i++) ;
+			for (short* ptrP = p; i < 81; i++)
+			{
+				*ptrP++ = DefaultMask;
+			}
 		}
 
 		// Initializes events.
