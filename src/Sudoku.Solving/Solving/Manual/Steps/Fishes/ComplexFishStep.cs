@@ -65,12 +65,13 @@ public sealed partial record ComplexFishStep(
 		+ (IsFranken ? FrankenShapeDiffExtra[Size] : MutantShapeDiffExtra[Size]); // Shape difficulty.
 
 	/// <inheritdoc/>
-	public override DifficultyLevel DifficultyLevel => Size switch
-	{
-		2 => DifficultyLevel.Hard,
-		3 or 4 => DifficultyLevel.Fiendish,
-		_ => DifficultyLevel.Nightmare
-	};
+	public override DifficultyLevel DifficultyLevel =>
+		Size switch
+		{
+			2 => DifficultyLevel.Hard,
+			3 or 4 => DifficultyLevel.Fiendish,
+			_ => DifficultyLevel.Nightmare
+		};
 
 	/// <inheritdoc/>
 	public override Technique TechniqueCode => GetComplexFishTechniqueCodeFromName(InternalName);

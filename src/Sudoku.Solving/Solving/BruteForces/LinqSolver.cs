@@ -1,5 +1,4 @@
 ﻿using Sudoku.Collections;
-using static System.Math;
 
 namespace Sudoku.Solving.BruteForces;
 
@@ -52,7 +51,7 @@ public sealed class LinqSolver : IPuzzleSolver
 					from i in Enumerable.Range(0, 9)
 					let duplicatesInRow = solution[index - pair.Column + i] == digit
 					let duplicatesInColumn = solution[pair.Column + i * 9] == digit
-					let duplicatesInBlock = solution[pair.Block + i % 3 + (int)Floor(i / 3F) * 9] == digit
+					let duplicatesInBlock = solution[pair.Block + i % 3 + (int)(i / 3F) * 9] == digit
 					where duplicatesInRow || duplicatesInColumn || duplicatesInBlock
 					select i
 				where !duplicateCases.Any()

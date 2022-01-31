@@ -7313,11 +7313,6 @@
             <param name="Views"><inheritdoc/></param>
             <param name="Candidates">Indicates the true candidates.</param>
         </member>
-        <member name="F:Sudoku.Solving.Manual.Steps.BivalueUniversalGraveMultipleStep.ExtraDifficulty">
-            <summary>
-            The table of extra difficulty values.
-            </summary>
-        </member>
         <member name="P:Sudoku.Solving.Manual.Steps.BivalueUniversalGraveMultipleStep.Name">
             <inheritdoc/>
         </member>

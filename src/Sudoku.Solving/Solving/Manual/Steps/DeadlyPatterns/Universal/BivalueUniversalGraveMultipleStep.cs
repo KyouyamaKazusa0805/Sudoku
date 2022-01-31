@@ -3,6 +3,7 @@ using Sudoku.Data;
 using Sudoku.Presentation;
 using Sudoku.Solving.Manual.Text;
 using Sudoku.Techniques;
+using static System.Algorithm.Sequences;
 
 namespace Sudoku.Solving.Manual.Steps;
 
@@ -18,21 +19,11 @@ public sealed record BivalueUniversalGraveMultipleStep(
 	IReadOnlyList<int> Candidates
 ) : BivalueUniversalGraveStep(Conclusions, Views)
 {
-	/// <summary>
-	/// The table of extra difficulty values.
-	/// </summary>
-	private static readonly decimal[] ExtraDifficulty =
-	{
-		.1M, .2M, .2M, .3M, .3M, .3M, .4M, .4M, .4M, .4M,
-		.5M, .5M, .5M, .5M, .5M, .6M, .6M, .6M
-	};
-
-
 	/// <inheritdoc/>
 	public override string Name => $"{base.Name} + {Candidates.Count}";
 
 	/// <inheritdoc/>
-	public override decimal Difficulty => base.Difficulty + .1M + ExtraDifficulty[Candidates.Count - 1];
+	public override decimal Difficulty => base.Difficulty + .1M + A002024(Candidates.Count) * .1M;
 
 	/// <inheritdoc/>
 	public override Technique TechniqueCode => Technique.BivalueUniversalGravePlusN;
