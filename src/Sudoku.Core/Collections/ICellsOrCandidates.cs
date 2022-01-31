@@ -229,8 +229,11 @@ internal interface ICellsOrCandidates<[Self] T> :
 	static abstract T operator ^(in T left, in T right);
 
 	/// <summary>
-	/// Simply calls <c><![CDATA[(a & b).PeerIntersection & b]]></c>.
-	/// The operator is used for searching for and checking eliminations.
+	/// <para>
+	/// Simply expands the code to <c><![CDATA[(a & b).PeerIntersection & b]]></c>,
+	/// where <c>PeerIntersection</c> corresponds to the property <see cref="PeerIntersection"/>.
+	/// </para>
+	/// <para>The operator is used for searching for and checking eliminations.</para>
 	/// </summary>
 	/// <param name="base">The base map.</param>
 	/// <param name="template">The template map that the base map to check and cover.</param>

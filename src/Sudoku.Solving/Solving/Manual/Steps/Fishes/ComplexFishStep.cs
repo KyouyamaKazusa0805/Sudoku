@@ -79,10 +79,11 @@ public sealed partial record ComplexFishStep(
 	public override TechniqueGroup TechniqueGroup => TechniqueGroup.ComplexFish;
 
 	/// <inheritdoc/>
-	public override Rarity Rarity => (Size, ShapeModifier, FinModifier) switch
-	{
-		(Size: 3, _, _) => Rarity.Sometimes
-	};
+	public override Rarity Rarity =>
+		(Size, ShapeModifier, FinModifier) switch
+		{
+			(Size: 3, _, _) => Rarity.Sometimes
+		};
 
 	/// <summary>
 	/// Indicates the base hash code.
@@ -115,12 +116,13 @@ public sealed partial record ComplexFishStep(
 	/// <summary>
 	/// Indicates the fin modifier.
 	/// </summary>
-	private FinModifiers FinModifier => IsSashimi switch
-	{
-		true => FinModifiers.Sashimi,
-		false => FinModifiers.Finned,
-		_ => FinModifiers.Normal
-	};
+	private FinModifiers FinModifier =>
+		IsSashimi switch
+		{
+			true => FinModifiers.Sashimi,
+			false => FinModifiers.Finned,
+			_ => FinModifiers.Normal
+		};
 
 	/// <summary>
 	/// The shape modifier.

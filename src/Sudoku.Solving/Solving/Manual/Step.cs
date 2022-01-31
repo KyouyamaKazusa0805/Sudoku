@@ -3,6 +3,7 @@ using Sudoku.Collections;
 using Sudoku.Data;
 using Sudoku.Presentation;
 using Sudoku.Resources;
+using Sudoku.Solving.Manual.Searchers;
 using Sudoku.Solving.Manual.Text;
 using Sudoku.Techniques;
 
@@ -33,7 +34,9 @@ public abstract record Step(ImmutableArray<Conclusion> Conclusions, ImmutableArr
 	/// <item>
 	/// Wings
 	/// <list type="bullet">
-	/// <item><see cref="IRegularWingStepSearcher">Regular wings</see> (XY-Wing, XYZ-Wing, WXYZ-Wing, etc.)</item>
+	/// <item>
+	/// <see cref="IRegularWingStepSearcher">Regular wings</see> (XY-Wing, XYZ-Wing, WXYZ-Wing, etc.)
+	/// </item>
 	/// <item>
 	/// <see cref="IIregularWingStepSearcher">Irregular wings</see>
 	/// (W-Wing, M-Wing, Split-Wing, Local-Wing, Hybrid-Wing)
@@ -44,7 +47,8 @@ public abstract record Step(ImmutableArray<Conclusion> Conclusions, ImmutableArr
 	/// Short chains
 	/// <list type="bullet">
 	/// <item>
-	/// <see cref="ITwoStrongLinksStepSearcher">Two strong links</see> (Skyscraper, Two-string kite, Turbot fish)
+	/// <see cref="ITwoStrongLinksStepSearcher">Two strong links</see>
+	/// (Skyscraper, Two-string kite, Turbot fish)
 	/// </item>
 	/// <item>
 	/// ALS chaining-like techniques

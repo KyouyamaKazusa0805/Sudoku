@@ -1,5 +1,6 @@
 ﻿using Sudoku.Data;
 using Sudoku.Presentation;
+using Sudoku.Solving.Manual.Searchers;
 using Sudoku.Techniques;
 using static Sudoku.Solving.Manual.Steps.IChainStep;
 
@@ -28,9 +29,14 @@ namespace Sudoku.Solving.Manual.Steps;
 /// Indicates whether the chain is about the technique <b>Dynamic Forcing chains</b>.
 /// </param>
 /// <param name="Level">
-/// Indicates the level of the dynamic case. The dynamic level contains 6 possible values, which is corresponding
-/// to the digit 0, 1, 2, 3, 4 and 5. For more information, please visit the step searcher to check
-/// the property <see cref="IDynamicForcingChainStepSearcher.Level"/>
+/// <para>
+/// Indicates the level of the dynamic case. The dynamic level contains 6 possible values
+/// corresponding to the digit 0, 1, 2, 3, 4 and 5.
+/// </para>
+/// <para>
+/// For more information, please visit the step searcher to check
+/// the property <see cref="IDynamicForcingChainStepSearcher.Level"/>.
+/// </para>
 /// </param>
 public abstract record ChainStep(
 	ImmutableArray<Conclusion> Conclusions,

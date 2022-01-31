@@ -672,7 +672,7 @@ public unsafe struct Cells : ICellsOrCandidates<Cells>, ISimpleParseable<Cells>
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public readonly bool Contains(int offset) =>
-		((offset / Shifting == 0 ? _low : _high) >> offset % Shifting & 1) != 0;
+		((offset < Shifting ? _low : _high) >> offset % Shifting & 1) != 0;
 
 	/// <inheritdoc cref="object.Equals(object?)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

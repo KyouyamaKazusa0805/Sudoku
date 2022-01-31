@@ -452,22 +452,22 @@
         <member name="T:Sudoku.Solving.Collections.ExocetElimination">
             <summary>
             Defines an elimination that is created by searchers
-            <see cref="!:IJuniorExocetStepSearcher"/> and <see cref="!:ISeniorExocetStepSearcher"/>.
+            <see cref="T:Sudoku.Solving.Manual.Searchers.IJuniorExocetStepSearcher"/> and <see cref="T:Sudoku.Solving.Manual.Searchers.ISeniorExocetStepSearcher"/>.
             </summary>
             <param name="Eliminations">Indicates the eliminations.</param>
             <param name="Reason">Indicates the reason why these candidates can be eliminated.</param>
-            <seealso cref="!:IJuniorExocetStepSearcher"/>
-            <seealso cref="!:ISeniorExocetStepSearcher"/>
+            <seealso cref="T:Sudoku.Solving.Manual.Searchers.IJuniorExocetStepSearcher"/>
+            <seealso cref="T:Sudoku.Solving.Manual.Searchers.ISeniorExocetStepSearcher"/>
         </member>
         <member name="M:Sudoku.Solving.Collections.ExocetElimination.#ctor(Sudoku.Collections.Candidates@,Sudoku.Solving.Collections.ExocetEliminatedReason)">
             <summary>
             Defines an elimination that is created by searchers
-            <see cref="!:IJuniorExocetStepSearcher"/> and <see cref="!:ISeniorExocetStepSearcher"/>.
+            <see cref="T:Sudoku.Solving.Manual.Searchers.IJuniorExocetStepSearcher"/> and <see cref="T:Sudoku.Solving.Manual.Searchers.ISeniorExocetStepSearcher"/>.
             </summary>
             <param name="Eliminations">Indicates the eliminations.</param>
             <param name="Reason">Indicates the reason why these candidates can be eliminated.</param>
-            <seealso cref="!:IJuniorExocetStepSearcher"/>
-            <seealso cref="!:ISeniorExocetStepSearcher"/>
+            <seealso cref="T:Sudoku.Solving.Manual.Searchers.IJuniorExocetStepSearcher"/>
+            <seealso cref="T:Sudoku.Solving.Manual.Searchers.ISeniorExocetStepSearcher"/>
         </member>
         <member name="P:Sudoku.Solving.Collections.ExocetElimination.Count">
             <summary>
@@ -4952,9 +4952,11 @@
             <item>
             Wings
             <list type="bullet">
-            <item><see cref="!:IRegularWingStepSearcher">Regular wings</see> (XY-Wing, XYZ-Wing, WXYZ-Wing, etc.)</item>
             <item>
-            <see cref="!:IIregularWingStepSearcher">Irregular wings</see>
+            <see cref="T:Sudoku.Solving.Manual.Searchers.IRegularWingStepSearcher">Regular wings</see> (XY-Wing, XYZ-Wing, WXYZ-Wing, etc.)
+            </item>
+            <item>
+            <see cref="T:Sudoku.Solving.Manual.Searchers.IIregularWingStepSearcher">Irregular wings</see>
             (W-Wing, M-Wing, Split-Wing, Local-Wing, Hybrid-Wing)
             </item>
             </list>
@@ -4963,24 +4965,25 @@
             Short chains
             <list type="bullet">
             <item>
-            <see cref="!:ITwoStrongLinksStepSearcher">Two strong links</see> (Skyscraper, Two-string kite, Turbot fish)
+            <see cref="T:Sudoku.Solving.Manual.Searchers.ITwoStrongLinksStepSearcher">Two strong links</see>
+            (Skyscraper, Two-string kite, Turbot fish)
             </item>
             <item>
             ALS chaining-like techniques
             <list type="bullet">
-            <item><see cref="!:IAlmostLockedSetsXzStepSearcher">ALS-XZ</see></item>
-            <item><see cref="!:IAlmostLockedSetsXyWingStepSearcher">ALS-XY-Wing</see></item>
-            <item><see cref="!:IAlmostLockedSetsWWingStepSearcher">ALS-W-Wing</see></item>
+            <item><see cref="T:Sudoku.Solving.Manual.Searchers.IAlmostLockedSetsXzStepSearcher">ALS-XZ</see></item>
+            <item><see cref="T:Sudoku.Solving.Manual.Searchers.IAlmostLockedSetsXyWingStepSearcher">ALS-XY-Wing</see></item>
+            <item><see cref="T:Sudoku.Solving.Manual.Searchers.IAlmostLockedSetsWWingStepSearcher">ALS-W-Wing</see></item>
             </list>
             </item>
-            <item><see cref="!:IEmptyRectangleStepSearcher">Empty rectangle</see></item>
+            <item><see cref="T:Sudoku.Solving.Manual.Searchers.IEmptyRectangleStepSearcher">Empty rectangle</see></item>
             </list>
             </item>
             <item>
             Long chains
             <list type="bullet">
-            <item><see cref="!:IForcingChainStepSearcher">Forcing chains</see></item>
-            <item><see cref="!:IDynamicForcingChainStepSearcher">Dynamic forcing chains</see></item>
+            <item><see cref="T:Sudoku.Solving.Manual.Searchers.IForcingChainStepSearcher">Forcing chains</see></item>
+            <item><see cref="T:Sudoku.Solving.Manual.Searchers.IDynamicForcingChainStepSearcher">Dynamic forcing chains</see></item>
             </list>
             </item>
             </list>
@@ -4994,20 +4997,20 @@
             <item>
             Bi-value patterns
             <list type="bullet">
-            <item><see cref="!:IUniqueRectangleStepSearcher">Unique rectangle</see> (i.e. Uniqueness test)</item>
-            <item><see cref="!:IUniqueLoopStepSearcher">Unique loop</see></item>
-            <item><see cref="!:IBivalueUniversalGraveStepSearcher">Bi-value universal grave</see></item>
+            <item><see cref="T:Sudoku.Solving.Manual.Searchers.IUniqueRectangleStepSearcher">Unique rectangle</see> (i.e. Uniqueness test)</item>
+            <item><see cref="T:Sudoku.Solving.Manual.Searchers.IUniqueLoopStepSearcher">Unique loop</see></item>
+            <item><see cref="T:Sudoku.Solving.Manual.Searchers.IBivalueUniversalGraveStepSearcher">Bi-value universal grave</see></item>
             </list>
             </item>
             <item>
             Multi-value patterns
             <list type="bullet">
-            <item><see cref="!:IExtendedRectangleStepSearcher">Extended rectangle</see></item>
-            <item><see cref="!:IUniqueSquareStepSearcher">Unique square</see></item>
+            <item><see cref="T:Sudoku.Solving.Manual.Searchers.IExtendedRectangleStepSearcher">Extended rectangle</see></item>
+            <item><see cref="T:Sudoku.Solving.Manual.Searchers.IUniqueSquareStepSearcher">Unique square</see></item>
             <item>
-            <see cref="!:IUniquePolygonStepSearcher">Unique polygon</see> (Borescoper's deadly pattern as its alias)
+            <see cref="T:Sudoku.Solving.Manual.Searchers.IUniquePolygonStepSearcher">Unique polygon</see> (Borescoper's deadly pattern as its alias)
             </item>
-            <item><see cref="!:IQiuDeadlyPatternStepSearcher">Qiu's deadly pattern</see></item>
+            <item><see cref="T:Sudoku.Solving.Manual.Searchers.IQiuDeadlyPatternStepSearcher">Qiu's deadly pattern</see></item>
             </list>
             </item>
             <!--
@@ -5462,9 +5465,14 @@
             Indicates whether the chain is about the technique <b>Dynamic Forcing chains</b>.
             </param>
             <param name="Level">
-            Indicates the level of the dynamic case. The dynamic level contains 6 possible values, which is corresponding
-            to the digit 0, 1, 2, 3, 4 and 5. For more information, please visit the step searcher to check
-            the property <see cref="!:IDynamicForcingChainStepSearcher.Level"/>
+            <para>
+            Indicates the level of the dynamic case. The dynamic level contains 6 possible values
+            corresponding to the digit 0, 1, 2, 3, 4 and 5.
+            </para>
+            <para>
+            For more information, please visit the step searcher to check
+            the property <see cref="P:Sudoku.Solving.Manual.Searchers.IDynamicForcingChainStepSearcher.Level"/>.
+            </para>
             </param>
         </member>
         <member name="M:Sudoku.Solving.Manual.Steps.ChainStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Data.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.PresentationData},System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Byte)">
@@ -5491,9 +5499,14 @@
             Indicates whether the chain is about the technique <b>Dynamic Forcing chains</b>.
             </param>
             <param name="Level">
-            Indicates the level of the dynamic case. The dynamic level contains 6 possible values, which is corresponding
-            to the digit 0, 1, 2, 3, 4 and 5. For more information, please visit the step searcher to check
-            the property <see cref="!:IDynamicForcingChainStepSearcher.Level"/>
+            <para>
+            Indicates the level of the dynamic case. The dynamic level contains 6 possible values
+            corresponding to the digit 0, 1, 2, 3, 4 and 5.
+            </para>
+            <para>
+            For more information, please visit the step searcher to check
+            the property <see cref="P:Sudoku.Solving.Manual.Searchers.IDynamicForcingChainStepSearcher.Level"/>.
+            </para>
             </param>
         </member>
         <member name="P:Sudoku.Solving.Manual.Steps.ChainStep.ShowDifficulty">
