@@ -36,9 +36,18 @@ public static unsafe class PointerMarshal
 	/// </remarks>
 	public static int StringLengthOf(char* ptr)
 	{
+#if true
 		int result = 0;
-		for (char* p = ptr; *p != '\0'; p++, result++) ;
+		for (char* p = ptr; *p != '\0'; p++)
+		{
+			result++;
+		}
+
 		return result;
+#else
+		// This expression works but also causes extra memory allocations.
+		return new string(ptr).Length;
+#endif
 	}
 
 	/// <summary>

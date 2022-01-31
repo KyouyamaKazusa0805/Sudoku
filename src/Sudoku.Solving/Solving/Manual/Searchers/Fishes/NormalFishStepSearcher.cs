@@ -218,10 +218,19 @@ public sealed unsafe class NormalFishStepSearcher : INormalFishStepSearcher
 					}
 					if (withFin)
 					{
-						foreach (int cell in fins) candidateOffsets.Add((cell * 9 + digit, (ColorIdentifier)1));
+						foreach (int cell in fins)
+						{
+							candidateOffsets.Add((cell * 9 + digit, (ColorIdentifier)1));
+						}
 					}
-					foreach (int baseSet in bs) regionOffsets.Add((baseSet, (ColorIdentifier)0));
-					foreach (int coverSet in cs) regionOffsets.Add((coverSet, (ColorIdentifier)2));
+					foreach (int baseSet in bs)
+					{
+						regionOffsets.Add((baseSet, (ColorIdentifier)0));
+					}
+					foreach (int coverSet in cs)
+					{
+						regionOffsets.Add((coverSet, (ColorIdentifier)2));
+					}
 
 					// Gather the result.
 					var step = new NormalFishStep(
@@ -304,8 +313,14 @@ public sealed unsafe class NormalFishStepSearcher : INormalFishStepSearcher
 						}
 
 						Cells baseMap = Cells.Empty, coverMap = Cells.Empty;
-						foreach (int b in baseSets) baseMap |= RegionMaps[b];
-						foreach (int c in coverSets) coverMap |= RegionMaps[c];
+						foreach (int b in baseSets)
+						{
+							baseMap |= RegionMaps[b];
+						}
+						foreach (int c in coverSets)
+						{
+							coverMap |= RegionMaps[c];
+						}
 						baseMap &= coverMap;
 						if (baseMap.Contains(cell))
 						{
@@ -319,8 +334,14 @@ public sealed unsafe class NormalFishStepSearcher : INormalFishStepSearcher
 			}
 		}
 
-		foreach (int cell in ValueMaps[digit]) cellOffsets.Add((cell, (ColorIdentifier)2));
-		foreach (int cell in fins) candidateOffsets!.Add((cell * 9 + digit, (ColorIdentifier)1));
+		foreach (int cell in ValueMaps[digit])
+		{
+			cellOffsets.Add((cell, (ColorIdentifier)2));
+		}
+		foreach (int cell in fins)
+		{
+			candidateOffsets!.Add((cell * 9 + digit, (ColorIdentifier)1));
+		}
 
 		return new() { Cells = cellOffsets, Candidates = candidateOffsets };
 	}

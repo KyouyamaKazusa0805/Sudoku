@@ -1,4 +1,6 @@
-﻿using Sudoku.Collections;
+﻿#pragma warning disable IDE0011
+
+using Sudoku.Collections;
 using Sudoku.Diagnostics.CodeAnalysis;
 
 namespace Sudoku.Solving;
