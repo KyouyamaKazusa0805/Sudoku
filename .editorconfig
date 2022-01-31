@@ -486,6 +486,9 @@ tab_width = 2
 end_of_line = crlf
 insert_final_newline = false
 
+
+### XAML files
+
 [*.xaml]
 
 # Indentation and spacing
