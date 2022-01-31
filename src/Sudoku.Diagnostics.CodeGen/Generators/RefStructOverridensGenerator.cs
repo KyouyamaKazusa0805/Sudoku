@@ -169,7 +169,10 @@ partial struct {type.Name}{genericParameterList}
 		// Get outer types.
 		var outerTypes = new Stack<(INamedTypeSymbol Type, int Indenting)>();
 		int outerTypesCount = 0;
-		for (var o = type.ContainingType; o is not null; o = o.ContainingType, outerTypesCount++) ;
+		for (var o = type.ContainingType; o is not null; o = o.ContainingType)
+		{
+			outerTypesCount++;
+		}
 
 		string methodIndenting = new('\t', outerTypesCount + 1);
 		string typeIndenting = new('\t', outerTypesCount);

@@ -145,8 +145,14 @@ public sealed unsafe class UniqueLoopStepSearcher : IUniqueLoopStepSearcher, IUn
 	{
 		int extraCell = extraCellsMap[0];
 		var conclusions = new List<Conclusion>(2);
-		if (grid.Exists(extraCell, d1) is true) conclusions.Add(new(ConclusionType.Elimination, extraCell, d1));
-		if (grid.Exists(extraCell, d2) is true) conclusions.Add(new(ConclusionType.Elimination, extraCell, d2));
+		if (grid.Exists(extraCell, d1) is true)
+		{
+			conclusions.Add(new(ConclusionType.Elimination, extraCell, d1));
+		}
+		if (grid.Exists(extraCell, d2) is true)
+		{
+			conclusions.Add(new(ConclusionType.Elimination, extraCell, d2));
+		}
 		if (conclusions.Count == 0)
 		{
 			goto ReturnNull;

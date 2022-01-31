@@ -1,4 +1,6 @@
-﻿using System.ComponentModel;
+﻿#pragma warning disable IDE0011
+
+using System.ComponentModel;
 using Sudoku.Presentation;
 using static System.Numerics.BitOperations;
 using static Sudoku.Constants;
@@ -1045,7 +1047,10 @@ public unsafe struct Cells : ICellsOrCandidates<Cells>, ISimpleParseable<Cells>
 				// Find the index of the character 'C'.
 				// The regular expression guaranteed the string must contain the character 'C' or 'c',
 				// so we don't need to check '*p != '\0''.
-				for (; *anchorC is not ('C' or 'c'/* or '\0'*/); anchorC++) ;
+				while (*anchorC is not ('C' or 'c'/* or '\0'*/))
+				{
+					anchorC++;
+				}
 			}
 
 			// Stores the possible values into the buffer.

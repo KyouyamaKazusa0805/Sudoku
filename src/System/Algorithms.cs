@@ -26,15 +26,18 @@ public static unsafe class Algorithms
 				var middle = @this[(l + r) / 2];
 				while (true)
 				{
-					while (i < r && comparer(@this[i], middle) < 0) i++;
-					while (j > 0 && comparer(@this[j], middle) > 0) j--;
-					if (i == j) break;
+					while (i < r && comparer(@this[i], middle) < 0) { i++; }
+					while (j > 0 && comparer(@this[j], middle) > 0) { j--; }
+					if (i == j)
+					{
+						break;
+					}
 
 					var temp = @this[i];
 					@this[i] = @this[j];
 					@this[j] = temp;
 
-					if (comparer(@this[i], @this[j]) == 0) j--;
+					if (comparer(@this[i], @this[j]) == 0) { j--; }
 				}
 
 				q(l, i, @this, comparer);
@@ -70,15 +73,18 @@ public static unsafe class Algorithms
 				var middle = @this[(l + r) / 2];
 				while (true)
 				{
-					while (i < r && comparer(@this[i], middle) < 0) i++;
-					while (j > 0 && comparer(@this[j], middle) > 0) j--;
-					if (i == j) break;
+					while (i < r && comparer(@this[i], middle) < 0) { i++; }
+					while (j > 0 && comparer(@this[j], middle) > 0) { j--; }
+					if (i == j)
+					{
+						break;
+					}
 
 					var temp = @this[i];
 					@this[i] = @this[j];
 					@this[j] = temp;
 
-					if (comparer(@this[i], @this[j]) == 0) j--;
+					if (comparer(@this[i], @this[j]) == 0) { j--; }
 				}
 
 				q(l, i, @this, comparer);

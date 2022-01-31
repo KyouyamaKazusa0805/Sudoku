@@ -57,9 +57,9 @@ public sealed unsafe class AlternatingInferenceChainStepSearcher : IAlternatingI
 	public Step? GetAll(ICollection<Step> accumulator, in Grid grid, bool onlyFindOne)
 	{
 		var list = new List<ChainStep>();
-		if (GetAll(list, grid, xEnabled: true, yEnabled: false, onlyFindOne) is { } step1) return step1;
-		if (GetAll(list, grid, xEnabled: false, yEnabled: true, onlyFindOne) is { } step2) return step2;
-		if (GetAll(list, grid, xEnabled: true, yEnabled: true, onlyFindOne) is { } step3) return step3;
+		if (GetAll(list, grid, xEnabled: true, yEnabled: false, onlyFindOne) is { } step1) { return step1; }
+		if (GetAll(list, grid, xEnabled: false, yEnabled: true, onlyFindOne) is { } step2) { return step2; }
+		if (GetAll(list, grid, xEnabled: true, yEnabled: true, onlyFindOne) is { } step3) { return step3; }
 
 		if (list.Count == 0)
 		{

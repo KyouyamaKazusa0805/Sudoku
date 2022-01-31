@@ -141,7 +141,9 @@ public sealed class CoreConstantsGenerator : ISourceGenerator
 					{
 						cells[x++] = j;
 						if (x >= 9)
+						{
 							break;
+						}
 					}
 				}
 				regionCells[regionLabel] = cells;

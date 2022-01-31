@@ -149,10 +149,10 @@ public unsafe interface IBivalueUniversalGraveStepSearcher : IUniversalStepSearc
 						}
 					}
 
-					if (!@continue) break;
+					if (!@continue) { break; }
 				}
 
-				if (@continue) break;
+				if (@continue) { break; }
 			}
 
 			if (@continue)

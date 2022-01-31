@@ -145,10 +145,10 @@ public sealed unsafe class TrueCandidatesSearcher
 						}
 					}
 
-					if (!@continue) break;
+					if (!@continue) { break; }
 				}
 
-				if (@continue) break;
+				if (@continue) { break; }
 			}
 
 			if (@continue)

@@ -57,7 +57,7 @@ public interface IPatternOverlayStepSearcher : ILastResortStepSearcher
 	/// <returns>The templates.</returns>
 	protected static IEnumerable<Cells> GetTemplates()
 	{
-#pragma warning disable IDE0055
+#pragma warning disable IDE0011, IDE0055
 		for (int i1 = 0; i1 < 9; i1++)
 		for (int i2 = 0; i2 < 9; i2++)
 		if (i2 / 3 != i1 / 3)
@@ -80,6 +80,6 @@ public interface IPatternOverlayStepSearcher : ILastResortStepSearcher
 			1 << i4 | 1 << (i5 + 9) | 1 << (i6 + 18),
 			1 << i7 | 1 << (i8 + 9) | 1 << (i9 + 18)
 		);
-#pragma warning restore IDE0055
+#pragma warning restore IDE0011, IDE0055
 	}
 }

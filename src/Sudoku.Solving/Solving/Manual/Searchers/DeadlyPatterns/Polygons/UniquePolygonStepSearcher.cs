@@ -247,7 +247,10 @@ public sealed unsafe class UniquePolygonStepSearcher : IUniquePolygonStepSearche
 			short cornerMask1 = (short)(grid.GetCandidates(p11) | grid.GetCandidates(p12));
 			short cornerMask2 = (short)(grid.GetCandidates(p21) | grid.GetCandidates(p22));
 			short centerMask = (short)((short)(grid.GetCandidates(c1) | grid.GetCandidates(c2)) | grid.GetCandidates(c3));
-			if (map.Count == 8) centerMask |= grid.GetCandidates(c4);
+			if (map.Count == 8)
+			{
+				centerMask |= grid.GetCandidates(c4);
+			}
 
 			if (CheckType1(accumulator, grid, pattern, onlyFindOne, cornerMask1, cornerMask2, centerMask, map) is { } type1Step)
 			{

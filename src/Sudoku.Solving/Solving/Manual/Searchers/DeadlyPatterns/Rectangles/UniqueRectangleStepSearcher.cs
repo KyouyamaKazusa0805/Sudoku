@@ -428,8 +428,14 @@ public sealed unsafe class UniqueRectangleStepSearcher : IUniqueRectangleStepSea
 		}
 
 		var conclusions = new List<Conclusion>(2);
-		if (d1Exists) conclusions.Add(new(ConclusionType.Elimination, cornerCell, d1));
-		if (d2Exists) conclusions.Add(new(ConclusionType.Elimination, cornerCell, d2));
+		if (d1Exists)
+		{
+			conclusions.Add(new(ConclusionType.Elimination, cornerCell, d1));
+		}
+		if (d2Exists)
+		{
+			conclusions.Add(new(ConclusionType.Elimination, cornerCell, d2));
+		}
 
 		var candidateOffsets = new List<(int, ColorIdentifier)>(6);
 		foreach (int cell in otherCellsMap)
@@ -1792,8 +1798,14 @@ public sealed unsafe class UniqueRectangleStepSearcher : IUniqueRectangleStepSea
 			var conclusions = new List<Conclusion>(10);
 			foreach (int cell in inter & PeerMaps[possibleXyCell])
 			{
-				if (grid.Exists(cell, x) is true) conclusions.Add(new(ConclusionType.Elimination, cell, x));
-				if (grid.Exists(cell, y) is true) conclusions.Add(new(ConclusionType.Elimination, cell, y));
+				if (grid.Exists(cell, x) is true)
+				{
+					conclusions.Add(new(ConclusionType.Elimination, cell, x));
+				}
+				if (grid.Exists(cell, y) is true)
+				{
+					conclusions.Add(new(ConclusionType.Elimination, cell, y));
+				}
 			}
 			if (conclusions.Count == 0)
 			{
@@ -1910,8 +1922,14 @@ public sealed unsafe class UniqueRectangleStepSearcher : IUniqueRectangleStepSea
 			}
 
 			var conclusions = new List<Conclusion>(2);
-			if (grid.Exists(abxCell, a) is true) conclusions.Add(new(ConclusionType.Elimination, abxCell, a));
-			if (grid.Exists(abyCell, b) is true) conclusions.Add(new(ConclusionType.Elimination, abyCell, b));
+			if (grid.Exists(abxCell, a) is true)
+			{
+				conclusions.Add(new(ConclusionType.Elimination, abxCell, a));
+			}
+			if (grid.Exists(abyCell, b) is true)
+			{
+				conclusions.Add(new(ConclusionType.Elimination, abyCell, b));
+			}
 			if (conclusions.Count == 0)
 			{
 				continue;
@@ -2438,8 +2456,14 @@ public sealed unsafe class UniqueRectangleStepSearcher : IUniqueRectangleStepSea
 				}
 
 				var conclusions = new List<Conclusion>(2);
-				if (grid.Exists(head, b) is true) conclusions.Add(new(ConclusionType.Elimination, head, b));
-				if (grid.Exists(extra, b) is true) conclusions.Add(new(ConclusionType.Elimination, extra, b));
+				if (grid.Exists(head, b) is true)
+				{
+					conclusions.Add(new(ConclusionType.Elimination, head, b));
+				}
+				if (grid.Exists(extra, b) is true)
+				{
+					conclusions.Add(new(ConclusionType.Elimination, extra, b));
+				}
 				if (conclusions.Count == 0)
 				{
 					continue;
@@ -4054,7 +4078,10 @@ public sealed unsafe class UniqueRectangleStepSearcher : IUniqueRectangleStepSea
 					}
 
 					var cellOffsets = new List<(int, ColorIdentifier)>();
-					foreach (int cell in urCells) cellOffsets.Add((cell, (ColorIdentifier)0));
+					foreach (int cell in urCells)
+					{
+						cellOffsets.Add((cell, (ColorIdentifier)0));
+					}
 
 					var candidateOffsets = new List<(int, ColorIdentifier)>
 					{

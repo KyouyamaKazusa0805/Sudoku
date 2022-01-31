@@ -145,22 +145,34 @@ public static partial class BitOperationsExensions
 		);
 
 		foreach (string name in GetAllSetsTypes)
+		{
 			sb.AppendLine($"\tpublic static partial ReadOnlySpan<int> GetAllSets(this {name} @this);");
+		}
 		sb.AppendLine();
 		foreach (string name in GetEnumeratorTypes)
+		{
 			sb.AppendLine($"\tpublic static partial ReadOnlySpan<int>.Enumerator GetEnumerator(this {name} @this);");
+		}
 		sb.AppendLine();
 		foreach (var (name, _) in GetNextSetTypes)
+		{
 			sb.AppendLine($"\tpublic static partial int GetNextSet(this {name} @this, int index);");
+		}
 		sb.AppendLine();
 		foreach (var (name, _) in ReverseBitsTypes)
+		{
 			sb.AppendLine($"\tpublic static partial void ReverseBits(this ref {name} @this);");
+		}
 		sb.AppendLine();
 		foreach (string name in SetAtTypes)
+		{
 			sb.AppendLine($"\tpublic static partial int SetAt(this {name} @this, int order);");
+		}
 		sb.AppendLine();
 		foreach (string name in SkipSetBitTypes)
+		{
 			sb.AppendLine($"\tpublic static partial {name} SkipSetBit(this {name} @this, int setBitPosCount);");
+		}
 		return sb.Append("}\r\n").ToString();
 	}
 

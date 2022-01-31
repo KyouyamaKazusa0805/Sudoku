@@ -1,5 +1,7 @@
 ﻿using Sudoku.Collections;
 using Sudoku.Diagnostics.CodeAnalysis;
+using static System.Algorithm.Sequences;
+using static System.Math;
 using static System.Numerics.BitOperations;
 
 namespace Sudoku.Data;
@@ -133,7 +135,7 @@ partial struct GridFormatter
 				int maxLength = 0;
 				for (int p = 0; p < 9; p++)
 				{
-					maxLength = Math.Max(maxLength, builders[p * 9 + column].Length);
+					maxLength = Max(maxLength, builders[p * 9 + column].Length);
 				}
 
 				span[column] = maxLength;
@@ -388,14 +390,14 @@ partial struct GridFormatter
 					candidatesCount += PopCount((uint)value);
 
 					// Compares the values.
-					int comparer = Math.Max(
+					int comparer = Max(
 						candidatesCount,
 						Grid.MaskToStatus(value) switch
 						{
 							// The output will be '<digit>' and consist of 3 characters.
-							CellStatus.Given => Math.Max(candidatesCount, 3),
+							CellStatus.Given => Max(candidatesCount, 3),
 							// The output will be '*digit*' and consist of 3 characters.
-							CellStatus.Modifiable => Math.Max(candidatesCount, 3),
+							CellStatus.Modifiable => Max(candidatesCount, 3),
 							// Normal output: 'series' (at least 1 character).
 							_ => candidatesCount,
 						}
@@ -415,31 +417,44 @@ partial struct GridFormatter
 				{
 					case 0: // Print tabs of the first line.
 					{
-						if (SubtleGridLines) printTabLines(ref sb, '.', '.', '-', maxLengths);
-						else printTabLines(ref sb, '+', '+', '-', maxLengths);
+						if (SubtleGridLines)
+						{
+							printTabLines(ref sb, '.', '.', '-', maxLengths);
+						}
+						else
+						{
+							printTabLines(ref sb, '+', '+', '-', maxLengths);
+						}
 						break;
 					}
 					case 4:
 					case 8: // Print tabs of mediate lines.
 					{
-						if (SubtleGridLines) printTabLines(ref sb, ':', '+', '-', maxLengths);
-						else printTabLines(ref sb, '+', '+', '-', maxLengths);
+						if (SubtleGridLines)
+						{
+							printTabLines(ref sb, ':', '+', '-', maxLengths);
+						}
+						else
+						{
+							printTabLines(ref sb, '+', '+', '-', maxLengths);
+						}
 						break;
 					}
 					case 12: // Print tabs of the foot line.
 					{
-						if (SubtleGridLines) printTabLines(ref sb, '\'', '\'', '-', maxLengths);
-						else printTabLines(ref sb, '+', '+', '-', maxLengths);
+						if (SubtleGridLines)
+						{
+							printTabLines(ref sb, '\'', '\'', '-', maxLengths);
+						}
+						else
+						{
+							printTabLines(ref sb, '+', '+', '-', maxLengths);
+						}
 						break;
 					}
 					default: // Print values and tabs.
 					{
-						p(this, ref sb, valuesByRow[i switch
-						{
-							1 or 2 or 3 or 4 => i - 1,
-							5 or 6 or 7 or 8 => i - 2,
-							9 or 10 or 11 or 12 => i - 3
-						}], '|', '|', maxLengths);
+						p(this, ref sb, valuesByRow[A057353(i)], '|', '|', maxLengths);
 
 						break;
 

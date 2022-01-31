@@ -69,9 +69,9 @@ public sealed unsafe class LockedCandidatesStepSearcher : ILockedCandidatesStepS
 
 			// Gather the masks in cells A, B and C.
 			short maskA = 0, maskB = 0, maskC = 0;
-			foreach (int cell in a) maskA |= grid.GetCandidates(cell);
-			foreach (int cell in b) maskB |= grid.GetCandidates(cell);
-			foreach (int cell in c) maskC |= grid.GetCandidates(cell);
+			foreach (int cell in a) { maskA |= grid.GetCandidates(cell); }
+			foreach (int cell in b) { maskB |= grid.GetCandidates(cell); }
+			foreach (int cell in c) { maskC |= grid.GetCandidates(cell); }
 
 			// Use the formula, and check whether the equation is correct.
 			// If so, the mask 'm' will hold the digits that form locked candidates structures.

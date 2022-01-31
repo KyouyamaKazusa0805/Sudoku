@@ -97,10 +97,22 @@ public sealed unsafe class UniqueSquareStepSearcher : IUniqueSquareStepSearcher
 				mask |= grid.GetCandidates(cell);
 			}
 
-			if (CheckType1(accumulator, grid, onlyFindOne, pattern, mask) is { } type1Step) return type1Step;
-			if (CheckType2(accumulator, onlyFindOne, pattern, mask) is { } type2Step) return type2Step;
-			if (CheckType3(accumulator, grid, onlyFindOne, pattern, mask) is { } type3Step) return type3Step;
-			if (CheckType4(accumulator, grid, onlyFindOne, pattern, mask) is { } type4Step) return type4Step;
+			if (CheckType1(accumulator, grid, onlyFindOne, pattern, mask) is { } type1Step)
+			{
+				return type1Step;
+			}
+			if (CheckType2(accumulator, onlyFindOne, pattern, mask) is { } type2Step)
+			{
+				return type2Step;
+			}
+			if (CheckType3(accumulator, grid, onlyFindOne, pattern, mask) is { } type3Step)
+			{
+				return type3Step;
+			}
+			if (CheckType4(accumulator, grid, onlyFindOne, pattern, mask) is { } type4Step)
+			{
+				return type4Step;
+			}
 		}
 
 		return null;
