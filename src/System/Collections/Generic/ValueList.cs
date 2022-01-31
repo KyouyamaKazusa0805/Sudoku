@@ -86,6 +86,13 @@ public unsafe ref partial struct ValueList<TUnmanaged> where TUnmanaged : unmana
 		get => ref _startPtr[index];
 	}
 
+	/// <inheritdoc cref="this[byte]"/>
+	public readonly ref TUnmanaged this[Index index]
+	{
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		get => ref _startPtr[index.GetOffset(_length)];
+	}
+
 
 	/// <summary>
 	/// Adds the element to the current list.
@@ -128,7 +135,79 @@ public unsafe ref partial struct ValueList<TUnmanaged> where TUnmanaged : unmana
 		_startPtr = null;
 	}
 
+	/// <inheritdoc cref="object.ToString"/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public override readonly string ToString() => ToString(null);
+
+	/// <summary>
+	/// Returns a string that represents the current object with the custom format string.
+	/// </summary>
+	/// <param name="format">The format.</param>
+	/// <returns>The string that represents the current object.</returns>
+	/// <exception cref="FormatException">Throws when the specified format is invalid.</exception>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public readonly string ToString(string? format)
+	{
+		return format switch
+		{
+			null or "L" or "l" => $"ValueList<{typeof(TUnmanaged).Name}> {{ Count = {_length}, Capacity = {_capacity} }}",
+			"C" or "c" => toContentString(this),
+			"S" or "s" => $"ValueList<{typeof(TUnmanaged).Name}> {{ Size = {sizeof(TUnmanaged) * _length} }}",
+			_ => throw new FormatException("The specified format doesn't support.")
+		};
+
+
+		static string toContentString(in ValueList<TUnmanaged> @this)
+		{
+			const string separator = ", ";
+			var sb = new StringHandler();
+			foreach (var element in @this)
+			{
+				sb.Append(element.ToString()!);
+				sb.Append(separator);
+			}
+
+			sb.RemoveFromEnd(separator.Length);
+			return $"[{sb.ToStringAndClear()}]";
+		}
+	}
+
 	/// <inheritdoc cref="IEnumerable{T}.GetEnumerator"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public readonly Enumerator GetEnumerator() => new(this);
+
+	/// <summary>
+	/// Converts the current instance into an array of type <typeparamref name="TUnmanaged"/>.
+	/// </summary>
+	/// <returns>The array of elements of type <typeparamref name="TUnmanaged"/>.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public readonly TUnmanaged[] ToArray()
+	{
+		var result = new TUnmanaged[_length];
+		fixed (TUnmanaged* pResult = result)
+		{
+			Unsafe.CopyBlock(pResult, _startPtr, (uint)(sizeof(TUnmanaged) * _length));
+		}
+
+		return result;
+	}
+
+	/// <summary>
+	/// Converts the current instance into an array of type <typeparamref name="TUnmanaged"/>,
+	/// and release the memory.
+	/// </summary>
+	/// <returns>The array of elements of type <typeparamref name="TUnmanaged"/>.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public TUnmanaged[] ToArrayAndClear()
+	{
+		var result = new TUnmanaged[_length];
+		fixed (TUnmanaged* pResult = result)
+		{
+			Unsafe.CopyBlock(pResult, _startPtr, (uint)(sizeof(TUnmanaged) * _length));
+		}
+
+		Dispose();
+
+		return result;
+	}
 }

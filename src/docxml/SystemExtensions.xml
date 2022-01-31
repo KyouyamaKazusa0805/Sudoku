@@ -280,6 +280,9 @@
             <param name="index">The index.</param>
             <returns>The reference to the element at the specified index.</returns>
         </member>
+        <member name="P:System.Collections.Generic.ValueList`1.Item(System.Index)">
+            <inheritdoc cref="P:System.Collections.Generic.ValueList`1.Item(System.Byte)"/>
+        </member>
         <member name="M:System.Collections.Generic.ValueList`1.Add(`0)">
             <summary>
             Adds the element to the current list.
@@ -305,8 +308,32 @@
             </i></remarks>
             <seealso cref="M:System.Collections.Generic.ValueList`1.#ctor(System.Byte)"/>
         </member>
+        <member name="M:System.Collections.Generic.ValueList`1.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
+        <member name="M:System.Collections.Generic.ValueList`1.ToString(System.String)">
+            <summary>
+            Returns a string that represents the current object with the custom format string.
+            </summary>
+            <param name="format">The format.</param>
+            <returns>The string that represents the current object.</returns>
+            <exception cref="T:System.FormatException">Throws when the specified format is invalid.</exception>
+        </member>
         <member name="M:System.Collections.Generic.ValueList`1.GetEnumerator">
             <inheritdoc cref="M:System.Collections.Generic.IEnumerable`1.GetEnumerator"/>
+        </member>
+        <member name="M:System.Collections.Generic.ValueList`1.ToArray">
+            <summary>
+            Converts the current instance into an array of type <typeparamref name="TUnmanaged"/>.
+            </summary>
+            <returns>The array of elements of type <typeparamref name="TUnmanaged"/>.</returns>
+        </member>
+        <member name="M:System.Collections.Generic.ValueList`1.ToArrayAndClear">
+            <summary>
+            Converts the current instance into an array of type <typeparamref name="TUnmanaged"/>,
+            and release the memory.
+            </summary>
+            <returns>The array of elements of type <typeparamref name="TUnmanaged"/>.</returns>
         </member>
         <member name="T:System.Collections.Generic.ValueList`1.Enumerator">
             <summary>
@@ -353,10 +380,6 @@
         </member>
         <member name="M:System.Collections.Generic.ValueList`1.GetHashCode">
             <inheritdoc cref="M:System.Object.GetHashCode"/>
-            <exception cref="T:System.NotSupportedException">Always throws.</exception>
-        </member>
-        <member name="M:System.Collections.Generic.ValueList`1.ToString">
-            <inheritdoc cref="M:System.Object.ToString"/>
             <exception cref="T:System.NotSupportedException">Always throws.</exception>
         </member>
         <member name="T:System.Collections.Generic.CollectionExtensions">
