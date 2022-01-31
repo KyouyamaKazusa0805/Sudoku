@@ -40,7 +40,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Source Generator Projects",
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UI Projects", "UI Projects", "{319301BA-08D0-4603-82D9-5001BD6359F4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sudoku.UI", "src\Sudoku.UI\Sudoku.UI.csproj", "{C77EC482-143E-47C1-9524-BC3BAE815838}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sudoku.UI", "src\Sudoku.UI\Sudoku.UI.csproj", "{C77EC482-143E-47C1-9524-BC3BAE815838}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
