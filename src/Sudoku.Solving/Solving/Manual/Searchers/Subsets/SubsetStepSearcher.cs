@@ -1,6 +1,7 @@
 ﻿using Sudoku.Collections;
 using Sudoku.Presentation;
 using Sudoku.Solving.Manual.Steps;
+using static System.Algorithm.Combinatorics;
 using static System.Numerics.BitOperations;
 using static Sudoku.Constants.Tables;
 using static Sudoku.Solving.Manual.Buffer.FastProperties;

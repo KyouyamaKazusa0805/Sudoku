@@ -1,4 +1,6 @@
-﻿namespace Sudoku.Solving.Manual;
+﻿using static System.Algorithm.Combinatorics;
+
+namespace Sudoku.Solving.Manual;
 
 /// <summary>
 /// Provides with a serial of methods that handles with masks.
