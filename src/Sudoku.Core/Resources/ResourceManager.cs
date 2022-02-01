@@ -3,21 +3,21 @@
 /// <summary>
 /// Defines an external resource manager.
 /// </summary>
-public sealed class ExternalResourceManager :
-	IEquatable<ExternalResourceManager>,
-	IEqualityOperators<ExternalResourceManager, ExternalResourceManager>
+public sealed class ResourceManager :
+	IEquatable<ResourceManager>,
+	IEqualityOperators<ResourceManager, ResourceManager>
 {
 	/// <summary>
 	/// Indicates the external resource manager.
 	/// </summary>
-	public static readonly ExternalResourceManager Shared = new();
+	public static readonly ResourceManager Shared = new();
 
 
 	/// <summary>
-	/// Initializes a <see cref="ExternalResourceManager"/> instance.
+	/// Initializes a <see cref="ResourceManager"/> instance.
 	/// </summary>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	private ExternalResourceManager()
+	private ResourceManager()
 	{
 	}
 
@@ -52,17 +52,17 @@ public sealed class ExternalResourceManager :
 	/// <summary>
 	/// Defines the inner collection to store documents.
 	/// </summary>
-	public event ExternalResourceRouter? Routers;
+	public event ResourceRouter? Routers;
 
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public override bool Equals([NotNullWhen(true)] object? obj) =>
-		obj is ExternalResourceManager comparer && Equals(comparer);
+		obj is ResourceManager comparer && Equals(comparer);
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public bool Equals([NotNullWhen(true)] ExternalResourceManager? other) =>
+	public bool Equals([NotNullWhen(true)] ResourceManager? other) =>
 		other is not null && Routers == other.Routers;
 
 	/// <inheritdoc/>
@@ -71,13 +71,13 @@ public sealed class ExternalResourceManager :
 
 
 	/// <summary>
-	/// Determine whether two <see cref="ExternalResourceManager"/>s are equal.
+	/// Determine whether two <see cref="ResourceManager"/>s are equal.
 	/// </summary>
 	/// <param name="left">The left-side instance to compare.</param>
 	/// <param name="right">The right-side instance to compare.</param>
 	/// <returns>A <see cref="bool"/> result.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static bool Equals(ExternalResourceManager? left, ExternalResourceManager? right) =>
+	public static bool Equals(ResourceManager? left, ResourceManager? right) =>
 		(Left: left, Right: right) switch
 		{
 			(Left: null, Right: null) => true,
@@ -87,22 +87,22 @@ public sealed class ExternalResourceManager :
 
 
 	/// <summary>
-	/// Determine whether two <see cref="ExternalResourceManager"/>s are equal.
+	/// Determine whether two <see cref="ResourceManager"/>s are equal.
 	/// </summary>
 	/// <param name="left">The left-side instance to compare.</param>
 	/// <param name="right">The right-side instance to compare.</param>
 	/// <returns>A <see cref="bool"/> result.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static bool operator ==(ExternalResourceManager? left, ExternalResourceManager? right) =>
+	public static bool operator ==(ResourceManager? left, ResourceManager? right) =>
 		Equals(left, right);
 
 	/// <summary>
-	/// Determine whether two <see cref="ExternalResourceManager"/>s are not equal.
+	/// Determine whether two <see cref="ResourceManager"/>s are not equal.
 	/// </summary>
 	/// <param name="left">The left-side instance to compare.</param>
 	/// <param name="right">The right-side instance to compare.</param>
 	/// <returns>A <see cref="bool"/> result.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static bool operator !=(ExternalResourceManager? left, ExternalResourceManager? right) =>
+	public static bool operator !=(ResourceManager? left, ResourceManager? right) =>
 		!Equals(left, right);
 }

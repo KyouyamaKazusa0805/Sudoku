@@ -41,7 +41,7 @@ public sealed record HiddenSingleStep(
 
 	/// <inheritdoc/>
 	public override string Format =>
-		ExternalResourceManager.Shared[EnableAndIsLastDigit ? "techniqueFormat_LastDigit" : "techniqueFormat_HiddenSingle"];
+		ResourceManager.Shared[EnableAndIsLastDigit ? "techniqueFormat_LastDigit" : "techniqueFormat_HiddenSingle"];
 
 	[FormatItem]
 	private string CellStr

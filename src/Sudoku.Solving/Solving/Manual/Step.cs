@@ -125,7 +125,7 @@ public abstract record Step(ImmutableArray<Conclusion> Conclusions, ImmutableArr
 				}
 			}
 
-			return ExternalResourceManager.Shared[techniqueCodeStr];
+			return ResourceManager.Shared[techniqueCodeStr];
 		}
 	}
 
@@ -137,7 +137,7 @@ public abstract record Step(ImmutableArray<Conclusion> Conclusions, ImmutableArr
 			try
 			{
 				var type = GetType();
-				return ExternalResourceManager.Shared[
+				return ResourceManager.Shared[
 					type.GetCustomAttribute<FormatForwardAttribute>() is { IdentifierName: var name }
 						? $"techniqueFormat_{name}"
 						: $"techniqueFormat_{type.Name}"

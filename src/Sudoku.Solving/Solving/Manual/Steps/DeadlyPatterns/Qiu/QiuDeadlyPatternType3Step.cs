@@ -51,6 +51,6 @@ public sealed record QiuDeadlyPatternType3Step(
 	private string SubsetName
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => ExternalResourceManager.Shared[$"subsetNames{ExtraCells.Count + 1}"];
+		get => ResourceManager.Shared[$"subsetNames{ExtraCells.Count + 1}"];
 	}
 }

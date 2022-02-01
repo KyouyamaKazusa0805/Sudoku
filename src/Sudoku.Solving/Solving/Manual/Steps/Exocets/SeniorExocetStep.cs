@@ -46,7 +46,7 @@ public sealed record SeniorExocetStep(
 		get
 		{
 			const string separator = ", ";
-			string endoTargetSnippet = ExternalResourceManager.Shared["endoTarget"];
+			string endoTargetSnippet = ResourceManager.Shared["endoTarget"];
 			string endoTargetStr = $"{endoTargetSnippet}{EndoTargetCellStr}";
 			if (ExtraRegionsMask is not null)
 			{
@@ -70,7 +70,7 @@ public sealed record SeniorExocetStep(
 				{
 					sb.RemoveFromEnd(separator.Length);
 
-					string extraRegionsIncluded = ExternalResourceManager.Shared["includedExtraRegions"];
+					string extraRegionsIncluded = ResourceManager.Shared["includedExtraRegions"];
 					return $"{endoTargetStr}{extraRegionsIncluded}{sb.ToStringAndClear()}";
 				}
 			}

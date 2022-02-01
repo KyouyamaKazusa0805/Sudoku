@@ -31,7 +31,7 @@ public partial class App : Application
 		// In this way, we can just use the unified code to get the resource.
 		// The classic way to get the resource is 'Application.Current.Resources[key]',
 		// Now we can use 'ExternalResourceManager.Shared[key]'.
-		ExternalResourceManager.Shared.Routers += static key => Current.Resources[key] as string;
+		ResourceManager.Shared.Routers += static key => Current.Resources[key] as string;
 	}
 
 
@@ -44,7 +44,7 @@ public partial class App : Application
 	/// <param name="args">Details about the launch request and process.</param>
 	protected override void OnLaunched(LaunchActivatedEventArgs args)
 	{
-		_window = new MainWindow { Title = ExternalResourceManager.Shared["ProgramName"] };
+		_window = new MainWindow { Title = ResourceManager.Shared["ProgramName"] };
 		_window.Activate();
 	}
 }

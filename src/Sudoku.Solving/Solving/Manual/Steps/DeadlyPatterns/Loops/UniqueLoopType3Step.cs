@@ -50,7 +50,7 @@ public sealed record UniqueLoopType3Step(
 	private string SubsetName
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => ExternalResourceManager.Shared[$"subsetNames{SubsetCells.Count + 1}"];
+		get => ResourceManager.Shared[$"subsetNames{SubsetCells.Count + 1}"];
 	}
 
 	/// <inheritdoc/>

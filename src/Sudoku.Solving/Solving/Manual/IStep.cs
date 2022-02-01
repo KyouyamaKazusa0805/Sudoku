@@ -90,7 +90,7 @@ public interface IStep
 	/// </para>
 	/// <para>
 	/// If you want to use the values in the resource documents, just use the property
-	/// <see cref="ExternalResourceManager.Shared"/> is okay:
+	/// <see cref="ResourceManager.Shared"/> is okay:
 	/// <code>
 	/// public override string Format => ResourceDocumentManager.Shared["TheKeyYouWantToSearch"];
 	/// </code>
@@ -98,7 +98,7 @@ public interface IStep
 	/// </remarks>
 	/// <seealso cref="ToString"/>
 	/// <seealso cref="ToFullString"/>
-	/// <seealso cref="ExternalResourceManager.Shared"/>
+	/// <seealso cref="ResourceManager.Shared"/>
 	string? Format { get; }
 
 	/// <summary>

@@ -5562,22 +5562,22 @@
         <member name="P:Sudoku.Presentation.UnknownValue.System#IDefaultable{Sudoku#Presentation#UnknownValue}#Default">
             <inheritdoc/>
         </member>
-        <member name="T:Sudoku.Resources.ExternalResourceManager">
+        <member name="T:Sudoku.Resources.ResourceManager">
             <summary>
             Defines an external resource manager.
             </summary>
         </member>
-        <member name="F:Sudoku.Resources.ExternalResourceManager.Shared">
+        <member name="F:Sudoku.Resources.ResourceManager.Shared">
             <summary>
             Indicates the external resource manager.
             </summary>
         </member>
-        <member name="M:Sudoku.Resources.ExternalResourceManager.#ctor">
+        <member name="M:Sudoku.Resources.ResourceManager.#ctor">
             <summary>
-            Initializes a <see cref="T:Sudoku.Resources.ExternalResourceManager"/> instance.
+            Initializes a <see cref="T:Sudoku.Resources.ResourceManager"/> instance.
             </summary>
         </member>
-        <member name="P:Sudoku.Resources.ExternalResourceManager.Item(System.String)">
+        <member name="P:Sudoku.Resources.ResourceManager.Item(System.String)">
             <summary>
             Try to get the property value via the property value, using the specified LCID.
             </summary>
@@ -5587,45 +5587,45 @@
             Throws when the specified property name cannot be found.
             </exception>
         </member>
-        <member name="E:Sudoku.Resources.ExternalResourceManager.Routers">
+        <member name="E:Sudoku.Resources.ResourceManager.Routers">
             <summary>
             Defines the inner collection to store documents.
             </summary>
         </member>
-        <member name="M:Sudoku.Resources.ExternalResourceManager.Equals(System.Object)">
+        <member name="M:Sudoku.Resources.ResourceManager.Equals(System.Object)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Resources.ExternalResourceManager.Equals(Sudoku.Resources.ExternalResourceManager)">
+        <member name="M:Sudoku.Resources.ResourceManager.Equals(Sudoku.Resources.ResourceManager)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Resources.ExternalResourceManager.GetHashCode">
+        <member name="M:Sudoku.Resources.ResourceManager.GetHashCode">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Resources.ExternalResourceManager.Equals(Sudoku.Resources.ExternalResourceManager,Sudoku.Resources.ExternalResourceManager)">
+        <member name="M:Sudoku.Resources.ResourceManager.Equals(Sudoku.Resources.ResourceManager,Sudoku.Resources.ResourceManager)">
             <summary>
-            Determine whether two <see cref="T:Sudoku.Resources.ExternalResourceManager"/>s are equal.
+            Determine whether two <see cref="T:Sudoku.Resources.ResourceManager"/>s are equal.
             </summary>
             <param name="left">The left-side instance to compare.</param>
             <param name="right">The right-side instance to compare.</param>
             <returns>A <see cref="T:System.Boolean"/> result.</returns>
         </member>
-        <member name="M:Sudoku.Resources.ExternalResourceManager.op_Equality(Sudoku.Resources.ExternalResourceManager,Sudoku.Resources.ExternalResourceManager)">
+        <member name="M:Sudoku.Resources.ResourceManager.op_Equality(Sudoku.Resources.ResourceManager,Sudoku.Resources.ResourceManager)">
             <summary>
-            Determine whether two <see cref="T:Sudoku.Resources.ExternalResourceManager"/>s are equal.
+            Determine whether two <see cref="T:Sudoku.Resources.ResourceManager"/>s are equal.
             </summary>
             <param name="left">The left-side instance to compare.</param>
             <param name="right">The right-side instance to compare.</param>
             <returns>A <see cref="T:System.Boolean"/> result.</returns>
         </member>
-        <member name="M:Sudoku.Resources.ExternalResourceManager.op_Inequality(Sudoku.Resources.ExternalResourceManager,Sudoku.Resources.ExternalResourceManager)">
+        <member name="M:Sudoku.Resources.ResourceManager.op_Inequality(Sudoku.Resources.ResourceManager,Sudoku.Resources.ResourceManager)">
             <summary>
-            Determine whether two <see cref="T:Sudoku.Resources.ExternalResourceManager"/>s are not equal.
+            Determine whether two <see cref="T:Sudoku.Resources.ResourceManager"/>s are not equal.
             </summary>
             <param name="left">The left-side instance to compare.</param>
             <param name="right">The right-side instance to compare.</param>
             <returns>A <see cref="T:System.Boolean"/> result.</returns>
         </member>
-        <member name="T:Sudoku.Resources.ExternalResourceRouter">
+        <member name="T:Sudoku.Resources.ResourceRouter">
             <summary>
             Defines a external resource router. 
             </summary>

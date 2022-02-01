@@ -90,7 +90,7 @@ public sealed record UniqueRectangleType3Step(
 	private string OnlyKeywordZhCn
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => ExternalResourceManager.Shared["only"];
+		get => ResourceManager.Shared["only"];
 	}
 
 	[FormatItem]
@@ -104,6 +104,6 @@ public sealed record UniqueRectangleType3Step(
 	private string AppearLimitKeyword
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => ExternalResourceManager.Shared["appears"];
+		get => ResourceManager.Shared["appears"];
 	}
 }

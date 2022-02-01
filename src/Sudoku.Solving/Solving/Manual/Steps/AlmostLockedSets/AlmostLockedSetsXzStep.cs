@@ -34,7 +34,7 @@ public sealed record AlmostLockedSetsXzStep(
 
 	/// <inheritdoc/>
 	public override string? Format =>
-		ExternalResourceManager.Shared[
+		ResourceManager.Shared[
 			IsDoublyLinked is null
 				? ZDigitsMask == 0
 					? "techniqueFormat_ExtendedSubsetPrincipleWithoutDuplicate"

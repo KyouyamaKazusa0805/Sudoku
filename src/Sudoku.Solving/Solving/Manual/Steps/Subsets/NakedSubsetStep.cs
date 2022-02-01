@@ -83,6 +83,6 @@ public sealed record NakedSubsetStep(
 	private string SubsetName
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => ExternalResourceManager.Shared[$"subsetNames{Size}"];
+		get => ResourceManager.Shared[$"subsetNames{Size}"];
 	}
 }

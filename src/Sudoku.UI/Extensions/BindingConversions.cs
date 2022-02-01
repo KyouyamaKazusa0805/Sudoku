@@ -16,7 +16,7 @@ internal static class BindingConversions
 	/// <seealso cref="RepositoryInfo.OpenSourceLicense"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static string License(string input) =>
-		$"{input} {ExternalResourceManager.Shared["AboutPage_License"]}";
+		$"{input} {ResourceManager.Shared["AboutPage_License"]}";
 
 	/// <summary>
 	/// Indicates the conversion on <see cref="RepositoryInfo.IsForReference"/>.
@@ -26,5 +26,5 @@ internal static class BindingConversions
 	/// <seealso cref="RepositoryInfo.IsForReference"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static string ForReference(bool input) =>
-		input ? ExternalResourceManager.Shared["AboutPage_ForReference"] : string.Empty;
+		input ? ResourceManager.Shared["AboutPage_ForReference"] : string.Empty;
 }
