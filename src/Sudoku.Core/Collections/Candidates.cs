@@ -1,5 +1,4 @@
 ﻿using System.ComponentModel;
-using Sudoku.Data;
 using static System.Numerics.BitOperations;
 using static Sudoku.Constants;
 using static Sudoku.Constants.Tables;

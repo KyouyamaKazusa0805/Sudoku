@@ -184,9 +184,9 @@ partial class Constants
 
 			Regions = new[]
 			{{
-				global::Sudoku.Data.Region.Block,
-				global::Sudoku.Data.Region.Row,
-				global::Sudoku.Data.Region.Column
+				global::Sudoku.Region.Block,
+				global::Sudoku.Region.Row,
+				global::Sudoku.Region.Column
 			}};
 
 			RegionFirst = new[]

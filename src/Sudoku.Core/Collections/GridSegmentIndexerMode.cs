@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Data;
+﻿namespace Sudoku.Collections;
 
 /// <summary>
 /// Defines a way to find the element at the specified index in <see cref="GridSegment"/>.

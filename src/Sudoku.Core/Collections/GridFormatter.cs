@@ -1,6 +1,4 @@
-﻿using Sudoku.Collections;
-
-namespace Sudoku.Data;
+﻿namespace Sudoku.Collections;
 
 /// <summary>
 /// Provides a formatter that gathers the main information for a <see cref="Grid"/> instance,

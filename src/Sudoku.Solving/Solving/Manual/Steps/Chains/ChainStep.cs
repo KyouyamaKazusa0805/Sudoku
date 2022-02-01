@@ -1,5 +1,4 @@
-﻿using Sudoku.Data;
-using Sudoku.Presentation;
+﻿using Sudoku.Presentation;
 using Sudoku.Solving.Manual.Searchers;
 using Sudoku.Techniques;
 using static Sudoku.Solving.Manual.Steps.IChainStep;

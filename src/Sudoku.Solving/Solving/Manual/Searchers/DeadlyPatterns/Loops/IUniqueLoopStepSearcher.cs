@@ -1,5 +1,4 @@
-﻿using Sudoku.Data;
-using static Sudoku.Constants.Tables;
+﻿using static Sudoku.Constants.Tables;
 
 namespace Sudoku.Solving.Manual.Searchers;
 

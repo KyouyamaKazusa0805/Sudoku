@@ -1,6 +1,4 @@
-﻿using Sudoku.Data;
-
-namespace Sudoku.Collections;
+﻿namespace Sudoku.Collections;
 
 /// <summary>
 /// Provides a collection that contains the chain links.

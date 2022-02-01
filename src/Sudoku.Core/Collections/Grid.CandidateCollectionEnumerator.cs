@@ -1,5 +1,4 @@
-﻿using Sudoku.Data;
-using static System.Numerics.BitOperations;
+﻿using static System.Numerics.BitOperations;
 
 namespace Sudoku.Collections;
 

@@ -1,5 +1,4 @@
 ﻿using Sudoku.Collections;
-using Sudoku.Data;
 using static System.Numerics.BitOperations;
 using static Sudoku.Constants.Tables;
 using static Sudoku.Solving.Manual.Buffer.FastProperties;

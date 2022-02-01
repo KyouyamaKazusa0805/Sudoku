@@ -1,5 +1,4 @@
-﻿using Sudoku.Data;
-using Sudoku.Presentation;
+﻿using Sudoku.Presentation;
 using Sudoku.Solving.Manual.Text;
 using Sudoku.Techniques;
 

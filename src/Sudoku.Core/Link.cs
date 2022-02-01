@@ -1,6 +1,6 @@
 ﻿using Sudoku.Collections;
 
-namespace Sudoku.Data;
+namespace Sudoku;
 
 /// <summary>
 /// Encapsulates a link used for drawing.

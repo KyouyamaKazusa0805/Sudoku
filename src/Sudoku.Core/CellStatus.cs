@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel;
 
-namespace Sudoku.Data;
+namespace Sudoku;
 
 /// <summary>
 /// Represents a cell status.

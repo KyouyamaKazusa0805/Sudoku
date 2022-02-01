@@ -1,5 +1,4 @@
-﻿using Sudoku.Data;
-using Sudoku.Diagnostics.CodeAnalysis;
+﻿using Sudoku.Diagnostics.CodeAnalysis;
 
 namespace Sudoku.Collections;
 

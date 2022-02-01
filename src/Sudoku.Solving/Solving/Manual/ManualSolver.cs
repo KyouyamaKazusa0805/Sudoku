@@ -1,5 +1,4 @@
 ﻿using Sudoku.Collections;
-using Sudoku.Data;
 using Sudoku.Solving.Manual.Buffer;
 using Sudoku.Solving.Manual.Checkers;
 using Sudoku.Solving.Manual.Searchers;

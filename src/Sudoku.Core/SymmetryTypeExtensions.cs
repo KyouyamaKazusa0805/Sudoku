@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Data;
+﻿namespace Sudoku;
 
 /// <summary>
 /// Provides extension methods for <see cref="SymmetryType"/>.

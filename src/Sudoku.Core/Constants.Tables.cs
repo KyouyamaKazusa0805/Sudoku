@@ -1,7 +1,6 @@
 ﻿#nullable disable warnings
 
 using Sudoku.Collections;
-using Sudoku.Data;
 
 namespace Sudoku;
 

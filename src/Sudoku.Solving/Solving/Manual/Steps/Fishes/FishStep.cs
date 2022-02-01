@@ -1,5 +1,4 @@
-﻿using Sudoku.Data;
-using Sudoku.Presentation;
+﻿using Sudoku.Presentation;
 using Sudoku.Techniques;
 using static System.Numerics.BitOperations;
 

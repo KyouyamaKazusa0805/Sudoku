@@ -2,7 +2,7 @@
 using Sudoku.Collections;
 using Sudoku.Presentation;
 
-namespace Sudoku.Data;
+namespace Sudoku;
 
 /// <summary>
 /// Defines a chain node, with basic information about the node. At the same time you can get the root node

@@ -1,6 +1,4 @@
-﻿using Sudoku.Data;
-
-namespace Sudoku.Presentation;
+﻿namespace Sudoku.Presentation;
 
 /// <summary>
 /// Defines a coordinate used in a sudoku grid.

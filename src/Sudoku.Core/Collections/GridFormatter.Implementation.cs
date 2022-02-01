@@ -1,10 +1,9 @@
-﻿using Sudoku.Collections;
-using Sudoku.Diagnostics.CodeAnalysis;
+﻿using Sudoku.Diagnostics.CodeAnalysis;
 using static System.Algorithm.Sequences;
 using static System.Math;
 using static System.Numerics.BitOperations;
 
-namespace Sudoku.Data;
+namespace Sudoku.Collections;
 
 partial struct GridFormatter
 {

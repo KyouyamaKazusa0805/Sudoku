@@ -1,5 +1,4 @@
 ﻿using System.ComponentModel;
-using Sudoku.Data;
 using static System.Algorithm.Sorting;
 
 namespace Sudoku.Collections;

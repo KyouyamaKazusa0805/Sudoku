@@ -2,7 +2,7 @@
 using Sudoku.Collections;
 using Sudoku.Presentation;
 
-namespace Sudoku.Data;
+namespace Sudoku;
 
 /// <summary>
 /// Encapsulates a conclusion representation while solving in logic.
