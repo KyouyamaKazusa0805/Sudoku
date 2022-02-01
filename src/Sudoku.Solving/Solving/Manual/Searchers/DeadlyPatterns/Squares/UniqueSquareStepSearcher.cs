@@ -118,12 +118,7 @@ public sealed unsafe class UniqueSquareStepSearcher : IUniqueSquareStepSearcher
 	}
 
 	private Step? CheckType1(
-		ICollection<Step> accumulator,
-		in Grid grid,
-		bool onlyFindOne,
-		in Cells pattern,
-		short mask
-	)
+		ICollection<Step> accumulator, in Grid grid, bool onlyFindOne, in Cells pattern, short mask)
 	{
 		if (PopCount((uint)mask) != 5)
 		{
@@ -246,12 +241,7 @@ public sealed unsafe class UniqueSquareStepSearcher : IUniqueSquareStepSearcher
 	}
 
 	private Step? CheckType3(
-		ICollection<Step> accumulator,
-		in Grid grid,
-		bool onlyFindOne,
-		in Cells pattern,
-		short mask
-	)
+		ICollection<Step> accumulator, in Grid grid, bool onlyFindOne, in Cells pattern, short mask)
 	{
 		foreach (int[] digits in mask.GetAllSets().GetSubsets(4))
 		{
@@ -348,12 +338,7 @@ public sealed unsafe class UniqueSquareStepSearcher : IUniqueSquareStepSearcher
 	}
 
 	private Step? CheckType4(
-		ICollection<Step> accumulator,
-		in Grid grid,
-		bool onlyFindOne,
-		in Cells pattern,
-		short mask
-	)
+		ICollection<Step> accumulator, in Grid grid, bool onlyFindOne, in Cells pattern, short mask)
 	{
 		foreach (int[] digits in mask.GetAllSets().GetSubsets(4))
 		{

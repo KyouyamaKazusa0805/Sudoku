@@ -87,12 +87,8 @@ public sealed unsafe partial class ManualSolver : IPuzzleSolver
 	/// <exception cref="WrongStepException">Throws when found wrong steps to apply.</exception>
 	/// <exception cref="OperationCanceledException">Throws when the operation is cancelled.</exception>
 	private ManualSolverResult Solve_HodokuMode(
-		in Grid puzzle,
-		in Grid solution,
-		bool isSukaku,
-		ManualSolverResult baseSolverResult,
-		CancellationToken cancellationToken = default
-	)
+		in Grid puzzle, in Grid solution, bool isSukaku,
+		ManualSolverResult baseSolverResult, CancellationToken cancellationToken = default)
 	{
 		var playground = puzzle;
 		List<Step> tempSteps = new(20), recordedSteps = new(100);
@@ -240,15 +236,9 @@ public sealed unsafe partial class ManualSolver : IPuzzleSolver
 	/// Throws when the current operation is cancelled.
 	/// </exception>
 	private bool RecordStep(
-		ICollection<Step> steps,
-		Step step,
-		ref Grid playground,
-		Stopwatch stopwatch,
-		ICollection<Grid> stepGrids,
-		ManualSolverResult baseSolverResult,
-		CancellationToken cancellationToken,
-		[NotNullWhen(true)] out ManualSolverResult? result
-	)
+		ICollection<Step> steps, Step step, ref Grid playground, Stopwatch stopwatch,
+		ICollection<Grid> stepGrids, ManualSolverResult baseSolverResult,
+		CancellationToken cancellationToken, [NotNullWhen(true)] out ManualSolverResult? result)
 	{
 		bool atLeastOneStepIsWorth = false;
 		foreach (var (t, c, d) in step.Conclusions)

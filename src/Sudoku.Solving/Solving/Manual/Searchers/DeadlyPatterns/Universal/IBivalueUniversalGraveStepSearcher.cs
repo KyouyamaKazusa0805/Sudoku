@@ -37,10 +37,8 @@ public unsafe interface IBivalueUniversalGraveStepSearcher : IUniversalStepSearc
 	/// Throws when the puzzle contains multiple solutions or even no solution.
 	/// </exception>
 	public static bool FindTrueCandidates(
-		in Grid grid,
-		[NotNullWhen(true)] out IReadOnlyList<int>? trueCandidates,
-		int maximumCellsToCheck = 20
-	)
+		in Grid grid, [NotNullWhen(true)] out IReadOnlyList<int>? trueCandidates,
+		int maximumCellsToCheck = 20)
 	{
 		if (!grid.IsValid())
 		{

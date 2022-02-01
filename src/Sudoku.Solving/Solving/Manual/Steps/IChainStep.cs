@@ -27,10 +27,7 @@ public interface IChainStep : IStep
 	/// <param name="shouldSort">Indicates whether the method will sort the lists firstly.</param>
 	/// <returns>A <see cref="bool"/> result.</returns>
 	protected static bool ConclusionsEquals(
-		ImmutableArray<Conclusion> lConclusions,
-		ImmutableArray<Conclusion> rConclusions,
-		bool shouldSort
-	)
+		ImmutableArray<Conclusion> lConclusions, ImmutableArray<Conclusion> rConclusions, bool shouldSort)
 	{
 		if (lConclusions.Length != rConclusions.Length)
 		{

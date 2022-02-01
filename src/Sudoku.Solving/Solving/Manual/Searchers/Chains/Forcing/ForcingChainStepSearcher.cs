@@ -182,15 +182,9 @@ public unsafe class ForcingChainStepSearcher : IForcingChainStepSearcher, IDynam
 	/// <param name="doReduction">Indicates whether the method executes double chaining.</param>
 	/// <param name="doContradiction">Indicates whether the method executes contradiction chaining.</param>
 	private void DoBinaryChaining(
-		ICollection<ChainStep> accumulator,
-		ref Grid grid,
-		in Node pOn,
-		in Node pOff,
-		ref NodeSet onToOn,
-		ref NodeSet onToOff,
-		bool doReduction,
-		bool doContradiction
-	)
+		ICollection<ChainStep> accumulator, ref Grid grid,
+		in Node pOn, in Node pOff, ref NodeSet onToOn, ref NodeSet onToOff,
+		bool doReduction, bool doContradiction)
 	{
 		NodeSet offToOn = new(), offToOff = new();
 
@@ -254,13 +248,8 @@ public unsafe class ForcingChainStepSearcher : IForcingChainStepSearcher, IDynam
 	/// <param name="onToOn">The list for <c>on</c> nodes to <c>on</c> nodes.</param>
 	/// <param name="onToOff">The list for <c>on</c> nodes to <c>off</c> nodes.</param>
 	private void DoRegionChaining(
-		ICollection<ChainStep> accumulator,
-		ref Grid grid,
-		byte cell,
-		byte digit,
-		ref NodeSet onToOn,
-		ref NodeSet onToOff
-	)
+		ICollection<ChainStep> accumulator, ref Grid grid,
+		byte cell, byte digit, ref NodeSet onToOn, ref NodeSet onToOff)
 	{
 		foreach (var region in Regions)
 		{
@@ -327,11 +316,7 @@ public unsafe class ForcingChainStepSearcher : IForcingChainStepSearcher, IDynam
 	/// <param name="toOn">The list to <c>on</c> nodes.</param>
 	/// <param name="toOff">The list to <c>off</c> nodes.</param>
 	/// <returns>The result.</returns>
-	private (Node On, Node Off)? DoChaining(
-		ref Grid grid,
-		ref NodeSet toOn,
-		ref NodeSet toOff
-	)
+	private (Node On, Node Off)? DoChaining(ref Grid grid, ref NodeSet toOn, ref NodeSet toOff)
 	{
 		_temp = grid;
 
@@ -415,12 +400,7 @@ public unsafe class ForcingChainStepSearcher : IForcingChainStepSearcher, IDynam
 	/// <param name="isAbsurd">Indicates whether the chain is absurd.</param>
 	/// <returns>The hint.</returns>
 	private BinaryChainingStep CreateChainingOnHint(
-		in Node destOn,
-		in Node destOff,
-		in Node source,
-		in Node target,
-		bool isAbsurd
-	)
+		in Node destOn, in Node destOff, in Node source, in Node target, bool isAbsurd)
 	{
 		// Get views.
 		var appendedInfo = (target.Cell * 9 + target.Digit, (ColorIdentifier)0);
@@ -500,12 +480,7 @@ public unsafe class ForcingChainStepSearcher : IForcingChainStepSearcher, IDynam
 	/// <param name="isAbsurd">Indicates whether the chain is absurd.</param>
 	/// <returns>The hint.</returns>
 	private BinaryChainingStep CreateChainingOffHint(
-		in Node destOn,
-		in Node destOff,
-		in Node source,
-		in Node target,
-		bool isAbsurd
-	)
+		in Node destOn, in Node destOff, in Node source, in Node target, bool isAbsurd)
 	{
 		// Get views.
 		var cellOffset = new[] { ((int)destOn.Cell, (ColorIdentifier)0) };
@@ -567,11 +542,7 @@ public unsafe class ForcingChainStepSearcher : IForcingChainStepSearcher, IDynam
 	/// <param name="outcomes">All outcomes (conclusions).</param>
 	/// <returns>The information instance.</returns>
 	private CellChainingStep CreateCellFcHint(
-		in Grid grid,
-		int sourceCell,
-		in Node target,
-		Dictionary<int, NodeSet> outcomes
-	)
+		in Grid grid, int sourceCell, in Node target, Dictionary<int, NodeSet> outcomes)
 	{
 		var (targetCandidate, targetIsOn) = target;
 
@@ -647,11 +618,7 @@ public unsafe class ForcingChainStepSearcher : IForcingChainStepSearcher, IDynam
 	/// <param name="outcomes">All outcomes (conclusions).</param>
 	/// <returns>The technique information instance.</returns>
 	private RegionChainingStep CreateRegionFcHint(
-		int region,
-		int digit,
-		in Node target,
-		Dictionary<int, NodeSet> outcomes
-	)
+		int region, int digit, in Node target, Dictionary<int, NodeSet> outcomes)
 	{
 		var (targetCandidate, targetIsOn) = target;
 

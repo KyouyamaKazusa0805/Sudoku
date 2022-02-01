@@ -90,16 +90,8 @@ public sealed unsafe class AlmostLockedCandidatesStepSearcher : IAlmostLockedCan
 	/// </para>
 	/// </remarks>
 	private static Step? GetAll(
-		ICollection<Step> result,
-		in Grid grid,
-		int size,
-		int baseSet,
-		int coverSet,
-		in Cells a,
-		in Cells b,
-		in Cells c,
-		bool onlyFindOne
-	)
+		ICollection<Step> result, in Grid grid, int size, int baseSet, int coverSet,
+		in Cells a, in Cells b, in Cells c, bool onlyFindOne)
 	{
 		// Iterate on each cell combination.
 		foreach (var cells in a & EmptyMap & size - 1)

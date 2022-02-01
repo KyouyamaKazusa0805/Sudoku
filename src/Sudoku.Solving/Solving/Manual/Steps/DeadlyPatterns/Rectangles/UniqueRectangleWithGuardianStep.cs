@@ -28,8 +28,14 @@ public sealed record UniqueRectangleWithGuardianStep(
 	bool IsIncomplete,
 	int AbsoluteOffset
 ) : UniqueRectangleStep(
-	Conclusions, Views, Technique.UniqueRectangleBrokenWing,
-	Digit1, Digit2, Cells, false, AbsoluteOffset
+	Conclusions,
+	Views,
+	Technique.UniqueRectangleBrokenWing,
+	Digit1,
+	Digit2,
+	Cells,
+	false,
+	AbsoluteOffset
 )
 {
 	/// <inheritdoc/>

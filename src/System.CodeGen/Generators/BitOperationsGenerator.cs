@@ -294,7 +294,8 @@ public static partial class BitOperationsExensions
 		};
 
 		var sb = new StringBuilder()
-			.Append($@"/// <summary>
+			.AppendLine(
+				$@"/// <summary>
 	/// <para>Reverse all bits in a specified value.</para>
 	/// <para>
 	/// Note that the value is passed by <b>reference</b> though the
@@ -307,8 +308,7 @@ public static partial class BitOperationsExensions
 	[global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 	public static partial void ReverseBits(this ref {typeName} @this)
 	{{"
-			)
-			.AppendLine();
+			);
 
 		string conversion = typeName switch { "byte" => "(byte)", "short" => "(short)", _ => string.Empty };
 		for (int z = 1, t = 0; z < size; z <<= 1, t++)

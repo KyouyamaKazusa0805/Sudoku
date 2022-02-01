@@ -207,19 +207,8 @@ public unsafe struct Candidates : ICellsOrCandidates<Candidates>
 	/// </summary>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	private Candidates(
-		long _0,
-		long _1,
-		long _2,
-		long _3,
-		long _4,
-		long _5,
-		long _6,
-		long _7,
-		long _8,
-		long _9,
-		long _10,
-		long _11
-	)
+		long _0, long _1, long _2, long _3, long _4, long _5,
+		long _6, long _7, long _8, long _9, long _10, long _11)
 	{
 		this._0 = _0;
 		this._1 = _1;

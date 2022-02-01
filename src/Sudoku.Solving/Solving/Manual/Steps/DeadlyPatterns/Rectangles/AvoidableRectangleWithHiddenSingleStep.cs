@@ -28,12 +28,19 @@ public sealed record AvoidableRectangleWithHiddenSingleStep(
 	int Region,
 	int AbsoluteOffset
 ) : UniqueRectangleStep(
-	Conclusions, Views, Region switch
+	Conclusions,
+	Views,
+	Region switch
 	{
 		>= 0 and < 9 => Technique.AvoidableRectangleHiddenSingleBlock,
 		>= 9 and < 18 => Technique.AvoidableRectangleHiddenSingleRow,
 		>= 18 and < 27 => Technique.AvoidableRectangleHiddenSingleColumn
-	}, Digit1, Digit2, Cells, true, AbsoluteOffset
+	},
+	Digit1,
+	Digit2,
+	Cells,
+	true,
+	AbsoluteOffset
 )
 {
 	/// <inheritdoc/>

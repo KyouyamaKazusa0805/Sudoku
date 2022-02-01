@@ -275,15 +275,8 @@ public sealed unsafe class UniquePolygonStepSearcher : IUniquePolygonStepSearche
 
 
 	private static Step? CheckType1(
-		ICollection<Step> accumulator,
-		in Grid grid,
-		UniquePolygonPattern pattern,
-		bool findOnlyOne,
-		short cornerMask1,
-		short cornerMask2,
-		short centerMask,
-		Cells map
-	)
+		ICollection<Step> accumulator, in Grid grid, UniquePolygonPattern pattern,
+		bool findOnlyOne, short cornerMask1, short cornerMask2, short centerMask, in Cells map)
 	{
 		short orMask = (short)((short)(cornerMask1 | cornerMask2) | centerMask);
 		if (PopCount((uint)orMask) != (pattern.IsHeptagon ? 4 : 5))
@@ -352,15 +345,8 @@ public sealed unsafe class UniquePolygonStepSearcher : IUniquePolygonStepSearche
 	}
 
 	private static Step? CheckType2(
-		ICollection<Step> accumulator,
-		in Grid grid,
-		UniquePolygonPattern pattern,
-		bool findOnlyOne,
-		short cornerMask1,
-		short cornerMask2,
-		short centerMask,
-		Cells map
-	)
+		ICollection<Step> accumulator, in Grid grid, UniquePolygonPattern pattern,
+		bool findOnlyOne, short cornerMask1, short cornerMask2, short centerMask, in Cells map)
 	{
 		short orMask = (short)((short)(cornerMask1 | cornerMask2) | centerMask);
 		if (PopCount((uint)orMask) != (pattern.IsHeptagon ? 4 : 5))
@@ -420,15 +406,8 @@ public sealed unsafe class UniquePolygonStepSearcher : IUniquePolygonStepSearche
 	}
 
 	private static Step? CheckType3(
-		ICollection<Step> accumulator,
-		in Grid grid,
-		UniquePolygonPattern pattern,
-		bool findOnlyOne,
-		short cornerMask1,
-		short cornerMask2,
-		short centerMask,
-		Cells map
-	)
+		ICollection<Step> accumulator, in Grid grid, UniquePolygonPattern pattern,
+		bool findOnlyOne, short cornerMask1, short cornerMask2, short centerMask, in Cells map)
 	{
 		short orMask = (short)((short)(cornerMask1 | cornerMask2) | centerMask);
 		foreach (int region in map.Regions)
@@ -547,15 +526,8 @@ public sealed unsafe class UniquePolygonStepSearcher : IUniquePolygonStepSearche
 	}
 
 	private static Step? CheckType4(
-		ICollection<Step> accumulator,
-		in Grid grid,
-		UniquePolygonPattern pattern,
-		bool findOnlyOne,
-		short cornerMask1,
-		short cornerMask2,
-		short centerMask,
-		Cells map
-	)
+		ICollection<Step> accumulator, in Grid grid, UniquePolygonPattern pattern,
+		bool findOnlyOne, short cornerMask1, short cornerMask2, short centerMask, in Cells map)
 	{
 		// The type 4 may be complex and terrible to process.
 		// All regions that the pattern lies in should be checked.

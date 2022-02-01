@@ -3029,9 +3029,9 @@
             <remarks>
             The structure:
             <code><![CDATA[
-            |   ↓ cornerCell
-            | (abc) ab
-            |  ab   ab
+              ↓ cornerCell
+            (abc) ab
+             ab   ab
             ]]></code>
             </remarks>
         </member>
@@ -3053,9 +3053,9 @@
             <remarks>
             The structure:
             <code><![CDATA[
-            |   ↓ corner1, corner2
-            | (abc) (abc)
-            |  ab    ab
+              ↓ corner1, corner2
+            (abc) (abc)
+             ab    ab
             ]]></code>
             </remarks>
         </member>
@@ -3079,9 +3079,9 @@
             <remarks>
             The structure:
             <code><![CDATA[
-            |  ↓ corner1, corner2
-            | (ab ) (ab )
-            |  abx   aby
+             ↓ corner1, corner2
+            (ab ) (ab )
+             abx   aby
             ]]></code>
             </remarks>
         </member>
@@ -3105,9 +3105,9 @@
             <remarks>
             The structure:
             <code><![CDATA[
-            |  ↓ corner1, corner2
-            | (ab ) ab
-            |  abx  aby
+             ↓ corner1, corner2
+            (ab ) ab
+             abx  aby
             ]]></code>
             </remarks>
         </member>
@@ -3128,9 +3128,9 @@
             <remarks>
             The structure:
             <code><![CDATA[
-            |  ↓ cornerCell
-            | (ab ) abc
-            |  abc  abc
+             ↓ cornerCell
+            (ab ) abc
+             abc  abc
             ]]></code>
             </remarks>
         </member>
@@ -3152,10 +3152,10 @@
             <remarks>
             The structure:
             <code><![CDATA[
-            |  ↓ corner1
-            | (ab )  aby
-            |  abx  (ab)
-            |        ↑corner2
+             ↓ corner1
+            (ab )  aby
+             abx  (ab)
+                   ↑corner2
             ]]></code>
             </remarks>
         </member>
@@ -3176,9 +3176,9 @@
             <remarks>
             The structure:
             <code><![CDATA[
-            |  ↓ cornerCell
-            | (ab ) abx
-            |  aby  abz
+             ↓ cornerCell
+            (ab ) abx
+             aby  abz
             ]]></code>
             </remarks>
         </member>
@@ -3200,143 +3200,143 @@
             <remarks>
             The structure:
             <code><![CDATA[
-            |   ↓ corner1
-            | (ab )  abx
-            |  aby  (ab )  xy  *
-            |         ↑ corner2
+              ↓ corner1
+            (ab )  abx
+             aby  (ab )  xy  *
+                    ↑ corner2
             ]]></code>
             </remarks>
         </member>
         <member name="M:Sudoku.Solving.Manual.Searchers.UniqueRectangleStepSearcher.Check2B1SL(System.Collections.Generic.ICollection{Sudoku.Solving.Manual.Steps.UniqueRectangleStep},Sudoku.Collections.Grid@,System.Int32[],System.Boolean,System.Int16,System.Int32,System.Int32,System.Int32,System.Int32,Sudoku.Collections.Cells@,System.Int32)">
-             <summary>
-             Check UR+2B/1SL.
-             </summary>
-             <param name="accumulator">The technique accumulator.</param>
-             <param name="grid">The grid.</param>
-             <param name="urCells">All UR cells.</param>
-             <param name="arMode">Indicates whether the current mode is AR mode.</param>
-             <param name="comparer">The mask comparer.</param>
-             <param name="d1">The digit 1 used in UR.</param>
-             <param name="d2">The digit 2 used in UR.</param>
-             <param name="corner1">The corner cell 1.</param>
-             <param name="corner2">The corner cell 2.</param>
-             <param name="otherCellsMap">The map of other cells during the current UR searching.</param>
-             <param name="index">The index.</param>
-             <remarks>
-             The structure:
-             <code><![CDATA[
-            '   ↓ corner1, corner2
-            ' (ab )  (ab )
-            '  |
-            '  | a
-            '  |
-            '  abx    aby
-             ]]></code>
-             </remarks>
+            <summary>
+            Check UR+2B/1SL.
+            </summary>
+            <param name="accumulator">The technique accumulator.</param>
+            <param name="grid">The grid.</param>
+            <param name="urCells">All UR cells.</param>
+            <param name="arMode">Indicates whether the current mode is AR mode.</param>
+            <param name="comparer">The mask comparer.</param>
+            <param name="d1">The digit 1 used in UR.</param>
+            <param name="d2">The digit 2 used in UR.</param>
+            <param name="corner1">The corner cell 1.</param>
+            <param name="corner2">The corner cell 2.</param>
+            <param name="otherCellsMap">The map of other cells during the current UR searching.</param>
+            <param name="index">The index.</param>
+            <remarks>
+            The structure:
+            <code><![CDATA[
+              ↓ corner1, corner2
+            (ab )  (ab )
+             |
+             | a
+             |
+             abx    aby
+            ]]></code>
+            </remarks>
         </member>
         <member name="M:Sudoku.Solving.Manual.Searchers.UniqueRectangleStepSearcher.Check2D1SL(System.Collections.Generic.ICollection{Sudoku.Solving.Manual.Steps.UniqueRectangleStep},Sudoku.Collections.Grid@,System.Int32[],System.Boolean,System.Int16,System.Int32,System.Int32,System.Int32,System.Int32,Sudoku.Collections.Cells@,System.Int32)">
-             <summary>
-             Check UR+2D/1SL.
-             </summary>
-             <param name="accumulator">The technique accumulator.</param>
-             <param name="grid">The grid.</param>
-             <param name="urCells">All UR cells.</param>
-             <param name="arMode">Indicates whether the current mode is AR mode.</param>
-             <param name="comparer">The mask comparer.</param>
-             <param name="d1">The digit 1 used in UR.</param>
-             <param name="d2">The digit 2 used in UR.</param>
-             <param name="corner1">The corner cell 1.</param>
-             <param name="corner2">The corner cell 2.</param>
-             <param name="otherCellsMap">The map of other cells during the current UR searching.</param>
-             <param name="index">The index.</param>
-             <remarks>
-             The structure:
-             <code><![CDATA[
-            '   ↓ corner1
-            ' (ab )   aby
-            '  |
-            '  | a
-            '  |
-            '  abx   (ab )
-            '          ↑ corner2
-             ]]></code>
-             </remarks>
+            <summary>
+            Check UR+2D/1SL.
+            </summary>
+            <param name="accumulator">The technique accumulator.</param>
+            <param name="grid">The grid.</param>
+            <param name="urCells">All UR cells.</param>
+            <param name="arMode">Indicates whether the current mode is AR mode.</param>
+            <param name="comparer">The mask comparer.</param>
+            <param name="d1">The digit 1 used in UR.</param>
+            <param name="d2">The digit 2 used in UR.</param>
+            <param name="corner1">The corner cell 1.</param>
+            <param name="corner2">The corner cell 2.</param>
+            <param name="otherCellsMap">The map of other cells during the current UR searching.</param>
+            <param name="index">The index.</param>
+            <remarks>
+            The structure:
+            <code><![CDATA[
+              ↓ corner1
+            (ab )   aby
+             |
+             | a
+             |
+             abx   (ab )
+                     ↑ corner2
+            ]]></code>
+            </remarks>
         </member>
         <member name="M:Sudoku.Solving.Manual.Searchers.UniqueRectangleStepSearcher.Check3X(System.Collections.Generic.ICollection{Sudoku.Solving.Manual.Steps.UniqueRectangleStep},Sudoku.Collections.Grid@,System.Int32[],System.Boolean,System.Int16,System.Int32,System.Int32,System.Int32,Sudoku.Collections.Cells@,System.Int32)">
-             <summary>
-             Check UR+3X.
-             </summary>
-             <param name="accumulator">The technique accumulator.</param>
-             <param name="grid">The grid.</param>
-             <param name="urCells">All UR cells.</param>
-             <param name="arMode">Indicates whether the current mode is AR mode.</param>
-             <param name="comparer">The mask comparer.</param>
-             <param name="d1">The digit 1 used in UR.</param>
-             <param name="d2">The digit 2 used in UR.</param>
-             <param name="cornerCell">The corner cell.</param>
-             <param name="otherCellsMap">The map of other cells during the current UR searching.</param>
-             <param name="index">The index.</param>
-             <remarks>
-             The structure:
-             <code><![CDATA[
-            '  ↓ cornerCell
-            ' (ab )  abx
-            '  aby   abz   xy  *
-             ]]></code>
-             Note: <c>z</c> is <c>x</c> or <c>y</c>.
-             </remarks>
+            <summary>
+            Check UR+3X.
+            </summary>
+            <param name="accumulator">The technique accumulator.</param>
+            <param name="grid">The grid.</param>
+            <param name="urCells">All UR cells.</param>
+            <param name="arMode">Indicates whether the current mode is AR mode.</param>
+            <param name="comparer">The mask comparer.</param>
+            <param name="d1">The digit 1 used in UR.</param>
+            <param name="d2">The digit 2 used in UR.</param>
+            <param name="cornerCell">The corner cell.</param>
+            <param name="otherCellsMap">The map of other cells during the current UR searching.</param>
+            <param name="index">The index.</param>
+            <remarks>
+            The structure:
+            <code><![CDATA[
+             ↓ cornerCell
+            (ab )  abx
+             aby   abz   xy  *
+            ]]></code>
+            Note: <c>z</c> is <c>x</c> or <c>y</c>.
+            </remarks>
         </member>
         <member name="M:Sudoku.Solving.Manual.Searchers.UniqueRectangleStepSearcher.Check3X2SL(System.Collections.Generic.ICollection{Sudoku.Solving.Manual.Steps.UniqueRectangleStep},Sudoku.Collections.Grid@,System.Int32[],System.Boolean,System.Int16,System.Int32,System.Int32,System.Int32,Sudoku.Collections.Cells@,System.Int32)">
-             <summary>
-             Check UR+3X/2SL.
-             </summary>
-             <param name="accumulator">The technique accumulator.</param>
-             <param name="grid">The grid.</param>
-             <param name="urCells">All UR cells.</param>
-             <param name="arMode">Indicates whether the current mode is AR mode.</param>
-             <param name="comparer">The mask comparer.</param>
-             <param name="d1">The digit 1 used in UR.</param>
-             <param name="d2">The digit 2 used in UR.</param>
-             <param name="cornerCell">The corner cell.</param>
-             <param name="otherCellsMap">The map of other cells during the current UR searching.</param>
-             <param name="index">The index.</param>
-             <remarks>
-             The structure:
-             <code><![CDATA[
-            '  ↓ cornerCell
-            ' (ab )    abx
-            '           |
-            '           | b
-            '       a   |
-            '  aby-----abz
-             ]]></code>
-             </remarks>
+            <summary>
+            Check UR+3X/2SL.
+            </summary>
+            <param name="accumulator">The technique accumulator.</param>
+            <param name="grid">The grid.</param>
+            <param name="urCells">All UR cells.</param>
+            <param name="arMode">Indicates whether the current mode is AR mode.</param>
+            <param name="comparer">The mask comparer.</param>
+            <param name="d1">The digit 1 used in UR.</param>
+            <param name="d2">The digit 2 used in UR.</param>
+            <param name="cornerCell">The corner cell.</param>
+            <param name="otherCellsMap">The map of other cells during the current UR searching.</param>
+            <param name="index">The index.</param>
+            <remarks>
+            The structure:
+            <code><![CDATA[
+             ↓ cornerCell
+            (ab )    abx
+                      |
+                      | b
+                  a   |
+             aby-----abz
+            ]]></code>
+            </remarks>
         </member>
         <member name="M:Sudoku.Solving.Manual.Searchers.UniqueRectangleStepSearcher.Check3N2SL(System.Collections.Generic.ICollection{Sudoku.Solving.Manual.Steps.UniqueRectangleStep},Sudoku.Collections.Grid@,System.Int32[],System.Boolean,System.Int16,System.Int32,System.Int32,System.Int32,Sudoku.Collections.Cells@,System.Int32)">
-             <summary>
-             Check UR+3N/2SL.
-             </summary>
-             <param name="accumulator">The technique accumulator.</param>
-             <param name="grid">The grid.</param>
-             <param name="urCells">All UR cells.</param>
-             <param name="arMode">Indicates whether the current mode is AR mode.</param>
-             <param name="comparer">The mask comparer.</param>
-             <param name="d1">The digit 1 used in UR.</param>
-             <param name="d2">The digit 2 used in UR.</param>
-             <param name="cornerCell">The corner cell.</param>
-             <param name="otherCellsMap">The map of other cells during the current UR searching.</param>
-             <param name="index">The index.</param>
-             <remarks>
-             The structure:
-             <code><![CDATA[
-            '  ↓ cornerCell
-            ' (ab )-----abx
-            '        a   |
-            '            | b
-            '            |
-            '  aby      abz
-             ]]></code>
-             </remarks>
+            <summary>
+            Check UR+3N/2SL.
+            </summary>
+            <param name="accumulator">The technique accumulator.</param>
+            <param name="grid">The grid.</param>
+            <param name="urCells">All UR cells.</param>
+            <param name="arMode">Indicates whether the current mode is AR mode.</param>
+            <param name="comparer">The mask comparer.</param>
+            <param name="d1">The digit 1 used in UR.</param>
+            <param name="d2">The digit 2 used in UR.</param>
+            <param name="cornerCell">The corner cell.</param>
+            <param name="otherCellsMap">The map of other cells during the current UR searching.</param>
+            <param name="index">The index.</param>
+            <remarks>
+            The structure:
+            <code><![CDATA[
+             ↓ cornerCell
+            (ab )-----abx
+                   a   |
+                       | b
+                       |
+             aby      abz
+            ]]></code>
+            </remarks>
         </member>
         <member name="M:Sudoku.Solving.Manual.Searchers.UniqueRectangleStepSearcher.Check3U2SL(System.Collections.Generic.ICollection{Sudoku.Solving.Manual.Steps.UniqueRectangleStep},Sudoku.Collections.Grid@,System.Int32[],System.Boolean,System.Int16,System.Int32,System.Int32,System.Int32,Sudoku.Collections.Cells@,System.Int32)">
              <summary>
@@ -3355,12 +3355,12 @@
              <remarks>
              The structure:
              <code><![CDATA[
-            '  ↓ cornerCell
-            ' (ab )-----abx
-            '        a
-            '
-            '        b
-            '  aby -----abz
+              ↓ cornerCell
+             (ab )-----abx
+                    a
+            
+                    b
+              aby -----abz
              ]]></code>
              </remarks>
         </member>
@@ -3381,148 +3381,148 @@
              <remarks>
              The structure:
              <code><![CDATA[
-            '   ↓ cornerCell
-            ' (ab )-----abx
-            '        a
-            '
-            '        a
-            '  aby -----abz
+               ↓ cornerCell
+             (ab )-----abx
+                    a
+            
+                    a
+              aby -----abz
              ]]></code>
              </remarks>
         </member>
         <member name="M:Sudoku.Solving.Manual.Searchers.UniqueRectangleStepSearcher.Check4X3SL(System.Collections.Generic.ICollection{Sudoku.Solving.Manual.Steps.UniqueRectangleStep},Sudoku.Collections.Grid@,System.Int32[],System.Boolean,System.Int16,System.Int32,System.Int32,System.Int32,System.Int32,Sudoku.Collections.Cells@,System.Int32)">
-             <summary>
-             Check UR+4X/3SL.
-             </summary>
-             <param name="accumulator">The technique accumulator.</param>
-             <param name="grid">The grid.</param>
-             <param name="urCells">All UR cells.</param>
-             <param name="arMode">Indicates whether the current mode is AR mode.</param>
-             <param name="comparer">The mask comparer.</param>
-             <param name="d1">The digit 1 used in UR.</param>
-             <param name="d2">The digit 2 used in UR.</param>
-             <param name="corner1">The corner cell 1.</param>
-             <param name="corner2">The corner cell 2.</param>
-             <param name="otherCellsMap">The map of other cells during the current UR searching.</param>
-             <param name="index">The index.</param>
-             <remarks>
-             The structure:
-             <code><![CDATA[
-            '   ↓ corner1, corner2
-            ' (abx)-----(aby)
-            '        a    |
-            '             | b
-            '        a    |
-            '  abz ----- abw
-             ]]></code>
-             </remarks>
+            <summary>
+            Check UR+4X/3SL.
+            </summary>
+            <param name="accumulator">The technique accumulator.</param>
+            <param name="grid">The grid.</param>
+            <param name="urCells">All UR cells.</param>
+            <param name="arMode">Indicates whether the current mode is AR mode.</param>
+            <param name="comparer">The mask comparer.</param>
+            <param name="d1">The digit 1 used in UR.</param>
+            <param name="d2">The digit 2 used in UR.</param>
+            <param name="corner1">The corner cell 1.</param>
+            <param name="corner2">The corner cell 2.</param>
+            <param name="otherCellsMap">The map of other cells during the current UR searching.</param>
+            <param name="index">The index.</param>
+            <remarks>
+            The structure:
+            <code><![CDATA[
+              ↓ corner1, corner2
+            (abx)-----(aby)
+                   a    |
+                        | b
+                   a    |
+             abz ----- abw
+            ]]></code>
+            </remarks>
         </member>
         <member name="M:Sudoku.Solving.Manual.Searchers.UniqueRectangleStepSearcher.Check4C3SL(System.Collections.Generic.ICollection{Sudoku.Solving.Manual.Steps.UniqueRectangleStep},Sudoku.Collections.Grid@,System.Int32[],System.Boolean,System.Int16,System.Int32,System.Int32,System.Int32,System.Int32,Sudoku.Collections.Cells@,System.Int32)">
-             <summary>
-             Check UR+4C/3SL.
-             </summary>
-             <param name="accumulator">The technique accumulator.</param>
-             <param name="grid">The grid.</param>
-             <param name="urCells">All UR cells.</param>
-             <param name="arMode">Indicates whether the current mode is AR mode.</param>
-             <param name="comparer">The mask comparer.</param>
-             <param name="d1">The digit 1 used in UR.</param>
-             <param name="d2">The digit 2 used in UR.</param>
-             <param name="corner1">The corner cell 1.</param>
-             <param name="corner2">The corner cell 2.</param>
-             <param name="otherCellsMap">The map of other cells during the current UR searching.</param>
-             <param name="index">The index.</param>
-             <remarks>
-             <para>The structures:</para>
-             <para>
-             Subtype 1:
-             <code><![CDATA[
-            '   ↓ corner1, corner2
-            ' (abx)-----(aby)
-            '        a    |
-            '             | a
-            '        b    |
-            '  abz ----- abw
-             ]]></code>
-             </para>
-             <para>
-             Subtype 2:
-             <code><![CDATA[
-            '   ↓ corner1, corner2
-            ' (abx)-----(aby)
-            '   |    a    |
-            '   | b       | a
-            '   |         |
-            '  abz       abw
-             ]]></code>
-             </para>
-             </remarks>
+            <summary>
+            Check UR+4C/3SL.
+            </summary>
+            <param name="accumulator">The technique accumulator.</param>
+            <param name="grid">The grid.</param>
+            <param name="urCells">All UR cells.</param>
+            <param name="arMode">Indicates whether the current mode is AR mode.</param>
+            <param name="comparer">The mask comparer.</param>
+            <param name="d1">The digit 1 used in UR.</param>
+            <param name="d2">The digit 2 used in UR.</param>
+            <param name="corner1">The corner cell 1.</param>
+            <param name="corner2">The corner cell 2.</param>
+            <param name="otherCellsMap">The map of other cells during the current UR searching.</param>
+            <param name="index">The index.</param>
+            <remarks>
+            <para>The structures:</para>
+            <para>
+            Subtype 1:
+            <code><![CDATA[
+              ↓ corner1, corner2
+            (abx)-----(aby)
+                   a    |
+                        | a
+                   b    |
+             abz ----- abw
+            ]]></code>
+            </para>
+            <para>
+            Subtype 2:
+            <code><![CDATA[
+              ↓ corner1, corner2
+            (abx)-----(aby)
+              |    a    |
+              | b       | a
+              |         |
+             abz       abw
+            ]]></code>
+            </para>
+            </remarks>
         </member>
         <member name="M:Sudoku.Solving.Manual.Searchers.UniqueRectangleStepSearcher.CheckWing(System.Collections.Generic.ICollection{Sudoku.Solving.Manual.Steps.UniqueRectangleStep},Sudoku.Collections.Grid@,System.Int32[],System.Boolean,System.Int16,System.Int32,System.Int32,System.Int32,System.Int32,Sudoku.Collections.Cells@,System.Int32,System.Int32)">
-             <summary>
-             Check UR-XY-Wing, UR-XYZ-Wing, UR-WXYZ-Wing and AR-XY-Wing, AR-XYZ-Wing and AR-WXYZ-Wing.
-             </summary>
-             <param name="accumulator">The technique accumulator.</param>
-             <param name="grid">The grid.</param>
-             <param name="urCells">All UR cells.</param>
-             <param name="arMode">Indicates whether the current mode is AR mode.</param>
-             <param name="comparer">The mask comparer.</param>
-             <param name="d1">The digit 1 used in UR.</param>
-             <param name="d2">The digit 2 used in UR.</param>
-             <param name="corner1">The corner cell 1.</param>
-             <param name="corner2">The corner cell 2.</param>
-             <param name="otherCellsMap">The map of other cells during the current UR searching.</param>
-             <param name="size">The size of the wing to search.</param>
-             <param name="index">The index.</param>
-             <remarks>
-             <para>The structures:</para>
-             <para>
-             Subtype 1:
-             <code><![CDATA[
-            '   ↓ corner1
-            ' (ab )  abxy  yz  xz
-            ' (ab )  abxy  *
-            '   ↑ corner2
-             ]]></code>
-             Note that the pair of cells <c>abxy</c> should be in the same region.
-             </para>
-             <para>
-             Subtype 2:
-             <code><![CDATA[
-            '   ↓ corner1
-            ' (ab )  abx   xz
-            '  aby  (ab )  *   yz
-            '         ↑ corner2
-             ]]></code>
-             </para>
-             </remarks>
+            <summary>
+            Check UR-XY-Wing, UR-XYZ-Wing, UR-WXYZ-Wing and AR-XY-Wing, AR-XYZ-Wing and AR-WXYZ-Wing.
+            </summary>
+            <param name="accumulator">The technique accumulator.</param>
+            <param name="grid">The grid.</param>
+            <param name="urCells">All UR cells.</param>
+            <param name="arMode">Indicates whether the current mode is AR mode.</param>
+            <param name="comparer">The mask comparer.</param>
+            <param name="d1">The digit 1 used in UR.</param>
+            <param name="d2">The digit 2 used in UR.</param>
+            <param name="corner1">The corner cell 1.</param>
+            <param name="corner2">The corner cell 2.</param>
+            <param name="otherCellsMap">The map of other cells during the current UR searching.</param>
+            <param name="size">The size of the wing to search.</param>
+            <param name="index">The index.</param>
+            <remarks>
+            <para>The structures:</para>
+            <para>
+            Subtype 1:
+            <code><![CDATA[
+              ↓ corner1
+            (ab )  abxy  yz  xz
+            (ab )  abxy  *
+              ↑ corner2
+            ]]></code>
+            Note that the pair of cells <c>abxy</c> should be in the same region.
+            </para>
+            <para>
+            Subtype 2:
+            <code><![CDATA[
+              ↓ corner1
+            (ab )  abx   xz
+             aby  (ab )  *   yz
+                    ↑ corner2
+            ]]></code>
+            </para>
+            </remarks>
         </member>
         <member name="M:Sudoku.Solving.Manual.Searchers.UniqueRectangleStepSearcher.CheckSdc(System.Collections.Generic.ICollection{Sudoku.Solving.Manual.Steps.UniqueRectangleStep},Sudoku.Collections.Grid@,System.Int32[],System.Boolean,System.Int16,System.Int32,System.Int32,System.Int32,System.Int32,Sudoku.Collections.Cells@,System.Int32)">
-             <summary>
-             Check UR+SdC.
-             </summary>
-             <param name="accumulator">The technique accumulator.</param>
-             <param name="grid">The grid.</param>
-             <param name="urCells">All UR cells.</param>
-             <param name="arMode">Indicates whether the current mode is AR mode.</param>
-             <param name="comparer">The mask comparer.</param>
-             <param name="d1">The digit 1 used in UR.</param>
-             <param name="d2">The digit 2 used in UR.</param>
-             <param name="corner1">The corner cell 1.</param>
-             <param name="corner2">The corner cell 2.</param>
-             <param name="otherCellsMap">The map of other cells during the current UR searching.</param>
-             <param name="index">The index.</param>
-             <remarks>
-             The structure:
-             <code><![CDATA[
-            '           |   xyz
-            '  ab+ ab+  | abxyz abxyz
-            '           |   xyz
-            ' ----------+------------
-            ' (ab)(ab)  |
-            '  ↑ corner1, corner2
-             ]]></code>
-             </remarks>
+            <summary>
+            Check UR+SdC.
+            </summary>
+            <param name="accumulator">The technique accumulator.</param>
+            <param name="grid">The grid.</param>
+            <param name="urCells">All UR cells.</param>
+            <param name="arMode">Indicates whether the current mode is AR mode.</param>
+            <param name="comparer">The mask comparer.</param>
+            <param name="d1">The digit 1 used in UR.</param>
+            <param name="d2">The digit 2 used in UR.</param>
+            <param name="corner1">The corner cell 1.</param>
+            <param name="corner2">The corner cell 2.</param>
+            <param name="otherCellsMap">The map of other cells during the current UR searching.</param>
+            <param name="index">The index.</param>
+            <remarks>
+            The structure:
+            <code><![CDATA[
+                      |   xyz
+             ab+ ab+  | abxyz abxyz
+                      |   xyz
+            ----------+------------
+            (ab)(ab)  |
+             ↑ corner1, corner2
+            ]]></code>
+            </remarks>
         </member>
         <member name="M:Sudoku.Solving.Manual.Searchers.UniqueRectangleStepSearcher.CheckUnknownCoveringUnique(System.Collections.Generic.ICollection{Sudoku.Solving.Manual.Steps.UniqueRectangleStep},Sudoku.Collections.Grid@,System.Int32[],System.Int16,System.Int32,System.Int32,System.Int32)">
              <summary>
@@ -3540,23 +3540,23 @@
              <para>
              Subtype 1:
              <code><![CDATA[
-            '      ↓urCellInSameBlock
-            ' ab  abc      abc  ←anotherCell
-            '
-            '     abcx-----abcy ←resultCell
-            '           c
-            '      ↑targetCell
+                  ↓urCellInSameBlock
+             ab  abc      abc  ←anotherCell
+            
+                 abcx-----abcy ←resultCell
+                       c
+                  ↑targetCell
              ]]></code>
              Where the digit <c>a</c> and <c>b</c> in the down-left cell <c>abcx</c> can be removed.
              </para>
              <para>
              Subtype 2:
              <code><![CDATA[
-            ' abcx   | ab  abc
-            '  |     |
-            '  | c   |
-            '  |     |
-            ' abcy   |     abc
+             abcx   | ab  abc
+              |     |
+              | c   |
+              |     |
+             abcy   |     abc
              ]]></code>
              </para>
              </remarks>

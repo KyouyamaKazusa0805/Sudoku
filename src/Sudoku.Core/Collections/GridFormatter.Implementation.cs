@@ -459,13 +459,8 @@ partial struct GridFormatter
 
 
 						static void p(
-							in GridFormatter formatter,
-							ref StringHandler sb,
-							IList<short> valuesByRow,
-							char c1,
-							char c2,
-							int* maxLengths
-						)
+							in GridFormatter formatter, ref StringHandler sb,
+							IList<short> valuesByRow, char c1, char c2, int* maxLengths)
 						{
 							sb.Append(c1);
 							printValues(formatter, ref sb, valuesByRow, 0, 2, maxLengths);
@@ -478,13 +473,8 @@ partial struct GridFormatter
 
 
 							static void printValues(
-								in GridFormatter formatter,
-								ref StringHandler sb,
-								IList<short> valuesByRow,
-								int start,
-								int end,
-								int* maxLengths
-							)
+								in GridFormatter formatter, ref StringHandler sb,
+								IList<short> valuesByRow, int start, int end, int* maxLengths)
 							{
 								sb.Append(' ');
 								for (int i = start; i <= end; i++)

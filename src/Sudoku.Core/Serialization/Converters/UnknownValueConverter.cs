@@ -12,10 +12,7 @@ public sealed class UnknownValueConverter : JsonConverter<UnknownValue>
 	/// <inheritdoc/>
 	/// <exception cref="JsonException">Throws when the current JSON value is mal-formed.</exception>
 	public override unsafe UnknownValue Read(
-		ref Utf8JsonReader reader,
-		Type typeToConvert,
-		JsonSerializerOptions options
-	)
+		ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
 	{
 		if (!CanConvert(typeToConvert))
 		{

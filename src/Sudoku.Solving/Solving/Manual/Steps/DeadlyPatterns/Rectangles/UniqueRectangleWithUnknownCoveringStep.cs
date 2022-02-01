@@ -27,8 +27,14 @@ public sealed record UniqueRectangleWithUnknownCoveringStep(
 	int ExtraDigit,
 	int AbsoluteOffset
 ) : UniqueRectangleStep(
-	Conclusions, Views, Technique.UniqueRectangleUnknownCovering,
-	Digit1, Digit2, Cells, false, AbsoluteOffset
+	Conclusions,
+	Views,
+	Technique.UniqueRectangleUnknownCovering,
+	Digit1,
+	Digit2,
+	Cells,
+	false,
+	AbsoluteOffset
 )
 {
 	/// <inheritdoc/>

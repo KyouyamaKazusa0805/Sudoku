@@ -96,12 +96,7 @@ public sealed unsafe class BowmanBingoStepSearcher : IBowmanBingoStepSearcher
 	}
 
 	private Step? GetAll(
-		ICollection<BowmanBingoStep> result,
-		ref Grid grid,
-		bool onlyFindOne,
-		int startCand,
-		int length
-	)
+		ICollection<BowmanBingoStep> result, ref Grid grid, bool onlyFindOne, int startCand, int length)
 	{
 		if (length == 0 || _searcher.GetAll(null!, grid, true) is not SingleStep singleInfo)
 		{
@@ -182,7 +177,8 @@ public sealed unsafe class BowmanBingoStepSearcher : IBowmanBingoStepSearcher
 	/// <param name="cell">The cell.</param>
 	/// <param name="digit">The digit.</param>
 	/// <returns>The result.</returns>
-	private static (IReadOnlyList<int> CandidateList, short Mask) RecordUndoInfo(in Grid grid, int cell, int digit)
+	private static (IReadOnlyList<int> CandidateList, short Mask) RecordUndoInfo(
+		in Grid grid, int cell, int digit)
 	{
 		var list = new List<int>();
 		foreach (int c in PeerMaps[cell] & CandMaps[digit])

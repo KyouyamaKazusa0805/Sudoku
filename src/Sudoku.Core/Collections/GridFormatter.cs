@@ -21,13 +21,11 @@ public readonly ref partial struct GridFormatter
 	/// be multi-line.
 	/// </param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public GridFormatter(bool multiline) :
-		this(
-			placeholder: '.', multiline: multiline, withModifiables: false,
-			withCandidates: false, treatValueAsGiven: false, subtleGridLines: false,
-			hodokuCompatible: false, sukaku: false, excel: false, openSudoku: false,
-			shortenSusser: false
-		)
+	public GridFormatter(bool multiline) : this(
+		placeholder: '.', multiline: multiline, withModifiables: false,
+		withCandidates: false, treatValueAsGiven: false, subtleGridLines: false,
+		hodokuCompatible: false, sukaku: false, excel: false, openSudoku: false,
+		shortenSusser: false)
 	{
 	}
 
@@ -66,18 +64,9 @@ public readonly ref partial struct GridFormatter
 	/// </param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	private GridFormatter(
-		char placeholder,
-		bool multiline,
-		bool withModifiables,
-		bool withCandidates,
-		bool treatValueAsGiven,
-		bool subtleGridLines,
-		bool hodokuCompatible,
-		bool sukaku,
-		bool excel,
-		bool openSudoku,
-		bool shortenSusser
-	)
+		char placeholder, bool multiline, bool withModifiables, bool withCandidates,
+		bool treatValueAsGiven, bool subtleGridLines, bool hodokuCompatible,
+		bool sukaku, bool excel, bool openSudoku, bool shortenSusser)
 	{
 		_flags = placeholder switch { '.' => 0, '0' => 1024 };
 		_flags |= (short)(multiline ? 512 : 0);

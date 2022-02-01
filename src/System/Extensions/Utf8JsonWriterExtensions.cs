@@ -15,11 +15,7 @@ public static class Utf8JsonWriterExtensions
 	/// <param name="converter">The converter.</param>
 	/// <param name="options">The options on serialization.</param>
 	public static void WriteObject<T>(
-		this Utf8JsonWriter @this,
-		T value,
-		JsonConverter<T>? converter,
-		JsonSerializerOptions options
-	)
+		this Utf8JsonWriter @this, T value, JsonConverter<T>? converter, JsonSerializerOptions options)
 	{
 		if (converter is not null)
 		{

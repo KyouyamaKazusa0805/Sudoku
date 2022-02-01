@@ -138,8 +138,7 @@ public sealed class FileCounter
 				from file in directory.GetFiles()
 				select file.FullName into fullName
 				where Pattern is null || fullName.SatisfyPattern(Pattern)
-				select fullName
-			);
+				select fullName);
 
 			// Get all files for each folder recursively.
 			foreach (var d in

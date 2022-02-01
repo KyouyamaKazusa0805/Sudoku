@@ -170,17 +170,12 @@ public unsafe interface IChainStepSearcher : IStepSearcher
 	/// <returns>All possible strong links.</returns>
 #endif
 	protected static NodeSet GetOffToOn(
-		in Grid grid,
-		Node p,
-		bool xEnabled,
-		bool yEnabled,
-		bool enableFastProperties,
-		in Grid source = default,
+		in Grid grid, Node p, bool xEnabled, bool yEnabled,
+		bool enableFastProperties, in Grid source = default,
 #if DEBUG
 		NodeSet offNodes = default,
 #endif
-		bool isDynamic = false
-	)
+		bool isDynamic = false)
 	{
 		var result = new NodeSet();
 		if (yEnabled)

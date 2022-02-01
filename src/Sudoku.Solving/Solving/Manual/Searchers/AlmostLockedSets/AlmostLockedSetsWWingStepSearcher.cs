@@ -143,7 +143,9 @@ public sealed unsafe class AlmostLockedSetsWWingStepSearcher : IAlmostLockedSets
 										(
 											cell * 9 + digit,
 											(ColorIdentifier)(
-												digit == x ? 1 : (wDigitsMask >> digit & 1) != 0 ? 2 : 101
+												digit == x
+													? 1
+													: (wDigitsMask >> digit & 1) != 0 ? 2 : 101
 											)
 										)
 									);
@@ -157,7 +159,9 @@ public sealed unsafe class AlmostLockedSetsWWingStepSearcher : IAlmostLockedSets
 										(
 											cell * 9 + digit,
 											(ColorIdentifier)(
-												digit == x ? 1 : (wDigitsMask >> digit & 1) != 0 ? 2 : 102
+												digit == x
+													? 1
+													: (wDigitsMask >> digit & 1) != 0 ? 2 : 102
 											)
 										)
 									);
