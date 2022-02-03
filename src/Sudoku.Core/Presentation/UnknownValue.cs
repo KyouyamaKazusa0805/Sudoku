@@ -8,7 +8,11 @@
 /// <param name="DigitsMask">Indicates a mask that holds a serial of candidate values.</param>
 public readonly record struct UnknownValue(int Cell, char UnknownIdentifier, short DigitsMask) :
 	IDefaultable<UnknownValue>,
+	IEquatable<UnknownValue>
+#if FEATURE_GENERIC_MATH
+	,
 	IEqualityOperators<UnknownValue, UnknownValue>
+#endif
 {
 	/// <summary>
 	/// <inheritdoc cref="IDefaultable{TStruct}.Default"/>

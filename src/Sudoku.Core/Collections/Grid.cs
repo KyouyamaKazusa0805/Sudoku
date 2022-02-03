@@ -16,37 +16,76 @@ namespace Sudoku.Collections;
 [DebuggerDisplay($@"{{{nameof(ToString)}("".+:""),nq}}")]
 #endif // !USE_TO_MASK_STRING_METHOD
 #endif // !DEBUG
-public unsafe partial struct Grid : IGrid<Grid>
+public unsafe partial struct Grid :
+	IDefaultable<Grid>,
+	ISimpleFormattable,
+	ISimpleParseable<Grid>
+#if FEATURE_GENERIC_MATH
+	,
+	IEqualityOperators<Grid, Grid>
+#if FEATURE_GENERIC_MATH_IN_ARG
+	,
+	IValueBitwiseAndOperators<Grid, Cells, GridSegment>,
+	IValueEqualityOperators<Grid, Grid>
+#endif
+#endif
 {
-	/// <inheritdoc cref="IGrid{TGrid}.DefaultMask"/>
+	/// <summary>
+	/// Indicates the default mask of a cell (an empty cell, with all 9 candidates left).
+	/// </summary>
 	public const short DefaultMask = EmptyMask | MaxCandidatesMask;
 
-	/// <inheritdoc cref="IGrid{TGrid}.MaxCandidatesMask"/>
+	/// <summary>
+	/// Indicates the maximum candidate mask that used.
+	/// </summary>
 	public const short MaxCandidatesMask = (1 << 9) - 1;
 
-	/// <inheritdoc cref="IGrid{TGrid}.EmptyMask"/>
+	/// <summary>
+	/// Indicates the empty mask, modifiable mask and given mask.
+	/// </summary>
 	public const short EmptyMask = (int)CellStatus.Empty << 9;
 
-	/// <inheritdoc cref="IGrid{TGrid}.ModifiableMask"/>
+	/// <summary>
+	/// Indicates the modifiable mask.
+	/// </summary>
 	public const short ModifiableMask = (int)CellStatus.Modifiable << 9;
 
-	/// <inheritdoc cref="IGrid{TGrid}.GivenMask"/>
+	/// <summary>
+	/// Indicates the given mask.
+	/// </summary>
 	public const short GivenMask = (int)CellStatus.Given << 9;
 
 
-	/// <inheritdoc cref="IGrid{TGrid}.EmptyString"/>
+	/// <summary>
+	/// Indicates the empty grid string.
+	/// </summary>
 	public static readonly string EmptyString = new('0', 81);
 
-	/// <inheritdoc cref="IGrid{TGrid}.ValueChanged"/>
+	/// <summary>
+	/// Indicates the event triggered when the value is changed.
+	/// </summary>
 	public static readonly void* ValueChanged;
 
-	/// <inheritdoc cref="IGrid{TGrid}.RefreshingCandidates"/>
+	/// <summary>
+	/// Indicates the event triggered when should re-compute candidates.
+	/// </summary>
 	public static readonly void* RefreshingCandidates;
 
-	/// <inheritdoc cref="IGrid{TGrid}.Undefined"/>
+	/// <summary>
+	/// Indicates the default grid that all values are initialized 0.
+	/// </summary>
 	public static readonly Grid Undefined;
 
-	/// <inheritdoc cref="IGrid{TGrid}.Empty"/>
+	/// <summary>
+	/// The empty grid that is valid during implementation or running the program
+	/// (all values are <see cref="DefaultMask"/>, i.e. empty cells), which is same initialization result
+	/// as the constructor <see cref="Grid()"/>.
+	/// </summary>
+	/// <remarks>
+	/// This field is initialized by the static constructor of this structure.
+	/// </remarks>
+	/// <seealso cref="DefaultMask"/>
+	/// <seealso cref="Grid()"/>
 	public static readonly Grid Empty;
 
 	/// <summary>
@@ -283,7 +322,10 @@ public unsafe partial struct Grid : IGrid<Grid>
 	}
 
 
-	/// <inheritdoc/>
+	/// <summary>
+	/// Indicates the grid has already solved. If the value is <see langword="true"/>,
+	/// the grid is solved; otherwise, <see langword="false"/>.
+	/// </summary>
 	public readonly bool IsSolved
 	{
 		get
@@ -309,14 +351,22 @@ public unsafe partial struct Grid : IGrid<Grid>
 		get => Solver.CheckValidity(ToString("0"));
 	}
 
-	/// <inheritdoc/>
+	/// <summary>
+	/// Indicates whether the grid is <see cref="Undefined"/>, which means the grid
+	/// holds totally same value with <see cref="Undefined"/>.
+	/// </summary>
+	/// <seealso cref="Undefined"/>
 	public readonly bool IsUndefined
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => this == Undefined;
 	}
 
-	/// <inheritdoc/>
+	/// <summary>
+	/// Indicates whether the grid is <see cref="Empty"/>, which means the grid
+	/// holds totally same value with <see cref="Empty"/>.
+	/// </summary>
+	/// <seealso cref="Empty"/>
 	public readonly bool IsEmpty
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -324,7 +374,39 @@ public unsafe partial struct Grid : IGrid<Grid>
 	}
 
 #if DEBUG
-	/// <inheritdoc/>
+	/// <summary>
+	/// Indicates whether the grid is as same behaviors as <see cref="Undefined"/>
+	/// in debugging mode.
+	/// </summary>
+	/// <remarks>
+	/// <para>
+	/// This property checks whether all non-first masks are all 0. This checking behavior
+	/// is aiming to the debugger because the debugger can't recognize the fixed buffer.
+	/// </para>
+	/// <para>
+	/// The debugger can't recognize fixed buffer.
+	/// The fixed buffer whose code is like:
+	/// <code><![CDATA[
+	/// private fixed short _values[81];
+	/// ]]></code>
+	/// However, internally, the field <c>_values</c> is implemented
+	/// with a fixed buffer using a inner struct, which is just like:
+	/// <code><![CDATA[
+	/// [StructLayout(LayoutKind.Explicit, Size = 81 * sizeof(short))]
+	/// private struct FixedBuffer
+	/// {
+	///     public short _internalValue;
+	/// }
+	/// ]]></code>
+	/// And that field:
+	/// <code><![CDATA[
+	/// private FixedBuffer _fixedField;
+	/// ]]></code>
+	/// From the code we can learn that only 2 bytes of the inner struct can be detected,
+	/// because the buffer struct only contains 2 bytes data.
+	/// </para>
+	/// </remarks>
+	/// <see cref="Undefined"/>
 	public readonly bool IsDebuggerUndefined
 	{
 		get
@@ -347,7 +429,9 @@ public unsafe partial struct Grid : IGrid<Grid>
 	}
 #endif
 
-	/// <inheritdoc/>
+	/// <summary>
+	/// Indicates the number of total candidates.
+	/// </summary>
 	public readonly int CandidatesCount
 	{
 		get
@@ -365,21 +449,27 @@ public unsafe partial struct Grid : IGrid<Grid>
 		}
 	}
 
-	/// <inheritdoc/>
+	/// <summary>
+	/// Indicates the total number of given cells.
+	/// </summary>
 	public readonly int GivensCount
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => GivenCells.Count;
 	}
 
-	/// <inheritdoc/>
+	/// <summary>
+	/// Indicates the total number of modifiable cells.
+	/// </summary>
 	public readonly int ModifiablesCount
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => ModifiableCells.Count;
 	}
 
-	/// <inheritdoc/>
+	/// <summary>
+	/// Indicates the total number of empty cells.
+	/// </summary>
 	public readonly int EmptiesCount
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -452,7 +542,9 @@ public unsafe partial struct Grid : IGrid<Grid>
 		}
 	}
 
-	/// <inheritdoc/>
+	/// <summary>
+	/// Indicates the cells that corresponding position in this grid is empty.
+	/// </summary>
 	public readonly Cells EmptyCells
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -465,7 +557,9 @@ public unsafe partial struct Grid : IGrid<Grid>
 		}
 	}
 
-	/// <inheritdoc/>
+	/// <summary>
+	/// Indicates the cells that corresponding position in this grid contain two candidates.
+	/// </summary>
 	public readonly Cells BivalueCells
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -478,7 +572,10 @@ public unsafe partial struct Grid : IGrid<Grid>
 		}
 	}
 
-	/// <inheritdoc/>
+	/// <summary>
+	/// Indicates the map of possible positions of the existence of the candidate value for each digit.
+	/// The return value will be an array of 9 elements, which stands for the statuses of 9 digits.
+	/// </summary>
 	public readonly Cells[] CandidatesMap
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -491,7 +588,17 @@ public unsafe partial struct Grid : IGrid<Grid>
 		}
 	}
 
-	/// <inheritdoc/>
+	/// <summary>
+	/// <para>
+	/// Indicates the map of possible positions of the existence of each digit. The return value will
+	/// be an array of 9 elements, which stands for the statuses of 9 digits.
+	/// </para>
+	/// <para>
+	/// Different with <see cref="CandidatesMap"/>, this property contains all givens, modifiables and
+	/// empty cells only if it contains the digit in the mask.
+	/// </para>
+	/// </summary>
+	/// <seealso cref="CandidatesMap"/>
 	public readonly Cells[] DigitsMap
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -504,7 +611,17 @@ public unsafe partial struct Grid : IGrid<Grid>
 		}
 	}
 
-	/// <inheritdoc/>
+	/// <summary>
+	/// <para>
+	/// Indicates the map of possible positions of the existence of that value of each digit.
+	/// The return value will be an array of 9 elements, which stands for the statuses of 9 digits.
+	/// </para>
+	/// <para>
+	/// Different with <see cref="CandidatesMap"/>, the value only contains the given or modifiable
+	/// cells whose mask contain the set bit of that digit.
+	/// </para>
+	/// </summary>
+	/// <seealso cref="CandidatesMap"/>
 	public readonly Cells[] ValuesMap
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -554,38 +671,34 @@ public unsafe partial struct Grid : IGrid<Grid>
 	/// <inheritdoc/>
 	static Grid IDefaultable<Grid>.Default => Undefined;
 
-	/// <inheritdoc/>
-	static short IGrid<Grid>.DefaultMask => DefaultMask;
 
-	/// <inheritdoc/>
-	static short IGrid<Grid>.MaxCandidatesMask => MaxCandidatesMask;
-
-	/// <inheritdoc/>
-	static short IGrid<Grid>.EmptyMask => EmptyMask;
-
-	/// <inheritdoc/>
-	static short IGrid<Grid>.ModifiableMask => ModifiableMask;
-
-	/// <inheritdoc/>
-	static short IGrid<Grid>.GivenMask => GivenMask;
-
-	/// <inheritdoc/>
-	static string IGrid<Grid>.EmptyString => EmptyString;
-
-	/// <inheritdoc/>
-	static void* IGrid<Grid>.ValueChanged => ValueChanged;
-
-	/// <inheritdoc/>
-	static void* IGrid<Grid>.RefreshingCandidates => RefreshingCandidates;
-
-	/// <inheritdoc/>
-	static Grid IGrid<Grid>.Undefined => Undefined;
-
-	/// <inheritdoc/>
-	static Grid IGrid<Grid>.Empty => Empty;
-
-
-	/// <inheritdoc/>
+	/// <summary>
+	/// Gets or sets the value in the specified cell.
+	/// </summary>
+	/// <param name="cell">The cell you want to get or set a value.</param>
+	/// <value>
+	/// The value you want to set. The value should be between 0 and 8. If assigning -1,
+	/// that means to re-compute all candidates.
+	/// </value>
+	/// <returns>
+	/// The value that the cell filled with. The possible values are:
+	/// <list type="table">
+	/// <item>
+	/// <term>-2</term>
+	/// <description>The status of the specified cell is <see cref="CellStatus.Undefined"/>.</description>
+	/// </item>
+	/// <item>
+	/// <term>-1</term>
+	/// <description>The status of the specified cell is <see cref="CellStatus.Empty"/>.</description>
+	/// </item>
+	/// <item>
+	/// <term>0 to 8</term>
+	/// <description>
+	/// The actual value that the cell filled with. 0 is for the digit 1, 1 is for the digit 2, etc..
+	/// </description>
+	/// </item>
+	/// </list>
+	/// </returns>
 	public int this[int cell]
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -629,7 +742,16 @@ public unsafe partial struct Grid : IGrid<Grid>
 		}
 	}
 
-	/// <inheritdoc/>
+	/// <summary>
+	/// Gets or sets a candidate existence case with a <see cref="bool"/> value.
+	/// </summary>
+	/// <param name="cell">The cell offset between 0 and 80.</param>
+	/// <param name="digit">The digit between 0 and 8.</param>
+	/// <value>
+	/// The case you want to set. <see langword="false"/> means that this candidate
+	/// doesn't exist in this current sudoku grid; otherwise, <see langword="true"/>.
+	/// </value>
+	/// <returns>A <see cref="bool"/> value indicating that.</returns>
 	public bool this[int cell, int digit]
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -671,7 +793,10 @@ public unsafe partial struct Grid : IGrid<Grid>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public bool Equals(in Grid other) => Equals(this, other);
 
-	/// <inheritdoc/>
+	/// <summary>
+	/// Check whether the current grid is valid (no duplicate values on same row, column or block).
+	/// </summary>
+	/// <returns>The <see cref="bool"/> result.</returns>
 	public readonly bool SimplyValidate()
 	{
 		for (int i = 0; i < 81; i++)
@@ -706,11 +831,86 @@ public unsafe partial struct Grid : IGrid<Grid>
 		return true;
 	}
 
-	/// <inheritdoc/>
+	/// <summary>
+	/// Indicates whether the current grid contains the specified candidate offset.
+	/// </summary>
+	/// <param name="candidate">The candidate offset.</param>
+	/// <returns>
+	/// The method will return a <see cref="bool"/>? value (contains three possible cases:
+	/// <see langword="true"/>, <see langword="false"/> and <see langword="null"/>).
+	/// All values corresponding to the cases are below:
+	/// <list type="table">
+	/// <item>
+	/// <term><see langword="true"/></term>
+	/// <description>
+	/// The cell that the candidate specified is an empty cell <b>and</b> contains the specified digit
+	/// that the candidate specified.
+	/// </description>
+	/// </item>
+	/// <item>
+	/// <term><see langword="false"/></term>
+	/// <description>
+	/// The cell that the candidate specified is an empty cell <b>but doesn't</b> contain the specified digit
+	/// that the candidate specified.
+	/// </description>
+	/// </item>
+	/// <item>
+	/// <term><see langword="null"/></term>
+	/// <description>
+	/// The cell that the candidate specified is <b>not</b> an empty cell that the candidate specified.
+	/// </description>
+	/// </item>
+	/// </list>
+	/// </returns>
+	/// <remarks>
+	/// Note that the method will return a <see cref="bool"/>?, so you should use the code
+	/// '<c>grid.Exists(candidate) is true</c>' or '<c>grid.Exists(candidate) == true</c>'
+	/// to decide whether a condition is true.
+	/// </remarks>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public readonly bool? Exists(int candidate) => Exists(candidate / 9, candidate % 9);
 
-	/// <inheritdoc/>
+	/// <summary>
+	/// Indicates whether the current grid contains the digit in the specified cell.
+	/// </summary>
+	/// <param name="cell">The cell offset.</param>
+	/// <param name="digit">The digit.</param>
+	/// <returns>
+	/// The method will return a <see cref="bool"/>? value (contains three possible cases:
+	/// <see langword="true"/>, <see langword="false"/> and <see langword="null"/>).
+	/// All values corresponding to the cases are below:
+	/// <list type="table">
+	/// <item>
+	/// <term><see langword="true"/></term>
+	/// <description>
+	/// The cell is an empty cell <b>and</b> contains the specified digit.
+	/// </description>
+	/// </item>
+	/// <item>
+	/// <term><see langword="false"/></term>
+	/// <description>
+	/// The cell is an empty cell <b>but doesn't</b> contain the specified digit.
+	/// </description>
+	/// </item>
+	/// <item>
+	/// <term><see langword="null"/></term>
+	/// <description>The cell is <b>not</b> an empty cell.</description>
+	/// </item>
+	/// </list>
+	/// </returns>
+	/// <remarks>
+	/// <para>
+	/// Note that the method will return a <see cref="bool"/>?, so you should use the code
+	/// '<c>grid.Exists(cell, digit) is true</c>' or '<c>grid.Exists(cell, digit) == true</c>'
+	/// to decide whether a condition is true.
+	/// </para>
+	/// <para>
+	/// In addition, because the type is <see cref="bool"/>? rather than <see cref="bool"/>,
+	/// the result case will be more precisely than the indexer <see cref="this[int, int]"/>,
+	/// which is the main difference between this method and that indexer.
+	/// </para>
+	/// </remarks>
+	/// <seealso cref="this[int, int]"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public readonly bool? Exists(int cell, int digit) =>
 		GetStatus(cell) == CellStatus.Empty ? this[cell, digit] : null;
@@ -727,7 +927,14 @@ public unsafe partial struct Grid : IGrid<Grid>
 		_ => $"{this:#}".GetHashCode()
 	};
 
-	/// <inheritdoc/>
+
+	/// <summary>
+	/// Serializes this instance to an array, where all digit value will be stored.
+	/// </summary>
+	/// <returns>
+	/// This array. All elements are between 0 to 9, where 0 means the
+	/// cell is <see cref="CellStatus.Empty"/> now.
+	/// </returns>
 	public readonly int[] ToArray()
 	{
 		int[] result = new int[81];
@@ -740,20 +947,60 @@ public unsafe partial struct Grid : IGrid<Grid>
 		return result;
 	}
 
-	/// <inheritdoc/>
+	/// <summary>
+	/// Get a mask at the specified cell.
+	/// </summary>
+	/// <param name="offset">The cell offset you want to get.</param>
+	/// <returns>The mask.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public readonly short GetMask(int offset) => _values[offset];
 
-	/// <inheritdoc/>
+	/// <summary>
+	/// Get the candidate mask part of the specified cell.
+	/// </summary>
+	/// <param name="cell">The cell offset you want to get.</param>
+	/// <returns>
+	/// <para>
+	/// The candidate mask. The return value is a 9-bit <see cref="short"/>
+	/// value, where each bit will be:
+	/// <list type="table">
+	/// <item>
+	/// <term><c>0</c></term>
+	/// <description>The cell <b>doesn't contain</b> the possibility of the digit.</description>
+	/// </item>
+	/// <item>
+	/// <term><c>1</c></term>
+	/// <description>The cell <b>contains</b> the possibility of the digit.</description>
+	/// </item>
+	/// </list>
+	/// </para>
+	/// <para>
+	/// For example, if the result mask is 266 (i.e. <c>0b<b>1</b>00_00<b>1</b>_0<b>1</b>0</c> in binary),
+	/// the value will indicate the cell contains the digit 2, 4 and 9.
+	/// </para>
+	/// </returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public readonly short GetCandidates(int cell) => (short)(_values[cell] & MaxCandidatesMask);
 
-	/// <inheritdoc/>
+	/// <summary>
+	/// Returns a reference to the element of the <see cref="Grid"/> at index zero.
+	/// </summary>
+	/// <returns>A reference to the element of the <see cref="Grid"/> at index zero.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	[EditorBrowsable(EditorBrowsableState.Never)]
 	public readonly ref readonly short GetPinnableReference() => ref _values[0];
 
-	/// <inheritdoc/>
+	/// <summary>
+	/// Get all masks and print them.
+	/// </summary>
+	/// <returns>The result.</returns>
+	/// <remarks>
+	/// Please note that the method cannot be called with a correct behavior using
+	/// <see cref="DebuggerDisplayAttribute"/> to output. It seems that Visual Studio
+	/// doesn't print correct values when indices of this grid aren't 0. In other words,
+	/// when we call this method using <see cref="DebuggerDisplayAttribute"/>, only <c>grid[0]</c>
+	/// can be output correctly, and other values will be incorrect: they're always 0.
+	/// </remarks>
 	public readonly string ToMaskString()
 	{
 		const string separator = ", ";
@@ -789,7 +1036,11 @@ public unsafe partial struct Grid : IGrid<Grid>
 			}
 		};
 
-	/// <inheritdoc/>
+	/// <summary>
+	/// Get the cell status at the specified cell.
+	/// </summary>
+	/// <param name="cell">The cell.</param>
+	/// <returns>The cell status.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public readonly CellStatus GetStatus(int cell) => MaskToStatus(_values[cell]);
 
@@ -892,7 +1143,9 @@ public unsafe partial struct Grid : IGrid<Grid>
 		}
 	}
 
-	/// <inheritdoc/>
+	/// <summary>
+	/// To fix the current grid (all modifiable values will be changed to given ones).
+	/// </summary>
 	public void Fix()
 	{
 		for (int i = 0; i < 81; i++)
@@ -904,7 +1157,9 @@ public unsafe partial struct Grid : IGrid<Grid>
 		}
 	}
 
-	/// <inheritdoc/>
+	/// <summary>
+	/// To unfix the current grid (all given values will be changed to modifiable ones).
+	/// </summary>
 	public void Unfix()
 	{
 		for (int i = 0; i < 81; i++)
@@ -916,7 +1171,11 @@ public unsafe partial struct Grid : IGrid<Grid>
 		}
 	}
 
-	/// <inheritdoc/>
+	/// <summary>
+	/// Set the specified cell to the specified status.
+	/// </summary>
+	/// <param name="cell">The cell.</param>
+	/// <param name="status">The status.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public void SetStatus(int cell, CellStatus status)
 	{
@@ -928,7 +1187,11 @@ public unsafe partial struct Grid : IGrid<Grid>
 		f(ref this, cell, copied, mask, -1);
 	}
 
-	/// <inheritdoc/>
+	/// <summary>
+	/// Set the specified cell to the specified mask.
+	/// </summary>
+	/// <param name="cell">The cell.</param>
+	/// <param name="mask">The mask to set.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public void SetMask(int cell, short mask)
 	{
@@ -939,6 +1202,12 @@ public unsafe partial struct Grid : IGrid<Grid>
 		var f = (delegate*<ref Grid, int, short, short, int, void>)ValueChanged;
 		f(ref this, cell, copied, m, -1);
 	}
+
+#if FEATURE_GENERIC_MATH
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	readonly bool IEquatable<Grid>.Equals(Grid other) => Equals(this, other);
+#endif
 
 	/// <summary>
 	/// Called by properties <see cref="CandidatesMap"/>, <see cref="DigitsMap"/> and <see cref="ValuesMap"/>.
@@ -988,7 +1257,12 @@ public unsafe partial struct Grid : IGrid<Grid>
 	}
 
 
-	/// <inheritdoc/>
+	/// <summary>
+	/// To determine whether two sudoku grid is totally same.
+	/// </summary>
+	/// <param name="left">The left one.</param>
+	/// <param name="right">The right one.</param>
+	/// <returns>The <see cref="bool"/> result indicating that.</returns>
 	public static bool Equals(in Grid left, in Grid right)
 	{
 		fixed (short* pThis = left, pOther = right)
@@ -1006,11 +1280,24 @@ public unsafe partial struct Grid : IGrid<Grid>
 		}
 	}
 
-	/// <inheritdoc/>
+	/// <summary>
+	/// <para>Parses a string value and converts to this type.</para>
+	/// <para>
+	/// If you want to parse a PM grid, we recommend you use the method
+	/// <see cref="Parse(string, GridParsingOption)"/> instead of this method.
+	/// </para>
+	/// </summary>
+	/// <param name="str">The string.</param>
+	/// <returns>The result instance had converted.</returns>
+	/// <seealso cref="Parse(string, GridParsingOption)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static Grid Parse(ReadOnlySpan<char> str) => new GridParser(str.ToString()).Parse();
 
-	/// <inheritdoc/>
+	/// <summary>
+	/// Parses a pointer that points to a string value and converts to this type.
+	/// </summary>
+	/// <param name="ptrStr">The pointer that points to string.</param>
+	/// <returns>The result instance.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static Grid Parse(char* ptrStr) => Parse(new string(ptrStr));
 
@@ -1018,11 +1305,32 @@ public unsafe partial struct Grid : IGrid<Grid>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static Grid Parse(string str) => new GridParser(str).Parse();
 
-	/// <inheritdoc/>
+	/// <summary>
+	/// <para>
+	/// Parses a string value and converts to this type.
+	/// </para>
+	/// <para>
+	/// If you want to parse a PM grid, you should decide the mode to parse.
+	/// If you use compatible mode to parse, all single values will be treated as
+	/// given values; otherwise, recommended mode, which uses '<c><![CDATA[<d>]]></c>'
+	/// or '<c>*d*</c>' to represent a value be a given or modifiable one. The decision
+	/// will be indicated and passed by the second parameter <paramref name="compatibleFirst"/>.
+	/// </para>
+	/// </summary>
+	/// <param name="str">The string.</param>
+	/// <param name="compatibleFirst">
+	/// Indicates whether the parsing operation should use compatible mode to check PM grid.
+	/// </param>
+	/// <returns>The result instance had converted.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static Grid Parse(string str, bool compatibleFirst) => new GridParser(str, compatibleFirst).Parse();
 
-	/// <inheritdoc/>
+	/// <summary>
+	/// Parses a string value and converts to this type, using a specified grid parsing type.
+	/// </summary>
+	/// <param name="str">The string.</param>
+	/// <param name="gridParsingOption">The grid parsing type.</param>
+	/// <returns>The result instance had converted.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static Grid Parse(string str, GridParsingOption gridParsingOption) =>
 		new GridParser(str).Parse(gridParsingOption);
@@ -1042,7 +1350,18 @@ public unsafe partial struct Grid : IGrid<Grid>
 		}
 	}
 
-	/// <inheritdoc/>
+	/// <summary>
+	/// Try to parse a string and converts to this type, and returns a
+	/// <see cref="bool"/> value indicating the result of the conversion.
+	/// </summary>
+	/// <param name="str">The string.</param>
+	/// <param name="option">The grid parsing type.</param>
+	/// <param name="result">
+	/// The result parsed. If the conversion is failed,
+	/// this argument will be <see cref="Undefined"/>.
+	/// </param>
+	/// <returns>A <see cref="bool"/> value indicating that.</returns>
+	/// <seealso cref="Undefined"/>
 	public static bool TryParse(string str, GridParsingOption option, out Grid result)
 	{
 		try
@@ -1093,4 +1412,42 @@ public unsafe partial struct Grid : IGrid<Grid>
 	/// <returns>A <see cref="bool"/> result.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static bool operator !=(in Grid left, in Grid right) => !(left == right);
+
+#if FEATURE_GENERIC_MATH
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	static bool IEqualityOperators<Grid, Grid>.operator ==(Grid left, Grid right) => left == right;
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	static bool IEqualityOperators<Grid, Grid>.operator !=(Grid left, Grid right) => left != right;
+
+#if FEATURE_GENERIC_MATH_IN_ARG
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	static GridSegment IValueBitwiseAndOperators<Grid, Cells, GridSegment>.operator &(in Grid left, Cells right) =>
+		left & right;
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	static GridSegment IValueBitwiseAndOperators<Grid, Cells, GridSegment>.operator &(Grid left, in Cells right) =>
+		left & right;
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	static bool IValueEqualityOperators<Grid, Grid>.operator ==(Grid left, in Grid right) => left == right;
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	static bool IValueEqualityOperators<Grid, Grid>.operator ==(in Grid left, Grid right) => left == right;
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	static bool IValueEqualityOperators<Grid, Grid>.operator !=(Grid left, in Grid right) => left != right;
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	static bool IValueEqualityOperators<Grid, Grid>.operator !=(in Grid left, Grid right) => left != right;
+#endif
+#endif
 }

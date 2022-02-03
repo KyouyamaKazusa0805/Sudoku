@@ -12,7 +12,17 @@ namespace Sudoku.Solving.Collections;
 /// <param name="Reason">Indicates the reason why these candidates can be eliminated.</param>
 /// <seealso cref="IJuniorExocetStepSearcher"/>
 /// <seealso cref="ISeniorExocetStepSearcher"/>
-public readonly record struct ExocetElimination(in Candidates Eliminations, ExocetEliminatedReason Reason)
+public readonly record struct ExocetElimination(in Candidates Eliminations, ExocetEliminatedReason Reason) :
+	IEquatable<ExocetElimination>
+#if FEATURE_GENERIC_MATH
+	,
+	IEqualityOperators<ExocetElimination, ExocetElimination>
+#if FEATURE_GENERIC_MATH_IN_ARG
+	,
+	IValueBitwiseOrOperators<ExocetElimination, ExocetElimination, ExocetElimination>,
+	IValueEqualityOperators<ExocetElimination, ExocetElimination>
+#endif
+#endif
 {
 	/// <summary>
 	/// Indicates how many eliminations the instance contains.
@@ -29,6 +39,10 @@ public readonly record struct ExocetElimination(in Candidates Eliminations, Exoc
 	private string Header => ResourceManager.Shared[$"exocet{Reason}EliminationName"];
 
 
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public bool Equals(ExocetElimination other) => Equals(in other);
+
 	/// <summary>
 	/// Determine whether the specified <see cref="ExocetElimination"/> instance holds a same set of eliminations
 	/// and the eliminated reason as the current instance.
@@ -39,11 +53,11 @@ public readonly record struct ExocetElimination(in Candidates Eliminations, Exoc
 	public bool Equals(in ExocetElimination other) =>
 		Eliminations == other.Eliminations && Reason == other.Reason;
 
-	/// <inheritdoc/>
+	/// <inheritdoc cref="object.GetHashCode"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public override int GetHashCode() => HashCode.Combine(Eliminations, Reason);
 
-	/// <inheritdoc/>
+	/// <inheritdoc cref="object.ToString"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public override string ToString()
 	{
@@ -75,6 +89,23 @@ public readonly record struct ExocetElimination(in Candidates Eliminations, Exoc
 
 		return result;
 	}
+
+
+#if FEATURE_GENERIC_MATH && FEATURE_GENERIC_MATH_IN_ARG
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	[SpecialName]
+	[SuppressMessage("Style", "IDE1006:Naming Styles", Justification = "<Pending>")]
+	public static bool op_Equality(in ExocetElimination left, in ExocetElimination right) =>
+		left.Equals(in right);
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	[SpecialName]
+	[SuppressMessage("Style", "IDE1006:Naming Styles", Justification = "<Pending>")]
+	public static bool op_Inequality(in ExocetElimination left, in ExocetElimination right) =>
+		!left.Equals(in right);
+#endif
 
 
 	/// <summary>
@@ -111,4 +142,58 @@ public readonly record struct ExocetElimination(in Candidates Eliminations, Exoc
 
 		return new(new(merged, totalCount), lr);
 	}
+
+#if FEATURE_GENERIC_MATH
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	static bool IEqualityOperators<ExocetElimination, ExocetElimination>.operator ==(ExocetElimination left, ExocetElimination right) =>
+		op_Equality(in left, in right);
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	static bool IEqualityOperators<ExocetElimination, ExocetElimination>.operator !=(ExocetElimination left, ExocetElimination right) =>
+		op_Inequality(in left, in right);
+
+#if FEATURE_GENERIC_MATH_IN_ARG
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	static ExocetElimination IValueBitwiseOrOperators<ExocetElimination, ExocetElimination, ExocetElimination>.operator |(ExocetElimination left, in ExocetElimination right) =>
+		left | right;
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	static ExocetElimination IValueBitwiseOrOperators<ExocetElimination, ExocetElimination, ExocetElimination>.operator |(in ExocetElimination left, ExocetElimination right) =>
+		left | right;
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	static bool IValueEqualityOperators<ExocetElimination, ExocetElimination>.operator ==(in ExocetElimination left, in ExocetElimination right) =>
+		op_Equality(in left, in right);
+	
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	static bool IValueEqualityOperators<ExocetElimination, ExocetElimination>.operator ==(in ExocetElimination left, ExocetElimination right) =>
+		op_Equality(in left, in right);
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	static bool IValueEqualityOperators<ExocetElimination, ExocetElimination>.operator ==(ExocetElimination left, in ExocetElimination right) =>
+		op_Equality(in left, in right);
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	static bool IValueEqualityOperators<ExocetElimination, ExocetElimination>.operator !=(in ExocetElimination left, in ExocetElimination right) =>
+		op_Inequality(in left, in right);
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	static bool IValueEqualityOperators<ExocetElimination, ExocetElimination>.operator !=(in ExocetElimination left, ExocetElimination right) =>
+		op_Inequality(in left, in right);
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	static bool IValueEqualityOperators<ExocetElimination, ExocetElimination>.operator !=(ExocetElimination left, in ExocetElimination right) =>
+		op_Inequality(in left, in right);
+#endif
+#endif
 }

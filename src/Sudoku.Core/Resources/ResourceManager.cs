@@ -4,8 +4,11 @@
 /// Defines an external resource manager.
 /// </summary>
 public sealed class ResourceManager :
-	IEquatable<ResourceManager>,
+	IEquatable<ResourceManager>
+#if FEATURE_GENERIC_MATH
+	,
 	IEqualityOperators<ResourceManager, ResourceManager>
+#endif
 {
 	/// <summary>
 	/// Indicates the external resource manager.

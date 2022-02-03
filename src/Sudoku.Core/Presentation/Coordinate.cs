@@ -9,16 +9,19 @@
 /// <see cref="ArgumentOutOfRangeException"/> will be thrown.
 /// </param>
 public readonly record struct Coordinate(byte Cell) :
-	IAdditionOperators<Coordinate, byte, Coordinate>,
 	IComparable<Coordinate>,
-	IComparisonOperators<Coordinate, Coordinate>,
 	IDefaultable<Coordinate>,
-	IEqualityOperators<Coordinate, Coordinate>,
 	IEquatable<Coordinate>,
-	IMinMaxValue<Coordinate>,
 	ISimpleFormattable,
-	ISimpleParseable<Coordinate>,
-	ISubtractionOperators<Coordinate, byte, Coordinate>
+	ISimpleParseable<Coordinate>
+#if FEATURE_GENERIC_MATH
+	,
+	IMinMaxValue<Coordinate>,
+	IAdditionOperators<Coordinate, byte, Coordinate>,
+	ISubtractionOperators<Coordinate, byte, Coordinate>,
+	IComparisonOperators<Coordinate, Coordinate>,
+	IEqualityOperators<Coordinate, Coordinate>
+#endif
 {
 	/// <summary>
 	/// Indicates the undefined <see cref="Coordinate"/> instance that stands
@@ -67,6 +70,7 @@ public readonly record struct Coordinate(byte Cell) :
 		get => this == Undefined;
 	}
 
+#if FEATURE_GENERIC_MATH
 	/// <inheritdoc/>
 	static Coordinate IMinMaxValue<Coordinate>.MinValue
 	{
@@ -80,6 +84,7 @@ public readonly record struct Coordinate(byte Cell) :
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => MaxValue;
 	}
+#endif
 
 	/// <inheritdoc/>
 	static Coordinate IDefaultable<Coordinate>.Default
@@ -166,12 +171,14 @@ public readonly record struct Coordinate(byte Cell) :
 				: newResult
 		);
 
+#if FEATURE_GENERIC_MATH
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	int IComparable.CompareTo(object? obj) =>
 		obj is not Coordinate { Cell: var cell }
 			? throw new ArgumentException("The specified argument type is invalid.", nameof(obj))
 			: Cell.CompareTo(cell);
+#endif
 
 
 	/// <inheritdoc/>

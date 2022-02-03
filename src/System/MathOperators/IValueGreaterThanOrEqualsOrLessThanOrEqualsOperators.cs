@@ -1,4 +1,6 @@
-﻿using Sudoku.Diagnostics.CodeAnalysis;
+﻿#if FEATURE_GENERIC_MATH && FEATURE_GENERIC_MATH_IN_ARG
+using System.Runtime.Versioning;
+using Sudoku.Diagnostics.CodeAnalysis;
 
 namespace System;
 
@@ -15,6 +17,7 @@ namespace System;
 /// </summary>
 /// <typeparam name="TSelf">The type of the current instance.</typeparam>
 /// <typeparam name="TOther">The type that takes part in the operation.</typeparam>
+[RequiresPreviewFeatures]
 public interface IValueGreaterThanOrEqualsOrLessThanOrEqualsOperators<[Self] TSelf, TOther>
 	where TSelf : struct, IValueGreaterThanOrEqualsOrLessThanOrEqualsOperators<TSelf, TOther>
 	where TOther : struct
@@ -53,3 +56,5 @@ public interface IValueGreaterThanOrEqualsOrLessThanOrEqualsOperators<[Self] TSe
 	/// <inheritdoc cref="operator }=(in TSelf, in TSelf)"/>
 	static abstract bool operator <=(TSelf left, in TSelf right);
 }
+
+#endif

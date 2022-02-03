@@ -1,4 +1,6 @@
-﻿using Sudoku.Diagnostics.CodeAnalysis;
+﻿#if FEATURE_GENERIC_MATH && FEATURE_GENERIC_MATH_IN_ARG
+using System.Runtime.Versioning;
+using Sudoku.Diagnostics.CodeAnalysis;
 
 namespace System;
 
@@ -13,6 +15,7 @@ namespace System;
 /// <typeparam name="TSelf">The type of the current instance.</typeparam>
 /// <typeparam name="TOther">The type that takes part in the operation.</typeparam>
 /// <typeparam name="TResult">The type of the result value.</typeparam>
+[RequiresPreviewFeatures]
 public interface IValueSubtractionOperators<[Self] TSelf, TOther, TResult>
 	where TSelf :
 		struct,
@@ -36,3 +39,5 @@ public interface IValueSubtractionOperators<[Self] TSelf, TOther, TResult>
 	/// <inheritdoc cref="operator -(in TSelf, in TOther)"/>
 	static abstract TResult operator -(TSelf left, in TOther right);
 }
+
+#endif

@@ -17,7 +17,37 @@ namespace Sudoku.Collections;
 /// and the <see langword="false"/> bit (0) is for the cell not containing
 /// the digit.
 /// </remarks>
-public unsafe struct Cells : ICellsOrCandidates<Cells>, ISimpleParseable<Cells>
+public unsafe struct Cells :
+	IDefaultable<Cells>,
+	IEnumerable<int>,
+	IEquatable<Cells>,
+	ISimpleFormattable,
+	ISimpleParseable<Cells>
+#if FEATURE_GENERIC_MATH
+	,
+	IAdditionOperators<Cells, int, Cells>,
+	ISubtractionOperators<Cells, int, Cells>,
+	ISubtractionOperators<Cells, Cells, Cells>,
+	IDivisionOperators<Cells, int, short>,
+	IModulusOperators<Cells, Cells, Cells>,
+	IBitwiseOperators<Cells, Cells, Cells>,
+	IEqualityOperators<Cells, Cells>
+#if FEATURE_GENEIC_MATH_IN_ARG
+	,
+	IValueAdditionOperators<Cells, int, Cells>,
+	IValueSubtractionOperators<Cells, int, Cells>,
+	IValueSubtractionOperators<Cells, Cells, Cells>,
+	IValueDivisionOperators<Cells, int, short>,
+	IValueModulusOperators<Cells, Cells, Cells>,
+	IValueBitwiseAndOperators<Cells, Cells, Cells>,
+	IValueBitwiseOrOperators<Cells, Cells, Cells>,
+	IValueBitwiseNotOperators<Cells, Cells>,
+	IValueBitwiseExclusiveOrOperators<Cells, Cells, Cells>,
+	IValueEqualityOperators<Cells, Cells>,
+	IValueGreaterThanOrLessThanOperators<Cells, Cells>,
+	IValueLogicalNotOperators<Cells>
+#endif
+#endif
 {
 	/// <summary>
 	/// <para>Indicates an empty instance (all bits are 0).</para>
@@ -244,7 +274,9 @@ public unsafe struct Cells : ICellsOrCandidates<Cells>, ISimpleParseable<Cells>
 	}
 
 
-	/// <inheritdoc/>
+	/// <summary>
+	/// Indicates whether the collection is empty.
+	/// </summary>
 	public readonly bool IsEmpty
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -390,7 +422,9 @@ public unsafe struct Cells : ICellsOrCandidates<Cells>, ISimpleParseable<Cells>
 		get => TrailingZeroCount(CoveredRegions & ~511);
 	}
 
-	/// <inheritdoc/>
+	/// <summary>
+	/// Indicates the number of the values stored in this collection.
+	/// </summary>
 	public int Count { get; private set; } = 0;
 
 	/// <summary>
@@ -456,7 +490,9 @@ public unsafe struct Cells : ICellsOrCandidates<Cells>, ISimpleParseable<Cells>
 		get => (int)BlockMask | RowMask << RowOffset | ColumnMask << ColumnOffset;
 	}
 
-	/// <inheritdoc/>
+	/// <summary>
+	/// Indicates the <see cref="Cells"/> of intersections.
+	/// </summary>
 	public readonly Cells PeerIntersection
 	{
 		get
@@ -537,7 +573,13 @@ public unsafe struct Cells : ICellsOrCandidates<Cells>, ISimpleParseable<Cells>
 	}
 
 
-	/// <inheritdoc/>
+	/// <summary>
+	/// Get the offset at the specified position index.
+	/// </summary>
+	/// <param name="index">The index.</param>
+	/// <returns>
+	/// The offset at the specified position index. If the value is invalid, the return value will be <c>-1</c>.
+	/// </returns>
 	public readonly int this[int index]
 	{
 		get
@@ -575,7 +617,14 @@ public unsafe struct Cells : ICellsOrCandidates<Cells>, ISimpleParseable<Cells>
 	}
 
 
-	/// <inheritdoc/>
+	/// <summary>
+	/// Copies the current instance to the target array specified as an <see cref="int"/>*.
+	/// </summary>
+	/// <param name="arr">The pointer that points to an array of type <see cref="int"/>.</param>
+	/// <param name="length">The length of that array.</param>
+	/// <exception cref="InvalidOperationException">
+	/// Throws when the capacity isn't enough to store all values.
+	/// </exception>
 	public readonly void CopyTo(int* arr, int length)
 	{
 		if (IsEmpty)
@@ -612,7 +661,12 @@ public unsafe struct Cells : ICellsOrCandidates<Cells>, ISimpleParseable<Cells>
 		}
 	}
 
-	/// <inheritdoc/>
+	/// <summary>
+	/// Copies the current instance to the target <see cref="Span{T}"/> instance.
+	/// </summary>
+	/// <param name="span">
+	/// The target <see cref="Span{T}"/> instance.
+	/// </param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public readonly void CopyTo(ref Span<int> span)
 	{
@@ -671,7 +725,11 @@ public unsafe struct Cells : ICellsOrCandidates<Cells>, ISimpleParseable<Cells>
 		return false;
 	}
 
-	/// <inheritdoc/>
+	/// <summary>
+	/// Determine whether the map contains the specified offset.
+	/// </summary>
+	/// <param name="offset">The offset.</param>
+	/// <returns>A <see cref="bool"/> value indicating that.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public readonly bool Contains(int offset) =>
 		((offset < Shifting ? _low : _high) >> offset % Shifting & 1) != 0;
@@ -700,7 +758,10 @@ public unsafe struct Cells : ICellsOrCandidates<Cells>, ISimpleParseable<Cells>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public override readonly int GetHashCode() => ToString("b").GetHashCode();
 
-	/// <inheritdoc/>
+	/// <summary>
+	/// Get all offsets whose bits are set <see langword="true"/>.
+	/// </summary>
+	/// <returns>An array of offsets.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public readonly int[] ToArray() => Offsets;
 
@@ -875,11 +936,17 @@ public unsafe struct Cells : ICellsOrCandidates<Cells>, ISimpleParseable<Cells>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public readonly Cells PeerIntersectionLimitsWith(in Cells limit) => this % limit;
 
-	/// <inheritdoc/>
+	/// <summary>
+	/// Converts the current instance to a <see cref="Span{T}"/> of type <see cref="int"/>.
+	/// </summary>
+	/// <returns>The <see cref="Span{T}"/> of <see cref="int"/> result.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public readonly Span<int> ToSpan() => Offsets.AsSpan();
 
-	/// <inheritdoc/>
+	/// <summary>
+	/// Converts the current instance to a <see cref="ReadOnlySpan{T}"/> of type <see cref="int"/>.
+	/// </summary>
+	/// <returns>The <see cref="ReadOnlySpan{T}"/> of <see cref="int"/> result.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public readonly ReadOnlySpan<int> ToReadOnlySpan() => Offsets.AsSpan();
 
@@ -921,7 +988,14 @@ public unsafe struct Cells : ICellsOrCandidates<Cells>, ISimpleParseable<Cells>
 		return result;
 	}
 
-	/// <inheritdoc/>
+	/// <summary>
+	/// Set the specified offset as <see langword="true"/> or <see langword="false"/> value.
+	/// </summary>
+	/// <param name="offset">
+	/// The offset. This value can be positive and negative. If 
+	/// negative, the offset will be assigned <see langword="false"/>
+	/// into the corresponding bit position of its absolute value.
+	/// </param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	[EditorBrowsable(EditorBrowsableState.Never)]
 	public void Add(int offset)
@@ -950,11 +1024,22 @@ public unsafe struct Cells : ICellsOrCandidates<Cells>, ISimpleParseable<Cells>
 		}
 	}
 
-	/// <inheritdoc/>
+	/// <summary>
+	/// Set the specified offset as <see langword="true"/> value.
+	/// </summary>
+	/// <param name="offset">The offset.</param>
+	/// <remarks>
+	/// Different with <see cref="Add(int)"/>, the method will process negative values,
+	/// but this won't.
+	/// </remarks>
+	/// <seealso cref="Add(int)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public void AddAnyway(int offset) => InternalAdd(offset, true);
 
-	/// <inheritdoc/>
+	/// <summary>
+	/// Set the specified offsets as <see langword="true"/> value.
+	/// </summary>
+	/// <param name="offsets">The offsets to add.</param>
 	public void AddRange(in ReadOnlySpan<int> offsets)
 	{
 		foreach (int cell in offsets)
@@ -963,7 +1048,7 @@ public unsafe struct Cells : ICellsOrCandidates<Cells>, ISimpleParseable<Cells>
 		}
 	}
 
-	/// <inheritdoc/>
+	/// <inheritdoc cref="AddRange(in ReadOnlySpan{int})"/>
 	public void AddRange(IEnumerable<int> offsets)
 	{
 		foreach (int cell in offsets)
@@ -972,13 +1057,26 @@ public unsafe struct Cells : ICellsOrCandidates<Cells>, ISimpleParseable<Cells>
 		}
 	}
 
-	/// <inheritdoc/>
+	/// <summary>
+	/// Set the specified offset as <see langword="false"/> value.
+	/// </summary>
+	/// <param name="offset">The offset.</param>
+	/// <remarks>
+	/// Different with <see cref="Add(int)"/>, this method <b>can't</b> receive the negative value as the parameter.
+	/// </remarks>
+	/// <seealso cref="Add(int)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public void Remove(int offset) => InternalAdd(offset, false);
 
-	/// <inheritdoc/>
+	/// <summary>
+	/// Clear all bits.
+	/// </summary>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public void Clear() => _low = _high = Count = 0;
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	readonly bool IEquatable<Cells>.Equals(Cells other) => Equals(other);
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -1094,50 +1192,98 @@ public unsafe struct Cells : ICellsOrCandidates<Cells>, ISimpleParseable<Cells>
 	}
 
 
-	/// <inheritdoc/>
+	/// <summary>
+	/// Gets the peer intersection of the current instance, which simply calls the property
+	/// <see cref="PeerIntersection"/>.
+	/// </summary>
+	/// <param name="offsets">The offsets.</param>
+	/// <returns>The result list that is the peer intersection of the current instance.</returns>
+	/// <remarks>
+	/// A <b>Peer Intersection</b> is a set of cells that all cells
+	/// from the base collection can be seen.
+	/// </remarks>
+	/// <seealso cref="PeerIntersection"/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static Cells operator !(in Cells offsets) => offsets.PeerIntersection;
+
+	/// <summary>
+	/// Reverse status for all offsets, which means all <see langword="true"/> bits
+	/// will be set <see langword="false"/>, and all <see langword="false"/> bits
+	/// will be set <see langword="true"/>.
+	/// </summary>
+	/// <param name="offsets">The instance to negate.</param>
+	/// <returns>The negative result.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static Cells operator ~(in Cells offsets) =>
 		new(~offsets._high & 0xFF_FFFF_FFFFL, ~offsets._low & 0x1FF_FFFF_FFFFL);
 
-	/// <inheritdoc/>
+	/// <summary>
+	/// The syntactic sugar for <c>!(<paramref name="left"/> - <paramref name="right"/>).IsEmpty</c>.
+	/// </summary>
+	/// <param name="left">The subtrahend.</param>
+	/// <param name="right">The subtractor.</param>
+	/// <returns>The <see cref="bool"/> value indicating that.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static bool operator >(in Cells left, in Cells right) => !(left - right).IsEmpty;
 
-	/// <inheritdoc/>
+	/// <summary>
+	/// The syntactic sugar for <c>(<paramref name="left"/> - <paramref name="right"/>).IsEmpty</c>.
+	/// </summary>
+	/// <param name="left">The subtrahend.</param>
+	/// <param name="right">The subtractor.</param>
+	/// <returns>The <see cref="bool"/> value indicating that.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static bool operator <(in Cells left, in Cells right) => (left - right).IsEmpty;
 
-	/// <inheritdoc/>
+	/// <summary>
+	/// Adds the specified <paramref name="offset"/> to the <paramref name="collection"/>,
+	/// and returns the added result.
+	/// </summary>
+	/// <param name="collection">The collection.</param>
+	/// <param name="offset">The offset to be removed.</param>
+	/// <returns>The result collection.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static Cells operator +(Cells collection, int offset)
+	public static Cells operator +(in Cells collection, int offset)
 	{
-		if (collection.Contains(offset))
+		var result = collection;
+		if (result.Contains(offset))
+		{
+			return result;
+		}
+
+		(offset / Shifting == 0 ? ref result._low : ref result._high) |= 1L << offset % Shifting;
+		result.Count++;
+		return result;
+	}
+
+	/// <summary>
+	/// Removes the specified <paramref name="offset"/> from the <paramref name="collection"/>,
+	/// and returns the removed result.
+	/// </summary>
+	/// <param name="collection">The collection.</param>
+	/// <param name="offset">The offset to be removed.</param>
+	/// <returns>The result collection.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static Cells operator -(in Cells collection, int offset)
+	{
+		var result = collection;
+		if (!result.Contains(offset))
 		{
 			return collection;
 		}
 
-		(offset / Shifting == 0 ? ref collection._low : ref collection._high) |= 1L << offset % Shifting;
-		collection.Count++;
-
-		return collection;
+		(offset / Shifting == 0 ? ref result._low : ref result._high) &= ~(1L << offset % Shifting);
+		result.Count--;
+		return result;
 	}
 
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static Cells operator -(Cells collection, int offset)
-	{
-		if (!collection.Contains(offset))
-		{
-			return collection;
-		}
-
-		(offset / Shifting == 0 ? ref collection._low : ref collection._high) &= ~(1L << offset % Shifting);
-		collection.Count--;
-
-		return collection;
-	}
-
-	/// <inheritdoc/>
+	/// <summary>
+	/// Get a <see cref="Cells"/> that contains all <paramref name="left"/> instance
+	/// but not in <paramref name="right"/> instance.
+	/// </summary>
+	/// <param name="left">The left instance.</param>
+	/// <param name="right">The right instance.</param>
+	/// <returns>The result.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static Cells operator -(in Cells left, in Cells right) => left & ~right;
 
@@ -1181,22 +1327,48 @@ public unsafe struct Cells : ICellsOrCandidates<Cells>, ISimpleParseable<Cells>
 		}
 	}
 
-	/// <inheritdoc/>
+	/// <summary>
+	/// Get the elements that both <paramref name="left"/> and <paramref name="right"/> contain.
+	/// </summary>
+	/// <param name="left">The left instance.</param>
+	/// <param name="right">The right instance.</param>
+	/// <returns>The result.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static Cells operator &(in Cells left, in Cells right) =>
 		new(left._high & right._high, left._low & right._low);
 
-	/// <inheritdoc/>
+	/// <summary>
+	/// Combine the elements from <paramref name="left"/> and <paramref name="right"/>,
+	/// and return the merged result.
+	/// </summary>
+	/// <param name="left">The left instance.</param>
+	/// <param name="right">The right instance.</param>
+	/// <returns>The result.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static Cells operator |(in Cells left, in Cells right) =>
 		new(left._high | right._high, left._low | right._low);
 
-	/// <inheritdoc/>
+	/// <summary>
+	/// Get the elements that either <paramref name="left"/> or <paramref name="right"/> contains.
+	/// </summary>
+	/// <param name="left">The left instance.</param>
+	/// <param name="right">The right instance.</param>
+	/// <returns>The result.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static Cells operator ^(in Cells left, in Cells right) =>
 		new(left._high ^ right._high, left._low ^ right._low);
 
-	/// <inheritdoc/>
+	/// <summary>
+	/// <para>
+	/// Simply expands the code to <c><![CDATA[(a & b).PeerIntersection & b]]></c>,
+	/// where <c>PeerIntersection</c> corresponds to the property <see cref="PeerIntersection"/>.
+	/// </para>
+	/// <para>The operator is used for searching for and checking eliminations.</para>
+	/// </summary>
+	/// <param name="base">The base map.</param>
+	/// <param name="template">The template map that the base map to check and cover.</param>
+	/// <returns>The result map.</returns>
+	/// <seealso cref="PeerIntersection"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static Cells operator %(in Cells @base, in Cells template) =>
 		(@base & template).PeerIntersection & template;
@@ -1252,7 +1424,7 @@ public unsafe struct Cells : ICellsOrCandidates<Cells>, ISimpleParseable<Cells>
 	/// <param name="right">The right-side instance to compare.</param>
 	/// <returns>A <see cref="bool"/> result.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static bool operator ==(Cells left, Cells right) =>
+	public static bool operator ==(in Cells left, in Cells right) =>
 		left._low == right._low && left._high == right._high;
 
 	/// <summary>
@@ -1262,18 +1434,192 @@ public unsafe struct Cells : ICellsOrCandidates<Cells>, ISimpleParseable<Cells>
 	/// <param name="right">The right-side instance to compare.</param>
 	/// <returns>A <see cref="bool"/> result.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static bool operator !=(Cells left, Cells right) => !(left == right);
+	public static bool operator !=(in Cells left, in Cells right) => !(left == right);
 
+#if FEATURE_GENERIC_MATH
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	static Cells IAdditionOperators<Cells, int, Cells>.operator +(Cells left, int right) => left + right;
 
 	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	static Cells ISubtractionOperators<Cells, int, Cells>.operator -(Cells left, int right) => left - right;
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	static Cells ISubtractionOperators<Cells, Cells, Cells>.operator -(Cells left, Cells right) =>
+		left - right;
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	static short IDivisionOperators<Cells, int, short>.operator /(Cells left, int right) => left / right;
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	static Cells IModulusOperators<Cells, Cells, Cells>.operator %(Cells left, Cells right) => left % right;
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	static Cells IBitwiseOperators<Cells, Cells, Cells>.operator ~(Cells value) => ~value;
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	static Cells IBitwiseOperators<Cells, Cells, Cells>.operator &(Cells left, Cells right) => left & right;
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	static Cells IBitwiseOperators<Cells, Cells, Cells>.operator |(Cells left, Cells right) => left | right;
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	static Cells IBitwiseOperators<Cells, Cells, Cells>.operator ^(Cells left, Cells right) => left ^ right;
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	static bool IEqualityOperators<Cells, Cells>.operator ==(Cells left, Cells right) => left == right;
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	static bool IEqualityOperators<Cells, Cells>.operator !=(Cells left, Cells right) => left != right;
+
+#if FEATURE_GENERIC_MATH_IN_ARG
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	static Cells IValueAdditionOperators<Cells, int, Cells>.operator +(Cells left, in int right) =>
+		left + right;
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	static Cells IValueAdditionOperators<Cells, int, Cells>.operator +(in Cells left, in int right) =>
+		left + right;
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	static Cells IValueSubtractionOperators<Cells, int, Cells>.operator -(Cells left, in int right) =>
+		left - right;
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	static Cells IValueSubtractionOperators<Cells, int, Cells>.operator -(in Cells left, in int right) =>
+		left - right;
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	static Cells IValueSubtractionOperators<Cells, Cells, Cells>.operator -(Cells left, in Cells right) =>
+		left - right;
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	static Cells IValueSubtractionOperators<Cells, Cells, Cells>.operator -(in Cells left, Cells right) =>
+		left - right;
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	static short IValueDivisionOperators<Cells, int, short>.operator /(Cells left, in int right) =>
+		left / right;
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	static short IValueDivisionOperators<Cells, int, short>.operator /(in Cells left, in int right) =>
+		left / right;
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	static Cells IValueModulusOperators<Cells, Cells, Cells>.operator %(Cells left, in Cells right) =>
+		left % right;
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	static Cells IValueModulusOperators<Cells, Cells, Cells>.operator %(in Cells left, Cells right) =>
+		left % right;
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	static bool IValueEqualityOperators<Cells, Cells>.operator ==(Cells left, in Cells right) => left == right;
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	static bool IValueEqualityOperators<Cells, Cells>.operator ==(in Cells left, Cells right) => left == right;
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	static bool IValueEqualityOperators<Cells, Cells>.operator !=(Cells left, in Cells right) => left != right;
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	static bool IValueEqualityOperators<Cells, Cells>.operator !=(in Cells left, Cells right) => left != right;
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	static Cells IValueBitwiseAndOperators<Cells, Cells, Cells>.operator &(Cells left, in Cells right) =>
+		left & right;
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	static Cells IValueBitwiseAndOperators<Cells, Cells, Cells>.operator &(in Cells left, Cells right) =>
+		left & right;
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	static Cells IValueBitwiseOrOperators<Cells, Cells, Cells>.operator |(Cells left, in Cells right) =>
+		left | right;
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	static Cells IValueBitwiseOrOperators<Cells, Cells, Cells>.operator |(in Cells left, Cells right) =>
+		left | right;
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	static Cells IValueBitwiseExclusiveOrOperators<Cells, Cells, Cells>.operator ^(Cells left, in Cells right) =>
+		left ^ right;
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	static Cells IValueBitwiseExclusiveOrOperators<Cells, Cells, Cells>.operator ^(in Cells left, Cells right) =>
+		left ^ right;
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	static bool IValueGreaterThanOrLessThanOperators<Cells, Cells>.operator >(Cells left, in Cells right) =>
+		left > right;
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	static bool IValueGreaterThanOrLessThanOperators<Cells, Cells>.operator >(in Cells left, Cells right) =>
+		left > right;
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	static bool IValueGreaterThanOrLessThanOperators<Cells, Cells>.operator <(Cells left, in Cells right) =>
+		left < right;
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	static bool IValueGreaterThanOrLessThanOperators<Cells, Cells>.operator <(in Cells left, Cells right) =>
+		left < right;
+#endif
+#endif
+
+
+	/// <summary>
+	/// Implicit cast from <see cref="int"/>[] to <see cref="Cells"/>.
+	/// </summary>
+	/// <param name="offsets">The offsets.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static implicit operator Cells(int[] offsets) => new(offsets);
 
-	/// <inheritdoc/>
+	/// <summary>
+	/// Implicit cast from <see cref="Span{T}"/> to <see cref="Cells"/>.
+	/// </summary>
+	/// <param name="offsets">The offsets.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static implicit operator Cells(in Span<int> offsets) => new(offsets);
 
-	/// <inheritdoc/>
+	/// <summary>
+	/// Implicit cast from <see cref="ReadOnlySpan{T}"/> to <see cref="Cells"/>.
+	/// </summary>
+	/// <param name="offsets">The offsets.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static implicit operator Cells(in ReadOnlySpan<int> offsets) => new(offsets);
 
@@ -1318,15 +1664,24 @@ public unsafe struct Cells : ICellsOrCandidates<Cells>, ISimpleParseable<Cells>
 		};
 	}
 
-	/// <inheritdoc/>
+	/// <summary>
+	/// Explicit cast from <see cref="Cells"/> to <see cref="int"/>[].
+	/// </summary>
+	/// <param name="offsets">The offsets.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static explicit operator int[](in Cells offsets) => offsets.ToArray();
 
-	/// <inheritdoc/>
+	/// <summary>
+	/// Explicit cast from <see cref="Cells"/> to <see cref="Span{T}"/>.
+	/// </summary>
+	/// <param name="offsets">The offsets.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static explicit operator Span<int>(in Cells offsets) => offsets.ToSpan();
 
-	/// <inheritdoc/>
+	/// <summary>
+	/// Explicit cast from <see cref="Cells"/> to <see cref="ReadOnlySpan{T}"/>.
+	/// </summary>
+	/// <param name="offsets">The offsets.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static explicit operator ReadOnlySpan<int>(in Cells offsets) => offsets.ToReadOnlySpan();
 }

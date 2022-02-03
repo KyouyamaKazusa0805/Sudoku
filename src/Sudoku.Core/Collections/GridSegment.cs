@@ -161,7 +161,7 @@ public readonly unsafe struct GridSegment :
 
 	/// <inheritdoc cref="object.ToString"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public override string ToString() => $"{{ {nameof(GridSegment)} ({_gridCode} at {Cells}) }}";
+	public override string ToString() => $"{nameof(GridSegment)} {{ ({_gridCode} at {Cells}) }}";
 
 
 	/// <inheritdoc cref="IEqualityOperators{TSelf, TOther}.operator =="/>

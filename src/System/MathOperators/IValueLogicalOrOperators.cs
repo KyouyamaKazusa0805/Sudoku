@@ -1,4 +1,6 @@
-﻿using Sudoku.Diagnostics.CodeAnalysis;
+﻿#if FEATURE_GENERIC_MATH && FEATURE_GENERIC_MATH_IN_ARG
+using System.Runtime.Versioning;
+using Sudoku.Diagnostics.CodeAnalysis;
 
 namespace System;
 
@@ -11,6 +13,7 @@ namespace System;
 /// </list>
 /// </summary>
 /// <typeparam name="TSelf">The type of the current instance.</typeparam>
+[RequiresPreviewFeatures]
 public interface IValueLogicalOrOperators<[Self] TSelf> where TSelf : struct, IValueLogicalOrOperators<TSelf>
 {
 	/// <summary>
@@ -27,3 +30,5 @@ public interface IValueLogicalOrOperators<[Self] TSelf> where TSelf : struct, IV
 	/// <inheritdoc cref="operator |(in TSelf, in TSelf)"/>
 	static abstract TSelf operator |(TSelf left, in TSelf right);
 }
+
+#endif

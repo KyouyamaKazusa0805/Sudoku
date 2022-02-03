@@ -41,7 +41,13 @@ namespace Sudoku;
 /// <param name="Mask">
 /// Indicates the mask that handles and stores the basic information of the current node.
 /// </param>
-public record struct Node(int Mask) : IDefaultable<Node>, IEqualityOperators<Node, Node>
+public record struct Node(int Mask) :
+	IDefaultable<Node>,
+	IEquatable<Node>
+#if FEATURE_GENERIC_MATH
+	,
+	IEqualityOperators<Node, Node>
+#endif
 {
 	/// <summary>
 	/// Indicates the undefined instance that is used for providing with a value

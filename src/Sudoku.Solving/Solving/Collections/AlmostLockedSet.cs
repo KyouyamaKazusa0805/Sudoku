@@ -20,7 +20,16 @@ public readonly record struct AlmostLockedSet(
 	in Cells PossibleEliminationSet,
 	bool IsBivalueCell,
 	int Region = -1
-)
+) :
+	IEquatable<AlmostLockedSet>
+#if FEATURE_GENERIC_MATH
+	,
+	IEqualityOperators<AlmostLockedSet, AlmostLockedSet>
+#if FEATURE_GENERIC_MATH_IN_ARG
+	,
+	IValueEqualityOperators<AlmostLockedSet, AlmostLockedSet>
+#endif
+#endif
 {
 	/// <summary>
 	/// Indicates an array of the total number of the strong relations in an ALS of the different size.
@@ -125,6 +134,10 @@ public readonly record struct AlmostLockedSet(
 		IsBivalueCell
 			? $"{new DigitCollection(DigitsMask).ToString(null)}/{Map}"
 			: $"{new DigitCollection(DigitsMask).ToString(null)}/{Map} in {new RegionCollection(Region).ToString()}";
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	bool IEquatable<AlmostLockedSet>.Equals(AlmostLockedSet other) => Equals(other);
 
 
 	/// <summary>
@@ -236,4 +249,38 @@ public readonly record struct AlmostLockedSet(
 	/// <returns>A <see cref="bool"/> result.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static bool operator !=(in AlmostLockedSet left, in AlmostLockedSet right) => !(left == right);
+
+#if FEATURE_GENERIC_MATH
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	static bool IEqualityOperators<AlmostLockedSet, AlmostLockedSet>.operator ==(AlmostLockedSet left, AlmostLockedSet right) =>
+		left == right;
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	static bool IEqualityOperators<AlmostLockedSet, AlmostLockedSet>.operator !=(AlmostLockedSet left, AlmostLockedSet right) =>
+		left != right;
+
+#if FEATURE_GENERIC_MATH_IN_ARG
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	static bool IValueEqualityOperators<AlmostLockedSet, AlmostLockedSet>.operator ==(AlmostLockedSet left, in AlmostLockedSet right) =>
+		left == right;
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	static bool IValueEqualityOperators<AlmostLockedSet, AlmostLockedSet>.operator ==(in AlmostLockedSet left, AlmostLockedSet right) =>
+		left == right;
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	static bool IValueEqualityOperators<AlmostLockedSet, AlmostLockedSet>.operator !=(AlmostLockedSet left, in AlmostLockedSet right) =>
+		left != right;
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	static bool IValueEqualityOperators<AlmostLockedSet, AlmostLockedSet>.operator !=(in AlmostLockedSet left, AlmostLockedSet right) =>
+		left != right;
+#endif
+#endif
 }

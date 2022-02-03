@@ -1,4 +1,6 @@
-﻿using Sudoku.Diagnostics.CodeAnalysis;
+﻿#if FEATURE_GENERIC_MATH && FEATURE_GENERIC_MATH_IN_ARG
+using System.Runtime.Versioning;
+using Sudoku.Diagnostics.CodeAnalysis;
 
 namespace System;
 
@@ -9,6 +11,7 @@ namespace System;
 /// </list>
 /// </summary>
 /// <typeparam name="TSelf">The type of the current instance.</typeparam>
+[RequiresPreviewFeatures]
 public interface IValueIncrementOperators<[Self] TSelf>
 	where TSelf : struct, IIncrementOperators<TSelf>, IValueIncrementOperators<TSelf>
 {
@@ -19,3 +22,5 @@ public interface IValueIncrementOperators<[Self] TSelf>
 	/// <returns>The result value.</returns>
 	static abstract TSelf operator ++(in TSelf value);
 }
+
+#endif

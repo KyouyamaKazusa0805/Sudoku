@@ -11,6 +11,7 @@
 		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
 		<LangVersion>preview</LangVersion>
 		<ImplicitUsings>enable</ImplicitUsings>
+		<DefineConstants>FEATURE_GENERIC_MATH</DefineConstants>
 	</PropertyGroup>
 
 	<!--

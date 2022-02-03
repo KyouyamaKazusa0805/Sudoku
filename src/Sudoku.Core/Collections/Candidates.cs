@@ -8,7 +8,36 @@ namespace Sudoku.Collections;
 /// <summary>
 /// Encapsulates a map that contains 729 positions to represent a candidate.
 /// </summary>
-public unsafe struct Candidates : ICellsOrCandidates<Candidates>
+public unsafe struct Candidates :
+	IDefaultable<Candidates>,
+	IEnumerable<int>,
+	IEquatable<Candidates>,
+	ISimpleFormattable
+#if FEATURE_GENERIC_MATH
+	,
+	IAdditionOperators<Candidates, int, Candidates>,
+	ISubtractionOperators<Candidates, int, Candidates>,
+	ISubtractionOperators<Candidates, Candidates, Candidates>,
+	IDivisionOperators<Candidates, int, Cells>,
+	IModulusOperators<Candidates, Candidates, Candidates>,
+	IBitwiseOperators<Candidates, Candidates, Candidates>,
+	IEqualityOperators<Candidates, Candidates>
+#if FEATURE_GENERIC_MATH_IN_ARG
+	,
+	IValueAdditionOperators<Candidates, int, Candidates>,
+	IValueSubtractionOperators<Candidates, int, Candidates>,
+	IValueSubtractionOperators<Candidates, Candidates, Candidates>,
+	IValueDivisionOperators<Candidates, int, Cells>,
+	IValueModulusOperators<Candidates, Candidates, Candidates>,
+	IValueEqualityOperators<Candidates, Candidates>,
+	IValueBitwiseNotOperators<Candidates, Candidates>,
+	IValueBitwiseAndOperators<Candidates, Candidates, Candidates>,
+	IValueBitwiseOrOperators<Candidates, Candidates, Candidates>,
+	IValueBitwiseExclusiveOrOperators<Candidates, Candidates, Candidates>,
+	IValueLogicalNotOperators<Candidates>,
+	IValueGreaterThanOrLessThanOperators<Candidates, Candidates>
+#endif
+#endif
 {
 	/// <summary>
 	/// Indicates the size of each unit.
@@ -228,17 +257,23 @@ public unsafe struct Candidates : ICellsOrCandidates<Candidates>
 	}
 
 
-	/// <inheritdoc/>
+	/// <summary>
+	/// Indicates whether the collection is empty.
+	/// </summary>
 	public readonly bool IsEmpty
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => Count == 0;
 	}
 
-	/// <inheritdoc/>
+	/// <summary>
+	/// Indicates the number of the values stored in this collection.
+	/// </summary>
 	public int Count { get; private set; } = 0;
 
-	/// <inheritdoc/>
+	/// <summary>
+	/// Indicates the <see cref="Candidates"/> of intersections.
+	/// </summary>
 	public readonly Candidates PeerIntersection
 	{
 		get
@@ -292,7 +327,13 @@ public unsafe struct Candidates : ICellsOrCandidates<Candidates>
 	static Candidates IDefaultable<Candidates>.Default => Empty;
 
 
-	/// <inheritdoc/>
+	/// <summary>
+	/// Get the offset at the specified position index.
+	/// </summary>
+	/// <param name="index">The index.</param>
+	/// <returns>
+	/// The offset at the specified position index. If the value is invalid, the return value will be <c>-1</c>.
+	/// </returns>
 	public readonly int this[int index]
 	{
 		get
@@ -310,7 +351,14 @@ public unsafe struct Candidates : ICellsOrCandidates<Candidates>
 	}
 
 
-	/// <inheritdoc/>
+	/// <summary>
+	/// Copies the current instance to the target array specified as an <see cref="int"/>*.
+	/// </summary>
+	/// <param name="arr">The pointer that points to an array of type <see cref="int"/>.</param>
+	/// <param name="length">The length of that array.</param>
+	/// <exception cref="InvalidOperationException">
+	/// Throws when the capacity isn't enough to store all values.
+	/// </exception>
 	public readonly void CopyTo(int* arr, int length)
 	{
 		if (IsEmpty)
@@ -332,7 +380,12 @@ public unsafe struct Candidates : ICellsOrCandidates<Candidates>
 		}
 	}
 
-	/// <inheritdoc/>
+	/// <summary>
+	/// Copies the current instance to the target <see cref="Span{T}"/> instance.
+	/// </summary>
+	/// <param name="span">
+	/// The target <see cref="Span{T}"/> instance.
+	/// </param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public readonly void CopyTo(ref Span<int> span)
 	{
@@ -342,7 +395,11 @@ public unsafe struct Candidates : ICellsOrCandidates<Candidates>
 		}
 	}
 
-	/// <inheritdoc/>
+	/// <summary>
+	/// Determine whether the map contains the specified offset.
+	/// </summary>
+	/// <param name="offset">The offset.</param>
+	/// <returns>A <see cref="bool"/> value indicating that.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public readonly bool Contains(int offset) =>
 	(
@@ -390,7 +447,10 @@ public unsafe struct Candidates : ICellsOrCandidates<Candidates>
 			^ RotateLeft((ulong)_10, 18) ^ RotateRight((ulong)_11, 18)
 		);
 
-	/// <inheritdoc/>
+	/// <summary>
+	/// Get all offsets whose bits are set <see langword="true"/>.
+	/// </summary>
+	/// <returns>An array of offsets.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public readonly int[] ToArray() => Offsets;
 
@@ -478,11 +538,17 @@ public unsafe struct Candidates : ICellsOrCandidates<Candidates>
 		return result;
 	}
 
-	/// <inheritdoc/>
+	/// <summary>
+	/// Converts the current instance to a <see cref="Span{T}"/> of type <see cref="int"/>.
+	/// </summary>
+	/// <returns>The <see cref="Span{T}"/> of <see cref="int"/> result.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public readonly Span<int> ToSpan() => Offsets.AsSpan();
 
-	/// <inheritdoc/>
+	/// <summary>
+	/// Converts the current instance to a <see cref="ReadOnlySpan{T}"/> of type <see cref="int"/>.
+	/// </summary>
+	/// <returns>The <see cref="ReadOnlySpan{T}"/> of <see cref="int"/> result.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public readonly ReadOnlySpan<int> ToReadOnlySpan() => Offsets.AsSpan();
 
@@ -493,7 +559,14 @@ public unsafe struct Candidates : ICellsOrCandidates<Candidates>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public readonly OneDimensionalArrayEnumerator<int> GetEnumerator() => Offsets.EnumerateImmutable();
 
-	/// <inheritdoc/>
+	/// <summary>
+	/// Set the specified offset as <see langword="true"/> or <see langword="false"/> value.
+	/// </summary>
+	/// <param name="offset">
+	/// The offset. This value can be positive and negative. If 
+	/// negative, the offset will be assigned <see langword="false"/>
+	/// into the corresponding bit position of its absolute value.
+	/// </param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	[EditorBrowsable(EditorBrowsableState.Never)]
 	public void Add(int offset)
@@ -513,15 +586,33 @@ public unsafe struct Candidates : ICellsOrCandidates<Candidates>
 		}
 	}
 
-	/// <inheritdoc/>
+	/// <summary>
+	/// Set the specified offset as <see langword="true"/> value.
+	/// </summary>
+	/// <param name="offset">The offset.</param>
+	/// <remarks>
+	/// Different with <see cref="Add(int)"/>, the method will process negative values,
+	/// but this won't.
+	/// </remarks>
+	/// <seealso cref="Add(int)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public void AddAnyway(int offset) => InternalAdd(offset, true);
 
-	/// <inheritdoc/>
+	/// <summary>
+	/// Set the specified offset as <see langword="false"/> value.
+	/// </summary>
+	/// <param name="offset">The offset.</param>
+	/// <remarks>
+	/// Different with <see cref="Add(int)"/>, this method <b>can't</b> receive the negative value as the parameter.
+	/// </remarks>
+	/// <seealso cref="Add(int)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public void Remove(int offset) => InternalAdd(offset, false);
 
-	/// <inheritdoc/>
+	/// <summary>
+	/// Set the specified offsets as <see langword="true"/> value.
+	/// </summary>
+	/// <param name="offsets">The offsets to add.</param>
 	public void AddRange(in ReadOnlySpan<int> offsets)
 	{
 		foreach (int candidate in offsets)
@@ -530,7 +621,7 @@ public unsafe struct Candidates : ICellsOrCandidates<Candidates>
 		}
 	}
 
-	/// <inheritdoc/>
+	/// <inheritdoc cref="AddRange(in ReadOnlySpan{int})"/>
 	public void AddRange(IEnumerable<int> offsets)
 	{
 		foreach (int candidate in offsets)
@@ -539,13 +630,19 @@ public unsafe struct Candidates : ICellsOrCandidates<Candidates>
 		}
 	}
 
-	/// <inheritdoc/>
+	/// <summary>
+	/// Clear all bits.
+	/// </summary>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public void Clear()
 	{
 		_0 = _1 = _2 = _3 = _4 = _5 = _6 = _7 = _8 = _9 = _10 = _11 = 0;
 		Count = 0;
 	}
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	readonly bool IEquatable<Candidates>.Equals(Candidates other) => Equals(other);
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -706,38 +803,73 @@ public unsafe struct Candidates : ICellsOrCandidates<Candidates>
 	}
 
 
-	/// <inheritdoc/>
+	/// <summary>
+	/// Gets the peer intersection of the current instance, which simply calls the property
+	/// <see cref="PeerIntersection"/>.
+	/// </summary>
+	/// <param name="offsets">The offsets.</param>
+	/// <returns>The result list that is the peer intersection of the current instance.</returns>
+	/// <remarks>
+	/// A <b>Peer Intersection</b> is a set of candidates that all candidates
+	/// from the base collection can be seen.
+	/// </remarks>
+	/// <seealso cref="PeerIntersection"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static Candidates operator ~(in Candidates map)
+	public static Candidates operator !(in Candidates offsets) => offsets.PeerIntersection;
+
+	/// <summary>
+	/// Reverse status for all offsets, which means all <see langword="true"/> bits
+	/// will be set <see langword="false"/>, and all <see langword="false"/> bits
+	/// will be set <see langword="true"/>.
+	/// </summary>
+	/// <param name="offsets">The instance to negate.</param>
+	/// <returns>The negative result.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static Candidates operator ~(in Candidates offsets)
 	{
 		const long s = (1 << FullCount - Shifting * (Len - 1)) - 1;
 
 		long* result = stackalloc long[Len];
-		result[0] = ~map._0;
-		result[1] = ~map._1;
-		result[2] = ~map._2;
-		result[3] = ~map._3;
-		result[4] = ~map._4;
-		result[5] = ~map._5;
-		result[6] = ~map._6;
-		result[7] = ~map._7;
-		result[8] = ~map._8;
-		result[9] = ~map._9;
-		result[10] = ~map._10;
-		result[11] = ~map._11 & s;
+		result[0] = ~offsets._0;
+		result[1] = ~offsets._1;
+		result[2] = ~offsets._2;
+		result[3] = ~offsets._3;
+		result[4] = ~offsets._4;
+		result[5] = ~offsets._5;
+		result[6] = ~offsets._6;
+		result[7] = ~offsets._7;
+		result[8] = ~offsets._8;
+		result[9] = ~offsets._9;
+		result[10] = ~offsets._10;
+		result[11] = ~offsets._11 & s;
 
 		return new(result, Len);
 	}
 
-	/// <inheritdoc/>
+	/// <summary>
+	/// The syntactic sugar for <c>!(<paramref name="left"/> - <paramref name="right"/>).IsEmpty</c>.
+	/// </summary>
+	/// <param name="left">The subtrahend.</param>
+	/// <param name="right">The subtractor.</param>
+	/// <returns>The <see cref="bool"/> value indicating that.</returns>
 	public static bool operator >(in Candidates left, in Candidates right) =>
 		!(left - right).IsEmpty;
 
-	/// <inheritdoc/>
+	/// <summary>
+	/// The syntactic sugar for <c>(<paramref name="left"/> - <paramref name="right"/>).IsEmpty</c>.
+	/// </summary>
+	/// <param name="left">The subtrahend.</param>
+	/// <param name="right">The subtractor.</param>
+	/// <returns>The <see cref="bool"/> value indicating that.</returns>
 	public static bool operator <(in Candidates left, in Candidates right) =>
 		(left - right).IsEmpty;
 
-	/// <inheritdoc/>
+	/// <summary>
+	/// Get the elements that both <paramref name="left"/> and <paramref name="right"/> contain.
+	/// </summary>
+	/// <param name="left">The left instance.</param>
+	/// <param name="right">The right instance.</param>
+	/// <returns>The result.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static Candidates operator &(in Candidates left, in Candidates right)
 	{
@@ -758,7 +890,13 @@ public unsafe struct Candidates : ICellsOrCandidates<Candidates>
 		return new(result, Len);
 	}
 
-	/// <inheritdoc/>
+	/// <summary>
+	/// Combine the elements from <paramref name="left"/> and <paramref name="right"/>,
+	/// and return the merged result.
+	/// </summary>
+	/// <param name="left">The left instance.</param>
+	/// <param name="right">The right instance.</param>
+	/// <returns>The result.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static Candidates operator |(in Candidates left, in Candidates right)
 	{
@@ -779,7 +917,12 @@ public unsafe struct Candidates : ICellsOrCandidates<Candidates>
 		return new(result, Len);
 	}
 
-	/// <inheritdoc/>
+	/// <summary>
+	/// Get the elements that either <paramref name="left"/> or <paramref name="right"/> contains.
+	/// </summary>
+	/// <param name="left">The left instance.</param>
+	/// <param name="right">The right instance.</param>
+	/// <returns>The result.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static Candidates operator ^(in Candidates left, in Candidates right)
 	{
@@ -800,7 +943,13 @@ public unsafe struct Candidates : ICellsOrCandidates<Candidates>
 		return new(result, Len);
 	}
 
-	/// <inheritdoc/>
+	/// <summary>
+	/// Get a <see cref="Candidates"/> that contains all <paramref name="left"/> instance
+	/// but not in <paramref name="right"/> instance.
+	/// </summary>
+	/// <param name="left">The left instance.</param>
+	/// <param name="right">The right instance.</param>
+	/// <returns>The result.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static Candidates operator -(in Candidates left, in Candidates right)
 	{
@@ -821,15 +970,22 @@ public unsafe struct Candidates : ICellsOrCandidates<Candidates>
 		return new(result, Len);
 	}
 
-	/// <inheritdoc/>
-	public static Candidates operator -(Candidates collection, int offset)
+	/// <summary>
+	/// Removes the specified <paramref name="offset"/> from the <paramref name="collection"/>,
+	/// and returns the removed result.
+	/// </summary>
+	/// <param name="collection">The collection.</param>
+	/// <param name="offset">The offset to be removed.</param>
+	/// <returns>The result collection.</returns>
+	public static Candidates operator -(in Candidates collection, int offset)
 	{
-		if (!collection.Contains(offset))
+		var result = collection;
+		if (!result.Contains(offset))
 		{
-			return collection;
+			return result;
 		}
 
-		var pThis = &collection;
+		var pThis = &result;
 		long* block = (offset / Shifting) switch
 		{
 			0 => &pThis->_0,
@@ -847,20 +1003,26 @@ public unsafe struct Candidates : ICellsOrCandidates<Candidates>
 		};
 
 		*block &= ~(1L << offset % Shifting);
-		collection.Count--;
-
-		return collection;
+		result.Count--;
+		return result;
 	}
 
-	/// <inheritdoc/>
-	public static Candidates operator +(Candidates collection, int offset)
+	/// <summary>
+	/// Adds the specified <paramref name="offset"/> to the <paramref name="collection"/>,
+	/// and returns the added result.
+	/// </summary>
+	/// <param name="collection">The collection.</param>
+	/// <param name="offset">The offset to be removed.</param>
+	/// <returns>The result collection.</returns>
+	public static Candidates operator +(in Candidates collection, int offset)
 	{
-		if (collection.Contains(offset))
+		var result = collection;
+		if (result.Contains(offset))
 		{
-			return collection;
+			return result;
 		}
 
-		var pThis = &collection;
+		var pThis = &result;
 		long* block = (offset / Shifting) switch
 		{
 			0 => &pThis->_0,
@@ -878,11 +1040,21 @@ public unsafe struct Candidates : ICellsOrCandidates<Candidates>
 		};
 
 		*block |= 1L << offset % Shifting;
-		collection.Count++;
-		return collection;
+		result.Count++;
+		return result;
 	}
 
-	/// <inheritdoc/>
+	/// <summary>
+	/// <para>
+	/// Simply expands the code to <c><![CDATA[(a & b).PeerIntersection & b]]></c>,
+	/// where <c>PeerIntersection</c> corresponds to the property <see cref="PeerIntersection"/>.
+	/// </para>
+	/// <para>The operator is used for searching for and checking eliminations.</para>
+	/// </summary>
+	/// <param name="base">The base map.</param>
+	/// <param name="template">The template map that the base map to check and cover.</param>
+	/// <returns>The result map.</returns>
+	/// <seealso cref="PeerIntersection"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static Candidates operator %(in Candidates @base, in Candidates template) =>
 		(@base & template).PeerIntersection & template;
@@ -915,28 +1087,225 @@ public unsafe struct Candidates : ICellsOrCandidates<Candidates>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static bool operator !=(in Candidates left, in Candidates right) => !(left == right);
 
+#if FEATURE_GENERIC_MATH
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	static bool IEqualityOperators<Candidates, Candidates>.operator ==(Candidates left, Candidates right) =>
+		left == right;
 
 	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	static bool IEqualityOperators<Candidates, Candidates>.operator !=(Candidates left, Candidates right) =>
+		left != right;
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	static Candidates IAdditionOperators<Candidates, int, Candidates>.operator +(Candidates left, int right) =>
+		left + right;
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	static Candidates ISubtractionOperators<Candidates, int, Candidates>.operator -(Candidates left, int right) =>
+		left - right;
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	static Candidates ISubtractionOperators<Candidates, Candidates, Candidates>.operator -(Candidates left, Candidates right) =>
+		left - right;
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	static Cells IDivisionOperators<Candidates, int, Cells>.operator /(Candidates left, int right) =>
+		left / right;
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	static Candidates IModulusOperators<Candidates, Candidates, Candidates>.operator %(Candidates left, Candidates right) =>
+		left % right;
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	static Candidates IValueAdditionOperators<Candidates, int, Candidates>.operator +(Candidates left, in int right) =>
+		left + right;
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	static Candidates IValueAdditionOperators<Candidates, int, Candidates>.operator +(in Candidates left, in int right) =>
+		left + right;
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	static Candidates IValueSubtractionOperators<Candidates, int, Candidates>.operator -(Candidates left, in int right) =>
+		left - right;
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	static Candidates IValueSubtractionOperators<Candidates, int, Candidates>.operator -(in Candidates left, in int right) =>
+		left - right;
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	static Candidates IValueSubtractionOperators<Candidates, Candidates, Candidates>.operator -(Candidates left, in Candidates right) =>
+		left - right;
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	static Candidates IValueSubtractionOperators<Candidates, Candidates, Candidates>.operator -(in Candidates left, Candidates right) =>
+		left - right;
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	static Cells IValueDivisionOperators<Candidates, int, Cells>.operator /(Candidates left, in int right) =>
+		left / right;
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	static Cells IValueDivisionOperators<Candidates, int, Cells>.operator /(in Candidates left, in int right) =>
+		left / right;
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	static Candidates IValueModulusOperators<Candidates, Candidates, Candidates>.operator %(Candidates left, in Candidates right) =>
+		left % right;
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	static Candidates IValueModulusOperators<Candidates, Candidates, Candidates>.operator %(in Candidates left, Candidates right) =>
+		left % right;
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	static Candidates IBitwiseOperators<Candidates, Candidates, Candidates>.operator ~(Candidates value) =>
+		~value;
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	static Candidates IBitwiseOperators<Candidates, Candidates, Candidates>.operator &(Candidates left, Candidates right) =>
+		left & right;
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	static Candidates IBitwiseOperators<Candidates, Candidates, Candidates>.operator |(Candidates left, Candidates right) =>
+		left | right;
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	static Candidates IBitwiseOperators<Candidates, Candidates, Candidates>.operator ^(Candidates left, Candidates right) =>
+		left ^ right;
+
+#if FEATURE_GENERIC_MATH_IN_ARG
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	static bool IValueEqualityOperators<Candidates, Candidates>.operator ==(Candidates left, in Candidates right) =>
+		left == right;
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	static bool IValueEqualityOperators<Candidates, Candidates>.operator ==(in Candidates left, Candidates right) =>
+		left == right;
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	static bool IValueEqualityOperators<Candidates, Candidates>.operator !=(Candidates left, in Candidates right) =>
+		left != right;
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	static bool IValueEqualityOperators<Candidates, Candidates>.operator !=(in Candidates left, Candidates right) =>
+		left != right;
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	static Candidates IValueBitwiseAndOperators<Candidates, Candidates, Candidates>.operator &(in Candidates left, Candidates right) =>
+		left & right;
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	static Candidates IValueBitwiseAndOperators<Candidates, Candidates, Candidates>.operator &(Candidates left, in Candidates right) =>
+		left & right;
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	static Candidates IValueBitwiseOrOperators<Candidates, Candidates, Candidates>.operator |(Candidates left, in Candidates right) =>
+		left | right;
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	static Candidates IValueBitwiseOrOperators<Candidates, Candidates, Candidates>.operator |(in Candidates left, Candidates right) =>
+		left | right;
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	static Candidates IValueBitwiseExclusiveOrOperators<Candidates, Candidates, Candidates>.operator ^(Candidates left, in Candidates right) =>
+		left ^ right;
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	static Candidates IValueBitwiseExclusiveOrOperators<Candidates, Candidates, Candidates>.operator ^(in Candidates left, Candidates right) =>
+		left ^ right;
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	static bool IValueGreaterThanOrLessThanOperators<Candidates, Candidates>.operator >(Candidates left, in Candidates right) =>
+		left > right;
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	static bool IValueGreaterThanOrLessThanOperators<Candidates, Candidates>.operator >(in Candidates left, Candidates right) =>
+		left > right;
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	static bool IValueGreaterThanOrLessThanOperators<Candidates, Candidates>.operator <(Candidates left, in Candidates right) =>
+		left < right;
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	static bool IValueGreaterThanOrLessThanOperators<Candidates, Candidates>.operator <(in Candidates left, Candidates right) =>
+		left < right;
+#endif
+#endif
+
+
+	/// <summary>
+	/// Implicit cast from <see cref="int"/>[] to <see cref="Candidates"/>.
+	/// </summary>
+	/// <param name="offsets">The offsets.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static implicit operator Candidates(int[] offsets) => new(offsets);
 
-	/// <inheritdoc/>
+	/// <summary>
+	/// Implicit cast from <see cref="Span{T}"/> to <see cref="Candidates"/>.
+	/// </summary>
+	/// <param name="offsets">The offsets.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static implicit operator Candidates(in Span<int> offsets) => new(offsets);
 
-	/// <inheritdoc/>
+	/// <summary>
+	/// Implicit cast from <see cref="ReadOnlySpan{T}"/> to <see cref="Candidates"/>.
+	/// </summary>
+	/// <param name="offsets">The offsets.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static implicit operator Candidates(in ReadOnlySpan<int> offsets) => new(offsets);
 
-	/// <inheritdoc/>
+	/// <summary>
+	/// Explicit cast from <see cref="Candidates"/> to <see cref="int"/>[].
+	/// </summary>
+	/// <param name="offsets">The offsets.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static explicit operator int[](in Candidates offsets) => offsets.ToArray();
 
-	/// <inheritdoc/>
+	/// <summary>
+	/// Explicit cast from <see cref="Candidates"/> to <see cref="Span{T}"/>.
+	/// </summary>
+	/// <param name="offsets">The offsets.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static explicit operator Span<int>(in Candidates offsets) => offsets.ToSpan();
 
-	///<inheritdoc/>
+	/// <summary>
+	/// Explicit cast from <see cref="Candidates"/> to <see cref="ReadOnlySpan{T}"/>.
+	/// </summary>
+	/// <param name="offsets">The offsets.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static explicit operator ReadOnlySpan<int>(in Candidates offsets) => offsets.ToReadOnlySpan();
 }

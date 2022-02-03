@@ -15,7 +15,13 @@ namespace Sudoku;
 /// 24 2120       10        0
 /// </code>
 /// </param>
-public readonly record struct Link(int Mask) : IDefaultable<Link>, IEqualityOperators<Link, Link>
+public readonly record struct Link(int Mask) :
+	IDefaultable<Link>,
+	IEquatable<Link>
+#if FEATURE_GENERIC_MATH
+	,
+	IEqualityOperators<Link, Link>
+#endif
 {
 	/// <inheritdoc cref="IDefaultable{T}.Default"/>
 	public static readonly Link Default;

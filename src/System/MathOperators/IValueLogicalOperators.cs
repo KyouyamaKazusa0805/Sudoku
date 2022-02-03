@@ -1,4 +1,6 @@
-﻿using Sudoku.Diagnostics.CodeAnalysis;
+﻿#if FEATURE_GENERIC_MATH && FEATURE_GENERIC_MATH_IN_ARG
+using System.Runtime.Versioning;
+using Sudoku.Diagnostics.CodeAnalysis;
 
 namespace System;
 
@@ -30,6 +32,7 @@ namespace System;
 /// </list>
 /// </summary>
 /// <typeparam name="TSelf">The type of the current instance.</typeparam>
+[RequiresPreviewFeatures]
 public interface IValueLogicalOperators<[Self] TSelf>
 	where TSelf :
 		struct,
@@ -41,3 +44,5 @@ public interface IValueLogicalOperators<[Self] TSelf>
 		IValueMetaLogicalOperators<TSelf>
 {
 }
+
+#endif

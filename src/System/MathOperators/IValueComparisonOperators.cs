@@ -1,4 +1,6 @@
-﻿using Sudoku.Diagnostics.CodeAnalysis;
+﻿#if FEATURE_GENERIC_MATH && FEATURE_GENERIC_MATH_IN_ARG
+using System.Runtime.Versioning;
+using Sudoku.Diagnostics.CodeAnalysis;
 
 namespace System;
 
@@ -21,6 +23,7 @@ namespace System;
 /// </summary>
 /// <typeparam name="TSelf">The type of the current instance.</typeparam>
 /// <typeparam name="TOther">The type that takes part in the operation.</typeparam>
+[RequiresPreviewFeatures]
 public interface IValueComparisonOperators<[Self] TSelf, TOther>
 	where TSelf :
 		struct,
@@ -36,3 +39,5 @@ public interface IValueComparisonOperators<[Self] TSelf, TOther>
 	where TOther : struct
 {
 }
+
+#endif

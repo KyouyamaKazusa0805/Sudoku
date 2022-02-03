@@ -9,8 +9,17 @@ namespace Sudoku.Collections;
 public partial struct NodeSet :
 	IDefaultable<NodeSet>,
 	IEnumerable,
-	IEqualityOperators<NodeSet, NodeSet>,
 	IEquatable<NodeSet>
+#if FEATURE_GENERIC_MATH
+	,
+	IEqualityOperators<NodeSet, NodeSet>
+#if FEATURE_GENERIC_MATH_IN_ARG
+	,
+	IValueBitwiseAndOperators<NodeSet, NodeSet, NodeSet>,
+	IValueBitwiseOrOperators<NodeSet, NodeSet, NodeSet>,
+	IValueEqualityOperators<NodeSet, NodeSet>
+#endif
+#endif
 {
 	/// <summary>
 	/// Indicates the uninitalized instance that is used for checking whether the collection
@@ -357,7 +366,7 @@ public partial struct NodeSet :
 		Array.Resize(ref _chainNodes, _capacity);
 	}
 
-	
+
 	/// <summary>
 	/// Merges two different <see cref="NodeSet"/>s into one, and checks and stores once that
 	/// both <see cref="NodeSet"/>s store the node.
@@ -398,9 +407,61 @@ public partial struct NodeSet :
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static bool operator ==(NodeSet left, NodeSet right) => left.Equals(right);
+	public static bool operator ==(in NodeSet left, in NodeSet right) => left.Equals(right);
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static bool operator !=(NodeSet left, NodeSet right) => !(left == right);
+	public static bool operator !=(in NodeSet left, in NodeSet right) => !(left == right);
+
+#if FEATURE_GENERIC_MATH
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	static bool IEqualityOperators<NodeSet, NodeSet>.operator ==(NodeSet left, NodeSet right) => left == right;
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	static bool IEqualityOperators<NodeSet, NodeSet>.operator !=(NodeSet left, NodeSet right) => left != right;
+
+#if FEATURE_GENERIC_MATH_IN_ARG
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	static NodeSet IValueBitwiseAndOperators<NodeSet, NodeSet, NodeSet>.operator &(in NodeSet left, NodeSet right) =>
+		left & right;
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	static NodeSet IValueBitwiseAndOperators<NodeSet, NodeSet, NodeSet>.operator &(NodeSet left, in NodeSet right) =>
+		left & right;
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	static NodeSet IValueBitwiseOrOperators<NodeSet, NodeSet, NodeSet>.operator |(in NodeSet left, NodeSet right) =>
+		left | right;
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	static NodeSet IValueBitwiseOrOperators<NodeSet, NodeSet, NodeSet>.operator |(NodeSet left, in NodeSet right) =>
+		left | right;
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	static bool IValueEqualityOperators<NodeSet, NodeSet>.operator ==(in NodeSet left, NodeSet right) =>
+		left == right;
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	static bool IValueEqualityOperators<NodeSet, NodeSet>.operator ==(NodeSet left, in NodeSet right) =>
+		left == right;
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	static bool IValueEqualityOperators<NodeSet, NodeSet>.operator !=(in NodeSet left, NodeSet right) =>
+		left != right;
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	static bool IValueEqualityOperators<NodeSet, NodeSet>.operator !=(NodeSet left, in NodeSet right) =>
+		left != right;
+#endif
+#endif
 }

@@ -27,10 +27,13 @@ namespace Sudoku;
 /// <seealso cref="ConclusionType.Elimination"/>
 public readonly record struct Conclusion(int Mask) :
 	IComparable<Conclusion>,
-	IComparisonOperators<Conclusion, Conclusion>,
 	IDefaultable<Conclusion>,
-	IEqualityOperators<Conclusion, Conclusion>,
 	IEquatable<Conclusion>
+#if FEATURE_GENERIC_MATH
+	,
+	IComparisonOperators<Conclusion, Conclusion>,
+	IEqualityOperators<Conclusion, Conclusion>
+#endif
 {
 	/// <summary>
 	/// <inheritdoc cref="IDefaultable{T}.Default"/>
@@ -176,12 +179,14 @@ public readonly record struct Conclusion(int Mask) :
 	public override string ToString() =>
 		$"{new Coordinate((byte)Cell)}{ConclusionType.GetNotation()}{Digit + 1}";
 
+#if FEATURE_GENERIC_MATH
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	int IComparable.CompareTo(object? obj) =>
 		obj is Conclusion comparer
 			? CompareTo(comparer)
 			: throw new ArgumentException($"The argument must be of type '{nameof(Conclusion)}'", nameof(obj));
+#endif
 
 
 	/// <inheritdoc/>

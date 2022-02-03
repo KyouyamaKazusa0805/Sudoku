@@ -17,7 +17,11 @@ namespace Sudoku;
 /// <param name="Map">Indicates the pair of maps used.</param>
 public readonly record struct ConjugatePair(int From, int To, int Digit, in Cells Map) :
 	IDefaultable<ConjugatePair>,
+	IEquatable<ConjugatePair>
+#if FEATURE_GENERIC_MATH
+	,
 	IEqualityOperators<ConjugatePair, ConjugatePair>
+#endif
 {
 	/// <summary>
 	/// <inheritdoc cref="IDefaultable{T}.Default"/>

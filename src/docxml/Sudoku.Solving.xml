@@ -357,6 +357,9 @@
         <member name="M:Sudoku.Solving.Collections.AlmostLockedSet.ToString">
             <inheritdoc/>
         </member>
+        <member name="M:Sudoku.Solving.Collections.AlmostLockedSet.System#IEquatable{Sudoku#Solving#Collections#AlmostLockedSet}#Equals(Sudoku.Solving.Collections.AlmostLockedSet)">
+            <inheritdoc/>
+        </member>
         <member name="M:Sudoku.Solving.Collections.AlmostLockedSet.Gather(Sudoku.Collections.Grid@)">
             <summary>
             To search for all ALSes from the specified grid.
@@ -479,6 +482,9 @@
             Indicates the header of the reason.
             </summary>
         </member>
+        <member name="M:Sudoku.Solving.Collections.ExocetElimination.Equals(Sudoku.Solving.Collections.ExocetElimination)">
+            <inheritdoc/>
+        </member>
         <member name="M:Sudoku.Solving.Collections.ExocetElimination.Equals(Sudoku.Solving.Collections.ExocetElimination@)">
             <summary>
             Determine whether the specified <see cref="T:Sudoku.Solving.Collections.ExocetElimination"/> instance holds a same set of eliminations
@@ -488,10 +494,10 @@
             <returns>A <see cref="T:System.Boolean"/> result.</returns>
         </member>
         <member name="M:Sudoku.Solving.Collections.ExocetElimination.GetHashCode">
-            <inheritdoc/>
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
         </member>
         <member name="M:Sudoku.Solving.Collections.ExocetElimination.ToString">
-            <inheritdoc/>
+            <inheritdoc cref="M:System.Object.ToString"/>
         </member>
         <member name="M:Sudoku.Solving.Collections.ExocetElimination.GetEnumerator">
             <summary>

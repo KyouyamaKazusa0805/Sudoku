@@ -1,4 +1,6 @@
-﻿using Sudoku.Diagnostics.CodeAnalysis;
+﻿#if FEATURE_GENERIC_MATH && FEATURE_GENERIC_MATH_IN_ARG
+using System.Runtime.Versioning;
+using Sudoku.Diagnostics.CodeAnalysis;
 
 namespace System;
 
@@ -17,6 +19,7 @@ namespace System;
 /// this link
 /// </see>.
 /// </remarks>
+[RequiresPreviewFeatures]
 public interface IValueMetaLogicalOperators<[Self] TSelf>
 	where TSelf : struct, IValueMetaLogicalOperators<TSelf>
 {
@@ -54,3 +57,5 @@ public interface IValueMetaLogicalOperators<[Self] TSelf>
 	/// </returns>
 	static abstract bool operator false(in TSelf value);
 }
+
+#endif
