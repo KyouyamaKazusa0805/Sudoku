@@ -44,16 +44,6 @@ public unsafe struct Candidates :
 	/// </summary>
 	private const int Shifting = sizeof(long) * 8;
 
-	/// <summary>
-	/// Indicates the number of all segments.
-	/// </summary>
-	private const int Len = 12;
-
-	/// <summary>
-	/// Indicates the length of the collection that all bits are set <see langword="true"/>.
-	/// </summary>
-	private const int FullCount = 729;
-
 
 	/// <summary>
 	/// <para>Indicates an empty instance (all bits are 0).</para>
@@ -151,9 +141,9 @@ public unsafe struct Candidates :
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public Candidates(long[] binary)
 	{
-		if (binary.Length != Len)
+		if (binary.Length != 12)
 		{
-			throw new ArgumentException($"The length of the array should be {Len}.", nameof(binary));
+			throw new ArgumentException($"The length of the array should be 12.", nameof(binary));
 		}
 
 		int count = 0;
@@ -182,9 +172,9 @@ public unsafe struct Candidates :
 	/// <exception cref="ArgumentException">Throws when the length is invalid.</exception>
 	public Candidates(long* binary, int length)
 	{
-		if (length != Len)
+		if (length != 12)
 		{
-			throw new ArgumentException($"Argument '{nameof(length)}' should be {Len}.", nameof(length));
+			throw new ArgumentException($"Argument '{nameof(length)}' should be {12}.", nameof(length));
 		}
 
 		int count = 0;
@@ -285,7 +275,7 @@ public unsafe struct Candidates :
 
 			int[] result = new int[Count];
 			int count = 0;
-			for (int i = 0; i < FullCount; i++)
+			for (int i = 0; i < 729; i++)
 			{
 				if (Contains(i))
 				{
@@ -315,7 +305,7 @@ public unsafe struct Candidates :
 	{
 		get
 		{
-			for (int i = 0, count = -1; i < FullCount; i++)
+			for (int i = 0, count = -1; i < 729; i++)
 			{
 				if (Contains(i) && ++count == index)
 				{
@@ -348,7 +338,7 @@ public unsafe struct Candidates :
 			throw new ArgumentException("The capacity is not enough.", nameof(arr));
 		}
 
-		for (int i = 0, count = 0; i < FullCount; i++)
+		for (int i = 0, count = 0; i < 729; i++)
 		{
 			if (Contains(i))
 			{
@@ -817,9 +807,9 @@ public unsafe struct Candidates :
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static Candidates operator ~(in Candidates offsets)
 	{
-		const long s = (1 << FullCount - Shifting * (Len - 1)) - 1;
+		const long s = (1 << 729 - Shifting * (12 - 1)) - 1;
 
-		long* result = stackalloc long[Len];
+		long* result = stackalloc long[12];
 		result[0] = ~offsets._0;
 		result[1] = ~offsets._1;
 		result[2] = ~offsets._2;
@@ -833,7 +823,7 @@ public unsafe struct Candidates :
 		result[10] = ~offsets._10;
 		result[11] = ~offsets._11 & s;
 
-		return new(result, Len);
+		return new(result, 12);
 	}
 
 	/// <summary>
@@ -863,7 +853,7 @@ public unsafe struct Candidates :
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static Candidates operator &(in Candidates left, in Candidates right)
 	{
-		long* result = stackalloc long[Len];
+		long* result = stackalloc long[12];
 		result[0] = left._0 & right._0;
 		result[1] = left._1 & right._1;
 		result[2] = left._2 & right._2;
@@ -877,7 +867,7 @@ public unsafe struct Candidates :
 		result[10] = left._10 & right._10;
 		result[11] = left._11 & right._11;
 
-		return new(result, Len);
+		return new(result, 12);
 	}
 
 	/// <summary>
@@ -890,7 +880,7 @@ public unsafe struct Candidates :
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static Candidates operator |(in Candidates left, in Candidates right)
 	{
-		long* result = stackalloc long[Len];
+		long* result = stackalloc long[12];
 		result[0] = left._0 | right._0;
 		result[1] = left._1 | right._1;
 		result[2] = left._2 | right._2;
@@ -904,7 +894,7 @@ public unsafe struct Candidates :
 		result[10] = left._10 | right._10;
 		result[11] = left._11 | right._11;
 
-		return new(result, Len);
+		return new(result, 12);
 	}
 
 	/// <summary>
@@ -916,7 +906,7 @@ public unsafe struct Candidates :
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static Candidates operator ^(in Candidates left, in Candidates right)
 	{
-		long* result = stackalloc long[Len];
+		long* result = stackalloc long[12];
 		result[0] = left._0 ^ right._0;
 		result[1] = left._1 ^ right._1;
 		result[2] = left._2 ^ right._2;
@@ -930,7 +920,7 @@ public unsafe struct Candidates :
 		result[10] = left._10 ^ right._10;
 		result[11] = left._11 ^ right._11;
 
-		return new(result, Len);
+		return new(result, 12);
 	}
 
 	/// <summary>
@@ -943,7 +933,7 @@ public unsafe struct Candidates :
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static Candidates operator -(in Candidates left, in Candidates right)
 	{
-		long* result = stackalloc long[Len];
+		long* result = stackalloc long[12];
 		result[0] = left._0 & ~right._0;
 		result[1] = left._1 & ~right._1;
 		result[2] = left._2 & ~right._2;
@@ -957,7 +947,7 @@ public unsafe struct Candidates :
 		result[10] = left._10 & ~right._10;
 		result[11] = left._11 & ~right._11;
 
-		return new(result, Len);
+		return new(result, 12);
 	}
 
 	/// <summary>

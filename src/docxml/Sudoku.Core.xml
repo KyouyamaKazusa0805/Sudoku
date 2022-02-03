@@ -128,16 +128,6 @@
             Indicates the size of each unit.
             </summary>
         </member>
-        <member name="F:Sudoku.Collections.Candidates.Len">
-            <summary>
-            Indicates the number of all segments.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Collections.Candidates.FullCount">
-            <summary>
-            Indicates the length of the collection that all bits are set <see langword="true"/>.
-            </summary>
-        </member>
         <member name="F:Sudoku.Collections.Candidates.Empty">
             <summary>
             <para>Indicates an empty instance (all bits are 0).</para>
@@ -670,6 +660,11 @@
             the digit.
             </remarks>
         </member>
+        <member name="F:Sudoku.Collections.Cells.Shifting">
+            <summary>
+            The value used for shifting.
+            </summary>
+        </member>
         <member name="F:Sudoku.Collections.Cells.Empty">
             <summary>
             <para>Indicates an empty instance (all bits are 0).</para>
@@ -683,31 +678,6 @@
         <member name="F:Sudoku.Collections.Cells.CellOrCellListRegex">
             <summary>
             Indicates the regular expression for matching a cell or cell-list.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Collections.Cells.Shifting">
-            <summary>
-            The value used for shifting.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Collections.Cells.BlockOffset">
-            <summary>
-            The value of offsets.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Collections.Cells.RowOffset">
-            <summary>
-            The value of offsets.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Collections.Cells.ColumnOffset">
-            <summary>
-            The value of offsets.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Collections.Cells.Limit">
-            <summary>
-            The value of offsets.
             </summary>
         </member>
         <member name="F:Sudoku.Collections.Cells._high">

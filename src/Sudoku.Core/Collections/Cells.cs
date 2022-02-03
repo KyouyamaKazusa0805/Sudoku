@@ -50,6 +50,12 @@ public unsafe struct Cells :
 #endif
 {
 	/// <summary>
+	/// The value used for shifting.
+	/// </summary>
+	private const int Shifting = 41;
+
+
+	/// <summary>
 	/// <para>Indicates an empty instance (all bits are 0).</para>
 	/// <para>
 	/// I strongly recommend you <b>should</b> use this instance instead of default constructor
@@ -67,17 +73,6 @@ public unsafe struct Cells :
 		RegexOptions.ExplicitCapture,
 		TimeSpan.FromSeconds(5)
 	);
-
-
-	/// <summary>
-	/// The value used for shifting.
-	/// </summary>
-	private const int Shifting = 41;
-
-	/// <summary>
-	/// The value of offsets.
-	/// </summary>
-	private const int BlockOffset = 0, RowOffset = 9, ColumnOffset = 18, Limit = 27;
 
 
 	/// <summary>
@@ -487,7 +482,7 @@ public unsafe struct Cells :
 	public readonly int Regions
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => (int)BlockMask | RowMask << RowOffset | ColumnMask << ColumnOffset;
+		get => (int)BlockMask | RowMask << 9 | ColumnMask << 18;
 	}
 
 	/// <inheritdoc/>
