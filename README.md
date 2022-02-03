@@ -60,12 +60,12 @@ Please visit the following tables.
 | Programming language and version   | C# 10                               |
 | Framework                          | .NET 6                              |
 | Indenting                          | Tabs                                |
-| Integrated development environment | Visual Studio 2022 (17.1 Preview 4) |
+| Integrated development environment | Visual Studio 2022 (17.1 Preview 5) |
 | Natural languages support          | English, Simplified Chinese         |
 
 > Please note that the programming language version is always used as 'preview', which means some preview features are still used in this solution.
 >
-> You can also use JetBrains Rider as your IDE. Use whatever you want to use, even Notepad :D
+> You can also use JetBrains Rider as your IDE. Use whatever you want to use, even Notepad :D Although C# contains some syntaxes that are only allowed in Visual Studio (e.g. keyword `__makeref`), this repo doesn't use them. Therefore, you can use other IDEs to develop the code in this repo liberally.
 >
 > In addition, the framework and IDE version may update in the future; in other words, they aren't changeless. The information is **for reference only**.
 
