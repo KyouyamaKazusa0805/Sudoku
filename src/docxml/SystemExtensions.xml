@@ -1229,14 +1229,14 @@
             </summary>
             <param name="initialString">The initialized string.</param>
         </member>
-        <member name="P:System.Text.StringHandler.Text">
-            <summary>
-            Gets a span of the written characters thus far.
-            </summary>
-        </member>
         <member name="P:System.Text.StringHandler.Length">
             <summary>
             Position at which to write the next character.
+            </summary>
+        </member>
+        <member name="P:System.Text.StringHandler.Text">
+            <summary>
+            Gets a span of the written characters thus far.
             </summary>
         </member>
         <member name="P:System.Text.StringHandler.Item(System.Int32)">

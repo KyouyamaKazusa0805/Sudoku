@@ -93,7 +93,7 @@ public readonly ref partial struct RegionCollection
 				dic[region / 9].Add(region % 9);
 			}
 
-			var sb = new StringHandler(initialCapacity: 30);
+			var sb = new StringHandler(30);
 			for (int i = 1, j = 0; j < 3; i = (i + 1) % 3, j++)
 			{
 				if (!dic.ContainsKey(i))
@@ -118,7 +118,7 @@ public readonly ref partial struct RegionCollection
 	/// <returns>The labels.</returns>
 	public string ToSimpleString()
 	{
-		var sb = new StringHandler(initialCapacity: 27);
+		var sb = new StringHandler(27);
 		for (int region = 9, i = 0; i < 27; i++, region = (region + 1) % 27)
 		{
 			if (this[region])

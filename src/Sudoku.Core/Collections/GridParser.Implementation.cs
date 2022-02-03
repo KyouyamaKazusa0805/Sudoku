@@ -83,7 +83,7 @@ partial struct GridParser
 			return Grid.Undefined;
 		}
 
-		var sb = new StringHandler(initialCapacity: 81);
+		var sb = new StringHandler(81);
 		foreach (string value in values)
 		{
 			foreach (string digitString in value.Split(new[] { '\t' }))
@@ -266,7 +266,7 @@ partial struct GridParser
 		}
 
 		// Remove all '\r's and '\n's.
-		var sb = new StringHandler(initialCapacity: 81 + (9 << 1));
+		var sb = new StringHandler(81 + (9 << 1));
 		sb.AppendCharacters(from @char in match where @char is not ('\r' or '\n') select @char);
 		parser.ParsingValue = sb.ToStringAndClear();
 		return OnParsingSusser(ref parser, false);

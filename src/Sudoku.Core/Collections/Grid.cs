@@ -1006,7 +1006,7 @@ public unsafe partial struct Grid :
 		const string separator = ", ";
 		fixed (short* pArr = _values)
 		{
-			var sb = new StringHandler(initialCapacity: 400);
+			var sb = new StringHandler(400);
 			sb.AppendRangeWithSeparatorUnsafe(pArr, 81, static v => v.ToString(), separator);
 			return sb.ToStringAndClear();
 		}

@@ -15,7 +15,7 @@ partial struct GridFormatter
 	private partial string ToExcelString(in Grid grid)
 	{
 		ReadOnlySpan<char> span = grid.ToString("0");
-		var sb = new StringHandler(initialCapacity: 81 + 72 + 9);
+		var sb = new StringHandler(81 + 72 + 9);
 		for (int i = 0; i < 9; i++)
 		{
 			for (int j = 0; j < 9; j++)
@@ -178,7 +178,7 @@ partial struct GridFormatter
 	/// <returns>The result.</returns>
 	private partial string ToSingleLineStringCore(in Grid grid)
 	{
-		var sb = new StringHandler(initialCapacity: 162);
+		var sb = new StringHandler(162);
 		var elims = new StringHandler();
 		var originalGrid = WithCandidates && !ShortenSusser ? Grid.Parse(grid.ToString(".+")) : Grid.Undefined;
 
@@ -503,7 +503,7 @@ partial struct GridFormatter
 										}
 										default:
 										{
-											var innerSb = new StringHandler(initialCapacity: 9);
+											var innerSb = new StringHandler(9);
 											foreach (int z in value)
 											{
 												innerSb.Append(z + 1);

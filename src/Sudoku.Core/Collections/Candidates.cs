@@ -469,7 +469,7 @@ public unsafe struct Candidates :
 		static string f(int[] offsets)
 		{
 			const string separator = ", ";
-			var sb = new StringHandler(initialCapacity: 50);
+			var sb = new StringHandler(50);
 
 			foreach (var digitGroup in
 				from candidate in offsets

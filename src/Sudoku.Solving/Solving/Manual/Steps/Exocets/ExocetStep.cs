@@ -99,7 +99,7 @@ public abstract record ExocetStep(
 	/// <inheritdoc/>
 	public sealed override string ToFullString()
 	{
-		var sb = new StringHandler(initialCapacity: 100);
+		var sb = new StringHandler(100);
 		sb.Append(base.ToFullString());
 		sb.AppendLine();
 		sb.AppendRangeWithLines(Eliminations);

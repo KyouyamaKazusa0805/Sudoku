@@ -45,7 +45,7 @@ public readonly ref partial struct LinkCollection
 
 		static string f(in Span<Link> collection)
 		{
-			var sb = new StringHandler(initialCapacity: 100);
+			var sb = new StringHandler(100);
 			foreach (var link in collection)
 			{
 				_ = link is { StartCandidate: var start, Kind: var kind };

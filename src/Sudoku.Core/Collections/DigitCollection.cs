@@ -78,7 +78,7 @@ public readonly ref partial struct DigitCollection
 		}
 
 		string separator = format ?? string.Empty;
-		var sb = new StringHandler(initialCapacity: 9);
+		var sb = new StringHandler(9);
 		foreach (int digit in _mask)
 		{
 			sb.Append(digit + 1);

@@ -52,7 +52,7 @@ public record UniqueRectangleWithConjugatePairStep(
 		{
 			const string separator = ", ";
 
-			var sb = new StringHandler(initialCapacity: 100);
+			var sb = new StringHandler(100);
 			sb.AppendRangeWithSeparator(ConjugatePairs, separator);
 
 			return sb.ToStringAndClear();

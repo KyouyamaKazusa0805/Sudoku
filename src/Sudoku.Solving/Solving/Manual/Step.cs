@@ -227,7 +227,7 @@ public abstract record Step(ImmutableArray<Conclusion> Conclusions, ImmutableArr
 
 		// Get the interpolation values, and extract them into a new collection to store the format values.
 		int length = format.Length;
-		var sb = new StringHandler(initialCapacity: length);
+		var sb = new StringHandler(length);
 		var formats = new List<string>(10);
 		int formatCount = 0;
 		for (int i = 0, iterationLength = length - 1; i < iterationLength; i++)

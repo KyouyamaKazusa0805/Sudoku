@@ -142,7 +142,7 @@ public unsafe ref partial struct StringHandler
 	/// <param name="initialCapacity">
 	/// The number of constant characters as the default memory to initialize.
 	/// </param>
-	public StringHandler(int initialCapacity = MinimumArrayPoolLength) =>
+	public StringHandler(int initialCapacity) =>
 		_chars = _arrayToReturnToPool = ArrayPool<char>.Shared.Rent(initialCapacity);
 
 	/// <summary>
@@ -210,8 +210,7 @@ public unsafe ref partial struct StringHandler
 		int holeCount,
 #endif
 
-		Span<char> initialBuffer
-	)
+		Span<char> initialBuffer)
 	{
 #if !DISCARD_INTERPOLATION_INFO
 		_literalLength = literalLength;
@@ -239,14 +238,14 @@ public unsafe ref partial struct StringHandler
 
 
 	/// <summary>
-	/// Gets a span of the written characters thus far.
-	/// </summary>
-	private readonly ReadOnlySpan<char> Text => _chars[..Length];
-
-	/// <summary>
 	/// Position at which to write the next character.
 	/// </summary>
 	public int Length { get; private set; } = 0;
+
+	/// <summary>
+	/// Gets a span of the written characters thus far.
+	/// </summary>
+	private readonly ReadOnlySpan<char> Text => _chars[..Length];
 
 
 	/// <summary>

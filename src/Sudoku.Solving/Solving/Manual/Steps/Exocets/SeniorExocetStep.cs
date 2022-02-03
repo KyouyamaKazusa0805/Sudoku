@@ -50,7 +50,7 @@ public sealed record SeniorExocetStep(
 			string endoTargetStr = $"{endoTargetSnippet}{EndoTargetCellStr}";
 			if (ExtraRegionsMask is not null)
 			{
-				var sb = new StringHandler(initialCapacity: 100);
+				var sb = new StringHandler(100);
 				int count = 0;
 				for (int digit = 0; digit < 9; digit++)
 				{

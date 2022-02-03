@@ -32,7 +32,7 @@ public static class SymmetryTypeExtensions
 		static string f(SymmetryType type)
 		{
 			const string separator = ", ";
-			var sb = new StringHandler(initialCapacity: 210);
+			var sb = new StringHandler(210);
 			var flags = Enum.GetValues<SymmetryType>()[1..];
 			foreach (var flag in flags)
 			{
