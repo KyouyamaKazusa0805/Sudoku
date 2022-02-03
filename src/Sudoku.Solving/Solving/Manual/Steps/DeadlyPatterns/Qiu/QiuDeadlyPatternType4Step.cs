@@ -26,7 +26,7 @@ public sealed record QiuDeadlyPatternType4Step(
 	public override Technique TechniqueCode => Technique.QiuDeadlyPatternType4;
 
 	[FormatItem]
-	private string ConjStr
+	internal string ConjStr
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => ConjugatePair.ToString();

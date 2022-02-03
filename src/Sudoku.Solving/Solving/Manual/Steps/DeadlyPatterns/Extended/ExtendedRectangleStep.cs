@@ -40,7 +40,7 @@ public abstract record ExtendedRectangleStep(
 	/// Indicates the digits string.
 	/// </summary>
 	[FormatItem]
-	protected string DigitsStr
+	internal string DigitsStr
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => new DigitCollection(DigitsMask).ToString();
@@ -50,7 +50,7 @@ public abstract record ExtendedRectangleStep(
 	/// Indicates the cells string.
 	/// </summary>
 	[FormatItem]
-	protected string CellsStr
+	internal string CellsStr
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => Cells.ToString();

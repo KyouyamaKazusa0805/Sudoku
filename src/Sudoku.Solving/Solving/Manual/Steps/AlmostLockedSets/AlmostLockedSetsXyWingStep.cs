@@ -47,42 +47,42 @@ public sealed record AlmostLockedSetsXyWingStep(
 	public override Rarity Rarity => Rarity.Sometimes;
 
 	[FormatItem]
-	private string Als1Str
+	internal string Als1Str
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => Als1.ToString();
 	}
 
 	[FormatItem]
-	private string BridgeStr
+	internal string BridgeStr
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => Bridge.ToString();
 	}
 
 	[FormatItem]
-	private string Als2Str
+	internal string Als2Str
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => Als2.ToString();
 	}
 
 	[FormatItem]
-	private string XStr
+	internal string XStr
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => new DigitCollection(XDigitsMask).ToString();
 	}
 
 	[FormatItem]
-	private string YStr
+	internal string YStr
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => new DigitCollection(YDigitsMask).ToString();
 	}
 
 	[FormatItem]
-	private string ZStr
+	internal string ZStr
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => new DigitCollection(ZDigitsMask).ToString();

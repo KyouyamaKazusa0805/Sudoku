@@ -39,14 +39,14 @@ public sealed record BivalueUniversalGraveType2Step(
 	public override Rarity Rarity => Rarity.Seldom;
 
 	[FormatItem]
-	private string ExtraDigitStr
+	internal string ExtraDigitStr
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => (Digit + 1).ToString();
 	}
 
 	[FormatItem]
-	private string CellsStr
+	internal string CellsStr
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => Cells.ToString();

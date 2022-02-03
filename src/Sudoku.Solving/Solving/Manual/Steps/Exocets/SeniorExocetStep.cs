@@ -41,7 +41,7 @@ public sealed record SeniorExocetStep(
 		ContainsExtraRegions ? Technique.ComplexSeniorExocet : Technique.SeniorExocet;
 
 	[FormatItem]
-	private string AdditionalFormat
+	internal string AdditionalFormat
 	{
 		get
 		{
@@ -80,7 +80,7 @@ public sealed record SeniorExocetStep(
 	}
 
 	[FormatItem]
-	private string EndoTargetCellStr
+	internal string EndoTargetCellStr
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => new Coordinate((byte)EndoTargetCell).ToString();

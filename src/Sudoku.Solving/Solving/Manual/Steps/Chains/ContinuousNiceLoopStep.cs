@@ -88,7 +88,7 @@ public sealed record ContinuousNiceLoopStep(
 	private bool IsXCycle => XEnabled && !YEnabled;
 
 	[FormatItem]
-	private string ChainStr
+	internal string ChainStr
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => new LinkCollection(from pair in Views[0].Links! select pair.Link).ToString();

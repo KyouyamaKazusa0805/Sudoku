@@ -173,7 +173,7 @@ public abstract record Step(ImmutableArray<Conclusion> Conclusions, ImmutableArr
 
 	/// <inheritdoc cref="IStep.ElimStr"/>
 	[FormatItem]
-	protected string ElimStr
+	internal string ElimStr
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => new ConclusionCollection(Conclusions).ToString();

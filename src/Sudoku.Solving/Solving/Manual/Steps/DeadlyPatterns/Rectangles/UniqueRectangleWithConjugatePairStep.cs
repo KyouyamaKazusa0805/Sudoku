@@ -45,7 +45,7 @@ public record UniqueRectangleWithConjugatePairStep(
 	/// Indicates the conjugate pair string.
 	/// </summary>
 	[FormatItem]
-	protected string ConjPairsStr
+	internal string ConjPairsStr
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get
@@ -60,14 +60,14 @@ public record UniqueRectangleWithConjugatePairStep(
 	}
 
 	[FormatItem]
-	private string Prefix
+	internal string Prefix
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => ConjugatePairs.Length == 1 ? "a " : string.Empty;
 	}
 
 	[FormatItem]
-	private string Suffix
+	internal string Suffix
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => ConjugatePairs.Length == 1 ? string.Empty : "s";

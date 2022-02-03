@@ -35,21 +35,21 @@ public sealed record WWingStep(
 	public override Rarity Rarity => Rarity.Often;
 
 	[FormatItem]
-	private string StartCellStr
+	internal string StartCellStr
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => new Coordinate((byte)StartCell).ToString();
 	}
 
 	[FormatItem]
-	private string EndCellStr
+	internal string EndCellStr
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => new Coordinate((byte)EndCell).ToString();
 	}
 
 	[FormatItem]
-	private string ConjStr
+	internal string ConjStr
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => ConjugatePair.ToString();

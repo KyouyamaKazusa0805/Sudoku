@@ -44,42 +44,42 @@ public sealed record BivalueUniversalGraveType3Step(
 	private int Size => PopCount((uint)DigitsMask);
 
 	[FormatItem]
-	private string TrueCandidatesStr
+	internal string TrueCandidatesStr
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => new Candidates(TrueCandidates).ToString();
 	}
 
 	[FormatItem]
-	private string SubsetTypeStr
+	internal string SubsetTypeStr
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => ResourceManager.Shared[IsNaked ? "NakedKeyword" : "HiddenKeyword"];
 	}
 
 	[FormatItem]
-	private string SizeStr
+	internal string SizeStr
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => SubsetNames[Size].ToLower(null);
 	}
 
 	[FormatItem]
-	private string SizeStrZhCn
+	internal string SizeStrZhCn
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => ResourceManager.Shared[$"SubsetNames{Size}"];
 	}
 
 	[FormatItem]
-	private string ExtraDigitsStr
+	internal string ExtraDigitsStr
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => new DigitCollection(DigitsMask).ToString();
 	}
 
 	[FormatItem]
-	private string CellsStr
+	internal string CellsStr
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => Cells.ToString();

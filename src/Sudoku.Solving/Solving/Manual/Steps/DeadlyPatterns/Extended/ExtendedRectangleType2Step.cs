@@ -34,7 +34,7 @@ public sealed record ExtendedRectangleType2Step(
 	public override Rarity Rarity => Rarity.Sometimes;
 
 	[FormatItem]
-	private string ExtraDigitStr
+	internal string ExtraDigitStr
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => (ExtraDigit + 1).ToString();

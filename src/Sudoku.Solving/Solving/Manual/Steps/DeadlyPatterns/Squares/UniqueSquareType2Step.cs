@@ -28,7 +28,7 @@ public sealed record UniqueSquareType2Step(
 	public override Technique TechniqueCode => Technique.UniqueSquareType2;
 
 	[FormatItem]
-	private string ExtraDigitStr
+	internal string ExtraDigitStr
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => (ExtraDigit + 1).ToString();

@@ -39,14 +39,14 @@ public sealed record MultisectorLockedSetsStep(
 	public override Rarity Rarity => Rarity.HardlyEver;
 
 	[FormatItem]
-	private string CellsCountStr
+	internal string CellsCountStr
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => Cells.Count.ToString();
 	}
 
 	[FormatItem]
-	private string CellsStr
+	internal string CellsStr
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => Cells.ToString();

@@ -54,14 +54,14 @@ public sealed record UniqueRectangleWithWingStep(
 	public override Rarity Rarity => Rarity.Seldom;
 
 	[FormatItem]
-	private string PivotsStr
+	internal string PivotsStr
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => Pivots.ToString();
 	}
 
 	[FormatItem]
-	private string DigitsStr
+	internal string DigitsStr
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => new DigitCollection(ExtraDigitsMask).ToString();

@@ -33,21 +33,21 @@ public sealed record QiuDeadlyPatternType3Step(
 	public override Technique TechniqueCode => Technique.QiuDeadlyPatternType3;
 
 	[FormatItem]
-	private string DigitsStr
+	internal string DigitsStr
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => new DigitCollection(ExtraDigitsMask).ToString();
 	}
 
 	[FormatItem]
-	private string CellsStr
+	internal string CellsStr
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => ExtraCells.ToString();
 	}
 
 	[FormatItem]
-	private string SubsetName
+	internal string SubsetName
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => ResourceManager.Shared[$"SubsetNames{ExtraCells.Count + 1}"];

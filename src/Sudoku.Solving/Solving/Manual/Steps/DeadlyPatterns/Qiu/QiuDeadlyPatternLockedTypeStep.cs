@@ -27,35 +27,35 @@ public sealed record QiuDeadlyPatternLockedTypeStep(
 	public override Technique TechniqueCode => Technique.LockedQiuDeadlyPattern;
 
 	[FormatItem]
-	private string CandidateStr
+	internal string CandidateStr
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => new Candidates(Candidates).ToString();
 	}
 
 	[FormatItem]
-	private string Quantifier
+	internal string Quantifier
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => Candidates.Count switch { 1 => string.Empty, 2 => " both", _ => " all" };
 	}
 
 	[FormatItem]
-	private string Number
+	internal string Number
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => Candidates.Count == 1 ? " the" : $" {Candidates.Count}";
 	}
 
 	[FormatItem]
-	private string SingularOrPlural
+	internal string SingularOrPlural
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => Candidates.Count == 1 ? "candidate" : "candidates";
 	}
 
 	[FormatItem]
-	private string BeVerb
+	internal string BeVerb
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => Candidates.Count == 1 ? "is" : "are";

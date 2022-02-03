@@ -47,7 +47,7 @@ public abstract record UniqueLoopStep(
 	/// Indicates the loop string.
 	/// </summary>
 	[FormatItem]
-	protected string LoopStr
+	internal string LoopStr
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => Loop.ToString();
@@ -57,7 +57,7 @@ public abstract record UniqueLoopStep(
 	/// Indicates the digit 1 string.
 	/// </summary>
 	[FormatItem]
-	protected string Digit1Str
+	internal string Digit1Str
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => (Digit1 + 1).ToString();
@@ -67,7 +67,7 @@ public abstract record UniqueLoopStep(
 	/// Indicates the digit 2 string.
 	/// </summary>
 	[FormatItem]
-	protected string Digit2Str
+	internal string Digit2Str
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => (Digit2 + 1).ToString();

@@ -203,7 +203,7 @@ public sealed record AlternatingInferenceChainStep(
 		&& a % 9 == b % 9 && c % 9 == d % 9 && e % 9 == f % 9;
 
 	[FormatItem]
-	private string ChainStr
+	internal string ChainStr
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => new LinkCollection(from pair in Views[0].Links! select pair.Link).ToString();

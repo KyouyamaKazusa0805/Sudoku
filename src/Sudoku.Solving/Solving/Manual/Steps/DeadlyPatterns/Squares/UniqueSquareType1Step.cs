@@ -25,7 +25,7 @@ public sealed record UniqueSquareType1Step(
 	public override Technique TechniqueCode => Technique.UniqueSquareType1;
 
 	[FormatItem]
-	private string CandidateStr
+	internal string CandidateStr
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => new Candidates { Candidate }.ToString();

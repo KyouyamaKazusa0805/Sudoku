@@ -36,28 +36,28 @@ public sealed record BivalueOddagonType1Step(
 	public override Rarity Rarity => Rarity.ReplacedByOtherTechniques;
 
 	[FormatItem]
-	private string CellStr
+	internal string CellStr
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => new Coordinate((byte)ExtraCell).ToString();
 	}
 
 	[FormatItem]
-	private string Digit1Str
+	internal string Digit1Str
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => (Digit1 + 1).ToString();
 	}
 
 	[FormatItem]
-	private string Digit2Str
+	internal string Digit2Str
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => (Digit2 + 1).ToString();
 	}
 
 	[FormatItem]
-	private string LoopStr
+	internal string LoopStr
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => Loop.ToString();

@@ -54,14 +54,14 @@ public sealed record UniqueRectangleWithGuardianStep(
 	public override Rarity Rarity => Rarity.Often;
 
 	[FormatItem]
-	private string GuardianDigitStr
+	internal string GuardianDigitStr
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => (GuardianDigit + 1).ToString();
 	}
 
 	[FormatItem]
-	private string GuardianCellsStr
+	internal string GuardianCellsStr
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => GuardianCells.ToString();

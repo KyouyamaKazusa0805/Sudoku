@@ -24,7 +24,7 @@ public sealed record QiuDeadlyPatternType1Step(
 	public override Technique TechniqueCode => Technique.QiuDeadlyPatternType1;
 
 	[FormatItem]
-	private string CandidateStr
+	internal string CandidateStr
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => new Candidates { Candidate }.ToString();

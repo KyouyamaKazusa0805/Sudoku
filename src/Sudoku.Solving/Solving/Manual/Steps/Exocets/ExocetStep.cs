@@ -51,7 +51,7 @@ public abstract record ExocetStep(
 	/// Indiactes the digits string.
 	/// </summary>
 	[FormatItem]
-	protected string DigitsStr
+	internal string DigitsStr
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => new DigitCollection(DigitsMask).ToString();
@@ -61,7 +61,7 @@ public abstract record ExocetStep(
 	/// Indicates the base map string.
 	/// </summary>
 	[FormatItem]
-	protected string BaseMapStr
+	internal string BaseMapStr
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => BaseMap.ToString();
@@ -71,7 +71,7 @@ public abstract record ExocetStep(
 	/// Indicates the target map string.
 	/// </summary>
 	[FormatItem]
-	protected string TargetMapStr
+	internal string TargetMapStr
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => TargetMap.ToString();

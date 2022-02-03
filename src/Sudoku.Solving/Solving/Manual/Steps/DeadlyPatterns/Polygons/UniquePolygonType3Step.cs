@@ -30,14 +30,14 @@ public sealed record UniquePolygonType3Step(
 	public override Technique TechniqueCode => Technique.UniquePolygonType3;
 
 	[FormatItem]
-	private string ExtraDigitsStr
+	internal string ExtraDigitsStr
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => new DigitCollection(ExtraDigitsMask).ToString();
 	}
 
 	[FormatItem]
-	private string ExtraCellsStr
+	internal string ExtraCellsStr
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => ExtraCells.ToString();

@@ -47,21 +47,21 @@ public sealed record TwoStrongLinksStep(
 	public override Rarity Rarity => Rarity.Often;
 
 	[FormatItem]
-	private string DigitStr
+	internal string DigitStr
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => (Digit + 1).ToString();
 	}
 
 	[FormatItem]
-	private string BaseRegionStr
+	internal string BaseRegionStr
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => new RegionCollection(BaseRegion).ToString();
 	}
 
 	[FormatItem]
-	private string TargetRegionStr
+	internal string TargetRegionStr
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => new RegionCollection(TargetRegion).ToString();

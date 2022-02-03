@@ -28,14 +28,14 @@ public sealed record FullHouseStep(
 	public override Rarity Rarity => Rarity.Always;
 
 	[FormatItem]
-	private string CellStr
+	internal string CellStr
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => new Coordinate((byte)Cell).ToString();
 	}
 
 	[FormatItem]
-	private string DigitStr
+	internal string DigitStr
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => (Digit + 1).ToString();

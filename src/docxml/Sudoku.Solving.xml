@@ -1610,14 +1610,14 @@
             Here the property <c>Name</c>, <c>CellsStr</c> and <c>ElimsStr</c> must have been implemented before
             the property invoked. You should create 3 properties whose names are <c>Name</c>, <c>CellsStr</c>
             and <c>ElimsStr</c>, and return the corresponding correct string result,
-            making them non-<see langword="public"/> and applying attribute <see cref="T:Sudoku.Solving.Manual.Text.FormatItemAttribute"/>
-            to it.
+            making them non-<see langword="public"/> (suggested keyword is <see langword="internal"/>)
+            and applying attribute <see cref="T:Sudoku.Solving.Manual.Text.FormatItemAttribute"/> to it.
             </para>
             <para>
             The recommended implementation pattern is:
             <code><![CDATA[
             [FormatItem]
-            private string CellsStr
+            internal string CellsStr
             {
                 [MethodImpl(MethodImplOptions.AggressiveInlining)]
                 get => Cells.ToString();
@@ -1643,6 +1643,7 @@
             </remarks>
             <seealso cref="M:Sudoku.Solving.Manual.IStep.ToString"/>
             <seealso cref="M:Sudoku.Solving.Manual.IStep.ToFullString"/>
+            <seealso cref="T:Sudoku.Solving.Manual.Text.FormatItemAttribute"/>
             <seealso cref="F:Sudoku.Resources.ResourceManager.Shared"/>
         </member>
         <member name="P:Sudoku.Solving.Manual.IStep.Difficulty">

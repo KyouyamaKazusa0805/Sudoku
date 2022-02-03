@@ -59,14 +59,14 @@ public sealed record BinaryChainingStep(
 	public override Rarity Rarity => Rarity.Sometimes;
 
 	[FormatItem]
-	private string AnchorCandidateStr
+	internal string AnchorCandidateStr
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => new Candidates { Anchor.Cell * 9 + Anchor.Digit }.ToString();
 	}
 
 	[FormatItem]
-	private string AnchorIsTrueOrFalseStr
+	internal string AnchorIsTrueOrFalseStr
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => ResourceManager.Shared[Anchor.IsOn ? "TrueKeyword" : "FalseKeyword"];

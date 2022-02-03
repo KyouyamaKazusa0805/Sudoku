@@ -56,28 +56,28 @@ public sealed record AvoidableRectangleWithHiddenSingleStep(
 	public override Rarity Rarity => Rarity.Seldom;
 
 	[FormatItem]
-	private string BaseCellStr
+	internal string BaseCellStr
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => new Coordinate((byte)BaseCell).ToString();
 	}
 
 	[FormatItem]
-	private string TargetCellStr
+	internal string TargetCellStr
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => new Coordinate((byte)TargetCell).ToString();
 	}
 
 	[FormatItem]
-	private string RegionStr
+	internal string RegionStr
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => new RegionCollection(Region).ToString();
 	}
 
 	[FormatItem]
-	private string Digit1Str
+	internal string Digit1Str
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => (Digit1 + 1).ToString();

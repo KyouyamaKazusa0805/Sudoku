@@ -46,21 +46,21 @@ public sealed record UniqueRectangle2DOr3XStep(
 	public override Rarity Rarity => Rarity.HardlyEver;
 
 	[FormatItem]
-	private string XDigitStr
+	internal string XDigitStr
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => (XDigit + 1).ToString();
 	}
 
 	[FormatItem]
-	private string YDigitStr
+	internal string YDigitStr
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => (YDigit + 1).ToString();
 	}
 
 	[FormatItem]
-	private string XYCellsStr
+	internal string XYCellsStr
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => new Coordinate((byte)XyCell).ToString();

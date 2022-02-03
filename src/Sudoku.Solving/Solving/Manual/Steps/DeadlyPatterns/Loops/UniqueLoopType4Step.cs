@@ -29,7 +29,7 @@ public sealed record UniqueLoopType4Step(
 	public override Rarity Rarity => Rarity.Sometimes;
 
 	[FormatItem]
-	private string ConjStr
+	internal string ConjStr
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => ConjugatePair.ToString();

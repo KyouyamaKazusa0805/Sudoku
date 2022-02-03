@@ -39,21 +39,21 @@ public sealed record ExtendedRectangleType3Step(
 	public override Rarity Rarity => Rarity.Seldom;
 
 	[FormatItem]
-	private string ExtraDigitsStr
+	internal string ExtraDigitsStr
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => new DigitCollection(ExtraDigitsMask).ToString();
 	}
 
 	[FormatItem]
-	private string ExtraCellsStr
+	internal string ExtraCellsStr
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => ExtraCells.ToString();
 	}
 
 	[FormatItem]
-	private string RegionStr
+	internal string RegionStr
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => new RegionCollection(Region).ToString();

@@ -33,14 +33,14 @@ public sealed record HiddenSubsetStep(
 	};
 
 	[FormatItem]
-	private string DigitStr
+	internal string DigitStr
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => new DigitCollection(DigitsMask).ToString();
 	}
 
 	[FormatItem]
-	private string RegionStr
+	internal string RegionStr
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => new RegionCollection(Region).ToString();

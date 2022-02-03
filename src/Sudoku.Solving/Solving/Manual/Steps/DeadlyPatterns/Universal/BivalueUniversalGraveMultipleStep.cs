@@ -31,7 +31,7 @@ public sealed record BivalueUniversalGraveMultipleStep(
 	public override Rarity Rarity => Rarity.Seldom;
 
 	[FormatItem]
-	private string CandidatesStr
+	internal string CandidatesStr
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => new Candidates(Candidates).ToString();

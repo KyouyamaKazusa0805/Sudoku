@@ -36,14 +36,14 @@ public sealed record BivalueOddagonType2Step(
 	public override Rarity Rarity => Rarity.Seldom;
 
 	[FormatItem]
-	private string ExtraDigitStr
+	internal string ExtraDigitStr
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => (ExtraDigit + 1).ToString();
 	}
 
 	[FormatItem]
-	private string LoopStr
+	internal string LoopStr
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => Loop.ToString();

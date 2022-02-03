@@ -46,42 +46,42 @@ public sealed record SueDeCoq3DemensionStep(
 	public override Rarity Rarity => Rarity.HardlyEver;
 
 	[FormatItem]
-	private string Cells1Str
+	internal string Cells1Str
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => RowCells.ToString();
 	}
 
 	[FormatItem]
-	private string Digits1Str
+	internal string Digits1Str
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => new DigitCollection(RowDigitsMask).ToString();
 	}
 
 	[FormatItem]
-	private string Cells2Str
+	internal string Cells2Str
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => ColumnCells.ToString();
 	}
 
 	[FormatItem]
-	private string Digits2Str
+	internal string Digits2Str
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => new DigitCollection(ColumnDigitsMask).ToString();
 	}
 
 	[FormatItem]
-	private string Cells3Str
+	internal string Cells3Str
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => BlockCells.ToString();
 	}
 
 	[FormatItem]
-	private string Digits3Str
+	internal string Digits3Str
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => new DigitCollection(BlockDigitsMask).ToString();

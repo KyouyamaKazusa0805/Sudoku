@@ -39,7 +39,7 @@ public abstract record QiuDeadlyPatternStep(
 	/// Indicates the pattern string.
 	/// </summary>
 	[FormatItem]
-	protected string PatternStr
+	internal string PatternStr
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => Pattern.Map.ToString();

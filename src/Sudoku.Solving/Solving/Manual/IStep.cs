@@ -67,14 +67,14 @@ public interface IStep
 	/// Here the property <c>Name</c>, <c>CellsStr</c> and <c>ElimsStr</c> must have been implemented before
 	/// the property invoked. You should create 3 properties whose names are <c>Name</c>, <c>CellsStr</c>
 	/// and <c>ElimsStr</c>, and return the corresponding correct string result,
-	/// making them non-<see langword="public"/> and applying attribute <see cref="FormatItemAttribute"/>
-	/// to it.
+	/// making them non-<see langword="public"/> (suggested keyword is <see langword="internal"/>)
+	/// and applying attribute <see cref="FormatItemAttribute"/> to it.
 	/// </para>
 	/// <para>
 	/// The recommended implementation pattern is:
 	/// <code><![CDATA[
 	/// [FormatItem]
-	/// private string CellsStr
+	/// internal string CellsStr
 	/// {
 	///     [MethodImpl(MethodImplOptions.AggressiveInlining)]
 	///	    get => Cells.ToString();
@@ -100,6 +100,7 @@ public interface IStep
 	/// </remarks>
 	/// <seealso cref="ToString"/>
 	/// <seealso cref="ToFullString"/>
+	/// <seealso cref="FormatItemAttribute"/>
 	/// <seealso cref="ResourceManager.Shared"/>
 	string? Format { get; }
 

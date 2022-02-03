@@ -32,21 +32,21 @@ public sealed record UniqueLoopType3Step(
 	public override int Type => 3;
 
 	[FormatItem]
-	private string SubsetCellsStr
+	internal string SubsetCellsStr
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => SubsetCells.ToString();
 	}
 
 	[FormatItem]
-	private string DigitsStr
+	internal string DigitsStr
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => new DigitCollection(SubsetDigitsMask).ToString();
 	}
 
 	[FormatItem]
-	private string SubsetName
+	internal string SubsetName
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => ResourceManager.Shared[$"SubsetNames{SubsetCells.Count + 1}"];

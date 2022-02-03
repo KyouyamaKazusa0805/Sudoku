@@ -58,42 +58,42 @@ public sealed record SueDeCoqStep(
 	public override Rarity Rarity => Rarity.Sometimes;
 
 	[FormatItem]
-	private string IntersectionCellsStr
+	internal string IntersectionCellsStr
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => IntersectionCells.ToString();
 	}
 
 	[FormatItem]
-	private string IntersectionDigitsStr
+	internal string IntersectionDigitsStr
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => new DigitCollection(IntersectionMask).ToString(null);
 	}
 
 	[FormatItem]
-	private string BlockCellsStr
+	internal string BlockCellsStr
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => BlockCells.ToString();
 	}
 
 	[FormatItem]
-	private string BlockDigitsStr
+	internal string BlockDigitsStr
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => new DigitCollection(BlockMask).ToString(null);
 	}
 
 	[FormatItem]
-	private string LineCellsStr
+	internal string LineCellsStr
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => LineCells.ToString();
 	}
 
 	[FormatItem]
-	private string LineDigitsStr
+	internal string LineDigitsStr
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => new DigitCollection(LineMask).ToString(null);

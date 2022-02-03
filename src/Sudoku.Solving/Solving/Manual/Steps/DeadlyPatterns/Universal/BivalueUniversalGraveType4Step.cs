@@ -31,21 +31,21 @@ public sealed record BivalueUniversalGraveType4Step(
 	public override Rarity Rarity => Rarity.Seldom;
 
 	[FormatItem]
-	private string DigitsStr
+	internal string DigitsStr
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => new DigitCollection(DigitsMask).ToString();
 	}
 
 	[FormatItem]
-	private string CellsStr
+	internal string CellsStr
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => Cells.ToString();
 	}
 
 	[FormatItem]
-	private string ConjStr
+	internal string ConjStr
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => ConjugatePair.ToString();

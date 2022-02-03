@@ -41,35 +41,35 @@ public sealed record EmptyRectangleIntersectionPairStep(
 	public override Rarity Rarity => Rarity.Sometimes;
 
 	[FormatItem]
-	private string Digit1Str
+	internal string Digit1Str
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => (Digit1 + 1).ToString();
 	}
 
 	[FormatItem]
-	private string Digit2Str
+	internal string Digit2Str
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => (Digit2 + 1).ToString();
 	}
 
 	[FormatItem]
-	private string StartCellStr
+	internal string StartCellStr
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => new Coordinate((byte)StartCell).ToString();
 	}
 
 	[FormatItem]
-	private string EndCellStr
+	internal string EndCellStr
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => new Coordinate((byte)EndCell).ToString();
 	}
 
 	[FormatItem]
-	private string RegionStr
+	internal string RegionStr
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => new RegionCollection(Region).ToString();

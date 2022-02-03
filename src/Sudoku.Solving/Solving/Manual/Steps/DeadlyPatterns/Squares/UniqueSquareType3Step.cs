@@ -34,21 +34,21 @@ public sealed record UniqueSquareType3Step(
 	public override Technique TechniqueCode => Technique.UniqueSquareType3;
 
 	[FormatItem]
-	private string ExtraCellsStr
+	internal string ExtraCellsStr
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => ExtraCells.ToString();
 	}
 
 	[FormatItem]
-	private string ExtraDigitStr
+	internal string ExtraDigitStr
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => new DigitCollection(ExtraDigitsMask).ToString();
 	}
 
 	[FormatItem]
-	private string SubsetName
+	internal string SubsetName
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => ResourceManager.Shared[$"SubsetNames{ExtraCells.Count + 1}"];

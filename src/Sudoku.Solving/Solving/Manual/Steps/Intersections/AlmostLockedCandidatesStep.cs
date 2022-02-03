@@ -52,21 +52,21 @@ public sealed record AlmostLockedCandidatesStep(
 	public override Rarity Rarity => Rarity.Sometimes;
 
 	[FormatItem]
-	private string DigitsStr
+	internal string DigitsStr
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => new DigitCollection(DigitsMask).ToString();
 	}
 
 	[FormatItem]
-	private string BaseCellsStr
+	internal string BaseCellsStr
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => BaseCells.ToString();
 	}
 
 	[FormatItem]
-	private string TargetCellsStr
+	internal string TargetCellsStr
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => TargetCells.ToString();

@@ -29,21 +29,21 @@ public sealed record UniqueSquareType4Step(
 	public override Technique TechniqueCode => Technique.UniqueSquareType4;
 
 	[FormatItem]
-	private string ConjStr
+	internal string ConjStr
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => ConjugateRegion.ToString();
 	}
 
 	[FormatItem]
-	private string Digit1Str
+	internal string Digit1Str
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => (Digit1 + 1).ToString();
 	}
 
 	[FormatItem]
-	private string Digit2Str
+	internal string Digit2Str
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => (Digit2 + 1).ToString();

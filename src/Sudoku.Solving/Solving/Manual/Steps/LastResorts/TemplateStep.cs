@@ -38,7 +38,7 @@ public sealed record TemplateStep(
 	public override Rarity Rarity => Rarity.Sometimes;
 
 	[FormatItem]
-	private string DigitStr
+	internal string DigitStr
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => (Digit + 1).ToString();

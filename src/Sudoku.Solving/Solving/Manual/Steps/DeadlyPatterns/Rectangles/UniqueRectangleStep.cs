@@ -65,7 +65,7 @@ public abstract record UniqueRectangleStep(
 	/// Indicates the digit 1 string.
 	/// </summary>
 	[FormatItem]
-	protected string D1Str
+	internal string D1Str
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => (Digit1 + 1).ToString();
@@ -75,7 +75,7 @@ public abstract record UniqueRectangleStep(
 	/// Indicates the digit 2 string.
 	/// </summary>
 	[FormatItem]
-	protected string D2Str
+	internal string D2Str
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => (Digit2 + 1).ToString();
@@ -85,7 +85,7 @@ public abstract record UniqueRectangleStep(
 	/// Indicates the cells string.
 	/// </summary>
 	[FormatItem]
-	protected string CellsStr
+	internal string CellsStr
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => Cells.ToString();

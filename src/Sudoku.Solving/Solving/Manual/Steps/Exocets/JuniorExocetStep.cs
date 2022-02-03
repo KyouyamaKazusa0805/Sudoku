@@ -61,7 +61,7 @@ public sealed record JuniorExocetStep(
 	/// </summary>
 	[FormatItem]
 	[NotNullIfNotNull(nameof(LockedMemberQ))]
-	private string LockedMemberQStr
+	internal string LockedMemberQStr
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get
@@ -77,7 +77,7 @@ public sealed record JuniorExocetStep(
 	/// </summary>
 	[FormatItem]
 	[NotNullIfNotNull(nameof(LockedMemberR))]
-	private string LockedMemberRStr
+	internal string LockedMemberRStr
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get

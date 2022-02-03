@@ -38,35 +38,35 @@ public sealed record BivalueOddagonType3Step(
 	public override Rarity Rarity => Rarity.Seldom;
 
 	[FormatItem]
-	private string LoopStr
+	internal string LoopStr
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => Loop.ToString();
 	}
 
 	[FormatItem]
-	private string Digit1Str
+	internal string Digit1Str
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => (Digit1 + 1).ToString();
 	}
 
 	[FormatItem]
-	private string Digit2Str
+	internal string Digit2Str
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => (Digit2 + 1).ToString();
 	}
 
 	[FormatItem]
-	private string DigitsStr
+	internal string DigitsStr
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => new DigitCollection(ExtraDigitsMask).ToString();
 	}
 
 	[FormatItem]
-	private string ExtraCellsStr
+	internal string ExtraCellsStr
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => ExtraCells.ToString();

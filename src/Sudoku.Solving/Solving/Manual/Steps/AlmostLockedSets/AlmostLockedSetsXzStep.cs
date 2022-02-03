@@ -60,42 +60,42 @@ public sealed record AlmostLockedSetsXzStep(
 	public override Rarity Rarity => Rarity.Often;
 
 	[FormatItem]
-	private string CellsStr
+	internal string CellsStr
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => (Als1.Map | Als2.Map).ToString();
 	}
 
 	[FormatItem]
-	private string EspDigitStr
+	internal string EspDigitStr
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => (TrailingZeroCount(ZDigitsMask) + 1).ToString();
 	}
 
 	[FormatItem]
-	private string Als1Str
+	internal string Als1Str
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => Als1.ToString();
 	}
 
 	[FormatItem]
-	private string Als2Str
+	internal string Als2Str
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => Als2.ToString();
 	}
 
 	[FormatItem]
-	private string XStr
+	internal string XStr
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => new DigitCollection(XDigitsMask).ToString();
 	}
 
 	[FormatItem]
-	private string ZResultStr
+	internal string ZResultStr
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => ZDigitsMask != 0 ? $", Z = {new DigitCollection(ZDigitsMask).ToString()}" : string.Empty;

@@ -40,21 +40,21 @@ public sealed record LockedCandidatesStep(
 	public override Rarity Rarity => Rarity.Often;
 
 	[FormatItem]
-	private string DigitStr
+	internal string DigitStr
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => (Digit + 1).ToString();
 	}
 
 	[FormatItem]
-	private string BaseSetStr
+	internal string BaseSetStr
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => new RegionCollection(BaseSet).ToString();
 	}
 
 	[FormatItem]
-	private string CoverSetStr
+	internal string CoverSetStr
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => new RegionCollection(CoverSet).ToString();

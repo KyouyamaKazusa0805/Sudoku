@@ -36,7 +36,7 @@ public sealed record PatternOverlayStep(
 	public override Rarity Rarity => Rarity.Often;
 
 	[FormatItem]
-	private string DigitStr
+	internal string DigitStr
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => (Digit + 1).ToString();

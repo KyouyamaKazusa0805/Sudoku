@@ -50,21 +50,21 @@ public sealed record UniqueRectangleWithUnknownCoveringStep(
 	public override Rarity Rarity => Rarity.Seldom;
 
 	[FormatItem]
-	private string TargetCellStr
+	internal string TargetCellStr
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => new Coordinate((byte)TargetCell).ToString();
 	}
 
 	[FormatItem]
-	private string DigitsStr
+	internal string DigitsStr
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => new DigitCollection((short)(1 << Digit1 | 1 << Digit2)).ToString(ResourceManager.Shared["OrKeywordWithSpaces"]);
 	}
 
 	[FormatItem]
-	private string ExtraDigitStr
+	internal string ExtraDigitStr
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => (ExtraDigit + 1).ToString();

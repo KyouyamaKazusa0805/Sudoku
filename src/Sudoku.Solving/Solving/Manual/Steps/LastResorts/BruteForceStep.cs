@@ -31,7 +31,7 @@ public sealed record BruteForceStep(
 	public override Rarity Rarity => Rarity.Always;
 
 	[FormatItem]
-	private string AssignmentStr
+	internal string AssignmentStr
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => new ConclusionCollection(Conclusions).ToString();

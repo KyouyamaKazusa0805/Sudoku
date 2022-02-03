@@ -47,21 +47,21 @@ public sealed record HiddenSingleStep(
 		];
 
 	[FormatItem]
-	private string CellStr
+	internal string CellStr
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => new Coordinate((byte)Cell).ToString();
 	}
 
 	[FormatItem]
-	private string DigitStr
+	internal string DigitStr
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => (Digit + 1).ToString();
 	}
 
 	[FormatItem]
-	private string RegionStr
+	internal string RegionStr
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => new RegionCollection(Region).ToString();

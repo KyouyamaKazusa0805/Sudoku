@@ -65,7 +65,7 @@ public sealed record CellChainingStep(
 	public override Rarity Rarity => Rarity.Sometimes;
 
 	[FormatItem]
-	private string SourceCellStr
+	internal string SourceCellStr
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => new Coordinate((byte)SourceCell).ToString();

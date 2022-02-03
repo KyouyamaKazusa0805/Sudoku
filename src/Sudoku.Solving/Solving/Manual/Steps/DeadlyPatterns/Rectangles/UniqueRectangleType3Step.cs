@@ -72,35 +72,35 @@ public sealed record UniqueRectangleType3Step(
 	public override Rarity Rarity => Rarity.Sometimes;
 
 	[FormatItem]
-	private string DigitsStr
+	internal string DigitsStr
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => new DigitCollection(ExtraDigitsMask).ToString();
 	}
 
 	[FormatItem]
-	private string OnlyKeyword
+	internal string OnlyKeyword
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => IsNaked ? string.Empty : "only ";
 	}
 
 	[FormatItem]
-	private string OnlyKeywordZhCn
+	internal string OnlyKeywordZhCn
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => ResourceManager.Shared["Only"];
 	}
 
 	[FormatItem]
-	private string RegionStr
+	internal string RegionStr
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => new RegionCollection(Region).ToString();
 	}
 
 	[FormatItem]
-	private string AppearLimitKeyword
+	internal string AppearLimitKeyword
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => ResourceManager.Shared["Appears"];

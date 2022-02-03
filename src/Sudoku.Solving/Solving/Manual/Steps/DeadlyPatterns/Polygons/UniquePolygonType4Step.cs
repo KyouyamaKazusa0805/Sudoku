@@ -30,14 +30,14 @@ public sealed record UniquePolygonType4Step(
 	public override Technique TechniqueCode => Technique.UniquePolygonType4;
 
 	[FormatItem]
-	private string ExtraCombStr
+	internal string ExtraCombStr
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => new DigitCollection(ExtraMask).ToString();
 	}
 
 	[FormatItem]
-	private string ConjRegionStr
+	internal string ConjRegionStr
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => ConjugateRegion.ToString();

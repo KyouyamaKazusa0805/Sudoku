@@ -93,35 +93,35 @@ public sealed record NormalFishStep(
 	}
 
 	[FormatItem]
-	private string DigitStr
+	internal string DigitStr
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => (Digit + 1).ToString();
 	}
 
 	[FormatItem]
-	private string BaseSetStr
+	internal string BaseSetStr
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => new RegionCollection(BaseSetsMask.GetAllSets()).ToString();
 	}
 
 	[FormatItem]
-	private string CoverSetStr
+	internal string CoverSetStr
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => new RegionCollection(CoverSetsMask.GetAllSets()).ToString();
 	}
 
 	[FormatItem]
-	private string FinSnippet
+	internal string FinSnippet
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => ResourceManager.Shared["Fin"];
 	}
 
 	[FormatItem]
-	private string FinsStr
+	internal string FinsStr
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => Fins.IsEmpty ? string.Empty : $"{FinSnippet}{Fins}";

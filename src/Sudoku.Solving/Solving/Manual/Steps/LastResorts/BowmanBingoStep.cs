@@ -38,7 +38,7 @@ public sealed record BowmanBingoStep(
 	public override Rarity Rarity => Rarity.Often;
 
 	[FormatItem]
-	private string ContradictionSeriesStr
+	internal string ContradictionSeriesStr
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => new ConclusionCollection(ContradictionLinks).ToString(false, " -> ");

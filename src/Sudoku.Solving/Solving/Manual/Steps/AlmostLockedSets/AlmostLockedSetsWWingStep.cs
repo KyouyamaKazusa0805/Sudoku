@@ -45,35 +45,35 @@ public sealed record AlmostLockedSetsWWingStep(
 	public override Rarity Rarity => Rarity.Seldom;
 
 	[FormatItem]
-	private string Als1Str
+	internal string Als1Str
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => Als1.ToString();
 	}
 
 	[FormatItem]
-	private string Als2Str
+	internal string Als2Str
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => Als2.ToString();
 	}
 
 	[FormatItem]
-	private string ConjStr
+	internal string ConjStr
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => ConjugatePair.ToString();
 	}
 
 	[FormatItem]
-	private string WStr
+	internal string WStr
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => new DigitCollection(WDigitsMask).ToString();
 	}
 
 	[FormatItem]
-	private string XStr
+	internal string XStr
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => (X + 1).ToString();

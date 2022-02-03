@@ -166,35 +166,35 @@ public sealed partial record ComplexFishStep(
 	}
 
 	[FormatItem]
-	private string DigitStr
+	internal string DigitStr
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => (Digit + 1).ToString();
 	}
 
 	[FormatItem]
-	private string BaseSetsStr
+	internal string BaseSetsStr
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => new RegionCollection(BaseRegions).ToString();
 	}
 
 	[FormatItem]
-	private string CoverSetsStr
+	internal string CoverSetsStr
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => new RegionCollection(CoverRegions).ToString();
 	}
 
 	[FormatItem]
-	private string ExofinsStr
+	internal string ExofinsStr
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => Exofins.IsEmpty ? string.Empty : $"f{Exofins} ";
 	}
 
 	[FormatItem]
-	private string EndofinsStr
+	internal string EndofinsStr
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => Endofins.IsEmpty ? string.Empty : $"ef{Endofins} ";

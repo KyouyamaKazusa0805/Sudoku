@@ -31,21 +31,21 @@ public sealed record BivalueUniversalGraveXzStep(
 	public override Rarity Rarity => Rarity.HardlyEver;
 
 	[FormatItem]
-	private string DigitStr
+	internal string DigitStr
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => new DigitCollection(DigitsMask).ToString();
 	}
 
 	[FormatItem]
-	private string CellsStr
+	internal string CellsStr
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => Cells.ToString();
 	}
 
 	[FormatItem]
-	private string ExtraCellStr
+	internal string ExtraCellStr
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => new Coordinate((byte)ExtraCell).ToString();

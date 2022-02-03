@@ -37,14 +37,14 @@ public sealed record DominoLoopStep(
 	public override Rarity Rarity => Rarity.OnlyForSpecialPuzzles;
 
 	[FormatItem]
-	private string CellsCountStr
+	internal string CellsCountStr
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => Cells.Count.ToString();
 	}
 
 	[FormatItem]
-	private string CellsStr
+	internal string CellsStr
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => Cells.ToString();

@@ -41,21 +41,21 @@ public sealed record GuardianStep(
 	public override Rarity Rarity => Rarity.Sometimes;
 
 	[FormatItem]
-	private string CellsStr
+	internal string CellsStr
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => Loop.ToString();
 	}
 
 	[FormatItem]
-	private string GuardianSingularOrPlural
+	internal string GuardianSingularOrPlural
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => ResourceManager.Shared[Guardians.Count == 1 ? "GuardianSingular" : "GuardianPlural"];
 	}
 
 	[FormatItem]
-	private string GuardianStr
+	internal string GuardianStr
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => Guardians.ToString();

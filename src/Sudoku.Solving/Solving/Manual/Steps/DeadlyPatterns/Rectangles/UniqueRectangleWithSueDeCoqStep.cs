@@ -81,14 +81,14 @@ public sealed record UniqueRectangleWithSueDeCoqStep(
 	public override Rarity Rarity => Rarity.HardlyEver;
 
 	[FormatItem]
-	private string MergedCellsStr
+	internal string MergedCellsStr
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => (LineCells | BlockCells).ToString();
 	}
 
 	[FormatItem]
-	private string DigitsStr
+	internal string DigitsStr
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => new DigitCollection((short)(LineMask | BlockMask)).ToString();
