@@ -59,7 +59,7 @@ public sealed unsafe class EmptyRectangleIntersectionPairStepSearcher : IEmptyRe
 				{
 					int block = interCell.ToRegionIndex(Region.Block);
 					Cells regionMap = RegionMaps[block], checkingMap = regionMap - unionMap & regionMap;
-					if (!(checkingMap & CandMaps[d1]).IsEmpty || !(checkingMap & CandMaps[d2]).IsEmpty)
+					if ((checkingMap & CandMaps[d1]).Count != 0 || (checkingMap & CandMaps[d2]).Count != 0)
 					{
 						continue;
 					}

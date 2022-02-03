@@ -282,19 +282,9 @@
             Copies the values into the collection.
             </summary>
         </member>
-        <member name="P:Sudoku.Collections.Candidates.IsEmpty">
-            <summary>
-            Indicates whether the collection is empty.
-            </summary>
-        </member>
         <member name="P:Sudoku.Collections.Candidates.Count">
             <summary>
             Indicates the number of the values stored in this collection.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Collections.Candidates.Offsets">
-            <summary>
-            Indicates all indices of set bits.
             </summary>
         </member>
         <member name="P:Sudoku.Collections.Candidates.System#IDefaultable{Sudoku#Collections#Candidates}#IsDefault">
@@ -302,6 +292,11 @@
         </member>
         <member name="P:Sudoku.Collections.Candidates.System#IDefaultable{Sudoku#Collections#Candidates}#Default">
             <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Collections.Candidates.Offsets">
+            <summary>
+            Indicates all indices of set bits.
+            </summary>
         </member>
         <member name="P:Sudoku.Collections.Candidates.Item(System.Int32)">
             <summary>
@@ -492,7 +487,7 @@
         </member>
         <member name="M:Sudoku.Collections.Candidates.op_GreaterThan(Sudoku.Collections.Candidates@,Sudoku.Collections.Candidates@)">
             <summary>
-            The syntactic sugar for <c>!(<paramref name="left"/> - <paramref name="right"/>).IsEmpty</c>.
+            The syntactic sugar for <c>(<paramref name="left"/> - <paramref name="right"/>).Count != 0</c>.
             </summary>
             <param name="left">The subtrahend.</param>
             <param name="right">The subtractor.</param>
@@ -500,7 +495,7 @@
         </member>
         <member name="M:Sudoku.Collections.Candidates.op_LessThan(Sudoku.Collections.Candidates@,Sudoku.Collections.Candidates@)">
             <summary>
-            The syntactic sugar for <c>(<paramref name="left"/> - <paramref name="right"/>).IsEmpty</c>.
+            The syntactic sugar for <c>(<paramref name="left"/> - <paramref name="right"/>).Count == 0</c>.
             </summary>
             <param name="left">The subtrahend.</param>
             <param name="right">The subtractor.</param>
@@ -849,11 +844,6 @@
             </remarks>
             <seealso cref="F:Sudoku.Constants.Tables.PeerMaps"/>
         </member>
-        <member name="P:Sudoku.Collections.Cells.IsEmpty">
-            <summary>
-            Indicates whether the collection is empty.
-            </summary>
-        </member>
         <member name="P:Sudoku.Collections.Cells.InOneRegion">
             <summary>
             Same as <see cref="M:Sudoku.Collections.Cells.AllSetsAreInOneRegion(System.Int32@)"/>, but only contains
@@ -1157,7 +1147,7 @@
         </member>
         <member name="M:Sudoku.Collections.Cells.op_GreaterThan(Sudoku.Collections.Cells@,Sudoku.Collections.Cells@)">
             <summary>
-            The syntactic sugar for <c>!(<paramref name="left"/> - <paramref name="right"/>).IsEmpty</c>.
+            The syntactic sugar for <c>(<paramref name="left"/> - <paramref name="right"/>).Count != 0</c>.
             </summary>
             <param name="left">The subtrahend.</param>
             <param name="right">The subtractor.</param>
@@ -1165,7 +1155,7 @@
         </member>
         <member name="M:Sudoku.Collections.Cells.op_LessThan(Sudoku.Collections.Cells@,Sudoku.Collections.Cells@)">
             <summary>
-            The syntactic sugar for <c>(<paramref name="left"/> - <paramref name="right"/>).IsEmpty</c>.
+            The syntactic sugar for <c>(<paramref name="left"/> - <paramref name="right"/>).Count == 0</c>.
             </summary>
             <param name="left">The subtrahend.</param>
             <param name="right">The subtractor.</param>

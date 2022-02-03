@@ -104,7 +104,7 @@ public readonly record struct AlmostLockedSet(
 			}
 		}
 
-		return !result.IsEmpty;
+		return result.Count != 0;
 	}
 
 	/// <inheritdoc cref="object.GetHashCode"/>

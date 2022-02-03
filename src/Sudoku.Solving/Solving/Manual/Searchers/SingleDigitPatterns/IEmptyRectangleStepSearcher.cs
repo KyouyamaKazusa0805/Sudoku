@@ -21,7 +21,7 @@ public interface IEmptyRectangleStepSearcher : ISingleDigitPatternStepSearcher
 		int r = block / 3 * 3 + 9, c = block % 3 * 3 + 18;
 		for (int i = r, count = 0, rPlus3 = r + 3; i < rPlus3; i++)
 		{
-			if (!(@this & RegionMaps[i]).IsEmpty || ++count <= 1)
+			if ((@this & RegionMaps[i]).Count != 0 || ++count <= 1)
 			{
 				continue;
 			}
@@ -32,7 +32,7 @@ public interface IEmptyRectangleStepSearcher : ISingleDigitPatternStepSearcher
 
 		for (int i = c, count = 0, cPlus3 = c + 3; i < cPlus3; i++)
 		{
-			if (!(@this & RegionMaps[i]).IsEmpty || ++count <= 1)
+			if ((@this & RegionMaps[i]).Count != 0 || ++count <= 1)
 			{
 				continue;
 			}

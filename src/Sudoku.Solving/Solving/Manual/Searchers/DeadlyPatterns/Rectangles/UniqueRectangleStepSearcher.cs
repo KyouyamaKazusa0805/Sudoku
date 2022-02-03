@@ -507,8 +507,7 @@ public sealed unsafe class UniqueRectangleStepSearcher : IUniqueRectangleStepSea
 
 		// Type 2 or 5 found. Now check elimination.
 		int extraDigit = TrailingZeroCount(extraMask);
-		var elimMap = !new Cells { corner1, corner2 } & CandMaps[extraDigit];
-		if (elimMap.IsEmpty)
+		if ((!new Cells { corner1, corner2 } & CandMaps[extraDigit]) is not [_, ..] elimMap)
 		{
 			return;
 		}
@@ -614,7 +613,7 @@ public sealed unsafe class UniqueRectangleStepSearcher : IUniqueRectangleStepSea
 		short otherDigitsMask = (short)(mask ^ comparer);
 		foreach (int region in otherCellsMap.CoveredRegions)
 		{
-			if (!((ValueMaps[d1] | ValueMaps[d2]) & RegionMaps[region]).IsEmpty)
+			if (((ValueMaps[d1] | ValueMaps[d2]) & RegionMaps[region]).Count != 0)
 			{
 				return;
 			}
@@ -759,8 +758,7 @@ public sealed unsafe class UniqueRectangleStepSearcher : IUniqueRectangleStepSea
 				// Yes, Type 4 found.
 				// Now check elimination.
 				int elimDigit = TrailingZeroCount(comparer ^ (1 << digit));
-				var elimMap = otherCellsMap & CandMaps[elimDigit];
-				if (elimMap.IsEmpty)
+				if ((otherCellsMap & CandMaps[elimDigit]) is not [_, ..] elimMap)
 				{
 					continue;
 				}
@@ -878,8 +876,7 @@ public sealed unsafe class UniqueRectangleStepSearcher : IUniqueRectangleStepSea
 			return;
 		}
 
-		var elimMap = !cellsThatContainsExtraDigit & CandMaps[extraDigit];
-		if (elimMap.IsEmpty)
+		if ((!cellsThatContainsExtraDigit & CandMaps[extraDigit]) is not [_, ..] elimMap)
 		{
 			return;
 		}
@@ -990,8 +987,7 @@ public sealed unsafe class UniqueRectangleStepSearcher : IUniqueRectangleStepSea
 			}
 
 			// Check eliminations.
-			var elimMap = otherCellsMap & CandMaps[digit];
-			if (elimMap.IsEmpty)
+			if ((otherCellsMap & CandMaps[digit]) is not [_, ..] elimMap)
 			{
 				return;
 			}
@@ -2673,8 +2669,7 @@ public sealed unsafe class UniqueRectangleStepSearcher : IUniqueRectangleStepSea
 
 						// Now check eliminations.
 						int elimDigit = TrailingZeroCount(m);
-						var elimMap = !new Cells { c1, c2 } & CandMaps[elimDigit];
-						if (elimMap.IsEmpty)
+						if ((!new Cells { c1, c2 } & CandMaps[elimDigit]) is not [_, ..] elimMap)
 						{
 							continue;
 						}
@@ -2777,8 +2772,7 @@ public sealed unsafe class UniqueRectangleStepSearcher : IUniqueRectangleStepSea
 
 								// Now check eliminations.
 								int elimDigit = TrailingZeroCount(m);
-								var elimMap = !new Cells { c1, c2, c3 } & CandMaps[elimDigit];
-								if (elimMap.IsEmpty)
+								if ((!new Cells { c1, c2, c3 } & CandMaps[elimDigit]) is not [_, ..] elimMap)
 								{
 									continue;
 								}
@@ -2892,8 +2886,7 @@ public sealed unsafe class UniqueRectangleStepSearcher : IUniqueRectangleStepSea
 
 									// Now check eliminations.
 									int elimDigit = TrailingZeroCount(m);
-									var elimMap = !new Cells { c1, c2, c3, c4 } & CandMaps[elimDigit];
-									if (elimMap.IsEmpty)
+									if ((!new Cells { c1, c2, c3, c4 } & CandMaps[elimDigit]) is not [_, ..] elimMap)
 									{
 										continue;
 									}
@@ -3191,14 +3184,15 @@ public sealed unsafe class UniqueRectangleStepSearcher : IUniqueRectangleStepSea
 			int digitIsolated = TrailingZeroCount(maskIsolated);
 			if (digitIsolated != InvalidFirstSet)
 			{
-				elimMapIsolated = (cannibalMode ? currentBlockMap | currentLineMap : currentInterMap)
-					% CandMaps[digitIsolated]
-					& EmptyMap;
+				elimMapIsolated = (
+					cannibalMode
+						? currentBlockMap | currentLineMap
+						: currentInterMap
+				) % CandMaps[digitIsolated] & EmptyMap;
 			}
 
-			if (currentInterMap.Count + i + j + 1 ==
-				PopCount((uint)blockMask) + PopCount((uint)lineMask) + PopCount((uint)maskOnlyInInter)
-				&& (!elimMapBlock.IsEmpty || !elimMapLine.IsEmpty || !elimMapIsolated.IsEmpty))
+			if (currentInterMap.Count + i + j + 1 == PopCount((uint)blockMask) + PopCount((uint)lineMask) + PopCount((uint)maskOnlyInInter)
+				&& (elimMapBlock | elimMapLine | elimMapIsolated).Count != 0)
 			{
 				// Check eliminations.
 				var conclusions = new List<Conclusion>(10);
@@ -3369,8 +3363,7 @@ public sealed unsafe class UniqueRectangleStepSearcher : IUniqueRectangleStepSea
 			foreach (int targetCell in cells)
 			{
 				int block = targetCell.ToRegionIndex(Region.Block);
-				var bivalueCellsToCheck = (PeerMaps[targetCell] & RegionMaps[block] & BivalueMap) - cells;
-				if (bivalueCellsToCheck.IsEmpty)
+				if (((PeerMaps[targetCell] & RegionMaps[block] & BivalueMap) - cells) is not [_, ..] bivalueCellsToCheck)
 				{
 					continue;
 				}
@@ -3702,7 +3695,7 @@ public sealed unsafe class UniqueRectangleStepSearcher : IUniqueRectangleStepSea
 
 			var guardian1 = regionCells - cells & CandMaps[d1];
 			var guardian2 = regionCells - cells & CandMaps[d2];
-			if (!(guardian1.IsEmpty ^ guardian2.IsEmpty))
+			if (!(guardian1.Count == 0 ^ guardian2.Count == 0))
 			{
 				// Only one digit can contain guardians.
 				continue;
@@ -3710,20 +3703,21 @@ public sealed unsafe class UniqueRectangleStepSearcher : IUniqueRectangleStepSea
 
 			int guardianDigit = -1;
 			Cells? targetElimMap = null, targetGuardianMap = null;
-			if (!guardian1.IsEmpty && (!guardian1 & CandMaps[d1]) is { IsEmpty: false } a)
+			if (guardian1.Count != 0 && (!guardian1 & CandMaps[d1]) is [_, ..] a)
 			{
 				targetElimMap = a;
 				guardianDigit = d1;
 				targetGuardianMap = guardian1;
 			}
-			else if (!guardian2.IsEmpty && (!guardian2 & CandMaps[d2]) is { IsEmpty: false } b)
+			else if (guardian2.Count != 0 && (!guardian2 & CandMaps[d2]) is [_, ..] b)
 			{
 				targetElimMap = b;
 				guardianDigit = d2;
 				targetGuardianMap = guardian2;
 			}
 
-			if (targetElimMap is not { } elimMap || targetGuardianMap is not { } guardianMap || guardianDigit == -1)
+			if (targetElimMap is not { } elimMap || targetGuardianMap is not { } guardianMap
+				|| guardianDigit == -1)
 			{
 				continue;
 			}
@@ -3840,7 +3834,7 @@ public sealed unsafe class UniqueRectangleStepSearcher : IUniqueRectangleStepSea
 				int regionIndex = baseCell.ToRegionIndex(region);
 
 				// If the region doesn't overlap with the specified region, just skip it.
-				if ((cellsThatTwoOtherCellsBothCanSee & RegionMaps[regionIndex]).IsEmpty)
+				if ((cellsThatTwoOtherCellsBothCanSee & RegionMaps[regionIndex]).Count == 0)
 				{
 					continue;
 				}

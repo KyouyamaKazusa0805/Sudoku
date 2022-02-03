@@ -48,24 +48,20 @@ public sealed unsafe class EmptyRectangleStepSearcher : IEmptyRectangleStepSearc
 
 					short blockMask = linkMap.BlockMask;
 					if (IsPow2(blockMask)
-						|| i < 6 && (linkMap & RegionMaps[column]).IsEmpty
-						|| i >= 6 && (linkMap & RegionMaps[row]).IsEmpty)
+						|| i < 6 && (linkMap & RegionMaps[column]).Count == 0
+						|| i >= 6 && (linkMap & RegionMaps[row]).Count == 0)
 					{
 						continue;
 					}
 
-					int[] t = (linkMap - (i < 6 ? RegionMaps[column] : RegionMaps[row])).ToArray();
-					int elimRegion = i < 6 ? t[0] % 9 + 18 : t[0] / 9 + 9;
-					var elimCellMap = i < 6
-						? CandMaps[digit] & RegionMaps[elimRegion] & RegionMaps[row]
-						: CandMaps[digit] & RegionMaps[elimRegion] & RegionMaps[column];
-
-					if (elimCellMap.IsEmpty)
+					int t = (linkMap - RegionMaps[i < 6 ? column : row])[0];
+					int elimRegion = i < 6 ? t % 9 + 18 : t / 9 + 9;
+					var elimCellMap = CandMaps[digit] & RegionMaps[elimRegion] & RegionMaps[i < 6 ? row : column];
+					if (elimCellMap is not [var elimCell, ..])
 					{
 						continue;
 					}
 
-					int elimCell = elimCellMap[0];
 					if (grid.Exists(elimCell, digit) is not true)
 					{
 						continue;

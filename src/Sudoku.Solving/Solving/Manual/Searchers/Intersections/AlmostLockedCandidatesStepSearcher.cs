@@ -36,7 +36,7 @@ public sealed unsafe class AlmostLockedCandidatesStepSearcher : IAlmostLockedCan
 		{
 			foreach (var ((baseSet, coverSet), (a, b, c, _)) in IntersectionMaps)
 			{
-				if (!(c & EmptyMap).IsEmpty)
+				if ((c & EmptyMap).Count != 0)
 				{
 					if (GetAll(accumulator, grid, size, baseSet, coverSet, a, b, c, onlyFindOne) is { } step1)
 					{
@@ -111,7 +111,7 @@ public sealed unsafe class AlmostLockedCandidatesStepSearcher : IAlmostLockedCan
 			bool isOverlapped = false;
 			foreach (int digit in mask)
 			{
-				if (!(ValueMaps[digit] & RegionMaps[coverSet]).IsEmpty)
+				if ((ValueMaps[digit] & RegionMaps[coverSet]).Count != 0)
 				{
 					isOverlapped = true;
 					break;

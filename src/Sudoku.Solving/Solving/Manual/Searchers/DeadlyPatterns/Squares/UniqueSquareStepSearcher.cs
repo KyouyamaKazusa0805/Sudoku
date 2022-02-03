@@ -198,8 +198,7 @@ public sealed unsafe class UniqueSquareStepSearcher : IUniqueSquareStepSearcher
 			}
 
 			int extraDigit = TrailingZeroCount(mask & ~digitsMask);
-			var elimMap = pattern % CandMaps[extraDigit];
-			if (elimMap.IsEmpty)
+			if ((pattern % CandMaps[extraDigit]) is not [_, ..] elimMap)
 			{
 				continue;
 			}

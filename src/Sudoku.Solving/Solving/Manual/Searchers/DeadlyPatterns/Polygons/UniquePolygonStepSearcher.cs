@@ -365,8 +365,7 @@ public sealed unsafe class UniquePolygonStepSearcher : IUniquePolygonStepSearche
 
 			int otherDigit = TrailingZeroCount(orMask & ~tempMask);
 			var mapContainingThatDigit = map & CandMaps[otherDigit];
-			var elimMap = (!mapContainingThatDigit - map) & CandMaps[otherDigit];
-			if (elimMap.IsEmpty)
+			if (((!mapContainingThatDigit - map) & CandMaps[otherDigit]) is not [_, ..] elimMap)
 			{
 				continue;
 			}
@@ -454,8 +453,7 @@ public sealed unsafe class UniquePolygonStepSearcher : IUniquePolygonStepSearche
 						var conclusions = new List<Conclusion>();
 						foreach (int digit in comparer)
 						{
-							var cells = iterationCellsMap & CandMaps[digit];
-							if (cells.IsEmpty)
+							if ((iterationCellsMap & CandMaps[digit]) is not [_, ..] cells)
 							{
 								continue;
 							}
@@ -465,7 +463,6 @@ public sealed unsafe class UniquePolygonStepSearcher : IUniquePolygonStepSearche
 								conclusions.Add(new(ConclusionType.Elimination, cell, digit));
 							}
 						}
-
 						if (conclusions.Count == 0)
 						{
 							continue;
@@ -566,7 +563,7 @@ public sealed unsafe class UniquePolygonStepSearcher : IUniquePolygonStepSearche
 					bool flag = false;
 					foreach (int digit in combination)
 					{
-						if (!(ValueMaps[digit] & RegionMaps[region]).IsEmpty)
+						if ((ValueMaps[digit] & RegionMaps[region]).Count != 0)
 						{
 							flag = true;
 							break;
@@ -595,8 +592,7 @@ public sealed unsafe class UniquePolygonStepSearcher : IUniquePolygonStepSearche
 					{
 						possibleCandMaps |= CandMaps[finalDigit];
 					}
-					var elimMap = combinationMap & possibleCandMaps;
-					if (elimMap.IsEmpty)
+					if ((combinationMap & possibleCandMaps) is not [_, ..] elimMap)
 					{
 						continue;
 					}

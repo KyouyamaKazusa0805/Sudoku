@@ -40,7 +40,7 @@ public sealed unsafe class AlmostLockedSetsXyWingStepSearcher : IAlmostLockedSet
 				ref readonly var als2 = ref alses[j];
 				_ = als2 is { DigitsMask: var mask2, Map: var map2 };
 				var map = map1 | map2;
-				if (map.InOneRegion || !(map1 & map2).IsEmpty)
+				if (map.InOneRegion || (map1 & map2).Count != 0)
 				{
 					continue;
 				}
@@ -102,7 +102,7 @@ public sealed unsafe class AlmostLockedSetsXyWingStepSearcher : IAlmostLockedSet
 				}
 
 				if (!AllowCollision
-					&& (!(aMap & bMap).IsEmpty || !(aMap & cMap).IsEmpty || !(bMap & cMap).IsEmpty))
+					&& ((aMap & bMap).Count != 0 || (aMap & cMap).Count != 0 || (bMap & cMap).Count != 0))
 				{
 					continue;
 				}
@@ -116,8 +116,7 @@ public sealed unsafe class AlmostLockedSetsXyWingStepSearcher : IAlmostLockedSet
 							continue;
 						}
 
-						short finalX = (short)(1 << digit1);
-						short finalY = (short)(1 << digit2);
+						short finalX = (short)(1 << digit1), finalY = (short)(1 << digit2);
 						short digitsMask = (short)(aMask & bMask & ~(finalX | finalY));
 						if (digitsMask == 0)
 						{
@@ -129,8 +128,7 @@ public sealed unsafe class AlmostLockedSetsXyWingStepSearcher : IAlmostLockedSet
 						var conclusions = new List<Conclusion>();
 						foreach (int digit in digitsMask)
 						{
-							var elimMap = (aMap | bMap) % CandMaps[digit] - (aMap | bMap | cMap);
-							if (elimMap.IsEmpty)
+							if (((aMap | bMap) % CandMaps[digit] - (aMap | bMap | cMap)) is not [_, ..] elimMap)
 							{
 								continue;
 							}

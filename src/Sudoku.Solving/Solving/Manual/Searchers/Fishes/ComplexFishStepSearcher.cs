@@ -207,7 +207,7 @@ public sealed unsafe class ComplexFishStepSearcher : IComplexFishStepSearcher
 						// Do you know why we only check endo-fins instead of checking both exo-fins
 						// and endo-fins? Because here the incomplete structure don't contain
 						// any exo-fins at all.
-						if (!endofins.IsEmpty)
+						if (endofins.Count != 0)
 						{
 							continue;
 						}
@@ -339,7 +339,7 @@ public sealed unsafe class ComplexFishStepSearcher : IComplexFishStepSearcher
 								}
 
 								// Now actual base sets must overlap the current region.
-								if ((actualBaseMap & RegionMaps[regionIndex]).IsEmpty)
+								if ((actualBaseMap & RegionMaps[regionIndex]).Count == 0)
 								{
 									goto BacktrackValue;
 								}
@@ -394,13 +394,13 @@ public sealed unsafe class ComplexFishStepSearcher : IComplexFishStepSearcher
 								var exofins = actualBaseMap - nowCoverMap - endofins;
 								var elimMap = nowCoverMap - actualBaseMap & CandMaps[digit];
 								var fins = exofins | endofins;
-								if (!fins.IsEmpty)
+								if (fins.Count != 0)
 								{
 									elimMap &= !fins & CandMaps[digit];
 								}
 
 								// Check whether the elimination exists.
-								if (elimMap.IsEmpty)
+								if (elimMap.Count == 0)
 								{
 									goto BacktrackValue;
 								}

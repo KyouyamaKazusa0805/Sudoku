@@ -65,13 +65,13 @@ public sealed unsafe class QiuDeadlyPatternStepSearcher : IQiuDeadlyPatternStepS
 				{
 					var pairMap = new Cells { c1, c2 };
 					if (
-						!(baseLineMap & pairMap).IsEmpty
-						|| !(
+						(baseLineMap & pairMap).Count != 0
+						|| (
 							baseLineMap & (
 								RegionMaps[c1.ToRegionIndex(Region.Block)]
 								| RegionMaps[c2.ToRegionIndex(Region.Block)]
 							)
-						).IsEmpty
+						).Count != 0
 					)
 					{
 						continue;
@@ -98,13 +98,21 @@ public sealed unsafe class QiuDeadlyPatternStepSearcher : IQiuDeadlyPatternStepS
 	{
 		for (int i = 0, length = Patterns.Length; i < length; i++)
 		{
-			var pattern = Patterns[i];
 			bool isRow = i < length >> 1;
-			_ = pattern is { Pair: var pair, Square: var square, BaseLine: var baseLine };
+			if (
+				Patterns[i] is not
+				{
+					Pair: [var pairFirst, var pairSecond] pair,
+					Square: var square,
+					BaseLine: var baseLine
+				} pattern
+			)
+			{
+				continue;
+			}
 
 			// To check whether both two pair cells are empty.
-			int[] offsets = pair.ToArray();
-			if (!EmptyMap.Contains(offsets[0]) || !EmptyMap.Contains(offsets[1]))
+			if (!EmptyMap.Contains(pairFirst) || !EmptyMap.Contains(pairSecond))
 			{
 				continue;
 			}
@@ -115,11 +123,11 @@ public sealed unsafe class QiuDeadlyPatternStepSearcher : IQiuDeadlyPatternStepS
 			for (int j = 0, region = isRow ? 18 : 9; j < 9; j++, region++)
 			{
 				var regionMap = RegionMaps[region];
-				if ((baseLine & regionMap) is { IsEmpty: false } tempMap)
+				if ((baseLine & regionMap) is [_, ..] tempMap)
 				{
 					f(grid, tempMap, ref appearedDigitsMask, ref distinctionMask, ref appearedParts);
 				}
-				else if ((square & regionMap) is { IsEmpty: false } squareMap)
+				else if ((square & regionMap) is [_, ..] squareMap)
 				{
 					// Don't forget to record the square cells.
 					f(grid, squareMap, ref appearedDigitsMask, ref distinctionMask, ref appearedParts);
@@ -185,7 +193,7 @@ public sealed unsafe class QiuDeadlyPatternStepSearcher : IQiuDeadlyPatternStepS
 					bool flag = false;
 					foreach (int digit in digits)
 					{
-						if ((square & CandMaps[digit]).IsEmpty)
+						if ((square & CandMaps[digit]).Count == 0)
 						{
 							flag = true;
 							break;
@@ -320,8 +328,8 @@ public sealed unsafe class QiuDeadlyPatternStepSearcher : IQiuDeadlyPatternStepS
 		}
 
 		int extraDigit = TrailingZeroCount(otherDigitsMask);
-		Cells map = pair & CandMaps[extraDigit], elimMap = !map & CandMaps[extraDigit];
-		if (elimMap.IsEmpty)
+		var map = pair & CandMaps[extraDigit];
+		if ((!map & CandMaps[extraDigit]) is not [_, ..] elimMap)
 		{
 			return null;
 		}
@@ -482,15 +490,8 @@ public sealed unsafe class QiuDeadlyPatternStepSearcher : IQiuDeadlyPatternStepS
 	}
 
 	private static Step? CheckType4(
-		ICollection<Step> accumulator,
-		bool isRow,
-		in Cells pair,
-		in Cells square,
-		in Cells baseLine,
-		in QiuDeadlyPattern pattern,
-		short comparer,
-		bool onlyFindOne
-	)
+		ICollection<Step> accumulator, bool isRow, in Cells pair, in Cells square, in Cells baseLine,
+		in QiuDeadlyPattern pattern, short comparer, bool onlyFindOne)
 	{
 		foreach (int region in pair.CoveredRegions)
 		{
@@ -505,7 +506,7 @@ public sealed unsafe class QiuDeadlyPatternStepSearcher : IQiuDeadlyPatternStepS
 				bool flag = false;
 				foreach (int d in otherDigitsMask)
 				{
-					if (!(ValueMaps[d] & RegionMaps[region]).IsEmpty
+					if ((ValueMaps[d] & RegionMaps[region]).Count != 0
 						|| (RegionMaps[region] & CandMaps[d]) != square)
 					{
 						flag = true;
@@ -519,7 +520,7 @@ public sealed unsafe class QiuDeadlyPatternStepSearcher : IQiuDeadlyPatternStepS
 
 				int elimDigit = TrailingZeroCount(comparer & ~(1 << digit));
 				var elimMap = pair & CandMaps[elimDigit];
-				if (elimMap.IsEmpty)
+				if (elimMap.Count == 0)
 				{
 					continue;
 				}
@@ -589,7 +590,7 @@ public sealed unsafe class QiuDeadlyPatternStepSearcher : IQiuDeadlyPatternStepS
 		bool flag = false;
 		foreach (int digit in pairDigits)
 		{
-			if (!(ValueMaps[digit] & RegionMaps[block]).IsEmpty)
+			if ((ValueMaps[digit] & RegionMaps[block]).Count != 0)
 			{
 				flag = true;
 				break;
@@ -603,7 +604,7 @@ public sealed unsafe class QiuDeadlyPatternStepSearcher : IQiuDeadlyPatternStepS
 		}
 
 		otherCellsMap &= tempMap;
-		if (otherCellsMap is { IsEmpty: true } or { Count: > 5 })
+		if (otherCellsMap is { Count: 0 or > 5 })
 		{
 			return null;
 		}
@@ -622,8 +623,7 @@ public sealed unsafe class QiuDeadlyPatternStepSearcher : IQiuDeadlyPatternStepS
 			}
 		}
 
-		var elimMap = !new Candidates(candidates);
-		if (elimMap.IsEmpty)
+		if (!new Candidates(candidates) is not [_, ..] elimMap)
 		{
 			return null;
 		}

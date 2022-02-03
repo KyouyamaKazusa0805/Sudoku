@@ -199,8 +199,7 @@ public sealed unsafe class BivalueOddagonStepSearcher : IBivalueOddagonStepSearc
 		}
 
 		int extraDigit = TrailingZeroCount(mask);
-		var elimMap = extraCellsMap % CandMaps[extraDigit];
-		if (elimMap.IsEmpty)
+		if ((extraCellsMap % CandMaps[extraDigit]) is not [_, ..] elimMap)
 		{
 			goto ReturnNull;
 		}
@@ -268,7 +267,7 @@ public sealed unsafe class BivalueOddagonStepSearcher : IBivalueOddagonStepSearc
 		short otherDigitsMask = (short)(m & ~comparer);
 		foreach (int region in extraCellsMap.CoveredRegions)
 		{
-			if (!((ValueMaps[d1] | ValueMaps[d2]) & RegionMaps[region]).IsEmpty)
+			if (((ValueMaps[d1] | ValueMaps[d2]) & RegionMaps[region]).Count != 0)
 			{
 				goto ReturnNull;
 			}
@@ -289,8 +288,7 @@ public sealed unsafe class BivalueOddagonStepSearcher : IBivalueOddagonStepSearc
 						continue;
 					}
 
-					var elimMap = (RegionMaps[region] & EmptyMap) - cells - loop;
-					if (elimMap.IsEmpty)
+					if (((RegionMaps[region] & EmptyMap) - cells - loop) is not [_, ..] elimMap)
 					{
 						continue;
 					}

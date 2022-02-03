@@ -111,15 +111,13 @@ public sealed unsafe class BivalueUniversalGraveStepSearcher : IBivalueUniversal
 		{
 			cells[i++] = candidate / 9;
 		}
-		var map = !new Cells(cells);
-		if (map.IsEmpty)
+		if (!new Cells(cells) is not [_, ..] map)
 		{
 			return null;
 		}
 
 		int digit = trueCandidates[0] % 9;
-		var elimMap = map & CandMaps[digit];
-		if (elimMap.IsEmpty)
+		if ((map & CandMaps[digit]) is not [_, ..] elimMap)
 		{
 			return null;
 		}
@@ -174,8 +172,7 @@ public sealed unsafe class BivalueUniversalGraveStepSearcher : IBivalueUniversal
 		foreach (int region in map.CoveredRegions)
 		{
 			var regionMap = RegionMaps[region];
-			var otherCellsMap = (regionMap & EmptyMap) - map;
-			if (otherCellsMap.IsEmpty)
+			if (((regionMap & EmptyMap) - map) is not [_, ..] otherCellsMap)
 			{
 				continue;
 			}
@@ -195,8 +192,7 @@ public sealed unsafe class BivalueUniversalGraveStepSearcher : IBivalueUniversal
 						continue;
 					}
 
-					var elimMap = (regionMap - cells - map) & EmptyMap;
-					if (elimMap.IsEmpty)
+					if (((regionMap - cells - map) & EmptyMap) is not [_, ..] elimMap)
 					{
 						continue;
 					}
@@ -392,14 +388,14 @@ public sealed unsafe class BivalueUniversalGraveStepSearcher : IBivalueUniversal
 			return null;
 		}
 
-		if (!new Candidates(trueCandidates) is not { IsEmpty: false } map)
+		if (!new Candidates(trueCandidates) is not { Count: var mapCount and not 0 } map)
 		{
 			return null;
 		}
 
 		// BUG + n found.
 		// Check eliminations.
-		var conclusions = new List<Conclusion>(map.Count);
+		var conclusions = new List<Conclusion>(mapCount);
 		foreach (int candidate in map)
 		{
 			if (grid.Exists(candidate / 9, candidate % 9) is true)

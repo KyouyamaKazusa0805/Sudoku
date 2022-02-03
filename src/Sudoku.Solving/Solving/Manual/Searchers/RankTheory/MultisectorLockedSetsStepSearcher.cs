@@ -151,7 +151,7 @@ public sealed unsafe class MultisectorLockedSetsStepSearcher : IMultisectorLocke
 					}
 
 					elimMap &= CandMaps[digit];
-					if (elimMap.IsEmpty)
+					if (elimMap.Count == 0)
 					{
 						continue;
 					}

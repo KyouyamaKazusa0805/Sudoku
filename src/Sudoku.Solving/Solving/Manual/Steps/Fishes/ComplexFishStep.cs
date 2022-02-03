@@ -190,14 +190,14 @@ public sealed partial record ComplexFishStep(
 	internal string ExofinsStr
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => Exofins.IsEmpty ? string.Empty : $"f{Exofins} ";
+		get => Exofins.Count == 0 ? string.Empty : $"f{Exofins} ";
 	}
 
 	[FormatItem]
 	internal string EndofinsStr
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => Endofins.IsEmpty ? string.Empty : $"ef{Endofins} ";
+		get => Endofins.Count == 0 ? string.Empty : $"ef{Endofins} ";
 	}
 
 

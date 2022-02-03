@@ -225,8 +225,7 @@ public sealed unsafe class DominoLoopStepSearcher : IDominoLoopStepSearcher
 				var map = cells & EmptyMap;
 				for (k = 0; k < 8; k++)
 				{
-					var elimMap = (RegionMaps[linkRegion[k]] & EmptyMap) - map;
-					if (elimMap.IsEmpty)
+					if (((RegionMaps[linkRegion[k]] & EmptyMap) - map) is not [_, ..] elimMap)
 					{
 						continue;
 					}

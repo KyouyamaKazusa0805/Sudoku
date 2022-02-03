@@ -269,8 +269,7 @@ public sealed unsafe class AlternatingInferenceChainStepSearcher : IAlternatingI
 		foreach (var (link, _) in links)
 		{
 			_ = link is { StartCandidate: var start, EndCandidate: var end, Kind: var kind };
-			if (kind == LinkKind.Weak
-				&& !new Candidates { start, end } is { IsEmpty: false } elimMap)
+			if (kind == LinkKind.Weak && !new Candidates { start, end } is [_, ..] elimMap)
 			{
 				foreach (int candidate in elimMap)
 				{
@@ -309,8 +308,7 @@ public sealed unsafe class AlternatingInferenceChainStepSearcher : IAlternatingI
 			// Get eliminations as an AIC.
 			var (startCandidate, _) = target.WholeChain[1];
 			var (endCandidate, _) = target.WholeChain[^2];
-			var elimMap = !new Candidates { startCandidate, endCandidate };
-			if (elimMap.IsEmpty)
+			if (!new Candidates { startCandidate, endCandidate } is not [_, ..] elimMap)
 			{
 				return null;
 			}

@@ -40,7 +40,7 @@ public sealed unsafe class TemplateStepSearcher : ITemplateStepSearcher
 			if (!TemplateDeleteOnly)
 			{
 				// Check template sets.
-				if ((distributedMapsByDigit[digit] & CandMaps[digit]) is not { IsEmpty: false } templateSetMap)
+				if ((distributedMapsByDigit[digit] & CandMaps[digit]) is not [_, ..] templateSetMap)
 				{
 					continue;
 				}
@@ -73,7 +73,7 @@ public sealed unsafe class TemplateStepSearcher : ITemplateStepSearcher
 			}
 
 			// Then check template deletes.
-			if (CandMaps[digit] - distributedMapsByDigit[digit] is not { IsEmpty: false } templateDeleteMap)
+			if (CandMaps[digit] - distributedMapsByDigit[digit] is not [_, ..] templateDeleteMap)
 			{
 				continue;
 			}

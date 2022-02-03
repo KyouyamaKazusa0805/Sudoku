@@ -173,7 +173,7 @@ public sealed unsafe class SueDeCoq3DemensionStepSearcher : ISueDeCoq3DemensionS
 											int rbCount = PopCount((uint)rbMaskOnlyInInter);
 											int cbCount = PopCount((uint)cbMaskOnlyInInter);
 											if (cbCurrentMap.Count + rbCurrentMap.Count + i + j + k - 1 == bCount + rCount + cCount + rbCount + cbCount
-												&& !(elimMapRow.IsEmpty && elimMapColumn.IsEmpty && elimMapBlock.IsEmpty))
+												&& (elimMapRow | elimMapColumn | elimMapBlock).Count != 0)
 											{
 												// Check eliminations.
 												var conclusions = new List<Conclusion>();

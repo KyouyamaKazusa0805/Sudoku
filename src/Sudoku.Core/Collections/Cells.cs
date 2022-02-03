@@ -270,15 +270,6 @@ public unsafe struct Cells :
 
 
 	/// <summary>
-	/// Indicates whether the collection is empty.
-	/// </summary>
-	public readonly bool IsEmpty
-	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => Count == 0;
-	}
-
-	/// <summary>
 	/// Same as <see cref="AllSetsAreInOneRegion(out int)"/>, but only contains
 	/// the <see cref="bool"/> result.
 	/// </summary>
@@ -335,15 +326,15 @@ public unsafe struct Cells :
 		get
 		{
 			short result = 0;
-			if (!(this & RegionMaps[0]).IsEmpty) result |= 1;
-			if (!(this & RegionMaps[1]).IsEmpty) result |= 2;
-			if (!(this & RegionMaps[2]).IsEmpty) result |= 4;
-			if (!(this & RegionMaps[3]).IsEmpty) result |= 8;
-			if (!(this & RegionMaps[4]).IsEmpty) result |= 16;
-			if (!(this & RegionMaps[5]).IsEmpty) result |= 32;
-			if (!(this & RegionMaps[6]).IsEmpty) result |= 64;
-			if (!(this & RegionMaps[7]).IsEmpty) result |= 128;
-			if (!(this & RegionMaps[8]).IsEmpty) result |= 256;
+			if ((this & RegionMaps[0]).Count != 0) result |= 1;
+			if ((this & RegionMaps[1]).Count != 0) result |= 2;
+			if ((this & RegionMaps[2]).Count != 0) result |= 4;
+			if ((this & RegionMaps[3]).Count != 0) result |= 8;
+			if ((this & RegionMaps[4]).Count != 0) result |= 16;
+			if ((this & RegionMaps[5]).Count != 0) result |= 32;
+			if ((this & RegionMaps[6]).Count != 0) result |= 64;
+			if ((this & RegionMaps[7]).Count != 0) result |= 128;
+			if ((this & RegionMaps[8]).Count != 0) result |= 256;
 
 			return result;
 		}
@@ -362,15 +353,15 @@ public unsafe struct Cells :
 		get
 		{
 			short result = 0;
-			if (!(this & RegionMaps[9]).IsEmpty) result |= 1;
-			if (!(this & RegionMaps[10]).IsEmpty) result |= 2;
-			if (!(this & RegionMaps[11]).IsEmpty) result |= 4;
-			if (!(this & RegionMaps[12]).IsEmpty) result |= 8;
-			if (!(this & RegionMaps[13]).IsEmpty) result |= 16;
-			if (!(this & RegionMaps[14]).IsEmpty) result |= 32;
-			if (!(this & RegionMaps[15]).IsEmpty) result |= 64;
-			if (!(this & RegionMaps[16]).IsEmpty) result |= 128;
-			if (!(this & RegionMaps[17]).IsEmpty) result |= 256;
+			if ((this & RegionMaps[9]).Count != 0) result |= 1;
+			if ((this & RegionMaps[10]).Count != 0) result |= 2;
+			if ((this & RegionMaps[11]).Count != 0) result |= 4;
+			if ((this & RegionMaps[12]).Count != 0) result |= 8;
+			if ((this & RegionMaps[13]).Count != 0) result |= 16;
+			if ((this & RegionMaps[14]).Count != 0) result |= 32;
+			if ((this & RegionMaps[15]).Count != 0) result |= 64;
+			if ((this & RegionMaps[16]).Count != 0) result |= 128;
+			if ((this & RegionMaps[17]).Count != 0) result |= 256;
 
 			return result;
 		}
@@ -389,15 +380,15 @@ public unsafe struct Cells :
 		get
 		{
 			short result = 0;
-			if (!(this & RegionMaps[18]).IsEmpty) result |= 1;
-			if (!(this & RegionMaps[19]).IsEmpty) result |= 2;
-			if (!(this & RegionMaps[20]).IsEmpty) result |= 4;
-			if (!(this & RegionMaps[21]).IsEmpty) result |= 8;
-			if (!(this & RegionMaps[22]).IsEmpty) result |= 16;
-			if (!(this & RegionMaps[23]).IsEmpty) result |= 32;
-			if (!(this & RegionMaps[24]).IsEmpty) result |= 64;
-			if (!(this & RegionMaps[25]).IsEmpty) result |= 128;
-			if (!(this & RegionMaps[26]).IsEmpty) result |= 256;
+			if ((this & RegionMaps[18]).Count != 0) result |= 1;
+			if ((this & RegionMaps[19]).Count != 0) result |= 2;
+			if ((this & RegionMaps[20]).Count != 0) result |= 4;
+			if ((this & RegionMaps[21]).Count != 0) result |= 8;
+			if ((this & RegionMaps[22]).Count != 0) result |= 16;
+			if ((this & RegionMaps[23]).Count != 0) result |= 32;
+			if ((this & RegionMaps[24]).Count != 0) result |= 64;
+			if ((this & RegionMaps[25]).Count != 0) result |= 128;
+			if ((this & RegionMaps[26]).Count != 0) result |= 256;
 
 			return result;
 		}
@@ -486,7 +477,7 @@ public unsafe struct Cells :
 	}
 
 	/// <inheritdoc/>
-	readonly bool IDefaultable<Cells>.IsDefault => IsEmpty;
+	readonly bool IDefaultable<Cells>.IsDefault => Count == 0;
 
 	/// <inheritdoc/>
 	static Cells IDefaultable<Cells>.Default => Empty;
@@ -498,7 +489,7 @@ public unsafe struct Cells :
 	{
 		get
 		{
-			if (IsEmpty)
+			if (Count == 0)
 			{
 				return Array.Empty<int>();
 			}
@@ -546,7 +537,7 @@ public unsafe struct Cells :
 	{
 		get
 		{
-			if (IsEmpty)
+			if (Count == 0)
 			{
 				return -1;
 			}
@@ -589,7 +580,7 @@ public unsafe struct Cells :
 	/// </exception>
 	public readonly void CopyTo(int* arr, int length)
 	{
-		if (IsEmpty)
+		if (Count == 0)
 		{
 			return;
 		}
@@ -941,7 +932,7 @@ public unsafe struct Cells :
 		short result = 0;
 		for (int i = start; i < end; i++)
 		{
-			if (!(this & RegionMaps[i]).IsEmpty)
+			if ((this & RegionMaps[i]).Count != 0)
 			{
 				result |= (short)(1 << i - start);
 			}
@@ -1202,22 +1193,22 @@ public unsafe struct Cells :
 		new(~offsets._high & 0xFF_FFFF_FFFFL, ~offsets._low & 0x1FF_FFFF_FFFFL);
 
 	/// <summary>
-	/// The syntactic sugar for <c>!(<paramref name="left"/> - <paramref name="right"/>).IsEmpty</c>.
+	/// The syntactic sugar for <c>(<paramref name="left"/> - <paramref name="right"/>).Count != 0</c>.
 	/// </summary>
 	/// <param name="left">The subtrahend.</param>
 	/// <param name="right">The subtractor.</param>
 	/// <returns>The <see cref="bool"/> value indicating that.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static bool operator >(in Cells left, in Cells right) => !(left - right).IsEmpty;
+	public static bool operator >(in Cells left, in Cells right) => (left - right).Count != 0;
 
 	/// <summary>
-	/// The syntactic sugar for <c>(<paramref name="left"/> - <paramref name="right"/>).IsEmpty</c>.
+	/// The syntactic sugar for <c>(<paramref name="left"/> - <paramref name="right"/>).Count == 0</c>.
 	/// </summary>
 	/// <param name="left">The subtrahend.</param>
 	/// <param name="right">The subtractor.</param>
 	/// <returns>The <see cref="bool"/> value indicating that.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static bool operator <(in Cells left, in Cells right) => (left - right).IsEmpty;
+	public static bool operator <(in Cells left, in Cells right) => (left - right).Count == 0;
 
 	/// <summary>
 	/// Adds the specified <paramref name="offset"/> to the <paramref name="collection"/>,

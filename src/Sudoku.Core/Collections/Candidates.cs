@@ -170,6 +170,7 @@ public unsafe struct Candidates :
 	/// <param name="binary">The pointer to the binary array.</param>
 	/// <param name="length">The length.</param>
 	/// <exception cref="ArgumentException">Throws when the length is invalid.</exception>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public Candidates(long* binary, int length)
 	{
 		if (length != 12)
@@ -213,12 +214,14 @@ public unsafe struct Candidates :
 	/// Initializes an instance with the specified candidates.
 	/// </summary>
 	/// <param name="candidates">The candidates.</param>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public Candidates(in ReadOnlySpan<int> candidates) : this() => AddRange(candidates);
 
 	/// <summary>
 	/// Initializes an instance with the specified candidates.
 	/// </summary>
 	/// <param name="candidates">The candidates.</param>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public Candidates(IEnumerable<int> candidates) : this() => AddRange(candidates);
 
 	/// <summary>
@@ -248,18 +251,15 @@ public unsafe struct Candidates :
 
 
 	/// <summary>
-	/// Indicates whether the collection is empty.
-	/// </summary>
-	public readonly bool IsEmpty
-	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => Count == 0;
-	}
-
-	/// <summary>
 	/// Indicates the number of the values stored in this collection.
 	/// </summary>
 	public int Count { get; private set; } = 0;
+
+	/// <inheritdoc/>
+	readonly bool IDefaultable<Candidates>.IsDefault => Count == 0;
+
+	/// <inheritdoc/>
+	static Candidates IDefaultable<Candidates>.Default => Empty;
 
 	/// <summary>
 	/// Indicates all indices of set bits.
@@ -268,7 +268,7 @@ public unsafe struct Candidates :
 	{
 		get
 		{
-			if (IsEmpty)
+			if (Count == 0)
 			{
 				return Array.Empty<int>();
 			}
@@ -286,12 +286,6 @@ public unsafe struct Candidates :
 			return result;
 		}
 	}
-
-	/// <inheritdoc/>
-	readonly bool IDefaultable<Candidates>.IsDefault => IsEmpty;
-
-	/// <inheritdoc/>
-	static Candidates IDefaultable<Candidates>.Default => Empty;
 
 
 	/// <summary>
@@ -328,7 +322,7 @@ public unsafe struct Candidates :
 	/// </exception>
 	public readonly void CopyTo(int* arr, int length)
 	{
-		if (IsEmpty)
+		if (Count == 0)
 		{
 			return;
 		}
@@ -827,22 +821,20 @@ public unsafe struct Candidates :
 	}
 
 	/// <summary>
-	/// The syntactic sugar for <c>!(<paramref name="left"/> - <paramref name="right"/>).IsEmpty</c>.
+	/// The syntactic sugar for <c>(<paramref name="left"/> - <paramref name="right"/>).Count != 0</c>.
 	/// </summary>
 	/// <param name="left">The subtrahend.</param>
 	/// <param name="right">The subtractor.</param>
 	/// <returns>The <see cref="bool"/> value indicating that.</returns>
-	public static bool operator >(in Candidates left, in Candidates right) =>
-		!(left - right).IsEmpty;
+	public static bool operator >(in Candidates left, in Candidates right) => (left - right).Count != 0;
 
 	/// <summary>
-	/// The syntactic sugar for <c>(<paramref name="left"/> - <paramref name="right"/>).IsEmpty</c>.
+	/// The syntactic sugar for <c>(<paramref name="left"/> - <paramref name="right"/>).Count == 0</c>.
 	/// </summary>
 	/// <param name="left">The subtrahend.</param>
 	/// <param name="right">The subtractor.</param>
 	/// <returns>The <see cref="bool"/> value indicating that.</returns>
-	public static bool operator <(in Candidates left, in Candidates right) =>
-		(left - right).IsEmpty;
+	public static bool operator <(in Candidates left, in Candidates right) => (left - right).Count == 0;
 
 	/// <summary>
 	/// Get the elements that both <paramref name="left"/> and <paramref name="right"/> contain.

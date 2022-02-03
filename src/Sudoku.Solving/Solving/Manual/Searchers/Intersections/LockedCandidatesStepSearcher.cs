@@ -62,7 +62,7 @@ public sealed unsafe class LockedCandidatesStepSearcher : ILockedCandidatesStepS
 		{
 			// If the cells C doesn't contain any empty cells,
 			// the location won't contain any locked candidates.
-			if ((EmptyMap & c).IsEmpty)
+			if ((EmptyMap & c).Count == 0)
 			{
 				continue;
 			}
@@ -86,7 +86,7 @@ public sealed unsafe class LockedCandidatesStepSearcher : ILockedCandidatesStepS
 			{
 				// Check whether the digit contains any eliminations.
 				Cells elimMap;
-				if (!(a & CandMaps[digit]).IsEmpty)
+				if ((a & CandMaps[digit]).Count != 0)
 				{
 					r[0] = coverSet;
 					r[1] = baseSet;
@@ -98,7 +98,7 @@ public sealed unsafe class LockedCandidatesStepSearcher : ILockedCandidatesStepS
 					r[1] = coverSet;
 					elimMap = b & CandMaps[digit];
 				}
-				if (elimMap.IsEmpty)
+				if (elimMap.Count == 0)
 				{
 					continue;
 				}

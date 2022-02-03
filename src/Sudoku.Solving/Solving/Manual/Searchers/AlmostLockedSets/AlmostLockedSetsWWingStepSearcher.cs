@@ -52,7 +52,7 @@ public sealed unsafe class AlmostLockedSetsWWingStepSearcher : IAlmostLockedSets
 
 				// Now we have got two ALSes to check.
 				// Firstly, we should check whether two ALSes overlap with each other.
-				if (!(map1 & map2).IsEmpty || (map1 | map2).InOneRegion)
+				if ((map1 & map2).Count != 0 || (map1 | map2).InOneRegion)
 				{
 					// If overlap (or in a same region), just skip it.
 					continue;
@@ -78,7 +78,7 @@ public sealed unsafe class AlmostLockedSetsWWingStepSearcher : IAlmostLockedSets
 					}
 
 					Cells p1 = map1 % CandMaps[x], p2 = map2 % CandMaps[x];
-					if (p1.IsEmpty || p2.IsEmpty)
+					if (p1.Count == 0 || p2.Count == 0)
 					{
 						// At least one of two ALSes can't see the node of the conjugate pair.
 						continue;
@@ -93,7 +93,7 @@ public sealed unsafe class AlmostLockedSetsWWingStepSearcher : IAlmostLockedSets
 						foreach (var conjugatePair in conjPairs)
 						{
 							var cpMap = conjugatePair.Map;
-							if (!(cpMap & map1).IsEmpty || !(cpMap & map2).IsEmpty)
+							if ((cpMap & map1).Count != 0 || (cpMap & map2).Count != 0)
 							{
 								// Conjugate pair can't overlap with the ALS structure.
 								continue;
@@ -110,8 +110,7 @@ public sealed unsafe class AlmostLockedSetsWWingStepSearcher : IAlmostLockedSets
 							// Iterate on each digit as the digit 'w'.
 							foreach (int w in mask & ~(1 << x))
 							{
-								var tempMap = (map1 | map2) % CandMaps[w];
-								if (tempMap.IsEmpty)
+								if (((map1 | map2) % CandMaps[w]) is not [_, ..] tempMap)
 								{
 									continue;
 								}

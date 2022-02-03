@@ -47,7 +47,7 @@ public sealed unsafe class AlmostLockedSetsXzStepSearcher : IAlmostLockedSetsXzS
 				short xzMask = (short)(mask1 & mask2);
 				var map = map1 | map2;
 				var overlapMap = map1 & map2;
-				if (!AllowCollision && !overlapMap.IsEmpty)
+				if (!AllowCollision && overlapMap.Count != 0)
 				{
 					continue;
 				}
@@ -94,8 +94,7 @@ public sealed unsafe class AlmostLockedSetsXzStepSearcher : IAlmostLockedSetsXzS
 				var conclusions = new List<Conclusion>();
 				foreach (int elimDigit in z)
 				{
-					var elimMap = map % CandMaps[elimDigit];
-					if (elimMap.IsEmpty)
+					if ((map % CandMaps[elimDigit]) is not [_, ..] elimMap)
 					{
 						continue;
 					}
@@ -114,14 +113,12 @@ public sealed unsafe class AlmostLockedSetsXzStepSearcher : IAlmostLockedSetsXzS
 					isDoublyLinked = true;
 					foreach (int elimDigit in z & ~rccMask)
 					{
-						var zMap = CandMaps[elimDigit] & map1;
-						if (zMap.IsEmpty)
+						if ((CandMaps[elimDigit] & map1) is not [_, ..] zMap)
 						{
 							continue;
 						}
 
-						var elimMap = !zMap & CandMaps[elimDigit] & map2;
-						if (elimMap.IsEmpty)
+						if ((!zMap & CandMaps[elimDigit] & map2) is not [_, ..] elimMap)
 						{
 							continue;
 						}

@@ -131,7 +131,7 @@ public sealed unsafe class RegularWingStepSearcher : IRegularWingStepSearcher
 						elimMap &= PeerMaps[pivot];
 					}
 					elimMap &= CandMaps[zDigit];
-					if (elimMap.IsEmpty)
+					if (elimMap.Count == 0)
 					{
 						continue;
 					}

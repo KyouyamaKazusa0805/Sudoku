@@ -24,12 +24,12 @@ public sealed unsafe class PatternOverlayStepSearcher : IPatternOverlayStepSearc
 		var templates = IPatternOverlayStepSearcher.GetInvalidPos(grid);
 		for (int digit = 0; digit < 9; digit++)
 		{
-			if (templates[digit] is not { IsEmpty: false } template)
+			if (templates[digit] is not { Count: var templateCount and not 0 } template)
 			{
 				continue;
 			}
 
-			var conclusions = new Conclusion[template.Count];
+			var conclusions = new Conclusion[templateCount];
 			int i = 0;
 			foreach (int cell in template)
 			{

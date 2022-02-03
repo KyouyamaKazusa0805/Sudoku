@@ -57,7 +57,7 @@ public sealed unsafe class TwoStrongLinksStepSearcher : ITwoStrongLinksStepSearc
 						map2.AddAnyway(cell2);
 					}
 
-					if (!(map1 & map2).IsEmpty)
+					if ((map1 & map2).Count != 0)
 					{
 						continue;
 					}
@@ -88,7 +88,7 @@ public sealed unsafe class TwoStrongLinksStepSearcher : ITwoStrongLinksStepSearc
 					// Two strong link found.
 					// Record all eliminations.
 					int head = cells1[headIndex], tail = cells2[tailIndex];
-					if ((PeerMaps[head] & PeerMaps[tail] & CandMaps[digit]) is not { IsEmpty: false } gridMap)
+					if ((PeerMaps[head] & PeerMaps[tail] & CandMaps[digit]) is not [_, ..] gridMap)
 					{
 						continue;
 					}
