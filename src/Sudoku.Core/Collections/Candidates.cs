@@ -272,29 +272,6 @@ public unsafe struct Candidates :
 	public int Count { get; private set; } = 0;
 
 	/// <summary>
-	/// Indicates the <see cref="Candidates"/> of intersections.
-	/// </summary>
-	public readonly Candidates PeerIntersection
-	{
-		get
-		{
-			if (Count == 0)
-			{
-				// Empty list can't contain any peer intersections.
-				return Empty;
-			}
-
-			var result = ~Empty;
-			foreach (int candidate in Offsets)
-			{
-				result &= new Candidates(candidate, false);
-			}
-
-			return result;
-		}
-	}
-
-	/// <summary>
 	/// Indicates all indices of set bits.
 	/// </summary>
 	private readonly int[] Offsets
@@ -804,8 +781,7 @@ public unsafe struct Candidates :
 
 
 	/// <summary>
-	/// Gets the peer intersection of the current instance, which simply calls the property
-	/// <see cref="PeerIntersection"/>.
+	/// Gets the peer intersection of the current instance.
 	/// </summary>
 	/// <param name="offsets">The offsets.</param>
 	/// <returns>The result list that is the peer intersection of the current instance.</returns>
@@ -813,9 +789,23 @@ public unsafe struct Candidates :
 	/// A <b>Peer Intersection</b> is a set of candidates that all candidates
 	/// from the base collection can be seen.
 	/// </remarks>
-	/// <seealso cref="PeerIntersection"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static Candidates operator !(in Candidates offsets) => offsets.PeerIntersection;
+	public static Candidates operator !(in Candidates offsets)
+	{
+		if (offsets.Count == 0)
+		{
+			// Empty list can't contain any peer intersections.
+			return Empty;
+		}
+
+		var result = ~Empty;
+		foreach (int candidate in offsets.Offsets)
+		{
+			result &= new Candidates(candidate, false);
+		}
+
+		return result;
+	}
 
 	/// <summary>
 	/// Reverse status for all offsets, which means all <see langword="true"/> bits
@@ -1045,19 +1035,15 @@ public unsafe struct Candidates :
 	}
 
 	/// <summary>
-	/// <para>
-	/// Simply expands the code to <c><![CDATA[(a & b).PeerIntersection & b]]></c>,
-	/// where <c>PeerIntersection</c> corresponds to the property <see cref="PeerIntersection"/>.
-	/// </para>
+	/// <para>Expands the operator to <c><![CDATA[!(a & b) & b]]></c>.</para>
 	/// <para>The operator is used for searching for and checking eliminations.</para>
 	/// </summary>
 	/// <param name="base">The base map.</param>
 	/// <param name="template">The template map that the base map to check and cover.</param>
 	/// <returns>The result map.</returns>
-	/// <seealso cref="PeerIntersection"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static Candidates operator %(in Candidates @base, in Candidates template) =>
-		(@base & template).PeerIntersection & template;
+		!(@base & template) & template;
 
 	/// <summary>
 	/// Simplified calls <see cref="Reduce(int)"/>.

@@ -507,7 +507,7 @@ public sealed unsafe class UniqueRectangleStepSearcher : IUniqueRectangleStepSea
 
 		// Type 2 or 5 found. Now check elimination.
 		int extraDigit = TrailingZeroCount(extraMask);
-		var elimMap = new Cells { corner1, corner2 }.PeerIntersection & CandMaps[extraDigit];
+		var elimMap = !new Cells { corner1, corner2 } & CandMaps[extraDigit];
 		if (elimMap.IsEmpty)
 		{
 			return;
@@ -878,7 +878,7 @@ public sealed unsafe class UniqueRectangleStepSearcher : IUniqueRectangleStepSea
 			return;
 		}
 
-		var elimMap = cellsThatContainsExtraDigit.PeerIntersection & CandMaps[extraDigit];
+		var elimMap = !cellsThatContainsExtraDigit & CandMaps[extraDigit];
 		if (elimMap.IsEmpty)
 		{
 			return;
@@ -1217,7 +1217,7 @@ public sealed unsafe class UniqueRectangleStepSearcher : IUniqueRectangleStepSea
 
 		short xyMask = (short)(o ^ comparer);
 		int x = TrailingZeroCount(xyMask), y = xyMask.GetNextSet(x);
-		var inter = otherCellsMap.PeerIntersection - urCells;
+		var inter = !otherCellsMap - urCells;
 		foreach (int possibleXyCell in inter)
 		{
 			if (grid.GetCandidates(possibleXyCell) != xyMask)
@@ -1690,7 +1690,7 @@ public sealed unsafe class UniqueRectangleStepSearcher : IUniqueRectangleStepSea
 
 		short xyMask = (short)(mask ^ comparer);
 		int x = TrailingZeroCount(xyMask), y = xyMask.GetNextSet(x);
-		var inter = otherCellsMap.PeerIntersection - urCells;
+		var inter = !otherCellsMap - urCells;
 		foreach (int possibleXyCell in inter)
 		{
 			if (grid.GetCandidates(possibleXyCell) != xyMask)
@@ -2622,7 +2622,7 @@ public sealed unsafe class UniqueRectangleStepSearcher : IUniqueRectangleStepSea
 				return;
 			}
 
-			var testMap = new Cells { otherCell1, otherCell2 }.PeerIntersection;
+			var testMap = !new Cells { otherCell1, otherCell2 };
 			short extraDigitsMask = (short)(mask ^ comparer);
 			int[] cells = map.ToArray();
 			for (int i1 = 0, length = cells.Length, outerLength = length - size + 1; i1 < outerLength; i1++)
@@ -2673,7 +2673,7 @@ public sealed unsafe class UniqueRectangleStepSearcher : IUniqueRectangleStepSea
 
 						// Now check eliminations.
 						int elimDigit = TrailingZeroCount(m);
-						var elimMap = new Cells { c1, c2 }.PeerIntersection & CandMaps[elimDigit];
+						var elimMap = !new Cells { c1, c2 } & CandMaps[elimDigit];
 						if (elimMap.IsEmpty)
 						{
 							continue;
@@ -2777,7 +2777,7 @@ public sealed unsafe class UniqueRectangleStepSearcher : IUniqueRectangleStepSea
 
 								// Now check eliminations.
 								int elimDigit = TrailingZeroCount(m);
-								var elimMap = new Cells { c1, c2, c3 }.PeerIntersection & CandMaps[elimDigit];
+								var elimMap = !new Cells { c1, c2, c3 } & CandMaps[elimDigit];
 								if (elimMap.IsEmpty)
 								{
 									continue;
@@ -2892,7 +2892,7 @@ public sealed unsafe class UniqueRectangleStepSearcher : IUniqueRectangleStepSea
 
 									// Now check eliminations.
 									int elimDigit = TrailingZeroCount(m);
-									var elimMap = new Cells { c1, c2, c3, c4 }.PeerIntersection & CandMaps[elimDigit];
+									var elimMap = !new Cells { c1, c2, c3, c4 } & CandMaps[elimDigit];
 									if (elimMap.IsEmpty)
 									{
 										continue;
@@ -3710,13 +3710,13 @@ public sealed unsafe class UniqueRectangleStepSearcher : IUniqueRectangleStepSea
 
 			int guardianDigit = -1;
 			Cells? targetElimMap = null, targetGuardianMap = null;
-			if (!guardian1.IsEmpty && (guardian1.PeerIntersection & CandMaps[d1]) is { IsEmpty: false } a)
+			if (!guardian1.IsEmpty && (!guardian1 & CandMaps[d1]) is { IsEmpty: false } a)
 			{
 				targetElimMap = a;
 				guardianDigit = d1;
 				targetGuardianMap = guardian1;
 			}
-			else if (!guardian2.IsEmpty && (guardian2.PeerIntersection & CandMaps[d2]) is { IsEmpty: false } b)
+			else if (!guardian2.IsEmpty && (!guardian2 & CandMaps[d2]) is { IsEmpty: false } b)
 			{
 				targetElimMap = b;
 				guardianDigit = d2;
@@ -3824,7 +3824,7 @@ public sealed unsafe class UniqueRectangleStepSearcher : IUniqueRectangleStepSea
 		// Get the base digit ('a') and the other digit ('b').
 		// Here 'b' is the digit that we should check the possible hidden single.
 		int baseDigit = grid[corner1], otherDigit = baseDigit == d1 ? d2 : d1;
-		var cellsThatTwoOtherCellsBothCanSee = otherCellsMap.PeerIntersection & CandMaps[otherDigit];
+		var cellsThatTwoOtherCellsBothCanSee = !otherCellsMap & CandMaps[otherDigit];
 
 		// Iterate on two cases (because we holds two other cells,
 		// and both those two cells may contain possible elimination).

@@ -120,7 +120,7 @@ public sealed unsafe class AlmostLockedSetsXzStepSearcher : IAlmostLockedSetsXzS
 							continue;
 						}
 
-						var elimMap = zMap.PeerIntersection & CandMaps[elimDigit] & map2;
+						var elimMap = !zMap & CandMaps[elimDigit] & map2;
 						if (elimMap.IsEmpty)
 						{
 							continue;

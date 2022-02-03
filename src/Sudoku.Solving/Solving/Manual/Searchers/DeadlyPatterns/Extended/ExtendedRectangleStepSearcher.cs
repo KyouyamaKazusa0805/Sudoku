@@ -344,7 +344,7 @@ public sealed unsafe class ExtendedRectangleStepSearcher : IExtendedRectangleSte
 		ICollection<Step> accumulator, in Grid grid, in Cells allCellsMap, in Cells extraCells,
 		short normalDigits, int extraDigit, bool onlyFindOne)
 	{
-		var elimMap = extraCells.PeerIntersection & CandMaps[extraDigit];
+		var elimMap = !extraCells & CandMaps[extraDigit];
 		if (elimMap.IsEmpty)
 		{
 			goto ReturnNull;

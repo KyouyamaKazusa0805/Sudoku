@@ -365,7 +365,7 @@ public sealed unsafe class UniquePolygonStepSearcher : IUniquePolygonStepSearche
 
 			int otherDigit = TrailingZeroCount(orMask & ~tempMask);
 			var mapContainingThatDigit = map & CandMaps[otherDigit];
-			var elimMap = (mapContainingThatDigit.PeerIntersection - map) & CandMaps[otherDigit];
+			var elimMap = (!mapContainingThatDigit - map) & CandMaps[otherDigit];
 			if (elimMap.IsEmpty)
 			{
 				continue;

@@ -65,7 +65,7 @@ public sealed unsafe class GuardianStepSearcher : IGuardianStepSearcher
 
 					foreach (var (map, guardians, links) in loops)
 					{
-						var elimMap = guardians.PeerIntersection & CandMaps[digit];
+						var elimMap = !guardians & CandMaps[digit];
 						if (elimMap.IsEmpty)
 						{
 							continue;

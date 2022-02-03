@@ -320,7 +320,7 @@ public sealed unsafe class QiuDeadlyPatternStepSearcher : IQiuDeadlyPatternStepS
 		}
 
 		int extraDigit = TrailingZeroCount(otherDigitsMask);
-		Cells map = pair & CandMaps[extraDigit], elimMap = map.PeerIntersection & CandMaps[extraDigit];
+		Cells map = pair & CandMaps[extraDigit], elimMap = !map & CandMaps[extraDigit];
 		if (elimMap.IsEmpty)
 		{
 			return null;
@@ -622,7 +622,7 @@ public sealed unsafe class QiuDeadlyPatternStepSearcher : IQiuDeadlyPatternStepS
 			}
 		}
 
-		var elimMap = new Candidates(candidates).PeerIntersection;
+		var elimMap = !new Candidates(candidates);
 		if (elimMap.IsEmpty)
 		{
 			return null;

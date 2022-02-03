@@ -125,7 +125,7 @@ public sealed unsafe class RegularWingStepSearcher : IRegularWingStepSearcher
 					}
 
 					// Check elimination map.
-					var elimMap = petals.PeerIntersection;
+					var elimMap = !petals;
 					if (!isIncomplete)
 					{
 						elimMap &= PeerMaps[pivot];

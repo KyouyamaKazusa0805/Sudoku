@@ -396,7 +396,7 @@ public sealed unsafe class ComplexFishStepSearcher : IComplexFishStepSearcher
 								var fins = exofins | endofins;
 								if (!fins.IsEmpty)
 								{
-									elimMap &= fins.PeerIntersection & CandMaps[digit];
+									elimMap &= !fins & CandMaps[digit];
 								}
 
 								// Check whether the elimination exists.

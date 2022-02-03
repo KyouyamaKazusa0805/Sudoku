@@ -111,7 +111,7 @@ public sealed unsafe class BivalueUniversalGraveStepSearcher : IBivalueUniversal
 		{
 			cells[i++] = candidate / 9;
 		}
-		var map = new Cells(cells).PeerIntersection;
+		var map = !new Cells(cells);
 		if (map.IsEmpty)
 		{
 			return null;
@@ -392,7 +392,7 @@ public sealed unsafe class BivalueUniversalGraveStepSearcher : IBivalueUniversal
 			return null;
 		}
 
-		if (new Candidates(trueCandidates).PeerIntersection is not { IsEmpty: false } map)
+		if (!new Candidates(trueCandidates) is not { IsEmpty: false } map)
 		{
 			return null;
 		}
@@ -458,7 +458,7 @@ public sealed unsafe class BivalueUniversalGraveStepSearcher : IBivalueUniversal
 			bool condition = new Cells { c1, cell }.InOneRegion;
 			int anotherCell = condition ? c2 : c1;
 			int anotherDigit = condition ? d2 : d1;
-			foreach (int peer in new Cells { cell, anotherCell }.PeerIntersection)
+			foreach (int peer in !new Cells { cell, anotherCell })
 			{
 				if (grid.Exists(peer, anotherDigit) is true)
 				{

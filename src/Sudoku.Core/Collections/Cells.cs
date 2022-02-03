@@ -490,39 +490,6 @@ public unsafe struct Cells :
 		get => (int)BlockMask | RowMask << RowOffset | ColumnMask << ColumnOffset;
 	}
 
-	/// <summary>
-	/// Indicates the <see cref="Cells"/> of intersections.
-	/// </summary>
-	public readonly Cells PeerIntersection
-	{
-		get
-		{
-			long lowerBits = 0, higherBits = 0;
-			int i = 0;
-			foreach (int offset in Offsets)
-			{
-				long low = 0, high = 0;
-				foreach (int peer in Peers[offset])
-				{
-					(peer / Shifting == 0 ? ref low : ref high) |= 1L << peer % Shifting;
-				}
-
-				if (i++ == 0)
-				{
-					lowerBits = low;
-					higherBits = high;
-				}
-				else
-				{
-					lowerBits &= low;
-					higherBits &= high;
-				}
-			}
-
-			return new(higherBits, lowerBits);
-		}
-	}
-
 	/// <inheritdoc/>
 	readonly bool IDefaultable<Cells>.IsDefault => IsEmpty;
 
@@ -1193,18 +1160,40 @@ public unsafe struct Cells :
 
 
 	/// <summary>
-	/// Gets the peer intersection of the current instance, which simply calls the property
-	/// <see cref="PeerIntersection"/>.
+	/// Gets the peer intersection of the current instance.
 	/// </summary>
 	/// <param name="offsets">The offsets.</param>
 	/// <returns>The result list that is the peer intersection of the current instance.</returns>
 	/// <remarks>
-	/// A <b>Peer Intersection</b> is a set of cells that all cells
-	/// from the base collection can be seen.
+	/// A <b>Peer Intersection</b> is a set of cells that all cells from the base collection can be seen.
 	/// </remarks>
-	/// <seealso cref="PeerIntersection"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static Cells operator !(in Cells offsets) => offsets.PeerIntersection;
+	public static Cells operator !(in Cells offsets)
+	{
+		long lowerBits = 0, higherBits = 0;
+		int i = 0;
+		foreach (int offset in offsets.Offsets)
+		{
+			long low = 0, high = 0;
+			foreach (int peer in Peers[offset])
+			{
+				(peer / Shifting == 0 ? ref low : ref high) |= 1L << peer % Shifting;
+			}
+
+			if (i++ == 0)
+			{
+				lowerBits = low;
+				higherBits = high;
+			}
+			else
+			{
+				lowerBits &= low;
+				higherBits &= high;
+			}
+		}
+
+		return new(higherBits, lowerBits);
+	}
 
 	/// <summary>
 	/// Reverse status for all offsets, which means all <see langword="true"/> bits
@@ -1359,19 +1348,15 @@ public unsafe struct Cells :
 		new(left._high ^ right._high, left._low ^ right._low);
 
 	/// <summary>
-	/// <para>
-	/// Simply expands the code to <c><![CDATA[(a & b).PeerIntersection & b]]></c>,
-	/// where <c>PeerIntersection</c> corresponds to the property <see cref="PeerIntersection"/>.
-	/// </para>
+	/// <para>Expands the operator to <c><![CDATA[!(a & b) & b]]></c>.</para>
 	/// <para>The operator is used for searching for and checking eliminations.</para>
 	/// </summary>
 	/// <param name="base">The base map.</param>
 	/// <param name="template">The template map that the base map to check and cover.</param>
 	/// <returns>The result map.</returns>
-	/// <seealso cref="PeerIntersection"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static Cells operator %(in Cells @base, in Cells template) =>
-		(@base & template).PeerIntersection & template;
+		!(@base & template) & template;
 
 	/// <summary>
 	/// Expands via the specified digit.

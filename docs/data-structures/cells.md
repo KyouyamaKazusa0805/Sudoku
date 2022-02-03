@@ -4,92 +4,114 @@
 
 ```csharp
 public struct Cells :
-    IAdditionOperators<Cells, int, Cells>,
-    ICellsOrCandidates<Cells>,
     IDefaultable<Cells>,
-    IEnumerable,
     IEnumerable<int>,
-    ISubtractionOperators<Cells, int, Cells>,
+    IEquatable<Cells>,
     ISimpleFormattable,
     ISimpleParseable<Cells>
+#if FEATURE_GENERIC_MATH
+    ,
+    IAdditionOperators<Cells, int, Cells>,
+    ISubtractionOperators<Cells, int, Cells>,
+    ISubtractionOperators<Cells, Cells, Cells>,
+    IDivisionOperators<Cells, int, short>,
+    IModulusOperators<Cells, Cells, Cells>,
+    IBitwiseOperators<Cells, Cells, Cells>,
+    IEqualityOperators<Cells, Cells>
+#if FEATURE_GENEIC_MATH_IN_ARG
+    ,
+    IValueAdditionOperators<Cells, int, Cells>,
+    IValueSubtractionOperators<Cells, int, Cells>,
+    IValueSubtractionOperators<Cells, Cells, Cells>,
+    IValueDivisionOperators<Cells, int, short>,
+    IValueModulusOperators<Cells, Cells, Cells>,
+    IValueBitwiseAndOperators<Cells, Cells, Cells>,
+    IValueBitwiseOrOperators<Cells, Cells, Cells>,
+    IValueBitwiseNotOperators<Cells, Cells>,
+    IValueBitwiseExclusiveOrOperators<Cells, Cells, Cells>,
+    IValueEqualityOperators<Cells, Cells>,
+    IValueGreaterThanOrLessThanOperators<Cells, Cells>,
+    IValueLogicalNotOperators<Cells>
+#endif
+#endif
 {
-	public static readonly Cells Empty;
+    public static readonly Cells Empty;
 
-	public Cells();
-	public Cells(int cell);
-	public Cells(int[] cells);
-	public Cells(Index cellIndex);
-	public Cells(Span<int> cells);
-	public Cells(ReadOnlySpan<int> cells);
-	public Cells(IEnumerable<int> cells);
-	public Cells(Range range);
-	public Cells(int* cells, int length);
-	public Cells(long high, long low);
-	public Cells(int high, int mid, int low);
+    public Cells();
+    public Cells(int cell);
+    public Cells(int[] cells);
+    public Cells(Index cellIndex);
+    public Cells(Span<int> cells);
+    public Cells(ReadOnlySpan<int> cells);
+    public Cells(IEnumerable<int> cells);
+    public Cells(Range range);
+    public Cells(int* cells, int length);
+    public Cells(long high, long low);
+    public Cells(int high, int mid, int low);
 
-	public readonly int this[int index] { get; }
+    public readonly int this[int index] { get; }
 
-	public readonly bool InOneRegion { get; }
-	public readonly Cells PeerIntersection { get; }
-	public readonly bool IsEmpty { get; }
-	public readonly int Regions { get; }
-	public readonly int CoveredRegions { get; }
-	public readonly int Count { get; }
-	public readonly int CoveredLine { get; }
-	public readonly short ColumnMask { get; }
-	public readonly short RowMask { get; }
-	public readonly short BlockMask { get; }
+    public readonly bool InOneRegion { get; }
+    public readonly bool IsEmpty { get; }
+    public readonly int Regions { get; }
+    public readonly int CoveredRegions { get; }
+    public readonly int Count { get; }
+    public readonly int CoveredLine { get; }
+    public readonly short ColumnMask { get; }
+    public readonly short RowMask { get; }
+    public readonly short BlockMask { get; }
 
-	public static Cells Parse(string str);
-	public static bool TryParse(string str, out Cells result);
-	public void Add(int offset);
-	public void Add(string offset);
-	public void AddAnyway(int offset);
-	public void AddRange(in ReadOnlySpan<int> offsets);
-	public void AddRange(IEnumerable<int> offsets);
-	public readonly bool AllSetsAreInOneRegion(out int region);
-	public void Clear();
-	public readonly bool Contains(int offset);
-	public readonly void CopyTo(int* arr, int length);
-	public readonly void CopyTo(ref Span<int> span);
-	public override bool Equals([NotNullWhen(true)] object? obj);
-	public readonly bool Equals(in Cells other);
-	public readonly Candidates Expand(int digit);
-	public readonly OneDimensionalArrayEnumerator<int> GetEnumerator();
-	public readonly override int GetHashCode();
-	public readonly short GetSubviewMask(int region);
-	public readonly Cells PeerIntersectionLimitsWith(in Cells limit);
-	public void Remove(int offset);
-	public readonly int[] ToArray();
-	public readonly ReadOnlySpan<int> ToReadOnlySpan();
-	public readonly Span<int> ToSpan();
-	public readonly override string ToString();
-	public readonly string ToString(string? format);
+    public static Cells Parse(string str);
+    public static bool TryParse(string str, out Cells result);
+    public void Add(int offset);
+    public void Add(string offset);
+    public void AddAnyway(int offset);
+    public void AddRange(in ReadOnlySpan<int> offsets);
+    public void AddRange(IEnumerable<int> offsets);
+    public readonly bool AllSetsAreInOneRegion(out int region);
+    public void Clear();
+    public readonly bool Contains(int offset);
+    public readonly void CopyTo(int* arr, int length);
+    public readonly void CopyTo(ref Span<int> span);
+    public override bool Equals([NotNullWhen(true)] object? obj);
+    public readonly bool Equals(in Cells other);
+    public readonly Candidates Expand(int digit);
+    public readonly OneDimensionalArrayEnumerator<int> GetEnumerator();
+    public readonly override int GetHashCode();
+    public readonly short GetSubviewMask(int region);
+    public readonly Cells PeerIntersectionLimitsWith(in Cells limit);
+    public void Remove(int offset);
+    public readonly int[] ToArray();
+    public readonly ReadOnlySpan<int> ToReadOnlySpan();
+    public readonly Span<int> ToSpan();
+    public readonly override string ToString();
+    public readonly string ToString(string? format);
 
-	public static Cells operator +(Cells collection, int offset);
-	public static Cells operator -(Cells collection, int offset);
-	public static Cells operator -(in Cells left, in Cells right);
-	public static Cells operator ~(in Cells offsets);
-	public static Candidates operator *(in Cells @base, int digit);
-	public static short operator /(in Cells map, int region);
-	public static Cells operator %(in Cells @base, in Cells template);
-	public static Cells[] operator &(in Cells cell, int subsetSize);
-	public static Cells operator &(in Cells left, in Cells right);
-	public static Cells operator |(in Cells left, in Cells right);
-	public static Cells operator ^(in Cells left, in Cells right);
-	public static bool operator ==(Cells left, Cells right);
-	public static bool operator !=(Cells left, Cells right);
-	public static bool operator <(in Cells left, in Cells right);
-	public static bool operator >(in Cells left, in Cells right);
+    public static Cells operator +(Cells collection, int offset);
+    public static Cells operator -(Cells collection, int offset);
+    public static Cells operator -(in Cells left, in Cells right);
+    public static Cells operator ~(in Cells offsets);
+    public static Candidates operator *(in Cells @base, int digit);
+    public static short operator /(in Cells map, int region);
+    public static Cells operator %(in Cells @base, in Cells template);
+    public static Cells operator !(in Cells offsets);
+    public static Cells[] operator &(in Cells cell, int subsetSize);
+    public static Cells operator &(in Cells left, in Cells right);
+    public static Cells operator |(in Cells left, in Cells right);
+    public static Cells operator ^(in Cells left, in Cells right);
+    public static bool operator ==(Cells left, Cells right);
+    public static bool operator !=(Cells left, Cells right);
+    public static bool operator <(in Cells left, in Cells right);
+    public static bool operator >(in Cells left, in Cells right);
 
-	public static implicit operator Cells(in ReadOnlySpan<int> offsets);
-	public static implicit operator Cells(in Span<int> offsets);
-	public static implicit operator Cells(int[] offsets);
-	public static explicit operator Span<int>(in Cells offsets);
-	public static explicit operator int[](in Cells offsets);
-	public static explicit operator Range?(in Cells offsets);
-	public static explicit operator Cells(Range range);
-	public static explicit operator ReadOnlySpan<int>(in Cells offsets);
+    public static implicit operator Cells(in ReadOnlySpan<int> offsets);
+    public static implicit operator Cells(in Span<int> offsets);
+    public static implicit operator Cells(int[] offsets);
+    public static explicit operator Span<int>(in Cells offsets);
+    public static explicit operator int[](in Cells offsets);
+    public static explicit operator Range?(in Cells offsets);
+    public static explicit operator Cells(Range range);
+    public static explicit operator ReadOnlySpan<int>(in Cells offsets);
 }
 ```
 
@@ -283,14 +305,6 @@ int coveredRegions = cells.CoveredLine; // 9
 
 如果这个 `CoveredRegions` 属性的结果不同属于行（或列）的话，那么因为高比特位上都是 0，因此 `CoveredLine` 属性在处理之后，是出于找不到合适结果的一个状态，因此在这种情况下，`CoveredLine` 属性会默认返回 32。注意，返回的是 32，不是别的，不是 -1！不是 -1！不是 -1！重要的事情说三遍。至于为什么返回 32，请自行参看 .NET 库文件的源代码（位于 `BitOperations.TrailingZeroCount` 方法里）。
 
-### 属性 `PeerIntersection`
-
-这个属性说起来比较困难，它表示这个集合里包含的单元格，共同对应的单元格序列。换句话说，哪些格子是这个集合所记录的单元格都能看得见的（处于同一行、列、宫的），那么它们就会被记录起来，然后作为结果的一部分返回。
-
-比如说，包含第一行第一格和第二格的 `Cells` 类型对象，`PeerIntersection` 的结果就是它俩所在行和所在宫的别的单元格。如果想不通的话，可以把第一行第一、二个单元格当作是一个区块来看，而这个区块能够删数的位置，就是 `PeerIntersection` 的结果，它们是等价的概念。
-
-注意，`PeerIntersection` 属性只包含删数的位置，而原始序列的本身两个格子并不包含在内。
-
 ### 索引器 `this[int]` 和 `this[Index]`
 
 该数据类型提供了 `int` 和 `Index` 作为参数的索引器使用。这两个索引器获取的是第几个被记录的单元格的编号。比如说是使用 { 0, 1, 3, 6, 10 } 这几个单元格构成的 `Cells` 集合对象的话，那么：
@@ -444,6 +458,14 @@ foreach (int cell in cells)
 }
 ```
 
+### 逻辑取反运算符 `!(in Cells)`
+
+这个运算符说起来比较困难，虽然是用的逻辑运算符 `!`，但是我们定义的这个运算却跟逻辑运算无关。它表示这个集合里包含的单元格，共同对应的单元格序列。换句话说，哪些格子是这个集合所记录的单元格都能看得见的（处于同一行、列、宫的），那么它们就会被记录起来，然后作为结果的一部分返回。
+
+比如说，包含第一行第一格和第二格的 `Cells` 类型对象 `list`，`!list` 的结果就是它俩所在行和所在宫的别的单元格。如果想不通的话，可以把第一行第一、二个单元格当作是一个区块来看，而这个区块能够删数的位置，就是 `!list` 的结果，它们是等价的概念。
+
+注意，`operator !` 属性只包含删数的位置，而原始序列的本身两个格子并不包含在内。
+
 ### 位取反运算符 `~(in Cells)`
 
 位取反运算符用来将当前集合里记录了的单元格去掉，然后把没有记录的单元格全给加上，并返回改写后的结果。注意，这样的处理规则并不会直接改写原始对象，而是将这个对象从返回值返回，因此不会造成任何的副作用。
@@ -511,9 +533,9 @@ foreach (var combination in combinations)
 
 ### 取模运算符 `%(in Cells, in Cells)`
 
-取模运算符比较麻烦，`a % b` 可以展开为 `(a & b).PeerIntersection & b`。
+取模运算符比较麻烦，`a % b` 可以展开为 `!(a & b) & b`。
 
-说一下这种展开的意义。考虑数独技巧的删数规则，`a & b` 可以理解为“把 `b` 当成是模板，然后让 `a` 在这个模板上找，取得所有出现在 `b` 上的单元格”。对此结果执行 `PeerIntersection` 属性就是在看这个结果对应的可以看到的地方，再一次使用 `& b`，可以清除掉不在模板上的对应格子。
+说一下这种展开的意义。考虑数独技巧的删数规则，`a & b` 可以理解为“把 `b` 当成是模板，然后让 `a` 在这个模板上找，取得所有出现在 `b` 上的单元格”。对此结果执行 `operator !` 运算符就是在看这个结果对应的可以看到的地方，再一次使用 `& b`，可以清除掉不在模板上的对应格子。
 
 这样理解有些复杂，我们考虑一个实际的数独技巧来举例说明。考虑[待定数组](https://www.bilibili.com/read/cv11955947)（ALS）的 ALS-XZ 技巧。我们要构造两个 ALS 部分，并且得到两个 ALS 内强链 z==x 和 x==z。两个 ALS 的 x 数字需要连起来构成弱链，即整个链为 z==x--x==z，然后删除 z 数字的共同对应的地方。
 
@@ -528,7 +550,7 @@ foreach (int z in mask1 & mask2)
 
 注意，`mask1 & mask2` 是使用了整数的位与运算符，因此结果必然还是一个整数。而整数自身是不具有 `GetEnumerator` 方法的，因此无法使用上面这样的语法来迭代比特位。不过，在这个解决方案的代码里，我们提供了对比特位迭代的 `GetEnumerator` 方法，使之可以成为正确的语法和调用，你只需要引用 `System.Numerics` 命名空间即可，这个扩展是 C# 9 的扩展 `GetEnumerator` 方法的新语法特性，详情请自行参看相关的内容。
 
-接着，假设我们用 `CandidateMaps` 表示数字 1 到 9 每一个数字在当前盘面上候选数包含这个数字的格子的列表的话，那么 `CandidateMaps[z]` 就取出了当前数字 `z` 对应的出现了的位置。假如我们找出了两个 ALS 并且列举出了用于找寻删数的两组格子（即 z==x 和 x==z 强链构造起来的两个包含 z 的单元格组）。假设它们用一个变量 `als` 表示起来的话，那么 `als & CandidateMaps[z]` 就意味着我取到的是“两个强链末端的包含 z 的格子”。此时，我们对这个结果使用 `PeerIntersection` 属性，则就表示的是两个格子都对应的地方。不过，因为对应的单元格可能包含已经填好数字了的单元格甚至是提示数，也可能有不含这个数字 `z` 的格子，因此我们还需要再一次对这个共同对应的单元格列表作一次位与运算：`(als & CandidateMaps[z]).PeerIntersection & CandidateMaps[z]`，这样，我们才能正确得到关于数字 `z` 的、两个 ALS 关于数字 `z` 的删数。可以仔细对比这个表达式，它其实就是 `als % CandidateMaps[z]` 的完整展开。
+接着，假设我们用 `CandidateMaps` 表示数字 1 到 9 每一个数字在当前盘面上候选数包含这个数字的格子的列表的话，那么 `CandidateMaps[z]` 就取出了当前数字 `z` 对应的出现了的位置。假如我们找出了两个 ALS 并且列举出了用于找寻删数的两组格子（即 z==x 和 x==z 强链构造起来的两个包含 z 的单元格组）。假设它们用一个变量 `als` 表示起来的话，那么 `als & CandidateMaps[z]` 就意味着我取到的是“两个强链末端的包含 z 的格子”。此时，我们对这个结果使用 `operator !` 运算符，则就表示的是两个格子都对应的地方。不过，因为对应的单元格可能包含已经填好数字了的单元格甚至是提示数，也可能有不含这个数字 `z` 的格子，因此我们还需要再一次对这个共同对应的单元格列表作一次位与运算：`!(als & CandidateMaps[z]) & CandidateMaps[z]`，这样，我们才能正确得到关于数字 `z` 的、两个 ALS 关于数字 `z` 的删数。可以仔细对比这个表达式，它其实就是 `als % CandidateMaps[z]` 的完整展开。
 
 所以，取模运算符对于这个数据类型的意思是“获取这个数字在一个模板上，它的相关单元格（所在行、列、宫的其余单元格）里，处于模板上的所有单元格”。这种用法多用于计算删数。
 

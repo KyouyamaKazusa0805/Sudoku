@@ -302,11 +302,6 @@
             Indicates the number of the values stored in this collection.
             </summary>
         </member>
-        <member name="P:Sudoku.Collections.Candidates.PeerIntersection">
-            <summary>
-            Indicates the <see cref="T:Sudoku.Collections.Candidates"/> of intersections.
-            </summary>
-        </member>
         <member name="P:Sudoku.Collections.Candidates.Offsets">
             <summary>
             Indicates all indices of set bits.
@@ -487,8 +482,7 @@
         </member>
         <member name="M:Sudoku.Collections.Candidates.op_LogicalNot(Sudoku.Collections.Candidates@)">
             <summary>
-            Gets the peer intersection of the current instance, which simply calls the property
-            <see cref="P:Sudoku.Collections.Candidates.PeerIntersection"/>.
+            Gets the peer intersection of the current instance.
             </summary>
             <param name="offsets">The offsets.</param>
             <returns>The result list that is the peer intersection of the current instance.</returns>
@@ -496,7 +490,6 @@
             A <b>Peer Intersection</b> is a set of candidates that all candidates
             from the base collection can be seen.
             </remarks>
-            <seealso cref="P:Sudoku.Collections.Candidates.PeerIntersection"/>
         </member>
         <member name="M:Sudoku.Collections.Candidates.op_OnesComplement(Sudoku.Collections.Candidates@)">
             <summary>
@@ -577,16 +570,12 @@
         </member>
         <member name="M:Sudoku.Collections.Candidates.op_Modulus(Sudoku.Collections.Candidates@,Sudoku.Collections.Candidates@)">
             <summary>
-            <para>
-            Simply expands the code to <c><![CDATA[(a & b).PeerIntersection & b]]></c>,
-            where <c>PeerIntersection</c> corresponds to the property <see cref="P:Sudoku.Collections.Candidates.PeerIntersection"/>.
-            </para>
+            <para>Expands the operator to <c><![CDATA[!(a & b) & b]]></c>.</para>
             <para>The operator is used for searching for and checking eliminations.</para>
             </summary>
             <param name="base">The base map.</param>
             <param name="template">The template map that the base map to check and cover.</param>
             <returns>The result map.</returns>
-            <seealso cref="P:Sudoku.Collections.Candidates.PeerIntersection"/>
         </member>
         <member name="M:Sudoku.Collections.Candidates.op_Division(Sudoku.Collections.Candidates@,System.Int32)">
             <summary>
@@ -965,11 +954,6 @@
             and the region 19 (column 2).
             </summary>
         </member>
-        <member name="P:Sudoku.Collections.Cells.PeerIntersection">
-            <summary>
-            Indicates the <see cref="T:Sudoku.Collections.Cells"/> of intersections.
-            </summary>
-        </member>
         <member name="P:Sudoku.Collections.Cells.System#IDefaultable{Sudoku#Collections#Cells}#IsDefault">
             <inheritdoc/>
         </member>
@@ -1184,16 +1168,13 @@
         </member>
         <member name="M:Sudoku.Collections.Cells.op_LogicalNot(Sudoku.Collections.Cells@)">
             <summary>
-            Gets the peer intersection of the current instance, which simply calls the property
-            <see cref="P:Sudoku.Collections.Cells.PeerIntersection"/>.
+            Gets the peer intersection of the current instance.
             </summary>
             <param name="offsets">The offsets.</param>
             <returns>The result list that is the peer intersection of the current instance.</returns>
             <remarks>
-            A <b>Peer Intersection</b> is a set of cells that all cells
-            from the base collection can be seen.
+            A <b>Peer Intersection</b> is a set of cells that all cells from the base collection can be seen.
             </remarks>
-            <seealso cref="P:Sudoku.Collections.Cells.PeerIntersection"/>
         </member>
         <member name="M:Sudoku.Collections.Cells.op_OnesComplement(Sudoku.Collections.Cells@)">
             <summary>
@@ -1283,16 +1264,12 @@
         </member>
         <member name="M:Sudoku.Collections.Cells.op_Modulus(Sudoku.Collections.Cells@,Sudoku.Collections.Cells@)">
             <summary>
-            <para>
-            Simply expands the code to <c><![CDATA[(a & b).PeerIntersection & b]]></c>,
-            where <c>PeerIntersection</c> corresponds to the property <see cref="P:Sudoku.Collections.Cells.PeerIntersection"/>.
-            </para>
+            <para>Expands the operator to <c><![CDATA[!(a & b) & b]]></c>.</para>
             <para>The operator is used for searching for and checking eliminations.</para>
             </summary>
             <param name="base">The base map.</param>
             <param name="template">The template map that the base map to check and cover.</param>
             <returns>The result map.</returns>
-            <seealso cref="P:Sudoku.Collections.Cells.PeerIntersection"/>
         </member>
         <member name="M:Sudoku.Collections.Cells.op_Multiply(Sudoku.Collections.Cells@,System.Int32)">
             <summary>

@@ -127,7 +127,7 @@ public sealed unsafe class MultisectorLockedSetsStepSearcher : IMultisectorLocke
 						{
 							int region = i + 9;
 							linkForEachRegion[region] |= q;
-							elimMap |= (CandMaps[digit] & RegionMaps[region] & map).PeerIntersection;
+							elimMap |= !(CandMaps[digit] & RegionMaps[region] & map);
 						}
 					}
 					if (PopCount(cMask) == temp)
@@ -137,7 +137,7 @@ public sealed unsafe class MultisectorLockedSetsStepSearcher : IMultisectorLocke
 						{
 							int region = i + 18;
 							linkForEachRegion[region] |= q;
-							elimMap |= (CandMaps[digit] & RegionMaps[region] & map).PeerIntersection;
+							elimMap |= !(CandMaps[digit] & RegionMaps[region] & map);
 						}
 					}
 					if (PopCount(bMask) == temp)
@@ -146,7 +146,7 @@ public sealed unsafe class MultisectorLockedSetsStepSearcher : IMultisectorLocke
 						foreach (int i in bMask)
 						{
 							linkForEachRegion[i] |= q;
-							elimMap |= (CandMaps[digit] & RegionMaps[i] & map).PeerIntersection;
+							elimMap |= !(CandMaps[digit] & RegionMaps[i] & map);
 						}
 					}
 

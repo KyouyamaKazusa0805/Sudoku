@@ -102,7 +102,7 @@ public sealed unsafe class WWingStepSearcher : IIregularWingStepSearcher
 
 						// Check for eliminations.
 						int anotherDigit = TrailingZeroCount(grid.GetCandidates(c1) & ~(1 << digit));
-						var elimMap = CandMaps[anotherDigit] & new Cells { c1, c2 }.PeerIntersection;
+						var elimMap = CandMaps[anotherDigit] & !new Cells { c1, c2 };
 						if (elimMap.IsEmpty)
 						{
 							continue;

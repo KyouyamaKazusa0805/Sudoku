@@ -54,7 +54,7 @@ public sealed unsafe class EmptyRectangleIntersectionPairStepSearcher : IEmptyRe
 				}
 
 				// Check the block that two cells both see.
-				Cells interMap = new Cells { c1, c2 }.PeerIntersection, unionMap = new Cells(c1) | new Cells(c2);
+				Cells interMap = !new Cells { c1, c2 }, unionMap = new Cells(c1) | new Cells(c2);
 				foreach (int interCell in interMap)
 				{
 					int block = interCell.ToRegionIndex(Region.Block);
