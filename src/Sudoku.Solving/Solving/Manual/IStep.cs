@@ -57,17 +57,20 @@ public interface IStep
 	/// </returns>
 	/// <remarks>
 	/// <para>
-	/// A <b>format</b> is the better way to format the result text of this technique information instance,
+	/// A <b>format</b> is the better way to format the result text of this technique information instance.
 	/// It'll be represented by the normal characters and the placeholders, e.g.
 	/// <code><![CDATA["{Name}: Cells {CellsStr} => {ElimsStr}"]]></code>
 	/// Here the string result <b>shouldn't</b> be with the leading <c>'$'</c> character, because this is a
-	/// format string, rather than a interpolated string.
+	/// format string instead of an interpolated one.
 	/// </para>
 	/// <para>
-	/// Here the property <c>Name</c>, <c>CellsStr</c> and <c>ElimsStr</c> should be implemented before
-	/// the property invoked, you should creates those 3 properties, returns the corresponding correct string
-	/// result, makes them <see langword="private"/> or <see langword="protected"/> and marks the attribute
-	/// <see cref="FormatItemAttribute"/> to help the code analyzer (if the code analyzer is available).
+	/// Here the property <c>Name</c>, <c>CellsStr</c> and <c>ElimsStr</c> must have been implemented before
+	/// the property invoked. You should create 3 properties whose names are <c>Name</c>, <c>CellsStr</c>
+	/// and <c>ElimsStr</c>, and return the corresponding correct string result,
+	/// making them non-<see langword="public"/> and applying attribute <see cref="FormatItemAttribute"/>
+	/// to it.
+	/// </para>
+	/// <para>
 	/// The recommended implementation pattern is:
 	/// <code><![CDATA[
 	/// [FormatItem]
@@ -78,14 +81,14 @@ public interface IStep
 	/// }
 	/// ]]></code>
 	/// You can use the code snippet <c>fitem</c> to create the pattern, whose corresponding file is added
-	/// into the <c>required/vssnippets</c> folder. For more information, please open the markdown file
-	/// <see href="https://github.com/SunnieShine/Sudoku/blob/main/required/README.md">README.md</see>
-	/// in the <c>required</c> folder to learn more information.
+	/// into the <c>optional/vssnippets</c> folder. For more information, please open the markdown file
+	/// <see href="https://github.com/SunnieShine/Sudoku/blob/main/optional/README.md">README.md</see>
+	/// (in the <c>optional</c> folder) for more information.
 	/// </para>
 	/// <para>
 	/// Because this property will get the value from the resource dictionary, the property supports
 	/// multiple language switching, which is better than the normal methods <see cref="ToString"/>
-	/// and <see cref="ToFullString"/>. Therefore, this property is the substitution plan of those two methods.
+	/// and <see cref="ToFullString"/>. Therefore, this property is the substitution of those two methods.
 	/// </para>
 	/// <para>
 	/// If you want to use the values in the resource documents, just use the property
