@@ -37,25 +37,25 @@ public sealed record BruteForceSolverResult(
 	{
 		// Print header.
 		var sb = new StringHandler();
-		sb.Append(ResourceManager.Shared["bruteForceSolverResultPuzzle"]);
+		sb.Append(ResourceManager.Shared["BruteForceSolverResultPuzzle"]);
 		sb.Append(OriginalPuzzle.ToString("#"));
 		sb.AppendLine();
 
 		// Print the solution (if not null).
 		if (!Solution.IsUndefined)
 		{
-			sb.Append(ResourceManager.Shared["bruteForceSolverResultSolution"]);
+			sb.Append(ResourceManager.Shared["BruteForceSolverResultSolution"]);
 			sb.Append(Solution.ToString("!"));
 			sb.AppendLine();
 		}
 
 		// Print the elapsed time.
-		sb.Append(ResourceManager.Shared["bruteForceSolverResultPuzzleHas"]);
-		sb.AppendWhen(IsSolved, ResourceManager.Shared["bruteForceSolverResultNot"]);
-		sb.Append(ResourceManager.Shared["bruteForceSolverResultBeenSolved"]);
+		sb.Append(ResourceManager.Shared["BruteForceSolverResultPuzzleHas"]);
+		sb.AppendWhen(IsSolved, ResourceManager.Shared["BruteForceSolverResultNot"]);
+		sb.Append(ResourceManager.Shared["BruteForceSolverResultBeenSolved"]);
 		sb.AppendLine();
-		sb.Append(ResourceManager.Shared["bruteForceSolverResultTimeElapsed"]);
-		sb.Append(ElapsedTime, @"hh\:mm\:ss\.ffffff");
+		sb.Append(ResourceManager.Shared["BruteForceSolverResultTimeElapsed"]);
+		sb.Append($@"{ElapsedTime:hh\:mm\:ss\.ffffff}");
 		sb.AppendLine();
 
 		return sb.ToStringAndClear();

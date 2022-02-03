@@ -66,7 +66,7 @@ public sealed record JuniorExocetStep(
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get
 		{
-			string snippet = ResourceManager.Shared["lockedMember1"];
+			string snippet = ResourceManager.Shared["LockedMember1"];
 			string? cells = LockedMemberQ == 0 ? null : new DigitCollection(LockedMemberQ).ToString();
 			return $"{snippet}{cells}";
 		}
@@ -82,7 +82,7 @@ public sealed record JuniorExocetStep(
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get
 		{
-			string snippet = ResourceManager.Shared["lockedMember2"];
+			string snippet = ResourceManager.Shared["LockedMember2"];
 			string? cells = LockedMemberR == 0 ? null : new DigitCollection(LockedMemberR).ToString();
 			return $"{snippet}{cells}";
 		}

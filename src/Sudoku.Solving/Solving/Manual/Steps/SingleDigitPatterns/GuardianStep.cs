@@ -51,7 +51,7 @@ public sealed record GuardianStep(
 	private string GuardianSingularOrPlural
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => ResourceManager.Shared[Guardians.Count == 1 ? "guardianSingular" : "guardianPlural"];
+		get => ResourceManager.Shared[Guardians.Count == 1 ? "GuardianSingular" : "GuardianPlural"];
 	}
 
 	[FormatItem]

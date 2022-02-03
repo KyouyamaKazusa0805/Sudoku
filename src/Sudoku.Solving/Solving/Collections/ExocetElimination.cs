@@ -36,7 +36,7 @@ public readonly record struct ExocetElimination(in Candidates Eliminations, Exoc
 	/// <summary>
 	/// Indicates the header of the reason.
 	/// </summary>
-	private string Header => ResourceManager.Shared[$"exocet{Reason}EliminationName"];
+	private string Header => ResourceManager.Shared[$"Exocet{Reason}EliminationName"];
 
 
 	/// <inheritdoc/>
@@ -61,7 +61,7 @@ public readonly record struct ExocetElimination(in Candidates Eliminations, Exoc
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public override string ToString()
 	{
-		string snippet = ResourceManager.Shared["exocetElimination"];
+		string snippet = ResourceManager.Shared["ExocetElimination"];
 		string elim = new ConclusionCollection(AsSpan()).ToString();
 		return $"* {Header}{snippet}{elim}";
 	}

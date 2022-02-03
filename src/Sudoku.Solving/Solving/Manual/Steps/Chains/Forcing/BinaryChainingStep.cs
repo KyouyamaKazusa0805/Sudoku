@@ -69,6 +69,6 @@ public sealed record BinaryChainingStep(
 	private string AnchorIsTrueOrFalseStr
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => ResourceManager.Shared[Anchor.IsOn ? "trueKeyword" : "falseKeyword"];
+		get => ResourceManager.Shared[Anchor.IsOn ? "TrueKeyword" : "FalseKeyword"];
 	}
 }

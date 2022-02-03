@@ -81,14 +81,14 @@ partial record ManualSolverResult
 
 			// Print header.
 			var sb = new StringHandler();
-			sb.Append(ResourceManager.Shared["analysisResultPuzzle"]);
+			sb.Append(ResourceManager.Shared["AnalysisResultPuzzle"]);
 			sb.Append(puzzle.ToString("#"));
 			sb.AppendLine();
 
 			// Print solving steps (if worth).
 			if (options.Flags(SolverResultFormattingOptions.ShowSteps) && steps.Length != 0)
 			{
-				sb.Append(ResourceManager.Shared["analysisResultSolvingSteps"]);
+				sb.Append(ResourceManager.Shared["AnalysisResultSolvingSteps"]);
 				sb.AppendLine();
 
 				if (getBottleneck(this) is var (bIndex, bInfo))
@@ -97,7 +97,7 @@ partial record ManualSolverResult
 					{
 						if (i > bIndex && options.Flags(SolverResultFormattingOptions.ShowStepsAfterBottleneck))
 						{
-							sb.Append(ResourceManager.Shared["ellipsis"]);
+							sb.Append(ResourceManager.Shared["Ellipsis"]);
 							sb.AppendLine();
 
 							break;
@@ -132,13 +132,13 @@ partial record ManualSolverResult
 					{
 						a(ref sb, options.Flags(SolverResultFormattingOptions.ShowSeparators));
 
-						sb.Append(ResourceManager.Shared["analysisResultBottleneckStep"]);
+						sb.Append(ResourceManager.Shared["AnalysisResultBottleneckStep"]);
 
 						if (options.Flags(SolverResultFormattingOptions.ShowStepLabel))
 						{
-							sb.Append(ResourceManager.Shared["analysisResultInStep"]);
+							sb.Append(ResourceManager.Shared["AnalysisResultInStep"]);
 							sb.Append(bIndex + 1);
-							sb.Append(ResourceManager.Shared["colon"]);
+							sb.Append(ResourceManager.Shared["Colon"]);
 						}
 
 						sb.Append(' ');
@@ -153,16 +153,16 @@ partial record ManualSolverResult
 			// Print solving step statistics (if worth).
 			if (!steps.IsDefault)
 			{
-				sb.Append(ResourceManager.Shared["analysisResultTechniqueUsed"]);
+				sb.Append(ResourceManager.Shared["AnalysisResultTechniqueUsed"]);
 				sb.AppendLine();
 
 				if (options.Flags(SolverResultFormattingOptions.ShowStepDetail))
 				{
-					sb.Append(ResourceManager.Shared["analysisResultMin"], 6);
+					sb.Append(ResourceManager.Shared["AnalysisResultMin"], 6);
 					sb.Append(',');
 					sb.Append(' ');
-					sb.Append(ResourceManager.Shared["analysisResultTotal"], 6);
-					sb.Append(ResourceManager.Shared["analysisResultTechniqueUsing"]);
+					sb.Append(ResourceManager.Shared["AnalysisResultTotal"], 6);
+					sb.Append(ResourceManager.Shared["AnalysisResultTechniqueUsing"]);
 				}
 
 				foreach (var solvingStepsGroup in from s in steps orderby s.Difficulty group s by s.Name)
@@ -201,14 +201,14 @@ partial record ManualSolverResult
 
 				sb.Append(stepsCount, 3);
 				sb.Append(' ');
-				sb.Append(ResourceManager.Shared[stepsCount == 1 ? "analysisResultStepSingular" : "analysisResultStepPlural"]);
+				sb.Append(ResourceManager.Shared[stepsCount == 1 ? "AnalysisResultStepSingular" : "AnalysisResultStepPlural"]);
 				sb.AppendLine();
 
 				a(ref sb, options.Flags(SolverResultFormattingOptions.ShowSeparators));
 			}
 
 			// Print detail data.
-			sb.Append(ResourceManager.Shared["analysisResultPuzzleRating"]);
+			sb.Append(ResourceManager.Shared["AnalysisResultPuzzleRating"]);
 			sb.Append(max, "0.0");
 			sb.Append('/');
 			sb.Append(pearl, "0.0");
@@ -219,17 +219,17 @@ partial record ManualSolverResult
 			// Print the solution (if not null).
 			if (!solution.IsUndefined)
 			{
-				sb.Append(ResourceManager.Shared["analysisResultPuzzleSolution"]);
+				sb.Append(ResourceManager.Shared["AnalysisResultPuzzleSolution"]);
 				sb.Append(solution.ToString("!"));
 			}
 
 			// Print the elapsed time.
-			sb.Append(ResourceManager.Shared["analysisResultPuzzleHas"]);
-			sb.AppendWhen(isSolved, ResourceManager.Shared["analysisResultNot"]);
-			sb.Append(ResourceManager.Shared["analysisResultBeenSolved"]);
+			sb.Append(ResourceManager.Shared["AnalysisResultPuzzleHas"]);
+			sb.AppendWhen(isSolved, ResourceManager.Shared["AnalysisResultNot"]);
+			sb.Append(ResourceManager.Shared["AnalysisResultBeenSolved"]);
 			sb.AppendLine();
-			sb.Append(ResourceManager.Shared["analysisResultTimeElapsed"]);
-			sb.Append(elapsed, @"hh\:mm\:ss\.fff");
+			sb.Append(ResourceManager.Shared["AnalysisResultTimeElapsed"]);
+			sb.Append($@"{elapsed:hh\:mm\:ss\.fff}");
 			sb.AppendLine();
 
 			a(ref sb, options.Flags(SolverResultFormattingOptions.ShowSeparators));

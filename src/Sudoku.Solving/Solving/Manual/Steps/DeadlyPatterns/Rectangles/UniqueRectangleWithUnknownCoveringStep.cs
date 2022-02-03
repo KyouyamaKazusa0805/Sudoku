@@ -60,7 +60,7 @@ public sealed record UniqueRectangleWithUnknownCoveringStep(
 	private string DigitsStr
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => new DigitCollection((short)(1 << Digit1 | 1 << Digit2)).ToString(ResourceManager.Shared["orKeywordWithSpaces"]);
+		get => new DigitCollection((short)(1 << Digit1 | 1 << Digit2)).ToString(ResourceManager.Shared["OrKeywordWithSpaces"]);
 	}
 
 	[FormatItem]

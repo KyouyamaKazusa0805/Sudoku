@@ -117,7 +117,7 @@ public sealed record NormalFishStep(
 	private string FinSnippet
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => ResourceManager.Shared["fin"];
+		get => ResourceManager.Shared["Fin"];
 	}
 
 	[FormatItem]
