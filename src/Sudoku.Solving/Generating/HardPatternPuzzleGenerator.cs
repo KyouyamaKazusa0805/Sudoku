@@ -167,7 +167,7 @@ public sealed unsafe class HardPatternPuzzleGenerator : IPuzzleGenerator
 	/// <param name="ptrGrid">The pointer that pointes to a grid.</param>
 	/// <param name="cell">The cell.</param>
 	/// <returns>A <see cref="bool"/> value indicating that.</returns>
-	private static bool CheckDuplicate([DisallowNull, NotNullWhen(true)] char* ptrGrid, int cell)
+	private static bool CheckDuplicate(char* ptrGrid, int cell)
 	{
 #if DEBUG
 		Debug.Assert(ptrGrid != null);
