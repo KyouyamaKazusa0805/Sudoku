@@ -1882,12 +1882,6 @@
             </para>
             </summary>
         </member>
-        <member name="P:Sudoku.Collections.Grid.TextCode">
-            <summary>
-            Gets the text code for the current sudoku grid, that can be used for parsing or formatting
-            a sudoku grid, interacting with type <see cref="T:System.String"/>.
-            </summary>
-        </member>
         <member name="P:Sudoku.Collections.Grid.GivenCells">
             <summary>
             Gets the cell template that only contains the given cells.
@@ -1951,6 +1945,12 @@
             the puzzle contains multiple solutions), the property will return <see cref="F:Sudoku.Collections.Grid.Undefined"/>.
             </summary>
             <see cref="F:Sudoku.Collections.Grid.Undefined"/>
+        </member>
+        <member name="P:Sudoku.Collections.Grid.TextCode">
+            <summary>
+            Gets the text code for the current sudoku grid, that can be used for parsing or formatting
+            a sudoku grid, interacting with type <see cref="T:System.String"/>.
+            </summary>
         </member>
         <member name="P:Sudoku.Collections.Grid.System#IDefaultable{Sudoku#Collections#Grid}#IsDefault">
             <inheritdoc/>

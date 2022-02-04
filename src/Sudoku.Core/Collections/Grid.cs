@@ -503,16 +503,6 @@ public unsafe partial struct Grid :
 	}
 
 	/// <summary>
-	/// Gets the text code for the current sudoku grid, that can be used for parsing or formatting
-	/// a sudoku grid, interacting with type <see cref="string"/>.
-	/// </summary>
-	public readonly string TextCode
-	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => ToString("#");
-	}
-
-	/// <summary>
 	/// Gets the cell template that only contains the given cells.
 	/// </summary>
 	public readonly Cells GivenCells
@@ -663,6 +653,16 @@ public unsafe partial struct Grid :
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => Solver.Solve(this);
+	}
+
+	/// <summary>
+	/// Gets the text code for the current sudoku grid, that can be used for parsing or formatting
+	/// a sudoku grid, interacting with type <see cref="string"/>.
+	/// </summary>
+	internal readonly string TextCode
+	{
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		get => ToString("#");
 	}
 
 	/// <inheritdoc/>

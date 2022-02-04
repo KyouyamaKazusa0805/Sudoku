@@ -730,7 +730,7 @@ public unsafe struct Cells :
 			null or "N" or "n" => this switch
 			{
 				[] => "{ }",
-				[var cell] => $"r{cell / 9 + 1}c{cell % 9 + 1}",
+				[var cell] => new Coordinate((byte)cell).ToString(),
 				_ => normalToString(this)
 			},
 			"B" or "b" => binaryToString(this, false),
@@ -1120,7 +1120,7 @@ public unsafe struct Cells :
 			{
 				for (int j = 0; j < cIndex; j++)
 				{
-					result.Add(bufferRows[i] * 9 + bufferColumns[j]);
+					result.AddAnyway(bufferRows[i] * 9 + bufferColumns[j]);
 				}
 			}
 		}
