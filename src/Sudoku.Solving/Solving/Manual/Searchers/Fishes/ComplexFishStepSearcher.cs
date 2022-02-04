@@ -121,8 +121,8 @@ public sealed unsafe class ComplexFishStepSearcher : IComplexFishStepSearcher
 	/// <param name="digit">The current digit used.</param>
 	/// <param name="onlyFindOne">Indicates whether the method only find one possible step.</param>
 	private Step? GetAll(
-		ICollection<ComplexFishStep> accumulator, in Grid grid, IList<Conclusion>?[] pomElims,
-		int digit, bool onlyFindOne)
+		ICollection<ComplexFishStep> accumulator, in Grid grid,
+		IList<Conclusion>?[] pomElims, int digit, bool onlyFindOne)
 	{
 		const Region bothLines = (Region)3;
 

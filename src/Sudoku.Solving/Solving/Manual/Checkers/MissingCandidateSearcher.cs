@@ -33,14 +33,14 @@ public static class MissingCandidateSearcher
 			? throw new InvalidOperationException($"The {nameof(grid)} must contain more than one solution.")
 			: (
 				testSymmetry(grid, &GridTransformations.RotatePi)
-				?? testSymmetry(grid, &GridTransformations.MirrorLeftRight)
-				?? testSymmetry(grid, &GridTransformations.MirrorTopBottom)
-				?? testSymmetry(grid, &GridTransformations.MirrorDiagonal)
-				?? testSymmetry(grid, &GridTransformations.MirrorAntidiagonal)
-				?? testSymmetry(grid, &GridTransformations.RotateClockwise)
-				?? testSymmetry(grid, &GridTransformations.RotateCounterclockwise)
-				?? testNoSymmetry(grid)
-				?? -1
+					?? testSymmetry(grid, &GridTransformations.MirrorLeftRight)
+					?? testSymmetry(grid, &GridTransformations.MirrorTopBottom)
+					?? testSymmetry(grid, &GridTransformations.MirrorDiagonal)
+					?? testSymmetry(grid, &GridTransformations.MirrorAntidiagonal)
+					?? testSymmetry(grid, &GridTransformations.RotateClockwise)
+					?? testSymmetry(grid, &GridTransformations.RotateCounterclockwise)
+					?? testNoSymmetry(grid)
+					?? -1
 			);
 
 
