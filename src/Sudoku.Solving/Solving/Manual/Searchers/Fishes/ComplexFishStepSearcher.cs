@@ -127,14 +127,17 @@ public sealed unsafe class ComplexFishStepSearcher : IComplexFishStepSearcher
 		const Region bothLines = (Region)3;
 
 		int* currentCoverSets = stackalloc int[MaxSize];
+		bool* searchForMutantCases = stackalloc[] { false, true };
 
 		// Iterate on each size.
 		for (int size = 2; size <= MaxSize; size++)
 		{
 			// Iterate on different cases on whether searcher finds mutant fishes.
 			// If false, search for franken fishes.
-			foreach (bool searchForMutant in stackalloc[] { false, true })
+			for (int caseIndex = 0; caseIndex < 2; caseIndex++)
 			{
+				bool searchForMutant = searchForMutantCases[caseIndex];
+
 				// Try to check the POM eliminations.
 				// If the digit as a key doesn't contain any list in that dictionary,
 				// just skip this loop.

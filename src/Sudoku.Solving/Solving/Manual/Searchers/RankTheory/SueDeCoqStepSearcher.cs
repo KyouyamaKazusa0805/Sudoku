@@ -36,9 +36,12 @@ public sealed unsafe class SueDeCoqStepSearcher : ISueDeCoqStepSearcher
 			return null;
 		}
 
+		bool* cannibalModeCases = stackalloc[] { false, true };
+
 		using var list = new ValueList<Cells>(4);
-		foreach (bool cannibalMode in stackalloc[] { false, true })
+		for (int caseIndex = 0; caseIndex < 2; caseIndex++)
 		{
+			bool cannibalMode = cannibalModeCases[caseIndex];
 			foreach (var ((baseSet, coverSet), (a, b, c, _)) in IntersectionMaps)
 			{
 				var emptyCellsInInterMap = c & EmptyMap;

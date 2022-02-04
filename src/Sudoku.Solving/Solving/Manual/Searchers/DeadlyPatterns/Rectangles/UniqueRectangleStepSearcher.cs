@@ -56,15 +56,12 @@ public sealed unsafe class UniqueRectangleStepSearcher : IUniqueRectangleStepSea
 	/// <inheritdoc/>
 	public Step? GetAll(ICollection<Step> accumulator, in Grid grid, bool onlyFindOne)
 	{
-		bool* possibleAvoidableCases = stackalloc[] { false, true };
-
 		var list = new List<UniqueRectangleStep>();
 
 		// Iterate on mode (whether use AR or UR mode to search).
-		for (int i = 0; i < 2; i++)
-		{
-			GetAll(list, grid, possibleAvoidableCases[i]);
-		}
+		GetAll(list, grid, false);
+		GetAll(list, grid, true);
+
 		if (list.Count == 0)
 		{
 			goto ReturnNull;
@@ -3041,15 +3038,16 @@ public sealed unsafe class UniqueRectangleStepSearcher : IUniqueRectangleStepSea
 			return;
 		}
 
+		bool* cannibalModeCases = stackalloc[] { false, true };
+
 		short otherDigitsMask = (short)(mergedMaskInOtherCells & ~comparer);
 		byte line = (byte)otherCellsMap.CoveredLine;
 		byte block = (byte)TrailingZeroCount(otherCellsMap.CoveredRegions & ~(1 << line));
 		var (a, _, _, d) = IntersectionMaps[(line, block)];
 		var list = new ValueList<Cells>(4);
-		bool* cannibalModes = stackalloc[] { false, true };
-		for (int cannibalModeIndex = 0; cannibalModeIndex < 2; cannibalModeIndex++)
+		for (int caseIndex = 0; caseIndex < 2; caseIndex++)
 		{
-			bool cannibalMode = cannibalModes[cannibalModeIndex];
+			bool cannibalMode = cannibalModeCases[caseIndex];
 			foreach (byte otherBlock in d)
 			{
 				var emptyCellsInInterMap = RegionMaps[otherBlock] & RegionMaps[line] & EmptyMap;
