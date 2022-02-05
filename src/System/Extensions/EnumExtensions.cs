@@ -1,7 +1,4 @@
-﻿using System.Reflection;
-using static System.Numerics.BitOperations;
-
-namespace System;
+﻿namespace System;
 
 /// <summary>
 /// Provides extension methods on <see cref="Enum"/>.
@@ -147,54 +144,9 @@ public static unsafe class EnumExtensions
 	/// <exception cref="InvalidOperationException">
 	/// Throws when the type isn't applied the attribute <see cref="FlagsAttribute"/>.
 	/// </exception>
-	public static IEnumerator<TEnum> GetEnumerator<TEnum>(this TEnum @this) where TEnum : unmanaged, Enum
-	{
-		if (!typeof(TEnum).IsDefined(typeof(FlagsAttribute)))
-		{
-			string message = $"Cannot operate because the type '{typeof(TEnum).Name}' isn't applied attribute type '{nameof(FlagsAttribute)}'.";
-			throw new InvalidOperationException(message);
-		}
-
-		return f(@this, sizeof(TEnum));
-
-
-		static IEnumerator<TEnum> f(TEnum @this, int size)
-		{
-			var array = Enum.GetValues<TEnum>();
-			for (int index = 0, length = array.Length; index < length; index++)
-			{
-				var field = array[index];
-				switch (size)
-				{
-					case 1:
-					case 2:
-					case 4:
-					{
-						if (!IsPow2(Unsafe.As<TEnum, int>(ref field)))
-						{
-							continue;
-						}
-
-						break;
-					}
-					case 8:
-					{
-						if (!IsPow2(Unsafe.As<TEnum, long>(ref field)))
-						{
-							continue;
-						}
-
-						break;
-					}
-				}
-
-				if (@this.Flags(field))
-				{
-					yield return field;
-				}
-			}
-		}
-	}
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static FlagsEnumTypeFieldEnumerator<TEnum> GetEnumerator<TEnum>(this TEnum @this)
+		where TEnum : unmanaged, Enum => new(@this);
 
 	/// <inheritdoc cref="Enum.HasFlag(Enum)"/>
 	/// <typeparam name="TEnum">The type of the enumeration.</typeparam>

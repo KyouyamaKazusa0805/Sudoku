@@ -138,6 +138,60 @@
             </remarks>
             <seealso cref="!:Sort&lt;T&gt;(T[], delegate*&lt;T, T, int&gt;, int, int)"/>
         </member>
+        <member name="T:System.Collections.Generic.FlagsEnumTypeFieldEnumerator`1">
+            <summary>
+            Defines an enumerator that iterates the possible fields of an enumeration type.
+            </summary>
+            <typeparam name="TEnum">
+            The type of the enumeration type, that is marked the attribute <see cref="T:System.FlagsAttribute"/>.
+            </typeparam>
+        </member>
+        <member name="F:System.Collections.Generic.FlagsEnumTypeFieldEnumerator`1._fields">
+            <summary>
+            Indicates the fields of the type to iterate.
+            </summary>
+        </member>
+        <member name="F:System.Collections.Generic.FlagsEnumTypeFieldEnumerator`1._base">
+            <summary>
+            Indicates the base field.
+            </summary>
+        </member>
+        <member name="F:System.Collections.Generic.FlagsEnumTypeFieldEnumerator`1._index">
+            <summary>
+            Indicates the current index being iterated.
+            </summary>
+        </member>
+        <member name="M:System.Collections.Generic.FlagsEnumTypeFieldEnumerator`1.#ctor(`0)">
+            <summary>
+            Initializes a <see cref="T:System.Collections.Generic.FlagsEnumTypeFieldEnumerator`1"/> instance via the type argument,
+            and the base field.
+            </summary>
+            <param name="base">The base field to iterate.</param>
+            <exception cref="T:System.InvalidOperationException">
+            Throws when the type <typeparamref name="TEnum"/> is not marked <see cref="T:System.FlagsAttribute"/>.
+            </exception>
+        </member>
+        <member name="P:System.Collections.Generic.FlagsEnumTypeFieldEnumerator`1.Current">
+            <inheritdoc cref="P:System.Collections.Generic.IEnumerator`1.Current"/>
+        </member>
+        <member name="M:System.Collections.Generic.FlagsEnumTypeFieldEnumerator`1.MoveNext">
+            <inheritdoc cref="M:System.Collections.IEnumerator.MoveNext"/>
+        </member>
+        <member name="M:System.Collections.Generic.FlagsEnumTypeFieldEnumerator`1.GetEnumerator">
+            <inheritdoc cref="M:System.Collections.Generic.IEnumerable`1.GetEnumerator"/>
+        </member>
+        <member name="M:System.Collections.Generic.FlagsEnumTypeFieldEnumerator`1.Equals(System.Object)">
+            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
+            <exception cref="T:System.NotSupportedException">Always throws.</exception>
+        </member>
+        <member name="M:System.Collections.Generic.FlagsEnumTypeFieldEnumerator`1.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+            <exception cref="T:System.NotSupportedException">Always throws.</exception>
+        </member>
+        <member name="M:System.Collections.Generic.FlagsEnumTypeFieldEnumerator`1.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+            <exception cref="T:System.NotSupportedException">Always throws.</exception>
+        </member>
         <member name="T:System.Collections.Generic.OneDimensionalArrayEnumerator`1">
             <summary>
             Defines an enumerator that iterates the one-dimensional array.
@@ -805,6 +859,9 @@
             <typeparam name="TEnum">The type of the enumeration.</typeparam>
             <param name="this">The current enumeration type instance.</param>
             <returns>All flags.</returns>
+            <exception cref="T:System.InvalidOperationException">
+            Throws when the type isn't applied the attribute <see cref="T:System.FlagsAttribute"/>.
+            </exception>
         </member>
         <member name="M:System.EnumExtensions.Flags``1(``0,``0)">
             <inheritdoc cref="M:System.Enum.HasFlag(System.Enum)"/>
