@@ -44,8 +44,14 @@ public interface IStep
 	bool IsElementary { get; }
 
 	/// <summary>
-	/// Indicates the technique name. The default value is in the resource dictionary.
+	/// Indicates the technique name. The name is defined from attribute <see cref="TechniqueNameAttribute"/>
+	/// that is applied to a field in <see cref="Technique"/>.
 	/// </summary>
+	/// <exception cref="InvalidOperationException">
+	/// Throws when the step doesn't contain a valid name.
+	/// </exception>
+	/// <seealso cref="TechniqueNameAttribute"/>
+	/// <seealso cref="Technique"/>
 	string Name { get; }
 
 	/// <summary>

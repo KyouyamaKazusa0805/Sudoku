@@ -6823,46 +6823,6 @@
             Indicates the unique square type 4.
             </summary>
         </member>
-        <member name="F:Sudoku.Techniques.Technique.ReverseUniqueRectangleType1">
-            <summary>
-            Indicates the reverse unique rectangle type 1.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Techniques.Technique.ReverseUniqueRectangleType2">
-            <summary>
-            Indicates the reverse unique rectangle type 2.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Techniques.Technique.ReverseUniqueRectangleType3">
-            <summary>
-            Indicates the reverse unique rectangle type 3.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Techniques.Technique.ReverseUniqueRectangleType4">
-            <summary>
-            Indicates the reverse unique rectangle type 4.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Techniques.Technique.ReverseUniqueLoopType1">
-            <summary>
-            Indicates the reverse unique loop type 1.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Techniques.Technique.ReverseUniqueLoopType2">
-            <summary>
-            Indicates the reverse unique loop type 2.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Techniques.Technique.ReverseUniqueLoopType3">
-            <summary>
-            Indicates the reverse unique loop type 3.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Techniques.Technique.ReverseUniqueLoopType4">
-            <summary>
-            Indicates the reverse unique loop type 4.
-            </summary>
-        </member>
         <member name="F:Sudoku.Techniques.Technique.SueDeCoq">
             <summary>
             Indicates the sue de coq.
@@ -7341,6 +7301,23 @@
         <member name="F:Sudoku.Techniques.TechniqueGroup.BruteForce">
             <summary>
             Indicates the brute force (BF) technique.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Techniques.TechniqueNameAttribute">
+            <summary>
+            Defines the name of the technique field, which is stored in the type <see cref="T:Sudoku.Techniques.Technique"/>.
+            </summary>
+            <seealso cref="T:Sudoku.Techniques.Technique"/>
+        </member>
+        <member name="M:Sudoku.Techniques.TechniqueNameAttribute.#ctor(System.String)">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Techniques.TechniqueNameAttribute"/> instance via the specified name.
+            </summary>
+            <param name="name">The technique name.</param>
+        </member>
+        <member name="P:Sudoku.Techniques.TechniqueNameAttribute.Name">
+            <summary>
+            Indicates the name of the technique.
             </summary>
         </member>
         <member name="T:Sudoku.Techniques.TechniqueTags">
