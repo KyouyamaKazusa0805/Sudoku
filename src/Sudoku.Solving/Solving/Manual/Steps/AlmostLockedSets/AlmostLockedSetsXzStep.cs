@@ -36,9 +36,9 @@ public sealed record AlmostLockedSetsXzStep(
 		ResourceManager.Shared[
 			IsDoublyLinked is null
 				? ZDigitsMask == 0
-					? "techniqueFormat_ExtendedSubsetPrincipleWithoutDuplicate"
-					: "techniqueFormat_ExtendedSubsetPrincipleWithDuplicate"
-				: "techniqueFormat_AlmostLockedSetsXzRule"
+					? "TechniqueFormat_ExtendedSubsetPrincipleWithoutDuplicate"
+					: "TechniqueFormat_ExtendedSubsetPrincipleWithDuplicate"
+				: "TechniqueFormat_AlmostLockedSetsXzRule"
 		];
 
 	/// <inheritdoc/>

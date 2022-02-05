@@ -78,7 +78,7 @@
 	<x:String x:Key="GuardianSingular">a guardian</x:String>
 	<x:String x:Key="GuardianPlural">guardians</x:String>
 
-	<x:String x:Key="TechniqueFormat_LastDigit">{Name}：{CellStr} = {DigitStr}</x:String>
+	<x:String x:Key="TechniqueFormat_LastDigit">{Name}: {CellStr} = {DigitStr}</x:String>
 	<x:String x:Key="TechniqueFormat_HiddenSingle">{Name}: {CellStr} = {DigitStr} in {RegionStr}</x:String>
 	<x:String x:Key="TechniqueFormat_ExtendedSubsetPrincipleWithoutDuplicate">{Name}: All digits can't be duplicate in cells {CellsStr} => {ElimStr}</x:String>
 	<x:String x:Key="TechniqueFormat_ExtendedSubsetPrincipleWithDuplicate">{Name}: Only the digit {EspDigitStr} can be duplicate in cells {CellsStr} => {ElimStr}</x:String>
