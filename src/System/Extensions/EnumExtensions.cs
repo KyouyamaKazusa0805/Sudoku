@@ -144,14 +144,21 @@ public static unsafe class EnumExtensions
 	/// <typeparam name="TEnum">The type of the enumeration.</typeparam>
 	/// <param name="this">The current enumeration type instance.</param>
 	/// <returns>All flags.</returns>
+	/// <exception cref="InvalidOperationException">
+	/// Throws when the type isn't applied the attribute <see cref="FlagsAttribute"/>.
+	/// </exception>
 	public static IEnumerator<TEnum> GetEnumerator<TEnum>(this TEnum @this) where TEnum : unmanaged, Enum
 	{
-		return (
-			typeof(TEnum).IsDefined(typeof(FlagsAttribute)) ? f(@this, sizeof(TEnum)) : Array.Empty<TEnum>()
-		).GetEnumerator();
+		if (!typeof(TEnum).IsDefined(typeof(FlagsAttribute)))
+		{
+			string message = $"Cannot operate because the type '{typeof(TEnum).Name}' isn't applied attribute type '{nameof(FlagsAttribute)}'.";
+			throw new InvalidOperationException(message);
+		}
+
+		return f(@this, sizeof(TEnum));
 
 
-		static IEnumerable<TEnum> f(TEnum @this, int size)
+		static IEnumerator<TEnum> f(TEnum @this, int size)
 		{
 			var array = Enum.GetValues<TEnum>();
 			for (int index = 0, length = array.Length; index < length; index++)
