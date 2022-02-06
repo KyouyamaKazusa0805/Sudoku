@@ -1093,6 +1093,27 @@ public unsafe struct Candidates :
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	static Candidates IBitwiseOperators<Candidates, Candidates, Candidates>.operator ~(Candidates value) =>
+		~value;
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	static Candidates IBitwiseOperators<Candidates, Candidates, Candidates>.operator &(Candidates left, Candidates right) =>
+		left & right;
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	static Candidates IBitwiseOperators<Candidates, Candidates, Candidates>.operator |(Candidates left, Candidates right) =>
+		left | right;
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	static Candidates IBitwiseOperators<Candidates, Candidates, Candidates>.operator ^(Candidates left, Candidates right) =>
+		left ^ right;
+
+#if FEATURE_GENERIC_MATH_IN_ARG
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	static Candidates IValueAdditionOperators<Candidates, int, Candidates>.operator +(Candidates left, in int right) =>
 		left + right;
 
@@ -1141,27 +1162,6 @@ public unsafe struct Candidates :
 	static Candidates IValueModulusOperators<Candidates, Candidates, Candidates>.operator %(in Candidates left, Candidates right) =>
 		left % right;
 
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	static Candidates IBitwiseOperators<Candidates, Candidates, Candidates>.operator ~(Candidates value) =>
-		~value;
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	static Candidates IBitwiseOperators<Candidates, Candidates, Candidates>.operator &(Candidates left, Candidates right) =>
-		left & right;
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	static Candidates IBitwiseOperators<Candidates, Candidates, Candidates>.operator |(Candidates left, Candidates right) =>
-		left | right;
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	static Candidates IBitwiseOperators<Candidates, Candidates, Candidates>.operator ^(Candidates left, Candidates right) =>
-		left ^ right;
-
-#if FEATURE_GENERIC_MATH_IN_ARG
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	static bool IValueEqualityOperators<Candidates, Candidates>.operator ==(Candidates left, in Candidates right) =>

@@ -91,23 +91,6 @@ public readonly record struct ExocetElimination(in Candidates Eliminations, Exoc
 	}
 
 
-#if FEATURE_GENERIC_MATH && FEATURE_GENERIC_MATH_IN_ARG
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	[SpecialName]
-	[SuppressMessage("Style", "IDE1006:Naming Styles", Justification = "<Pending>")]
-	public static bool op_Equality(in ExocetElimination left, in ExocetElimination right) =>
-		left.Equals(in right);
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	[SpecialName]
-	[SuppressMessage("Style", "IDE1006:Naming Styles", Justification = "<Pending>")]
-	public static bool op_Inequality(in ExocetElimination left, in ExocetElimination right) =>
-		!left.Equals(in right);
-#endif
-
-
 	/// <summary>
 	/// To merge two different instances, and return the merged result.
 	/// </summary>
@@ -143,18 +126,7 @@ public readonly record struct ExocetElimination(in Candidates Eliminations, Exoc
 		return new(new(merged, totalCount), lr);
 	}
 
-#if FEATURE_GENERIC_MATH
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	static bool IEqualityOperators<ExocetElimination, ExocetElimination>.operator ==(ExocetElimination left, ExocetElimination right) =>
-		op_Equality(in left, in right);
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	static bool IEqualityOperators<ExocetElimination, ExocetElimination>.operator !=(ExocetElimination left, ExocetElimination right) =>
-		op_Inequality(in left, in right);
-
-#if FEATURE_GENERIC_MATH_IN_ARG
+#if FEATURE_GENERIC_MATH && FEATURE_GENERIC_MATH_IN_ARG
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	static ExocetElimination IValueBitwiseOrOperators<ExocetElimination, ExocetElimination, ExocetElimination>.operator |(ExocetElimination left, in ExocetElimination right) =>
@@ -194,6 +166,5 @@ public readonly record struct ExocetElimination(in Candidates Eliminations, Exoc
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	static bool IValueEqualityOperators<ExocetElimination, ExocetElimination>.operator !=(ExocetElimination left, in ExocetElimination right) =>
 		op_Inequality(in left, in right);
-#endif
 #endif
 }

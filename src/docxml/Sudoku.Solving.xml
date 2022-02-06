@@ -407,6 +407,12 @@
             <param name="right">The right-side instance to compare.</param>
             <returns>A <see cref="T:System.Boolean"/> result.</returns>
         </member>
+        <member name="M:Sudoku.Solving.Collections.AlmostLockedSet.System#IEqualityOperators{Sudoku#Solving#Collections#AlmostLockedSet,Sudoku#Solving#Collections#AlmostLockedSet}#op_Equality(Sudoku.Solving.Collections.AlmostLockedSet,Sudoku.Solving.Collections.AlmostLockedSet)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Collections.AlmostLockedSet.System#IEqualityOperators{Sudoku#Solving#Collections#AlmostLockedSet,Sudoku#Solving#Collections#AlmostLockedSet}#op_Inequality(Sudoku.Solving.Collections.AlmostLockedSet,Sudoku.Solving.Collections.AlmostLockedSet)">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Solving.Collections.ExocetEliminatedReason">
             <summary>
             Encapsulates a type that represents the reason why the exocet eliminations can be removed.
@@ -1587,8 +1593,14 @@
         </member>
         <member name="P:Sudoku.Solving.Manual.IStep.Name">
             <summary>
-            Indicates the technique name. The default value is in the resource dictionary.
+            Indicates the technique name. The name is defined from attribute <see cref="T:Sudoku.Techniques.TechniqueNameAttribute"/>
+            that is applied to a field in <see cref="T:Sudoku.Techniques.Technique"/>.
             </summary>
+            <exception cref="T:System.InvalidOperationException">
+            Throws when the step doesn't contain a valid name.
+            </exception>
+            <seealso cref="T:Sudoku.Techniques.TechniqueNameAttribute"/>
+            <seealso cref="T:Sudoku.Techniques.Technique"/>
         </member>
         <member name="P:Sudoku.Solving.Manual.IStep.Format">
             <summary>
@@ -7741,21 +7753,6 @@
         </member>
         <member name="P:Sudoku.Solving.Manual.Steps.ComplexFishStep.Rarity">
             <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.Steps.ComplexFishStep.BaseHashCode">
-            <summary>
-            Indicates the base hash code.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.Steps.ComplexFishStep.BaseSetHashCode">
-            <summary>
-            Indicates the base set hash code.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.Steps.ComplexFishStep.CoverSetHashCode">
-            <summary>
-            Indicates the cover set hash code.
-            </summary>
         </member>
         <member name="P:Sudoku.Solving.Manual.Steps.ComplexFishStep.InternalName">
             <summary>

@@ -11,7 +11,6 @@
 		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
 		<LangVersion>preview</LangVersion>
 		<ImplicitUsings>enable</ImplicitUsings>
-		<DefineConstants>FEATURE_GENERIC_MATH</DefineConstants>
 	</PropertyGroup>
 
 	<!--
@@ -85,16 +84,22 @@
 		</When>
 	</Choose>
 
-	<!--Select the default configuration as 'DEBUG'.-->
+	<!--Select the default configuration as 'DEBUG', and set the compilation symbols.-->
 	<Choose>
 		<When Condition="'$(Configuration)'==''">
 			<PropertyGroup>
 				<Configuration>Debug</Configuration>
+				<DefineConstants>DEBUG;FEATURE_GENERIC_MATH</DefineConstants>
 			</PropertyGroup>
 		</When>
 		<When Condition="'$(Configuration)'=='Debug'">
 			<PropertyGroup>
-				<DefineConstants>DEBUG</DefineConstants>
+				<DefineConstants>DEBUG;FEATURE_GENERIC_MATH</DefineConstants>
+			</PropertyGroup>
+		</When>
+		<When Condition="'$(Configuration)'=='Release'">
+			<PropertyGroup>
+				<DefineConstants>FEATURE_GENERIC_MATH</DefineConstants>
 			</PropertyGroup>
 		</When>
 	</Choose>
