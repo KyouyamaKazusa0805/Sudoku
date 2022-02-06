@@ -2646,7 +2646,7 @@
 				Indicates the <see langword="static" /> constructor of the current type.
 			</para>
 			<para>
-				This construtcor will initialize some <see langword="static readonly" /> data members
+				This constructor will initialize some <see langword="static readonly" /> data members
 				of this type that can't use a simple expression to describe the initial value.
 			</para>
 		</summary>
@@ -2842,7 +2842,7 @@
 				Indicates the <see langword="static" /> constructor of the current type.
 			</para>
 			<para>
-				This construtcor will initialize some <see langword="static readonly" /> data members
+				This constructor will initialize some <see langword="static readonly" /> data members
 				of this type that can't use a simple expression to describe the initial value.
 			</para>
 		</summary>
@@ -2884,7 +2884,7 @@
 				Indicates the <see langword="static" /> constructor of the current type.
 			</para>
 			<para>
-				This construtcor will initialize some <see langword="static readonly" /> data members
+				This constructor will initialize some <see langword="static readonly" /> data members
 				of this type that can't use a simple expression to describe the initial value.
 			</para>
 		</summary>
@@ -3670,7 +3670,7 @@
 				Indicates the <see langword="static" /> constructor of the current type.
 			</para>
 			<para>
-				This construtcor will initialize some <see langword="static readonly" /> data members
+				This constructor will initialize some <see langword="static readonly" /> data members
 				of this type that can't use a simple expression to describe the initial value.
 			</para>
 		</summary>
@@ -3770,7 +3770,7 @@
 				Indicates the <see langword="static" /> constructor of the current type.
 			</para>
 			<para>
-				This construtcor will initialize some <see langword="static readonly" /> data members
+				This constructor will initialize some <see langword="static readonly" /> data members
 				of this type that can't use a simple expression to describe the initial value.
 			</para>
 		</summary>
@@ -4428,7 +4428,7 @@
 				Indicates the <see langword="static" /> constructor of the current type.
 			</para>
 			<para>
-				This construtcor will initialize some <see langword="static readonly" /> data members
+				This constructor will initialize some <see langword="static readonly" /> data members
 				of this type that can't use a simple expression to describe the initial value.
 			</para>
 		</summary>
@@ -4491,7 +4491,7 @@
 				Indicates the <see langword="static" /> constructor of the current type.
 			</para>
 			<para>
-				This construtcor will initialize some <see langword="static readonly" /> data members
+				This constructor will initialize some <see langword="static readonly" /> data members
 				of this type that can't use a simple expression to describe the initial value.
 			</para>
 		</summary>

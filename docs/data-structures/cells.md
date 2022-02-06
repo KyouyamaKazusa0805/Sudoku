@@ -31,6 +31,7 @@ public struct Cells :
     IValueBitwiseExclusiveOrOperators<Cells, Cells, Cells>,
     IValueEqualityOperators<Cells, Cells>,
     IValueGreaterThanOrLessThanOperators<Cells, Cells>,
+    IValueMetaLogicalOperators<Cells>,
     IValueLogicalNotOperators<Cells>
 #endif
 #endif
@@ -103,6 +104,8 @@ public struct Cells :
     public static bool operator !=(Cells left, Cells right);
     public static bool operator <(in Cells left, in Cells right);
     public static bool operator >(in Cells left, in Cells right);
+    public static bool operator true(in Cells offsets);
+    public static bool operator false(in Cells offsets);
 
     public static implicit operator Cells(in ReadOnlySpan<int> offsets);
     public static implicit operator Cells(in Span<int> offsets);
@@ -501,6 +504,19 @@ foreach (int cell in cells)
 这个类型只重载了 `>` 和 `<` 运算符，而 `>=` 和 `<=` 并没有重载。
 
 `>` 运算符会按照数学的定义计算。它表示是否使用符号左边减去右边得到的差集结果仍然还包含元素在其中。`<` 符号则是将刚才的结果取反。即从语法上 `left > right` 等于 `(left - right).Count >= 0`，而 `left < right` 则等于 `(left - right).Count == 0`，或 `!((left - right).Count >= 0)`。
+
+### 逻辑元运算符 `true(in Cells)` 和 `false(in Cells)`
+
+逻辑元运算符是用来简化 `Count` 属性和 0 之间的比较关系的。如果你有一个 `Cells` 类型的对象的话，我们可以使用 `if (a.Count != 0)` 来判断对象是否不空。不过有了这两个运算符后，我们可以简化代码，让它直接当成类 `bool` 类型的调用方式 `if (a)` 来表达同等意思的代码，这样可以简化省略掉 `Count == 0` 部分的内容。
+
+其中：
+
+* `true(in Cells)` 运算符：等价于 `Count != 0` 的比较；
+* `false(in Cells)` 运算符：等价于 `Count == 0` 的比较。
+
+如果你需要比较对象是否为空的话，本应该这么写：`if (!a)`，但因为 `operator !` 在这个数据类型里已经拥有重载版本，它表示不同的意思，因此要想这样去比较的话，请使用 `if (~a)`。
+
+这两个运算符均返回 `bool` 类型，因此你无需担心复杂的逻辑判断，它们仅在这个类型里用作和 `Count == 0` 和 `Count != 0` 的简化。
 
 ### 加减法运算符 `+(Cells, int)` 和 `-(Cells, int)`
 

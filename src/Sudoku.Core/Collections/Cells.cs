@@ -45,6 +45,7 @@ public unsafe struct Cells :
 	IValueBitwiseExclusiveOrOperators<Cells, Cells, Cells>,
 	IValueEqualityOperators<Cells, Cells>,
 	IValueGreaterThanOrLessThanOperators<Cells, Cells>,
+	IValueMetaLogicalOperators<Cells>,
 	IValueLogicalNotOperators<Cells>
 #endif
 #endif
@@ -1180,6 +1181,64 @@ public unsafe struct Cells :
 
 		return new(higherBits, lowerBits);
 	}
+
+
+	/// <summary>
+	/// Determine whether the current collection contains at least one offset.
+	/// </summary>
+	/// <param name="offsets">The instance to determine.</param>
+	/// <returns>A <see cref="bool"/> value indicating that.</returns>
+	/// <remarks>
+	/// <para>
+	/// This operator cannot be invoked manually, but you can use logical-or
+	/// <c><see langword="operator"/> <![CDATA[||]]></c>
+	/// to invoke this operator implicitly.
+	/// </para>
+	/// <para>
+	/// For example, suppose the given two instances <c>a</c> and <c>b</c> are both of type <see cref="Cells"/>,
+	/// the expression <c>if (a)</c> is equivalent to <c>if (a.Count != 0)</c>,
+	/// and the expression <c><![CDATA[if (a && b)]]></c> is equivalent to
+	/// <c><![CDATA[if (a.Count != 0 && b.Count != 0)]]></c>.
+	/// </para>
+	/// <para>
+	/// <include file='../../global-doc-comments.xml' path='g/operator-true-and-false' />
+	/// </para>
+	/// </remarks>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static bool operator true(in Cells offsets) => offsets.Count != 0;
+
+	/// <summary>
+	/// Determine whether the current collection contains no elements.
+	/// </summary>
+	/// <param name="offsets">The instance to determine.</param>
+	/// <returns>A <see cref="bool"/> value indicating that.</returns>
+	/// <remarks>
+	/// <para>
+	/// This operator cannot be invoked manually, but you can use logical-and
+	/// <c><see langword="operator"/> <![CDATA[&&]]></c>
+	/// to invoke this operator implicitly.
+	/// </para>
+	/// <para>
+	/// For example, suppose the given two instances <c>a</c> and <c>b</c> are both
+	/// of type <see cref="Cells"/>, the expression <c><![CDATA[if (a || b)]]></c> is equivalent to
+	/// <c><![CDATA[if (a.Count == 0 || b.Count == 0)]]></c>.
+	/// </para>
+	/// <para>
+	/// <include file='../../global-doc-comments.xml' path='g/operator-true-and-false' />
+	/// </para>
+	/// <para><b>
+	/// Please note that <see cref="operator !(in Cells)"/> has been already overloaded
+	/// as the peer intersection, which means the operator is not a negation operation.
+	/// If you want to invoke this operator, please use bitwise-negation <see cref="operator ~(in Cells)"/>
+	/// to negate the instance, and then invokes <see cref="operator true(in Cells)"/> instead,
+	/// i.e. <c>~a</c> instead of <c>!a</c>.
+	/// </b></para>
+	/// </remarks>
+	/// <seealso cref="operator !(in Cells)"/>
+	/// <seealso cref="operator ~(in Cells)"/>
+	/// <seealso cref="operator true(in Cells)"/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static bool operator false(in Cells offsets) => offsets.Count == 0;
 
 	/// <summary>
 	/// Reverse status for all offsets, which means all <see langword="true"/> bits
