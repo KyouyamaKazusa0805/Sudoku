@@ -82,23 +82,13 @@ public sealed partial record ComplexFishStep(
 	public override Rarity Rarity =>
 		(Size, ShapeModifier, FinModifier) switch
 		{
-			(Size: 3, _, _) => Rarity.Sometimes
+			(Size: 3, _, _) => Rarity.Sometimes,
+			(Size: 4, ShapeModifier: ShapeModifiers.Franken, _) => Rarity.Sometimes,
+			(Size: 4, ShapeModifier: ShapeModifiers.Mutant, _) => Rarity.Seldom,
+			(Size: 5, ShapeModifier: ShapeModifiers.Franken, FinModifier: FinModifiers.Sashimi) => Rarity.Seldom,
+			(Size: 5, ShapeModifier: ShapeModifiers.Mutant, _) => Rarity.Seldom,
+			_ => Rarity.HardlyEver
 		};
-
-	/// <summary>
-	/// Indicates the base hash code.
-	/// </summary>
-	private int BaseHashCode => Digit << 17 & 0xABC0DEF;
-
-	/// <summary>
-	/// Indicates the base set hash code.
-	/// </summary>
-	private int BaseSetHashCode => new RegionCollection(BaseRegions).GetHashCode();
-
-	/// <summary>
-	/// Indicates the cover set hash code.
-	/// </summary>
-	private int CoverSetHashCode => new RegionCollection(CoverRegions).GetHashCode();
 
 	/// <summary>
 	/// The internal name.

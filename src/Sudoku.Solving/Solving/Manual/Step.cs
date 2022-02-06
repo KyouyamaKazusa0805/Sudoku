@@ -13,13 +13,7 @@ namespace Sudoku.Solving.Manual;
 /// </summary>
 /// <param name="Conclusions"><inheritdoc/></param>
 /// <param name="Views"><inheritdoc/></param>
-public abstract record Step(ImmutableArray<Conclusion> Conclusions, ImmutableArray<PresentationData> Views) :
-	IStep,
-	IEquatable<Step>
-#if FEATURE_GENERIC_MATH
-	,
-	IEqualityOperators<Step, Step>
-#endif
+public abstract record Step(ImmutableArray<Conclusion> Conclusions, ImmutableArray<PresentationData> Views) : IStep
 {
 	/// <inheritdoc/>
 	public virtual bool ShowDifficulty => true;
