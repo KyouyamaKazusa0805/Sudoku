@@ -1257,6 +1257,55 @@
             Indicates all possible diagnostics types used.
             </summary>
         </member>
+        <member name="T:Sudoku.Diagnostics.CodeAnalysis.SyntaxContextReceivers.TechniqueNameAttributeSyntaxChecker">
+            <summary>
+            Indicates the syntax checker that checks for the code structures and the API usages.
+            The current analyzer will check the following cases:
+            <list type="bullet">
+            <listheader>
+            <term>Diagnostic ID</term>
+            <description>Description</description>
+            </listheader>
+            <item>
+            <term>SCA0133</term>
+            <description>The attribute can only be applied to an enum field of type 'Technique'</description>
+            </item>
+            <item>
+            <term>SCA0134</term>
+            <description>The technique name cannot contain any trailing or leading spaces</description>
+            </item>
+            </list>
+            </summary>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.SyntaxContextReceivers.TechniqueNameAttributeSyntaxChecker.OnVisitSyntaxNode(Microsoft.CodeAnalysis.GeneratorSyntaxContext)">
+            <inheritdoc/>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.SyntaxContextReceivers.TechniqueNameAttributeSyntaxChecker.SCA0133">
+            <summary>
+            Indicates the <see cref="T:Microsoft.CodeAnalysis.DiagnosticDescriptor"/> instance that describes for the diagnostic result SCA0133 (The attribute can only be applied to an enum field of type 'Technique').
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.SyntaxContextReceivers.TechniqueNameAttributeSyntaxChecker.SCA0134">
+            <summary>
+            Indicates the <see cref="T:Microsoft.CodeAnalysis.DiagnosticDescriptor"/> instance that describes for the diagnostic result SCA0134 (The technique name cannot contain any trailing or leading spaces).
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.CodeAnalysis.SyntaxContextReceivers.TechniqueNameAttributeSyntaxChecker._cancellationToken">
+            <summary>
+            Indicates the cancellation token used.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.SyntaxContextReceivers.TechniqueNameAttributeSyntaxChecker.#ctor(System.Threading.CancellationToken)">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Diagnostics.CodeAnalysis.SyntaxContextReceivers.TechniqueNameAttributeSyntaxChecker"/> instance using the cancellation token.
+            </summary>
+            <param name="cancellationToken">The cancellation token to cancel the operation.</param>
+        </member>
+        <member name="P:Sudoku.Diagnostics.CodeAnalysis.SyntaxContextReceivers.TechniqueNameAttributeSyntaxChecker.Diagnostics">
+            <summary>
+            Indicates all possible diagnostics types used.
+            </summary>
+        </member>
         <member name="T:Sudoku.Diagnostics.CodeAnalysis.SyntaxContextReceivers.ThisConstraintSyntaxChecker">
             <summary>
             Indicates the syntax checker that checks for the code structures and the API usages.
@@ -1400,6 +1449,12 @@
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Diagnostics.CodeAnalysis.Analyzers.StepSearcherAttributeAnalyzer.Initialize(Microsoft.CodeAnalysis.GeneratorInitializationContext)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.Analyzers.TechniqueNameAttributeAnalyzer.Execute(Microsoft.CodeAnalysis.GeneratorExecutionContext)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeAnalysis.Analyzers.TechniqueNameAttributeAnalyzer.Initialize(Microsoft.CodeAnalysis.GeneratorInitializationContext)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Diagnostics.CodeAnalysis.Analyzers.ThisConstraintAnalyzer.Execute(Microsoft.CodeAnalysis.GeneratorExecutionContext)">

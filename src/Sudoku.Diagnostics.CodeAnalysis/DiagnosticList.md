@@ -43,6 +43,8 @@
 | SCA0130       | Usage     | Error    | The type marked '[StepSearcher]' cannot be abstract          |                                                              |
 | SCA0131       | Usage     | Error    | The type marked '[StepSearcher]' must contain a parameterless constructor |                                                              |
 | SCA0132       | Usage     | Error    | The type marked '[StepSearcher]' cannot be static            |                                                              |
+| SCA0133       | Usage     | Warning  | The attribute can only be applied to an enum field of type 'Technique' |                                                              |
+| SCA0134       | Usage     | Warning  | The technique name cannot contain any trailing or leading spaces |                                                              |
 | SCA0301       | Naming    | Warning  | Please apply camel-casing onto local functions               |                                                              |
 | SCA0302       | Naming    | Warning  | Please name '@this' onto the first argument of the extension deconstruction method |                                                              |
 | SCA0303       | Design    | Warning  | Unnecessary modifier 'readonly' on this member because the containing type has been already read-only |                                                              |
