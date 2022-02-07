@@ -18,6 +18,8 @@
 * 常见数据结构介绍
   * [`Cells` 结构](data-structures/cells)
   * `Grid` 结构
+    * [API 用法介绍](data-structures/grid)
+    * `Grid` 会用到的格式化字符串
 * 代码分析
-  * SCA 系列代码分析编号
+  * SCA 系列代码简介
   * 所有代码分析规则列表
