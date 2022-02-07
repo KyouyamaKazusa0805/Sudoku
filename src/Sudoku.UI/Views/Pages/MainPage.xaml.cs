@@ -16,7 +16,8 @@ public sealed partial class MainPage : Page
 	private readonly (string ViewItemTag, Type PageType)[] _navigationPairs =
 	{
 		(nameof(SettingsPage), typeof(SettingsPage)),
-		(nameof(AboutPage), typeof(AboutPage))
+		(nameof(AboutPage), typeof(AboutPage)),
+		(nameof(SudokuPage), typeof(SudokuPage))
 	};
 
 

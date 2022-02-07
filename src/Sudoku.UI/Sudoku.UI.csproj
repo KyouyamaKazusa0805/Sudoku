@@ -25,12 +25,19 @@
 	</PropertyGroup>
 
 	<ItemGroup>
+		<Using Include="Microsoft.UI.Xaml.Controls.Grid" Alias="GridLayout" />
+		<Using Include="Sudoku.Collections.Grid" Alias="Grid" />
+	</ItemGroup>
+
+	<ItemGroup>
 		<None Remove="BasicProperties.xaml" />
 		<None Remove="TextResources-en-us.xaml" />
 		<None Remove="TextResources-zh-cn.xaml" />
+		<None Remove="Views\Controls\SudokuPane.xaml" />
 		<None Remove="Views\Pages\AboutPage.xaml" />
 		<None Remove="Views\Pages\MainPage.xaml" />
 		<None Remove="Views\Pages\SettingsPage.xaml" />
+		<None Remove="Views\Pages\SudokuPage.xaml" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -55,8 +62,8 @@
 
 	<!--
 	Defining the "Msix" ProjectCapability here allows the Single-project MSIX Packaging
-    Tools extension to be activated for this project even if the Windows App SDK Nuget
-    package has not yet been restored
+	Tools extension to be activated for this project even if the Windows App SDK Nuget
+	package has not yet been restored
 	-->
 	<ItemGroup Condition="'$(DisableMsixProjectCapabilityAddedByProject)'!='true' and '$(EnablePreviewMsixTooling)'=='true'">
 		<ProjectCapability Include="Msix" />
@@ -77,21 +84,19 @@
 		<Page Update="ResourceDictionaries\BasicProperties.xaml">
 			<Generator>MSBuild:Compile</Generator>
 		</Page>
-	</ItemGroup>
-
-	<ItemGroup>
 		<Page Update="Views\Pages\AboutPage.xaml">
 			<Generator>MSBuild:Compile</Generator>
 		</Page>
-	</ItemGroup>
-
-	<ItemGroup>
 		<Page Update="Views\Pages\MainPage.xaml">
 			<Generator>MSBuild:Compile</Generator>
 		</Page>
-	</ItemGroup>
-	<ItemGroup>
 		<Page Update="Views\Pages\SettingsPage.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</Page>
+		<Page Update="Views\Pages\SudokuPage.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</Page>
+		<Page Update="Views\Controls\SudokuPane.xaml">
 			<Generator>MSBuild:Compile</Generator>
 		</Page>
 	</ItemGroup>

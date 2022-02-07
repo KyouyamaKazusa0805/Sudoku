@@ -86,6 +86,32 @@
             <param name="uri">The URI website.</param>
             <returns>The process.</returns>
         </member>
+        <member name="T:Sudoku.UI.Models.GridChangedEventArgs">
+            <summary>
+            Provides the data when the event of type <see cref="T:Sudoku.UI.Models.GridChangedEventHandler"/> is triggered.
+            </summary>
+            <seealso cref="T:Sudoku.UI.Models.GridChangedEventHandler"/>
+        </member>
+        <member name="M:Sudoku.UI.Models.GridChangedEventArgs.#ctor(Sudoku.Collections.Grid@)">
+            <summary>
+            Initializes a <see cref="T:Sudoku.UI.Models.GridChangedEventArgs"/> instance via the specified sudoku grid
+            of type <see cref="T:Sudoku.Collections.Grid"/> as the newer one.
+            </summary>
+            <param name="grid">The grid that is used for overwritting the older value.</param>
+        </member>
+        <member name="P:Sudoku.UI.Models.GridChangedEventArgs.Grid">
+            <summary>
+            Indicates the grid used.
+            </summary>
+        </member>
+        <member name="T:Sudoku.UI.Models.GridChangedEventHandler">
+            <summary>
+            Defines a delegate type that holds a set of methods that is invoked when the corresponding
+            event is triggered.
+            </summary>
+            <param name="sender">The object that triggers the corresponding event.</param>
+            <param name="e">The data provided.</param>
+        </member>
         <member name="T:Sudoku.UI.Models.RepositoryInfo">
             <summary>
             Defines a set of properties to describe an image.
@@ -230,6 +256,80 @@
             </summary>
             <seealso cref="T:Sudoku.UI.Views.Pages.SettingsPage"/>
         </member>
+        <member name="T:Sudoku.UI.ViewModels.SudokuPageViewModel">
+            <summary>
+            Indicates the view model that binds with the <see cref="T:Sudoku.UI.Views.Pages.SudokuPage"/> instances.
+            </summary>
+            <seealso cref="T:Sudoku.UI.Views.Pages.SudokuPage"/>
+        </member>
+        <member name="T:Sudoku.UI.ViewModels.SudokuPaneViewModel">
+            <summary>
+            Indicates the view model that binds with the <see cref="T:Sudoku.UI.Views.Controls.SudokuPane"/> instances.
+            </summary>
+            <seealso cref="T:Sudoku.UI.Views.Controls.SudokuPane"/>
+        </member>
+        <member name="F:Sudoku.UI.ViewModels.SudokuPaneViewModel._grid">
+            <summary>
+            Indicates the grid, which is the backing field of the property <see cref="P:Sudoku.UI.ViewModels.SudokuPaneViewModel.Grid"/>.
+            </summary>
+            <seealso cref="P:Sudoku.UI.ViewModels.SudokuPaneViewModel.Grid"/>
+        </member>
+        <member name="M:Sudoku.UI.ViewModels.SudokuPaneViewModel.#ctor">
+            <summary>
+            Initializes a <see cref="T:Sudoku.UI.ViewModels.SudokuPageViewModel"/> instance.
+            </summary>
+        </member>
+        <member name="P:Sudoku.UI.ViewModels.SudokuPaneViewModel.Grid">
+            <summary>
+            Gets or sets the current grid data.
+            </summary>
+        </member>
+        <member name="E:Sudoku.UI.ViewModels.SudokuPaneViewModel.GridChanged">
+            <summary>
+            Indicates the event that is triggered by other members when the backing field of the property
+            <see cref="P:Sudoku.UI.ViewModels.SudokuPaneViewModel.Grid"/> has been changed its value.
+            </summary>
+            <seealso cref="P:Sudoku.UI.ViewModels.SudokuPaneViewModel.Grid"/>
+        </member>
+        <member name="M:Sudoku.UI.ViewModels.SudokuPaneViewModel.Grid_GridChanged(System.Object,Sudoku.UI.Models.GridChangedEventArgs)">
+            <summary>
+            Triggers when the backing field of the property <see cref="P:Sudoku.UI.ViewModels.SudokuPaneViewModel.Grid"/> has been changed its value.
+            </summary>
+            <param name="sender">The object that triggers the event.</param>
+            <param name="e">The event arguments provided.</param>
+        </member>
+        <member name="T:Sudoku.UI.Views.Controls.SudokuPane">
+            <summary>
+            Defines a user control that interacts with a sudoku grid.
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Views.Controls.SudokuPane.#ctor">
+            <summary>
+            Initializes a <see cref="T:Sudoku.UI.Views.Controls.SudokuPane"/> instance.
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Views.Controls.SudokuPane.SudokuPane_Loaded(System.Object,Microsoft.UI.Xaml.RoutedEventArgs)">
+            <summary>
+            Triggers when the current control is loaded.
+            </summary>
+            <param name="sender">The object to trigger the event. The instance is always itself.</param>
+            <param name="e">The event arguments provided.</param>
+        </member>
+        <member name="M:Sudoku.UI.Views.Controls.SudokuPane.InitializeComponent">
+            <summary>
+            InitializeComponent()
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Views.Controls.SudokuPane.Connect(System.Int32,System.Object)">
+            <summary>
+            Connect()
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Views.Controls.SudokuPane.GetBindingConnector(System.Int32,System.Object)">
+            <summary>
+            GetBindingConnector(int connectionId, object target)
+            </summary>
+        </member>
         <member name="T:Sudoku.UI.Views.Pages.AboutPage">
             <summary>
             A page that can be used on its own or navigated to within a <see cref="T:Microsoft.UI.Xaml.Controls.Frame"/>.
@@ -320,6 +420,31 @@
             GetBindingConnector(int connectionId, object target)
             </summary>
         </member>
+        <member name="T:Sudoku.UI.Views.Pages.SudokuPage">
+            <summary>
+            An empty page that can be used on its own or navigated to within a Frame.
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Views.Pages.SudokuPage.#ctor">
+            <summary>
+            Initializes a <see cref="T:Sudoku.UI.Views.Pages.SudokuPage"/> instance.
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Views.Pages.SudokuPage.InitializeComponent">
+            <summary>
+            InitializeComponent()
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Views.Pages.SudokuPage.Connect(System.Int32,System.Object)">
+            <summary>
+            Connect()
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Views.Pages.SudokuPage.GetBindingConnector(System.Int32,System.Object)">
+            <summary>
+            GetBindingConnector(int connectionId, object target)
+            </summary>
+        </member>
         <member name="T:Sudoku.UI.Views.Windows.MainWindow">
             <summary>
             An empty window that can be used on its own or navigated to within a <see cref="T:Microsoft.UI.Xaml.Controls.Frame"/>.
@@ -370,6 +495,12 @@
             <summary>
             GetXmlnsDefinitions()
             </summary>
+        </member>
+        <member name="T:Microsoft.UI.Xaml.Controls.GridExtensions">
+            <summary>
+            Provides extension methods on <see cref="T:Microsoft.UI.Xaml.Controls.Grid"/>.
+            </summary>
+            <seealso cref="T:Microsoft.UI.Xaml.Controls.Grid"/>
         </member>
     </members>
 </doc>

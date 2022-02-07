@@ -16,7 +16,7 @@
 		<StackPanel>
 			<!--Program description-->
 			<TextBlock Text="{StaticResource AboutPage_DetailDescription}" Style="{ThemeResource PlainText}" />
-			
+
 			<!--Author info-->
 			<TextBlock Text="{StaticResource AboutPage_Author}" Style="{ThemeResource Header2Text}" />
 			<TextBlock Text="{StaticResource AboutPage_AuthorName}" Style="{ThemeResource BoldText}" />

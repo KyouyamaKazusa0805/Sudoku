@@ -16,9 +16,7 @@
 		IsBackEnabled="False" PaneDisplayMode="Left" IsSettingsVisible="False"
 		ItemInvoked="ViewRouter_ItemInvoked" SelectionChanged="ViewRouter_SelectionChanged">
 		<NavigationView.MenuItems>
-			<NavigationViewItem
-				x:Name="_itemHomePage" Icon="Home" Tag="SudokuPage"
-				Content="{StaticResource MainPage_Sudoku}" />
+			<NavigationViewItem Icon="Edit" Tag="SudokuPage" Content="{StaticResource MainPage_Sudoku}" />
 		</NavigationView.MenuItems>
 		<NavigationView.FooterMenuItems>
 			<NavigationViewItem Icon="Setting" Tag="SettingsPage" Content="{StaticResource MainPage_Settings}" />
