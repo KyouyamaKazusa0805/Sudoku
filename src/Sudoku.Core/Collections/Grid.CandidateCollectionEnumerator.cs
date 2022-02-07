@@ -40,7 +40,7 @@ partial struct Grid
 		/// Note here we should point at the one-unit-lengthed memory before the array start.
 		/// </remarks>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public CandidateCollectionEnumerator(short* arr) => _currentPointer = _start = arr - 1;
+		internal CandidateCollectionEnumerator(short* arr) => _currentPointer = _start = arr - 1;
 
 
 		/// <summary>
