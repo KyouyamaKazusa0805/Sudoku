@@ -15,12 +15,7 @@ public sealed partial class SudokuPane : UserControl
 	public SudokuPane() => InitializeComponent();
 
 
-	/// <summary>
-	/// Triggers when the current control is loaded.
-	/// </summary>
-	/// <param name="sender">The object to trigger the event. The instance is always itself.</param>
-	/// <param name="e">The event arguments provided.</param>
-	private void SudokuPane_Loaded([IsDiscard] object sender, [IsDiscard] RoutedEventArgs e)
+	private void InitializeGrid(double blockStrokeWidth, double cellStrokeWidth)
 	{
 		// Initializes row and column definitions.
 		for (int i = 0; i < 27; i++)
@@ -32,8 +27,16 @@ public sealed partial class SudokuPane : UserControl
 		// Initializes block border lines.
 		var blockThicknesses = new Thickness[,]
 		{
-			{ new(0, 4, 0, 2), new(0, 2, 0, 2), new(0, 2, 0, 4) },
-			{ new(4, 0, 2, 0), new(2, 0, 2, 0), new(2, 0, 4, 0) }
+			{
+				new(0, blockStrokeWidth, 0, blockStrokeWidth / 2),
+				new(0, blockStrokeWidth / 2, 0, blockStrokeWidth / 2),
+				new(0, blockStrokeWidth / 2, 0, blockStrokeWidth)
+			},
+			{
+				new(blockStrokeWidth, 0, blockStrokeWidth / 2, 0),
+				new(blockStrokeWidth / 2, 0, blockStrokeWidth / 2, 0),
+				new(blockStrokeWidth / 2, 0, blockStrokeWidth, 0)
+			}
 		};
 		var borderBrush = new SolidColorBrush(Colors.Black);
 		for (int i = 0; i < 3; i++)
@@ -57,15 +60,26 @@ public sealed partial class SudokuPane : UserControl
 		}
 
 		// Initializes cell border lines.
+		var cellThicknesses = new Thickness[,]
+		{
+			{
+				new(0, cellStrokeWidth, 0, cellStrokeWidth / 2),
+				new(0, cellStrokeWidth / 2, 0, cellStrokeWidth / 2),
+				new(0, cellStrokeWidth / 2, 0, cellStrokeWidth)
+			},
+			{
+				new(cellStrokeWidth, 0, cellStrokeWidth / 2, 0),
+				new(cellStrokeWidth / 2, 0, cellStrokeWidth / 2, 0),
+				new(cellStrokeWidth / 2, 0, cellStrokeWidth, 0)
+			}
+		};
 		for (int i = 0; i < 9; i++)
 		{
-			// Skip overlapping lines.
-			if (i % 3 == 0) { continue; }
-
+			int index = i switch { 0 => 0, 8 => 2, _ => 1 };
 			_cGridMain.Children.Add(
 				new Border
 				{
-					BorderThickness = new(0, .5, 0, .5),
+					BorderThickness = cellThicknesses[0, index],
 					BorderBrush = borderBrush,
 					Tag = "Cell border lines"
 				}.WithGridRow(i * 3).WithGridRowSpan(3).WithGridColumnSpan(27)
@@ -73,11 +87,19 @@ public sealed partial class SudokuPane : UserControl
 			_cGridMain.Children.Add(
 				new Border
 				{
-					BorderThickness = new(.5, 0, .5, 0),
+					BorderThickness = cellThicknesses[1, index],
 					BorderBrush = borderBrush,
 					Tag = "Cell border lines"
 				}.WithGridColumn(i * 3).WithGridRowSpan(27).WithGridColumnSpan(3)
 			);
 		}
 	}
+
+	/// <summary>
+	/// Triggers when the current control is loaded.
+	/// </summary>
+	/// <param name="sender">The object to trigger the event. The instance is always itself.</param>
+	/// <param name="e">The event arguments provided.</param>
+	private void SudokuPane_Loaded([IsDiscard] object sender, [IsDiscard] RoutedEventArgs e) =>
+		InitializeGrid(4, 1);
 }
