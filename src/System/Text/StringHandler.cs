@@ -142,6 +142,7 @@ public unsafe ref partial struct StringHandler
 	/// <param name="initialCapacity">
 	/// The number of constant characters as the default memory to initialize.
 	/// </param>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public StringHandler(int initialCapacity) =>
 		_chars = _arrayToReturnToPool = ArrayPool<char>.Shared.Rent(initialCapacity);
 
@@ -157,6 +158,7 @@ public unsafe ref partial struct StringHandler
 	/// Arguments aren't validated as they'd otherwise be for members intended to be used directly.
 	/// </remarks>
 	[EditorBrowsable(EditorBrowsableState.Never)]
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public StringHandler(int literalLength, int holeCount) =>
 		_chars = _arrayToReturnToPool = ArrayPool<char>.Shared.Rent(
 #if DECREASE_INITIALIZATION_MEMORY_ALLOCATION
@@ -198,6 +200,7 @@ public unsafe ref partial struct StringHandler
 	/// </remarks>
 #endif
 	[EditorBrowsable(EditorBrowsableState.Never)]
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public StringHandler(
 #if DISCARD_INTERPOLATION_INFO
 		[IsDiscard] int _,
@@ -226,6 +229,7 @@ public unsafe ref partial struct StringHandler
 	/// that is initialized by a string value.
 	/// </summary>
 	/// <param name="initialString">The initialized string.</param>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public StringHandler(string initialString)
 	{
 		fixed (char* pChars = _chars, pInitialString = initialString)
