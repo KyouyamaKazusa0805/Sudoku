@@ -308,6 +308,13 @@
             Initializes a <see cref="T:Sudoku.UI.Views.Controls.SudokuPane"/> instance.
             </summary>
         </member>
+        <member name="M:Sudoku.UI.Views.Controls.SudokuPane.InitializeGrid(System.Double,System.Double)">
+            <summary>
+            Initializes the grid and updates the controls.
+            </summary>
+            <param name="blockStrokeWidth">The stroke width of the block border.</param>
+            <param name="cellStrokeWidth">The stroke width of the cell border.</param>
+        </member>
         <member name="M:Sudoku.UI.Views.Controls.SudokuPane.SudokuPane_Loaded(System.Object,Microsoft.UI.Xaml.RoutedEventArgs)">
             <summary>
             Triggers when the current control is loaded.

@@ -15,6 +15,11 @@ public sealed partial class SudokuPane : UserControl
 	public SudokuPane() => InitializeComponent();
 
 
+	/// <summary>
+	/// Initializes the grid and updates the controls.
+	/// </summary>
+	/// <param name="blockStrokeWidth">The stroke width of the block border.</param>
+	/// <param name="cellStrokeWidth">The stroke width of the cell border.</param>
 	private void InitializeGrid(double blockStrokeWidth, double cellStrokeWidth)
 	{
 		// Initializes row and column definitions.
