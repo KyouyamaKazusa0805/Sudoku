@@ -1,10 +1,9 @@
-﻿namespace System;
+﻿namespace System.Collections.Generic;
 
 /// <summary>
-/// Provides extension methods on <see cref="Array"/>.
+/// Provides the extension <c>GetEnumerator</c> methods on collection types.
 /// </summary>
-/// <seealso cref="Array"/>
-public static class ArrayExtensions
+public static class CollectionEnumeration
 {
 	/// <summary>
 	/// Creates a <see cref="OneDimensionalArrayEnumerator{T}"/> instance that iterates on each element.
@@ -36,4 +35,17 @@ public static class ArrayExtensions
 	/// </returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static OneDimensionalArrayRefEnumerator<T> EnumerateRef<T>(this T[] @this) => new(@this);
+
+	/// <summary>
+	/// Get all possible flags that the current enumeration field set.
+	/// </summary>
+	/// <typeparam name="TEnum">The type of the enumeration.</typeparam>
+	/// <param name="this">The current enumeration type instance.</param>
+	/// <returns>All flags.</returns>
+	/// <exception cref="InvalidOperationException">
+	/// Throws when the type isn't applied the attribute <see cref="FlagsAttribute"/>.
+	/// </exception>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static FlagsEnumTypeFieldEnumerator<TEnum> GetEnumerator<TEnum>(this TEnum @this)
+		where TEnum : unmanaged, Enum => new(@this);
 }

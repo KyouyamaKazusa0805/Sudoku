@@ -36,7 +36,7 @@ public ref partial struct FlagsEnumTypeFieldEnumerator<TEnum> where TEnum : unma
 	/// Throws when the type <typeparamref name="TEnum"/> is not marked <see cref="FlagsAttribute"/>.
 	/// </exception>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public FlagsEnumTypeFieldEnumerator(TEnum @base)
+	internal FlagsEnumTypeFieldEnumerator(TEnum @base)
 	{
 		if (!typeof(TEnum).IsDefined(typeof(FlagsAttribute)))
 		{

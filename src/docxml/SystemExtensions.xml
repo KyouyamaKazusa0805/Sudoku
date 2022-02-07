@@ -138,6 +138,50 @@
             </remarks>
             <seealso cref="!:Sort&lt;T&gt;(T[], delegate*&lt;T, T, int&gt;, int, int)"/>
         </member>
+        <member name="T:System.Collections.Generic.CollectionEnumeration">
+            <summary>
+            Provides the extension <c>GetEnumerator</c> methods on collection types.
+            </summary>
+        </member>
+        <member name="M:System.Collections.Generic.CollectionEnumeration.EnumerateImmutable``1(``0[])">
+            <summary>
+            Creates a <see cref="T:System.Collections.Generic.OneDimensionalArrayEnumerator`1"/> instance that iterates on each element.
+            </summary>
+            <typeparam name="TStruct">The type of the array elements.</typeparam>
+            <param name="this">The array.</param>
+            <returns>
+            The enumerable collection that allows the iteration on an one-dimensional array.
+            </returns>
+        </member>
+        <member name="M:System.Collections.Generic.CollectionEnumeration.EnumerateRef``1(``0[])">
+            <summary>
+            Creates a <see cref="T:System.Collections.Generic.OneDimensionalArrayRefEnumerator`1"/> instance that iterates on each element.
+            Different with the default iteration operation, this type will iterate each element by reference,
+            in order that you can write the code like:
+            <code><![CDATA[
+            foreach (ref int element in new[] { 1, 3, 6, 10 })
+            {
+                Console.WriteLine(++element);
+            }
+            ]]></code>
+            </summary>
+            <typeparam name="T">The type of the array elements.</typeparam>
+            <param name="this">The array.</param>
+            <returns>
+            The enumerable collection that allows the iteration by reference on an one-dimensional array.
+            </returns>
+        </member>
+        <member name="M:System.Collections.Generic.CollectionEnumeration.GetEnumerator``1(``0)">
+            <summary>
+            Get all possible flags that the current enumeration field set.
+            </summary>
+            <typeparam name="TEnum">The type of the enumeration.</typeparam>
+            <param name="this">The current enumeration type instance.</param>
+            <returns>All flags.</returns>
+            <exception cref="T:System.InvalidOperationException">
+            Throws when the type isn't applied the attribute <see cref="T:System.FlagsAttribute"/>.
+            </exception>
+        </member>
         <member name="T:System.Collections.Generic.FlagsEnumTypeFieldEnumerator`1">
             <summary>
             Defines an enumerator that iterates the possible fields of an enumeration type.
@@ -628,40 +672,6 @@
         <member name="M:System.Collections.Generic.KeyedTuple`4.ToString">
             <inheritdoc/>
         </member>
-        <member name="T:System.ArrayExtensions">
-            <summary>
-            Provides extension methods on <see cref="T:System.Array"/>.
-            </summary>
-            <seealso cref="T:System.Array"/>
-        </member>
-        <member name="M:System.ArrayExtensions.EnumerateImmutable``1(``0[])">
-            <summary>
-            Creates a <see cref="T:System.Collections.Generic.OneDimensionalArrayEnumerator`1"/> instance that iterates on each element.
-            </summary>
-            <typeparam name="TStruct">The type of the array elements.</typeparam>
-            <param name="this">The array.</param>
-            <returns>
-            The enumerable collection that allows the iteration on an one-dimensional array.
-            </returns>
-        </member>
-        <member name="M:System.ArrayExtensions.EnumerateRef``1(``0[])">
-            <summary>
-            Creates a <see cref="T:System.Collections.Generic.OneDimensionalArrayRefEnumerator`1"/> instance that iterates on each element.
-            Different with the default iteration operation, this type will iterate each element by reference,
-            in order that you can write the code like:
-            <code><![CDATA[
-            foreach (ref int element in new[] { 1, 3, 6, 10 })
-            {
-                Console.WriteLine(++element);
-            }
-            ]]></code>
-            </summary>
-            <typeparam name="T">The type of the array elements.</typeparam>
-            <param name="this">The array.</param>
-            <returns>
-            The enumerable collection that allows the iteration by reference on an one-dimensional array.
-            </returns>
-        </member>
         <member name="T:System.BitArrayExtensions">
             <summary>
             Provides extension methods on <see cref="T:System.Collections.BitArray"/>.
@@ -851,17 +861,6 @@
             All flags. If the enumeration field doesn't contain any flags,
             the return value will be <see langword="null"/>.
             </returns>
-        </member>
-        <member name="M:System.EnumExtensions.GetEnumerator``1(``0)">
-            <summary>
-            Get all possible flags that the current enumeration field set.
-            </summary>
-            <typeparam name="TEnum">The type of the enumeration.</typeparam>
-            <param name="this">The current enumeration type instance.</param>
-            <returns>All flags.</returns>
-            <exception cref="T:System.InvalidOperationException">
-            Throws when the type isn't applied the attribute <see cref="T:System.FlagsAttribute"/>.
-            </exception>
         </member>
         <member name="M:System.EnumExtensions.Flags``1(``0,``0)">
             <inheritdoc cref="M:System.Enum.HasFlag(System.Enum)"/>

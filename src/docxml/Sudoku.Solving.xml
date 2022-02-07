@@ -369,7 +369,7 @@
             <remarks>
             <see cref="T:Sudoku.Solving.Collections.AlmostLockedSet"/> is a large-object type. If you want to iterate them,
             you can use the new feature '<see langword="ref"/> and <see langword="ref readonly"/> iteration variable' to do so, just call
-            the extension method <see cref="M:System.ArrayExtensions.EnumerateRef``1(``0[])"/>. Then you can get:
+            the extension method <see cref="M:System.Collections.Generic.CollectionEnumeration.EnumerateRef``1(``0[])"/>. Then you can get:
             <code><![CDATA[
             var collection = GetAllAlses(grid);
             foreach (ref readonly var als in collection.EnumerateRef())
@@ -378,7 +378,7 @@
             }
             ]]></code>
             </remarks>
-            <seealso cref="M:System.ArrayExtensions.EnumerateRef``1(``0[])"/>
+            <seealso cref="M:System.Collections.Generic.CollectionEnumeration.EnumerateRef``1(``0[])"/>
         </member>
         <member name="M:Sudoku.Solving.Collections.AlmostLockedSet.InitRegionProperty(Sudoku.Collections.Cells@)">
             <summary>

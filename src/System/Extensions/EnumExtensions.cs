@@ -135,19 +135,6 @@ public static unsafe class EnumExtensions
 		return result;
 	}
 
-	/// <summary>
-	/// Get all possible flags that the current enumeration field set.
-	/// </summary>
-	/// <typeparam name="TEnum">The type of the enumeration.</typeparam>
-	/// <param name="this">The current enumeration type instance.</param>
-	/// <returns>All flags.</returns>
-	/// <exception cref="InvalidOperationException">
-	/// Throws when the type isn't applied the attribute <see cref="FlagsAttribute"/>.
-	/// </exception>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static FlagsEnumTypeFieldEnumerator<TEnum> GetEnumerator<TEnum>(this TEnum @this)
-		where TEnum : unmanaged, Enum => new(@this);
-
 	/// <inheritdoc cref="Enum.HasFlag(Enum)"/>
 	/// <typeparam name="TEnum">The type of the enumeration.</typeparam>
 	/// <param name="this">The current enumeration type instance.</param>
