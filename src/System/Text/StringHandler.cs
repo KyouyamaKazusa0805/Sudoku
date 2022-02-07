@@ -258,9 +258,9 @@ public unsafe ref partial struct StringHandler
 	/// <param name="index">The index.</param>
 	/// <returns>The reference of the character.</returns>
 	/// <remarks>
-	/// This property returns a <see langword="ref"/> <see cref="char"/>, which
-	/// means you can use the return value to re-assign a new value, as the same behavior
-	/// as the <see langword="set"/> accessor.
+	/// <include
+	///     file='../../global-doc-comments.xml'
+	///     path='g/csharp7/feature[@name="ref-returns"]/target[@name="indexer-return"]' />
 	/// </remarks>
 	public readonly ref char this[int index] => ref _chars[index];
 

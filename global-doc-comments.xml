@@ -113,6 +113,13 @@ Then you can reference the doc here.
 	</csharp5>
 	<csharp7>
 		<feature name="ref-returns">
+			<target name="indexer-return">
+				<i>
+					This indexer returns a value by <see langword="ref"/>,
+					which means you can use the return value to re-assign a new value, as the same behavior
+					as the <see langword="set"/> accessor, therefore the indexer does not contain the setter.
+				</i>
+			</target>
 			<target name="method">
 				<i>
 					C# 7.3 introduces a new keyword <see langword="in"/> as the parameter modifier to make the parameter

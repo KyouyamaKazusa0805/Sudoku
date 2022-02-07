@@ -1303,9 +1303,13 @@
             <param name="index">The index.</param>
             <returns>The reference of the character.</returns>
             <remarks>
-            This property returns a <see langword="ref"/> <see cref="T:System.Char"/>, which
-            means you can use the return value to re-assign a new value, as the same behavior
-            as the <see langword="set"/> accessor.
+            <target name="indexer-return">
+				<i>
+					This indexer returns a value by <see langword="ref" />,
+					which means you can use the return value to re-assign a new value, as the same behavior
+					as the <see langword="set" /> accessor, therefore the indexer does not contain the setter.
+				</i>
+			</target>
             </remarks>
         </member>
         <member name="M:System.Text.StringHandler.CopyTo(System.Text.StringHandler@)">
