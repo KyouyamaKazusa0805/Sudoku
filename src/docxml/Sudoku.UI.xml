@@ -157,6 +157,36 @@
             Indicates the border lines.
             </summary>
         </member>
+        <member name="F:Sudoku.UI.SudokuCanvasTags.OutsideBorderLines">
+            <summary>
+            Indicates the outside border lines.
+            </summary>
+        </member>
+        <member name="F:Sudoku.UI.SudokuCanvasTags.BlockBorderLines">
+            <summary>
+            Indicates the block border lines.
+            </summary>
+        </member>
+        <member name="F:Sudoku.UI.SudokuCanvasTags.CellBorderLines">
+            <summary>
+            Indicates the cell border lines.
+            </summary>
+        </member>
+        <member name="F:Sudoku.UI.SudokuCanvasTags.CandidateBorderLines">
+            <summary>
+            Indicates the candidate border lines.
+            </summary>
+        </member>
+        <member name="F:Sudoku.UI.SudokuCanvasTags.HorizontalBorderLines">
+            <summary>
+            Indicates the horizontal border lines.
+            </summary>
+        </member>
+        <member name="F:Sudoku.UI.SudokuCanvasTags.VerticalBorderLines">
+            <summary>
+            Indicates the vertical border lines.
+            </summary>
+        </member>
         <member name="T:Sudoku.UI.ViewModels.AboutPageViewModel">
             <summary>
             Indicates the view model that binds with the <see cref="T:Sudoku.UI.Views.Pages.AboutPage"/> instances.
@@ -313,23 +343,30 @@
             Defines a user control that interacts with a sudoku grid.
             </summary>
         </member>
+        <member name="F:Sudoku.UI.Views.Controls.SudokuPane.OutsideOffsetProperty">
+            <summary>
+            Defines the property that handles the outside offset <see cref="P:Sudoku.UI.Views.Controls.SudokuPane.OutsideOffset"/>.
+            </summary>
+            <seealso cref="P:Sudoku.UI.Views.Controls.SudokuPane.OutsideOffset"/>
+        </member>
+        <member name="P:Sudoku.UI.Views.Controls.SudokuPane.OutsideOffset">
+            <summary>
+            Indicates the outside offset.
+            </summary>
+            <value>The value to assign.</value>
+            <returns>The outside offset value.</returns>
+            <exception cref="T:System.ArgumentOutOfRangeException">Throws when the value is below 0.</exception>
+        </member>
         <member name="M:Sudoku.UI.Views.Controls.SudokuPane.#ctor">
             <summary>
             Initializes a <see cref="T:Sudoku.UI.Views.Controls.SudokuPane"/> instance.
             </summary>
         </member>
-        <member name="M:Sudoku.UI.Views.Controls.SudokuPane.ApplyAnimationAsync">
+        <member name="E:Sudoku.UI.Views.Controls.SudokuPane.OutsideOffsetChanged">
             <summary>
-            Applies the loaded animation.
+            Defines an event that triggers when the property value <see cref="P:Sudoku.UI.Views.Controls.SudokuPane.OutsideOffset"/> is changed.
             </summary>
-            <returns>The task that loads the animation on grid border lines.</returns>
-        </member>
-        <member name="M:Sudoku.UI.Views.Controls.SudokuPane.SudokuPane_LoadedAsync(System.Object,Microsoft.UI.Xaml.RoutedEventArgs)">
-            <summary>
-            Triggers when the current control is loaded.
-            </summary>
-            <param name="sender">The object to trigger the event. The instance is always itself.</param>
-            <param name="e">The event arguments provided.</param>
+            <seealso cref="P:Sudoku.UI.Views.Controls.SudokuPane.OutsideOffset"/>
         </member>
         <member name="M:Sudoku.UI.Views.Controls.SudokuPane.InitializeGrid(Microsoft.UI.Xaml.Controls.Canvas,System.Double,System.Double,System.Double)">
             <summary>
@@ -339,6 +376,62 @@
             <param name="outsideBorderThickness">The stroke of the outside border.</param>
             <param name="blockBorderThickness">The stroke of the block border.</param>
             <param name="cellBorderThickness">The stroke of the cell border.</param>
+        </member>
+        <member name="M:Sudoku.UI.Views.Controls.SudokuPane.HorizontalBorderLinePoint1(Microsoft.UI.Xaml.Controls.Canvas,System.Int32,System.Int32)">
+            <summary>
+            Gets the first point value of the horizontal border line.
+            </summary>
+            <param name="canvas">The <see cref="T:Microsoft.UI.Xaml.Controls.Canvas"/> instance.</param>
+            <param name="i">The index of the line.</param>
+            <param name="weight">The weight of the division operation. The value can only be 3, 9 or 27.</param>
+            <returns>The first point value of the horizontal border line.</returns>
+        </member>
+        <member name="M:Sudoku.UI.Views.Controls.SudokuPane.HorizontalBorderLinePoint2(Microsoft.UI.Xaml.Controls.Canvas,System.Int32,System.Int32)">
+            <summary>
+            Gets the second point value of the horizontal border line.
+            </summary>
+            <param name="canvas">The <see cref="T:Microsoft.UI.Xaml.Controls.Canvas"/> instance.</param>
+            <param name="i">The index of the line.</param>
+            <param name="weight">The weight of the division operation. The value can only be 3, 9 or 27.</param>
+            <returns>The second point value of the horizontal border line.</returns>
+        </member>
+        <member name="M:Sudoku.UI.Views.Controls.SudokuPane.VerticalBorderLinePoint1(Microsoft.UI.Xaml.Controls.Canvas,System.Int32,System.Int32)">
+            <summary>
+            Gets the first point value of the vertical border line.
+            </summary>
+            <param name="canvas">The <see cref="T:Microsoft.UI.Xaml.Controls.Canvas"/> instance.</param>
+            <param name="i">The index of the line.</param>
+            <param name="weight">The weight of the division operation. The value can only be 3, 9 or 27.</param>
+            <returns>The first point value of the horizontal border line.</returns>
+        </member>
+        <member name="M:Sudoku.UI.Views.Controls.SudokuPane.VerticalBorderLinePoint2(Microsoft.UI.Xaml.Controls.Canvas,System.Int32,System.Int32)">
+            <summary>
+            Gets the second point value of the vertical border line.
+            </summary>
+            <param name="canvas">The <see cref="T:Microsoft.UI.Xaml.Controls.Canvas"/> instance.</param>
+            <param name="i">The index of the line.</param>
+            <param name="weight">The weight of the division operation. The value can only be 3, 9 or 27.</param>
+            <returns>The second point value of the horizontal border line.</returns>
+        </member>
+        <member name="M:Sudoku.UI.Views.Controls.SudokuPane.ApplyAnimationAsync">
+            <summary>
+            Applies the loaded animation.
+            </summary>
+            <returns>The task that loads the animation on grid border lines.</returns>
+        </member>
+        <member name="M:Sudoku.UI.Views.Controls.SudokuPane.SudokuPane_OutsideOffsetChanged(System.Object,Microsoft.UI.Xaml.RoutedEventArgs)">
+            <summary>
+            Triggers when the property <see cref="P:Sudoku.UI.Views.Controls.SudokuPane.OutsideOffset"/> is changed.
+            </summary>
+            <param name="sender">The object to trigger the event.</param>
+            <param name="e">The event arguments provided.</param>
+        </member>
+        <member name="M:Sudoku.UI.Views.Controls.SudokuPane.SudokuPane_LoadedAsync(System.Object,Microsoft.UI.Xaml.RoutedEventArgs)">
+            <summary>
+            Triggers when the current control is loaded.
+            </summary>
+            <param name="sender">The object to trigger the event. The instance is always itself.</param>
+            <param name="e">The event arguments provided.</param>
         </member>
         <member name="M:Sudoku.UI.Views.Controls.SudokuPane.InitializeComponent">
             <summary>
@@ -519,6 +612,17 @@
         <member name="M:Sudoku.UI.Sudoku_UI_XamlTypeInfo.XamlMetaDataProvider.GetXmlnsDefinitions">
             <summary>
             GetXmlnsDefinitions()
+            </summary>
+        </member>
+        <member name="T:Windows.Foundation.PointExtensions">
+            <summary>
+            Provides extension methods on <see cref="T:Windows.Foundation.Point"/>.
+            </summary>
+            <seealso cref="T:Windows.Foundation.Point"/>
+        </member>
+        <member name="M:Windows.Foundation.PointExtensions.Deconstruct(Windows.Foundation.Point@,System.Double@,System.Double@)">
+            <summary>
+            Deconstruct the instance to multiple values.
             </summary>
         </member>
     </members>

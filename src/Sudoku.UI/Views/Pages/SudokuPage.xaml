@@ -23,7 +23,7 @@
 				<ColumnDefinition />
 			</Grid.ColumnDefinitions>
 
-			<c:SudokuPane Grid.Row="0" Grid.Column="0" Width="560" Height="560" Margin="50" />
+			<c:SudokuPane Grid.Row="0" Grid.Column="0" Width="560" Height="560" Margin="50" OutsideOffset="10" />
 		</Grid>
 	</ScrollViewer>
 </Page>
