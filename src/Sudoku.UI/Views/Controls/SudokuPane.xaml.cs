@@ -34,7 +34,7 @@ public sealed partial class SudokuPane : UserControl
 				where control.Tag is "Border lines"
 				select control)
 			{
-				control.Scale = new(1, 1, 1);
+				control.Scale = new(1, 1, 1); // Try to change the scale to trigger the animation.
 				await Task.Delay(100);
 			}
 		}
@@ -150,5 +150,7 @@ public sealed partial class SudokuPane : UserControl
 			canvas.Children.Add(l1);
 			canvas.Children.Add(l2);
 		}
+
+		// TODO: Initializes candidate border lines if worth.
 	}
 }
