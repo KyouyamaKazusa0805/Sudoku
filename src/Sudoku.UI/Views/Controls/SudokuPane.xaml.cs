@@ -1,7 +1,10 @@
 ﻿using Microsoft.UI;
+using Microsoft.UI.Xaml.Data;
 using Microsoft.UI.Xaml.Media;
 using Microsoft.UI.Xaml.Shapes;
 using Sudoku.Diagnostics.CodeAnalysis;
+using Sudoku.UI.Models;
+using Sudoku.UI.ViewModels;
 using Windows.Foundation;
 using Tags = Sudoku.UI.SudokuCanvasTags;
 
@@ -13,71 +16,60 @@ namespace Sudoku.UI.Views.Controls;
 public sealed partial class SudokuPane : UserControl
 {
 	/// <summary>
-	/// Defines the property that handles the outside offset <see cref="OutsideOffset"/>.
-	/// </summary>
-	/// <seealso cref="OutsideOffset"/>
-	public static readonly DependencyProperty OutsideOffsetProperty =
-		DependencyProperty.Register(nameof(OutsideOffset), typeof(double), typeof(SudokuPane), new(0));
-
-
-	/// <summary>
-	/// Indicates the outside offset.
-	/// </summary>
-	/// <value>The value to assign.</value>
-	/// <returns>The outside offset value.</returns>
-	/// <exception cref="ArgumentOutOfRangeException">Throws when the value is below 0.</exception>
-	public double OutsideOffset
-	{
-		get => (double)GetValue(OutsideOffsetProperty);
-
-		set
-		{
-			if (value < 0)
-			{
-				throw new ArgumentOutOfRangeException(nameof(value));
-			}
-
-			SetValue(OutsideOffsetProperty, value);
-
-			OutsideOffsetChanged?.Invoke(this, new());
-		}
-	}
-
-
-	/// <summary>
 	/// Initializes a <see cref="SudokuPane"/> instance.
 	/// </summary>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public SudokuPane()
 	{
 		InitializeComponent();
 
-		OutsideOffsetChanged += SudokuPane_OutsideOffsetChanged;
+		SetBinding(WidthProperty, new Binding { Path = new(nameof(Size)), Mode = BindingMode.TwoWay });
+		SetBinding(HeightProperty, new Binding { Path = new(nameof(Size)), Mode = BindingMode.TwoWay });
 	}
 
 
 	/// <summary>
-	/// Defines an event that triggers when the property value <see cref="OutsideOffset"/> is changed.
+	/// Gets or sets the size of the pane to the view model.
 	/// </summary>
-	/// <seealso cref="OutsideOffset"/>
-	public event RoutedEventHandler? OutsideOffsetChanged;
+	/// <value>The size of the pane.</value>
+	public double Size
+	{
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		get => _vm.Size;
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		set => _vm.Size = value;
+	}
+
+	/// <summary>
+	/// Gets or sets the outside offset to the view model.
+	/// </summary>
+	/// <value>The outside offset.</value>
+	public double OutsideOffset
+	{
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		get => _vm.OutsideOffset;
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		set => _vm.OutsideOffset = value;
+	}
 
 
 	/// <summary>
 	/// Initializes the grid and updates the controls.
 	/// </summary>
-	/// <param name="canvas">The control where the items will be drawn onto.</param>
 	/// <param name="outsideBorderThickness">The stroke of the outside border.</param>
 	/// <param name="blockBorderThickness">The stroke of the block border.</param>
 	/// <param name="cellBorderThickness">The stroke of the cell border.</param>
 	private void InitializeGrid(
-		Canvas canvas, double outsideBorderThickness, double blockBorderThickness, double cellBorderThickness)
+		double outsideBorderThickness, double blockBorderThickness, double cellBorderThickness)
 	{
 		var defaultScale = Vector3.Zero;
 		var borderBrush = new SolidColorBrush(Colors.Black);
-		var scaleTransition = new Vector3Transition() { Duration = TimeSpan.FromSeconds(1) };
+		var scaleTransition = new Vector3Transition { Duration = TimeSpan.FromSeconds(1) };
 
 		// Initializes the outside border if worth.
-		if (outsideBorderThickness != 0 && OutsideOffset != 0)
+		if (outsideBorderThickness != 0 && _vm.OutsideOffset != 0)
 		{
 			var rect = new Rectangle
 			{
@@ -89,7 +81,7 @@ public sealed partial class SudokuPane : UserControl
 			};
 			Canvas.SetZIndex(rect, 0);
 
-			canvas.Children.Add(rect);
+			_cCanvasMain.Children.Add(rect);
 		}
 
 		// Initializes block border lines.
@@ -99,33 +91,33 @@ public sealed partial class SudokuPane : UserControl
 			{
 				Stroke = borderBrush,
 				StrokeThickness = blockBorderThickness,
-				X1 = HorizontalBorderLinePoint1(canvas, i, 3).X,
-				Y1 = HorizontalBorderLinePoint1(canvas, i, 3).Y,
-				X2 = HorizontalBorderLinePoint2(canvas, i, 3).X,
-				Y2 = HorizontalBorderLinePoint2(canvas, i, 3).Y,
+				X1 = _vm.HorizontalBorderLinePoint1(i, 3).X,
+				Y1 = _vm.HorizontalBorderLinePoint1(i, 3).Y,
+				X2 = _vm.HorizontalBorderLinePoint2(i, 3).X,
+				Y2 = _vm.HorizontalBorderLinePoint2(i, 3).Y,
 				Scale = defaultScale,
 				ScaleTransition = scaleTransition,
 				StrokeLineJoin = PenLineJoin.Round,
-				Tag = $"{Tags.BorderLines}|{Tags.BlockBorderLines}|{Tags.HorizontalBorderLines}"
+				Tag = $"{Tags.BorderLines}|{Tags.BlockBorderLines}|{Tags.HorizontalBorderLines}|{i}"
 			};
 			var l2 = new Line
 			{
 				Stroke = borderBrush,
 				StrokeThickness = blockBorderThickness,
-				X1 = VerticalBorderLinePoint1(canvas, i, 3).X,
-				Y1 = VerticalBorderLinePoint1(canvas, i, 3).Y,
-				X2 = VerticalBorderLinePoint2(canvas, i, 3).X,
-				Y2 = VerticalBorderLinePoint2(canvas, i, 3).Y,
+				X1 = _vm.VerticalBorderLinePoint1(i, 3).X,
+				Y1 = _vm.VerticalBorderLinePoint1(i, 3).Y,
+				X2 = _vm.VerticalBorderLinePoint2(i, 3).X,
+				Y2 = _vm.VerticalBorderLinePoint2(i, 3).Y,
 				Scale = defaultScale,
 				ScaleTransition = scaleTransition,
 				StrokeLineJoin = PenLineJoin.Round,
-				Tag = $"{Tags.BorderLines}|{Tags.BlockBorderLines}|{Tags.VerticalBorderLines}"
+				Tag = $"{Tags.BorderLines}|{Tags.BlockBorderLines}|{Tags.VerticalBorderLines}|{i}"
 			};
 			Canvas.SetZIndex(l1, 1);
 			Canvas.SetZIndex(l2, 1);
 
-			canvas.Children.Add(l1);
-			canvas.Children.Add(l2);
+			_cCanvasMain.Children.Add(l1);
+			_cCanvasMain.Children.Add(l2);
 		}
 
 		// Initializes cell border lines.
@@ -141,116 +133,42 @@ public sealed partial class SudokuPane : UserControl
 			{
 				Stroke = borderBrush,
 				StrokeThickness = cellBorderThickness,
-				X1 = HorizontalBorderLinePoint1(canvas, i, 9).X,
-				Y1 = HorizontalBorderLinePoint1(canvas, i, 9).Y,
-				X2 = HorizontalBorderLinePoint2(canvas, i, 9).X,
-				Y2 = HorizontalBorderLinePoint2(canvas, i, 9).Y,
+				X1 = _vm.HorizontalBorderLinePoint1(i, 9).X,
+				Y1 = _vm.HorizontalBorderLinePoint1(i, 9).Y,
+				X2 = _vm.HorizontalBorderLinePoint2(i, 9).X,
+				Y2 = _vm.HorizontalBorderLinePoint2(i, 9).Y,
 				Scale = defaultScale,
 				ScaleTransition = scaleTransition,
 				StrokeLineJoin = PenLineJoin.Round,
-				Tag = $"{Tags.BorderLines}|{Tags.CellBorderLines}|{Tags.HorizontalBorderLines}"
+				Tag = $"{Tags.BorderLines}|{Tags.CellBorderLines}|{Tags.HorizontalBorderLines}|{i}"
 			};
 			var l2 = new Line
 			{
 				Stroke = borderBrush,
 				StrokeThickness = cellBorderThickness,
-				X1 = VerticalBorderLinePoint1(canvas, i, 9).X,
-				Y1 = VerticalBorderLinePoint1(canvas, i, 9).Y,
-				X2 = VerticalBorderLinePoint2(canvas, i, 9).X,
-				Y2 = VerticalBorderLinePoint2(canvas, i, 9).Y,
+				X1 = _vm.VerticalBorderLinePoint1(i, 9).X,
+				Y1 = _vm.VerticalBorderLinePoint1(i, 9).Y,
+				X2 = _vm.VerticalBorderLinePoint2(i, 9).X,
+				Y2 = _vm.VerticalBorderLinePoint2(i, 9).Y,
 				Scale = defaultScale,
 				ScaleTransition = scaleTransition,
 				StrokeLineJoin = PenLineJoin.Round,
-				Tag = $"{Tags.BorderLines}|{Tags.CellBorderLines}|{Tags.VerticalBorderLines}"
+				Tag = $"{Tags.BorderLines}|{Tags.CellBorderLines}|{Tags.VerticalBorderLines}|{i}"
 			};
 			Canvas.SetZIndex(l1, 1);
 			Canvas.SetZIndex(l2, 1);
 
-			canvas.Children.Add(l1);
-			canvas.Children.Add(l2);
+			_cCanvasMain.Children.Add(l1);
+			_cCanvasMain.Children.Add(l2);
 		}
 
 		// TODO: Initializes candidate border lines if worth.
 	}
 
 	/// <summary>
-	/// Gets the first point value of the horizontal border line.
+	/// Update the border lines.
 	/// </summary>
-	/// <param name="canvas">The <see cref="Canvas"/> instance.</param>
-	/// <param name="i">The index of the line.</param>
-	/// <param name="weight">The weight of the division operation. The value can only be 3, 9 or 27.</param>
-	/// <returns>The first point value of the horizontal border line.</returns>
-	private Point HorizontalBorderLinePoint1(Canvas canvas, int i, int weight) =>
-		new()
-		{
-			X = OutsideOffset + i * (canvas.ActualHeight - 2 * OutsideOffset) / weight,
-			Y = OutsideOffset
-		};
-
-	/// <summary>
-	/// Gets the second point value of the horizontal border line.
-	/// </summary>
-	/// <param name="canvas">The <see cref="Canvas"/> instance.</param>
-	/// <param name="i">The index of the line.</param>
-	/// <param name="weight">The weight of the division operation. The value can only be 3, 9 or 27.</param>
-	/// <returns>The second point value of the horizontal border line.</returns>
-	private Point HorizontalBorderLinePoint2(Canvas canvas, int i, int weight) =>
-		new()
-		{
-			X = OutsideOffset + i * (canvas.ActualHeight - 2 * OutsideOffset) / weight,
-			Y = canvas.ActualWidth - OutsideOffset
-		};
-
-	/// <summary>
-	/// Gets the first point value of the vertical border line.
-	/// </summary>
-	/// <param name="canvas">The <see cref="Canvas"/> instance.</param>
-	/// <param name="i">The index of the line.</param>
-	/// <param name="weight">The weight of the division operation. The value can only be 3, 9 or 27.</param>
-	/// <returns>The first point value of the horizontal border line.</returns>
-	private Point VerticalBorderLinePoint1(Canvas canvas, int i, int weight) =>
-		new()
-		{
-			X = OutsideOffset,
-			Y = OutsideOffset + i * (canvas.ActualWidth - 2 * OutsideOffset) / weight
-		};
-
-	/// <summary>
-	/// Gets the second point value of the vertical border line.
-	/// </summary>
-	/// <param name="canvas">The <see cref="Canvas"/> instance.</param>
-	/// <param name="i">The index of the line.</param>
-	/// <param name="weight">The weight of the division operation. The value can only be 3, 9 or 27.</param>
-	/// <returns>The second point value of the horizontal border line.</returns>
-	private Point VerticalBorderLinePoint2(Canvas canvas, int i, int weight) =>
-		new()
-		{
-			X = canvas.ActualHeight - OutsideOffset,
-			Y = OutsideOffset + i * (canvas.ActualWidth - 2 * OutsideOffset) / weight
-		};
-
-	/// <summary>
-	/// Applies the loaded animation.
-	/// </summary>
-	/// <returns>The task that loads the animation on grid border lines.</returns>
-	private async Task ApplyAnimationAsync()
-	{
-		foreach (var control in
-			from control in _cCanvasMain.Children.OfType<FrameworkElement>()
-			where control.Tag is string s && s.Contains(Tags.BorderLines)
-			select control)
-		{
-			control.Scale = new(1, 1, 1); // Try to change the scale to trigger the animation.
-			await Task.Delay(100);
-		}
-	}
-
-	/// <summary>
-	/// Triggers when the property <see cref="OutsideOffset"/> is changed.
-	/// </summary>
-	/// <param name="sender">The object to trigger the event.</param>
-	/// <param name="e">The event arguments provided.</param>
-	private void SudokuPane_OutsideOffsetChanged([IsDiscard] object sender, [IsDiscard] RoutedEventArgs e)
+	private void UpdateBorderLines()
 	{
 		foreach (var control in
 			from control in _cCanvasMain.Children.OfType<Line>()
@@ -258,36 +176,78 @@ public sealed partial class SudokuPane : UserControl
 			select control)
 		{
 			string tag = (string)control.Tag!;
+			int i = int.Parse(tag.Split('|')[^1]);
+			int weight = tag.Contains(Tags.BlockBorderLines) ? 3 : 9;
 			if (tag.Contains(Tags.HorizontalBorderLines))
 			{
-				int weight = tag.Contains(Tags.BlockBorderLines) ? 3 : 9;
-				for (int i = 0; i < (weight == 3 ? 4 : 10); i++)
-				{
-					var (x1, y1) = HorizontalBorderLinePoint1(_cCanvasMain, i, weight);
-					control.X1 = x1;
-					control.Y1 = y1;
+				var (x1, y1) = _vm.HorizontalBorderLinePoint1(i, weight);
+				control.X1 = x1;
+				control.Y1 = y1;
 
-					var (x2, y2) = HorizontalBorderLinePoint2(_cCanvasMain, i, weight);
-					control.X2 = x2;
-					control.Y2 = y2;
-				}
+				var (x2, y2) = _vm.HorizontalBorderLinePoint2(i, weight);
+				control.X2 = x2;
+				control.Y2 = y2;
 			}
 			else if (tag.Contains(Tags.VerticalBorderLines))
 			{
-				int weight = tag.Contains(Tags.BlockBorderLines) ? 3 : 9;
-				for (int i = 0; i < (weight == 3 ? 4 : 10); i++)
-				{
-					var (x1, y1) = VerticalBorderLinePoint1(_cCanvasMain, i, weight);
-					control.X1 = x1;
-					control.Y1 = y1;
+				var (x1, y1) = _vm.VerticalBorderLinePoint1(i, weight);
+				control.X1 = x1;
+				control.Y1 = y1;
 
-					var (x2, y2) = VerticalBorderLinePoint2(_cCanvasMain, i, weight);
-					control.X2 = x2;
-					control.Y2 = y2;
-				}
+				var (x2, y2) = _vm.VerticalBorderLinePoint2(i, weight);
+				control.X2 = x2;
+				control.Y2 = y2;
 			}
 		}
 	}
+
+	/// <summary>
+	/// Sets the scale of all border lines.
+	/// </summary>
+	/// <param name="horizontalScale">The horizontal scale.</param>
+	/// <param name="verticalScale">The vertical scale.</param>
+	/// <returns>The task that loads the animation on grid border lines.</returns>
+	private async Task SetBorderLineScaleAsync(Vector3 horizontalScale, Vector3 verticalScale)
+	{
+		foreach (var control in
+			from control in _cCanvasMain.Children.OfType<FrameworkElement>()
+			where control.Tag is string s && s.Contains(Tags.BorderLines)
+			select control)
+		{
+			string tag = (string)control.Tag!;
+
+			// Try to change the scale to trigger the animation.
+			control.Scale = tag.Contains(Tags.HorizontalBorderLines) ? horizontalScale : verticalScale;
+			await Task.Delay(100);
+		}
+	}
+
+	/// <summary>
+	/// Triggers when the property <see cref="SudokuPaneViewModel.Grid"/> is changed.
+	/// </summary>
+	/// <param name="sender">The object to trigegr the event.</param>
+	/// <param name="e">The event arguments provided.</param>
+	/// <seealso cref="SudokuPaneViewModel.Grid"/>
+	private void SudokuPane_GridChanged(object sender, GridChangedEventArgs e)
+	{
+
+	}
+
+	/// <summary>
+	/// Triggers when the property <see cref="OutsideOffset"/> is changed.
+	/// </summary>
+	/// <param name="sender">The object to trigger the event.</param>
+	/// <param name="e">The event arguments provided.</param>
+	private void SudokuPane_OutsideOffsetChanged([IsDiscard] object sender, [IsDiscard] RoutedEventArgs e) =>
+		UpdateBorderLines();
+
+	/// <summary>
+	/// Triggers when the property <see cref="Size"/> is changed.
+	/// </summary>
+	/// <param name="sender">The object to trigger the event.</param>
+	/// <param name="e">The event arguments provided.</param>
+	private void SudokuPane_SizeChanged([IsDiscard] object sender, [IsDiscard] RoutedEventArgs e) =>
+		UpdateBorderLines();
 
 	/// <summary>
 	/// Triggers when the current control is loaded.
@@ -297,9 +257,9 @@ public sealed partial class SudokuPane : UserControl
 	private async void SudokuPane_LoadedAsync([IsDiscard] object sender, [IsDiscard] RoutedEventArgs e)
 	{
 		// Initializes the grid lines.
-		InitializeGrid(_cCanvasMain, 1, 4, 1);
+		InitializeGrid(outsideBorderThickness: 1, blockBorderThickness: 4, cellBorderThickness: 1);
 
 		// Then apply the animation for the initialization.
-		await ApplyAnimationAsync();
+		await SetBorderLineScaleAsync(new(1, 1, 1), new(1, 1, 1));
 	}
 }

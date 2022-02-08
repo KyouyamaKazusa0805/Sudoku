@@ -1,6 +1,8 @@
-﻿using Sudoku.Diagnostics.CodeAnalysis;
+﻿using System.Windows.Input;
+using Sudoku.Diagnostics.CodeAnalysis;
 using Sudoku.UI.Models;
 using Sudoku.UI.Views.Controls;
+using Windows.Foundation;
 
 namespace Sudoku.UI.ViewModels;
 
@@ -10,27 +12,62 @@ namespace Sudoku.UI.ViewModels;
 /// <seealso cref="SudokuPane"/>
 internal sealed class SudokuPaneViewModel : NotificationObject
 {
-	/// <summary>
-	/// Indicates the grid, which is the backing field of the property <see cref="Grid"/>.
-	/// </summary>
-	/// <seealso cref="Grid"/>
+	private double _size;
+	private double _outsideOffset;
 	private Grid _grid;
 
 
 	/// <summary>
-	/// Initializes a <see cref="SudokuPageViewModel"/> instance.
+	/// Indicates the size of the pane.
 	/// </summary>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public SudokuPaneViewModel() => GridChanged += Grid_GridChanged;
+	public double Size
+	{
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		get => _size;
 
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		set
+		{
+			if (_size == value)
+			{
+				return;
+			}
+
+			SetProperty(ref _size, value);
+			SizeChanged?.Invoke(this, new());
+		}
+	}
 
 	/// <summary>
-	/// Gets or sets the current grid data.
+	/// Indicates the outside offset.
+	/// </summary>
+	public double OutsideOffset
+	{
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		get => _outsideOffset;
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		set
+		{
+			if (_outsideOffset == value)
+			{
+				return;
+			}
+
+			SetProperty(ref _outsideOffset, value);
+			OutsideOffsetChanged?.Invoke(this, new());
+		}
+	}
+
+	/// <summary>
+	/// Indicates the grid used.
 	/// </summary>
 	public Grid Grid
 	{
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => _grid;
 
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		set
 		{
 			if (_grid == value)
@@ -38,28 +75,67 @@ internal sealed class SudokuPaneViewModel : NotificationObject
 				return;
 			}
 
-			_grid = value;
-
+			SetProperty(ref _grid, value);
 			GridChanged?.Invoke(this, new(value));
 		}
 	}
 
 
 	/// <summary>
-	/// Indicates the event that is triggered by other members when the backing field of the property
-	/// <see cref="Grid"/> has been changed its value.
+	/// Defines an event that triggers when the property <see cref="Size"/> value is changed.
 	/// </summary>
-	/// <seealso cref="Grid"/>
+	/// <seealso cref="Size"/>
+	public event RoutedEventHandler? SizeChanged;
+
+	/// <summary>
+	/// Defines an event that triggers when the property <see cref="OutsideOffset"/> value is changed.
+	/// </summary>
+	/// <seealso cref="OutsideOffset"/>
+	public event RoutedEventHandler? OutsideOffsetChanged;
+
+	/// <summary>
+	/// Indicates the event to be triggered when the property <see cref="Grid"/> value is changed.
+	/// </summary>
 	public event GridChangedEventHandler? GridChanged;
 
 
 	/// <summary>
-	/// Triggers when the backing field of the property <see cref="Grid"/> has been changed its value.
+	/// Gets the first point value of the horizontal border line.
 	/// </summary>
-	/// <param name="sender">The object that triggers the event.</param>
-	/// <param name="e">The event arguments provided.</param>
-	private void Grid_GridChanged([IsDiscard] object sender, GridChangedEventArgs e)
-	{
+	/// <param name="i">The index of the line.</param>
+	/// <param name="weight">The weight of the division operation. The value can only be 3, 9 or 27.</param>
+	/// <returns>The first point value of the horizontal border line.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	internal Point HorizontalBorderLinePoint1(int i, int weight) =>
+		new(OutsideOffset + i * (Size - 2 * OutsideOffset) / weight, OutsideOffset);
 
-	}
+	/// <summary>
+	/// Gets the second point value of the horizontal border line.
+	/// </summary>
+	/// <param name="i">The index of the line.</param>
+	/// <param name="weight">The weight of the division operation. The value can only be 3, 9 or 27.</param>
+	/// <returns>The second point value of the horizontal border line.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	internal Point HorizontalBorderLinePoint2(int i, int weight) =>
+		new(OutsideOffset + i * (Size - 2 * OutsideOffset) / weight, Size - OutsideOffset);
+
+	/// <summary>
+	/// Gets the first point value of the vertical border line.
+	/// </summary>
+	/// <param name="i">The index of the line.</param>
+	/// <param name="weight">The weight of the division operation. The value can only be 3, 9 or 27.</param>
+	/// <returns>The first point value of the horizontal border line.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	internal Point VerticalBorderLinePoint1(int i, int weight) =>
+		new(OutsideOffset, OutsideOffset + i * (Size - 2 * OutsideOffset) / weight);
+
+	/// <summary>
+	/// Gets the second point value of the vertical border line.
+	/// </summary>
+	/// <param name="i">The index of the line.</param>
+	/// <param name="weight">The weight of the division operation. The value can only be 3, 9 or 27.</param>
+	/// <returns>The second point value of the horizontal border line.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	internal Point VerticalBorderLinePoint2(int i, int weight) =>
+		new(Size - OutsideOffset, OutsideOffset + i * (Size - 2 * OutsideOffset) / weight);
 }
