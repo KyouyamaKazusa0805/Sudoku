@@ -23,7 +23,9 @@
 				<ColumnDefinition />
 			</Grid.ColumnDefinitions>
 
-			<c:SudokuPane x:Name="_cPane" Grid.Row="0" Grid.Column="0" Margin="50" Width="560" OutsideOffset="10" />
+			<c:SudokuPane
+				x:Name="_cPane" Grid.Row="0" Grid.Column="0" Margin="50,50,150,0"
+				Width="560" OutsideOffset="10" />
 		</Grid>
 	</ScrollViewer>
 </Page>

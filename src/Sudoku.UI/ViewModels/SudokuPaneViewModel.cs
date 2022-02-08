@@ -1,6 +1,4 @@
-﻿using System.Windows.Input;
-using Sudoku.Diagnostics.CodeAnalysis;
-using Sudoku.UI.Models;
+﻿using Sudoku.UI.Models;
 using Sudoku.UI.Views.Controls;
 using Windows.Foundation;
 
