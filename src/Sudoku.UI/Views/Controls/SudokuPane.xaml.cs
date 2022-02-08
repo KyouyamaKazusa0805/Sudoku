@@ -52,6 +52,8 @@ public sealed partial class SudokuPane : UserControl
 		Canvas canvas, double outsideBorderThickness, double blockBorderThickness, double cellBorderThickness)
 	{
 		const double offset = 10;
+		const string borderLinesTag = "Border lines";
+		var defaultScale = Vector3.Zero;
 		var borderBrush = new SolidColorBrush(Colors.Black);
 		var scaleTransition = new Vector3Transition() { Duration = TimeSpan.FromSeconds(1) };
 
@@ -62,9 +64,9 @@ public sealed partial class SudokuPane : UserControl
 			{
 				Stroke = borderBrush,
 				StrokeThickness = outsideBorderThickness,
-				Scale = new(),
+				Scale = defaultScale,
 				ScaleTransition = scaleTransition,
-				Tag = "Border lines"
+				Tag = borderLinesTag
 			};
 			Canvas.SetZIndex(rect, 0);
 
@@ -84,10 +86,10 @@ public sealed partial class SudokuPane : UserControl
 				Y1 = offset,
 				X2 = offset + i * gridHeight / 3,
 				Y2 = canvas.ActualWidth - offset,
-				Scale = new(),
+				Scale = defaultScale,
 				ScaleTransition = scaleTransition,
 				StrokeLineJoin = PenLineJoin.Round,
-				Tag = "Border lines"
+				Tag = borderLinesTag
 			};
 			var l2 = new Line
 			{
@@ -97,10 +99,10 @@ public sealed partial class SudokuPane : UserControl
 				Y1 = offset + i * gridWidth / 3,
 				X2 = canvas.ActualHeight - offset,
 				Y2 = offset + i * gridWidth / 3,
-				Scale = new(),
+				Scale = defaultScale,
 				ScaleTransition = scaleTransition,
 				StrokeLineJoin = PenLineJoin.Round,
-				Tag = "Border lines"
+				Tag = borderLinesTag
 			};
 			Canvas.SetZIndex(l1, 1);
 			Canvas.SetZIndex(l2, 1);
@@ -126,10 +128,10 @@ public sealed partial class SudokuPane : UserControl
 				Y1 = offset,
 				X2 = offset + i * gridHeight / 9,
 				Y2 = canvas.ActualWidth - offset,
-				Scale = new(),
+				Scale = defaultScale,
 				ScaleTransition = scaleTransition,
 				StrokeLineJoin = PenLineJoin.Round,
-				Tag = "Border lines"
+				Tag = borderLinesTag
 			};
 			var l2 = new Line
 			{
@@ -139,10 +141,10 @@ public sealed partial class SudokuPane : UserControl
 				Y1 = offset + i * gridWidth / 9,
 				X2 = canvas.ActualHeight - offset,
 				Y2 = offset + i * gridWidth / 9,
-				Scale = new(),
+				Scale = defaultScale,
 				ScaleTransition = scaleTransition,
 				StrokeLineJoin = PenLineJoin.Round,
-				Tag = "Border lines"
+				Tag = borderLinesTag
 			};
 			Canvas.SetZIndex(l1, 1);
 			Canvas.SetZIndex(l2, 1);
