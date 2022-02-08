@@ -509,5 +509,45 @@
             </summary>
             <seealso cref="T:Microsoft.UI.Xaml.Controls.Grid"/>
         </member>
+        <member name="M:Microsoft.UI.Xaml.Controls.GridExtensions.WithGridRow``1(``0,System.Int32)">
+            <summary>
+            Sets the value of the <c>Grid.Row</c> XAML attached property
+            on the specified <see cref="T:Microsoft.UI.Xaml.FrameworkElement"/>.
+            </summary>
+            <typeparam name="TFrameworkElement">The type of the element.</typeparam>
+            <param name="this">The control.</param>
+            <param name="value">The value of the <c>Grid.Row</c> XAML attached property value.</param>
+            <returns>The same reference as the argument <paramref name="this"/>.</returns>
+        </member>
+        <member name="M:Microsoft.UI.Xaml.Controls.GridExtensions.WithGridColumn``1(``0,System.Int32)">
+            <summary>
+            Sets the value of the <c>Grid.Column</c> XAML attached property
+            on the specified <see cref="T:Microsoft.UI.Xaml.FrameworkElement"/>.
+            </summary>
+            <typeparam name="TFrameworkElement">The type of the element.</typeparam>
+            <param name="this">The control.</param>
+            <param name="value">The value of the <c>Grid.Column</c> XAML attached property value.</param>
+            <returns>The same reference as the argument <paramref name="this"/>.</returns>
+        </member>
+        <member name="M:Microsoft.UI.Xaml.Controls.GridExtensions.WithGridRowSpan``1(``0,System.Int32)">
+            <summary>
+            Sets the value of the <c>Grid.RowSpan</c> XAML attached property
+            on the specified <see cref="T:Microsoft.UI.Xaml.FrameworkElement"/>.
+            </summary>
+            <typeparam name="TFrameworkElement">The type of the element.</typeparam>
+            <param name="this">The control.</param>
+            <param name="value">The value of the <c>Grid.RowSpan</c> XAML attached property value.</param>
+            <returns>The same reference as the argument <paramref name="this"/>.</returns>
+        </member>
+        <member name="M:Microsoft.UI.Xaml.Controls.GridExtensions.WithGridColumnSpan``1(``0,System.Int32)">
+            <summary>
+            Sets the value of the <c>Grid.ColumnSpan</c> XAML attached property
+            on the specified <see cref="T:Microsoft.UI.Xaml.FrameworkElement"/>.
+            </summary>
+            <typeparam name="TFrameworkElement">The type of the element.</typeparam>
+            <param name="this">The control.</param>
+            <param name="value">The value of the <c>Grid.ColumnSpan</c> XAML attached property value.</param>
+            <returns>The same reference as the argument <paramref name="this"/>.</returns>
+        </member>
     </members>
 </doc>
