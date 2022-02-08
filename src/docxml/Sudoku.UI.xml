@@ -308,19 +308,21 @@
             Initializes a <see cref="T:Sudoku.UI.Views.Controls.SudokuPane"/> instance.
             </summary>
         </member>
-        <member name="M:Sudoku.UI.Views.Controls.SudokuPane.InitializeGrid(System.Double,System.Double)">
-            <summary>
-            Initializes the grid and updates the controls.
-            </summary>
-            <param name="blockStrokeWidth">The stroke width of the block border.</param>
-            <param name="cellStrokeWidth">The stroke width of the cell border.</param>
-        </member>
         <member name="M:Sudoku.UI.Views.Controls.SudokuPane.SudokuPane_Loaded(System.Object,Microsoft.UI.Xaml.RoutedEventArgs)">
             <summary>
             Triggers when the current control is loaded.
             </summary>
             <param name="sender">The object to trigger the event. The instance is always itself.</param>
             <param name="e">The event arguments provided.</param>
+        </member>
+        <member name="M:Sudoku.UI.Views.Controls.SudokuPane.InitializeGrid(Microsoft.UI.Xaml.Controls.Canvas,System.Double,System.Double,System.Double)">
+            <summary>
+            Initializes the grid and updates the controls.
+            </summary>
+            <param name="canvas">The control where the items will be drawn onto.</param>
+            <param name="outsideBorderThickness">The stroke of the outside border.</param>
+            <param name="blockBorderThickness">The stroke of the block border.</param>
+            <param name="cellBorderThickness">The stroke of the cell border.</param>
         </member>
         <member name="M:Sudoku.UI.Views.Controls.SudokuPane.InitializeComponent">
             <summary>
@@ -502,52 +504,6 @@
             <summary>
             GetXmlnsDefinitions()
             </summary>
-        </member>
-        <member name="T:Microsoft.UI.Xaml.Controls.GridExtensions">
-            <summary>
-            Provides extension methods on <see cref="T:Microsoft.UI.Xaml.Controls.Grid"/>.
-            </summary>
-            <seealso cref="T:Microsoft.UI.Xaml.Controls.Grid"/>
-        </member>
-        <member name="M:Microsoft.UI.Xaml.Controls.GridExtensions.WithGridRow``1(``0,System.Int32)">
-            <summary>
-            Sets the value of the <c>Grid.Row</c> XAML attached property
-            on the specified <see cref="T:Microsoft.UI.Xaml.FrameworkElement"/>.
-            </summary>
-            <typeparam name="TFrameworkElement">The type of the element.</typeparam>
-            <param name="this">The control.</param>
-            <param name="value">The value of the <c>Grid.Row</c> XAML attached property value.</param>
-            <returns>The same reference as the argument <paramref name="this"/>.</returns>
-        </member>
-        <member name="M:Microsoft.UI.Xaml.Controls.GridExtensions.WithGridColumn``1(``0,System.Int32)">
-            <summary>
-            Sets the value of the <c>Grid.Column</c> XAML attached property
-            on the specified <see cref="T:Microsoft.UI.Xaml.FrameworkElement"/>.
-            </summary>
-            <typeparam name="TFrameworkElement">The type of the element.</typeparam>
-            <param name="this">The control.</param>
-            <param name="value">The value of the <c>Grid.Column</c> XAML attached property value.</param>
-            <returns>The same reference as the argument <paramref name="this"/>.</returns>
-        </member>
-        <member name="M:Microsoft.UI.Xaml.Controls.GridExtensions.WithGridRowSpan``1(``0,System.Int32)">
-            <summary>
-            Sets the value of the <c>Grid.RowSpan</c> XAML attached property
-            on the specified <see cref="T:Microsoft.UI.Xaml.FrameworkElement"/>.
-            </summary>
-            <typeparam name="TFrameworkElement">The type of the element.</typeparam>
-            <param name="this">The control.</param>
-            <param name="value">The value of the <c>Grid.RowSpan</c> XAML attached property value.</param>
-            <returns>The same reference as the argument <paramref name="this"/>.</returns>
-        </member>
-        <member name="M:Microsoft.UI.Xaml.Controls.GridExtensions.WithGridColumnSpan``1(``0,System.Int32)">
-            <summary>
-            Sets the value of the <c>Grid.ColumnSpan</c> XAML attached property
-            on the specified <see cref="T:Microsoft.UI.Xaml.FrameworkElement"/>.
-            </summary>
-            <typeparam name="TFrameworkElement">The type of the element.</typeparam>
-            <param name="this">The control.</param>
-            <param name="value">The value of the <c>Grid.ColumnSpan</c> XAML attached property value.</param>
-            <returns>The same reference as the argument <paramref name="this"/>.</returns>
         </member>
     </members>
 </doc>

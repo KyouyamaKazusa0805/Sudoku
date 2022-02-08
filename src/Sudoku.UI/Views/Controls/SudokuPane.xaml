@@ -7,10 +7,10 @@
 	xmlns:vm="using:Sudoku.UI.ViewModels"
 	d:DataContext="{d:DesignInstance Type=vm:SudokuPaneViewModel}"
 	mc:Ignorable="d"
-	Loaded="SudokuPane_Loaded">
+	Loaded="SudokuPane_LoadedAsync" UseLayoutRounding="True">
 	<UserControl.DataContext>
 		<vm:SudokuPaneViewModel />
 	</UserControl.DataContext>
 
-	<Grid x:Name="_cGridMain" />
+	<Canvas x:Name="_cCanvasMain" />
 </UserControl>
