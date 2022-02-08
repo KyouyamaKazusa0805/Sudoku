@@ -147,6 +147,16 @@
             Indicates the website which name is corresponding to.
             </summary>
         </member>
+        <member name="T:Sudoku.UI.SudokuCanvasTags">
+            <summary>
+            Indicates the tags that applies to the controls in a <see cref="T:Microsoft.UI.Xaml.Controls.Canvas"/> to display a sudoku grid.
+            </summary>
+        </member>
+        <member name="F:Sudoku.UI.SudokuCanvasTags.BorderLines">
+            <summary>
+            Indicates the border lines.
+            </summary>
+        </member>
         <member name="T:Sudoku.UI.ViewModels.AboutPageViewModel">
             <summary>
             Indicates the view model that binds with the <see cref="T:Sudoku.UI.Views.Pages.AboutPage"/> instances.
@@ -308,7 +318,13 @@
             Initializes a <see cref="T:Sudoku.UI.Views.Controls.SudokuPane"/> instance.
             </summary>
         </member>
-        <member name="M:Sudoku.UI.Views.Controls.SudokuPane.SudokuPane_Loaded(System.Object,Microsoft.UI.Xaml.RoutedEventArgs)">
+        <member name="M:Sudoku.UI.Views.Controls.SudokuPane.ApplyAnimationAsync">
+            <summary>
+            Applies the loaded animation.
+            </summary>
+            <returns>The task that loads the animation on grid border lines.</returns>
+        </member>
+        <member name="M:Sudoku.UI.Views.Controls.SudokuPane.SudokuPane_LoadedAsync(System.Object,Microsoft.UI.Xaml.RoutedEventArgs)">
             <summary>
             Triggers when the current control is loaded.
             </summary>

@@ -17,6 +17,22 @@ public sealed partial class SudokuPane : UserControl
 
 
 	/// <summary>
+	/// Applies the loaded animation.
+	/// </summary>
+	/// <returns>The task that loads the animation on grid border lines.</returns>
+	private async Task ApplyAnimationAsync()
+	{
+		foreach (var control in
+			from control in _cCanvasMain.Children.OfType<FrameworkElement>()
+			where control.Tag is SudokuCanvasTags.BorderLines
+			select control)
+		{
+			control.Scale = new(1, 1, 1); // Try to change the scale to trigger the animation.
+			await Task.Delay(100);
+		}
+	}
+
+	/// <summary>
 	/// Triggers when the current control is loaded.
 	/// </summary>
 	/// <param name="sender">The object to trigger the event. The instance is always itself.</param>
@@ -24,23 +40,10 @@ public sealed partial class SudokuPane : UserControl
 	private async void SudokuPane_LoadedAsync([IsDiscard] object sender, [IsDiscard] RoutedEventArgs e)
 	{
 		InitializeGrid(_cCanvasMain, 1, 4, 1);
-		await applyAnimationAsync();
-
-
-		async Task applyAnimationAsync()
-		{
-			foreach (var control in
-				from control in _cCanvasMain.Children.OfType<FrameworkElement>()
-				where control.Tag is "Border lines"
-				select control)
-			{
-				control.Scale = new(1, 1, 1); // Try to change the scale to trigger the animation.
-				await Task.Delay(100);
-			}
-		}
+		await ApplyAnimationAsync();
 	}
 
-
+	
 	/// <summary>
 	/// Initializes the grid and updates the controls.
 	/// </summary>
@@ -52,7 +55,6 @@ public sealed partial class SudokuPane : UserControl
 		Canvas canvas, double outsideBorderThickness, double blockBorderThickness, double cellBorderThickness)
 	{
 		const double offset = 10;
-		const string borderLinesTag = "Border lines";
 		var defaultScale = Vector3.Zero;
 		var borderBrush = new SolidColorBrush(Colors.Black);
 		var scaleTransition = new Vector3Transition() { Duration = TimeSpan.FromSeconds(1) };
@@ -66,7 +68,7 @@ public sealed partial class SudokuPane : UserControl
 				StrokeThickness = outsideBorderThickness,
 				Scale = defaultScale,
 				ScaleTransition = scaleTransition,
-				Tag = borderLinesTag
+				Tag = SudokuCanvasTags.BorderLines
 			};
 			Canvas.SetZIndex(rect, 0);
 
@@ -89,7 +91,7 @@ public sealed partial class SudokuPane : UserControl
 				Scale = defaultScale,
 				ScaleTransition = scaleTransition,
 				StrokeLineJoin = PenLineJoin.Round,
-				Tag = borderLinesTag
+				Tag = SudokuCanvasTags.BorderLines
 			};
 			var l2 = new Line
 			{
@@ -102,7 +104,7 @@ public sealed partial class SudokuPane : UserControl
 				Scale = defaultScale,
 				ScaleTransition = scaleTransition,
 				StrokeLineJoin = PenLineJoin.Round,
-				Tag = borderLinesTag
+				Tag = SudokuCanvasTags.BorderLines
 			};
 			Canvas.SetZIndex(l1, 1);
 			Canvas.SetZIndex(l2, 1);
@@ -131,7 +133,7 @@ public sealed partial class SudokuPane : UserControl
 				Scale = defaultScale,
 				ScaleTransition = scaleTransition,
 				StrokeLineJoin = PenLineJoin.Round,
-				Tag = borderLinesTag
+				Tag = SudokuCanvasTags.BorderLines
 			};
 			var l2 = new Line
 			{
@@ -144,7 +146,7 @@ public sealed partial class SudokuPane : UserControl
 				Scale = defaultScale,
 				ScaleTransition = scaleTransition,
 				StrokeLineJoin = PenLineJoin.Round,
-				Tag = borderLinesTag
+				Tag = SudokuCanvasTags.BorderLines
 			};
 			Canvas.SetZIndex(l1, 1);
 			Canvas.SetZIndex(l2, 1);
