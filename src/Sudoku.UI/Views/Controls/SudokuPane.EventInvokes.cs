@@ -24,6 +24,8 @@ partial class SudokuPane
 		void initializeGrid(
 			double outsideBorderThickness, double blockBorderThickness, double cellBorderThickness)
 		{
+			PointCalculator = new(Size, OutsideOffset);
+
 			var defaultScale = Vector3.Zero;
 			var borderBrush = new SolidColorBrush(Colors.Black);
 			var scaleTransition = new Vector3Transition { Duration = TimeSpan.FromSeconds(1) };
@@ -51,10 +53,10 @@ partial class SudokuPane
 				{
 					Stroke = borderBrush,
 					StrokeThickness = blockBorderThickness,
-					X1 = HorizontalBorderLinePoint1(i, 3).X,
-					Y1 = HorizontalBorderLinePoint1(i, 3).Y,
-					X2 = HorizontalBorderLinePoint2(i, 3).X,
-					Y2 = HorizontalBorderLinePoint2(i, 3).Y,
+					X1 = PointCalculator.HorizontalBorderLinePoint1(i, 3).X,
+					Y1 = PointCalculator.HorizontalBorderLinePoint1(i, 3).Y,
+					X2 = PointCalculator.HorizontalBorderLinePoint2(i, 3).X,
+					Y2 = PointCalculator.HorizontalBorderLinePoint2(i, 3).Y,
 					Scale = defaultScale,
 					ScaleTransition = scaleTransition,
 					StrokeLineJoin = PenLineJoin.Round,
@@ -64,10 +66,10 @@ partial class SudokuPane
 				{
 					Stroke = borderBrush,
 					StrokeThickness = blockBorderThickness,
-					X1 = VerticalBorderLinePoint1(i, 3).X,
-					Y1 = VerticalBorderLinePoint1(i, 3).Y,
-					X2 = VerticalBorderLinePoint2(i, 3).X,
-					Y2 = VerticalBorderLinePoint2(i, 3).Y,
+					X1 = PointCalculator.VerticalBorderLinePoint1(i, 3).X,
+					Y1 = PointCalculator.VerticalBorderLinePoint1(i, 3).Y,
+					X2 = PointCalculator.VerticalBorderLinePoint2(i, 3).X,
+					Y2 = PointCalculator.VerticalBorderLinePoint2(i, 3).Y,
 					Scale = defaultScale,
 					ScaleTransition = scaleTransition,
 					StrokeLineJoin = PenLineJoin.Round,
@@ -93,10 +95,10 @@ partial class SudokuPane
 				{
 					Stroke = borderBrush,
 					StrokeThickness = cellBorderThickness,
-					X1 = HorizontalBorderLinePoint1(i, 9).X,
-					Y1 = HorizontalBorderLinePoint1(i, 9).Y,
-					X2 = HorizontalBorderLinePoint2(i, 9).X,
-					Y2 = HorizontalBorderLinePoint2(i, 9).Y,
+					X1 = PointCalculator.HorizontalBorderLinePoint1(i, 9).X,
+					Y1 = PointCalculator.HorizontalBorderLinePoint1(i, 9).Y,
+					X2 = PointCalculator.HorizontalBorderLinePoint2(i, 9).X,
+					Y2 = PointCalculator.HorizontalBorderLinePoint2(i, 9).Y,
 					Scale = defaultScale,
 					ScaleTransition = scaleTransition,
 					StrokeLineJoin = PenLineJoin.Round,
@@ -106,10 +108,10 @@ partial class SudokuPane
 				{
 					Stroke = borderBrush,
 					StrokeThickness = cellBorderThickness,
-					X1 = VerticalBorderLinePoint1(i, 9).X,
-					Y1 = VerticalBorderLinePoint1(i, 9).Y,
-					X2 = VerticalBorderLinePoint2(i, 9).X,
-					Y2 = VerticalBorderLinePoint2(i, 9).Y,
+					X1 = PointCalculator.VerticalBorderLinePoint1(i, 9).X,
+					Y1 = PointCalculator.VerticalBorderLinePoint1(i, 9).Y,
+					X2 = PointCalculator.VerticalBorderLinePoint2(i, 9).X,
+					Y2 = PointCalculator.VerticalBorderLinePoint2(i, 9).Y,
 					Scale = defaultScale,
 					ScaleTransition = scaleTransition,
 					StrokeLineJoin = PenLineJoin.Round,

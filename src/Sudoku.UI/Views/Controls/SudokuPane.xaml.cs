@@ -1,4 +1,5 @@
 ﻿using Microsoft.UI.Xaml.Shapes;
+using Sudoku.UI.Drawing;
 using Windows.Foundation;
 
 namespace Sudoku.UI.Views.Controls;
@@ -31,7 +32,7 @@ public sealed partial class SudokuPane : UserControl
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		set
 		{
-			if (!_size.NearlyEquals(value))
+			if (!_size.NearlyEquals(value, PointCalculator.Epsilon))
 			{
 				_size = value;
 
@@ -51,7 +52,7 @@ public sealed partial class SudokuPane : UserControl
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		set
 		{
-			if (!_outsideOffset.NearlyEquals(value))
+			if (!_outsideOffset.NearlyEquals(value, PointCalculator.Epsilon))
 			{
 				_outsideOffset = value;
 
@@ -80,6 +81,11 @@ public sealed partial class SudokuPane : UserControl
 		}
 	}
 
+	/// <summary>
+	/// Indicates the point calculator.
+	/// </summary>
+	public PointCalculator PointCalculator { get; private set; }
+
 
 	/// <summary>
 	/// Update the grid info.
@@ -93,6 +99,8 @@ public sealed partial class SudokuPane : UserControl
 	/// </summary>
 	private void UpdateBorderLines()
 	{
+		PointCalculator = new(Size, OutsideOffset);
+
 		foreach (var control in
 			from control in _cCanvasMain.Children.OfType<Line>()
 			where control.Tag is string s && s.Contains(SudokuCanvasTags.BorderLines)
@@ -103,64 +111,24 @@ public sealed partial class SudokuPane : UserControl
 			int weight = tag.Contains(SudokuCanvasTags.BlockBorderLines) ? 3 : 9;
 			if (tag.Contains(SudokuCanvasTags.HorizontalBorderLines))
 			{
-				var (x1, y1) = HorizontalBorderLinePoint1(i, weight);
+				var (x1, y1) = PointCalculator.HorizontalBorderLinePoint1(i, weight);
 				control.X1 = x1;
 				control.Y1 = y1;
 
-				var (x2, y2) = HorizontalBorderLinePoint2(i, weight);
+				var (x2, y2) = PointCalculator.HorizontalBorderLinePoint2(i, weight);
 				control.X2 = x2;
 				control.Y2 = y2;
 			}
 			else if (tag.Contains(SudokuCanvasTags.VerticalBorderLines))
 			{
-				var (x1, y1) = VerticalBorderLinePoint1(i, weight);
+				var (x1, y1) = PointCalculator.VerticalBorderLinePoint1(i, weight);
 				control.X1 = x1;
 				control.Y1 = y1;
 
-				var (x2, y2) = VerticalBorderLinePoint2(i, weight);
+				var (x2, y2) = PointCalculator.VerticalBorderLinePoint2(i, weight);
 				control.X2 = x2;
 				control.Y2 = y2;
 			}
 		}
 	}
-
-	/// <summary>
-	/// Gets the first point value of the horizontal border line.
-	/// </summary>
-	/// <param name="i">The index of the line.</param>
-	/// <param name="weight">The weight of the division operation. The value can only be 3, 9 or 27.</param>
-	/// <returns>The first point value of the horizontal border line.</returns>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	private Point HorizontalBorderLinePoint1(int i, int weight) =>
-		new(OutsideOffset + i * (Size - 2 * OutsideOffset) / weight, OutsideOffset);
-
-	/// <summary>
-	/// Gets the second point value of the horizontal border line.
-	/// </summary>
-	/// <param name="i">The index of the line.</param>
-	/// <param name="weight">The weight of the division operation. The value can only be 3, 9 or 27.</param>
-	/// <returns>The second point value of the horizontal border line.</returns>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	private Point HorizontalBorderLinePoint2(int i, int weight) =>
-		new(OutsideOffset + i * (Size - 2 * OutsideOffset) / weight, Size - OutsideOffset);
-
-	/// <summary>
-	/// Gets the first point value of the vertical border line.
-	/// </summary>
-	/// <param name="i">The index of the line.</param>
-	/// <param name="weight">The weight of the division operation. The value can only be 3, 9 or 27.</param>
-	/// <returns>The first point value of the horizontal border line.</returns>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	private Point VerticalBorderLinePoint1(int i, int weight) =>
-		new(OutsideOffset, OutsideOffset + i * (Size - 2 * OutsideOffset) / weight);
-
-	/// <summary>
-	/// Gets the second point value of the vertical border line.
-	/// </summary>
-	/// <param name="i">The index of the line.</param>
-	/// <param name="weight">The weight of the division operation. The value can only be 3, 9 or 27.</param>
-	/// <returns>The second point value of the horizontal border line.</returns>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	private Point VerticalBorderLinePoint2(int i, int weight) =>
-		new(Size - OutsideOffset, OutsideOffset + i * (Size - 2 * OutsideOffset) / weight);
 }
