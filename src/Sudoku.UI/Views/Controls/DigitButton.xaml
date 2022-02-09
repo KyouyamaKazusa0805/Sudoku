@@ -30,5 +30,6 @@
 		x:Name="_cButton" Style="{StaticResource CircleButton}" FontSize="{x:Bind FontSize}"
 		Content="{x:Bind Digit,Converter={StaticResource SudokuDigitConverterInstance},Mode=TwoWay}"
 		Width="{x:Bind Width}" Height="{x:Bind Height}" Background="{x:Bind Background}"
-		BorderBrush="{x:Bind BorderBrush}" />
+		BorderBrush="{x:Bind BorderBrush}"
+		Click="Button_Click" />
 </UserControl>

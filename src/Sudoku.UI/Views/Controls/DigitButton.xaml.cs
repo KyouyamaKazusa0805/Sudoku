@@ -22,4 +22,14 @@ public sealed partial class DigitButton : UserControl
 	/// Occurs when the control is clicked.
 	/// </summary>
 	public event RoutedEventHandler? Click;
+
+
+	/// <summary>
+	/// Pass the arguments and trigger the event <see cref="Click"/>.
+	/// </summary>
+	/// <param name="sender">The object to trigger the event.</param>
+	/// <param name="e">The event argument provided.</param>
+	/// <seealso cref="Click"/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	private void Button_Click(object sender, RoutedEventArgs e) => Click?.Invoke(sender, e);
 }

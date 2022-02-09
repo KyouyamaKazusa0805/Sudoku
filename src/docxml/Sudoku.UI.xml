@@ -324,6 +324,14 @@
             Occurs when the control is clicked.
             </summary>
         </member>
+        <member name="M:Sudoku.UI.Views.Controls.DigitButton.Button_Click(System.Object,Microsoft.UI.Xaml.RoutedEventArgs)">
+            <summary>
+            Pass the arguments and trigger the event <see cref="E:Sudoku.UI.Views.Controls.DigitButton.Click"/>.
+            </summary>
+            <param name="sender">The object to trigger the event.</param>
+            <param name="e">The event argument provided.</param>
+            <seealso cref="E:Sudoku.UI.Views.Controls.DigitButton.Click"/>
+        </member>
         <member name="M:Sudoku.UI.Views.Controls.DigitButton.InitializeComponent">
             <summary>
             InitializeComponent()
