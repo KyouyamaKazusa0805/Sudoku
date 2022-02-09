@@ -1,4 +1,6 @@
-﻿namespace Windows.Foundation;
+﻿using System.ComponentModel;
+
+namespace Windows.Foundation;
 
 /// <summary>
 /// Provides extension methods on <see cref="Point"/>.
@@ -10,6 +12,7 @@ public static class PointExtensions
 	/// Deconstruct the instance to multiple values.
 	/// </summary>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	[EditorBrowsable(EditorBrowsableState.Never)]
 	public static void Deconstruct(this in Point @this, out double x, out double y)
 	{
 		x = @this.X;

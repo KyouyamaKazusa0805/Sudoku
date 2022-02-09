@@ -16,4 +16,10 @@ public sealed partial class DigitButton : UserControl
 	/// Gets or sets the digit to the view model.
 	/// </summary>
 	public int Digit { get; set; }
+
+
+	/// <summary>
+	/// Occurs when the control is clicked.
+	/// </summary>
+	public event RoutedEventHandler? Click;
 }

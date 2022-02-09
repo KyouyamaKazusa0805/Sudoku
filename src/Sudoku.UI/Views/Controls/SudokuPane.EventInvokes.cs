@@ -15,13 +15,13 @@ partial class SudokuPane
 	private async void SudokuPane_LoadedAsync([IsDiscard] object sender, [IsDiscard] RoutedEventArgs e)
 	{
 		// Initializes the grid lines.
-		InitializeGrid(outsideBorderThickness: 1, blockBorderThickness: 4, cellBorderThickness: 1);
+		initializeGrid(outsideBorderThickness: 1, blockBorderThickness: 4, cellBorderThickness: 1);
 
 		// Then apply the animation for the initialization.
-		await SetBorderLineScaleAsync();
+		await setBorderLineScaleAsync();
 
 
-		void InitializeGrid(
+		void initializeGrid(
 			double outsideBorderThickness, double blockBorderThickness, double cellBorderThickness)
 		{
 			var defaultScale = Vector3.Zero;
@@ -125,7 +125,7 @@ partial class SudokuPane
 			// TODO: Initializes candidate border lines if worth.
 		}
 
-		async Task SetBorderLineScaleAsync()
+		async Task setBorderLineScaleAsync()
 		{
 			foreach (var control in
 				from control in _cCanvasMain.Children.OfType<FrameworkElement>()

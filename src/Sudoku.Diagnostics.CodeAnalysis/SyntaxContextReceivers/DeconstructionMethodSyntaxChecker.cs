@@ -24,6 +24,7 @@ public sealed partial class DeconstructionMethodSyntaxChecker : ISyntaxContextRe
 			symbol is not IMethodSymbol
 			{
 				Name: "Deconstruct",
+				IsExtensionMethod: var isExtensionMethod,
 				Parameters: var parameters,
 				ReturnType.SpecialType: var returnTypeSpecialType
 			} methodSymbol
@@ -39,7 +40,7 @@ public sealed partial class DeconstructionMethodSyntaxChecker : ISyntaxContextRe
 			return;
 		}
 
-		if (parameters.Any(isNotOutParameter))
+		if ((isExtensionMethod ? parameters.Skip(1) : parameters).Any(isNotOutParameter))
 		{
 			Diagnostics.Add(Diagnostic.Create(SCA0412, location, messageArgs: null));
 			return;
@@ -51,7 +52,7 @@ public sealed partial class DeconstructionMethodSyntaxChecker : ISyntaxContextRe
 		switch (symbol)
 		{
 			// Normal deconstruction method.
-			case { IsExtensionMethod: false, IsGenericMethod: var isGeneric }:
+			case { IsGenericMethod: var isGeneric } when !isExtensionMethod:
 			{
 				if (isGeneric)
 				{
@@ -83,7 +84,7 @@ public sealed partial class DeconstructionMethodSyntaxChecker : ISyntaxContextRe
 			}
 
 			// Extension deconstruction method.
-			case { IsExtensionMethod: true }:
+			case var _ when isExtensionMethod:
 			{
 				var outParameters = parameters.Skip(1).ToImmutableArray();
 				if (outParameters.Any(containsDiscardAttribute))
@@ -92,13 +93,18 @@ public sealed partial class DeconstructionMethodSyntaxChecker : ISyntaxContextRe
 					return;
 				}
 
-				if (outParameters.Length == 1)
+				switch (outParameters)
 				{
-					Diagnostics.Add(Diagnostic.Create(SCA0414, location, messageArgs: null));
-				}
-				else if (outParameters.Length == 2)
-				{
-					Diagnostics.Add(Diagnostic.Create(SCA0415, location, messageArgs: null));
+					case []:
+					{
+						Diagnostics.Add(Diagnostic.Create(SCA0414, location, messageArgs: null));
+						break;
+					}
+					case [_]:
+					{
+						Diagnostics.Add(Diagnostic.Create(SCA0415, location, messageArgs: null));
+						break;
+					}
 				}
 
 				break;

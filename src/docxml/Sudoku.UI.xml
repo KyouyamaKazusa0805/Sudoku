@@ -214,6 +214,11 @@
             Gets or sets the digit to the view model.
             </summary>
         </member>
+        <member name="E:Sudoku.UI.Views.Controls.DigitButton.Click">
+            <summary>
+            Occurs when the control is clicked.
+            </summary>
+        </member>
         <member name="M:Sudoku.UI.Views.Controls.DigitButton.InitializeComponent">
             <summary>
             InitializeComponent()
