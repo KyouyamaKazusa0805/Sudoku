@@ -5,13 +5,8 @@
 	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 	xmlns:m="using:Sudoku.UI.Models"
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-	xmlns:vm="using:Sudoku.UI.ViewModels" xmlns:ui="using:Sudoku.UI"
-	d:DataContext="{d:DesignInstance Type=vm:AboutPageViewModel}"
+	xmlns:ui="using:Sudoku.UI"
 	mc:Ignorable="d">
-	<Page.DataContext>
-		<vm:AboutPageViewModel />
-	</Page.DataContext>
-
 	<ScrollViewer>
 		<StackPanel>
 			<!--Program description-->

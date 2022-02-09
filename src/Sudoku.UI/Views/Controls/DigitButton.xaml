@@ -5,12 +5,7 @@
 	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 	xmlns:cvt="using:Sudoku.UI.Data.Converters"
-	xmlns:vm="using:Sudoku.UI.ViewModels"
-	d:DataContext="{d:DesignInstance Type=vm:DigitButtonViewModel}"
 	mc:Ignorable="d">
-	<UserControl.DataContext>
-		<vm:DigitButtonViewModel x:Name="_vm" />
-	</UserControl.DataContext>
 	<UserControl.Resources>
 		<cvt:SudokuDigitConverter x:Key="SudokuDigitConverterInstance" />
 		<Style x:Key="CircleButton" TargetType="Button">
@@ -33,7 +28,7 @@
 
 	<Button
 		x:Name="_cButton" Style="{StaticResource CircleButton}" FontSize="{x:Bind FontSize}"
-		Content="{x:Bind _vm.Digit,Converter={StaticResource SudokuDigitConverterInstance}}"
+		Content="{x:Bind Digit,Converter={StaticResource SudokuDigitConverterInstance},Mode=TwoWay}"
 		Width="{x:Bind Width}" Height="{x:Bind Height}" Background="{x:Bind Background}"
 		BorderBrush="{x:Bind BorderBrush}" />
 </UserControl>

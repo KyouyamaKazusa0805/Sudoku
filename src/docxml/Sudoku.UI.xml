@@ -199,202 +199,6 @@
             Indicates the vertical border lines.
             </summary>
         </member>
-        <member name="T:Sudoku.UI.ViewModels.AboutPageViewModel">
-            <summary>
-            Indicates the view model that binds with the <see cref="T:Sudoku.UI.Views.Pages.AboutPage"/> instances.
-            </summary>
-            <seealso cref="T:Sudoku.UI.Views.Pages.AboutPage"/>
-        </member>
-        <member name="T:Sudoku.UI.ViewModels.DigitButtonViewModel">
-            <summary>
-            Indicates the view model that binds with the <see cref="T:Sudoku.UI.Views.Controls.DigitButton"/> instances.
-            </summary>
-            <seealso cref="T:Sudoku.UI.Views.Controls.DigitButton"/>
-        </member>
-        <member name="P:Sudoku.UI.ViewModels.DigitButtonViewModel.Digit">
-            <summary>
-            Gets or sets the digit. The digit value must between 0 and 9, 0 is for the empty content.
-            </summary>
-        </member>
-        <member name="T:Sudoku.UI.ViewModels.MainPageViewModel">
-            <summary>
-            Indicates the view model that binds with the <see cref="T:Sudoku.UI.Views.Pages.MainPage"/> instances.
-            </summary>
-            <seealso cref="T:Sudoku.UI.Views.Pages.MainPage"/>
-        </member>
-        <member name="T:Sudoku.UI.ViewModels.NotificationObject">
-            <summary>
-            Defines a base object type that holds and handles the action on notifications.
-            </summary>
-        </member>
-        <member name="E:Sudoku.UI.ViewModels.NotificationObject.PropertyChanged">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.UI.ViewModels.NotificationObject.OnPropertyChanged(System.String)">
-            <summary>
-            The internal method that will raise the event <see cref="E:Sudoku.UI.ViewModels.NotificationObject.PropertyChanged" />.
-            </summary>
-            <param name="propertyName">
-            <target name="argument">
-				<para>
-					Indicates the name of the caller member to invoke this method.
-				</para>
-				<para>
-					<i>
-						The attribute <see cref="T:System.Runtime.CompilerServices.CallerMemberNameAttribute" /> allows the argument automatically
-						getting the name of the caller. For example, if the property raises the event, the argument
-						will pass the name of the property automatically if the argument is marked the attribute.
-					</i>
-				</para>
-				<para>
-					<i>
-						For the above reason, the argument will use <see langword="null" /> as the initial value
-						as the placeholder to allow the syntax valid during the compile time on one hand.
-						On the other hand, you shouldn't pass any values to this argument.
-					</i>
-				</para>
-				<para>
-					<i>
-						For more information, please visit
-						<see href="https://docs.microsoft.com/en-us/dotnet/api/system.runtime.compilerservices.callermembernameattribute">
-							The Microsoft Docs
-						</see>
-						for more info.
-					</i>
-				</para>
-			</target>
-            </param>
-            <seealso cref="E:Sudoku.UI.ViewModels.NotificationObject.PropertyChanged" />
-            <seealso cref="T:System.Runtime.CompilerServices.CallerMemberNameAttribute" />
-        </member>
-        <member name="M:Sudoku.UI.ViewModels.NotificationObject.SetProperty``1(``0@,``0@,System.String)">
-            <summary>
-            Try to set the property with the new value, and calls <see cref="M:Sudoku.UI.ViewModels.NotificationObject.OnPropertyChanged(System.String)" />
-            to raise the event <see cref="E:Sudoku.UI.ViewModels.NotificationObject.PropertyChanged" />.
-            </summary>
-            <typeparam name="TNotNull">The type of the property.</typeparam>
-            <param name="originalValue">The original value of the property.</param>
-            <param name="newValue">The new value to set.</param>
-            <param name="propertyName">
-            <target name="argument">
-				<para>
-					Indicates the name of the caller member to invoke this method.
-				</para>
-				<para>
-					<i>
-						The attribute <see cref="T:System.Runtime.CompilerServices.CallerMemberNameAttribute" /> allows the argument automatically
-						getting the name of the caller. For example, if the property raises the event, the argument
-						will pass the name of the property automatically if the argument is marked the attribute.
-					</i>
-				</para>
-				<para>
-					<i>
-						For the above reason, the argument will use <see langword="null" /> as the initial value
-						as the placeholder to allow the syntax valid during the compile time on one hand.
-						On the other hand, you shouldn't pass any values to this argument.
-					</i>
-				</para>
-				<para>
-					<i>
-						For more information, please visit
-						<see href="https://docs.microsoft.com/en-us/dotnet/api/system.runtime.compilerservices.callermembernameattribute">
-							The Microsoft Docs
-						</see>
-						for more info.
-					</i>
-				</para>
-			</target>
-            </param>
-            <returns>
-            A <see cref="T:System.Boolean" /> result indicating whether the assignment is successful.
-            If the argument <paramref name="originalValue" /> is same as <paramref name="newValue" />,
-            the return value will be <see langword="false" />; otherwise, <see langword="true" />.
-            </returns>
-            <seealso cref="M:Sudoku.UI.ViewModels.NotificationObject.OnPropertyChanged(System.String)" />
-            <seealso cref="E:Sudoku.UI.ViewModels.NotificationObject.PropertyChanged" />
-        </member>
-        <member name="T:Sudoku.UI.ViewModels.SettingsPageViewModel">
-            <summary>
-            Indicates the view model that binds with the <see cref="T:Sudoku.UI.Views.Pages.SettingsPage"/> instances.
-            </summary>
-            <seealso cref="T:Sudoku.UI.Views.Pages.SettingsPage"/>
-        </member>
-        <member name="T:Sudoku.UI.ViewModels.SudokuPageViewModel">
-            <summary>
-            Indicates the view model that binds with the <see cref="T:Sudoku.UI.Views.Pages.SudokuPage"/> instances.
-            </summary>
-            <seealso cref="T:Sudoku.UI.Views.Pages.SudokuPage"/>
-        </member>
-        <member name="T:Sudoku.UI.ViewModels.SudokuPaneViewModel">
-            <summary>
-            Indicates the view model that binds with the <see cref="T:Sudoku.UI.Views.Controls.SudokuPane"/> instances.
-            </summary>
-            <seealso cref="T:Sudoku.UI.Views.Controls.SudokuPane"/>
-        </member>
-        <member name="P:Sudoku.UI.ViewModels.SudokuPaneViewModel.Size">
-            <summary>
-            Indicates the size of the pane.
-            </summary>
-        </member>
-        <member name="P:Sudoku.UI.ViewModels.SudokuPaneViewModel.OutsideOffset">
-            <summary>
-            Indicates the outside offset.
-            </summary>
-        </member>
-        <member name="P:Sudoku.UI.ViewModels.SudokuPaneViewModel.Grid">
-            <summary>
-            Indicates the grid used.
-            </summary>
-        </member>
-        <member name="E:Sudoku.UI.ViewModels.SudokuPaneViewModel.SizeChanged">
-            <summary>
-            Defines an event that triggers when the property <see cref="P:Sudoku.UI.ViewModels.SudokuPaneViewModel.Size"/> value is changed.
-            </summary>
-            <seealso cref="P:Sudoku.UI.ViewModels.SudokuPaneViewModel.Size"/>
-        </member>
-        <member name="E:Sudoku.UI.ViewModels.SudokuPaneViewModel.OutsideOffsetChanged">
-            <summary>
-            Defines an event that triggers when the property <see cref="P:Sudoku.UI.ViewModels.SudokuPaneViewModel.OutsideOffset"/> value is changed.
-            </summary>
-            <seealso cref="P:Sudoku.UI.ViewModels.SudokuPaneViewModel.OutsideOffset"/>
-        </member>
-        <member name="E:Sudoku.UI.ViewModels.SudokuPaneViewModel.GridChanged">
-            <summary>
-            Indicates the event to be triggered when the property <see cref="P:Sudoku.UI.ViewModels.SudokuPaneViewModel.Grid"/> value is changed.
-            </summary>
-        </member>
-        <member name="M:Sudoku.UI.ViewModels.SudokuPaneViewModel.HorizontalBorderLinePoint1(System.Int32,System.Int32)">
-            <summary>
-            Gets the first point value of the horizontal border line.
-            </summary>
-            <param name="i">The index of the line.</param>
-            <param name="weight">The weight of the division operation. The value can only be 3, 9 or 27.</param>
-            <returns>The first point value of the horizontal border line.</returns>
-        </member>
-        <member name="M:Sudoku.UI.ViewModels.SudokuPaneViewModel.HorizontalBorderLinePoint2(System.Int32,System.Int32)">
-            <summary>
-            Gets the second point value of the horizontal border line.
-            </summary>
-            <param name="i">The index of the line.</param>
-            <param name="weight">The weight of the division operation. The value can only be 3, 9 or 27.</param>
-            <returns>The second point value of the horizontal border line.</returns>
-        </member>
-        <member name="M:Sudoku.UI.ViewModels.SudokuPaneViewModel.VerticalBorderLinePoint1(System.Int32,System.Int32)">
-            <summary>
-            Gets the first point value of the vertical border line.
-            </summary>
-            <param name="i">The index of the line.</param>
-            <param name="weight">The weight of the division operation. The value can only be 3, 9 or 27.</param>
-            <returns>The first point value of the horizontal border line.</returns>
-        </member>
-        <member name="M:Sudoku.UI.ViewModels.SudokuPaneViewModel.VerticalBorderLinePoint2(System.Int32,System.Int32)">
-            <summary>
-            Gets the second point value of the vertical border line.
-            </summary>
-            <param name="i">The index of the line.</param>
-            <param name="weight">The weight of the division operation. The value can only be 3, 9 or 27.</param>
-            <returns>The second point value of the horizontal border line.</returns>
-        </member>
         <member name="T:Sudoku.UI.Views.Controls.DigitButton">
             <summary>
             Defines a user control that indicates a digit button.
@@ -430,6 +234,13 @@
             Defines a user control that interacts with a sudoku grid.
             </summary>
         </member>
+        <member name="M:Sudoku.UI.Views.Controls.SudokuPane.SudokuPane_LoadedAsync(System.Object,Microsoft.UI.Xaml.RoutedEventArgs)">
+            <summary>
+            Triggers when the current control is loaded.
+            </summary>
+            <param name="sender">The object to trigger the event. The instance is always itself.</param>
+            <param name="e">The event arguments provided.</param>
+        </member>
         <member name="M:Sudoku.UI.Views.Controls.SudokuPane.#ctor">
             <summary>
             Initializes a <see cref="T:Sudoku.UI.Views.Controls.SudokuPane"/> instance.
@@ -439,63 +250,58 @@
             <summary>
             Gets or sets the size of the pane to the view model.
             </summary>
-            <value>The size of the pane.</value>
         </member>
         <member name="P:Sudoku.UI.Views.Controls.SudokuPane.OutsideOffset">
             <summary>
             Gets or sets the outside offset to the view model.
             </summary>
-            <value>The outside offset.</value>
         </member>
-        <member name="M:Sudoku.UI.Views.Controls.SudokuPane.InitializeGrid(System.Double,System.Double,System.Double)">
+        <member name="P:Sudoku.UI.Views.Controls.SudokuPane.Grid">
             <summary>
-            Initializes the grid and updates the controls.
+            Gets or sets the current grid used.
             </summary>
-            <param name="outsideBorderThickness">The stroke of the outside border.</param>
-            <param name="blockBorderThickness">The stroke of the block border.</param>
-            <param name="cellBorderThickness">The stroke of the cell border.</param>
+        </member>
+        <member name="M:Sudoku.UI.Views.Controls.SudokuPane.UpdateGrid">
+            <summary>
+            Update the grid info.
+            </summary>
         </member>
         <member name="M:Sudoku.UI.Views.Controls.SudokuPane.UpdateBorderLines">
             <summary>
             Update the border lines.
             </summary>
         </member>
-        <member name="M:Sudoku.UI.Views.Controls.SudokuPane.SetBorderLineScaleAsync(System.Numerics.Vector3,System.Numerics.Vector3)">
+        <member name="M:Sudoku.UI.Views.Controls.SudokuPane.HorizontalBorderLinePoint1(System.Int32,System.Int32)">
             <summary>
-            Sets the scale of all border lines.
+            Gets the first point value of the horizontal border line.
             </summary>
-            <param name="horizontalScale">The horizontal scale.</param>
-            <param name="verticalScale">The vertical scale.</param>
-            <returns>The task that loads the animation on grid border lines.</returns>
+            <param name="i">The index of the line.</param>
+            <param name="weight">The weight of the division operation. The value can only be 3, 9 or 27.</param>
+            <returns>The first point value of the horizontal border line.</returns>
         </member>
-        <member name="M:Sudoku.UI.Views.Controls.SudokuPane.SudokuPane_GridChanged(System.Object,Sudoku.UI.Models.GridChangedEventArgs)">
+        <member name="M:Sudoku.UI.Views.Controls.SudokuPane.HorizontalBorderLinePoint2(System.Int32,System.Int32)">
             <summary>
-            Triggers when the property <see cref="P:Sudoku.UI.ViewModels.SudokuPaneViewModel.Grid"/> is changed.
+            Gets the second point value of the horizontal border line.
             </summary>
-            <param name="sender">The object to trigegr the event.</param>
-            <param name="e">The event arguments provided.</param>
-            <seealso cref="P:Sudoku.UI.ViewModels.SudokuPaneViewModel.Grid"/>
+            <param name="i">The index of the line.</param>
+            <param name="weight">The weight of the division operation. The value can only be 3, 9 or 27.</param>
+            <returns>The second point value of the horizontal border line.</returns>
         </member>
-        <member name="M:Sudoku.UI.Views.Controls.SudokuPane.SudokuPane_OutsideOffsetChanged(System.Object,Microsoft.UI.Xaml.RoutedEventArgs)">
+        <member name="M:Sudoku.UI.Views.Controls.SudokuPane.VerticalBorderLinePoint1(System.Int32,System.Int32)">
             <summary>
-            Triggers when the property <see cref="P:Sudoku.UI.Views.Controls.SudokuPane.OutsideOffset"/> is changed.
+            Gets the first point value of the vertical border line.
             </summary>
-            <param name="sender">The object to trigger the event.</param>
-            <param name="e">The event arguments provided.</param>
+            <param name="i">The index of the line.</param>
+            <param name="weight">The weight of the division operation. The value can only be 3, 9 or 27.</param>
+            <returns>The first point value of the horizontal border line.</returns>
         </member>
-        <member name="M:Sudoku.UI.Views.Controls.SudokuPane.SudokuPane_SizeChanged(System.Object,Microsoft.UI.Xaml.RoutedEventArgs)">
+        <member name="M:Sudoku.UI.Views.Controls.SudokuPane.VerticalBorderLinePoint2(System.Int32,System.Int32)">
             <summary>
-            Triggers when the property <see cref="P:Sudoku.UI.Views.Controls.SudokuPane.Size"/> is changed.
+            Gets the second point value of the vertical border line.
             </summary>
-            <param name="sender">The object to trigger the event.</param>
-            <param name="e">The event arguments provided.</param>
-        </member>
-        <member name="M:Sudoku.UI.Views.Controls.SudokuPane.SudokuPane_LoadedAsync(System.Object,Microsoft.UI.Xaml.RoutedEventArgs)">
-            <summary>
-            Triggers when the current control is loaded.
-            </summary>
-            <param name="sender">The object to trigger the event. The instance is always itself.</param>
-            <param name="e">The event arguments provided.</param>
+            <param name="i">The index of the line.</param>
+            <param name="weight">The weight of the division operation. The value can only be 3, 9 or 27.</param>
+            <returns>The second point value of the horizontal border line.</returns>
         </member>
         <member name="M:Sudoku.UI.Views.Controls.SudokuPane.InitializeComponent">
             <summary>

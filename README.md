@@ -1,7 +1,5 @@
 <center>语言切换：<a href="README-zh-cn.md">简体中文</a></center>
 
-<center><p style="font-size:48pt;color:#f00">Happy 2022 Chinese New Year!</p></center>
-
 # Sunnie's Sudoku Solution
 
 ## Content
@@ -55,19 +53,22 @@ Please visit the following tables.
 
 > I'm sorry that I haven't created wiki in English, because it's too complex to me. I have been working for English for many years, but it's so hard to me for some description (especially expression of some detail) to translate into English still.
 
-| Coding Information                 |                                     |
-| ---------------------------------- | ----------------------------------- |
-| Programming language and version   | C# 10                               |
-| Framework                          | .NET 6                              |
-| Indenting                          | Tabs                                |
-| Integrated development environment | Visual Studio 2022 (17.1 Preview 5) |
-| Natural languages support          | English, Simplified Chinese         |
+| Coding Information                 |                                      |
+| ---------------------------------- | ------------------------------------ |
+| Programming language and version   | C# 10                                |
+| Framework                          | .NET 6                               |
+| Indenting                          | Tabs                                 |
+| Integrated development environment | Visual Studio 2022 (17.1 Preview 5)  |
+| Natural languages support          | English, Simplified Chinese          |
+| User Interface                     | Project `Suoku.UI`, but without MVVM |
 
 > Please note that the programming language version is always used as 'preview', which means some preview features are still used in this solution.
 >
 > You can also use JetBrains Rider as your IDE. Use whatever you want to use, even Notepad :D Although C# contains some syntaxes that are only allowed in Visual Studio (e.g. keyword `__makeref`), this repo doesn't use them. Therefore, you can use other IDEs to develop the code in this repo liberally.
 >
 > In addition, the framework and IDE version may update in the future; in other words, they aren't changeless. The information is **for reference only**.
+>
+> I don't use MVVM to design my UI project because I'm not familiar with it. If using as learning it, the development speed will be extremely slow.
 
 ### To-do List
 

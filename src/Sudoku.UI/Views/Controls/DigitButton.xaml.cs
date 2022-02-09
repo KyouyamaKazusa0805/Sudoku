@@ -15,12 +15,5 @@ public sealed partial class DigitButton : UserControl
 	/// <summary>
 	/// Gets or sets the digit to the view model.
 	/// </summary>
-	public int Digit
-	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => _vm.Digit;
-
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		set => _vm.Digit = value;
-	}
+	public int Digit { get; set; }
 }

@@ -4,18 +4,9 @@
 	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-	xmlns:vm="using:Sudoku.UI.ViewModels"
-	d:DataContext="{d:DesignInstance Type=vm:SudokuPaneViewModel}"
 	mc:Ignorable="d"
-	Width="{x:Bind _vm.Size,Mode=TwoWay}" Height="{x:Bind _vm.Size,Mode=TwoWay}"
+	Width="{x:Bind Size,Mode=TwoWay}" Height="{x:Bind Size,Mode=TwoWay}"
 	Loaded="SudokuPane_LoadedAsync">
-	<UserControl.DataContext>
-		<vm:SudokuPaneViewModel
-			x:Name="_vm"
-			SizeChanged="SudokuPane_SizeChanged"
-			OutsideOffsetChanged="SudokuPane_OutsideOffsetChanged"
-			GridChanged="SudokuPane_GridChanged" />
-	</UserControl.DataContext>
 
 	<Canvas x:Name="_cCanvasMain" />
 </UserControl>

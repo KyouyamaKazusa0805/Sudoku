@@ -11,13 +11,11 @@ public sealed class SudokuDigitConverter : IValueConverter
 {
 	/// <inheritdoc/>
 	public object? Convert(
-		object? value, Type targetType, [IsDiscard] object? parameter, [IsDiscard] string? language) =>
-		targetType == typeof(int) && value is string str && int.TryParse(str, out int result)
-			? result
-			: null;
+		object? value, [IsDiscard] Type targetType, [IsDiscard] object? parameter, [IsDiscard] string? language) =>
+		value is int i and not 0 ? i.ToString() : string.Empty;
 
 	/// <inheritdoc/>
 	public object? ConvertBack(
 		object value, [IsDiscard] Type targetType, [IsDiscard] object parameter, [IsDiscard] string language) =>
-		value is int i and not 0 ? i.ToString() : string.Empty;
+		value is string str && int.TryParse(str, out int result) ? result : 0;
 }
