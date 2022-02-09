@@ -81,8 +81,8 @@ public readonly record struct PointCalculator(double PaneSize, double OutsideOff
 	/// <param name="weight">The weight of the division operation. The value can only be 3, 9 or 27.</param>
 	/// <returns>The first point value of the horizontal border line.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public Point HorizontalBorderLinePoint1(int i, int weight) =>
-		new(OutsideOffset + i * GridSize / weight, OutsideOffset);
+	public Point HorizontalBorderLinePoint1(int i, BorderLineType weight) =>
+		new(OutsideOffset + i * GridSize / (int)weight, OutsideOffset);
 
 	/// <summary>
 	/// Gets the second point value of the horizontal border line.
@@ -91,8 +91,8 @@ public readonly record struct PointCalculator(double PaneSize, double OutsideOff
 	/// <param name="weight">The weight of the division operation. The value can only be 3, 9 or 27.</param>
 	/// <returns>The second point value of the horizontal border line.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public Point HorizontalBorderLinePoint2(int i, int weight) =>
-		new(OutsideOffset + i * GridSize / weight, PaneSize - OutsideOffset);
+	public Point HorizontalBorderLinePoint2(int i, BorderLineType weight) =>
+		new(OutsideOffset + i * GridSize / (int)weight, PaneSize - OutsideOffset);
 
 	/// <summary>
 	/// Gets the first point value of the vertical border line.
@@ -101,8 +101,8 @@ public readonly record struct PointCalculator(double PaneSize, double OutsideOff
 	/// <param name="weight">The weight of the division operation. The value can only be 3, 9 or 27.</param>
 	/// <returns>The first point value of the horizontal border line.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public Point VerticalBorderLinePoint1(int i, int weight) =>
-		new(OutsideOffset, OutsideOffset + i * GridSize / weight);
+	public Point VerticalBorderLinePoint1(int i, BorderLineType weight) =>
+		new(OutsideOffset, OutsideOffset + i * GridSize / (int)weight);
 
 	/// <summary>
 	/// Gets the second point value of the vertical border line.
@@ -111,6 +111,6 @@ public readonly record struct PointCalculator(double PaneSize, double OutsideOff
 	/// <param name="weight">The weight of the division operation. The value can only be 3, 9 or 27.</param>
 	/// <returns>The second point value of the horizontal border line.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public Point VerticalBorderLinePoint2(int i, int weight) =>
-		new(PaneSize - OutsideOffset, OutsideOffset + i * GridSize / weight);
+	public Point VerticalBorderLinePoint2(int i, BorderLineType weight) =>
+		new(PaneSize - OutsideOffset, OutsideOffset + i * GridSize / (int)weight);
 }

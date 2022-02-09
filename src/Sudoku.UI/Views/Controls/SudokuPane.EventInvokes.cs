@@ -2,6 +2,7 @@
 using Microsoft.UI.Xaml.Media;
 using Microsoft.UI.Xaml.Shapes;
 using Sudoku.Diagnostics.CodeAnalysis;
+using Sudoku.UI.Drawing;
 
 namespace Sudoku.UI.Views.Controls;
 
@@ -53,10 +54,10 @@ partial class SudokuPane
 				{
 					Stroke = borderBrush,
 					StrokeThickness = blockBorderThickness,
-					X1 = PointCalculator.HorizontalBorderLinePoint1(i, 3).X,
-					Y1 = PointCalculator.HorizontalBorderLinePoint1(i, 3).Y,
-					X2 = PointCalculator.HorizontalBorderLinePoint2(i, 3).X,
-					Y2 = PointCalculator.HorizontalBorderLinePoint2(i, 3).Y,
+					X1 = PointCalculator.HorizontalBorderLinePoint1(i, BorderLineType.Block).X,
+					Y1 = PointCalculator.HorizontalBorderLinePoint1(i, BorderLineType.Block).Y,
+					X2 = PointCalculator.HorizontalBorderLinePoint2(i, BorderLineType.Block).X,
+					Y2 = PointCalculator.HorizontalBorderLinePoint2(i, BorderLineType.Block).Y,
 					Scale = defaultScale,
 					ScaleTransition = scaleTransition,
 					StrokeLineJoin = PenLineJoin.Round,
@@ -66,10 +67,10 @@ partial class SudokuPane
 				{
 					Stroke = borderBrush,
 					StrokeThickness = blockBorderThickness,
-					X1 = PointCalculator.VerticalBorderLinePoint1(i, 3).X,
-					Y1 = PointCalculator.VerticalBorderLinePoint1(i, 3).Y,
-					X2 = PointCalculator.VerticalBorderLinePoint2(i, 3).X,
-					Y2 = PointCalculator.VerticalBorderLinePoint2(i, 3).Y,
+					X1 = PointCalculator.VerticalBorderLinePoint1(i, BorderLineType.Block).X,
+					Y1 = PointCalculator.VerticalBorderLinePoint1(i, BorderLineType.Block).Y,
+					X2 = PointCalculator.VerticalBorderLinePoint2(i, BorderLineType.Block).X,
+					Y2 = PointCalculator.VerticalBorderLinePoint2(i, BorderLineType.Block).Y,
 					Scale = defaultScale,
 					ScaleTransition = scaleTransition,
 					StrokeLineJoin = PenLineJoin.Round,
@@ -95,10 +96,10 @@ partial class SudokuPane
 				{
 					Stroke = borderBrush,
 					StrokeThickness = cellBorderThickness,
-					X1 = PointCalculator.HorizontalBorderLinePoint1(i, 9).X,
-					Y1 = PointCalculator.HorizontalBorderLinePoint1(i, 9).Y,
-					X2 = PointCalculator.HorizontalBorderLinePoint2(i, 9).X,
-					Y2 = PointCalculator.HorizontalBorderLinePoint2(i, 9).Y,
+					X1 = PointCalculator.HorizontalBorderLinePoint1(i, BorderLineType.Cell).X,
+					Y1 = PointCalculator.HorizontalBorderLinePoint1(i, BorderLineType.Cell).Y,
+					X2 = PointCalculator.HorizontalBorderLinePoint2(i, BorderLineType.Cell).X,
+					Y2 = PointCalculator.HorizontalBorderLinePoint2(i, BorderLineType.Cell).Y,
 					Scale = defaultScale,
 					ScaleTransition = scaleTransition,
 					StrokeLineJoin = PenLineJoin.Round,
@@ -108,10 +109,10 @@ partial class SudokuPane
 				{
 					Stroke = borderBrush,
 					StrokeThickness = cellBorderThickness,
-					X1 = PointCalculator.VerticalBorderLinePoint1(i, 9).X,
-					Y1 = PointCalculator.VerticalBorderLinePoint1(i, 9).Y,
-					X2 = PointCalculator.VerticalBorderLinePoint2(i, 9).X,
-					Y2 = PointCalculator.VerticalBorderLinePoint2(i, 9).Y,
+					X1 = PointCalculator.VerticalBorderLinePoint1(i, BorderLineType.Cell).X,
+					Y1 = PointCalculator.VerticalBorderLinePoint1(i, BorderLineType.Cell).Y,
+					X2 = PointCalculator.VerticalBorderLinePoint2(i, BorderLineType.Cell).X,
+					Y2 = PointCalculator.VerticalBorderLinePoint2(i, BorderLineType.Cell).Y,
 					Scale = defaultScale,
 					ScaleTransition = scaleTransition,
 					StrokeLineJoin = PenLineJoin.Round,

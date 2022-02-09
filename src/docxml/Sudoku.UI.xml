@@ -65,6 +65,31 @@
         <member name="M:Sudoku.UI.Data.Converters.SudokuDigitConverter.ConvertBack(System.Object,System.Type,System.Object,System.String)">
             <inheritdoc/>
         </member>
+        <member name="T:Sudoku.UI.Drawing.BorderLineType">
+            <summary>
+            Defines a border line type.
+            </summary>
+        </member>
+        <member name="F:Sudoku.UI.Drawing.BorderLineType.Grid">
+            <summary>
+            Indicates the border line is grid line.
+            </summary>
+        </member>
+        <member name="F:Sudoku.UI.Drawing.BorderLineType.Block">
+            <summary>
+            Indicates the border line is block line.
+            </summary>
+        </member>
+        <member name="F:Sudoku.UI.Drawing.BorderLineType.Cell">
+            <summary>
+            Indicates the border line is cell line.
+            </summary>
+        </member>
+        <member name="F:Sudoku.UI.Drawing.BorderLineType.Candidate">
+            <summary>
+            Indicates the border line is candidate line.
+            </summary>
+        </member>
         <member name="T:Sudoku.UI.Drawing.PointCalculator">
             <summary>
             Provides the methods for the calculations on <see cref="T:Windows.Foundation.Point"/>.
@@ -113,7 +138,7 @@
         <member name="M:Sudoku.UI.Drawing.PointCalculator.ToString">
             <inheritdoc cref="M:System.Object.ToString"/>
         </member>
-        <member name="M:Sudoku.UI.Drawing.PointCalculator.HorizontalBorderLinePoint1(System.Int32,System.Int32)">
+        <member name="M:Sudoku.UI.Drawing.PointCalculator.HorizontalBorderLinePoint1(System.Int32,Sudoku.UI.Drawing.BorderLineType)">
             <summary>
             Gets the first point value of the horizontal border line.
             </summary>
@@ -121,7 +146,7 @@
             <param name="weight">The weight of the division operation. The value can only be 3, 9 or 27.</param>
             <returns>The first point value of the horizontal border line.</returns>
         </member>
-        <member name="M:Sudoku.UI.Drawing.PointCalculator.HorizontalBorderLinePoint2(System.Int32,System.Int32)">
+        <member name="M:Sudoku.UI.Drawing.PointCalculator.HorizontalBorderLinePoint2(System.Int32,Sudoku.UI.Drawing.BorderLineType)">
             <summary>
             Gets the second point value of the horizontal border line.
             </summary>
@@ -129,7 +154,7 @@
             <param name="weight">The weight of the division operation. The value can only be 3, 9 or 27.</param>
             <returns>The second point value of the horizontal border line.</returns>
         </member>
-        <member name="M:Sudoku.UI.Drawing.PointCalculator.VerticalBorderLinePoint1(System.Int32,System.Int32)">
+        <member name="M:Sudoku.UI.Drawing.PointCalculator.VerticalBorderLinePoint1(System.Int32,Sudoku.UI.Drawing.BorderLineType)">
             <summary>
             Gets the first point value of the vertical border line.
             </summary>
@@ -137,7 +162,7 @@
             <param name="weight">The weight of the division operation. The value can only be 3, 9 or 27.</param>
             <returns>The first point value of the horizontal border line.</returns>
         </member>
-        <member name="M:Sudoku.UI.Drawing.PointCalculator.VerticalBorderLinePoint2(System.Int32,System.Int32)">
+        <member name="M:Sudoku.UI.Drawing.PointCalculator.VerticalBorderLinePoint2(System.Int32,Sudoku.UI.Drawing.BorderLineType)">
             <summary>
             Gets the second point value of the vertical border line.
             </summary>

@@ -108,7 +108,7 @@ public sealed partial class SudokuPane : UserControl
 		{
 			string tag = (string)control.Tag!;
 			int i = int.Parse(tag.Split('|')[^1]);
-			int weight = tag.Contains(SudokuCanvasTags.BlockBorderLines) ? 3 : 9;
+			var weight = tag.Contains(SudokuCanvasTags.BlockBorderLines) ? BorderLineType.Block : BorderLineType.Cell;
 			if (tag.Contains(SudokuCanvasTags.HorizontalBorderLines))
 			{
 				var (x1, y1) = PointCalculator.HorizontalBorderLinePoint1(i, weight);
