@@ -49,7 +49,7 @@ public abstract class NotificationObject : INotifyPropertyChanged
 	{
 		// Compare two values.
 		// If two values are same, the assignment won't be successful. Therefore, return false.
-		if (Equals(originalValue, newValue))
+		if (EqualityComparer<TNotNull>.Default.Equals(originalValue, newValue))
 		{
 			return false;
 		}

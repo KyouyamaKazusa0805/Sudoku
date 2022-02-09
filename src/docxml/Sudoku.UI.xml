@@ -53,6 +53,18 @@
             GetXmlnsDefinitions()
             </summary>
         </member>
+        <member name="T:Sudoku.UI.Data.Converters.SudokuDigitConverter">
+            <summary>
+            Defines a converter that allows the conversions between
+            sudoku digit (between 0 and 9, and 0 is for the empty cell) and a <see cref="T:System.String"/> value.
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Data.Converters.SudokuDigitConverter.Convert(System.Object,System.Type,System.Object,System.String)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.UI.Data.Converters.SudokuDigitConverter.ConvertBack(System.Object,System.Type,System.Object,System.String)">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.UI.BindingConversions">
             <summary>
             Provides a set of methods to convert the information.
@@ -192,6 +204,17 @@
             Indicates the view model that binds with the <see cref="T:Sudoku.UI.Views.Pages.AboutPage"/> instances.
             </summary>
             <seealso cref="T:Sudoku.UI.Views.Pages.AboutPage"/>
+        </member>
+        <member name="T:Sudoku.UI.ViewModels.DigitButtonViewModel">
+            <summary>
+            Indicates the view model that binds with the <see cref="T:Sudoku.UI.Views.Controls.DigitButton"/> instances.
+            </summary>
+            <seealso cref="T:Sudoku.UI.Views.Controls.DigitButton"/>
+        </member>
+        <member name="P:Sudoku.UI.ViewModels.DigitButtonViewModel.Digit">
+            <summary>
+            Gets or sets the digit. The digit value must between 0 and 9, 0 is for the empty content.
+            </summary>
         </member>
         <member name="T:Sudoku.UI.ViewModels.MainPageViewModel">
             <summary>
@@ -371,6 +394,36 @@
             <param name="i">The index of the line.</param>
             <param name="weight">The weight of the division operation. The value can only be 3, 9 or 27.</param>
             <returns>The second point value of the horizontal border line.</returns>
+        </member>
+        <member name="T:Sudoku.UI.Views.Controls.DigitButton">
+            <summary>
+            Defines a user control that indicates a digit button.
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Views.Controls.DigitButton.#ctor">
+            <summary>
+            Initializes a <see cref="T:Sudoku.UI.Views.Controls.DigitButton"/> instance.
+            </summary>
+        </member>
+        <member name="P:Sudoku.UI.Views.Controls.DigitButton.Digit">
+            <summary>
+            Gets or sets the digit to the view model.
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Views.Controls.DigitButton.InitializeComponent">
+            <summary>
+            InitializeComponent()
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Views.Controls.DigitButton.Connect(System.Int32,System.Object)">
+            <summary>
+            Connect()
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Views.Controls.DigitButton.GetBindingConnector(System.Int32,System.Object)">
+            <summary>
+            GetBindingConnector(int connectionId, object target)
+            </summary>
         </member>
         <member name="T:Sudoku.UI.Views.Controls.SudokuPane">
             <summary>

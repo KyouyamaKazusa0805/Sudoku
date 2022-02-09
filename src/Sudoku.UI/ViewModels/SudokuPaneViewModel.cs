@@ -26,11 +26,6 @@ internal sealed class SudokuPaneViewModel : NotificationObject
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		set
 		{
-			if (_size == value)
-			{
-				return;
-			}
-
 			SetProperty(ref _size, value);
 			SizeChanged?.Invoke(this, new());
 		}
@@ -47,11 +42,6 @@ internal sealed class SudokuPaneViewModel : NotificationObject
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		set
 		{
-			if (_outsideOffset == value)
-			{
-				return;
-			}
-
 			SetProperty(ref _outsideOffset, value);
 			OutsideOffsetChanged?.Invoke(this, new());
 		}
@@ -68,11 +58,6 @@ internal sealed class SudokuPaneViewModel : NotificationObject
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		set
 		{
-			if (_grid == value)
-			{
-				return;
-			}
-
 			SetProperty(ref _grid, value);
 			GridChanged?.Invoke(this, new(value));
 		}

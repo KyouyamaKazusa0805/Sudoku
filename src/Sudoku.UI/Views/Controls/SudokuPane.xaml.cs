@@ -1,5 +1,4 @@
 ﻿using Microsoft.UI;
-using Microsoft.UI.Xaml.Data;
 using Microsoft.UI.Xaml.Media;
 using Microsoft.UI.Xaml.Shapes;
 using Sudoku.Diagnostics.CodeAnalysis;
@@ -19,13 +18,7 @@ public sealed partial class SudokuPane : UserControl
 	/// Initializes a <see cref="SudokuPane"/> instance.
 	/// </summary>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public SudokuPane()
-	{
-		InitializeComponent();
-
-		SetBinding(WidthProperty, new Binding { Path = new(nameof(Size)), Mode = BindingMode.TwoWay });
-		SetBinding(HeightProperty, new Binding { Path = new(nameof(Size)), Mode = BindingMode.TwoWay });
-	}
+	public SudokuPane() => InitializeComponent();
 
 
 	/// <summary>

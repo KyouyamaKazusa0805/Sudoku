@@ -7,6 +7,7 @@
 	xmlns:vm="using:Sudoku.UI.ViewModels"
 	d:DataContext="{d:DesignInstance Type=vm:SudokuPaneViewModel}"
 	mc:Ignorable="d"
+	Width="{x:Bind _vm.Size,Mode=TwoWay}" Height="{x:Bind _vm.Size,Mode=TwoWay}"
 	Loaded="SudokuPane_LoadedAsync">
 	<UserControl.DataContext>
 		<vm:SudokuPaneViewModel
