@@ -14,7 +14,7 @@ partial class SudokuPane
 	private async void SudokuPane_LoadedAsync([IsDiscard] object sender, [IsDiscard] RoutedEventArgs e)
 	{
 		// Initializes the grid lines.
-		await initializeGridAsync(outsideBorderThickness: 1, blockBorderThickness: 4, cellBorderThickness: 1);
+		await initializeGridAsync(1, 4, 1);
 
 
 		async Task initializeGridAsync(
