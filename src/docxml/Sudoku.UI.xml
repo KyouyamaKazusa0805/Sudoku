@@ -90,6 +90,62 @@
             Indicates the border line is candidate line.
             </summary>
         </member>
+        <member name="T:Sudoku.UI.Drawing.DrawingElementAnimation">
+            <summary>
+            Applies the animation on drawing elements.
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Drawing.DrawingElementAnimation.ApplyScaleAnimation``1(``0)">
+            <summary>
+            Applies a <see cref="T:Microsoft.UI.Xaml.UIElement"/> control the scale animation.
+            </summary>
+            <typeparam name="TUIElement">The type of the control.</typeparam>
+            <param name="this">The control instance.</param>
+        </member>
+        <member name="T:Sudoku.UI.Drawing.DrawingElementCreator">
+            <summary>
+            Defines a creator that creates the drawing elements.
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Drawing.DrawingElementCreator.OutsideRectangle(Windows.UI.Color,System.Double,System.TimeSpan)">
+            <summary>
+            Creates a <see cref="T:Microsoft.UI.Xaml.Shapes.Rectangle"/> instance that displays as the outside border.
+            </summary>
+            <param name="color">The color of the stroke.</param>
+            <param name="thickness">The thickness of the border.</param>
+            <param name="duration">The duration of the scale transition.</param>
+            <returns>The instance.</returns>
+        </member>
+        <member name="M:Sudoku.UI.Drawing.DrawingElementCreator.BlockBorderLine(Windows.UI.Color,System.Double,System.TimeSpan,Sudoku.UI.Drawing.PointCalculator,System.Int32,System.Boolean)">
+            <summary>
+            Creates a <see cref="T:Microsoft.UI.Xaml.Shapes.Line"/> instance that displays as the block border lines.
+            </summary>
+            <param name="color">The color of the stroke.</param>
+            <param name="thickness">The thickness of the border.</param>
+            <param name="duration">The duration of the scale transition.</param>
+            <param name="pc">The conversion instance.</param>
+            <param name="order">The order of the line. The valid range is <c>[0, 4)</c>.</param>
+            <param name="horizontal">
+            Indicates whether the current mode is creating a horizontal line. <see langword="true"/> is for the
+            horizontal lines and <see langword="false"/> is for vertical lines.
+            </param>
+            <returns>The instance.</returns>
+        </member>
+        <member name="M:Sudoku.UI.Drawing.DrawingElementCreator.CellBorderLine(Windows.UI.Color,System.Double,System.TimeSpan,Sudoku.UI.Drawing.PointCalculator,System.Int32,System.Boolean)">
+            <summary>
+            Creates a <see cref="T:Microsoft.UI.Xaml.Shapes.Line"/> instance that displays as the cell border lines.
+            </summary>
+            <param name="color">The color of the stroke.</param>
+            <param name="thickness">The thickness of the border.</param>
+            <param name="duration">The duration of the scale transition.</param>
+            <param name="pc">The conversion instance.</param>
+            <param name="order">The order of the line. The valid range is <c>[0, 4)</c>.</param>
+            <param name="horizontal">
+            Indicates whether the current mode is creating a horizontal line. <see langword="true"/> is for the
+            horizontal lines and <see langword="false"/> is for vertical lines.
+            </param>
+            <returns>The instance.</returns>
+        </member>
         <member name="T:Sudoku.UI.Drawing.PointCalculator">
             <summary>
             Provides the methods for the calculations on <see cref="T:Windows.Foundation.Point"/>.
@@ -585,6 +641,28 @@
             <summary>
             Deconstruct the instance to multiple values.
             </summary>
+        </member>
+        <member name="T:System.TimeSpanExtensions">
+            <summary>
+            Provides extension methods on <see cref="T:System.TimeSpan"/>.
+            </summary>
+            <seealso cref="T:System.TimeSpan"/>
+        </member>
+        <member name="M:System.TimeSpanExtensions.GetAwaiter(System.Int32)">
+            <summary>
+            Creates an awaiter that is used for the <see langword="await"/> statements
+            via the <see cref="T:System.Int32"/> instance.
+            </summary>
+            <param name="this">The delay of milliseconds.</param>
+            <returns>The awaiter instance.</returns>
+        </member>
+        <member name="M:System.TimeSpanExtensions.GetAwaiter(System.TimeSpan)">
+            <summary>
+            Creates an awaiter that is used for the <see langword="await"/> statements
+            via the <see cref="T:System.TimeSpan"/> instance.
+            </summary>
+            <param name="this">The delay of milliseconds.</param>
+            <returns>The awaiter instance.</returns>
         </member>
     </members>
 </doc>
