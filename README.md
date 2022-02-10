@@ -58,7 +58,7 @@ Please visit the following tables.
 | Programming language and version   | C# 10                                |
 | Framework                          | .NET 6                               |
 | Indenting                          | Tabs                                 |
-| Integrated development environment | Visual Studio 2022 (17.1 Preview 5)  |
+| Integrated development environment | Visual Studio 2022 (17.1 Preview 6)  |
 | Natural languages support          | English, Simplified Chinese          |
 | User Interface                     | Project `Suoku.UI`, but without MVVM |
 
