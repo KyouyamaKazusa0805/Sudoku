@@ -87,4 +87,12 @@ internal sealed class MergedResources
 		_lcid = lcid != 1033 && _managers.ContainsKey(lcid)
 			? lcid
 			: throw new ArgumentException("Such LCID already exists in the current manager.", nameof(lcid));
+
+	/// <summary>
+	/// Emits a string value represented as the specified punctuation mark.
+	/// </summary>
+	/// <param name="punctuation">The punctuation mark.</param>
+	/// <returns>The string that represents the punctuation mark.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public string EmitPunctuation(Punctuation punctuation) => R[punctuation.ToString()]!;
 }

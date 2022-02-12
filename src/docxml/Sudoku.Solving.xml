@@ -9436,6 +9436,28 @@
             Throws when the specified LCID cannot be found in the current resource dictionary.
             </exception>
         </member>
+        <member name="M:Sudoku.Resources.MergedResources.EmitPunctuation(Sudoku.Resources.Punctuation)">
+            <summary>
+            Emits a string value represented as the specified punctuation mark.
+            </summary>
+            <param name="punctuation">The punctuation mark.</param>
+            <returns>The string that represents the punctuation mark.</returns>
+        </member>
+        <member name="T:Sudoku.Resources.Punctuation">
+            <summary>
+            Defines a kind of the punctuation mark.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Resources.Punctuation.Colon">
+            <summary>
+            Defines the colon (<c>:</c>).
+            </summary>
+        </member>
+        <member name="F:Sudoku.Resources.Punctuation.Ellipsis">
+            <summary>
+            Defines the ellipsis (<c>...</c>).
+            </summary>
+        </member>
         <member name="T:Sudoku.Resources.Resources1033">
             <summary>
               A strongly-typed resource class, for looking up localized strings, etc.

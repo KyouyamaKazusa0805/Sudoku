@@ -1,4 +1,5 @@
-﻿using Sudoku.Solving.Manual.Steps;
+﻿using Sudoku.Resources;
+using Sudoku.Solving.Manual.Steps;
 using static System.Math;
 
 namespace Sudoku.Solving.Manual;
@@ -96,7 +97,7 @@ partial record ManualSolverResult
 					{
 						if (i > bIndex && options.Flags(SolverResultFormattingOptions.ShowStepsAfterBottleneck))
 						{
-							sb.Append(R["Ellipsis"]!);
+							sb.Append(R.EmitPunctuation(Punctuation.Ellipsis));
 							sb.AppendLine();
 
 							break;
@@ -137,7 +138,7 @@ partial record ManualSolverResult
 						{
 							sb.Append(R["AnalysisResultInStep"]!);
 							sb.Append(bIndex + 1);
-							sb.Append(R["Colon"]!);
+							sb.Append(R.EmitPunctuation(Punctuation.Colon));
 						}
 
 						sb.Append(' ');
