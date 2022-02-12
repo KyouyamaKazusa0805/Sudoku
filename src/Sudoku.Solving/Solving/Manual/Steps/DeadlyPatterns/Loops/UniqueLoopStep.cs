@@ -24,7 +24,7 @@ public abstract record UniqueLoopStep(
 	/// <inheritdoc/>
 	public override decimal Difficulty =>
 		Type switch { 1 or 3 => 4.5M, 2 or 4 => 4.6M } // Type difficulty.
-		+ ((Loop.Count >> 1) - 3) * .1M; // Length difficulty.
+			+ ((Loop.Count >> 1) - 3) * .1M; // Length difficulty.
 
 	/// <summary>
 	/// Indicates the type.
@@ -32,7 +32,7 @@ public abstract record UniqueLoopStep(
 	public abstract int Type { get; }
 
 	/// <inheritdoc/>
-	public sealed override Technique TechniqueCode => Enum.Parse<Technique>($"UlType{Type}");
+	public sealed override Technique TechniqueCode => Enum.Parse<Technique>($"UniqueLoopType{Type}");
 
 	/// <inheritdoc/>
 	public sealed override TechniqueGroup TechniqueGroup => TechniqueGroup.UniqueLoop;

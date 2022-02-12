@@ -13,4 +13,29 @@
 		<ProjectReference Include="..\Sudoku.Diagnostics.CodeGen\Sudoku.Diagnostics.CodeGen.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="true" />
 	</ItemGroup>
 
+	<ItemGroup>
+		<Using Include="Sudoku.Resources.MergedResources" Static="true" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<EmbeddedResource Update="Resources\Resources1033.resx">
+			<Generator>ResXFileCodeGenerator</Generator>
+			<LastGenOutput>Resources1033.Designer.cs</LastGenOutput>
+		</EmbeddedResource>
+		<EmbeddedResource Update="Resources\Resources2052.resx">
+			<Generator>ResXFileCodeGenerator</Generator>
+			<LastGenOutput>Resources2052.Designer.cs</LastGenOutput>
+		</EmbeddedResource>
+		<Compile Update="Resources\Resources1033.Designer.cs">
+			<DesignTime>True</DesignTime>
+			<AutoGen>True</AutoGen>
+			<DependentUpon>Resources1033.resx</DependentUpon>
+		</Compile>
+		<Compile Update="Resources\Resources2052.Designer.cs">
+			<DesignTime>True</DesignTime>
+			<AutoGen>True</AutoGen>
+			<DependentUpon>Resources2052.resx</DependentUpon>
+		</Compile>
+	</ItemGroup>
+
 </Project>

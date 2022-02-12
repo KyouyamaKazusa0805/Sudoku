@@ -22,6 +22,11 @@ public abstract record UniquePolygonStep(
 	/// <inheritdoc/>
 	public override decimal Difficulty => 5.3M;
 
+	/// <summary>
+	/// Indicates the type of the technique.
+	/// </summary>
+	public abstract int Type { get; }
+
 	/// <inheritdoc/>
 	public sealed override DifficultyLevel DifficultyLevel => DifficultyLevel.Hard;
 
@@ -32,7 +37,7 @@ public abstract record UniquePolygonStep(
 	public sealed override Rarity Rarity => Rarity.HardlyEver;
 
 	/// <inheritdoc/>
-	public abstract override Technique TechniqueCode { get; }
+	public sealed override Technique TechniqueCode => Enum.Parse<Technique>($"UniquePolygonType{Type}");
 
 	/// <summary>
 	/// Indicates the digits string.

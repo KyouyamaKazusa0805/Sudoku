@@ -66,10 +66,10 @@ public sealed record UniqueRectangleWithSueDeCoqStep(
 	/// <inheritdoc/>
 	public override decimal Difficulty =>
 		5.0M // Base difficulty.
-		+ (LineCells | BlockCells).Count * .1M // Sue de Coq base difficulty.
-		+ (!IsCannibalistic && IsolatedDigitsMask != 0 ? .1M : 0) // Isolated difficulty.
-		+ (IsCannibalistic ? .1M : 0) // Cannibalism difficulty.
-		+ (IsAvoidable ? .1M : 0); // Avoidable Rectangle difficulty.
+			+ (LineCells | BlockCells).Count * .1M // Sue de Coq base difficulty.
+			+ (!IsCannibalistic && IsolatedDigitsMask != 0 ? .1M : 0) // Isolated difficulty.
+			+ (IsCannibalistic ? .1M : 0) // Cannibalism difficulty.
+			+ (IsAvoidable ? .1M : 0); // Avoidable Rectangle difficulty.
 
 	/// <inheritdoc/>
 	public override DifficultyLevel DifficultyLevel => DifficultyLevel.Fiendish;

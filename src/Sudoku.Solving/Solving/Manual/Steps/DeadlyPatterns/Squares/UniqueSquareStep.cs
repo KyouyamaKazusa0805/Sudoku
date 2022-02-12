@@ -22,6 +22,11 @@ public abstract record UniqueSquareStep(
 	/// <inheritdoc/>
 	public override decimal Difficulty => 5.3M;
 
+	/// <summary>
+	/// Indicates the type of the current technique step.
+	/// </summary>
+	public abstract int Type { get; }
+
 	/// <inheritdoc/>
 	public sealed override DifficultyLevel DifficultyLevel => DifficultyLevel.Fiendish;
 
@@ -32,10 +37,10 @@ public abstract record UniqueSquareStep(
 	public sealed override TechniqueTags TechniqueTags => TechniqueTags.DeadlyPattern;
 
 	/// <inheritdoc/>
-	public sealed override Rarity Rarity => Rarity.HardlyEver;
+	public sealed override Technique TechniqueCode => Enum.Parse<Technique>($"UniqueSquareType{Type}");
 
 	/// <inheritdoc/>
-	public abstract override Technique TechniqueCode { get; }
+	public sealed override Rarity Rarity => Rarity.HardlyEver;
 
 	/// <summary>
 	/// Indicates the digits string.

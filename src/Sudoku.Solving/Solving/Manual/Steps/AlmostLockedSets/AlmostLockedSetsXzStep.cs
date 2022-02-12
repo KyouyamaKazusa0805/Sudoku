@@ -1,6 +1,5 @@
 ﻿using Sudoku.Collections;
 using Sudoku.Presentation;
-using Sudoku.Resources;
 using Sudoku.Solving.Collections;
 using Sudoku.Solving.Manual.Text;
 using Sudoku.Techniques;
@@ -33,7 +32,7 @@ public sealed record AlmostLockedSetsXzStep(
 
 	/// <inheritdoc/>
 	public override string? Format =>
-		ResourceManager.Shared[
+		R[
 			IsDoublyLinked is null
 				? ZDigitsMask == 0
 					? "TechniqueFormat_ExtendedSubsetPrincipleWithoutDuplicate"

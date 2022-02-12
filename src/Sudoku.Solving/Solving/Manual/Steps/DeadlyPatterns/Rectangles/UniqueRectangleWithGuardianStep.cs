@@ -41,8 +41,8 @@ public sealed record UniqueRectangleWithGuardianStep(
 	/// <inheritdoc/>
 	public override decimal Difficulty =>
 		4.5M
-		+ .1M * (GuardianCells.Count >> 1) // Guardian count difficulty.
-		+ (IsIncomplete ? .1M : 0); // Incompleteness difficulty.
+			+ .1M * (GuardianCells.Count >> 1) // Guardian count difficulty.
+			+ (IsIncomplete ? .1M : 0); // Incompleteness difficulty.
 
 	/// <inheritdoc/>
 	public override DifficultyLevel DifficultyLevel => DifficultyLevel.Fiendish;

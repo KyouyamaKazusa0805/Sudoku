@@ -1,6 +1,5 @@
 ﻿using Sudoku.Collections;
 using Sudoku.Presentation;
-using Sudoku.Resources;
 using Sudoku.Solving.Collections;
 using Sudoku.Solving.Manual.Text;
 using Sudoku.Techniques;
@@ -66,9 +65,8 @@ public sealed record JuniorExocetStep(
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get
 		{
-			string snippet = ResourceManager.Shared["LockedMember1"];
 			string? cells = LockedMemberQ == 0 ? null : new DigitCollection(LockedMemberQ).ToString();
-			return $"{snippet}{cells}";
+			return $"{R["LockedMember1"]}{cells}";
 		}
 	}
 
@@ -82,9 +80,8 @@ public sealed record JuniorExocetStep(
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get
 		{
-			string snippet = ResourceManager.Shared["LockedMember2"];
 			string? cells = LockedMemberR == 0 ? null : new DigitCollection(LockedMemberR).ToString();
-			return $"{snippet}{cells}";
+			return $"{R["LockedMember2"]}{cells}";
 		}
 	}
 }

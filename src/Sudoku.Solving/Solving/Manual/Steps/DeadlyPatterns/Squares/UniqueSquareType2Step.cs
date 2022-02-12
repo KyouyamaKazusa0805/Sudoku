@@ -1,7 +1,6 @@
 ﻿using Sudoku.Collections;
 using Sudoku.Presentation;
 using Sudoku.Solving.Manual.Text;
-using Sudoku.Techniques;
 
 namespace Sudoku.Solving.Manual.Steps;
 
@@ -25,7 +24,7 @@ public sealed record UniqueSquareType2Step(
 	public override decimal Difficulty => base.Difficulty + .1M;
 
 	/// <inheritdoc/>
-	public override Technique TechniqueCode => Technique.UniqueSquareType2;
+	public override int Type => 2;
 
 	[FormatItem]
 	internal string ExtraDigitStr

@@ -130,18 +130,20 @@ public abstract record ChainStep(
 
 
 	/// <inheritdoc/>
-	public static unsafe bool Equals(ChainStep left, ChainStep right) => (Left: left, Right: right) switch
-	{
-		(Left: { SortKey: var lSortKey }, Right: { SortKey: var rSortKey }) when lSortKey != rSortKey => false,
-		(
-			Left: AlternatingInferenceChainStep { Target: { Root: var lRoot } lTarget, Conclusions: var lc },
-			Right: AlternatingInferenceChainStep { Target: { Root: var rRoot } rTarget, Conclusions: var rc }
-		) when lTarget == rTarget && lRoot == rRoot && ConclusionsEquals(lc, rc, shouldSort: true) => true,
-		(
-			Left: ContinuousNiceLoopStep { Target: { Root: var lRoot } lTarget, Conclusions: var lc },
-			Right: ContinuousNiceLoopStep { Target: { Root: var rRoot } rTarget, Conclusions: var rc }
-		) when lTarget == rTarget && lRoot == rRoot && ConclusionsEquals(lc, rc, shouldSort: true) => true,
-		// TODO: Other possible chain types checking.
-		_ => false
-	};
+	public static unsafe bool Equals(ChainStep left, ChainStep right) =>
+		(Left: left, Right: right) switch
+		{
+			(Left: { SortKey: var lSortKey }, Right: { SortKey: var rSortKey })
+			when lSortKey != rSortKey => false,
+			(
+				Left: AlternatingInferenceChainStep { Target: { Root: var lRoot } lTarget, Conclusions: var lc },
+				Right: AlternatingInferenceChainStep { Target: { Root: var rRoot } rTarget, Conclusions: var rc }
+			) when lTarget == rTarget && lRoot == rRoot && ConclusionsEquals(lc, rc, shouldSort: true) => true,
+			(
+				Left: ContinuousNiceLoopStep { Target: { Root: var lRoot } lTarget, Conclusions: var lc },
+				Right: ContinuousNiceLoopStep { Target: { Root: var rRoot } rTarget, Conclusions: var rc }
+			) when lTarget == rTarget && lRoot == rRoot && ConclusionsEquals(lc, rc, shouldSort: true) => true,
+			// TODO: Other possible chain types checking.
+			_ => false
+		};
 }

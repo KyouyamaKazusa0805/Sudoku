@@ -1,6 +1,5 @@
 ﻿using Sudoku.Collections;
 using Sudoku.Presentation;
-using Sudoku.Resources;
 using Sudoku.Solving.Manual.Text;
 using Sudoku.Techniques;
 using static System.Numerics.BitOperations;
@@ -63,7 +62,9 @@ public sealed record UniqueRectangleType3Step(
 )
 {
 	/// <inheritdoc/>
-	public override decimal Difficulty => (IsNaked ? 4.5M : 4.6M) + .1M * PopCount((uint)ExtraDigitsMask);
+	public override decimal Difficulty =>
+		(IsNaked ? 4.5M : 4.6M) // Base difficulty.
+			+ .1M * PopCount((uint)ExtraDigitsMask); // Size difficulty.
 
 	/// <inheritdoc/>
 	public override DifficultyLevel DifficultyLevel => DifficultyLevel.Hard;
@@ -89,7 +90,7 @@ public sealed record UniqueRectangleType3Step(
 	internal string OnlyKeywordZhCn
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => ResourceManager.Shared["Only"];
+		get => R["Only"]!;
 	}
 
 	[FormatItem]
@@ -103,6 +104,6 @@ public sealed record UniqueRectangleType3Step(
 	internal string AppearLimitKeyword
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => ResourceManager.Shared["Appears"];
+		get => R["Appears"]!;
 	}
 }

@@ -24,7 +24,7 @@ public sealed record QiuDeadlyPatternLockedTypeStep(
 	public override decimal Difficulty => base.Difficulty + .2M;
 
 	/// <inheritdoc/>
-	public override Technique TechniqueCode => Technique.LockedQiuDeadlyPattern;
+	public override int Type => 5;
 
 	[FormatItem]
 	internal string CandidateStr

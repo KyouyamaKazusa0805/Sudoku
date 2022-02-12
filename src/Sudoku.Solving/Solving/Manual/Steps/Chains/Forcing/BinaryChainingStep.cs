@@ -28,7 +28,7 @@ public sealed record BinaryChainingStep(
 	bool IsMultiple,
 	bool IsNishio,
 	byte Level
-) : ChainStep(Conclusions, Views, XEnabled: true, YEnabled: true, IsNishio, IsMultiple, IsDynamic: true, Level)
+) : ChainStep(Conclusions, Views, true, true, IsNishio, IsMultiple, true, Level)
 {
 	/// <inheritdoc/>
 	public override int FlatComplexity => FromOnNode.AncestorsCount + FromOffNode.AncestorsCount;

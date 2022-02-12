@@ -1,6 +1,5 @@
 ﻿using Sudoku.Collections;
 using Sudoku.Presentation;
-using Sudoku.Resources;
 using Sudoku.Solving.Manual.Text;
 using Sudoku.Techniques;
 
@@ -60,7 +59,7 @@ public sealed record UniqueRectangleWithUnknownCoveringStep(
 	internal string DigitsStr
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => new DigitCollection((short)(1 << Digit1 | 1 << Digit2)).ToString(ResourceManager.Shared["OrKeywordWithSpaces"]);
+		get => new DigitCollection((short)(1 << Digit1 | 1 << Digit2)).ToString(R["OrKeywordWithSpaces"]);
 	}
 
 	[FormatItem]

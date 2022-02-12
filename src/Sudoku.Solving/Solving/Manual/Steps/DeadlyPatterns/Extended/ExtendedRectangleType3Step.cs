@@ -1,7 +1,6 @@
 ﻿using Sudoku.Collections;
 using Sudoku.Presentation;
 using Sudoku.Solving.Manual.Text;
-using Sudoku.Techniques;
 using static System.Numerics.BitOperations;
 
 namespace Sudoku.Solving.Manual.Steps;
@@ -31,9 +30,6 @@ public sealed record ExtendedRectangleType3Step(
 
 	/// <inheritdoc/>
 	public override decimal Difficulty => base.Difficulty + .1M * PopCount((uint)ExtraDigitsMask);
-
-	/// <inheritdoc/>
-	public override Technique TechniqueCode => Technique.ExtendedRectangleType3;
 
 	/// <inheritdoc/>
 	public override Rarity Rarity => Rarity.Seldom;

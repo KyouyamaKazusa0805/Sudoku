@@ -2,7 +2,6 @@
 using Sudoku.Presentation;
 using Sudoku.Resources;
 using Sudoku.Solving.Manual.Text;
-using Sudoku.Techniques;
 using static System.Numerics.BitOperations;
 
 namespace Sudoku.Solving.Manual.Steps;
@@ -31,7 +30,7 @@ public sealed record UniqueSquareType3Step(
 	public override decimal Difficulty => base.Difficulty + PopCount((uint)ExtraDigitsMask) * .1M;
 
 	/// <inheritdoc/>
-	public override Technique TechniqueCode => Technique.UniqueSquareType3;
+	public override int Type => 3;
 
 	[FormatItem]
 	internal string ExtraCellsStr

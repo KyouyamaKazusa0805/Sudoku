@@ -20,11 +20,17 @@ public abstract record QiuDeadlyPatternStep(
 	/// <inheritdoc/>
 	public override decimal Difficulty => 5.8M;
 
+	/// <summary>
+	/// Indicates the type of the current technique.
+	/// </summary>
+	public abstract int Type { get; }
+
 	/// <inheritdoc/>
 	public sealed override string Name => base.Name;
 
 	/// <inheritdoc/>
-	public abstract override Technique TechniqueCode { get; }
+	public sealed override Technique TechniqueCode =>
+		Type == 5 ? Technique.LockedQiuDeadlyPattern : Enum.Parse<Technique>($"QiuDeadlyPatternType{Type}");
 
 	/// <inheritdoc/>
 	public sealed override DifficultyLevel DifficultyLevel => DifficultyLevel.Hard;

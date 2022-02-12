@@ -46,12 +46,13 @@ public sealed record ContinuousNiceLoopStep(
 	/// I separated them into three branches in that <see langword="switch"/> expression
 	/// in order to extend the branches in the future.
 	/// </remarks>
-	public override Rarity Rarity => TechniqueCode switch
-	{
-		Technique.FishyCycle => Rarity.Sometimes,
-		Technique.XyCycle => Rarity.Sometimes,
-		Technique.ContinuousNiceLoop => Rarity.Sometimes
-	};
+	public override Rarity Rarity =>
+		TechniqueCode switch
+		{
+			Technique.FishyCycle => Rarity.Sometimes,
+			Technique.XyCycle => Rarity.Sometimes,
+			Technique.ContinuousNiceLoop => Rarity.Sometimes
+		};
 
 	/// <inheritdoc/>
 	public override ChainTypeCode SortKey => Enum.Parse<ChainTypeCode>(TechniqueCode.ToString());

@@ -23,34 +23,13 @@ public sealed record RegionChainingStep(
 	IReadOnlyDictionary<int, Node> Chains,
 	bool IsDynamic,
 	byte Level
-) : ChainStep(
-	Conclusions,
-	Views,
-	XEnabled: true,
-	YEnabled: true,
-	IsNishio: false,
-	IsMultiple: true,
-	IsDynamic,
-	Level
-)
+) : ChainStep(Conclusions, Views, true, true, false, true, IsDynamic, Level)
 {
 	/// <inheritdoc/>
 	public override decimal Difficulty => BaseDifficulty + LengthDifficulty;
 
 	/// <inheritdoc/>
-	public override int FlatComplexity
-	{
-		get
-		{
-			int result = 0;
-			foreach (var node in Chains.Values)
-			{
-				result += node.AncestorsCount;
-			}
-
-			return result;
-		}
-	}
+	public override int FlatComplexity => Chains.Values.Sum(static node => node.AncestorsCount);
 
 	/// <inheritdoc/>
 	public override ChainTypeCode SortKey => IsDynamic ? ChainTypeCode.DynamicRegionFc : ChainTypeCode.RegionFc;

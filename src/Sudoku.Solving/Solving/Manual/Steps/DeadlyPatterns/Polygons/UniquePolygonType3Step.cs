@@ -1,7 +1,6 @@
 ﻿using Sudoku.Collections;
 using Sudoku.Presentation;
 using Sudoku.Solving.Manual.Text;
-using Sudoku.Techniques;
 
 namespace Sudoku.Solving.Manual.Steps;
 
@@ -27,7 +26,7 @@ public sealed record UniquePolygonType3Step(
 	public override decimal Difficulty => 5.2M + ExtraCells.Count * .1M;
 
 	/// <inheritdoc/>
-	public override Technique TechniqueCode => Technique.UniquePolygonType3;
+	public override int Type => 3;
 
 	[FormatItem]
 	internal string ExtraDigitsStr

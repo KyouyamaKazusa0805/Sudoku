@@ -1,6 +1,5 @@
 ﻿using Sudoku.Collections;
 using Sudoku.Presentation;
-using Sudoku.Techniques;
 
 namespace Sudoku.Solving.Manual.Steps;
 
@@ -20,9 +19,6 @@ public sealed record ExtendedRectangleType1Step(
 {
 	/// <inheritdoc/>
 	public override int Type => 1;
-
-	/// <inheritdoc/>
-	public override Technique TechniqueCode => Technique.ExtendedRectangleType1;
 
 	/// <inheritdoc/>
 	public override Rarity Rarity => Rarity.Sometimes;

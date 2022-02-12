@@ -30,12 +30,7 @@ public sealed record AvoidableRectangleWithHiddenSingleStep(
 ) : UniqueRectangleStep(
 	Conclusions,
 	Views,
-	Region switch
-	{
-		>= 0 and < 9 => Technique.AvoidableRectangleHiddenSingleBlock,
-		>= 9 and < 18 => Technique.AvoidableRectangleHiddenSingleRow,
-		>= 18 and < 27 => Technique.AvoidableRectangleHiddenSingleColumn
-	},
+	(Technique)((int)Technique.AvoidableRectangleHiddenSingleBlock + (int)Region.ToRegion()),
 	Digit1,
 	Digit2,
 	Cells,

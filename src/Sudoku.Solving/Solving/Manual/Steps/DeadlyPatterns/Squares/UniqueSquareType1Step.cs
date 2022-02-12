@@ -1,7 +1,6 @@
 ﻿using Sudoku.Collections;
 using Sudoku.Presentation;
 using Sudoku.Solving.Manual.Text;
-using Sudoku.Techniques;
 
 namespace Sudoku.Solving.Manual.Steps;
 
@@ -22,7 +21,7 @@ public sealed record UniqueSquareType1Step(
 ) : UniqueSquareStep(Conclusions, Views, Cells, DigitsMask)
 {
 	/// <inheritdoc/>
-	public override Technique TechniqueCode => Technique.UniqueSquareType1;
+	public override int Type => 1;
 
 	[FormatItem]
 	internal string CandidateStr

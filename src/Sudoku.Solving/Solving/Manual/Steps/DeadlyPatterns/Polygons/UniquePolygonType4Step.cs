@@ -1,7 +1,6 @@
 ﻿using Sudoku.Collections;
 using Sudoku.Presentation;
 using Sudoku.Solving.Manual.Text;
-using Sudoku.Techniques;
 
 namespace Sudoku.Solving.Manual.Steps;
 
@@ -27,7 +26,7 @@ public sealed record UniquePolygonType4Step(
 	public override decimal Difficulty => 5.5M;
 
 	/// <inheritdoc/>
-	public override Technique TechniqueCode => Technique.UniquePolygonType4;
+	public override int Type => 4;
 
 	[FormatItem]
 	internal string ExtraCombStr

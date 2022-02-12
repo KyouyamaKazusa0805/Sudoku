@@ -36,13 +36,13 @@ public sealed record UniqueRectangleWithWingStep(
 	/// <inheritdoc/>
 	public override decimal Difficulty =>
 		4.4M // Base difficulty.
-		+ (IsAvoidable ? .1M : 0) // Avoidable difficulty.
-		+ TechniqueCode switch
-		{
-			Technique.UniqueRectangleXyWing or Technique.AvoidableRectangleXyWing => .2M,
-			Technique.UniqueRectangleXyzWing or Technique.AvoidableRectangleXyzWing => .3M,
-			Technique.UniqueRectangleWxyzWing or Technique.AvoidableRectangleWxyzWing => .5M
-		}; // Wing difficulty.
+			+ (IsAvoidable ? .1M : 0) // Avoidable difficulty.
+			+ TechniqueCode switch
+			{
+				Technique.UniqueRectangleXyWing or Technique.AvoidableRectangleXyWing => .2M,
+				Technique.UniqueRectangleXyzWing or Technique.AvoidableRectangleXyzWing => .3M,
+				Technique.UniqueRectangleWxyzWing or Technique.AvoidableRectangleWxyzWing => .5M
+			}; // Wing difficulty.
 
 	/// <inheritdoc/>
 	public override DifficultyLevel DifficultyLevel => DifficultyLevel.Hard;

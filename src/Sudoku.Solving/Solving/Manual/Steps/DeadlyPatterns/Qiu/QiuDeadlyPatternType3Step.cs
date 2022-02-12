@@ -30,7 +30,7 @@ public sealed record QiuDeadlyPatternType3Step(
 	public override decimal Difficulty => base.Difficulty + PopCount((uint)ExtraDigitsMask) * .1M;
 
 	/// <inheritdoc/>
-	public override Technique TechniqueCode => Technique.QiuDeadlyPatternType3;
+	public override int Type => 3;
 
 	[FormatItem]
 	internal string DigitsStr
