@@ -1,7 +1,6 @@
 ﻿using System.Reflection;
 using Sudoku.Collections;
 using Sudoku.Presentation;
-using Sudoku.Resources;
 using Sudoku.Solving.Manual.Searchers;
 using Sudoku.Solving.Manual.Text;
 using Sudoku.Techniques;
