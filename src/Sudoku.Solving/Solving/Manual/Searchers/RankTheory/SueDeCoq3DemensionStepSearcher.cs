@@ -257,7 +257,7 @@ public sealed unsafe class SueDeCoq3DemensionStepSearcher : ISueDeCoq3DemensionS
 													}
 												}
 
-												var step = new SueDeCoq3DemensionStep(
+												var step = new SueDeCoq3DimensionStep(
 													conclusions.ToImmutableArray(),
 													ImmutableArray.Create(new PresentationData
 													{

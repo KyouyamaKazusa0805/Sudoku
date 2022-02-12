@@ -88,6 +88,15 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to {Name}: {DigitsStr} from {BaseCellsStr} to {TargetCellsStr} =&gt; {ElimStr}.
+        /// </summary>
+        internal static string TechniqueFormat_AlmostLockedCandidatesStep {
+            get {
+                return ResourceManager.GetString("TechniqueFormat_AlmostLockedCandidatesStep", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to {Name}: Two ALSes {Als1Str}, {Als2Str} connected by {ConjStr}, W = {WStr}, X = {XStr} =&gt; {ElimStr}.
         /// </summary>
         internal static string TechniqueFormat_AlmostLockedSetsWWingStep {
@@ -138,6 +147,33 @@ namespace Sudoku.Resources {
         internal static string TechniqueFormat_BinaryChainingStep {
             get {
                 return ResourceManager.GetString("TechniqueFormat_BinaryChainingStep", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {Name}: If the cell {CellStr} only contains the digits {Digit1Str} and {Digit2Str} (or one of those two), the loop {LoopStr} will form an error structure =&gt; {ElimStr}.
+        /// </summary>
+        internal static string TechniqueFormat_BivalueOddagonType1Step {
+            get {
+                return ResourceManager.GetString("TechniqueFormat_BivalueOddagonType1Step", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {Name}: If all digit {ExtraDigitStr} in cells {LoopStr} are removed, the loop will from an error structure =&gt; {ElimStr}.
+        /// </summary>
+        internal static string TechniqueFormat_BivalueOddagonType2Step {
+            get {
+                return ResourceManager.GetString("TechniqueFormat_BivalueOddagonType2Step", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {Name}: To avoid the structure {LoopStr} of digits {Digit1Str} and {Digit2Str} error, the only way is to form the subset (digits {DigitsStr} in cells {ExtraCellsStr}) =&gt; {ElimStr}.
+        /// </summary>
+        internal static string TechniqueFormat_BivalueOddagonType3Step {
+            get {
+                return ResourceManager.GetString("TechniqueFormat_BivalueOddagonType3Step", resourceCulture);
             }
         }
         
@@ -196,6 +232,24 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to {Name}: Try {ContradictionSeriesStr} =&gt; {ElimStr}.
+        /// </summary>
+        internal static string TechniqueFormat_BowmanBingoStep {
+            get {
+                return ResourceManager.GetString("TechniqueFormat_BowmanBingoStep", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {Name}: {AssignmentStr}.
+        /// </summary>
+        internal static string TechniqueFormat_BruteForceStep {
+            get {
+                return ResourceManager.GetString("TechniqueFormat_BruteForceStep", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to {Name}: It can be proved using chains that all digits are false from {SourceCellStr} =&gt; {ElimStr}.
         /// </summary>
         internal static string TechniqueFormat_CellChainingStep {
@@ -205,11 +259,29 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to {Name}: {DigitStr} in {BaseSetsStr}\\{CoverSetsStr} {ExofinsStr}{EndofinsStr}=&gt; {ElimStr}.
+        /// </summary>
+        internal static string TechniqueFormat_ComplexFishStep {
+            get {
+                return ResourceManager.GetString("TechniqueFormat_ComplexFishStep", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to {Name}: Loop {ChainStr} =&gt; {ElimStr}.
         /// </summary>
         internal static string TechniqueFormat_ContinuousNiceLoopStep {
             get {
                 return ResourceManager.GetString("TechniqueFormat_ContinuousNiceLoopStep", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {Name}: {CellsCountStr} cells {CellsStr} =&gt; {ElimStr}.
+        /// </summary>
+        internal static string TechniqueFormat_DominoLoopStep {
+            get {
+                return ResourceManager.GetString("TechniqueFormat_DominoLoopStep", resourceCulture);
             }
         }
         
@@ -277,6 +349,42 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to {Name}: {DigitStr} in {BaseSetStr}\\{CoverSetStr} =&gt; {ElimStr}.
+        /// </summary>
+        internal static string TechniqueFormat_LockedCandidatesStep {
+            get {
+                return ResourceManager.GetString("TechniqueFormat_LockedCandidatesStep", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {Name}: {CellsCountStr} cells {CellsStr} =&gt; {ElimStr}.
+        /// </summary>
+        internal static string TechniqueFormat_MultisectorLockedSetsStep {
+            get {
+                return ResourceManager.GetString("TechniqueFormat_MultisectorLockedSetsStep", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {Name}: {DigitStr} in {BaseSetStr}\\{CoverSetStr}{FinsStr} =&gt; {ElimStr}.
+        /// </summary>
+        internal static string TechniqueFormat_NormalFishStep {
+            get {
+                return ResourceManager.GetString("TechniqueFormat_NormalFishStep", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {Name}: Digit {DigitStr} =&gt; {ElimStr}.
+        /// </summary>
+        internal static string TechniqueFormat_PatternOverlayStep {
+            get {
+                return ResourceManager.GetString("TechniqueFormat_PatternOverlayStep", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to {Name}: Cells {PatternStr} will be a deadly pattern if{Quantifier}{Number} {SingularOrPlural} {CandidateStr} {BeVerb} false =&gt; {ElimStr}.
         /// </summary>
         internal static string TechniqueFormat_QiuDeadlyPatternLockedTypeStep {
@@ -327,6 +435,33 @@ namespace Sudoku.Resources {
         internal static string TechniqueFormat_RegionChainingStep {
             get {
                 return ResourceManager.GetString("TechniqueFormat_RegionChainingStep", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {Name}: {Cells1Str}({Digits1Str}) + {Cells2Str}({Digits2Str}) + {Cells3Str}({Digits3Str}) =&gt; {ElimStr}.
+        /// </summary>
+        internal static string TechniqueFormat_SueDeCoq3DimensionStep {
+            get {
+                return ResourceManager.GetString("TechniqueFormat_SueDeCoq3DimensionStep", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {Name}: {IntersectionCellsStr}({IntersectionDigitsStr}) - {BlockCellsStr}({BlockDigitsStr}) &amp; {LineCellsStr}({LineDigitsStr}) =&gt; {ElimStr}.
+        /// </summary>
+        internal static string TechniqueFormat_SueDeCoqStep {
+            get {
+                return ResourceManager.GetString("TechniqueFormat_SueDeCoqStep", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {Name}: Digit {DigitStr} =&gt; {ElimStr}.
+        /// </summary>
+        internal static string TechniqueFormat_TemplateStep {
+            get {
+                return ResourceManager.GetString("TechniqueFormat_TemplateStep", resourceCulture);
             }
         }
         

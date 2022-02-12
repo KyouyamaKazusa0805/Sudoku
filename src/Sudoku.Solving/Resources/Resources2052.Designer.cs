@@ -106,6 +106,15 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to {Name}：数字 {DigitsStr} 从 {BaseCellsStr} 往 {TargetCellsStr} 推理 =&gt; {ElimStr}.
+        /// </summary>
+        internal static string TechniqueFormat_AlmostLockedCandidatesStep {
+            get {
+                return ResourceManager.GetString("TechniqueFormat_AlmostLockedCandidatesStep", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to {Name}：ALS {Als1Str} 和 {Als2Str} 以共轭对 {ConjStr} 关联起来；其中 W = {WStr}、X = {XStr} =&gt; {ElimStr}.
         /// </summary>
         internal static string TechniqueFormat_AlmostLockedSetsWWingStep {
@@ -156,6 +165,33 @@ namespace Sudoku.Resources {
         internal static string TechniqueFormat_BinaryChainingStep {
             get {
                 return ResourceManager.GetString("TechniqueFormat_BinaryChainingStep", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {Name}：如果单元格 {CellStr} 只有数字 {Digit1Str} 和 {Digit2Str} 的话，整个环 {LoopStr} 会直接导致违背规则的矛盾现象 =&gt; {ElimStr}.
+        /// </summary>
+        internal static string TechniqueFormat_BivalueOddagonType1Step {
+            get {
+                return ResourceManager.GetString("TechniqueFormat_BivalueOddagonType1Step", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {Name}：如果所有在单元格 {LoopStr} 里的数字 {ExtraDigitStr} 全部删掉，则整个环会直接导致违背规则的矛盾现象 =&gt; {ElimStr}.
+        /// </summary>
+        internal static string TechniqueFormat_BivalueOddagonType2Step {
+            get {
+                return ResourceManager.GetString("TechniqueFormat_BivalueOddagonType2Step", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {Name}：为规避数字 {Digit1Str} 和 {Digit2Str} 在单元格 {LoopStr} 里出错，唯一的办法就是和 {ExtraCellsStr} 单元格组成关于数字 {DigitsStr} 的数组 =&gt; {ElimStr}.
+        /// </summary>
+        internal static string TechniqueFormat_BivalueOddagonType3Step {
+            get {
+                return ResourceManager.GetString("TechniqueFormat_BivalueOddagonType3Step", resourceCulture);
             }
         }
         
@@ -214,6 +250,24 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to {Name}：设 {ContradictionSeriesStr} =&gt; {ElimStr}.
+        /// </summary>
+        internal static string TechniqueFormat_BowmanBingoStep {
+            get {
+                return ResourceManager.GetString("TechniqueFormat_BowmanBingoStep", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {Name}：{AssignmentStr}.
+        /// </summary>
+        internal static string TechniqueFormat_BruteForceStep {
+            get {
+                return ResourceManager.GetString("TechniqueFormat_BruteForceStep", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to {Name}：可以通过强制链来证明得到 {SourceCellStr} 里的所有候选数全部为假 =&gt; {ElimStr}.
         /// </summary>
         internal static string TechniqueFormat_CellChainingStep {
@@ -223,11 +277,29 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to {Name}：{BaseSetsStr}\\{CoverSetsStr}({DigitStr}) {ExofinsStr}{EndofinsStr}=&gt; {ElimStr}.
+        /// </summary>
+        internal static string TechniqueFormat_ComplexFishStep {
+            get {
+                return ResourceManager.GetString("TechniqueFormat_ComplexFishStep", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to {Name}：环 {ChainStr} =&gt; {ElimStr}.
         /// </summary>
         internal static string TechniqueFormat_ContinuousNiceLoopStep {
             get {
                 return ResourceManager.GetString("TechniqueFormat_ContinuousNiceLoopStep", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {Name}：{CellsCountStr} 个单元格 {CellsStr} 构成多米诺环 =&gt; {ElimStr}.
+        /// </summary>
+        internal static string TechniqueFormat_DominoLoopStep {
+            get {
+                return ResourceManager.GetString("TechniqueFormat_DominoLoopStep", resourceCulture);
             }
         }
         
@@ -295,6 +367,42 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to {Name}：数字 {DigitStr} 位于区域 {BaseSetStr}\\{CoverSetStr} 里有区块结构 =&gt; {ElimStr}.
+        /// </summary>
+        internal static string TechniqueFormat_LockedCandidatesStep {
+            get {
+                return ResourceManager.GetString("TechniqueFormat_LockedCandidatesStep", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {Name}：网一共 {CellsCountStr} 个单元格 {CellsStr} =&gt; {ElimStr}.
+        /// </summary>
+        internal static string TechniqueFormat_MultisectorLockedSetsStep {
+            get {
+                return ResourceManager.GetString("TechniqueFormat_MultisectorLockedSetsStep", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {Name}：数字 {DigitStr} 位于区域 {BaseSetStr}\\{CoverSetStr} 里有鱼结构{FinsStr} =&gt; {ElimStr}.
+        /// </summary>
+        internal static string TechniqueFormat_NormalFishStep {
+            get {
+                return ResourceManager.GetString("TechniqueFormat_NormalFishStep", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {Name}：数字 {DigitStr} 有 POM 结构 =&gt; {ElimStr}.
+        /// </summary>
+        internal static string TechniqueFormat_PatternOverlayStep {
+            get {
+                return ResourceManager.GetString("TechniqueFormat_PatternOverlayStep", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to {Name}：如果所有这 {Number} 个候选数都为假的话，单元格 {PatternStr} 将产生致命形式 =&gt; {ElimStr}.
         /// </summary>
         internal static string TechniqueFormat_QiuDeadlyPatternLockedTypeStep {
@@ -345,6 +453,33 @@ namespace Sudoku.Resources {
         internal static string TechniqueFormat_RegionChainingStep {
             get {
                 return ResourceManager.GetString("TechniqueFormat_RegionChainingStep", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {Name}：{Cells1Str}({Digits1Str}) + {Cells2Str}({Digits2Str}) + {Cells3Str}({Digits3Str}) =&gt; {ElimStr}.
+        /// </summary>
+        internal static string TechniqueFormat_SueDeCoq3DimensionStep {
+            get {
+                return ResourceManager.GetString("TechniqueFormat_SueDeCoq3DimensionStep", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {Name}：{IntersectionCellsStr}({IntersectionDigitsStr}) - {BlockCellsStr}({BlockDigitsStr}) &amp; {LineCellsStr}({LineDigitsStr}) =&gt; {ElimStr}.
+        /// </summary>
+        internal static string TechniqueFormat_SueDeCoqStep {
+            get {
+                return ResourceManager.GetString("TechniqueFormat_SueDeCoqStep", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {Name}：关于数字 {DigitStr} =&gt; {ElimStr}.
+        /// </summary>
+        internal static string TechniqueFormat_TemplateStep {
+            get {
+                return ResourceManager.GetString("TechniqueFormat_TemplateStep", resourceCulture);
             }
         }
         

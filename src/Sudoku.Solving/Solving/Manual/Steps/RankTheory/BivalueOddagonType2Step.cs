@@ -24,7 +24,7 @@ public sealed record BivalueOddagonType2Step(
 ) : BivalueOddagonStep(Conclusions, Views, Loop, Digit1, Digit2)
 {
 	/// <inheritdoc/>
-	public override decimal Difficulty => 5.1M;
+	public override decimal Difficulty => base.Difficulty + .1M;
 
 	/// <inheritdoc/>
 	public override Technique TechniqueCode => Technique.BivalueOddagonType2;

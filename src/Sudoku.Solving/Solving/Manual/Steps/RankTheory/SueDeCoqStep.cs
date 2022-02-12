@@ -37,9 +37,9 @@ public sealed record SueDeCoqStep(
 {
 	/// <inheritdoc/>
 	public override decimal Difficulty =>
-		5.0M
-		+ (IsolatedDigitsMask != 0 ? .1M : 0) // The extra difficulty for isolated digit existence.
-		+ (IsCannibalistic ? .2M : 0); // The extra difficulty for cannibalism.
+		5.0M // Base difficulty.
+			+ (IsolatedDigitsMask != 0 ? .1M : 0) // The extra difficulty for isolated digit existence.
+			+ (IsCannibalistic ? .2M : 0); // The extra difficulty for cannibalism.
 
 	/// <inheritdoc/>
 	public override TechniqueTags TechniqueTags => TechniqueTags.RankTheory | TechniqueTags.Als;

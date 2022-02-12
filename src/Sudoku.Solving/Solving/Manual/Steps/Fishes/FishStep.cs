@@ -38,19 +38,14 @@ public abstract record FishStep(
 	/// <remarks>
 	/// The name of the corresponding names are:
 	/// <list type="table">
-	/// <item>
-	/// <term>2</term>
-	/// <description>X-Wing</description>
-	/// </item>
-	/// <item>
-	/// <term>3</term>
-	/// <description>Swordfish</description>
-	/// </item>
-	/// <item>
-	/// <term>4</term>
-	/// <description>Jellyfish</description>
-	/// </item>
+	/// <item><term>2</term><description>X-Wing</description></item>
+	/// <item><term>3</term><description>Swordfish</description></item>
+	/// <item><term>4</term><description>Jellyfish</description></item>
+	/// <item><term>5</term><description>Squirmbag (or Starfish)</description></item>
+	/// <item><term>6</term><description>Whale</description></item>
+	/// <item><term>7</term><description>Leviathan</description></item>
 	/// </list>
+	/// Other fishes of sizes not appearing in above don't have well-known names.
 	/// </remarks>
 	public int Size => PopCount((uint)BaseSetsMask);
 

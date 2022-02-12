@@ -32,18 +32,19 @@ public sealed record AlmostLockedCandidatesStep(
 	/// <inheritdoc/>
 	public override decimal Difficulty =>
 		Size switch { 2 => 4.5M, 3 => 5.2M, 4 => 5.7M } // Base difficulty.
-		+ (HasValueCell ? Size switch { 2 => .1M, 3 => .1M, 4 => .2M } : 0); // Extra difficulty.
+			+ (HasValueCell ? Size switch { 2 => .1M, 3 => .1M, 4 => .2M } : 0); // Extra difficulty.
 
 	/// <inheritdoc/>
 	public override DifficultyLevel DifficultyLevel => DifficultyLevel.Hard;
 
 	/// <inheritdoc/>
-	public override Technique TechniqueCode => Size switch
-	{
-		2 => Technique.AlmostLockedPair,
-		3 => Technique.AlmostLockedTriple,
-		4 => Technique.AlmostLockedQuadruple
-	};
+	public override Technique TechniqueCode =>
+		Size switch
+		{
+			2 => Technique.AlmostLockedPair,
+			3 => Technique.AlmostLockedTriple,
+			4 => Technique.AlmostLockedQuadruple
+		};
 
 	/// <inheritdoc/>
 	public override TechniqueGroup TechniqueGroup => TechniqueGroup.AlmostLockedCandidates;

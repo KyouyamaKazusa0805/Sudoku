@@ -1,6 +1,5 @@
 ﻿using Sudoku.Collections;
 using Sudoku.Presentation;
-using Sudoku.Resources;
 using Sudoku.Solving.Manual.Text;
 using Sudoku.Techniques;
 
@@ -45,7 +44,7 @@ public sealed record NormalFishStep(
 	/// <inheritdoc/>
 	public override decimal Difficulty =>
 		Size switch { 2 => 3.2M, 3 => 3.8M, 4 => 5.2M }
-		+ IsSashimi switch { null => 0, true => Size switch { 2 => .3M, 3 => .3M, 4 => .4M }, false => .2M };
+			+ IsSashimi switch { null => 0, true => Size switch { 2 => .3M, 3 => .3M, 4 => .4M }, false => .2M };
 
 	/// <inheritdoc/>
 	public override DifficultyLevel DifficultyLevel => DifficultyLevel.Hard;
@@ -117,7 +116,7 @@ public sealed record NormalFishStep(
 	internal string FinSnippet
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => ResourceManager.Shared["Fin"];
+		get => R["Fin"]!;
 	}
 
 	[FormatItem]

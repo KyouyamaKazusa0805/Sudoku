@@ -7877,19 +7877,14 @@
             <remarks>
             The name of the corresponding names are:
             <list type="table">
-            <item>
-            <term>2</term>
-            <description>X-Wing</description>
-            </item>
-            <item>
-            <term>3</term>
-            <description>Swordfish</description>
-            </item>
-            <item>
-            <term>4</term>
-            <description>Jellyfish</description>
-            </item>
+            <item><term>2</term><description>X-Wing</description></item>
+            <item><term>3</term><description>Swordfish</description></item>
+            <item><term>4</term><description>Jellyfish</description></item>
+            <item><term>5</term><description>Squirmbag (or Starfish)</description></item>
+            <item><term>6</term><description>Whale</description></item>
+            <item><term>7</term><description>Leviathan</description></item>
             </list>
+            Other fishes of sizes not appearing in above don't have well-known names.
             </remarks>
         </member>
         <member name="P:Sudoku.Solving.Manual.Steps.FishStep.Rank">
@@ -8368,6 +8363,9 @@
             <param name="Digit1">Indicates the first digit.</param>
             <param name="Digit2">Indicates the second digit.</param>
         </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.BivalueOddagonStep.Difficulty">
+            <inheritdoc/>
+        </member>
         <member name="P:Sudoku.Solving.Manual.Steps.BivalueOddagonStep.TechniqueGroup">
             <inheritdoc/>
         </member>
@@ -8395,9 +8393,6 @@
             <param name="Digit1"><inheritdoc/></param>
             <param name="Digit2"><inheritdoc/></param>
             <param name="ExtraCell">Indicates the extra cell.</param>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.Steps.BivalueOddagonType1Step.Difficulty">
-            <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Manual.Steps.BivalueOddagonType1Step.TechniqueCode">
             <inheritdoc/>
@@ -8578,9 +8573,9 @@
         <member name="P:Sudoku.Solving.Manual.Steps.RankTheoryStep.Stableness">
             <inheritdoc/>
         </member>
-        <member name="T:Sudoku.Solving.Manual.Steps.SueDeCoq3DemensionStep">
+        <member name="T:Sudoku.Solving.Manual.Steps.SueDeCoq3DimensionStep">
             <summary>
-            Provides with a step that is a <b>3-demensional Sue de Coq</b> technique.
+            Provides with a step that is a <b>3-dimensional Sue de Coq</b> technique.
             </summary>
             <param name="Conclusions"><inheritdoc/></param>
             <param name="Views"><inheritdoc/></param>
@@ -8591,9 +8586,9 @@
             <param name="ColumnCells">The column cells map.</param>
             <param name="BlockCells">The block cells map.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Steps.SueDeCoq3DemensionStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.PresentationData},System.Int16,System.Int16,System.Int16,Sudoku.Collections.Cells,Sudoku.Collections.Cells,Sudoku.Collections.Cells)">
+        <member name="M:Sudoku.Solving.Manual.Steps.SueDeCoq3DimensionStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.PresentationData},System.Int16,System.Int16,System.Int16,Sudoku.Collections.Cells,Sudoku.Collections.Cells,Sudoku.Collections.Cells)">
             <summary>
-            Provides with a step that is a <b>3-demensional Sue de Coq</b> technique.
+            Provides with a step that is a <b>3-dimensional Sue de Coq</b> technique.
             </summary>
             <param name="Conclusions"><inheritdoc/></param>
             <param name="Views"><inheritdoc/></param>
@@ -8604,22 +8599,22 @@
             <param name="ColumnCells">The column cells map.</param>
             <param name="BlockCells">The block cells map.</param>
         </member>
-        <member name="P:Sudoku.Solving.Manual.Steps.SueDeCoq3DemensionStep.Difficulty">
+        <member name="P:Sudoku.Solving.Manual.Steps.SueDeCoq3DimensionStep.Difficulty">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Solving.Manual.Steps.SueDeCoq3DemensionStep.TechniqueCode">
+        <member name="P:Sudoku.Solving.Manual.Steps.SueDeCoq3DimensionStep.TechniqueCode">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Solving.Manual.Steps.SueDeCoq3DemensionStep.TechniqueTags">
+        <member name="P:Sudoku.Solving.Manual.Steps.SueDeCoq3DimensionStep.TechniqueTags">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Solving.Manual.Steps.SueDeCoq3DemensionStep.TechniqueGroup">
+        <member name="P:Sudoku.Solving.Manual.Steps.SueDeCoq3DimensionStep.TechniqueGroup">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Solving.Manual.Steps.SueDeCoq3DemensionStep.DifficultyLevel">
+        <member name="P:Sudoku.Solving.Manual.Steps.SueDeCoq3DimensionStep.DifficultyLevel">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Solving.Manual.Steps.SueDeCoq3DemensionStep.Rarity">
+        <member name="P:Sudoku.Solving.Manual.Steps.SueDeCoq3DimensionStep.Rarity">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Solving.Manual.Steps.SueDeCoqStep">
@@ -9454,6 +9449,11 @@
               Looks up a localized string similar to  or .
             </summary>
         </member>
+        <member name="P:Sudoku.Resources.Resources1033.TechniqueFormat_AlmostLockedCandidatesStep">
+            <summary>
+              Looks up a localized string similar to {Name}: {DigitsStr} from {BaseCellsStr} to {TargetCellsStr} =&gt; {ElimStr}.
+            </summary>
+        </member>
         <member name="P:Sudoku.Resources.Resources1033.TechniqueFormat_AlmostLockedSetsWWingStep">
             <summary>
               Looks up a localized string similar to {Name}: Two ALSes {Als1Str}, {Als2Str} connected by {ConjStr}, W = {WStr}, X = {XStr} =&gt; {ElimStr}.
@@ -9482,6 +9482,21 @@
         <member name="P:Sudoku.Resources.Resources1033.TechniqueFormat_BinaryChainingStep">
             <summary>
               Looks up a localized string similar to {Name}: It can be proved to be a contradiction if {AnchorIsTrueOrFalseStr} is {AnchorIsNotOnStr} =&gt; {ElimStr}.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources1033.TechniqueFormat_BivalueOddagonType1Step">
+            <summary>
+              Looks up a localized string similar to {Name}: If the cell {CellStr} only contains the digits {Digit1Str} and {Digit2Str} (or one of those two), the loop {LoopStr} will form an error structure =&gt; {ElimStr}.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources1033.TechniqueFormat_BivalueOddagonType2Step">
+            <summary>
+              Looks up a localized string similar to {Name}: If all digit {ExtraDigitStr} in cells {LoopStr} are removed, the loop will from an error structure =&gt; {ElimStr}.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources1033.TechniqueFormat_BivalueOddagonType3Step">
+            <summary>
+              Looks up a localized string similar to {Name}: To avoid the structure {LoopStr} of digits {Digit1Str} and {Digit2Str} error, the only way is to form the subset (digits {DigitsStr} in cells {ExtraCellsStr}) =&gt; {ElimStr}.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources1033.TechniqueFormat_BivalueUniversalGraveMultipleStep">
@@ -9514,14 +9529,34 @@
               Looks up a localized string similar to {Name}: {DigitStr} with cells {CellsStr}, with extra cell {ExtraCellStr} =&gt; {ElimStr}.
             </summary>
         </member>
+        <member name="P:Sudoku.Resources.Resources1033.TechniqueFormat_BowmanBingoStep">
+            <summary>
+              Looks up a localized string similar to {Name}: Try {ContradictionSeriesStr} =&gt; {ElimStr}.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources1033.TechniqueFormat_BruteForceStep">
+            <summary>
+              Looks up a localized string similar to {Name}: {AssignmentStr}.
+            </summary>
+        </member>
         <member name="P:Sudoku.Resources.Resources1033.TechniqueFormat_CellChainingStep">
             <summary>
               Looks up a localized string similar to {Name}: It can be proved using chains that all digits are false from {SourceCellStr} =&gt; {ElimStr}.
             </summary>
         </member>
+        <member name="P:Sudoku.Resources.Resources1033.TechniqueFormat_ComplexFishStep">
+            <summary>
+              Looks up a localized string similar to {Name}: {DigitStr} in {BaseSetsStr}\\{CoverSetsStr} {ExofinsStr}{EndofinsStr}=&gt; {ElimStr}.
+            </summary>
+        </member>
         <member name="P:Sudoku.Resources.Resources1033.TechniqueFormat_ContinuousNiceLoopStep">
             <summary>
               Looks up a localized string similar to {Name}: Loop {ChainStr} =&gt; {ElimStr}.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources1033.TechniqueFormat_DominoLoopStep">
+            <summary>
+              Looks up a localized string similar to {Name}: {CellsCountStr} cells {CellsStr} =&gt; {ElimStr}.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources1033.TechniqueFormat_EmptyRectangleIntersectionPairStep">
@@ -9559,6 +9594,26 @@
               Looks up a localized string similar to {Name}: All digits can&apos;t be duplicate in cells {CellsStr} =&gt; {ElimStr}.
             </summary>
         </member>
+        <member name="P:Sudoku.Resources.Resources1033.TechniqueFormat_LockedCandidatesStep">
+            <summary>
+              Looks up a localized string similar to {Name}: {DigitStr} in {BaseSetStr}\\{CoverSetStr} =&gt; {ElimStr}.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources1033.TechniqueFormat_MultisectorLockedSetsStep">
+            <summary>
+              Looks up a localized string similar to {Name}: {CellsCountStr} cells {CellsStr} =&gt; {ElimStr}.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources1033.TechniqueFormat_NormalFishStep">
+            <summary>
+              Looks up a localized string similar to {Name}: {DigitStr} in {BaseSetStr}\\{CoverSetStr}{FinsStr} =&gt; {ElimStr}.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources1033.TechniqueFormat_PatternOverlayStep">
+            <summary>
+              Looks up a localized string similar to {Name}: Digit {DigitStr} =&gt; {ElimStr}.
+            </summary>
+        </member>
         <member name="P:Sudoku.Resources.Resources1033.TechniqueFormat_QiuDeadlyPatternLockedTypeStep">
             <summary>
               Looks up a localized string similar to {Name}: Cells {PatternStr} will be a deadly pattern if{Quantifier}{Number} {SingularOrPlural} {CandidateStr} {BeVerb} false =&gt; {ElimStr}.
@@ -9587,6 +9642,21 @@
         <member name="P:Sudoku.Resources.Resources1033.TechniqueFormat_RegionChainingStep">
             <summary>
               Looks up a localized string similar to {Name}: It can be proved using chains that digit {DigitStr} from {RegionStr} are false =&gt; {ElimStr}.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources1033.TechniqueFormat_SueDeCoq3DimensionStep">
+            <summary>
+              Looks up a localized string similar to {Name}: {Cells1Str}({Digits1Str}) + {Cells2Str}({Digits2Str}) + {Cells3Str}({Digits3Str}) =&gt; {ElimStr}.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources1033.TechniqueFormat_SueDeCoqStep">
+            <summary>
+              Looks up a localized string similar to {Name}: {IntersectionCellsStr}({IntersectionDigitsStr}) - {BlockCellsStr}({BlockDigitsStr}) &amp; {LineCellsStr}({LineDigitsStr}) =&gt; {ElimStr}.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources1033.TechniqueFormat_TemplateStep">
+            <summary>
+              Looks up a localized string similar to {Name}: Digit {DigitStr} =&gt; {ElimStr}.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources1033.TechniqueFormat_UniqueLoopType1Step">
@@ -9735,6 +9805,11 @@
               Looks up a localized string similar to  或 .
             </summary>
         </member>
+        <member name="P:Sudoku.Resources.Resources2052.TechniqueFormat_AlmostLockedCandidatesStep">
+            <summary>
+              Looks up a localized string similar to {Name}：数字 {DigitsStr} 从 {BaseCellsStr} 往 {TargetCellsStr} 推理 =&gt; {ElimStr}.
+            </summary>
+        </member>
         <member name="P:Sudoku.Resources.Resources2052.TechniqueFormat_AlmostLockedSetsWWingStep">
             <summary>
               Looks up a localized string similar to {Name}：ALS {Als1Str} 和 {Als2Str} 以共轭对 {ConjStr} 关联起来；其中 W = {WStr}、X = {XStr} =&gt; {ElimStr}.
@@ -9763,6 +9838,21 @@
         <member name="P:Sudoku.Resources.Resources2052.TechniqueFormat_BinaryChainingStep">
             <summary>
               Looks up a localized string similar to {Name}：可以证明如果 {AnchorCandidateStr} 为{AnchorIsTrueOrFalseStr}时会产生矛盾 =&gt; {ElimStr}.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources2052.TechniqueFormat_BivalueOddagonType1Step">
+            <summary>
+              Looks up a localized string similar to {Name}：如果单元格 {CellStr} 只有数字 {Digit1Str} 和 {Digit2Str} 的话，整个环 {LoopStr} 会直接导致违背规则的矛盾现象 =&gt; {ElimStr}.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources2052.TechniqueFormat_BivalueOddagonType2Step">
+            <summary>
+              Looks up a localized string similar to {Name}：如果所有在单元格 {LoopStr} 里的数字 {ExtraDigitStr} 全部删掉，则整个环会直接导致违背规则的矛盾现象 =&gt; {ElimStr}.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources2052.TechniqueFormat_BivalueOddagonType3Step">
+            <summary>
+              Looks up a localized string similar to {Name}：为规避数字 {Digit1Str} 和 {Digit2Str} 在单元格 {LoopStr} 里出错，唯一的办法就是和 {ExtraCellsStr} 单元格组成关于数字 {DigitsStr} 的数组 =&gt; {ElimStr}.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources2052.TechniqueFormat_BivalueUniversalGraveMultipleStep">
@@ -9795,14 +9885,34 @@
               Looks up a localized string similar to {Name}：数字 {DigitStr} 位于单元格 {CellsStr} 里，并带有额外单元格 {ExtraCellStr} =&gt; {ElimStr}.
             </summary>
         </member>
+        <member name="P:Sudoku.Resources.Resources2052.TechniqueFormat_BowmanBingoStep">
+            <summary>
+              Looks up a localized string similar to {Name}：设 {ContradictionSeriesStr} =&gt; {ElimStr}.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources2052.TechniqueFormat_BruteForceStep">
+            <summary>
+              Looks up a localized string similar to {Name}：{AssignmentStr}.
+            </summary>
+        </member>
         <member name="P:Sudoku.Resources.Resources2052.TechniqueFormat_CellChainingStep">
             <summary>
               Looks up a localized string similar to {Name}：可以通过强制链来证明得到 {SourceCellStr} 里的所有候选数全部为假 =&gt; {ElimStr}.
             </summary>
         </member>
+        <member name="P:Sudoku.Resources.Resources2052.TechniqueFormat_ComplexFishStep">
+            <summary>
+              Looks up a localized string similar to {Name}：{BaseSetsStr}\\{CoverSetsStr}({DigitStr}) {ExofinsStr}{EndofinsStr}=&gt; {ElimStr}.
+            </summary>
+        </member>
         <member name="P:Sudoku.Resources.Resources2052.TechniqueFormat_ContinuousNiceLoopStep">
             <summary>
               Looks up a localized string similar to {Name}：环 {ChainStr} =&gt; {ElimStr}.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources2052.TechniqueFormat_DominoLoopStep">
+            <summary>
+              Looks up a localized string similar to {Name}：{CellsCountStr} 个单元格 {CellsStr} 构成多米诺环 =&gt; {ElimStr}.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources2052.TechniqueFormat_EmptyRectangleIntersectionPairStep">
@@ -9840,6 +9950,26 @@
               Looks up a localized string similar to {Name}：所有在 {CellsStr} 里面的数字都不相同 =&gt; {ElimStr}.
             </summary>
         </member>
+        <member name="P:Sudoku.Resources.Resources2052.TechniqueFormat_LockedCandidatesStep">
+            <summary>
+              Looks up a localized string similar to {Name}：数字 {DigitStr} 位于区域 {BaseSetStr}\\{CoverSetStr} 里有区块结构 =&gt; {ElimStr}.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources2052.TechniqueFormat_MultisectorLockedSetsStep">
+            <summary>
+              Looks up a localized string similar to {Name}：网一共 {CellsCountStr} 个单元格 {CellsStr} =&gt; {ElimStr}.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources2052.TechniqueFormat_NormalFishStep">
+            <summary>
+              Looks up a localized string similar to {Name}：数字 {DigitStr} 位于区域 {BaseSetStr}\\{CoverSetStr} 里有鱼结构{FinsStr} =&gt; {ElimStr}.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources2052.TechniqueFormat_PatternOverlayStep">
+            <summary>
+              Looks up a localized string similar to {Name}：数字 {DigitStr} 有 POM 结构 =&gt; {ElimStr}.
+            </summary>
+        </member>
         <member name="P:Sudoku.Resources.Resources2052.TechniqueFormat_QiuDeadlyPatternLockedTypeStep">
             <summary>
               Looks up a localized string similar to {Name}：如果所有这 {Number} 个候选数都为假的话，单元格 {PatternStr} 将产生致命形式 =&gt; {ElimStr}.
@@ -9868,6 +9998,21 @@
         <member name="P:Sudoku.Resources.Resources2052.TechniqueFormat_RegionChainingStep">
             <summary>
               Looks up a localized string similar to {Name}：可以使用强制链证得位于区域 {RegionStr} 的数字 {DigitStr} 全为假的矛盾 =&gt; {ElimStr}.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources2052.TechniqueFormat_SueDeCoq3DimensionStep">
+            <summary>
+              Looks up a localized string similar to {Name}：{Cells1Str}({Digits1Str}) + {Cells2Str}({Digits2Str}) + {Cells3Str}({Digits3Str}) =&gt; {ElimStr}.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources2052.TechniqueFormat_SueDeCoqStep">
+            <summary>
+              Looks up a localized string similar to {Name}：{IntersectionCellsStr}({IntersectionDigitsStr}) - {BlockCellsStr}({BlockDigitsStr}) &amp; {LineCellsStr}({LineDigitsStr}) =&gt; {ElimStr}.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources2052.TechniqueFormat_TemplateStep">
+            <summary>
+              Looks up a localized string similar to {Name}：关于数字 {DigitStr} =&gt; {ElimStr}.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources2052.TechniqueFormat_UniqueLoopType1Step">

@@ -126,6 +126,9 @@
   <data name="OrKeywordWithSpaces" xml:space="preserve">
     <value> or </value>
   </data>
+  <data name="TechniqueFormat_AlmostLockedCandidatesStep" xml:space="preserve">
+    <value>{Name}: {DigitsStr} from {BaseCellsStr} to {TargetCellsStr} =&gt; {ElimStr}</value>
+  </data>
   <data name="TechniqueFormat_AlmostLockedSetsWWingStep" xml:space="preserve">
     <value>{Name}: Two ALSes {Als1Str}, {Als2Str} connected by {ConjStr}, W = {WStr}, X = {XStr} =&gt; {ElimStr}</value>
   </data>
@@ -143,6 +146,15 @@
   </data>
   <data name="TechniqueFormat_BinaryChainingStep" xml:space="preserve">
     <value>{Name}: It can be proved to be a contradiction if {AnchorIsTrueOrFalseStr} is {AnchorIsNotOnStr} =&gt; {ElimStr}</value>
+  </data>
+  <data name="TechniqueFormat_BivalueOddagonType1Step" xml:space="preserve">
+    <value>{Name}: If the cell {CellStr} only contains the digits {Digit1Str} and {Digit2Str} (or one of those two), the loop {LoopStr} will form an error structure =&gt; {ElimStr}</value>
+  </data>
+  <data name="TechniqueFormat_BivalueOddagonType2Step" xml:space="preserve">
+    <value>{Name}: If all digit {ExtraDigitStr} in cells {LoopStr} are removed, the loop will from an error structure =&gt; {ElimStr}</value>
+  </data>
+  <data name="TechniqueFormat_BivalueOddagonType3Step" xml:space="preserve">
+    <value>{Name}: To avoid the structure {LoopStr} of digits {Digit1Str} and {Digit2Str} error, the only way is to form the subset (digits {DigitsStr} in cells {ExtraCellsStr}) =&gt; {ElimStr}</value>
   </data>
   <data name="TechniqueFormat_BivalueUniversalGraveMultipleStep" xml:space="preserve">
     <value>{Name}: True candidates: {CandidatesStr} =&gt; {ElimStr}</value>
@@ -162,11 +174,23 @@
   <data name="TechniqueFormat_BivalueUniversalGraveXzStep" xml:space="preserve">
     <value>{Name}: {DigitStr} with cells {CellsStr}, with extra cell {ExtraCellStr} =&gt; {ElimStr}</value>
   </data>
+  <data name="TechniqueFormat_BowmanBingoStep" xml:space="preserve">
+    <value>{Name}: Try {ContradictionSeriesStr} =&gt; {ElimStr}</value>
+  </data>
+  <data name="TechniqueFormat_BruteForceStep" xml:space="preserve">
+    <value>{Name}: {AssignmentStr}</value>
+  </data>
   <data name="TechniqueFormat_CellChainingStep" xml:space="preserve">
     <value>{Name}: It can be proved using chains that all digits are false from {SourceCellStr} =&gt; {ElimStr}</value>
   </data>
+  <data name="TechniqueFormat_ComplexFishStep" xml:space="preserve">
+    <value>{Name}: {DigitStr} in {BaseSetsStr}\\{CoverSetsStr} {ExofinsStr}{EndofinsStr}=&gt; {ElimStr}</value>
+  </data>
   <data name="TechniqueFormat_ContinuousNiceLoopStep" xml:space="preserve">
     <value>{Name}: Loop {ChainStr} =&gt; {ElimStr}</value>
+  </data>
+  <data name="TechniqueFormat_DominoLoopStep" xml:space="preserve">
+    <value>{Name}: {CellsCountStr} cells {CellsStr} =&gt; {ElimStr}</value>
   </data>
   <data name="TechniqueFormat_EmptyRectangleIntersectionPairStep" xml:space="preserve">
     <value>{Name}: Digits {Digit1Str}, {Digit2Str} in bivalue cells {StartCellStr} and {EndCellStr} with empty rectangle in {RegionStr} =&gt; {ElimStr}</value>
@@ -189,6 +213,18 @@
   <data name="TechniqueFormat_ExtendedSubsetPrincipleWithoutDuplicate" xml:space="preserve">
     <value>{Name}: All digits can't be duplicate in cells {CellsStr} =&gt; {ElimStr}</value>
   </data>
+  <data name="TechniqueFormat_LockedCandidatesStep" xml:space="preserve">
+    <value>{Name}: {DigitStr} in {BaseSetStr}\\{CoverSetStr} =&gt; {ElimStr}</value>
+  </data>
+  <data name="TechniqueFormat_MultisectorLockedSetsStep" xml:space="preserve">
+    <value>{Name}: {CellsCountStr} cells {CellsStr} =&gt; {ElimStr}</value>
+  </data>
+  <data name="TechniqueFormat_NormalFishStep" xml:space="preserve">
+    <value>{Name}: {DigitStr} in {BaseSetStr}\\{CoverSetStr}{FinsStr} =&gt; {ElimStr}</value>
+  </data>
+  <data name="TechniqueFormat_PatternOverlayStep" xml:space="preserve">
+    <value>{Name}: Digit {DigitStr} =&gt; {ElimStr}</value>
+  </data>
   <data name="TechniqueFormat_QiuDeadlyPatternLockedTypeStep" xml:space="preserve">
     <value>{Name}: Cells {PatternStr} will be a deadly pattern if{Quantifier}{Number} {SingularOrPlural} {CandidateStr} {BeVerb} false =&gt; {ElimStr}</value>
   </data>
@@ -206,6 +242,15 @@
   </data>
   <data name="TechniqueFormat_RegionChainingStep" xml:space="preserve">
     <value>{Name}: It can be proved using chains that digit {DigitStr} from {RegionStr} are false =&gt; {ElimStr}</value>
+  </data>
+  <data name="TechniqueFormat_SueDeCoq3DimensionStep" xml:space="preserve">
+    <value>{Name}: {Cells1Str}({Digits1Str}) + {Cells2Str}({Digits2Str}) + {Cells3Str}({Digits3Str}) =&gt; {ElimStr}</value>
+  </data>
+  <data name="TechniqueFormat_SueDeCoqStep" xml:space="preserve">
+    <value>{Name}: {IntersectionCellsStr}({IntersectionDigitsStr}) - {BlockCellsStr}({BlockDigitsStr}) &amp; {LineCellsStr}({LineDigitsStr}) =&gt; {ElimStr}</value>
+  </data>
+  <data name="TechniqueFormat_TemplateStep" xml:space="preserve">
+    <value>{Name}: Digit {DigitStr} =&gt; {ElimStr}</value>
   </data>
   <data name="TechniqueFormat_UniqueLoopType1Step" xml:space="preserve">
     <value>{Name}: Digits {Digit1Str}, {Digit2Str} in cells {LoopStr} =&gt; {ElimStr}</value>

@@ -19,7 +19,8 @@ public sealed record BowmanBingoStep(
 {
 	/// <inheritdoc/>
 	public override decimal Difficulty =>
-		8.0M + IChainLikeStep.GetExtraDifficultyByLength(ContradictionLinks.Length);
+		8.0M // Base difficulty.
+			+ IChainLikeStep.GetExtraDifficultyByLength(ContradictionLinks.Length); // Length difficulty.
 
 	/// <inheritdoc/>
 	public override DifficultyLevel DifficultyLevel => DifficultyLevel.LastResort;

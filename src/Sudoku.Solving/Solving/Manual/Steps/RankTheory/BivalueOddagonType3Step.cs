@@ -26,7 +26,7 @@ public sealed record BivalueOddagonType3Step(
 ) : BivalueOddagonStep(Conclusions, Views, Loop, Digit1, Digit2)
 {
 	/// <inheritdoc/>
-	public override decimal Difficulty => 5.0M + (ExtraCells.Count >> 1) * .1M;
+	public override decimal Difficulty => base.Difficulty + (ExtraCells.Count >> 1) * .1M;
 
 	/// <inheritdoc/>
 	public override Technique TechniqueCode => Technique.BivalueOddagonType3;

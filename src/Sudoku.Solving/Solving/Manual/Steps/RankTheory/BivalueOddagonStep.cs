@@ -21,6 +21,9 @@ public abstract record BivalueOddagonStep(
 ) : RankTheoryStep(Conclusions, Views), IDistinctableStep<BivalueOddagonStep>
 {
 	/// <inheritdoc/>
+	public override decimal Difficulty => 5.0M;
+
+	/// <inheritdoc/>
 	public sealed override TechniqueGroup TechniqueGroup => TechniqueGroup.BivalueOddagon;
 
 

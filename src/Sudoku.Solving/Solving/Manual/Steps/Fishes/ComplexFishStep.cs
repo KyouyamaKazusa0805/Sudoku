@@ -60,8 +60,8 @@ public sealed partial record ComplexFishStep(
 	/// <inheritdoc/>
 	public override decimal Difficulty =>
 		BasicDiff[Size] // Base difficulty.
-		+ IsSashimi switch { false => FinnedDiff[Size], true => SashimiDiff[Size], _ => 0 } // Sashimi difficulty.
-		+ (IsFranken ? FrankenShapeDiffExtra[Size] : MutantShapeDiffExtra[Size]); // Shape difficulty.
+			+ IsSashimi switch { false => FinnedDiff[Size], true => SashimiDiff[Size], _ => 0 } // Sashimi difficulty.
+			+ (IsFranken ? FrankenShapeDiffExtra[Size] : MutantShapeDiffExtra[Size]); // Shape difficulty.
 
 	/// <inheritdoc/>
 	public override DifficultyLevel DifficultyLevel =>

@@ -21,7 +21,7 @@ public sealed record MultisectorLockedSetsStep(
 	/// <inheritdoc/>
 	public override decimal Difficulty =>
 		9.4M // Base difficulty.
-		+ A002024(Cells.Count) * .1M; // Size difficulty.
+			+ A002024(Cells.Count) * .1M; // Size difficulty.
 
 	/// <inheritdoc/>
 	public override TechniqueTags TechniqueTags => base.TechniqueTags | TechniqueTags.Msls;

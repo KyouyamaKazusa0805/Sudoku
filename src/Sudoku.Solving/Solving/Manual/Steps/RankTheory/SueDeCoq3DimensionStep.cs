@@ -6,7 +6,7 @@ using Sudoku.Techniques;
 namespace Sudoku.Solving.Manual.Steps;
 
 /// <summary>
-/// Provides with a step that is a <b>3-demensional Sue de Coq</b> technique.
+/// Provides with a step that is a <b>3-dimensional Sue de Coq</b> technique.
 /// </summary>
 /// <param name="Conclusions"><inheritdoc/></param>
 /// <param name="Views"><inheritdoc/></param>
@@ -16,7 +16,7 @@ namespace Sudoku.Solving.Manual.Steps;
 /// <param name="RowCells">The row cells map.</param>
 /// <param name="ColumnCells">The column cells map.</param>
 /// <param name="BlockCells">The block cells map.</param>
-public sealed record SueDeCoq3DemensionStep(
+public sealed record SueDeCoq3DimensionStep(
 	ImmutableArray<Conclusion> Conclusions,
 	ImmutableArray<PresentationData> Views,
 	short RowDigitsMask,
