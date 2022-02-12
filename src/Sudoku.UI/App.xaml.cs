@@ -1,5 +1,4 @@
-﻿using Sudoku.Resources;
-using Sudoku.UI.Views.Windows;
+﻿using Sudoku.UI.Views.Windows;
 
 namespace Sudoku.UI;
 
@@ -22,17 +21,7 @@ public partial class App : Application
 	/// and as such is the logical equivalent of <c>main()</c> or <c>WinMain()</c>.
 	/// </para>
 	/// </summary>
-	public App()
-	{
-		// Calls the base initialization method.
-		InitializeComponent();
-
-		// Then we should append a new router method to get the resource.
-		// In this way, we can just use the unified code to get the resource.
-		// The classic way to get the resource is 'Application.Current.Resources[key]',
-		// Now we can use 'ExternalResourceManager.Shared[key]'.
-		ResourceManager.Shared.Routers += static key => Current.Resources[key] as string;
-	}
+	public App() => InitializeComponent();
 
 
 	/// <summary>
@@ -44,7 +33,7 @@ public partial class App : Application
 	/// <param name="args">Details about the launch request and process.</param>
 	protected override void OnLaunched(LaunchActivatedEventArgs args)
 	{
-		_window = new MainWindow { Title = ResourceManager.Shared["ProgramName"] };
+		_window = new MainWindow { Title = (string)Current.Resources["ProgramName"] };
 		_window.Activate();
 	}
 }

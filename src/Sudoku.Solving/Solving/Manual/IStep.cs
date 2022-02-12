@@ -1,6 +1,5 @@
 ﻿using Sudoku.Collections;
 using Sudoku.Presentation;
-using Sudoku.Resources;
 using Sudoku.Solving.Manual.Text;
 using Sudoku.Techniques;
 
@@ -97,17 +96,19 @@ public interface IStep
 	/// and <see cref="ToFullString"/>. Therefore, this property is the substitution of those two methods.
 	/// </para>
 	/// <para>
-	/// If you want to use the values in the resource documents, just use the property
-	/// <see cref="ResourceManager.Shared"/> is okay:
+	/// If you want to use the values in the resource documents,
+	/// just use the <see langword="static readonly"/> field <see cref="R"/> is okay:
 	/// <code>
-	/// public override string Format => ResourceDocumentManager.Shared["TheKeyYouWantToSearch"];
+	/// using static Sudoku.Resources.MergedResources;
+	/// 
+	/// public override string Format => R["TheKeyYouWantToSearch"];
 	/// </code>
 	/// </para>
 	/// </remarks>
 	/// <seealso cref="ToString"/>
 	/// <seealso cref="ToFullString"/>
 	/// <seealso cref="FormatItemAttribute"/>
-	/// <seealso cref="ResourceManager.Shared"/>
+	/// <seealso cref="R"/>
 	string? Format { get; }
 
 	/// <summary>
