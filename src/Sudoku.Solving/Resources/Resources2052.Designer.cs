@@ -70,6 +70,24 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 守护者.
+        /// </summary>
+        internal static string GuardianPlural {
+            get {
+                return ResourceManager.GetString("GuardianPlural", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 守护者.
+        /// </summary>
+        internal static string GuardianSingular {
+            get {
+                return ResourceManager.GetString("GuardianSingular", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 位于.
         /// </summary>
         internal static string KeywordIn {
@@ -313,6 +331,15 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to {Name}：数字 {DigitStr} 位于区域 {RegionStr} 下拥有共轭对 {ConjStr} =&gt; {ElimStr}.
+        /// </summary>
+        internal static string TechniqueFormat_EmptyRectangleStep {
+            get {
+                return ResourceManager.GetString("TechniqueFormat_EmptyRectangleStep", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to {Name}：数字 {DigitsStr} 位于单元格 {CellsStr} 里构成结构 =&gt; {ElimStr}.
         /// </summary>
         internal static string TechniqueFormat_ExtendedRectangleType1Step {
@@ -367,6 +394,51 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to {Name}：{CellStr} = {DigitStr}.
+        /// </summary>
+        internal static string TechniqueFormat_FullHouseStep {
+            get {
+                return ResourceManager.GetString("TechniqueFormat_FullHouseStep", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {Name}：单元格 {CellsStr} 并带有{GuardianSingularOrPlural} {GuardianStr} =&gt; {ElimStr}.
+        /// </summary>
+        internal static string TechniqueFormat_GuardianStep {
+            get {
+                return ResourceManager.GetString("TechniqueFormat_GuardianStep", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {Name}：在区域 {RegionStr} 里有 {CellStr} = {DigitStr}.
+        /// </summary>
+        internal static string TechniqueFormat_HiddenSingle {
+            get {
+                return ResourceManager.GetString("TechniqueFormat_HiddenSingle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {Name}：数字 {DigitStr} 位于区域 {RegionStr} 里有隐性数组结构 =&gt; {ElimStr}.
+        /// </summary>
+        internal static string TechniqueFormat_HiddenSubsetStep {
+            get {
+                return ResourceManager.GetString("TechniqueFormat_HiddenSubsetStep", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {Name}：{CellStr} = {DigitStr}.
+        /// </summary>
+        internal static string TechniqueFormat_LastDigit {
+            get {
+                return ResourceManager.GetString("TechniqueFormat_LastDigit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to {Name}：数字 {DigitStr} 位于区域 {BaseSetStr}\\{CoverSetStr} 里有区块结构 =&gt; {ElimStr}.
         /// </summary>
         internal static string TechniqueFormat_LockedCandidatesStep {
@@ -381,6 +453,24 @@ namespace Sudoku.Resources {
         internal static string TechniqueFormat_MultisectorLockedSetsStep {
             get {
                 return ResourceManager.GetString("TechniqueFormat_MultisectorLockedSetsStep", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {Name}：{CellStr} = {DigitStr}.
+        /// </summary>
+        internal static string TechniqueFormat_NakedSingleStep {
+            get {
+                return ResourceManager.GetString("TechniqueFormat_NakedSingleStep", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {Name}：{DigitsStr} 位于区域 {RegionStr} 里有显性{SubsetName}结构 =&gt; {ElimStr}.
+        /// </summary>
+        internal static string TechniqueFormat_NakedSubsetStep {
+            get {
+                return ResourceManager.GetString("TechniqueFormat_NakedSubsetStep", resourceCulture);
             }
         }
         
@@ -457,6 +547,15 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to {Name}：数字 {DigitsStr} 位于拐点 {PivotCellStr} 上，往单元格 {CellsStr} 上进行推理 =&gt; {ElimStr}.
+        /// </summary>
+        internal static string TechniqueFormat_RegularWingStep {
+            get {
+                return ResourceManager.GetString("TechniqueFormat_RegularWingStep", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to {Name}：{Cells1Str}({Digits1Str}) + {Cells2Str}({Digits2Str}) + {Cells3Str}({Digits3Str}) =&gt; {ElimStr}.
         /// </summary>
         internal static string TechniqueFormat_SueDeCoq3DimensionStep {
@@ -480,6 +579,15 @@ namespace Sudoku.Resources {
         internal static string TechniqueFormat_TemplateStep {
             get {
                 return ResourceManager.GetString("TechniqueFormat_TemplateStep", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {Name}：数字 {DigitStr} 位于区域 {BaseRegionStr}\\{TargetRegionStr} =&gt; {ElimStr}.
+        /// </summary>
+        internal static string TechniqueFormat_TwoStrongLinksStep {
+            get {
+                return ResourceManager.GetString("TechniqueFormat_TwoStrongLinksStep", resourceCulture);
             }
         }
         
@@ -660,6 +768,15 @@ namespace Sudoku.Resources {
         internal static string TechniqueFormat_UniqueSquareType4Step {
             get {
                 return ResourceManager.GetString("TechniqueFormat_UniqueSquareType4Step", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {Name}：从 {StartCellStr} 到 {EndCellStr}，共轭对为 {ConjStr} =&gt; {ElimStr}.
+        /// </summary>
+        internal static string TechniqueFormat_WWingStep {
+            get {
+                return ResourceManager.GetString("TechniqueFormat_WWingStep", resourceCulture);
             }
         }
     }

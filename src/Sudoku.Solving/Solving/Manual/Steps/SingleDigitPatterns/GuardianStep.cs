@@ -1,6 +1,5 @@
 ﻿using Sudoku.Collections;
 using Sudoku.Presentation;
-using Sudoku.Resources;
 using Sudoku.Solving.Manual.Text;
 using Sudoku.Techniques;
 
@@ -51,7 +50,7 @@ public sealed record GuardianStep(
 	internal string GuardianSingularOrPlural
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => ResourceManager.Shared[Guardians.Count == 1 ? "GuardianSingular" : "GuardianPlural"];
+		get => R[Guardians.Count == 1 ? "GuardianSingular" : "GuardianPlural"]!;
 	}
 
 	[FormatItem]

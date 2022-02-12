@@ -43,12 +43,12 @@ public sealed record NakedSubsetStep(
 	/// <inheritdoc/>
 	public override decimal Difficulty =>
 		Size switch { 2 => 3.0M, 3 => 3.6M, 4 => 5.0M } // Base difficulty.
-		+ IsLocked switch
-		{
-			true => Size switch { 2 => -1.0M, 3 => -1.1M, },
-			false => .1M,
-			_ => 0
-		}; // Locked difficulty.
+			+ IsLocked switch
+			{
+				true => Size switch { 2 => -1.0M, 3 => -1.1M },
+				false => .1M,
+				_ => 0
+			}; // Locked difficulty.
 
 	/// <inheritdoc/>
 	public override Technique TechniqueCode =>

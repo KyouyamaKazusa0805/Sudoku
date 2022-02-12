@@ -9434,6 +9434,16 @@
               resource lookups using this strongly typed resource class.
             </summary>
         </member>
+        <member name="P:Sudoku.Resources.Resources1033.GuardianPlural">
+            <summary>
+              Looks up a localized string similar to guardians.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources1033.GuardianSingular">
+            <summary>
+              Looks up a localized string similar to a guardian.
+            </summary>
+        </member>
         <member name="P:Sudoku.Resources.Resources1033.KeywordIn">
             <summary>
               Looks up a localized string similar to in.
@@ -9564,6 +9574,11 @@
               Looks up a localized string similar to {Name}: Digits {Digit1Str}, {Digit2Str} in bivalue cells {StartCellStr} and {EndCellStr} with empty rectangle in {RegionStr} =&gt; {ElimStr}.
             </summary>
         </member>
+        <member name="P:Sudoku.Resources.Resources1033.TechniqueFormat_EmptyRectangleStep">
+            <summary>
+              Looks up a localized string similar to {Name}: {DigitStr} in {RegionStr} with conjugate pair {ConjStr} =&gt; {ElimStr}.
+            </summary>
+        </member>
         <member name="P:Sudoku.Resources.Resources1033.TechniqueFormat_ExtendedRectangleType1Step">
             <summary>
               Looks up a localized string similar to {Name}: {DigitsStr} in {CellsStr} =&gt; {ElimStr}.
@@ -9594,6 +9609,31 @@
               Looks up a localized string similar to {Name}: All digits can&apos;t be duplicate in cells {CellsStr} =&gt; {ElimStr}.
             </summary>
         </member>
+        <member name="P:Sudoku.Resources.Resources1033.TechniqueFormat_FullHouseStep">
+            <summary>
+              Looks up a localized string similar to {Name}: {CellStr} = {DigitStr}.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources1033.TechniqueFormat_GuardianStep">
+            <summary>
+              Looks up a localized string similar to {Name}: Cells {CellsStr} with {GuardianSingularOrPlural} {GuardianStr} =&gt; {ElimStr}.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources1033.TechniqueFormat_HiddenSingle">
+            <summary>
+              Looks up a localized string similar to {Name}: {CellStr} = {DigitStr} in {RegionStr}.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources1033.TechniqueFormat_HiddenSubsetStep">
+            <summary>
+              Looks up a localized string similar to {Name}: {DigitStr} in {RegionStr} =&gt; {ElimStr}.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources1033.TechniqueFormat_LastDigit">
+            <summary>
+              Looks up a localized string similar to {Name}: {CellStr} = {DigitStr}.
+            </summary>
+        </member>
         <member name="P:Sudoku.Resources.Resources1033.TechniqueFormat_LockedCandidatesStep">
             <summary>
               Looks up a localized string similar to {Name}: {DigitStr} in {BaseSetStr}\\{CoverSetStr} =&gt; {ElimStr}.
@@ -9602,6 +9642,16 @@
         <member name="P:Sudoku.Resources.Resources1033.TechniqueFormat_MultisectorLockedSetsStep">
             <summary>
               Looks up a localized string similar to {Name}: {CellsCountStr} cells {CellsStr} =&gt; {ElimStr}.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources1033.TechniqueFormat_NakedSingleStep">
+            <summary>
+              Looks up a localized string similar to {Name}: {CellStr} = {DigitStr}.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources1033.TechniqueFormat_NakedSubsetStep">
+            <summary>
+              Looks up a localized string similar to {Name}: {DigitsStr} in {RegionStr} =&gt; {ElimStr}.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources1033.TechniqueFormat_NormalFishStep">
@@ -9644,6 +9694,11 @@
               Looks up a localized string similar to {Name}: It can be proved using chains that digit {DigitStr} from {RegionStr} are false =&gt; {ElimStr}.
             </summary>
         </member>
+        <member name="P:Sudoku.Resources.Resources1033.TechniqueFormat_RegularWingStep">
+            <summary>
+              Looks up a localized string similar to {Name}: {DigitsStr} in {PivotCellStr} with {CellsStr} =&gt; {ElimStr}.
+            </summary>
+        </member>
         <member name="P:Sudoku.Resources.Resources1033.TechniqueFormat_SueDeCoq3DimensionStep">
             <summary>
               Looks up a localized string similar to {Name}: {Cells1Str}({Digits1Str}) + {Cells2Str}({Digits2Str}) + {Cells3Str}({Digits3Str}) =&gt; {ElimStr}.
@@ -9657,6 +9712,11 @@
         <member name="P:Sudoku.Resources.Resources1033.TechniqueFormat_TemplateStep">
             <summary>
               Looks up a localized string similar to {Name}: Digit {DigitStr} =&gt; {ElimStr}.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources1033.TechniqueFormat_TwoStrongLinksStep">
+            <summary>
+              Looks up a localized string similar to {Name}: {DigitStr} in {BaseRegionStr}\\{TargetRegionStr} =&gt; {ElimStr}.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources1033.TechniqueFormat_UniqueLoopType1Step">
@@ -9764,6 +9824,11 @@
               Looks up a localized string similar to {Name}: Digits {DigitsStr} in cells {CellsStr} can avoid to form a deadly pattern if and only if the conjugate region {ConjStr} can&apos;t set the digit neither {Digit1Str} nor {Digit2Str} =&gt; {ElimStr}.
             </summary>
         </member>
+        <member name="P:Sudoku.Resources.Resources1033.TechniqueFormat_WWingStep">
+            <summary>
+              Looks up a localized string similar to {Name}: {StartCellStr} to {EndCellStr} with conjugate pair {ConjStr} =&gt; {ElimStr}.
+            </summary>
+        </member>
         <member name="T:Sudoku.Resources.Resources2052">
             <summary>
               A strongly-typed resource class, for looking up localized strings, etc.
@@ -9783,6 +9848,16 @@
         <member name="P:Sudoku.Resources.Resources2052.Appear">
             <summary>
               Looks up a localized string similar to 出现.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources2052.GuardianPlural">
+            <summary>
+              Looks up a localized string similar to 守护者.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources2052.GuardianSingular">
+            <summary>
+              Looks up a localized string similar to 守护者.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources2052.KeywordIn">
@@ -9920,6 +9995,11 @@
               Looks up a localized string similar to {Name}：数字 {Digit1Str} 和 {Digit2Str} 位于双值格 {StartCellStr} 和 {EndCellStr} 里，并在区域 {RegionStr} 里带有此两数交织起来的空矩形 =&gt; {ElimStr}.
             </summary>
         </member>
+        <member name="P:Sudoku.Resources.Resources2052.TechniqueFormat_EmptyRectangleStep">
+            <summary>
+              Looks up a localized string similar to {Name}：数字 {DigitStr} 位于区域 {RegionStr} 下拥有共轭对 {ConjStr} =&gt; {ElimStr}.
+            </summary>
+        </member>
         <member name="P:Sudoku.Resources.Resources2052.TechniqueFormat_ExtendedRectangleType1Step">
             <summary>
               Looks up a localized string similar to {Name}：数字 {DigitsStr} 位于单元格 {CellsStr} 里构成结构 =&gt; {ElimStr}.
@@ -9950,6 +10030,31 @@
               Looks up a localized string similar to {Name}：所有在 {CellsStr} 里面的数字都不相同 =&gt; {ElimStr}.
             </summary>
         </member>
+        <member name="P:Sudoku.Resources.Resources2052.TechniqueFormat_FullHouseStep">
+            <summary>
+              Looks up a localized string similar to {Name}：{CellStr} = {DigitStr}.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources2052.TechniqueFormat_GuardianStep">
+            <summary>
+              Looks up a localized string similar to {Name}：单元格 {CellsStr} 并带有{GuardianSingularOrPlural} {GuardianStr} =&gt; {ElimStr}.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources2052.TechniqueFormat_HiddenSingle">
+            <summary>
+              Looks up a localized string similar to {Name}：在区域 {RegionStr} 里有 {CellStr} = {DigitStr}.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources2052.TechniqueFormat_HiddenSubsetStep">
+            <summary>
+              Looks up a localized string similar to {Name}：数字 {DigitStr} 位于区域 {RegionStr} 里有隐性数组结构 =&gt; {ElimStr}.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources2052.TechniqueFormat_LastDigit">
+            <summary>
+              Looks up a localized string similar to {Name}：{CellStr} = {DigitStr}.
+            </summary>
+        </member>
         <member name="P:Sudoku.Resources.Resources2052.TechniqueFormat_LockedCandidatesStep">
             <summary>
               Looks up a localized string similar to {Name}：数字 {DigitStr} 位于区域 {BaseSetStr}\\{CoverSetStr} 里有区块结构 =&gt; {ElimStr}.
@@ -9958,6 +10063,16 @@
         <member name="P:Sudoku.Resources.Resources2052.TechniqueFormat_MultisectorLockedSetsStep">
             <summary>
               Looks up a localized string similar to {Name}：网一共 {CellsCountStr} 个单元格 {CellsStr} =&gt; {ElimStr}.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources2052.TechniqueFormat_NakedSingleStep">
+            <summary>
+              Looks up a localized string similar to {Name}：{CellStr} = {DigitStr}.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources2052.TechniqueFormat_NakedSubsetStep">
+            <summary>
+              Looks up a localized string similar to {Name}：{DigitsStr} 位于区域 {RegionStr} 里有显性{SubsetName}结构 =&gt; {ElimStr}.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources2052.TechniqueFormat_NormalFishStep">
@@ -10000,6 +10115,11 @@
               Looks up a localized string similar to {Name}：可以使用强制链证得位于区域 {RegionStr} 的数字 {DigitStr} 全为假的矛盾 =&gt; {ElimStr}.
             </summary>
         </member>
+        <member name="P:Sudoku.Resources.Resources2052.TechniqueFormat_RegularWingStep">
+            <summary>
+              Looks up a localized string similar to {Name}：数字 {DigitsStr} 位于拐点 {PivotCellStr} 上，往单元格 {CellsStr} 上进行推理 =&gt; {ElimStr}.
+            </summary>
+        </member>
         <member name="P:Sudoku.Resources.Resources2052.TechniqueFormat_SueDeCoq3DimensionStep">
             <summary>
               Looks up a localized string similar to {Name}：{Cells1Str}({Digits1Str}) + {Cells2Str}({Digits2Str}) + {Cells3Str}({Digits3Str}) =&gt; {ElimStr}.
@@ -10013,6 +10133,11 @@
         <member name="P:Sudoku.Resources.Resources2052.TechniqueFormat_TemplateStep">
             <summary>
               Looks up a localized string similar to {Name}：关于数字 {DigitStr} =&gt; {ElimStr}.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources2052.TechniqueFormat_TwoStrongLinksStep">
+            <summary>
+              Looks up a localized string similar to {Name}：数字 {DigitStr} 位于区域 {BaseRegionStr}\\{TargetRegionStr} =&gt; {ElimStr}.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources2052.TechniqueFormat_UniqueLoopType1Step">
@@ -10113,6 +10238,11 @@
         <member name="P:Sudoku.Resources.Resources2052.TechniqueFormat_UniqueSquareType4Step">
             <summary>
               Looks up a localized string similar to {Name}：如果共轭区域 {ConjStr} 无法填入数字 {Digit1Str} 或者 {Digit2Str} 的话，数字 {DigitsStr} 在单元格 {CellsStr} 里将形成致命形式 =&gt; {ElimStr}.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources2052.TechniqueFormat_WWingStep">
+            <summary>
+              Looks up a localized string similar to {Name}：从 {StartCellStr} 到 {EndCellStr}，共轭对为 {ConjStr} =&gt; {ElimStr}.
             </summary>
         </member>
     </members>

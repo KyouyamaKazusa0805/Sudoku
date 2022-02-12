@@ -117,6 +117,12 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="GuardianPlural" xml:space="preserve">
+    <value>guardians</value>
+  </data>
+  <data name="GuardianSingular" xml:space="preserve">
+    <value>a guardian</value>
+  </data>
   <data name="KeywordIn" xml:space="preserve">
     <value>in</value>
   </data>
@@ -195,6 +201,9 @@
   <data name="TechniqueFormat_EmptyRectangleIntersectionPairStep" xml:space="preserve">
     <value>{Name}: Digits {Digit1Str}, {Digit2Str} in bivalue cells {StartCellStr} and {EndCellStr} with empty rectangle in {RegionStr} =&gt; {ElimStr}</value>
   </data>
+  <data name="TechniqueFormat_EmptyRectangleStep" xml:space="preserve">
+    <value>{Name}: {DigitStr} in {RegionStr} with conjugate pair {ConjStr} =&gt; {ElimStr}</value>
+  </data>
   <data name="TechniqueFormat_ExtendedRectangleType1Step" xml:space="preserve">
     <value>{Name}: {DigitsStr} in {CellsStr} =&gt; {ElimStr}</value>
   </data>
@@ -213,11 +222,32 @@
   <data name="TechniqueFormat_ExtendedSubsetPrincipleWithoutDuplicate" xml:space="preserve">
     <value>{Name}: All digits can't be duplicate in cells {CellsStr} =&gt; {ElimStr}</value>
   </data>
+  <data name="TechniqueFormat_FullHouseStep" xml:space="preserve">
+    <value>{Name}: {CellStr} = {DigitStr}</value>
+  </data>
+  <data name="TechniqueFormat_GuardianStep" xml:space="preserve">
+    <value>{Name}: Cells {CellsStr} with {GuardianSingularOrPlural} {GuardianStr} =&gt; {ElimStr}</value>
+  </data>
+  <data name="TechniqueFormat_HiddenSingle" xml:space="preserve">
+    <value>{Name}: {CellStr} = {DigitStr} in {RegionStr}</value>
+  </data>
+  <data name="TechniqueFormat_HiddenSubsetStep" xml:space="preserve">
+    <value>{Name}: {DigitStr} in {RegionStr} =&gt; {ElimStr}</value>
+  </data>
+  <data name="TechniqueFormat_LastDigit" xml:space="preserve">
+    <value>{Name}: {CellStr} = {DigitStr}</value>
+  </data>
   <data name="TechniqueFormat_LockedCandidatesStep" xml:space="preserve">
     <value>{Name}: {DigitStr} in {BaseSetStr}\\{CoverSetStr} =&gt; {ElimStr}</value>
   </data>
   <data name="TechniqueFormat_MultisectorLockedSetsStep" xml:space="preserve">
     <value>{Name}: {CellsCountStr} cells {CellsStr} =&gt; {ElimStr}</value>
+  </data>
+  <data name="TechniqueFormat_NakedSingleStep" xml:space="preserve">
+    <value>{Name}: {CellStr} = {DigitStr}</value>
+  </data>
+  <data name="TechniqueFormat_NakedSubsetStep" xml:space="preserve">
+    <value>{Name}: {DigitsStr} in {RegionStr} =&gt; {ElimStr}</value>
   </data>
   <data name="TechniqueFormat_NormalFishStep" xml:space="preserve">
     <value>{Name}: {DigitStr} in {BaseSetStr}\\{CoverSetStr}{FinsStr} =&gt; {ElimStr}</value>
@@ -243,6 +273,9 @@
   <data name="TechniqueFormat_RegionChainingStep" xml:space="preserve">
     <value>{Name}: It can be proved using chains that digit {DigitStr} from {RegionStr} are false =&gt; {ElimStr}</value>
   </data>
+  <data name="TechniqueFormat_RegularWingStep" xml:space="preserve">
+    <value>{Name}: {DigitsStr} in {PivotCellStr} with {CellsStr} =&gt; {ElimStr}</value>
+  </data>
   <data name="TechniqueFormat_SueDeCoq3DimensionStep" xml:space="preserve">
     <value>{Name}: {Cells1Str}({Digits1Str}) + {Cells2Str}({Digits2Str}) + {Cells3Str}({Digits3Str}) =&gt; {ElimStr}</value>
   </data>
@@ -251,6 +284,9 @@
   </data>
   <data name="TechniqueFormat_TemplateStep" xml:space="preserve">
     <value>{Name}: Digit {DigitStr} =&gt; {ElimStr}</value>
+  </data>
+  <data name="TechniqueFormat_TwoStrongLinksStep" xml:space="preserve">
+    <value>{Name}: {DigitStr} in {BaseRegionStr}\\{TargetRegionStr} =&gt; {ElimStr}</value>
   </data>
   <data name="TechniqueFormat_UniqueLoopType1Step" xml:space="preserve">
     <value>{Name}: Digits {Digit1Str}, {Digit2Str} in cells {LoopStr} =&gt; {ElimStr}</value>
@@ -314,5 +350,8 @@
   </data>
   <data name="TechniqueFormat_UniqueSquareType4Step" xml:space="preserve">
     <value>{Name}: Digits {DigitsStr} in cells {CellsStr} can avoid to form a deadly pattern if and only if the conjugate region {ConjStr} can't set the digit neither {Digit1Str} nor {Digit2Str} =&gt; {ElimStr}</value>
+  </data>
+  <data name="TechniqueFormat_WWingStep" xml:space="preserve">
+    <value>{Name}: {StartCellStr} to {EndCellStr} with conjugate pair {ConjStr} =&gt; {ElimStr}</value>
   </data>
 </root>

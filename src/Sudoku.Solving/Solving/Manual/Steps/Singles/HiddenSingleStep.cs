@@ -1,6 +1,5 @@
 ﻿using Sudoku.Collections;
 using Sudoku.Presentation;
-using Sudoku.Resources;
 using Sudoku.Solving.Manual.Text;
 using Sudoku.Techniques;
 
@@ -39,12 +38,8 @@ public sealed record HiddenSingleStep(
 			: (Technique)((int)Technique.HiddenSingleBlock + (int)Region.ToRegion());
 
 	/// <inheritdoc/>
-	public override string Format =>
-		ResourceManager.Shared[
-			EnableAndIsLastDigit
-				? "TechniqueFormat_LastDigit"
-				: "TechniqueFormat_HiddenSingle"
-		];
+	public override string? Format =>
+		R[EnableAndIsLastDigit ? "TechniqueFormat_LastDigit" : "TechniqueFormat_HiddenSingle"];
 
 	[FormatItem]
 	internal string CellStr

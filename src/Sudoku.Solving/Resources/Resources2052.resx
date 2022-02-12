@@ -120,6 +120,12 @@
   <data name="Appear" xml:space="preserve">
     <value>出现</value>
   </data>
+  <data name="GuardianPlural" xml:space="preserve">
+    <value>守护者</value>
+  </data>
+  <data name="GuardianSingular" xml:space="preserve">
+    <value>守护者</value>
+  </data>
   <data name="KeywordIn" xml:space="preserve">
     <value>位于</value>
   </data>
@@ -201,6 +207,9 @@
   <data name="TechniqueFormat_EmptyRectangleIntersectionPairStep" xml:space="preserve">
     <value>{Name}：数字 {Digit1Str} 和 {Digit2Str} 位于双值格 {StartCellStr} 和 {EndCellStr} 里，并在区域 {RegionStr} 里带有此两数交织起来的空矩形 =&gt; {ElimStr}</value>
   </data>
+  <data name="TechniqueFormat_EmptyRectangleStep" xml:space="preserve">
+    <value>{Name}：数字 {DigitStr} 位于区域 {RegionStr} 下拥有共轭对 {ConjStr} =&gt; {ElimStr}</value>
+  </data>
   <data name="TechniqueFormat_ExtendedRectangleType1Step" xml:space="preserve">
     <value>{Name}：数字 {DigitsStr} 位于单元格 {CellsStr} 里构成结构 =&gt; {ElimStr}</value>
   </data>
@@ -219,11 +228,32 @@
   <data name="TechniqueFormat_ExtendedSubsetPrincipleWithoutDuplicate" xml:space="preserve">
     <value>{Name}：所有在 {CellsStr} 里面的数字都不相同 =&gt; {ElimStr}</value>
   </data>
+  <data name="TechniqueFormat_FullHouseStep" xml:space="preserve">
+    <value>{Name}：{CellStr} = {DigitStr}</value>
+  </data>
+  <data name="TechniqueFormat_GuardianStep" xml:space="preserve">
+    <value>{Name}：单元格 {CellsStr} 并带有{GuardianSingularOrPlural} {GuardianStr} =&gt; {ElimStr}</value>
+  </data>
+  <data name="TechniqueFormat_HiddenSingle" xml:space="preserve">
+    <value>{Name}：在区域 {RegionStr} 里有 {CellStr} = {DigitStr}</value>
+  </data>
+  <data name="TechniqueFormat_HiddenSubsetStep" xml:space="preserve">
+    <value>{Name}：数字 {DigitStr} 位于区域 {RegionStr} 里有隐性数组结构 =&gt; {ElimStr}</value>
+  </data>
+  <data name="TechniqueFormat_LastDigit" xml:space="preserve">
+    <value>{Name}：{CellStr} = {DigitStr}</value>
+  </data>
   <data name="TechniqueFormat_LockedCandidatesStep" xml:space="preserve">
     <value>{Name}：数字 {DigitStr} 位于区域 {BaseSetStr}\\{CoverSetStr} 里有区块结构 =&gt; {ElimStr}</value>
   </data>
   <data name="TechniqueFormat_MultisectorLockedSetsStep" xml:space="preserve">
     <value>{Name}：网一共 {CellsCountStr} 个单元格 {CellsStr} =&gt; {ElimStr}</value>
+  </data>
+  <data name="TechniqueFormat_NakedSingleStep" xml:space="preserve">
+    <value>{Name}：{CellStr} = {DigitStr}</value>
+  </data>
+  <data name="TechniqueFormat_NakedSubsetStep" xml:space="preserve">
+    <value>{Name}：{DigitsStr} 位于区域 {RegionStr} 里有显性{SubsetName}结构 =&gt; {ElimStr}</value>
   </data>
   <data name="TechniqueFormat_NormalFishStep" xml:space="preserve">
     <value>{Name}：数字 {DigitStr} 位于区域 {BaseSetStr}\\{CoverSetStr} 里有鱼结构{FinsStr} =&gt; {ElimStr}</value>
@@ -249,6 +279,9 @@
   <data name="TechniqueFormat_RegionChainingStep" xml:space="preserve">
     <value>{Name}：可以使用强制链证得位于区域 {RegionStr} 的数字 {DigitStr} 全为假的矛盾 =&gt; {ElimStr}</value>
   </data>
+  <data name="TechniqueFormat_RegularWingStep" xml:space="preserve">
+    <value>{Name}：数字 {DigitsStr} 位于拐点 {PivotCellStr} 上，往单元格 {CellsStr} 上进行推理 =&gt; {ElimStr}</value>
+  </data>
   <data name="TechniqueFormat_SueDeCoq3DimensionStep" xml:space="preserve">
     <value>{Name}：{Cells1Str}({Digits1Str}) + {Cells2Str}({Digits2Str}) + {Cells3Str}({Digits3Str}) =&gt; {ElimStr}</value>
   </data>
@@ -257,6 +290,9 @@
   </data>
   <data name="TechniqueFormat_TemplateStep" xml:space="preserve">
     <value>{Name}：关于数字 {DigitStr} =&gt; {ElimStr}</value>
+  </data>
+  <data name="TechniqueFormat_TwoStrongLinksStep" xml:space="preserve">
+    <value>{Name}：数字 {DigitStr} 位于区域 {BaseRegionStr}\\{TargetRegionStr} =&gt; {ElimStr}</value>
   </data>
   <data name="TechniqueFormat_UniqueLoopType1Step" xml:space="preserve">
     <value>{Name}：数字 {Digit1Str} 和 {Digit2Str} 位于单元格 {LoopStr} 里构成结构 =&gt; {ElimStr}</value>
@@ -317,5 +353,8 @@
   </data>
   <data name="TechniqueFormat_UniqueSquareType4Step" xml:space="preserve">
     <value>{Name}：如果共轭区域 {ConjStr} 无法填入数字 {Digit1Str} 或者 {Digit2Str} 的话，数字 {DigitsStr} 在单元格 {CellsStr} 里将形成致命形式 =&gt; {ElimStr}</value>
+  </data>
+  <data name="TechniqueFormat_WWingStep" xml:space="preserve">
+    <value>{Name}：从 {StartCellStr} 到 {EndCellStr}，共轭对为 {ConjStr} =&gt; {ElimStr}</value>
   </data>
 </root>
