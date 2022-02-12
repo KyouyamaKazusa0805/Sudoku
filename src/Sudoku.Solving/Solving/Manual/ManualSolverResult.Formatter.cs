@@ -1,5 +1,4 @@
-﻿using Sudoku.Resources;
-using Sudoku.Solving.Manual.Steps;
+﻿using Sudoku.Solving.Manual.Steps;
 using static System.Math;
 
 namespace Sudoku.Solving.Manual;
@@ -81,14 +80,14 @@ partial record ManualSolverResult
 
 			// Print header.
 			var sb = new StringHandler();
-			sb.Append(ResourceManager.Shared["AnalysisResultPuzzle"]);
+			sb.Append(R["AnalysisResultPuzzle"]!);
 			sb.Append(puzzle.ToString("#"));
 			sb.AppendLine();
 
 			// Print solving steps (if worth).
 			if (options.Flags(SolverResultFormattingOptions.ShowSteps) && steps.Length != 0)
 			{
-				sb.Append(ResourceManager.Shared["AnalysisResultSolvingSteps"]);
+				sb.Append(R["AnalysisResultSolvingSteps"]!);
 				sb.AppendLine();
 
 				if (getBottleneck(this) is var (bIndex, bInfo))
@@ -97,7 +96,7 @@ partial record ManualSolverResult
 					{
 						if (i > bIndex && options.Flags(SolverResultFormattingOptions.ShowStepsAfterBottleneck))
 						{
-							sb.Append(ResourceManager.Shared["Ellipsis"]);
+							sb.Append(R["Ellipsis"]!);
 							sb.AppendLine();
 
 							break;
@@ -132,13 +131,13 @@ partial record ManualSolverResult
 					{
 						a(ref sb, options.Flags(SolverResultFormattingOptions.ShowSeparators));
 
-						sb.Append(ResourceManager.Shared["AnalysisResultBottleneckStep"]);
+						sb.Append(R["AnalysisResultBottleneckStep"]!);
 
 						if (options.Flags(SolverResultFormattingOptions.ShowStepLabel))
 						{
-							sb.Append(ResourceManager.Shared["AnalysisResultInStep"]);
+							sb.Append(R["AnalysisResultInStep"]!);
 							sb.Append(bIndex + 1);
-							sb.Append(ResourceManager.Shared["Colon"]);
+							sb.Append(R["Colon"]!);
 						}
 
 						sb.Append(' ');
@@ -153,16 +152,16 @@ partial record ManualSolverResult
 			// Print solving step statistics (if worth).
 			if (!steps.IsDefault)
 			{
-				sb.Append(ResourceManager.Shared["AnalysisResultTechniqueUsed"]);
+				sb.Append(R["AnalysisResultTechniqueUsed"]!);
 				sb.AppendLine();
 
 				if (options.Flags(SolverResultFormattingOptions.ShowStepDetail))
 				{
-					sb.Append(ResourceManager.Shared["AnalysisResultMin"], 6);
+					sb.Append(R["AnalysisResultMin"]!, 6);
 					sb.Append(',');
 					sb.Append(' ');
-					sb.Append(ResourceManager.Shared["AnalysisResultTotal"], 6);
-					sb.Append(ResourceManager.Shared["AnalysisResultTechniqueUsing"]);
+					sb.Append(R["AnalysisResultTotal"]!, 6);
+					sb.Append(R["AnalysisResultTechniqueUsing"]!);
 				}
 
 				foreach (var solvingStepsGroup in from s in steps orderby s.Difficulty group s by s.Name)
@@ -201,14 +200,14 @@ partial record ManualSolverResult
 
 				sb.Append(stepsCount, 3);
 				sb.Append(' ');
-				sb.Append(ResourceManager.Shared[stepsCount == 1 ? "AnalysisResultStepSingular" : "AnalysisResultStepPlural"]);
+				sb.Append(R[stepsCount == 1 ? "AnalysisResultStepSingular" : "AnalysisResultStepPlural"]!);
 				sb.AppendLine();
 
 				a(ref sb, options.Flags(SolverResultFormattingOptions.ShowSeparators));
 			}
 
 			// Print detail data.
-			sb.Append(ResourceManager.Shared["AnalysisResultPuzzleRating"]);
+			sb.Append(R["AnalysisResultPuzzleRating"]!);
 			sb.Append(max, "0.0");
 			sb.Append('/');
 			sb.Append(pearl, "0.0");
@@ -219,16 +218,16 @@ partial record ManualSolverResult
 			// Print the solution (if not null).
 			if (!solution.IsUndefined)
 			{
-				sb.Append(ResourceManager.Shared["AnalysisResultPuzzleSolution"]);
+				sb.Append(R["AnalysisResultPuzzleSolution"]!);
 				sb.Append(solution.ToString("!"));
 			}
 
 			// Print the elapsed time.
-			sb.Append(ResourceManager.Shared["AnalysisResultPuzzleHas"]);
-			sb.AppendWhen(isSolved, ResourceManager.Shared["AnalysisResultNot"]);
-			sb.Append(ResourceManager.Shared["AnalysisResultBeenSolved"]);
+			sb.Append(R["AnalysisResultPuzzleHas"]!);
+			sb.AppendWhen(isSolved, R["AnalysisResultNot"]!);
+			sb.Append(R["AnalysisResultBeenSolved"]!);
 			sb.AppendLine();
-			sb.Append(ResourceManager.Shared["AnalysisResultTimeElapsed"]);
+			sb.Append(R["AnalysisResultTimeElapsed"]!);
 			sb.Append($@"{elapsed:hh\:mm\:ss\.fff}");
 			sb.AppendLine();
 

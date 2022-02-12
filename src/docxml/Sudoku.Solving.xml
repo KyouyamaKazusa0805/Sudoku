@@ -483,11 +483,6 @@
             Indicates how many eliminations the instance contains.
             </summary>
         </member>
-        <member name="P:Sudoku.Solving.Collections.ExocetElimination.Header">
-            <summary>
-            Indicates the header of the reason.
-            </summary>
-        </member>
         <member name="M:Sudoku.Solving.Collections.ExocetElimination.Equals(Sudoku.Solving.Collections.ExocetElimination)">
             <inheritdoc/>
         </member>
@@ -9455,6 +9450,181 @@
               resource lookups using this strongly typed resource class.
             </summary>
         </member>
+        <member name="P:Sudoku.Resources.Resources1033.AnalysisResultBeenSolved">
+            <summary>
+              Looks up a localized string similar to been solved..
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources1033.AnalysisResultBottleneckStep">
+            <summary>
+              Looks up a localized string similar to Bottleneck step:.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources1033.AnalysisResultInStep">
+            <summary>
+              Looks up a localized string similar to In step.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources1033.AnalysisResultMin">
+            <summary>
+              Looks up a localized string similar to min.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources1033.AnalysisResultNot">
+            <summary>
+              Looks up a localized string similar to not .
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources1033.AnalysisResultPuzzle">
+            <summary>
+              Looks up a localized string similar to Puzzle: .
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources1033.AnalysisResultPuzzleHas">
+            <summary>
+              Looks up a localized string similar to Puzzle has .
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources1033.AnalysisResultPuzzleRating">
+            <summary>
+              Looks up a localized string similar to Puzzle rating: .
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources1033.AnalysisResultPuzzleSolution">
+            <summary>
+              Looks up a localized string similar to Solution: .
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources1033.AnalysisResultSolvingSteps">
+            <summary>
+              Looks up a localized string similar to Solving steps:.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources1033.AnalysisResultStepPlural">
+            <summary>
+              Looks up a localized string similar to steps.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources1033.AnalysisResultStepSingular">
+            <summary>
+              Looks up a localized string similar to step.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources1033.AnalysisResultTechniqueUsed">
+            <summary>
+              Looks up a localized string similar to Technique used:.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources1033.AnalysisResultTechniqueUsing">
+            <summary>
+              Looks up a localized string similar to   technique using.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources1033.AnalysisResultTimeElapsed">
+            <summary>
+              Looks up a localized string similar to Time elapsed: .
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources1033.AnalysisResultTotal">
+            <summary>
+              Looks up a localized string similar to total.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources1033.BruteForceSolverResultBeenSolved">
+            <summary>
+              Looks up a localized string similar to been solved..
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources1033.BruteForceSolverResultNot">
+            <summary>
+              Looks up a localized string similar to not .
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources1033.BruteForceSolverResultPuzzle">
+            <summary>
+              Looks up a localized string similar to Puzzle: .
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources1033.BruteForceSolverResultPuzzleHas">
+            <summary>
+              Looks up a localized string similar to Puzzle has .
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources1033.BruteForceSolverResultSolution">
+            <summary>
+              Looks up a localized string similar to Solution: .
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources1033.BruteForceSolverResultTimeElapsed">
+            <summary>
+              Looks up a localized string similar to Time elapsed: .
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources1033.Colon">
+            <summary>
+              Looks up a localized string similar to :.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources1033.Ellipsis">
+            <summary>
+              Looks up a localized string similar to ....
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources1033.EndoTaraget">
+            <summary>
+              Looks up a localized string similar to endo target: .
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources1033.ExocetBasicEliminationName">
+            <summary>
+              Looks up a localized string similar to Target.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources1033.ExocetBiBiPatternEliminationName">
+            <summary>
+              Looks up a localized string similar to Bi-bi Pattern.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources1033.ExocetCompatibilityTestEliminationName">
+            <summary>
+              Looks up a localized string similar to Compatibility Test.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources1033.ExocetElimination">
+            <summary>
+              Looks up a localized string similar to  eliminations: .
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources1033.ExocetGeneralizedSwordfishEliminationName">
+            <summary>
+              Looks up a localized string similar to Generalized Swordfish.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources1033.ExocetMirrorEliminationName">
+            <summary>
+              Looks up a localized string similar to Mirror.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources1033.ExocetTargetInferenceEliminationName">
+            <summary>
+              Looks up a localized string similar to Target Inference.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources1033.ExocetTargetPairEliminationName">
+            <summary>
+              Looks up a localized string similar to Target Pair.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources1033.ExocetTrueBaseEliminationName">
+            <summary>
+              Looks up a localized string similar to True Base.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources1033.FalseKeyword">
+            <summary>
+              Looks up a localized string similar to false.
+            </summary>
+        </member>
         <member name="P:Sudoku.Resources.Resources1033.Fin">
             <summary>
               Looks up a localized string similar to  f.
@@ -9468,6 +9638,16 @@
         <member name="P:Sudoku.Resources.Resources1033.GuardianSingular">
             <summary>
               Looks up a localized string similar to a guardian.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources1033.HiddenKeyword">
+            <summary>
+              Looks up a localized string similar to hidden.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources1033.IncludedExtraRegion">
+            <summary>
+              Looks up a localized string similar to . Extra regions will be included:.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources1033.KeywordIn">
@@ -9490,9 +9670,44 @@
               Looks up a localized string similar to , locked member 2: .
             </summary>
         </member>
+        <member name="P:Sudoku.Resources.Resources1033.NakedKeyword">
+            <summary>
+              Looks up a localized string similar to naked.
+            </summary>
+        </member>
         <member name="P:Sudoku.Resources.Resources1033.OrKeywordWithSpaces">
             <summary>
               Looks up a localized string similar to  or .
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources1033.SubsetNamesSize2">
+            <summary>
+              Looks up a localized string similar to pair.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources1033.SubsetNamesSize3">
+            <summary>
+              Looks up a localized string similar to triple.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources1033.SubsetNamesSize4">
+            <summary>
+              Looks up a localized string similar to quadruple.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources1033.SubsetNamesSize5">
+            <summary>
+              Looks up a localized string similar to quintuple.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources1033.SubsetNamesSize6">
+            <summary>
+              Looks up a localized string similar to sextuple.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources1033.SubsetNamesSize7">
+            <summary>
+              Looks up a localized string similar to septuple.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources1033.TechniqueFormat_AlmostLockedCandidatesStep">
@@ -9865,6 +10080,11 @@
               Looks up a localized string similar to {Name}: {StartCellStr} to {EndCellStr} with conjugate pair {ConjStr} =&gt; {ElimStr}.
             </summary>
         </member>
+        <member name="P:Sudoku.Resources.Resources1033.TrueKeyword">
+            <summary>
+              Looks up a localized string similar to true.
+            </summary>
+        </member>
         <member name="T:Sudoku.Resources.Resources2052">
             <summary>
               A strongly-typed resource class, for looking up localized strings, etc.
@@ -9881,9 +10101,184 @@
               resource lookups using this strongly typed resource class.
             </summary>
         </member>
+        <member name="P:Sudoku.Resources.Resources2052.AnalysisResultBeenSolved">
+            <summary>
+              Looks up a localized string similar to 被解出。.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources2052.AnalysisResultBottleneckStep">
+            <summary>
+              Looks up a localized string similar to 卡点步骤：.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources2052.AnalysisResultInStep">
+            <summary>
+              Looks up a localized string similar to 于步骤编号 .
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources2052.AnalysisResultMin">
+            <summary>
+              Looks up a localized string similar to 最小.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources2052.AnalysisResultNot">
+            <summary>
+              Looks up a localized string similar to 未.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources2052.AnalysisResultPuzzle">
+            <summary>
+              Looks up a localized string similar to 题目：.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources2052.AnalysisResultPuzzleHas">
+            <summary>
+              Looks up a localized string similar to 题目.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources2052.AnalysisResultPuzzleRating">
+            <summary>
+              Looks up a localized string similar to 题目难度分：.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources2052.AnalysisResultPuzzleSolution">
+            <summary>
+              Looks up a localized string similar to 终盘：.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources2052.AnalysisResultSolvingSteps">
+            <summary>
+              Looks up a localized string similar to 解题步骤：.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources2052.AnalysisResultStepPlural">
+            <summary>
+              Looks up a localized string similar to 个步骤.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources2052.AnalysisResultStepSingular">
+            <summary>
+              Looks up a localized string similar to 个步骤.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources2052.AnalysisResultTechniqueUsed">
+            <summary>
+              Looks up a localized string similar to 技巧使用情况：.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources2052.AnalysisResultTechniqueUsing">
+            <summary>
+              Looks up a localized string similar to           技巧使用.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources2052.AnalysisResultTimeElapsed">
+            <summary>
+              Looks up a localized string similar to 耗时：.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources2052.AnalysisResultTotal">
+            <summary>
+              Looks up a localized string similar to 最大.
+            </summary>
+        </member>
         <member name="P:Sudoku.Resources.Resources2052.Appear">
             <summary>
               Looks up a localized string similar to 出现.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources2052.BruteForceSolverResultBeenSolved">
+            <summary>
+              Looks up a localized string similar to 被解出。.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources2052.BruteForceSolverResultNot">
+            <summary>
+              Looks up a localized string similar to 未.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources2052.BruteForceSolverResultPuzzle">
+            <summary>
+              Looks up a localized string similar to 题目：.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources2052.BruteForceSolverResultPuzzleHas">
+            <summary>
+              Looks up a localized string similar to 题目.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources2052.BruteForceSolverResultSolution">
+            <summary>
+              Looks up a localized string similar to 终盘：.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources2052.BruteForceSolverResultTimeElapsed">
+            <summary>
+              Looks up a localized string similar to 耗时：.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources2052.Colon">
+            <summary>
+              Looks up a localized string similar to ：.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources2052.Ellipsis">
+            <summary>
+              Looks up a localized string similar to …….
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources2052.EndoTaraget">
+            <summary>
+              Looks up a localized string similar to 内目标格：.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources2052.ExocetBasicEliminationName">
+            <summary>
+              Looks up a localized string similar to 目标格删数.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources2052.ExocetBiBiPatternEliminationName">
+            <summary>
+              Looks up a localized string similar to X 理论删数.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources2052.ExocetCompatibilityTestEliminationName">
+            <summary>
+              Looks up a localized string similar to 兼容性测试删数.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources2052.ExocetElimination">
+            <summary>
+              Looks up a localized string similar to 删数：.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources2052.ExocetGeneralizedSwordfishEliminationName">
+            <summary>
+              Looks up a localized string similar to 广义三阶鱼删数.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources2052.ExocetMirrorEliminationName">
+            <summary>
+              Looks up a localized string similar to 镜面格删数.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources2052.ExocetTargetInferenceEliminationName">
+            <summary>
+              Looks up a localized string similar to 目标格推断删数.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources2052.ExocetTargetPairEliminationName">
+            <summary>
+              Looks up a localized string similar to 目标格数对删数.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources2052.ExocetTrueBaseEliminationName">
+            <summary>
+              Looks up a localized string similar to 基准格永真删数.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources2052.FalseKeyword">
+            <summary>
+              Looks up a localized string similar to 假.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources2052.Fin">
@@ -9899,6 +10294,16 @@
         <member name="P:Sudoku.Resources.Resources2052.GuardianSingular">
             <summary>
               Looks up a localized string similar to 守护者.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources2052.HiddenKeyword">
+            <summary>
+              Looks up a localized string similar to 隐性.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources2052.IncludedExtraRegion">
+            <summary>
+              Looks up a localized string similar to 。额外的需要计算进来的区域：.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources2052.KeywordIn">
@@ -9921,6 +10326,11 @@
               Looks up a localized string similar to ，区块成员 #2：.
             </summary>
         </member>
+        <member name="P:Sudoku.Resources.Resources2052.NakedKeyword">
+            <summary>
+              Looks up a localized string similar to 显性.
+            </summary>
+        </member>
         <member name="P:Sudoku.Resources.Resources2052.Only">
             <summary>
               Looks up a localized string similar to 只.
@@ -9929,6 +10339,36 @@
         <member name="P:Sudoku.Resources.Resources2052.OrKeywordWithSpaces">
             <summary>
               Looks up a localized string similar to  或 .
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources2052.SubsetNamesSize2">
+            <summary>
+              Looks up a localized string similar to 数对.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources2052.SubsetNamesSize3">
+            <summary>
+              Looks up a localized string similar to 三数组.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources2052.SubsetNamesSize4">
+            <summary>
+              Looks up a localized string similar to 四数组.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources2052.SubsetNamesSize5">
+            <summary>
+              Looks up a localized string similar to 五数组.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources2052.SubsetNamesSize6">
+            <summary>
+              Looks up a localized string similar to 六数组.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources2052.SubsetNamesSize7">
+            <summary>
+              Looks up a localized string similar to 七数组.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources2052.TechniqueFormat_AlmostLockedCandidatesStep">
@@ -10294,6 +10734,11 @@
         <member name="P:Sudoku.Resources.Resources2052.TechniqueFormat_WWingStep">
             <summary>
               Looks up a localized string similar to {Name}：从 {StartCellStr} 到 {EndCellStr}，共轭对为 {ConjStr} =&gt; {ElimStr}.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.Resources2052.TrueKeyword">
+            <summary>
+              Looks up a localized string similar to 真.
             </summary>
         </member>
     </members>

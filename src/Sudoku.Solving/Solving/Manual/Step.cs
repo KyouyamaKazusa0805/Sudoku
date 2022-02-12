@@ -120,7 +120,7 @@ public abstract record Step(ImmutableArray<Conclusion> Conclusions, ImmutableArr
 			try
 			{
 				var type = GetType();
-				return ResourceManager.Shared[
+				return R[
 					type.GetCustomAttribute<FormatForwardAttribute>() is { IdentifierName: var name }
 						? $"TechniqueFormat_{name}"
 						: $"TechniqueFormat_{type.Name}"

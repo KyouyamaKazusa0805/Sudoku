@@ -1,6 +1,5 @@
 ﻿using Sudoku.Collections;
 using Sudoku.Presentation;
-using Sudoku.Resources;
 using Sudoku.Solving.Manual.Text;
 using Sudoku.Techniques;
 
@@ -69,6 +68,6 @@ public sealed record BinaryChainingStep(
 	internal string AnchorIsTrueOrFalseStr
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => ResourceManager.Shared[Anchor.IsOn ? "TrueKeyword" : "FalseKeyword"];
+		get => R[Anchor.IsOn ? "TrueKeyword" : "FalseKeyword"]!;
 	}
 }

@@ -61,6 +61,321 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to been solved..
+        /// </summary>
+        internal static string AnalysisResultBeenSolved {
+            get {
+                return ResourceManager.GetString("AnalysisResultBeenSolved", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bottleneck step:.
+        /// </summary>
+        internal static string AnalysisResultBottleneckStep {
+            get {
+                return ResourceManager.GetString("AnalysisResultBottleneckStep", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to In step.
+        /// </summary>
+        internal static string AnalysisResultInStep {
+            get {
+                return ResourceManager.GetString("AnalysisResultInStep", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to min.
+        /// </summary>
+        internal static string AnalysisResultMin {
+            get {
+                return ResourceManager.GetString("AnalysisResultMin", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to not .
+        /// </summary>
+        internal static string AnalysisResultNot {
+            get {
+                return ResourceManager.GetString("AnalysisResultNot", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Puzzle: .
+        /// </summary>
+        internal static string AnalysisResultPuzzle {
+            get {
+                return ResourceManager.GetString("AnalysisResultPuzzle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Puzzle has .
+        /// </summary>
+        internal static string AnalysisResultPuzzleHas {
+            get {
+                return ResourceManager.GetString("AnalysisResultPuzzleHas", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Puzzle rating: .
+        /// </summary>
+        internal static string AnalysisResultPuzzleRating {
+            get {
+                return ResourceManager.GetString("AnalysisResultPuzzleRating", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Solution: .
+        /// </summary>
+        internal static string AnalysisResultPuzzleSolution {
+            get {
+                return ResourceManager.GetString("AnalysisResultPuzzleSolution", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Solving steps:.
+        /// </summary>
+        internal static string AnalysisResultSolvingSteps {
+            get {
+                return ResourceManager.GetString("AnalysisResultSolvingSteps", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to steps.
+        /// </summary>
+        internal static string AnalysisResultStepPlural {
+            get {
+                return ResourceManager.GetString("AnalysisResultStepPlural", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to step.
+        /// </summary>
+        internal static string AnalysisResultStepSingular {
+            get {
+                return ResourceManager.GetString("AnalysisResultStepSingular", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Technique used:.
+        /// </summary>
+        internal static string AnalysisResultTechniqueUsed {
+            get {
+                return ResourceManager.GetString("AnalysisResultTechniqueUsed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to   technique using.
+        /// </summary>
+        internal static string AnalysisResultTechniqueUsing {
+            get {
+                return ResourceManager.GetString("AnalysisResultTechniqueUsing", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Time elapsed: .
+        /// </summary>
+        internal static string AnalysisResultTimeElapsed {
+            get {
+                return ResourceManager.GetString("AnalysisResultTimeElapsed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to total.
+        /// </summary>
+        internal static string AnalysisResultTotal {
+            get {
+                return ResourceManager.GetString("AnalysisResultTotal", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to been solved..
+        /// </summary>
+        internal static string BruteForceSolverResultBeenSolved {
+            get {
+                return ResourceManager.GetString("BruteForceSolverResultBeenSolved", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to not .
+        /// </summary>
+        internal static string BruteForceSolverResultNot {
+            get {
+                return ResourceManager.GetString("BruteForceSolverResultNot", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Puzzle: .
+        /// </summary>
+        internal static string BruteForceSolverResultPuzzle {
+            get {
+                return ResourceManager.GetString("BruteForceSolverResultPuzzle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Puzzle has .
+        /// </summary>
+        internal static string BruteForceSolverResultPuzzleHas {
+            get {
+                return ResourceManager.GetString("BruteForceSolverResultPuzzleHas", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Solution: .
+        /// </summary>
+        internal static string BruteForceSolverResultSolution {
+            get {
+                return ResourceManager.GetString("BruteForceSolverResultSolution", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Time elapsed: .
+        /// </summary>
+        internal static string BruteForceSolverResultTimeElapsed {
+            get {
+                return ResourceManager.GetString("BruteForceSolverResultTimeElapsed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to :.
+        /// </summary>
+        internal static string Colon {
+            get {
+                return ResourceManager.GetString("Colon", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ....
+        /// </summary>
+        internal static string Ellipsis {
+            get {
+                return ResourceManager.GetString("Ellipsis", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to endo target: .
+        /// </summary>
+        internal static string EndoTaraget {
+            get {
+                return ResourceManager.GetString("EndoTaraget", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Target.
+        /// </summary>
+        internal static string ExocetBasicEliminationName {
+            get {
+                return ResourceManager.GetString("ExocetBasicEliminationName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bi-bi Pattern.
+        /// </summary>
+        internal static string ExocetBiBiPatternEliminationName {
+            get {
+                return ResourceManager.GetString("ExocetBiBiPatternEliminationName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Compatibility Test.
+        /// </summary>
+        internal static string ExocetCompatibilityTestEliminationName {
+            get {
+                return ResourceManager.GetString("ExocetCompatibilityTestEliminationName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to  eliminations: .
+        /// </summary>
+        internal static string ExocetElimination {
+            get {
+                return ResourceManager.GetString("ExocetElimination", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Generalized Swordfish.
+        /// </summary>
+        internal static string ExocetGeneralizedSwordfishEliminationName {
+            get {
+                return ResourceManager.GetString("ExocetGeneralizedSwordfishEliminationName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Mirror.
+        /// </summary>
+        internal static string ExocetMirrorEliminationName {
+            get {
+                return ResourceManager.GetString("ExocetMirrorEliminationName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Target Inference.
+        /// </summary>
+        internal static string ExocetTargetInferenceEliminationName {
+            get {
+                return ResourceManager.GetString("ExocetTargetInferenceEliminationName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Target Pair.
+        /// </summary>
+        internal static string ExocetTargetPairEliminationName {
+            get {
+                return ResourceManager.GetString("ExocetTargetPairEliminationName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to True Base.
+        /// </summary>
+        internal static string ExocetTrueBaseEliminationName {
+            get {
+                return ResourceManager.GetString("ExocetTrueBaseEliminationName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to false.
+        /// </summary>
+        internal static string FalseKeyword {
+            get {
+                return ResourceManager.GetString("FalseKeyword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to  f.
         /// </summary>
         internal static string Fin {
@@ -84,6 +399,24 @@ namespace Sudoku.Resources {
         internal static string GuardianSingular {
             get {
                 return ResourceManager.GetString("GuardianSingular", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to hidden.
+        /// </summary>
+        internal static string HiddenKeyword {
+            get {
+                return ResourceManager.GetString("HiddenKeyword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to . Extra regions will be included:.
+        /// </summary>
+        internal static string IncludedExtraRegion {
+            get {
+                return ResourceManager.GetString("IncludedExtraRegion", resourceCulture);
             }
         }
         
@@ -124,11 +457,74 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to naked.
+        /// </summary>
+        internal static string NakedKeyword {
+            get {
+                return ResourceManager.GetString("NakedKeyword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to  or .
         /// </summary>
         internal static string OrKeywordWithSpaces {
             get {
                 return ResourceManager.GetString("OrKeywordWithSpaces", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to pair.
+        /// </summary>
+        internal static string SubsetNamesSize2 {
+            get {
+                return ResourceManager.GetString("SubsetNamesSize2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to triple.
+        /// </summary>
+        internal static string SubsetNamesSize3 {
+            get {
+                return ResourceManager.GetString("SubsetNamesSize3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to quadruple.
+        /// </summary>
+        internal static string SubsetNamesSize4 {
+            get {
+                return ResourceManager.GetString("SubsetNamesSize4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to quintuple.
+        /// </summary>
+        internal static string SubsetNamesSize5 {
+            get {
+                return ResourceManager.GetString("SubsetNamesSize5", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to sextuple.
+        /// </summary>
+        internal static string SubsetNamesSize6 {
+            get {
+                return ResourceManager.GetString("SubsetNamesSize6", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to septuple.
+        /// </summary>
+        internal static string SubsetNamesSize7 {
+            get {
+                return ResourceManager.GetString("SubsetNamesSize7", resourceCulture);
             }
         }
         
@@ -795,6 +1191,15 @@ namespace Sudoku.Resources {
         internal static string TechniqueFormat_WWingStep {
             get {
                 return ResourceManager.GetString("TechniqueFormat_WWingStep", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to true.
+        /// </summary>
+        internal static string TrueKeyword {
+            get {
+                return ResourceManager.GetString("TrueKeyword", resourceCulture);
             }
         }
     }

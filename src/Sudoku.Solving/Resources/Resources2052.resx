@@ -117,8 +117,113 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AnalysisResultBeenSolved" xml:space="preserve">
+    <value>被解出。</value>
+  </data>
+  <data name="AnalysisResultBottleneckStep" xml:space="preserve">
+    <value>卡点步骤：</value>
+  </data>
+  <data name="AnalysisResultInStep" xml:space="preserve">
+    <value>于步骤编号 </value>
+  </data>
+  <data name="AnalysisResultMin" xml:space="preserve">
+    <value>最小</value>
+  </data>
+  <data name="AnalysisResultNot" xml:space="preserve">
+    <value>未</value>
+  </data>
+  <data name="AnalysisResultPuzzle" xml:space="preserve">
+    <value>题目：</value>
+  </data>
+  <data name="AnalysisResultPuzzleHas" xml:space="preserve">
+    <value>题目</value>
+  </data>
+  <data name="AnalysisResultPuzzleRating" xml:space="preserve">
+    <value>题目难度分：</value>
+  </data>
+  <data name="AnalysisResultPuzzleSolution" xml:space="preserve">
+    <value>终盘：</value>
+  </data>
+  <data name="AnalysisResultSolvingSteps" xml:space="preserve">
+    <value>解题步骤：</value>
+  </data>
+  <data name="AnalysisResultStepPlural" xml:space="preserve">
+    <value>个步骤</value>
+  </data>
+  <data name="AnalysisResultStepSingular" xml:space="preserve">
+    <value>个步骤</value>
+  </data>
+  <data name="AnalysisResultTechniqueUsed" xml:space="preserve">
+    <value>技巧使用情况：</value>
+  </data>
+  <data name="AnalysisResultTechniqueUsing" xml:space="preserve">
+    <value>          技巧使用</value>
+  </data>
+  <data name="AnalysisResultTimeElapsed" xml:space="preserve">
+    <value>耗时：</value>
+  </data>
+  <data name="AnalysisResultTotal" xml:space="preserve">
+    <value>最大</value>
+  </data>
   <data name="Appear" xml:space="preserve">
     <value>出现</value>
+  </data>
+  <data name="BruteForceSolverResultBeenSolved" xml:space="preserve">
+    <value>被解出。</value>
+  </data>
+  <data name="BruteForceSolverResultNot" xml:space="preserve">
+    <value>未</value>
+  </data>
+  <data name="BruteForceSolverResultPuzzle" xml:space="preserve">
+    <value>题目：</value>
+  </data>
+  <data name="BruteForceSolverResultPuzzleHas" xml:space="preserve">
+    <value>题目</value>
+  </data>
+  <data name="BruteForceSolverResultSolution" xml:space="preserve">
+    <value>终盘：</value>
+  </data>
+  <data name="BruteForceSolverResultTimeElapsed" xml:space="preserve">
+    <value>耗时：</value>
+  </data>
+  <data name="Colon" xml:space="preserve">
+    <value>：</value>
+  </data>
+  <data name="Ellipsis" xml:space="preserve">
+    <value>……</value>
+  </data>
+  <data name="EndoTaraget" xml:space="preserve">
+    <value>内目标格：</value>
+  </data>
+  <data name="ExocetBasicEliminationName" xml:space="preserve">
+    <value>目标格删数</value>
+  </data>
+  <data name="ExocetBiBiPatternEliminationName" xml:space="preserve">
+    <value>X 理论删数</value>
+  </data>
+  <data name="ExocetCompatibilityTestEliminationName" xml:space="preserve">
+    <value>兼容性测试删数</value>
+  </data>
+  <data name="ExocetElimination" xml:space="preserve">
+    <value>删数：</value>
+  </data>
+  <data name="ExocetGeneralizedSwordfishEliminationName" xml:space="preserve">
+    <value>广义三阶鱼删数</value>
+  </data>
+  <data name="ExocetMirrorEliminationName" xml:space="preserve">
+    <value>镜面格删数</value>
+  </data>
+  <data name="ExocetTargetInferenceEliminationName" xml:space="preserve">
+    <value>目标格推断删数</value>
+  </data>
+  <data name="ExocetTargetPairEliminationName" xml:space="preserve">
+    <value>目标格数对删数</value>
+  </data>
+  <data name="ExocetTrueBaseEliminationName" xml:space="preserve">
+    <value>基准格永真删数</value>
+  </data>
+  <data name="FalseKeyword" xml:space="preserve">
+    <value>假</value>
   </data>
   <data name="Fin" xml:space="preserve">
     <value>，鱼鳍为</value>
@@ -128,6 +233,12 @@
   </data>
   <data name="GuardianSingular" xml:space="preserve">
     <value>守护者</value>
+  </data>
+  <data name="HiddenKeyword" xml:space="preserve">
+    <value>隐性</value>
+  </data>
+  <data name="IncludedExtraRegion" xml:space="preserve">
+    <value>。额外的需要计算进来的区域：</value>
   </data>
   <data name="KeywordIn" xml:space="preserve">
     <value>位于</value>
@@ -141,11 +252,32 @@
   <data name="LockedMemberR" xml:space="preserve">
     <value>，区块成员 #2：</value>
   </data>
+  <data name="NakedKeyword" xml:space="preserve">
+    <value>显性</value>
+  </data>
   <data name="Only" xml:space="preserve">
     <value>只</value>
   </data>
   <data name="OrKeywordWithSpaces" xml:space="preserve">
     <value> 或 </value>
+  </data>
+  <data name="SubsetNamesSize2" xml:space="preserve">
+    <value>数对</value>
+  </data>
+  <data name="SubsetNamesSize3" xml:space="preserve">
+    <value>三数组</value>
+  </data>
+  <data name="SubsetNamesSize4" xml:space="preserve">
+    <value>四数组</value>
+  </data>
+  <data name="SubsetNamesSize5" xml:space="preserve">
+    <value>五数组</value>
+  </data>
+  <data name="SubsetNamesSize6" xml:space="preserve">
+    <value>六数组</value>
+  </data>
+  <data name="SubsetNamesSize7" xml:space="preserve">
+    <value>七数组</value>
   </data>
   <data name="TechniqueFormat_AlmostLockedCandidatesStep" xml:space="preserve">
     <value>{Name}：数字 {DigitsStr} 从 {BaseCellsStr} 往 {TargetCellsStr} 推理 =&gt; {ElimStr}</value>
@@ -365,5 +497,8 @@
   </data>
   <data name="TechniqueFormat_WWingStep" xml:space="preserve">
     <value>{Name}：从 {StartCellStr} 到 {EndCellStr}，共轭对为 {ConjStr} =&gt; {ElimStr}</value>
+  </data>
+  <data name="TrueKeyword" xml:space="preserve">
+    <value>真</value>
   </data>
 </root>

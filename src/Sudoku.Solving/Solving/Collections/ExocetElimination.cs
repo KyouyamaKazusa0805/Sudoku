@@ -1,5 +1,4 @@
 ﻿using Sudoku.Collections;
-using Sudoku.Resources;
 using Sudoku.Solving.Manual.Searchers;
 
 namespace Sudoku.Solving.Collections;
@@ -33,11 +32,6 @@ public readonly record struct ExocetElimination(in Candidates Eliminations, Exoc
 		get => Eliminations.Count;
 	}
 
-	/// <summary>
-	/// Indicates the header of the reason.
-	/// </summary>
-	private string Header => ResourceManager.Shared[$"Exocet{Reason}EliminationName"];
-
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -61,9 +55,10 @@ public readonly record struct ExocetElimination(in Candidates Eliminations, Exoc
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public override string ToString()
 	{
-		string snippet = ResourceManager.Shared["ExocetElimination"];
+		string header = R[$"Exocet{Reason}EliminationName"]!;
+		string snippet = R["ExocetElimination"]!;
 		string elim = new ConclusionCollection(AsSpan()).ToString();
-		return $"* {Header}{snippet}{elim}";
+		return $"* {header}{snippet}{elim}";
 	}
 
 	/// <summary>

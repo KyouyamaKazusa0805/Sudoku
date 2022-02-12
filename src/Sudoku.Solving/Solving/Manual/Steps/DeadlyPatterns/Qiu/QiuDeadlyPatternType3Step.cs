@@ -1,9 +1,7 @@
 ﻿using Sudoku.Collections;
 using Sudoku.Presentation;
-using Sudoku.Resources;
 using Sudoku.Solving.Collections;
 using Sudoku.Solving.Manual.Text;
-using Sudoku.Techniques;
 using static System.Numerics.BitOperations;
 
 namespace Sudoku.Solving.Manual.Steps;
@@ -50,6 +48,6 @@ public sealed record QiuDeadlyPatternType3Step(
 	internal string SubsetName
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => ResourceManager.Shared[$"SubsetNames{ExtraCells.Count + 1}"];
+		get => R[$"SubsetNamesSize{ExtraCells.Count + 1}"]!;
 	}
 }

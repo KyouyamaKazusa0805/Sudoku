@@ -1,6 +1,5 @@
 ﻿using Sudoku.Collections;
 using Sudoku.Presentation;
-using Sudoku.Resources;
 using Sudoku.Solving.Manual.Text;
 using static System.Numerics.BitOperations;
 
@@ -50,6 +49,6 @@ public sealed record UniqueSquareType3Step(
 	internal string SubsetName
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => ResourceManager.Shared[$"SubsetNames{ExtraCells.Count + 1}"];
+		get => R[$"SubsetNamesSize{ExtraCells.Count + 1}"]!;
 	}
 }

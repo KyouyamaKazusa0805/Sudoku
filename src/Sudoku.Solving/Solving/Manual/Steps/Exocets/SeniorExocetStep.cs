@@ -1,6 +1,5 @@
 ﻿using Sudoku.Collections;
 using Sudoku.Presentation;
-using Sudoku.Resources;
 using Sudoku.Solving.Collections;
 using Sudoku.Solving.Manual.Text;
 using Sudoku.Techniques;
@@ -46,7 +45,7 @@ public sealed record SeniorExocetStep(
 		get
 		{
 			const string separator = ", ";
-			string endoTargetSnippet = ResourceManager.Shared["EndoTarget"];
+			string endoTargetSnippet = R["EndoTarget"]!;
 			string endoTargetStr = $"{endoTargetSnippet}{EndoTargetCellStr}";
 			if (ExtraRegionsMask is not null)
 			{
@@ -70,7 +69,7 @@ public sealed record SeniorExocetStep(
 				{
 					sb.RemoveFromEnd(separator.Length);
 
-					string extraRegionsIncluded = ResourceManager.Shared["IncludedExtraRegions"];
+					string extraRegionsIncluded = R["IncludedExtraRegions"]!;
 					return $"{endoTargetStr}{extraRegionsIncluded}{sb.ToStringAndClear()}";
 				}
 			}

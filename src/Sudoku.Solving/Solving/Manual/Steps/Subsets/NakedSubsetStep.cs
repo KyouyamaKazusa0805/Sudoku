@@ -1,6 +1,5 @@
 ﻿using Sudoku.Collections;
 using Sudoku.Presentation;
-using Sudoku.Resources;
 using Sudoku.Solving.Manual.Text;
 using Sudoku.Techniques;
 
@@ -82,6 +81,6 @@ public sealed record NakedSubsetStep(
 	internal string SubsetName
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => ResourceManager.Shared[$"SubsetNames{Size}"];
+		get => R[$"SubsetNamesSize{Size}"]!;
 	}
 }

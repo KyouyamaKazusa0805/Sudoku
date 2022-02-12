@@ -61,11 +61,326 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 被解出。.
+        /// </summary>
+        internal static string AnalysisResultBeenSolved {
+            get {
+                return ResourceManager.GetString("AnalysisResultBeenSolved", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 卡点步骤：.
+        /// </summary>
+        internal static string AnalysisResultBottleneckStep {
+            get {
+                return ResourceManager.GetString("AnalysisResultBottleneckStep", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 于步骤编号 .
+        /// </summary>
+        internal static string AnalysisResultInStep {
+            get {
+                return ResourceManager.GetString("AnalysisResultInStep", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 最小.
+        /// </summary>
+        internal static string AnalysisResultMin {
+            get {
+                return ResourceManager.GetString("AnalysisResultMin", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 未.
+        /// </summary>
+        internal static string AnalysisResultNot {
+            get {
+                return ResourceManager.GetString("AnalysisResultNot", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 题目：.
+        /// </summary>
+        internal static string AnalysisResultPuzzle {
+            get {
+                return ResourceManager.GetString("AnalysisResultPuzzle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 题目.
+        /// </summary>
+        internal static string AnalysisResultPuzzleHas {
+            get {
+                return ResourceManager.GetString("AnalysisResultPuzzleHas", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 题目难度分：.
+        /// </summary>
+        internal static string AnalysisResultPuzzleRating {
+            get {
+                return ResourceManager.GetString("AnalysisResultPuzzleRating", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 终盘：.
+        /// </summary>
+        internal static string AnalysisResultPuzzleSolution {
+            get {
+                return ResourceManager.GetString("AnalysisResultPuzzleSolution", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 解题步骤：.
+        /// </summary>
+        internal static string AnalysisResultSolvingSteps {
+            get {
+                return ResourceManager.GetString("AnalysisResultSolvingSteps", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 个步骤.
+        /// </summary>
+        internal static string AnalysisResultStepPlural {
+            get {
+                return ResourceManager.GetString("AnalysisResultStepPlural", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 个步骤.
+        /// </summary>
+        internal static string AnalysisResultStepSingular {
+            get {
+                return ResourceManager.GetString("AnalysisResultStepSingular", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 技巧使用情况：.
+        /// </summary>
+        internal static string AnalysisResultTechniqueUsed {
+            get {
+                return ResourceManager.GetString("AnalysisResultTechniqueUsed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to           技巧使用.
+        /// </summary>
+        internal static string AnalysisResultTechniqueUsing {
+            get {
+                return ResourceManager.GetString("AnalysisResultTechniqueUsing", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 耗时：.
+        /// </summary>
+        internal static string AnalysisResultTimeElapsed {
+            get {
+                return ResourceManager.GetString("AnalysisResultTimeElapsed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 最大.
+        /// </summary>
+        internal static string AnalysisResultTotal {
+            get {
+                return ResourceManager.GetString("AnalysisResultTotal", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 出现.
         /// </summary>
         internal static string Appear {
             get {
                 return ResourceManager.GetString("Appear", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 被解出。.
+        /// </summary>
+        internal static string BruteForceSolverResultBeenSolved {
+            get {
+                return ResourceManager.GetString("BruteForceSolverResultBeenSolved", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 未.
+        /// </summary>
+        internal static string BruteForceSolverResultNot {
+            get {
+                return ResourceManager.GetString("BruteForceSolverResultNot", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 题目：.
+        /// </summary>
+        internal static string BruteForceSolverResultPuzzle {
+            get {
+                return ResourceManager.GetString("BruteForceSolverResultPuzzle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 题目.
+        /// </summary>
+        internal static string BruteForceSolverResultPuzzleHas {
+            get {
+                return ResourceManager.GetString("BruteForceSolverResultPuzzleHas", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 终盘：.
+        /// </summary>
+        internal static string BruteForceSolverResultSolution {
+            get {
+                return ResourceManager.GetString("BruteForceSolverResultSolution", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 耗时：.
+        /// </summary>
+        internal static string BruteForceSolverResultTimeElapsed {
+            get {
+                return ResourceManager.GetString("BruteForceSolverResultTimeElapsed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ：.
+        /// </summary>
+        internal static string Colon {
+            get {
+                return ResourceManager.GetString("Colon", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to …….
+        /// </summary>
+        internal static string Ellipsis {
+            get {
+                return ResourceManager.GetString("Ellipsis", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 内目标格：.
+        /// </summary>
+        internal static string EndoTaraget {
+            get {
+                return ResourceManager.GetString("EndoTaraget", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 目标格删数.
+        /// </summary>
+        internal static string ExocetBasicEliminationName {
+            get {
+                return ResourceManager.GetString("ExocetBasicEliminationName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to X 理论删数.
+        /// </summary>
+        internal static string ExocetBiBiPatternEliminationName {
+            get {
+                return ResourceManager.GetString("ExocetBiBiPatternEliminationName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 兼容性测试删数.
+        /// </summary>
+        internal static string ExocetCompatibilityTestEliminationName {
+            get {
+                return ResourceManager.GetString("ExocetCompatibilityTestEliminationName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 删数：.
+        /// </summary>
+        internal static string ExocetElimination {
+            get {
+                return ResourceManager.GetString("ExocetElimination", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 广义三阶鱼删数.
+        /// </summary>
+        internal static string ExocetGeneralizedSwordfishEliminationName {
+            get {
+                return ResourceManager.GetString("ExocetGeneralizedSwordfishEliminationName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 镜面格删数.
+        /// </summary>
+        internal static string ExocetMirrorEliminationName {
+            get {
+                return ResourceManager.GetString("ExocetMirrorEliminationName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 目标格推断删数.
+        /// </summary>
+        internal static string ExocetTargetInferenceEliminationName {
+            get {
+                return ResourceManager.GetString("ExocetTargetInferenceEliminationName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 目标格数对删数.
+        /// </summary>
+        internal static string ExocetTargetPairEliminationName {
+            get {
+                return ResourceManager.GetString("ExocetTargetPairEliminationName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 基准格永真删数.
+        /// </summary>
+        internal static string ExocetTrueBaseEliminationName {
+            get {
+                return ResourceManager.GetString("ExocetTrueBaseEliminationName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 假.
+        /// </summary>
+        internal static string FalseKeyword {
+            get {
+                return ResourceManager.GetString("FalseKeyword", resourceCulture);
             }
         }
         
@@ -93,6 +408,24 @@ namespace Sudoku.Resources {
         internal static string GuardianSingular {
             get {
                 return ResourceManager.GetString("GuardianSingular", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 隐性.
+        /// </summary>
+        internal static string HiddenKeyword {
+            get {
+                return ResourceManager.GetString("HiddenKeyword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 。额外的需要计算进来的区域：.
+        /// </summary>
+        internal static string IncludedExtraRegion {
+            get {
+                return ResourceManager.GetString("IncludedExtraRegion", resourceCulture);
             }
         }
         
@@ -133,6 +466,15 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 显性.
+        /// </summary>
+        internal static string NakedKeyword {
+            get {
+                return ResourceManager.GetString("NakedKeyword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 只.
         /// </summary>
         internal static string Only {
@@ -147,6 +489,60 @@ namespace Sudoku.Resources {
         internal static string OrKeywordWithSpaces {
             get {
                 return ResourceManager.GetString("OrKeywordWithSpaces", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 数对.
+        /// </summary>
+        internal static string SubsetNamesSize2 {
+            get {
+                return ResourceManager.GetString("SubsetNamesSize2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 三数组.
+        /// </summary>
+        internal static string SubsetNamesSize3 {
+            get {
+                return ResourceManager.GetString("SubsetNamesSize3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 四数组.
+        /// </summary>
+        internal static string SubsetNamesSize4 {
+            get {
+                return ResourceManager.GetString("SubsetNamesSize4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 五数组.
+        /// </summary>
+        internal static string SubsetNamesSize5 {
+            get {
+                return ResourceManager.GetString("SubsetNamesSize5", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 六数组.
+        /// </summary>
+        internal static string SubsetNamesSize6 {
+            get {
+                return ResourceManager.GetString("SubsetNamesSize6", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 七数组.
+        /// </summary>
+        internal static string SubsetNamesSize7 {
+            get {
+                return ResourceManager.GetString("SubsetNamesSize7", resourceCulture);
             }
         }
         
@@ -804,6 +1200,15 @@ namespace Sudoku.Resources {
         internal static string TechniqueFormat_WWingStep {
             get {
                 return ResourceManager.GetString("TechniqueFormat_WWingStep", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 真.
+        /// </summary>
+        internal static string TrueKeyword {
+            get {
+                return ResourceManager.GetString("TrueKeyword", resourceCulture);
             }
         }
     }

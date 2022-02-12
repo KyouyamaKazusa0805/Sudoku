@@ -1,6 +1,5 @@
 ﻿using Sudoku.Collections;
 using Sudoku.Presentation;
-using Sudoku.Resources;
 using Sudoku.Solving.Manual.Text;
 
 namespace Sudoku.Solving.Manual.Steps;
@@ -49,7 +48,7 @@ public sealed record UniqueLoopType3Step(
 	internal string SubsetName
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => ResourceManager.Shared[$"SubsetNames{SubsetCells.Count + 1}"];
+		get => R[$"SubsetNamesSize{SubsetCells.Count + 1}"]!;
 	}
 
 	/// <inheritdoc/>

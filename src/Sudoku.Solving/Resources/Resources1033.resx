@@ -117,6 +117,111 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AnalysisResultBeenSolved" xml:space="preserve">
+    <value>been solved.</value>
+  </data>
+  <data name="AnalysisResultBottleneckStep" xml:space="preserve">
+    <value>Bottleneck step:</value>
+  </data>
+  <data name="AnalysisResultInStep" xml:space="preserve">
+    <value>In step</value>
+  </data>
+  <data name="AnalysisResultMin" xml:space="preserve">
+    <value>min</value>
+  </data>
+  <data name="AnalysisResultNot" xml:space="preserve">
+    <value>not </value>
+  </data>
+  <data name="AnalysisResultPuzzle" xml:space="preserve">
+    <value>Puzzle: </value>
+  </data>
+  <data name="AnalysisResultPuzzleHas" xml:space="preserve">
+    <value>Puzzle has </value>
+  </data>
+  <data name="AnalysisResultPuzzleRating" xml:space="preserve">
+    <value>Puzzle rating: </value>
+  </data>
+  <data name="AnalysisResultPuzzleSolution" xml:space="preserve">
+    <value>Solution: </value>
+  </data>
+  <data name="AnalysisResultSolvingSteps" xml:space="preserve">
+    <value>Solving steps:</value>
+  </data>
+  <data name="AnalysisResultStepPlural" xml:space="preserve">
+    <value>steps</value>
+  </data>
+  <data name="AnalysisResultStepSingular" xml:space="preserve">
+    <value>step</value>
+  </data>
+  <data name="AnalysisResultTechniqueUsed" xml:space="preserve">
+    <value>Technique used:</value>
+  </data>
+  <data name="AnalysisResultTechniqueUsing" xml:space="preserve">
+    <value>  technique using</value>
+  </data>
+  <data name="AnalysisResultTimeElapsed" xml:space="preserve">
+    <value>Time elapsed: </value>
+  </data>
+  <data name="AnalysisResultTotal" xml:space="preserve">
+    <value>total</value>
+  </data>
+  <data name="BruteForceSolverResultBeenSolved" xml:space="preserve">
+    <value>been solved.</value>
+  </data>
+  <data name="BruteForceSolverResultNot" xml:space="preserve">
+    <value>not </value>
+  </data>
+  <data name="BruteForceSolverResultPuzzle" xml:space="preserve">
+    <value>Puzzle: </value>
+  </data>
+  <data name="BruteForceSolverResultPuzzleHas" xml:space="preserve">
+    <value>Puzzle has </value>
+  </data>
+  <data name="BruteForceSolverResultSolution" xml:space="preserve">
+    <value>Solution: </value>
+  </data>
+  <data name="BruteForceSolverResultTimeElapsed" xml:space="preserve">
+    <value>Time elapsed: </value>
+  </data>
+  <data name="Colon" xml:space="preserve">
+    <value>:</value>
+  </data>
+  <data name="Ellipsis" xml:space="preserve">
+    <value>...</value>
+  </data>
+  <data name="EndoTaraget" xml:space="preserve">
+    <value>endo target: </value>
+  </data>
+  <data name="ExocetBasicEliminationName" xml:space="preserve">
+    <value>Target</value>
+  </data>
+  <data name="ExocetBiBiPatternEliminationName" xml:space="preserve">
+    <value>Bi-bi Pattern</value>
+  </data>
+  <data name="ExocetCompatibilityTestEliminationName" xml:space="preserve">
+    <value>Compatibility Test</value>
+  </data>
+  <data name="ExocetElimination" xml:space="preserve">
+    <value> eliminations: </value>
+  </data>
+  <data name="ExocetGeneralizedSwordfishEliminationName" xml:space="preserve">
+    <value>Generalized Swordfish</value>
+  </data>
+  <data name="ExocetMirrorEliminationName" xml:space="preserve">
+    <value>Mirror</value>
+  </data>
+  <data name="ExocetTargetInferenceEliminationName" xml:space="preserve">
+    <value>Target Inference</value>
+  </data>
+  <data name="ExocetTargetPairEliminationName" xml:space="preserve">
+    <value>Target Pair</value>
+  </data>
+  <data name="ExocetTrueBaseEliminationName" xml:space="preserve">
+    <value>True Base</value>
+  </data>
+  <data name="FalseKeyword" xml:space="preserve">
+    <value>false</value>
+  </data>
   <data name="Fin" xml:space="preserve">
     <value> f</value>
   </data>
@@ -125,6 +230,12 @@
   </data>
   <data name="GuardianSingular" xml:space="preserve">
     <value>a guardian</value>
+  </data>
+  <data name="HiddenKeyword" xml:space="preserve">
+    <value>hidden</value>
+  </data>
+  <data name="IncludedExtraRegion" xml:space="preserve">
+    <value>. Extra regions will be included:</value>
   </data>
   <data name="KeywordIn" xml:space="preserve">
     <value>in</value>
@@ -138,8 +249,29 @@
   <data name="LockedMemberR" xml:space="preserve">
     <value>, locked member 2: </value>
   </data>
+  <data name="NakedKeyword" xml:space="preserve">
+    <value>naked</value>
+  </data>
   <data name="OrKeywordWithSpaces" xml:space="preserve">
     <value> or </value>
+  </data>
+  <data name="SubsetNamesSize2" xml:space="preserve">
+    <value>pair</value>
+  </data>
+  <data name="SubsetNamesSize3" xml:space="preserve">
+    <value>triple</value>
+  </data>
+  <data name="SubsetNamesSize4" xml:space="preserve">
+    <value>quadruple</value>
+  </data>
+  <data name="SubsetNamesSize5" xml:space="preserve">
+    <value>quintuple</value>
+  </data>
+  <data name="SubsetNamesSize6" xml:space="preserve">
+    <value>sextuple</value>
+  </data>
+  <data name="SubsetNamesSize7" xml:space="preserve">
+    <value>septuple</value>
   </data>
   <data name="TechniqueFormat_AlmostLockedCandidatesStep" xml:space="preserve">
     <value>{Name}: {DigitsStr} from {BaseCellsStr} to {TargetCellsStr} =&gt; {ElimStr}</value>
@@ -362,5 +494,8 @@
   </data>
   <data name="TechniqueFormat_WWingStep" xml:space="preserve">
     <value>{Name}: {StartCellStr} to {EndCellStr} with conjugate pair {ConjStr} =&gt; {ElimStr}</value>
+  </data>
+  <data name="TrueKeyword" xml:space="preserve">
+    <value>true</value>
   </data>
 </root>

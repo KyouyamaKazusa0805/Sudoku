@@ -1,5 +1,4 @@
 ﻿using Sudoku.Collections;
-using Sudoku.Resources;
 
 namespace Sudoku.Solving.BruteForces;
 
@@ -37,24 +36,24 @@ public sealed record BruteForceSolverResult(
 	{
 		// Print header.
 		var sb = new StringHandler();
-		sb.Append(ResourceManager.Shared["BruteForceSolverResultPuzzle"]);
+		sb.Append(R["BruteForceSolverResultPuzzle"]!);
 		sb.Append(OriginalPuzzle.ToString("#"));
 		sb.AppendLine();
 
 		// Print the solution (if not null).
 		if (!Solution.IsUndefined)
 		{
-			sb.Append(ResourceManager.Shared["BruteForceSolverResultSolution"]);
+			sb.Append(R["BruteForceSolverResultSolution"]!);
 			sb.Append(Solution.ToString("!"));
 			sb.AppendLine();
 		}
 
 		// Print the elapsed time.
-		sb.Append(ResourceManager.Shared["BruteForceSolverResultPuzzleHas"]);
-		sb.AppendWhen(IsSolved, ResourceManager.Shared["BruteForceSolverResultNot"]);
-		sb.Append(ResourceManager.Shared["BruteForceSolverResultBeenSolved"]);
+		sb.Append(R["BruteForceSolverResultPuzzleHas"]!);
+		sb.AppendWhen(IsSolved, R["BruteForceSolverResultNot"]!);
+		sb.Append(R["BruteForceSolverResultBeenSolved"]!);
 		sb.AppendLine();
-		sb.Append(ResourceManager.Shared["BruteForceSolverResultTimeElapsed"]);
+		sb.Append(R["BruteForceSolverResultTimeElapsed"]!);
 		sb.Append($@"{ElapsedTime:hh\:mm\:ss\.ffffff}");
 		sb.AppendLine();
 
