@@ -8,8 +8,29 @@ namespace Sudoku.Resources;
 internal sealed class MergedResources
 {
 	/// <summary>
-	/// The shared instance.
+	/// <para>
+	/// Indicates the instance that has the ability to call the resource, and distinct with different
+	/// natural languages.
+	/// </para>
+	/// <para>
+	/// If you want to check the resource, please use the indexer <see cref="this[string]"/> to get them.
+	/// The return value of the indexer is <c><see cref="string"/>?</c>:
+	/// <code>
+	/// using static Sudoku.Resources.MergedResources;
+	/// 
+	/// string? resourceValue = R["SuchKeyYouWantToSearchFor"];
+	/// if (resourceValue is not null)
+	/// {
+	///     // Insert the arbitrary code using 'resourceValue'.
+	/// }
+	/// </code>
+	/// </para>
+	/// <para>
+	/// In addition, the return value of that indexer can be <see langword="null"/>
+	/// if the resource doesn't find such value via the specified key.
+	/// </para>
 	/// </summary>
+	/// <seealso cref="this[string]"/>
 	public static readonly MergedResources R = new();
 
 
@@ -65,5 +86,5 @@ internal sealed class MergedResources
 	public void ChangeLanguage(int lcid) =>
 		_lcid = lcid != 1033 && _managers.ContainsKey(lcid)
 			? lcid
-			: throw new ArgumentException("The specified LCID has already been stored in the current manager.", nameof(lcid));
+			: throw new ArgumentException("Such LCID already exists in the current manager.", nameof(lcid));
 }

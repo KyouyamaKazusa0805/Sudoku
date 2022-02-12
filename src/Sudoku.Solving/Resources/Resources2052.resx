@@ -120,6 +120,9 @@
   <data name="Appear" xml:space="preserve">
     <value>出现</value>
   </data>
+  <data name="Fin" xml:space="preserve">
+    <value>，鱼鳍为</value>
+  </data>
   <data name="GuardianPlural" xml:space="preserve">
     <value>守护者</value>
   </data>
@@ -131,6 +134,12 @@
   </data>
   <data name="Language" xml:space="preserve">
     <value>2052</value>
+  </data>
+  <data name="LockedMemberQ" xml:space="preserve">
+    <value>，区块成员 #1：</value>
+  </data>
+  <data name="LockedMemberR" xml:space="preserve">
+    <value>，区块成员 #2：</value>
   </data>
   <data name="Only" xml:space="preserve">
     <value>只</value>

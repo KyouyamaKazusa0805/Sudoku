@@ -70,6 +70,15 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to ，鱼鳍为.
+        /// </summary>
+        internal static string Fin {
+            get {
+                return ResourceManager.GetString("Fin", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 守护者.
         /// </summary>
         internal static string GuardianPlural {
@@ -102,6 +111,24 @@ namespace Sudoku.Resources {
         internal static string Language {
             get {
                 return ResourceManager.GetString("Language", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ，区块成员 #1：.
+        /// </summary>
+        internal static string LockedMemberQ {
+            get {
+                return ResourceManager.GetString("LockedMemberQ", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ，区块成员 #2：.
+        /// </summary>
+        internal static string LockedMemberR {
+            get {
+                return ResourceManager.GetString("LockedMemberR", resourceCulture);
             }
         }
         
