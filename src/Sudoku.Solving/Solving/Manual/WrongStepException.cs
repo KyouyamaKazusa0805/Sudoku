@@ -30,12 +30,9 @@ public sealed class WrongStepException : Exception
 
 	/// <inheritdoc/>
 	public override string Message =>
-		$"This current step {WrongStep} may exist bug that causes the wrong handling. " +
-		$"The current grid is {InvalidPuzzle:#}";
-
-	/// <inheritdoc/>
-	public override string HelpLink =>
-		"https://sunnieshine.github.io/Sudoku/types/exceptions/Exception-WrongStepException";
+		$"This current step {
+			WrongStep} may exist bug that causes the wrong handling. The current grid is {
+			InvalidPuzzle:#}";
 
 	/// <summary>
 	/// Indicates the invalid sudoku grid. This property is also stored in the property
