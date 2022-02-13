@@ -59,7 +59,10 @@ internal sealed class MergedResources
 	{
 		_default = Resources1033.ResourceManager;
 
-		(_managers = new Dictionary<int, Resource>()).Add(2052, Resources2052.ResourceManager);
+		_managers = new Dictionary<int, Resource>
+		{
+			{ 2052, Resources2052.ResourceManager }
+		};
 	}
 
 
