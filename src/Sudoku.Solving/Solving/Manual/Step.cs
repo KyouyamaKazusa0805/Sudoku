@@ -164,9 +164,20 @@ public abstract record Step(ImmutableArray<Conclusion> Conclusions, ImmutableArr
 	public bool HasTag(TechniqueTags flags) =>
 		flags.IsFlag() ? TechniqueTags.Flags(flags) : TechniqueTags.MultiFlags(flags);
 
-	/// <inheritdoc/>
+	/// <summary>
+	/// Returns a string that only contains the name and the basic information.
+	/// </summary>
+	/// <returns>The string instance.</returns>
+	/// <remarks>
+	/// <para>
+	/// This method uses <see langword="sealed"/> and <see langword="override"/> modifiers
+	/// to prevent the compiler overriding the method.
+	/// </para>
+	/// <para>The behavior is same as the method <see cref="Formatize(bool)"/> invoking.</para>
+	/// </remarks>
+	/// <seealso cref="Formatize(bool)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public abstract override string ToString();
+	public sealed override string ToString() => Formatize(true);
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

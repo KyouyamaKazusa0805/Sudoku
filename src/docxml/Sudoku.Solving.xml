@@ -1615,8 +1615,8 @@
             </para>
             <para>
             Because this property will get the value from the resource dictionary, the property supports
-            multiple language switching, which is better than the normal methods <see cref="M:Sudoku.Solving.Manual.IStep.ToString"/>
-            and <see cref="M:Sudoku.Solving.Manual.IStep.ToFullString"/>. Therefore, this property is the substitution of those two methods.
+            multiple language switching, which is better than the normal methods <c>ToString</c>
+            and <c>ToFullString</c>. Therefore, this property is the substitution of those two methods.
             </para>
             <para>
             If you want to use the values in the resource documents,
@@ -1628,7 +1628,6 @@
             </code>
             </para>
             </remarks>
-            <seealso cref="M:Sudoku.Solving.Manual.IStep.ToString"/>
             <seealso cref="M:Sudoku.Solving.Manual.IStep.ToFullString"/>
             <seealso cref="T:Sudoku.Solving.Manual.Text.FormatItemAttribute"/>
             <seealso cref="F:Sudoku.Resources.MergedResources.R"/>
@@ -1713,18 +1712,6 @@
             Put this instance into the specified grid.
             </summary>
             <param name="grid">The grid.</param>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.IStep.ToString">
-            <summary>
-            Returns a string that only contains the name and the basic information.
-            </summary>
-            <returns>The string instance.</returns>
-            <remarks>
-            This method uses <see langword="sealed"/> and <see langword="override"/> modifiers
-            to prevent the compiler overriding the method; in additional, the default behavior is changed to
-            output as the method <see cref="M:Sudoku.Solving.Manual.IStep.Formatize(System.Boolean)"/> invoking.
-            </remarks>
-            <seealso cref="M:Sudoku.Solving.Manual.IStep.Formatize(System.Boolean)"/>
         </member>
         <member name="M:Sudoku.Solving.Manual.IStep.ToSimpleString">
             <summary>
@@ -5070,7 +5057,18 @@
             <returns>A <see cref="T:System.Boolean"/> result.</returns>
         </member>
         <member name="M:Sudoku.Solving.Manual.Step.ToString">
-            <inheritdoc/>
+            <summary>
+            Returns a string that only contains the name and the basic information.
+            </summary>
+            <returns>The string instance.</returns>
+            <remarks>
+            <para>
+            This method uses <see langword="sealed"/> and <see langword="override"/> modifiers
+            to prevent the compiler overriding the method.
+            </para>
+            <para>The behavior is same as the method <see cref="M:Sudoku.Solving.Manual.Step.Formatize(System.Boolean)"/> invoking.</para>
+            </remarks>
+            <seealso cref="M:Sudoku.Solving.Manual.Step.Formatize(System.Boolean)"/>
         </member>
         <member name="M:Sudoku.Solving.Manual.Step.ToSimpleString">
             <inheritdoc/>

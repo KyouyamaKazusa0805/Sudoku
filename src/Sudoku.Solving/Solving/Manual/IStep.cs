@@ -71,8 +71,8 @@ public interface IStep
 	/// </para>
 	/// <para>
 	/// Because this property will get the value from the resource dictionary, the property supports
-	/// multiple language switching, which is better than the normal methods <see cref="ToString"/>
-	/// and <see cref="ToFullString"/>. Therefore, this property is the substitution of those two methods.
+	/// multiple language switching, which is better than the normal methods <c>ToString</c>
+	/// and <c>ToFullString</c>. Therefore, this property is the substitution of those two methods.
 	/// </para>
 	/// <para>
 	/// If you want to use the values in the resource documents,
@@ -84,7 +84,6 @@ public interface IStep
 	/// </code>
 	/// </para>
 	/// </remarks>
-	/// <seealso cref="ToString"/>
 	/// <seealso cref="ToFullString"/>
 	/// <seealso cref="FormatItemAttribute"/>
 	/// <seealso cref="R"/>
@@ -171,18 +170,6 @@ public interface IStep
 	/// </summary>
 	/// <param name="grid">The grid.</param>
 	void ApplyTo(ref Grid grid);
-
-	/// <summary>
-	/// Returns a string that only contains the name and the basic information.
-	/// </summary>
-	/// <returns>The string instance.</returns>
-	/// <remarks>
-	/// This method uses <see langword="sealed"/> and <see langword="override"/> modifiers
-	/// to prevent the compiler overriding the method; in additional, the default behavior is changed to
-	/// output as the method <see cref="Formatize(bool)"/> invoking.
-	/// </remarks>
-	/// <seealso cref="Formatize(bool)"/>
-	string ToString();
 
 	/// <summary>
 	/// Returns a string that only contains the name and the conclusions.
