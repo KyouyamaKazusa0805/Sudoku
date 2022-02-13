@@ -61,6 +61,60 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Almost Locked Pair.
+        /// </summary>
+        internal static string AlmostLockedPair {
+            get {
+                return ResourceManager.GetString("AlmostLockedPair", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Almost Locked Quadruple.
+        /// </summary>
+        internal static string AlmostLockedQuadruple {
+            get {
+                return ResourceManager.GetString("AlmostLockedQuadruple", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Almost Locked Sets W-Wing.
+        /// </summary>
+        internal static string AlmostLockedSetsWWing {
+            get {
+                return ResourceManager.GetString("AlmostLockedSetsWWing", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Almost Locked Sets XY-Wing.
+        /// </summary>
+        internal static string AlmostLockedSetsXyWing {
+            get {
+                return ResourceManager.GetString("AlmostLockedSetsXyWing", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Almost Locked Triple.
+        /// </summary>
+        internal static string AlmostLockedTriple {
+            get {
+                return ResourceManager.GetString("AlmostLockedTriple", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Alternating Inference Chain.
+        /// </summary>
+        internal static string AlternatingInferenceChain {
+            get {
+                return ResourceManager.GetString("AlternatingInferenceChain", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 被解出。.
         /// </summary>
         internal static string AnalysisResultBeenSolved {
@@ -214,6 +268,258 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Avoidable Rectangle + 2D.
+        /// </summary>
+        internal static string AvoidableRectangle2D {
+            get {
+                return ResourceManager.GetString("AvoidableRectangle2D", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Avoidable Rectangle + 3X.
+        /// </summary>
+        internal static string AvoidableRectangle3X {
+            get {
+                return ResourceManager.GetString("AvoidableRectangle3X", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Avoidable Rectangle Guardian.
+        /// </summary>
+        internal static string AvoidableRectangleBrokenWing {
+            get {
+                return ResourceManager.GetString("AvoidableRectangleBrokenWing", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Avoidable Rectangle Hidden Single in Block.
+        /// </summary>
+        internal static string AvoidableRectangleHiddenSingleBlock {
+            get {
+                return ResourceManager.GetString("AvoidableRectangleHiddenSingleBlock", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Avoidable Rectangle Hidden Single in Column.
+        /// </summary>
+        internal static string AvoidableRectangleHiddenSingleColumn {
+            get {
+                return ResourceManager.GetString("AvoidableRectangleHiddenSingleColumn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Avoidable Rectangle Hidden Single in Row.
+        /// </summary>
+        internal static string AvoidableRectangleHiddenSingleRow {
+            get {
+                return ResourceManager.GetString("AvoidableRectangleHiddenSingleRow", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Avoidable Rectangle Sue de Coq.
+        /// </summary>
+        internal static string AvoidableRectangleSueDeCoq {
+            get {
+                return ResourceManager.GetString("AvoidableRectangleSueDeCoq", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Avoidable Rectangle Type 1.
+        /// </summary>
+        internal static string AvoidableRectangleType1 {
+            get {
+                return ResourceManager.GetString("AvoidableRectangleType1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Avoidable Rectangle Type 2.
+        /// </summary>
+        internal static string AvoidableRectangleType2 {
+            get {
+                return ResourceManager.GetString("AvoidableRectangleType2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Avoidable Rectangle Type 3.
+        /// </summary>
+        internal static string AvoidableRectangleType3 {
+            get {
+                return ResourceManager.GetString("AvoidableRectangleType3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Avoidable Rectangle Type 5.
+        /// </summary>
+        internal static string AvoidableRectangleType5 {
+            get {
+                return ResourceManager.GetString("AvoidableRectangleType5", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Avoidable Rectangle WXYZ-Wing.
+        /// </summary>
+        internal static string AvoidableRectangleWxyzWing {
+            get {
+                return ResourceManager.GetString("AvoidableRectangleWxyzWing", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Avoidable Rectangle XY-Wing.
+        /// </summary>
+        internal static string AvoidableRectangleXyWing {
+            get {
+                return ResourceManager.GetString("AvoidableRectangleXyWing", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Avoidable Rectangle XYZ-Wing.
+        /// </summary>
+        internal static string AvoidableRectangleXyzWing {
+            get {
+                return ResourceManager.GetString("AvoidableRectangleXyzWing", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bi-value Oddagon Type 1.
+        /// </summary>
+        internal static string BivalueOddagonType1 {
+            get {
+                return ResourceManager.GetString("BivalueOddagonType1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bi-value Oddagon Type 2.
+        /// </summary>
+        internal static string BivalueOddagonType2 {
+            get {
+                return ResourceManager.GetString("BivalueOddagonType2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bi-value Oddagon Type 3.
+        /// </summary>
+        internal static string BivalueOddagonType3 {
+            get {
+                return ResourceManager.GetString("BivalueOddagonType3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bi-value Universal Grave + n.
+        /// </summary>
+        internal static string BivalueUniversalGravePlusN {
+            get {
+                return ResourceManager.GetString("BivalueUniversalGravePlusN", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bi-value Universal Grave + n Forcing Chains.
+        /// </summary>
+        internal static string BivalueUniversalGravePlusNForcingChains {
+            get {
+                return ResourceManager.GetString("BivalueUniversalGravePlusNForcingChains", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bi-value Universal Grave Type 1.
+        /// </summary>
+        internal static string BivalueUniversalGraveType1 {
+            get {
+                return ResourceManager.GetString("BivalueUniversalGraveType1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bi-value Universal Grave Type 2.
+        /// </summary>
+        internal static string BivalueUniversalGraveType2 {
+            get {
+                return ResourceManager.GetString("BivalueUniversalGraveType2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bi-value Universal Grave Type 3.
+        /// </summary>
+        internal static string BivalueUniversalGraveType3 {
+            get {
+                return ResourceManager.GetString("BivalueUniversalGraveType3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bi-value Universal Grave Type 4.
+        /// </summary>
+        internal static string BivalueUniversalGraveType4 {
+            get {
+                return ResourceManager.GetString("BivalueUniversalGraveType4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bi-value Universal Grave XY-Wing.
+        /// </summary>
+        internal static string BivalueUniversalGraveXyWing {
+            get {
+                return ResourceManager.GetString("BivalueUniversalGraveXyWing", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bi-value Universal Grave XZ Rule.
+        /// </summary>
+        internal static string BivalueUniversalGraveXzRule {
+            get {
+                return ResourceManager.GetString("BivalueUniversalGraveXzRule", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bowman Bingo.
+        /// </summary>
+        internal static string BowmanBingo {
+            get {
+                return ResourceManager.GetString("BowmanBingo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Guardian.
+        /// </summary>
+        internal static string BrokenWing {
+            get {
+                return ResourceManager.GetString("BrokenWing", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Brute Force.
+        /// </summary>
+        internal static string BruteForce {
+            get {
+                return ResourceManager.GetString("BruteForce", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 被解出。.
         /// </summary>
         internal static string BruteForceSolverResultBeenSolved {
@@ -268,6 +574,24 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Cell Forcing Chains.
+        /// </summary>
+        internal static string CellForcingChains {
+            get {
+                return ResourceManager.GetString("CellForcingChains", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Claiming.
+        /// </summary>
+        internal static string Claiming {
+            get {
+                return ResourceManager.GetString("Claiming", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to ：.
         /// </summary>
         internal static string Colon {
@@ -277,11 +601,128 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Complex Senior Exocet.
+        /// </summary>
+        internal static string ComplexSeniorExocet {
+            get {
+                return ResourceManager.GetString("ComplexSeniorExocet", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Continuous Nice Loop.
+        /// </summary>
+        internal static string ContinuousNiceLoop {
+            get {
+                return ResourceManager.GetString("ContinuousNiceLoop", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Death Blossom.
+        /// </summary>
+        internal static string DeathBlossom {
+            get {
+                return ResourceManager.GetString("DeathBlossom", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Discontinuous Nice Loop.
+        /// </summary>
+        internal static string DiscontinuousNiceLoop {
+            get {
+                return ResourceManager.GetString("DiscontinuousNiceLoop", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Domino Loop.
+        /// </summary>
+        internal static string DominoLoop {
+            get {
+                return ResourceManager.GetString("DominoLoop", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Doubly-Linked Almost Locked Sets XZ Rule.
+        /// </summary>
+        internal static string DoublyLinkedAlmostLockedSetsXzRule {
+            get {
+                return ResourceManager.GetString("DoublyLinkedAlmostLockedSetsXzRule", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Dynamic Cell Forcing Chains.
+        /// </summary>
+        internal static string DynamicCellForcingChains {
+            get {
+                return ResourceManager.GetString("DynamicCellForcingChains", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Dynamic Contradiction Forcing Chains.
+        /// </summary>
+        internal static string DynamicContradictionForcingChains {
+            get {
+                return ResourceManager.GetString("DynamicContradictionForcingChains", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Dynamic Double Forcing Chains.
+        /// </summary>
+        internal static string DynamicDoubleForcingChains {
+            get {
+                return ResourceManager.GetString("DynamicDoubleForcingChains", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Dynamic Forcing Chains.
+        /// </summary>
+        internal static string DynamicForcingChains {
+            get {
+                return ResourceManager.GetString("DynamicForcingChains", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Dynamic Region Forcing Chains.
+        /// </summary>
+        internal static string DynamicRegionForcingChains {
+            get {
+                return ResourceManager.GetString("DynamicRegionForcingChains", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to …….
         /// </summary>
         internal static string Ellipsis {
             get {
                 return ResourceManager.GetString("Ellipsis", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Empty Rectangle.
+        /// </summary>
+        internal static string EmptyRectangle {
+            get {
+                return ResourceManager.GetString("EmptyRectangle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Empty Rectangle Intersection Pair.
+        /// </summary>
+        internal static string EmptyRectangleIntersectionPair {
+            get {
+                return ResourceManager.GetString("EmptyRectangleIntersectionPair", resourceCulture);
             }
         }
         
@@ -376,6 +817,60 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Extended Gurth&apos;s Symmetrical Placement.
+        /// </summary>
+        internal static string ExtendedGurthSymmetricalPlacement {
+            get {
+                return ResourceManager.GetString("ExtendedGurthSymmetricalPlacement", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Extended Rectangle Type 1.
+        /// </summary>
+        internal static string ExtendedRectangleType1 {
+            get {
+                return ResourceManager.GetString("ExtendedRectangleType1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Extended Rectangle Type 2.
+        /// </summary>
+        internal static string ExtendedRectangleType2 {
+            get {
+                return ResourceManager.GetString("ExtendedRectangleType2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Extended Rectangle Type 3.
+        /// </summary>
+        internal static string ExtendedRectangleType3 {
+            get {
+                return ResourceManager.GetString("ExtendedRectangleType3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Extended Rectangle Type 4.
+        /// </summary>
+        internal static string ExtendedRectangleType4 {
+            get {
+                return ResourceManager.GetString("ExtendedRectangleType4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Extended Subset Principle.
+        /// </summary>
+        internal static string ExtendedSubsetPrinciple {
+            get {
+                return ResourceManager.GetString("ExtendedSubsetPrinciple", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 假.
         /// </summary>
         internal static string FalseKeyword {
@@ -390,6 +885,384 @@ namespace Sudoku.Resources {
         internal static string Fin {
             get {
                 return ResourceManager.GetString("Fin", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Finned Franken Jellyfish.
+        /// </summary>
+        internal static string FinnedFrankenJellyfish {
+            get {
+                return ResourceManager.GetString("FinnedFrankenJellyfish", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Finned Franken Leviathan.
+        /// </summary>
+        internal static string FinnedFrankenLeviathan {
+            get {
+                return ResourceManager.GetString("FinnedFrankenLeviathan", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Finned Franken Squirmbag.
+        /// </summary>
+        internal static string FinnedFrankenSquirmbag {
+            get {
+                return ResourceManager.GetString("FinnedFrankenSquirmbag", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Finned Franken Swordfish.
+        /// </summary>
+        internal static string FinnedFrankenSwordfish {
+            get {
+                return ResourceManager.GetString("FinnedFrankenSwordfish", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Finned Franken Whale.
+        /// </summary>
+        internal static string FinnedFrankenWhale {
+            get {
+                return ResourceManager.GetString("FinnedFrankenWhale", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Finned Franken X-Wing.
+        /// </summary>
+        internal static string FinnedFrankenXWing {
+            get {
+                return ResourceManager.GetString("FinnedFrankenXWing", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Finned Jellyfish.
+        /// </summary>
+        internal static string FinnedJellyfish {
+            get {
+                return ResourceManager.GetString("FinnedJellyfish", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Finned Leviathan.
+        /// </summary>
+        internal static string FinnedLeviathan {
+            get {
+                return ResourceManager.GetString("FinnedLeviathan", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Finned Mutant Jellyfish.
+        /// </summary>
+        internal static string FinnedMutantJellyfish {
+            get {
+                return ResourceManager.GetString("FinnedMutantJellyfish", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Finned Mutant Leviathan.
+        /// </summary>
+        internal static string FinnedMutantLeviathan {
+            get {
+                return ResourceManager.GetString("FinnedMutantLeviathan", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Finned Mutant Squirmbag.
+        /// </summary>
+        internal static string FinnedMutantSquirmbag {
+            get {
+                return ResourceManager.GetString("FinnedMutantSquirmbag", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Finned Mutant Swordfish.
+        /// </summary>
+        internal static string FinnedMutantSwordfish {
+            get {
+                return ResourceManager.GetString("FinnedMutantSwordfish", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Finned Mutant Whale.
+        /// </summary>
+        internal static string FinnedMutantWhale {
+            get {
+                return ResourceManager.GetString("FinnedMutantWhale", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Finned Mutant X-Wing.
+        /// </summary>
+        internal static string FinnedMutantXWing {
+            get {
+                return ResourceManager.GetString("FinnedMutantXWing", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Finned Squirmbag.
+        /// </summary>
+        internal static string FinnedSquirmbag {
+            get {
+                return ResourceManager.GetString("FinnedSquirmbag", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Finned Swordfish.
+        /// </summary>
+        internal static string FinnedSwordfish {
+            get {
+                return ResourceManager.GetString("FinnedSwordfish", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Finned Whale.
+        /// </summary>
+        internal static string FinnedWhale {
+            get {
+                return ResourceManager.GetString("FinnedWhale", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Finned X-Wing.
+        /// </summary>
+        internal static string FinnedXWing {
+            get {
+                return ResourceManager.GetString("FinnedXWing", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Fishy Cycle.
+        /// </summary>
+        internal static string FishyCycle {
+            get {
+                return ResourceManager.GetString("FishyCycle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Franken Jellyfish.
+        /// </summary>
+        internal static string FrankenJellyfish {
+            get {
+                return ResourceManager.GetString("FrankenJellyfish", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Franken Leviathan.
+        /// </summary>
+        internal static string FrankenLeviathan {
+            get {
+                return ResourceManager.GetString("FrankenLeviathan", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Franken Squirmbag.
+        /// </summary>
+        internal static string FrankenSquirmbag {
+            get {
+                return ResourceManager.GetString("FrankenSquirmbag", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Franken Swordfish.
+        /// </summary>
+        internal static string FrankenSwordfish {
+            get {
+                return ResourceManager.GetString("FrankenSwordfish", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Franken Whale.
+        /// </summary>
+        internal static string FrankenWhale {
+            get {
+                return ResourceManager.GetString("FrankenWhale", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Franken X-Wing.
+        /// </summary>
+        internal static string FrankenXWing {
+            get {
+                return ResourceManager.GetString("FrankenXWing", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Full House.
+        /// </summary>
+        internal static string FullHouse {
+            get {
+                return ResourceManager.GetString("FullHouse", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Grouped Alternating Inference Chain.
+        /// </summary>
+        internal static string GroupedAlternatingInferenceChain {
+            get {
+                return ResourceManager.GetString("GroupedAlternatingInferenceChain", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Grouped Bi-value Oddagon.
+        /// </summary>
+        internal static string GroupedBivalueOddagon {
+            get {
+                return ResourceManager.GetString("GroupedBivalueOddagon", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Grouped Continuous Nice Loop.
+        /// </summary>
+        internal static string GroupedContinuousNiceLoop {
+            get {
+                return ResourceManager.GetString("GroupedContinuousNiceLoop", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Grouped Discontinuous Nice Loop.
+        /// </summary>
+        internal static string GroupedDiscontinuousNiceLoop {
+            get {
+                return ResourceManager.GetString("GroupedDiscontinuousNiceLoop", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Grouped Fishy Cycle.
+        /// </summary>
+        internal static string GroupedFishyCycle {
+            get {
+                return ResourceManager.GetString("GroupedFishyCycle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Grouped Hybrid Wing.
+        /// </summary>
+        internal static string GroupedHybridWing {
+            get {
+                return ResourceManager.GetString("GroupedHybridWing", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Grouped Local Wing.
+        /// </summary>
+        internal static string GroupedLocalWing {
+            get {
+                return ResourceManager.GetString("GroupedLocalWing", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Grouped M-Wing.
+        /// </summary>
+        internal static string GroupedMWing {
+            get {
+                return ResourceManager.GetString("GroupedMWing", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Grouped Purple Cow.
+        /// </summary>
+        internal static string GroupedPurpleCow {
+            get {
+                return ResourceManager.GetString("GroupedPurpleCow", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Grouped Split Wing.
+        /// </summary>
+        internal static string GroupedSplitWing {
+            get {
+                return ResourceManager.GetString("GroupedSplitWing", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Grouped W-Wing.
+        /// </summary>
+        internal static string GroupedWWing {
+            get {
+                return ResourceManager.GetString("GroupedWWing", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Grouped X-Chain.
+        /// </summary>
+        internal static string GroupedXChain {
+            get {
+                return ResourceManager.GetString("GroupedXChain", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Grouped XY-Chain.
+        /// </summary>
+        internal static string GroupedXyChain {
+            get {
+                return ResourceManager.GetString("GroupedXyChain", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Grouped XY-Cycle.
+        /// </summary>
+        internal static string GroupedXyCycle {
+            get {
+                return ResourceManager.GetString("GroupedXyCycle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Grouped XY-Wing.
+        /// </summary>
+        internal static string GroupedXyWing {
+            get {
+                return ResourceManager.GetString("GroupedXyWing", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Grouped XY-X-Chain.
+        /// </summary>
+        internal static string GroupedXyXChain {
+            get {
+                return ResourceManager.GetString("GroupedXyXChain", resourceCulture);
             }
         }
         
@@ -412,6 +1285,24 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Gurth&apos;s Symmetrical Placement.
+        /// </summary>
+        internal static string GurthSymmetricalPlacement {
+            get {
+                return ResourceManager.GetString("GurthSymmetricalPlacement", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Hidden Avoidable Rectangle.
+        /// </summary>
+        internal static string HiddenAvoidableRectangle {
+            get {
+                return ResourceManager.GetString("HiddenAvoidableRectangle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 隐性.
         /// </summary>
         internal static string HiddenKeyword {
@@ -421,11 +1312,155 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Hidden Pair.
+        /// </summary>
+        internal static string HiddenPair {
+            get {
+                return ResourceManager.GetString("HiddenPair", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Hidden Quadruple.
+        /// </summary>
+        internal static string HiddenQuadruple {
+            get {
+                return ResourceManager.GetString("HiddenQuadruple", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Hidden Single in Block.
+        /// </summary>
+        internal static string HiddenSingleBlock {
+            get {
+                return ResourceManager.GetString("HiddenSingleBlock", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Hidden Single in Column.
+        /// </summary>
+        internal static string HiddenSingleColumn {
+            get {
+                return ResourceManager.GetString("HiddenSingleColumn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Hidden Single in Row.
+        /// </summary>
+        internal static string HiddenSingleRow {
+            get {
+                return ResourceManager.GetString("HiddenSingleRow", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Hidden Triple.
+        /// </summary>
+        internal static string HiddenTriple {
+            get {
+                return ResourceManager.GetString("HiddenTriple", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Hidden Unique Rectangle.
+        /// </summary>
+        internal static string HiddenUniqueRectangle {
+            get {
+                return ResourceManager.GetString("HiddenUniqueRectangle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Hybrid Wing.
+        /// </summary>
+        internal static string HybridWing {
+            get {
+                return ResourceManager.GetString("HybridWing", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 。额外的需要计算进来的区域：.
         /// </summary>
         internal static string IncludedExtraRegion {
             get {
                 return ResourceManager.GetString("IncludedExtraRegion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Incomplete RSTUVWXYZ-Wing.
+        /// </summary>
+        internal static string IncompleteRstuvwxyzWing {
+            get {
+                return ResourceManager.GetString("IncompleteRstuvwxyzWing", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Incomplete STUVWXYZ-Wing.
+        /// </summary>
+        internal static string IncompleteStuvwxyzWing {
+            get {
+                return ResourceManager.GetString("IncompleteStuvwxyzWing", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Incomplete TUVWXYZ-Wing.
+        /// </summary>
+        internal static string IncompleteTuvwxyzWing {
+            get {
+                return ResourceManager.GetString("IncompleteTuvwxyzWing", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Incomplete UVWXYZ-Wing.
+        /// </summary>
+        internal static string IncompleteUvwxyzWing {
+            get {
+                return ResourceManager.GetString("IncompleteUvwxyzWing", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Incomplete VWXYZ-Wing.
+        /// </summary>
+        internal static string IncompleteVwxyzWing {
+            get {
+                return ResourceManager.GetString("IncompleteVwxyzWing", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Incomplete WXYZ-Wing.
+        /// </summary>
+        internal static string IncompleteWxyzWing {
+            get {
+                return ResourceManager.GetString("IncompleteWxyzWing", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Jellyfish.
+        /// </summary>
+        internal static string Jellyfish {
+            get {
+                return ResourceManager.GetString("Jellyfish", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Junior Exocet.
+        /// </summary>
+        internal static string JuniorExocet {
+            get {
+                return ResourceManager.GetString("JuniorExocet", resourceCulture);
             }
         }
         
@@ -448,6 +1483,33 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Last Digit.
+        /// </summary>
+        internal static string LastDigit {
+            get {
+                return ResourceManager.GetString("LastDigit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Leviathan.
+        /// </summary>
+        internal static string Leviathan {
+            get {
+                return ResourceManager.GetString("Leviathan", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Local Wing.
+        /// </summary>
+        internal static string LocalWing {
+            get {
+                return ResourceManager.GetString("LocalWing", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to ，区块成员 #1：.
         /// </summary>
         internal static string LockedMemberQ {
@@ -466,11 +1528,182 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Locked Pair.
+        /// </summary>
+        internal static string LockedPair {
+            get {
+                return ResourceManager.GetString("LockedPair", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Locked Qiu&apos;s Deadly Pattern.
+        /// </summary>
+        internal static string LockedQiuDeadlyPattern {
+            get {
+                return ResourceManager.GetString("LockedQiuDeadlyPattern", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Locked Triple.
+        /// </summary>
+        internal static string LockedTriple {
+            get {
+                return ResourceManager.GetString("LockedTriple", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Multi-sector Locked Sets.
+        /// </summary>
+        internal static string MultisectorLockedSets {
+            get {
+                return ResourceManager.GetString("MultisectorLockedSets", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Mutant Jellyfish.
+        /// </summary>
+        internal static string MutantJellyfish {
+            get {
+                return ResourceManager.GetString("MutantJellyfish", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Mutant Leviathan.
+        /// </summary>
+        internal static string MutantLeviathan {
+            get {
+                return ResourceManager.GetString("MutantLeviathan", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Mutant Squirmbag.
+        /// </summary>
+        internal static string MutantSquirmbag {
+            get {
+                return ResourceManager.GetString("MutantSquirmbag", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Mutant Swordfish.
+        /// </summary>
+        internal static string MutantSwordfish {
+            get {
+                return ResourceManager.GetString("MutantSwordfish", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Mutant Whale.
+        /// </summary>
+        internal static string MutantWhale {
+            get {
+                return ResourceManager.GetString("MutantWhale", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Mutant X-Wing.
+        /// </summary>
+        internal static string MutantXWing {
+            get {
+                return ResourceManager.GetString("MutantXWing", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to M-Wing.
+        /// </summary>
+        internal static string MWing {
+            get {
+                return ResourceManager.GetString("MWing", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 显性.
         /// </summary>
         internal static string NakedKeyword {
             get {
                 return ResourceManager.GetString("NakedKeyword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Naked Pair.
+        /// </summary>
+        internal static string NakedPair {
+            get {
+                return ResourceManager.GetString("NakedPair", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Naked Pair (+).
+        /// </summary>
+        internal static string NakedPairPlus {
+            get {
+                return ResourceManager.GetString("NakedPairPlus", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Naked Quadruple.
+        /// </summary>
+        internal static string NakedQuadruple {
+            get {
+                return ResourceManager.GetString("NakedQuadruple", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Naked Quadruple (+).
+        /// </summary>
+        internal static string NakedQuadruplePlus {
+            get {
+                return ResourceManager.GetString("NakedQuadruplePlus", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Naked Single.
+        /// </summary>
+        internal static string NakedSingle {
+            get {
+                return ResourceManager.GetString("NakedSingle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Naked Triple.
+        /// </summary>
+        internal static string NakedTriple {
+            get {
+                return ResourceManager.GetString("NakedTriple", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Naked Triple (+).
+        /// </summary>
+        internal static string NakedTriplePlus {
+            get {
+                return ResourceManager.GetString("NakedTriplePlus", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Nishio Forcing Chains.
+        /// </summary>
+        internal static string NishioForcingChains {
+            get {
+                return ResourceManager.GetString("NishioForcingChains", resourceCulture);
             }
         }
         
@@ -489,6 +1722,645 @@ namespace Sudoku.Resources {
         internal static string OrKeywordWithSpaces {
             get {
                 return ResourceManager.GetString("OrKeywordWithSpaces", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Pattern Overlay.
+        /// </summary>
+        internal static string PatternOverlay {
+            get {
+                return ResourceManager.GetString("PatternOverlay", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Pointing.
+        /// </summary>
+        internal static string Pointing {
+            get {
+                return ResourceManager.GetString("Pointing", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Purple Cow.
+        /// </summary>
+        internal static string PurpleCow {
+            get {
+                return ResourceManager.GetString("PurpleCow", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Qiu&apos;s Deadly Pattern Type 1.
+        /// </summary>
+        internal static string QiuDeadlyPatternType1 {
+            get {
+                return ResourceManager.GetString("QiuDeadlyPatternType1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Qiu&apos;s Deadly Pattern Type 2.
+        /// </summary>
+        internal static string QiuDeadlyPatternType2 {
+            get {
+                return ResourceManager.GetString("QiuDeadlyPatternType2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Qiu&apos;s Deadly Pattern Type 3.
+        /// </summary>
+        internal static string QiuDeadlyPatternType3 {
+            get {
+                return ResourceManager.GetString("QiuDeadlyPatternType3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Qiu&apos;s Deadly Pattern Type 4.
+        /// </summary>
+        internal static string QiuDeadlyPatternType4 {
+            get {
+                return ResourceManager.GetString("QiuDeadlyPatternType4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Region Forcing Chains.
+        /// </summary>
+        internal static string RegionForcingChains {
+            get {
+                return ResourceManager.GetString("RegionForcingChains", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to RSTUVWXYZ-Wing.
+        /// </summary>
+        internal static string RstuvwxyzWing {
+            get {
+                return ResourceManager.GetString("RstuvwxyzWing", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sashimi Franken Jellyfish.
+        /// </summary>
+        internal static string SashimiFrankenJellyfish {
+            get {
+                return ResourceManager.GetString("SashimiFrankenJellyfish", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sashimi Franken Leviathan.
+        /// </summary>
+        internal static string SashimiFrankenLeviathan {
+            get {
+                return ResourceManager.GetString("SashimiFrankenLeviathan", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sashimi Franken Squirmbag.
+        /// </summary>
+        internal static string SashimiFrankenSquirmbag {
+            get {
+                return ResourceManager.GetString("SashimiFrankenSquirmbag", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sashimi Franken Swordfish.
+        /// </summary>
+        internal static string SashimiFrankenSwordfish {
+            get {
+                return ResourceManager.GetString("SashimiFrankenSwordfish", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sashimi Franken Whale.
+        /// </summary>
+        internal static string SashimiFrankenWhale {
+            get {
+                return ResourceManager.GetString("SashimiFrankenWhale", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sashimi Franken X-Wing.
+        /// </summary>
+        internal static string SashimiFrankenXWing {
+            get {
+                return ResourceManager.GetString("SashimiFrankenXWing", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sashimi Jellyfish.
+        /// </summary>
+        internal static string SashimiJellyfish {
+            get {
+                return ResourceManager.GetString("SashimiJellyfish", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sashimi Leviathan.
+        /// </summary>
+        internal static string SashimiLeviathan {
+            get {
+                return ResourceManager.GetString("SashimiLeviathan", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sashimi Mutant Jellyfish.
+        /// </summary>
+        internal static string SashimiMutantJellyfish {
+            get {
+                return ResourceManager.GetString("SashimiMutantJellyfish", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sashimi Mutant Leviathan.
+        /// </summary>
+        internal static string SashimiMutantLeviathan {
+            get {
+                return ResourceManager.GetString("SashimiMutantLeviathan", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sashimi Mutant Squirmbag.
+        /// </summary>
+        internal static string SashimiMutantSquirmbag {
+            get {
+                return ResourceManager.GetString("SashimiMutantSquirmbag", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sashimi Mutant Swordfish.
+        /// </summary>
+        internal static string SashimiMutantSwordfish {
+            get {
+                return ResourceManager.GetString("SashimiMutantSwordfish", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sashimi Mutant Whale.
+        /// </summary>
+        internal static string SashimiMutantWhale {
+            get {
+                return ResourceManager.GetString("SashimiMutantWhale", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sashimi Mutant X-Wing.
+        /// </summary>
+        internal static string SashimiMutantXWing {
+            get {
+                return ResourceManager.GetString("SashimiMutantXWing", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sashimi Squirmbag.
+        /// </summary>
+        internal static string SashimiSquirmbag {
+            get {
+                return ResourceManager.GetString("SashimiSquirmbag", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sashimi Swordfish.
+        /// </summary>
+        internal static string SashimiSwordfish {
+            get {
+                return ResourceManager.GetString("SashimiSwordfish", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sashimi Whale.
+        /// </summary>
+        internal static string SashimiWhale {
+            get {
+                return ResourceManager.GetString("SashimiWhale", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sashimi X-Wing.
+        /// </summary>
+        internal static string SashimiXWing {
+            get {
+                return ResourceManager.GetString("SashimiXWing", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Senior Exocet.
+        /// </summary>
+        internal static string SeniorExocet {
+            get {
+                return ResourceManager.GetString("SeniorExocet", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Siamese Finned Franken Jellyfish.
+        /// </summary>
+        internal static string SiameseFinnedFrankenJellyfish {
+            get {
+                return ResourceManager.GetString("SiameseFinnedFrankenJellyfish", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Siamese Finned Franken Leviathan.
+        /// </summary>
+        internal static string SiameseFinnedFrankenLeviathan {
+            get {
+                return ResourceManager.GetString("SiameseFinnedFrankenLeviathan", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Siamese Finned Franken Squirmbag.
+        /// </summary>
+        internal static string SiameseFinnedFrankenSquirmbag {
+            get {
+                return ResourceManager.GetString("SiameseFinnedFrankenSquirmbag", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Siamese Finned Franken Swordfish.
+        /// </summary>
+        internal static string SiameseFinnedFrankenSwordfish {
+            get {
+                return ResourceManager.GetString("SiameseFinnedFrankenSwordfish", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Siamese Finned Franken Whale.
+        /// </summary>
+        internal static string SiameseFinnedFrankenWhale {
+            get {
+                return ResourceManager.GetString("SiameseFinnedFrankenWhale", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Siamese Finned Franken X-Wing.
+        /// </summary>
+        internal static string SiameseFinnedFrankenXWing {
+            get {
+                return ResourceManager.GetString("SiameseFinnedFrankenXWing", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Siamese Finned Jellyfish.
+        /// </summary>
+        internal static string SiameseFinnedJellyfish {
+            get {
+                return ResourceManager.GetString("SiameseFinnedJellyfish", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Siamese Finned Leviathan.
+        /// </summary>
+        internal static string SiameseFinnedLeviathan {
+            get {
+                return ResourceManager.GetString("SiameseFinnedLeviathan", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Siamese Finned Mutant Jellyfish.
+        /// </summary>
+        internal static string SiameseFinnedMutantJellyfish {
+            get {
+                return ResourceManager.GetString("SiameseFinnedMutantJellyfish", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Siamese Finned Mutant Leviathan.
+        /// </summary>
+        internal static string SiameseFinnedMutantLeviathan {
+            get {
+                return ResourceManager.GetString("SiameseFinnedMutantLeviathan", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Siamese Finned Mutant Squirmbag.
+        /// </summary>
+        internal static string SiameseFinnedMutantSquirmbag {
+            get {
+                return ResourceManager.GetString("SiameseFinnedMutantSquirmbag", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Siamese Finned Mutant Swordfish.
+        /// </summary>
+        internal static string SiameseFinnedMutantSwordfish {
+            get {
+                return ResourceManager.GetString("SiameseFinnedMutantSwordfish", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Siamese Finned Mutant Whale.
+        /// </summary>
+        internal static string SiameseFinnedMutantWhale {
+            get {
+                return ResourceManager.GetString("SiameseFinnedMutantWhale", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Siamese Finned Mutant X-Wing.
+        /// </summary>
+        internal static string SiameseFinnedMutantXWing {
+            get {
+                return ResourceManager.GetString("SiameseFinnedMutantXWing", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Siamese Finned Squirmbag.
+        /// </summary>
+        internal static string SiameseFinnedSquirmbag {
+            get {
+                return ResourceManager.GetString("SiameseFinnedSquirmbag", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Siamese Finned Swordfish.
+        /// </summary>
+        internal static string SiameseFinnedSwordfish {
+            get {
+                return ResourceManager.GetString("SiameseFinnedSwordfish", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Siamese Finned Whale.
+        /// </summary>
+        internal static string SiameseFinnedWhale {
+            get {
+                return ResourceManager.GetString("SiameseFinnedWhale", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Siamese Finned X-Wing.
+        /// </summary>
+        internal static string SiameseFinnedXWing {
+            get {
+                return ResourceManager.GetString("SiameseFinnedXWing", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Siamese Junior Exocet.
+        /// </summary>
+        internal static string SiameseJuniorExocet {
+            get {
+                return ResourceManager.GetString("SiameseJuniorExocet", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Siamese Sashimi Franken Jellyfish.
+        /// </summary>
+        internal static string SiameseSashimiFrankenJellyfish {
+            get {
+                return ResourceManager.GetString("SiameseSashimiFrankenJellyfish", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Siamese Sashimi Franken Leviathan.
+        /// </summary>
+        internal static string SiameseSashimiFrankenLeviathan {
+            get {
+                return ResourceManager.GetString("SiameseSashimiFrankenLeviathan", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Siamese Sashimi Franken Squirmbag.
+        /// </summary>
+        internal static string SiameseSashimiFrankenSquirmbag {
+            get {
+                return ResourceManager.GetString("SiameseSashimiFrankenSquirmbag", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Siamese Sashimi Franken Swordfish.
+        /// </summary>
+        internal static string SiameseSashimiFrankenSwordfish {
+            get {
+                return ResourceManager.GetString("SiameseSashimiFrankenSwordfish", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Siamese Sashimi Franken Whale.
+        /// </summary>
+        internal static string SiameseSashimiFrankenWhale {
+            get {
+                return ResourceManager.GetString("SiameseSashimiFrankenWhale", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Siamese Sashimi Franken X-Wing.
+        /// </summary>
+        internal static string SiameseSashimiFrankenXWing {
+            get {
+                return ResourceManager.GetString("SiameseSashimiFrankenXWing", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Siamese Sashimi Jellyfish.
+        /// </summary>
+        internal static string SiameseSashimiJellyfish {
+            get {
+                return ResourceManager.GetString("SiameseSashimiJellyfish", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Siamese Sashimi Leviathan.
+        /// </summary>
+        internal static string SiameseSashimiLeviathan {
+            get {
+                return ResourceManager.GetString("SiameseSashimiLeviathan", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Siamese Sashimi Mutant Jellyfish.
+        /// </summary>
+        internal static string SiameseSashimiMutantJellyfish {
+            get {
+                return ResourceManager.GetString("SiameseSashimiMutantJellyfish", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Siamese Sashimi Mutant Leviathan.
+        /// </summary>
+        internal static string SiameseSashimiMutantLeviathan {
+            get {
+                return ResourceManager.GetString("SiameseSashimiMutantLeviathan", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Siamese Sashimi Mutant Squirmbag.
+        /// </summary>
+        internal static string SiameseSashimiMutantSquirmbag {
+            get {
+                return ResourceManager.GetString("SiameseSashimiMutantSquirmbag", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Siamese Sashimi Mutant Swordfish.
+        /// </summary>
+        internal static string SiameseSashimiMutantSwordfish {
+            get {
+                return ResourceManager.GetString("SiameseSashimiMutantSwordfish", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Siamese Sashimi Mutant Whale.
+        /// </summary>
+        internal static string SiameseSashimiMutantWhale {
+            get {
+                return ResourceManager.GetString("SiameseSashimiMutantWhale", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Siamese Sashimi Mutant X-Wing.
+        /// </summary>
+        internal static string SiameseSashimiMutantXWing {
+            get {
+                return ResourceManager.GetString("SiameseSashimiMutantXWing", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Siamese Sashimi Squirmbag.
+        /// </summary>
+        internal static string SiameseSashimiSquirmbag {
+            get {
+                return ResourceManager.GetString("SiameseSashimiSquirmbag", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Siamese Sashimi Swordfish.
+        /// </summary>
+        internal static string SiameseSashimiSwordfish {
+            get {
+                return ResourceManager.GetString("SiameseSashimiSwordfish", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Siamese Sashimi Whale.
+        /// </summary>
+        internal static string SiameseSashimiWhale {
+            get {
+                return ResourceManager.GetString("SiameseSashimiWhale", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Siamese Sashimi X-Wing.
+        /// </summary>
+        internal static string SiameseSashimiXWing {
+            get {
+                return ResourceManager.GetString("SiameseSashimiXWing", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Siamese Senior Exocet.
+        /// </summary>
+        internal static string SiameseSeniorExocet {
+            get {
+                return ResourceManager.GetString("SiameseSeniorExocet", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Singly-Linked Almost Locked Sets XZ Rule.
+        /// </summary>
+        internal static string SinglyLinkedAlmostLockedSetsXzRule {
+            get {
+                return ResourceManager.GetString("SinglyLinkedAlmostLockedSetsXzRule", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Skyscraper.
+        /// </summary>
+        internal static string Skyscraper {
+            get {
+                return ResourceManager.GetString("Skyscraper", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Split Wing.
+        /// </summary>
+        internal static string SplitWing {
+            get {
+                return ResourceManager.GetString("SplitWing", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Squirmbag.
+        /// </summary>
+        internal static string Squirmbag {
+            get {
+                return ResourceManager.GetString("Squirmbag", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to STUVWXYZ-Wing.
+        /// </summary>
+        internal static string StuvwxyzWing {
+            get {
+                return ResourceManager.GetString("StuvwxyzWing", resourceCulture);
             }
         }
         
@@ -543,6 +2415,51 @@ namespace Sudoku.Resources {
         internal static string SubsetNamesSize7 {
             get {
                 return ResourceManager.GetString("SubsetNamesSize7", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sue de Coq.
+        /// </summary>
+        internal static string SueDeCoq {
+            get {
+                return ResourceManager.GetString("SueDeCoq", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sue de Coq 3 Dimension.
+        /// </summary>
+        internal static string SueDeCoq3Dimension {
+            get {
+                return ResourceManager.GetString("SueDeCoq3Dimension", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sue de Coq Cannibalism.
+        /// </summary>
+        internal static string SueDeCoqCannibalism {
+            get {
+                return ResourceManager.GetString("SueDeCoqCannibalism", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sue de Coq Isolated Digit.
+        /// </summary>
+        internal static string SueDeCoqIsolated {
+            get {
+                return ResourceManager.GetString("SueDeCoqIsolated", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Swordfish.
+        /// </summary>
+        internal static string Swordfish {
+            get {
+                return ResourceManager.GetString("Swordfish", resourceCulture);
             }
         }
         
@@ -1204,11 +3121,533 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Template Delete.
+        /// </summary>
+        internal static string TemplateDelete {
+            get {
+                return ResourceManager.GetString("TemplateDelete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Template Set.
+        /// </summary>
+        internal static string TemplateSet {
+            get {
+                return ResourceManager.GetString("TemplateSet", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 真.
         /// </summary>
         internal static string TrueKeyword {
             get {
                 return ResourceManager.GetString("TrueKeyword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Turbot Fish.
+        /// </summary>
+        internal static string TurbotFish {
+            get {
+                return ResourceManager.GetString("TurbotFish", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to TUVWXYZ-Wing.
+        /// </summary>
+        internal static string TuvwxyzWing {
+            get {
+                return ResourceManager.GetString("TuvwxyzWing", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Two-String Kite.
+        /// </summary>
+        internal static string TwoStringKite {
+            get {
+                return ResourceManager.GetString("TwoStringKite", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unique Loop Type 1.
+        /// </summary>
+        internal static string UniqueLoopType1 {
+            get {
+                return ResourceManager.GetString("UniqueLoopType1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unique Loop Type 2.
+        /// </summary>
+        internal static string UniqueLoopType2 {
+            get {
+                return ResourceManager.GetString("UniqueLoopType2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unique Loop Type 3.
+        /// </summary>
+        internal static string UniqueLoopType3 {
+            get {
+                return ResourceManager.GetString("UniqueLoopType3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unique Loop Type 4.
+        /// </summary>
+        internal static string UniqueLoopType4 {
+            get {
+                return ResourceManager.GetString("UniqueLoopType4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unique Polygon Type 1.
+        /// </summary>
+        internal static string UniquePolygonType1 {
+            get {
+                return ResourceManager.GetString("UniquePolygonType1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unique Polygon Type 2.
+        /// </summary>
+        internal static string UniquePolygonType2 {
+            get {
+                return ResourceManager.GetString("UniquePolygonType2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unique Polygon Type 3.
+        /// </summary>
+        internal static string UniquePolygonType3 {
+            get {
+                return ResourceManager.GetString("UniquePolygonType3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unique Polygon Type 4.
+        /// </summary>
+        internal static string UniquePolygonType4 {
+            get {
+                return ResourceManager.GetString("UniquePolygonType4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unique Rectangle + 2B/1SL.
+        /// </summary>
+        internal static string UniqueRectangle2B1 {
+            get {
+                return ResourceManager.GetString("UniqueRectangle2B1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unique Rectangle + 2D.
+        /// </summary>
+        internal static string UniqueRectangle2D {
+            get {
+                return ResourceManager.GetString("UniqueRectangle2D", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unique Rectangle + 2D/1SL.
+        /// </summary>
+        internal static string UniqueRectangle2D1 {
+            get {
+                return ResourceManager.GetString("UniqueRectangle2D1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unique Rectangle + 3E/2SL.
+        /// </summary>
+        internal static string UniqueRectangle3E2 {
+            get {
+                return ResourceManager.GetString("UniqueRectangle3E2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unique Rectangle + 3N/2SL.
+        /// </summary>
+        internal static string UniqueRectangle3N2 {
+            get {
+                return ResourceManager.GetString("UniqueRectangle3N2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unique Rectangle + 3U/2SL.
+        /// </summary>
+        internal static string UniqueRectangle3U2 {
+            get {
+                return ResourceManager.GetString("UniqueRectangle3U2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unique Rectangle + 3X.
+        /// </summary>
+        internal static string UniqueRectangle3X {
+            get {
+                return ResourceManager.GetString("UniqueRectangle3X", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unique Rectangle + 3x/1SL.
+        /// </summary>
+        internal static string UniqueRectangle3X1L {
+            get {
+                return ResourceManager.GetString("UniqueRectangle3X1L", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unique Rectangle + 3X/1SL.
+        /// </summary>
+        internal static string UniqueRectangle3X1U {
+            get {
+                return ResourceManager.GetString("UniqueRectangle3X1U", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unique Rectangle + 3X/2SL.
+        /// </summary>
+        internal static string UniqueRectangle3X2 {
+            get {
+                return ResourceManager.GetString("UniqueRectangle3X2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unique Rectangle 4C/3SL.
+        /// </summary>
+        internal static string UniqueRectangle4C3 {
+            get {
+                return ResourceManager.GetString("UniqueRectangle4C3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unique Rectangle + 4x/1SL.
+        /// </summary>
+        internal static string UniqueRectangle4X1L {
+            get {
+                return ResourceManager.GetString("UniqueRectangle4X1L", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unique Rectangle + 4X/1SL.
+        /// </summary>
+        internal static string UniqueRectangle4X1U {
+            get {
+                return ResourceManager.GetString("UniqueRectangle4X1U", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unique Rectangle + 4x/2SL.
+        /// </summary>
+        internal static string UniqueRectangle4X2L {
+            get {
+                return ResourceManager.GetString("UniqueRectangle4X2L", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unique Rectangle + 4X/2SL.
+        /// </summary>
+        internal static string UniqueRectangle4X2U {
+            get {
+                return ResourceManager.GetString("UniqueRectangle4X2U", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unique Rectangle 4X/3SL.
+        /// </summary>
+        internal static string UniqueRectangle4X3 {
+            get {
+                return ResourceManager.GetString("UniqueRectangle4X3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unique Rectangle Guardian.
+        /// </summary>
+        internal static string UniqueRectangleBrokenWing {
+            get {
+                return ResourceManager.GetString("UniqueRectangleBrokenWing", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unique Rectangle Sue de Coq.
+        /// </summary>
+        internal static string UniqueRectangleSueDeCoq {
+            get {
+                return ResourceManager.GetString("UniqueRectangleSueDeCoq", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unique Rectangle Type 1.
+        /// </summary>
+        internal static string UniqueRectangleType1 {
+            get {
+                return ResourceManager.GetString("UniqueRectangleType1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unique Rectangle Type 2.
+        /// </summary>
+        internal static string UniqueRectangleType2 {
+            get {
+                return ResourceManager.GetString("UniqueRectangleType2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unique Rectangle Type 3.
+        /// </summary>
+        internal static string UniqueRectangleType3 {
+            get {
+                return ResourceManager.GetString("UniqueRectangleType3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unique Rectangle Type 4.
+        /// </summary>
+        internal static string UniqueRectangleType4 {
+            get {
+                return ResourceManager.GetString("UniqueRectangleType4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unique Rectangle Type 5.
+        /// </summary>
+        internal static string UniqueRectangleType5 {
+            get {
+                return ResourceManager.GetString("UniqueRectangleType5", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unique Rectangle Type 6.
+        /// </summary>
+        internal static string UniqueRectangleType6 {
+            get {
+                return ResourceManager.GetString("UniqueRectangleType6", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unique Rectangle Unknown Covering.
+        /// </summary>
+        internal static string UniqueRectangleUnknownCovering {
+            get {
+                return ResourceManager.GetString("UniqueRectangleUnknownCovering", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unique Rectangle WXYZ-Wing.
+        /// </summary>
+        internal static string UniqueRectangleWxyzWing {
+            get {
+                return ResourceManager.GetString("UniqueRectangleWxyzWing", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unique Rectangle XY-Wing.
+        /// </summary>
+        internal static string UniqueRectangleXyWing {
+            get {
+                return ResourceManager.GetString("UniqueRectangleXyWing", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unique Rectangle XYZ-Wing.
+        /// </summary>
+        internal static string UniqueRectangleXyzWing {
+            get {
+                return ResourceManager.GetString("UniqueRectangleXyzWing", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unique Square Type 1.
+        /// </summary>
+        internal static string UniqueSquareType1 {
+            get {
+                return ResourceManager.GetString("UniqueSquareType1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unique Square Type 2.
+        /// </summary>
+        internal static string UniqueSquareType2 {
+            get {
+                return ResourceManager.GetString("UniqueSquareType2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unique Square Type 3.
+        /// </summary>
+        internal static string UniqueSquareType3 {
+            get {
+                return ResourceManager.GetString("UniqueSquareType3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unique Square Type 4.
+        /// </summary>
+        internal static string UniqueSquareType4 {
+            get {
+                return ResourceManager.GetString("UniqueSquareType4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to UVWXYZ-Wing.
+        /// </summary>
+        internal static string UvwxyzWing {
+            get {
+                return ResourceManager.GetString("UvwxyzWing", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to VWXYZ-Wing.
+        /// </summary>
+        internal static string VwxyzWing {
+            get {
+                return ResourceManager.GetString("VwxyzWing", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Whale.
+        /// </summary>
+        internal static string Whale {
+            get {
+                return ResourceManager.GetString("Whale", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to W-Wing.
+        /// </summary>
+        internal static string WWing {
+            get {
+                return ResourceManager.GetString("WWing", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to WXYZ-Wing.
+        /// </summary>
+        internal static string WxyzWing {
+            get {
+                return ResourceManager.GetString("WxyzWing", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to X-Chain.
+        /// </summary>
+        internal static string XChain {
+            get {
+                return ResourceManager.GetString("XChain", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to X-Wing.
+        /// </summary>
+        internal static string XWing {
+            get {
+                return ResourceManager.GetString("XWing", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to XY-Chain.
+        /// </summary>
+        internal static string XyChain {
+            get {
+                return ResourceManager.GetString("XyChain", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to XY-Cycle.
+        /// </summary>
+        internal static string XyCycle {
+            get {
+                return ResourceManager.GetString("XyCycle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to XY-Wing.
+        /// </summary>
+        internal static string XyWing {
+            get {
+                return ResourceManager.GetString("XyWing", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to XY-X-Chain.
+        /// </summary>
+        internal static string XyXChain {
+            get {
+                return ResourceManager.GetString("XyXChain", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to XYZ-Wing.
+        /// </summary>
+        internal static string XyzWing {
+            get {
+                return ResourceManager.GetString("XyzWing", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Y-Chain.
+        /// </summary>
+        internal static string YChain {
+            get {
+                return ResourceManager.GetString("YChain", resourceCulture);
             }
         }
     }
