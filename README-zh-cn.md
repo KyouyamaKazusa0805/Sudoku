@@ -12,7 +12,7 @@
 
 ```csharp
 using System;
-using Sudoku.Data;
+using Sudoku.Collections;
 using Sudoku.Solving.Manual;
 
 // 读取一个字符串形式的数独盘面的代码信息，并解析为 'Grid' 类型的对象。
