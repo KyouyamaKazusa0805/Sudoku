@@ -112,7 +112,10 @@ public unsafe struct Cells :
 	/// </summary>
 	/// <param name="cells">The pointer points to an array of elements.</param>
 	/// <param name="length">The length of the array.</param>
-	public Cells(int* cells, int length) : this(in *cells, length)
+	/// <exception cref="ArgumentNullException">
+	/// Throws when the argument <paramref name="cells"/> is <see langword="null"/>.
+	/// </exception>
+	public Cells(int* cells!!, int length) : this(in *cells, length)
 	{
 	}
 
@@ -576,10 +579,13 @@ public unsafe struct Cells :
 	/// </summary>
 	/// <param name="arr">The pointer that points to an array of type <see cref="int"/>.</param>
 	/// <param name="length">The length of that array.</param>
+	/// <exception cref="ArgumentNullException">
+	/// Throws when the argument <paramref name="arr"/> is <see langword="null"/>.
+	/// </exception>
 	/// <exception cref="InvalidOperationException">
 	/// Throws when the capacity isn't enough to store all values.
 	/// </exception>
-	public readonly void CopyTo(int* arr, int length)
+	public readonly void CopyTo(int* arr!!, int length)
 	{
 		if (Count == 0)
 		{

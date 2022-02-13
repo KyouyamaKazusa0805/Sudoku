@@ -90,7 +90,7 @@ public unsafe struct Candidates :
 	/// </summary>
 	/// <param name="candidates">The pointer points to an array of elements.</param>
 	/// <param name="length">The length of the array.</param>
-	public Candidates(int* candidates, int length) : this()
+	public Candidates(int* candidates!!, int length) : this()
 	{
 		for (int i = 0; i < length; i++)
 		{
@@ -170,9 +170,12 @@ public unsafe struct Candidates :
 	/// </summary>
 	/// <param name="binary">The pointer to the binary array.</param>
 	/// <param name="length">The length.</param>
+	/// <exception cref="ArgumentNullException">
+	/// Throws when the argument <paramref name="binary"/> is <see langword="null"/>.
+	/// </exception>
 	/// <exception cref="ArgumentException">Throws when the length is invalid.</exception>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public Candidates(long* binary, int length)
+	public Candidates(long* binary!!, int length)
 	{
 		if (length != 12)
 		{
@@ -318,10 +321,13 @@ public unsafe struct Candidates :
 	/// </summary>
 	/// <param name="arr">The pointer that points to an array of type <see cref="int"/>.</param>
 	/// <param name="length">The length of that array.</param>
+	/// <exception cref="ArgumentNullException">
+	/// Throws when the argument <paramref name="arr"/> is <see langword="null"/>.
+	/// </exception>
 	/// <exception cref="InvalidOperationException">
 	/// Throws when the capacity isn't enough to store all values.
 	/// </exception>
-	public readonly void CopyTo(int* arr, int length)
+	public readonly void CopyTo(int* arr!!, int length)
 	{
 		if (Count == 0)
 		{

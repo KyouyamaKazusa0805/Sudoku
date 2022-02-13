@@ -477,7 +477,10 @@ public unsafe ref partial struct StringHandler
 	/// </summary>
 	/// <param name="value">The string.</param>
 	/// <param name="length">The length of the string.</param>
-	public void Append(char* value, int length)
+	/// <exception cref="ArgumentNullException">
+	/// Throws when the argument <paramref name="value"/> is <see langword="null"/>.
+	/// </exception>
+	public void Append(char* value!!, int length)
 	{
 		int pos = Length;
 		if (pos > _chars.Length - length)
@@ -693,8 +696,12 @@ public unsafe ref partial struct StringHandler
 	/// whose the rule is defined as a method specified as the delegate instance as this argument.
 	/// </param>
 	/// <param name="separator">The separator to append when an element is finished to append.</param>
+	/// <exception cref="ArgumentNullException">
+	/// Throws when the argument <paramref name="list"/> or <paramref name="converter"/>
+	/// is <see langword="null"/>.
+	/// </exception>
 	public void AppendRangeWithSeparatorUnsafe<TUnmanaged>(
-		TUnmanaged* list, int length, delegate*<TUnmanaged, string?> converter, string separator)
+		TUnmanaged* list!!, int length, delegate*<TUnmanaged, string?> converter!!, string separator)
 		where TUnmanaged : unmanaged
 	{
 		for (int i = 0; i < length; i++)
@@ -718,8 +725,11 @@ public unsafe ref partial struct StringHandler
 	/// whose the rule is defined as a method specified as the delegate instance as this argument.
 	/// </param>
 	/// <param name="separator">The separator to append when an element is finished to append.</param>
+	/// <exception cref="ArgumentNullException">
+	/// Throws when the argument <paramref name="list"/> is <see langword="null"/>.
+	/// </exception>
 	public void AppendRangeWithSeparatorUnsafe<TUnmanaged>(
-		TUnmanaged* list, int length, Func<TUnmanaged, string?> converter, string separator)
+		TUnmanaged* list!!, int length, Func<TUnmanaged, string?> converter, string separator)
 		where TUnmanaged : unmanaged
 	{
 		for (int i = 0; i < length; i++)

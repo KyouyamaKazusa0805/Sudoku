@@ -94,8 +94,11 @@ public sealed unsafe partial class BitwiseSolver
 	/// <param name="solution">The solution. <see langword="null"/> if you don't want to use the value.</param>
 	/// <param name="limit">The limit.</param>
 	/// <returns>The number of all solutions.</returns>
+	/// <exception cref="ArgumentNullException">
+	/// Throws when the argument <paramref name="puzzle"/> is <see langword="null"/>.
+	/// </exception>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public long Solve([Restrict] char* puzzle, [Restrict] char* solution, int limit)
+	public long Solve([Restrict] char* puzzle!!, [Restrict] char* solution, int limit)
 	{
 		char* solutionStr = stackalloc char[BufferLength];
 		long solutionsCount = InternalSolve(puzzle, solutionStr, limit);
@@ -155,9 +158,12 @@ public sealed unsafe partial class BitwiseSolver
 	/// </summary>
 	/// <param name="grid">The grid.</param>
 	/// <returns>The <see cref="bool"/> result. <see langword="true"/> for unique solution.</returns>
+	/// <exception cref="ArgumentNullException">
+	/// Throws when the argument <paramref name="grid"/> is <see langword="null"/>.
+	/// </exception>
 	/// <seealso cref="CheckValidity(string, out string?)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public bool CheckValidity(char* grid) => InternalSolve(grid, null, 2) == 1;
+	public bool CheckValidity(char* grid!!) => InternalSolve(grid, null, 2) == 1;
 
 	/// <summary>
 	/// Same as <see cref="CheckValidity(string, out string?)"/>, but doesn't contain

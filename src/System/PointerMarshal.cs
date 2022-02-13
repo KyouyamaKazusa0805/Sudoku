@@ -13,8 +13,11 @@ public static unsafe class PointerMarshal
 	/// <typeparam name="TUnmanaged">The type of the variable.</typeparam>
 	/// <param name="left">The left variable.</param>
 	/// <param name="right">The right variable.</param>
+	/// <exception cref="ArgumentNullException">
+	/// Throws when <paramref name="left"/> or <paramref name="right"/> is <see langword="null"/>.
+	/// </exception>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static void Swap<TUnmanaged>([Restrict] TUnmanaged* left, [Restrict] TUnmanaged* right)
+	public static void Swap<TUnmanaged>([Restrict] TUnmanaged* left!!, [Restrict] TUnmanaged* right!!)
 		where TUnmanaged : unmanaged
 	{
 		var temp = *left;
@@ -27,6 +30,9 @@ public static unsafe class PointerMarshal
 	/// </summary>
 	/// <param name="ptr">The pointer.</param>
 	/// <returns>The total length.</returns>
+	/// <exception cref="ArgumentNullException">
+	/// Throws when the argument <paramref name="ptr"/> is <see langword="null"/>.
+	/// </exception>
 	/// <remarks>
 	/// In C#, this function is unsafe because the implementation of
 	/// <see cref="string"/> types between C and C# is totally different.
@@ -34,7 +40,7 @@ public static unsafe class PointerMarshal
 	/// <see cref="char"/>[], they ends with the terminator symbol <c>'\0'</c>.
 	/// However, C# not.
 	/// </remarks>
-	public static int StringLengthOf(char* ptr)
+	public static int StringLengthOf(char* ptr!!)
 	{
 #if true
 		int result = 0;
@@ -61,13 +67,16 @@ public static unsafe class PointerMarshal
 	/// <param name="length">The length of the array that pointer points to.</param>
 	/// <param name="index">The start index that you want to pick from.</param>
 	/// <returns>The array of elements.</returns>
+	/// <exception cref="ArgumentNullException">
+	/// Throws when the argument <paramref name="ptr"/> is <see langword="null"/>.
+	/// </exception>
 	/// <remarks>
 	/// For example, the pointer is the address of the first element in an array <c>{ 0, 1, 3, 6, 10 }</c>,
 	/// if parameter <paramref name="index"/> is 2, the return array will be <c>{ 3, 6, 10 }</c>. Note that
 	/// the parameter <paramref name="length"/> should keep the value 5 because the array contains
 	/// 5 elements in this case.
 	/// </remarks>
-	public static TUnmanaged[] GetArrayFromStart<TUnmanaged>(TUnmanaged* ptr, int length, int index)
+	public static TUnmanaged[] GetArrayFromStart<TUnmanaged>(TUnmanaged* ptr!!, int length, int index)
 		where TUnmanaged : unmanaged
 	{
 		var result = new TUnmanaged[length - index];
@@ -90,6 +99,9 @@ public static unsafe class PointerMarshal
 	/// the method will be same as <see cref="GetArrayFromStart{TUnmanaged}(TUnmanaged*, int, int)"/>.
 	/// </param>
 	/// <returns>The array of elements.</returns>
+	/// <exception cref="ArgumentNullException">
+	/// Throws when the argument <paramref name="ptr"/> is <see langword="null"/>.
+	/// </exception>
 	/// <remarks>
 	/// For example, the pointer is the address of the first element in an array <c>{ 0, 1, 3, 6, 10 }</c>,
 	/// if parameter <paramref name="index"/> is 2, the return array will be <c>{ 3, 6, 10 }</c>. Note that
@@ -97,7 +109,7 @@ public static unsafe class PointerMarshal
 	/// 5 elements in this case.
 	/// </remarks>
 	/// <seealso cref="GetArrayFromStart{TUnmanaged}(TUnmanaged*, int, int)"/>
-	public static int[] GetArrayFromStart(int* ptr, int length, int index, bool removeTrailingZeros)
+	public static int[] GetArrayFromStart(int* ptr!!, int length, int index, bool removeTrailingZeros)
 	{
 		if (removeTrailingZeros)
 		{

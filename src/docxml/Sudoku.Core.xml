@@ -313,6 +313,9 @@
             </summary>
             <param name="arr">The pointer that points to an array of type <see cref="T:System.Int32"/>.</param>
             <param name="length">The length of that array.</param>
+            <exception cref="T:System.ArgumentNullException">
+            Throws when the argument <paramref name="arr"/> is <see langword="null"/>.
+            </exception>
             <exception cref="T:System.InvalidOperationException">
             Throws when the capacity isn't enough to store all values.
             </exception>
@@ -1119,6 +1122,9 @@
             </summary>
             <param name="arr">The pointer that points to an array of type <see cref="T:System.Int32"/>.</param>
             <param name="length">The length of that array.</param>
+            <exception cref="T:System.ArgumentNullException">
+            Throws when the argument <paramref name="arr"/> is <see langword="null"/>.
+            </exception>
             <exception cref="T:System.InvalidOperationException">
             Throws when the capacity isn't enough to store all values.
             </exception>
@@ -5641,6 +5647,9 @@
             </summary>
             <param name="cell">The cell. The available values must be between 0 and 80.</param>
             <param name="ptr">The specified array that represents by a pointer of 3 elements.</param>
+            <exception cref="T:System.ArgumentNullException">
+            Throws when the argument <paramref name="ptr"/> is <see langword="null"/>.
+            </exception>
         </member>
         <member name="M:Sudoku.RegionExtensions.ToRegionIndex(System.Byte,Sudoku.Region)">
             <summary>
@@ -5817,6 +5826,9 @@
             <param name="solution">The solution. <see langword="null"/> if you don't want to use the value.</param>
             <param name="limit">The limit.</param>
             <returns>The number of all solutions.</returns>
+            <exception cref="T:System.ArgumentNullException">
+            Throws when the argument <paramref name="puzzle"/> is <see langword="null"/>.
+            </exception>
         </member>
         <member name="M:Sudoku.Solving.BitwiseSolver.Solve(System.String,System.Char*,System.Int32)">
             <summary>
@@ -5845,6 +5857,9 @@
             </summary>
             <param name="grid">The grid.</param>
             <returns>The <see cref="T:System.Boolean"/> result. <see langword="true"/> for unique solution.</returns>
+            <exception cref="T:System.ArgumentNullException">
+            Throws when the argument <paramref name="grid"/> is <see langword="null"/>.
+            </exception>
             <seealso cref="M:Sudoku.Solving.BitwiseSolver.CheckValidity(System.String,System.String@)"/>
         </member>
         <member name="M:Sudoku.Solving.BitwiseSolver.CheckValidity(System.String)">

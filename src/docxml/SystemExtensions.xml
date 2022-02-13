@@ -1404,6 +1404,9 @@
             </summary>
             <param name="value">The string.</param>
             <param name="length">The length of the string.</param>
+            <exception cref="T:System.ArgumentNullException">
+            Throws when the argument <paramref name="value"/> is <see langword="null"/>.
+            </exception>
         </member>
         <member name="M:System.Text.StringHandler.Append(System.String)">
             <inheritdoc cref="M:System.Text.StringHandler.AppendFormatted(System.String)"/>
@@ -1532,6 +1535,10 @@
             whose the rule is defined as a method specified as the delegate instance as this argument.
             </param>
             <param name="separator">The separator to append when an element is finished to append.</param>
+            <exception cref="T:System.ArgumentNullException">
+            Throws when the argument <paramref name="list"/> or <paramref name="converter"/>
+            is <see langword="null"/>.
+            </exception>
         </member>
         <member name="M:System.Text.StringHandler.AppendRangeWithSeparatorUnsafe``1(``0*,System.Int32,System.Func{``0,System.String},System.String)">
             <summary>
@@ -1545,6 +1552,9 @@
             whose the rule is defined as a method specified as the delegate instance as this argument.
             </param>
             <param name="separator">The separator to append when an element is finished to append.</param>
+            <exception cref="T:System.ArgumentNullException">
+            Throws when the argument <paramref name="list"/> is <see langword="null"/>.
+            </exception>
         </member>
         <member name="M:System.Text.StringHandler.AppendRangeWithLines``1(System.Collections.Generic.IEnumerable{``0})">
             <summary>
@@ -2272,6 +2282,9 @@
             <typeparam name="TUnmanaged">The type of the variable.</typeparam>
             <param name="left">The left variable.</param>
             <param name="right">The right variable.</param>
+            <exception cref="T:System.ArgumentNullException">
+            Throws when <paramref name="left"/> or <paramref name="right"/> is <see langword="null"/>.
+            </exception>
         </member>
         <member name="M:System.PointerMarshal.StringLengthOf(System.Char*)">
             <summary>
@@ -2279,6 +2292,9 @@
             </summary>
             <param name="ptr">The pointer.</param>
             <returns>The total length.</returns>
+            <exception cref="T:System.ArgumentNullException">
+            Throws when the argument <paramref name="ptr"/> is <see langword="null"/>.
+            </exception>
             <remarks>
             In C#, this function is unsafe because the implementation of
             <see cref="T:System.String"/> types between C and C# is totally different.
@@ -2299,6 +2315,9 @@
             <param name="length">The length of the array that pointer points to.</param>
             <param name="index">The start index that you want to pick from.</param>
             <returns>The array of elements.</returns>
+            <exception cref="T:System.ArgumentNullException">
+            Throws when the argument <paramref name="ptr"/> is <see langword="null"/>.
+            </exception>
             <remarks>
             For example, the pointer is the address of the first element in an array <c>{ 0, 1, 3, 6, 10 }</c>,
             if parameter <paramref name="index"/> is 2, the return array will be <c>{ 3, 6, 10 }</c>. Note that
@@ -2318,6 +2337,9 @@
             the method will be same as <see cref="M:System.PointerMarshal.GetArrayFromStart``1(``0*,System.Int32,System.Int32)"/>.
             </param>
             <returns>The array of elements.</returns>
+            <exception cref="T:System.ArgumentNullException">
+            Throws when the argument <paramref name="ptr"/> is <see langword="null"/>.
+            </exception>
             <remarks>
             For example, the pointer is the address of the first element in an array <c>{ 0, 1, 3, 6, 10 }</c>,
             if parameter <paramref name="index"/> is 2, the return array will be <c>{ 3, 6, 10 }</c>. Note that

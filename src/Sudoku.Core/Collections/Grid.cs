@@ -64,11 +64,13 @@ public unsafe partial struct Grid :
 	/// <summary>
 	/// Indicates the event triggered when the value is changed.
 	/// </summary>
+	[NotNull]
 	public static readonly void* ValueChanged;
 
 	/// <summary>
 	/// Indicates the event triggered when should re-compute candidates.
 	/// </summary>
+	[NotNull]
 	public static readonly void* RefreshingCandidates;
 
 	/// <summary>
@@ -163,7 +165,10 @@ public unsafe partial struct Grid :
 	/// </summary>
 	/// <param name="pGridValues">The pointer parameter indicating the array of cell digits.</param>
 	/// <param name="creatingOption">The grid creating option.</param>
-	public Grid(int* pGridValues, GridCreatingOption creatingOption = GridCreatingOption.None)
+	/// <exception cref="ArgumentNullException">
+	/// Throws when the argument <paramref name="pGridValues"/> is <see langword="null"/>.
+	/// </exception>
+	public Grid(int* pGridValues!!, GridCreatingOption creatingOption = GridCreatingOption.None)
 		: this(*pGridValues, creatingOption)
 	{
 	}

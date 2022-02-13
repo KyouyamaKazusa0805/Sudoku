@@ -53,8 +53,11 @@ public static class RegionExtensions
 	/// </summary>
 	/// <param name="cell">The cell. The available values must be between 0 and 80.</param>
 	/// <param name="ptr">The specified array that represents by a pointer of 3 elements.</param>
+	/// <exception cref="ArgumentNullException">
+	/// Throws when the argument <paramref name="ptr"/> is <see langword="null"/>.
+	/// </exception>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static unsafe void RopyRegionInfo(this int cell, int* ptr)
+	public static unsafe void RopyRegionInfo(this int cell, int* ptr!!)
 	{
 		ptr[0] = BlockTable[cell];
 		ptr[1] = RowTable[cell];
