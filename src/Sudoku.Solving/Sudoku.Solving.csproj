@@ -18,23 +18,15 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<EmbeddedResource Update="Resources\Resources1033.resx">
+		<EmbeddedResource Update="Resources\Resources.resx">
 			<Generator>ResXFileCodeGenerator</Generator>
-			<LastGenOutput>Resources1033.Designer.cs</LastGenOutput>
+			<LastGenOutput>Resources.Designer.cs</LastGenOutput>
 		</EmbeddedResource>
-		<EmbeddedResource Update="Resources\Resources2052.resx">
-			<Generator>ResXFileCodeGenerator</Generator>
-			<LastGenOutput>Resources2052.Designer.cs</LastGenOutput>
-		</EmbeddedResource>
-		<Compile Update="Resources\Resources1033.Designer.cs">
+		<EmbeddedResource Update="Resources\Resources.zh-CN.resx" />
+		<Compile Update="Resources\Resources.Designer.cs">
 			<DesignTime>True</DesignTime>
 			<AutoGen>True</AutoGen>
-			<DependentUpon>Resources1033.resx</DependentUpon>
-		</Compile>
-		<Compile Update="Resources\Resources2052.Designer.cs">
-			<DesignTime>True</DesignTime>
-			<AutoGen>True</AutoGen>
-			<DependentUpon>Resources2052.resx</DependentUpon>
+			<DependentUpon>Resources.resx</DependentUpon>
 		</Compile>
 	</ItemGroup>
 

@@ -1,4 +1,5 @@
-﻿using Resource = System.Resources.ResourceManager;
+﻿using System.Globalization;
+using Sudoku.Techniques;
 
 namespace Sudoku.Resources;
 
@@ -7,6 +8,17 @@ namespace Sudoku.Resources;
 /// </summary>
 internal sealed class MergedResources
 {
+	/// <summary>
+	/// Indicates the default LCID used.
+	/// </summary>
+	private const int NeutralLanguageLcid = 1033;
+
+	/// <summary>
+	/// Indicates the default culture name used.
+	/// </summary>
+	private const string NeutralLanguageName = "en-US";
+
+
 	/// <summary>
 	/// <para>
 	/// Indicates the instance that has the ability to call the resource, and distinct with different
@@ -33,37 +45,10 @@ internal sealed class MergedResources
 	/// <seealso cref="this[string]"/>
 	public static readonly MergedResources R = new();
 
-
 	/// <summary>
-	/// The default manager. If the key cannot be found in the list <see cref="_managers"/>,
-	/// this field will be looked up.
+	/// Indicates the default language culture used in the resource file.
 	/// </summary>
-	private readonly Resource _default;
-
-	/// <summary>
-	/// The inner list.
-	/// </summary>
-	private readonly IDictionary<int, Resource> _managers;
-
-	/// <summary>
-	/// Indicates the current LCID.
-	/// </summary>
-	private int _lcid = 1033;
-
-
-	/// <summary>
-	/// Initializes a <see cref="MergedResources"/> instance.
-	/// </summary>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	private MergedResources()
-	{
-		_default = Resources1033.ResourceManager;
-
-		_managers = new Dictionary<int, Resource>
-		{
-			{ 2052, Resources2052.ResourceManager }
-		};
-	}
+	private static readonly CultureInfo Neutral = CultureInfo.GetCultureInfo(NeutralLanguageLcid);
 
 
 	/// <summary>
@@ -74,22 +59,33 @@ internal sealed class MergedResources
 	public string? this[string key]
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => _lcid != 1033 && _managers[_lcid].GetString(key) is { } r1 ? r1 : _default.GetString(key);
+		get
+		{
+			var @default = Resources.ResourceManager;
+			return @default.GetString(key) ?? @default.GetString(key, Neutral);
+		}
 	}
 
 
 	/// <summary>
-	/// Change the language to the specified one that is represented as the language LCID value.
+	/// Changes the language to the specified language.
 	/// </summary>
-	/// <param name="lcid">The LCID value. The default LCID for the resource dictionary is 1033.</param>
-	/// <exception cref="ArgumentException">
-	/// Throws when the specified LCID cannot be found in the current resource dictionary.
-	/// </exception>
+	/// <param name="lcid">
+	/// The LCID of the culture, such as <c>1033</c> for <c>en-US</c> or <c>2052</c> for <c>zh-CN</c>.
+	/// </param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public void ChangeLanguage(int lcid) =>
-		_lcid = lcid != 1033 && _managers.ContainsKey(lcid)
-			? lcid
-			: throw new ArgumentException("Such LCID already exists in the current manager.", nameof(lcid));
+		Resources.Culture = lcid == NeutralLanguageLcid ? Neutral : CultureInfo.GetCultureInfo(lcid);
+
+	/// <summary>
+	/// Changes the language to the specified language.
+	/// </summary>
+	/// <param name="name">The culture string, such as <c>"en-US"</c> or <c>"zh-CN"</c>.</param>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public void ChangeLanguage(string name) =>
+		Resources.Culture = name.Equals(NeutralLanguageName, StringComparison.OrdinalIgnoreCase)
+			? Neutral
+			: CultureInfo.GetCultureInfo(name);
 
 	/// <summary>
 	/// Emits a string value represented as the specified punctuation mark.
@@ -98,4 +94,12 @@ internal sealed class MergedResources
 	/// <returns>The string that represents the punctuation mark.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public string EmitPunctuation(Punctuation punctuation) => R[punctuation.ToString()]!;
+
+	/// <summary>
+	/// Emits a string value represented as the technique name.
+	/// </summary>
+	/// <param name="technique">The technique name.</param>
+	/// <returns>The string that represents the technique name.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public string EmitTechniqueName(Technique technique) => R[technique.ToString()]!;
 }
