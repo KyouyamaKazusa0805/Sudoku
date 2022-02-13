@@ -7618,23 +7618,6 @@
             Indicates the brute force (BF) technique.
             </summary>
         </member>
-        <member name="T:Sudoku.Techniques.TechniqueNameAttribute">
-            <summary>
-            Defines the name of the technique field, which is stored in the type <see cref="T:Sudoku.Techniques.Technique"/>.
-            </summary>
-            <seealso cref="T:Sudoku.Techniques.Technique"/>
-        </member>
-        <member name="M:Sudoku.Techniques.TechniqueNameAttribute.#ctor(System.String)">
-            <summary>
-            Initializes a <see cref="T:Sudoku.Techniques.TechniqueNameAttribute"/> instance via the specified name.
-            </summary>
-            <param name="name">The technique name.</param>
-        </member>
-        <member name="P:Sudoku.Techniques.TechniqueNameAttribute.Name">
-            <summary>
-            Indicates the name of the technique.
-            </summary>
-        </member>
         <member name="T:Sudoku.Techniques.TechniqueTags">
             <summary>
             Provides a series of tags to mark on a technique.
