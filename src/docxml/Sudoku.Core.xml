@@ -6129,17 +6129,18 @@
         </member>
         <member name="F:Sudoku.Techniques.Technique.AlmostLockedPair">
             <summary>
-            Indicates the ALP.
+            Indicates the almost locked pair.
             </summary>
         </member>
         <member name="F:Sudoku.Techniques.Technique.AlmostLockedTriple">
             <summary>
-            Indicates the ALT.
+            Indicates the almost locked triple.
             </summary>
         </member>
         <member name="F:Sudoku.Techniques.Technique.AlmostLockedQuadruple">
             <summary>
-            Indicates the ALQ.
+            Indicates the almost locked quadruple.
+            The technique may not be useful because it'll be replaced with Sue de Coq.
             </summary>
         </member>
         <member name="F:Sudoku.Techniques.Technique.NakedPair">

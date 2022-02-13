@@ -17,9 +17,6 @@ public abstract record Step(ImmutableArray<Conclusion> Conclusions, ImmutableArr
 	/// <inheritdoc/>
 	public virtual bool ShowDifficulty => true;
 
-	/// <inheritdoc/>
-	public virtual bool IsElementary => false;
-
 	/// <summary>
 	/// Indicates whether the corresponding technique of the current step is an Almost Locked Sets
 	/// (ALS in abbreviation).

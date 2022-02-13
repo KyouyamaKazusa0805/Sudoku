@@ -19,8 +19,17 @@ public sealed record GuardianStep(
 	int Digit,
 	in Cells Loop,
 	in Cells Guardians
-) : SingleDigitPatternStep(Conclusions, Views, Digit), IDistinctableStep<GuardianStep>
+) : SingleDigitPatternStep(Conclusions, Views, Digit),
+	IDistinctableStep<GuardianStep>,
+	ILoopLikeStep,
+	IStepWithRank
 {
+	/// <inheritdoc/>
+	public bool? IsNice => null;
+
+	/// <inheritdoc/>
+	public int Rank => -1;
+
 	/// <inheritdoc/>
 	public override decimal Difficulty => 5.5M + .1M * (Loop.Count + (Guardians.Count >> 1) >> 1);
 

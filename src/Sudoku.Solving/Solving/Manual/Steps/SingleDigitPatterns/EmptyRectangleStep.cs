@@ -19,10 +19,13 @@ public sealed record EmptyRectangleStep(
 	int Digit,
 	int Block,
 	in ConjugatePair ConjugatePair
-) : SingleDigitPatternStep(Conclusions, Views, Digit)
+) : SingleDigitPatternStep(Conclusions, Views, Digit), IChainLikeStep, IStepWithRank
 {
 	/// <inheritdoc/>
 	public override decimal Difficulty => 4.6M;
+
+	/// <inheritdoc/>
+	public int Rank => 1;
 
 	/// <inheritdoc/>
 	public override DifficultyLevel DifficultyLevel => DifficultyLevel.Hard;

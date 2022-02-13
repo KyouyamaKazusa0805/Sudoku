@@ -19,11 +19,8 @@ public sealed record ContinuousNiceLoopStep(
 	bool XEnabled,
 	bool YEnabled,
 	Node Target
-) : ChainStep(Conclusions, Views, XEnabled, YEnabled, false, false, false, 0), ILoopStep
+) : ChainStep(Conclusions, Views, XEnabled, YEnabled, false, false, false, 0), IChainStep, ILoopStep
 {
-	/// <inheritdoc/>
-	public bool IsNice => true;
-
 	/// <inheritdoc/>
 	public override int FlatComplexity => Target.AncestorsCount;
 

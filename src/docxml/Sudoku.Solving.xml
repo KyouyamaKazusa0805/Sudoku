@@ -1569,23 +1569,6 @@
             <para>The default value is <see langword="true"/>.</para>
             </summary>
         </member>
-        <member name="P:Sudoku.Solving.Manual.IStep.IsElementary">
-            <summary>
-            <para>Indicates whether the step is an EST (i.e. Elementary Sudoku Technique) step.</para>
-            <para>
-            Here we define that the techniques often appearing and commonly to be used as below are ESTs:
-            <list type="bullet">
-            <item>Full House, Last Digit, Hidden Single, Naked Single</item>
-            <item>Pointing, Claiming</item>
-            <item>Naked Pair, Naked Triple, Naked Quarduple</item>
-            <item>Naked Pair (+), Naked Triple (+), Naked Quarduple (+)</item>
-            <item>Hidden Pair, Hidden Triple, Hidden Quarduple</item>
-            <item>Locked Pair, Locked Triple</item>
-            </list>
-            </para>
-            <para>The default value of this property is <see langword="false"/>.</para>
-            </summary>
-        </member>
         <member name="P:Sudoku.Solving.Manual.IStep.Name">
             <summary>
             Indicates the technique name. The name is defined from attribute <see cref="T:Sudoku.Techniques.TechniqueNameAttribute"/>
@@ -4960,9 +4943,6 @@
         <member name="P:Sudoku.Solving.Manual.Step.ShowDifficulty">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Solving.Manual.Step.IsElementary">
-            <inheritdoc/>
-        </member>
         <member name="P:Sudoku.Solving.Manual.Step.IsAlmostLockedSets">
             <summary>
             Indicates whether the corresponding technique of the current step is an Almost Locked Sets
@@ -5195,9 +5175,6 @@
             <param name="Views"><inheritdoc/></param>
         </member>
         <member name="P:Sudoku.Solving.Manual.Steps.AlmostLockedSetsStep.ShowDifficulty">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.Steps.AlmostLockedSetsStep.IsElementary">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Manual.Steps.AlmostLockedSetsStep.Name">
@@ -5536,9 +5513,6 @@
         <member name="P:Sudoku.Solving.Manual.Steps.ChainStep.ShowDifficulty">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Solving.Manual.Steps.ChainStep.IsElementary">
-            <inheritdoc/>
-        </member>
         <member name="P:Sudoku.Solving.Manual.Steps.ChainStep.FlatComplexity">
             <inheritdoc/>
         </member>
@@ -5594,9 +5568,6 @@
             <param name="XEnabled"><inheritdoc/></param>
             <param name="YEnabled"><inheritdoc/></param>
             <param name="Target">Indicates the target cell.</param>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.Steps.ContinuousNiceLoopStep.IsNice">
-            <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Manual.Steps.ContinuousNiceLoopStep.FlatComplexity">
             <inheritdoc/>
@@ -5895,9 +5866,6 @@
             <param name="Views"><inheritdoc/></param>
         </member>
         <member name="P:Sudoku.Solving.Manual.Steps.DeadlyPatternStep.ShowDifficulty">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.Steps.DeadlyPatternStep.IsElementary">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Manual.Steps.DeadlyPatternStep.Name">
@@ -7543,7 +7511,7 @@
         <member name="P:Sudoku.Solving.Manual.Steps.ExocetStep.ShowDifficulty">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Solving.Manual.Steps.ExocetStep.IsElementary">
+        <member name="P:Sudoku.Solving.Manual.Steps.ExocetStep.Rank">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Manual.Steps.ExocetStep.Name">
@@ -7855,9 +7823,6 @@
             <param name="BaseSetsMask">Indicates the mask that contains the base sets.</param>
             <param name="CoverSetsMask">Indicates the mask that contains the cover sets.</param>
         </member>
-        <member name="P:Sudoku.Solving.Manual.Steps.FishStep.IsElementary">
-            <inheritdoc/>
-        </member>
         <member name="P:Sudoku.Solving.Manual.Steps.FishStep.ShowDifficulty">
             <inheritdoc/>
         </member>
@@ -7868,9 +7833,7 @@
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Manual.Steps.FishStep.Size">
-            <summary>
-            Indicates the size of this fish instance.
-            </summary>
+            <inheritdoc/>
             <remarks>
             The name of the corresponding names are:
             <list type="table">
@@ -7885,9 +7848,7 @@
             </remarks>
         </member>
         <member name="P:Sudoku.Solving.Manual.Steps.FishStep.Rank">
-            <summary>
-            Indicates the rank of the fish.
-            </summary>
+            <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Manual.Steps.FishStep.TechniqueTags">
             <inheritdoc/>
@@ -8063,19 +8024,62 @@
             <returns>The list of steps.</returns>
             <seealso cref="M:Sudoku.Solving.Manual.Steps.IDistinctableStep`1.Equals(`0,`0)"/>
         </member>
-        <member name="T:Sudoku.Solving.Manual.Steps.ILoopStep">
+        <member name="T:Sudoku.Solving.Manual.Steps.IElementaryStep">
             <summary>
-            Defines a loop step.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.Steps.ILoopStep.IsNice">
-            <summary>
-            Indicates whether the loop is a nice loop.
+            Defines a step whose technique used is the elementary one.
             </summary>
             <remarks>
+            Here we define that the techniques often appearing and commonly to be used as below are elementary:
+            <list type="bullet">
+            <item>Full House, Last Digit, Hidden Single, Naked Single</item>
+            <item>Pointing, Claiming</item>
+            <item>Naked Pair, Naked Triple, Naked Quarduple</item>
+            <item>Naked Pair (+), Naked Triple (+), Naked Quarduple (+)</item>
+            <item>Hidden Pair, Hidden Triple, Hidden Quarduple</item>
+            <item>Locked Pair, Locked Triple</item>
+            </list>
+            </remarks>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Steps.ILoopLikeStep">
+            <summary>
+            Defines a step whose technique used is the loop.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.ILoopLikeStep.IsNice">
+            <summary>
+            <para>Indicates whether the current technique is the nice loop.</para>
+            <para>
             A <b>Nice</b> loop is a loop that all weak links can be gathered to remove candidates
             (if possible removable candidates exist).
-            </remarks>
+            </para>
+            </summary>
+            <returns>
+            The return value will be a <c><see cref="T:System.Boolean"/>?</c>:
+            <list type="table">
+            <item>
+            <term><see langword="true"/></term>
+            <description>The technique is the nice loop.</description>
+            </item>
+            <item>
+            <term><see langword="false"/></term>
+            <description>The technique is not a nice loop, e.g. a normal dynamic loop.</description>
+            </item>
+            <item>
+            <term><see langword="null"/></term>
+            <description>
+            The technique is not a loop, but the structure forms a valid loop-shaped one, e.g. guardian.
+            </description>
+            </item>
+            </list>
+            </returns>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Steps.ILoopStep">
+            <summary>
+            Defines the step whose technique used is the loop.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.ILoopStep.Sudoku#Solving#Manual#Steps#ILoopLikeStep#IsNice">
+            <inheritdoc/>
         </member>
         <member name="T:Sudoku.Solving.Manual.Steps.AlmostLockedCandidatesStep">
             <summary>
@@ -8100,9 +8104,7 @@
             <param name="HasValueCell">Indicates whether the step contains value cells.</param>
         </member>
         <member name="P:Sudoku.Solving.Manual.Steps.AlmostLockedCandidatesStep.Size">
-            <summary>
-            Indicates the size.
-            </summary>
+            <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Manual.Steps.AlmostLockedCandidatesStep.Difficulty">
             <inheritdoc/>
@@ -8168,10 +8170,10 @@
             <param name="BaseSet">Indicates the region that the current locked candidates forms.</param>
             <param name="CoverSet">Indicates the region that the current locked candidates influences.</param>
         </member>
-        <member name="P:Sudoku.Solving.Manual.Steps.LockedCandidatesStep.IsElementary">
+        <member name="P:Sudoku.Solving.Manual.Steps.LockedCandidatesStep.Difficulty">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Solving.Manual.Steps.LockedCandidatesStep.Difficulty">
+        <member name="P:Sudoku.Solving.Manual.Steps.LockedCandidatesStep.Rank">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Manual.Steps.LockedCandidatesStep.TechniqueCode">
@@ -8185,6 +8187,67 @@
         </member>
         <member name="P:Sudoku.Solving.Manual.Steps.LockedCandidatesStep.Rarity">
             <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Steps.IStepWithRank">
+            <summary>
+            Defines a step whose technique used is related to the rank theory,
+            which contains the property <c>Rank</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.IStepWithRank.Rank">
+            <summary>
+            Indicates the rank of the technique structure.
+            </summary>
+            <returns>
+            The return value can be separated with the following cases:
+            <list type="table">
+            <listheader>
+            <term>Range</term>
+            <description>Description</description>
+            </listheader>
+            <item>
+            <term><c><![CDATA[> 1]]></c></term>
+            <description>
+            The technique cannot be applied any eliminations except the intersection
+            that all possible branches can see.
+            </description>
+            </item>
+            <item>
+            <term><c><![CDATA[1]]></c></term>
+            <description>
+            The technique can be applied eliminations that is like a normal AIC.
+            </description>
+            </item>
+            <item>
+            <term><c><![CDATA[0]]></c></term>
+            <description>
+            The technique can be applied eliminations that is like a nice loop. For example,
+            a Sue de Coq.
+            </description>
+            </item>
+            <item>
+            <term><c><![CDATA[<= 1]]></c></term>
+            <description>
+            The negative rank value cannot be formed because the technique structure is at an invalid status.
+            </description>
+            </item>
+            </list>
+            </returns>
+            <remarks>
+            Please note that sometimes a complex structure may not contain a valid and stable rank value.
+            You can visit <see href="http://sudoku.allanbarker.com/sweb/old/wL03.htm">this link</see>
+            for more details about the mixed-rank structures.
+            </remarks>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Steps.IStepWithSize">
+            <summary>
+            Defines a step type that contains the property <c>Size</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.IStepWithSize.Size">
+            <summary>
+            Indicates the size of the current step instance related to the specified technique.
+            </summary>
         </member>
         <member name="T:Sudoku.Solving.Manual.Steps.BowmanBingoStep">
             <summary>
@@ -8360,7 +8423,13 @@
             <param name="Digit1">Indicates the first digit.</param>
             <param name="Digit2">Indicates the second digit.</param>
         </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.BivalueOddagonStep.IsNice">
+            <inheritdoc/>
+        </member>
         <member name="P:Sudoku.Solving.Manual.Steps.BivalueOddagonStep.Difficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.BivalueOddagonStep.Rank">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Manual.Steps.BivalueOddagonStep.TechniqueGroup">
@@ -8489,6 +8558,9 @@
         <member name="P:Sudoku.Solving.Manual.Steps.DominoLoopStep.Difficulty">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.DominoLoopStep.Rank">
+            <inheritdoc/>
+        </member>
         <member name="P:Sudoku.Solving.Manual.Steps.DominoLoopStep.TechniqueTags">
             <inheritdoc/>
         </member>
@@ -8523,6 +8595,9 @@
         <member name="P:Sudoku.Solving.Manual.Steps.MultisectorLockedSetsStep.Difficulty">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.MultisectorLockedSetsStep.Rank">
+            <inheritdoc/>
+        </member>
         <member name="P:Sudoku.Solving.Manual.Steps.MultisectorLockedSetsStep.TechniqueTags">
             <inheritdoc/>
         </member>
@@ -8553,9 +8628,6 @@
             <param name="Views"><inheritdoc/></param>
         </member>
         <member name="P:Sudoku.Solving.Manual.Steps.RankTheoryStep.ShowDifficulty">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.Steps.RankTheoryStep.IsElementary">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Manual.Steps.RankTheoryStep.Name">
@@ -8597,6 +8669,9 @@
             <param name="BlockCells">The block cells map.</param>
         </member>
         <member name="P:Sudoku.Solving.Manual.Steps.SueDeCoq3DimensionStep.Difficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.SueDeCoq3DimensionStep.Rank">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Manual.Steps.SueDeCoq3DimensionStep.TechniqueCode">
@@ -8651,6 +8726,9 @@
         <member name="P:Sudoku.Solving.Manual.Steps.SueDeCoqStep.Difficulty">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.SueDeCoqStep.Rank">
+            <inheritdoc/>
+        </member>
         <member name="P:Sudoku.Solving.Manual.Steps.SueDeCoqStep.TechniqueTags">
             <inheritdoc/>
         </member>
@@ -8689,6 +8767,9 @@
         <member name="P:Sudoku.Solving.Manual.Steps.EmptyRectangleStep.Difficulty">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.EmptyRectangleStep.Rank">
+            <inheritdoc/>
+        </member>
         <member name="P:Sudoku.Solving.Manual.Steps.EmptyRectangleStep.DifficultyLevel">
             <inheritdoc/>
         </member>
@@ -8723,6 +8804,12 @@
             <param name="Digit"><inheritdoc/></param>
             <param name="Loop">Indicates the loop cells used.</param>
             <param name="Guardians">Indicates the guardian cells used.</param>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.GuardianStep.IsNice">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.GuardianStep.Rank">
+            <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Manual.Steps.GuardianStep.Difficulty">
             <inheritdoc/>
@@ -8764,9 +8851,6 @@
         <member name="P:Sudoku.Solving.Manual.Steps.SingleDigitPatternStep.ShowDifficulty">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Solving.Manual.Steps.SingleDigitPatternStep.IsElementary">
-            <inheritdoc/>
-        </member>
         <member name="P:Sudoku.Solving.Manual.Steps.SingleDigitPatternStep.Name">
             <inheritdoc/>
         </member>
@@ -8803,6 +8887,9 @@
             <param name="TargetRegion">Indicates the target region used.</param>
         </member>
         <member name="P:Sudoku.Solving.Manual.Steps.TwoStrongLinksStep.Difficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.TwoStrongLinksStep.Rank">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Manual.Steps.TwoStrongLinksStep.DifficultyLevel">
@@ -8926,9 +9013,6 @@
             <param name="Views"><inheritdoc/></param>
             <param name="Cell">Indicates the cell used.</param>
             <param name="Digit">Indicates the digit used.</param>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.Steps.SingleStep.IsElementary">
-            <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Manual.Steps.SingleStep.ShowDifficulty">
             <inheritdoc/>
@@ -9054,16 +9138,14 @@
             <param name="Cells">All cells used.</param>
             <param name="DigitsMask">The maks that contains all digits used.</param>
         </member>
-        <member name="P:Sudoku.Solving.Manual.Steps.SubsetStep.IsElementary">
-            <inheritdoc/>
-        </member>
         <member name="P:Sudoku.Solving.Manual.Steps.SubsetStep.ShowDifficulty">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Manual.Steps.SubsetStep.Size">
-            <summary>
-            Indicates the size of the subset.
-            </summary>
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.SubsetStep.Rank">
+            <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Manual.Steps.SubsetStep.Name">
             <inheritdoc/>
@@ -9114,9 +9196,7 @@
             </summary>
         </member>
         <member name="P:Sudoku.Solving.Manual.Steps.RegularWingStep.Size">
-            <summary>
-            Indicates the size of this regular wing.
-            </summary>
+            <inheritdoc/>
             <remarks>
             All names are:
             <list type="table">
@@ -9190,9 +9270,6 @@
             <param name="Views"><inheritdoc/></param>
         </member>
         <member name="P:Sudoku.Solving.Manual.Steps.WingStep.ShowDifficulty">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.Steps.WingStep.IsElementary">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Manual.Steps.WingStep.Name">

@@ -19,13 +19,13 @@ public sealed record LockedCandidatesStep(
 	int Digit,
 	int BaseSet,
 	int CoverSet
-) : IntersectionStep(Conclusions, Views)
+) : IntersectionStep(Conclusions, Views), IElementaryStep, IStepWithRank
 {
 	/// <inheritdoc/>
-	public override bool IsElementary => true;
+	public override decimal Difficulty => BaseSet < 9 ? 2.6M : 2.8M;
 
 	/// <inheritdoc/>
-	public override decimal Difficulty => BaseSet < 9 ? 2.6M : 2.8M;
+	public int Rank => 0;
 
 	/// <inheritdoc/>
 	public override Technique TechniqueCode => BaseSet < 9 ? Technique.Pointing : Technique.Claiming;

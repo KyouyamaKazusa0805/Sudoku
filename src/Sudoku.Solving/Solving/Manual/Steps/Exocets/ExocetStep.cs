@@ -18,13 +18,13 @@ public abstract record ExocetStep(
 	in ExocetPattern Exocet,
 	short DigitsMask,
 	ImmutableArray<ExocetElimination> Eliminations
-) : Step(GatherConclusions(Eliminations), Views)
+) : Step(GatherConclusions(Eliminations), Views), IStepWithRank
 {
 	/// <inheritdoc/>
 	public sealed override bool ShowDifficulty => base.ShowDifficulty;
 
 	/// <inheritdoc/>
-	public sealed override bool IsElementary => base.IsElementary;
+	public virtual int Rank => 0;
 
 	/// <inheritdoc/>
 	public sealed override string Name => base.Name;

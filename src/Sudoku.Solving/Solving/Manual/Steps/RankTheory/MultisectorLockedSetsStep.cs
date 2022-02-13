@@ -16,12 +16,13 @@ public sealed record MultisectorLockedSetsStep(
 	ImmutableArray<Conclusion> Conclusions,
 	ImmutableArray<PresentationData> Views,
 	in Cells Cells
-) : RankTheoryStep(Conclusions, Views)
+) : RankTheoryStep(Conclusions, Views), IStepWithRank
 {
 	/// <inheritdoc/>
-	public override decimal Difficulty =>
-		9.4M // Base difficulty.
-			+ A002024(Cells.Count) * .1M; // Size difficulty.
+	public override decimal Difficulty => 9.4M + A002024(Cells.Count) * .1M;
+
+	/// <inheritdoc/>
+	public int Rank => 0;
 
 	/// <inheritdoc/>
 	public override TechniqueTags TechniqueTags => base.TechniqueTags | TechniqueTags.Msls;

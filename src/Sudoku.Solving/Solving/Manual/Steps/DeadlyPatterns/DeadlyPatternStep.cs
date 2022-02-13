@@ -17,9 +17,6 @@ public abstract record DeadlyPatternStep(
 	public sealed override bool ShowDifficulty => base.ShowDifficulty;
 
 	/// <inheritdoc/>
-	public sealed override bool IsElementary => base.IsElementary;
-
-	/// <inheritdoc/>
 	public override string Name => base.Name;
 
 	/// <inheritdoc/>

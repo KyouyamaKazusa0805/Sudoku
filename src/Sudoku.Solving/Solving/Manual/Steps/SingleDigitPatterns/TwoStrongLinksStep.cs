@@ -19,7 +19,7 @@ public sealed record TwoStrongLinksStep(
 	int Digit,
 	int BaseRegion,
 	int TargetRegion
-) : SingleDigitPatternStep(Conclusions, Views, Digit)
+) : SingleDigitPatternStep(Conclusions, Views, Digit), IChainLikeStep, IStepWithRank
 {
 	/// <inheritdoc/>
 	public override decimal Difficulty =>
@@ -29,6 +29,9 @@ public sealed record TwoStrongLinksStep(
 			Technique.Skyscraper => 4.0M,
 			Technique.TwoStringKite => 4.1M
 		};
+
+	/// <inheritdoc/>
+	public int Rank => 1;
 
 	/// <inheritdoc/>
 	public override DifficultyLevel DifficultyLevel => DifficultyLevel.Hard;

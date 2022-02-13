@@ -19,9 +19,6 @@ public abstract record SingleDigitPatternStep(
 	public sealed override bool ShowDifficulty => base.ShowDifficulty;
 
 	/// <inheritdoc/>
-	public sealed override bool IsElementary => base.IsElementary;
-
-	/// <inheritdoc/>
 	public sealed override string Name => base.Name;
 
 	/// <inheritdoc/>

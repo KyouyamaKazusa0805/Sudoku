@@ -22,16 +22,14 @@ public sealed record RegularWingStep(
 	int PivotCandidatesCount,
 	short DigitsMask,
 	in Cells Petals
-) : WingStep(Conclusions, Views)
+) : WingStep(Conclusions, Views), IStepWithSize
 {
 	/// <summary>
 	/// Indicates whether the structure is incomplete.
 	/// </summary>
 	public bool IsIncomplete => Size == PivotCandidatesCount + 1;
 
-	/// <summary>
-	/// Indicates the size of this regular wing.
-	/// </summary>
+	/// <inheritdoc/>
 	/// <remarks>
 	/// All names are:
 	/// <list type="table">

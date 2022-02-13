@@ -22,11 +22,9 @@ public sealed record AlmostLockedCandidatesStep(
 	in Cells BaseCells,
 	in Cells TargetCells,
 	bool HasValueCell
-) : IntersectionStep(Conclusions, Views)
+) : IntersectionStep(Conclusions, Views), IStepWithSize
 {
-	/// <summary>
-	/// Indicates the size.
-	/// </summary>
+	/// <inheritdoc/>
 	public int Size => PopCount((uint)DigitsMask);
 
 	/// <inheritdoc/>
@@ -38,13 +36,7 @@ public sealed record AlmostLockedCandidatesStep(
 	public override DifficultyLevel DifficultyLevel => DifficultyLevel.Hard;
 
 	/// <inheritdoc/>
-	public override Technique TechniqueCode =>
-		Size switch
-		{
-			2 => Technique.AlmostLockedPair,
-			3 => Technique.AlmostLockedTriple,
-			4 => Technique.AlmostLockedQuadruple
-		};
+	public override Technique TechniqueCode => (Technique)((int)Technique.AlmostLockedPair + Size - 2);
 
 	/// <inheritdoc/>
 	public override TechniqueGroup TechniqueGroup => TechniqueGroup.AlmostLockedCandidates;

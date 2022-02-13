@@ -25,10 +25,13 @@ public sealed record SueDeCoq3DimensionStep(
 	Cells RowCells,
 	Cells ColumnCells,
 	Cells BlockCells
-) : RankTheoryStep(Conclusions, Views)
+) : RankTheoryStep(Conclusions, Views), IStepWithRank
 {
 	/// <inheritdoc/>
 	public override decimal Difficulty => 5.5M;
+
+	/// <inheritdoc/>
+	public int Rank => 0;
 
 	/// <inheritdoc/>
 	public override Technique TechniqueCode => Technique.SueDeCoq3Dimension;

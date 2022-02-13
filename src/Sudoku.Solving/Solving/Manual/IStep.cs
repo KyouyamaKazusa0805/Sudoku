@@ -26,23 +26,6 @@ public interface IStep
 	bool ShowDifficulty { get; }
 
 	/// <summary>
-	/// <para>Indicates whether the step is an EST (i.e. Elementary Sudoku Technique) step.</para>
-	/// <para>
-	/// Here we define that the techniques often appearing and commonly to be used as below are ESTs:
-	/// <list type="bullet">
-	/// <item>Full House, Last Digit, Hidden Single, Naked Single</item>
-	/// <item>Pointing, Claiming</item>
-	/// <item>Naked Pair, Naked Triple, Naked Quarduple</item>
-	/// <item>Naked Pair (+), Naked Triple (+), Naked Quarduple (+)</item>
-	/// <item>Hidden Pair, Hidden Triple, Hidden Quarduple</item>
-	/// <item>Locked Pair, Locked Triple</item>
-	/// </list>
-	/// </para>
-	/// <para>The default value of this property is <see langword="false"/>.</para>
-	/// </summary>
-	bool IsElementary { get; }
-
-	/// <summary>
 	/// Indicates the technique name. The name is defined from attribute <see cref="TechniqueNameAttribute"/>
 	/// that is applied to a field in <see cref="Technique"/>.
 	/// </summary>

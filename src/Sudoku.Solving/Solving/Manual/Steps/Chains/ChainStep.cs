@@ -52,9 +52,6 @@ public abstract record ChainStep(
 	public sealed override bool ShowDifficulty => base.ShowDifficulty;
 
 	/// <inheritdoc/>
-	public sealed override bool IsElementary => base.IsElementary;
-
-	/// <inheritdoc/>
 	public abstract int FlatComplexity { get; }
 
 	/// <summary>

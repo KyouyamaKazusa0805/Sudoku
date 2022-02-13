@@ -59,19 +59,20 @@ public enum Technique : short
 	Claiming,
 
 	/// <summary>
-	/// Indicates the ALP.
+	/// Indicates the almost locked pair.
 	/// </summary>
 	[TechniqueName("Almost Locked Pair")]
 	AlmostLockedPair,
 
 	/// <summary>
-	/// Indicates the ALT.
+	/// Indicates the almost locked triple.
 	/// </summary>
 	[TechniqueName("Almost Locked Triple")]
 	AlmostLockedTriple,
 
 	/// <summary>
-	/// Indicates the ALQ.
+	/// Indicates the almost locked quadruple.
+	/// The technique may not be useful because it'll be replaced with Sue de Coq.
 	/// </summary>
 	[TechniqueName("Almost Locked Quadruple")]
 	AlmostLockedQuadruple,

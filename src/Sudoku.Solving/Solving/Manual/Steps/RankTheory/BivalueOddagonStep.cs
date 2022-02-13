@@ -18,10 +18,16 @@ public abstract record BivalueOddagonStep(
 	in Cells Loop,
 	int Digit1,
 	int Digit2
-) : RankTheoryStep(Conclusions, Views), IDistinctableStep<BivalueOddagonStep>
+) : RankTheoryStep(Conclusions, Views), IDistinctableStep<BivalueOddagonStep>, ILoopLikeStep, IStepWithRank
 {
 	/// <inheritdoc/>
+	public bool? IsNice => null;
+
+	/// <inheritdoc/>
 	public override decimal Difficulty => 5.0M;
+
+	/// <inheritdoc/>
+	public int Rank => -1;
 
 	/// <inheritdoc/>
 	public sealed override TechniqueGroup TechniqueGroup => TechniqueGroup.BivalueOddagon;

@@ -15,10 +15,13 @@ public sealed record DominoLoopStep(
 	ImmutableArray<Conclusion> Conclusions,
 	ImmutableArray<PresentationData> Views,
 	Cells Cells
-) : RankTheoryStep(Conclusions, Views)
+) : RankTheoryStep(Conclusions, Views), IStepWithRank
 {
 	/// <inheritdoc/>
 	public override decimal Difficulty => 9.6M;
+
+	/// <inheritdoc/>
+	public int Rank => 0;
 
 	/// <inheritdoc/>
 	public override TechniqueTags TechniqueTags =>

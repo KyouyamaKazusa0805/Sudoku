@@ -18,11 +18,8 @@ public abstract record FishStep(
 	int Digit,
 	int BaseSetsMask,
 	int CoverSetsMask
-) : Step(Conclusions, Views)
+) : Step(Conclusions, Views), IStepWithSize, IStepWithRank
 {
-	/// <inheritdoc/>
-	public sealed override bool IsElementary => base.IsElementary;
-
 	/// <inheritdoc/>
 	public sealed override bool ShowDifficulty => base.ShowDifficulty;
 
@@ -32,9 +29,7 @@ public abstract record FishStep(
 	/// <inheritdoc/>
 	public sealed override string? Format => base.Format;
 
-	/// <summary>
-	/// Indicates the size of this fish instance.
-	/// </summary>
+	/// <inheritdoc/>
 	/// <remarks>
 	/// The name of the corresponding names are:
 	/// <list type="table">
@@ -49,9 +44,7 @@ public abstract record FishStep(
 	/// </remarks>
 	public int Size => PopCount((uint)BaseSetsMask);
 
-	/// <summary>
-	/// Indicates the rank of the fish.
-	/// </summary>
+	/// <inheritdoc/>
 	public int Rank => PopCount((uint)CoverSetsMask) - PopCount((uint)BaseSetsMask);
 
 	/// <inheritdoc/>

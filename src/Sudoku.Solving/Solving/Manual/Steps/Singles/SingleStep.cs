@@ -15,11 +15,8 @@ public abstract record SingleStep(
 	ImmutableArray<PresentationData> Views,
 	int Cell,
 	int Digit
-) : Step(Conclusions, Views)
+) : Step(Conclusions, Views), IElementaryStep
 {
-	/// <inheritdoc/>
-	public sealed override bool IsElementary => true;
-
 	/// <inheritdoc/>
 	public sealed override bool ShowDifficulty => base.ShowDifficulty;
 

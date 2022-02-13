@@ -19,18 +19,16 @@ public abstract record SubsetStep(
 	int Region,
 	in Cells Cells,
 	short DigitsMask
-) : Step(Conclusions, Views)
+) : Step(Conclusions, Views), IStepWithSize, IStepWithRank, IElementaryStep
 {
-	/// <inheritdoc/>
-	public sealed override bool IsElementary => true;
-
 	/// <inheritdoc/>
 	public sealed override bool ShowDifficulty => base.ShowDifficulty;
 
-	/// <summary>
-	/// Indicates the size of the subset.
-	/// </summary>
+	/// <inheritdoc/>
 	public int Size => PopCount((uint)DigitsMask);
+
+	/// <inheritdoc/>
+	public int Rank => 0;
 
 	/// <inheritdoc/>
 	public sealed override string Name => base.Name;
@@ -51,11 +49,5 @@ public abstract record SubsetStep(
 	public sealed override Stableness Stableness => base.Stableness;
 
 	/// <inheritdoc/>
-	public sealed override Rarity Rarity =>
-		Size switch
-		{
-			2 => Rarity.Often,
-			3 => Rarity.Sometimes,
-			4 => Rarity.Seldom
-		};
+	public sealed override Rarity Rarity => (Rarity)(Size - 1 << 1);
 }
