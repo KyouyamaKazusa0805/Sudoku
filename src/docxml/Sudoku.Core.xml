@@ -255,6 +255,9 @@
             </summary>
             <param name="binary">The pointer to the binary array.</param>
             <param name="length">The length.</param>
+            <exception cref="T:System.ArgumentNullException">
+            Throws when the argument <paramref name="binary"/> is <see langword="null"/>.
+            </exception>
             <exception cref="T:System.ArgumentException">Throws when the length is invalid.</exception>
         </member>
         <member name="M:Sudoku.Collections.Candidates.#ctor(Sudoku.Collections.Cells@,System.Int32)">
@@ -899,6 +902,9 @@
             </summary>
             <param name="cells">The pointer points to an array of elements.</param>
             <param name="length">The length of the array.</param>
+            <exception cref="T:System.ArgumentNullException">
+            Throws when the argument <paramref name="cells"/> is <see langword="null"/>.
+            </exception>
         </member>
         <member name="M:Sudoku.Collections.Cells.#ctor(System.Int32[])">
             <summary>
@@ -2054,6 +2060,9 @@
             </summary>
             <param name="pGridValues">The pointer parameter indicating the array of cell digits.</param>
             <param name="creatingOption">The grid creating option.</param>
+            <exception cref="T:System.ArgumentNullException">
+            Throws when the argument <paramref name="pGridValues"/> is <see langword="null"/>.
+            </exception>
         </member>
         <member name="M:Sudoku.Collections.Grid.#ctor(System.ReadOnlySpan{System.Int32},Sudoku.Collections.GridCreatingOption)">
             <summary>
