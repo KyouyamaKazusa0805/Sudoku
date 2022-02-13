@@ -6,29 +6,39 @@ public sealed partial class PropertyStyleSyntaxChecker : ISyntaxContextReceiver
 	/// <inheritdoc/>
 	public void OnVisitSyntaxNode(GeneratorSyntaxContext context)
 	{
-#pragma warning disable IDE0055
 		if (
-			context.Node is not PropertyDeclarationSyntax
+#pragma warning disable IDE0055
+			context is not
 			{
-				Identifier: var identifier,
-				AccessorList.Accessors: [
-					{
-						Keyword.ValueText: var getterKeyword,
-						Body: var getterBody,
-						SemicolonToken.TrailingTrivia: var getterSemicolonTrailingTrivia
-					} getter,
-					{
-						Modifiers: var modifiers,
-						Keyword: { ValueText: var setterKeyword, LeadingTrivia: var setterLeadingTrivia },
-						AttributeLists: var attributeLists
-					}
-				]
-			} node
+				Node: PropertyDeclarationSyntax
+				{
+					Identifier: var identifier,
+					AccessorList.Accessors: [
+						{
+							Keyword.ValueText: var getterKeyword,
+							Body: var getterBody,
+							SemicolonToken.TrailingTrivia: var getterSemicolonTrailingTrivia
+						} getter,
+						{
+							Modifiers: var modifiers,
+							Keyword: { ValueText: var setterKeyword, LeadingTrivia: var setterLeadingTrivia },
+							AttributeLists: var attributeLists
+						}
+					]
+				} node,
+				SemanticModel.SyntaxTree.FilePath: var filePath
+			}
+#pragma warning restore IDE0055
 		)
 		{
 			return;
 		}
-#pragma warning restore IDE0055
+
+		if (filePath.EndsWith(".Designer.cs") || Regex.IsMatch(filePath, @".+\.g(\.\w+)?\.cs"))
+		{
+			// Don't check on generated files.
+			return;
+		}
 
 		if (getterKeyword == "get" && setterKeyword is "set" or "init")
 		{
