@@ -107,25 +107,7 @@ public abstract record Step(ImmutableArray<Conclusion> Conclusions, ImmutableArr
 	public virtual string Name => R[TechniqueCode.ToString()]!;
 
 	/// <inheritdoc/>
-	public virtual string? Format
-	{
-		get
-		{
-			try
-			{
-				var type = GetType();
-				return R[
-					type.GetCustomAttribute<FormatForwardAttribute>() is { IdentifierName: var name }
-						? $"TechniqueFormat_{name}"
-						: $"TechniqueFormat_{type.Name}"
-				];
-			}
-			catch (KeyNotFoundException)
-			{
-				return null;
-			}
-		}
-	}
+	public virtual string? Format => R[$"TechniqueFormat_{GetType().Name}"];
 
 	/// <inheritdoc/>
 	public abstract decimal Difficulty { get; }
