@@ -10,7 +10,7 @@ internal static class DrawingElementAnimation
 	/// </summary>
 	/// <typeparam name="TUIElement">The type of the control.</typeparam>
 	/// <param name="this">The control instance.</param>
-	public static void ApplyScaleAnimation<TUIElement>(TUIElement @this) where TUIElement : notnull, UIElement
+	public static void ApplyScaleAnimation<TUIElement>(TUIElement @this) where TUIElement : UIElement
 	{
 		var targetScale = new Vector3(1, 1, 1);
 		@this.Scale =
