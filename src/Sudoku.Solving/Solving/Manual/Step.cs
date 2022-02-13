@@ -104,9 +104,7 @@ public abstract record Step(ImmutableArray<Conclusion> Conclusions, ImmutableArr
 	public bool IsDeadlyPattern => HasTag(TechniqueTags.DeadlyPattern);
 
 	/// <inheritdoc/>
-	public virtual string Name =>
-		typeof(Technique).GetField(TechniqueCode.ToString())?.GetCustomAttribute<TechniqueNameAttribute>()?.Name
-			?? throw new InvalidOperationException("The step doesn't contain any name.");
+	public virtual string Name => R[TechniqueCode.ToString()]!;
 
 	/// <inheritdoc/>
 	public virtual string? Format

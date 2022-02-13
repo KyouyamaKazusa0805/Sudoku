@@ -1571,14 +1571,9 @@
         </member>
         <member name="P:Sudoku.Solving.Manual.IStep.Name">
             <summary>
-            Indicates the technique name. The name is defined from attribute <see cref="T:Sudoku.Techniques.TechniqueNameAttribute"/>
-            that is applied to a field in <see cref="T:Sudoku.Techniques.Technique"/>.
+            Indicates the technique name. The technique name are all stored in the resource dictionary,
+            you can find them in the <c>Resources</c> folder (Type <see cref="T:Sudoku.Resources.MergedResources"/>).
             </summary>
-            <exception cref="T:System.InvalidOperationException">
-            Throws when the step doesn't contain a valid name.
-            </exception>
-            <seealso cref="T:Sudoku.Techniques.TechniqueNameAttribute"/>
-            <seealso cref="T:Sudoku.Techniques.Technique"/>
         </member>
         <member name="P:Sudoku.Solving.Manual.IStep.Format">
             <summary>
@@ -11559,32 +11554,32 @@
         </member>
         <member name="P:Sudoku.Resources.Resources2052.AlmostLockedPair">
             <summary>
-              Looks up a localized string similar to Almost Locked Pair.
+              Looks up a localized string similar to 欠一数对.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources2052.AlmostLockedQuadruple">
             <summary>
-              Looks up a localized string similar to Almost Locked Quadruple.
+              Looks up a localized string similar to 欠一四数组.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources2052.AlmostLockedSetsWWing">
             <summary>
-              Looks up a localized string similar to Almost Locked Sets W-Wing.
+              Looks up a localized string similar to 待定数组・W-Wing.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources2052.AlmostLockedSetsXyWing">
             <summary>
-              Looks up a localized string similar to Almost Locked Sets XY-Wing.
+              Looks up a localized string similar to 待定数组・XY-Wing.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources2052.AlmostLockedTriple">
             <summary>
-              Looks up a localized string similar to Almost Locked Triple.
+              Looks up a localized string similar to 欠一三数组.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources2052.AlternatingInferenceChain">
             <summary>
-              Looks up a localized string similar to Alternating Inference Chain.
+              Looks up a localized string similar to 普通链.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources2052.AnalysisResultBeenSolved">
@@ -11674,142 +11669,142 @@
         </member>
         <member name="P:Sudoku.Resources.Resources2052.AvoidableRectangle2D">
             <summary>
-              Looks up a localized string similar to Avoidable Rectangle + 2D.
+              Looks up a localized string similar to 可规避矩形 + 2D.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources2052.AvoidableRectangle3X">
             <summary>
-              Looks up a localized string similar to Avoidable Rectangle + 3X.
+              Looks up a localized string similar to 可规避矩形 + 3X.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources2052.AvoidableRectangleBrokenWing">
             <summary>
-              Looks up a localized string similar to Avoidable Rectangle Guardian.
+              Looks up a localized string similar to 可规避矩形・守护者.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources2052.AvoidableRectangleHiddenSingleBlock">
             <summary>
-              Looks up a localized string similar to Avoidable Rectangle Hidden Single in Block.
+              Looks up a localized string similar to 可规避矩形・宫排除.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources2052.AvoidableRectangleHiddenSingleColumn">
             <summary>
-              Looks up a localized string similar to Avoidable Rectangle Hidden Single in Column.
+              Looks up a localized string similar to 可规避矩形・列排除.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources2052.AvoidableRectangleHiddenSingleRow">
             <summary>
-              Looks up a localized string similar to Avoidable Rectangle Hidden Single in Row.
+              Looks up a localized string similar to 可规避矩形・行排除.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources2052.AvoidableRectangleSueDeCoq">
             <summary>
-              Looks up a localized string similar to Avoidable Rectangle Sue de Coq.
+              Looks up a localized string similar to 可规避矩形・融合待定数组.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources2052.AvoidableRectangleType1">
             <summary>
-              Looks up a localized string similar to Avoidable Rectangle Type 1.
+              Looks up a localized string similar to 可规避矩形类型 1.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources2052.AvoidableRectangleType2">
             <summary>
-              Looks up a localized string similar to Avoidable Rectangle Type 2.
+              Looks up a localized string similar to 可规避矩形类型 2.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources2052.AvoidableRectangleType3">
             <summary>
-              Looks up a localized string similar to Avoidable Rectangle Type 3.
+              Looks up a localized string similar to 可规避矩形类型 3.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources2052.AvoidableRectangleType5">
             <summary>
-              Looks up a localized string similar to Avoidable Rectangle Type 5.
+              Looks up a localized string similar to 可规避矩形类型 5.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources2052.AvoidableRectangleWxyzWing">
             <summary>
-              Looks up a localized string similar to Avoidable Rectangle WXYZ-Wing.
+              Looks up a localized string similar to 可规避矩形・WXYZ-Wing.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources2052.AvoidableRectangleXyWing">
             <summary>
-              Looks up a localized string similar to Avoidable Rectangle XY-Wing.
+              Looks up a localized string similar to 可规避矩形・XY-Wing.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources2052.AvoidableRectangleXyzWing">
             <summary>
-              Looks up a localized string similar to Avoidable Rectangle XYZ-Wing.
+              Looks up a localized string similar to 可规避矩形・XYZ-Wing.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources2052.BivalueOddagonType1">
             <summary>
-              Looks up a localized string similar to Bi-value Oddagon Type 1.
+              Looks up a localized string similar to 死环类型 1.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources2052.BivalueOddagonType2">
             <summary>
-              Looks up a localized string similar to Bi-value Oddagon Type 2.
+              Looks up a localized string similar to 死环类型 2.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources2052.BivalueOddagonType3">
             <summary>
-              Looks up a localized string similar to Bi-value Oddagon Type 3.
+              Looks up a localized string similar to 死环类型 3.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources2052.BivalueUniversalGravePlusN">
             <summary>
-              Looks up a localized string similar to Bi-value Universal Grave + n.
+              Looks up a localized string similar to 全双值格致死解法・多真数.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources2052.BivalueUniversalGravePlusNForcingChains">
             <summary>
-              Looks up a localized string similar to Bi-value Universal Grave + n Forcing Chains.
+              Looks up a localized string similar to 全双值格致死解法・强制链・多真数.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources2052.BivalueUniversalGraveType1">
             <summary>
-              Looks up a localized string similar to Bi-value Universal Grave Type 1.
+              Looks up a localized string similar to 全双值格致死解法类型 1.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources2052.BivalueUniversalGraveType2">
             <summary>
-              Looks up a localized string similar to Bi-value Universal Grave Type 2.
+              Looks up a localized string similar to 全双值格致死解法类型 2.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources2052.BivalueUniversalGraveType3">
             <summary>
-              Looks up a localized string similar to Bi-value Universal Grave Type 3.
+              Looks up a localized string similar to 全双值格致死解法类型 3.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources2052.BivalueUniversalGraveType4">
             <summary>
-              Looks up a localized string similar to Bi-value Universal Grave Type 4.
+              Looks up a localized string similar to 全双值格致死解法类型 4.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources2052.BivalueUniversalGraveXyWing">
             <summary>
-              Looks up a localized string similar to Bi-value Universal Grave XY-Wing.
+              Looks up a localized string similar to 全双值格致死解法・XY-Wing.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources2052.BivalueUniversalGraveXzRule">
             <summary>
-              Looks up a localized string similar to Bi-value Universal Grave XZ Rule.
+              Looks up a localized string similar to 全双值格致死解法・双强链.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources2052.BowmanBingo">
             <summary>
-              Looks up a localized string similar to Bowman Bingo.
+              Looks up a localized string similar to Bowman 试数.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources2052.BrokenWing">
             <summary>
-              Looks up a localized string similar to Guardian.
+              Looks up a localized string similar to 守护者.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources2052.BruteForce">
             <summary>
-              Looks up a localized string similar to Brute Force.
+              Looks up a localized string similar to 计算机试数.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources2052.BruteForceSolverResultBeenSolved">
@@ -11844,12 +11839,12 @@
         </member>
         <member name="P:Sudoku.Resources.Resources2052.CellForcingChains">
             <summary>
-              Looks up a localized string similar to Cell Forcing Chains.
+              Looks up a localized string similar to 单元格强制链.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources2052.Claiming">
             <summary>
-              Looks up a localized string similar to Claiming.
+              Looks up a localized string similar to 行列区块.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources2052.Colon">
@@ -11859,57 +11854,57 @@
         </member>
         <member name="P:Sudoku.Resources.Resources2052.ComplexSeniorExocet">
             <summary>
-              Looks up a localized string similar to Complex Senior Exocet.
+              Looks up a localized string similar to 复杂高级飞鱼导弹.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources2052.ContinuousNiceLoop">
             <summary>
-              Looks up a localized string similar to Continuous Nice Loop.
+              Looks up a localized string similar to 连续环.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources2052.DeathBlossom">
             <summary>
-              Looks up a localized string similar to Death Blossom.
+              Looks up a localized string similar to 死亡绽放.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources2052.DiscontinuousNiceLoop">
             <summary>
-              Looks up a localized string similar to Discontinuous Nice Loop.
+              Looks up a localized string similar to 不连续环.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources2052.DominoLoop">
             <summary>
-              Looks up a localized string similar to Domino Loop.
+              Looks up a localized string similar to 多米诺环.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources2052.DoublyLinkedAlmostLockedSetsXzRule">
             <summary>
-              Looks up a localized string similar to Doubly-Linked Almost Locked Sets XZ Rule.
+              Looks up a localized string similar to 待定数组・双强链・环.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources2052.DynamicCellForcingChains">
             <summary>
-              Looks up a localized string similar to Dynamic Cell Forcing Chains.
+              Looks up a localized string similar to 动态单元格强制链.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources2052.DynamicContradictionForcingChains">
             <summary>
-              Looks up a localized string similar to Dynamic Contradiction Forcing Chains.
+              Looks up a localized string similar to 动态矛盾强制链.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources2052.DynamicDoubleForcingChains">
             <summary>
-              Looks up a localized string similar to Dynamic Double Forcing Chains.
+              Looks up a localized string similar to 动态二值矛盾强制链.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources2052.DynamicForcingChains">
             <summary>
-              Looks up a localized string similar to Dynamic Forcing Chains.
+              Looks up a localized string similar to 动态强制链.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources2052.DynamicRegionForcingChains">
             <summary>
-              Looks up a localized string similar to Dynamic Region Forcing Chains.
+              Looks up a localized string similar to 动态区域强制链.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources2052.Ellipsis">
@@ -11919,12 +11914,12 @@
         </member>
         <member name="P:Sudoku.Resources.Resources2052.EmptyRectangle">
             <summary>
-              Looks up a localized string similar to Empty Rectangle.
+              Looks up a localized string similar to 空矩形.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources2052.EmptyRectangleIntersectionPair">
             <summary>
-              Looks up a localized string similar to Empty Rectangle Intersection Pair.
+              Looks up a localized string similar to 对交空矩形.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources2052.EndoTaraget">
@@ -11979,32 +11974,32 @@
         </member>
         <member name="P:Sudoku.Resources.Resources2052.ExtendedGurthSymmetricalPlacement">
             <summary>
-              Looks up a localized string similar to Extended Gurth&apos;s Symmetrical Placement.
+              Looks up a localized string similar to 宇宙法拓展用法.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources2052.ExtendedRectangleType1">
             <summary>
-              Looks up a localized string similar to Extended Rectangle Type 1.
+              Looks up a localized string similar to 拓展矩形类型 1.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources2052.ExtendedRectangleType2">
             <summary>
-              Looks up a localized string similar to Extended Rectangle Type 2.
+              Looks up a localized string similar to 拓展矩形类型 2.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources2052.ExtendedRectangleType3">
             <summary>
-              Looks up a localized string similar to Extended Rectangle Type 3.
+              Looks up a localized string similar to 拓展矩形类型 3.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources2052.ExtendedRectangleType4">
             <summary>
-              Looks up a localized string similar to Extended Rectangle Type 4.
+              Looks up a localized string similar to 拓展矩形类型 4.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources2052.ExtendedSubsetPrinciple">
             <summary>
-              Looks up a localized string similar to Extended Subset Principle.
+              Looks up a localized string similar to 伪数组.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources2052.FalseKeyword">
@@ -12019,212 +12014,212 @@
         </member>
         <member name="P:Sudoku.Resources.Resources2052.FinnedFrankenJellyfish">
             <summary>
-              Looks up a localized string similar to Finned Franken Jellyfish.
+              Looks up a localized string similar to 宫内鳍四链列.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources2052.FinnedFrankenLeviathan">
             <summary>
-              Looks up a localized string similar to Finned Franken Leviathan.
+              Looks up a localized string similar to 宫内鳍七链列.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources2052.FinnedFrankenSquirmbag">
             <summary>
-              Looks up a localized string similar to Finned Franken Squirmbag.
+              Looks up a localized string similar to 宫内鳍五链列.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources2052.FinnedFrankenSwordfish">
             <summary>
-              Looks up a localized string similar to Finned Franken Swordfish.
+              Looks up a localized string similar to 宫内鳍三链列.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources2052.FinnedFrankenWhale">
             <summary>
-              Looks up a localized string similar to Finned Franken Whale.
+              Looks up a localized string similar to 宫内鳍六链列.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources2052.FinnedFrankenXWing">
             <summary>
-              Looks up a localized string similar to Finned Franken X-Wing.
+              Looks up a localized string similar to 宫内鳍二链列.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources2052.FinnedJellyfish">
             <summary>
-              Looks up a localized string similar to Finned Jellyfish.
+              Looks up a localized string similar to 鳍四链列.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources2052.FinnedLeviathan">
             <summary>
-              Looks up a localized string similar to Finned Leviathan.
+              Looks up a localized string similar to 鳍七链列.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources2052.FinnedMutantJellyfish">
             <summary>
-              Looks up a localized string similar to Finned Mutant Jellyfish.
+              Looks up a localized string similar to 交叉鳍四链列.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources2052.FinnedMutantLeviathan">
             <summary>
-              Looks up a localized string similar to Finned Mutant Leviathan.
+              Looks up a localized string similar to 交叉鳍七链列.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources2052.FinnedMutantSquirmbag">
             <summary>
-              Looks up a localized string similar to Finned Mutant Squirmbag.
+              Looks up a localized string similar to 交叉鳍五链列.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources2052.FinnedMutantSwordfish">
             <summary>
-              Looks up a localized string similar to Finned Mutant Swordfish.
+              Looks up a localized string similar to 交叉鳍三链列.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources2052.FinnedMutantWhale">
             <summary>
-              Looks up a localized string similar to Finned Mutant Whale.
+              Looks up a localized string similar to 交叉鳍六链列.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources2052.FinnedMutantXWing">
             <summary>
-              Looks up a localized string similar to Finned Mutant X-Wing.
+              Looks up a localized string similar to 交叉鳍二链列.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources2052.FinnedSquirmbag">
             <summary>
-              Looks up a localized string similar to Finned Squirmbag.
+              Looks up a localized string similar to 鳍五链列.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources2052.FinnedSwordfish">
             <summary>
-              Looks up a localized string similar to Finned Swordfish.
+              Looks up a localized string similar to 鳍三链列.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources2052.FinnedWhale">
             <summary>
-              Looks up a localized string similar to Finned Whale.
+              Looks up a localized string similar to 鳍六链列.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources2052.FinnedXWing">
             <summary>
-              Looks up a localized string similar to Finned X-Wing.
+              Looks up a localized string similar to 鳍二链列.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources2052.FishyCycle">
             <summary>
-              Looks up a localized string similar to Fishy Cycle.
+              Looks up a localized string similar to 鱼环.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources2052.FrankenJellyfish">
             <summary>
-              Looks up a localized string similar to Franken Jellyfish.
+              Looks up a localized string similar to 宫内四链列.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources2052.FrankenLeviathan">
             <summary>
-              Looks up a localized string similar to Franken Leviathan.
+              Looks up a localized string similar to 宫内七链列.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources2052.FrankenSquirmbag">
             <summary>
-              Looks up a localized string similar to Franken Squirmbag.
+              Looks up a localized string similar to 宫内五链列.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources2052.FrankenSwordfish">
             <summary>
-              Looks up a localized string similar to Franken Swordfish.
+              Looks up a localized string similar to 宫内三链列.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources2052.FrankenWhale">
             <summary>
-              Looks up a localized string similar to Franken Whale.
+              Looks up a localized string similar to 宫内六链列.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources2052.FrankenXWing">
             <summary>
-              Looks up a localized string similar to Franken X-Wing.
+              Looks up a localized string similar to 宫内二链列.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources2052.FullHouse">
             <summary>
-              Looks up a localized string similar to Full House.
+              Looks up a localized string similar to 同区域剩余.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources2052.GroupedAlternatingInferenceChain">
             <summary>
-              Looks up a localized string similar to Grouped Alternating Inference Chain.
+              Looks up a localized string similar to 结构普通链.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources2052.GroupedBivalueOddagon">
             <summary>
-              Looks up a localized string similar to Grouped Bi-value Oddagon.
+              Looks up a localized string similar to 区块死环.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources2052.GroupedContinuousNiceLoop">
             <summary>
-              Looks up a localized string similar to Grouped Continuous Nice Loop.
+              Looks up a localized string similar to 结构连续环.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources2052.GroupedDiscontinuousNiceLoop">
             <summary>
-              Looks up a localized string similar to Grouped Discontinuous Nice Loop.
+              Looks up a localized string similar to 结构不连续环.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources2052.GroupedFishyCycle">
             <summary>
-              Looks up a localized string similar to Grouped Fishy Cycle.
+              Looks up a localized string similar to 区块鱼环.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources2052.GroupedHybridWing">
             <summary>
-              Looks up a localized string similar to Grouped Hybrid Wing.
+              Looks up a localized string similar to 区块 Hybrid Wing.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources2052.GroupedLocalWing">
             <summary>
-              Looks up a localized string similar to Grouped Local Wing.
+              Looks up a localized string similar to 区块 Local Wing.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources2052.GroupedMWing">
             <summary>
-              Looks up a localized string similar to Grouped M-Wing.
+              Looks up a localized string similar to 区块 M-Wing.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources2052.GroupedPurpleCow">
             <summary>
-              Looks up a localized string similar to Grouped Purple Cow.
+              Looks up a localized string similar to 区块 Purple Cow.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources2052.GroupedSplitWing">
             <summary>
-              Looks up a localized string similar to Grouped Split Wing.
+              Looks up a localized string similar to 区块 Split Wing.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources2052.GroupedWWing">
             <summary>
-              Looks up a localized string similar to Grouped W-Wing.
+              Looks up a localized string similar to 区块 W-Wing.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources2052.GroupedXChain">
             <summary>
-              Looks up a localized string similar to Grouped X-Chain.
+              Looks up a localized string similar to 区块同数链.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources2052.GroupedXyChain">
             <summary>
-              Looks up a localized string similar to Grouped XY-Chain.
+              Looks up a localized string similar to 区块双值格链.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources2052.GroupedXyCycle">
             <summary>
-              Looks up a localized string similar to Grouped XY-Cycle.
+              Looks up a localized string similar to 区块双值格环.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources2052.GroupedXyWing">
             <summary>
-              Looks up a localized string similar to Grouped XY-Wing.
+              Looks up a localized string similar to 区块 XY-Wing.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources2052.GroupedXyXChain">
             <summary>
-              Looks up a localized string similar to Grouped XY-X-Chain.
+              Looks up a localized string similar to 区块首尾异数链.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources2052.GuardianPlural">
@@ -12239,12 +12234,12 @@
         </member>
         <member name="P:Sudoku.Resources.Resources2052.GurthSymmetricalPlacement">
             <summary>
-              Looks up a localized string similar to Gurth&apos;s Symmetrical Placement.
+              Looks up a localized string similar to 宇宙法.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources2052.HiddenAvoidableRectangle">
             <summary>
-              Looks up a localized string similar to Hidden Avoidable Rectangle.
+              Looks up a localized string similar to 隐性可规避矩形.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources2052.HiddenKeyword">
@@ -12254,37 +12249,37 @@
         </member>
         <member name="P:Sudoku.Resources.Resources2052.HiddenPair">
             <summary>
-              Looks up a localized string similar to Hidden Pair.
+              Looks up a localized string similar to 隐性数对.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources2052.HiddenQuadruple">
             <summary>
-              Looks up a localized string similar to Hidden Quadruple.
+              Looks up a localized string similar to 隐性四数组.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources2052.HiddenSingleBlock">
             <summary>
-              Looks up a localized string similar to Hidden Single in Block.
+              Looks up a localized string similar to 宫排除.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources2052.HiddenSingleColumn">
             <summary>
-              Looks up a localized string similar to Hidden Single in Column.
+              Looks up a localized string similar to 列排除.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources2052.HiddenSingleRow">
             <summary>
-              Looks up a localized string similar to Hidden Single in Row.
+              Looks up a localized string similar to 行排除.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources2052.HiddenTriple">
             <summary>
-              Looks up a localized string similar to Hidden Triple.
+              Looks up a localized string similar to 隐性三数组.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources2052.HiddenUniqueRectangle">
             <summary>
-              Looks up a localized string similar to Hidden Unique Rectangle.
+              Looks up a localized string similar to 隐性唯一矩形.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources2052.HybridWing">
@@ -12299,42 +12294,42 @@
         </member>
         <member name="P:Sudoku.Resources.Resources2052.IncompleteRstuvwxyzWing">
             <summary>
-              Looks up a localized string similar to Incomplete RSTUVWXYZ-Wing.
+              Looks up a localized string similar to 残缺 RSTUVWXYZ-Wing.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources2052.IncompleteStuvwxyzWing">
             <summary>
-              Looks up a localized string similar to Incomplete STUVWXYZ-Wing.
+              Looks up a localized string similar to 残缺 STUVWXYZ-Wing.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources2052.IncompleteTuvwxyzWing">
             <summary>
-              Looks up a localized string similar to Incomplete TUVWXYZ-Wing.
+              Looks up a localized string similar to 残缺 TUVWXYZ-Wing.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources2052.IncompleteUvwxyzWing">
             <summary>
-              Looks up a localized string similar to Incomplete UVWXYZ-Wing.
+              Looks up a localized string similar to 残缺 UVWXYZ-Wing.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources2052.IncompleteVwxyzWing">
             <summary>
-              Looks up a localized string similar to Incomplete VWXYZ-Wing.
+              Looks up a localized string similar to 残缺 VWXYZ-Wing.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources2052.IncompleteWxyzWing">
             <summary>
-              Looks up a localized string similar to Incomplete WXYZ-Wing.
+              Looks up a localized string similar to 残缺 WXYZ-Wing.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources2052.Jellyfish">
             <summary>
-              Looks up a localized string similar to Jellyfish.
+              Looks up a localized string similar to 四链列.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources2052.JuniorExocet">
             <summary>
-              Looks up a localized string similar to Junior Exocet.
+              Looks up a localized string similar to 初级飞鱼导弹.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources2052.KeywordIn">
@@ -12349,12 +12344,12 @@
         </member>
         <member name="P:Sudoku.Resources.Resources2052.LastDigit">
             <summary>
-              Looks up a localized string similar to Last Digit.
+              Looks up a localized string similar to 同数剩余.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources2052.Leviathan">
             <summary>
-              Looks up a localized string similar to Leviathan.
+              Looks up a localized string similar to 七链列.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources2052.LocalWing">
@@ -12374,52 +12369,52 @@
         </member>
         <member name="P:Sudoku.Resources.Resources2052.LockedPair">
             <summary>
-              Looks up a localized string similar to Locked Pair.
+              Looks up a localized string similar to 死锁数对.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources2052.LockedQiuDeadlyPattern">
             <summary>
-              Looks up a localized string similar to Locked Qiu&apos;s Deadly Pattern.
+              Looks up a localized string similar to 死锁淑芬致命结构.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources2052.LockedTriple">
             <summary>
-              Looks up a localized string similar to Locked Triple.
+              Looks up a localized string similar to 死锁三数组.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources2052.MultisectorLockedSets">
             <summary>
-              Looks up a localized string similar to Multi-sector Locked Sets.
+              Looks up a localized string similar to 网.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources2052.MutantJellyfish">
             <summary>
-              Looks up a localized string similar to Mutant Jellyfish.
+              Looks up a localized string similar to 交叉四链列.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources2052.MutantLeviathan">
             <summary>
-              Looks up a localized string similar to Mutant Leviathan.
+              Looks up a localized string similar to 交叉七链列.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources2052.MutantSquirmbag">
             <summary>
-              Looks up a localized string similar to Mutant Squirmbag.
+              Looks up a localized string similar to 交叉五链列.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources2052.MutantSwordfish">
             <summary>
-              Looks up a localized string similar to Mutant Swordfish.
+              Looks up a localized string similar to 交叉三链列.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources2052.MutantWhale">
             <summary>
-              Looks up a localized string similar to Mutant Whale.
+              Looks up a localized string similar to 交叉六链列.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources2052.MutantXWing">
             <summary>
-              Looks up a localized string similar to Mutant X-Wing.
+              Looks up a localized string similar to 交叉二链列.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources2052.MWing">
@@ -12434,42 +12429,42 @@
         </member>
         <member name="P:Sudoku.Resources.Resources2052.NakedPair">
             <summary>
-              Looks up a localized string similar to Naked Pair.
+              Looks up a localized string similar to 显性数对.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources2052.NakedPairPlus">
             <summary>
-              Looks up a localized string similar to Naked Pair (+).
+              Looks up a localized string similar to 显性数对带区块.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources2052.NakedQuadruple">
             <summary>
-              Looks up a localized string similar to Naked Quadruple.
+              Looks up a localized string similar to 显性四数组.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources2052.NakedQuadruplePlus">
             <summary>
-              Looks up a localized string similar to Naked Quadruple (+).
+              Looks up a localized string similar to 显性四数组带区块.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources2052.NakedSingle">
             <summary>
-              Looks up a localized string similar to Naked Single.
+              Looks up a localized string similar to 唯一余数.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources2052.NakedTriple">
             <summary>
-              Looks up a localized string similar to Naked Triple.
+              Looks up a localized string similar to 显性三数组.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources2052.NakedTriplePlus">
             <summary>
-              Looks up a localized string similar to Naked Triple (+).
+              Looks up a localized string similar to 显性三数组带区块.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources2052.NishioForcingChains">
             <summary>
-              Looks up a localized string similar to Nishio Forcing Chains.
+              Looks up a localized string similar to 西尾彻也强制链.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources2052.Only">
@@ -12484,12 +12479,12 @@
         </member>
         <member name="P:Sudoku.Resources.Resources2052.PatternOverlay">
             <summary>
-              Looks up a localized string similar to Pattern Overlay.
+              Looks up a localized string similar to 同数叠加删减.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources2052.Pointing">
             <summary>
-              Looks up a localized string similar to Pointing.
+              Looks up a localized string similar to 宫区块.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources2052.PurpleCow">
@@ -12499,27 +12494,27 @@
         </member>
         <member name="P:Sudoku.Resources.Resources2052.QiuDeadlyPatternType1">
             <summary>
-              Looks up a localized string similar to Qiu&apos;s Deadly Pattern Type 1.
+              Looks up a localized string similar to 淑芬致命结构类型 1.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources2052.QiuDeadlyPatternType2">
             <summary>
-              Looks up a localized string similar to Qiu&apos;s Deadly Pattern Type 2.
+              Looks up a localized string similar to 淑芬致命结构类型 2.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources2052.QiuDeadlyPatternType3">
             <summary>
-              Looks up a localized string similar to Qiu&apos;s Deadly Pattern Type 3.
+              Looks up a localized string similar to 淑芬致命结构类型 3.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources2052.QiuDeadlyPatternType4">
             <summary>
-              Looks up a localized string similar to Qiu&apos;s Deadly Pattern Type 4.
+              Looks up a localized string similar to 淑芬致命结构类型 4.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources2052.RegionForcingChains">
             <summary>
-              Looks up a localized string similar to Region Forcing Chains.
+              Looks up a localized string similar to 区域强制链.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources2052.RstuvwxyzWing">
@@ -12529,297 +12524,297 @@
         </member>
         <member name="P:Sudoku.Resources.Resources2052.SashimiFrankenJellyfish">
             <summary>
-              Looks up a localized string similar to Sashimi Franken Jellyfish.
+              Looks up a localized string similar to 宫内退化四链列.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources2052.SashimiFrankenLeviathan">
             <summary>
-              Looks up a localized string similar to Sashimi Franken Leviathan.
+              Looks up a localized string similar to 宫内退化七链列.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources2052.SashimiFrankenSquirmbag">
             <summary>
-              Looks up a localized string similar to Sashimi Franken Squirmbag.
+              Looks up a localized string similar to 宫内退化五链列.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources2052.SashimiFrankenSwordfish">
             <summary>
-              Looks up a localized string similar to Sashimi Franken Swordfish.
+              Looks up a localized string similar to 宫内退化三链列.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources2052.SashimiFrankenWhale">
             <summary>
-              Looks up a localized string similar to Sashimi Franken Whale.
+              Looks up a localized string similar to 宫内退化六链列.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources2052.SashimiFrankenXWing">
             <summary>
-              Looks up a localized string similar to Sashimi Franken X-Wing.
+              Looks up a localized string similar to 宫内退化二链列.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources2052.SashimiJellyfish">
             <summary>
-              Looks up a localized string similar to Sashimi Jellyfish.
+              Looks up a localized string similar to 退化四链列.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources2052.SashimiLeviathan">
             <summary>
-              Looks up a localized string similar to Sashimi Leviathan.
+              Looks up a localized string similar to 退化七链列.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources2052.SashimiMutantJellyfish">
             <summary>
-              Looks up a localized string similar to Sashimi Mutant Jellyfish.
+              Looks up a localized string similar to 交叉退化四链列.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources2052.SashimiMutantLeviathan">
             <summary>
-              Looks up a localized string similar to Sashimi Mutant Leviathan.
+              Looks up a localized string similar to 交叉退化七链列.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources2052.SashimiMutantSquirmbag">
             <summary>
-              Looks up a localized string similar to Sashimi Mutant Squirmbag.
+              Looks up a localized string similar to 交叉退化五链列.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources2052.SashimiMutantSwordfish">
             <summary>
-              Looks up a localized string similar to Sashimi Mutant Swordfish.
+              Looks up a localized string similar to 交叉退化三链列.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources2052.SashimiMutantWhale">
             <summary>
-              Looks up a localized string similar to Sashimi Mutant Whale.
+              Looks up a localized string similar to 交叉退化六链列.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources2052.SashimiMutantXWing">
             <summary>
-              Looks up a localized string similar to Sashimi Mutant X-Wing.
+              Looks up a localized string similar to 交叉退化二链列.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources2052.SashimiSquirmbag">
             <summary>
-              Looks up a localized string similar to Sashimi Squirmbag.
+              Looks up a localized string similar to 退化五链列.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources2052.SashimiSwordfish">
             <summary>
-              Looks up a localized string similar to Sashimi Swordfish.
+              Looks up a localized string similar to 退化三链列.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources2052.SashimiWhale">
             <summary>
-              Looks up a localized string similar to Sashimi Whale.
+              Looks up a localized string similar to 退化六链列.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources2052.SashimiXWing">
             <summary>
-              Looks up a localized string similar to Sashimi X-Wing.
+              Looks up a localized string similar to 退化二链列.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources2052.SeniorExocet">
             <summary>
-              Looks up a localized string similar to Senior Exocet.
+              Looks up a localized string similar to 高级飞鱼导弹.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources2052.SiameseFinnedFrankenJellyfish">
             <summary>
-              Looks up a localized string similar to Siamese Finned Franken Jellyfish.
+              Looks up a localized string similar to 宫内孪生鳍四链列.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources2052.SiameseFinnedFrankenLeviathan">
             <summary>
-              Looks up a localized string similar to Siamese Finned Franken Leviathan.
+              Looks up a localized string similar to 宫内孪生鳍七链列.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources2052.SiameseFinnedFrankenSquirmbag">
             <summary>
-              Looks up a localized string similar to Siamese Finned Franken Squirmbag.
+              Looks up a localized string similar to 宫内孪生鳍五链列.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources2052.SiameseFinnedFrankenSwordfish">
             <summary>
-              Looks up a localized string similar to Siamese Finned Franken Swordfish.
+              Looks up a localized string similar to 宫内孪生鳍三链列.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources2052.SiameseFinnedFrankenWhale">
             <summary>
-              Looks up a localized string similar to Siamese Finned Franken Whale.
+              Looks up a localized string similar to 宫内孪生鳍六链列.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources2052.SiameseFinnedFrankenXWing">
             <summary>
-              Looks up a localized string similar to Siamese Finned Franken X-Wing.
+              Looks up a localized string similar to 宫内孪生鳍二链列.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources2052.SiameseFinnedJellyfish">
             <summary>
-              Looks up a localized string similar to Siamese Finned Jellyfish.
+              Looks up a localized string similar to 孪生鳍四链列.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources2052.SiameseFinnedLeviathan">
             <summary>
-              Looks up a localized string similar to Siamese Finned Leviathan.
+              Looks up a localized string similar to 孪生鳍七链列.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources2052.SiameseFinnedMutantJellyfish">
             <summary>
-              Looks up a localized string similar to Siamese Finned Mutant Jellyfish.
+              Looks up a localized string similar to 交叉孪生鳍四链列.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources2052.SiameseFinnedMutantLeviathan">
             <summary>
-              Looks up a localized string similar to Siamese Finned Mutant Leviathan.
+              Looks up a localized string similar to 交叉孪生鳍七链列.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources2052.SiameseFinnedMutantSquirmbag">
             <summary>
-              Looks up a localized string similar to Siamese Finned Mutant Squirmbag.
+              Looks up a localized string similar to 交叉孪生鳍五链列.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources2052.SiameseFinnedMutantSwordfish">
             <summary>
-              Looks up a localized string similar to Siamese Finned Mutant Swordfish.
+              Looks up a localized string similar to 交叉孪生鳍三链列.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources2052.SiameseFinnedMutantWhale">
             <summary>
-              Looks up a localized string similar to Siamese Finned Mutant Whale.
+              Looks up a localized string similar to 交叉孪生鳍六链列.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources2052.SiameseFinnedMutantXWing">
             <summary>
-              Looks up a localized string similar to Siamese Finned Mutant X-Wing.
+              Looks up a localized string similar to 交叉孪生鳍二链列.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources2052.SiameseFinnedSquirmbag">
             <summary>
-              Looks up a localized string similar to Siamese Finned Squirmbag.
+              Looks up a localized string similar to 孪生鳍五链列.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources2052.SiameseFinnedSwordfish">
             <summary>
-              Looks up a localized string similar to Siamese Finned Swordfish.
+              Looks up a localized string similar to 孪生鳍三链列.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources2052.SiameseFinnedWhale">
             <summary>
-              Looks up a localized string similar to Siamese Finned Whale.
+              Looks up a localized string similar to 孪生鳍六链列.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources2052.SiameseFinnedXWing">
             <summary>
-              Looks up a localized string similar to Siamese Finned X-Wing.
+              Looks up a localized string similar to 孪生鳍二链列.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources2052.SiameseJuniorExocet">
             <summary>
-              Looks up a localized string similar to Siamese Junior Exocet.
+              Looks up a localized string similar to 孪生初级飞鱼导弹.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources2052.SiameseSashimiFrankenJellyfish">
             <summary>
-              Looks up a localized string similar to Siamese Sashimi Franken Jellyfish.
+              Looks up a localized string similar to 宫内孪生退化四链列.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources2052.SiameseSashimiFrankenLeviathan">
             <summary>
-              Looks up a localized string similar to Siamese Sashimi Franken Leviathan.
+              Looks up a localized string similar to 宫内孪生退化七链列.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources2052.SiameseSashimiFrankenSquirmbag">
             <summary>
-              Looks up a localized string similar to Siamese Sashimi Franken Squirmbag.
+              Looks up a localized string similar to 宫内孪生退化五链列.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources2052.SiameseSashimiFrankenSwordfish">
             <summary>
-              Looks up a localized string similar to Siamese Sashimi Franken Swordfish.
+              Looks up a localized string similar to 宫内孪生退化三链列.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources2052.SiameseSashimiFrankenWhale">
             <summary>
-              Looks up a localized string similar to Siamese Sashimi Franken Whale.
+              Looks up a localized string similar to 宫内孪生退化六链列.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources2052.SiameseSashimiFrankenXWing">
             <summary>
-              Looks up a localized string similar to Siamese Sashimi Franken X-Wing.
+              Looks up a localized string similar to 宫内孪生退化二链列.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources2052.SiameseSashimiJellyfish">
             <summary>
-              Looks up a localized string similar to Siamese Sashimi Jellyfish.
+              Looks up a localized string similar to 孪生退化四链列.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources2052.SiameseSashimiLeviathan">
             <summary>
-              Looks up a localized string similar to Siamese Sashimi Leviathan.
+              Looks up a localized string similar to 孪生退化七链列.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources2052.SiameseSashimiMutantJellyfish">
             <summary>
-              Looks up a localized string similar to Siamese Sashimi Mutant Jellyfish.
+              Looks up a localized string similar to 交叉孪生退化四链列.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources2052.SiameseSashimiMutantLeviathan">
             <summary>
-              Looks up a localized string similar to Siamese Sashimi Mutant Leviathan.
+              Looks up a localized string similar to 交叉孪生退化七链列.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources2052.SiameseSashimiMutantSquirmbag">
             <summary>
-              Looks up a localized string similar to Siamese Sashimi Mutant Squirmbag.
+              Looks up a localized string similar to 交叉孪生退化五链列.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources2052.SiameseSashimiMutantSwordfish">
             <summary>
-              Looks up a localized string similar to Siamese Sashimi Mutant Swordfish.
+              Looks up a localized string similar to 交叉孪生退化三链列.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources2052.SiameseSashimiMutantWhale">
             <summary>
-              Looks up a localized string similar to Siamese Sashimi Mutant Whale.
+              Looks up a localized string similar to 交叉孪生退化六链列.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources2052.SiameseSashimiMutantXWing">
             <summary>
-              Looks up a localized string similar to Siamese Sashimi Mutant X-Wing.
+              Looks up a localized string similar to 交叉孪生退化二链列.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources2052.SiameseSashimiSquirmbag">
             <summary>
-              Looks up a localized string similar to Siamese Sashimi Squirmbag.
+              Looks up a localized string similar to 孪生退化五链列.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources2052.SiameseSashimiSwordfish">
             <summary>
-              Looks up a localized string similar to Siamese Sashimi Swordfish.
+              Looks up a localized string similar to 孪生退化三链列.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources2052.SiameseSashimiWhale">
             <summary>
-              Looks up a localized string similar to Siamese Sashimi Whale.
+              Looks up a localized string similar to 孪生退化六链列.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources2052.SiameseSashimiXWing">
             <summary>
-              Looks up a localized string similar to Siamese Sashimi X-Wing.
+              Looks up a localized string similar to 孪生退化二链列.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources2052.SiameseSeniorExocet">
             <summary>
-              Looks up a localized string similar to Siamese Senior Exocet.
+              Looks up a localized string similar to 孪生高级飞鱼导弹.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources2052.SinglyLinkedAlmostLockedSetsXzRule">
             <summary>
-              Looks up a localized string similar to Singly-Linked Almost Locked Sets XZ Rule.
+              Looks up a localized string similar to 待定数组・双强链.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources2052.Skyscraper">
             <summary>
-              Looks up a localized string similar to Skyscraper.
+              Looks up a localized string similar to 摩天楼.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources2052.SplitWing">
@@ -12829,7 +12824,7 @@
         </member>
         <member name="P:Sudoku.Resources.Resources2052.Squirmbag">
             <summary>
-              Looks up a localized string similar to Squirmbag.
+              Looks up a localized string similar to 五链列.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources2052.StuvwxyzWing">
@@ -12869,27 +12864,27 @@
         </member>
         <member name="P:Sudoku.Resources.Resources2052.SueDeCoq">
             <summary>
-              Looks up a localized string similar to Sue de Coq.
+              Looks up a localized string similar to 融合待定数组.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources2052.SueDeCoq3Dimension">
             <summary>
-              Looks up a localized string similar to Sue de Coq 3 Dimension.
+              Looks up a localized string similar to 融合待定数组・三维.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources2052.SueDeCoqCannibalism">
             <summary>
-              Looks up a localized string similar to Sue de Coq Cannibalism.
+              Looks up a localized string similar to 融合待定数组・自噬.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources2052.SueDeCoqIsolated">
             <summary>
-              Looks up a localized string similar to Sue de Coq Isolated Digit.
+              Looks up a localized string similar to 融合待定数组・孤立区块.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources2052.Swordfish">
             <summary>
-              Looks up a localized string similar to Swordfish.
+              Looks up a localized string similar to 三链列.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources2052.TechniqueFormat_AlmostLockedCandidatesStep">
@@ -13259,12 +13254,12 @@
         </member>
         <member name="P:Sudoku.Resources.Resources2052.TemplateDelete">
             <summary>
-              Looks up a localized string similar to Template Delete.
+              Looks up a localized string similar to 模板删数.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources2052.TemplateSet">
             <summary>
-              Looks up a localized string similar to Template Set.
+              Looks up a localized string similar to 模板填数.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources2052.TrueKeyword">
@@ -13274,7 +13269,7 @@
         </member>
         <member name="P:Sudoku.Resources.Resources2052.TurbotFish">
             <summary>
-              Looks up a localized string similar to Turbot Fish.
+              Looks up a localized string similar to 多宝鱼.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources2052.TuvwxyzWing">
@@ -13284,207 +13279,207 @@
         </member>
         <member name="P:Sudoku.Resources.Resources2052.TwoStringKite">
             <summary>
-              Looks up a localized string similar to Two-String Kite.
+              Looks up a localized string similar to 双线风筝.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources2052.UniqueLoopType1">
             <summary>
-              Looks up a localized string similar to Unique Loop Type 1.
+              Looks up a localized string similar to 唯一环类型 1.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources2052.UniqueLoopType2">
             <summary>
-              Looks up a localized string similar to Unique Loop Type 2.
+              Looks up a localized string similar to 唯一环类型 2.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources2052.UniqueLoopType3">
             <summary>
-              Looks up a localized string similar to Unique Loop Type 3.
+              Looks up a localized string similar to 唯一环类型 3.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources2052.UniqueLoopType4">
             <summary>
-              Looks up a localized string similar to Unique Loop Type 4.
+              Looks up a localized string similar to 唯一环类型 4.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources2052.UniquePolygonType1">
             <summary>
-              Looks up a localized string similar to Unique Polygon Type 1.
+              Looks up a localized string similar to 探长致命结构类型 1.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources2052.UniquePolygonType2">
             <summary>
-              Looks up a localized string similar to Unique Polygon Type 2.
+              Looks up a localized string similar to 探长致命结构类型 2.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources2052.UniquePolygonType3">
             <summary>
-              Looks up a localized string similar to Unique Polygon Type 3.
+              Looks up a localized string similar to 探长致命结构类型 3.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources2052.UniquePolygonType4">
             <summary>
-              Looks up a localized string similar to Unique Polygon Type 4.
+              Looks up a localized string similar to 探长致命结构类型 4.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources2052.UniqueRectangle2B1">
             <summary>
-              Looks up a localized string similar to Unique Rectangle + 2B/1SL.
+              Looks up a localized string similar to 唯一矩形 + 2B/1SL.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources2052.UniqueRectangle2D">
             <summary>
-              Looks up a localized string similar to Unique Rectangle + 2D.
+              Looks up a localized string similar to 唯一矩形 + 2D.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources2052.UniqueRectangle2D1">
             <summary>
-              Looks up a localized string similar to Unique Rectangle + 2D/1SL.
+              Looks up a localized string similar to 唯一矩形 + 2D/1SL.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources2052.UniqueRectangle3E2">
             <summary>
-              Looks up a localized string similar to Unique Rectangle + 3E/2SL.
+              Looks up a localized string similar to 唯一矩形 + 3E/2SL.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources2052.UniqueRectangle3N2">
             <summary>
-              Looks up a localized string similar to Unique Rectangle + 3N/2SL.
+              Looks up a localized string similar to 唯一矩形 + 3N/2SL.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources2052.UniqueRectangle3U2">
             <summary>
-              Looks up a localized string similar to Unique Rectangle + 3U/2SL.
+              Looks up a localized string similar to 唯一矩形 + 3U/2SL.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources2052.UniqueRectangle3X">
             <summary>
-              Looks up a localized string similar to Unique Rectangle + 3X.
+              Looks up a localized string similar to 唯一矩形 + 3X.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources2052.UniqueRectangle3X1L">
             <summary>
-              Looks up a localized string similar to Unique Rectangle + 3x/1SL.
+              Looks up a localized string similar to 唯一矩形 + 3x/1SL.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources2052.UniqueRectangle3X1U">
             <summary>
-              Looks up a localized string similar to Unique Rectangle + 3X/1SL.
+              Looks up a localized string similar to 唯一矩形 + 3X/1SL.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources2052.UniqueRectangle3X2">
             <summary>
-              Looks up a localized string similar to Unique Rectangle + 3X/2SL.
+              Looks up a localized string similar to 唯一矩形 + 3X/2SL.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources2052.UniqueRectangle4C3">
             <summary>
-              Looks up a localized string similar to Unique Rectangle 4C/3SL.
+              Looks up a localized string similar to 唯一矩形 + 4C/3SL.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources2052.UniqueRectangle4X1L">
             <summary>
-              Looks up a localized string similar to Unique Rectangle + 4x/1SL.
+              Looks up a localized string similar to 唯一矩形 + 4x/1SL.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources2052.UniqueRectangle4X1U">
             <summary>
-              Looks up a localized string similar to Unique Rectangle + 4X/1SL.
+              Looks up a localized string similar to 唯一矩形 + 4X/1SL.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources2052.UniqueRectangle4X2L">
             <summary>
-              Looks up a localized string similar to Unique Rectangle + 4x/2SL.
+              Looks up a localized string similar to 唯一矩形 + 4x/2SL.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources2052.UniqueRectangle4X2U">
             <summary>
-              Looks up a localized string similar to Unique Rectangle + 4X/2SL.
+              Looks up a localized string similar to 唯一矩形 + 4X/2SL.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources2052.UniqueRectangle4X3">
             <summary>
-              Looks up a localized string similar to Unique Rectangle 4X/3SL.
+              Looks up a localized string similar to 唯一矩形 + 4X/3SL.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources2052.UniqueRectangleBrokenWing">
             <summary>
-              Looks up a localized string similar to Unique Rectangle Guardian.
+              Looks up a localized string similar to 唯一矩形・守护者.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources2052.UniqueRectangleSueDeCoq">
             <summary>
-              Looks up a localized string similar to Unique Rectangle Sue de Coq.
+              Looks up a localized string similar to 唯一矩形・融合待定数组.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources2052.UniqueRectangleType1">
             <summary>
-              Looks up a localized string similar to Unique Rectangle Type 1.
+              Looks up a localized string similar to 唯一矩形类型 1.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources2052.UniqueRectangleType2">
             <summary>
-              Looks up a localized string similar to Unique Rectangle Type 2.
+              Looks up a localized string similar to 唯一矩形类型 2.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources2052.UniqueRectangleType3">
             <summary>
-              Looks up a localized string similar to Unique Rectangle Type 3.
+              Looks up a localized string similar to 唯一矩形类型 3.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources2052.UniqueRectangleType4">
             <summary>
-              Looks up a localized string similar to Unique Rectangle Type 4.
+              Looks up a localized string similar to 唯一矩形类型 4.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources2052.UniqueRectangleType5">
             <summary>
-              Looks up a localized string similar to Unique Rectangle Type 5.
+              Looks up a localized string similar to 唯一矩形类型 5.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources2052.UniqueRectangleType6">
             <summary>
-              Looks up a localized string similar to Unique Rectangle Type 6.
+              Looks up a localized string similar to 唯一矩形类型 6.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources2052.UniqueRectangleUnknownCovering">
             <summary>
-              Looks up a localized string similar to Unique Rectangle Unknown Covering.
+              Looks up a localized string similar to 唯一矩形・代数.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources2052.UniqueRectangleWxyzWing">
             <summary>
-              Looks up a localized string similar to Unique Rectangle WXYZ-Wing.
+              Looks up a localized string similar to 唯一矩形・WXYZ-Wing.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources2052.UniqueRectangleXyWing">
             <summary>
-              Looks up a localized string similar to Unique Rectangle XY-Wing.
+              Looks up a localized string similar to 唯一矩形・XY-Wing.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources2052.UniqueRectangleXyzWing">
             <summary>
-              Looks up a localized string similar to Unique Rectangle XYZ-Wing.
+              Looks up a localized string similar to 唯一矩形・XYZ-Wing.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources2052.UniqueSquareType1">
             <summary>
-              Looks up a localized string similar to Unique Square Type 1.
+              Looks up a localized string similar to 唯一矩阵类型 1.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources2052.UniqueSquareType2">
             <summary>
-              Looks up a localized string similar to Unique Square Type 2.
+              Looks up a localized string similar to 唯一矩阵类型 2.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources2052.UniqueSquareType3">
             <summary>
-              Looks up a localized string similar to Unique Square Type 3.
+              Looks up a localized string similar to 唯一矩阵类型 3.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources2052.UniqueSquareType4">
             <summary>
-              Looks up a localized string similar to Unique Square Type 4.
+              Looks up a localized string similar to 唯一矩阵类型 4.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources2052.UvwxyzWing">
@@ -13499,7 +13494,7 @@
         </member>
         <member name="P:Sudoku.Resources.Resources2052.Whale">
             <summary>
-              Looks up a localized string similar to Whale.
+              Looks up a localized string similar to 六链列.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources2052.WWing">
@@ -13514,22 +13509,22 @@
         </member>
         <member name="P:Sudoku.Resources.Resources2052.XChain">
             <summary>
-              Looks up a localized string similar to X-Chain.
+              Looks up a localized string similar to 同数链.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources2052.XWing">
             <summary>
-              Looks up a localized string similar to X-Wing.
+              Looks up a localized string similar to 二链列.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources2052.XyChain">
             <summary>
-              Looks up a localized string similar to XY-Chain.
+              Looks up a localized string similar to 双值格链.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources2052.XyCycle">
             <summary>
-              Looks up a localized string similar to XY-Cycle.
+              Looks up a localized string similar to 双值格环.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources2052.XyWing">
@@ -13539,7 +13534,7 @@
         </member>
         <member name="P:Sudoku.Resources.Resources2052.XyXChain">
             <summary>
-              Looks up a localized string similar to XY-X-Chain.
+              Looks up a localized string similar to 首尾异数链.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Resources2052.XyzWing">
@@ -13549,7 +13544,7 @@
         </member>
         <member name="P:Sudoku.Resources.Resources2052.YChain">
             <summary>
-              Looks up a localized string similar to Y-Chain.
+              Looks up a localized string similar to 同格链.
             </summary>
         </member>
     </members>

@@ -61,7 +61,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Almost Locked Pair.
+        ///   Looks up a localized string similar to 欠一数对.
         /// </summary>
         internal static string AlmostLockedPair {
             get {
@@ -70,7 +70,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Almost Locked Quadruple.
+        ///   Looks up a localized string similar to 欠一四数组.
         /// </summary>
         internal static string AlmostLockedQuadruple {
             get {
@@ -79,7 +79,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Almost Locked Sets W-Wing.
+        ///   Looks up a localized string similar to 待定数组・W-Wing.
         /// </summary>
         internal static string AlmostLockedSetsWWing {
             get {
@@ -88,7 +88,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Almost Locked Sets XY-Wing.
+        ///   Looks up a localized string similar to 待定数组・XY-Wing.
         /// </summary>
         internal static string AlmostLockedSetsXyWing {
             get {
@@ -97,7 +97,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Almost Locked Triple.
+        ///   Looks up a localized string similar to 欠一三数组.
         /// </summary>
         internal static string AlmostLockedTriple {
             get {
@@ -106,7 +106,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Alternating Inference Chain.
+        ///   Looks up a localized string similar to 普通链.
         /// </summary>
         internal static string AlternatingInferenceChain {
             get {
@@ -268,7 +268,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Avoidable Rectangle + 2D.
+        ///   Looks up a localized string similar to 可规避矩形 + 2D.
         /// </summary>
         internal static string AvoidableRectangle2D {
             get {
@@ -277,7 +277,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Avoidable Rectangle + 3X.
+        ///   Looks up a localized string similar to 可规避矩形 + 3X.
         /// </summary>
         internal static string AvoidableRectangle3X {
             get {
@@ -286,7 +286,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Avoidable Rectangle Guardian.
+        ///   Looks up a localized string similar to 可规避矩形・守护者.
         /// </summary>
         internal static string AvoidableRectangleBrokenWing {
             get {
@@ -295,7 +295,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Avoidable Rectangle Hidden Single in Block.
+        ///   Looks up a localized string similar to 可规避矩形・宫排除.
         /// </summary>
         internal static string AvoidableRectangleHiddenSingleBlock {
             get {
@@ -304,7 +304,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Avoidable Rectangle Hidden Single in Column.
+        ///   Looks up a localized string similar to 可规避矩形・列排除.
         /// </summary>
         internal static string AvoidableRectangleHiddenSingleColumn {
             get {
@@ -313,7 +313,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Avoidable Rectangle Hidden Single in Row.
+        ///   Looks up a localized string similar to 可规避矩形・行排除.
         /// </summary>
         internal static string AvoidableRectangleHiddenSingleRow {
             get {
@@ -322,7 +322,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Avoidable Rectangle Sue de Coq.
+        ///   Looks up a localized string similar to 可规避矩形・融合待定数组.
         /// </summary>
         internal static string AvoidableRectangleSueDeCoq {
             get {
@@ -331,7 +331,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Avoidable Rectangle Type 1.
+        ///   Looks up a localized string similar to 可规避矩形类型 1.
         /// </summary>
         internal static string AvoidableRectangleType1 {
             get {
@@ -340,7 +340,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Avoidable Rectangle Type 2.
+        ///   Looks up a localized string similar to 可规避矩形类型 2.
         /// </summary>
         internal static string AvoidableRectangleType2 {
             get {
@@ -349,7 +349,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Avoidable Rectangle Type 3.
+        ///   Looks up a localized string similar to 可规避矩形类型 3.
         /// </summary>
         internal static string AvoidableRectangleType3 {
             get {
@@ -358,7 +358,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Avoidable Rectangle Type 5.
+        ///   Looks up a localized string similar to 可规避矩形类型 5.
         /// </summary>
         internal static string AvoidableRectangleType5 {
             get {
@@ -367,7 +367,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Avoidable Rectangle WXYZ-Wing.
+        ///   Looks up a localized string similar to 可规避矩形・WXYZ-Wing.
         /// </summary>
         internal static string AvoidableRectangleWxyzWing {
             get {
@@ -376,7 +376,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Avoidable Rectangle XY-Wing.
+        ///   Looks up a localized string similar to 可规避矩形・XY-Wing.
         /// </summary>
         internal static string AvoidableRectangleXyWing {
             get {
@@ -385,7 +385,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Avoidable Rectangle XYZ-Wing.
+        ///   Looks up a localized string similar to 可规避矩形・XYZ-Wing.
         /// </summary>
         internal static string AvoidableRectangleXyzWing {
             get {
@@ -394,7 +394,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Bi-value Oddagon Type 1.
+        ///   Looks up a localized string similar to 死环类型 1.
         /// </summary>
         internal static string BivalueOddagonType1 {
             get {
@@ -403,7 +403,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Bi-value Oddagon Type 2.
+        ///   Looks up a localized string similar to 死环类型 2.
         /// </summary>
         internal static string BivalueOddagonType2 {
             get {
@@ -412,7 +412,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Bi-value Oddagon Type 3.
+        ///   Looks up a localized string similar to 死环类型 3.
         /// </summary>
         internal static string BivalueOddagonType3 {
             get {
@@ -421,7 +421,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Bi-value Universal Grave + n.
+        ///   Looks up a localized string similar to 全双值格致死解法・多真数.
         /// </summary>
         internal static string BivalueUniversalGravePlusN {
             get {
@@ -430,7 +430,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Bi-value Universal Grave + n Forcing Chains.
+        ///   Looks up a localized string similar to 全双值格致死解法・强制链・多真数.
         /// </summary>
         internal static string BivalueUniversalGravePlusNForcingChains {
             get {
@@ -439,7 +439,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Bi-value Universal Grave Type 1.
+        ///   Looks up a localized string similar to 全双值格致死解法类型 1.
         /// </summary>
         internal static string BivalueUniversalGraveType1 {
             get {
@@ -448,7 +448,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Bi-value Universal Grave Type 2.
+        ///   Looks up a localized string similar to 全双值格致死解法类型 2.
         /// </summary>
         internal static string BivalueUniversalGraveType2 {
             get {
@@ -457,7 +457,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Bi-value Universal Grave Type 3.
+        ///   Looks up a localized string similar to 全双值格致死解法类型 3.
         /// </summary>
         internal static string BivalueUniversalGraveType3 {
             get {
@@ -466,7 +466,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Bi-value Universal Grave Type 4.
+        ///   Looks up a localized string similar to 全双值格致死解法类型 4.
         /// </summary>
         internal static string BivalueUniversalGraveType4 {
             get {
@@ -475,7 +475,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Bi-value Universal Grave XY-Wing.
+        ///   Looks up a localized string similar to 全双值格致死解法・XY-Wing.
         /// </summary>
         internal static string BivalueUniversalGraveXyWing {
             get {
@@ -484,7 +484,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Bi-value Universal Grave XZ Rule.
+        ///   Looks up a localized string similar to 全双值格致死解法・双强链.
         /// </summary>
         internal static string BivalueUniversalGraveXzRule {
             get {
@@ -493,7 +493,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Bowman Bingo.
+        ///   Looks up a localized string similar to Bowman 试数.
         /// </summary>
         internal static string BowmanBingo {
             get {
@@ -502,7 +502,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Guardian.
+        ///   Looks up a localized string similar to 守护者.
         /// </summary>
         internal static string BrokenWing {
             get {
@@ -511,7 +511,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Brute Force.
+        ///   Looks up a localized string similar to 计算机试数.
         /// </summary>
         internal static string BruteForce {
             get {
@@ -574,7 +574,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Cell Forcing Chains.
+        ///   Looks up a localized string similar to 单元格强制链.
         /// </summary>
         internal static string CellForcingChains {
             get {
@@ -583,7 +583,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Claiming.
+        ///   Looks up a localized string similar to 行列区块.
         /// </summary>
         internal static string Claiming {
             get {
@@ -601,7 +601,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Complex Senior Exocet.
+        ///   Looks up a localized string similar to 复杂高级飞鱼导弹.
         /// </summary>
         internal static string ComplexSeniorExocet {
             get {
@@ -610,7 +610,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Continuous Nice Loop.
+        ///   Looks up a localized string similar to 连续环.
         /// </summary>
         internal static string ContinuousNiceLoop {
             get {
@@ -619,7 +619,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Death Blossom.
+        ///   Looks up a localized string similar to 死亡绽放.
         /// </summary>
         internal static string DeathBlossom {
             get {
@@ -628,7 +628,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Discontinuous Nice Loop.
+        ///   Looks up a localized string similar to 不连续环.
         /// </summary>
         internal static string DiscontinuousNiceLoop {
             get {
@@ -637,7 +637,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Domino Loop.
+        ///   Looks up a localized string similar to 多米诺环.
         /// </summary>
         internal static string DominoLoop {
             get {
@@ -646,7 +646,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Doubly-Linked Almost Locked Sets XZ Rule.
+        ///   Looks up a localized string similar to 待定数组・双强链・环.
         /// </summary>
         internal static string DoublyLinkedAlmostLockedSetsXzRule {
             get {
@@ -655,7 +655,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Dynamic Cell Forcing Chains.
+        ///   Looks up a localized string similar to 动态单元格强制链.
         /// </summary>
         internal static string DynamicCellForcingChains {
             get {
@@ -664,7 +664,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Dynamic Contradiction Forcing Chains.
+        ///   Looks up a localized string similar to 动态矛盾强制链.
         /// </summary>
         internal static string DynamicContradictionForcingChains {
             get {
@@ -673,7 +673,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Dynamic Double Forcing Chains.
+        ///   Looks up a localized string similar to 动态二值矛盾强制链.
         /// </summary>
         internal static string DynamicDoubleForcingChains {
             get {
@@ -682,7 +682,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Dynamic Forcing Chains.
+        ///   Looks up a localized string similar to 动态强制链.
         /// </summary>
         internal static string DynamicForcingChains {
             get {
@@ -691,7 +691,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Dynamic Region Forcing Chains.
+        ///   Looks up a localized string similar to 动态区域强制链.
         /// </summary>
         internal static string DynamicRegionForcingChains {
             get {
@@ -709,7 +709,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Empty Rectangle.
+        ///   Looks up a localized string similar to 空矩形.
         /// </summary>
         internal static string EmptyRectangle {
             get {
@@ -718,7 +718,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Empty Rectangle Intersection Pair.
+        ///   Looks up a localized string similar to 对交空矩形.
         /// </summary>
         internal static string EmptyRectangleIntersectionPair {
             get {
@@ -817,7 +817,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Extended Gurth&apos;s Symmetrical Placement.
+        ///   Looks up a localized string similar to 宇宙法拓展用法.
         /// </summary>
         internal static string ExtendedGurthSymmetricalPlacement {
             get {
@@ -826,7 +826,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Extended Rectangle Type 1.
+        ///   Looks up a localized string similar to 拓展矩形类型 1.
         /// </summary>
         internal static string ExtendedRectangleType1 {
             get {
@@ -835,7 +835,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Extended Rectangle Type 2.
+        ///   Looks up a localized string similar to 拓展矩形类型 2.
         /// </summary>
         internal static string ExtendedRectangleType2 {
             get {
@@ -844,7 +844,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Extended Rectangle Type 3.
+        ///   Looks up a localized string similar to 拓展矩形类型 3.
         /// </summary>
         internal static string ExtendedRectangleType3 {
             get {
@@ -853,7 +853,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Extended Rectangle Type 4.
+        ///   Looks up a localized string similar to 拓展矩形类型 4.
         /// </summary>
         internal static string ExtendedRectangleType4 {
             get {
@@ -862,7 +862,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Extended Subset Principle.
+        ///   Looks up a localized string similar to 伪数组.
         /// </summary>
         internal static string ExtendedSubsetPrinciple {
             get {
@@ -889,7 +889,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Finned Franken Jellyfish.
+        ///   Looks up a localized string similar to 宫内鳍四链列.
         /// </summary>
         internal static string FinnedFrankenJellyfish {
             get {
@@ -898,7 +898,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Finned Franken Leviathan.
+        ///   Looks up a localized string similar to 宫内鳍七链列.
         /// </summary>
         internal static string FinnedFrankenLeviathan {
             get {
@@ -907,7 +907,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Finned Franken Squirmbag.
+        ///   Looks up a localized string similar to 宫内鳍五链列.
         /// </summary>
         internal static string FinnedFrankenSquirmbag {
             get {
@@ -916,7 +916,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Finned Franken Swordfish.
+        ///   Looks up a localized string similar to 宫内鳍三链列.
         /// </summary>
         internal static string FinnedFrankenSwordfish {
             get {
@@ -925,7 +925,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Finned Franken Whale.
+        ///   Looks up a localized string similar to 宫内鳍六链列.
         /// </summary>
         internal static string FinnedFrankenWhale {
             get {
@@ -934,7 +934,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Finned Franken X-Wing.
+        ///   Looks up a localized string similar to 宫内鳍二链列.
         /// </summary>
         internal static string FinnedFrankenXWing {
             get {
@@ -943,7 +943,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Finned Jellyfish.
+        ///   Looks up a localized string similar to 鳍四链列.
         /// </summary>
         internal static string FinnedJellyfish {
             get {
@@ -952,7 +952,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Finned Leviathan.
+        ///   Looks up a localized string similar to 鳍七链列.
         /// </summary>
         internal static string FinnedLeviathan {
             get {
@@ -961,7 +961,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Finned Mutant Jellyfish.
+        ///   Looks up a localized string similar to 交叉鳍四链列.
         /// </summary>
         internal static string FinnedMutantJellyfish {
             get {
@@ -970,7 +970,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Finned Mutant Leviathan.
+        ///   Looks up a localized string similar to 交叉鳍七链列.
         /// </summary>
         internal static string FinnedMutantLeviathan {
             get {
@@ -979,7 +979,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Finned Mutant Squirmbag.
+        ///   Looks up a localized string similar to 交叉鳍五链列.
         /// </summary>
         internal static string FinnedMutantSquirmbag {
             get {
@@ -988,7 +988,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Finned Mutant Swordfish.
+        ///   Looks up a localized string similar to 交叉鳍三链列.
         /// </summary>
         internal static string FinnedMutantSwordfish {
             get {
@@ -997,7 +997,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Finned Mutant Whale.
+        ///   Looks up a localized string similar to 交叉鳍六链列.
         /// </summary>
         internal static string FinnedMutantWhale {
             get {
@@ -1006,7 +1006,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Finned Mutant X-Wing.
+        ///   Looks up a localized string similar to 交叉鳍二链列.
         /// </summary>
         internal static string FinnedMutantXWing {
             get {
@@ -1015,7 +1015,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Finned Squirmbag.
+        ///   Looks up a localized string similar to 鳍五链列.
         /// </summary>
         internal static string FinnedSquirmbag {
             get {
@@ -1024,7 +1024,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Finned Swordfish.
+        ///   Looks up a localized string similar to 鳍三链列.
         /// </summary>
         internal static string FinnedSwordfish {
             get {
@@ -1033,7 +1033,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Finned Whale.
+        ///   Looks up a localized string similar to 鳍六链列.
         /// </summary>
         internal static string FinnedWhale {
             get {
@@ -1042,7 +1042,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Finned X-Wing.
+        ///   Looks up a localized string similar to 鳍二链列.
         /// </summary>
         internal static string FinnedXWing {
             get {
@@ -1051,7 +1051,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Fishy Cycle.
+        ///   Looks up a localized string similar to 鱼环.
         /// </summary>
         internal static string FishyCycle {
             get {
@@ -1060,7 +1060,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Franken Jellyfish.
+        ///   Looks up a localized string similar to 宫内四链列.
         /// </summary>
         internal static string FrankenJellyfish {
             get {
@@ -1069,7 +1069,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Franken Leviathan.
+        ///   Looks up a localized string similar to 宫内七链列.
         /// </summary>
         internal static string FrankenLeviathan {
             get {
@@ -1078,7 +1078,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Franken Squirmbag.
+        ///   Looks up a localized string similar to 宫内五链列.
         /// </summary>
         internal static string FrankenSquirmbag {
             get {
@@ -1087,7 +1087,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Franken Swordfish.
+        ///   Looks up a localized string similar to 宫内三链列.
         /// </summary>
         internal static string FrankenSwordfish {
             get {
@@ -1096,7 +1096,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Franken Whale.
+        ///   Looks up a localized string similar to 宫内六链列.
         /// </summary>
         internal static string FrankenWhale {
             get {
@@ -1105,7 +1105,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Franken X-Wing.
+        ///   Looks up a localized string similar to 宫内二链列.
         /// </summary>
         internal static string FrankenXWing {
             get {
@@ -1114,7 +1114,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Full House.
+        ///   Looks up a localized string similar to 同区域剩余.
         /// </summary>
         internal static string FullHouse {
             get {
@@ -1123,7 +1123,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Grouped Alternating Inference Chain.
+        ///   Looks up a localized string similar to 结构普通链.
         /// </summary>
         internal static string GroupedAlternatingInferenceChain {
             get {
@@ -1132,7 +1132,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Grouped Bi-value Oddagon.
+        ///   Looks up a localized string similar to 区块死环.
         /// </summary>
         internal static string GroupedBivalueOddagon {
             get {
@@ -1141,7 +1141,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Grouped Continuous Nice Loop.
+        ///   Looks up a localized string similar to 结构连续环.
         /// </summary>
         internal static string GroupedContinuousNiceLoop {
             get {
@@ -1150,7 +1150,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Grouped Discontinuous Nice Loop.
+        ///   Looks up a localized string similar to 结构不连续环.
         /// </summary>
         internal static string GroupedDiscontinuousNiceLoop {
             get {
@@ -1159,7 +1159,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Grouped Fishy Cycle.
+        ///   Looks up a localized string similar to 区块鱼环.
         /// </summary>
         internal static string GroupedFishyCycle {
             get {
@@ -1168,7 +1168,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Grouped Hybrid Wing.
+        ///   Looks up a localized string similar to 区块 Hybrid Wing.
         /// </summary>
         internal static string GroupedHybridWing {
             get {
@@ -1177,7 +1177,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Grouped Local Wing.
+        ///   Looks up a localized string similar to 区块 Local Wing.
         /// </summary>
         internal static string GroupedLocalWing {
             get {
@@ -1186,7 +1186,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Grouped M-Wing.
+        ///   Looks up a localized string similar to 区块 M-Wing.
         /// </summary>
         internal static string GroupedMWing {
             get {
@@ -1195,7 +1195,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Grouped Purple Cow.
+        ///   Looks up a localized string similar to 区块 Purple Cow.
         /// </summary>
         internal static string GroupedPurpleCow {
             get {
@@ -1204,7 +1204,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Grouped Split Wing.
+        ///   Looks up a localized string similar to 区块 Split Wing.
         /// </summary>
         internal static string GroupedSplitWing {
             get {
@@ -1213,7 +1213,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Grouped W-Wing.
+        ///   Looks up a localized string similar to 区块 W-Wing.
         /// </summary>
         internal static string GroupedWWing {
             get {
@@ -1222,7 +1222,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Grouped X-Chain.
+        ///   Looks up a localized string similar to 区块同数链.
         /// </summary>
         internal static string GroupedXChain {
             get {
@@ -1231,7 +1231,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Grouped XY-Chain.
+        ///   Looks up a localized string similar to 区块双值格链.
         /// </summary>
         internal static string GroupedXyChain {
             get {
@@ -1240,7 +1240,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Grouped XY-Cycle.
+        ///   Looks up a localized string similar to 区块双值格环.
         /// </summary>
         internal static string GroupedXyCycle {
             get {
@@ -1249,7 +1249,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Grouped XY-Wing.
+        ///   Looks up a localized string similar to 区块 XY-Wing.
         /// </summary>
         internal static string GroupedXyWing {
             get {
@@ -1258,7 +1258,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Grouped XY-X-Chain.
+        ///   Looks up a localized string similar to 区块首尾异数链.
         /// </summary>
         internal static string GroupedXyXChain {
             get {
@@ -1285,7 +1285,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Gurth&apos;s Symmetrical Placement.
+        ///   Looks up a localized string similar to 宇宙法.
         /// </summary>
         internal static string GurthSymmetricalPlacement {
             get {
@@ -1294,7 +1294,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Hidden Avoidable Rectangle.
+        ///   Looks up a localized string similar to 隐性可规避矩形.
         /// </summary>
         internal static string HiddenAvoidableRectangle {
             get {
@@ -1312,7 +1312,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Hidden Pair.
+        ///   Looks up a localized string similar to 隐性数对.
         /// </summary>
         internal static string HiddenPair {
             get {
@@ -1321,7 +1321,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Hidden Quadruple.
+        ///   Looks up a localized string similar to 隐性四数组.
         /// </summary>
         internal static string HiddenQuadruple {
             get {
@@ -1330,7 +1330,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Hidden Single in Block.
+        ///   Looks up a localized string similar to 宫排除.
         /// </summary>
         internal static string HiddenSingleBlock {
             get {
@@ -1339,7 +1339,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Hidden Single in Column.
+        ///   Looks up a localized string similar to 列排除.
         /// </summary>
         internal static string HiddenSingleColumn {
             get {
@@ -1348,7 +1348,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Hidden Single in Row.
+        ///   Looks up a localized string similar to 行排除.
         /// </summary>
         internal static string HiddenSingleRow {
             get {
@@ -1357,7 +1357,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Hidden Triple.
+        ///   Looks up a localized string similar to 隐性三数组.
         /// </summary>
         internal static string HiddenTriple {
             get {
@@ -1366,7 +1366,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Hidden Unique Rectangle.
+        ///   Looks up a localized string similar to 隐性唯一矩形.
         /// </summary>
         internal static string HiddenUniqueRectangle {
             get {
@@ -1393,7 +1393,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Incomplete RSTUVWXYZ-Wing.
+        ///   Looks up a localized string similar to 残缺 RSTUVWXYZ-Wing.
         /// </summary>
         internal static string IncompleteRstuvwxyzWing {
             get {
@@ -1402,7 +1402,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Incomplete STUVWXYZ-Wing.
+        ///   Looks up a localized string similar to 残缺 STUVWXYZ-Wing.
         /// </summary>
         internal static string IncompleteStuvwxyzWing {
             get {
@@ -1411,7 +1411,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Incomplete TUVWXYZ-Wing.
+        ///   Looks up a localized string similar to 残缺 TUVWXYZ-Wing.
         /// </summary>
         internal static string IncompleteTuvwxyzWing {
             get {
@@ -1420,7 +1420,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Incomplete UVWXYZ-Wing.
+        ///   Looks up a localized string similar to 残缺 UVWXYZ-Wing.
         /// </summary>
         internal static string IncompleteUvwxyzWing {
             get {
@@ -1429,7 +1429,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Incomplete VWXYZ-Wing.
+        ///   Looks up a localized string similar to 残缺 VWXYZ-Wing.
         /// </summary>
         internal static string IncompleteVwxyzWing {
             get {
@@ -1438,7 +1438,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Incomplete WXYZ-Wing.
+        ///   Looks up a localized string similar to 残缺 WXYZ-Wing.
         /// </summary>
         internal static string IncompleteWxyzWing {
             get {
@@ -1447,7 +1447,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Jellyfish.
+        ///   Looks up a localized string similar to 四链列.
         /// </summary>
         internal static string Jellyfish {
             get {
@@ -1456,7 +1456,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Junior Exocet.
+        ///   Looks up a localized string similar to 初级飞鱼导弹.
         /// </summary>
         internal static string JuniorExocet {
             get {
@@ -1483,7 +1483,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Last Digit.
+        ///   Looks up a localized string similar to 同数剩余.
         /// </summary>
         internal static string LastDigit {
             get {
@@ -1492,7 +1492,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Leviathan.
+        ///   Looks up a localized string similar to 七链列.
         /// </summary>
         internal static string Leviathan {
             get {
@@ -1528,7 +1528,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Locked Pair.
+        ///   Looks up a localized string similar to 死锁数对.
         /// </summary>
         internal static string LockedPair {
             get {
@@ -1537,7 +1537,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Locked Qiu&apos;s Deadly Pattern.
+        ///   Looks up a localized string similar to 死锁淑芬致命结构.
         /// </summary>
         internal static string LockedQiuDeadlyPattern {
             get {
@@ -1546,7 +1546,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Locked Triple.
+        ///   Looks up a localized string similar to 死锁三数组.
         /// </summary>
         internal static string LockedTriple {
             get {
@@ -1555,7 +1555,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Multi-sector Locked Sets.
+        ///   Looks up a localized string similar to 网.
         /// </summary>
         internal static string MultisectorLockedSets {
             get {
@@ -1564,7 +1564,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Mutant Jellyfish.
+        ///   Looks up a localized string similar to 交叉四链列.
         /// </summary>
         internal static string MutantJellyfish {
             get {
@@ -1573,7 +1573,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Mutant Leviathan.
+        ///   Looks up a localized string similar to 交叉七链列.
         /// </summary>
         internal static string MutantLeviathan {
             get {
@@ -1582,7 +1582,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Mutant Squirmbag.
+        ///   Looks up a localized string similar to 交叉五链列.
         /// </summary>
         internal static string MutantSquirmbag {
             get {
@@ -1591,7 +1591,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Mutant Swordfish.
+        ///   Looks up a localized string similar to 交叉三链列.
         /// </summary>
         internal static string MutantSwordfish {
             get {
@@ -1600,7 +1600,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Mutant Whale.
+        ///   Looks up a localized string similar to 交叉六链列.
         /// </summary>
         internal static string MutantWhale {
             get {
@@ -1609,7 +1609,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Mutant X-Wing.
+        ///   Looks up a localized string similar to 交叉二链列.
         /// </summary>
         internal static string MutantXWing {
             get {
@@ -1636,7 +1636,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Naked Pair.
+        ///   Looks up a localized string similar to 显性数对.
         /// </summary>
         internal static string NakedPair {
             get {
@@ -1645,7 +1645,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Naked Pair (+).
+        ///   Looks up a localized string similar to 显性数对带区块.
         /// </summary>
         internal static string NakedPairPlus {
             get {
@@ -1654,7 +1654,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Naked Quadruple.
+        ///   Looks up a localized string similar to 显性四数组.
         /// </summary>
         internal static string NakedQuadruple {
             get {
@@ -1663,7 +1663,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Naked Quadruple (+).
+        ///   Looks up a localized string similar to 显性四数组带区块.
         /// </summary>
         internal static string NakedQuadruplePlus {
             get {
@@ -1672,7 +1672,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Naked Single.
+        ///   Looks up a localized string similar to 唯一余数.
         /// </summary>
         internal static string NakedSingle {
             get {
@@ -1681,7 +1681,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Naked Triple.
+        ///   Looks up a localized string similar to 显性三数组.
         /// </summary>
         internal static string NakedTriple {
             get {
@@ -1690,7 +1690,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Naked Triple (+).
+        ///   Looks up a localized string similar to 显性三数组带区块.
         /// </summary>
         internal static string NakedTriplePlus {
             get {
@@ -1699,7 +1699,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Nishio Forcing Chains.
+        ///   Looks up a localized string similar to 西尾彻也强制链.
         /// </summary>
         internal static string NishioForcingChains {
             get {
@@ -1726,7 +1726,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Pattern Overlay.
+        ///   Looks up a localized string similar to 同数叠加删减.
         /// </summary>
         internal static string PatternOverlay {
             get {
@@ -1735,7 +1735,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Pointing.
+        ///   Looks up a localized string similar to 宫区块.
         /// </summary>
         internal static string Pointing {
             get {
@@ -1753,7 +1753,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Qiu&apos;s Deadly Pattern Type 1.
+        ///   Looks up a localized string similar to 淑芬致命结构类型 1.
         /// </summary>
         internal static string QiuDeadlyPatternType1 {
             get {
@@ -1762,7 +1762,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Qiu&apos;s Deadly Pattern Type 2.
+        ///   Looks up a localized string similar to 淑芬致命结构类型 2.
         /// </summary>
         internal static string QiuDeadlyPatternType2 {
             get {
@@ -1771,7 +1771,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Qiu&apos;s Deadly Pattern Type 3.
+        ///   Looks up a localized string similar to 淑芬致命结构类型 3.
         /// </summary>
         internal static string QiuDeadlyPatternType3 {
             get {
@@ -1780,7 +1780,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Qiu&apos;s Deadly Pattern Type 4.
+        ///   Looks up a localized string similar to 淑芬致命结构类型 4.
         /// </summary>
         internal static string QiuDeadlyPatternType4 {
             get {
@@ -1789,7 +1789,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Region Forcing Chains.
+        ///   Looks up a localized string similar to 区域强制链.
         /// </summary>
         internal static string RegionForcingChains {
             get {
@@ -1807,7 +1807,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Sashimi Franken Jellyfish.
+        ///   Looks up a localized string similar to 宫内退化四链列.
         /// </summary>
         internal static string SashimiFrankenJellyfish {
             get {
@@ -1816,7 +1816,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Sashimi Franken Leviathan.
+        ///   Looks up a localized string similar to 宫内退化七链列.
         /// </summary>
         internal static string SashimiFrankenLeviathan {
             get {
@@ -1825,7 +1825,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Sashimi Franken Squirmbag.
+        ///   Looks up a localized string similar to 宫内退化五链列.
         /// </summary>
         internal static string SashimiFrankenSquirmbag {
             get {
@@ -1834,7 +1834,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Sashimi Franken Swordfish.
+        ///   Looks up a localized string similar to 宫内退化三链列.
         /// </summary>
         internal static string SashimiFrankenSwordfish {
             get {
@@ -1843,7 +1843,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Sashimi Franken Whale.
+        ///   Looks up a localized string similar to 宫内退化六链列.
         /// </summary>
         internal static string SashimiFrankenWhale {
             get {
@@ -1852,7 +1852,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Sashimi Franken X-Wing.
+        ///   Looks up a localized string similar to 宫内退化二链列.
         /// </summary>
         internal static string SashimiFrankenXWing {
             get {
@@ -1861,7 +1861,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Sashimi Jellyfish.
+        ///   Looks up a localized string similar to 退化四链列.
         /// </summary>
         internal static string SashimiJellyfish {
             get {
@@ -1870,7 +1870,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Sashimi Leviathan.
+        ///   Looks up a localized string similar to 退化七链列.
         /// </summary>
         internal static string SashimiLeviathan {
             get {
@@ -1879,7 +1879,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Sashimi Mutant Jellyfish.
+        ///   Looks up a localized string similar to 交叉退化四链列.
         /// </summary>
         internal static string SashimiMutantJellyfish {
             get {
@@ -1888,7 +1888,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Sashimi Mutant Leviathan.
+        ///   Looks up a localized string similar to 交叉退化七链列.
         /// </summary>
         internal static string SashimiMutantLeviathan {
             get {
@@ -1897,7 +1897,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Sashimi Mutant Squirmbag.
+        ///   Looks up a localized string similar to 交叉退化五链列.
         /// </summary>
         internal static string SashimiMutantSquirmbag {
             get {
@@ -1906,7 +1906,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Sashimi Mutant Swordfish.
+        ///   Looks up a localized string similar to 交叉退化三链列.
         /// </summary>
         internal static string SashimiMutantSwordfish {
             get {
@@ -1915,7 +1915,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Sashimi Mutant Whale.
+        ///   Looks up a localized string similar to 交叉退化六链列.
         /// </summary>
         internal static string SashimiMutantWhale {
             get {
@@ -1924,7 +1924,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Sashimi Mutant X-Wing.
+        ///   Looks up a localized string similar to 交叉退化二链列.
         /// </summary>
         internal static string SashimiMutantXWing {
             get {
@@ -1933,7 +1933,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Sashimi Squirmbag.
+        ///   Looks up a localized string similar to 退化五链列.
         /// </summary>
         internal static string SashimiSquirmbag {
             get {
@@ -1942,7 +1942,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Sashimi Swordfish.
+        ///   Looks up a localized string similar to 退化三链列.
         /// </summary>
         internal static string SashimiSwordfish {
             get {
@@ -1951,7 +1951,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Sashimi Whale.
+        ///   Looks up a localized string similar to 退化六链列.
         /// </summary>
         internal static string SashimiWhale {
             get {
@@ -1960,7 +1960,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Sashimi X-Wing.
+        ///   Looks up a localized string similar to 退化二链列.
         /// </summary>
         internal static string SashimiXWing {
             get {
@@ -1969,7 +1969,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Senior Exocet.
+        ///   Looks up a localized string similar to 高级飞鱼导弹.
         /// </summary>
         internal static string SeniorExocet {
             get {
@@ -1978,7 +1978,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Siamese Finned Franken Jellyfish.
+        ///   Looks up a localized string similar to 宫内孪生鳍四链列.
         /// </summary>
         internal static string SiameseFinnedFrankenJellyfish {
             get {
@@ -1987,7 +1987,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Siamese Finned Franken Leviathan.
+        ///   Looks up a localized string similar to 宫内孪生鳍七链列.
         /// </summary>
         internal static string SiameseFinnedFrankenLeviathan {
             get {
@@ -1996,7 +1996,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Siamese Finned Franken Squirmbag.
+        ///   Looks up a localized string similar to 宫内孪生鳍五链列.
         /// </summary>
         internal static string SiameseFinnedFrankenSquirmbag {
             get {
@@ -2005,7 +2005,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Siamese Finned Franken Swordfish.
+        ///   Looks up a localized string similar to 宫内孪生鳍三链列.
         /// </summary>
         internal static string SiameseFinnedFrankenSwordfish {
             get {
@@ -2014,7 +2014,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Siamese Finned Franken Whale.
+        ///   Looks up a localized string similar to 宫内孪生鳍六链列.
         /// </summary>
         internal static string SiameseFinnedFrankenWhale {
             get {
@@ -2023,7 +2023,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Siamese Finned Franken X-Wing.
+        ///   Looks up a localized string similar to 宫内孪生鳍二链列.
         /// </summary>
         internal static string SiameseFinnedFrankenXWing {
             get {
@@ -2032,7 +2032,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Siamese Finned Jellyfish.
+        ///   Looks up a localized string similar to 孪生鳍四链列.
         /// </summary>
         internal static string SiameseFinnedJellyfish {
             get {
@@ -2041,7 +2041,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Siamese Finned Leviathan.
+        ///   Looks up a localized string similar to 孪生鳍七链列.
         /// </summary>
         internal static string SiameseFinnedLeviathan {
             get {
@@ -2050,7 +2050,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Siamese Finned Mutant Jellyfish.
+        ///   Looks up a localized string similar to 交叉孪生鳍四链列.
         /// </summary>
         internal static string SiameseFinnedMutantJellyfish {
             get {
@@ -2059,7 +2059,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Siamese Finned Mutant Leviathan.
+        ///   Looks up a localized string similar to 交叉孪生鳍七链列.
         /// </summary>
         internal static string SiameseFinnedMutantLeviathan {
             get {
@@ -2068,7 +2068,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Siamese Finned Mutant Squirmbag.
+        ///   Looks up a localized string similar to 交叉孪生鳍五链列.
         /// </summary>
         internal static string SiameseFinnedMutantSquirmbag {
             get {
@@ -2077,7 +2077,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Siamese Finned Mutant Swordfish.
+        ///   Looks up a localized string similar to 交叉孪生鳍三链列.
         /// </summary>
         internal static string SiameseFinnedMutantSwordfish {
             get {
@@ -2086,7 +2086,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Siamese Finned Mutant Whale.
+        ///   Looks up a localized string similar to 交叉孪生鳍六链列.
         /// </summary>
         internal static string SiameseFinnedMutantWhale {
             get {
@@ -2095,7 +2095,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Siamese Finned Mutant X-Wing.
+        ///   Looks up a localized string similar to 交叉孪生鳍二链列.
         /// </summary>
         internal static string SiameseFinnedMutantXWing {
             get {
@@ -2104,7 +2104,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Siamese Finned Squirmbag.
+        ///   Looks up a localized string similar to 孪生鳍五链列.
         /// </summary>
         internal static string SiameseFinnedSquirmbag {
             get {
@@ -2113,7 +2113,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Siamese Finned Swordfish.
+        ///   Looks up a localized string similar to 孪生鳍三链列.
         /// </summary>
         internal static string SiameseFinnedSwordfish {
             get {
@@ -2122,7 +2122,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Siamese Finned Whale.
+        ///   Looks up a localized string similar to 孪生鳍六链列.
         /// </summary>
         internal static string SiameseFinnedWhale {
             get {
@@ -2131,7 +2131,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Siamese Finned X-Wing.
+        ///   Looks up a localized string similar to 孪生鳍二链列.
         /// </summary>
         internal static string SiameseFinnedXWing {
             get {
@@ -2140,7 +2140,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Siamese Junior Exocet.
+        ///   Looks up a localized string similar to 孪生初级飞鱼导弹.
         /// </summary>
         internal static string SiameseJuniorExocet {
             get {
@@ -2149,7 +2149,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Siamese Sashimi Franken Jellyfish.
+        ///   Looks up a localized string similar to 宫内孪生退化四链列.
         /// </summary>
         internal static string SiameseSashimiFrankenJellyfish {
             get {
@@ -2158,7 +2158,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Siamese Sashimi Franken Leviathan.
+        ///   Looks up a localized string similar to 宫内孪生退化七链列.
         /// </summary>
         internal static string SiameseSashimiFrankenLeviathan {
             get {
@@ -2167,7 +2167,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Siamese Sashimi Franken Squirmbag.
+        ///   Looks up a localized string similar to 宫内孪生退化五链列.
         /// </summary>
         internal static string SiameseSashimiFrankenSquirmbag {
             get {
@@ -2176,7 +2176,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Siamese Sashimi Franken Swordfish.
+        ///   Looks up a localized string similar to 宫内孪生退化三链列.
         /// </summary>
         internal static string SiameseSashimiFrankenSwordfish {
             get {
@@ -2185,7 +2185,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Siamese Sashimi Franken Whale.
+        ///   Looks up a localized string similar to 宫内孪生退化六链列.
         /// </summary>
         internal static string SiameseSashimiFrankenWhale {
             get {
@@ -2194,7 +2194,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Siamese Sashimi Franken X-Wing.
+        ///   Looks up a localized string similar to 宫内孪生退化二链列.
         /// </summary>
         internal static string SiameseSashimiFrankenXWing {
             get {
@@ -2203,7 +2203,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Siamese Sashimi Jellyfish.
+        ///   Looks up a localized string similar to 孪生退化四链列.
         /// </summary>
         internal static string SiameseSashimiJellyfish {
             get {
@@ -2212,7 +2212,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Siamese Sashimi Leviathan.
+        ///   Looks up a localized string similar to 孪生退化七链列.
         /// </summary>
         internal static string SiameseSashimiLeviathan {
             get {
@@ -2221,7 +2221,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Siamese Sashimi Mutant Jellyfish.
+        ///   Looks up a localized string similar to 交叉孪生退化四链列.
         /// </summary>
         internal static string SiameseSashimiMutantJellyfish {
             get {
@@ -2230,7 +2230,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Siamese Sashimi Mutant Leviathan.
+        ///   Looks up a localized string similar to 交叉孪生退化七链列.
         /// </summary>
         internal static string SiameseSashimiMutantLeviathan {
             get {
@@ -2239,7 +2239,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Siamese Sashimi Mutant Squirmbag.
+        ///   Looks up a localized string similar to 交叉孪生退化五链列.
         /// </summary>
         internal static string SiameseSashimiMutantSquirmbag {
             get {
@@ -2248,7 +2248,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Siamese Sashimi Mutant Swordfish.
+        ///   Looks up a localized string similar to 交叉孪生退化三链列.
         /// </summary>
         internal static string SiameseSashimiMutantSwordfish {
             get {
@@ -2257,7 +2257,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Siamese Sashimi Mutant Whale.
+        ///   Looks up a localized string similar to 交叉孪生退化六链列.
         /// </summary>
         internal static string SiameseSashimiMutantWhale {
             get {
@@ -2266,7 +2266,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Siamese Sashimi Mutant X-Wing.
+        ///   Looks up a localized string similar to 交叉孪生退化二链列.
         /// </summary>
         internal static string SiameseSashimiMutantXWing {
             get {
@@ -2275,7 +2275,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Siamese Sashimi Squirmbag.
+        ///   Looks up a localized string similar to 孪生退化五链列.
         /// </summary>
         internal static string SiameseSashimiSquirmbag {
             get {
@@ -2284,7 +2284,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Siamese Sashimi Swordfish.
+        ///   Looks up a localized string similar to 孪生退化三链列.
         /// </summary>
         internal static string SiameseSashimiSwordfish {
             get {
@@ -2293,7 +2293,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Siamese Sashimi Whale.
+        ///   Looks up a localized string similar to 孪生退化六链列.
         /// </summary>
         internal static string SiameseSashimiWhale {
             get {
@@ -2302,7 +2302,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Siamese Sashimi X-Wing.
+        ///   Looks up a localized string similar to 孪生退化二链列.
         /// </summary>
         internal static string SiameseSashimiXWing {
             get {
@@ -2311,7 +2311,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Siamese Senior Exocet.
+        ///   Looks up a localized string similar to 孪生高级飞鱼导弹.
         /// </summary>
         internal static string SiameseSeniorExocet {
             get {
@@ -2320,7 +2320,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Singly-Linked Almost Locked Sets XZ Rule.
+        ///   Looks up a localized string similar to 待定数组・双强链.
         /// </summary>
         internal static string SinglyLinkedAlmostLockedSetsXzRule {
             get {
@@ -2329,7 +2329,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Skyscraper.
+        ///   Looks up a localized string similar to 摩天楼.
         /// </summary>
         internal static string Skyscraper {
             get {
@@ -2347,7 +2347,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Squirmbag.
+        ///   Looks up a localized string similar to 五链列.
         /// </summary>
         internal static string Squirmbag {
             get {
@@ -2419,7 +2419,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Sue de Coq.
+        ///   Looks up a localized string similar to 融合待定数组.
         /// </summary>
         internal static string SueDeCoq {
             get {
@@ -2428,7 +2428,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Sue de Coq 3 Dimension.
+        ///   Looks up a localized string similar to 融合待定数组・三维.
         /// </summary>
         internal static string SueDeCoq3Dimension {
             get {
@@ -2437,7 +2437,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Sue de Coq Cannibalism.
+        ///   Looks up a localized string similar to 融合待定数组・自噬.
         /// </summary>
         internal static string SueDeCoqCannibalism {
             get {
@@ -2446,7 +2446,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Sue de Coq Isolated Digit.
+        ///   Looks up a localized string similar to 融合待定数组・孤立区块.
         /// </summary>
         internal static string SueDeCoqIsolated {
             get {
@@ -2455,7 +2455,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Swordfish.
+        ///   Looks up a localized string similar to 三链列.
         /// </summary>
         internal static string Swordfish {
             get {
@@ -3121,7 +3121,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Template Delete.
+        ///   Looks up a localized string similar to 模板删数.
         /// </summary>
         internal static string TemplateDelete {
             get {
@@ -3130,7 +3130,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Template Set.
+        ///   Looks up a localized string similar to 模板填数.
         /// </summary>
         internal static string TemplateSet {
             get {
@@ -3148,7 +3148,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Turbot Fish.
+        ///   Looks up a localized string similar to 多宝鱼.
         /// </summary>
         internal static string TurbotFish {
             get {
@@ -3166,7 +3166,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Two-String Kite.
+        ///   Looks up a localized string similar to 双线风筝.
         /// </summary>
         internal static string TwoStringKite {
             get {
@@ -3175,7 +3175,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Unique Loop Type 1.
+        ///   Looks up a localized string similar to 唯一环类型 1.
         /// </summary>
         internal static string UniqueLoopType1 {
             get {
@@ -3184,7 +3184,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Unique Loop Type 2.
+        ///   Looks up a localized string similar to 唯一环类型 2.
         /// </summary>
         internal static string UniqueLoopType2 {
             get {
@@ -3193,7 +3193,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Unique Loop Type 3.
+        ///   Looks up a localized string similar to 唯一环类型 3.
         /// </summary>
         internal static string UniqueLoopType3 {
             get {
@@ -3202,7 +3202,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Unique Loop Type 4.
+        ///   Looks up a localized string similar to 唯一环类型 4.
         /// </summary>
         internal static string UniqueLoopType4 {
             get {
@@ -3211,7 +3211,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Unique Polygon Type 1.
+        ///   Looks up a localized string similar to 探长致命结构类型 1.
         /// </summary>
         internal static string UniquePolygonType1 {
             get {
@@ -3220,7 +3220,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Unique Polygon Type 2.
+        ///   Looks up a localized string similar to 探长致命结构类型 2.
         /// </summary>
         internal static string UniquePolygonType2 {
             get {
@@ -3229,7 +3229,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Unique Polygon Type 3.
+        ///   Looks up a localized string similar to 探长致命结构类型 3.
         /// </summary>
         internal static string UniquePolygonType3 {
             get {
@@ -3238,7 +3238,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Unique Polygon Type 4.
+        ///   Looks up a localized string similar to 探长致命结构类型 4.
         /// </summary>
         internal static string UniquePolygonType4 {
             get {
@@ -3247,7 +3247,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Unique Rectangle + 2B/1SL.
+        ///   Looks up a localized string similar to 唯一矩形 + 2B/1SL.
         /// </summary>
         internal static string UniqueRectangle2B1 {
             get {
@@ -3256,7 +3256,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Unique Rectangle + 2D.
+        ///   Looks up a localized string similar to 唯一矩形 + 2D.
         /// </summary>
         internal static string UniqueRectangle2D {
             get {
@@ -3265,7 +3265,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Unique Rectangle + 2D/1SL.
+        ///   Looks up a localized string similar to 唯一矩形 + 2D/1SL.
         /// </summary>
         internal static string UniqueRectangle2D1 {
             get {
@@ -3274,7 +3274,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Unique Rectangle + 3E/2SL.
+        ///   Looks up a localized string similar to 唯一矩形 + 3E/2SL.
         /// </summary>
         internal static string UniqueRectangle3E2 {
             get {
@@ -3283,7 +3283,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Unique Rectangle + 3N/2SL.
+        ///   Looks up a localized string similar to 唯一矩形 + 3N/2SL.
         /// </summary>
         internal static string UniqueRectangle3N2 {
             get {
@@ -3292,7 +3292,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Unique Rectangle + 3U/2SL.
+        ///   Looks up a localized string similar to 唯一矩形 + 3U/2SL.
         /// </summary>
         internal static string UniqueRectangle3U2 {
             get {
@@ -3301,7 +3301,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Unique Rectangle + 3X.
+        ///   Looks up a localized string similar to 唯一矩形 + 3X.
         /// </summary>
         internal static string UniqueRectangle3X {
             get {
@@ -3310,7 +3310,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Unique Rectangle + 3x/1SL.
+        ///   Looks up a localized string similar to 唯一矩形 + 3x/1SL.
         /// </summary>
         internal static string UniqueRectangle3X1L {
             get {
@@ -3319,7 +3319,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Unique Rectangle + 3X/1SL.
+        ///   Looks up a localized string similar to 唯一矩形 + 3X/1SL.
         /// </summary>
         internal static string UniqueRectangle3X1U {
             get {
@@ -3328,7 +3328,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Unique Rectangle + 3X/2SL.
+        ///   Looks up a localized string similar to 唯一矩形 + 3X/2SL.
         /// </summary>
         internal static string UniqueRectangle3X2 {
             get {
@@ -3337,7 +3337,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Unique Rectangle 4C/3SL.
+        ///   Looks up a localized string similar to 唯一矩形 + 4C/3SL.
         /// </summary>
         internal static string UniqueRectangle4C3 {
             get {
@@ -3346,7 +3346,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Unique Rectangle + 4x/1SL.
+        ///   Looks up a localized string similar to 唯一矩形 + 4x/1SL.
         /// </summary>
         internal static string UniqueRectangle4X1L {
             get {
@@ -3355,7 +3355,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Unique Rectangle + 4X/1SL.
+        ///   Looks up a localized string similar to 唯一矩形 + 4X/1SL.
         /// </summary>
         internal static string UniqueRectangle4X1U {
             get {
@@ -3364,7 +3364,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Unique Rectangle + 4x/2SL.
+        ///   Looks up a localized string similar to 唯一矩形 + 4x/2SL.
         /// </summary>
         internal static string UniqueRectangle4X2L {
             get {
@@ -3373,7 +3373,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Unique Rectangle + 4X/2SL.
+        ///   Looks up a localized string similar to 唯一矩形 + 4X/2SL.
         /// </summary>
         internal static string UniqueRectangle4X2U {
             get {
@@ -3382,7 +3382,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Unique Rectangle 4X/3SL.
+        ///   Looks up a localized string similar to 唯一矩形 + 4X/3SL.
         /// </summary>
         internal static string UniqueRectangle4X3 {
             get {
@@ -3391,7 +3391,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Unique Rectangle Guardian.
+        ///   Looks up a localized string similar to 唯一矩形・守护者.
         /// </summary>
         internal static string UniqueRectangleBrokenWing {
             get {
@@ -3400,7 +3400,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Unique Rectangle Sue de Coq.
+        ///   Looks up a localized string similar to 唯一矩形・融合待定数组.
         /// </summary>
         internal static string UniqueRectangleSueDeCoq {
             get {
@@ -3409,7 +3409,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Unique Rectangle Type 1.
+        ///   Looks up a localized string similar to 唯一矩形类型 1.
         /// </summary>
         internal static string UniqueRectangleType1 {
             get {
@@ -3418,7 +3418,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Unique Rectangle Type 2.
+        ///   Looks up a localized string similar to 唯一矩形类型 2.
         /// </summary>
         internal static string UniqueRectangleType2 {
             get {
@@ -3427,7 +3427,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Unique Rectangle Type 3.
+        ///   Looks up a localized string similar to 唯一矩形类型 3.
         /// </summary>
         internal static string UniqueRectangleType3 {
             get {
@@ -3436,7 +3436,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Unique Rectangle Type 4.
+        ///   Looks up a localized string similar to 唯一矩形类型 4.
         /// </summary>
         internal static string UniqueRectangleType4 {
             get {
@@ -3445,7 +3445,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Unique Rectangle Type 5.
+        ///   Looks up a localized string similar to 唯一矩形类型 5.
         /// </summary>
         internal static string UniqueRectangleType5 {
             get {
@@ -3454,7 +3454,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Unique Rectangle Type 6.
+        ///   Looks up a localized string similar to 唯一矩形类型 6.
         /// </summary>
         internal static string UniqueRectangleType6 {
             get {
@@ -3463,7 +3463,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Unique Rectangle Unknown Covering.
+        ///   Looks up a localized string similar to 唯一矩形・代数.
         /// </summary>
         internal static string UniqueRectangleUnknownCovering {
             get {
@@ -3472,7 +3472,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Unique Rectangle WXYZ-Wing.
+        ///   Looks up a localized string similar to 唯一矩形・WXYZ-Wing.
         /// </summary>
         internal static string UniqueRectangleWxyzWing {
             get {
@@ -3481,7 +3481,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Unique Rectangle XY-Wing.
+        ///   Looks up a localized string similar to 唯一矩形・XY-Wing.
         /// </summary>
         internal static string UniqueRectangleXyWing {
             get {
@@ -3490,7 +3490,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Unique Rectangle XYZ-Wing.
+        ///   Looks up a localized string similar to 唯一矩形・XYZ-Wing.
         /// </summary>
         internal static string UniqueRectangleXyzWing {
             get {
@@ -3499,7 +3499,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Unique Square Type 1.
+        ///   Looks up a localized string similar to 唯一矩阵类型 1.
         /// </summary>
         internal static string UniqueSquareType1 {
             get {
@@ -3508,7 +3508,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Unique Square Type 2.
+        ///   Looks up a localized string similar to 唯一矩阵类型 2.
         /// </summary>
         internal static string UniqueSquareType2 {
             get {
@@ -3517,7 +3517,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Unique Square Type 3.
+        ///   Looks up a localized string similar to 唯一矩阵类型 3.
         /// </summary>
         internal static string UniqueSquareType3 {
             get {
@@ -3526,7 +3526,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Unique Square Type 4.
+        ///   Looks up a localized string similar to 唯一矩阵类型 4.
         /// </summary>
         internal static string UniqueSquareType4 {
             get {
@@ -3553,7 +3553,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Whale.
+        ///   Looks up a localized string similar to 六链列.
         /// </summary>
         internal static string Whale {
             get {
@@ -3580,7 +3580,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to X-Chain.
+        ///   Looks up a localized string similar to 同数链.
         /// </summary>
         internal static string XChain {
             get {
@@ -3589,7 +3589,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to X-Wing.
+        ///   Looks up a localized string similar to 二链列.
         /// </summary>
         internal static string XWing {
             get {
@@ -3598,7 +3598,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to XY-Chain.
+        ///   Looks up a localized string similar to 双值格链.
         /// </summary>
         internal static string XyChain {
             get {
@@ -3607,7 +3607,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to XY-Cycle.
+        ///   Looks up a localized string similar to 双值格环.
         /// </summary>
         internal static string XyCycle {
             get {
@@ -3625,7 +3625,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to XY-X-Chain.
+        ///   Looks up a localized string similar to 首尾异数链.
         /// </summary>
         internal static string XyXChain {
             get {
@@ -3643,7 +3643,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Y-Chain.
+        ///   Looks up a localized string similar to 同格链.
         /// </summary>
         internal static string YChain {
             get {

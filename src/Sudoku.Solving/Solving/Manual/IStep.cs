@@ -1,5 +1,6 @@
 ﻿using Sudoku.Collections;
 using Sudoku.Presentation;
+using Sudoku.Resources;
 using Sudoku.Solving.Manual.Text;
 using Sudoku.Techniques;
 
@@ -26,14 +27,9 @@ public interface IStep
 	bool ShowDifficulty { get; }
 
 	/// <summary>
-	/// Indicates the technique name. The name is defined from attribute <see cref="TechniqueNameAttribute"/>
-	/// that is applied to a field in <see cref="Technique"/>.
+	/// Indicates the technique name. The technique name are all stored in the resource dictionary,
+	/// you can find them in the <c>Resources</c> folder (Type <see cref="MergedResources"/>).
 	/// </summary>
-	/// <exception cref="InvalidOperationException">
-	/// Throws when the step doesn't contain a valid name.
-	/// </exception>
-	/// <seealso cref="TechniqueNameAttribute"/>
-	/// <seealso cref="Technique"/>
 	string Name { get; }
 
 	/// <summary>
