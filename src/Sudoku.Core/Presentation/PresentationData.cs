@@ -479,14 +479,14 @@ public partial record struct PresentationData(
 
 #pragma warning disable IDE0022
 	/// <inheritdoc/>
-	public static PresentationData Parse(string? str)
+	public static PresentationData Parse(string str)
 	{
 		throw new NotImplementedException("I'll implement this method later.");
 	}
 #pragma warning restore IDE0022
 
 	/// <inheritdoc/>
-	public static bool TryParse([NotNullWhen(true)] string? str, out PresentationData result)
+	public static bool TryParse(string str, out PresentationData result)
 	{
 		try
 		{

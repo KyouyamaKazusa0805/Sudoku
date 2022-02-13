@@ -1299,7 +1299,7 @@ public unsafe partial struct Grid :
 	/// <param name="ptrStr">The pointer that points to string.</param>
 	/// <returns>The result instance.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static Grid Parse(char* ptrStr) => Parse(new string(ptrStr));
+	public static Grid Parse(char* ptrStr!!) => Parse(new string(ptrStr));
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
