@@ -95,22 +95,20 @@
             Defines a creator that creates the drawing elements.
             </summary>
         </member>
-        <member name="M:Sudoku.UI.Drawing.DrawingElementCreator.OutsideRectangle(Windows.UI.Color,System.Double,System.TimeSpan)">
+        <member name="M:Sudoku.UI.Drawing.DrawingElementCreator.OutsideRectangle(Windows.UI.Color,System.Double)">
             <summary>
             Creates a <see cref="T:Microsoft.UI.Xaml.Shapes.Rectangle"/> instance that displays as the outside border.
             </summary>
             <param name="color">The color of the stroke.</param>
             <param name="thickness">The thickness of the border.</param>
-            <param name="duration">The duration of the scale transition.</param>
             <returns>The instance.</returns>
         </member>
-        <member name="M:Sudoku.UI.Drawing.DrawingElementCreator.BlockBorderLine(Windows.UI.Color,System.Double,System.TimeSpan,Sudoku.UI.Drawing.PointCalculator,System.Int32,System.Boolean)">
+        <member name="M:Sudoku.UI.Drawing.DrawingElementCreator.BlockBorderLine(Windows.UI.Color,System.Double,Sudoku.UI.Drawing.PointCalculator,System.Int32,System.Boolean)">
             <summary>
             Creates a <see cref="T:Microsoft.UI.Xaml.Shapes.Line"/> instance that displays as the block border lines.
             </summary>
             <param name="color">The color of the stroke.</param>
             <param name="thickness">The thickness of the border.</param>
-            <param name="duration">The duration of the scale transition.</param>
             <param name="pc">The conversion instance.</param>
             <param name="order">The order of the line. The valid range is <c>[0, 4)</c>.</param>
             <param name="horizontal">
@@ -119,13 +117,12 @@
             </param>
             <returns>The instance.</returns>
         </member>
-        <member name="M:Sudoku.UI.Drawing.DrawingElementCreator.CellBorderLine(Windows.UI.Color,System.Double,System.TimeSpan,Sudoku.UI.Drawing.PointCalculator,System.Int32,System.Boolean)">
+        <member name="M:Sudoku.UI.Drawing.DrawingElementCreator.CellBorderLine(Windows.UI.Color,System.Double,Sudoku.UI.Drawing.PointCalculator,System.Int32,System.Boolean)">
             <summary>
             Creates a <see cref="T:Microsoft.UI.Xaml.Shapes.Line"/> instance that displays as the cell border lines.
             </summary>
             <param name="color">The color of the stroke.</param>
             <param name="thickness">The thickness of the border.</param>
-            <param name="duration">The duration of the scale transition.</param>
             <param name="pc">The conversion instance.</param>
             <param name="order">The order of the line. The valid range is <c>[0, 4)</c>.</param>
             <param name="horizontal">

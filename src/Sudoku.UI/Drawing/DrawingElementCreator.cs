@@ -15,16 +15,13 @@ internal static class DrawingElementCreator
 	/// </summary>
 	/// <param name="color">The color of the stroke.</param>
 	/// <param name="thickness">The thickness of the border.</param>
-	/// <param name="duration">The duration of the scale transition.</param>
 	/// <returns>The instance.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static Rectangle OutsideRectangle(Color color, double thickness, TimeSpan duration) =>
+	public static Rectangle OutsideRectangle(Color color, double thickness) =>
 		new()
 		{
 			Stroke = new SolidColorBrush(color),
 			StrokeThickness = thickness,
-			Scale = Vector3.Zero,
-			ScaleTransition = new() { Duration = duration },
 			Tag = $"{SudokuCanvasTags.BorderLines}|{SudokuCanvasTags.OutsideBorderLines}"
 		};
 
@@ -33,7 +30,6 @@ internal static class DrawingElementCreator
 	/// </summary>
 	/// <param name="color">The color of the stroke.</param>
 	/// <param name="thickness">The thickness of the border.</param>
-	/// <param name="duration">The duration of the scale transition.</param>
 	/// <param name="pc">The conversion instance.</param>
 	/// <param name="order">The order of the line. The valid range is <c>[0, 4)</c>.</param>
 	/// <param name="horizontal">
@@ -43,7 +39,7 @@ internal static class DrawingElementCreator
 	/// <returns>The instance.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static Line BlockBorderLine(
-		Color color, double thickness, TimeSpan duration, PointCalculator pc, int order, bool horizontal)
+		Color color, double thickness, PointCalculator pc, int order, bool horizontal)
 	{
 		Func<int, BorderLineType, Point>
 			a = horizontal ? pc.HorizontalBorderLinePoint1 : pc.VerticalBorderLinePoint1,
@@ -59,8 +55,6 @@ internal static class DrawingElementCreator
 			Y1 = y1,
 			X2 = x2,
 			Y2 = y2,
-			Scale = Vector3.Zero,
-			ScaleTransition = new() { Duration = duration },
 			StrokeLineJoin = PenLineJoin.Round,
 			Tag = $"{SudokuCanvasTags.BorderLines}|{SudokuCanvasTags.BlockBorderLines}|{(horizontal ? SudokuCanvasTags.HorizontalBorderLines : SudokuCanvasTags.VerticalBorderLines)}|{order}"
 		};
@@ -71,7 +65,6 @@ internal static class DrawingElementCreator
 	/// </summary>
 	/// <param name="color">The color of the stroke.</param>
 	/// <param name="thickness">The thickness of the border.</param>
-	/// <param name="duration">The duration of the scale transition.</param>
 	/// <param name="pc">The conversion instance.</param>
 	/// <param name="order">The order of the line. The valid range is <c>[0, 4)</c>.</param>
 	/// <param name="horizontal">
@@ -81,7 +74,7 @@ internal static class DrawingElementCreator
 	/// <returns>The instance.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static Line CellBorderLine(
-		Color color, double thickness, TimeSpan duration, PointCalculator pc, int order, bool horizontal)
+		Color color, double thickness, PointCalculator pc, int order, bool horizontal)
 	{
 		Func<int, BorderLineType, Point>
 			a = horizontal ? pc.HorizontalBorderLinePoint1 : pc.VerticalBorderLinePoint1,
@@ -97,8 +90,6 @@ internal static class DrawingElementCreator
 			Y1 = y1,
 			X2 = x2,
 			Y2 = y2,
-			Scale = Vector3.Zero,
-			ScaleTransition = new() { Duration = duration },
 			StrokeLineJoin = PenLineJoin.Round,
 			Tag = $"{SudokuCanvasTags.BorderLines}|{SudokuCanvasTags.CellBorderLines}|{(horizontal ? SudokuCanvasTags.HorizontalBorderLines : SudokuCanvasTags.VerticalBorderLines)}|{order}"
 		};
