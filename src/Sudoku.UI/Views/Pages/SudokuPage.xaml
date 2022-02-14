@@ -8,16 +8,6 @@
 	mc:Ignorable="d">
 	<ScrollViewer>
 		<Grid>
-			<Grid.Resources>
-				<Style TargetType="c:DigitButton">
-					<Setter Property="Margin" Value="10" />
-					<Setter Property="FontSize" Value="36" />
-					<Setter Property="Width" Value="60" />
-					<Setter Property="Height" Value="60" />
-					<Setter Property="Background" Value="White" />
-					<Setter Property="BorderBrush" Value="Black" />
-				</Style>
-			</Grid.Resources>
 			<Grid.RowDefinitions>
 				<RowDefinition Height="Auto" />
 				<RowDefinition />
@@ -42,17 +32,6 @@
 					<ColumnDefinition Width="Auto" />
 					<ColumnDefinition Width="Auto" />
 				</Grid.ColumnDefinitions>
-
-				<c:DigitButton Grid.Row="0" Grid.Column="0" Digit="1" />
-				<c:DigitButton Grid.Row="0" Grid.Column="1" Digit="2" />
-				<c:DigitButton Grid.Row="0" Grid.Column="2" Digit="3" />
-				<c:DigitButton Grid.Row="0" Grid.Column="3" Digit="4" />
-				<c:DigitButton Grid.Row="0" Grid.Column="4" Digit="5" />
-				<c:DigitButton Grid.Row="1" Grid.Column="0" Digit="6" />
-				<c:DigitButton Grid.Row="1" Grid.Column="1" Digit="7" />
-				<c:DigitButton Grid.Row="1" Grid.Column="2" Digit="8" />
-				<c:DigitButton Grid.Row="1" Grid.Column="3" Digit="9" />
-				<c:DigitButton Grid.Row="1" Grid.Column="4" Digit="0" />
 			</Grid>
 		</Grid>
 	</ScrollViewer>

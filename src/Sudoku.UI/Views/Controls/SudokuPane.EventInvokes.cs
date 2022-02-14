@@ -11,14 +11,13 @@ partial class SudokuPane
 	/// </summary>
 	/// <param name="sender">The object to trigger the event. The instance is always itself.</param>
 	/// <param name="e">The event arguments provided.</param>
-	private async void SudokuPane_LoadedAsync([IsDiscard] object sender, [IsDiscard] RoutedEventArgs e)
+	private void SudokuPane_Loaded([IsDiscard] object sender, [IsDiscard] RoutedEventArgs e)
 	{
 		// Initializes the grid lines.
-		await initializeGridAsync(1, 4, 1);
+		initializeGrid(1, 4, 1);
 
 
-		async Task initializeGridAsync(
-			double outsideBorderThickness, double blockBorderThickness, double cellBorderThickness)
+		void initializeGrid(double outsideBorderThickness, double blockBorderThickness, double cellBorderThickness)
 		{
 			var duration = TimeSpan.FromSeconds(1);
 			PointCalculator = new(Size, OutsideOffset);
@@ -33,9 +32,6 @@ partial class SudokuPane
 				);
 
 				_cCanvasMain.Children.Add(rect);
-
-				DrawingElementAnimation.ApplyScaleAnimation(rect);
-				await 100;
 			}
 
 			// Initializes block border lines.
@@ -60,10 +56,6 @@ partial class SudokuPane
 
 				_cCanvasMain.Children.Add(l1);
 				_cCanvasMain.Children.Add(l2);
-
-				DrawingElementAnimation.ApplyScaleAnimation(l1);
-				DrawingElementAnimation.ApplyScaleAnimation(l2);
-				await 100;
 			}
 
 			// Initializes cell border lines.
@@ -94,10 +86,6 @@ partial class SudokuPane
 
 				_cCanvasMain.Children.Add(l1);
 				_cCanvasMain.Children.Add(l2);
-
-				DrawingElementAnimation.ApplyScaleAnimation(l1);
-				DrawingElementAnimation.ApplyScaleAnimation(l2);
-				await 100;
 			}
 
 			// TODO: Initializes candidate border lines if worth.

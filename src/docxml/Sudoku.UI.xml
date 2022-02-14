@@ -90,18 +90,6 @@
             Indicates the border line is candidate line.
             </summary>
         </member>
-        <member name="T:Sudoku.UI.Drawing.DrawingElementAnimation">
-            <summary>
-            Applies the animation on drawing elements.
-            </summary>
-        </member>
-        <member name="M:Sudoku.UI.Drawing.DrawingElementAnimation.ApplyScaleAnimation``1(``0)">
-            <summary>
-            Applies a <see cref="T:Microsoft.UI.Xaml.UIElement"/> control the scale animation.
-            </summary>
-            <typeparam name="TUIElement">The type of the control.</typeparam>
-            <param name="this">The control instance.</param>
-        </member>
         <member name="T:Sudoku.UI.Drawing.DrawingElementCreator">
             <summary>
             Defines a creator that creates the drawing elements.
@@ -360,55 +348,12 @@
             Indicates the vertical border lines.
             </summary>
         </member>
-        <member name="T:Sudoku.UI.Views.Controls.DigitButton">
-            <summary>
-            Defines a user control that indicates a digit button.
-            </summary>
-        </member>
-        <member name="M:Sudoku.UI.Views.Controls.DigitButton.#ctor">
-            <summary>
-            Initializes a <see cref="T:Sudoku.UI.Views.Controls.DigitButton"/> instance.
-            </summary>
-        </member>
-        <member name="P:Sudoku.UI.Views.Controls.DigitButton.Digit">
-            <summary>
-            Gets or sets the digit to the view model.
-            </summary>
-        </member>
-        <member name="E:Sudoku.UI.Views.Controls.DigitButton.Click">
-            <summary>
-            Occurs when the control is clicked.
-            </summary>
-        </member>
-        <member name="M:Sudoku.UI.Views.Controls.DigitButton.Button_Click(System.Object,Microsoft.UI.Xaml.RoutedEventArgs)">
-            <summary>
-            Pass the arguments and trigger the event <see cref="E:Sudoku.UI.Views.Controls.DigitButton.Click"/>.
-            </summary>
-            <param name="sender">The object to trigger the event.</param>
-            <param name="e">The event argument provided.</param>
-            <seealso cref="E:Sudoku.UI.Views.Controls.DigitButton.Click"/>
-        </member>
-        <member name="M:Sudoku.UI.Views.Controls.DigitButton.InitializeComponent">
-            <summary>
-            InitializeComponent()
-            </summary>
-        </member>
-        <member name="M:Sudoku.UI.Views.Controls.DigitButton.Connect(System.Int32,System.Object)">
-            <summary>
-            Connect()
-            </summary>
-        </member>
-        <member name="M:Sudoku.UI.Views.Controls.DigitButton.GetBindingConnector(System.Int32,System.Object)">
-            <summary>
-            GetBindingConnector(int connectionId, object target)
-            </summary>
-        </member>
         <member name="T:Sudoku.UI.Views.Controls.SudokuPane">
             <summary>
             Defines a user control that interacts with a sudoku grid.
             </summary>
         </member>
-        <member name="M:Sudoku.UI.Views.Controls.SudokuPane.SudokuPane_LoadedAsync(System.Object,Microsoft.UI.Xaml.RoutedEventArgs)">
+        <member name="M:Sudoku.UI.Views.Controls.SudokuPane.SudokuPane_Loaded(System.Object,Microsoft.UI.Xaml.RoutedEventArgs)">
             <summary>
             Triggers when the current control is loaded.
             </summary>

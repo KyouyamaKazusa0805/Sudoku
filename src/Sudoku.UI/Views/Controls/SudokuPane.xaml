@@ -6,7 +6,7 @@
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 	mc:Ignorable="d"
 	Width="{x:Bind Size,Mode=TwoWay}" Height="{x:Bind Size,Mode=TwoWay}"
-	Loaded="SudokuPane_LoadedAsync">
+	Loaded="SudokuPane_Loaded">
 
 	<Canvas x:Name="_cCanvasMain" />
 </UserControl>
