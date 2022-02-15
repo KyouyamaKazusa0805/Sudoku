@@ -1,5 +1,4 @@
-﻿using Microsoft.UI;
-using Sudoku.Diagnostics.CodeAnalysis;
+﻿using Sudoku.Diagnostics.CodeAnalysis;
 using Sudoku.UI.Drawing.Shapes;
 
 namespace Sudoku.UI.Views.Controls;
@@ -22,6 +21,12 @@ public sealed partial class SudokuPane : UserControl
 	/// displaying in the window.
 	/// </summary>
 	private readonly DrawingElementBag _drawingElements = new();
+
+	/// <summary>
+	/// Indicates the user preferences.
+	/// </summary>
+	/// <!--Wait for new function that allows serializations or deserializations.-->
+	private readonly UserPreference _userPreference = new();
 
 	/// <summary>
 	/// Indicates the size that the current pane is, which is the backing field
@@ -152,22 +157,26 @@ public sealed partial class SudokuPane : UserControl
 	/// <param name="e">The event arguments provided.</param>
 	private void SudokuPane_Loaded([IsDiscard] object sender, [IsDiscard] RoutedEventArgs e)
 	{
-		const int outsideBorderWidth = 1, blockBorderWidth = 4, cellBorderWidth = 1;
+		double outsideBorderWidth = _userPreference.OutsideBorderWidth;
+		double blockBorderWidth = _userPreference.BlockBorderWidth;
+		double cellBorderWidth = _userPreference.CellBorderWidth;
 
 		// Initializes the outside border if worth.
 		if (outsideBorderWidth != 0 && OutsideOffset != 0)
 		{
-			_drawingElements.Add(new OutsideRectangle(Colors.Black, outsideBorderWidth));
+			_drawingElements.Add(new OutsideRectangle(_userPreference.OutsideBorderColor, outsideBorderWidth));
 		}
 
 		// Initializes block border lines.
+		var blockBorderColor = _userPreference.BlockBorderColor;
 		for (byte i = 0; i < 4; i++)
 		{
-			_drawingElements.Add(new BlockLine(Colors.Black, blockBorderWidth, Size, OutsideOffset, i));
-			_drawingElements.Add(new BlockLine(Colors.Black, blockBorderWidth, Size, OutsideOffset, (byte)(i + 4)));
+			_drawingElements.Add(new BlockLine(blockBorderColor, blockBorderWidth, Size, OutsideOffset, i));
+			_drawingElements.Add(new BlockLine(blockBorderColor, blockBorderWidth, Size, OutsideOffset, (byte)(i + 4)));
 		}
 
 		// Initializes cell border lines.
+		var cellBorderColor = _userPreference.CellBorderColor;
 		for (byte i = 0; i < 10; i++)
 		{
 			if (i % 3 == 0)
@@ -176,8 +185,8 @@ public sealed partial class SudokuPane : UserControl
 				continue;
 			}
 
-			_drawingElements.Add(new CellLine(Colors.Black, cellBorderWidth, Size, OutsideOffset, i));
-			_drawingElements.Add(new CellLine(Colors.Black, cellBorderWidth, Size, OutsideOffset, (byte)(i + 10)));
+			_drawingElements.Add(new CellLine(cellBorderColor, cellBorderWidth, Size, OutsideOffset, i));
+			_drawingElements.Add(new CellLine(cellBorderColor, cellBorderWidth, Size, OutsideOffset, (byte)(i + 10)));
 		}
 
 		// TODO: Initializes candidate border lines if worth.

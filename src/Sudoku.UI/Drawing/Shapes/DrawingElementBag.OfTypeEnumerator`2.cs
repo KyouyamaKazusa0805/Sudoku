@@ -7,8 +7,8 @@ partial class DrawingElementBag
 	/// with 2 specified type parameters as the type of all iterated elements.
 	/// If the type is either <typeparamref name="T1"/> or <typeparamref name="T2"/>, it'll be iterated.
 	/// </summary>
-	/// <typeparam name="T1">The type of the elements to be iterated.</typeparam>
-	/// <typeparam name="T2">The type of the elements to be iterated.</typeparam>
+	/// <typeparam name="T1">The first type of the elements to be iterated.</typeparam>
+	/// <typeparam name="T2">The second type of the elements to be iterated.</typeparam>
 	/// <seealso cref="DrawingElementBag"/>
 	public ref partial struct OfTypeEnumerator<T1, T2> where T1 : DrawingElement where T2 : DrawingElement
 	{

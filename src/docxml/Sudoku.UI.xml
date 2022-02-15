@@ -600,8 +600,8 @@
             with 2 specified type parameters as the type of all iterated elements.
             If the type is either <typeparamref name="T1"/> or <typeparamref name="T2"/>, it'll be iterated.
             </summary>
-            <typeparam name="T1">The type of the elements to be iterated.</typeparam>
-            <typeparam name="T2">The type of the elements to be iterated.</typeparam>
+            <typeparam name="T1">The first type of the elements to be iterated.</typeparam>
+            <typeparam name="T2">The second type of the elements to be iterated.</typeparam>
             <seealso cref="T:Sudoku.UI.Drawing.Shapes.DrawingElementBag"/>
         </member>
         <member name="F:Sudoku.UI.Drawing.Shapes.DrawingElementBag.OfTypeEnumerator`2._count">
@@ -808,6 +808,59 @@
             Indicates the website which name is corresponding to.
             </summary>
         </member>
+        <member name="T:Sudoku.UI.UserPreference">
+            <summary>
+            Defines the user preferences in the program.
+            </summary>
+        </member>
+        <member name="F:Sudoku.UI.UserPreference.OutsideBorderWidth">
+            <summary>
+            Indicates the outside border width. The value cannot be negative.
+            </summary>
+            <remarks>
+            The default value is <c>0</c>.
+            </remarks>
+        </member>
+        <member name="F:Sudoku.UI.UserPreference.BlockBorderWidth">
+            <summary>
+            Indicates the width of the block border lines. The value cannot be negative.
+            </summary>
+            <remarks>
+            The default value is <c>4</c>.
+            </remarks>
+        </member>
+        <member name="F:Sudoku.UI.UserPreference.CellBorderWidth">
+            <summary>
+            Indicates the width of the cell border lines. The value cannot be negative.
+            </summary>
+            <remarks>
+            The default value is <c>1</c>.
+            </remarks>
+        </member>
+        <member name="F:Sudoku.UI.UserPreference.OutsideBorderColor">
+            <summary>
+            Indicates the color of the outside borders.
+            </summary>
+            <remarks>
+            The default value is <c>#FF000000</c> (i.e. Black).
+            </remarks>
+        </member>
+        <member name="F:Sudoku.UI.UserPreference.BlockBorderColor">
+            <summary>
+            Indicates the color of the block borders.
+            </summary>
+            <remarks>
+            The default value is <c>#FF000000</c> (i.e. Black).
+            </remarks>
+        </member>
+        <member name="F:Sudoku.UI.UserPreference.CellBorderColor">
+            <summary>
+            Indicates the color of the cell borders.
+            </summary>
+            <remarks>
+            The default value is <c>#FF000000</c> (i.e. Black).
+            </remarks>
+        </member>
         <member name="T:Sudoku.UI.Views.Controls.SudokuPane">
             <summary>
             Defines a user control that interacts with a sudoku grid.
@@ -824,6 +877,12 @@
             Indicates the inner collection that stores the drawing elements, and also influences the controls
             displaying in the window.
             </summary>
+        </member>
+        <member name="F:Sudoku.UI.Views.Controls.SudokuPane._userPreference">
+            <summary>
+            Indicates the user preferences.
+            </summary>
+            <!--Wait for new function that allows serializations or deserializations.-->
         </member>
         <member name="F:Sudoku.UI.Views.Controls.SudokuPane._size">
             <summary>
