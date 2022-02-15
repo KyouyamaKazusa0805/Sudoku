@@ -443,7 +443,7 @@
             </summary>
             <param name="elements">The elements to be added.</param>
         </member>
-        <member name="M:Sudoku.UI.Drawing.Shapes.DrawingElementBag.Contains(Sudoku.UI.Drawing.Shapes.DrawingElement)">
+        <member name="M:Sudoku.UI.Drawing.Shapes.DrawingElementBag.Contains``1(``0)">
             <summary>
             Determine whether the collection has been stored the instance whose value is equal to the specified one.
             </summary>

@@ -125,7 +125,7 @@ internal sealed partial class DrawingElementBag :
 	/// </summary>
 	/// <param name="element">The element to compare.</param>
 	/// <returns>A <see cref="bool"/> result indicating that.</returns>
-	public bool Contains([NotNullWhen(true)] DrawingElement? element)
+	public bool Contains<TDrawingElement>([NotNullWhen(true)] TDrawingElement? element) where TDrawingElement : DrawingElement
 	{
 		foreach (var e in this)
 		{
