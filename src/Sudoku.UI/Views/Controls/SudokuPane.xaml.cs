@@ -1,6 +1,6 @@
-﻿using Microsoft.UI.Xaml.Shapes;
-using Sudoku.UI.Drawing;
-using Windows.Foundation;
+﻿using Microsoft.UI;
+using Sudoku.Diagnostics.CodeAnalysis;
+using Sudoku.UI.Drawing.Shapes;
 
 namespace Sudoku.UI.Views.Controls;
 
@@ -9,20 +9,54 @@ namespace Sudoku.UI.Views.Controls;
 /// </summary>
 public sealed partial class SudokuPane : UserControl
 {
+	#region Fields
+	/// <summary>
+	/// Indicates the delta that is used for checking whether two <see cref="double"/> values are same
+	/// or their difference is below to the delta value.
+	/// </summary>
+	private const double Epsilon = 1E-2;
+
+
+	/// <summary>
+	/// Indicates the inner collection that stores the drawing elements, and also influences the controls
+	/// displaying in the window.
+	/// </summary>
+	private readonly ICollection<DrawingElement> _drawingElements = new List<DrawingElement>();
+
+	/// <summary>
+	/// Indicates the size that the current pane is, which is the backing field
+	/// of the property <see cref="Size"/>.
+	/// </summary>
+	/// <seealso cref="Size"/>
 	private double _size;
+
+	/// <summary>
+	/// Indicates the outside offset value, which is the backing field
+	/// of the property <see cref="OutsideOffset"/>.
+	/// </summary>
+	/// <seealso cref="OutsideOffset"/>
 	private double _outsideOffset;
+
+	/// <summary>
+	/// Indicates the grid used, which is the backing field of the property <see cref="Grid"/>.
+	/// </summary>
+	/// <seealso cref="Grid"/>
 	private Grid _grid;
+	#endregion
 
 
+	#region Constructors
 	/// <summary>
 	/// Initializes a <see cref="SudokuPane"/> instance.
 	/// </summary>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public SudokuPane() => InitializeComponent();
+	#endregion
 
 
+	#region Properties
 	/// <summary>
-	/// Gets or sets the size of the pane to the view model.
+	/// Gets or sets the size of the pane.
 	/// </summary>
 	public double Size
 	{
@@ -32,7 +66,7 @@ public sealed partial class SudokuPane : UserControl
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		set
 		{
-			if (!_size.NearlyEquals(value, PointCalculator.Epsilon))
+			if (!_size.NearlyEquals(value, Epsilon))
 			{
 				_size = value;
 
@@ -52,7 +86,7 @@ public sealed partial class SudokuPane : UserControl
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		set
 		{
-			if (!_outsideOffset.NearlyEquals(value, PointCalculator.Epsilon))
+			if (!_outsideOffset.NearlyEquals(value, Epsilon))
 			{
 				_outsideOffset = value;
 
@@ -80,13 +114,10 @@ public sealed partial class SudokuPane : UserControl
 			}
 		}
 	}
-
-	/// <summary>
-	/// Indicates the point calculator.
-	/// </summary>
-	public PointCalculator PointCalculator { get; private set; }
+	#endregion
 
 
+	#region Normal instance methods
 	/// <summary>
 	/// Update the grid info.
 	/// </summary>
@@ -99,36 +130,63 @@ public sealed partial class SudokuPane : UserControl
 	/// </summary>
 	private void UpdateBorderLines()
 	{
-		PointCalculator = new(Size, OutsideOffset);
-
-		foreach (var control in
-			from control in _cCanvasMain.Children.OfType<Line>()
-			where control.Tag is string s && s.Contains(SudokuCanvasTags.BorderLines)
-			select control)
+		foreach (var drawingElement in
+			from drawingElement in _drawingElements
+			where drawingElement is CellLine or BlockLine
+			select drawingElement)
 		{
-			string tag = (string)control.Tag!;
-			int i = int.Parse(tag.Split('|')[^1]);
-			var weight = tag.Contains(SudokuCanvasTags.BlockBorderLines) ? BorderLineType.Block : BorderLineType.Cell;
-			if (tag.Contains(SudokuCanvasTags.HorizontalBorderLines))
-			{
-				var (x1, y1) = PointCalculator.HorizontalBorderLinePoint1(i, weight);
-				control.X1 = x1;
-				control.Y1 = y1;
-
-				var (x2, y2) = PointCalculator.HorizontalBorderLinePoint2(i, weight);
-				control.X2 = x2;
-				control.Y2 = y2;
-			}
-			else if (tag.Contains(SudokuCanvasTags.VerticalBorderLines))
-			{
-				var (x1, y1) = PointCalculator.VerticalBorderLinePoint1(i, weight);
-				control.X1 = x1;
-				control.Y1 = y1;
-
-				var (x2, y2) = PointCalculator.VerticalBorderLinePoint2(i, weight);
-				control.X2 = x2;
-				control.Y2 = y2;
-			}
+			drawingElement.DynamicAssign(
+				instance =>
+				{
+					instance.OutsideOffset = OutsideOffset;
+					instance.PaneSize = Size;
+				}
+			);
 		}
 	}
+	#endregion
+
+
+	#region Delegated methods
+	/// <summary>
+	/// Triggers when the current control is loaded.
+	/// </summary>
+	/// <param name="sender">The object to trigger the event. The instance is always itself.</param>
+	/// <param name="e">The event arguments provided.</param>
+	private void SudokuPane_Loaded([IsDiscard] object sender, [IsDiscard] RoutedEventArgs e)
+	{
+		const int outsideBorderWidth = 1, blockBorderWidth = 4, cellBorderWidth = 1;
+
+		// Initializes the outside border if worth.
+		if (outsideBorderWidth != 0 && OutsideOffset != 0)
+		{
+			_drawingElements.Add(new OutsideRectangle(Colors.Black, outsideBorderWidth));
+		}
+
+		// Initializes block border lines.
+		for (byte i = 0; i < 4; i++)
+		{
+			_drawingElements.Add(new BlockLine(Colors.Black, blockBorderWidth, Size, OutsideOffset, i));
+			_drawingElements.Add(new BlockLine(Colors.Black, blockBorderWidth, Size, OutsideOffset, (byte)(i + 4)));
+		}
+
+		// Initializes cell border lines.
+		for (byte i = 0; i < 10; i++)
+		{
+			if (i % 3 == 0)
+			{
+				// Skips the overlapping lines.
+				continue;
+			}
+
+			_drawingElements.Add(new CellLine(Colors.Black, cellBorderWidth, Size, OutsideOffset, i));
+			_drawingElements.Add(new CellLine(Colors.Black, cellBorderWidth, Size, OutsideOffset, (byte)(i + 10)));
+		}
+
+		// TODO: Initializes candidate border lines if worth.
+
+		// Add them into the control collection.
+		_cCanvasMain.Children.AddRange(from drawingElement in _drawingElements select drawingElement.GetControl());
+	}
+	#endregion
 }

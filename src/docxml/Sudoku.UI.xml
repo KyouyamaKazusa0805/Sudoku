@@ -65,151 +65,291 @@
         <member name="M:Sudoku.UI.Data.Converters.SudokuDigitConverter.ConvertBack(System.Object,System.Type,System.Object,System.String)">
             <inheritdoc/>
         </member>
-        <member name="T:Sudoku.UI.Drawing.BorderLineType">
+        <member name="T:Sudoku.UI.Drawing.PointConversions">
             <summary>
-            Defines a border line type.
+            Stores a set of methods on handling point conversions.
             </summary>
         </member>
-        <member name="F:Sudoku.UI.Drawing.BorderLineType.Grid">
+        <member name="M:Sudoku.UI.Drawing.PointConversions.GridSize(System.Double,System.Double)">
             <summary>
-            Indicates the border line is grid line.
+            Gets the grid size from the specified pane size and the outside offset.
+            </summary>
+            <param name="paneSize">The pane size.</param>
+            <param name="outsideOffset">The outside offset value. The value must be a positive value.</param>
+            <returns>The grid size.</returns>
+        </member>
+        <member name="M:Sudoku.UI.Drawing.PointConversions.BlockSize(System.Double,System.Double)">
+            <summary>
+            Gets the block size from the specified pane size and the outside offset.
+            </summary>
+            <param name="paneSize">The pane size.</param>
+            <param name="outsideOffset">The outside offset value. The value must be a positive value.</param>
+            <returns>The block size.</returns>
+        </member>
+        <member name="M:Sudoku.UI.Drawing.PointConversions.CellSize(System.Double,System.Double)">
+            <summary>
+            Gets the cell size from the specified pane size and the outside offset.
+            </summary>
+            <param name="paneSize">The pane size.</param>
+            <param name="outsideOffset">The outside offset value. The value must be a positive value.</param>
+            <returns>The cell size.</returns>
+        </member>
+        <member name="M:Sudoku.UI.Drawing.PointConversions.CandidateSize(System.Double,System.Double)">
+            <summary>
+            Gets the candidate size from the specified pane size and the outside offset.
+            </summary>
+            <param name="paneSize">The pane size.</param>
+            <param name="outsideOffset">The outside offset value. The value must be a positive value.</param>
+            <returns>The candidate size.</returns>
+        </member>
+        <member name="M:Sudoku.UI.Drawing.PointConversions.GetBlockLine(System.Double,System.Double,System.Byte)">
+            <summary>
+            Gets the start and end point that corresponds to the target block line at the specified index.
+            </summary>
+            <param name="paneSize">The pane size.</param>
+            <param name="outsideOffset">The outside offset.</param>
+            <param name="order">The index of the target block line. The value must be between 0 and 3.</param>
+            <returns>The two points indicating the start and end point of the line.</returns>
+        </member>
+        <member name="M:Sudoku.UI.Drawing.PointConversions.GetCellLine(System.Double,System.Double,System.Byte)">
+            <summary>
+            Gets the start and end point that corresponds to the target cell line at the specified index.
+            </summary>
+            <param name="paneSize">The pane size.</param>
+            <param name="outsideOffset">The outside offset.</param>
+            <param name="order">The index of the target cell line. The value must be between 0 and 9.</param>
+            <returns>The two points indicating the start and end point of the line.</returns>
+        </member>
+        <member name="M:Sudoku.UI.Drawing.PointConversions.GetCandidateLine(System.Double,System.Double,System.Byte)">
+            <summary>
+            Gets the start and end point that corresponds to the target candidate line at the specified index.
+            </summary>
+            <param name="paneSize">The pane size.</param>
+            <param name="outsideOffset">The outside offset.</param>
+            <param name="order">The index of the target candidate line. The value must be between 0 and 27.</param>
+            <returns>The two points indicating the start and end point of the line.</returns>
+        </member>
+        <member name="M:Sudoku.UI.Drawing.PointConversions.GetLine(System.Double,System.Double,System.Byte,System.Int32)">
+            <summary>
+            Gets the start and end point that corresponds to the target line at the specified index,
+            with the specified line weight.
+            </summary>
+            <param name="paneSize">The pane size.</param>
+            <param name="outsideOffset">The outside offset.</param>
+            <param name="i">The index of the target line.</param>
+            <param name="w">The weight of the line type. The value must be 3, 9 or 27.</param>
+            <returns>The two points indicating the start and end point of the line.</returns>
+        </member>
+        <member name="T:Sudoku.UI.Drawing.Shapes.BlockLine">
+            <summary>
+            Defines a block line.
             </summary>
         </member>
-        <member name="F:Sudoku.UI.Drawing.BorderLineType.Block">
+        <member name="F:Sudoku.UI.Drawing.Shapes.BlockLine._line">
             <summary>
-            Indicates the border line is block line.
+            The inner line.
             </summary>
         </member>
-        <member name="F:Sudoku.UI.Drawing.BorderLineType.Cell">
+        <member name="F:Sudoku.UI.Drawing.Shapes.BlockLine._paneSize">
             <summary>
-            Indicates the border line is cell line.
+            Indicates the pane size, which is the backing field of the property <see cref="P:Sudoku.UI.Drawing.Shapes.BlockLine.PaneSize"/>.
             </summary>
+            <seealso cref="P:Sudoku.UI.Drawing.Shapes.BlockLine.PaneSize"/>
         </member>
-        <member name="F:Sudoku.UI.Drawing.BorderLineType.Candidate">
+        <member name="F:Sudoku.UI.Drawing.Shapes.BlockLine._outsideOffset">
             <summary>
-            Indicates the border line is candidate line.
+            Indicates the outside offset, which is the backing field of the property <see cref="P:Sudoku.UI.Drawing.Shapes.BlockLine.OutsideOffset"/>.
             </summary>
+            <seealso cref="P:Sudoku.UI.Drawing.Shapes.BlockLine.OutsideOffset"/>
         </member>
-        <member name="T:Sudoku.UI.Drawing.DrawingElementCreator">
+        <member name="M:Sudoku.UI.Drawing.Shapes.BlockLine.#ctor(Windows.UI.Color,System.Double,System.Double,System.Double,System.Byte)">
             <summary>
-            Defines a creator that creates the drawing elements.
+            Initializes a <see cref="T:Sudoku.UI.Drawing.Shapes.BlockLine"/> instance via the specified details.
             </summary>
-        </member>
-        <member name="M:Sudoku.UI.Drawing.DrawingElementCreator.OutsideRectangle(Windows.UI.Color,System.Double)">
-            <summary>
-            Creates a <see cref="T:Microsoft.UI.Xaml.Shapes.Rectangle"/> instance that displays as the outside border.
-            </summary>
-            <param name="color">The color of the stroke.</param>
-            <param name="thickness">The thickness of the border.</param>
-            <returns>The instance.</returns>
-        </member>
-        <member name="M:Sudoku.UI.Drawing.DrawingElementCreator.BlockBorderLine(Windows.UI.Color,System.Double,Sudoku.UI.Drawing.PointCalculator,System.Int32,System.Boolean)">
-            <summary>
-            Creates a <see cref="T:Microsoft.UI.Xaml.Shapes.Line"/> instance that displays as the block border lines.
-            </summary>
-            <param name="color">The color of the stroke.</param>
-            <param name="thickness">The thickness of the border.</param>
-            <param name="pc">The conversion instance.</param>
-            <param name="order">The order of the line. The valid range is <c>[0, 4)</c>.</param>
-            <param name="horizontal">
-            Indicates whether the current mode is creating a horizontal line. <see langword="true"/> is for the
-            horizontal lines and <see langword="false"/> is for vertical lines.
+            <param name="strokeColor">The stroke color of the block line.</param>
+            <param name="width">The stroke width of the block line.</param>
+            <param name="paneSize">Indicates the pane size.</param>
+            <param name="outsideOffset">Indicates the outside offset.</param>
+            <param name="order">
+            The order. The value can only be between 0 and 19. For more details of the parameter,
+            please see the property <see cref="P:Sudoku.UI.Drawing.Shapes.BlockLine.Order"/>.
             </param>
-            <returns>The instance.</returns>
         </member>
-        <member name="M:Sudoku.UI.Drawing.DrawingElementCreator.CellBorderLine(Windows.UI.Color,System.Double,Sudoku.UI.Drawing.PointCalculator,System.Int32,System.Boolean)">
+        <member name="P:Sudoku.UI.Drawing.Shapes.BlockLine.Order">
             <summary>
-            Creates a <see cref="T:Microsoft.UI.Xaml.Shapes.Line"/> instance that displays as the cell border lines.
+            The order of the block line. The value must be between 0 and 19.
+            <list type="table">
+            <listheader>
+            <term>Range</term>
+            <description>Description</description>
+            </listheader>
+            <item>
+            <term><![CDATA[>= 0 and < 4]]></term>
+            <description>The block line is horizontal.</description>
+            </item>
+            <item>
+            <term><![CDATA[>= 4 and < 8]]></term>
+            <description>The block line is vertical.</description>
+            </item>
+            </list>
             </summary>
-            <param name="color">The color of the stroke.</param>
-            <param name="thickness">The thickness of the border.</param>
-            <param name="pc">The conversion instance.</param>
-            <param name="order">The order of the line. The valid range is <c>[0, 4)</c>.</param>
-            <param name="horizontal">
-            Indicates whether the current mode is creating a horizontal line. <see langword="true"/> is for the
-            horizontal lines and <see langword="false"/> is for vertical lines.
+        </member>
+        <member name="P:Sudoku.UI.Drawing.Shapes.BlockLine.Width">
+            <summary>
+            The stroke width of the block line.
+            </summary>
+        </member>
+        <member name="P:Sudoku.UI.Drawing.Shapes.BlockLine.PaneSize">
+            <summary>
+            The pane size.
+            </summary>
+        </member>
+        <member name="P:Sudoku.UI.Drawing.Shapes.BlockLine.OutsideOffset">
+            <summary>
+            The outside offset.
+            </summary>
+        </member>
+        <member name="P:Sudoku.UI.Drawing.Shapes.BlockLine.StrokeColor">
+            <summary>
+            The stroke color of the block line.
+            </summary>
+        </member>
+        <member name="P:Sudoku.UI.Drawing.Shapes.BlockLine.DebuggerDisplayView">
+            <summary>
+            Defines the debugger view.
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Drawing.Shapes.BlockLine.GetControl">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.UI.Drawing.Shapes.CellLine">
+            <summary>
+            Defines a cell line.
+            </summary>
+        </member>
+        <member name="F:Sudoku.UI.Drawing.Shapes.CellLine._line">
+            <summary>
+            The inner line.
+            </summary>
+        </member>
+        <member name="F:Sudoku.UI.Drawing.Shapes.CellLine._paneSize">
+            <summary>
+            Indicates the pane size, which is the backing field of the property <see cref="P:Sudoku.UI.Drawing.Shapes.CellLine.PaneSize"/>.
+            </summary>
+            <seealso cref="P:Sudoku.UI.Drawing.Shapes.CellLine.PaneSize"/>
+        </member>
+        <member name="F:Sudoku.UI.Drawing.Shapes.CellLine._outsideOffset">
+            <summary>
+            Indicates the outside offset, which is the backing field of the property <see cref="P:Sudoku.UI.Drawing.Shapes.CellLine.OutsideOffset"/>.
+            </summary>
+            <seealso cref="P:Sudoku.UI.Drawing.Shapes.CellLine.OutsideOffset"/>
+        </member>
+        <member name="M:Sudoku.UI.Drawing.Shapes.CellLine.#ctor(Windows.UI.Color,System.Double,System.Double,System.Double,System.Byte)">
+            <summary>
+            Initializes a <see cref="T:Sudoku.UI.Drawing.Shapes.CellLine"/> instance via the specified details.
+            </summary>
+            <param name="strokeColor">The stroke color of the block line.</param>
+            <param name="width">The stroke width of the block line.</param>
+            <param name="paneSize">Indicates the pane size.</param>
+            <param name="outsideOffset">Indicates the outside offset.</param>
+            <param name="order">
+            The order. The value can only be between 0 and 19. For more details of the parameter,
+            please see the property <see cref="P:Sudoku.UI.Drawing.Shapes.CellLine.Order"/>.
             </param>
-            <returns>The instance.</returns>
         </member>
-        <member name="T:Sudoku.UI.Drawing.PointCalculator">
+        <member name="P:Sudoku.UI.Drawing.Shapes.CellLine.Order">
             <summary>
-            Provides the methods for the calculations on <see cref="T:Windows.Foundation.Point"/>.
-            </summary>
-            <param name="PaneSize">Indicates the pane size.</param>
-            <param name="OutsideOffset">Indicates the outside offset.</param>
-        </member>
-        <member name="M:Sudoku.UI.Drawing.PointCalculator.#ctor(System.Double,System.Double)">
-            <summary>
-            Provides the methods for the calculations on <see cref="T:Windows.Foundation.Point"/>.
-            </summary>
-            <param name="PaneSize">Indicates the pane size.</param>
-            <param name="OutsideOffset">Indicates the outside offset.</param>
-        </member>
-        <member name="F:Sudoku.UI.Drawing.PointCalculator.Epsilon">
-            <summary>
-            Indicates the epsilon that is used for the comparation between two <see cref="T:Sudoku.UI.Drawing.PointCalculator"/>s.
-            </summary>
-        </member>
-        <member name="P:Sudoku.UI.Drawing.PointCalculator.GridSize">
-            <summary>
-            Indicates the grid size.
+            The order of the block line. The value must be between 0 and 19.
+            <list type="table">
+            <listheader>
+            <term>Range</term>
+            <description>Description</description>
+            </listheader>
+            <item>
+            <term><![CDATA[>= 0 and < 10]]></term>
+            <description>The block line is horizontal.</description>
+            </item>
+            <item>
+            <term><![CDATA[>= 10 and < 20]]></term>
+            <description>The block line is vertical.</description>
+            </item>
+            </list>
             </summary>
         </member>
-        <member name="P:Sudoku.UI.Drawing.PointCalculator.BlockSize">
+        <member name="P:Sudoku.UI.Drawing.Shapes.CellLine.Width">
             <summary>
-            Indicates the block size.
+            The stroke width of the block line.
             </summary>
         </member>
-        <member name="P:Sudoku.UI.Drawing.PointCalculator.CellSize">
+        <member name="P:Sudoku.UI.Drawing.Shapes.CellLine.PaneSize">
             <summary>
-            Indicates the cell size.
+            The pane size.
             </summary>
         </member>
-        <member name="P:Sudoku.UI.Drawing.PointCalculator.CandidateSize">
+        <member name="P:Sudoku.UI.Drawing.Shapes.CellLine.OutsideOffset">
             <summary>
-            Indicates the candidate size.
+            The outside offset.
             </summary>
         </member>
-        <member name="M:Sudoku.UI.Drawing.PointCalculator.Equals(Sudoku.UI.Drawing.PointCalculator)">
-            <inheritdoc cref="M:System.IEquatable`1.Equals(`0)"/>
-        </member>
-        <member name="M:Sudoku.UI.Drawing.PointCalculator.GetHashCode">
-            <inheritdoc cref="M:System.Object.GetHashCode"/>
-        </member>
-        <member name="M:Sudoku.UI.Drawing.PointCalculator.ToString">
-            <inheritdoc cref="M:System.Object.ToString"/>
-        </member>
-        <member name="M:Sudoku.UI.Drawing.PointCalculator.HorizontalBorderLinePoint1(System.Int32,Sudoku.UI.Drawing.BorderLineType)">
+        <member name="P:Sudoku.UI.Drawing.Shapes.CellLine.StrokeColor">
             <summary>
-            Gets the first point value of the horizontal border line.
+            The stroke color of the block line.
             </summary>
-            <param name="i">The index of the line.</param>
-            <param name="weight">The weight of the division operation. The value can only be 3, 9 or 27.</param>
-            <returns>The first point value of the horizontal border line.</returns>
         </member>
-        <member name="M:Sudoku.UI.Drawing.PointCalculator.HorizontalBorderLinePoint2(System.Int32,Sudoku.UI.Drawing.BorderLineType)">
+        <member name="P:Sudoku.UI.Drawing.Shapes.CellLine.DebuggerDisplayView">
             <summary>
-            Gets the second point value of the horizontal border line.
+            Defines the debugger view.
             </summary>
-            <param name="i">The index of the line.</param>
-            <param name="weight">The weight of the division operation. The value can only be 3, 9 or 27.</param>
-            <returns>The second point value of the horizontal border line.</returns>
         </member>
-        <member name="M:Sudoku.UI.Drawing.PointCalculator.VerticalBorderLinePoint1(System.Int32,Sudoku.UI.Drawing.BorderLineType)">
-            <summary>
-            Gets the first point value of the vertical border line.
-            </summary>
-            <param name="i">The index of the line.</param>
-            <param name="weight">The weight of the division operation. The value can only be 3, 9 or 27.</param>
-            <returns>The first point value of the horizontal border line.</returns>
+        <member name="M:Sudoku.UI.Drawing.Shapes.CellLine.GetControl">
+            <inheritdoc/>
         </member>
-        <member name="M:Sudoku.UI.Drawing.PointCalculator.VerticalBorderLinePoint2(System.Int32,Sudoku.UI.Drawing.BorderLineType)">
+        <member name="T:Sudoku.UI.Drawing.Shapes.DrawingElement">
             <summary>
-            Gets the second point value of the vertical border line.
+            Defines a drawing element that represents a sudoku information.
             </summary>
-            <param name="i">The index of the line.</param>
-            <param name="weight">The weight of the division operation. The value can only be 3, 9 or 27.</param>
-            <returns>The second point value of the horizontal border line.</returns>
+        </member>
+        <member name="M:Sudoku.UI.Drawing.Shapes.DrawingElement.DynamicAssign(System.Action{System.Object})">
+            <summary>
+            Provides a way to assign the inner properties using the reflection via the specified parameters.
+            </summary>
+            <param name="objectHandler">The handler that checks and changes the inner value.</param>
+        </member>
+        <member name="M:Sudoku.UI.Drawing.Shapes.DrawingElement.GetControl">
+            <summary>
+            Gets the inner control.
+            </summary>
+            <returns>The control.</returns>
+        </member>
+        <member name="T:Sudoku.UI.Drawing.Shapes.OutsideRectangle">
+            <summary>
+            Defines an outside rectangle.
+            </summary>
+        </member>
+        <member name="F:Sudoku.UI.Drawing.Shapes.OutsideRectangle._rect">
+            <summary>
+            The inner rectangle.
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Drawing.Shapes.OutsideRectangle.#ctor(Windows.UI.Color,System.Double)">
+            <summary>
+            Initializes an <see cref="T:Sudoku.UI.Drawing.Shapes.OutsideRectangle"/> instance via the specified details.
+            </summary>
+            <param name="strokeColor">The stroke color.</param>
+            <param name="width">The width.</param>
+        </member>
+        <member name="P:Sudoku.UI.Drawing.Shapes.OutsideRectangle.Width">
+            <summary>
+            The stroke width of the block line.
+            </summary>
+        </member>
+        <member name="P:Sudoku.UI.Drawing.Shapes.OutsideRectangle.StrokeColor">
+            <summary>
+            The stroke color of the block line.
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Drawing.Shapes.OutsideRectangle.GetControl">
+            <inheritdoc/>
         </member>
         <member name="T:Sudoku.UI.BindingConversions">
             <summary>
@@ -305,57 +445,42 @@
             Indicates the website which name is corresponding to.
             </summary>
         </member>
-        <member name="T:Sudoku.UI.SudokuCanvasTags">
-            <summary>
-            Indicates the tags that applies to the controls in a <see cref="T:Microsoft.UI.Xaml.Controls.Canvas"/> to display a sudoku grid.
-            </summary>
-        </member>
-        <member name="F:Sudoku.UI.SudokuCanvasTags.BorderLines">
-            <summary>
-            Indicates the border lines.
-            </summary>
-        </member>
-        <member name="F:Sudoku.UI.SudokuCanvasTags.OutsideBorderLines">
-            <summary>
-            Indicates the outside border lines.
-            </summary>
-        </member>
-        <member name="F:Sudoku.UI.SudokuCanvasTags.BlockBorderLines">
-            <summary>
-            Indicates the block border lines.
-            </summary>
-        </member>
-        <member name="F:Sudoku.UI.SudokuCanvasTags.CellBorderLines">
-            <summary>
-            Indicates the cell border lines.
-            </summary>
-        </member>
-        <member name="F:Sudoku.UI.SudokuCanvasTags.CandidateBorderLines">
-            <summary>
-            Indicates the candidate border lines.
-            </summary>
-        </member>
-        <member name="F:Sudoku.UI.SudokuCanvasTags.HorizontalBorderLines">
-            <summary>
-            Indicates the horizontal border lines.
-            </summary>
-        </member>
-        <member name="F:Sudoku.UI.SudokuCanvasTags.VerticalBorderLines">
-            <summary>
-            Indicates the vertical border lines.
-            </summary>
-        </member>
         <member name="T:Sudoku.UI.Views.Controls.SudokuPane">
             <summary>
             Defines a user control that interacts with a sudoku grid.
             </summary>
         </member>
-        <member name="M:Sudoku.UI.Views.Controls.SudokuPane.SudokuPane_Loaded(System.Object,Microsoft.UI.Xaml.RoutedEventArgs)">
+        <member name="F:Sudoku.UI.Views.Controls.SudokuPane.Epsilon">
             <summary>
-            Triggers when the current control is loaded.
+            Indicates the delta that is used for checking whether two <see cref="T:System.Double"/> values are same
+            or their difference is below to the delta value.
             </summary>
-            <param name="sender">The object to trigger the event. The instance is always itself.</param>
-            <param name="e">The event arguments provided.</param>
+        </member>
+        <member name="F:Sudoku.UI.Views.Controls.SudokuPane._drawingElements">
+            <summary>
+            Indicates the inner collection that stores the drawing elements, and also influences the controls
+            displaying in the window.
+            </summary>
+        </member>
+        <member name="F:Sudoku.UI.Views.Controls.SudokuPane._size">
+            <summary>
+            Indicates the size that the current pane is, which is the backing field
+            of the property <see cref="P:Sudoku.UI.Views.Controls.SudokuPane.Size"/>.
+            </summary>
+            <seealso cref="P:Sudoku.UI.Views.Controls.SudokuPane.Size"/>
+        </member>
+        <member name="F:Sudoku.UI.Views.Controls.SudokuPane._outsideOffset">
+            <summary>
+            Indicates the outside offset value, which is the backing field
+            of the property <see cref="P:Sudoku.UI.Views.Controls.SudokuPane.OutsideOffset"/>.
+            </summary>
+            <seealso cref="P:Sudoku.UI.Views.Controls.SudokuPane.OutsideOffset"/>
+        </member>
+        <member name="F:Sudoku.UI.Views.Controls.SudokuPane._grid">
+            <summary>
+            Indicates the grid used, which is the backing field of the property <see cref="P:Sudoku.UI.Views.Controls.SudokuPane.Grid"/>.
+            </summary>
+            <seealso cref="P:Sudoku.UI.Views.Controls.SudokuPane.Grid"/>
         </member>
         <member name="M:Sudoku.UI.Views.Controls.SudokuPane.#ctor">
             <summary>
@@ -364,7 +489,7 @@
         </member>
         <member name="P:Sudoku.UI.Views.Controls.SudokuPane.Size">
             <summary>
-            Gets or sets the size of the pane to the view model.
+            Gets or sets the size of the pane.
             </summary>
         </member>
         <member name="P:Sudoku.UI.Views.Controls.SudokuPane.OutsideOffset">
@@ -377,11 +502,6 @@
             Gets or sets the current grid used.
             </summary>
         </member>
-        <member name="P:Sudoku.UI.Views.Controls.SudokuPane.PointCalculator">
-            <summary>
-            Indicates the point calculator.
-            </summary>
-        </member>
         <member name="M:Sudoku.UI.Views.Controls.SudokuPane.UpdateGrid">
             <summary>
             Update the grid info.
@@ -391,6 +511,13 @@
             <summary>
             Update the border lines.
             </summary>
+        </member>
+        <member name="M:Sudoku.UI.Views.Controls.SudokuPane.SudokuPane_Loaded(System.Object,Microsoft.UI.Xaml.RoutedEventArgs)">
+            <summary>
+            Triggers when the current control is loaded.
+            </summary>
+            <param name="sender">The object to trigger the event. The instance is always itself.</param>
+            <param name="e">The event arguments provided.</param>
         </member>
         <member name="M:Sudoku.UI.Views.Controls.SudokuPane.InitializeComponent">
             <summary>
@@ -571,6 +698,22 @@
         <member name="M:Sudoku.UI.Sudoku_UI_XamlTypeInfo.XamlMetaDataProvider.GetXmlnsDefinitions">
             <summary>
             GetXmlnsDefinitions()
+            </summary>
+        </member>
+        <member name="T:Microsoft.UI.Xaml.Shapes.LineExtensions">
+            <summary>
+            Provides extension methods on <see cref="T:Microsoft.UI.Xaml.Shapes.Line"/>.
+            </summary>
+            <seealso cref="T:Microsoft.UI.Xaml.Shapes.Line"/>
+        </member>
+        <member name="M:Microsoft.UI.Xaml.Shapes.LineExtensions.Deconstruct(Microsoft.UI.Xaml.Shapes.Line,Windows.Foundation.Point@,Windows.Foundation.Point@)">
+            <summary>
+            Deconstruct the instance to multiple values.
+            </summary>
+        </member>
+        <member name="M:Microsoft.UI.Xaml.Shapes.LineExtensions.Deconstruct(Microsoft.UI.Xaml.Shapes.Line,System.Double@,System.Double@,System.Double@,System.Double@)">
+            <summary>
+            Deconstruct the instance to multiple values.
             </summary>
         </member>
         <member name="T:Windows.Foundation.PointExtensions">
