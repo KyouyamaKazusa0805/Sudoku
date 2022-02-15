@@ -56,5 +56,14 @@ public sealed class OutsideRectangle : DrawingElement
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public override bool Equals([NotNullWhen(true)] DrawingElement? other) =>
+		other is OutsideRectangle comparer && ReferenceEquals(_rect, comparer._rect);
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public override int GetHashCode() => HashCode.Combine(nameof(OutsideRectangle), _rect.GetHashCode());
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public override Rectangle GetControl() => _rect;
 }

@@ -159,5 +159,19 @@ public sealed class CellLine : DrawingElement
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public override bool Equals([NotNullWhen(true)] DrawingElement? other) =>
+		other is CellLine comparer
+			&& _line.X1.NearlyEquals(comparer._line.X1, 1E-2)
+			&& _line.X2.NearlyEquals(comparer._line.X2, 1E-2)
+			&& _line.Y1.NearlyEquals(comparer._line.Y1, 1E-2)
+			&& _line.Y2.NearlyEquals(comparer._line.Y2, 1E-2);
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public override int GetHashCode() =>
+		HashCode.Combine(nameof(CellLine), _line.X1, _line.X2, _line.Y1, _line.Y2);
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public override Line GetControl() => _line;
 }

@@ -219,6 +219,12 @@
             Defines the debugger view.
             </summary>
         </member>
+        <member name="M:Sudoku.UI.Drawing.Shapes.BlockLine.Equals(Sudoku.UI.Drawing.Shapes.DrawingElement)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.UI.Drawing.Shapes.BlockLine.GetHashCode">
+            <inheritdoc/>
+        </member>
         <member name="M:Sudoku.UI.Drawing.Shapes.BlockLine.GetControl">
             <inheritdoc/>
         </member>
@@ -301,6 +307,12 @@
             Defines the debugger view.
             </summary>
         </member>
+        <member name="M:Sudoku.UI.Drawing.Shapes.CellLine.Equals(Sudoku.UI.Drawing.Shapes.DrawingElement)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.UI.Drawing.Shapes.CellLine.GetHashCode">
+            <inheritdoc/>
+        </member>
         <member name="M:Sudoku.UI.Drawing.Shapes.CellLine.GetControl">
             <inheritdoc/>
         </member>
@@ -315,11 +327,356 @@
             </summary>
             <param name="objectHandler">The handler that checks and changes the inner value.</param>
         </member>
+        <member name="M:Sudoku.UI.Drawing.Shapes.DrawingElement.Equals(System.Object)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.UI.Drawing.Shapes.DrawingElement.Equals(Sudoku.UI.Drawing.Shapes.DrawingElement)">
+            <inheritdoc cref="M:System.IEquatable`1.Equals(`0)"/>
+        </member>
+        <member name="M:Sudoku.UI.Drawing.Shapes.DrawingElement.GetHashCode">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.UI.Drawing.Shapes.DrawingElement.ToString">
+            <inheritdoc/>
+        </member>
         <member name="M:Sudoku.UI.Drawing.Shapes.DrawingElement.GetControl">
             <summary>
             Gets the inner control.
             </summary>
             <returns>The control.</returns>
+        </member>
+        <member name="M:Sudoku.UI.Drawing.Shapes.DrawingElement.op_Equality(Sudoku.UI.Drawing.Shapes.DrawingElement,Sudoku.UI.Drawing.Shapes.DrawingElement)">
+            <summary>
+            Determines whether the two <see cref="T:Sudoku.UI.Drawing.Shapes.DrawingElement"/>s are equal of both type and inner value. 
+            </summary>
+            <param name="left">The left-side instance to compare.</param>
+            <param name="right">The right-side instance to compare.</param>
+            <returns>The result.</returns>
+        </member>
+        <member name="M:Sudoku.UI.Drawing.Shapes.DrawingElement.op_Inequality(Sudoku.UI.Drawing.Shapes.DrawingElement,Sudoku.UI.Drawing.Shapes.DrawingElement)">
+            <summary>
+            Determines whether the two <see cref="T:Sudoku.UI.Drawing.Shapes.DrawingElement"/>s aren't equal of both type and inner value. 
+            </summary>
+            <param name="left">The left-side instance to compare.</param>
+            <param name="right">The right-side instance to compare.</param>
+            <returns>The result.</returns>
+        </member>
+        <member name="T:Sudoku.UI.Drawing.Shapes.DrawingElementBag">
+            <summary>
+            Defines a custom collection that stores the <see cref="T:Sudoku.UI.Drawing.Shapes.DrawingElement"/>s.
+            </summary>
+        </member>
+        <member name="F:Sudoku.UI.Drawing.Shapes.DrawingElementBag._elements">
+            <summary>
+            <para>Defines the inner elements.</para>
+            <para>
+            The reference of the current field may be modified if adding a new element into it
+            but it being already full.
+            </para>
+            </summary>
+        </member>
+        <member name="F:Sudoku.UI.Drawing.Shapes.DrawingElementBag._capacity">
+            <summary>
+            Indicates the capacity value.
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Drawing.Shapes.DrawingElementBag.#ctor">
+            <summary>
+            Initializes a <see cref="T:Sudoku.UI.Drawing.Shapes.DrawingElement"/> instance with the default capacity value 16.
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Drawing.Shapes.DrawingElementBag.#ctor(Sudoku.UI.Drawing.Shapes.DrawingElement[])">
+            <summary>
+            Initializes a <see cref="T:Sudoku.UI.Drawing.Shapes.DrawingElementBag"/> instance
+            via the specified list of <see cref="T:Sudoku.UI.Drawing.Shapes.DrawingElement"/>s to add into the current collection.
+            </summary>
+            <param name="elements">The list of <see cref="T:Sudoku.UI.Drawing.Shapes.DrawingElement"/>s.</param>
+        </member>
+        <member name="M:Sudoku.UI.Drawing.Shapes.DrawingElementBag.#ctor(System.Collections.Generic.IEnumerable{Sudoku.UI.Drawing.Shapes.DrawingElement})">
+            <summary>
+            Initializes a <see cref="T:Sudoku.UI.Drawing.Shapes.DrawingElementBag"/> instance
+            via the specified list of <see cref="T:Sudoku.UI.Drawing.Shapes.DrawingElement"/>s to add into the current collection.
+            </summary>
+            <param name="elements">The list of <see cref="T:Sudoku.UI.Drawing.Shapes.DrawingElement"/>s.</param>
+        </member>
+        <member name="M:Sudoku.UI.Drawing.Shapes.DrawingElementBag.#ctor(System.UInt32)">
+            <summary>
+            Initializes a <see cref="T:Sudoku.UI.Drawing.Shapes.DrawingElementBag"/> instance via the specified capacity.
+            </summary>
+            <param name="capacity">
+            The capacity of the collection to be initialized. In other words, this parameter indicates
+            how many elements can be stored into the current collection.
+            </param>
+            <remarks>
+            The argument <paramref name="capacity"/> must be the power of 2;
+            otherwise, the method will call <see cref="M:System.Numerics.BitOperations.RoundUpToPowerOf2(System.UInt32)"/> to make the value
+            be the power of 2.
+            </remarks>
+        </member>
+        <member name="P:Sudoku.UI.Drawing.Shapes.DrawingElementBag.Capacity">
+            <summary>
+            Indicates the capacity of the current collection. The value may be greater than <see cref="P:Sudoku.UI.Drawing.Shapes.DrawingElementBag.Count"/>.
+            </summary>
+            <seealso cref="P:Sudoku.UI.Drawing.Shapes.DrawingElementBag.Count"/>
+        </member>
+        <member name="P:Sudoku.UI.Drawing.Shapes.DrawingElementBag.Count">
+            <summary>
+            Indicates the number of <see cref="T:Sudoku.UI.Drawing.Shapes.DrawingElement"/>s being stored in the current collection.
+            </summary>
+        </member>
+        <member name="P:Sudoku.UI.Drawing.Shapes.DrawingElementBag.Item(System.Int32)">
+            <summary>
+            Gets the <see cref="T:Sudoku.UI.Drawing.Shapes.DrawingElement"/> instance at the specified index.
+            </summary>
+            <param name="index">The index. Should be less than <see cref="P:Sudoku.UI.Drawing.Shapes.DrawingElementBag.Count"/>.</param>
+            <returns>The <see cref="T:Sudoku.UI.Drawing.Shapes.DrawingElement"/> element at the specified index.</returns>
+        </member>
+        <member name="M:Sudoku.UI.Drawing.Shapes.DrawingElementBag.Add(Sudoku.UI.Drawing.Shapes.DrawingElement)">
+            <summary>
+            Adds the specified element into the current collection.
+            </summary>
+            <param name="element">The element to be added.</param>
+        </member>
+        <member name="M:Sudoku.UI.Drawing.Shapes.DrawingElementBag.AddRange(System.Collections.Generic.IEnumerable{Sudoku.UI.Drawing.Shapes.DrawingElement})">
+            <summary>
+            Adds the specified list of elements into the current collection.
+            </summary>
+            <param name="elements">The elements to be added.</param>
+        </member>
+        <member name="M:Sudoku.UI.Drawing.Shapes.DrawingElementBag.Contains(Sudoku.UI.Drawing.Shapes.DrawingElement)">
+            <summary>
+            Determine whether the collection has been stored the instance whose value is equal to the specified one.
+            </summary>
+            <param name="element">The element to compare.</param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
+        </member>
+        <member name="M:Sudoku.UI.Drawing.Shapes.DrawingElementBag.ToString">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.UI.Drawing.Shapes.DrawingElementBag.GetEnumerator">
+            <inheritdoc cref="M:System.Collections.Generic.IEnumerable`1.GetEnumerator"/>
+        </member>
+        <member name="M:Sudoku.UI.Drawing.Shapes.DrawingElementBag.OfType``1">
+            <summary>
+            Gets all possible elements that are all of type <typeparamref name="TDrawingElement"/>.
+            </summary>
+            <typeparam name="TDrawingElement">The type of the elements to be iterated.</typeparam>
+            <returns>
+            The enumerator instance that allows you using <see langword="foreach"/> loop to iterate on them.
+            </returns>
+        </member>
+        <member name="M:Sudoku.UI.Drawing.Shapes.DrawingElementBag.OfEitherType``2">
+            <summary>
+            Gets all possible elements that are all of either type <typeparamref name="T1"/>
+            or <typeparamref name="T2"/>.
+            </summary>
+            <typeparam name="T1">The first allowed type whose instances being iterated.</typeparam>
+            <typeparam name="T2">The second allowed type whose instances being iterated.</typeparam>
+            <returns>
+            The enumerator instance that allows you using <see langword="foreach"/> loop to iterate on them.
+            </returns>
+        </member>
+        <member name="M:Sudoku.UI.Drawing.Shapes.DrawingElementBag.OfEitherType``3">
+            <summary>
+            Gets all possible elements that are all of either type <typeparamref name="T1"/>,
+            <typeparamref name="T2"/> or <typeparamref name="T3"/>.
+            </summary>
+            <typeparam name="T1">The first allowed type whose instances being iterated.</typeparam>
+            <typeparam name="T2">The second allowed type whose instances being iterated.</typeparam>
+            <typeparam name="T3">The third allowed type whose instances being iterated.</typeparam>
+            <returns>
+            The enumerator instance that allows you using <see langword="foreach"/> loop to iterate on them.
+            </returns>
+        </member>
+        <member name="M:Sudoku.UI.Drawing.Shapes.DrawingElementBag.Slice(System.Int32)">
+            <summary>
+            Slices the current collection and only gets the specified number of elements from the basic collection,
+            from the first element.
+            </summary>
+            <param name="count">The desired number of elements.</param>
+            <returns>The list of the collection.</returns>
+        </member>
+        <member name="M:Sudoku.UI.Drawing.Shapes.DrawingElementBag.Slice(System.Int32,System.Int32)">
+            <summary>
+            Slices the current collection and only gets the specified number of elements from the basic collection,
+            at the specified index as the beginning.
+            </summary>
+            <param name="start">The desired start index.</param>
+            <param name="count">The desired number of elements.</param>
+            <returns>The list of the collection.</returns>
+        </member>
+        <member name="M:Sudoku.UI.Drawing.Shapes.DrawingElementBag.System#Collections#IEnumerable#GetEnumerator">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.UI.Drawing.Shapes.DrawingElementBag.System#Collections#Generic#IEnumerable{Sudoku#UI#Drawing#Shapes#DrawingElement}#GetEnumerator">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.UI.Drawing.Shapes.DrawingElementBag.EnsureCapacity">
+            <summary>
+            Ensures the capacity, allowing new element being added into the current collection.
+            If the collection has been already full, the method will re-allocate the memory to allow
+            more elements stored into the current collection.
+            </summary>
+            <exception cref="T:System.OutOfMemoryException">
+            Throws when the size of the collection is greater than or equals 32767.
+            </exception>
+        </member>
+        <member name="T:Sudoku.UI.Drawing.Shapes.DrawingElementBag.Enumerator">
+            <summary>
+            Indicates the enumerator type that allows iterating on <see cref="T:Sudoku.UI.Drawing.Shapes.DrawingElementBag"/> instances. 
+            </summary>
+            <seealso cref="T:Sudoku.UI.Drawing.Shapes.DrawingElementBag"/>
+        </member>
+        <member name="F:Sudoku.UI.Drawing.Shapes.DrawingElementBag.Enumerator._count">
+            <summary>
+            The number of elements to be iterated.
+            </summary>
+        </member>
+        <member name="F:Sudoku.UI.Drawing.Shapes.DrawingElementBag.Enumerator._elements">
+            <summary>
+            The list of elements.
+            </summary>
+        </member>
+        <member name="F:Sudoku.UI.Drawing.Shapes.DrawingElementBag.Enumerator._ptr">
+            <summary>
+            Indicates the index value that points to the current iterated value.
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Drawing.Shapes.DrawingElementBag.Enumerator.#ctor(Sudoku.UI.Drawing.Shapes.DrawingElement[],System.Int32)">
+            <summary>
+            Initializes an <see cref="T:Sudoku.UI.Drawing.Shapes.DrawingElementBag.Enumerator"/> instance via the specified elements and the iteration length.
+            </summary>
+            <param name="elements">The elements to be iterated.</param>
+            <param name="count">The number of elements to be iterated.</param>
+        </member>
+        <member name="P:Sudoku.UI.Drawing.Shapes.DrawingElementBag.Enumerator.Current">
+            <inheritdoc cref="P:System.Collections.Generic.IEnumerator`1.Current"/>
+        </member>
+        <member name="M:Sudoku.UI.Drawing.Shapes.DrawingElementBag.Enumerator.MoveNext">
+            <inheritdoc cref="M:System.Collections.IEnumerator.MoveNext"/>
+        </member>
+        <member name="T:Sudoku.UI.Drawing.Shapes.DrawingElementBag.OfTypeEnumerator`1">
+            <summary>
+            Indicates the enumerator type that allows iterating on <see cref="T:Sudoku.UI.Drawing.Shapes.DrawingElementBag"/> instances,
+            with the specified type parameter as the type of all iterated elements.
+            </summary>
+            <typeparam name="TDrawingElement">The type of the elements to be iterated.</typeparam>
+            <seealso cref="T:Sudoku.UI.Drawing.Shapes.DrawingElementBag"/>
+        </member>
+        <member name="F:Sudoku.UI.Drawing.Shapes.DrawingElementBag.OfTypeEnumerator`1._count">
+            <summary>
+            The number of elements to be iterated.
+            </summary>
+        </member>
+        <member name="F:Sudoku.UI.Drawing.Shapes.DrawingElementBag.OfTypeEnumerator`1._elements">
+            <summary>
+            The list of elements.
+            </summary>
+        </member>
+        <member name="F:Sudoku.UI.Drawing.Shapes.DrawingElementBag.OfTypeEnumerator`1._ptr">
+            <summary>
+            Indicates the index value that points to the current iterated value.
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Drawing.Shapes.DrawingElementBag.OfTypeEnumerator`1.#ctor(Sudoku.UI.Drawing.Shapes.DrawingElement[],System.Int32)">
+            <summary>
+            Initializes an <see cref="T:Sudoku.UI.Drawing.Shapes.DrawingElementBag.Enumerator"/> instance via the specified elements and the iteration length.
+            </summary>
+            <param name="elements">The elements to be iterated.</param>
+            <param name="count">The number of elements to be iterated.</param>
+        </member>
+        <member name="P:Sudoku.UI.Drawing.Shapes.DrawingElementBag.OfTypeEnumerator`1.Current">
+            <inheritdoc cref="P:System.Collections.Generic.IEnumerator`1.Current"/>
+        </member>
+        <member name="M:Sudoku.UI.Drawing.Shapes.DrawingElementBag.OfTypeEnumerator`1.MoveNext">
+            <inheritdoc cref="M:System.Collections.IEnumerator.MoveNext"/>
+        </member>
+        <member name="M:Sudoku.UI.Drawing.Shapes.DrawingElementBag.OfTypeEnumerator`1.GetEnumerator">
+            <inheritdoc cref="M:System.Collections.Generic.IEnumerable`1.GetEnumerator"/>
+        </member>
+        <member name="T:Sudoku.UI.Drawing.Shapes.DrawingElementBag.OfTypeEnumerator`2">
+            <summary>
+            Indicates the enumerator type that allows iterating on <see cref="T:Sudoku.UI.Drawing.Shapes.DrawingElementBag"/> instances,
+            with 2 specified type parameters as the type of all iterated elements.
+            If the type is either <typeparamref name="T1"/> or <typeparamref name="T2"/>, it'll be iterated.
+            </summary>
+            <typeparam name="T1">The type of the elements to be iterated.</typeparam>
+            <typeparam name="T2">The type of the elements to be iterated.</typeparam>
+            <seealso cref="T:Sudoku.UI.Drawing.Shapes.DrawingElementBag"/>
+        </member>
+        <member name="F:Sudoku.UI.Drawing.Shapes.DrawingElementBag.OfTypeEnumerator`2._count">
+            <summary>
+            The number of elements to be iterated.
+            </summary>
+        </member>
+        <member name="F:Sudoku.UI.Drawing.Shapes.DrawingElementBag.OfTypeEnumerator`2._elements">
+            <summary>
+            The list of elements.
+            </summary>
+        </member>
+        <member name="F:Sudoku.UI.Drawing.Shapes.DrawingElementBag.OfTypeEnumerator`2._ptr">
+            <summary>
+            Indicates the index value that points to the current iterated value.
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Drawing.Shapes.DrawingElementBag.OfTypeEnumerator`2.#ctor(Sudoku.UI.Drawing.Shapes.DrawingElement[],System.Int32)">
+            <summary>
+            Initializes an <see cref="T:Sudoku.UI.Drawing.Shapes.DrawingElementBag.Enumerator"/> instance via the specified elements and the iteration length.
+            </summary>
+            <param name="elements">The elements to be iterated.</param>
+            <param name="count">The number of elements to be iterated.</param>
+        </member>
+        <member name="P:Sudoku.UI.Drawing.Shapes.DrawingElementBag.OfTypeEnumerator`2.Current">
+            <inheritdoc cref="P:System.Collections.Generic.IEnumerator`1.Current"/>
+        </member>
+        <member name="M:Sudoku.UI.Drawing.Shapes.DrawingElementBag.OfTypeEnumerator`2.MoveNext">
+            <inheritdoc cref="M:System.Collections.IEnumerator.MoveNext"/>
+        </member>
+        <member name="M:Sudoku.UI.Drawing.Shapes.DrawingElementBag.OfTypeEnumerator`2.GetEnumerator">
+            <inheritdoc cref="M:System.Collections.Generic.IEnumerable`1.GetEnumerator"/>
+        </member>
+        <member name="T:Sudoku.UI.Drawing.Shapes.DrawingElementBag.OfTypeEnumerator`3">
+            <summary>
+            Indicates the enumerator type that allows iterating on <see cref="T:Sudoku.UI.Drawing.Shapes.DrawingElementBag"/> instances,
+            with 3 specified type parameters as the type of all iterated elements.
+            If the type is either <typeparamref name="T1"/>, <typeparamref name="T2"/>
+            or <typeparamref name="T3"/>, it'll be iterated.
+            </summary>
+            <typeparam name="T1">The type of the elements to be iterated.</typeparam>
+            <typeparam name="T2">The type of the elements to be iterated.</typeparam>
+            <typeparam name="T3">The type of the elements to be iterated.</typeparam>
+            <seealso cref="T:Sudoku.UI.Drawing.Shapes.DrawingElementBag"/>
+        </member>
+        <member name="F:Sudoku.UI.Drawing.Shapes.DrawingElementBag.OfTypeEnumerator`3._count">
+            <summary>
+            The number of elements to be iterated.
+            </summary>
+        </member>
+        <member name="F:Sudoku.UI.Drawing.Shapes.DrawingElementBag.OfTypeEnumerator`3._elements">
+            <summary>
+            The list of elements.
+            </summary>
+        </member>
+        <member name="F:Sudoku.UI.Drawing.Shapes.DrawingElementBag.OfTypeEnumerator`3._ptr">
+            <summary>
+            Indicates the index value that points to the current iterated value.
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Drawing.Shapes.DrawingElementBag.OfTypeEnumerator`3.#ctor(Sudoku.UI.Drawing.Shapes.DrawingElement[],System.Int32)">
+            <summary>
+            Initializes an <see cref="T:Sudoku.UI.Drawing.Shapes.DrawingElementBag.Enumerator"/> instance via the specified elements and the iteration length.
+            </summary>
+            <param name="elements">The elements to be iterated.</param>
+            <param name="count">The number of elements to be iterated.</param>
+        </member>
+        <member name="P:Sudoku.UI.Drawing.Shapes.DrawingElementBag.OfTypeEnumerator`3.Current">
+            <inheritdoc cref="P:System.Collections.Generic.IEnumerator`1.Current"/>
+        </member>
+        <member name="M:Sudoku.UI.Drawing.Shapes.DrawingElementBag.OfTypeEnumerator`3.MoveNext">
+            <inheritdoc cref="M:System.Collections.IEnumerator.MoveNext"/>
+        </member>
+        <member name="M:Sudoku.UI.Drawing.Shapes.DrawingElementBag.OfTypeEnumerator`3.GetEnumerator">
+            <inheritdoc cref="M:System.Collections.Generic.IEnumerable`1.GetEnumerator"/>
         </member>
         <member name="T:Sudoku.UI.Drawing.Shapes.OutsideRectangle">
             <summary>
@@ -347,6 +704,12 @@
             <summary>
             The stroke color of the block line.
             </summary>
+        </member>
+        <member name="M:Sudoku.UI.Drawing.Shapes.OutsideRectangle.Equals(Sudoku.UI.Drawing.Shapes.DrawingElement)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.UI.Drawing.Shapes.OutsideRectangle.GetHashCode">
+            <inheritdoc/>
         </member>
         <member name="M:Sudoku.UI.Drawing.Shapes.OutsideRectangle.GetControl">
             <inheritdoc/>

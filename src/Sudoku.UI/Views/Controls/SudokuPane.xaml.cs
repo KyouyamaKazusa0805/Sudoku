@@ -21,7 +21,7 @@ public sealed partial class SudokuPane : UserControl
 	/// Indicates the inner collection that stores the drawing elements, and also influences the controls
 	/// displaying in the window.
 	/// </summary>
-	private readonly ICollection<DrawingElement> _drawingElements = new List<DrawingElement>();
+	private readonly DrawingElementBag _drawingElements = new();
 
 	/// <summary>
 	/// Indicates the size that the current pane is, which is the backing field
@@ -130,10 +130,7 @@ public sealed partial class SudokuPane : UserControl
 	/// </summary>
 	private void UpdateBorderLines()
 	{
-		foreach (var drawingElement in
-			from drawingElement in _drawingElements
-			where drawingElement is CellLine or BlockLine
-			select drawingElement)
+		foreach (var drawingElement in _drawingElements.OfEitherType<CellLine, BlockLine>())
 		{
 			drawingElement.DynamicAssign(
 				instance =>
