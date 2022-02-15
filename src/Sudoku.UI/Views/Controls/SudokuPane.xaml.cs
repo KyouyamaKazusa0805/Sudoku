@@ -157,11 +157,8 @@ public sealed partial class SudokuPane : UserControl
 	/// <param name="e">The event arguments provided.</param>
 	private void SudokuPane_Loaded([IsDiscard] object sender, [IsDiscard] RoutedEventArgs e)
 	{
-		double outsideBorderWidth = _userPreference.OutsideBorderWidth;
-		double blockBorderWidth = _userPreference.BlockBorderWidth;
-		double cellBorderWidth = _userPreference.CellBorderWidth;
-
 		// Initializes the outside border if worth.
+		double outsideBorderWidth = _userPreference.OutsideBorderWidth;
 		if (outsideBorderWidth != 0 && OutsideOffset != 0)
 		{
 			_drawingElements.Add(new OutsideRectangle(_userPreference.OutsideBorderColor, Size, outsideBorderWidth));
@@ -169,6 +166,7 @@ public sealed partial class SudokuPane : UserControl
 
 		// Initializes block border lines.
 		var blockBorderColor = _userPreference.BlockBorderColor;
+		double blockBorderWidth = _userPreference.BlockBorderWidth;
 		for (byte i = 0; i < 4; i++)
 		{
 			_drawingElements.Add(new BlockLine(blockBorderColor, blockBorderWidth, Size, OutsideOffset, i));
@@ -177,6 +175,7 @@ public sealed partial class SudokuPane : UserControl
 
 		// Initializes cell border lines.
 		var cellBorderColor = _userPreference.CellBorderColor;
+		double cellBorderWidth = _userPreference.CellBorderWidth;
 		for (byte i = 0; i < 10; i++)
 		{
 			if (i % 3 == 0)
