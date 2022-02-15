@@ -42,6 +42,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UI Projects", "UI Projects"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sudoku.UI", "src\Sudoku.UI\Sudoku.UI.csproj", "{C77EC482-143E-47C1-9524-BC3BAE815838}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sudoku.Console", "src\Sudoku.Console\Sudoku.Console.csproj", "{60845EB2-F923-4291-8D22-A1DF1E0FAFC4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -284,6 +286,26 @@ Global
 		{C77EC482-143E-47C1-9524-BC3BAE815838}.Release|x86.ActiveCfg = Release|x86
 		{C77EC482-143E-47C1-9524-BC3BAE815838}.Release|x86.Build.0 = Release|x86
 		{C77EC482-143E-47C1-9524-BC3BAE815838}.Release|x86.Deploy.0 = Release|x86
+		{60845EB2-F923-4291-8D22-A1DF1E0FAFC4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{60845EB2-F923-4291-8D22-A1DF1E0FAFC4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{60845EB2-F923-4291-8D22-A1DF1E0FAFC4}.Debug|ARM.ActiveCfg = Debug|Any CPU
+		{60845EB2-F923-4291-8D22-A1DF1E0FAFC4}.Debug|ARM.Build.0 = Debug|Any CPU
+		{60845EB2-F923-4291-8D22-A1DF1E0FAFC4}.Debug|ARM64.ActiveCfg = Debug|Any CPU
+		{60845EB2-F923-4291-8D22-A1DF1E0FAFC4}.Debug|ARM64.Build.0 = Debug|Any CPU
+		{60845EB2-F923-4291-8D22-A1DF1E0FAFC4}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{60845EB2-F923-4291-8D22-A1DF1E0FAFC4}.Debug|x64.Build.0 = Debug|Any CPU
+		{60845EB2-F923-4291-8D22-A1DF1E0FAFC4}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{60845EB2-F923-4291-8D22-A1DF1E0FAFC4}.Debug|x86.Build.0 = Debug|Any CPU
+		{60845EB2-F923-4291-8D22-A1DF1E0FAFC4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{60845EB2-F923-4291-8D22-A1DF1E0FAFC4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{60845EB2-F923-4291-8D22-A1DF1E0FAFC4}.Release|ARM.ActiveCfg = Release|Any CPU
+		{60845EB2-F923-4291-8D22-A1DF1E0FAFC4}.Release|ARM.Build.0 = Release|Any CPU
+		{60845EB2-F923-4291-8D22-A1DF1E0FAFC4}.Release|ARM64.ActiveCfg = Release|Any CPU
+		{60845EB2-F923-4291-8D22-A1DF1E0FAFC4}.Release|ARM64.Build.0 = Release|Any CPU
+		{60845EB2-F923-4291-8D22-A1DF1E0FAFC4}.Release|x64.ActiveCfg = Release|Any CPU
+		{60845EB2-F923-4291-8D22-A1DF1E0FAFC4}.Release|x64.Build.0 = Release|Any CPU
+		{60845EB2-F923-4291-8D22-A1DF1E0FAFC4}.Release|x86.ActiveCfg = Release|Any CPU
+		{60845EB2-F923-4291-8D22-A1DF1E0FAFC4}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -298,8 +320,8 @@ Global
 		{C77EC482-143E-47C1-9524-BC3BAE815838} = {319301BA-08D0-4603-82D9-5001BD6359F4}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		RESX_ShowErrorsInErrorList = False
-		RESX_Rules = {"EnabledRules":["StringFormat"]}
 		SolutionGuid = {E2B6A644-F820-4AB3-8508-C3C59838C955}
+		RESX_Rules = {"EnabledRules":["StringFormat"]}
+		RESX_ShowErrorsInErrorList = False
 	EndGlobalSection
 EndGlobal

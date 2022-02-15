@@ -74,8 +74,14 @@ public unsafe ref partial struct GridParser
 			&onParsingSukaku_2
 		};
 
-		MultilineParseFunctions = ParseFunctions[1..3];
-
+		// Bug fix for GitHub issue #216: Cannot apply Range syntax '1..3' onto pointer-typed array.
+		// In other words, the following code will always cause an error on AnyCPU.
+		//MultilineParseFunctions = ParseFunctions[1..3];
+		MultilineParseFunctions = new delegate*<ref GridParser, Grid>[]
+		{
+			&OnParsingSimpleMultilineGrid,
+			&OnParsingPencilMarked
+		};
 
 		static Grid onParsingSukaku_1(ref GridParser @this) => OnParsingSukaku(ref @this, @this.CompatibleFirst);
 		static Grid onParsingSukaku_2(ref GridParser @this) => OnParsingSukaku(ref @this, !@this.CompatibleFirst);
