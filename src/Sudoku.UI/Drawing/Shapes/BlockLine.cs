@@ -35,14 +35,14 @@ public sealed class BlockLine : DrawingElement
 	/// Initializes a <see cref="BlockLine"/> instance via the specified details.
 	/// </summary>
 	/// <param name="strokeColor">The stroke color of the block line.</param>
-	/// <param name="width">The stroke width of the block line.</param>
+	/// <param name="strokeThickness">The stroke thickness of the block line.</param>
 	/// <param name="paneSize">Indicates the pane size.</param>
 	/// <param name="outsideOffset">Indicates the outside offset.</param>
 	/// <param name="order">
 	/// The order. The value can only be between 0 and 19. For more details of the parameter,
 	/// please see the property <see cref="Order"/>.
 	/// </param>
-	public BlockLine(Color strokeColor, double width, double paneSize, double outsideOffset, byte order)
+	public BlockLine(Color strokeColor, double strokeThickness, double paneSize, double outsideOffset, byte order)
 	{
 		_paneSize = paneSize;
 		_outsideOffset = outsideOffset;
@@ -51,7 +51,7 @@ public sealed class BlockLine : DrawingElement
 		_line = new Line
 		{
 			Stroke = new SolidColorBrush(strokeColor),
-			StrokeThickness = width,
+			StrokeThickness = strokeThickness,
 			X1 = x1,
 			Y1 = y1,
 			X2 = x2,
@@ -81,9 +81,9 @@ public sealed class BlockLine : DrawingElement
 	public byte Order { get; }
 
 	/// <summary>
-	/// The stroke width of the block line.
+	/// The stroke thickness of the block line.
 	/// </summary>
-	public double Width
+	public double StrokeThickness
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => _line.StrokeThickness;

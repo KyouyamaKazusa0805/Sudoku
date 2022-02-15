@@ -20,22 +20,34 @@ public sealed class OutsideRectangle : DrawingElement
 	/// </summary>
 	/// <param name="strokeColor">The stroke color.</param>
 	/// <param name="paneSize">The pane size.</param>
-	/// <param name="width">The width.</param>
+	/// <param name="strokeThickness">The stroke thickness.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public OutsideRectangle(Color strokeColor, double paneSize, double width) =>
+	public OutsideRectangle(Color strokeColor, double paneSize, double strokeThickness) =>
 		_rect = new()
 		{
 			Width = paneSize,
 			Height = paneSize,
 			Stroke = new SolidColorBrush(strokeColor),
-			StrokeThickness = width
+			StrokeThickness = strokeThickness
 		};
 
 
 	/// <summary>
-	/// The stroke width of the block line.
+	/// The size of the rectangle.
 	/// </summary>
-	public double Width
+	public double RectangleSize
+	{
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		get => _rect.Width;
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		set => _rect.Width = _rect.Height = value;
+	}
+
+	/// <summary>
+	/// The stroke thickness of the block line.
+	/// </summary>
+	public double StrokeThickness
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => _rect.StrokeThickness;

@@ -167,7 +167,7 @@
             Initializes a <see cref="T:Sudoku.UI.Drawing.Shapes.BlockLine"/> instance via the specified details.
             </summary>
             <param name="strokeColor">The stroke color of the block line.</param>
-            <param name="width">The stroke width of the block line.</param>
+            <param name="strokeThickness">The stroke thickness of the block line.</param>
             <param name="paneSize">Indicates the pane size.</param>
             <param name="outsideOffset">Indicates the outside offset.</param>
             <param name="order">
@@ -194,9 +194,9 @@
             </list>
             </summary>
         </member>
-        <member name="P:Sudoku.UI.Drawing.Shapes.BlockLine.Width">
+        <member name="P:Sudoku.UI.Drawing.Shapes.BlockLine.StrokeThickness">
             <summary>
-            The stroke width of the block line.
+            The stroke thickness of the block line.
             </summary>
         </member>
         <member name="P:Sudoku.UI.Drawing.Shapes.BlockLine.PaneSize">
@@ -255,7 +255,7 @@
             Initializes a <see cref="T:Sudoku.UI.Drawing.Shapes.CellLine"/> instance via the specified details.
             </summary>
             <param name="strokeColor">The stroke color of the block line.</param>
-            <param name="width">The stroke width of the block line.</param>
+            <param name="strokeThickness">The stroke thickness of the block line.</param>
             <param name="paneSize">Indicates the pane size.</param>
             <param name="outsideOffset">Indicates the outside offset.</param>
             <param name="order">
@@ -282,9 +282,9 @@
             </list>
             </summary>
         </member>
-        <member name="P:Sudoku.UI.Drawing.Shapes.CellLine.Width">
+        <member name="P:Sudoku.UI.Drawing.Shapes.CellLine.StrokeThickness">
             <summary>
-            The stroke width of the block line.
+            The stroke thickness of the block line.
             </summary>
         </member>
         <member name="P:Sudoku.UI.Drawing.Shapes.CellLine.PaneSize">
@@ -694,11 +694,16 @@
             </summary>
             <param name="strokeColor">The stroke color.</param>
             <param name="paneSize">The pane size.</param>
-            <param name="width">The width.</param>
+            <param name="strokeThickness">The stroke thickness.</param>
         </member>
-        <member name="P:Sudoku.UI.Drawing.Shapes.OutsideRectangle.Width">
+        <member name="P:Sudoku.UI.Drawing.Shapes.OutsideRectangle.RectangleSize">
             <summary>
-            The stroke width of the block line.
+            The size of the rectangle.
+            </summary>
+        </member>
+        <member name="P:Sudoku.UI.Drawing.Shapes.OutsideRectangle.StrokeThickness">
+            <summary>
+            The stroke thickness of the block line.
             </summary>
         </member>
         <member name="P:Sudoku.UI.Drawing.Shapes.OutsideRectangle.StrokeColor">
