@@ -164,7 +164,7 @@ public sealed partial class SudokuPane : UserControl
 		// Initializes the outside border if worth.
 		if (outsideBorderWidth != 0 && OutsideOffset != 0)
 		{
-			_drawingElements.Add(new OutsideRectangle(_userPreference.OutsideBorderColor, outsideBorderWidth));
+			_drawingElements.Add(new OutsideRectangle(_userPreference.OutsideBorderColor, Size, outsideBorderWidth));
 		}
 
 		// Initializes block border lines.

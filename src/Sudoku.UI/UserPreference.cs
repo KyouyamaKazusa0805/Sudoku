@@ -14,7 +14,7 @@ internal sealed class UserPreference
 	/// <remarks>
 	/// The default value is <c>0</c>.
 	/// </remarks>
-	public double OutsideBorderWidth = 0;
+	public double OutsideBorderWidth = 1;
 
 	/// <summary>
 	/// Indicates the width of the block border lines. The value cannot be negative.

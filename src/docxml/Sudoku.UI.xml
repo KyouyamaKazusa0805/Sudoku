@@ -688,11 +688,12 @@
             The inner rectangle.
             </summary>
         </member>
-        <member name="M:Sudoku.UI.Drawing.Shapes.OutsideRectangle.#ctor(Windows.UI.Color,System.Double)">
+        <member name="M:Sudoku.UI.Drawing.Shapes.OutsideRectangle.#ctor(Windows.UI.Color,System.Double,System.Double)">
             <summary>
             Initializes an <see cref="T:Sudoku.UI.Drawing.Shapes.OutsideRectangle"/> instance via the specified details.
             </summary>
             <param name="strokeColor">The stroke color.</param>
+            <param name="paneSize">The pane size.</param>
             <param name="width">The width.</param>
         </member>
         <member name="P:Sudoku.UI.Drawing.Shapes.OutsideRectangle.Width">

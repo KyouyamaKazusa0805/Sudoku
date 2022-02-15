@@ -19,11 +19,14 @@ public sealed class OutsideRectangle : DrawingElement
 	/// Initializes an <see cref="OutsideRectangle"/> instance via the specified details.
 	/// </summary>
 	/// <param name="strokeColor">The stroke color.</param>
+	/// <param name="paneSize">The pane size.</param>
 	/// <param name="width">The width.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public OutsideRectangle(Color strokeColor, double width) =>
+	public OutsideRectangle(Color strokeColor, double paneSize, double width) =>
 		_rect = new()
 		{
+			Width = paneSize,
+			Height = paneSize,
 			Stroke = new SolidColorBrush(strokeColor),
 			StrokeThickness = width
 		};
