@@ -53,18 +53,6 @@
             GetXmlnsDefinitions()
             </summary>
         </member>
-        <member name="T:Sudoku.UI.Data.Converters.SudokuDigitConverter">
-            <summary>
-            Defines a converter that allows the conversions between
-            sudoku digit (between 0 and 9, and 0 is for the empty cell) and a <see cref="T:System.String"/> value.
-            </summary>
-        </member>
-        <member name="M:Sudoku.UI.Data.Converters.SudokuDigitConverter.Convert(System.Object,System.Type,System.Object,System.String)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.UI.Data.Converters.SudokuDigitConverter.ConvertBack(System.Object,System.Type,System.Object,System.String)">
-            <inheritdoc/>
-        </member>
         <member name="T:Sudoku.UI.Drawing.PointConversions">
             <summary>
             Stores a set of methods on handling point conversions.
