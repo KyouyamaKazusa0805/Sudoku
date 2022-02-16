@@ -29,7 +29,7 @@ partial class DrawingElementBag
 
 
 		/// <summary>
-		/// Initializes an <see cref="Enumerator"/> instance via the specified elements and the iteration length.
+		/// Initializes an <see cref="OfTypeEnumerator{T1, T2}"/> instance via the details.
 		/// </summary>
 		/// <param name="elements">The elements to be iterated.</param>
 		/// <param name="count">The number of elements to be iterated.</param>

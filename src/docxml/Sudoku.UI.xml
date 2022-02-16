@@ -689,6 +689,35 @@
             <param name="selector">The selector to convert the element.</param>
             <returns>The enumerator instance.</returns>
         </member>
+        <member name="M:Sudoku.UI.Drawing.Shapes.DrawingElementBag.Where(System.Predicate{Sudoku.UI.Drawing.Shapes.DrawingElement})">
+            <summary>
+            Makes a filerting that removes the elements not satisfied the specified condition.
+            </summary>
+            <param name="predicate">The filtering condition method.</param>
+            <returns>
+            The enumerator that allows you using <see langword="where"/> clause to filter each element,
+            but you cannot use <see langword="select"/> clause as the continuation to make the projection
+            to another typed instance.
+            </returns>
+            <remarks>
+            The method can be used by the following two ways:
+            <list type="number">
+            <item>
+            Using query expression syntax: <c>var controls = from e in list where e is CellDigit select e;</c>.
+            </item>
+            <item>
+            Using method invocation syntax: <c>var controls = list.Where(static e => e is CellDigit);</c>.
+            </item>
+            </list>
+            </remarks>
+        </member>
+        <member name="M:Sudoku.UI.Drawing.Shapes.DrawingElementBag.Where()">
+            <summary>
+            Makes a filerting that removes the elements not satisfied the specified condition.
+            </summary>
+            <param name="predicate">The filtering condition method.</param>
+            <returns>The enumerator instance.</returns>
+        </member>
         <member name="T:Sudoku.UI.Drawing.Shapes.DrawingElementBag.OfTypeEnumerator`1">
             <summary>
             Indicates the enumerator type that allows iterating on <see cref="T:Sudoku.UI.Drawing.Shapes.DrawingElementBag"/> instances,
@@ -714,7 +743,7 @@
         </member>
         <member name="M:Sudoku.UI.Drawing.Shapes.DrawingElementBag.OfTypeEnumerator`1.#ctor(Sudoku.UI.Drawing.Shapes.DrawingElement[],System.Int32)">
             <summary>
-            Initializes an <see cref="T:Sudoku.UI.Drawing.Shapes.DrawingElementBag.Enumerator"/> instance via the specified elements and the iteration length.
+            Initializes an <see cref="T:Sudoku.UI.Drawing.Shapes.DrawingElementBag.OfTypeEnumerator`1"/> instance via the details.
             </summary>
             <param name="elements">The elements to be iterated.</param>
             <param name="count">The number of elements to be iterated.</param>
@@ -755,7 +784,7 @@
         </member>
         <member name="M:Sudoku.UI.Drawing.Shapes.DrawingElementBag.OfTypeEnumerator`2.#ctor(Sudoku.UI.Drawing.Shapes.DrawingElement[],System.Int32)">
             <summary>
-            Initializes an <see cref="T:Sudoku.UI.Drawing.Shapes.DrawingElementBag.Enumerator"/> instance via the specified elements and the iteration length.
+            Initializes an <see cref="T:Sudoku.UI.Drawing.Shapes.DrawingElementBag.OfTypeEnumerator`2"/> instance via the details.
             </summary>
             <param name="elements">The elements to be iterated.</param>
             <param name="count">The number of elements to be iterated.</param>
@@ -798,7 +827,7 @@
         </member>
         <member name="M:Sudoku.UI.Drawing.Shapes.DrawingElementBag.OfTypeEnumerator`3.#ctor(Sudoku.UI.Drawing.Shapes.DrawingElement[],System.Int32)">
             <summary>
-            Initializes an <see cref="T:Sudoku.UI.Drawing.Shapes.DrawingElementBag.Enumerator"/> instance via the specified elements and the iteration length.
+            Initializes an <see cref="T:Sudoku.UI.Drawing.Shapes.DrawingElementBag.OfTypeEnumerator`3"/> instance via the details.
             </summary>
             <param name="elements">The elements to be iterated.</param>
             <param name="count">The number of elements to be iterated.</param>
@@ -847,7 +876,7 @@
         </member>
         <member name="M:Sudoku.UI.Drawing.Shapes.DrawingElementBag.SelectEnumerator`1.#ctor(Sudoku.UI.Drawing.Shapes.DrawingElement[],System.Int32,System.Func{Sudoku.UI.Drawing.Shapes.DrawingElement,`0})">
             <summary>
-            Initializes an <see cref="T:Sudoku.UI.Drawing.Shapes.DrawingElementBag.Enumerator"/> instance via the specified elements and the iteration length.
+            Initializes an <see cref="T:Sudoku.UI.Drawing.Shapes.DrawingElementBag.SelectEnumerator`1"/> instance via the details.
             </summary>
             <param name="elements">The elements to be iterated.</param>
             <param name="count">The number of elements to be iterated.</param>
@@ -858,7 +887,7 @@
         </member>
         <member name="M:Sudoku.UI.Drawing.Shapes.DrawingElementBag.SelectEnumerator`1.#ctor(Sudoku.UI.Drawing.Shapes.DrawingElement[],System.Int32,)">
             <summary>
-            Initializes an <see cref="T:Sudoku.UI.Drawing.Shapes.DrawingElementBag.Enumerator"/> instance via the specified elements and the iteration length.
+            Initializes an <see cref="T:Sudoku.UI.Drawing.Shapes.DrawingElementBag.SelectEnumerator`1"/> instance via the details.
             </summary>
             <param name="elements">The elements to be iterated.</param>
             <param name="count">The number of elements to be iterated.</param>
@@ -884,6 +913,171 @@
             <inheritdoc cref="M:System.Collections.IEnumerator.MoveNext"/>
         </member>
         <member name="M:Sudoku.UI.Drawing.Shapes.DrawingElementBag.SelectEnumerator`1.GetEnumerator">
+            <inheritdoc cref="M:System.Collections.Generic.IEnumerable`1.GetEnumerator"/>
+        </member>
+        <member name="T:Sudoku.UI.Drawing.Shapes.DrawingElementBag.WhereEnumerator">
+            <summary>
+            Indicates the enumerator type that makes the filtering on each element
+            of type <see cref="T:Sudoku.UI.Drawing.Shapes.DrawingElement"/>.
+            </summary>
+            <seealso cref="T:Sudoku.UI.Drawing.Shapes.DrawingElement"/>
+        </member>
+        <member name="F:Sudoku.UI.Drawing.Shapes.DrawingElementBag.WhereEnumerator._count">
+            <summary>
+            The number of elements to be iterated.
+            </summary>
+        </member>
+        <member name="F:Sudoku.UI.Drawing.Shapes.DrawingElementBag.WhereEnumerator._elements">
+            <summary>
+            The list of elements.
+            </summary>
+        </member>
+        <member name="F:Sudoku.UI.Drawing.Shapes.DrawingElementBag.WhereEnumerator._predicate">
+            <summary>
+            The predicate.
+            </summary>
+        </member>
+        <member name="F:Sudoku.UI.Drawing.Shapes.DrawingElementBag.WhereEnumerator._predicateMethodPtr">
+            <summary>
+            The predicate, but using function pointer.
+            </summary>
+        </member>
+        <member name="F:Sudoku.UI.Drawing.Shapes.DrawingElementBag.WhereEnumerator._ptr">
+            <summary>
+            Indicates the index value that points to the current iterated value.
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Drawing.Shapes.DrawingElementBag.WhereEnumerator.#ctor(Sudoku.UI.Drawing.Shapes.DrawingElement[],System.Int32,System.Predicate{Sudoku.UI.Drawing.Shapes.DrawingElement})">
+            <summary>
+            Initializes an <see cref="T:Sudoku.UI.Drawing.Shapes.DrawingElementBag.WhereEnumerator"/> instance via the details.
+            </summary>
+            <param name="elements">The elements to be iterated.</param>
+            <param name="count">The number of elements to be iterated.</param>
+            <param name="predicate">The filtering condition.</param>
+        </member>
+        <member name="M:Sudoku.UI.Drawing.Shapes.DrawingElementBag.WhereEnumerator.#ctor(Sudoku.UI.Drawing.Shapes.DrawingElement[],System.Int32,)">
+            <summary>
+            Initializes an <see cref="T:Sudoku.UI.Drawing.Shapes.DrawingElementBag.WhereEnumerator"/> instance via the details.
+            </summary>
+            <param name="elements">The elements to be iterated.</param>
+            <param name="count">The number of elements to be iterated.</param>
+            <param name="predicate">The filerting condition.</param>
+            <exception cref="T:System.ArgumentNullException">
+            Throws when the argument <paramref name="predicate"/> is <see langword="null"/>.
+            </exception>
+        </member>
+        <member name="M:Sudoku.UI.Drawing.Shapes.DrawingElementBag.WhereEnumerator.#ctor(Sudoku.UI.Drawing.Shapes.DrawingElement[],System.Int32)">
+            <summary>
+            Initializes the items.
+            </summary>
+            <param name="elements">The elements.</param>
+            <param name="count">The number of values to be iterated.</param>
+        </member>
+        <member name="P:Sudoku.UI.Drawing.Shapes.DrawingElementBag.WhereEnumerator.Current">
+            <inheritdoc cref="P:System.Collections.Generic.IEnumerator`1.Current"/>
+        </member>
+        <member name="M:Sudoku.UI.Drawing.Shapes.DrawingElementBag.WhereEnumerator.MoveNext">
+            <inheritdoc cref="M:System.Collections.IEnumerator.MoveNext"/>
+        </member>
+        <member name="M:Sudoku.UI.Drawing.Shapes.DrawingElementBag.WhereEnumerator.GetEnumerator">
+            <inheritdoc cref="M:System.Collections.Generic.IEnumerable`1.GetEnumerator"/>
+        </member>
+        <member name="M:Sudoku.UI.Drawing.Shapes.DrawingElementBag.WhereEnumerator.Select``1(System.Func{Sudoku.UI.Drawing.Shapes.DrawingElement,``0})">
+            <summary>
+            Makes a projection that converts each element to the target value of type <typeparamref name="T"/>,
+            using the specified method to convert.
+            </summary>
+            <typeparam name="T">The type of the target result that each element converted.</typeparam>
+            <param name="selector">The selector to convert the element.</param>
+            <returns>
+            The enumerator that allows you using <see langword="select"/> clause to get the result.
+            </returns>
+            <remarks>
+            The method can be used by the following two ways:
+            <list type="number">
+            <item>
+            Using query expression syntax:
+            <c>
+            var controls = from e in list where e is CellDigit select e.GetControl();
+            </c>.
+            </item>
+            <item>
+            Using method invocation syntax:
+            <c>
+            var controls = list.Where(static e => e is CellDigit).Select(static e => e.GetControl());
+            </c>.
+            </item>
+            </list>
+            </remarks>
+        </member>
+        <member name="M:Sudoku.UI.Drawing.Shapes.DrawingElementBag.WhereEnumerator.Select``1()">
+            <summary>
+            Makes a projection that converts each element to the target value of type <typeparamref name="T"/>,
+            using the specified method to convert.
+            </summary>
+            <typeparam name="T">The type of the target result that each element converted.</typeparam>
+            <param name="selector">The selector to convert the element.</param>
+            <returns>The enumerator instance.</returns>
+        </member>
+        <member name="T:Sudoku.UI.Drawing.Shapes.DrawingElementBag.WhereEnumerator.SelectEnumerator`1">
+            <summary>
+            Indicates the enumerator type that makes the projection from the <see cref="T:Sudoku.UI.Drawing.Shapes.DrawingElement"/> to
+            a specified target type <typeparamref name="T"/>, on the type <see cref="T:Sudoku.UI.Drawing.Shapes.DrawingElementBag.WhereEnumerator"/> iterating.
+            </summary>
+            <typeparam name="T">The type of the projection result.</typeparam>
+            <seealso cref="T:Sudoku.UI.Drawing.Shapes.DrawingElement"/>
+        </member>
+        <member name="F:Sudoku.UI.Drawing.Shapes.DrawingElementBag.WhereEnumerator.SelectEnumerator`1._whereEnumerator">
+            <summary>
+            The enunmerator.
+            </summary>
+        </member>
+        <member name="F:Sudoku.UI.Drawing.Shapes.DrawingElementBag.WhereEnumerator.SelectEnumerator`1._selector">
+            <summary>
+            The selector.
+            </summary>
+        </member>
+        <member name="F:Sudoku.UI.Drawing.Shapes.DrawingElementBag.WhereEnumerator.SelectEnumerator`1._selectorMethodPtr">
+            <summary>
+            The selector, but using function pointer.
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Drawing.Shapes.DrawingElementBag.WhereEnumerator.SelectEnumerator`1.#ctor(Sudoku.UI.Drawing.Shapes.DrawingElementBag.WhereEnumerator,System.Func{Sudoku.UI.Drawing.Shapes.DrawingElement,`0})">
+            <summary>
+            Initializes an <see cref="T:Sudoku.UI.Drawing.Shapes.DrawingElementBag.WhereEnumerator.SelectEnumerator`1"/> instance via the details.
+            </summary>
+            <param name="enumerator">The enumerator.</param>
+            <param name="selector">
+            The method that produces a projection from <see cref="T:Sudoku.UI.Drawing.Shapes.DrawingElement"/>
+            to the target type <typeparamref name="T"/>.
+            </param>
+        </member>
+        <member name="M:Sudoku.UI.Drawing.Shapes.DrawingElementBag.WhereEnumerator.SelectEnumerator`1.#ctor(Sudoku.UI.Drawing.Shapes.DrawingElementBag.WhereEnumerator,)">
+            <summary>
+            Initializes an <see cref="T:Sudoku.UI.Drawing.Shapes.DrawingElementBag.WhereEnumerator.SelectEnumerator`1"/> instance via the details.
+            </summary>
+            <param name="enumerator">The enumerator.</param>
+            <param name="selector">
+            The function pointer that points to a method, which produces a projection
+            from <see cref="T:Sudoku.UI.Drawing.Shapes.DrawingElement"/> to the target type <typeparamref name="T"/>.
+            </param>
+            <exception cref="T:System.ArgumentNullException">
+            Throws when the argument <paramref name="selector"/> is <see langword="null"/>.
+            </exception>
+        </member>
+        <member name="M:Sudoku.UI.Drawing.Shapes.DrawingElementBag.WhereEnumerator.SelectEnumerator`1.#ctor(Sudoku.UI.Drawing.Shapes.DrawingElementBag.WhereEnumerator)">
+            <summary>
+            Initializes the items.
+            </summary>
+            <param name="enumerator">The enumerator.</param>
+        </member>
+        <member name="P:Sudoku.UI.Drawing.Shapes.DrawingElementBag.WhereEnumerator.SelectEnumerator`1.Current">
+            <inheritdoc cref="P:System.Collections.Generic.IEnumerator`1.Current"/>
+        </member>
+        <member name="M:Sudoku.UI.Drawing.Shapes.DrawingElementBag.WhereEnumerator.SelectEnumerator`1.MoveNext">
+            <inheritdoc cref="M:System.Collections.IEnumerator.MoveNext"/>
+        </member>
+        <member name="M:Sudoku.UI.Drawing.Shapes.DrawingElementBag.WhereEnumerator.SelectEnumerator`1.GetEnumerator">
             <inheritdoc cref="M:System.Collections.Generic.IEnumerable`1.GetEnumerator"/>
         </member>
         <member name="T:Sudoku.UI.Drawing.Shapes.OutsideRectangle">

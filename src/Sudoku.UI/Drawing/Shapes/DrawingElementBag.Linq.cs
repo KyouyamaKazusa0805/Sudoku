@@ -73,4 +73,36 @@ partial class DrawingElementBag
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public unsafe SelectEnumerator<T> Select<T>(delegate*<DrawingElement, T> selector) =>
 		new(_elements, Count, selector);
+
+	/// <summary>
+	/// Makes a filerting that removes the elements not satisfied the specified condition.
+	/// </summary>
+	/// <param name="predicate">The filtering condition method.</param>
+	/// <returns>
+	/// The enumerator that allows you using <see langword="where"/> clause to filter each element,
+	/// but you cannot use <see langword="select"/> clause as the continuation to make the projection
+	/// to another typed instance.
+	/// </returns>
+	/// <remarks>
+	/// The method can be used by the following two ways:
+	/// <list type="number">
+	/// <item>
+	/// Using query expression syntax: <c>var controls = from e in list where e is CellDigit select e;</c>.
+	/// </item>
+	/// <item>
+	/// Using method invocation syntax: <c>var controls = list.Where(static e => e is CellDigit);</c>.
+	/// </item>
+	/// </list>
+	/// </remarks>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public WhereEnumerator Where(Predicate<DrawingElement> predicate) => new(_elements, Count, predicate);
+
+	/// <summary>
+	/// Makes a filerting that removes the elements not satisfied the specified condition.
+	/// </summary>
+	/// <param name="predicate">The filtering condition method.</param>
+	/// <returns>The enumerator instance.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public unsafe WhereEnumerator Where(delegate*<DrawingElement, bool> predicate) =>
+		new(_elements, Count, predicate);
 }
