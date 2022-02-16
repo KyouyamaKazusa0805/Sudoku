@@ -11,9 +11,9 @@ namespace Sudoku.Collections;
 /// </summary>
 #if DEBUG
 #if USE_TO_MASK_STRING_METHOD
-[DebuggerDisplay($@"{{{nameof(ToMaskString)}("".+:""),nq}}")]
+[DebuggerDisplay($$"""{{{nameof(ToMaskString)}}(".+:"),nq}""")]
 #else
-[DebuggerDisplay($@"{{{nameof(ToString)}("".+:""),nq}}")]
+[DebuggerDisplay($$"""{{{nameof(ToString)}}(".+:"),nq}""")]
 #endif // !USE_TO_MASK_STRING_METHOD
 #endif // !DEBUG
 public unsafe partial struct Grid :

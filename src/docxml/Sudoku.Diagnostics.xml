@@ -111,6 +111,27 @@
             </param>
             <seealso cref="T:Sudoku.Diagnostics.FileCounter"/>
         </member>
+        <member name="P:Sudoku.Diagnostics.FileCounterResult.ResultLines">
+            <summary>The number of lines found.</summary>
+        </member>
+        <member name="P:Sudoku.Diagnostics.FileCounterResult.FilesCount">
+            <summary>The number of files found.</summary>
+        </member>
+        <member name="P:Sudoku.Diagnostics.FileCounterResult.CharactersCount">
+            <summary>The number of characters found.</summary>
+        </member>
+        <member name="P:Sudoku.Diagnostics.FileCounterResult.Bytes">
+            <summary>All bytes.</summary>
+        </member>
+        <member name="P:Sudoku.Diagnostics.FileCounterResult.Elapsed">
+            <summary>The elapsed time during searching.</summary>
+        </member>
+        <member name="P:Sudoku.Diagnostics.FileCounterResult.FileList">
+            <summary>
+            The list of files. This property won't be output. If you want to use this property,
+            please write this property explicitly.
+            </summary>
+        </member>
         <member name="M:Sudoku.Diagnostics.FileCounterResult.ToString">
             <inheritdoc/>
         </member>

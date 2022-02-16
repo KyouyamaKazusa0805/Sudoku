@@ -95,6 +95,35 @@
             </param>
             <param name="HelpLinkUri">Indicates the URL site of the diagnostic introduction.</param>
         </member>
+        <member name="P:Sudoku.Diagnostics.CodeGen.Data.DiagnosticDetail.Id">
+            <summary>
+            Indicates the compiler diagnostic ID used always starting with "SCA" indicating "Solution-wide Code Analysis".
+            </summary>
+        </member>
+        <member name="P:Sudoku.Diagnostics.CodeGen.Data.DiagnosticDetail.Category">
+            <summary>Indicates the category.</summary>
+        </member>
+        <member name="P:Sudoku.Diagnostics.CodeGen.Data.DiagnosticDetail.Severity">
+            <summary>Indicates the severity to report.</summary>
+        </member>
+        <member name="P:Sudoku.Diagnostics.CodeGen.Data.DiagnosticDetail.Title">
+            <summary>Indicates the title displaying on "Error List" window.</summary>
+        </member>
+        <member name="P:Sudoku.Diagnostics.CodeGen.Data.DiagnosticDetail.MessageFormat">
+            <summary>
+            Indicates the message format. The message can contain include placeholders such as <c>{0}</c> and so on
+            to insert whatever you want.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Diagnostics.CodeGen.Data.DiagnosticDetail.ContainsPlaceholders">
+            <summary>
+            Indicates whether the property <see cref="P:Sudoku.Diagnostics.CodeGen.Data.DiagnosticDetail.MessageFormat"/> includes any placeholders.
+            The default value is <see langword="false"/>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Diagnostics.CodeGen.Data.DiagnosticDetail.HelpLinkUri">
+            <summary>Indicates the URL site of the diagnostic introduction.</summary>
+        </member>
         <member name="M:Sudoku.Diagnostics.CodeGen.Data.DiagnosticDetail.ToDescriptor">
             <summary>
             Converts the current instance into a <see cref="T:Microsoft.CodeAnalysis.DiagnosticDescriptor"/>.

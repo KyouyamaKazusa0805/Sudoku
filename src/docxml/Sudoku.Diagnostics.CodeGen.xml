@@ -42,6 +42,9 @@
             <param name="CancellationToken">The cancellation token to cancel the operation.</param>
             <seealso cref="T:Sudoku.Diagnostics.CodeGen.Generators.RefStructOverridensGenerator"/>
         </member>
+        <member name="P:Sudoku.Diagnostics.CodeGen.SyntaxContextReceivers.RefStructOverridensReceiver.CancellationToken">
+            <summary>The cancellation token to cancel the operation.</summary>
+        </member>
         <member name="F:Sudoku.Diagnostics.CodeGen.SyntaxContextReceivers.RefStructOverridensReceiver.SCA0013">
             <summary>
             Indicates the descriptor <c>SCA0013</c>
@@ -135,6 +138,57 @@
             as a nullable annotation <c>?</c> onto the parameter types.
             </param>
             <param name="IsGeneric">A <see cref="T:System.Boolean"/> value indicating whether the type is a generic type.</param>
+        </member>
+        <member name="P:Microsoft.CodeAnalysis.SymbolOutputInfo.TypeName">
+            <summary>The type name of the type symbol.</summary>
+        </member>
+        <member name="P:Microsoft.CodeAnalysis.SymbolOutputInfo.FullTypeName">
+            <summary>The full type name of the type symbol.</summary>
+        </member>
+        <member name="P:Microsoft.CodeAnalysis.SymbolOutputInfo.NamespaceName">
+            <summary>The namespace name that the type symbol belongs to.</summary>
+        </member>
+        <member name="P:Microsoft.CodeAnalysis.SymbolOutputInfo.GenericParameterList">
+            <summary>
+            The generic parameter list if the type symbol contains the type parameters.
+            </summary>
+        </member>
+        <member name="P:Microsoft.CodeAnalysis.SymbolOutputInfo.GenericParameterListWithoutConstraint">
+            <summary>
+            The generic parameter list without the constraints if the type symbol contains the type parameters.
+            </summary>
+        </member>
+        <member name="P:Microsoft.CodeAnalysis.SymbolOutputInfo.TypeKind">
+            <summary>
+            The type kind of the type symbol. All possible type kinds are:
+            <list type="bullet">
+            <item><see langword="class"/></item>
+            <item><see langword="struct"/></item>
+            <item><see langword="record class"/> (Denotes as a keyword <c>record</c>)</item>
+            <item><see langword="record struct"/></item>
+            </list>
+            </summary>
+        </member>
+        <member name="P:Microsoft.CodeAnalysis.SymbolOutputInfo.ReadOnlyKeyword">
+            <summary>
+            Indicates whether the type symbol is a <see langword="struct"/>. If so, this property will keep the value
+            as a modifier (i.e. keyword <see langword="readonly"/>) onto the members to implement.
+            </summary>
+        </member>
+        <member name="P:Microsoft.CodeAnalysis.SymbolOutputInfo.InKeyword">
+            <summary>
+            Indicates whether the type symbol is a <see langword="struct"/>. If so, this property will keep the value
+            as a modifier (i.e. keyword <see langword="in"/>) onto the parameters in methods.
+            </summary>
+        </member>
+        <member name="P:Microsoft.CodeAnalysis.SymbolOutputInfo.NullableAnnotation">
+            <summary>
+            Indicates whether the type symbol is a <see langword="class"/>. If so, this property will keep the value
+            as a nullable annotation <c>?</c> onto the parameter types.
+            </summary>
+        </member>
+        <member name="P:Microsoft.CodeAnalysis.SymbolOutputInfo.IsGeneric">
+            <summary>A <see cref="T:System.Boolean"/> value indicating whether the type is a generic type.</summary>
         </member>
         <member name="M:Microsoft.CodeAnalysis.SymbolOutputInfo.FromSymbol(Microsoft.CodeAnalysis.INamedTypeSymbol,System.Boolean)">
             <summary>

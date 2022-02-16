@@ -233,6 +233,33 @@
             <para>The default value is <see cref="F:System.TimeSpan.Zero"/>.</para>
             </param>
         </member>
+        <member name="P:Sudoku.Solving.BruteForces.BruteForceSolverResult.OriginalPuzzle">
+            <summary><inheritdoc/></summary>
+        </member>
+        <member name="P:Sudoku.Solving.BruteForces.BruteForceSolverResult.IsSolved">
+            <summary>
+            <para><inheritdoc/></para>
+            <para>The default value is <see langword="true"/>.</para>
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.BruteForces.BruteForceSolverResult.FailedReason">
+            <summary>
+            <para><inheritdoc/></para>
+            <para>The default value is <see cref="F:Sudoku.Solving.FailedReason.Nothing"/>.</para>
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.BruteForces.BruteForceSolverResult.Solution">
+            <summary>
+            <para><inheritdoc/></para>
+            <para>The default value is <see cref="F:Sudoku.Collections.Grid.Undefined"/>.</para>
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.BruteForces.BruteForceSolverResult.ElapsedTime">
+            <summary>
+            <para><inheritdoc/></para>
+            <para>The default value is <see cref="F:System.TimeSpan.Zero"/>.</para>
+            </summary>
+        </member>
         <member name="M:Sudoku.Solving.BruteForces.BruteForceSolverResult.ToDisplayString">
             <inheritdoc/>
         </member>
@@ -308,6 +335,21 @@
             <param name="PossibleEliminationSet">Indicates the possible elimination set.</param>
             <param name="IsBivalueCell">Indicates whether this instance is a bi-value-cell ALS.</param>
             <param name="Region">Indicates the region that the instance lies in.</param>
+        </member>
+        <member name="P:Sudoku.Solving.Collections.AlmostLockedSet.DigitsMask">
+            <summary>Indicates the mask of each digit.</summary>
+        </member>
+        <member name="P:Sudoku.Solving.Collections.AlmostLockedSet.Map">
+            <summary>Indicates the map that ALS lying on.</summary>
+        </member>
+        <member name="P:Sudoku.Solving.Collections.AlmostLockedSet.PossibleEliminationSet">
+            <summary>Indicates the possible elimination set.</summary>
+        </member>
+        <member name="P:Sudoku.Solving.Collections.AlmostLockedSet.IsBivalueCell">
+            <summary>Indicates whether this instance is a bi-value-cell ALS.</summary>
+        </member>
+        <member name="P:Sudoku.Solving.Collections.AlmostLockedSet.Region">
+            <summary>Indicates the region that the instance lies in.</summary>
         </member>
         <member name="F:Sudoku.Solving.Collections.AlmostLockedSet.StrongRelationsCount">
             <summary>
@@ -478,6 +520,12 @@
             <seealso cref="T:Sudoku.Solving.Manual.Searchers.IJuniorExocetStepSearcher"/>
             <seealso cref="T:Sudoku.Solving.Manual.Searchers.ISeniorExocetStepSearcher"/>
         </member>
+        <member name="P:Sudoku.Solving.Collections.ExocetElimination.Eliminations">
+            <summary>Indicates the eliminations.</summary>
+        </member>
+        <member name="P:Sudoku.Solving.Collections.ExocetElimination.Reason">
+            <summary>Indicates the reason why these candidates can be eliminated.</summary>
+        </member>
         <member name="P:Sudoku.Solving.Collections.ExocetElimination.Count">
             <summary>
             Indicates how many eliminations the instance contains.
@@ -620,6 +668,39 @@
             <param name="MirrorR2">Indicates the second mirror cell in the R part.</param>
             <param name="CrossLine">Indicates the cross-line cells.</param>
         </member>
+        <member name="P:Sudoku.Solving.Collections.ExocetPattern.Base1">
+            <summary>Indicates the first base cell.</summary>
+        </member>
+        <member name="P:Sudoku.Solving.Collections.ExocetPattern.Base2">
+            <summary>Indicates the second base cell.</summary>
+        </member>
+        <member name="P:Sudoku.Solving.Collections.ExocetPattern.TargetQ1">
+            <summary>Indicates the first target cell in the Q part.</summary>
+        </member>
+        <member name="P:Sudoku.Solving.Collections.ExocetPattern.TargetQ2">
+            <summary>Indicates the second target cell in the Q part.</summary>
+        </member>
+        <member name="P:Sudoku.Solving.Collections.ExocetPattern.TargetR1">
+            <summary>Indicates the first target cell in the R part.</summary>
+        </member>
+        <member name="P:Sudoku.Solving.Collections.ExocetPattern.TargetR2">
+            <summary>Indicates the second target cell in the R part.</summary>
+        </member>
+        <member name="P:Sudoku.Solving.Collections.ExocetPattern.CrossLine">
+            <summary>Indicates the cross-line cells.</summary>
+        </member>
+        <member name="P:Sudoku.Solving.Collections.ExocetPattern.MirrorQ1">
+            <summary>Indicates the first mirror cell in the Q part.</summary>
+        </member>
+        <member name="P:Sudoku.Solving.Collections.ExocetPattern.MirrorQ2">
+            <summary>Indicates the second mirror cell in the Q part.</summary>
+        </member>
+        <member name="P:Sudoku.Solving.Collections.ExocetPattern.MirrorR1">
+            <summary>Indicates the first mirror cell in the R part.</summary>
+        </member>
+        <member name="P:Sudoku.Solving.Collections.ExocetPattern.MirrorR2">
+            <summary>Indicates the second mirror cell in the R part.</summary>
+        </member>
         <member name="P:Sudoku.Solving.Collections.ExocetPattern.Map">
             <inheritdoc/>
         </member>
@@ -720,6 +801,15 @@
             <param name="Square">The square cells that is <c>S</c> in that sketch.</param>
             <param name="BaseLine">The base-line cells that is <c>B</c> in that sketch.</param>
             <param name="Pair">The pair cells that is <c>P</c> in that sketch.</param>
+        </member>
+        <member name="P:Sudoku.Solving.Collections.QiuDeadlyPattern.Square">
+            <summary>The square cells that is <c>S</c> in that sketch.</summary>
+        </member>
+        <member name="P:Sudoku.Solving.Collections.QiuDeadlyPattern.BaseLine">
+            <summary>The base-line cells that is <c>B</c> in that sketch.</summary>
+        </member>
+        <member name="P:Sudoku.Solving.Collections.QiuDeadlyPattern.Pair">
+            <summary>The pair cells that is <c>P</c> in that sketch.</summary>
         </member>
         <member name="P:Sudoku.Solving.Collections.QiuDeadlyPattern.Map">
             <inheritdoc/>
@@ -839,6 +929,9 @@
             Due to the rendering engine, you have to check this file rather than the tip window.
             </para>
             </remarks>
+        </member>
+        <member name="P:Sudoku.Solving.Collections.UniquePolygonPattern.Mask">
+            <summary>The mask that forms a structure.</summary>
         </member>
         <member name="P:Sudoku.Solving.Collections.UniquePolygonPattern.IsHeptagon">
             <summary>
@@ -1834,6 +1927,9 @@
             </summary>
             <param name="OriginalPuzzle"><inheritdoc/></param>
         </member>
+        <member name="P:Sudoku.Solving.Manual.ManualSolverResult.OriginalPuzzle">
+            <summary><inheritdoc/></summary>
+        </member>
         <member name="P:Sudoku.Solving.Manual.ManualSolverResult.IsSolved">
             <inheritdoc/>
         </member>
@@ -2032,6 +2128,9 @@
             Provides operations for analysis result formatting.
             </summary>
             <param name="Result">Indicates the analysis result.</param>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.ManualSolverResult.Formatter.Result">
+            <summary>Indicates the analysis result.</summary>
         </member>
         <member name="M:Sudoku.Solving.Manual.ManualSolverResult.Formatter.ToString">
             <inheritdoc/>
@@ -4878,6 +4977,46 @@
             <seealso cref="T:Sudoku.Solving.Manual.Searchers.IStepSearcher"/>
             <seealso cref="T:Sudoku.Solving.Manual.StepsGatherer"/>
         </member>
+        <member name="P:Sudoku.Solving.Manual.SearchingOptions.Priority">
+            <summary>Indicates the priority of this technique.</summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.SearchingOptions.DisplayingLevel">
+            <summary>
+            <para>Indicates the displaying level of this technique.</para>
+            <para>
+            The display level means the which level the technique is at. All higher leveled techniques
+            won't display on the screen when the searchers at the current level have found technique
+            instances.
+            </para>
+            <para>
+            In order to enhance the performance, this attribute is used on <see cref="T:Sudoku.Solving.Manual.StepsGatherer"/>.
+            For example, if Alternating Inference Chain (AIC) is at the level <see cref="F:Sudoku.Solving.Manual.DisplayingLevel.D"/>
+            but Forcing Chains (FC) is at the level <see cref="F:Sudoku.Solving.Manual.DisplayingLevel.E"/>,
+            when we find any AIC technique instances, FC won't be checked at the same time.
+            </para>
+            <para>
+            This attribute is also used for grouping those the searchers, especially in Sudoku Explainer mode.
+            </para>
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.SearchingOptions.EnabledAreas">
+            <summary>
+            Indicates which areas the step searcher is enabled and works well.
+            The default value is both <see cref="F:Sudoku.Solving.Manual.EnabledAreas.Default"/> and <see cref="F:Sudoku.Solving.Manual.EnabledAreas.Gathering"/>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.SearchingOptions.DisabledReason">
+            <summary>
+            <para>
+            Indicates whether the current searcher has bug to fix, or something else to describe why
+            the searcher is (or should be) disabled.
+            </para>
+            <para>
+            The property <b>must</b> contain a value that differs with <see cref="F:Sudoku.Solving.Manual.DisabledReason.None"/>
+            when the property <see cref="P:Sudoku.Solving.Manual.SearchingOptions.EnabledAreas"/> isn't <see cref="F:Sudoku.Solving.Manual.EnabledAreas.Default"/>.
+            </para>
+            </summary>
+        </member>
         <member name="T:Sudoku.Solving.Manual.Stableness">
             <summary>
             Defines a stableness of a technique.
@@ -4921,6 +5060,12 @@
             </summary>
             <param name="Conclusions"><inheritdoc/></param>
             <param name="Views"><inheritdoc/></param>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Step.Conclusions">
+            <summary><inheritdoc/></summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Step.Views">
+            <summary><inheritdoc/></summary>
         </member>
         <member name="P:Sudoku.Solving.Manual.Step.ShowDifficulty">
             <inheritdoc/>
@@ -5209,6 +5354,21 @@
             <param name="WDigitsMask">Indicates the mask that holds the W digit.</param>
             <param name="X">Indicates the X digit.</param>
         </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.AlmostLockedSetsWWingStep.Als1">
+            <summary>Indicates the first ALS used in this pattern.</summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.AlmostLockedSetsWWingStep.Als2">
+            <summary>Indicates the second ALS used in this pattern.</summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.AlmostLockedSetsWWingStep.ConjugatePair">
+            <summary>Indiactes the conjugate pair used.</summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.AlmostLockedSetsWWingStep.WDigitsMask">
+            <summary>Indicates the mask that holds the W digit.</summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.AlmostLockedSetsWWingStep.X">
+            <summary>Indicates the X digit.</summary>
+        </member>
         <member name="P:Sudoku.Solving.Manual.Steps.AlmostLockedSetsWWingStep.Difficulty">
             <inheritdoc/>
         </member>
@@ -5253,6 +5413,24 @@
             <param name="YDigitsMask">Indicates the mask that holds the digits for the Y value.</param>
             <param name="ZDigitsMask">Indicates the mask that holds the digits for the Z value.</param>
         </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.AlmostLockedSetsXyWingStep.Als1">
+            <summary>Indicates the first ALS used in this pattern.</summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.AlmostLockedSetsXyWingStep.Als2">
+            <summary>Indicates the second ALS used in this pattern.</summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.AlmostLockedSetsXyWingStep.Bridge">
+            <summary>Indicates the ALS that is as a bridge.</summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.AlmostLockedSetsXyWingStep.XDigitsMask">
+            <summary>Indicates the mask that holds the digits for the X value.</summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.AlmostLockedSetsXyWingStep.YDigitsMask">
+            <summary>Indicates the mask that holds the digits for the Y value.</summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.AlmostLockedSetsXyWingStep.ZDigitsMask">
+            <summary>Indicates the mask that holds the digits for the Z value.</summary>
+        </member>
         <member name="P:Sudoku.Solving.Manual.Steps.AlmostLockedSetsXyWingStep.Difficulty">
             <inheritdoc/>
         </member>
@@ -5294,6 +5472,21 @@
             <param name="XDigitsMask">Indicates the X digit used in this ALS-XZ pattern.</param>
             <param name="ZDigitsMask">Indicates the Z digit used in this ALS-XZ pattern.</param>
             <param name="IsDoublyLinked">Indicates whether the ALS-XZ is doubly-linked.</param>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.AlmostLockedSetsXzStep.Als1">
+            <summary>Indicates the first ALS used in this pattern.</summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.AlmostLockedSetsXzStep.Als2">
+            <summary>Indicates the second ALS used in this pattern.</summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.AlmostLockedSetsXzStep.XDigitsMask">
+            <summary>Indicates the X digit used in this ALS-XZ pattern.</summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.AlmostLockedSetsXzStep.ZDigitsMask">
+            <summary>Indicates the Z digit used in this ALS-XZ pattern.</summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.AlmostLockedSetsXzStep.IsDoublyLinked">
+            <summary>Indicates whether the ALS-XZ is doubly-linked.</summary>
         </member>
         <member name="P:Sudoku.Solving.Manual.Steps.AlmostLockedSetsXzStep.Difficulty">
             <inheritdoc/>
@@ -5337,6 +5530,21 @@
             <param name="Digit1">Indicates the digit 1 used in this pattern.</param>
             <param name="Digit2">Indicates the digit 2 used in this pattern.</param>
         </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.EmptyRectangleIntersectionPairStep.StartCell">
+            <summary>Indicates the start cell used.</summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.EmptyRectangleIntersectionPairStep.EndCell">
+            <summary>Indicates the end cell used.</summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.EmptyRectangleIntersectionPairStep.Region">
+            <summary>The region that forms the dual empty rectangle.</summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.EmptyRectangleIntersectionPairStep.Digit1">
+            <summary>Indicates the digit 1 used in this pattern.</summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.EmptyRectangleIntersectionPairStep.Digit2">
+            <summary>Indicates the digit 2 used in this pattern.</summary>
+        </member>
         <member name="P:Sudoku.Solving.Manual.Steps.EmptyRectangleIntersectionPairStep.Difficulty">
             <inheritdoc/>
         </member>
@@ -5371,6 +5579,9 @@
             <param name="XEnabled"><inheritdoc/></param>
             <param name="YEnabled"><inheritdoc/></param>
             <param name="Target">Indicates the target cell.</param>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.AlternatingInferenceChainStep.Target">
+            <summary>Indicates the target cell.</summary>
         </member>
         <member name="P:Sudoku.Solving.Manual.Steps.AlternatingInferenceChainStep.Difficulty">
             <inheritdoc/>
@@ -5503,6 +5714,45 @@
             </para>
             </param>
         </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.ChainStep.XEnabled">
+            <summary>
+            <para>A <see cref="T:System.Boolean"/> result indicating whether the chain contains X factor.</para>
+            <para>An <b>X factor</b> represents a chain relation about two same-digit strong link.</para>
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.ChainStep.YEnabled">
+            <summary>
+            <para>A <see cref="T:System.Boolean"/> result indicating whether the chain contains Y factor.</para>
+            <para>A <b>Y factor</b> represents a chain relation about two-digit strong link in a single cell.</para>
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.ChainStep.IsNishio">
+            <summary>
+            Indicates whether the chain is about the technique <b>Nishio Forcing Chains</b>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.ChainStep.IsMultiple">
+            <summary>
+            Indicates whether the chain is about the technique <b>Multiple Forcing Chains</b>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.ChainStep.IsDynamic">
+            <summary>
+            Indicates whether the chain is about the technique <b>Dynamic Forcing chains</b>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.ChainStep.Level">
+            <summary>
+            <para>
+            Indicates the level of the dynamic case. The dynamic level contains 6 possible values
+            corresponding to the digit 0, 1, 2, 3, 4 and 5.
+            </para>
+            <para>
+            For more information, please visit the step searcher to check
+            the property <see cref="P:Sudoku.Solving.Manual.Searchers.IDynamicForcingChainStepSearcher.Level"/>.
+            </para>
+            </summary>
+        </member>
         <member name="P:Sudoku.Solving.Manual.Steps.ChainStep.ShowDifficulty">
             <inheritdoc/>
         </member>
@@ -5561,6 +5811,9 @@
             <param name="XEnabled"><inheritdoc/></param>
             <param name="YEnabled"><inheritdoc/></param>
             <param name="Target">Indicates the target cell.</param>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.ContinuousNiceLoopStep.Target">
+            <summary>Indicates the target cell.</summary>
         </member>
         <member name="P:Sudoku.Solving.Manual.Steps.ContinuousNiceLoopStep.FlatComplexity">
             <inheritdoc/>
@@ -5625,6 +5878,18 @@
             <param name="IsNishio"><inheritdoc/></param>
             <param name="Level"><inheritdoc/></param>
         </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.BinaryChainingStep.SourceNode">
+            <summary>Indicates the source node.</summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.BinaryChainingStep.FromOnNode">
+            <summary>Indicates the node that is the destination (on side).</summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.BinaryChainingStep.FromOffNode">
+            <summary>Indicates the node that is the destination (off side).</summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.BinaryChainingStep.IsAbsurd">
+            <summary>Indicates whether the chain is absurd.</summary>
+        </member>
         <member name="P:Sudoku.Solving.Manual.Steps.BinaryChainingStep.FlatComplexity">
             <inheritdoc/>
         </member>
@@ -5673,6 +5938,12 @@
             <param name="IsDynamic"><inheritdoc/></param>
             <param name="Level"><inheritdoc/></param>
         </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.CellChainingStep.SourceCell">
+            <summary>Indicates the source cell used.</summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.CellChainingStep.Chains">
+            <summary>Indicates the sub-chains that is grouped by each candidate in that cell.</summary>
+        </member>
         <member name="P:Sudoku.Solving.Manual.Steps.CellChainingStep.FlatComplexity">
             <inheritdoc/>
         </member>
@@ -5717,6 +5988,15 @@
             <param name="Chains">IIndicates the regions that binds with the relative position in this region.</param>
             <param name="IsDynamic"><inheritdoc/></param>
             <param name="Level"><inheritdoc/></param>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.RegionChainingStep.Region">
+            <summary>Indicates the region that the forcing chains occurs.</summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.RegionChainingStep.Digit">
+            <summary>Indicates the digit used in that region.</summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.RegionChainingStep.Chains">
+            <summary>IIndicates the regions that binds with the relative position in this region.</summary>
         </member>
         <member name="P:Sudoku.Solving.Manual.Steps.RegionChainingStep.Difficulty">
             <inheritdoc/>
@@ -5894,6 +6174,12 @@
             <param name="Cells">Indicates the cells used.</param>
             <param name="DigitsMask">Indicates the mask that contains the digits used.</param>
         </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.ExtendedRectangleStep.Cells">
+            <summary>Indicates the cells used.</summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.ExtendedRectangleStep.DigitsMask">
+            <summary>Indicates the mask that contains the digits used.</summary>
+        </member>
         <member name="P:Sudoku.Solving.Manual.Steps.ExtendedRectangleStep.Type">
             <summary>
             Indicates the type of the step. The value must be between 1 and 4.
@@ -5968,6 +6254,9 @@
             <param name="DigitsMask"><inheritdoc/></param>
             <param name="ExtraDigit">Indicates the extra digit used.</param>
         </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.ExtendedRectangleType2Step.ExtraDigit">
+            <summary>Indicates the extra digit used.</summary>
+        </member>
         <member name="P:Sudoku.Solving.Manual.Steps.ExtendedRectangleType2Step.Type">
             <inheritdoc/>
         </member>
@@ -6001,6 +6290,15 @@
             <param name="ExtraDigitsMask">Indicates the mask that contains the extra digits.</param>
             <param name="Region">Indicates the region that extra subset formed.</param>
         </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.ExtendedRectangleType3Step.ExtraCells">
+            <summary>Indicates the extra cells used.</summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.ExtendedRectangleType3Step.ExtraDigitsMask">
+            <summary>Indicates the mask that contains the extra digits.</summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.ExtendedRectangleType3Step.Region">
+            <summary>Indicates the region that extra subset formed.</summary>
+        </member>
         <member name="P:Sudoku.Solving.Manual.Steps.ExtendedRectangleType3Step.Type">
             <inheritdoc/>
         </member>
@@ -6030,6 +6328,9 @@
             <param name="DigitsMask"><inheritdoc/></param>
             <param name="ConjugatePair">Indicates the conjugate pair used.</param>
         </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.ExtendedRectangleType4Step.ConjugatePair">
+            <summary>Indicates the conjugate pair used.</summary>
+        </member>
         <member name="P:Sudoku.Solving.Manual.Steps.ExtendedRectangleType4Step.Type">
             <inheritdoc/>
         </member>
@@ -6058,6 +6359,15 @@
             <param name="Digit1">Indicates the first digit.</param>
             <param name="Digit2">Indicates the second digit.</param>
             <param name="Loop">Indicates the loop that the instance used.</param>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.UniqueLoopStep.Digit1">
+            <summary>Indicates the first digit.</summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.UniqueLoopStep.Digit2">
+            <summary>Indicates the second digit.</summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.UniqueLoopStep.Loop">
+            <summary>Indicates the loop that the instance used.</summary>
         </member>
         <member name="P:Sudoku.Solving.Manual.Steps.UniqueLoopStep.Difficulty">
             <inheritdoc/>
@@ -6145,6 +6455,9 @@
             <param name="Loop"><inheritdoc/></param>
             <param name="ExtraDigit">Indicates the extra digit.</param>
         </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.UniqueLoopType2Step.ExtraDigit">
+            <summary>Indicates the extra digit.</summary>
+        </member>
         <member name="P:Sudoku.Solving.Manual.Steps.UniqueLoopType2Step.Type">
             <inheritdoc/>
         </member>
@@ -6174,6 +6487,12 @@
             <param name="Loop"><inheritdoc/></param>
             <param name="SubsetDigitsMask">Indicates the mask that contains the subset digits used in this instance.</param>
             <param name="SubsetCells">Indicates the subset cells.</param>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.UniqueLoopType3Step.SubsetDigitsMask">
+            <summary>Indicates the mask that contains the subset digits used in this instance.</summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.UniqueLoopType3Step.SubsetCells">
+            <summary>Indicates the subset cells.</summary>
         </member>
         <member name="P:Sudoku.Solving.Manual.Steps.UniqueLoopType3Step.Difficulty">
             <inheritdoc/>
@@ -6206,6 +6525,9 @@
             <param name="Loop"><inheritdoc/></param>
             <param name="ConjugatePair">Indicates the conjugate pair used.</param>
         </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.UniqueLoopType4Step.ConjugatePair">
+            <summary>Indicates the conjugate pair used.</summary>
+        </member>
         <member name="P:Sudoku.Solving.Manual.Steps.UniqueLoopType4Step.Type">
             <inheritdoc/>
         </member>
@@ -6229,6 +6551,12 @@
             <param name="Views"><inheritdoc/></param>
             <param name="Map">The map that contains the cells used for this technique.</param>
             <param name="DigitsMask">The mask that contains all digits used.</param>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.UniquePolygonStep.Map">
+            <summary>The map that contains the cells used for this technique.</summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.UniquePolygonStep.DigitsMask">
+            <summary>The mask that contains all digits used.</summary>
         </member>
         <member name="P:Sudoku.Solving.Manual.Steps.UniquePolygonStep.Difficulty">
             <inheritdoc/>
@@ -6301,6 +6629,9 @@
             <param name="DigitsMask"><inheritdoc/></param>
             <param name="ExtraDigit">The extra digit.</param>
         </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.UniquePolygonType2Step.ExtraDigit">
+            <summary>The extra digit.</summary>
+        </member>
         <member name="P:Sudoku.Solving.Manual.Steps.UniquePolygonType2Step.Difficulty">
             <inheritdoc/>
         </member>
@@ -6328,6 +6659,12 @@
             <param name="DigitsMask"><inheritdoc/></param>
             <param name="ExtraCells">Indicates the extra cells used for forming the subset.</param>
             <param name="ExtraDigitsMask">Indicates the extra digits used for forming the subset.</param>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.UniquePolygonType3Step.ExtraCells">
+            <summary>Indicates the extra cells used for forming the subset.</summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.UniquePolygonType3Step.ExtraDigitsMask">
+            <summary>Indicates the extra digits used for forming the subset.</summary>
         </member>
         <member name="P:Sudoku.Solving.Manual.Steps.UniquePolygonType3Step.Difficulty">
             <inheritdoc/>
@@ -6357,6 +6694,12 @@
             <param name="ConjugateRegion">Indicates the cells that forms the conjugate region.</param>
             <param name="ExtraMask">Indicates the extra digits mask.</param>
         </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.UniquePolygonType4Step.ConjugateRegion">
+            <summary>Indicates the cells that forms the conjugate region.</summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.UniquePolygonType4Step.ExtraMask">
+            <summary>Indicates the extra digits mask.</summary>
+        </member>
         <member name="P:Sudoku.Solving.Manual.Steps.UniquePolygonType4Step.Difficulty">
             <inheritdoc/>
         </member>
@@ -6381,6 +6724,9 @@
             <param name="Pattern"><inheritdoc/></param>
             <param name="Candidates">Indicates the candidates used.</param>
         </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.QiuDeadlyPatternLockedTypeStep.Candidates">
+            <summary>Indicates the candidates used.</summary>
+        </member>
         <member name="P:Sudoku.Solving.Manual.Steps.QiuDeadlyPatternLockedTypeStep.Difficulty">
             <inheritdoc/>
         </member>
@@ -6402,6 +6748,9 @@
             <param name="Conclusions"><inheritdoc/></param>
             <param name="Views"><inheritdoc/></param>
             <param name="Pattern">Indicates the pattern used.</param>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.QiuDeadlyPatternStep.Pattern">
+            <summary>Indicates the pattern used.</summary>
         </member>
         <member name="P:Sudoku.Solving.Manual.Steps.QiuDeadlyPatternStep.Difficulty">
             <inheritdoc/>
@@ -6449,6 +6798,9 @@
             <param name="Pattern"><inheritdoc/></param>
             <param name="Candidate">Indicates the extra candidate used.</param>
         </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.QiuDeadlyPatternType1Step.Candidate">
+            <summary>Indicates the extra candidate used.</summary>
+        </member>
         <member name="P:Sudoku.Solving.Manual.Steps.QiuDeadlyPatternType1Step.Type">
             <inheritdoc/>
         </member>
@@ -6469,6 +6821,9 @@
             <param name="Views"><inheritdoc/></param>
             <param name="Pattern"><inheritdoc/></param>
             <param name="ExtraDigit">Indicates the extra digit used.</param>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.QiuDeadlyPatternType2Step.ExtraDigit">
+            <summary>Indicates the extra digit used.</summary>
         </member>
         <member name="P:Sudoku.Solving.Manual.Steps.QiuDeadlyPatternType2Step.Difficulty">
             <inheritdoc/>
@@ -6498,6 +6853,15 @@
             <param name="ExtraCells">Indicates the extra cells used.</param>
             <param name="IsNaked">Indicates whether the subset is a naked subset.</param>
         </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.QiuDeadlyPatternType3Step.ExtraDigitsMask">
+            <summary>Indicates the extra digits used to form the subset.</summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.QiuDeadlyPatternType3Step.ExtraCells">
+            <summary>Indicates the extra cells used.</summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.QiuDeadlyPatternType3Step.IsNaked">
+            <summary>Indicates whether the subset is a naked subset.</summary>
+        </member>
         <member name="P:Sudoku.Solving.Manual.Steps.QiuDeadlyPatternType3Step.Difficulty">
             <inheritdoc/>
         </member>
@@ -6521,6 +6885,9 @@
             <param name="Views"><inheritdoc/></param>
             <param name="Pattern"><inheritdoc/></param>
             <param name="ConjugatePair">Indicates the conjugate pair used.</param>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.QiuDeadlyPatternType4Step.ConjugatePair">
+            <summary>Indicates the conjugate pair used.</summary>
         </member>
         <member name="P:Sudoku.Solving.Manual.Steps.QiuDeadlyPatternType4Step.Difficulty">
             <inheritdoc/>
@@ -6555,6 +6922,15 @@
             <param name="TargetCell"></param>
             <param name="Region"></param>
             <param name="AbsoluteOffset"><inheritdoc/></param>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.AvoidableRectangleWithHiddenSingleStep.BaseCell">
+            <summary></summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.AvoidableRectangleWithHiddenSingleStep.TargetCell">
+            <summary></summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.AvoidableRectangleWithHiddenSingleStep.Region">
+            <summary></summary>
         </member>
         <member name="P:Sudoku.Solving.Manual.Steps.AvoidableRectangleWithHiddenSingleStep.Difficulty">
             <inheritdoc/>
@@ -6625,6 +7001,15 @@
             <param name="YDigit">Indicates the digit Y.</param>
             <param name="XyCell">Indicates the cell XY.</param>
             <param name="AbsoluteOffset"><inheritdoc/></param>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.UniqueRectangle2DOr3XStep.XDigit">
+            <summary>Indicates the digit X.</summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.UniqueRectangle2DOr3XStep.YDigit">
+            <summary>Indicates the digit Y.</summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.UniqueRectangle2DOr3XStep.XyCell">
+            <summary>Indicates the cell XY.</summary>
         </member>
         <member name="P:Sudoku.Solving.Manual.Steps.UniqueRectangle2DOr3XStep.Difficulty">
             <inheritdoc/>
@@ -6712,6 +7097,47 @@
             </param>
             <seealso cref="P:Sudoku.Solving.Manual.Step.TechniqueCode"/>
         </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.UniqueRectangleStep.TechniqueCode2">
+            <summary>
+            <para>Indicates the technique code.</para>
+            <para>
+            Limited by the C# language, here we creates a new property <see cref="P:Sudoku.Solving.Manual.Steps.UniqueRectangleStep.TechniqueCode2"/>
+            to pass the value and assign it to the property <see cref="P:Sudoku.Solving.Manual.Step.TechniqueCode"/>. If write code
+            to place the property <see cref="P:Sudoku.Solving.Manual.Step.TechniqueCode"/> into the primary constructor as a parameter,
+            the default member named <c>TechniqueCode</c> may be duplicate with this parameter's,
+            which isn't allowed in <see langword="record"/> types in the langugae design.
+            </para>
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.UniqueRectangleStep.Digit1">
+            <summary>Indicates the the first digit used in this unique rectangle pattern.</summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.UniqueRectangleStep.Digit2">
+            <summary>Indicates the the second digit used in this unique rectangle pattern.</summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.UniqueRectangleStep.Cells">
+            <summary>Indicates the cells used.</summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.UniqueRectangleStep.IsAvoidable">
+            <summary>
+            <para>Indicates whether the current unique rectangle is avoidable rectangle.</para>
+            <para>
+            For the designation and the implementation, <b>Avoidable Rectangle</b> and <b>Unique Rectangle</b>
+            are used as the same type.
+            </para>
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.UniqueRectangleStep.AbsoluteOffset">
+            <summary>
+            <para>Indicates the absolute offset.</para>
+            <para>
+            The value will be an <see cref="T:System.Int32"/> value to compare all possible cases
+            of unique rectangle structures to be iterated. The greater the value is,
+            the later the unique rectangle structure will be processed. The value must be between 0 and 485.
+            Other values are invalid and useless. The number of all possible unique rectangle structures is 486.
+            </para>
+            </summary>
+        </member>
         <member name="P:Sudoku.Solving.Manual.Steps.UniqueRectangleStep.TechniqueCode">
             <inheritdoc/>
         </member>
@@ -6797,6 +7223,9 @@
             <param name="ExtraDigit">Indicates the extra digit used.</param>
             <param name="AbsoluteOffset"><inheritdoc/></param>
         </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.UniqueRectangleType2Step.ExtraDigit">
+            <summary>Indicates the extra digit used.</summary>
+        </member>
         <member name="P:Sudoku.Solving.Manual.Steps.UniqueRectangleType2Step.Difficulty">
             <inheritdoc/>
         </member>
@@ -6874,6 +7303,36 @@
             </para>
             </param>
         </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.UniqueRectangleType3Step.ExtraCells">
+            <summary>Indicates the extra cells used.</summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.UniqueRectangleType3Step.ExtraDigitsMask">
+            <summary>Indicates the mask that contains all extra digits used.</summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.UniqueRectangleType3Step.Region">
+            <summary>Indicates the region used.</summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.UniqueRectangleType3Step.IsNaked">
+            <summary>
+            <para>
+            Indicates whether the current instance uses a naked subset instead of a hidden subset to form the type 3.
+            </para>
+            <para>
+            In the default case, due to not having implemented the hidden subset cases,
+            the argument always keeps the value <see langword="true"/>. The possible values are:
+            <list type="table">
+            <item>
+            <term><see langword="true"/></term>
+            <description>The type 3 is with a naked subset.</description>
+            </item>
+            <item>
+            <term><see langword="false"/></term>
+            <description>The type 3 is with a hidden subset.</description>
+            </item>
+            </list>
+            </para>
+            </summary>
+        </member>
         <member name="P:Sudoku.Solving.Manual.Steps.UniqueRectangleType3Step.Difficulty">
             <inheritdoc/>
         </member>
@@ -6910,6 +7369,9 @@
             <param name="IsAvoidable"><inheritdoc/></param>
             <param name="ConjugatePairs">Indicates the conjugate pairs used.</param>
             <param name="AbsoluteOffset"><inheritdoc/></param>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.UniqueRectangleWithConjugatePairStep.ConjugatePairs">
+            <summary>Indicates the conjugate pairs used.</summary>
         </member>
         <member name="P:Sudoku.Solving.Manual.Steps.UniqueRectangleWithConjugatePairStep.Difficulty">
             <inheritdoc/>
@@ -6955,6 +7417,15 @@
             <param name="GuardianDigit">Indicates the digit that the guardians are used.</param>
             <param name="IsIncomplete">Indicates whether the rectangle is incomplete.</param>
             <param name="AbsoluteOffset"><inheritdoc/></param>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.UniqueRectangleWithGuardianStep.GuardianCells">
+            <summary>Indicates the cells that the guardians lie in.</summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.UniqueRectangleWithGuardianStep.GuardianDigit">
+            <summary>Indicates the digit that the guardians are used.</summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.UniqueRectangleWithGuardianStep.IsIncomplete">
+            <summary>Indicates whether the rectangle is incomplete.</summary>
         </member>
         <member name="P:Sudoku.Solving.Manual.Steps.UniqueRectangleWithGuardianStep.Difficulty">
             <inheritdoc/>
@@ -7030,6 +7501,45 @@
             </param>
             <param name="AbsoluteOffset"><inheritdoc/></param>
         </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.UniqueRectangleWithSueDeCoqStep.Block">
+            <summary>Indicates the block that the Sue de Coq structure used.</summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.UniqueRectangleWithSueDeCoqStep.Line">
+            <summary>Indicates the line that the Sue de Coq structure used.</summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.UniqueRectangleWithSueDeCoqStep.BlockMask">
+            <summary>
+            Indicates the mask that contains all digits from the block of the Sue de Coq structure.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.UniqueRectangleWithSueDeCoqStep.LineMask">
+            <summary>
+            Indicates the mask that contains all digits from the line of the Sue de Coq structure.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.UniqueRectangleWithSueDeCoqStep.IntersectionMask">
+            <summary>
+            Indicates the mask that contains all digits from the intersection
+            of regions <see cref="P:Sudoku.Solving.Manual.Steps.UniqueRectangleWithSueDeCoqStep.Block"/> and <see cref="P:Sudoku.Solving.Manual.Steps.UniqueRectangleWithSueDeCoqStep.Line"/>
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.UniqueRectangleWithSueDeCoqStep.IsCannibalistic">
+            <summary>Indicates whether the Sue de Coq structure is a cannibalism.</summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.UniqueRectangleWithSueDeCoqStep.IsolatedDigitsMask">
+            <summary>Indicates the mask that contains all isolated digtis.</summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.UniqueRectangleWithSueDeCoqStep.BlockCells">
+            <summary>Indicates the cells in the block of the Sue de Coq structure.</summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.UniqueRectangleWithSueDeCoqStep.LineCells">
+            <summary>Indicates the cells in the line of the Sue de Coq structure.</summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.UniqueRectangleWithSueDeCoqStep.IntersectionCells">
+            <summary>
+            Indicates the cells in the intersection from regions <see cref="P:Sudoku.Solving.Manual.Steps.UniqueRectangleWithSueDeCoqStep.Block"/> and <see cref="P:Sudoku.Solving.Manual.Steps.UniqueRectangleWithSueDeCoqStep.Line"/>.
+            </summary>
+        </member>
         <member name="P:Sudoku.Solving.Manual.Steps.UniqueRectangleWithSueDeCoqStep.Difficulty">
             <inheritdoc/>
         </member>
@@ -7067,6 +7577,12 @@
             <param name="TargetCell">Indicates the target cell.</param>
             <param name="ExtraDigit">Indicates the extra digit used.</param>
             <param name="AbsoluteOffset"><inheritdoc/></param>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.UniqueRectangleWithUnknownCoveringStep.TargetCell">
+            <summary>Indicates the target cell.</summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.UniqueRectangleWithUnknownCoveringStep.ExtraDigit">
+            <summary>Indicates the extra digit used.</summary>
         </member>
         <member name="P:Sudoku.Solving.Manual.Steps.UniqueRectangleWithUnknownCoveringStep.Difficulty">
             <inheritdoc/>
@@ -7112,6 +7628,15 @@
             <param name="ExtraDigitsMask">Indicates the mask that contains all extra digits.</param>
             <param name="AbsoluteOffset"><inheritdoc/></param>
         </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.UniqueRectangleWithWingStep.Pivots">
+            <summary>Indictaes the pivots used.</summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.UniqueRectangleWithWingStep.Petals">
+            <summary>Indicates the petals used.</summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.UniqueRectangleWithWingStep.ExtraDigitsMask">
+            <summary>Indicates the mask that contains all extra digits.</summary>
+        </member>
         <member name="P:Sudoku.Solving.Manual.Steps.UniqueRectangleWithWingStep.Difficulty">
             <inheritdoc/>
         </member>
@@ -7141,6 +7666,12 @@
             <param name="Views"><inheritdoc/></param>
             <param name="Cells">Indicates the cells used.</param>
             <param name="DigitsMask">Indicates the digits used.</param>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.UniqueSquareStep.Cells">
+            <summary>Indicates the cells used.</summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.UniqueSquareStep.DigitsMask">
+            <summary>Indicates the digits used.</summary>
         </member>
         <member name="P:Sudoku.Solving.Manual.Steps.UniqueSquareStep.Difficulty">
             <inheritdoc/>
@@ -7195,6 +7726,9 @@
             <param name="DigitsMask"><inheritdoc/></param>
             <param name="Candidate">Indicates the true candidate.</param>
         </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.UniqueSquareType1Step.Candidate">
+            <summary>Indicates the true candidate.</summary>
+        </member>
         <member name="P:Sudoku.Solving.Manual.Steps.UniqueSquareType1Step.Type">
             <inheritdoc/>
         </member>
@@ -7217,6 +7751,9 @@
             <param name="Cells"><inheritdoc/></param>
             <param name="DigitsMask"><inheritdoc/></param>
             <param name="ExtraDigit">Indicates the extra digit used.</param>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.UniqueSquareType2Step.ExtraDigit">
+            <summary>Indicates the extra digit used.</summary>
         </member>
         <member name="P:Sudoku.Solving.Manual.Steps.UniqueSquareType2Step.Difficulty">
             <inheritdoc/>
@@ -7250,6 +7787,14 @@
             Indicates the extra digits that forms a subset with <paramref name="DigitsMask"/>.
             </param>
         </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.UniqueSquareType3Step.ExtraDigitsMask">
+            <summary>
+            Indicates the extra digits that forms a subset with <paramref name="DigitsMask"/>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.UniqueSquareType3Step.ExtraCells">
+            <summary>Indicates the extra cells used.</summary>
+        </member>
         <member name="P:Sudoku.Solving.Manual.Steps.UniqueSquareType3Step.Difficulty">
             <inheritdoc/>
         </member>
@@ -7280,6 +7825,15 @@
             <param name="Digit2">Indicates the digit 2 used.</param>
             <param name="ConjugateRegion">Indicates the cells used as the conjugation region.</param>
         </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.UniqueSquareType4Step.Digit1">
+            <summary>Indicates the digit 1 used.</summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.UniqueSquareType4Step.Digit2">
+            <summary>Indicates the digit 2 used.</summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.UniqueSquareType4Step.ConjugateRegion">
+            <summary>Indicates the cells used as the conjugation region.</summary>
+        </member>
         <member name="P:Sudoku.Solving.Manual.Steps.UniqueSquareType4Step.Type">
             <inheritdoc/>
         </member>
@@ -7298,6 +7852,9 @@
             <param name="Conclusions"><inheritdoc/></param>
             <param name="Views"><inheritdoc/></param>
             <param name="Candidates">Indicates the true candidates.</param>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.BivalueUniversalGraveMultipleStep.Candidates">
+            <summary>Indicates the true candidates.</summary>
         </member>
         <member name="P:Sudoku.Solving.Manual.Steps.BivalueUniversalGraveMultipleStep.Name">
             <inheritdoc/>
@@ -7375,6 +7932,12 @@
             <param name="Digit">Indicates the digit used.</param>
             <param name="Cells">Indicates the cells used.</param>
         </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.BivalueUniversalGraveType2Step.Digit">
+            <summary>Indicates the digit used.</summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.BivalueUniversalGraveType2Step.Cells">
+            <summary>Indicates the cells used.</summary>
+        </member>
         <member name="F:Sudoku.Solving.Manual.Steps.BivalueUniversalGraveType2Step.ExtraDifficulty">
             <summary>
             The table of extra difficulty values.
@@ -7411,6 +7974,18 @@
             <param name="Cells">Indicates the cells used.</param>
             <param name="IsNaked">Indicates whether the specified subset is naked subset.</param>
         </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.BivalueUniversalGraveType3Step.TrueCandidates">
+            <summary>Indicates the true candidates.</summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.BivalueUniversalGraveType3Step.DigitsMask">
+            <summary>Indicates the digits used.</summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.BivalueUniversalGraveType3Step.Cells">
+            <summary>Indicates the cells used.</summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.BivalueUniversalGraveType3Step.IsNaked">
+            <summary>Indicates whether the specified subset is naked subset.</summary>
+        </member>
         <member name="P:Sudoku.Solving.Manual.Steps.BivalueUniversalGraveType3Step.Difficulty">
             <inheritdoc/>
         </member>
@@ -7445,6 +8020,15 @@
             <param name="Cells">Indicates the cells used.</param>
             <param name="ConjugatePair">Indicates the conjugate pair used.</param>
         </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.BivalueUniversalGraveType4Step.DigitsMask">
+            <summary>Indicates the digits used.</summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.BivalueUniversalGraveType4Step.Cells">
+            <summary>Indicates the cells used.</summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.BivalueUniversalGraveType4Step.ConjugatePair">
+            <summary>Indicates the conjugate pair used.</summary>
+        </member>
         <member name="P:Sudoku.Solving.Manual.Steps.BivalueUniversalGraveType4Step.Difficulty">
             <inheritdoc/>
         </member>
@@ -7474,6 +8058,15 @@
             <param name="Cells">Indicates the cells used.</param>
             <param name="ExtraCell">Indicates the XZ cell.</param>
         </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.BivalueUniversalGraveXzStep.DigitsMask">
+            <summary>Indicates the digits used.</summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.BivalueUniversalGraveXzStep.Cells">
+            <summary>Indicates the cells used.</summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.BivalueUniversalGraveXzStep.ExtraCell">
+            <summary>Indicates the XZ cell.</summary>
+        </member>
         <member name="P:Sudoku.Solving.Manual.Steps.BivalueUniversalGraveXzStep.Difficulty">
             <inheritdoc/>
         </member>
@@ -7500,6 +8093,15 @@
             <param name="Exocet">INdicates the exocet pattern.</param>
             <param name="DigitsMask">Indicates the mask that holds all possible digits used.</param>
             <param name="Eliminations">Indicates all possible eliminations.</param>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.ExocetStep.Exocet">
+            <summary>INdicates the exocet pattern.</summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.ExocetStep.DigitsMask">
+            <summary>Indicates the mask that holds all possible digits used.</summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.ExocetStep.Eliminations">
+            <summary>Indicates all possible eliminations.</summary>
         </member>
         <member name="P:Sudoku.Solving.Manual.Steps.ExocetStep.ShowDifficulty">
             <inheritdoc/>
@@ -7584,6 +8186,12 @@
             <param name="LockedMemberR">Indicates the locked member bound with R cells.</param>
             <param name="Eliminations"><inheritdoc/></param>
         </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.JuniorExocetStep.LockedMemberQ">
+            <summary>Indicates the locked member bound with Q cells.</summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.JuniorExocetStep.LockedMemberR">
+            <summary>Indicates the locked member bound with R cells.</summary>
+        </member>
         <member name="P:Sudoku.Solving.Manual.Steps.JuniorExocetStep.Difficulty">
             <inheritdoc/>
         </member>
@@ -7642,6 +8250,12 @@
             <param name="ExtraRegionsMask">Indicates the mask tnat holds the extra regions used.</param>
             <param name="Eliminations"><inheritdoc/></param>
         </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.SeniorExocetStep.EndoTargetCell">
+            <summary>Indicates the target cell that is embedded into the cross-line cells.</summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.SeniorExocetStep.ExtraRegionsMask">
+            <summary>Indicates the mask tnat holds the extra regions used.</summary>
+        </member>
         <member name="P:Sudoku.Solving.Manual.Steps.SeniorExocetStep.ContainsExtraRegions">
             <summary>
             Indicates whether the specified instance contains any extra regions.
@@ -7680,6 +8294,18 @@
             <param name="Endofins">The endo-fins.</param>
             <param name="IsFranken">Indicates whether the fish is a Franken fish.</param>
             <param name="IsSashimi">Indicates whether the fish is a Sashimi fish.</param>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.ComplexFishStep.Exofins">
+            <summary>The exo-fins.</summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.ComplexFishStep.Endofins">
+            <summary>The endo-fins.</summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.ComplexFishStep.IsFranken">
+            <summary>Indicates whether the fish is a Franken fish.</summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.ComplexFishStep.IsSashimi">
+            <summary>Indicates whether the fish is a Sashimi fish.</summary>
         </member>
         <member name="F:Sudoku.Solving.Manual.Steps.ComplexFishStep.BasicDiff">
             <summary>
@@ -7816,6 +8442,15 @@
             <param name="BaseSetsMask">Indicates the mask that contains the base sets.</param>
             <param name="CoverSetsMask">Indicates the mask that contains the cover sets.</param>
         </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.FishStep.Digit">
+            <summary>Indicates the digit used.</summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.FishStep.BaseSetsMask">
+            <summary>Indicates the mask that contains the base sets.</summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.FishStep.CoverSetsMask">
+            <summary>Indicates the mask that contains the cover sets.</summary>
+        </member>
         <member name="P:Sudoku.Solving.Manual.Steps.FishStep.ShowDifficulty">
             <inheritdoc/>
         </member>
@@ -7910,6 +8545,28 @@
             </item>
             </list>
             </param>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.NormalFishStep.Fins">
+            <summary>Indicates the fins.</summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.NormalFishStep.IsSashimi">
+            <summary>
+            Indicates whether the fish instance is a sashimi fish. All possible values are as belows:
+            <list type="table">
+            <item>
+            <term><see langword="true"/></term>
+            <description>The fish is a sashimi fish.</description>
+            </item>
+            <item>
+            <term><see langword="false"/></term>
+            <description>The fish is a finned fish.</description>
+            </item>
+            <item>
+            <term><see langword="null"/></term>
+            <description>The fish is a normal fish without any fins.</description>
+            </item>
+            </list>
+            </summary>
         </member>
         <member name="P:Sudoku.Solving.Manual.Steps.NormalFishStep.Difficulty">
             <inheritdoc/>
@@ -8096,6 +8753,18 @@
             <param name="TargetCells">Indicates the target cells.</param>
             <param name="HasValueCell">Indicates whether the step contains value cells.</param>
         </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.AlmostLockedCandidatesStep.DigitsMask">
+            <summary>Indicates the mask that contains the digits used.</summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.AlmostLockedCandidatesStep.BaseCells">
+            <summary>Indicates the base cells.</summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.AlmostLockedCandidatesStep.TargetCells">
+            <summary>Indicates the target cells.</summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.AlmostLockedCandidatesStep.HasValueCell">
+            <summary>Indicates whether the step contains value cells.</summary>
+        </member>
         <member name="P:Sudoku.Solving.Manual.Steps.AlmostLockedCandidatesStep.Size">
             <inheritdoc/>
         </member>
@@ -8162,6 +8831,15 @@
             <param name="Digit">Indicates the digit used.</param>
             <param name="BaseSet">Indicates the region that the current locked candidates forms.</param>
             <param name="CoverSet">Indicates the region that the current locked candidates influences.</param>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.LockedCandidatesStep.Digit">
+            <summary>Indicates the digit used.</summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.LockedCandidatesStep.BaseSet">
+            <summary>Indicates the region that the current locked candidates forms.</summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.LockedCandidatesStep.CoverSet">
+            <summary>Indicates the region that the current locked candidates influences.</summary>
         </member>
         <member name="P:Sudoku.Solving.Manual.Steps.LockedCandidatesStep.Difficulty">
             <inheritdoc/>
@@ -8257,6 +8935,9 @@
             <param name="Conclusions"><inheritdoc/></param>
             <param name="Views"><inheritdoc/></param>
             <param name="ContradictionLinks">Indicates the list of contradiction links.</param>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.BowmanBingoStep.ContradictionLinks">
+            <summary>Indicates the list of contradiction links.</summary>
         </member>
         <member name="P:Sudoku.Solving.Manual.Steps.BowmanBingoStep.Difficulty">
             <inheritdoc/>
@@ -8376,6 +9057,9 @@
             <param name="Views"><inheritdoc/></param>
             <param name="IsTemplateDeletion">Indicates whether the step is a deletion.</param>
         </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.TemplateStep.IsTemplateDeletion">
+            <summary>Indicates whether the step is a deletion.</summary>
+        </member>
         <member name="P:Sudoku.Solving.Manual.Steps.TemplateStep.Digit">
             <summary>
             Indicates the digit.
@@ -8416,6 +9100,15 @@
             <param name="Digit1">Indicates the first digit.</param>
             <param name="Digit2">Indicates the second digit.</param>
         </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.BivalueOddagonStep.Loop">
+            <summary>Indicates the loop used.</summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.BivalueOddagonStep.Digit1">
+            <summary>Indicates the first digit.</summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.BivalueOddagonStep.Digit2">
+            <summary>Indicates the second digit.</summary>
+        </member>
         <member name="P:Sudoku.Solving.Manual.Steps.BivalueOddagonStep.IsNice">
             <inheritdoc/>
         </member>
@@ -8453,6 +9146,9 @@
             <param name="Digit2"><inheritdoc/></param>
             <param name="ExtraCell">Indicates the extra cell.</param>
         </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.BivalueOddagonType1Step.ExtraCell">
+            <summary>Indicates the extra cell.</summary>
+        </member>
         <member name="P:Sudoku.Solving.Manual.Steps.BivalueOddagonType1Step.TechniqueCode">
             <inheritdoc/>
         </member>
@@ -8483,6 +9179,9 @@
             <param name="Digit1"><inheritdoc/></param>
             <param name="Digit2"><inheritdoc/></param>
             <param name="ExtraDigit">Indicates the extra digit.</param>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.BivalueOddagonType2Step.ExtraDigit">
+            <summary>Indicates the extra digit.</summary>
         </member>
         <member name="P:Sudoku.Solving.Manual.Steps.BivalueOddagonType2Step.Difficulty">
             <inheritdoc/>
@@ -8520,6 +9219,12 @@
             <param name="ExtraCells">Indicates the extra cells used.</param>
             <param name="ExtraDigitsMask">Indicates the mask that contains all extra digits used.</param>
         </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.BivalueOddagonType3Step.ExtraCells">
+            <summary>Indicates the extra cells used.</summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.BivalueOddagonType3Step.ExtraDigitsMask">
+            <summary>Indicates the mask that contains all extra digits used.</summary>
+        </member>
         <member name="P:Sudoku.Solving.Manual.Steps.BivalueOddagonType3Step.Difficulty">
             <inheritdoc/>
         </member>
@@ -8547,6 +9252,9 @@
             <param name="Conclusions"><inheritdoc/></param>
             <param name="Views"><inheritdoc/></param>
             <param name="Cells">Indicates the cells used.</param>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.DominoLoopStep.Cells">
+            <summary>Indicates the cells used.</summary>
         </member>
         <member name="P:Sudoku.Solving.Manual.Steps.DominoLoopStep.Difficulty">
             <inheritdoc/>
@@ -8584,6 +9292,9 @@
             <param name="Conclusions"><inheritdoc/></param>
             <param name="Views"><inheritdoc/></param>
             <param name="Cells">Indicates the cells used.</param>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.MultisectorLockedSetsStep.Cells">
+            <summary>Indicates the cells used.</summary>
         </member>
         <member name="P:Sudoku.Solving.Manual.Steps.MultisectorLockedSetsStep.Difficulty">
             <inheritdoc/>
@@ -8661,6 +9372,24 @@
             <param name="ColumnCells">The column cells map.</param>
             <param name="BlockCells">The block cells map.</param>
         </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.SueDeCoq3DimensionStep.RowDigitsMask">
+            <summary>The row digits mask.</summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.SueDeCoq3DimensionStep.ColumnDigitsMask">
+            <summary>The column digits mask.</summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.SueDeCoq3DimensionStep.BlockDigitsMask">
+            <summary>The block digits mask.</summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.SueDeCoq3DimensionStep.RowCells">
+            <summary>The row cells map.</summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.SueDeCoq3DimensionStep.ColumnCells">
+            <summary>The column cells map.</summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.SueDeCoq3DimensionStep.BlockCells">
+            <summary>The block cells map.</summary>
+        </member>
         <member name="P:Sudoku.Solving.Manual.Steps.SueDeCoq3DimensionStep.Difficulty">
             <inheritdoc/>
         </member>
@@ -8716,6 +9445,36 @@
             <param name="LineCells">The map of line cells.</param>
             <param name="IntersectionCells">The map of intersection cells.</param>
         </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.SueDeCoqStep.Block">
+            <summary>The block.</summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.SueDeCoqStep.Line">
+            <summary>The line.</summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.SueDeCoqStep.BlockMask">
+            <summary>The block mask.</summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.SueDeCoqStep.LineMask">
+            <summary>The line mask.</summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.SueDeCoqStep.IntersectionMask">
+            <summary>The intersection mask.</summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.SueDeCoqStep.IsCannibalistic">
+            <summary>Indicates whether the SdC is cannibalistic.</summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.SueDeCoqStep.IsolatedDigitsMask">
+            <summary>The isolated digits mask.</summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.SueDeCoqStep.BlockCells">
+            <summary>The map of block cells.</summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.SueDeCoqStep.LineCells">
+            <summary>The map of line cells.</summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.SueDeCoqStep.IntersectionCells">
+            <summary>The map of intersection cells.</summary>
+        </member>
         <member name="P:Sudoku.Solving.Manual.Steps.SueDeCoqStep.Difficulty">
             <inheritdoc/>
         </member>
@@ -8757,6 +9516,12 @@
             <param name="Block">Indicates the block that the empty rectangle structure formed.</param>
             <param name="ConjugatePair">Indicates the conjugate pair used.</param>
         </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.EmptyRectangleStep.Block">
+            <summary>Indicates the block that the empty rectangle structure formed.</summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.EmptyRectangleStep.ConjugatePair">
+            <summary>Indicates the conjugate pair used.</summary>
+        </member>
         <member name="P:Sudoku.Solving.Manual.Steps.EmptyRectangleStep.Difficulty">
             <inheritdoc/>
         </member>
@@ -8797,6 +9562,12 @@
             <param name="Digit"><inheritdoc/></param>
             <param name="Loop">Indicates the loop cells used.</param>
             <param name="Guardians">Indicates the guardian cells used.</param>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.GuardianStep.Loop">
+            <summary>Indicates the loop cells used.</summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.GuardianStep.Guardians">
+            <summary>Indicates the guardian cells used.</summary>
         </member>
         <member name="P:Sudoku.Solving.Manual.Steps.GuardianStep.IsNice">
             <inheritdoc/>
@@ -8841,6 +9612,9 @@
             <param name="Views"><inheritdoc/></param>
             <param name="Digit">Indicates the digit used.</param>
         </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.SingleDigitPatternStep.Digit">
+            <summary>Indicates the digit used.</summary>
+        </member>
         <member name="P:Sudoku.Solving.Manual.Steps.SingleDigitPatternStep.ShowDifficulty">
             <inheritdoc/>
         </member>
@@ -8878,6 +9652,12 @@
             <param name="Digit"><inheritdoc/></param>
             <param name="BaseRegion">Indicates the base region used.</param>
             <param name="TargetRegion">Indicates the target region used.</param>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.TwoStrongLinksStep.BaseRegion">
+            <summary>Indicates the base region used.</summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.TwoStrongLinksStep.TargetRegion">
+            <summary>Indicates the target region used.</summary>
         </member>
         <member name="P:Sudoku.Solving.Manual.Steps.TwoStrongLinksStep.Difficulty">
             <inheritdoc/>
@@ -8950,6 +9730,14 @@
             Indicates whether the current step is a <b>Last Digit</b> technique usage.
             </param>
         </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.HiddenSingleStep.Region">
+            <summary>Indicates the region used.</summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.HiddenSingleStep.EnableAndIsLastDigit">
+            <summary>
+            Indicates whether the current step is a <b>Last Digit</b> technique usage.
+            </summary>
+        </member>
         <member name="P:Sudoku.Solving.Manual.Steps.HiddenSingleStep.Difficulty">
             <inheritdoc/>
         </member>
@@ -9006,6 +9794,12 @@
             <param name="Views"><inheritdoc/></param>
             <param name="Cell">Indicates the cell used.</param>
             <param name="Digit">Indicates the digit used.</param>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.SingleStep.Cell">
+            <summary>Indicates the cell used.</summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.SingleStep.Digit">
+            <summary>Indicates the digit used.</summary>
         </member>
         <member name="P:Sudoku.Solving.Manual.Steps.SingleStep.ShowDifficulty">
             <inheritdoc/>
@@ -9105,6 +9899,25 @@
             </list>
             </param>
         </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.NakedSubsetStep.IsLocked">
+            <summary>
+            Indicates which locked type this subset is. The cases are as belows:
+            <list type="table">
+            <item>
+            <term><see langword="true"/></term>
+            <description>The subset is a locked subset.</description>
+            </item>
+            <item>
+            <term><see langword="true"/></term>
+            <description>The subset is a naked subset with at least one extra locked candidate.</description>
+            </item>
+            <item>
+            <term><see langword="null"/></term>
+            <description>The subset is a normal naked subset without any extra locked candidates.</description>
+            </item>
+            </list>
+            </summary>
+        </member>
         <member name="P:Sudoku.Solving.Manual.Steps.NakedSubsetStep.Difficulty">
             <inheritdoc/>
         </member>
@@ -9130,6 +9943,15 @@
             <param name="Region">The region that structure lies in.</param>
             <param name="Cells">All cells used.</param>
             <param name="DigitsMask">The maks that contains all digits used.</param>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.SubsetStep.Region">
+            <summary>The region that structure lies in.</summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.SubsetStep.Cells">
+            <summary>All cells used.</summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.SubsetStep.DigitsMask">
+            <summary>The maks that contains all digits used.</summary>
         </member>
         <member name="P:Sudoku.Solving.Manual.Steps.SubsetStep.ShowDifficulty">
             <inheritdoc/>
@@ -9182,6 +10004,18 @@
             <param name="PivotCandidatesCount">Indicates the number of digits in the pivot cell.</param>
             <param name="DigitsMask">Indicates a mask that contins all digits used.</param>
             <param name="Petals">Indicates the petals used.</param>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.RegularWingStep.Pivot">
+            <summary>Indicates the cell that blossomed its petals.</summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.RegularWingStep.PivotCandidatesCount">
+            <summary>Indicates the number of digits in the pivot cell.</summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.RegularWingStep.DigitsMask">
+            <summary>Indicates a mask that contins all digits used.</summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.RegularWingStep.Petals">
+            <summary>Indicates the petals used.</summary>
         </member>
         <member name="P:Sudoku.Solving.Manual.Steps.RegularWingStep.IsIncomplete">
             <summary>
@@ -9303,6 +10137,17 @@
             <param name="ConjugatePair">
             Indicates the conjugate pair that connects cells <see cref="P:Sudoku.Solving.Manual.Steps.WWingStep.StartCell"/> and <see cref="P:Sudoku.Solving.Manual.Steps.WWingStep.EndCell"/>.
             </param>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.WWingStep.StartCell">
+            <summary>Indicates the start cell.</summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.WWingStep.EndCell">
+            <summary>Indicates the end cell.</summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.WWingStep.ConjugatePair">
+            <summary>
+            Indicates the conjugate pair that connects cells <see cref="P:Sudoku.Solving.Manual.Steps.WWingStep.StartCell"/> and <see cref="P:Sudoku.Solving.Manual.Steps.WWingStep.EndCell"/>.
+            </summary>
         </member>
         <member name="P:Sudoku.Solving.Manual.Steps.WWingStep.Difficulty">
             <inheritdoc/>
