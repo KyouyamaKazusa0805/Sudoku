@@ -135,7 +135,7 @@ public sealed partial class SudokuPane : UserControl
 	/// </summary>
 	private void UpdateBorderLines()
 	{
-		foreach (var drawingElement in _drawingElements.OfEitherType<CellLine, BlockLine>())
+		foreach (var drawingElement in _drawingElements.OfType<CellLine, BlockLine>())
 		{
 			drawingElement.DynamicAssign(
 				instance =>

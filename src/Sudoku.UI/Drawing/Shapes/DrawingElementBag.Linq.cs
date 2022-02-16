@@ -23,7 +23,7 @@ partial class DrawingElementBag
 	/// The enumerator instance that allows you using <see langword="foreach"/> loop to iterate on them.
 	/// </returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public OfTypeEnumerator<T1, T2> OfEitherType<T1, T2>() where T1 : DrawingElement where T2 : DrawingElement =>
+	public OfTypeEnumerator<T1, T2> OfType<T1, T2>() where T1 : DrawingElement where T2 : DrawingElement =>
 		new(_elements, Count);
 
 	/// <summary>
@@ -37,7 +37,7 @@ partial class DrawingElementBag
 	/// The enumerator instance that allows you using <see langword="foreach"/> loop to iterate on them.
 	/// </returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public OfTypeEnumerator<T1, T2, T3> OfEitherType<T1, T2, T3>()
+	public OfTypeEnumerator<T1, T2, T3> OfType<T1, T2, T3>()
 		where T1 : DrawingElement where T2 : DrawingElement where T3 : DrawingElement => new(_elements, Count);
 
 	/// <summary>

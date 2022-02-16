@@ -520,7 +520,7 @@
             The enumerator instance that allows you using <see langword="foreach"/> loop to iterate on them.
             </returns>
         </member>
-        <member name="M:Sudoku.UI.Drawing.Shapes.DrawingElementBag.OfEitherType``2">
+        <member name="M:Sudoku.UI.Drawing.Shapes.DrawingElementBag.OfType``2">
             <summary>
             Gets all possible elements that are all of either type <typeparamref name="T1"/>
             or <typeparamref name="T2"/>.
@@ -531,7 +531,7 @@
             The enumerator instance that allows you using <see langword="foreach"/> loop to iterate on them.
             </returns>
         </member>
-        <member name="M:Sudoku.UI.Drawing.Shapes.DrawingElementBag.OfEitherType``3">
+        <member name="M:Sudoku.UI.Drawing.Shapes.DrawingElementBag.OfType``3">
             <summary>
             Gets all possible elements that are all of type <typeparamref name="T1"/>,
             <typeparamref name="T2"/> or <typeparamref name="T3"/>.
