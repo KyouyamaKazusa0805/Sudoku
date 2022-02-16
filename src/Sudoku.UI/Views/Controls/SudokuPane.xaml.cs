@@ -191,7 +191,10 @@ public sealed partial class SudokuPane : UserControl
 		// TODO: Initializes candidate border lines if worth.
 
 		// Add them into the control collection.
-		_cCanvasMain.Children.AddRange(from drawingElement in _drawingElements select drawingElement.GetControl());
+		foreach (var control in from drawingElement in _drawingElements select drawingElement.GetControl())
+		{
+			_cCanvasMain.Children.Add(control);
+		}
 	}
 	#endregion
 }

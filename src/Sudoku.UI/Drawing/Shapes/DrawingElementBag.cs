@@ -147,44 +147,6 @@ internal sealed partial class DrawingElementBag :
 	public Enumerator GetEnumerator() => new(_elements, Count);
 
 	/// <summary>
-	/// Gets all possible elements that are all of type <typeparamref name="TDrawingElement"/>.
-	/// </summary>
-	/// <typeparam name="TDrawingElement">The type of the elements to be iterated.</typeparam>
-	/// <returns>
-	/// The enumerator instance that allows you using <see langword="foreach"/> loop to iterate on them.
-	/// </returns>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public OfTypeEnumerator<TDrawingElement> OfType<TDrawingElement>() where TDrawingElement : DrawingElement =>
-		new(_elements, Count);
-
-	/// <summary>
-	/// Gets all possible elements that are all of either type <typeparamref name="T1"/>
-	/// or <typeparamref name="T2"/>.
-	/// </summary>
-	/// <typeparam name="T1">The first allowed type whose instances being iterated.</typeparam>
-	/// <typeparam name="T2">The second allowed type whose instances being iterated.</typeparam>
-	/// <returns>
-	/// The enumerator instance that allows you using <see langword="foreach"/> loop to iterate on them.
-	/// </returns>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public OfTypeEnumerator<T1, T2> OfEitherType<T1, T2>() where T1 : DrawingElement where T2 : DrawingElement =>
-		new(_elements, Count);
-
-	/// <summary>
-	/// Gets all possible elements that are all of either type <typeparamref name="T1"/>,
-	/// <typeparamref name="T2"/> or <typeparamref name="T3"/>.
-	/// </summary>
-	/// <typeparam name="T1">The first allowed type whose instances being iterated.</typeparam>
-	/// <typeparam name="T2">The second allowed type whose instances being iterated.</typeparam>
-	/// <typeparam name="T3">The third allowed type whose instances being iterated.</typeparam>
-	/// <returns>
-	/// The enumerator instance that allows you using <see langword="foreach"/> loop to iterate on them.
-	/// </returns>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public OfTypeEnumerator<T1, T2, T3> OfEitherType<T1, T2, T3>()
-		where T1 : DrawingElement where T2 : DrawingElement where T3 : DrawingElement => new(_elements, Count);
-
-	/// <summary>
 	/// Slices the current collection and only gets the specified number of elements from the basic collection,
 	/// from the first element.
 	/// </summary>

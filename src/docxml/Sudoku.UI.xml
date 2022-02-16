@@ -444,38 +444,6 @@
         <member name="M:Sudoku.UI.Drawing.Shapes.DrawingElementBag.GetEnumerator">
             <inheritdoc cref="M:System.Collections.Generic.IEnumerable`1.GetEnumerator"/>
         </member>
-        <member name="M:Sudoku.UI.Drawing.Shapes.DrawingElementBag.OfType``1">
-            <summary>
-            Gets all possible elements that are all of type <typeparamref name="TDrawingElement"/>.
-            </summary>
-            <typeparam name="TDrawingElement">The type of the elements to be iterated.</typeparam>
-            <returns>
-            The enumerator instance that allows you using <see langword="foreach"/> loop to iterate on them.
-            </returns>
-        </member>
-        <member name="M:Sudoku.UI.Drawing.Shapes.DrawingElementBag.OfEitherType``2">
-            <summary>
-            Gets all possible elements that are all of either type <typeparamref name="T1"/>
-            or <typeparamref name="T2"/>.
-            </summary>
-            <typeparam name="T1">The first allowed type whose instances being iterated.</typeparam>
-            <typeparam name="T2">The second allowed type whose instances being iterated.</typeparam>
-            <returns>
-            The enumerator instance that allows you using <see langword="foreach"/> loop to iterate on them.
-            </returns>
-        </member>
-        <member name="M:Sudoku.UI.Drawing.Shapes.DrawingElementBag.OfEitherType``3">
-            <summary>
-            Gets all possible elements that are all of either type <typeparamref name="T1"/>,
-            <typeparamref name="T2"/> or <typeparamref name="T3"/>.
-            </summary>
-            <typeparam name="T1">The first allowed type whose instances being iterated.</typeparam>
-            <typeparam name="T2">The second allowed type whose instances being iterated.</typeparam>
-            <typeparam name="T3">The third allowed type whose instances being iterated.</typeparam>
-            <returns>
-            The enumerator instance that allows you using <see langword="foreach"/> loop to iterate on them.
-            </returns>
-        </member>
         <member name="M:Sudoku.UI.Drawing.Shapes.DrawingElementBag.Slice(System.Int32)">
             <summary>
             Slices the current collection and only gets the specified number of elements from the basic collection,
@@ -542,6 +510,69 @@
         </member>
         <member name="M:Sudoku.UI.Drawing.Shapes.DrawingElementBag.Enumerator.MoveNext">
             <inheritdoc cref="M:System.Collections.IEnumerator.MoveNext"/>
+        </member>
+        <member name="M:Sudoku.UI.Drawing.Shapes.DrawingElementBag.OfType``1">
+            <summary>
+            Gets all possible elements that are all of type <typeparamref name="TDrawingElement"/>.
+            </summary>
+            <typeparam name="TDrawingElement">The type of the elements to be iterated.</typeparam>
+            <returns>
+            The enumerator instance that allows you using <see langword="foreach"/> loop to iterate on them.
+            </returns>
+        </member>
+        <member name="M:Sudoku.UI.Drawing.Shapes.DrawingElementBag.OfEitherType``2">
+            <summary>
+            Gets all possible elements that are all of either type <typeparamref name="T1"/>
+            or <typeparamref name="T2"/>.
+            </summary>
+            <typeparam name="T1">The first allowed type whose instances being iterated.</typeparam>
+            <typeparam name="T2">The second allowed type whose instances being iterated.</typeparam>
+            <returns>
+            The enumerator instance that allows you using <see langword="foreach"/> loop to iterate on them.
+            </returns>
+        </member>
+        <member name="M:Sudoku.UI.Drawing.Shapes.DrawingElementBag.OfEitherType``3">
+            <summary>
+            Gets all possible elements that are all of type <typeparamref name="T1"/>,
+            <typeparamref name="T2"/> or <typeparamref name="T3"/>.
+            </summary>
+            <typeparam name="T1">The first allowed type whose instances being iterated.</typeparam>
+            <typeparam name="T2">The second allowed type whose instances being iterated.</typeparam>
+            <typeparam name="T3">The third allowed type whose instances being iterated.</typeparam>
+            <returns>
+            The enumerator instance that allows you using <see langword="foreach"/> loop to iterate on them.
+            </returns>
+        </member>
+        <member name="M:Sudoku.UI.Drawing.Shapes.DrawingElementBag.Select``1(System.Func{Sudoku.UI.Drawing.Shapes.DrawingElement,``0})">
+            <summary>
+            Makes a projection that converts each element to the target value of type <typeparamref name="T"/>,
+            using the specified method to convert.
+            </summary>
+            <typeparam name="T">The type of the target result that each element converted.</typeparam>
+            <param name="selector">The selector to convert the element.</param>
+            <returns>
+            The enumerator that allows you using <see langword="select"/> clause to get the result.
+            </returns>
+            <remarks>
+            The method can be used by the following two ways:
+            <list type="number">
+            <item>
+            Using query expression syntax: <c>var controls = from e in list select e.GetControl();</c>.
+            </item>
+            <item>
+            Using method invocation syntax: <c>var controls = list.Select(static e => e.GetControl());</c>.
+            </item>
+            </list>
+            </remarks>
+        </member>
+        <member name="M:Sudoku.UI.Drawing.Shapes.DrawingElementBag.Select``1()">
+            <summary>
+            Makes a projection that converts each element to the target value of type <typeparamref name="T"/>,
+            using the specified method to convert.
+            </summary>
+            <typeparam name="T">The type of the target result that each element converted.</typeparam>
+            <param name="selector">The selector to convert the element.</param>
+            <returns>The enumerator instance.</returns>
         </member>
         <member name="T:Sudoku.UI.Drawing.Shapes.DrawingElementBag.OfTypeEnumerator`1">
             <summary>
@@ -664,6 +695,80 @@
             <inheritdoc cref="M:System.Collections.IEnumerator.MoveNext"/>
         </member>
         <member name="M:Sudoku.UI.Drawing.Shapes.DrawingElementBag.OfTypeEnumerator`3.GetEnumerator">
+            <inheritdoc cref="M:System.Collections.Generic.IEnumerable`1.GetEnumerator"/>
+        </member>
+        <member name="T:Sudoku.UI.Drawing.Shapes.DrawingElementBag.SelectEnumerator`1">
+            <summary>
+            Indicates the enumerator type that makes the projection from the <see cref="T:Sudoku.UI.Drawing.Shapes.DrawingElement"/> to
+            a specified target type <typeparamref name="T"/>. 
+            </summary>
+            <typeparam name="T">The type of the projection result.</typeparam>
+            <seealso cref="T:Sudoku.UI.Drawing.Shapes.DrawingElement"/>
+        </member>
+        <member name="F:Sudoku.UI.Drawing.Shapes.DrawingElementBag.SelectEnumerator`1._count">
+            <summary>
+            The number of elements to be iterated.
+            </summary>
+        </member>
+        <member name="F:Sudoku.UI.Drawing.Shapes.DrawingElementBag.SelectEnumerator`1._elements">
+            <summary>
+            The list of elements.
+            </summary>
+        </member>
+        <member name="F:Sudoku.UI.Drawing.Shapes.DrawingElementBag.SelectEnumerator`1._selector">
+            <summary>
+            The selector.
+            </summary>
+        </member>
+        <member name="F:Sudoku.UI.Drawing.Shapes.DrawingElementBag.SelectEnumerator`1._selectorMethodPtr">
+            <summary>
+            The selector, but using function pointer.
+            </summary>
+        </member>
+        <member name="F:Sudoku.UI.Drawing.Shapes.DrawingElementBag.SelectEnumerator`1._ptr">
+            <summary>
+            Indicates the index value that points to the current iterated value.
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Drawing.Shapes.DrawingElementBag.SelectEnumerator`1.#ctor(Sudoku.UI.Drawing.Shapes.DrawingElement[],System.Int32,System.Func{Sudoku.UI.Drawing.Shapes.DrawingElement,`0})">
+            <summary>
+            Initializes an <see cref="T:Sudoku.UI.Drawing.Shapes.DrawingElementBag.Enumerator"/> instance via the specified elements and the iteration length.
+            </summary>
+            <param name="elements">The elements to be iterated.</param>
+            <param name="count">The number of elements to be iterated.</param>
+            <param name="selector">
+            The method that produces a projection from <see cref="T:Sudoku.UI.Drawing.Shapes.DrawingElement"/>
+            to the target type <typeparamref name="T"/>.
+            </param>
+        </member>
+        <member name="M:Sudoku.UI.Drawing.Shapes.DrawingElementBag.SelectEnumerator`1.#ctor(Sudoku.UI.Drawing.Shapes.DrawingElement[],System.Int32,)">
+            <summary>
+            Initializes an <see cref="T:Sudoku.UI.Drawing.Shapes.DrawingElementBag.Enumerator"/> instance via the specified elements and the iteration length.
+            </summary>
+            <param name="elements">The elements to be iterated.</param>
+            <param name="count">The number of elements to be iterated.</param>
+            <param name="selector">
+            The function pointer that points to a method, which produces a projection
+            from <see cref="T:Sudoku.UI.Drawing.Shapes.DrawingElement"/> to the target type <typeparamref name="T"/>.
+            </param>
+            <exception cref="T:System.ArgumentNullException">
+            Throws when the argument <paramref name="selector"/> is <see langword="null"/>.
+            </exception>
+        </member>
+        <member name="M:Sudoku.UI.Drawing.Shapes.DrawingElementBag.SelectEnumerator`1.#ctor(Sudoku.UI.Drawing.Shapes.DrawingElement[],System.Int32)">
+            <summary>
+            Initializes the items.
+            </summary>
+            <param name="elements">The elements.</param>
+            <param name="count">The number of values to be iterated.</param>
+        </member>
+        <member name="P:Sudoku.UI.Drawing.Shapes.DrawingElementBag.SelectEnumerator`1.Current">
+            <inheritdoc cref="P:System.Collections.Generic.IEnumerator`1.Current"/>
+        </member>
+        <member name="M:Sudoku.UI.Drawing.Shapes.DrawingElementBag.SelectEnumerator`1.MoveNext">
+            <inheritdoc cref="M:System.Collections.IEnumerator.MoveNext"/>
+        </member>
+        <member name="M:Sudoku.UI.Drawing.Shapes.DrawingElementBag.SelectEnumerator`1.GetEnumerator">
             <inheritdoc cref="M:System.Collections.Generic.IEnumerable`1.GetEnumerator"/>
         </member>
         <member name="T:Sudoku.UI.Drawing.Shapes.OutsideRectangle">
