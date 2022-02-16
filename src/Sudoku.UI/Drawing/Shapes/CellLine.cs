@@ -9,7 +9,7 @@ namespace Sudoku.UI.Drawing.Shapes;
 /// Defines a cell line.
 /// </summary>
 #if DEBUG
-[DebuggerDisplay($"{{{nameof(DebuggerDisplayView)},nq}}")]
+[DebuggerDisplay($$"""{{{nameof(DebuggerDisplayView)}},nq}""")]
 #endif
 public sealed class CellLine : DrawingElement
 {

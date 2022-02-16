@@ -216,6 +216,121 @@
         <member name="M:Sudoku.UI.Drawing.Shapes.BlockLine.GetControl">
             <inheritdoc/>
         </member>
+        <member name="T:Sudoku.UI.Drawing.Shapes.CandidateDigit">
+            <summary>
+            Defines a drawing element that displays for a digit that is the candidate-levelled digit.
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Drawing.Shapes.CandidateDigit.Equals(Sudoku.UI.Drawing.Shapes.DrawingElement)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.UI.Drawing.Shapes.CandidateDigit.GetHashCode">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.UI.Drawing.Shapes.CandidateDigit.GetControl">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.UI.Drawing.Shapes.CellDigit">
+            <summary>
+            Defines a drawing element that displays for a digit that is the cell-levelled digit.
+            </summary>
+        </member>
+        <member name="F:Sudoku.UI.Drawing.Shapes.CellDigit._textBlock">
+            <summary>
+            The inner text block.
+            </summary>
+        </member>
+        <member name="F:Sudoku.UI.Drawing.Shapes.CellDigit._isGiven">
+            <summary>
+            Indicates the cell status.
+            </summary>
+        </member>
+        <member name="F:Sudoku.UI.Drawing.Shapes.CellDigit._fontName">
+            <summary>
+            Indicates the font name.
+            </summary>
+        </member>
+        <member name="F:Sudoku.UI.Drawing.Shapes.CellDigit._givenColor">
+            <summary>
+            Indicates the given color.
+            </summary>
+        </member>
+        <member name="F:Sudoku.UI.Drawing.Shapes.CellDigit._modifiableColor">
+            <summary>
+            Indicates the modifiable color.
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Drawing.Shapes.CellDigit.#ctor(System.Byte,System.Boolean,Windows.UI.Color,Windows.UI.Color,System.String,System.Double)">
+            <summary>
+            Initializes a <see cref="T:Sudoku.UI.Drawing.Shapes.CellDigit"/> instance via the details.
+            </summary>
+            <param name="digit">
+            The digit value. If you want to hide the value, just assign 255;
+            otherwise, using 0 to 8 to indicate the displaying value corresponding to the real digit 1 to 9.
+            </param>
+            <param name="isGiven">
+            Indicates whether the cell is given. If <see langword="false"/>, modifiable value.
+            </param>
+            <param name="givenColor">The color for displaying the given cells.</param>
+            <param name="modifiableColor">The color for displaying the modifiable cells.</param>
+            <param name="fontName">The font name.</param>
+            <param name="fontSize">The font size.</param>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+            Throws when the argument <paramref name="digit"/> is not 255 and not in range 0 to 8.
+            </exception>
+        </member>
+        <member name="P:Sudoku.UI.Drawing.Shapes.CellDigit.IsGiven">
+            <summary>
+            Indicates whether the current cell is the given cell.
+            </summary>
+        </member>
+        <member name="P:Sudoku.UI.Drawing.Shapes.CellDigit.IsShown">
+            <summary>
+            Indicates whether the current element is shown.
+            </summary>
+            <exception cref="T:System.ArgumentException">
+            Throws when the argument <see langword="value"/> holds <see langword="true"/> value.
+            </exception>
+        </member>
+        <member name="P:Sudoku.UI.Drawing.Shapes.CellDigit.Digit">
+            <summary>
+            Indicates the digit used.
+            </summary>
+        </member>
+        <member name="P:Sudoku.UI.Drawing.Shapes.CellDigit.FontSize">
+            <summary>
+            The font size.
+            </summary>
+        </member>
+        <member name="P:Sudoku.UI.Drawing.Shapes.CellDigit.FontName">
+            <summary>
+            The font name.
+            </summary>
+        </member>
+        <member name="P:Sudoku.UI.Drawing.Shapes.CellDigit.GivenColor">
+            <summary>
+            The given color.
+            </summary>
+        </member>
+        <member name="P:Sudoku.UI.Drawing.Shapes.CellDigit.ModifiableColor">
+            <summary>
+            The modifiable color.
+            </summary>
+        </member>
+        <member name="P:Sudoku.UI.Drawing.Shapes.CellDigit.DebuggerDisplayView">
+            <summary>
+            Defines the debugger view.
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Drawing.Shapes.CellDigit.Equals(Sudoku.UI.Drawing.Shapes.DrawingElement)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.UI.Drawing.Shapes.CellDigit.GetHashCode">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.UI.Drawing.Shapes.CellDigit.GetControl">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.UI.Drawing.Shapes.CellLine">
             <summary>
             Defines a cell line.

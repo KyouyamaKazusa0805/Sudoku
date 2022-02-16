@@ -9,7 +9,7 @@ namespace Sudoku.UI.Drawing.Shapes;
 /// Defines a block line.
 /// </summary>
 #if DEBUG
-[DebuggerDisplay($"{{{nameof(DebuggerDisplayView)},nq}}")]
+[DebuggerDisplay($$"""{{{nameof(DebuggerDisplayView)}},nq}""")]
 #endif
 public sealed class BlockLine : DrawingElement
 {
