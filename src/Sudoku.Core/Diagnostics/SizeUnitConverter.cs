@@ -11,7 +11,7 @@ public static class SizeUnitConverter
 	/// <param name="bytes">The bytes.</param>
 	/// <param name="sizeUnit">The size unit.</param>
 	/// <returns>The value of the specified size unit.</returns>
-	/// <exception cref="ArgumentException">
+	/// <exception cref="ArgumentOutOfRangeException">
 	/// Throws when the argument <paramref name="sizeUnit"/> is invalid.
 	/// </exception>
 	public static decimal ConvertTo(long bytes, SizeUnit sizeUnit) => bytes / sizeUnit switch
@@ -25,7 +25,7 @@ public static class SizeUnitConverter
 		SizeUnit.IGigabyte => 1000000000M,
 		SizeUnit.Terabyte => 1099511627776M,
 		SizeUnit.ITerabyte => 1000000000000M,
-		_ => throw new ArgumentException("The specified argument is invalid.", nameof(sizeUnit))
+		_ => throw new ArgumentOutOfRangeException(nameof(sizeUnit))
 	};
 
 	/// <summary>

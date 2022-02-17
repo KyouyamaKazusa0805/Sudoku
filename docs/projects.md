@@ -10,7 +10,6 @@
 | [`Sudoku.Diagnostics.CodeAnalysis`](https://github.com/SunnieShine/Sudoku/tree/main/src/Sudoku.Diagnostics.CodeAnalysis) | 源代码生成器 | 提供整个解决方案里其它项目的轻量级代码分析功能，能够更方便更有用地约束 API 使用规范和代码风格。 |
 | [`Sudoku.Diagnostics.CodeAnalysis.CodeGen`](https://github.com/SunnieShine/Sudoku/tree/main/src/Sudoku.Diagnostics.CodeAnalysis.CodeGen) | 源代码生成器 | 会生成跟代码分析项目有用的配置和功能代码。                   |
 | [`Sudoku.Diagnostics.CodeGen`](https://github.com/SunnieShine/Sudoku/tree/main/src/Sudoku.Diagnostics.CodeGen) | 源代码生成器 | 为解决方案提供一些基本的、不必手写的源代码的功能性扩展扩展。 |
-| [`Sudoku.Diagnostics`](https://github.com/SunnieShine/Sudoku/tree/main/src/Sudoku.Diagnostics) | DLL          | 提供整个解决方案有关诊断操作的 API。                         |
 | [`Sudoku.Solving`](https://github.com/SunnieShine/Sudoku/tree/main/src/Sudoku.Solving) | DLL          | 提供数独关于解题操作和技巧搜寻功能的 API。                   |
 | [`Sudoku.UI`](https://github.com/SunnieShine/Sudoku/tree/main/src/Sudoku.UI) | Windows UI   | 用于呈现和使用 API 提供一个具体的 UI 级别实现。正在更新中。  |
 | [`System`](https://github.com/SunnieShine/Sudoku/tree/main/src/System) | DLL          | 为整个解决方案的别的项目提供关于 .NET 基本库 API 拓展、扩展的相关 API 和功能代码。 |

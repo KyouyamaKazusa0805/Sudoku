@@ -14,28 +14,32 @@
 /// </param>
 /// <seealso cref="FileCounter"/>
 public sealed record FileCounterResult(
-	int ResultLines,
-	int FilesCount,
-	long CharactersCount,
-	long Bytes,
-	in TimeSpan Elapsed,
-	IList<string> FileList
-)
+	int ResultLines, int FilesCount, long CharactersCount,
+	long Bytes, in TimeSpan Elapsed, IList<string> FileList)
 {
 	/// <inheritdoc/>
-	public override string ToString() =>
-		$@"Results:
-* Code lines: {ResultLines}
-* Files: {FilesCount}
-* Characters: {CharactersCount}
-* Bytes: {SizeUnitConverter.Convert(Bytes, out var unit):.000} {unit switch
+	public override string ToString()
+	{
+		string bytesConvertedStr = SizeUnitConverter.Convert(Bytes, out var unit).ToString(".000");
+		string bytesUnitStr = unit switch
 		{
 			SizeUnit.Byte => "B",
 			SizeUnit.Kilobyte => "KB",
 			SizeUnit.Megabyte => "MB",
 			SizeUnit.Gigabyte => "GB",
 			SizeUnit.Terabyte => "TB"
-		}} ({Bytes} Bytes)
-* Time elapsed: {Elapsed:hh\:mm\.ss\.fff}
-About more information, please call each property in this instance.";
+		};
+
+		return
+			$$"""
+			Results:
+			* Code lines: {{ResultLines}}
+			* Files: {{FilesCount}}
+			* Characters: {{CharactersCount}}
+			* Bytes: {{bytesConvertedStr}} {{bytesUnitStr}} ({{Bytes}} Bytes)
+			* Time elapsed: {{Elapsed:hh\:mm\.ss\.fff}}
+
+			About more information, please call each property in this instance.
+			""";
+	}
 }
