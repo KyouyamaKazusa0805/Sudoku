@@ -23,8 +23,6 @@ var solver = new ManualSolver();
 
 // 以同步的形式解题。
 var analysisResult = solver.Solve(grid);
-// 如果你想要异步执行，只需要改变代码成这个样子：
-//var analysisResult = await solver.SolveAsync(grid, null);
 
 // 输出分析结果。
 Console.WriteLine(analysisResult.ToString());

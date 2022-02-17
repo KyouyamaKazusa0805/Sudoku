@@ -23,8 +23,6 @@ var solver = new ManualSolver();
 
 // To solve a puzzle synchonously.
 var analysisResult = solver.Solve(grid);
-// If you want to solve the puzzle asynchonously, just change the code to:
-//var analysisResult = await solver.SolveAsync(grid, null);
 
 // Output the analysis result.
 Console.WriteLine(analysisResult.ToString());
