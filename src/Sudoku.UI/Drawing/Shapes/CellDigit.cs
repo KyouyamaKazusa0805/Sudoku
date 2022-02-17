@@ -205,7 +205,7 @@ public sealed class CellDigit : DrawingElement
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public override int GetHashCode() => HashCode.Combine(_isGiven, Digit);
+	public override int GetHashCode() => HashCode.Combine(nameof(CellDigit), _isGiven, Digit);
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

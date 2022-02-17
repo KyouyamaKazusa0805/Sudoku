@@ -27,11 +27,6 @@ public sealed class CandidateDigit : DrawingElement
 	/// </summary>
 	private ushort _candidateMask;
 
-	/// <summary>
-	/// Indicates the color.
-	/// </summary>
-	private Color _color;
-
 
 	/// <summary>
 	/// Initializes a <see cref="CandidateDigit"/> instance via the details.
@@ -41,7 +36,6 @@ public sealed class CandidateDigit : DrawingElement
 	public CandidateDigit(ushort candidateMask, Color color)
 	{
 		_candidateMask = candidateMask;
-		_color = color;
 
 		var grid = new GridLayout();
 		grid.RowDefinitions.Add(new());
@@ -101,12 +95,10 @@ public sealed class CandidateDigit : DrawingElement
 	public Color Color
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => _color;
+		get => ((SolidColorBrush)_digitBlocks[0].Foreground).Color;
 
 		set
 		{
-			_color = value;
-
 			for (byte digit = 0; digit < 9; digit++)
 			{
 				_digitBlocks[digit].Foreground = new SolidColorBrush(value);
@@ -148,7 +140,7 @@ public sealed class CandidateDigit : DrawingElement
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public override int GetHashCode() => _candidateMask;
+	public override int GetHashCode() => HashCode.Combine(nameof(CandidateDigit), _candidateMask);
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

@@ -236,11 +236,6 @@
             Indicates the candidate mask.
             </summary>
         </member>
-        <member name="F:Sudoku.UI.Drawing.Shapes.CandidateDigit._color">
-            <summary>
-            Indicates the color.
-            </summary>
-        </member>
         <member name="M:Sudoku.UI.Drawing.Shapes.CandidateDigit.#ctor(System.UInt16,Windows.UI.Color)">
             <summary>
             Initializes a <see cref="T:Sudoku.UI.Drawing.Shapes.CandidateDigit"/> instance via the details.

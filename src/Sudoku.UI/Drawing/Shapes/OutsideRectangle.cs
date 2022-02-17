@@ -76,7 +76,7 @@ public sealed class OutsideRectangle : DrawingElement
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public override int GetHashCode() => HashCode.Combine(nameof(OutsideRectangle), _rect.GetHashCode());
+	public override int GetHashCode() => HashCode.Combine(nameof(OutsideRectangle), _rect.Width, _rect.Height);
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
