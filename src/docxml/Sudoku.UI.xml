@@ -221,6 +221,48 @@
             Defines a drawing element that displays for a digit that is the candidate-levelled digit.
             </summary>
         </member>
+        <member name="F:Sudoku.UI.Drawing.Shapes.CandidateDigit._grid">
+            <summary>
+            Indicates the inner grid.
+            </summary>
+        </member>
+        <member name="F:Sudoku.UI.Drawing.Shapes.CandidateDigit._digitBlocks">
+            <summary>
+            Indicates the digit blocks.
+            </summary>
+        </member>
+        <member name="F:Sudoku.UI.Drawing.Shapes.CandidateDigit._candidateMask">
+            <summary>
+            Indicates the candidate mask.
+            </summary>
+        </member>
+        <member name="F:Sudoku.UI.Drawing.Shapes.CandidateDigit._color">
+            <summary>
+            Indicates the color.
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Drawing.Shapes.CandidateDigit.#ctor(System.UInt16,Windows.UI.Color)">
+            <summary>
+            Initializes a <see cref="T:Sudoku.UI.Drawing.Shapes.CandidateDigit"/> instance via the details.
+            </summary>
+            <param name="candidateMask">The candidate mask.</param>
+            <param name="color">The color.</param>
+        </member>
+        <member name="P:Sudoku.UI.Drawing.Shapes.CandidateDigit.CandidateMask">
+            <summary>
+            Indicates the candidate mask.
+            </summary>
+        </member>
+        <member name="P:Sudoku.UI.Drawing.Shapes.CandidateDigit.Color">
+            <summary>
+            Indicates the color.
+            </summary>
+        </member>
+        <member name="P:Sudoku.UI.Drawing.Shapes.CandidateDigit.DebuggerDisplayView">
+            <summary>
+            Defines the debugger view.
+            </summary>
+        </member>
         <member name="M:Sudoku.UI.Drawing.Shapes.CandidateDigit.Equals(Sudoku.UI.Drawing.Shapes.DrawingElement)">
             <inheritdoc/>
         </member>
