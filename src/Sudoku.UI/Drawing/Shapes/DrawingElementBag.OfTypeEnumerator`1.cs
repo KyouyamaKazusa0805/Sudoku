@@ -65,5 +65,54 @@ partial class DrawingElementBag
 		/// <inheritdoc cref="IEnumerable{T}.GetEnumerator"/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public readonly OfTypeEnumerator<TDrawingElement> GetEnumerator() => this;
+
+		/// <summary>
+		/// Gets the only element.
+		/// </summary>
+		/// <returns>The only element.</returns>
+		/// <exception cref="InvalidOperationException">
+		/// Throws when the enumerator can enumerate on multiple values, or the enumerator cannot step advanced.
+		/// </exception>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public readonly TDrawingElement Single()
+		{
+			var enumerator = this;
+			if (!enumerator.MoveNext())
+			{
+				throw new InvalidOperationException("The list is empty.");
+			}
+
+			var result = enumerator.Current;
+			if (!enumerator.MoveNext())
+			{
+				return result;
+			}
+
+			throw new InvalidOperationException("The list contains multiple elements.");
+		}
+
+		/// <summary>
+		/// Gets the only element, or <see langword="null"/> if the enumerator can iterates multiple values.
+		/// </summary>
+		/// <returns>The only element.</returns>
+		/// <exception cref="InvalidOperationException">
+		/// Throws when the enumerator cannot step advanced.
+		/// </exception>
+		public readonly TDrawingElement? SingleOrDefault()
+		{
+			var enumerator = this;
+			if (!enumerator.MoveNext())
+			{
+				throw new InvalidOperationException("The list is empty.");
+			}
+
+			var result = enumerator.Current;
+			if (!enumerator.MoveNext())
+			{
+				return result;
+			}
+
+			return null;
+		}
 	}
 }

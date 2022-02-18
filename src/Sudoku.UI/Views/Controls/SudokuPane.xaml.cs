@@ -71,11 +71,21 @@ public sealed partial class SudokuPane : UserControl
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		set
 		{
-			if (!_size.NearlyEquals(value, Epsilon))
+			if (_size.NearlyEquals(value, Epsilon))
 			{
-				_size = value;
+				return;
+			}
 
-				UpdateBorderLines();
+			_size = value;
+			foreach (var drawingElement in _drawingElements.OfType<CellLine, BlockLine>())
+			{
+				drawingElement.DynamicAssign(
+					instance =>
+					{
+						instance.OutsideOffset = OutsideOffset;
+						instance.PaneSize = value;
+					}
+				);
 			}
 		}
 	}
@@ -91,11 +101,21 @@ public sealed partial class SudokuPane : UserControl
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		set
 		{
-			if (!_outsideOffset.NearlyEquals(value, Epsilon))
+			if (_outsideOffset.NearlyEquals(value, Epsilon))
 			{
-				_outsideOffset = value;
+				return;
+			}
 
-				UpdateBorderLines();
+			_outsideOffset = value;
+			foreach (var drawingElement in _drawingElements.OfType<CellLine, BlockLine>())
+			{
+				drawingElement.DynamicAssign(
+					instance =>
+					{
+						instance.OutsideOffset = value;
+						instance.PaneSize = Size;
+					}
+				);
 			}
 		}
 	}
@@ -111,41 +131,19 @@ public sealed partial class SudokuPane : UserControl
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		set
 		{
-			if (_grid != value)
+			if (_grid == value)
 			{
-				_grid = value;
-
-				UpdateGrid();
+				return;
 			}
+
+			_grid = value;
+			_drawingElements.OfType<SudokuGrid>().Single().Grid = value;
 		}
 	}
 	#endregion
 
 
 	#region Normal instance methods
-	/// <summary>
-	/// Update the grid info.
-	/// </summary>
-	private void UpdateGrid()
-	{
-	}
-
-	/// <summary>
-	/// Update the border lines.
-	/// </summary>
-	private void UpdateBorderLines()
-	{
-		foreach (var drawingElement in _drawingElements.OfType<CellLine, BlockLine>())
-		{
-			drawingElement.DynamicAssign(
-				instance =>
-				{
-					instance.OutsideOffset = OutsideOffset;
-					instance.PaneSize = Size;
-				}
-			);
-		}
-	}
 	#endregion
 
 

@@ -3,6 +3,47 @@
 partial class DrawingElementBag
 {
 	/// <summary>
+	/// Gets the first element that satisfies the specified condition.
+	/// </summary>
+	/// <param name="predicate">The condition.</param>
+	/// <returns>The result.</returns>
+	/// <exception cref="InvalidOperationException">
+	/// Throws when no elements satisfy the specified condition.
+	/// </exception>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public DrawingElement First(Predicate<DrawingElement> predicate)
+	{
+		foreach (var de in this)
+		{
+			if (predicate(de))
+			{
+				return de;
+			}
+		}
+
+		throw new InvalidOperationException("Cannot found any element that satisfies the specified condition.");
+	}
+
+	/// <summary>
+	/// Gets the first element that satisfies the specified condition.
+	/// </summary>
+	/// <param name="predicate">The condition.</param>
+	/// <returns>The result.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public DrawingElement? FirstOrDefault(Predicate<DrawingElement> predicate)
+	{
+		foreach (var de in this)
+		{
+			if (predicate(de))
+			{
+				return de;
+			}
+		}
+
+		return null;
+	}
+
+	/// <summary>
 	/// Gets all possible elements that are all of type <typeparamref name="TDrawingElement"/>.
 	/// </summary>
 	/// <typeparam name="TDrawingElement">The type of the elements to be iterated.</typeparam>
