@@ -23,7 +23,7 @@ public sealed partial class SudokuPage : Page
 	{
 		// Open a text file.
 		var fop = new FileOpenPicker { SuggestedStartLocation = PickerLocationId.DocumentsLibrary };
-		fop.FileTypeFilter.Add(".txt");
+		fop.FileTypeFilter.Add(CommonFileExtensions.Text);
 
 		// When running on win32, FileOpenPicker needs to know the top-level hwnd
 		// via IInitializeWithWindow.Initialize.
