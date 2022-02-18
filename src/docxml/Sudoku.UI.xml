@@ -703,12 +703,63 @@
             Throws when no elements satisfy the specified condition.
             </exception>
         </member>
+        <member name="M:Sudoku.UI.Drawing.Shapes.DrawingElementBag.First()">
+            <summary>
+            Gets the first element that satisfies the specified condition.
+            </summary>
+            <param name="predicate">The condition.</param>
+            <returns>The result.</returns>
+            <exception cref="T:System.InvalidOperationException">
+            Throws when no elements satisfy the specified condition.
+            </exception>
+        </member>
         <member name="M:Sudoku.UI.Drawing.Shapes.DrawingElementBag.FirstOrDefault(System.Predicate{Sudoku.UI.Drawing.Shapes.DrawingElement})">
             <summary>
             Gets the first element that satisfies the specified condition.
             </summary>
             <param name="predicate">The condition.</param>
             <returns>The result.</returns>
+        </member>
+        <member name="M:Sudoku.UI.Drawing.Shapes.DrawingElementBag.FirstOrDefault()">
+            <summary>
+            Gets the first element that satisfies the specified condition.
+            </summary>
+            <param name="predicate">The condition.</param>
+            <returns>The result.</returns>
+        </member>
+        <member name="M:Sudoku.UI.Drawing.Shapes.DrawingElementBag.Single(System.Predicate{Sudoku.UI.Drawing.Shapes.DrawingElement})">
+            <summary>
+            Retrieve the collection, to get the only element that may satisfy the specified condition.
+            </summary>
+            <param name="predicate">The condition.</param>
+            <returns>The only element that may satisfy the condition.</returns>
+        </member>
+        <member name="M:Sudoku.UI.Drawing.Shapes.DrawingElementBag.Single()">
+            <summary>
+            Retrieve the collection, to get the only element that may satisfy the specified condition.
+            </summary>
+            <param name="predicate">The condition.</param>
+            <returns>The only element that may satisfy the condition.</returns>
+        </member>
+        <member name="M:Sudoku.UI.Drawing.Shapes.DrawingElementBag.SingleOrDefault(System.Predicate{Sudoku.UI.Drawing.Shapes.DrawingElement})">
+            <summary>
+            Retrieve the collection, to get the only element that may satisfy the specified condition.
+            </summary>
+            <param name="predicate">The condition.</param>
+            <returns>
+            The only element that may satisfy the condition; or <see langword="null"/> if the collection
+            has multiple values satisfying the condition.
+            </returns>
+        </member>
+        <member name="M:Sudoku.UI.Drawing.Shapes.DrawingElementBag.SingleOrDefault()">
+            <summary>
+            Retrieve the collection, to get the only element that may satisfy the specified condition.
+            </summary>
+            <param name="predicate">The condition.</param>
+            <returns>
+            The only element that may satisfy the condition; or <see langword="null"/> if the collection
+            has multiple values satisfying the condition.
+            </returns>
         </member>
         <member name="M:Sudoku.UI.Drawing.Shapes.DrawingElementBag.OfType``1">
             <summary>
@@ -900,6 +951,24 @@
         <member name="M:Sudoku.UI.Drawing.Shapes.DrawingElementBag.OfTypeEnumerator`2.GetEnumerator">
             <inheritdoc cref="M:System.Collections.Generic.IEnumerable`1.GetEnumerator"/>
         </member>
+        <member name="M:Sudoku.UI.Drawing.Shapes.DrawingElementBag.OfTypeEnumerator`2.Single">
+            <summary>
+            Gets the only element.
+            </summary>
+            <returns>The only element.</returns>
+            <exception cref="T:System.InvalidOperationException">
+            Throws when the enumerator can enumerate on multiple values, or the enumerator cannot step advanced.
+            </exception>
+        </member>
+        <member name="M:Sudoku.UI.Drawing.Shapes.DrawingElementBag.OfTypeEnumerator`2.SingleOrDefault">
+            <summary>
+            Gets the only element, or <see langword="null"/> if the enumerator can iterates multiple values.
+            </summary>
+            <returns>The only element.</returns>
+            <exception cref="T:System.InvalidOperationException">
+            Throws when the enumerator cannot step advanced.
+            </exception>
+        </member>
         <member name="T:Sudoku.UI.Drawing.Shapes.DrawingElementBag.OfTypeEnumerator`3">
             <summary>
             Indicates the enumerator type that allows iterating on <see cref="T:Sudoku.UI.Drawing.Shapes.DrawingElementBag"/> instances,
@@ -942,6 +1011,24 @@
         </member>
         <member name="M:Sudoku.UI.Drawing.Shapes.DrawingElementBag.OfTypeEnumerator`3.GetEnumerator">
             <inheritdoc cref="M:System.Collections.Generic.IEnumerable`1.GetEnumerator"/>
+        </member>
+        <member name="M:Sudoku.UI.Drawing.Shapes.DrawingElementBag.OfTypeEnumerator`3.Single">
+            <summary>
+            Gets the only element.
+            </summary>
+            <returns>The only element.</returns>
+            <exception cref="T:System.InvalidOperationException">
+            Throws when the enumerator can enumerate on multiple values, or the enumerator cannot step advanced.
+            </exception>
+        </member>
+        <member name="M:Sudoku.UI.Drawing.Shapes.DrawingElementBag.OfTypeEnumerator`3.SingleOrDefault">
+            <summary>
+            Gets the only element, or <see langword="null"/> if the enumerator can iterates multiple values.
+            </summary>
+            <returns>The only element.</returns>
+            <exception cref="T:System.InvalidOperationException">
+            Throws when the enumerator cannot step advanced.
+            </exception>
         </member>
         <member name="T:Sudoku.UI.Drawing.Shapes.DrawingElementBag.SelectEnumerator`1">
             <summary>
@@ -1016,6 +1103,24 @@
         </member>
         <member name="M:Sudoku.UI.Drawing.Shapes.DrawingElementBag.SelectEnumerator`1.GetEnumerator">
             <inheritdoc cref="M:System.Collections.Generic.IEnumerable`1.GetEnumerator"/>
+        </member>
+        <member name="M:Sudoku.UI.Drawing.Shapes.DrawingElementBag.SelectEnumerator`1.Single">
+            <summary>
+            Gets the only element.
+            </summary>
+            <returns>The only element.</returns>
+            <exception cref="T:System.InvalidOperationException">
+            Throws when the enumerator can enumerate on multiple values, or the enumerator cannot step advanced.
+            </exception>
+        </member>
+        <member name="M:Sudoku.UI.Drawing.Shapes.DrawingElementBag.SelectEnumerator`1.SingleOrDefault">
+            <summary>
+            Gets the only element, or <see langword="null"/> if the enumerator can iterates multiple values.
+            </summary>
+            <returns>The only element.</returns>
+            <exception cref="T:System.InvalidOperationException">
+            Throws when the enumerator cannot step advanced.
+            </exception>
         </member>
         <member name="T:Sudoku.UI.Drawing.Shapes.DrawingElementBag.WhereEnumerator">
             <summary>
@@ -1121,6 +1226,24 @@
             <param name="selector">The selector to convert the element.</param>
             <returns>The enumerator instance.</returns>
         </member>
+        <member name="M:Sudoku.UI.Drawing.Shapes.DrawingElementBag.WhereEnumerator.Single">
+            <summary>
+            Gets the only element.
+            </summary>
+            <returns>The only element.</returns>
+            <exception cref="T:System.InvalidOperationException">
+            Throws when the enumerator can enumerate on multiple values, or the enumerator cannot step advanced.
+            </exception>
+        </member>
+        <member name="M:Sudoku.UI.Drawing.Shapes.DrawingElementBag.WhereEnumerator.SingleOrDefault">
+            <summary>
+            Gets the only element, or <see langword="null"/> if the enumerator can iterates multiple values.
+            </summary>
+            <returns>The only element.</returns>
+            <exception cref="T:System.InvalidOperationException">
+            Throws when the enumerator cannot step advanced.
+            </exception>
+        </member>
         <member name="T:Sudoku.UI.Drawing.Shapes.DrawingElementBag.WhereEnumerator.SelectEnumerator`1">
             <summary>
             Indicates the enumerator type that makes the projection from the <see cref="T:Sudoku.UI.Drawing.Shapes.DrawingElement"/> to
@@ -1181,6 +1304,24 @@
         </member>
         <member name="M:Sudoku.UI.Drawing.Shapes.DrawingElementBag.WhereEnumerator.SelectEnumerator`1.GetEnumerator">
             <inheritdoc cref="M:System.Collections.Generic.IEnumerable`1.GetEnumerator"/>
+        </member>
+        <member name="M:Sudoku.UI.Drawing.Shapes.DrawingElementBag.WhereEnumerator.SelectEnumerator`1.Single">
+            <summary>
+            Gets the only element.
+            </summary>
+            <returns>The only element.</returns>
+            <exception cref="T:System.InvalidOperationException">
+            Throws when the enumerator can enumerate on multiple values, or the enumerator cannot step advanced.
+            </exception>
+        </member>
+        <member name="M:Sudoku.UI.Drawing.Shapes.DrawingElementBag.WhereEnumerator.SelectEnumerator`1.SingleOrDefault">
+            <summary>
+            Gets the only element, or <see langword="null"/> if the enumerator can iterates multiple values.
+            </summary>
+            <returns>The only element.</returns>
+            <exception cref="T:System.InvalidOperationException">
+            Throws when the enumerator cannot step advanced.
+            </exception>
         </member>
         <member name="T:Sudoku.UI.Drawing.Shapes.OutsideRectangle">
             <summary>

@@ -29,7 +29,28 @@ partial class DrawingElementBag
 	/// </summary>
 	/// <param name="predicate">The condition.</param>
 	/// <returns>The result.</returns>
+	/// <exception cref="InvalidOperationException">
+	/// Throws when no elements satisfy the specified condition.
+	/// </exception>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public unsafe DrawingElement First(delegate*<DrawingElement, bool> predicate)
+	{
+		foreach (var de in this)
+		{
+			if (predicate(de))
+			{
+				return de;
+			}
+		}
+
+		throw new InvalidOperationException("Cannot found any element that satisfies the specified condition.");
+	}
+
+	/// <summary>
+	/// Gets the first element that satisfies the specified condition.
+	/// </summary>
+	/// <param name="predicate">The condition.</param>
+	/// <returns>The result.</returns>
 	public DrawingElement? FirstOrDefault(Predicate<DrawingElement> predicate)
 	{
 		foreach (var de in this)
@@ -42,6 +63,66 @@ partial class DrawingElementBag
 
 		return null;
 	}
+
+	/// <summary>
+	/// Gets the first element that satisfies the specified condition.
+	/// </summary>
+	/// <param name="predicate">The condition.</param>
+	/// <returns>The result.</returns>
+	public unsafe DrawingElement? FirstOrDefault(delegate*<DrawingElement, bool> predicate)
+	{
+		foreach (var de in this)
+		{
+			if (predicate(de))
+			{
+				return de;
+			}
+		}
+
+		return null;
+	}
+
+	/// <summary>
+	/// Retrieve the collection, to get the only element that may satisfy the specified condition.
+	/// </summary>
+	/// <param name="predicate">The condition.</param>
+	/// <returns>The only element that may satisfy the condition.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public DrawingElement Single(Predicate<DrawingElement> predicate) =>
+		new WhereEnumerator(_elements, Count, predicate).Single();
+
+	/// <summary>
+	/// Retrieve the collection, to get the only element that may satisfy the specified condition.
+	/// </summary>
+	/// <param name="predicate">The condition.</param>
+	/// <returns>The only element that may satisfy the condition.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public unsafe DrawingElement Single(delegate*<DrawingElement, bool> predicate) =>
+		new WhereEnumerator(_elements, Count, predicate).Single();
+
+	/// <summary>
+	/// Retrieve the collection, to get the only element that may satisfy the specified condition.
+	/// </summary>
+	/// <param name="predicate">The condition.</param>
+	/// <returns>
+	/// The only element that may satisfy the condition; or <see langword="null"/> if the collection
+	/// has multiple values satisfying the condition.
+	/// </returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public DrawingElement? SingleOrDefault(Predicate<DrawingElement> predicate) =>
+		new WhereEnumerator(_elements, Count, predicate).SingleOrDefault();
+
+	/// <summary>
+	/// Retrieve the collection, to get the only element that may satisfy the specified condition.
+	/// </summary>
+	/// <param name="predicate">The condition.</param>
+	/// <returns>
+	/// The only element that may satisfy the condition; or <see langword="null"/> if the collection
+	/// has multiple values satisfying the condition.
+	/// </returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public unsafe DrawingElement? SingleOrDefault(delegate*<DrawingElement, bool> predicate) =>
+		new WhereEnumerator(_elements, Count, predicate).SingleOrDefault();
 
 	/// <summary>
 	/// Gets all possible elements that are all of type <typeparamref name="TDrawingElement"/>.
