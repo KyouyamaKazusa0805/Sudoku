@@ -6,6 +6,10 @@
 	<x:String x:Key="MainPage_Sudoku">Sudoku</x:String>
 	<x:String x:Key="MainPage_Settings">Settings</x:String>
 	<x:String x:Key="MainPage_About">About</x:String>
+	<x:String x:Key="SudokuPage_Open">Open</x:String>
+	<x:String x:Key="SudokuPage_Save">Save</x:String>
+	<x:String x:Key="SudokuPage_Clear">Clear</x:String>
+	<x:String x:Key="SudokuPage_Details">Details</x:String>
 	<x:String x:Key="AboutPage_DetailDescription">Here displays the details about the application.</x:String>
 	<x:String x:Key="AboutPage_Author">Author</x:String>
 	<x:String x:Key="AboutPage_AuthorName">Sunnie-Shine</x:String>

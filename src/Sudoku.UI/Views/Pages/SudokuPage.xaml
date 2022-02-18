@@ -18,20 +18,43 @@
 			</Grid.ColumnDefinitions>
 
 			<c:SudokuPane
-				x:Name="_cPane" Grid.Row="0" Grid.Column="0" Margin="50,50,150,0"
+				x:Name="_cPane" Grid.Row="0" Grid.Column="0" Margin="25,25,0,0"
 				Size="560" OutsideOffset="10" />
-			<Grid Grid.Row="0" Grid.Column="1" Margin="0,50,0,0">
+			<InfoBar
+				x:Name="_cInfoBarDetails" Title="{StaticResource SudokuPage_Details}"
+				Grid.Row="0" Grid.Column="1" Grid.RowSpan="2" IsOpen="False" />
+			<Grid
+				Grid.Row="1" Grid.Column="0" Margin="0,25,0,0"
+				HorizontalAlignment="Center" VerticalAlignment="Center">
 				<Grid.RowDefinitions>
-					<RowDefinition Height="Auto" />
-					<RowDefinition Height="Auto" />
+					<RowDefinition />
+					<RowDefinition />
 				</Grid.RowDefinitions>
 				<Grid.ColumnDefinitions>
-					<ColumnDefinition Width="Auto" />
-					<ColumnDefinition Width="Auto" />
-					<ColumnDefinition Width="Auto" />
-					<ColumnDefinition Width="Auto" />
-					<ColumnDefinition Width="Auto" />
+					<ColumnDefinition />
+					<ColumnDefinition />
+					<ColumnDefinition />
 				</Grid.ColumnDefinitions>
+
+				<AppBarButton
+					Grid.Row="0" Grid.Column="0" Icon="OpenFile" Label="{StaticResource SudokuPage_Open}"
+					Click="OpenAppBarButton_ClickAsync">
+					<AppBarButton.KeyboardAccelerators>
+						<KeyboardAccelerator Modifiers="Control" Key="O" />
+					</AppBarButton.KeyboardAccelerators>
+				</AppBarButton>
+				<AppBarButton
+					Grid.Row="0" Grid.Column="1" Icon="Save" Label="{StaticResource SudokuPage_Save}">
+					<AppBarButton.KeyboardAccelerators>
+						<KeyboardAccelerator Modifiers="Control" Key="S" />
+					</AppBarButton.KeyboardAccelerators>
+				</AppBarButton>
+				<AppBarButton
+					Grid.Row="0" Grid.Column="2" Icon="Clear" Label="{StaticResource SudokuPage_Clear}">
+					<AppBarButton.KeyboardAccelerators>
+						<KeyboardAccelerator Modifiers="Control,Shift" Key="S" />
+					</AppBarButton.KeyboardAccelerators>
+				</AppBarButton>
 			</Grid>
 		</Grid>
 	</ScrollViewer>

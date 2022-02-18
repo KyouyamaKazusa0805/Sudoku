@@ -6,6 +6,10 @@
 	<x:String x:Key="MainPage_Sudoku">数独</x:String>
 	<x:String x:Key="MainPage_Settings">设置</x:String>
 	<x:String x:Key="MainPage_About">关于</x:String>
+	<x:String x:Key="SudokuPage_Open">打开</x:String>
+	<x:String x:Key="SudokuPage_Save">保存</x:String>
+	<x:String x:Key="SudokuPage_Clear">清空</x:String>
+	<x:String x:Key="SudokuPage_Details">详情信息</x:String>
 	<x:String x:Key="AboutPage_DetailDescription">本页面列举一些关于整个程序有关的作者或项目信息。</x:String>
 	<x:String x:Key="AboutPage_Author">作者</x:String>
 	<x:String x:Key="AboutPage_AuthorName">小向（Sunnie-Shine）</x:String>
