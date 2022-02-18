@@ -1166,19 +1166,19 @@
         </member>
         <member name="M:Sudoku.UI.BindingConversions.License(System.String)">
             <summary>
-            Indicates the license displaying value on <see cref="P:Sudoku.UI.Models.RepositoryInfo.OpenSourceLicense"/>.
+            Indicates the license displaying value on <see cref="P:Sudoku.UI.RepositoryInfo.OpenSourceLicense"/>.
             </summary>
             <param name="input">The license name.</param>
             <returns>The converted result string.</returns>
-            <seealso cref="P:Sudoku.UI.Models.RepositoryInfo.OpenSourceLicense"/>
+            <seealso cref="P:Sudoku.UI.RepositoryInfo.OpenSourceLicense"/>
         </member>
         <member name="M:Sudoku.UI.BindingConversions.ForReference(System.Boolean)">
             <summary>
-            Indicates the conversion on <see cref="P:Sudoku.UI.Models.RepositoryInfo.IsForReference"/>.
+            Indicates the conversion on <see cref="P:Sudoku.UI.RepositoryInfo.IsForReference"/>.
             </summary>
             <param name="input">The input value.</param>
             <returns>The converted result string value.</returns>
-            <seealso cref="P:Sudoku.UI.Models.RepositoryInfo.IsForReference"/>
+            <seealso cref="P:Sudoku.UI.RepositoryInfo.IsForReference"/>
         </member>
         <member name="T:Sudoku.UI.Website">
             <summary>
@@ -1192,37 +1192,37 @@
             <param name="uri">The URI website.</param>
             <returns>The process.</returns>
         </member>
-        <member name="T:Sudoku.UI.Models.RepositoryInfo">
+        <member name="T:Sudoku.UI.RepositoryInfo">
             <summary>
             Defines a set of properties to describe an image.
             </summary>
         </member>
-        <member name="P:Sudoku.UI.Models.RepositoryInfo.IsForReference">
+        <member name="P:Sudoku.UI.RepositoryInfo.IsForReference">
             <summary>
             Indicates whether the repository code is for reference.
             </summary>
         </member>
-        <member name="P:Sudoku.UI.Models.RepositoryInfo.OpenSourceLicense">
+        <member name="P:Sudoku.UI.RepositoryInfo.OpenSourceLicense">
             <summary>
             Indicates the open-source license being used for this repository.
             </summary>
         </member>
-        <member name="P:Sudoku.UI.Models.RepositoryInfo.Initials">
+        <member name="P:Sudoku.UI.RepositoryInfo.Initials">
             <summary>
             Indicates the initials displaying on the <see cref="T:Microsoft.UI.Xaml.Controls.PersonPicture"/> control.
             </summary>
         </member>
-        <member name="P:Sudoku.UI.Models.RepositoryInfo.Name">
+        <member name="P:Sudoku.UI.RepositoryInfo.Name">
             <summary>
             Indicates the name of the image.
             </summary>
         </member>
-        <member name="P:Sudoku.UI.Models.RepositoryInfo.IconPath">
+        <member name="P:Sudoku.UI.RepositoryInfo.IconPath">
             <summary>
             Indicates the path of the image to show. The field can be <see langword="null"/>.
             </summary>
         </member>
-        <member name="P:Sudoku.UI.Models.RepositoryInfo.Site">
+        <member name="P:Sudoku.UI.RepositoryInfo.Site">
             <summary>
             Indicates the website which name is corresponding to.
             </summary>
