@@ -1192,32 +1192,6 @@
             <param name="uri">The URI website.</param>
             <returns>The process.</returns>
         </member>
-        <member name="T:Sudoku.UI.Models.GridChangedEventArgs">
-            <summary>
-            Provides the data when the event of type <see cref="T:Sudoku.UI.Models.GridChangedEventHandler"/> is triggered.
-            </summary>
-            <seealso cref="T:Sudoku.UI.Models.GridChangedEventHandler"/>
-        </member>
-        <member name="M:Sudoku.UI.Models.GridChangedEventArgs.#ctor(Sudoku.Collections.Grid@)">
-            <summary>
-            Initializes a <see cref="T:Sudoku.UI.Models.GridChangedEventArgs"/> instance via the specified sudoku grid
-            of type <see cref="T:Sudoku.Collections.Grid"/> as the newer one.
-            </summary>
-            <param name="grid">The grid that is used for overwritting the older value.</param>
-        </member>
-        <member name="P:Sudoku.UI.Models.GridChangedEventArgs.Grid">
-            <summary>
-            Indicates the grid used.
-            </summary>
-        </member>
-        <member name="T:Sudoku.UI.Models.GridChangedEventHandler">
-            <summary>
-            Defines a delegate type that holds a set of methods that is invoked when the corresponding
-            event is triggered.
-            </summary>
-            <param name="sender">The object that triggers the corresponding event.</param>
-            <param name="e">The data provided.</param>
-        </member>
         <member name="T:Sudoku.UI.Models.RepositoryInfo">
             <summary>
             Defines a set of properties to describe an image.

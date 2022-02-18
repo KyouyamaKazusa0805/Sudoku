@@ -4404,6 +4404,211 @@
         <member name="M:Sudoku.Constants.Tables.ValueTupleComparer.GetHashCode(System.ValueTuple{System.Byte,System.Byte})">
             <inheritdoc/>
         </member>
+        <member name="T:Sudoku.Diagnostics.FileCounter">
+            <summary>
+            Encapsulates a file counter.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Diagnostics.FileCounter.#ctor(System.String)">
+            <summary>
+            Initializes an instance with the specified root directory.
+            </summary>
+            <param name="root">The directory.</param>
+        </member>
+        <member name="M:Sudoku.Diagnostics.FileCounter.#ctor(System.String,System.String)">
+            <summary>
+            Initializes an instance with the specified root directory,
+            and the filter pattern. The pattern is specified as a file extension,
+            such as <c>"cs"</c>.
+            </summary>
+            <param name="root">The root.</param>
+            <param name="extension">
+            The file extension. This parameter can be <see langword="null"/>. If
+            so, the counter will sum up all files with all extensions.
+            </param>
+        </member>
+        <member name="M:Sudoku.Diagnostics.FileCounter.#ctor(System.String,System.String,System.Boolean)">
+            <summary>
+            Initializes an instance with the specified root directory,
+            the file extension and a <see cref="T:System.Boolean"/> value indicating whether
+            the counter will record the codes in directories <c>bin</c> and <c>obj</c>.
+            </summary>
+            <param name="root">The root.</param>
+            <param name="extension">
+            The file extension. This parameter can be <see langword="null"/>. If
+            so, the counter will sum up all files with all extensions.
+            </param>
+            <param name="withBinOrObjDirectory">
+            Indicates whether the counter will record the codes in directories
+            <c>bin</c> and <c>obj</c>.
+            </param>
+        </member>
+        <member name="M:Sudoku.Diagnostics.FileCounter.#ctor(System.String,System.String,System.Boolean,System.Collections.Generic.IList{System.String})">
+            <summary>
+            Initializes an instance with the specified root, extension, a <see cref="T:System.Boolean"/> value
+            indicating whether the counter will searcher for bin or obj directory, and a file list.
+            </summary>
+            <param name="root">The root.</param>
+            <param name="extension">The file extension.</param>
+            <param name="withBinOrObjDirectory">
+            A <see cref="T:System.Boolean"/> value indicating whether the counter will search for bin or obj directory.
+            </param>
+            <param name="fileList">A file list.</param>
+        </member>
+        <member name="P:Sudoku.Diagnostics.FileCounter.Root">
+            <summary>
+            The root directory.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Diagnostics.FileCounter.Pattern">
+            <summary>
+            The pattern.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Diagnostics.FileCounter.WithBinOrObjDirectory">
+            <summary>
+            Indicates whether the searcher will find directories <c>bin</c> or <c>obj</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Diagnostics.FileCounter.FileList">
+            <summary>
+            The file list.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Diagnostics.FileCounter.CountUp">
+            <summary>
+            Count up for all files in the specified root directory, and return the result.
+            </summary>
+            <returns>The result information.</returns>
+        </member>
+        <member name="T:Sudoku.Diagnostics.FileCounterResult">
+            <summary>
+            Encapsulates a result after <see cref="T:Sudoku.Diagnostics.FileCounter"/>.
+            </summary>
+            <param name="ResultLines">The number of lines found.</param>
+            <param name="FilesCount">The number of files found.</param>
+            <param name="CharactersCount">The number of characters found.</param>
+            <param name="Bytes">All bytes.</param>
+            <param name="Elapsed">The elapsed time during searching.</param>
+            <param name="FileList">
+            The list of files. This property won't be output. If you want to use this property,
+            please write this property explicitly.
+            </param>
+            <seealso cref="T:Sudoku.Diagnostics.FileCounter"/>
+        </member>
+        <member name="M:Sudoku.Diagnostics.FileCounterResult.#ctor(System.Int32,System.Int32,System.Int64,System.Int64,System.TimeSpan@,System.Collections.Generic.IList{System.String})">
+            <summary>
+            Encapsulates a result after <see cref="T:Sudoku.Diagnostics.FileCounter"/>.
+            </summary>
+            <param name="ResultLines">The number of lines found.</param>
+            <param name="FilesCount">The number of files found.</param>
+            <param name="CharactersCount">The number of characters found.</param>
+            <param name="Bytes">All bytes.</param>
+            <param name="Elapsed">The elapsed time during searching.</param>
+            <param name="FileList">
+            The list of files. This property won't be output. If you want to use this property,
+            please write this property explicitly.
+            </param>
+            <seealso cref="T:Sudoku.Diagnostics.FileCounter"/>
+        </member>
+        <member name="P:Sudoku.Diagnostics.FileCounterResult.ResultLines">
+            <summary>The number of lines found.</summary>
+        </member>
+        <member name="P:Sudoku.Diagnostics.FileCounterResult.FilesCount">
+            <summary>The number of files found.</summary>
+        </member>
+        <member name="P:Sudoku.Diagnostics.FileCounterResult.CharactersCount">
+            <summary>The number of characters found.</summary>
+        </member>
+        <member name="P:Sudoku.Diagnostics.FileCounterResult.Bytes">
+            <summary>All bytes.</summary>
+        </member>
+        <member name="P:Sudoku.Diagnostics.FileCounterResult.Elapsed">
+            <summary>The elapsed time during searching.</summary>
+        </member>
+        <member name="P:Sudoku.Diagnostics.FileCounterResult.FileList">
+            <summary>
+            The list of files. This property won't be output. If you want to use this property,
+            please write this property explicitly.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Diagnostics.FileCounterResult.ToString">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Diagnostics.SizeUnit">
+            <summary>
+            Indicates a unit for a file size.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.SizeUnit.Byte">
+            <summary>
+            Indicates the size is of bytes.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.SizeUnit.Kilobyte">
+            <summary>
+            Indicates the size is of kilobytes (KB).
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.SizeUnit.Megabyte">
+            <summary>
+            Indicates the size is of megabytes (MB).
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.SizeUnit.Gigabyte">
+            <summary>
+            Indicates the size is of gigabytes (GB).
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.SizeUnit.Terabyte">
+            <summary>
+            Indicates the size is of terabytes (TB).
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.SizeUnit.IKilobyte">
+            <summary>
+            Indicates the size is of KiB.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.SizeUnit.IMegabyte">
+            <summary>
+            Indicates the size is of MiB.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.SizeUnit.IGigabyte">
+            <summary>
+            Indicates the size is of GiB.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diagnostics.SizeUnit.ITerabyte">
+            <summary>
+            Indicates the size is of TiB.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Diagnostics.SizeUnitConverter">
+            <summary>
+            Encapsulates a size unit converter.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Diagnostics.SizeUnitConverter.ConvertTo(System.Int64,Sudoku.Diagnostics.SizeUnit)">
+            <summary>
+            To convert the size into the specified unit.
+            </summary>
+            <param name="bytes">The bytes.</param>
+            <param name="sizeUnit">The size unit.</param>
+            <returns>The value of the specified size unit.</returns>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+            Throws when the argument <paramref name="sizeUnit"/> is invalid.
+            </exception>
+        </member>
+        <member name="M:Sudoku.Diagnostics.SizeUnitConverter.Convert(System.Int64,Sudoku.Diagnostics.SizeUnit@)">
+            <summary>
+            To convert the size into the appropriate size unit.
+            </summary>
+            <param name="bytes">The bytes.</param>
+            <param name="unit">The unit.</param>
+            <returns>The value of the specified size unit.</returns>
+        </member>
         <member name="T:Sudoku.Link">
             <summary>
             Encapsulates a link used for drawing.
