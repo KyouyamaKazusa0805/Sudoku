@@ -22,7 +22,8 @@
 				Size="560" OutsideOffset="10" />
 			<InfoBar
 				x:Name="_cInfoBarDetails" Title="{StaticResource SudokuPage_Details}"
-				Grid.Row="0" Grid.Column="1" Grid.RowSpan="2" IsOpen="False" />
+				Grid.Row="0" Grid.Column="1" Grid.RowSpan="2" IsOpen="False"
+				Margin="25,30,30,0" IsClosable="False" IsIconVisible="False" />
 			<Grid
 				Grid.Row="1" Grid.Column="0" Margin="0,25,0,0"
 				HorizontalAlignment="Center" VerticalAlignment="Center">

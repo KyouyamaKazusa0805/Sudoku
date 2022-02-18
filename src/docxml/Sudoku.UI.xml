@@ -53,6 +53,31 @@
             GetXmlnsDefinitions()
             </summary>
         </member>
+        <member name="T:Sudoku.UI.CommonFileExtensions">
+            <summary>
+            Defines the constants that are the common file extensions.
+            </summary>
+        </member>
+        <member name="F:Sudoku.UI.CommonFileExtensions.Text">
+            <summary>
+            Indicates the plain-text format.
+            </summary>
+        </member>
+        <member name="F:Sudoku.UI.CommonFileExtensions.Sudoku">
+            <summary>
+            Indicates the sudoku file.
+            </summary>
+        </member>
+        <member name="F:Sudoku.UI.CommonFileExtensions.SudokuWithDrawing">
+            <summary>
+            Indicates the drawing file.
+            </summary>
+        </member>
+        <member name="F:Sudoku.UI.CommonFileExtensions.Configuration">
+            <summary>
+            Indicates the configuration file.
+            </summary>
+        </member>
         <member name="T:Sudoku.UI.Drawing.PointConversions">
             <summary>
             Stores a set of methods on handling point conversions.
@@ -1191,31 +1216,6 @@
             </summary>
             <param name="uri">The URI website.</param>
             <returns>The process.</returns>
-        </member>
-        <member name="T:Sudoku.UI.CommonFileExtensions">
-            <summary>
-            Defines the constants that are the common file extensions.
-            </summary>
-        </member>
-        <member name="F:Sudoku.UI.CommonFileExtensions.Text">
-            <summary>
-            Indicates the plain-text format.
-            </summary>
-        </member>
-        <member name="F:Sudoku.UI.CommonFileExtensions.Sudoku">
-            <summary>
-            Indicates the sudoku file.
-            </summary>
-        </member>
-        <member name="F:Sudoku.UI.CommonFileExtensions.SudokuWithDrawing">
-            <summary>
-            Indicates the drawing file.
-            </summary>
-        </member>
-        <member name="F:Sudoku.UI.CommonFileExtensions.Configuration">
-            <summary>
-            Indicates the configuration file.
-            </summary>
         </member>
         <member name="T:Sudoku.UI.RepositoryInfo">
             <summary>
