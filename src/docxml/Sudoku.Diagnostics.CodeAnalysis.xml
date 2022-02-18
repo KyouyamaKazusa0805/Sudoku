@@ -37,11 +37,6 @@
             and can't be used later in any way.
             </summary>
         </member>
-        <member name="T:Sudoku.Diagnostics.CodeAnalysis.IsRegexAttribute">
-            <summary>
-            Indicates a field holds a regular expression that represents using a <see cref="T:System.String"/>.
-            </summary>
-        </member>
         <member name="T:Sudoku.Diagnostics.CodeAnalysis.RestrictAttribute">
             <summary>
             Defines an attribute that applies to a set of pointer-typed parameters, to tell the compiler that
@@ -1038,73 +1033,6 @@
             Indicates all possible diagnostics types used.
             </summary>
         </member>
-        <member name="T:Sudoku.Diagnostics.CodeAnalysis.SyntaxContextReceivers.RegularExpressionSyntaxChecker">
-            <summary>
-            Indicates the syntax checker that checks for the code structures and the API usages.
-            The current analyzer will check the following cases:
-            <list type="bullet">
-            <listheader>
-            <term>Diagnostic ID</term>
-            <description>Description</description>
-            </listheader>
-            <item>
-            <term>SCA0103</term>
-            <description>The field having marked '[IsRegex]' must be of type 'string'</description>
-            </item>
-            <item>
-            <term>SCA0104</term>
-            <description>The field having marked '[IsRegex]' isn't a valid regular expression</description>
-            </item>
-            <item>
-            <term>SCA0105</term>
-            <description>The field having marked '[IsRegex]' should use verbatim string identifier '@'</description>
-            </item>
-            <item>
-            <term>SCA0106</term>
-            <description>The field having marked '[IsRegex]' should be modified 'const'</description>
-            </item>
-            </list>
-            </summary>
-        </member>
-        <member name="M:Sudoku.Diagnostics.CodeAnalysis.SyntaxContextReceivers.RegularExpressionSyntaxChecker.OnVisitSyntaxNode(Microsoft.CodeAnalysis.GeneratorSyntaxContext)">
-            <inheritdoc/>
-        </member>
-        <member name="F:Sudoku.Diagnostics.CodeAnalysis.SyntaxContextReceivers.RegularExpressionSyntaxChecker.SCA0103">
-            <summary>
-            Indicates the <see cref="T:Microsoft.CodeAnalysis.DiagnosticDescriptor"/> instance that describes for the diagnostic result SCA0103 (The field having marked '[IsRegex]' must be of type 'string').
-            </summary>
-        </member>
-        <member name="F:Sudoku.Diagnostics.CodeAnalysis.SyntaxContextReceivers.RegularExpressionSyntaxChecker.SCA0104">
-            <summary>
-            Indicates the <see cref="T:Microsoft.CodeAnalysis.DiagnosticDescriptor"/> instance that describes for the diagnostic result SCA0104 (The field having marked '[IsRegex]' isn't a valid regular expression).
-            </summary>
-        </member>
-        <member name="F:Sudoku.Diagnostics.CodeAnalysis.SyntaxContextReceivers.RegularExpressionSyntaxChecker.SCA0105">
-            <summary>
-            Indicates the <see cref="T:Microsoft.CodeAnalysis.DiagnosticDescriptor"/> instance that describes for the diagnostic result SCA0105 (The field having marked '[IsRegex]' should use verbatim string identifier '@').
-            </summary>
-        </member>
-        <member name="F:Sudoku.Diagnostics.CodeAnalysis.SyntaxContextReceivers.RegularExpressionSyntaxChecker.SCA0106">
-            <summary>
-            Indicates the <see cref="T:Microsoft.CodeAnalysis.DiagnosticDescriptor"/> instance that describes for the diagnostic result SCA0106 (The field having marked '[IsRegex]' should be modified 'const').
-            </summary>
-        </member>
-        <member name="F:Sudoku.Diagnostics.CodeAnalysis.SyntaxContextReceivers.RegularExpressionSyntaxChecker._cancellationToken">
-            <summary>
-            Indicates the cancellation token used.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Diagnostics.CodeAnalysis.SyntaxContextReceivers.RegularExpressionSyntaxChecker.#ctor(System.Threading.CancellationToken)">
-            <summary>
-            Initializes a <see cref="T:Sudoku.Diagnostics.CodeAnalysis.SyntaxContextReceivers.RegularExpressionSyntaxChecker"/> instance using the cancellation token.
-            </summary>
-            <param name="cancellationToken">The cancellation token to cancel the operation.</param>
-        </member>
-        <member name="P:Sudoku.Diagnostics.CodeAnalysis.SyntaxContextReceivers.RegularExpressionSyntaxChecker.Diagnostics">
-            <summary>
-            Indicates all possible diagnostics types used.
-            </summary>
-        </member>
         <member name="T:Sudoku.Diagnostics.CodeAnalysis.SyntaxContextReceivers.RestrictArgumentsSyntaxChecker">
             <summary>
             Indicates the syntax checker that checks for the code structures and the API usages.
@@ -1382,12 +1310,6 @@
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Diagnostics.CodeAnalysis.Analyzers.ReadOnlyMemberAnalyzer.Initialize(Microsoft.CodeAnalysis.GeneratorInitializationContext)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Diagnostics.CodeAnalysis.Analyzers.RegularExpressionAnalyzer.Execute(Microsoft.CodeAnalysis.GeneratorExecutionContext)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Diagnostics.CodeAnalysis.Analyzers.RegularExpressionAnalyzer.Initialize(Microsoft.CodeAnalysis.GeneratorInitializationContext)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Diagnostics.CodeAnalysis.Analyzers.RestrictArgumentsAnalyzer.Execute(Microsoft.CodeAnalysis.GeneratorExecutionContext)">
