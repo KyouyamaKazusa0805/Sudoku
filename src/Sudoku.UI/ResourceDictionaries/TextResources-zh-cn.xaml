@@ -1,7 +1,6 @@
 ﻿<ResourceDictionary
 	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
 	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
-	<!--UI 界面用字面量-->
 	<x:String x:Key="ProgramName">向日葵的数独解决方案（代号“名乃”）</x:String>
 	<x:String x:Key="MainPage_Sudoku">数独</x:String>
 	<x:String x:Key="MainPage_Settings">设置</x:String>
