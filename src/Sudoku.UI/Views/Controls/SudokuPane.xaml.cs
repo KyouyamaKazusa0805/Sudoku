@@ -46,7 +46,7 @@ public sealed partial class SudokuPane : UserControl
 	/// Indicates the grid used, which is the backing field of the property <see cref="Grid"/>.
 	/// </summary>
 	/// <seealso cref="Grid"/>
-	private Grid _grid;
+	private Grid _grid = Grid.Empty;
 	#endregion
 
 
@@ -156,24 +156,41 @@ public sealed partial class SudokuPane : UserControl
 	private void SudokuPane_Loaded([IsDiscard] object sender, [IsDiscard] RoutedEventArgs e)
 	{
 		// Initializes the outside border if worth.
-		double outsideBorderWidth = _userPreference.OutsideBorderWidth;
-		if (outsideBorderWidth != 0 && OutsideOffset != 0)
+		if (_userPreference.OutsideBorderWidth != 0 && OutsideOffset != 0)
 		{
-			_drawingElements.Add(new OutsideRectangle(_userPreference.OutsideBorderColor, Size, outsideBorderWidth));
+			_drawingElements.Add(
+				new OutsideRectangle(
+					_userPreference.OutsideBorderColor,
+					Size,
+					_userPreference.OutsideBorderWidth
+				)
+			);
 		}
 
 		// Initializes block border lines.
-		var blockBorderColor = _userPreference.BlockBorderColor;
-		double blockBorderWidth = _userPreference.BlockBorderWidth;
 		for (byte i = 0; i < 4; i++)
 		{
-			_drawingElements.Add(new BlockLine(blockBorderColor, blockBorderWidth, Size, OutsideOffset, i));
-			_drawingElements.Add(new BlockLine(blockBorderColor, blockBorderWidth, Size, OutsideOffset, (byte)(i + 4)));
+			_drawingElements.Add(
+				new BlockLine(
+					_userPreference.BlockBorderColor,
+					_userPreference.BlockBorderWidth,
+					Size,
+					OutsideOffset,
+					i
+				)
+			);
+			_drawingElements.Add(
+				new BlockLine(
+					_userPreference.BlockBorderColor,
+					_userPreference.BlockBorderWidth,
+					Size,
+					OutsideOffset,
+					(byte)(i + 4)
+				)
+			);
 		}
 
 		// Initializes cell border lines.
-		var cellBorderColor = _userPreference.CellBorderColor;
-		double cellBorderWidth = _userPreference.CellBorderWidth;
 		for (byte i = 0; i < 10; i++)
 		{
 			if (i % 3 == 0)
@@ -182,11 +199,42 @@ public sealed partial class SudokuPane : UserControl
 				continue;
 			}
 
-			_drawingElements.Add(new CellLine(cellBorderColor, cellBorderWidth, Size, OutsideOffset, i));
-			_drawingElements.Add(new CellLine(cellBorderColor, cellBorderWidth, Size, OutsideOffset, (byte)(i + 10)));
+			_drawingElements.Add(
+				new CellLine(
+					_userPreference.CellBorderColor,
+					_userPreference.CellBorderWidth,
+					Size, OutsideOffset,
+					i
+				)
+			);
+			_drawingElements.Add(
+				new CellLine(
+					_userPreference.CellBorderColor,
+					_userPreference.CellBorderWidth,
+					Size, OutsideOffset,
+					(byte)(i + 10)
+				)
+			);
 		}
 
 		// TODO: Initializes candidate border lines if worth.
+
+		// Initializes the sudoku grid.
+		_drawingElements.Add(
+			new SudokuGrid(
+				_grid,
+				_userPreference.ShowCandidates,
+				Size,
+				OutsideOffset,
+				_userPreference.GivenColor,
+				_userPreference.ModifiableColor,
+				_userPreference.CandidateColor,
+				_userPreference.ValueFontName,
+				_userPreference.CandidateFontName,
+				_userPreference.ValueFontSize,
+				_userPreference.CandidateFontSize
+			)
+		);
 
 		// Add them into the control collection.
 		foreach (var control in from drawingElement in _drawingElements select drawingElement.GetControl())

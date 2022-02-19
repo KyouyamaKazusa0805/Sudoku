@@ -9,7 +9,7 @@ namespace Sudoku.UI.Drawing.Shapes;
 #if DEBUG
 [DebuggerDisplay($$"""{{{nameof(DebuggerDisplayView)}},nq}""")]
 #endif
-public sealed class CellDigit : DrawingElement
+internal sealed class CellDigit : DrawingElement
 {
 	/// <summary>
 	/// The inner text block.
@@ -36,6 +36,19 @@ public sealed class CellDigit : DrawingElement
 	/// </summary>
 	private Color _modifiableColor;
 
+
+	/// <summary>
+	/// Initializes a <see cref="CellDigit"/> instance via the details.
+	/// </summary>
+	/// <param name="givenColor">The color for displaying the given cells.</param>
+	/// <param name="modifiableColor">The color for displaying the modifiable cells.</param>
+	/// <param name="fontName">The font name.</param>
+	/// <param name="fontSize">The font size.</param>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public CellDigit(Color givenColor, Color modifiableColor, string fontName, double fontSize) :
+		this(byte.MaxValue, false, givenColor, modifiableColor, fontName, fontSize)
+	{
+	}
 
 	/// <summary>
 	/// Initializes a <see cref="CellDigit"/> instance via the details.
@@ -68,11 +81,11 @@ public sealed class CellDigit : DrawingElement
 		_modifiableColor = modifiableColor;
 		_textBlock = new()
 		{
-			Text = digit == byte.MaxValue ? string.Empty : digit.ToString(),
+			Text = digit == byte.MaxValue ? string.Empty : (digit + 1).ToString(),
 			FontSize = fontSize,
 			FontFamily = new(fontName),
-			HorizontalTextAlignment = TextAlignment.Center,
 			TextAlignment = TextAlignment.Center,
+			HorizontalTextAlignment = TextAlignment.Center,
 			Foreground = new SolidColorBrush(isGiven ? givenColor : modifiableColor)
 		};
 	}
@@ -115,10 +128,10 @@ public sealed class CellDigit : DrawingElement
 	public byte Digit
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => _textBlock.Text is var s and not "" ? byte.Parse(s) : byte.MaxValue;
+		get => _textBlock.Text is var s and not "" ? (byte)(byte.Parse(s) - 1) : byte.MaxValue;
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		set => _textBlock.Text = value == byte.MaxValue ? string.Empty : value.ToString();
+		set => _textBlock.Text = value == byte.MaxValue ? string.Empty : (value + 1).ToString();
 	}
 
 	/// <summary>

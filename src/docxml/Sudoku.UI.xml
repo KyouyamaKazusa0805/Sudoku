@@ -249,6 +249,27 @@
         <member name="T:Sudoku.UI.Drawing.Shapes.CandidateDigit">
             <summary>
             Defines a drawing element that displays for a digit that is the candidate-levelled digit.
+            The data structure represents for all possible candidates in a cell.
+            </summary>
+        </member>
+        <member name="F:Sudoku.UI.Drawing.Shapes.CandidateDigit._showDigits">
+            <summary>
+            Indicates whether the candidate block shows digits.
+            </summary>
+        </member>
+        <member name="F:Sudoku.UI.Drawing.Shapes.CandidateDigit._fontSize">
+            <summary>
+            Indicates the font size of each digit.
+            </summary>
+        </member>
+        <member name="F:Sudoku.UI.Drawing.Shapes.CandidateDigit._candidateMask">
+            <summary>
+            Indicates the candidate mask.
+            </summary>
+        </member>
+        <member name="F:Sudoku.UI.Drawing.Shapes.CandidateDigit._fontName">
+            <summary>
+            Indicates the font name of each digit.
             </summary>
         </member>
         <member name="F:Sudoku.UI.Drawing.Shapes.CandidateDigit._grid">
@@ -261,21 +282,46 @@
             Indicates the digit blocks.
             </summary>
         </member>
-        <member name="F:Sudoku.UI.Drawing.Shapes.CandidateDigit._candidateMask">
+        <member name="M:Sudoku.UI.Drawing.Shapes.CandidateDigit.#ctor(System.Boolean,System.String,System.Double,Windows.UI.Color)">
             <summary>
-            Indicates the candidate mask.
+            Initializes a <see cref="T:Sudoku.UI.Drawing.Shapes.CandidateDigit"/> instance via the details.
             </summary>
+            <param name="showDigits">Indicates whether the candidate block shows the digits.</param>
+            <param name="fontName">The font name.</param>
+            <param name="fontSize">The font size.</param>
+            <param name="color">The color.</param>
         </member>
-        <member name="M:Sudoku.UI.Drawing.Shapes.CandidateDigit.#ctor(System.UInt16,Windows.UI.Color)">
+        <member name="M:Sudoku.UI.Drawing.Shapes.CandidateDigit.#ctor(System.Int16,System.Boolean,System.String,System.Double,Windows.UI.Color)">
             <summary>
             Initializes a <see cref="T:Sudoku.UI.Drawing.Shapes.CandidateDigit"/> instance via the details.
             </summary>
             <param name="candidateMask">The candidate mask.</param>
+            <param name="showDigits">Indicates whether the candidate block shows the digits.</param>
+            <param name="fontName">The font name.</param>
+            <param name="fontSize">The font size.</param>
             <param name="color">The color.</param>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+            Throws when the argument <paramref name="candidateMask"/> is negative number or greater than 511.
+            </exception>
+        </member>
+        <member name="P:Sudoku.UI.Drawing.Shapes.CandidateDigit.ShowDigits">
+            <summary>
+            Gets or sets the value indicating whether the candidate block shows digits.
+            </summary>
+        </member>
+        <member name="P:Sudoku.UI.Drawing.Shapes.CandidateDigit.FontSize">
+            <summary>
+            Gets or sets the font size.
+            </summary>
         </member>
         <member name="P:Sudoku.UI.Drawing.Shapes.CandidateDigit.CandidateMask">
             <summary>
             Indicates the candidate mask.
+            </summary>
+        </member>
+        <member name="P:Sudoku.UI.Drawing.Shapes.CandidateDigit.FontName">
+            <summary>
+            Gets or sets the font name.
             </summary>
         </member>
         <member name="P:Sudoku.UI.Drawing.Shapes.CandidateDigit.Color">
@@ -326,6 +372,15 @@
             <summary>
             Indicates the modifiable color.
             </summary>
+        </member>
+        <member name="M:Sudoku.UI.Drawing.Shapes.CellDigit.#ctor(Windows.UI.Color,Windows.UI.Color,System.String,System.Double)">
+            <summary>
+            Initializes a <see cref="T:Sudoku.UI.Drawing.Shapes.CellDigit"/> instance via the details.
+            </summary>
+            <param name="givenColor">The color for displaying the given cells.</param>
+            <param name="modifiableColor">The color for displaying the modifiable cells.</param>
+            <param name="fontName">The font name.</param>
+            <param name="fontSize">The font size.</param>
         </member>
         <member name="M:Sudoku.UI.Drawing.Shapes.CellDigit.#ctor(System.Byte,System.Boolean,Windows.UI.Color,Windows.UI.Color,System.String,System.Double)">
             <summary>
@@ -1370,14 +1425,125 @@
             Defines a sudoku grid.
             </summary>
         </member>
+        <member name="F:Sudoku.UI.Drawing.Shapes.SudokuGrid._showCandidates">
+            <summary>
+            Indicates the status for displaying candidates.
+            </summary>
+        </member>
+        <member name="F:Sudoku.UI.Drawing.Shapes.SudokuGrid._valueFontSize">
+            <summary>
+            Indicates the font size.
+            </summary>
+        </member>
+        <member name="F:Sudoku.UI.Drawing.Shapes.SudokuGrid._candidateFontSize">
+            <summary>
+            Indicates the font size.
+            </summary>
+        </member>
+        <member name="F:Sudoku.UI.Drawing.Shapes.SudokuGrid._paneSize">
+            <summary>
+            Indicates the pane size.
+            </summary>
+        </member>
+        <member name="F:Sudoku.UI.Drawing.Shapes.SudokuGrid._outsideOffset">
+            <summary>
+            Indicates the outside offset.
+            </summary>
+        </member>
+        <member name="F:Sudoku.UI.Drawing.Shapes.SudokuGrid._valueFontName">
+            <summary>
+            Indicates the font name.
+            </summary>
+        </member>
+        <member name="F:Sudoku.UI.Drawing.Shapes.SudokuGrid._candidateFontName">
+            <summary>
+            Indicates the font name.
+            </summary>
+        </member>
         <member name="F:Sudoku.UI.Drawing.Shapes.SudokuGrid._grid">
             <summary>
             Indicates the inner grid.
             </summary>
         </member>
-        <member name="M:Sudoku.UI.Drawing.Shapes.SudokuGrid.#ctor(Sudoku.Collections.Grid@)">
+        <member name="F:Sudoku.UI.Drawing.Shapes.SudokuGrid._gridLayout">
             <summary>
-            
+            Indicates the inner grid layout control.
+            </summary>
+        </member>
+        <member name="F:Sudoku.UI.Drawing.Shapes.SudokuGrid._cellDigits">
+            <summary>
+            Indicates the cell digits.
+            </summary>
+        </member>
+        <member name="F:Sudoku.UI.Drawing.Shapes.SudokuGrid._candidateDigits">
+            <summary>
+            Indicates the candidate digits.
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Drawing.Shapes.SudokuGrid.#ctor(Sudoku.Collections.Grid@,System.Boolean,System.Double,System.Double,Windows.UI.Color,Windows.UI.Color,Windows.UI.Color,System.String,System.String,System.Double,System.Double)">
+            <summary>
+            Initializes a <see cref="T:Sudoku.UI.Drawing.Shapes.SudokuGrid"/> instance via the details.
+            </summary>
+            <param name="grid">The <see cref="P:Sudoku.UI.Drawing.Shapes.SudokuGrid.Grid"/> instance.</param>
+            <param name="showCandidates">Whether the grid displays candidates.</param>
+            <param name="paneSize">The pane size.</param>
+            <param name="outsideOffset">The outside offset.</param>
+            <param name="givenColor">The given text color.</param>
+            <param name="modifiableColor">The modifiable text color.</param>
+            <param name="candidateColor">The candidate text color.</param>
+            <param name="valueFontName">The given or modifiable font name.</param>
+            <param name="candidateFontName">The candidate font name.</param>
+            <param name="valueFontSize">The value font size.</param>
+            <param name="candidateFontSize">The candidate font size.</param>
+        </member>
+        <member name="P:Sudoku.UI.Drawing.Shapes.SudokuGrid.ShowCandidates">
+            <summary>
+            Indicates whether the grid displays for candidates.
+            </summary>
+        </member>
+        <member name="P:Sudoku.UI.Drawing.Shapes.SudokuGrid.OutsideOffset">
+            <summary>
+            Gets or sets the outside offset.
+            </summary>
+        </member>
+        <member name="P:Sudoku.UI.Drawing.Shapes.SudokuGrid.PaneSize">
+            <summary>
+            Gets or sets the pane size.
+            </summary>
+        </member>
+        <member name="P:Sudoku.UI.Drawing.Shapes.SudokuGrid.ValueFontSize">
+            <summary>
+            Gets or sets the given or modifiable font size.
+            </summary>
+        </member>
+        <member name="P:Sudoku.UI.Drawing.Shapes.SudokuGrid.CandidateFontSize">
+            <summary>
+            Gets or sets the candidate font size.
+            </summary>
+        </member>
+        <member name="P:Sudoku.UI.Drawing.Shapes.SudokuGrid.ValueFontName">
+            <summary>
+            Gets or sets the given or modifiable font name.
+            </summary>
+        </member>
+        <member name="P:Sudoku.UI.Drawing.Shapes.SudokuGrid.CandidateFontName">
+            <summary>
+            Gets or sets the candidate font name.
+            </summary>
+        </member>
+        <member name="P:Sudoku.UI.Drawing.Shapes.SudokuGrid.GivenColor">
+            <summary>
+            Gets or sets the given color.
+            </summary>
+        </member>
+        <member name="P:Sudoku.UI.Drawing.Shapes.SudokuGrid.ModifiableColor">
+            <summary>
+            Gets or sets the modifiable color.
+            </summary>
+        </member>
+        <member name="P:Sudoku.UI.Drawing.Shapes.SudokuGrid.CandidateColor">
+            <summary>
+            Gets or sets the candidate color.
             </summary>
         </member>
         <member name="P:Sudoku.UI.Drawing.Shapes.SudokuGrid.Grid">
@@ -1388,11 +1554,17 @@
         <member name="M:Sudoku.UI.Drawing.Shapes.SudokuGrid.Equals(Sudoku.UI.Drawing.Shapes.DrawingElement)">
             <inheritdoc/>
         </member>
+        <member name="M:Sudoku.UI.Drawing.Shapes.SudokuGrid.GetHashCode">
+            <inheritdoc/>
+        </member>
         <member name="M:Sudoku.UI.Drawing.Shapes.SudokuGrid.GetControl">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.UI.Drawing.Shapes.SudokuGrid.GetHashCode">
-            <inheritdoc/>
+        <member name="M:Sudoku.UI.Drawing.Shapes.SudokuGrid.CoverGrid(Sudoku.Collections.Grid@)">
+            <summary>
+            To cover the grid info.
+            </summary>
+            <param name="grid">The grid.</param>
         </member>
         <member name="T:Sudoku.UI.BindingConversions">
             <summary>
@@ -1467,6 +1639,14 @@
             Defines the user preferences in the program.
             </summary>
         </member>
+        <member name="F:Sudoku.UI.UserPreference.ShowCandidates">
+            <summary>
+            Indicates whether the current grid displays the candidates.
+            </summary>
+            <remarks>
+            The default value is <see langword="true"/>.
+            </remarks>
+        </member>
         <member name="F:Sudoku.UI.UserPreference.OutsideBorderWidth">
             <summary>
             Indicates the outside border width. The value cannot be negative.
@@ -1491,6 +1671,38 @@
             The default value is <c>1</c>.
             </remarks>
         </member>
+        <member name="F:Sudoku.UI.UserPreference.ValueFontSize">
+            <summary>
+            Indicates the value font size.
+            </summary>
+            <remarks>
+            The default value is <c>36</c>.
+            </remarks>
+        </member>
+        <member name="F:Sudoku.UI.UserPreference.CandidateFontSize">
+            <summary>
+            Indicates the candidate font size.
+            </summary>
+            <remarks>
+            The default value is <c>16</c>.
+            </remarks>
+        </member>
+        <member name="F:Sudoku.UI.UserPreference.ValueFontName">
+            <summary>
+            Indicates the value font name.
+            </summary>
+            <remarks>
+            The default value is <c>"Tahoma"</c>.
+            </remarks>
+        </member>
+        <member name="F:Sudoku.UI.UserPreference.CandidateFontName">
+            <summary>
+            Indicates the candidate font name.
+            </summary>
+            <remarks>
+            The default value is <c>"Tahoma"</c>.
+            </remarks>
+        </member>
         <member name="F:Sudoku.UI.UserPreference.OutsideBorderColor">
             <summary>
             Indicates the color of the outside borders.
@@ -1513,6 +1725,30 @@
             </summary>
             <remarks>
             The default value is <c>#FF000000</c> (i.e. Black).
+            </remarks>
+        </member>
+        <member name="F:Sudoku.UI.UserPreference.GivenColor">
+            <summary>
+            Indicates the color of the given values.
+            </summary>
+            <remarks>
+            The default value is <c>#FF000000</c> (i.e. Black).
+            </remarks>
+        </member>
+        <member name="F:Sudoku.UI.UserPreference.ModifiableColor">
+            <summary>
+            Indicates the color of the modifiable values.
+            </summary>
+            <remarks>
+            The default value is <c>#FF0000FF</c> (i.e. Blue).
+            </remarks>
+        </member>
+        <member name="F:Sudoku.UI.UserPreference.CandidateColor">
+            <summary>
+            Indicates the color of the candidate values.
+            </summary>
+            <remarks>
+            The default value is <c>#FF696969</c> (i.e. DimGray).
             </remarks>
         </member>
         <member name="T:Sudoku.UI.Views.Controls.SudokuPane">
