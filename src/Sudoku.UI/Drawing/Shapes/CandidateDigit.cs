@@ -79,13 +79,9 @@ internal sealed class CandidateDigit : DrawingElement
 		_fontName = fontName;
 		_fontSize = fontSize;
 
-		var grid = new GridLayout { Visibility = showDigits ? Visibility.Visible : Visibility.Collapsed };
-		grid.RowDefinitions.Add(new());
-		grid.RowDefinitions.Add(new());
-		grid.RowDefinitions.Add(new());
-		grid.ColumnDefinitions.Add(new());
-		grid.ColumnDefinitions.Add(new());
-		grid.ColumnDefinitions.Add(new());
+		var grid = new GridLayout { Visibility = showDigits ? Visibility.Visible : Visibility.Collapsed }
+			.WithRowDefinitionsCount(3)
+			.WithColumnDefinitionsCount(3);
 		for (byte digit = 0; digit < 9; digit++)
 		{
 			bool containsTheDigit = (candidateMask >> digit & 1) != 0;

@@ -1423,46 +1423,6 @@
             Defines a sudoku grid.
             </summary>
         </member>
-        <member name="F:Sudoku.UI.Drawing.Shapes.SudokuGrid._showCandidates">
-            <summary>
-            Indicates the status for displaying candidates.
-            </summary>
-        </member>
-        <member name="F:Sudoku.UI.Drawing.Shapes.SudokuGrid._valueFontSize">
-            <summary>
-            Indicates the font size.
-            </summary>
-        </member>
-        <member name="F:Sudoku.UI.Drawing.Shapes.SudokuGrid._candidateFontSize">
-            <summary>
-            Indicates the font size.
-            </summary>
-        </member>
-        <member name="F:Sudoku.UI.Drawing.Shapes.SudokuGrid._paneSize">
-            <summary>
-            Indicates the pane size.
-            </summary>
-        </member>
-        <member name="F:Sudoku.UI.Drawing.Shapes.SudokuGrid._outsideOffset">
-            <summary>
-            Indicates the outside offset.
-            </summary>
-        </member>
-        <member name="F:Sudoku.UI.Drawing.Shapes.SudokuGrid._valueFontName">
-            <summary>
-            Indicates the font name.
-            </summary>
-        </member>
-        <member name="F:Sudoku.UI.Drawing.Shapes.SudokuGrid._candidateFontName">
-            <summary>
-            Indicates the font name.
-            </summary>
-        </member>
-        <member name="F:Sudoku.UI.Drawing.Shapes.SudokuGrid._grid">
-            <summary>
-            Indicates the inner grid.
-            </summary>
-        </member>
         <member name="F:Sudoku.UI.Drawing.Shapes.SudokuGrid._gridLayout">
             <summary>
             Indicates the inner grid layout control.
@@ -1476,6 +1436,26 @@
         <member name="F:Sudoku.UI.Drawing.Shapes.SudokuGrid._candidateDigits">
             <summary>
             Indicates the candidate digits.
+            </summary>
+        </member>
+        <member name="F:Sudoku.UI.Drawing.Shapes.SudokuGrid._showCandidates">
+            <summary>
+            Indicates the status for displaying candidates.
+            </summary>
+        </member>
+        <member name="F:Sudoku.UI.Drawing.Shapes.SudokuGrid._paneSize">
+            <summary>
+            Indicates the pane size.
+            </summary>
+        </member>
+        <member name="F:Sudoku.UI.Drawing.Shapes.SudokuGrid._outsideOffset">
+            <summary>
+            Indicates the outside offset.
+            </summary>
+        </member>
+        <member name="F:Sudoku.UI.Drawing.Shapes.SudokuGrid._grid">
+            <summary>
+            Indicates the inner grid.
             </summary>
         </member>
         <member name="M:Sudoku.UI.Drawing.Shapes.SudokuGrid.#ctor(Sudoku.Collections.Grid@,System.Boolean,System.Double,System.Double,Windows.UI.Color,Windows.UI.Color,Windows.UI.Color,System.String,System.String,System.Double,System.Double)">
@@ -2035,6 +2015,57 @@
             <param name="this">The <see cref="T:Windows.Storage.Pickers.FileOpenPicker"/> instance.</param>
             <param name="extensions">The extensions to be added.</param>
             <returns>The reference that is same as argument <paramref name="this"/>.</returns>
+        </member>
+        <member name="T:Microsoft.UI.Xaml.Controls.GridExtensions">
+            <summary>
+            Provides extension methods on <see cref="T:Microsoft.UI.Xaml.Controls.Grid"/>.
+            </summary>
+            <seealso cref="T:Microsoft.UI.Xaml.Controls.Grid"/>
+        </member>
+        <member name="M:Microsoft.UI.Xaml.Controls.GridExtensions.WithGridLayout``1(``0,System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Sets the info on <see cref="T:Microsoft.UI.Xaml.Controls.Grid"/>, and returns the reference
+            of the argument <paramref name="this"/>.
+            </summary>
+            <typeparam name="TFrameworkElement">The type of the control.</typeparam>
+            <param name="this">The <typeparamref name="TFrameworkElement"/>-typed control.</param>
+            <param name="row">
+            The row value that is used for <see cref="M:Microsoft.UI.Xaml.Controls.Grid.SetRow(Microsoft.UI.Xaml.FrameworkElement,System.Int32)"/>.
+            </param>
+            <param name="column">
+            The row value that is used for <see cref="M:Microsoft.UI.Xaml.Controls.Grid.SetColumn(Microsoft.UI.Xaml.FrameworkElement,System.Int32)"/>.
+            </param>
+            <param name="rowSpan">
+            The row value that is used for <see cref="M:Microsoft.UI.Xaml.Controls.Grid.SetRowSpan(Microsoft.UI.Xaml.FrameworkElement,System.Int32)"/>.
+            </param>
+            <param name="columnSpan">
+            The row value that is used for <see cref="M:Microsoft.UI.Xaml.Controls.Grid.SetColumnSpan(Microsoft.UI.Xaml.FrameworkElement,System.Int32)"/>.
+            </param>
+            <returns>The reference that is same as the argument <paramref name="this"/>.</returns>
+        </member>
+        <member name="M:Microsoft.UI.Xaml.Controls.GridExtensions.WithRowDefinitionsCount(Microsoft.UI.Xaml.Controls.Grid,System.Int32)">
+            <summary>
+            Creates the specified number of new <see cref="T:Microsoft.UI.Xaml.Controls.RowDefinition"/> instances and adds into the target
+            <see cref="T:Microsoft.UI.Xaml.Controls.Grid"/> instance.
+            </summary>
+            <param name="this">The <see cref="T:Microsoft.UI.Xaml.Controls.Grid"/> instance.</param>
+            <param name="count">The number of <see cref="T:Microsoft.UI.Xaml.Controls.RowDefinition"/>s to be added.</param>
+            <returns>The reference that is same as the argument <paramref name="this"/>.</returns>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+            Throws when the argument <paramref name="count"/> is negative.
+            </exception>
+        </member>
+        <member name="M:Microsoft.UI.Xaml.Controls.GridExtensions.WithColumnDefinitionsCount(Microsoft.UI.Xaml.Controls.Grid,System.Int32)">
+            <summary>
+            Creates the specified number of new <see cref="T:Microsoft.UI.Xaml.Controls.ColumnDefinition"/> instances and adds into the target
+            <see cref="T:Microsoft.UI.Xaml.Controls.Grid"/> instance.
+            </summary>
+            <param name="this">The <see cref="T:Microsoft.UI.Xaml.Controls.Grid"/> instance.</param>
+            <param name="count">The number of <see cref="T:Microsoft.UI.Xaml.Controls.ColumnDefinition"/>s to be added.</param>
+            <returns>The reference that is same as the argument <paramref name="this"/>.</returns>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+            Throws when the argument <paramref name="count"/> is negative.
+            </exception>
         </member>
         <member name="T:Microsoft.UI.Xaml.Controls.InfoBarExtensions">
             <summary>

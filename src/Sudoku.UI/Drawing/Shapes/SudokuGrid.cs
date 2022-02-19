@@ -8,36 +8,6 @@ namespace Sudoku.UI.Drawing.Shapes;
 public sealed class SudokuGrid : DrawingElement
 {
 	/// <summary>
-	/// Indicates the status for displaying candidates.
-	/// </summary>
-	private bool _showCandidates;
-
-	/// <summary>
-	/// Indicates the font size.
-	/// </summary>
-	private double _valueFontSize, _candidateFontSize;
-
-	/// <summary>
-	/// Indicates the pane size.
-	/// </summary>
-	private double _paneSize;
-
-	/// <summary>
-	/// Indicates the outside offset.
-	/// </summary>
-	private double _outsideOffset;
-
-	/// <summary>
-	/// Indicates the font name.
-	/// </summary>
-	private string _valueFontName, _candidateFontName;
-
-	/// <summary>
-	/// Indicates the inner grid.
-	/// </summary>
-	private Grid _grid;
-
-	/// <summary>
 	/// Indicates the inner grid layout control.
 	/// </summary>
 	private readonly GridLayout _gridLayout;
@@ -51,6 +21,26 @@ public sealed class SudokuGrid : DrawingElement
 	/// Indicates the candidate digits.
 	/// </summary>
 	private readonly CandidateDigit[] _candidateDigits = new CandidateDigit[81];
+
+	/// <summary>
+	/// Indicates the status for displaying candidates.
+	/// </summary>
+	private bool _showCandidates;
+
+	/// <summary>
+	/// Indicates the pane size.
+	/// </summary>
+	private double _paneSize;
+
+	/// <summary>
+	/// Indicates the outside offset.
+	/// </summary>
+	private double _outsideOffset;
+
+	/// <summary>
+	/// Indicates the inner grid.
+	/// </summary>
+	private Grid _grid;
 
 
 	/// <summary>
@@ -72,49 +62,50 @@ public sealed class SudokuGrid : DrawingElement
 		Color givenColor, Color modifiableColor, Color candidateColor,
 		string valueFontName, string candidateFontName, double valueFontSize, double candidateFontSize)
 	{
-		// Assign the basic info.
 		_grid = grid;
 		_showCandidates = showCandidates;
 		_paneSize = paneSize;
 		_outsideOffset = outsideOffset;
-		_valueFontName = valueFontName;
-		_candidateFontName = candidateFontName;
-		_valueFontSize = valueFontSize;
-		_candidateFontSize = candidateFontSize;
-
-		// Initializes the grid layout.
-		_gridLayout = new()
-		{
-			Width = paneSize,
-			Height = paneSize,
-			Padding = new(outsideOffset),
-			HorizontalAlignment = HorizontalAlignment.Center,
-			VerticalAlignment = VerticalAlignment.Center
-		};
-		for (int i = 0; i < 9; i++)
-		{
-			_gridLayout.RowDefinitions.Add(new());
-			_gridLayout.ColumnDefinitions.Add(new());
-		}
+		_gridLayout = initializeGridLayout(paneSize, outsideOffset);
 
 		// Initializes values.
-		for (int i = 0; i < 81; i++)
-		{
-			_cellDigits[i] = new(givenColor, modifiableColor, valueFontName, valueFontSize);
-			var p = _cellDigits[i].GetControl();
-			GridLayout.SetRow(p, i / 9);
-			GridLayout.SetColumn(p, i % 9);
-			_gridLayout.Children.Add(p);
-
-			_candidateDigits[i] = new(showCandidates, candidateFontName, candidateFontSize, candidateColor);
-			var q = _candidateDigits[i].GetControl();
-			GridLayout.SetRow(q, i / 9);
-			GridLayout.SetColumn(q, i % 9);
-			_gridLayout.Children.Add(q);
-		}
+		initializeValues(
+			showCandidates, givenColor, modifiableColor, candidateColor,
+			valueFontName, valueFontSize, candidateFontName, candidateFontSize
+		);
 
 		// Then initialize other items.
 		CoverGrid(grid);
+
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		static GridLayout initializeGridLayout(double paneSize, double outsideOffset) =>
+			new GridLayout
+			{
+				Width = paneSize,
+				Height = paneSize,
+				Padding = new(outsideOffset),
+				HorizontalAlignment = HorizontalAlignment.Center,
+				VerticalAlignment = VerticalAlignment.Center
+			}
+			.WithRowDefinitionsCount(9)
+			.WithColumnDefinitionsCount(9);
+
+		void initializeValues(
+			bool showCandidates, Color givenColor, Color modifiableColor, Color candidateColor,
+			string valueFontName, double valueFontSize, string candidateFontName, double candidateFontSize)
+		{
+			for (int i = 0; i < 81; i++)
+			{
+				ref var p = ref _cellDigits[i];
+				p = new(givenColor, modifiableColor, valueFontName, valueFontSize);
+				_gridLayout.Children.Add(p.GetControl().WithGridLayout(row: i / 9, column: i % 9));
+
+				ref var q = ref _candidateDigits[i];
+				q = new(showCandidates, candidateFontName, candidateFontSize, candidateColor);
+				_gridLayout.Children.Add(q.GetControl().WithGridLayout(row: i / 9, column: i % 9));
+			}
+		}
 	}
 
 
@@ -188,14 +179,10 @@ public sealed class SudokuGrid : DrawingElement
 	public double ValueFontSize
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => _valueFontSize;
+		get => _cellDigits[0].FontSize;
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		set
-		{
-			_valueFontSize = value;
-			Array.ForEach(_cellDigits, cellDigit => cellDigit.FontSize = value);
-		}
+		set => Array.ForEach(_cellDigits, cellDigit => cellDigit.FontSize = value);
 	}
 
 	/// <summary>
@@ -204,14 +191,10 @@ public sealed class SudokuGrid : DrawingElement
 	public double CandidateFontSize
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => _candidateFontSize;
+		get => _candidateDigits[0].FontSize;
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		set
-		{
-			_candidateFontSize = value;
-			Array.ForEach(_candidateDigits, candidateDIgit => candidateDIgit.FontSize = value);
-		}
+		set => Array.ForEach(_candidateDigits, candidateDIgit => candidateDIgit.FontSize = value);
 	}
 
 	/// <summary>
@@ -220,14 +203,10 @@ public sealed class SudokuGrid : DrawingElement
 	public string ValueFontName
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => _valueFontName;
+		get => _cellDigits[0].FontName;
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		set
-		{
-			_valueFontName = value;
-			Array.ForEach(_cellDigits, cellDigit => cellDigit.FontName = value);
-		}
+		set => Array.ForEach(_cellDigits, cellDigit => cellDigit.FontName = value);
 	}
 
 	/// <summary>
@@ -236,14 +215,10 @@ public sealed class SudokuGrid : DrawingElement
 	public string CandidateFontName
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => _candidateFontName;
+		get => _candidateDigits[0].FontName;
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		set
-		{
-			_candidateFontName = value;
-			Array.ForEach(_candidateDigits, candidateDigit => candidateDigit.FontName = value);
-		}
+		set => Array.ForEach(_candidateDigits, candidateDigit => candidateDigit.FontName = value);
 	}
 
 	/// <summary>
