@@ -2119,7 +2119,7 @@
             </summary>
             <param name="this">The <see cref="T:Microsoft.UI.Xaml.Controls.InfoBar"/> instance.</param>
         </member>
-        <member name="M:Microsoft.UI.Xaml.Controls.InfoBarExtensions.WithText(Microsoft.UI.Xaml.Controls.InfoBar,System.String)">
+        <member name="M:Microsoft.UI.Xaml.Controls.InfoBarExtensions.WithMessage(Microsoft.UI.Xaml.Controls.InfoBar,System.String)">
             <summary>
             Sets the property <see cref="P:Microsoft.UI.Xaml.Controls.InfoBar.Content"/> to the target string value.
             </summary>

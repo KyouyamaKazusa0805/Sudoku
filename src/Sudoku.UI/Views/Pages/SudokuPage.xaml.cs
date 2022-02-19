@@ -24,7 +24,7 @@ public sealed partial class SudokuPage : Page
 	private void Page_Loaded([IsDiscard] object sender, [IsDiscard] RoutedEventArgs e) =>
 		ControlFactory
 			.CreateInfoBar(InfoBarSeverity.Informational, _cStackPanelDetails)
-			.WithText(StringResource.Get("SudokuPage_InfoBar_Welcome"))
+			.WithMessage(StringResource.Get("SudokuPage_InfoBar_Welcome"))
 			.WithLinkButton(StringResource.Get("Link_SudokuTutorial"), StringResource.Get("Link_SudokuTutorialDescription"))
 			.Open();
 
@@ -48,7 +48,7 @@ public sealed partial class SudokuPage : Page
 		{
 			ControlFactory
 				.CreateInfoBar(InfoBarSeverity.Error, _cStackPanelDetails)
-				.WithText(StringResource.Get("SudokuPage_InfoBar_FileIsEmpty"))
+				.WithMessage(StringResource.Get("SudokuPage_InfoBar_FileIsEmpty"))
 				.Open();
 
 			return;
@@ -60,7 +60,7 @@ public sealed partial class SudokuPage : Page
 		{
 			ControlFactory
 				.CreateInfoBar(InfoBarSeverity.Error, _cStackPanelDetails)
-				.WithText(StringResource.Get("SudokuPage_InfoBar_FileIsEmpty"))
+				.WithMessage(StringResource.Get("SudokuPage_InfoBar_FileIsEmpty"))
 				.Open();
 
 			return;
@@ -71,7 +71,7 @@ public sealed partial class SudokuPage : Page
 		{
 			ControlFactory
 				.CreateInfoBar(InfoBarSeverity.Error, _cStackPanelDetails)
-				.WithText(StringResource.Get("SudokuPage_InfoBar_FileIsInvalid"))
+				.WithMessage(StringResource.Get("SudokuPage_InfoBar_FileIsInvalid"))
 				.Open();
 
 			return;
@@ -82,7 +82,7 @@ public sealed partial class SudokuPage : Page
 		{
 			ControlFactory
 				.CreateInfoBar(InfoBarSeverity.Warning, _cStackPanelDetails)
-				.WithText(StringResource.Get("SudokuPage_InfoBar_FilePuzzleIsNotUnique"))
+				.WithMessage(StringResource.Get("SudokuPage_InfoBar_FilePuzzleIsNotUnique"))
 				.Open();
 		}
 
@@ -90,7 +90,7 @@ public sealed partial class SudokuPage : Page
 		_cPane.Grid = grid;
 		ControlFactory
 			.CreateInfoBar(InfoBarSeverity.Success, _cStackPanelDetails)
-			.WithText(StringResource.Get("SudokuPage_InfoBar_FileOpenSuccessfully"))
+			.WithMessage(StringResource.Get("SudokuPage_InfoBar_FileOpenSuccessfully"))
 			.Open();
 	}
 
@@ -105,7 +105,7 @@ public sealed partial class SudokuPage : Page
 
 		ControlFactory
 			.CreateInfoBar(InfoBarSeverity.Informational, _cStackPanelDetails)
-			.WithText(StringResource.Get("SudokuPage_InfoBar_ClearSuccessfully"))
+			.WithMessage(StringResource.Get("SudokuPage_InfoBar_ClearSuccessfully"))
 			.Open();
 	}
 
@@ -127,7 +127,7 @@ public sealed partial class SudokuPage : Page
 		{
 			ControlFactory
 				.CreateInfoBar(InfoBarSeverity.Error, _cStackPanelDetails)
-				.WithText(StringResource.Get("SudokuPage_InfoBar_PasteIsInvalid"))
+				.WithMessage(StringResource.Get("SudokuPage_InfoBar_PasteIsInvalid"))
 				.Open();
 			return;
 		}
@@ -137,7 +137,7 @@ public sealed partial class SudokuPage : Page
 		{
 			ControlFactory
 				.CreateInfoBar(InfoBarSeverity.Warning, _cStackPanelDetails)
-				.WithText(StringResource.Get("SudokuPage_InfoBar_PastePuzzleIsNotUnique"))
+				.WithMessage(StringResource.Get("SudokuPage_InfoBar_PastePuzzleIsNotUnique"))
 				.Open();
 		}
 
@@ -145,7 +145,7 @@ public sealed partial class SudokuPage : Page
 		_cPane.Grid = grid;
 		ControlFactory
 			.CreateInfoBar(InfoBarSeverity.Success, _cStackPanelDetails)
-			.WithText(StringResource.Get("SudokuPage_InfoBar_PasteSuccessfully"))
+			.WithMessage(StringResource.Get("SudokuPage_InfoBar_PasteSuccessfully"))
 			.Open();
 	}
 }

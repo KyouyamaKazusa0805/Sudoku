@@ -21,7 +21,7 @@ internal static class InfoBarExtensions
 	/// <returns>The reference that is same as the argument <paramref name="this"/>.</returns>
 	/// <seealso cref="InfoBar.Content"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static InfoBar WithText(this InfoBar @this, string content)
+	public static InfoBar WithMessage(this InfoBar @this, string content)
 	{
 		@this.Message = content;
 		return @this;
