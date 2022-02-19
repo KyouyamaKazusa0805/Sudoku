@@ -1,4 +1,5 @@
-﻿using Microsoft.UI.Xaml.Media;
+﻿using System.ComponentModel;
+using Microsoft.UI.Xaml.Media;
 using Windows.UI;
 
 namespace Sudoku.UI.Drawing.Shapes;
@@ -204,10 +205,15 @@ internal sealed class CellDigit : DrawingElement
 	/// <summary>
 	/// Defines the debugger view.
 	/// </summary>
+	[DebuggerBrowsable(DebuggerBrowsableState.Never)]
+	[EditorBrowsable(EditorBrowsableState.Never)]
 	private string DebuggerDisplayView =>
-		$"{nameof(CellDigit)} {{ Status = {
-			(_isGiven ? "Given" : "Modifiable")}, Digit = {
-			(_textBlock.Text is var s and not "" ? s : "<Empty>")} }}";
+		$$"""
+		{{
+			nameof(CellDigit)}} { Status = {{
+			(_isGiven ? "Given" : "Modifiable")}}, Digit = {{
+			(_textBlock.Text is var s and not "" ? s : "<Empty>")}} }
+		""";
 #endif
 
 

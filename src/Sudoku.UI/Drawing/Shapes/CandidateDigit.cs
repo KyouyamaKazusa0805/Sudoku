@@ -1,4 +1,5 @@
-﻿using Microsoft.UI.Xaml.Media;
+﻿using System.ComponentModel;
+using Microsoft.UI.Xaml.Media;
 using Windows.UI;
 using static System.Numerics.BitOperations;
 
@@ -215,6 +216,8 @@ internal sealed class CandidateDigit : DrawingElement
 	/// <summary>
 	/// Defines the debugger view.
 	/// </summary>
+	[DebuggerBrowsable(DebuggerBrowsableState.Never)]
+	[EditorBrowsable(EditorBrowsableState.Never)]
 	private string DebuggerDisplayView
 	{
 		get

@@ -1,4 +1,5 @@
-﻿using Microsoft.UI.Xaml.Media;
+﻿using System.ComponentModel;
+using Microsoft.UI.Xaml.Media;
 using Microsoft.UI.Xaml.Shapes;
 using Windows.Foundation;
 using Windows.UI;
@@ -146,6 +147,8 @@ public sealed class BlockLine : DrawingElement
 	/// <summary>
 	/// Defines the debugger view.
 	/// </summary>
+	[DebuggerBrowsable(DebuggerBrowsableState.Never)]
+	[EditorBrowsable(EditorBrowsableState.Never)]
 	private string DebuggerDisplayView
 	{
 		get
