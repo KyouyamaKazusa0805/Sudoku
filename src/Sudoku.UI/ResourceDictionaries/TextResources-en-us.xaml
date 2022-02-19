@@ -9,7 +9,11 @@
 	<x:String x:Key="SudokuPage_Paste">Paste</x:String>
 	<x:String x:Key="SudokuPage_Save">Save</x:String>
 	<x:String x:Key="SudokuPage_Clear">Clear</x:String>
-	<x:String x:Key="SudokuPage_Details">Details</x:String>
+	<x:String x:Key="SudokuPage_InfoBar_Welcome">Welcome to the world of sudoku! For more information about sudoku techniques, you can visit the following link:</x:String>
+	<x:String x:Key="SudokuPage_InfoBar_SeverityInfo">Infomation</x:String>
+	<x:String x:Key="SudokuPage_InfoBar_SeveritySuccess">Success</x:String>
+	<x:String x:Key="SudokuPage_InfoBar_SeverityWarning">Warning</x:String>
+	<x:String x:Key="SudokuPage_InfoBar_SeverityError">Error</x:String>
 	<x:String x:Key="SudokuPage_InfoBar_FileIsEmpty">Failed to load file because the file is empty.</x:String>
 	<x:String x:Key="SudokuPage_InfoBar_FileIsInvalid">Failed to load file because the content cannot be parsed to a sudoku grid.</x:String>
 	<x:String x:Key="SudokuPage_InfoBar_FilePuzzleIsNotUnique">The puzzle doesn't contain a valid solution, or contains multiple solutions.</x:String>
@@ -39,4 +43,6 @@
 	<x:String x:Key="AboutPage_FrameworkDescription">This application uses .NET 6 + Windows UI.</x:String>
 	<x:String x:Key="AboutPage_Framework_WindowsUI" xml:space="preserve">Windows UI 3: </x:String>
 	<x:String x:Key="AboutPage_Framework_DotnetRuntime" xml:space="preserve">.NET APIs: </x:String>
+	<x:String x:Key="Link_SudokuTutorial">https://www.bilibili.com/read/readlist/rl291187</x:String>
+	<x:String x:Key="Link_SudokuTutorialDescription">Bilibili Sudoku Tutorial Page (rl291187)</x:String>
 </ResourceDictionary>

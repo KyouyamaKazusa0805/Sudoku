@@ -1544,6 +1544,19 @@
             </summary>
             <param name="grid">The grid.</param>
         </member>
+        <member name="T:Sudoku.UI.ControlFactory">
+            <summary>
+            Defines a control factory.
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.ControlFactory.CreateInfoBar(Microsoft.UI.Xaml.Controls.InfoBarSeverity,Microsoft.UI.Xaml.Controls.StackPanel)">
+            <summary>
+            Creates a <see cref="T:Microsoft.UI.Xaml.Controls.InfoBar"/> instance.
+            </summary>
+            <param name="severity">The severity of the info bar.</param>
+            <param name="baseStackPanel">The base stack panel.</param>
+            <returns>The <see cref="T:Microsoft.UI.Xaml.Controls.InfoBar"/> instance.</returns>
+        </member>
         <member name="T:Sudoku.UI.BindingConversions">
             <summary>
             Provides a set of methods to convert the information.
@@ -1927,6 +1940,13 @@
             Initializes a <see cref="T:Sudoku.UI.Views.Pages.SudokuPage"/> instance.
             </summary>
         </member>
+        <member name="M:Sudoku.UI.Views.Pages.SudokuPage.Page_Loaded(System.Object,Microsoft.UI.Xaml.RoutedEventArgs)">
+            <summary>
+            Triggers when the current page is loaded.
+            </summary>
+            <param name="sender">The object that triggers the event.</param>
+            <param name="e">The event arguments provided.</param>
+        </member>
         <member name="M:Sudoku.UI.Views.Pages.SudokuPage.OpenAppBarButton_ClickAsync(System.Object,Microsoft.UI.Xaml.RoutedEventArgs)">
             <summary>
             Triggers when the button is clicked.
@@ -2099,15 +2119,24 @@
             </summary>
             <param name="this">The <see cref="T:Microsoft.UI.Xaml.Controls.InfoBar"/> instance.</param>
         </member>
-        <member name="M:Microsoft.UI.Xaml.Controls.InfoBarExtensions.WithText(Microsoft.UI.Xaml.Controls.InfoBar,Microsoft.UI.Xaml.Controls.InfoBarSeverity,System.String)">
+        <member name="M:Microsoft.UI.Xaml.Controls.InfoBarExtensions.WithText(Microsoft.UI.Xaml.Controls.InfoBar,System.String)">
             <summary>
             Sets the property <see cref="P:Microsoft.UI.Xaml.Controls.InfoBar.Content"/> to the target string value.
             </summary>
             <param name="this">The <see cref="T:Microsoft.UI.Xaml.Controls.InfoBar"/> instance.</param>
-            <param name="severity">The severity.</param>
             <param name="content">The content to replace with.</param>
             <returns>The reference that is same as the argument <paramref name="this"/>.</returns>
             <seealso cref="P:Microsoft.UI.Xaml.Controls.InfoBar.Content"/>
+        </member>
+        <member name="M:Microsoft.UI.Xaml.Controls.InfoBarExtensions.WithLinkButton(Microsoft.UI.Xaml.Controls.InfoBar,System.String,System.String)">
+            <summary>
+            Sets the property <see cref="P:Microsoft.UI.Xaml.Controls.InfoBar.ActionButton"/> to a <see cref="T:Microsoft.UI.Xaml.Controls.HyperlinkButton"/>.
+            </summary>
+            <param name="this">The <see cref="T:Microsoft.UI.Xaml.Controls.InfoBar"/> instance.</param>
+            <param name="link">The link.</param>
+            <param name="contentDescription">The content description.</param>
+            <returns>The reference that is same as the argument <paramref name="this"/>.</returns>
+            <seealso cref="P:Microsoft.UI.Xaml.Controls.InfoBar.ActionButton"/>
         </member>
         <member name="T:Microsoft.UI.Xaml.Shapes.LineExtensions">
             <summary>

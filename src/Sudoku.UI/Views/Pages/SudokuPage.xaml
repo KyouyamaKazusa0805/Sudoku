@@ -5,7 +5,8 @@
 	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 	xmlns:c="using:Sudoku.UI.Views.Controls"
-	mc:Ignorable="d">
+	mc:Ignorable="d"
+	Loaded="Page_Loaded">
 	<ScrollViewer>
 		<Grid>
 			<Grid.RowDefinitions>
@@ -20,10 +21,7 @@
 			<c:SudokuPane
 				x:Name="_cPane" Grid.Row="0" Grid.Column="0" Margin="25,25,0,0"
 				Size="560" OutsideOffset="10" />
-			<InfoBar
-				x:Name="_cInfoBarDetails" Title="{StaticResource SudokuPage_Details}"
-				Grid.Row="0" Grid.Column="1" Grid.RowSpan="2" IsOpen="False"
-				Margin="25,30,30,0" IsClosable="False" IsIconVisible="False" />
+			<StackPanel x:Name="_cStackPanelDetails" Grid.Row="0" Grid.Column="1" Grid.RowSpan="2" />
 			<Grid
 				Grid.Row="1" Grid.Column="0" Margin="0,25,0,0"
 				HorizontalAlignment="Center" VerticalAlignment="Center">
