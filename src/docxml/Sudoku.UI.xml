@@ -561,14 +561,12 @@
         <member name="M:Sudoku.UI.Drawing.Shapes.DrawingElement.GetHashCode">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.UI.Drawing.Shapes.DrawingElement.ToString">
-            <inheritdoc/>
-        </member>
         <member name="M:Sudoku.UI.Drawing.Shapes.DrawingElement.GetControl">
             <summary>
-            Gets the inner control.
+            To get the <see cref="T:Microsoft.UI.Xaml.UIElement"/> that is used for displaying the data structure,
+            on the <see cref="T:Microsoft.UI.Xaml.Controls.Canvas"/>.
             </summary>
-            <returns>The control.</returns>
+            <returns>The <see cref="T:Microsoft.UI.Xaml.UIElement"/> control instance.</returns>
         </member>
         <member name="M:Sudoku.UI.Drawing.Shapes.DrawingElement.op_Equality(Sudoku.UI.Drawing.Shapes.DrawingElement,Sudoku.UI.Drawing.Shapes.DrawingElement)">
             <summary>

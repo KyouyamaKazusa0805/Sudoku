@@ -16,8 +16,7 @@ public abstract class DrawingElement :
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public sealed override bool Equals([NotNullWhen(true)] object? obj) =>
-		obj is DrawingElement comparer && Equals(comparer);
+	public sealed override bool Equals([NotNullWhen(true)] object? obj) => Equals(obj as DrawingElement);
 
 	/// <inheritdoc cref="IEquatable{T}.Equals(T)"/>
 	public abstract bool Equals([NotNullWhen(true)] DrawingElement? other);
@@ -25,14 +24,11 @@ public abstract class DrawingElement :
 	/// <inheritdoc/>
 	public abstract override int GetHashCode();
 
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public override string ToString() => GetType().FullName!;
-
 	/// <summary>
-	/// Gets the inner control.
+	/// To get the <see cref="UIElement"/> that is used for displaying the data structure,
+	/// on the <see cref="Canvas"/>.
 	/// </summary>
-	/// <returns>The control.</returns>
+	/// <returns>The <see cref="UIElement"/> control instance.</returns>
 	public abstract UIElement GetControl();
 
 
