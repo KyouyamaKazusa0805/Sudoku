@@ -2178,27 +2178,5 @@
             Deconstruct the instance to multiple values.
             </summary>
         </member>
-        <member name="T:System.TimeSpanExtensions">
-            <summary>
-            Provides extension methods on <see cref="T:System.TimeSpan"/>.
-            </summary>
-            <seealso cref="T:System.TimeSpan"/>
-        </member>
-        <member name="M:System.TimeSpanExtensions.GetAwaiter(System.Int32)">
-            <summary>
-            Creates an awaiter that is used for the <see langword="await"/> statements
-            via the <see cref="T:System.Int32"/> instance.
-            </summary>
-            <param name="this">The delay of milliseconds.</param>
-            <returns>The awaiter instance.</returns>
-        </member>
-        <member name="M:System.TimeSpanExtensions.GetAwaiter(System.TimeSpan)">
-            <summary>
-            Creates an awaiter that is used for the <see langword="await"/> statements
-            via the <see cref="T:System.TimeSpan"/> instance.
-            </summary>
-            <param name="this">The delay of milliseconds.</param>
-            <returns>The awaiter instance.</returns>
-        </member>
     </members>
 </doc>
