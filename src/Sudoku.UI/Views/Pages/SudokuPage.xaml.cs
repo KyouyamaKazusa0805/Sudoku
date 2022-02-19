@@ -74,4 +74,18 @@ public sealed partial class SudokuPage : Page
 			.WithText(InfoBarSeverity.Success, (string)Application.Current.Resources["SudokuPage_InfoBar_FileOpenSuccessfully"])
 			.Open();
 	}
+
+	/// <summary>
+	/// Triggers when the button is clicked.
+	/// </summary>
+	/// <param name="sender">The object that triggers the event.</param>
+	/// <param name="e">The event arguments provided.</param>
+	private void ClearAppBarButton_Click(object sender, RoutedEventArgs e)
+	{
+		_cPane.Grid = Grid.Empty;
+
+		_cInfoBarDetails
+			.WithText(InfoBarSeverity.Informational, (string)Application.Current.Resources["SudokuPage_InfoBar_ClearSuccessfully"])
+			.Open();
+	}
 }

@@ -13,6 +13,7 @@
 	<x:String x:Key="SudokuPage_InfoBar_FileIsInvalid">文件内容无法解析为合适的数独题目，打开文件失败。</x:String>
 	<x:String x:Key="SudokuPage_InfoBar_FilePuzzleIsNotUnique">题目无解，或者题目多解。</x:String>
 	<x:String x:Key="SudokuPage_InfoBar_FileOpenSuccessfully">文件打开完成。</x:String>
+	<x:String x:Key="SudokuPage_InfoBar_ClearSuccessfully">盘面恢复到初盘。</x:String>
 	<x:String x:Key="AboutPage_DetailDescription">本页面列举一些关于整个程序有关的作者或项目信息。</x:String>
 	<x:String x:Key="AboutPage_Author">作者</x:String>
 	<x:String x:Key="AboutPage_AuthorName">小向（Sunnie-Shine）</x:String>

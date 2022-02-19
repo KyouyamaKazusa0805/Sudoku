@@ -51,7 +51,8 @@
 					</AppBarButton.KeyboardAccelerators>
 				</AppBarButton>
 				<AppBarButton
-					Grid.Row="0" Grid.Column="2" Icon="Clear" Label="{StaticResource SudokuPage_Clear}">
+					Grid.Row="0" Grid.Column="2" Icon="Clear" Label="{StaticResource SudokuPage_Clear}"
+					Click="ClearAppBarButton_Click">
 					<AppBarButton.KeyboardAccelerators>
 						<KeyboardAccelerator Modifiers="Control,Shift" Key="S" />
 					</AppBarButton.KeyboardAccelerators>

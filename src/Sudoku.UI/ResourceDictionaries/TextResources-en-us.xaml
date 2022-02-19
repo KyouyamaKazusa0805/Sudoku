@@ -13,6 +13,7 @@
 	<x:String x:Key="SudokuPage_InfoBar_FileIsInvalid">Failed to load file because the content cannot be parsed to a grid.</x:String>
 	<x:String x:Key="SudokuPage_InfoBar_FilePuzzleIsNotUnique">The puzzle doesn't contain a valid solution, or contains multiple solutions.</x:String>
 	<x:String x:Key="SudokuPage_InfoBar_FileOpenSuccessfully">Open successfully.</x:String>
+	<x:String x:Key="SudokuPage_InfoBar_ClearSuccessfully">Clear successfully.</x:String>
 	<x:String x:Key="AboutPage_DetailDescription">Here displays the details about the application.</x:String>
 	<x:String x:Key="AboutPage_Author">Author</x:String>
 	<x:String x:Key="AboutPage_AuthorName">Sunnie-Shine</x:String>
