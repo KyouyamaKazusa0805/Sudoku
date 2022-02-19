@@ -1612,6 +1612,19 @@
             Indicates the website which name is corresponding to.
             </summary>
         </member>
+        <member name="T:Sudoku.UI.StringResource">
+            <summary>
+            Defines a <see langword="static class"/> that provides the method
+            to get the <see cref="T:System.String"/>-typed resources.
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.StringResource.Get(System.String)">
+            <summary>
+            Try to get the resource value via the specified string key.
+            </summary>
+            <param name="key">The <see cref="T:System.String"/>-typed resource key.</param>
+            <returns>The resource value.</returns>
+        </member>
         <member name="T:Sudoku.UI.UserPreference">
             <summary>
             Defines the user preferences in the program.
@@ -1922,6 +1935,13 @@
             <param name="e">The event arguments provided.</param>
         </member>
         <member name="M:Sudoku.UI.Views.Pages.SudokuPage.ClearAppBarButton_Click(System.Object,Microsoft.UI.Xaml.RoutedEventArgs)">
+            <summary>
+            Triggers when the button is clicked.
+            </summary>
+            <param name="sender">The object that triggers the event.</param>
+            <param name="e">The event arguments provided.</param>
+        </member>
+        <member name="M:Sudoku.UI.Views.Pages.SudokuPage.PasteAppBarButton_ClickAsync(System.Object,Microsoft.UI.Xaml.RoutedEventArgs)">
             <summary>
             Triggers when the button is clicked.
             </summary>

@@ -35,6 +35,7 @@
 					<ColumnDefinition />
 					<ColumnDefinition />
 					<ColumnDefinition />
+					<ColumnDefinition />
 				</Grid.ColumnDefinitions>
 
 				<AppBarButton
@@ -45,13 +46,20 @@
 					</AppBarButton.KeyboardAccelerators>
 				</AppBarButton>
 				<AppBarButton
-					Grid.Row="0" Grid.Column="1" Icon="Save" Label="{StaticResource SudokuPage_Save}">
+					Grid.Row="0" Grid.Column="1" Icon="Paste" Label="{StaticResource SudokuPage_Paste}"
+					Click="PasteAppBarButton_ClickAsync">
+					<AppBarButton.KeyboardAccelerators>
+						<KeyboardAccelerator Modifiers="Control" Key="V" />
+					</AppBarButton.KeyboardAccelerators>
+				</AppBarButton>
+				<AppBarButton
+					Grid.Row="0" Grid.Column="2" Icon="Save" Label="{StaticResource SudokuPage_Save}">
 					<AppBarButton.KeyboardAccelerators>
 						<KeyboardAccelerator Modifiers="Control" Key="S" />
 					</AppBarButton.KeyboardAccelerators>
 				</AppBarButton>
 				<AppBarButton
-					Grid.Row="0" Grid.Column="2" Icon="Clear" Label="{StaticResource SudokuPage_Clear}"
+					Grid.Row="0" Grid.Column="3" Icon="Clear" Label="{StaticResource SudokuPage_Clear}"
 					Click="ClearAppBarButton_Click">
 					<AppBarButton.KeyboardAccelerators>
 						<KeyboardAccelerator Modifiers="Control,Shift" Key="S" />

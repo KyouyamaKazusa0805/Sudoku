@@ -12,8 +12,7 @@ internal static class BindingConversions
 	/// <returns>The converted result string.</returns>
 	/// <seealso cref="RepositoryInfo.OpenSourceLicense"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static string License(string input) =>
-		$"{input} {Application.Current.Resources["AboutPage_License"]}";
+	public static string License(string input) => $"{input} {StringResource.Get("AboutPage_License")}";
 
 	/// <summary>
 	/// Indicates the conversion on <see cref="RepositoryInfo.IsForReference"/>.
@@ -23,5 +22,5 @@ internal static class BindingConversions
 	/// <seealso cref="RepositoryInfo.IsForReference"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static string ForReference(bool input) =>
-		input ? (string)Application.Current.Resources["AboutPage_ForReference"] : string.Empty;
+		input ? StringResource.Get("AboutPage_ForReference") : string.Empty;
 }

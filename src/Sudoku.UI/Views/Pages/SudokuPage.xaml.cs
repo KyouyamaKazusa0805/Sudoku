@@ -1,4 +1,5 @@
 ﻿using Sudoku.Diagnostics.CodeAnalysis;
+using Windows.ApplicationModel.DataTransfer;
 using Windows.Storage.Pickers;
 
 namespace Sudoku.UI.Views.Pages;
@@ -33,7 +34,7 @@ public sealed partial class SudokuPage : Page
 		if (new FileInfo(filePath).Length == 0)
 		{
 			_cInfoBarDetails
-				.WithText(InfoBarSeverity.Error, (string)Application.Current.Resources["SudokuPage_InfoBar_FileIsEmpty"])
+				.WithText(InfoBarSeverity.Error, StringResource.Get("SudokuPage_InfoBar_FileIsEmpty"))
 				.Open();
 
 			return;
@@ -44,7 +45,7 @@ public sealed partial class SudokuPage : Page
 		if (string.IsNullOrWhiteSpace(content))
 		{
 			_cInfoBarDetails
-				.WithText(InfoBarSeverity.Error, (string)Application.Current.Resources["SudokuPage_InfoBar_FileIsEmpty"])
+				.WithText(InfoBarSeverity.Error, StringResource.Get("SudokuPage_InfoBar_FileIsEmpty"))
 				.Open();
 
 			return;
@@ -54,7 +55,7 @@ public sealed partial class SudokuPage : Page
 		if (!Grid.TryParse(content, out var grid))
 		{
 			_cInfoBarDetails
-				.WithText(InfoBarSeverity.Error, (string)Application.Current.Resources["SudokuPage_InfoBar_FileIsInvalid"])
+				.WithText(InfoBarSeverity.Error, StringResource.Get("SudokuPage_InfoBar_FileIsInvalid"))
 				.Open();
 
 			return;
@@ -64,14 +65,14 @@ public sealed partial class SudokuPage : Page
 		if (!grid.IsValid)
 		{
 			_cInfoBarDetails
-				.WithText(InfoBarSeverity.Warning, (string)Application.Current.Resources["SudokuPage_InfoBar_FilePuzzleIsNotUnique"])
+				.WithText(InfoBarSeverity.Warning, StringResource.Get("SudokuPage_InfoBar_FilePuzzleIsNotUnique"))
 				.Open();
 		}
 
 		// Loads the grid.
 		_cPane.Grid = grid;
 		_cInfoBarDetails
-			.WithText(InfoBarSeverity.Success, (string)Application.Current.Resources["SudokuPage_InfoBar_FileOpenSuccessfully"])
+			.WithText(InfoBarSeverity.Success, StringResource.Get("SudokuPage_InfoBar_FileOpenSuccessfully"))
 			.Open();
 	}
 
@@ -85,7 +86,44 @@ public sealed partial class SudokuPage : Page
 		_cPane.Grid = Grid.Empty;
 
 		_cInfoBarDetails
-			.WithText(InfoBarSeverity.Informational, (string)Application.Current.Resources["SudokuPage_InfoBar_ClearSuccessfully"])
+			.WithText(InfoBarSeverity.Informational, StringResource.Get("SudokuPage_InfoBar_ClearSuccessfully"))
+			.Open();
+	}
+
+	/// <summary>
+	/// Triggers when the button is clicked.
+	/// </summary>
+	/// <param name="sender">The object that triggers the event.</param>
+	/// <param name="e">The event arguments provided.</param>
+	private async void PasteAppBarButton_ClickAsync([IsDiscard] object sender, [IsDiscard] RoutedEventArgs e)
+	{
+		var dataPackageView = Clipboard.GetContent();
+		if (!dataPackageView.Contains(StandardDataFormats.Text))
+		{
+			return;
+		}
+
+		string gridStr = await dataPackageView.GetTextAsync();
+		if (!Grid.TryParse(gridStr, out var grid))
+		{
+			_cInfoBarDetails
+				.WithText(InfoBarSeverity.Error, StringResource.Get("SudokuPage_InfoBar_PasteIsInvalid"))
+				.Open();
+			return;
+		}
+
+		// Checks the validity of the parsed grid.
+		if (!grid.IsValid)
+		{
+			_cInfoBarDetails
+				.WithText(InfoBarSeverity.Warning, StringResource.Get("SudokuPage_InfoBar_PastePuzzleIsNotUnique"))
+				.Open();
+		}
+
+		// Loads the grid.
+		_cPane.Grid = grid;
+		_cInfoBarDetails
+			.WithText(InfoBarSeverity.Success, StringResource.Get("SudokuPage_InfoBar_PasteSuccessfully"))
 			.Open();
 	}
 }
