@@ -126,8 +126,7 @@ public sealed partial class SudokuPage : Page
 			return;
 		}
 
-		var dataPackage = new DataPackage { RequestedOperation = DataPackageOperation.Copy };
-		dataPackage.SetText(_cPane.Grid.ToString("#"));
+		new DataPackage { RequestedOperation = DataPackageOperation.Copy }.SetText(grid.ToString("#"));
 	}
 
 	/// <summary>
