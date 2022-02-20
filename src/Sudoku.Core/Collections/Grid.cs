@@ -64,13 +64,13 @@ public unsafe partial struct Grid :
 	/// <summary>
 	/// Indicates the event triggered when the value is changed.
 	/// </summary>
-	[NotNull]
+	[NotNull, DisallowNull]
 	public static readonly void* ValueChanged;
 
 	/// <summary>
 	/// Indicates the event triggered when should re-compute candidates.
 	/// </summary>
-	[NotNull]
+	[NotNull, DisallowNull]
 	public static readonly void* RefreshingCandidates;
 
 	/// <summary>
@@ -148,6 +148,7 @@ public unsafe partial struct Grid :
 	///     path='g/csharp9/feature[@name="parameterless-struct-constructor"]/target[@name="constructor"]' />
 	/// </remarks>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	[EditorBrowsable(EditorBrowsableState.Never)]
 	public Grid() => this = Empty;
 
 	/// <summary>
@@ -155,6 +156,7 @@ public unsafe partial struct Grid :
 	/// </summary>
 	/// <param name="gridValues">The array of grid values.</param>
 	/// <param name="creatingOption">The grid creating option.</param>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public Grid(int[] gridValues, GridCreatingOption creatingOption = GridCreatingOption.None) :
 		this(gridValues[0], creatingOption)
 	{
@@ -168,6 +170,7 @@ public unsafe partial struct Grid :
 	/// <exception cref="ArgumentNullException">
 	/// Throws when the argument <paramref name="pGridValues"/> is <see langword="null"/>.
 	/// </exception>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public Grid(int* pGridValues!!, GridCreatingOption creatingOption = GridCreatingOption.None)
 		: this(*pGridValues, creatingOption)
 	{
@@ -179,6 +182,7 @@ public unsafe partial struct Grid :
 	/// </summary>
 	/// <param name="gridValues">The list of cell digits.</param>
 	/// <param name="creatingOption">The grid creating option.</param>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public Grid(ReadOnlySpan<int> gridValues, GridCreatingOption creatingOption = GridCreatingOption.None) :
 		this(gridValues[0], creatingOption)
 	{
@@ -217,6 +221,7 @@ public unsafe partial struct Grid :
 	/// In this way we can get the sudoku grid without any allocations.
 	/// </remarks>
 	/// <exception cref="ArgumentException">Throws when <see cref="Array.Length"/> is not 81.</exception>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public Grid(short[] masks)
 	{
 		if (masks.Length != 81)

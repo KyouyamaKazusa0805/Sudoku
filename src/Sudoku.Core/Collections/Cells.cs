@@ -115,6 +115,7 @@ public unsafe struct Cells :
 	/// <exception cref="ArgumentNullException">
 	/// Throws when the argument <paramref name="cells"/> is <see langword="null"/>.
 	/// </exception>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public Cells(int* cells!!, int length) : this(in *cells, length)
 	{
 	}
@@ -134,6 +135,7 @@ public unsafe struct Cells :
 	/// doesn't implemented the interface <see cref="IEnumerable{T}"/>.
 	/// </remarks>
 	/// <seealso cref="Cells(IEnumerable{int})"/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public Cells(int[] cells) : this(in cells[0], cells.Length)
 	{
 	}
@@ -152,6 +154,7 @@ public unsafe struct Cells :
 	/// Initializes an instance with a series of cell offsets.
 	/// </summary>
 	/// <param name="cells">cell offsets.</param>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public Cells(Span<int> cells) : this(in cells.GetPinnableReference(), cells.Length)
 	{
 	}
@@ -160,6 +163,7 @@ public unsafe struct Cells :
 	/// Initializes an instance with a series of cell offsets.
 	/// </summary>
 	/// <param name="cells">cell offsets.</param>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public Cells(ReadOnlySpan<int> cells) : this(in cells.GetPinnableReference(), cells.Length)
 	{
 	}

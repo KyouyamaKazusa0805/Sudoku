@@ -247,10 +247,6 @@
             <description>Use 'Empty' property instead</description>
             </item>
             <item>
-            <term>SCA0513</term>
-            <description>Use 'IsEmpty' property instead</description>
-            </item>
-            <item>
             <term>SCA0514</term>
             <description>Use 'CoveredLine' property instead</description>
             </item>
@@ -311,11 +307,6 @@
         <member name="F:Sudoku.Diagnostics.CodeAnalysis.SyntaxContextReceivers.CellSyntaxChecker.SCA0512">
             <summary>
             Indicates the <see cref="T:Microsoft.CodeAnalysis.DiagnosticDescriptor"/> instance that describes for the diagnostic result SCA0512 (Use 'Empty' property instead).
-            </summary>
-        </member>
-        <member name="F:Sudoku.Diagnostics.CodeAnalysis.SyntaxContextReceivers.CellSyntaxChecker.SCA0513">
-            <summary>
-            Indicates the <see cref="T:Microsoft.CodeAnalysis.DiagnosticDescriptor"/> instance that describes for the diagnostic result SCA0513 (Use 'IsEmpty' property instead).
             </summary>
         </member>
         <member name="F:Sudoku.Diagnostics.CodeAnalysis.SyntaxContextReceivers.CellSyntaxChecker.SCA0514">
