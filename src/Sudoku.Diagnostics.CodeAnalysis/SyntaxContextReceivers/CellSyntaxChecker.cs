@@ -1,6 +1,6 @@
 ﻿namespace Sudoku.Diagnostics.CodeAnalysis.SyntaxContextReceivers;
 
-[SyntaxChecker("SCA0510", "SCA0511", "SCA0512", "SCA0513", "SCA0514", "SCA0515", "SCA0516", "SCA0517", "SCA0518", "SCA0519", "SCA0520")]
+[SyntaxChecker("SCA0510", "SCA0511", "SCA0512", "SCA0514", "SCA0515", "SCA0516", "SCA0517", "SCA0518", "SCA0519", "SCA0520")]
 public sealed partial class CellSyntaxChecker : ISyntaxContextReceiver
 {
 	/// <summary>
@@ -27,7 +27,7 @@ public sealed partial class CellSyntaxChecker : ISyntaxContextReceiver
 			return;
 		}
 
-		const string cellsSymbolFullName = "Sudoku.Data.Cells";
+		const string cellsSymbolFullName = "Sudoku.Collections.Cells";
 		var cellsSymbol = compilation.GetTypeByMetadataName(cellsSymbolFullName);
 		if (cellsSymbol is null)
 		{
@@ -37,7 +37,6 @@ public sealed partial class CellSyntaxChecker : ISyntaxContextReceiver
 		CheckConstructorArguments(node, semanticModel, cellsSymbol);
 		CheckStackAllocExpressionAsArgument(node, semanticModel, cellsSymbol);
 		CheckAvailableEmptyPropertyCases(node, semanticModel, cellsSymbol);
-		CheckAvailableIsEmptyPropertyCases(node, semanticModel, cellsSymbol);
 		CheckAvailableCoveredLinePropertyCases(node, semanticModel, compilation, cellsSymbol);
 		CheckIndexArgument(node, semanticModel, cellsSymbol);
 		CheckInitializerValues(node, semanticModel, cellsSymbol);
@@ -221,60 +220,6 @@ public sealed partial class CellSyntaxChecker : ISyntaxContextReceiver
 			&& !ContainingTypeIsCells(syntaxNode, cellsSymbol):
 			{
 				Diagnostics.Add(Diagnostic.Create(SCA0512, syntaxNode.GetLocation(), messageArgs: null));
-
-				break;
-			}
-		}
-	}
-
-	private void CheckAvailableIsEmptyPropertyCases(
-		SyntaxNode node,
-		SemanticModel semanticModel,
-		INamedTypeSymbol cellsSymbol
-	)
-	{
-		var operation = semanticModel.GetOperation(node, _cancellationToken);
-		if (
-			operation is not IBinaryOperation
-			{
-				OperatorKind: BinaryOperatorKind.Equals or BinaryOperatorKind.NotEquals,
-				LeftOperand: var leftOperand,
-				RightOperand: var rightOperand,
-				Syntax: var syntaxNode
-			}
-		)
-		{
-			return;
-		}
-
-		switch ((Left: leftOperand, Right: rightOperand))
-		{
-			case (
-				Left: IPropertyReferenceOperation
-				{
-					Property: { Name: "Count", ContainingType: var containingTypeSymbol }
-				},
-				Right: { ConstantValue: { HasValue: true, Value: 0 } }
-			)
-			when SymbolEqualityComparer.Default.Equals(containingTypeSymbol, cellsSymbol)
-			&& !ContainingTypeIsCells(syntaxNode, cellsSymbol):
-			{
-				Diagnostics.Add(Diagnostic.Create(SCA0513, syntaxNode.GetLocation(), messageArgs: null));
-
-				break;
-			}
-
-			case (
-				Left: { ConstantValue: { HasValue: true, Value: 0 } },
-				Right: IPropertyReferenceOperation
-				{
-					Property: { Name: "Count", ContainingType: var containingTypeSymbol }
-				}
-			)
-			when SymbolEqualityComparer.Default.Equals(containingTypeSymbol, cellsSymbol)
-			&& !ContainingTypeIsCells(syntaxNode, cellsSymbol):
-			{
-				Diagnostics.Add(Diagnostic.Create(SCA0513, syntaxNode.GetLocation(), messageArgs: null));
 
 				break;
 			}

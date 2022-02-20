@@ -27,7 +27,7 @@ public sealed partial class GridSyntaxChecker : ISyntaxContextReceiver
 			return;
 		}
 
-		const string gridSymbolFullName = "Sudoku.Data.Grid";
+		const string gridSymbolFullName = "Sudoku.Collections.Grid";
 		var gridSymbol = compilation.GetTypeByMetadataName(gridSymbolFullName);
 		if (gridSymbol is null)
 		{

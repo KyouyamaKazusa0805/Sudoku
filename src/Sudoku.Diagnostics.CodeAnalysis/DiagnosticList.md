@@ -72,7 +72,6 @@
 | SCA0510       | Design    | Warning  | Invalid data on parameter                                    | Invalid argument value '{0}'; the real value uses more than '{1}' bits, which is disallowed by design of type 'Cells' |
 | SCA0511       | Design    | Warning  | Don't initialize by 'stackalloc' expression                  | Don't initialize by 'stackalloc' expression; just use collection initializer instead |
 | SCA0512       | Usage     | Warning  | Use 'Empty' property instead                                 |                                                              |
-| SCA0513       | Usage     | Warning  | Use 'IsEmpty' property instead                               |                                                              |
 | SCA0514       | Usage     | Warning  | Use 'CoveredLine' property instead                           |                                                              |
 | SCA0515       | Usage     | Error    | Argument 'index' must be between 0 and 80                    |                                                              |
 | SCA0516       | Design    | Error    | Invalid coordinate value to initialize                       |                                                              |
@@ -80,8 +79,6 @@
 | SCA0518       | Usage     | Warning  | Please don't assign 'null' as the parameter into the 'Parse' method group |                                                              |
 | SCA0519       | Usage     | Warning  | Usage 'operator -' instead                                   |                                                              |
 | SCA0520       | Design    | Warning  | Object initializer can only be used with parameterless constructor unless the constructor argument type is an array of type 'int' |                                                              |
-| SCA0601       | Style     | Warning  | At least 2 null lines to separate and local function statements and other statements |                                                              |
-| SCA0602       | Style     | Warning  | At least 1 null lines to insert into two different local function statements |                                                              |
 | SCA0603       | Style     | Warning  | The property must start with getter, and then setter (or initer) |                                                              |
 | SCA0604       | Style     | Warning  | At least 1 null lines to insert into getter and setter (or initer) in a property |                                                              |
 
