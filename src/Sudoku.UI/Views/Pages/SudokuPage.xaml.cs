@@ -114,6 +114,27 @@ public sealed partial class SudokuPage : Page
 	/// </summary>
 	/// <param name="sender">The object that triggers the event.</param>
 	/// <param name="e">The event arguments provided.</param>
+	private void CopyAppBarButton_Click([IsDiscard] object sender, [IsDiscard] RoutedEventArgs e)
+	{
+		ref readonly var grid = ref _cPane.GetGridByReference();
+		if (grid.IsUndefined || grid.IsEmpty)
+		{
+			ControlFactory
+				.CreateInfoBar(InfoBarSeverity.Error, _cStackPanelDetails)
+				.WithMessage(StringResource.Get("SudokuPage_InfoBar_CopyFailedDueToEmpty"))
+				.Open();
+			return;
+		}
+
+		var dataPackage = new DataPackage { RequestedOperation = DataPackageOperation.Copy };
+		dataPackage.SetText(_cPane.Grid.ToString("#"));
+	}
+
+	/// <summary>
+	/// Triggers when the button is clicked.
+	/// </summary>
+	/// <param name="sender">The object that triggers the event.</param>
+	/// <param name="e">The event arguments provided.</param>
 	private async void PasteAppBarButton_ClickAsync([IsDiscard] object sender, [IsDiscard] RoutedEventArgs e)
 	{
 		var dataPackageView = Clipboard.GetContent();

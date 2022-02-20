@@ -6,6 +6,7 @@
 	<x:String x:Key="MainPage_Settings">设置</x:String>
 	<x:String x:Key="MainPage_About">关于</x:String>
 	<x:String x:Key="SudokuPage_Open">打开</x:String>
+	<x:String x:Key="SudokuPage_Copy">复制代码</x:String>
 	<x:String x:Key="SudokuPage_Paste">粘贴</x:String>
 	<x:String x:Key="SudokuPage_Save">保存</x:String>
 	<x:String x:Key="SudokuPage_Clear">清空</x:String>
@@ -19,6 +20,7 @@
 	<x:String x:Key="SudokuPage_InfoBar_FilePuzzleIsNotUnique">题目无解，或者题目多解。</x:String>
 	<x:String x:Key="SudokuPage_InfoBar_FileOpenSuccessfully">文件打开完成。</x:String>
 	<x:String x:Key="SudokuPage_InfoBar_ClearSuccessfully">盘面恢复到初盘。</x:String>
+	<x:String x:Key="SudokuPage_InfoBar_CopyFailedDueToEmpty">不能复制空盘代码到剪切板中。</x:String>
 	<x:String x:Key="SudokuPage_InfoBar_PasteIsInvalid">文字无法解析为合适的数独题目，粘贴失败。</x:String>
 	<x:String x:Key="SudokuPage_InfoBar_PastePuzzleIsNotUnique">题目无解，或者题目多解。</x:String>
 	<x:String x:Key="SudokuPage_InfoBar_PasteSuccessfully">粘贴的题目解析完成。</x:String>

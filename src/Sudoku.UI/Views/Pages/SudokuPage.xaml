@@ -10,7 +10,7 @@
 	<ScrollViewer>
 		<Grid>
 			<Grid.RowDefinitions>
-				<RowDefinition Height="Auto" />
+				<RowDefinition Height="580" />
 				<RowDefinition />
 			</Grid.RowDefinitions>
 			<Grid.ColumnDefinitions>
@@ -21,7 +21,9 @@
 			<c:SudokuPane
 				x:Name="_cPane" Grid.Row="0" Grid.Column="0" Margin="25,25,0,0"
 				Size="560" OutsideOffset="10" />
-			<StackPanel x:Name="_cStackPanelDetails" Grid.Row="0" Grid.Column="1" Grid.RowSpan="2" />
+			<ScrollViewer Grid.Row="0" Grid.Column="1" Margin="0,0,25,0">
+				<StackPanel x:Name="_cStackPanelDetails" />
+			</ScrollViewer>
 			<Grid
 				Grid.Row="1" Grid.Column="0" Margin="0,25,0,0"
 				HorizontalAlignment="Center" VerticalAlignment="Center">
@@ -30,6 +32,7 @@
 					<RowDefinition />
 				</Grid.RowDefinitions>
 				<Grid.ColumnDefinitions>
+					<ColumnDefinition />
 					<ColumnDefinition />
 					<ColumnDefinition />
 					<ColumnDefinition />
@@ -44,20 +47,27 @@
 					</AppBarButton.KeyboardAccelerators>
 				</AppBarButton>
 				<AppBarButton
-					Grid.Row="0" Grid.Column="1" Icon="Paste" Label="{StaticResource SudokuPage_Paste}"
+					Grid.Row="0" Grid.Column="1" Icon="Copy" Label="{StaticResource SudokuPage_Copy}"
+					Click="CopyAppBarButton_Click">
+					<AppBarButton.KeyboardAccelerators>
+						<KeyboardAccelerator Modifiers="Control" Key="C" />
+					</AppBarButton.KeyboardAccelerators>
+				</AppBarButton>
+				<AppBarButton
+					Grid.Row="0" Grid.Column="2" Icon="Paste" Label="{StaticResource SudokuPage_Paste}"
 					Click="PasteAppBarButton_ClickAsync">
 					<AppBarButton.KeyboardAccelerators>
 						<KeyboardAccelerator Modifiers="Control" Key="V" />
 					</AppBarButton.KeyboardAccelerators>
 				</AppBarButton>
 				<AppBarButton
-					Grid.Row="0" Grid.Column="2" Icon="Save" Label="{StaticResource SudokuPage_Save}">
+					Grid.Row="0" Grid.Column="3" Icon="Save" Label="{StaticResource SudokuPage_Save}">
 					<AppBarButton.KeyboardAccelerators>
 						<KeyboardAccelerator Modifiers="Control" Key="S" />
 					</AppBarButton.KeyboardAccelerators>
 				</AppBarButton>
 				<AppBarButton
-					Grid.Row="0" Grid.Column="3" Icon="Clear" Label="{StaticResource SudokuPage_Clear}"
+					Grid.Row="0" Grid.Column="4" Icon="Clear" Label="{StaticResource SudokuPage_Clear}"
 					Click="ClearAppBarButton_Click">
 					<AppBarButton.KeyboardAccelerators>
 						<KeyboardAccelerator Modifiers="Control,Shift" Key="S" />

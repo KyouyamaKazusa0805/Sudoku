@@ -144,6 +144,12 @@ public sealed partial class SudokuPane : UserControl
 
 
 	#region Normal instance methods
+	/// <summary>
+	/// Gets the reference of the sudoku grid.
+	/// </summary>
+	/// <returns>The reference of the sudoku grid.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public ref readonly Grid GetGridByReference() => ref _grid;
 	#endregion
 
 

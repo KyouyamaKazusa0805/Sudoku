@@ -1818,6 +1818,12 @@
             Gets or sets the current grid used.
             </summary>
         </member>
+        <member name="M:Sudoku.UI.Views.Controls.SudokuPane.GetGridByReference">
+            <summary>
+            Gets the reference of the sudoku grid.
+            </summary>
+            <returns>The reference of the sudoku grid.</returns>
+        </member>
         <member name="M:Sudoku.UI.Views.Controls.SudokuPane.SudokuPane_Loaded(System.Object,Microsoft.UI.Xaml.RoutedEventArgs)">
             <summary>
             Triggers when the current control is loaded.
@@ -1955,6 +1961,13 @@
             <param name="e">The event arguments provided.</param>
         </member>
         <member name="M:Sudoku.UI.Views.Pages.SudokuPage.ClearAppBarButton_Click(System.Object,Microsoft.UI.Xaml.RoutedEventArgs)">
+            <summary>
+            Triggers when the button is clicked.
+            </summary>
+            <param name="sender">The object that triggers the event.</param>
+            <param name="e">The event arguments provided.</param>
+        </member>
+        <member name="M:Sudoku.UI.Views.Pages.SudokuPage.CopyAppBarButton_Click(System.Object,Microsoft.UI.Xaml.RoutedEventArgs)">
             <summary>
             Triggers when the button is clicked.
             </summary>

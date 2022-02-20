@@ -6,6 +6,7 @@
 	<x:String x:Key="MainPage_Settings">Settings</x:String>
 	<x:String x:Key="MainPage_About">About</x:String>
 	<x:String x:Key="SudokuPage_Open">Open</x:String>
+	<x:String x:Key="SudokuPage_Copy">Copy code</x:String>
 	<x:String x:Key="SudokuPage_Paste">Paste</x:String>
 	<x:String x:Key="SudokuPage_Save">Save</x:String>
 	<x:String x:Key="SudokuPage_Clear">Clear</x:String>
@@ -19,6 +20,7 @@
 	<x:String x:Key="SudokuPage_InfoBar_FilePuzzleIsNotUnique">The puzzle doesn't contain a valid solution, or contains multiple solutions.</x:String>
 	<x:String x:Key="SudokuPage_InfoBar_FileOpenSuccessfully">Open successfully.</x:String>
 	<x:String x:Key="SudokuPage_InfoBar_ClearSuccessfully">Clear successfully.</x:String>
+	<x:String x:Key="SudokuPage_InfoBar_CopyFailedDueToEmpty">Cannot copy from an empty grid.</x:String>
 	<x:String x:Key="SudokuPage_InfoBar_PasteIsInvalid">Failed to paste text because the text cannot be parsed to a sudoku grid.</x:String>
 	<x:String x:Key="SudokuPage_InfoBar_PastePuzzleIsNotUnique">The puzzle doesn't contain a valid solution, or contains multiple solutions.</x:String>
 	<x:String x:Key="SudokuPage_InfoBar_PasteSuccessfully">Paste successfully.</x:String>
