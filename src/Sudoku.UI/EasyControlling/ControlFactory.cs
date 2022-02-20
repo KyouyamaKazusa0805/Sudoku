@@ -36,7 +36,7 @@ internal static class ControlFactory
 		// Add handler that removes the control after close the info bar.
 		if (baseStackPanel is not null)
 		{
-			baseStackPanel.Children.Add(targetControl);
+			baseStackPanel.Children.Insert(0, targetControl);
 			targetControl.Closed +=
 				(s, e) => _ = e.Reason == InfoBarCloseReason.CloseButton && baseStackPanel.Children.Remove(s);
 		}
