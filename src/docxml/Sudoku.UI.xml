@@ -2008,13 +2008,6 @@
             </summary>
             <seealso cref="T:Microsoft.UI.Xaml.Controls.Frame"/>
         </member>
-        <member name="F:Sudoku.UI.Views.Windows.MainWindow._appWindow">
-            <summary>
-            The app window instance. The method will be initialized by method <see cref="M:Sudoku.UI.Views.Windows.MainWindow.CustomizeTitleBar"/>,
-            and be immutable after the method called.
-            </summary>
-            <seealso cref="M:Sudoku.UI.Views.Windows.MainWindow.CustomizeTitleBar"/>
-        </member>
         <member name="M:Sudoku.UI.Views.Windows.MainWindow.#ctor">
             <summary>
             Initializes a <see cref="T:Sudoku.UI.Views.Windows.MainWindow"/> instance.
@@ -2197,6 +2190,20 @@
             <summary>
             Deconstruct the instance to multiple values.
             </summary>
+        </member>
+        <member name="T:Microsoft.UI.Xaml.WindowExtensions">
+            <summary>
+            Provides extension methods on <see cref="T:Microsoft.UI.Xaml.Window"/>.
+            </summary>
+            <seealso cref="T:Microsoft.UI.Xaml.Window"/>
+        </member>
+        <member name="M:Microsoft.UI.Xaml.WindowExtensions.GetAppWindow``1(``0)">
+            <summary>
+            Gets the <see cref="T:Microsoft.UI.Windowing.AppWindow"/> instance via the specified <see cref="T:Microsoft.UI.Xaml.Window"/>.
+            </summary>
+            <typeparam name="TWindow">The type of the window.</typeparam>
+            <param name="this">The <typeparamref name="TWindow"/>-typed instance.</param>
+            <returns>The <see cref="T:Microsoft.UI.Windowing.AppWindow"/> instance.</returns>
         </member>
         <member name="T:Windows.Storage.Pickers.FileOpenPickerExtensions">
             <summary>

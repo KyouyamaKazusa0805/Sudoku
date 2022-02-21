@@ -1,6 +1,5 @@
 ﻿using Microsoft.UI;
 using Microsoft.UI.Windowing;
-using WinRT.Interop;
 
 namespace Sudoku.UI.Views.Windows;
 
@@ -10,14 +9,6 @@ namespace Sudoku.UI.Views.Windows;
 /// <seealso cref="Frame"/>
 public sealed partial class MainWindow : Window
 {
-	/// <summary>
-	/// The app window instance. The method will be initialized by method <see cref="CustomizeTitleBar"/>,
-	/// and be immutable after the method called.
-	/// </summary>
-	/// <seealso cref="CustomizeTitleBar"/>
-	private AppWindow _appWindow;
-
-
 	/// <summary>
 	/// Initializes a <see cref="MainWindow"/> instance.
 	/// </summary>
@@ -34,15 +25,11 @@ public sealed partial class MainWindow : Window
 	/// <summary>
 	/// Customize the title bar if available.
 	/// </summary>
-	[MemberNotNull(nameof(_appWindow))]
 	private void CustomizeTitleBar()
 	{
-		// Title bar customization.
-		_appWindow = getAppWindowForCurrentWindow();
-
 		// Check to see if customization is supported.
 		// Currently only supported on Windows 11.
-		if (AppWindowTitleBar.IsCustomizationSupported() && _appWindow.TitleBar is var titleBar)
+		if (AppWindowTitleBar.IsCustomizationSupported() && this.GetAppWindow() is { TitleBar: var titleBar })
 		{
 			// Hide default title bar.
 			titleBar.ExtendsContentIntoTitleBar = true;
@@ -63,15 +50,6 @@ public sealed partial class MainWindow : Window
 			// supported only on Windows 11. In other cases, hide
 			// the custom title bar element.
 			_cAppTitleBar.Visibility = Visibility.Collapsed;
-		}
-
-
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		AppWindow getAppWindowForCurrentWindow()
-		{
-			var hWnd = WindowNative.GetWindowHandle(this);
-			var wndId = Win32Interop.GetWindowIdFromWindow(hWnd);
-			return AppWindow.GetFromWindowId(wndId);
 		}
 	}
 }
