@@ -33,12 +33,7 @@ public partial class App : Application
 	/// <param name="args">Details about the launch request and process.</param>
 	protected override void OnLaunched(LaunchActivatedEventArgs args)
 	{
-#if TITLE_BAR_CUSTOMIZATION
 		_window = new MainWindow();
-#else
-		_window = new MainWindow { Title = (string)Current.Resources["ProgramName"] };
-#endif
-
 		_window.Activate();
 	}
 }

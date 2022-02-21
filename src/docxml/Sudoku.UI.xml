@@ -2010,12 +2010,19 @@
         </member>
         <member name="F:Sudoku.UI.Views.Windows.MainWindow._appWindow">
             <summary>
-            The app window instance.
+            The app window instance. The method will be initialized by method <see cref="M:Sudoku.UI.Views.Windows.MainWindow.CustomizeTitleBar"/>,
+            and be immutable after the method called.
             </summary>
+            <seealso cref="M:Sudoku.UI.Views.Windows.MainWindow.CustomizeTitleBar"/>
         </member>
         <member name="M:Sudoku.UI.Views.Windows.MainWindow.#ctor">
             <summary>
             Initializes a <see cref="T:Sudoku.UI.Views.Windows.MainWindow"/> instance.
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Views.Windows.MainWindow.CustomizeTitleBar">
+            <summary>
+            Customize the title bar if available.
             </summary>
         </member>
         <member name="M:Sudoku.UI.Views.Windows.MainWindow.InitializeComponent">

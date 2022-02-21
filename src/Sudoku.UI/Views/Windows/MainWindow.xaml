@@ -12,6 +12,8 @@
 			<RowDefinition Height="Auto" />
 			<RowDefinition />
 		</Grid.RowDefinitions>
+
+		<!--Title Bar-->
 		<Grid x:Name="_cAppTitleBar" Grid.Row="0" Height="48">
 			<Grid.ColumnDefinitions>
 				<ColumnDefinition x:Name="_cLeftPaddingColumn" Width="0"/>
@@ -25,6 +27,8 @@
 				x:Name="_cTitleTextBlock" Grid.Column="1" Text="{StaticResource ProgramName}"
 				Style="{StaticResource CaptionTextBlockStyle}" VerticalAlignment="Center" Margin="52,0,0,0"/>
 		</Grid>
+
+		<!--Main Page-->
 		<p:MainPage Grid.Row="1" />
 	</Grid>
 </Window>

@@ -10,7 +10,6 @@
 		<PublishProfile>win10-$(Platform).pubxml</PublishProfile>
 		<UseWinUI>true</UseWinUI>
 		<EnablePreviewMsixTooling>true</EnablePreviewMsixTooling>
-		<DefineConstants>TITLE_BAR_CUSTOMIZATION</DefineConstants>
 
 		<!--Syntax configurations-->
 		<RootNamespace>Sudoku.UI</RootNamespace>

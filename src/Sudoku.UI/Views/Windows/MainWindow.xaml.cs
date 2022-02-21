@@ -1,8 +1,6 @@
-﻿#if TITLE_BAR_CUSTOMIZATION
-using Microsoft.UI;
+﻿using Microsoft.UI;
 using Microsoft.UI.Windowing;
 using WinRT.Interop;
-#endif
 
 namespace Sudoku.UI.Views.Windows;
 
@@ -12,12 +10,12 @@ namespace Sudoku.UI.Views.Windows;
 /// <seealso cref="Frame"/>
 public sealed partial class MainWindow : Window
 {
-#if TITLE_BAR_CUSTOMIZATION
 	/// <summary>
-	/// The app window instance.
+	/// The app window instance. The method will be initialized by method <see cref="CustomizeTitleBar"/>,
+	/// and be immutable after the method called.
 	/// </summary>
-	private readonly AppWindow _appWindow;
-#endif
+	/// <seealso cref="CustomizeTitleBar"/>
+	private AppWindow _appWindow;
 
 
 	/// <summary>
@@ -28,7 +26,17 @@ public sealed partial class MainWindow : Window
 		// Intializes the controls.
 		InitializeComponent();
 
-#if TITLE_BAR_CUSTOMIZATION
+		// To customize the title bar if available.
+		CustomizeTitleBar();
+	}
+
+
+	/// <summary>
+	/// Customize the title bar if available.
+	/// </summary>
+	[MemberNotNull(nameof(_appWindow))]
+	private void CustomizeTitleBar()
+	{
 		// Title bar customization.
 		_appWindow = getAppWindowForCurrentWindow();
 
@@ -65,6 +73,5 @@ public sealed partial class MainWindow : Window
 			var wndId = Win32Interop.GetWindowIdFromWindow(hWnd);
 			return AppWindow.GetFromWindowId(wndId);
 		}
-#endif
 	}
 }
