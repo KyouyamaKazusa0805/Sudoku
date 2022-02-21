@@ -12,7 +12,7 @@
 			<RowDefinition Height="Auto" />
 			<RowDefinition />
 		</Grid.RowDefinitions>
-		<Grid x:Name="_cAppTitleBar" Grid.Row="0" Height="32">
+		<Grid x:Name="_cAppTitleBar" Grid.Row="0" Height="48">
 			<Grid.ColumnDefinitions>
 				<ColumnDefinition x:Name="_cLeftPaddingColumn" Width="0"/>
 				<ColumnDefinition/>
@@ -20,10 +20,10 @@
 			</Grid.ColumnDefinitions>
 			<Image
 				x:Name="_cTitleBarIcon" Grid.Column="1" HorizontalAlignment="Left"
-				Source="/Assets/images/logo.png" Width="16" Height="16" Margin="8,0,0,0" />
+				Source="/Assets/images/logo.png" Width="32" Height="32" Margin="12,0,12,0" />
 			<TextBlock
 				x:Name="_cTitleTextBlock" Grid.Column="1" Text="{StaticResource ProgramName}"
-				Style="{StaticResource CaptionTextBlockStyle}" VerticalAlignment="Center" Margin="28,0,0,0"/>
+				Style="{StaticResource CaptionTextBlockStyle}" VerticalAlignment="Center" Margin="52,0,0,0"/>
 		</Grid>
 		<p:MainPage Grid.Row="1" />
 	</Grid>

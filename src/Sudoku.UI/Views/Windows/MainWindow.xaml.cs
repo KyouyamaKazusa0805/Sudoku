@@ -42,9 +42,9 @@ public sealed partial class MainWindow : Window
 			// Sets the background color on "those" three buttons to transparent.
 			titleBar.ButtonBackgroundColor = Colors.Transparent;
 			titleBar.ButtonForegroundColor = Colors.Black;
-			titleBar.ButtonHoverBackgroundColor = Colors.Transparent;
+			titleBar.ButtonHoverBackgroundColor = Colors.LightGray;
 			titleBar.ButtonHoverForegroundColor = Colors.Black;
-			titleBar.ButtonPressedBackgroundColor = Colors.Transparent;
+			titleBar.ButtonPressedBackgroundColor = Colors.DimGray;
 			titleBar.ButtonPressedForegroundColor = Colors.Black;
 			titleBar.ButtonInactiveBackgroundColor = Colors.Transparent;
 			titleBar.ButtonInactiveForegroundColor = Colors.Gray;
