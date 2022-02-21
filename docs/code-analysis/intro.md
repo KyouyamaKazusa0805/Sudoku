@@ -58,7 +58,6 @@
   * SCA0303（该属性是自带 `readonly` 修饰的语义的，所以无需显式使用该修饰符）
   * SCA0304（该属性位于值类型中，且仅用于返回，因此该属性是只读的，所以请标记 `readonly` 修饰符到该属性上）
   * SCA0305（请勿暴露具体类型的函数指针类型的成员）
-
   * SCA0402（`GetPinnableReference` 方法需要标记 `[EditorBrowsable(EditorBrowsableState.Never)]` 防止显式使用）
   * SCA0403（`GetPinnableReference` 方法不应为静态的）
   * SCA0404（`GetPinnableReference` 方法不能返回 `void` 类型）
