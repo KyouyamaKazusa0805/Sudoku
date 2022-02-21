@@ -123,6 +123,12 @@ public sealed partial class SudokuPane : UserControl
 	/// <summary>
 	/// Gets or sets the current grid used.
 	/// </summary>
+	/// <remarks>
+	/// For the consideration for the performance of the type <see cref="Collections.Grid"/>, we suggest you
+	/// use the method <see cref="GetGridByReference"/> instead of the property if you want to get
+	/// the inner <see cref="Collections.Grid"/> instance.
+	/// </remarks>
+	/// <seealso cref="GetGridByReference"/>
 	public Grid Grid
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]

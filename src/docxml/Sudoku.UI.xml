@@ -1854,6 +1854,12 @@
             <summary>
             Gets or sets the current grid used.
             </summary>
+            <remarks>
+            For the consideration for the performance of the type <see cref="T:Sudoku.Collections.Grid"/>, we suggest you
+            use the method <see cref="M:Sudoku.UI.Views.Controls.SudokuPane.GetGridByReference"/> instead of the property if you want to get
+            the inner <see cref="T:Sudoku.Collections.Grid"/> instance.
+            </remarks>
+            <seealso cref="M:Sudoku.UI.Views.Controls.SudokuPane.GetGridByReference"/>
         </member>
         <member name="M:Sudoku.UI.Views.Controls.SudokuPane.GetGridByReference">
             <summary>
