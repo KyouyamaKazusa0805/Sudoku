@@ -10,7 +10,7 @@
 		<PublishProfile>win10-$(Platform).pubxml</PublishProfile>
 		<UseWinUI>true</UseWinUI>
 		<EnablePreviewMsixTooling>true</EnablePreviewMsixTooling>
-		<Description>The solution that plays with the sudoku.</Description>
+		<DefineConstants>TITLE_BAR_CUSTOMIZATION</DefineConstants>
 
 		<!--Syntax configurations-->
 		<RootNamespace>Sudoku.UI</RootNamespace>
@@ -22,6 +22,7 @@
 		<RepositoryType>git</RepositoryType>
 		<PackageTags>algorithms;sudoku;puzzle-solving</PackageTags>
 		<PackageLicenseFile>..\..\LICENSE</PackageLicenseFile>
+		<Description>The solution that plays with the sudoku.</Description>
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -51,7 +52,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<Resource Include="Assets\images\dotnet.png" />
+		<EmbeddedResource Include="Assets\images\logo.png" />
 	</ItemGroup>
 
 	<ItemGroup>
