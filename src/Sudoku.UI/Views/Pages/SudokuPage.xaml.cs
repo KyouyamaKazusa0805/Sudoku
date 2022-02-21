@@ -180,9 +180,10 @@ public sealed partial class SudokuPage : Page
 	/// <param name="e">The event arguments provided.</param>
 	private void ClearInfoBarsAppBarButton_Click([IsDiscard] object sender, [IsDiscard] RoutedEventArgs e)
 	{
-		if (_cStackPanelDetails.Children.Count != 0)
+		var children = _cStackPanelDetails.Children;
+		if (children.Count != 0)
 		{
-			_cStackPanelDetails.Children.Clear();
+			children.Clear();
 		}
 	}
 }
