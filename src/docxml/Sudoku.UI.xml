@@ -1549,12 +1549,11 @@
             Defines a control factory.
             </summary>
         </member>
-        <member name="M:Sudoku.UI.ControlFactory.CreateInfoBar(Microsoft.UI.Xaml.Controls.InfoBarSeverity,Microsoft.UI.Xaml.Controls.StackPanel)">
+        <member name="M:Sudoku.UI.ControlFactory.InfoBar(Microsoft.UI.Xaml.Controls.InfoBarSeverity)">
             <summary>
             Creates a <see cref="T:Microsoft.UI.Xaml.Controls.InfoBar"/> instance.
             </summary>
             <param name="severity">The severity of the info bar.</param>
-            <param name="baseStackPanel">The base stack panel.</param>
             <returns>The <see cref="T:Microsoft.UI.Xaml.Controls.InfoBar"/> instance.</returns>
         </member>
         <member name="T:Sudoku.UI.BindingConversions">
@@ -1981,6 +1980,13 @@
             <param name="sender">The object that triggers the event.</param>
             <param name="e">The event arguments provided.</param>
         </member>
+        <member name="M:Sudoku.UI.Views.Pages.SudokuPage.ClearInfoBarsAppBarButton_Click(System.Object,Microsoft.UI.Xaml.RoutedEventArgs)">
+            <summary>
+            Triggers when the button is clicked.
+            </summary>
+            <param name="sender">The object that triggers the event.</param>
+            <param name="e">The event arguments provided.</param>
+        </member>
         <member name="M:Sudoku.UI.Views.Pages.SudokuPage.InitializeComponent">
             <summary>
             InitializeComponent()
@@ -2131,6 +2137,19 @@
             To open the <see cref="T:Microsoft.UI.Xaml.Controls.InfoBar"/>.
             </summary>
             <param name="this">The <see cref="T:Microsoft.UI.Xaml.Controls.InfoBar"/> instance.</param>
+        </member>
+        <member name="M:Microsoft.UI.Xaml.Controls.InfoBarExtensions.WithParentPanel``1(Microsoft.UI.Xaml.Controls.InfoBar,``0,System.Boolean)">
+            <summary>
+            Defines a parent panel that the current <see cref="T:Microsoft.UI.Xaml.Controls.InfoBar"/> stored.
+            </summary>
+            <typeparam name="TPanel">The type of the panel.</typeparam>
+            <param name="this">The <see cref="T:Microsoft.UI.Xaml.Controls.InfoBar"/> instance.</param>
+            <param name="panel">The panel.</param>
+            <param name="insertAtFirstPlace">
+            Indicates whether the control will be inserted at the first place into the parent panel.
+            The default value is <see langword="true"/>.
+            </param>
+            <returns>The reference which is same as the argument <paramref name="this"/>.</returns>
         </member>
         <member name="M:Microsoft.UI.Xaml.Controls.InfoBarExtensions.WithMessage(Microsoft.UI.Xaml.Controls.InfoBar,System.String)">
             <summary>

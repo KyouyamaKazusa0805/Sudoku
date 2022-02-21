@@ -6,16 +6,13 @@
 internal static class ControlFactory
 {
 	/// <summary>
-	/// Creates a <see cref="InfoBar"/> instance.
+	/// Creates a <see cref="Microsoft.UI.Xaml.Controls.InfoBar"/> instance.
 	/// </summary>
 	/// <param name="severity">The severity of the info bar.</param>
-	/// <param name="baseStackPanel">The base stack panel.</param>
-	/// <returns>The <see cref="InfoBar"/> instance.</returns>
+	/// <returns>The <see cref="Microsoft.UI.Xaml.Controls.InfoBar"/> instance.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static InfoBar CreateInfoBar(InfoBarSeverity severity, StackPanel? baseStackPanel = null)
-	{
-		// Create the target control.
-		var targetControl = new InfoBar
+	public static InfoBar InfoBar(InfoBarSeverity severity) =>
+		new()
 		{
 			Title = StringResource.Get(
 				severity switch
@@ -32,15 +29,4 @@ internal static class ControlFactory
 			IsClosable = true,
 			IsIconVisible = true
 		};
-
-		// Add handler that removes the control after close the info bar.
-		if (baseStackPanel is not null)
-		{
-			baseStackPanel.Children.Insert(0, targetControl);
-			targetControl.Closed +=
-				(s, e) => _ = e.Reason == InfoBarCloseReason.CloseButton && baseStackPanel.Children.Remove(s);
-		}
-
-		return targetControl;
-	}
 }

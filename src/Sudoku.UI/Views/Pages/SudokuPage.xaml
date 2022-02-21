@@ -22,7 +22,11 @@
 				x:Name="_cPane" Grid.Row="0" Grid.Column="0" Margin="25,25,0,0"
 				Size="560" OutsideOffset="10" />
 			<ScrollViewer Grid.Row="0" Grid.Column="1" Margin="0,0,25,0">
-				<StackPanel x:Name="_cStackPanelDetails" />
+				<StackPanel x:Name="_cStackPanelDetails">
+					<StackPanel.ChildrenTransitions>
+						<RepositionThemeTransition />
+					</StackPanel.ChildrenTransitions>
+				</StackPanel>
 			</ScrollViewer>
 			<Grid
 				Grid.Row="1" Grid.Column="0" Margin="0,25,0,0"
@@ -32,6 +36,7 @@
 					<RowDefinition />
 				</Grid.RowDefinitions>
 				<Grid.ColumnDefinitions>
+					<ColumnDefinition />
 					<ColumnDefinition />
 					<ColumnDefinition />
 					<ColumnDefinition />
@@ -73,6 +78,10 @@
 						<KeyboardAccelerator Modifiers="Control,Shift" Key="S" />
 					</AppBarButton.KeyboardAccelerators>
 				</AppBarButton>
+				<AppBarButton
+					x:Name="_cClearInfoBars" Grid.Row="0" Grid.Column="5" Icon="ClearSelection"
+					Label="{StaticResource SudokuPage_ClearInfoBars}"
+					Click="ClearInfoBarsAppBarButton_Click" />
 			</Grid>
 		</Grid>
 	</ScrollViewer>

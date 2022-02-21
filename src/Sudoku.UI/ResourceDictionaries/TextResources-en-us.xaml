@@ -10,6 +10,7 @@
 	<x:String x:Key="SudokuPage_Paste">Paste</x:String>
 	<x:String x:Key="SudokuPage_Save">Save</x:String>
 	<x:String x:Key="SudokuPage_Clear">Clear</x:String>
+	<x:String x:Key="SudokuPage_ClearInfoBars">Clear messages</x:String>
 	<x:String x:Key="SudokuPage_InfoBar_Welcome">Welcome to the world of sudoku! For more information about sudoku techniques, you can visit the following link:</x:String>
 	<x:String x:Key="SudokuPage_InfoBar_SeverityInfo">Infomation</x:String>
 	<x:String x:Key="SudokuPage_InfoBar_SeveritySuccess">Success</x:String>
