@@ -36,8 +36,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sudoku.Diagnostics.CodeAnal
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Source Generator Projects", "Source Generator Projects", "{F5E3D8C6-83D3-4AAB-BCAE-0546B0AB42BC}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UI Projects", "UI Projects", "{319301BA-08D0-4603-82D9-5001BD6359F4}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sudoku.UI", "src\Sudoku.UI\Sudoku.UI.csproj", "{C77EC482-143E-47C1-9524-BC3BAE815838}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sudoku.Console", "src\Sudoku.Console\Sudoku.Console.csproj", "{60845EB2-F923-4291-8D22-A1DF1E0FAFC4}"
@@ -296,11 +294,10 @@ Global
 		{906B3060-FD92-41BD-A84D-944AC70B8656} = {F5E3D8C6-83D3-4AAB-BCAE-0546B0AB42BC}
 		{B510DBAC-88BA-4645-8032-A4BFDA724737} = {F5E3D8C6-83D3-4AAB-BCAE-0546B0AB42BC}
 		{5103C052-B032-4C98-9E27-8F47797AEBB4} = {F5E3D8C6-83D3-4AAB-BCAE-0546B0AB42BC}
-		{C77EC482-143E-47C1-9524-BC3BAE815838} = {319301BA-08D0-4603-82D9-5001BD6359F4}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		RESX_ShowErrorsInErrorList = False
-		RESX_Rules = {"EnabledRules":["StringFormat"]}
 		SolutionGuid = {E2B6A644-F820-4AB3-8508-C3C59838C955}
+		RESX_Rules = {"EnabledRules":["StringFormat"]}
+		RESX_ShowErrorsInErrorList = False
 	EndGlobalSection
 EndGlobal
