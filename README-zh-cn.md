@@ -30,6 +30,12 @@ Console.WriteLine(analysisResult.ToString());
 
 以后，我想把这个解决方案用于**几乎所有平台**上。我可能会完成 Win10 App 项目、安卓项目、常用网络平台上的机器人（比如可能 QQ 啊，哔哩哔哩之类的）。
 
+### UI 界面
+
+![](docs/pic/win-ui.png)
+
+程序还在完成之中！
+
 ### 关于该仓库的克隆仓库（Fork）以及代码更新推并请求（Pull Requests）
 
 当然，你可以复制这个仓库到你的账号下，然后做你想做的任何事情。你可以在基于 [MIT](https://github.com/SunnieShine/Sudoku/blob/main/LICENSE) 开源协议的情况下做你任何想做的事情。不过，由于 Gitee 是从 GitHub 拷贝过来的，所以 Gitee 项目暂时不支持任何的代码推并请求，敬请谅解；不过这两个仓库都可以创建 issue。详情请参考下面的“基本信息”一栏的内容。
