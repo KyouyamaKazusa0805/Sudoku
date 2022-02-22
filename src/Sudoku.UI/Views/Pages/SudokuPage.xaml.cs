@@ -1,6 +1,9 @@
 ﻿using Sudoku.Diagnostics.CodeAnalysis;
 using Windows.ApplicationModel.DataTransfer;
+using Windows.Storage;
 using Windows.Storage.Pickers;
+using Windows.Storage.Provider;
+using Windows.UI.ViewManagement;
 
 namespace Sudoku.UI.Views.Pages;
 
@@ -14,6 +17,27 @@ public sealed partial class SudokuPage : Page
 	/// </summary>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public SudokuPage() => InitializeComponent();
+
+
+	/// <summary>
+	/// To determine whether the current application view is in an unsnapped state.
+	/// </summary>
+	/// <returns>The <see cref="bool"/> value indicating that.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	private bool EnsureUnsnapped()
+	{
+		// FilePicker APIs will not work if the application is in a snapped state.
+		// If an app wants to show a FilePicker while snapped, it must attempt to unsnap first
+		bool unsnapped = ApplicationView.Value != ApplicationViewState.Snapped || ApplicationView.TryUnsnap();
+		if (!unsnapped)
+		{
+			_cInfoBoard.AddMessage(
+				InfoBarSeverity.Warning,
+				StringResource.Get("SudokuPage_InfoBar_CannotSnapTheSample"));
+		}
+
+		return unsnapped;
+	}
 
 
 	/// <summary>
@@ -33,6 +57,11 @@ public sealed partial class SudokuPage : Page
 	/// <param name="e">The event arguments provided.</param>
 	private async void OpenAppBarButton_ClickAsync([IsDiscard] object sender, [IsDiscard] RoutedEventArgs e)
 	{
+		if (!EnsureUnsnapped())
+		{
+			return;
+		}
+
 		var file = await new FileOpenPicker { SuggestedStartLocation = PickerLocationId.DocumentsLibrary }
 			.AddFileTypeFilter(CommonFileExtensions.Text)
 			.AwareHandleOnWin32()
@@ -134,6 +163,54 @@ public sealed partial class SudokuPage : Page
 		// Loads the grid.
 		_cPane.Grid = grid;
 		_cInfoBoard.AddMessage(InfoBarSeverity.Success, StringResource.Get("SudokuPage_InfoBar_PasteSuccessfully"));
+	}
+
+	/// <summary>
+	/// Triggers when the button is clicked.
+	/// </summary>
+	/// <param name="sender">The object that triggers the event.</param>
+	/// <param name="e">The event arguments provided.</param>
+	private async void SaveAppBarButton_ClickAsync([IsDiscard] object sender, [IsDiscard] RoutedEventArgs e)
+	{
+		if (!EnsureUnsnapped())
+		{
+			return;
+		}
+
+		var file = await new FileSavePicker { SuggestedStartLocation = PickerLocationId.DocumentsLibrary }
+			.WithSuggestedFileName("Sudoku")
+			.AddFileTypeFilter(StringResource.Get("FileExtension_TextDescription"), new List<string> { ".txt" })
+			.AwareHandleOnWin32()
+			.PickSaveFileAsync();
+
+		if (file is not { Name: var fileName })
+		{
+			return;
+		}
+
+		// Prevent updates to the remote version of the file until we finish making changes
+		// and call CompleteUpdatesAsync.
+		CachedFileManager.DeferUpdates(file);
+
+		// Writes to the file.
+		await FileIO.WriteTextAsync(file, _cPane.Grid.ToString("#"));
+
+		// Let Windows know that we're finished changing the file so the other app can update
+		// the remote version of the file.
+		// Completing updates may require Windows to ask for user input.
+		var status = await CachedFileManager.CompleteUpdatesAsync(file);
+		if (status == FileUpdateStatus.Complete)
+		{
+			string a = StringResource.Get("SudokuPage_InfoBar_SaveSuccessfully1");
+			string b = StringResource.Get("SudokuPage_InfoBar_SaveSuccessfully2");
+			_cInfoBoard.AddMessage(InfoBarSeverity.Success, $"{a}{fileName}{b}");
+		}
+		else
+		{
+			string a = StringResource.Get("SudokuPage_InfoBar_SaveFailed1");
+			string b = StringResource.Get("SudokuPage_InfoBar_SaveFailed2");
+			_cInfoBoard.AddMessage(InfoBarSeverity.Error, $"{a}{fileName}{b}");
+		}
 	}
 
 	/// <summary>

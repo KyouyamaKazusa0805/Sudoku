@@ -29,6 +29,11 @@
 	<x:String x:Key="SudokuPage_InfoBar_PasteIsInvalid">Failed to paste text because the text cannot be parsed to a sudoku grid.</x:String>
 	<x:String x:Key="SudokuPage_InfoBar_PastePuzzleIsNotUnique">The puzzle doesn't contain a valid solution, or contains multiple solutions.</x:String>
 	<x:String x:Key="SudokuPage_InfoBar_PasteSuccessfully">Paste successfully.</x:String>
+	<x:String x:Key="SudokuPage_InfoBar_SaveSuccessfully1">File "</x:String>
+	<x:String x:Key="SudokuPage_InfoBar_SaveSuccessfully2">" is saved successfully.</x:String>
+	<x:String x:Key="SudokuPage_InfoBar_SaveFailed1">File "</x:String>
+	<x:String x:Key="SudokuPage_InfoBar_SaveFailed2">" is failed to save.</x:String>
+	<x:String x:Key="SudokuPage_InfoBar_CannotSnapTheSample">The program is snapped by a group and cannot be unsnapped.</x:String>
 	<x:String x:Key="AboutPage_DetailDescription">Here displays the details about the application.</x:String>
 	<x:String x:Key="AboutPage_Author">Author</x:String>
 	<x:String x:Key="AboutPage_AuthorName">Sunnie-Shine</x:String>
@@ -52,4 +57,5 @@
 	<x:String x:Key="AboutPage_Framework_DotnetRuntime" xml:space="preserve">.NET APIs: </x:String>
 	<x:String x:Key="Link_SudokuTutorial">https://www.bilibili.com/read/readlist/rl291187</x:String>
 	<x:String x:Key="Link_SudokuTutorialDescription">Bilibili Sudoku Tutorial Page (rl291187)</x:String>
+	<x:String x:Key="FileExtension_TextDescription">Plain sudoku text code</x:String>
 </ResourceDictionary>

@@ -70,7 +70,8 @@
 					</AppBarButton.KeyboardAccelerators>
 				</AppBarButton>
 				<AppBarButton
-					Grid.Row="0" Grid.Column="3" Icon="Save" Label="{StaticResource SudokuPage_Save}">
+					Grid.Row="0" Grid.Column="3" Icon="Save" Label="{StaticResource SudokuPage_Save}"
+					Click="SaveAppBarButton_ClickAsync">
 					<AppBarButton.KeyboardAccelerators>
 						<KeyboardAccelerator Modifiers="Control" Key="S" />
 					</AppBarButton.KeyboardAccelerators>

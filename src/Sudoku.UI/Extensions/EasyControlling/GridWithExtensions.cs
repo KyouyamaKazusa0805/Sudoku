@@ -4,7 +4,7 @@
 /// Provides extension methods on <see cref="GridLayout"/>.
 /// </summary>
 /// <seealso cref="GridLayout"/>
-internal static class GridExtensions
+internal static class GridWithExtensions
 {
 	/// <summary>
 	/// Sets the info on <see cref="GridLayout"/>, and returns the reference

@@ -4,7 +4,7 @@
 /// Provides extension methods on <see cref="InfoBar"/>.
 /// </summary>
 /// <seealso cref="InfoBar"/>
-internal static class InfoBarExtensions
+internal static class InfoBarWithExtensions
 {
 	/// <summary>
 	/// To open the <see cref="InfoBar"/>.

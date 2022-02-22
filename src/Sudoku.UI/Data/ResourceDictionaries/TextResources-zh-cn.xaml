@@ -29,6 +29,9 @@
 	<x:String x:Key="SudokuPage_InfoBar_PasteIsInvalid">文字无法解析为合适的数独题目，粘贴失败。</x:String>
 	<x:String x:Key="SudokuPage_InfoBar_PastePuzzleIsNotUnique">题目无解，或者题目多解。</x:String>
 	<x:String x:Key="SudokuPage_InfoBar_PasteSuccessfully">粘贴的题目解析完成。</x:String>
+	<x:String x:Key="SudokuPage_InfoBar_SaveSuccessfully1">文件“</x:String>
+	<x:String x:Key="SudokuPage_InfoBar_SaveSuccessfully2">”已成功保存。</x:String>
+	<x:String x:Key="SudokuPage_InfoBar_CannotSnapTheSample">读取或保存文件的操作要求相同程序不可合并为一个图标组（在任务栏里）的时候才能使用，否则将无法区分程序使用情况。</x:String>
 	<x:String x:Key="AboutPage_DetailDescription">本页面列举一些关于整个程序有关的作者或项目信息。</x:String>
 	<x:String x:Key="AboutPage_Author">作者</x:String>
 	<x:String x:Key="AboutPage_AuthorName">小向（Sunnie-Shine）</x:String>
@@ -51,4 +54,5 @@
 	<x:String x:Key="AboutPage_Framework_WindowsUI">Windows UI 3：</x:String>
 	<x:String x:Key="AboutPage_Framework_DotnetRuntime">.NET 框架 API：</x:String>
 	<x:String x:Key="Link_SudokuTutorialDescription">哔哩哔哩数独教程专栏（rl291187）</x:String>
+	<x:String x:Key="FileExtension_TextDescription">数独代码文本</x:String>
 </ResourceDictionary>

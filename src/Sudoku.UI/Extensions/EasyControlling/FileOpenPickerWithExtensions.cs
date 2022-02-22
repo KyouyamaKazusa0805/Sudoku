@@ -1,12 +1,10 @@
-﻿using Windows.Storage.Pickers;
-
-namespace Microsoft.UI.Xaml.Controls;
+﻿namespace Windows.Storage.Pickers;
 
 /// <summary>
 /// Provides the extension methods on <see cref="FileOpenPicker"/>.
 /// </summary>
 /// <seealso cref="FileOpenPicker"/>
-internal static class FileOpenPickerExtensions
+internal static class FileOpenPickerWithExtensions
 {
 	/// <summary>
 	/// Adds the file type filter into the <see cref="FileOpenPicker"/> instance.

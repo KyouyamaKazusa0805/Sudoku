@@ -2242,6 +2242,12 @@
             Initializes a <see cref="T:Sudoku.UI.Views.Pages.SudokuPage"/> instance.
             </summary>
         </member>
+        <member name="M:Sudoku.UI.Views.Pages.SudokuPage.EnsureUnsnapped">
+            <summary>
+            To determine whether the current application view is in an unsnapped state.
+            </summary>
+            <returns>The <see cref="T:System.Boolean"/> value indicating that.</returns>
+        </member>
         <member name="M:Sudoku.UI.Views.Pages.SudokuPage.Page_Loaded(System.Object,Microsoft.UI.Xaml.RoutedEventArgs)">
             <summary>
             Triggers when the current page is loaded.
@@ -2271,6 +2277,13 @@
             <param name="e">The event arguments provided.</param>
         </member>
         <member name="M:Sudoku.UI.Views.Pages.SudokuPage.PasteAppBarButton_ClickAsync(System.Object,Microsoft.UI.Xaml.RoutedEventArgs)">
+            <summary>
+            Triggers when the button is clicked.
+            </summary>
+            <param name="sender">The object that triggers the event.</param>
+            <param name="e">The event arguments provided.</param>
+        </member>
+        <member name="M:Sudoku.UI.Views.Pages.SudokuPage.SaveAppBarButton_ClickAsync(System.Object,Microsoft.UI.Xaml.RoutedEventArgs)">
             <summary>
             Triggers when the button is clicked.
             </summary>
@@ -2362,13 +2375,13 @@
             GetXmlnsDefinitions()
             </summary>
         </member>
-        <member name="T:Microsoft.UI.Xaml.Controls.FileOpenPickerExtensions">
+        <member name="T:Windows.Storage.Pickers.FileOpenPickerWithExtensions">
             <summary>
             Provides the extension methods on <see cref="T:Windows.Storage.Pickers.FileOpenPicker"/>.
             </summary>
             <seealso cref="T:Windows.Storage.Pickers.FileOpenPicker"/>
         </member>
-        <member name="M:Microsoft.UI.Xaml.Controls.FileOpenPickerExtensions.AddFileTypeFilter(Windows.Storage.Pickers.FileOpenPicker,System.String)">
+        <member name="M:Windows.Storage.Pickers.FileOpenPickerWithExtensions.AddFileTypeFilter(Windows.Storage.Pickers.FileOpenPicker,System.String)">
             <summary>
             Adds the file type filter into the <see cref="T:Windows.Storage.Pickers.FileOpenPicker"/> instance.
             </summary>
@@ -2376,7 +2389,7 @@
             <param name="extension">The extension to be added.</param>
             <returns>The reference that is same as argument <paramref name="this"/>.</returns>
         </member>
-        <member name="M:Microsoft.UI.Xaml.Controls.FileOpenPickerExtensions.AddFileTypeFilters(Windows.Storage.Pickers.FileOpenPicker,System.String[])">
+        <member name="M:Windows.Storage.Pickers.FileOpenPickerWithExtensions.AddFileTypeFilters(Windows.Storage.Pickers.FileOpenPicker,System.String[])">
             <summary>
             Adds the file type filters into the <see cref="T:Windows.Storage.Pickers.FileOpenPicker"/> instance.
             </summary>
@@ -2384,13 +2397,73 @@
             <param name="extensions">The extensions to be added.</param>
             <returns>The reference that is same as argument <paramref name="this"/>.</returns>
         </member>
-        <member name="T:Microsoft.UI.Xaml.Controls.GridExtensions">
+        <member name="T:Windows.Storage.Pickers.FileSavePickerWithExtensions">
+            <summary>
+            Provides the extension methods on <see cref="T:Windows.Storage.Pickers.FileSavePicker"/>.
+            </summary>
+            <seealso cref="T:Windows.Storage.Pickers.FileSavePicker"/>
+        </member>
+        <member name="M:Windows.Storage.Pickers.FileSavePickerWithExtensions.WithSuggestedFileName(Windows.Storage.Pickers.FileSavePicker,System.String)">
+            <summary>
+            Adds the suggested file name into the specified <see cref="T:Windows.Storage.Pickers.FileSavePicker"/> instance.
+            </summary>
+            <param name="this">The <see cref="T:Windows.Storage.Pickers.FileSavePicker"/> instance.</param>
+            <param name="suggestedFileName">The suggested file name.</param>
+            <returns>The reference that is same as the argument <paramref name="this"/>.</returns>
+        </member>
+        <member name="M:Windows.Storage.Pickers.FileSavePickerWithExtensions.AddFileTypeFilter(Windows.Storage.Pickers.FileSavePicker,System.String,System.Collections.Generic.IList{System.String})">
+            <summary>
+            Adds a new file type filter into the specified <see cref="T:Windows.Storage.Pickers.FileSavePicker"/> instance.
+            </summary>
+            <param name="this">The <see cref="T:Windows.Storage.Pickers.FileSavePicker"/> instance.</param>
+            <param name="name">The name of the file extension set.</param>
+            <param name="extensions">The file extensions that belongs to <paramref name="name"/>.</param>
+            <returns>The reference that is same as the argument <paramref name="this"/>.</returns>
+        </member>
+        <member name="T:Windows.Storage.Pickers.FileOpenPickerExtensions">
+            <summary>
+            Provides extension methods on <see cref="T:Windows.Storage.Pickers.FileOpenPicker"/>.
+            </summary>
+            <seealso cref="T:Windows.Storage.Pickers.FileOpenPicker"/>
+        </member>
+        <member name="M:Windows.Storage.Pickers.FileOpenPickerExtensions.AwareHandleOnWin32(Windows.Storage.Pickers.FileOpenPicker)">
+            <summary>
+            To aware the handle of the window, and apply to the <see cref="T:Windows.Storage.Pickers.FileOpenPicker"/> instance.
+            </summary>
+            <param name="this">The instance.</param>
+            <returns>The reference that is same as the argument <paramref name="this"/>.</returns>
+        </member>
+        <member name="T:Windows.Storage.Pickers.FileSavePickerExtensions">
+            <summary>
+            Provides extension methods on <see cref="T:Windows.Storage.Pickers.FileSavePicker"/>.
+            </summary>
+            <seealso cref="T:Windows.Storage.Pickers.FileSavePicker"/>
+        </member>
+        <member name="M:Windows.Storage.Pickers.FileSavePickerExtensions.AwareHandleOnWin32(Windows.Storage.Pickers.FileSavePicker)">
+            <summary>
+            To aware the handle of the window, and apply to the <see cref="T:Windows.Storage.Pickers.FileSavePicker"/> instance.
+            </summary>
+            <param name="this">The instance.</param>
+            <returns>The reference that is same as the argument <paramref name="this"/>.</returns>
+        </member>
+        <member name="T:Windows.Foundation.PointExtensions">
+            <summary>
+            Provides extension methods on <see cref="T:Windows.Foundation.Point"/>.
+            </summary>
+            <seealso cref="T:Windows.Foundation.Point"/>
+        </member>
+        <member name="M:Windows.Foundation.PointExtensions.Deconstruct(Windows.Foundation.Point@,System.Double@,System.Double@)">
+            <summary>
+            Deconstruct the instance to multiple values.
+            </summary>
+        </member>
+        <member name="T:Microsoft.UI.Xaml.Controls.GridWithExtensions">
             <summary>
             Provides extension methods on <see cref="T:Microsoft.UI.Xaml.Controls.Grid"/>.
             </summary>
             <seealso cref="T:Microsoft.UI.Xaml.Controls.Grid"/>
         </member>
-        <member name="M:Microsoft.UI.Xaml.Controls.GridExtensions.WithGridLayout``1(``0,System.Int32,System.Int32,System.Int32,System.Int32)">
+        <member name="M:Microsoft.UI.Xaml.Controls.GridWithExtensions.WithGridLayout``1(``0,System.Int32,System.Int32,System.Int32,System.Int32)">
             <summary>
             Sets the info on <see cref="T:Microsoft.UI.Xaml.Controls.Grid"/>, and returns the reference
             of the argument <paramref name="this"/>.
@@ -2411,7 +2484,7 @@
             </param>
             <returns>The reference that is same as the argument <paramref name="this"/>.</returns>
         </member>
-        <member name="M:Microsoft.UI.Xaml.Controls.GridExtensions.WithRowDefinitionsCount(Microsoft.UI.Xaml.Controls.Grid,System.Int32)">
+        <member name="M:Microsoft.UI.Xaml.Controls.GridWithExtensions.WithRowDefinitionsCount(Microsoft.UI.Xaml.Controls.Grid,System.Int32)">
             <summary>
             Creates the specified number of new <see cref="T:Microsoft.UI.Xaml.Controls.RowDefinition"/> instances and adds into the target
             <see cref="T:Microsoft.UI.Xaml.Controls.Grid"/> instance.
@@ -2423,7 +2496,7 @@
             Throws when the argument <paramref name="count"/> is negative.
             </exception>
         </member>
-        <member name="M:Microsoft.UI.Xaml.Controls.GridExtensions.WithColumnDefinitionsCount(Microsoft.UI.Xaml.Controls.Grid,System.Int32)">
+        <member name="M:Microsoft.UI.Xaml.Controls.GridWithExtensions.WithColumnDefinitionsCount(Microsoft.UI.Xaml.Controls.Grid,System.Int32)">
             <summary>
             Creates the specified number of new <see cref="T:Microsoft.UI.Xaml.Controls.ColumnDefinition"/> instances and adds into the target
             <see cref="T:Microsoft.UI.Xaml.Controls.Grid"/> instance.
@@ -2435,19 +2508,19 @@
             Throws when the argument <paramref name="count"/> is negative.
             </exception>
         </member>
-        <member name="T:Microsoft.UI.Xaml.Controls.InfoBarExtensions">
+        <member name="T:Microsoft.UI.Xaml.Controls.InfoBarWithExtensions">
             <summary>
             Provides extension methods on <see cref="T:Microsoft.UI.Xaml.Controls.InfoBar"/>.
             </summary>
             <seealso cref="T:Microsoft.UI.Xaml.Controls.InfoBar"/>
         </member>
-        <member name="M:Microsoft.UI.Xaml.Controls.InfoBarExtensions.Open(Microsoft.UI.Xaml.Controls.InfoBar)">
+        <member name="M:Microsoft.UI.Xaml.Controls.InfoBarWithExtensions.Open(Microsoft.UI.Xaml.Controls.InfoBar)">
             <summary>
             To open the <see cref="T:Microsoft.UI.Xaml.Controls.InfoBar"/>.
             </summary>
             <param name="this">The <see cref="T:Microsoft.UI.Xaml.Controls.InfoBar"/> instance.</param>
         </member>
-        <member name="M:Microsoft.UI.Xaml.Controls.InfoBarExtensions.WithParentPanel``1(Microsoft.UI.Xaml.Controls.InfoBar,``0,System.Boolean)">
+        <member name="M:Microsoft.UI.Xaml.Controls.InfoBarWithExtensions.WithParentPanel``1(Microsoft.UI.Xaml.Controls.InfoBar,``0,System.Boolean)">
             <summary>
             Defines a parent panel that the current <see cref="T:Microsoft.UI.Xaml.Controls.InfoBar"/> stored.
             </summary>
@@ -2460,7 +2533,7 @@
             </param>
             <returns>The reference which is same as the argument <paramref name="this"/>.</returns>
         </member>
-        <member name="M:Microsoft.UI.Xaml.Controls.InfoBarExtensions.WithMessage(Microsoft.UI.Xaml.Controls.InfoBar,System.String)">
+        <member name="M:Microsoft.UI.Xaml.Controls.InfoBarWithExtensions.WithMessage(Microsoft.UI.Xaml.Controls.InfoBar,System.String)">
             <summary>
             Sets the property <see cref="P:Microsoft.UI.Xaml.Controls.InfoBar.Content"/> to the target string value.
             </summary>
@@ -2469,7 +2542,7 @@
             <returns>The reference that is same as the argument <paramref name="this"/>.</returns>
             <seealso cref="P:Microsoft.UI.Xaml.Controls.InfoBar.Content"/>
         </member>
-        <member name="M:Microsoft.UI.Xaml.Controls.InfoBarExtensions.WithLinkButton(Microsoft.UI.Xaml.Controls.InfoBar,System.String,System.String)">
+        <member name="M:Microsoft.UI.Xaml.Controls.InfoBarWithExtensions.WithLinkButton(Microsoft.UI.Xaml.Controls.InfoBar,System.String,System.String)">
             <summary>
             Sets the property <see cref="P:Microsoft.UI.Xaml.Controls.InfoBar.ActionButton"/> to a <see cref="T:Microsoft.UI.Xaml.Controls.HyperlinkButton"/>.
             </summary>
@@ -2508,30 +2581,6 @@
             <typeparam name="TWindow">The type of the window.</typeparam>
             <param name="this">The <typeparamref name="TWindow"/>-typed instance.</param>
             <returns>The <see cref="T:Microsoft.UI.Windowing.AppWindow"/> instance.</returns>
-        </member>
-        <member name="T:Windows.Storage.Pickers.FileOpenPickerExtensions">
-            <summary>
-            Provides extension methods on <see cref="T:Windows.Storage.Pickers.FileOpenPicker"/>.
-            </summary>
-            <seealso cref="T:Windows.Storage.Pickers.FileOpenPicker"/>
-        </member>
-        <member name="M:Windows.Storage.Pickers.FileOpenPickerExtensions.AwareHandleOnWin32(Windows.Storage.Pickers.FileOpenPicker)">
-            <summary>
-            To aware the handle of the window, and apply to the <see cref="T:Windows.Storage.Pickers.FileOpenPicker"/> instance.
-            </summary>
-            <param name="this">The instance.</param>
-            <returns>The reference that is same as the argument <paramref name="this"/>.</returns>
-        </member>
-        <member name="T:Windows.Foundation.PointExtensions">
-            <summary>
-            Provides extension methods on <see cref="T:Windows.Foundation.Point"/>.
-            </summary>
-            <seealso cref="T:Windows.Foundation.Point"/>
-        </member>
-        <member name="M:Windows.Foundation.PointExtensions.Deconstruct(Windows.Foundation.Point@,System.Double@,System.Double@)">
-            <summary>
-            Deconstruct the instance to multiple values.
-            </summary>
         </member>
     </members>
 </doc>
