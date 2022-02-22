@@ -76,12 +76,6 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Page Update="Views\Controls\InfoBarBoard.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </Page>
-	</ItemGroup>
-
-	<ItemGroup>
 		<Page Update="ResourceDictionaries\TextResources-zh-cn.xaml">
 			<Generator>MSBuild:Compile</Generator>
 		</Page>
@@ -104,6 +98,9 @@
 			<Generator>MSBuild:Compile</Generator>
 		</Page>
 		<Page Update="Views\Controls\SudokuPane.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</Page>
+		<Page Update="Views\Controls\InfoBarBoard.xaml">
 			<Generator>MSBuild:Compile</Generator>
 		</Page>
 	</ItemGroup>
