@@ -80,6 +80,45 @@ internal static class PointConversions
 		GetLine(paneSize, outsideOffset, order, 27);
 
 	/// <summary>
+	/// Gets the cell index via the <see cref="Point"/> value through the mouse interaction.
+	/// </summary>
+	/// <param name="point">The point value.</param>
+	/// <param name="paneSize">The pane size.</param>
+	/// <param name="outsideOffset">The outside offset.</param>
+	/// <returns>
+	/// The cell index. If the argument <paramref name="point"/> is invalid,
+	/// the return value will be -1.
+	/// </returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static int GetCell(in Point point, double paneSize, double outsideOffset) =>
+		point with { X = point.X - outsideOffset, Y = point.Y - outsideOffset } is var (x, y)
+			&& GridSize(paneSize, outsideOffset) is var gs
+			&& x >= 0 && x <= gs && y >= 0 && y <= gs
+			&& CellSize(paneSize, outsideOffset) is var cs
+			&& (int)(y / cs) * 9 + (int)(x / cs) is var result and >= 0 and < 81
+			? result
+			: -1;
+
+	/// <summary>
+	/// Gets the candidate index via the <see cref="Point"/> value through the mouse interaction.
+	/// </summary>
+	/// <param name="point">The point value.</param>
+	/// <param name="paneSize">The pane size.</param>
+	/// <param name="outsideOffset">The outside offset.</param>
+	/// <returns>
+	/// The candidate index. If the argument <paramref name="point"/> is invalid,
+	/// the return value will be -1.
+	/// </returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static int GetCandidate(in Point point, double paneSize, double outsideOffset) =>
+		point is var (x, y)
+			&& CandidateSize(paneSize, outsideOffset) is var cs
+			&& (int)((y - outsideOffset) / cs) % 3 * 3 + (int)((x - outsideOffset) / cs) % 3 is var candidateOffset
+			&& GetCell(point, paneSize, outsideOffset) is var cellOffset and not -1
+			? cellOffset * 9 + candidateOffset
+			: -1;
+
+	/// <summary>
 	/// Gets the start and end point that corresponds to the target line at the specified index,
 	/// with the specified line weight.
 	/// </summary>

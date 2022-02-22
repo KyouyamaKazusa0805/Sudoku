@@ -147,6 +147,30 @@
             <param name="order">The index of the target candidate line. The value must be between 0 and 27.</param>
             <returns>The two points indicating the start and end point of the line.</returns>
         </member>
+        <member name="M:Sudoku.UI.Drawing.PointConversions.GetCell(Windows.Foundation.Point@,System.Double,System.Double)">
+            <summary>
+            Gets the cell index via the <see cref="T:Windows.Foundation.Point"/> value through the mouse interaction.
+            </summary>
+            <param name="point">The point value.</param>
+            <param name="paneSize">The pane size.</param>
+            <param name="outsideOffset">The outside offset.</param>
+            <returns>
+            The cell index. If the argument <paramref name="point"/> is invalid,
+            the return value will be -1.
+            </returns>
+        </member>
+        <member name="M:Sudoku.UI.Drawing.PointConversions.GetCandidate(Windows.Foundation.Point@,System.Double,System.Double)">
+            <summary>
+            Gets the candidate index via the <see cref="T:Windows.Foundation.Point"/> value through the mouse interaction.
+            </summary>
+            <param name="point">The point value.</param>
+            <param name="paneSize">The pane size.</param>
+            <param name="outsideOffset">The outside offset.</param>
+            <returns>
+            The candidate index. If the argument <paramref name="point"/> is invalid,
+            the return value will be -1.
+            </returns>
+        </member>
         <member name="M:Sudoku.UI.Drawing.PointConversions.GetLine(System.Double,System.Double,System.Byte,System.Int32)">
             <summary>
             Gets the start and end point that corresponds to the target line at the specified index,
@@ -1458,6 +1482,21 @@
             Indicates the inner grid.
             </summary>
         </member>
+        <member name="M:Sudoku.UI.Drawing.Shapes.SudokuGrid.#ctor(System.Boolean,System.Double,System.Double,Windows.UI.Color,Windows.UI.Color,Windows.UI.Color,System.String,System.String,System.Double,System.Double)">
+            <summary>
+            Initializes a <see cref="T:Sudoku.UI.Drawing.Shapes.SudokuGrid"/> instance via the details.
+            </summary>
+            <param name="showCandidates">Whether the grid displays candidates.</param>
+            <param name="paneSize">The pane size.</param>
+            <param name="outsideOffset">The outside offset.</param>
+            <param name="givenColor">The given text color.</param>
+            <param name="modifiableColor">The modifiable text color.</param>
+            <param name="candidateColor">The candidate text color.</param>
+            <param name="valueFontName">The given or modifiable font name.</param>
+            <param name="candidateFontName">The candidate font name.</param>
+            <param name="valueFontSize">The value font size.</param>
+            <param name="candidateFontSize">The candidate font size.</param>
+        </member>
         <member name="M:Sudoku.UI.Drawing.Shapes.SudokuGrid.#ctor(Sudoku.Collections.Grid@,System.Boolean,System.Double,System.Double,Windows.UI.Color,Windows.UI.Color,Windows.UI.Color,System.String,System.String,System.Double,System.Double)">
             <summary>
             Initializes a <see cref="T:Sudoku.UI.Drawing.Shapes.SudokuGrid"/> instance via the details.
@@ -1529,16 +1568,41 @@
             Gets or sets the grid.
             </summary>
         </member>
+        <member name="M:Sudoku.UI.Drawing.Shapes.SudokuGrid.MakeDigit(System.Int32,System.Int32)">
+            <summary>
+            To make the specified cell fill the specified digit.
+            </summary>
+            <param name="cell">The cell that the conclusion is from.</param>
+            <param name="digit">The digit made.</param>
+        </member>
+        <member name="M:Sudoku.UI.Drawing.Shapes.SudokuGrid.EliminateDigit(System.Int32,System.Int32)">
+            <summary>
+            To eliminate the specified digit from the specified cell.
+            </summary>
+            <param name="cell">The cell that the eliminated digit is from.</param>
+            <param name="digit">The digit eliminated.</param>
+        </member>
         <member name="M:Sudoku.UI.Drawing.Shapes.SudokuGrid.Equals(Sudoku.UI.Drawing.Shapes.DrawingElement)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.UI.Drawing.Shapes.SudokuGrid.GetHashCode">
             <inheritdoc/>
         </member>
+        <member name="M:Sudoku.UI.Drawing.Shapes.SudokuGrid.GetGridByReference">
+            <summary>
+            Gets the inner grid instance by reference.
+            </summary>
+            <returns>The reference of the grid.</returns>
+        </member>
         <member name="M:Sudoku.UI.Drawing.Shapes.SudokuGrid.GetControl">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.UI.Drawing.Shapes.SudokuGrid.CoverGrid(Sudoku.Collections.Grid@)">
+        <member name="M:Sudoku.UI.Drawing.Shapes.SudokuGrid.UpdateView">
+            <summary>
+            To update the view via the current grid.
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Drawing.Shapes.SudokuGrid.UpdateView(Sudoku.Collections.Grid@)">
             <summary>
             To cover the grid info.
             </summary>
@@ -1829,12 +1893,6 @@
             </summary>
             <seealso cref="P:Sudoku.UI.Views.Controls.SudokuPane.OutsideOffset"/>
         </member>
-        <member name="F:Sudoku.UI.Views.Controls.SudokuPane._grid">
-            <summary>
-            Indicates the grid used, which is the backing field of the property <see cref="P:Sudoku.UI.Views.Controls.SudokuPane.Grid"/>.
-            </summary>
-            <seealso cref="P:Sudoku.UI.Views.Controls.SudokuPane.Grid"/>
-        </member>
         <member name="M:Sudoku.UI.Views.Controls.SudokuPane.#ctor">
             <summary>
             Initializes a <see cref="T:Sudoku.UI.Views.Controls.SudokuPane"/> instance.
@@ -1850,22 +1908,41 @@
             Gets or sets the outside offset to the view model.
             </summary>
         </member>
+        <member name="P:Sudoku.UI.Views.Controls.SudokuPane.CurrentCell">
+            <summary>
+            Indicates the current cell.
+            </summary>
+        </member>
         <member name="P:Sudoku.UI.Views.Controls.SudokuPane.Grid">
             <summary>
-            Gets or sets the current grid used.
+            Gets or sets the current used grid.
             </summary>
-            <remarks>
-            For the consideration for the performance of the type <see cref="T:Sudoku.Collections.Grid"/>, we suggest you
-            use the method <see cref="M:Sudoku.UI.Views.Controls.SudokuPane.GetGridByReference"/> instead of the property if you want to get
-            the inner <see cref="T:Sudoku.Collections.Grid"/> instance.
-            </remarks>
-            <seealso cref="M:Sudoku.UI.Views.Controls.SudokuPane.GetGridByReference"/>
         </member>
-        <member name="M:Sudoku.UI.Views.Controls.SudokuPane.GetGridByReference">
+        <member name="M:Sudoku.UI.Views.Controls.SudokuPane.MakeDigit(System.Int32,System.Int32)">
             <summary>
-            Gets the reference of the sudoku grid.
+            To make the cell fill the digit.
             </summary>
-            <returns>The reference of the sudoku grid.</returns>
+            <param name="cell">The cell.</param>
+            <param name="digit">The digit.</param>
+        </member>
+        <member name="M:Sudoku.UI.Views.Controls.SudokuPane.EliminateDigit(System.Int32,System.Int32)">
+            <summary>
+            To eliminate the digit from the grid.
+            </summary>
+            <param name="cell">The cell.</param>
+            <param name="digit">The digit.</param>
+        </member>
+        <member name="M:Sudoku.UI.Views.Controls.SudokuPane.GridByReference">
+            <summary>
+            Gets or sets the current used grid by reference. The method will return by reference, in order to
+            copy the reference instead of the instance itself, to optimize the memory allocation.
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Views.Controls.SudokuPane.GetSudokuGridViewModel">
+            <summary>
+            Gets the <see cref="T:Sudoku.UI.Drawing.Shapes.SudokuGrid"/> instance as the view model.
+            </summary>
+            <returns>The <see cref="T:Sudoku.UI.Drawing.Shapes.SudokuGrid"/> instance.</returns>
         </member>
         <member name="M:Sudoku.UI.Views.Controls.SudokuPane.SudokuPane_Loaded(System.Object,Microsoft.UI.Xaml.RoutedEventArgs)">
             <summary>
@@ -2027,6 +2104,20 @@
         <member name="M:Sudoku.UI.Views.Pages.SudokuPage.ClearInfoBarsAppBarButton_Click(System.Object,Microsoft.UI.Xaml.RoutedEventArgs)">
             <summary>
             Triggers when the button is clicked.
+            </summary>
+            <param name="sender">The object that triggers the event.</param>
+            <param name="e">The event arguments provided.</param>
+        </member>
+        <member name="M:Sudoku.UI.Views.Pages.SudokuPage.MakeOrDeleteMenuItem_Click(System.Object,Microsoft.UI.Xaml.RoutedEventArgs)">
+            <summary>
+            Triggers when the target <see cref="T:Microsoft.UI.Xaml.Controls.MenuFlyoutItem"/> is clicked.
+            </summary>
+            <param name="sender">The object that triggers the event.</param>
+            <param name="e">The event arguments provided.</param>
+        </member>
+        <member name="M:Sudoku.UI.Views.Pages.SudokuPage.SudokuPane_RightTapped(System.Object,Microsoft.UI.Xaml.Input.RightTappedRoutedEventArgs)">
+            <summary>
+            Triggers when the sudoku pane <see cref="F:Sudoku.UI.Views.Pages.SudokuPage._cPane"/> is tapped via the right mouse.
             </summary>
             <param name="sender">The object that triggers the event.</param>
             <param name="e">The event arguments provided.</param>

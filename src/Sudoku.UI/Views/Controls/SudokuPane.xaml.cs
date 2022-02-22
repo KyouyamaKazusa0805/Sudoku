@@ -41,12 +41,6 @@ public sealed partial class SudokuPane : UserControl
 	/// </summary>
 	/// <seealso cref="OutsideOffset"/>
 	private double _outsideOffset;
-
-	/// <summary>
-	/// Indicates the grid used, which is the backing field of the property <see cref="Grid"/>.
-	/// </summary>
-	/// <seealso cref="Grid"/>
-	private Grid _grid = Grid.Empty;
 	#endregion
 
 
@@ -121,41 +115,54 @@ public sealed partial class SudokuPane : UserControl
 	}
 
 	/// <summary>
-	/// Gets or sets the current grid used.
+	/// Indicates the current cell.
 	/// </summary>
-	/// <remarks>
-	/// For the consideration for the performance of the type <see cref="Collections.Grid"/>, we suggest you
-	/// use the method <see cref="GetGridByReference"/> instead of the property if you want to get
-	/// the inner <see cref="Collections.Grid"/> instance.
-	/// </remarks>
-	/// <seealso cref="GetGridByReference"/>
+	public int CurrentCell { get; internal set; }
+
+	/// <summary>
+	/// Gets or sets the current used grid.
+	/// </summary>
 	public Grid Grid
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => _grid;
+		get => GetSudokuGridViewModel().Grid;
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		set
-		{
-			if (_grid == value)
-			{
-				return;
-			}
-
-			_grid = value;
-			_drawingElements.OfType<SudokuGrid>().Single().Grid = value;
-		}
+		set => GetSudokuGridViewModel().Grid = value;
 	}
 	#endregion
 
 
 	#region Normal instance methods
 	/// <summary>
-	/// Gets the reference of the sudoku grid.
+	/// To make the cell fill the digit.
 	/// </summary>
-	/// <returns>The reference of the sudoku grid.</returns>
+	/// <param name="cell">The cell.</param>
+	/// <param name="digit">The digit.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public ref readonly Grid GetGridByReference() => ref _grid;
+	public void MakeDigit(int cell, int digit) => GetSudokuGridViewModel().MakeDigit(cell, digit);
+
+	/// <summary>
+	/// To eliminate the digit from the grid.
+	/// </summary>
+	/// <param name="cell">The cell.</param>
+	/// <param name="digit">The digit.</param>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public void EliminateDigit(int cell, int digit) => GetSudokuGridViewModel().EliminateDigit(cell, digit);
+
+	/// <summary>
+	/// Gets or sets the current used grid by reference. The method will return by reference, in order to
+	/// copy the reference instead of the instance itself, to optimize the memory allocation.
+	/// </summary>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public ref readonly Grid GridByReference() => ref GetSudokuGridViewModel().GetGridByReference();
+
+	/// <summary>
+	/// Gets the <see cref="SudokuGrid"/> instance as the view model.
+	/// </summary>
+	/// <returns>The <see cref="SudokuGrid"/> instance.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	private SudokuGrid GetSudokuGridViewModel() => _drawingElements.OfType<SudokuGrid>().Single();
 	#endregion
 
 
@@ -234,7 +241,6 @@ public sealed partial class SudokuPane : UserControl
 		// Initializes the sudoku grid.
 		_drawingElements.Add(
 			new SudokuGrid(
-				_grid,
 				_userPreference.ShowCandidates,
 				Size,
 				OutsideOffset,

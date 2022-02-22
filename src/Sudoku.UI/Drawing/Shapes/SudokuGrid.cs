@@ -46,6 +46,30 @@ public sealed class SudokuGrid : DrawingElement
 	/// <summary>
 	/// Initializes a <see cref="SudokuGrid"/> instance via the details.
 	/// </summary>
+	/// <param name="showCandidates">Whether the grid displays candidates.</param>
+	/// <param name="paneSize">The pane size.</param>
+	/// <param name="outsideOffset">The outside offset.</param>
+	/// <param name="givenColor">The given text color.</param>
+	/// <param name="modifiableColor">The modifiable text color.</param>
+	/// <param name="candidateColor">The candidate text color.</param>
+	/// <param name="valueFontName">The given or modifiable font name.</param>
+	/// <param name="candidateFontName">The candidate font name.</param>
+	/// <param name="valueFontSize">The value font size.</param>
+	/// <param name="candidateFontSize">The candidate font size.</param>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public SudokuGrid(
+		bool showCandidates, double paneSize, double outsideOffset,
+		Color givenColor, Color modifiableColor, Color candidateColor,
+		string valueFontName, string candidateFontName, double valueFontSize, double candidateFontSize) :
+		this(
+			Grid.Empty, showCandidates, paneSize, outsideOffset, givenColor, modifiableColor, candidateColor,
+			valueFontName, candidateFontName, valueFontSize, candidateFontSize)
+	{
+	}
+
+	/// <summary>
+	/// Initializes a <see cref="SudokuGrid"/> instance via the details.
+	/// </summary>
 	/// <param name="grid">The <see cref="Grid"/> instance.</param>
 	/// <param name="showCandidates">Whether the grid displays candidates.</param>
 	/// <param name="paneSize">The pane size.</param>
@@ -75,7 +99,7 @@ public sealed class SudokuGrid : DrawingElement
 		);
 
 		// Then initialize other items.
-		CoverGrid(grid);
+		UpdateView(grid);
 
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -266,9 +290,35 @@ public sealed class SudokuGrid : DrawingElement
 		get => _grid;
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		set => CoverGrid(_grid = value);
+		set => UpdateView(_grid = value);
 	}
 
+
+	/// <summary>
+	/// To make the specified cell fill the specified digit.
+	/// </summary>
+	/// <param name="cell">The cell that the conclusion is from.</param>
+	/// <param name="digit">The digit made.</param>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public void MakeDigit(int cell, int digit)
+	{
+		_grid[cell] = digit;
+
+		UpdateView();
+	}
+
+	/// <summary>
+	/// To eliminate the specified digit from the specified cell.
+	/// </summary>
+	/// <param name="cell">The cell that the eliminated digit is from.</param>
+	/// <param name="digit">The digit eliminated.</param>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public void EliminateDigit(int cell, int digit)
+	{
+		_grid[cell, digit] = false;
+
+		UpdateView();
+	}
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -279,15 +329,28 @@ public sealed class SudokuGrid : DrawingElement
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public override int GetHashCode() => HashCode.Combine(nameof(SudokuGrid), _grid.GetHashCode());
 
+	/// <summary>
+	/// Gets the inner grid instance by reference.
+	/// </summary>
+	/// <returns>The reference of the grid.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public ref Grid GetGridByReference() => ref _grid;
+
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public override GridLayout GetControl() => _gridLayout;
 
 	/// <summary>
+	/// To update the view via the current grid.
+	/// </summary>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	private void UpdateView() => UpdateView(_grid);
+
+	/// <summary>
 	/// To cover the grid info.
 	/// </summary>
 	/// <param name="grid">The grid.</param>
-	private void CoverGrid(in Grid grid)
+	private void UpdateView(in Grid grid)
 	{
 		for (int i = 0; i < 81; i++)
 		{

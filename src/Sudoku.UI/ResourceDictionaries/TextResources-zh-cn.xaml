@@ -5,6 +5,8 @@
 	<x:String x:Key="MainPage_Sudoku">数独</x:String>
 	<x:String x:Key="MainPage_Settings">设置</x:String>
 	<x:String x:Key="MainPage_About">关于</x:String>
+	<x:String x:Key="SudokuPage_MakeDigit">出数</x:String>
+	<x:String x:Key="SudokuPage_EliminateDigit">删数</x:String>
 	<x:String x:Key="SudokuPage_Open">打开</x:String>
 	<x:String x:Key="SudokuPage_Copy">复制代码</x:String>
 	<x:String x:Key="SudokuPage_Paste">粘贴</x:String>
