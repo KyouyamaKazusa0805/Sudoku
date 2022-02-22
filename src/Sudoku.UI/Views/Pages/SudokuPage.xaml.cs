@@ -217,14 +217,12 @@ public sealed partial class SudokuPage : Page
 	/// </summary>
 	/// <param name="sender">The object that triggers the event.</param>
 	/// <param name="e">The event arguments provided.</param>
-	private void Undo_Click([IsDiscard] object sender, [IsDiscard] RoutedEventArgs e) => _cPane.UndoStep();
-
-	/// <summary>
-	/// Triggers when the button is clicked.
-	/// </summary>
-	/// <param name="sender">The object that triggers the event.</param>
-	/// <param name="e">The event arguments provided.</param>
-	private void Redo_Click([IsDiscard] object sender, [IsDiscard] RoutedEventArgs e) => _cPane.RedoStep();
+	private void UndoOrRedo_Click(object sender, [IsDiscard] RoutedEventArgs e) =>
+		(
+			sender is AppBarButton { Tag: var tag }
+				? tag switch { "Undo" => _cPane.UndoStep, "Redo" => _cPane.RedoStep }
+				: default(Action)!
+		)();
 
 	/// <summary>
 	/// Triggers when the sudoku pane <see cref="_cPane"/> is tapped via the right mouse.

@@ -119,7 +119,7 @@
 					Click="ClearInfoBarsAppBarButton_Click" />
 				<AppBarSeparator Grid.Row="0" Grid.Column="6" />
 				<AppBarButton
-					x:Name="_cUndo" Grid.Row="0" Grid.Column="7" Icon="Undo"
+					x:Name="_cUndo" Grid.Row="0" Grid.Column="7" Icon="Undo" Tag="Undo"
 					IsEnabled="{Binding
 						ElementName=_cPane,
 						Path=UndoStepsCount,
@@ -127,9 +127,9 @@
 						Mode=OneWay,
 						UpdateSourceTrigger=PropertyChanged}"
 					Label="{StaticResource SudokuPage_Undo}"
-					Click="Undo_Click" />
+					Click="UndoOrRedo_Click" />
 				<AppBarButton
-					x:Name="_cRedo" Grid.Row="0" Grid.Column="8" Icon="Redo"
+					x:Name="_cRedo" Grid.Row="0" Grid.Column="8" Icon="Redo" Tag="Redo"
 					IsEnabled="{Binding
 						ElementName=_cPane,
 						Path=RedoStepsCount,
@@ -137,7 +137,7 @@
 						Mode=OneWay,
 						UpdateSourceTrigger=PropertyChanged}"
 					Label="{StaticResource SudokuPage_Redo}"
-					Click="Redo_Click" />
+					Click="UndoOrRedo_Click" />
 			</Grid>
 		</Grid>
 	</ScrollViewer>

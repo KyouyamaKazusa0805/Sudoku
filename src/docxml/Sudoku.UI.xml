@@ -2202,14 +2202,7 @@
             <param name="sender">The object that triggers the event.</param>
             <param name="e">The event arguments provided.</param>
         </member>
-        <member name="M:Sudoku.UI.Views.Pages.SudokuPage.Undo_Click(System.Object,Microsoft.UI.Xaml.RoutedEventArgs)">
-            <summary>
-            Triggers when the button is clicked.
-            </summary>
-            <param name="sender">The object that triggers the event.</param>
-            <param name="e">The event arguments provided.</param>
-        </member>
-        <member name="M:Sudoku.UI.Views.Pages.SudokuPage.Redo_Click(System.Object,Microsoft.UI.Xaml.RoutedEventArgs)">
+        <member name="M:Sudoku.UI.Views.Pages.SudokuPage.UndoOrRedo_Click(System.Object,Microsoft.UI.Xaml.RoutedEventArgs)">
             <summary>
             Triggers when the button is clicked.
             </summary>
