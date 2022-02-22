@@ -2049,7 +2049,7 @@
         </member>
         <member name="P:Sudoku.UI.Views.Controls.SudokuPane.CurrentCell">
             <summary>
-            Indicates the current cell.
+            Indicates the current cell focused.
             </summary>
         </member>
         <member name="P:Sudoku.UI.Views.Controls.SudokuPane.UndoStepsCount">
@@ -2106,11 +2106,25 @@
             </summary>
             <returns>The <see cref="T:Sudoku.UI.Drawing.Shapes.SudokuGrid"/> instance.</returns>
         </member>
+        <member name="M:Sudoku.UI.Views.Controls.SudokuPane.UserControl_RightTapped(System.Object,Microsoft.UI.Xaml.Input.RightTappedRoutedEventArgs)">
+            <summary>
+            Triggers when the current control is tapped via mouse or other devices, by the right clicking.
+            </summary>
+            <param name="sender">The object to trigger the event.</param>
+            <param name="e">The event arguments provided.</param>
+        </member>
         <member name="M:Sudoku.UI.Views.Controls.SudokuPane.SudokuPane_Loaded(System.Object,Microsoft.UI.Xaml.RoutedEventArgs)">
             <summary>
             Triggers when the current control is loaded.
             </summary>
             <param name="sender">The object to trigger the event. The instance is always itself.</param>
+            <param name="e">The event arguments provided.</param>
+        </member>
+        <member name="M:Sudoku.UI.Views.Controls.SudokuPane.MakeOrDeleteMenuItem_Click(System.Object,Microsoft.UI.Xaml.RoutedEventArgs)">
+            <summary>
+            Triggers when the target <see cref="T:Microsoft.UI.Xaml.Controls.MenuFlyoutItem"/> is clicked.
+            </summary>
+            <param name="sender">The object that triggers the event.</param>
             <param name="e">The event arguments provided.</param>
         </member>
         <member name="M:Sudoku.UI.Views.Controls.SudokuPane.InitializeComponent">
@@ -2270,23 +2284,9 @@
             <param name="sender">The object that triggers the event.</param>
             <param name="e">The event arguments provided.</param>
         </member>
-        <member name="M:Sudoku.UI.Views.Pages.SudokuPage.MakeOrDeleteMenuItem_Click(System.Object,Microsoft.UI.Xaml.RoutedEventArgs)">
-            <summary>
-            Triggers when the target <see cref="T:Microsoft.UI.Xaml.Controls.MenuFlyoutItem"/> is clicked.
-            </summary>
-            <param name="sender">The object that triggers the event.</param>
-            <param name="e">The event arguments provided.</param>
-        </member>
         <member name="M:Sudoku.UI.Views.Pages.SudokuPage.UndoOrRedo_Click(System.Object,Microsoft.UI.Xaml.RoutedEventArgs)">
             <summary>
             Triggers when the button is clicked.
-            </summary>
-            <param name="sender">The object that triggers the event.</param>
-            <param name="e">The event arguments provided.</param>
-        </member>
-        <member name="M:Sudoku.UI.Views.Pages.SudokuPage.SudokuPane_RightTapped(System.Object,Microsoft.UI.Xaml.Input.RightTappedRoutedEventArgs)">
-            <summary>
-            Triggers when the sudoku pane <see cref="F:Sudoku.UI.Views.Pages.SudokuPage._cPane"/> is tapped via the right mouse.
             </summary>
             <param name="sender">The object that triggers the event.</param>
             <param name="e">The event arguments provided.</param>

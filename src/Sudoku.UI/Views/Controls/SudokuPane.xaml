@@ -6,7 +6,34 @@
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 	mc:Ignorable="d"
 	Width="{x:Bind Size,Mode=TwoWay}" Height="{x:Bind Size,Mode=TwoWay}"
-	Loaded="SudokuPane_Loaded">
+	Loaded="SudokuPane_Loaded"
+	RightTapped="UserControl_RightTapped">
+	<UserControl.ContextFlyout>
+		<MenuFlyout>
+			<MenuFlyoutSubItem Text="{StaticResource SudokuPage_MakeDigit}">
+				<MenuFlyoutItem x:Name="_cButtonMake1" Text="1" Tag="+1" Click="MakeOrDeleteMenuItem_Click" />
+				<MenuFlyoutItem x:Name="_cButtonMake2" Text="2" Tag="+2" Click="MakeOrDeleteMenuItem_Click" />
+				<MenuFlyoutItem x:Name="_cButtonMake3" Text="3" Tag="+3" Click="MakeOrDeleteMenuItem_Click" />
+				<MenuFlyoutItem x:Name="_cButtonMake4" Text="4" Tag="+4" Click="MakeOrDeleteMenuItem_Click" />
+				<MenuFlyoutItem x:Name="_cButtonMake5" Text="5" Tag="+5" Click="MakeOrDeleteMenuItem_Click" />
+				<MenuFlyoutItem x:Name="_cButtonMake6" Text="6" Tag="+6" Click="MakeOrDeleteMenuItem_Click" />
+				<MenuFlyoutItem x:Name="_cButtonMake7" Text="7" Tag="+7" Click="MakeOrDeleteMenuItem_Click" />
+				<MenuFlyoutItem x:Name="_cButtonMake8" Text="8" Tag="+8" Click="MakeOrDeleteMenuItem_Click" />
+				<MenuFlyoutItem x:Name="_cButtonMake9" Text="9" Tag="+9" Click="MakeOrDeleteMenuItem_Click" />
+			</MenuFlyoutSubItem>
+			<MenuFlyoutSubItem Text="{StaticResource SudokuPage_EliminateDigit}">
+				<MenuFlyoutItem x:Name="_cButtonDelete1" Text="1" Tag="-1" Click="MakeOrDeleteMenuItem_Click" />
+				<MenuFlyoutItem x:Name="_cButtonDelete2" Text="2" Tag="-2" Click="MakeOrDeleteMenuItem_Click" />
+				<MenuFlyoutItem x:Name="_cButtonDelete3" Text="3" Tag="-3" Click="MakeOrDeleteMenuItem_Click" />
+				<MenuFlyoutItem x:Name="_cButtonDelete4" Text="4" Tag="-4" Click="MakeOrDeleteMenuItem_Click" />
+				<MenuFlyoutItem x:Name="_cButtonDelete5" Text="5" Tag="-5" Click="MakeOrDeleteMenuItem_Click" />
+				<MenuFlyoutItem x:Name="_cButtonDelete6" Text="6" Tag="-6" Click="MakeOrDeleteMenuItem_Click" />
+				<MenuFlyoutItem x:Name="_cButtonDelete7" Text="7" Tag="-7" Click="MakeOrDeleteMenuItem_Click" />
+				<MenuFlyoutItem x:Name="_cButtonDelete8" Text="8" Tag="-8" Click="MakeOrDeleteMenuItem_Click" />
+				<MenuFlyoutItem x:Name="_cButtonDelete9" Text="9" Tag="-9" Click="MakeOrDeleteMenuItem_Click" />
+			</MenuFlyoutSubItem>
+		</MenuFlyout>
+	</UserControl.ContextFlyout>
 
 	<Canvas x:Name="_cCanvasMain" />
 </UserControl>

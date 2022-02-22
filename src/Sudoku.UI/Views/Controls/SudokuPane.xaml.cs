@@ -1,5 +1,7 @@
 ﻿using System.ComponentModel;
+using Microsoft.UI.Xaml.Input;
 using Sudoku.Diagnostics.CodeAnalysis;
+using Sudoku.UI.Drawing;
 using Sudoku.UI.Drawing.Shapes;
 
 namespace Sudoku.UI.Views.Controls;
@@ -116,7 +118,7 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 	}
 
 	/// <summary>
-	/// Indicates the current cell.
+	/// Indicates the current cell focused.
 	/// </summary>
 	public int CurrentCell { get; internal set; }
 
@@ -197,6 +199,52 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 
 	#region Delegated methods
 	/// <summary>
+	/// Triggers when the current control is tapped via mouse or other devices, by the right clicking.
+	/// </summary>
+	/// <param name="sender">The object to trigger the event.</param>
+	/// <param name="e">The event arguments provided.</param>
+	private void UserControl_RightTapped(object sender, RightTappedRoutedEventArgs e)
+	{
+		// Checks the value.
+		if (sender is not SudokuPane { Size: var size, OutsideOffset: var outsideOffset } pane)
+		{
+			goto MakeHandledBeTrueValue;
+		}
+
+		// Gets the mouse point and converts to the real cell value.
+		var point = e.GetPosition(pane);
+		int cell = PointConversions.GetCell(point, size, outsideOffset);
+
+		// Checks whether the cell value is valid.
+		if (cell == -1)
+		{
+			goto MakeHandledBeTrueValue;
+		}
+
+		// Sets the tag with the cell value, in order to get the details by other methods later.
+		pane.CurrentCell = cell;
+
+		// Try to create the menu flyout and show the items.
+		for (int i = 0; i < 9; i++)
+		{
+			((MenuFlyoutItem)FindName($"_cButtonMake{i + 1}")).Visibility = getVisibilityViaCandidate(cell, i);
+		}
+		for (int i = 0; i < 9; i++)
+		{
+			((MenuFlyoutItem)FindName($"_cButtonDelete{i + 1}")).Visibility = getVisibilityViaCandidate(cell, i);
+		}
+
+	MakeHandledBeTrueValue:
+		// If at an invalid status, just return the method and make the property 'e.Handled' be true value.
+		e.Handled = true;
+
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		Visibility getVisibilityViaCandidate(int cell, int i) =>
+			Grid.Exists(cell, i) is true ? Visibility.Visible : Visibility.Collapsed;
+	}
+
+	/// <summary>
 	/// Triggers when the current control is loaded.
 	/// </summary>
 	/// <param name="sender">The object to trigger the event. The instance is always itself.</param>
@@ -207,11 +255,7 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 		if (_userPreference.OutsideBorderWidth != 0 && OutsideOffset != 0)
 		{
 			_drawingElements.Add(
-				new OutsideRectangle(
-					_userPreference.OutsideBorderColor,
-					Size,
-					_userPreference.OutsideBorderWidth
-				)
+				new OutsideRectangle(_userPreference.OutsideBorderColor, Size, _userPreference.OutsideBorderWidth)
 			);
 		}
 
@@ -220,20 +264,14 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 		{
 			_drawingElements.Add(
 				new BlockLine(
-					_userPreference.BlockBorderColor,
-					_userPreference.BlockBorderWidth,
-					Size,
-					OutsideOffset,
-					i
+					_userPreference.BlockBorderColor, _userPreference.BlockBorderWidth,
+					Size, OutsideOffset, i
 				)
 			);
 			_drawingElements.Add(
 				new BlockLine(
-					_userPreference.BlockBorderColor,
-					_userPreference.BlockBorderWidth,
-					Size,
-					OutsideOffset,
-					(byte)(i + 4)
+					_userPreference.BlockBorderColor, _userPreference.BlockBorderWidth,
+					Size, OutsideOffset, (byte)(i + 4)
 				)
 			);
 		}
@@ -249,18 +287,14 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 
 			_drawingElements.Add(
 				new CellLine(
-					_userPreference.CellBorderColor,
-					_userPreference.CellBorderWidth,
-					Size, OutsideOffset,
-					i
+					_userPreference.CellBorderColor, _userPreference.CellBorderWidth,
+					Size, OutsideOffset, i
 				)
 			);
 			_drawingElements.Add(
 				new CellLine(
-					_userPreference.CellBorderColor,
-					_userPreference.CellBorderWidth,
-					Size, OutsideOffset,
-					(byte)(i + 10)
+					_userPreference.CellBorderColor, _userPreference.CellBorderWidth,
+					Size, OutsideOffset, (byte)(i + 10)
 				)
 			);
 		}
@@ -290,6 +324,28 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 		{
 			_cCanvasMain.Children.Add(control);
 		}
+	}
+
+	/// <summary>
+	/// Triggers when the target <see cref="MenuFlyoutItem"/> is clicked.
+	/// </summary>
+	/// <param name="sender">The object that triggers the event.</param>
+	/// <param name="e">The event arguments provided.</param>
+	private void MakeOrDeleteMenuItem_Click(object sender, [IsDiscard] RoutedEventArgs e)
+	{
+		if (sender is not MenuFlyoutItem { Tag: string s } || !int.TryParse(s, out int possibleDigit))
+		{
+			return;
+		}
+
+		var (digit, action) = possibleDigit switch
+		{
+			> 0 => (possibleDigit - 1, MakeDigit),
+			< 0 => (~possibleDigit, EliminateDigit), // '~a' is equi to '-a - 1'.
+			_ => (default(int), default(Action<int, int>)!)
+		};
+
+		action(CurrentCell, digit);
 	}
 	#endregion
 }
