@@ -127,7 +127,11 @@
 						Mode=OneWay,
 						UpdateSourceTrigger=PropertyChanged}"
 					Label="{StaticResource SudokuPage_Undo}"
-					Click="UndoOrRedo_Click" />
+					Click="UndoOrRedo_Click">
+					<AppBarButton.KeyboardAccelerators>
+						<KeyboardAccelerator Modifiers="Control" Key="Z" />
+					</AppBarButton.KeyboardAccelerators>
+				</AppBarButton>
 				<AppBarButton
 					x:Name="_cRedo" Grid.Row="0" Grid.Column="8" Icon="Redo" Tag="Redo"
 					IsEnabled="{Binding
@@ -137,7 +141,11 @@
 						Mode=OneWay,
 						UpdateSourceTrigger=PropertyChanged}"
 					Label="{StaticResource SudokuPage_Redo}"
-					Click="UndoOrRedo_Click" />
+					Click="UndoOrRedo_Click">
+					<AppBarButton.KeyboardAccelerators>
+						<KeyboardAccelerator Modifiers="Control" Key="Y" />
+					</AppBarButton.KeyboardAccelerators>
+				</AppBarButton>
 			</Grid>
 		</Grid>
 	</ScrollViewer>
