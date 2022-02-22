@@ -1637,20 +1637,6 @@
         <member name="M:Sudoku.UI.Drawing.Shapes.SudokuGrid.GetControl">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.UI.Drawing.Shapes.SudokuGrid.RaiseUndoStackChanged(Sudoku.Collections.Grid@)">
-            <summary>
-            Raises the event <see cref="E:Sudoku.UI.Drawing.Shapes.SudokuGrid.UndoStackChanged"/> via the specified grid.
-            </summary>
-            <param name="grid">The grid.</param>
-            <seealso cref="E:Sudoku.UI.Drawing.Shapes.SudokuGrid.UndoStackChanged"/>
-        </member>
-        <member name="M:Sudoku.UI.Drawing.Shapes.SudokuGrid.RaiseRedoStackChanged(Sudoku.Collections.Grid@)">
-            <summary>
-            Raises the event <see cref="E:Sudoku.UI.Drawing.Shapes.SudokuGrid.RedoStackChanged"/> via the specified grid.
-            </summary>
-            <param name="grid">The grid.</param>
-            <seealso cref="E:Sudoku.UI.Drawing.Shapes.SudokuGrid.RedoStackChanged"/>
-        </member>
         <member name="M:Sudoku.UI.Drawing.Shapes.SudokuGrid.UpdateView">
             <summary>
             To update the view via the current grid.

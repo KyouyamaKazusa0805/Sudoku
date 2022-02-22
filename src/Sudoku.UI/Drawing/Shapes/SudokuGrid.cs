@@ -296,8 +296,16 @@ public sealed class SudokuGrid : DrawingElement
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		set
 		{
+			// Set the new grid and update the view.
 			_grid = value;
 			UpdateView();
+
+			// The operation must clear two stacks.
+			_undoStack.Clear();
+			_redoStack.Clear();
+
+			UndoStackChanged?.Invoke(this, new());
+			RedoStackChanged?.Invoke(this, new());
 		}
 	}
 
@@ -329,12 +337,22 @@ public sealed class SudokuGrid : DrawingElement
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public void Undo()
 	{
-		if (_undoStack.TryPop(out var lastStep))
+		// Try to pop the step from the undo stack.
+		// If the stack does contain at least one step,
+		// the top-positioned step will be popped, and be named 'lastStep'.
+		if (_undoStack.TryPop(out var previousStep))
 		{
-			RaiseRedoStackChanged(_grid);
+			// Now we should push the current grid status to the redo stack, in order to be used later.
+			_redoStack.Push(_grid);
 
-			Grid = lastStep;
+			// Undo the step. Let us revert the step from the previous one.
+			// We cannot use 'Grid = lastStep' because the assignment to the property
+			// will clear both redo and undo stacks.
+			_grid = previousStep;
+			UpdateView();
 
+			// Due to both stacks being changed, we should trigger the event for reporting both stacks' changing.
+			RedoStackChanged?.Invoke(this, new());
 			UndoStackChanged?.Invoke(this, new());
 		}
 	}
@@ -345,12 +363,23 @@ public sealed class SudokuGrid : DrawingElement
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public void Redo()
 	{
+		// Try to pop the step from the redo stack.
+		// If the stack does contain at least one step,
+		// it will mean we can advance a step to the next grid status,
+		// and the variable being recorded the status will be 'nextStep'.
 		if (_redoStack.TryPop(out var nextStep))
 		{
-			RaiseUndoStackChanged(_grid);
+			// Now we should push the current grid status to the undo stack, in order to be used later.
+			_undoStack.Push(_grid);
 
-			Grid = nextStep;
+			// Redo the step. Let us advance the step to the next one.
+			// We cannot use 'Grid = nextStep' because the assignment to the property
+			// will clear both redo and undo stacks.
+			_grid = nextStep;
+			UpdateView();
 
+			// Due to both stacks being changed, we should trigger the event for reporting both stacks' changing.
+			UndoStackChanged?.Invoke(this, new());
 			RedoStackChanged?.Invoke(this, new());
 		}
 	}
@@ -363,11 +392,15 @@ public sealed class SudokuGrid : DrawingElement
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public void MakeDigit(int cell, int digit)
 	{
-		RaiseUndoStackChanged(_grid);
+		// Stores the previous grid status to the undo stack.
+		_undoStack.Push(_grid);
 
+		// Update the grid and view.
 		_grid[cell] = digit;
-
 		UpdateView();
+
+		// Trigger the event.
+		UndoStackChanged?.Invoke(this, new());
 	}
 
 	/// <summary>
@@ -378,11 +411,15 @@ public sealed class SudokuGrid : DrawingElement
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public void EliminateDigit(int cell, int digit)
 	{
-		RaiseUndoStackChanged(_grid);
+		// Stores the previous grid status to the undo stack.
+		_undoStack.Push(_grid);
 
+		// Update the grid and view.
 		_grid[cell, digit] = false;
-
 		UpdateView();
+
+		// Trigger the event.
+		UndoStackChanged?.Invoke(this, new());
 	}
 
 	/// <inheritdoc/>
@@ -404,30 +441,6 @@ public sealed class SudokuGrid : DrawingElement
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public override GridLayout GetControl() => _gridLayout;
-
-	/// <summary>
-	/// Raises the event <see cref="UndoStackChanged"/> via the specified grid.
-	/// </summary>
-	/// <param name="grid">The grid.</param>
-	/// <seealso cref="UndoStackChanged"/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	private void RaiseUndoStackChanged(in Grid grid)
-	{
-		_undoStack.Push(grid);
-		UndoStackChanged?.Invoke(this, new());
-	}
-
-	/// <summary>
-	/// Raises the event <see cref="RedoStackChanged"/> via the specified grid.
-	/// </summary>
-	/// <param name="grid">The grid.</param>
-	/// <seealso cref="RedoStackChanged"/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	private void RaiseRedoStackChanged(in Grid grid)
-	{
-		_redoStack.Push(grid);
-		RedoStackChanged?.Invoke(this, new());
-	}
 
 	/// <summary>
 	/// To update the view via the current grid.
