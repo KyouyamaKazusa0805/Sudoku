@@ -12,6 +12,8 @@
 	<x:String x:Key="SudokuPage_Paste">粘贴</x:String>
 	<x:String x:Key="SudokuPage_Save">保存</x:String>
 	<x:String x:Key="SudokuPage_Clear">清空</x:String>
+	<x:String x:Key="SudokuPage_Undo">撤销</x:String>
+	<x:String x:Key="SudokuPage_Redo">还原</x:String>
 	<x:String x:Key="SudokuPage_ClearInfoBars">清空信息</x:String>
 	<x:String x:Key="SudokuPage_InfoBar_Welcome">欢迎来到数独的世界！想要了解数独技巧的话，请访问这个链接：</x:String>
 	<x:String x:Key="SudokuPage_InfoBar_SeverityInfo">信息</x:String>

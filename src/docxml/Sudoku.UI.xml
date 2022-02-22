@@ -1462,6 +1462,16 @@
             Indicates the candidate digits.
             </summary>
         </member>
+        <member name="F:Sudoku.UI.Drawing.Shapes.SudokuGrid._undoStack">
+            <summary>
+            Indicates the stacks that allows undoing or redoing operations.
+            </summary>
+        </member>
+        <member name="F:Sudoku.UI.Drawing.Shapes.SudokuGrid._redoStack">
+            <summary>
+            Indicates the stacks that allows undoing or redoing operations.
+            </summary>
+        </member>
         <member name="F:Sudoku.UI.Drawing.Shapes.SudokuGrid._showCandidates">
             <summary>
             Indicates the status for displaying candidates.
@@ -1568,6 +1578,36 @@
             Gets or sets the grid.
             </summary>
         </member>
+        <member name="P:Sudoku.UI.Drawing.Shapes.SudokuGrid.UndoStepsCount">
+            <summary>
+            Indicates the number of available undoable steps.
+            </summary>
+        </member>
+        <member name="P:Sudoku.UI.Drawing.Shapes.SudokuGrid.RedoStepsCount">
+            <summary>
+            Indicates the number of available redoable steps.
+            </summary>
+        </member>
+        <member name="E:Sudoku.UI.Drawing.Shapes.SudokuGrid.UndoStackChanged">
+            <summary>
+            Indicates the event that triggers when the undo stack is changed.
+            </summary>
+        </member>
+        <member name="E:Sudoku.UI.Drawing.Shapes.SudokuGrid.RedoStackChanged">
+            <summary>
+            Indicates the event that triggers when the redo stack is changed.
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Drawing.Shapes.SudokuGrid.Undo">
+            <summary>
+            To undo a step.
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Drawing.Shapes.SudokuGrid.Redo">
+            <summary>
+            To redo a step.
+            </summary>
+        </member>
         <member name="M:Sudoku.UI.Drawing.Shapes.SudokuGrid.MakeDigit(System.Int32,System.Int32)">
             <summary>
             To make the specified cell fill the specified digit.
@@ -1597,16 +1637,24 @@
         <member name="M:Sudoku.UI.Drawing.Shapes.SudokuGrid.GetControl">
             <inheritdoc/>
         </member>
+        <member name="M:Sudoku.UI.Drawing.Shapes.SudokuGrid.RaiseUndoStackChanged(Sudoku.Collections.Grid@)">
+            <summary>
+            Raises the event <see cref="E:Sudoku.UI.Drawing.Shapes.SudokuGrid.UndoStackChanged"/> via the specified grid.
+            </summary>
+            <param name="grid">The grid.</param>
+            <seealso cref="E:Sudoku.UI.Drawing.Shapes.SudokuGrid.UndoStackChanged"/>
+        </member>
+        <member name="M:Sudoku.UI.Drawing.Shapes.SudokuGrid.RaiseRedoStackChanged(Sudoku.Collections.Grid@)">
+            <summary>
+            Raises the event <see cref="E:Sudoku.UI.Drawing.Shapes.SudokuGrid.RedoStackChanged"/> via the specified grid.
+            </summary>
+            <param name="grid">The grid.</param>
+            <seealso cref="E:Sudoku.UI.Drawing.Shapes.SudokuGrid.RedoStackChanged"/>
+        </member>
         <member name="M:Sudoku.UI.Drawing.Shapes.SudokuGrid.UpdateView">
             <summary>
             To update the view via the current grid.
             </summary>
-        </member>
-        <member name="M:Sudoku.UI.Drawing.Shapes.SudokuGrid.UpdateView(Sudoku.Collections.Grid@)">
-            <summary>
-            To cover the grid info.
-            </summary>
-            <param name="grid">The grid.</param>
         </member>
         <member name="T:Sudoku.UI.ControlFactory">
             <summary>
@@ -1856,6 +1904,22 @@
             The default value is <c>#FF696969</c> (i.e. DimGray).
             </remarks>
         </member>
+        <member name="T:Sudoku.UI.ValueConverters.UndoOrRedoStackToIsEnabledConverter">
+            <summary>
+            Defines a value converter that allows the one-way binding from the undo-stack or redo-stack
+            to a <see cref="T:System.Boolean"/> value indicating whether the control is enabled.
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.ValueConverters.UndoOrRedoStackToIsEnabledConverter.Convert(System.Object,System.Type,System.Object,System.String)">
+            <inheritdoc/>
+            <exception cref="T:System.ArgumentException">
+            Throws when the argument <paramref name="targetType"/> is not <see cref="T:System.Boolean"/>.
+            </exception>
+        </member>
+        <member name="M:Sudoku.UI.ValueConverters.UndoOrRedoStackToIsEnabledConverter.ConvertBack(System.Object,System.Type,System.Object,System.String)">
+            <inheritdoc/>
+            <exception cref="T:System.NotImplementedException">Always throws due to not implemented.</exception>
+        </member>
         <member name="T:Sudoku.UI.Views.Controls.SudokuPane">
             <summary>
             Defines a user control that interacts with a sudoku grid.
@@ -1913,9 +1977,32 @@
             Indicates the current cell.
             </summary>
         </member>
+        <member name="P:Sudoku.UI.Views.Controls.SudokuPane.UndoStepsCount">
+            <summary>
+            Indicates the number of the total undo steps.
+            </summary>
+        </member>
+        <member name="P:Sudoku.UI.Views.Controls.SudokuPane.RedoStepsCount">
+            <summary>
+            Indicates the number of the total redo steps.
+            </summary>
+        </member>
         <member name="P:Sudoku.UI.Views.Controls.SudokuPane.Grid">
             <summary>
             Gets or sets the current used grid.
+            </summary>
+        </member>
+        <member name="E:Sudoku.UI.Views.Controls.SudokuPane.PropertyChanged">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.UI.Views.Controls.SudokuPane.UndoStep">
+            <summary>
+            Undo a step.
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Views.Controls.SudokuPane.RedoStep">
+            <summary>
+            Redo a step.
             </summary>
         </member>
         <member name="M:Sudoku.UI.Views.Controls.SudokuPane.MakeDigit(System.Int32,System.Int32)">
@@ -2111,6 +2198,20 @@
         <member name="M:Sudoku.UI.Views.Pages.SudokuPage.MakeOrDeleteMenuItem_Click(System.Object,Microsoft.UI.Xaml.RoutedEventArgs)">
             <summary>
             Triggers when the target <see cref="T:Microsoft.UI.Xaml.Controls.MenuFlyoutItem"/> is clicked.
+            </summary>
+            <param name="sender">The object that triggers the event.</param>
+            <param name="e">The event arguments provided.</param>
+        </member>
+        <member name="M:Sudoku.UI.Views.Pages.SudokuPage.Undo_Click(System.Object,Microsoft.UI.Xaml.RoutedEventArgs)">
+            <summary>
+            Triggers when the button is clicked.
+            </summary>
+            <param name="sender">The object that triggers the event.</param>
+            <param name="e">The event arguments provided.</param>
+        </member>
+        <member name="M:Sudoku.UI.Views.Pages.SudokuPage.Redo_Click(System.Object,Microsoft.UI.Xaml.RoutedEventArgs)">
+            <summary>
+            Triggers when the button is clicked.
             </summary>
             <param name="sender">The object that triggers the event.</param>
             <param name="e">The event arguments provided.</param>

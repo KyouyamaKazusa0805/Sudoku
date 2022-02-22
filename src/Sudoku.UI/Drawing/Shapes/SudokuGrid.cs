@@ -23,6 +23,11 @@ public sealed class SudokuGrid : DrawingElement
 	private readonly CandidateDigit[] _candidateDigits = new CandidateDigit[81];
 
 	/// <summary>
+	/// Indicates the stacks that allows undoing or redoing operations.
+	/// </summary>
+	private readonly Stack<Grid> _undoStack = new(), _redoStack = new();
+
+	/// <summary>
 	/// Indicates the status for displaying candidates.
 	/// </summary>
 	private bool _showCandidates;
@@ -95,11 +100,10 @@ public sealed class SudokuGrid : DrawingElement
 		// Initializes values.
 		initializeValues(
 			showCandidates, givenColor, modifiableColor, candidateColor,
-			valueFontName, valueFontSize, candidateFontName, candidateFontSize
-		);
+			valueFontName, valueFontSize, candidateFontName, candidateFontSize);
 
 		// Then initialize other items.
-		UpdateView(grid);
+		UpdateView();
 
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -290,9 +294,66 @@ public sealed class SudokuGrid : DrawingElement
 		get => _grid;
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		set => UpdateView(_grid = value);
+		set
+		{
+			_grid = value;
+			UpdateView();
+		}
 	}
 
+	/// <summary>
+	/// Indicates the number of available undoable steps.
+	/// </summary>
+	internal int UndoStepsCount => _undoStack.Count;
+
+	/// <summary>
+	/// Indicates the number of available redoable steps.
+	/// </summary>
+	internal int RedoStepsCount => _redoStack.Count;
+
+
+	/// <summary>
+	/// Indicates the event that triggers when the undo stack is changed.
+	/// </summary>
+	public event RoutedEventHandler? UndoStackChanged;
+
+	/// <summary>
+	/// Indicates the event that triggers when the redo stack is changed.
+	/// </summary>
+	public event RoutedEventHandler? RedoStackChanged;
+
+
+	/// <summary>
+	/// To undo a step.
+	/// </summary>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public void Undo()
+	{
+		if (_undoStack.TryPop(out var lastStep))
+		{
+			RaiseRedoStackChanged(_grid);
+
+			Grid = lastStep;
+
+			UndoStackChanged?.Invoke(this, new());
+		}
+	}
+
+	/// <summary>
+	/// To redo a step.
+	/// </summary>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public void Redo()
+	{
+		if (_redoStack.TryPop(out var nextStep))
+		{
+			RaiseUndoStackChanged(_grid);
+
+			Grid = nextStep;
+
+			RedoStackChanged?.Invoke(this, new());
+		}
+	}
 
 	/// <summary>
 	/// To make the specified cell fill the specified digit.
@@ -302,6 +363,8 @@ public sealed class SudokuGrid : DrawingElement
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public void MakeDigit(int cell, int digit)
 	{
+		RaiseUndoStackChanged(_grid);
+
 		_grid[cell] = digit;
 
 		UpdateView();
@@ -315,6 +378,8 @@ public sealed class SudokuGrid : DrawingElement
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public void EliminateDigit(int cell, int digit)
 	{
+		RaiseUndoStackChanged(_grid);
+
 		_grid[cell, digit] = false;
 
 		UpdateView();
@@ -341,32 +406,49 @@ public sealed class SudokuGrid : DrawingElement
 	public override GridLayout GetControl() => _gridLayout;
 
 	/// <summary>
-	/// To update the view via the current grid.
-	/// </summary>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	private void UpdateView() => UpdateView(_grid);
-
-	/// <summary>
-	/// To cover the grid info.
+	/// Raises the event <see cref="UndoStackChanged"/> via the specified grid.
 	/// </summary>
 	/// <param name="grid">The grid.</param>
-	private void UpdateView(in Grid grid)
+	/// <seealso cref="UndoStackChanged"/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	private void RaiseUndoStackChanged(in Grid grid)
+	{
+		_undoStack.Push(grid);
+		UndoStackChanged?.Invoke(this, new());
+	}
+
+	/// <summary>
+	/// Raises the event <see cref="RedoStackChanged"/> via the specified grid.
+	/// </summary>
+	/// <param name="grid">The grid.</param>
+	/// <seealso cref="RedoStackChanged"/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	private void RaiseRedoStackChanged(in Grid grid)
+	{
+		_redoStack.Push(grid);
+		RedoStackChanged?.Invoke(this, new());
+	}
+
+	/// <summary>
+	/// To update the view via the current grid.
+	/// </summary>
+	private void UpdateView()
 	{
 		for (int i = 0; i < 81; i++)
 		{
-			switch (grid.GetStatus(i))
+			switch (_grid.GetStatus(i))
 			{
 				case CellStatus.Empty:
 				{
 					_cellDigits[i].Digit = byte.MaxValue;
 					_cellDigits[i].IsGiven = false;
-					_candidateDigits[i].CandidateMask = grid.GetCandidates(i);
+					_candidateDigits[i].CandidateMask = _grid.GetCandidates(i);
 
 					break;
 				}
 				case var status and (CellStatus.Given or CellStatus.Modifiable):
 				{
-					_cellDigits[i].Digit = (byte)grid[i];
+					_cellDigits[i].Digit = (byte)_grid[i];
 					_cellDigits[i].IsGiven = status == CellStatus.Given;
 					_candidateDigits[i].CandidateMask = 0;
 

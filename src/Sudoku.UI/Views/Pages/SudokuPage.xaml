@@ -5,10 +5,14 @@
 	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 	xmlns:c="using:Sudoku.UI.Views.Controls"
+	xmlns:cvt="using:Sudoku.UI.ValueConverters"
 	mc:Ignorable="d"
 	Loaded="Page_Loaded">
 	<ScrollViewer>
 		<Grid>
+			<Grid.Resources>
+				<cvt:UndoOrRedoStackToIsEnabledConverter x:Key="_rUndoingOrRedoingConverter" />
+			</Grid.Resources>
 			<Grid.RowDefinitions>
 				<RowDefinition Height="580" />
 				<RowDefinition />
@@ -70,6 +74,9 @@
 					<ColumnDefinition />
 					<ColumnDefinition />
 					<ColumnDefinition />
+					<ColumnDefinition />
+					<ColumnDefinition />
+					<ColumnDefinition />
 				</Grid.ColumnDefinitions>
 
 				<AppBarButton
@@ -110,6 +117,27 @@
 					x:Name="_cClearInfoBars" Grid.Row="0" Grid.Column="5" Icon="ClearSelection"
 					Label="{StaticResource SudokuPage_ClearInfoBars}"
 					Click="ClearInfoBarsAppBarButton_Click" />
+				<AppBarSeparator Grid.Row="0" Grid.Column="6" />
+				<AppBarButton
+					x:Name="_cUndo" Grid.Row="0" Grid.Column="7" Icon="Undo"
+					IsEnabled="{Binding
+						ElementName=_cPane,
+						Path=UndoStepsCount,
+						Converter={StaticResource _rUndoingOrRedoingConverter},
+						Mode=OneWay,
+						UpdateSourceTrigger=PropertyChanged}"
+					Label="{StaticResource SudokuPage_Undo}"
+					Click="Undo_Click" />
+				<AppBarButton
+					x:Name="_cRedo" Grid.Row="0" Grid.Column="8" Icon="Redo"
+					IsEnabled="{Binding
+						ElementName=_cPane,
+						Path=RedoStepsCount,
+						Converter={StaticResource _rUndoingOrRedoingConverter},
+						Mode=OneWay,
+						UpdateSourceTrigger=PropertyChanged}"
+					Label="{StaticResource SudokuPage_Redo}"
+					Click="Redo_Click" />
 			</Grid>
 		</Grid>
 	</ScrollViewer>

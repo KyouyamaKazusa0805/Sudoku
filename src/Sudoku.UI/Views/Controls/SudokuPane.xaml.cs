@@ -1,4 +1,5 @@
-﻿using Sudoku.Diagnostics.CodeAnalysis;
+﻿using System.ComponentModel;
+using Sudoku.Diagnostics.CodeAnalysis;
 using Sudoku.UI.Drawing.Shapes;
 
 namespace Sudoku.UI.Views.Controls;
@@ -6,7 +7,7 @@ namespace Sudoku.UI.Views.Controls;
 /// <summary>
 /// Defines a user control that interacts with a sudoku grid.
 /// </summary>
-public sealed partial class SudokuPane : UserControl
+public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 {
 	#region Fields
 	/// <summary>
@@ -120,6 +121,16 @@ public sealed partial class SudokuPane : UserControl
 	public int CurrentCell { get; internal set; }
 
 	/// <summary>
+	/// Indicates the number of the total undo steps.
+	/// </summary>
+	public int UndoStepsCount => GetSudokuGridViewModel().UndoStepsCount;
+
+	/// <summary>
+	/// Indicates the number of the total redo steps.
+	/// </summary>
+	public int RedoStepsCount => GetSudokuGridViewModel().RedoStepsCount;
+
+	/// <summary>
 	/// Gets or sets the current used grid.
 	/// </summary>
 	public Grid Grid
@@ -133,7 +144,25 @@ public sealed partial class SudokuPane : UserControl
 	#endregion
 
 
+	#region Events
+	/// <inheritdoc/>
+	public event PropertyChangedEventHandler? PropertyChanged;
+	#endregion
+
+
 	#region Normal instance methods
+	/// <summary>
+	/// Undo a step.
+	/// </summary>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public void UndoStep() => GetSudokuGridViewModel().Undo();
+
+	/// <summary>
+	/// Redo a step.
+	/// </summary>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public void RedoStep() => GetSudokuGridViewModel().Redo();
+
 	/// <summary>
 	/// To make the cell fill the digit.
 	/// </summary>
@@ -239,20 +268,22 @@ public sealed partial class SudokuPane : UserControl
 		// TODO: Initializes candidate border lines if worth.
 
 		// Initializes the sudoku grid.
-		_drawingElements.Add(
-			new SudokuGrid(
-				_userPreference.ShowCandidates,
-				Size,
-				OutsideOffset,
-				_userPreference.GivenColor,
-				_userPreference.ModifiableColor,
-				_userPreference.CandidateColor,
-				_userPreference.ValueFontName,
-				_userPreference.CandidateFontName,
-				_userPreference.ValueFontSize,
-				_userPreference.CandidateFontSize
-			)
+		var sudokuGrid = new SudokuGrid(
+			_userPreference.ShowCandidates,
+			Size,
+			OutsideOffset,
+			_userPreference.GivenColor,
+			_userPreference.ModifiableColor,
+			_userPreference.CandidateColor,
+			_userPreference.ValueFontName,
+			_userPreference.CandidateFontName,
+			_userPreference.ValueFontSize,
+			_userPreference.CandidateFontSize
 		);
+		sudokuGrid.UndoStackChanged += (_, _) => PropertyChanged?.Invoke(this, new(nameof(UndoStepsCount)));
+		sudokuGrid.RedoStackChanged += (_, _) => PropertyChanged?.Invoke(this, new(nameof(RedoStepsCount)));
+
+		_drawingElements.Add(sudokuGrid);
 
 		// Add them into the control collection.
 		foreach (var control in from drawingElement in _drawingElements select drawingElement.GetControl())
