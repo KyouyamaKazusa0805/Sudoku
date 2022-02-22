@@ -30,18 +30,6 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<None Remove="BasicProperties.xaml" />
-		<None Remove="TextResources-en-us.xaml" />
-		<None Remove="TextResources-zh-cn.xaml" />
-		<None Remove="Views\Controls\InfoBarBoard.xaml" />
-		<None Remove="Views\Controls\SudokuPane.xaml" />
-		<None Remove="Views\Pages\AboutPage.xaml" />
-		<None Remove="Views\Pages\MainPage.xaml" />
-		<None Remove="Views\Pages\SettingsPage.xaml" />
-		<None Remove="Views\Pages\SudokuPage.xaml" />
-	</ItemGroup>
-
-	<ItemGroup>
 		<Content Include="Assets\SplashScreen.scale-200.png" />
 		<Content Include="Assets\LockScreenLogo.scale-200.png" />
 		<Content Include="Assets\Square150x150Logo.scale-200.png" />
@@ -76,13 +64,13 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<Page Update="ResourceDictionaries\TextResources-zh-cn.xaml">
+		<Page Update="Data\ResourceDictionaries\TextResources-zh-cn.xaml">
 			<Generator>MSBuild:Compile</Generator>
 		</Page>
-		<Page Update="ResourceDictionaries\TextResources-en-us.xaml">
+		<Page Update="Data\ResourceDictionaries\TextResources-en-us.xaml">
 			<Generator>MSBuild:Compile</Generator>
 		</Page>
-		<Page Update="ResourceDictionaries\BasicProperties.xaml">
+		<Page Update="Data\ResourceDictionaries\BasicProperties.xaml">
 			<Generator>MSBuild:Compile</Generator>
 		</Page>
 		<Page Update="Views\Pages\AboutPage.xaml">

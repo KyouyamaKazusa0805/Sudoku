@@ -1,6 +1,6 @@
 ﻿using System.Runtime.InteropServices;
 
-namespace Sudoku.UI.Interoperability;
+namespace Sudoku.UI.Data.Interoperability;
 
 /// <summary>
 /// Exposes a method through which a client can provide an owner window

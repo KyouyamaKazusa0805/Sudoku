@@ -5,7 +5,7 @@
 	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 	xmlns:c="using:Sudoku.UI.Views.Controls"
-	xmlns:cvt="using:Sudoku.UI.ValueConverters"
+	xmlns:cvt="using:Sudoku.UI.Data.ValueConverters"
 	mc:Ignorable="d"
 	Loaded="Page_Loaded">
 	<ScrollViewer>

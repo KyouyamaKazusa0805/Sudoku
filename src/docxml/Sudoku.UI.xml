@@ -83,6 +83,44 @@
             Indicates the configuration file.
             </summary>
         </member>
+        <member name="T:Sudoku.UI.Data.Interoperability.IInitializeWithWindow">
+            <summary>
+            Exposes a method through which a client can provide an owner window
+            to a Windows Runtime (WinRT) object used in a desktop application.
+            </summary>
+            <remarks>
+            <para>
+            <b>When to initialize:</b><br/>
+            Implement this interface if your object needs to be provided with an owner window,
+            generally to display UI. Most third-party applications will not need to implement this interface.
+            </para>
+            <para>
+            <b>When to use:</b><br/>
+            Use this interface if you will provide an owner window to a WinRT object in a desktop application.
+            For more information about this scenario, see
+            <see href="https://docs.microsoft.com/en-us/windows/apps/desktop/modernize/desktop-to-uwp-supported-api?tabs=csharp#classes-that-use-iinitializewithwindow">
+            Classes that use IInitializeWithWindow
+            </see>.
+            </para>
+            <para>
+            This interface is implemented by the following objects. Note that this is necessarily an incomplete list;
+            refer to an individual object's documentation to determine whether that object implements this interface.
+            </para>
+            </remarks>
+        </member>
+        <member name="M:Sudoku.UI.Data.Interoperability.IInitializeWithWindow.Initialize(System.IntPtr)">
+            <summary>
+            Specifies an owner window to be used by a Windows Runtime (WinRT) object that is used in a desktop app.
+            </summary>
+            <param name="hwnd">The handle of the window to be used as the owner window.</param>
+            <remarks>
+            The method doesn't return anything, but the method returns an HResult value
+            in the Win32 API. For more information, please visit
+            <see href="https://docs.microsoft.com/en-us/windows/win32/api/shobjidl_core/nf-shobjidl_core-iinitializewithwindow-initialize">
+            this link
+            </see>.
+            </remarks>
+        </member>
         <member name="T:Sudoku.UI.Data.RedoStackChangedEventHandler">
             <summary>
             Represents an event handler that occurs when the the status of the redoing stack is changed.
@@ -96,6 +134,39 @@
             The delegate type is used for the event declaration which binds the concept with the undoing stack.
             </summary>
             <param name="sender">The object that triggers the event.</param>
+        </member>
+        <member name="T:Sudoku.UI.Data.ValueConverters.InfoBarBoardToIsEnabledConverter">
+            <summary>
+            Defines a value converter that allows the one-way binding from the <see cref="P:Sudoku.UI.Views.Controls.InfoBarBoard.MessageCount"/>
+            to a <see cref="T:System.Boolean"/> vcalue indicating whether the control should be enabled.
+            </summary>
+            <seealso cref="P:Sudoku.UI.Views.Controls.InfoBarBoard.MessageCount"/>
+        </member>
+        <member name="M:Sudoku.UI.Data.ValueConverters.InfoBarBoardToIsEnabledConverter.Convert(System.Object,System.Type,System.Object,System.String)">
+            <inheritdoc/>
+            <exception cref="T:System.ArgumentException">
+            Throws when the argument <paramref name="targetType"/> is not <see cref="T:System.Boolean"/>.
+            </exception>
+        </member>
+        <member name="M:Sudoku.UI.Data.ValueConverters.InfoBarBoardToIsEnabledConverter.ConvertBack(System.Object,System.Type,System.Object,System.String)">
+            <inheritdoc/>
+            <exception cref="T:System.NotImplementedException">Always throws due to not implemented.</exception>
+        </member>
+        <member name="T:Sudoku.UI.Data.ValueConverters.UndoOrRedoStackToIsEnabledConverter">
+            <summary>
+            Defines a value converter that allows the one-way binding from the undo-stack or redo-stack
+            to a <see cref="T:System.Boolean"/> value indicating whether the control should be enabled.
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Data.ValueConverters.UndoOrRedoStackToIsEnabledConverter.Convert(System.Object,System.Type,System.Object,System.String)">
+            <inheritdoc/>
+            <exception cref="T:System.ArgumentException">
+            Throws when the argument <paramref name="targetType"/> is not <see cref="T:System.Boolean"/>.
+            </exception>
+        </member>
+        <member name="M:Sudoku.UI.Data.ValueConverters.UndoOrRedoStackToIsEnabledConverter.ConvertBack(System.Object,System.Type,System.Object,System.String)">
+            <inheritdoc/>
+            <exception cref="T:System.NotImplementedException">Always throws due to not implemented.</exception>
         </member>
         <member name="T:Sudoku.UI.Drawing.PointConversions">
             <summary>
@@ -1656,18 +1727,6 @@
             To update the view via the current grid.
             </summary>
         </member>
-        <member name="T:Sudoku.UI.ControlFactory">
-            <summary>
-            Defines a control factory.
-            </summary>
-        </member>
-        <member name="M:Sudoku.UI.ControlFactory.InfoBar(Microsoft.UI.Xaml.Controls.InfoBarSeverity)">
-            <summary>
-            Creates a <see cref="T:Microsoft.UI.Xaml.Controls.InfoBar"/> instance.
-            </summary>
-            <param name="severity">The severity of the info bar.</param>
-            <returns>The <see cref="T:Microsoft.UI.Xaml.Controls.InfoBar"/> instance.</returns>
-        </member>
         <member name="T:Sudoku.UI.BindingConversions">
             <summary>
             Provides a set of methods to convert the information.
@@ -1689,6 +1748,18 @@
             <returns>The converted result string value.</returns>
             <seealso cref="P:Sudoku.UI.RepositoryInfo.IsForReference"/>
         </member>
+        <member name="T:Sudoku.UI.ControlFactory">
+            <summary>
+            Defines a control factory.
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.ControlFactory.InfoBar(Microsoft.UI.Xaml.Controls.InfoBarSeverity)">
+            <summary>
+            Creates a <see cref="T:Microsoft.UI.Xaml.Controls.InfoBar"/> instance.
+            </summary>
+            <param name="severity">The severity of the info bar.</param>
+            <returns>The <see cref="T:Microsoft.UI.Xaml.Controls.InfoBar"/> instance.</returns>
+        </member>
         <member name="T:Sudoku.UI.Website">
             <summary>
             Provides methods on website visiting.
@@ -1700,44 +1771,6 @@
             </summary>
             <param name="uri">The URI website.</param>
             <returns>The process.</returns>
-        </member>
-        <member name="T:Sudoku.UI.Interoperability.IInitializeWithWindow">
-            <summary>
-            Exposes a method through which a client can provide an owner window
-            to a Windows Runtime (WinRT) object used in a desktop application.
-            </summary>
-            <remarks>
-            <para>
-            <b>When to initialize:</b><br/>
-            Implement this interface if your object needs to be provided with an owner window,
-            generally to display UI. Most third-party applications will not need to implement this interface.
-            </para>
-            <para>
-            <b>When to use:</b><br/>
-            Use this interface if you will provide an owner window to a WinRT object in a desktop application.
-            For more information about this scenario, see
-            <see href="https://docs.microsoft.com/en-us/windows/apps/desktop/modernize/desktop-to-uwp-supported-api?tabs=csharp#classes-that-use-iinitializewithwindow">
-            Classes that use IInitializeWithWindow
-            </see>.
-            </para>
-            <para>
-            This interface is implemented by the following objects. Note that this is necessarily an incomplete list;
-            refer to an individual object's documentation to determine whether that object implements this interface.
-            </para>
-            </remarks>
-        </member>
-        <member name="M:Sudoku.UI.Interoperability.IInitializeWithWindow.Initialize(System.IntPtr)">
-            <summary>
-            Specifies an owner window to be used by a Windows Runtime (WinRT) object that is used in a desktop app.
-            </summary>
-            <param name="hwnd">The handle of the window to be used as the owner window.</param>
-            <remarks>
-            The method doesn't return anything, but the method returns an HResult value
-            in the Win32 API. For more information, please visit
-            <see href="https://docs.microsoft.com/en-us/windows/win32/api/shobjidl_core/nf-shobjidl_core-iinitializewithwindow-initialize">
-            this link
-            </see>.
-            </remarks>
         </member>
         <member name="T:Sudoku.UI.RepositoryInfo">
             <summary>
@@ -1903,39 +1936,6 @@
             <remarks>
             The default value is <c>#FF696969</c> (i.e. DimGray).
             </remarks>
-        </member>
-        <member name="T:Sudoku.UI.ValueConverters.InfoBarBoardToIsEnabledConverter">
-            <summary>
-            Defines a value converter that allows the one-way binding from the <see cref="P:Sudoku.UI.Views.Controls.InfoBarBoard.MessageCount"/>
-            to a <see cref="T:System.Boolean"/> vcalue indicating whether the control should be enabled.
-            </summary>
-            <seealso cref="P:Sudoku.UI.Views.Controls.InfoBarBoard.MessageCount"/>
-        </member>
-        <member name="M:Sudoku.UI.ValueConverters.InfoBarBoardToIsEnabledConverter.Convert(System.Object,System.Type,System.Object,System.String)">
-            <inheritdoc/>
-            <exception cref="T:System.ArgumentException">
-            Throws when the argument <paramref name="targetType"/> is not <see cref="T:System.Boolean"/>.
-            </exception>
-        </member>
-        <member name="M:Sudoku.UI.ValueConverters.InfoBarBoardToIsEnabledConverter.ConvertBack(System.Object,System.Type,System.Object,System.String)">
-            <inheritdoc/>
-            <exception cref="T:System.NotImplementedException">Always throws due to not implemented.</exception>
-        </member>
-        <member name="T:Sudoku.UI.ValueConverters.UndoOrRedoStackToIsEnabledConverter">
-            <summary>
-            Defines a value converter that allows the one-way binding from the undo-stack or redo-stack
-            to a <see cref="T:System.Boolean"/> value indicating whether the control should be enabled.
-            </summary>
-        </member>
-        <member name="M:Sudoku.UI.ValueConverters.UndoOrRedoStackToIsEnabledConverter.Convert(System.Object,System.Type,System.Object,System.String)">
-            <inheritdoc/>
-            <exception cref="T:System.ArgumentException">
-            Throws when the argument <paramref name="targetType"/> is not <see cref="T:System.Boolean"/>.
-            </exception>
-        </member>
-        <member name="M:Sudoku.UI.ValueConverters.UndoOrRedoStackToIsEnabledConverter.ConvertBack(System.Object,System.Type,System.Object,System.String)">
-            <inheritdoc/>
-            <exception cref="T:System.NotImplementedException">Always throws due to not implemented.</exception>
         </member>
         <member name="T:Sudoku.UI.Views.Controls.InfoBarBoard">
             <summary>

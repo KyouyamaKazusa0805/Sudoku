@@ -1,15 +1,13 @@
 ﻿using Microsoft.UI.Xaml.Data;
 using Sudoku.Diagnostics.CodeAnalysis;
-using Sudoku.UI.Views.Controls;
 
-namespace Sudoku.UI.ValueConverters;
+namespace Sudoku.UI.Data.ValueConverters;
 
 /// <summary>
-/// Defines a value converter that allows the one-way binding from the <see cref="InfoBarBoard.MessageCount"/>
-/// to a <see cref="bool"/> vcalue indicating whether the control should be enabled.
+/// Defines a value converter that allows the one-way binding from the undo-stack or redo-stack
+/// to a <see cref="bool"/> value indicating whether the control should be enabled.
 /// </summary>
-/// <seealso cref="InfoBarBoard.MessageCount"/>
-public sealed class InfoBarBoardToIsEnabledConverter : IValueConverter
+public sealed class UndoOrRedoStackToIsEnabledConverter : IValueConverter
 {
 	/// <inheritdoc/>
 	/// <exception cref="ArgumentException">
