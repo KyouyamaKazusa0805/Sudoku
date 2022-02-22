@@ -26,14 +26,9 @@ public sealed partial class SudokuPage : Page
 	/// <param name="sender">The object that triggers the event.</param>
 	/// <param name="e">The event arguments provided.</param>
 	private void Page_Loaded([IsDiscard] object sender, [IsDiscard] RoutedEventArgs e) =>
-		InfoBar(InfoBarSeverity.Informational)
-			.WithParentPanel(_cStackPanelDetails)
-			.WithMessage(StringResource.Get("SudokuPage_InfoBar_Welcome"))
-			.WithLinkButton(
-				StringResource.Get("Link_SudokuTutorial"),
-				StringResource.Get("Link_SudokuTutorialDescription")
-			)
-			.Open();
+		_cInfoBoard.AddMessage(
+			InfoBarSeverity.Informational, StringResource.Get("SudokuPage_InfoBar_Welcome"),
+			StringResource.Get("Link_SudokuTutorial"), StringResource.Get("Link_SudokuTutorialDescription"));
 
 	/// <summary>
 	/// Triggers when the button is clicked.
@@ -53,10 +48,7 @@ public sealed partial class SudokuPage : Page
 
 		if (new FileInfo(filePath).Length == 0)
 		{
-			InfoBar(InfoBarSeverity.Error)
-				.WithParentPanel(_cStackPanelDetails)
-				.WithMessage(StringResource.Get("SudokuPage_InfoBar_FileIsEmpty"))
-				.Open();
+			_cInfoBoard.AddMessage(InfoBarSeverity.Error, StringResource.Get("SudokuPage_InfoBar_FileIsEmpty"));
 
 			return;
 		}
@@ -65,10 +57,7 @@ public sealed partial class SudokuPage : Page
 		string content = await File.ReadAllTextAsync(filePath);
 		if (string.IsNullOrWhiteSpace(content))
 		{
-			InfoBar(InfoBarSeverity.Error)
-				.WithParentPanel(_cStackPanelDetails)
-				.WithMessage(StringResource.Get("SudokuPage_InfoBar_FileIsEmpty"))
-				.Open();
+			_cInfoBoard.AddMessage(InfoBarSeverity.Error, StringResource.Get("SudokuPage_InfoBar_FileIsEmpty"));
 
 			return;
 		}
@@ -76,10 +65,7 @@ public sealed partial class SudokuPage : Page
 		// Checks the file content.
 		if (!Grid.TryParse(content, out var grid))
 		{
-			InfoBar(InfoBarSeverity.Error)
-				.WithParentPanel(_cStackPanelDetails)
-				.WithMessage(StringResource.Get("SudokuPage_InfoBar_FileIsInvalid"))
-				.Open();
+			_cInfoBoard.AddMessage(InfoBarSeverity.Error, StringResource.Get("SudokuPage_InfoBar_FileIsInvalid"));
 
 			return;
 		}
@@ -87,18 +73,12 @@ public sealed partial class SudokuPage : Page
 		// Checks the validity of the parsed grid.
 		if (!grid.IsValid)
 		{
-			InfoBar(InfoBarSeverity.Warning)
-				.WithParentPanel(_cStackPanelDetails)
-				.WithMessage(StringResource.Get("SudokuPage_InfoBar_FilePuzzleIsNotUnique"))
-				.Open();
+			_cInfoBoard.AddMessage(InfoBarSeverity.Warning, StringResource.Get("SudokuPage_InfoBar_FilePuzzleIsNotUnique"));
 		}
 
 		// Loads the grid.
 		_cPane.Grid = grid;
-		InfoBar(InfoBarSeverity.Success)
-			.WithParentPanel(_cStackPanelDetails)
-			.WithMessage(StringResource.Get("SudokuPage_InfoBar_FileOpenSuccessfully"))
-			.Open();
+		_cInfoBoard.AddMessage(InfoBarSeverity.Success, StringResource.Get("SudokuPage_InfoBar_FileOpenSuccessfully"));
 	}
 
 	/// <summary>
@@ -109,11 +89,7 @@ public sealed partial class SudokuPage : Page
 	private void ClearAppBarButton_Click(object sender, RoutedEventArgs e)
 	{
 		_cPane.Grid = Grid.Empty;
-
-		InfoBar(InfoBarSeverity.Informational)
-			.WithParentPanel(_cStackPanelDetails)
-			.WithMessage(StringResource.Get("SudokuPage_InfoBar_ClearSuccessfully"))
-			.Open();
+		_cInfoBoard.AddMessage(InfoBarSeverity.Informational, StringResource.Get("SudokuPage_InfoBar_ClearSuccessfully"));
 	}
 
 	/// <summary>
@@ -126,10 +102,7 @@ public sealed partial class SudokuPage : Page
 		ref readonly var grid = ref _cPane.GridByReference();
 		if (grid.IsUndefined || grid.IsEmpty)
 		{
-			InfoBar(InfoBarSeverity.Error)
-				.WithParentPanel(_cStackPanelDetails)
-				.WithMessage(StringResource.Get("SudokuPage_InfoBar_CopyFailedDueToEmpty"))
-				.Open();
+			_cInfoBoard.AddMessage(InfoBarSeverity.Error, StringResource.Get("SudokuPage_InfoBar_CopyFailedDueToEmpty"));
 			return;
 		}
 
@@ -152,28 +125,19 @@ public sealed partial class SudokuPage : Page
 		string gridStr = await dataPackageView.GetTextAsync();
 		if (!Grid.TryParse(gridStr, out var grid))
 		{
-			InfoBar(InfoBarSeverity.Error)
-				.WithParentPanel(_cStackPanelDetails)
-				.WithMessage(StringResource.Get("SudokuPage_InfoBar_PasteIsInvalid"))
-				.Open();
+			_cInfoBoard.AddMessage(InfoBarSeverity.Error, StringResource.Get("SudokuPage_InfoBar_PasteIsInvalid"));
 			return;
 		}
 
 		// Checks the validity of the parsed grid.
 		if (!grid.IsValid)
 		{
-			InfoBar(InfoBarSeverity.Warning)
-				.WithParentPanel(_cStackPanelDetails)
-				.WithMessage(StringResource.Get("SudokuPage_InfoBar_PastePuzzleIsNotUnique"))
-				.Open();
+			_cInfoBoard.AddMessage(InfoBarSeverity.Warning, StringResource.Get("SudokuPage_InfoBar_PastePuzzleIsNotUnique"));
 		}
 
 		// Loads the grid.
 		_cPane.Grid = grid;
-		InfoBar(InfoBarSeverity.Success)
-			.WithParentPanel(_cStackPanelDetails)
-			.WithMessage(StringResource.Get("SudokuPage_InfoBar_PasteSuccessfully"))
-			.Open();
+		_cInfoBoard.AddMessage(InfoBarSeverity.Success, StringResource.Get("SudokuPage_InfoBar_PasteSuccessfully"));
 	}
 
 	/// <summary>
@@ -181,13 +145,8 @@ public sealed partial class SudokuPage : Page
 	/// </summary>
 	/// <param name="sender">The object that triggers the event.</param>
 	/// <param name="e">The event arguments provided.</param>
-	private void ClearInfoBarsAppBarButton_Click([IsDiscard] object sender, [IsDiscard] RoutedEventArgs e)
-	{
-		if (_cStackPanelDetails.Children is [_, ..] children)
-		{
-			children.Clear();
-		}
-	}
+	private void ClearInfoBarsAppBarButton_Click([IsDiscard] object sender, [IsDiscard] RoutedEventArgs e) =>
+		_cInfoBoard.ClearMessages();
 
 	/// <summary>
 	/// Triggers when the target <see cref="MenuFlyoutItem"/> is clicked.

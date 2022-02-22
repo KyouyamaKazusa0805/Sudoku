@@ -1904,10 +1904,27 @@
             The default value is <c>#FF696969</c> (i.e. DimGray).
             </remarks>
         </member>
+        <member name="T:Sudoku.UI.ValueConverters.InfoBarBoardToIsEnabledConverter">
+            <summary>
+            Defines a value converter that allows the one-way binding from the <see cref="P:Sudoku.UI.Views.Controls.InfoBarBoard.MessageCount"/>
+            to a <see cref="T:System.Boolean"/> vcalue indicating whether the control should be enabled.
+            </summary>
+            <seealso cref="P:Sudoku.UI.Views.Controls.InfoBarBoard.MessageCount"/>
+        </member>
+        <member name="M:Sudoku.UI.ValueConverters.InfoBarBoardToIsEnabledConverter.Convert(System.Object,System.Type,System.Object,System.String)">
+            <inheritdoc/>
+            <exception cref="T:System.ArgumentException">
+            Throws when the argument <paramref name="targetType"/> is not <see cref="T:System.Boolean"/>.
+            </exception>
+        </member>
+        <member name="M:Sudoku.UI.ValueConverters.InfoBarBoardToIsEnabledConverter.ConvertBack(System.Object,System.Type,System.Object,System.String)">
+            <inheritdoc/>
+            <exception cref="T:System.NotImplementedException">Always throws due to not implemented.</exception>
+        </member>
         <member name="T:Sudoku.UI.ValueConverters.UndoOrRedoStackToIsEnabledConverter">
             <summary>
             Defines a value converter that allows the one-way binding from the undo-stack or redo-stack
-            to a <see cref="T:System.Boolean"/> value indicating whether the control is enabled.
+            to a <see cref="T:System.Boolean"/> value indicating whether the control should be enabled.
             </summary>
         </member>
         <member name="M:Sudoku.UI.ValueConverters.UndoOrRedoStackToIsEnabledConverter.Convert(System.Object,System.Type,System.Object,System.String)">
@@ -1919,6 +1936,64 @@
         <member name="M:Sudoku.UI.ValueConverters.UndoOrRedoStackToIsEnabledConverter.ConvertBack(System.Object,System.Type,System.Object,System.String)">
             <inheritdoc/>
             <exception cref="T:System.NotImplementedException">Always throws due to not implemented.</exception>
+        </member>
+        <member name="T:Sudoku.UI.Views.Controls.InfoBarBoard">
+            <summary>
+            Defines a user control that handles the messages displaying via <see cref="M:Sudoku.UI.ControlFactory.InfoBar(Microsoft.UI.Xaml.Controls.InfoBarSeverity)"/>s.
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Views.Controls.InfoBarBoard.#ctor">
+            <summary>
+            Initializes a <see cref="T:Sudoku.UI.Views.Controls.InfoBarBoard"/> instance.
+            </summary>
+        </member>
+        <member name="P:Sudoku.UI.Views.Controls.InfoBarBoard.MessageCount">
+            <summary>
+            Indicates the number of messages existing in the board at present.
+            </summary>
+        </member>
+        <member name="E:Sudoku.UI.Views.Controls.InfoBarBoard.PropertyChanged">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.UI.Views.Controls.InfoBarBoard.AddMessage(Microsoft.UI.Xaml.Controls.InfoBarSeverity,System.String)">
+            <summary>
+            Creates a new <see cref="T:Microsoft.UI.Xaml.Controls.InfoBar"/> instance via the specified severity
+            and the information.
+            </summary>
+            <param name="severity">The severity of the info bar.</param>
+            <param name="info">The displaing text of the info bar.</param>
+            <seealso cref="T:Microsoft.UI.Xaml.Controls.InfoBar"/>
+        </member>
+        <member name="M:Sudoku.UI.Views.Controls.InfoBarBoard.AddMessage(Microsoft.UI.Xaml.Controls.InfoBarSeverity,System.String,System.String,System.String)">
+            <summary>
+            Creates a new <see cref="T:Microsoft.UI.Xaml.Controls.InfoBar"/> instance via the specified severity,
+            the information and the hyperlink button.
+            </summary>
+            <param name="severity">The severity of the info bar.</param>
+            <param name="info">The displaing text of the info bar.</param>
+            <param name="link">The hyperlink to be appended into.</param>
+            <param name="linkDescription">The description of the hyperlink.</param>
+            <seealso cref="T:Microsoft.UI.Xaml.Controls.InfoBar"/>
+        </member>
+        <member name="M:Sudoku.UI.Views.Controls.InfoBarBoard.ClearMessages">
+            <summary>
+            Clears all messages.
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Views.Controls.InfoBarBoard.InitializeComponent">
+            <summary>
+            InitializeComponent()
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Views.Controls.InfoBarBoard.Connect(System.Int32,System.Object)">
+            <summary>
+            Connect()
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Views.Controls.InfoBarBoard.GetBindingConnector(System.Int32,System.Object)">
+            <summary>
+            GetBindingConnector(int connectionId, object target)
+            </summary>
         </member>
         <member name="T:Sudoku.UI.Views.Controls.SudokuPane">
             <summary>

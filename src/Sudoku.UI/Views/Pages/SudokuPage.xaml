@@ -12,6 +12,7 @@
 		<Grid>
 			<Grid.Resources>
 				<cvt:UndoOrRedoStackToIsEnabledConverter x:Key="_rUndoingOrRedoingConverter" />
+				<cvt:InfoBarBoardToIsEnabledConverter x:Key="_rInfoBoardConverter" />
 			</Grid.Resources>
 			<Grid.RowDefinitions>
 				<RowDefinition Height="580" />
@@ -54,11 +55,7 @@
 				</c:SudokuPane.ContextFlyout>
 			</c:SudokuPane>
 			<ScrollViewer Grid.Row="0" Grid.Column="1" Margin="0,0,25,0">
-				<StackPanel x:Name="_cStackPanelDetails">
-					<StackPanel.ChildrenTransitions>
-						<RepositionThemeTransition />
-					</StackPanel.ChildrenTransitions>
-				</StackPanel>
+				<c:InfoBarBoard x:Name="_cInfoBoard" />
 			</ScrollViewer>
 			<Grid
 				Grid.Row="1" Grid.Column="0" Margin="0,25,0,0"
@@ -115,6 +112,12 @@
 				</AppBarButton>
 				<AppBarButton
 					x:Name="_cClearInfoBars" Grid.Row="0" Grid.Column="5" Icon="ClearSelection"
+					IsEnabled="{Binding
+						ElementName=_cInfoBoard,
+						Path=MessageCount,
+						Converter={StaticResource _rInfoBoardConverter},
+						Mode=OneWay,
+						UpdateSourceTrigger=PropertyChanged}"
 					Label="{StaticResource SudokuPage_ClearInfoBars}"
 					Click="ClearInfoBarsAppBarButton_Click" />
 				<AppBarSeparator Grid.Row="0" Grid.Column="6" />

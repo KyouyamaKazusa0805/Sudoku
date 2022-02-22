@@ -33,6 +33,7 @@
 		<None Remove="BasicProperties.xaml" />
 		<None Remove="TextResources-en-us.xaml" />
 		<None Remove="TextResources-zh-cn.xaml" />
+		<None Remove="Views\Controls\InfoBarBoard.xaml" />
 		<None Remove="Views\Controls\SudokuPane.xaml" />
 		<None Remove="Views\Pages\AboutPage.xaml" />
 		<None Remove="Views\Pages\MainPage.xaml" />
@@ -72,6 +73,12 @@
 	<ItemGroup>
 		<ProjectReference Include="..\Sudoku.Core\Sudoku.Core.csproj" />
 		<ProjectReference Include="..\System\SystemExtensions.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Page Update="Views\Controls\InfoBarBoard.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </Page>
 	</ItemGroup>
 
 	<ItemGroup>
