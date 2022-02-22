@@ -1,4 +1,5 @@
-﻿using Windows.UI;
+﻿using Sudoku.UI.Data;
+using Windows.UI;
 
 namespace Sudoku.UI.Drawing.Shapes;
 
@@ -304,8 +305,8 @@ public sealed class SudokuGrid : DrawingElement
 			_undoStack.Clear();
 			_redoStack.Clear();
 
-			UndoStackChanged?.Invoke(this, new());
-			RedoStackChanged?.Invoke(this, new());
+			UndoStackChanged?.Invoke(this);
+			RedoStackChanged?.Invoke(this);
 		}
 	}
 
@@ -323,12 +324,12 @@ public sealed class SudokuGrid : DrawingElement
 	/// <summary>
 	/// Indicates the event that triggers when the undo stack is changed.
 	/// </summary>
-	public event RoutedEventHandler? UndoStackChanged;
+	public event UndoStackChangedEventHandler? UndoStackChanged;
 
 	/// <summary>
 	/// Indicates the event that triggers when the redo stack is changed.
 	/// </summary>
-	public event RoutedEventHandler? RedoStackChanged;
+	public event RedoStackChangedEventHandler? RedoStackChanged;
 
 
 	/// <summary>
@@ -352,8 +353,8 @@ public sealed class SudokuGrid : DrawingElement
 			UpdateView();
 
 			// Due to both stacks being changed, we should trigger the event for reporting both stacks' changing.
-			RedoStackChanged?.Invoke(this, new());
-			UndoStackChanged?.Invoke(this, new());
+			RedoStackChanged?.Invoke(this);
+			UndoStackChanged?.Invoke(this);
 		}
 	}
 
@@ -379,8 +380,8 @@ public sealed class SudokuGrid : DrawingElement
 			UpdateView();
 
 			// Due to both stacks being changed, we should trigger the event for reporting both stacks' changing.
-			UndoStackChanged?.Invoke(this, new());
-			RedoStackChanged?.Invoke(this, new());
+			UndoStackChanged?.Invoke(this);
+			RedoStackChanged?.Invoke(this);
 		}
 	}
 
@@ -400,7 +401,7 @@ public sealed class SudokuGrid : DrawingElement
 		UpdateView();
 
 		// Trigger the event.
-		UndoStackChanged?.Invoke(this, new());
+		UndoStackChanged?.Invoke(this);
 	}
 
 	/// <summary>
@@ -419,7 +420,7 @@ public sealed class SudokuGrid : DrawingElement
 		UpdateView();
 
 		// Trigger the event.
-		UndoStackChanged?.Invoke(this, new());
+		UndoStackChanged?.Invoke(this);
 	}
 
 	/// <inheritdoc/>

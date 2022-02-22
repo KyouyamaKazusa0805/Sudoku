@@ -314,8 +314,8 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 			_userPreference.ValueFontSize,
 			_userPreference.CandidateFontSize
 		);
-		sudokuGrid.UndoStackChanged += (_, _) => PropertyChanged?.Invoke(this, new(nameof(UndoStepsCount)));
-		sudokuGrid.RedoStackChanged += (_, _) => PropertyChanged?.Invoke(this, new(nameof(RedoStepsCount)));
+		sudokuGrid.UndoStackChanged += ([IsDiscard] _) => triggerPropertyChangedVia(nameof(UndoStepsCount));
+		sudokuGrid.RedoStackChanged += ([IsDiscard] _) => triggerPropertyChangedVia(nameof(RedoStepsCount));
 
 		_drawingElements.Add(sudokuGrid);
 
@@ -324,6 +324,10 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 		{
 			_cCanvasMain.Children.Add(control);
 		}
+
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		void triggerPropertyChangedVia(string propertyName) => PropertyChanged?.Invoke(this, new(propertyName));
 	}
 
 	/// <summary>
