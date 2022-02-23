@@ -17,6 +17,7 @@ public sealed partial class InfoBarBoard : UserControl, INotifyPropertyChanged
 	/// <summary>
 	/// Indicates the number of messages existing in the board at present.
 	/// </summary>
+	[OneWayGetOnlyProperty]
 	public int MessageCount => _cStackPanelDetails.Children.Count;
 
 
@@ -34,10 +35,10 @@ public sealed partial class InfoBarBoard : UserControl, INotifyPropertyChanged
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public void AddMessage(InfoBarSeverity severity, string info)
 	{
-		InfoBar(severity)
-			.WithMessage(info)
-			.WithParentPanel(_cStackPanelDetails)
-			.Open();
+		var infoBar = InfoBar(severity);
+		infoBar.Message = info;
+		InfoBarAddHandlers(infoBar, _cStackPanelDetails);
+		infoBar.IsOpen = true;
 
 		PropertyChanged?.Invoke(this, new(nameof(MessageCount)));
 	}
@@ -54,11 +55,11 @@ public sealed partial class InfoBarBoard : UserControl, INotifyPropertyChanged
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public void AddMessage(InfoBarSeverity severity, string info, string link, string linkDescription)
 	{
-		InfoBar(severity)
-			.WithMessage(info)
-			.WithParentPanel(_cStackPanelDetails)
-			.WithLinkButton(link, linkDescription)
-			.Open();
+		var infoBar = InfoBar(severity);
+		infoBar.Message = info;
+		infoBar.ActionButton = new HyperlinkButton { NavigateUri = new(link), Content = linkDescription };
+		InfoBarAddHandlers(infoBar, _cStackPanelDetails);
+		infoBar.IsOpen = true;
 
 		PropertyChanged?.Invoke(this, new(nameof(MessageCount)));
 	}
@@ -75,5 +76,32 @@ public sealed partial class InfoBarBoard : UserControl, INotifyPropertyChanged
 
 			PropertyChanged?.Invoke(this, new(nameof(MessageCount)));
 		}
+	}
+
+	/// <summary>
+	/// Adds the specified <paramref name="infoBar"/> into the specified <paramref name="panel"/>
+	/// as its child control, with the specified way to add.
+	/// </summary>
+	/// <param name="infoBar">
+	/// The <see cref="InfoBar"/> instance to be added into the <paramref name="panel"/>.
+	/// </param>
+	/// <param name="panel">The panel to store the children controls.</param>
+	/// <param name="insertAtFirstPlace">
+	/// Indicates whether the control will be inserted at the first place into the parent panel.
+	/// The default value is <see langword="true"/>.
+	/// </param>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	private void InfoBarAddHandlers(InfoBar infoBar, StackPanel panel, bool insertAtFirstPlace = true)
+	{
+		((Action<StackPanel, InfoBar>)(insertAtFirstPlace ? insertion : appending))(panel, infoBar);
+
+		infoBar.Closed += (s, e) => _ = e.Reason == InfoBarCloseReason.CloseButton && panel.Children.Remove(s);
+
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		static void insertion(StackPanel panel, InfoBar infoBar) => panel.Children.Insert(0, infoBar);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		static void appending(StackPanel panel, InfoBar infoBar) => panel.Children.Add(infoBar);
 	}
 }

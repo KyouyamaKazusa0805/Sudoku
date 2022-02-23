@@ -39,23 +39,12 @@ public sealed partial class SudokuPage : Page
 		return unsnapped;
 	}
 
-
 	/// <summary>
-	/// Triggers when the current page is loaded.
+	/// Asynchronously opening the file, and get the inner content to be parsed to a <see cref="Grid"/> result
+	/// to display.
 	/// </summary>
-	/// <param name="sender">The object that triggers the event.</param>
-	/// <param name="e">The event arguments provided.</param>
-	private void Page_Loaded([IsDiscard] object sender, [IsDiscard] RoutedEventArgs e) =>
-		_cInfoBoard.AddMessage(
-			InfoBarSeverity.Informational, StringResource.Get("SudokuPage_InfoBar_Welcome"),
-			StringResource.Get("Link_SudokuTutorial"), StringResource.Get("Link_SudokuTutorialDescription"));
-
-	/// <summary>
-	/// Triggers when the button is clicked.
-	/// </summary>
-	/// <param name="sender">The object that triggers the event.</param>
-	/// <param name="e">The event arguments provided.</param>
-	private async void OpenAppBarButton_ClickAsync([IsDiscard] object sender, [IsDiscard] RoutedEventArgs e)
+	/// <returns>The typical awaitable instance that holds the task to open the file.</returns>
+	private async Task OpenFileAsync()
 	{
 		if (!EnsureUnsnapped())
 		{
@@ -74,16 +63,14 @@ public sealed partial class SudokuPage : Page
 		if (new FileInfo(filePath).Length == 0)
 		{
 			_cInfoBoard.AddMessage(InfoBarSeverity.Error, StringResource.Get("SudokuPage_InfoBar_FileIsEmpty"));
-
 			return;
 		}
 
 		// Checks the validity of the file, and reads the whole content.
-		string content = await File.ReadAllTextAsync(filePath);
+		string content = await FileIO.ReadTextAsync(file);
 		if (string.IsNullOrWhiteSpace(content))
 		{
 			_cInfoBoard.AddMessage(InfoBarSeverity.Error, StringResource.Get("SudokuPage_InfoBar_FileIsEmpty"));
-
 			return;
 		}
 
@@ -91,7 +78,6 @@ public sealed partial class SudokuPage : Page
 		if (!Grid.TryParse(content, out var grid))
 		{
 			_cInfoBoard.AddMessage(InfoBarSeverity.Error, StringResource.Get("SudokuPage_InfoBar_FileIsInvalid"));
-
 			return;
 		}
 
@@ -105,6 +91,25 @@ public sealed partial class SudokuPage : Page
 		_cPane.Grid = grid;
 		_cInfoBoard.AddMessage(InfoBarSeverity.Success, StringResource.Get("SudokuPage_InfoBar_FileOpenSuccessfully"));
 	}
+
+
+	/// <summary>
+	/// Triggers when the current page is loaded.
+	/// </summary>
+	/// <param name="sender">The object that triggers the event.</param>
+	/// <param name="e">The event arguments provided.</param>
+	private void Page_Loaded([IsDiscard] object sender, [IsDiscard] RoutedEventArgs e) =>
+		_cInfoBoard.AddMessage(
+			InfoBarSeverity.Informational, StringResource.Get("SudokuPage_InfoBar_Welcome"),
+			StringResource.Get("Link_SudokuTutorial"), StringResource.Get("Link_SudokuTutorialDescription"));
+
+	/// <summary>
+	/// Triggers when the button is clicked.
+	/// </summary>
+	/// <param name="sender">The object that triggers the event.</param>
+	/// <param name="e">The event arguments provided.</param>
+	private async void OpenAppBarButton_ClickAsync([IsDiscard] object sender, [IsDiscard] RoutedEventArgs e) =>
+		await OpenFileAsync();
 
 	/// <summary>
 	/// Triggers when the button is clicked.

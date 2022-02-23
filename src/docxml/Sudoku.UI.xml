@@ -1772,6 +1772,16 @@
             <param name="uri">The URI website.</param>
             <returns>The process.</returns>
         </member>
+        <member name="T:Sudoku.UI.OneWayGetOnlyPropertyAttribute">
+            <summary>
+            Defines an attribute that can be used for a property, to indicate the property is read-only
+            but also used by one-way binding operations.
+            </summary>
+            <remarks><b><i>
+            This attribute doesn't make any sense for both the compiler and runtime at present,
+            but this type is still reserved. I may create an analyzer to use this attribute in the future.
+            </i></b></remarks>
+        </member>
         <member name="T:Sudoku.UI.RepositoryInfo">
             <summary>
             Defines a set of properties to describe an image.
@@ -1819,6 +1829,28 @@
             </summary>
             <param name="key">The <see cref="T:System.String"/>-typed resource key.</param>
             <returns>The resource value.</returns>
+        </member>
+        <member name="T:Sudoku.UI.TwoWayPropertyAttribute">
+            <summary>
+            Defines an attribute that can be used for a property, to indicate the property contains both
+            setter and getter, and used by two-way binding operations, with the specified property name.
+            </summary>
+            <remarks><b><i>
+            This attribute doesn't make any sense for both the compiler and runtime at present,
+            but this type is still reserved. I may create an analyzer to use this attribute in the future.
+            </i></b></remarks>
+        </member>
+        <member name="M:Sudoku.UI.TwoWayPropertyAttribute.#ctor(System.String)">
+            <summary>
+            Initializes a <see cref="T:Sudoku.UI.TwoWayPropertyAttribute"/> instance via the specified property name
+            that is the bound value with the current instance.
+            </summary>
+            <param name="boundPropertyName">The name of that bound property.</param>
+        </member>
+        <member name="P:Sudoku.UI.TwoWayPropertyAttribute.BoundPropertyName">
+            <summary>
+            Indicates the bound property name.
+            </summary>
         </member>
         <member name="T:Sudoku.UI.UserPreference">
             <summary>
@@ -1979,6 +2011,20 @@
             <summary>
             Clears all messages.
             </summary>
+        </member>
+        <member name="M:Sudoku.UI.Views.Controls.InfoBarBoard.InfoBarAddHandlers(Microsoft.UI.Xaml.Controls.InfoBar,Microsoft.UI.Xaml.Controls.StackPanel,System.Boolean)">
+            <summary>
+            Adds the specified <paramref name="infoBar"/> into the specified <paramref name="panel"/>
+            as its child control, with the specified way to add.
+            </summary>
+            <param name="infoBar">
+            The <see cref="M:Sudoku.UI.ControlFactory.InfoBar(Microsoft.UI.Xaml.Controls.InfoBarSeverity)"/> instance to be added into the <paramref name="panel"/>.
+            </param>
+            <param name="panel">The panel to store the children controls.</param>
+            <param name="insertAtFirstPlace">
+            Indicates whether the control will be inserted at the first place into the parent panel.
+            The default value is <see langword="true"/>.
+            </param>
         </member>
         <member name="M:Sudoku.UI.Views.Controls.InfoBarBoard.InitializeComponent">
             <summary>
@@ -2248,6 +2294,13 @@
             </summary>
             <returns>The <see cref="T:System.Boolean"/> value indicating that.</returns>
         </member>
+        <member name="M:Sudoku.UI.Views.Pages.SudokuPage.OpenFileAsync">
+            <summary>
+            Asynchronously opening the file, and get the inner content to be parsed to a <see cref="T:Sudoku.Collections.Grid"/> result
+            to display.
+            </summary>
+            <returns>The typical awaitable instance that holds the task to open the file.</returns>
+        </member>
         <member name="M:Sudoku.UI.Views.Pages.SudokuPage.Page_Loaded(System.Object,Microsoft.UI.Xaml.RoutedEventArgs)">
             <summary>
             Triggers when the current page is loaded.
@@ -2507,50 +2560,6 @@
             <exception cref="T:System.ArgumentOutOfRangeException">
             Throws when the argument <paramref name="count"/> is negative.
             </exception>
-        </member>
-        <member name="T:Microsoft.UI.Xaml.Controls.InfoBarWithExtensions">
-            <summary>
-            Provides extension methods on <see cref="T:Microsoft.UI.Xaml.Controls.InfoBar"/>.
-            </summary>
-            <seealso cref="T:Microsoft.UI.Xaml.Controls.InfoBar"/>
-        </member>
-        <member name="M:Microsoft.UI.Xaml.Controls.InfoBarWithExtensions.Open(Microsoft.UI.Xaml.Controls.InfoBar)">
-            <summary>
-            To open the <see cref="T:Microsoft.UI.Xaml.Controls.InfoBar"/>.
-            </summary>
-            <param name="this">The <see cref="T:Microsoft.UI.Xaml.Controls.InfoBar"/> instance.</param>
-        </member>
-        <member name="M:Microsoft.UI.Xaml.Controls.InfoBarWithExtensions.WithParentPanel``1(Microsoft.UI.Xaml.Controls.InfoBar,``0,System.Boolean)">
-            <summary>
-            Defines a parent panel that the current <see cref="T:Microsoft.UI.Xaml.Controls.InfoBar"/> stored.
-            </summary>
-            <typeparam name="TPanel">The type of the panel.</typeparam>
-            <param name="this">The <see cref="T:Microsoft.UI.Xaml.Controls.InfoBar"/> instance.</param>
-            <param name="panel">The panel.</param>
-            <param name="insertAtFirstPlace">
-            Indicates whether the control will be inserted at the first place into the parent panel.
-            The default value is <see langword="true"/>.
-            </param>
-            <returns>The reference which is same as the argument <paramref name="this"/>.</returns>
-        </member>
-        <member name="M:Microsoft.UI.Xaml.Controls.InfoBarWithExtensions.WithMessage(Microsoft.UI.Xaml.Controls.InfoBar,System.String)">
-            <summary>
-            Sets the property <see cref="P:Microsoft.UI.Xaml.Controls.InfoBar.Content"/> to the target string value.
-            </summary>
-            <param name="this">The <see cref="T:Microsoft.UI.Xaml.Controls.InfoBar"/> instance.</param>
-            <param name="content">The content to replace with.</param>
-            <returns>The reference that is same as the argument <paramref name="this"/>.</returns>
-            <seealso cref="P:Microsoft.UI.Xaml.Controls.InfoBar.Content"/>
-        </member>
-        <member name="M:Microsoft.UI.Xaml.Controls.InfoBarWithExtensions.WithLinkButton(Microsoft.UI.Xaml.Controls.InfoBar,System.String,System.String)">
-            <summary>
-            Sets the property <see cref="P:Microsoft.UI.Xaml.Controls.InfoBar.ActionButton"/> to a <see cref="T:Microsoft.UI.Xaml.Controls.HyperlinkButton"/>.
-            </summary>
-            <param name="this">The <see cref="T:Microsoft.UI.Xaml.Controls.InfoBar"/> instance.</param>
-            <param name="link">The link.</param>
-            <param name="contentDescription">The content description.</param>
-            <returns>The reference that is same as the argument <paramref name="this"/>.</returns>
-            <seealso cref="P:Microsoft.UI.Xaml.Controls.InfoBar.ActionButton"/>
         </member>
         <member name="T:Microsoft.UI.Xaml.Shapes.LineExtensions">
             <summary>
