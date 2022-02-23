@@ -1,4 +1,5 @@
-﻿using Sudoku.Diagnostics.CodeAnalysis;
+﻿using System.Collections.Specialized;
+using Sudoku.Diagnostics.CodeAnalysis;
 using Windows.ApplicationModel.DataTransfer;
 using Windows.Storage;
 using Windows.Storage.Pickers;
@@ -254,4 +255,13 @@ public sealed partial class SudokuPage : Page
 				? tag switch { "Undo" => _cPane.UndoStep, "Redo" => _cPane.RedoStep }
 				: default(Action)!
 		)();
+
+	/// <summary>
+	/// Triggers when the inner collection of the control <see cref="_cInfoBoard"/> is changed.
+	/// </summary>
+	/// <param name="sender">The object that triggers the event.</param>
+	/// <param name="e">The event arguments provided.</param>
+	private void InfoBoard_CollectionChanged(
+		[IsDiscard] object sender, [IsDiscard] NotifyCollectionChangedEventArgs e) =>
+		_cClearInfoBars.IsEnabled = _cInfoBoard.Any;
 }

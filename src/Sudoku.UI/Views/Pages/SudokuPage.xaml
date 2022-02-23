@@ -24,11 +24,10 @@
 			</Grid.ColumnDefinitions>
 
 			<c:SudokuPane
-				x:Name="_cPane" Grid.Row="0" Grid.Column="0" Margin="25,25,0,0"
-				Size="560" OutsideOffset="10" />
-			<ScrollViewer Grid.Row="0" Grid.Column="1" Margin="0,0,25,0">
-				<c:InfoBarBoard x:Name="_cInfoBoard" />
-			</ScrollViewer>
+				x:Name="_cPane" Grid.Row="0" Grid.Column="0" Margin="25,25,0,0" Size="560" OutsideOffset="10" />
+			<c:InfoBarBoard
+				x:Name="_cInfoBoard" Grid.Row="0" Grid.Column="1" Margin="25,0,25,0" InfoBarSpacing="25"
+				CollectionChanged="InfoBoard_CollectionChanged" />
 			<Grid
 				Grid.Row="1" Grid.Column="0" Margin="0,25,0,0"
 				HorizontalAlignment="Center" VerticalAlignment="Center">
@@ -85,23 +84,12 @@
 				</AppBarButton>
 				<AppBarButton
 					x:Name="_cClearInfoBars" Grid.Row="0" Grid.Column="5" Icon="ClearSelection"
-					IsEnabled="{Binding
-						ElementName=_cInfoBoard,
-						Path=MessageCount,
-						Converter={StaticResource _rInfoBoardConverter},
-						Mode=OneWay,
-						UpdateSourceTrigger=PropertyChanged}"
+					IsEnabled="{Binding ElementName=_cInfoBoard,Path=Any,Mode=OneWay,UpdateSourceTrigger=Explicit}"
 					Label="{StaticResource SudokuPage_ClearInfoBars}"
 					Click="ClearInfoBarsAppBarButton_Click" />
 				<AppBarSeparator Grid.Row="0" Grid.Column="6" />
 				<AppBarButton
 					x:Name="_cUndo" Grid.Row="0" Grid.Column="7" Icon="Undo" Tag="Undo"
-					IsEnabled="{Binding
-						ElementName=_cPane,
-						Path=UndoStepsCount,
-						Converter={StaticResource _rUndoingOrRedoingConverter},
-						Mode=OneWay,
-						UpdateSourceTrigger=PropertyChanged}"
 					Label="{StaticResource SudokuPage_Undo}"
 					Click="UndoOrRedo_Click">
 					<AppBarButton.KeyboardAccelerators>

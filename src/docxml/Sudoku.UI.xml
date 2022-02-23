@@ -83,6 +83,73 @@
             Indicates the configuration file.
             </summary>
         </member>
+        <member name="T:Sudoku.UI.Data.DataTemplateSelectors.InfoBarTemplateSelector">
+            <summary>
+            Defines a data template selector that selects the <see cref="T:Microsoft.UI.Xaml.DataTemplate"/> between
+            <see cref="T:Sudoku.UI.Data.InfoBarInfo"/> and <see cref="T:Sudoku.UI.Data.InfoBarInfoWithLink"/> as the model types.
+            </summary>
+            <seealso cref="T:Sudoku.UI.Data.InfoBarInfo"/>
+            <seealso cref="T:Sudoku.UI.Data.InfoBarInfoWithLink"/>
+        </member>
+        <member name="P:Sudoku.UI.Data.DataTemplateSelectors.InfoBarTemplateSelector.InfoBarInfoTemplate">
+            <summary>
+            Indicates the data template that is used by the type <see cref="T:Sudoku.UI.Data.InfoBarInfo"/>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.UI.Data.DataTemplateSelectors.InfoBarTemplateSelector.InfoBarInfoWithLinkTemplate">
+            <summary>
+            Indicates the data template that is used by the type <see cref="T:Sudoku.UI.Data.InfoBarInfoWithLink"/>.
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Data.DataTemplateSelectors.InfoBarTemplateSelector.SelectTemplateCore(System.Object)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.UI.Data.InfoBarInfo">
+            <summary>
+            Defines a set of information that is used by creating an <see cref="T:Microsoft.UI.Xaml.Controls.InfoBar"/>.
+            </summary>
+            <seealso cref="T:Microsoft.UI.Xaml.Controls.InfoBar"/>
+        </member>
+        <member name="P:Sudoku.UI.Data.InfoBarInfo.Message">
+            <summary>
+            Indicates the message to be displayed. The default value is <see cref="F:System.String.Empty"/>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.UI.Data.InfoBarInfo.Severity">
+            <summary>
+            Indicates the severity of the information.
+            </summary>
+        </member>
+        <member name="T:Sudoku.UI.Data.InfoBarInfoWithLink">
+            <summary>
+            Defines a set of information that is used by creating an <see cref="T:Microsoft.UI.Xaml.Controls.InfoBar"/>.
+            Different with <see cref="T:Sudoku.UI.Data.InfoBarInfo"/>, this type contains two extra properties
+            <see cref="P:Sudoku.UI.Data.InfoBarInfoWithLink.Hyperlink"/> and <see cref="P:Sudoku.UI.Data.InfoBarInfoWithLink.HyperlinkDescription"/>, to describe the hyperlink related.
+            </summary>
+            <seealso cref="T:Microsoft.UI.Xaml.Controls.InfoBar"/>
+            <seealso cref="P:Sudoku.UI.Data.InfoBarInfoWithLink.Hyperlink"/>
+            <seealso cref="P:Sudoku.UI.Data.InfoBarInfoWithLink.HyperlinkDescription"/>
+        </member>
+        <member name="P:Sudoku.UI.Data.InfoBarInfoWithLink.Message">
+            <summary>
+            Indicates the message to be displayed. The default value is <see cref="F:System.String.Empty"/>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.UI.Data.InfoBarInfoWithLink.HyperlinkDescription">
+            <summary>
+            Indicates the description text of the hyperlink. The default value is <see cref="F:System.String.Empty"/>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.UI.Data.InfoBarInfoWithLink.Severity">
+            <summary>
+            Indicates the severity of the information.
+            </summary>
+        </member>
+        <member name="P:Sudoku.UI.Data.InfoBarInfoWithLink.Hyperlink">
+            <summary>
+            Indicates the hyperlink that the current <see cref="T:Microsoft.UI.Xaml.Controls.InfoBar"/> relates to.
+            </summary>
+        </member>
         <member name="T:Sudoku.UI.Data.Interoperability.IInitializeWithWindow">
             <summary>
             Exposes a method through which a client can provide an owner window
@@ -137,10 +204,10 @@
         </member>
         <member name="T:Sudoku.UI.Data.ValueConverters.InfoBarBoardToIsEnabledConverter">
             <summary>
-            Defines a value converter that allows the one-way binding from the <see cref="P:Sudoku.UI.Views.Controls.InfoBarBoard.MessageCount"/>
+            Defines a value converter that allows the one-way binding from the <see cref="!:InfoBarBoard.MessageCount"/>
             to a <see cref="T:System.Boolean"/> vcalue indicating whether the control should be enabled.
             </summary>
-            <seealso cref="P:Sudoku.UI.Views.Controls.InfoBarBoard.MessageCount"/>
+            <seealso cref="!:InfoBarBoard.MessageCount"/>
         </member>
         <member name="M:Sudoku.UI.Data.ValueConverters.InfoBarBoardToIsEnabledConverter.Convert(System.Object,System.Type,System.Object,System.String)">
             <inheritdoc/>
@@ -1748,17 +1815,13 @@
             <returns>The converted result string value.</returns>
             <seealso cref="P:Sudoku.UI.RepositoryInfo.IsForReference"/>
         </member>
-        <member name="T:Sudoku.UI.ControlFactory">
+        <member name="M:Sudoku.UI.BindingConversions.InfoBarTitle(Microsoft.UI.Xaml.Controls.InfoBarSeverity)">
             <summary>
-            Defines a control factory.
+            Gets the title of the info bar via its severity.
             </summary>
-        </member>
-        <member name="M:Sudoku.UI.ControlFactory.InfoBar(Microsoft.UI.Xaml.Controls.InfoBarSeverity)">
-            <summary>
-            Creates a <see cref="T:Microsoft.UI.Xaml.Controls.InfoBar"/> instance.
-            </summary>
-            <param name="severity">The severity of the info bar.</param>
-            <returns>The <see cref="T:Microsoft.UI.Xaml.Controls.InfoBar"/> instance.</returns>
+            <param name="severity">The severity.</param>
+            <returns>The title of the info bar.</returns>
+            <exception cref="T:System.ArgumentOutOfRangeException">Throws when the severity is not defined.</exception>
         </member>
         <member name="T:Sudoku.UI.Website">
             <summary>
@@ -1971,20 +2034,42 @@
         </member>
         <member name="T:Sudoku.UI.Views.Controls.InfoBarBoard">
             <summary>
-            Defines a user control that handles the messages displaying via <see cref="M:Sudoku.UI.ControlFactory.InfoBar(Microsoft.UI.Xaml.Controls.InfoBarSeverity)"/>s.
+            Defines a user control that handles the messages displaying via <see cref="T:Microsoft.UI.Xaml.Controls.InfoBar"/>s.
             </summary>
+            <seealso cref="T:Microsoft.UI.Xaml.Controls.InfoBar"/>
+        </member>
+        <member name="F:Sudoku.UI.Views.Controls.InfoBarBoard._list">
+            <summary>
+            The list of <see cref="T:Sudoku.UI.Data.InfoBarInfo"/> or <see cref="T:Sudoku.UI.Data.InfoBarInfoWithLink"/>s.
+            </summary>
+            <seealso cref="T:Sudoku.UI.Data.InfoBarInfo"/>
+            <seealso cref="T:Sudoku.UI.Data.InfoBarInfoWithLink"/>
+        </member>
+        <member name="F:Sudoku.UI.Views.Controls.InfoBarBoard._spacing">
+            <summary>
+            Indicates the backing field of property <see cref="P:Sudoku.UI.Views.Controls.InfoBarBoard.InfoBarSpacing"/>.
+            </summary>
+            <seealso cref="P:Sudoku.UI.Views.Controls.InfoBarBoard.InfoBarSpacing"/>
         </member>
         <member name="M:Sudoku.UI.Views.Controls.InfoBarBoard.#ctor">
             <summary>
             Initializes a <see cref="T:Sudoku.UI.Views.Controls.InfoBarBoard"/> instance.
             </summary>
         </member>
-        <member name="P:Sudoku.UI.Views.Controls.InfoBarBoard.MessageCount">
+        <member name="P:Sudoku.UI.Views.Controls.InfoBarBoard.Any">
             <summary>
-            Indicates the number of messages existing in the board at present.
+            Indicates whether the collection is not empty.
+            </summary>
+        </member>
+        <member name="P:Sudoku.UI.Views.Controls.InfoBarBoard.InfoBarSpacing">
+            <summary>
+            Indicates the spacing between two adjacent <see cref="T:Microsoft.UI.Xaml.Controls.InfoBar"/> instances.
             </summary>
         </member>
         <member name="E:Sudoku.UI.Views.Controls.InfoBarBoard.PropertyChanged">
+            <inheritdoc/>
+        </member>
+        <member name="E:Sudoku.UI.Views.Controls.InfoBarBoard.CollectionChanged">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.UI.Views.Controls.InfoBarBoard.AddMessage(Microsoft.UI.Xaml.Controls.InfoBarSeverity,System.String)">
@@ -2012,19 +2097,12 @@
             Clears all messages.
             </summary>
         </member>
-        <member name="M:Sudoku.UI.Views.Controls.InfoBarBoard.InfoBarAddHandlers(Microsoft.UI.Xaml.Controls.InfoBar,Microsoft.UI.Xaml.Controls.StackPanel,System.Boolean)">
+        <member name="M:Sudoku.UI.Views.Controls.InfoBarBoard.UserControl_Loaded(System.Object,Microsoft.UI.Xaml.RoutedEventArgs)">
             <summary>
-            Adds the specified <paramref name="infoBar"/> into the specified <paramref name="panel"/>
-            as its child control, with the specified way to add.
+            Triggers when the current control is loaded.
             </summary>
-            <param name="infoBar">
-            The <see cref="M:Sudoku.UI.ControlFactory.InfoBar(Microsoft.UI.Xaml.Controls.InfoBarSeverity)"/> instance to be added into the <paramref name="panel"/>.
-            </param>
-            <param name="panel">The panel to store the children controls.</param>
-            <param name="insertAtFirstPlace">
-            Indicates whether the control will be inserted at the first place into the parent panel.
-            The default value is <see langword="true"/>.
-            </param>
+            <param name="sender">The object that triggers the event.</param>
+            <param name="e">The event arguments provided.</param>
         </member>
         <member name="M:Sudoku.UI.Views.Controls.InfoBarBoard.InitializeComponent">
             <summary>
@@ -2369,6 +2447,13 @@
             <param name="sender">The object that triggers the event.</param>
             <param name="e">The event arguments provided.</param>
         </member>
+        <member name="M:Sudoku.UI.Views.Pages.SudokuPage.InfoBoard_CollectionChanged(System.Object,System.Collections.Specialized.NotifyCollectionChangedEventArgs)">
+            <summary>
+            Triggers when the inner collection of the control <see cref="F:Sudoku.UI.Views.Pages.SudokuPage._cInfoBoard"/> is changed.
+            </summary>
+            <param name="sender">The object that triggers the event.</param>
+            <param name="e">The event arguments provided.</param>
+        </member>
         <member name="M:Sudoku.UI.Views.Pages.SudokuPage.InitializeComponent">
             <summary>
             InitializeComponent()
@@ -2438,78 +2523,6 @@
         <member name="M:Sudoku.UI.Sudoku_UI_XamlTypeInfo.XamlMetaDataProvider.GetXmlnsDefinitions">
             <summary>
             GetXmlnsDefinitions()
-            </summary>
-        </member>
-        <member name="T:Windows.Storage.Pickers.FileOpenPickerWithExtensions">
-            <summary>
-            Provides the extension methods on <see cref="T:Windows.Storage.Pickers.FileOpenPicker"/>.
-            </summary>
-            <seealso cref="T:Windows.Storage.Pickers.FileOpenPicker"/>
-        </member>
-        <member name="M:Windows.Storage.Pickers.FileOpenPickerWithExtensions.AddFileTypeFilter(Windows.Storage.Pickers.FileOpenPicker,System.String)">
-            <summary>
-            Adds the file type filter into the <see cref="T:Windows.Storage.Pickers.FileOpenPicker"/> instance.
-            </summary>
-            <param name="this">The <see cref="T:Windows.Storage.Pickers.FileOpenPicker"/> instance.</param>
-            <param name="extension">The extension to be added.</param>
-            <returns>The reference that is same as argument <paramref name="this"/>.</returns>
-        </member>
-        <member name="M:Windows.Storage.Pickers.FileOpenPickerWithExtensions.AddFileTypeFilters(Windows.Storage.Pickers.FileOpenPicker,System.String[])">
-            <summary>
-            Adds the file type filters into the <see cref="T:Windows.Storage.Pickers.FileOpenPicker"/> instance.
-            </summary>
-            <param name="this">The <see cref="T:Windows.Storage.Pickers.FileOpenPicker"/> instance.</param>
-            <param name="extensions">The extensions to be added.</param>
-            <returns>The reference that is same as argument <paramref name="this"/>.</returns>
-        </member>
-        <member name="T:Windows.Storage.Pickers.FileSavePickerWithExtensions">
-            <summary>
-            Provides the extension methods on <see cref="T:Windows.Storage.Pickers.FileSavePicker"/>.
-            </summary>
-            <seealso cref="T:Windows.Storage.Pickers.FileSavePicker"/>
-        </member>
-        <member name="M:Windows.Storage.Pickers.FileSavePickerWithExtensions.AddFileTypeFilter(Windows.Storage.Pickers.FileSavePicker,System.String,System.Collections.Generic.IList{System.String})">
-            <summary>
-            Adds a new file type filter into the specified <see cref="T:Windows.Storage.Pickers.FileSavePicker"/> instance.
-            </summary>
-            <param name="this">The <see cref="T:Windows.Storage.Pickers.FileSavePicker"/> instance.</param>
-            <param name="name">The name of the file extension set.</param>
-            <param name="extensions">The file extensions that belongs to <paramref name="name"/>.</param>
-            <returns>The reference that is same as the argument <paramref name="this"/>.</returns>
-        </member>
-        <member name="T:Windows.Storage.Pickers.FileOpenPickerExtensions">
-            <summary>
-            Provides extension methods on <see cref="T:Windows.Storage.Pickers.FileOpenPicker"/>.
-            </summary>
-            <seealso cref="T:Windows.Storage.Pickers.FileOpenPicker"/>
-        </member>
-        <member name="M:Windows.Storage.Pickers.FileOpenPickerExtensions.AwareHandleOnWin32(Windows.Storage.Pickers.FileOpenPicker)">
-            <summary>
-            To aware the handle of the window, and apply to the <see cref="T:Windows.Storage.Pickers.FileOpenPicker"/> instance.
-            </summary>
-            <param name="this">The instance.</param>
-        </member>
-        <member name="T:Windows.Storage.Pickers.FileSavePickerExtensions">
-            <summary>
-            Provides extension methods on <see cref="T:Windows.Storage.Pickers.FileSavePicker"/>.
-            </summary>
-            <seealso cref="T:Windows.Storage.Pickers.FileSavePicker"/>
-        </member>
-        <member name="M:Windows.Storage.Pickers.FileSavePickerExtensions.AwareHandleOnWin32(Windows.Storage.Pickers.FileSavePicker)">
-            <summary>
-            To aware the handle of the window, and apply to the <see cref="T:Windows.Storage.Pickers.FileSavePicker"/> instance.
-            </summary>
-            <param name="this">The instance.</param>
-        </member>
-        <member name="T:Windows.Foundation.PointExtensions">
-            <summary>
-            Provides extension methods on <see cref="T:Windows.Foundation.Point"/>.
-            </summary>
-            <seealso cref="T:Windows.Foundation.Point"/>
-        </member>
-        <member name="M:Windows.Foundation.PointExtensions.Deconstruct(Windows.Foundation.Point@,System.Double@,System.Double@)">
-            <summary>
-            Deconstruct the instance to multiple values.
             </summary>
         </member>
         <member name="T:Microsoft.UI.Xaml.Controls.GridWithExtensions">
@@ -2592,6 +2605,41 @@
             <typeparam name="TWindow">The type of the window.</typeparam>
             <param name="this">The <typeparamref name="TWindow"/>-typed instance.</param>
             <returns>The <see cref="T:Microsoft.UI.Windowing.AppWindow"/> instance.</returns>
+        </member>
+        <member name="T:Windows.Storage.Pickers.FileOpenPickerExtensions">
+            <summary>
+            Provides extension methods on <see cref="T:Windows.Storage.Pickers.FileOpenPicker"/>.
+            </summary>
+            <seealso cref="T:Windows.Storage.Pickers.FileOpenPicker"/>
+        </member>
+        <member name="M:Windows.Storage.Pickers.FileOpenPickerExtensions.AwareHandleOnWin32(Windows.Storage.Pickers.FileOpenPicker)">
+            <summary>
+            To aware the handle of the window, and apply to the <see cref="T:Windows.Storage.Pickers.FileOpenPicker"/> instance.
+            </summary>
+            <param name="this">The instance.</param>
+        </member>
+        <member name="T:Windows.Storage.Pickers.FileSavePickerExtensions">
+            <summary>
+            Provides extension methods on <see cref="T:Windows.Storage.Pickers.FileSavePicker"/>.
+            </summary>
+            <seealso cref="T:Windows.Storage.Pickers.FileSavePicker"/>
+        </member>
+        <member name="M:Windows.Storage.Pickers.FileSavePickerExtensions.AwareHandleOnWin32(Windows.Storage.Pickers.FileSavePicker)">
+            <summary>
+            To aware the handle of the window, and apply to the <see cref="T:Windows.Storage.Pickers.FileSavePicker"/> instance.
+            </summary>
+            <param name="this">The instance.</param>
+        </member>
+        <member name="T:Windows.Foundation.PointExtensions">
+            <summary>
+            Provides extension methods on <see cref="T:Windows.Foundation.Point"/>.
+            </summary>
+            <seealso cref="T:Windows.Foundation.Point"/>
+        </member>
+        <member name="M:Windows.Foundation.PointExtensions.Deconstruct(Windows.Foundation.Point@,System.Double@,System.Double@)">
+            <summary>
+            Deconstruct the instance to multiple values.
+            </summary>
         </member>
     </members>
 </doc>

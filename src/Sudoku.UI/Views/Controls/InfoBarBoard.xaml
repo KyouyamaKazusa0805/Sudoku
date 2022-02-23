@@ -4,11 +4,45 @@
 	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-	mc:Ignorable="d">
+	xmlns:dts="using:Sudoku.UI.Data.DataTemplateSelectors"
+	xmlns:m="using:Sudoku.UI.Data"
+	xmlns:ui="using:Sudoku.UI"
+	mc:Ignorable="d"
+	Loaded="UserControl_Loaded">
+	<UserControl.Resources>
+		<dts:InfoBarTemplateSelector x:Key="_rInfoBarTemplateSelector">
+			<dts:InfoBarTemplateSelector.InfoBarInfoTemplate>
+				<DataTemplate x:DataType="m:InfoBarInfo">
+					<InfoBar
+						Title="{x:Bind ui:BindingConversions.InfoBarTitle(Severity)}"
+						Severity="{x:Bind Severity}" Message="{x:Bind Message}"
+						IsIconVisible="True" IsOpen="True" IsClosable="True" />
+				</DataTemplate>
+			</dts:InfoBarTemplateSelector.InfoBarInfoTemplate>
+			<dts:InfoBarTemplateSelector.InfoBarInfoWithLinkTemplate>
+				<DataTemplate x:DataType="m:InfoBarInfoWithLink">
+					<InfoBar
+						Title="{x:Bind ui:BindingConversions.InfoBarTitle(Severity)}"
+						Severity="{x:Bind Severity}" Message="{x:Bind Message}"
+						IsIconVisible="True" IsOpen="True" IsClosable="True">
+						<InfoBar.ActionButton>
+							<HyperlinkButton
+								NavigateUri="{x:Bind Hyperlink}"
+								Content="{x:Bind HyperlinkDescription}" />
+						</InfoBar.ActionButton>
+					</InfoBar>
+				</DataTemplate>
+			</dts:InfoBarTemplateSelector.InfoBarInfoWithLinkTemplate>
+		</dts:InfoBarTemplateSelector>
+	</UserControl.Resources>
 
-	<StackPanel x:Name="_cStackPanelDetails">
-		<StackPanel.ChildrenTransitions>
-			<RepositionThemeTransition />
-		</StackPanel.ChildrenTransitions>
-	</StackPanel>
+	<ScrollViewer>
+		<ItemsRepeater ItemsSource="{x:Bind _list}" ItemTemplate="{StaticResource _rInfoBarTemplateSelector}">
+			<ItemsRepeater.Layout>
+				<StackLayout
+					Orientation="Vertical"
+					Spacing="{x:Bind InfoBarSpacing,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" />
+			</ItemsRepeater.Layout>
+		</ItemsRepeater>
+	</ScrollViewer>
 </UserControl>
