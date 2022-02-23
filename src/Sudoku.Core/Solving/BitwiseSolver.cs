@@ -1,4 +1,6 @@
-﻿#pragma warning disable IDE0011
+﻿#define CLEAR_STATE_STACK_FOR_EACH_CHECK_VALIDITY_AND_SOLVE_INVOKES
+
+#pragma warning disable IDE0011
 
 using Sudoku.Collections;
 using Sudoku.Diagnostics.CodeAnalysis;
@@ -76,6 +78,10 @@ public sealed unsafe partial class BitwiseSolver
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public Grid Solve(in Grid puzzle)
 	{
+#if CLEAR_STATE_STACK_FOR_EACH_CHECK_VALIDITY_AND_SOLVE_INVOKES
+		Array.Clear(_stack);
+#endif
+
 		string puzzleStr = puzzle.ToString("0");
 		char* solutionStr = stackalloc char[BufferLength];
 		long solutions = 0;
@@ -100,6 +106,10 @@ public sealed unsafe partial class BitwiseSolver
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public long Solve([Restrict] char* puzzle!!, [Restrict] char* solution, int limit)
 	{
+#if CLEAR_STATE_STACK_FOR_EACH_CHECK_VALIDITY_AND_SOLVE_INVOKES
+		Array.Clear(_stack);
+#endif
+
 		char* solutionStr = stackalloc char[BufferLength];
 		long solutionsCount = InternalSolve(puzzle, solutionStr, limit);
 		if (solution != null)
@@ -119,6 +129,10 @@ public sealed unsafe partial class BitwiseSolver
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public long Solve(string puzzle, char* solution, int limit)
 	{
+#if CLEAR_STATE_STACK_FOR_EACH_CHECK_VALIDITY_AND_SOLVE_INVOKES
+		Array.Clear(_stack);
+#endif
+
 		fixed (char* p = puzzle)
 		{
 			char* solutionStr = stackalloc char[BufferLength];
@@ -143,6 +157,10 @@ public sealed unsafe partial class BitwiseSolver
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public long Solve(string puzzle, out string solution, int limit)
 	{
+#if CLEAR_STATE_STACK_FOR_EACH_CHECK_VALIDITY_AND_SOLVE_INVOKES
+		Array.Clear(_stack);
+#endif
+
 		fixed (char* p = puzzle)
 		{
 			char* solutionStr = stackalloc char[BufferLength];
@@ -152,6 +170,22 @@ public sealed unsafe partial class BitwiseSolver
 		}
 	}
 
+#if CLEAR_STATE_STACK_FOR_EACH_CHECK_VALIDITY_AND_SOLVE_INVOKES
+	/// <summary>
+	/// Same as <see cref="CheckValidity(string, out string?)"/>, but doesn't contain
+	/// any <see langword="out"/> parameters.
+	/// </summary>
+	/// <param name="grid">The grid.</param>
+	/// <param name="clearFirst">
+	/// Indicates whether the memory will be released before solving or validating.
+	/// The default value is <see langword="true"/>.
+	/// </param>
+	/// <returns>The <see cref="bool"/> result. <see langword="true"/> for unique solution.</returns>
+	/// <exception cref="ArgumentNullException">
+	/// Throws when the argument <paramref name="grid"/> is <see langword="null"/>.
+	/// </exception>
+	/// <seealso cref="CheckValidity(string, out string?)"/>
+#else
 	/// <summary>
 	/// Same as <see cref="CheckValidity(string, out string?)"/>, but doesn't contain
 	/// any <see langword="out"/> parameters.
@@ -162,8 +196,25 @@ public sealed unsafe partial class BitwiseSolver
 	/// Throws when the argument <paramref name="grid"/> is <see langword="null"/>.
 	/// </exception>
 	/// <seealso cref="CheckValidity(string, out string?)"/>
+#endif
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public bool CheckValidity(char* grid!!) => InternalSolve(grid, null, 2) == 1;
+	public bool CheckValidity(
+		char* grid!!
+#if CLEAR_STATE_STACK_FOR_EACH_CHECK_VALIDITY_AND_SOLVE_INVOKES
+		,
+		bool clearFirst = true
+#endif
+	)
+	{
+#if CLEAR_STATE_STACK_FOR_EACH_CHECK_VALIDITY_AND_SOLVE_INVOKES
+		if (clearFirst)
+		{
+			Array.Clear(_stack);
+		}
+#endif
+
+		return InternalSolve(grid, null, 2) == 1;
+	}
 
 	/// <summary>
 	/// Same as <see cref="CheckValidity(string, out string?)"/>, but doesn't contain
@@ -175,9 +226,13 @@ public sealed unsafe partial class BitwiseSolver
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public bool CheckValidity(string grid)
 	{
+#if CLEAR_STATE_STACK_FOR_EACH_CHECK_VALIDITY_AND_SOLVE_INVOKES
+		Array.Clear(_stack);
+#endif
+
 		fixed (char* puzzle = grid)
 		{
-			return CheckValidity(puzzle);
+			return CheckValidity(puzzle, false);
 		}
 	}
 
@@ -189,6 +244,10 @@ public sealed unsafe partial class BitwiseSolver
 	/// <returns>The <see cref="bool"/> result. <see langword="true"/> for unique solution.</returns>
 	public bool CheckValidity(string grid, [NotNullWhen(true)] out string? solutionIfUnique)
 	{
+#if CLEAR_STATE_STACK_FOR_EACH_CHECK_VALIDITY_AND_SOLVE_INVOKES
+		Array.Clear(_stack);
+#endif
+
 		fixed (char* puzzle = grid)
 		{
 			char* result = stackalloc char[BufferLength];

@@ -1,4 +1,6 @@
-﻿using Sudoku.Collections;
+﻿#define CLEAR_STATE_STACK_FOR_EACH_CHECK_VALIDITY_AND_SOLVE_INVOKES
+
+using Sudoku.Collections;
 
 namespace Sudoku.Solving.BruteForces;
 
@@ -44,7 +46,11 @@ public sealed unsafe class FastSolver : IPuzzleSolver
 	internal long Solve(char* puzzle, char* solution, int limit) =>
 		BitwiseSolver.Solve(puzzle, solution, limit);
 
+#if CLEAR_STATE_STACK_FOR_EACH_CHECK_VALIDITY_AND_SOLVE_INVOKES
+	/// <inheritdoc cref="BitwiseSolver.CheckValidity(char*, bool)"/>
+#else
 	/// <inheritdoc cref="BitwiseSolver.CheckValidity(char*)"/>
+#endif
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	internal bool CheckValidity(char* grid) => BitwiseSolver.CheckValidity(grid);
 
