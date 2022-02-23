@@ -22,6 +22,7 @@ public sealed class UndoOrRedoStackToIsEnabledConverter : IValueConverter
 
 	/// <inheritdoc/>
 	/// <exception cref="NotImplementedException">Always throws due to not implemented.</exception>
+	[DoesNotReturn]
 	public object ConvertBack(object value, Type targetType, object parameter, string language) =>
 		throw new NotImplementedException();
 }
