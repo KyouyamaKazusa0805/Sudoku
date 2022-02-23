@@ -2027,12 +2027,6 @@
             </summary>
             <see cref="F:Sudoku.Collections.Grid.Undefined"/>
         </member>
-        <member name="P:Sudoku.Collections.Grid.TextCode">
-            <summary>
-            Gets the text code for the current sudoku grid, that can be used for parsing or formatting
-            a sudoku grid, interacting with type <see cref="T:System.String"/>.
-            </summary>
-        </member>
         <member name="P:Sudoku.Collections.Grid.System#IDefaultable{Sudoku#Collections#Grid}#IsDefault">
             <inheritdoc/>
         </member>
@@ -5751,6 +5745,11 @@
             <summary>
             Defines a serialization converter to convert the <see cref="T:Sudoku.Collections.Grid"/>
             to a JSON <see cref="T:System.String"/> or vice versa.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Serialization.Converters.GridConverter.PropertyName">
+            <summary>
+            The property name.
             </summary>
         </member>
         <member name="M:Sudoku.Serialization.Converters.GridConverter.Read(System.Text.Json.Utf8JsonReader@,System.Type,System.Text.Json.JsonSerializerOptions)">

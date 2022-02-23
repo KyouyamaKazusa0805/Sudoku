@@ -9,6 +9,12 @@ namespace Sudoku.Serialization.Converters;
 [JsonConverter(typeof(Grid))]
 public sealed class GridConverter : JsonConverter<Grid>
 {
+	/// <summary>
+	/// The property name.
+	/// </summary>
+	private const string PropertyName = "Code";
+
+
 	/// <inheritdoc/>
 	public override Grid Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
 	{
@@ -21,7 +27,7 @@ public sealed class GridConverter : JsonConverter<Grid>
 		{
 			switch (reader.TokenType)
 			{
-				case JsonTokenType.PropertyName when reader.GetString() != nameof(Grid.TextCode):
+				case JsonTokenType.PropertyName when reader.GetString() != PropertyName:
 				{
 					throw new InvalidOperationException("The specified property name doesn't support.");
 				}
@@ -39,7 +45,7 @@ public sealed class GridConverter : JsonConverter<Grid>
 	public override void Write(Utf8JsonWriter writer, Grid value, JsonSerializerOptions options)
 	{
 		writer.WriteStartObject();
-		writer.WriteString(nameof(Grid.TextCode), value.TextCode);
+		writer.WriteString(PropertyName, value.ToString("#"));
 		writer.WriteEndObject();
 	}
 }
