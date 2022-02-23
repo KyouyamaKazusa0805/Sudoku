@@ -14,9 +14,8 @@ internal static class FileOpenPickerExtensions
 	/// To aware the handle of the window, and apply to the <see cref="FileOpenPicker"/> instance.
 	/// </summary>
 	/// <param name="this">The instance.</param>
-	/// <returns>The reference that is same as the argument <paramref name="this"/>.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static FileOpenPicker AwareHandleOnWin32(this FileOpenPicker @this)
+	public static void AwareHandleOnWin32(this FileOpenPicker @this)
 	{
 		if (Window.Current is null)
 		{
@@ -25,9 +24,8 @@ internal static class FileOpenPickerExtensions
 			initializeWithWindowWrapper.Initialize(hwnd);
 		}
 
-		return @this;
-	}
 
-	[DllImport("user32", ExactSpelling = true, CharSet = CharSet.Auto, PreserveSig = true)]
-	private static extern IntPtr GetActiveWindow();
+		[DllImport("user32", ExactSpelling = true, CharSet = CharSet.Auto, PreserveSig = true)]
+		static extern IntPtr GetActiveWindow();
+	}
 }

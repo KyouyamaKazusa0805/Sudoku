@@ -1,4 +1,6 @@
-﻿namespace Sudoku.UI;
+﻿using static Sudoku.UI.StringResource;
+
+namespace Sudoku.UI;
 
 /// <summary>
 /// Defines a control factory.
@@ -14,7 +16,7 @@ internal static class ControlFactory
 	public static InfoBar InfoBar(InfoBarSeverity severity) =>
 		new()
 		{
-			Title = StringResource.Get(
+			Title = Get(
 				severity switch
 				{
 					InfoBarSeverity.Informational => "SudokuPage_InfoBar_SeverityInfo",

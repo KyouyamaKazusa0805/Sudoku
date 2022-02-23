@@ -1,4 +1,6 @@
-﻿namespace Sudoku.UI;
+﻿using static Sudoku.UI.StringResource;
+
+namespace Sudoku.UI;
 
 /// <summary>
 /// Provides a set of methods to convert the information.
@@ -12,7 +14,7 @@ internal static class BindingConversions
 	/// <returns>The converted result string.</returns>
 	/// <seealso cref="RepositoryInfo.OpenSourceLicense"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static string License(string input) => $"{input} {StringResource.Get("AboutPage_License")}";
+	public static string License(string input) => $"{input} {Get("AboutPage_License")}";
 
 	/// <summary>
 	/// Indicates the conversion on <see cref="RepositoryInfo.IsForReference"/>.
@@ -21,6 +23,5 @@ internal static class BindingConversions
 	/// <returns>The converted result string value.</returns>
 	/// <seealso cref="RepositoryInfo.IsForReference"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static string ForReference(bool input) =>
-		input ? StringResource.Get("AboutPage_ForReference") : string.Empty;
+	public static string ForReference(bool input) => input ? Get("AboutPage_ForReference") : string.Empty;
 }

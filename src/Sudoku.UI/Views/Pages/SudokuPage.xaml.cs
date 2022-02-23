@@ -4,6 +4,7 @@ using Windows.Storage;
 using Windows.Storage.Pickers;
 using Windows.Storage.Provider;
 using Windows.UI.ViewManagement;
+using static Sudoku.UI.StringResource;
 
 namespace Sudoku.UI.Views.Pages;
 
@@ -31,9 +32,7 @@ public sealed partial class SudokuPage : Page
 		bool unsnapped = ApplicationView.Value != ApplicationViewState.Snapped || ApplicationView.TryUnsnap();
 		if (!unsnapped)
 		{
-			_cInfoBoard.AddMessage(
-				InfoBarSeverity.Warning,
-				StringResource.Get("SudokuPage_InfoBar_CannotSnapTheSample"));
+			_cInfoBoard.AddMessage(InfoBarSeverity.Warning, Get("SudokuPage_InfoBar_CannotSnapTheSample"));
 		}
 
 		return unsnapped;
@@ -51,10 +50,11 @@ public sealed partial class SudokuPage : Page
 			return;
 		}
 
-		var file = await new FileOpenPicker { SuggestedStartLocation = PickerLocationId.DocumentsLibrary }
-			.AddFileTypeFilter(CommonFileExtensions.Text)
-			.AwareHandleOnWin32()
-			.PickSingleFileAsync();
+		var fop = new FileOpenPicker { SuggestedStartLocation = PickerLocationId.DocumentsLibrary };
+		fop.FileTypeFilter.Add(CommonFileExtensions.Text);
+		fop.AwareHandleOnWin32();
+
+		var file = await fop.PickSingleFileAsync();
 		if (file is not { Path: var filePath })
 		{
 			return;
@@ -62,7 +62,7 @@ public sealed partial class SudokuPage : Page
 
 		if (new FileInfo(filePath).Length == 0)
 		{
-			_cInfoBoard.AddMessage(InfoBarSeverity.Error, StringResource.Get("SudokuPage_InfoBar_FileIsEmpty"));
+			_cInfoBoard.AddMessage(InfoBarSeverity.Error, Get("SudokuPage_InfoBar_FileIsEmpty"));
 			return;
 		}
 
@@ -70,124 +70,48 @@ public sealed partial class SudokuPage : Page
 		string content = await FileIO.ReadTextAsync(file);
 		if (string.IsNullOrWhiteSpace(content))
 		{
-			_cInfoBoard.AddMessage(InfoBarSeverity.Error, StringResource.Get("SudokuPage_InfoBar_FileIsEmpty"));
+			_cInfoBoard.AddMessage(InfoBarSeverity.Error, Get("SudokuPage_InfoBar_FileIsEmpty"));
 			return;
 		}
 
 		// Checks the file content.
 		if (!Grid.TryParse(content, out var grid))
 		{
-			_cInfoBoard.AddMessage(InfoBarSeverity.Error, StringResource.Get("SudokuPage_InfoBar_FileIsInvalid"));
+			_cInfoBoard.AddMessage(InfoBarSeverity.Error, Get("SudokuPage_InfoBar_FileIsInvalid"));
 			return;
 		}
 
 		// Checks the validity of the parsed grid.
 		if (!grid.IsValid)
 		{
-			_cInfoBoard.AddMessage(InfoBarSeverity.Warning, StringResource.Get("SudokuPage_InfoBar_FilePuzzleIsNotUnique"));
+			_cInfoBoard.AddMessage(InfoBarSeverity.Warning, Get("SudokuPage_InfoBar_FilePuzzleIsNotUnique"));
 		}
 
 		// Loads the grid.
 		_cPane.Grid = grid;
-		_cInfoBoard.AddMessage(InfoBarSeverity.Success, StringResource.Get("SudokuPage_InfoBar_FileOpenSuccessfully"));
-	}
-
-
-	/// <summary>
-	/// Triggers when the current page is loaded.
-	/// </summary>
-	/// <param name="sender">The object that triggers the event.</param>
-	/// <param name="e">The event arguments provided.</param>
-	private void Page_Loaded([IsDiscard] object sender, [IsDiscard] RoutedEventArgs e) =>
-		_cInfoBoard.AddMessage(
-			InfoBarSeverity.Informational, StringResource.Get("SudokuPage_InfoBar_Welcome"),
-			StringResource.Get("Link_SudokuTutorial"), StringResource.Get("Link_SudokuTutorialDescription"));
-
-	/// <summary>
-	/// Triggers when the button is clicked.
-	/// </summary>
-	/// <param name="sender">The object that triggers the event.</param>
-	/// <param name="e">The event arguments provided.</param>
-	private async void OpenAppBarButton_ClickAsync([IsDiscard] object sender, [IsDiscard] RoutedEventArgs e) =>
-		await OpenFileAsync();
-
-	/// <summary>
-	/// Triggers when the button is clicked.
-	/// </summary>
-	/// <param name="sender">The object that triggers the event.</param>
-	/// <param name="e">The event arguments provided.</param>
-	private void ClearAppBarButton_Click(object sender, RoutedEventArgs e)
-	{
-		_cPane.Grid = Grid.Empty;
-		_cInfoBoard.AddMessage(InfoBarSeverity.Informational, StringResource.Get("SudokuPage_InfoBar_ClearSuccessfully"));
+		_cInfoBoard.AddMessage(InfoBarSeverity.Success, Get("SudokuPage_InfoBar_FileOpenSuccessfully"));
 	}
 
 	/// <summary>
-	/// Triggers when the button is clicked.
+	/// Asynchronously saving the file using the current sudoku grid as the base content.
 	/// </summary>
-	/// <param name="sender">The object that triggers the event.</param>
-	/// <param name="e">The event arguments provided.</param>
-	private void CopyAppBarButton_Click([IsDiscard] object sender, [IsDiscard] RoutedEventArgs e)
-	{
-		ref readonly var grid = ref _cPane.GridByReference();
-		if (grid.IsUndefined || grid.IsEmpty)
-		{
-			_cInfoBoard.AddMessage(InfoBarSeverity.Error, StringResource.Get("SudokuPage_InfoBar_CopyFailedDueToEmpty"));
-			return;
-		}
-
-		new DataPackage { RequestedOperation = DataPackageOperation.Copy }.SetText(grid.ToString("#"));
-	}
-
-	/// <summary>
-	/// Triggers when the button is clicked.
-	/// </summary>
-	/// <param name="sender">The object that triggers the event.</param>
-	/// <param name="e">The event arguments provided.</param>
-	private async void PasteAppBarButton_ClickAsync([IsDiscard] object sender, [IsDiscard] RoutedEventArgs e)
-	{
-		var dataPackageView = Clipboard.GetContent();
-		if (!dataPackageView.Contains(StandardDataFormats.Text))
-		{
-			return;
-		}
-
-		string gridStr = await dataPackageView.GetTextAsync();
-		if (!Grid.TryParse(gridStr, out var grid))
-		{
-			_cInfoBoard.AddMessage(InfoBarSeverity.Error, StringResource.Get("SudokuPage_InfoBar_PasteIsInvalid"));
-			return;
-		}
-
-		// Checks the validity of the parsed grid.
-		if (!grid.IsValid)
-		{
-			_cInfoBoard.AddMessage(InfoBarSeverity.Warning, StringResource.Get("SudokuPage_InfoBar_PastePuzzleIsNotUnique"));
-		}
-
-		// Loads the grid.
-		_cPane.Grid = grid;
-		_cInfoBoard.AddMessage(InfoBarSeverity.Success, StringResource.Get("SudokuPage_InfoBar_PasteSuccessfully"));
-	}
-
-	/// <summary>
-	/// Triggers when the button is clicked.
-	/// </summary>
-	/// <param name="sender">The object that triggers the event.</param>
-	/// <param name="e">The event arguments provided.</param>
-	private async void SaveAppBarButton_ClickAsync([IsDiscard] object sender, [IsDiscard] RoutedEventArgs e)
+	/// <returns>The typical awaitable instance that holds the task to open the file.</returns>
+	private async Task SaveFileAsync()
 	{
 		if (!EnsureUnsnapped())
 		{
 			return;
 		}
 
-		var file = await new FileSavePicker { SuggestedStartLocation = PickerLocationId.DocumentsLibrary }
-			.WithSuggestedFileName("Sudoku")
-			.AddFileTypeFilter(StringResource.Get("FileExtension_TextDescription"), new List<string> { ".txt" })
-			.AwareHandleOnWin32()
-			.PickSaveFileAsync();
+		var fsp = new FileSavePicker
+		{
+			SuggestedStartLocation = PickerLocationId.DocumentsLibrary,
+			SuggestedFileName = "Sudoku"
+		};
+		fsp.FileTypeChoices.Add(Get("FileExtension_TextDescription"), new List<string> { CommonFileExtensions.Text });
+		fsp.AwareHandleOnWin32();
 
+		var file = await fsp.PickSaveFileAsync();
 		if (file is not { Name: var fileName })
 		{
 			return;
@@ -206,17 +130,110 @@ public sealed partial class SudokuPage : Page
 		var status = await CachedFileManager.CompleteUpdatesAsync(file);
 		if (status == FileUpdateStatus.Complete)
 		{
-			string a = StringResource.Get("SudokuPage_InfoBar_SaveSuccessfully1");
-			string b = StringResource.Get("SudokuPage_InfoBar_SaveSuccessfully2");
+			string a = Get("SudokuPage_InfoBar_SaveSuccessfully1");
+			string b = Get("SudokuPage_InfoBar_SaveSuccessfully2");
 			_cInfoBoard.AddMessage(InfoBarSeverity.Success, $"{a}{fileName}{b}");
 		}
 		else
 		{
-			string a = StringResource.Get("SudokuPage_InfoBar_SaveFailed1");
-			string b = StringResource.Get("SudokuPage_InfoBar_SaveFailed2");
+			string a = Get("SudokuPage_InfoBar_SaveFailed1");
+			string b = Get("SudokuPage_InfoBar_SaveFailed2");
 			_cInfoBoard.AddMessage(InfoBarSeverity.Error, $"{a}{fileName}{b}");
 		}
 	}
+
+	/// <summary>
+	/// To paste the text via the clipboard asynchonously.
+	/// </summary>
+	/// <returns>The typical awaitable instance that holds the task to open the file.</returns>
+	private async Task PasteAsync()
+	{
+		var dataPackageView = Clipboard.GetContent();
+		if (!dataPackageView.Contains(StandardDataFormats.Text))
+		{
+			return;
+		}
+
+		string gridStr = await dataPackageView.GetTextAsync();
+		if (!Grid.TryParse(gridStr, out var grid))
+		{
+			_cInfoBoard.AddMessage(InfoBarSeverity.Error, Get("SudokuPage_InfoBar_PasteIsInvalid"));
+			return;
+		}
+
+		// Checks the validity of the parsed grid.
+		if (!grid.IsValid)
+		{
+			_cInfoBoard.AddMessage(InfoBarSeverity.Warning, Get("SudokuPage_InfoBar_PastePuzzleIsNotUnique"));
+		}
+
+		// Loads the grid.
+		_cPane.Grid = grid;
+		_cInfoBoard.AddMessage(InfoBarSeverity.Success, Get("SudokuPage_InfoBar_PasteSuccessfully"));
+	}
+
+
+	/// <summary>
+	/// Triggers when the current page is loaded.
+	/// </summary>
+	/// <param name="sender">The object that triggers the event.</param>
+	/// <param name="e">The event arguments provided.</param>
+	private void Page_Loaded([IsDiscard] object sender, [IsDiscard] RoutedEventArgs e) =>
+		_cInfoBoard.AddMessage(
+			InfoBarSeverity.Informational, Get("SudokuPage_InfoBar_Welcome"),
+			Get("Link_SudokuTutorial"), Get("Link_SudokuTutorialDescription"));
+
+	/// <summary>
+	/// Triggers when the button is clicked.
+	/// </summary>
+	/// <param name="sender">The object that triggers the event.</param>
+	/// <param name="e">The event arguments provided.</param>
+	private async void OpenAppBarButton_ClickAsync([IsDiscard] object sender, [IsDiscard] RoutedEventArgs e) =>
+		await OpenFileAsync();
+
+	/// <summary>
+	/// Triggers when the button is clicked.
+	/// </summary>
+	/// <param name="sender">The object that triggers the event.</param>
+	/// <param name="e">The event arguments provided.</param>
+	private void ClearAppBarButton_Click(object sender, RoutedEventArgs e)
+	{
+		_cPane.Grid = Grid.Empty;
+		_cInfoBoard.AddMessage(InfoBarSeverity.Informational, Get("SudokuPage_InfoBar_ClearSuccessfully"));
+	}
+
+	/// <summary>
+	/// Triggers when the button is clicked.
+	/// </summary>
+	/// <param name="sender">The object that triggers the event.</param>
+	/// <param name="e">The event arguments provided.</param>
+	private void CopyAppBarButton_Click([IsDiscard] object sender, [IsDiscard] RoutedEventArgs e)
+	{
+		ref readonly var grid = ref _cPane.GridByReference();
+		if (grid is { IsUndefined: true } or { IsEmpty: true })
+		{
+			_cInfoBoard.AddMessage(InfoBarSeverity.Error, Get("SudokuPage_InfoBar_CopyFailedDueToEmpty"));
+			return;
+		}
+
+		new DataPackage { RequestedOperation = DataPackageOperation.Copy }.SetText(grid.ToString("#"));
+	}
+
+	/// <summary>
+	/// Triggers when the button is clicked.
+	/// </summary>
+	/// <param name="sender">The object that triggers the event.</param>
+	/// <param name="e">The event arguments provided.</param>
+	private async void PasteAppBarButton_ClickAsync([IsDiscard] object sender, [IsDiscard] RoutedEventArgs e) =>
+		await PasteAsync();
+
+	/// <summary>
+	/// Triggers when the button is clicked.
+	/// </summary>
+	/// <param name="sender">The object that triggers the event.</param>
+	/// <param name="e">The event arguments provided.</param>
+	private async void SaveAppBarButton_ClickAsync([IsDiscard] object sender, [IsDiscard] RoutedEventArgs e) =>
+		await SaveFileAsync();
 
 	/// <summary>
 	/// Triggers when the button is clicked.
