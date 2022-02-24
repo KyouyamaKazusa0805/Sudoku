@@ -72,7 +72,7 @@ public sealed partial class InfoBarBoard : UserControl, INotifyPropertyChanged, 
 	/// <seealso cref="InfoBar"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public void AddMessage(InfoBarSeverity severity, string info) =>
-		_list.Insert(0, new InfoBarInfo { Severity = severity, Message = info });
+		_list.Insert(0, new PlainInfoBarInfo { Severity = severity, Message = info });
 
 	/// <summary>
 	/// Creates a new <see cref="InfoBar"/> instance via the specified severity,

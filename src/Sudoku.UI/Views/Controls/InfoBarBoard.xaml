@@ -11,14 +11,14 @@
 	Loaded="UserControl_Loaded">
 	<UserControl.Resources>
 		<dts:InfoBarTemplateSelector x:Key="_rInfoBarTemplateSelector">
-			<dts:InfoBarTemplateSelector.InfoBarInfoTemplate>
-				<DataTemplate x:DataType="m:InfoBarInfo">
+			<dts:InfoBarTemplateSelector.PlainInfoBarInfoTemplate>
+				<DataTemplate x:DataType="m:PlainInfoBarInfo">
 					<InfoBar
 						Title="{x:Bind ui:BindingConversions.InfoBarTitle(Severity)}"
 						Severity="{x:Bind Severity}" Message="{x:Bind Message}"
 						IsIconVisible="True" IsOpen="True" IsClosable="True" />
 				</DataTemplate>
-			</dts:InfoBarTemplateSelector.InfoBarInfoTemplate>
+			</dts:InfoBarTemplateSelector.PlainInfoBarInfoTemplate>
 			<dts:InfoBarTemplateSelector.InfoBarInfoWithLinkTemplate>
 				<DataTemplate x:DataType="m:InfoBarInfoWithLink">
 					<InfoBar

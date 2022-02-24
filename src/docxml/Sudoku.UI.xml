@@ -91,7 +91,7 @@
             <seealso cref="T:Sudoku.UI.Data.InfoBarInfo"/>
             <seealso cref="T:Sudoku.UI.Data.InfoBarInfoWithLink"/>
         </member>
-        <member name="P:Sudoku.UI.Data.DataTemplateSelectors.InfoBarTemplateSelector.InfoBarInfoTemplate">
+        <member name="P:Sudoku.UI.Data.DataTemplateSelectors.InfoBarTemplateSelector.PlainInfoBarInfoTemplate">
             <summary>
             Indicates the data template that is used by the type <see cref="T:Sudoku.UI.Data.InfoBarInfo"/>.
             </summary>
@@ -103,6 +103,10 @@
         </member>
         <member name="M:Sudoku.UI.Data.DataTemplateSelectors.InfoBarTemplateSelector.SelectTemplateCore(System.Object)">
             <inheritdoc/>
+            <exception cref="T:System.InvalidOperationException">
+            Throws when the type of the argument <paramref name="item"/> doesn't derive
+            from <see cref="T:Sudoku.UI.Data.InfoBarInfo"/>.
+            </exception>
         </member>
         <member name="T:Sudoku.UI.Data.InfoBarInfo">
             <summary>
@@ -130,19 +134,9 @@
             <seealso cref="P:Sudoku.UI.Data.InfoBarInfoWithLink.Hyperlink"/>
             <seealso cref="P:Sudoku.UI.Data.InfoBarInfoWithLink.HyperlinkDescription"/>
         </member>
-        <member name="P:Sudoku.UI.Data.InfoBarInfoWithLink.Message">
-            <summary>
-            Indicates the message to be displayed. The default value is <see cref="F:System.String.Empty"/>.
-            </summary>
-        </member>
         <member name="P:Sudoku.UI.Data.InfoBarInfoWithLink.HyperlinkDescription">
             <summary>
             Indicates the description text of the hyperlink. The default value is <see cref="F:System.String.Empty"/>.
-            </summary>
-        </member>
-        <member name="P:Sudoku.UI.Data.InfoBarInfoWithLink.Severity">
-            <summary>
-            Indicates the severity of the information.
             </summary>
         </member>
         <member name="P:Sudoku.UI.Data.InfoBarInfoWithLink.Hyperlink">
@@ -187,6 +181,12 @@
             this link
             </see>.
             </remarks>
+        </member>
+        <member name="T:Sudoku.UI.Data.PlainInfoBarInfo">
+            <summary>
+            Defines a set of information that is used by creating an <see cref="T:Microsoft.UI.Xaml.Controls.InfoBar"/>, without any extra items.
+            </summary>
+            <seealso cref="T:Microsoft.UI.Xaml.Controls.InfoBar"/>
         </member>
         <member name="T:Sudoku.UI.Data.RedoStackChangedEventHandler">
             <summary>

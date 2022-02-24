@@ -90,6 +90,12 @@
 				<AppBarSeparator Grid.Row="0" Grid.Column="6" />
 				<AppBarButton
 					x:Name="_cUndo" Grid.Row="0" Grid.Column="7" Icon="Undo" Tag="Undo"
+					IsEnabled="{Binding
+						ElementName=_cPane,
+						Path=UndoStepsCount,
+						Converter={StaticResource _rUndoingOrRedoingConverter},
+						Mode=OneWay,
+						UpdateSourceTrigger=PropertyChanged}"
 					Label="{StaticResource SudokuPage_Undo}"
 					Click="UndoOrRedo_Click">
 					<AppBarButton.KeyboardAccelerators>

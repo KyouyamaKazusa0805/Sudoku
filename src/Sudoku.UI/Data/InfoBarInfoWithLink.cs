@@ -8,22 +8,12 @@
 /// <seealso cref="InfoBar"/>
 /// <seealso cref="Hyperlink"/>
 /// <seealso cref="HyperlinkDescription"/>
-public sealed class InfoBarInfoWithLink
+public sealed class InfoBarInfoWithLink : InfoBarInfo
 {
-	/// <summary>
-	/// Indicates the message to be displayed. The default value is <see cref="string.Empty"/>.
-	/// </summary>
-	public string Message { get; set; } = "";
-
 	/// <summary>
 	/// Indicates the description text of the hyperlink. The default value is <see cref="string.Empty"/>.
 	/// </summary>
 	public string HyperlinkDescription { get; set; } = "";
-
-	/// <summary>
-	/// Indicates the severity of the information.
-	/// </summary>
-	public InfoBarSeverity Severity { get; set; }
 
 	/// <summary>
 	/// Indicates the hyperlink that the current <see cref="InfoBar"/> relates to.

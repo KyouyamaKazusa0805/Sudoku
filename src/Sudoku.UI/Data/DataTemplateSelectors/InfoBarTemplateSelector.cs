@@ -11,7 +11,7 @@ public sealed class InfoBarTemplateSelector : DataTemplateSelector
 	/// <summary>
 	/// Indicates the data template that is used by the type <see cref="InfoBarInfo"/>.
 	/// </summary>
-	public DataTemplate InfoBarInfoTemplate { get; set; } = null!;
+	public DataTemplate PlainInfoBarInfoTemplate { get; set; } = null!;
 
 	/// <summary>
 	/// Indicates the data template that is used by the type <see cref="InfoBarInfoWithLink"/>.
@@ -20,10 +20,15 @@ public sealed class InfoBarTemplateSelector : DataTemplateSelector
 
 
 	/// <inheritdoc/>
+	/// <exception cref="InvalidOperationException">
+	/// Throws when the type of the argument <paramref name="item"/> doesn't derive
+	/// from <see cref="InfoBarInfo"/>.
+	/// </exception>
 	protected override DataTemplate SelectTemplateCore(object item) =>
 		item switch
 		{
-			InfoBarInfo => InfoBarInfoTemplate,
-			InfoBarInfoWithLink => InfoBarInfoWithLinkTemplate
+			PlainInfoBarInfo => PlainInfoBarInfoTemplate,
+			InfoBarInfoWithLink => InfoBarInfoWithLinkTemplate,
+			_ => throw new InvalidOperationException("The type is invalid.")
 		};
 }
