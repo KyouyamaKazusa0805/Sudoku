@@ -84,7 +84,6 @@
 				</AppBarButton>
 				<AppBarButton
 					x:Name="_cClearInfoBars" Grid.Row="0" Grid.Column="5" Icon="ClearSelection"
-					IsEnabled="{Binding ElementName=_cInfoBoard,Path=Any,Mode=OneWay,UpdateSourceTrigger=Explicit}"
 					Label="{StaticResource SudokuPage_ClearInfoBars}"
 					Click="ClearInfoBarsAppBarButton_Click" />
 				<AppBarSeparator Grid.Row="0" Grid.Column="6" />
