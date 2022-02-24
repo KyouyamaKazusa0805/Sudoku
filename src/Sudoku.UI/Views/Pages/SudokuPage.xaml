@@ -89,7 +89,7 @@
 					Click="ClearInfoBarsAppBarButton_Click" />
 				<AppBarSeparator Grid.Row="0" Grid.Column="6" />
 				<AppBarButton
-					x:Name="_cUndo" Grid.Row="0" Grid.Column="7" Icon="Undo" Tag="Undo"
+					x:Name="_cUndo" Grid.Row="0" Grid.Column="7" Icon="Undo" Tag="undo"
 					IsEnabled="{Binding
 						ElementName=_cPane,
 						Path=UndoStepsCount,
@@ -103,7 +103,7 @@
 					</AppBarButton.KeyboardAccelerators>
 				</AppBarButton>
 				<AppBarButton
-					x:Name="_cRedo" Grid.Row="0" Grid.Column="8" Icon="Redo" Tag="Redo"
+					x:Name="_cRedo" Grid.Row="0" Grid.Column="8" Icon="Redo" Tag="redo"
 					IsEnabled="{Binding
 						ElementName=_cPane,
 						Path=RedoStepsCount,

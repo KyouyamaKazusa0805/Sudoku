@@ -22,6 +22,56 @@ public sealed partial class SudokuPage : Page
 
 
 	/// <summary>
+	/// Adds the initial sudoku-technique based <see cref="InfoBar"/> instance.
+	/// </summary>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	private void InitialAddSudokuTechniqueInfoBar() =>
+		_cInfoBoard.AddMessage(
+			InfoBarSeverity.Informational, Get("SudokuPage_InfoBar_Welcome"),
+			Get("Link_SudokuTutorial"), Get("Link_SudokuTutorialDescription"));
+
+	/// <summary>
+	/// Clear the current sudoku grid, and revert the status to the empty grid.
+	/// </summary>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	private void ClearSudokuGrid()
+	{
+		_cPane.Grid = Grid.Empty;
+		_cInfoBoard.AddMessage(InfoBarSeverity.Informational, Get("SudokuPage_InfoBar_ClearSuccessfully"));
+	}
+
+	/// <summary>
+	/// Copy the string text that represents the current sudoku grid used, to the clipboard.
+	/// </summary>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	private void CopySudokuCode()
+	{
+		ref readonly var grid = ref _cPane.GridByReference();
+		if (grid is { IsUndefined: true } or { IsEmpty: true })
+		{
+			_cInfoBoard.AddMessage(InfoBarSeverity.Error, Get("SudokuPage_InfoBar_CopyFailedDueToEmpty"));
+			return;
+		}
+
+		new DataPackage { RequestedOperation = DataPackageOperation.Copy }.SetText(grid.ToString("#"));
+	}
+
+	/// <summary>
+	/// Undo or redo a step.
+	/// </summary>
+	/// <param name="commandName">The command name, the value must be <c>"undo"</c> or <c>"redo"</c>.</param>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	private void UndoOrRedoOperationVia([NotNull] string? commandName) =>
+		((Action)(commandName switch { "undo" => _cPane.UndoStep, "redo" => _cPane.RedoStep }))();
+
+	/// <summary>
+	/// Update the status of the property <see cref="Control.IsEnabled"/>
+	/// of the control <see cref="_cClearInfoBars"/>.
+	/// </summary>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	private void UpdateIsEnabledStatus() => _cClearInfoBars.IsEnabled = _cInfoBoard.Any;
+
+	/// <summary>
 	/// To determine whether the current application view is in an unsnapped state.
 	/// </summary>
 	/// <returns>The <see cref="bool"/> value indicating that.</returns>
@@ -180,9 +230,7 @@ public sealed partial class SudokuPage : Page
 	/// <param name="sender">The object that triggers the event.</param>
 	/// <param name="e">The event arguments provided.</param>
 	private void Page_Loaded([IsDiscard] object sender, [IsDiscard] RoutedEventArgs e) =>
-		_cInfoBoard.AddMessage(
-			InfoBarSeverity.Informational, Get("SudokuPage_InfoBar_Welcome"),
-			Get("Link_SudokuTutorial"), Get("Link_SudokuTutorialDescription"));
+		InitialAddSudokuTechniqueInfoBar();
 
 	/// <summary>
 	/// Triggers when the button is clicked.
@@ -197,28 +245,16 @@ public sealed partial class SudokuPage : Page
 	/// </summary>
 	/// <param name="sender">The object that triggers the event.</param>
 	/// <param name="e">The event arguments provided.</param>
-	private void ClearAppBarButton_Click(object sender, RoutedEventArgs e)
-	{
-		_cPane.Grid = Grid.Empty;
-		_cInfoBoard.AddMessage(InfoBarSeverity.Informational, Get("SudokuPage_InfoBar_ClearSuccessfully"));
-	}
+	private void ClearAppBarButton_Click(object sender, RoutedEventArgs e) =>
+		 ClearSudokuGrid();
 
 	/// <summary>
 	/// Triggers when the button is clicked.
 	/// </summary>
 	/// <param name="sender">The object that triggers the event.</param>
 	/// <param name="e">The event arguments provided.</param>
-	private void CopyAppBarButton_Click([IsDiscard] object sender, [IsDiscard] RoutedEventArgs e)
-	{
-		ref readonly var grid = ref _cPane.GridByReference();
-		if (grid is { IsUndefined: true } or { IsEmpty: true })
-		{
-			_cInfoBoard.AddMessage(InfoBarSeverity.Error, Get("SudokuPage_InfoBar_CopyFailedDueToEmpty"));
-			return;
-		}
-
-		new DataPackage { RequestedOperation = DataPackageOperation.Copy }.SetText(grid.ToString("#"));
-	}
+	private void CopyAppBarButton_Click([IsDiscard] object sender, [IsDiscard] RoutedEventArgs e) =>
+		CopySudokuCode();
 
 	/// <summary>
 	/// Triggers when the button is clicked.
@@ -250,11 +286,7 @@ public sealed partial class SudokuPage : Page
 	/// <param name="sender">The object that triggers the event.</param>
 	/// <param name="e">The event arguments provided.</param>
 	private void UndoOrRedo_Click(object sender, [IsDiscard] RoutedEventArgs e) =>
-		(
-			sender is AppBarButton { Tag: var tag }
-				? tag switch { "Undo" => _cPane.UndoStep, "Redo" => _cPane.RedoStep }
-				: default(Action)!
-		)();
+		UndoOrRedoOperationVia((sender as AppBarButton)?.Tag as string);
 
 	/// <summary>
 	/// Triggers when the inner collection of the control <see cref="_cInfoBoard"/> is changed.
@@ -262,6 +294,5 @@ public sealed partial class SudokuPage : Page
 	/// <param name="sender">The object that triggers the event.</param>
 	/// <param name="e">The event arguments provided.</param>
 	private void InfoBoard_CollectionChanged(
-		[IsDiscard] object sender, [IsDiscard] NotifyCollectionChangedEventArgs e) =>
-		_cClearInfoBars.IsEnabled = _cInfoBoard.Any;
+		[IsDiscard] object sender, [IsDiscard] NotifyCollectionChangedEventArgs e) => UpdateIsEnabledStatus();
 }

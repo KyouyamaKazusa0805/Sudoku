@@ -2366,6 +2366,33 @@
             Initializes a <see cref="T:Sudoku.UI.Views.Pages.SudokuPage"/> instance.
             </summary>
         </member>
+        <member name="M:Sudoku.UI.Views.Pages.SudokuPage.InitialAddSudokuTechniqueInfoBar">
+            <summary>
+            Adds the initial sudoku-technique based <see cref="T:Microsoft.UI.Xaml.Controls.InfoBar"/> instance.
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Views.Pages.SudokuPage.ClearSudokuGrid">
+            <summary>
+            Clear the current sudoku grid, and revert the status to the empty grid.
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Views.Pages.SudokuPage.CopySudokuCode">
+            <summary>
+            Copy the string text that represents the current sudoku grid used, to the clipboard.
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Views.Pages.SudokuPage.UndoOrRedoOperationVia(System.String)">
+            <summary>
+            Undo or redo a step.
+            </summary>
+            <param name="commandName">The command name, the value must be <c>"undo"</c> or <c>"redo"</c>.</param>
+        </member>
+        <member name="M:Sudoku.UI.Views.Pages.SudokuPage.UpdateIsEnabledStatus">
+            <summary>
+            Update the status of the property <see cref="P:Microsoft.UI.Xaml.Controls.Control.IsEnabled"/>
+            of the control <see cref="F:Sudoku.UI.Views.Pages.SudokuPage._cClearInfoBars"/>.
+            </summary>
+        </member>
         <member name="M:Sudoku.UI.Views.Pages.SudokuPage.EnsureUnsnapped">
             <summary>
             To determine whether the current application view is in an unsnapped state.
