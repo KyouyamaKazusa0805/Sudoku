@@ -5,10 +5,10 @@ using Sudoku.UI.Views.Controls;
 namespace Sudoku.UI.Data.ValueConverters;
 
 /// <summary>
-/// Defines a value converter that allows the one-way binding from the <see cref="InfoBarBoard.MessageCount"/>
+/// Defines a value converter that allows the one-way binding from the <see cref="InfoBarBoard.Any"/>
 /// to a <see cref="bool"/> vcalue indicating whether the control should be enabled.
 /// </summary>
-/// <seealso cref="InfoBarBoard.MessageCount"/>
+/// <seealso cref="InfoBarBoard.Any"/>
 public sealed class InfoBarBoardToIsEnabledConverter : IValueConverter
 {
 	/// <inheritdoc/>

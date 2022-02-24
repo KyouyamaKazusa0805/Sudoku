@@ -6,7 +6,7 @@
 /// </summary>
 /// <seealso cref="InfoBarInfo"/>
 /// <seealso cref="InfoBarInfoWithLink"/>
-public sealed class InfoBarTemplateSelector : DataTemplateSelector
+public sealed class InfoBarDataTemplateSelector : DataTemplateSelector
 {
 	/// <summary>
 	/// Indicates the data template that is used by the type <see cref="InfoBarInfo"/>.

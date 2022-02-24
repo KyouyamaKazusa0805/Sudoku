@@ -10,16 +10,16 @@
 	mc:Ignorable="d"
 	Loaded="UserControl_Loaded">
 	<UserControl.Resources>
-		<dts:InfoBarTemplateSelector x:Key="_rInfoBarTemplateSelector">
-			<dts:InfoBarTemplateSelector.PlainInfoBarInfoTemplate>
+		<dts:InfoBarDataTemplateSelector x:Key="_rInfoBarTemplateSelector">
+			<dts:InfoBarDataTemplateSelector.PlainInfoBarInfoTemplate>
 				<DataTemplate x:DataType="m:PlainInfoBarInfo">
 					<InfoBar
 						Title="{x:Bind ui:BindingConversions.InfoBarTitle(Severity)}"
 						Severity="{x:Bind Severity}" Message="{x:Bind Message}"
 						IsIconVisible="True" IsOpen="True" IsClosable="True" />
 				</DataTemplate>
-			</dts:InfoBarTemplateSelector.PlainInfoBarInfoTemplate>
-			<dts:InfoBarTemplateSelector.InfoBarInfoWithLinkTemplate>
+			</dts:InfoBarDataTemplateSelector.PlainInfoBarInfoTemplate>
+			<dts:InfoBarDataTemplateSelector.InfoBarInfoWithLinkTemplate>
 				<DataTemplate x:DataType="m:InfoBarInfoWithLink">
 					<InfoBar
 						Title="{x:Bind ui:BindingConversions.InfoBarTitle(Severity)}"
@@ -32,8 +32,8 @@
 						</InfoBar.ActionButton>
 					</InfoBar>
 				</DataTemplate>
-			</dts:InfoBarTemplateSelector.InfoBarInfoWithLinkTemplate>
-		</dts:InfoBarTemplateSelector>
+			</dts:InfoBarDataTemplateSelector.InfoBarInfoWithLinkTemplate>
+		</dts:InfoBarDataTemplateSelector>
 	</UserControl.Resources>
 
 	<ScrollViewer>

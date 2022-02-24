@@ -20,12 +20,12 @@ internal static class FileSavePickerExtensions
 		if (Window.Current is null)
 		{
 			var initializeWithWindowWrapper = @this.As<IInitializeWithWindow>();
-			var hwnd = GetActiveWindow();
+			var hwnd = getActiveWindow();
 			initializeWithWindowWrapper.Initialize(hwnd);
 		}
 
 
-		[DllImport("user32", ExactSpelling = true, CharSet = CharSet.Auto, PreserveSig = true)]
-		static extern IntPtr GetActiveWindow();
+		[DllImport("user32", EntryPoint = "GetActiveWindow", ExactSpelling = true, CharSet = CharSet.Auto, PreserveSig = true)]
+		static extern IntPtr getActiveWindow();
 	}
 }

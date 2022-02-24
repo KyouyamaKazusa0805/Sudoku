@@ -257,21 +257,43 @@ public sealed partial class SudokuPage : Page
 	private void InfoBoard_CollectionChanged(
 		[IsDiscard] object sender, [IsDiscard] NotifyCollectionChangedEventArgs e) => UpdateIsEnabledStatus();
 
+	/// <summary>
+	/// Indicates the event trigger callback method that determines
+	/// whether the current window status can execute the following operation.
+	/// </summary>
 	private void CommandOpenOrSaveSudokuFile_CanExecuteRequested(
 		[IsDiscard] XamlUICommand sender, [IsDiscard] CanExecuteRequestedEventArgs args) => EnsureUnsnapped();
 
+	/// <summary>
+	/// Indicates the event trigger callback method that executes opening sudoku file.
+	/// </summary>
 	private async void CommandOpenSudokuFile_ExecuteRequestedAsync(
 		[IsDiscard] XamlUICommand sender, [IsDiscard] ExecuteRequestedEventArgs args) => await OpenFileAsync();
 
+	/// <summary>
+	/// Indicates the event trigger callback method that executes
+	/// copying the string text representing as the current sudoku grid.
+	/// </summary>
 	private void CommandCopySudokuGridText_ExecuteRequested(
 		[IsDiscard] XamlUICommand sender, [IsDiscard] ExecuteRequestedEventArgs args) => CopySudokuCode();
 
+	/// <summary>
+	/// Indicates the event trigger callback method that executes
+	/// parsing the string text representing as a sudoku grid from the clipboard.
+	/// </summary>
 	private async void CommandPasteSudokuGridText_ExecuteRequestedAsync(
 		[IsDiscard] XamlUICommand sender, [IsDiscard] ExecuteRequestedEventArgs args) => await PasteAsync();
 
+	/// <summary>
+	/// Indicates the event trigger callback method that executes saving sudoku file.
+	/// </summary>
 	private async void CommandSaveSudokuFile_ExecuteRequestedAsync(
 		[IsDiscard] XamlUICommand sender, [IsDiscard] ExecuteRequestedEventArgs args) => await SaveFileAsync();
 
+	/// <summary>
+	/// Indicates the event trigger callback method that executes
+	/// returning back to the empty grid.
+	/// </summary>
 	private void CommandReturnEmptyGrid_ExecuteRequested(
 		[IsDiscard] XamlUICommand sender, [IsDiscard] ExecuteRequestedEventArgs args)
 	{
@@ -279,12 +301,22 @@ public sealed partial class SudokuPage : Page
 		ClearSudokuGrid();
 	}
 
+	/// <summary>
+	/// Indicates the event trigger callback method that executes
+	/// clearing all messages.
+	/// </summary>
 	private void CommandClearMessages_ExecuteRequested(
 		[IsDiscard] XamlUICommand sender, [IsDiscard] ExecuteRequestedEventArgs args) => ClearMessages();
 
+	/// <summary>
+	/// Indicates the event trigger callback method that executes undoing a step.
+	/// </summary>
 	private void CommandUndo_ExecuteRequested(
 		[IsDiscard] XamlUICommand sender, [IsDiscard] ExecuteRequestedEventArgs args) => Undo();
 
+	/// <summary>
+	/// Indicates the event trigger callback method that executes redoing a step.
+	/// </summary>
 	private void CommandRedo_ExecuteRequested(
 		[IsDiscard] XamlUICommand sender, [IsDiscard] ExecuteRequestedEventArgs args) => Redo();
 }

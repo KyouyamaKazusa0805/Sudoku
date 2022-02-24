@@ -83,7 +83,7 @@
             Indicates the configuration file.
             </summary>
         </member>
-        <member name="T:Sudoku.UI.Data.DataTemplateSelectors.InfoBarTemplateSelector">
+        <member name="T:Sudoku.UI.Data.DataTemplateSelectors.InfoBarDataTemplateSelector">
             <summary>
             Defines a data template selector that selects the <see cref="T:Microsoft.UI.Xaml.DataTemplate"/> between
             <see cref="T:Sudoku.UI.Data.InfoBarInfo"/> and <see cref="T:Sudoku.UI.Data.InfoBarInfoWithLink"/> as the model types.
@@ -91,17 +91,17 @@
             <seealso cref="T:Sudoku.UI.Data.InfoBarInfo"/>
             <seealso cref="T:Sudoku.UI.Data.InfoBarInfoWithLink"/>
         </member>
-        <member name="P:Sudoku.UI.Data.DataTemplateSelectors.InfoBarTemplateSelector.PlainInfoBarInfoTemplate">
+        <member name="P:Sudoku.UI.Data.DataTemplateSelectors.InfoBarDataTemplateSelector.PlainInfoBarInfoTemplate">
             <summary>
             Indicates the data template that is used by the type <see cref="T:Sudoku.UI.Data.InfoBarInfo"/>.
             </summary>
         </member>
-        <member name="P:Sudoku.UI.Data.DataTemplateSelectors.InfoBarTemplateSelector.InfoBarInfoWithLinkTemplate">
+        <member name="P:Sudoku.UI.Data.DataTemplateSelectors.InfoBarDataTemplateSelector.InfoBarInfoWithLinkTemplate">
             <summary>
             Indicates the data template that is used by the type <see cref="T:Sudoku.UI.Data.InfoBarInfoWithLink"/>.
             </summary>
         </member>
-        <member name="M:Sudoku.UI.Data.DataTemplateSelectors.InfoBarTemplateSelector.SelectTemplateCore(System.Object)">
+        <member name="M:Sudoku.UI.Data.DataTemplateSelectors.InfoBarDataTemplateSelector.SelectTemplateCore(System.Object)">
             <inheritdoc/>
             <exception cref="T:System.InvalidOperationException">
             Throws when the type of the argument <paramref name="item"/> doesn't derive
@@ -204,10 +204,10 @@
         </member>
         <member name="T:Sudoku.UI.Data.ValueConverters.InfoBarBoardToIsEnabledConverter">
             <summary>
-            Defines a value converter that allows the one-way binding from the <see cref="!:InfoBarBoard.MessageCount"/>
+            Defines a value converter that allows the one-way binding from the <see cref="P:Sudoku.UI.Views.Controls.InfoBarBoard.Any"/>
             to a <see cref="T:System.Boolean"/> vcalue indicating whether the control should be enabled.
             </summary>
-            <seealso cref="!:InfoBarBoard.MessageCount"/>
+            <seealso cref="P:Sudoku.UI.Views.Controls.InfoBarBoard.Any"/>
         </member>
         <member name="M:Sudoku.UI.Data.ValueConverters.InfoBarBoardToIsEnabledConverter.Convert(System.Object,System.Type,System.Object,System.String)">
             <inheritdoc/>
@@ -2447,6 +2447,56 @@
             </summary>
             <param name="sender">The object that triggers the event.</param>
             <param name="e">The event arguments provided.</param>
+        </member>
+        <member name="M:Sudoku.UI.Views.Pages.SudokuPage.CommandOpenOrSaveSudokuFile_CanExecuteRequested(Microsoft.UI.Xaml.Input.XamlUICommand,Microsoft.UI.Xaml.Input.CanExecuteRequestedEventArgs)">
+            <summary>
+            Indicates the event trigger callback method that determines
+            whether the current window status can execute the following operation.
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Views.Pages.SudokuPage.CommandOpenSudokuFile_ExecuteRequestedAsync(Microsoft.UI.Xaml.Input.XamlUICommand,Microsoft.UI.Xaml.Input.ExecuteRequestedEventArgs)">
+            <summary>
+            Indicates the event trigger callback method that executes opening sudoku file.
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Views.Pages.SudokuPage.CommandCopySudokuGridText_ExecuteRequested(Microsoft.UI.Xaml.Input.XamlUICommand,Microsoft.UI.Xaml.Input.ExecuteRequestedEventArgs)">
+            <summary>
+            Indicates the event trigger callback method that executes
+            copying the string text representing as the current sudoku grid.
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Views.Pages.SudokuPage.CommandPasteSudokuGridText_ExecuteRequestedAsync(Microsoft.UI.Xaml.Input.XamlUICommand,Microsoft.UI.Xaml.Input.ExecuteRequestedEventArgs)">
+            <summary>
+            Indicates the event trigger callback method that executes
+            parsing the string text representing as a sudoku grid from the clipboard.
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Views.Pages.SudokuPage.CommandSaveSudokuFile_ExecuteRequestedAsync(Microsoft.UI.Xaml.Input.XamlUICommand,Microsoft.UI.Xaml.Input.ExecuteRequestedEventArgs)">
+            <summary>
+            Indicates the event trigger callback method that executes saving sudoku file.
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Views.Pages.SudokuPage.CommandReturnEmptyGrid_ExecuteRequested(Microsoft.UI.Xaml.Input.XamlUICommand,Microsoft.UI.Xaml.Input.ExecuteRequestedEventArgs)">
+            <summary>
+            Indicates the event trigger callback method that executes
+            returning back to the empty grid.
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Views.Pages.SudokuPage.CommandClearMessages_ExecuteRequested(Microsoft.UI.Xaml.Input.XamlUICommand,Microsoft.UI.Xaml.Input.ExecuteRequestedEventArgs)">
+            <summary>
+            Indicates the event trigger callback method that executes
+            clearing all messages.
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Views.Pages.SudokuPage.CommandUndo_ExecuteRequested(Microsoft.UI.Xaml.Input.XamlUICommand,Microsoft.UI.Xaml.Input.ExecuteRequestedEventArgs)">
+            <summary>
+            Indicates the event trigger callback method that executes undoing a step.
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Views.Pages.SudokuPage.CommandRedo_ExecuteRequested(Microsoft.UI.Xaml.Input.XamlUICommand,Microsoft.UI.Xaml.Input.ExecuteRequestedEventArgs)">
+            <summary>
+            Indicates the event trigger callback method that executes redoing a step.
+            </summary>
         </member>
         <member name="M:Sudoku.UI.Views.Pages.SudokuPage.InitializeComponent">
             <summary>
