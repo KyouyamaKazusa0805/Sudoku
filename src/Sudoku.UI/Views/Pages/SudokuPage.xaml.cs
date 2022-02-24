@@ -1,4 +1,5 @@
 ﻿using System.Collections.Specialized;
+using Microsoft.UI.Xaml.Input;
 using Sudoku.Diagnostics.CodeAnalysis;
 using Windows.ApplicationModel.DataTransfer;
 using Windows.Storage;
@@ -53,16 +54,10 @@ public sealed partial class SudokuPage : Page
 			return;
 		}
 
-		new DataPackage { RequestedOperation = DataPackageOperation.Copy }.SetText(grid.ToString("#"));
+		var dataPackage = new DataPackage { RequestedOperation = DataPackageOperation.Copy };
+		dataPackage.SetText(grid.ToString("#"));
+		Clipboard.SetContent(dataPackage);
 	}
-
-	/// <summary>
-	/// Undo or redo a step.
-	/// </summary>
-	/// <param name="commandName">The command name, the value must be <c>"undo"</c> or <c>"redo"</c>.</param>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	private void UndoOrRedoOperationVia([NotNull] string? commandName) =>
-		((Action)(commandName switch { "undo" => _cPane.UndoStep, "redo" => _cPane.RedoStep }))();
 
 	/// <summary>
 	/// Update the status of the property <see cref="Control.IsEnabled"/>
@@ -70,6 +65,24 @@ public sealed partial class SudokuPage : Page
 	/// </summary>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	private void UpdateIsEnabledStatus() => _cClearInfoBars.IsEnabled = _cInfoBoard.Any;
+
+	/// <summary>
+	/// Clear the messages.
+	/// </summary>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	private void ClearMessages() => _cInfoBoard.ClearMessages();
+
+	/// <summary>
+	/// Undo the step.
+	/// </summary>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	private void Undo() => _cPane.UndoStep();
+
+	/// <summary>
+	/// Redo the step.
+	/// </summary>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	private void Redo() => _cPane.RedoStep();
 
 	/// <summary>
 	/// Hides the flyout whose containing control is the specified <paramref name="button"/>.
@@ -110,11 +123,6 @@ public sealed partial class SudokuPage : Page
 	/// <returns>The typical awaitable instance that holds the task to open the file.</returns>
 	private async Task OpenFileAsync()
 	{
-		if (!EnsureUnsnapped())
-		{
-			return;
-		}
-
 		var fop = new FileOpenPicker { SuggestedStartLocation = PickerLocationId.DocumentsLibrary };
 		fop.FileTypeFilter.Add(CommonFileExtensions.Text);
 		fop.AwareHandleOnWin32();
@@ -163,11 +171,6 @@ public sealed partial class SudokuPage : Page
 	/// <returns>The typical awaitable instance that holds the task to open the file.</returns>
 	private async Task SaveFileAsync()
 	{
-		if (!EnsureUnsnapped())
-		{
-			return;
-		}
-
 		var fsp = new FileSavePicker
 		{
 			SuggestedStartLocation = PickerLocationId.DocumentsLibrary,
@@ -247,54 +250,6 @@ public sealed partial class SudokuPage : Page
 		InitialAddSudokuTechniqueInfoBar();
 
 	/// <summary>
-	/// Triggers when the button is clicked.
-	/// </summary>
-	/// <param name="sender">The object that triggers the event.</param>
-	/// <param name="e">The event arguments provided.</param>
-	private async void OpenAppBarButton_ClickAsync([IsDiscard] object sender, [IsDiscard] RoutedEventArgs e) =>
-		await OpenFileAsync();
-
-	/// <summary>
-	/// Triggers when the button is clicked.
-	/// </summary>
-	/// <param name="sender">The object that triggers the event.</param>
-	/// <param name="e">The event arguments provided.</param>
-	private void CopyAppBarButton_Click([IsDiscard] object sender, [IsDiscard] RoutedEventArgs e) =>
-		CopySudokuCode();
-
-	/// <summary>
-	/// Triggers when the button is clicked.
-	/// </summary>
-	/// <param name="sender">The object that triggers the event.</param>
-	/// <param name="e">The event arguments provided.</param>
-	private async void PasteAppBarButton_ClickAsync([IsDiscard] object sender, [IsDiscard] RoutedEventArgs e) =>
-		await PasteAsync();
-
-	/// <summary>
-	/// Triggers when the button is clicked.
-	/// </summary>
-	/// <param name="sender">The object that triggers the event.</param>
-	/// <param name="e">The event arguments provided.</param>
-	private async void SaveAppBarButton_ClickAsync([IsDiscard] object sender, [IsDiscard] RoutedEventArgs e) =>
-		await SaveFileAsync();
-
-	/// <summary>
-	/// Triggers when the button is clicked.
-	/// </summary>
-	/// <param name="sender">The object that triggers the event.</param>
-	/// <param name="e">The event arguments provided.</param>
-	private void ClearInfoBarsAppBarButton_Click([IsDiscard] object sender, [IsDiscard] RoutedEventArgs e) =>
-		_cInfoBoard.ClearMessages();
-
-	/// <summary>
-	/// Triggers when the button is clicked.
-	/// </summary>
-	/// <param name="sender">The object that triggers the event.</param>
-	/// <param name="e">The event arguments provided.</param>
-	private void UndoOrRedo_Click(object sender, [IsDiscard] RoutedEventArgs e) =>
-		UndoOrRedoOperationVia((sender as AppBarButton)?.Tag as string);
-
-	/// <summary>
 	/// Triggers when the inner collection of the control <see cref="_cInfoBoard"/> is changed.
 	/// </summary>
 	/// <param name="sender">The object that triggers the event.</param>
@@ -302,14 +257,34 @@ public sealed partial class SudokuPage : Page
 	private void InfoBoard_CollectionChanged(
 		[IsDiscard] object sender, [IsDiscard] NotifyCollectionChangedEventArgs e) => UpdateIsEnabledStatus();
 
-	/// <summary>
-	/// Triggers when the button is clicked.
-	/// </summary>
-	/// <param name="sender">The object that triggers the event.</param>
-	/// <param name="e">The event arguments provided.</param>
-	private void ButtonClearSudokuGrid_Click([IsDiscard] object sender, [IsDiscard] RoutedEventArgs e)
+	private void CommandOpenOrSaveSudokuFile_CanExecuteRequested(
+		[IsDiscard] XamlUICommand sender, [IsDiscard] CanExecuteRequestedEventArgs args) => EnsureUnsnapped();
+
+	private async void CommandOpenSudokuFile_ExecuteRequestedAsync(
+		[IsDiscard] XamlUICommand sender, [IsDiscard] ExecuteRequestedEventArgs args) => await OpenFileAsync();
+
+	private void CommandCopySudokuGridText_ExecuteRequested(
+		[IsDiscard] XamlUICommand sender, [IsDiscard] ExecuteRequestedEventArgs args) => CopySudokuCode();
+
+	private async void CommandPasteSudokuGridText_ExecuteRequestedAsync(
+		[IsDiscard] XamlUICommand sender, [IsDiscard] ExecuteRequestedEventArgs args) => await PasteAsync();
+
+	private async void CommandSaveSudokuFile_ExecuteRequestedAsync(
+		[IsDiscard] XamlUICommand sender, [IsDiscard] ExecuteRequestedEventArgs args) => await SaveFileAsync();
+
+	private void CommandReturnEmptyGrid_ExecuteRequested(
+		[IsDiscard] XamlUICommand sender, [IsDiscard] ExecuteRequestedEventArgs args)
 	{
 		HideFlyout(_cClearSudokuGrid);
 		ClearSudokuGrid();
 	}
+
+	private void CommandClearMessages_ExecuteRequested(
+		[IsDiscard] XamlUICommand sender, [IsDiscard] ExecuteRequestedEventArgs args) => ClearMessages();
+
+	private void CommandUndo_ExecuteRequested(
+		[IsDiscard] XamlUICommand sender, [IsDiscard] ExecuteRequestedEventArgs args) => Undo();
+
+	private void CommandRedo_ExecuteRequested(
+		[IsDiscard] XamlUICommand sender, [IsDiscard] ExecuteRequestedEventArgs args) => Redo();
 }

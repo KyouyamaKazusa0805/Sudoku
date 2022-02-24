@@ -142,6 +142,7 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 	public Grid Grid
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		[Obsolete($"Due to the prefromance, please use the method '{nameof(GridByReference)}' instead.", false)]
 		get => GetSudokuGridViewModel().Grid;
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]

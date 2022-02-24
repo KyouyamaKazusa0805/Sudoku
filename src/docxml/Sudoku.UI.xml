@@ -2381,16 +2381,25 @@
             Copy the string text that represents the current sudoku grid used, to the clipboard.
             </summary>
         </member>
-        <member name="M:Sudoku.UI.Views.Pages.SudokuPage.UndoOrRedoOperationVia(System.String)">
-            <summary>
-            Undo or redo a step.
-            </summary>
-            <param name="commandName">The command name, the value must be <c>"undo"</c> or <c>"redo"</c>.</param>
-        </member>
         <member name="M:Sudoku.UI.Views.Pages.SudokuPage.UpdateIsEnabledStatus">
             <summary>
             Update the status of the property <see cref="P:Microsoft.UI.Xaml.Controls.Control.IsEnabled"/>
             of the control <see cref="F:Sudoku.UI.Views.Pages.SudokuPage._cClearInfoBars"/>.
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Views.Pages.SudokuPage.ClearMessages">
+            <summary>
+            Clear the messages.
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Views.Pages.SudokuPage.Undo">
+            <summary>
+            Undo the step.
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Views.Pages.SudokuPage.Redo">
+            <summary>
+            Redo the step.
             </summary>
         </member>
         <member name="M:Sudoku.UI.Views.Pages.SudokuPage.HideFlyout``1(``0)">
@@ -2432,58 +2441,9 @@
             <param name="sender">The object that triggers the event.</param>
             <param name="e">The event arguments provided.</param>
         </member>
-        <member name="M:Sudoku.UI.Views.Pages.SudokuPage.OpenAppBarButton_ClickAsync(System.Object,Microsoft.UI.Xaml.RoutedEventArgs)">
-            <summary>
-            Triggers when the button is clicked.
-            </summary>
-            <param name="sender">The object that triggers the event.</param>
-            <param name="e">The event arguments provided.</param>
-        </member>
-        <member name="M:Sudoku.UI.Views.Pages.SudokuPage.CopyAppBarButton_Click(System.Object,Microsoft.UI.Xaml.RoutedEventArgs)">
-            <summary>
-            Triggers when the button is clicked.
-            </summary>
-            <param name="sender">The object that triggers the event.</param>
-            <param name="e">The event arguments provided.</param>
-        </member>
-        <member name="M:Sudoku.UI.Views.Pages.SudokuPage.PasteAppBarButton_ClickAsync(System.Object,Microsoft.UI.Xaml.RoutedEventArgs)">
-            <summary>
-            Triggers when the button is clicked.
-            </summary>
-            <param name="sender">The object that triggers the event.</param>
-            <param name="e">The event arguments provided.</param>
-        </member>
-        <member name="M:Sudoku.UI.Views.Pages.SudokuPage.SaveAppBarButton_ClickAsync(System.Object,Microsoft.UI.Xaml.RoutedEventArgs)">
-            <summary>
-            Triggers when the button is clicked.
-            </summary>
-            <param name="sender">The object that triggers the event.</param>
-            <param name="e">The event arguments provided.</param>
-        </member>
-        <member name="M:Sudoku.UI.Views.Pages.SudokuPage.ClearInfoBarsAppBarButton_Click(System.Object,Microsoft.UI.Xaml.RoutedEventArgs)">
-            <summary>
-            Triggers when the button is clicked.
-            </summary>
-            <param name="sender">The object that triggers the event.</param>
-            <param name="e">The event arguments provided.</param>
-        </member>
-        <member name="M:Sudoku.UI.Views.Pages.SudokuPage.UndoOrRedo_Click(System.Object,Microsoft.UI.Xaml.RoutedEventArgs)">
-            <summary>
-            Triggers when the button is clicked.
-            </summary>
-            <param name="sender">The object that triggers the event.</param>
-            <param name="e">The event arguments provided.</param>
-        </member>
         <member name="M:Sudoku.UI.Views.Pages.SudokuPage.InfoBoard_CollectionChanged(System.Object,System.Collections.Specialized.NotifyCollectionChangedEventArgs)">
             <summary>
             Triggers when the inner collection of the control <see cref="F:Sudoku.UI.Views.Pages.SudokuPage._cInfoBoard"/> is changed.
-            </summary>
-            <param name="sender">The object that triggers the event.</param>
-            <param name="e">The event arguments provided.</param>
-        </member>
-        <member name="M:Sudoku.UI.Views.Pages.SudokuPage.ButtonClearSudokuGrid_Click(System.Object,Microsoft.UI.Xaml.RoutedEventArgs)">
-            <summary>
-            Triggers when the button is clicked.
             </summary>
             <param name="sender">The object that triggers the event.</param>
             <param name="e">The event arguments provided.</param>
