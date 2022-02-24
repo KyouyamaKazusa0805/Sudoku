@@ -57,11 +57,7 @@
 				</XamlUICommand>
 				<XamlUICommand
 					x:Key="_rCommandReturnEmptyGrid"
-					ExecuteRequested="CommandReturnEmptyGrid_ExecuteRequested">
-					<XamlUICommand.IconSource>
-						<SymbolIconSource Symbol="ClearSelection" />
-					</XamlUICommand.IconSource>
-				</XamlUICommand>
+					ExecuteRequested="CommandReturnEmptyGrid_ExecuteRequested" />
 				<XamlUICommand
 					x:Key="_rCommandClearMessages"
 					ExecuteRequested="CommandClearMessages_ExecuteRequested">
@@ -132,7 +128,7 @@
 					Grid.Row="0" Grid.Column="3" Label="{StaticResource SudokuPage_Save}"
 					Command="{StaticResource _rCommandSaveSudokuFile}" />
 				<AppBarButton
-					x:Name="_cClearSudokuGrid" Grid.Row="0" Grid.Column="4"
+					x:Name="_cClearSudokuGrid" Grid.Row="0" Grid.Column="4" Icon="ClearSelection"
 					Label="{StaticResource SudokuPage_Clear}">
 					<AppBarButton.Flyout>
 						<Flyout>
