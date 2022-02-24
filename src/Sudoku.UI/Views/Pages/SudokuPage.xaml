@@ -76,8 +76,20 @@
 					</AppBarButton.KeyboardAccelerators>
 				</AppBarButton>
 				<AppBarButton
-					Grid.Row="0" Grid.Column="4" Icon="Clear" Label="{StaticResource SudokuPage_Clear}"
-					Click="ClearAppBarButton_Click">
+					x:Name="_cClearSudokuGrid" Grid.Row="0" Grid.Column="4" Icon="Clear"
+					Label="{StaticResource SudokuPage_Clear}">
+					<AppBarButton.Flyout>
+						<Flyout>
+							<StackPanel>
+								<TextBlock
+									Style="{StaticResource BaseTextBlockStyle}" Margin="0,0,0,12"
+									Text="{StaticResource SudokuPage_Info_WillClearSudokuGrid}" />
+								<Button
+									Content="{StaticResource SudokuPage_Sure}"
+									Click="ButtonClearSudokuGrid_Click" />
+							</StackPanel>
+						</Flyout>
+					</AppBarButton.Flyout>
 					<AppBarButton.KeyboardAccelerators>
 						<KeyboardAccelerator Modifiers="Control,Shift" Key="S" />
 					</AppBarButton.KeyboardAccelerators>

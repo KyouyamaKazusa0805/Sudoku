@@ -72,6 +72,20 @@ public sealed partial class SudokuPage : Page
 	private void UpdateIsEnabledStatus() => _cClearInfoBars.IsEnabled = _cInfoBoard.Any;
 
 	/// <summary>
+	/// Hides the flyout whose containing control is the specified <paramref name="button"/>.
+	/// </summary>
+	/// <typeparam name="TButton">The type of the button.</typeparam>
+	/// <param name="button">The button, whose inner flyout will be hidden.</param>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	private void HideFlyout<TButton>(TButton button) where TButton : Button
+	{
+		if (button.Flyout is Flyout f)
+		{
+			f.Hide();
+		}
+	}
+
+	/// <summary>
 	/// To determine whether the current application view is in an unsnapped state.
 	/// </summary>
 	/// <returns>The <see cref="bool"/> value indicating that.</returns>
@@ -245,14 +259,6 @@ public sealed partial class SudokuPage : Page
 	/// </summary>
 	/// <param name="sender">The object that triggers the event.</param>
 	/// <param name="e">The event arguments provided.</param>
-	private void ClearAppBarButton_Click(object sender, RoutedEventArgs e) =>
-		 ClearSudokuGrid();
-
-	/// <summary>
-	/// Triggers when the button is clicked.
-	/// </summary>
-	/// <param name="sender">The object that triggers the event.</param>
-	/// <param name="e">The event arguments provided.</param>
 	private void CopyAppBarButton_Click([IsDiscard] object sender, [IsDiscard] RoutedEventArgs e) =>
 		CopySudokuCode();
 
@@ -295,4 +301,15 @@ public sealed partial class SudokuPage : Page
 	/// <param name="e">The event arguments provided.</param>
 	private void InfoBoard_CollectionChanged(
 		[IsDiscard] object sender, [IsDiscard] NotifyCollectionChangedEventArgs e) => UpdateIsEnabledStatus();
+
+	/// <summary>
+	/// Triggers when the button is clicked.
+	/// </summary>
+	/// <param name="sender">The object that triggers the event.</param>
+	/// <param name="e">The event arguments provided.</param>
+	private void ButtonClearSudokuGrid_Click([IsDiscard] object sender, [IsDiscard] RoutedEventArgs e)
+	{
+		HideFlyout(_cClearSudokuGrid);
+		ClearSudokuGrid();
+	}
 }

@@ -2393,6 +2393,13 @@
             of the control <see cref="F:Sudoku.UI.Views.Pages.SudokuPage._cClearInfoBars"/>.
             </summary>
         </member>
+        <member name="M:Sudoku.UI.Views.Pages.SudokuPage.HideFlyout``1(``0)">
+            <summary>
+            Hides the flyout whose containing control is the specified <paramref name="button"/>.
+            </summary>
+            <typeparam name="TButton">The type of the button.</typeparam>
+            <param name="button">The button, whose inner flyout will be hidden.</param>
+        </member>
         <member name="M:Sudoku.UI.Views.Pages.SudokuPage.EnsureUnsnapped">
             <summary>
             To determine whether the current application view is in an unsnapped state.
@@ -2426,13 +2433,6 @@
             <param name="e">The event arguments provided.</param>
         </member>
         <member name="M:Sudoku.UI.Views.Pages.SudokuPage.OpenAppBarButton_ClickAsync(System.Object,Microsoft.UI.Xaml.RoutedEventArgs)">
-            <summary>
-            Triggers when the button is clicked.
-            </summary>
-            <param name="sender">The object that triggers the event.</param>
-            <param name="e">The event arguments provided.</param>
-        </member>
-        <member name="M:Sudoku.UI.Views.Pages.SudokuPage.ClearAppBarButton_Click(System.Object,Microsoft.UI.Xaml.RoutedEventArgs)">
             <summary>
             Triggers when the button is clicked.
             </summary>
@@ -2477,6 +2477,13 @@
         <member name="M:Sudoku.UI.Views.Pages.SudokuPage.InfoBoard_CollectionChanged(System.Object,System.Collections.Specialized.NotifyCollectionChangedEventArgs)">
             <summary>
             Triggers when the inner collection of the control <see cref="F:Sudoku.UI.Views.Pages.SudokuPage._cInfoBoard"/> is changed.
+            </summary>
+            <param name="sender">The object that triggers the event.</param>
+            <param name="e">The event arguments provided.</param>
+        </member>
+        <member name="M:Sudoku.UI.Views.Pages.SudokuPage.ButtonClearSudokuGrid_Click(System.Object,Microsoft.UI.Xaml.RoutedEventArgs)">
+            <summary>
+            Triggers when the button is clicked.
             </summary>
             <param name="sender">The object that triggers the event.</param>
             <param name="e">The event arguments provided.</param>

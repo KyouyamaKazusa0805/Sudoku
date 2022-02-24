@@ -14,6 +14,7 @@
 	<x:String x:Key="SudokuPage_Clear">清空</x:String>
 	<x:String x:Key="SudokuPage_Undo">撤销</x:String>
 	<x:String x:Key="SudokuPage_Redo">还原</x:String>
+	<x:String x:Key="SudokuPage_Sure">是滴！</x:String>
 	<x:String x:Key="SudokuPage_ClearInfoBars">清空信息</x:String>
 	<x:String x:Key="SudokuPage_InfoBar_Welcome">欢迎来到数独的世界！想要了解数独技巧的话，请访问这个链接：</x:String>
 	<x:String x:Key="SudokuPage_InfoBar_SeverityInfo">信息</x:String>
@@ -32,6 +33,7 @@
 	<x:String x:Key="SudokuPage_InfoBar_SaveSuccessfully1">文件“</x:String>
 	<x:String x:Key="SudokuPage_InfoBar_SaveSuccessfully2">”已成功保存。</x:String>
 	<x:String x:Key="SudokuPage_InfoBar_CannotSnapTheSample">读取或保存文件的操作要求相同程序不可合并为一个图标组（在任务栏里）的时候才能使用，否则将无法区分程序使用情况。</x:String>
+	<x:String x:Key="SudokuPage_Info_WillClearSudokuGrid">点击按钮会清空盘面。你确定要这么做吗？</x:String>
 	<x:String x:Key="AboutPage_DetailDescription">本页面列举一些关于整个程序有关的作者或项目信息。</x:String>
 	<x:String x:Key="AboutPage_Author">作者</x:String>
 	<x:String x:Key="AboutPage_AuthorName">小向（Sunnie-Shine）</x:String>
