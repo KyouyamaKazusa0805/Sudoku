@@ -96,40 +96,20 @@
 			<c:InfoBarBoard
 				x:Name="_cInfoBoard" Grid.Row="0" Grid.Column="1" Margin="25,0,25,0" InfoBarSpacing="25"
 				CollectionChanged="InfoBoard_CollectionChanged" />
-			<Grid
-				Grid.Row="1" Grid.Column="0" Margin="0,25,0,0"
-				HorizontalAlignment="Center" VerticalAlignment="Center">
-				<Grid.RowDefinitions>
-					<RowDefinition />
-					<RowDefinition />
-				</Grid.RowDefinitions>
-				<Grid.ColumnDefinitions>
-					<ColumnDefinition />
-					<ColumnDefinition />
-					<ColumnDefinition />
-					<ColumnDefinition />
-					<ColumnDefinition />
-					<ColumnDefinition />
-					<ColumnDefinition />
-					<ColumnDefinition />
-					<ColumnDefinition />
-				</Grid.ColumnDefinitions>
-
+			<StackPanel
+				Orientation="Horizontal" Grid.Row="1" Grid.Column="0" Margin="25,0,0,0"
+				HorizontalAlignment="Left" VerticalAlignment="Center">
 				<AppBarButton
-					Grid.Row="0" Grid.Column="0" Label="{StaticResource SudokuPage_Open}"
-					Command="{StaticResource _rCommandOpenSudokuFile}" />
+					Label="{StaticResource SudokuPage_Open}" Command="{StaticResource _rCommandOpenSudokuFile}" />
 				<AppBarButton
-					Grid.Row="0" Grid.Column="1" Label="{StaticResource SudokuPage_Copy}"
+					Label="{StaticResource SudokuPage_Copy}"
 					Command="{StaticResource _rCommandCopySudokuGridText}" />
 				<AppBarButton
-					Grid.Row="0" Grid.Column="2" Label="{StaticResource SudokuPage_Paste}"
+					Label="{StaticResource SudokuPage_Paste}"
 					Command="{StaticResource _rCommandPasteSudokuGridText}" />
 				<AppBarButton
-					Grid.Row="0" Grid.Column="3" Label="{StaticResource SudokuPage_Save}"
-					Command="{StaticResource _rCommandSaveSudokuFile}" />
-				<AppBarButton
-					x:Name="_cClearSudokuGrid" Grid.Row="0" Grid.Column="4" Icon="ClearSelection"
-					Label="{StaticResource SudokuPage_Clear}">
+					Label="{StaticResource SudokuPage_Save}" Command="{StaticResource _rCommandSaveSudokuFile}" />
+				<AppBarButton Icon="ClearSelection" Label="{StaticResource SudokuPage_Clear}">
 					<AppBarButton.Flyout>
 						<Flyout>
 							<StackPanel>
@@ -138,18 +118,18 @@
 									Text="{StaticResource SudokuPage_Info_WillClearSudokuGrid}" />
 								<Button
 									Content="{StaticResource SudokuPage_Sure}"
-									Command="{StaticResource _rCommandReturnEmptyGrid}" />
+									Command="{StaticResource _rCommandReturnEmptyGrid}"
+									CommandParameter="{Binding RelativeSource={RelativeSource Self}}" />
 							</StackPanel>
 						</Flyout>
 					</AppBarButton.Flyout>
 				</AppBarButton>
 				<AppBarButton
-					x:Name="_cClearInfoBars" Grid.Row="0" Grid.Column="5"
-					Label="{StaticResource SudokuPage_ClearInfoBars}"
+					x:Name="_cClearInfoBars" Label="{StaticResource SudokuPage_ClearInfoBars}"
 					Command="{StaticResource _rCommandClearMessages}" />
-				<AppBarSeparator Grid.Row="0" Grid.Column="6" />
+				<AppBarSeparator />
 				<AppBarButton
-					x:Name="_cUndo" Grid.Row="0" Grid.Column="7" Label="{StaticResource SudokuPage_Undo}"
+					x:Name="_cUndo" Label="{StaticResource SudokuPage_Undo}"
 					IsEnabled="{Binding
 						ElementName=_cPane,
 						Path=UndoStepsCount,
@@ -158,7 +138,7 @@
 						UpdateSourceTrigger=PropertyChanged}"
 					Command="{StaticResource _rCommandUndo}" />
 				<AppBarButton
-					x:Name="_cRedo" Grid.Row="0" Grid.Column="8" Label="{StaticResource SudokuPage_Redo}"
+					x:Name="_cRedo" Label="{StaticResource SudokuPage_Redo}"
 					IsEnabled="{Binding
 						ElementName=_cPane,
 						Path=RedoStepsCount,
@@ -166,7 +146,7 @@
 						Mode=OneWay,
 						UpdateSourceTrigger=PropertyChanged}"
 					Command="{StaticResource _rCommandRedo}" />
-			</Grid>
+			</StackPanel>
 		</Grid>
 	</ScrollViewer>
 </Page>

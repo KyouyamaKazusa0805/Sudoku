@@ -85,20 +85,6 @@ public sealed partial class SudokuPage : Page
 	private void Redo() => _cPane.RedoStep();
 
 	/// <summary>
-	/// Hides the flyout whose containing control is the specified <paramref name="button"/>.
-	/// </summary>
-	/// <typeparam name="TButton">The type of the button.</typeparam>
-	/// <param name="button">The button, whose inner flyout will be hidden.</param>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	private void HideFlyout<TButton>(TButton button) where TButton : Button
-	{
-		if (button.Flyout is Flyout f)
-		{
-			f.Hide();
-		}
-	}
-
-	/// <summary>
 	/// To determine whether the current application view is in an unsnapped state.
 	/// </summary>
 	/// <returns>The <see cref="bool"/> value indicating that.</returns>
@@ -297,7 +283,11 @@ public sealed partial class SudokuPage : Page
 	private void CommandReturnEmptyGrid_ExecuteRequested(
 		[IsDiscard] XamlUICommand sender, [IsDiscard] ExecuteRequestedEventArgs args)
 	{
-		HideFlyout(_cClearSudokuGrid);
+		if (args.Parameter is Button { Parent: StackPanel { Parent: Flyout f } })
+		{
+			f.Hide();
+		}
+
 		ClearSudokuGrid();
 	}
 
