@@ -1,4 +1,5 @@
 ﻿using System.Collections.Specialized;
+using Microsoft.UI.Xaml.Controls.Primitives;
 using Microsoft.UI.Xaml.Input;
 using Sudoku.Diagnostics.CodeAnalysis;
 using Windows.ApplicationModel.DataTransfer;
@@ -283,9 +284,9 @@ public sealed partial class SudokuPage : Page
 	private void CommandReturnEmptyGrid_ExecuteRequested(
 		[IsDiscard] XamlUICommand sender, ExecuteRequestedEventArgs args)
 	{
-		if (args.Parameter is Button { Parent: StackPanel { Parent: Flyout f } })
+		if (args.Parameter is Button { Parent: StackPanel { Parent: FlyoutPresenter { Parent: Popup f } } })
 		{
-			f.Hide();
+			f.IsOpen = false;
 		}
 
 		ClearSudokuGrid();

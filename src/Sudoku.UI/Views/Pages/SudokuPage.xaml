@@ -96,7 +96,9 @@
 			<c:InfoBarBoard
 				x:Name="_cInfoBoard" Grid.Row="0" Grid.Column="1" Margin="25,0,25,0" InfoBarSpacing="25"
 				CollectionChanged="InfoBoard_CollectionChanged" />
-			<CommandBar Grid.Row="1" Grid.Column="0" Margin="25,0,0,0">
+			<CommandBar
+				Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Margin="25,0,0,0"
+				HorizontalAlignment="Left" DefaultLabelPosition="Right">
 				<AppBarButton
 					Label="{StaticResource SudokuPage_Open}" Command="{StaticResource _rCommandOpenSudokuFile}" />
 				<AppBarButton

@@ -37,12 +37,14 @@
 	</UserControl.Resources>
 
 	<ScrollViewer>
-		<ItemsRepeater ItemsSource="{x:Bind _list}" ItemTemplate="{StaticResource _rInfoBarTemplateSelector}">
-			<ItemsRepeater.Layout>
-				<StackLayout
-					Orientation="Vertical"
-					Spacing="{x:Bind InfoBarSpacing,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" />
-			</ItemsRepeater.Layout>
-		</ItemsRepeater>
+		<ListView
+			ItemsSource="{x:Bind _list}" ItemTemplateSelector="{StaticResource _rInfoBarTemplateSelector}"
+			SelectionMode="None">
+			<ListView.ItemContainerTransitions>
+				<TransitionCollection>
+					<AddDeleteThemeTransition />
+				</TransitionCollection>
+			</ListView.ItemContainerTransitions>
+		</ListView>
 	</ScrollViewer>
 </UserControl>
