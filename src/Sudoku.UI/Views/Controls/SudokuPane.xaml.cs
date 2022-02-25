@@ -60,8 +60,6 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 	/// <summary>
 	/// Gets or sets the size of the pane.
 	/// </summary>
-	[TwoWayProperty(nameof(Width))]
-	[TwoWayProperty(nameof(Height))]
 	public double Size
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -127,13 +125,11 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 	/// <summary>
 	/// Indicates the number of the total undo steps.
 	/// </summary>
-	[OneWayGetOnlyProperty]
 	public int UndoStepsCount => GetSudokuGridViewModel().UndoStepsCount;
 
 	/// <summary>
 	/// Indicates the number of the total redo steps.
 	/// </summary>
-	[OneWayGetOnlyProperty]
 	public int RedoStepsCount => GetSudokuGridViewModel().RedoStepsCount;
 
 	/// <summary>

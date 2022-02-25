@@ -1835,16 +1835,6 @@
             <param name="uri">The URI website.</param>
             <returns>The process.</returns>
         </member>
-        <member name="T:Sudoku.UI.OneWayGetOnlyPropertyAttribute">
-            <summary>
-            Defines an attribute that can be used for a property, to indicate the property is read-only
-            but also used by one-way binding operations.
-            </summary>
-            <remarks><b><i>
-            This attribute doesn't make any sense for both the compiler and runtime at present,
-            but this type is still reserved. I may create an analyzer to use this attribute in the future.
-            </i></b></remarks>
-        </member>
         <member name="T:Sudoku.UI.RepositoryInfo">
             <summary>
             Defines a set of properties to describe an image.
@@ -1892,28 +1882,6 @@
             </summary>
             <param name="key">The <see cref="T:System.String"/>-typed resource key.</param>
             <returns>The resource value.</returns>
-        </member>
-        <member name="T:Sudoku.UI.TwoWayPropertyAttribute">
-            <summary>
-            Defines an attribute that can be used for a property, to indicate the property contains both
-            setter and getter, and used by two-way binding operations, with the specified property name.
-            </summary>
-            <remarks><b><i>
-            This attribute doesn't make any sense for both the compiler and runtime at present,
-            but this type is still reserved. I may create an analyzer to use this attribute in the future.
-            </i></b></remarks>
-        </member>
-        <member name="M:Sudoku.UI.TwoWayPropertyAttribute.#ctor(System.String)">
-            <summary>
-            Initializes a <see cref="T:Sudoku.UI.TwoWayPropertyAttribute"/> instance via the specified property name
-            that is the bound value with the current instance.
-            </summary>
-            <param name="boundPropertyName">The name of that bound property.</param>
-        </member>
-        <member name="P:Sudoku.UI.TwoWayPropertyAttribute.BoundPropertyName">
-            <summary>
-            Indicates the bound property name.
-            </summary>
         </member>
         <member name="T:Sudoku.UI.UserPreference">
             <summary>

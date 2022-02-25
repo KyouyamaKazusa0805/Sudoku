@@ -281,7 +281,7 @@ public sealed partial class SudokuPage : Page
 	/// returning back to the empty grid.
 	/// </summary>
 	private void CommandReturnEmptyGrid_ExecuteRequested(
-		[IsDiscard] XamlUICommand sender, [IsDiscard] ExecuteRequestedEventArgs args)
+		[IsDiscard] XamlUICommand sender, ExecuteRequestedEventArgs args)
 	{
 		if (args.Parameter is Button { Parent: StackPanel { Parent: Flyout f } })
 		{
