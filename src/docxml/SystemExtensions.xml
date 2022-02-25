@@ -714,11 +714,14 @@
             </summary>
             <seealso cref="T:System.Collections.ObjectModel.Collection`1"/>
         </member>
-        <member name="M:System.Collections.ObjectModel.CollectionExtensions.Prepend``1(System.Collections.ObjectModel.Collection{``0},``0)">
+        <member name="M:System.Collections.ObjectModel.CollectionExtensions.Prepend``2(System.Collections.ObjectModel.Collection{``0},``1)">
             <summary>
             Prepends the specified element into the collection.
             </summary>
             <typeparam name="T">The type of the element.</typeparam>
+            <typeparam name="TDerived">
+            The type of the element to be prepended. The type must be derived from <typeparamref name="T"/>.
+            </typeparam>
             <param name="this">The collection.</param>
             <param name="element">The element to be prepended.</param>
         </member>
