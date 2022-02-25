@@ -96,9 +96,7 @@
 			<c:InfoBarBoard
 				x:Name="_cInfoBoard" Grid.Row="0" Grid.Column="1" Margin="25,0,25,0" InfoBarSpacing="25"
 				CollectionChanged="InfoBoard_CollectionChanged" />
-			<StackPanel
-				Orientation="Horizontal" Grid.Row="1" Grid.Column="0" Margin="25,0,0,0"
-				HorizontalAlignment="Left" VerticalAlignment="Center">
+			<CommandBar Grid.Row="1" Grid.Column="0" Margin="25,0,0,0">
 				<AppBarButton
 					Label="{StaticResource SudokuPage_Open}" Command="{StaticResource _rCommandOpenSudokuFile}" />
 				<AppBarButton
@@ -146,7 +144,7 @@
 						Mode=OneWay,
 						UpdateSourceTrigger=PropertyChanged}"
 					Command="{StaticResource _rCommandRedo}" />
-			</StackPanel>
+			</CommandBar>
 		</Grid>
 	</ScrollViewer>
 </Page>
