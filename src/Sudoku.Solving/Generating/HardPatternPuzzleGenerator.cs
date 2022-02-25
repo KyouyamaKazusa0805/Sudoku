@@ -77,10 +77,6 @@ public sealed unsafe class HardPatternPuzzleGenerator : IPuzzleGenerator
 		}
 	}
 
-	/// <inheritdoc/>
-	public ValueTask<Grid> GenerateAsync(CancellationToken cancellationToken = default) =>
-		new(Generate(cancellationToken));
-
 	/// <summary>
 	/// Generates the answer sudoku grid via the specified puzzle and the solution variable pointer.
 	/// </summary>

@@ -29,9 +29,6 @@
         <member name="M:Sudoku.Generating.HardPatternPuzzleGenerator.Generate(System.Threading.CancellationToken)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Generating.HardPatternPuzzleGenerator.GenerateAsync(System.Threading.CancellationToken)">
-            <inheritdoc/>
-        </member>
         <member name="M:Sudoku.Generating.HardPatternPuzzleGenerator.GenerateAnswerGrid(System.Char*,System.Char*)">
             <summary>
             Generates the answer sudoku grid via the specified puzzle and the solution variable pointer.
@@ -80,16 +77,6 @@
             The result puzzle generated. If cancelled, the return value will be <see cref="F:Sudoku.Collections.Grid.Undefined"/>.
             </returns>
         </member>
-        <member name="M:Sudoku.Generating.IPuzzleGenerator.GenerateAsync(System.Threading.CancellationToken)">
-            <summary>
-            Creates a sudoku grid puzzle asynchronously.
-            </summary>
-            <param name="cancellationToken">The cancellation token to cancel the operation.</param>
-            <returns>
-            The task of the operation that includes the result puzzle generated.
-            If cancelled, the inner result sudoku grid of the return value will be <see cref="F:Sudoku.Collections.Grid.Undefined"/>.
-            </returns>
-        </member>
         <member name="T:Sudoku.Generating.SymmetricPuzzleGenerator">
             <summary>
             Defines a symmetric puzzle generator, that is, a generator than can include the symmetrical placement
@@ -97,9 +84,6 @@
             </summary>
         </member>
         <member name="M:Sudoku.Generating.SymmetricPuzzleGenerator.Generate(System.Threading.CancellationToken)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Generating.SymmetricPuzzleGenerator.GenerateAsync(System.Threading.CancellationToken)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Generating.SymmetricPuzzleGenerator.Generate(System.Int32,Sudoku.SymmetryType,System.Threading.CancellationToken)">

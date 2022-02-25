@@ -235,17 +235,27 @@ public sealed partial class SudokuPage : Page
 	/// <returns>The typical awaitable instance that holds the task to open the file.</returns>
 	private async Task GenerateAsync(AppBarButton button)
 	{
+		// Disable the control to prevent re-invocation.
 		button.IsEnabled = false;
+
+		// Generate the puzzle.
+		// The generation may be slow, so we should use asynchronous invocation instead of the synchronous one.
+		// TODO: May allow the user cancelling the puzzle-generating operation.
 		var grid = await Task.Run(static () => HardPatternPuzzleGenerator.Shared.Generate());
+
+		// Enable the control.
 		button.IsEnabled = true;
 
+		// Check the status of the grid.
 		if (grid.IsUndefined)
 		{
 			return;
 		}
 
+		// Sets the grid to update the view.
 		_cPane.Grid = grid;
 
+		// Append the info to the board.
 		string part1 = Get("SudokuPage_InfoBar_GeneratingSuccessfully1");
 		string part2 = Get("SudokuPage_InfoBar_GeneratingSuccessfully2");
 		_cInfoBoard.AddMessage(InfoBarSeverity.Success, $"{part1}\r\n{part2}{grid.GivensCount}");

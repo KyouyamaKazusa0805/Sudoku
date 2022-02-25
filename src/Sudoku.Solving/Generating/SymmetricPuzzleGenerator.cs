@@ -23,10 +23,6 @@ public sealed class SymmetricPuzzleGenerator : IPuzzleGenerator
 		}
 	}
 
-	/// <inheritdoc/>
-	public ValueTask<Grid> GenerateAsync(CancellationToken cancellationToken = default) =>
-		new(Generate(28, SymmetryType.Central, cancellationToken));
-
 	/// <summary>
 	/// Generates a sudoku puzzle, via the specified number of givens used, the symmetry type, and
 	/// a cancellation token to cancel the operation.
