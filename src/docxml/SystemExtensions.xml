@@ -708,6 +708,20 @@
         <member name="M:System.Collections.Generic.KeyedTuple`4.ToString">
             <inheritdoc/>
         </member>
+        <member name="T:System.Collections.ObjectModel.CollectionExtensions">
+            <summary>
+            Provides extension methods on <see cref="T:System.Collections.ObjectModel.Collection`1"/>.
+            </summary>
+            <seealso cref="T:System.Collections.ObjectModel.Collection`1"/>
+        </member>
+        <member name="M:System.Collections.ObjectModel.CollectionExtensions.Prepend``1(System.Collections.ObjectModel.Collection{``0},``0)">
+            <summary>
+            Prepends the specified element into the collection.
+            </summary>
+            <typeparam name="T">The type of the element.</typeparam>
+            <param name="this">The collection.</param>
+            <param name="element">The element to be prepended.</param>
+        </member>
         <member name="T:System.Diagnostics.CodeAnalysis.StringSyntaxAttribute">
             <summary>
             Specifies the syntax used in a string.

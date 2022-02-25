@@ -2008,10 +2008,8 @@
         </member>
         <member name="F:Sudoku.UI.Views.Controls.InfoBarBoard._list">
             <summary>
-            The list of <see cref="T:Sudoku.UI.Data.InfoBarInfo"/> or <see cref="T:Sudoku.UI.Data.InfoBarInfoWithLink"/>s.
+            The list of <see cref="T:Sudoku.UI.Data.InfoBarInfo"/>s.
             </summary>
-            <seealso cref="T:Sudoku.UI.Data.InfoBarInfo"/>
-            <seealso cref="T:Sudoku.UI.Data.InfoBarInfoWithLink"/>
         </member>
         <member name="F:Sudoku.UI.Views.Controls.InfoBarBoard._spacing">
             <summary>

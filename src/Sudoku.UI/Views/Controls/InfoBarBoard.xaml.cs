@@ -13,11 +13,9 @@ namespace Sudoku.UI.Views.Controls;
 public sealed partial class InfoBarBoard : UserControl, INotifyPropertyChanged, INotifyCollectionChanged
 {
 	/// <summary>
-	/// The list of <see cref="InfoBarInfo"/> or <see cref="InfoBarInfoWithLink"/>s.
+	/// The list of <see cref="InfoBarInfo"/>s.
 	/// </summary>
-	/// <seealso cref="InfoBarInfo"/>
-	/// <seealso cref="InfoBarInfoWithLink"/>
-	private readonly ObservableCollection<object> _list = new();
+	private readonly ObservableCollection<InfoBarInfo> _list = new();
 
 	/// <summary>
 	/// Indicates the backing field of property <see cref="InfoBarSpacing"/>.
@@ -72,7 +70,7 @@ public sealed partial class InfoBarBoard : UserControl, INotifyPropertyChanged, 
 	/// <seealso cref="InfoBar"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public void AddMessage(InfoBarSeverity severity, string info) =>
-		_list.Insert(0, new PlainInfoBarInfo { Severity = severity, Message = info });
+		_list.Prepend(new PlainInfoBarInfo { Severity = severity, Message = info });
 
 	/// <summary>
 	/// Creates a new <see cref="InfoBar"/> instance via the specified severity,
@@ -85,8 +83,7 @@ public sealed partial class InfoBarBoard : UserControl, INotifyPropertyChanged, 
 	/// <seealso cref="InfoBar"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public void AddMessage(InfoBarSeverity severity, string info, string link, string linkDescription) =>
-		_list.Insert(
-			0,
+		_list.Prepend(
 			new InfoBarInfoWithLink
 			{
 				Severity = severity,
