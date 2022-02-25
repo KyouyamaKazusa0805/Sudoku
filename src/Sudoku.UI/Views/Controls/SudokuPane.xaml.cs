@@ -11,7 +11,6 @@ namespace Sudoku.UI.Views.Controls;
 /// </summary>
 public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 {
-	#region Fields
 	/// <summary>
 	/// Indicates the delta that is used for checking whether two <see cref="double"/> values are same
 	/// or their difference is below to the delta value.
@@ -44,19 +43,15 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 	/// </summary>
 	/// <seealso cref="OutsideOffset"/>
 	private double _outsideOffset;
-	#endregion
 
 
-	#region Constructors
 	/// <summary>
 	/// Initializes a <see cref="SudokuPane"/> instance.
 	/// </summary>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public SudokuPane() => InitializeComponent();
-	#endregion
 
 
-	#region Properties
 	/// <summary>
 	/// Gets or sets the size of the pane.
 	/// </summary>
@@ -144,16 +139,12 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		set => GetSudokuGridViewModel().Grid = value;
 	}
-	#endregion
 
 
-	#region Events
 	/// <inheritdoc/>
 	public event PropertyChangedEventHandler? PropertyChanged;
-	#endregion
 
 
-	#region Normal instance methods
 	/// <summary>
 	/// Undo a step.
 	/// </summary>
@@ -195,10 +186,8 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 	/// <returns>The <see cref="SudokuGrid"/> instance.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	private SudokuGrid GetSudokuGridViewModel() => _drawingElements.OfType<SudokuGrid>().Single();
-	#endregion
 
 
-	#region Delegated methods
 	/// <summary>
 	/// Triggers when the current control is tapped via mouse or other devices, by the right clicking.
 	/// </summary>
@@ -352,5 +341,4 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 
 		action(CurrentCell, digit);
 	}
-	#endregion
 }
