@@ -81,6 +81,14 @@
 						<KeyboardAccelerator Modifiers="Control" Key="Y" />
 					</XamlUICommand.KeyboardAccelerators>
 				</XamlUICommand>
+				<XamlUICommand x:Key="_rCommandGenerate" ExecuteRequested="CommandGenerate_ExecuteRequestedAsync">
+					<XamlUICommand.IconSource>
+						<SymbolIconSource Symbol="Go" />
+					</XamlUICommand.IconSource>
+					<XamlUICommand.KeyboardAccelerators>
+						<KeyboardAccelerator Modifiers="Control" Key="H" />
+					</XamlUICommand.KeyboardAccelerators>
+				</XamlUICommand>
 			</Grid.Resources>
 			<Grid.RowDefinitions>
 				<RowDefinition Height="580" />
@@ -91,62 +99,85 @@
 				<ColumnDefinition />
 			</Grid.ColumnDefinitions>
 
+			<!--Sudoku grid-->
 			<c:SudokuPane
-				x:Name="_cPane" Grid.Row="0" Grid.Column="0" Margin="25,25,0,0" Size="560" OutsideOffset="10" />
+				x:Name="_cPane" Grid.Row="0" Grid.Column="0" Margin="25,25,0,0"
+				Size="560" OutsideOffset="10" />
+
+			<!--Info bar board at the right side of the sudoku grid-->
 			<c:InfoBarBoard
 				x:Name="_cInfoBoard" Grid.Row="0" Grid.Column="1" Margin="25,0,25,0" InfoBarSpacing="25"
 				CollectionChanged="InfoBoard_CollectionChanged" />
-			<CommandBar
-				Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Margin="25,0,0,0"
-				HorizontalAlignment="Left" DefaultLabelPosition="Right">
-				<AppBarButton
-					Label="{StaticResource SudokuPage_Open}" Command="{StaticResource _rCommandOpenSudokuFile}" />
-				<AppBarButton
-					Label="{StaticResource SudokuPage_Copy}"
-					Command="{StaticResource _rCommandCopySudokuGridText}" />
-				<AppBarButton
-					Label="{StaticResource SudokuPage_Paste}"
-					Command="{StaticResource _rCommandPasteSudokuGridText}" />
-				<AppBarButton
-					Label="{StaticResource SudokuPage_Save}" Command="{StaticResource _rCommandSaveSudokuFile}" />
-				<AppBarButton Icon="ClearSelection" Label="{StaticResource SudokuPage_Clear}">
-					<AppBarButton.Flyout>
-						<Flyout>
-							<StackPanel>
-								<TextBlock
-									Style="{StaticResource BaseTextBlockStyle}" Margin="0,0,0,12"
-									Text="{StaticResource SudokuPage_Info_WillClearSudokuGrid}" />
-								<Button
-									Content="{StaticResource SudokuPage_Sure}"
-									Command="{StaticResource _rCommandReturnEmptyGrid}"
-									CommandParameter="{Binding RelativeSource={RelativeSource Self}}" />
-							</StackPanel>
-						</Flyout>
-					</AppBarButton.Flyout>
-				</AppBarButton>
-				<AppBarButton
-					x:Name="_cClearInfoBars" Label="{StaticResource SudokuPage_ClearInfoBars}"
-					Command="{StaticResource _rCommandClearMessages}" />
-				<AppBarSeparator />
-				<AppBarButton
-					x:Name="_cUndo" Label="{StaticResource SudokuPage_Undo}"
-					IsEnabled="{Binding
-						ElementName=_cPane,
-						Path=UndoStepsCount,
-						Converter={StaticResource _rUndoingOrRedoingConverter},
-						Mode=OneWay,
-						UpdateSourceTrigger=PropertyChanged}"
-					Command="{StaticResource _rCommandUndo}" />
-				<AppBarButton
-					x:Name="_cRedo" Label="{StaticResource SudokuPage_Redo}"
-					IsEnabled="{Binding
-						ElementName=_cPane,
-						Path=RedoStepsCount,
-						Converter={StaticResource _rUndoingOrRedoingConverter},
-						Mode=OneWay,
-						UpdateSourceTrigger=PropertyChanged}"
-					Command="{StaticResource _rCommandRedo}" />
-			</CommandBar>
+
+			<!--Tool list-->
+			<ListView Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Margin="25,0,0,0" SelectionMode="None">
+				<!--First row: Editing-->
+				<TextBlock
+					Style="{StaticResource BaseTextBlockStyle}" Margin="0,25,0,0"
+					Text="{StaticResource SudokuPage_ToolList_Editing}" />
+				<CommandBar HorizontalAlignment="Left" DefaultLabelPosition="Right">
+					<AppBarButton
+						Label="{StaticResource SudokuPage_Open}"
+						Command="{StaticResource _rCommandOpenSudokuFile}" />
+					<AppBarButton
+						Label="{StaticResource SudokuPage_Copy}"
+						Command="{StaticResource _rCommandCopySudokuGridText}" />
+					<AppBarButton
+						Label="{StaticResource SudokuPage_Paste}"
+						Command="{StaticResource _rCommandPasteSudokuGridText}" />
+					<AppBarButton
+						Label="{StaticResource SudokuPage_Save}"
+						Command="{StaticResource _rCommandSaveSudokuFile}" />
+					<AppBarButton Icon="ClearSelection" Label="{StaticResource SudokuPage_Clear}">
+						<AppBarButton.Flyout>
+							<Flyout>
+								<StackPanel>
+									<TextBlock
+										Style="{StaticResource BaseTextBlockStyle}" Margin="0,0,0,12"
+										Text="{StaticResource SudokuPage_Info_WillClearSudokuGrid}" />
+									<Button
+										Content="{StaticResource SudokuPage_Sure}"
+										Command="{StaticResource _rCommandReturnEmptyGrid}"
+										CommandParameter="{Binding RelativeSource={RelativeSource Self}}" />
+								</StackPanel>
+							</Flyout>
+						</AppBarButton.Flyout>
+					</AppBarButton>
+					<AppBarButton
+						x:Name="_cClearInfoBars" Label="{StaticResource SudokuPage_ClearInfoBars}"
+						Command="{StaticResource _rCommandClearMessages}" />
+					<AppBarSeparator />
+					<AppBarButton
+						x:Name="_cUndo" Label="{StaticResource SudokuPage_Undo}"
+						IsEnabled="{Binding
+							ElementName=_cPane,
+							Path=UndoStepsCount,
+							Converter={StaticResource _rUndoingOrRedoingConverter},
+							Mode=OneWay,
+							UpdateSourceTrigger=PropertyChanged}"
+						Command="{StaticResource _rCommandUndo}" />
+					<AppBarButton
+						x:Name="_cRedo" Label="{StaticResource SudokuPage_Redo}"
+						IsEnabled="{Binding
+							ElementName=_cPane,
+							Path=RedoStepsCount,
+							Converter={StaticResource _rUndoingOrRedoingConverter},
+							Mode=OneWay,
+							UpdateSourceTrigger=PropertyChanged}"
+						Command="{StaticResource _rCommandRedo}" />
+				</CommandBar>
+
+				<!--Second line: Puzzle analyzer-->
+				<TextBlock
+					Style="{StaticResource BaseTextBlockStyle}" Margin="0,25,0,0"
+					Text="{StaticResource SudokuPage_ToolList_Analysis}" />
+				<CommandBar HorizontalAlignment="Left" DefaultLabelPosition="Right">
+					<AppBarButton
+						Label="{StaticResource SudokuPage_Generate}"
+						Command="{StaticResource _rCommandGenerate}"
+						CommandParameter="{Binding RelativeSource={RelativeSource Self}}" />
+				</CommandBar>
+			</ListView>
 		</Grid>
 	</ScrollViewer>
 </Page>

@@ -60,6 +60,7 @@
 
 	<ItemGroup>
 		<ProjectReference Include="..\Sudoku.Core\Sudoku.Core.csproj" />
+		<ProjectReference Include="..\Sudoku.Solving\Sudoku.Solving.csproj" />
 		<ProjectReference Include="..\System\SystemExtensions.csproj" />
 	</ItemGroup>
 

@@ -2393,6 +2393,13 @@
             </summary>
             <returns>The typical awaitable instance that holds the task to open the file.</returns>
         </member>
+        <member name="M:Sudoku.UI.Views.Pages.SudokuPage.GenerateAsync(Microsoft.UI.Xaml.Controls.AppBarButton)">
+            <summary>
+            Try to generate a sudoku puzzle, to display onto the sudoku pane.
+            </summary>
+            <param name="button">The button.</param>
+            <returns>The typical awaitable instance that holds the task to open the file.</returns>
+        </member>
         <member name="M:Sudoku.UI.Views.Pages.SudokuPage.Page_Loaded(System.Object,Microsoft.UI.Xaml.RoutedEventArgs)">
             <summary>
             Triggers when the current page is loaded.
@@ -2437,14 +2444,12 @@
         </member>
         <member name="M:Sudoku.UI.Views.Pages.SudokuPage.CommandReturnEmptyGrid_ExecuteRequested(Microsoft.UI.Xaml.Input.XamlUICommand,Microsoft.UI.Xaml.Input.ExecuteRequestedEventArgs)">
             <summary>
-            Indicates the event trigger callback method that executes
-            returning back to the empty grid.
+            Indicates the event trigger callback method that executes returning back to the empty grid.
             </summary>
         </member>
         <member name="M:Sudoku.UI.Views.Pages.SudokuPage.CommandClearMessages_ExecuteRequested(Microsoft.UI.Xaml.Input.XamlUICommand,Microsoft.UI.Xaml.Input.ExecuteRequestedEventArgs)">
             <summary>
-            Indicates the event trigger callback method that executes
-            clearing all messages.
+            Indicates the event trigger callback method that executes clearing all messages.
             </summary>
         </member>
         <member name="M:Sudoku.UI.Views.Pages.SudokuPage.CommandUndo_ExecuteRequested(Microsoft.UI.Xaml.Input.XamlUICommand,Microsoft.UI.Xaml.Input.ExecuteRequestedEventArgs)">
@@ -2455,6 +2460,11 @@
         <member name="M:Sudoku.UI.Views.Pages.SudokuPage.CommandRedo_ExecuteRequested(Microsoft.UI.Xaml.Input.XamlUICommand,Microsoft.UI.Xaml.Input.ExecuteRequestedEventArgs)">
             <summary>
             Indicates the event trigger callback method that executes redoing a step.
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Views.Pages.SudokuPage.CommandGenerate_ExecuteRequestedAsync(Microsoft.UI.Xaml.Input.XamlUICommand,Microsoft.UI.Xaml.Input.ExecuteRequestedEventArgs)">
+            <summary>
+            Indicates the event trigger callback method that executes generating a puzzle.
             </summary>
         </member>
         <member name="M:Sudoku.UI.Views.Pages.SudokuPage.InitializeComponent">

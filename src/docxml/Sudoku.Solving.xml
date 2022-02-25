@@ -10,6 +10,12 @@
             a <b>hard pattern</b> doesn't mean the puzzle will be hard or fiendish.
             </summary>
         </member>
+        <member name="F:Sudoku.Generating.HardPatternPuzzleGenerator.Shared">
+            <summary>
+            Defines a shared instance that can generate the sudoku puzzles
+            without using <see langword="new"/> statement.
+            </summary>
+        </member>
         <member name="F:Sudoku.Generating.HardPatternPuzzleGenerator.BlockFactor">
             <summary>
             Indicates the block factor.
@@ -286,7 +292,7 @@
             <inheritdoc cref="M:Sudoku.Solving.BitwiseSolver.Solve(System.Char*,System.Char*,System.Int32)"/>
         </member>
         <member name="M:Sudoku.Solving.BruteForces.FastSolver.CheckValidity(System.Char*)">
-            <inheritdoc cref="M:Sudoku.Solving.BitwiseSolver.CheckValidity(System.Char*)"/>
+            <inheritdoc cref="M:Sudoku.Solving.BitwiseSolver.CheckValidity(System.Char*,System.Boolean)"/>
         </member>
         <member name="M:Sudoku.Solving.BruteForces.FastSolver.CheckValidity(System.String)">
             <inheritdoc cref="M:Sudoku.Solving.BitwiseSolver.CheckValidity(System.String)"/>

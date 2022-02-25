@@ -15,7 +15,10 @@
 	<x:String x:Key="SudokuPage_ClearInfoBars">Clear messages</x:String>
 	<x:String x:Key="SudokuPage_Undo">Undo</x:String>
 	<x:String x:Key="SudokuPage_Redo">Redo</x:String>
+	<x:String x:Key="SudokuPage_Generate">Generate</x:String>
 	<x:String x:Key="SudokuPage_Sure">Sure!</x:String>
+	<x:String x:Key="SudokuPage_ToolList_Editing">Editing</x:String>
+	<x:String x:Key="SudokuPage_ToolList_Analysis">Solving &amp; Analysis</x:String>
 	<x:String x:Key="SudokuPage_InfoBar_Welcome">Welcome to the world of sudoku! For more information about sudoku techniques, you can visit the following link:</x:String>
 	<x:String x:Key="SudokuPage_InfoBar_SeverityInfo">Infomation</x:String>
 	<x:String x:Key="SudokuPage_InfoBar_SeveritySuccess">Success</x:String>
@@ -35,6 +38,8 @@
 	<x:String x:Key="SudokuPage_InfoBar_SaveFailed1">File "</x:String>
 	<x:String x:Key="SudokuPage_InfoBar_SaveFailed2">" is failed to save.</x:String>
 	<x:String x:Key="SudokuPage_InfoBar_CannotSnapTheSample">The program is snapped by a group and cannot be unsnapped.</x:String>
+	<x:String x:Key="SudokuPage_InfoBar_GeneratingSuccessfully1">Successfully generated the puzzle!</x:String>
+	<x:String x:Key="SudokuPage_InfoBar_GeneratingSuccessfully2">Givens: </x:String>
 	<x:String x:Key="SudokuPage_Info_WillClearSudokuGrid">Click me will remove the sudoku grid to the empty status. Do you want to continue?</x:String>
 	<x:String x:Key="AboutPage_DetailDescription">Here displays the details about the application.</x:String>
 	<x:String x:Key="AboutPage_Author">Author</x:String>

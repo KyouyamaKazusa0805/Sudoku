@@ -2,6 +2,7 @@
 using Microsoft.UI.Xaml.Controls.Primitives;
 using Microsoft.UI.Xaml.Input;
 using Sudoku.Diagnostics.CodeAnalysis;
+using Sudoku.Generating;
 using Windows.ApplicationModel.DataTransfer;
 using Windows.Storage;
 using Windows.Storage.Pickers;
@@ -227,6 +228,29 @@ public sealed partial class SudokuPage : Page
 		_cInfoBoard.AddMessage(InfoBarSeverity.Success, Get("SudokuPage_InfoBar_PasteSuccessfully"));
 	}
 
+	/// <summary>
+	/// Try to generate a sudoku puzzle, to display onto the sudoku pane.
+	/// </summary>
+	/// <param name="button">The button.</param>
+	/// <returns>The typical awaitable instance that holds the task to open the file.</returns>
+	private async Task GenerateAsync(AppBarButton button)
+	{
+		button.IsEnabled = false;
+		var grid = await Task.Run(static () => HardPatternPuzzleGenerator.Shared.Generate());
+		button.IsEnabled = true;
+
+		if (grid.IsUndefined)
+		{
+			return;
+		}
+
+		_cPane.Grid = grid;
+
+		string part1 = Get("SudokuPage_InfoBar_GeneratingSuccessfully1");
+		string part2 = Get("SudokuPage_InfoBar_GeneratingSuccessfully2");
+		_cInfoBoard.AddMessage(InfoBarSeverity.Success, $"{part1}\r\n{part2}{grid.GivensCount}");
+	}
+
 
 	/// <summary>
 	/// Triggers when the current page is loaded.
@@ -278,8 +302,7 @@ public sealed partial class SudokuPage : Page
 		[IsDiscard] XamlUICommand sender, [IsDiscard] ExecuteRequestedEventArgs args) => await SaveFileAsync();
 
 	/// <summary>
-	/// Indicates the event trigger callback method that executes
-	/// returning back to the empty grid.
+	/// Indicates the event trigger callback method that executes returning back to the empty grid.
 	/// </summary>
 	private void CommandReturnEmptyGrid_ExecuteRequested(
 		[IsDiscard] XamlUICommand sender, ExecuteRequestedEventArgs args)
@@ -293,8 +316,7 @@ public sealed partial class SudokuPage : Page
 	}
 
 	/// <summary>
-	/// Indicates the event trigger callback method that executes
-	/// clearing all messages.
+	/// Indicates the event trigger callback method that executes clearing all messages.
 	/// </summary>
 	private void CommandClearMessages_ExecuteRequested(
 		[IsDiscard] XamlUICommand sender, [IsDiscard] ExecuteRequestedEventArgs args) => ClearMessages();
@@ -310,4 +332,18 @@ public sealed partial class SudokuPage : Page
 	/// </summary>
 	private void CommandRedo_ExecuteRequested(
 		[IsDiscard] XamlUICommand sender, [IsDiscard] ExecuteRequestedEventArgs args) => Redo();
+
+	/// <summary>
+	/// Indicates the event trigger callback method that executes generating a puzzle.
+	/// </summary>
+	private async void CommandGenerate_ExecuteRequestedAsync(
+		[IsDiscard] XamlUICommand sender, ExecuteRequestedEventArgs args)
+	{
+		if (args.Parameter is not AppBarButton button)
+		{
+			return;
+		}
+
+		await GenerateAsync(button);
+	}
 }
