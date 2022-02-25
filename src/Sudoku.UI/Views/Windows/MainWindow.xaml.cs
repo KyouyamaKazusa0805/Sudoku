@@ -1,5 +1,6 @@
 ﻿using Microsoft.UI;
 using Microsoft.UI.Windowing;
+using static Sudoku.UI.StringResource;
 
 namespace Sudoku.UI.Views.Windows;
 
@@ -16,6 +17,9 @@ public sealed partial class MainWindow : Window
 	{
 		// Intializes the controls.
 		InitializeComponent();
+
+		// Sets the title of the window.
+		Title = Get("ProgramName");
 
 		// To customize the title bar if available.
 		CustomizeTitleBar();
