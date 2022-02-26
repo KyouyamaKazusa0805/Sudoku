@@ -33,6 +33,14 @@ public sealed unsafe class HardPatternPuzzleGenerator : IPuzzleGenerator
 	};
 
 
+	/// <summary>
+	/// Initializes a <see cref="HardPatternPuzzleGenerator"/> instance.
+	/// </summary>
+	private HardPatternPuzzleGenerator()
+	{
+	}
+
+
 	/// <inheritdoc/>
 	public Grid Generate(CancellationToken cancellationToken = default)
 	{

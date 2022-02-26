@@ -10,6 +10,21 @@ namespace Sudoku.Generating;
 /// </summary>
 public sealed class SymmetricPuzzleGenerator : IPuzzleGenerator
 {
+	/// <summary>
+	/// Indicates the shared <see cref="SymmetricPuzzleGenerator"/> instance
+	/// that allows the user generating the puzzles with symmetrical-placed givens.
+	/// </summary>
+	public static readonly SymmetricPuzzleGenerator Shared = new();
+
+
+	/// <summary>
+	/// Initializes a <see cref="SymmetricPuzzleGenerator"/> instance.
+	/// </summary>
+	private SymmetricPuzzleGenerator()
+	{
+	}
+
+
 	/// <inheritdoc/>
 	public Grid Generate(CancellationToken cancellationToken = default)
 	{
@@ -132,40 +147,41 @@ public sealed class SymmetricPuzzleGenerator : IPuzzleGenerator
 	/// <param name="column">The column value.</param>
 	/// <returns>The cells.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	private static int[] GetCells(SymmetryType symmetryType, int row, int column) => symmetryType switch
-	{
-		SymmetryType.Central => new[] { row * 9 + column, (8 - row) * 9 + 8 - column },
-		SymmetryType.Diagonal => new[] { row * 9 + column, column * 9 + row },
-		SymmetryType.AntiDiagonal => new[] { row * 9 + column, (8 - column) * 9 + 8 - row },
-		SymmetryType.XAxis => new[] { row * 9 + column, (8 - row) * 9 + column },
-		SymmetryType.YAxis => new[] { row * 9 + column, row * 9 + 8 - column },
-		SymmetryType.DiagonalBoth => new[]
+	private static int[] GetCells(SymmetryType symmetryType, int row, int column) =>
+		symmetryType switch
 		{
-			row * 9 + column,
-			column * 9 + row,
-			(8 - column) * 9 + 8 - row,
-			(8 - row) * 9 + 8 - column
-		},
-		SymmetryType.AxisBoth => new[]
-		{
-			row * 9 + column,
-			(8 - row) * 9 + column,
-			row * 9 + 8 - column,
-			(8 - row) * 9 + 8 - column
-		},
-		SymmetryType.All => new[]
-		{
-			row * 9 + column,
-			row * 9 + (8 - column),
-			(8 - row) * 9 + column,
-			(8 - row) * 9 + (8 - column),
-			column * 9 + row,
-			column * 9 + (8 - row),
-			(8 - column) * 9 + row,
-			(8 - column) * 9 + (8 - row)
-		},
-		SymmetryType.None => new[] { row * 9 + column }
-	};
+			SymmetryType.Central => new[] { row * 9 + column, (8 - row) * 9 + 8 - column },
+			SymmetryType.Diagonal => new[] { row * 9 + column, column * 9 + row },
+			SymmetryType.AntiDiagonal => new[] { row * 9 + column, (8 - column) * 9 + 8 - row },
+			SymmetryType.XAxis => new[] { row * 9 + column, (8 - row) * 9 + column },
+			SymmetryType.YAxis => new[] { row * 9 + column, row * 9 + 8 - column },
+			SymmetryType.DiagonalBoth => new[]
+			{
+				row * 9 + column,
+				column * 9 + row,
+				(8 - column) * 9 + 8 - row,
+				(8 - row) * 9 + 8 - column
+			},
+			SymmetryType.AxisBoth => new[]
+			{
+				row * 9 + column,
+				(8 - row) * 9 + column,
+				row * 9 + 8 - column,
+				(8 - row) * 9 + 8 - column
+			},
+			SymmetryType.All => new[]
+			{
+				row * 9 + column,
+				row * 9 + (8 - column),
+				(8 - row) * 9 + column,
+				(8 - row) * 9 + (8 - column),
+				column * 9 + row,
+				column * 9 + (8 - row),
+				(8 - column) * 9 + row,
+				(8 - column) * 9 + (8 - row)
+			},
+			SymmetryType.None => new[] { row * 9 + column }
+		};
 
 	/// <summary>
 	/// Check whether the digit in its peer cells has duplicate ones.
@@ -173,12 +189,11 @@ public sealed class SymmetricPuzzleGenerator : IPuzzleGenerator
 	/// <param name="ptrGrid">The pointer that pointes to a grid.</param>
 	/// <param name="cell">The cell.</param>
 	/// <returns>A <see cref="bool"/> value indicating that.</returns>
-	private static unsafe bool CheckDuplicate([NotNullWhen(true)] char* ptrGrid, int cell)
+	/// <exception cref="ArgumentNullException">
+	/// Throws when the argument <paramref name="ptrGrid"/> is <see langword="null"/>.
+	/// </exception>
+	private static unsafe bool CheckDuplicate(char* ptrGrid!!, int cell)
 	{
-#if DEBUG
-		Debug.Assert(ptrGrid != null);
-#endif
-
 		char value = ptrGrid[cell];
 		foreach (int c in PeerMaps[cell])
 		{

@@ -26,6 +26,11 @@
             Indicates the swapping factor.
             </summary>
         </member>
+        <member name="M:Sudoku.Generating.HardPatternPuzzleGenerator.#ctor">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Generating.HardPatternPuzzleGenerator"/> instance.
+            </summary>
+        </member>
         <member name="M:Sudoku.Generating.HardPatternPuzzleGenerator.Generate(System.Threading.CancellationToken)">
             <inheritdoc/>
         </member>
@@ -83,6 +88,17 @@
             of all givens while generating puzzles.
             </summary>
         </member>
+        <member name="F:Sudoku.Generating.SymmetricPuzzleGenerator.Shared">
+            <summary>
+            Indicates the shared <see cref="T:Sudoku.Generating.SymmetricPuzzleGenerator"/> instance
+            that allows the user generating the puzzles with symmetrical-placed givens.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Generating.SymmetricPuzzleGenerator.#ctor">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Generating.SymmetricPuzzleGenerator"/> instance.
+            </summary>
+        </member>
         <member name="M:Sudoku.Generating.SymmetricPuzzleGenerator.Generate(System.Threading.CancellationToken)">
             <inheritdoc/>
         </member>
@@ -122,6 +138,9 @@
             <param name="ptrGrid">The pointer that pointes to a grid.</param>
             <param name="cell">The cell.</param>
             <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
+            <exception cref="T:System.ArgumentNullException">
+            Throws when the argument <paramref name="ptrGrid"/> is <see langword="null"/>.
+            </exception>
         </member>
         <member name="T:Sudoku.Solving.ModuleInitializer">
             <target name="type">
