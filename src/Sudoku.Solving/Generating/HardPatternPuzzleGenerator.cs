@@ -139,7 +139,7 @@ public sealed unsafe class HardPatternPuzzleGenerator : IPuzzleGenerator
 			{
 				for (int k = 0; k < 3; k++)
 				{
-					pattern[(*(k == SwappingFactor[n, j] ? &a : &b))++] = BlockFactor[i] + j * 9 + k;
+					pattern[(k == SwappingFactor[n, j] ? ref a : ref b)++] = BlockFactor[i] + j * 9 + k;
 				}
 			}
 		}
@@ -180,10 +180,6 @@ public sealed unsafe class HardPatternPuzzleGenerator : IPuzzleGenerator
 	/// <returns>A <see cref="bool"/> value indicating that.</returns>
 	private static bool CheckDuplicate(char* ptrGrid, int cell)
 	{
-#if DEBUG
-		Debug.Assert(ptrGrid != null);
-#endif
-
 		char value = ptrGrid[cell];
 		foreach (int c in PeerMaps[cell])
 		{
