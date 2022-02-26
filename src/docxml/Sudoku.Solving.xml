@@ -138,9 +138,6 @@
             <param name="ptrGrid">The pointer that pointes to a grid.</param>
             <param name="cell">The cell.</param>
             <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
-            <exception cref="T:System.ArgumentNullException">
-            Throws when the argument <paramref name="ptrGrid"/> is <see langword="null"/>.
-            </exception>
         </member>
         <member name="T:Sudoku.Solving.ModuleInitializer">
             <target name="type">

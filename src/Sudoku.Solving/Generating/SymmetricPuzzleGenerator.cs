@@ -8,7 +8,7 @@ namespace Sudoku.Generating;
 /// Defines a symmetric puzzle generator, that is, a generator than can include the symmetrical placement
 /// of all givens while generating puzzles.
 /// </summary>
-public sealed class SymmetricPuzzleGenerator : IPuzzleGenerator
+public sealed unsafe class SymmetricPuzzleGenerator : IPuzzleGenerator
 {
 	/// <summary>
 	/// Indicates the shared <see cref="SymmetricPuzzleGenerator"/> instance
@@ -46,7 +46,7 @@ public sealed class SymmetricPuzzleGenerator : IPuzzleGenerator
 	/// <param name="symmetryType">The symmetry type.</param>
 	/// <param name="cancellationToken">The cancellation token to cancel the operation.</param>
 	/// <returns>The result sudoku puzzle.</returns>
-	private unsafe Grid Generate(int max, SymmetryType symmetryType, CancellationToken cancellationToken)
+	private Grid Generate(int max, SymmetryType symmetryType, CancellationToken cancellationToken)
 	{
 		string puzzle = new('0', 81), solution = new('0', 81);
 		fixed (char* pPuzzle = puzzle, pSolution = solution)
@@ -104,7 +104,7 @@ public sealed class SymmetricPuzzleGenerator : IPuzzleGenerator
 	/// <param name="pSolution">
 	/// The pointer that points to the solution. The result value will be changed here.
 	/// </param>
-	private unsafe void GenerateAnswerGrid(char* pPuzzle, char* pSolution)
+	private void GenerateAnswerGrid(char* pPuzzle, char* pSolution)
 	{
 		do
 		{
@@ -189,10 +189,7 @@ public sealed class SymmetricPuzzleGenerator : IPuzzleGenerator
 	/// <param name="ptrGrid">The pointer that pointes to a grid.</param>
 	/// <param name="cell">The cell.</param>
 	/// <returns>A <see cref="bool"/> value indicating that.</returns>
-	/// <exception cref="ArgumentNullException">
-	/// Throws when the argument <paramref name="ptrGrid"/> is <see langword="null"/>.
-	/// </exception>
-	private static unsafe bool CheckDuplicate(char* ptrGrid!!, int cell)
+	private static bool CheckDuplicate(char* ptrGrid, int cell)
 	{
 		char value = ptrGrid[cell];
 		foreach (int c in PeerMaps[cell])
