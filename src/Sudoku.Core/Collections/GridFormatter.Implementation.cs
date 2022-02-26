@@ -334,28 +334,28 @@ partial struct GridFormatter
 	private partial string ToMultiLineStringCore(in Grid grid)
 	{
 		// Step 1: gets the candidates information grouped by columns.
-		Dictionary<int, IList<short>> valuesByColumn = new()
+		Dictionary<int, List<short>> valuesByColumn = new()
 		{
-			[0] = new List<short>(),
-			[1] = new List<short>(),
-			[2] = new List<short>(),
-			[3] = new List<short>(),
-			[4] = new List<short>(),
-			[5] = new List<short>(),
-			[6] = new List<short>(),
-			[7] = new List<short>(),
-			[8] = new List<short>(),
+			{ 0, new() },
+			{ 1, new() },
+			{ 2, new() },
+			{ 3, new() },
+			{ 4, new() },
+			{ 5, new() },
+			{ 6, new() },
+			{ 7, new() },
+			{ 8, new() }
 		}, valuesByRow = new()
 		{
-			[0] = new List<short>(),
-			[1] = new List<short>(),
-			[2] = new List<short>(),
-			[3] = new List<short>(),
-			[4] = new List<short>(),
-			[5] = new List<short>(),
-			[6] = new List<short>(),
-			[7] = new List<short>(),
-			[8] = new List<short>(),
+			{ 0, new() },
+			{ 1, new() },
+			{ 2, new() },
+			{ 3, new() },
+			{ 4, new() },
+			{ 5, new() },
+			{ 6, new() },
+			{ 7, new() },
+			{ 8, new() }
 		};
 
 		for (int i = 0; i < 81; i++)
