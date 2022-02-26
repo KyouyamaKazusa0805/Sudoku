@@ -2392,6 +2392,9 @@
             </summary>
             <param name="ptrStr">The pointer that points to string.</param>
             <returns>The result instance.</returns>
+            <exception cref="T:System.ArgumentNullException">
+            Throws when the only argument is <see langword="null"/>.
+            </exception>
         </member>
         <member name="M:Sudoku.Collections.Grid.Parse(System.String)">
             <inheritdoc/>

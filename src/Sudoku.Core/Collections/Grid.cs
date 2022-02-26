@@ -171,8 +171,8 @@ public unsafe partial struct Grid :
 	/// Throws when the argument <paramref name="pGridValues"/> is <see langword="null"/>.
 	/// </exception>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public Grid(int* pGridValues!!, GridCreatingOption creatingOption = GridCreatingOption.None)
-		: this(*pGridValues, creatingOption)
+	public Grid(int* pGridValues!!, GridCreatingOption creatingOption = GridCreatingOption.None) :
+		this(*pGridValues, creatingOption)
 	{
 	}
 
@@ -1298,6 +1298,9 @@ public unsafe partial struct Grid :
 	/// </summary>
 	/// <param name="ptrStr">The pointer that points to string.</param>
 	/// <returns>The result instance.</returns>
+	/// <exception cref="ArgumentNullException">
+	/// Throws when the only argument is <see langword="null"/>.
+	/// </exception>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static Grid Parse(char* ptrStr!!) => Parse(new string(ptrStr));
 
