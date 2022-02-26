@@ -2379,26 +2379,30 @@
             Asynchronously opening the file, and get the inner content to be parsed to a <see cref="T:Sudoku.Collections.Grid"/> result
             to display.
             </summary>
-            <returns>The typical awaitable instance that holds the task to open the file.</returns>
+            <returns>
+            The typical awaitable instance that holds the task to open the file from the local position.
+            </returns>
         </member>
         <member name="M:Sudoku.UI.Views.Pages.SudokuPage.SaveFileAsync">
             <summary>
             Asynchronously saving the file using the current sudoku grid as the base content.
             </summary>
-            <returns>The typical awaitable instance that holds the task to open the file.</returns>
+            <returns>
+            The typical awaitable instance that holds the task to save the file to the local position.
+            </returns>
         </member>
         <member name="M:Sudoku.UI.Views.Pages.SudokuPage.PasteAsync">
             <summary>
             To paste the text via the clipboard asynchonously.
             </summary>
-            <returns>The typical awaitable instance that holds the task to open the file.</returns>
+            <returns>The typical awaitable instance that holds the task to paste the sudoku grid text.</returns>
         </member>
         <member name="M:Sudoku.UI.Views.Pages.SudokuPage.GenerateAsync(Microsoft.UI.Xaml.Controls.AppBarButton)">
             <summary>
             Try to generate a sudoku puzzle, to display onto the sudoku pane.
             </summary>
             <param name="button">The button.</param>
-            <returns>The typical awaitable instance that holds the task to open the file.</returns>
+            <returns>The typical awaitable instance that holds the task to generate the puzzle.</returns>
         </member>
         <member name="M:Sudoku.UI.Views.Pages.SudokuPage.Page_Loaded(System.Object,Microsoft.UI.Xaml.RoutedEventArgs)">
             <summary>

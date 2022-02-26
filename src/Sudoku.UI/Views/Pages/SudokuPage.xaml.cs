@@ -108,7 +108,9 @@ public sealed partial class SudokuPage : Page
 	/// Asynchronously opening the file, and get the inner content to be parsed to a <see cref="Grid"/> result
 	/// to display.
 	/// </summary>
-	/// <returns>The typical awaitable instance that holds the task to open the file.</returns>
+	/// <returns>
+	/// The typical awaitable instance that holds the task to open the file from the local position.
+	/// </returns>
 	private async Task OpenFileAsync()
 	{
 		var fop = new FileOpenPicker { SuggestedStartLocation = PickerLocationId.DocumentsLibrary };
@@ -156,7 +158,9 @@ public sealed partial class SudokuPage : Page
 	/// <summary>
 	/// Asynchronously saving the file using the current sudoku grid as the base content.
 	/// </summary>
-	/// <returns>The typical awaitable instance that holds the task to open the file.</returns>
+	/// <returns>
+	/// The typical awaitable instance that holds the task to save the file to the local position.
+	/// </returns>
 	private async Task SaveFileAsync()
 	{
 		var fsp = new FileSavePicker
@@ -201,7 +205,7 @@ public sealed partial class SudokuPage : Page
 	/// <summary>
 	/// To paste the text via the clipboard asynchonously.
 	/// </summary>
-	/// <returns>The typical awaitable instance that holds the task to open the file.</returns>
+	/// <returns>The typical awaitable instance that holds the task to paste the sudoku grid text.</returns>
 	private async Task PasteAsync()
 	{
 		var dataPackageView = Clipboard.GetContent();
@@ -232,7 +236,7 @@ public sealed partial class SudokuPage : Page
 	/// Try to generate a sudoku puzzle, to display onto the sudoku pane.
 	/// </summary>
 	/// <param name="button">The button.</param>
-	/// <returns>The typical awaitable instance that holds the task to open the file.</returns>
+	/// <returns>The typical awaitable instance that holds the task to generate the puzzle.</returns>
 	private async Task GenerateAsync(AppBarButton button)
 	{
 		// Disable the control to prevent re-invocation.
