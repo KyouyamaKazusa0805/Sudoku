@@ -9,37 +9,33 @@
 	xmlns:ui="using:Sudoku.UI"
 	mc:Ignorable="d"
 	Loaded="UserControl_Loaded">
-	<UserControl.Resources>
-		<dts:InfoBarDataTemplateSelector x:Key="_rInfoBarTemplateSelector">
-			<dts:InfoBarDataTemplateSelector.PlainInfoBarInfoTemplate>
-				<DataTemplate x:DataType="m:PlainMessage">
-					<InfoBar
-						Title="{x:Bind ui:BindingConversions.InfoBarTitle(Severity)}"
-						Severity="{x:Bind Severity}" Message="{x:Bind Message}"
-						IsIconVisible="True" IsOpen="True" IsClosable="True" />
-				</DataTemplate>
-			</dts:InfoBarDataTemplateSelector.PlainInfoBarInfoTemplate>
-			<dts:InfoBarDataTemplateSelector.InfoBarInfoWithLinkTemplate>
-				<DataTemplate x:DataType="m:HyperlinkMessage">
-					<InfoBar
-						Title="{x:Bind ui:BindingConversions.InfoBarTitle(Severity)}"
-						Severity="{x:Bind Severity}" Message="{x:Bind Message}"
-						IsIconVisible="True" IsOpen="True" IsClosable="True">
-						<InfoBar.ActionButton>
-							<HyperlinkButton
-								NavigateUri="{x:Bind Hyperlink}"
-								Content="{x:Bind HyperlinkDescription}" />
-						</InfoBar.ActionButton>
-					</InfoBar>
-				</DataTemplate>
-			</dts:InfoBarDataTemplateSelector.InfoBarInfoWithLinkTemplate>
-		</dts:InfoBarDataTemplateSelector>
-	</UserControl.Resources>
-
 	<ScrollViewer>
-		<ListView
-			ItemsSource="{x:Bind _list}" ItemTemplateSelector="{StaticResource _rInfoBarTemplateSelector}"
-			SelectionMode="None">
+		<ListView ItemsSource="{x:Bind _list}" SelectionMode="None">
+			<ListView.ItemTemplateSelector>
+				<dts:InfoBarDataTemplateSelector>
+					<dts:InfoBarDataTemplateSelector.PlainInfoBarInfoTemplate>
+						<DataTemplate x:DataType="m:PlainMessage">
+							<InfoBar
+								Title="{x:Bind ui:BindingConversions.InfoBarTitle(Severity)}"
+								Severity="{x:Bind Severity}" Message="{x:Bind Message}"
+								IsIconVisible="True" IsOpen="True" IsClosable="True" />
+						</DataTemplate>
+					</dts:InfoBarDataTemplateSelector.PlainInfoBarInfoTemplate>
+					<dts:InfoBarDataTemplateSelector.InfoBarInfoWithLinkTemplate>
+						<DataTemplate x:DataType="m:HyperlinkMessage">
+							<InfoBar
+								Title="{x:Bind ui:BindingConversions.InfoBarTitle(Severity)}"
+								Severity="{x:Bind Severity}" Message="{x:Bind Message}"
+								IsIconVisible="True" IsOpen="True" IsClosable="True">
+								<InfoBar.ActionButton>
+									<HyperlinkButton
+										NavigateUri="{x:Bind Hyperlink}" Content="{x:Bind HyperlinkDescription}" />
+								</InfoBar.ActionButton>
+							</InfoBar>
+						</DataTemplate>
+					</dts:InfoBarDataTemplateSelector.InfoBarInfoWithLinkTemplate>
+				</dts:InfoBarDataTemplateSelector>
+			</ListView.ItemTemplateSelector>
 			<ListView.ItemContainerTransitions>
 				<TransitionCollection>
 					<AddDeleteThemeTransition />
