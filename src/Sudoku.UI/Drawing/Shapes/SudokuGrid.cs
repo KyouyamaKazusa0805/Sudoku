@@ -437,7 +437,7 @@ public sealed class SudokuGrid : DrawingElement
 	/// </summary>
 	/// <returns>The reference of the grid.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public ref Grid GetGridByReference() => ref _grid;
+	public ref readonly Grid GetGridByReference() => ref _grid;
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
