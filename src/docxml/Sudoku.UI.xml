@@ -2122,6 +2122,11 @@
             </summary>
             <seealso cref="P:Sudoku.UI.Views.Controls.SudokuPane.OutsideOffset"/>
         </member>
+        <member name="F:Sudoku.UI.Views.Controls.SudokuPane._currentPointPosition">
+            <summary>
+            Indicates the current mouse point.
+            </summary>
+        </member>
         <member name="M:Sudoku.UI.Views.Controls.SudokuPane.#ctor">
             <summary>
             Initializes a <see cref="T:Sudoku.UI.Views.Controls.SudokuPane"/> instance.
@@ -2139,7 +2144,7 @@
         </member>
         <member name="P:Sudoku.UI.Views.Controls.SudokuPane.CurrentCell">
             <summary>
-            Indicates the current cell focused.
+            Indicates the current cell focused. The default value is -1.
             </summary>
         </member>
         <member name="P:Sudoku.UI.Views.Controls.SudokuPane.UndoStepsCount">
@@ -2190,18 +2195,20 @@
             copy the reference instead of the instance itself, to optimize the memory allocation.
             </summary>
         </member>
+        <member name="M:Sudoku.UI.Views.Controls.SudokuPane.OnPointerMoved(Microsoft.UI.Xaml.Input.PointerRoutedEventArgs)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.UI.Views.Controls.SudokuPane.OnKeyDown(Microsoft.UI.Xaml.Input.KeyRoutedEventArgs)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.UI.Views.Controls.SudokuPane.OnRightTapped(Microsoft.UI.Xaml.Input.RightTappedRoutedEventArgs)">
+            <inheritdoc/>
+        </member>
         <member name="M:Sudoku.UI.Views.Controls.SudokuPane.GetSudokuGridViewModel">
             <summary>
             Gets the <see cref="T:Sudoku.UI.Drawing.Shapes.SudokuGrid"/> instance as the view model.
             </summary>
             <returns>The <see cref="T:Sudoku.UI.Drawing.Shapes.SudokuGrid"/> instance.</returns>
-        </member>
-        <member name="M:Sudoku.UI.Views.Controls.SudokuPane.UserControl_RightTapped(System.Object,Microsoft.UI.Xaml.Input.RightTappedRoutedEventArgs)">
-            <summary>
-            Triggers when the current control is tapped via mouse or other devices, by the right clicking.
-            </summary>
-            <param name="sender">The object to trigger the event.</param>
-            <param name="e">The event arguments provided.</param>
         </member>
         <member name="M:Sudoku.UI.Views.Controls.SudokuPane.SudokuPane_Loaded(System.Object,Microsoft.UI.Xaml.RoutedEventArgs)">
             <summary>

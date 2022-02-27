@@ -1,8 +1,12 @@
 ﻿using System.ComponentModel;
+using Microsoft.UI.Input;
 using Microsoft.UI.Xaml.Input;
 using Sudoku.Diagnostics.CodeAnalysis;
 using Sudoku.UI.Drawing;
 using Sudoku.UI.Drawing.Shapes;
+using Windows.Foundation;
+using Windows.System;
+using Windows.UI.Core;
 
 namespace Sudoku.UI.Views.Controls;
 
@@ -43,6 +47,11 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 	/// </summary>
 	/// <seealso cref="OutsideOffset"/>
 	private double _outsideOffset;
+
+	/// <summary>
+	/// Indicates the current mouse point.
+	/// </summary>
+	private Point _currentPointPosition;
 
 
 	/// <summary>
@@ -113,9 +122,9 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 	}
 
 	/// <summary>
-	/// Indicates the current cell focused.
+	/// Indicates the current cell focused. The default value is -1.
 	/// </summary>
-	public int CurrentCell { get; internal set; }
+	public int CurrentCell { get; internal set; } = -1;
 
 	/// <summary>
 	/// Indicates the number of the total undo steps.
@@ -180,39 +189,88 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public ref readonly Grid GridByReference() => ref GetSudokuGridViewModel().GetGridByReference();
 
-	/// <summary>
-	/// Gets the <see cref="SudokuGrid"/> instance as the view model.
-	/// </summary>
-	/// <returns>The <see cref="SudokuGrid"/> instance.</returns>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	private SudokuGrid GetSudokuGridViewModel() => _drawingElements.OfType<SudokuGrid>().Single();
-
-
-	/// <summary>
-	/// Triggers when the current control is tapped via mouse or other devices, by the right clicking.
-	/// </summary>
-	/// <param name="sender">The object to trigger the event.</param>
-	/// <param name="e">The event arguments provided.</param>
-	private void UserControl_RightTapped(object sender, RightTappedRoutedEventArgs e)
+	/// <inheritdoc/>
+	protected override void OnPointerMoved(PointerRoutedEventArgs e)
 	{
-		// Checks the value.
-		if (sender is not SudokuPane { Size: var size, OutsideOffset: var outsideOffset } pane)
+		base.OnPointerMoved(e);
+
+		_currentPointPosition = e.GetCurrentPoint(this).Position;
+	}
+
+	/// <inheritdoc/>
+	protected override void OnKeyDown(KeyRoutedEventArgs e)
+	{
+#pragma warning disable CS1587
+		/**
+		 * The method has bug that causes the event not triggering.
+		 * The issue is bound with GitHub issue
+		 * <see href="https://github.com/SunnieShine/Sudoku/issues/234">#234</see>.
+		 */
+#pragma warning restore CS1587
+
+		base.OnKeyDown(e);
+
+		// TODO: Update more mode to focus a cell.
+		// Here we just suppose a mode to fill with value in a cell:
+		//     1. Gets the mouse position, and then get the position of the cell.
+		//     2. Gets the pressed key from the argument 'e'.
+		//     3. Fill the cell with the value.
+		int cell = PointConversions.GetCell(_currentPointPosition, Size, OutsideOffset);
+		if (cell == -1)
 		{
-			goto MakeHandledBeTrueValue;
+			e.Handled = true;
+			return;
 		}
 
+		switch (e.Key)
+		{
+			// Digits.
+			case var key and >= VirtualKey.Number0 and <= VirtualKey.Number9
+			when isPressed(VirtualKey.Shift) is var isEliminationMode && key - VirtualKey.Number0 is var digit:
+			{
+				((Action<int, int>)(isEliminationMode ? EliminateDigit : MakeDigit))(cell, digit);
+
+				break;
+			}
+			// Digits.
+			case var key and >= VirtualKey.NumberPad0 and <= VirtualKey.NumberPad9
+			when isPressed(VirtualKey.Shift) is var isEliminationMode && key - VirtualKey.NumberPad0 is var digit:
+			{
+				((Action<int, int>)(isEliminationMode ? EliminateDigit : MakeDigit))(cell, digit);
+
+				break;
+			}
+			// Other cases.
+			default:
+			{
+				e.Handled = true;
+				return;
+			}
+		}
+
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		static bool isPressed(VirtualKey key) =>
+			InputKeyboardSource.GetKeyStateForCurrentThread(key) == CoreVirtualKeyStates.Down;
+	}
+
+	/// <inheritdoc/>
+	protected override void OnRightTapped(RightTappedRoutedEventArgs e)
+	{
+		base.OnRightTapped(e);
+
 		// Gets the mouse point and converts to the real cell value.
-		var point = e.GetPosition(pane);
-		int cell = PointConversions.GetCell(point, size, outsideOffset);
+		var point = e.GetPosition(this);
+		int cell = PointConversions.GetCell(point, Size, OutsideOffset);
 
 		// Checks whether the cell value is valid.
 		if (cell == -1)
 		{
-			goto MakeHandledBeTrueValue;
+			return;
 		}
 
 		// Sets the tag with the cell value, in order to get the details by other methods later.
-		pane.CurrentCell = cell;
+		CurrentCell = cell;
 
 		// Try to create the menu flyout and show the items.
 		for (int i = 0; i < 9; i++)
@@ -224,15 +282,19 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 			((MenuFlyoutItem)FindName($"_cButtonDelete{i + 1}")).Visibility = getVisibilityViaCandidate(cell, i);
 		}
 
-	MakeHandledBeTrueValue:
-		// If at an invalid status, just return the method and make the property 'e.Handled' be true value.
-		e.Handled = true;
-
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		Visibility getVisibilityViaCandidate(int cell, int i) =>
 			Grid.Exists(cell, i) is true ? Visibility.Visible : Visibility.Collapsed;
 	}
+
+	/// <summary>
+	/// Gets the <see cref="SudokuGrid"/> instance as the view model.
+	/// </summary>
+	/// <returns>The <see cref="SudokuGrid"/> instance.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	private SudokuGrid GetSudokuGridViewModel() => _drawingElements.OfType<SudokuGrid>().Single();
+
 
 	/// <summary>
 	/// Triggers when the current control is loaded.

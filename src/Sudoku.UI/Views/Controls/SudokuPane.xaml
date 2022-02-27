@@ -6,8 +6,7 @@
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 	mc:Ignorable="d"
 	Width="{x:Bind Size,Mode=TwoWay}" Height="{x:Bind Size,Mode=TwoWay}"
-	Loaded="SudokuPane_Loaded"
-	RightTapped="UserControl_RightTapped">
+	Loaded="SudokuPane_Loaded">
 	<UserControl.ContextFlyout>
 		<MenuFlyout>
 			<MenuFlyoutSubItem Text="{StaticResource SudokuPage_MakeDigit}">

@@ -1,4 +1,5 @@
 ﻿using Windows.Foundation;
+using Windows.UI.Core;
 
 namespace Sudoku.UI.Drawing;
 
