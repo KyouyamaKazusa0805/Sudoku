@@ -195,6 +195,133 @@
             </summary>
             <param name="sender">The object that triggers the event.</param>
         </member>
+        <member name="T:Sudoku.UI.Data.Steps.EliminateDigitStep">
+            <summary>
+            Defines a step that removes the specified <paramref name="Digit"/> from the specified <paramref name="Cell"/>
+            in a specified <paramref name="Grid"/>.
+            </summary>
+            <param name="Grid"><inheritdoc/></param>
+            <param name="Cell">Indicates the cell used.</param>
+            <param name="Digit">Indicates the digit used.</param>
+        </member>
+        <member name="M:Sudoku.UI.Data.Steps.EliminateDigitStep.#ctor(Sudoku.Collections.Grid@,System.Int32,System.Int32)">
+            <summary>
+            Defines a step that removes the specified <paramref name="Digit"/> from the specified <paramref name="Cell"/>
+            in a specified <paramref name="Grid"/>.
+            </summary>
+            <param name="Grid"><inheritdoc/></param>
+            <param name="Cell">Indicates the cell used.</param>
+            <param name="Digit">Indicates the digit used.</param>
+        </member>
+        <member name="P:Sudoku.UI.Data.Steps.EliminateDigitStep.Cell">
+            <summary>Indicates the cell used.</summary>
+        </member>
+        <member name="P:Sudoku.UI.Data.Steps.EliminateDigitStep.Digit">
+            <summary>Indicates the digit used.</summary>
+        </member>
+        <member name="P:Sudoku.UI.Data.Steps.EliminateDigitStep.StepTypeName">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.UI.Data.Steps.EliminateDigitStep.StepDescription">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.UI.Data.Steps.MakeDigitStep">
+            <summary>
+            Defines a step that fill the specified <paramref name="Cell"/> with the specified <paramref name="Digit"/>
+            for a specified <paramref name="Grid"/>.
+            </summary>
+            <param name="Grid"><inheritdoc/></param>
+            <param name="Cell">Indicates the cell used.</param>
+            <param name="Digit">Indicates the digit used.</param>
+        </member>
+        <member name="M:Sudoku.UI.Data.Steps.MakeDigitStep.#ctor(Sudoku.Collections.Grid@,System.Int32,System.Int32)">
+            <summary>
+            Defines a step that fill the specified <paramref name="Cell"/> with the specified <paramref name="Digit"/>
+            for a specified <paramref name="Grid"/>.
+            </summary>
+            <param name="Grid"><inheritdoc/></param>
+            <param name="Cell">Indicates the cell used.</param>
+            <param name="Digit">Indicates the digit used.</param>
+        </member>
+        <member name="P:Sudoku.UI.Data.Steps.MakeDigitStep.Cell">
+            <summary>Indicates the cell used.</summary>
+        </member>
+        <member name="P:Sudoku.UI.Data.Steps.MakeDigitStep.Digit">
+            <summary>Indicates the digit used.</summary>
+        </member>
+        <member name="P:Sudoku.UI.Data.Steps.MakeDigitStep.StepTypeName">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.UI.Data.Steps.MakeDigitStep.StepDescription">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.UI.Data.Steps.RedoStep">
+            <summary>
+            Defines a step that is the redoing operation.
+            </summary>
+            <param name="Grid"><inheritdoc/></param>
+        </member>
+        <member name="M:Sudoku.UI.Data.Steps.RedoStep.#ctor(Sudoku.Collections.Grid@)">
+            <summary>
+            Defines a step that is the redoing operation.
+            </summary>
+            <param name="Grid"><inheritdoc/></param>
+        </member>
+        <member name="P:Sudoku.UI.Data.Steps.RedoStep.StepTypeName">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.UI.Data.Steps.RedoStep.StepDescription">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.UI.Data.Steps.Step">
+            <summary>
+            Defines a step that allows the user undoing and redoing such given operations.
+            </summary>
+            <param name="Grid">Indicates the sudoku grid that binds with the current step.</param>
+        </member>
+        <member name="M:Sudoku.UI.Data.Steps.Step.#ctor(Sudoku.Collections.Grid@)">
+            <summary>
+            Defines a step that allows the user undoing and redoing such given operations.
+            </summary>
+            <param name="Grid">Indicates the sudoku grid that binds with the current step.</param>
+        </member>
+        <member name="P:Sudoku.UI.Data.Steps.Step.Grid">
+            <summary>Indicates the sudoku grid that binds with the current step.</summary>
+        </member>
+        <member name="P:Sudoku.UI.Data.Steps.Step.StepTypeName">
+            <summary>
+            Indicates the type of the current step.
+            </summary>
+        </member>
+        <member name="P:Sudoku.UI.Data.Steps.Step.StepDescription">
+            <summary>
+            Indicates the description of the current step.
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Data.Steps.Step.ToString">
+            <summary>
+            Gets the string representation of the current step.
+            </summary>
+            <returns>The string representation of the current step.</returns>
+        </member>
+        <member name="T:Sudoku.UI.Data.Steps.UndoStep">
+            <summary>
+            Defines a step that is the undoing operation.
+            </summary>
+            <param name="Grid"><inheritdoc/></param>
+        </member>
+        <member name="M:Sudoku.UI.Data.Steps.UndoStep.#ctor(Sudoku.Collections.Grid@)">
+            <summary>
+            Defines a step that is the undoing operation.
+            </summary>
+            <param name="Grid"><inheritdoc/></param>
+        </member>
+        <member name="P:Sudoku.UI.Data.Steps.UndoStep.StepTypeName">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.UI.Data.Steps.UndoStep.StepDescription">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.UI.Data.UndoStackChangedEventHandler">
             <summary>
             Represents an event handler that occurs when the the status of the undoing stack is changed.

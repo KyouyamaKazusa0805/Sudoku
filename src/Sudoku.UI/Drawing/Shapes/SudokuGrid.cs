@@ -1,4 +1,5 @@
 ﻿using Sudoku.UI.Data;
+using Sudoku.UI.Data.Steps;
 using Windows.UI;
 
 namespace Sudoku.UI.Drawing.Shapes;
@@ -26,7 +27,7 @@ public sealed class SudokuGrid : DrawingElement
 	/// <summary>
 	/// Indicates the stacks that allows undoing or redoing operations.
 	/// </summary>
-	private readonly Stack<Grid> _undoStack = new(), _redoStack = new();
+	private readonly Stack<Step> _undoStack = new(), _redoStack = new();
 
 	/// <summary>
 	/// Indicates the status for displaying candidates.
@@ -340,16 +341,16 @@ public sealed class SudokuGrid : DrawingElement
 	{
 		// Try to pop the step from the undo stack.
 		// If the stack does contain at least one step,
-		// the top-positioned step will be popped, and be named 'lastStep'.
+		// the top-positioned step will be popped, and be named 'previousStep'.
 		if (_undoStack.TryPop(out var previousStep))
 		{
 			// Now we should push the current grid status to the redo stack, in order to be used later.
-			_redoStack.Push(_grid);
+			_redoStack.Push(new RedoStep(_grid));
 
 			// Undo the step. Let us revert the step from the previous one.
-			// We cannot use 'Grid = lastStep' because the assignment to the property
+			// We cannot use 'Grid = previousStep.Grid' because the assignment to the property
 			// will clear both redo and undo stacks.
-			_grid = previousStep;
+			_grid = previousStep.Grid;
 			UpdateView();
 
 			// Due to both stacks being changed, we should trigger the event for reporting both stacks' changing.
@@ -371,12 +372,12 @@ public sealed class SudokuGrid : DrawingElement
 		if (_redoStack.TryPop(out var nextStep))
 		{
 			// Now we should push the current grid status to the undo stack, in order to be used later.
-			_undoStack.Push(_grid);
+			_undoStack.Push(new UndoStep(_grid));
 
 			// Redo the step. Let us advance the step to the next one.
-			// We cannot use 'Grid = nextStep' because the assignment to the property
+			// We cannot use 'Grid = nextStep.Grid' because the assignment to the property
 			// will clear both redo and undo stacks.
-			_grid = nextStep;
+			_grid = nextStep.Grid;
 			UpdateView();
 
 			// Due to both stacks being changed, we should trigger the event for reporting both stacks' changing.
@@ -394,7 +395,7 @@ public sealed class SudokuGrid : DrawingElement
 	public void MakeDigit(int cell, int digit)
 	{
 		// Stores the previous grid status to the undo stack.
-		_undoStack.Push(_grid);
+		_undoStack.Push(new MakeDigitStep(_grid, cell, digit));
 
 		// Update the grid and view.
 		_grid[cell] = digit;
@@ -413,7 +414,7 @@ public sealed class SudokuGrid : DrawingElement
 	public void EliminateDigit(int cell, int digit)
 	{
 		// Stores the previous grid status to the undo stack.
-		_undoStack.Push(_grid);
+		_undoStack.Push(new EliminateDigitStep(_grid, cell, digit));
 
 		// Update the grid and view.
 		_grid[cell, digit] = false;
