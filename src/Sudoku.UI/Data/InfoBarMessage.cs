@@ -1,10 +1,11 @@
 ﻿namespace Sudoku.UI.Data;
 
 /// <summary>
-/// Defines a set of information that is used by creating an <see cref="InfoBar"/>.
+/// Defines a <see cref="InfoBarMessage"/> instance that represents for a message
+/// that is used for the displaying as the message in <see cref="InfoBar"/> controls.
 /// </summary>
 /// <seealso cref="InfoBar"/>
-public abstract class InfoBarInfo
+public abstract class InfoBarMessage
 {
 	/// <summary>
 	/// Indicates the message to be displayed. The default value is <see cref="string.Empty"/>.

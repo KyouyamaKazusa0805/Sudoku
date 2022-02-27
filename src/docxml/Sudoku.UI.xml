@@ -86,62 +86,56 @@
         <member name="T:Sudoku.UI.Data.DataTemplateSelectors.InfoBarDataTemplateSelector">
             <summary>
             Defines a data template selector that selects the <see cref="T:Microsoft.UI.Xaml.DataTemplate"/> between
-            <see cref="T:Sudoku.UI.Data.InfoBarInfo"/> and <see cref="T:Sudoku.UI.Data.InfoBarInfoWithLink"/> as the model types.
+            <see cref="T:Sudoku.UI.Data.InfoBarMessage"/> and <see cref="T:Sudoku.UI.Data.HyperlinkMessage"/> as the model types.
             </summary>
-            <seealso cref="T:Sudoku.UI.Data.InfoBarInfo"/>
-            <seealso cref="T:Sudoku.UI.Data.InfoBarInfoWithLink"/>
+            <seealso cref="T:Sudoku.UI.Data.InfoBarMessage"/>
+            <seealso cref="T:Sudoku.UI.Data.HyperlinkMessage"/>
         </member>
         <member name="P:Sudoku.UI.Data.DataTemplateSelectors.InfoBarDataTemplateSelector.PlainInfoBarInfoTemplate">
             <summary>
-            Indicates the data template that is used by the type <see cref="T:Sudoku.UI.Data.InfoBarInfo"/>.
+            Indicates the data template that is used by the type <see cref="T:Sudoku.UI.Data.InfoBarMessage"/>.
             </summary>
         </member>
         <member name="P:Sudoku.UI.Data.DataTemplateSelectors.InfoBarDataTemplateSelector.InfoBarInfoWithLinkTemplate">
             <summary>
-            Indicates the data template that is used by the type <see cref="T:Sudoku.UI.Data.InfoBarInfoWithLink"/>.
+            Indicates the data template that is used by the type <see cref="T:Sudoku.UI.Data.HyperlinkMessage"/>.
             </summary>
         </member>
         <member name="M:Sudoku.UI.Data.DataTemplateSelectors.InfoBarDataTemplateSelector.SelectTemplateCore(System.Object)">
             <inheritdoc/>
             <exception cref="T:System.InvalidOperationException">
             Throws when the type of the argument <paramref name="item"/> doesn't derive
-            from <see cref="T:Sudoku.UI.Data.InfoBarInfo"/>.
+            from <see cref="T:Sudoku.UI.Data.InfoBarMessage"/>.
             </exception>
         </member>
-        <member name="T:Sudoku.UI.Data.InfoBarInfo">
-            <summary>
-            Defines a set of information that is used by creating an <see cref="T:Microsoft.UI.Xaml.Controls.InfoBar"/>.
-            </summary>
-            <seealso cref="T:Microsoft.UI.Xaml.Controls.InfoBar"/>
+        <member name="T:Sudoku.UI.Data.HyperlinkMessage">
+            <inheritdoc/>
         </member>
-        <member name="P:Sudoku.UI.Data.InfoBarInfo.Message">
-            <summary>
-            Indicates the message to be displayed. The default value is <see cref="F:System.String.Empty"/>.
-            </summary>
-        </member>
-        <member name="P:Sudoku.UI.Data.InfoBarInfo.Severity">
-            <summary>
-            Indicates the severity of the information.
-            </summary>
-        </member>
-        <member name="T:Sudoku.UI.Data.InfoBarInfoWithLink">
-            <summary>
-            Defines a set of information that is used by creating an <see cref="T:Microsoft.UI.Xaml.Controls.InfoBar"/>.
-            Different with <see cref="T:Sudoku.UI.Data.InfoBarInfo"/>, this type contains two extra properties
-            <see cref="P:Sudoku.UI.Data.InfoBarInfoWithLink.Hyperlink"/> and <see cref="P:Sudoku.UI.Data.InfoBarInfoWithLink.HyperlinkDescription"/>, to describe the hyperlink related.
-            </summary>
-            <seealso cref="T:Microsoft.UI.Xaml.Controls.InfoBar"/>
-            <seealso cref="P:Sudoku.UI.Data.InfoBarInfoWithLink.Hyperlink"/>
-            <seealso cref="P:Sudoku.UI.Data.InfoBarInfoWithLink.HyperlinkDescription"/>
-        </member>
-        <member name="P:Sudoku.UI.Data.InfoBarInfoWithLink.HyperlinkDescription">
+        <member name="P:Sudoku.UI.Data.HyperlinkMessage.HyperlinkDescription">
             <summary>
             Indicates the description text of the hyperlink. The default value is <see cref="F:System.String.Empty"/>.
             </summary>
         </member>
-        <member name="P:Sudoku.UI.Data.InfoBarInfoWithLink.Hyperlink">
+        <member name="P:Sudoku.UI.Data.HyperlinkMessage.Hyperlink">
             <summary>
             Indicates the hyperlink that the current <see cref="T:Microsoft.UI.Xaml.Controls.InfoBar"/> relates to.
+            </summary>
+        </member>
+        <member name="T:Sudoku.UI.Data.InfoBarMessage">
+            <summary>
+            Defines a <see cref="T:Sudoku.UI.Data.InfoBarMessage"/> instance that represents for a message
+            that is used for the displaying as the message in <see cref="T:Microsoft.UI.Xaml.Controls.InfoBar"/> controls.
+            </summary>
+            <seealso cref="T:Microsoft.UI.Xaml.Controls.InfoBar"/>
+        </member>
+        <member name="P:Sudoku.UI.Data.InfoBarMessage.Message">
+            <summary>
+            Indicates the message to be displayed. The default value is <see cref="F:System.String.Empty"/>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.UI.Data.InfoBarMessage.Severity">
+            <summary>
+            Indicates the severity of the information.
             </summary>
         </member>
         <member name="T:Sudoku.UI.Data.Interoperability.IInitializeWithWindow">
@@ -182,11 +176,8 @@
             </see>.
             </remarks>
         </member>
-        <member name="T:Sudoku.UI.Data.PlainInfoBarInfo">
-            <summary>
-            Defines a set of information that is used by creating an <see cref="T:Microsoft.UI.Xaml.Controls.InfoBar"/>, without any extra items.
-            </summary>
-            <seealso cref="T:Microsoft.UI.Xaml.Controls.InfoBar"/>
+        <member name="T:Sudoku.UI.Data.PlainMessage">
+            <inheritdoc/>
         </member>
         <member name="T:Sudoku.UI.Data.RedoStackChangedEventHandler">
             <summary>
@@ -2135,7 +2126,7 @@
         </member>
         <member name="F:Sudoku.UI.Views.Controls.InfoBarBoard._list">
             <summary>
-            The list of <see cref="T:Sudoku.UI.Data.InfoBarInfo"/>s.
+            The list of <see cref="T:Sudoku.UI.Data.InfoBarMessage"/>s.
             </summary>
         </member>
         <member name="F:Sudoku.UI.Views.Controls.InfoBarBoard._spacing">

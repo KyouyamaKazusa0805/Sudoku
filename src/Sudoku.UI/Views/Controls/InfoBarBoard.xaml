@@ -12,7 +12,7 @@
 	<UserControl.Resources>
 		<dts:InfoBarDataTemplateSelector x:Key="_rInfoBarTemplateSelector">
 			<dts:InfoBarDataTemplateSelector.PlainInfoBarInfoTemplate>
-				<DataTemplate x:DataType="m:PlainInfoBarInfo">
+				<DataTemplate x:DataType="m:PlainMessage">
 					<InfoBar
 						Title="{x:Bind ui:BindingConversions.InfoBarTitle(Severity)}"
 						Severity="{x:Bind Severity}" Message="{x:Bind Message}"
@@ -20,7 +20,7 @@
 				</DataTemplate>
 			</dts:InfoBarDataTemplateSelector.PlainInfoBarInfoTemplate>
 			<dts:InfoBarDataTemplateSelector.InfoBarInfoWithLinkTemplate>
-				<DataTemplate x:DataType="m:InfoBarInfoWithLink">
+				<DataTemplate x:DataType="m:HyperlinkMessage">
 					<InfoBar
 						Title="{x:Bind ui:BindingConversions.InfoBarTitle(Severity)}"
 						Severity="{x:Bind Severity}" Message="{x:Bind Message}"
