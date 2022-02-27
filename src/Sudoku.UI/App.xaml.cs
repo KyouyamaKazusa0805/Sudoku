@@ -9,12 +9,6 @@ namespace Sudoku.UI;
 public partial class App : Application
 {
 	/// <summary>
-	/// Indicates the main window in this application in the current interaction logic.
-	/// </summary>
-	private Window _window = null!;
-
-
-	/// <summary>
 	/// <para>Initializes the singleton application object.</para>
 	/// <para>
 	/// This is the first line of authored code executed,
@@ -22,6 +16,12 @@ public partial class App : Application
 	/// </para>
 	/// </summary>
 	public App() => InitializeComponent();
+
+
+	/// <summary>
+	/// Indicates the main window in this application in the current interaction logic.
+	/// </summary>
+	internal Window MainWindow { get; private set; } = null!;
 
 
 	/// <summary>
@@ -33,7 +33,7 @@ public partial class App : Application
 	/// <param name="args">Details about the launch request and process.</param>
 	protected override void OnLaunched(LaunchActivatedEventArgs args)
 	{
-		_window = new MainWindow();
-		_window.Activate();
+		MainWindow = new MainWindow();
+		MainWindow.Activate();
 	}
 }
