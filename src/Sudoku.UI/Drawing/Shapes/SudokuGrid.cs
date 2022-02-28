@@ -1,6 +1,4 @@
-﻿using Sudoku.UI.Data;
-using Sudoku.UI.Data.Steps;
-using Windows.UI;
+﻿using Windows.UI;
 
 namespace Sudoku.UI.Drawing.Shapes;
 
@@ -25,9 +23,14 @@ public sealed class SudokuGrid : DrawingElement
 	private readonly CandidateDigit[] _candidateDigits = new CandidateDigit[81];
 
 	/// <summary>
-	/// Indicates the stacks that allows undoing or redoing operations.
+	/// Indicates the stacks to store the undoing and redoing steps.
 	/// </summary>
-	private readonly Stack<Step> _undoStack = new(), _redoStack = new();
+	private readonly Stack<Grid> _undoSteps = new(), _redoSteps = new();
+
+	/// <summary>
+	/// Indicates the callback method that invokes when the undoing and redoing steps are updated.
+	/// </summary>
+	private readonly Action? _undoRedoStepsUpdatedCallback;
 
 	/// <summary>
 	/// Indicates the status for displaying candidates.
@@ -63,14 +66,17 @@ public sealed class SudokuGrid : DrawingElement
 	/// <param name="candidateFontName">The candidate font name.</param>
 	/// <param name="valueFontSize">The value font size.</param>
 	/// <param name="candidateFontSize">The candidate font size.</param>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	/// <param name="elementUpdatedCallback">
+	/// The callback method that triggers when the inner undo-redo steps are updated.
+	/// </param>
 	public SudokuGrid(
 		bool showCandidates, double paneSize, double outsideOffset,
 		Color givenColor, Color modifiableColor, Color candidateColor,
-		string valueFontName, string candidateFontName, double valueFontSize, double candidateFontSize) :
+		string valueFontName, string candidateFontName, double valueFontSize, double candidateFontSize,
+		Action? elementUpdatedCallback) :
 		this(
 			Grid.Empty, showCandidates, paneSize, outsideOffset, givenColor, modifiableColor, candidateColor,
-			valueFontName, candidateFontName, valueFontSize, candidateFontSize)
+			valueFontName, candidateFontName, valueFontSize, candidateFontSize, elementUpdatedCallback)
 	{
 	}
 
@@ -88,16 +94,23 @@ public sealed class SudokuGrid : DrawingElement
 	/// <param name="candidateFontName">The candidate font name.</param>
 	/// <param name="valueFontSize">The value font size.</param>
 	/// <param name="candidateFontSize">The candidate font size.</param>
+	/// <param name="elementUpdatedCallback">
+	/// The callback method that triggers when the inner undo-redo steps are updated.
+	/// </param>
 	public SudokuGrid(
 		in Grid grid, bool showCandidates, double paneSize, double outsideOffset,
 		Color givenColor, Color modifiableColor, Color candidateColor,
-		string valueFontName, string candidateFontName, double valueFontSize, double candidateFontSize)
+		string valueFontName, string candidateFontName, double valueFontSize, double candidateFontSize,
+		Action? elementUpdatedCallback)
 	{
 		_grid = grid;
 		_showCandidates = showCandidates;
 		_paneSize = paneSize;
 		_outsideOffset = outsideOffset;
 		_gridLayout = initializeGridLayout(paneSize, outsideOffset);
+
+		// Adds the event handler into the undo-redo handler.
+		_undoRedoStepsUpdatedCallback = elementUpdatedCallback;
 
 		// Initializes values.
 		initializeValues(
@@ -303,34 +316,21 @@ public sealed class SudokuGrid : DrawingElement
 			UpdateView();
 
 			// The operation must clear two stacks.
-			_undoStack.Clear();
-			_redoStack.Clear();
-
-			UndoStackChanged?.Invoke(this);
-			RedoStackChanged?.Invoke(this);
+			_undoSteps.Clear();
+			_redoSteps.Clear();
+			_undoRedoStepsUpdatedCallback?.Invoke();
 		}
 	}
 
 	/// <summary>
 	/// Indicates the number of available undoable steps.
 	/// </summary>
-	internal int UndoStepsCount => _undoStack.Count;
+	internal int UndoStepsCount => _undoSteps.Count;
 
 	/// <summary>
 	/// Indicates the number of available redoable steps.
 	/// </summary>
-	internal int RedoStepsCount => _redoStack.Count;
-
-
-	/// <summary>
-	/// Indicates the event that triggers when the undo stack is changed.
-	/// </summary>
-	public event UndoStackChangedEventHandler? UndoStackChanged;
-
-	/// <summary>
-	/// Indicates the event that triggers when the redo stack is changed.
-	/// </summary>
-	public event RedoStackChangedEventHandler? RedoStackChanged;
+	internal int RedoStepsCount => _redoSteps.Count;
 
 
 	/// <summary>
@@ -339,24 +339,14 @@ public sealed class SudokuGrid : DrawingElement
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public void Undo()
 	{
-		// Try to pop the step from the undo stack.
-		// If the stack does contain at least one step,
-		// the top-positioned step will be popped, and be named 'previousStep'.
-		if (_undoStack.TryPop(out var previousStep))
-		{
-			// Now we should push the current grid status to the redo stack, in order to be used later.
-			_redoStack.Push(new RedoStep(_grid));
+		_redoSteps.Push(_grid);
 
-			// Undo the step. Let us revert the step from the previous one.
-			// We cannot use 'Grid = previousStep.Grid' because the assignment to the property
-			// will clear both redo and undo stacks.
-			_grid = previousStep.Grid;
-			UpdateView();
+		var previousStep = _undoSteps.Pop();
+		_grid = previousStep;
 
-			// Due to both stacks being changed, we should trigger the event for reporting both stacks' changing.
-			RedoStackChanged?.Invoke(this);
-			UndoStackChanged?.Invoke(this);
-		}
+		_undoRedoStepsUpdatedCallback?.Invoke();
+
+		UpdateView();
 	}
 
 	/// <summary>
@@ -365,25 +355,14 @@ public sealed class SudokuGrid : DrawingElement
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public void Redo()
 	{
-		// Try to pop the step from the redo stack.
-		// If the stack does contain at least one step,
-		// it will mean we can advance a step to the next grid status,
-		// and the variable being recorded the status will be 'nextStep'.
-		if (_redoStack.TryPop(out var nextStep))
-		{
-			// Now we should push the current grid status to the undo stack, in order to be used later.
-			_undoStack.Push(new UndoStep(_grid));
+		_undoSteps.Push(_grid);
 
-			// Redo the step. Let us advance the step to the next one.
-			// We cannot use 'Grid = nextStep.Grid' because the assignment to the property
-			// will clear both redo and undo stacks.
-			_grid = nextStep.Grid;
-			UpdateView();
+		var nextStep = _redoSteps.Pop();
+		_grid = nextStep;
 
-			// Due to both stacks being changed, we should trigger the event for reporting both stacks' changing.
-			UndoStackChanged?.Invoke(this);
-			RedoStackChanged?.Invoke(this);
-		}
+		_undoRedoStepsUpdatedCallback?.Invoke();
+
+		UpdateView();
 	}
 
 	/// <summary>
@@ -395,14 +374,11 @@ public sealed class SudokuGrid : DrawingElement
 	public void MakeDigit(int cell, int digit)
 	{
 		// Stores the previous grid status to the undo stack.
-		_undoStack.Push(new MakeDigitStep(_grid, cell, digit));
+		AddStep(_grid);
 
 		// Update the grid and view.
 		_grid[cell] = digit;
 		UpdateView();
-
-		// Trigger the event.
-		UndoStackChanged?.Invoke(this);
 	}
 
 	/// <summary>
@@ -414,14 +390,11 @@ public sealed class SudokuGrid : DrawingElement
 	public void EliminateDigit(int cell, int digit)
 	{
 		// Stores the previous grid status to the undo stack.
-		_undoStack.Push(new EliminateDigitStep(_grid, cell, digit));
+		AddStep(_grid);
 
 		// Update the grid and view.
 		_grid[cell, digit] = false;
 		UpdateView();
-
-		// Trigger the event.
-		UndoStackChanged?.Invoke(this);
 	}
 
 	/// <inheritdoc/>
@@ -443,6 +416,20 @@ public sealed class SudokuGrid : DrawingElement
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public override GridLayout GetControl() => _gridLayout;
+
+	/// <summary>
+	/// Adds the specified step into the collection.
+	/// </summary>
+	/// <param name="grid">The step to be added.</param>
+	private void AddStep(in Grid grid)
+	{
+		_undoSteps.Push(_grid);
+		_grid = grid;
+
+		_redoSteps.Clear();
+
+		_undoRedoStepsUpdatedCallback?.Invoke();
+	}
 
 	/// <summary>
 	/// To update the view via the current grid.

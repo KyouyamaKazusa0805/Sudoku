@@ -307,10 +307,13 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 			_userPreference.ValueFontName,
 			_userPreference.CandidateFontName,
 			_userPreference.ValueFontSize,
-			_userPreference.CandidateFontSize
+			_userPreference.CandidateFontSize,
+			() =>
+			{
+				PropertyChanged?.Invoke(this, new(nameof(UndoStepsCount)));
+				PropertyChanged?.Invoke(this, new(nameof(RedoStepsCount)));
+			}
 		);
-		sudokuGrid.UndoStackChanged += ([IsDiscard] _) => triggerPropertyChangedVia(nameof(UndoStepsCount));
-		sudokuGrid.RedoStackChanged += ([IsDiscard] _) => triggerPropertyChangedVia(nameof(RedoStepsCount));
 
 		_drawingElements.Add(sudokuGrid);
 
@@ -332,10 +335,6 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 		//     2. Not having implemented APIs in WinUI 3
 		//        https://docs.microsoft.com/en-us/windows/apps/desktop/modernize/desktop-to-uwp-supported-api?tabs=csharp
 		((App)Application.Current).MainWindow.Content.KeyDown += SudokuPane_KeyDown;
-
-
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		void triggerPropertyChangedVia(string propertyName) => PropertyChanged?.Invoke(this, new(propertyName));
 	}
 
 	/// <summary>
