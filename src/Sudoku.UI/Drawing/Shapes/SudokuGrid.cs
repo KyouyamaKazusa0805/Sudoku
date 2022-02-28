@@ -376,8 +376,21 @@ public sealed class SudokuGrid : DrawingElement
 		// Stores the previous grid status to the undo stack.
 		AddStep(_grid);
 
-		// Update the grid and view.
+		// To re-compute candidates if the current cell is modifiable.
+		if (digit != -1 && _grid.GetStatus(cell) == CellStatus.Modifiable)
+		{
+			_grid[cell] = -1;
+		}
+
+		// Then set the new value.
+		// Please note that the previous statement '_grid[cell] = -1' will re-compute candidates,
+		// so it's not a redundant statement. For more information for the indexer,
+		// please visit the member 'Grid.this[int].set'.
+		// If you remove it, the candidates won't be re-calculated and cause a bug that the candidate
+		// not being refreshed.
 		_grid[cell] = digit;
+
+		// To update the view.
 		UpdateView();
 	}
 
@@ -394,6 +407,8 @@ public sealed class SudokuGrid : DrawingElement
 
 		// Update the grid and view.
 		_grid[cell, digit] = false;
+
+		// To update the view.
 		UpdateView();
 	}
 
