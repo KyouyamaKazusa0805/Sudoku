@@ -2182,6 +2182,9 @@
         <member name="M:Sudoku.UI.Views.Controls.SudokuPane.OnPointerMoved(Microsoft.UI.Xaml.Input.PointerRoutedEventArgs)">
             <inheritdoc/>
         </member>
+        <member name="M:Sudoku.UI.Views.Controls.SudokuPane.OnKeyDown(Microsoft.UI.Xaml.Input.KeyRoutedEventArgs)">
+            <inheritdoc/>
+        </member>
         <member name="M:Sudoku.UI.Views.Controls.SudokuPane.OnRightTapped(Microsoft.UI.Xaml.Input.RightTappedRoutedEventArgs)">
             <inheritdoc/>
         </member>
@@ -2198,18 +2201,11 @@
             <param name="sender">The object to trigger the event. The instance is always itself.</param>
             <param name="e">The event arguments provided.</param>
         </member>
-        <member name="M:Sudoku.UI.Views.Controls.SudokuPane.SudokuPane_Unloaded(System.Object,Microsoft.UI.Xaml.RoutedEventArgs)">
+        <member name="M:Sudoku.UI.Views.Controls.SudokuPane.SudokuPane_PointerEntered(System.Object,Microsoft.UI.Xaml.Input.PointerRoutedEventArgs)">
             <summary>
-            Triggers when the pane is unloaded.
+            Triggers when the mouse is moved into the current control.
             </summary>
-            <param name="sender">The object to trigger the event. The instance is always itself.</param>
-            <param name="e">The event arguments provided.</param>
-        </member>
-        <member name="M:Sudoku.UI.Views.Controls.SudokuPane.SudokuPane_KeyDown(System.Object,Microsoft.UI.Xaml.Input.KeyRoutedEventArgs)">
-            <summary>
-            Triggers when the pane has received the key pressing.
-            </summary>
-            <param name="sender">The core window that triggers the event.</param>
+            <param name="sender">The object to trigger the event.</param>
             <param name="e">The event arguments provided.</param>
         </member>
         <member name="M:Sudoku.UI.Views.Controls.SudokuPane.MakeOrDeleteMenuItem_Click(System.Object,Microsoft.UI.Xaml.RoutedEventArgs)">

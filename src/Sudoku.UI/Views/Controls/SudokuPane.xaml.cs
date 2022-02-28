@@ -198,6 +198,57 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 	}
 
 	/// <inheritdoc/>
+	protected override void OnKeyDown(KeyRoutedEventArgs e)
+	{
+		base.OnKeyDown(e);
+
+		// TODO: Update more mode to focus a cell.
+		// Here we just suppose a mode to fill with value in a cell:
+		//     1. Gets the mouse position, and then get the position of the cell.
+		//     2. Gets the pressed key from the argument 'e'.
+		//     3. Fill the cell with the value.
+		int cell = PointConversions.GetCell(_currentPointPosition, Size, OutsideOffset);
+		if (cell == -1)
+		{
+			e.Handled = true;
+			return;
+		}
+
+		var a = EliminateDigit;
+		var b = MakeDigit;
+		switch (e.Key)
+		{
+			// Digits.
+			case var key and >= VirtualKey.Number0 and <= VirtualKey.Number9:
+			{
+				(modifierKeyIsPressed(VirtualKey.Shift) ? a : b)(cell, key - VirtualKey.Number0 - 1);
+
+				break;
+			}
+			// Digits.
+			case var key and >= VirtualKey.NumberPad0 and <= VirtualKey.NumberPad9:
+			{
+				(modifierKeyIsPressed(VirtualKey.Shift) ? a : b)(cell, key - VirtualKey.NumberPad0 - 1);
+
+				break;
+			}
+			// Other cases.
+			default:
+			{
+				// Here we must set the value to 'false', in order to process keyboard accelerators.
+				// If we se 'e.Handled = true', the keyboard accelerators in the base page won't be triggered.
+				e.Handled = false;
+				return;
+			}
+		}
+
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		static bool modifierKeyIsPressed(VirtualKey key) =>
+			InputKeyboardSource.GetKeyStateForCurrentThread(key).Flags(CoreVirtualKeyStates.Down);
+	}
+
+	/// <inheritdoc/>
 	protected override void OnRightTapped(RightTappedRoutedEventArgs e)
 	{
 		base.OnRightTapped(e);
@@ -322,79 +373,16 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 		{
 			_cCanvasMain.Children.Add(control);
 		}
-
-		// Adds the keyboard interaction logic.
-		// This is the bug fix for the GitHub issue #234, for more information please visit the link:
-		// https://github.com/SunnieShine/Sudoku/issues/234
-		// In addition, due to not having implemented some APIs in UWP, we cannot use 'Window.Current'
-		// or such like properties to add handlers. They are always null. If we use them, you can receive
-		// a NullReferenceException of possibility 100%. :D
-		// Other reference links:
-		//     1. Window.Current.CoreWindow.KeyDown event won't fire
-		//        https://stackoverflow.com/questions/65932496/window-current-corewindow-keydown-event-wont-fire-for-tab-key-pressed-in-c
-		//     2. Not having implemented APIs in WinUI 3
-		//        https://docs.microsoft.com/en-us/windows/apps/desktop/modernize/desktop-to-uwp-supported-api?tabs=csharp
-		((App)Application.Current).MainWindow.Content.KeyDown += SudokuPane_KeyDown;
 	}
 
 	/// <summary>
-	/// Triggers when the pane is unloaded.
+	/// Triggers when the mouse is moved into the current control.
 	/// </summary>
-	/// <param name="sender">The object to trigger the event. The instance is always itself.</param>
+	/// <param name="sender">The object to trigger the event.</param>
 	/// <param name="e">The event arguments provided.</param>
-	private void SudokuPane_Unloaded([IsDiscard] object sender, [IsDiscard] RoutedEventArgs e) =>
-		((App)Application.Current).MainWindow.Content.KeyDown -= SudokuPane_KeyDown;
-
-	/// <summary>
-	/// Triggers when the pane has received the key pressing.
-	/// </summary>
-	/// <param name="sender">The core window that triggers the event.</param>
-	/// <param name="e">The event arguments provided.</param>
-	private void SudokuPane_KeyDown([IsDiscard] object sender, KeyRoutedEventArgs e)
-	{
-		// TODO: Update more mode to focus a cell.
-		// Here we just suppose a mode to fill with value in a cell:
-		//     1. Gets the mouse position, and then get the position of the cell.
-		//     2. Gets the pressed key from the argument 'e'.
-		//     3. Fill the cell with the value.
-		int cell = PointConversions.GetCell(_currentPointPosition, Size, OutsideOffset);
-		if (cell == -1)
-		{
-			e.Handled = true;
-			return;
-		}
-
-		var a = EliminateDigit;
-		var b = MakeDigit;
-		switch (e.Key)
-		{
-			// Digits.
-			case var key and >= VirtualKey.Number0 and <= VirtualKey.Number9:
-			{
-				(modifierKeyIsPressed(VirtualKey.Shift) ? a : b)(cell, key - VirtualKey.Number0 - 1);
-
-				break;
-			}
-			// Digits.
-			case var key and >= VirtualKey.NumberPad0 and <= VirtualKey.NumberPad9:
-			{
-				(modifierKeyIsPressed(VirtualKey.Shift) ? a : b)(cell, key - VirtualKey.NumberPad0 - 1);
-
-				break;
-			}
-			// Other cases.
-			default:
-			{
-				e.Handled = true;
-				return;
-			}
-		}
-
-
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		static bool modifierKeyIsPressed(VirtualKey key) =>
-			InputKeyboardSource.GetKeyStateForCurrentThread(key).Flags(CoreVirtualKeyStates.Down);
-	}
+	private void SudokuPane_PointerEntered([IsDiscard] object sender, [IsDiscard] PointerRoutedEventArgs e) =>
+		// Set the focus to the control in order to trigger the 'KeyDown' event.
+		Focus(FocusState.Programmatic);
 
 	/// <summary>
 	/// Triggers when the target <see cref="MenuFlyoutItem"/> is clicked.
