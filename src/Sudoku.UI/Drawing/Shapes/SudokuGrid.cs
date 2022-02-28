@@ -237,7 +237,7 @@ public sealed class SudokuGrid : DrawingElement
 		get => _candidateDigits[0].FontSize;
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		set => Array.ForEach(_candidateDigits, candidateDIgit => candidateDIgit.FontSize = value);
+		set => Array.ForEach(_candidateDigits, candidateDigit => candidateDigit.FontSize = value);
 	}
 
 	/// <summary>
