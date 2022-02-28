@@ -29,12 +29,6 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 	private readonly DrawingElementBag _drawingElements = new();
 
 	/// <summary>
-	/// Indicates the user preferences.
-	/// </summary>
-	/// <!--Wait for new function that allows serializations or deserializations.-->
-	private readonly UserPreference _userPreference = new();
-
-	/// <summary>
 	/// Indicates the size that the current pane is, which is the backing field
 	/// of the property <see cref="Size"/>.
 	/// </summary>
@@ -51,6 +45,13 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 	/// <summary>
 	/// Indicates the current mouse point.
 	/// </summary>
+	/// <remarks>
+	/// The variable is used for the following members:
+	/// <list type="bullet">
+	/// <item><see cref="OnPointerMoved(PointerRoutedEventArgs)"/></item>
+	/// <item><see cref="OnKeyDown(KeyRoutedEventArgs)"/></item>
+	/// </list>
+	/// </remarks>
 	private Point _currentPointPosition;
 
 
@@ -297,29 +298,20 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 	/// <param name="e">The event arguments provided.</param>
 	private void SudokuPane_Loaded([IsDiscard] object sender, [IsDiscard] RoutedEventArgs e)
 	{
+		var up = ((App)Application.Current).UserPreference;
+
 		// Initializes the outside border if worth.
-		if (_userPreference.OutsideBorderWidth != 0 && OutsideOffset != 0)
+		if (up.OutsideBorderWidth != 0 && OutsideOffset != 0)
 		{
-			_drawingElements.Add(
-				new OutsideRectangle(_userPreference.OutsideBorderColor, Size, _userPreference.OutsideBorderWidth)
-			);
+			_drawingElements.Add(new OutsideRectangle(up.OutsideBorderColor, Size, up.OutsideBorderWidth));
 		}
 
 		// Initializes block border lines.
 		for (byte i = 0; i < 4; i++)
 		{
+			_drawingElements.Add(new BlockLine(up.BlockBorderColor, up.BlockBorderWidth, Size, OutsideOffset, i));
 			_drawingElements.Add(
-				new BlockLine(
-					_userPreference.BlockBorderColor, _userPreference.BlockBorderWidth,
-					Size, OutsideOffset, i
-				)
-			);
-			_drawingElements.Add(
-				new BlockLine(
-					_userPreference.BlockBorderColor, _userPreference.BlockBorderWidth,
-					Size, OutsideOffset, (byte)(i + 4)
-				)
-			);
+				new BlockLine(up.BlockBorderColor, up.BlockBorderWidth, Size, OutsideOffset, (byte)(i + 4)));
 		}
 
 		// Initializes cell border lines.
@@ -331,34 +323,17 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 				continue;
 			}
 
+			_drawingElements.Add(new CellLine(up.CellBorderColor, up.CellBorderWidth, Size, OutsideOffset, i));
 			_drawingElements.Add(
-				new CellLine(
-					_userPreference.CellBorderColor, _userPreference.CellBorderWidth,
-					Size, OutsideOffset, i
-				)
-			);
-			_drawingElements.Add(
-				new CellLine(
-					_userPreference.CellBorderColor, _userPreference.CellBorderWidth,
-					Size, OutsideOffset, (byte)(i + 10)
-				)
-			);
+				new CellLine(up.CellBorderColor, up.CellBorderWidth,Size, OutsideOffset, (byte)(i + 10)));
 		}
 
 		// TODO: Initializes candidate border lines if worth.
 
 		// Initializes the sudoku grid.
 		var sudokuGrid = new SudokuGrid(
-			_userPreference.ShowCandidates,
-			Size,
-			OutsideOffset,
-			_userPreference.GivenColor,
-			_userPreference.ModifiableColor,
-			_userPreference.CandidateColor,
-			_userPreference.ValueFontName,
-			_userPreference.CandidateFontName,
-			_userPreference.ValueFontSize,
-			_userPreference.CandidateFontSize,
+			up.ShowCandidates, Size, OutsideOffset, up.GivenColor, up.ModifiableColor, up.CandidateColor,
+			up.ValueFontName, up.CandidateFontName, up.ValueFontSize, up.CandidateFontSize,
 			() =>
 			{
 				PropertyChanged?.Invoke(this, new(nameof(UndoStepsCount)));

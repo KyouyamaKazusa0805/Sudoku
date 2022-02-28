@@ -24,6 +24,11 @@
             Indicates the main window in this application in the current interaction logic.
             </summary>
         </member>
+        <member name="P:Sudoku.UI.App.UserPreference">
+            <summary>
+            Indicates the user preference instance.
+            </summary>
+        </member>
         <member name="M:Sudoku.UI.App.OnLaunched(Microsoft.UI.Xaml.LaunchActivatedEventArgs)">
             <summary>
             <para>Invoked when the application is launched normally by the end user.</para>
@@ -2086,12 +2091,6 @@
             displaying in the window.
             </summary>
         </member>
-        <member name="F:Sudoku.UI.Views.Controls.SudokuPane._userPreference">
-            <summary>
-            Indicates the user preferences.
-            </summary>
-            <!--Wait for new function that allows serializations or deserializations.-->
-        </member>
         <member name="F:Sudoku.UI.Views.Controls.SudokuPane._size">
             <summary>
             Indicates the size that the current pane is, which is the backing field
@@ -2110,6 +2109,13 @@
             <summary>
             Indicates the current mouse point.
             </summary>
+            <remarks>
+            The variable is used for the following members:
+            <list type="bullet">
+            <item><see cref="M:Sudoku.UI.Views.Controls.SudokuPane.OnPointerMoved(Microsoft.UI.Xaml.Input.PointerRoutedEventArgs)"/></item>
+            <item><see cref="M:Sudoku.UI.Views.Controls.SudokuPane.OnKeyDown(Microsoft.UI.Xaml.Input.KeyRoutedEventArgs)"/></item>
+            </list>
+            </remarks>
         </member>
         <member name="M:Sudoku.UI.Views.Controls.SudokuPane.#ctor">
             <summary>
@@ -2493,6 +2499,11 @@
         <member name="M:Sudoku.UI.Views.Windows.MainWindow.#ctor">
             <summary>
             Initializes a <see cref="T:Sudoku.UI.Views.Windows.MainWindow"/> instance.
+            </summary>
+        </member>
+        <member name="P:Sudoku.UI.Views.Windows.MainWindow.Preference">
+            <summary>
+            Indicates the user preference used.
             </summary>
         </member>
         <member name="M:Sudoku.UI.Views.Windows.MainWindow.CustomizeTitleBar">

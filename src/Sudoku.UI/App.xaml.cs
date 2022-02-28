@@ -23,6 +23,15 @@ public partial class App : Application
 	/// </summary>
 	internal Window MainWindow { get; private set; } = null!;
 
+	/// <summary>
+	/// Indicates the user preference instance.
+	/// </summary>
+	internal UserPreference UserPreference
+	{
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		get => ((MainWindow)MainWindow).Preference;
+	}
+
 
 	/// <summary>
 	/// <para>Invoked when the application is launched normally by the end user.</para>
