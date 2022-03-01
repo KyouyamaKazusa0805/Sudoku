@@ -17,6 +17,14 @@ public sealed class UserPreference
 	public bool ShowCandidates = true;
 
 	/// <summary>
+	/// Indicates whether the candidate border lines will be shown in the sudoku pane.
+	/// </summary>
+	/// <remarks>
+	/// The default value is <see langword="false"/>.
+	/// </remarks>
+	public bool ShowCandidateBorderLines = true; // false
+
+	/// <summary>
 	/// Indicates whether the sudoku grid pane will display for wrong digits (cell or candidate values),
 	/// using the different color.
 	/// </summary>
@@ -48,6 +56,14 @@ public sealed class UserPreference
 	/// The default value is <c>1</c>.
 	/// </remarks>
 	public double CellBorderWidth = 1;
+
+	/// <summary>
+	/// Indicates the width of the candidate border lines. The value cannot be negative.
+	/// </summary>
+	/// <remarks>
+	/// The default value is <c>1</c>.
+	/// </remarks>
+	public double CandidateBorderWidth = 1;
 
 	/// <summary>
 	/// Indicates the value font size.
@@ -85,7 +101,7 @@ public sealed class UserPreference
 	/// Indicates the color of the outside borders.
 	/// </summary>
 	/// <remarks>
-	/// The default value is <c>#FF000000</c> (i.e. Black).
+	/// The default value is <c>#FF000000</c> (i.e. <see cref="Colors.Black"/>).
 	/// </remarks>
 	public Color OutsideBorderColor = Colors.Black;
 
@@ -93,7 +109,7 @@ public sealed class UserPreference
 	/// Indicates the color of the block borders.
 	/// </summary>
 	/// <remarks>
-	/// The default value is <c>#FF000000</c> (i.e. Black).
+	/// The default value is <c>#FF000000</c> (i.e. <see cref="Colors.Black"/>).
 	/// </remarks>
 	public Color BlockBorderColor = Colors.Black;
 
@@ -101,15 +117,23 @@ public sealed class UserPreference
 	/// Indicates the color of the cell borders.
 	/// </summary>
 	/// <remarks>
-	/// The default value is <c>#FF000000</c> (i.e. Black).
+	/// The default value is <c>#FF000000</c> (i.e. <see cref="Colors.Black"/>).
 	/// </remarks>
 	public Color CellBorderColor = Colors.Black;
+
+	/// <summary>
+	/// Indicates the color of the candidate borders.
+	/// </summary>
+	/// <remarks>
+	/// The default value is <c>#FFD3D3D3</c> (i.e. <see cref="Colors.LightGray"/>).
+	/// </remarks>
+	public Color CandidateBorderColor = Colors.LightGray;
 
 	/// <summary>
 	/// Indicates the color of the given values.
 	/// </summary>
 	/// <remarks>
-	/// The default value is <c>#FF000000</c> (i.e. Black).
+	/// The default value is <c>#FF000000</c> (i.e. <see cref="Colors.Black"/>).
 	/// </remarks>
 	public Color GivenColor = Colors.Black;
 
@@ -117,7 +141,7 @@ public sealed class UserPreference
 	/// Indicates the color of the modifiable values.
 	/// </summary>
 	/// <remarks>
-	/// The default value is <c>#FF0000FF</c> (i.e. Blue).
+	/// The default value is <c>#FF0000FF</c> (i.e. <see cref="Colors.Blue"/>).
 	/// </remarks>
 	public Color ModifiableColor = Colors.Blue;
 
@@ -125,7 +149,7 @@ public sealed class UserPreference
 	/// Indicates the color of the candidate values.
 	/// </summary>
 	/// <remarks>
-	/// The default value is <c>#FF696969</c> (i.e. DimGray).
+	/// The default value is <c>#FF696969</c> (i.e. <see cref="Colors.DimGray"/>).
 	/// </remarks>
 	public Color CandidateColor = Colors.DimGray;
 
@@ -133,7 +157,7 @@ public sealed class UserPreference
 	/// Indicates the color of the wrong cell value input.
 	/// </summary>
 	/// <remarks>
-	/// The default value is <c>#FFFF0000</c> (i.e. Red).
+	/// The default value is <c>#FFFF0000</c> (i.e. <see cref="Colors.Red"/>).
 	/// </remarks>
 	public Color CellDeltaColor = Colors.Red;
 

@@ -481,6 +481,94 @@
         <member name="M:Sudoku.UI.Drawing.Shapes.CandidateDigit.GetControl">
             <inheritdoc/>
         </member>
+        <member name="T:Sudoku.UI.Drawing.Shapes.CandidateLine">
+            <summary>
+            Defines a candidate line.
+            </summary>
+        </member>
+        <member name="F:Sudoku.UI.Drawing.Shapes.CandidateLine._line">
+            <summary>
+            The inner line.
+            </summary>
+        </member>
+        <member name="F:Sudoku.UI.Drawing.Shapes.CandidateLine._paneSize">
+            <summary>
+            Indicates the pane size, which is the backing field of the property <see cref="P:Sudoku.UI.Drawing.Shapes.CandidateLine.PaneSize"/>.
+            </summary>
+            <seealso cref="P:Sudoku.UI.Drawing.Shapes.CandidateLine.PaneSize"/>
+        </member>
+        <member name="F:Sudoku.UI.Drawing.Shapes.CandidateLine._outsideOffset">
+            <summary>
+            Indicates the outside offset, which is the backing field of the property <see cref="P:Sudoku.UI.Drawing.Shapes.CandidateLine.OutsideOffset"/>.
+            </summary>
+            <seealso cref="P:Sudoku.UI.Drawing.Shapes.CandidateLine.OutsideOffset"/>
+        </member>
+        <member name="M:Sudoku.UI.Drawing.Shapes.CandidateLine.#ctor(Windows.UI.Color,System.Double,System.Double,System.Double,System.Byte)">
+            <summary>
+            Initializes a <see cref="T:Sudoku.UI.Drawing.Shapes.CandidateLine"/> instance via the specified details.
+            </summary>
+            <param name="strokeColor">The stroke color of the block line.</param>
+            <param name="strokeThickness">The stroke thickness of the block line.</param>
+            <param name="paneSize">Indicates the pane size.</param>
+            <param name="outsideOffset">Indicates the outside offset.</param>
+            <param name="order">
+            The order. The value can only be between 0 and 27. For more details of the parameter,
+            please see the property <see cref="P:Sudoku.UI.Drawing.Shapes.CandidateLine.Order"/>.
+            </param>
+        </member>
+        <member name="P:Sudoku.UI.Drawing.Shapes.CandidateLine.Order">
+            <summary>
+            The order of the block line. The value must be between 0 and 27.
+            <list type="table">
+            <listheader>
+            <term>Range</term>
+            <description>Description</description>
+            </listheader>
+            <item>
+            <term><![CDATA[>= 0 and < 28]]></term>
+            <description>The block line is horizontal.</description>
+            </item>
+            <item>
+            <term><![CDATA[>= 28 and < 56]]></term>
+            <description>The block line is vertical.</description>
+            </item>
+            </list>
+            </summary>
+        </member>
+        <member name="P:Sudoku.UI.Drawing.Shapes.CandidateLine.StrokeThickness">
+            <summary>
+            The stroke thickness of the block line.
+            </summary>
+        </member>
+        <member name="P:Sudoku.UI.Drawing.Shapes.CandidateLine.PaneSize">
+            <summary>
+            The pane size.
+            </summary>
+        </member>
+        <member name="P:Sudoku.UI.Drawing.Shapes.CandidateLine.OutsideOffset">
+            <summary>
+            The outside offset.
+            </summary>
+        </member>
+        <member name="P:Sudoku.UI.Drawing.Shapes.CandidateLine.StrokeColor">
+            <summary>
+            The stroke color of the block line.
+            </summary>
+        </member>
+        <member name="P:Sudoku.UI.Drawing.Shapes.CandidateLine.DebuggerDisplayView">
+            <summary>
+            Defines the debugger view.
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Drawing.Shapes.CandidateLine.Equals(Sudoku.UI.Drawing.Shapes.DrawingElement)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.UI.Drawing.Shapes.CandidateLine.GetHashCode">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.UI.Drawing.Shapes.CandidateLine.GetControl">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.UI.Drawing.Shapes.CellDigit">
             <summary>
             Defines a drawing element that displays for a digit that is the cell-levelled digit.
@@ -1838,6 +1926,14 @@
             The default value is <see langword="true"/>.
             </remarks>
         </member>
+        <member name="F:Sudoku.UI.UserPreference.ShowCandidateBorderLines">
+            <summary>
+            Indicates whether the candidate border lines will be shown in the sudoku pane.
+            </summary>
+            <remarks>
+            The default value is <see langword="false"/>.
+            </remarks>
+        </member>
         <member name="F:Sudoku.UI.UserPreference.EnableDeltaValuesDisplaying">
             <summary>
             Indicates whether the sudoku grid pane will display for wrong digits (cell or candidate values),
@@ -1866,6 +1962,14 @@
         <member name="F:Sudoku.UI.UserPreference.CellBorderWidth">
             <summary>
             Indicates the width of the cell border lines. The value cannot be negative.
+            </summary>
+            <remarks>
+            The default value is <c>1</c>.
+            </remarks>
+        </member>
+        <member name="F:Sudoku.UI.UserPreference.CandidateBorderWidth">
+            <summary>
+            Indicates the width of the candidate border lines. The value cannot be negative.
             </summary>
             <remarks>
             The default value is <c>1</c>.
@@ -1908,7 +2012,7 @@
             Indicates the color of the outside borders.
             </summary>
             <remarks>
-            The default value is <c>#FF000000</c> (i.e. Black).
+            The default value is <c>#FF000000</c> (i.e. <see cref="P:Microsoft.UI.Colors.Black"/>).
             </remarks>
         </member>
         <member name="F:Sudoku.UI.UserPreference.BlockBorderColor">
@@ -1916,7 +2020,7 @@
             Indicates the color of the block borders.
             </summary>
             <remarks>
-            The default value is <c>#FF000000</c> (i.e. Black).
+            The default value is <c>#FF000000</c> (i.e. <see cref="P:Microsoft.UI.Colors.Black"/>).
             </remarks>
         </member>
         <member name="F:Sudoku.UI.UserPreference.CellBorderColor">
@@ -1924,7 +2028,15 @@
             Indicates the color of the cell borders.
             </summary>
             <remarks>
-            The default value is <c>#FF000000</c> (i.e. Black).
+            The default value is <c>#FF000000</c> (i.e. <see cref="P:Microsoft.UI.Colors.Black"/>).
+            </remarks>
+        </member>
+        <member name="F:Sudoku.UI.UserPreference.CandidateBorderColor">
+            <summary>
+            Indicates the color of the candidate borders.
+            </summary>
+            <remarks>
+            The default value is <c>#FFD3D3D3</c> (i.e. <see cref="P:Microsoft.UI.Colors.LightGray"/>).
             </remarks>
         </member>
         <member name="F:Sudoku.UI.UserPreference.GivenColor">
@@ -1932,7 +2044,7 @@
             Indicates the color of the given values.
             </summary>
             <remarks>
-            The default value is <c>#FF000000</c> (i.e. Black).
+            The default value is <c>#FF000000</c> (i.e. <see cref="P:Microsoft.UI.Colors.Black"/>).
             </remarks>
         </member>
         <member name="F:Sudoku.UI.UserPreference.ModifiableColor">
@@ -1940,7 +2052,7 @@
             Indicates the color of the modifiable values.
             </summary>
             <remarks>
-            The default value is <c>#FF0000FF</c> (i.e. Blue).
+            The default value is <c>#FF0000FF</c> (i.e. <see cref="P:Microsoft.UI.Colors.Blue"/>).
             </remarks>
         </member>
         <member name="F:Sudoku.UI.UserPreference.CandidateColor">
@@ -1948,7 +2060,7 @@
             Indicates the color of the candidate values.
             </summary>
             <remarks>
-            The default value is <c>#FF696969</c> (i.e. DimGray).
+            The default value is <c>#FF696969</c> (i.e. <see cref="P:Microsoft.UI.Colors.DimGray"/>).
             </remarks>
         </member>
         <member name="F:Sudoku.UI.UserPreference.CellDeltaColor">
@@ -1956,7 +2068,7 @@
             Indicates the color of the wrong cell value input.
             </summary>
             <remarks>
-            The default value is <c>#FFFF0000</c> (i.e. Red).
+            The default value is <c>#FFFF0000</c> (i.e. <see cref="P:Microsoft.UI.Colors.Red"/>).
             </remarks>
         </member>
         <member name="F:Sudoku.UI.UserPreference.CandidateDeltaColor">

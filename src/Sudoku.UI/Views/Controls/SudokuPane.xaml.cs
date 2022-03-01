@@ -343,10 +343,27 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 
 			_drawingElements.Add(new CellLine(up.CellBorderColor, up.CellBorderWidth, Size, OutsideOffset, i));
 			_drawingElements.Add(
-				new CellLine(up.CellBorderColor, up.CellBorderWidth,Size, OutsideOffset, (byte)(i + 10)));
+				new CellLine(up.CellBorderColor, up.CellBorderWidth, Size, OutsideOffset, (byte)(i + 10)));
 		}
 
-		// TODO: Initializes candidate border lines if worth.
+		// Initializes candidate border lines if worth.
+		if (up.ShowCandidateBorderLines)
+		{
+			for (byte i = 0; i < 28; i++)
+			{
+				if (i % 3 == 0)
+				{
+					// Skips the overlapping lines.
+					continue;
+				}
+
+				_drawingElements.Add(
+					new CandidateLine(up.CandidateBorderColor, up.CandidateBorderWidth, Size, OutsideOffset, i));
+				_drawingElements.Add(
+					new CandidateLine(
+						up.CandidateBorderColor, up.CandidateBorderWidth, Size, OutsideOffset, (byte)(i + 28)));
+			}
+		}
 
 		// Initializes the sudoku grid.
 		var sudokuGrid = new SudokuGrid(up, Size, OutsideOffset, () =>
