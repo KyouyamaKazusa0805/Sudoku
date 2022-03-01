@@ -1,6 +1,4 @@
-﻿using Windows.UI;
-
-namespace Sudoku.UI.Drawing.Shapes;
+﻿namespace Sudoku.UI.Drawing.Shapes;
 
 /// <summary>
 /// Defines a sudoku grid.
@@ -23,6 +21,11 @@ public sealed class SudokuGrid : DrawingElement
 	private readonly CandidateDigit[] _candidateDigits = new CandidateDigit[81];
 
 	/// <summary>
+	/// Indicates the user preference used.
+	/// </summary>
+	private readonly UserPreference _userPreference;
+
+	/// <summary>
 	/// Indicates the stacks to store the undoing and redoing steps.
 	/// </summary>
 	private readonly Stack<Grid> _undoSteps = new(), _redoSteps = new();
@@ -31,11 +34,6 @@ public sealed class SudokuGrid : DrawingElement
 	/// Indicates the callback method that invokes when the undoing and redoing steps are updated.
 	/// </summary>
 	private readonly Action? _undoRedoStepsUpdatedCallback;
-
-	/// <summary>
-	/// Indicates the status for displaying candidates.
-	/// </summary>
-	private bool _showCandidates;
 
 	/// <summary>
 	/// Indicates the pane size.
@@ -56,27 +54,15 @@ public sealed class SudokuGrid : DrawingElement
 	/// <summary>
 	/// Initializes a <see cref="SudokuGrid"/> instance via the details.
 	/// </summary>
-	/// <param name="showCandidates">Whether the grid displays candidates.</param>
+	/// <param name="userPreference">The user preference instance.</param>
 	/// <param name="paneSize">The pane size.</param>
 	/// <param name="outsideOffset">The outside offset.</param>
-	/// <param name="givenColor">The given text color.</param>
-	/// <param name="modifiableColor">The modifiable text color.</param>
-	/// <param name="candidateColor">The candidate text color.</param>
-	/// <param name="valueFontName">The given or modifiable font name.</param>
-	/// <param name="candidateFontName">The candidate font name.</param>
-	/// <param name="valueFontSize">The value font size.</param>
-	/// <param name="candidateFontSize">The candidate font size.</param>
 	/// <param name="elementUpdatedCallback">
 	/// The callback method that triggers when the inner undo-redo steps are updated.
 	/// </param>
 	public SudokuGrid(
-		bool showCandidates, double paneSize, double outsideOffset,
-		Color givenColor, Color modifiableColor, Color candidateColor,
-		string valueFontName, string candidateFontName, double valueFontSize, double candidateFontSize,
-		Action? elementUpdatedCallback) :
-		this(
-			Grid.Empty, showCandidates, paneSize, outsideOffset, givenColor, modifiableColor, candidateColor,
-			valueFontName, candidateFontName, valueFontSize, candidateFontSize, elementUpdatedCallback)
+		UserPreference userPreference, double paneSize, double outsideOffset, Action? elementUpdatedCallback) :
+		this(Grid.Empty, userPreference, paneSize, outsideOffset, elementUpdatedCallback)
 	{
 	}
 
@@ -84,27 +70,18 @@ public sealed class SudokuGrid : DrawingElement
 	/// Initializes a <see cref="SudokuGrid"/> instance via the details.
 	/// </summary>
 	/// <param name="grid">The <see cref="Grid"/> instance.</param>
-	/// <param name="showCandidates">Whether the grid displays candidates.</param>
+	/// <param name="userPreference">The user preference.</param>
 	/// <param name="paneSize">The pane size.</param>
 	/// <param name="outsideOffset">The outside offset.</param>
-	/// <param name="givenColor">The given text color.</param>
-	/// <param name="modifiableColor">The modifiable text color.</param>
-	/// <param name="candidateColor">The candidate text color.</param>
-	/// <param name="valueFontName">The given or modifiable font name.</param>
-	/// <param name="candidateFontName">The candidate font name.</param>
-	/// <param name="valueFontSize">The value font size.</param>
-	/// <param name="candidateFontSize">The candidate font size.</param>
 	/// <param name="elementUpdatedCallback">
 	/// The callback method that triggers when the inner undo-redo steps are updated.
 	/// </param>
 	public SudokuGrid(
-		in Grid grid, bool showCandidates, double paneSize, double outsideOffset,
-		Color givenColor, Color modifiableColor, Color candidateColor,
-		string valueFontName, string candidateFontName, double valueFontSize, double candidateFontSize,
+		in Grid grid, UserPreference userPreference, double paneSize, double outsideOffset,
 		Action? elementUpdatedCallback)
 	{
+		_userPreference = userPreference;
 		_grid = grid;
-		_showCandidates = showCandidates;
 		_paneSize = paneSize;
 		_outsideOffset = outsideOffset;
 		_gridLayout = initializeGridLayout(paneSize, outsideOffset);
@@ -113,9 +90,7 @@ public sealed class SudokuGrid : DrawingElement
 		_undoRedoStepsUpdatedCallback = elementUpdatedCallback;
 
 		// Initializes values.
-		initializeValues(
-			showCandidates, givenColor, modifiableColor, candidateColor,
-			valueFontName, valueFontSize, candidateFontName, candidateFontSize);
+		initializeValues();
 
 		// Then initialize other items.
 		UpdateView();
@@ -134,18 +109,16 @@ public sealed class SudokuGrid : DrawingElement
 			.WithRowDefinitionsCount(9)
 			.WithColumnDefinitionsCount(9);
 
-		void initializeValues(
-			bool showCandidates, Color givenColor, Color modifiableColor, Color candidateColor,
-			string valueFontName, double valueFontSize, string candidateFontName, double candidateFontSize)
+		void initializeValues()
 		{
 			for (int i = 0; i < 81; i++)
 			{
 				ref var p = ref _cellDigits[i];
-				p = new(givenColor, modifiableColor, valueFontName, valueFontSize);
+				p = new(userPreference);
 				_gridLayout.Children.Add(p.GetControl().WithGridLayout(row: i / 9, column: i % 9));
 
 				ref var q = ref _candidateDigits[i];
-				q = new(showCandidates, candidateFontName, candidateFontSize, candidateColor);
+				q = new(userPreference);
 				_gridLayout.Children.Add(q.GetControl().WithGridLayout(row: i / 9, column: i % 9));
 			}
 		}
@@ -158,18 +131,18 @@ public sealed class SudokuGrid : DrawingElement
 	public bool ShowCandidates
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => _showCandidates;
+		get => _userPreference.ShowCandidates;
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		set
 		{
-			if (_showCandidates == value)
+			if (_userPreference.ShowCandidates == value)
 			{
 				return;
 			}
 
-			_showCandidates = value;
-			Array.ForEach(_candidateDigits, candidateDigit => candidateDigit.ShowDigits = value);
+			_userPreference.ShowCandidates = value;
+			Array.ForEach(_candidateDigits, candidateDigit => candidateDigit.ShowCandidates = value);
 		}
 	}
 
@@ -214,90 +187,6 @@ public sealed class SudokuGrid : DrawingElement
 			_gridLayout.Width = value;
 			_gridLayout.Height = value;
 		}
-	}
-
-	/// <summary>
-	/// Gets or sets the given or modifiable font size.
-	/// </summary>
-	public double ValueFontSize
-	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => _cellDigits[0].FontSize;
-
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		set => Array.ForEach(_cellDigits, cellDigit => cellDigit.FontSize = value);
-	}
-
-	/// <summary>
-	/// Gets or sets the candidate font size.
-	/// </summary>
-	public double CandidateFontSize
-	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => _candidateDigits[0].FontSize;
-
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		set => Array.ForEach(_candidateDigits, candidateDigit => candidateDigit.FontSize = value);
-	}
-
-	/// <summary>
-	/// Gets or sets the given or modifiable font name.
-	/// </summary>
-	public string ValueFontName
-	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => _cellDigits[0].FontName;
-
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		set => Array.ForEach(_cellDigits, cellDigit => cellDigit.FontName = value);
-	}
-
-	/// <summary>
-	/// Gets or sets the candidate font name.
-	/// </summary>
-	public string CandidateFontName
-	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => _candidateDigits[0].FontName;
-
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		set => Array.ForEach(_candidateDigits, candidateDigit => candidateDigit.FontName = value);
-	}
-
-	/// <summary>
-	/// Gets or sets the given color.
-	/// </summary>
-	public Color GivenColor
-	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => _cellDigits[0].GivenColor;
-
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		set => Array.ForEach(_cellDigits, cellDigit => cellDigit.GivenColor = value);
-	}
-
-	/// <summary>
-	/// Gets or sets the modifiable color.
-	/// </summary>
-	public Color ModifiableColor
-	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => _cellDigits[0].ModifiableColor;
-
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		set => Array.ForEach(_cellDigits, cellDigit => cellDigit.ModifiableColor = value);
-	}
-
-	/// <summary>
-	/// Gets or sets the candidate color.
-	/// </summary>
-	public Color CandidateColor
-	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => _candidateDigits[0].Color;
-
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		set => Array.ForEach(_candidateDigits, candidateDigit => candidateDigit.Color = value);
 	}
 
 	/// <summary>
@@ -451,23 +340,54 @@ public sealed class SudokuGrid : DrawingElement
 	/// </summary>
 	private void UpdateView()
 	{
+		// Iterates on each cell.
 		for (int i = 0; i < 81; i++)
 		{
+			// Checks the status of the cell.
 			switch (_grid.GetStatus(i))
 			{
 				case CellStatus.Empty:
 				{
+					// Due to the empty cell, we should set the current cell value to byte.MaxValue
+					// in order not to display the value in the view.
 					_cellDigits[i].Digit = byte.MaxValue;
-					_cellDigits[i].IsGiven = false;
-					_candidateDigits[i].CandidateMask = _grid.GetCandidates(i);
+
+					// Gets the current candidate mask, and set the value in order to update the view.
+					short candidateMask = _grid.GetCandidates(i);
+					_candidateDigits[i].CandidateMask = candidateMask;
+
+					// Checks the correctness of the candidates.
+					// If a certain digit has been wrongly removed from the grid, we should display it
+					// using a different color if enabled the delta view.
+					if (_userPreference.EnableDeltaValuesDisplaying
+						&& _grid.ResetGrid.Solution is { IsUndefined: false } solution)
+					{
+						_candidateDigits[i].WrongDigitMask = (short)(511 & ~candidateMask & solution[i]);
+					}
 
 					break;
 				}
 				case var status and (CellStatus.Given or CellStatus.Modifiable):
 				{
-					_cellDigits[i].Digit = (byte)_grid[i];
+					// Gets the current digit input, and set the value in order to update the view.
+					byte digit = (byte)_grid[i];
+					_cellDigits[i].Digit = digit;
+
+					// Due to the value cell, we should set the candidate mask to 0
+					// in order not to display the value in the view.
 					_cellDigits[i].IsGiven = status == CellStatus.Given;
 					_candidateDigits[i].CandidateMask = 0;
+
+					// Checks the correctness of the digit.
+					// If the digit is wrong, we should display it using a different color
+					// if enabled the delta view.
+					if (_userPreference.EnableDeltaValuesDisplaying
+						&& _grid.ResetGrid.Solution is { IsUndefined: false } solution
+						&& solution[i] != digit)
+					{
+						_cellDigits[i].IsGiven = null;
+						_candidateDigits[i].WrongDigitMask = 0;
+					}
 
 					break;
 				}

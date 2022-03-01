@@ -410,29 +410,14 @@
             The data structure represents for all possible candidates in a cell.
             </summary>
         </member>
-        <member name="F:Sudoku.UI.Drawing.Shapes.CandidateDigit._showDigits">
-            <summary>
-            Indicates whether the candidate block shows digits.
-            </summary>
-        </member>
-        <member name="F:Sudoku.UI.Drawing.Shapes.CandidateDigit._fontSize">
-            <summary>
-            Indicates the font size of each digit.
-            </summary>
-        </member>
-        <member name="F:Sudoku.UI.Drawing.Shapes.CandidateDigit._candidateMask">
-            <summary>
-            Indicates the candidate mask.
-            </summary>
-        </member>
-        <member name="F:Sudoku.UI.Drawing.Shapes.CandidateDigit._fontName">
-            <summary>
-            Indicates the font name of each digit.
-            </summary>
-        </member>
         <member name="F:Sudoku.UI.Drawing.Shapes.CandidateDigit._grid">
             <summary>
             Indicates the inner grid.
+            </summary>
+        </member>
+        <member name="F:Sudoku.UI.Drawing.Shapes.CandidateDigit._userPreference">
+            <summary>
+            Indicates the user preference.
             </summary>
         </member>
         <member name="F:Sudoku.UI.Drawing.Shapes.CandidateDigit._digitBlocks">
@@ -440,36 +425,36 @@
             Indicates the digit blocks.
             </summary>
         </member>
-        <member name="M:Sudoku.UI.Drawing.Shapes.CandidateDigit.#ctor(System.Boolean,System.String,System.Double,Windows.UI.Color)">
+        <member name="F:Sudoku.UI.Drawing.Shapes.CandidateDigit._candidateMask">
+            <summary>
+            Indicates the candidate mask.
+            </summary>
+        </member>
+        <member name="F:Sudoku.UI.Drawing.Shapes.CandidateDigit._wrongDigitMask">
+            <summary>
+            Indicates the wrong digit mask.
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Drawing.Shapes.CandidateDigit.#ctor(Sudoku.UI.UserPreference)">
             <summary>
             Initializes a <see cref="T:Sudoku.UI.Drawing.Shapes.CandidateDigit"/> instance via the details.
             </summary>
-            <param name="showDigits">Indicates whether the candidate block shows the digits.</param>
-            <param name="fontName">The font name.</param>
-            <param name="fontSize">The font size.</param>
-            <param name="color">The color.</param>
+            <param name="userPreference">The user preference.</param>
         </member>
-        <member name="M:Sudoku.UI.Drawing.Shapes.CandidateDigit.#ctor(System.Int16,System.Boolean,System.String,System.Double,Windows.UI.Color)">
+        <member name="M:Sudoku.UI.Drawing.Shapes.CandidateDigit.#ctor(System.Int16,System.Int16,Sudoku.UI.UserPreference)">
             <summary>
             Initializes a <see cref="T:Sudoku.UI.Drawing.Shapes.CandidateDigit"/> instance via the details.
             </summary>
             <param name="candidateMask">The candidate mask.</param>
-            <param name="showDigits">Indicates whether the candidate block shows the digits.</param>
-            <param name="fontName">The font name.</param>
-            <param name="fontSize">The font size.</param>
-            <param name="color">The color.</param>
+            <param name="wrongDigitMask">The wrong digits mask.</param>
+            <param name="userPreference">The user preference.</param>
             <exception cref="T:System.ArgumentOutOfRangeException">
             Throws when the argument <paramref name="candidateMask"/> is negative number or greater than 511.
             </exception>
         </member>
-        <member name="P:Sudoku.UI.Drawing.Shapes.CandidateDigit.ShowDigits">
+        <member name="P:Sudoku.UI.Drawing.Shapes.CandidateDigit.ShowCandidates">
             <summary>
             Gets or sets the value indicating whether the candidate block shows digits.
-            </summary>
-        </member>
-        <member name="P:Sudoku.UI.Drawing.Shapes.CandidateDigit.FontSize">
-            <summary>
-            Gets or sets the font size.
             </summary>
         </member>
         <member name="P:Sudoku.UI.Drawing.Shapes.CandidateDigit.CandidateMask">
@@ -477,14 +462,9 @@
             Indicates the candidate mask.
             </summary>
         </member>
-        <member name="P:Sudoku.UI.Drawing.Shapes.CandidateDigit.FontName">
+        <member name="P:Sudoku.UI.Drawing.Shapes.CandidateDigit.WrongDigitMask">
             <summary>
-            Gets or sets the font name.
-            </summary>
-        </member>
-        <member name="P:Sudoku.UI.Drawing.Shapes.CandidateDigit.Color">
-            <summary>
-            Indicates the color.
+            Indicates the wrong digits mask.
             </summary>
         </member>
         <member name="P:Sudoku.UI.Drawing.Shapes.CandidateDigit.DebuggerDisplayView">
@@ -511,36 +491,23 @@
             The inner text block.
             </summary>
         </member>
+        <member name="F:Sudoku.UI.Drawing.Shapes.CellDigit._userPreference">
+            <summary>
+            The user preference.
+            </summary>
+        </member>
         <member name="F:Sudoku.UI.Drawing.Shapes.CellDigit._isGiven">
             <summary>
             Indicates the cell status.
             </summary>
         </member>
-        <member name="F:Sudoku.UI.Drawing.Shapes.CellDigit._fontName">
-            <summary>
-            Indicates the font name.
-            </summary>
-        </member>
-        <member name="F:Sudoku.UI.Drawing.Shapes.CellDigit._givenColor">
-            <summary>
-            Indicates the given color.
-            </summary>
-        </member>
-        <member name="F:Sudoku.UI.Drawing.Shapes.CellDigit._modifiableColor">
-            <summary>
-            Indicates the modifiable color.
-            </summary>
-        </member>
-        <member name="M:Sudoku.UI.Drawing.Shapes.CellDigit.#ctor(Windows.UI.Color,Windows.UI.Color,System.String,System.Double)">
+        <member name="M:Sudoku.UI.Drawing.Shapes.CellDigit.#ctor(Sudoku.UI.UserPreference)">
             <summary>
             Initializes a <see cref="T:Sudoku.UI.Drawing.Shapes.CellDigit"/> instance via the details.
             </summary>
-            <param name="givenColor">The color for displaying the given cells.</param>
-            <param name="modifiableColor">The color for displaying the modifiable cells.</param>
-            <param name="fontName">The font name.</param>
-            <param name="fontSize">The font size.</param>
+            <param name="userPreference">The user preference.</param>
         </member>
-        <member name="M:Sudoku.UI.Drawing.Shapes.CellDigit.#ctor(System.Byte,System.Boolean,Windows.UI.Color,Windows.UI.Color,System.String,System.Double)">
+        <member name="M:Sudoku.UI.Drawing.Shapes.CellDigit.#ctor(System.Byte,System.Nullable{System.Boolean},Sudoku.UI.UserPreference)">
             <summary>
             Initializes a <see cref="T:Sudoku.UI.Drawing.Shapes.CellDigit"/> instance via the details.
             </summary>
@@ -551,10 +518,7 @@
             <param name="isGiven">
             Indicates whether the cell is given. If <see langword="false"/>, modifiable value.
             </param>
-            <param name="givenColor">The color for displaying the given cells.</param>
-            <param name="modifiableColor">The color for displaying the modifiable cells.</param>
-            <param name="fontName">The font name.</param>
-            <param name="fontSize">The font size.</param>
+            <param name="userPreference">The user preference.</param>
             <exception cref="T:System.ArgumentOutOfRangeException">
             Throws when the argument <paramref name="digit"/> is not 255 and not in range 0 to 8.
             </exception>
@@ -563,6 +527,23 @@
             <summary>
             Indicates whether the current cell is the given cell.
             </summary>
+            <returns>
+            The return value is <see cref="T:System.Boolean"/>?, which means the return value contains three possible cases:
+            <list type="table">
+            <item>
+            <term><see langword="true"/></term>
+            <description>The cell is the given.</description>
+            </item>
+            <item>
+            <term><see langword="false"/></term>
+            <description>The cell is modifiable.</description>
+            </item>
+            <item>
+            <term><see langword="null"/></term>
+            <description>The cell is modifiable, but the value is wrong.</description>
+            </item>
+            </list>
+            </returns>
         </member>
         <member name="P:Sudoku.UI.Drawing.Shapes.CellDigit.IsShown">
             <summary>
@@ -595,6 +576,11 @@
         <member name="P:Sudoku.UI.Drawing.Shapes.CellDigit.ModifiableColor">
             <summary>
             The modifiable color.
+            </summary>
+        </member>
+        <member name="P:Sudoku.UI.Drawing.Shapes.CellDigit.CellDeltaColor">
+            <summary>
+            Indicates the cell delta color.
             </summary>
         </member>
         <member name="P:Sudoku.UI.Drawing.Shapes.CellDigit.DebuggerDisplayView">
@@ -1596,6 +1582,11 @@
             Indicates the candidate digits.
             </summary>
         </member>
+        <member name="F:Sudoku.UI.Drawing.Shapes.SudokuGrid._userPreference">
+            <summary>
+            Indicates the user preference used.
+            </summary>
+        </member>
         <member name="F:Sudoku.UI.Drawing.Shapes.SudokuGrid._undoSteps">
             <summary>
             Indicates the stacks to store the undoing and redoing steps.
@@ -1609,11 +1600,6 @@
         <member name="F:Sudoku.UI.Drawing.Shapes.SudokuGrid._undoRedoStepsUpdatedCallback">
             <summary>
             Indicates the callback method that invokes when the undoing and redoing steps are updated.
-            </summary>
-        </member>
-        <member name="F:Sudoku.UI.Drawing.Shapes.SudokuGrid._showCandidates">
-            <summary>
-            Indicates the status for displaying candidates.
             </summary>
         </member>
         <member name="F:Sudoku.UI.Drawing.Shapes.SudokuGrid._paneSize">
@@ -1631,39 +1617,25 @@
             Indicates the inner grid.
             </summary>
         </member>
-        <member name="M:Sudoku.UI.Drawing.Shapes.SudokuGrid.#ctor(System.Boolean,System.Double,System.Double,Windows.UI.Color,Windows.UI.Color,Windows.UI.Color,System.String,System.String,System.Double,System.Double,System.Action)">
+        <member name="M:Sudoku.UI.Drawing.Shapes.SudokuGrid.#ctor(Sudoku.UI.UserPreference,System.Double,System.Double,System.Action)">
             <summary>
             Initializes a <see cref="T:Sudoku.UI.Drawing.Shapes.SudokuGrid"/> instance via the details.
             </summary>
-            <param name="showCandidates">Whether the grid displays candidates.</param>
+            <param name="userPreference">The user preference instance.</param>
             <param name="paneSize">The pane size.</param>
             <param name="outsideOffset">The outside offset.</param>
-            <param name="givenColor">The given text color.</param>
-            <param name="modifiableColor">The modifiable text color.</param>
-            <param name="candidateColor">The candidate text color.</param>
-            <param name="valueFontName">The given or modifiable font name.</param>
-            <param name="candidateFontName">The candidate font name.</param>
-            <param name="valueFontSize">The value font size.</param>
-            <param name="candidateFontSize">The candidate font size.</param>
             <param name="elementUpdatedCallback">
             The callback method that triggers when the inner undo-redo steps are updated.
             </param>
         </member>
-        <member name="M:Sudoku.UI.Drawing.Shapes.SudokuGrid.#ctor(Sudoku.Collections.Grid@,System.Boolean,System.Double,System.Double,Windows.UI.Color,Windows.UI.Color,Windows.UI.Color,System.String,System.String,System.Double,System.Double,System.Action)">
+        <member name="M:Sudoku.UI.Drawing.Shapes.SudokuGrid.#ctor(Sudoku.Collections.Grid@,Sudoku.UI.UserPreference,System.Double,System.Double,System.Action)">
             <summary>
             Initializes a <see cref="T:Sudoku.UI.Drawing.Shapes.SudokuGrid"/> instance via the details.
             </summary>
             <param name="grid">The <see cref="P:Sudoku.UI.Drawing.Shapes.SudokuGrid.Grid"/> instance.</param>
-            <param name="showCandidates">Whether the grid displays candidates.</param>
+            <param name="userPreference">The user preference.</param>
             <param name="paneSize">The pane size.</param>
             <param name="outsideOffset">The outside offset.</param>
-            <param name="givenColor">The given text color.</param>
-            <param name="modifiableColor">The modifiable text color.</param>
-            <param name="candidateColor">The candidate text color.</param>
-            <param name="valueFontName">The given or modifiable font name.</param>
-            <param name="candidateFontName">The candidate font name.</param>
-            <param name="valueFontSize">The value font size.</param>
-            <param name="candidateFontSize">The candidate font size.</param>
             <param name="elementUpdatedCallback">
             The callback method that triggers when the inner undo-redo steps are updated.
             </param>
@@ -1681,41 +1653,6 @@
         <member name="P:Sudoku.UI.Drawing.Shapes.SudokuGrid.PaneSize">
             <summary>
             Gets or sets the pane size.
-            </summary>
-        </member>
-        <member name="P:Sudoku.UI.Drawing.Shapes.SudokuGrid.ValueFontSize">
-            <summary>
-            Gets or sets the given or modifiable font size.
-            </summary>
-        </member>
-        <member name="P:Sudoku.UI.Drawing.Shapes.SudokuGrid.CandidateFontSize">
-            <summary>
-            Gets or sets the candidate font size.
-            </summary>
-        </member>
-        <member name="P:Sudoku.UI.Drawing.Shapes.SudokuGrid.ValueFontName">
-            <summary>
-            Gets or sets the given or modifiable font name.
-            </summary>
-        </member>
-        <member name="P:Sudoku.UI.Drawing.Shapes.SudokuGrid.CandidateFontName">
-            <summary>
-            Gets or sets the candidate font name.
-            </summary>
-        </member>
-        <member name="P:Sudoku.UI.Drawing.Shapes.SudokuGrid.GivenColor">
-            <summary>
-            Gets or sets the given color.
-            </summary>
-        </member>
-        <member name="P:Sudoku.UI.Drawing.Shapes.SudokuGrid.ModifiableColor">
-            <summary>
-            Gets or sets the modifiable color.
-            </summary>
-        </member>
-        <member name="P:Sudoku.UI.Drawing.Shapes.SudokuGrid.CandidateColor">
-            <summary>
-            Gets or sets the candidate color.
             </summary>
         </member>
         <member name="P:Sudoku.UI.Drawing.Shapes.SudokuGrid.Grid">
@@ -1885,6 +1822,15 @@
             The default value is <see langword="true"/>.
             </remarks>
         </member>
+        <member name="F:Sudoku.UI.UserPreference.EnableDeltaValuesDisplaying">
+            <summary>
+            Indicates whether the sudoku grid pane will display for wrong digits (cell or candidate values),
+            using the different color.
+            </summary>
+            <remarks>
+            The default value is <see langword="true"/>.
+            </remarks>
+        </member>
         <member name="F:Sudoku.UI.UserPreference.OutsideBorderWidth">
             <summary>
             Indicates the outside border width. The value cannot be negative.
@@ -1987,6 +1933,22 @@
             </summary>
             <remarks>
             The default value is <c>#FF696969</c> (i.e. DimGray).
+            </remarks>
+        </member>
+        <member name="F:Sudoku.UI.UserPreference.CellDeltaColor">
+            <summary>
+            Indicates the color of the wrong cell value input.
+            </summary>
+            <remarks>
+            The default value is <c>#FFFF0000</c> (i.e. Red).
+            </remarks>
+        </member>
+        <member name="F:Sudoku.UI.UserPreference.CandidateDeltaColor">
+            <summary>
+            Indicates the color of the wrong candidate value input.
+            </summary>
+            <remarks>
+            The default value is <c>#FFFFB9B9</c> (i.e. <see cref="T:Windows.UI.Color"/> {255, 255, 185, 185}).
             </remarks>
         </member>
         <member name="T:Sudoku.UI.Views.Controls.InfoBarBoard">

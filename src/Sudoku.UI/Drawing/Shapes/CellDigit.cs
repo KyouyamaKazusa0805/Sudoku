@@ -18,36 +18,22 @@ internal sealed class CellDigit : DrawingElement
 	private readonly TextBlock _textBlock;
 
 	/// <summary>
+	/// The user preference.
+	/// </summary>
+	private readonly UserPreference _userPreference;
+
+	/// <summary>
 	/// Indicates the cell status.
 	/// </summary>
-	private bool _isGiven;
-
-	/// <summary>
-	/// Indicates the font name.
-	/// </summary>
-	private string _fontName;
-
-	/// <summary>
-	/// Indicates the given color.
-	/// </summary>
-	private Color _givenColor;
-
-	/// <summary>
-	/// Indicates the modifiable color.
-	/// </summary>
-	private Color _modifiableColor;
+	private bool? _isGiven;
 
 
 	/// <summary>
 	/// Initializes a <see cref="CellDigit"/> instance via the details.
 	/// </summary>
-	/// <param name="givenColor">The color for displaying the given cells.</param>
-	/// <param name="modifiableColor">The color for displaying the modifiable cells.</param>
-	/// <param name="fontName">The font name.</param>
-	/// <param name="fontSize">The font size.</param>
+	/// <param name="userPreference">The user preference.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public CellDigit(Color givenColor, Color modifiableColor, string fontName, double fontSize) :
-		this(byte.MaxValue, false, givenColor, modifiableColor, fontName, fontSize)
+	public CellDigit(UserPreference userPreference) : this(byte.MaxValue, false, userPreference)
 	{
 	}
 
@@ -61,33 +47,32 @@ internal sealed class CellDigit : DrawingElement
 	/// <param name="isGiven">
 	/// Indicates whether the cell is given. If <see langword="false"/>, modifiable value.
 	/// </param>
-	/// <param name="givenColor">The color for displaying the given cells.</param>
-	/// <param name="modifiableColor">The color for displaying the modifiable cells.</param>
-	/// <param name="fontName">The font name.</param>
-	/// <param name="fontSize">The font size.</param>
+	/// <param name="userPreference">The user preference.</param>
 	/// <exception cref="ArgumentOutOfRangeException">
 	/// Throws when the argument <paramref name="digit"/> is not 255 and not in range 0 to 8.
 	/// </exception>
-	public CellDigit(
-		byte digit, bool isGiven, Color givenColor, Color modifiableColor, string fontName, double fontSize)
+	public CellDigit(byte digit, bool? isGiven, UserPreference userPreference)
 	{
 		if (digit is >= 9 and not byte.MaxValue)
 		{
 			throw new ArgumentOutOfRangeException(nameof(digit));
 		}
 
+		_userPreference = userPreference;
 		_isGiven = isGiven;
-		_fontName = fontName;
-		_givenColor = givenColor;
-		_modifiableColor = modifiableColor;
 		_textBlock = new()
 		{
 			Text = digit == byte.MaxValue ? string.Empty : (digit + 1).ToString(),
-			FontSize = fontSize,
-			FontFamily = new(fontName),
+			FontSize = userPreference.ValueFontSize,
+			FontFamily = new(userPreference.ValueFontName),
 			TextAlignment = TextAlignment.Center,
 			HorizontalTextAlignment = TextAlignment.Center,
-			Foreground = new SolidColorBrush(isGiven ? givenColor : modifiableColor)
+			Foreground = new SolidColorBrush(isGiven switch
+			{
+				true => userPreference.GivenColor,
+				false => userPreference.ModifiableColor,
+				_ => userPreference.CellDeltaColor
+			})
 		};
 	}
 
@@ -95,7 +80,24 @@ internal sealed class CellDigit : DrawingElement
 	/// <summary>
 	/// Indicates whether the current cell is the given cell.
 	/// </summary>
-	public bool IsGiven
+	/// <returns>
+	/// The return value is <see cref="bool"/>?, which means the return value contains three possible cases:
+	/// <list type="table">
+	/// <item>
+	/// <term><see langword="true"/></term>
+	/// <description>The cell is the given.</description>
+	/// </item>
+	/// <item>
+	/// <term><see langword="false"/></term>
+	/// <description>The cell is modifiable.</description>
+	/// </item>
+	/// <item>
+	/// <term><see langword="null"/></term>
+	/// <description>The cell is modifiable, but the value is wrong.</description>
+	/// </item>
+	/// </list>
+	/// </returns>
+	public bool? IsGiven
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => _isGiven;
@@ -104,7 +106,12 @@ internal sealed class CellDigit : DrawingElement
 		set
 		{
 			_isGiven = value;
-			_textBlock.Foreground = new SolidColorBrush(value ? _givenColor : _modifiableColor);
+			_textBlock.Foreground = new SolidColorBrush(value switch
+			{
+				true => _userPreference.GivenColor,
+				false => _userPreference.ModifiableColor,
+				_ => _userPreference.CellDeltaColor
+			});
 		}
 	}
 
@@ -153,12 +160,12 @@ internal sealed class CellDigit : DrawingElement
 	public string FontName
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => _fontName;
+		get => _userPreference.ValueFontName;
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		set
 		{
-			_fontName = value;
+			_userPreference.ValueFontName = value;
 			_textBlock.FontFamily = new(value);
 		}
 	}
@@ -169,13 +176,13 @@ internal sealed class CellDigit : DrawingElement
 	public Color GivenColor
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => _givenColor;
+		get => _userPreference.GivenColor;
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		set
 		{
-			_givenColor = value;
-			if (_isGiven)
+			_userPreference.GivenColor = value;
+			if (_isGiven is true)
 			{
 				_textBlock.Foreground = new SolidColorBrush(value);
 			}
@@ -188,13 +195,32 @@ internal sealed class CellDigit : DrawingElement
 	public Color ModifiableColor
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => _modifiableColor;
+		get => _userPreference.ModifiableColor;
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		set
 		{
-			_modifiableColor = value;
-			if (!_isGiven)
+			_userPreference.ModifiableColor = value;
+			if (_isGiven is false)
+			{
+				_textBlock.Foreground = new SolidColorBrush(value);
+			}
+		}
+	}
+
+	/// <summary>
+	/// Indicates the cell delta color.
+	/// </summary>
+	public Color CellDeltaColor
+	{
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		get => _userPreference.CellDeltaColor;
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		set
+		{
+			_userPreference.CellDeltaColor = value;
+			if (_isGiven is null)
 			{
 				_textBlock.Foreground = new SolidColorBrush(value);
 			}
@@ -211,7 +237,7 @@ internal sealed class CellDigit : DrawingElement
 		$$"""
 		{{
 			nameof(CellDigit)}} { Status = {{
-			(_isGiven ? "Given" : "Modifiable")}}, Digit = {{
+			(_isGiven is true ? "Given" : "Modifiable")}}, Digit = {{
 			(_textBlock.Text is var s and not "" ? s : "<Empty>")}} }
 		""";
 #endif

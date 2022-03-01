@@ -1,6 +1,5 @@
 ﻿using System.ComponentModel;
 using Microsoft.UI.Xaml.Media;
-using Windows.UI;
 using static System.Numerics.BitOperations;
 
 namespace Sudoku.UI.Drawing.Shapes;
@@ -15,14 +14,19 @@ namespace Sudoku.UI.Drawing.Shapes;
 internal sealed class CandidateDigit : DrawingElement
 {
 	/// <summary>
-	/// Indicates whether the candidate block shows digits.
+	/// Indicates the inner grid.
 	/// </summary>
-	private bool _showDigits;
+	private readonly GridLayout _grid;
 
 	/// <summary>
-	/// Indicates the font size of each digit.
+	/// Indicates the user preference.
 	/// </summary>
-	private double _fontSize;
+	private readonly UserPreference _userPreference;
+
+	/// <summary>
+	/// Indicates the digit blocks.
+	/// </summary>
+	private readonly TextBlock[] _digitBlocks = new TextBlock[9];
 
 	/// <summary>
 	/// Indicates the candidate mask.
@@ -30,31 +34,17 @@ internal sealed class CandidateDigit : DrawingElement
 	private short _candidateMask;
 
 	/// <summary>
-	/// Indicates the font name of each digit.
+	/// Indicates the wrong digit mask.
 	/// </summary>
-	private string _fontName;
-
-	/// <summary>
-	/// Indicates the inner grid.
-	/// </summary>
-	private readonly GridLayout _grid;
-
-	/// <summary>
-	/// Indicates the digit blocks.
-	/// </summary>
-	private readonly TextBlock[] _digitBlocks = new TextBlock[9];
+	private short _wrongDigitMask;
 
 
 	/// <summary>
 	/// Initializes a <see cref="CandidateDigit"/> instance via the details.
 	/// </summary>
-	/// <param name="showDigits">Indicates whether the candidate block shows the digits.</param>
-	/// <param name="fontName">The font name.</param>
-	/// <param name="fontSize">The font size.</param>
-	/// <param name="color">The color.</param>
+	/// <param name="userPreference">The user preference.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public CandidateDigit(bool showDigits, string fontName, double fontSize, Color color) :
-		this(0, showDigits, fontName, fontSize, color)
+	public CandidateDigit(UserPreference userPreference) : this(511, 0, userPreference)
 	{
 	}
 
@@ -62,38 +52,40 @@ internal sealed class CandidateDigit : DrawingElement
 	/// Initializes a <see cref="CandidateDigit"/> instance via the details.
 	/// </summary>
 	/// <param name="candidateMask">The candidate mask.</param>
-	/// <param name="showDigits">Indicates whether the candidate block shows the digits.</param>
-	/// <param name="fontName">The font name.</param>
-	/// <param name="fontSize">The font size.</param>
-	/// <param name="color">The color.</param>
+	/// <param name="wrongDigitMask">The wrong digits mask.</param>
+	/// <param name="userPreference">The user preference.</param>
 	/// <exception cref="ArgumentOutOfRangeException">
 	/// Throws when the argument <paramref name="candidateMask"/> is negative number or greater than 511.
 	/// </exception>
-	public CandidateDigit(short candidateMask, bool showDigits, string fontName, double fontSize, Color color)
+	public CandidateDigit(short candidateMask, short wrongDigitMask, UserPreference userPreference)
 	{
 		_candidateMask = candidateMask is >= 0 and <= 511
 			? candidateMask
 			: throw new ArgumentOutOfRangeException(nameof(candidateMask));
+		_wrongDigitMask = wrongDigitMask is >= 0 and <= 511
+			? wrongDigitMask
+			: throw new ArgumentOutOfRangeException(nameof(wrongDigitMask));
 
-		_showDigits = showDigits;
-		_fontName = fontName;
-		_fontSize = fontSize;
-
-		var grid = new GridLayout { Visibility = showDigits ? Visibility.Visible : Visibility.Collapsed }
-			.WithRowDefinitionsCount(3)
-			.WithColumnDefinitionsCount(3);
+		_userPreference = userPreference;
+		var grid = new GridLayout
+		{
+			Visibility = userPreference.ShowCandidates ? Visibility.Visible : Visibility.Collapsed
+		}.WithRowDefinitionsCount(3).WithColumnDefinitionsCount(3);
 		for (byte digit = 0; digit < 9; digit++)
 		{
 			bool containsTheDigit = (candidateMask >> digit & 1) != 0;
 			var digitBlock = new TextBlock
 			{
 				Text = (digit + 1).ToString(),
-				FontFamily = new(fontName),
-				FontSize = fontSize,
+				FontFamily = new(_userPreference.CandidateFontName),
+				FontSize = _userPreference.CandidateFontSize,
 				Visibility = containsTheDigit ? Visibility.Visible : Visibility.Collapsed,
 				TextAlignment = TextAlignment.Center,
 				HorizontalTextAlignment = TextAlignment.Center,
-				Foreground = new SolidColorBrush(color)
+				Foreground = new SolidColorBrush(
+					(wrongDigitMask >> digit & 1) != 0
+						? _userPreference.CandidateDeltaColor
+						: _userPreference.CandidateColor)
 			};
 
 			GridLayout.SetRow(digitBlock, digit / 3);
@@ -109,42 +101,21 @@ internal sealed class CandidateDigit : DrawingElement
 	/// <summary>
 	/// Gets or sets the value indicating whether the candidate block shows digits.
 	/// </summary>
-	public bool ShowDigits
+	public bool ShowCandidates
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => _showDigits;
+		get => _userPreference.ShowCandidates;
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		set
 		{
-			if (_showDigits == value)
+			if (_userPreference.ShowCandidates == value)
 			{
 				return;
 			}
 
-			_showDigits = value;
+			_userPreference.ShowCandidates = value;
 			_grid.Visibility = value ? Visibility.Visible : Visibility.Collapsed;
-		}
-	}
-
-	/// <summary>
-	/// Gets or sets the font size.
-	/// </summary>
-	public double FontSize
-	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => _fontSize;
-
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		set
-		{
-			if (_fontSize.NearlyEquals(value))
-			{
-				return;
-			}
-
-			_fontSize = value;
-			Array.ForEach(_digitBlocks, digitBlock => digitBlock.FontSize = value);
 		}
 	}
 
@@ -171,39 +142,24 @@ internal sealed class CandidateDigit : DrawingElement
 	}
 
 	/// <summary>
-	/// Gets or sets the font name.
+	/// Indicates the wrong digits mask.
 	/// </summary>
-	public string FontName
+	public short WrongDigitMask
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => _fontName;
-
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		set
-		{
-			if (_fontName == value)
-			{
-				return;
-			}
-
-			_fontName = value;
-			Array.ForEach(_digitBlocks, digitBlock => digitBlock.FontFamily = new(value));
-		}
-	}
-
-	/// <summary>
-	/// Indicates the color.
-	/// </summary>
-	public Color Color
-	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => ((SolidColorBrush)_digitBlocks[0].Foreground).Color;
+		get => _wrongDigitMask;
 
 		set
 		{
+			_wrongDigitMask = value is >= 0 and <= 511
+				? value
+				: throw new ArgumentOutOfRangeException(nameof(value));
+
 			for (byte digit = 0; digit < 9; digit++)
 			{
-				_digitBlocks[digit].Foreground = new SolidColorBrush(value);
+				bool containsTheDigit = (value >> digit & 1) != 0;
+				_digitBlocks[digit].Foreground = new SolidColorBrush(
+					containsTheDigit ? _userPreference.CandidateDeltaColor : _userPreference.CandidateColor);
 			}
 		}
 	}

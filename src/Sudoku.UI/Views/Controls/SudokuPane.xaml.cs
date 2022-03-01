@@ -331,15 +331,11 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 		// TODO: Initializes candidate border lines if worth.
 
 		// Initializes the sudoku grid.
-		var sudokuGrid = new SudokuGrid(
-			up.ShowCandidates, Size, OutsideOffset, up.GivenColor, up.ModifiableColor, up.CandidateColor,
-			up.ValueFontName, up.CandidateFontName, up.ValueFontSize, up.CandidateFontSize,
-			() =>
-			{
-				PropertyChanged?.Invoke(this, new(nameof(UndoStepsCount)));
-				PropertyChanged?.Invoke(this, new(nameof(RedoStepsCount)));
-			}
-		);
+		var sudokuGrid = new SudokuGrid(up, Size, OutsideOffset, () =>
+		{
+			PropertyChanged?.Invoke(this, new(nameof(UndoStepsCount)));
+			PropertyChanged?.Invoke(this, new(nameof(RedoStepsCount)));
+		});
 
 		_drawingElements.Add(sudokuGrid);
 

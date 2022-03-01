@@ -1,4 +1,6 @@
-﻿using System.ComponentModel;
+﻿#define USE_TO_MASK_STRING_METHOD
+
+using System.ComponentModel;
 using Sudoku.Solving;
 using static System.Numerics.BitOperations;
 using static Sudoku.Constants;
@@ -11,7 +13,7 @@ namespace Sudoku.Collections;
 /// </summary>
 #if DEBUG
 #if USE_TO_MASK_STRING_METHOD
-[DebuggerDisplay($$"""{{{nameof(ToMaskString)}}(".+:"),nq}""")]
+[DebuggerDisplay($$"""{{{nameof(ToMaskString)}}(),nq}""")]
 #else
 [DebuggerDisplay($$"""{{{nameof(ToString)}}(".+:"),nq}""")]
 #endif // !USE_TO_MASK_STRING_METHOD
@@ -255,15 +257,19 @@ public unsafe partial struct Grid :
 	/// </remarks>
 	private Grid(in int firstElement, GridCreatingOption creatingOption = GridCreatingOption.None)
 	{
+		// Firstly we should initialize the inner values.
+		this = Empty;
+
+		// Then traverse the array (span, pointer or etc.), to get refresh the values.
 		fixed (int* p = &firstElement)
 		{
 			for (int i = 0; i < 81; i++)
 			{
-				if (p[i] is var value and not 0)
+				bool minusOneEnabled = creatingOption == GridCreatingOption.MinusOne;
+				if (p[i] is var value && (minusOneEnabled ? value - 1 : value) is var realValue and not -1)
 				{
-					// Calls the indexer to trigger the event
-					// (Clear the candidates in peer cells).
-					this[i] = creatingOption == GridCreatingOption.MinusOne ? value - 1 : value;
+					// Calls the indexer to trigger the event (Clear the candidates in peer cells).
+					this[i] = realValue;
 
 					// Set the status to 'CellStatus.Given'.
 					SetStatus(i, CellStatus.Given);

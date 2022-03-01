@@ -6,7 +6,7 @@ namespace Sudoku.UI;
 /// <summary>
 /// Defines the user preferences in the program.
 /// </summary>
-internal sealed class UserPreference
+public sealed class UserPreference
 {
 	/// <summary>
 	/// Indicates whether the current grid displays the candidates.
@@ -15,6 +15,15 @@ internal sealed class UserPreference
 	/// The default value is <see langword="true"/>.
 	/// </remarks>
 	public bool ShowCandidates = true;
+
+	/// <summary>
+	/// Indicates whether the sudoku grid pane will display for wrong digits (cell or candidate values),
+	/// using the different color.
+	/// </summary>
+	/// <remarks>
+	/// The default value is <see langword="true"/>.
+	/// </remarks>
+	public bool EnableDeltaValuesDisplaying = true;
 
 	/// <summary>
 	/// Indicates the outside border width. The value cannot be negative.
@@ -119,4 +128,20 @@ internal sealed class UserPreference
 	/// The default value is <c>#FF696969</c> (i.e. DimGray).
 	/// </remarks>
 	public Color CandidateColor = Colors.DimGray;
+
+	/// <summary>
+	/// Indicates the color of the wrong cell value input.
+	/// </summary>
+	/// <remarks>
+	/// The default value is <c>#FFFF0000</c> (i.e. Red).
+	/// </remarks>
+	public Color CellDeltaColor = Colors.Red;
+
+	/// <summary>
+	/// Indicates the color of the wrong candidate value input.
+	/// </summary>
+	/// <remarks>
+	/// The default value is <c>#FFFFB9B9</c> (i.e. <see cref="Color"/> {255, 255, 185, 185}).
+	/// </remarks>
+	public Color CandidateDeltaColor = Color.FromArgb(255, 255, 185, 185);
 }
