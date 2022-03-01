@@ -22,7 +22,7 @@ public sealed class UserPreference
 	/// <remarks>
 	/// The default value is <see langword="false"/>.
 	/// </remarks>
-	public bool ShowCandidateBorderLines = true; // false
+	public bool ShowCandidateBorderLines = false;
 
 	/// <summary>
 	/// Indicates whether the sudoku grid pane will display for wrong digits (cell or candidate values),
