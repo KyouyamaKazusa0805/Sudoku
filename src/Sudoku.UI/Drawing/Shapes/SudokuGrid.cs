@@ -1,4 +1,6 @@
-﻿namespace Sudoku.UI.Drawing.Shapes;
+﻿using static Sudoku.Constants.Tables;
+
+namespace Sudoku.UI.Drawing.Shapes;
 
 /// <summary>
 /// Defines a sudoku grid.
@@ -202,9 +204,15 @@ public sealed class SudokuGrid : DrawingElement
 		{
 			// Set the new grid and update the view.
 			_grid = value;
+
+			// Clear the wrong status for all cell digits and candidate digits.
+			Array.ForEach(_cellDigits, cellDigit => cellDigit.IsGiven = false);
+			Array.ForEach(_candidateDigits, candidateDigit => candidateDigit.WrongDigitMask = 0);
+
+			// Update the view.
 			UpdateView();
 
-			// The operation must clear two stacks.
+			// The operation must clear two stacks, and trigger the handler '_undoRedoStepsUpdatedCallback'.
 			_undoSteps.Clear();
 			_redoSteps.Clear();
 			_undoRedoStepsUpdatedCallback?.Invoke();
@@ -362,7 +370,9 @@ public sealed class SudokuGrid : DrawingElement
 					if (_userPreference.EnableDeltaValuesDisplaying
 						&& _grid.ResetGrid.Solution is { IsUndefined: false } solution)
 					{
-						_candidateDigits[i].WrongDigitMask = (short)(511 & ~candidateMask & solution[i]);
+						// Checks the wrong digits.
+						// Wrong digits are the correct digits in the solution but they have been eliminated.
+						_candidateDigits[i].WrongDigitMask = (short)(511 & ~candidateMask & 1 << solution[i]);
 					}
 
 					break;
@@ -381,12 +391,34 @@ public sealed class SudokuGrid : DrawingElement
 					// Checks the correctness of the digit.
 					// If the digit is wrong, we should display it using a different color
 					// if enabled the delta view.
-					if (_userPreference.EnableDeltaValuesDisplaying
-						&& _grid.ResetGrid.Solution is { IsUndefined: false } solution
-						&& solution[i] != digit)
+					if (_userPreference.EnableDeltaValuesDisplaying)
 					{
-						_cellDigits[i].IsGiven = null;
-						_candidateDigits[i].WrongDigitMask = 0;
+						if (_grid.ResetGrid.Solution is { IsUndefined: false } solution)
+						{
+							// For unique-solution puzzle, we should check both duplicate digits
+							// and wrong digits different with the solution.
+							if (solution[i] != digit)
+							{
+								_cellDigits[i].IsGiven = null;
+								_candidateDigits[i].WrongDigitMask = 0;
+							}
+						}
+						else
+						{
+							// For multiple- and no- solution puzzle, we should check only duplicate digits.
+							foreach (int cell in PeerMaps[i] - _grid.EmptyCells)
+							{
+								if (_grid[cell] == _grid[i] && _grid.GetStatus(i) != CellStatus.Given)
+								{
+									// Duplicate.
+									// Here we should report the duplicate digit.
+									_cellDigits[i].IsGiven = null;
+									_candidateDigits[i].WrongDigitMask = 0;
+
+									break;
+								}
+							}
+						}
 					}
 
 					break;

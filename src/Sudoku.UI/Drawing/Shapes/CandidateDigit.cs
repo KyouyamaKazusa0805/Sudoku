@@ -73,13 +73,12 @@ internal sealed class CandidateDigit : DrawingElement
 		}.WithRowDefinitionsCount(3).WithColumnDefinitionsCount(3);
 		for (byte digit = 0; digit < 9; digit++)
 		{
-			bool containsTheDigit = (candidateMask >> digit & 1) != 0;
 			var digitBlock = new TextBlock
 			{
 				Text = (digit + 1).ToString(),
 				FontFamily = new(_userPreference.CandidateFontName),
 				FontSize = _userPreference.CandidateFontSize,
-				Visibility = containsTheDigit ? Visibility.Visible : Visibility.Collapsed,
+				Visibility = ((candidateMask | wrongDigitMask) >> digit & 1) != 0 ? Visibility.Visible : Visibility.Collapsed,
 				TextAlignment = TextAlignment.Center,
 				HorizontalTextAlignment = TextAlignment.Center,
 				Foreground = new SolidColorBrush(
@@ -135,8 +134,8 @@ internal sealed class CandidateDigit : DrawingElement
 
 			for (byte digit = 0; digit < 9; digit++)
 			{
-				bool containsTheDigit = (value >> digit & 1) != 0;
-				_digitBlocks[digit].Visibility = containsTheDigit ? Visibility.Visible : Visibility.Collapsed;
+				_digitBlocks[digit].Visibility =
+					((value | _wrongDigitMask) >> digit & 1) != 0 ? Visibility.Visible : Visibility.Collapsed;
 			}
 		}
 	}
@@ -157,9 +156,13 @@ internal sealed class CandidateDigit : DrawingElement
 
 			for (byte digit = 0; digit < 9; digit++)
 			{
-				bool containsTheDigit = (value >> digit & 1) != 0;
-				_digitBlocks[digit].Foreground = new SolidColorBrush(
-					containsTheDigit ? _userPreference.CandidateDeltaColor : _userPreference.CandidateColor);
+				ref var current = ref _digitBlocks[digit];
+				current.Visibility =
+					((_candidateMask | value) >> digit & 1) != 0 ? Visibility.Visible : Visibility.Collapsed;
+				current.Foreground = new SolidColorBrush(
+					(_wrongDigitMask >> digit & 1) != 0
+						? _userPreference.CandidateDeltaColor
+						: _userPreference.CandidateColor);
 			}
 		}
 	}
