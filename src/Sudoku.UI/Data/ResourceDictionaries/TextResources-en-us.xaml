@@ -11,8 +11,11 @@
 	<x:String x:Key="SudokuPage_Copy">Copy code</x:String>
 	<x:String x:Key="SudokuPage_Paste">Paste</x:String>
 	<x:String x:Key="SudokuPage_Save">Save</x:String>
-	<x:String x:Key="SudokuPage_Clear">Clear</x:String>
+	<x:String x:Key="SudokuPage_Clear">Revert to empty</x:String>
+	<x:String x:Key="SudokuPage_Reset">Reset grid</x:String>
 	<x:String x:Key="SudokuPage_ClearInfoBars">Clear messages</x:String>
+	<x:String x:Key="SudokuPage_Fix">Fix digits</x:String>
+	<x:String x:Key="SudokuPage_Unfix">Unfix digits</x:String>
 	<x:String x:Key="SudokuPage_Undo">Undo</x:String>
 	<x:String x:Key="SudokuPage_Redo">Redo</x:String>
 	<x:String x:Key="SudokuPage_Generate">Generate</x:String>

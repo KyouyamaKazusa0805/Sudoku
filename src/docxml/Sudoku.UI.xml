@@ -1694,6 +1694,22 @@
             <param name="cell">The cell that the eliminated digit is from.</param>
             <param name="digit">The digit eliminated.</param>
         </member>
+        <member name="M:Sudoku.UI.Drawing.Shapes.SudokuGrid.FixGrid">
+            <summary>
+            To fix the grid, which means all modifiable digits will be changed their own status to given ones.
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Drawing.Shapes.SudokuGrid.UnfixGrid">
+            <summary>
+            To unfix the grid, which means all given digits will be changed their own status to modifiable ones.
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Drawing.Shapes.SudokuGrid.ResetGrid">
+            <summary>
+            To reset the grid, which means all value having been filled into the grid as modifiable ones
+            will be cleared.
+            </summary>
+        </member>
         <member name="M:Sudoku.UI.Drawing.Shapes.SudokuGrid.Equals(Sudoku.UI.Drawing.Shapes.DrawingElement)">
             <inheritdoc/>
         </member>
@@ -2141,6 +2157,21 @@
             <param name="cell">The cell.</param>
             <param name="digit">The digit.</param>
         </member>
+        <member name="M:Sudoku.UI.Views.Controls.SudokuPane.FixGrid">
+            <summary>
+            To fix the grid, to change all modifiable values to given ones.
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Views.Controls.SudokuPane.UnfixGrid">
+            <summary>
+            To unfix the grid, to change all given values to modifiable ones.
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Views.Controls.SudokuPane.ResetGrid">
+            <summary>
+            To reset the grid, to revert the grid to the initial status.
+            </summary>
+        </member>
         <member name="M:Sudoku.UI.Views.Controls.SudokuPane.GridByReference">
             <summary>
             Gets or sets the current used grid by reference. The method will return by reference, in order to
@@ -2334,6 +2365,21 @@
             Redo the step.
             </summary>
         </member>
+        <member name="M:Sudoku.UI.Views.Pages.SudokuPage.FixGrid">
+            <summary>
+            Fix the grid.
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Views.Pages.SudokuPage.UnfixGrid">
+            <summary>
+            Unfix the grid.
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Views.Pages.SudokuPage.ResetGrid">
+            <summary>
+            Reset the grid.
+            </summary>
+        </member>
         <member name="M:Sudoku.UI.Views.Pages.SudokuPage.EnsureUnsnapped">
             <summary>
             To determine whether the current application view is in an unsnapped state.
@@ -2417,9 +2463,19 @@
             Indicates the event trigger callback method that executes returning back to the empty grid.
             </summary>
         </member>
-        <member name="M:Sudoku.UI.Views.Pages.SudokuPage.CommandClearMessages_ExecuteRequested(Microsoft.UI.Xaml.Input.XamlUICommand,Microsoft.UI.Xaml.Input.ExecuteRequestedEventArgs)">
+        <member name="M:Sudoku.UI.Views.Pages.SudokuPage.CommandReset_ExecuteRequested(Microsoft.UI.Xaml.Input.XamlUICommand,Microsoft.UI.Xaml.Input.ExecuteRequestedEventArgs)">
             <summary>
-            Indicates the event trigger callback method that executes clearing all messages.
+            Indicates the event trigger callback method that executes resetting the grid to the initial status.
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Views.Pages.SudokuPage.CommandFix_ExecuteRequested(Microsoft.UI.Xaml.Input.XamlUICommand,Microsoft.UI.Xaml.Input.ExecuteRequestedEventArgs)">
+            <summary>
+            Indicates the event trigger callback method that executes fixing digits.
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Views.Pages.SudokuPage.CommandUnfix_ExecuteRequested(Microsoft.UI.Xaml.Input.XamlUICommand,Microsoft.UI.Xaml.Input.ExecuteRequestedEventArgs)">
+            <summary>
+            Indicates the event trigger callback method that executes unfixing digits.
             </summary>
         </member>
         <member name="M:Sudoku.UI.Views.Pages.SudokuPage.CommandUndo_ExecuteRequested(Microsoft.UI.Xaml.Input.XamlUICommand,Microsoft.UI.Xaml.Input.ExecuteRequestedEventArgs)">
@@ -2430,6 +2486,11 @@
         <member name="M:Sudoku.UI.Views.Pages.SudokuPage.CommandRedo_ExecuteRequested(Microsoft.UI.Xaml.Input.XamlUICommand,Microsoft.UI.Xaml.Input.ExecuteRequestedEventArgs)">
             <summary>
             Indicates the event trigger callback method that executes redoing a step.
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Views.Pages.SudokuPage.CommandClearMessages_ExecuteRequested(Microsoft.UI.Xaml.Input.XamlUICommand,Microsoft.UI.Xaml.Input.ExecuteRequestedEventArgs)">
+            <summary>
+            Indicates the event trigger callback method that executes clearing all messages.
             </summary>
         </member>
         <member name="M:Sudoku.UI.Views.Pages.SudokuPage.CommandGenerate_ExecuteRequestedAsync(Microsoft.UI.Xaml.Input.XamlUICommand,Microsoft.UI.Xaml.Input.ExecuteRequestedEventArgs)">

@@ -87,6 +87,24 @@ public sealed partial class SudokuPage : Page
 	private void Redo() => _cPane.RedoStep();
 
 	/// <summary>
+	/// Fix the grid.
+	/// </summary>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	private void FixGrid() => _cPane.FixGrid();
+
+	/// <summary>
+	/// Unfix the grid.
+	/// </summary>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	private void UnfixGrid() => _cPane.UnfixGrid();
+
+	/// <summary>
+	/// Reset the grid.
+	/// </summary>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	private void ResetGrid() => _cPane.ResetGrid();
+
+	/// <summary>
 	/// To determine whether the current application view is in an unsnapped state.
 	/// </summary>
 	/// <returns>The <see cref="bool"/> value indicating that.</returns>
@@ -330,10 +348,22 @@ public sealed partial class SudokuPage : Page
 	}
 
 	/// <summary>
-	/// Indicates the event trigger callback method that executes clearing all messages.
+	/// Indicates the event trigger callback method that executes resetting the grid to the initial status.
 	/// </summary>
-	private void CommandClearMessages_ExecuteRequested(
-		[IsDiscard] XamlUICommand sender, [IsDiscard] ExecuteRequestedEventArgs args) => ClearMessages();
+	private void CommandReset_ExecuteRequested(
+		[IsDiscard] XamlUICommand sender, [IsDiscard] ExecuteRequestedEventArgs args) => ResetGrid();
+
+	/// <summary>
+	/// Indicates the event trigger callback method that executes fixing digits.
+	/// </summary>
+	private void CommandFix_ExecuteRequested(
+		[IsDiscard] XamlUICommand sender, [IsDiscard] ExecuteRequestedEventArgs args) => FixGrid();
+
+	/// <summary>
+	/// Indicates the event trigger callback method that executes unfixing digits.
+	/// </summary>
+	private void CommandUnfix_ExecuteRequested(
+		[IsDiscard] XamlUICommand sender, [IsDiscard] ExecuteRequestedEventArgs args) => UnfixGrid();
 
 	/// <summary>
 	/// Indicates the event trigger callback method that executes undoing a step.
@@ -346,6 +376,12 @@ public sealed partial class SudokuPage : Page
 	/// </summary>
 	private void CommandRedo_ExecuteRequested(
 		[IsDiscard] XamlUICommand sender, [IsDiscard] ExecuteRequestedEventArgs args) => Redo();
+
+	/// <summary>
+	/// Indicates the event trigger callback method that executes clearing all messages.
+	/// </summary>
+	private void CommandClearMessages_ExecuteRequested(
+		[IsDiscard] XamlUICommand sender, [IsDiscard] ExecuteRequestedEventArgs args) => ClearMessages();
 
 	/// <summary>
 	/// Indicates the event trigger callback method that executes generating a puzzle.

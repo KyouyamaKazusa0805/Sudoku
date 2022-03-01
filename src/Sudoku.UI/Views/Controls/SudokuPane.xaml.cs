@@ -184,6 +184,24 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 	public void EliminateDigit(int cell, int digit) => GetSudokuGridViewModel().EliminateDigit(cell, digit);
 
 	/// <summary>
+	/// To fix the grid, to change all modifiable values to given ones.
+	/// </summary>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public void FixGrid() => GetSudokuGridViewModel().FixGrid();
+
+	/// <summary>
+	/// To unfix the grid, to change all given values to modifiable ones.
+	/// </summary>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public void UnfixGrid() => GetSudokuGridViewModel().UnfixGrid();
+
+	/// <summary>
+	/// To reset the grid, to revert the grid to the initial status.
+	/// </summary>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public void ResetGrid() => GetSudokuGridViewModel().ResetGrid();
+
+	/// <summary>
 	/// Gets or sets the current used grid by reference. The method will return by reference, in order to
 	/// copy the reference instead of the instance itself, to optimize the memory allocation.
 	/// </summary>

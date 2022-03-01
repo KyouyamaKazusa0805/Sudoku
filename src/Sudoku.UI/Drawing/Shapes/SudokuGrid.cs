@@ -304,8 +304,49 @@ public sealed class SudokuGrid : DrawingElement
 
 		// Update the grid and view.
 		_grid[cell, digit] = false;
+		UpdateView();
+	}
 
-		// To update the view.
+	/// <summary>
+	/// To fix the grid, which means all modifiable digits will be changed their own status to given ones.
+	/// </summary>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public void FixGrid()
+	{
+		// Stores the previous grid status to the undo stack.
+		AddStep(_grid);
+
+		// Update the grid and view.
+		_grid.Fix();
+		UpdateView();
+	}
+
+	/// <summary>
+	/// To unfix the grid, which means all given digits will be changed their own status to modifiable ones.
+	/// </summary>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public void UnfixGrid()
+	{
+		// Stores the previous grid status to the undo stack.
+		AddStep(_grid);
+
+		// Update the grid and view.
+		_grid.Unfix();
+		UpdateView();
+	}
+
+	/// <summary>
+	/// To reset the grid, which means all value having been filled into the grid as modifiable ones
+	/// will be cleared.
+	/// </summary>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public void ResetGrid()
+	{
+		// Stores the previous grid status to the undo stack.
+		AddStep(_grid);
+
+		// Update the grid and view.
+		_grid.Reset();
 		UpdateView();
 	}
 

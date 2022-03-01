@@ -92,30 +92,58 @@
 							</XamlUICommand>
 						</AppBarButton.Command>
 					</AppBarButton>
-					<AppBarButton Icon="ClearSelection" Label="{StaticResource SudokuPage_Clear}">
+					<AppBarSeparator />
+					<AppBarButton Label="{StaticResource SudokuPage_Reset}">
+						<AppBarButton.Command>
+							<XamlUICommand ExecuteRequested="CommandReset_ExecuteRequested">
+								<XamlUICommand.IconSource>
+									<SymbolIconSource Symbol="Refresh" />
+								</XamlUICommand.IconSource>
+							</XamlUICommand>
+						</AppBarButton.Command>
+					</AppBarButton>
+					<AppBarButton Icon="Clear" Label="{StaticResource SudokuPage_Clear}">
 						<AppBarButton.Flyout>
 							<Flyout>
 								<StackPanel>
 									<TextBlock
 										Style="{StaticResource BaseTextBlockStyle}" Margin="0,0,0,12"
+										TextWrapping="WrapWholeWords" MaxWidth="400"
 										Text="{StaticResource SudokuPage_Info_WillClearSudokuGrid}" />
 									<Button
 										Content="{StaticResource SudokuPage_Sure}"
 										CommandParameter="{Binding RelativeSource={RelativeSource Self}}">
 										<Button.Command>
-											<XamlUICommand ExecuteRequested="CommandReturnEmptyGrid_ExecuteRequested" />
+											<XamlUICommand
+												ExecuteRequested="CommandReturnEmptyGrid_ExecuteRequested" />
 										</Button.Command>
 									</Button>
 								</StackPanel>
 							</Flyout>
 						</AppBarButton.Flyout>
 					</AppBarButton>
-					<AppBarButton x:Name="_cClearInfoBars" Label="{StaticResource SudokuPage_ClearInfoBars}">
+					<AppBarSeparator />
+					<AppBarButton Label="{StaticResource SudokuPage_Fix}">
 						<AppBarButton.Command>
-							<XamlUICommand ExecuteRequested="CommandClearMessages_ExecuteRequested">
+							<XamlUICommand ExecuteRequested="CommandFix_ExecuteRequested">
 								<XamlUICommand.IconSource>
-									<SymbolIconSource Symbol="Clear" />
+									<SymbolIconSource Symbol="Pin" />
 								</XamlUICommand.IconSource>
+								<XamlUICommand.KeyboardAccelerators>
+									<KeyboardAccelerator Modifiers="Control" Key="Tab" />
+								</XamlUICommand.KeyboardAccelerators>
+							</XamlUICommand>
+						</AppBarButton.Command>
+					</AppBarButton>
+					<AppBarButton Label="{StaticResource SudokuPage_Unfix}">
+						<AppBarButton.Command>
+							<XamlUICommand ExecuteRequested="CommandUnfix_ExecuteRequested">
+								<XamlUICommand.IconSource>
+									<SymbolIconSource Symbol="UnPin" />
+								</XamlUICommand.IconSource>
+								<XamlUICommand.KeyboardAccelerators>
+									<KeyboardAccelerator Modifiers="Control,Shift" Key="Tab" />
+								</XamlUICommand.KeyboardAccelerators>
 							</XamlUICommand>
 						</AppBarButton.Command>
 					</AppBarButton>
@@ -155,6 +183,16 @@
 								<XamlUICommand.KeyboardAccelerators>
 									<KeyboardAccelerator Modifiers="Control" Key="Y" />
 								</XamlUICommand.KeyboardAccelerators>
+							</XamlUICommand>
+						</AppBarButton.Command>
+					</AppBarButton>
+					<AppBarSeparator />
+					<AppBarButton x:Name="_cClearInfoBars" Label="{StaticResource SudokuPage_ClearInfoBars}">
+						<AppBarButton.Command>
+							<XamlUICommand ExecuteRequested="CommandClearMessages_ExecuteRequested">
+								<XamlUICommand.IconSource>
+									<SymbolIconSource Symbol="ClearSelection" />
+								</XamlUICommand.IconSource>
 							</XamlUICommand>
 						</AppBarButton.Command>
 					</AppBarButton>
