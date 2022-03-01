@@ -324,28 +324,6 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 			_drawingElements.Add(new OutsideRectangle(up.OutsideBorderColor, Size, up.OutsideBorderWidth));
 		}
 
-		// Initializes block border lines.
-		for (byte i = 0; i < 4; i++)
-		{
-			_drawingElements.Add(new BlockLine(up.BlockBorderColor, up.BlockBorderWidth, Size, OutsideOffset, i));
-			_drawingElements.Add(
-				new BlockLine(up.BlockBorderColor, up.BlockBorderWidth, Size, OutsideOffset, (byte)(i + 4)));
-		}
-
-		// Initializes cell border lines.
-		for (byte i = 0; i < 10; i++)
-		{
-			if (i % 3 == 0)
-			{
-				// Skips the overlapping lines.
-				continue;
-			}
-
-			_drawingElements.Add(new CellLine(up.CellBorderColor, up.CellBorderWidth, Size, OutsideOffset, i));
-			_drawingElements.Add(
-				new CellLine(up.CellBorderColor, up.CellBorderWidth, Size, OutsideOffset, (byte)(i + 10)));
-		}
-
 		// Initializes candidate border lines if worth.
 		if (up.ShowCandidateBorderLines)
 		{
@@ -365,14 +343,34 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 			}
 		}
 
+		// Initializes cell border lines.
+		for (byte i = 0; i < 10; i++)
+		{
+			if (i % 3 == 0)
+			{
+				// Skips the overlapping lines.
+				continue;
+			}
+
+			_drawingElements.Add(new CellLine(up.CellBorderColor, up.CellBorderWidth, Size, OutsideOffset, i));
+			_drawingElements.Add(
+				new CellLine(up.CellBorderColor, up.CellBorderWidth, Size, OutsideOffset, (byte)(i + 10)));
+		}
+
+		// Initializes block border lines.
+		for (byte i = 0; i < 4; i++)
+		{
+			_drawingElements.Add(new BlockLine(up.BlockBorderColor, up.BlockBorderWidth, Size, OutsideOffset, i));
+			_drawingElements.Add(
+				new BlockLine(up.BlockBorderColor, up.BlockBorderWidth, Size, OutsideOffset, (byte)(i + 4)));
+		}
+
 		// Initializes the sudoku grid.
-		var sudokuGrid = new SudokuGrid(up, Size, OutsideOffset, () =>
+		_drawingElements.Add(new SudokuGrid(up, Size, OutsideOffset, () =>
 		{
 			PropertyChanged?.Invoke(this, new(nameof(UndoStepsCount)));
 			PropertyChanged?.Invoke(this, new(nameof(RedoStepsCount)));
-		});
-
-		_drawingElements.Add(sudokuGrid);
+		}));
 
 		// Add them into the control collection.
 		foreach (var control in from drawingElement in _drawingElements select drawingElement.GetControl())
