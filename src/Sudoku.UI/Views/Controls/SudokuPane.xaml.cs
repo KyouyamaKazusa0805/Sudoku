@@ -366,16 +366,19 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 		}
 
 		// Initializes the sudoku grid.
-		_drawingElements.Add(new SudokuGrid(up, Size, OutsideOffset, () =>
-		{
-			PropertyChanged?.Invoke(this, new(nameof(UndoStepsCount)));
-			PropertyChanged?.Invoke(this, new(nameof(RedoStepsCount)));
-		}));
+		_drawingElements.Add(new SudokuGrid(up, Size, OutsideOffset, triggerBoth));
 
 		// Add them into the control collection.
 		foreach (var control in from drawingElement in _drawingElements select drawingElement.GetControl())
 		{
 			_cCanvasMain.Children.Add(control);
+		}
+
+
+		void triggerBoth()
+		{
+			PropertyChanged?.Invoke(this, new(nameof(UndoStepsCount)));
+			PropertyChanged?.Invoke(this, new(nameof(RedoStepsCount)));
 		}
 	}
 
