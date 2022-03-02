@@ -48,7 +48,7 @@ public sealed class K9Notation : ICellNotation
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static string ToDisplayString(in Cells cells) => ToDisplayString(cells, false, false);
+	public static string ToDisplayString(in Cells cells) => ToDisplayString(cells, K9NotationOptions.Default);
 
 	/// <summary>
 	/// Gets the <see cref="string"/> representation of the current notation
@@ -57,20 +57,14 @@ public sealed class K9Notation : ICellNotation
 	/// <param name="cells">
 	/// The list of cells to be converted to the <see cref="string"/> representation of the current notation.
 	/// </param>
-	/// <param name="upperCasing">
-	/// Indicates whether the method should use upper-casing to handle the result notation of cells.
-	/// For example, if <see langword="true"/>, the concept "row 3 column 3" will be displayed
-	/// as <c>C3</c>; otherwise, <c>c3</c>.
-	/// </param>
-	/// <param name="avoidConfusionOnRowLetters">
-	/// Indicates whether the method should avoid confusion for the letter I and digit 1. For example,
-	/// if <see langword="true"/>, row 9 column 9 will be notated as <c>K9</c>; otherwise, <c>I9</c>.
-	/// </param>
+	/// <param name="options">The extra options that controls the output behavior.</param>
 	/// <returns>The <see cref="string"/> representation of the current notation.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static string ToDisplayString(in Cells cells, bool upperCasing, bool avoidConfusionOnRowLetters)
+	public static string ToDisplayString(in Cells cells, in K9NotationOptions options)
 	{
 		const char separator = '|';
+		bool upperCasing = options.UpperCasing;
+		bool avoidConfusionOnRowLetters = options.AvoidConfusionOnRowLetters;
 		return cells switch
 		{
 			[] => string.Empty,

@@ -40,7 +40,7 @@ public abstract class RxCyNotation : ICellNotation
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static string ToDisplayString(in Cells cells) => ToDisplayString(cells, false);
+	public static string ToDisplayString(in Cells cells) => ToDisplayString(cells, RxCyNotationOptions.Default);
 
 	/// <summary>
 	/// Gets the <see cref="string"/> representation of the current notation
@@ -49,16 +49,13 @@ public abstract class RxCyNotation : ICellNotation
 	/// <param name="cells">
 	/// The list of cells to be converted to the <see cref="string"/> representation of the current notation.
 	/// </param>
-	/// <param name="upperCasing">
-	/// Indicates whether we should use upper-casing to handle the result notation of cells.
-	/// For example, if <see langword="true"/>, the concept "row 3 column 3" will be displayed
-	/// as <c>R3C3</c>; otherwise, <c>r3c3</c>.
-	/// </param>
+	/// <param name="options">The extra options that controls the output behavior.</param>
 	/// <returns>The <see cref="string"/> representation of the current notation.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static string ToDisplayString(in Cells cells, bool upperCasing)
+	public static string ToDisplayString(in Cells cells, in RxCyNotationOptions options)
 	{
 		const char separator = '|';
+		bool upperCasing = options.UpperCasing;
 		return cells switch
 		{
 			[] => string.Empty,
