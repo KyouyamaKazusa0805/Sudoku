@@ -8,7 +8,8 @@
 	<NavigationView
 		x:Name="_viewRouter" Header="{StaticResource ProgramName}" IsBackButtonVisible="Collapsed"
 		IsBackEnabled="False" PaneDisplayMode="Left" IsSettingsVisible="False"
-		ItemInvoked="ViewRouter_ItemInvoked" SelectionChanged="ViewRouter_SelectionChanged">
+		Loaded="ViewRouter_Loaded" ItemInvoked="ViewRouter_ItemInvoked"
+		SelectionChanged="ViewRouter_SelectionChanged">
 		<NavigationView.MenuItems>
 			<NavigationViewItem Icon="Edit" Tag="SudokuPage" Content="{StaticResource MainPage_Sudoku}" />
 		</NavigationView.MenuItems>

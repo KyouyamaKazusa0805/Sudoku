@@ -2406,6 +2406,13 @@
             <param name="tag">The specified tag of the navigate page item.</param>
             <param name="transitionInfo">The transition information.</param>
         </member>
+        <member name="M:Sudoku.UI.Views.Pages.MainPage.ViewRouter_Loaded(System.Object,Microsoft.UI.Xaml.RoutedEventArgs)">
+            <summary>
+            Triggers when the view router control is loaded.
+            </summary>
+            <param name="sender">The object that triggers the event.</param>
+            <param name="e">The event arguments provided.</param>
+        </member>
         <member name="M:Sudoku.UI.Views.Pages.MainPage.ViewRouterFrame_NavigationFailed(System.Object,Microsoft.UI.Xaml.Navigation.NavigationFailedEventArgs)">
             <summary>
             Triggers when the navigation is failed. The method will be invoked if and only if the routing is invalid.

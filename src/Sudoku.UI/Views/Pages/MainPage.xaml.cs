@@ -44,6 +44,15 @@ public sealed partial class MainPage : Page
 		}
 	}
 
+
+	/// <summary>
+	/// Triggers when the view router control is loaded.
+	/// </summary>
+	/// <param name="sender">The object that triggers the event.</param>
+	/// <param name="e">The event arguments provided.</param>
+	private void ViewRouter_Loaded([IsDiscard] object sender, [IsDiscard] RoutedEventArgs e) =>
+		OnNavigate(nameof(SudokuPage), new EntranceNavigationTransitionInfo());
+
 	/// <summary>
 	/// Triggers when the navigation is failed. The method will be invoked if and only if the routing is invalid.
 	/// </summary>
