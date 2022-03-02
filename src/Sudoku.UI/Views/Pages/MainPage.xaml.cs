@@ -5,9 +5,8 @@ using Sudoku.Diagnostics.CodeAnalysis;
 namespace Sudoku.UI.Views.Pages;
 
 /// <summary>
-/// A page that can be used on its own or navigated to within a <see cref="Frame"/>.
+/// Indicates the main page of the window. The page is used for navigation to other pages.
 /// </summary>
-/// <seealso cref="Frame"/>
 public sealed partial class MainPage : Page
 {
 	/// <summary>
@@ -45,10 +44,24 @@ public sealed partial class MainPage : Page
 		}
 	}
 
-
+	/// <summary>
+	/// Triggers when the navigation is failed. The method will be invoked if and only if the routing is invalid.
+	/// </summary>
+	/// <param name="sender">The object that triggers the event.</param>
+	/// <param name="e">The event arguments provided.</param>
+	/// <exception cref="InvalidOperationException">
+	/// Always throws. Because the method is handled with the failure of the navigation,
+	/// the throwing is expected.
+	/// </exception>
+	[DoesNotReturn]
 	private void ViewRouterFrame_NavigationFailed([IsDiscard] object sender, NavigationFailedEventArgs e) =>
 		throw new InvalidOperationException($"Cannot find the page '{e.SourcePageType.FullName}'.");
 
+	/// <summary>
+	/// Triggers when the frame of the navigation view control has navigated to a certain page.
+	/// </summary>
+	/// <param name="sender">The object that triggers the event.</param>
+	/// <param name="e">The event arguments provided.</param>
 	private void ViewRouterFrame_Navigated(object sender, NavigationEventArgs e)
 	{
 		if (
@@ -75,35 +88,29 @@ public sealed partial class MainPage : Page
 		bool itemSelector(NavigationViewItem n) => n.Tag as string == tag;
 	}
 
+	/// <summary>
+	/// Triggers when a page-related navigation item is clicked and selected.
+	/// </summary>
+	/// <param name="sender">The object that triggers the event.</param>
+	/// <param name="args">The event arguments provided.</param>
 	private void ViewRouter_ItemInvoked([IsDiscard] NavigationView sender, NavigationViewItemInvokedEventArgs args)
 	{
-		if (
-			args is not
-			{
-				InvokedItemContainer.Tag: string itemTag,
-				RecommendedNavigationTransitionInfo: var info
-			}
-		)
+		if (args is { InvokedItemContainer.Tag: string tag, RecommendedNavigationTransitionInfo: var info })
 		{
-			return;
+			OnNavigate(tag, info);
 		}
-
-		OnNavigate(itemTag, info);
 	}
 
+	/// <summary>
+	/// Triggers when the page-related navigation item, as the selection, is changed.
+	/// </summary>
+	/// <param name="sender">The object that triggers the event.</param>
+	/// <param name="args">The event arguments provided.</param>
 	private void ViewRouter_SelectionChanged([IsDiscard] NavigationView sender, NavigationViewSelectionChangedEventArgs args)
 	{
-		if (
-			args is not
-			{
-				SelectedItemContainer.Tag: string itemTag,
-				RecommendedNavigationTransitionInfo: var info
-			}
-		)
+		if (args is { SelectedItemContainer.Tag: string tag, RecommendedNavigationTransitionInfo: var info })
 		{
-			return;
+			OnNavigate(tag, info);
 		}
-
-		OnNavigate(itemTag, info);
 	}
 }
