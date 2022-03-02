@@ -13,6 +13,10 @@
 			<Grid.Resources>
 				<cvt:UndoOrRedoStackToIsEnabledConverter x:Key="_rUndoingOrRedoingConverter" />
 				<cvt:InfoBarBoardToIsEnabledConverter x:Key="_rInfoBoardConverter" />
+				<Style TargetType="CommandBar" x:Key="_rDefaultCommandBarStyle">
+					<Setter Property="HorizontalAlignment" Value="Left" />
+					<Setter Property="DefaultLabelPosition" Value="Right" />
+				</Style>
 			</Grid.Resources>
 			<Grid.RowDefinitions>
 				<RowDefinition Height="580" />
@@ -39,7 +43,7 @@
 				<TextBlock
 					Style="{StaticResource BaseTextBlockStyle}" Margin="0,25,0,0"
 					Text="{StaticResource SudokuPage_ToolList_Editing}" />
-				<CommandBar HorizontalAlignment="Left" DefaultLabelPosition="Right">
+				<CommandBar Style="{StaticResource _rDefaultCommandBarStyle}">
 					<AppBarButton Label="{StaticResource SudokuPage_Open}">
 						<AppBarButton.Command>
 							<XamlUICommand
@@ -202,7 +206,7 @@
 				<TextBlock
 					Style="{StaticResource BaseTextBlockStyle}" Margin="0,25,0,0"
 					Text="{StaticResource SudokuPage_ToolList_Analysis}" />
-				<CommandBar HorizontalAlignment="Left" DefaultLabelPosition="Right">
+				<CommandBar Style="{StaticResource _rDefaultCommandBarStyle}">
 					<AppBarButton
 						Label="{StaticResource SudokuPage_Generate}"
 						CommandParameter="{Binding RelativeSource={RelativeSource Self}}">
