@@ -1,6 +1,7 @@
 ﻿#pragma warning disable IDE0011
 
 using System.ComponentModel;
+using Sudoku.DataHandling;
 using Sudoku.Presentation;
 using static System.Numerics.BitOperations;
 using static Sudoku.Constants;
@@ -738,12 +739,7 @@ public unsafe struct Cells :
 	{
 		return format switch
 		{
-			null or "N" or "n" => this switch
-			{
-				[] => "{ }",
-				[var cell] => new Coordinate((byte)cell).ToString(),
-				_ => normalToString(this)
-			},
+			null or "N" or "n" => RxCyNotation.ToDisplayString(this),
 			"B" or "b" => binaryToString(this, false),
 			"T" or "t" => tableToString(this),
 			_ => throw new FormatException("The specified format is invalid.")
@@ -784,73 +780,6 @@ public unsafe struct Cells :
 			}
 
 			return sb.ToStringAndClear();
-		}
-
-		static string normalToString(in Cells @this)
-		{
-			const string leftCurlyBrace = "{ ", rightCurlyBrace = " }", separator = ", ";
-			var sbRow = new StringHandler(50);
-			var dic = new Dictionary<int, ICollection<int>>();
-			foreach (int cell in @this)
-			{
-				if (!dic.ContainsKey(cell / 9))
-				{
-					dic.Add(cell / 9, new List<int>());
-				}
-
-				dic[cell / 9].Add(cell % 9);
-			}
-			bool addCurlyBraces = dic.Count > 1;
-			if (addCurlyBraces)
-			{
-				sbRow.Append(leftCurlyBrace);
-			}
-			foreach (int row in dic.Keys)
-			{
-				sbRow.Append('r');
-				sbRow.Append(row + 1);
-				sbRow.Append('c');
-				sbRow.AppendRange(dic[row], static v => (v + 1).ToString());
-				sbRow.Append(separator);
-			}
-			sbRow.RemoveFromEnd(separator.Length);
-			if (addCurlyBraces)
-			{
-				sbRow.Append(rightCurlyBrace);
-			}
-
-			dic.Clear();
-			var sbColumn = new StringHandler(50);
-			foreach (int cell in @this)
-			{
-				if (!dic.ContainsKey(cell % 9))
-				{
-					dic.Add(cell % 9, new List<int>());
-				}
-
-				dic[cell % 9].Add(cell / 9);
-			}
-			addCurlyBraces = dic.Count > 1;
-			if (addCurlyBraces)
-			{
-				sbColumn.Append(leftCurlyBrace);
-			}
-
-			foreach (int column in dic.Keys)
-			{
-				sbColumn.Append('r');
-				sbColumn.AppendRange(dic[column], static v => (v + 1).ToString());
-				sbColumn.Append('c');
-				sbColumn.Append(column + 1);
-				sbColumn.Append(separator);
-			}
-			sbColumn.RemoveFromEnd(separator.Length);
-			if (addCurlyBraces)
-			{
-				sbColumn.Append(rightCurlyBrace);
-			}
-
-			return (sbRow.Length > sbColumn.Length ? sbColumn : sbRow).ToStringAndClear();
 		}
 
 		static string binaryToString(in Cells @this, bool withSeparator)
