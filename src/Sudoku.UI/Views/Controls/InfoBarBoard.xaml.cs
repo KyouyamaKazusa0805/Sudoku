@@ -69,8 +69,20 @@ public sealed partial class InfoBarBoard : UserControl, INotifyPropertyChanged, 
 	/// <param name="info">The displaing text of the info bar.</param>
 	/// <seealso cref="InfoBar"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public void AddMessage(InfoBarSeverity severity, string info) =>
-		_list.Prepend(new PlainMessage { Severity = severity, Message = info });
+	public void AddMessage(InfoBarSeverity severity, string info)
+	{
+		var up = ((App)Application.Current).UserPreference;
+
+		// Although '_list.Add' receives a parameter of type 'InfoBarMessage', which derives
+		// the type 'PlainMessage', but the first type argument of the delegate type 'Action<T>'
+		// is a contra-variance, which means it allows the argument of type 'T' automatically casting to the
+		// derived types of 'T'.
+		Action<PlainMessage> handler = up.DescendingOrderedInfoBarBoard
+			? _list.Prepend<InfoBarMessage, PlainMessage>
+			: _list.Add;
+
+		handler(new() { Severity = severity, Message = info });
+	}
 
 	/// <summary>
 	/// Creates a new <see cref="InfoBar"/> instance via the specified severity,
@@ -82,16 +94,26 @@ public sealed partial class InfoBarBoard : UserControl, INotifyPropertyChanged, 
 	/// <param name="linkDescription">The description of the hyperlink.</param>
 	/// <seealso cref="InfoBar"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public void AddMessage(InfoBarSeverity severity, string info, string link, string linkDescription) =>
-		_list.Prepend(
-			new HyperlinkMessage
-			{
-				Severity = severity,
-				Message = info,
-				Hyperlink = new(link),
-				HyperlinkDescription = linkDescription
-			}
-		);
+	public void AddMessage(InfoBarSeverity severity, string info, string link, string linkDescription)
+	{
+		var up = ((App)Application.Current).UserPreference;
+
+		// Although '_list.Add' receives a parameter of type 'InfoBarMessage', which derives
+		// the type 'HyperlinkMessage', but the first type argument of the delegate type 'Action<T>'
+		// is a contra-variance, which means it allows the argument of type 'T' automatically casting to the
+		// derived types of 'T'.
+		Action<HyperlinkMessage> handler = up.DescendingOrderedInfoBarBoard
+			? _list.Prepend<InfoBarMessage, HyperlinkMessage>
+			: _list.Add;
+
+		handler(new()
+		{
+			Severity = severity,
+			Message = info,
+			Hyperlink = new(link),
+			HyperlinkDescription = linkDescription
+		});
+	}
 
 	/// <summary>
 	/// Clears all messages.
