@@ -6,7 +6,7 @@
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 	mc:Ignorable="d">
 	<NavigationView
-		x:Name="_viewRouter" Header="{StaticResource ProgramName}" IsBackButtonVisible="Collapsed"
+		x:Name="_cViewRouter" Header="{StaticResource ProgramName}" IsBackButtonVisible="Collapsed"
 		IsBackEnabled="False" PaneDisplayMode="Left" IsSettingsVisible="False"
 		Loaded="ViewRouter_Loaded" ItemInvoked="ViewRouter_ItemInvoked"
 		SelectionChanged="ViewRouter_SelectionChanged">
@@ -20,7 +20,7 @@
 		</NavigationView.FooterMenuItems>
 
 		<Frame
-			x:Name="_viewRouterFrame" Navigated="ViewRouterFrame_Navigated"
+			x:Name="_cViewRouterFrame" Navigated="ViewRouterFrame_Navigated"
 			NavigationFailed="ViewRouterFrame_NavigationFailed" />
 	</NavigationView>
 </Page>

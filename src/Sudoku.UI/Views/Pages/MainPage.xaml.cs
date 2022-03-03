@@ -12,7 +12,7 @@ public sealed partial class MainPage : Page
 	/// <summary>
 	/// Indicates the navigation pairs that controls to route pages.
 	/// </summary>
-	private readonly (string ViewItemTag, Type PageType)[] _navigationPairs =
+	private static readonly (string ViewItemTag, Type PageType)[] NavigationPairs =
 	{
 		(nameof(SettingsPage), typeof(SettingsPage)),
 		(nameof(AboutPage), typeof(AboutPage)),
@@ -33,14 +33,14 @@ public sealed partial class MainPage : Page
 	/// <param name="transitionInfo">The transition information.</param>
 	private void OnNavigate(string tag, NavigationTransitionInfo transitionInfo)
 	{
-		var (_, pageType) = _navigationPairs.FirstOrDefault(p => p.ViewItemTag == tag);
+		var (_, pageType) = Array.Find(NavigationPairs, p => p.ViewItemTag == tag);
 
 		// Get the page type before navigation so you can prevent duplicate entries in the backstack.
 		// Only navigate if the selected page isn't currently loaded.
-		var preNavPageType = _viewRouterFrame.CurrentSourcePageType;
+		var preNavPageType = _cViewRouterFrame.CurrentSourcePageType;
 		if (pageType is not null && preNavPageType != pageType)
 		{
-			_viewRouterFrame.Navigate(pageType, null, transitionInfo);
+			_cViewRouterFrame.Navigate(pageType, null, transitionInfo);
 		}
 	}
 
@@ -74,7 +74,7 @@ public sealed partial class MainPage : Page
 	private void ViewRouterFrame_Navigated(object sender, NavigationEventArgs e)
 	{
 		if (
-			(Sender: sender, EventArg: e, Router: _viewRouter) is not (
+			(Sender: sender, EventArg: e, Router: _cViewRouter) is not (
 				Sender: Frame { SourcePageType: not null },
 				EventArg: { SourcePageType: var sourcePageType },
 				Router: { MenuItems: var menuItems, FooterMenuItems: var footerMenuItems }
@@ -84,10 +84,10 @@ public sealed partial class MainPage : Page
 			return;
 		}
 
-		var (tag, _) = _navigationPairs.FirstOrDefault(tagSelector);
+		var (tag, _) = Array.Find(NavigationPairs, tagSelector);
 		var item = menuItems.Concat(footerMenuItems).OfType<NavigationViewItem>().First(itemSelector);
-		_viewRouter.SelectedItem = item;
-		_viewRouter.Header = item.Content?.ToString();
+		_cViewRouter.SelectedItem = item;
+		_cViewRouter.Header = item.Content?.ToString();
 
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
