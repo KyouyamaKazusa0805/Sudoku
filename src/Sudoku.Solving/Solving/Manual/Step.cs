@@ -267,10 +267,9 @@ public abstract record Step(ImmutableArray<Conclusion> Conclusions, ImmutableArr
 
 		// Use reflection to invoke each properties, and get the interpolation result.
 		var type = GetType();
-		const BindingFlags flags = BindingFlags.NonPublic | BindingFlags.Static | BindingFlags.Instance;
 		string[] matchedFormats = (
 			from f in formats
-			select type.GetProperty(f, flags) into property
+			select type.GetProperty(f, BindingFlags.NonPublic | BindingFlags.Static | BindingFlags.Instance) into property
 			where property?.IsDefined(typeof(FormatItemAttribute)) ?? false
 			let propertyGetMethod = property.GetMethod
 			where propertyGetMethod is not null
