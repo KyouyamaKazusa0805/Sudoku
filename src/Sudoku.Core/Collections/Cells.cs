@@ -701,7 +701,7 @@ public unsafe struct Cells :
 
 	/// <inheritdoc cref="object.Equals(object?)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public override bool Equals([NotNullWhen(true)] object? obj) => obj is Cells comparer && Equals(comparer);
+	public override readonly bool Equals([NotNullWhen(true)] object? obj) => obj is Cells comparer && Equals(comparer);
 
 	/// <summary>
 	/// Determine whether the two elements are equal.
