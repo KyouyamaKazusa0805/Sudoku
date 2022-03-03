@@ -11,7 +11,8 @@
 		Loaded="ViewRouter_Loaded" ItemInvoked="ViewRouter_ItemInvoked"
 		SelectionChanged="ViewRouter_SelectionChanged">
 		<NavigationView.MenuItems>
-			<NavigationViewItem Icon="Edit" Tag="SudokuPage" Content="{StaticResource MainPage_Sudoku}" />
+			<NavigationViewItemHeader Content="{StaticResource MainPage_Sudoku}" />
+			<NavigationViewItem Icon="Edit" Tag="SudokuPage" Content="{StaticResource MainPage_PlayingAndAnalyzing}" />
 		</NavigationView.MenuItems>
 		<NavigationView.FooterMenuItems>
 			<NavigationViewItem Icon="Setting" Tag="SettingsPage" Content="{StaticResource MainPage_Settings}" />
