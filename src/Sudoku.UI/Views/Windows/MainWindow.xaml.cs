@@ -27,12 +27,6 @@ public sealed partial class MainWindow : Window
 
 
 	/// <summary>
-	/// Indicates the user preference used.
-	/// </summary>
-	internal UserPreference Preference { get; } = new();
-
-
-	/// <summary>
 	/// Customize the title bar if available.
 	/// </summary>
 	private void CustomizeTitleBar()

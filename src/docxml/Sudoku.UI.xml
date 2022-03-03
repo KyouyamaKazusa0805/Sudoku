@@ -2691,11 +2691,6 @@
             Initializes a <see cref="T:Sudoku.UI.Views.Windows.MainWindow"/> instance.
             </summary>
         </member>
-        <member name="P:Sudoku.UI.Views.Windows.MainWindow.Preference">
-            <summary>
-            Indicates the user preference used.
-            </summary>
-        </member>
         <member name="M:Sudoku.UI.Views.Windows.MainWindow.CustomizeTitleBar">
             <summary>
             Customize the title bar if available.

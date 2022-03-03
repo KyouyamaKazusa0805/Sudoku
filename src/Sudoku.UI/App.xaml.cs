@@ -1,4 +1,5 @@
-﻿using Sudoku.UI.Views.Windows;
+﻿using Sudoku.Diagnostics.CodeAnalysis;
+using Sudoku.UI.Views.Windows;
 
 namespace Sudoku.UI;
 
@@ -26,11 +27,7 @@ public partial class App : Application
 	/// <summary>
 	/// Indicates the user preference instance.
 	/// </summary>
-	internal UserPreference UserPreference
-	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => ((MainWindow)MainWindow).Preference;
-	}
+	internal UserPreference UserPreference { get; } = new();
 
 
 	/// <summary>
@@ -40,7 +37,7 @@ public partial class App : Application
 	/// </para>
 	/// </summary>
 	/// <param name="args">Details about the launch request and process.</param>
-	protected override void OnLaunched(LaunchActivatedEventArgs args)
+	protected override void OnLaunched([IsDiscard] LaunchActivatedEventArgs args)
 	{
 		MainWindow = new MainWindow();
 		MainWindow.Activate();
