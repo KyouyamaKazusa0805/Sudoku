@@ -263,9 +263,9 @@ public unsafe partial struct Grid :
 		// Then traverse the array (span, pointer or etc.), to get refresh the values.
 		fixed (int* p = &firstElement)
 		{
+			bool minusOneEnabled = creatingOption == GridCreatingOption.MinusOne;
 			for (int i = 0; i < 81; i++)
 			{
-				bool minusOneEnabled = creatingOption == GridCreatingOption.MinusOne;
 				if (p[i] is var value && (minusOneEnabled ? value - 1 : value) is var realValue and not -1)
 				{
 					// Calls the indexer to trigger the event (Clear the candidates in peer cells).
