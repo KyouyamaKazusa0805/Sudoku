@@ -3,6 +3,8 @@ using Microsoft.UI.Xaml.Controls.Primitives;
 using Microsoft.UI.Xaml.Input;
 using Sudoku.Diagnostics.CodeAnalysis;
 using Sudoku.Generating;
+using Sudoku.Solving;
+using Sudoku.Solving.Manual;
 using Windows.ApplicationModel.DataTransfer;
 using Windows.Storage;
 using Windows.Storage.Pickers;
@@ -283,6 +285,75 @@ public sealed partial class SudokuPage : Page
 		_cInfoBoard.AddMessage(InfoBarSeverity.Success, $"{part1}\r\n{part2}{grid.GivensCount}");
 	}
 
+	/// <summary>
+	/// Gets the solution of the grid.
+	/// </summary>
+	private void GetSolution()
+	{
+		// Gets the grid and its solution, then check it.
+		ref readonly var grid = ref _cPane.GridByReference();
+		if (grid is not { IsValid: true, Solution: { IsUndefined: false } solution })
+		{
+			return;
+		}
+
+		// Add message to tell the user the grid has been successfully solved.
+		_cInfoBoard.AddMessage(InfoBarSeverity.Success, Get("SudokuPage_InfoBar_GetSolutionSuccessfully"));
+
+		// Update the view.
+		_cPane.ReplaceGridUndoable(solution);
+	}
+
+	/// <summary>
+	/// To analyze the current sudoku grid.
+	/// </summary>
+	/// <param name="button">The button.</param>
+	/// <returns>The typical awaitable instance that holds the task to analyze the puzzle.</returns>
+	private async Task AnalyzeAsync(AppBarButton button)
+	{
+		// Disable the control to prevent re-invocation.
+		button.IsEnabled = false;
+
+		// Solve the puzzle using the manual solver.
+		var analysisResult = (ManualSolverResult)await Task.Run(() => ManualSolver.Shared.Solve(_cPane.Grid));
+
+		// Enable the control.
+		button.IsEnabled = true;
+
+		// Displays the analysis result info.
+		if (analysisResult.IsSolved)
+		{
+			var elapsedTime = analysisResult.ElapsedTime;
+			var steps = analysisResult.Steps;
+			string firstPart = Get("SudokuPage_InfoBar_AnalyzeSuccessfully1");
+			string secondPart = Get("SudokuPage_InfoBar_AnalyzeSuccessfully2");
+			string thirdPart = analysisResult.ToString();
+			_cInfoBoard.AddMessage(
+				InfoBarSeverity.Success,
+				$"""
+				{firstPart}{elapsedTime:hh\:mm\:ss\.fff}{secondPart}
+
+				{thirdPart}
+				"""
+			);
+		}
+		else
+		{
+			var failedReason = analysisResult.FailedReason;
+			var wrongStep = analysisResult.WrongStep;
+			string firstPart = Get("SudokuPage_InfoBar_AnalyzeFailedDueTo1");
+			string secondPart = failedReason switch
+			{
+				FailedReason.UserCancelled => Get("SudokuPage_InfoBar_AnalyzeFailedDueToUserCancelling"),
+				FailedReason.NotImplemented => Get("SudokuPage_InfoBar_AnalyzeFailedDueToNotImplemented"),
+				FailedReason.ExceptionThrown => Get("SudokuPage_InfoBar_AnalyzeFailedDueToExceptionThrown"),
+				FailedReason.WrongStep => Get("SudokuPage_InfoBar_AnalyzeFailedDueToWrongStep"),
+				FailedReason.PuzzleIsTooHard => Get("SudokuPage_InfoBar_AnalyzeFailedDueToPuzzleTooHard")
+			};
+			_cInfoBoard.AddMessage(InfoBarSeverity.Warning, $"{firstPart}{secondPart}{wrongStep}");
+		}
+	}
+
 
 	/// <summary>
 	/// Triggers when the current page is loaded.
@@ -395,5 +466,25 @@ public sealed partial class SudokuPage : Page
 		}
 
 		await GenerateAsync(button);
+	}
+
+	/// <summary>
+	/// Indicates the event trigger callback method that gets the solution of the puzzle.
+	/// </summary>
+	private void CommandGetSolution_ExecuteRequested(
+		[IsDiscard] XamlUICommand sender, [IsDiscard] ExecuteRequestedEventArgs args) => GetSolution();
+
+	/// <summary>
+	/// Indicates the event trigger callback method that analyzes the puzzle.
+	/// </summary>
+	private async void CommandAnalysis_ExecuteRequestedAsync(
+		XamlUICommand sender, [IsDiscard] ExecuteRequestedEventArgs args)
+	{
+		if (args.Parameter is not AppBarButton button)
+		{
+			return;
+		}
+
+		await AnalyzeAsync(button);
 	}
 }

@@ -12,7 +12,7 @@
 		SelectionChanged="ViewRouter_SelectionChanged">
 		<NavigationView.MenuItems>
 			<NavigationViewItemHeader Content="{StaticResource MainPage_Sudoku}" />
-			<NavigationViewItem Icon="Edit" Tag="SudokuPage" Content="{StaticResource MainPage_PlayingAndAnalyzing}" />
+			<NavigationViewItem Icon="ViewAll" Tag="SudokuPage" Content="{StaticResource MainPage_PlayingAndAnalyzing}" />
 		</NavigationView.MenuItems>
 		<NavigationView.FooterMenuItems>
 			<NavigationViewItem Icon="Setting" Tag="SettingsPage" Content="{StaticResource MainPage_Settings}" />

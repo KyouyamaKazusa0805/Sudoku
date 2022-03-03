@@ -3,7 +3,7 @@
 partial class ManualSolver : IManualSolverOptions
 {
 	/// <inheritdoc/>
-	public bool IsHodokuMode { get; set; }
+	public bool IsHodokuMode { get; set; } = true;
 
 	/// <inheritdoc/>
 	public bool IsFastSearching { get; set; }

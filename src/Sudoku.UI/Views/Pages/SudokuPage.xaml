@@ -221,6 +221,26 @@
 							</XamlUICommand>
 						</AppBarButton.Command>
 					</AppBarButton>
+					<AppBarButton Label="{StaticResource SudokuPage_GetSolution}">
+						<AppBarButton.Command>
+							<XamlUICommand ExecuteRequested="CommandGetSolution_ExecuteRequested">
+								<XamlUICommand.IconSource>
+									<SymbolIconSource Symbol="Emoji2" />
+								</XamlUICommand.IconSource>
+							</XamlUICommand>
+						</AppBarButton.Command>
+					</AppBarButton>
+					<AppBarButton
+						Label="{StaticResource SudokuPage_Analysis}"
+						CommandParameter="{Binding RelativeSource={RelativeSource Self}}">
+						<AppBarButton.Command>
+							<XamlUICommand ExecuteRequested="CommandAnalysis_ExecuteRequestedAsync">
+								<XamlUICommand.IconSource>
+									<SymbolIconSource Symbol="ShowBcc" />
+								</XamlUICommand.IconSource>
+							</XamlUICommand>
+						</AppBarButton.Command>
+					</AppBarButton>
 				</CommandBar>
 			</ListView>
 		</Grid>

@@ -202,6 +202,13 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 	public void ResetGrid() => GetSudokuGridViewModel().ResetGrid();
 
 	/// <summary>
+	/// To replace the grid with the new one, in order to make the current operation undoable.
+	/// </summary>
+	/// <param name="grid">The grid to be replaced with.</param>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public void ReplaceGridUndoable(in Grid grid) => GetSudokuGridViewModel().ReplaceGrid(grid);
+
+	/// <summary>
 	/// Gets or sets the current used grid by reference. The method will return by reference, in order to
 	/// copy the reference instead of the instance itself, to optimize the memory allocation.
 	/// </summary>

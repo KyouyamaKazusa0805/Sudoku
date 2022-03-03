@@ -350,6 +350,21 @@ public sealed class SudokuGrid : DrawingElement
 		UpdateView();
 	}
 
+	/// <summary>
+	/// To replace with the new grid.
+	/// </summary>
+	/// <param name="grid">The grid to be replaced with.</param>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public void ReplaceGrid(in Grid grid)
+	{
+		// Stores the previous grid status to the undo stack.
+		AddStep(_grid);
+
+		// Update the grid and view.
+		_grid = grid;
+		UpdateView();
+	}
+
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public override bool Equals([NotNullWhen(true)] DrawingElement? other) =>

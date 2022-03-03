@@ -273,7 +273,7 @@ public abstract record Step(ImmutableArray<Conclusion> Conclusions, ImmutableArr
 			select type.GetProperty(f, flags) into property
 			where property?.IsDefined(typeof(FormatItemAttribute)) ?? false
 			let propertyGetMethod = property.GetMethod
-			where propertyGetMethod is not null && isPrivateOrProtected(propertyGetMethod)
+			where propertyGetMethod is not null
 			select property.GetValue(propertyGetMethod.IsStatic ? null : this) as string into result
 			where result is not null
 			select result
@@ -287,10 +287,5 @@ public abstract record Step(ImmutableArray<Conclusion> Conclusions, ImmutableArr
 
 		// Format and return the value.
 		return string.Format(sb.ToStringAndClear(), matchedFormats);
-
-
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		static bool isPrivateOrProtected(MethodInfo propertyGetMethod) =>
-			propertyGetMethod is { IsPrivate: true } or { IsFamily: true } or { IsPrivate: true, IsFamily: true };
 	}
 }

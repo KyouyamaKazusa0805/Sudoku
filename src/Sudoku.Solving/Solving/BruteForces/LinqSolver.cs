@@ -25,10 +25,6 @@ public sealed class LinqSolver : IPuzzleSolver
 		};
 	}
 
-	/// <inheritdoc/>
-	public ValueTask<ISolverResult> SolveAsync(in Grid puzzle, CancellationToken cancellationToken = default) =>
-		new(Solve(puzzle, cancellationToken));
-
 
 	/// <summary>
 	/// Internal solving method.

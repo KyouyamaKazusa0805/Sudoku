@@ -182,9 +182,6 @@
         <member name="M:Sudoku.Solving.BruteForces.BacktrackingSolver.Solve(Sudoku.Collections.Grid@,System.Threading.CancellationToken)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Solving.BruteForces.BacktrackingSolver.SolveAsync(Sudoku.Collections.Grid@,System.Threading.CancellationToken)">
-            <inheritdoc/>
-        </member>
         <member name="M:Sudoku.Solving.BruteForces.BacktrackingSolver.InternalSolve(System.Int32@,System.Int32[]@,System.Int32[],System.Int32)">
             <summary>
             Solve the puzzle backtrackingly.
@@ -285,9 +282,6 @@
         <member name="M:Sudoku.Solving.BruteForces.FastSolver.Solve(Sudoku.Collections.Grid@,System.Threading.CancellationToken)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Solving.BruteForces.FastSolver.SolveAsync(Sudoku.Collections.Grid@,System.Threading.CancellationToken)">
-            <inheritdoc/>
-        </member>
         <member name="M:Sudoku.Solving.BruteForces.FastSolver.Solve(System.Char*,System.Char*,System.Int32)">
             <inheritdoc cref="M:Sudoku.Solving.BitwiseSolver.Solve(System.Char*,System.Char*,System.Int32)"/>
         </member>
@@ -303,9 +297,6 @@
             </summary>
         </member>
         <member name="M:Sudoku.Solving.BruteForces.LinqSolver.Solve(Sudoku.Collections.Grid@,System.Threading.CancellationToken)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Solving.BruteForces.LinqSolver.SolveAsync(Sudoku.Collections.Grid@,System.Threading.CancellationToken)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Solving.BruteForces.LinqSolver.SolveStrings(System.String)">
@@ -1066,17 +1057,6 @@
             <param name="puzzle">The puzzle to be solved.</param>
             <param name="cancellationToken">The cancellation token to cancel the operation.</param>
             <returns>The solver result that provides the information after solving.</returns>
-        </member>
-        <member name="M:Sudoku.Solving.IPuzzleSolver.SolveAsync(Sudoku.Collections.Grid@,System.Threading.CancellationToken)">
-            <summary>
-            To solve the specified puzzle asynchronously.
-            </summary>
-            <param name="puzzle">The puzzle to be solved.</param>
-            <param name="cancellationToken">The cancellation token to cancel the operation.</param>
-            <returns>
-            A task that holds the operation to solve the puzzle, whose inner value is the solver result
-            that provides the information after solving.
-            </returns>
         </member>
         <member name="T:Sudoku.Solving.ISolverResult">
             <summary>
@@ -1859,10 +1839,12 @@
             to check and solve a sudoku puzzle.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Manual.ManualSolver.Solve(Sudoku.Collections.Grid@,System.Threading.CancellationToken)">
-            <inheritdoc/>
+        <member name="F:Sudoku.Solving.Manual.ManualSolver.Shared">
+            <summary>
+            Indicates the shared instance that can solve puzzles without initialization firstly.
+            </summary>
         </member>
-        <member name="M:Sudoku.Solving.Manual.ManualSolver.SolveAsync(Sudoku.Collections.Grid@,System.Threading.CancellationToken)">
+        <member name="M:Sudoku.Solving.Manual.ManualSolver.Solve(Sudoku.Collections.Grid@,System.Threading.CancellationToken)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Solving.Manual.ManualSolver.Solve_HodokuMode(Sudoku.Collections.Grid@,Sudoku.Collections.Grid@,System.Boolean,Sudoku.Solving.Manual.ManualSolverResult,System.Threading.CancellationToken)">

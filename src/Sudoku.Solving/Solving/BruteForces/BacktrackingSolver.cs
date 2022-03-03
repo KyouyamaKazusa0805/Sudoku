@@ -56,10 +56,6 @@ public sealed class BacktrackingSolver : IPuzzleSolver
 		}
 	}
 
-	/// <inheritdoc/>
-	public ValueTask<ISolverResult> SolveAsync(in Grid puzzle, CancellationToken cancellationToken = default) =>
-		new(Solve(puzzle, cancellationToken));
-
 	/// <summary>
 	/// Solve the puzzle backtrackingly.
 	/// </summary>

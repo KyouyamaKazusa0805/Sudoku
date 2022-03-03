@@ -12,6 +12,12 @@ namespace Sudoku.Solving.Manual;
 /// </summary>
 public sealed unsafe partial class ManualSolver : IPuzzleSolver
 {
+	/// <summary>
+	/// Indicates the shared instance that can solve puzzles without initialization firstly.
+	/// </summary>
+	public static readonly ManualSolver Shared = new();
+
+
 	/// <inheritdoc/>
 	public ISolverResult Solve(in Grid puzzle, CancellationToken cancellationToken = default)
 	{
@@ -69,10 +75,6 @@ public sealed unsafe partial class ManualSolver : IPuzzleSolver
 			return solverResult with { IsSolved = false, FailedReason = FailedReason.PuzzleIsInvalid };
 		}
 	}
-
-	/// <inheritdoc/>
-	public ValueTask<ISolverResult> SolveAsync(in Grid puzzle, CancellationToken cancellationToken = default) =>
-		new(Solve(puzzle, cancellationToken));
 
 
 	/// <summary>
