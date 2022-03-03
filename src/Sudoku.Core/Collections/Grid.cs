@@ -1,4 +1,4 @@
-﻿#define USE_TO_MASK_STRING_METHOD
+﻿#undef USE_TO_MASK_STRING_METHOD
 
 using System.ComponentModel;
 using Sudoku.Solving;
@@ -350,11 +350,43 @@ public unsafe partial struct Grid :
 			{
 				if (GetStatus(i) == CellStatus.Empty)
 				{
-					return false;
+					goto ReturnFalse;
 				}
 			}
 
-			return SimplyValidate();
+			for (int i = 0; i < 81; i++)
+			{
+				switch (GetStatus(i))
+				{
+					case CellStatus.Given:
+					case CellStatus.Modifiable:
+					{
+						int curDigit = this[i];
+						foreach (int cell in PeerMaps[i])
+						{
+							if (curDigit == this[cell])
+							{
+								goto ReturnFalse;
+							}
+						}
+
+						break;
+					}
+					case CellStatus.Empty:
+					{
+						continue;
+					}
+					default:
+					{
+						goto ReturnFalse;
+					}
+				}
+			}
+
+			return true;
+
+		ReturnFalse:
+			return false;
 		}
 	}
 
@@ -710,7 +742,6 @@ public unsafe partial struct Grid :
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		readonly get => GetStatus(cell) switch
 		{
-			CellStatus.Undefined => -2,
 			CellStatus.Empty => -1,
 			CellStatus.Modifiable or CellStatus.Given => TrailingZeroCount(_values[cell])
 		};
@@ -788,7 +819,7 @@ public unsafe partial struct Grid :
 
 	/// <inheritdoc cref="object.Equals(object?)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public override bool Equals([NotNullWhen(true)] object? obj) => obj is Grid comparer && Equals(comparer);
+	public override readonly bool Equals([NotNullWhen(true)] object? obj) => obj is Grid comparer && Equals(comparer);
 
 	/// <summary>
 	/// Determine whether the specified <see cref="Grid"/> instance hold the same values
@@ -797,45 +828,7 @@ public unsafe partial struct Grid :
 	/// <param name="other">The instance to compare.</param>
 	/// <returns>A <see cref="bool"/> result.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public bool Equals(in Grid other) => Equals(this, other);
-
-	/// <summary>
-	/// Check whether the current grid is valid (no duplicate values on same row, column or block).
-	/// </summary>
-	/// <returns>The <see cref="bool"/> result.</returns>
-	public readonly bool SimplyValidate()
-	{
-		for (int i = 0; i < 81; i++)
-		{
-			switch (GetStatus(i))
-			{
-				case CellStatus.Given:
-				case CellStatus.Modifiable:
-				{
-					int curDigit = this[i];
-					foreach (int cell in PeerMaps[i])
-					{
-						if (curDigit == this[cell])
-						{
-							return false;
-						}
-					}
-
-					break;
-				}
-				case CellStatus.Empty:
-				{
-					continue;
-				}
-				default:
-				{
-					return false;
-				}
-			}
-		}
-
-		return true;
-	}
+	public readonly bool Equals(in Grid other) => Equals(this, other);
 
 	/// <summary>
 	/// Indicates whether the current grid contains the specified candidate offset.
