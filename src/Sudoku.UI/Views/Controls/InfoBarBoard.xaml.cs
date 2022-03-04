@@ -4,7 +4,6 @@ using System.ComponentModel;
 using Sudoku.Diagnostics.CodeAnalysis;
 using Sudoku.Solving.Manual;
 using Sudoku.UI.Data;
-using static Sudoku.UI.StringResource;
 
 namespace Sudoku.UI.Views.Controls;
 

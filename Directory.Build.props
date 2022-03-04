@@ -68,6 +68,7 @@
 	<ItemGroup Condition="'$(MSBuildProjectFile)'=='Sudoku.UI.csproj' And ('$(LangVersion)'=='preview' Or '$(LangVersion)'=='latest' Or '$(LangVersion)'&gt;='10.0')">
 		<Using Include="Microsoft.UI.Xaml"/>
 		<Using Include="Microsoft.UI.Xaml.Controls"/>
+		<Using Include="Sudoku.UI.StringResource" Static="true"/>
 	</ItemGroup>
 
 	<!--Set the root namespaces.-->

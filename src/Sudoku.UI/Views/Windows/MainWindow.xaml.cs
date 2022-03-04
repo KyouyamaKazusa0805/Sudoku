@@ -1,6 +1,5 @@
 ﻿using Microsoft.UI;
 using Microsoft.UI.Windowing;
-using static Sudoku.UI.StringResource;
 
 namespace Sudoku.UI.Views.Windows;
 

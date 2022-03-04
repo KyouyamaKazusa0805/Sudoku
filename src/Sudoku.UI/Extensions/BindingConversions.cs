@@ -1,6 +1,4 @@
-﻿using static Sudoku.UI.StringResource;
-
-namespace Sudoku.UI;
+﻿namespace Sudoku.UI;
 
 /// <summary>
 /// Provides a set of methods to convert the information.

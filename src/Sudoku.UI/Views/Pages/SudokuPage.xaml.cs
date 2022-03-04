@@ -10,7 +10,6 @@ using Windows.Storage;
 using Windows.Storage.Pickers;
 using Windows.Storage.Provider;
 using Windows.UI.ViewManagement;
-using static Sudoku.UI.StringResource;
 
 namespace Sudoku.UI.Views.Pages;
 
