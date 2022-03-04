@@ -50,7 +50,7 @@ public sealed record BruteForceSolverResult(
 
 		// Print the elapsed time.
 		sb.Append(R["BruteForceSolverResultPuzzleHas"]!);
-		sb.AppendWhen(IsSolved, R["BruteForceSolverResultNot"]!);
+		sb.AppendWhen(!IsSolved, R["BruteForceSolverResultNot"]!);
 		sb.Append(R["BruteForceSolverResultBeenSolved"]!);
 		sb.AppendLine();
 		sb.Append(R["BruteForceSolverResultTimeElapsed"]!);
