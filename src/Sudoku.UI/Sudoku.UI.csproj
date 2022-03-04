@@ -44,6 +44,8 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<!--You can visit https://www.nuget.org/packages/Microsoft.Toolkit/ to download the package-->
+		<PackageReference Include="Microsoft.Toolkit" Version="7.1.2" />
 		<PackageReference Include="Microsoft.WindowsAppSDK" Version="1.0.0" />
 		<PackageReference Include="Microsoft.Windows.SDK.BuildTools" Version="10.0.22000.194" />
 		<Manifest Include="$(ApplicationManifest)" />
