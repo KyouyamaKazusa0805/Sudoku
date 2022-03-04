@@ -86,6 +86,12 @@ partial class Constants
 		public const string CellOrCellList = """(R[1-9]{1,9}C[1-9]{1,9}|r[1-9]{1,9}c[1-9]{1,9})""";
 
 		/// <summary>
+		/// Indicates the cell list string, K9 notation.
+		/// </summary>
+		[StringSyntax(StringSyntaxAttribute.Regex)]
+		public const string CellOrCellListK9 = """[A-IKa-ik]{1,9}[1-9]{1,9}""";
+
+		/// <summary>
 		/// Indicates the region string.
 		/// </summary>
 		[StringSyntax(StringSyntaxAttribute.Regex)]

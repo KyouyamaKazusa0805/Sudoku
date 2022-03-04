@@ -466,7 +466,7 @@ public sealed partial class SudokuPage : Page
 	/// Indicates the event trigger callback method that analyzes the puzzle.
 	/// </summary>
 	private async void CommandAnalysis_ExecuteRequestedAsync(
-		XamlUICommand sender, [IsDiscard] ExecuteRequestedEventArgs args)
+		[IsDiscard] XamlUICommand sender, ExecuteRequestedEventArgs args)
 	{
 		if (args.Parameter is not AppBarButton button)
 		{

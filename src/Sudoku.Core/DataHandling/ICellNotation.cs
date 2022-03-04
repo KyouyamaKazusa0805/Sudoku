@@ -6,7 +6,7 @@ namespace Sudoku.DataHandling;
 /// Defines a notation instance that can convert the <see cref="Cells"/> to the target <see cref="string"/>
 /// representation that describes the instance, using the current notation rule.
 /// </summary>
-public interface ICellNotation
+public interface ICellNotation : ISimpleParseable<Cells>
 {
 	/// <summary>
 	/// Indicates the current name of the notation.

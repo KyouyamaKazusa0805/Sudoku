@@ -1,4 +1,5 @@
 ﻿using Sudoku.Collections;
+using static Sudoku.Constants;
 
 namespace Sudoku.DataHandling;
 
@@ -31,6 +32,15 @@ public sealed class K9Notation : ICellNotation
 	/// Indicates all possible letters that used in the row notation.
 	/// </summary>
 	private static readonly char[] Letters = { 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'K' };
+
+	/// <summary>
+	/// Indicates the regular expression for matching a cell or cell-list.
+	/// </summary>
+	private static readonly Regex CellOrCellListRegex = new(
+		RegularExpressions.CellOrCellListK9,
+		RegexOptions.ExplicitCapture,
+		TimeSpan.FromSeconds(5)
+	);
 
 
 	/// <summary>
@@ -144,6 +154,81 @@ public sealed class K9Notation : ICellNotation
 			sbColumn.RemoveFromEnd(1);
 
 			return sbColumn.ToStringAndClear();
+		}
+	}
+
+	/// <inheritdoc/>
+	public static unsafe Cells Parse(string str)
+	{
+		// Check whether the match is successful.
+		if (CellOrCellListRegex.Matches(str) is not [_, ..] matches)
+		{
+			throw new FormatException("The specified string can't match any cell instance.");
+		}
+
+		// Declare the buffer.
+		int* bufferRows = stackalloc int[9], bufferColumns = stackalloc int[9];
+
+		// Declare the result variable.
+		var result = Cells.Empty;
+
+		// Iterate on each match instance.
+		foreach (Match match in matches)
+		{
+			string value = match.Value;
+			char* anchorR, anchorC;
+			fixed (char* pValue = value)
+			{
+				anchorR = anchorC = pValue;
+
+				while (!char.IsDigit(*anchorC))
+				{
+					anchorC++;
+				}
+			}
+
+			// Stores the possible values into the buffer.
+			int rIndex = 0, cIndex = 0;
+			for (char* p = anchorR + 1; !char.IsDigit(*p); p++, rIndex++)
+			{
+				bufferRows[rIndex] = *p switch
+				{
+					'K' or 'k' or 'I' or 'i' => 8,
+					>= 'A' and <= 'H' => *p - 'A',
+					_ => *p - 'a'
+				};
+			}
+			for (char* p = anchorC + 1; *p != '\0'; p++, cIndex++)
+			{
+				bufferColumns[cIndex] = *p - '1';
+			}
+
+			// Now combine two buffers.
+			for (int i = 0; i < rIndex; i++)
+			{
+				for (int j = 0; j < cIndex; j++)
+				{
+					result.AddAnyway(bufferRows[i] * 9 + bufferColumns[j]);
+				}
+			}
+		}
+
+		// Returns the result.
+		return result;
+	}
+
+	/// <inheritdoc/>
+	public static bool TryParse(string str, out Cells result)
+	{
+		try
+		{
+			result = Parse(str);
+			return true;
+		}
+		catch (FormatException)
+		{
+			Unsafe.SkipInit(out result);
+			return false;
 		}
 	}
 }

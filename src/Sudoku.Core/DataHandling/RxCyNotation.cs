@@ -70,10 +70,16 @@ public abstract class RxCyNotation : ICellNotation
 		return cells switch
 		{
 			[] => string.Empty,
-			[var p] => $"{(upperCasing ? 'R' : 'r')}{p / 9 + 1}{(upperCasing ? 'C' : 'c')}{p % 9 + 1}",
+			[var p] => $"{rowLabel(upperCasing)}{p / 9 + 1}{columnLabel(upperCasing)}{p % 9 + 1}",
 			_ => r(cells, upperCasing) is var a && c(cells, upperCasing) is var b && a.Length <= b.Length ? a : b
 		};
 
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		static char rowLabel(bool upperCasing) => upperCasing ? 'R' : 'r';
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		static char columnLabel(bool upperCasing) => upperCasing ? 'C' : 'c';
 
 		static string i(int v) => (v + 1).ToString();
 
@@ -92,9 +98,9 @@ public abstract class RxCyNotation : ICellNotation
 			}
 			foreach (int row in dic.Keys)
 			{
-				sbRow.Append(upperCasing ? 'R' : 'r');
+				sbRow.Append(rowLabel(upperCasing));
 				sbRow.Append(row + 1);
-				sbRow.Append(upperCasing ? 'C' : 'c');
+				sbRow.Append(columnLabel(upperCasing));
 				sbRow.AppendRange(dic[row], &i);
 				sbRow.Append(separator);
 			}
@@ -119,9 +125,9 @@ public abstract class RxCyNotation : ICellNotation
 
 			foreach (int column in dic.Keys)
 			{
-				sbColumn.Append(upperCasing ? 'R' : 'r');
+				sbColumn.Append(rowLabel(upperCasing));
 				sbColumn.AppendRange(dic[column], &i);
-				sbColumn.Append(upperCasing ? 'C' : 'c');
+				sbColumn.Append(columnLabel(upperCasing));
 				sbColumn.Append(column + 1);
 				sbColumn.Append(separator);
 			}
@@ -131,19 +137,7 @@ public abstract class RxCyNotation : ICellNotation
 		}
 	}
 
-	/// <summary>
-	/// Parse the specified <see cref="string"/> text, and convert it into the <see cref="Cells"/> instance
-	/// as the result value.
-	/// </summary>
-	/// <param name="str">The <see cref="string"/> text to be parsed.</param>
-	/// <returns>
-	/// The <see cref="Cells"/> result. If the argument <paramref name="str"/> is <see langword="null"/>
-	/// or only contains white spaces, the value will be <see cref="Cells.Empty"/>.
-	/// </returns>
-	/// <exception cref="FormatException">
-	/// Throws when the argument <paramref name="str"/> is malformed.
-	/// </exception>
-	/// <seealso cref="Cells.Empty"/>
+	/// <inheritdoc/>
 	public static unsafe Cells Parse(string str)
 	{
 		// Check whether the match is successful.
@@ -201,16 +195,7 @@ public abstract class RxCyNotation : ICellNotation
 		return result;
 	}
 
-	/// <summary>
-	/// Try to parse the specified <see cref="string"/> text, and convert it into the <see cref="Cells"/> instance
-	/// as the result value. If failed to parse, the return value will be <see langword="false"/>, but without
-	/// any exception thrown.
-	/// </summary>
-	/// <param name="str">The <see cref="string"/> text to be parsed.</param>
-	/// <param name="result">
-	/// The result <see cref="Cells"/> instance which are useful if the return value is <see langword="true"/>.
-	/// </param>
-	/// <returns>A <see cref="bool"/> value indicating whether the parse operation succeeded.</returns>
+	/// <inheritdoc/>
 	public static bool TryParse(string str, out Cells result)
 	{
 		try

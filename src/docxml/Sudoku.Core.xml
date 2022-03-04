@@ -94,6 +94,30 @@
         <member name="M:Sudoku.Collections.BitSubsetsGenerator.Enumerator.MoveNext">
             <inheritdoc/>
         </member>
+        <member name="M:Sudoku.Collections.BitSubsetsGenerator.Enumerator.Equals(System.Object)">
+            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
+            <exception cref="T:System.NotSupportedException">Always throws.</exception>
+        </member>
+        <member name="M:Sudoku.Collections.BitSubsetsGenerator.Enumerator.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+            <exception cref="T:System.NotSupportedException">Always throws.</exception>
+        </member>
+        <member name="M:Sudoku.Collections.BitSubsetsGenerator.Enumerator.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+            <exception cref="T:System.NotSupportedException">Always throws.</exception>
+        </member>
+        <member name="M:Sudoku.Collections.BitSubsetsGenerator.Equals(System.Object)">
+            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
+            <exception cref="T:System.NotSupportedException">Always throws.</exception>
+        </member>
+        <member name="M:Sudoku.Collections.BitSubsetsGenerator.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+            <exception cref="T:System.NotSupportedException">Always throws.</exception>
+        </member>
+        <member name="M:Sudoku.Collections.BitSubsetsGenerator.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+            <exception cref="T:System.NotSupportedException">Always throws.</exception>
+        </member>
         <member name="T:Sudoku.Collections.Candidates">
             <summary>
             Encapsulates a map that contains 729 positions to represent a candidate.
@@ -1418,6 +1442,14 @@
             <param name="separator">The separator.</param>
             <returns>The string result.</returns>
         </member>
+        <member name="M:Sudoku.Collections.ConclusionCollection.Equals(System.Object)">
+            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
+            <exception cref="T:System.NotSupportedException">Always throws.</exception>
+        </member>
+        <member name="M:Sudoku.Collections.ConclusionCollection.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+            <exception cref="T:System.NotSupportedException">Always throws.</exception>
+        </member>
         <member name="T:Sudoku.Collections.DigitCollection">
             <summary>
             Indicates a collection that contains the several digits.
@@ -1506,6 +1538,14 @@
             <param name="right">The right instance.</param>
             <returns>The result collection.</returns>
         </member>
+        <member name="M:Sudoku.Collections.DigitCollection.Equals(System.Object)">
+            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
+            <exception cref="T:System.NotSupportedException">Always throws.</exception>
+        </member>
+        <member name="M:Sudoku.Collections.DigitCollection.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+            <exception cref="T:System.NotSupportedException">Always throws.</exception>
+        </member>
         <member name="T:Sudoku.Collections.Grid">
             <summary>
             Represents a sudoku grid that uses the mask list to construct the data structure.
@@ -1580,6 +1620,18 @@
         </member>
         <member name="M:Sudoku.Collections.Grid.CandidateCollectionEnumerator.GetEnumerator">
             <inheritdoc cref="M:System.Collections.Generic.IEnumerable`1.GetEnumerator"/>
+        </member>
+        <member name="M:Sudoku.Collections.Grid.CandidateCollectionEnumerator.Equals(System.Object)">
+            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
+            <exception cref="T:System.NotSupportedException">Always throws.</exception>
+        </member>
+        <member name="M:Sudoku.Collections.Grid.CandidateCollectionEnumerator.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+            <exception cref="T:System.NotSupportedException">Always throws.</exception>
+        </member>
+        <member name="M:Sudoku.Collections.Grid.CandidateCollectionEnumerator.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+            <exception cref="T:System.NotSupportedException">Always throws.</exception>
         </member>
         <member name="F:Sudoku.Collections.Grid.DefaultMask">
             <summary>
@@ -2483,6 +2535,18 @@
         <member name="M:Sudoku.Collections.Grid.MaskCollectionEnumerator.GetEnumerator">
             <inheritdoc cref="M:System.Collections.Generic.IEnumerable`1.GetEnumerator"/>
         </member>
+        <member name="M:Sudoku.Collections.Grid.MaskCollectionEnumerator.Equals(System.Object)">
+            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
+            <exception cref="T:System.NotSupportedException">Always throws.</exception>
+        </member>
+        <member name="M:Sudoku.Collections.Grid.MaskCollectionEnumerator.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+            <exception cref="T:System.NotSupportedException">Always throws.</exception>
+        </member>
+        <member name="M:Sudoku.Collections.Grid.MaskCollectionEnumerator.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+            <exception cref="T:System.NotSupportedException">Always throws.</exception>
+        </member>
         <member name="T:Sudoku.Collections.GridCreatingOption">
             <summary>
             Indicates the grid creating option.
@@ -2747,6 +2811,18 @@
             of 2 <see cref="T:System.Text.RegularExpressions.Match"/>es to compare.
             </summary>
         </member>
+        <member name="M:Sudoku.Collections.GridFormatter.Equals(System.Object)">
+            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
+            <exception cref="T:System.NotSupportedException">Always throws.</exception>
+        </member>
+        <member name="M:Sudoku.Collections.GridFormatter.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+            <exception cref="T:System.NotSupportedException">Always throws.</exception>
+        </member>
+        <member name="M:Sudoku.Collections.GridFormatter.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+            <exception cref="T:System.NotSupportedException">Always throws.</exception>
+        </member>
         <member name="T:Sudoku.Collections.GridFormattingOptions">
             <summary>
             Provides a grid format option.
@@ -2986,6 +3062,18 @@
             Indicates whether the algorithm uses compatibility mode to check and parse sudoku grid.
             </param>
             <returns>The result.</returns>
+        </member>
+        <member name="M:Sudoku.Collections.GridParser.Equals(System.Object)">
+            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
+            <exception cref="T:System.NotSupportedException">Always throws.</exception>
+        </member>
+        <member name="M:Sudoku.Collections.GridParser.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+            <exception cref="T:System.NotSupportedException">Always throws.</exception>
+        </member>
+        <member name="M:Sudoku.Collections.GridParser.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+            <exception cref="T:System.NotSupportedException">Always throws.</exception>
         </member>
         <member name="T:Sudoku.Collections.GridParsingOption">
             <summary>
@@ -3384,6 +3472,14 @@
         <member name="M:Sudoku.Collections.LinkCollection.ToString">
             <inheritdoc cref="M:System.Object.ToString"/>
         </member>
+        <member name="M:Sudoku.Collections.LinkCollection.Equals(System.Object)">
+            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
+            <exception cref="T:System.NotSupportedException">Always throws.</exception>
+        </member>
+        <member name="M:Sudoku.Collections.LinkCollection.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+            <exception cref="T:System.NotSupportedException">Always throws.</exception>
+        </member>
         <member name="T:Sudoku.Collections.NodeSet">
             <summary>
             Defines a set that stores the chain nodes.
@@ -3645,6 +3741,18 @@
         <member name="M:Sudoku.Collections.NodeSet.Enumerator.MoveNext">
             <inheritdoc cref="M:System.Collections.IEnumerator.MoveNext"/>
         </member>
+        <member name="M:Sudoku.Collections.NodeSet.Enumerator.Equals(System.Object)">
+            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
+            <exception cref="T:System.NotSupportedException">Always throws.</exception>
+        </member>
+        <member name="M:Sudoku.Collections.NodeSet.Enumerator.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+            <exception cref="T:System.NotSupportedException">Always throws.</exception>
+        </member>
+        <member name="M:Sudoku.Collections.NodeSet.Enumerator.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+            <exception cref="T:System.NotSupportedException">Always throws.</exception>
+        </member>
         <member name="T:Sudoku.Collections.RegionCollection">
             <summary>
             Indicates a region collection.
@@ -3717,6 +3825,10 @@
             </summary>
             <param name="index">The index.</param>
             <returns>The label.</returns>
+        </member>
+        <member name="M:Sudoku.Collections.RegionCollection.Equals(System.Object)">
+            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
+            <exception cref="T:System.NotSupportedException">Always throws.</exception>
         </member>
         <member name="T:Sudoku.Collections.Utf8JsonWriterExtensionsOnSudokuCollections">
             <summary>
@@ -4099,6 +4211,11 @@
             Indicates the cell list string.
             </summary>
         </member>
+        <member name="F:Sudoku.Constants.RegularExpressions.CellOrCellListK9">
+            <summary>
+            Indicates the cell list string, K9 notation.
+            </summary>
+        </member>
         <member name="F:Sudoku.Constants.RegularExpressions.Region">
             <summary>
             Indicates the region string.
@@ -4330,6 +4447,11 @@
             Indicates all possible letters that used in the row notation.
             </summary>
         </member>
+        <member name="F:Sudoku.DataHandling.K9Notation.CellOrCellListRegex">
+            <summary>
+            Indicates the regular expression for matching a cell or cell-list.
+            </summary>
+        </member>
         <member name="M:Sudoku.DataHandling.K9Notation.#ctor">
             <summary>
             The <see langword="private"/> instance constructor of this type.
@@ -4354,6 +4476,12 @@
             </param>
             <param name="options">The extra options that controls the output behavior.</param>
             <returns>The <see cref="T:System.String"/> representation of the current notation.</returns>
+        </member>
+        <member name="M:Sudoku.DataHandling.K9Notation.Parse(System.String)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.DataHandling.K9Notation.TryParse(System.String,Sudoku.Collections.Cells@)">
+            <inheritdoc/>
         </member>
         <member name="T:Sudoku.DataHandling.K9NotationOptions">
             <summary>
@@ -4455,31 +4583,10 @@
             <returns>The <see cref="T:System.String"/> representation of the current notation.</returns>
         </member>
         <member name="M:Sudoku.DataHandling.RxCyNotation.Parse(System.String)">
-            <summary>
-            Parse the specified <see cref="T:System.String"/> text, and convert it into the <see cref="T:Sudoku.Collections.Cells"/> instance
-            as the result value.
-            </summary>
-            <param name="str">The <see cref="T:System.String"/> text to be parsed.</param>
-            <returns>
-            The <see cref="T:Sudoku.Collections.Cells"/> result. If the argument <paramref name="str"/> is <see langword="null"/>
-            or only contains white spaces, the value will be <see cref="F:Sudoku.Collections.Cells.Empty"/>.
-            </returns>
-            <exception cref="T:System.FormatException">
-            Throws when the argument <paramref name="str"/> is malformed.
-            </exception>
-            <seealso cref="F:Sudoku.Collections.Cells.Empty"/>
+            <inheritdoc/>
         </member>
         <member name="M:Sudoku.DataHandling.RxCyNotation.TryParse(System.String,Sudoku.Collections.Cells@)">
-            <summary>
-            Try to parse the specified <see cref="T:System.String"/> text, and convert it into the <see cref="T:Sudoku.Collections.Cells"/> instance
-            as the result value. If failed to parse, the return value will be <see langword="false"/>, but without
-            any exception thrown.
-            </summary>
-            <param name="str">The <see cref="T:System.String"/> text to be parsed.</param>
-            <param name="result">
-            The result <see cref="T:Sudoku.Collections.Cells"/> instance which are useful if the return value is <see langword="true"/>.
-            </param>
-            <returns>A <see cref="T:System.Boolean"/> value indicating whether the parse operation succeeded.</returns>
+            <inheritdoc/>
         </member>
         <member name="T:Sudoku.DataHandling.RxCyNotationOptions">
             <summary>
