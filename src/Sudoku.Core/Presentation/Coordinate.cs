@@ -120,18 +120,18 @@ public readonly record struct Coordinate(byte Cell) :
 	public string ToString(string? format) =>
 		format switch
 		{
-			null or "rc" => $"r{Row + 1}c{Column + 1}",
-			"RC" => $"R{Row + 1}C{Column + 1}",
-			"RCB" => $"R{Row + 1}C{Column + 1}B{Block + 1}",
-			"rcb" => $"r{Row + 1}c{Column + 1}b{Block + 1}",
+			null or "rc" => $"r{Row - 8}c{Column - 17}",
+			"RC" => $"R{Row - 8}C{Column - 17}",
+			"RCB" => $"R{Row - 8}C{Column - 17}B{Block + 1}",
+			"rcb" => $"r{Row - 8}c{Column - 17}b{Block + 1}",
 			[var formatChar] => formatChar switch
 			{
-				'N' => $"R{Row + 1}C{Column + 1}",
-				'n' => $"r{Row + 1}c{Column + 1}",
-				'R' => $"R{Row + 1}",
-				'r' => $"r{Row + 1}",
-				'C' => $"C{Column + 1}",
-				'c' => $"c{Column + 1}",
+				'N' => $"R{Row - 8}C{Column - 17}",
+				'n' => $"r{Row - 8}c{Column - 17}",
+				'R' => $"R{Row - 8}",
+				'r' => $"r{Row - 8}",
+				'C' => $"C{Column - 17}",
+				'c' => $"c{Column - 17}",
 				'B' => $"B{Block + 1}",
 				'b' => $"b{Block + 1}",
 				_ => throw new FormatException($"The specified format '{formatChar}' is invalid or not supported.")

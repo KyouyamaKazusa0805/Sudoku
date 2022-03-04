@@ -2,7 +2,9 @@
 using System.Collections.Specialized;
 using System.ComponentModel;
 using Sudoku.Diagnostics.CodeAnalysis;
+using Sudoku.Solving.Manual;
 using Sudoku.UI.Data;
+using static Sudoku.UI.StringResource;
 
 namespace Sudoku.UI.Views.Controls;
 
@@ -113,6 +115,29 @@ public sealed partial class InfoBarBoard : UserControl, INotifyPropertyChanged, 
 			Hyperlink = new(link),
 			HyperlinkDescription = linkDescription
 		});
+	}
+
+	/// <summary>
+	/// Creates a new <see cref="InfoBar"/> instance via the specified severity,
+	/// with the specified <see cref="ManualSolverResult"/> instance.
+	/// </summary>
+	/// <param name="analysisResult">The <see cref="ManualSolverResult"/> instance.</param>
+	/// <param name="severity">The severity. The default value is <see cref="InfoBarSeverity.Success"/>.</param>
+	public void AddMessage(ManualSolverResult analysisResult, InfoBarSeverity severity = InfoBarSeverity.Success)
+	{
+		var elapsedTime = analysisResult.ElapsedTime;
+		var steps = analysisResult.Steps;
+		string firstPart = Get("SudokuPage_InfoBar_AnalyzeSuccessfully1");
+		string secondPart = Get("SudokuPage_InfoBar_AnalyzeSuccessfully2");
+		string thirdPart = analysisResult.ToString();
+		AddMessage(
+			severity,
+			$"""
+			{firstPart}{elapsedTime:hh\:mm\:ss\.fff}{secondPart}
+
+			{thirdPart}
+			"""
+		);
 	}
 
 	/// <summary>

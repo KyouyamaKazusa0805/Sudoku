@@ -323,33 +323,21 @@ public sealed partial class SudokuPage : Page
 		// Displays the analysis result info.
 		if (analysisResult.IsSolved)
 		{
-			var elapsedTime = analysisResult.ElapsedTime;
-			var steps = analysisResult.Steps;
-			string firstPart = Get("SudokuPage_InfoBar_AnalyzeSuccessfully1");
-			string secondPart = Get("SudokuPage_InfoBar_AnalyzeSuccessfully2");
-			string thirdPart = analysisResult.ToString();
-			_cInfoBoard.AddMessage(
-				InfoBarSeverity.Success,
-				$"""
-				{firstPart}{elapsedTime:hh\:mm\:ss\.fff}{secondPart}
-
-				{thirdPart}
-				"""
-			);
+			_cInfoBoard.AddMessage(analysisResult);
 		}
 		else
 		{
 			var failedReason = analysisResult.FailedReason;
 			var wrongStep = analysisResult.WrongStep;
 			string firstPart = Get("SudokuPage_InfoBar_AnalyzeFailedDueTo1");
-			string secondPart = failedReason switch
+			string secondPart = Get(failedReason switch
 			{
-				FailedReason.UserCancelled => Get("SudokuPage_InfoBar_AnalyzeFailedDueToUserCancelling"),
-				FailedReason.NotImplemented => Get("SudokuPage_InfoBar_AnalyzeFailedDueToNotImplemented"),
-				FailedReason.ExceptionThrown => Get("SudokuPage_InfoBar_AnalyzeFailedDueToExceptionThrown"),
-				FailedReason.WrongStep => Get("SudokuPage_InfoBar_AnalyzeFailedDueToWrongStep"),
-				FailedReason.PuzzleIsTooHard => Get("SudokuPage_InfoBar_AnalyzeFailedDueToPuzzleTooHard")
-			};
+				FailedReason.UserCancelled => "SudokuPage_InfoBar_AnalyzeFailedDueToUserCancelling",
+				FailedReason.NotImplemented => "SudokuPage_InfoBar_AnalyzeFailedDueToNotImplemented",
+				FailedReason.ExceptionThrown => "SudokuPage_InfoBar_AnalyzeFailedDueToExceptionThrown",
+				FailedReason.WrongStep => "SudokuPage_InfoBar_AnalyzeFailedDueToWrongStep",
+				FailedReason.PuzzleIsTooHard => "SudokuPage_InfoBar_AnalyzeFailedDueToPuzzleTooHard"
+			});
 			_cInfoBoard.AddMessage(InfoBarSeverity.Warning, $"{firstPart}{secondPart}{wrongStep}");
 		}
 	}
