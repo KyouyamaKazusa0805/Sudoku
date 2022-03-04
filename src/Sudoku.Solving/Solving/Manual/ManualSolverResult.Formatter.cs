@@ -225,7 +225,7 @@ partial record ManualSolverResult
 
 			// Print the elapsed time.
 			sb.Append(R["AnalysisResultPuzzleHas"]!);
-			sb.AppendWhen(isSolved, R["AnalysisResultNot"]!);
+			sb.AppendWhen(!isSolved, R["AnalysisResultNot"]!);
 			sb.Append(R["AnalysisResultBeenSolved"]!);
 			sb.AppendLine();
 			sb.Append(R["AnalysisResultTimeElapsed"]!);

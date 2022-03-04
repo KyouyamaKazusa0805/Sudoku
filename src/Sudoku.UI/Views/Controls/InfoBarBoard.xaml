@@ -13,15 +13,15 @@
 		<ListView ItemsSource="{x:Bind _list}" SelectionMode="None">
 			<ListView.ItemTemplateSelector>
 				<dts:InfoBarDataTemplateSelector>
-					<dts:InfoBarDataTemplateSelector.PlainInfoBarInfoTemplate>
+					<dts:InfoBarDataTemplateSelector.PlainMessageTemplate>
 						<DataTemplate x:DataType="m:PlainMessage">
 							<InfoBar
 								Title="{x:Bind ui:BindingConversions.InfoBarTitle(Severity)}"
 								Severity="{x:Bind Severity}" Message="{x:Bind Message}"
 								IsIconVisible="True" IsOpen="True" IsClosable="True" />
 						</DataTemplate>
-					</dts:InfoBarDataTemplateSelector.PlainInfoBarInfoTemplate>
-					<dts:InfoBarDataTemplateSelector.InfoBarInfoWithLinkTemplate>
+					</dts:InfoBarDataTemplateSelector.PlainMessageTemplate>
+					<dts:InfoBarDataTemplateSelector.HyperlinkMessageTemplate>
 						<DataTemplate x:DataType="m:HyperlinkMessage">
 							<InfoBar
 								Title="{x:Bind ui:BindingConversions.InfoBarTitle(Severity)}"
@@ -33,7 +33,23 @@
 								</InfoBar.ActionButton>
 							</InfoBar>
 						</DataTemplate>
-					</dts:InfoBarDataTemplateSelector.InfoBarInfoWithLinkTemplate>
+					</dts:InfoBarDataTemplateSelector.HyperlinkMessageTemplate>
+					<dts:InfoBarDataTemplateSelector.AnalysisResultTemplate>
+						<DataTemplate x:DataType="m:ManualSolverResultMessage">
+							<InfoBar
+								Title="{x:Bind ui:BindingConversions.InfoBarTitle(Severity)}"
+								Severity="{x:Bind Severity}" Message="{x:Bind Message}"
+								IsIconVisible="True" IsOpen="True" IsClosable="True">
+								<InfoBar.Content>
+									<StackPanel>
+										<TextBlock
+											FontFamily="Consolas" Text="{x:Bind AnalysisResult.ToString('!')}"
+											TextWrapping="Wrap" />
+									</StackPanel>
+								</InfoBar.Content>
+							</InfoBar>
+						</DataTemplate>
+					</dts:InfoBarDataTemplateSelector.AnalysisResultTemplate>
 				</dts:InfoBarDataTemplateSelector>
 			</ListView.ItemTemplateSelector>
 			<ListView.ItemContainerTransitions>

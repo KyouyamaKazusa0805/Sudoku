@@ -9,14 +9,19 @@
 public sealed class InfoBarDataTemplateSelector : DataTemplateSelector
 {
 	/// <summary>
-	/// Indicates the data template that is used by the type <see cref="InfoBarMessage"/>.
+	/// Indicates the data template that is used by the type <see cref="PlainMessage"/>.
 	/// </summary>
-	public DataTemplate PlainInfoBarInfoTemplate { get; set; } = null!;
+	public DataTemplate PlainMessageTemplate { get; set; } = null!;
 
 	/// <summary>
 	/// Indicates the data template that is used by the type <see cref="HyperlinkMessage"/>.
 	/// </summary>
-	public DataTemplate InfoBarInfoWithLinkTemplate { get; set; } = null!;
+	public DataTemplate HyperlinkMessageTemplate { get; set; } = null!;
+
+	/// <summary>
+	/// Indicates the data template that is used by the type <see cref="ManualSolverResultMessage"/>.
+	/// </summary>
+	public DataTemplate AnalysisResultTemplate { get; set; } = null!;
 
 
 	/// <inheritdoc/>
@@ -27,8 +32,9 @@ public sealed class InfoBarDataTemplateSelector : DataTemplateSelector
 	protected override DataTemplate SelectTemplateCore(object item) =>
 		item switch
 		{
-			PlainMessage => PlainInfoBarInfoTemplate,
-			HyperlinkMessage => InfoBarInfoWithLinkTemplate,
+			PlainMessage => PlainMessageTemplate,
+			HyperlinkMessage => HyperlinkMessageTemplate,
+			ManualSolverResultMessage => AnalysisResultTemplate,
 			_ => throw new InvalidOperationException("The type is invalid.")
 		};
 }

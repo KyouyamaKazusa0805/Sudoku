@@ -125,19 +125,22 @@ public sealed partial class InfoBarBoard : UserControl, INotifyPropertyChanged, 
 	/// <param name="severity">The severity. The default value is <see cref="InfoBarSeverity.Success"/>.</param>
 	public void AddMessage(ManualSolverResult analysisResult, InfoBarSeverity severity = InfoBarSeverity.Success)
 	{
-		var elapsedTime = analysisResult.ElapsedTime;
-		var steps = analysisResult.Steps;
-		string firstPart = Get("SudokuPage_InfoBar_AnalyzeSuccessfully1");
-		string secondPart = Get("SudokuPage_InfoBar_AnalyzeSuccessfully2");
-		string thirdPart = analysisResult.ToString();
-		AddMessage(
-			severity,
-			$"""
-			{firstPart}{elapsedTime:hh\:mm\:ss\.fff}{secondPart}
+		var up = ((App)Application.Current).UserPreference;
 
-			{thirdPart}
-			"""
-		);
+		// Although '_list.Add' receives a parameter of type 'InfoBarMessage', which derives
+		// the type 'ManualSolverResultMessage', but the first type argument of the delegate type 'Action<T>'
+		// is a contra-variance, which means it allows the argument of type 'T' automatically casting to the
+		// derived types of 'T'.
+		Action<ManualSolverResultMessage> handler = up.DescendingOrderedInfoBarBoard
+			? _list.Prepend<InfoBarMessage, ManualSolverResultMessage>
+			: _list.Add;
+
+		handler(new()
+		{
+			AnalysisResult = analysisResult,
+			Severity = severity,
+			Message = Get("SudokuPage_InfoBar_AnalyzeSuccessfully")
+		});
 	}
 
 	/// <summary>
