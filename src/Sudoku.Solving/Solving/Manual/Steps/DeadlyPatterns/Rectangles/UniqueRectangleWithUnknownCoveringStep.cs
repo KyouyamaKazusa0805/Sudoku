@@ -52,7 +52,7 @@ public sealed record UniqueRectangleWithUnknownCoveringStep(
 	internal string TargetCellStr
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => new Coordinate((byte)TargetCell).ToString();
+		get => new Cells { TargetCell }.ToString();
 	}
 
 	[FormatItem]

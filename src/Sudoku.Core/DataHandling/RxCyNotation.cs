@@ -1,4 +1,5 @@
 ﻿using Sudoku.Collections;
+using static Sudoku.Constants;
 
 namespace Sudoku.DataHandling;
 
@@ -25,6 +26,16 @@ namespace Sudoku.DataHandling;
 /// </remarks>
 public abstract class RxCyNotation : ICellNotation
 {
+	/// <summary>
+	/// Indicates the regular expression for matching a cell or cell-list.
+	/// </summary>
+	private static readonly Regex CellOrCellListRegex = new(
+		RegularExpressions.CellOrCellList,
+		RegexOptions.ExplicitCapture,
+		TimeSpan.FromSeconds(5)
+	);
+
+
 	/// <summary>
 	/// The <see langword="private"/> instance constructor of this type.
 	/// The type is <see langword="static"/>-<see langword="class"/>-like type
@@ -117,6 +128,100 @@ public abstract class RxCyNotation : ICellNotation
 			sbColumn.RemoveFromEnd(1);
 
 			return sbColumn.ToStringAndClear();
+		}
+	}
+
+	/// <summary>
+	/// Parse the specified <see cref="string"/> text, and convert it into the <see cref="Cells"/> instance
+	/// as the result value.
+	/// </summary>
+	/// <param name="str">The <see cref="string"/> text to be parsed.</param>
+	/// <returns>
+	/// The <see cref="Cells"/> result. If the argument <paramref name="str"/> is <see langword="null"/>
+	/// or only contains white spaces, the value will be <see cref="Cells.Empty"/>.
+	/// </returns>
+	/// <exception cref="FormatException">
+	/// Throws when the argument <paramref name="str"/> is malformed.
+	/// </exception>
+	/// <seealso cref="Cells.Empty"/>
+	public static unsafe Cells Parse(string str)
+	{
+		// Check whether the match is successful.
+		if (CellOrCellListRegex.Matches(str) is not [_, ..] matches)
+		{
+			throw new FormatException("The specified string can't match any cell instance.");
+		}
+
+		// Declare the buffer.
+		int* bufferRows = stackalloc int[9], bufferColumns = stackalloc int[9];
+
+		// Declare the result variable.
+		var result = Cells.Empty;
+
+		// Iterate on each match instance.
+		foreach (Match match in matches)
+		{
+			string value = match.Value;
+			char* anchorR, anchorC;
+			fixed (char* pValue = value)
+			{
+				anchorR = anchorC = pValue;
+
+				// Find the index of the character 'C'.
+				// The regular expression guaranteed the string must contain the character 'C' or 'c',
+				// so we don't need to check '*p != '\0''.
+				while (*anchorC is not ('C' or 'c'/* or '\0'*/))
+				{
+					anchorC++;
+				}
+			}
+
+			// Stores the possible values into the buffer.
+			int rIndex = 0, cIndex = 0;
+			for (char* p = anchorR + 1; *p is not ('C' or 'c'); p++, rIndex++)
+			{
+				bufferRows[rIndex] = *p - '1';
+			}
+			for (char* p = anchorC + 1; *p != '\0'; p++, cIndex++)
+			{
+				bufferColumns[cIndex] = *p - '1';
+			}
+
+			// Now combine two buffers.
+			for (int i = 0; i < rIndex; i++)
+			{
+				for (int j = 0; j < cIndex; j++)
+				{
+					result.AddAnyway(bufferRows[i] * 9 + bufferColumns[j]);
+				}
+			}
+		}
+
+		// Returns the result.
+		return result;
+	}
+
+	/// <summary>
+	/// Try to parse the specified <see cref="string"/> text, and convert it into the <see cref="Cells"/> instance
+	/// as the result value. If failed to parse, the return value will be <see langword="false"/>, but without
+	/// any exception thrown.
+	/// </summary>
+	/// <param name="str">The <see cref="string"/> text to be parsed.</param>
+	/// <param name="result">
+	/// The result <see cref="Cells"/> instance which are useful if the return value is <see langword="true"/>.
+	/// </param>
+	/// <returns>A <see cref="bool"/> value indicating whether the parse operation succeeded.</returns>
+	public static bool TryParse(string str, out Cells result)
+	{
+		try
+		{
+			result = Parse(str);
+			return true;
+		}
+		catch (FormatException)
+		{
+			Unsafe.SkipInit(out result);
+			return false;
 		}
 	}
 }

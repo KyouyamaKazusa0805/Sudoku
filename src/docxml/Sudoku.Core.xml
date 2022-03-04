@@ -685,11 +685,6 @@
             </summary>
             <seealso cref="M:Sudoku.Collections.Cells.#ctor"/>
         </member>
-        <member name="F:Sudoku.Collections.Cells.CellOrCellListRegex">
-            <summary>
-            Indicates the regular expression for matching a cell or cell-list.
-            </summary>
-        </member>
         <member name="F:Sudoku.Collections.Cells._high">
             <summary>
             Indicates the internal two <see cref="T:System.Int64"/> values,
@@ -4429,6 +4424,11 @@
             </para>
             </remarks>
         </member>
+        <member name="F:Sudoku.DataHandling.RxCyNotation.CellOrCellListRegex">
+            <summary>
+            Indicates the regular expression for matching a cell or cell-list.
+            </summary>
+        </member>
         <member name="M:Sudoku.DataHandling.RxCyNotation.#ctor">
             <summary>
             The <see langword="private"/> instance constructor of this type.
@@ -4453,6 +4453,33 @@
             </param>
             <param name="options">The extra options that controls the output behavior.</param>
             <returns>The <see cref="T:System.String"/> representation of the current notation.</returns>
+        </member>
+        <member name="M:Sudoku.DataHandling.RxCyNotation.Parse(System.String)">
+            <summary>
+            Parse the specified <see cref="T:System.String"/> text, and convert it into the <see cref="T:Sudoku.Collections.Cells"/> instance
+            as the result value.
+            </summary>
+            <param name="str">The <see cref="T:System.String"/> text to be parsed.</param>
+            <returns>
+            The <see cref="T:Sudoku.Collections.Cells"/> result. If the argument <paramref name="str"/> is <see langword="null"/>
+            or only contains white spaces, the value will be <see cref="F:Sudoku.Collections.Cells.Empty"/>.
+            </returns>
+            <exception cref="T:System.FormatException">
+            Throws when the argument <paramref name="str"/> is malformed.
+            </exception>
+            <seealso cref="F:Sudoku.Collections.Cells.Empty"/>
+        </member>
+        <member name="M:Sudoku.DataHandling.RxCyNotation.TryParse(System.String,Sudoku.Collections.Cells@)">
+            <summary>
+            Try to parse the specified <see cref="T:System.String"/> text, and convert it into the <see cref="T:Sudoku.Collections.Cells"/> instance
+            as the result value. If failed to parse, the return value will be <see langword="false"/>, but without
+            any exception thrown.
+            </summary>
+            <param name="str">The <see cref="T:System.String"/> text to be parsed.</param>
+            <param name="result">
+            The result <see cref="T:Sudoku.Collections.Cells"/> instance which are useful if the return value is <see langword="true"/>.
+            </param>
+            <returns>A <see cref="T:System.Boolean"/> value indicating whether the parse operation succeeded.</returns>
         </member>
         <member name="T:Sudoku.DataHandling.RxCyNotationOptions">
             <summary>
@@ -5227,159 +5254,6 @@
             The value is initialized as the ID value.
             </summary>
             <param name="id">The ID.</param>
-        </member>
-        <member name="T:Sudoku.Presentation.Coordinate">
-            <summary>
-            Defines a coordinate used in a sudoku grid.
-            </summary>
-            <param name="Cell">
-            Indicates the cell value used. The possible values are between 0 and 80. You can't assign a value
-            out of this range; otherwise, an <see cref="T:System.InvalidOperationException"/> or
-            <see cref="T:System.ArgumentOutOfRangeException"/> will be thrown.
-            </param>
-        </member>
-        <member name="M:Sudoku.Presentation.Coordinate.#ctor(System.Byte)">
-            <summary>
-            Defines a coordinate used in a sudoku grid.
-            </summary>
-            <param name="Cell">
-            Indicates the cell value used. The possible values are between 0 and 80. You can't assign a value
-            out of this range; otherwise, an <see cref="T:System.InvalidOperationException"/> or
-            <see cref="T:System.ArgumentOutOfRangeException"/> will be thrown.
-            </param>
-        </member>
-        <member name="P:Sudoku.Presentation.Coordinate.Cell">
-            <summary>
-            Indicates the cell value used. The possible values are between 0 and 80. You can't assign a value
-            out of this range; otherwise, an <see cref="T:System.InvalidOperationException"/> or
-            <see cref="T:System.ArgumentOutOfRangeException"/> will be thrown.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Presentation.Coordinate.Undefined">
-            <summary>
-            Indicates the undefined <see cref="T:Sudoku.Presentation.Coordinate"/> instance that stands
-            for an invalid <see cref="T:Sudoku.Presentation.Coordinate"/> value.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Presentation.Coordinate.MinValue">
-            <inheritdoc cref="P:System.IMinMaxValue`1.MinValue"/>
-        </member>
-        <member name="F:Sudoku.Presentation.Coordinate.MaxValue">
-            <inheritdoc cref="P:System.IMinMaxValue`1.MaxValue"/>
-        </member>
-        <member name="P:Sudoku.Presentation.Coordinate.Row">
-            <summary>
-            Indicates the current row lying in.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Presentation.Coordinate.Column">
-            <summary>
-            Indicates the current column lying in.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Presentation.Coordinate.Block">
-            <summary>
-            Indicates the current block lying in.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Presentation.Coordinate.System#IDefaultable{Sudoku#Presentation#Coordinate}#IsDefault">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Presentation.Coordinate.System#IMinMaxValue{Sudoku#Presentation#Coordinate}#MinValue">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Presentation.Coordinate.System#IMinMaxValue{Sudoku#Presentation#Coordinate}#MaxValue">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Presentation.Coordinate.System#IDefaultable{Sudoku#Presentation#Coordinate}#Default">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Presentation.Coordinate.Equals(Sudoku.Presentation.Coordinate)">
-            <summary>
-            Determine whether the specified <see cref="T:Sudoku.Presentation.Coordinate"/> instance holds the same cell
-            as the current instance.
-            </summary>
-            <param name="other">The instance to compare.</param>
-            <returns>A <see cref="T:System.Boolean"/> result.</returns>
-        </member>
-        <member name="M:Sudoku.Presentation.Coordinate.GetHashCode">
-            <inheritdoc cref="M:System.Object.GetHashCode"/>
-        </member>
-        <member name="M:Sudoku.Presentation.Coordinate.CompareTo(Sudoku.Presentation.Coordinate)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Presentation.Coordinate.ToString">
-            <inheritdoc cref="M:System.Object.ToString"/>
-        </member>
-        <member name="M:Sudoku.Presentation.Coordinate.ToString(System.String)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Presentation.Coordinate.MoveForwardly(System.Byte)">
-            <inheritdoc cref="M:Sudoku.Presentation.Coordinate.op_Addition(Sudoku.Presentation.Coordinate,System.Byte)"/>
-        </member>
-        <member name="M:Sudoku.Presentation.Coordinate.MoveBackwardly(System.Byte)">
-            <inheritdoc cref="M:Sudoku.Presentation.Coordinate.op_Subtraction(Sudoku.Presentation.Coordinate,System.Byte)"/>
-        </member>
-        <member name="M:Sudoku.Presentation.Coordinate.MoveForwardlyThroughBlock">
-            <summary>
-            Moves the current <see cref="T:Sudoku.Presentation.Coordinate"/> to skip cells to the first cell in its next block forwardly.
-            </summary>
-            <returns>The result <see cref="T:Sudoku.Presentation.Coordinate"/></returns>
-        </member>
-        <member name="M:Sudoku.Presentation.Coordinate.MoveBackwardlyThroughBlock">
-            <summary>
-            Moves the current <see cref="T:Sudoku.Presentation.Coordinate"/> to skip cells to the first cell in its next block backwardly.
-            </summary>
-            <returns>The result <see cref="T:Sudoku.Presentation.Coordinate"/></returns>
-        </member>
-        <member name="M:Sudoku.Presentation.Coordinate.System#IComparable#CompareTo(System.Object)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Presentation.Coordinate.Parse(System.String)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Presentation.Coordinate.TryParse(System.String,Sudoku.Presentation.Coordinate@)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Presentation.Coordinate.op_GreaterThanOrEqual(Sudoku.Presentation.Coordinate,Sudoku.Presentation.Coordinate)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Presentation.Coordinate.op_LessThanOrEqual(Sudoku.Presentation.Coordinate,Sudoku.Presentation.Coordinate)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Presentation.Coordinate.op_GreaterThan(Sudoku.Presentation.Coordinate,Sudoku.Presentation.Coordinate)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Presentation.Coordinate.op_LessThan(Sudoku.Presentation.Coordinate,Sudoku.Presentation.Coordinate)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Presentation.Coordinate.op_Addition(Sudoku.Presentation.Coordinate,System.Byte)">
-            <summary>
-            Moves the specified <see cref="T:Sudoku.Presentation.Coordinate"/> forwardly.
-            </summary>
-            <param name="coordinate">The <see cref="T:Sudoku.Presentation.Coordinate"/> instance to be moved.</param>
-            <param name="offset">The offset that the <see cref="T:Sudoku.Presentation.Coordinate"/> instance moves.</param>
-            <returns>The result <see cref="T:Sudoku.Presentation.Coordinate"/>.</returns>
-        </member>
-        <member name="M:Sudoku.Presentation.Coordinate.op_Subtraction(Sudoku.Presentation.Coordinate,System.Byte)">
-            <summary>
-            Moves the specified <see cref="T:Sudoku.Presentation.Coordinate"/> backwardly.
-            </summary>
-            <param name="coordinate">The <see cref="T:Sudoku.Presentation.Coordinate"/> instance to be moved.</param>
-            <param name="offset">The offset that the <see cref="T:Sudoku.Presentation.Coordinate"/> instance moves.</param>
-            <returns>The result <see cref="T:Sudoku.Presentation.Coordinate"/>.</returns>
-        </member>
-        <member name="M:Sudoku.Presentation.Coordinate.op_Implicit(Sudoku.Presentation.Coordinate)~System.Byte">
-            <summary>
-            Implicit conversion from <see cref="T:Sudoku.Presentation.Coordinate"/> to <see cref="T:System.Byte"/>.
-            </summary>
-            <param name="coordinate">The <see cref="T:Sudoku.Presentation.Coordinate"/> instance.</param>
-        </member>
-        <member name="M:Sudoku.Presentation.Coordinate.op_Explicit(System.Byte)~Sudoku.Presentation.Coordinate">
-            <summary>
-            Explicit conversion from <see cref="T:System.Byte"/> to <see cref="T:Sudoku.Presentation.Coordinate"/>.
-            </summary>
-            <param name="cell">The cell value.</param>
         </member>
         <member name="T:Sudoku.Presentation.Crosshatch">
             <summary>

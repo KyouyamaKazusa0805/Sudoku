@@ -2,7 +2,6 @@
 
 using System.ComponentModel;
 using Sudoku.DataHandling;
-using Sudoku.Presentation;
 using static System.Numerics.BitOperations;
 using static Sudoku.Constants;
 using static Sudoku.Constants.Tables;
@@ -66,15 +65,6 @@ public unsafe struct Cells :
 	/// </summary>
 	/// <seealso cref="Cells()"/>
 	public static readonly Cells Empty;
-
-	/// <summary>
-	/// Indicates the regular expression for matching a cell or cell-list.
-	/// </summary>
-	private static readonly Regex CellOrCellListRegex = new(
-		RegularExpressions.CellOrCellList,
-		RegexOptions.ExplicitCapture,
-		TimeSpan.FromSeconds(5)
-	);
 
 
 	/// <summary>
@@ -911,9 +901,12 @@ public unsafe struct Cells :
 	[EditorBrowsable(EditorBrowsableState.Never)]
 	public void Add(string offset)
 	{
-		if (Coordinate.TryParse(offset, out var result))
+		if (TryParse(offset, out var result))
 		{
-			InternalAdd(result, true);
+			foreach (int cell in result)
+			{
+				InternalAdd(cell, true);
+			}
 		}
 	}
 
@@ -1012,77 +1005,12 @@ public unsafe struct Cells :
 
 
 	/// <inheritdoc/>
-	public static Cells Parse(string str)
-	{
-		// Check whether the match is successful.
-		if (CellOrCellListRegex.Matches(str) is not [_, ..] matches)
-		{
-			throw new FormatException("The specified string can't match any cell instance.");
-		}
-
-		// Declare the buffer.
-		int* bufferRows = stackalloc int[9], bufferColumns = stackalloc int[9];
-
-		// Declare the result variable.
-		var result = Empty;
-
-		// Iterate on each match instance.
-		foreach (Match match in matches)
-		{
-			string value = match.Value;
-			char* anchorR, anchorC;
-			fixed (char* pValue = value)
-			{
-				anchorR = anchorC = pValue;
-
-				// Find the index of the character 'C'.
-				// The regular expression guaranteed the string must contain the character 'C' or 'c',
-				// so we don't need to check '*p != '\0''.
-				while (*anchorC is not ('C' or 'c'/* or '\0'*/))
-				{
-					anchorC++;
-				}
-			}
-
-			// Stores the possible values into the buffer.
-			int rIndex = 0, cIndex = 0;
-			for (char* p = anchorR + 1; *p is not ('C' or 'c'); p++, rIndex++)
-			{
-				bufferRows[rIndex] = *p - '1';
-			}
-			for (char* p = anchorC + 1; *p != '\0'; p++, cIndex++)
-			{
-				bufferColumns[cIndex] = *p - '1';
-			}
-
-			// Now combine two buffers.
-			for (int i = 0; i < rIndex; i++)
-			{
-				for (int j = 0; j < cIndex; j++)
-				{
-					result.AddAnyway(bufferRows[i] * 9 + bufferColumns[j]);
-				}
-			}
-		}
-
-		// Returns the result.
-		return result;
-	}
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static Cells Parse(string str) => RxCyNotation.Parse(str);
 
 	/// <inheritdoc/>
-	public static bool TryParse(string str, out Cells result)
-	{
-		try
-		{
-			result = Parse(str);
-			return true;
-		}
-		catch (Exception ex) when (ex is ArgumentNullException or FormatException)
-		{
-			result = Empty;
-			return false;
-		}
-	}
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static bool TryParse(string str, out Cells result) => RxCyNotation.TryParse(str, out result);
 
 
 	/// <summary>

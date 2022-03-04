@@ -1,4 +1,5 @@
-﻿using Sudoku.Presentation;
+﻿using Sudoku.Collections;
+using Sudoku.Presentation;
 using Sudoku.Solving.Manual.Text;
 using Sudoku.Techniques;
 
@@ -38,14 +39,14 @@ public sealed record WWingStep(
 	internal string StartCellStr
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => new Coordinate((byte)StartCell).ToString();
+		get => new Cells { StartCell }.ToString();
 	}
 
 	[FormatItem]
 	internal string EndCellStr
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => new Coordinate((byte)EndCell).ToString();
+		get => new Cells { EndCell }.ToString();
 	}
 
 	[FormatItem]

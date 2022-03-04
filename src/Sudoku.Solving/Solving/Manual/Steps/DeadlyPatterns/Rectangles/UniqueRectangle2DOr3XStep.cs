@@ -63,6 +63,6 @@ public sealed record UniqueRectangle2DOr3XStep(
 	internal string XYCellsStr
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => new Coordinate((byte)XyCell).ToString();
+		get => new Cells { XyCell }.ToString();
 	}
 }

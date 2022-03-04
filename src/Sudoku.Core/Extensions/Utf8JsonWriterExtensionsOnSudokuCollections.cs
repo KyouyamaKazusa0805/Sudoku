@@ -18,7 +18,7 @@ internal static class Utf8JsonWriterExtensionsOnSudokuCollections
 		@this.WriteStartArray();
 		foreach (byte cell in cells)
 		{
-			@this.WriteStringValue(new Coordinate(cell).ToString());
+			@this.WriteStringValue(new Cells { cell }.ToString());
 		}
 		@this.WriteEndArray();
 	}

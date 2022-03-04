@@ -36,7 +36,7 @@ public sealed record BivalueOddagonType1Step(
 	internal string CellStr
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => new Coordinate((byte)ExtraCell).ToString();
+		get => new Cells { ExtraCell }.ToString();
 	}
 
 	[FormatItem]

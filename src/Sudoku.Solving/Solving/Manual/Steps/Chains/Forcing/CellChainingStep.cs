@@ -1,4 +1,5 @@
-﻿using Sudoku.Presentation;
+﻿using Sudoku.Collections;
+using Sudoku.Presentation;
 using Sudoku.Solving.Manual.Text;
 using Sudoku.Techniques;
 
@@ -47,6 +48,6 @@ public sealed record CellChainingStep(
 	internal string SourceCellStr
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => new Coordinate((byte)SourceCell).ToString();
+		get => new Cells { SourceCell }.ToString();
 	}
 }

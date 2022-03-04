@@ -48,6 +48,6 @@ public sealed record BivalueUniversalGraveXzStep(
 	internal string ExtraCellStr
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => new Coordinate((byte)ExtraCell).ToString();
+		get => new Cells { ExtraCell }.ToString();
 	}
 }

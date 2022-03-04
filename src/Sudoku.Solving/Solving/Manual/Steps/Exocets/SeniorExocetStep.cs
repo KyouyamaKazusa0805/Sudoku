@@ -82,6 +82,6 @@ public sealed record SeniorExocetStep(
 	internal string EndoTargetCellStr
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => new Coordinate((byte)EndoTargetCell).ToString();
+		get => new Cells { EndoTargetCell }.ToString();
 	}
 }
