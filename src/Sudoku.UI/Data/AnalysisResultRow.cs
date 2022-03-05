@@ -43,8 +43,9 @@ public sealed class AnalysisResultRow
 	/// The <see cref="ManualSolverResult"/> instance that is used for creating the result value.
 	/// </param>
 	/// <returns>The result list of <see cref="AnalysisResultRow"/>-typed elements.</returns>
-	public static unsafe IEnumerable<AnalysisResultRow> CreateListFrom(ManualSolverResult analysisResult)
+	public static IEnumerable<AnalysisResultRow> CreateListFrom(ManualSolverResult analysisResult)
 	{
+		var stepDifficultySelector = static (Step step) => step.Difficulty;
 		return
 			from step in analysisResult.Steps
 			orderby step.DifficultyLevel, step.TechniqueCode
@@ -61,11 +62,8 @@ public sealed class AnalysisResultRow
 				TechniqueName = stepGroup.Key,
 				CountOfSteps = stepGroupArray.Length,
 				DifficultyLevel = difficultyLevels.Aggregate(static (interim, next) => interim | next),
-				TotalDifficulty = stepGroupArray.Sum(&stepDifficultySelector),
-				MaximumDifficulty = stepGroupArray.Max(&stepDifficultySelector)
+				TotalDifficulty = stepGroupArray.Sum(stepDifficultySelector),
+				MaximumDifficulty = stepGroupArray.Max(stepDifficultySelector)
 			};
-
-
-		static decimal stepDifficultySelector(Step step) => step.Difficulty;
 	}
 }
