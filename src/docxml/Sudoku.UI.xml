@@ -88,6 +88,38 @@
             Indicates the configuration file.
             </summary>
         </member>
+        <member name="T:Sudoku.UI.Data.AnalysisResultRow">
+            <summary>
+            Defines a row that used for displaying the information about a technique,
+            whose inner data is from the <see cref="T:Sudoku.Solving.Manual.ManualSolverResult"/> instance.
+            </summary>
+            <seealso cref="T:Sudoku.Solving.Manual.ManualSolverResult"/>
+        </member>
+        <member name="P:Sudoku.UI.Data.AnalysisResultRow.CountOfSteps">
+            <summary>
+            Indicates the number of steps that uses logic of the current technique.
+            </summary>
+        </member>
+        <member name="P:Sudoku.UI.Data.AnalysisResultRow.TechniqueName">
+            <summary>
+            Indicates the technique name.
+            </summary>
+        </member>
+        <member name="P:Sudoku.UI.Data.AnalysisResultRow.DifficultyLevel">
+            <summary>
+            Indicates the difficulty level of the techinque belonging to.
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Data.AnalysisResultRow.CreateListFrom(Sudoku.Solving.Manual.ManualSolverResult)">
+            <summary>
+            Creates the list of <see cref="T:Sudoku.UI.Data.AnalysisResultRow"/> as the result value,
+            via the specified <paramref name="analysisResult"/> instance of <see cref="T:Sudoku.Solving.Manual.ManualSolverResult"/> type.
+            </summary>
+            <param name="analysisResult">
+            The <see cref="T:Sudoku.Solving.Manual.ManualSolverResult"/> instance that is used for creating the result value.
+            </param>
+            <returns>The result list of <see cref="T:Sudoku.UI.Data.AnalysisResultRow"/>-typed elements.</returns>
+        </member>
         <member name="T:Sudoku.UI.Data.DataTemplateSelectors.InfoBarDataTemplateSelector">
             <summary>
             Defines a data template selector that selects the <see cref="T:Microsoft.UI.Xaml.DataTemplate"/> between
@@ -201,10 +233,74 @@
         <member name="T:Sudoku.UI.Data.PlainMessage">
             <inheritdoc/>
         </member>
+        <member name="T:Sudoku.UI.Data.ValueConverters.DifficultyLevelToBackgroundConverter">
+            <summary>
+            Defines a value converter that allows the one-way binding from the
+            <see cref="P:Sudoku.UI.Data.AnalysisResultRow.DifficultyLevel"/> to <see cref="P:Microsoft.UI.Xaml.Controls.Control.Background"/> property value.
+            </summary>
+            <seealso cref="P:Sudoku.UI.Data.AnalysisResultRow.DifficultyLevel"/>
+            <seealso cref="P:Microsoft.UI.Xaml.Controls.Control.Background"/>
+        </member>
+        <member name="F:Sudoku.UI.Data.ValueConverters.DifficultyLevelToBackgroundConverter.Backgrounds">
+            <summary>
+            Defines the background brushes.
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Data.ValueConverters.DifficultyLevelToBackgroundConverter.Convert(System.Object,System.Type,System.Object,System.String)">
+            <inheritdoc/>
+            <exception cref="T:System.ArgumentException">
+            Throws when the argument <paramref name="targetType"/> is not <see cref="T:Microsoft.UI.Xaml.Media.Brush"/>.
+            </exception>
+        </member>
+        <member name="M:Sudoku.UI.Data.ValueConverters.DifficultyLevelToBackgroundConverter.ConvertBack(System.Object,System.Type,System.Object,System.String)">
+            <inheritdoc/>
+            <exception cref="T:System.NotImplementedException">Always throws due to not implemented.</exception>
+        </member>
+        <member name="T:Sudoku.UI.Data.ValueConverters.DifficultyLevelToForegroundConverter">
+            <summary>
+            Defines a value converter that allows the one-way binding from the
+            <see cref="P:Sudoku.UI.Data.AnalysisResultRow.DifficultyLevel"/> to <see cref="P:Microsoft.UI.Xaml.Controls.Control.Foreground"/> property value.
+            </summary>
+            <seealso cref="P:Sudoku.UI.Data.AnalysisResultRow.DifficultyLevel"/>
+            <seealso cref="P:Microsoft.UI.Xaml.Controls.Control.Foreground"/>
+        </member>
+        <member name="F:Sudoku.UI.Data.ValueConverters.DifficultyLevelToForegroundConverter.Foregrounds">
+            <summary>
+            Defines the foreground brushes.
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Data.ValueConverters.DifficultyLevelToForegroundConverter.Convert(System.Object,System.Type,System.Object,System.String)">
+            <inheritdoc/>
+            <exception cref="T:System.ArgumentException">
+            Throws when the argument <paramref name="targetType"/> is not <see cref="T:Microsoft.UI.Xaml.Media.Brush"/>.
+            </exception>
+        </member>
+        <member name="M:Sudoku.UI.Data.ValueConverters.DifficultyLevelToForegroundConverter.ConvertBack(System.Object,System.Type,System.Object,System.String)">
+            <inheritdoc/>
+            <exception cref="T:System.NotImplementedException">Always throws due to not implemented.</exception>
+        </member>
+        <member name="T:Sudoku.UI.Data.ValueConverters.DifficultyLevelToTextConverter">
+            <summary>
+            Defines a value converter that allows the one-way binding from the
+            <see cref="P:Sudoku.UI.Data.AnalysisResultRow.DifficultyLevel"/> to <see cref="P:Microsoft.UI.Xaml.Controls.TextBlock.Text"/> property value.
+            </summary>
+            <seealso cref="P:Sudoku.UI.Data.AnalysisResultRow.DifficultyLevel"/>
+            <seealso cref="P:Microsoft.UI.Xaml.Controls.TextBlock.Text"/>
+        </member>
+        <member name="M:Sudoku.UI.Data.ValueConverters.DifficultyLevelToTextConverter.Convert(System.Object,System.Type,System.Object,System.String)">
+            <inheritdoc/>
+            <exception cref="T:System.ArgumentException">
+            Throws when the argument <paramref name="targetType"/> is not <see cref="T:System.String"/>.
+            </exception>
+        </member>
+        <member name="M:Sudoku.UI.Data.ValueConverters.DifficultyLevelToTextConverter.ConvertBack(System.Object,System.Type,System.Object,System.String)">
+            <inheritdoc/>
+            <exception cref="T:System.NotImplementedException">Always throws due to not implemented.</exception>
+        </member>
         <member name="T:Sudoku.UI.Data.ValueConverters.InfoBarBoardToIsEnabledConverter">
             <summary>
             Defines a value converter that allows the one-way binding from the <see cref="P:Sudoku.UI.Views.Controls.InfoBarBoard.Any"/>
-            to a <see cref="T:System.Boolean"/> vcalue indicating whether the control should be enabled.
+            to a <see cref="T:System.Boolean"/> value indicating whether the control should be enabled.
             </summary>
             <seealso cref="P:Sudoku.UI.Views.Controls.InfoBarBoard.Any"/>
         </member>
