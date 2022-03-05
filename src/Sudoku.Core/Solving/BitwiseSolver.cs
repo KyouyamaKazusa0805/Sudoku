@@ -356,7 +356,7 @@ public sealed unsafe partial class BitwiseSolver
 				g->Bands[band] = BitSet27;
 			}
 
-			Unsafe.InitBlock(g->PrevBands, 0, 27);
+			Unsafe.InitBlock(g->PrevBands, 0, 27 * sizeof(uint));
 			g->UnsolvedCells[0] = g->UnsolvedCells[1] = g->UnsolvedCells[2] = BitSet27;
 			g->UnsolvedRows[0] = g->UnsolvedRows[1] = g->UnsolvedRows[2] = BitSet27;
 			g->Pairs[0] = g->Pairs[1] = g->Pairs[2] = 0;

@@ -56,7 +56,7 @@ public sealed unsafe class HardPatternPuzzleGenerator : IPuzzleGenerator
 
 			GenerateAnswerGrid(puzzle, solution);
 
-			Unsafe.InitBlock(holeCells, 0, 81);
+			Unsafe.InitBlock(holeCells, 0, 81 * sizeof(int));
 			CreatePattern(holeCells);
 			for (int trial = 0; trial < 1000; trial++)
 			{

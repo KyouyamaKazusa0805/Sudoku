@@ -314,7 +314,7 @@ public sealed partial class SudokuPage : Page
 		button.IsEnabled = false;
 
 		// Solve the puzzle using the manual solver.
-		var analysisResult = (ManualSolverResult)await Task.Run(() => ManualSolver.Shared.Solve(_cPane.Grid));
+		var analysisResult = await Task.Run(() => (ManualSolverResult)ManualSolver.Shared.Solve(_cPane.GridByReference()));
 
 		// Enable the control.
 		button.IsEnabled = true;
