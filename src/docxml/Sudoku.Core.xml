@@ -1985,8 +1985,11 @@
             </summary>
             <param name="cell">The cell you want to get or set a value.</param>
             <value>
+            <para>
             The value you want to set. The value should be between 0 and 8. If assigning -1,
             that means to re-compute all candidates.
+            </para>
+            <para>In addition, values set into the grid will be regarded as the modifiable values.</para>
             </value>
             <returns>
             The value that the cell filled with. The possible values are:

@@ -12,6 +12,7 @@
 | `DISCARD_INTERPOLATION_INFO`                                 | 有         | [StringHandler.cs](https://github.com/SunnieShine/Sudoku/blob/main/src/System/Text/StringHandler.cs) | 表示 `StringHandler` 字符串拼接器对象是否在初始化的时候，忽略掉基本初始化信息（比如字符串内插元素数量以及总长度）。 |
 | `USE_NEWER_CONSTANT_VALUES`                                  | 有         | [StringHandler.cs](https://github.com/SunnieShine/Sudoku/blob/main/src/System/Text/StringHandler.cs) | 表示 `StringHandler` 字符串拼接器对象假设内插字符串只有 8 个内插部分（如果不设置此符号的话，则是 11）。 |
 | `CLEAR_STATE_STACK_FOR_EACH_CHECK_VALIDITY_AND_SOLVE_INVOKES` | 有         | [BitwiseSolver.cs](https://github.com/SunnieShine/Sudoku/blob/main/src/Sudoku.Core/Solving/BitwiseSolver.cs), [FastSolver.cs](https://github.com/SunnieShine/Sudoku/blob/main/src/Sudoku.Solving/Solving/BruteForces/FastSolver.cs) | 表示是否在每一次解题和验证题目之前都刷新一下底层字段的内存空间，以获得最佳效果。如果没有这一步，程序可以运行并且仍然会表现得很好，不过时而也会导致一些 bug，比如问题 [#229](https://github.com/SunnieShine/Sudoku/issues/229)。 |
+| `SOLUTION_DISPLAY_MODIFIABLES`                               | 有         | [Grid.cs](https://github.com/SunnieShine/Sudoku/blob/main/src/Sudoku.Core/Collections/Grid.cs) | 表示是否显示出终盘里自己填入的数据信息。如果没有该符号的话，所有数字都会被当作提示数显示。 |
 
 ## 项目的条件编译符号
 

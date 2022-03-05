@@ -1,4 +1,5 @@
 ﻿#undef USE_TO_MASK_STRING_METHOD
+#define SOLUTION_DISPLAY_MODIFIABLES
 
 using System.ComponentModel;
 using Sudoku.Solving;
@@ -699,8 +700,36 @@ public unsafe partial struct Grid :
 	/// <see cref="Undefined"/>
 	public readonly Grid Solution
 	{
+#if !SOLUTION_DISPLAY_MODIFIABLES
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => Solver.Solve(this);
+#endif
+		get
+		{
+			// Gets the solution grid. The current result grid may be undefined if the grid is invalid.
+			var solution = Solver.Solve(this);
+
+#if SOLUTION_DISPLAY_MODIFIABLES
+			// Checks for the grid validity.
+			if (solution.IsUndefined)
+			{
+				return solution;
+			}
+
+			// Displays modifiable values if worth.
+			var result = Empty;
+			for (int i = 0; i < 81; i++)
+			{
+				result[i] = solution[i];
+				if (GivenCells.Contains(i))
+				{
+					result.SetStatus(i, CellStatus.Given);
+				}
+			}
+#endif
+
+			// Return the result.
+			return result;
+		}
 	}
 
 	/// <inheritdoc/>
@@ -715,8 +744,11 @@ public unsafe partial struct Grid :
 	/// </summary>
 	/// <param name="cell">The cell you want to get or set a value.</param>
 	/// <value>
+	/// <para>
 	/// The value you want to set. The value should be between 0 and 8. If assigning -1,
 	/// that means to re-compute all candidates.
+	/// </para>
+	/// <para>In addition, values set into the grid will be regarded as the modifiable values.</para>
 	/// </value>
 	/// <returns>
 	/// The value that the cell filled with. The possible values are:
