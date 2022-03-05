@@ -69,12 +69,23 @@ public sealed unsafe partial record ManualSolverResult(in Grid OriginalPuzzle) :
 	public ImmutableArray<Step> Steps { get; init; }
 
 	/// <summary>
-	/// Indicates a list of pairs of information about each step. 
+	/// <para>Indicates a list of pairs of information about each step.</para>
+	/// <para>
+	/// If the puzzle cannot be solved due to some reason (invalid puzzle, unhandled exception, etc.),
+	/// the return value of the property will be always the <see langword="default"/> expression of type
+	/// <see cref="ImmutableArray{T}"/>, of <see cref="ValueTuple{T1, T2}"/>
+	/// of types <see cref="Grid"/> and <see cref="Step"/>.
+	/// </para>
 	/// </summary>
 	public ImmutableArray<(Grid StepGrid, Step Step)> StepsWithCorrespondingGrids
 	{
 		get
 		{
+			if (!IsSolved)
+			{
+				return default(ImmutableArray<(Grid, Step)>);
+			}
+
 #if true
 			Debug.Assert(Steps.Length == StepGrids.Length);
 

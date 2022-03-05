@@ -1979,7 +1979,13 @@
         </member>
         <member name="P:Sudoku.Solving.Manual.ManualSolverResult.StepsWithCorrespondingGrids">
             <summary>
-            Indicates a list of pairs of information about each step. 
+            <para>Indicates a list of pairs of information about each step.</para>
+            <para>
+            If the puzzle cannot be solved due to some reason (invalid puzzle, unhandled exception, etc.),
+            the return value of the property will be always the <see langword="default"/> expression of type
+            <see cref="T:System.Collections.Immutable.ImmutableArray`1"/>, of <see cref="T:System.ValueTuple`2"/>
+            of types <see cref="T:Sudoku.Collections.Grid"/> and <see cref="T:Sudoku.Solving.Manual.Step"/>.
+            </para>
             </summary>
         </member>
         <member name="P:Sudoku.Solving.Manual.ManualSolverResult.MaxDifficulty">
