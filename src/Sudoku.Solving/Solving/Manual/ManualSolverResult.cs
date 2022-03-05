@@ -69,6 +69,30 @@ public sealed unsafe partial record ManualSolverResult(in Grid OriginalPuzzle) :
 	public ImmutableArray<Step> Steps { get; init; }
 
 	/// <summary>
+	/// Indicates a list of pairs of information about each step. 
+	/// </summary>
+	public ImmutableArray<(Grid StepGrid, Step Step)> StepsWithCorrespondingGrids
+	{
+		get
+		{
+#if true
+			Debug.Assert(Steps.Length == StepGrids.Length);
+
+			var result = new (Grid, Step)[Steps.Length];
+			for (int i = 0; i < Steps.Length; i++)
+			{
+				result[i] = (StepGrids[i], Steps[i]);
+			}
+
+			return ImmutableArray.Create(result);
+#else
+			// Just use the method 'Enumerable.Zip' is okay for getting the result collection.
+			return StepGrids.Zip(Steps).ToImmutableArray();
+#endif
+		}
+	}
+
+	/// <summary>
 	/// <para>Indicates the maximum difficulty of the puzzle.</para>
 	/// <para>
 	/// When the puzzle is solved by <see cref="ManualSolver"/>,
