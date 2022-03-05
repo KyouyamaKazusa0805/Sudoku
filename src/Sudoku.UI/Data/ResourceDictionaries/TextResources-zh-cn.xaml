@@ -56,6 +56,8 @@
 	<x:String x:Key="SudokuPage_AnalysisResultColumn_TechniqueName">技巧名</x:String>
 	<x:String x:Key="SudokuPage_AnalysisResultColumn_Count">数量</x:String>
 	<x:String x:Key="SudokuPage_AnalysisResultColumn_DifficultyRating">难度等级</x:String>
+	<x:String x:Key="SudokuPage_AnalysisResultColumn_TotalDifficulty">总难度</x:String>
+	<x:String x:Key="SudokuPage_AnalysisResultColumn_MaxDifficulty">最大难度</x:String>
 	<x:String x:Key="SudokuPage_AnalysisResultColumn_Easy">容易</x:String>
 	<x:String x:Key="SudokuPage_AnalysisResultColumn_Moderate">一般</x:String>
 	<x:String x:Key="SudokuPage_AnalysisResultColumn_Hard">困难</x:String>

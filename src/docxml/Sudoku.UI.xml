@@ -95,6 +95,16 @@
             </summary>
             <seealso cref="T:Sudoku.Solving.Manual.ManualSolverResult"/>
         </member>
+        <member name="P:Sudoku.UI.Data.AnalysisResultRow.TotalDifficulty">
+            <summary>
+            Indicates the total difficulty of all steps.
+            </summary>
+        </member>
+        <member name="P:Sudoku.UI.Data.AnalysisResultRow.MaximumDifficulty">
+            <summary>
+            Indicates the maximum difficulty in the steps.
+            </summary>
+        </member>
         <member name="P:Sudoku.UI.Data.AnalysisResultRow.CountOfSteps">
             <summary>
             Indicates the number of steps that uses logic of the current technique.

@@ -10,6 +10,16 @@ namespace Sudoku.UI.Data;
 public sealed class AnalysisResultRow
 {
 	/// <summary>
+	/// Indicates the total difficulty of all steps.
+	/// </summary>
+	public decimal TotalDifficulty { get; set; }
+
+	/// <summary>
+	/// Indicates the maximum difficulty in the steps.
+	/// </summary>
+	public decimal MaximumDifficulty { get; set; }
+
+	/// <summary>
 	/// Indicates the number of steps that uses logic of the current technique.
 	/// </summary>
 	public int CountOfSteps { get; set; }
@@ -33,21 +43,29 @@ public sealed class AnalysisResultRow
 	/// The <see cref="ManualSolverResult"/> instance that is used for creating the result value.
 	/// </param>
 	/// <returns>The result list of <see cref="AnalysisResultRow"/>-typed elements.</returns>
-	public static IEnumerable<AnalysisResultRow> CreateListFrom(ManualSolverResult analysisResult) =>
-		from step in analysisResult.Steps
-		orderby step.DifficultyLevel, step.TechniqueCode
-		group step by step.Name into stepGroup
-		let stepGroupArray = stepGroup.ToArray()
-		let difficultyLevels =
-			from step in stepGroupArray
-			group step by step.DifficultyLevel into stepGroupedByDifficultyLevel
-			select stepGroupedByDifficultyLevel.Key into targetDifficultyLevel
-			orderby targetDifficultyLevel
-			select targetDifficultyLevel
-		select new AnalysisResultRow
-		{
-			TechniqueName = stepGroup.Key,
-			CountOfSteps = stepGroupArray.Length,
-			DifficultyLevel = difficultyLevels.Aggregate(static (interim, next) => interim | next)
-		};
+	public static unsafe IEnumerable<AnalysisResultRow> CreateListFrom(ManualSolverResult analysisResult)
+	{
+		return
+			from step in analysisResult.Steps
+			orderby step.DifficultyLevel, step.TechniqueCode
+			group step by step.Name into stepGroup
+			let stepGroupArray = stepGroup.ToArray()
+			let difficultyLevels =
+				from step in stepGroupArray
+				group step by step.DifficultyLevel into stepGroupedByDifficultyLevel
+				select stepGroupedByDifficultyLevel.Key into targetDifficultyLevel
+				orderby targetDifficultyLevel
+				select targetDifficultyLevel
+			select new AnalysisResultRow
+			{
+				TechniqueName = stepGroup.Key,
+				CountOfSteps = stepGroupArray.Length,
+				DifficultyLevel = difficultyLevels.Aggregate(static (interim, next) => interim | next),
+				TotalDifficulty = stepGroupArray.Sum(&stepDifficultySelector),
+				MaximumDifficulty = stepGroupArray.Max(&stepDifficultySelector)
+			};
+
+
+		static decimal stepDifficultySelector(Step step) => step.Difficulty;
+	}
 }

@@ -87,14 +87,39 @@
 													<DataTemplate x:DataType="m:AnalysisResultRow">
 														<Grid>
 															<Rectangle
-																Fill="{x:Bind DifficultyLevel,Converter={StaticResource _rDiffToBackgroundConverter}}"
+																Fill="{x:Bind DifficultyLevel,
+																	Converter={StaticResource _rDiffToBackgroundConverter}}"
 																RadiusX="5" RadiusY="5" Margin="24,3,24,3" />
 															<TextBlock
 																HorizontalAlignment="Center"
 																VerticalAlignment="Center"
-																Text="{x:Bind DifficultyLevel,Converter={StaticResource _rDiffToTextConverter}}"
-																Foreground="{x:Bind DifficultyLevel,Converter={StaticResource _rDiffToForegroundConverter}}" />
+																Text="{x:Bind DifficultyLevel,
+																	Converter={StaticResource _rDiffToTextConverter}}"
+																Foreground="{x:Bind DifficultyLevel,
+																	Converter={StaticResource _rDiffToForegroundConverter}}" />
 														</Grid>
+													</DataTemplate>
+												</xc:DataGridTemplateColumn.CellTemplate>
+											</xc:DataGridTemplateColumn>
+											<xc:DataGridTemplateColumn
+												Header="{StaticResource SudokuPage_AnalysisResultColumn_TotalDifficulty}">
+												<xc:DataGridTemplateColumn.CellTemplate>
+													<DataTemplate x:DataType="m:AnalysisResultRow">
+														<TextBlock
+															Text="{x:Bind TotalDifficulty}"
+															HorizontalAlignment="Center"
+															VerticalAlignment="Center" />
+													</DataTemplate>
+												</xc:DataGridTemplateColumn.CellTemplate>
+											</xc:DataGridTemplateColumn>
+											<xc:DataGridTemplateColumn
+												Header="{StaticResource SudokuPage_AnalysisResultColumn_MaxDifficulty}">
+												<xc:DataGridTemplateColumn.CellTemplate>
+													<DataTemplate x:DataType="m:AnalysisResultRow">
+														<TextBlock
+															Text="{x:Bind MaximumDifficulty}"
+															HorizontalAlignment="Center"
+															VerticalAlignment="Center" />
 													</DataTemplate>
 												</xc:DataGridTemplateColumn.CellTemplate>
 											</xc:DataGridTemplateColumn>

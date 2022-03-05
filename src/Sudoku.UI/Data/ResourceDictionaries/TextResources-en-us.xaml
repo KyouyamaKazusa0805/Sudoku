@@ -58,6 +58,8 @@
 	<x:String x:Key="SudokuPage_AnalysisResultColumn_TechniqueName">Technique Name</x:String>
 	<x:String x:Key="SudokuPage_AnalysisResultColumn_Count">Count</x:String>
 	<x:String x:Key="SudokuPage_AnalysisResultColumn_DifficultyRating">Difficulty Rating</x:String>
+	<x:String x:Key="SudokuPage_AnalysisResultColumn_TotalDifficulty">Total</x:String>
+	<x:String x:Key="SudokuPage_AnalysisResultColumn_MaxDifficulty">Max</x:String>
 	<x:String x:Key="SudokuPage_AnalysisResultColumn_Easy">Easy</x:String>
 	<x:String x:Key="SudokuPage_AnalysisResultColumn_Moderate">Moderate</x:String>
 	<x:String x:Key="SudokuPage_AnalysisResultColumn_Hard">Hard</x:String>
