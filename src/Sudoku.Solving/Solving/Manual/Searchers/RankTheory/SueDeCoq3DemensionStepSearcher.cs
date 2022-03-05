@@ -76,7 +76,7 @@ public sealed unsafe class SueDeCoq3DemensionStepSearcher : ISueDeCoq3DemensionS
 					var columnMap = RegionMaps[c] - RegionMaps[b] & EmptyMap;
 
 					// Iterate on the number of the cells that should be selected in block.
-					for (int i = 0, count = blockMap.Count; i < count; i++)
+					for (int i = 1, count = blockMap.Count; i < count; i++)
 					{
 						foreach (var selectedBlockCells in blockMap & i)
 						{
