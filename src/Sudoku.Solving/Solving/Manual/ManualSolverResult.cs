@@ -12,97 +12,6 @@ public sealed unsafe partial record ManualSolverResult(in Grid OriginalPuzzle) :
 	/// <inheritdoc/>
 	public bool IsSolved { get; init; }
 
-	/// <inheritdoc/>
-	public FailedReason FailedReason { get; init; }
-
-	/// <inheritdoc/>
-	public Grid Solution { get; init; }
-
-	/// <inheritdoc/>
-	public TimeSpan ElapsedTime { get; init; }
-
-	/// <summary>
-	/// <para>
-	/// Indicates the wrong step found. In general cases, if the property <see cref="IsSolved"/> keeps
-	/// <see langword="false"/> value, it'll mean the puzzle is invalid to solve, or the solver has found
-	/// one error step to apply, that causes the original puzzle <see cref="OriginalPuzzle"/> become invalid.
-	/// In this case we can check this property to get the wrong information to debug the error,
-	/// or tell the author himself directly, with the inner value of this property held.
-	/// </para>
-	/// <para>
-	/// However, if the puzzle is successful to be solved, the property won't contain any value,
-	/// so it'll keep the <see langword="null"/> reference. Therefore, please check the nullability
-	/// of this property before using.
-	/// </para>
-	/// <para>
-	/// In general, this table will tell us the nullability of this property:
-	/// <list type="table">
-	/// <listheader>
-	/// <term>Nullability</term>
-	/// <description>Description</description>
-	/// </listheader>
-	/// <item>
-	/// <term>Not <see langword="null"/></term>
-	/// <description>The puzzle is failed to solve, and the solver has found an invalid step to apply.</description>
-	/// </item>
-	/// <item>
-	/// <term><see langword="null"/></term>
-	/// <description>Other cases.</description>
-	/// </item>
-	/// </list>
-	/// </para>
-	/// </summary>
-	/// <seealso cref="IsSolved"/>
-	/// <seealso cref="OriginalPuzzle"/>
-	public Step? WrongStep { get; init; }
-
-	/// <summary>
-	/// Indicates a list, whose element is the intermediate grid for each step.
-	/// </summary>
-	/// <seealso cref="Steps"/>
-	public ImmutableArray<Grid> StepGrids { get; init; }
-
-	/// <summary>
-	/// Indicates all solving steps that the solver has recorded.
-	/// </summary>
-	/// <seealso cref="StepGrids"/>
-	public ImmutableArray<Step> Steps { get; init; }
-
-	/// <summary>
-	/// <para>Indicates a list of pairs of information about each step.</para>
-	/// <para>
-	/// If the puzzle cannot be solved due to some reason (invalid puzzle, unhandled exception, etc.),
-	/// the return value of the property will be always the <see langword="default"/> expression of type
-	/// <see cref="ImmutableArray{T}"/>, of <see cref="ValueTuple{T1, T2}"/>
-	/// of types <see cref="Grid"/> and <see cref="Step"/>.
-	/// </para>
-	/// </summary>
-	public ImmutableArray<(Grid StepGrid, Step Step)> StepsWithCorrespondingGrids
-	{
-		get
-		{
-			if (!IsSolved)
-			{
-				return default(ImmutableArray<(Grid, Step)>);
-			}
-
-#if true
-			Debug.Assert(Steps.Length == StepGrids.Length);
-
-			var result = new (Grid, Step)[Steps.Length];
-			for (int i = 0; i < Steps.Length; i++)
-			{
-				result[i] = (StepGrids[i], Steps[i]);
-			}
-
-			return ImmutableArray.Create(result);
-#else
-			// Just use the method 'Enumerable.Zip' is okay for getting the result collection.
-			return StepGrids.Zip(Steps).ToImmutableArray();
-#endif
-		}
-	}
-
 	/// <summary>
 	/// <para>Indicates the maximum difficulty of the puzzle.</para>
 	/// <para>
@@ -204,6 +113,9 @@ public sealed unsafe partial record ManualSolverResult(in Grid OriginalPuzzle) :
 	/// </summary>
 	public int SolvingStepsCount => Steps.IsDefault ? 1 : Steps.Length;
 
+	/// <inheritdoc/>
+	public FailedReason FailedReason { get; init; }
+
 	/// <summary>
 	/// Indicates the difficulty level of the puzzle.
 	/// If the puzzle has not solved or solved by other solvers,
@@ -228,6 +140,94 @@ public sealed unsafe partial record ManualSolverResult(in Grid OriginalPuzzle) :
 			return maxLevel;
 		}
 	}
+
+	/// <inheritdoc/>
+	public Grid Solution { get; init; }
+
+	/// <inheritdoc/>
+	public TimeSpan ElapsedTime { get; init; }
+
+	/// <summary>
+	/// Indicates a list, whose element is the intermediate grid for each step.
+	/// </summary>
+	/// <seealso cref="Steps"/>
+	public ImmutableArray<Grid> StepGrids { get; init; }
+
+	/// <summary>
+	/// Indicates all solving steps that the solver has recorded.
+	/// </summary>
+	/// <seealso cref="StepGrids"/>
+	public ImmutableArray<Step> Steps { get; init; }
+
+	/// <summary>
+	/// <para>Indicates a list of pairs of information about each step.</para>
+	/// <para>
+	/// If the puzzle cannot be solved due to some reason (invalid puzzle, unhandled exception, etc.),
+	/// the return value of the property will be always the <see langword="default"/> expression of type
+	/// <see cref="ImmutableArray{T}"/>, of <see cref="ValueTuple{T1, T2}"/>
+	/// of types <see cref="Grid"/> and <see cref="Step"/>.
+	/// </para>
+	/// </summary>
+	public ImmutableArray<(Grid StepGrid, Step Step)> StepsWithCorrespondingGrids
+	{
+		get
+		{
+			if (!IsSolved)
+			{
+				return default(ImmutableArray<(Grid, Step)>);
+			}
+
+#if true
+			Debug.Assert(Steps.Length == StepGrids.Length);
+
+			var result = new (Grid, Step)[Steps.Length];
+			for (int i = 0; i < Steps.Length; i++)
+			{
+				result[i] = (StepGrids[i], Steps[i]);
+			}
+
+			return ImmutableArray.Create(result);
+#else
+			// Just use the method 'Enumerable.Zip' is okay for getting the result collection.
+			return StepGrids.Zip(Steps).ToImmutableArray();
+#endif
+		}
+	}
+
+	/// <summary>
+	/// <para>
+	/// Indicates the wrong step found. In general cases, if the property <see cref="IsSolved"/> keeps
+	/// <see langword="false"/> value, it'll mean the puzzle is invalid to solve, or the solver has found
+	/// one error step to apply, that causes the original puzzle <see cref="OriginalPuzzle"/> become invalid.
+	/// In this case we can check this property to get the wrong information to debug the error,
+	/// or tell the author himself directly, with the inner value of this property held.
+	/// </para>
+	/// <para>
+	/// However, if the puzzle is successful to be solved, the property won't contain any value,
+	/// so it'll keep the <see langword="null"/> reference. Therefore, please check the nullability
+	/// of this property before using.
+	/// </para>
+	/// <para>
+	/// In general, this table will tell us the nullability of this property:
+	/// <list type="table">
+	/// <listheader>
+	/// <term>Nullability</term>
+	/// <description>Description</description>
+	/// </listheader>
+	/// <item>
+	/// <term>Not <see langword="null"/></term>
+	/// <description>The puzzle is failed to solve, and the solver has found an invalid step to apply.</description>
+	/// </item>
+	/// <item>
+	/// <term><see langword="null"/></term>
+	/// <description>Other cases.</description>
+	/// </item>
+	/// </list>
+	/// </para>
+	/// </summary>
+	/// <seealso cref="IsSolved"/>
+	/// <seealso cref="OriginalPuzzle"/>
+	public Step? WrongStep { get; init; }
 
 	/// <summary>
 	/// Gets the bottleneck during the whole grid solving. Returns <see langword="null"/> if the property

@@ -1921,73 +1921,6 @@
         <member name="P:Sudoku.Solving.Manual.ManualSolverResult.IsSolved">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Solving.Manual.ManualSolverResult.FailedReason">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.ManualSolverResult.Solution">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.ManualSolverResult.ElapsedTime">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.ManualSolverResult.WrongStep">
-            <summary>
-            <para>
-            Indicates the wrong step found. In general cases, if the property <see cref="P:Sudoku.Solving.Manual.ManualSolverResult.IsSolved"/> keeps
-            <see langword="false"/> value, it'll mean the puzzle is invalid to solve, or the solver has found
-            one error step to apply, that causes the original puzzle <see cref="P:Sudoku.Solving.Manual.ManualSolverResult.OriginalPuzzle"/> become invalid.
-            In this case we can check this property to get the wrong information to debug the error,
-            or tell the author himself directly, with the inner value of this property held.
-            </para>
-            <para>
-            However, if the puzzle is successful to be solved, the property won't contain any value,
-            so it'll keep the <see langword="null"/> reference. Therefore, please check the nullability
-            of this property before using.
-            </para>
-            <para>
-            In general, this table will tell us the nullability of this property:
-            <list type="table">
-            <listheader>
-            <term>Nullability</term>
-            <description>Description</description>
-            </listheader>
-            <item>
-            <term>Not <see langword="null"/></term>
-            <description>The puzzle is failed to solve, and the solver has found an invalid step to apply.</description>
-            </item>
-            <item>
-            <term><see langword="null"/></term>
-            <description>Other cases.</description>
-            </item>
-            </list>
-            </para>
-            </summary>
-            <seealso cref="P:Sudoku.Solving.Manual.ManualSolverResult.IsSolved"/>
-            <seealso cref="P:Sudoku.Solving.Manual.ManualSolverResult.OriginalPuzzle"/>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.ManualSolverResult.StepGrids">
-            <summary>
-            Indicates a list, whose element is the intermediate grid for each step.
-            </summary>
-            <seealso cref="P:Sudoku.Solving.Manual.ManualSolverResult.Steps"/>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.ManualSolverResult.Steps">
-            <summary>
-            Indicates all solving steps that the solver has recorded.
-            </summary>
-            <seealso cref="P:Sudoku.Solving.Manual.ManualSolverResult.StepGrids"/>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.ManualSolverResult.StepsWithCorrespondingGrids">
-            <summary>
-            <para>Indicates a list of pairs of information about each step.</para>
-            <para>
-            If the puzzle cannot be solved due to some reason (invalid puzzle, unhandled exception, etc.),
-            the return value of the property will be always the <see langword="default"/> expression of type
-            <see cref="T:System.Collections.Immutable.ImmutableArray`1"/>, of <see cref="T:System.ValueTuple`2"/>
-            of types <see cref="T:Sudoku.Collections.Grid"/> and <see cref="T:Sudoku.Solving.Manual.Step"/>.
-            </para>
-            </summary>
-        </member>
         <member name="P:Sudoku.Solving.Manual.ManualSolverResult.MaxDifficulty">
             <summary>
             <para>Indicates the maximum difficulty of the puzzle.</para>
@@ -2051,12 +1984,79 @@
             Indicates the number of all solving steps recorded.
             </summary>
         </member>
+        <member name="P:Sudoku.Solving.Manual.ManualSolverResult.FailedReason">
+            <inheritdoc/>
+        </member>
         <member name="P:Sudoku.Solving.Manual.ManualSolverResult.DifficultyLevel">
             <summary>
             Indicates the difficulty level of the puzzle.
             If the puzzle has not solved or solved by other solvers,
             this value will be <see cref="F:Sudoku.Solving.Manual.DifficultyLevel.Unknown"/>.
             </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.ManualSolverResult.Solution">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.ManualSolverResult.ElapsedTime">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.ManualSolverResult.StepGrids">
+            <summary>
+            Indicates a list, whose element is the intermediate grid for each step.
+            </summary>
+            <seealso cref="P:Sudoku.Solving.Manual.ManualSolverResult.Steps"/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.ManualSolverResult.Steps">
+            <summary>
+            Indicates all solving steps that the solver has recorded.
+            </summary>
+            <seealso cref="P:Sudoku.Solving.Manual.ManualSolverResult.StepGrids"/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.ManualSolverResult.StepsWithCorrespondingGrids">
+            <summary>
+            <para>Indicates a list of pairs of information about each step.</para>
+            <para>
+            If the puzzle cannot be solved due to some reason (invalid puzzle, unhandled exception, etc.),
+            the return value of the property will be always the <see langword="default"/> expression of type
+            <see cref="T:System.Collections.Immutable.ImmutableArray`1"/>, of <see cref="T:System.ValueTuple`2"/>
+            of types <see cref="T:Sudoku.Collections.Grid"/> and <see cref="T:Sudoku.Solving.Manual.Step"/>.
+            </para>
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.ManualSolverResult.WrongStep">
+            <summary>
+            <para>
+            Indicates the wrong step found. In general cases, if the property <see cref="P:Sudoku.Solving.Manual.ManualSolverResult.IsSolved"/> keeps
+            <see langword="false"/> value, it'll mean the puzzle is invalid to solve, or the solver has found
+            one error step to apply, that causes the original puzzle <see cref="P:Sudoku.Solving.Manual.ManualSolverResult.OriginalPuzzle"/> become invalid.
+            In this case we can check this property to get the wrong information to debug the error,
+            or tell the author himself directly, with the inner value of this property held.
+            </para>
+            <para>
+            However, if the puzzle is successful to be solved, the property won't contain any value,
+            so it'll keep the <see langword="null"/> reference. Therefore, please check the nullability
+            of this property before using.
+            </para>
+            <para>
+            In general, this table will tell us the nullability of this property:
+            <list type="table">
+            <listheader>
+            <term>Nullability</term>
+            <description>Description</description>
+            </listheader>
+            <item>
+            <term>Not <see langword="null"/></term>
+            <description>The puzzle is failed to solve, and the solver has found an invalid step to apply.</description>
+            </item>
+            <item>
+            <term><see langword="null"/></term>
+            <description>Other cases.</description>
+            </item>
+            </list>
+            </para>
+            </summary>
+            <seealso cref="P:Sudoku.Solving.Manual.ManualSolverResult.IsSolved"/>
+            <seealso cref="P:Sudoku.Solving.Manual.ManualSolverResult.OriginalPuzzle"/>
         </member>
         <member name="P:Sudoku.Solving.Manual.ManualSolverResult.Bottleneck">
             <summary>
