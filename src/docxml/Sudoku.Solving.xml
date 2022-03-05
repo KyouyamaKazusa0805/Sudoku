@@ -2054,6 +2054,14 @@
             </summary>
             <seealso cref="P:Sudoku.Solving.Manual.ManualSolverResult.Steps"/>
         </member>
+        <member name="P:Sudoku.Solving.Manual.ManualSolverResult.UnhandledException">
+            <summary>
+            Indicates the unhandled exception thrown. You can visit the property value
+            if the property <see cref="P:Sudoku.Solving.Manual.ManualSolverResult.FailedReason"/> is <see cref="F:Sudoku.Solving.FailedReason.ExceptionThrown"/>.
+            </summary>
+            <seealso cref="P:Sudoku.Solving.Manual.ManualSolverResult.FailedReason"/>
+            <seealso cref="F:Sudoku.Solving.FailedReason.ExceptionThrown"/>
+        </member>
         <member name="P:Sudoku.Solving.Manual.ManualSolverResult.Item(System.Int32)">
             <summary>
             Gets the <see cref="T:Sudoku.Solving.Manual.Step"/> instance at the specified index.

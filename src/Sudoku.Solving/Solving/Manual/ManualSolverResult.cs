@@ -223,6 +223,14 @@ public sealed unsafe partial record ManualSolverResult(in Grid OriginalPuzzle) :
 		}
 	}
 
+	/// <summary>
+	/// Indicates the unhandled exception thrown. You can visit the property value
+	/// if the property <see cref="FailedReason"/> is <see cref="FailedReason.ExceptionThrown"/>.
+	/// </summary>
+	/// <seealso cref="FailedReason"/>
+	/// <seealso cref="FailedReason.ExceptionThrown"/>
+	public Exception? UnhandledException { get; init; }
+
 
 	/// <summary>
 	/// Gets the <see cref="Step"/> instance at the specified index.

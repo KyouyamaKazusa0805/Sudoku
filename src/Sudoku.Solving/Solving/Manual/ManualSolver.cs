@@ -26,48 +26,41 @@ public sealed unsafe partial class ManualSolver : IPuzzleSolver
 		{
 			try
 			{
-				if (IsHodokuMode)
-				{
+				return IsHodokuMode
 					// Hodoku mode.
-					return Solve_HodokuMode(puzzle, solution, sukaku.Value, solverResult, cancellationToken);
-				}
-				else
-				{
+					? Solve_HodokuMode(puzzle, solution, sukaku.Value, solverResult, cancellationToken)
 					// Sudoku explainer mode.
 					// TODO: Implement a sudoku-explainer mode solving module.
-					throw new NotImplementedException();
-				}
+					: throw new NotImplementedException();
 			}
-			catch (NotImplementedException)
-			{
-				return solverResult with { IsSolved = false, FailedReason = FailedReason.NotImplemented };
-			}
-			catch (WrongStepException ex) when (ex.WrongStep is not null)
-			{
-				return solverResult with
-				{
-					IsSolved = false,
-					FailedReason = FailedReason.WrongStep,
-					WrongStep = ex.WrongStep
-				};
-			}
-			catch (OperationCanceledException ex) when (ex.CancellationToken == cancellationToken)
-			{
-				return solverResult with { IsSolved = false, FailedReason = FailedReason.UserCancelled };
-			}
-#if DEBUG || TRACE
 			catch (Exception ex)
-#else
-			catch
-#endif
 			{
-#if DEBUG
-				Debug.WriteLine(ex.Message);
-#elif TRACE
-				Trace.WriteLine(ex.Message);
-#endif
-
-				return solverResult with { IsSolved = false, FailedReason = FailedReason.ExceptionThrown };
+				return ex switch
+				{
+					NotImplementedException => solverResult with
+					{
+						IsSolved = false,
+						FailedReason = FailedReason.NotImplemented
+					},
+					WrongStepException { WrongStep: { } wrongStep } => solverResult with
+					{
+						IsSolved = false,
+						FailedReason = FailedReason.WrongStep,
+						WrongStep = wrongStep
+					},
+					OperationCanceledException { CancellationToken: var c }
+					when c == cancellationToken => solverResult with
+					{
+						IsSolved = false,
+						FailedReason = FailedReason.UserCancelled
+					},
+					_ => solverResult with
+					{
+						IsSolved = false,
+						FailedReason = FailedReason.ExceptionThrown,
+						UnhandledException = ex
+					}
+				};
 			}
 		}
 		else
@@ -89,8 +82,8 @@ public sealed unsafe partial class ManualSolver : IPuzzleSolver
 	/// <exception cref="WrongStepException">Throws when found wrong steps to apply.</exception>
 	/// <exception cref="OperationCanceledException">Throws when the operation is cancelled.</exception>
 	private ManualSolverResult Solve_HodokuMode(
-		in Grid puzzle, in Grid solution, bool isSukaku,
-		ManualSolverResult baseSolverResult, CancellationToken cancellationToken = default)
+		in Grid puzzle, in Grid solution, bool isSukaku, ManualSolverResult baseSolverResult,
+		CancellationToken cancellationToken = default)
 	{
 		var playground = puzzle;
 		List<Step> tempSteps = new(20), recordedSteps = new(100);
