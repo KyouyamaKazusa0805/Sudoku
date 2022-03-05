@@ -91,7 +91,10 @@ public partial struct NodeSet :
 		_capacity = another._capacity;
 		Count = another.Count;
 		_chainNodes = new Node[_capacity];
-		Buffer.BlockCopy(_chainNodes, 0, another._chainNodes, 0, Count);
+		for (int i = 0; i < Count; i++)
+		{
+			_chainNodes[i] = another._chainNodes[i];
+		}
 	}
 
 

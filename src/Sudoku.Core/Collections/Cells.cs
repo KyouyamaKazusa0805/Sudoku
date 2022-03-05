@@ -1137,10 +1137,18 @@ public unsafe struct Cells :
 	/// </summary>
 	/// <param name="cell">Indicates the base template cells.</param>
 	/// <param name="subsetSize">The size to get.</param>
-	/// <returns>All possible subsets.</returns>
+	/// <returns>
+	/// All possible subsets. If <paramref name="subsetSize"/> &gt;= <paramref name="cell"/>.Count,
+	/// this method will just return an empty array.
+	/// </returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static Cells[] operator &(in Cells cell, int subsetSize)
 	{
+		if (subsetSize == 0 || subsetSize >= cell.Count)
+		{
+			return Array.Empty<Cells>();
+		}
+
 		int totalIndex = 0, n = cell.Count;
 		int* buffer = stackalloc int[subsetSize];
 		var result = new Cells[Combinatorials[n - 1, subsetSize - 1]];

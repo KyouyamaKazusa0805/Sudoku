@@ -1,6 +1,5 @@
 ﻿using System.ComponentModel;
 using Sudoku.Collections;
-using Sudoku.Presentation;
 
 namespace Sudoku;
 
@@ -47,7 +46,7 @@ public readonly record struct Conclusion(int Mask) :
 	/// <param name="type">The conclusion type.</param>
 	/// <param name="candidate">The candidate offset.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public Conclusion(ConclusionType type, int candidate) : this(((int)type << 1) + candidate)
+	public Conclusion(ConclusionType type, int candidate) : this(((int)type << 10) + candidate)
 	{
 	}
 
@@ -58,7 +57,7 @@ public readonly record struct Conclusion(int Mask) :
 	/// <param name="cell">The cell.</param>
 	/// <param name="digit">The digit.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public Conclusion(ConclusionType type, int cell, int digit) : this(((int)type << 1) + cell * 9 + digit)
+	public Conclusion(ConclusionType type, int cell, int digit) : this(((int)type << 10) + cell * 9 + digit)
 	{
 	}
 

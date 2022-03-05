@@ -34,7 +34,7 @@ namespace Sudoku.Solving.Manual.Searchers;
 /// </item>
 /// </list>
 /// </summary>
-[StepSearcher]
+//[StepSearcher]
 public unsafe class ForcingChainStepSearcher : IForcingChainStepSearcher, IDynamicForcingChainStepSearcher
 {
 	/// <summary>

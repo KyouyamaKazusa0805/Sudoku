@@ -45,7 +45,7 @@ namespace Sudoku.Solving.Manual.Searchers;
 /// </item>
 /// </list>
 /// </summary>
-[StepSearcher]
+//[StepSearcher]
 public sealed unsafe class AlternatingInferenceChainStepSearcher : IAlternatingInferenceChainStepSearcher
 {
 	/// <inheritdoc/>
