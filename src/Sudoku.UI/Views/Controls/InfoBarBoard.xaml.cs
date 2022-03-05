@@ -74,10 +74,6 @@ public sealed partial class InfoBarBoard : UserControl, INotifyPropertyChanged, 
 	{
 		var up = ((App)Application.Current).UserPreference;
 
-		// Although '_list.Add' receives a parameter of type 'InfoBarMessage', which derives
-		// the type 'PlainMessage', but the first type argument of the delegate type 'Action<T>'
-		// is a contra-variance, which means it allows the argument of type 'T' automatically casting to the
-		// derived types of 'T'.
 		Action<PlainMessage> handler = up.DescendingOrderedInfoBarBoard
 			? _list.Prepend<InfoBarMessage, PlainMessage>
 			: _list.Add;
@@ -99,10 +95,6 @@ public sealed partial class InfoBarBoard : UserControl, INotifyPropertyChanged, 
 	{
 		var up = ((App)Application.Current).UserPreference;
 
-		// Although '_list.Add' receives a parameter of type 'InfoBarMessage', which derives
-		// the type 'HyperlinkMessage', but the first type argument of the delegate type 'Action<T>'
-		// is a contra-variance, which means it allows the argument of type 'T' automatically casting to the
-		// derived types of 'T'.
 		Action<HyperlinkMessage> handler = up.DescendingOrderedInfoBarBoard
 			? _list.Prepend<InfoBarMessage, HyperlinkMessage>
 			: _list.Add;
@@ -126,10 +118,6 @@ public sealed partial class InfoBarBoard : UserControl, INotifyPropertyChanged, 
 	{
 		var up = ((App)Application.Current).UserPreference;
 
-		// Although '_list.Add' receives a parameter of type 'InfoBarMessage', which derives
-		// the type 'ManualSolverResultMessage', but the first type argument of the delegate type 'Action<T>'
-		// is a contra-variance, which means it allows the argument of type 'T' automatically casting to the
-		// derived types of 'T'.
 		Action<ManualSolverResultMessage> handler = up.DescendingOrderedInfoBarBoard
 			? _list.Prepend<InfoBarMessage, ManualSolverResultMessage>
 			: _list.Add;
