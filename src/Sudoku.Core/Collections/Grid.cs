@@ -754,10 +754,6 @@ public unsafe partial struct Grid :
 	/// The value that the cell filled with. The possible values are:
 	/// <list type="table">
 	/// <item>
-	/// <term>-2</term>
-	/// <description>The status of the specified cell is <see cref="CellStatus.Undefined"/>.</description>
-	/// </item>
-	/// <item>
 	/// <term>-1</term>
 	/// <description>The status of the specified cell is <see cref="CellStatus.Empty"/>.</description>
 	/// </item>
@@ -769,13 +765,18 @@ public unsafe partial struct Grid :
 	/// </item>
 	/// </list>
 	/// </returns>
+	/// <exception cref="InvalidOperationException">
+	/// Throws when the specified cell keeps a wrong cell status value.
+	/// For example, <see cref="CellStatus.Undefined"/>.
+	/// </exception>
 	public int this[int cell]
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		readonly get => GetStatus(cell) switch
 		{
 			CellStatus.Empty => -1,
-			CellStatus.Modifiable or CellStatus.Given => TrailingZeroCount(_values[cell])
+			CellStatus.Modifiable or CellStatus.Given => TrailingZeroCount(_values[cell]),
+			_ => throw new InvalidOperationException("The grid cannot keep invalid cell status value.")
 		};
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
