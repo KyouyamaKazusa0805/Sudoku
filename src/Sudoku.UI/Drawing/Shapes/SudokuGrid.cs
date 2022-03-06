@@ -299,6 +299,12 @@ public sealed class SudokuGrid : DrawingElement
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public void EliminateDigit(int cell, int digit)
 	{
+		if (digit == -1)
+		{
+			// Skips the invalid data.
+			return;
+		}
+
 		// Stores the previous grid status to the undo stack.
 		AddStep(_grid);
 
