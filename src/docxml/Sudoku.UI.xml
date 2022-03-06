@@ -2534,7 +2534,7 @@
         </member>
         <member name="F:Sudoku.UI.Views.Pages.MainPage.NavigationPairs">
             <summary>
-            Indicates the navigation pairs that controls to route pages.
+            Indicates the navigation info tuples that controls to route pages.
             </summary>
         </member>
         <member name="M:Sudoku.UI.Views.Pages.MainPage.#ctor">

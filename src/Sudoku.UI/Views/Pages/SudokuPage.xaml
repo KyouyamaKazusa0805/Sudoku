@@ -6,6 +6,7 @@
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 	xmlns:c="using:Sudoku.UI.Views.Controls"
 	xmlns:cvt="using:Sudoku.UI.Data.ValueConverters"
+	xmlns:xc="using:CommunityToolkit.WinUI.UI.Controls"
 	mc:Ignorable="d"
 	Loaded="Page_Loaded">
 	<ScrollViewer>
@@ -13,236 +14,163 @@
 			<Grid.Resources>
 				<cvt:UndoOrRedoStackToIsEnabledConverter x:Key="_rUndoingOrRedoingConverter" />
 				<cvt:InfoBarBoardToIsEnabledConverter x:Key="_rInfoBoardConverter" />
-				<Style TargetType="CommandBar" x:Key="_rDefaultCommandBarStyle">
-					<Setter Property="HorizontalAlignment" Value="Left" />
-					<Setter Property="DefaultLabelPosition" Value="Right" />
-				</Style>
 			</Grid.Resources>
 			<Grid.RowDefinitions>
+				<RowDefinition Height="Auto"/>
 				<RowDefinition Height="580" />
-				<RowDefinition />
 			</Grid.RowDefinitions>
 			<Grid.ColumnDefinitions>
 				<ColumnDefinition Width="Auto" />
 				<ColumnDefinition />
 			</Grid.ColumnDefinitions>
 
+			<!--Tabbed command bar-->
+			<xc:TabbedCommandBar Grid.ColumnSpan="2" Margin="25,0,25,0" IsTabStop="True">
+				<xc:TabbedCommandBar.MenuItems>
+					<!--First tab-->
+					<xc:TabbedCommandBarItem Header="{StaticResource SudokuPage_ToolList_Editing}">
+						<AppBarButton
+							Label="{StaticResource SudokuPage_Open}" Icon="OpenFile"
+							AutomationProperties.AcceleratorKey="Control O">
+							<AppBarButton.Command>
+								<XamlUICommand
+									CanExecuteRequested="CommandOpenOrSaveSudokuFile_CanExecuteRequested"
+									ExecuteRequested="CommandOpenSudokuFile_ExecuteRequestedAsync" />
+							</AppBarButton.Command>
+						</AppBarButton>
+						<AppBarButton
+							Label="{StaticResource SudokuPage_Copy}" Icon="Copy"
+							AutomationProperties.AcceleratorKey="Control C">
+							<AppBarButton.Command>
+								<XamlUICommand ExecuteRequested="CommandCopySudokuGridText_ExecuteRequested" />
+							</AppBarButton.Command>
+						</AppBarButton>
+						<AppBarButton
+							Label="{StaticResource SudokuPage_Paste}" Icon="Paste"
+							AutomationProperties.AcceleratorKey="Control V">
+							<AppBarButton.Command>
+								<XamlUICommand ExecuteRequested="CommandPasteSudokuGridText_ExecuteRequestedAsync" />
+							</AppBarButton.Command>
+						</AppBarButton>
+						<AppBarButton
+							Label="{StaticResource SudokuPage_Save}" Icon="Save"
+							AutomationProperties.AcceleratorKey="Control S">
+							<AppBarButton.Command>
+								<XamlUICommand
+									CanExecuteRequested="CommandOpenOrSaveSudokuFile_CanExecuteRequested"
+									ExecuteRequested="CommandSaveSudokuFile_ExecuteRequestedAsync" />
+							</AppBarButton.Command>
+						</AppBarButton>
+						<AppBarSeparator />
+						<AppBarButton Label="{StaticResource SudokuPage_Reset}" Icon="Refresh">
+							<AppBarButton.Command>
+								<XamlUICommand ExecuteRequested="CommandReset_ExecuteRequested" />
+							</AppBarButton.Command>
+						</AppBarButton>
+						<AppBarButton Label="{StaticResource SudokuPage_Clear}" Icon="Clear">
+							<AppBarButton.Flyout>
+								<Flyout>
+									<StackPanel>
+										<TextBlock
+											Style="{StaticResource BaseTextBlockStyle}" Margin="0,0,0,12"
+											TextWrapping="WrapWholeWords" MaxWidth="400"
+											Text="{StaticResource SudokuPage_Info_WillClearSudokuGrid}" />
+										<Button
+											Content="{StaticResource SudokuPage_Sure}"
+											CommandParameter="{Binding RelativeSource={RelativeSource Self}}">
+											<Button.Command>
+												<XamlUICommand ExecuteRequested="CommandReturnEmptyGrid_ExecuteRequested" />
+											</Button.Command>
+										</Button>
+									</StackPanel>
+								</Flyout>
+							</AppBarButton.Flyout>
+						</AppBarButton>
+						<AppBarSeparator />
+						<AppBarButton
+							Label="{StaticResource SudokuPage_Fix}" Icon="Pin"
+							AutomationProperties.AcceleratorKey="Control Tab">
+							<AppBarButton.Command>
+								<XamlUICommand ExecuteRequested="CommandFix_ExecuteRequested" />
+							</AppBarButton.Command>
+						</AppBarButton>
+						<AppBarButton
+							Label="{StaticResource SudokuPage_Unfix}" Icon="UnPin"
+							AutomationProperties.AcceleratorKey="Control,Shift Tab">
+							<AppBarButton.Command>
+								<XamlUICommand ExecuteRequested="CommandUnfix_ExecuteRequested" />
+							</AppBarButton.Command>
+						</AppBarButton>
+						<AppBarSeparator />
+						<AppBarButton
+							x:Name="_cUndo" Label="{StaticResource SudokuPage_Undo}" Icon="Undo"
+							AutomationProperties.AcceleratorKey="Control Z"
+							IsEnabled="{Binding
+								ElementName=_cPane,
+								Path=UndoStepsCount,
+								Converter={StaticResource _rUndoingOrRedoingConverter},
+								Mode=OneWay,
+								UpdateSourceTrigger=PropertyChanged}">
+							<AppBarButton.Command>
+								<XamlUICommand ExecuteRequested="CommandUndo_ExecuteRequested" />
+							</AppBarButton.Command>
+						</AppBarButton>
+						<AppBarButton
+							x:Name="_cRedo" Icon="Redo" Label="{StaticResource SudokuPage_Redo}"
+							AutomationProperties.AcceleratorKey="Control Y"
+							IsEnabled="{Binding
+								ElementName=_cPane,
+								Path=RedoStepsCount,
+								Converter={StaticResource _rUndoingOrRedoingConverter},
+								Mode=OneWay,
+								UpdateSourceTrigger=PropertyChanged}">
+							<AppBarButton.Command>
+								<XamlUICommand ExecuteRequested="CommandRedo_ExecuteRequested" />
+							</AppBarButton.Command>
+						</AppBarButton>
+						<AppBarSeparator />
+						<AppBarButton
+							x:Name="_cClearInfoBars" Icon="ClearSelection"
+							Label="{StaticResource SudokuPage_ClearInfoBars}">
+							<AppBarButton.Command>
+								<XamlUICommand ExecuteRequested="CommandClearMessages_ExecuteRequested" />
+							</AppBarButton.Command>
+						</AppBarButton>
+					</xc:TabbedCommandBarItem>
+
+					<!--Second tab-->
+					<xc:TabbedCommandBarItem Header="{StaticResource SudokuPage_ToolList_Analysis}">
+						<AppBarButton
+							Label="{StaticResource SudokuPage_Generate}" Icon="Go"
+							AutomationProperties.AcceleratorKey="Control H"
+							CommandParameter="{Binding RelativeSource={RelativeSource Self}}">
+							<AppBarButton.Command>
+								<XamlUICommand ExecuteRequested="CommandGenerate_ExecuteRequestedAsync" />
+							</AppBarButton.Command>
+						</AppBarButton>
+						<AppBarButton Label="{StaticResource SudokuPage_GetSolution}" Icon="Emoji2">
+							<AppBarButton.Command>
+								<XamlUICommand ExecuteRequested="CommandGetSolution_ExecuteRequested" />
+							</AppBarButton.Command>
+						</AppBarButton>
+						<AppBarButton
+							Label="{StaticResource SudokuPage_Analysis}" Icon="ShowBcc"
+							CommandParameter="{Binding RelativeSource={RelativeSource Self}}">
+							<AppBarButton.Command>
+								<XamlUICommand ExecuteRequested="CommandAnalysis_ExecuteRequestedAsync" />
+							</AppBarButton.Command>
+						</AppBarButton>
+					</xc:TabbedCommandBarItem>
+				</xc:TabbedCommandBar.MenuItems>
+			</xc:TabbedCommandBar>
+
 			<!--Sudoku grid-->
-			<c:SudokuPane
-				x:Name="_cPane" Grid.Row="0" Grid.Column="0" Margin="25,25,0,0"
-				Size="560" OutsideOffset="10" />
+			<c:SudokuPane x:Name="_cPane" Grid.Row="1" Margin="25,25,0,0" Size="560" OutsideOffset="10" />
 
 			<!--Info bar board at the right side of the sudoku grid-->
 			<c:InfoBarBoard
-				x:Name="_cInfoBoard" Grid.Row="0" Grid.Column="1" Margin="25,0,25,0" InfoBarSpacing="25"
+				x:Name="_cInfoBoard" Grid.Row="1" Grid.Column="1" Margin="25,30,25,0" InfoBarSpacing="25"
 				CollectionChanged="InfoBoard_CollectionChanged" />
-
-			<!--Tool list-->
-			<ListView Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Margin="25,0,0,0" SelectionMode="None">
-				<!--First row: Editing-->
-				<TextBlock
-					Style="{StaticResource BaseTextBlockStyle}" Margin="0,25,0,0"
-					Text="{StaticResource SudokuPage_ToolList_Editing}" />
-				<CommandBar Style="{StaticResource _rDefaultCommandBarStyle}">
-					<AppBarButton Label="{StaticResource SudokuPage_Open}">
-						<AppBarButton.Command>
-							<XamlUICommand
-								CanExecuteRequested="CommandOpenOrSaveSudokuFile_CanExecuteRequested"
-								ExecuteRequested="CommandOpenSudokuFile_ExecuteRequestedAsync">
-								<XamlUICommand.IconSource>
-									<SymbolIconSource Symbol="OpenFile" />
-								</XamlUICommand.IconSource>
-								<XamlUICommand.KeyboardAccelerators>
-									<KeyboardAccelerator Modifiers="Control" Key="O" />
-								</XamlUICommand.KeyboardAccelerators>
-							</XamlUICommand>
-						</AppBarButton.Command>
-					</AppBarButton>
-					<AppBarButton Label="{StaticResource SudokuPage_Copy}">
-						<AppBarButton.Command>
-							<XamlUICommand ExecuteRequested="CommandCopySudokuGridText_ExecuteRequested">
-								<XamlUICommand.IconSource>
-									<SymbolIconSource Symbol="Copy" />
-								</XamlUICommand.IconSource>
-								<XamlUICommand.KeyboardAccelerators>
-									<KeyboardAccelerator Modifiers="Control" Key="C" />
-								</XamlUICommand.KeyboardAccelerators>
-							</XamlUICommand>
-						</AppBarButton.Command>
-					</AppBarButton>
-					<AppBarButton Label="{StaticResource SudokuPage_Paste}">
-						<AppBarButton.Command>
-							<XamlUICommand ExecuteRequested="CommandPasteSudokuGridText_ExecuteRequestedAsync">
-								<XamlUICommand.IconSource>
-									<SymbolIconSource Symbol="Paste" />
-								</XamlUICommand.IconSource>
-								<XamlUICommand.KeyboardAccelerators>
-									<KeyboardAccelerator Modifiers="Control" Key="V" />
-								</XamlUICommand.KeyboardAccelerators>
-							</XamlUICommand>
-						</AppBarButton.Command>
-					</AppBarButton>
-					<AppBarButton Label="{StaticResource SudokuPage_Save}">
-						<AppBarButton.Command>
-							<XamlUICommand
-								CanExecuteRequested="CommandOpenOrSaveSudokuFile_CanExecuteRequested"
-								ExecuteRequested="CommandSaveSudokuFile_ExecuteRequestedAsync">
-								<XamlUICommand.IconSource>
-									<SymbolIconSource Symbol="Save" />
-								</XamlUICommand.IconSource>
-								<XamlUICommand.KeyboardAccelerators>
-									<KeyboardAccelerator Modifiers="Control" Key="S" />
-								</XamlUICommand.KeyboardAccelerators>
-							</XamlUICommand>
-						</AppBarButton.Command>
-					</AppBarButton>
-					<AppBarSeparator />
-					<AppBarButton Label="{StaticResource SudokuPage_Reset}">
-						<AppBarButton.Command>
-							<XamlUICommand ExecuteRequested="CommandReset_ExecuteRequested">
-								<XamlUICommand.IconSource>
-									<SymbolIconSource Symbol="Refresh" />
-								</XamlUICommand.IconSource>
-							</XamlUICommand>
-						</AppBarButton.Command>
-					</AppBarButton>
-					<AppBarButton Icon="Clear" Label="{StaticResource SudokuPage_Clear}">
-						<AppBarButton.Flyout>
-							<Flyout>
-								<StackPanel>
-									<TextBlock
-										Style="{StaticResource BaseTextBlockStyle}" Margin="0,0,0,12"
-										TextWrapping="WrapWholeWords" MaxWidth="400"
-										Text="{StaticResource SudokuPage_Info_WillClearSudokuGrid}" />
-									<Button
-										Content="{StaticResource SudokuPage_Sure}"
-										CommandParameter="{Binding RelativeSource={RelativeSource Self}}">
-										<Button.Command>
-											<XamlUICommand
-												ExecuteRequested="CommandReturnEmptyGrid_ExecuteRequested" />
-										</Button.Command>
-									</Button>
-								</StackPanel>
-							</Flyout>
-						</AppBarButton.Flyout>
-					</AppBarButton>
-					<AppBarSeparator />
-					<AppBarButton Label="{StaticResource SudokuPage_Fix}">
-						<AppBarButton.Command>
-							<XamlUICommand ExecuteRequested="CommandFix_ExecuteRequested">
-								<XamlUICommand.IconSource>
-									<SymbolIconSource Symbol="Pin" />
-								</XamlUICommand.IconSource>
-								<XamlUICommand.KeyboardAccelerators>
-									<KeyboardAccelerator Modifiers="Control" Key="Tab" />
-								</XamlUICommand.KeyboardAccelerators>
-							</XamlUICommand>
-						</AppBarButton.Command>
-					</AppBarButton>
-					<AppBarButton Label="{StaticResource SudokuPage_Unfix}">
-						<AppBarButton.Command>
-							<XamlUICommand ExecuteRequested="CommandUnfix_ExecuteRequested">
-								<XamlUICommand.IconSource>
-									<SymbolIconSource Symbol="UnPin" />
-								</XamlUICommand.IconSource>
-								<XamlUICommand.KeyboardAccelerators>
-									<KeyboardAccelerator Modifiers="Control,Shift" Key="Tab" />
-								</XamlUICommand.KeyboardAccelerators>
-							</XamlUICommand>
-						</AppBarButton.Command>
-					</AppBarButton>
-					<AppBarSeparator />
-					<AppBarButton
-						x:Name="_cUndo" Label="{StaticResource SudokuPage_Undo}"
-						IsEnabled="{Binding
-							ElementName=_cPane,
-							Path=UndoStepsCount,
-							Converter={StaticResource _rUndoingOrRedoingConverter},
-							Mode=OneWay,
-							UpdateSourceTrigger=PropertyChanged}">
-						<AppBarButton.Command>
-							<XamlUICommand ExecuteRequested="CommandUndo_ExecuteRequested">
-								<XamlUICommand.IconSource>
-									<SymbolIconSource Symbol="Undo" />
-								</XamlUICommand.IconSource>
-								<XamlUICommand.KeyboardAccelerators>
-									<KeyboardAccelerator Modifiers="Control" Key="Z" />
-								</XamlUICommand.KeyboardAccelerators>
-							</XamlUICommand>
-						</AppBarButton.Command>
-					</AppBarButton>
-					<AppBarButton
-						x:Name="_cRedo" Label="{StaticResource SudokuPage_Redo}"
-						IsEnabled="{Binding
-							ElementName=_cPane,
-							Path=RedoStepsCount,
-							Converter={StaticResource _rUndoingOrRedoingConverter},
-							Mode=OneWay,
-							UpdateSourceTrigger=PropertyChanged}">
-						<AppBarButton.Command>
-							<XamlUICommand ExecuteRequested="CommandRedo_ExecuteRequested">
-								<XamlUICommand.IconSource>
-									<SymbolIconSource Symbol="Redo" />
-								</XamlUICommand.IconSource>
-								<XamlUICommand.KeyboardAccelerators>
-									<KeyboardAccelerator Modifiers="Control" Key="Y" />
-								</XamlUICommand.KeyboardAccelerators>
-							</XamlUICommand>
-						</AppBarButton.Command>
-					</AppBarButton>
-					<AppBarSeparator />
-					<AppBarButton x:Name="_cClearInfoBars" Label="{StaticResource SudokuPage_ClearInfoBars}">
-						<AppBarButton.Command>
-							<XamlUICommand ExecuteRequested="CommandClearMessages_ExecuteRequested">
-								<XamlUICommand.IconSource>
-									<SymbolIconSource Symbol="ClearSelection" />
-								</XamlUICommand.IconSource>
-							</XamlUICommand>
-						</AppBarButton.Command>
-					</AppBarButton>
-				</CommandBar>
-
-				<!--Second line: Puzzle analyzer-->
-				<TextBlock
-					Style="{StaticResource BaseTextBlockStyle}" Margin="0,25,0,0"
-					Text="{StaticResource SudokuPage_ToolList_Analysis}" />
-				<CommandBar Style="{StaticResource _rDefaultCommandBarStyle}">
-					<AppBarButton
-						Label="{StaticResource SudokuPage_Generate}"
-						CommandParameter="{Binding RelativeSource={RelativeSource Self}}">
-						<AppBarButton.Command>
-							<XamlUICommand ExecuteRequested="CommandGenerate_ExecuteRequestedAsync">
-								<XamlUICommand.IconSource>
-									<SymbolIconSource Symbol="Go" />
-								</XamlUICommand.IconSource>
-								<XamlUICommand.KeyboardAccelerators>
-									<KeyboardAccelerator Modifiers="Control" Key="H" />
-								</XamlUICommand.KeyboardAccelerators>
-							</XamlUICommand>
-						</AppBarButton.Command>
-					</AppBarButton>
-					<AppBarButton Label="{StaticResource SudokuPage_GetSolution}">
-						<AppBarButton.Command>
-							<XamlUICommand ExecuteRequested="CommandGetSolution_ExecuteRequested">
-								<XamlUICommand.IconSource>
-									<SymbolIconSource Symbol="Emoji2" />
-								</XamlUICommand.IconSource>
-							</XamlUICommand>
-						</AppBarButton.Command>
-					</AppBarButton>
-					<AppBarButton
-						Label="{StaticResource SudokuPage_Analysis}"
-						CommandParameter="{Binding RelativeSource={RelativeSource Self}}">
-						<AppBarButton.Command>
-							<XamlUICommand ExecuteRequested="CommandAnalysis_ExecuteRequestedAsync">
-								<XamlUICommand.IconSource>
-									<SymbolIconSource Symbol="ShowBcc" />
-								</XamlUICommand.IconSource>
-							</XamlUICommand>
-						</AppBarButton.Command>
-					</AppBarButton>
-				</CommandBar>
-			</ListView>
 		</Grid>
 	</ScrollViewer>
 </Page>

@@ -10,13 +10,13 @@ namespace Sudoku.UI.Views.Pages;
 public sealed partial class MainPage : Page
 {
 	/// <summary>
-	/// Indicates the navigation pairs that controls to route pages.
+	/// Indicates the navigation info tuples that controls to route pages.
 	/// </summary>
-	private static readonly (string ViewItemTag, Type PageType)[] NavigationPairs =
+	private static readonly (string ViewItemTag, Type PageType, bool DisplayTitle)[] NavigationPairs =
 	{
-		(nameof(SettingsPage), typeof(SettingsPage)),
-		(nameof(AboutPage), typeof(AboutPage)),
-		(nameof(SudokuPage), typeof(SudokuPage))
+		(nameof(SettingsPage), typeof(SettingsPage), true),
+		(nameof(AboutPage), typeof(AboutPage), true),
+		(nameof(SudokuPage), typeof(SudokuPage), false)
 	};
 
 
@@ -33,7 +33,7 @@ public sealed partial class MainPage : Page
 	/// <param name="transitionInfo">The transition information.</param>
 	private void OnNavigate(string tag, NavigationTransitionInfo transitionInfo)
 	{
-		var (_, pageType) = Array.Find(NavigationPairs, p => p.ViewItemTag == tag);
+		var (_, pageType, displayTitle) = Array.Find(NavigationPairs, p => p.ViewItemTag == tag);
 
 		// Get the page type before navigation so you can prevent duplicate entries in the backstack.
 		// Only navigate if the selected page isn't currently loaded.
@@ -42,6 +42,8 @@ public sealed partial class MainPage : Page
 		{
 			_cViewRouterFrame.Navigate(pageType, null, transitionInfo);
 		}
+
+		_cViewRouter.AlwaysShowHeader = displayTitle;
 	}
 
 
@@ -84,14 +86,14 @@ public sealed partial class MainPage : Page
 			return;
 		}
 
-		var (tag, _) = Array.Find(NavigationPairs, tagSelector);
+		var (tag, _, _) = Array.Find(NavigationPairs, tagSelector);
 		var item = menuItems.Concat(footerMenuItems).OfType<NavigationViewItem>().First(itemSelector);
 		_cViewRouter.SelectedItem = item;
 		_cViewRouter.Header = item.Content?.ToString();
 
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		bool tagSelector((string, Type PageType) p) => p.PageType == sourcePageType;
+		bool tagSelector((string, Type PageType, bool) p) => p.PageType == sourcePageType;
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		bool itemSelector(NavigationViewItem n) => n.Tag as string == tag;
