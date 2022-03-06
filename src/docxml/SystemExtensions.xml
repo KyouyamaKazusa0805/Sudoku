@@ -1957,6 +1957,21 @@
             <param name="right">The right instance.</param>
             <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
         </member>
+        <member name="M:System.Text.StringHandler.ElementToStringConverter(System.Int16)">
+            <summary>
+            Provides with the default way to convert the specified instance of type <see cref="T:System.Int16"/>
+            into a <see cref="T:System.String"/> value.
+            </summary>
+            <param name="this">The instance.</param>
+            <returns>The <see cref="T:System.String"/> value.</returns>
+            <remarks>
+            You can put this method as the argument into the method invocation
+            <see cref="!:AppendRangeWithSeparatorUnsafe&lt;TUnmanaged&gt;(TUnmanaged*, int, delegate*&lt;TUnmanaged, string?&gt;, string)"/>
+            or <see cref="M:System.Text.StringHandler.AppendRangeWithSeparatorUnsafe``1(``0*,System.Int32,System.Func{``0,System.String},System.String)"/>.
+            </remarks>
+            <seealso cref="!:AppendRangeWithSeparatorUnsafe&lt;TUnmanaged&gt;(TUnmanaged*, int, delegate*&lt;TUnmanaged, string?&gt;, string)"/>
+            <seealso cref="M:System.Text.StringHandler.AppendRangeWithSeparatorUnsafe``1(``0*,System.Int32,System.Func{``0,System.String},System.String)"/>
+        </member>
         <member name="M:System.Text.StringHandler.op_Equality(System.Text.StringHandler@,System.Text.StringHandler@)">
             <summary>
             Determine whether two <see cref="T:System.Text.StringHandler"/>s hold a same character set.

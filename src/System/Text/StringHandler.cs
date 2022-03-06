@@ -1472,6 +1472,25 @@ public unsafe ref partial struct StringHandler
 	}
 
 
+#pragma warning disable CS1584, CS1658
+	/// <summary>
+	/// Provides with the default way to convert the specified instance of type <see cref="short"/>
+	/// into a <see cref="string"/> value.
+	/// </summary>
+	/// <param name="this">The instance.</param>
+	/// <returns>The <see cref="string"/> value.</returns>
+	/// <remarks>
+	/// You can put this method as the argument into the method invocation
+	/// <see cref="AppendRangeWithSeparatorUnsafe{TUnmanaged}(TUnmanaged*, int, delegate*{TUnmanaged, string?}, string)"/>
+	/// or <see cref="AppendRangeWithSeparatorUnsafe{TUnmanaged}(TUnmanaged*, int, Func{TUnmanaged, string?}, string)"/>.
+	/// </remarks>
+	/// <seealso cref="AppendRangeWithSeparatorUnsafe{TUnmanaged}(TUnmanaged*, int, delegate*{TUnmanaged, string?}, string)"/>
+	/// <seealso cref="AppendRangeWithSeparatorUnsafe{TUnmanaged}(TUnmanaged*, int, Func{TUnmanaged, string?}, string)"/>
+#pragma warning restore CS1584, CS1658
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static string ElementToStringConverter(short @this) => @this.ToString();
+
+
 	/// <summary>
 	/// Determine whether two <see cref="StringHandler"/>s hold a same character set.
 	/// </summary>

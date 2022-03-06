@@ -1040,7 +1040,7 @@ public unsafe partial struct Grid :
 		fixed (short* pArr = _values)
 		{
 			var sb = new StringHandler(400);
-			sb.AppendRangeWithSeparatorUnsafe(pArr, 81, static v => v.ToString(), separator);
+			sb.AppendRangeWithSeparatorUnsafe(pArr, 81, &StringHandler.ElementToStringConverter, separator);
 			return sb.ToStringAndClear();
 		}
 	}
