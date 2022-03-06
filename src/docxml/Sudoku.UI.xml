@@ -2639,6 +2639,9 @@
             Initializes a <see cref="T:Sudoku.UI.Views.Pages.SudokuPage"/> instance.
             </summary>
         </member>
+        <member name="M:Sudoku.UI.Views.Pages.SudokuPage.OnKeyDown(Microsoft.UI.Xaml.Input.KeyRoutedEventArgs)">
+            <inheritdoc/>
+        </member>
         <member name="M:Sudoku.UI.Views.Pages.SudokuPage.InitialAddSudokuTechniqueInfoBar">
             <summary>
             Adds the initial sudoku-technique based <see cref="T:Microsoft.UI.Xaml.Controls.InfoBar"/> instance.

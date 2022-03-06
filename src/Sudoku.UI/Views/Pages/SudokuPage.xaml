@@ -29,32 +29,24 @@
 				<xc:TabbedCommandBar.MenuItems>
 					<!--First tab-->
 					<xc:TabbedCommandBarItem Header="{StaticResource SudokuPage_ToolList_Editing}">
-						<AppBarButton
-							Label="{StaticResource SudokuPage_Open}" Icon="OpenFile"
-							AutomationProperties.AcceleratorKey="Control O">
+						<AppBarButton Label="{StaticResource SudokuPage_Open}" Icon="OpenFile">
 							<AppBarButton.Command>
 								<XamlUICommand
 									CanExecuteRequested="CommandOpenOrSaveSudokuFile_CanExecuteRequested"
 									ExecuteRequested="CommandOpenSudokuFile_ExecuteRequestedAsync" />
 							</AppBarButton.Command>
 						</AppBarButton>
-						<AppBarButton
-							Label="{StaticResource SudokuPage_Copy}" Icon="Copy"
-							AutomationProperties.AcceleratorKey="Control C">
+						<AppBarButton Label="{StaticResource SudokuPage_Copy}" Icon="Copy">
 							<AppBarButton.Command>
 								<XamlUICommand ExecuteRequested="CommandCopySudokuGridText_ExecuteRequested" />
 							</AppBarButton.Command>
 						</AppBarButton>
-						<AppBarButton
-							Label="{StaticResource SudokuPage_Paste}" Icon="Paste"
-							AutomationProperties.AcceleratorKey="Control V">
+						<AppBarButton Label="{StaticResource SudokuPage_Paste}" Icon="Paste">
 							<AppBarButton.Command>
 								<XamlUICommand ExecuteRequested="CommandPasteSudokuGridText_ExecuteRequestedAsync" />
 							</AppBarButton.Command>
 						</AppBarButton>
-						<AppBarButton
-							Label="{StaticResource SudokuPage_Save}" Icon="Save"
-							AutomationProperties.AcceleratorKey="Control S">
+						<AppBarButton Label="{StaticResource SudokuPage_Save}" Icon="Save">
 							<AppBarButton.Command>
 								<XamlUICommand
 									CanExecuteRequested="CommandOpenOrSaveSudokuFile_CanExecuteRequested"
@@ -87,16 +79,12 @@
 							</AppBarButton.Flyout>
 						</AppBarButton>
 						<AppBarSeparator />
-						<AppBarButton
-							Label="{StaticResource SudokuPage_Fix}" Icon="Pin"
-							AutomationProperties.AcceleratorKey="Control Tab">
+						<AppBarButton Label="{StaticResource SudokuPage_Fix}" Icon="Pin">
 							<AppBarButton.Command>
 								<XamlUICommand ExecuteRequested="CommandFix_ExecuteRequested" />
 							</AppBarButton.Command>
 						</AppBarButton>
-						<AppBarButton
-							Label="{StaticResource SudokuPage_Unfix}" Icon="UnPin"
-							AutomationProperties.AcceleratorKey="Control,Shift Tab">
+						<AppBarButton Label="{StaticResource SudokuPage_Unfix}" Icon="UnPin">
 							<AppBarButton.Command>
 								<XamlUICommand ExecuteRequested="CommandUnfix_ExecuteRequested" />
 							</AppBarButton.Command>
@@ -104,7 +92,6 @@
 						<AppBarSeparator />
 						<AppBarButton
 							x:Name="_cUndo" Label="{StaticResource SudokuPage_Undo}" Icon="Undo"
-							AutomationProperties.AcceleratorKey="Control Z"
 							IsEnabled="{Binding
 								ElementName=_cPane,
 								Path=UndoStepsCount,
@@ -117,7 +104,6 @@
 						</AppBarButton>
 						<AppBarButton
 							x:Name="_cRedo" Icon="Redo" Label="{StaticResource SudokuPage_Redo}"
-							AutomationProperties.AcceleratorKey="Control Y"
 							IsEnabled="{Binding
 								ElementName=_cPane,
 								Path=RedoStepsCount,
@@ -140,10 +126,7 @@
 
 					<!--Second tab-->
 					<xc:TabbedCommandBarItem Header="{StaticResource SudokuPage_ToolList_Analysis}">
-						<AppBarButton
-							Label="{StaticResource SudokuPage_Generate}" Icon="Go"
-							AutomationProperties.AcceleratorKey="Control H"
-							CommandParameter="{Binding RelativeSource={RelativeSource Self}}">
+						<AppBarButton x:Name="_cButtonGenerate" Label="{StaticResource SudokuPage_Generate}" Icon="Go">
 							<AppBarButton.Command>
 								<XamlUICommand ExecuteRequested="CommandGenerate_ExecuteRequestedAsync" />
 							</AppBarButton.Command>
@@ -153,9 +136,7 @@
 								<XamlUICommand ExecuteRequested="CommandGetSolution_ExecuteRequested" />
 							</AppBarButton.Command>
 						</AppBarButton>
-						<AppBarButton
-							Label="{StaticResource SudokuPage_Analysis}" Icon="ShowBcc"
-							CommandParameter="{Binding RelativeSource={RelativeSource Self}}">
+						<AppBarButton x:Name="_cButtonAnalyze" Label="{StaticResource SudokuPage_Analysis}" Icon="ShowBcc">
 							<AppBarButton.Command>
 								<XamlUICommand ExecuteRequested="CommandAnalysis_ExecuteRequestedAsync" />
 							</AppBarButton.Command>
