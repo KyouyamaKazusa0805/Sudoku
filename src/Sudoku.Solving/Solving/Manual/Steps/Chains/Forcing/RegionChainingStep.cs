@@ -15,6 +15,7 @@ namespace Sudoku.Solving.Manual.Steps;
 /// <param name="Chains">IIndicates the regions that binds with the relative position in this region.</param>
 /// <param name="IsDynamic"><inheritdoc/></param>
 /// <param name="Level"><inheritdoc/></param>
+[Obsolete("All chain techniques will be disabled due to bugs. I'll re-implement on this point with newer data structures.", false)]
 public sealed record RegionChainingStep(
 	ImmutableArray<Conclusion> Conclusions,
 	ImmutableArray<PresentationData> Views,

@@ -62,4 +62,10 @@ public sealed class StepSearcherAttribute : Attribute
 	/// <para><i>The default value is <see langword="false"/>.</i></para>
 	/// </summary>
 	public bool PuzzleNotRelying { get; init; }
+
+	/// <summary>
+	/// <para>Indicates whether the step searcher is deprecated.</para>
+	/// <para><i>The default value is <see langword="false"/>.</i></para>
+	/// </summary>
+	public bool Deprecated { get; init; }
 }

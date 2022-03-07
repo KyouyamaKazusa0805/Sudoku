@@ -41,6 +41,7 @@ namespace Sudoku;
 /// <param name="Mask">
 /// Indicates the mask that handles and stores the basic information of the current node.
 /// </param>
+[Obsolete("All chain techniques will be disabled due to bugs. I'll re-implement on this point with newer data structures.", false)]
 public record struct Node(int Mask) :
 	IDefaultable<Node>,
 	IEquatable<Node>

@@ -1,4 +1,5 @@
-﻿using System.Reflection;
+﻿using System.Linq.Expressions;
+using System.Reflection;
 using Sudoku.Solving.Manual;
 using Sudoku.Solving.Manual.Buffer;
 using Sudoku.Solving.Manual.Searchers;
@@ -17,9 +18,12 @@ internal static class ModuleInitializer
 	public static void Initialize() =>
 		StepSearcherPool.Collection = (
 			from type in typeof(ModuleInitializer).Assembly.GetTypes()
-			where type.IsDefined(typeof(StepSearcherAttribute)) && typeof(IStepSearcher).IsAssignableFrom(type)
-			select (IStepSearcher)Activator.CreateInstance(type)! into instance
-			orderby instance.Options.Priority
+			where type.GetCustomAttribute<StepSearcherAttribute>() is { Deprecated: false }
+			let constructors = type.GetConstructors()
+			where constructors.Any(static c => c.GetParameters().Length != 0)
+			select Activator.CreateInstance(type) as IStepSearcher into instance
+			where instance is not null
+			orderby instance.Options.Priority ascending
 			select instance
 		).ToArray();
 }

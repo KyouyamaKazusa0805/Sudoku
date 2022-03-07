@@ -13,6 +13,7 @@ namespace Sudoku.Solving.Manual.Steps;
 /// <param name="XEnabled"><inheritdoc/></param>
 /// <param name="YEnabled"><inheritdoc/></param>
 /// <param name="Target">Indicates the target cell.</param>
+[Obsolete("All chain techniques will be disabled due to bugs. I'll re-implement on this point with newer data structures.", false)]
 public sealed record AlternatingInferenceChainStep(
 	ImmutableArray<Conclusion> Conclusions,
 	ImmutableArray<PresentationData> Views,

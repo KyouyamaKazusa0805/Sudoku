@@ -14,6 +14,7 @@ namespace Sudoku.Solving.Manual.Steps;
 /// <param name="Chains">Indicates the sub-chains that is grouped by each candidate in that cell.</param>
 /// <param name="IsDynamic"><inheritdoc/></param>
 /// <param name="Level"><inheritdoc/></param>
+[Obsolete("All chain techniques will be disabled due to bugs. I'll re-implement on this point with newer data structures.", false)]
 public sealed record CellChainingStep(
 	ImmutableArray<Conclusion> Conclusions,
 	ImmutableArray<PresentationData> Views,
