@@ -3446,6 +3446,91 @@
             or two regions are not in same region type.
             </exception>
         </member>
+        <member name="T:Sudoku.Collections.HashNode">
+            <summary>
+            Defines a hash node that is used for storing a chain node.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Collections.HashNode._id">
+            <summary>
+            Indicates the ID of the current hash node.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Collections.HashNode._nextPtr">
+            <summary>
+            Indicates the pointer that points to the next node.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Collections.HashNode.#ctor">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Collections.HashNode"/> instance.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Collections.HashNode.#ctor(System.Int32)">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Collections.HashNode"/> instance with the specified ID.
+            </summary>
+            <param name="id">The ID.</param>
+        </member>
+        <member name="M:Sudoku.Collections.HashNode.#ctor(System.Int32,Sudoku.Collections.HashNode*)">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Collections.HashNode"/> instance with the specified ID and the pointer value
+            that points to the next node.
+            </summary>
+            <param name="id">The ID.</param>
+            <param name="nextPtr">The pointer that points to the next node.</param>
+        </member>
+        <member name="M:Sudoku.Collections.HashNode.Equals(System.Object)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Collections.HashNode.Equals(Sudoku.Collections.HashNode)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Collections.HashNode.GetHashCode">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Collections.HashNode.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
+        <member name="M:Sudoku.Collections.HashNode.op_Equality(Sudoku.Collections.HashNode,Sudoku.Collections.HashNode)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Collections.HashNode.op_Inequality(Sudoku.Collections.HashNode,Sudoku.Collections.HashNode)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Collections.HashNodeTable">
+            <summary>
+            Defines a table that stores the list of <see cref="T:Sudoku.Collections.HashNode"/>s.
+            </summary>
+            <seealso cref="T:Sudoku.Collections.HashNode"/>
+        </member>
+        <member name="F:Sudoku.Collections.HashNodeTable.MaxCapacity">
+            <summary>
+            Indicates the maximum capacity.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Collections.HashNodeTable._map">
+            <summary>
+            Defines a list of map with the capacity <see cref="F:Sudoku.Collections.HashNodeTable.MaxCapacity"/>, of type <see cref="T:Sudoku.Collections.HashNode"/>.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Collections.HashNodeTable._index">
+            <summary>
+            Indicates the start index.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Collections.HashNodeTable.#ctor">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Collections.HashNodeTable"/> instance.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Collections.HashNodeTable.Add(Sudoku.Collections.HashNode)">
+            <summary>
+            Adds the node into the collection.
+            </summary>
+            <param name="node">The node to be added.</param>
+            <exception cref="T:System.OutOfMemoryException">Throws when the list is full.</exception>
+        </member>
         <member name="T:Sudoku.Collections.LinkCollection">
             <summary>
             Provides a collection that contains the chain links.

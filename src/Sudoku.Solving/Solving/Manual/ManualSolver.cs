@@ -290,13 +290,10 @@ public sealed unsafe partial class ManualSolver : IPuzzleSolver
 		foreach (var (t, c, d) in step.Conclusions)
 		{
 			int digit = solution[c];
-			switch (t)
+			if (t == ConclusionType.Assignment && digit != d
+				|| t == ConclusionType.Elimination && digit == d)
 			{
-				case ConclusionType.Assignment when digit != d:
-				case ConclusionType.Elimination when digit == d:
-				{
-					return false;
-				}
+				return false;
 			}
 		}
 
