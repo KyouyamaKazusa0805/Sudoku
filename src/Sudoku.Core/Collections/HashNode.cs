@@ -68,7 +68,7 @@ public readonly unsafe struct HashNode :
 	/// <inheritdoc cref="object.ToString"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public override string ToString() =>
-		$"{nameof(HashNode)} {{ ID = {_id}, NextPtr = {(_nextPtr == null ? "<null>" : "<not null>")} }}";
+		$"{nameof(HashNode)} {{ ID = {_id}, NextPtr = {(_nextPtr == null ? "<null>" : $"{_nextPtr->_id}")} }}";
 
 
 	/// <inheritdoc/>
