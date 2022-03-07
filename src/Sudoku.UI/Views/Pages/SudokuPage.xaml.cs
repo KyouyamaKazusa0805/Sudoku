@@ -35,60 +35,66 @@ public sealed partial class SudokuPage : Page
 		base.OnKeyDown(e);
 
 		// Checks the status of the key-pressed data.
-		bool controlKeyIsDown = modifierKeyIsPressed(VirtualKey.Control);
-		bool shiftKeyIsDown = modifierKeyIsPressed(VirtualKey.Shift);
-		switch (e.Key)
+		await routeHandlerAsync(e);
+
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		async Task routeHandlerAsync(KeyRoutedEventArgs e)
 		{
-			case VirtualKey.O when controlKeyIsDown && EnsureUnsnapped():
+			bool controlKeyIsDown = modifierKeyIsPressed(VirtualKey.Control);
+			bool shiftKeyIsDown = modifierKeyIsPressed(VirtualKey.Shift);
+			switch (e.Key)
 			{
-				await OpenFileAsync();
-				break;
+				case VirtualKey.O when controlKeyIsDown && EnsureUnsnapped():
+				{
+					await OpenFileAsync();
+					break;
+				}
+				case VirtualKey.C when controlKeyIsDown:
+				{
+					CopySudokuCode();
+					break;
+				}
+				case VirtualKey.V when controlKeyIsDown:
+				{
+					await PasteAsync();
+					break;
+				}
+				case VirtualKey.S when controlKeyIsDown && EnsureUnsnapped():
+				{
+					await SaveFileAsync();
+					break;
+				}
+				case VirtualKey.Tab when controlKeyIsDown:
+				{
+					FixGrid();
+					break;
+				}
+				case VirtualKey.Tab when controlKeyIsDown && shiftKeyIsDown:
+				{
+					UnfixGrid();
+					break;
+				}
+				case VirtualKey.Z when controlKeyIsDown:
+				{
+					Undo();
+					break;
+				}
+				case VirtualKey.Y when controlKeyIsDown:
+				{
+					Redo();
+					break;
+				}
+				case VirtualKey.H when controlKeyIsDown:
+				{
+					await GenerateAsync(_cButtonGenerate);
+					break;
+				}
 			}
-			case VirtualKey.C when controlKeyIsDown:
-			{
-				CopySudokuCode();
-				break;
-			}
-			case VirtualKey.V when controlKeyIsDown:
-			{
-				await PasteAsync();
-				break;
-			}
-			case VirtualKey.S when controlKeyIsDown && EnsureUnsnapped():
-			{
-				await SaveFileAsync();
-				break;
-			}
-			case VirtualKey.Tab when controlKeyIsDown:
-			{
-				FixGrid();
-				break;
-			}
-			case VirtualKey.Tab when controlKeyIsDown && shiftKeyIsDown:
-			{
-				UnfixGrid();
-				break;
-			}
-			case VirtualKey.Z when controlKeyIsDown:
-			{
-				Undo();
-				break;
-			}
-			case VirtualKey.Y when controlKeyIsDown:
-			{
-				Redo();
-				break;
-			}
-			case VirtualKey.H when controlKeyIsDown:
-			{
-				await GenerateAsync(_cButtonGenerate);
-				break;
-			}
+
+			// Make the property value 'false' to allow the handler continuously routes to the inner controls.
+			e.Handled = false;
 		}
-
-		// Make the property value 'false' to allow the handler continuously routes to the inner controls.
-		e.Handled = false;
-
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		static bool modifierKeyIsPressed(VirtualKey key) =>
