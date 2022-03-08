@@ -238,6 +238,11 @@ public sealed unsafe partial record ManualSolverResult(in Grid OriginalPuzzle) :
 	{
 		get
 		{
+			if (Steps.IsDefault)
+			{
+				return null;
+			}
+
 			if (Steps is not [var firstStep, ..])
 			{
 				return null;
@@ -332,7 +337,7 @@ public sealed unsafe partial record ManualSolverResult(in Grid OriginalPuzzle) :
 	/// <seealso cref="Steps"/>
 	private decimal Evaluator(delegate*<IEnumerable<Step>, delegate*<Step, decimal>, decimal> executor, decimal d)
 	{
-		return !Steps.IsDefaultOrEmpty && Steps.Length != 0 ? executor(Steps, &f) : d;
+		return Steps.IsDefaultOrEmpty ? d : executor(Steps, &f);
 
 
 		static decimal f(Step step) => step.ShowDifficulty ? step.Difficulty : 0;
