@@ -86,7 +86,8 @@ partial record ManualSolverResult
 			sb.AppendLine();
 
 			// Print solving steps (if worth).
-			if (options.Flags(SolverResultFormattingOptions.ShowSteps) && steps.Length != 0)
+			if (options.Flags(SolverResultFormattingOptions.ShowSteps)
+				&& steps is { IsDefaultOrEmpty: false, Length: not 0 })
 			{
 				sb.Append(R["AnalysisResultSolvingSteps"]!);
 				sb.AppendLine();

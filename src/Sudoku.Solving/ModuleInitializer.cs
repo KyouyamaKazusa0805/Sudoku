@@ -20,7 +20,7 @@ internal static class ModuleInitializer
 			from type in typeof(ModuleInitializer).Assembly.GetTypes()
 			where type.GetCustomAttribute<StepSearcherAttribute>() is { Deprecated: false }
 			let constructors = type.GetConstructors()
-			where constructors.Any(static c => c.GetParameters().Length != 0)
+			where constructors.Any(static c => c.GetParameters().Length == 0)
 			select Activator.CreateInstance(type) as IStepSearcher into instance
 			where instance is not null
 			orderby instance.Options.Priority ascending

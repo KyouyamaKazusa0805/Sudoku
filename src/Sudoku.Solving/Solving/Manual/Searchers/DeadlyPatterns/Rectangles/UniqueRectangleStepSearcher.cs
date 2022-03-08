@@ -495,9 +495,10 @@ public sealed unsafe class UniqueRectangleStepSearcher : IUniqueRectangleStepSea
 			return;
 		}
 
-		// If 'PopCount(mask)' is 1, the type 2 instance will be degenerated to type 1.
+		// Gets the extra mask.
+		// If the mask is the power of 2, the type 2 will be formed.
 		int extraMask = (grid.GetCandidates(corner1) | grid.GetCandidates(corner2)) ^ comparer;
-		if ((extraMask & extraMask - 1) == 0)
+		if (extraMask == 0 || (extraMask & extraMask - 1) != 0)
 		{
 			return;
 		}
