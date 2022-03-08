@@ -31,7 +31,7 @@
       Executable="$targetnametoken$.exe"
       EntryPoint="$targetentrypoint$">
       <uap:VisualElements
-        DisplayName="Sudoku.UI"
+        DisplayName="Sunnie&apos;s Sudoku Solution"
         Description="The solution that plays with the sudoku."
         BackgroundColor="transparent"
         Square150x150Logo="Assets\Square150x150Logo.png"
