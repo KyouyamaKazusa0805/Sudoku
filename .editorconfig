@@ -527,11 +527,11 @@ dotnet_diagnostic.CA2255.severity = none
 
 #
 #
-# JSON files
+# JSON and Config files
 #
 #
 
-[*.json]
+[*.{json,config}]
 
 # Indentation and spacing
 indent_size = 2
