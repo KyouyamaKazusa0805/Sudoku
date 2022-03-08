@@ -4587,8 +4587,13 @@
             Indicates whether the method should avoid confusion for the letter I and digit 1. For example,
             if <see langword="true"/>, row 9 column 9 will be notated as <c>K9</c>; otherwise, <c>I9</c>.
             </param>
+            <param name="Separator">
+            Indicates the separator string value that inserts two coordinate elements, to combine them.
+            For example, cells <c>C1</c> and <c>D2</c> can be combined to <c>C1|D2</c> if the seperator
+            is <c>"|"</c>.
+            </param>
         </member>
-        <member name="M:Sudoku.DataHandling.K9NotationOptions.#ctor(System.Boolean,System.Boolean)">
+        <member name="M:Sudoku.DataHandling.K9NotationOptions.#ctor(System.Boolean,System.Boolean,System.String)">
             <summary>
             Provides with a type that is used for displaying a cell list, using K9 notation.
             </summary>
@@ -4600,6 +4605,11 @@
             <param name="AvoidConfusionOnRowLetters">
             Indicates whether the method should avoid confusion for the letter I and digit 1. For example,
             if <see langword="true"/>, row 9 column 9 will be notated as <c>K9</c>; otherwise, <c>I9</c>.
+            </param>
+            <param name="Separator">
+            Indicates the separator string value that inserts two coordinate elements, to combine them.
+            For example, cells <c>C1</c> and <c>D2</c> can be combined to <c>C1|D2</c> if the seperator
+            is <c>"|"</c>.
             </param>
         </member>
         <member name="P:Sudoku.DataHandling.K9NotationOptions.UpperCasing">
@@ -4613,6 +4623,13 @@
             <summary>
             Indicates whether the method should avoid confusion for the letter I and digit 1. For example,
             if <see langword="true"/>, row 9 column 9 will be notated as <c>K9</c>; otherwise, <c>I9</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.DataHandling.K9NotationOptions.Separator">
+            <summary>
+            Indicates the separator string value that inserts two coordinate elements, to combine them.
+            For example, cells <c>C1</c> and <c>D2</c> can be combined to <c>C1|D2</c> if the seperator
+            is <c>"|"</c>.
             </summary>
         </member>
         <member name="F:Sudoku.DataHandling.K9NotationOptions.Default">
@@ -4688,8 +4705,13 @@
             For example, if <see langword="true"/>, the cell at row 3 and column 3 will be displayed
             as <c>R3C3</c>; otherwise, <c>r3c3</c>.
             </param>
+            <param name="Separator">
+            Indicates the separator string value that inserts two coordinate elements, to combine them.
+            For example, cells <c>R3C1</c> and <c>R4C2</c> can be combined to <c>R3C1|R4C2</c> if the seperator
+            is <c>"|"</c>.
+            </param>
         </member>
-        <member name="M:Sudoku.DataHandling.RxCyNotationOptions.#ctor(System.Boolean)">
+        <member name="M:Sudoku.DataHandling.RxCyNotationOptions.#ctor(System.Boolean,System.String)">
             <summary>
             Provides with a type that is used for displaying a cell list, using RxCy notation.
             </summary>
@@ -4698,12 +4720,24 @@
             For example, if <see langword="true"/>, the cell at row 3 and column 3 will be displayed
             as <c>R3C3</c>; otherwise, <c>r3c3</c>.
             </param>
+            <param name="Separator">
+            Indicates the separator string value that inserts two coordinate elements, to combine them.
+            For example, cells <c>R3C1</c> and <c>R4C2</c> can be combined to <c>R3C1|R4C2</c> if the seperator
+            is <c>"|"</c>.
+            </param>
         </member>
         <member name="P:Sudoku.DataHandling.RxCyNotationOptions.UpperCasing">
             <summary>
             Indicates whether we should use upper-casing to handle the result notation of cells.
             For example, if <see langword="true"/>, the cell at row 3 and column 3 will be displayed
             as <c>R3C3</c>; otherwise, <c>r3c3</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.DataHandling.RxCyNotationOptions.Separator">
+            <summary>
+            Indicates the separator string value that inserts two coordinate elements, to combine them.
+            For example, cells <c>R3C1</c> and <c>R4C2</c> can be combined to <c>R3C1|R4C2</c> if the seperator
+            is <c>"|"</c>.
             </summary>
         </member>
         <member name="F:Sudoku.DataHandling.RxCyNotationOptions.Default">

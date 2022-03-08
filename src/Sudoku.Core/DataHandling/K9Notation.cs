@@ -72,27 +72,25 @@ public sealed class K9Notation : ICellNotation
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static string ToDisplayString(in Cells cells, in K9NotationOptions options)
 	{
-		const char separator = '|';
-		bool upperCasing = options.UpperCasing;
-		bool avoidConfusionOnRowLetters = options.AvoidConfusionOnRowLetters;
 		return cells switch
 		{
 			[] => string.Empty,
-			[var p] => avoidConfusionOnRowLetters switch
+			[var p] => options.AvoidConfusionOnRowLetters switch
 			{
-				true => $"{(upperCasing ? Letters[p / 9] : char.ToLower(Letters[p / 9]))}{p % 9 + 1}",
-				_ => $"{(upperCasing ? (char)('A' + p / 9) : char.ToLower((char)('A' + p / 9)))}{p % 9 + 1}"
+				true => $"{(options.UpperCasing ? Letters[p / 9] : char.ToLower(Letters[p / 9]))}{p % 9 + 1}",
+				_ => $"{(options.UpperCasing ? (char)('A' + p / 9) : char.ToLower((char)('A' + p / 9)))}{p % 9 + 1}"
 			},
-			_ => r(cells, upperCasing, avoidConfusionOnRowLetters) is var a && c(cells, upperCasing, avoidConfusionOnRowLetters) is var b && a.Length <= b.Length ? a : b
+			_ => r(cells, options) is var a && c(cells, options) is var b && a.Length <= b.Length ? a : b
 		};
 
 
 		static string i(int v) => (v + 1).ToString();
 
-		static unsafe string r(in Cells cells, bool upperCasing, bool avoidConfusionOnRowLetters)
+		static unsafe string r(in Cells cells, in K9NotationOptions options)
 		{
 			var sbRow = new StringHandler(18);
 			var dic = new Dictionary<int, List<int>>(9);
+			var (upperCasing, avoidConfusionOnRowLetters, separator) = options;
 			foreach (int cell in cells)
 			{
 				if (!dic.ContainsKey(cell / 9))
@@ -120,10 +118,11 @@ public sealed class K9Notation : ICellNotation
 			return sbRow.ToStringAndClear();
 		}
 
-		static unsafe string c(in Cells cells, bool upperCasing, bool avoidConfusionOnRowLetters)
+		static unsafe string c(in Cells cells, in K9NotationOptions options)
 		{
 			var dic = new Dictionary<int, List<int>>(9);
 			var sbColumn = new StringHandler(18);
+			var (upperCasing, avoidConfusionOnRowLetters, separator) = options;
 			foreach (int cell in cells)
 			{
 				if (!dic.ContainsKey(cell % 9))

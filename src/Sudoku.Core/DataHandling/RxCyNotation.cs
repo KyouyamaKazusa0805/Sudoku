@@ -65,13 +65,12 @@ public abstract class RxCyNotation : ICellNotation
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static string ToDisplayString(in Cells cells, in RxCyNotationOptions options)
 	{
-		const char separator = '|';
 		bool upperCasing = options.UpperCasing;
 		return cells switch
 		{
 			[] => string.Empty,
 			[var p] => $"{rowLabel(upperCasing)}{p / 9 + 1}{columnLabel(upperCasing)}{p % 9 + 1}",
-			_ => r(cells, upperCasing) is var a && c(cells, upperCasing) is var b && a.Length <= b.Length ? a : b
+			_ => r(cells, options) is var a && c(cells, options) is var b && a.Length <= b.Length ? a : b
 		};
 
 
@@ -83,10 +82,11 @@ public abstract class RxCyNotation : ICellNotation
 
 		static string i(int v) => (v + 1).ToString();
 
-		static unsafe string r(in Cells cells, bool upperCasing)
+		static unsafe string r(in Cells cells, in RxCyNotationOptions options)
 		{
 			var sbRow = new StringHandler(50);
 			var dic = new Dictionary<int, List<int>>(9);
+			var (upperCasing, separator) = options;
 			foreach (int cell in cells)
 			{
 				if (!dic.ContainsKey(cell / 9))
@@ -109,10 +109,11 @@ public abstract class RxCyNotation : ICellNotation
 			return sbRow.ToStringAndClear();
 		}
 
-		static unsafe string c(in Cells cells, bool upperCasing)
+		static unsafe string c(in Cells cells, in RxCyNotationOptions options)
 		{
 			var dic = new Dictionary<int, List<int>>(9);
 			var sbColumn = new StringHandler(50);
+			var (upperCasing, separator) = options;
 			foreach (int cell in cells)
 			{
 				if (!dic.ContainsKey(cell % 9))
