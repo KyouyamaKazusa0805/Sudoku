@@ -24,8 +24,15 @@ var solver = new ManualSolver();
 // 以同步的形式解题。
 var analysisResult = solver.Solve(grid);
 
+// 你也可以转换数据类型为 ManualSolverResult 类型，以查看内部更多的数据信息。
+//var analysisResultConverted = (ManualSolverResult)analysisResult;
+
 // 输出分析结果。
-Console.WriteLine(analysisResult.ToString());
+// 你也可以使用 ToString 代替 ToDisplayString，它们底层是一样的。
+Console.WriteLine(analysisResult.ToDisplayString());
+//Console.WriteLine(analysisResult.ToString()); // 一样的。
+//Console.WriteLine(analysisResultConverted.ToDisplayString()); // 一样的。
+//Console.WriteLine(analysisResultConverted.ToString()); // 一样的。
 ```
 
 以后，我想把这个解决方案用于**几乎所有平台**上。我可能会完成 Win10 App 项目、安卓项目、常用网络平台上的机器人（比如可能 QQ 啊，哔哩哔哩之类的）。
@@ -61,10 +68,10 @@ Console.WriteLine(analysisResult.ToString());
 | -------------- | ------------------------------------- |
 | 编程语言和版本 | C# 10                                  |
 | 框架           | .NET 6                                |
-| 缩进           | Tab（制表符）                              |
-| 集成开发环境   | Visual Studio 2022（17.2 预览版 1） |
-| 自然语言支持   | 英语、简体中文                        |
-| 用户接口 | `Sudoku.UI` 项目，暂时不考虑用 MVVM 三层设计规则对项目进行设计，之后再重新考虑 |
+| 缩进           | Tab（制表符）                          |
+| 集成开发环境   | Visual Studio 2022（17.2 预览版 1）     |
+| 自然语言支持   | 英语、简体中文                           |
+| 用户接口       | `Sudoku.UI`                           |
 
 > 请注意，编程语言的版本我一直用的是预览版，也就意味着即使有些语言特性不属于我上方给出的版本支持的特性，但是项目也在使用它们。
 >

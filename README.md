@@ -24,8 +24,16 @@ var solver = new ManualSolver();
 // To solve a puzzle synchonously.
 var analysisResult = solver.Solve(grid);
 
+// You can also convert the type to 'ManualSolverResult'
+// in order to check more data.
+//var analysisResultConverted = (ManualSolverResult)analysisResult;
+
 // Output the analysis result.
-Console.WriteLine(analysisResult.ToString());
+// You can also use 'ToString' instead of 'ToDisplayString'. They are same.
+Console.WriteLine(analysisResult.ToDisplayString());
+//Console.WriteLine(analysisResult.ToString()); // Same.
+//Console.WriteLine(analysisResultConverted.ToDisplayString()); // Same.
+//Console.WriteLine(analysisResultConverted.ToString()); // Same.
 ```
 
 In the future, I'd like to apply this solution to **almost every platform**. I may finish the Win10 app project, android app project, bot on common online platforms (QQ, Bilibili and so on).
@@ -64,7 +72,7 @@ Please visit the following tables.
 | Indenting                          | Tabs                                 |
 | Integrated development environment | Visual Studio 2022 (17.2 Preview 1)  |
 | Natural languages support          | English, Simplified Chinese          |
-| User Interface                     | Project `Suoku.UI`, but without MVVM |
+| User Interface                     | Project `Suoku.UI`                   |
 
 > Please note that the programming language version is always used as 'preview', which means some preview features are still used in this solution.
 >
