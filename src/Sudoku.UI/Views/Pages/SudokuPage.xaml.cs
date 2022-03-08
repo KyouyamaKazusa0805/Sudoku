@@ -1,15 +1,19 @@
 ﻿using System.Collections.Specialized;
+using System.Runtime.InteropServices.WindowsRuntime;
 using Microsoft.UI.Input;
 using Microsoft.UI.Xaml.Controls.Primitives;
 using Microsoft.UI.Xaml.Input;
+using Microsoft.UI.Xaml.Media.Imaging;
 using Sudoku.Diagnostics.CodeAnalysis;
 using Sudoku.Generating;
 using Sudoku.Solving;
 using Sudoku.Solving.Manual;
 using Windows.ApplicationModel.DataTransfer;
+using Windows.Graphics.Imaging;
 using Windows.Storage;
 using Windows.Storage.Pickers;
 using Windows.Storage.Provider;
+using Windows.Storage.Streams;
 using Windows.System;
 using Windows.UI.Core;
 using Windows.UI.ViewManagement;
@@ -136,6 +140,50 @@ public sealed partial class SudokuPage : Page
 		var dataPackage = new DataPackage { RequestedOperation = DataPackageOperation.Copy };
 		dataPackage.SetText(grid.ToString("#"));
 		Clipboard.SetContent(dataPackage);
+	}
+
+	/// <summary>
+	/// Copy the snapshot of the sudoku grid control, to the clipboard.
+	/// </summary>
+	/// <returns>
+	/// The typical awaitable instance that holds the task to copy the snapshot.
+	/// </returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	private async Task CopySnapshotAsync()
+	{
+		// Gets the snapshot of the control.
+		var rtb = new RenderTargetBitmap();
+		await rtb.RenderAsync(_cPane);
+		var pixelBuffer = await rtb.GetPixelsAsync();
+
+		// Gets the DPI value for the current computer.
+#if true
+		const float dpi = 96;
+#else
+		float dpi = DisplayInformation.GetForCurrentView().LogicalDpi;
+#endif
+
+		// Creates the stream to store the output image data.
+		await using var stream = new MemoryStream();
+		var randomAccessStream = stream.AsRandomAccessStream();
+
+		// Creates an encoder.
+		var encoder = await BitmapEncoder.CreateAsync(BitmapEncoder.PngEncoderId, randomAccessStream);
+		encoder.SetPixelData(
+			BitmapPixelFormat.Rgba8, BitmapAlphaMode.Ignore, (uint)rtb.PixelWidth, (uint)rtb.PixelHeight,
+			dpi, dpi, pixelBuffer.ToArray());
+
+		// Copies the data to the data package.
+		var dataPackage = new DataPackage { RequestedOperation = DataPackageOperation.Copy };
+		var dataTransferManager = DataTransferManager.GetForCurrentView();
+		var streamRef = RandomAccessStreamReference.CreateFromStream(randomAccessStream);
+		dataPackage.SetBitmap(streamRef);
+
+		// Copies to the clipboard.
+		Clipboard.SetContent(dataPackage);
+
+		// Flushes the encoder.
+		await encoder.FlushAsync();
 	}
 
 	/// <summary>
@@ -453,6 +501,20 @@ public sealed partial class SudokuPage : Page
 	/// </summary>
 	private void CommandCopySudokuGridText_ExecuteRequested(
 		[IsDiscard] XamlUICommand sender, [IsDiscard] ExecuteRequestedEventArgs args) => CopySudokuCode();
+
+	/// <summary>
+	/// Indicates the event trigger callback method that executes
+	/// copying the snapshot of the sudoku grid control.
+	/// </summary>
+#if true
+	private void CommandCopyControlSnapshot_ExecuteRequestedAsync(
+		[IsDiscard] XamlUICommand sender, [IsDiscard] ExecuteRequestedEventArgs args)
+	{
+	}
+#else
+	private async void CommandCopyControlSnapshot_ExecuteRequestedAsync(
+		[IsDiscard] XamlUICommand sender, [IsDiscard] ExecuteRequestedEventArgs args) => await CopySnapshotAsync();
+#endif
 
 	/// <summary>
 	/// Indicates the event trigger callback method that executes

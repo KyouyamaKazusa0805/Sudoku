@@ -2657,6 +2657,14 @@
             Copy the string text that represents the current sudoku grid used, to the clipboard.
             </summary>
         </member>
+        <member name="M:Sudoku.UI.Views.Pages.SudokuPage.CopySnapshotAsync">
+            <summary>
+            Copy the snapshot of the sudoku grid control, to the clipboard.
+            </summary>
+            <returns>
+            The typical awaitable instance that holds the task to copy the snapshot.
+            </returns>
+        </member>
         <member name="M:Sudoku.UI.Views.Pages.SudokuPage.UpdateIsEnabledStatus">
             <summary>
             Update the status of the property <see cref="P:Microsoft.UI.Xaml.Controls.Control.IsEnabled"/>
@@ -2770,6 +2778,12 @@
             <summary>
             Indicates the event trigger callback method that executes
             copying the string text representing as the current sudoku grid.
+            </summary>
+        </member>
+        <member name="M:Sudoku.UI.Views.Pages.SudokuPage.CommandCopyControlSnapshot_ExecuteRequestedAsync(Microsoft.UI.Xaml.Input.XamlUICommand,Microsoft.UI.Xaml.Input.ExecuteRequestedEventArgs)">
+            <summary>
+            Indicates the event trigger callback method that executes
+            copying the snapshot of the sudoku grid control.
             </summary>
         </member>
         <member name="M:Sudoku.UI.Views.Pages.SudokuPage.CommandPasteSudokuGridText_ExecuteRequestedAsync(Microsoft.UI.Xaml.Input.XamlUICommand,Microsoft.UI.Xaml.Input.ExecuteRequestedEventArgs)">

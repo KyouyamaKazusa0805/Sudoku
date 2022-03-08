@@ -41,6 +41,11 @@
 								<XamlUICommand ExecuteRequested="CommandCopySudokuGridText_ExecuteRequested" />
 							</AppBarButton.Command>
 						</AppBarButton>
+						<AppBarButton Label="{StaticResource SudokuPage_CopyPic}" Icon="Copy">
+							<AppBarButton.Command>
+								<XamlUICommand ExecuteRequested="CommandCopyControlSnapshot_ExecuteRequestedAsync" />
+							</AppBarButton.Command>
+						</AppBarButton>
 						<AppBarButton Label="{StaticResource SudokuPage_Paste}" Icon="Paste">
 							<AppBarButton.Command>
 								<XamlUICommand ExecuteRequested="CommandPasteSudokuGridText_ExecuteRequestedAsync" />

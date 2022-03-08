@@ -10,6 +10,7 @@
 	<x:String x:Key="SudokuPage_EliminateDigit">删数</x:String>
 	<x:String x:Key="SudokuPage_Open">打开</x:String>
 	<x:String x:Key="SudokuPage_Copy">复制代码</x:String>
+	<x:String x:Key="SudokuPage_CopyPic">复制截图</x:String>
 	<x:String x:Key="SudokuPage_Paste">粘贴</x:String>
 	<x:String x:Key="SudokuPage_Save">保存</x:String>
 	<x:String x:Key="SudokuPage_Clear">恢复为空盘</x:String>
