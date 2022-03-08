@@ -929,24 +929,6 @@
             <param name="this">The current field to check.</param>
             <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
         </member>
-        <member name="M:System.EnumExtensions.Min``1(``0,``0)">
-            <summary>
-            Check which enumeration field is less.
-            </summary>
-            <typeparam name="TEnum">The type of the enumeration field to compare.</typeparam>
-            <param name="left">The left one.</param>
-            <param name="right">The right one.</param>
-            <returns>The comparison result.</returns>
-        </member>
-        <member name="M:System.EnumExtensions.Max``1(``0,``0)">
-            <summary>
-            Check which enumeration field is greater.
-            </summary>
-            <typeparam name="TEnum">The type of the enumeration field to compare.</typeparam>
-            <param name="left">The left one.</param>
-            <param name="right">The right one.</param>
-            <returns>The comparison result.</returns>
-        </member>
         <member name="M:System.EnumExtensions.GetAllFlags``1(``0)">
             <summary>
             To get all possible flags from a specified enumeration instance.
@@ -1251,6 +1233,22 @@
             <param name="this">The handler.</param>
             <param name="condition">The condition.</param>
             <param name="value">The value to append.</param>
+        </member>
+        <member name="T:System.Text.RegularExpressions.MatchCollectionEnumerable">
+            <summary>
+            Provides LINQ-based extension methods on <see cref="T:System.Text.RegularExpressions.MatchCollection"/>.
+            </summary>
+            <seealso cref="T:System.Text.RegularExpressions.MatchCollection"/>
+        </member>
+        <member name="M:System.Text.RegularExpressions.MatchCollectionEnumerable.Select``1(System.Text.RegularExpressions.MatchCollection,System.Func{System.Text.RegularExpressions.Match,``0})">
+            <summary>
+            The select method used in <see langword="from"/>-<see langword="in"/>-<see langword="select"/>
+            clause.
+            </summary>
+            <typeparam name="TResult">The result type.</typeparam>
+            <param name="this">The list.</param>
+            <param name="selector">The selector that is used for conversion.</param>
+            <returns>The array of target result elements.</returns>
         </member>
         <member name="T:System.Text.StringHandler">
             <summary>

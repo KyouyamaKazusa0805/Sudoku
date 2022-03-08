@@ -220,10 +220,9 @@ public static unsafe class StringExtensions
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static string[] MatchAll(
 		this string @this, [StringSyntax(StringSyntaxAttribute.Regex)] string pattern, RegexOptions regexOption) =>
-		pattern.IsRegexPattern() ? (
-			from Match m in Regex.Matches(@this, pattern, regexOption, MatchingTimeSpan)
-			select m.Value
-		).ToArray() : throw InvalidOperation;
+		pattern.IsRegexPattern()
+			? from m in Regex.Matches(@this, pattern, regexOption, MatchingTimeSpan) select m.Value
+			: throw InvalidOperation;
 
 	/// <summary>
 	/// Reserve all characters that satisfy the specified pattern.
