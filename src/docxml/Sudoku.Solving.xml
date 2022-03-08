@@ -10,12 +10,6 @@
             a <b>hard pattern</b> doesn't mean the puzzle will be hard or fiendish.
             </summary>
         </member>
-        <member name="F:Sudoku.Generating.HardPatternPuzzleGenerator.Shared">
-            <summary>
-            Defines a shared instance that can generate the sudoku puzzles
-            without using <see langword="new"/> statement.
-            </summary>
-        </member>
         <member name="F:Sudoku.Generating.HardPatternPuzzleGenerator.BlockFactor">
             <summary>
             Indicates the block factor.
@@ -24,11 +18,6 @@
         <member name="F:Sudoku.Generating.HardPatternPuzzleGenerator.SwappingFactor">
             <summary>
             Indicates the swapping factor.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Generating.HardPatternPuzzleGenerator.#ctor">
-            <summary>
-            Initializes a <see cref="T:Sudoku.Generating.HardPatternPuzzleGenerator"/> instance.
             </summary>
         </member>
         <member name="M:Sudoku.Generating.HardPatternPuzzleGenerator.Generate(System.Threading.CancellationToken)">

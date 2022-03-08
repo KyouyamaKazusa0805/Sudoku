@@ -26,6 +26,17 @@ namespace Sudoku.UI.Views.Pages;
 public sealed partial class SudokuPage : Page
 {
 	/// <summary>
+	/// Indicates the internal solver to solve a puzzle.
+	/// </summary>
+	private static readonly ManualSolver Solver = new();
+
+	/// <summary>
+	/// Indicates the internal puzzle generator.
+	/// </summary>
+	private static readonly HardPatternPuzzleGenerator Generator = new();
+
+
+	/// <summary>
 	/// Initializes a <see cref="SudokuPage"/> instance.
 	/// </summary>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -389,7 +400,7 @@ public sealed partial class SudokuPage : Page
 		// Generate the puzzle.
 		// The generation may be slow, so we should use asynchronous invocation instead of the synchronous one.
 		// TODO: May allow the user cancelling the puzzle-generating operation.
-		var grid = await Task.Run(static () => HardPatternPuzzleGenerator.Shared.Generate());
+		var grid = await Task.Run(static () => Generator.Generate());
 
 		// Enable the control.
 		button.IsEnabled = true;
@@ -439,7 +450,7 @@ public sealed partial class SudokuPage : Page
 		button.IsEnabled = false;
 
 		// Solve the puzzle using the manual solver.
-		var analysisResult = await Task.Run(() => (ManualSolverResult)ManualSolver.Shared.Solve(_cPane.GridByReference()));
+		var analysisResult = await Task.Run(() => (ManualSolverResult)Solver.Solve(_cPane.GridByReference()));
 
 		// Enable the control.
 		button.IsEnabled = true;

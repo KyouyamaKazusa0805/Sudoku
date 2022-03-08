@@ -2634,6 +2634,16 @@
             An empty page that can be used on its own or navigated to within a Frame.
             </summary>
         </member>
+        <member name="F:Sudoku.UI.Views.Pages.SudokuPage.Solver">
+            <summary>
+            Indicates the internal solver to solve a puzzle.
+            </summary>
+        </member>
+        <member name="F:Sudoku.UI.Views.Pages.SudokuPage.Generator">
+            <summary>
+            Indicates the internal puzzle generator.
+            </summary>
+        </member>
         <member name="M:Sudoku.UI.Views.Pages.SudokuPage.#ctor">
             <summary>
             Initializes a <see cref="T:Sudoku.UI.Views.Pages.SudokuPage"/> instance.

@@ -12,13 +12,6 @@ namespace Sudoku.Generating;
 public sealed unsafe class HardPatternPuzzleGenerator : IPuzzleGenerator
 {
 	/// <summary>
-	/// Defines a shared instance that can generate the sudoku puzzles
-	/// without using <see langword="new"/> statement.
-	/// </summary>
-	public static readonly HardPatternPuzzleGenerator Shared = new();
-
-
-	/// <summary>
 	/// Indicates the block factor.
 	/// </summary>
 	private static readonly int[] BlockFactor = { 0, 6, 54, 60, 3, 27, 33, 57, 30 };
@@ -31,14 +24,6 @@ public sealed unsafe class HardPatternPuzzleGenerator : IPuzzleGenerator
 		{ 0, 1, 2 }, { 0, 2, 1 }, { 1, 0, 2 },
 		{ 1, 2, 0 }, { 2, 0, 1 }, { 2, 1, 0 }
 	};
-
-
-	/// <summary>
-	/// Initializes a <see cref="HardPatternPuzzleGenerator"/> instance.
-	/// </summary>
-	public HardPatternPuzzleGenerator()
-	{
-	}
 
 
 	/// <inheritdoc/>
