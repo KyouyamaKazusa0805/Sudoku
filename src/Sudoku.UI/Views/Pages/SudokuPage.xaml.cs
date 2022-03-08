@@ -149,6 +149,7 @@ public sealed partial class SudokuPage : Page
 	/// The typical awaitable instance that holds the task to copy the snapshot.
 	/// </returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	[SuppressMessage("CodeQuality", "IDE0051:Remove unused private members", Justification = "<Pending>")]
 	private async Task CopySnapshotAsync()
 	{
 		// Gets the snapshot of the control.
