@@ -14,9 +14,9 @@ namespace Sudoku.Collections;
 /// </summary>
 #if DEBUG
 #if USE_TO_MASK_STRING_METHOD
-[DebuggerDisplay($$"""{{{nameof(ToMaskString)}}(),nq}""")]
+[DebuggerDisplay($$"""{{{nameof(ToMaskString)}}()}""")]
 #else
-[DebuggerDisplay($$"""{{{nameof(ToString)}}(".+:"),nq}""")]
+[DebuggerDisplay($$"""{{{nameof(ToString)}}("#")}""")]
 #endif // !USE_TO_MASK_STRING_METHOD
 #endif // !DEBUG
 public unsafe partial struct Grid :
@@ -421,62 +421,6 @@ public unsafe partial struct Grid :
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => this == Empty;
 	}
-
-#if DEBUG
-	/// <summary>
-	/// Indicates whether the grid is as same behaviors as <see cref="Undefined"/>
-	/// in debugging mode.
-	/// </summary>
-	/// <remarks>
-	/// <para>
-	/// This property checks whether all non-first masks are all 0. This checking behavior
-	/// is aiming to the debugger because the debugger can't recognize the fixed buffer.
-	/// </para>
-	/// <para>
-	/// The debugger can't recognize fixed buffer.
-	/// The fixed buffer whose code is like:
-	/// <code><![CDATA[
-	/// private fixed short _values[81];
-	/// ]]></code>
-	/// However, internally, the field <c>_values</c> is implemented
-	/// with a fixed buffer using a inner struct, which is just like:
-	/// <code><![CDATA[
-	/// [StructLayout(LayoutKind.Explicit, Size = 81 * sizeof(short))]
-	/// private struct FixedBuffer
-	/// {
-	///     public short _internalValue;
-	/// }
-	/// ]]></code>
-	/// And that field:
-	/// <code><![CDATA[
-	/// private FixedBuffer _fixedField;
-	/// ]]></code>
-	/// From the code we can learn that only 2 bytes of the inner struct can be detected,
-	/// because the buffer struct only contains 2 bytes data.
-	/// </para>
-	/// </remarks>
-	/// <see cref="Undefined"/>
-	public readonly bool IsDebuggerUndefined
-	{
-		get
-		{
-			fixed (short* pGrid = _values)
-			{
-				int i = 1;
-				short* p = pGrid + 1;
-				while (i < 81)
-				{
-					if (p++[i++] != 0)
-					{
-						return false;
-					}
-				}
-
-				return true;
-			}
-		}
-	}
-#endif
 
 	/// <summary>
 	/// Indicates the number of total candidates.
@@ -953,9 +897,6 @@ public unsafe partial struct Grid :
 		this switch
 		{
 			{ IsUndefined: true } => 0,
-#if DEBUG
-			{ IsDebuggerUndefined: true } => 0,
-#endif
 			{ IsEmpty: true } => 1,
 			_ => $"{this:#}".GetHashCode()
 		};
@@ -1056,9 +997,6 @@ public unsafe partial struct Grid :
 		{
 			{ IsEmpty: true } => "<Empty>",
 			{ IsUndefined: true } => "<Undefined>",
-#if DEBUG
-			{ IsDebuggerUndefined: true } => "<Debugger can't recognize the fixed buffer>",
-#endif
 			_ when GridFormatter.Create(format) is var f => format switch
 			{
 				":" => f.ToString(this).Match(RegularExpressions.ExtendedSusserEliminations) ?? string.Empty,
