@@ -150,8 +150,10 @@ public unsafe partial struct Grid :
 	///     file='../../global-doc-comments.xml'
 	///     path='g/csharp9/feature[@name="parameterless-struct-constructor"]/target[@name="constructor"]' />
 	/// </remarks>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	[DebuggerHidden]
 	[EditorBrowsable(EditorBrowsableState.Never)]
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	[Obsolete($"Please call '{nameof(Empty)}' instead.", true)]
 	public Grid() => this = Empty;
 
 	/// <summary>
