@@ -798,7 +798,8 @@ public unsafe partial struct Grid :
 
 	/// <inheritdoc cref="object.Equals(object?)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public override readonly bool Equals([NotNullWhen(true)] object? obj) => obj is Grid comparer && Equals(comparer);
+	public override readonly bool Equals([NotNullWhen(true)] object? obj) =>
+		obj is Grid comparer && Equals(comparer);
 
 	/// <summary>
 	/// Determine whether the specified <see cref="Grid"/> instance hold the same values
