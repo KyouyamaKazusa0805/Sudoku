@@ -2375,6 +2375,116 @@
         <member name="M:Sudoku.Solving.Manual.Searchers.AlternatingInferenceChainStepSearcher.GetAll(System.Collections.Generic.ICollection{Sudoku.Solving.Manual.Step},Sudoku.Collections.Grid@,System.Boolean)">
             <inheritdoc/>
         </member>
+        <member name="T:Sudoku.Solving.Manual.Searchers.DiscontinuousNiceLoopStepSearcher">
+            <summary>
+            Provides with an <b>Discontinuous Nice Loop</b> step searcher.
+            The step searcher will include the following techniques:
+            <list type="bullet">
+            <item>Irregular Wings</item>
+            <item>Alternating Inference Chain</item>
+            </list>
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.Searchers.DiscontinuousNiceLoopStepSearcher.MaxCapacity">
+            <summary>
+            Indicates the max capacity.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.Searchers.DiscontinuousNiceLoopStepSearcher._strongInferences">
+            <summary>
+            Indicates the cache on storing strong inferences. The key is the ID of the chain node,
+            and the value is the corresponding strong inference endpoints. You can get the raw information
+            of the chain node via the field <see cref="F:Sudoku.Solving.Manual.Searchers.DiscontinuousNiceLoopStepSearcher._idNodeLookup"/>.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.Searchers.DiscontinuousNiceLoopStepSearcher._weakInferences">
+            <summary>
+            Indicates the cache on storing weak inferences. The key is the ID of the chain node,
+            and the value is the corresponding weak inference endpoints. You can get the raw information
+            of the chain node via the field <see cref="F:Sudoku.Solving.Manual.Searchers.DiscontinuousNiceLoopStepSearcher._idNodeLookup"/>.
+            </summary>
+            <seealso cref="F:Sudoku.Solving.Manual.Searchers.DiscontinuousNiceLoopStepSearcher._idNodeLookup"/>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.Searchers.DiscontinuousNiceLoopStepSearcher._nodeIdLookup">
+            <summary>
+            Indicates the lookup table instance that can get the ID value from the specified node.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.Searchers.DiscontinuousNiceLoopStepSearcher._idNodeLookup">
+            <summary>
+            Indicates the lookup table instance that can get the node instance from the specified ID value.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.Searchers.DiscontinuousNiceLoopStepSearcher._cachedNodes">
+            <summary>
+            Indicates the cached nodes.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.Searchers.DiscontinuousNiceLoopStepSearcher._cachedNodesGlobalIndex">
+            <summary>
+            Indicates the global index of the cached nodes.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Searchers.DiscontinuousNiceLoopStepSearcher.Options">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Searchers.DiscontinuousNiceLoopStepSearcher.GetAll(System.Collections.Generic.ICollection{Sudoku.Solving.Manual.Step},Sudoku.Collections.Grid@,System.Boolean)">
+            <inheritdoc/>
+            <remarks>
+            <para>
+            The main idea of the algorithm is to gather strong and weak inferences before
+            starting construction of chains.
+            </para>
+            <para>
+            We use the data structure to store all possible nodes, and its strong inferences
+            and weak inferences. All strong inferences will be formed as a linked list,
+            and all weak inferences will be also formed as a linked list. For example:
+            <code>
+            Dictionary
+                |
+                |  / N1 -> N2              : The linked list of strong inferences of node A
+                |-A 
+                |  \ N3 -> N4 -> N5 -> N6  : The linked list of weak inferences of node A
+                |
+                |
+                |  / N7 -> N8              : The linked list of strong inferences of node B
+                |-B
+                |  \ N9 -> N10 -> N11      : The linked list of weak inferences of node B
+               ...
+            </code>
+            Instead of storing the complete chain node information,
+            we use their own IDs to be stored into the dictionary,
+            in order to generalize the relations among chain nodes,
+            to avoid complex comparisons on chain node equality.
+            </para>
+            </remarks>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Searchers.DiscontinuousNiceLoopStepSearcher.ConstructLookup(Sudoku.Collections.Grid@)">
+            <summary>
+            To construct the lookup table.
+            </summary>
+            <param name="grid">The grid used.</param>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Searchers.DiscontinuousNiceLoopStepSearcher.GatherStrong_Single(Sudoku.Collections.Grid@,Sudoku.Collections.ChainNode@,System.Collections.Generic.ValueLinkedList{System.Int32}@)">
+            <summary>
+            Gather strong inferences for the sole candidate.
+            </summary>
+            <param name="grid">The grid.</param>
+            <param name="current">The chain node to be checked.</param>
+            <param name="strongInferences">
+            The linked list to store the storng inferences for the specified candidate.
+            </param>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Searchers.DiscontinuousNiceLoopStepSearcher.GatherWeak_Single(Sudoku.Collections.Grid@,Sudoku.Collections.ChainNode@,System.Collections.Generic.ValueLinkedList{System.Int32}@)">
+            <summary>
+            Gather weak inferences for the sole candidate.
+            </summary>
+            <param name="grid">The grid.</param>
+            <param name="current">The chain node to be checked.</param>
+            <param name="weakInferences">
+            The linked list to store the weak inferences for the specified candidate.
+            </param>
+        </member>
         <member name="T:Sudoku.Solving.Manual.Searchers.ForcingChainStepSearcher">
             <summary>
             Provides with a <b>Forcing Chains</b> step searcher.
@@ -2660,6 +2770,11 @@
             <param name="currRegion">The current region label.</param>
             <param name="offNodes">All off nodes.</param>
             <exception cref="T:System.Exception">Throws when the parent node of the specified node cannot be found.</exception>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Searchers.IDiscontinuousNiceLoopStepSearcher">
+            <summary>
+            Defines a step searcher that searches for discontinuous nice loop steps.
+            </summary>
         </member>
         <member name="T:Sudoku.Solving.Manual.Searchers.ExtendedRectangleStepSearcher">
             <summary>

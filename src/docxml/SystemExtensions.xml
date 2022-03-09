@@ -359,6 +359,337 @@
             <inheritdoc cref="M:System.Object.ToString"/>
             <exception cref="T:System.NotSupportedException">Always throws.</exception>
         </member>
+        <member name="T:System.Collections.Generic.ValueLinkedList`1">
+            <summary>
+            Defines a linked list that is a light-weight data structure,
+            storing <typeparamref name="TUnmanaged"/>-typed elements.
+            </summary>
+            <typeparam name="TUnmanaged">The type of each element.</typeparam>
+        </member>
+        <member name="M:System.Collections.Generic.ValueLinkedList`1.#ctor">
+            <summary>
+            Initializes a <see cref="T:System.Collections.Generic.ValueLinkedList`1"/> instance.
+            </summary>
+        </member>
+        <member name="M:System.Collections.Generic.ValueLinkedList`1.#ctor(System.Collections.Generic.IEnumerable{System.Collections.Generic.ValueLinkedListNode{`0}})">
+            <summary>
+            Initializes a <see cref="T:System.Collections.Generic.ValueLinkedList`1"/> instance via the specified list of nodes to be added.
+            </summary>
+            <param name="listOfNodes">The list of nodes to be added.</param>
+        </member>
+        <member name="M:System.Collections.Generic.ValueLinkedList`1.#ctor(System.Collections.Generic.ValueLinkedListNode{`0}@,System.Int32)">
+            <summary>
+            Intializes a <see cref="T:System.Collections.Generic.ValueLinkedList`1" /> instance via the specified reference value
+            that references to the first element of an enumerable list of elements to be added.
+            </summary>
+            <param name="refListOfNodes">
+            <para>
+            The read-only reference value that references to the first element of an enumerable list
+            of elements to be added.
+            </para>
+            <para>
+            <target name="in-parameter">
+				<i>
+					Please note that the parameter is an <see langword="in" /> parameter, which has the same meaning
+					for <see langword="ref readonly" /> returns or locals. You can treat it as the first element
+					in an array of elements. Different with <see langword="ref" /> parameter, <see langword="in" />
+					modifier has the same semantic as <see langword="ref readonly var" />
+					instead of <see langword="ref var" />.
+				</i>
+			</target>
+            </para>
+            </param>
+            <param name="count">The number of the referenced collection.</param>
+            <remarks>
+            <para>
+            <target name="method">
+				<i>
+					C# 7.3 introduces a new keyword <see langword="in" /> as the parameter modifier to make the parameter
+					pass by reference and be read-only. Therefore, this keyword contains 2 usages:
+					<list type="number">
+						<item>
+							Ensure the argument to <b>be read-only</b> and cannot be modified. Otherwise,
+							a new copied instance will be created to prevent any modifications on the original variable.
+						</item>
+						<item>
+							Ensure the argument to <b>pass by reference</b> in order to treat it as the pointer or array of elements
+							of this type, and treat the argument as the first element of the whole element series.
+						</item>
+					</list>
+					From the above meaning on this keyword, we can conclude that
+					we should regard it as <see langword="ref readonly" /> parameters,
+					but C# requires us using the keyword <see langword="in" /> as the modifier
+					on a parameter rather than <see langword="ref readonly" />.
+				</i>
+			</target>
+            </para>
+            <para>
+            Due to the limitation of the keyword, all fixable types are allowed using.
+            e.g.:
+            <list type="bullet">
+            <item><typeparamref name="TUnmanaged" />[]</item>
+            <item><see cref="T:System.ReadOnlySpan`1" /> of type <typeparamref name="TUnmanaged" /></item>
+            </list>
+            </para>
+            </remarks>
+        </member>
+        <member name="P:System.Collections.Generic.ValueLinkedList`1.Count">
+            <summary>
+            Indicates the number of elements stored.
+            </summary>
+        </member>
+        <member name="P:System.Collections.Generic.ValueLinkedList`1.First">
+            <summary>
+            Returns the reference of the first element in the linked list.
+            </summary>
+        </member>
+        <member name="P:System.Collections.Generic.ValueLinkedList`1.Last">
+            <summary>
+            Returns the reference of the last element in the linked list.
+            </summary>
+        </member>
+        <member name="P:System.Collections.Generic.ValueLinkedList`1.FirstUnsafe">
+            <summary>
+            Returns the raw pointer value of the first element in the linked list.
+            </summary>
+        </member>
+        <member name="P:System.Collections.Generic.ValueLinkedList`1.LastUnsafe">
+            <summary>
+            Returns the raw pointer value of the last element in the linked list.
+            </summary>
+        </member>
+        <member name="M:System.Collections.Generic.ValueLinkedList`1.Contains(`0,)">
+            <summary>
+            Determines whether the linked list contains the node whose value is the specified one.
+            </summary>
+            <param name="value">The value to be checked and compared.</param>
+            <param name="equalityComparer">
+            <para>
+            The custom comparer method that operates and compares two instances of type <typeparamref name="TUnmanaged"/>,
+            to determine whether they hold same value. If <see langword="null"/>, the default equality comparer
+            <see cref="P:System.Collections.Generic.EqualityComparer`1.Default"/> will be used and invoked.
+            </para>
+            <para>The default value is <see langword="null"/>.</para>
+            </param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
+            <seealso cref="P:System.Collections.Generic.EqualityComparer`1.Default"/>
+        </member>
+        <member name="M:System.Collections.Generic.ValueLinkedList`1.Find(`0,)">
+            <summary>
+            Finds the pointer value corresponding to a node whose data is the specified one.
+            </summary>
+            <param name="value">The value to be checked and determined.</param>
+            <param name="equalityComparer">The equality comparer of type <typeparamref name="TUnmanaged"/>.</param>
+            <returns>The pointer value corresponding to the found node.</returns>
+        </member>
+        <member name="M:System.Collections.Generic.ValueLinkedList`1.FindLast(`0,)">
+            <summary>
+            Finds the pointer value corresponding to a node whose data is the specified one,
+            via the reverse searching order.
+            </summary>
+            <param name="value">The value to be checked and determined.</param>
+            <param name="equalityComparer">The equality comparer of type <typeparamref name="TUnmanaged"/>.</param>
+            <returns>The pointer value corresponding to the found node.</returns>
+        </member>
+        <member name="M:System.Collections.Generic.ValueLinkedList`1.GetEnumerator">
+            <inheritdoc cref="M:System.Collections.Generic.IEnumerable`1.GetEnumerator"/>
+        </member>
+        <member name="M:System.Collections.Generic.ValueLinkedList`1.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
+        <member name="M:System.Collections.Generic.ValueLinkedList`1.Append(System.Collections.Generic.ValueLinkedListNode{`0}*)">
+            <summary>
+            Appends the specified element to the tail of the collection.
+            </summary>
+            <param name="node">The value to be appended.</param>
+        </member>
+        <member name="M:System.Collections.Generic.ValueLinkedList`1.Prepend(System.Collections.Generic.ValueLinkedListNode{`0}*)">
+            <summary>
+            Prepends the specified <see cref="T:System.Collections.Generic.ValueLinkedListNode`1"/> instance into the collection,
+            replacing the original first node.
+            </summary>
+            <param name="node">The node to be prepended.</param>
+        </member>
+        <member name="M:System.Collections.Generic.ValueLinkedList`1.AddAfter(System.Collections.Generic.ValueLinkedListNode{`0}*,System.Collections.Generic.ValueLinkedListNode{`0}*)">
+            <summary>
+            Adds the specified <see cref="T:System.Collections.Generic.ValueLinkedListNode`1"/> instance after the node.
+            </summary>
+            <param name="node">The node to be searched.</param>
+            <param name="newNode">The node to be added.</param>
+        </member>
+        <member name="M:System.Collections.Generic.ValueLinkedList`1.AddBefore(System.Collections.Generic.ValueLinkedListNode{`0}*,System.Collections.Generic.ValueLinkedListNode{`0}*)">
+            <summary>
+            Adds the specified <see cref="T:System.Collections.Generic.ValueLinkedListNode`1"/> instance before the node.
+            </summary>
+            <param name="node">The node to be searched.</param>
+            <param name="newNode">The node to be added.</param>
+        </member>
+        <member name="M:System.Collections.Generic.ValueLinkedList`1.Remove(`0,)">
+            <summary>
+            Removes the element from the collection.
+            </summary>
+            <param name="value">The value to be checked.</param>
+            <param name="equalityComparer">
+            The method that checks whether two instances of type <typeparamref name="TUnmanaged"/> hold same value.
+            </param>
+        </member>
+        <member name="M:System.Collections.Generic.ValueLinkedList`1.Remove(System.Collections.Generic.ValueLinkedListNode{`0}*)">
+            <summary>
+            Removes the node from the collection.
+            </summary>
+            <param name="node">The node to be checked.</param>
+        </member>
+        <member name="M:System.Collections.Generic.ValueLinkedList`1.RemoveFirst">
+            <summary>
+            Removes the first node from the collection.
+            </summary>
+            <exception cref="T:System.InvalidOperationException">Throws when the collection is empty.</exception>
+        </member>
+        <member name="M:System.Collections.Generic.ValueLinkedList`1.RemoveLast">
+            <summary>
+            Removes the last node from the collection.
+            </summary>
+            <exception cref="T:System.InvalidOperationException">Throws when the collection is empty.</exception>
+        </member>
+        <member name="M:System.Collections.Generic.ValueLinkedList`1.Clear">
+            <summary>
+            Clear the linked list.
+            </summary>
+        </member>
+        <member name="M:System.Collections.Generic.ValueLinkedList`1.InternalInsertNodeToEmptyList(System.Collections.Generic.ValueLinkedListNode{`0}*)">
+            <summary>
+            Inserts a node into the empty list. This method is only used if the collection is empty at present.
+            </summary>
+            <param name="newNode">The node to be added.</param>
+        </member>
+        <member name="M:System.Collections.Generic.ValueLinkedList`1.InternalInsertNodeBefore(System.Collections.Generic.ValueLinkedListNode{`0}*,System.Collections.Generic.ValueLinkedListNode{`0}*)">
+            <summary>
+            Inserts a node into the target position which is before the specified node.
+            </summary>
+            <param name="node">The node as the relative position to be added before.</param>
+            <param name="newNode">The node to be added.</param>
+        </member>
+        <member name="M:System.Collections.Generic.ValueLinkedList`1.InternalRemoveNode(System.Collections.Generic.ValueLinkedListNode{`0}*)">
+            <summary>
+            Removes the specified node from the current collection.
+            </summary>
+            <param name="node">The node to be removed.</param>
+        </member>
+        <member name="T:System.Collections.Generic.ValueLinkedList`1.Enumerator">
+            <summary>
+            Defines the enumerator that can iterate on <see cref="T:System.Collections.Generic.ValueLinkedListNode`1"/>s.
+            </summary>
+            <seealso cref="T:System.Collections.Generic.ValueLinkedListNode`1"/>
+        </member>
+        <member name="F:System.Collections.Generic.ValueLinkedList`1.Enumerator._list">
+            <summary>
+            Indicates the linked list.
+            </summary>
+        </member>
+        <member name="F:System.Collections.Generic.ValueLinkedList`1.Enumerator._node">
+            <summary>
+            Indicates the pointer value of the current node being iterated.
+            </summary>
+        </member>
+        <member name="F:System.Collections.Generic.ValueLinkedList`1.Enumerator._index">
+            <summary>
+            Indicates the index.
+            </summary>
+        </member>
+        <member name="M:System.Collections.Generic.ValueLinkedList`1.Enumerator.#ctor(System.Collections.Generic.ValueLinkedList{`0}*)">
+            <summary>
+            Initializes an <see cref="T:System.Collections.Generic.ValueLinkedList`1.Enumerator"/> instance via the specified linked list.
+            </summary>
+            <param name="list">The list.</param>
+        </member>
+        <member name="P:System.Collections.Generic.ValueLinkedList`1.Enumerator.Current">
+            <inheritdoc cref="P:System.Collections.IEnumerator.Current"/>
+        </member>
+        <member name="M:System.Collections.Generic.ValueLinkedList`1.Enumerator.MoveNext">
+            <inheritdoc cref="M:System.Collections.IEnumerator.MoveNext"/>
+        </member>
+        <member name="M:System.Collections.Generic.ValueLinkedList`1.Enumerator.Equals(System.Object)">
+            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
+            <exception cref="T:System.NotSupportedException">Always throws.</exception>
+        </member>
+        <member name="M:System.Collections.Generic.ValueLinkedList`1.Enumerator.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+            <exception cref="T:System.NotSupportedException">Always throws.</exception>
+        </member>
+        <member name="M:System.Collections.Generic.ValueLinkedList`1.Enumerator.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+            <exception cref="T:System.NotSupportedException">Always throws.</exception>
+        </member>
+        <member name="T:System.Collections.Generic.ValueLinkedListNode`1">
+            <summary>
+            Defines a node that is used for a linked list.
+            </summary>
+            <typeparam name="TUnmanaged">The type of the element.</typeparam>
+        </member>
+        <member name="F:System.Collections.Generic.ValueLinkedListNode`1._pNext">
+            <summary>
+            Indicates the pointer value of the next node.
+            </summary>
+            <remarks>
+            Although the field is modified as <see langword="internal"/>, the field can only be used
+            as <see langword="private"/> one, or called by the type <see cref="T:System.Collections.Generic.ValueLinkedList`1"/>.
+            </remarks>
+            <seealso cref="T:System.Collections.Generic.ValueLinkedList`1"/>
+        </member>
+        <member name="F:System.Collections.Generic.ValueLinkedListNode`1._pPrevious">
+            <summary>
+            Indicates the pointer value of the previous node.
+            </summary>
+            <remarks>
+            Although the field is modified as <see langword="internal"/>, the field can only be used
+            as <see langword="private"/> one, or called by the type <see cref="T:System.Collections.Generic.ValueLinkedList`1"/>.
+            </remarks>
+            <seealso cref="T:System.Collections.Generic.ValueLinkedList`1"/>
+        </member>
+        <member name="M:System.Collections.Generic.ValueLinkedListNode`1.#ctor(`0)">
+            <summary>
+            Initializes a <see cref="T:System.Collections.Generic.ValueLinkedListNode`1"/> instance via the specified data.
+            </summary>
+            <param name="data">The data.</param>
+        </member>
+        <member name="M:System.Collections.Generic.ValueLinkedListNode`1.#ctor(`0,System.Collections.Generic.ValueLinkedListNode{`0}*,System.Collections.Generic.ValueLinkedListNode{`0}*)">
+            <summary>
+            Initializes a <see cref="T:System.Collections.Generic.ValueLinkedListNode`1"/> instance via the specified data and the pointer value.
+            </summary>
+            <param name="data">The data.</param>
+            <param name="pPrevious">The pointer instance that points to the previous node.</param>
+            <param name="pNext">The pointer instance that points to the next node.</param>
+        </member>
+        <member name="P:System.Collections.Generic.ValueLinkedListNode`1.Data">
+            <summary>
+            Indicates the data.
+            </summary>
+        </member>
+        <member name="P:System.Collections.Generic.ValueLinkedListNode`1.Previous">
+            <summary>
+            Returns the reference of the previous node.
+            </summary>
+        </member>
+        <member name="P:System.Collections.Generic.ValueLinkedListNode`1.Next">
+            <summary>
+            Returns the reference of the next node.
+            </summary>
+        </member>
+        <member name="P:System.Collections.Generic.ValueLinkedListNode`1.PreviousUnsafe">
+            <summary>
+            Returns the raw pointer value that points to the previous node.
+            </summary>
+        </member>
+        <member name="P:System.Collections.Generic.ValueLinkedListNode`1.NextUnsafe">
+            <summary>
+            Returns the raw pointer value that points to the next node.
+            </summary>
+        </member>
+        <member name="M:System.Collections.Generic.ValueLinkedListNode`1.Invalidate">
+            <summary>
+            Invalidate the node, to revert the pointers to <see langword="null"/>.
+            </summary>
+        </member>
         <member name="T:System.Collections.Generic.ValueList`1">
             <summary>
             Defines a value-type sequence list.
