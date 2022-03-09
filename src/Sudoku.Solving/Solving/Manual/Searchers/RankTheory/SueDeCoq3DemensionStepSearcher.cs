@@ -101,13 +101,8 @@ public sealed unsafe class SueDeCoq3DemensionStepSearcher : ISueDeCoq3DemensionS
 									{
 										foreach (var selectedColumnCells in columnMap & k)
 										{
-											short columnMask = 0;
+											short columnMask = grid.GetDigitsUnion(selectedColumnCells);
 											var elimMapColumn = Cells.Empty;
-
-											foreach (int cell in selectedColumnCells)
-											{
-												columnMask |= grid.GetCandidates(cell);
-											}
 
 											foreach (int digit in columnMask)
 											{

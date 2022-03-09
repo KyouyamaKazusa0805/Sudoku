@@ -293,12 +293,7 @@ public sealed unsafe class UniqueLoopStepSearcher : IUniqueLoopStepSearcher, IUn
 			{
 				foreach (int[] cells in otherCells & size)
 				{
-					short mask = 0;
-					foreach (int cell in cells)
-					{
-						mask |= grid.GetCandidates(cell);
-					}
-
+					short mask = grid.GetDigitsUnion(cells);
 					if (PopCount((uint)mask) != size + 1 || (mask & otherDigitsMask) != otherDigitsMask)
 					{
 						continue;

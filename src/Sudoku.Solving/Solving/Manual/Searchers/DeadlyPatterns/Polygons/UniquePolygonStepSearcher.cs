@@ -434,11 +434,7 @@ public sealed unsafe class UniquePolygonStepSearcher : IUniquePolygonStepSearche
 				{
 					foreach (var combination in iterationCellsMap & size)
 					{
-						short comparer = 0;
-						foreach (int cell in combination)
-						{
-							comparer |= grid.GetCandidates(cell);
-						}
+						short comparer = grid.GetDigitsUnion(combination);
 						if ((tempMask & comparer) != 0 || PopCount((uint)tempMask) - 1 != size
 							|| (tempMask & otherDigitsMask) != otherDigitsMask)
 						{

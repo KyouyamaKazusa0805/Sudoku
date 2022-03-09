@@ -263,13 +263,9 @@ public sealed unsafe class UniqueSquareStepSearcher : IUniqueSquareStepSearcher
 				{
 					foreach (var cells in allCells & size)
 					{
-						short tempMask = 0;
-						foreach (int cell in cells)
-						{
-							tempMask |= grid.GetCandidates(cell);
-						}
-
-						if (PopCount((uint)tempMask) != size + 1 || (tempMask & extraDigitsMask) != extraDigitsMask)
+						short tempMask = grid.GetDigitsUnion(cells);
+						if (PopCount((uint)tempMask) != size + 1
+							|| (tempMask & extraDigitsMask) != extraDigitsMask)
 						{
 							continue;
 						}

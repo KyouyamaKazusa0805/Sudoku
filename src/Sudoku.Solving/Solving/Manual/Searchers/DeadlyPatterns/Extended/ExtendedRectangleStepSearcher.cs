@@ -398,12 +398,7 @@ public sealed unsafe class ExtendedRectangleStepSearcher : IExtendedRectangleSte
 			{
 				foreach (var cells in otherCells & size)
 				{
-					short mask = 0;
-					foreach (int cell in cells)
-					{
-						mask |= grid.GetCandidates(cell);
-					}
-
+					short mask = grid.GetDigitsUnion(cells);
 					if ((mask & extraDigits) != extraDigits || PopCount((uint)mask) != size + 1)
 					{
 						continue;

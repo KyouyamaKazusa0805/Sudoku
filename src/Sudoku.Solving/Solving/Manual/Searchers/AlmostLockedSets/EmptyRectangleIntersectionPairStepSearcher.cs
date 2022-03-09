@@ -71,11 +71,7 @@ public sealed unsafe class EmptyRectangleIntersectionPairStepSearcher : IEmptyRe
 					int b2 = c2.ToRegionIndex(Region.Block);
 					var erMap = (unionMap & RegionMaps[b1] - interMap) | (unionMap & RegionMaps[b2] - interMap);
 					var erCellsMap = regionMap & erMap;
-					short m = 0;
-					foreach (int cell in erCellsMap)
-					{
-						m |= grid.GetCandidates(cell);
-					}
+					short m = grid.GetDigitsUnion(erCellsMap);
 					if ((m & mask) != mask)
 					{
 						continue;

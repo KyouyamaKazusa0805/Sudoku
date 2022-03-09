@@ -3063,11 +3063,7 @@ public sealed unsafe class UniqueRectangleStepSearcher : IUniqueRectangleStepSea
 				// Iterate on each intersection combination.
 				foreach (var currentInterMap in list)
 				{
-					short selectedInterMask = 0;
-					foreach (int cell in currentInterMap)
-					{
-						selectedInterMask |= grid.GetCandidates(cell);
-					}
+					short selectedInterMask = grid.GetDigitsUnion(currentInterMap);
 					if (PopCount((uint)selectedInterMask) <= currentInterMap.Count + 1)
 					{
 						// The intersection combination is an ALS or a normal subset,
@@ -3105,11 +3101,7 @@ public sealed unsafe class UniqueRectangleStepSearcher : IUniqueRectangleStepSea
 							Cells elimMapBlock = Cells.Empty, elimMapLine = Cells.Empty;
 
 							// Get the links of the block.
-							short blockMask = 0;
-							foreach (int cell in selectedCellsInBlock)
-							{
-								blockMask |= grid.GetCandidates(cell);
-							}
+							short blockMask = grid.GetDigitsUnion(selectedCellsInBlock);
 
 							// Get the elimination map in the block.
 							foreach (int digit in blockMask)
