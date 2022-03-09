@@ -47,7 +47,7 @@ public sealed unsafe class AlmostLockedSetsXzStepSearcher : IAlmostLockedSetsXzS
 				short xzMask = (short)(mask1 & mask2);
 				var map = map1 | map2;
 				var overlapMap = map1 & map2;
-				if (!AllowCollision && overlapMap.Count != 0)
+				if (!AllowCollision && overlapMap is not [])
 				{
 					continue;
 				}
@@ -94,7 +94,7 @@ public sealed unsafe class AlmostLockedSetsXzStepSearcher : IAlmostLockedSetsXzS
 				var conclusions = new List<Conclusion>();
 				foreach (int elimDigit in z)
 				{
-					if ((map % CandMaps[elimDigit]) is not [_, ..] elimMap)
+					if (map % CandMaps[elimDigit] is not { Count: not 0 } elimMap)
 					{
 						continue;
 					}
@@ -113,12 +113,12 @@ public sealed unsafe class AlmostLockedSetsXzStepSearcher : IAlmostLockedSetsXzS
 					isDoublyLinked = true;
 					foreach (int elimDigit in z & ~rccMask)
 					{
-						if ((CandMaps[elimDigit] & map1) is not [_, ..] zMap)
+						if ((CandMaps[elimDigit] & map1) is not { Count: not 0 } zMap)
 						{
 							continue;
 						}
 
-						if ((!zMap & CandMaps[elimDigit] & map2) is not [_, ..] elimMap)
+						if ((!zMap & CandMaps[elimDigit] & map2) is not { Count: not 0 } elimMap)
 						{
 							continue;
 						}
@@ -233,11 +233,7 @@ public sealed unsafe class AlmostLockedSetsXzStepSearcher : IAlmostLockedSetsXzS
 					ImmutableArray.Create(new PresentationData
 					{
 						Candidates = candidateOffsets,
-						Regions = isEsp ? null : new[]
-						{
-							(region1, (ColorIdentifier)0),
-							(region2, (ColorIdentifier)1)
-						}
+						Regions = isEsp ? null : new[] { (region1, (ColorIdentifier)0), (region2, (ColorIdentifier)1) }
 					}),
 					als1,
 					als2,

@@ -40,7 +40,7 @@ public sealed unsafe class GuardianStepSearcher : IGuardianStepSearcher
 		var resultAccumulator = new List<GuardianStep>();
 		for (int digit = 0; digit < 9; digit++)
 		{
-			if (eliminationMaps[digit] is not [_, ..] eliminations)
+			if (eliminationMaps[digit] is not { Count: not 0 } eliminations)
 			{
 				continue;
 			}
@@ -64,7 +64,7 @@ public sealed unsafe class GuardianStepSearcher : IGuardianStepSearcher
 
 					foreach (var (map, guardians, links) in loops)
 					{
-						if ((!guardians & CandMaps[digit]) is not [_, ..] elimMap)
+						if ((!guardians & CandMaps[digit]) is not { Count: not 0 } elimMap)
 						{
 							continue;
 						}

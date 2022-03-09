@@ -43,7 +43,7 @@ public interface IUniqueLoopOrBivalueOddagonStepSearcher : IStepSearcher, ILoopL
 			}
 
 			int regionIndex = cell.ToRegionIndex(region);
-			if ((RegionMaps[regionIndex] & EmptyMap - cell) is not [_, ..] cellsMap)
+			if ((RegionMaps[regionIndex] & EmptyMap - cell) is not { Count: not 0 } cellsMap)
 			{
 				continue;
 			}

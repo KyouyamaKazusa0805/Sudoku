@@ -42,8 +42,10 @@ public sealed unsafe class TwoStrongLinksStepSearcher : ITwoStrongLinksStepSearc
 					}
 
 					// Get all cells.
-					Cells map1 = Cells.Empty, map2 = Cells.Empty;
-					List<int> cells1 = new(), cells2 = new();
+					var map1 = Cells.Empty;
+					var map2 = Cells.Empty;
+					var cells1 = new List<int>();
+					var cells2 = new List<int>();
 					foreach (int pos1 in mask1)
 					{
 						int cell1 = RegionCells[r1][pos1];
@@ -57,7 +59,7 @@ public sealed unsafe class TwoStrongLinksStepSearcher : ITwoStrongLinksStepSearc
 						map2.AddAnyway(cell2);
 					}
 
-					if ((map1 & map2).Count != 0)
+					if ((map1 & map2) is not [])
 					{
 						continue;
 					}
@@ -88,7 +90,7 @@ public sealed unsafe class TwoStrongLinksStepSearcher : ITwoStrongLinksStepSearc
 					// Two strong link found.
 					// Record all eliminations.
 					int head = cells1[headIndex], tail = cells2[tailIndex];
-					if ((PeerMaps[head] & PeerMaps[tail] & CandMaps[digit]) is not [_, ..] gridMap)
+					if ((PeerMaps[head] & PeerMaps[tail] & CandMaps[digit]) is not { Count: not 0 } gridMap)
 					{
 						continue;
 					}

@@ -48,8 +48,8 @@ public sealed unsafe class EmptyRectangleStepSearcher : IEmptyRectangleStepSearc
 
 					short blockMask = linkMap.BlockMask;
 					if (IsPow2(blockMask)
-						|| i < 6 && (linkMap & RegionMaps[column]).Count == 0
-						|| i >= 6 && (linkMap & RegionMaps[row]).Count == 0)
+						|| i < 6 && (linkMap & RegionMaps[column]) is []
+						|| i >= 6 && (linkMap & RegionMaps[row]) is [])
 					{
 						continue;
 					}

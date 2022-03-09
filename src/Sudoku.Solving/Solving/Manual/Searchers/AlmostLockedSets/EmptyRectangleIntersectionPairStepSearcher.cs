@@ -54,20 +54,21 @@ public sealed unsafe class EmptyRectangleIntersectionPairStepSearcher : IEmptyRe
 				}
 
 				// Check the block that two cells both see.
-				Cells interMap = !new Cells { c1, c2 }, unionMap = new Cells(c1) | new Cells(c2);
+				var interMap = !new Cells { c1, c2 };
+				var unionMap = new Cells(c1) | new Cells(c2);
 				foreach (int interCell in interMap)
 				{
 					int block = interCell.ToRegionIndex(Region.Block);
-					Cells regionMap = RegionMaps[block], checkingMap = regionMap - unionMap & regionMap;
-					if ((checkingMap & CandMaps[d1]).Count != 0 || (checkingMap & CandMaps[d2]).Count != 0)
+					var regionMap = RegionMaps[block];
+					var checkingMap = regionMap - unionMap & regionMap;
+					if ((checkingMap & CandMaps[d1]) is not [] || (checkingMap & CandMaps[d2]) is not [])
 					{
 						continue;
 					}
 
 					// Check whether two digits are both in the same empty rectangle.
-					int inter1 = interMap[0], inter2 = interMap[1];
-					int b1 = inter1.ToRegionIndex(Region.Block);
-					int b2 = inter2.ToRegionIndex(Region.Block);
+					int b1 = c1.ToRegionIndex(Region.Block);
+					int b2 = c2.ToRegionIndex(Region.Block);
 					var erMap = (unionMap & RegionMaps[b1] - interMap) | (unionMap & RegionMaps[b2] - interMap);
 					var erCellsMap = regionMap & erMap;
 					short m = 0;

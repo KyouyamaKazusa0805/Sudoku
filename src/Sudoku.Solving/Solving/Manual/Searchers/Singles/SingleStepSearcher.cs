@@ -286,7 +286,7 @@ public sealed unsafe class SingleStepSearcher : ISingleStepSearcher
 				// Step 2: Get all removed cells in this region.
 				foreach (int cell in crosshatchingCells)
 				{
-					if ((PeerMaps[cell] & tempMap) is [_, ..] removableCells)
+					if ((PeerMaps[cell] & tempMap) is { Count: not 0 } removableCells)
 					{
 						directLines.Add((new(new() { cell }, removableCells), (ColorIdentifier)0));
 						tempMap -= removableCells;

@@ -54,24 +54,20 @@ public sealed unsafe class QiuDeadlyPatternStepSearcher : IQiuDeadlyPatternStepS
 		{
 			bool isRow = i < length >> 2;
 			var baseLineMap = RegionMaps[BaseLineIterator[i, 0]] | RegionMaps[BaseLineIterator[i, 1]];
-			for (
-				int j = isRow ? 0 : 9, z = 0, iterationLengthInner = length >> 2;
-				z < iterationLengthInner;
-				j++, z++
-			)
+			for (int j = isRow ? 0 : 9, z = 0, iterationLengthInner = length >> 2; z < iterationLengthInner; j++, z++)
 			{
 				int c1 = StartCells[j, 0], c2 = StartCells[j, 1];
 				for (int k = 0; k < 9; k++, c1 += isRow ? 9 : 1, c2 += isRow ? 9 : 1)
 				{
 					var pairMap = new Cells { c1, c2 };
 					if (
-						(baseLineMap & pairMap).Count != 0
+						(baseLineMap & pairMap) is not []
 						|| (
 							baseLineMap & (
 								RegionMaps[c1.ToRegionIndex(Region.Block)]
 								| RegionMaps[c2.ToRegionIndex(Region.Block)]
 							)
-						).Count != 0
+						) is not []
 					)
 					{
 						continue;
@@ -123,11 +119,11 @@ public sealed unsafe class QiuDeadlyPatternStepSearcher : IQiuDeadlyPatternStepS
 			for (int j = 0, region = isRow ? 18 : 9; j < 9; j++, region++)
 			{
 				var regionMap = RegionMaps[region];
-				if ((baseLine & regionMap) is [_, ..] tempMap)
+				if ((baseLine & regionMap) is { Count: not 0 } tempMap)
 				{
 					f(grid, tempMap, ref appearedDigitsMask, ref distinctionMask, ref appearedParts);
 				}
-				else if ((square & regionMap) is [_, ..] squareMap)
+				else if ((square & regionMap) is { Count: not 0 } squareMap)
 				{
 					// Don't forget to record the square cells.
 					f(grid, squareMap, ref appearedDigitsMask, ref distinctionMask, ref appearedParts);
@@ -166,11 +162,7 @@ public sealed unsafe class QiuDeadlyPatternStepSearcher : IQiuDeadlyPatternStepS
 				continue;
 			}
 
-			short pairMask = 0;
-			foreach (int cell in pair)
-			{
-				pairMask |= grid.GetCandidates(cell);
-			}
+			short pairMask = grid.GetDigitsUnion(pair);
 
 			// Iterate on each combination.
 			for (int size = 2, count = PopCount((uint)pairMask); size < count; size++)
@@ -193,7 +185,7 @@ public sealed unsafe class QiuDeadlyPatternStepSearcher : IQiuDeadlyPatternStepS
 					bool flag = false;
 					foreach (int digit in digits)
 					{
-						if ((square & CandMaps[digit]).Count == 0)
+						if ((square & CandMaps[digit]) is [])
 						{
 							flag = true;
 							break;
@@ -329,7 +321,7 @@ public sealed unsafe class QiuDeadlyPatternStepSearcher : IQiuDeadlyPatternStepS
 
 		int extraDigit = TrailingZeroCount(otherDigitsMask);
 		var map = pair & CandMaps[extraDigit];
-		if ((!map & CandMaps[extraDigit]) is not [_, ..] elimMap)
+		if ((!map & CandMaps[extraDigit]) is not { Count: not 0 } elimMap)
 		{
 			return null;
 		}
@@ -402,12 +394,7 @@ public sealed unsafe class QiuDeadlyPatternStepSearcher : IQiuDeadlyPatternStepS
 			{
 				foreach (var cells in allCellsMap & size)
 				{
-					short mask = 0;
-					foreach (int cell in cells)
-					{
-						mask |= grid.GetCandidates(cell);
-					}
-
+					short mask = grid.GetDigitsUnion(cells);
 					if ((mask & comparer) != comparer || PopCount((uint)mask) != size + 1)
 					{
 						continue;
@@ -506,7 +493,7 @@ public sealed unsafe class QiuDeadlyPatternStepSearcher : IQiuDeadlyPatternStepS
 				bool flag = false;
 				foreach (int d in otherDigitsMask)
 				{
-					if ((ValueMaps[d] & RegionMaps[region]).Count != 0
+					if ((ValueMaps[d] & RegionMaps[region]) is not []
 						|| (RegionMaps[region] & CandMaps[d]) != square)
 					{
 						flag = true;
@@ -520,7 +507,7 @@ public sealed unsafe class QiuDeadlyPatternStepSearcher : IQiuDeadlyPatternStepS
 
 				int elimDigit = TrailingZeroCount(comparer & ~(1 << digit));
 				var elimMap = pair & CandMaps[elimDigit];
-				if (elimMap.Count == 0)
+				if (elimMap is [])
 				{
 					continue;
 				}
@@ -590,7 +577,7 @@ public sealed unsafe class QiuDeadlyPatternStepSearcher : IQiuDeadlyPatternStepS
 		bool flag = false;
 		foreach (int digit in pairDigits)
 		{
-			if ((ValueMaps[digit] & RegionMaps[block]).Count != 0)
+			if ((ValueMaps[digit] & RegionMaps[block]) is not [])
 			{
 				flag = true;
 				break;
@@ -623,7 +610,7 @@ public sealed unsafe class QiuDeadlyPatternStepSearcher : IQiuDeadlyPatternStepS
 			}
 		}
 
-		if (!new Candidates(candidates) is not [_, ..] elimMap)
+		if (!new Candidates(candidates) is not { Count: not 0 } elimMap)
 		{
 			return null;
 		}

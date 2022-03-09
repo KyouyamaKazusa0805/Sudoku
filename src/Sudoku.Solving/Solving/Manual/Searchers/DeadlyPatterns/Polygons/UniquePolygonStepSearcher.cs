@@ -355,7 +355,7 @@ public sealed unsafe class UniquePolygonStepSearcher : IUniquePolygonStepSearche
 		}
 
 		// Iterate on each combination.
-		foreach (int[] digits in orMask.GetAllSets().ToArray().GetSubsets(pattern.IsHeptagon ? 3 : 4))
+		foreach (int[] digits in orMask.GetAllSets().GetSubsets(pattern.IsHeptagon ? 3 : 4))
 		{
 			short tempMask = 0;
 			foreach (int digit in digits)
@@ -365,7 +365,7 @@ public sealed unsafe class UniquePolygonStepSearcher : IUniquePolygonStepSearche
 
 			int otherDigit = TrailingZeroCount(orMask & ~tempMask);
 			var mapContainingThatDigit = map & CandMaps[otherDigit];
-			if (((!mapContainingThatDigit - map) & CandMaps[otherDigit]) is not [_, ..] elimMap)
+			if (((!mapContainingThatDigit - map) & CandMaps[otherDigit]) is not { Count: not 0 } elimMap)
 			{
 				continue;
 			}
@@ -411,12 +411,9 @@ public sealed unsafe class UniquePolygonStepSearcher : IUniquePolygonStepSearche
 		short orMask = (short)((short)(cornerMask1 | cornerMask2) | centerMask);
 		foreach (int region in map.Regions)
 		{
-			Cells currentMap = RegionMaps[region] & map, otherCellsMap = map - currentMap;
-			short otherMask = 0;
-			foreach (int cell in otherCellsMap)
-			{
-				otherMask |= grid.GetCandidates(cell);
-			}
+			var currentMap = RegionMaps[region] & map;
+			var otherCellsMap = map - currentMap;
+			short otherMask = grid.GetDigitsUnion(otherCellsMap);
 
 			foreach (int[] digits in orMask.GetAllSets().GetSubsets(pattern.IsHeptagon ? 3 : 4))
 			{
@@ -453,7 +450,7 @@ public sealed unsafe class UniquePolygonStepSearcher : IUniquePolygonStepSearche
 						var conclusions = new List<Conclusion>();
 						foreach (int digit in comparer)
 						{
-							if ((iterationCellsMap & CandMaps[digit]) is not [_, ..] cells)
+							if ((iterationCellsMap & CandMaps[digit]) is not { Count: not 0 } cells)
 							{
 								continue;
 							}
@@ -531,12 +528,9 @@ public sealed unsafe class UniquePolygonStepSearcher : IUniquePolygonStepSearche
 		short orMask = (short)((short)(cornerMask1 | cornerMask2) | centerMask);
 		foreach (int region in map.Regions)
 		{
-			Cells currentMap = RegionMaps[region] & map, otherCellsMap = map - currentMap;
-			short otherMask = 0;
-			foreach (int cell in otherCellsMap)
-			{
-				otherMask |= grid.GetCandidates(cell);
-			}
+			var currentMap = RegionMaps[region] & map;
+			var otherCellsMap = map - currentMap;
+			short otherMask = grid.GetDigitsUnion(otherCellsMap);
 
 			// Iterate on each possible digit combination.
 			// For example, if values are { 1, 2, 3 }, then all combinations taken 2 values
@@ -563,7 +557,7 @@ public sealed unsafe class UniquePolygonStepSearcher : IUniquePolygonStepSearche
 					bool flag = false;
 					foreach (int digit in combination)
 					{
-						if ((ValueMaps[digit] & RegionMaps[region]).Count != 0)
+						if ((ValueMaps[digit] & RegionMaps[region]) is not [])
 						{
 							flag = true;
 							break;
@@ -592,7 +586,7 @@ public sealed unsafe class UniquePolygonStepSearcher : IUniquePolygonStepSearche
 					{
 						possibleCandMaps |= CandMaps[finalDigit];
 					}
-					if ((combinationMap & possibleCandMaps) is not [_, ..] elimMap)
+					if ((combinationMap & possibleCandMaps) is not { Count: not 0 } elimMap)
 					{
 						continue;
 					}

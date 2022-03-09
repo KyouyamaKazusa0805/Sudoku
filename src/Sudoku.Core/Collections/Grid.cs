@@ -959,6 +959,61 @@ public unsafe partial struct Grid :
 	public readonly short GetCandidates(int cell) => (short)(_values[cell] & MaxCandidatesMask);
 
 	/// <summary>
+	/// Creates a mask of type <see cref="short"/> that represents the usages of digits 1 to 9,
+	/// ranged in a specified list of cells in the current sudoku grid.
+	/// </summary>
+	/// <param name="cells">The list of cells to gather the usages on all digits.</param>
+	/// <returns>A mask of type <see cref="short"/> that represents the usages of digits 1 to 9.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public readonly short GetDigitsUnion(int[] cells)
+	{
+		short result = 0;
+		for (int i = 0, length = cells.Length; i < length; i++)
+		{
+			result |= _values[cells[i]];
+		}
+
+		return (short)(result & MaxCandidatesMask);
+	}
+
+	/// <summary>
+	/// Creates a mask of type <see cref="short"/> that represents the usages of digits 1 to 9,
+	/// ranged in a specified list of cells in the current sudoku grid.
+	/// </summary>
+	/// <param name="cells">The list of cells to gather the usages on all digits.</param>
+	/// <returns>A mask of type <see cref="short"/> that represents the usages of digits 1 to 9.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public readonly short GetDigitsUnion(in Cells cells)
+	{
+		short result = 0;
+		foreach (int cell in cells)
+		{
+			result |= _values[cell];
+		}
+
+		return (short)(result & MaxCandidatesMask);
+	}
+
+	/// <summary>
+	/// Creates a mask of type <see cref="short"/> that represents the usages of digits 1 to 9,
+	/// ranged in a specified list of cells in the current sudoku grid,
+	/// to determine which digits are not used.
+	/// </summary>
+	/// <param name="cells">The list of cells to gather the usages on all digits.</param>
+	/// <returns>A mask of type <see cref="short"/> that represents the usages of digits 1 to 9.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public readonly short GetDigitsIntersection(in Cells cells)
+	{
+		short result = 511;
+		foreach (int cell in cells)
+		{
+			result &= (short)~_values[cell];
+		}
+
+		return result;
+	}
+
+	/// <summary>
 	/// Returns a reference to the element of the <see cref="Grid"/> at index zero.
 	/// </summary>
 	/// <returns>A reference to the element of the <see cref="Grid"/> at index zero.</returns>

@@ -37,7 +37,7 @@ public interface IPatternOverlayStepSearcher : ILastResortStepSearcher
 		{
 			foreach (var map in GetTemplates())
 			{
-				if (mustPos[digit] > map || (invalidPos[digit] & map).Count != 0)
+				if (mustPos[digit] > map || (invalidPos[digit] & map) is not [])
 				{
 					continue;
 				}

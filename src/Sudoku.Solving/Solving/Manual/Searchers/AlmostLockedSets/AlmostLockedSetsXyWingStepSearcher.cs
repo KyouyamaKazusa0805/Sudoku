@@ -40,7 +40,7 @@ public sealed unsafe class AlmostLockedSetsXyWingStepSearcher : IAlmostLockedSet
 				ref readonly var als2 = ref alses[j];
 				_ = als2 is { DigitsMask: var mask2, Map: var map2 };
 				var map = map1 | map2;
-				if (map.InOneRegion || (map1 & map2).Count != 0)
+				if (map.InOneRegion || (map1 & map2) is not [])
 				{
 					continue;
 				}
@@ -102,7 +102,7 @@ public sealed unsafe class AlmostLockedSetsXyWingStepSearcher : IAlmostLockedSet
 				}
 
 				if (!AllowCollision
-					&& ((aMap & bMap).Count != 0 || (aMap & cMap).Count != 0 || (bMap & cMap).Count != 0))
+					&& ((aMap & bMap) is not [] || (aMap & cMap) is not [] || (bMap & cMap) is not []))
 				{
 					continue;
 				}
@@ -128,7 +128,8 @@ public sealed unsafe class AlmostLockedSetsXyWingStepSearcher : IAlmostLockedSet
 						var conclusions = new List<Conclusion>();
 						foreach (int digit in digitsMask)
 						{
-							if (((aMap | bMap) % CandMaps[digit] - (aMap | bMap | cMap)) is not [_, ..] elimMap)
+							var elimMap = (aMap | bMap) % CandMaps[digit] - (aMap | bMap | cMap);
+							if (elimMap is [])
 							{
 								continue;
 							}

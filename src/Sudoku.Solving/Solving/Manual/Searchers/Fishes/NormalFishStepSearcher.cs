@@ -52,7 +52,7 @@ public sealed unsafe class NormalFishStepSearcher : INormalFishStepSearcher
 			// Gather.
 			for (int region = 9; region < 27; region++)
 			{
-				if ((RegionMaps[region] & CandMaps[digit]).Count != 0)
+				if ((RegionMaps[region] & CandMaps[digit]) is not [])
 				{
 #pragma warning disable CA2014
 					if (region < 18)
@@ -171,7 +171,7 @@ public sealed unsafe class NormalFishStepSearcher : INormalFishStepSearcher
 						// If the current searcher doesn't check fins, we'll just get the pure check:
 						// 1. Base set contain more cells than cover sets.
 						// 2. Elimination cells set isn't empty.
-						if (baseLine > coverLine || (elimMap = coverLine - baseLine).Count == 0)
+						if (baseLine > coverLine || (elimMap = coverLine - baseLine) is [])
 						{
 							continue;
 						}
@@ -181,20 +181,20 @@ public sealed unsafe class NormalFishStepSearcher : INormalFishStepSearcher
 						// All fins should be in the same block.
 						fins = baseLine - coverLine;
 						short blockMask = fins.BlockMask;
-						if (fins.Count == 0 || !IsPow2(blockMask))
+						if (fins is [] || !IsPow2(blockMask))
 						{
 							continue;
 						}
 
 						// Cover set shouldn't overlap with the block of all fins lying in.
 						int finBlock = TrailingZeroCount(blockMask);
-						if ((coverLine & RegionMaps[finBlock]).Count == 0)
+						if ((coverLine & RegionMaps[finBlock]) is [])
 						{
 							continue;
 						}
 
 						// Don't intersect.
-						if ((RegionMaps[finBlock] & coverLine - baseLine).Count == 0)
+						if ((RegionMaps[finBlock] & coverLine - baseLine) is [])
 						{
 							continue;
 						}
@@ -270,7 +270,7 @@ public sealed unsafe class NormalFishStepSearcher : INormalFishStepSearcher
 	{
 		// Get the highlight cells (necessary).
 		var cellOffsets = new List<(int, ColorIdentifier)>();
-		var candidateOffsets = fins.Count == 0 ? null : new List<(int, ColorIdentifier)>();
+		var candidateOffsets = fins is [] ? null : new List<(int, ColorIdentifier)>();
 		foreach (int baseSet in baseSets)
 		{
 			foreach (int cell in RegionMaps[baseSet])

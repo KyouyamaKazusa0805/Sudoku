@@ -62,7 +62,7 @@ public sealed unsafe class WWingStepSearcher : IIregularWingStepSearcher
 				}
 
 				var intersection = PeerMaps[c1] & PeerMaps[c2];
-				if ((EmptyMap & intersection).Count == 0)
+				if ((EmptyMap & intersection) is [])
 				{
 					// The structure doesn't contain any possible eliminations.
 					continue;
@@ -102,7 +102,7 @@ public sealed unsafe class WWingStepSearcher : IIregularWingStepSearcher
 
 						// Check for eliminations.
 						int anotherDigit = TrailingZeroCount(grid.GetCandidates(c1) & ~(1 << digit));
-						if ((CandMaps[anotherDigit] & !new Cells { c1, c2 }) is not [_, ..] elimMap)
+						if ((CandMaps[anotherDigit] & !new Cells { c1, c2 }) is not { Count: not 0 } elimMap)
 						{
 							continue;
 						}

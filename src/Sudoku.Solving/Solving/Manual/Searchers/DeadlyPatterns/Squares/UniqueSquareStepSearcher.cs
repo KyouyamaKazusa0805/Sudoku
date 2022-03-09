@@ -91,12 +91,7 @@ public sealed unsafe class UniqueSquareStepSearcher : IUniqueSquareStepSearcher
 				continue;
 			}
 
-			short mask = 0;
-			foreach (int cell in pattern)
-			{
-				mask |= grid.GetCandidates(cell);
-			}
-
+			short mask = grid.GetDigitsUnion(pattern);
 			if (CheckType1(accumulator, grid, onlyFindOne, pattern, mask) is { } type1Step)
 			{
 				return type1Step;
@@ -136,12 +131,11 @@ public sealed unsafe class UniqueSquareStepSearcher : IUniqueSquareStepSearcher
 
 			int extraDigit = TrailingZeroCount(mask & ~digitsMask);
 			var extraDigitMap = CandMaps[extraDigit] & pattern;
-			if (extraDigitMap.Count != 1)
+			if (extraDigitMap is not [var elimCell])
 			{
 				continue;
 			}
 
-			int elimCell = extraDigitMap[0];
 			short cellMask = grid.GetCandidates(elimCell);
 			short elimMask = (short)(cellMask & ~(1 << extraDigit));
 			if (elimMask == 0)
@@ -198,7 +192,7 @@ public sealed unsafe class UniqueSquareStepSearcher : IUniqueSquareStepSearcher
 			}
 
 			int extraDigit = TrailingZeroCount(mask & ~digitsMask);
-			if ((pattern % CandMaps[extraDigit]) is not [_, ..] elimMap)
+			if (pattern % CandMaps[extraDigit] is not { Count: not 0 } elimMap)
 			{
 				continue;
 			}

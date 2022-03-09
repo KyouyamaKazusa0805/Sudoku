@@ -36,7 +36,7 @@ public sealed unsafe class AlmostLockedCandidatesStepSearcher : IAlmostLockedCan
 		{
 			foreach (var ((baseSet, coverSet), (a, b, c, _)) in IntersectionMaps)
 			{
-				if ((c & EmptyMap).Count != 0)
+				if ((c & EmptyMap) is not [])
 				{
 					if (GetAll(accumulator, grid, size, baseSet, coverSet, a, b, c, onlyFindOne) is { } step1)
 					{
@@ -97,11 +97,7 @@ public sealed unsafe class AlmostLockedCandidatesStepSearcher : IAlmostLockedCan
 		foreach (var cells in a & EmptyMap & size - 1)
 		{
 			// Gather the mask. The cell combination must contain the specified number of digits.
-			short mask = 0;
-			foreach (int cell in cells)
-			{
-				mask |= grid.GetCandidates(cell);
-			}
+			short mask = grid.GetDigitsUnion(cells);
 			if (PopCount((uint)mask) != size)
 			{
 				continue;
@@ -111,7 +107,7 @@ public sealed unsafe class AlmostLockedCandidatesStepSearcher : IAlmostLockedCan
 			bool isOverlapped = false;
 			foreach (int digit in mask)
 			{
-				if ((ValueMaps[digit] & RegionMaps[coverSet]).Count != 0)
+				if ((ValueMaps[digit] & RegionMaps[coverSet]) is not [])
 				{
 					isOverlapped = true;
 					break;

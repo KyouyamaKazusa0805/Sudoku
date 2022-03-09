@@ -200,13 +200,7 @@ public sealed unsafe class UniqueLoopStepSearcher : IUniqueLoopStepSearcher, IUn
 		ICollection<UniqueLoopStep> accumulator, in Grid grid, int d1, int d2, in Cells loop,
 		IList<(Link, ColorIdentifier)> links, in Cells extraCellsMap, short comparer, bool onlyFindOne)
 	{
-		short mask = 0;
-		foreach (int cell in extraCellsMap)
-		{
-			mask |= grid.GetCandidates(cell);
-		}
-		mask &= (short)~comparer;
-
+		short mask = (short)(grid.GetDigitsUnion(extraCellsMap) & ~comparer);
 		if (!IsPow2(mask))
 		{
 			return null;
@@ -214,7 +208,7 @@ public sealed unsafe class UniqueLoopStepSearcher : IUniqueLoopStepSearcher, IUn
 
 		int extraDigit = TrailingZeroCount(mask);
 		var elimMap = extraCellsMap % CandMaps[extraDigit];
-		if (elimMap.Count == 0)
+		if (elimMap is [])
 		{
 			goto ReturnNull;
 		}
@@ -280,11 +274,7 @@ public sealed unsafe class UniqueLoopStepSearcher : IUniqueLoopStepSearcher, IUn
 			goto ReturnNull;
 		}
 
-		short m = 0;
-		foreach (int cell in extraCellsMap)
-		{
-			m |= grid.GetCandidates(cell);
-		}
+		short m = grid.GetDigitsUnion(extraCellsMap);
 		if ((m & comparer) != comparer)
 		{
 			goto ReturnNull;
@@ -293,7 +283,7 @@ public sealed unsafe class UniqueLoopStepSearcher : IUniqueLoopStepSearcher, IUn
 		short otherDigitsMask = (short)(m & ~comparer);
 		foreach (int region in extraCellsMap.CoveredRegions)
 		{
-			if (((ValueMaps[d1] | ValueMaps[d2]) & RegionMaps[region]).Count != 0)
+			if (((ValueMaps[d1] | ValueMaps[d2]) & RegionMaps[region]) is not [])
 			{
 				continue;
 			}
@@ -314,7 +304,7 @@ public sealed unsafe class UniqueLoopStepSearcher : IUniqueLoopStepSearcher, IUn
 						continue;
 					}
 
-					if (((RegionMaps[region] & EmptyMap) - cells - loop) is not [_, ..] elimMap)
+					if ((RegionMaps[region] & EmptyMap) - cells - loop is not { Count: not 0 } elimMap)
 					{
 						continue;
 					}

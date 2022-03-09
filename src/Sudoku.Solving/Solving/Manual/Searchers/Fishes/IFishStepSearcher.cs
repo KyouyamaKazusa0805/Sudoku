@@ -40,7 +40,7 @@ public interface IFishStepSearcher : IStepSearcher
 	/// </returns>
 	protected static bool? IsSashimi(int[] baseSets, in Cells fins, int digit)
 	{
-		if (fins.Count == 0)
+		if (fins is [])
 		{
 			return null;
 		}

@@ -30,8 +30,10 @@ public sealed unsafe class SueDeCoq3DemensionStepSearcher : ISueDeCoq3DemensionS
 			int r = pivot.ToRegionIndex(Region.Row);
 			int c = pivot.ToRegionIndex(Region.Column);
 			int b = pivot.ToRegionIndex(Region.Block);
-			Cells rbMap = RegionMaps[r] & RegionMaps[b], cbMap = RegionMaps[c] & RegionMaps[b];
-			Cells rbEmptyMap = rbMap & EmptyMap, cbEmptyMap = cbMap & EmptyMap;
+			var rbMap = RegionMaps[r] & RegionMaps[b];
+			var cbMap = RegionMaps[c] & RegionMaps[b];
+			var rbEmptyMap = rbMap & EmptyMap;
+			var cbEmptyMap = cbMap & EmptyMap;
 			if (rbEmptyMap.Count < 2 || cbEmptyMap.Count < 2)
 			{
 				// The intersection needs at least two cells.
@@ -43,11 +45,7 @@ public sealed unsafe class SueDeCoq3DemensionStepSearcher : ISueDeCoq3DemensionS
 
 			foreach (var rbCurrentMap in rbList)
 			{
-				short rbSelectedInterMask = 0;
-				foreach (int cell in rbCurrentMap)
-				{
-					rbSelectedInterMask |= grid.GetCandidates(cell);
-				}
+				short rbSelectedInterMask = grid.GetDigitsUnion(rbCurrentMap);
 				if (PopCount((uint)rbSelectedInterMask) <= rbCurrentMap.Count + 1)
 				{
 					continue;
@@ -55,11 +53,7 @@ public sealed unsafe class SueDeCoq3DemensionStepSearcher : ISueDeCoq3DemensionS
 
 				foreach (var cbCurrentMap in cbList)
 				{
-					short cbSelectedInterMask = 0;
-					foreach (int cell in cbCurrentMap)
-					{
-						cbSelectedInterMask |= grid.GetCandidates(cell);
-					}
+					short cbSelectedInterMask = grid.GetDigitsUnion(cbCurrentMap);
 					if (PopCount((uint)cbSelectedInterMask) <= cbCurrentMap.Count + 1)
 					{
 						continue;
@@ -80,14 +74,8 @@ public sealed unsafe class SueDeCoq3DemensionStepSearcher : ISueDeCoq3DemensionS
 					{
 						foreach (var selectedBlockCells in blockMap & i)
 						{
-							short blockMask = 0;
+							short blockMask = grid.GetDigitsUnion(selectedBlockCells);
 							var elimMapBlock = Cells.Empty;
-
-							// Get the links of the block.
-							foreach (int cell in selectedBlockCells)
-							{
-								blockMask |= grid.GetCandidates(cell);
-							}
 
 							// Get the elimination map in the block.
 							foreach (int digit in blockMask)
@@ -100,13 +88,8 @@ public sealed unsafe class SueDeCoq3DemensionStepSearcher : ISueDeCoq3DemensionS
 							{
 								foreach (var selectedRowCells in rowMap & j)
 								{
-									short rowMask = 0;
+									short rowMask = grid.GetDigitsUnion(selectedRowCells);
 									var elimMapRow = Cells.Empty;
-
-									foreach (int cell in selectedRowCells)
-									{
-										rowMask |= grid.GetCandidates(cell);
-									}
 
 									foreach (int digit in rowMask)
 									{
@@ -142,22 +125,14 @@ public sealed unsafe class SueDeCoq3DemensionStepSearcher : ISueDeCoq3DemensionS
 											var fullMap = rbCurrentMap | cbCurrentMap | selectedRowCells | selectedColumnCells | selectedBlockCells;
 											var otherMap_row = fullMap - (selectedRowCells | rbCurrentMap);
 											var otherMap_column = fullMap - (selectedColumnCells | cbCurrentMap);
-											short mask = 0;
-											foreach (int cell in otherMap_row)
-											{
-												mask |= grid.GetCandidates(cell);
-											}
+											short mask = grid.GetDigitsUnion(otherMap_row);
 											if ((mask & rowMask) != 0)
 											{
 												// At least one digit spanned two regions.
 												continue;
 											}
 
-											mask = 0;
-											foreach (int cell in otherMap_column)
-											{
-												mask |= grid.GetCandidates(cell);
-											}
+											mask = grid.GetDigitsUnion(otherMap_column);
 											if ((mask & columnMask) != 0)
 											{
 												continue;
@@ -173,7 +148,7 @@ public sealed unsafe class SueDeCoq3DemensionStepSearcher : ISueDeCoq3DemensionS
 											int rbCount = PopCount((uint)rbMaskOnlyInInter);
 											int cbCount = PopCount((uint)cbMaskOnlyInInter);
 											if (cbCurrentMap.Count + rbCurrentMap.Count + i + j + k - 1 == bCount + rCount + cCount + rbCount + cbCount
-												&& (elimMapRow | elimMapColumn | elimMapBlock).Count != 0)
+												&& (elimMapRow | elimMapColumn | elimMapBlock) is not [])
 											{
 												// Check eliminations.
 												var conclusions = new List<Conclusion>();

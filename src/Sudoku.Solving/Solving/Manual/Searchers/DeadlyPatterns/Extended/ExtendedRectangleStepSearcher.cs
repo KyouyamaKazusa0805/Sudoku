@@ -215,7 +215,7 @@ public sealed unsafe class ExtendedRectangleStepSearcher : IExtendedRectangleSte
 				// Now check extra cells.
 				int extraDigit = TrailingZeroCount(extraDigits);
 				var extraCellsMap = allCellsMap & CandMaps[extraDigit];
-				if (extraCellsMap.Count == 0)
+				if (extraCellsMap is [])
 				{
 					continue;
 				}
@@ -344,7 +344,7 @@ public sealed unsafe class ExtendedRectangleStepSearcher : IExtendedRectangleSte
 		ICollection<Step> accumulator, in Grid grid, in Cells allCellsMap, in Cells extraCells,
 		short normalDigits, int extraDigit, bool onlyFindOne)
 	{
-		if ((!extraCells & CandMaps[extraDigit]) is not [_, ..] elimMap)
+		if ((!extraCells & CandMaps[extraDigit]) is not { Count: not 0 } elimMap)
 		{
 			goto ReturnNull;
 		}
@@ -409,7 +409,7 @@ public sealed unsafe class ExtendedRectangleStepSearcher : IExtendedRectangleSte
 						continue;
 					}
 
-					if (((RegionMaps[region] & EmptyMap) - allCellsMap - cells) is not [_, ..] elimMap)
+					if ((RegionMaps[region] & EmptyMap) - allCellsMap - cells is not { Count: not 0 } elimMap)
 					{
 						continue;
 					}

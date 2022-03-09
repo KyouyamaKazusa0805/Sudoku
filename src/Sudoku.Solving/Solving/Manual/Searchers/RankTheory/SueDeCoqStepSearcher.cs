@@ -54,7 +54,7 @@ public sealed unsafe class SueDeCoqStepSearcher : ISueDeCoqStepSearcher
 				list.Clear();
 				switch (emptyCellsInInterMap)
 				{
-					case [_, _]:
+					case { Count: 2 }:
 					{
 						list.Add(emptyCellsInInterMap);
 
@@ -74,11 +74,7 @@ public sealed unsafe class SueDeCoqStepSearcher : ISueDeCoqStepSearcher
 				// Iterate on each intersection combination.
 				foreach (var currentInterMap in list)
 				{
-					short selectedInterMask = 0;
-					foreach (int cell in currentInterMap)
-					{
-						selectedInterMask |= grid.GetCandidates(cell);
-					}
+					short selectedInterMask = grid.GetDigitsUnion(currentInterMap);
 					if (PopCount((uint)selectedInterMask) <= currentInterMap.Count + 1)
 					{
 						// The intersection combination is an ALS or a normal subset,
@@ -95,14 +91,8 @@ public sealed unsafe class SueDeCoqStepSearcher : ISueDeCoqStepSearcher
 						// Iterate on each combination in block.
 						foreach (var currentBlockMap in blockMap & i)
 						{
-							short blockMask = 0;
+							short blockMask = grid.GetDigitsUnion(currentBlockMap);
 							var elimMapBlock = Cells.Empty;
-
-							// Get the links of the block.
-							foreach (int cell in currentBlockMap)
-							{
-								blockMask |= grid.GetCandidates(cell);
-							}
 
 							// Get the elimination map in the block.
 							foreach (int digit in blockMask)
@@ -117,14 +107,8 @@ public sealed unsafe class SueDeCoqStepSearcher : ISueDeCoqStepSearcher
 								// Iterate on each combination in line.
 								foreach (var currentLineMap in lineMap & j)
 								{
-									short lineMask = 0;
+									short lineMask = grid.GetDigitsUnion(currentLineMap);
 									var elimMapLine = Cells.Empty;
-
-									// Get the links of the line.
-									foreach (int cell in currentLineMap)
-									{
-										lineMask |= grid.GetCandidates(cell);
-									}
 
 									// Get the elimination map in the line.
 									foreach (int digit in lineMask)
@@ -161,7 +145,7 @@ public sealed unsafe class SueDeCoqStepSearcher : ISueDeCoqStepSearcher
 									}
 
 									if (currentInterMap.Count + i + j == PopCount((uint)blockMask) + PopCount((uint)lineMask) + PopCount((uint)maskOnlyInInter)
-										&& (elimMapBlock | elimMapLine | elimMapIsolated).Count != 0)
+										&& (elimMapBlock | elimMapLine | elimMapIsolated) is not [])
 									{
 										// Check eliminations.
 										var conclusions = new List<Conclusion>();

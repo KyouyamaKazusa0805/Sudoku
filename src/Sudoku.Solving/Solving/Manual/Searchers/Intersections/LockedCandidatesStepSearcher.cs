@@ -62,16 +62,15 @@ public sealed unsafe class LockedCandidatesStepSearcher : ILockedCandidatesStepS
 		{
 			// If the cells C doesn't contain any empty cells,
 			// the location won't contain any locked candidates.
-			if ((EmptyMap & c).Count == 0)
+			if ((EmptyMap & c) is [])
 			{
 				continue;
 			}
 
 			// Gather the masks in cells A, B and C.
-			short maskA = 0, maskB = 0, maskC = 0;
-			foreach (int cell in a) { maskA |= grid.GetCandidates(cell); }
-			foreach (int cell in b) { maskB |= grid.GetCandidates(cell); }
-			foreach (int cell in c) { maskC |= grid.GetCandidates(cell); }
+			short maskA = grid.GetDigitsUnion(a);
+			short maskB = grid.GetDigitsUnion(b);
+			short maskC = grid.GetDigitsUnion(c);
 
 			// Use the formula, and check whether the equation is correct.
 			// If so, the mask 'm' will hold the digits that form locked candidates structures.
@@ -86,7 +85,7 @@ public sealed unsafe class LockedCandidatesStepSearcher : ILockedCandidatesStepS
 			{
 				// Check whether the digit contains any eliminations.
 				Cells elimMap;
-				if ((a & CandMaps[digit]).Count != 0)
+				if ((a & CandMaps[digit]) is not [])
 				{
 					r[0] = coverSet;
 					r[1] = baseSet;
@@ -98,7 +97,7 @@ public sealed unsafe class LockedCandidatesStepSearcher : ILockedCandidatesStepS
 					r[1] = coverSet;
 					elimMap = b & CandMaps[digit];
 				}
-				if (elimMap.Count == 0)
+				if (elimMap is [])
 				{
 					continue;
 				}

@@ -186,20 +186,14 @@ public sealed unsafe class BivalueOddagonStepSearcher : IBivalueOddagonStepSearc
 		ICollection<BivalueOddagonStep> accumulator, in Grid grid, int d1, int d2, in Cells loop,
 		IList<(Link, ColorIdentifier)> links, in Cells extraCellsMap, short comparer, bool onlyFindOne)
 	{
-		short mask = 0;
-		foreach (int cell in extraCellsMap)
-		{
-			mask |= grid.GetCandidates(cell);
-		}
-		mask &= (short)~comparer;
-
+		short mask = (short)(grid.GetDigitsUnion(extraCellsMap) & ~comparer);
 		if (!IsPow2(mask))
 		{
 			goto ReturnNull;
 		}
 
 		int extraDigit = TrailingZeroCount(mask);
-		if ((extraCellsMap % CandMaps[extraDigit]) is not [_, ..] elimMap)
+		if (extraCellsMap % CandMaps[extraDigit] is not { Count: not 0 } elimMap)
 		{
 			goto ReturnNull;
 		}
@@ -254,11 +248,7 @@ public sealed unsafe class BivalueOddagonStepSearcher : IBivalueOddagonStepSearc
 			goto ReturnNull;
 		}
 
-		short m = 0;
-		foreach (int cell in extraCellsMap)
-		{
-			m |= grid.GetCandidates(cell);
-		}
+		short m = grid.GetDigitsUnion(extraCellsMap);
 		if ((m & comparer) != comparer)
 		{
 			goto ReturnNull;
@@ -267,7 +257,7 @@ public sealed unsafe class BivalueOddagonStepSearcher : IBivalueOddagonStepSearc
 		short otherDigitsMask = (short)(m & ~comparer);
 		foreach (int region in extraCellsMap.CoveredRegions)
 		{
-			if (((ValueMaps[d1] | ValueMaps[d2]) & RegionMaps[region]).Count != 0)
+			if (((ValueMaps[d1] | ValueMaps[d2]) & RegionMaps[region]) is not [])
 			{
 				goto ReturnNull;
 			}
@@ -288,7 +278,7 @@ public sealed unsafe class BivalueOddagonStepSearcher : IBivalueOddagonStepSearc
 						continue;
 					}
 
-					if (((RegionMaps[region] & EmptyMap) - cells - loop) is not [_, ..] elimMap)
+					if ((RegionMaps[region] & EmptyMap) - cells - loop is not { Count: not 0 } elimMap)
 					{
 						continue;
 					}

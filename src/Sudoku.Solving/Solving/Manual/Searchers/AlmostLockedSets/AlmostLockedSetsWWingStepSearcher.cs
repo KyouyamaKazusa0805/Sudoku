@@ -33,7 +33,7 @@ public sealed unsafe class AlmostLockedSetsWWingStepSearcher : IAlmostLockedSets
 		{
 			for (int region = 0; region < 27; region++)
 			{
-				if ((RegionMaps[region] & CandMaps[digit]) is [_, _] temp)
+				if ((RegionMaps[region] & CandMaps[digit]) is { Count: 2 } temp)
 				{
 					(conjugatePairs[digit] ??= new List<ConjugatePair>()).Add(new(temp, digit));
 				}
@@ -52,7 +52,7 @@ public sealed unsafe class AlmostLockedSetsWWingStepSearcher : IAlmostLockedSets
 
 				// Now we have got two ALSes to check.
 				// Firstly, we should check whether two ALSes overlap with each other.
-				if ((map1 & map2).Count != 0 || (map1 | map2).InOneRegion)
+				if ((map1 & map2) is not [] || (map1 | map2).InOneRegion)
 				{
 					// If overlap (or in a same region), just skip it.
 					continue;
@@ -78,7 +78,7 @@ public sealed unsafe class AlmostLockedSetsWWingStepSearcher : IAlmostLockedSets
 					}
 
 					Cells p1 = map1 % CandMaps[x], p2 = map2 % CandMaps[x];
-					if (p1.Count == 0 || p2.Count == 0)
+					if (p1 is [] || p2 is [])
 					{
 						// At least one of two ALSes can't see the node of the conjugate pair.
 						continue;
@@ -93,7 +93,7 @@ public sealed unsafe class AlmostLockedSetsWWingStepSearcher : IAlmostLockedSets
 						foreach (var conjugatePair in conjPairs)
 						{
 							var cpMap = conjugatePair.Map;
-							if ((cpMap & map1).Count != 0 || (cpMap & map2).Count != 0)
+							if ((cpMap & map1) is not [] || (cpMap & map2) is not [])
 							{
 								// Conjugate pair can't overlap with the ALS structure.
 								continue;
@@ -110,7 +110,7 @@ public sealed unsafe class AlmostLockedSetsWWingStepSearcher : IAlmostLockedSets
 							// Iterate on each digit as the digit 'w'.
 							foreach (int w in mask & ~(1 << x))
 							{
-								if (((map1 | map2) % CandMaps[w]) is not [_, ..] tempMap)
+								if ((map1 | map2) % CandMaps[w] is not { Count: not 0 } tempMap)
 								{
 									continue;
 								}
@@ -142,10 +142,7 @@ public sealed unsafe class AlmostLockedSetsWWingStepSearcher : IAlmostLockedSets
 										(
 											cell * 9 + digit,
 											(ColorIdentifier)(
-												digit == x
-													? 1
-													: (wDigitsMask >> digit & 1) != 0 ? 2 : 101
-											)
+												digit == x ? 1 : (wDigitsMask >> digit & 1) != 0 ? 2 : 101)
 										)
 									);
 								}
@@ -158,10 +155,7 @@ public sealed unsafe class AlmostLockedSetsWWingStepSearcher : IAlmostLockedSets
 										(
 											cell * 9 + digit,
 											(ColorIdentifier)(
-												digit == x
-													? 1
-													: (wDigitsMask >> digit & 1) != 0 ? 2 : 102
-											)
+												digit == x ? 1 : (wDigitsMask >> digit & 1) != 0 ? 2 : 102)
 										)
 									);
 								}

@@ -111,13 +111,13 @@ public sealed unsafe class BivalueUniversalGraveStepSearcher : IBivalueUniversal
 		{
 			cells[i++] = candidate / 9;
 		}
-		if (!new Cells(cells) is not [_, ..] map)
+		if (!new Cells(cells) is not { Count: not 0 } map)
 		{
 			return null;
 		}
 
 		int digit = trueCandidates[0] % 9;
-		if ((map & CandMaps[digit]) is not [_, ..] elimMap)
+		if ((map & CandMaps[digit]) is not { Count: not 0 } elimMap)
 		{
 			return null;
 		}
@@ -172,7 +172,7 @@ public sealed unsafe class BivalueUniversalGraveStepSearcher : IBivalueUniversal
 		foreach (int region in map.CoveredRegions)
 		{
 			var regionMap = RegionMaps[region];
-			if (((regionMap & EmptyMap) - map) is not [_, ..] otherCellsMap)
+			if ((regionMap & EmptyMap) - map is not { Count: not 0 } otherCellsMap)
 			{
 				continue;
 			}
@@ -182,17 +182,13 @@ public sealed unsafe class BivalueUniversalGraveStepSearcher : IBivalueUniversal
 			{
 				foreach (var cells in otherCellsMap & size)
 				{
-					short mask = digitsMask;
-					foreach (int cell in cells)
-					{
-						mask |= grid.GetCandidates(cell);
-					}
+					short mask = (short)(digitsMask | grid.GetDigitsUnion(cells));
 					if (PopCount((uint)mask) != size + 1)
 					{
 						continue;
 					}
 
-					if (((regionMap - cells - map) & EmptyMap) is not [_, ..] elimMap)
+					if (((regionMap - cells - map) & EmptyMap) is not { Count: not 0 } elimMap)
 					{
 						continue;
 					}
