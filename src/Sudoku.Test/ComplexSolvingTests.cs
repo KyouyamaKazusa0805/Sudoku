@@ -1,0 +1,41 @@
+using Sudoku.Collections;
+using Xunit;
+using Xunit.Abstractions;
+
+namespace Sudoku.Test;
+
+/// <summary>
+/// Defines a set of tests that plays with parsing <see cref="Grid"/> instances.
+/// </summary>
+/// <seealso cref="Grid"/>
+public sealed class ComplexSolvingTests
+{
+	/// <summary>
+	/// Indicates the test code.
+	/// </summary>
+	private const string TestCode = "009300000+603819005870050000000000006408090102200000000000080053300526400000003600:717 718 719 444";
+
+	/// <summary>
+	/// Indicates the output helper instance.
+	/// </summary>
+	private readonly ITestOutputHelper _output;
+
+
+	/// <summary>
+	/// Initializes a <see cref="ComplexSolvingTests"/> instance via the specified output helper instance.
+	/// </summary>
+	/// <param name="output">The output helper instance.</param>
+	public ComplexSolvingTests(ITestOutputHelper output) => _output = output;
+
+
+	/// <summary>
+	/// Indicates the sample test.
+	/// </summary>
+	[Fact(Timeout = 20000)]
+	public void ChainingBasicMethodsTest()
+	{
+		var grid = Grid.Parse(TestCode);
+		var searcher = new Searcher(_output);
+		searcher.GetAll(grid);
+	}
+}
