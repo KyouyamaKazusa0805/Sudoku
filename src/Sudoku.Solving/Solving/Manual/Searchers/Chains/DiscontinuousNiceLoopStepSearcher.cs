@@ -16,7 +16,7 @@ namespace Sudoku.Solving.Manual.Searchers;
 /// <item>Alternating Inference Chain</item>
 /// </list>
 /// </summary>
-[StepSearcher]
+[StepSearcher(Deprecated = true)]
 public sealed unsafe class DiscontinuousNiceLoopStepSearcher : IDiscontinuousNiceLoopStepSearcher
 {
 	/// <summary>

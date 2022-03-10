@@ -1,6 +1,5 @@
 ﻿using System.ComponentModel;
 using Sudoku.Collections;
-using Sudoku.Presentation;
 
 namespace Sudoku;
 
