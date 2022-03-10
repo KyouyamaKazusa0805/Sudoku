@@ -6,6 +6,7 @@ namespace Sudoku.Test;
 /// <summary>
 /// Defines a set of tests that plays with parsing <see cref="Grid"/> instances.
 /// </summary>
+/// <seealso cref="Grid"/>
 public sealed class GridParsingTests
 {
 	/// <summary>
