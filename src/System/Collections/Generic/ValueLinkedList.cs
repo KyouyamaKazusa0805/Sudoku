@@ -18,18 +18,6 @@ public unsafe partial struct ValueLinkedList<TUnmanaged> where TUnmanaged : unma
 	}
 
 	/// <summary>
-	/// Initializes a <see cref="ValueLinkedList{T}"/> instance via the specified list of nodes to be added.
-	/// </summary>
-	/// <param name="listOfNodes">The list of nodes to be added.</param>
-	public ValueLinkedList(IEnumerable<ValueLinkedListNode<TUnmanaged>> listOfNodes) : this()
-	{
-		foreach (var element in listOfNodes)
-		{
-			Append(&element);
-		}
-	}
-
-	/// <summary>
 	/// Intializes a <see cref="ValueLinkedList{T}"/> instance via the specified reference value
 	/// that references to the first element of an enumerable list of elements to be added.
 	/// </summary>
@@ -128,7 +116,8 @@ public unsafe partial struct ValueLinkedList<TUnmanaged> where TUnmanaged : unma
 	/// <returns>A <see cref="bool"/> result indicating that.</returns>
 	/// <seealso cref="EqualityComparer{T}.Default"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public readonly bool Contains(TUnmanaged value, delegate*<TUnmanaged, TUnmanaged, bool> equalityComparer = null) =>
+	public readonly bool Contains(
+		TUnmanaged value, delegate*<TUnmanaged, TUnmanaged, bool> equalityComparer = null) =>
 		Find(value, equalityComparer) != null;
 
 	/// <summary>
@@ -137,7 +126,8 @@ public unsafe partial struct ValueLinkedList<TUnmanaged> where TUnmanaged : unma
 	/// <param name="value">The value to be checked and determined.</param>
 	/// <param name="equalityComparer">The equality comparer of type <typeparamref name="TUnmanaged"/>.</param>
 	/// <returns>The pointer value corresponding to the found node.</returns>
-	public readonly ValueLinkedListNode<TUnmanaged>* Find(TUnmanaged value, delegate*<TUnmanaged, TUnmanaged, bool> equalityComparer)
+	public readonly ValueLinkedListNode<TUnmanaged>* Find(
+		TUnmanaged value, delegate*<TUnmanaged, TUnmanaged, bool> equalityComparer = null)
 	{
 		var node = FirstUnsafe;
 		if (node != null)

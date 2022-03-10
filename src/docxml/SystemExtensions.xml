@@ -371,12 +371,6 @@
             Initializes a <see cref="T:System.Collections.Generic.ValueLinkedList`1"/> instance.
             </summary>
         </member>
-        <member name="M:System.Collections.Generic.ValueLinkedList`1.#ctor(System.Collections.Generic.IEnumerable{System.Collections.Generic.ValueLinkedListNode{`0}})">
-            <summary>
-            Initializes a <see cref="T:System.Collections.Generic.ValueLinkedList`1"/> instance via the specified list of nodes to be added.
-            </summary>
-            <param name="listOfNodes">The list of nodes to be added.</param>
-        </member>
         <member name="M:System.Collections.Generic.ValueLinkedList`1.#ctor(System.Collections.Generic.ValueLinkedListNode{`0}@,System.Int32)">
             <summary>
             Intializes a <see cref="T:System.Collections.Generic.ValueLinkedList`1" /> instance via the specified reference value
