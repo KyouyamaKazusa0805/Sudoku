@@ -1456,6 +1456,44 @@
         <member name="M:Sudoku.Collections.ChainNode.op_Inequality(Sudoku.Collections.ChainNode,Sudoku.Collections.ChainNode)">
             <inheritdoc/>
         </member>
+        <member name="T:Sudoku.Collections.ChainNodeBag">
+            <summary>
+            Defines a data structure that stores a set of chain nodes.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Collections.ChainNodeBag._capacity">
+            <summary>
+            Indicates the capacity.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Collections.ChainNodeBag._chainNodes">
+            <summary>
+            Indicates the inner data structure.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Collections.ChainNodeBag.#ctor">
+            <summary>
+            Creates a <see cref="T:Sudoku.Collections.ChainNodeBag"/> instance via the default capacity 16.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Collections.ChainNodeBag.Count">
+            <summary>
+            Indicates the length of the bag.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Collections.ChainNodeBag.Item(System.Int32)">
+            <summary>
+            Gets the chain node at the specified index.
+            </summary>
+            <param name="index">The index.</param>
+            <returns>The chain node at the specified index.</returns>
+        </member>
+        <member name="M:Sudoku.Collections.ChainNodeBag.Add(Sudoku.Collections.ChainNode)">
+            <summary>
+            Adds a <see cref="T:Sudoku.Collections.ChainNode"/> into the collection.
+            </summary>
+            <param name="next">The next node to be added into.</param>
+        </member>
         <member name="T:Sudoku.Collections.ChainNodeType">
             <summary>
             Defines a type of a chain node.

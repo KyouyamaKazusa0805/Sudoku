@@ -1,5 +1,7 @@
 ﻿using System.Buffers;
 using Sudoku.Collections;
+using Sudoku.Presentation;
+using Sudoku.Solving.Manual.Steps;
 using static System.Numerics.BitOperations;
 using static Sudoku.Constants.Tables;
 using static Sudoku.Solving.Manual.Buffer.FastProperties;
@@ -49,14 +51,19 @@ public sealed unsafe class DiscontinuousNiceLoopStepSearcher : IDiscontinuousNic
 	private readonly Dictionary<int, ChainNode> _idNodeLookup = new();
 
 	/// <summary>
-	/// Indicates the cached nodes.
+	/// Indicates the possible chains.
 	/// </summary>
-	private ValueLinkedListNode<int>[] _cachedNodes = null!;
+	private readonly List<ChainNodeBag> _chains = new();
 
 	/// <summary>
 	/// Indicates the global index of the cached nodes.
 	/// </summary>
 	private int _cachedNodesGlobalIndex;
+
+	/// <summary>
+	/// Indicates the cached nodes.
+	/// </summary>
+	private ValueLinkedListNode<int>[] _cachedNodes = null!;
 
 
 	/// <inheritdoc/>
@@ -98,6 +105,7 @@ public sealed unsafe class DiscontinuousNiceLoopStepSearcher : IDiscontinuousNic
 		_weakInferences.Clear();
 		_nodeIdLookup.Clear();
 		_idNodeLookup.Clear();
+		_chains.Clear();
 
 		_cachedNodes = ArrayPool<ValueLinkedListNode<int>>.Shared.Rent(MaxCapacity);
 		_cachedNodesGlobalIndex = 0;
@@ -120,7 +128,7 @@ public sealed unsafe class DiscontinuousNiceLoopStepSearcher : IDiscontinuousNic
 			_weakInferences.Add(id, weakInferences);
 		}
 
-		// TODO: Start iteration on construction of chains.
+		// Start iteration on construction of chains.
 		// Design notes: Our goal is to find discontinuous nice loops instead of the normal AICs.
 		// The discontinuous nice loops can be separated to 2 types:
 		// Type 1:
@@ -134,6 +142,36 @@ public sealed unsafe class DiscontinuousNiceLoopStepSearcher : IDiscontinuousNic
 		//   B - C
 		//
 		// Therefore, we shoud check on both cases.
+		var chain = new ValueLinkedList<int>();
+		ChainingWithWeakStart(ref chain);
+
+		// Checks whether the result collection is not empty.
+		if (_chains.Count == 0)
+		{
+			return null;
+		}
+
+		// Iterate on each chain, and store them into the target step.
+		foreach (var currentChain in _chains)
+		{
+			var first = currentChain[0];
+			var step = new DiscontinuousNiceLoopStep(
+				ImmutableArray.Create(new Conclusion(ConclusionType.Elimination, first.Cell, first.Digit)),
+				ImmutableArray.Create<PresentationData>(/*new PresentationData
+				{
+					Candidates = GetCandidateOffsets(currentChain),
+					Links = GetLinks(currentChain)
+				}*/),
+				currentChain
+			);
+
+			if (onlyFindOne)
+			{
+				return step;
+			}
+
+			accumulator.Add(step);
+		}
 
 		// Release the memory.
 		ArrayPool<ValueLinkedListNode<int>>.Shared.Return(_cachedNodes);
@@ -176,7 +214,7 @@ public sealed unsafe class DiscontinuousNiceLoopStepSearcher : IDiscontinuousNic
 		_ = current is { Cell: var cell, Digit: var digit };
 
 		// Gets the bi-location regions (i.e. conjugate pairs).
-		for (var label = Region.Block; label <= Region.Column; label++)
+		foreach (var label in Regions)
 		{
 			short posMask = 0;
 			int region = cell.ToRegionIndex(label);
@@ -192,8 +230,8 @@ public sealed unsafe class DiscontinuousNiceLoopStepSearcher : IDiscontinuousNic
 			if (PopCount((uint)posMask) == 2)
 			{
 				// Found.
-				int anotherCell = ((RegionMaps[region] & CandMaps[digit]) - cell)[0];
-				int nextId = _nodeIdLookup[ChainNode.FromSingleCandidate(digit, (byte)anotherCell)];
+				int theOtherCell = ((RegionMaps[region] & CandMaps[digit]) - cell)[0];
+				int nextId = _nodeIdLookup[ChainNode.FromSingleCandidate(digit, (byte)theOtherCell)];
 
 				ref var linkedListNode = ref _cachedNodes[_cachedNodesGlobalIndex];
 				linkedListNode = new(nextId);
@@ -206,8 +244,8 @@ public sealed unsafe class DiscontinuousNiceLoopStepSearcher : IDiscontinuousNic
 		// Gets the bi-value cells.
 		if (BivalueMap.Contains(cell))
 		{
-			int anotherDigit = TrailingZeroCount(grid.GetCandidates(cell) & ~(1 << digit));
-			int nextId = _nodeIdLookup[ChainNode.FromSingleCandidate((byte)anotherDigit, cell)];
+			int theOtherDigit = TrailingZeroCount(grid.GetCandidates(cell) & ~(1 << digit));
+			int nextId = _nodeIdLookup[ChainNode.FromSingleCandidate((byte)theOtherDigit, cell)];
 
 			ref var linkedListNode = ref _cachedNodes[_cachedNodesGlobalIndex];
 			linkedListNode = new(nextId);
@@ -227,6 +265,219 @@ public sealed unsafe class DiscontinuousNiceLoopStepSearcher : IDiscontinuousNic
 	/// </param>
 	private void GatherWeak_Single(in Grid grid, in ChainNode current, ref ValueLinkedList<int> weakInferences)
 	{
+		_ = current is { Cell: var cell, Digit: var digit };
 
+		foreach (var label in Regions)
+		{
+			int region = cell.ToRegionIndex(label);
+			foreach (int anotherCell in (RegionMaps[region] & CandMaps[digit]) - cell)
+			{
+				int nextId = _nodeIdLookup[ChainNode.FromSingleCandidate(digit, (byte)anotherCell)];
+
+				ref var linkedListNode = ref _cachedNodes[_cachedNodesGlobalIndex];
+				linkedListNode = new(nextId);
+				weakInferences.Append((ValueLinkedListNode<int>*)Unsafe.AsPointer(ref linkedListNode));
+
+				_cachedNodesGlobalIndex++;
+			}
+		}
+
+		foreach (int anotherDigit in (short)(grid.GetCandidates(cell) & (short)~(1 << digit)))
+		{
+			int nextId = _nodeIdLookup[ChainNode.FromSingleCandidate((byte)anotherDigit, cell)];
+
+			ref var linkedListNode = ref _cachedNodes[_cachedNodesGlobalIndex];
+			linkedListNode = new(nextId);
+			weakInferences.Append((ValueLinkedListNode<int>*)Unsafe.AsPointer(ref linkedListNode));
+
+			_cachedNodesGlobalIndex++;
+		}
 	}
+
+	/// <summary>
+	/// Start the chaining, with weak inference as the next node.
+	/// </summary>
+	/// <param name="chain">The chain.</param>
+	private void ChainingWithWeakStart(ref ValueLinkedList<int> chain)
+	{
+		foreach (var (id, weakIds) in _weakInferences)
+		{
+			// Append the start node.
+			ref var linkedListNode = ref _cachedNodes[_cachedNodesGlobalIndex];
+			linkedListNode = new(id);
+			chain.Append((ValueLinkedListNode<int>*)Unsafe.AsPointer(ref linkedListNode));
+
+			foreach (int weakId in weakIds)
+			{
+				// Append the next node.
+				ref var nextLinkedListNode = ref _cachedNodes[_cachedNodesGlobalIndex];
+				nextLinkedListNode = new(weakId);
+				chain.Append((ValueLinkedListNode<int>*)Unsafe.AsPointer(ref nextLinkedListNode));
+
+				// Iterate on strong inference of this node.
+				ChainingWithStrong(ref chain, id);
+
+				// Remove the node.
+				_cachedNodesGlobalIndex--;
+				chain.RemoveLast();
+			}
+
+			// Remove the node.
+			_cachedNodesGlobalIndex--;
+			chain.Remove(id, &IntegerComparer);
+		}
+	}
+
+	/// <summary>
+	/// Continue to construct the chain via the specified ID as the current node.
+	/// </summary>
+	/// <param name="chain">The collection that stores the nodes currently.</param>
+	/// <param name="id">The ID as the current node.</param>
+	private void ChainingWithStrong(ref ValueLinkedList<int> chain, int id)
+	{
+		foreach (int nextId in _strongInferences[id])
+		{
+			// Checks whether the ID iterated has already been stored in the chain collection.
+			if (chain.Contains(nextId, &IntegerComparer))
+			{
+				continue;
+			}
+
+			// Append the start node.
+			ref var linkedListNode = ref _cachedNodes[_cachedNodesGlobalIndex];
+			linkedListNode = new(nextId);
+			chain.Append((ValueLinkedListNode<int>*)Unsafe.AsPointer(ref linkedListNode));
+
+			// Iterate on the weak inference of this node.
+			ChainingWithWeak(ref chain, nextId);
+
+			// Remove the node.
+			_cachedNodesGlobalIndex--;
+			chain.Remove(nextId, &IntegerComparer);
+		}
+	}
+
+	/// <summary>
+	/// Continue to construct the chain via the specified ID as the current node.
+	/// </summary>
+	/// <param name="chain">The collection that stores the nodes currently.</param>
+	/// <param name="id">The ID as the current node.</param>
+	private void ChainingWithWeak(ref ValueLinkedList<int> chain, int id)
+	{
+		foreach (int nextId in _weakInferences[id])
+		{
+			// Append the start node.
+			ref var linkedListNode = ref _cachedNodes[_cachedNodesGlobalIndex];
+			linkedListNode = new(nextId);
+			chain.Append((ValueLinkedListNode<int>*)Unsafe.AsPointer(ref linkedListNode));
+
+			// Checks the validity of the chain.
+			if (chain.First.Data is var startId && startId == nextId)
+			{
+				var bag = new ChainNodeBag();
+				foreach (int currentId in chain)
+				{
+					bag.Add(_idNodeLookup[currentId]);
+				}
+
+				_chains.Add(bag);
+			}
+
+			// Iterate on strong inference of this node.
+			ChainingWithStrong(ref chain, nextId);
+
+			// Remove the node.
+			_cachedNodesGlobalIndex--;
+			chain.Remove(nextId, &IntegerComparer);
+		}
+	}
+
+	/// <summary>
+	/// Get highlight candidate offsets through the specified target node.
+	/// </summary>
+	/// <param name="target">The target node.</param>
+	/// <param name="isSimpleAic">
+	/// Indicates whether the current caller is in <see cref="IAlternatingInferenceChainStepSearcher"/>.
+	/// The default value is <see langword="false"/>.
+	/// </param>
+	/// <returns>The candidate offsets.</returns>
+	/// <seealso cref="IAlternatingInferenceChainStepSearcher"/>
+	private static IList<(int, ColorIdentifier)> GetCandidateOffsets(Node target, bool isSimpleAic = false)
+	{
+		var result = new List<(int, ColorIdentifier)>();
+		var chain = target.WholeChain;
+		var (pCandidate, _) = chain.Top;
+		if (!isSimpleAic)
+		{
+			result.Add((pCandidate, (ColorIdentifier)2));
+		}
+
+		for (int i = 0, count = chain.Count; i < count; i++)
+		{
+			if (chain[i].Parents is { } parents)
+			{
+				foreach (var pr in parents)
+				{
+					var (prCandidate, prIsOn) = pr;
+					if (isSimpleAic && i != count - 2 || !isSimpleAic)
+					{
+						var pair = (prCandidate, (ColorIdentifier)(prIsOn ? 1 : 0));
+						if (!result.Contains(pair))
+						{
+							result.Add(pair);
+						}
+					}
+				}
+			}
+		}
+
+		return result;
+	}
+
+	/// <summary>
+	/// Get the links through the specified target node.
+	/// </summary>
+	/// <param name="target">The target node.</param>
+	/// <param name="showAllLinks">
+	/// Indicates whether the current chain will display all chains (even contains the weak links
+	/// from the elimination node). The default value is <see langword="false"/>. If you want to
+	/// draw the AIC, the elimination weak links don't need drawing.
+	/// </param>
+	/// <returns>The link.</returns>
+	private static IList<(Link, ColorIdentifier)> GetLinks(Node target, bool showAllLinks = false)
+	{
+		var result = new List<(Link, ColorIdentifier)>();
+		var chain = target.WholeChain;
+		for (int i = showAllLinks ? 0 : 1, count = chain.Count - (showAllLinks ? 0 : 2); i < count; i++)
+		{
+			var p = chain[i];
+			var (pCandidate, pIsOn) = p;
+			var parents = p.Parents;
+			for (int j = 0, parentsCount = parents?.Length ?? 0; j < parentsCount; j++)
+			{
+				var (prCandidate, prIsOn) = parents![j];
+				result.Add(
+					(
+						new(pCandidate, prCandidate, (A: prIsOn, B: pIsOn) switch
+						{
+							(A: false, B: true) => LinkKind.Strong,
+							(A: true, B: false) => LinkKind.Weak,
+							_ => LinkKind.Default
+						}),
+						(ColorIdentifier)0
+					)
+				);
+			}
+		}
+
+		return result;
+	}
+
+	/// <summary>
+	/// Compares two integers.
+	/// </summary>
+	/// <param name="a">The first integer to compare.</param>
+	/// <param name="b">The second integer to compare.</param>
+	/// <returns>The <see cref="bool"/> result.</returns>
+	private static bool IntegerComparer(int a, int b) => a == b;
 }

@@ -458,12 +458,9 @@
             </summary>
             <param name="value">The value to be checked and compared.</param>
             <param name="equalityComparer">
-            <para>
             The custom comparer method that operates and compares two instances of type <typeparamref name="TUnmanaged"/>,
             to determine whether they hold same value. If <see langword="null"/>, the default equality comparer
             <see cref="P:System.Collections.Generic.EqualityComparer`1.Default"/> will be used and invoked.
-            </para>
-            <para>The default value is <see langword="null"/>.</para>
             </param>
             <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
             <seealso cref="P:System.Collections.Generic.EqualityComparer`1.Default"/>

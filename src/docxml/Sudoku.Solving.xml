@@ -2415,14 +2415,19 @@
             Indicates the lookup table instance that can get the node instance from the specified ID value.
             </summary>
         </member>
-        <member name="F:Sudoku.Solving.Manual.Searchers.DiscontinuousNiceLoopStepSearcher._cachedNodes">
+        <member name="F:Sudoku.Solving.Manual.Searchers.DiscontinuousNiceLoopStepSearcher._chains">
             <summary>
-            Indicates the cached nodes.
+            Indicates the possible chains.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Manual.Searchers.DiscontinuousNiceLoopStepSearcher._cachedNodesGlobalIndex">
             <summary>
             Indicates the global index of the cached nodes.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.Searchers.DiscontinuousNiceLoopStepSearcher._cachedNodes">
+            <summary>
+            Indicates the cached nodes.
             </summary>
         </member>
         <member name="P:Sudoku.Solving.Manual.Searchers.DiscontinuousNiceLoopStepSearcher.Options">
@@ -2484,6 +2489,58 @@
             <param name="weakInferences">
             The linked list to store the weak inferences for the specified candidate.
             </param>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Searchers.DiscontinuousNiceLoopStepSearcher.ChainingWithWeakStart(System.Collections.Generic.ValueLinkedList{System.Int32}@)">
+            <summary>
+            Start the chaining, with weak inference as the next node.
+            </summary>
+            <param name="chain">The chain.</param>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Searchers.DiscontinuousNiceLoopStepSearcher.ChainingWithStrong(System.Collections.Generic.ValueLinkedList{System.Int32}@,System.Int32)">
+            <summary>
+            Continue to construct the chain via the specified ID as the current node.
+            </summary>
+            <param name="chain">The collection that stores the nodes currently.</param>
+            <param name="id">The ID as the current node.</param>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Searchers.DiscontinuousNiceLoopStepSearcher.ChainingWithWeak(System.Collections.Generic.ValueLinkedList{System.Int32}@,System.Int32)">
+            <summary>
+            Continue to construct the chain via the specified ID as the current node.
+            </summary>
+            <param name="chain">The collection that stores the nodes currently.</param>
+            <param name="id">The ID as the current node.</param>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Searchers.DiscontinuousNiceLoopStepSearcher.GetCandidateOffsets(Sudoku.Node,System.Boolean)">
+            <summary>
+            Get highlight candidate offsets through the specified target node.
+            </summary>
+            <param name="target">The target node.</param>
+            <param name="isSimpleAic">
+            Indicates whether the current caller is in <see cref="T:Sudoku.Solving.Manual.Searchers.IAlternatingInferenceChainStepSearcher"/>.
+            The default value is <see langword="false"/>.
+            </param>
+            <returns>The candidate offsets.</returns>
+            <seealso cref="T:Sudoku.Solving.Manual.Searchers.IAlternatingInferenceChainStepSearcher"/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Searchers.DiscontinuousNiceLoopStepSearcher.GetLinks(Sudoku.Node,System.Boolean)">
+            <summary>
+            Get the links through the specified target node.
+            </summary>
+            <param name="target">The target node.</param>
+            <param name="showAllLinks">
+            Indicates whether the current chain will display all chains (even contains the weak links
+            from the elimination node). The default value is <see langword="false"/>. If you want to
+            draw the AIC, the elimination weak links don't need drawing.
+            </param>
+            <returns>The link.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Searchers.DiscontinuousNiceLoopStepSearcher.IntegerComparer(System.Int32,System.Int32)">
+            <summary>
+            Compares two integers.
+            </summary>
+            <param name="a">The first integer to compare.</param>
+            <param name="b">The second integer to compare.</param>
+            <returns>The <see cref="T:System.Boolean"/> result.</returns>
         </member>
         <member name="T:Sudoku.Solving.Manual.Searchers.ForcingChainStepSearcher">
             <summary>
@@ -5966,6 +6023,88 @@
             <summary>
             Indicates whether the specified cycle is an X-Cycle.
             </summary>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Steps.DiscontinuousNiceLoopStep">
+            <summary>
+            Provides with a step that is a <b>Chain</b> technique.
+            </summary>
+            <param name="Conclusions"><inheritdoc/></param>
+            <param name="Views"><inheritdoc/></param>
+            <param name="Chain">Indicates the whole chain.</param>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Steps.DiscontinuousNiceLoopStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.PresentationData},Sudoku.Collections.ChainNodeBag)">
+            <summary>
+            Provides with a step that is a <b>Chain</b> technique.
+            </summary>
+            <param name="Conclusions"><inheritdoc/></param>
+            <param name="Views"><inheritdoc/></param>
+            <param name="Chain">Indicates the whole chain.</param>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.DiscontinuousNiceLoopStep.Chain">
+            <summary>Indicates the whole chain.</summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.DiscontinuousNiceLoopStep.Difficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.DiscontinuousNiceLoopStep.FlatComplexity">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.DiscontinuousNiceLoopStep.TechniqueGroup">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.DiscontinuousNiceLoopStep.TechniqueTags">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.DiscontinuousNiceLoopStep.TechniqueCode">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.DiscontinuousNiceLoopStep.DifficultyLevel">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.DiscontinuousNiceLoopStep.Rarity">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.DiscontinuousNiceLoopStep.SortKey">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.DiscontinuousNiceLoopStep.IsXyChain">
+            <summary>
+            Indicates whether the specified chain is an XY-Chain.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.DiscontinuousNiceLoopStep.IsXChain">
+            <summary>
+            Indicates whether the specified chain is an X-Chain.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.DiscontinuousNiceLoopStep.IsMWing">
+            <summary>
+            Indicates whether the chain is M-Wing (<c>(x = y) - y = (y - x) = x</c>).
+            </summary>
+            <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.DiscontinuousNiceLoopStep.IsSplitWing">
+            <summary>
+            Indicates whether the chain is Split-Wing (<c>x = x - (x = y) - y = y</c>).
+            </summary>
+            <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.DiscontinuousNiceLoopStep.IsHybridWing">
+            <summary>
+            Indicates whether the chain is Hybrid-Wing.
+            This wing has two types:
+            <list type="bullet">
+            <item><c>(x = y) - y = (y - z) = z</c></item>
+            <item><c>(x = y) - (y = z) - z = z</c></item>
+            </list>
+            </summary>
+            <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.DiscontinuousNiceLoopStep.IsLocalWing">
+            <summary>
+            Indicates whether the chain is Local-Wing (<c>x = (x - z) = (z - y) = y</c>).
+            </summary>
+            <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
         </member>
         <member name="T:Sudoku.Solving.Manual.Steps.BinaryChainingStep">
             <summary>

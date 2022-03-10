@@ -106,18 +106,14 @@ public unsafe partial struct ValueLinkedList<TUnmanaged> where TUnmanaged : unma
 	/// </summary>
 	/// <param name="value">The value to be checked and compared.</param>
 	/// <param name="equalityComparer">
-	/// <para>
 	/// The custom comparer method that operates and compares two instances of type <typeparamref name="TUnmanaged"/>,
 	/// to determine whether they hold same value. If <see langword="null"/>, the default equality comparer
 	/// <see cref="EqualityComparer{T}.Default"/> will be used and invoked.
-	/// </para>
-	/// <para>The default value is <see langword="null"/>.</para>
 	/// </param>
 	/// <returns>A <see cref="bool"/> result indicating that.</returns>
 	/// <seealso cref="EqualityComparer{T}.Default"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public readonly bool Contains(
-		TUnmanaged value, delegate*<TUnmanaged, TUnmanaged, bool> equalityComparer = null) =>
+	public readonly bool Contains(TUnmanaged value, delegate*<TUnmanaged, TUnmanaged, bool> equalityComparer) =>
 		Find(value, equalityComparer) != null;
 
 	/// <summary>
@@ -127,7 +123,7 @@ public unsafe partial struct ValueLinkedList<TUnmanaged> where TUnmanaged : unma
 	/// <param name="equalityComparer">The equality comparer of type <typeparamref name="TUnmanaged"/>.</param>
 	/// <returns>The pointer value corresponding to the found node.</returns>
 	public readonly ValueLinkedListNode<TUnmanaged>* Find(
-		TUnmanaged value, delegate*<TUnmanaged, TUnmanaged, bool> equalityComparer = null)
+		TUnmanaged value, delegate*<TUnmanaged, TUnmanaged, bool> equalityComparer)
 	{
 		var node = FirstUnsafe;
 		if (node != null)
@@ -155,7 +151,7 @@ public unsafe partial struct ValueLinkedList<TUnmanaged> where TUnmanaged : unma
 	/// <param name="equalityComparer">The equality comparer of type <typeparamref name="TUnmanaged"/>.</param>
 	/// <returns>The pointer value corresponding to the found node.</returns>
 	public readonly ValueLinkedListNode<TUnmanaged>* FindLast(
-		TUnmanaged value, delegate*<TUnmanaged, TUnmanaged, bool> equalityComparer = null)
+		TUnmanaged value, delegate*<TUnmanaged, TUnmanaged, bool> equalityComparer)
 	{
 		if (FirstUnsafe == null)
 		{
@@ -272,7 +268,7 @@ public unsafe partial struct ValueLinkedList<TUnmanaged> where TUnmanaged : unma
 	/// <param name="equalityComparer">
 	/// The method that checks whether two instances of type <typeparamref name="TUnmanaged"/> hold same value.
 	/// </param>
-	public void Remove(TUnmanaged value, delegate*<TUnmanaged, TUnmanaged, bool> equalityComparer = null)
+	public void Remove(TUnmanaged value, delegate*<TUnmanaged, TUnmanaged, bool> equalityComparer)
 	{
 		var node = Find(value, equalityComparer);
 		if (node != null)
