@@ -40,9 +40,6 @@ public readonly struct ChainNode :
 			Type == ChainNodeType.Sole
 				? (byte)(Mask & 81)
 				: throw new InvalidOperationException("The chain node type is invalid.");
-
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		private init => Mask |= value;
 	}
 
 	/// <summary>
@@ -58,9 +55,6 @@ public readonly struct ChainNode :
 			Type == ChainNodeType.Sole
 				? (byte)(Mask >> 56 & 15)
 				: throw new InvalidOperationException("The chain node type is invalid.");
-
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		private init => Mask |= (long)value << 56;
 	}
 
 	/// <summary>
@@ -68,7 +62,7 @@ public readonly struct ChainNode :
 	/// please visit the type <see cref="ChainNodeType"/>.
 	/// </summary>
 	/// <seealso cref="ChainNodeType"/>
-	public long Mask { get; private init; }
+	public long Mask { get; }
 
 
 	/// <inheritdoc/>
@@ -85,7 +79,7 @@ public readonly struct ChainNode :
 	public override int GetHashCode() =>
 		Type switch
 		{
-			ChainNodeType.Sole => Cell * 9 + Digit,
+			ChainNodeType.Sole => Cell * 9 + Digit + 131415,
 			_ => 0 // Undefined.
 		};
 
@@ -108,13 +102,7 @@ public readonly struct ChainNode :
 	/// <returns>The <see cref="ChainNode"/> instance.</returns>
 	/// <seealso cref="ChainNodeType.Sole"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static ChainNode FromSingleCandidate(byte digit, byte cell) =>
-#if true
-		new((long)digit << 56 | cell);
-#else
-		// More clear but slower.
-		new() { Cell = cell, Digit = digit };
-#endif
+	public static ChainNode FromSingleCandidate(byte digit, byte cell) => new((long)digit << 56 | cell);
 
 
 	/// <inheritdoc/>
