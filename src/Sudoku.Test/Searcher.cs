@@ -12,6 +12,7 @@ internal sealed class Searcher
 	private readonly Dictionary<int, HashSet<int>?> _weakInferences = new();
 	private readonly Dictionary<int, Node> _id2NodeLookup = new();
 	private readonly Dictionary<Node, int> _node2IdLookup = new();
+	private readonly List<int[]> _foundChains = new();
 	private readonly ITestOutputHelper _output;
 
 	public Searcher(ITestOutputHelper output) => _output = output;
@@ -23,6 +24,7 @@ internal sealed class Searcher
 		_weakInferences.Clear();
 		_id2NodeLookup.Clear();
 		_node2IdLookup.Clear();
+		_foundChains.Clear();
 
 		// Gather the basic information on basic nodes.
 		int id = 0;
@@ -45,11 +47,20 @@ internal sealed class Searcher
 			GetWeak(node, grid, candidate);
 		}
 
-		// Test the result and output the test result.
-		PrintStringInferences(_strongInferences);
-		PrintStringInferences(_weakInferences);
+		// Construct chains.
+		StartWithWeak();
+		StartWithStrong();
 
-		// TODO: Construct chains.
+		// Output the result.
+		foreach (int[] foundChain in _foundChains)
+		{
+			string result = string.Join(
+				" -> ",
+				from foundChainId in foundChain select _id2NodeLookup[foundChainId].ToSimpleString()
+			);
+
+			_output.WriteLine(result);
+		}
 	}
 
 	private void GetStrong(Node currentNode, in Grid grid, int candidate)
@@ -107,6 +118,167 @@ internal sealed class Searcher
 		_weakInferences[_node2IdLookup[currentNode]] = list;
 	}
 
+	private void StartWithWeak()
+	{
+		var chain = new List<int>();
+		foreach (var (id, nextIds) in _weakInferences)
+		{
+			if (nextIds is null)
+			{
+				continue;
+			}
+
+			chain.Add(id);
+
+			foreach (int nextId in nextIds)
+			{
+				chain.Add(nextId);
+
+				nextStrong(nextId);
+
+				chain.RemoveAt(chain.Count - 1);
+			}
+
+			chain.RemoveAt(chain.Count - 1);
+		}
+
+
+		void nextStrong(int id)
+		{
+			if (_strongInferences[id] is not { } nextIds)
+			{
+				return;
+			}
+
+			foreach (int nextId in nextIds)
+			{
+				if (chain.Contains(nextId))
+				{
+					continue;
+				}
+
+				chain.Add(nextId);
+
+				nextWeak(nextId);
+
+				chain.RemoveAt(chain.Count - 1);
+			}
+		}
+
+		void nextWeak(int id)
+		{
+			if (_weakInferences[id] is not { } nextIds)
+			{
+				return;
+			}
+
+			foreach (int nextId in nextIds)
+			{
+				if (chain[0] == nextId)
+				{
+					// Found.
+					int[] finalArray = new int[chain.Count + 1];
+					chain.CopyTo(finalArray);
+					finalArray[^1] = nextId;
+
+					_foundChains.Add(finalArray);
+				}
+
+				if (chain.Contains(nextId))
+				{
+					continue;
+				}
+
+				chain.Add(nextId);
+
+				nextStrong(nextId);
+
+				chain.RemoveAt(chain.Count - 1);
+			}
+		}
+	}
+
+	private void StartWithStrong()
+	{
+		var chain = new List<int>();
+		foreach (var (id, nextIds) in _strongInferences)
+		{
+			if (nextIds is null)
+			{
+				continue;
+			}
+
+			chain.Add(id);
+
+			foreach (int nextId in nextIds)
+			{
+				chain.Add(nextId);
+
+				nextWeak(nextId);
+
+				chain.RemoveAt(chain.Count - 1);
+			}
+
+			chain.RemoveAt(chain.Count - 1);
+		}
+
+
+		void nextWeak(int id)
+		{
+			if (_weakInferences[id] is not { } nextIds)
+			{
+				return;
+			}
+
+			foreach (int nextId in nextIds)
+			{
+				if (chain.Contains(nextId))
+				{
+					continue;
+				}
+
+				chain.Add(nextId);
+
+				nextStrong(nextId);
+
+				chain.RemoveAt(chain.Count - 1);
+			}
+		}
+
+		void nextStrong(int id)
+		{
+			if (_strongInferences[id] is not { } nextIds)
+			{
+				return;
+			}
+
+			foreach (int nextId in nextIds)
+			{
+				if (chain[0] == chain[^1])
+				{
+					// Found.
+					int[] finalArray = new int[chain.Count + 1];
+					chain.CopyTo(finalArray);
+					finalArray[^1] = nextId;
+
+					_foundChains.Add(finalArray);
+				}
+
+				if (chain.Contains(nextId))
+				{
+					continue;
+				}
+
+				chain.Add(nextId);
+
+				nextWeak(nextId);
+
+				chain.RemoveAt(chain.Count - 1);
+			}
+		}
+	}
+
+	[SuppressMessage("CodeQuality", "IDE0051:Remove unused private members", Justification = "<Pending>")]
 	private void PrintStringInferences(Dictionary<int, HashSet<int>?> inferences)
 	{
 		var sb = new StringHandler();
