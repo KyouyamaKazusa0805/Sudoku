@@ -55,7 +55,7 @@ public sealed class SoleCandidateNode : Node
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public override int GetHashCode() => ((int)Type << 1) + Cell * 9 + Digit;
+	public override int GetHashCode() => Cell * 9 + Digit;
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

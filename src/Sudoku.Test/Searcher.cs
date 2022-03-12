@@ -7,16 +7,99 @@ namespace Sudoku.Test;
 
 internal sealed class Searcher
 {
-	private const string Separator = ", ";
+	/// <summary>
+	/// Indicates the field that stores the temporary strong inferences during the searching.
+	/// </summary>
+	/// <remarks>
+	/// The value uses a <see cref="Dictionary{TKey, TValue}"/> to store the table of strong inferences, where:
+	/// <list type="table">
+	/// <listheader>
+	/// <term>Item</term>
+	/// <description>Meaning</description>
+	/// </listheader>
+	/// <item>
+	/// <term>Key</term>
+	/// <description>The ID of a node.</description>
+	/// </item>
+	/// <item>
+	/// <term>Value</term>
+	/// <description>
+	/// All possible IDs that corresponds to their own node respectively,
+	/// one of which can form a strong inference with the <b>Key</b> node.
+	/// </description>
+	/// </item>
+	/// </list>
+	/// </remarks>
+	/// <seealso cref="Dictionary{TKey, TValue}"/>
 	private readonly Dictionary<int, HashSet<int>?> _strongInferences = new();
+
+	/// <summary>
+	/// Indicates the field that stores the temporary weak inferences during the searching.
+	/// </summary>
+	/// <remarks>
+	/// The value uses a <see cref="Dictionary{TKey, TValue}"/> to store the table of weak inferences, where:
+	/// <list type="table">
+	/// <listheader>
+	/// <term>Item</term>
+	/// <description>Meaning</description>
+	/// </listheader>
+	/// <item>
+	/// <term>Key</term>
+	/// <description>The ID of a node.</description>
+	/// </item>
+	/// <item>
+	/// <term>Value</term>
+	/// <description>
+	/// All possible IDs that corresponds to their own node respectively,
+	/// one of which can form a weak inference with the <b>Key</b> node.
+	/// </description>
+	/// </item>
+	/// </list>
+	/// </remarks>
+	/// <seealso cref="Dictionary{TKey, TValue}"/>
 	private readonly Dictionary<int, HashSet<int>?> _weakInferences = new();
+
+	/// <summary>
+	/// Indicates the lookup table that can get the target <see cref="Node"/> instance
+	/// via the corresponding ID value.
+	/// </summary>
+	/// <seealso cref="Node"/>
 	private readonly Dictionary<int, Node> _id2NodeLookup = new();
+
+	/// <summary>
+	/// Indicates the lookup table that can get the target ID value
+	/// via the corresponding <see cref="Node"/> instance.
+	/// </summary>
+	/// <seealso cref="Node"/>
 	private readonly Dictionary<Node, int> _node2IdLookup = new();
+
+	/// <summary>
+	/// Indicates all possible found chains, that stores the IDs of the each node.
+	/// </summary>
 	private readonly List<int[]> _foundChains = new();
+
+	/// <summary>
+	/// Indicates the output instance that can allow displaying the customized items onto the test explorer.
+	/// </summary>
 	private readonly ITestOutputHelper _output;
 
+
+	/// <summary>
+	/// Initializes a <see cref="Searcher"/> instance via the <see cref="ITestOutputHelper"/> instance
+	/// to allow displaying the customized items onto the test explorer.
+	/// </summary>
+	/// <param name="output">
+	/// The <see cref="ITestOutputHelper"/> instance
+	/// that allows displaying the customized items onto the test explorer.
+	/// </param>
+	/// <seealso cref="ITestOutputHelper"/>
 	public Searcher(ITestOutputHelper output) => _output = output;
 
+
+	/// <summary>
+	/// Get all possible chain steps.
+	/// </summary>
+	/// <param name="grid">The grid used.</param>
 	public void GetAll(in Grid grid)
 	{
 		// Clear all possible lists.
@@ -63,6 +146,30 @@ internal sealed class Searcher
 		}
 	}
 
+	/// <summary>
+	/// <para>
+	/// Try to get all possible strong inferences for a specified <see cref="Node"/> instance,
+	/// and record them to store into the field <see cref="_strongInferences"/>.
+	/// </para>
+	/// <para>
+	/// In addition, the result value is a dictionary that stores a key-value pair,
+	/// where the key is an <see cref="int"/> corresponding to the current node, and the value
+	/// is an unduplicated collection of IDs corresponding to their own node.
+	/// </para>
+	/// <para>
+	/// All elements in the value of the key-value pair are the possible nodes that can form
+	/// the strong inferences with that <see cref="Node"/> instance.
+	/// </para>
+	/// </summary>
+	/// <param name="currentNode">
+	/// The node, which is the target node that can form a strong inference with arbitary one
+	/// node in the unduplicated collection mentioned above.
+	/// </param>
+	/// <param name="grid">
+	/// The grid that is used for checking whether the two nodes form a strong inference.
+	/// </param>
+	/// <param name="candidate">The candidate of the node used.</param>
+	/// <seealso cref="_strongInferences"/>
 	private void GetStrong(Node currentNode, in Grid grid, int candidate)
 	{
 		byte cell = (byte)(candidate / 9), digit = (byte)(candidate % 9);
@@ -95,6 +202,30 @@ internal sealed class Searcher
 		_strongInferences[_node2IdLookup[currentNode]] = list;
 	}
 
+	/// <summary>
+	/// <para>
+	/// Try to get all possible weak inferences for a specified <see cref="Node"/> instance,
+	/// and record them to store into the field <see cref="_weakInferences"/>.
+	/// </para>
+	/// <para>
+	/// In addition, the result value is a dictionary that stores a key-value pair,
+	/// where the key is an <see cref="int"/> corresponding to the current node, and the value
+	/// is an unduplicated collection of IDs corresponding to their own node.
+	/// </para>
+	/// <para>
+	/// All elements in the value of the key-value pair are the possible nodes that can form
+	/// the weak inferences with that <see cref="Node"/> instance.
+	/// </para>
+	/// </summary>
+	/// <param name="currentNode">
+	/// The node, which is the target node that can form a weak inference with arbitary one
+	/// node in the unduplicated collection mentioned above.
+	/// </param>
+	/// <param name="grid">
+	/// The grid that is used for checking whether the two nodes form a weak inference.
+	/// </param>
+	/// <param name="candidate">The candidate of the node used.</param>
+	/// <seealso cref="_weakInferences"/>
 	private void GetWeak(Node currentNode, in Grid grid, int candidate)
 	{
 		byte cell = (byte)(candidate / 9), digit = (byte)(candidate % 9);
@@ -118,6 +249,9 @@ internal sealed class Searcher
 		_weakInferences[_node2IdLookup[currentNode]] = list;
 	}
 
+	/// <summary>
+	/// Start to construct the chain, with the weak inference as the beginning node.
+	/// </summary>
 	private void StartWithWeak()
 	{
 		var chain = new List<int>();
@@ -198,6 +332,9 @@ internal sealed class Searcher
 		}
 	}
 
+	/// <summary>
+	/// Start to construct the chain, with the strong inference as the beginning node.
+	/// </summary>
 	private void StartWithStrong()
 	{
 		var chain = new List<int>();
@@ -278,9 +415,20 @@ internal sealed class Searcher
 		}
 	}
 
+	/// <summary>
+	/// Prints the strong and weak inferences as the string representation onto the test explorer.
+	/// </summary>
+	/// <param name="inferences">
+	/// The inferences to be output. The value can be either <see cref="_strongInferences"/>
+	/// or <see cref="_weakInferences"/>.
+	/// </param>
+	/// <seealso cref="_strongInferences"/>
+	/// <seealso cref="_weakInferences"/>
 	[SuppressMessage("CodeQuality", "IDE0051:Remove unused private members", Justification = "<Pending>")]
 	private void PrintStringInferences(Dictionary<int, HashSet<int>?> inferences)
 	{
+		const string separator = ", ";
+
 		var sb = new StringHandler();
 		foreach (var (id, nextIds) in inferences)
 		{
@@ -293,10 +441,10 @@ internal sealed class Searcher
 				foreach (int nextId in nextIds)
 				{
 					sb.Append(_id2NodeLookup[nextId].ToSimpleString());
-					sb.Append(Separator);
+					sb.Append(separator);
 				}
 
-				sb.RemoveFromEnd(Separator.Length);
+				sb.RemoveFromEnd(separator.Length);
 			}
 			else
 			{
