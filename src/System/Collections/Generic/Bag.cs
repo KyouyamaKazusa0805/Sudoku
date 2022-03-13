@@ -1,4 +1,6 @@
-﻿using System.Buffers;
+﻿#undef USE_EQUALITY_COMPARER
+
+using System.Buffers;
 using System.Runtime.InteropServices;
 
 namespace System.Collections.Generic;
@@ -71,12 +73,34 @@ public ref partial struct Bag<T>
 	/// <returns>A <see cref="bool"/> result indicating that.</returns>
 	public readonly bool Contains(T element)
 	{
+#if !USE_EQUALITY_COMPARER
+		nuint size = (nuint)Marshal.SizeOf<T>();
+#endif
+
 		for (int i = 0; i < Count; i++)
 		{
+#if USE_EQUALITY_COMPARER
 			if (EqualityComparer<T>.Default.Equals(_values[i], element))
 			{
 				return true;
 			}
+#else
+			bool areSame = true;
+			for (nuint j = 0; j < size; j++)
+			{
+				byte v1 = Unsafe.As<T, byte>(ref Unsafe.AddByteOffset(ref _values[i], j));
+				byte v2 = Unsafe.As<T, byte>(ref Unsafe.AddByteOffset(ref element, j));
+				if (v1 != v2)
+				{
+					areSame = false;
+					break;
+				}
+			}
+			if (areSame)
+			{
+				return true;
+			}
+#endif
 		}
 
 		return false;
