@@ -2385,51 +2385,6 @@
             </list>
             </summary>
         </member>
-        <member name="F:Sudoku.Solving.Manual.Searchers.DiscontinuousNiceLoopStepSearcher.MaxCapacity">
-            <summary>
-            Indicates the max capacity.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Solving.Manual.Searchers.DiscontinuousNiceLoopStepSearcher._strongInferences">
-            <summary>
-            Indicates the cache on storing strong inferences. The key is the ID of the chain node,
-            and the value is the corresponding strong inference endpoints. You can get the raw information
-            of the chain node via the field <see cref="F:Sudoku.Solving.Manual.Searchers.DiscontinuousNiceLoopStepSearcher._idNodeLookup"/>.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Solving.Manual.Searchers.DiscontinuousNiceLoopStepSearcher._weakInferences">
-            <summary>
-            Indicates the cache on storing weak inferences. The key is the ID of the chain node,
-            and the value is the corresponding weak inference endpoints. You can get the raw information
-            of the chain node via the field <see cref="F:Sudoku.Solving.Manual.Searchers.DiscontinuousNiceLoopStepSearcher._idNodeLookup"/>.
-            </summary>
-            <seealso cref="F:Sudoku.Solving.Manual.Searchers.DiscontinuousNiceLoopStepSearcher._idNodeLookup"/>
-        </member>
-        <member name="F:Sudoku.Solving.Manual.Searchers.DiscontinuousNiceLoopStepSearcher._nodeIdLookup">
-            <summary>
-            Indicates the lookup table instance that can get the ID value from the specified node.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Solving.Manual.Searchers.DiscontinuousNiceLoopStepSearcher._idNodeLookup">
-            <summary>
-            Indicates the lookup table instance that can get the node instance from the specified ID value.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Solving.Manual.Searchers.DiscontinuousNiceLoopStepSearcher._chains">
-            <summary>
-            Indicates the possible chains.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Solving.Manual.Searchers.DiscontinuousNiceLoopStepSearcher._cachedNodesGlobalIndex">
-            <summary>
-            Indicates the global index of the cached nodes.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Solving.Manual.Searchers.DiscontinuousNiceLoopStepSearcher._cachedNodes">
-            <summary>
-            Indicates the cached nodes.
-            </summary>
-        </member>
         <member name="P:Sudoku.Solving.Manual.Searchers.DiscontinuousNiceLoopStepSearcher.Options">
             <inheritdoc/>
         </member>
@@ -2464,52 +2419,6 @@
             </para>
             </remarks>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Searchers.DiscontinuousNiceLoopStepSearcher.ConstructLookup(Sudoku.Collections.Grid@)">
-            <summary>
-            To construct the lookup table.
-            </summary>
-            <param name="grid">The grid used.</param>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Searchers.DiscontinuousNiceLoopStepSearcher.GatherStrong_Single(Sudoku.Collections.Grid@,Sudoku.Collections.ChainNode@,System.Collections.Generic.ValueLinkedList{System.Int32}@)">
-            <summary>
-            Gather strong inferences for the sole candidate.
-            </summary>
-            <param name="grid">The grid.</param>
-            <param name="current">The chain node to be checked.</param>
-            <param name="strongInferences">
-            The linked list to store the storng inferences for the specified candidate.
-            </param>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Searchers.DiscontinuousNiceLoopStepSearcher.GatherWeak_Single(Sudoku.Collections.Grid@,Sudoku.Collections.ChainNode@,System.Collections.Generic.ValueLinkedList{System.Int32}@)">
-            <summary>
-            Gather weak inferences for the sole candidate.
-            </summary>
-            <param name="grid">The grid.</param>
-            <param name="current">The chain node to be checked.</param>
-            <param name="weakInferences">
-            The linked list to store the weak inferences for the specified candidate.
-            </param>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Searchers.DiscontinuousNiceLoopStepSearcher.ChainingWithWeakStart(System.Collections.Generic.ValueLinkedList{System.Int32}@)">
-            <summary>
-            Start the chaining, with weak inference as the next node.
-            </summary>
-            <param name="chain">The chain.</param>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Searchers.DiscontinuousNiceLoopStepSearcher.ChainingWithStrong(System.Collections.Generic.ValueLinkedList{System.Int32}@,System.Int32)">
-            <summary>
-            Continue to construct the chain via the specified ID as the current node.
-            </summary>
-            <param name="chain">The collection that stores the nodes currently.</param>
-            <param name="id">The ID as the current node.</param>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Searchers.DiscontinuousNiceLoopStepSearcher.ChainingWithWeak(System.Collections.Generic.ValueLinkedList{System.Int32}@,System.Int32)">
-            <summary>
-            Continue to construct the chain via the specified ID as the current node.
-            </summary>
-            <param name="chain">The collection that stores the nodes currently.</param>
-            <param name="id">The ID as the current node.</param>
-        </member>
         <member name="M:Sudoku.Solving.Manual.Searchers.DiscontinuousNiceLoopStepSearcher.GetCandidateOffsets(Sudoku.Node,System.Boolean)">
             <summary>
             Get highlight candidate offsets through the specified target node.
@@ -2533,14 +2442,6 @@
             draw the AIC, the elimination weak links don't need drawing.
             </param>
             <returns>The link.</returns>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Searchers.DiscontinuousNiceLoopStepSearcher.IntegerComparer(System.Int32,System.Int32)">
-            <summary>
-            Compares two integers.
-            </summary>
-            <param name="a">The first integer to compare.</param>
-            <param name="b">The second integer to compare.</param>
-            <returns>The <see cref="T:System.Boolean"/> result.</returns>
         </member>
         <member name="T:Sudoku.Solving.Manual.Searchers.ForcingChainStepSearcher">
             <summary>

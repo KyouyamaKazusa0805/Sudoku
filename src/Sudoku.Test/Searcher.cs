@@ -254,7 +254,7 @@ internal sealed class Searcher
 	/// </summary>
 	private void StartWithWeak()
 	{
-		var chain = new List<int>();
+		var chain = new Bag<int>();
 		foreach (var (id, nextIds) in _weakInferences)
 		{
 			if (nextIds is null)
@@ -268,16 +268,18 @@ internal sealed class Searcher
 			{
 				chain.Add(nextId);
 
-				nextStrong(nextId);
+				nextStrong(ref chain, nextId);
 
-				chain.RemoveAt(chain.Count - 1);
+				chain.Remove();
 			}
 
-			chain.RemoveAt(chain.Count - 1);
+			chain.Remove();
 		}
 
+		chain.Dispose();
 
-		void nextStrong(int id)
+
+		void nextStrong(ref Bag<int> chain, int id)
 		{
 			if (_strongInferences[id] is not { } nextIds)
 			{
@@ -293,13 +295,13 @@ internal sealed class Searcher
 
 				chain.Add(nextId);
 
-				nextWeak(nextId);
+				nextWeak(ref chain, nextId);
 
-				chain.RemoveAt(chain.Count - 1);
+				chain.Remove();
 			}
 		}
 
-		void nextWeak(int id)
+		void nextWeak(ref Bag<int> chain, int id)
 		{
 			if (_weakInferences[id] is not { } nextIds)
 			{
@@ -311,9 +313,7 @@ internal sealed class Searcher
 				if (chain[0] == nextId)
 				{
 					// Found.
-					int[] finalArray = new int[chain.Count + 1];
-					chain.CopyTo(finalArray);
-					finalArray[^1] = nextId;
+					int[] finalArray = chain.ImmutelyAdd(nextId).ToArray();
 
 					_foundChains.Add(finalArray);
 				}
@@ -325,9 +325,9 @@ internal sealed class Searcher
 
 				chain.Add(nextId);
 
-				nextStrong(nextId);
+				nextStrong(ref chain, nextId);
 
-				chain.RemoveAt(chain.Count - 1);
+				chain.Remove();
 			}
 		}
 	}
@@ -337,7 +337,7 @@ internal sealed class Searcher
 	/// </summary>
 	private void StartWithStrong()
 	{
-		var chain = new List<int>();
+		var chain = new Bag<int>();
 		foreach (var (id, nextIds) in _strongInferences)
 		{
 			if (nextIds is null)
@@ -351,16 +351,18 @@ internal sealed class Searcher
 			{
 				chain.Add(nextId);
 
-				nextWeak(nextId);
+				nextWeak(ref chain, nextId);
 
-				chain.RemoveAt(chain.Count - 1);
+				chain.Remove();
 			}
 
-			chain.RemoveAt(chain.Count - 1);
+			chain.Remove();
 		}
 
+		chain.Dispose();
 
-		void nextWeak(int id)
+
+		void nextWeak(ref Bag<int> chain, int id)
 		{
 			if (_weakInferences[id] is not { } nextIds)
 			{
@@ -376,13 +378,13 @@ internal sealed class Searcher
 
 				chain.Add(nextId);
 
-				nextStrong(nextId);
+				nextStrong(ref chain, nextId);
 
-				chain.RemoveAt(chain.Count - 1);
+				chain.Remove();
 			}
 		}
 
-		void nextStrong(int id)
+		void nextStrong(ref Bag<int> chain, int id)
 		{
 			if (_strongInferences[id] is not { } nextIds)
 			{
@@ -391,12 +393,10 @@ internal sealed class Searcher
 
 			foreach (int nextId in nextIds)
 			{
-				if (chain[0] == chain[^1])
+				if (chain[0] == nextId)
 				{
 					// Found.
-					int[] finalArray = new int[chain.Count + 1];
-					chain.CopyTo(finalArray);
-					finalArray[^1] = nextId;
+					int[] finalArray = chain.ImmutelyAdd(nextId).ToArray();
 
 					_foundChains.Add(finalArray);
 				}
@@ -408,9 +408,9 @@ internal sealed class Searcher
 
 				chain.Add(nextId);
 
-				nextWeak(nextId);
+				nextWeak(ref chain, nextId);
 
-				chain.RemoveAt(chain.Count - 1);
+				chain.Remove();
 			}
 		}
 	}
