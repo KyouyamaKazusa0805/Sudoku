@@ -76,7 +76,7 @@ internal sealed class Searcher
 	/// <summary>
 	/// Indicates all possible found chains, that stores the IDs of the each node.
 	/// </summary>
-	private readonly List<int[]> _foundChains = new();
+	private readonly List<(int[] ChainIds, bool StartsWithWeakInference)> _foundChains = new();
 
 	/// <summary>
 	/// Indicates the output instance that can allow displaying the customized items onto the test explorer.
@@ -135,14 +135,21 @@ internal sealed class Searcher
 		StartWithStrong();
 
 		// Output the result.
-		foreach (int[] foundChain in _foundChains)
+		var finalChains = new SortedSet<AlternatingInferenceChain>();
+		foreach (var (nids, startsWithWeak) in _foundChains)
 		{
-			string result = string.Join(
-				" -> ",
-				from foundChainId in foundChain select _id2NodeLookup[foundChainId].ToSimpleString()
-			);
+			var chain = new AlternatingInferenceChain(from nid in nids select _id2NodeLookup[nid], startsWithWeak);
+			if (chain.GetConclusions(grid) is not { Length: not 0 })
+			{
+				continue;
+			}
 
-			_output.WriteLine(result);
+			finalChains.Add(chain);
+		}
+
+		foreach (var chain in finalChains)
+		{
+			_output.WriteLine($"{chain} => {new ConclusionCollection(chain.GetConclusions(grid)!).ToString()}");
 		}
 	}
 
@@ -315,7 +322,7 @@ internal sealed class Searcher
 					// Found.
 					int[] finalArray = chain.ImmutelyAdd(nextId).ToArray();
 
-					_foundChains.Add(finalArray);
+					_foundChains.Add((finalArray, true));
 				}
 
 				if (chain.Contains(nextId))
@@ -398,7 +405,7 @@ internal sealed class Searcher
 					// Found.
 					int[] finalArray = chain.ImmutelyAdd(nextId).ToArray();
 
-					_foundChains.Add(finalArray);
+					_foundChains.Add((finalArray, false));
 				}
 
 				if (chain.Contains(nextId))

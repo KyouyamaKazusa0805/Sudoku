@@ -19,14 +19,14 @@ public readonly partial struct AlternatingInferenceChain :
 #endif
 {
 	/// <summary>
-	/// Indicates the inner chain nodes stored.
-	/// </summary>
-	private readonly Node[] _nodes;
-
-	/// <summary>
 	/// Indicates whether the chain starts with the weak inference.
 	/// </summary>
 	private readonly bool _startsWithWeak;
+
+	/// <summary>
+	/// Indicates the inner chain nodes stored.
+	/// </summary>
+	private readonly Node[] _nodes;
 
 
 	/// <summary>
@@ -78,7 +78,7 @@ public readonly partial struct AlternatingInferenceChain :
 	/// Indicates the possible eliminations or assignments that can be concluded through the current chain.
 	/// </summary>
 	/// <param name="grid">The grid as the candidate template.</param>
-	public Conclusion[] GetConclusions(in Grid grid)
+	public Conclusion[]? GetConclusions(in Grid grid)
 	{
 		return this switch
 		{
@@ -101,7 +101,7 @@ public readonly partial struct AlternatingInferenceChain :
 				_startsWithWeak: false,
 				RealChain: [SoleCandidateNode { Candidate: var c }, ..]
 			} => new Conclusion[] { new(ConclusionType.Assignment, c) },
-			_ => Array.Empty<Conclusion>()
+			_ => null
 		};
 
 
@@ -116,7 +116,7 @@ public readonly partial struct AlternatingInferenceChain :
 	public ImmutableArray<Node> RealChain
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => ImmutableArray.Create(_startsWithWeak ? _nodes[1..^2] : _nodes);
+		get => ImmutableArray.Create(_startsWithWeak ? _nodes[1..^1] : _nodes);
 	}
 
 
@@ -178,13 +178,30 @@ public readonly partial struct AlternatingInferenceChain :
 		Node f1 = _nodes[0], l1 = _nodes[^1], f2 = other._nodes[0], l2 = other._nodes[^1];
 		return -_startsWithWeak.CompareTo(other._startsWithWeak) is var a and not 0
 			? a
-			: f1.CompareTo(f2) is var b and not 0
+			: _nodes.Length.CompareTo(other._nodes.Length) is var b and not 0
 				? b
-				: l1.CompareTo(l2) is var c and not 0
+				: f1.CompareTo(f2) is var c and not 0
 					? c
-					: _nodes.Length.CompareTo(other._nodes.Length) is var d and not 0
+					: l1.CompareTo(l2) is var d and not 0
 						? d
 						: 0;
+	}
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public override string ToString()
+	{
+		var sb = new StringHandler();
+		var realChain = RealChain;
+		for (int i = 0, length = realChain.Length; i < length; i++)
+		{
+			sb.Append(realChain[i].ToSimpleString());
+			sb.Append((i & 1) == 0 ? " == " : " -- ");
+		}
+
+		sb.RemoveFromEnd(4);
+
+		return sb.ToStringAndClear();
 	}
 
 	/// <inheritdoc cref="IEnumerable{T}.GetEnumerator"/>
