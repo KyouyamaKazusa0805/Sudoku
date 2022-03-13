@@ -7,14 +7,12 @@ namespace Sudoku.Test;
 /// </summary>
 public readonly partial struct AlternatingInferenceChain :
 	ICloneable,
-	IComparable<AlternatingInferenceChain>,
 	IEnumerable<Node>,
 	IEquatable<AlternatingInferenceChain>,
 	IReadOnlyCollection<Node>,
 	IReadOnlyList<Node>
 #if FEATURE_GENERIC_MATH
 	,
-	IComparisonOperators<AlternatingInferenceChain, AlternatingInferenceChain>,
 	IEqualityOperators<AlternatingInferenceChain, AlternatingInferenceChain>
 #endif
 {
@@ -78,9 +76,8 @@ public readonly partial struct AlternatingInferenceChain :
 	/// Indicates the possible eliminations or assignments that can be concluded through the current chain.
 	/// </summary>
 	/// <param name="grid">The grid as the candidate template.</param>
-	public Conclusion[]? GetConclusions(in Grid grid)
-	{
-		return this switch
+	public Conclusion[]? GetConclusions(in Grid grid) =>
+		this switch
 		{
 			{
 				_startsWithWeak: true,
@@ -94,7 +91,7 @@ public readonly partial struct AlternatingInferenceChain :
 			when grid is var tempGrid =>
 			(
 				from elimination in !new Candidates { c1, c2 }
-				where f(tempGrid, elimination)
+				where tempGrid.Exists(elimination) is true
 				select new Conclusion(ConclusionType.Elimination, elimination)
 			).ToArray(),
 			{
@@ -103,12 +100,6 @@ public readonly partial struct AlternatingInferenceChain :
 			} => new Conclusion[] { new(ConclusionType.Assignment, c) },
 			_ => null
 		};
-
-
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		static bool f(in Grid grid, int elimination) =>
-			grid.EmptyCells.Contains(elimination / 9) && grid.Exists(elimination) is true;
-	}
 
 	/// <summary>
 	/// Indicates the <see cref="Node"/>s that ignores the first and the last node.
@@ -152,7 +143,9 @@ public readonly partial struct AlternatingInferenceChain :
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public bool Equals(AlternatingInferenceChain other) =>
-		_nodes[0] == other._nodes[0] && _nodes[^1] == other._nodes[^1] && _startsWithWeak == other._startsWithWeak;
+		_startsWithWeak == other._startsWithWeak
+			&& RealChain is [var a1, .., var b1] && other.RealChain is [var a2, .., var b2]
+			&& (a1 == a2 && b1 == b2 || a1 == b2 && a2 == b1);
 
 	/// <summary>
 	/// Indicates whether the current object has the same value and the same length of the chain
@@ -170,22 +163,6 @@ public readonly partial struct AlternatingInferenceChain :
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public override int GetHashCode() => HashCode.Combine(_nodes[0], _nodes[^1], _startsWithWeak);
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public int CompareTo(AlternatingInferenceChain other)
-	{
-		Node f1 = _nodes[0], l1 = _nodes[^1], f2 = other._nodes[0], l2 = other._nodes[^1];
-		return -_startsWithWeak.CompareTo(other._startsWithWeak) is var a and not 0
-			? a
-			: _nodes.Length.CompareTo(other._nodes.Length) is var b and not 0
-				? b
-				: f1.CompareTo(f2) is var c and not 0
-					? c
-					: l1.CompareTo(l2) is var d and not 0
-						? d
-						: 0;
-	}
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -213,18 +190,6 @@ public readonly partial struct AlternatingInferenceChain :
 	object ICloneable.Clone() => Clone();
 
 	/// <inheritdoc/>
-	/// <exception cref="ArgumentException">
-	/// Throws when the type of the argument is not of type <see cref="AlternatingInferenceChain"/>.
-	/// </exception>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	int IComparable.CompareTo(object? obj) =>
-		obj is not AlternatingInferenceChain p
-			? throw new ArgumentException(
-				$"The type of the argument must be of type '{nameof(AlternatingInferenceChain)}'.",
-				nameof(obj))
-			: CompareTo(p);
-
-	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	IEnumerator IEnumerable.GetEnumerator() => _nodes.GetEnumerator();
 
@@ -242,24 +207,4 @@ public readonly partial struct AlternatingInferenceChain :
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static bool operator !=(AlternatingInferenceChain left, AlternatingInferenceChain right) =>
 		!(left == right);
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static bool operator >(AlternatingInferenceChain left, AlternatingInferenceChain right) =>
-		left.CompareTo(right) > 0;
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static bool operator >=(AlternatingInferenceChain left, AlternatingInferenceChain right) =>
-		left.CompareTo(right) >= 0;
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static bool operator <(AlternatingInferenceChain left, AlternatingInferenceChain right) =>
-		left.CompareTo(right) < 0;
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static bool operator <=(AlternatingInferenceChain left, AlternatingInferenceChain right) =>
-		left.CompareTo(right) <= 0;
 }

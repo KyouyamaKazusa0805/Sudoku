@@ -135,21 +135,29 @@ internal sealed class Searcher
 		StartWithStrong();
 
 		// Output the result.
-		var finalChains = new SortedSet<AlternatingInferenceChain>();
+		var finalChains = new List<(AlternatingInferenceChain Chain, Conclusion[] Conclusions)>();
 		foreach (var (nids, startsWithWeak) in _foundChains)
 		{
 			var chain = new AlternatingInferenceChain(from nid in nids select _id2NodeLookup[nid], startsWithWeak);
-			if (chain.GetConclusions(grid) is not { Length: not 0 })
+			if (chain.GetConclusions(grid) is not { Length: not 0 } conclusions)
 			{
 				continue;
 			}
 
-			finalChains.Add(chain);
+			int index = finalChains.FindIndex(c => c.Chain == chain);
+			if (index == -1)
+			{
+				finalChains.Add((chain, conclusions));
+			}
+			else if (finalChains[index].Chain.Count >= chain.Count)
+			{
+				finalChains[index] = (chain, conclusions);
+			}
 		}
 
-		foreach (var chain in finalChains)
+		foreach (var (chain, conclusions) in finalChains)
 		{
-			_output.WriteLine($"{chain} => {new ConclusionCollection(chain.GetConclusions(grid)!).ToString()}");
+			_output.WriteLine($"{chain} => {new ConclusionCollection(conclusions).ToString()}");
 		}
 	}
 

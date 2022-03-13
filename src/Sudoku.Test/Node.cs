@@ -4,12 +4,10 @@
 /// Defines a chain node.
 /// </summary>
 public abstract class Node :
-	IComparable<Node>,
 	ICloneable,
 	IEquatable<Node>
 #if FEATURE_GENERIC_MATH
 	,
-	IComparisonOperators<Node, Node>,
 	IEqualityOperators<Node, Node>
 #endif
 {
@@ -30,9 +28,6 @@ public abstract class Node :
 	public abstract bool Equals([NotNullWhen(true)] Node? other);
 
 	/// <inheritdoc/>
-	public abstract int CompareTo([NotNull] Node? other);
-
-	/// <inheritdoc/>
 	public abstract override int GetHashCode();
 
 	/// <inheritdoc/>
@@ -46,10 +41,6 @@ public abstract class Node :
 
 	/// <inheritdoc/>
 	object ICloneable.Clone() => Clone();
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	int IComparable.CompareTo([NotNull] object? obj) => CompareTo(obj as Node);
 
 
 	/// <summary>
@@ -70,20 +61,4 @@ public abstract class Node :
 	/// <returns>A <see cref="bool"/> result.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static bool operator !=(Node? left, Node? right) => !(left == right);
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static bool operator >(Node left, Node right) => left.CompareTo(right) > 0;
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static bool operator >=(Node left, Node right) => left.CompareTo(right) >= 0;
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static bool operator <(Node left, Node right) => left.CompareTo(right) < 0;
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static bool operator <=(Node left, Node right) => left.CompareTo(right) <= 0;
 }

@@ -58,24 +58,6 @@ public sealed class SoleCandidateNode : Node
 		other is SoleCandidateNode comparer && Cell == comparer.Cell && Digit == comparer.Digit;
 
 	/// <inheritdoc/>
-	/// <exception cref="ArgumentException">
-	/// Throws when the argument <paramref name="other"/> is not of type <see cref="SoleCandidateNode"/>.
-	/// </exception>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public override int CompareTo([NotNull] Node? other)
-	{
-		if (other is not SoleCandidateNode node)
-		{
-			throw new ArgumentException(
-				$"The argument must be of type '{nameof(SoleCandidateNode)}' and not null.",
-				nameof(other));
-		}
-
-		int c1 = Candidate, c2 = node.Candidate;
-		return c1 > c2 ? 1 : c1 < c2 ? -1 : 0;
-	}
-
-	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public override int GetHashCode() => Cell * 9 + Digit;
 
