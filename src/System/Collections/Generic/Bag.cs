@@ -106,7 +106,7 @@ public ref partial struct Bag<T>
 		return false;
 	}
 
-	/// <inheritdoc/>
+	/// <inheritdoc cref="IEnumerable{T}.GetEnumerator"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public readonly Enumerator GetEnumerator() => new(_values, Count);
 

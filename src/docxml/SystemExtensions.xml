@@ -193,7 +193,7 @@
             <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
         </member>
         <member name="M:System.Collections.Generic.Bag`1.GetEnumerator">
-            <inheritdoc/>
+            <inheritdoc cref="M:System.Collections.Generic.IEnumerable`1.GetEnumerator"/>
         </member>
         <member name="M:System.Collections.Generic.Bag`1.ImmutelyAdd(`0)">
             <summary>
