@@ -40,6 +40,7 @@ public abstract class Node :
 	public abstract string ToSimpleString();
 
 	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	object ICloneable.Clone() => Clone();
 
 
