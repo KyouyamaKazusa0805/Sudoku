@@ -8,5 +8,10 @@ public enum NodeType
 	/// <summary>
 	/// Indicates the node type is a sole candidate.
 	/// </summary>
-	Sole
+	Sole,
+
+	/// <summary>
+	/// Indicates the node type is a locked candidates.
+	/// </summary>
+	LockedCandidates,
 }

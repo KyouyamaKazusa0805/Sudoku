@@ -1449,6 +1449,20 @@ public unsafe struct Cells :
 #endif
 #endif
 
+	/// <summary>
+	/// Implicit cast from <see cref="byte"/>[] to <see cref="Cells"/>.
+	/// </summary>
+	/// <param name="offsets">The offsets.</param>
+	public static implicit operator Cells(byte[] offsets)
+	{
+		var result = Cells.Empty;
+		foreach (byte cell in offsets)
+		{
+			result.AddAnyway(cell);
+		}
+
+		return result;
+	}
 
 	/// <summary>
 	/// Implicit cast from <see cref="int"/>[] to <see cref="Cells"/>.

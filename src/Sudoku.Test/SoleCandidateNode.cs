@@ -63,9 +63,9 @@ public sealed class SoleCandidateNode : Node
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public override string ToString() => $"Sole candidate {{ {nameof(Candidate)} = {ToSimpleString()} }}";
+	public override string ToSimpleString() => $"{Digit + 1}{new Cells { Cell }}";
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public override string ToSimpleString() => $"{Digit + 1}{new Cells { Cell }}";
+	public override string ToString() => $"Sole candidate: {ToSimpleString()}";
 }

@@ -30,14 +30,14 @@ public abstract class Node :
 	/// <inheritdoc/>
 	public abstract override int GetHashCode();
 
-	/// <inheritdoc/>
-	public abstract override string ToString();
-
 	/// <summary>
 	/// Gets the simplified string value that only displays the important information.
 	/// </summary>
 	/// <returns>The string value.</returns>
 	public abstract string ToSimpleString();
+
+	/// <inheritdoc/>
+	public abstract override string ToString();
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
