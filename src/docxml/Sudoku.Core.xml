@@ -1339,6 +1339,12 @@
         <member name="M:Sudoku.Collections.Cells.System#IEqualityOperators{Sudoku#Collections#Cells,Sudoku#Collections#Cells}#op_Inequality(Sudoku.Collections.Cells,Sudoku.Collections.Cells)">
             <inheritdoc/>
         </member>
+        <member name="M:Sudoku.Collections.Cells.op_Implicit(System.Byte[])~Sudoku.Collections.Cells">
+            <summary>
+            Implicit cast from <see cref="T:System.Byte"/>[] to <see cref="T:Sudoku.Collections.Cells"/>.
+            </summary>
+            <param name="offsets">The offsets.</param>
+        </member>
         <member name="M:Sudoku.Collections.Cells.op_Implicit(System.Int32[])~Sudoku.Collections.Cells">
             <summary>
             Implicit cast from <see cref="T:System.Int32"/>[] to <see cref="T:Sudoku.Collections.Cells"/>.
