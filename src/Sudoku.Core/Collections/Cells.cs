@@ -1138,15 +1138,39 @@ public unsafe struct Cells :
 	/// <param name="cell">Indicates the base template cells.</param>
 	/// <param name="subsetSize">The size to get.</param>
 	/// <returns>
-	/// All possible subsets. If <paramref name="subsetSize"/> &gt;= <paramref name="cell"/>.Count,
-	/// this method will just return an empty array.
+	/// All possible subsets. If:
+	/// <list type="table">
+	/// <listheader>
+	/// <term>Condition</term>
+	/// <description>Meaning</description>
+	/// </listheader>
+	/// <item>
+	/// <term><c><paramref name="subsetSize"/> &gt; <paramref name="cell"/>.Count</c></term>
+	/// <description>Will return an empty array</description>
+	/// </item>
+	/// <item>
+	/// <term><c><paramref name="subsetSize"/> == <paramref name="cell"/>.Count</c></term>
+	/// <description>
+	/// Will return an array that contains only one element, same as the argument <paramref name="cell"/>.
+	/// </description>
+	/// </item>
+	/// <item>
+	/// <term>Other cases</term>
+	/// <description>The valid combinations.</description>
+	/// </item>
+	/// </list>
 	/// </returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static Cells[] operator &(in Cells cell, int subsetSize)
 	{
-		if (subsetSize == 0 || subsetSize >= cell.Count)
+		if (subsetSize == 0 || subsetSize > cell.Count)
 		{
 			return Array.Empty<Cells>();
+		}
+
+		if (subsetSize == cell.Count)
+		{
+			return new[] { cell };
 		}
 
 		int totalIndex = 0, n = cell.Count;
@@ -1448,21 +1472,6 @@ public unsafe struct Cells :
 		left < right;
 #endif
 #endif
-
-	/// <summary>
-	/// Implicit cast from <see cref="byte"/>[] to <see cref="Cells"/>.
-	/// </summary>
-	/// <param name="offsets">The offsets.</param>
-	public static implicit operator Cells(byte[] offsets)
-	{
-		var result = Cells.Empty;
-		foreach (byte cell in offsets)
-		{
-			result.AddAnyway(cell);
-		}
-
-		return result;
-	}
 
 	/// <summary>
 	/// Implicit cast from <see cref="int"/>[] to <see cref="Cells"/>.

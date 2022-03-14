@@ -1,4 +1,5 @@
 ﻿using Sudoku.Collections;
+using static Sudoku.Constants.Tables;
 
 namespace Sudoku.Test;
 
@@ -8,9 +9,20 @@ namespace Sudoku.Test;
 public sealed class LockedCandidatesNode : Node
 {
 	/// <summary>
-	/// Indicates the mask used.
+	/// Indicates the lookup table that can get the cells used via the ID value.
 	/// </summary>
-	private readonly int _mask;
+	private static readonly Dictionary<byte, Cells> IdToCellsLookup;
+
+	/// <summary>
+	/// Indicates the lookup table that can get the ID value via the cells used.
+	/// </summary>
+	private static readonly Dictionary<Cells, byte> CellsToIdLookup;
+
+
+	/// <summary>
+	/// Indicates the ID used.
+	/// </summary>
+	private readonly byte _id;
 
 
 	/// <summary>
@@ -21,7 +33,8 @@ public sealed class LockedCandidatesNode : Node
 	/// <param name="cell1">The cell 1.</param>
 	/// <param name="cell2">The cell 2.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public LockedCandidatesNode(byte digit, byte cell1, byte cell2) : this(digit << 21 | cell1 | cell2 << 7)
+	public LockedCandidatesNode(byte digit, byte cell1, byte cell2) :
+		this(digit, CellsToIdLookup[new() { cell1, cell2 }])
 	{
 	}
 
@@ -35,40 +48,59 @@ public sealed class LockedCandidatesNode : Node
 	/// <param name="cell3">The cell 3.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public LockedCandidatesNode(byte digit, byte cell1, byte cell2, byte cell3) :
-		this(digit << 21 | cell1 | cell2 << 7 | cell3 << 14)
+		this(digit, CellsToIdLookup[new() { cell1, cell2, cell3 }])
 	{
 	}
 
 	/// <summary>
-	/// Initializes a <see cref="LockedCandidatesNode"/> instance via the mask.
+	/// Initializes a <see cref="LockedCandidatesNode"/> instance via the digit used,
+	/// and the global ID that corresponds to the unique locked candidate structure.
 	/// </summary>
-	/// <param name="mask">The mask that can provide with the basic data of the node.</param>
+	/// <param name="digit">The digit used.</param>
+	/// <param name="id">The global ID value that corresponds to the unique locked candidate structure.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	private LockedCandidatesNode(int mask) => _mask = mask;
+	private LockedCandidatesNode(byte digit, byte id)
+	{
+		_id = id;
+		Digit = digit;
+	}
+
+
+	/// <include file="../../global-doc-comments.xml" path='g/static-constructor'/>
+	static LockedCandidatesNode()
+	{
+		IdToCellsLookup = new(216);
+		CellsToIdLookup = new(216);
+
+		byte i = 0;
+		foreach (var ((_, _), (_, _, map, _)) in IntersectionMaps)
+		{
+			var cellCombinations2 = map & 2;
+			var cellCombinations3 = map & 3;
+			IdToCellsLookup.Add(i, cellCombinations2[0]);
+			CellsToIdLookup.Add(cellCombinations2[0], i++);
+			IdToCellsLookup.Add(i, cellCombinations2[1]);
+			CellsToIdLookup.Add(cellCombinations2[1], i++);
+			IdToCellsLookup.Add(i, cellCombinations2[2]);
+			CellsToIdLookup.Add(cellCombinations2[2], i++);
+			IdToCellsLookup.Add(i, cellCombinations3[0]);
+			CellsToIdLookup.Add(cellCombinations3[0], i++);
+		}
+	}
 
 
 	/// <summary>
 	/// Indicates the digit used.
 	/// </summary>
-	public byte Digit
-	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => (byte)(_mask >> 21);
-	}
+	public byte Digit { get; }
 
 	/// <summary>
 	/// Indicates the cells used.
 	/// </summary>
-	public byte[] Cells
+	public Cells Cells
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get
-		{
-			byte c1 = (byte)(_mask & 127);
-			byte c2 = (byte)(_mask >> 7 & 127);
-			byte c3 = (byte)(_mask >> 14 & 127);
-			return c3 == 0 ? new[] { c1, c2 } : new[] { c1, c2, c3 };
-		}
+		get => IdToCellsLookup[_id];
 	}
 
 	/// <inheritdoc/>
@@ -81,20 +113,20 @@ public sealed class LockedCandidatesNode : Node
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public override LockedCandidatesNode Clone() => new(_mask);
+	public override LockedCandidatesNode Clone() => new(Digit, _id);
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public override bool Equals([NotNullWhen(true)] Node? other) =>
-		other is LockedCandidatesNode comparer && _mask == comparer._mask;
+		other is LockedCandidatesNode comparer && _id == comparer._id && Digit == comparer.Digit;
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public override int GetHashCode() => _mask + 729;
+	public override int GetHashCode() => 729 + _id * 9 + Digit;
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public override string ToSimpleString() => $"{Digit + 1}{(Cells)Cells}";
+	public override string ToSimpleString() => $"{Digit + 1}{Cells}";
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

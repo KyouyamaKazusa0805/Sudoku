@@ -1236,8 +1236,27 @@
             <param name="cell">Indicates the base template cells.</param>
             <param name="subsetSize">The size to get.</param>
             <returns>
-            All possible subsets. If <paramref name="subsetSize"/> &gt;= <paramref name="cell"/>.Count,
-            this method will just return an empty array.
+            All possible subsets. If:
+            <list type="table">
+            <listheader>
+            <term>Condition</term>
+            <description>Meaning</description>
+            </listheader>
+            <item>
+            <term><c><paramref name="subsetSize"/> &gt; <paramref name="cell"/>.Count</c></term>
+            <description>Will return an empty array</description>
+            </item>
+            <item>
+            <term><c><paramref name="subsetSize"/> == <paramref name="cell"/>.Count</c></term>
+            <description>
+            Will return an array that contains only one element, same as the argument <paramref name="cell"/>.
+            </description>
+            </item>
+            <item>
+            <term>Other cases</term>
+            <description>The valid combinations.</description>
+            </item>
+            </list>
             </returns>
         </member>
         <member name="M:Sudoku.Collections.Cells.op_BitwiseAnd(Sudoku.Collections.Cells@,Sudoku.Collections.Cells@)">
@@ -1338,12 +1357,6 @@
         </member>
         <member name="M:Sudoku.Collections.Cells.System#IEqualityOperators{Sudoku#Collections#Cells,Sudoku#Collections#Cells}#op_Inequality(Sudoku.Collections.Cells,Sudoku.Collections.Cells)">
             <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Collections.Cells.op_Implicit(System.Byte[])~Sudoku.Collections.Cells">
-            <summary>
-            Implicit cast from <see cref="T:System.Byte"/>[] to <see cref="T:Sudoku.Collections.Cells"/>.
-            </summary>
-            <param name="offsets">The offsets.</param>
         </member>
         <member name="M:Sudoku.Collections.Cells.op_Implicit(System.Int32[])~Sudoku.Collections.Cells">
             <summary>
