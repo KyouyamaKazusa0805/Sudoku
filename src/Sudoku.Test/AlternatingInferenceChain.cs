@@ -81,7 +81,7 @@ public readonly partial struct AlternatingInferenceChain :
 		{
 			{
 				_startsWithWeak: true,
-				RealChain:
+				RealChainNodes:
 				[
 					SoleCandidateNode { Candidate: var c1 },
 					..,
@@ -96,7 +96,7 @@ public readonly partial struct AlternatingInferenceChain :
 			).ToArray(),
 			{
 				_startsWithWeak: false,
-				RealChain: [SoleCandidateNode { Candidate: var c }, ..]
+				RealChainNodes: [SoleCandidateNode { Candidate: var c }, ..]
 			} => new Conclusion[] { new(ConclusionType.Assignment, c) },
 			_ => null
 		};
@@ -104,7 +104,7 @@ public readonly partial struct AlternatingInferenceChain :
 	/// <summary>
 	/// Indicates the <see cref="Node"/>s that ignores the first and the last node.
 	/// </summary>
-	public ImmutableArray<Node> RealChain
+	public ImmutableArray<Node> RealChainNodes
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => ImmutableArray.Create(_startsWithWeak ? _nodes[1..^1] : _nodes);
@@ -144,7 +144,7 @@ public readonly partial struct AlternatingInferenceChain :
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public bool Equals(AlternatingInferenceChain other) =>
 		_startsWithWeak == other._startsWithWeak
-			&& RealChain is [var a1, .., var b1] && other.RealChain is [var a2, .., var b2]
+			&& RealChainNodes is [var a1, .., var b1] && other.RealChainNodes is [var a2, .., var b2]
 			&& (a1 == a2 && b1 == b2 || a1 == b2 && a2 == b1);
 
 	/// <summary>
@@ -169,7 +169,7 @@ public readonly partial struct AlternatingInferenceChain :
 	public override string ToString()
 	{
 		var sb = new StringHandler();
-		var realChain = RealChain;
+		var realChain = RealChainNodes;
 		for (int i = 0, length = realChain.Length; i < length; i++)
 		{
 			sb.Append(realChain[i].ToSimpleString());
