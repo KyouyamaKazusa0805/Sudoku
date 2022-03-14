@@ -5,14 +5,13 @@ namespace Sudoku.Test;
 /// <summary>
 /// Provides with the node that stores a sole candidate.
 /// </summary>
-public sealed class SoleCandidateNode : Node
+public sealed class SoleCandidateNode :
+	Node
+#if FEATURE_GENERIC_MATH
+	,
+	IMaxGlobalId<SoleCandidateNode>
+#endif
 {
-	/// <summary>
-	/// Indicates the maximum global ID that the current-typed instance can be reached.
-	/// </summary>
-	internal const int MaxGlobalId = 729;
-
-
 	/// <summary>
 	/// Initializes a <see cref="SoleCandidateNode"/> instance via the candidate and its current status.
 	/// </summary>
@@ -51,6 +50,13 @@ public sealed class SoleCandidateNode : Node
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => NodeType.Sole;
+	}
+
+	/// <inheritdoc/>
+	public static int MaximumGlobalId
+	{
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		get => 729;
 	}
 
 

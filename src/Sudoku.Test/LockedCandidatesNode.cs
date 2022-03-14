@@ -6,14 +6,13 @@ namespace Sudoku.Test;
 /// <summary>
 /// Defines a chain node that provides with the data for a locked candidates.
 /// </summary>
-public sealed class LockedCandidatesNode : Node
+public sealed class LockedCandidatesNode :
+	Node
+#if FEATURE_GENERIC_MATH
+	,
+	IMaxGlobalId<SoleCandidateNode>
+#endif
 {
-	/// <summary>
-	/// Indicates the maximum global ID that the current-typed instance can be reached.
-	/// </summary>
-	internal const int MaxGlobalId = 1944;
-
-
 	/// <summary>
 	/// Indicates the lookup table that can get the cells used via the ID value.
 	/// </summary>
@@ -116,6 +115,13 @@ public sealed class LockedCandidatesNode : Node
 		get => NodeType.LockedCandidates;
 	}
 
+	/// <inheritdoc/>
+	public static int MaximumGlobalId
+	{
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		get => 1944;
+	}
+
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -128,7 +134,7 @@ public sealed class LockedCandidatesNode : Node
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public override int GetHashCode() => SoleCandidateNode.MaxGlobalId + _id * 9 + Digit;
+	public override int GetHashCode() => SoleCandidateNode.MaximumGlobalId + _id * 9 + Digit;
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
