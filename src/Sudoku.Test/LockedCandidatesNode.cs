@@ -9,6 +9,12 @@ namespace Sudoku.Test;
 public sealed class LockedCandidatesNode : Node
 {
 	/// <summary>
+	/// Indicates the maximum global ID that the current-typed instance can be reached.
+	/// </summary>
+	internal const int MaxGlobalId = 1944;
+
+
+	/// <summary>
 	/// Indicates the lookup table that can get the cells used via the ID value.
 	/// </summary>
 	private static readonly Dictionary<byte, Cells> IdToCellsLookup;
@@ -122,7 +128,7 @@ public sealed class LockedCandidatesNode : Node
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public override int GetHashCode() => 729 + _id * 9 + Digit;
+	public override int GetHashCode() => SoleCandidateNode.MaxGlobalId + _id * 9 + Digit;
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

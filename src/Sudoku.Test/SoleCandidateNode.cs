@@ -8,6 +8,12 @@ namespace Sudoku.Test;
 public sealed class SoleCandidateNode : Node
 {
 	/// <summary>
+	/// Indicates the maximum global ID that the current-typed instance can be reached.
+	/// </summary>
+	internal const int MaxGlobalId = 729;
+
+
+	/// <summary>
 	/// Initializes a <see cref="SoleCandidateNode"/> instance via the candidate and its current status.
 	/// </summary>
 	/// <param name="cell">Indicates the cell used.</param>
