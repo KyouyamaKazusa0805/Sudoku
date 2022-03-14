@@ -3,17 +3,8 @@
 /// <summary>
 /// Defines a chain node that provides with the data for a locked candidates.
 /// </summary>
-public sealed class LockedCandidatesNode :
-	Node
-#if FEATURE_GENERIC_MATH
-	,
-	IMaxGlobalId<SoleCandidateNode>
-#endif
+public sealed class LockedCandidatesNode : Node
 {
-	/// <inheritdoc cref="IMaxGlobalId{T}.MaximumGlobalId"/>
-	public const int MaximumGlobalId = 1944;
-
-
 	/// <summary>
 	/// Initializes a <see cref="LockedCandidatesNode"/> instance via the digit used,
 	/// and two cells used.
@@ -40,17 +31,4 @@ public sealed class LockedCandidatesNode :
 		base(NodeType.LockedCandidates, digit, new() { cell1, cell2, cell3 })
 	{
 	}
-
-
-	/// <inheritdoc/>
-	static int IMaxGlobalId<SoleCandidateNode>.MaximumGlobalId
-	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => MaximumGlobalId;
-	}
-
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public override string ToString() => $"Locked candidates node: {ToSimpleString()}";
 }

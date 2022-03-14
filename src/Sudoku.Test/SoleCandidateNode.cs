@@ -3,17 +3,8 @@
 /// <summary>
 /// Provides with the node that stores a sole candidate.
 /// </summary>
-public sealed class SoleCandidateNode :
-	Node
-#if FEATURE_GENERIC_MATH
-	,
-	IMaxGlobalId<SoleCandidateNode>
-#endif
+public sealed class SoleCandidateNode : Node
 {
-	/// <inheritdoc cref="IMaxGlobalId{T}.MaximumGlobalId"/>
-	public const int MaximumGlobalId = 729;
-
-
 	/// <summary>
 	/// Initializes a <see cref="SoleCandidateNode"/> instance via the candidate and its current status.
 	/// </summary>
@@ -39,16 +30,4 @@ public sealed class SoleCandidateNode :
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => Cell * 9 + Digit;
 	}
-
-	/// <inheritdoc/>
-	static int IMaxGlobalId<SoleCandidateNode>.MaximumGlobalId
-	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => MaximumGlobalId;
-	}
-
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public override string ToString() => $"Sole candidate: {ToSimpleString()}";
 }

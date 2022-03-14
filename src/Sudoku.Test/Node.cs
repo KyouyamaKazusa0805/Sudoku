@@ -1,4 +1,5 @@
-﻿using System.Runtime.Intrinsics;
+﻿using System.Reflection;
+using System.Runtime.Intrinsics;
 using Sudoku.Collections;
 
 namespace Sudoku.Test;
@@ -100,7 +101,21 @@ public abstract class Node :
 	public string ToSimpleString() => $"{Digit + 1}{Cells}";
 
 	/// <inheritdoc/>
-	public abstract override string ToString();
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public sealed override string ToString()
+	{
+		string? nodeTypeName = null;
+		if (typeof(NodeType).GetField(Type.ToString()) is { } fieldInfo)
+		{
+			var attr = fieldInfo.GetCustomAttribute<NodeTypeNameAttribute<NodeType>>();
+			if (attr is { Name: var name })
+			{
+				nodeTypeName = name;
+			}
+		}
+
+		return $"{(nodeTypeName is null ? null : $"{nodeTypeName}: ")}{ToSimpleString()}";
+	}
 
 
 	/// <summary>
