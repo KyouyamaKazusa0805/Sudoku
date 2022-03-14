@@ -1,6 +1,4 @@
-﻿using Sudoku.Collections;
-
-namespace Sudoku.Test;
+﻿namespace Sudoku.Test;
 
 /// <summary>
 /// Provides with the node that stores a sole candidate.
@@ -12,6 +10,10 @@ public sealed class SoleCandidateNode :
 	IMaxGlobalId<SoleCandidateNode>
 #endif
 {
+	/// <inheritdoc cref="IMaxGlobalId{T}.MaximumGlobalId"/>
+	public const int MaximumGlobalId = 729;
+
+
 	/// <summary>
 	/// Initializes a <see cref="SoleCandidateNode"/> instance via the candidate and its current status.
 	/// </summary>
@@ -19,10 +21,8 @@ public sealed class SoleCandidateNode :
 	/// <param name="digit">Indicates the digit used.</param>
 	/// <param name="isOn">Indicates whether the node is on.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public SoleCandidateNode(byte cell, byte digit)
+	public SoleCandidateNode(byte cell, byte digit) : base(NodeType.Sole, digit, new() { cell })
 	{
-		Cell = cell;
-		Digit = digit;
 	}
 
 
@@ -30,11 +30,6 @@ public sealed class SoleCandidateNode :
 	/// Indicates the cell used.
 	/// </summary>
 	public byte Cell { get; }
-
-	/// <summary>
-	/// Indicates the digit used.
-	/// </summary>
-	public byte Digit { get; }
 
 	/// <summary>
 	/// Indicates the candidate used.
@@ -46,36 +41,12 @@ public sealed class SoleCandidateNode :
 	}
 
 	/// <inheritdoc/>
-	public override NodeType Type
+	static int IMaxGlobalId<SoleCandidateNode>.MaximumGlobalId
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => NodeType.Sole;
+		get => MaximumGlobalId;
 	}
 
-	/// <inheritdoc/>
-	public static int MaximumGlobalId
-	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => 729;
-	}
-
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public override SoleCandidateNode Clone() => new(Cell, Digit);
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public override bool Equals([NotNullWhen(true)] Node? other) =>
-		other is SoleCandidateNode comparer && Cell == comparer.Cell && Digit == comparer.Digit;
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public override int GetHashCode() => Cell * 9 + Digit;
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public override string ToSimpleString() => $"{Digit + 1}{new Cells { Cell }}";
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

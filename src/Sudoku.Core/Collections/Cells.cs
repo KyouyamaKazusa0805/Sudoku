@@ -1,6 +1,7 @@
 ﻿#pragma warning disable IDE0011
 
 using System.ComponentModel;
+using System.Runtime.Intrinsics;
 using Sudoku.DataHandling;
 using static System.Numerics.BitOperations;
 using static Sudoku.Constants;
@@ -847,6 +848,13 @@ public unsafe struct Cells :
 	/// <returns>The candidate list.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public readonly Candidates Expand(int digit) => this * digit;
+
+	/// <summary>
+	/// Gets the <see cref="Vector128{T}"/> instance via the basic data.
+	/// </summary>
+	/// <returns>The <see cref="Vector128{T}"/> instance.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public readonly Vector128<long> ToVector() => Vector128.Create(_high, _low);
 
 	/// <summary>
 	/// Being called by <see cref="RowMask"/>, <see cref="ColumnMask"/> and <see cref="BlockMask"/>.

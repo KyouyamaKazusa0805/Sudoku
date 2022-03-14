@@ -135,7 +135,6 @@ internal sealed class Searcher
 		StartWithStrong();
 
 		// Output the result.
-		var finalChains = new List<(AlternatingInferenceChain Chain, Conclusion[] Conclusions)>();
 		foreach (var (nids, startsWithWeak) in _foundChains)
 		{
 			var chain = new AlternatingInferenceChain(from nid in nids select _id2NodeLookup[nid], startsWithWeak);
@@ -144,19 +143,6 @@ internal sealed class Searcher
 				continue;
 			}
 
-			int index = finalChains.FindIndex(c => c.Chain == chain);
-			if (index == -1)
-			{
-				finalChains.Add((chain, conclusions));
-			}
-			else if (finalChains[index].Chain.Count >= chain.Count)
-			{
-				finalChains[index] = (chain, conclusions);
-			}
-		}
-
-		foreach (var (chain, conclusions) in finalChains)
-		{
 			_output.WriteLine($"{chain} => {new ConclusionCollection(conclusions).ToString()}");
 		}
 	}

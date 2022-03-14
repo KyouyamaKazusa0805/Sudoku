@@ -6,7 +6,6 @@ namespace Sudoku.Test;
 /// Defines a data structure that can automatically inference the strong and weak inferences.
 /// </summary>
 public readonly partial struct AlternatingInferenceChain :
-	ICloneable,
 	IEnumerable<Node>,
 	IEquatable<AlternatingInferenceChain>,
 	IReadOnlyCollection<Node>,
@@ -76,30 +75,92 @@ public readonly partial struct AlternatingInferenceChain :
 	/// Indicates the possible eliminations or assignments that can be concluded through the current chain.
 	/// </summary>
 	/// <param name="grid">The grid as the candidate template.</param>
-	public Conclusion[]? GetConclusions(in Grid grid) =>
-		this switch
+	public Conclusion[]? GetConclusions(in Grid grid)
+	{
+		if (!_startsWithWeak)
 		{
+			// If '_startsWithWeak' is false, the chain is the special AIC
+			// that the head and tail is a same node.
+			// If the head (or tail) node is a sole candidate, we can conclude that
+			// the sole candidate is true; otherwise, the structure of the node is true.
+			byte d = _nodes[0].Digit;
+			if (_nodes[0].Cells is var cells && cells is [var c])
 			{
-				_startsWithWeak: true,
-				RealChainNodes:
-				[
-					SoleCandidateNode { Candidate: var c1 },
-					..,
-					SoleCandidateNode { Candidate: var c2 }
-				]
+				return new Conclusion[] { new(ConclusionType.Assignment, c * 9 + d) };
 			}
-			when grid is var tempGrid =>
-			(
-				from elimination in !new Candidates { c1, c2 }
-				where tempGrid.Exists(elimination) is true
-				select new Conclusion(ConclusionType.Elimination, elimination)
-			).ToArray(),
+
+			return getEliminationsSingleDigit(!cells & grid.CandidatesMap[d], d);
+		}
+
+		if (RealChainNodes is not [{ Cells: var c1, Digit: var d1 }, .., { Cells: var c2, Digit: var d2 }])
+		{
+			// If the 'RealChainNodes' is invalid, just return null.
+			return null;
+		}
+
+		if (d1 == d2)
+		{
+			// If 'd1' is equal to 'd2', the head and tail node uses the same digit.
+			// Therefore, we can get the eliminations more easily.
+			var elimMap = !c1 & !c2 & grid.CandidatesMap[d1];
+			if (elimMap is [])
 			{
-				_startsWithWeak: false,
-				RealChainNodes: [SoleCandidateNode { Candidate: var c }, ..]
-			} => new Conclusion[] { new(ConclusionType.Assignment, c) },
-			_ => null
-		};
+				return null;
+			}
+
+			return getEliminationsSingleDigit(elimMap, d1);
+		}
+
+		switch ((c1, c2))
+		{
+			case ( [var oc1], [var oc2]):
+			{
+				return getEliminationsMultipleDigits(grid, oc1, oc2, d1, d2);
+			}
+			case ( [var oc], { Count: > 1 }) when grid.Exists(oc, d2) is true:
+			{
+				return new Conclusion[] { new(ConclusionType.Elimination, oc, d2) };
+			}
+			case ({ Count: > 1 }, [var oc]) when grid.Exists(oc, d1) is true:
+			{
+				return new Conclusion[] { new(ConclusionType.Elimination, oc, d1) };
+			}
+			default:
+			{
+				return null;
+			}
+		}
+
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		static Conclusion[] getEliminationsSingleDigit(in Cells elimMap, byte d)
+		{
+			int i = 0;
+			var result = new Conclusion[elimMap.Count];
+			foreach (int cell in elimMap)
+			{
+				result[i++] = new(ConclusionType.Elimination, cell * 9 + d);
+			}
+
+			return result;
+		}
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		static Conclusion[] getEliminationsMultipleDigits(in Grid grid, int oc1, int oc2, byte d1, byte d2)
+		{
+			using var resultList = new ValueList<Conclusion>(2);
+			if (grid.Exists(oc1, d2) is true)
+			{
+				resultList.Add(new(ConclusionType.Elimination, oc1, d2));
+			}
+			if (grid.Exists(oc2, d1) is true)
+			{
+				resultList.Add(new(ConclusionType.Elimination, oc2, d1));
+			}
+
+			return resultList.ToArray();
+		}
+	}
 
 	/// <summary>
 	/// Indicates the <see cref="Node"/>s that ignores the first and the last node.
@@ -122,18 +183,6 @@ public readonly partial struct AlternatingInferenceChain :
 		get => _nodes[index];
 	}
 
-
-	/// <inheritdoc cref="ICloneable.Clone"/>
-	public AlternatingInferenceChain Clone()
-	{
-		var resultNodes = new Node[_nodes.Length];
-		for (int i = 0; i < _nodes.Length; i++)
-		{
-			resultNodes[i] = _nodes[i].Clone();
-		}
-
-		return new AlternatingInferenceChain(resultNodes, _startsWithWeak);
-	}
 
 	/// <inheritdoc cref="object.Equals(object?)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -184,10 +233,6 @@ public readonly partial struct AlternatingInferenceChain :
 	/// <inheritdoc cref="IEnumerable{T}.GetEnumerator"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public Enumerator GetEnumerator() => new(_nodes);
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	object ICloneable.Clone() => Clone();
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
