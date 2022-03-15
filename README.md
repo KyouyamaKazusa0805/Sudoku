@@ -87,14 +87,14 @@ Please visit the following tables.
 * [x] API
 * [ ] UI Projects
   * [ ] Desktop Projects
-    * [x] ~~WPF (Implemented but deprecated, removed)~~
+    * [x] ~~WPF (Removed due to deprecated)~~
     * [ ] ~~UWP (May not be considered)~~
-    * [x] ~~Winform (Implemented but deprecated, removed)~~
+    * [x] ~~Winform (Removed due to deprecated)~~
     * [ ] **Windows UI (I'm working on this)**
   * [ ] MAUI
-* [ ] Platform Robots (Dependabot)
-  * [ ] Bilibili (Should the platform provide APIs)
-  * [x] ~~QICQ (Implemented, but I has removed yet, but don't worry because I'll re-upload them)~~
+* [ ] Platform Robots
+  * [ ] Bilibili (Requires APIs)
+  * [x] ~~QICQ (Removed due to deprecated)~~
   * [ ] WeChat
   * [ ] Others...
 * [ ] Wiki Documentation
