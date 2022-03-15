@@ -97,6 +97,17 @@ internal sealed class Searcher
 
 
 	/// <summary>
+	/// Indicates whether the single-digit strong inference is enabled.
+	/// </summary>
+	public bool IsXEnabled { get; set; } = true;
+
+	/// <summary>
+	/// Indicates whether the same-cell strong inference is enabled.
+	/// </summary>
+	public bool IsYEnabled { get; set; } = true;
+
+
+	/// <summary>
 	/// Get all possible chain steps.
 	/// </summary>
 	/// <param name="grid">The grid used.</param>
@@ -178,29 +189,35 @@ internal sealed class Searcher
 		HashSet<int>? list = null;
 
 		// Get bi-location regions.
-		foreach (var label in Regions)
+		if (IsXEnabled)
 		{
-			int region = cell.ToRegionIndex(label);
-			var posCells = (RegionMaps[region] & grid.CandidatesMap[digit]) - cell;
-			if (posCells is [var posCell])
+			foreach (var label in Regions)
 			{
-				var nextNode = new SoleCandidateNode((byte)posCell, digit);
-				int nextNodeId = _node2IdLookup[nextNode];
-				(list ??= new()).Add(nextNodeId);
+				int region = cell.ToRegionIndex(label);
+				var posCells = (RegionMaps[region] & grid.CandidatesMap[digit]) - cell;
+				if (posCells is [var posCell])
+				{
+					var nextNode = new SoleCandidateNode((byte)posCell, digit);
+					int nextNodeId = _node2IdLookup[nextNode];
+					(list ??= new()).Add(nextNodeId);
+				}
 			}
 		}
 
 		// Get bi-value cell.
-		short candidateMask = grid.GetCandidates(cell);
-		if (PopCount((uint)candidateMask) == 2)
+		if (IsYEnabled)
 		{
-			byte theOtherDigit = (byte)Log2((uint)(candidateMask & ~(1 << digit)));
-			var nextNode = new SoleCandidateNode(cell, theOtherDigit);
-			int nextNodeId = _node2IdLookup[nextNode];
-			(list ??= new()).Add(nextNodeId);
-		}
+			short candidateMask = grid.GetCandidates(cell);
+			if (PopCount((uint)candidateMask) == 2)
+			{
+				byte theOtherDigit = (byte)Log2((uint)(candidateMask & ~(1 << digit)));
+				var nextNode = new SoleCandidateNode(cell, theOtherDigit);
+				int nextNodeId = _node2IdLookup[nextNode];
+				(list ??= new()).Add(nextNodeId);
+			}
 
-		_strongInferences[_node2IdLookup[currentNode]] = list;
+			_strongInferences[_node2IdLookup[currentNode]] = list;
+		}
 	}
 
 	/// <summary>
