@@ -5,7 +5,7 @@ using static Sudoku.Constants.Tables;
 
 namespace Sudoku.Test;
 
-internal sealed class Searcher
+internal sealed class AicSearcher
 {
 	/// <summary>
 	/// Indicates the field that stores the temporary strong inferences during the searching.
@@ -85,7 +85,7 @@ internal sealed class Searcher
 
 
 	/// <summary>
-	/// Initializes a <see cref="Searcher"/> instance via the <see cref="ITestOutputHelper"/> instance
+	/// Initializes a <see cref="AicSearcher"/> instance via the <see cref="ITestOutputHelper"/> instance
 	/// to allow displaying the customized items onto the test explorer.
 	/// </summary>
 	/// <param name="output">
@@ -93,7 +93,7 @@ internal sealed class Searcher
 	/// that allows displaying the customized items onto the test explorer.
 	/// </param>
 	/// <seealso cref="ITestOutputHelper"/>
-	public Searcher(ITestOutputHelper output) => _output = output;
+	public AicSearcher(ITestOutputHelper output) => _output = output;
 
 
 	/// <summary>
@@ -215,9 +215,9 @@ internal sealed class Searcher
 				int nextNodeId = _node2IdLookup[nextNode];
 				(list ??= new()).Add(nextNodeId);
 			}
-
-			_strongInferences[_node2IdLookup[currentNode]] = list;
 		}
+
+		_strongInferences[_node2IdLookup[currentNode]] = list;
 	}
 
 	/// <summary>
@@ -334,6 +334,8 @@ internal sealed class Searcher
 					int[] finalArray = chain.ImmutelyAdd(nextId).ToArray();
 
 					_foundChains.Add((finalArray, true));
+
+					return;
 				}
 
 				if (chain.Contains(nextId))
@@ -417,6 +419,8 @@ internal sealed class Searcher
 					int[] finalArray = chain.ImmutelyAdd(nextId).ToArray();
 
 					_foundChains.Add((finalArray, false));
+
+					return;
 				}
 
 				if (chain.Contains(nextId))

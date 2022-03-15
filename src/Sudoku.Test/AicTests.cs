@@ -5,10 +5,9 @@ using Xunit.Abstractions;
 namespace Sudoku.Test;
 
 /// <summary>
-/// Defines a set of tests that plays with parsing <see cref="Grid"/> instances.
+/// Defines a set of tests that plays with testing about AIC searching.
 /// </summary>
-/// <seealso cref="Grid"/>
-public sealed class ComplexSolvingTests
+public sealed class AicTests
 {
 	/// <summary>
 	/// Indicates the test code.
@@ -22,20 +21,21 @@ public sealed class ComplexSolvingTests
 
 
 	/// <summary>
-	/// Initializes a <see cref="ComplexSolvingTests"/> instance via the specified output helper instance.
+	/// Initializes an <see cref="AicTests"/> instance
+	/// via the specified output helper instance.
 	/// </summary>
 	/// <param name="output">The output helper instance.</param>
-	public ComplexSolvingTests(ITestOutputHelper output) => _output = output;
+	public AicTests(ITestOutputHelper output) => _output = output;
 
 
 	/// <summary>
 	/// Indicates the sample test.
 	/// </summary>
-	[Fact(Timeout = 20000)]
-	public void ChainingBasicMethodsTest()
+	[Fact(Timeout = 20000, Skip = "ignored")]
+	public void Test()
 	{
 		var grid = Grid.Parse(TestCode);
-		var searcher = new Searcher(_output);
+		var searcher = new AicSearcher(_output);
 		searcher.GetAll(grid);
 	}
 }
