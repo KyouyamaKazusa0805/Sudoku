@@ -148,6 +148,19 @@ public readonly partial struct AlternatingInferenceChain :
 	/// Indicates the possible eliminations or assignments that can be concluded through the current chain.
 	/// </summary>
 	/// <param name="grid">The grid as the candidate template.</param>
+	/// <remarks><i>
+	/// <para>TODO: Append extra eliminations that requires the extended elimination rules.</para>
+	/// <para>
+	/// e.g.
+	/// <code>
+	/// a. 25 | d. 28
+	/// b. 25 | e. 38
+	/// c. 3+ | f. 5+
+	/// </code>
+	/// Chain: <c>a(5) == d(8) -- e(8 == 3) => b != 5</c>, where the cell <c>c</c> and <c>f</c>
+	/// are filled with modifiable values.
+	/// </para>
+	/// </i></remarks>
 	public Conclusion[]? GetConclusions(in Grid grid) =>
 		_startsWithWeak switch
 		{
