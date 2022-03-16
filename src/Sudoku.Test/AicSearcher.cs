@@ -97,14 +97,11 @@ internal sealed class AicSearcher
 
 
 	/// <summary>
-	/// Indicates whether the single-digit strong inference is enabled.
+	/// Indicates the extended nodes to be searched for. Please note that the type of the property
+	/// is an enumeration type with bit-fields attribute, which means you can add multiple choices
+	/// into the value.
 	/// </summary>
-	public bool IsXEnabled { get; set; } = true;
-
-	/// <summary>
-	/// Indicates whether the same-cell strong inference is enabled.
-	/// </summary>
-	public bool IsYEnabled { get; set; } = true;
+	public SearcherNodeTypes NodeTypes { get; set; } = SearcherNodeTypes.SoleDigit | SearcherNodeTypes.SoleCell;
 
 
 	/// <summary>
@@ -193,7 +190,7 @@ internal sealed class AicSearcher
 		HashSet<int>? list = null;
 
 		// Get bi-location regions.
-		if (IsXEnabled)
+		if (NodeTypes.Flags(SearcherNodeTypes.SoleDigit))
 		{
 			foreach (var label in Regions)
 			{
@@ -209,7 +206,7 @@ internal sealed class AicSearcher
 		}
 
 		// Get bi-value cell.
-		if (IsYEnabled)
+		if (NodeTypes.Flags(SearcherNodeTypes.SoleCell))
 		{
 			short candidateMask = grid.GetCandidates(cell);
 			if (PopCount((uint)candidateMask) == 2)
@@ -220,6 +217,8 @@ internal sealed class AicSearcher
 				(list ??= new()).Add(nextNodeId);
 			}
 		}
+
+
 
 		_strongInferences[_node2IdLookup[currentNode]] = list;
 	}
@@ -254,18 +253,24 @@ internal sealed class AicSearcher
 
 		HashSet<int>? list = null;
 
-		foreach (byte anotherCell in (PeerMaps[cell] & grid.CandidatesMap[digit]) - cell)
+		if (NodeTypes.Flags(SearcherNodeTypes.SoleDigit))
 		{
-			var nextNode = new SoleCandidateNode(anotherCell, digit);
-			int nextNodeId = _node2IdLookup[nextNode];
-			(list ??= new()).Add(nextNodeId);
+			foreach (byte anotherCell in (PeerMaps[cell] & grid.CandidatesMap[digit]) - cell)
+			{
+				var nextNode = new SoleCandidateNode(anotherCell, digit);
+				int nextNodeId = _node2IdLookup[nextNode];
+				(list ??= new()).Add(nextNodeId);
+			}
 		}
 
-		foreach (byte anotherDigit in grid.GetCandidates(cell) & ~(1 << digit))
+		if (NodeTypes.Flags(SearcherNodeTypes.SoleCell))
 		{
-			var nextNode = new SoleCandidateNode(cell, anotherDigit);
-			int nextNodeId = _node2IdLookup[nextNode];
-			(list ??= new()).Add(nextNodeId);
+			foreach (byte anotherDigit in grid.GetCandidates(cell) & ~(1 << digit))
+			{
+				var nextNode = new SoleCandidateNode(cell, anotherDigit);
+				int nextNodeId = _node2IdLookup[nextNode];
+				(list ??= new()).Add(nextNodeId);
+			}
 		}
 
 		_weakInferences[_node2IdLookup[currentNode]] = list;

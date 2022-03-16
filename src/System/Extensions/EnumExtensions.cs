@@ -13,28 +13,13 @@ public static unsafe class EnumExtensions
 	/// <param name="this">The current field to check.</param>
 	/// <returns>A <see cref="bool"/> result indicating that.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static bool IsFlag<TEnum>(this TEnum @this) where TEnum : unmanaged, Enum
-	{
-		switch (sizeof(TEnum))
+	public static bool IsFlag<TEnum>(this TEnum @this) where TEnum : unmanaged, Enum =>
+		sizeof(TEnum) switch
 		{
-			case 1:
-			case 2:
-			case 4:
-			{
-				int l = Unsafe.As<TEnum, int>(ref @this);
-				return (l & l - 1) == 0;
-			}
-			case 8:
-			{
-				long l = Unsafe.As<TEnum, long>(ref @this);
-				return (l & l - 1) == 0;
-			}
-			default:
-			{
-				return false;
-			}
-		}
-	}
+			1 or 2 or 4 when Unsafe.As<TEnum, int>(ref @this) is var l => (l & l - 1) == 0,
+			8 when Unsafe.As<TEnum, long>(ref @this) is var l => (l & l - 1) == 0,
+			_ => false
+		};
 
 	/// <summary>
 	/// To get all possible flags from a specified enumeration instance.
@@ -80,28 +65,15 @@ public static unsafe class EnumExtensions
 	/// </remarks>
 	/// <exception cref="ArgumentException">Throws when the used bytes aren't 1, 2 or 4.</exception>
 	/// <seealso cref="Enum.HasFlag(Enum)"/>
-	public static bool Flags<TEnum>(this TEnum @this, TEnum other) where TEnum : unmanaged, Enum
-	{
-		switch (sizeof(TEnum))
+	public static bool Flags<TEnum>(this TEnum @this, TEnum other) where TEnum : unmanaged, Enum =>
+		sizeof(TEnum) switch
 		{
-			case 1:
-			case 2:
-			case 4:
-			{
-				int otherValue = Unsafe.As<TEnum, int>(ref other);
-				return (Unsafe.As<TEnum, int>(ref @this) & otherValue) == otherValue;
-			}
-			case 8:
-			{
-				long otherValue = Unsafe.As<TEnum, long>(ref other);
-				return (Unsafe.As<TEnum, long>(ref @this) & otherValue) == otherValue;
-			}
-			default:
-			{
-				throw new ArgumentException("The parameter should be one of the values 1, 2, 4.", nameof(@this));
-			}
-		}
-	}
+			1 or 2 or 4 when Unsafe.As<TEnum, int>(ref other) is var otherValue =>
+				(Unsafe.As<TEnum, int>(ref @this) & otherValue) == otherValue,
+			8 when Unsafe.As<TEnum, long>(ref other) is var otherValue =>
+				(Unsafe.As<TEnum, long>(ref @this) & otherValue) == otherValue,
+			_ => throw new ArgumentException("The parameter should be one of the values 1, 2, 4.", nameof(@this))
+		};
 
 	/// <summary>
 	/// Determines whether the instance has the flags specified as <paramref name="flags"/>.
