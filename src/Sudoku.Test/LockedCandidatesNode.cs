@@ -1,4 +1,6 @@
-﻿namespace Sudoku.Test;
+﻿using Sudoku.Collections;
+
+namespace Sudoku.Test;
 
 /// <summary>
 /// Defines a chain node that provides with the data for a locked candidates.
@@ -29,6 +31,16 @@ public sealed class LockedCandidatesNode : Node
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public LockedCandidatesNode(byte digit, byte cell1, byte cell2, byte cell3) :
 		base(NodeType.LockedCandidates, digit, new() { cell1, cell2, cell3 })
+	{
+	}
+
+	/// <summary>
+	/// Initializes a <see cref="LockedCandidatesNode"/> instance via the digit used and cells used.
+	/// </summary>
+	/// <param name="digit">The digit used.</param>
+	/// <param name="cells">The cells used.</param>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public LockedCandidatesNode(byte digit, in Cells cells) : base(NodeType.LockedCandidates, digit, cells)
 	{
 	}
 }

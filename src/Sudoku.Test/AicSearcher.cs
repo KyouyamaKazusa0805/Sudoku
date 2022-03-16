@@ -83,6 +83,11 @@ internal sealed class AicSearcher
 	/// </summary>
 	private readonly ITestOutputHelper _output;
 
+	/// <summary>
+	/// Indicates the global ID value.
+	/// </summary>
+	private int _globalId;
+
 
 	/// <summary>
 	/// Initializes a <see cref="AicSearcher"/> instance via the <see cref="ITestOutputHelper"/> instance
@@ -116,19 +121,6 @@ internal sealed class AicSearcher
 		_id2NodeLookup.Clear();
 		_node2IdLookup.Clear();
 		_foundChains.Clear();
-
-		// Gather the basic information on basic nodes.
-		int id = 0;
-		foreach (int candidate in grid)
-		{
-			var node = new SoleCandidateNode((byte)(candidate / 9), (byte)(candidate % 9));
-			_id2NodeLookup.Add(id, node);
-			_node2IdLookup.Add(node, id);
-			_strongInferences.Add(id, null);
-			_weakInferences.Add(id, null);
-
-			id++;
-		}
 
 		// Then checks and searches for the strong and weak inferences by each candidate.
 		foreach (int candidate in grid)
@@ -199,8 +191,7 @@ internal sealed class AicSearcher
 				if (posCells is [var posCell])
 				{
 					var nextNode = new SoleCandidateNode((byte)posCell, digit);
-					int nextNodeId = _node2IdLookup[nextNode];
-					(list ??= new()).Add(nextNodeId);
+					AddNode(nextNode, ref list);
 				}
 			}
 		}
@@ -213,14 +204,11 @@ internal sealed class AicSearcher
 			{
 				byte theOtherDigit = (byte)Log2((uint)(candidateMask & ~(1 << digit)));
 				var nextNode = new SoleCandidateNode(cell, theOtherDigit);
-				int nextNodeId = _node2IdLookup[nextNode];
-				(list ??= new()).Add(nextNodeId);
+				AddNode(nextNode, ref list);
 			}
 		}
 
-
-
-		_strongInferences[_node2IdLookup[currentNode]] = list;
+		AssignHashSet(list, currentNode, _strongInferences);
 	}
 
 	/// <summary>
@@ -258,8 +246,7 @@ internal sealed class AicSearcher
 			foreach (byte anotherCell in (PeerMaps[cell] & grid.CandidatesMap[digit]) - cell)
 			{
 				var nextNode = new SoleCandidateNode(anotherCell, digit);
-				int nextNodeId = _node2IdLookup[nextNode];
-				(list ??= new()).Add(nextNodeId);
+				AddNode(nextNode, ref list);
 			}
 		}
 
@@ -268,12 +255,11 @@ internal sealed class AicSearcher
 			foreach (byte anotherDigit in grid.GetCandidates(cell) & ~(1 << digit))
 			{
 				var nextNode = new SoleCandidateNode(cell, anotherDigit);
-				int nextNodeId = _node2IdLookup[nextNode];
-				(list ??= new()).Add(nextNodeId);
+				AddNode(nextNode, ref list);
 			}
 		}
 
-		_weakInferences[_node2IdLookup[currentNode]] = list;
+		AssignHashSet(list, currentNode, _weakInferences);
 	}
 
 	/// <summary>
@@ -308,7 +294,7 @@ internal sealed class AicSearcher
 
 		void nextStrong(ref Bag<int> chain, int id)
 		{
-			if (_strongInferences[id] is not { } nextIds)
+			if (!_strongInferences.TryGetValue(id, out var nextIds) || nextIds is null)
 			{
 				return;
 			}
@@ -330,7 +316,7 @@ internal sealed class AicSearcher
 
 		void nextWeak(ref Bag<int> chain, int id)
 		{
-			if (_weakInferences[id] is not { } nextIds)
+			if (!_weakInferences.TryGetValue(id, out var nextIds) || nextIds is null)
 			{
 				return;
 			}
@@ -393,7 +379,7 @@ internal sealed class AicSearcher
 
 		void nextWeak(ref Bag<int> chain, int id)
 		{
-			if (_weakInferences[id] is not { } nextIds)
+			if (!_weakInferences.TryGetValue(id, out var nextIds) || nextIds is null)
 			{
 				return;
 			}
@@ -415,7 +401,7 @@ internal sealed class AicSearcher
 
 		void nextStrong(ref Bag<int> chain, int id)
 		{
-			if (_strongInferences[id] is not { } nextIds)
+			if (!_strongInferences.TryGetValue(id, out var nextIds) || nextIds is null)
 			{
 				return;
 			}
@@ -487,5 +473,46 @@ internal sealed class AicSearcher
 		}
 
 		_output.WriteLine(sb.ToStringAndClear());
+	}
+
+	/// <summary>
+	/// Adds the specified node into the collection, or just get the ID value.
+	/// </summary>
+	/// <param name="nextNode">The next node.</param>
+	/// <param name="list">The list.</param>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	private void AddNode(Node nextNode, [NotNull] ref HashSet<int>? list)
+	{
+		if (_node2IdLookup.TryGetValue(nextNode, out int nextNodeId))
+		{
+			(list ??= new()).Add(nextNodeId);
+		}
+		else
+		{
+			_id2NodeLookup.Add(_globalId, nextNode);
+			_node2IdLookup.Add(nextNode, _globalId);
+			(list ??= new()).Add(_globalId++);
+		}
+	}
+
+	/// <summary>
+	/// To assign the recorded IDs into the dictionary.
+	/// </summary>
+	/// <param name="list">The list of IDs.</param>
+	/// <param name="currentNode">The current node.</param>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	private void AssignHashSet(HashSet<int>? list, Node currentNode, Dictionary<int, HashSet<int>?> inferences)
+	{
+		if (list is not null)
+		{
+			if (_node2IdLookup.TryGetValue(currentNode, out int currentNodeId))
+			{
+				inferences[currentNodeId] = list;
+			}
+			else
+			{
+				inferences.Add(_globalId++, list);
+			}
+		}
 	}
 }

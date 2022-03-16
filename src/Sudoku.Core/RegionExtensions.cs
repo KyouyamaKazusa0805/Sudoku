@@ -46,6 +46,15 @@ public static class RegionExtensions
 	};
 
 
+	/// <inheritdoc cref="CopyRegionInfo(int, int*)"/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static unsafe void CopyRegionInfo(this byte cell, byte* ptr!!)
+	{
+		ptr[0] = (byte)BlockTable[cell];
+		ptr[1] = (byte)RowTable[cell];
+		ptr[2] = (byte)ColumnTable[cell];
+	}
+
 	/// <summary>
 	/// Gets the row, column and block value and copies to the specified array that represents by a pointer
 	/// of 3 elements, where the first element stores the block index, second element stores the row index
@@ -57,7 +66,7 @@ public static class RegionExtensions
 	/// Throws when the argument <paramref name="ptr"/> is <see langword="null"/>.
 	/// </exception>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static unsafe void RopyRegionInfo(this int cell, int* ptr!!)
+	public static unsafe void CopyRegionInfo(this int cell, int* ptr!!)
 	{
 		ptr[0] = BlockTable[cell];
 		ptr[1] = RowTable[cell];
@@ -71,13 +80,17 @@ public static class RegionExtensions
 	/// <param name="cell">The cell. The available values must be between 0 and 80.</param>
 	/// <param name="region">The region type.</param>
 	/// <returns>The region index. The return value must be between 0 and 26.</returns>
+	/// <exception cref="ArgumentOutOfRangeException">
+	/// Throws when the argument <paramref name="region"/> is not defined.
+	/// </exception>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static int ToRegionIndex(this byte cell, Region region) =>
 		region switch
 		{
 			Region.Block => BlockTable[cell],
 			Region.Row => RowTable[cell],
-			Region.Column => ColumnTable[cell]
+			Region.Column => ColumnTable[cell],
+			_ => throw new ArgumentOutOfRangeException(nameof(region))
 		};
 
 	/// <inheritdoc cref="ToRegionIndex(byte, Region)"/>
@@ -87,7 +100,8 @@ public static class RegionExtensions
 		{
 			Region.Block => BlockTable[cell],
 			Region.Row => RowTable[cell],
-			Region.Column => ColumnTable[cell]
+			Region.Column => ColumnTable[cell],
+			_ => throw new ArgumentOutOfRangeException(nameof(region))
 		};
 
 	/// <summary>

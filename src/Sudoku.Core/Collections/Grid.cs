@@ -997,6 +997,31 @@ public unsafe partial struct Grid :
 
 	/// <summary>
 	/// Creates a mask of type <see cref="short"/> that represents the usages of digits 1 to 9,
+	/// ranged in a specified list of cells in the current sudoku grid.
+	/// </summary>
+	/// <param name="cells">The list of cells to gather the usages on all digits.</param>
+	/// <param name="withValueCells">
+	/// Indicates whether the value cells (given or modifiable ones) will be included to be gathered.
+	/// If <see langword="true"/>, all value cells (no matter what kind of cell) will be summed up.
+	/// </param>
+	/// <returns>A mask of type <see cref="short"/> that represents the usages of digits 1 to 9.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public readonly short GetDigitsUnion(in Cells cells, bool withValueCells)
+	{
+		short result = 0;
+		foreach (int cell in cells)
+		{
+			if (!withValueCells && GetStatus(cell) != CellStatus.Empty || withValueCells)
+			{
+				result |= _values[cell];
+			}
+		}
+
+		return (short)(result & MaxCandidatesMask);
+	}
+
+	/// <summary>
+	/// Creates a mask of type <see cref="short"/> that represents the usages of digits 1 to 9,
 	/// ranged in a specified list of cells in the current sudoku grid,
 	/// to determine which digits are not used.
 	/// </summary>
@@ -1005,7 +1030,7 @@ public unsafe partial struct Grid :
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public readonly short GetDigitsIntersection(in Cells cells)
 	{
-		short result = 511;
+		short result = MaxCandidatesMask;
 		foreach (int cell in cells)
 		{
 			result &= (short)~_values[cell];
@@ -1062,7 +1087,8 @@ public unsafe partial struct Grid :
 				".!" or "!." or "0!" or "!0" => f.ToString(this).RemoveAll('+'),
 				".!:" or "!.:" or "0!:" => f.ToString(this).RemoveAll('+'),
 				_ => f.ToString(this)
-			}
+			},
+			_ => throw new FormatException("The current status is invalid.")
 		};
 
 	/// <summary>

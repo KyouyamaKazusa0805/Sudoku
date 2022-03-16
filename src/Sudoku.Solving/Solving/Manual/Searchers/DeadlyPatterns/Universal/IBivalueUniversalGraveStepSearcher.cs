@@ -75,7 +75,7 @@ public unsafe interface IBivalueUniversalGraveStepSearcher : IUniversalStepSearc
 
 				fixed (int* p = span)
 				{
-					cell.RopyRegionInfo(p);
+					cell.CopyRegionInfo(p);
 				}
 				foreach (int region in span)
 				{
@@ -135,7 +135,7 @@ public unsafe interface IBivalueUniversalGraveStepSearcher : IUniversalStepSearc
 
 					fixed (int* p = playground)
 					{
-						currentCell.RopyRegionInfo(p);
+						currentCell.CopyRegionInfo(p);
 					}
 					foreach (int region in playground)
 					{

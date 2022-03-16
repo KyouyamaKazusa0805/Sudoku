@@ -27,14 +27,14 @@ public enum SearcherNodeTypes
 	LockedCandidates = 4,
 
 	/// <summary>
-	/// Indicates the searcher can search for almost locked set nodes.
+	/// Indicates the searcher can search for locked set nodes.
 	/// </summary>
-	AlmostLockedSet = 8,
+	LockedSet = 8,
 
 	/// <summary>
-	/// Indicates the searcher can search for almost unique rectangle nodes.
+	/// Indicates the searcher can search for almost rectangle nodes.
 	/// </summary>
-	AlmostUniqueRectangle = 16,
+	UniqueRectangle = 16,
 
 	/// <summary>
 	/// Indicates the searcher can search for kraken fish nodes.
