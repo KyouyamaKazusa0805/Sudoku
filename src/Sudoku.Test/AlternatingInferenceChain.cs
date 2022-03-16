@@ -72,97 +72,6 @@ public readonly partial struct AlternatingInferenceChain :
 	}
 
 	/// <summary>
-	/// Indicates the possible eliminations or assignments that can be concluded through the current chain.
-	/// </summary>
-	/// <param name="grid">The grid as the candidate template.</param>
-	public Conclusion[]? GetConclusions(in Grid grid)
-	{
-		if (!_startsWithWeak)
-		{
-			// If '_startsWithWeak' is false, the chain is the special AIC
-			// that the head and tail is a same node.
-			// If the head (or tail) node is a sole candidate, we can conclude that
-			// the sole candidate is true; otherwise, the structure of the node is true.
-			byte d = _nodes[0].Digit;
-			if (_nodes[0].Cells is var cells && cells is [var c])
-			{
-				return new Conclusion[] { new(ConclusionType.Assignment, c * 9 + d) };
-			}
-
-			return getEliminationsSingleDigit(!cells & grid.CandidatesMap[d], d);
-		}
-
-		if (RealChainNodes is not [{ Cells: var c1, Digit: var d1 }, .., { Cells: var c2, Digit: var d2 }])
-		{
-			// If the 'RealChainNodes' is invalid, just return null.
-			return null;
-		}
-
-		if (d1 == d2)
-		{
-			// If 'd1' is equal to 'd2', the head and tail node uses the same digit.
-			// Therefore, we can get the eliminations more easily.
-			var elimMap = !c1 & !c2 & grid.CandidatesMap[d1];
-			if (elimMap is [])
-			{
-				return null;
-			}
-
-			return getEliminationsSingleDigit(elimMap, d1);
-		}
-
-		switch ((c1, c2))
-		{
-			case ( [var oc1], [var oc2]):
-			{
-				return getEliminationsMultipleDigits(grid, oc1, oc2, d1, d2);
-			}
-			case ( [var oc], { Count: > 1 }) when grid.Exists(oc, d2) is true:
-			{
-				return new Conclusion[] { new(ConclusionType.Elimination, oc, d2) };
-			}
-			case ({ Count: > 1 }, [var oc]) when grid.Exists(oc, d1) is true:
-			{
-				return new Conclusion[] { new(ConclusionType.Elimination, oc, d1) };
-			}
-			default:
-			{
-				return null;
-			}
-		}
-
-
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		static Conclusion[] getEliminationsSingleDigit(in Cells elimMap, byte d)
-		{
-			int i = 0;
-			var result = new Conclusion[elimMap.Count];
-			foreach (int cell in elimMap)
-			{
-				result[i++] = new(ConclusionType.Elimination, cell * 9 + d);
-			}
-
-			return result;
-		}
-
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		static Conclusion[] getEliminationsMultipleDigits(in Grid grid, int oc1, int oc2, byte d1, byte d2)
-		{
-			using var resultList = new ValueList<Conclusion>(2);
-			if (grid.Exists(oc1, d2) is true)
-			{
-				resultList.Add(new(ConclusionType.Elimination, oc1, d2));
-			}
-			if (grid.Exists(oc2, d1) is true)
-			{
-				resultList.Add(new(ConclusionType.Elimination, oc2, d1));
-			}
-
-			return resultList.ToArray();
-		}
-	}
-
-	/// <summary>
 	/// Indicates the <see cref="Node"/>s that ignores the first and the last node.
 	/// </summary>
 	public ImmutableArray<Node> RealChainNodes
@@ -234,6 +143,54 @@ public readonly partial struct AlternatingInferenceChain :
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public Enumerator GetEnumerator() => new(_nodes);
 
+
+	/// <summary>
+	/// Indicates the possible eliminations or assignments that can be concluded through the current chain.
+	/// </summary>
+	/// <param name="grid">The grid as the candidate template.</param>
+	public Conclusion[]? GetConclusions(in Grid grid) =>
+		_startsWithWeak switch
+		{
+			true => RealChainNodes switch
+			{
+				[{ Cells: var c1, Digit: var d1 }, .., { Cells: var c2, Digit: var d2 }] => (d1 == d2) switch
+				{
+					true => (!c1 & !c2 & grid.CandidatesMap[d1]) switch
+					{
+						{ Count: not 0 } elimMap => GetEliminationsSingleDigit(elimMap, d1),
+						_ => null
+					},
+					_ => (c1, c2) switch
+					{
+#pragma warning disable IDE0055
+						([var oc1], [var oc2]) => GetEliminationsMultipleDigits(grid, oc1, oc2, d1, d2),
+						([var oc], { Count: > 1 }) => grid.Exists(oc, d2) switch
+						{
+							true => new Conclusion[] { new(ConclusionType.Elimination, oc, d2) },
+							_ => null
+						},
+#pragma warning restore IDE0055
+						({ Count: > 1 }, [var oc]) => grid.Exists(oc, d1) switch
+						{
+							true => new Conclusion[] { new(ConclusionType.Elimination, oc, d1) },
+							_ => null
+						},
+						_ => null
+					}
+				},
+				_ => null
+			},
+			_ => _nodes switch
+			{
+				[{ Cells: var cells, Digit: var d }, ..] => cells switch
+				{
+					[var c] => new Conclusion[] { new(ConclusionType.Assignment, c * 9 + d) },
+					_ => GetEliminationsSingleDigit(!cells & grid.CandidatesMap[d], d)
+				},
+				_ => null
+			}
+		};
+
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	IEnumerator IEnumerable.GetEnumerator() => _nodes.GetEnumerator();
@@ -241,6 +198,51 @@ public readonly partial struct AlternatingInferenceChain :
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	IEnumerator<Node> IEnumerable<Node>.GetEnumerator() => ((IEnumerable<Node>)_nodes).GetEnumerator();
+
+
+	/// <summary>
+	/// Try to get eliminations via different digits.
+	/// </summary>
+	/// <param name="grid">The grid as the candidate reference.</param>
+	/// <param name="c1">The only cell in the first node.</param>
+	/// <param name="c2">The only cell in the second node.</param>
+	/// <param name="d1">The digit 1.</param>
+	/// <param name="d2">The digit 2.</param>
+	/// <returns>The conclusions.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	private static Conclusion[] GetEliminationsMultipleDigits(in Grid grid, int c1, int c2, byte d1, byte d2)
+	{
+		using var resultList = new ValueList<Conclusion>(2);
+		if (grid.Exists(c1, d2) is true)
+		{
+			resultList.Add(new(ConclusionType.Elimination, c1, d2));
+		}
+		if (grid.Exists(c2, d1) is true)
+		{
+			resultList.Add(new(ConclusionType.Elimination, c2, d1));
+		}
+
+		return resultList.ToArray();
+	}
+
+	/// <summary>
+	/// Try to get eliminations via the digit and the elimination cells.
+	/// </summary>
+	/// <param name="elimMap">The elimination cells.</param>
+	/// <param name="digit">The digit.</param>
+	/// <returns>The conclusions.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	private static Conclusion[] GetEliminationsSingleDigit(in Cells elimMap, byte digit)
+	{
+		int i = 0;
+		var result = new Conclusion[elimMap.Count];
+		foreach (int cell in elimMap)
+		{
+			result[i++] = new(ConclusionType.Elimination, cell * 9 + digit);
+		}
+
+		return result;
+	}
 
 
 	/// <inheritdoc/>

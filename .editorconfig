@@ -318,12 +318,6 @@ dotnet_naming_style.start_with__t_.capitalization = pascal_case
 # Diagnostic results
 #
 
-# CS8509: The switch expression does not handle all possible values of its input type (it is not exhaustive).
-dotnet_diagnostic.CS8509.severity = silent
-
-# CS8524: The switch expression does not handle some values of its input type (it is not exhaustive) involving an unnamed enum value.
-dotnet_diagnostic.CS8524.severity = silent
-
 # CS8597: Thrown value may be null.
 dotnet_diagnostic.CS8597.severity = error
 
@@ -393,9 +387,6 @@ dotnet_diagnostic.CS8645.severity = error
 # CS8653: A default expression introduces a null value for a type parameter.
 dotnet_diagnostic.CS8653.severity = error
 
-# CS8655: The switch expression does not handle some null inputs.
-dotnet_diagnostic.CS8655.severity = silent
-
 # CS8656: Call to non-readonly member from a 'readonly' member results in an implicit copy.
 dotnet_diagnostic.CS8656.severity = error
 
@@ -435,9 +426,6 @@ dotnet_diagnostic.CS8777.severity = error
 # CS8826: Partial method declarations have signature differences.
 dotnet_diagnostic.CS8826.severity = error
 
-# CS8846: The switch expression does not handle all possible values of its input type (it is not exhaustive).
-dotnet_diagnostic.CS8846.severity = silent
-
 # CS8907: Parameter is unread. Did you forget to use it to initialize the property with that name?
 dotnet_diagnostic.CS8907.severity = error
 
@@ -451,14 +439,8 @@ dotnet_diagnostic.IDE0002.severity = suggestion
 # IDE0005: Using directive is unnecessary
 dotnet_diagnostic.IDE0005.severity = suggestion
 
-# IDE0010: Add missing cases
-dotnet_diagnostic.IDE0010.severity = none
-
 # IDE0011: Add braces
 dotnet_diagnostic.IDE0011.severity = suggestion
-
-# IDE0072: Add missing cases
-dotnet_diagnostic.IDE0072.severity = none
 
 # IDE0080: Remove unnecessary suppression operator
 dotnet_diagnostic.IDE0080.severity = none
