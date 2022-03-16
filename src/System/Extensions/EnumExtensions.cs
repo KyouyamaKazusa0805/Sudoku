@@ -56,15 +56,17 @@ public static unsafe class EnumExtensions
 		return result;
 	}
 
-	/// <inheritdoc cref="Enum.HasFlag(Enum)"/>
+	/// <summary>
+	/// Determines whether one or more bit fields are set in the current instance.
+	/// </summary>
 	/// <typeparam name="TEnum">The type of the enumeration.</typeparam>
 	/// <param name="this">The current enumeration type instance.</param>
 	/// <param name="other">The other instance to check.</param>
-	/// <remarks>
-	/// This method is same as <see cref="Enum.HasFlag(Enum)"/>, but without boxing and unboxing operations.
-	/// </remarks>
+	/// <returns>
+	/// <see langword="true"/> if the bit field or bit fields that are set in <paramref name="other"/>
+	/// are also set in the current instance; otherwise, <see langword="false"/>.
+	/// </returns>
 	/// <exception cref="ArgumentException">Throws when the used bytes aren't 1, 2 or 4.</exception>
-	/// <seealso cref="Enum.HasFlag(Enum)"/>
 	public static bool Flags<TEnum>(this TEnum @this, TEnum other) where TEnum : unmanaged, Enum =>
 		sizeof(TEnum) switch
 		{

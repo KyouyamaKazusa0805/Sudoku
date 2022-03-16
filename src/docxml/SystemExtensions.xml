@@ -1105,15 +1105,17 @@
             </returns>
         </member>
         <member name="M:System.EnumExtensions.Flags``1(``0,``0)">
-            <inheritdoc cref="M:System.Enum.HasFlag(System.Enum)"/>
+            <summary>
+            Determines whether one or more bit fields are set in the current instance.
+            </summary>
             <typeparam name="TEnum">The type of the enumeration.</typeparam>
             <param name="this">The current enumeration type instance.</param>
             <param name="other">The other instance to check.</param>
-            <remarks>
-            This method is same as <see cref="M:System.Enum.HasFlag(System.Enum)"/>, but without boxing and unboxing operations.
-            </remarks>
+            <returns>
+            <see langword="true"/> if the bit field or bit fields that are set in <paramref name="other"/>
+            are also set in the current instance; otherwise, <see langword="false"/>.
+            </returns>
             <exception cref="T:System.ArgumentException">Throws when the used bytes aren't 1, 2 or 4.</exception>
-            <seealso cref="M:System.Enum.HasFlag(System.Enum)"/>
         </member>
         <member name="M:System.EnumExtensions.MultiFlags``1(``0,``0)">
             <summary>
