@@ -500,6 +500,7 @@ internal sealed class AicSearcher
 	/// </summary>
 	/// <param name="list">The list of IDs.</param>
 	/// <param name="currentNode">The current node.</param>
+	/// <param name="inferences">Indicates what dictionary the hash set is assigned to.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	private void AssignHashSet(HashSet<int>? list, Node currentNode, Dictionary<int, HashSet<int>?> inferences)
 	{
