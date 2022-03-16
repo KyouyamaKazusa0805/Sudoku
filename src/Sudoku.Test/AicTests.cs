@@ -31,7 +31,7 @@ public sealed class AicTests
 	/// <summary>
 	/// Indicates the sample test.
 	/// </summary>
-	[Fact(Timeout = 20000, Skip = "ignored")]
+	[Fact(Timeout = 20000)]
 	public void Test()
 	{
 		var grid = Grid.Parse(TestCode);

@@ -211,7 +211,7 @@ public readonly partial struct AlternatingInferenceChain :
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public override int GetHashCode() => HashCode.Combine(_nodes[0], _nodes[^1], _startsWithWeak);
+	public override int GetHashCode() => HashCode.Combine(RealChainNodes[0], RealChainNodes[^1], _startsWithWeak);
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

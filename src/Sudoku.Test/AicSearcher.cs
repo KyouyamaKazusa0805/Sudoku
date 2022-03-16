@@ -146,14 +146,18 @@ internal sealed class AicSearcher
 		StartWithStrong();
 
 		// Output the result.
+		var tempList = new Dictionary<AlternatingInferenceChain, Conclusion[]>();
 		foreach (var (nids, startsWithWeak) in _foundChains)
 		{
 			var chain = new AlternatingInferenceChain(from nid in nids select _id2NodeLookup[nid], startsWithWeak);
-			if (chain.GetConclusions(grid) is not { Length: not 0 } conclusions)
+			if (chain.GetConclusions(grid) is { Length: not 0 } conclusions && !tempList.ContainsKey(chain))
 			{
-				continue;
+				tempList.Add(chain, conclusions);
 			}
+		}
 
+		foreach (var (chain, conclusions) in tempList)
+		{
 			_output.WriteLine($"{chain} => {new ConclusionCollection(conclusions).ToString()}");
 		}
 	}
@@ -447,6 +451,7 @@ internal sealed class AicSearcher
 	/// <seealso cref="_strongInferences"/>
 	/// <seealso cref="_weakInferences"/>
 	[SuppressMessage("CodeQuality", "IDE0051:Remove unused private members", Justification = "<Pending>")]
+	[Conditional("DEBUG")]
 	private void PrintStringInferences(Dictionary<int, HashSet<int>?> inferences)
 	{
 		const string separator = ", ";
