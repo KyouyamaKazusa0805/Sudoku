@@ -180,7 +180,8 @@ public sealed unsafe class SymmetricPuzzleGenerator : IPuzzleGenerator
 				(8 - column) * 9 + row,
 				(8 - column) * 9 + (8 - row)
 			},
-			SymmetryType.None => new[] { row * 9 + column }
+			SymmetryType.None => new[] { row * 9 + column },
+			_ => Array.Empty<int>()
 		};
 
 	/// <summary>
