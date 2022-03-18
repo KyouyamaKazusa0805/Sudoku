@@ -159,6 +159,9 @@ public unsafe ref partial struct GridParser
 	/// </summary>
 	/// <param name="gridParsingOption">A specified parsing type.</param>
 	/// <returns>The grid.</returns>
+	/// <exception cref="ArgumentOutOfRangeException">
+	/// Throws when the argument <paramref name="gridParsingOption"/> is not defined.
+	/// </exception>
 	public Grid Parse(GridParsingOption gridParsingOption) =>
 		gridParsingOption switch
 		{
@@ -170,7 +173,8 @@ public unsafe ref partial struct GridParser
 			GridParsingOption.Sukaku => OnParsingSukaku(ref this, compatibleFirst: false),
 			GridParsingOption.SukakuSingleLine => OnParsingSukaku(ref this, compatibleFirst: true),
 			GridParsingOption.Excel => OnParsingExcel(ref this),
-			GridParsingOption.OpenSudoku => OnParsingOpenSudoku(ref this)
+			GridParsingOption.OpenSudoku => OnParsingOpenSudoku(ref this),
+			_ => throw new ArgumentOutOfRangeException(nameof(gridParsingOption))
 		};
 
 

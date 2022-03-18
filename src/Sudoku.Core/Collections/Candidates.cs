@@ -368,6 +368,9 @@ public unsafe struct Candidates :
 	/// </summary>
 	/// <param name="offset">The offset.</param>
 	/// <returns>A <see cref="bool"/> value indicating that.</returns>
+	/// <exception cref="ArgumentOutOfRangeException">
+	/// Throws when the argument <paramref name="offset"/> is out of range.
+	/// </exception>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public readonly bool Contains(int offset) =>
 	(
@@ -384,7 +387,8 @@ public unsafe struct Candidates :
 			8 => _8,
 			9 => _9,
 			10 => _10,
-			11 => _11
+			11 => _11,
+			_ => throw new ArgumentOutOfRangeException(nameof(offset))
 		} >> offset % Shifting & 1
 	) != 0;
 
@@ -640,7 +644,8 @@ public unsafe struct Candidates :
 				8 => &pThis->_8,
 				9 => &pThis->_9,
 				10 => &pThis->_10,
-				11 => &pThis->_11
+				11 => &pThis->_11,
+				_ => throw new()
 			};
 			if (value)
 			{
@@ -956,6 +961,9 @@ public unsafe struct Candidates :
 	/// <param name="collection">The collection.</param>
 	/// <param name="offset">The offset to be removed.</param>
 	/// <returns>The result collection.</returns>
+	/// <exception cref="ArgumentOutOfRangeException">
+	/// Throws when the argument <paramref name="offset"/> is out of range.
+	/// </exception>
 	public static Candidates operator -(in Candidates collection, int offset)
 	{
 		var result = collection;
@@ -978,7 +986,8 @@ public unsafe struct Candidates :
 			8 => &pThis->_8,
 			9 => &pThis->_9,
 			10 => &pThis->_10,
-			11 => &pThis->_11
+			11 => &pThis->_11,
+			_ => throw new ArgumentOutOfRangeException(nameof(offset))
 		};
 
 		*block &= ~(1L << offset % Shifting);
@@ -993,6 +1002,9 @@ public unsafe struct Candidates :
 	/// <param name="collection">The collection.</param>
 	/// <param name="offset">The offset to be removed.</param>
 	/// <returns>The result collection.</returns>
+	/// <exception cref="ArgumentOutOfRangeException">
+	/// Throws when the argument <paramref name="offset"/> is out of range.
+	/// </exception>
 	public static Candidates operator +(in Candidates collection, int offset)
 	{
 		var result = collection;
@@ -1015,7 +1027,8 @@ public unsafe struct Candidates :
 			8 => &pThis->_8,
 			9 => &pThis->_9,
 			10 => &pThis->_10,
-			11 => &pThis->_11
+			11 => &pThis->_11,
+			_ => throw new ArgumentOutOfRangeException(nameof(offset))
 		};
 
 		*block |= 1L << offset % Shifting;

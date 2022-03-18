@@ -187,7 +187,8 @@ public static partial class BitOperationsExensions
 		{
 			"uint" or "ulong" => "@this",
 			"byte" or "sbyte" or "int" or "short" or "ushort" => "(uint)@this",
-			"long" => "(ulong)@this"
+			"long" => "(ulong)@this",
+			_ => throw new()
 		};
 
 		return $@"/// <summary>
@@ -359,7 +360,7 @@ public static partial class BitOperationsExensions
 	private string G_SkipSetBit(string typeName)
 	{
 		string conversion = typeName switch { "byte" => "(byte)", "short" => "(short)", _ => string.Empty };
-		int size = typeName switch { "byte" => 8, "short" => 16, "int" => 32, "long" => 64 };
+		int size = typeName switch { "byte" => 8, "short" => 16, "int" => 32, "long" => 64, _ => throw new() };
 		return $@"/// <summary>
 	/// Skip the specified number of set bits and iterate on the integer with other set bits.
 	/// </summary>

@@ -62,13 +62,21 @@ public readonly ref partial struct GridFormatter
 	/// <param name="shortenSusser">
 	/// Indicates whether the formatter will shorten the susser format.
 	/// </param>
+	/// <exception cref="ArgumentOutOfRangeException">
+	/// Throws when the argument <paramref name="placeholder"/> is not supported.
+	/// </exception>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	private GridFormatter(
 		char placeholder, bool multiline, bool withModifiables, bool withCandidates,
 		bool treatValueAsGiven, bool subtleGridLines, bool hodokuCompatible,
 		bool sukaku, bool excel, bool openSudoku, bool shortenSusser)
 	{
-		_flags = placeholder switch { '.' => 0, '0' => 1024 };
+		_flags = placeholder switch
+		{
+			'.' => 0,
+			'0' => 1024,
+			_ => throw new ArgumentOutOfRangeException(nameof(placeholder))
+		};
 		_flags |= (short)(multiline ? 512 : 0);
 		_flags |= (short)(withModifiables ? 256 : 0);
 		_flags |= (short)(withCandidates ? 128 : 0);
@@ -87,13 +95,21 @@ public readonly ref partial struct GridFormatter
 	/// </summary>
 	/// <returns>The result placeholder text.</returns>
 	/// <value>The value to assign. The value must be 46 (<c>'.'</c>) or 48 (<c>'0'</c>).</value>
+	/// <exception cref="ArgumentOutOfRangeException">
+	/// Throws when the argument <see langword="value"/> is not supported.
+	/// </exception>
 	public char Placeholder
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => (_flags >> 10 & 1) != 0 ? '.' : '0';
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		init => _flags = value switch { '.' => (short)(_flags & 1023 | 1024), '0' => (short)(_flags & 1023) };
+		init => _flags = value switch
+		{
+			'.' => (short)(_flags & 1023 | 1024),
+			'0' => (short)(_flags & 1023),
+			_ => throw new ArgumentOutOfRangeException(nameof(value))
+		};
 	}
 
 	/// <summary>

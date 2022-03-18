@@ -40,6 +40,7 @@ public static class Casing
 			? throw new ArgumentException("The specified string is not an identifier.", nameof(str))
 			: str switch
 			{
+				[] => throw new ArgumentException("The specified string is empty.", nameof(str)),
 				[>= 'a' and <= 'z', ..] => str,
 				[var firstChar and >= 'A' and <= 'Z', .. var otherChars] => $"{firstChar}{otherChars}",
 				['_', .. var otherChars] => ToCamelCase(otherChars)
@@ -61,6 +62,7 @@ public static class Casing
 			? throw new ArgumentException("The specified string is not an identifier.", nameof(str))
 			: str switch
 			{
+				[] => throw new ArgumentException("The specified string is empty.", nameof(str)),
 				[var firstChar and >= 'a' and <= 'z', .. var otherChars] => $"{firstChar}{otherChars}",
 				[>= 'A' and <= 'Z', ..] => str,
 				['_', .. var otherChars] => ToCamelCase(otherChars)

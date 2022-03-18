@@ -79,7 +79,8 @@ internal sealed record SymbolOutputInfo(
 			(IsRecord: true, TypeKind: Kind.Class) => "record ",
 			(IsRecord: true, TypeKind: Kind.Struct) => "record struct ",
 			(IsRecord: false, TypeKind: Kind.Class) => "class ",
-			(IsRecord: false, TypeKind: Kind.Struct) => "struct "
+			(IsRecord: false, TypeKind: Kind.Struct) => "struct ",
+			_ => string.Empty
 		};
 		string readonlyKeyword = (
 			checkNotRefStruct

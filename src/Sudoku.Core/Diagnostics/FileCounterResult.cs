@@ -27,11 +27,15 @@ public sealed record FileCounterResult(
 			SizeUnit.Kilobyte => "KB",
 			SizeUnit.Megabyte => "MB",
 			SizeUnit.Gigabyte => "GB",
-			SizeUnit.Terabyte => "TB"
+			SizeUnit.Terabyte => "TB",
+			SizeUnit.IKilobyte => "KiB",
+			SizeUnit.IMegabyte => "MiB",
+			SizeUnit.IGigabyte => "GiB",
+			SizeUnit.ITerabyte => "TiB",
+			_ => throw new()
 		};
 
-		return
-			$$"""
+		return $$"""
 			Results:
 			* Code lines: {{ResultLines}}
 			* Files: {{FilesCount}}

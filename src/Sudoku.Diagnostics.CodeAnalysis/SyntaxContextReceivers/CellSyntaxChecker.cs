@@ -137,7 +137,7 @@ public sealed partial class CellSyntaxChecker : ISyntaxContextReceiver
 						Diagnostic.Create(
 							SCA0510,
 							argumentSyntaxNode.GetLocation(),
-							messageArgs: new[] { i switch { 0 => "high", 1 => "mid", 2 => "low" }, "27" }
+							messageArgs: new[] { i switch { 0 => "high", 1 => "mid", _ => "low" }, "27" }
 						)
 					);
 				}
