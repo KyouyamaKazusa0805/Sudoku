@@ -1066,6 +1066,14 @@
             </param>
             <returns>The result map.</returns>
         </member>
+        <member name="M:Sudoku.Collections.Cells.Slice(System.Int32,System.Int32)">
+            <summary>
+            Slice the collection, to preserve the cell offsets you want to get.
+            </summary>
+            <param name="start">The desired start index to slice.</param>
+            <param name="count">The number of cell offsets you want to slice.</param>
+            <returns>The new <see cref="T:Sudoku.Collections.Cells"/> instance.</returns>
+        </member>
         <member name="M:Sudoku.Collections.Cells.ToSpan">
             <summary>
             Converts the current instance to a <see cref="T:System.Span`1"/> of type <see cref="T:System.Int32"/>.

@@ -1,4 +1,7 @@
-﻿using Sudoku.Collections;
+﻿#define OUTPUT_INFERENCES
+#pragma warning disable IDE0051, IDE0079
+
+using Sudoku.Collections;
 using Xunit.Abstractions;
 using static System.Numerics.BitOperations;
 using static Sudoku.Constants.Tables;
@@ -106,7 +109,9 @@ internal sealed class AicSearcher
 	/// is an enumeration type with bit-fields attribute, which means you can add multiple choices
 	/// into the value.
 	/// </summary>
-	public SearcherNodeTypes NodeTypes { get; set; } = SearcherNodeTypes.SoleDigit | SearcherNodeTypes.SoleCell;
+	public SearcherNodeTypes NodeTypes { get; set; } =
+		SearcherNodeTypes.SoleDigit | SearcherNodeTypes.SoleCell
+			| SearcherNodeTypes.LockedCandidates;
 
 
 	/// <summary>
@@ -122,14 +127,53 @@ internal sealed class AicSearcher
 		_node2IdLookup.Clear();
 		_foundChains.Clear();
 
-		// Then checks and searches for the strong and weak inferences by each candidate.
-		foreach (int candidate in grid)
-		{
-			var node = new SoleCandidateNode((byte)(candidate / 9), (byte)(candidate % 9));
-			GetStrong(node, grid, candidate);
-			GetWeak(node, grid, candidate);
-		}
+		// Gather strong and weak links.
+		GatherStrongAndWeak_Sole(grid);
+		GatherStrongAndWeak_LockedCandidates(grid);
 
+#if OUTPUT_INFERENCES
+		// Display the inferences found.
+		printInferences(_strongInferences);
+		printInferences(_weakInferences);
+
+
+		void printInferences(Dictionary<int, HashSet<int>?> inferences)
+		{
+			const string separator = ", ";
+
+			var sb = new StringHandler();
+			foreach (var (id, nextIds) in inferences)
+			{
+				if (!_id2NodeLookup.ContainsKey(id))
+				{
+					continue;
+				}
+
+				sb.Append("Node ");
+				sb.Append(_id2NodeLookup[id].ToSimpleString());
+				sb.Append(": ");
+
+				if (nextIds is not null)
+				{
+					foreach (int nextId in nextIds)
+					{
+						sb.Append(_id2NodeLookup[nextId].ToSimpleString());
+						sb.Append(separator);
+					}
+
+					sb.RemoveFromEnd(separator.Length);
+				}
+				else
+				{
+					sb.Append("<null>");
+				}
+
+				sb.AppendLine();
+			}
+
+			_output.WriteLine(sb.ToStringAndClear());
+		}
+#else
 		// Construct chains.
 		StartWithWeak();
 		StartWithStrong();
@@ -149,117 +193,242 @@ internal sealed class AicSearcher
 		{
 			_output.WriteLine($"{chain} => {new ConclusionCollection(conclusions).ToString()}");
 		}
+#endif
 	}
 
 	/// <summary>
-	/// <para>
-	/// Try to get all possible strong inferences for a specified <see cref="Node"/> instance,
-	/// and record them to store into the field <see cref="_strongInferences"/>.
-	/// </para>
-	/// <para>
-	/// In addition, the result value is a dictionary that stores a key-value pair,
-	/// where the key is an <see cref="int"/> corresponding to the current node, and the value
-	/// is an unduplicated collection of IDs corresponding to their own node.
-	/// </para>
-	/// <para>
-	/// All elements in the value of the key-value pair are the possible nodes that can form
-	/// the strong inferences with that <see cref="Node"/> instance.
-	/// </para>
+	/// Gather the strong and weak inferences on sole candidate nodes.
 	/// </summary>
-	/// <param name="currentNode">
-	/// The node, which is the target node that can form a strong inference with arbitary one
-	/// node in the unduplicated collection mentioned above.
-	/// </param>
-	/// <param name="grid">
-	/// The grid that is used for checking whether the two nodes form a strong inference.
-	/// </param>
-	/// <param name="candidate">The candidate of the node used.</param>
-	/// <seealso cref="_strongInferences"/>
-	private void GetStrong(Node currentNode, in Grid grid, int candidate)
+	/// <param name="grid">The grid.</param>
+	private void GatherStrongAndWeak_Sole(in Grid grid)
 	{
-		byte cell = (byte)(candidate / 9), digit = (byte)(candidate % 9);
-
-		HashSet<int>? list = null;
-
-		// Get bi-location regions.
-		if (NodeTypes.Flags(SearcherNodeTypes.SoleDigit))
+		// Sole candidate -> Sole candidate.
+		foreach (int candidate in grid)
 		{
-			foreach (var label in Regions)
+			byte cell = (byte)(candidate / 9), digit = (byte)(candidate % 9);
+			var node = new SoleCandidateNode((byte)(candidate / 9), (byte)(candidate % 9));
+			getStrong(grid);
+			getWeak(grid);
+
+
+			void getStrong(in Grid grid)
 			{
-				int region = cell.ToRegionIndex(label);
-				var posCells = (RegionMaps[region] & grid.CandidatesMap[digit]) - cell;
-				if (posCells is [var posCell])
+				HashSet<int>? list = null;
+
+				// Get bi-location regions.
+				if (NodeTypes.Flags(SearcherNodeTypes.SoleDigit))
 				{
-					var nextNode = new SoleCandidateNode((byte)posCell, digit);
-					AddNode(nextNode, ref list);
+					foreach (var label in Regions)
+					{
+						int region = cell.ToRegionIndex(label);
+						var posCells = (RegionMaps[region] & grid.CandidatesMap[digit]) - cell;
+						if (posCells is [var posCell])
+						{
+							var nextNode = new SoleCandidateNode((byte)posCell, digit);
+							AddNode(nextNode, ref list);
+						}
+					}
 				}
-			}
-		}
 
-		// Get bi-value cell.
-		if (NodeTypes.Flags(SearcherNodeTypes.SoleCell))
-		{
-			short candidateMask = grid.GetCandidates(cell);
-			if (PopCount((uint)candidateMask) == 2)
+				// Get bi-value cell.
+				if (NodeTypes.Flags(SearcherNodeTypes.SoleCell))
+				{
+					short candidateMask = grid.GetCandidates(cell);
+					if (PopCount((uint)candidateMask) == 2)
+					{
+						byte theOtherDigit = (byte)Log2((uint)(candidateMask & ~(1 << digit)));
+						var nextNode = new SoleCandidateNode(cell, theOtherDigit);
+						AddNode(nextNode, ref list);
+					}
+				}
+
+				AssignOrUpdateHashSet(list, node, _strongInferences);
+			}
+
+			void getWeak(in Grid grid)
 			{
-				byte theOtherDigit = (byte)Log2((uint)(candidateMask & ~(1 << digit)));
-				var nextNode = new SoleCandidateNode(cell, theOtherDigit);
-				AddNode(nextNode, ref list);
+				HashSet<int>? list = null;
+
+				if (NodeTypes.Flags(SearcherNodeTypes.SoleDigit))
+				{
+					foreach (byte anotherCell in (PeerMaps[cell] & grid.CandidatesMap[digit]) - cell)
+					{
+						var nextNode = new SoleCandidateNode(anotherCell, digit);
+						AddNode(nextNode, ref list);
+					}
+				}
+
+				if (NodeTypes.Flags(SearcherNodeTypes.SoleCell))
+				{
+					foreach (byte anotherDigit in grid.GetCandidates(cell) & ~(1 << digit))
+					{
+						var nextNode = new SoleCandidateNode(cell, anotherDigit);
+						AddNode(nextNode, ref list);
+					}
+				}
+
+				AssignOrUpdateHashSet(list, node, _weakInferences);
 			}
 		}
-
-		AssignHashSet(list, currentNode, _strongInferences);
 	}
 
 	/// <summary>
-	/// <para>
-	/// Try to get all possible weak inferences for a specified <see cref="Node"/> instance,
-	/// and record them to store into the field <see cref="_weakInferences"/>.
-	/// </para>
-	/// <para>
-	/// In addition, the result value is a dictionary that stores a key-value pair,
-	/// where the key is an <see cref="int"/> corresponding to the current node, and the value
-	/// is an unduplicated collection of IDs corresponding to their own node.
-	/// </para>
-	/// <para>
-	/// All elements in the value of the key-value pair are the possible nodes that can form
-	/// the weak inferences with that <see cref="Node"/> instance.
-	/// </para>
+	/// Gather the strong and weak inferences on locked candidates nodes.
 	/// </summary>
-	/// <param name="currentNode">
-	/// The node, which is the target node that can form a weak inference with arbitary one
-	/// node in the unduplicated collection mentioned above.
-	/// </param>
-	/// <param name="grid">
-	/// The grid that is used for checking whether the two nodes form a weak inference.
-	/// </param>
-	/// <param name="candidate">The candidate of the node used.</param>
-	/// <seealso cref="_weakInferences"/>
-	private void GetWeak(Node currentNode, in Grid grid, int candidate)
+	/// <param name="grid">The grid.</param>
+	private void GatherStrongAndWeak_LockedCandidates(in Grid grid)
 	{
-		byte cell = (byte)(candidate / 9), digit = (byte)(candidate % 9);
-
-		HashSet<int>? list = null;
-
-		if (NodeTypes.Flags(SearcherNodeTypes.SoleDigit))
+		// Sole candidate -> Locked candidates.
+		foreach (int candidate in grid)
 		{
-			foreach (byte anotherCell in (PeerMaps[cell] & grid.CandidatesMap[digit]) - cell)
+			byte cell = (byte)(candidate / 9), digit = (byte)(candidate % 9);
+			var node = new SoleCandidateNode(cell, digit);
+			getStrong(grid);
+			getWeak(grid);
+
+
+			void getStrong(in Grid grid)
 			{
-				var nextNode = new SoleCandidateNode(anotherCell, digit);
-				AddNode(nextNode, ref list);
+				HashSet<int>? list = null;
+
+				if (NodeTypes.Flags(SearcherNodeTypes.LockedCandidates))
+				{
+					foreach (var label in Regions)
+					{
+						int region = cell.ToRegionIndex(label);
+						var otherCells = RegionMaps[region] & grid.CandidatesMap[digit] - cell;
+						if (
+							otherCells is not
+							{
+								Count: > 1 and <= 3,
+								CoveredLine: not Constants.InvalidFirstSet,
+								CoveredRegions: var coveredRegions
+							}
+						)
+						{
+							// Optimization:
+							// 1) If the number of all other cells in the current region
+							// is greater than 3, the region doesn't hold a valid strong inference
+							// from the current candidate to a locked candidates,
+							// because a locked candidates node at most use 3 cells.
+							// 2) If all other cells don't lie in a same row or column, those cells
+							// can still not form a locked candidates node.
+							continue;
+						}
+
+						if (TrailingZeroCount(coveredRegions) >= 9)
+						{
+							// The cells must be in a same block.
+							continue;
+						}
+
+						var nextNode = new LockedCandidatesNode(digit, otherCells);
+						AddNode(nextNode, ref list);
+					}
+				}
+
+				AssignOrUpdateHashSet(list, node, _strongInferences);
+			}
+
+			void getWeak(in Grid grid)
+			{
+				HashSet<int>? list = null;
+				using var possibleList = new ValueList<Cells>(4);
+				var triplets = (stackalloc Cells[3]);
+
+				if (NodeTypes.Flags(SearcherNodeTypes.LockedCandidates))
+				{
+					foreach (var label in Regions)
+					{
+						int region = cell.ToRegionIndex(label);
+						var otherCells = RegionMaps[region] & grid.CandidatesMap[digit] - cell;
+						if (otherCells.Count <= 1)
+						{
+							continue;
+						}
+
+						// Okay. Now we get a set of cells.
+						// Now we should gather all possible covered rows and columns.
+						if (label == Region.Block)
+						{
+							int block = cell.ToRegionIndex(Region.Block);
+							foreach (int subRegions in otherCells.RowMask << 9 | otherCells.ColumnMask << 18)
+							{
+								var intersectionMap = RegionMaps[block] & RegionMaps[subRegions];
+								var subOtherCells = grid.CandidatesMap[digit] & intersectionMap - cell;
+								if (subOtherCells.Count is not (var count and not (0 or 1)))
+								{
+									continue;
+								}
+
+								possibleList.Clear();
+								if (count == 2)
+								{
+									possibleList.Add(subOtherCells);
+								}
+								else// if (count == 3)
+								{
+									var combinations = subOtherCells & 2;
+									possibleList.Add(combinations[0]);
+									possibleList.Add(combinations[1]);
+									possibleList.Add(combinations[2]);
+									possibleList.Add(subOtherCells);
+								}
+
+								foreach (var cellsCombination in possibleList)
+								{
+									var nextNode = new LockedCandidatesNode(digit, cellsCombination);
+									AddNode(nextNode, ref list);
+								}
+							}
+						}
+						else
+						{
+							triplets.Clear();
+							triplets[0] = RegionMaps[region][0..3];
+							triplets[1] = RegionMaps[region][3..6];
+							triplets[2] = RegionMaps[region][6..9];
+
+							foreach (ref readonly var triplet in triplets)
+							{
+								var subOtherCells = triplet & otherCells;
+								if (subOtherCells.Count is not (var count and not (0 or 1)))
+								{
+									continue;
+								}
+
+								possibleList.Clear();
+								if (count == 2)
+								{
+									possibleList.Add(subOtherCells);
+								}
+								else// if (count == 3)
+								{
+									var combinations = subOtherCells & 2;
+									possibleList.Add(combinations[0]);
+									possibleList.Add(combinations[1]);
+									possibleList.Add(combinations[2]);
+									possibleList.Add(subOtherCells);
+								}
+
+								foreach (var cellsCombination in possibleList)
+								{
+									var nextNode = new LockedCandidatesNode(digit, cellsCombination);
+									AddNode(nextNode, ref list);
+								}
+							}
+						}
+					}
+				}
+
+				AssignOrUpdateHashSet(list, node, _weakInferences);
 			}
 		}
 
-		if (NodeTypes.Flags(SearcherNodeTypes.SoleCell))
-		{
-			foreach (byte anotherDigit in grid.GetCandidates(cell) & ~(1 << digit))
-			{
-				var nextNode = new SoleCandidateNode(cell, anotherDigit);
-				AddNode(nextNode, ref list);
-			}
-		}
+		// Locked candidates -> Sole candidate.
 
-		AssignHashSet(list, currentNode, _weakInferences);
+
+		// Locked candidates -> Locked candidates.
 	}
 
 	/// <summary>
@@ -433,49 +602,6 @@ internal sealed class AicSearcher
 	}
 
 	/// <summary>
-	/// Prints the strong and weak inferences as the string representation onto the test explorer.
-	/// </summary>
-	/// <param name="inferences">
-	/// The inferences to be output. The value can be either <see cref="_strongInferences"/>
-	/// or <see cref="_weakInferences"/>.
-	/// </param>
-	/// <seealso cref="_strongInferences"/>
-	/// <seealso cref="_weakInferences"/>
-	[SuppressMessage("CodeQuality", "IDE0051:Remove unused private members", Justification = "<Pending>")]
-	[Conditional("DEBUG")]
-	private void PrintStringInferences(Dictionary<int, HashSet<int>?> inferences)
-	{
-		const string separator = ", ";
-
-		var sb = new StringHandler();
-		foreach (var (id, nextIds) in inferences)
-		{
-			sb.Append("Node ");
-			sb.Append(_id2NodeLookup[id].ToSimpleString());
-			sb.Append(": ");
-
-			if (nextIds is not null)
-			{
-				foreach (int nextId in nextIds)
-				{
-					sb.Append(_id2NodeLookup[nextId].ToSimpleString());
-					sb.Append(separator);
-				}
-
-				sb.RemoveFromEnd(separator.Length);
-			}
-			else
-			{
-				sb.Append("<null>");
-			}
-
-			sb.AppendLine();
-		}
-
-		_output.WriteLine(sb.ToStringAndClear());
-	}
-
-	/// <summary>
 	/// Adds the specified node into the collection, or just get the ID value.
 	/// </summary>
 	/// <param name="nextNode">The next node.</param>
@@ -502,13 +628,24 @@ internal sealed class AicSearcher
 	/// <param name="currentNode">The current node.</param>
 	/// <param name="inferences">Indicates what dictionary the hash set is assigned to.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	private void AssignHashSet(HashSet<int>? list, Node currentNode, Dictionary<int, HashSet<int>?> inferences)
+	private void AssignOrUpdateHashSet(
+		HashSet<int>? list, Node currentNode, Dictionary<int, HashSet<int>?> inferences)
 	{
 		if (list is not null)
 		{
 			if (_node2IdLookup.TryGetValue(currentNode, out int currentNodeId))
 			{
-				inferences[currentNodeId] = list;
+				if (list is not null)
+				{
+					if (inferences.ContainsKey(currentNodeId))
+					{
+						inferences[currentNodeId]!.AddRange(list);
+					}
+					else
+					{
+						inferences.Add(currentNodeId, list);
+					}
+				}
 			}
 			else
 			{

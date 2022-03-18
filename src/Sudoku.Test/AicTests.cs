@@ -12,7 +12,15 @@ public sealed class AicTests
 	/// <summary>
 	/// Indicates the test code.
 	/// </summary>
-	private const string TestCode = "009300000+603819005870050000000000006408090102200000000000080053300526400000003600:717 718 719 444";
+	/// <remarks>
+	/// Full format:
+	/// <code>
+	/// :x:0000:009300000+603819005870050000000000006408090102200000000000080053300526400000003600:717 718 719 444:::
+	/// </code>
+	/// </remarks>
+	private const string TestCode = """
+	009300000+603819005870050000000000006408090102200000000000080053300526400000003600:717 718 719 444
+	""";
 
 	/// <summary>
 	/// Indicates the output helper instance.

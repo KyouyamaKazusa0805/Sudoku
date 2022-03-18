@@ -821,6 +821,15 @@ public unsafe struct Cells :
 	public readonly Cells PeerIntersectionLimitsWith(in Cells limit) => this % limit;
 
 	/// <summary>
+	/// Slice the collection, to preserve the cell offsets you want to get.
+	/// </summary>
+	/// <param name="start">The desired start index to slice.</param>
+	/// <param name="count">The number of cell offsets you want to slice.</param>
+	/// <returns>The new <see cref="Cells"/> instance.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public readonly Cells Slice(int start, int count) => (Cells)Offsets[start..(count + start)];
+
+	/// <summary>
 	/// Converts the current instance to a <see cref="Span{T}"/> of type <see cref="int"/>.
 	/// </summary>
 	/// <returns>The <see cref="Span{T}"/> of <see cref="int"/> result.</returns>
