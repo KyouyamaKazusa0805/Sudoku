@@ -1,5 +1,5 @@
-﻿#define OUTPUT_INFERENCES
-#pragma warning disable IDE0051, IDE0079
+﻿#undef OUTPUT_INFERENCES
+#pragma warning disable IDE0051
 
 using Sudoku.Collections;
 using Xunit.Abstractions;
@@ -131,7 +131,7 @@ internal sealed class AicSearcher
 		GatherStrongAndWeak_Sole(grid);
 		GatherStrongAndWeak_LockedCandidates(grid);
 
-#if OUTPUT_INFERENCES
+#if OUTPUT_INFERENCES && DEBUG
 		// Display the inferences found.
 		printInferences(_strongInferences);
 		printInferences(_weakInferences);
