@@ -1,5 +1,4 @@
 ﻿#undef OUTPUT_INFERENCES
-#pragma warning disable IDE0051
 
 using Sudoku.Collections;
 using Xunit.Abstractions;
