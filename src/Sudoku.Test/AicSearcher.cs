@@ -1,4 +1,5 @@
-﻿#undef OUTPUT_INFERENCES
+﻿#define OUTPUT_INFERENCES
+#undef GET_ELIMINATIONS
 
 using Sudoku.Collections;
 using Xunit.Abstractions;
@@ -130,7 +131,7 @@ internal sealed class AicSearcher
 		GatherStrongAndWeak_Sole(grid);
 		GatherStrongAndWeak_LockedCandidates(grid);
 
-#if OUTPUT_INFERENCES && DEBUG
+#if OUTPUT_INFERENCES && !GET_ELIMINATIONS
 		// Display the inferences found.
 		printInferences(_strongInferences);
 		printInferences(_weakInferences);
@@ -172,7 +173,7 @@ internal sealed class AicSearcher
 
 			_output.WriteLine(sb.ToStringAndClear());
 		}
-#else
+#elif GET_ELIMINATIONS && !OUTPUT_INFERENCES
 		// Construct chains.
 		StartWithWeak();
 		StartWithStrong();
@@ -192,6 +193,8 @@ internal sealed class AicSearcher
 		{
 			_output.WriteLine($"{chain} => {new ConclusionCollection(conclusions).ToString()}");
 		}
+#else
+#error You must set either the symbol 'OUTPUT_INFERENCES' or the symbol 'GET_ELIMINATIONS'.
 #endif
 	}
 
