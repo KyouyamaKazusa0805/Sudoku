@@ -425,9 +425,151 @@ internal sealed class AicSearcher
 		}
 
 		// Locked candidates -> Sole candidate.
-
-
 		// Locked candidates -> Locked candidates.
+		foreach (var (lineMap, blockMap, intersectionMap, _) in IntersectionMaps.Values)
+		{
+			foreach (ref readonly var cellCombination in stackalloc[]
+			{
+				(intersectionMap & 2)[0],
+				(intersectionMap & 2)[1],
+				(intersectionMap & 2)[2],
+				(intersectionMap & 3)[0]
+			})
+			{
+				foreach (byte digit in grid.GetDigitsUnion(cellCombination))
+				{
+					if ((cellCombination & grid.CandidatesMap[digit]) != cellCombination)
+					{
+						continue;
+					}
+
+					var node = new LockedCandidatesNode(digit, cellCombination);
+					getStrong(grid, cellCombination);
+					getWeak(grid, cellCombination);
+
+
+					void getStrong(in Grid grid, in Cells cells)
+					{
+						HashSet<int>? list = null;
+
+						if (NodeTypes.Flags(SearcherNodeTypes.LockedCandidates))
+						{
+							foreach (int region in cells.CoveredRegions)
+							{
+								var node = (RegionMaps[region] & grid.CandidatesMap[digit] - cells) switch
+								{
+									// e.g. aaa==b
+									[var onlyCell] => new SoleCandidateNode((byte)onlyCell, digit),
+
+									// e.g. aaa==bbb
+									{
+										CoveredLine: not Constants.InvalidFirstSet,
+										CoveredRegions: var coveredRegions
+									} otherCells => region.ToRegion() switch
+									{
+										Region.Block => new LockedCandidatesNode(digit, otherCells),
+										_ => TrailingZeroCount(coveredRegions) switch
+										{
+											< 9 => new LockedCandidatesNode(digit, otherCells),
+											_ => default(Node?)
+										}
+									},
+
+									// Other cases that the following cases cannot satisfy.
+									_ => null
+								};
+								if (node is not null)
+								{
+									AddNode(node, ref list);
+								}
+							}
+						}
+
+						AssignOrUpdateHashSet(list, node, _strongInferences);
+					}
+
+					void getWeak(in Grid grid, in Cells cells)
+					{
+						HashSet<int>? list = null;
+						var triplets = (stackalloc Cells[3]);
+
+						if (NodeTypes.Flags(SearcherNodeTypes.LockedCandidates))
+						{
+							foreach (int region in cells.CoveredRegions)
+							{
+								var otherCells = grid.CandidatesMap[digit] & RegionMaps[region] - cells;
+								if (region.ToRegion() == Region.Block)
+								{
+									foreach (int subRegion in otherCells.RowMask << 9 | otherCells.ColumnMask << 18)
+									{
+										var intersectionMap = RegionMaps[region] & RegionMaps[subRegion];
+										var subOtherCells = otherCells & intersectionMap;
+										switch (subOtherCells)
+										{
+											case [var cell]:
+											{
+												var nextNode = new SoleCandidateNode((byte)cell, digit);
+												AddNode(nextNode, ref list);
+
+												break;
+											}
+											case { Count: var count }:
+											{
+												for (int i = 0; i < count; i++)
+												{
+													foreach (var cellsCombination in subOtherCells & i)
+													{
+														AddNode(
+															cellsCombination is [var onlyCell]
+																? new SoleCandidateNode((byte)onlyCell, digit)
+																: new LockedCandidatesNode(digit, cellsCombination),
+															ref list
+														);
+													}
+												}
+
+												break;
+											}
+										}
+									}
+								}
+								else
+								{
+									triplets.Clear();
+									triplets[0] = RegionMaps[region][0..3];
+									triplets[1] = RegionMaps[region][3..6];
+									triplets[2] = RegionMaps[region][6..9];
+
+									foreach (ref readonly var triplet in triplets)
+									{
+										var subOtherCells = triplet & otherCells;
+										if (subOtherCells is not { Count: var count and not 0 })
+										{
+											continue;
+										}
+
+										for (int i = 0; i < count; i++)
+										{
+											foreach (var cellsCombination in subOtherCells & i)
+											{
+												AddNode(
+													cellsCombination is [var onlyCell]
+														? new SoleCandidateNode((byte)onlyCell, digit)
+														: new LockedCandidatesNode(digit, cellsCombination),
+													ref list
+												);
+											}
+										}
+									}
+								}
+							}
+						}
+
+						AssignOrUpdateHashSet(list, node, _weakInferences);
+					}
+				}
+			}
+		}
 	}
 
 	/// <summary>
