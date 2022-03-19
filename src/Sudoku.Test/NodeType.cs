@@ -16,4 +16,10 @@ public enum NodeType
 	/// </summary>
 	[NodeTypeName<NodeType>("Locked candidates node")]
 	LockedCandidates,
+
+	/// <summary>
+	/// Indicates the node type is an almost locked sets.
+	/// </summary>
+	[NodeTypeName<NodeType>("Almost locked sets node")]
+	AlmostLockedSets,
 }

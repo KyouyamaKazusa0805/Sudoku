@@ -32,12 +32,17 @@ public enum SearcherNodeTypes
 	LockedSet = 8,
 
 	/// <summary>
+	/// Indicates the searcher can search for hidden set nodes.
+	/// </summary>
+	HiddenSet = 16,
+
+	/// <summary>
 	/// Indicates the searcher can search for almost rectangle nodes.
 	/// </summary>
-	UniqueRectangle = 16,
+	UniqueRectangle = 32,
 
 	/// <summary>
 	/// Indicates the searcher can search for kraken fish nodes.
 	/// </summary>
-	Kraken = 32
+	Kraken = 64
 }

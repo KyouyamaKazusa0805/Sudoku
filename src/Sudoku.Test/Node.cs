@@ -104,17 +104,16 @@ public abstract class Node :
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public sealed override string ToString()
 	{
-		string? nodeTypeName = null;
+		const string defaultName = "<Unnamed>";
+
+		string nodeTypeName = defaultName;
 		if (typeof(NodeType).GetField(Type.ToString()) is { } fieldInfo)
 		{
 			var attr = fieldInfo.GetCustomAttribute<NodeTypeNameAttribute<NodeType>>();
-			if (attr is { Name: var name })
-			{
-				nodeTypeName = name;
-			}
+			nodeTypeName = attr is { Name: var name } ? name : (GetType().FullName ?? defaultName);
 		}
 
-		return $"{(nodeTypeName is null ? null : $"{nodeTypeName}: ")}{ToSimpleString()}";
+		return $"{nodeTypeName}: {ToSimpleString()}";
 	}
 
 

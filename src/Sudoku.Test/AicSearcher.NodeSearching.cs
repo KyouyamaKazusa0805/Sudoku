@@ -382,4 +382,13 @@ partial class AicSearcher
 			}
 		}
 	}
+
+	/// <summary>
+	/// Gather the strong and weak inferences on almost locked sets nodes.
+	/// </summary>
+	/// <param name="grid">The grid.</param>
+	private void GatherStorngAndWeak_AlmostLockedSet(in Grid grid)
+	{
+
+	}
 }

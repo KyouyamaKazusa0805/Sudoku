@@ -33,7 +33,8 @@ internal sealed partial class AicSearcher
 	/// </summary>
 	public SearcherNodeTypes NodeTypes { get; set; } =
 		SearcherNodeTypes.SoleDigit | SearcherNodeTypes.SoleCell
-			| SearcherNodeTypes.LockedCandidates;
+			| SearcherNodeTypes.LockedCandidates
+			| SearcherNodeTypes.LockedSet | SearcherNodeTypes.HiddenSet;
 
 
 	/// <summary>
@@ -52,6 +53,7 @@ internal sealed partial class AicSearcher
 		// Gather strong and weak links.
 		GatherStrongAndWeak_Sole(grid);
 		GatherStrongAndWeak_LockedCandidates(grid);
+		GatherStorngAndWeak_AlmostLockedSet(grid);
 
 #if OUTPUT_INFERENCES && !GET_ELIMINATIONS
 		// Display the inferences found.
