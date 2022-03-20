@@ -270,8 +270,7 @@ partial class AicSearcher
 								var node = (RegionMaps[region] & grid.CandidatesMap[digit] - cells) switch
 								{
 									// e.g. aaa==a
-									[var onlyCell] when NodeTypes.Flags(SearcherNodeTypes.SoleDigit) =>
-										new SoleCandidateNode((byte)onlyCell, digit),
+									[var onlyCell] => new SoleCandidateNode((byte)onlyCell, digit),
 
 									// e.g. aaa==aaa
 									{
@@ -318,10 +317,9 @@ partial class AicSearcher
 										var subOtherCells = otherCells & intersectionMap;
 										switch (subOtherCells)
 										{
-											case [var cell] when NodeTypes.Flags(SearcherNodeTypes.SoleDigit):
+											case [var cell]:
 											{
-												var nextNode = new SoleCandidateNode((byte)cell, digit);
-												AddNode(nextNode, ref list);
+												AddNode(new SoleCandidateNode((byte)cell, digit), ref list);
 
 												break;
 											}
@@ -331,25 +329,12 @@ partial class AicSearcher
 												{
 													foreach (var cellsCombination in subOtherCells & i)
 													{
-														if (cellsCombination is [var onlyCell])
-														{
-															if (NodeTypes.Flags(SearcherNodeTypes.SoleDigit))
-															{
-																AddNode(
-																	new SoleCandidateNode(
-																		(byte)onlyCell,
-																		digit),
-																	ref list);
-															}
-														}
-														else
-														{
-															AddNode(
-																new LockedCandidatesNode(
-																	digit,
-																	cellsCombination),
-																ref list);
-														}
+														AddNode(
+															cellsCombination is [var onlyCell]
+																? new SoleCandidateNode((byte)onlyCell, digit)
+																: new LockedCandidatesNode(digit, cellsCombination),
+															ref list
+														);
 													}
 												}
 
@@ -460,23 +445,17 @@ partial class AicSearcher
 
 							if (otherCells is [var onlyCell])
 							{
-								if (NodeTypes.Flags(SearcherNodeTypes.SoleDigit))
-								{
-									var nextNode = new SoleCandidateNode((byte)onlyCell, digit);
-									AddNode(nextNode, ref list);
-									AddNode(node, ref list2);
-									AssignOrUpdateHashSet(list2, nextNode, _strongInferences);
-								}
+								var nextNode = new SoleCandidateNode((byte)onlyCell, digit);
+								AddNode(nextNode, ref list);
+								AddNode(node, ref list2);
+								AssignOrUpdateHashSet(list2, nextNode, _strongInferences);
 							}
 							else
 							{
-								if (NodeTypes.Flags(SearcherNodeTypes.LockedCandidates))
-								{
-									var nextNode = new LockedCandidatesNode(digit, otherCells);
-									AddNode(nextNode, ref list);
-									AddNode(node, ref list2);
-									AssignOrUpdateHashSet(list2, nextNode, _strongInferences);
-								}
+								var nextNode = new LockedCandidatesNode(digit, otherCells);
+								AddNode(nextNode, ref list);
+								AddNode(node, ref list2);
+								AssignOrUpdateHashSet(list2, nextNode, _strongInferences);
 							}
 						}
 
@@ -509,10 +488,9 @@ partial class AicSearcher
 									var subOtherCells = otherCells & intersectionMap;
 									switch (subOtherCells)
 									{
-										case [var cell] when NodeTypes.Flags(SearcherNodeTypes.SoleDigit):
+										case [var cell]:
 										{
-											var nextNode = new SoleCandidateNode((byte)cell, digit);
-											AddNode(nextNode, ref list);
+											AddNode(new SoleCandidateNode((byte)cell, digit), ref list);
 
 											break;
 										}
@@ -522,22 +500,12 @@ partial class AicSearcher
 											{
 												foreach (var cellsCombination in subOtherCells & i)
 												{
-													if (cellsCombination is [var onlyCell])
-													{
-														if (NodeTypes.Flags(SearcherNodeTypes.SoleDigit))
-														{
-															var nextNode = new SoleCandidateNode((byte)onlyCell, digit);
-															AddNode(nextNode, ref list);
-														}
-													}
-													else
-													{
-														if (NodeTypes.Flags(SearcherNodeTypes.LockedCandidates))
-														{
-															var nextNode = new LockedCandidatesNode(digit, cellsCombination);
-															AddNode(nextNode, ref list);
-														}
-													}
+													AddNode(
+														cellsCombination is [var onlyCell]
+															? new SoleCandidateNode((byte)onlyCell, digit)
+															: new LockedCandidatesNode(digit, cellsCombination),
+														ref list
+													);
 												}
 											}
 
