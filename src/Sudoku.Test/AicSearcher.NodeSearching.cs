@@ -269,10 +269,11 @@ partial class AicSearcher
 							{
 								var node = (RegionMaps[region] & grid.CandidatesMap[digit] - cells) switch
 								{
-									// e.g. aaa==b
-									[var onlyCell] => new SoleCandidateNode((byte)onlyCell, digit),
+									// e.g. aaa==a
+									[var onlyCell] when NodeTypes.Flags(SearcherNodeTypes.SoleDigit) =>
+										new SoleCandidateNode((byte)onlyCell, digit),
 
-									// e.g. aaa==bbb
+									// e.g. aaa==aaa
 									{
 										CoveredLine: not Constants.InvalidFirstSet,
 										CoveredRegions: var coveredRegions
@@ -317,7 +318,7 @@ partial class AicSearcher
 										var subOtherCells = otherCells & intersectionMap;
 										switch (subOtherCells)
 										{
-											case [var cell]:
+											case [var cell] when NodeTypes.Flags(SearcherNodeTypes.SoleDigit):
 											{
 												var nextNode = new SoleCandidateNode((byte)cell, digit);
 												AddNode(nextNode, ref list);
@@ -330,12 +331,25 @@ partial class AicSearcher
 												{
 													foreach (var cellsCombination in subOtherCells & i)
 													{
-														AddNode(
-															cellsCombination is [var onlyCell]
-																? new SoleCandidateNode((byte)onlyCell, digit)
-																: new LockedCandidatesNode(digit, cellsCombination),
-															ref list
-														);
+														if (cellsCombination is [var onlyCell])
+														{
+															if (NodeTypes.Flags(SearcherNodeTypes.SoleDigit))
+															{
+																AddNode(
+																	new SoleCandidateNode(
+																		(byte)onlyCell,
+																		digit),
+																	ref list);
+															}
+														}
+														else
+														{
+															AddNode(
+																new LockedCandidatesNode(
+																	digit,
+																	cellsCombination),
+																ref list);
+														}
 													}
 												}
 
@@ -363,12 +377,21 @@ partial class AicSearcher
 										{
 											foreach (var cellsCombination in subOtherCells & i)
 											{
-												AddNode(
-													cellsCombination is [var onlyCell]
-														? new SoleCandidateNode((byte)onlyCell, digit)
-														: new LockedCandidatesNode(digit, cellsCombination),
-													ref list
-												);
+												if (cellsCombination is [var onlyCell])
+												{
+													if (NodeTypes.Flags(SearcherNodeTypes.SoleDigit))
+													{
+														AddNode(
+															new SoleCandidateNode((byte)onlyCell, digit),
+															ref list);
+													}
+												}
+												else
+												{
+													AddNode(
+														new LockedCandidatesNode(digit, cellsCombination),
+														ref list);
+												}
 											}
 										}
 									}
@@ -387,8 +410,187 @@ partial class AicSearcher
 	/// Gather the strong and weak inferences on almost locked sets nodes.
 	/// </summary>
 	/// <param name="grid">The grid.</param>
-	private void GatherStorngAndWeak_AlmostLockedSet(in Grid grid)
+	private void GatherStrongAndWeak_AlmostLockedSet(in Grid grid)
 	{
+		var alses = AlmostLockedSet.Gather(grid);
+		foreach (ref readonly var als in alses.EnumerateRef())
+		{
+			_ = als is { DigitsMask: var digitsMask, Map: var alsMap };
 
+			// Sole candidate -> Almost locked sets.
+			// Locked candidates -> Almost locked sets.
+			// Almost locked sets -> Almost locked sets.
+			// Almost locked sets -> Sole candidate.
+			// Almost locked sets -> Locked candidates.
+			foreach (byte digit in digitsMask)
+			{
+				var digitCellsUsed = grid.CandidatesMap[digit] & alsMap;
+				var cellsNotUsed = alsMap - digitCellsUsed;
+				var node = new AlmostLockedSetNode(digit, digitCellsUsed, cellsNotUsed);
+				getStrong(grid);
+				getWeak(grid);
+
+
+				void getStrong(in Grid grid)
+				{
+					HashSet<int>? list = null;
+					HashSet<int>? list2 = null;
+
+					if (NodeTypes.Flags(SearcherNodeTypes.LockedSet))
+					{
+						//foreach (int region in digitCellsUsed.CoveredRegions)
+						//{
+						//	var otherCells = RegionMaps[region] & grid.CandidatesMap[digit] - digitCellsUsed;
+						//	if (otherCells.Count > 3)
+						//	{
+						//		continue;
+						//	}
+
+						//	if (
+						//		region.ToRegion() is var label && (
+						//			label == Region.Block
+						//			&& otherCells.CoveredLine == Constants.InvalidFirstSet
+						//			|| label is Region.Row or Region.Column
+						//			&& TrailingZeroCount(otherCells.CoveredRegions) >= 9
+						//		)
+						//	)
+						//	{
+						//		continue;
+						//	}
+
+						//	if (otherCells is [var onlyCell])
+						//	{
+						//		if (NodeTypes.Flags(SearcherNodeTypes.SoleDigit))
+						//		{
+						//			var nextNode = new SoleCandidateNode((byte)onlyCell, digit);
+						//			AddNode(nextNode, ref list);
+						//			AddNode(node, ref list2);
+						//			AssignOrUpdateHashSet(list2, nextNode, _strongInferences);
+						//		}
+						//	}
+						//	else
+						//	{
+						//		if (NodeTypes.Flags(SearcherNodeTypes.LockedCandidates))
+						//		{
+						//			var nextNode = new LockedCandidatesNode(digit, otherCells);
+						//			AddNode(nextNode, ref list);
+						//			AddNode(node, ref list2);
+						//			AssignOrUpdateHashSet(list2, nextNode, _strongInferences);
+						//		}
+						//	}
+						//}
+
+						foreach (byte theOtherDigit in (short)(digitsMask & ~(1 << digit)))
+						{
+							var theOtherCells = grid.CandidatesMap[theOtherDigit] & alsMap;
+							var nextNode = new AlmostLockedSetNode(theOtherDigit, theOtherCells, alsMap - theOtherCells);
+							AddNode(nextNode, ref list);
+						}
+					}
+
+					AssignOrUpdateHashSet(list, node, _strongInferences);
+				}
+
+				void getWeak(in Grid grid)
+				{
+					HashSet<int>? list = null;
+					var triplets = (stackalloc Cells[3]);
+
+					if (NodeTypes.Flags(SearcherNodeTypes.LockedSet))
+					{
+						foreach (int region in digitCellsUsed.CoveredRegions)
+						{
+							var otherCells = grid.CandidatesMap[digit] & RegionMaps[region] - digitCellsUsed;
+							if (region.ToRegion() == Region.Block)
+							{
+								foreach (int subRegion in otherCells.RowMask << 9 | otherCells.ColumnMask << 18)
+								{
+									var intersectionMap = RegionMaps[region] & RegionMaps[subRegion];
+									var subOtherCells = otherCells & intersectionMap;
+									switch (subOtherCells)
+									{
+										case [var cell] when NodeTypes.Flags(SearcherNodeTypes.SoleDigit):
+										{
+											var nextNode = new SoleCandidateNode((byte)cell, digit);
+											AddNode(nextNode, ref list);
+
+											break;
+										}
+										case { Count: var count }:
+										{
+											for (int i = 0; i < count; i++)
+											{
+												foreach (var cellsCombination in subOtherCells & i)
+												{
+													if (cellsCombination is [var onlyCell])
+													{
+														if (NodeTypes.Flags(SearcherNodeTypes.SoleDigit))
+														{
+															var nextNode = new SoleCandidateNode((byte)onlyCell, digit);
+															AddNode(nextNode, ref list);
+														}
+													}
+													else
+													{
+														if (NodeTypes.Flags(SearcherNodeTypes.LockedCandidates))
+														{
+															var nextNode = new LockedCandidatesNode(digit, cellsCombination);
+															AddNode(nextNode, ref list);
+														}
+													}
+												}
+											}
+
+											break;
+										}
+									}
+								}
+							}
+							else
+							{
+								triplets.Clear();
+								triplets[0] = RegionMaps[region][0..3];
+								triplets[1] = RegionMaps[region][3..6];
+								triplets[2] = RegionMaps[region][6..9];
+
+								foreach (ref readonly var triplet in triplets)
+								{
+									var subOtherCells = triplet & otherCells;
+									if (subOtherCells is not { Count: var count and not 0 })
+									{
+										continue;
+									}
+
+									for (int i = 0; i < count; i++)
+									{
+										foreach (var cellsCombination in subOtherCells & i)
+										{
+											if (cellsCombination is [var onlyCell])
+											{
+												if (NodeTypes.Flags(SearcherNodeTypes.SoleDigit))
+												{
+													var nextNode = new SoleCandidateNode((byte)onlyCell, digit);
+													AddNode(nextNode, ref list);
+												}
+											}
+											else
+											{
+												if (NodeTypes.Flags(SearcherNodeTypes.LockedCandidates))
+												{
+													var nextNode = new LockedCandidatesNode(digit, cellsCombination);
+													AddNode(nextNode, ref list);
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+
+					AssignOrUpdateHashSet(list, node, _weakInferences);
+				}
+			}
+		}
 	}
 }

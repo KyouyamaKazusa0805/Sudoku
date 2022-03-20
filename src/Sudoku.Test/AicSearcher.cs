@@ -53,7 +53,7 @@ internal sealed partial class AicSearcher
 		// Gather strong and weak links.
 		GatherStrongAndWeak_Sole(grid);
 		GatherStrongAndWeak_LockedCandidates(grid);
-		GatherStorngAndWeak_AlmostLockedSet(grid);
+		GatherStrongAndWeak_AlmostLockedSet(grid);
 
 #if OUTPUT_INFERENCES && !GET_ELIMINATIONS
 		// Display the inferences found.

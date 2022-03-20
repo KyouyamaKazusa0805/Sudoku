@@ -18,6 +18,11 @@ public abstract class Node :
 	/// Indicates the bits used. <see cref="_higher"/> and <see cref="_lower"/>
 	/// store the basic data of the cells used.
 	/// </summary>
+	/// <remarks>
+	/// Please note that the lower 7 bits in the field <see cref="_other"/> are reserved ones,
+	/// which represents the basic data for the digit used, and the type of the node.
+	/// You cannot modify them.
+	/// </remarks>
 	protected readonly long _higher, _lower, _other;
 
 
@@ -35,6 +40,20 @@ public abstract class Node :
 		_lower = vector.GetElement(1);
 		_other = (int)nodeType << 4 | digit;
 	}
+
+	/// <summary>
+	/// Initializes a <see cref="Node"/> instance via the basic data.
+	/// </summary>
+	/// <param name="nodeType">The node type.</param>
+	/// <param name="digit">The digit used.</param>
+	/// <param name="cells">The cells used.</param>
+	/// <param name="otherMask">
+	/// The other mask. Here the mask provided must preserve the lower 7 bits zeroed
+	/// because they are reserved one.
+	/// </param>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	protected Node(NodeType nodeType, byte digit, in Cells cells, long otherMask) :
+		this(nodeType, digit, cells) => _other |= otherMask;
 
 	/// <summary>
 	/// Initializes a <see cref="Node"/> instance via the basic data.
@@ -85,7 +104,7 @@ public abstract class Node :
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public bool Equals([NotNullWhen(true)] Node? other) =>
+	public virtual bool Equals([NotNullWhen(true)] Node? other) =>
 		other is not null
 			&& _higher == other._higher && _lower == other._lower && _other == other._other;
 
