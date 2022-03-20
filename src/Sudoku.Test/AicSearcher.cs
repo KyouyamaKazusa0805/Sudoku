@@ -1,5 +1,5 @@
-﻿#define OUTPUT_INFERENCES
-#undef GET_ELIMINATIONS
+﻿#undef OUTPUT_INFERENCES
+#define GET_ELIMINATIONS
 
 using Sudoku.Collections;
 using Xunit.Abstractions;

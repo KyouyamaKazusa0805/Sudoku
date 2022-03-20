@@ -438,47 +438,47 @@ partial class AicSearcher
 
 					if (NodeTypes.Flags(SearcherNodeTypes.LockedSet))
 					{
-						//foreach (int region in digitCellsUsed.CoveredRegions)
-						//{
-						//	var otherCells = RegionMaps[region] & grid.CandidatesMap[digit] - digitCellsUsed;
-						//	if (otherCells.Count > 3)
-						//	{
-						//		continue;
-						//	}
+						foreach (int region in digitCellsUsed.CoveredRegions)
+						{
+							var otherCells = RegionMaps[region] & grid.CandidatesMap[digit] - digitCellsUsed;
+							if (otherCells.Count is 0 or > 3)
+							{
+								continue;
+							}
 
-						//	if (
-						//		region.ToRegion() is var label && (
-						//			label == Region.Block
-						//			&& otherCells.CoveredLine == Constants.InvalidFirstSet
-						//			|| label is Region.Row or Region.Column
-						//			&& TrailingZeroCount(otherCells.CoveredRegions) >= 9
-						//		)
-						//	)
-						//	{
-						//		continue;
-						//	}
+							if (
+								region.ToRegion() is var label && (
+									label == Region.Block
+									&& otherCells.CoveredLine == Constants.InvalidFirstSet
+									|| label is Region.Row or Region.Column
+									&& TrailingZeroCount(otherCells.CoveredRegions) >= 9
+								)
+							)
+							{
+								continue;
+							}
 
-						//	if (otherCells is [var onlyCell])
-						//	{
-						//		if (NodeTypes.Flags(SearcherNodeTypes.SoleDigit))
-						//		{
-						//			var nextNode = new SoleCandidateNode((byte)onlyCell, digit);
-						//			AddNode(nextNode, ref list);
-						//			AddNode(node, ref list2);
-						//			AssignOrUpdateHashSet(list2, nextNode, _strongInferences);
-						//		}
-						//	}
-						//	else
-						//	{
-						//		if (NodeTypes.Flags(SearcherNodeTypes.LockedCandidates))
-						//		{
-						//			var nextNode = new LockedCandidatesNode(digit, otherCells);
-						//			AddNode(nextNode, ref list);
-						//			AddNode(node, ref list2);
-						//			AssignOrUpdateHashSet(list2, nextNode, _strongInferences);
-						//		}
-						//	}
-						//}
+							if (otherCells is [var onlyCell])
+							{
+								if (NodeTypes.Flags(SearcherNodeTypes.SoleDigit))
+								{
+									var nextNode = new SoleCandidateNode((byte)onlyCell, digit);
+									AddNode(nextNode, ref list);
+									AddNode(node, ref list2);
+									AssignOrUpdateHashSet(list2, nextNode, _strongInferences);
+								}
+							}
+							else
+							{
+								if (NodeTypes.Flags(SearcherNodeTypes.LockedCandidates))
+								{
+									var nextNode = new LockedCandidatesNode(digit, otherCells);
+									AddNode(nextNode, ref list);
+									AddNode(node, ref list2);
+									AssignOrUpdateHashSet(list2, nextNode, _strongInferences);
+								}
+							}
+						}
 
 						foreach (byte theOtherDigit in (short)(digitsMask & ~(1 << digit)))
 						{
