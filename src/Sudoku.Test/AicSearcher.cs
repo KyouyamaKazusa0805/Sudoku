@@ -55,7 +55,9 @@ internal sealed partial class AicSearcher
 		GatherStrongAndWeak_LockedCandidates(grid);
 		GatherStrongAndWeak_AlmostLockedSet(grid);
 
-#if OUTPUT_INFERENCES && !GET_ELIMINATIONS
+#if OUTPUT_INFERENCES && GET_ELIMINATIONS
+#error Cannot set both symbols 'OUTPUT_INFERENCES' and 'GET_ELIMINATIONS'.
+#elif OUTPUT_INFERENCES && !GET_ELIMINATIONS
 		// Display the inferences found.
 		printInferences(_strongInferences);
 		printInferences(_weakInferences);
