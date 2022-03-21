@@ -87,14 +87,14 @@ partial class AicSearcher
 		var chain = new Bag<int>();
 		foreach (var (id, nextIds) in _weakInferences)
 		{
-			if (nextIds is null)
-			{
-				continue;
-			}
-
 			if (chain.Count > MaximumLength)
 			{
 				return;
+			}
+
+			if (nextIds is null)
+			{
+				continue;
 			}
 
 			chain.Add(id);
@@ -128,15 +128,14 @@ partial class AicSearcher
 
 			foreach (int nextId in nextIds)
 			{
-				if (chain.Contains(nextId))
-				{
-					continue;
-				}
-
-
 				if (chain.Count > MaximumLength)
 				{
 					return;
+				}
+
+				if (chain.Contains(nextId))
+				{
+					continue;
 				}
 
 				chain.Add(nextId);
@@ -156,6 +155,11 @@ partial class AicSearcher
 
 			foreach (int nextId in nextIds)
 			{
+				if (chain.Count > MaximumLength)
+				{
+					return;
+				}
+
 				if (chain[0] == nextId)
 				{
 					// Found.
@@ -169,11 +173,6 @@ partial class AicSearcher
 				if (chain.Contains(nextId))
 				{
 					continue;
-				}
-
-				if (chain.Count > MaximumLength)
-				{
-					return;
 				}
 
 				chain.Add(nextId);
@@ -193,14 +192,14 @@ partial class AicSearcher
 		var chain = new Bag<int>();
 		foreach (var (id, nextIds) in _strongInferences)
 		{
-			if (nextIds is null)
-			{
-				continue;
-			}
-
 			if (chain.Count > MaximumLength)
 			{
 				return;
+			}
+
+			if (nextIds is null)
+			{
+				continue;
 			}
 
 			chain.Add(id);
@@ -234,14 +233,14 @@ partial class AicSearcher
 
 			foreach (int nextId in nextIds)
 			{
-				if (chain.Contains(nextId))
-				{
-					continue;
-				}
-
 				if (chain.Count > MaximumLength)
 				{
 					return;
+				}
+
+				if (chain.Contains(nextId))
+				{
+					continue;
 				}
 
 				chain.Add(nextId);
@@ -261,6 +260,11 @@ partial class AicSearcher
 
 			foreach (int nextId in nextIds)
 			{
+				if (chain.Count > MaximumLength)
+				{
+					return;
+				}
+
 				if (chain[0] == nextId)
 				{
 					// Found.
@@ -274,11 +278,6 @@ partial class AicSearcher
 				if (chain.Contains(nextId))
 				{
 					continue;
-				}
-
-				if (chain.Count > MaximumLength)
-				{
-					return;
 				}
 
 				chain.Add(nextId);

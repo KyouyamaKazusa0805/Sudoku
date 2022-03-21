@@ -49,10 +49,7 @@ public sealed class AlmostLockedSetNode : Node
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public override bool Equals([NotNullWhen(true)] Node? other) =>
-		(This: this, Other: other) is (
-			This: { Cells: [var c1] },
-			Other: SoleCandidateNode { Cell: var c2 }
-		) && c1 == c2 || base.Equals(other);
+		other is { Cells: var c, Digit: var d } && c == Cells && d == Digit || base.Equals(other);
 
 
 	/// <summary>

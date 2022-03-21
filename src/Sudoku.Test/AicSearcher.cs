@@ -30,7 +30,7 @@ internal sealed partial class AicSearcher
 	/// Indicates the maximum length of the chain searched for. If the chain length is greater than
 	/// the value, the result will be ignored.
 	/// </summary>
-	public int MaximumLength { get; set; } = 16;
+	public int MaximumLength { get; set; } = 10;
 
 	/// <summary>
 	/// Indicates the extended nodes to be searched for. Please note that the type of the property
