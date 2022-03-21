@@ -15,6 +15,13 @@ public abstract class Node :
 #endif
 {
 	/// <summary>
+	/// Indicates the number of bits that is preserved by the bit mask field <see cref="_other"/>.
+	/// </summary>
+	/// <seealso cref="_other"/>
+	protected const int PreservedBitsCount = 7;
+
+
+	/// <summary>
 	/// Indicates the bits used. <see cref="_higher"/> and <see cref="_lower"/>
 	/// store the basic data of the cells used.
 	/// </summary>
@@ -109,7 +116,7 @@ public abstract class Node :
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public sealed override int GetHashCode() => HashCode.Combine(_higher, _lower, _other);
+	public sealed override int GetHashCode() => HashCode.Combine(Cells, Digit);
 
 	/// <summary>
 	/// Gets the simplified string value that only displays the important information.
@@ -127,8 +134,9 @@ public abstract class Node :
 		string nodeTypeName = defaultName;
 		if (typeof(NodeType).GetField(Type.ToString()) is { } fieldInfo)
 		{
-			var attr = fieldInfo.GetCustomAttribute<NodeTypeNameAttribute<NodeType>>();
-			nodeTypeName = attr is { Name: var name } ? name : (GetType().FullName ?? defaultName);
+			nodeTypeName = fieldInfo.GetCustomAttribute<NodeTypeNameAttribute>() is { Name: var name }
+				? name
+				: GetType().FullName ?? defaultName;
 		}
 
 		return $"{nodeTypeName}: {ToSimpleString()}";

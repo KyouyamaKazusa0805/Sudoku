@@ -8,6 +8,13 @@ namespace Sudoku.Test;
 public sealed class AlmostLockedSetNode : Node
 {
 	/// <summary>
+	/// Indicates the shifting bits that each cell stores in the <see cref="Node._other"/> mask.
+	/// </summary>
+	/// <seealso cref="Node._other"/>
+	private const int Shifting = 7;
+
+
+	/// <summary>
 	/// Initializes an <see cref="AlmostLockedSetNode"/> instance via the digit used
 	/// and the cells used.
 	/// </summary>
@@ -32,13 +39,13 @@ public sealed class AlmostLockedSetNode : Node
 		get
 		{
 			var result = Cells;
-			long otherCells = _other >> 7 & ((1L << 57) - 1);
+			long otherCells = _other >> Shifting & ((1L << ((sizeof(long) << 3) - Shifting)) - 1);
 			while (otherCells != 0)
 			{
-				int cell = (int)(otherCells >> 7 & 127);
+				int cell = (int)(otherCells >> Shifting & 127);
 				result.AddAnyway(cell);
 
-				otherCells >>= 7;
+				otherCells >>= Shifting;
 			}
 
 			return result;
@@ -69,10 +76,10 @@ public sealed class AlmostLockedSetNode : Node
 		int i = 0;
 		foreach (int cell in extraCells)
 		{
-			finalMask |= (long)(cell << (7 * i++));
+			finalMask |= (long)(cell << (Shifting * i++));
 		}
 
-		// Preserve the last 7 bits being zeroed.
-		return finalMask << 7;
+		// Preserve the specified bits being zeroed.
+		return finalMask << PreservedBitsCount;
 	}
 }

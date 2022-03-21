@@ -142,11 +142,11 @@ internal sealed partial class AicSearcher
 #endif
 	}
 
+#if DEBUG && GET_ELIMINATIONS
 	/// <summary>
 	/// To print the whole chain via the ID. The method is only used for calling by the debugger.
 	/// </summary>
 	/// <param name="chainIds">The IDs.</param>
-#if DEBUG && GET_ELIMINATIONS
 	private string PrintChainData(int[] chainIds) =>
 		string.Join(" -> ", from id in chainIds select _id2NodeLookup[id].ToString());
 #endif

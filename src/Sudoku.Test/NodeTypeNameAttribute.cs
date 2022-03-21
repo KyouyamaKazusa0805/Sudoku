@@ -6,7 +6,7 @@
 /// </summary>
 /// <seealso cref="NodeType"/>
 [AttributeUsage(AttributeTargets.Field, AllowMultiple = false, Inherited = false)]
-public sealed class NodeTypeNameAttribute<T> : Attribute where T : Enum
+public sealed class NodeTypeNameAttribute : Attribute
 {
 	/// <summary>
 	/// Initializes a <see cref="NodeTypeNameAttribute"/> instance via the name.
