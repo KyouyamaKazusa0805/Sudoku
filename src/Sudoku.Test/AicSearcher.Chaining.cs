@@ -73,7 +73,6 @@ partial class AicSearcher
 	/// </summary>
 	private readonly List<(int[] ChainIds, bool StartsWithWeakInference)> _foundChains = new();
 
-
 	/// <summary>
 	/// Indicates the global ID value.
 	/// </summary>
