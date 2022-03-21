@@ -172,7 +172,7 @@ partial class AicSearcher
 						return;
 					}
 
-					throw null!;
+					throw new();
 				}
 
 				if (chain.Contains(nextId))
@@ -282,7 +282,7 @@ partial class AicSearcher
 						return;
 					}
 
-					throw null!;
+					throw new();
 				}
 
 				if (chain.Contains(nextId))

@@ -118,7 +118,7 @@ internal sealed partial class AicSearcher
 			StartWithWeak();
 			StartWithStrong();
 		}
-		catch (NullReferenceException?)
+		catch
 		{
 		}
 
