@@ -33,6 +33,12 @@ internal sealed partial class AicSearcher
 	public int MaximumLength { get; set; } = 10;
 
 	/// <summary>
+	/// Indicates the maximum number of chains can be found in the current searcher.
+	/// If the searcher found more than the value, the overflown results will be ignored.
+	/// </summary>
+	public int MaximumFoundChainsCount { get; set; } = 1000;
+
+	/// <summary>
 	/// Indicates the extended nodes to be searched for. Please note that the type of the property
 	/// is an enumeration type with bit-fields attribute, which means you can add multiple choices
 	/// into the value.
@@ -106,9 +112,15 @@ internal sealed partial class AicSearcher
 			_output.WriteLine(sb.ToStringAndClear());
 		}
 #elif GET_ELIMINATIONS && !OUTPUT_INFERENCES
-		// Construct chains.
-		StartWithWeak();
-		StartWithStrong();
+		try
+		{
+			// Construct chains.
+			StartWithWeak();
+			StartWithStrong();
+		}
+		catch (NullReferenceException?)
+		{
+		}
 
 		// Output the result.
 		var tempList = new Dictionary<AlternatingInferenceChain, Conclusion[]>();

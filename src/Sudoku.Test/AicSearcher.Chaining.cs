@@ -163,11 +163,16 @@ partial class AicSearcher
 				if (chain[0] == nextId)
 				{
 					// Found.
-					int[] finalArray = chain.ImmutelyAdd(nextId).ToArray();
+					if (_foundChains.Count < MaximumFoundChainsCount)
+					{
+						int[] finalArray = chain.ImmutelyAdd(nextId).ToArray();
 
-					_foundChains.Add((finalArray, true));
+						_foundChains.Add((finalArray, true));
 
-					return;
+						return;
+					}
+
+					throw null!;
 				}
 
 				if (chain.Contains(nextId))
@@ -268,11 +273,16 @@ partial class AicSearcher
 				if (chain[0] == nextId)
 				{
 					// Found.
-					int[] finalArray = chain.ImmutelyAdd(nextId).ToArray();
+					if (_foundChains.Count < MaximumFoundChainsCount)
+					{
+						int[] finalArray = chain.ImmutelyAdd(nextId).ToArray();
 
-					_foundChains.Add((finalArray, false));
+						_foundChains.Add((finalArray, false));
 
-					return;
+						return;
+					}
+
+					throw null!;
 				}
 
 				if (chain.Contains(nextId))
