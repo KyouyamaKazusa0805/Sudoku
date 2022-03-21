@@ -72,7 +72,7 @@ public sealed class AlmostLockedSetNode : Node
 			finalMask |= (long)(cell << (7 * i++));
 		}
 
-		// Preserve the last 4 bits being zeroed.
-		return finalMask << 4;
+		// Preserve the last 7 bits being zeroed.
+		return finalMask << 7;
 	}
 }

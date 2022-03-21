@@ -148,6 +148,6 @@ internal sealed partial class AicSearcher
 	/// <param name="chainIds">The IDs.</param>
 #if DEBUG && GET_ELIMINATIONS
 	private string PrintChainData(int[] chainIds) =>
-		string.Join(" -> ", from id in chainIds select _id2NodeLookup[id].ToSimpleString());
+		string.Join(" -> ", from id in chainIds select _id2NodeLookup[id].ToString());
 #endif
 }
