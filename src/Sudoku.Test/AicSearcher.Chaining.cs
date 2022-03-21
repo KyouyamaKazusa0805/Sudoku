@@ -92,10 +92,20 @@ partial class AicSearcher
 				continue;
 			}
 
+			if (chain.Count > MaximumLength)
+			{
+				return;
+			}
+
 			chain.Add(id);
 
 			foreach (int nextId in nextIds)
 			{
+				if (chain.Count > MaximumLength)
+				{
+					return;
+				}
+
 				chain.Add(nextId);
 
 				nextStrong(ref chain, nextId);
@@ -121,6 +131,12 @@ partial class AicSearcher
 				if (chain.Contains(nextId))
 				{
 					continue;
+				}
+
+
+				if (chain.Count > MaximumLength)
+				{
+					return;
 				}
 
 				chain.Add(nextId);
@@ -155,6 +171,11 @@ partial class AicSearcher
 					continue;
 				}
 
+				if (chain.Count > MaximumLength)
+				{
+					return;
+				}
+
 				chain.Add(nextId);
 
 				nextStrong(ref chain, nextId);
@@ -177,10 +198,20 @@ partial class AicSearcher
 				continue;
 			}
 
+			if (chain.Count > MaximumLength)
+			{
+				return;
+			}
+
 			chain.Add(id);
 
 			foreach (int nextId in nextIds)
 			{
+				if (chain.Count > MaximumLength)
+				{
+					return;
+				}
+
 				chain.Add(nextId);
 
 				nextWeak(ref chain, nextId);
@@ -206,6 +237,11 @@ partial class AicSearcher
 				if (chain.Contains(nextId))
 				{
 					continue;
+				}
+
+				if (chain.Count > MaximumLength)
+				{
+					return;
 				}
 
 				chain.Add(nextId);
@@ -238,6 +274,11 @@ partial class AicSearcher
 				if (chain.Contains(nextId))
 				{
 					continue;
+				}
+
+				if (chain.Count > MaximumLength)
+				{
+					return;
 				}
 
 				chain.Add(nextId);

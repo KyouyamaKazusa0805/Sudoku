@@ -1,5 +1,5 @@
-﻿#define OUTPUT_INFERENCES
-#undef GET_ELIMINATIONS
+﻿#undef OUTPUT_INFERENCES
+#define GET_ELIMINATIONS
 
 using Sudoku.Collections;
 using Xunit.Abstractions;
@@ -25,6 +25,12 @@ internal sealed partial class AicSearcher
 	/// <seealso cref="ITestOutputHelper"/>
 	public AicSearcher(ITestOutputHelper output) => _output = output;
 
+
+	/// <summary>
+	/// Indicates the maximum length of the chain searched for. If the chain length is greater than
+	/// the value, the result will be ignored.
+	/// </summary>
+	public int MaximumLength { get; set; } = 16;
 
 	/// <summary>
 	/// Indicates the extended nodes to be searched for. Please note that the type of the property
@@ -123,4 +129,13 @@ internal sealed partial class AicSearcher
 #error You must set either the symbol 'OUTPUT_INFERENCES' or the symbol 'GET_ELIMINATIONS'.
 #endif
 	}
+
+	/// <summary>
+	/// To print the whole chain via the ID. The method is only used for calling by the debugger.
+	/// </summary>
+	/// <param name="chainIds">The IDs.</param>
+#if DEBUG && GET_ELIMINATIONS
+	private string PrintChainData(int[] chainIds) =>
+		string.Join(" -> ", from id in chainIds select _id2NodeLookup[id].ToSimpleString());
+#endif
 }
