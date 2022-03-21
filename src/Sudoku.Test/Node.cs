@@ -104,9 +104,8 @@ public abstract class Node :
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public virtual bool Equals([NotNullWhen(true)] Node? other) =>
-		other is not null
-			&& _higher == other._higher && _lower == other._lower && _other == other._other;
+	public bool Equals([NotNullWhen(true)] Node? other) =>
+		other is { Cells: var c, Digit: var d } && c == Cells && d == Digit;
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

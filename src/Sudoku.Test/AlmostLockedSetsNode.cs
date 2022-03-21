@@ -46,12 +46,6 @@ public sealed class AlmostLockedSetNode : Node
 	}
 
 
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public override bool Equals([NotNullWhen(true)] Node? other) =>
-		other is { Cells: var c, Digit: var d } && c == Cells && d == Digit || base.Equals(other);
-
-
 	/// <summary>
 	/// Gets the part of the other mask value that represents the extra cells used.
 	/// </summary>
