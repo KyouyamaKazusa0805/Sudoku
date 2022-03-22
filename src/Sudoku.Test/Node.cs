@@ -87,6 +87,15 @@ public abstract class Node :
 	}
 
 	/// <summary>
+	/// Indicates whether the current node is a grouped node, which means it uses more than 1 cell.
+	/// </summary>
+	public bool IsGroupedNode
+	{
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		get => _higher != 0 && _lower != 0;
+	}
+
+	/// <summary>
 	/// Indicates the cells used.
 	/// </summary>
 	public Cells Cells

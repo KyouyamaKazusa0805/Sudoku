@@ -56,10 +56,9 @@ partial class AicSearcher
 
 	/// <summary>
 	/// Indicates the lookup table that can get the target <see cref="Node"/> instance
-	/// via the corresponding ID value.
+	/// via the corresponding ID value specified as the index.
 	/// </summary>
-	/// <seealso cref="Node"/>
-	private readonly Dictionary<int, Node> _id2NodeLookup = new();
+	private Node?[] _id2NodeLookup = null!;
 
 	/// <summary>
 	/// Indicates the lookup table that can get the target ID value
@@ -80,6 +79,20 @@ partial class AicSearcher
 
 
 	/// <summary>
+	/// Remove all ID values in the lookup dictionary.
+	/// </summary>
+	private void RemoveIdsNotAppearingInLookupDictionary(Dictionary<int, HashSet<int>?> inferences)
+	{
+		foreach (int id in inferences.Keys)
+		{
+			if (_id2NodeLookup[id] is null)
+			{
+				inferences.Remove(id);
+			}
+		}
+	}
+
+	/// <summary>
 	/// Start to construct the chain, with the weak inference as the beginning node.
 	/// </summary>
 	private void StartWithWeak()
@@ -87,9 +100,11 @@ partial class AicSearcher
 		var chain = new Bag<int>();
 		foreach (var (id, nextIds) in _weakInferences)
 		{
-			if (chain.Count > MaximumLength)
+			if (_id2NodeLookup[id]!.IsGroupedNode)
 			{
-				return;
+				// Optimization: Skip the nodes using more than 1 cell if they start with weak.
+				// Because the grouped nodes cannot be used as a start node.
+				continue;
 			}
 
 			if (nextIds is null)
@@ -101,11 +116,6 @@ partial class AicSearcher
 
 			foreach (int nextId in nextIds)
 			{
-				if (chain.Count > MaximumLength)
-				{
-					return;
-				}
-
 				chain.Add(nextId);
 
 				nextStrong(ref chain, nextId);
@@ -128,11 +138,6 @@ partial class AicSearcher
 
 			foreach (int nextId in nextIds)
 			{
-				if (chain.Count > MaximumLength)
-				{
-					return;
-				}
-
 				if (chain.Contains(nextId))
 				{
 					continue;
@@ -155,24 +160,14 @@ partial class AicSearcher
 
 			foreach (int nextId in nextIds)
 			{
-				if (chain.Count > MaximumLength)
-				{
-					return;
-				}
-
 				if (chain[0] == nextId)
 				{
 					// Found.
-					if (_foundChains.Count < MaximumFoundChainsCount)
-					{
-						int[] finalArray = chain.ImmutelyAdd(nextId).ToArray();
+					int[] finalArray = chain.ImmutelyAdd(nextId).ToArray();
 
-						_foundChains.Add((finalArray, true));
+					_foundChains.Add((finalArray, true));
 
-						return;
-					}
-
-					throw new();
+					return;
 				}
 
 				if (chain.Contains(nextId))
@@ -197,9 +192,9 @@ partial class AicSearcher
 		var chain = new Bag<int>();
 		foreach (var (id, nextIds) in _strongInferences)
 		{
-			if (chain.Count > MaximumLength)
+			if (!_weakInferences.ContainsKey(id))
 			{
-				return;
+				continue;
 			}
 
 			if (nextIds is null)
@@ -211,11 +206,6 @@ partial class AicSearcher
 
 			foreach (int nextId in nextIds)
 			{
-				if (chain.Count > MaximumLength)
-				{
-					return;
-				}
-
 				chain.Add(nextId);
 
 				nextWeak(ref chain, nextId);
@@ -238,11 +228,6 @@ partial class AicSearcher
 
 			foreach (int nextId in nextIds)
 			{
-				if (chain.Count > MaximumLength)
-				{
-					return;
-				}
-
 				if (chain.Contains(nextId))
 				{
 					continue;
@@ -265,24 +250,14 @@ partial class AicSearcher
 
 			foreach (int nextId in nextIds)
 			{
-				if (chain.Count > MaximumLength)
-				{
-					return;
-				}
-
 				if (chain[0] == nextId)
 				{
 					// Found.
-					if (_foundChains.Count < MaximumFoundChainsCount)
-					{
-						int[] finalArray = chain.ImmutelyAdd(nextId).ToArray();
+					int[] finalArray = chain.ImmutelyAdd(nextId).ToArray();
 
-						_foundChains.Add((finalArray, false));
+					_foundChains.Add((finalArray, false));
 
-						return;
-					}
-
-					throw new();
+					return;
 				}
 
 				if (chain.Contains(nextId))
@@ -313,7 +288,7 @@ partial class AicSearcher
 		}
 		else
 		{
-			_id2NodeLookup.Add(_globalId, nextNode);
+			_id2NodeLookup[_globalId] = nextNode;
 			_node2IdLookup.Add(nextNode, _globalId);
 			(list ??= new()).Add(_globalId++);
 		}

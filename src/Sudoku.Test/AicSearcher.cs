@@ -1,6 +1,7 @@
-﻿#undef OUTPUT_INFERENCES
-#define GET_ELIMINATIONS
+﻿#define OUTPUT_INFERENCES
+#undef GET_ELIMINATIONS
 
+using System.Buffers;
 using Sudoku.Collections;
 using Xunit.Abstractions;
 
@@ -27,16 +28,9 @@ internal sealed partial class AicSearcher
 
 
 	/// <summary>
-	/// Indicates the maximum length of the chain searched for. If the chain length is greater than
-	/// the value, the result will be ignored.
+	/// Indicates the maximum capacity used for the allocation on shared memory.
 	/// </summary>
-	public int MaximumLength { get; set; } = 10;
-
-	/// <summary>
-	/// Indicates the maximum number of chains can be found in the current searcher.
-	/// If the searcher found more than the value, the overflown results will be ignored.
-	/// </summary>
-	public int MaximumFoundChainsCount { get; set; } = 1000;
+	public int MaxCapacity { get; set; } = 3000;
 
 	/// <summary>
 	/// Indicates the extended nodes to be searched for. Please note that the type of the property
@@ -58,7 +52,7 @@ internal sealed partial class AicSearcher
 		// Clear all possible lists.
 		_strongInferences.Clear();
 		_weakInferences.Clear();
-		_id2NodeLookup.Clear();
+		_id2NodeLookup = ArrayPool<Node?>.Shared.Rent(MaxCapacity);
 		_node2IdLookup.Clear();
 		_foundChains.Clear();
 
@@ -66,6 +60,10 @@ internal sealed partial class AicSearcher
 		GatherStrongAndWeak_Sole(grid);
 		GatherStrongAndWeak_LockedCandidates(grid);
 		GatherStrongAndWeak_AlmostLockedSet(grid);
+
+		// Remove IDs if they don't appear in the lookup table.
+		RemoveIdsNotAppearingInLookupDictionary(_weakInferences);
+		RemoveIdsNotAppearingInLookupDictionary(_strongInferences);
 
 #if OUTPUT_INFERENCES && GET_ELIMINATIONS
 #error Cannot set both symbols 'OUTPUT_INFERENCES' and 'GET_ELIMINATIONS'.
@@ -82,20 +80,20 @@ internal sealed partial class AicSearcher
 			var sb = new StringHandler();
 			foreach (var (id, nextIds) in inferences)
 			{
-				if (!_id2NodeLookup.ContainsKey(id))
+				if (_id2NodeLookup[id] is not { } node)
 				{
 					continue;
 				}
 
 				sb.Append("Node ");
-				sb.Append(_id2NodeLookup[id].ToSimpleString());
+				sb.Append(node.ToSimpleString());
 				sb.Append(": ");
 
 				if (nextIds is not null)
 				{
 					foreach (int nextId in nextIds)
 					{
-						sb.Append(_id2NodeLookup[nextId].ToSimpleString());
+						sb.Append(_id2NodeLookup[nextId]!.ToSimpleString());
 						sb.Append(separator);
 					}
 
@@ -112,15 +110,9 @@ internal sealed partial class AicSearcher
 			_output.WriteLine(sb.ToStringAndClear());
 		}
 #elif GET_ELIMINATIONS && !OUTPUT_INFERENCES
-		try
-		{
-			// Construct chains.
-			StartWithWeak();
-			StartWithStrong();
-		}
-		catch
-		{
-		}
+		// Construct chains.
+		StartWithWeak();
+		StartWithStrong();
 
 		// Output the result.
 		var tempList = new Dictionary<AlternatingInferenceChain, Conclusion[]>();
@@ -140,6 +132,9 @@ internal sealed partial class AicSearcher
 #else
 #error You must set either the symbol 'OUTPUT_INFERENCES' or the symbol 'GET_ELIMINATIONS'.
 #endif
+
+		// Clears the memory.
+		ArrayPool<Node?>.Shared.Return(_id2NodeLookup);
 	}
 
 #if DEBUG && GET_ELIMINATIONS
