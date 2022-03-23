@@ -10,7 +10,7 @@ partial class AicSearcher
 	/// Gather the strong and weak inferences on sole candidate nodes.
 	/// </summary>
 	/// <param name="grid">The grid.</param>
-	private void GatherStrongAndWeak_Sole(in Grid grid)
+	partial void GatherStrongAndWeak_Sole(in Grid grid)
 	{
 		// Sole candidate -> Sole candidate.
 		foreach (int candidate in grid)
@@ -86,7 +86,7 @@ partial class AicSearcher
 	/// Gather the strong and weak inferences on locked candidates nodes.
 	/// </summary>
 	/// <param name="grid">The grid.</param>
-	private void GatherStrongAndWeak_LockedCandidates(in Grid grid)
+	partial void GatherStrongAndWeak_LockedCandidates(in Grid grid)
 	{
 		// Sole candidate -> Locked candidates.
 		foreach (int candidate in grid)
@@ -395,7 +395,7 @@ partial class AicSearcher
 	/// Gather the strong and weak inferences on almost locked sets nodes.
 	/// </summary>
 	/// <param name="grid">The grid.</param>
-	private void GatherStrongAndWeak_AlmostLockedSet(in Grid grid)
+	partial void GatherStrongAndWeak_AlmostLockedSet(in Grid grid)
 	{
 		var alses = AlmostLockedSet.Gather(grid);
 		foreach (ref readonly var als in alses.EnumerateRef())
@@ -558,6 +558,55 @@ partial class AicSearcher
 
 					UpdateInferenceTable(list, node, _weakInferences);
 				}
+			}
+		}
+	}
+
+	/// <summary>
+	/// Adds the specified node into the collection, or just get the ID value.
+	/// </summary>
+	/// <param name="nextNode">The next node.</param>
+	/// <param name="list">The list.</param>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	private void AddNode(Node nextNode, [NotNull] ref HashSet<int>? list)
+	{
+		if (_idLookup.TryGetValue(nextNode, out int nextNodeId))
+		{
+			(list ??= new()).Add(nextNodeId);
+		}
+		else
+		{
+			_nodeLookup[_globalId] = nextNode;
+			_idLookup.Add(nextNode, _globalId);
+			(list ??= new()).Add(_globalId++);
+		}
+	}
+
+	/// <summary>
+	/// To assign the recorded IDs into the dictionary.
+	/// </summary>
+	/// <param name="list">The list of IDs.</param>
+	/// <param name="node">The current node.</param>
+	/// <param name="inferences">Indicates what dictionary the hash set is assigned to.</param>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	private void UpdateInferenceTable(HashSet<int>? list, Node node, Dictionary<int, HashSet<int>?> inferences)
+	{
+		if (list is not null)
+		{
+			if (_idLookup.TryGetValue(node, out int currentNodeId))
+			{
+				if (inferences.ContainsKey(currentNodeId))
+				{
+					inferences[currentNodeId]!.AddRange(list);
+				}
+				else
+				{
+					inferences.Add(currentNodeId, list);
+				}
+			}
+			else
+			{
+				inferences.Add(_globalId++, list);
 			}
 		}
 	}

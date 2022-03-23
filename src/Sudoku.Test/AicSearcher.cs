@@ -100,6 +100,11 @@ internal sealed partial class AicSearcher
 
 
 	/// <summary>
+	/// Indicates whether the searcher uses DFS algorithm to search for chains.
+	/// </summary>
+	public bool DepthFirstSearching { get; set; } = true;
+
+	/// <summary>
 	/// Indicates the maximum capacity used for the allocation on shared memory.
 	/// </summary>
 	public int MaxCapacity { get; set; } = 3000;
@@ -143,9 +148,17 @@ internal sealed partial class AicSearcher
 		PrintInferences(_weakInferences);
 #else
 		// Construct chains.
-		Dfs_StartWithWeak();
-		Dfs_StartWithStrong();
-
+		if (DepthFirstSearching)
+		{
+			Dfs_StartWithWeak();
+			Dfs_StartWithStrong();
+		}
+		else
+		{
+			Bfs_StartWithWeak();
+			Bfs_StartWithStrong();
+		}
+		
 		// Output the result.
 		var tempList = new Dictionary<AlternatingInferenceChain, Conclusion[]>();
 		foreach (var (nids, startsWithWeak) in _foundChains)
@@ -167,51 +180,12 @@ internal sealed partial class AicSearcher
 		ArrayPool<Node?>.Shared.Return(_nodeLookup);
 	}
 
-	/// <summary>
-	/// Print the inferences.
-	/// </summary>
-	/// <param name="inferences">The table of inferences.</param>
-	private void PrintInferences(Dictionary<int, HashSet<int>?> inferences)
-	{
-		const string separator = ", ";
 
-		var sb = new StringHandler();
-		foreach (var (id, nextIds) in inferences)
-		{
-			if (_nodeLookup[id] is not { } node)
-			{
-				continue;
-			}
-
-			sb.Append("Node ");
-			sb.Append(node.ToSimpleString());
-			sb.Append(": ");
-
-			if (nextIds is not null)
-			{
-				foreach (int nextId in nextIds)
-				{
-					sb.Append(_nodeLookup[nextId]!.ToSimpleString());
-					sb.Append(separator);
-				}
-
-				sb.RemoveFromEnd(separator.Length);
-			}
-			else
-			{
-				sb.Append("<null>");
-			}
-
-			sb.AppendLine();
-		}
-
-		_output.WriteLine(sb.ToStringAndClear());
-	}
-
-	/// <summary>
-	/// To print the whole chain via the ID. The method is only used for calling by the debugger.
-	/// </summary>
-	/// <param name="chainIds">The IDs.</param>
-	private string PrintChainData(int[] chainIds) =>
-		string.Join(" -> ", from id in chainIds select _nodeLookup[id]!.ToString());
+	partial void GatherStrongAndWeak_Sole(in Grid grid);
+	partial void GatherStrongAndWeak_LockedCandidates(in Grid grid);
+	partial void GatherStrongAndWeak_AlmostLockedSet(in Grid grid);
+	partial void Dfs_StartWithWeak();
+	partial void Dfs_StartWithStrong();
+	partial void Bfs_StartWithWeak();
+	partial void Bfs_StartWithStrong();
 }
