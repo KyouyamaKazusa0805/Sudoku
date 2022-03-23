@@ -231,16 +231,13 @@ partial class AicSearcher
 		{
 			if (_idLookup.TryGetValue(node, out int currentNodeId))
 			{
-				if (list is not null)
+				if (inferences.ContainsKey(currentNodeId))
 				{
-					if (inferences.ContainsKey(currentNodeId))
-					{
-						inferences[currentNodeId]!.AddRange(list);
-					}
-					else
-					{
-						inferences.Add(currentNodeId, list);
-					}
+					inferences[currentNodeId]!.AddRange(list);
+				}
+				else
+				{
+					inferences.Add(currentNodeId, list);
 				}
 			}
 			else
