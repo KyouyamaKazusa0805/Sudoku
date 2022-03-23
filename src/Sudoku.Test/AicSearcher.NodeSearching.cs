@@ -52,7 +52,7 @@ partial class AicSearcher
 					}
 				}
 
-				AssignOrUpdateHashSet(list, node, _strongInferences);
+				UpdateInferenceTable(list, node, _strongInferences);
 			}
 
 			void getWeak(in Grid grid)
@@ -77,7 +77,7 @@ partial class AicSearcher
 					}
 				}
 
-				AssignOrUpdateHashSet(list, node, _weakInferences);
+				UpdateInferenceTable(list, node, _weakInferences);
 			}
 		}
 	}
@@ -137,7 +137,7 @@ partial class AicSearcher
 					}
 				}
 
-				AssignOrUpdateHashSet(list, node, _strongInferences);
+				UpdateInferenceTable(list, node, _strongInferences);
 			}
 
 			void getWeak(in Grid grid)
@@ -231,7 +231,7 @@ partial class AicSearcher
 					}
 				}
 
-				AssignOrUpdateHashSet(list, node, _weakInferences);
+				UpdateInferenceTable(list, node, _weakInferences);
 			}
 		}
 
@@ -296,7 +296,7 @@ partial class AicSearcher
 							}
 						}
 
-						AssignOrUpdateHashSet(list, node, _strongInferences);
+						UpdateInferenceTable(list, node, _strongInferences);
 					}
 
 					void getWeak(in Grid grid, in Cells cells)
@@ -384,7 +384,7 @@ partial class AicSearcher
 							}
 						}
 
-						AssignOrUpdateHashSet(list, node, _weakInferences);
+						UpdateInferenceTable(list, node, _weakInferences);
 					}
 				}
 			}
@@ -448,14 +448,14 @@ partial class AicSearcher
 								var nextNode = new SoleCandidateNode((byte)onlyCell, digit);
 								AddNode(nextNode, ref list);
 								AddNode(node, ref list2);
-								AssignOrUpdateHashSet(list2, nextNode, _strongInferences);
+								UpdateInferenceTable(list2, nextNode, _strongInferences);
 							}
 							else
 							{
 								var nextNode = new LockedCandidatesNode(digit, otherCells);
 								AddNode(nextNode, ref list);
 								AddNode(node, ref list2);
-								AssignOrUpdateHashSet(list2, nextNode, _strongInferences);
+								UpdateInferenceTable(list2, nextNode, _strongInferences);
 							}
 						}
 
@@ -467,7 +467,7 @@ partial class AicSearcher
 						}
 					}
 
-					AssignOrUpdateHashSet(list, node, _strongInferences);
+					UpdateInferenceTable(list, node, _strongInferences);
 				}
 
 				void getWeak(in Grid grid)
@@ -556,7 +556,7 @@ partial class AicSearcher
 						}
 					}
 
-					AssignOrUpdateHashSet(list, node, _weakInferences);
+					UpdateInferenceTable(list, node, _weakInferences);
 				}
 			}
 		}

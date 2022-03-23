@@ -1,7 +1,4 @@
-﻿#define OUTPUT_INFERENCES
-#undef GET_ELIMINATIONS
-
-using System.Buffers;
+﻿using System.Buffers;
 using Sudoku.Collections;
 using Xunit.Abstractions;
 
@@ -10,9 +7,84 @@ namespace Sudoku.Test;
 internal sealed partial class AicSearcher
 {
 	/// <summary>
+	/// Indicates the field that stores the temporary strong inferences during the searching.
+	/// </summary>
+	/// <remarks>
+	/// The value uses a <see cref="Dictionary{TKey, TValue}"/> to store the table of strong inferences, where:
+	/// <list type="table">
+	/// <listheader>
+	/// <term>Item</term>
+	/// <description>Meaning</description>
+	/// </listheader>
+	/// <item>
+	/// <term>Key</term>
+	/// <description>The ID of a node.</description>
+	/// </item>
+	/// <item>
+	/// <term>Value</term>
+	/// <description>
+	/// All possible IDs that corresponds to their own node respectively,
+	/// one of which can form a strong inference with the <b>Key</b> node.
+	/// </description>
+	/// </item>
+	/// </list>
+	/// </remarks>
+	/// <seealso cref="Dictionary{TKey, TValue}"/>
+	private readonly Dictionary<int, HashSet<int>?> _strongInferences = new();
+
+	/// <summary>
+	/// Indicates the field that stores the temporary weak inferences during the searching.
+	/// </summary>
+	/// <remarks>
+	/// The value uses a <see cref="Dictionary{TKey, TValue}"/> to store the table of weak inferences, where:
+	/// <list type="table">
+	/// <listheader>
+	/// <term>Item</term>
+	/// <description>Meaning</description>
+	/// </listheader>
+	/// <item>
+	/// <term>Key</term>
+	/// <description>The ID of a node.</description>
+	/// </item>
+	/// <item>
+	/// <term>Value</term>
+	/// <description>
+	/// All possible IDs that corresponds to their own node respectively,
+	/// one of which can form a weak inference with the <b>Key</b> node.
+	/// </description>
+	/// </item>
+	/// </list>
+	/// </remarks>
+	/// <seealso cref="Dictionary{TKey, TValue}"/>
+	private readonly Dictionary<int, HashSet<int>?> _weakInferences = new();
+
+	/// <summary>
+	/// Indicates the lookup table that can get the target ID value
+	/// via the corresponding <see cref="Node"/> instance.
+	/// </summary>
+	/// <seealso cref="Node"/>
+	private readonly Dictionary<Node, int> _idLookup = new();
+
+	/// <summary>
+	/// Indicates all possible found chains, that stores the IDs of the each node.
+	/// </summary>
+	private readonly List<(int[] ChainIds, bool StartsWithWeakInference)> _foundChains = new();
+
+	/// <summary>
 	/// Indicates the output instance that can allow displaying the customized items onto the test explorer.
 	/// </summary>
 	private readonly ITestOutputHelper _output;
+
+	/// <summary>
+	/// Indicates the global ID value.
+	/// </summary>
+	private int _globalId;
+
+	/// <summary>
+	/// Indicates the lookup table that can get the target <see cref="Node"/> instance
+	/// via the corresponding ID value specified as the index.
+	/// </summary>
+	private Node?[] _nodeLookup = null!;
 
 
 	/// <summary>
@@ -52,8 +124,8 @@ internal sealed partial class AicSearcher
 		// Clear all possible lists.
 		_strongInferences.Clear();
 		_weakInferences.Clear();
-		_id2NodeLookup = ArrayPool<Node?>.Shared.Rent(MaxCapacity);
-		_node2IdLookup.Clear();
+		_nodeLookup = ArrayPool<Node?>.Shared.Rent(MaxCapacity);
+		_idLookup.Clear();
 		_foundChains.Clear();
 
 		// Gather strong and weak links.
@@ -65,54 +137,14 @@ internal sealed partial class AicSearcher
 		RemoveIdsNotAppearingInLookupDictionary(_weakInferences);
 		RemoveIdsNotAppearingInLookupDictionary(_strongInferences);
 
-#if OUTPUT_INFERENCES && GET_ELIMINATIONS
-#error Cannot set both symbols 'OUTPUT_INFERENCES' and 'GET_ELIMINATIONS'.
-#elif OUTPUT_INFERENCES && !GET_ELIMINATIONS
+#if true
 		// Display the inferences found.
-		printInferences(_strongInferences);
-		printInferences(_weakInferences);
-
-
-		void printInferences(Dictionary<int, HashSet<int>?> inferences)
-		{
-			const string separator = ", ";
-
-			var sb = new StringHandler();
-			foreach (var (id, nextIds) in inferences)
-			{
-				if (_id2NodeLookup[id] is not { } node)
-				{
-					continue;
-				}
-
-				sb.Append("Node ");
-				sb.Append(node.ToSimpleString());
-				sb.Append(": ");
-
-				if (nextIds is not null)
-				{
-					foreach (int nextId in nextIds)
-					{
-						sb.Append(_id2NodeLookup[nextId]!.ToSimpleString());
-						sb.Append(separator);
-					}
-
-					sb.RemoveFromEnd(separator.Length);
-				}
-				else
-				{
-					sb.Append("<null>");
-				}
-
-				sb.AppendLine();
-			}
-
-			_output.WriteLine(sb.ToStringAndClear());
-		}
-#elif GET_ELIMINATIONS && !OUTPUT_INFERENCES
+		PrintInferences(_strongInferences);
+		PrintInferences(_weakInferences);
+#else
 		// Construct chains.
-		StartWithWeak();
-		StartWithStrong();
+		Dfs_StartWithWeak();
+		Dfs_StartWithStrong();
 
 		// Output the result.
 		var tempList = new Dictionary<AlternatingInferenceChain, Conclusion[]>();
@@ -129,20 +161,57 @@ internal sealed partial class AicSearcher
 		{
 			_output.WriteLine($"{chain} => {new ConclusionCollection(conclusions).ToString()}");
 		}
-#else
-#error You must set either the symbol 'OUTPUT_INFERENCES' or the symbol 'GET_ELIMINATIONS'.
 #endif
 
 		// Clears the memory.
-		ArrayPool<Node?>.Shared.Return(_id2NodeLookup);
+		ArrayPool<Node?>.Shared.Return(_nodeLookup);
 	}
 
-#if DEBUG && GET_ELIMINATIONS
+	/// <summary>
+	/// Print the inferences.
+	/// </summary>
+	/// <param name="inferences">The table of inferences.</param>
+	private void PrintInferences(Dictionary<int, HashSet<int>?> inferences)
+	{
+		const string separator = ", ";
+
+		var sb = new StringHandler();
+		foreach (var (id, nextIds) in inferences)
+		{
+			if (_nodeLookup[id] is not { } node)
+			{
+				continue;
+			}
+
+			sb.Append("Node ");
+			sb.Append(node.ToSimpleString());
+			sb.Append(": ");
+
+			if (nextIds is not null)
+			{
+				foreach (int nextId in nextIds)
+				{
+					sb.Append(_nodeLookup[nextId]!.ToSimpleString());
+					sb.Append(separator);
+				}
+
+				sb.RemoveFromEnd(separator.Length);
+			}
+			else
+			{
+				sb.Append("<null>");
+			}
+
+			sb.AppendLine();
+		}
+
+		_output.WriteLine(sb.ToStringAndClear());
+	}
+
 	/// <summary>
 	/// To print the whole chain via the ID. The method is only used for calling by the debugger.
 	/// </summary>
 	/// <param name="chainIds">The IDs.</param>
 	private string PrintChainData(int[] chainIds) =>
-		string.Join(" -> ", from id in chainIds select _id2NodeLookup[id].ToString());
-#endif
+		string.Join(" -> ", from id in chainIds select _nodeLookup[id]!.ToString());
 }
