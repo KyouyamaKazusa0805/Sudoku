@@ -69,7 +69,7 @@ Console.WriteLine(analysisResult.ToDisplayString());
 | 编程语言和版本 | C# 10                                  |
 | 框架           | .NET 6                                |
 | 缩进           | Tab（制表符）                          |
-| 集成开发环境   | Visual Studio 2022（17.2 预览版 2）     |
+| 集成开发环境   | Visual Studio 2022（17.2 预览版 2.1）   |
 | 自然语言支持   | 英语、简体中文                           |
 | 用户接口       | `Sudoku.UI`                           |
 
