@@ -7,7 +7,7 @@ partial class AicSearcher
 	/// <summary>
 	/// Start to construct the chain, with the weak inference as the beginning node.
 	/// </summary>
-	partial void Bfs()
+	private void Bfs()
 	{
 		// Rend the array as the light-weighted linked list,
 		// where the indices correspond to the node IDs.

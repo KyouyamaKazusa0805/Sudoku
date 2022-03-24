@@ -5,7 +5,7 @@ partial class AicSearcher
 	/// <summary>
 	/// Start to construct the chain, with the weak inference as the beginning node.
 	/// </summary>
-	partial void Dfs_StartWithWeak()
+	private void Dfs_StartWithWeak()
 	{
 		var chain = new Bag<int>();
 		foreach (var (id, nextIds) in _weakInferences)
@@ -97,7 +97,7 @@ partial class AicSearcher
 	/// <summary>
 	/// Start to construct the chain, with the strong inference as the beginning node.
 	/// </summary>
-	partial void Dfs_StartWithStrong()
+	private void Dfs_StartWithStrong()
 	{
 		var chain = new Bag<int>();
 		foreach (var (id, nextIds) in _strongInferences)

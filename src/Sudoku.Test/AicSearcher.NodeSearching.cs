@@ -10,7 +10,7 @@ partial class AicSearcher
 	/// Gather the strong and weak inferences on sole candidate nodes.
 	/// </summary>
 	/// <param name="grid">The grid.</param>
-	partial void GatherStrongAndWeak_Sole(in Grid grid)
+	partial void GatherInferences_SoleCandidate(in Grid grid)
 	{
 		// Sole candidate -> Sole candidate.
 		foreach (int candidate in grid)
@@ -86,7 +86,7 @@ partial class AicSearcher
 	/// Gather the strong and weak inferences on locked candidates nodes.
 	/// </summary>
 	/// <param name="grid">The grid.</param>
-	partial void GatherStrongAndWeak_LockedCandidates(in Grid grid)
+	partial void GatherInferences_LockedCandidates(in Grid grid)
 	{
 		// Sole candidate -> Locked candidates.
 		foreach (int candidate in grid)
@@ -395,7 +395,7 @@ partial class AicSearcher
 	/// Gather the strong and weak inferences on almost locked sets nodes.
 	/// </summary>
 	/// <param name="grid">The grid.</param>
-	partial void GatherStrongAndWeak_AlmostLockedSet(in Grid grid)
+	partial void GatherInferences_AlmostLockedSet(in Grid grid)
 	{
 		var alses = AlmostLockedSet.Gather(grid);
 		foreach (ref readonly var als in alses.EnumerateRef())

@@ -134,9 +134,12 @@ internal sealed partial class AicSearcher
 		_foundChains.Clear();
 
 		// Gather strong and weak links.
-		GatherStrongAndWeak_Sole(grid);
-		GatherStrongAndWeak_LockedCandidates(grid);
-		GatherStrongAndWeak_AlmostLockedSet(grid);
+		GatherInferences_SoleCandidate(grid);
+		GatherInferences_LockedCandidates(grid);
+		GatherInferences_AlmostLockedSet(grid);
+		GatherInferences_AlmostHiddenSet(grid);
+		GatherInferences_UniqueRectangle(grid);
+		GatherInferences_BasicFish(grid);
 
 		// Remove IDs if they don't appear in the lookup table.
 		RemoveIdsNotAppearingInLookupDictionary(_weakInferences);
@@ -180,10 +183,10 @@ internal sealed partial class AicSearcher
 	}
 
 
-	partial void GatherStrongAndWeak_Sole(in Grid grid);
-	partial void GatherStrongAndWeak_LockedCandidates(in Grid grid);
-	partial void GatherStrongAndWeak_AlmostLockedSet(in Grid grid);
-	partial void Dfs_StartWithWeak();
-	partial void Dfs_StartWithStrong();
-	partial void Bfs();
+	partial void GatherInferences_SoleCandidate(in Grid grid);
+	partial void GatherInferences_LockedCandidates(in Grid grid);
+	partial void GatherInferences_AlmostLockedSet(in Grid grid);
+	partial void GatherInferences_AlmostHiddenSet(in Grid grid);
+	partial void GatherInferences_UniqueRectangle(in Grid grid);
+	partial void GatherInferences_BasicFish(in Grid grid);
 }
