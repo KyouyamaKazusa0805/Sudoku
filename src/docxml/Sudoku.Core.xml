@@ -2977,12 +2977,6 @@
             <param name="grid">The grid.</param>
             <returns>The result.</returns>
         </member>
-        <member name="T:Sudoku.Collections.GridFormatter.MatchLengthComparer">
-            <summary>
-            Indicates the inner equality comparer to determine the equality of length
-            of 2 <see cref="T:System.Text.RegularExpressions.Match"/>es to compare.
-            </summary>
-        </member>
         <member name="M:Sudoku.Collections.GridFormatter.Equals(System.Object)">
             <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
             <exception cref="T:System.NotSupportedException">Always throws.</exception>

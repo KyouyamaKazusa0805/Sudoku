@@ -1,4 +1,5 @@
-﻿using static System.Algorithm.Sequences;
+﻿using System.CommonComparers.Equality;
+using static System.Algorithm.Sequences;
 using static System.Math;
 using static System.Numerics.BitOperations;
 
@@ -591,17 +592,5 @@ partial struct GridFormatter
 			.AppendLine(" |")
 			.AppendLine(SubtleGridLines ? "'-------+-------+-------'" : "+-------+-------+-------+")
 			.ToString();
-	}
-
-
-	/// <summary>
-	/// Indicates the inner equality comparer to determine the equality of length
-	/// of 2 <see cref="Match"/>es to compare.
-	/// </summary>
-	private sealed class MatchLengthComparer : IEqualityComparer<Match>
-	{
-		public bool Equals(Match? x, Match? y) => (x?.Value.Length ?? -1) == (y?.Value.Length ?? -1);
-
-		public int GetHashCode([DisallowNull] Match? obj) => obj?.Value.Length ?? -1;
 	}
 }

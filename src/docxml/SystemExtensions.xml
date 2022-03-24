@@ -886,6 +886,18 @@
             <param name="this">The collection.</param>
             <param name="element">The element to be prepended.</param>
         </member>
+        <member name="T:System.CommonComparers.Equality.MatchLengthComparer">
+            <summary>
+            Indicates the inner equality comparer to determine the equality of length
+            of 2 <see cref="T:System.Text.RegularExpressions.Match"/>es to compare.
+            </summary>
+        </member>
+        <member name="M:System.CommonComparers.Equality.MatchLengthComparer.Equals(System.Text.RegularExpressions.Match,System.Text.RegularExpressions.Match)">
+            <inheritdoc/>
+        </member>
+        <member name="M:System.CommonComparers.Equality.MatchLengthComparer.GetHashCode(System.Text.RegularExpressions.Match)">
+            <inheritdoc/>
+        </member>
         <member name="T:System.Diagnostics.CodeAnalysis.StringSyntaxAttribute">
             <summary>
             Specifies the syntax used in a string.
