@@ -16,6 +16,9 @@ namespace System.Collections.Generic;
 /// </remarks>
 /// <typeparam name="T">The type of each element.</typeparam>
 /// <seealso cref="List{T}"/>
+#if DEBUG
+[DebuggerDisplay($$"""{{{nameof(GetDebuggerDisplay)}}(),nq}""")]
+#endif
 public ref partial struct Bag<T>
 {
 	/// <summary>
@@ -125,6 +128,12 @@ public ref partial struct Bag<T>
 	}
 
 	/// <summary>
+	/// Try to get the last element in this collection, without any removing operation.
+	/// </summary>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public readonly T Peek() => _values[Count - 1];
+
+	/// <summary>
 	/// Gets the final array that is a copy.
 	/// </summary>
 	/// <returns>The array that is a copy.</returns>
@@ -192,4 +201,16 @@ public ref partial struct Bag<T>
 
 		this = default;
 	}
+
+#if DEBUG
+	/// <summary>
+	/// Gets the display view of the type on debugger.
+	/// </summary>
+	/// <returns>The string representation of the instance.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	private readonly string GetDebuggerDisplay() =>
+		$$"""
+		Bag { ElementType = {{typeof(T)}}, Count = {{Count}} }
+		""";
+#endif
 }

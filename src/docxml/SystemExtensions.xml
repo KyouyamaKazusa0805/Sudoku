@@ -202,6 +202,11 @@
             <param name="element">The element to be added.</param>
             <returns>The newer collection.</returns>
         </member>
+        <member name="M:System.Collections.Generic.Bag`1.Peek">
+            <summary>
+            Try to get the last element in this collection, without any removing operation.
+            </summary>
+        </member>
         <member name="M:System.Collections.Generic.Bag`1.ToArray">
             <summary>
             Gets the final array that is a copy.
@@ -229,6 +234,12 @@
             <summary>
             Release the memory or return the rent memory.
             </summary>
+        </member>
+        <member name="M:System.Collections.Generic.Bag`1.GetDebuggerDisplay">
+            <summary>
+            Gets the display view of the type on debugger.
+            </summary>
+            <returns>The string representation of the instance.</returns>
         </member>
         <member name="T:System.Collections.Generic.Bag`1.Enumerator">
             <summary>

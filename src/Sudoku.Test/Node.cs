@@ -92,7 +92,7 @@ public abstract class Node :
 	public bool IsGroupedNode
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => _higher != 0 && _lower != 0;
+		get => new Cells(_higher, _lower).Count >= 2;
 	}
 
 	/// <summary>
@@ -132,7 +132,7 @@ public abstract class Node :
 	/// </summary>
 	/// <returns>The string value.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public string ToSimpleString() => $"{Digit + 1}{Cells}";
+	public virtual string ToSimpleString() => $"{Digit + 1}{Cells}";
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

@@ -53,6 +53,10 @@ public sealed class AlmostLockedSetNode : Node
 	}
 
 
+	/// <inheritdoc/>
+	public override string ToSimpleString() => $"{Digit + 1}{FullCells}";
+
+
 	/// <summary>
 	/// Gets the part of the other mask value that represents the extra cells used.
 	/// </summary>

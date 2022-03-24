@@ -102,7 +102,7 @@ internal sealed partial class AicSearcher
 	/// <summary>
 	/// Indicates whether the searcher uses DFS algorithm to search for chains.
 	/// </summary>
-	public bool DepthFirstSearching { get; set; } = true;
+	public bool DepthFirstSearching { get; set; } = false;
 
 	/// <summary>
 	/// Indicates the maximum capacity used for the allocation on shared memory.
@@ -142,7 +142,7 @@ internal sealed partial class AicSearcher
 		RemoveIdsNotAppearingInLookupDictionary(_weakInferences);
 		RemoveIdsNotAppearingInLookupDictionary(_strongInferences);
 
-#if true
+#if false
 		// Display the inferences found.
 		PrintInferences(_strongInferences);
 		PrintInferences(_weakInferences);
@@ -155,15 +155,14 @@ internal sealed partial class AicSearcher
 		}
 		else
 		{
-			Bfs_StartWithWeak();
-			Bfs_StartWithStrong();
+			Bfs();
 		}
-		
+
 		// Output the result.
 		var tempList = new Dictionary<AlternatingInferenceChain, Conclusion[]>();
 		foreach (var (nids, startsWithWeak) in _foundChains)
 		{
-			var chain = new AlternatingInferenceChain(from nid in nids select _id2NodeLookup[nid], startsWithWeak);
+			var chain = new AlternatingInferenceChain(from nid in nids select _nodeLookup[nid], startsWithWeak);
 			if (chain.GetConclusions(grid) is { Length: not 0 } conclusions && !tempList.ContainsKey(chain))
 			{
 				tempList.Add(chain, conclusions);
@@ -186,6 +185,5 @@ internal sealed partial class AicSearcher
 	partial void GatherStrongAndWeak_AlmostLockedSet(in Grid grid);
 	partial void Dfs_StartWithWeak();
 	partial void Dfs_StartWithStrong();
-	partial void Bfs_StartWithWeak();
-	partial void Bfs_StartWithStrong();
+	partial void Bfs();
 }
