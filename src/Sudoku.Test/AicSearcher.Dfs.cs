@@ -3,7 +3,8 @@
 partial class AicSearcher
 {
 	/// <summary>
-	/// Start to construct the chain, with the weak inference as the beginning node.
+	/// Start to construct the chain using the depth-first searching algorithm,
+	/// with the weak inference as the beginning node.
 	/// </summary>
 	private void Dfs_StartWithWeak()
 	{
@@ -95,7 +96,8 @@ partial class AicSearcher
 	}
 
 	/// <summary>
-	/// Start to construct the chain, with the strong inference as the beginning node.
+	/// Start to construct the chain using the depth-first searching algorithm,
+	/// with the strong inference as the beginning node.
 	/// </summary>
 	private void Dfs_StartWithStrong()
 	{

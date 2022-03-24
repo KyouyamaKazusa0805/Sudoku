@@ -102,11 +102,17 @@ internal sealed partial class AicSearcher
 	/// <summary>
 	/// Indicates whether the searcher uses DFS algorithm to search for chains.
 	/// </summary>
+	/// <remarks>
+	/// The default value is <see langword="false"/>.
+	/// </remarks>
 	public bool DepthFirstSearching { get; set; } = false;
 
 	/// <summary>
 	/// Indicates the maximum capacity used for the allocation on shared memory.
 	/// </summary>
+	/// <remarks>
+	/// The default value is <c>3000</c>.
+	/// </remarks>
 	public int MaxCapacity { get; set; } = 3000;
 
 	/// <summary>
@@ -114,6 +120,73 @@ internal sealed partial class AicSearcher
 	/// is an enumeration type with bit-fields attribute, which means you can add multiple choices
 	/// into the value.
 	/// </summary>
+	/// <remarks>
+	/// <para>
+	/// You can set the value as a bit-field mask to define your own types to be searched for, where:
+	/// <list type="table">
+	/// <listheader>
+	/// <term>Field name</term>
+	/// <description>Description (What kind of nodes can be searched)</description>
+	/// </listheader>
+	/// <item>
+	/// <term><see cref="SearcherNodeTypes.SoleDigit"/></term>
+	/// <description>
+	/// The strong and weak inferences between 2 sole candidate nodes of a same digit
+	/// (i.e. X-Chain).
+	/// </description>
+	/// </item>
+	/// <item>
+	/// <term><see cref="SearcherNodeTypes.SoleCell"/></term>
+	/// <description>
+	/// The strong and weak inferences between 2 sole candidate nodes of a same cell
+	/// (i.e. Y-Chain).
+	/// </description>
+	/// </item>
+	/// <item>
+	/// <term><see cref="SearcherNodeTypes.LockedCandidates"/></term>
+	/// <description>
+	/// The strong and weak inferences between 2 nodes, where at least one node is a locked candidates node.
+	/// </description>
+	/// </item>
+	/// <item>
+	/// <term><see cref="SearcherNodeTypes.LockedSet"/></term>
+	/// <description>
+	/// The strong inferences between 2 nodes, where at least one node is an almost locked set node.
+	/// </description>
+	/// </item>
+	/// <item>
+	/// <term><see cref="SearcherNodeTypes.HiddenSet"/></term>
+	/// <description>
+	/// The weak inferences between 2 nodes, where at least one node is an almost hidden set node.
+	/// </description>
+	/// </item>
+	/// <item>
+	/// <term><see cref="SearcherNodeTypes.UniqueRectangle"/></term>
+	/// <description>
+	/// The strong and weak inferences between 2 nodes, where at least one node
+	/// is an almost unique rectangle node.
+	/// </description>
+	/// </item>
+	/// <item>
+	/// <term><see cref="SearcherNodeTypes.Kraken"/></term>
+	/// <description>
+	/// The strong and weak inferences between 2 nodes, where at least one node
+	/// is a kraken fish node.
+	/// </description>
+	/// </item>
+	/// </list>
+	/// Other typed inferences are being considered, such as an XYZ-Wing node, etc.
+	/// </para>
+	/// <para>
+	/// The default value is <c>
+	/// <see cref="SearcherNodeTypes.SoleCell"/>
+	/// | <see cref="SearcherNodeTypes.SoleDigit"/>
+	/// | <see cref="SearcherNodeTypes.LockedCandidates"/>
+	/// | <see cref="SearcherNodeTypes.LockedSet"/>
+	/// | <see cref="SearcherNodeTypes.HiddenSet"/>
+	/// </c>.
+	/// </para>
+	/// </remarks>
 	public SearcherNodeTypes NodeTypes { get; set; } =
 		SearcherNodeTypes.SoleDigit | SearcherNodeTypes.SoleCell
 			| SearcherNodeTypes.LockedCandidates
@@ -126,60 +199,65 @@ internal sealed partial class AicSearcher
 	/// <param name="grid">The grid used.</param>
 	public void GetAll(in Grid grid)
 	{
-		// Clear all possible lists.
-		_strongInferences.Clear();
-		_weakInferences.Clear();
-		_nodeLookup = ArrayPool<Node?>.Shared.Rent(MaxCapacity);
-		_idLookup.Clear();
-		_foundChains.Clear();
+		try
+		{
+			// Clear all possible lists.
+			_strongInferences.Clear();
+			_weakInferences.Clear();
+			_nodeLookup = ArrayPool<Node?>.Shared.Rent(MaxCapacity);
+			_idLookup.Clear();
+			_foundChains.Clear();
 
-		// Gather strong and weak links.
-		GatherInferences_SoleCandidate(grid);
-		GatherInferences_LockedCandidates(grid);
-		GatherInferences_AlmostLockedSet(grid);
-		GatherInferences_AlmostHiddenSet(grid);
-		GatherInferences_UniqueRectangle(grid);
-		GatherInferences_BasicFish(grid);
+			// Gather strong and weak links.
+			GatherInferences_SoleCandidate(grid);
+			GatherInferences_LockedCandidates(grid);
+			GatherInferences_AlmostLockedSet(grid);
+			GatherInferences_AlmostHiddenSet(grid);
+			GatherInferences_UniqueRectangle(grid);
+			GatherInferences_BasicFish(grid);
 
-		// Remove IDs if they don't appear in the lookup table.
-		RemoveIdsNotAppearingInLookupDictionary(_weakInferences);
-		RemoveIdsNotAppearingInLookupDictionary(_strongInferences);
+			// Remove IDs if they don't appear in the lookup table.
+			RemoveIdsNotAppearingInLookupDictionary(_weakInferences);
+			RemoveIdsNotAppearingInLookupDictionary(_strongInferences);
 
 #if false
-		// Display the inferences found.
-		PrintInferences(_strongInferences);
-		PrintInferences(_weakInferences);
+			// Display the inferences found.
+			PrintInferences(_strongInferences);
+			PrintInferences(_weakInferences);
 #else
-		// Construct chains.
-		if (DepthFirstSearching)
-		{
-			Dfs_StartWithWeak();
-			Dfs_StartWithStrong();
-		}
-		else
-		{
-			Bfs();
-		}
-
-		// Output the result.
-		var tempList = new Dictionary<AlternatingInferenceChain, Conclusion[]>();
-		foreach (var (nids, startsWithWeak) in _foundChains)
-		{
-			var chain = new AlternatingInferenceChain(from nid in nids select _nodeLookup[nid], startsWithWeak);
-			if (chain.GetConclusions(grid) is { Length: not 0 } conclusions && !tempList.ContainsKey(chain))
+			// Construct chains.
+			if (DepthFirstSearching)
 			{
-				tempList.Add(chain, conclusions);
+				Dfs_StartWithWeak();
+				Dfs_StartWithStrong();
 			}
-		}
+			else
+			{
+				Bfs();
+			}
 
-		foreach (var (chain, conclusions) in tempList)
-		{
-			_output.WriteLine($"{chain} => {new ConclusionCollection(conclusions).ToString()}");
-		}
+			// Output the result.
+			var tempList = new Dictionary<AlternatingInferenceChain, Conclusion[]>();
+			foreach (var (nids, startsWithWeak) in _foundChains)
+			{
+				var chain = new AlternatingInferenceChain(from nid in nids select _nodeLookup[nid], startsWithWeak);
+				if (chain.GetConclusions(grid) is { Length: not 0 } conclusions && !tempList.ContainsKey(chain))
+				{
+					tempList.Add(chain, conclusions);
+				}
+			}
+
+			foreach (var (chain, conclusions) in tempList)
+			{
+				_output.WriteLine($"{chain} => {new ConclusionCollection(conclusions).ToString()}");
+			}
 #endif
-
-		// Clears the memory.
-		ArrayPool<Node?>.Shared.Return(_nodeLookup);
+		}
+		finally
+		{
+			// Clears the memory.
+			ArrayPool<Node?>.Shared.Return(_nodeLookup);
+		}
 	}
 
 
