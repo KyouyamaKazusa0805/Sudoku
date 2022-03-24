@@ -56,6 +56,7 @@ public abstract record Step(ImmutableArray<Conclusion> Conclusions, ImmutableArr
 	/// <item><see cref="IEmptyRectangleStepSearcher">Empty rectangle</see></item>
 	/// </list>
 	/// </item>
+	/// <!--
 	/// <item>
 	/// Long chains
 	/// <list type="bullet">
@@ -63,6 +64,7 @@ public abstract record Step(ImmutableArray<Conclusion> Conclusions, ImmutableArr
 	/// <item><see cref="IDynamicForcingChainStepSearcher">Dynamic forcing chains</see></item>
 	/// </list>
 	/// </item>
+	/// -->
 	/// </list>
 	/// </summary>
 	public bool IsChaining =>

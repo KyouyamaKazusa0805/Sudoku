@@ -4794,13 +4794,15 @@
             <item><see cref="T:Sudoku.Solving.Manual.Searchers.IEmptyRectangleStepSearcher">Empty rectangle</see></item>
             </list>
             </item>
+            <!--
             <item>
             Long chains
             <list type="bullet">
-            <item><see cref="!:IForcingChainStepSearcher">Forcing chains</see></item>
-            <item><see cref="!:IDynamicForcingChainStepSearcher">Dynamic forcing chains</see></item>
+            <item><see cref="IForcingChainStepSearcher">Forcing chains</see></item>
+            <item><see cref="IDynamicForcingChainStepSearcher">Dynamic forcing chains</see></item>
             </list>
             </item>
+            -->
             </list>
             </summary>
         </member>
