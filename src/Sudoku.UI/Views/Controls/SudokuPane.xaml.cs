@@ -1,7 +1,6 @@
 ﻿using System.ComponentModel;
 using Microsoft.UI.Input;
 using Microsoft.UI.Xaml.Input;
-using Sudoku.Diagnostics.CodeAnalysis;
 using Sudoku.UI.Drawing;
 using Sudoku.UI.Drawing.Shapes;
 using Windows.Foundation;
@@ -321,7 +320,7 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 	/// </summary>
 	/// <param name="sender">The object to trigger the event. The instance is always itself.</param>
 	/// <param name="e">The event arguments provided.</param>
-	private void SudokuPane_Loaded([IsDiscard] object sender, [IsDiscard] RoutedEventArgs e)
+	private void SudokuPane_Loaded(object sender, RoutedEventArgs e)
 	{
 		var up = ((App)Application.Current).UserPreference;
 
@@ -394,7 +393,7 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 	/// </summary>
 	/// <param name="sender">The object to trigger the event.</param>
 	/// <param name="e">The event arguments provided.</param>
-	private void SudokuPane_PointerEntered([IsDiscard] object sender, [IsDiscard] PointerRoutedEventArgs e) =>
+	private void SudokuPane_PointerEntered(object sender, PointerRoutedEventArgs e) =>
 		// Set the focus to the control in order to trigger the 'KeyDown' event.
 		Focus(FocusState.Programmatic);
 
@@ -403,7 +402,7 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 	/// </summary>
 	/// <param name="sender">The object that triggers the event.</param>
 	/// <param name="e">The event arguments provided.</param>
-	private void MakeOrDeleteMenuItem_Click(object sender, [IsDiscard] RoutedEventArgs e)
+	private void MakeOrDeleteMenuItem_Click(object sender, RoutedEventArgs e)
 	{
 		if (sender is not MenuFlyoutItem { Tag: string s } || !int.TryParse(s, out int possibleDigit))
 		{

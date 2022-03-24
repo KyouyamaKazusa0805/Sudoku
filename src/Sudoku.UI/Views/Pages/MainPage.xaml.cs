@@ -1,6 +1,5 @@
 ﻿using Microsoft.UI.Xaml.Media.Animation;
 using Microsoft.UI.Xaml.Navigation;
-using Sudoku.Diagnostics.CodeAnalysis;
 
 namespace Sudoku.UI.Views.Pages;
 
@@ -52,7 +51,7 @@ public sealed partial class MainPage : Page
 	/// </summary>
 	/// <param name="sender">The object that triggers the event.</param>
 	/// <param name="e">The event arguments provided.</param>
-	private void ViewRouter_Loaded([IsDiscard] object sender, [IsDiscard] RoutedEventArgs e) =>
+	private void ViewRouter_Loaded(object sender, RoutedEventArgs e) =>
 		OnNavigate(nameof(SudokuPage), new EntranceNavigationTransitionInfo());
 
 	/// <summary>
@@ -65,7 +64,7 @@ public sealed partial class MainPage : Page
 	/// the throwing is expected.
 	/// </exception>
 	[DoesNotReturn]
-	private void ViewRouterFrame_NavigationFailed([IsDiscard] object sender, NavigationFailedEventArgs e) =>
+	private void ViewRouterFrame_NavigationFailed(object sender, NavigationFailedEventArgs e) =>
 		throw new InvalidOperationException($"Cannot find the page '{e.SourcePageType.FullName}'.");
 
 	/// <summary>
@@ -104,7 +103,7 @@ public sealed partial class MainPage : Page
 	/// </summary>
 	/// <param name="sender">The object that triggers the event.</param>
 	/// <param name="args">The event arguments provided.</param>
-	private void ViewRouter_ItemInvoked([IsDiscard] NavigationView sender, NavigationViewItemInvokedEventArgs args)
+	private void ViewRouter_ItemInvoked(NavigationView sender, NavigationViewItemInvokedEventArgs args)
 	{
 		if (args is { InvokedItemContainer.Tag: string tag, RecommendedNavigationTransitionInfo: var info })
 		{
@@ -117,7 +116,7 @@ public sealed partial class MainPage : Page
 	/// </summary>
 	/// <param name="sender">The object that triggers the event.</param>
 	/// <param name="args">The event arguments provided.</param>
-	private void ViewRouter_SelectionChanged([IsDiscard] NavigationView sender, NavigationViewSelectionChangedEventArgs args)
+	private void ViewRouter_SelectionChanged(NavigationView sender, NavigationViewSelectionChangedEventArgs args)
 	{
 		if (args is { SelectedItemContainer.Tag: string tag, RecommendedNavigationTransitionInfo: var info })
 		{

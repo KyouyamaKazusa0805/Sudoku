@@ -1,5 +1,4 @@
 ﻿using Sudoku.Collections;
-using Sudoku.Diagnostics.CodeAnalysis;
 using Sudoku.Presentation;
 using Sudoku.Solving.Manual.Steps;
 using static System.Numerics.BitOperations;
@@ -25,7 +24,7 @@ public sealed unsafe class TwoStrongLinksStepSearcher : ITwoStrongLinksStepSearc
 
 
 	/// <inheritdoc/>
-	public Step? GetAll(ICollection<Step> accumulator, [IsDiscard] in Grid grid, bool onlyFindOne)
+	public Step? GetAll(ICollection<Step> accumulator, /*[IsDiscard]*/ in Grid grid, bool onlyFindOne)
 	{
 		for (int digit = 0; digit < 9; digit++)
 		{

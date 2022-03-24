@@ -1,7 +1,6 @@
 ﻿using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.ComponentModel;
-using Sudoku.Diagnostics.CodeAnalysis;
 using Sudoku.Solving.Manual;
 using Sudoku.UI.Data;
 
@@ -142,6 +141,6 @@ public sealed partial class InfoBarBoard : UserControl, INotifyPropertyChanged, 
 	/// </summary>
 	/// <param name="sender">The object that triggers the event.</param>
 	/// <param name="e">The event arguments provided.</param>
-	private void UserControl_Loaded([IsDiscard] object sender, [IsDiscard] RoutedEventArgs e) =>
+	private void UserControl_Loaded(object sender, RoutedEventArgs e) =>
 		_list.CollectionChanged += CollectionChanged;
 }

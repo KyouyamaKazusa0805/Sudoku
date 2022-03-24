@@ -1,13 +1,11 @@
-﻿using Sudoku.Diagnostics.CodeAnalysis;
-
-namespace System;
+﻿namespace System;
 
 /// <summary>
 /// Defines an instance that allows the <see cref="string"/> value
 /// to be parsed to the target type <typeparamref name="T"/>.
 /// </summary>
 /// <typeparam name="T">The type of the target result.</typeparam>
-public interface ISimpleParseable<[Self] T> where T : ISimpleParseable<T>
+public interface ISimpleParseable</*[Self]*/ T> where T : ISimpleParseable<T>
 {
 	/// <summary>
 	/// Parse the specified string text, and get the same-meaning instance

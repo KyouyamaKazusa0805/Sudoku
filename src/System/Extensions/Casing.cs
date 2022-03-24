@@ -43,7 +43,8 @@ public static class Casing
 				[] => throw new ArgumentException("The specified string is empty.", nameof(str)),
 				[>= 'a' and <= 'z', ..] => str,
 				[var firstChar and >= 'A' and <= 'Z', .. var otherChars] => $"{firstChar}{otherChars}",
-				['_', .. var otherChars] => ToCamelCase(otherChars)
+				['_', .. var otherChars] => ToCamelCase(otherChars),
+				_ => throw new ArgumentException("The specified string is invalid due to containing invalid characters.", nameof(str))
 			};
 
 	/// <summary>
@@ -65,6 +66,7 @@ public static class Casing
 				[] => throw new ArgumentException("The specified string is empty.", nameof(str)),
 				[var firstChar and >= 'a' and <= 'z', .. var otherChars] => $"{firstChar}{otherChars}",
 				[>= 'A' and <= 'Z', ..] => str,
-				['_', .. var otherChars] => ToCamelCase(otherChars)
+				['_', .. var otherChars] => ToCamelCase(otherChars),
+				_ => throw new ArgumentException("The specified string is invalid due to containing invalid characters.", nameof(str))
 			};
 }

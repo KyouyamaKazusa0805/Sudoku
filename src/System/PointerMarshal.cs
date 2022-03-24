@@ -1,6 +1,4 @@
-﻿using Sudoku.Diagnostics.CodeAnalysis;
-
-namespace System;
+﻿namespace System;
 
 /// <summary>
 /// Provides methods for pointer handling.
@@ -17,7 +15,7 @@ public static unsafe class PointerMarshal
 	/// Throws when <paramref name="left"/> or <paramref name="right"/> is <see langword="null"/>.
 	/// </exception>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static void Swap<TUnmanaged>([Restrict] TUnmanaged* left!!, [Restrict] TUnmanaged* right!!)
+	public static void Swap<TUnmanaged>(/*[Restrict]*/ TUnmanaged* left!!, /*[Restrict]*/ TUnmanaged* right!!)
 		where TUnmanaged : unmanaged
 	{
 		var temp = *left;

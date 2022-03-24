@@ -22,5 +22,3 @@
   * `Grid` 结构
     * [API 用法介绍](data-structures/grid)
     * `Grid` 会用到的格式化字符串
-* 代码分析
-  * [注入式代码分析器介绍](code-analysis/intro)

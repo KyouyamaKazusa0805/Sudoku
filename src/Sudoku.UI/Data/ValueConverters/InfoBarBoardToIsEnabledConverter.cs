@@ -1,5 +1,4 @@
 ﻿using Microsoft.UI.Xaml.Data;
-using Sudoku.Diagnostics.CodeAnalysis;
 using Sudoku.UI.Views.Controls;
 
 namespace Sudoku.UI.Data.ValueConverters;
@@ -16,8 +15,7 @@ public sealed class InfoBarBoardToIsEnabledConverter : IValueConverter
 	/// Throws when the argument <paramref name="targetType"/> is not <see cref="bool"/>.
 	/// </exception>
 	[return: NotNullIfNotNull("value")]
-	public object? Convert(
-		object? value, Type targetType, [IsDiscard] object? parameter, [IsDiscard] string language) =>
+	public object? Convert(object? value, Type targetType, object? parameter, string language) =>
 		targetType != typeof(bool)
 			? throw new ArgumentException("The desired target type must be 'bool'.", nameof(targetType))
 			: value switch { int i => i != 0, _ => null };

@@ -1,7 +1,6 @@
 ﻿using Microsoft.UI;
 using Microsoft.UI.Xaml.Data;
 using Microsoft.UI.Xaml.Media;
-using Sudoku.Diagnostics.CodeAnalysis;
 using Sudoku.Solving.Manual;
 using Windows.UI;
 using static System.Numerics.BitOperations;
@@ -34,8 +33,7 @@ public sealed class DifficultyLevelToForegroundConverter : IValueConverter
 	/// Throws when the argument <paramref name="targetType"/> is not <see cref="Brush"/>.
 	/// </exception>
 	[return: NotNullIfNotNull("value")]
-	public object? Convert(
-		object? value, Type targetType, [IsDiscard] object? parameter, [IsDiscard] string language) =>
+	public object? Convert(object? value, Type targetType, object? parameter, string language) =>
 		targetType != typeof(Brush)
 			? throw new ArgumentException($"The desired target type must be '{nameof(Brush)}'.", nameof(targetType))
 			: value switch

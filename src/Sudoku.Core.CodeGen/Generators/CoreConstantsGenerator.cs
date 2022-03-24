@@ -261,9 +261,8 @@ partial class Constants
 		/// the field <see cref=""IntersectionMaps""/>.
 		/// </summary>
 		/// <seealso cref=""IntersectionMaps""/>
-		[global::System.CodeDom.Compiler.GeneratedCode(""{GetType().FullName}"", ""0.7"")]
+		[global::System.CodeDom.Compiler.GeneratedCode(""{GetType().FullName}"", ""{VersionValue}"")]
 		[global::System.Runtime.CompilerServices.CompilerGenerated]
-		[global::Sudoku.Diagnostics.CodeAnalysis.AnonymousInnerType]
 		private sealed class ValueTupleComparer : IEqualityComparer<(byte Value1, byte Value2)>
 		{{
 			/// <inheritdoc/>

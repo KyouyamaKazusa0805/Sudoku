@@ -5,7 +5,6 @@
 using System.Buffers;
 using System.ComponentModel;
 using System.Runtime.InteropServices;
-using Sudoku.Diagnostics.CodeAnalysis;
 using static System.Math;
 using static System.Numerics.BitOperations;
 
@@ -203,16 +202,15 @@ public unsafe ref partial struct StringHandler
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public StringHandler(
 #if DISCARD_INTERPOLATION_INFO
-		[IsDiscard] int _,
+		int _,
 #else
 		int literalLength,
 #endif
 #if DISCARD_INTERPOLATION_INFO
-		[IsDiscard] int __,
+		int __,
 #else
 		int holeCount,
 #endif
-
 		Span<char> initialBuffer)
 	{
 #if !DISCARD_INTERPOLATION_INFO

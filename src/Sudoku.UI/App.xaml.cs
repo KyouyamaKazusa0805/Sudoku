@@ -1,5 +1,4 @@
-﻿using Sudoku.Diagnostics.CodeAnalysis;
-using Sudoku.UI.Views.Windows;
+﻿using Sudoku.UI.Views.Windows;
 
 namespace Sudoku.UI;
 
@@ -37,7 +36,7 @@ public partial class App : Application
 	/// </para>
 	/// </summary>
 	/// <param name="args">Details about the launch request and process.</param>
-	protected override void OnLaunched([IsDiscard] LaunchActivatedEventArgs args)
+	protected override void OnLaunched(LaunchActivatedEventArgs args)
 	{
 		MainWindow = new MainWindow();
 		MainWindow.Activate();

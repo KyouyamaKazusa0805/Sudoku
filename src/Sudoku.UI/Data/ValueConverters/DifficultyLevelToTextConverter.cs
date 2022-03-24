@@ -1,6 +1,4 @@
 ﻿using Microsoft.UI.Xaml.Data;
-using Microsoft.UI.Xaml.Media;
-using Sudoku.Diagnostics.CodeAnalysis;
 using Sudoku.Solving.Manual;
 
 namespace Sudoku.UI.Data.ValueConverters;
@@ -18,8 +16,7 @@ public sealed class DifficultyLevelToTextConverter : IValueConverter
 	/// Throws when the argument <paramref name="targetType"/> is not <see cref="string"/>.
 	/// </exception>
 	[return: NotNullIfNotNull("value")]
-	public object? Convert(
-		object? value, Type targetType, [IsDiscard] object? parameter, [IsDiscard] string language) =>
+	public object? Convert(object? value, Type targetType, object? parameter, string language) =>
 		targetType != typeof(string)
 			? throw new ArgumentException($"The desired target type must be 'string'.", nameof(targetType))
 			: value switch

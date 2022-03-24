@@ -1,5 +1,4 @@
-﻿using Sudoku.Diagnostics.CodeAnalysis;
-using static System.Algorithm.Sequences;
+﻿using static System.Algorithm.Sequences;
 using static System.Math;
 using static System.Numerics.BitOperations;
 
@@ -599,11 +598,10 @@ partial struct GridFormatter
 	/// Indicates the inner equality comparer to determine the equality of length
 	/// of 2 <see cref="Match"/>es to compare.
 	/// </summary>
-	[AnonymousInnerType]
 	private sealed class MatchLengthComparer : IEqualityComparer<Match>
 	{
 		public bool Equals(Match? x, Match? y) => (x?.Value.Length ?? -1) == (y?.Value.Length ?? -1);
 
-		public int GetHashCode(Match? obj) => obj?.Value.Length ?? -1;
+		public int GetHashCode([DisallowNull] Match? obj) => obj?.Value.Length ?? -1;
 	}
 }

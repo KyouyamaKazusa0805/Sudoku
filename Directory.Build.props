@@ -51,11 +51,6 @@
 		<Using Remove="System.Text.Json.Serialization"/>
 	</ItemGroup>
 
-	<!--Import custom global using directives on code analysis project.-->
-	<ItemGroup Condition="'$(MSBuildProjectFile)'=='Sudoku.Diagnostics.CodeAnalysis.csproj' And ('$(LangVersion)'=='preview' Or '$(LangVersion)'=='latest' Or '$(LangVersion)'&gt;='10.0')">
-		<Using Include="Microsoft.CodeAnalysis.Operations"/>
-	</ItemGroup>
-
 	<!--
 	Import custom global using directives on source generator projects,
 	which is not 'GlobalConfiguration.CodeGen'.
@@ -121,16 +116,6 @@
 
 		<!--If the project is not a C# project, just skip it.-->
 		<When Condition="'$(MSBuildProjectFile.EndsWith(`.csproj`))'=='false'" />
-
-		<!--Other C# projects, reference it.-->
-		<When Condition="'$(MSBuildProjectFile)'!='Sudoku.Diagnostics.CodeAnalysis.csproj'">
-			<ItemGroup>
-				<ProjectReference
-						Include="..\Sudoku.Diagnostics.CodeAnalysis\Sudoku.Diagnostics.CodeAnalysis.csproj"
-						OutputItemType="Analyzer"
-						ReferenceOutputAssembly="true" />
-			</ItemGroup>
-		</When>
 	</Choose>
 
 	<!--Import 'GlobalConfiguration.CodeGen' project into the source genrator projects.-->

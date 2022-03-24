@@ -3,7 +3,6 @@
 #pragma warning disable IDE0011
 
 using Sudoku.Collections;
-using Sudoku.Diagnostics.CodeAnalysis;
 
 namespace Sudoku.Solving;
 
@@ -104,7 +103,7 @@ public sealed unsafe partial class BitwiseSolver
 	/// Throws when the argument <paramref name="puzzle"/> is <see langword="null"/>.
 	/// </exception>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public long Solve([Restrict] char* puzzle!!, [Restrict] char* solution, int limit)
+	public long Solve(/*[Restrict]*/ char* puzzle!!, /*[Restrict]*/ char* solution, int limit)
 	{
 #if CLEAR_STATE_STACK_FOR_EACH_CHECK_VALIDITY_AND_SOLVE_INVOKES
 		Array.Clear(_stack);
@@ -797,7 +796,7 @@ public sealed unsafe partial class BitwiseSolver
 	/// <param name="solutionPtr">The pointer to the solution string.</param>
 	/// <param name="limit">The limitation for the number of all final solutions.</param>
 	/// <returns>The number of solutions found.</returns>
-	private long InternalSolve([Restrict] char* puzzle, [Restrict] char* solutionPtr, int limit)
+	private long InternalSolve(/*[Restrict]*/ char* puzzle, /*[Restrict]*/ char* solutionPtr, int limit)
 	{
 		_numSolutions = 0;
 		_limitSolutions = limit;
