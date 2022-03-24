@@ -43,8 +43,25 @@ public sealed record NormalFishStep(
 {
 	/// <inheritdoc/>
 	public override decimal Difficulty =>
-		Size switch { 2 => 3.2M, 3 => 3.8M, 4 => 5.2M }
-			+ IsSashimi switch { null => 0, true => Size switch { 2 => .3M, 3 => .3M, 4 => .4M }, false => .2M };
+		Size switch
+		{
+			2 => 3.2M,
+			3 => 3.8M,
+			4 => 5.2M,
+			_ => throw new NotSupportedException("The specified size is not supported.")
+		} // Size difficulty.
+			+ IsSashimi switch
+			{
+				null => 0,
+				true => Size switch
+				{
+					2 => .3M,
+					3 => .3M,
+					4 => .4M,
+					_ => throw new NotSupportedException("The specified size is not supported.")
+				},
+				false => .2M
+			};
 
 	/// <inheritdoc/>
 	public override DifficultyLevel DifficultyLevel => DifficultyLevel.Hard;
@@ -76,7 +93,13 @@ public sealed record NormalFishStep(
 	public override TechniqueGroup TechniqueGroup => TechniqueGroup.NormalFish;
 
 	/// <inheritdoc/>
-	public override Rarity Rarity => Size switch { 2 => Rarity.Sometimes, 3 or 4 => Rarity.Seldom };
+	public override Rarity Rarity =>
+		Size switch
+		{
+			2 => Rarity.Sometimes,
+			3 or 4 => Rarity.Seldom,
+			_ => throw new NotSupportedException("The specified size is not supported.")
+		};
 
 	/// <summary>
 	/// Indicates the internal name.
@@ -86,7 +109,13 @@ public sealed record NormalFishStep(
 		get
 		{
 			string finModifier = IsSashimi switch { true => "Sashimi ", false => "Finned ", _ => string.Empty };
-			string fishName = Size switch { 2 => "X-Wing", 3 => "Swordfish", 4 => "Jellyfish" };
+			string fishName = Size switch
+			{
+				2 => "X-Wing",
+				3 => "Swordfish",
+				4 => "Jellyfish",
+				_ => throw new NotSupportedException("The specified size is not supported.")
+			};
 			return $"{finModifier}{fishName}";
 		}
 	}

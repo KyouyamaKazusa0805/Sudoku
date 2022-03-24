@@ -22,7 +22,14 @@ public sealed record HiddenSubsetStep(
 ) : SubsetStep(Conclusions, Views, Region, Cells, DigitsMask)
 {
 	/// <inheritdoc/>
-	public override decimal Difficulty => Size switch { 2 => 3.4M, 3 => 4.0M, 4 => 5.4M };
+	public override decimal Difficulty =>
+		Size switch
+		{
+			2 => 3.4M,
+			3 => 4.0M,
+			4 => 5.4M,
+			_ => throw new NotSupportedException("The specified size is not supported.")
+		};
 
 	/// <inheritdoc/>
 	public override Technique TechniqueCode =>
@@ -30,7 +37,8 @@ public sealed record HiddenSubsetStep(
 		{
 			2 => Technique.HiddenPair,
 			3 => Technique.HiddenTriple,
-			4 => Technique.HiddenQuadruple
+			4 => Technique.HiddenQuadruple,
+			_ => throw new NotSupportedException("The specified size is not supported.")
 		};
 
 	[FormatItem]

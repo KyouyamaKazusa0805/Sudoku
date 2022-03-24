@@ -86,7 +86,8 @@ public sealed record DiscontinuousNiceLoopStep(
 			Technique.XyChain => Rarity.Often,
 			Technique.XyXChain => Rarity.Often,
 			Technique.DiscontinuousNiceLoop => Rarity.Often,
-			Technique.AlternatingInferenceChain => Rarity.Often
+			Technique.AlternatingInferenceChain => Rarity.Often,
+			_ => default
 		};
 
 	/// <inheritdoc/>

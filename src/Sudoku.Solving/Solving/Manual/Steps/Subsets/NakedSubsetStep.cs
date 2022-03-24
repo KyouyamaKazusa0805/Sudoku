@@ -41,10 +41,21 @@ public sealed record NakedSubsetStep(
 {
 	/// <inheritdoc/>
 	public override decimal Difficulty =>
-		Size switch { 2 => 3.0M, 3 => 3.6M, 4 => 5.0M } // Base difficulty.
+		Size switch
+		{
+			2 => 3.0M,
+			3 => 3.6M,
+			4 => 5.0M,
+			_ => throw new NotSupportedException("The specified size is not supported.")
+		} // Base difficulty.
 			+ IsLocked switch
 			{
-				true => Size switch { 2 => -1.0M, 3 => -1.1M },
+				true => Size switch
+				{
+					2 => -1.0M,
+					3 => -1.1M,
+					_ => throw new NotSupportedException("The specified size is not supported.")
+				},
 				false => .1M,
 				_ => 0
 			}; // Locked difficulty.
@@ -60,7 +71,8 @@ public sealed record NakedSubsetStep(
 			(IsLocked: false, Size: 3) => Technique.NakedTriplePlus,
 			(IsLocked: null, Size: 3) => Technique.NakedTriple,
 			(IsLocked: false, Size: 4) => Technique.NakedQuadruplePlus,
-			(IsLocked: null, Size: 4) => Technique.NakedQuadruple
+			(IsLocked: null, Size: 4) => Technique.NakedQuadruple,
+			_ => throw new InvalidOperationException("The current status is invalid.")
 		};
 
 	[FormatItem]

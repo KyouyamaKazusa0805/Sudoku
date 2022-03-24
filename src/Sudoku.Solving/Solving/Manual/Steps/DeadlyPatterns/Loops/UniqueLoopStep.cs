@@ -23,7 +23,12 @@ public abstract record UniqueLoopStep(
 {
 	/// <inheritdoc/>
 	public override decimal Difficulty =>
-		Type switch { 1 or 3 => 4.5M, 2 or 4 => 4.6M } // Type difficulty.
+		Type switch
+		{
+			1 or 3 => 4.5M,
+			2 or 4 => 4.6M,
+			_ => throw new NotSupportedException("The specified type is not supported.")
+		} // Type difficulty.
 			+ ((Loop.Count >> 1) - 3) * .1M; // Length difficulty.
 
 	/// <summary>

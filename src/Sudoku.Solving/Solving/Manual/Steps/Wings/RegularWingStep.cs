@@ -79,7 +79,8 @@ public sealed record RegularWingStep(
 			6 => 4.9M,
 			7 => 5.2M,
 			8 => 5.5M,
-			9 => 5.9M
+			9 => 5.9M,
+			_ => throw new NotSupportedException("The specified size is not supported.")
 		} // Base difficulty.
 			+ (IsIncomplete ? Size == 3 ? 0.2M : 0.1M : 0); // Incomplete difficuly.
 
@@ -100,7 +101,8 @@ public sealed record RegularWingStep(
 			"Incomplete UVWXYZ-Wing" => Technique.IncompleteUvwxyzWing,
 			"Incomplete TUVWXYZ-Wing" => Technique.IncompleteTuvwxyzWing,
 			"Incomplete STUVWXYZ-Wing" => Technique.IncompleteStuvwxyzWing,
-			"Incomplete RSTUVWXYZ-Wing" => Technique.IncompleteRstuvwxyzWing
+			"Incomplete RSTUVWXYZ-Wing" => Technique.IncompleteRstuvwxyzWing,
+			_ => throw new NotSupportedException("The specified name is not supported.")
 		};
 
 	/// <inheritdoc/>
@@ -112,7 +114,8 @@ public sealed record RegularWingStep(
 		{
 			3 or 4 => DifficultyLevel.Hard,
 			5 => DifficultyLevel.Fiendish,
-			> 5 => DifficultyLevel.Nightmare
+			> 5 => DifficultyLevel.Nightmare,
+			_ => throw new NotSupportedException("The specified size is not supported.")
 		};
 
 	/// <inheritdoc/>
@@ -122,7 +125,8 @@ public sealed record RegularWingStep(
 			2 => Rarity.Often,
 			3 or 4 => Rarity.Seldom,
 			5 => Rarity.HardlyEver,
-			> 5 => Rarity.OnlyForSpecialPuzzles
+			> 5 => Rarity.OnlyForSpecialPuzzles,
+			_ => throw new NotSupportedException("The specified size is not supported.")
 		};
 
 	/// <summary>
@@ -139,8 +143,10 @@ public sealed record RegularWingStep(
 				6 => "UVWXYZ-Wing",
 				7 => "TUVWXYZ-Wing",
 				8 => "STUVWXYZ-Wing",
-				9 => "RSTUVWXYZ-Wing"
-			} is var name => IsIncomplete ? $"Incomplete {name}" : name
+				9 => "RSTUVWXYZ-Wing",
+				_ => throw new NotSupportedException("The specified size is not supported.")
+			} is var name => IsIncomplete ? $"Incomplete {name}" : name,
+			_ => throw new NotSupportedException("The specified size is not supported.")
 		};
 
 	[FormatItem]

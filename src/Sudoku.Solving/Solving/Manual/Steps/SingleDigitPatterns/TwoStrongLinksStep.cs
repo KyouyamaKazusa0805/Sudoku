@@ -27,7 +27,8 @@ public sealed record TwoStrongLinksStep(
 		{
 			Technique.TurbotFish => 4.2M,
 			Technique.Skyscraper => 4.0M,
-			Technique.TwoStringKite => 4.1M
+			Technique.TwoStringKite => 4.1M,
+			_ => throw new NotSupportedException("The specified technique code is not supported.")
 		};
 
 	/// <inheritdoc/>
@@ -45,7 +46,8 @@ public sealed record TwoStrongLinksStep(
 		{
 			(BaseKind: 0, _) or (_, TargetKind: 0) => Technique.TurbotFish,
 			(BaseKind: 1, TargetKind: 1) or (BaseKind: 2, TargetKind: 2) => Technique.Skyscraper,
-			(BaseKind: 1, TargetKind: 2) or (BaseKind: 2, TargetKind: 1) => Technique.TwoStringKite
+			(BaseKind: 1, TargetKind: 2) or (BaseKind: 2, TargetKind: 1) => Technique.TwoStringKite,
+			_ => throw new InvalidOperationException("The currnet status is invalid.")
 		};
 
 	/// <inheritdoc/>

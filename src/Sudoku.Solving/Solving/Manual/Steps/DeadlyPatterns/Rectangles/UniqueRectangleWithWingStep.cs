@@ -41,7 +41,8 @@ public sealed record UniqueRectangleWithWingStep(
 			{
 				Technique.UniqueRectangleXyWing or Technique.AvoidableRectangleXyWing => .2M,
 				Technique.UniqueRectangleXyzWing or Technique.AvoidableRectangleXyzWing => .3M,
-				Technique.UniqueRectangleWxyzWing or Technique.AvoidableRectangleWxyzWing => .5M
+				Technique.UniqueRectangleWxyzWing or Technique.AvoidableRectangleWxyzWing => .5M,
+				_ => throw new NotSupportedException("The specified technique code is not supported.")
 			}; // Wing difficulty.
 
 	/// <inheritdoc/>

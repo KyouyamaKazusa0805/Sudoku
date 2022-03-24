@@ -148,7 +148,8 @@ public sealed unsafe class NormalFishStepSearcher : INormalFishStepSearcher
 					3 => CandMaps[digit] & (RegionMaps[bs[0]] | RegionMaps[bs[1]] | RegionMaps[bs[2]]),
 					4 => CandMaps[digit] & (
 						RegionMaps[bs[0]] | RegionMaps[bs[1]] | RegionMaps[bs[2]] | RegionMaps[bs[3]]
-					)
+					),
+					_ => throw new NotSupportedException("The specified size isn't supported.")
 				};
 
 				// Iterate on the cover set combination.
@@ -161,7 +162,8 @@ public sealed unsafe class NormalFishStepSearcher : INormalFishStepSearcher
 						3 => CandMaps[digit] & (RegionMaps[cs[0]] | RegionMaps[cs[1]] | RegionMaps[cs[2]]),
 						4 => CandMaps[digit] & (
 							RegionMaps[cs[0]] | RegionMaps[cs[1]] | RegionMaps[cs[2]] | RegionMaps[cs[3]]
-						)
+						),
+						_ => throw new NotSupportedException("The specified size isn't supported.")
 					};
 
 					// Now check the fins and the elimination cells.

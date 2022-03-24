@@ -91,7 +91,8 @@ public sealed unsafe class UniquePolygonStepSearcher : IUniquePolygonStepSearche
 					0 or 1 or 2 or 3 => (9, 1),
 					4 or 5 => (9, 2),
 					6 or 7 => (18, 1),
-					8 => (18, 2)
+					8 => (18, 2),
+					_ => throw new()
 				};
 				if (region1 is >= 9 and < 18)
 				{
@@ -154,7 +155,8 @@ public sealed unsafe class UniquePolygonStepSearcher : IUniquePolygonStepSearche
 				0 or 1 or 2 or 3 => (9, 1),
 				4 or 5 => (9, 2),
 				6 or 7 => (18, 1),
-				8 => (18, 2)
+				8 => (18, 2),
+				_ => throw new()
 			};
 			if (region1 is >= 9 and < 18)
 			{
@@ -213,7 +215,8 @@ public sealed unsafe class UniquePolygonStepSearcher : IUniquePolygonStepSearche
 					0 => (cell, cell + increment),
 					1 => region is >= 18 and < 27 ? (cell - increment, cell) : (cell, cell + increment),
 					2 => region is >= 9 and < 18 ? (cell - increment, cell) : (cell, cell + increment),
-					3 => (cell - increment, cell)
+					3 => (cell - increment, cell),
+					_ => throw new()
 				};
 				cur++;
 			}
