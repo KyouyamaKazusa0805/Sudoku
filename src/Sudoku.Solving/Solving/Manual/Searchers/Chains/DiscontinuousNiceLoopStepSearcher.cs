@@ -13,7 +13,7 @@ namespace Sudoku.Solving.Manual.Searchers;
 [StepSearcher]
 [SeparatedStepSearcher(0, nameof(XEnabled), true, nameof(YEnabled), false)]
 [SeparatedStepSearcher(1, nameof(XEnabled), true, nameof(YEnabled), true)]
-public sealed unsafe class DiscontinuousNiceLoopStepSearcher : IDiscontinuousNiceLoopStepSearcher
+public sealed class DiscontinuousNiceLoopStepSearcher : IDiscontinuousNiceLoopStepSearcher
 {
 	/// <summary>
 	/// Indicates whether the X-chain is enabled.

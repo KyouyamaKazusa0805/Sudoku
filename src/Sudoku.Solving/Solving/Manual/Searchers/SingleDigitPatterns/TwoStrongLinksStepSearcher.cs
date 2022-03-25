@@ -16,7 +16,8 @@ namespace Sudoku.Solving.Manual.Searchers;
 /// <item>Turbot Fish</item>
 /// </list>
 /// </summary>
-[StepSearcher(PuzzleNotRelying = true)]
+[StepSearcher]
+[StepSearcherOptions(PuzzleNotRelying = true)]
 public sealed unsafe class TwoStrongLinksStepSearcher : ITwoStrongLinksStepSearcher
 {
 	/// <inheritdoc/>

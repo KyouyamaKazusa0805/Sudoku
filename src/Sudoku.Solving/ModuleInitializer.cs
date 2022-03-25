@@ -20,7 +20,8 @@ internal static class ModuleInitializer
 		foreach (var type in typeof(ModuleInitializer).Assembly.GetTypes())
 		{
 			// The step searcher must be applied the attribute 'StepSearcherAttribute'.
-			if (type.GetCustomAttribute<StepSearcherAttribute>() is not { Deprecated: false })
+			if (type.IsDefined(typeof(StepSearcherAttribute))
+				|| type.GetCustomAttribute<StepSearcherOptionsAttribute>() is not { IsDeprecated: false })
 			{
 				continue;
 			}

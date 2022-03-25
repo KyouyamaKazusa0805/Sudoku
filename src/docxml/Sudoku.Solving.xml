@@ -1107,7 +1107,7 @@
             </para>
             <para>
             If a step searcher doesn't rely on this class, it'll be <see langword="true"/> for the property named
-            <see cref="P:Sudoku.Solving.Manual.StepSearcherAttribute.IsDirect"/>.
+            <see cref="P:Sudoku.Solving.Manual.StepSearcherOptionsAttribute.IsDirect"/>.
             If you find that the step searcher marks that attribute,
             you can call it everywhere safely; however, if the searcher isn't marked that attribute, you
             can't call it everywhere unless you call the method <see cref="M:Sudoku.Solving.Manual.Buffer.FastProperties.InitializeMaps(Sudoku.Collections.Grid@)"/>.
@@ -1127,7 +1127,7 @@
             </remarks>
             <seealso cref="M:Sudoku.Solving.Manual.Buffer.FastProperties.InitializeMaps(Sudoku.Collections.Grid@)"/>
             <seealso cref="T:Sudoku.Solving.Manual.ManualSolver"/>
-            <seealso cref="P:Sudoku.Solving.Manual.StepSearcherAttribute.IsDirect"/>
+            <seealso cref="P:Sudoku.Solving.Manual.StepSearcherOptionsAttribute.IsDirect"/>
             <seealso cref="T:Sudoku.Collections.Grid"/>
         </member>
         <member name="P:Sudoku.Solving.Manual.Buffer.FastProperties.EmptyMap">
@@ -1137,10 +1137,10 @@
             <remarks>
             This map <b>should</b> be used after <see cref="M:Sudoku.Solving.Manual.Buffer.FastProperties.InitializeMaps(Sudoku.Collections.Grid@)"/> called, and you<b>'d better</b>
             not use this field on instances which are marked the attribute
-            <see cref="P:Sudoku.Solving.Manual.StepSearcherAttribute.IsDirect"/>.
+            <see cref="P:Sudoku.Solving.Manual.StepSearcherOptionsAttribute.IsDirect"/>.
             </remarks>
             <seealso cref="M:Sudoku.Solving.Manual.Buffer.FastProperties.InitializeMaps(Sudoku.Collections.Grid@)"/>
-            <seealso cref="P:Sudoku.Solving.Manual.StepSearcherAttribute.IsDirect"/>
+            <seealso cref="P:Sudoku.Solving.Manual.StepSearcherOptionsAttribute.IsDirect"/>
         </member>
         <member name="P:Sudoku.Solving.Manual.Buffer.FastProperties.BivalueMap">
             <summary>
@@ -1149,10 +1149,10 @@
             <remarks>
             This map <b>should</b> be used after <see cref="M:Sudoku.Solving.Manual.Buffer.FastProperties.InitializeMaps(Sudoku.Collections.Grid@)"/> called, and you<b>'d better</b>
             not use this field on instances which are marked the attribute
-            <see cref="P:Sudoku.Solving.Manual.StepSearcherAttribute.IsDirect"/>.
+            <see cref="P:Sudoku.Solving.Manual.StepSearcherOptionsAttribute.IsDirect"/>.
             </remarks>
             <seealso cref="M:Sudoku.Solving.Manual.Buffer.FastProperties.InitializeMaps(Sudoku.Collections.Grid@)"/>
-            <seealso cref="P:Sudoku.Solving.Manual.StepSearcherAttribute.IsDirect"/>
+            <seealso cref="P:Sudoku.Solving.Manual.StepSearcherOptionsAttribute.IsDirect"/>
         </member>
         <member name="P:Sudoku.Solving.Manual.Buffer.FastProperties.CandMaps">
             <summary>
@@ -1161,10 +1161,10 @@
             <remarks>
             This map <b>should</b> be used after <see cref="M:Sudoku.Solving.Manual.Buffer.FastProperties.InitializeMaps(Sudoku.Collections.Grid@)"/> called, and you<b>'d better</b>
             not use this field on instances which are marked the attribute
-            <see cref="P:Sudoku.Solving.Manual.StepSearcherAttribute.IsDirect"/>.
+            <see cref="P:Sudoku.Solving.Manual.StepSearcherOptionsAttribute.IsDirect"/>.
             </remarks>
             <seealso cref="M:Sudoku.Solving.Manual.Buffer.FastProperties.InitializeMaps(Sudoku.Collections.Grid@)"/>
-            <seealso cref="P:Sudoku.Solving.Manual.StepSearcherAttribute.IsDirect"/>
+            <seealso cref="P:Sudoku.Solving.Manual.StepSearcherOptionsAttribute.IsDirect"/>
         </member>
         <member name="P:Sudoku.Solving.Manual.Buffer.FastProperties.DigitMaps">
             <summary>
@@ -1173,10 +1173,10 @@
             <remarks>
             This map <b>should</b> be used after <see cref="M:Sudoku.Solving.Manual.Buffer.FastProperties.InitializeMaps(Sudoku.Collections.Grid@)"/> called, and you<b>'d better</b>
             not use this field on instances which are marked the attribute
-            <see cref="P:Sudoku.Solving.Manual.StepSearcherAttribute.IsDirect"/>.
+            <see cref="P:Sudoku.Solving.Manual.StepSearcherOptionsAttribute.IsDirect"/>.
             </remarks>
             <seealso cref="M:Sudoku.Solving.Manual.Buffer.FastProperties.InitializeMaps(Sudoku.Collections.Grid@)"/>
-            <seealso cref="P:Sudoku.Solving.Manual.StepSearcherAttribute.IsDirect"/>
+            <seealso cref="P:Sudoku.Solving.Manual.StepSearcherOptionsAttribute.IsDirect"/>
         </member>
         <member name="P:Sudoku.Solving.Manual.Buffer.FastProperties.ValueMaps">
             <summary>
@@ -1185,10 +1185,10 @@
             <remarks>
             This map <b>should</b> be used after <see cref="M:Sudoku.Solving.Manual.Buffer.FastProperties.InitializeMaps(Sudoku.Collections.Grid@)"/> called, and you<b>'d better</b>
             not use this field on instances which are marked the attribute
-            <see cref="P:Sudoku.Solving.Manual.StepSearcherAttribute.IsDirect"/>.
+            <see cref="P:Sudoku.Solving.Manual.StepSearcherOptionsAttribute.IsDirect"/>.
             </remarks>
             <seealso cref="M:Sudoku.Solving.Manual.Buffer.FastProperties.InitializeMaps(Sudoku.Collections.Grid@)"/>
-            <seealso cref="P:Sudoku.Solving.Manual.StepSearcherAttribute.IsDirect"/>
+            <seealso cref="P:Sudoku.Solving.Manual.StepSearcherOptionsAttribute.IsDirect"/>
         </member>
         <member name="M:Sudoku.Solving.Manual.Buffer.FastProperties.InitializeMaps(Sudoku.Collections.Grid@)">
             <summary>
@@ -4967,13 +4967,18 @@
             </summary>
             <seealso cref="T:Sudoku.Solving.Manual.Searchers.IStepSearcher"/>
         </member>
-        <member name="P:Sudoku.Solving.Manual.StepSearcherAttribute.IsOptionsFixed">
+        <member name="T:Sudoku.Solving.Manual.StepSearcherOptionsAttribute">
+            <summary>
+            Defines an attribute that applies to a step searcher, to define more options on UI configurations.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.StepSearcherOptionsAttribute.IsOptionsFixed">
             <summary>
             <para>Indicates whether the option is fixed that can't be modified in UI.</para>
             <para><i>The default value is <see langword="false"/>.</i></para>
             </summary>
         </member>
-        <member name="P:Sudoku.Solving.Manual.StepSearcherAttribute.IsDirect">
+        <member name="P:Sudoku.Solving.Manual.StepSearcherOptionsAttribute.IsDirect">
             <summary>
             <para>
             Indicates the technique searcher can or can't be used in some scenarios
@@ -5012,13 +5017,13 @@
             <seealso cref="T:Sudoku.Solving.Manual.Searchers.IStepSearcher"/>
             <seealso cref="T:Sudoku.Solving.Manual.Buffer.FastProperties"/>
         </member>
-        <member name="P:Sudoku.Solving.Manual.StepSearcherAttribute.PuzzleNotRelying">
+        <member name="P:Sudoku.Solving.Manual.StepSearcherOptionsAttribute.PuzzleNotRelying">
             <summary>
             <para>Indicates whether the specified step searcher doesn't rely on the puzzle.</para>
             <para><i>The default value is <see langword="false"/>.</i></para>
             </summary>
         </member>
-        <member name="P:Sudoku.Solving.Manual.StepSearcherAttribute.Deprecated">
+        <member name="P:Sudoku.Solving.Manual.StepSearcherOptionsAttribute.IsDeprecated">
             <summary>
             <para>Indicates whether the step searcher is deprecated.</para>
             <para><i>The default value is <see langword="false"/>.</i></para>

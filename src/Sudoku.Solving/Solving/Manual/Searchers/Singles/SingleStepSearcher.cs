@@ -15,7 +15,8 @@ namespace Sudoku.Solving.Manual.Searchers;
 /// <item>Naked Single</item>
 /// </list>
 /// </summary>
-[StepSearcher(IsDirect = true, IsOptionsFixed = true)]
+[StepSearcher]
+[StepSearcherOptions(IsDirect = true, IsOptionsFixed = true)]
 public sealed unsafe class SingleStepSearcher : ISingleStepSearcher
 {
 	/// <inheritdoc/>

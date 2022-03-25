@@ -11,7 +11,8 @@ namespace Sudoku.Solving.Manual.Searchers;
 /// <item>Brute Force</item>
 /// </list>
 /// </summary>
-[StepSearcher(IsOptionsFixed = true, IsDirect = true)]
+[StepSearcher]
+[StepSearcherOptions(IsOptionsFixed = true, IsDirect = true)]
 public sealed unsafe class BruteForceStepSearcher : IBruteForceStepSearcher
 {
 	/// <summary>
