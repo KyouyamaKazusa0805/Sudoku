@@ -1,21 +1,27 @@
 ﻿using Sudoku.Collections;
 using Sudoku.Presentation;
+using Sudoku.Solving.Collections;
+using Sudoku.Solving.Manual.Searchers;
 using Sudoku.Solving.Manual.Text;
 using Sudoku.Techniques;
 
 namespace Sudoku.Solving.Manual.Steps;
 
 /// <summary>
-/// Provides with a step that is a <b>Chain</b> technique.
+/// Provides with a step that is a <b>Alternating Inference Chain</b> technique.
 /// </summary>
 /// <param name="Conclusions"><inheritdoc/></param>
 /// <param name="Views"><inheritdoc/></param>
 /// <param name="Chain">Indicates the whole chain.</param>
-public sealed record DiscontinuousNiceLoopStep(
+/// <param name="XEnabled"><inheritdoc cref="AlternatingInferenceChainStepSearcher.XEnabled"/></param>
+/// <param name="YEnabled"><inheritdoc cref="AlternatingInferenceChainStepSearcher.YEnabled"/></param>
+public sealed record AlternatingInferenceChainStep(
 	ImmutableArray<Conclusion> Conclusions,
 	ImmutableArray<PresentationData> Views,
-	ChainNodeBag Chain
-) : Step(Conclusions, Views), IChainStep, IChainLikeStep
+	AlternatingInferenceChain Chain,
+	bool XEnabled,
+	bool YEnabled
+) : ChainStep(Conclusions, Views), IChainStep, IChainLikeStep
 {
 	/// <inheritdoc/>
 	public override decimal Difficulty =>
@@ -23,11 +29,11 @@ public sealed record DiscontinuousNiceLoopStep(
 		{
 			Technique.MWing => 4.5M,
 			Technique.SplitWing or Technique.HybridWing or Technique.LocalWing => 4.8M,
-			_ => (/*XEnabled && YEnabled ? 5.0M : */4.6M) + IChainLikeStep.GetExtraDifficultyByLength(FlatComplexity - 2)
+			_ => (XEnabled && YEnabled ? 5.0M : 4.6M) + IChainLikeStep.GetExtraDifficultyByLength(FlatComplexity - 2)
 		};
 
 	/// <inheritdoc/>
-	public int FlatComplexity => Chain.Count - 2;
+	public override int FlatComplexity => Chain.RealChainNodes.Length - 1;
 
 	/// <inheritdoc/>
 	public override TechniqueGroup TechniqueGroup =>
@@ -57,7 +63,7 @@ public sealed record DiscontinuousNiceLoopStep(
 			{ IsHybridWing: true } => Technique.HybridWing,
 			{ IsLocalWing: true } => Technique.LocalWing,
 			{
-				Chain: [_, { Digit: var a }, .., { Digit: var b }, _],
+				Chain.RealChainNodes: [{ Digit: var a }, .., { Digit: var b }],
 				IsXyChain: var isXy
 			} when a == b => isXy ? Technique.XyChain : Technique.AlternatingInferenceChain,
 			_ => Conclusions.Length switch
@@ -91,7 +97,7 @@ public sealed record DiscontinuousNiceLoopStep(
 		};
 
 	/// <inheritdoc/>
-	public ChainTypeCode SortKey => Enum.Parse<ChainTypeCode>(TechniqueCode.ToString());
+	public override ChainTypeCode SortKey => Enum.Parse<ChainTypeCode>(TechniqueCode.ToString());
 
 	/// <summary>
 	/// Indicates whether the specified chain is an XY-Chain.
@@ -121,23 +127,26 @@ public sealed record DiscontinuousNiceLoopStep(
 	/// <summary>
 	/// Indicates whether the specified chain is an X-Chain.
 	/// </summary>
-	private bool IsXChain =>/* XEnabled && !YEnabled*/ true;
+	private bool IsXChain => XEnabled && !YEnabled;
 
 	/// <summary>
 	/// Indicates whether the chain is M-Wing (<c>(x = y) - y = (y - x) = x</c>).
 	/// </summary>
 	/// <returns>A <see cref="bool"/> value indicating that.</returns>
 	private bool IsMWing =>
-		Chain is [
-			_,
-			{ Cell: var a },
-			{ Cell: var b },
-			{ Cell: var c },
-			{ Cell: var d },
-			{ Cell: var e },
-			{ Cell: var f },
-			..
-		] && (
+		Chain is
+		{
+			RealChainNodes: [
+				_,
+				SoleCandidateNode { Cell: var a },
+				SoleCandidateNode { Cell: var b },
+				SoleCandidateNode { Cell: var c },
+				SoleCandidateNode { Cell: var d },
+				SoleCandidateNode { Cell: var e },
+				SoleCandidateNode { Cell: var f },
+				..
+			]
+		} && (
 			a / 9 == b / 9 && d / 9 == e / 9
 			&& b % 9 == c % 9 && c % 9 == d % 9
 			&& a % 9 == e % 9 && e % 9 == f % 9
@@ -151,16 +160,19 @@ public sealed record DiscontinuousNiceLoopStep(
 	/// </summary>
 	/// <returns>A <see cref="bool"/> value indicating that.</returns>
 	private bool IsSplitWing =>
-		Chain is [
-			_,
-			{ Cell: var a },
-			{ Cell: var b },
-			{ Cell: var c },
-			{ Cell: var d },
-			{ Cell: var e },
-			{ Cell: var f },
-			..
-		]
+		Chain is
+		{
+			RealChainNodes: [
+				_,
+				SoleCandidateNode { Cell: var a },
+				SoleCandidateNode { Cell: var b },
+				SoleCandidateNode { Cell: var c },
+				SoleCandidateNode { Cell: var d },
+				SoleCandidateNode { Cell: var e },
+				SoleCandidateNode { Cell: var f },
+				..
+			]
+		}
 		&& a % 9 == b % 9 && b % 9 == c % 9 // First three nodes hold a same digit.
 		&& d % 9 == e % 9 && e % 9 == f % 9 // Last three nodes hold a same digit.
 		&& c / 9 == d / 9; // In same cell.
@@ -175,16 +187,19 @@ public sealed record DiscontinuousNiceLoopStep(
 	/// </summary>
 	/// <returns>A <see cref="bool"/> value indicating that.</returns>
 	private bool IsHybridWing =>
-		Chain is [
-			_,
-			{ Cell: var a },
-			{ Cell: var b },
-			{ Cell: var c },
-			{ Cell: var d },
-			{ Cell: var e },
-			{ Cell: var f },
-			..
-		]
+		Chain is
+		{
+			RealChainNodes: [
+				_,
+				SoleCandidateNode { Cell: var a },
+				SoleCandidateNode { Cell: var b },
+				SoleCandidateNode { Cell: var c },
+				SoleCandidateNode { Cell: var d },
+				SoleCandidateNode { Cell: var e },
+				SoleCandidateNode { Cell: var f },
+				..
+			]
+		}
 		&& (
 			a / 9 == b / 9 && d / 9 == e / 9
 			&& b % 9 == c % 9 && c % 9 == d % 9
@@ -205,16 +220,19 @@ public sealed record DiscontinuousNiceLoopStep(
 	/// </summary>
 	/// <returns>A <see cref="bool"/> value indicating that.</returns>
 	private bool IsLocalWing =>
-		Chain is [
-			_,
-			{ Cell: var a },
-			{ Cell: var b },
-			{ Cell: var c },
-			{ Cell: var d },
-			{ Cell: var e },
-			{ Cell: var f },
-			..
-		]
+		Chain is
+		{
+			RealChainNodes: [
+				_,
+				SoleCandidateNode { Cell: var a },
+				SoleCandidateNode { Cell: var b },
+				SoleCandidateNode { Cell: var c },
+				SoleCandidateNode { Cell: var d },
+				SoleCandidateNode { Cell: var e },
+				SoleCandidateNode { Cell: var f },
+				..
+			]
+		}
 		&& b / 9 == c / 9 && d / 9 == e / 9
 		&& a % 9 == b % 9 && c % 9 == d % 9 && e % 9 == f % 9;
 

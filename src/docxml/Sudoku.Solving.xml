@@ -2792,36 +2792,329 @@
             Defines a step searcher that searches for empty rectangle intersection pair steps.
             </summary>
         </member>
-        <member name="T:Sudoku.Solving.Manual.Searchers.DiscontinuousNiceLoopStepSearcher">
+        <member name="T:Sudoku.Solving.Manual.Searchers.AlternatingInferenceChainStepSearcher">
             <summary>
-            Provides with an <b>Discontinuous Nice Loop</b> step searcher.
+            Provides with an <b>Alternating Inference Chain</b> step searcher.
             The step searcher will include the following techniques:
             <list type="bullet">
+            <item>
+            Short chains:
+            <list type="bullet">
             <item>Irregular Wings</item>
+            </list>
+            </item>
+            <item>
+            Normal chains:
+            <list type="bullet">
+            <item>Discontinuous Nice Loop</item>
             <item>Alternating Inference Chain</item>
+            <!--<item>Continuous Nice Loop</item>-->
+            </list>
+            </item>
+            <item>
+            Grouped chains (which means the nodes are not limited in sole candidates):
+            <list type="bullet">
+            <item>Grouped Discontinuous Nice Loop</item>
+            <item>Grouped Alternating Inference Chain</item>
+            <!--<item>Grouped Continuous Nice Loop</item>-->
+            </list>
+            </item>
             </list>
             </summary>
         </member>
-        <member name="P:Sudoku.Solving.Manual.Searchers.DiscontinuousNiceLoopStepSearcher.XEnabled">
+        <member name="F:Sudoku.Solving.Manual.Searchers.AlternatingInferenceChainStepSearcher._strongInferences">
             <summary>
-            Indicates whether the X-chain is enabled.
+            Indicates the field that stores the temporary strong inferences during the searching.
+            </summary>
+            <remarks>
+            The value uses a <see cref="T:System.Collections.Generic.Dictionary`2"/> to store the table of strong inferences, where:
+            <list type="table">
+            <listheader>
+            <term>Item</term>
+            <description>Meaning</description>
+            </listheader>
+            <item>
+            <term>Key</term>
+            <description>The ID of a node.</description>
+            </item>
+            <item>
+            <term>Value</term>
+            <description>
+            All possible IDs that corresponds to their own node respectively,
+            one of which can form a strong inference with the <b>Key</b> node.
+            </description>
+            </item>
+            </list>
+            </remarks>
+            <seealso cref="T:System.Collections.Generic.Dictionary`2"/>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.Searchers.AlternatingInferenceChainStepSearcher._weakInferences">
+            <summary>
+            Indicates the field that stores the temporary weak inferences during the searching.
+            </summary>
+            <remarks>
+            The value uses a <see cref="T:System.Collections.Generic.Dictionary`2"/> to store the table of weak inferences, where:
+            <list type="table">
+            <listheader>
+            <term>Item</term>
+            <description>Meaning</description>
+            </listheader>
+            <item>
+            <term>Key</term>
+            <description>The ID of a node.</description>
+            </item>
+            <item>
+            <term>Value</term>
+            <description>
+            All possible IDs that corresponds to their own node respectively,
+            one of which can form a weak inference with the <b>Key</b> node.
+            </description>
+            </item>
+            </list>
+            </remarks>
+            <seealso cref="T:System.Collections.Generic.Dictionary`2"/>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.Searchers.AlternatingInferenceChainStepSearcher._idLookup">
+            <summary>
+            Indicates the lookup table that can get the target ID value
+            via the corresponding <see cref="T:Sudoku.Solving.Collections.Node"/> instance.
+            </summary>
+            <seealso cref="T:Sudoku.Solving.Collections.Node"/>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.Searchers.AlternatingInferenceChainStepSearcher._foundChains">
+            <summary>
+            Indicates all possible found chains, that stores the IDs of the each node.
             </summary>
         </member>
-        <member name="P:Sudoku.Solving.Manual.Searchers.DiscontinuousNiceLoopStepSearcher.YEnabled">
+        <member name="F:Sudoku.Solving.Manual.Searchers.AlternatingInferenceChainStepSearcher._globalId">
             <summary>
-            Indicates whether the Y-Chain is enabled.
+            Indicates the global ID value.
             </summary>
         </member>
-        <member name="P:Sudoku.Solving.Manual.Searchers.DiscontinuousNiceLoopStepSearcher.Options">
+        <member name="F:Sudoku.Solving.Manual.Searchers.AlternatingInferenceChainStepSearcher._nodeLookup">
+            <summary>
+            Indicates the lookup table that can get the target <see cref="T:Sudoku.Solving.Collections.Node"/> instance
+            via the corresponding ID value specified as the index.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Searchers.AlternatingInferenceChainStepSearcher.XEnabled">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Searchers.DiscontinuousNiceLoopStepSearcher.GetAll(System.Collections.Generic.ICollection{Sudoku.Solving.Manual.Step},Sudoku.Collections.Grid@,System.Boolean)">
+        <member name="P:Sudoku.Solving.Manual.Searchers.AlternatingInferenceChainStepSearcher.YEnabled">
             <inheritdoc/>
         </member>
-        <member name="T:Sudoku.Solving.Manual.Searchers.IDiscontinuousNiceLoopStepSearcher">
+        <member name="P:Sudoku.Solving.Manual.Searchers.AlternatingInferenceChainStepSearcher.DepthFirstSearching">
+            <inheritdoc/>
+            <remarks>
+            The default value is <see langword="false"/>.
+            </remarks>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Searchers.AlternatingInferenceChainStepSearcher.MaxCapacity">
+            <inheritdoc/>
+            <remarks>
+            The default value is <c>3000</c>.
+            </remarks>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Searchers.AlternatingInferenceChainStepSearcher.Options">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Searchers.AlternatingInferenceChainStepSearcher.NodeTypes">
+            <inheritdoc/>
+            <remarks>
+            The default value is <c>
+            <see cref="F:Sudoku.Solving.Collections.SearcherNodeTypes.SoleCell"/> | <see cref="F:Sudoku.Solving.Collections.SearcherNodeTypes.SoleDigit"/>
+            | <see cref="F:Sudoku.Solving.Collections.SearcherNodeTypes.LockedCandidates"/>
+            | <see cref="F:Sudoku.Solving.Collections.SearcherNodeTypes.LockedSet"/> | <see cref="F:Sudoku.Solving.Collections.SearcherNodeTypes.HiddenSet"/>
+            </c>.
+            </remarks>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Searchers.AlternatingInferenceChainStepSearcher.GetAll(System.Collections.Generic.ICollection{Sudoku.Solving.Manual.Step},Sudoku.Collections.Grid@,System.Boolean)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Searchers.AlternatingInferenceChainStepSearcher.AddNode(Sudoku.Solving.Collections.Node,System.Collections.Generic.HashSet{System.Int32}@)">
             <summary>
-            Defines a step searcher that searches for discontinuous nice loop steps.
+            Adds the specified node into the collection, or just get the ID value.
             </summary>
+            <param name="nextNode">The next node.</param>
+            <param name="list">The list.</param>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Searchers.AlternatingInferenceChainStepSearcher.UpdateInferenceTable(System.Collections.Generic.HashSet{System.Int32},Sudoku.Solving.Collections.Node,System.Collections.Generic.Dictionary{System.Int32,System.Collections.Generic.HashSet{System.Int32}})">
+            <summary>
+            To assign the recorded IDs into the dictionary.
+            </summary>
+            <param name="list">The list of IDs.</param>
+            <param name="node">The current node.</param>
+            <param name="inferences">Indicates what dictionary the hash set is assigned to.</param>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Searchers.AlternatingInferenceChainStepSearcher.RemoveIdsNotAppearingInLookupDictionary(System.Collections.Generic.Dictionary{System.Int32,System.Collections.Generic.HashSet{System.Int32}})">
+            <summary>
+            Remove all ID values in the lookup dictionary.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Searchers.AlternatingInferenceChainStepSearcher.PrintInferences(System.Collections.Generic.Dictionary{System.Int32,System.Collections.Generic.HashSet{System.Int32}},System.Action{System.String})">
+            <summary>
+            Print the inferences.
+            </summary>
+            <param name="inferences">The table of inferences.</param>
+            <param name="outputHandler">
+            The handler method that used for the invocation on output the result information.
+            For example, the following code is okay for this argument:
+            <code>
+            PrintInferences(
+                // Suppose we output the strong inference dictionary.
+                inferences: _strongInferences,
+            
+                // Here we can call 'Console.WriteLine' to output the result string value.
+                // In addition, you can also write 'static data => Console.WriteLine(data)'.
+                outputHandler: Console.WriteLine
+            );
+            </code>
+            </param>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Searchers.AlternatingInferenceChainStepSearcher.PrintChainData(System.Int32[])">
+            <summary>
+            To print the whole chain via the ID. The method is only used for calling by the debugger.
+            </summary>
+            <param name="chainIds">The IDs.</param>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Searchers.AlternatingInferenceChainStepSearcher.Bfs">
+            <summary>
+            Start to construct the chain using breadth-first searching algorithm.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Searchers.AlternatingInferenceChainStepSearcher.Dfs_StartWithWeak">
+            <summary>
+            Start to construct the chain using the depth-first searching algorithm,
+            with the weak inference as the beginning node.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Searchers.AlternatingInferenceChainStepSearcher.Dfs_StartWithStrong">
+            <summary>
+            Start to construct the chain using the depth-first searching algorithm,
+            with the strong inference as the beginning node.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Searchers.AlternatingInferenceChainStepSearcher.GatherInferences_SoleCandidate(Sudoku.Collections.Grid@)">
+            <summary>
+            Gather the strong and weak inferences on sole candidate nodes.
+            </summary>
+            <param name="grid">The grid.</param>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Searchers.AlternatingInferenceChainStepSearcher.GatherInferences_LockedCandidates(Sudoku.Collections.Grid@)">
+            <summary>
+            Gather the strong and weak inferences on locked candidates nodes.
+            </summary>
+            <param name="grid">The grid.</param>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Searchers.AlternatingInferenceChainStepSearcher.GatherInferences_AlmostLockedSet(Sudoku.Collections.Grid@)">
+            <summary>
+            Gather the strong and weak inferences on almost locked sets nodes.
+            </summary>
+            <param name="grid">The grid.</param>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Searchers.IAlternatingInferenceChainStepSearcher">
+            <summary>
+            Defines a step searcher that searches for alternating inference chain steps.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Searchers.IAlternatingInferenceChainStepSearcher.XEnabled">
+            <summary>
+            Indicates whether the step searcher will check on strong inferences between same-digit node.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Searchers.IAlternatingInferenceChainStepSearcher.YEnabled">
+            <summary>
+            Indicates whether the step searcher will check on strong inferences between sole candidate nodes
+            in a same cell.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Searchers.IAlternatingInferenceChainStepSearcher.DepthFirstSearching">
+            <summary>
+            Indicates whether the searcher uses DFS algorithm to search for chains.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Searchers.IAlternatingInferenceChainStepSearcher.MaxCapacity">
+            <summary>
+            Indicates the maximum capacity used for the allocation on shared memory.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Searchers.IAlternatingInferenceChainStepSearcher.NodeTypes">
+            <summary>
+            <para>
+            Indicates the extended nodes to be searched for. Please note that the type of the property
+            is an enumeration type with bit-fields attribute, which means you can add multiple choices
+            into the value.
+            </para>
+            <para>
+            You can set the value as a bit-field mask to define your own types to be searched for, where:
+            <list type="table">
+            <listheader>
+            <term>Field name</term>
+            <description>Description (What kind of nodes can be searched)</description>
+            </listheader>
+            <item>
+            <term><see cref="F:Sudoku.Solving.Collections.SearcherNodeTypes.SoleDigit"/></term>
+            <description>
+            The strong and weak inferences between 2 sole candidate nodes of a same digit
+            (i.e. X-Chain).
+            </description>
+            </item>
+            <item>
+            <term><see cref="F:Sudoku.Solving.Collections.SearcherNodeTypes.SoleCell"/></term>
+            <description>
+            The strong and weak inferences between 2 sole candidate nodes of a same cell
+            (i.e. Y-Chain).
+            </description>
+            </item>
+            <item>
+            <term><see cref="F:Sudoku.Solving.Collections.SearcherNodeTypes.LockedCandidates"/></term>
+            <description>
+            The strong and weak inferences between 2 nodes, where at least one node is a locked candidates node.
+            </description>
+            </item>
+            <item>
+            <term><see cref="F:Sudoku.Solving.Collections.SearcherNodeTypes.LockedSet"/></term>
+            <description>
+            The strong inferences between 2 nodes, where at least one node is an almost locked set node.
+            </description>
+            </item>
+            <item>
+            <term><see cref="F:Sudoku.Solving.Collections.SearcherNodeTypes.HiddenSet"/></term>
+            <description>
+            The weak inferences between 2 nodes, where at least one node is an almost hidden set node.
+            </description>
+            </item>
+            <item>
+            <term><see cref="F:Sudoku.Solving.Collections.SearcherNodeTypes.UniqueRectangle"/></term>
+            <description>
+            The strong and weak inferences between 2 nodes, where at least one node
+            is an almost unique rectangle node.
+            </description>
+            </item>
+            <item>
+            <term><see cref="F:Sudoku.Solving.Collections.SearcherNodeTypes.Kraken"/></term>
+            <description>
+            The strong and weak inferences between 2 nodes, where at least one node
+            is a kraken fish node.
+            </description>
+            </item>
+            </list>
+            Other typed inferences are being considered, such as an XYZ-Wing node, etc.
+            </para>
+            </summary>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Searchers.IChainStepSearcher">
+            <summary>
+            Defines a step searcher that searches for chain steps.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Searchers.IChainStepSearcher.GetViewOnLinks(Sudoku.Solving.Collections.AlternatingInferenceChain@)">
+            <summary>
+            Creates an array of the presentation data of links
+            via the specified instance of type <see cref="T:Sudoku.Solving.Collections.AlternatingInferenceChain"/>.
+            </summary>
+            <param name="chain">The chain.</param>
+            <returns>An array of presentation data of links.</returns>
         </member>
         <member name="T:Sudoku.Solving.Manual.Searchers.ExtendedRectangleStepSearcher">
             <summary>
@@ -5772,72 +6065,82 @@
         <member name="P:Sudoku.Solving.Manual.Steps.EmptyRectangleIntersectionPairStep.Rarity">
             <inheritdoc/>
         </member>
-        <member name="T:Sudoku.Solving.Manual.Steps.DiscontinuousNiceLoopStep">
+        <member name="T:Sudoku.Solving.Manual.Steps.AlternatingInferenceChainStep">
             <summary>
-            Provides with a step that is a <b>Chain</b> technique.
+            Provides with a step that is a <b>Alternating Inference Chain</b> technique.
             </summary>
             <param name="Conclusions"><inheritdoc/></param>
             <param name="Views"><inheritdoc/></param>
             <param name="Chain">Indicates the whole chain.</param>
+            <param name="XEnabled"><inheritdoc cref="P:Sudoku.Solving.Manual.Searchers.AlternatingInferenceChainStepSearcher.XEnabled"/></param>
+            <param name="YEnabled"><inheritdoc cref="P:Sudoku.Solving.Manual.Searchers.AlternatingInferenceChainStepSearcher.YEnabled"/></param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Steps.DiscontinuousNiceLoopStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.PresentationData},Sudoku.Collections.ChainNodeBag)">
+        <member name="M:Sudoku.Solving.Manual.Steps.AlternatingInferenceChainStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.PresentationData},Sudoku.Solving.Collections.AlternatingInferenceChain,System.Boolean,System.Boolean)">
             <summary>
-            Provides with a step that is a <b>Chain</b> technique.
+            Provides with a step that is a <b>Alternating Inference Chain</b> technique.
             </summary>
             <param name="Conclusions"><inheritdoc/></param>
             <param name="Views"><inheritdoc/></param>
             <param name="Chain">Indicates the whole chain.</param>
+            <param name="XEnabled"><inheritdoc cref="P:Sudoku.Solving.Manual.Searchers.AlternatingInferenceChainStepSearcher.XEnabled"/></param>
+            <param name="YEnabled"><inheritdoc cref="P:Sudoku.Solving.Manual.Searchers.AlternatingInferenceChainStepSearcher.YEnabled"/></param>
         </member>
-        <member name="P:Sudoku.Solving.Manual.Steps.DiscontinuousNiceLoopStep.Chain">
+        <member name="P:Sudoku.Solving.Manual.Steps.AlternatingInferenceChainStep.Chain">
             <summary>Indicates the whole chain.</summary>
         </member>
-        <member name="P:Sudoku.Solving.Manual.Steps.DiscontinuousNiceLoopStep.Difficulty">
+        <member name="P:Sudoku.Solving.Manual.Steps.AlternatingInferenceChainStep.XEnabled">
+            <summary><inheritdoc cref="P:Sudoku.Solving.Manual.Searchers.AlternatingInferenceChainStepSearcher.XEnabled"/></summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.AlternatingInferenceChainStep.YEnabled">
+            <summary><inheritdoc cref="P:Sudoku.Solving.Manual.Searchers.AlternatingInferenceChainStepSearcher.YEnabled"/></summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.AlternatingInferenceChainStep.Difficulty">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Solving.Manual.Steps.DiscontinuousNiceLoopStep.FlatComplexity">
+        <member name="P:Sudoku.Solving.Manual.Steps.AlternatingInferenceChainStep.FlatComplexity">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Solving.Manual.Steps.DiscontinuousNiceLoopStep.TechniqueGroup">
+        <member name="P:Sudoku.Solving.Manual.Steps.AlternatingInferenceChainStep.TechniqueGroup">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Solving.Manual.Steps.DiscontinuousNiceLoopStep.TechniqueTags">
+        <member name="P:Sudoku.Solving.Manual.Steps.AlternatingInferenceChainStep.TechniqueTags">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Solving.Manual.Steps.DiscontinuousNiceLoopStep.TechniqueCode">
+        <member name="P:Sudoku.Solving.Manual.Steps.AlternatingInferenceChainStep.TechniqueCode">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Solving.Manual.Steps.DiscontinuousNiceLoopStep.DifficultyLevel">
+        <member name="P:Sudoku.Solving.Manual.Steps.AlternatingInferenceChainStep.DifficultyLevel">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Solving.Manual.Steps.DiscontinuousNiceLoopStep.Rarity">
+        <member name="P:Sudoku.Solving.Manual.Steps.AlternatingInferenceChainStep.Rarity">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Solving.Manual.Steps.DiscontinuousNiceLoopStep.SortKey">
+        <member name="P:Sudoku.Solving.Manual.Steps.AlternatingInferenceChainStep.SortKey">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Solving.Manual.Steps.DiscontinuousNiceLoopStep.IsXyChain">
+        <member name="P:Sudoku.Solving.Manual.Steps.AlternatingInferenceChainStep.IsXyChain">
             <summary>
             Indicates whether the specified chain is an XY-Chain.
             </summary>
         </member>
-        <member name="P:Sudoku.Solving.Manual.Steps.DiscontinuousNiceLoopStep.IsXChain">
+        <member name="P:Sudoku.Solving.Manual.Steps.AlternatingInferenceChainStep.IsXChain">
             <summary>
             Indicates whether the specified chain is an X-Chain.
             </summary>
         </member>
-        <member name="P:Sudoku.Solving.Manual.Steps.DiscontinuousNiceLoopStep.IsMWing">
+        <member name="P:Sudoku.Solving.Manual.Steps.AlternatingInferenceChainStep.IsMWing">
             <summary>
             Indicates whether the chain is M-Wing (<c>(x = y) - y = (y - x) = x</c>).
             </summary>
             <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
         </member>
-        <member name="P:Sudoku.Solving.Manual.Steps.DiscontinuousNiceLoopStep.IsSplitWing">
+        <member name="P:Sudoku.Solving.Manual.Steps.AlternatingInferenceChainStep.IsSplitWing">
             <summary>
             Indicates whether the chain is Split-Wing (<c>x = x - (x = y) - y = y</c>).
             </summary>
             <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
         </member>
-        <member name="P:Sudoku.Solving.Manual.Steps.DiscontinuousNiceLoopStep.IsHybridWing">
+        <member name="P:Sudoku.Solving.Manual.Steps.AlternatingInferenceChainStep.IsHybridWing">
             <summary>
             Indicates whether the chain is Hybrid-Wing.
             This wing has two types:
@@ -5848,11 +6151,31 @@
             </summary>
             <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
         </member>
-        <member name="P:Sudoku.Solving.Manual.Steps.DiscontinuousNiceLoopStep.IsLocalWing">
+        <member name="P:Sudoku.Solving.Manual.Steps.AlternatingInferenceChainStep.IsLocalWing">
             <summary>
             Indicates whether the chain is Local-Wing (<c>x = (x - z) = (z - y) = y</c>).
             </summary>
             <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Steps.ChainStep">
+            <summary>
+            Provides with a step that is a <b>Chain</b> technique.
+            </summary>
+            <param name="Conclusions"><inheritdoc/></param>
+            <param name="Views"><inheritdoc/></param>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Steps.ChainStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.PresentationData})">
+            <summary>
+            Provides with a step that is a <b>Chain</b> technique.
+            </summary>
+            <param name="Conclusions"><inheritdoc/></param>
+            <param name="Views"><inheritdoc/></param>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.ChainStep.FlatComplexity">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.ChainStep.SortKey">
+            <inheritdoc/>
         </member>
         <member name="T:Sudoku.Solving.Manual.Steps.ChainTypeCode">
             <summary>

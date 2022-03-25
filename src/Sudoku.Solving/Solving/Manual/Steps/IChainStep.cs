@@ -31,7 +31,7 @@ public interface IChainStep : IStep
 	{
 		if (lConclusions.Length != rConclusions.Length)
 		{
-			goto ReturnFalse;
+			return false;
 		}
 
 		// Sort the array.
@@ -42,11 +42,11 @@ public interface IChainStep : IStep
 			{
 				if (lc[i] != rc[i])
 				{
-					goto ReturnFalse;
+					return false;
 				}
 			}
 
-			goto ReturnTrue;
+			return true;
 		}
 		else
 		{
@@ -54,17 +54,11 @@ public interface IChainStep : IStep
 			{
 				if (lConclusions[i] != rConclusions[i])
 				{
-					goto ReturnFalse;
+					return false;
 				}
 			}
 
-			goto ReturnTrue;
+			return true;
 		}
-
-	ReturnTrue:
-		return true;
-
-	ReturnFalse:
-		return false;
 	}
 }
