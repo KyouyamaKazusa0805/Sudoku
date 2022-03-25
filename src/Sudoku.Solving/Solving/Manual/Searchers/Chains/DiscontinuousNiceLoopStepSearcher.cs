@@ -1,5 +1,4 @@
 ﻿using Sudoku.Collections;
-using Sudoku.Presentation;
 
 namespace Sudoku.Solving.Manual.Searchers;
 
@@ -12,8 +11,20 @@ namespace Sudoku.Solving.Manual.Searchers;
 /// </list>
 /// </summary>
 [StepSearcher]
+[SeparatedStepSearcher(0, nameof(XEnabled), true, nameof(YEnabled), false)]
+[SeparatedStepSearcher(1, nameof(XEnabled), true, nameof(YEnabled), true)]
 public sealed unsafe class DiscontinuousNiceLoopStepSearcher : IDiscontinuousNiceLoopStepSearcher
 {
+	/// <summary>
+	/// Indicates whether the X-chain is enabled.
+	/// </summary>
+	public bool XEnabled { get; init; }
+
+	/// <summary>
+	/// Indicates whether the Y-Chain is enabled.
+	/// </summary>
+	public bool YEnabled { get; init; }
+
 	/// <inheritdoc/>
 	public SearchingOptions Options { get; set; } = new(13, DisplayingLevel.B);
 

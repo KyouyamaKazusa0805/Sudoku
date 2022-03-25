@@ -2338,6 +2338,16 @@
             </list>
             </summary>
         </member>
+        <member name="P:Sudoku.Solving.Manual.Searchers.DiscontinuousNiceLoopStepSearcher.XEnabled">
+            <summary>
+            Indicates whether the X-chain is enabled.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Searchers.DiscontinuousNiceLoopStepSearcher.YEnabled">
+            <summary>
+            Indicates whether the Y-Chain is enabled.
+            </summary>
+        </member>
         <member name="P:Sudoku.Solving.Manual.Searchers.DiscontinuousNiceLoopStepSearcher.Options">
             <inheritdoc/>
         </member>
@@ -4700,6 +4710,38 @@
             when the property <see cref="P:Sudoku.Solving.Manual.SearchingOptions.EnabledAreas"/> isn't <see cref="F:Sudoku.Solving.Manual.EnabledAreas.Default"/>.
             </para>
             </summary>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.SeparatedStepSearcherAttribute">
+            <summary>
+            Defines an attribute that applies to an instance having implemented <see cref="T:Sudoku.Solving.Manual.Searchers.IStepSearcher"/>,
+            to create the options that will be used by the module initializer.
+            </summary>
+            <remarks>
+            Please note that the attribute is optional, which means you don't need to use the attribute
+            on all step searchers.
+            </remarks>
+            <seealso cref="T:Sudoku.Solving.Manual.Searchers.IStepSearcher"/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.SeparatedStepSearcherAttribute.#ctor(System.Int32,System.Object[])">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Solving.Manual.SeparatedStepSearcherAttribute"/> instance via the specified array
+            of element type <see cref="T:System.Object"/>, indicating the property names and their values.
+            </summary>
+            <param name="priority">Indicates the priority that will be used for the ordering.</param>
+            <param name="propertyNamesAndValues">The array of property names and their values.</param>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.SeparatedStepSearcherAttribute.Priority">
+            <summary>
+            Indicates the priority value that will be used for the ordering.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.SeparatedStepSearcherAttribute.PropertyNamesAndValues">
+            <summary>
+            Indicates the property names and the values.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.SeparatedStepSearcherAttribute.CompareTo(Sudoku.Solving.Manual.SeparatedStepSearcherAttribute)">
+            <inheritdoc/>
         </member>
         <member name="T:Sudoku.Solving.Manual.Stableness">
             <summary>
