@@ -40,7 +40,7 @@ public sealed class SeparatedStepSearcherAttribute : Attribute, IComparable<Sepa
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public int CompareTo(SeparatedStepSearcherAttribute? other) =>
+	int IComparable<SeparatedStepSearcherAttribute>.CompareTo(SeparatedStepSearcherAttribute? other) =>
 		other is null
 			? throw new ArgumentNullException(nameof(other))
 			: Priority.CompareTo(other.Priority);
