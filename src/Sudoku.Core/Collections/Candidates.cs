@@ -90,6 +90,9 @@ public unsafe struct Candidates :
 	/// </summary>
 	/// <param name="candidates">The pointer points to an array of elements.</param>
 	/// <param name="length">The length of the array.</param>
+	/// <exception cref="ArgumentNullException">
+	/// Throws when the argument <paramref name="candidates"/> is <see langword="null"/>.
+	/// </exception>
 	public Candidates(int* candidates!!, int length) : this()
 	{
 		for (int i = 0; i < length; i++)

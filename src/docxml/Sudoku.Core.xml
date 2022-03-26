@@ -225,6 +225,9 @@
             </summary>
             <param name="candidates">The pointer points to an array of elements.</param>
             <param name="length">The length of the array.</param>
+            <exception cref="T:System.ArgumentNullException">
+            Throws when the argument <paramref name="candidates"/> is <see langword="null"/>.
+            </exception>
         </member>
         <member name="M:Sudoku.Collections.Candidates.#ctor(System.Int32,System.Boolean)">
             <summary>
