@@ -86,7 +86,7 @@ public sealed class View : ICloneable, IEnumerable<ViewNode>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public View AddCells(params (Identifier Identifier, int Cell)[] highlightedCells)
 	{
-		_nodes.AddRange(from pair in highlightedCells select new CellViewNode(pair.Identifier, pair.Cell));
+		_nodes.AddRange(from tuple in highlightedCells select new CellViewNode(tuple.Identifier, tuple.Cell));
 		return this;
 	}
 
@@ -99,8 +99,8 @@ public sealed class View : ICloneable, IEnumerable<ViewNode>
 	public View AddCandidates(params (Identifier Identifier, int Candidate)[] highlightedCandidates)
 	{
 		_nodes.AddRange(
-			from pair in highlightedCandidates
-			select new CandidateViewNode(pair.Identifier, pair.Candidate));
+			from tuple in highlightedCandidates
+			select new CandidateViewNode(tuple.Identifier, tuple.Candidate));
 		return this;
 	}
 
@@ -112,7 +112,23 @@ public sealed class View : ICloneable, IEnumerable<ViewNode>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public View AddRegions(params (Identifier Identifier, int Region)[] highlightedRegions)
 	{
-		_nodes.AddRange(from pair in highlightedRegions select new RegionViewNode(pair.Identifier, pair.Region));
+		_nodes.AddRange(
+			from tuple in highlightedRegions
+			select new RegionViewNode(tuple.Identifier, tuple.Region));
+		return this;
+	}
+
+	/// <summary>
+	/// Adds a serial of links to be highlighted.
+	/// </summary>
+	/// <param name="highlightedLinks">The highlighted links.</param>
+	/// <returns>The reference that is same as <see langword="this"/>.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public View AddLink(params (Identifier Identifier, LockedTarget Start, LockedTarget End, LinkKind LinkKind)[] highlightedLinks)
+	{
+		_nodes.AddRange(
+			from tuple in highlightedLinks
+			select new LinkViewNode(tuple.Identifier, tuple.Start, tuple.End, tuple.LinkKind));
 		return this;
 	}
 

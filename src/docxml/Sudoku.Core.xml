@@ -5682,6 +5682,13 @@
             <param name="highlightedRegions">The highlighted regions.</param>
             <returns>The reference that is same as <see langword="this"/>.</returns>
         </member>
+        <member name="M:Sudoku.Presentation.View.AddLink(System.ValueTuple{Sudoku.Presentation.Identifier,Sudoku.Presentation.LockedTarget,Sudoku.Presentation.LockedTarget,Sudoku.LinkKind}[])">
+            <summary>
+            Adds a serial of links to be highlighted.
+            </summary>
+            <param name="highlightedLinks">The highlighted links.</param>
+            <returns>The reference that is same as <see langword="this"/>.</returns>
+        </member>
         <member name="M:Sudoku.Presentation.View.GetEnumerator">
             <inheritdoc cref="M:System.Collections.Generic.IEnumerable`1.GetEnumerator"/>
         </member>
