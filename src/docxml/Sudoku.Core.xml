@@ -4954,6 +4954,168 @@
         <member name="M:Sudoku.Presentation.Crosshatch.Equals(Sudoku.Presentation.Crosshatch@)">
             <inheritdoc/>
         </member>
+        <member name="T:Sudoku.Presentation.Identifier">
+            <summary>
+            Defines an identifier that can differ colors.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Presentation.Identifier._colorRawValue">
+            <summary>
+            Indicates the raw value of the color.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Presentation.Identifier.#ctor">
+            <summary>
+            Initializes an <see cref="T:Sudoku.Presentation.Identifier"/> instance.
+            </summary>
+            <exception cref="T:System.NotSupportedException">Always throws.</exception>
+        </member>
+        <member name="M:Sudoku.Presentation.Identifier.#ctor(System.Int32)">
+            <summary>
+            Initializes an <see cref="T:Sudoku.Presentation.Identifier"/> instance via the ID value.
+            </summary>
+            <param name="id">The ID value.</param>
+        </member>
+        <member name="M:Sudoku.Presentation.Identifier.#ctor(System.Byte,System.Byte,System.Byte,System.Byte)">
+            <summary>
+            Initializes an <see cref="T:Sudoku.Presentation.Identifier"/> instance via the color value.
+            </summary>
+            <param name="a">The alpha value.</param>
+            <param name="r">The red value.</param>
+            <param name="g">The green value.</param>
+            <param name="b">The blue value.</param>
+        </member>
+        <member name="P:Sudoku.Presentation.Identifier.UseId">
+            <summary>
+            Indicates whether the user uses the ID value.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Presentation.Identifier.A">
+            <summary>
+            Indicates the alpha value.
+            </summary>
+            <exception cref="T:System.InvalidOperationException">Throws when the current instance uses ID.</exception>
+        </member>
+        <member name="P:Sudoku.Presentation.Identifier.R">
+            <summary>
+            Indicates the red value.
+            </summary>
+            <exception cref="T:System.InvalidOperationException">Throws when the current instance uses ID.</exception>
+        </member>
+        <member name="P:Sudoku.Presentation.Identifier.G">
+            <summary>
+            Indicates the green value.
+            </summary>
+            <exception cref="T:System.InvalidOperationException">Throws when the current instance uses ID.</exception>
+        </member>
+        <member name="P:Sudoku.Presentation.Identifier.B">
+            <summary>
+            Indicates the blue value.
+            </summary>
+            <exception cref="T:System.InvalidOperationException">Throws when the current instance uses ID.</exception>
+        </member>
+        <member name="P:Sudoku.Presentation.Identifier.Id">
+            <summary>
+            Indicates the ID value used.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Presentation.Identifier.Equals(System.Object)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Presentation.Identifier.Equals(Sudoku.Presentation.Identifier)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Presentation.Identifier.GetHashCode">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Presentation.Identifier.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
+        <member name="M:Sudoku.Presentation.Identifier.GetColor``1(System.Converter{Sudoku.Presentation.Identifier,``0})">
+            <summary>
+            Try to cast the current identifier instance into the result color value.
+            </summary>
+            <typeparam name="TColor">The type of the color.</typeparam>
+            <param name="converter">The converter method.</param>
+            <returns>The result color.</returns>
+        </member>
+        <member name="M:Sudoku.Presentation.Identifier.FromId(System.Int32)">
+            <summary>
+            Creates an <see cref="T:Sudoku.Presentation.Identifier"/> instance via the specified ID value.
+            </summary>
+            <param name="id">The ID value.</param>
+            <returns>The result <see cref="T:Sudoku.Presentation.Identifier"/> instance.</returns>
+        </member>
+        <member name="M:Sudoku.Presentation.Identifier.FromColor(System.Byte,System.Byte,System.Byte)">
+            <summary>
+            Creates an <see cref="T:Sudoku.Presentation.Identifier"/> instance via the color value.
+            </summary>
+            <param name="r">The red value.</param>
+            <param name="g">The green value.</param>
+            <param name="b">The blue value.</param>
+            <returns>The result <see cref="T:Sudoku.Presentation.Identifier"/> instance.</returns>
+        </member>
+        <member name="M:Sudoku.Presentation.Identifier.FromColor(System.Byte,System.Byte,System.Byte,System.Byte)">
+            <summary>
+            Creates an <see cref="T:Sudoku.Presentation.Identifier"/> instance via the color value.
+            </summary>
+            <param name="a">The alpha value.</param>
+            <param name="r">The red value.</param>
+            <param name="g">The green value.</param>
+            <param name="b">The blue value.</param>
+            <returns>The result <see cref="T:Sudoku.Presentation.Identifier"/> instance.</returns>
+        </member>
+        <member name="M:Sudoku.Presentation.Identifier.op_Equality(Sudoku.Presentation.Identifier,Sudoku.Presentation.Identifier)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Presentation.Identifier.op_Inequality(Sudoku.Presentation.Identifier,Sudoku.Presentation.Identifier)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Presentation.Identifier.op_Explicit(Sudoku.Presentation.Identifier)~System.Int32">
+            <summary>
+            Explicit cast from <see cref="T:Sudoku.Presentation.Identifier"/> to <see cref="T:System.Int32"/> indicating the ID value.
+            </summary>
+            <param name="identifier">The <see cref="T:Sudoku.Presentation.Identifier"/> instance.</param>
+        </member>
+        <member name="M:Sudoku.Presentation.Identifier.op_Explicit(Sudoku.Presentation.Identifier)~System.ValueTuple{System.Byte,System.Byte,System.Byte}">
+            <summary>
+            Explicit cast from <see cref="T:Sudoku.Presentation.Identifier"/> to (<see cref="T:System.Byte"/>, <see cref="T:System.Byte"/>,
+            <see cref="T:System.Byte"/>).
+            </summary>
+            <param name="identifier">The <see cref="T:Sudoku.Presentation.Identifier"/> instance.</param>
+        </member>
+        <member name="M:Sudoku.Presentation.Identifier.op_Explicit(Sudoku.Presentation.Identifier)~System.ValueTuple{System.Byte,System.Byte,System.Byte,System.Byte}">
+            <summary>
+            Explicit cast from <see cref="T:Sudoku.Presentation.Identifier"/> to (<see cref="T:System.Byte"/>, <see cref="T:System.Byte"/>,
+            <see cref="T:System.Byte"/>, <see cref="T:System.Byte"/>).
+            </summary>
+            <param name="identifier">The <see cref="T:Sudoku.Presentation.Identifier"/> instance.</param>
+        </member>
+        <member name="M:Sudoku.Presentation.Identifier.op_Implicit(System.ValueTuple{System.Byte,System.Byte,System.Byte,System.Byte})~Sudoku.Presentation.Identifier">
+            <summary>
+            Implicit cast from (<see cref="T:System.Byte"/>, <see cref="T:System.Byte"/>, <see cref="T:System.Byte"/>, <see cref="T:System.Byte"/>)
+            to <see cref="T:Sudoku.Presentation.Identifier"/>.
+            </summary>
+            <param name="colorQuadruple">
+            The quadruple of element types <see cref="T:System.Byte"/>, <see cref="T:System.Byte"/>, <see cref="T:System.Byte"/>
+            and <see cref="T:System.Byte"/>.
+            </param>
+        </member>
+        <member name="M:Sudoku.Presentation.Identifier.op_Implicit(System.ValueTuple{System.Byte,System.Byte,System.Byte})~Sudoku.Presentation.Identifier">
+            <summary>
+            Implicit cast from (<see cref="T:System.Byte"/>, <see cref="T:System.Byte"/>, <see cref="T:System.Byte"/>)
+            to <see cref="T:Sudoku.Presentation.Identifier"/>.
+            </summary>
+            <param name="colorTriple">
+            The quadruple of element types <see cref="T:System.Byte"/>, <see cref="T:System.Byte"/> and <see cref="T:System.Byte"/>.
+            </param>
+        </member>
+        <member name="M:Sudoku.Presentation.Identifier.op_Implicit(System.Int32)~Sudoku.Presentation.Identifier">
+            <summary>
+            Implicit cast from <see cref="T:System.Int32"/> indicating the ID value to <see cref="T:Sudoku.Presentation.Identifier"/>.
+            </summary>
+            <param name="id">The ID value.</param>
+        </member>
         <member name="T:Sudoku.Presentation.PresentationData">
             <summary>
             Indicates the presentation data that is used for present the information.
