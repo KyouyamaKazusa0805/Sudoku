@@ -30,7 +30,7 @@ public sealed class CellViewNode : ViewNode
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public override int GetHashCode() => HashCode.Combine(Identifier, Cell);
+	public override int GetHashCode() => HashCode.Combine(nameof(CellViewNode), Identifier, Cell);
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

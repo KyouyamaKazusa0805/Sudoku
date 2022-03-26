@@ -30,7 +30,7 @@ public sealed class RegionViewNode : ViewNode
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public override int GetHashCode() => HashCode.Combine(Identifier, Region);
+	public override int GetHashCode() => HashCode.Combine(nameof(RegionViewNode), Identifier, Region);
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

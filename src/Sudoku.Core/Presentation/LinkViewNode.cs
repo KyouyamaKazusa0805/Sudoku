@@ -49,7 +49,7 @@ public sealed class LinkViewNode : ViewNode
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public override int GetHashCode() =>
-		HashCode.Combine(Start.Cells, Start.Digit, End.Cells, End.Digit, LinkKind);
+		HashCode.Combine(nameof(LinkViewNode), Start.Cells, Start.Digit, End.Cells, End.Digit, LinkKind);
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

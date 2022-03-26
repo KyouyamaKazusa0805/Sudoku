@@ -30,7 +30,7 @@ public sealed class CandidateViewNode : ViewNode
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public override int GetHashCode() => HashCode.Combine(Identifier, Candidate);
+	public override int GetHashCode() => HashCode.Combine(nameof(CandidateViewNode), Identifier, Candidate);
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
