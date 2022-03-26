@@ -78,6 +78,44 @@ public sealed class View : ICloneable, IEnumerable<ViewNode>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public View Clone() => Count == 0 ? new() : new(new(from node in _nodes select node.Clone()));
 
+	/// <summary>
+	/// Adds a serial of cells to be highlighted.
+	/// </summary>
+	/// <param name="highlightedCells">The highlighted cells.</param>
+	/// <returns>The reference that is same as <see langword="this"/>.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public View AddCells(params (Identifier Identifier, int Cell)[] highlightedCells)
+	{
+		_nodes.AddRange(from pair in highlightedCells select new CellViewNode(pair.Identifier, pair.Cell));
+		return this;
+	}
+
+	/// <summary>
+	/// Adds a serial of candidates to be highlighted.
+	/// </summary>
+	/// <param name="highlightedCandidates">The highlighted candidates.</param>
+	/// <returns>The reference that is same as <see langword="this"/>.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public View AddCandidates(params (Identifier Identifier, int Candidate)[] highlightedCandidates)
+	{
+		_nodes.AddRange(
+			from pair in highlightedCandidates
+			select new CandidateViewNode(pair.Identifier, pair.Candidate));
+		return this;
+	}
+
+	/// <summary>
+	/// Adds a serial of regions to be highlighted.
+	/// </summary>
+	/// <param name="highlightedRegions">The highlighted regions.</param>
+	/// <returns>The reference that is same as <see langword="this"/>.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public View AddRegions(params (Identifier Identifier, int Region)[] highlightedRegions)
+	{
+		_nodes.AddRange(from pair in highlightedRegions select new RegionViewNode(pair.Identifier, pair.Region));
+		return this;
+	}
+
 	/// <inheritdoc cref="IEnumerable{T}.GetEnumerator"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public List<ViewNode>.Enumerator GetEnumerator() => _nodes.GetEnumerator();

@@ -12,17 +12,17 @@ public abstract class ViewNode :
 #endif
 {
 	/// <summary>
-	/// Indicates the identifier used.
+	/// Assigns the <see cref="Presentation.Identifier"/> instance as the basic information.
 	/// </summary>
-	protected readonly Identifier _identifier;
+	/// <param name="identifier">The <see cref="Presentation.Identifier"/> instance.</param>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	protected ViewNode(Identifier identifier) => Identifier = identifier;
 
 
 	/// <summary>
-	/// Assigns the <see cref="Identifier"/> instance as the basic information.
+	/// Indicates the identifier used.
 	/// </summary>
-	/// <param name="identifier">The <see cref="Identifier"/> instance.</param>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	protected ViewNode(Identifier identifier) => _identifier = identifier;
+	public Identifier Identifier { get; protected set; }
 
 
 	/// <inheritdoc/>

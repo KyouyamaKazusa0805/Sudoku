@@ -4794,6 +4794,64 @@
             <returns>The notation.</returns>
             <exception cref="T:System.ArgumentOutOfRangeException">Throws when the link kind is not defined.</exception>
         </member>
+        <member name="T:Sudoku.Presentation.CandidateViewNode">
+            <summary>
+            Defines a view node that highlights for a candidate.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Presentation.CandidateViewNode.#ctor(Sudoku.Presentation.Identifier,System.Int32)">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Presentation.CandidateViewNode"/> instance via the identifier and the highlight candidate.
+            </summary>
+            <param name="identifier">The identifier.</param>
+            <param name="candidate">The candidate.</param>
+        </member>
+        <member name="P:Sudoku.Presentation.CandidateViewNode.Candidate">
+            <summary>
+            Indicates the candidate highlighted.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Presentation.CandidateViewNode.Equals(Sudoku.Presentation.ViewNode)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Presentation.CandidateViewNode.GetHashCode">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Presentation.CandidateViewNode.ToString">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Presentation.CandidateViewNode.Clone">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Presentation.CellViewNode">
+            <summary>
+            Defines a view node that highlights for a cell.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Presentation.CellViewNode.#ctor(Sudoku.Presentation.Identifier,System.Int32)">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Presentation.CellViewNode"/> instance via the identifier and the highlight cell.
+            </summary>
+            <param name="identifier">The identifier.</param>
+            <param name="cell">The cell.</param>
+        </member>
+        <member name="P:Sudoku.Presentation.CellViewNode.Cell">
+            <summary>
+            Indicates the cell highlighted.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Presentation.CellViewNode.Equals(Sudoku.Presentation.ViewNode)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Presentation.CellViewNode.GetHashCode">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Presentation.CellViewNode.ToString">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Presentation.CellViewNode.Clone">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Presentation.ColorIdentifier">
             <summary>
             Indicates the color identifier that used to identify the color.
@@ -5116,6 +5174,66 @@
             </summary>
             <param name="id">The ID value.</param>
         </member>
+        <member name="T:Sudoku.Presentation.LockedTarget">
+            <summary>
+            Defines the data structure that stores a set of cells and a digit, indicating the information
+            about the locked candidate node.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Presentation.LockedTarget.#ctor(System.Int32,Sudoku.Collections.Cells@)">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Presentation.LockedTarget"/> instance via the specified cells and the specified digit used.
+            </summary>
+            <param name="digit">Indicates the digit used.</param>
+            <param name="cells">Indicates the cells used.</param>
+        </member>
+        <member name="P:Sudoku.Presentation.LockedTarget.Digit">
+            <summary>
+            Indicates the digit used.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Presentation.LockedTarget.Cells">
+            <summary>
+            Indicates the cells used.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Presentation.LockedTarget.Equals(System.Object)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Presentation.LockedTarget.Equals(Sudoku.Presentation.LockedTarget@)">
+            <inheritdoc cref="M:System.IEquatable`1.Equals(`0)"/>
+        </member>
+        <member name="M:Sudoku.Presentation.LockedTarget.GetHashCode">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Presentation.LockedTarget.ToString">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Presentation.LockedTarget.System#IEquatable{Sudoku#Presentation#LockedTarget}#Equals(Sudoku.Presentation.LockedTarget)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Presentation.LockedTarget.op_Equality(Sudoku.Presentation.LockedTarget@,Sudoku.Presentation.LockedTarget@)">
+            <summary>
+            Determines whether two <see cref="T:Sudoku.Presentation.LockedTarget"/> instances are considered equal.
+            </summary>
+            <param name="left">The first element to be compared.</param>
+            <param name="right">The second element to be compared.</param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
+        </member>
+        <member name="M:Sudoku.Presentation.LockedTarget.op_Inequality(Sudoku.Presentation.LockedTarget@,Sudoku.Presentation.LockedTarget@)">
+            <summary>
+            Determines whether two <see cref="T:Sudoku.Presentation.LockedTarget"/> instances are not considered equal.
+            </summary>
+            <param name="left">The first element to be compared.</param>
+            <param name="right">The second element to be compared.</param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
+        </member>
+        <member name="M:Sudoku.Presentation.LockedTarget.System#IEqualityOperators{Sudoku#Presentation#LockedTarget,Sudoku#Presentation#LockedTarget}#op_Equality(Sudoku.Presentation.LockedTarget,Sudoku.Presentation.LockedTarget)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Presentation.LockedTarget.System#IEqualityOperators{Sudoku#Presentation#LockedTarget,Sudoku#Presentation#LockedTarget}#op_Inequality(Sudoku.Presentation.LockedTarget,Sudoku.Presentation.LockedTarget)">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Presentation.PresentationData">
             <summary>
             Indicates the presentation data that is used for present the information.
@@ -5376,6 +5494,35 @@
             Indicates the data kind is for unknown value.
             </summary>
         </member>
+        <member name="T:Sudoku.Presentation.RegionViewNode">
+            <summary>
+            Defines a view node that highlights for a region.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Presentation.RegionViewNode.#ctor(Sudoku.Presentation.Identifier,System.Int32)">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Presentation.RegionViewNode"/> instance via the identifier and the highlight region.
+            </summary>
+            <param name="identifier">The identifier.</param>
+            <param name="region">The region.</param>
+        </member>
+        <member name="P:Sudoku.Presentation.RegionViewNode.Region">
+            <summary>
+            Indicates the region highlighted.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Presentation.RegionViewNode.Equals(Sudoku.Presentation.ViewNode)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Presentation.RegionViewNode.GetHashCode">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Presentation.RegionViewNode.ToString">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Presentation.RegionViewNode.Clone">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Presentation.UnknownValue">
             <summary>
             Encapsulates an unknown value that used in the technique <b>Unknown Covering</b>.
@@ -5467,6 +5614,27 @@
         <member name="M:Sudoku.Presentation.View.Clone">
             <inheritdoc cref="M:System.ICloneable.Clone"/>
         </member>
+        <member name="M:Sudoku.Presentation.View.AddCells(System.ValueTuple{Sudoku.Presentation.Identifier,System.Int32}[])">
+            <summary>
+            Adds a serial of cells to be highlighted.
+            </summary>
+            <param name="highlightedCells">The highlighted cells.</param>
+            <returns>The reference that is same as <see langword="this"/>.</returns>
+        </member>
+        <member name="M:Sudoku.Presentation.View.AddCandidates(System.ValueTuple{Sudoku.Presentation.Identifier,System.Int32}[])">
+            <summary>
+            Adds a serial of candidates to be highlighted.
+            </summary>
+            <param name="highlightedCandidates">The highlighted candidates.</param>
+            <returns>The reference that is same as <see langword="this"/>.</returns>
+        </member>
+        <member name="M:Sudoku.Presentation.View.AddRegions(System.ValueTuple{Sudoku.Presentation.Identifier,System.Int32}[])">
+            <summary>
+            Adds a serial of regions to be highlighted.
+            </summary>
+            <param name="highlightedRegions">The highlighted regions.</param>
+            <returns>The reference that is same as <see langword="this"/>.</returns>
+        </member>
         <member name="M:Sudoku.Presentation.View.GetEnumerator">
             <inheritdoc cref="M:System.Collections.Generic.IEnumerable`1.GetEnumerator"/>
         </member>
@@ -5484,16 +5652,16 @@
             Defines a view node.
             </summary>
         </member>
-        <member name="F:Sudoku.Presentation.ViewNode._identifier">
-            <summary>
-            Indicates the identifier used.
-            </summary>
-        </member>
         <member name="M:Sudoku.Presentation.ViewNode.#ctor(Sudoku.Presentation.Identifier)">
             <summary>
             Assigns the <see cref="T:Sudoku.Presentation.Identifier"/> instance as the basic information.
             </summary>
             <param name="identifier">The <see cref="T:Sudoku.Presentation.Identifier"/> instance.</param>
+        </member>
+        <member name="P:Sudoku.Presentation.ViewNode.Identifier">
+            <summary>
+            Indicates the identifier used.
+            </summary>
         </member>
         <member name="M:Sudoku.Presentation.ViewNode.Equals(System.Object)">
             <inheritdoc/>
