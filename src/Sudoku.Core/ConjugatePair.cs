@@ -1,5 +1,4 @@
 ﻿using Sudoku.Collections;
-using Sudoku.Presentation;
 
 namespace Sudoku;
 
@@ -70,7 +69,7 @@ public readonly record struct ConjugatePair(int From, int To, int Digit, in Cell
 	}
 
 	/// <inheritdoc/>
-	readonly bool IDefaultable<ConjugatePair>.IsDefault => this == Default;
+	bool IDefaultable<ConjugatePair>.IsDefault => this == Default;
 
 	/// <inheritdoc/>
 	static ConjugatePair IDefaultable<ConjugatePair>.Default => Default;
