@@ -5174,6 +5174,48 @@
             </summary>
             <param name="id">The ID value.</param>
         </member>
+        <member name="T:Sudoku.Presentation.LinkViewNode">
+            <summary>
+            Defines a view node that highlights for a link.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Presentation.LinkViewNode.#ctor(Sudoku.Presentation.Identifier,Sudoku.Presentation.LockedTarget@,Sudoku.Presentation.LockedTarget@,Sudoku.LinkKind)">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Presentation.LinkViewNode"/> instance via the specified identifier,
+            the specified start and end point, and the link kind.
+            </summary>
+            <param name="identifier">The identifier.</param>
+            <param name="startPoint">The start point of the link.</param>
+            <param name="endPoint">The end point of the link.</param>
+            <param name="linkKind">The kind of the link.</param>
+        </member>
+        <member name="P:Sudoku.Presentation.LinkViewNode.Start">
+            <summary>
+            Indicates the start point.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Presentation.LinkViewNode.End">
+            <summary>
+            Indicates the end point.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Presentation.LinkViewNode.LinkKind">
+            <summary>
+            Indicates the link kind.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Presentation.LinkViewNode.Equals(Sudoku.Presentation.ViewNode)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Presentation.LinkViewNode.GetHashCode">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Presentation.LinkViewNode.ToString">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Presentation.LinkViewNode.Clone">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Presentation.LockedTarget">
             <summary>
             Defines the data structure that stores a set of cells and a digit, indicating the information
@@ -5186,6 +5228,11 @@
             </summary>
             <param name="digit">Indicates the digit used.</param>
             <param name="cells">Indicates the cells used.</param>
+        </member>
+        <member name="P:Sudoku.Presentation.LockedTarget.IsSole">
+            <summary>
+            Indicates whether the number of cells is 1.
+            </summary>
         </member>
         <member name="P:Sudoku.Presentation.LockedTarget.Digit">
             <summary>

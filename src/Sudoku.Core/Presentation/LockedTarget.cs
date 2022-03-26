@@ -31,6 +31,11 @@ public readonly struct LockedTarget :
 
 
 	/// <summary>
+	/// Indicates whether the number of cells is 1.
+	/// </summary>
+	public bool IsSole => Cells.Count == 1;
+
+	/// <summary>
 	/// Indicates the digit used.
 	/// </summary>
 	public int Digit { get; }
