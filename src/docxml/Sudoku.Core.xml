@@ -5412,6 +5412,126 @@
         <member name="P:Sudoku.Presentation.UnknownValue.System#IDefaultable{Sudoku#Presentation#UnknownValue}#Default">
             <inheritdoc/>
         </member>
+        <member name="T:Sudoku.Presentation.View">
+            <summary>
+            Provides with a data structure that displays a view for basic information.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Presentation.View._nodes">
+            <summary>
+            Indicates the inner dictionary.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Presentation.View.#ctor">
+            <summary>
+            Creates an empty <see cref="T:Sudoku.Presentation.View"/> instance.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Presentation.View.#ctor(System.Collections.Generic.List{Sudoku.Presentation.ViewNode})">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Presentation.View"/> instance via the specified list as the raw value.
+            </summary>
+            <param name="nodes">The list as the raw value.</param>
+        </member>
+        <member name="P:Sudoku.Presentation.View.Count">
+            <summary>
+            Indicates the number of elements stored in the current collection.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Presentation.View.Item(System.Int32)">
+            <summary>
+            Gets the <see cref="T:Sudoku.Presentation.ViewNode"/> at the specified position.
+            </summary>
+            <param name="index">The index.</param>
+            <returns>The <see cref="T:Sudoku.Presentation.ViewNode"/> instance.</returns>
+        </member>
+        <member name="M:Sudoku.Presentation.View.Add(Sudoku.Presentation.ViewNode)">
+            <summary>
+            Adds the specified <see cref="T:Sudoku.Presentation.ViewNode"/> into the collection.
+            </summary>
+            <param name="node">The <see cref="T:Sudoku.Presentation.ViewNode"/> instance.</param>
+        </member>
+        <member name="M:Sudoku.Presentation.View.AddRange(System.Collections.Generic.IEnumerable{Sudoku.Presentation.ViewNode})">
+            <summary>
+            Adds a serial of elements into the collection.
+            </summary>
+            <param name="nodes">The <see cref="T:Sudoku.Presentation.ViewNode"/> instances to be added.</param>
+        </member>
+        <member name="M:Sudoku.Presentation.View.Contains(Sudoku.Presentation.ViewNode)">
+            <summary>
+            Determines whether an element is in the current collection.
+            </summary>
+            <param name="node">The node.</param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
+        </member>
+        <member name="M:Sudoku.Presentation.View.Clone">
+            <inheritdoc cref="M:System.ICloneable.Clone"/>
+        </member>
+        <member name="M:Sudoku.Presentation.View.GetEnumerator">
+            <inheritdoc cref="M:System.Collections.Generic.IEnumerable`1.GetEnumerator"/>
+        </member>
+        <member name="M:Sudoku.Presentation.View.System#ICloneable#Clone">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Presentation.View.System#Collections#IEnumerable#GetEnumerator">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Presentation.View.System#Collections#Generic#IEnumerable{Sudoku#Presentation#ViewNode}#GetEnumerator">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Presentation.ViewNode">
+            <summary>
+            Defines a view node.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Presentation.ViewNode._identifier">
+            <summary>
+            Indicates the identifier used.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Presentation.ViewNode.#ctor(Sudoku.Presentation.Identifier)">
+            <summary>
+            Assigns the <see cref="T:Sudoku.Presentation.Identifier"/> instance as the basic information.
+            </summary>
+            <param name="identifier">The <see cref="T:Sudoku.Presentation.Identifier"/> instance.</param>
+        </member>
+        <member name="M:Sudoku.Presentation.ViewNode.Equals(System.Object)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Presentation.ViewNode.Equals(Sudoku.Presentation.ViewNode)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Presentation.ViewNode.GetHashCode">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Presentation.ViewNode.ToString">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Presentation.ViewNode.Clone">
+            <summary>
+            Creates a new instance whose inner data is totally same as the current instance.
+            </summary>
+            <returns>The result <see cref="T:Sudoku.Presentation.ViewNode"/> as the copy.</returns>
+        </member>
+        <member name="M:Sudoku.Presentation.ViewNode.System#ICloneable#Clone">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Presentation.ViewNode.op_Equality(Sudoku.Presentation.ViewNode,Sudoku.Presentation.ViewNode)">
+            <summary>
+            Determines whether two <see cref="T:Sudoku.Presentation.ViewNode"/>s are same type, and hold a same value.
+            </summary>
+            <param name="left">The first instance to be compared.</param>
+            <param name="right">The second instance to be compared.</param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
+        </member>
+        <member name="M:Sudoku.Presentation.ViewNode.op_Inequality(Sudoku.Presentation.ViewNode,Sudoku.Presentation.ViewNode)">
+            <summary>
+            Determines whether two <see cref="T:Sudoku.Presentation.ViewNode"/>s are not same type, or not totally hold a same value.
+            </summary>
+            <param name="left">The first instance to be compared.</param>
+            <param name="right">The second instance to be compared.</param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
+        </member>
         <member name="T:Sudoku.Region">
             <summary>
             Defines a region type.
