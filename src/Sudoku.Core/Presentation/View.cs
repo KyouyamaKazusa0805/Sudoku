@@ -1,4 +1,6 @@
-﻿namespace Sudoku.Presentation;
+﻿using Sudoku.Collections;
+
+namespace Sudoku.Presentation;
 
 /// <summary>
 /// Provides with a data structure that displays a view for basic information.
@@ -124,11 +126,25 @@ public sealed class View : ICloneable, IEnumerable<ViewNode>
 	/// <param name="highlightedLinks">The highlighted links.</param>
 	/// <returns>The reference that is same as <see langword="this"/>.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public View AddLink(params (Identifier Identifier, LockedTarget Start, LockedTarget End, LinkKind LinkKind)[] highlightedLinks)
+	public View AddLinks(params (Identifier Identifier, LockedTarget Start, LockedTarget End, LinkKind LinkKind)[] highlightedLinks)
 	{
 		_nodes.AddRange(
 			from tuple in highlightedLinks
 			select new LinkViewNode(tuple.Identifier, tuple.Start, tuple.End, tuple.LinkKind));
+		return this;
+	}
+
+	/// <summary>
+	/// Adds a serial of crosshatches to be highlighted.
+	/// </summary>
+	/// <param name="highlightedCrosshatches">The highlighted crosshatches.</param>
+	/// <returns>The reference that is same as <see langword="this"/>.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public View AddCrosshatches(params (Identifier Identifier, Cells Start, Cells End, int Digit)[] highlightedCrosshatches)
+	{
+		_nodes.AddRange(
+			from tuple in highlightedCrosshatches
+			select new CrosshatchViewNode(tuple.Identifier, tuple.Start, tuple.End, tuple.Digit));
 		return this;
 	}
 
