@@ -67,13 +67,11 @@ public unsafe partial struct Grid :
 	/// <summary>
 	/// Indicates the event triggered when the value is changed.
 	/// </summary>
-	[NotNull, DisallowNull]
 	public static readonly void* ValueChanged;
 
 	/// <summary>
 	/// Indicates the event triggered when should re-compute candidates.
 	/// </summary>
-	[NotNull, DisallowNull]
 	public static readonly void* RefreshingCandidates;
 
 	/// <summary>
