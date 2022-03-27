@@ -148,6 +148,20 @@ public sealed class View : ICloneable, IEnumerable<ViewNode>
 		return this;
 	}
 
+	/// <summary>
+	/// Adds a serial of unknowns to be highlighted.
+	/// </summary>
+	/// <param name="highlightedUnknowns">The highlighted unknowns.</param>
+	/// <returns>The reference that is same as <see langword="this"/>.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public View AddUnknown(params (Identifier Identifier, int Cell, byte Char, short DigitsMask)[] highlightedUnknowns)
+	{
+		_nodes.AddRange(
+			from tuple in highlightedUnknowns
+			select new UnknownViewNode(tuple.Identifier, tuple.Cell, tuple.Char, tuple.DigitsMask));
+		return this;
+	}
+
 	/// <inheritdoc cref="IEnumerable{T}.GetEnumerator"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public List<ViewNode>.Enumerator GetEnumerator() => _nodes.GetEnumerator();

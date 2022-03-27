@@ -5648,6 +5648,48 @@
         <member name="P:Sudoku.Presentation.UnknownValue.System#IDefaultable{Sudoku#Presentation#UnknownValue}#Default">
             <inheritdoc/>
         </member>
+        <member name="T:Sudoku.Presentation.UnknownViewNode">
+            <summary>
+            Defines a view node that highlights for a unknown.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Presentation.UnknownViewNode.#ctor(Sudoku.Presentation.Identifier,System.Int32,System.Byte,System.Int16)">
+            <summary>
+            Initializes an <see cref="T:Sudoku.Presentation.UnknownViewNode"/> instance via the specified identifier,
+            the cell used, the unknown value character and the mask representing the digits used.
+            </summary>
+            <param name="identifier">The identifier.</param>
+            <param name="cell">The cell used.</param>
+            <param name="unknownValueChar">The character that represents the range of the unknown.</param>
+            <param name="digitsMask">The mask representing digits used.</param>
+        </member>
+        <member name="P:Sudoku.Presentation.UnknownViewNode.Cell">
+            <summary>
+            Indicates the cell used.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Presentation.UnknownViewNode.UnknownValueChar">
+            <summary>
+            Indicates the character that represents the unknown range.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Presentation.UnknownViewNode.DigitsMask">
+            <summary>
+            Indicates the digits used.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Presentation.UnknownViewNode.Equals(Sudoku.Presentation.ViewNode)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Presentation.UnknownViewNode.GetHashCode">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Presentation.UnknownViewNode.ToString">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Presentation.UnknownViewNode.Clone">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Presentation.View">
             <summary>
             Provides with a data structure that displays a view for basic information.
@@ -5736,6 +5778,13 @@
             Adds a serial of crosshatches to be highlighted.
             </summary>
             <param name="highlightedCrosshatches">The highlighted crosshatches.</param>
+            <returns>The reference that is same as <see langword="this"/>.</returns>
+        </member>
+        <member name="M:Sudoku.Presentation.View.AddUnknown(System.ValueTuple{Sudoku.Presentation.Identifier,System.Int32,System.Byte,System.Int16}[])">
+            <summary>
+            Adds a serial of unknowns to be highlighted.
+            </summary>
+            <param name="highlightedUnknowns">The highlighted unknowns.</param>
             <returns>The reference that is same as <see langword="this"/>.</returns>
         </member>
         <member name="M:Sudoku.Presentation.View.GetEnumerator">
