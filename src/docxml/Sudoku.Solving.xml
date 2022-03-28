@@ -10387,16 +10387,6 @@
             Indicates the analysis result will show all steps after the bottleneck.
             </summary>
         </member>
-        <member name="F:Sudoku.Solving.SolverResultFormattingOptions.ShowAttributes">
-            <summary>
-            Indicates the analysis result will append the attributes of the grid.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Solving.SolverResultFormattingOptions.ShowBackdoors">
-            <summary>
-            Indicates the analysis result will append the backdoors of the grid.
-            </summary>
-        </member>
         <member name="F:Sudoku.Solving.SolverResultFormattingOptions.ShowStepDetail">
             <summary>
             Indicates the analysis result will show the step detail.

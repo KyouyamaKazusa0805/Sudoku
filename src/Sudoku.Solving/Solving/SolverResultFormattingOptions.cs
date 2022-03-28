@@ -42,24 +42,12 @@ public enum SolverResultFormattingOptions : short
 	ShowStepsAfterBottleneck = 32,
 
 	/// <summary>
-	/// Indicates the analysis result will append the attributes of the grid.
-	/// </summary>
-	[Obsolete("The field is obsolete.", false)]
-	ShowAttributes = 64,
-
-	/// <summary>
-	/// Indicates the analysis result will append the backdoors of the grid.
-	/// </summary>
-	[Obsolete("The field is obsolete.", false)]
-	ShowBackdoors = 128,
-
-	/// <summary>
 	/// Indicates the analysis result will show the step detail.
 	/// </summary>
-	ShowStepDetail = 256,
+	ShowStepDetail = 64,
 
 	/// <summary>
 	/// Indicates the analysis result will show the steps.
 	/// </summary>
-	ShowSteps = 512
+	ShowSteps = 128
 }
