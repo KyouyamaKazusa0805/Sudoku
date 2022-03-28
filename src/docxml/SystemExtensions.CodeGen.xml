@@ -110,17 +110,6 @@
             <param name="typeName">The type name.</param>
             <returns>The code.</returns>
         </member>
-        <member name="T:Sudoku.Diagnostics.CodeGen.Generators.KeyedTupleGenerator">
-            <summary>
-            Define a source generator that generates the source code for tuples with the key.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.KeyedTupleGenerator.Execute(Microsoft.CodeAnalysis.GeneratorExecutionContext)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.KeyedTupleGenerator.Initialize(Microsoft.CodeAnalysis.GeneratorInitializationContext)">
-            <inheritdoc/>
-        </member>
         <member name="T:Sudoku.Diagnostics.CodeGen.Generators.Utf8JsonReaderBitOperationsGenerator">
             <summary>
             Defines a source generator that generates the source code on JSON serializations for bit operations.
