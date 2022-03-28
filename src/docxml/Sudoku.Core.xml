@@ -132,11 +132,10 @@
             <summary>
             <para>Indicates an empty instance (all bits are 0).</para>
             <para>
-            I strongly recommend you <b>should</b> use this instance instead of default constructor
-            <see cref="M:Sudoku.Collections.Candidates.#ctor"/>.
+            I strongly recommend you <b>should</b> use this instance instead of the expression
+            <see langword="default"/>(<see cref="T:Sudoku.Collections.Candidates"/>).
             </para>
             </summary>
-            <seealso cref="M:Sudoku.Collections.Candidates.#ctor"/>
         </member>
         <member name="F:Sudoku.Collections.Candidates._0">
             <summary>
@@ -200,18 +199,8 @@
         </member>
         <member name="M:Sudoku.Collections.Candidates.#ctor">
             <summary>
-            Initializes a <see cref="T:Sudoku.Collections.Candidates" /> instance via the read-only field <see cref="F:Sudoku.Collections.Candidates.Empty" />.
             </summary>
-            <remarks>
-            <target name="constructor">
-				<i>
-					The feature "Custom parameterless struct constructor" makes the parameterless struct constructor
-					different with <c>default(T)</c>. If you has defined a parameterless struct constructor,
-					<c>new T()</c> is no longer with the same meaning as <c>default(T)</c>.
-				</i>
-			</target>
-            </remarks>
-            <seealso cref="F:Sudoku.Collections.Candidates.Empty" />
+            <exception cref="T:System.NotSupportedException">Always throws.</exception>
         </member>
         <member name="M:Sudoku.Collections.Candidates.#ctor(System.Int32)">
             <summary>

@@ -31,7 +31,7 @@ internal static class Utf8JsonWriterExtensionsOnSudokuCollections
 		@this.WriteStartArray();
 		foreach (int candidate in candidates)
 		{
-			@this.WriteStringValue(new Candidates { candidate }.ToString());
+			@this.WriteStringValue((Candidates.Empty + candidate).ToString());
 		}
 		@this.WriteEndArray();
 	}

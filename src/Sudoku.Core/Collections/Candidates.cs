@@ -44,11 +44,10 @@ public unsafe struct Candidates :
 	/// <summary>
 	/// <para>Indicates an empty instance (all bits are 0).</para>
 	/// <para>
-	/// I strongly recommend you <b>should</b> use this instance instead of default constructor
-	/// <see cref="Candidates()"/>.
+	/// I strongly recommend you <b>should</b> use this instance instead of the expression
+	/// <see langword="default"/>(<see cref="Candidates"/>).
 	/// </para>
 	/// </summary>
-	/// <seealso cref="Candidates()"/>
 	public static readonly Candidates Empty;
 
 
@@ -59,17 +58,11 @@ public unsafe struct Candidates :
 
 
 	/// <summary>
-	/// Initializes a <see cref="Candidates"/> instance via the read-only field <see cref="Empty"/>.
 	/// </summary>
-	/// <remarks>
-	/// <include
-	///     file='../../global-doc-comments.xml'
-	///     path='g/csharp9/feature[@name="parameterless-struct-constructor"]/target[@name="constructor"]' />
-	/// </remarks>
-	/// <seealso cref="Empty"/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	/// <exception cref="NotSupportedException">Always throws.</exception>
 	[EditorBrowsable(EditorBrowsableState.Never)]
-	public Candidates() => this = Empty;
+	[Obsolete($"Please use the read-only field '{nameof(Candidates)}.{nameof(Empty)}' instead.", true)]
+	public Candidates() => throw new NotSupportedException();
 
 	/// <summary>
 	/// Initializes an instance with the specified candidate and its peers.
@@ -88,8 +81,9 @@ public unsafe struct Candidates :
 	/// <exception cref="ArgumentNullException">
 	/// Throws when the argument <paramref name="candidates"/> is <see langword="null"/>.
 	/// </exception>
-	public Candidates(int* candidates!!, int length) : this()
+	public Candidates(int* candidates!!, int length)
 	{
+		this = default;
 		for (int i = 0; i < length; i++)
 		{
 			InternalAdd(candidates[i], true);
@@ -104,8 +98,9 @@ public unsafe struct Candidates :
 	/// <param name="setItself">
 	/// Indicates whether the map will process itself with <see langword="true"/> value.
 	/// </param>
-	public Candidates(int candidate, bool setItself) : this()
+	public Candidates(int candidate, bool setItself)
 	{
+		this = default;
 		int cell = candidate / 9, digit = candidate % 9;
 		foreach (int c in PeerMaps[cell])
 		{
@@ -204,8 +199,9 @@ public unsafe struct Candidates :
 	/// </summary>
 	/// <param name="map">The map.</param>
 	/// <param name="digit">The digit.</param>
-	public Candidates(in Cells map, int digit) : this()
+	public Candidates(in Cells map, int digit)
 	{
+		this = default;
 		foreach (int cell in map)
 		{
 			InternalAdd(cell * 9 + digit, true);
@@ -217,14 +213,22 @@ public unsafe struct Candidates :
 	/// </summary>
 	/// <param name="candidates">The candidates.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public Candidates(in ReadOnlySpan<int> candidates) : this() => AddRange(candidates);
+	public Candidates(in ReadOnlySpan<int> candidates)
+	{
+		this = default;
+		AddRange(candidates);
+	}
 
 	/// <summary>
 	/// Initializes an instance with the specified candidates.
 	/// </summary>
 	/// <param name="candidates">The candidates.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public Candidates(IEnumerable<int> candidates) : this() => AddRange(candidates);
+	public Candidates(IEnumerable<int> candidates)
+	{
+		this = default;
+		AddRange(candidates);
+	}
 
 	/// <summary>
 	/// Copies the values into the collection.

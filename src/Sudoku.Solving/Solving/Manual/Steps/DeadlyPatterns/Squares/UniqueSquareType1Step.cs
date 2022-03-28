@@ -23,6 +23,6 @@ public sealed record UniqueSquareType1Step(
 	internal string CandidateStr
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => new Candidates { Candidate }.ToString();
+		get => (Candidates.Empty + Candidate).ToString();
 	}
 }

@@ -71,7 +71,6 @@ public unsafe struct Cells :
 	/// </summary>
 	/// <exception cref="NotSupportedException">Always throws.</exception>
 	/// <seealso cref="Empty"/>
-	[DebuggerHidden]
 	[EditorBrowsable(EditorBrowsableState.Never)]
 	[Obsolete($"Please use the read-only field '{nameof(Cells)}.{nameof(Empty)}' instead.", true)]
 	public Cells() => throw new NotSupportedException();

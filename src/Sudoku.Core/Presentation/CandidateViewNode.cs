@@ -33,7 +33,7 @@ public sealed class CandidateViewNode : ViewNode
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public override string ToString() =>
-		$"{nameof(CandidateViewNode)} {{ {nameof(Identifier)} = {Identifier}, {nameof(Candidate)} = {new Candidates { Candidate }} }}";
+		$"{nameof(CandidateViewNode)} {{ {nameof(Identifier)} = {Identifier}, {nameof(Candidate)} = {Candidates.Empty + Candidate} }}";
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
