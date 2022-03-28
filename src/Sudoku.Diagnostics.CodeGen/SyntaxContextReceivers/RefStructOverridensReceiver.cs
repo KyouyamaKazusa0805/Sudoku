@@ -8,8 +8,8 @@ namespace Sudoku.Diagnostics.CodeGen.SyntaxContextReceivers;
 /// </summary>
 /// <param name="CancellationToken">The cancellation token to cancel the operation.</param>
 /// <seealso cref="RefStructOverridensGenerator"/>
-internal sealed record RefStructOverridensReceiver(CancellationToken CancellationToken)
-: IResultCollectionReceiver<INamedTypeSymbol>
+internal sealed record RefStructOverridensReceiver(CancellationToken CancellationToken) :
+	IResultCollectionReceiver<INamedTypeSymbol>
 {
 	/// <summary>
 	/// Indicates the descriptor <c>SCA0013</c>
