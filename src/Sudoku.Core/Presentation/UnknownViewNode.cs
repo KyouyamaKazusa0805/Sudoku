@@ -1,6 +1,4 @@
-﻿using Sudoku.Collections;
-
-namespace Sudoku.Presentation;
+﻿namespace Sudoku.Presentation;
 
 /// <summary>
 /// Defines a view node that highlights for a unknown.

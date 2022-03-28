@@ -1,9 +1,4 @@
-﻿using System.ComponentModel;
-using static System.Numerics.BitOperations;
-using static Sudoku.Constants;
-using static Sudoku.Constants.Tables;
-
-namespace Sudoku.Collections;
+﻿namespace Sudoku.Collections;
 
 /// <summary>
 /// Encapsulates a map that contains 729 positions to represent a candidate.

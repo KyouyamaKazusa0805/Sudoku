@@ -1,6 +1,4 @@
-﻿using static System.Numerics.BitOperations;
-
-namespace Sudoku.Collections;
+﻿namespace Sudoku.Collections;
 
 /// <summary>
 /// Indicates a region collection.

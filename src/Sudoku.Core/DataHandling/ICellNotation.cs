@@ -1,6 +1,4 @@
-﻿using Sudoku.Collections;
-
-namespace Sudoku.DataHandling;
+﻿namespace Sudoku.DataHandling;
 
 /// <summary>
 /// Defines a notation instance that can convert the <see cref="Cells"/> to the target <see cref="string"/>

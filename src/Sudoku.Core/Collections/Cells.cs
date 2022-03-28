@@ -1,13 +1,4 @@
-﻿#pragma warning disable IDE0011
-
-using System.ComponentModel;
-using System.Runtime.Intrinsics;
-using Sudoku.DataHandling;
-using static System.Numerics.BitOperations;
-using static Sudoku.Constants;
-using static Sudoku.Constants.Tables;
-
-namespace Sudoku.Collections;
+﻿namespace Sudoku.Collections;
 
 /// <summary>
 /// Encapsulates a binary series of cell status table.
@@ -18,6 +9,7 @@ namespace Sudoku.Collections;
 /// and the <see langword="false"/> bit (0) is for the cell not containing
 /// the digit.
 /// </remarks>
+[SuppressMessage("Style", "IDE0011:Add braces", Justification = "<Pending>")]
 public unsafe struct Cells :
 	IDefaultable<Cells>,
 	IEnumerable<int>,

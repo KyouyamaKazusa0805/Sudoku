@@ -1,7 +1,4 @@
-﻿using Sudoku.Collections;
-using static Sudoku.Constants;
-
-namespace Sudoku.DataHandling;
+﻿namespace Sudoku.DataHandling;
 
 /// <summary>
 /// Defines the type that handles the <see cref="Cells"/> instance for the conversion

@@ -1,7 +1,4 @@
-﻿using System.ComponentModel;
-using Sudoku.Collections;
-
-namespace Sudoku;
+﻿namespace Sudoku;
 
 /// <summary>
 /// Encapsulates a conclusion representation while solving in logic.

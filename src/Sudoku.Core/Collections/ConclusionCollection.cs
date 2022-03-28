@@ -1,6 +1,4 @@
-﻿using static System.Algorithm.Sorting;
-
-namespace Sudoku.Collections;
+﻿namespace Sudoku.Collections;
 
 /// <summary>
 /// Provides a collection that contains the conclusions.

@@ -1,9 +1,4 @@
-﻿using System.CommonComparers.Equality;
-using static System.Algorithm.Sequences;
-using static System.Math;
-using static System.Numerics.BitOperations;
-
-namespace Sudoku.Collections;
+﻿namespace Sudoku.Collections;
 
 partial struct GridFormatter
 {

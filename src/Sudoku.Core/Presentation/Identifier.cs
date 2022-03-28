@@ -1,7 +1,4 @@
-﻿using System.ComponentModel;
-using System.Runtime.InteropServices;
-
-namespace Sudoku.Presentation;
+﻿namespace Sudoku.Presentation;
 
 /// <summary>
 /// Defines an identifier that can differ colors.

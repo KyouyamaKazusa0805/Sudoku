@@ -1,6 +1,4 @@
-﻿using Sudoku.Collections;
-
-namespace Sudoku.Presentation;
+﻿namespace Sudoku.Presentation;
 
 /// <summary>
 /// Defines the data structure that stores a set of cells and a digit, indicating the information

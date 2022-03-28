@@ -1,6 +1,4 @@
-﻿using static System.Numerics.BitOperations;
-
-namespace Sudoku.Collections;
+﻿namespace Sudoku.Collections;
 
 partial struct Grid
 {

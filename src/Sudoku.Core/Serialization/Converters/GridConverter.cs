@@ -1,6 +1,4 @@
-﻿using Sudoku.Collections;
-
-namespace Sudoku.Serialization.Converters;
+﻿namespace Sudoku.Serialization.Converters;
 
 /// <summary>
 /// Defines a serialization converter to convert the <see cref="Grid"/>

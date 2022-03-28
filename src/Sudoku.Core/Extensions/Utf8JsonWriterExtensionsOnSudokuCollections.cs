@@ -1,6 +1,4 @@
-﻿using Sudoku.Presentation;
-
-namespace Sudoku.Collections;
+﻿namespace Sudoku.Collections;
 
 /// <summary>
 /// Provides extension methods on <see cref="Utf8JsonWriter"/>, and writes the collection values

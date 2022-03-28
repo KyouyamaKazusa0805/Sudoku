@@ -1,7 +1,4 @@
-﻿using static System.Numerics.BitOperations;
-using static Sudoku.Constants;
-
-namespace Sudoku.Collections;
+﻿namespace Sudoku.Collections;
 
 partial struct GridParser
 {
