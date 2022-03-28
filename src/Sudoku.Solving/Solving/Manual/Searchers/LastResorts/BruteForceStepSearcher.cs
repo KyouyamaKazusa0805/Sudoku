@@ -1,8 +1,4 @@
-﻿using Sudoku.Collections;
-using Sudoku.Presentation;
-using Sudoku.Solving.Manual.Steps;
-
-namespace Sudoku.Solving.Manual.Searchers;
+﻿namespace Sudoku.Solving.Manual.Searchers;
 
 /// <summary>
 /// Provides with a <b>Brute Force</b> step searcher.

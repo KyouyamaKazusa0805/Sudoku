@@ -1,7 +1,4 @@
-﻿using System.ComponentModel;
-using Sudoku.Collections;
-
-namespace Sudoku.Solving.Collections;
+﻿namespace Sudoku.Solving.Collections;
 
 /// <summary>
 /// Defines a pattern that is a unique polygon technique structure in theory. The sketch is like:

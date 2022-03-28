@@ -1,10 +1,4 @@
-﻿using Sudoku.Collections;
-using static System.Numerics.BitOperations;
-using static Sudoku.Constants.Tables;
-using static Sudoku.Solving.Manual.Buffer.FastProperties;
-using static Sudoku.Solving.Manual.Constants;
-
-namespace Sudoku.Solving.Collections;
+﻿namespace Sudoku.Solving.Collections;
 
 /// <summary>
 /// Encapsulates a normal almost locked set (ALS as its abberivation).

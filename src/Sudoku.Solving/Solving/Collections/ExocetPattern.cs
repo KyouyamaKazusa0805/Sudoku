@@ -1,6 +1,4 @@
-﻿using Sudoku.Collections;
-
-namespace Sudoku.Solving.Collections;
+﻿namespace Sudoku.Solving.Collections;
 
 /// <summary>
 /// <para>

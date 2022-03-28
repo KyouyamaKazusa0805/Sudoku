@@ -1,10 +1,4 @@
-﻿using Sudoku.Presentation;
-using Sudoku.Solving.Collections;
-using Sudoku.Solving.Manual.Searchers;
-using Sudoku.Solving.Manual.Text;
-using Sudoku.Techniques;
-
-namespace Sudoku.Solving.Manual.Steps;
+﻿namespace Sudoku.Solving.Manual.Steps;
 
 /// <summary>
 /// Provides with a step that is a <b>Alternating Inference Chain</b> technique.

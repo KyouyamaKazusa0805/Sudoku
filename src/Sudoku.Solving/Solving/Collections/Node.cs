@@ -1,8 +1,4 @@
-﻿using System.Reflection;
-using System.Runtime.Intrinsics;
-using Sudoku.Collections;
-
-namespace Sudoku.Solving.Collections;
+﻿namespace Sudoku.Solving.Collections;
 
 /// <summary>
 /// Defines a chain node.

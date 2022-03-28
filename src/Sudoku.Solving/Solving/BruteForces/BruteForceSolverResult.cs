@@ -1,6 +1,4 @@
-﻿using Sudoku.Collections;
-
-namespace Sudoku.Solving.BruteForces;
+﻿namespace Sudoku.Solving.BruteForces;
 
 /// <summary>
 /// Encapsulates a solver result information that is created by a brute force solver.

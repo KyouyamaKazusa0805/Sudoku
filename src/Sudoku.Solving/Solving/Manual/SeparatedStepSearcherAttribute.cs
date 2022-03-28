@@ -1,6 +1,4 @@
-﻿using Sudoku.Solving.Manual.Searchers;
-
-namespace Sudoku.Solving.Manual;
+﻿namespace Sudoku.Solving.Manual;
 
 /// <summary>
 /// Defines an attribute that applies to an instance having implemented <see cref="IStepSearcher"/>,

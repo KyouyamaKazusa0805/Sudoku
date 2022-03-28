@@ -1,8 +1,4 @@
-﻿using Sudoku.Collections;
-using Sudoku.Presentation;
-using Sudoku.Techniques;
-
-namespace Sudoku.Solving.Manual.Steps;
+﻿namespace Sudoku.Solving.Manual.Steps;
 
 /// <summary>
 /// Provides with a step that is a <b>Unique Rectangle Type 1</b> technique.

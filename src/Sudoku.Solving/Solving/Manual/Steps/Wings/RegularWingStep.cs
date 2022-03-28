@@ -1,10 +1,4 @@
-﻿using Sudoku.Collections;
-using Sudoku.Presentation;
-using Sudoku.Solving.Manual.Text;
-using Sudoku.Techniques;
-using static System.Numerics.BitOperations;
-
-namespace Sudoku.Solving.Manual.Steps;
+﻿namespace Sudoku.Solving.Manual.Steps;
 
 /// <summary>
 /// Provides with a step that is a <b>Regular Wing</b> technique.

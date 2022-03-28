@@ -1,9 +1,4 @@
-﻿using Sudoku.Collections;
-using Sudoku.Presentation;
-using static Sudoku.Constants.Tables;
-using static Sudoku.Solving.Manual.Buffer.FastProperties;
-
-namespace Sudoku.Solving.Manual.Searchers;
+﻿namespace Sudoku.Solving.Manual.Searchers;
 
 /// <summary>
 /// Defines a step searcher that searches for guardian steps.

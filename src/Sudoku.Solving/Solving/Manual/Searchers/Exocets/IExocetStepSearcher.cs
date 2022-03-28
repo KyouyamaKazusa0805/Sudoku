@@ -1,7 +1,4 @@
-﻿using Sudoku.Solving.Collections;
-using static Sudoku.Solving.Manual.Constants;
-
-namespace Sudoku.Solving.Manual.Searchers;
+﻿namespace Sudoku.Solving.Manual.Searchers;
 
 /// <summary>
 /// Defines a step searcher that searches for exocet steps.

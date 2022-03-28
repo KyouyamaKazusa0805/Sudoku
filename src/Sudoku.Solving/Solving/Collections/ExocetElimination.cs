@@ -1,7 +1,4 @@
-﻿using Sudoku.Collections;
-using Sudoku.Solving.Manual.Searchers;
-
-namespace Sudoku.Solving.Collections;
+﻿namespace Sudoku.Solving.Collections;
 
 /// <summary>
 /// Defines an elimination that is created by searchers

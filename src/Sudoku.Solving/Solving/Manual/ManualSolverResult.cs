@@ -1,7 +1,4 @@
-﻿using Sudoku.Collections;
-using Sudoku.Techniques;
-
-namespace Sudoku.Solving.Manual;
+﻿namespace Sudoku.Solving.Manual;
 
 /// <summary>
 /// Provides the solver result after <see cref="ManualSolver"/> solves a puzzle.

@@ -1,7 +1,4 @@
-﻿using Sudoku.Collections;
-using Sudoku.Presentation;
-
-namespace Sudoku.Solving.Manual.Steps;
+﻿namespace Sudoku.Solving.Manual.Steps;
 
 /// <summary>
 /// Provides with a step that is a <b>Unique Loop Type 1</b> technique.

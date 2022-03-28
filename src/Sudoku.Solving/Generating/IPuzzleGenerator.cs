@@ -1,7 +1,4 @@
-﻿using Sudoku.Collections;
-using Sudoku.Solving.BruteForces;
-
-namespace Sudoku.Generating;
+﻿namespace Sudoku.Generating;
 
 /// <summary>
 /// Defines a puzzle generator.

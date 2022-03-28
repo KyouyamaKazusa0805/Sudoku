@@ -1,7 +1,4 @@
-﻿using Sudoku.Collections;
-using Sudoku.Solving.Manual.Steps;
-
-namespace Sudoku.Solving.Manual.Searchers;
+﻿namespace Sudoku.Solving.Manual.Searchers;
 
 /// <summary>
 /// Provides with a <b>Pattern Overlay</b> step searcher.

@@ -1,6 +1,5 @@
 ﻿#define CLEAR_STATE_STACK_FOR_EACH_CHECK_VALIDITY_AND_SOLVE_INVOKES
 
-using Sudoku.Collections;
 
 namespace Sudoku.Solving.BruteForces;
 

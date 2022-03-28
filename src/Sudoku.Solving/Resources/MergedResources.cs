@@ -1,7 +1,4 @@
-﻿using System.Globalization;
-using Sudoku.Techniques;
-
-namespace Sudoku.Resources;
+﻿namespace Sudoku.Resources;
 
 /// <summary>
 /// Defines a merged resource dictionary.

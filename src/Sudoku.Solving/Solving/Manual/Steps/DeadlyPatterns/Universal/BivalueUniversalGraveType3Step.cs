@@ -1,11 +1,4 @@
-﻿using Sudoku.Collections;
-using Sudoku.Presentation;
-using Sudoku.Solving.Manual.Text;
-using Sudoku.Techniques;
-using static System.Numerics.BitOperations;
-using static Sudoku.Solving.Manual.Constants;
-
-namespace Sudoku.Solving.Manual.Steps;
+﻿namespace Sudoku.Solving.Manual.Steps;
 
 /// <summary>
 /// Provides with a step that is a <b>Bivalue Universal Grave Type 3</b> technique.

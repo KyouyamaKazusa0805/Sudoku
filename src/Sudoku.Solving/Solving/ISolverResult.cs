@@ -1,6 +1,4 @@
-﻿using Sudoku.Collections;
-
-namespace Sudoku.Solving;
+﻿namespace Sudoku.Solving;
 
 /// <summary>
 /// Defines a result that created by a solver to represent a result of analysis after the solver calculated.

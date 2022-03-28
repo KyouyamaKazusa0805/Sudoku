@@ -1,6 +1,4 @@
-﻿using Sudoku.Collections;
-
-namespace Sudoku.Solving.BruteForces;
+﻿namespace Sudoku.Solving.BruteForces;
 
 /// <summary>
 /// Provides a solver using backtracking method.

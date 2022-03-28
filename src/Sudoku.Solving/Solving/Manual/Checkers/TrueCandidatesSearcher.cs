@@ -1,9 +1,4 @@
-﻿using Sudoku.Collections;
-using static System.Numerics.BitOperations;
-using static Sudoku.Constants.Tables;
-using static Sudoku.Solving.Manual.Buffer.FastProperties;
-
-namespace Sudoku.Solving.Manual.Checkers;
+﻿namespace Sudoku.Solving.Manual.Checkers;
 
 /// <summary>
 /// Defines a searcher that searches for the true candidates of the current sudoku grid.

@@ -1,7 +1,4 @@
-﻿using Sudoku.Collections;
-using Sudoku.Presentation;
-
-namespace Sudoku.Solving.Manual.Steps;
+﻿namespace Sudoku.Solving.Manual.Steps;
 
 /// <summary>
 /// Provides with a step that is an <b>Extended Rectangle Type 1</b> technique.

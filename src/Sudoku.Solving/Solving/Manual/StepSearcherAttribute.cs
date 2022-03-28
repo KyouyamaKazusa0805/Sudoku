@@ -1,6 +1,4 @@
-﻿using Sudoku.Solving.Manual.Searchers;
-
-namespace Sudoku.Solving.Manual;
+﻿namespace Sudoku.Solving.Manual;
 
 /// <summary>
 /// To mark onto a step searcher, to tell the runtime and the compiler that the type is a step searcher.
