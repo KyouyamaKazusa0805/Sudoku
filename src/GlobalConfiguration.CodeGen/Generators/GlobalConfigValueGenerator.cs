@@ -38,7 +38,7 @@ public sealed class GlobalConfigValueGenerator : ISourceGenerator
 			return;
 		}
 
-		Version? versionResult = null;
+		Unsafe.SkipInit(out Version versionResult);
 		bool found = false;
 		foreach (object element in elements)
 		{
