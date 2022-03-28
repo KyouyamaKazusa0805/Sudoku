@@ -4148,11 +4148,6 @@
             </para>
             </remarks>
         </member>
-        <member name="F:Sudoku.Solving.Manual.Searchers.UniqueRectangleStepSearcher.Patterns">
-            <summary>
-            The table of all <b>Unique Rectangle</b> cells.
-            </summary>
-        </member>
         <member name="T:Sudoku.Solving.Manual.Searchers.IUniqueSquareStepSearcher">
             <summary>
             Defines a step searcher that searches for unique sqaure steps.

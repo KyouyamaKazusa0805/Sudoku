@@ -4020,13 +4020,15 @@
             <summary>
             The tables for grid processing.
             </summary>
-            <remarks><i>
-            All fields will be initialized in the static constructor declared in the source generator.
-            </i></remarks>
         </member>
         <member name="F:Sudoku.Constants.Tables.RegionFirst">
             <summary>
             Indicates the first cell offset for each region.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Constants.Tables.UniqueRectanglePatterns">
+            <summary>
+            The table of all <b>Unique Rectangle</b> cells.
             </summary>
         </member>
         <member name="F:Sudoku.Constants.Tables.Peers">
