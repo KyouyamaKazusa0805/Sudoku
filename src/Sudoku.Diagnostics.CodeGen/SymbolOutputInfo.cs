@@ -1,7 +1,4 @@
-﻿using Sudoku.Diagnostics.CodeGen;
-using Kind = Microsoft.CodeAnalysis.TypeKind;
-
-namespace Microsoft.CodeAnalysis;
+﻿namespace Microsoft.CodeAnalysis;
 
 /// <summary>
 /// Provides the basic information used for output a source code via an <see cref="INamedTypeSymbol"/>.

@@ -1,6 +1,4 @@
-﻿using Sudoku.Diagnostics.CodeGen.Generators;
-
-namespace Sudoku.Diagnostics.CodeGen.SyntaxContextReceivers;
+﻿namespace Sudoku.Diagnostics.CodeGen.SyntaxContextReceivers;
 
 /// <summary>
 /// Defines a syntax context receiver that provides the gathered node for the usages on the source generator

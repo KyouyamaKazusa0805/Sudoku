@@ -1,6 +1,4 @@
-﻿using Sudoku.Diagnostics.CodeGen.SyntaxContextReceivers;
-
-namespace Sudoku.Diagnostics.CodeGen.Generators;
+﻿namespace Sudoku.Diagnostics.CodeGen.Generators;
 
 /// <summary>
 /// Indicates the generator that generates the default overriden methods in a <see langword="ref struct"/>.
