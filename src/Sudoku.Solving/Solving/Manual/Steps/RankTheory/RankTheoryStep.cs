@@ -8,10 +8,8 @@ namespace Sudoku.Solving.Manual.Steps;
 /// </summary>
 /// <param name="Conclusions"><inheritdoc/></param>
 /// <param name="Views"><inheritdoc/></param>
-public abstract record RankTheoryStep(
-	ImmutableArray<Conclusion> Conclusions,
-	ImmutableArray<PresentationData> Views
-) : Step(Conclusions, Views)
+public abstract record RankTheoryStep(ImmutableArray<Conclusion> Conclusions, ImmutableArray<View> Views) :
+	Step(Conclusions, Views)
 {
 	/// <inheritdoc/>
 	public sealed override bool ShowDifficulty => base.ShowDifficulty;

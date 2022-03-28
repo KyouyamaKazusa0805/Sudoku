@@ -14,7 +14,7 @@ namespace Sudoku.Solving.Manual.Steps;
 /// <param name="ExtraDigit">The extra digit.</param>
 public sealed record UniquePolygonType2Step(
 	ImmutableArray<Conclusion> Conclusions,
-	ImmutableArray<PresentationData> Views,
+	ImmutableArray<View> Views,
 	in Cells Map,
 	short DigitsMask,
 	int ExtraDigit

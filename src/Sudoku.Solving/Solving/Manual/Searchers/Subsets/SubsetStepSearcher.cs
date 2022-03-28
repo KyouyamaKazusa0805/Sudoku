@@ -77,23 +77,19 @@ public sealed unsafe class SubsetStepSearcher : ISubsetStepSearcher
 						continue;
 					}
 
-					var candidateOffsets = new List<(int, ColorIdentifier)>(16);
+					var candidateOffsets = new List<CandidateViewNode>(16);
 					foreach (int cell in cells)
 					{
 						foreach (int digit in grid.GetCandidates(cell))
 						{
-							candidateOffsets.Add((cell * 9 + digit, (ColorIdentifier)0));
+							candidateOffsets.Add(new(0, cell * 9 + digit));
 						}
 					}
 
 					bool? isLocked = flagMask == mask ? true : flagMask != 0 ? false : null;
 					var step = new NakedSubsetStep(
 						ImmutableArray.CreateRange(conclusions),
-						ImmutableArray.Create(new PresentationData
-						{
-							Candidates = candidateOffsets,
-							Regions = new[] { (region, (ColorIdentifier)0) }
-						}),
+						ImmutableArray.Create(View.Empty + candidateOffsets + new RegionViewNode(0, region)),
 						region,
 						cells,
 						mask,
@@ -155,22 +151,18 @@ public sealed unsafe class SubsetStepSearcher : ISubsetStepSearcher
 					}
 
 					// Gather highlight candidates.
-					var candidateOffsets = new List<(int, ColorIdentifier)>();
+					var candidateOffsets = new List<CandidateViewNode>();
 					foreach (int digit in digits)
 					{
 						foreach (int cell in map & CandMaps[digit])
 						{
-							candidateOffsets.Add((cell * 9 + digit, (ColorIdentifier)0));
+							candidateOffsets.Add(new(0, cell * 9 + digit));
 						}
 					}
 
 					var step = new HiddenSubsetStep(
 						ImmutableArray.CreateRange(conclusions),
-						ImmutableArray.Create(new PresentationData
-						{
-							Candidates = candidateOffsets,
-							Regions = new[] { (region, (ColorIdentifier)0) }
-						}),
+						ImmutableArray.Create(View.Empty + candidateOffsets + new RegionViewNode(0, region)),
 						region,
 						map,
 						digitsMask

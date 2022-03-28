@@ -14,7 +14,7 @@ namespace Sudoku.Solving.Manual.Steps;
 /// <param name="DigitsMask">Indicates the digits used.</param>
 public abstract record UniqueSquareStep(
 	ImmutableArray<Conclusion> Conclusions,
-	ImmutableArray<PresentationData> Views,
+	ImmutableArray<View> Views,
 	in Cells Cells,
 	short DigitsMask
 ) : DeadlyPatternStep(Conclusions, Views)

@@ -32,7 +32,7 @@ namespace Sudoku.Solving.Manual.Steps;
 /// </param>
 public sealed record NakedSubsetStep(
 	ImmutableArray<Conclusion> Conclusions,
-	ImmutableArray<PresentationData> Views,
+	ImmutableArray<View> Views,
 	int Region,
 	in Cells Cells,
 	short DigitsMask,

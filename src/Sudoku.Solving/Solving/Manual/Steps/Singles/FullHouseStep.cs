@@ -14,7 +14,7 @@ namespace Sudoku.Solving.Manual.Steps;
 /// <param name="Digit"><inheritdoc/></param>
 public sealed record FullHouseStep(
 	ImmutableArray<Conclusion> Conclusions,
-	ImmutableArray<PresentationData> Views,
+	ImmutableArray<View> Views,
 	int Cell,
 	int Digit
 ) : SingleStep(Conclusions, Views, Cell, Digit)

@@ -3496,46 +3496,6 @@
             or two regions are not in same region type.
             </exception>
         </member>
-        <member name="T:Sudoku.Collections.LinkCollection">
-            <summary>
-            Provides a collection that contains the chain links.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Collections.LinkCollection._collection">
-            <summary>
-            The internal collection.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Collections.LinkCollection.#ctor(System.Span{Sudoku.Link}@)">
-            <summary>
-            Initializes an instance with the specified collection.
-            </summary>
-            <param name="collection">The collection.</param>
-        </member>
-        <member name="M:Sudoku.Collections.LinkCollection.#ctor(System.Collections.Generic.IEnumerable{Sudoku.Link})">
-            <summary>
-            Initializes an instance with the specified collection.
-            </summary>
-            <param name="collection">The collection.</param>
-        </member>
-        <member name="M:Sudoku.Collections.LinkCollection.Equals(Sudoku.Collections.LinkCollection@)">
-            <summary>
-            Determine whether two collections are equal.
-            </summary>
-            <param name="other">The collection to compare.</param>
-            <returns>A <see cref="T:System.Boolean"/> result.</returns>
-        </member>
-        <member name="M:Sudoku.Collections.LinkCollection.ToString">
-            <inheritdoc cref="M:System.Object.ToString"/>
-        </member>
-        <member name="M:Sudoku.Collections.LinkCollection.Equals(System.Object)">
-            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
-            <exception cref="T:System.NotSupportedException">Always throws.</exception>
-        </member>
-        <member name="M:Sudoku.Collections.LinkCollection.GetHashCode">
-            <inheritdoc cref="M:System.Object.GetHashCode"/>
-            <exception cref="T:System.NotSupportedException">Always throws.</exception>
-        </member>
         <member name="T:Sudoku.Collections.RegionCollection">
             <summary>
             Indicates a region collection.
@@ -4642,114 +4602,6 @@
             <param name="unit">The unit.</param>
             <returns>The value of the specified size unit.</returns>
         </member>
-        <member name="T:Sudoku.Link">
-            <summary>
-            Encapsulates a link used for drawing.
-            </summary>
-            <param name="Mask">
-            The mask of the link. The mask contains 21 bits used:
-            <code>
-            24      16      8       0
-            |       |       |       |
-            |-------|-------|-------|
-            |   ||        |         |
-            24 2120       10        0
-            </code>
-            </param>
-        </member>
-        <member name="M:Sudoku.Link.#ctor(System.Int32)">
-            <summary>
-            Encapsulates a link used for drawing.
-            </summary>
-            <param name="Mask">
-            The mask of the link. The mask contains 21 bits used:
-            <code>
-            24      16      8       0
-            |       |       |       |
-            |-------|-------|-------|
-            |   ||        |         |
-            24 2120       10        0
-            </code>
-            </param>
-        </member>
-        <member name="P:Sudoku.Link.Mask">
-            <summary>
-            The mask of the link. The mask contains 21 bits used:
-            <code>
-            24      16      8       0
-            |       |       |       |
-            |-------|-------|-------|
-            |   ||        |         |
-            24 2120       10        0
-            </code>
-            </summary>
-        </member>
-        <member name="F:Sudoku.Link.Default">
-            <inheritdoc cref="P:System.IDefaultable`1.Default"/>
-        </member>
-        <member name="M:Sudoku.Link.#ctor(System.Int32,System.Int32,Sudoku.LinkKind)">
-            <summary>
-            Initializes a <see cref="T:Sudoku.Link"/> instance via the start and end candidate, and the kind of the link.
-            </summary>
-            <param name="startCandidate">The start candidate.</param>
-            <param name="endCandidate">The end candidate.</param>
-            <param name="kind">The kind of the link.</param>
-        </member>
-        <member name="P:Sudoku.Link.StartCandidate">
-            <summary>
-            Indicates the start candidate.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Link.StartCell">
-            <summary>
-            Indicates the start cell.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Link.StartDigit">
-            <summary>
-            Indicates the start digit.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Link.EndCandidate">
-            <summary>
-            Indicates the end candidate.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Link.EndCell">
-            <summary>
-            Indicates the end cell.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Link.EndDigit">
-            <summary>
-            Indicates the end digit.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Link.Kind">
-            <summary>
-            Indicates the link kind.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Link.System#IDefaultable{Sudoku#Link}#IsDefault">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Link.System#IDefaultable{Sudoku#Link}#Default">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Link.Equals(Sudoku.Link)">
-            <summary>
-            Determine whether the specified <see cref="T:Sudoku.Link"/> instance holds the same start cell,
-            end cell and the link type as the current instance.
-            </summary>
-            <param name="other">The instance to compare.</param>
-            <returns>A <see cref="T:System.Boolean"/> result.</returns>
-        </member>
-        <member name="M:Sudoku.Link.GetHashCode">
-            <inheritdoc cref="M:System.Object.GetHashCode"/>
-        </member>
-        <member name="M:Sudoku.Link.ToString">
-            <inheritdoc cref="M:System.Object.ToString"/>
-        </member>
         <member name="T:Sudoku.LinkKind">
             <summary>
             Defines a link kind.
@@ -4850,166 +4702,6 @@
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Presentation.CellViewNode.Clone">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Presentation.ColorIdentifier">
-            <summary>
-            Indicates the color identifier that used to identify the color.
-            </summary>
-            <param name="UseId">Indicates whether the current instance suggests an ID using.</param>
-            <param name="Id">
-            Indicates the ID label. The property has a useful value
-            if and only if the property <see cref="P:Sudoku.Presentation.ColorIdentifier.UseId"/> is <see langword="true"/>.
-            </param>
-            <param name="Color">
-            Indicates the color. The property has a useful value
-            if and only if the property <see cref="P:Sudoku.Presentation.ColorIdentifier.UseId"/> is <see langword="false"/>.
-            </param>
-            <seealso cref="P:Sudoku.Presentation.ColorIdentifier.UseId"/>
-        </member>
-        <member name="M:Sudoku.Presentation.ColorIdentifier.#ctor(System.Boolean,System.Int32,System.Int32)">
-            <summary>
-            Indicates the color identifier that used to identify the color.
-            </summary>
-            <param name="UseId">Indicates whether the current instance suggests an ID using.</param>
-            <param name="Id">
-            Indicates the ID label. The property has a useful value
-            if and only if the property <see cref="P:Sudoku.Presentation.ColorIdentifier.UseId"/> is <see langword="true"/>.
-            </param>
-            <param name="Color">
-            Indicates the color. The property has a useful value
-            if and only if the property <see cref="P:Sudoku.Presentation.ColorIdentifier.UseId"/> is <see langword="false"/>.
-            </param>
-            <seealso cref="P:Sudoku.Presentation.ColorIdentifier.UseId"/>
-        </member>
-        <member name="P:Sudoku.Presentation.ColorIdentifier.UseId">
-            <summary>Indicates whether the current instance suggests an ID using.</summary>
-        </member>
-        <member name="P:Sudoku.Presentation.ColorIdentifier.Id">
-            <summary>
-            Indicates the ID label. The property has a useful value
-            if and only if the property <see cref="P:Sudoku.Presentation.ColorIdentifier.UseId"/> is <see langword="true"/>.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Presentation.ColorIdentifier.Color">
-            <summary>
-            Indicates the color. The property has a useful value
-            if and only if the property <see cref="P:Sudoku.Presentation.ColorIdentifier.UseId"/> is <see langword="false"/>.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Presentation.ColorIdentifier.UnexpectedOperationException">
-            <summary>
-            Returns the <see cref="T:System.InvalidOperationException"/> instance to report the unexpected operation
-            for getting the A, R, G, B value.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Presentation.ColorIdentifier.#ctor(System.Byte,System.Byte,System.Byte)">
-            <summary>
-            Initializes a <see cref="T:Sudoku.Presentation.ColorIdentifier"/> with the specified R, G, B value.
-            </summary>
-            <param name="r">The red value.</param>
-            <param name="g">The green value.</param>
-            <param name="b">The blue value.</param>
-        </member>
-        <member name="M:Sudoku.Presentation.ColorIdentifier.#ctor(System.Byte,System.Byte,System.Byte,System.Byte)">
-            <summary>
-            Initializes a <see cref="T:Sudoku.Presentation.ColorIdentifier"/> with the specified A, R, G, B value.
-            </summary>
-            <param name="a">The alpha value.</param>
-            <param name="r">The red value.</param>
-            <param name="g">The green value.</param>
-            <param name="b">The blue value.</param>
-        </member>
-        <member name="P:Sudoku.Presentation.ColorIdentifier.A">
-            <summary>
-            Gets the alpha value.
-            </summary>
-            <exception cref="T:System.InvalidOperationException">
-            Throws when <see cref="P:Sudoku.Presentation.ColorIdentifier.UseId"/> is <see langword="true"/>.
-            </exception>
-            <seealso cref="P:Sudoku.Presentation.ColorIdentifier.UseId"/>
-        </member>
-        <member name="P:Sudoku.Presentation.ColorIdentifier.R">
-            <summary>
-            Gets the red value.
-            </summary>
-            <exception cref="T:System.InvalidOperationException">
-            Throws when <see cref="P:Sudoku.Presentation.ColorIdentifier.UseId"/> is <see langword="true"/>.
-            </exception>
-            <seealso cref="P:Sudoku.Presentation.ColorIdentifier.UseId"/>
-        </member>
-        <member name="P:Sudoku.Presentation.ColorIdentifier.G">
-            <summary>
-            Gets the green value.
-            </summary>
-            <exception cref="T:System.InvalidOperationException">
-            Throws when <see cref="P:Sudoku.Presentation.ColorIdentifier.UseId"/> is <see langword="true"/>.
-            </exception>
-            <seealso cref="P:Sudoku.Presentation.ColorIdentifier.UseId"/>
-        </member>
-        <member name="P:Sudoku.Presentation.ColorIdentifier.B">
-            <summary>
-            Gets the blue value.
-            </summary>
-            <exception cref="T:System.InvalidOperationException">
-            Throws when <see cref="P:Sudoku.Presentation.ColorIdentifier.UseId"/> is <see langword="true"/>.
-            </exception>
-            <seealso cref="P:Sudoku.Presentation.ColorIdentifier.UseId"/>
-        </member>
-        <member name="M:Sudoku.Presentation.ColorIdentifier.TryGetColor(System.Byte@,System.Byte@,System.Byte@,System.Byte@)">
-            <summary>
-            Try to get the color value. If the property <see cref="P:Sudoku.Presentation.ColorIdentifier.UseId"/> is <see langword="true"/>,
-            the return value will be <see langword="false"/>.
-            </summary>
-            <param name="a">The alpha value.</param>
-            <param name="r">The red value.</param>
-            <param name="g">The green value.</param>
-            <param name="b">The blue value.</param>
-            <returns>Returns whether the taking operation is successful.</returns>
-            <seealso cref="P:Sudoku.Presentation.ColorIdentifier.UseId"/>
-        </member>
-        <member name="M:Sudoku.Presentation.ColorIdentifier.Equals(Sudoku.Presentation.ColorIdentifier)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Presentation.ColorIdentifier.GetHashCode">
-            <inheritdoc/>
-            <remarks>
-            We on purpose show the another property value. For example, if we uses ID
-            as the instance representing, the result value of get hash code will be the color value,
-            and vice versa.
-            </remarks>
-        </member>
-        <member name="M:Sudoku.Presentation.ColorIdentifier.ToString">
-            <inheritdoc cref="M:System.Object.ToString"/>
-        </member>
-        <member name="M:Sudoku.Presentation.ColorIdentifier.op_Explicit(System.Int32)~Sudoku.Presentation.ColorIdentifier">
-            <summary>
-            Explicit cast from <see cref="T:System.Int32"/> to <see cref="T:Sudoku.Presentation.ColorIdentifier"/>.
-            The value is initialized as the ID value.
-            </summary>
-            <param name="id">The ID.</param>
-        </member>
-        <member name="T:Sudoku.Presentation.Crosshatch">
-            <summary>
-            Defines a crosshatching line that used for displaying in a picture.
-            </summary>
-            <param name="Start">The start position.</param>
-            <param name="End">The end position.</param>
-        </member>
-        <member name="M:Sudoku.Presentation.Crosshatch.#ctor(Sudoku.Collections.Cells@,Sudoku.Collections.Cells@)">
-            <summary>
-            Defines a crosshatching line that used for displaying in a picture.
-            </summary>
-            <param name="Start">The start position.</param>
-            <param name="End">The end position.</param>
-        </member>
-        <member name="P:Sudoku.Presentation.Crosshatch.Start">
-            <summary>The start position.</summary>
-        </member>
-        <member name="P:Sudoku.Presentation.Crosshatch.End">
-            <summary>The end position.</summary>
-        </member>
-        <member name="M:Sudoku.Presentation.Crosshatch.Equals(Sudoku.Presentation.Crosshatch@)">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Presentation.CrosshatchViewNode">
@@ -5323,266 +5015,6 @@
         <member name="M:Sudoku.Presentation.LockedTarget.System#IEqualityOperators{Sudoku#Presentation#LockedTarget,Sudoku#Presentation#LockedTarget}#op_Inequality(Sudoku.Presentation.LockedTarget,Sudoku.Presentation.LockedTarget)">
             <inheritdoc/>
         </member>
-        <member name="T:Sudoku.Presentation.PresentationData">
-            <summary>
-            Indicates the presentation data that is used for present the information.
-            </summary>
-            <param name="Cells">The cells.</param>
-            <param name="Candidates">The candidates.</param>
-            <param name="Regions">The regions.</param>
-            <param name="Links">The links.</param>
-            <param name="DirectLines">The direct lines.</param>
-            <param name="UnknownValues">The unknown values.</param>
-        </member>
-        <member name="M:Sudoku.Presentation.PresentationData.#ctor(System.Collections.Generic.IList{System.ValueTuple{System.Int32,Sudoku.Presentation.ColorIdentifier}},System.Collections.Generic.IList{System.ValueTuple{System.Int32,Sudoku.Presentation.ColorIdentifier}},System.Collections.Generic.IList{System.ValueTuple{System.Int32,Sudoku.Presentation.ColorIdentifier}},System.Collections.Generic.IList{System.ValueTuple{Sudoku.Link,Sudoku.Presentation.ColorIdentifier}},System.Collections.Generic.IList{System.ValueTuple{Sudoku.Presentation.Crosshatch,Sudoku.Presentation.ColorIdentifier}},System.Collections.Generic.IList{System.ValueTuple{Sudoku.Presentation.UnknownValue,Sudoku.Presentation.ColorIdentifier}})">
-            <summary>
-            Indicates the presentation data that is used for present the information.
-            </summary>
-            <param name="Cells">The cells.</param>
-            <param name="Candidates">The candidates.</param>
-            <param name="Regions">The regions.</param>
-            <param name="Links">The links.</param>
-            <param name="DirectLines">The direct lines.</param>
-            <param name="UnknownValues">The unknown values.</param>
-        </member>
-        <member name="P:Sudoku.Presentation.PresentationData.Cells">
-            <summary>The cells.</summary>
-        </member>
-        <member name="P:Sudoku.Presentation.PresentationData.Candidates">
-            <summary>The candidates.</summary>
-        </member>
-        <member name="P:Sudoku.Presentation.PresentationData.Regions">
-            <summary>The regions.</summary>
-        </member>
-        <member name="P:Sudoku.Presentation.PresentationData.Links">
-            <summary>The links.</summary>
-        </member>
-        <member name="P:Sudoku.Presentation.PresentationData.DirectLines">
-            <summary>The direct lines.</summary>
-        </member>
-        <member name="P:Sudoku.Presentation.PresentationData.UnknownValues">
-            <summary>The unknown values.</summary>
-        </member>
-        <member name="F:Sudoku.Presentation.PresentationData.Undefined">
-            <summary>
-            Indicates the default instance of this type.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Presentation.PresentationData.IsUndefiened">
-            <summary>
-            Indicates whether the current instance is undefined.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Presentation.PresentationData.Equals(Sudoku.Presentation.PresentationData@)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Presentation.PresentationData.Contains``1(Sudoku.Presentation.PresentationDataKind,``0)">
-            <summary>
-            Checks whether the collection contains the specified element.
-            </summary>
-            <typeparam name="TStruct">The type of the element.</typeparam>
-            <param name="dataKind">The data kind.</param>
-            <param name="element">The element to check.</param>
-            <returns>A <see cref="T:System.Boolean"/> value.</returns>
-        </member>
-        <member name="M:Sudoku.Presentation.PresentationData.IndexOf``1(Sudoku.Presentation.PresentationDataKind,``0)">
-            <summary>
-            Checks whether the collection contains the specified element. If so, return the index of the element.
-            </summary>
-            <typeparam name="TStruct">The type of the element.</typeparam>
-            <param name="dataKind">The data kind.</param>
-            <param name="element">The element to check.</param>
-            <returns>An <see cref="T:System.Int32"/> index. If not found, return -1.</returns>
-        </member>
-        <member name="M:Sudoku.Presentation.PresentationData.UnknownIdentifierOverlapsWithCell(System.Int32)">
-            <summary>
-            Determines whether the unknown identifiers of the current instance
-            overlaps the specified cell. Of course the property <see cref="P:Sudoku.Presentation.PresentationData.UnknownValues"/>
-            shouldn't be <see langword="null"/>.
-            </summary>
-            <param name="cell">The cell.</param>
-            <returns>A <see cref="T:System.Boolean"/> result.</returns>
-            <seealso cref="P:Sudoku.Presentation.PresentationData.UnknownValues"/>
-        </member>
-        <member name="M:Sudoku.Presentation.PresentationData.Add``1(Sudoku.Presentation.PresentationDataKind,``0,Sudoku.Presentation.ColorIdentifier)">
-            <summary>
-            Append an element into the collection.
-            </summary>
-            <typeparam name="TStruct">The type of the element to add.</typeparam>
-            <param name="dataKind">The data kind to append.</param>
-            <param name="element">
-            The element to add. Here we require the type of the argument should be:
-            <list type="table">
-            <listheader>
-            <term>The argument <paramref name="dataKind"/> value</term>
-            <description>The type of this argument</description>
-            </listheader>
-            <item>
-            <term><see cref="F:Sudoku.Presentation.PresentationDataKind.Cells"/></term>
-            <description><see cref="T:System.Int32"/></description>
-            </item>
-            <item>
-            <term><see cref="F:Sudoku.Presentation.PresentationDataKind.Candidates"/></term>
-            <description><see cref="T:System.Int32"/></description>
-            </item>
-            <item>
-            <term><see cref="F:Sudoku.Presentation.PresentationDataKind.Regions"/></term>
-            <description><see cref="T:System.Int32"/></description>
-            </item>
-            <item>
-            <term><see cref="F:Sudoku.Presentation.PresentationDataKind.Links"/></term>
-            <description><see cref="T:Sudoku.Link"/></description>
-            </item>
-            <item>
-            <term><see cref="F:Sudoku.Presentation.PresentationDataKind.DirectLines"/></term>
-            <description><see cref="T:Sudoku.Presentation.Crosshatch"/></description>
-            </item>
-            <item>
-            <term><see cref="F:Sudoku.Presentation.PresentationDataKind.UnknownValue"/></term>
-            <description><see cref="T:Sudoku.Presentation.UnknownValue"/></description>
-            </item>
-            </list>
-            </param>
-            <param name="color">The color identifier.</param>
-            <exception cref="T:System.ArgumentException">
-            Throws when the argument <paramref name="element"/> can't be converted to the target type.
-            </exception>
-            <exception cref="T:System.ArgumentOutOfRangeException">
-            Throws when the argument <paramref name="dataKind"/> is out of range.
-            </exception>
-        </member>
-        <member name="M:Sudoku.Presentation.PresentationData.Remove``1(Sudoku.Presentation.PresentationDataKind,``0)">
-            <summary>
-            Removes the element out of the collection.
-            </summary>
-            <typeparam name="TStruct">The type of the element to remove.</typeparam>
-            <param name="dataKind">The data kind.</param>
-            <param name="element">
-            The element. Here we require the type of the argument should be:
-            <list type="table">
-            <listheader>
-            <term>The argument <paramref name="dataKind"/> value</term>
-            <description>The type of this argument</description>
-            </listheader>
-            <item>
-            <term><see cref="F:Sudoku.Presentation.PresentationDataKind.Cells"/></term>
-            <description><see cref="T:System.Int32"/></description>
-            </item>
-            <item>
-            <term><see cref="F:Sudoku.Presentation.PresentationDataKind.Candidates"/></term>
-            <description><see cref="T:System.Int32"/></description>
-            </item>
-            <item>
-            <term><see cref="F:Sudoku.Presentation.PresentationDataKind.Regions"/></term>
-            <description><see cref="T:System.Int32"/></description>
-            </item>
-            <item>
-            <term><see cref="F:Sudoku.Presentation.PresentationDataKind.Links"/></term>
-            <description><see cref="T:Sudoku.Link"/></description>
-            </item>
-            <item>
-            <term><see cref="F:Sudoku.Presentation.PresentationDataKind.DirectLines"/></term>
-            <description><see cref="T:Sudoku.Presentation.Crosshatch"/></description>
-            </item>
-            <item>
-            <term><see cref="F:Sudoku.Presentation.PresentationDataKind.UnknownValue"/></term>
-            <description><see cref="T:Sudoku.Presentation.UnknownValue"/></description>
-            </item>
-            </list>
-            </param>
-            <exception cref="T:System.ArgumentException">
-            Throws when the argument <paramref name="element"/> can't be converted to the target type.
-            </exception>
-            <exception cref="T:System.ArgumentOutOfRangeException">
-            Throws when the argument <paramref name="dataKind"/> is out of range.
-            </exception>
-        </member>
-        <member name="M:Sudoku.Presentation.PresentationData.GetHashCode">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Presentation.PresentationData.ToString">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Presentation.PresentationData.ToSvgCode">
-            <summary>
-            Fetch the SVG-format <see cref="T:System.String"/> instance that can represent this instance.
-            </summary>
-            <returns>The SVG-format <see cref="T:System.String"/> result.</returns>
-        </member>
-        <member name="M:Sudoku.Presentation.PresentationData.Parse(System.String)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Presentation.PresentationData.TryParse(System.String,Sudoku.Presentation.PresentationData@)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Presentation.PresentationData.EnsureNotNull``1(System.Collections.Generic.IList{System.ValueTuple{``0,Sudoku.Presentation.ColorIdentifier}}@)">
-            <summary>
-            To ensure the collection isn't <see langword="null"/>. If <see langword="null"/>, the method
-            will initialize the instance specified as the parameter with the modifier <see langword="ref"/>,
-            which means the value can be re-assigned in this method.
-            </summary>
-            <typeparam name="TStruct">The type of the element.</typeparam>
-            <param name="collection">The collection to initialize when <see langword="null"/>.</param>
-            <remarks>
-            The argument can be passed a <see langword="null"/>-able type,
-            and changes to a non-<see langword="null"/> value when the method has been executed wholly.
-            </remarks>
-        </member>
-        <member name="M:Sudoku.Presentation.PresentationData.ThrowIfArgTypeIsInvalid``2(``0,``1@,System.String)">
-            <summary>
-            Just throws when the argument <paramref name="element"/> is a wrong type, which is dismatched to
-            the type <typeparamref name="TConverted"/>.
-            </summary>
-            <typeparam name="TBase">The type to be converted.</typeparam>
-            <typeparam name="TConverted">The type to convert to.</typeparam>
-            <param name="element">The real value to convert.</param>
-            <param name="result">The result value converted.</param>
-            <param name="argName">
-            The original name of the argument. The argument should keep its <see langword="null"/> value
-            because the value will be initialized by compiler.
-            </param>
-            <exception cref="T:System.ArgumentException">Throws when the type dismatches.</exception>
-        </member>
-        <member name="T:Sudoku.Presentation.PresentationDataKind">
-            <summary>
-            Presents a kind to identify the inner presentation data.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Presentation.PresentationDataKind.None">
-            <summary>
-            Indicates the data kind is none.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Presentation.PresentationDataKind.Cells">
-            <summary>
-            Indicates the data kind is for cells.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Presentation.PresentationDataKind.Candidates">
-            <summary>
-            Indicates the data kind is for candidates.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Presentation.PresentationDataKind.Regions">
-            <summary>
-            Indicates the data kind is for regions.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Presentation.PresentationDataKind.Links">
-            <summary>
-            Indicates the data kind is for links.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Presentation.PresentationDataKind.DirectLines">
-            <summary>
-            Indicates the data kind is for direct lines.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Presentation.PresentationDataKind.UnknownValue">
-            <summary>
-            Indicates the data kind is for unknown value.
-            </summary>
-        </member>
         <member name="T:Sudoku.Presentation.RegionViewNode">
             <summary>
             Defines a view node that highlights for a region.
@@ -5610,42 +5042,6 @@
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Presentation.RegionViewNode.Clone">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Presentation.UnknownValue">
-            <summary>
-            Encapsulates an unknown value that used in the technique <b>Unknown Covering</b>.
-            </summary>
-            <param name="Cell">Indicates the cell that used and marked.</param>
-            <param name="UnknownIdentifier">Indicates the identifier that identifies the value range.</param>
-            <param name="DigitsMask">Indicates a mask that holds a serial of candidate values.</param>
-        </member>
-        <member name="M:Sudoku.Presentation.UnknownValue.#ctor(System.Int32,System.Char,System.Int16)">
-            <summary>
-            Encapsulates an unknown value that used in the technique <b>Unknown Covering</b>.
-            </summary>
-            <param name="Cell">Indicates the cell that used and marked.</param>
-            <param name="UnknownIdentifier">Indicates the identifier that identifies the value range.</param>
-            <param name="DigitsMask">Indicates a mask that holds a serial of candidate values.</param>
-        </member>
-        <member name="P:Sudoku.Presentation.UnknownValue.Cell">
-            <summary>Indicates the cell that used and marked.</summary>
-        </member>
-        <member name="P:Sudoku.Presentation.UnknownValue.UnknownIdentifier">
-            <summary>Indicates the identifier that identifies the value range.</summary>
-        </member>
-        <member name="P:Sudoku.Presentation.UnknownValue.DigitsMask">
-            <summary>Indicates a mask that holds a serial of candidate values.</summary>
-        </member>
-        <member name="F:Sudoku.Presentation.UnknownValue.Default">
-            <summary>
-            <inheritdoc cref="P:System.IDefaultable`1.Default"/>
-            </summary>
-        </member>
-        <member name="P:Sudoku.Presentation.UnknownValue.IsDefault">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Presentation.UnknownValue.System#IDefaultable{Sudoku#Presentation#UnknownValue}#Default">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Presentation.UnknownViewNode">
@@ -5716,6 +5112,11 @@
             Indicates the number of elements stored in the current collection.
             </summary>
         </member>
+        <member name="P:Sudoku.Presentation.View.Empty">
+            <summary>
+            Indicates the empty instance.
+            </summary>
+        </member>
         <member name="P:Sudoku.Presentation.View.Item(System.Int32)">
             <summary>
             Gets the <see cref="T:Sudoku.Presentation.ViewNode"/> at the specified position.
@@ -5745,48 +5146,6 @@
         <member name="M:Sudoku.Presentation.View.Clone">
             <inheritdoc cref="M:System.ICloneable.Clone"/>
         </member>
-        <member name="M:Sudoku.Presentation.View.AddCells(System.ValueTuple{Sudoku.Presentation.Identifier,System.Int32}[])">
-            <summary>
-            Adds a serial of cells to be highlighted.
-            </summary>
-            <param name="highlightedCells">The highlighted cells.</param>
-            <returns>The reference that is same as <see langword="this"/>.</returns>
-        </member>
-        <member name="M:Sudoku.Presentation.View.AddCandidates(System.ValueTuple{Sudoku.Presentation.Identifier,System.Int32}[])">
-            <summary>
-            Adds a serial of candidates to be highlighted.
-            </summary>
-            <param name="highlightedCandidates">The highlighted candidates.</param>
-            <returns>The reference that is same as <see langword="this"/>.</returns>
-        </member>
-        <member name="M:Sudoku.Presentation.View.AddRegions(System.ValueTuple{Sudoku.Presentation.Identifier,System.Int32}[])">
-            <summary>
-            Adds a serial of regions to be highlighted.
-            </summary>
-            <param name="highlightedRegions">The highlighted regions.</param>
-            <returns>The reference that is same as <see langword="this"/>.</returns>
-        </member>
-        <member name="M:Sudoku.Presentation.View.AddLinks(System.ValueTuple{Sudoku.Presentation.Identifier,Sudoku.Presentation.LockedTarget,Sudoku.Presentation.LockedTarget,Sudoku.LinkKind}[])">
-            <summary>
-            Adds a serial of links to be highlighted.
-            </summary>
-            <param name="highlightedLinks">The highlighted links.</param>
-            <returns>The reference that is same as <see langword="this"/>.</returns>
-        </member>
-        <member name="M:Sudoku.Presentation.View.AddCrosshatches(System.ValueTuple{Sudoku.Presentation.Identifier,Sudoku.Collections.Cells,Sudoku.Collections.Cells,System.Int32}[])">
-            <summary>
-            Adds a serial of crosshatches to be highlighted.
-            </summary>
-            <param name="highlightedCrosshatches">The highlighted crosshatches.</param>
-            <returns>The reference that is same as <see langword="this"/>.</returns>
-        </member>
-        <member name="M:Sudoku.Presentation.View.AddUnknown(System.ValueTuple{Sudoku.Presentation.Identifier,System.Int32,System.Byte,System.Int16}[])">
-            <summary>
-            Adds a serial of unknowns to be highlighted.
-            </summary>
-            <param name="highlightedUnknowns">The highlighted unknowns.</param>
-            <returns>The reference that is same as <see langword="this"/>.</returns>
-        </member>
         <member name="M:Sudoku.Presentation.View.GetEnumerator">
             <inheritdoc cref="M:System.Collections.Generic.IEnumerable`1.GetEnumerator"/>
         </member>
@@ -5798,6 +5157,30 @@
         </member>
         <member name="M:Sudoku.Presentation.View.System#Collections#Generic#IEnumerable{Sudoku#Presentation#ViewNode}#GetEnumerator">
             <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Presentation.View.op_Addition(Sudoku.Presentation.View,Sudoku.Presentation.ViewNode)">
+            <summary>
+            Adds a new node into the collection.
+            </summary>
+            <param name="originalView">The original view.</param>
+            <param name="newNode">The new item to be added.</param>
+            <returns>The reference that is same as the argument <paramref name="originalView"/>.</returns>
+            <remarks>
+            Please note that the operator is mutable one, which means the appending operation
+            is based on the argument <paramref name="originalView"/>.
+            </remarks>
+        </member>
+        <member name="M:Sudoku.Presentation.View.op_Addition(Sudoku.Presentation.View,System.Collections.Generic.IEnumerable{Sudoku.Presentation.ViewNode})">
+            <summary>
+            Adds a serial of view nodes into the collection.
+            </summary>
+            <param name="originalView">The original view.</param>
+            <param name="highlightedItems">The highlighted items.</param>
+            <returns>The reference that is same as the argument <paramref name="originalView"/>.</returns>
+            <remarks>
+            Please note that the operator is mutable one, which means the appending operation
+            is based on the argument <paramref name="originalView"/>.
+            </remarks>
         </member>
         <member name="T:Sudoku.Presentation.ViewNode">
             <summary>
@@ -5974,19 +5357,6 @@
         <member name="M:Sudoku.Serialization.Converters.CellsConverter.Write(System.Text.Json.Utf8JsonWriter,Sudoku.Collections.Cells,System.Text.Json.JsonSerializerOptions)">
             <inheritdoc/>
         </member>
-        <member name="T:Sudoku.Serialization.Converters.CrosshatchConverter">
-            <summary>
-            Defines a serialization converter to convert the <see cref="T:Sudoku.Presentation.Crosshatch"/>
-            to a JSON <see cref="T:System.String"/> or vice versa.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Serialization.Converters.CrosshatchConverter.Read(System.Text.Json.Utf8JsonReader@,System.Type,System.Text.Json.JsonSerializerOptions)">
-            <inheritdoc/>
-            <exception cref="T:System.Text.Json.JsonException">Throws when the JSON text is mal-formed.</exception>
-        </member>
-        <member name="M:Sudoku.Serialization.Converters.CrosshatchConverter.Write(System.Text.Json.Utf8JsonWriter,Sudoku.Presentation.Crosshatch,System.Text.Json.JsonSerializerOptions)">
-            <inheritdoc/>
-        </member>
         <member name="T:Sudoku.Serialization.Converters.GridConverter">
             <summary>
             Defines a serialization converter to convert the <see cref="T:Sudoku.Collections.Grid"/>
@@ -6002,19 +5372,6 @@
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Serialization.Converters.GridConverter.Write(System.Text.Json.Utf8JsonWriter,Sudoku.Collections.Grid,System.Text.Json.JsonSerializerOptions)">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Serialization.Converters.UnknownValueConverter">
-            <summary>
-            Defines a serialization converter to convert the <see cref="T:Sudoku.Presentation.UnknownValue"/>
-            to a JSON <see cref="T:System.String"/> or vice versa.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Serialization.Converters.UnknownValueConverter.Read(System.Text.Json.Utf8JsonReader@,System.Type,System.Text.Json.JsonSerializerOptions)">
-            <inheritdoc/>
-            <exception cref="T:System.Text.Json.JsonException">Throws when the current JSON value is mal-formed.</exception>
-        </member>
-        <member name="M:Sudoku.Serialization.Converters.UnknownValueConverter.Write(System.Text.Json.Utf8JsonWriter,Sudoku.Presentation.UnknownValue,System.Text.Json.JsonSerializerOptions)">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Solving.BitwiseSolver">

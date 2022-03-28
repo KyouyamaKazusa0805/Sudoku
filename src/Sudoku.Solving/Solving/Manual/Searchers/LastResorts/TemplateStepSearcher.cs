@@ -52,16 +52,16 @@ public sealed unsafe class TemplateStepSearcher : ITemplateStepSearcher
 					templateSetConclusions[templateSetIndex++] = new(ConclusionType.Assignment, cell, digit);
 				}
 
-				var candidateOffsets = new (int, ColorIdentifier)[templateSetConclusions.Length];
+				var candidateOffsets = new CandidateViewNode[templateSetConclusions.Length];
 				int z = 0;
 				foreach (var (_, candidate) in templateSetConclusions)
 				{
-					candidateOffsets[z++] = (candidate, (ColorIdentifier)0);
+					candidateOffsets[z++] = new(0, candidate);
 				}
 
 				var templateSetStep = new TemplateStep(
 					ImmutableArray.Create(templateSetConclusions),
-					ImmutableArray.Create(new PresentationData { Candidates = candidateOffsets }),
+					ImmutableArray.Create(View.Empty + candidateOffsets),
 					false
 				);
 				if (onlyFindOne)
@@ -87,7 +87,7 @@ public sealed unsafe class TemplateStepSearcher : ITemplateStepSearcher
 
 			var templateDeleteStep = new TemplateStep(
 				ImmutableArray.Create(templateDeleteConclusions),
-				ImmutableArray.Create<PresentationData>(),
+				ImmutableArray<View>.Empty,
 				true
 			);
 			if (onlyFindOne)

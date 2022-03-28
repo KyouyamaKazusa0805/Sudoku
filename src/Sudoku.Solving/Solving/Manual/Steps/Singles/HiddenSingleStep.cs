@@ -18,7 +18,7 @@ namespace Sudoku.Solving.Manual.Steps;
 /// </param>
 public sealed record HiddenSingleStep(
 	ImmutableArray<Conclusion> Conclusions,
-	ImmutableArray<PresentationData> Views,
+	ImmutableArray<View> Views,
 	int Cell,
 	int Digit,
 	int Region,

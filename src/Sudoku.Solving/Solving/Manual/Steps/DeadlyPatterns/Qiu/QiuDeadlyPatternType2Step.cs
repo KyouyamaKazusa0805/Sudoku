@@ -14,7 +14,7 @@ namespace Sudoku.Solving.Manual.Steps;
 /// <param name="ExtraDigit">Indicates the extra digit used.</param>
 public sealed record QiuDeadlyPatternType2Step(
 	ImmutableArray<Conclusion> Conclusions,
-	ImmutableArray<PresentationData> Views,
+	ImmutableArray<View> Views,
 	in QiuDeadlyPattern Pattern,
 	int ExtraDigit
 ) : QiuDeadlyPatternStep(Conclusions, Views, Pattern)

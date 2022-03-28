@@ -16,7 +16,7 @@ namespace Sudoku.Solving.Manual.Steps;
 /// <param name="LockedMemberR">Indicates the locked member bound with R cells.</param>
 /// <param name="Eliminations"><inheritdoc/></param>
 public sealed record JuniorExocetStep(
-	ImmutableArray<PresentationData> Views,
+	ImmutableArray<View> Views,
 	in ExocetPattern Exocet,
 	short DigitsMask,
 	short LockedMemberQ,

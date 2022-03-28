@@ -68,25 +68,21 @@ public sealed unsafe class EmptyRectangleStepSearcher : IEmptyRectangleStepSearc
 					}
 
 					// Gather all highlight candidates.
-					var candidateOffsets = new List<(int, ColorIdentifier)>();
+					var candidateOffsets = new List<CandidateViewNode>();
 					var cpCells = new List<int>(2);
 					foreach (int cell in RegionMaps[block] & CandMaps[digit])
 					{
-						candidateOffsets.Add((cell * 9 + digit, (ColorIdentifier)1));
+						candidateOffsets.Add(new(1, cell * 9 + digit));
 					}
 					foreach (int cell in linkMap)
 					{
-						candidateOffsets.Add((cell * 9 + digit, (ColorIdentifier)0));
+						candidateOffsets.Add(new(0, cell * 9 + digit));
 						cpCells.Add(cell);
 					}
 
 					var step = new EmptyRectangleStep(
 						ImmutableArray.Create(new Conclusion(ConclusionType.Elimination, elimCell, digit)),
-						ImmutableArray.Create(new PresentationData
-						{
-							Candidates = candidateOffsets,
-							Regions = new[] { (block, (ColorIdentifier)0) }
-						}),
+						ImmutableArray.Create(View.Empty + candidateOffsets + new RegionViewNode(0, block)),
 						digit,
 						block,
 						new(cpCells[0], cpCells[1], digit)

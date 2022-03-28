@@ -108,7 +108,7 @@ public sealed unsafe class MultisectorLockedSetsStepSearcher : IMultisectorLocke
 			{
 				var canL = new Cells[9];
 				var conclusions = new List<Conclusion>();
-				var candidateOffsets = new List<(int, ColorIdentifier)>();
+				var candidateOffsets = new List<CandidateViewNode>();
 				for (int digit = 0; digit < 9; digit++)
 				{
 					short q = (short)(1 << digit);
@@ -193,11 +193,7 @@ public sealed unsafe class MultisectorLockedSetsStepSearcher : IMultisectorLocke
 							if (!canL[cand].Contains(cell))
 							{
 								candidateOffsets.Add(
-									(
-										cell * 9 + cand,
-										(ColorIdentifier)(region switch { < 9 => 2, < 18 => 0, _ => 1 })
-									)
-								);
+									new(region switch { < 9 => 2, < 18 => 0, _ => 1 }, cell * 9 + cand));
 							}
 						}
 					}
@@ -205,7 +201,7 @@ public sealed unsafe class MultisectorLockedSetsStepSearcher : IMultisectorLocke
 
 				var step = new MultisectorLockedSetsStep(
 					conclusions.ToImmutableArray(),
-					ImmutableArray.Create(new PresentationData { Candidates = candidateOffsets }),
+					ImmutableArray.Create(View.Empty + candidateOffsets),
 					map
 				);
 				if (onlyFindOne)

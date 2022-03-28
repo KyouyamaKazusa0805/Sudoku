@@ -14,7 +14,7 @@ namespace Sudoku.Solving.Manual.Steps;
 /// <param name="DigitsMask">The mask that contains all digits used.</param>
 public abstract record UniquePolygonStep(
 	ImmutableArray<Conclusion> Conclusions,
-	ImmutableArray<PresentationData> Views,
+	ImmutableArray<View> Views,
 	in Cells Map,
 	short DigitsMask
 ) : DeadlyPatternStep(Conclusions, Views)

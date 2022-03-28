@@ -16,7 +16,7 @@ namespace Sudoku.Solving.Manual.Steps;
 /// <param name="ConjugateRegion">Indicates the cells used as the conjugation region.</param>
 public sealed record UniqueSquareType4Step(
 	ImmutableArray<Conclusion> Conclusions,
-	ImmutableArray<PresentationData> Views,
+	ImmutableArray<View> Views,
 	in Cells Cells,
 	short DigitsMask,
 	int Digit1,

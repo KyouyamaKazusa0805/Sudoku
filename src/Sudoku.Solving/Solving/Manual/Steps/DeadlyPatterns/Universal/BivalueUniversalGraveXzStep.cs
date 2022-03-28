@@ -15,7 +15,7 @@ namespace Sudoku.Solving.Manual.Steps;
 /// <param name="ExtraCell">Indicates the XZ cell.</param>
 public sealed record BivalueUniversalGraveXzStep(
 	ImmutableArray<Conclusion> Conclusions,
-	ImmutableArray<PresentationData> Views,
+	ImmutableArray<View> Views,
 	short DigitsMask,
 	in Cells Cells,
 	int ExtraCell

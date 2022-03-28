@@ -184,33 +184,15 @@ public sealed unsafe class SueDeCoqStepSearcher : ISueDeCoqStepSearcher
 											continue;
 										}
 
-#if false
-										var cellOffsets = new List<DrawingInfo>();
-										foreach (int cell in currentBlockMap)
-										{
-											cellOffsets.Add(new(0, cell));
-										}
-										foreach (int cell in currentLineMap)
-										{
-											cellOffsets.Add(new(1, cell));
-										}
-										foreach (int cell in currentInterMap)
-										{
-											cellOffsets.Add(new(2, cell));
-										}
-#endif
-
-										var candidateOffsets = new List<(int, ColorIdentifier)>();
+										var candidateOffsets = new List<CandidateViewNode>();
 										foreach (int cell in currentBlockMap)
 										{
 											foreach (int digit in grid.GetCandidates(cell))
 											{
 												candidateOffsets.Add(
-													(
-														cell * 9 + digit,
-														(ColorIdentifier)(
-															!cannibalMode && digit == digitIsolated ? 2 : 0
-														)
+													new(
+														!cannibalMode && digit == digitIsolated ? 2 : 0,
+														cell * 9 + digit
 													)
 												);
 											}
@@ -220,11 +202,9 @@ public sealed unsafe class SueDeCoqStepSearcher : ISueDeCoqStepSearcher
 											foreach (int digit in grid.GetCandidates(cell))
 											{
 												candidateOffsets.Add(
-													(
-														cell * 9 + digit,
-														(ColorIdentifier)(
-															!cannibalMode && digit == digitIsolated ? 2 : 1
-														)
+													new(
+														!cannibalMode && digit == digitIsolated ? 2 : 1,
+														cell * 9 + digit
 													)
 												);
 											}
@@ -234,13 +214,11 @@ public sealed unsafe class SueDeCoqStepSearcher : ISueDeCoqStepSearcher
 											foreach (int digit in grid.GetCandidates(cell))
 											{
 												candidateOffsets.Add(
-													(
-														cell * 9 + digit,
-														(ColorIdentifier)(
-															digitIsolated == digit
-																? 2
-																: (blockMask >> digit & 1) != 0 ? 0 : 1
-														)
+													new(
+														digitIsolated == digit
+															? 2
+															: (blockMask >> digit & 1) != 0 ? 0 : 1,
+														cell * 9 + digit
 													)
 												);
 											}
@@ -248,15 +226,11 @@ public sealed unsafe class SueDeCoqStepSearcher : ISueDeCoqStepSearcher
 
 										var step = new SueDeCoqStep(
 											conclusions.ToImmutableArray(),
-											ImmutableArray.Create(new PresentationData
-											{
-												Candidates = candidateOffsets,
-												Regions = new (int, ColorIdentifier)[]
-												{
-													(coverSet, (ColorIdentifier)0),
-													(baseSet, (ColorIdentifier)2)
-												}
-											}),
+											ImmutableArray.Create(
+												View.Empty
+													+ candidateOffsets
+													+ new RegionViewNode[] { new(0, coverSet), new(2, baseSet) }
+											),
 											coverSet,
 											baseSet,
 											blockMask,

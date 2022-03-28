@@ -416,18 +416,19 @@ public sealed unsafe class ComplexFishStepSearcher : IComplexFishStepSearcher
 								}
 
 								// Collect highlighting candidates.
-								List<(int, ColorIdentifier)> candidateOffsets = new(), regionOffsets = new();
+								var candidateOffsets = new List<CandidateViewNode>();
+								var regionOffsets = new List<RegionViewNode>();
 								foreach (int body in actualBaseMap)
 								{
-									candidateOffsets.Add((body * 9 + digit, (ColorIdentifier)0));
+									candidateOffsets.Add(new(0, body * 9 + digit));
 								}
 								foreach (int exofin in exofins)
 								{
-									candidateOffsets.Add((exofin * 9 + digit, (ColorIdentifier)1));
+									candidateOffsets.Add(new(1, exofin * 9 + digit));
 								}
 								foreach (int endofin in endofins)
 								{
-									candidateOffsets.Add((endofin * 9 + digit, (ColorIdentifier)3));
+									candidateOffsets.Add(new(3, endofin * 9 + digit));
 								}
 
 								// Don't forget the extra cover set.
@@ -443,22 +444,18 @@ public sealed unsafe class ComplexFishStepSearcher : IComplexFishStepSearcher
 								int coverSetsMask = 0;
 								foreach (int baseSet in baseSets)
 								{
-									regionOffsets.Add((baseSet, (ColorIdentifier)0));
+									regionOffsets.Add(new(0, baseSet));
 								}
 								foreach (int coverSet in actualCoverSets)
 								{
-									regionOffsets.Add((coverSet, (ColorIdentifier)2));
+									regionOffsets.Add(new(2, coverSet));
 									coverSetsMask |= 1 << coverSet;
 								}
 
 								// Add into the 'accumulator'.
 								var step = new ComplexFishStep(
 									conclusions.ToImmutableArray(),
-									ImmutableArray.Create(new PresentationData
-									{
-										Candidates = candidateOffsets,
-										Regions = regionOffsets
-									}),
+									ImmutableArray.Create(View.Empty + candidateOffsets + regionOffsets),
 									digit,
 									baseSetsMask,
 									coverSetsMask,

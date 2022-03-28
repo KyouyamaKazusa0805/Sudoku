@@ -14,7 +14,7 @@ namespace Sudoku.Solving.Manual.Steps;
 /// <param name="ConjugatePair">Indicates the conjugate pair used.</param>
 public sealed record ExtendedRectangleType4Step(
 	ImmutableArray<Conclusion> Conclusions,
-	ImmutableArray<PresentationData> Views,
+	ImmutableArray<View> Views,
 	in Cells Cells,
 	short DigitsMask,
 	in ConjugatePair ConjugatePair

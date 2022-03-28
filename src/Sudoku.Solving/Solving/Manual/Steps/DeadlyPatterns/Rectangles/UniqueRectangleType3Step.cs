@@ -40,7 +40,7 @@ namespace Sudoku.Solving.Manual.Steps;
 /// </param>
 public sealed record UniqueRectangleType3Step(
 	ImmutableArray<Conclusion> Conclusions,
-	ImmutableArray<PresentationData> Views,
+	ImmutableArray<View> Views,
 	int Digit1,
 	int Digit2,
 	in Cells Cells,

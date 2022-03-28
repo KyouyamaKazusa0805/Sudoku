@@ -16,26 +16,16 @@ public interface IGuardianStepSearcher : ISingleDigitPatternStepSearcher
 	/// <param name="cells">The list of cells.</param>
 	/// <param name="offset">The offset. The default value is 4.</param>
 	/// <returns>All links.</returns>
-	protected static IList<(Link, ColorIdentifier)> GetLinks(IReadOnlyList<int> cells, int offset = 4)
+	protected static IEnumerable<LinkViewNode> GetLinks(IReadOnlyList<int> cells, int offset = 4)
 	{
-		var result = new List<(Link, ColorIdentifier)>();
+		var result = new List<LinkViewNode>();
 
 		for (int i = 0, length = cells.Count - 1; i < length; i++)
 		{
-			result.Add(
-				(
-					new(cells[i] * 9 + offset, cells[i + 1] * 9 + offset, LinkKind.Line),
-					(ColorIdentifier)0
-				)
-			);
+			result.Add(new(0, new(offset, new() { cells[i] }), new(offset, new() { cells[i + 1] }), LinkKind.Line));
 		}
 
-		result.Add(
-			(
-				new(cells[^1] * 9 + offset, cells[0] * 9 + offset, LinkKind.Line),
-				(ColorIdentifier)0
-			)
-		);
+		result.Add(new(0, new(offset, new() { cells[^1] }), new(offset, new() { cells[0] }), LinkKind.Line));
 
 		return result;
 	}

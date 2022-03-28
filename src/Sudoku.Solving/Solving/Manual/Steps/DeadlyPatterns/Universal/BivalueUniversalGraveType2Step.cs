@@ -2,6 +2,7 @@
 using Sudoku.Presentation;
 using Sudoku.Solving.Manual.Text;
 using Sudoku.Techniques;
+using static System.Algorithm.Sequences;
 
 namespace Sudoku.Solving.Manual.Steps;
 
@@ -14,23 +15,13 @@ namespace Sudoku.Solving.Manual.Steps;
 /// <param name="Cells">Indicates the cells used.</param>
 public sealed record BivalueUniversalGraveType2Step(
 	ImmutableArray<Conclusion> Conclusions,
-	ImmutableArray<PresentationData> Views,
+	ImmutableArray<View> Views,
 	int Digit,
 	in Cells Cells
 ) : BivalueUniversalGraveStep(Conclusions, Views)
 {
-	/// <summary>
-	/// The table of extra difficulty values.
-	/// </summary>
-	private static readonly decimal[] ExtraDifficulty =
-	{
-		.1M, .2M, .2M, .3M, .3M, .3M, .4M, .4M, .4M, .4M,
-		.5M, .5M, .5M, .5M, .5M, .6M, .6M, .6M, .6M, .6M
-	};
-
-
 	/// <inheritdoc/>
-	public override decimal Difficulty => base.Difficulty + ExtraDifficulty[Cells.Count - 1];
+	public override decimal Difficulty => base.Difficulty + A002024(Cells.Count) * .1M;
 
 	/// <inheritdoc/>
 	public override Technique TechniqueCode => Technique.BivalueUniversalGraveType2;

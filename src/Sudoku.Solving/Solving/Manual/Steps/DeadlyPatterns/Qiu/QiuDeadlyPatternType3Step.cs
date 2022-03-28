@@ -17,7 +17,7 @@ namespace Sudoku.Solving.Manual.Steps;
 /// <param name="IsNaked">Indicates whether the subset is a naked subset.</param>
 public sealed record QiuDeadlyPatternType3Step(
 	ImmutableArray<Conclusion> Conclusions,
-	ImmutableArray<PresentationData> Views,
+	ImmutableArray<View> Views,
 	in QiuDeadlyPattern Pattern,
 	short ExtraDigitsMask,
 	in Cells ExtraCells,

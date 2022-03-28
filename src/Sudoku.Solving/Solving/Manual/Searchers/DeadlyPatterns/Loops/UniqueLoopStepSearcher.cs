@@ -33,7 +33,7 @@ public sealed unsafe class UniqueLoopStepSearcher : IUniqueLoopStepSearcher, IUn
 		}
 
 		var resultAccumulator = new List<UniqueLoopStep>();
-		var loops = new List<(Cells, IList<(Link, ColorIdentifier)>)>();
+		var loops = new List<(Cells, IEnumerable<LinkViewNode>)>();
 		var tempLoop = new List<int>(14);
 		var loopMap = Cells.Empty;
 
@@ -50,7 +50,7 @@ public sealed unsafe class UniqueLoopStepSearcher : IUniqueLoopStepSearcher, IUn
 			tempLoop.Clear();
 
 			IUniqueLoopOrBivalueOddagonStepSearcher.SearchForPossibleLoopPatterns(
-				grid, d1, d2, cell, (Region)255, 0, 2, ref loopMap,
+				grid, d1, d2, cell, (Region)byte.MaxValue, 0, 2, ref loopMap,
 				tempLoop, () => IUniqueLoopStepSearcher.IsValidLoop(tempLoop), loops
 			);
 
@@ -140,7 +140,7 @@ public sealed unsafe class UniqueLoopStepSearcher : IUniqueLoopStepSearcher, IUn
 	/// <returns>The step is worth.</returns>
 	private Step? CheckType1(
 		ICollection<UniqueLoopStep> accumulator, in Grid grid, int d1, int d2, in Cells loop,
-		IList<(Link, ColorIdentifier)> links, in Cells extraCellsMap, bool onlyFindOne)
+		IEnumerable<LinkViewNode> links, in Cells extraCellsMap, bool onlyFindOne)
 	{
 		int extraCell = extraCellsMap[0];
 		var conclusions = new List<Conclusion>(2);
@@ -157,16 +157,16 @@ public sealed unsafe class UniqueLoopStepSearcher : IUniqueLoopStepSearcher, IUn
 			goto ReturnNull;
 		}
 
-		var candidateOffsets = new List<(int, ColorIdentifier)>();
+		var candidateOffsets = new List<CandidateViewNode>();
 		foreach (int cell in loop - extraCell)
 		{
-			candidateOffsets.Add((cell * 9 + d1, (ColorIdentifier)0));
-			candidateOffsets.Add((cell * 9 + d2, (ColorIdentifier)0));
+			candidateOffsets.Add(new(0, cell * 9 + d1));
+			candidateOffsets.Add(new(0, cell * 9 + d2));
 		}
 
 		var step = new UniqueLoopType1Step(
 			ImmutableArray.CreateRange(conclusions),
-			ImmutableArray.Create(new PresentationData { Candidates = candidateOffsets, Links = links }),
+			ImmutableArray.Create(new View[] { View.Empty + candidateOffsets + links }),
 			d1,
 			d2,
 			loop
@@ -198,7 +198,7 @@ public sealed unsafe class UniqueLoopStepSearcher : IUniqueLoopStepSearcher, IUn
 	/// <returns>The step is worth.</returns>
 	private Step? CheckType2(
 		ICollection<UniqueLoopStep> accumulator, in Grid grid, int d1, int d2, in Cells loop,
-		IList<(Link, ColorIdentifier)> links, in Cells extraCellsMap, short comparer, bool onlyFindOne)
+		IEnumerable<LinkViewNode> links, in Cells extraCellsMap, short comparer, bool onlyFindOne)
 	{
 		short mask = (short)(grid.GetDigitsUnion(extraCellsMap) & ~comparer);
 		if (!IsPow2(mask))
@@ -213,18 +213,18 @@ public sealed unsafe class UniqueLoopStepSearcher : IUniqueLoopStepSearcher, IUn
 			goto ReturnNull;
 		}
 
-		var candidateOffsets = new List<(int, ColorIdentifier)>();
+		var candidateOffsets = new List<CandidateViewNode>();
 		foreach (int cell in loop)
 		{
 			foreach (int digit in grid.GetCandidates(cell))
 			{
-				candidateOffsets.Add((cell * 9 + digit, (ColorIdentifier)(digit == extraDigit ? 1 : 0)));
+				candidateOffsets.Add(new(digit == extraDigit ? 1 : 0, cell * 9 + digit));
 			}
 		}
 
 		var step = new UniqueLoopType2Step(
 			elimMap.ToImmutableConclusions(extraDigit),
-			ImmutableArray.Create(new PresentationData { Candidates = candidateOffsets, Links = links }),
+			ImmutableArray.Create(new View[] { View.Empty + candidateOffsets + links }),
 			d1,
 			d2,
 			loop,
@@ -257,7 +257,7 @@ public sealed unsafe class UniqueLoopStepSearcher : IUniqueLoopStepSearcher, IUn
 	/// <returns>The step is worth.</returns>
 	private Step? CheckType3(
 		ICollection<UniqueLoopStep> accumulator, in Grid grid, int d1, int d2, in Cells loop,
-		IList<(Link, ColorIdentifier)> links, in Cells extraCellsMap, short comparer, bool onlyFindOne)
+		IEnumerable<LinkViewNode> links, in Cells extraCellsMap, short comparer, bool onlyFindOne)
 	{
 		bool notSatisfiedType3 = false;
 		foreach (int cell in extraCellsMap)
@@ -317,35 +317,31 @@ public sealed unsafe class UniqueLoopStepSearcher : IUniqueLoopStepSearcher, IUn
 						continue;
 					}
 
-					var candidateOffsets = new List<(int, ColorIdentifier)>();
+					var candidateOffsets = new List<CandidateViewNode>();
 					foreach (int cell in loop)
 					{
 						foreach (int digit in grid.GetCandidates(cell))
 						{
 							candidateOffsets.Add(
-								(
-									cell * 9 + digit,
-									(ColorIdentifier)((otherDigitsMask >> digit & 1) != 0 ? 1 : 0)
-								)
-							);
+								new((otherDigitsMask >> digit & 1) != 0 ? 1 : 0, cell * 9 + digit));
 						}
 					}
 					foreach (int cell in cells)
 					{
 						foreach (int digit in grid.GetCandidates(cell))
 						{
-							candidateOffsets.Add((cell * 9 + digit, (ColorIdentifier)1));
+							candidateOffsets.Add(new(1, cell * 9 + digit));
 						}
 					}
 
 					var step = new UniqueLoopType3Step(
 						ImmutableArray.CreateRange(conclusions),
-						ImmutableArray.Create(new PresentationData
-						{
-							Candidates = candidateOffsets,
-							Regions = new[] { (region, (ColorIdentifier)0) },
-							Links = links
-						}),
+						ImmutableArray.Create(
+							new View[]
+							{
+								View.Empty + candidateOffsets + new RegionViewNode(0, region) + links
+							}
+						),
 						d1,
 						d2,
 						loop,
@@ -382,7 +378,7 @@ public sealed unsafe class UniqueLoopStepSearcher : IUniqueLoopStepSearcher, IUn
 	/// <returns>The step is worth.</returns>
 	private Step? CheckType4(
 		ICollection<UniqueLoopStep> accumulator, in Grid grid, int d1, int d2, in Cells loop,
-		IList<(Link, ColorIdentifier)> links, in Cells extraCellsMap, short comparer, bool onlyFindOne)
+		IEnumerable<LinkViewNode> links, in Cells extraCellsMap, short comparer, bool onlyFindOne)
 	{
 		if (!extraCellsMap.InOneRegion)
 		{
@@ -416,27 +412,27 @@ public sealed unsafe class UniqueLoopStepSearcher : IUniqueLoopStepSearcher, IUn
 					continue;
 				}
 
-				var candidateOffsets = new List<(int, ColorIdentifier)>();
+				var candidateOffsets = new List<CandidateViewNode>();
 				foreach (int cell in loop - extraCellsMap)
 				{
 					foreach (int d in grid.GetCandidates(cell))
 					{
-						candidateOffsets.Add((cell * 9 + d, (ColorIdentifier)0));
+						candidateOffsets.Add(new(0, cell * 9 + d));
 					}
 				}
 				foreach (int cell in extraCellsMap)
 				{
-					candidateOffsets.Add((cell * 9 + digit, (ColorIdentifier)1));
+					candidateOffsets.Add(new(1, cell * 9 + digit));
 				}
 
 				var step = new UniqueLoopType4Step(
 					ImmutableArray.CreateRange(conclusions),
-					ImmutableArray.Create(new PresentationData
-					{
-						Candidates = candidateOffsets,
-						Regions = new[] { (region, (ColorIdentifier)0) },
-						Links = links
-					}),
+					ImmutableArray.Create(
+						new View[]
+						{
+							View.Empty + candidateOffsets + new RegionViewNode(0, region) + links
+						}
+					),
 					d1,
 					d2,
 					loop,

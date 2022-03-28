@@ -13,8 +13,8 @@ namespace Sudoku.Solving.Manual.Steps;
 /// <param name="Cells">Indicates the cells used.</param>
 public sealed record DominoLoopStep(
 	ImmutableArray<Conclusion> Conclusions,
-	ImmutableArray<PresentationData> Views,
-	Cells Cells
+	ImmutableArray<View> Views,
+	in Cells Cells
 ) : RankTheoryStep(Conclusions, Views), IStepWithRank
 {
 	/// <inheritdoc/>

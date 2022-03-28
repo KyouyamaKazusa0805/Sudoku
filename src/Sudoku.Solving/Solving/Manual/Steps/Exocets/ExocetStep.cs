@@ -14,7 +14,7 @@ namespace Sudoku.Solving.Manual.Steps;
 /// <param name="DigitsMask">Indicates the mask that holds all possible digits used.</param>
 /// <param name="Eliminations">Indicates all possible eliminations.</param>
 public abstract record ExocetStep(
-	ImmutableArray<PresentationData> Views,
+	ImmutableArray<View> Views,
 	in ExocetPattern Exocet,
 	short DigitsMask,
 	ImmutableArray<ExocetElimination> Eliminations

@@ -10,7 +10,7 @@ namespace Sudoku.Solving.Manual.Steps;
 /// <param name="Views"><inheritdoc/></param>
 public abstract record BivalueUniversalGraveStep(
 	ImmutableArray<Conclusion> Conclusions,
-	ImmutableArray<PresentationData> Views
+	ImmutableArray<View> Views
 ) : DeadlyPatternStep(Conclusions, Views)
 {
 	/// <inheritdoc/>

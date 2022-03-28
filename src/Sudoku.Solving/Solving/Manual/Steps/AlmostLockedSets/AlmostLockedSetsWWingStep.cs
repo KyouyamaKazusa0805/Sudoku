@@ -18,7 +18,7 @@ namespace Sudoku.Solving.Manual.Steps;
 /// <param name="X">Indicates the X digit.</param>
 public sealed record AlmostLockedSetsWWingStep(
 	ImmutableArray<Conclusion> Conclusions,
-	ImmutableArray<PresentationData> Views,
+	ImmutableArray<View> Views,
 	in AlmostLockedSet Als1,
 	in AlmostLockedSet Als2,
 	in ConjugatePair ConjugatePair,

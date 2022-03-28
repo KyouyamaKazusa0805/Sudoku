@@ -7,10 +7,10 @@ namespace Sudoku.Solving.Manual.Steps;
 /// </summary>
 /// <param name="Conclusions"><inheritdoc/></param>
 /// <param name="Views"><inheritdoc/></param>
-public abstract record ChainStep(
-	ImmutableArray<Conclusion> Conclusions,
-	ImmutableArray<PresentationData> Views
-) : Step(Conclusions, Views), IChainStep, IChainLikeStep
+public abstract record ChainStep(ImmutableArray<Conclusion> Conclusions, ImmutableArray<View> Views) :
+	Step(Conclusions, Views),
+	IChainStep,
+	IChainLikeStep
 {
 	/// <inheritdoc/>
 	public abstract int FlatComplexity { get; }

@@ -15,7 +15,7 @@ namespace Sudoku.Solving.Manual.Steps;
 /// <param name="DigitsMask">The maks that contains all digits used.</param>
 public abstract record SubsetStep(
 	ImmutableArray<Conclusion> Conclusions,
-	ImmutableArray<PresentationData> Views,
+	ImmutableArray<View> Views,
 	int Region,
 	in Cells Cells,
 	short DigitsMask

@@ -13,7 +13,7 @@ namespace Sudoku.Solving.Manual.Steps;
 /// <param name="Pattern">Indicates the pattern used.</param>
 public abstract record QiuDeadlyPatternStep(
 	ImmutableArray<Conclusion> Conclusions,
-	ImmutableArray<PresentationData> Views,
+	ImmutableArray<View> Views,
 	in QiuDeadlyPattern Pattern
 ) : DeadlyPatternStep(Conclusions, Views)
 {

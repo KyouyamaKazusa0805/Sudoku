@@ -2,7 +2,6 @@
 using Sudoku.Presentation;
 using Sudoku.Solving.Collections;
 using Sudoku.Solving.Manual.Text;
-using Sudoku.Techniques;
 
 namespace Sudoku.Solving.Manual.Steps;
 
@@ -15,7 +14,7 @@ namespace Sudoku.Solving.Manual.Steps;
 /// <param name="Candidates">Indicates the candidates used.</param>
 public sealed record QiuDeadlyPatternLockedTypeStep(
 	ImmutableArray<Conclusion> Conclusions,
-	ImmutableArray<PresentationData> Views,
+	ImmutableArray<View> Views,
 	in QiuDeadlyPattern Pattern,
 	IReadOnlyList<int> Candidates
 ) : QiuDeadlyPatternStep(Conclusions, Views, Pattern)

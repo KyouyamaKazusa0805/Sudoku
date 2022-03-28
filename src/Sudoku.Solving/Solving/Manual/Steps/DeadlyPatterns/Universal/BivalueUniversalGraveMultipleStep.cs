@@ -14,7 +14,7 @@ namespace Sudoku.Solving.Manual.Steps;
 /// <param name="Candidates">Indicates the true candidates.</param>
 public sealed record BivalueUniversalGraveMultipleStep(
 	ImmutableArray<Conclusion> Conclusions,
-	ImmutableArray<PresentationData> Views,
+	ImmutableArray<View> Views,
 	IReadOnlyList<int> Candidates
 ) : BivalueUniversalGraveStep(Conclusions, Views)
 {

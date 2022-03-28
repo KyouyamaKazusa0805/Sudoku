@@ -175,14 +175,14 @@ public sealed unsafe class AlmostLockedSetsXzStepSearcher : IAlmostLockedSetsXzS
 
 				// Now record highlight elements.
 				bool isEsp = als1.IsBivalueCell || als2.IsBivalueCell;
-				var candidateOffsets = new List<(int, ColorIdentifier)>();
+				var candidateOffsets = new List<CandidateViewNode>();
 				if (isEsp)
 				{
 					foreach (int cell in map)
 					{
 						foreach (int digit in grid.GetCandidates(cell))
 						{
-							candidateOffsets.Add((cell * 9 + digit, (ColorIdentifier)(finalZ >> digit & 1)));
+							candidateOffsets.Add(new(finalZ >> digit & 1, cell * 9 + digit));
 						}
 					}
 				}
@@ -196,15 +196,15 @@ public sealed unsafe class AlmostLockedSetsXzStepSearcher : IAlmostLockedSetsXzS
 						short rccDigitsMask = (short)(mask & rccMask);
 						foreach (int digit in alsDigitsMask)
 						{
-							candidateOffsets.Add((cell * 9 + digit, (ColorIdentifier)101));
+							candidateOffsets.Add(new(101, cell * 9 + digit));
 						}
 						foreach (int digit in targetDigitsMask)
 						{
-							candidateOffsets.Add((cell * 9 + digit, (ColorIdentifier)2));
+							candidateOffsets.Add(new(2, cell * 9 + digit));
 						}
 						foreach (int digit in rccDigitsMask)
 						{
-							candidateOffsets.Add((cell * 9 + digit, (ColorIdentifier)1));
+							candidateOffsets.Add(new(1, cell * 9 + digit));
 						}
 					}
 					foreach (int cell in map2)
@@ -215,26 +215,26 @@ public sealed unsafe class AlmostLockedSetsXzStepSearcher : IAlmostLockedSetsXzS
 						short rccDigitsMask = (short)(mask & rccMask);
 						foreach (int digit in alsDigitsMask)
 						{
-							candidateOffsets.Add((cell * 9 + digit, (ColorIdentifier)102));
+							candidateOffsets.Add(new(102, cell * 9 + digit));
 						}
 						foreach (int digit in targetDigitsMask)
 						{
-							candidateOffsets.Add((cell * 9 + digit, (ColorIdentifier)2));
+							candidateOffsets.Add(new(2, cell * 9 + digit));
 						}
 						foreach (int digit in rccDigitsMask)
 						{
-							candidateOffsets.Add((cell * 9 + digit, (ColorIdentifier)1));
+							candidateOffsets.Add(new(1, cell * 9 + digit));
 						}
 					}
 				}
 
 				var step = new AlmostLockedSetsXzStep(
 					conclusions.ToImmutableArray(),
-					ImmutableArray.Create(new PresentationData
-					{
-						Candidates = candidateOffsets,
-						Regions = isEsp ? null : new[] { (region1, (ColorIdentifier)0), (region2, (ColorIdentifier)1) }
-					}),
+					ImmutableArray.Create(
+						View.Empty
+							+ candidateOffsets
+							+ (isEsp ? null : new RegionViewNode[] { new(0, region1), new(1, region2) })
+					),
 					als1,
 					als2,
 					rccMask,

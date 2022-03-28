@@ -16,7 +16,7 @@ namespace Sudoku.Solving.Manual.Steps;
 /// <param name="ExtraDigit">Indicates the extra digit.</param>
 public sealed record BivalueOddagonType2Step(
 	ImmutableArray<Conclusion> Conclusions,
-	ImmutableArray<PresentationData> Views,
+	ImmutableArray<View> Views,
 	in Cells Loop,
 	int Digit1,
 	int Digit2,

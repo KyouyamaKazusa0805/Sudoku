@@ -60,21 +60,17 @@ public sealed unsafe class BowmanBingoStepSearcher : IBowmanBingoStepSearcher
 				}
 				else
 				{
-					var candidateOffsets = new (int, ColorIdentifier)[_tempConclusions.Count];
+					var candidateOffsets = new CandidateViewNode[_tempConclusions.Count];
 					int i = 0;
 					foreach (var (_, candidate) in _tempConclusions)
 					{
-						candidateOffsets[i++] = (candidate, (ColorIdentifier)0);
+						candidateOffsets[i++] = new(0, candidate);
 					}
 
 					tempAccumulator.Add(
 						new BowmanBingoStep(
 							ImmutableArray.Create(new Conclusion(ConclusionType.Elimination, startCandidate)),
-							ImmutableArray.Create(new PresentationData
-							{
-								Candidates = candidateOffsets,
-								Links = GetLinks()
-							}),
+							ImmutableArray.Create(View.Empty + candidateOffsets + GetLinks()),
 							_tempConclusions.ToImmutableArray()
 						)
 					);
@@ -125,16 +121,16 @@ public sealed unsafe class BowmanBingoStepSearcher : IBowmanBingoStepSearcher
 		}
 		else
 		{
-			var candidateOffsets = new (int, ColorIdentifier)[_tempConclusions.Count];
+			var candidateOffsets = new CandidateViewNode[_tempConclusions.Count];
 			int i = 0;
 			foreach (var (_, candidate) in _tempConclusions)
 			{
-				candidateOffsets[i++] = (candidate, (ColorIdentifier)0);
+				candidateOffsets[i++] = new(0, candidate);
 			}
 
 			var step = new BowmanBingoStep(
 				ImmutableArray.Create(new Conclusion(ConclusionType.Elimination, startCand)),
-				ImmutableArray.Create(new PresentationData { Candidates = candidateOffsets, Links = GetLinks() }),
+				ImmutableArray.Create(View.Empty + candidateOffsets + GetLinks()),
 				_tempConclusions.ToImmutableArray()
 			);
 			if (onlyFindOne)
@@ -158,13 +154,13 @@ public sealed unsafe class BowmanBingoStepSearcher : IBowmanBingoStepSearcher
 	/// Get links.
 	/// </summary>
 	/// <returns>The links.</returns>
-	private IList<(Link, ColorIdentifier)> GetLinks()
+	private IList<LinkViewNode> GetLinks()
 	{
-		var result = new List<(Link, ColorIdentifier)>();
+		var result = new List<LinkViewNode>();
 		for (int i = 0, iterationCount = _tempConclusions.Count - 1; i < iterationCount; i++)
 		{
 			int c1 = _tempConclusions[i].Candidate, c2 = _tempConclusions[i + 1].Candidate;
-			result.Add((new(c1, c2, LinkKind.Default), (ColorIdentifier)0));
+			result.Add(new(0, new(c1 % 9, new() { c1 / 9 }), new(c2 % 9, new() { c2 / 9 }), LinkKind.Default));
 		}
 
 		return result;

@@ -85,38 +85,29 @@ public sealed unsafe class LockedCandidatesStepSearcher : ILockedCandidatesStepS
 			{
 				// Check whether the digit contains any eliminations.
 				Cells elimMap;
-				if ((a & CandMaps[digit]) is not [])
-				{
-					r[0] = coverSet;
-					r[1] = baseSet;
-					elimMap = a & CandMaps[digit];
-				}
-				else
-				{
-					r[0] = baseSet;
-					r[1] = coverSet;
-					elimMap = b & CandMaps[digit];
-				}
+				(r[0], r[1], elimMap) = (a & CandMaps[digit]) is []
+					? (baseSet, coverSet, b & CandMaps[digit])
+					: (coverSet, baseSet, a & CandMaps[digit]);
 				if (elimMap is [])
 				{
 					continue;
 				}
 
 				// Gather the information, such as the type of the locked candidates, the located region, etc..
-				var candidateOffsets = new List<(int, ColorIdentifier)>();
+				var candidateOffsets = new List<CandidateViewNode>();
 				foreach (int cell in c & CandMaps[digit])
 				{
-					candidateOffsets.Add((cell * 9 + digit, (ColorIdentifier)0));
+					candidateOffsets.Add(new(0, cell * 9 + digit));
 				}
 
 				// Okay, now accumulate into the collection.
 				var step = new LockedCandidatesStep(
 					elimMap.ToImmutableConclusions(digit),
-					ImmutableArray.Create(new PresentationData
-					{
-						Candidates = candidateOffsets,
-						Regions = new[] { (r[0], (ColorIdentifier)0), (r[1], (ColorIdentifier)1) }
-					}),
+					ImmutableArray.Create(
+						View.Empty
+							+ candidateOffsets
+							+ new RegionViewNode[] { new(0, r[0]), new(1, r[1]) }
+					),
 					digit,
 					r[0],
 					r[1]

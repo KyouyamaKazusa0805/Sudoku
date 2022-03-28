@@ -12,7 +12,7 @@ namespace Sudoku.Solving.Manual.Steps;
 /// <param name="DigitsMask"><inheritdoc/></param>
 public sealed record ExtendedRectangleType1Step(
 	ImmutableArray<Conclusion> Conclusions,
-	ImmutableArray<PresentationData> Views,
+	ImmutableArray<View> Views,
 	in Cells Cells,
 	short DigitsMask
 ) : ExtendedRectangleStep(Conclusions, Views, Cells, DigitsMask)

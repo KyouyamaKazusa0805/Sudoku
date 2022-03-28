@@ -137,22 +137,22 @@ public sealed unsafe class RegularWingStepSearcher : IRegularWingStepSearcher
 					}
 
 					// Gather highlight candidates.
-					var candidateOffsets = new List<(int, ColorIdentifier)>(6);
+					var candidateOffsets = new List<CandidateViewNode>(6);
 					foreach (int cell in cells)
 					{
 						foreach (int digit in grid.GetCandidates(cell))
 						{
-							candidateOffsets.Add((cell * 9 + digit, (ColorIdentifier)(digit == zDigit ? 1 : 0)));
+							candidateOffsets.Add(new(digit == zDigit ? 1 : 0, cell * 9 + digit));
 						}
 					}
 					foreach (int digit in grid.GetCandidates(pivot))
 					{
-						candidateOffsets.Add((pivot * 9 + digit, (ColorIdentifier)(digit == zDigit ? 1 : 0)));
+						candidateOffsets.Add(new(digit == zDigit ? 1 : 0, pivot * 9 + digit));
 					}
 
 					var step = new RegularWingStep(
 						elimMap.ToImmutableConclusions(zDigit),
-						ImmutableArray.Create(new PresentationData { Candidates = candidateOffsets }),
+						ImmutableArray.Create(View.Empty + candidateOffsets),
 						pivot,
 						PopCount((uint)mask),
 						union,

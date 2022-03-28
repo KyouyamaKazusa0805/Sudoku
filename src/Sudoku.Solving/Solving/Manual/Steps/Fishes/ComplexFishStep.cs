@@ -21,7 +21,7 @@ namespace Sudoku.Solving.Manual.Steps;
 /// <param name="IsSashimi">Indicates whether the fish is a Sashimi fish.</param>
 public sealed partial record ComplexFishStep(
 	ImmutableArray<Conclusion> Conclusions,
-	ImmutableArray<PresentationData> Views,
+	ImmutableArray<View> Views,
 	int Digit,
 	int BaseSetsMask,
 	int CoverSetsMask,

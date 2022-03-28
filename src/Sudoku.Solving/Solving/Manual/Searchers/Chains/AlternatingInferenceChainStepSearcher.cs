@@ -207,14 +207,11 @@ public sealed class AlternatingInferenceChainStepSearcher : IAlternatingInferenc
 				// Adds into the accumulator.
 				var step = new AlternatingInferenceChainStep(
 					ImmutableArray.Create(conclusions),
-					ImmutableArray.Create(new PresentationData[]
-					{
-						new()
-						{
-							//Candidates = _,
-							Links = IChainStepSearcher.GetViewOnLinks(chain)
-						}
-					}),
+					ImmutableArray.Create(
+						View.Empty
+							// TODO: Append cells.
+							+ IChainStepSearcher.GetViewOnLinks(chain)
+					),
 					chain,
 					XEnabled,
 					YEnabled

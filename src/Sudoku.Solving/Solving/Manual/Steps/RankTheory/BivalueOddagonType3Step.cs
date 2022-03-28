@@ -17,7 +17,7 @@ namespace Sudoku.Solving.Manual.Steps;
 /// <param name="ExtraDigitsMask">Indicates the mask that contains all extra digits used.</param>
 public sealed record BivalueOddagonType3Step(
 	ImmutableArray<Conclusion> Conclusions,
-	ImmutableArray<PresentationData> Views,
+	ImmutableArray<View> Views,
 	in Cells Loop,
 	int Digit1,
 	int Digit2,

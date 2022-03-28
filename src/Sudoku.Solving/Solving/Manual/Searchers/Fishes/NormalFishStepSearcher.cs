@@ -206,35 +206,38 @@ public sealed unsafe class NormalFishStepSearcher : INormalFishStepSearcher
 					}
 
 					// Gather the conclusions and candidates or regions to be highlighted.
-					List<(int, ColorIdentifier)> candidateOffsets = new(), regionOffsets = new();
+					var candidateOffsets = new List<CandidateViewNode>();
+					var regionOffsets = new List<RegionViewNode>();
 					foreach (int cell in withFin ? baseLine - fins : baseLine)
 					{
-						candidateOffsets.Add((cell * 9 + digit, (ColorIdentifier)0));
+						candidateOffsets.Add(new(0, cell * 9 + digit));
 					}
 					if (withFin)
 					{
 						foreach (int cell in fins)
 						{
-							candidateOffsets.Add((cell * 9 + digit, (ColorIdentifier)1));
+							candidateOffsets.Add(new(1, cell * 9 + digit));
 						}
 					}
 					foreach (int baseSet in bs)
 					{
-						regionOffsets.Add((baseSet, (ColorIdentifier)0));
+						regionOffsets.Add(new(0, baseSet));
 					}
 					foreach (int coverSet in cs)
 					{
-						regionOffsets.Add((coverSet, (ColorIdentifier)2));
+						regionOffsets.Add(new(2, coverSet));
 					}
 
 					// Gather the result.
 					var step = new NormalFishStep(
 						elimMap.ToImmutableConclusions(digit),
-						ImmutableArray.Create(new PresentationData[]
-						{
-							new() { Candidates = candidateOffsets, Regions = regionOffsets },
-							GetDirectView(grid, digit, bs, cs, fins, searchRow)
-						}),
+						ImmutableArray.Create(
+							new View[]
+							{
+								View.Empty + candidateOffsets + regionOffsets,
+								GetDirectView(grid, digit, bs, cs, fins, searchRow)
+							}
+						),
 						digit,
 						new RegionCollection(bs).GetHashCode(), // The mask itself.
 						new RegionCollection(cs).GetHashCode(), // The mask itself.
@@ -267,12 +270,12 @@ public sealed unsafe class NormalFishStepSearcher : INormalFishStepSearcher
 	/// </param>
 	/// <param name="searchRow">Indicates whether the current searcher searches row.</param>
 	/// <returns>The view.</returns>
-	private static PresentationData GetDirectView(
+	private static View GetDirectView(
 		in Grid grid, int digit, int[] baseSets, int[] coverSets, in Cells fins, bool searchRow)
 	{
 		// Get the highlight cells (necessary).
-		var cellOffsets = new List<(int, ColorIdentifier)>();
-		var candidateOffsets = fins is [] ? null : new List<(int, ColorIdentifier)>();
+		var cellOffsets = new List<CellViewNode>();
+		var candidateOffsets = fins is [] ? null : new List<CandidateViewNode>();
 		foreach (int baseSet in baseSets)
 		{
 			foreach (int cell in RegionMaps[baseSet])
@@ -281,7 +284,7 @@ public sealed unsafe class NormalFishStepSearcher : INormalFishStepSearcher
 				{
 					case true when fins.Contains(cell):
 					{
-						cellOffsets.Add((cell, (ColorIdentifier)1));
+						cellOffsets.Add(new(1, cell));
 						break;
 					}
 					case false:
@@ -316,7 +319,7 @@ public sealed unsafe class NormalFishStepSearcher : INormalFishStepSearcher
 							continue;
 						}
 
-						cellOffsets.Add((cell, (ColorIdentifier)0));
+						cellOffsets.Add(new(0, cell));
 						break;
 					}
 				}
@@ -325,13 +328,13 @@ public sealed unsafe class NormalFishStepSearcher : INormalFishStepSearcher
 
 		foreach (int cell in ValueMaps[digit])
 		{
-			cellOffsets.Add((cell, (ColorIdentifier)2));
+			cellOffsets.Add(new(2, cell));
 		}
 		foreach (int cell in fins)
 		{
-			candidateOffsets!.Add((cell * 9 + digit, (ColorIdentifier)1));
+			candidateOffsets!.Add(new(1, cell * 9 + digit));
 		}
 
-		return new() { Cells = cellOffsets, Candidates = candidateOffsets };
+		return View.Empty + cellOffsets + candidateOffsets;
 	}
 }

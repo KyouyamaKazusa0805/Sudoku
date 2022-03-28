@@ -14,7 +14,7 @@ namespace Sudoku.Solving.Manual.Steps;
 /// <param name="ExtraDigit">Indicates the extra digit used.</param>
 public sealed record ExtendedRectangleType2Step(
 	ImmutableArray<Conclusion> Conclusions,
-	ImmutableArray<PresentationData> Views,
+	ImmutableArray<View> Views,
 	in Cells Cells,
 	short DigitsMask,
 	int ExtraDigit

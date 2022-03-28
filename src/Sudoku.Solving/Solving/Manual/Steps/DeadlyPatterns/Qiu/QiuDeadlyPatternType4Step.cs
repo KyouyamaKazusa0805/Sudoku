@@ -1,7 +1,6 @@
 ﻿using Sudoku.Presentation;
 using Sudoku.Solving.Collections;
 using Sudoku.Solving.Manual.Text;
-using Sudoku.Techniques;
 
 namespace Sudoku.Solving.Manual.Steps;
 
@@ -14,7 +13,7 @@ namespace Sudoku.Solving.Manual.Steps;
 /// <param name="ConjugatePair">Indicates the conjugate pair used.</param>
 public sealed record QiuDeadlyPatternType4Step(
 	ImmutableArray<Conclusion> Conclusions,
-	ImmutableArray<PresentationData> Views,
+	ImmutableArray<View> Views,
 	in QiuDeadlyPattern Pattern,
 	in ConjugatePair ConjugatePair
 ) : QiuDeadlyPatternStep(Conclusions, Views, Pattern)

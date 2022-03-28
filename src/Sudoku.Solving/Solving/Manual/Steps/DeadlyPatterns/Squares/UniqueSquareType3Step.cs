@@ -18,7 +18,7 @@ namespace Sudoku.Solving.Manual.Steps;
 /// </param>
 public sealed record UniqueSquareType3Step(
 	ImmutableArray<Conclusion> Conclusions,
-	ImmutableArray<PresentationData> Views,
+	ImmutableArray<View> Views,
 	in Cells Cells,
 	short DigitsMask,
 	short ExtraDigitsMask,

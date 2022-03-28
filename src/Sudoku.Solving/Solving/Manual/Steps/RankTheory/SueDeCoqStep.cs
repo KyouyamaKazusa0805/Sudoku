@@ -22,7 +22,7 @@ namespace Sudoku.Solving.Manual.Steps;
 /// <param name="IntersectionCells">The map of intersection cells.</param>
 public sealed record SueDeCoqStep(
 	ImmutableArray<Conclusion> Conclusions,
-	ImmutableArray<PresentationData> Views,
+	ImmutableArray<View> Views,
 	int Block,
 	int Line,
 	short BlockMask,

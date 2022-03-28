@@ -14,7 +14,7 @@ namespace Sudoku.Solving.Manual.Steps;
 /// <param name="Digit2">Indicates the second digit.</param>
 public abstract record BivalueOddagonStep(
 	ImmutableArray<Conclusion> Conclusions,
-	ImmutableArray<PresentationData> Views,
+	ImmutableArray<View> Views,
 	in Cells Loop,
 	int Digit1,
 	int Digit2

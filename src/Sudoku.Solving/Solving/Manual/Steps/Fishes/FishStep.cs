@@ -14,7 +14,7 @@ namespace Sudoku.Solving.Manual.Steps;
 /// <param name="CoverSetsMask">Indicates the mask that contains the cover sets.</param>
 public abstract record FishStep(
 	ImmutableArray<Conclusion> Conclusions,
-	ImmutableArray<PresentationData> Views,
+	ImmutableArray<View> Views,
 	int Digit,
 	int BaseSetsMask,
 	int CoverSetsMask

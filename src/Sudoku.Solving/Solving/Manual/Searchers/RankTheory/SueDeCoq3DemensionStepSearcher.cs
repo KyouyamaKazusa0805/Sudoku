@@ -173,72 +173,41 @@ public sealed unsafe class SueDeCoq3DemensionStepSearcher : ISueDeCoq3DemensionS
 													continue;
 												}
 
-#if false
-												var cellOffsets = new List<(int, ColorIdentifier)>();
-												foreach (int cell in selectedRowCells | rbCurrentMap)
-												{
-													cellOffsets.Add((cell, (ColorIdentifier)0));
-												}
-												foreach (int cell in selectedColumnCells | cbCurrentMap)
-												{
-													cellOffsets.Add((cell, (ColorIdentifier)1));
-												}
-												foreach (int cell in selectedBlockCells)
-												{
-													cellOffsets.Add((cell, (ColorIdentifier)2));
-												}
-#endif
-
-												var candidateOffsets = new List<(int, ColorIdentifier)>();
+												var candidateOffsets = new List<CandidateViewNode>();
 												foreach (int digit in rowMask)
 												{
 													foreach (int cell in (selectedRowCells | rbCurrentMap) & CandMaps[digit])
 													{
-														candidateOffsets.Add(
-															(
-																cell * 9 + digit,
-																(ColorIdentifier)0
-															)
-														);
+														candidateOffsets.Add(new(0, cell * 9 + digit));
 													}
 												}
 												foreach (int digit in columnMask)
 												{
 													foreach (int cell in (selectedColumnCells | cbCurrentMap) & CandMaps[digit])
 													{
-														candidateOffsets.Add(
-															(
-																cell * 9 + digit,
-																(ColorIdentifier)1
-															)
-														);
+														candidateOffsets.Add(new(1, cell * 9 + digit));
 													}
 												}
 												foreach (int digit in blockMask)
 												{
 													foreach (int cell in (selectedBlockCells | rbCurrentMap | cbCurrentMap) & CandMaps[digit])
 													{
-														candidateOffsets.Add(
-															(
-																cell * 9 + digit,
-																(ColorIdentifier)2
-															)
-														);
+														candidateOffsets.Add(new(2, cell * 9 + digit));
 													}
 												}
 
 												var step = new SueDeCoq3DimensionStep(
 													conclusions.ToImmutableArray(),
-													ImmutableArray.Create(new PresentationData
-													{
-														Candidates = candidateOffsets,
-														Regions = new[]
-														{
-															(r, (ColorIdentifier)0),
-															(c, (ColorIdentifier)2),
-															(b, (ColorIdentifier)3)
-														}
-													}),
+													ImmutableArray.Create(
+														View.Empty
+															+ candidateOffsets
+															+ new RegionViewNode[]
+															{
+																new(0, r),
+																new(2, c),
+																new(3, b)
+															}
+													),
 													rowMask,
 													columnMask,
 													blockMask,

@@ -12,7 +12,7 @@ namespace Sudoku.Solving.Manual.Steps;
 /// <param name="IsTemplateDeletion">Indicates whether the step is a deletion.</param>
 public sealed record TemplateStep(
 	ImmutableArray<Conclusion> Conclusions,
-	ImmutableArray<PresentationData> Views,
+	ImmutableArray<View> Views,
 	bool IsTemplateDeletion
 ) : LastResortStep(Conclusions, Views)
 {

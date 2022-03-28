@@ -17,7 +17,7 @@ namespace Sudoku.Solving.Manual.Steps;
 /// <param name="Digit2">Indicates the digit 2 used in this pattern.</param>
 public sealed record EmptyRectangleIntersectionPairStep(
 	ImmutableArray<Conclusion> Conclusions,
-	ImmutableArray<PresentationData> Views,
+	ImmutableArray<View> Views,
 	int StartCell,
 	int EndCell,
 	int Region,

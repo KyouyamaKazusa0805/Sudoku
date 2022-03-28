@@ -146,7 +146,7 @@ public sealed unsafe class AlmostLockedSetsXyWingStepSearcher : IAlmostLockedSet
 						}
 
 						// Record highlight candidates and cells.
-						var candidateOffsets = new List<(int, ColorIdentifier)>();
+						var candidateOffsets = new List<CandidateViewNode>();
 						foreach (int cell in aMap)
 						{
 							short mask = grid.GetCandidates(cell);
@@ -155,15 +155,15 @@ public sealed unsafe class AlmostLockedSetsXyWingStepSearcher : IAlmostLockedSet
 							short zDigitsMask = (short)(mask & finalZ);
 							foreach (int digit in alsDigitsMask)
 							{
-								candidateOffsets.Add((cell * 9 + digit, (ColorIdentifier)101));
+								candidateOffsets.Add(new(101, cell * 9 + digit));
 							}
 							foreach (int digit in xDigitsMask)
 							{
-								candidateOffsets.Add((cell * 9 + digit, (ColorIdentifier)1));
+								candidateOffsets.Add(new(1, cell * 9 + digit));
 							}
 							foreach (int digit in zDigitsMask)
 							{
-								candidateOffsets.Add((cell * 9 + digit, (ColorIdentifier)2));
+								candidateOffsets.Add(new(2, cell * 9 + digit));
 							}
 						}
 						foreach (int cell in bMap)
@@ -174,15 +174,15 @@ public sealed unsafe class AlmostLockedSetsXyWingStepSearcher : IAlmostLockedSet
 							short zDigitsMask = (short)(mask & finalZ);
 							foreach (int digit in alsDigitsMask)
 							{
-								candidateOffsets.Add((cell * 9 + digit, (ColorIdentifier)101));
+								candidateOffsets.Add(new(101, cell * 9 + digit));
 							}
 							foreach (int digit in yDigitsMask)
 							{
-								candidateOffsets.Add((cell * 9 + digit, (ColorIdentifier)1));
+								candidateOffsets.Add(new(1, cell * 9 + digit));
 							}
 							foreach (int digit in zDigitsMask)
 							{
-								candidateOffsets.Add((cell * 9 + digit, (ColorIdentifier)102));
+								candidateOffsets.Add(new(102, cell * 9 + digit));
 							}
 						}
 						foreach (int cell in cMap)
@@ -192,26 +192,26 @@ public sealed unsafe class AlmostLockedSetsXyWingStepSearcher : IAlmostLockedSet
 							short xyDigitsMask = (short)(mask & (finalX | finalY));
 							foreach (int digit in alsDigitsMask)
 							{
-								candidateOffsets.Add((cell * 9 + digit, (ColorIdentifier)103));
+								candidateOffsets.Add(new(103, cell * 9 + digit));
 							}
 							foreach (int digit in xyDigitsMask)
 							{
-								candidateOffsets.Add((cell * 9 + digit, (ColorIdentifier)1));
+								candidateOffsets.Add(new(1, cell * 9 + digit));
 							}
 						}
 
 						var step = new AlmostLockedSetsXyWingStep(
 							conclusions.ToImmutableArray(),
-							ImmutableArray.Create(new PresentationData
-							{
-								Candidates = candidateOffsets,
-								Regions = new[]
-								{
-									(aRegion, (ColorIdentifier)101),
-									(bRegion, (ColorIdentifier)102),
-									(cRegion, (ColorIdentifier)103)
-								}
-							}),
+							ImmutableArray.Create(
+								View.Empty
+									+ candidateOffsets
+									+ new RegionViewNode[]
+									{
+										new(101, aRegion),
+										new(102, bRegion),
+										new(103, cRegion)
+									}
+							),
 							a,
 							b,
 							c,

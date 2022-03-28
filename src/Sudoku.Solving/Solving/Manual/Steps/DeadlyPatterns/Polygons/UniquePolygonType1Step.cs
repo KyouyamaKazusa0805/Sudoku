@@ -12,7 +12,7 @@ namespace Sudoku.Solving.Manual.Steps;
 /// <param name="DigitsMask"><inheritdoc/></param>
 public sealed record UniquePolygonType1Step(
 	ImmutableArray<Conclusion> Conclusions,
-	ImmutableArray<PresentationData> Views,
+	ImmutableArray<View> Views,
 	in Cells Map,
 	short DigitsMask
 ) : UniquePolygonStep(Conclusions, Views, Map, DigitsMask)

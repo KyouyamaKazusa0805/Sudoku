@@ -265,37 +265,36 @@ public sealed unsafe class QiuDeadlyPatternStepSearcher : IQiuDeadlyPatternStepS
 		}
 
 		var cellsMap = square | pair;
-		var cellOffsets = new (int, ColorIdentifier)[cellsMap.Count];
+		var cellOffsets = new CellViewNode[cellsMap.Count];
 		int i = 0;
 		foreach (int cell in cellsMap)
 		{
-			cellOffsets[i++] = (cell, (ColorIdentifier)0);
+			cellOffsets[i++] = new(0, cell);
 		}
 
-		var candidateOffsets = new List<(int, ColorIdentifier)>();
+		var candidateOffsets = new List<CandidateViewNode>();
 		foreach (int digit in comparer)
 		{
 			foreach (int cell in square & CandMaps[digit])
 			{
-				candidateOffsets.Add((cell * 9 + digit, (ColorIdentifier)1));
+				candidateOffsets.Add(new(1, cell * 9 + digit));
 			}
 		}
 		int anotherCellInPair = (pair - map)[0];
 		foreach (int digit in grid.GetCandidates(anotherCellInPair))
 		{
-			candidateOffsets.Add((anotherCellInPair * 9 + digit, (ColorIdentifier)0));
+			candidateOffsets.Add(new(0, anotherCellInPair * 9 + digit));
 		}
 
+		short lineMask = isRow ? baseLine.RowMask : baseLine.ColumnMask;
 		var step = new QiuDeadlyPatternType1Step(
 			ImmutableArray.CreateRange(conclusions),
-			ImmutableArray.Create(new PresentationData
-			{
-				Cells = cellOffsets,
-				Candidates = candidateOffsets,
-				Regions =
-					from pos in (isRow ? baseLine.RowMask : baseLine.ColumnMask).GetAllSets()
-					select (pos + (isRow ? 9 : 18), (ColorIdentifier)0)
-			}),
+			ImmutableArray.Create(
+				View.Empty
+					+ cellOffsets
+					+ candidateOffsets
+					+ from pos in lineMask.GetAllSets() select new RegionViewNode(0, pos + (isRow ? 9 : 18))
+			),
 			pattern,
 			elimCell * 9 + extraDigit
 		);
@@ -333,38 +332,37 @@ public sealed unsafe class QiuDeadlyPatternStepSearcher : IQiuDeadlyPatternStepS
 		}
 
 		var cellsMap = square | pair;
-		var cellOffsets = new (int, ColorIdentifier)[cellsMap.Count];
+		var cellOffsets = new CellViewNode[cellsMap.Count];
 		int i = 0;
 		foreach (int cell in cellsMap)
 		{
-			cellOffsets[i++] = (cell, (ColorIdentifier)0);
+			cellOffsets[i++] = new(0, cell);
 		}
-		var candidateOffsets = new List<(int, ColorIdentifier)>();
+		var candidateOffsets = new List<CandidateViewNode>();
 		foreach (int digit in comparer)
 		{
 			foreach (int cell in square & CandMaps[digit])
 			{
-				candidateOffsets.Add((cell * 9 + digit, (ColorIdentifier)1));
+				candidateOffsets.Add(new(1, cell * 9 + digit));
 			}
 		}
 		foreach (int cell in pair)
 		{
 			foreach (int digit in grid.GetCandidates(cell))
 			{
-				candidateOffsets.Add((cell * 9 + digit, (ColorIdentifier)(digit == extraDigit ? 1 : 0)));
+				candidateOffsets.Add(new(digit == extraDigit ? 1 : 0, cell * 9 + digit));
 			}
 		}
 
+		short lineMask = isRow ? baseLine.RowMask : baseLine.ColumnMask;
 		var step = new QiuDeadlyPatternType2Step(
 			ImmutableArray.CreateRange(conclusions),
-			ImmutableArray.Create(new PresentationData
-			{
-				Cells = cellOffsets,
-				Candidates = candidateOffsets,
-				Regions =
-					from pos in (isRow ? baseLine.RowMask : baseLine.ColumnMask).GetAllSets()
-					select (pos + (isRow ? 9 : 18), (ColorIdentifier)0)
-			}),
+			ImmutableArray.Create(
+				View.Empty
+					+ cellOffsets
+					+ candidateOffsets
+					+ from pos in lineMask.GetAllSets() select new RegionViewNode(0, pos + (isRow ? 9 : 18))
+			),
 			pattern,
 			extraDigit
 		);
@@ -414,18 +412,18 @@ public sealed unsafe class QiuDeadlyPatternStepSearcher : IQiuDeadlyPatternStepS
 					}
 
 					var cellsMap = square | pair;
-					var cellOffsets = new (int, ColorIdentifier)[cellsMap.Count];
+					var cellOffsets = new CellViewNode[cellsMap.Count];
 					int i = 0;
 					foreach (int cell in cellsMap)
 					{
-						cellOffsets[i++] = (cell, (ColorIdentifier)0);
+						cellOffsets[i++] = new(0, cell);
 					}
-					var candidateOffsets = new List<(int, ColorIdentifier)>();
+					var candidateOffsets = new List<CandidateViewNode>();
 					foreach (int digit in comparer)
 					{
 						foreach (int cell in square & CandMaps[digit])
 						{
-							candidateOffsets.Add((cell * 9 + digit, (ColorIdentifier)1));
+							candidateOffsets.Add(new(1, cell * 9 + digit));
 						}
 					}
 					foreach (int cell in pair)
@@ -433,31 +431,26 @@ public sealed unsafe class QiuDeadlyPatternStepSearcher : IQiuDeadlyPatternStepS
 						foreach (int digit in grid.GetCandidates(cell))
 						{
 							candidateOffsets.Add(
-								(
-									cell * 9 + digit,
-									(ColorIdentifier)((otherDigitsMask >> digit & 1) != 0 ? 1 : 0)
-								)
-							);
+								new((otherDigitsMask >> digit & 1) != 0 ? 1 : 0, cell * 9 + digit));
 						}
 					}
 					foreach (int cell in cells)
 					{
 						foreach (int digit in grid.GetCandidates(cell))
 						{
-							candidateOffsets.Add((cell * 9 + digit, (ColorIdentifier)1));
+							candidateOffsets.Add(new(1, cell * 9 + digit));
 						}
 					}
 
+					short lineMask = isRow ? baseLine.RowMask : baseLine.ColumnMask;
 					var step = new QiuDeadlyPatternType3Step(
 						ImmutableArray.CreateRange(conclusions),
-						ImmutableArray.Create(new PresentationData
-						{
-							Cells = cellOffsets,
-							Candidates = candidateOffsets,
-							Regions =
-								from pos in (isRow ? baseLine.RowMask : baseLine.ColumnMask).GetAllSets()
-								select (pos + (isRow ? 9 : 18), (ColorIdentifier)0)
-						}),
+						ImmutableArray.Create(
+							View.Empty
+								+ cellOffsets
+								+ candidateOffsets
+								+ from pos in lineMask.GetAllSets() select new RegionViewNode(0, pos + (isRow ? 9 : 18))
+						),
 						pattern,
 						mask,
 						cells,
@@ -519,35 +512,34 @@ public sealed unsafe class QiuDeadlyPatternStepSearcher : IQiuDeadlyPatternStepS
 				}
 
 				var cellsMap = square | pair;
-				var cellOffsets = new (int, ColorIdentifier)[cellsMap.Count];
+				var cellOffsets = new CellViewNode[cellsMap.Count];
 				int i = 0;
 				foreach (int cell in cellsMap)
 				{
-					cellOffsets[i++] = (cell, (ColorIdentifier)0);
+					cellOffsets[i++] = new(0, cell);
 				}
-				var candidateOffsets = new List<(int, ColorIdentifier)>();
+				var candidateOffsets = new List<CandidateViewNode>();
 				foreach (int d in comparer)
 				{
 					foreach (int cell in square & CandMaps[d])
 					{
-						candidateOffsets.Add((cell * 9 + d, (ColorIdentifier)1));
+						candidateOffsets.Add(new(1, cell * 9 + d));
 					}
 				}
 				foreach (int cell in pair)
 				{
-					candidateOffsets.Add((cell * 9 + digit, (ColorIdentifier)1));
+					candidateOffsets.Add(new(1, cell * 9 + digit));
 				}
 
+				short lineMask = isRow ? baseLine.RowMask : baseLine.ColumnMask;
 				var step = new QiuDeadlyPatternType4Step(
 					ImmutableArray.CreateRange(conclusions),
-					ImmutableArray.Create(new PresentationData
-					{
-						Cells = cellOffsets,
-						Candidates = candidateOffsets,
-						Regions =
-							from pos in (isRow ? baseLine.RowMask : baseLine.ColumnMask).GetAllSets()
-							select (pos + (isRow ? 9 : 18), (ColorIdentifier)0)
-					}),
+					ImmutableArray.Create(
+						View.Empty
+							+ cellOffsets
+							+ candidateOffsets
+							+ from pos in lineMask.GetAllSets() select new RegionViewNode(0, pos + (isRow ? 9 : 18))
+					),
 					pattern,
 					new(pair, digit)
 				);
@@ -629,42 +621,41 @@ public sealed unsafe class QiuDeadlyPatternStepSearcher : IQiuDeadlyPatternStepS
 		}
 
 		var cellsMap = square | pair;
-		var cellOffsets = new (int, ColorIdentifier)[cellsMap.Count];
+		var cellOffsets = new CellViewNode[cellsMap.Count];
 		int i = 0;
 		foreach (int cell in cellsMap)
 		{
-			cellOffsets[i++] = (cell, (ColorIdentifier)0);
+			cellOffsets[i++] = new(0, cell);
 		}
-		var candidateOffsets = new List<(int, ColorIdentifier)>();
+		var candidateOffsets = new List<CandidateViewNode>();
 		foreach (int d in comparer)
 		{
 			foreach (int cell in square & CandMaps[d])
 			{
-				candidateOffsets.Add((cell * 9 + d, (ColorIdentifier)1));
+				candidateOffsets.Add(new(1, cell * 9 + d));
 			}
 		}
 		foreach (int cell in pair)
 		{
 			foreach (int digit in grid.GetCandidates(cell))
 			{
-				candidateOffsets.Add((cell * 9 + digit, (ColorIdentifier)0));
+				candidateOffsets.Add(new(0, cell * 9 + digit));
 			}
 		}
 		foreach (int candidate in candidates)
 		{
-			candidateOffsets.Add((candidate, (ColorIdentifier)2));
+			candidateOffsets.Add(new(2, candidate));
 		}
 
+		short lineMask = isRow ? baseLine.RowMask : baseLine.ColumnMask;
 		var step = new QiuDeadlyPatternLockedTypeStep(
 			ImmutableArray.CreateRange(conclusions),
-			ImmutableArray.Create(new PresentationData
-			{
-				Cells = cellOffsets,
-				Candidates = candidateOffsets,
-				Regions =
-					from pos in (isRow ? baseLine.RowMask : baseLine.ColumnMask).GetAllSets()
-					select (pos + (isRow ? 9 : 18), (ColorIdentifier)0)
-			}),
+			ImmutableArray.Create(
+				View.Empty
+					+ cellOffsets
+					+ candidateOffsets
+					+ from pos in lineMask.GetAllSets() select new RegionViewNode(0, pos + (isRow ? 9 : 18))
+			),
 			pattern,
 			candidates
 		);

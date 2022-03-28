@@ -1,6 +1,4 @@
-﻿using Sudoku.Collections;
-
-namespace Sudoku.Presentation;
+﻿namespace Sudoku.Presentation;
 
 /// <summary>
 /// Provides with a data structure that displays a view for basic information.
@@ -17,7 +15,7 @@ public sealed class View : ICloneable, IEnumerable<ViewNode>
 	/// Creates an empty <see cref="View"/> instance.
 	/// </summary>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public View()
+	private View()
 	{
 	}
 
@@ -33,6 +31,16 @@ public sealed class View : ICloneable, IEnumerable<ViewNode>
 	/// Indicates the number of elements stored in the current collection.
 	/// </summary>
 	public int Count => _nodes.Count;
+
+
+	/// <summary>
+	/// Indicates the empty instance.
+	/// </summary>
+	public static View Empty
+	{
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		get => new();
+	}
 
 
 	/// <summary>
@@ -78,89 +86,7 @@ public sealed class View : ICloneable, IEnumerable<ViewNode>
 
 	/// <inheritdoc cref="ICloneable.Clone"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public View Clone() => Count == 0 ? new() : new(new(from node in _nodes select node.Clone()));
-
-	/// <summary>
-	/// Adds a serial of cells to be highlighted.
-	/// </summary>
-	/// <param name="highlightedCells">The highlighted cells.</param>
-	/// <returns>The reference that is same as <see langword="this"/>.</returns>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public View AddCells(params (Identifier Identifier, int Cell)[] highlightedCells)
-	{
-		_nodes.AddRange(from tuple in highlightedCells select new CellViewNode(tuple.Identifier, tuple.Cell));
-		return this;
-	}
-
-	/// <summary>
-	/// Adds a serial of candidates to be highlighted.
-	/// </summary>
-	/// <param name="highlightedCandidates">The highlighted candidates.</param>
-	/// <returns>The reference that is same as <see langword="this"/>.</returns>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public View AddCandidates(params (Identifier Identifier, int Candidate)[] highlightedCandidates)
-	{
-		_nodes.AddRange(
-			from tuple in highlightedCandidates
-			select new CandidateViewNode(tuple.Identifier, tuple.Candidate));
-		return this;
-	}
-
-	/// <summary>
-	/// Adds a serial of regions to be highlighted.
-	/// </summary>
-	/// <param name="highlightedRegions">The highlighted regions.</param>
-	/// <returns>The reference that is same as <see langword="this"/>.</returns>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public View AddRegions(params (Identifier Identifier, int Region)[] highlightedRegions)
-	{
-		_nodes.AddRange(
-			from tuple in highlightedRegions
-			select new RegionViewNode(tuple.Identifier, tuple.Region));
-		return this;
-	}
-
-	/// <summary>
-	/// Adds a serial of links to be highlighted.
-	/// </summary>
-	/// <param name="highlightedLinks">The highlighted links.</param>
-	/// <returns>The reference that is same as <see langword="this"/>.</returns>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public View AddLinks(params (Identifier Identifier, LockedTarget Start, LockedTarget End, LinkKind LinkKind)[] highlightedLinks)
-	{
-		_nodes.AddRange(
-			from tuple in highlightedLinks
-			select new LinkViewNode(tuple.Identifier, tuple.Start, tuple.End, tuple.LinkKind));
-		return this;
-	}
-
-	/// <summary>
-	/// Adds a serial of crosshatches to be highlighted.
-	/// </summary>
-	/// <param name="highlightedCrosshatches">The highlighted crosshatches.</param>
-	/// <returns>The reference that is same as <see langword="this"/>.</returns>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public View AddCrosshatches(params (Identifier Identifier, Cells Start, Cells End, int Digit)[] highlightedCrosshatches)
-	{
-		_nodes.AddRange(
-			from tuple in highlightedCrosshatches
-			select new CrosshatchViewNode(tuple.Identifier, tuple.Start, tuple.End, tuple.Digit));
-		return this;
-	}
-
-	/// <summary>
-	/// Adds a serial of unknowns to be highlighted.
-	/// </summary>
-	/// <param name="highlightedUnknowns">The highlighted unknowns.</param>
-	/// <returns>The reference that is same as <see langword="this"/>.</returns>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public View AddUnknown(params (Identifier Identifier, int Cell, byte Char, short DigitsMask)[] highlightedUnknowns)
-	{
-		_nodes.AddRange(
-			from tuple in highlightedUnknowns
-			select new UnknownViewNode(tuple.Identifier, tuple.Cell, tuple.Char, tuple.DigitsMask));
-		return this;
-	}
+	public View Clone() => Count == 0 ? Empty : new(new(from node in _nodes select node.Clone()));
 
 	/// <inheritdoc cref="IEnumerable{T}.GetEnumerator"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -177,4 +103,47 @@ public sealed class View : ICloneable, IEnumerable<ViewNode>
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	IEnumerator<ViewNode> IEnumerable<ViewNode>.GetEnumerator() => GetEnumerator();
+
+
+	/// <summary>
+	/// Adds a new node into the collection.
+	/// </summary>
+	/// <param name="originalView">The original view.</param>
+	/// <param name="newNode">The new item to be added.</param>
+	/// <returns>The reference that is same as the argument <paramref name="originalView"/>.</returns>
+	/// <remarks>
+	/// Please note that the operator is mutable one, which means the appending operation
+	/// is based on the argument <paramref name="originalView"/>.
+	/// </remarks>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static View operator +(View originalView, ViewNode? newNode)
+	{
+		if (newNode is not null)
+		{
+			originalView.Add(newNode);
+		}
+
+		return originalView;
+	}
+
+	/// <summary>
+	/// Adds a serial of view nodes into the collection.
+	/// </summary>
+	/// <param name="originalView">The original view.</param>
+	/// <param name="highlightedItems">The highlighted items.</param>
+	/// <returns>The reference that is same as the argument <paramref name="originalView"/>.</returns>
+	/// <remarks>
+	/// Please note that the operator is mutable one, which means the appending operation
+	/// is based on the argument <paramref name="originalView"/>.
+	/// </remarks>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static View operator +(View originalView, IEnumerable<ViewNode>? highlightedItems)
+	{
+		if (highlightedItems is not null)
+		{
+			originalView.AddRange(highlightedItems);
+		}
+
+		return originalView;
+	}
 }

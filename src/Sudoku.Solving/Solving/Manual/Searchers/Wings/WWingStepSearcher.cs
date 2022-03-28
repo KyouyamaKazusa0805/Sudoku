@@ -110,19 +110,18 @@ public sealed unsafe class WWingStepSearcher : IIregularWingStepSearcher
 						// Now W-Wing found. Store it into the accumulator.
 						var step = new WWingStep(
 							elimMap.ToImmutableConclusions(anotherDigit),
-							ImmutableArray.Create(new PresentationData
-							{
-								Candidates = new[]
-								{
-									(c1 * 9 + anotherDigit, (ColorIdentifier)0),
-									(c2 * 9 + anotherDigit, (ColorIdentifier)0),
-									(c1 * 9 + digit, (ColorIdentifier)1),
-									(c2 * 9 + digit, (ColorIdentifier)1),
-									(a * 9 + digit, (ColorIdentifier)1),
-									(b * 9 + digit, (ColorIdentifier)1)
-								},
-								Regions = new[] { (region, (ColorIdentifier)0) }
-							}),
+							ImmutableArray.Create(
+								View.Empty
+									+ new CandidateViewNode[]
+									{
+										new(0, c1 * 9 + anotherDigit),
+										new(0, c2 * 9 + anotherDigit),
+										new(1, c1 * 9 + digit),
+										new(1, c2 * 9 + digit),
+										new(1, a * 9 + digit),
+										new(1, b * 9 + digit)
+									}
+									+ new RegionViewNode(0, region)),
 							a,
 							b,
 							new(conjugate, digit)

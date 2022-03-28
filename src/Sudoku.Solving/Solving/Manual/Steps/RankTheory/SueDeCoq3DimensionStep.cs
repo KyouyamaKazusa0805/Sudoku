@@ -18,13 +18,13 @@ namespace Sudoku.Solving.Manual.Steps;
 /// <param name="BlockCells">The block cells map.</param>
 public sealed record SueDeCoq3DimensionStep(
 	ImmutableArray<Conclusion> Conclusions,
-	ImmutableArray<PresentationData> Views,
+	ImmutableArray<View> Views,
 	short RowDigitsMask,
 	short ColumnDigitsMask,
 	short BlockDigitsMask,
-	Cells RowCells,
-	Cells ColumnCells,
-	Cells BlockCells
+	in Cells RowCells,
+	in Cells ColumnCells,
+	in Cells BlockCells
 ) : RankTheoryStep(Conclusions, Views), IStepWithRank
 {
 	/// <inheritdoc/>

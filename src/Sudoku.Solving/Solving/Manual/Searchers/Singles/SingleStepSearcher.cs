@@ -67,11 +67,11 @@ public sealed unsafe class SingleStepSearcher : ISingleStepSearcher
 			int digit = TrailingZeroCount(grid.GetCandidates(resultCell));
 			var step = new FullHouseStep(
 				ImmutableArray.Create(new Conclusion(ConclusionType.Assignment, resultCell, digit)),
-				ImmutableArray.Create(new PresentationData
-				{
-					Candidates = new[] { (resultCell * 9 + digit, (ColorIdentifier)0) },
-					Regions = new[] { (region, (ColorIdentifier)0) }
-				}),
+				ImmutableArray.Create(
+					View.Empty
+						+ new CandidateViewNode(0, resultCell * 9 + digit)
+						+ new RegionViewNode(0, region)
+				),
 				resultCell,
 				digit
 			);
@@ -162,7 +162,7 @@ public sealed unsafe class SingleStepSearcher : ISingleStepSearcher
 			}
 
 			int digit = TrailingZeroCount(mask);
-			List<(Crosshatch, ColorIdentifier)>? directLines = null;
+			List<CrosshatchViewNode>? directLines = null;
 			if (ShowDirectLines)
 			{
 				directLines = new(6);
@@ -175,7 +175,7 @@ public sealed unsafe class SingleStepSearcher : ISingleStepSearcher
 						{
 							if (grid[peerCell] == i)
 							{
-								directLines.Add((new(new() { peerCell }, Cells.Empty), (ColorIdentifier)0));
+								directLines.Add(new(0, new() { peerCell}, Cells.Empty, digit));
 								flag = true;
 								break;
 							}
@@ -190,11 +190,7 @@ public sealed unsafe class SingleStepSearcher : ISingleStepSearcher
 
 			var step = new NakedSingleStep(
 				ImmutableArray.Create(new Conclusion(ConclusionType.Assignment, cell, digit)),
-				ImmutableArray.Create(new PresentationData
-				{
-					Candidates = new[] { (cell * 9 + digit, (ColorIdentifier)0) },
-					DirectLines = directLines
-				}),
+				ImmutableArray.Create(View.Empty + new CandidateViewNode(0, cell * 9 + digit) + directLines),
 				cell,
 				digit
 			);
@@ -240,7 +236,7 @@ public sealed unsafe class SingleStepSearcher : ISingleStepSearcher
 			// Now here the digit is a hidden single. We should gather the information
 			// (painting or text information) on the step in order to display onto the UI.
 			bool enableAndIsLastDigit = false;
-			var cellOffsets = new List<(int, ColorIdentifier)>();
+			var cellOffsets = new List<CellViewNode>();
 			if (EnableLastDigit)
 			{
 				// Sum up the number of appearing in the grid of 'digit'.
@@ -250,7 +246,7 @@ public sealed unsafe class SingleStepSearcher : ISingleStepSearcher
 					if (grid[i] == digit)
 					{
 						digitCount++;
-						cellOffsets.Add((i, (ColorIdentifier)0));
+						cellOffsets.Add(new(0, i));
 					}
 				}
 
@@ -258,7 +254,7 @@ public sealed unsafe class SingleStepSearcher : ISingleStepSearcher
 			}
 
 			// Get direct lines.
-			List<(Crosshatch, ColorIdentifier)>? directLines = null;
+			List<CrosshatchViewNode>? directLines = null;
 			if (!enableAndIsLastDigit && ShowDirectLines)
 			{
 				directLines = new(6);
@@ -289,7 +285,7 @@ public sealed unsafe class SingleStepSearcher : ISingleStepSearcher
 				{
 					if ((PeerMaps[cell] & tempMap) is { Count: not 0 } removableCells)
 					{
-						directLines.Add((new(new() { cell }, removableCells), (ColorIdentifier)0));
+						directLines.Add(new(0, new() { cell }, removableCells, digit));
 						tempMap -= removableCells;
 					}
 				}
@@ -297,13 +293,13 @@ public sealed unsafe class SingleStepSearcher : ISingleStepSearcher
 
 			return new HiddenSingleStep(
 				ImmutableArray.Create(new Conclusion(ConclusionType.Assignment, resultCell, digit)),
-				ImmutableArray.Create(new PresentationData
-				{
-					Cells = enableAndIsLastDigit ? cellOffsets : null,
-					Candidates = new[] { (resultCell * 9 + digit, (ColorIdentifier)0) },
-					Regions = enableAndIsLastDigit ? null : new[] { (region, (ColorIdentifier)0) },
-					DirectLines = directLines
-				}),
+				ImmutableArray.Create(
+					View.Empty
+						+ (enableAndIsLastDigit ? cellOffsets : null)
+						+ new CandidateViewNode(0, resultCell * 9 + digit)
+						+ (enableAndIsLastDigit ? null : new RegionViewNode(0, region))
+						+ directLines
+				),
 				resultCell,
 				digit,
 				region,

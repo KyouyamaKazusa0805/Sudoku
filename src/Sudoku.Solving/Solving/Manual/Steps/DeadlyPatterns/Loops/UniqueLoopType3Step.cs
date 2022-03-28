@@ -16,7 +16,7 @@ namespace Sudoku.Solving.Manual.Steps;
 /// <param name="SubsetCells">Indicates the subset cells.</param>
 public sealed record UniqueLoopType3Step(
 	ImmutableArray<Conclusion> Conclusions,
-	ImmutableArray<PresentationData> Views,
+	ImmutableArray<View> Views,
 	int Digit1,
 	int Digit2,
 	in Cells Loop,

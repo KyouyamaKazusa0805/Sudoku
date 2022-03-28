@@ -11,7 +11,7 @@ namespace Sudoku.Solving.Manual.Steps;
 /// <param name="Digit">Indicates the digit used.</param>
 public abstract record SingleDigitPatternStep(
 	ImmutableArray<Conclusion> Conclusions,
-	ImmutableArray<PresentationData> Views,
+	ImmutableArray<View> Views,
 	int Digit
 ) : Step(Conclusions, Views)
 {

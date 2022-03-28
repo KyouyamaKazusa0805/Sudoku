@@ -315,7 +315,7 @@ public sealed unsafe class UniquePolygonStepSearcher : IUniquePolygonStepSearche
 				conclusions.Add(new(ConclusionType.Elimination, elimCell, digit));
 			}
 
-			var candidateOffsets = new List<(int, ColorIdentifier)>();
+			var candidateOffsets = new List<CandidateViewNode>();
 			foreach (int cell in map)
 			{
 				if (mapContainingThatDigit.Contains(cell))
@@ -325,13 +325,13 @@ public sealed unsafe class UniquePolygonStepSearcher : IUniquePolygonStepSearche
 
 				foreach (int digit in grid.GetCandidates(cell))
 				{
-					candidateOffsets.Add((cell * 9 + digit, (ColorIdentifier)0));
+					candidateOffsets.Add(new(0, cell * 9 + digit));
 				}
 			}
 
 			var step = new UniquePolygonType1Step(
 				conclusions.ToImmutableArray(),
-				ImmutableArray.Create(new PresentationData { Candidates = candidateOffsets }),
+				ImmutableArray.Create(View.Empty + candidateOffsets),
 				map,
 				tempMask
 			);
@@ -379,18 +379,18 @@ public sealed unsafe class UniquePolygonStepSearcher : IUniquePolygonStepSearche
 				conclusions.Add(new(ConclusionType.Elimination, cell, otherDigit));
 			}
 
-			var candidateOffsets = new List<(int, ColorIdentifier)>();
+			var candidateOffsets = new List<CandidateViewNode>();
 			foreach (int cell in map)
 			{
 				foreach (int digit in grid.GetCandidates(cell))
 				{
-					candidateOffsets.Add((cell * 9 + digit, (ColorIdentifier)(digit == otherDigit ? 1 : 0)));
+					candidateOffsets.Add(new(digit == otherDigit ? 1 : 0, cell * 9 + digit));
 				}
 			}
 
 			var step = new UniquePolygonType2Step(
 				conclusions.ToImmutableArray(),
-				ImmutableArray.Create(new PresentationData { Candidates = candidateOffsets }),
+				ImmutableArray.Create(View.Empty + candidateOffsets),
 				map,
 				tempMask,
 				otherDigit
@@ -464,41 +464,32 @@ public sealed unsafe class UniquePolygonStepSearcher : IUniquePolygonStepSearche
 							continue;
 						}
 
-						var candidateOffsets = new List<(int, ColorIdentifier)>();
+						var candidateOffsets = new List<CandidateViewNode>();
 						foreach (int cell in currentMap)
 						{
 							foreach (int digit in grid.GetCandidates(cell))
 							{
-								candidateOffsets.Add(
-									(
-										cell * 9 + digit,
-										(ColorIdentifier)((tempMask >> digit & 1) != 0 ? 1 : 0)
-									)
-								);
+								candidateOffsets.Add(new((tempMask >> digit & 1) != 0 ? 1 : 0, cell * 9 + digit));
 							}
 						}
 						foreach (int cell in otherCellsMap)
 						{
 							foreach (int digit in grid.GetCandidates(cell))
 							{
-								candidateOffsets.Add((cell * 9 + digit, (ColorIdentifier)0));
+								candidateOffsets.Add(new(0, cell * 9 + digit));
 							}
 						}
 						foreach (int cell in combination)
 						{
 							foreach (int digit in grid.GetCandidates(cell))
 							{
-								candidateOffsets.Add((cell * 9 + digit, (ColorIdentifier)1));
+								candidateOffsets.Add(new(1, cell * 9 + digit));
 							}
 						}
 
 						var step = new UniquePolygonType3Step(
 							conclusions.ToImmutableArray(),
-							ImmutableArray.Create(new PresentationData
-							{
-								Candidates = candidateOffsets,
-								Regions = new[] { (region, (ColorIdentifier)0) }
-							}),
+							ImmutableArray.Create(View.Empty + candidateOffsets + new RegionViewNode(0, region)),
 							map,
 							tempMask,
 							combination,
@@ -602,29 +593,25 @@ public sealed unsafe class UniquePolygonStepSearcher : IUniquePolygonStepSearche
 						}
 					}
 
-					var candidateOffsets = new List<(int, ColorIdentifier)>();
+					var candidateOffsets = new List<CandidateViewNode>();
 					foreach (int cell in currentMap)
 					{
 						foreach (int digit in grid.GetCandidates(cell) & combinationMask)
 						{
-							candidateOffsets.Add((cell * 9 + digit, (ColorIdentifier)1));
+							candidateOffsets.Add(new(1, cell * 9 + digit));
 						}
 					}
 					foreach (int cell in otherCellsMap)
 					{
 						foreach (int digit in grid.GetCandidates(cell))
 						{
-							candidateOffsets.Add((cell * 9 + digit, (ColorIdentifier)0));
+							candidateOffsets.Add(new(0, cell * 9 + digit));
 						}
 					}
 
 					var step = new UniquePolygonType4Step(
 						conclusions.ToImmutableArray(),
-						ImmutableArray.Create(new PresentationData
-						{
-							Candidates = candidateOffsets,
-							Regions = new[] { (region, (ColorIdentifier)0) }
-						}),
+						ImmutableArray.Create(View.Empty + candidateOffsets + new RegionViewNode(0, region)),
 						map,
 						otherMask,
 						currentMap,

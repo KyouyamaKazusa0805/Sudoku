@@ -13,7 +13,7 @@ namespace Sudoku.Solving.Manual.Steps;
 /// <param name="ContradictionLinks">Indicates the list of contradiction links.</param>
 public sealed record BowmanBingoStep(
 	ImmutableArray<Conclusion> Conclusions,
-	ImmutableArray<PresentationData> Views,
+	ImmutableArray<View> Views,
 	ImmutableArray<Conclusion> ContradictionLinks
 ) : LastResortStep(Conclusions, Views), IChainLikeStep
 {

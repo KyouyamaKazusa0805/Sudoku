@@ -15,7 +15,7 @@ namespace Sudoku.Solving.Manual.Steps;
 /// <param name="CoverSet">Indicates the region that the current locked candidates influences.</param>
 public sealed record LockedCandidatesStep(
 	ImmutableArray<Conclusion> Conclusions,
-	ImmutableArray<PresentationData> Views,
+	ImmutableArray<View> Views,
 	int Digit,
 	int BaseSet,
 	int CoverSet

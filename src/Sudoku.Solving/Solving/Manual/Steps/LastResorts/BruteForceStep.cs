@@ -12,7 +12,7 @@ namespace Sudoku.Solving.Manual.Steps;
 /// <param name="Views"><inheritdoc/></param>
 public sealed record BruteForceStep(
 	ImmutableArray<Conclusion> Conclusions,
-	ImmutableArray<PresentationData> Views
+	ImmutableArray<View> Views
 ) : LastResortStep(Conclusions, Views)
 {
 	/// <inheritdoc/>

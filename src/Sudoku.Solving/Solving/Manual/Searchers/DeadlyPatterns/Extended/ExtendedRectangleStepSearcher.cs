@@ -284,7 +284,7 @@ public sealed unsafe class ExtendedRectangleStepSearcher : IExtendedRectangleSte
 		short normalDigits, int extraDigit, bool onlyFindOne)
 	{
 		var conclusions = new List<Conclusion>();
-		var candidateOffsets = new List<(int, ColorIdentifier)>();
+		var candidateOffsets = new List<CandidateViewNode>();
 		foreach (int cell in allCellsMap)
 		{
 			if (cell == extraCells[0])
@@ -301,7 +301,7 @@ public sealed unsafe class ExtendedRectangleStepSearcher : IExtendedRectangleSte
 			{
 				foreach (int digit in grid.GetCandidates(cell))
 				{
-					candidateOffsets.Add((cell * 9 + digit, (ColorIdentifier)0));
+					candidateOffsets.Add(new(0, cell * 9 + digit));
 				}
 			}
 		}
@@ -313,7 +313,7 @@ public sealed unsafe class ExtendedRectangleStepSearcher : IExtendedRectangleSte
 
 		var step = new ExtendedRectangleType1Step(
 			ImmutableArray.CreateRange(conclusions),
-			ImmutableArray.Create(new PresentationData { Candidates = candidateOffsets }),
+			ImmutableArray.Create(View.Empty + candidateOffsets),
 			allCellsMap,
 			normalDigits
 		);
@@ -349,18 +349,18 @@ public sealed unsafe class ExtendedRectangleStepSearcher : IExtendedRectangleSte
 			goto ReturnNull;
 		}
 
-		var candidateOffsets = new List<(int, ColorIdentifier)>();
+		var candidateOffsets = new List<CandidateViewNode>();
 		foreach (int cell in allCellsMap)
 		{
 			foreach (int digit in grid.GetCandidates(cell))
 			{
-				candidateOffsets.Add((cell * 9 + digit, (ColorIdentifier)(digit == extraDigit ? 1 : 0)));
+				candidateOffsets.Add(new(digit == extraDigit ? 1 : 0, cell * 9 + digit));
 			}
 		}
 
 		var step = new ExtendedRectangleType2Step(
 			elimMap.ToImmutableConclusions(extraDigit),
-			ImmutableArray.Create(new PresentationData { Candidates = candidateOffsets }),
+			ImmutableArray.Create(View.Empty + candidateOffsets),
 			allCellsMap,
 			normalDigits,
 			extraDigit
@@ -422,41 +422,32 @@ public sealed unsafe class ExtendedRectangleStepSearcher : IExtendedRectangleSte
 						continue;
 					}
 
-					var candidateOffsets = new List<(int, ColorIdentifier)>();
+					var candidateOffsets = new List<CandidateViewNode>();
 					foreach (int cell in allCellsMap - extraCellsMap)
 					{
 						foreach (int digit in grid.GetCandidates(cell))
 						{
-							candidateOffsets.Add((cell * 9 + digit, (ColorIdentifier)0));
+							candidateOffsets.Add(new(0, cell * 9 + digit));
 						}
 					}
 					foreach (int cell in extraCellsMap)
 					{
 						foreach (int digit in grid.GetCandidates(cell))
 						{
-							candidateOffsets.Add(
-								(
-									cell * 9 + digit,
-									(ColorIdentifier)((mask >> digit & 1) != 0 ? 1 : 0)
-								)
-							);
+							candidateOffsets.Add(new((mask >> digit & 1) != 0 ? 1 : 0, cell * 9 + digit));
 						}
 					}
 					foreach (int cell in cells)
 					{
 						foreach (int digit in grid.GetCandidates(cell))
 						{
-							candidateOffsets.Add((cell * 9 + digit, (ColorIdentifier)1));
+							candidateOffsets.Add(new(1, cell * 9 + digit));
 						}
 					}
 
 					var step = new ExtendedRectangleType3Step(
 						ImmutableArray.CreateRange(conclusions),
-						ImmutableArray.Create(new PresentationData
-						{
-							Candidates = candidateOffsets,
-							Regions = new[] { (region, (ColorIdentifier)0) }
-						}),
+						ImmutableArray.Create(View.Empty + candidateOffsets + new RegionViewNode(0, region)),
 						allCellsMap,
 						normalDigits,
 						cells,
@@ -514,7 +505,7 @@ public sealed unsafe class ExtendedRectangleStepSearcher : IExtendedRectangleSte
 				}
 
 				// Gather all highlight candidates.
-				var candidateOffsets = new List<(int, ColorIdentifier)>();
+				var candidateOffsets = new List<CandidateViewNode>();
 				foreach (int cell in allCellsMap)
 				{
 					if (cell == extraCell)
@@ -524,13 +515,13 @@ public sealed unsafe class ExtendedRectangleStepSearcher : IExtendedRectangleSte
 
 					foreach (int digit in grid.GetCandidates(cell))
 					{
-						candidateOffsets.Add((cell * 9 + digit, (ColorIdentifier)0));
+						candidateOffsets.Add(new(0, cell * 9 + digit));
 					}
 				}
 
 				var step = new ExtendedRectangleType1Step(
 					ImmutableArray.CreateRange(conclusions),
-					ImmutableArray.Create(new PresentationData { Candidates = candidateOffsets }),
+					ImmutableArray.Create(View.Empty + candidateOffsets),
 					allCellsMap,
 					normalDigits
 				);
@@ -578,26 +569,22 @@ public sealed unsafe class ExtendedRectangleStepSearcher : IExtendedRectangleSte
 							continue;
 						}
 
-						var candidateOffsets = new List<(int, ColorIdentifier)>();
+						var candidateOffsets = new List<CandidateViewNode>();
 						foreach (int cell in allCellsMap - extraCellsMap)
 						{
 							foreach (int digit in grid.GetCandidates(cell))
 							{
-								candidateOffsets.Add((cell * 9 + digit, (ColorIdentifier)0));
+								candidateOffsets.Add(new(0, cell * 9 + digit));
 							}
 						}
 						foreach (int cell in extraCellsMap)
 						{
-							candidateOffsets.Add((cell * 9 + conjugateDigit, (ColorIdentifier)1));
+							candidateOffsets.Add(new(1, cell * 9 + conjugateDigit));
 						}
 
 						var step = new ExtendedRectangleType4Step(
 							ImmutableArray.CreateRange(conclusions),
-							ImmutableArray.Create(new PresentationData
-							{
-								Candidates = candidateOffsets,
-								Regions = new[] { (region, (ColorIdentifier)0) }
-							}),
+							ImmutableArray.Create(View.Empty + candidateOffsets + new RegionViewNode(0, region)),
 							allCellsMap,
 							normalDigits,
 							new(extraCellsMap, conjugateDigit)

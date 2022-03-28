@@ -42,7 +42,7 @@ namespace Sudoku.Solving.Manual.Steps;
 /// <seealso cref="Step.TechniqueCode"/>
 public abstract record UniqueRectangleStep(
 	ImmutableArray<Conclusion> Conclusions,
-	ImmutableArray<PresentationData> Views,
+	ImmutableArray<View> Views,
 	Technique TechniqueCode2,
 	int Digit1,
 	int Digit2,

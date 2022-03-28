@@ -33,7 +33,7 @@ namespace Sudoku.Solving.Manual.Steps;
 /// </param>
 public sealed record NormalFishStep(
 	ImmutableArray<Conclusion> Conclusions,
-	ImmutableArray<PresentationData> Views,
+	ImmutableArray<View> Views,
 	int Digit,
 	int BaseSetsMask,
 	int CoverSetsMask,

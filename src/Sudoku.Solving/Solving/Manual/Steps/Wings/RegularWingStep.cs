@@ -17,7 +17,7 @@ namespace Sudoku.Solving.Manual.Steps;
 /// <param name="Petals">Indicates the petals used.</param>
 public sealed record RegularWingStep(
 	ImmutableArray<Conclusion> Conclusions,
-	ImmutableArray<PresentationData> Views,
+	ImmutableArray<View> Views,
 	int Pivot,
 	int PivotCandidatesCount,
 	short DigitsMask,

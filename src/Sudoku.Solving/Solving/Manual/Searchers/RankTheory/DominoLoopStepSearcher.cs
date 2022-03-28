@@ -250,7 +250,7 @@ public sealed unsafe class DominoLoopStepSearcher : IDominoLoopStepSearcher
 				}
 
 				// Highlight candidates.
-				var candidateOffsets = new List<(int, ColorIdentifier)>();
+				var candidateOffsets = new List<CandidateViewNode>();
 				short[] link = new short[27];
 				for (k = 0; k < 8; k++)
 				{
@@ -266,11 +266,7 @@ public sealed unsafe class DominoLoopStepSearcher : IDominoLoopStepSearcher
 						foreach (int digit in cands)
 						{
 							candidateOffsets.Add(
-								(
-									cell * 9 + digit,
-									(ColorIdentifier)((k & 3) switch { 0 => 1, 1 => 2, _ => 0 })
-								)
-							);
+								new((k & 3) switch { 0 => 1, 1 => 2, _ => 0 }, cell * 9 + digit));
 						}
 					}
 				}
@@ -278,7 +274,7 @@ public sealed unsafe class DominoLoopStepSearcher : IDominoLoopStepSearcher
 				// Gather the result.
 				var step = new DominoLoopStep(
 					conclusions.ToImmutableArray(),
-					ImmutableArray.Create(new PresentationData { Candidates = candidateOffsets }),
+					ImmutableArray.Create(View.Empty + candidateOffsets),
 					cells
 				);
 				if (onlyFindOne)

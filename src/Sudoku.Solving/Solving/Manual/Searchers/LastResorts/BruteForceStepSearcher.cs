@@ -58,10 +58,7 @@ public sealed unsafe class BruteForceStepSearcher : IBruteForceStepSearcher
 				int cand = offset * 9 + Solution[offset];
 				var step = new BruteForceStep(
 					ImmutableArray.Create(new Conclusion(ConclusionType.Assignment, cand)),
-					ImmutableArray.Create(new PresentationData
-					{
-						Candidates = new[] { (cand, (ColorIdentifier)0) }
-					})
+					ImmutableArray.Create(View.Empty + new RegionViewNode(0, cand))
 				);
 				if (onlyFindOne)
 				{

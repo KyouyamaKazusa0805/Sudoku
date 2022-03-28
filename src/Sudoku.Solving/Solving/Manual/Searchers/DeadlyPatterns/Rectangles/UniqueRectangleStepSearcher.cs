@@ -310,8 +310,9 @@ public sealed unsafe class UniqueRectangleStepSearcher : IUniqueRectangleStepSea
 	/// <param name="list">The list to check.</param>
 	/// <returns>A <see cref="bool"/> result.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	private bool IsIncompleteUr(IEnumerable<(int, ColorIdentifier Identifier)> list) =>
-		!AllowIncompleteUniqueRectangles && list.Count(static d => d.Identifier is { UseId: true, Id: 0 }) != 8;
+	private bool IsIncompleteUr(IEnumerable<CandidateViewNode> list) =>
+		!AllowIncompleteUniqueRectangles
+			&& list.Count(static d => d.Identifier is { UseId: true, Id: 0 }) != 8;
 
 	/// <summary>
 	/// Get a cell that can't see each other.
@@ -356,13 +357,14 @@ public sealed unsafe class UniqueRectangleStepSearcher : IUniqueRectangleStepSea
 	/// <param name="urCells">The all UR cells used.</param>
 	/// <returns>The list of highlight cells.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	private static IList<(int, ColorIdentifier)> GetHighlightCells(int[] urCells) => new[]
-	{
-		(urCells[0], (ColorIdentifier)0),
-		(urCells[1], (ColorIdentifier)0),
-		(urCells[2], (ColorIdentifier)0),
-		(urCells[3], (ColorIdentifier)0)
-	};
+	private static IEnumerable<CellViewNode> GetHighlightCells(int[] urCells) =>
+		new CellViewNode[]
+		{
+			new(0, urCells[0]),
+			new(0, urCells[1]),
+			new(0, urCells[2]),
+			new(0, urCells[3])
+		};
 	#endregion
 
 
@@ -418,12 +420,12 @@ public sealed unsafe class UniqueRectangleStepSearcher : IUniqueRectangleStepSea
 			conclusions.Add(new(ConclusionType.Elimination, cornerCell, d2));
 		}
 
-		var candidateOffsets = new List<(int, ColorIdentifier)>(6);
+		var candidateOffsets = new List<CandidateViewNode>(6);
 		foreach (int cell in otherCellsMap)
 		{
 			foreach (int digit in grid.GetCandidates(cell))
 			{
-				candidateOffsets.Add((cell * 9 + digit, (ColorIdentifier)0));
+				candidateOffsets.Add(new(0, cell * 9 + digit));
 			}
 		}
 
@@ -435,11 +437,11 @@ public sealed unsafe class UniqueRectangleStepSearcher : IUniqueRectangleStepSea
 		accumulator.Add(
 			new UniqueRectangleType1Step(
 				ImmutableArray.CreateRange(conclusions),
-				ImmutableArray.Create(new PresentationData
-				{
-					Cells = arMode ? GetHighlightCells(urCells) : null,
-					Candidates = arMode ? null : candidateOffsets
-				}),
+				ImmutableArray.Create(
+					View.Empty
+						+ (arMode ? GetHighlightCells(urCells) : null)
+						+ (arMode ? null : candidateOffsets)
+				),
 				d1,
 				d2,
 				urCells,
@@ -498,14 +500,14 @@ public sealed unsafe class UniqueRectangleStepSearcher : IUniqueRectangleStepSea
 			return;
 		}
 
-		var candidateOffsets = new List<(int, ColorIdentifier)>();
+		var candidateOffsets = new List<CandidateViewNode>();
 		foreach (int cell in urCells)
 		{
 			if (grid.GetStatus(cell) == CellStatus.Empty)
 			{
 				foreach (int digit in grid.GetCandidates(cell))
 				{
-					candidateOffsets.Add((cell * 9 + digit, (ColorIdentifier)(digit == extraDigit ? 1 : 0)));
+					candidateOffsets.Add(new(digit == extraDigit ? 1 : 0, cell * 9 + digit));
 				}
 			}
 		}
@@ -519,11 +521,11 @@ public sealed unsafe class UniqueRectangleStepSearcher : IUniqueRectangleStepSea
 		accumulator.Add(
 			new UniqueRectangleType2Step(
 				elimMap.ToImmutableConclusions(extraDigit),
-				ImmutableArray.Create(new PresentationData
-				{
-					Cells = arMode ? GetHighlightCells(urCells) : null,
-					Candidates = candidateOffsets
-				}),
+				ImmutableArray.Create(
+					View.Empty
+						+ (arMode ? GetHighlightCells(urCells) : null)
+						+ candidateOffsets
+				),
 				d1,
 				d2,
 				(IsAvoidableRectangle: arMode, IsType5: isType5) switch
@@ -625,16 +627,16 @@ public sealed unsafe class UniqueRectangleStepSearcher : IUniqueRectangleStepSea
 						continue;
 					}
 
-					var cellOffsets = new List<(int, ColorIdentifier)>();
+					var cellOffsets = new List<CellViewNode>();
 					foreach (int cell in urCells)
 					{
 						if (grid.GetStatus(cell) != CellStatus.Empty)
 						{
-							cellOffsets.Add((cell, (ColorIdentifier)0));
+							cellOffsets.Add(new(0, cell));
 						}
 					}
 
-					var candidateOffsets = new List<(int, ColorIdentifier)>();
+					var candidateOffsets = new List<CandidateViewNode>();
 					foreach (int cell in urCells)
 					{
 						if (grid.GetStatus(cell) == CellStatus.Empty)
@@ -642,9 +644,9 @@ public sealed unsafe class UniqueRectangleStepSearcher : IUniqueRectangleStepSea
 							foreach (int digit in grid.GetCandidates(cell))
 							{
 								candidateOffsets.Add(
-									(
-										cell * 9 + digit,
-										(ColorIdentifier)((tempMask >> digit & 1) != 0 ? 1 : 0)
+									new(
+										(tempMask >> digit & 1) != 0 ? 1 : 0,
+										cell * 9 + digit
 									)
 								);
 							}
@@ -654,19 +656,19 @@ public sealed unsafe class UniqueRectangleStepSearcher : IUniqueRectangleStepSea
 					{
 						foreach (int digit in grid.GetCandidates(cell))
 						{
-							candidateOffsets.Add((cell * 9 + digit, (ColorIdentifier)1));
+							candidateOffsets.Add(new(1, cell * 9 + digit));
 						}
 					}
 
 					accumulator.Add(
 						new UniqueRectangleType3Step(
 							ImmutableArray.CreateRange(conclusions),
-							ImmutableArray.Create(new PresentationData
-							{
-								Cells = arMode ? cellOffsets : null,
-								Candidates = candidateOffsets,
-								Regions = new[] { (region, (ColorIdentifier)0) }
-							}),
+							ImmutableArray.Create(
+								View.Empty
+									+ (arMode ? cellOffsets : null)
+									+ candidateOffsets
+									+ new RegionViewNode(0, region)
+							),
 							d1,
 							d2,
 							urCells,
@@ -741,7 +743,7 @@ public sealed unsafe class UniqueRectangleStepSearcher : IUniqueRectangleStepSea
 					continue;
 				}
 
-				var candidateOffsets = new List<(int, ColorIdentifier)>(6);
+				var candidateOffsets = new List<CandidateViewNode>(6);
 				foreach (int cell in urCells)
 				{
 					if (grid.GetStatus(cell) != CellStatus.Empty)
@@ -753,11 +755,11 @@ public sealed unsafe class UniqueRectangleStepSearcher : IUniqueRectangleStepSea
 					{
 						if (d1 != elimDigit && grid.Exists(cell, d1) is true)
 						{
-							candidateOffsets.Add((cell * 9 + d1, (ColorIdentifier)1));
+							candidateOffsets.Add(new(1, cell * 9 + d1));
 						}
 						if (d2 != elimDigit && grid.Exists(cell, d2) is true)
 						{
-							candidateOffsets.Add((cell * 9 + d2, (ColorIdentifier)1));
+							candidateOffsets.Add(new(1, cell * 9 + d2));
 						}
 					}
 					else
@@ -765,7 +767,7 @@ public sealed unsafe class UniqueRectangleStepSearcher : IUniqueRectangleStepSea
 						// Corner1 and corner2.
 						foreach (int d in grid.GetCandidates(cell))
 						{
-							candidateOffsets.Add((cell * 9 + d, (ColorIdentifier)0));
+							candidateOffsets.Add(new(0, cell * 9 + d));
 						}
 					}
 				}
@@ -780,12 +782,12 @@ public sealed unsafe class UniqueRectangleStepSearcher : IUniqueRectangleStepSea
 				accumulator.Add(
 					new UniqueRectangleWithConjugatePairStep(
 						conclusions,
-						ImmutableArray.Create(new PresentationData
-						{
-							Cells = arMode ? GetHighlightCells(urCells) : null,
-							Candidates = candidateOffsets,
-							Regions = new[] { (region, (ColorIdentifier)0) }
-						}),
+						ImmutableArray.Create(
+							View.Empty
+								+ (arMode ? GetHighlightCells(urCells) : null)
+								+ candidateOffsets
+								+ new RegionViewNode(0, region)
+						),
 						Technique.UniqueRectangleType4,
 						d1,
 						d2,
@@ -855,7 +857,7 @@ public sealed unsafe class UniqueRectangleStepSearcher : IUniqueRectangleStepSea
 			return;
 		}
 
-		var candidateOffsets = new List<(int, ColorIdentifier)>(16);
+		var candidateOffsets = new List<CandidateViewNode>(16);
 		foreach (int cell in urCells)
 		{
 			if (grid.GetStatus(cell) != CellStatus.Empty)
@@ -865,7 +867,7 @@ public sealed unsafe class UniqueRectangleStepSearcher : IUniqueRectangleStepSea
 
 			foreach (int digit in grid.GetCandidates(cell))
 			{
-				candidateOffsets.Add((cell * 9 + digit, (ColorIdentifier)(digit == extraDigit ? 1 : 0)));
+				candidateOffsets.Add(new(digit == extraDigit ? 1 : 0, cell * 9 + digit));
 			}
 		}
 		if (IsIncompleteUr(candidateOffsets))
@@ -876,11 +878,11 @@ public sealed unsafe class UniqueRectangleStepSearcher : IUniqueRectangleStepSea
 		accumulator.Add(
 			new UniqueRectangleType2Step(
 				elimMap.ToImmutableConclusions(extraDigit),
-				ImmutableArray.Create(new PresentationData
-				{
-					Cells = arMode ? GetHighlightCells(urCells) : null,
-					Candidates = candidateOffsets
-				}),
+				ImmutableArray.Create(
+					View.Empty
+						+ (arMode ? GetHighlightCells(urCells) : null)
+						+ candidateOffsets
+				),
 				d1,
 				d2,
 				arMode ? Technique.AvoidableRectangleType5 : Technique.UniqueRectangleType5,
@@ -966,25 +968,25 @@ public sealed unsafe class UniqueRectangleStepSearcher : IUniqueRectangleStepSea
 				return;
 			}
 
-			var candidateOffsets = new List<(int, ColorIdentifier)>(6);
+			var candidateOffsets = new List<CandidateViewNode>(6);
 			foreach (int cell in urCells)
 			{
 				if (otherCellsMap.Contains(cell))
 				{
 					if (d1 != digit && grid.Exists(cell, d1) is true)
 					{
-						candidateOffsets.Add((cell * 9 + d1, (ColorIdentifier)0));
+						candidateOffsets.Add(new(0, cell * 9 + d1));
 					}
 					if (d2 != digit && grid.Exists(cell, d2) is true)
 					{
-						candidateOffsets.Add((cell * 9 + d2, (ColorIdentifier)0));
+						candidateOffsets.Add(new(0, cell * 9 + d2));
 					}
 				}
 				else
 				{
 					foreach (int d in grid.GetCandidates(cell))
 					{
-						candidateOffsets.Add((cell * 9 + d, (ColorIdentifier)(d == digit ? 1 : 0)));
+						candidateOffsets.Add(new(d == digit ? 1 : 0, cell * 9 + d));
 					}
 				}
 			}
@@ -998,12 +1000,12 @@ public sealed unsafe class UniqueRectangleStepSearcher : IUniqueRectangleStepSea
 			accumulator.Add(
 				new UniqueRectangleWithConjugatePairStep(
 					conclusions,
-					ImmutableArray.Create(new PresentationData
-					{
-						Cells = arMode ? GetHighlightCells(urCells) : null,
-						Candidates = candidateOffsets,
-						Regions = new[] { (region1, (ColorIdentifier)0), (region2, (ColorIdentifier)0) }
-					}),
+					ImmutableArray.Create(
+						View.Empty
+							+ (arMode ? GetHighlightCells(urCells) : null)
+							+ candidateOffsets
+							+ new RegionViewNode[] { new(0, region1), new(0, region2) }
+					),
 					Technique.UniqueRectangleType6,
 					d1,
 					d2,
@@ -1074,7 +1076,7 @@ public sealed unsafe class UniqueRectangleStepSearcher : IUniqueRectangleStepSea
 				continue;
 			}
 
-			var candidateOffsets = new List<(int, ColorIdentifier)>();
+			var candidateOffsets = new List<CandidateViewNode>();
 			foreach (int cell in urCells)
 			{
 				if (grid.GetStatus(cell) != CellStatus.Empty)
@@ -1086,18 +1088,18 @@ public sealed unsafe class UniqueRectangleStepSearcher : IUniqueRectangleStepSea
 				{
 					if ((cell != abzCell || d1 != elimDigit) && grid.Exists(cell, d1) is true)
 					{
-						candidateOffsets.Add((cell * 9 + d1, (ColorIdentifier)(d1 != elimDigit ? 1 : 0)));
+						candidateOffsets.Add(new(d1 != elimDigit ? 1 : 0, cell * 9 + d1));
 					}
 					if ((cell != abzCell || d2 != elimDigit) && grid.Exists(cell, d2) is true)
 					{
-						candidateOffsets.Add((cell * 9 + d2, (ColorIdentifier)(d2 != elimDigit ? 1 : 0)));
+						candidateOffsets.Add(new(d2 != elimDigit ? 1 : 0, cell * 9 + d2));
 					}
 				}
 				else
 				{
 					foreach (int d in grid.GetCandidates(cell))
 					{
-						candidateOffsets.Add((cell * 9 + d, (ColorIdentifier)0));
+						candidateOffsets.Add(new(0, cell * 9 + d));
 					}
 				}
 			}
@@ -1110,21 +1112,17 @@ public sealed unsafe class UniqueRectangleStepSearcher : IUniqueRectangleStepSea
 			accumulator.Add(
 				new HiddenUniqueRectangleStep(
 					ImmutableArray.Create(new Conclusion(ConclusionType.Elimination, abzCell, elimDigit)),
-					ImmutableArray.Create(new PresentationData
-					{
-						Cells = arMode ? GetHighlightCells(urCells) : null,
-						Candidates = candidateOffsets,
-						Regions = new[] { (r, (ColorIdentifier)0), (c, (ColorIdentifier)0) }
-					}),
+					ImmutableArray.Create(
+						View.Empty
+							+ (arMode ? GetHighlightCells(urCells) : null)
+							+ candidateOffsets
+							+ new RegionViewNode[] { new(0, r), new(0, c) }
+					),
 					d1,
 					d2,
 					urCells,
 					arMode,
-					new ConjugatePair[]
-					{
-						new(abzCell, abxCell, digit),
-						new(abzCell, abyCell, digit),
-					},
+					new ConjugatePair[] { new(abzCell, abxCell, digit), new(abzCell, abyCell, digit) },
 					index
 				)
 			);
@@ -1217,7 +1215,7 @@ public sealed unsafe class UniqueRectangleStepSearcher : IUniqueRectangleStepSea
 				continue;
 			}
 
-			var candidateOffsets = new List<(int, ColorIdentifier)>(10);
+			var candidateOffsets = new List<CandidateViewNode>(10);
 			foreach (int cell in urCells)
 			{
 				if (otherCellsMap.Contains(cell))
@@ -1225,9 +1223,9 @@ public sealed unsafe class UniqueRectangleStepSearcher : IUniqueRectangleStepSea
 					foreach (int digit in grid.GetCandidates(cell))
 					{
 						candidateOffsets.Add(
-							(
-								cell * 9 + digit,
-								(ColorIdentifier)((comparer >> digit & 1) == 0 ? 1 : 0)
+							new(
+								(comparer >> digit & 1) == 0 ? 1 : 0,
+								cell * 9 + digit
 							)
 						);
 					}
@@ -1236,13 +1234,13 @@ public sealed unsafe class UniqueRectangleStepSearcher : IUniqueRectangleStepSea
 				{
 					foreach (int digit in grid.GetCandidates(cell))
 					{
-						candidateOffsets.Add((cell * 9 + digit, (ColorIdentifier)0));
+						candidateOffsets.Add(new(0, cell * 9 + digit));
 					}
 				}
 			}
 			foreach (int digit in xyMask)
 			{
-				candidateOffsets.Add((possibleXyCell * 9 + digit, (ColorIdentifier)1));
+				candidateOffsets.Add(new(1, possibleXyCell * 9 + digit));
 			}
 
 			if (IsIncompleteUr(candidateOffsets))
@@ -1253,11 +1251,11 @@ public sealed unsafe class UniqueRectangleStepSearcher : IUniqueRectangleStepSea
 			accumulator.Add(
 				new UniqueRectangle2DOr3XStep(
 					ImmutableArray.CreateRange(conclusions),
-					ImmutableArray.Create(new PresentationData
-					{
-						Cells = arMode ? GetHighlightCells(urCells) : null,
-						Candidates = candidateOffsets
-					}),
+					ImmutableArray.Create(
+						View.Empty
+							+ (arMode ? GetHighlightCells(urCells) : null)
+							+ candidateOffsets
+					),
 					arMode ? Technique.AvoidableRectangle2D : Technique.UniqueRectangle2D,
 					d1,
 					d2,
@@ -1351,7 +1349,7 @@ public sealed unsafe class UniqueRectangleStepSearcher : IUniqueRectangleStepSea
 							continue;
 						}
 
-						var candidateOffsets = new List<(int, ColorIdentifier)>(10);
+						var candidateOffsets = new List<CandidateViewNode>(10);
 						foreach (int urCell in urCells)
 						{
 							if (urCell == corner1 || urCell == corner2)
@@ -1361,19 +1359,14 @@ public sealed unsafe class UniqueRectangleStepSearcher : IUniqueRectangleStepSea
 								{
 									foreach (int d in grid.GetCandidates(urCell))
 									{
-										candidateOffsets.Add(
-											(
-												urCell * 9 + d,
-												(ColorIdentifier)(d == digit ? 1 : 0)
-											)
-										);
+										candidateOffsets.Add(new(d == digit ? 1 : 0, urCell * 9 + d));
 									}
 								}
 								else
 								{
 									foreach (int d in grid.GetCandidates(urCell))
 									{
-										candidateOffsets.Add((urCell * 9 + d, (ColorIdentifier)0));
+										candidateOffsets.Add(new(0, urCell * 9 + d));
 									}
 								}
 							}
@@ -1384,9 +1377,9 @@ public sealed unsafe class UniqueRectangleStepSearcher : IUniqueRectangleStepSea
 									if (urCell != elimCell || d1 != elimDigit)
 									{
 										candidateOffsets.Add(
-											(
-												urCell * 9 + d1,
-												(ColorIdentifier)(urCell == elimCell ? 0 : (d1 == digit ? 1 : 0))
+											new(
+												urCell == elimCell ? 0 : (d1 == digit ? 1 : 0),
+												urCell * 9 + d1
 											)
 										);
 									}
@@ -1396,9 +1389,9 @@ public sealed unsafe class UniqueRectangleStepSearcher : IUniqueRectangleStepSea
 									if (urCell != elimCell || d2 != elimDigit)
 									{
 										candidateOffsets.Add(
-											(
-												urCell * 9 + d2,
-												(ColorIdentifier)(urCell == elimCell ? 0 : (d2 == digit ? 1 : 0))
+											new(
+												urCell == elimCell ? 0 : (d2 == digit ? 1 : 0),
+												urCell * 9 + d2
 											)
 										);
 									}
@@ -1414,12 +1407,12 @@ public sealed unsafe class UniqueRectangleStepSearcher : IUniqueRectangleStepSea
 						accumulator.Add(
 							new UniqueRectangleWithConjugatePairStep(
 								ImmutableArray.CreateRange(conclusions),
-								ImmutableArray.Create(new PresentationData
-								{
-									Cells = arMode ? GetHighlightCells(urCells) : null,
-									Candidates = candidateOffsets,
-									Regions = new[] { (region, (ColorIdentifier)0) }
-								}),
+								ImmutableArray.Create(
+									View.Empty
+										+ (arMode ? GetHighlightCells(urCells) : null)
+										+ candidateOffsets
+										+ new RegionViewNode(0, region)
+								),
 								Technique.UniqueRectangle2B1,
 								d1,
 								d2,
@@ -1514,7 +1507,7 @@ public sealed unsafe class UniqueRectangleStepSearcher : IUniqueRectangleStepSea
 							continue;
 						}
 
-						var candidateOffsets = new List<(int, ColorIdentifier)>(10);
+						var candidateOffsets = new List<CandidateViewNode>(10);
 						foreach (int urCell in urCells)
 						{
 							if (urCell == corner1 || urCell == corner2)
@@ -1533,19 +1526,14 @@ public sealed unsafe class UniqueRectangleStepSearcher : IUniqueRectangleStepSea
 								{
 									foreach (int d in grid.GetCandidates(urCell))
 									{
-										candidateOffsets.Add(
-											(
-												urCell * 9 + d,
-												(ColorIdentifier)(d == digit ? 1 : 0)
-											)
-										);
+										candidateOffsets.Add(new(d == digit ? 1 : 0, urCell * 9 + d));
 									}
 								}
 								else
 								{
 									foreach (int d in grid.GetCandidates(urCell))
 									{
-										candidateOffsets.Add((urCell * 9 + d, (ColorIdentifier)0));
+										candidateOffsets.Add(new(0, urCell * 9 + d));
 									}
 								}
 							}
@@ -1554,20 +1542,12 @@ public sealed unsafe class UniqueRectangleStepSearcher : IUniqueRectangleStepSea
 								if (grid.Exists(urCell, d1) is true && (urCell != elimCell || d1 != digit))
 								{
 									candidateOffsets.Add(
-										(
-											urCell * 9 + d1,
-											(ColorIdentifier)(urCell == elimCell ? 0 : (d1 == digit ? 1 : 0))
-										)
-									);
+										new(urCell == elimCell ? 0 : (d1 == digit ? 1 : 0), urCell * 9 + d1));
 								}
 								if (grid.Exists(urCell, d2) is true && (urCell != elimCell || d2 != digit))
 								{
 									candidateOffsets.Add(
-										(
-											urCell * 9 + d2,
-											(ColorIdentifier)(urCell == elimCell ? 0 : (d2 == digit ? 1 : 0))
-										)
-									);
+										new(urCell == elimCell ? 0 : (d2 == digit ? 1 : 0), urCell * 9 + d2));
 								}
 							}
 						}
@@ -1580,12 +1560,12 @@ public sealed unsafe class UniqueRectangleStepSearcher : IUniqueRectangleStepSea
 						accumulator.Add(
 							new UniqueRectangleWithConjugatePairStep(
 								ImmutableArray.CreateRange(conclusions),
-								ImmutableArray.Create(new PresentationData
-								{
-									Cells = arMode ? GetHighlightCells(urCells) : null,
-									Candidates = candidateOffsets,
-									Regions = new[] { (region, (ColorIdentifier)0) }
-								}),
+								ImmutableArray.Create(
+									View.Empty
+										+ (arMode ? GetHighlightCells(urCells) : null)
+										+ candidateOffsets
+										+ new RegionViewNode(0, region)
+								),
 								Technique.UniqueRectangle2D1,
 								d1,
 								d2,
@@ -1689,32 +1669,27 @@ public sealed unsafe class UniqueRectangleStepSearcher : IUniqueRectangleStepSea
 				continue;
 			}
 
-			var candidateOffsets = new List<(int, ColorIdentifier)>(10);
+			var candidateOffsets = new List<CandidateViewNode>(10);
 			foreach (int cell in urCells)
 			{
 				if (otherCellsMap.Contains(cell))
 				{
 					foreach (int digit in grid.GetCandidates(cell))
 					{
-						candidateOffsets.Add(
-							(
-								cell * 9 + digit,
-								(ColorIdentifier)((comparer >> digit & 1) == 0 ? 1 : 0)
-							)
-						);
+						candidateOffsets.Add(new((comparer >> digit & 1) == 0 ? 1 : 0, cell * 9 + digit));
 					}
 				}
 				else
 				{
 					foreach (int digit in grid.GetCandidates(cell))
 					{
-						candidateOffsets.Add((cell * 9 + digit, (ColorIdentifier)0));
+						candidateOffsets.Add(new(0, cell * 9 + digit));
 					}
 				}
 			}
 			foreach (int digit in xyMask)
 			{
-				candidateOffsets.Add((possibleXyCell * 9 + digit, (ColorIdentifier)1));
+				candidateOffsets.Add(new(1, possibleXyCell * 9 + digit));
 			}
 			if (IsIncompleteUr(candidateOffsets))
 			{
@@ -1724,11 +1699,11 @@ public sealed unsafe class UniqueRectangleStepSearcher : IUniqueRectangleStepSea
 			accumulator.Add(
 				new UniqueRectangle2DOr3XStep(
 					ImmutableArray.CreateRange(conclusions),
-					ImmutableArray.Create(new PresentationData
-					{
-						Cells = arMode ? GetHighlightCells(urCells) : null,
-						Candidates = candidateOffsets
-					}),
+					ImmutableArray.Create(
+						View.Empty
+							+ (arMode ? GetHighlightCells(urCells) : null)
+							+ candidateOffsets
+					),
 					arMode ? Technique.AvoidableRectangle3X : Technique.UniqueRectangle3X,
 					d1,
 					d2,
@@ -1804,31 +1779,31 @@ public sealed unsafe class UniqueRectangleStepSearcher : IUniqueRectangleStepSea
 				continue;
 			}
 
-			var candidateOffsets = new List<(int, ColorIdentifier)>(6);
+			var candidateOffsets = new List<CandidateViewNode>(6);
 			foreach (int digit in grid.GetCandidates(abxCell))
 			{
 				if ((digit == d1 || digit == d2) && digit != a)
 				{
-					candidateOffsets.Add((abxCell * 9 + digit, (ColorIdentifier)(digit == b ? 1 : 0)));
+					candidateOffsets.Add(new(digit == b ? 1 : 0, abxCell * 9 + digit));
 				}
 			}
 			foreach (int digit in grid.GetCandidates(abyCell))
 			{
 				if ((digit == d1 || digit == d2) && digit != b)
 				{
-					candidateOffsets.Add((abyCell * 9 + digit, (ColorIdentifier)(digit == a ? 1 : 0)));
+					candidateOffsets.Add(new(digit == a ? 1 : 0, abyCell * 9 + digit));
 				}
 			}
 			foreach (int digit in grid.GetCandidates(abzCell))
 			{
 				if (digit == a || digit == b)
 				{
-					candidateOffsets.Add((abzCell * 9 + digit, (ColorIdentifier)1));
+					candidateOffsets.Add(new(1, abzCell * 9 + digit));
 				}
 			}
 			foreach (int digit in comparer)
 			{
-				candidateOffsets.Add((cornerCell * 9 + digit, (ColorIdentifier)0));
+				candidateOffsets.Add(new(0, cornerCell * 9 + digit));
 			}
 			if (!AllowIncompleteUniqueRectangles && candidateOffsets.Count != 6)
 			{
@@ -1838,16 +1813,12 @@ public sealed unsafe class UniqueRectangleStepSearcher : IUniqueRectangleStepSea
 			accumulator.Add(
 				new UniqueRectangleWithConjugatePairStep(
 					ImmutableArray.CreateRange(conclusions),
-					ImmutableArray.Create(new PresentationData
-					{
-						Cells = arMode ? GetHighlightCells(urCells) : null,
-						Candidates = candidateOffsets,
-						Regions = new[]
-						{
-							(map1.CoveredLine, (ColorIdentifier)0),
-							(map2.CoveredLine, (ColorIdentifier)1)
-						}
-					}),
+					ImmutableArray.Create(
+						View.Empty
+							+ (arMode ? GetHighlightCells(urCells) : null)
+							+ candidateOffsets
+							+ new RegionViewNode[] { new(0, map1.CoveredLine), new(1, map2.CoveredLine) }
+					),
 					Technique.UniqueRectangle3X2,
 					d1,
 					d2,
@@ -1929,31 +1900,31 @@ public sealed unsafe class UniqueRectangleStepSearcher : IUniqueRectangleStepSea
 				}
 
 				// Step 4: Check highlight candidates.
-				var candidateOffsets = new List<(int, ColorIdentifier)>(7);
+				var candidateOffsets = new List<CandidateViewNode>(7);
 				foreach (int d in comparer)
 				{
-					candidateOffsets.Add((cornerCell * 9 + d, (ColorIdentifier)(d == a ? 1 : 0)));
+					candidateOffsets.Add(new(d == a ? 1 : 0, cornerCell * 9 + d));
 				}
 				for (int digitIndex = 0; digitIndex < 2; digitIndex++)
 				{
 					int d = digits[digitIndex];
 					if (grid.Exists(abzCell, d) is true)
 					{
-						candidateOffsets.Add((abzCell * 9 + d, (ColorIdentifier)(d == b ? 1 : 0)));
+						candidateOffsets.Add(new(d == b ? 1 : 0, abzCell * 9 + d));
 					}
 				}
 				foreach (int d in grid.GetCandidates(begin))
 				{
 					if (d == d1 || d == d2)
 					{
-						candidateOffsets.Add((begin * 9 + d, (ColorIdentifier)1));
+						candidateOffsets.Add(new(1, begin * 9 + d));
 					}
 				}
 				foreach (int d in grid.GetCandidates(end))
 				{
 					if ((d == d1 || d == d2) && d != a)
 					{
-						candidateOffsets.Add((end * 9 + d, (ColorIdentifier)0));
+						candidateOffsets.Add(new(0, end * 9 + d));
 					}
 				}
 				if (!AllowIncompleteUniqueRectangles && candidateOffsets.Count != 7)
@@ -1965,16 +1936,16 @@ public sealed unsafe class UniqueRectangleStepSearcher : IUniqueRectangleStepSea
 				accumulator.Add(
 					new UniqueRectangleWithConjugatePairStep(
 						ImmutableArray.Create(new Conclusion(ConclusionType.Elimination, end, a)),
-						ImmutableArray.Create(new PresentationData
-						{
-							Cells = arMode ? GetHighlightCells(urCells) : null,
-							Candidates = candidateOffsets,
-							Regions = new[]
-							{
-								(conjugatePairs[0].Line, (ColorIdentifier)0),
-								(conjugatePairs[1].Line, (ColorIdentifier)1)
-							}
-						}),
+						ImmutableArray.Create(
+							View.Empty
+								+ (arMode ? GetHighlightCells(urCells) : null)
+								+ candidateOffsets
+								+ new RegionViewNode[]
+								{
+									new(0, conjugatePairs[0].Line),
+									new(1, conjugatePairs[1].Line)
+								}
+						),
 						Technique.UniqueRectangle3N2,
 						d1,
 						d2,
@@ -2050,30 +2021,30 @@ public sealed unsafe class UniqueRectangleStepSearcher : IUniqueRectangleStepSea
 					continue;
 				}
 
-				var candidateOffsets = new List<(int, ColorIdentifier)>(7);
+				var candidateOffsets = new List<CandidateViewNode>(7);
 				foreach (int d in comparer)
 				{
-					candidateOffsets.Add((cornerCell * 9 + d, (ColorIdentifier)(d == a ? 1 : 0)));
+					candidateOffsets.Add(new(d == a ? 1 : 0, cornerCell * 9 + d));
 				}
 				foreach (int d in grid.GetCandidates(begin))
 				{
 					if ((d == d1 || d == d2) && d != a)
 					{
-						candidateOffsets.Add((begin * 9 + d, (ColorIdentifier)1));
+						candidateOffsets.Add(new(1, begin * 9 + d));
 					}
 				}
 				foreach (int d in grid.GetCandidates(end))
 				{
 					if (d == d1 || d == d2)
 					{
-						candidateOffsets.Add((end * 9 + d, (ColorIdentifier)(d == a ? 1 : 0)));
+						candidateOffsets.Add(new(d == a ? 1 : 0, end * 9 + d));
 					}
 				}
 				foreach (int d in grid.GetCandidates(abzCell))
 				{
 					if (d == d1 || d == d2)
 					{
-						candidateOffsets.Add((abzCell * 9 + d, (ColorIdentifier)(d == b ? 1 : 0)));
+						candidateOffsets.Add(new(d == b ? 1 : 0, abzCell * 9 + d));
 					}
 				}
 				if (!AllowIncompleteUniqueRectangles && candidateOffsets.Count != 7)
@@ -2085,16 +2056,16 @@ public sealed unsafe class UniqueRectangleStepSearcher : IUniqueRectangleStepSea
 				accumulator.Add(
 					new UniqueRectangleWithConjugatePairStep(
 						ImmutableArray.Create(new Conclusion(ConclusionType.Elimination, begin, a)),
-						ImmutableArray.Create(new PresentationData
-						{
-							Cells = arMode ? GetHighlightCells(urCells) : null,
-							Candidates = candidateOffsets,
-							Regions = new[]
-							{
-								(conjugatePairs[0].Line, (ColorIdentifier)0),
-								(conjugatePairs[1].Line, (ColorIdentifier)1)
-							}
-						}),
+						ImmutableArray.Create(
+							View.Empty
+								+ (arMode ? GetHighlightCells(urCells) : null)
+								+ candidateOffsets
+								+ new RegionViewNode[]
+								{
+									new(0, conjugatePairs[0].Line),
+									new(1, conjugatePairs[1].Line)
+								}
+						),
 						Technique.UniqueRectangle3U2,
 						d1,
 						d2,
@@ -2170,30 +2141,30 @@ public sealed unsafe class UniqueRectangleStepSearcher : IUniqueRectangleStepSea
 					continue;
 				}
 
-				var candidateOffsets = new List<(int, ColorIdentifier)>(7);
+				var candidateOffsets = new List<CandidateViewNode>(7);
 				foreach (int d in comparer)
 				{
-					candidateOffsets.Add((cornerCell * 9 + d, (ColorIdentifier)(d == a ? 1 : 0)));
+					candidateOffsets.Add(new(d == a ? 1 : 0, cornerCell * 9 + d));
 				}
 				foreach (int d in grid.GetCandidates(begin))
 				{
 					if (d == d1 || d == d2)
 					{
-						candidateOffsets.Add((begin * 9 + d, (ColorIdentifier)(d == a ? 1 : 0)));
+						candidateOffsets.Add(new(d == a ? 1 : 0, begin * 9 + d));
 					}
 				}
 				foreach (int d in grid.GetCandidates(end))
 				{
 					if (d == d1 || d == d2)
 					{
-						candidateOffsets.Add((end * 9 + d, (ColorIdentifier)(d == a ? 1 : 0)));
+						candidateOffsets.Add(new(d == a ? 1 : 0, end * 9 + d));
 					}
 				}
 				foreach (int d in grid.GetCandidates(abzCell))
 				{
 					if ((d == d1 || d == d2) && d != b)
 					{
-						candidateOffsets.Add((abzCell * 9 + d, (ColorIdentifier)(d == a ? 1 : 0)));
+						candidateOffsets.Add(new(d == a ? 1 : 0, abzCell * 9 + d));
 					}
 				}
 				if (!AllowIncompleteUniqueRectangles && candidateOffsets.Count != 7)
@@ -2205,16 +2176,16 @@ public sealed unsafe class UniqueRectangleStepSearcher : IUniqueRectangleStepSea
 				accumulator.Add(
 					new UniqueRectangleWithConjugatePairStep(
 						ImmutableArray.Create(new Conclusion(ConclusionType.Elimination, abzCell, b)),
-						ImmutableArray.Create(new PresentationData
-						{
-							Cells = arMode ? GetHighlightCells(urCells) : null,
-							Candidates = candidateOffsets,
-							Regions = new[]
-							{
-								(conjugatePairs[0].Line, (ColorIdentifier)0),
-								(conjugatePairs[1].Line, (ColorIdentifier)1)
-							}
-						}),
+						ImmutableArray.Create(
+							View.Empty
+								+ (arMode ? GetHighlightCells(urCells) : null)
+								+ candidateOffsets
+								+ new RegionViewNode[]
+								{
+									new(0, conjugatePairs[0].Line),
+									new(1, conjugatePairs[1].Line)
+								}
+						),
 						Technique.UniqueRectangle3E2,
 						d1,
 						d2,
@@ -2305,33 +2276,33 @@ public sealed unsafe class UniqueRectangleStepSearcher : IUniqueRectangleStepSea
 					continue;
 				}
 
-				var candidateOffsets = new List<(int, ColorIdentifier)>(6);
+				var candidateOffsets = new List<CandidateViewNode>(6);
 				foreach (int d in grid.GetCandidates(head))
 				{
 					if ((d == d1 || d == d2) && d != b)
 					{
-						candidateOffsets.Add((head * 9 + d, (ColorIdentifier)1));
+						candidateOffsets.Add(new(1, head * 9 + d));
 					}
 				}
 				foreach (int d in grid.GetCandidates(extra))
 				{
 					if ((d == d1 || d == d2) && d != b)
 					{
-						candidateOffsets.Add((extra * 9 + d, (ColorIdentifier)1));
+						candidateOffsets.Add(new(1, extra * 9 + d));
 					}
 				}
 				foreach (int d in grid.GetCandidates(begin))
 				{
 					if (d == d1 || d == d2)
 					{
-						candidateOffsets.Add((begin * 9 + d, (ColorIdentifier)1));
+						candidateOffsets.Add(new(1, begin * 9 + d));
 					}
 				}
 				foreach (int d in grid.GetCandidates(end))
 				{
 					if (d == d1 || d == d2)
 					{
-						candidateOffsets.Add((end * 9 + d, (ColorIdentifier)1));
+						candidateOffsets.Add(new(1, end * 9 + d));
 					}
 				}
 				if (!AllowIncompleteUniqueRectangles && (candidateOffsets.Count, conclusions.Count) != (6, 2))
@@ -2348,17 +2319,17 @@ public sealed unsafe class UniqueRectangleStepSearcher : IUniqueRectangleStepSea
 				accumulator.Add(
 					new UniqueRectangleWithConjugatePairStep(
 						ImmutableArray.CreateRange(conclusions),
-						ImmutableArray.Create(new PresentationData
-						{
-							Cells = arMode ? GetHighlightCells(urCells) : null,
-							Candidates = candidateOffsets,
-							Regions = new[]
-							{
-								(conjugatePairs[0].Line, (ColorIdentifier)0),
-								(conjugatePairs[1].Line, (ColorIdentifier)1),
-								(conjugatePairs[2].Line, (ColorIdentifier)0)
-							}
-						}),
+						ImmutableArray.Create(
+							View.Empty
+								+ (arMode ? GetHighlightCells(urCells) : null)
+								+ candidateOffsets
+								+ new RegionViewNode[]
+								{
+									new(0, conjugatePairs[0].Line),
+									new(1, conjugatePairs[1].Line),
+									new(0, conjugatePairs[2].Line)
+								}
+						),
 						Technique.UniqueRectangle4X3,
 						d1,
 						d2,
@@ -2455,33 +2426,33 @@ public sealed unsafe class UniqueRectangleStepSearcher : IUniqueRectangleStepSea
 						continue;
 					}
 
-					var candidateOffsets = new List<(int, ColorIdentifier)>(7);
+					var candidateOffsets = new List<CandidateViewNode>(7);
 					foreach (int d in grid.GetCandidates(abx))
 					{
 						if (d == d1 || d == d2)
 						{
-							candidateOffsets.Add((abx * 9 + d, (ColorIdentifier)(i == 0 ? d == a ? 1 : 0 : 1)));
+							candidateOffsets.Add(new(i == 0 ? d == a ? 1 : 0 : 1, abx * 9 + d));
 						}
 					}
 					foreach (int d in grid.GetCandidates(abz))
 					{
 						if (d == d1 || d == d2)
 						{
-							candidateOffsets.Add((abz * 9 + d, (ColorIdentifier)(d == b ? 1 : 0)));
+							candidateOffsets.Add(new(d == b ? 1 : 0, abz * 9 + d));
 						}
 					}
 					foreach (int d in grid.GetCandidates(aby))
 					{
 						if ((d == d1 || d == d2) && d != b)
 						{
-							candidateOffsets.Add((aby * 9 + d, (ColorIdentifier)1));
+							candidateOffsets.Add(new(1, aby * 9 + d));
 						}
 					}
 					foreach (int d in grid.GetCandidates(abw))
 					{
 						if (d == d1 || d == d2)
 						{
-							candidateOffsets.Add((abw * 9 + d, (ColorIdentifier)1));
+							candidateOffsets.Add(new(1, abw * 9 + d));
 						}
 					}
 					if (!AllowIncompleteUniqueRectangles && candidateOffsets.Count != 7)
@@ -2499,17 +2470,17 @@ public sealed unsafe class UniqueRectangleStepSearcher : IUniqueRectangleStepSea
 					accumulator.Add(
 						new UniqueRectangleWithConjugatePairStep(
 							ImmutableArray.Create(new Conclusion(ConclusionType.Elimination, aby, b)),
-							ImmutableArray.Create(new PresentationData
-							{
-								Cells = arMode ? GetHighlightCells(urCells) : null,
-								Candidates = candidateOffsets,
-								Regions = new[]
-								{
-									(conjugatePairs[0].Line, (ColorIdentifier)0),
-									(conjugatePairs[1].Line, (ColorIdentifier)0),
-									(conjugatePairs[2].Line, (ColorIdentifier)1)
-								}
-							}),
+							ImmutableArray.Create(
+								View.Empty
+									+ (arMode ? GetHighlightCells(urCells) : null)
+									+ candidateOffsets
+									+ new RegionViewNode[]
+									{
+										new(0, conjugatePairs[0].Line),
+										new(0, conjugatePairs[1].Line),
+										new(1, conjugatePairs[2].Line)
+									}
+							),
 							Technique.UniqueRectangle4C3,
 							d1,
 							d2,
@@ -2650,7 +2621,7 @@ public sealed unsafe class UniqueRectangleStepSearcher : IUniqueRectangleStepSea
 							continue;
 						}
 
-						var candidateOffsets = new List<(int, ColorIdentifier)>(12);
+						var candidateOffsets = new List<CandidateViewNode>(12);
 						foreach (int cell in urCells)
 						{
 							if (grid.GetStatus(cell) == CellStatus.Empty)
@@ -2658,13 +2629,11 @@ public sealed unsafe class UniqueRectangleStepSearcher : IUniqueRectangleStepSea
 								foreach (int digit in grid.GetCandidates(cell))
 								{
 									candidateOffsets.Add(
-										(
-											cell * 9 + digit,
-											(ColorIdentifier)(
-												digit == elimDigit
-													? otherCellsMap.Contains(cell) ? 2 : 0
-													: (extraDigitsMask >> digit & 1) != 0 ? 1 : 0
-											)
+										new(
+											digit == elimDigit
+												? otherCellsMap.Contains(cell) ? 2 : 0
+												: (extraDigitsMask >> digit & 1) != 0 ? 1 : 0,
+											cell * 9 + digit
 										)
 									);
 								}
@@ -2672,11 +2641,11 @@ public sealed unsafe class UniqueRectangleStepSearcher : IUniqueRectangleStepSea
 						}
 						foreach (int digit in grid.GetCandidates(c1))
 						{
-							candidateOffsets.Add((c1 * 9 + digit, (ColorIdentifier)(digit == elimDigit ? 2 : 1)));
+							candidateOffsets.Add(new(digit == elimDigit ? 2 : 1, c1 * 9 + digit));
 						}
 						foreach (int digit in grid.GetCandidates(c2))
 						{
-							candidateOffsets.Add((c2 * 9 + digit, (ColorIdentifier)(digit == elimDigit ? 2 : 1)));
+							candidateOffsets.Add(new(digit == elimDigit ? 2 : 1, c2 * 9 + digit));
 						}
 						if (IsIncompleteUr(candidateOffsets))
 						{
@@ -2686,11 +2655,11 @@ public sealed unsafe class UniqueRectangleStepSearcher : IUniqueRectangleStepSea
 						accumulator.Add(
 							new UniqueRectangleWithWingStep(
 								elimMap.ToImmutableConclusions(elimDigit),
-								ImmutableArray.Create(new PresentationData
-								{
-									Cells = arMode ? GetHighlightCells(urCells) : null,
-									Candidates = candidateOffsets
-								}),
+								ImmutableArray.Create(
+									View.Empty
+										+ (arMode ? GetHighlightCells(urCells) : null)
+										+ candidateOffsets
+								),
 								arMode ? Technique.AvoidableRectangleXyWing : Technique.UniqueRectangleXyWing,
 								d1,
 								d2,
@@ -2754,7 +2723,7 @@ public sealed unsafe class UniqueRectangleStepSearcher : IUniqueRectangleStepSea
 									continue;
 								}
 
-								var candidateOffsets = new List<(int, ColorIdentifier)>();
+								var candidateOffsets = new List<CandidateViewNode>();
 								foreach (int cell in urCells)
 								{
 									if (grid.GetStatus(cell) == CellStatus.Empty)
@@ -2762,9 +2731,9 @@ public sealed unsafe class UniqueRectangleStepSearcher : IUniqueRectangleStepSea
 										foreach (int digit in grid.GetCandidates(cell))
 										{
 											candidateOffsets.Add(
-												(
-													cell * 9 + digit,
-													(ColorIdentifier)((extraDigitsMask >> digit & 1) != 0 ? 1 : 0)
+												new(
+													(extraDigitsMask >> digit & 1) != 0 ? 1 : 0,
+													cell * 9 + digit
 												)
 											);
 										}
@@ -2772,30 +2741,15 @@ public sealed unsafe class UniqueRectangleStepSearcher : IUniqueRectangleStepSea
 								}
 								foreach (int digit in grid.GetCandidates(c1))
 								{
-									candidateOffsets.Add(
-										(
-											c1 * 9 + digit,
-											(ColorIdentifier)(digit == elimDigit ? 2 : 1)
-										)
-									);
+									candidateOffsets.Add(new(digit == elimDigit ? 2 : 1, c1 * 9 + digit));
 								}
 								foreach (int digit in grid.GetCandidates(c2))
 								{
-									candidateOffsets.Add(
-										(
-											c2 * 9 + digit,
-											(ColorIdentifier)(digit == elimDigit ? 2 : 1)
-										)
-									);
+									candidateOffsets.Add(new(digit == elimDigit ? 2 : 1, c2 * 9 + digit));
 								}
 								foreach (int digit in grid.GetCandidates(c3))
 								{
-									candidateOffsets.Add(
-										(
-											c3 * 9 + digit,
-											(ColorIdentifier)(digit == elimDigit ? 2 : 1)
-										)
-									);
+									candidateOffsets.Add(new(digit == elimDigit ? 2 : 1, c3 * 9 + digit));
 								}
 								if (IsIncompleteUr(candidateOffsets))
 								{
@@ -2805,11 +2759,11 @@ public sealed unsafe class UniqueRectangleStepSearcher : IUniqueRectangleStepSea
 								accumulator.Add(
 									new UniqueRectangleWithWingStep(
 										elimMap.ToImmutableConclusions(elimDigit),
-										ImmutableArray.Create(new PresentationData
-										{
-											Cells = arMode ? GetHighlightCells(urCells) : null,
-											Candidates = candidateOffsets
-										}),
+										ImmutableArray.Create(
+											View.Empty
+												+ (arMode ? GetHighlightCells(urCells) : null)
+												+ candidateOffsets
+										),
 										arMode
 											? Technique.AvoidableRectangleXyzWing
 											: Technique.UniqueRectangleXyzWing,
@@ -2869,7 +2823,7 @@ public sealed unsafe class UniqueRectangleStepSearcher : IUniqueRectangleStepSea
 										continue;
 									}
 
-									var candidateOffsets = new List<(int, ColorIdentifier)>();
+									var candidateOffsets = new List<CandidateViewNode>();
 									foreach (int cell in urCells)
 									{
 										if (grid.GetStatus(cell) == CellStatus.Empty)
@@ -2877,11 +2831,9 @@ public sealed unsafe class UniqueRectangleStepSearcher : IUniqueRectangleStepSea
 											foreach (int digit in grid.GetCandidates(cell))
 											{
 												candidateOffsets.Add(
-													(
-														cell * 9 + digit,
-														(ColorIdentifier)(
-															(extraDigitsMask >> digit & 1) != 0 ? 1 : 0
-														)
+													new(
+														(extraDigitsMask >> digit & 1) != 0 ? 1 : 0,
+														cell * 9 + digit
 													)
 												);
 											}
@@ -2889,39 +2841,19 @@ public sealed unsafe class UniqueRectangleStepSearcher : IUniqueRectangleStepSea
 									}
 									foreach (int digit in grid.GetCandidates(c1))
 									{
-										candidateOffsets.Add(
-											(
-												c1 * 9 + digit,
-												(ColorIdentifier)(digit == elimDigit ? 2 : 1)
-											)
-										);
+										candidateOffsets.Add(new(digit == elimDigit ? 2 : 1, c1 * 9 + digit));
 									}
 									foreach (int digit in grid.GetCandidates(c2))
 									{
-										candidateOffsets.Add(
-											(
-												c2 * 9 + digit,
-												(ColorIdentifier)(digit == elimDigit ? 2 : 1)
-											)
-										);
+										candidateOffsets.Add(new(digit == elimDigit ? 2 : 1, c2 * 9 + digit));
 									}
 									foreach (int digit in grid.GetCandidates(c3))
 									{
-										candidateOffsets.Add(
-											(
-												c3 * 9 + digit,
-												(ColorIdentifier)(digit == elimDigit ? 2 : 1)
-											)
-										);
+										candidateOffsets.Add(new(digit == elimDigit ? 2 : 1, c3 * 9 + digit));
 									}
 									foreach (int digit in grid.GetCandidates(c4))
 									{
-										candidateOffsets.Add(
-											(
-												c4 * 9 + digit,
-												(ColorIdentifier)(digit == elimDigit ? 2 : 1)
-											)
-										);
+										candidateOffsets.Add(new(digit == elimDigit ? 2 : 1, c4 * 9 + digit));
 									}
 									if (IsIncompleteUr(candidateOffsets))
 									{
@@ -2931,11 +2863,11 @@ public sealed unsafe class UniqueRectangleStepSearcher : IUniqueRectangleStepSea
 									accumulator.Add(
 										new UniqueRectangleWithWingStep(
 											elimMap.ToImmutableConclusions(elimDigit),
-											ImmutableArray.Create(new PresentationData
-											{
-												Cells = arMode ? GetHighlightCells(urCells) : null,
-												Candidates = candidateOffsets
-											}),
+											ImmutableArray.Create(
+												View.Empty
+													+ (arMode ? GetHighlightCells(urCells) : null)
+													+ candidateOffsets
+											),
 											arMode
 												? Technique.AvoidableRectangleWxyzWing
 												: Technique.UniqueRectangleWxyzWing,
@@ -3197,17 +3129,13 @@ public sealed unsafe class UniqueRectangleStepSearcher : IUniqueRectangleStepSea
 				}
 
 				// Record highlight candidates and cells.
-				var candidateOffsets = new List<(int, ColorIdentifier)>();
+				var candidateOffsets = new List<CandidateViewNode>();
 				foreach (int cell in urCells)
 				{
 					foreach (int digit in grid.GetCandidates(cell))
 					{
 						candidateOffsets.Add(
-							(
-								cell * 9 + digit,
-								(ColorIdentifier)((otherDigitsMask >> digit & 1) != 0 ? 1 : 0)
-							)
-						);
+							new((otherDigitsMask >> digit & 1) != 0 ? 1 : 0, cell * 9 + digit));
 					}
 				}
 				foreach (int cell in currentBlockMap)
@@ -3215,11 +3143,7 @@ public sealed unsafe class UniqueRectangleStepSearcher : IUniqueRectangleStepSea
 					foreach (int digit in grid.GetCandidates(cell))
 					{
 						candidateOffsets.Add(
-							(
-								cell * 9 + digit,
-								(ColorIdentifier)(!cannibalMode && digit == digitIsolated ? 3 : 2)
-							)
-						);
+							new(!cannibalMode && digit == digitIsolated ? 3 : 2, cell * 9 + digit));
 					}
 				}
 				foreach (int cell in currentInterMap)
@@ -3227,11 +3151,9 @@ public sealed unsafe class UniqueRectangleStepSearcher : IUniqueRectangleStepSea
 					foreach (int digit in grid.GetCandidates(cell))
 					{
 						candidateOffsets.Add(
-							(
-								cell * 9 + digit,
-								(ColorIdentifier)(
-									digitIsolated == digit ? 3 : (otherDigitsMask >> digit & 1) != 0 ? 1 : 2
-								)
+							new(
+								digitIsolated == digit ? 3 : (otherDigitsMask >> digit & 1) != 0 ? 1 : 2,
+								cell * 9 + digit
 							)
 						);
 					}
@@ -3240,12 +3162,12 @@ public sealed unsafe class UniqueRectangleStepSearcher : IUniqueRectangleStepSea
 				accumulator.Add(
 					new UniqueRectangleWithSueDeCoqStep(
 						ImmutableArray.CreateRange(conclusions),
-						ImmutableArray.Create(new PresentationData
-						{
-							Cells = arMode ? GetHighlightCells(urCells) : null,
-							Candidates = candidateOffsets,
-							Regions = new[] { (block, (ColorIdentifier)0), (line, (ColorIdentifier)2) }
-						}),
+						ImmutableArray.Create(
+							View.Empty
+								+ (arMode ? GetHighlightCells(urCells) : null)
+								+ candidateOffsets
+								+ new RegionViewNode[] { new(0, block), new(2, line) }
+						),
 						digit1,
 						digit2,
 						urCells,
@@ -3404,74 +3326,63 @@ public sealed unsafe class UniqueRectangleStepSearcher : IUniqueRectangleStepSea
 						}
 
 						// Gather views.
-						var candidateOffsets = new List<(int, ColorIdentifier)>
+						var candidateOffsets = new List<CandidateViewNode>
 						{
-							(targetCell * 9 + extraDigit, (ColorIdentifier)1)
+							new(1, targetCell * 9 + extraDigit)
 						};
 						if (grid.Exists(resultCell, d1) is true)
 						{
-							candidateOffsets.Add((resultCell * 9 + d1, (ColorIdentifier)0));
+							candidateOffsets.Add(new(0, resultCell * 9 + d1));
 						}
 						if (grid.Exists(resultCell, d2) is true)
 						{
-							candidateOffsets.Add((resultCell * 9 + d2, (ColorIdentifier)0));
+							candidateOffsets.Add(new(0, resultCell * 9 + d2));
 						}
 						if (grid.Exists(resultCell, extraDigit) is true)
 						{
-							candidateOffsets.Add((resultCell * 9 + extraDigit, (ColorIdentifier)1));
+							candidateOffsets.Add(new(1, resultCell * 9 + extraDigit));
 						}
 
 						foreach (int digit in grid.GetCandidates(urCellInSameBlock) & abcMask)
 						{
-							candidateOffsets.Add((urCellInSameBlock * 9 + digit, (ColorIdentifier)0));
+							candidateOffsets.Add(new(0, urCellInSameBlock * 9 + digit));
 						}
 						foreach (int digit in grid.GetCandidates(anotherCell))
 						{
-							candidateOffsets.Add((anotherCell * 9 + digit, (ColorIdentifier)0));
+							candidateOffsets.Add(new(0, anotherCell * 9 + digit));
 						}
 						short _xOr_yMask = grid.GetCandidates(bivalueCellToCheck);
 						foreach (int digit in _xOr_yMask)
 						{
-							candidateOffsets.Add((bivalueCellToCheck * 9 + digit, (ColorIdentifier)2));
+							candidateOffsets.Add(new(2, bivalueCellToCheck * 9 + digit));
 						}
 
 						// Add into the list.
-						char extraDigitId = (char)(extraDigit + '1');
+						byte extraDigitId = (byte)(char)(extraDigit + '1');
 						short extraDigitMask = (short)(1 << extraDigit);
 						accumulator.Add(
 							new UniqueRectangleWithUnknownCoveringStep(
 								ImmutableArray.CreateRange(conclusions),
-								ImmutableArray.Create(new PresentationData[]
-								{
-									new()
-									{
-										Cells = new[] { (targetCell, (ColorIdentifier)0) },
-										Candidates = candidateOffsets,
-										Regions = new[] { (block, (ColorIdentifier)0), (line, (ColorIdentifier)1) }
-									},
-									new()
-									{
-										Candidates = new[]
+								ImmutableArray.Create(
+									View.Empty
+										+ new CellViewNode(0, targetCell)
+										+ candidateOffsets
+										+ new RegionViewNode[] { new(0, block), new(1, line) },
+									View.Empty
+										+ new CandidateViewNode[]
 										{
-											(resultCell * 9 + extraDigit, (ColorIdentifier)1),
-											(targetCell * 9 + extraDigit, (ColorIdentifier)1)
-										},
-										UnknownValues = new (UnknownValue, ColorIdentifier)[]
-										{
-											(new(bivalueCellToCheck, 'y', _xOr_yMask), (ColorIdentifier)0),
-											(new(targetCell, 'x', _xOr_yMask), (ColorIdentifier)0),
-											(
-												new(urCellInSameBlock, extraDigitId, extraDigitMask),
-												(ColorIdentifier)0
-											),
-											(new(anotherCell, 'x', _xOr_yMask), (ColorIdentifier)0),
-											(
-												new(resultCell, extraDigitId, extraDigitMask),
-												(ColorIdentifier)0
-											)
+											new(1, resultCell * 9 + extraDigit),
+											new(1, targetCell * 9 + extraDigit)
 										}
-									}
-								}),
+										+ new UnknownViewNode[]
+										{
+											new(0, bivalueCellToCheck, (byte)'y', _xOr_yMask),
+											new(0, targetCell, (byte)'x', _xOr_yMask),
+											new(0, urCellInSameBlock, extraDigitId, extraDigitMask),
+											new(0, anotherCell, (byte)'x', _xOr_yMask),
+											new(0, resultCell, extraDigitId, extraDigitMask)
+										}
+								),
 								d1,
 								d2,
 								urCells,
@@ -3508,107 +3419,85 @@ public sealed unsafe class UniqueRectangleStepSearcher : IUniqueRectangleStepSea
 						}
 
 						// Gather views.
-						var candidateOffsetsAnotherSubtype = new List<(int, ColorIdentifier)>
+						var candidateOffsetsAnotherSubtype = new List<CandidateViewNode>
 						{
-							(targetCell * 9 + extraDigit, (ColorIdentifier)1)
+							new(1, targetCell * 9 + extraDigit)
 						};
 						if (grid.Exists(resultCell, d1) is true)
 						{
-							candidateOffsetsAnotherSubtype.Add((resultCell * 9 + d1, (ColorIdentifier)0));
+							candidateOffsetsAnotherSubtype.Add(new(0, resultCell * 9 + d1));
 						}
 						if (grid.Exists(resultCell, d2) is true)
 						{
-							candidateOffsetsAnotherSubtype.Add((resultCell * 9 + d2, (ColorIdentifier)0));
+							candidateOffsetsAnotherSubtype.Add(new(0, resultCell * 9 + d2));
 						}
 						if (grid.Exists(resultCell, extraDigit) is true)
 						{
-							candidateOffsetsAnotherSubtype.Add((resultCell * 9 + extraDigit, (ColorIdentifier)1));
+							candidateOffsetsAnotherSubtype.Add(new(1, resultCell * 9 + extraDigit));
 						}
 
-						var candidateOffsetsAnotherSubtypeLighter = new List<(int, ColorIdentifier)>
+						var candidateOffsetsAnotherSubtypeLighter = new List<CandidateViewNode>
 						{
-							(resultCell * 9 + extraDigit, (ColorIdentifier)1),
-							(targetCell * 9 + extraDigit, (ColorIdentifier)1)
+							new(1, resultCell * 9 + extraDigit),
+							new(1, targetCell * 9 + extraDigit)
 						};
 						foreach (int digit in grid.GetCandidates(urCellInSameBlock) & abcMask)
 						{
 							if (digit == extraDigit)
 							{
-								candidateOffsetsAnotherSubtype.Add(
-									(urCellInSameBlock * 9 + digit, (ColorIdentifier)1)
-								);
-								candidateOffsetsAnotherSubtypeLighter.Add(
-									(urCellInSameBlock * 9 + digit, (ColorIdentifier)1)
-								);
+								candidateOffsetsAnotherSubtype.Add(new(1, urCellInSameBlock * 9 + digit));
+								candidateOffsetsAnotherSubtypeLighter.Add(new(1, urCellInSameBlock * 9 + digit));
 							}
 							else
 							{
-								candidateOffsetsAnotherSubtype.Add(
-									(urCellInSameBlock * 9 + digit, (ColorIdentifier)0)
-								);
+								candidateOffsetsAnotherSubtype.Add(new(0, urCellInSameBlock * 9 + digit));
 							}
 						}
 						foreach (int digit in grid.GetCandidates(anotherCell))
 						{
 							if (digit == extraDigit)
 							{
-								candidateOffsetsAnotherSubtype.Add(
-									(anotherCell * 9 + digit, (ColorIdentifier)1)
-								);
-								candidateOffsetsAnotherSubtypeLighter.Add(
-									(anotherCell * 9 + digit, (ColorIdentifier)1)
-								);
+								candidateOffsetsAnotherSubtype.Add(new(1, anotherCell * 9 + digit));
+								candidateOffsetsAnotherSubtypeLighter.Add(new(1, anotherCell * 9 + digit));
 							}
 							else
 							{
-								candidateOffsetsAnotherSubtype.Add(
-									(anotherCell * 9 + digit, (ColorIdentifier)0)
-								);
+								candidateOffsetsAnotherSubtype.Add(new(0, anotherCell * 9 + digit));
 							}
 						}
 						short _xOr_yMask2 = grid.GetCandidates(bivalueCellToCheck);
 						foreach (int digit in _xOr_yMask2)
 						{
-							candidateOffsetsAnotherSubtype.Add(
-								(bivalueCellToCheck * 9 + digit, (ColorIdentifier)2)
-							);
+							candidateOffsetsAnotherSubtype.Add(new(2, bivalueCellToCheck * 9 + digit));
 						}
 
 						// Add into the list.
-						char extraDigitId2 = (char)(extraDigit + '1');
+						byte extraDigitId2 = (byte)(char)(extraDigit + '1');
 						short extraDigitMask2 = (short)(1 << extraDigit);
 						accumulator.Add(
 							new UniqueRectangleWithUnknownCoveringStep(
 								ImmutableArray.CreateRange(conclusionsAnotherSubType),
-								ImmutableArray.Create(new PresentationData[]
-								{
-									new()
-									{
-										Cells = new[] { (targetCell, (ColorIdentifier)0) },
-										Candidates = candidateOffsetsAnotherSubtype,
-										Regions = new[]
+								ImmutableArray.Create(
+									View.Empty
+										+ new CellViewNode(0, targetCell)
+										+ candidateOffsetsAnotherSubtype
+										+ new RegionViewNode[]
 										{
-											(block, (ColorIdentifier)0),
-											(line, (ColorIdentifier)1),
-											(anotherLine, (ColorIdentifier)1)
-										}
-									},
-									new()
-									{
-										Candidates = candidateOffsetsAnotherSubtypeLighter,
-										UnknownValues = new (UnknownValue, ColorIdentifier)[]
+											new(0, block),
+											new(1, line),
+											new(1, anotherLine)
+										},
+									View.Empty
+										+ candidateOffsetsAnotherSubtypeLighter
+										+ new UnknownViewNode[]
 										{
-											(new(bivalueCellToCheck, 'y', _xOr_yMask2), (ColorIdentifier)0),
-											(new(targetCell, 'x', _xOr_yMask2), (ColorIdentifier)0),
-											(
-												new(urCellInSameBlock, extraDigitId2, extraDigitMask2),
-												(ColorIdentifier)0
-											),
-											(new(anotherCell, 'x', _xOr_yMask2), (ColorIdentifier)0),
-											(new(resultCell, extraDigitId2, extraDigitMask2), (ColorIdentifier)0)
+											new(0, bivalueCellToCheck, (byte)'y', _xOr_yMask2),
+											new(0, targetCell, (byte)'x', _xOr_yMask2),
+											new(0, urCellInSameBlock, extraDigitId2, extraDigitMask2),
+											new(0, anotherCell, (byte)'x', _xOr_yMask2),
+											new(0, resultCell, extraDigitId2, extraDigitMask2)
 										}
-									}
-								}),
+								),
 								d1,
 								d2,
 								urCells,
@@ -3694,29 +3583,25 @@ public sealed unsafe class UniqueRectangleStepSearcher : IUniqueRectangleStepSea
 				continue;
 			}
 
-			var candidateOffsets = new List<(int, ColorIdentifier)>(16);
+			var candidateOffsets = new List<CandidateViewNode>(16);
 			foreach (int cell in urCells)
 			{
-				candidateOffsets.Add((cell * 9 + d1, (ColorIdentifier)0));
-				candidateOffsets.Add((cell * 9 + d2, (ColorIdentifier)0));
+				candidateOffsets.Add(new(0, cell * 9 + d1));
+				candidateOffsets.Add(new(0, cell * 9 + d2));
 			}
 			foreach (int cell in guardianMap)
 			{
-				candidateOffsets.Add((cell * 9 + guardianDigit, (ColorIdentifier)1));
+				candidateOffsets.Add(new(1, cell * 9 + guardianDigit));
 			}
 
 			accumulator.Add(
 				new UniqueRectangleWithGuardianStep(
 					elimMap.ToImmutableConclusions(guardianDigit),
-					ImmutableArray.Create(new PresentationData
-					{
-						Candidates = candidateOffsets,
-						Regions = new[]
-						{
-							(regionCombination[0], (ColorIdentifier)0),
-							(regionCombination[1], (ColorIdentifier)0)
-						}
-					}),
+					ImmutableArray.Create(
+						View.Empty
+							+ candidateOffsets
+							+ new RegionViewNode[] { new(0, regionCombination[0]), new(0, regionCombination[1]) }
+					),
 					d1,
 					d2,
 					urCells,
@@ -3829,30 +3714,27 @@ public sealed unsafe class UniqueRectangleStepSearcher : IUniqueRectangleStepSea
 						continue;
 					}
 
-					var cellOffsets = new List<(int, ColorIdentifier)>();
+					var cellOffsets = new List<CellViewNode>();
 					foreach (int cell in urCells)
 					{
-						cellOffsets.Add((cell, (ColorIdentifier)0));
+						cellOffsets.Add(new(0, cell));
 					}
 
-					var candidateOffsets = new List<(int, ColorIdentifier)>
-					{
-						(anotherCell * 9 + otherDigit, (ColorIdentifier)0)
-					};
+					var candidateOffsets = new List<CandidateViewNode> { new(0, anotherCell * 9 + otherDigit) };
 					foreach (int cell in otherCells)
 					{
-						candidateOffsets.Add((cell * 9 + otherDigit, (ColorIdentifier)1));
+						candidateOffsets.Add(new(1, cell * 9 + otherDigit));
 					}
 
 					accumulator.Add(
 						new AvoidableRectangleWithHiddenSingleStep(
 							ImmutableArray.Create(new Conclusion(ConclusionType.Elimination, baseCell, otherDigit)),
-							ImmutableArray.Create(new PresentationData
-							{
-								Cells = cellOffsets,
-								Candidates = candidateOffsets,
-								Regions = new[] { (sameRegion, (ColorIdentifier)0) }
-							}),
+							ImmutableArray.Create(
+								View.Empty
+									+ cellOffsets
+									+ candidateOffsets
+									+ new RegionViewNode(0, sameRegion)
+							),
 							d1,
 							d2,
 							urCells,

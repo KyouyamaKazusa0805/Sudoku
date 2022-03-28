@@ -19,7 +19,7 @@ namespace Sudoku.Solving.Manual.Steps;
 /// <param name="IsDoublyLinked">Indicates whether the ALS-XZ is doubly-linked.</param>
 public sealed record AlmostLockedSetsXzStep(
 	ImmutableArray<Conclusion> Conclusions,
-	ImmutableArray<PresentationData> Views,
+	ImmutableArray<View> Views,
 	in AlmostLockedSet Als1,
 	in AlmostLockedSet Als2,
 	short XDigitsMask,

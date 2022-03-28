@@ -19,7 +19,7 @@ namespace Sudoku.Solving.Manual.Steps;
 /// <param name="AbsoluteOffset"><inheritdoc/></param>
 public sealed record UniqueRectangleType2Step(
 	ImmutableArray<Conclusion> Conclusions,
-	ImmutableArray<PresentationData> Views,
+	ImmutableArray<View> Views,
 	int Digit1,
 	int Digit2,
 	Technique TechniqueCode2,

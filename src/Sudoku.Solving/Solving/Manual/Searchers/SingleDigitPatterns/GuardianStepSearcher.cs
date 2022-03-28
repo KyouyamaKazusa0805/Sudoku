@@ -47,7 +47,7 @@ public sealed unsafe class GuardianStepSearcher : IGuardianStepSearcher
 
 			foreach (int elimination in eliminations)
 			{
-				var loops = new List<(Cells, Cells, IList<(Link, ColorIdentifier)>)>();
+				var loops = new List<(Cells, Cells, IEnumerable<LinkViewNode>)>();
 				var tempLoop = new List<int>();
 				var globalMap = CandMaps[digit] - new Cells(elimination);
 				foreach (int cell in globalMap)
@@ -55,7 +55,7 @@ public sealed unsafe class GuardianStepSearcher : IGuardianStepSearcher
 					var loopMap = Cells.Empty;
 					loops.Clear();
 					tempLoop.Clear();
-					f(cell, (Region)255, Cells.Empty);
+					f(cell, (Region)byte.MaxValue, Cells.Empty);
 
 					if (loops.Count == 0)
 					{
@@ -76,23 +76,19 @@ public sealed unsafe class GuardianStepSearcher : IGuardianStepSearcher
 							conclusions[i++] = new(ConclusionType.Elimination, c, digit);
 						}
 
-						var candidateOffsets = new List<(int, ColorIdentifier)>();
+						var candidateOffsets = new List<CandidateViewNode>();
 						foreach (int c in map)
 						{
-							candidateOffsets.Add((c * 9 + digit, (ColorIdentifier)0));
+							candidateOffsets.Add(new(0, c * 9 + digit));
 						}
 						foreach (int c in guardians)
 						{
-							candidateOffsets.Add((c * 9 + digit, (ColorIdentifier)1));
+							candidateOffsets.Add(new(1, c * 9 + digit));
 						}
 
 						var step = new GuardianStep(
 							conclusions.ToImmutableArray(),
-							ImmutableArray.Create(new PresentationData
-							{
-								Candidates = candidateOffsets,
-								Links = links
-							}),
+							ImmutableArray.Create(View.Empty + candidateOffsets + links),
 							digit,
 							map,
 							guardians

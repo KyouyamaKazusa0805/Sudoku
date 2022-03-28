@@ -17,7 +17,7 @@ namespace Sudoku.Solving.Manual.Steps;
 /// <param name="HasValueCell">Indicates whether the step contains value cells.</param>
 public sealed record AlmostLockedCandidatesStep(
 	ImmutableArray<Conclusion> Conclusions,
-	ImmutableArray<PresentationData> Views,
+	ImmutableArray<View> Views,
 	short DigitsMask,
 	in Cells BaseCells,
 	in Cells TargetCells,

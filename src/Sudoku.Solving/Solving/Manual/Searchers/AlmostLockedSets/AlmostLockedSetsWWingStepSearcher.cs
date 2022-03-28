@@ -129,20 +129,19 @@ public sealed unsafe class AlmostLockedSetsWWingStepSearcher : IAlmostLockedSets
 							}
 
 							// Gather highlight cells and candidates.
-							var candidateOffsets = new List<(int, ColorIdentifier)>
+							var candidateOffsets = new List<CandidateViewNode>
 							{
-								(cpMap[0] * 9 + x, (ColorIdentifier)0),
-								(cpMap[1] * 9 + x, (ColorIdentifier)0)
+								new(0, cpMap[0] * 9 + x),
+								new(0, cpMap[1] * 9 + x)
 							};
 							foreach (int cell in map1)
 							{
 								foreach (int digit in grid.GetCandidates(cell))
 								{
 									candidateOffsets.Add(
-										(
-											cell * 9 + digit,
-											(ColorIdentifier)(
-												digit == x ? 1 : (wDigitsMask >> digit & 1) != 0 ? 2 : 101)
+										new(
+											digit == x ? 1 : (wDigitsMask >> digit & 1) != 0 ? 2 : 101,
+											cell * 9 + digit
 										)
 									);
 								}
@@ -152,10 +151,9 @@ public sealed unsafe class AlmostLockedSetsWWingStepSearcher : IAlmostLockedSets
 								foreach (int digit in grid.GetCandidates(cell))
 								{
 									candidateOffsets.Add(
-										(
-											cell * 9 + digit,
-											(ColorIdentifier)(
-												digit == x ? 1 : (wDigitsMask >> digit & 1) != 0 ? 2 : 102)
+										new(
+											digit == x ? 1 : (wDigitsMask >> digit & 1) != 0 ? 2 : 102,
+											cell * 9 + digit
 										)
 									);
 								}
@@ -164,16 +162,16 @@ public sealed unsafe class AlmostLockedSetsWWingStepSearcher : IAlmostLockedSets
 							accumulator.Add(
 								new AlmostLockedSetsWWingStep(
 									conclusions.ToImmutableArray(),
-									ImmutableArray.Create(new PresentationData
-									{
-										Candidates = candidateOffsets,
-										Regions = new[]
-										{
-											(region1, (ColorIdentifier)101),
-											(region2, (ColorIdentifier)102),
-											(TrailingZeroCount(conjugatePair.Regions), (ColorIdentifier)0)
-										}
-									}),
+									ImmutableArray.Create(
+										View.Empty
+											+ candidateOffsets
+											+ new RegionViewNode[]
+											{
+												new(101, region1),
+												new(102, region2),
+												new(0, TrailingZeroCount(conjugatePair.Regions))
+											}
+									),
 									als1,
 									als2,
 									conjugatePair,

@@ -15,7 +15,7 @@ namespace Sudoku.Solving.Manual.Steps;
 /// <param name="ExtraDigitsMask">Indicates the extra digits used for forming the subset.</param>
 public sealed record UniquePolygonType3Step(
 	ImmutableArray<Conclusion> Conclusions,
-	ImmutableArray<PresentationData> Views,
+	ImmutableArray<View> Views,
 	in Cells Map,
 	short DigitsMask,
 	in Cells ExtraCells,

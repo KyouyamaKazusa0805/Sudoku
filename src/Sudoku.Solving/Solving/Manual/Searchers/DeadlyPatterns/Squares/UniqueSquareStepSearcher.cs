@@ -149,18 +149,18 @@ public sealed unsafe class UniqueSquareStepSearcher : IUniqueSquareStepSearcher
 				conclusions.Add(new(ConclusionType.Elimination, elimCell, digit));
 			}
 
-			var candidateOffsets = new List<(int, ColorIdentifier)>();
+			var candidateOffsets = new List<CandidateViewNode>();
 			foreach (int digit in digits)
 			{
 				foreach (int cell in pattern - elimCell & CandMaps[digit])
 				{
-					candidateOffsets.Add((cell * 9 + digit, (ColorIdentifier)0));
+					candidateOffsets.Add(new(0, cell * 9 + digit));
 				}
 			}
 
 			var step = new UniqueSquareType1Step(
 				conclusions.ToImmutableArray(),
-				ImmutableArray.Create(new PresentationData { Candidates = candidateOffsets }),
+				ImmutableArray.Create(View.Empty + candidateOffsets),
 				pattern,
 				digitsMask,
 				elimCell * 9 + extraDigit
@@ -203,22 +203,22 @@ public sealed unsafe class UniqueSquareStepSearcher : IUniqueSquareStepSearcher
 				conclusions.Add(new(ConclusionType.Elimination, cell, extraDigit));
 			}
 
-			var candidateOffsets = new List<(int, ColorIdentifier)>();
+			var candidateOffsets = new List<CandidateViewNode>();
 			foreach (int digit in digits)
 			{
 				foreach (int cell in CandMaps[digit] & pattern)
 				{
-					candidateOffsets.Add((cell * 9 + digit, (ColorIdentifier)0));
+					candidateOffsets.Add(new(0, cell * 9 + digit));
 				}
 			}
 			foreach (int cell in CandMaps[extraDigit] & pattern)
 			{
-				candidateOffsets.Add((cell * 9 + extraDigit, (ColorIdentifier)1));
+				candidateOffsets.Add(new(1, cell * 9 + extraDigit));
 			}
 
 			var step = new UniqueSquareType2Step(
 				conclusions.ToImmutableArray(),
-				ImmutableArray.Create(new PresentationData { Candidates = candidateOffsets }),
+				ImmutableArray.Create(View.Empty + candidateOffsets),
 				pattern,
 				digitsMask,
 				extraDigit
@@ -283,31 +283,26 @@ public sealed unsafe class UniqueSquareStepSearcher : IUniqueSquareStepSearcher
 							continue;
 						}
 
-						var candidateOffsets = new List<(int, ColorIdentifier)>();
+						var candidateOffsets = new List<CandidateViewNode>();
 						foreach (int cell in pattern)
 						{
 							foreach (int digit in grid.GetCandidates(cell))
 							{
 								candidateOffsets.Add(
-									(cell * 9 + digit, (ColorIdentifier)((tempMask >> digit & 1) != 0 ? 1 : 0))
-								);
+									new((tempMask >> digit & 1) != 0 ? 1 : 0, cell * 9 + digit));
 							}
 						}
 						foreach (int cell in cells)
 						{
 							foreach (int digit in grid.GetCandidates(cell))
 							{
-								candidateOffsets.Add((cell * 9 + digit, (ColorIdentifier)1));
+								candidateOffsets.Add(new(1, cell * 9 + digit));
 							}
 						}
 
 						var step = new UniqueSquareType3Step(
 							conclusions.ToImmutableArray(),
-							ImmutableArray.Create(new PresentationData
-							{
-								Candidates = candidateOffsets,
-								Regions = new[] { (region, (ColorIdentifier)0) }
-							}),
+							ImmutableArray.Create(View.Empty + candidateOffsets + new RegionViewNode(0, region)),
 							pattern,
 							digitsMask,
 							extraDigitsMask,
@@ -389,30 +384,26 @@ public sealed unsafe class UniqueSquareStepSearcher : IUniqueSquareStepSearcher
 					continue;
 				}
 
-				var candidateOffsets = new List<(int, ColorIdentifier)>();
+				var candidateOffsets = new List<CandidateViewNode>();
 				foreach (int cell in pattern - compareMap)
 				{
 					foreach (int digit in grid.GetCandidates(cell))
 					{
-						candidateOffsets.Add((cell * 9 + digit, (ColorIdentifier)0));
+						candidateOffsets.Add(new(0, cell * 9 + digit));
 					}
 				}
 				foreach (int cell in compareMap & CandMaps[d1])
 				{
-					candidateOffsets.Add((cell * 9 + d1, (ColorIdentifier)1));
+					candidateOffsets.Add(new(1, cell * 9 + d1));
 				}
 				foreach (int cell in compareMap & CandMaps[d2])
 				{
-					candidateOffsets.Add((cell * 9 + d2, (ColorIdentifier)1));
+					candidateOffsets.Add(new(1, cell * 9 + d2));
 				}
 
 				var step = new UniqueSquareType4Step(
 					conclusions.ToImmutableArray(),
-					ImmutableArray.Create(new PresentationData
-					{
-						Candidates = candidateOffsets,
-						Regions = new[] { (region, (ColorIdentifier)0) }
-					}),
+					ImmutableArray.Create(View.Empty + candidateOffsets + new RegionViewNode(0, region)),
 					pattern,
 					digitsMask,
 					d1,

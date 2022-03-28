@@ -15,7 +15,7 @@ namespace Sudoku.Solving.Manual.Steps;
 /// <param name="TargetRegion">Indicates the target region used.</param>
 public sealed record TwoStrongLinksStep(
 	ImmutableArray<Conclusion> Conclusions,
-	ImmutableArray<PresentationData> Views,
+	ImmutableArray<View> Views,
 	int Digit,
 	int BaseRegion,
 	int TargetRegion

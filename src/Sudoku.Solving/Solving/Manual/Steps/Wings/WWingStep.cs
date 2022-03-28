@@ -17,7 +17,7 @@ namespace Sudoku.Solving.Manual.Steps;
 /// </param>
 public sealed record WWingStep(
 	ImmutableArray<Conclusion> Conclusions,
-	ImmutableArray<PresentationData> Views,
+	ImmutableArray<View> Views,
 	int StartCell,
 	int EndCell,
 	in ConjugatePair ConjugatePair

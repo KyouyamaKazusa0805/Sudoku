@@ -33,7 +33,7 @@ public sealed unsafe class BivalueOddagonStepSearcher : IBivalueOddagonStepSearc
 		}
 
 		var resultAccumulator = new List<BivalueOddagonStep>();
-		var loops = new List<(Cells, IList<(Link, ColorIdentifier)>)>();
+		var loops = new List<(Cells, IEnumerable<LinkViewNode>)>();
 		var tempLoop = new List<int>(14);
 		var loopMap = Cells.Empty;
 
@@ -137,8 +137,8 @@ public sealed unsafe class BivalueOddagonStepSearcher : IBivalueOddagonStepSearc
 	}
 
 	private Step? CheckType1(
-		ICollection<BivalueOddagonStep> accumulator, in Grid grid, int d1, int d2, in Cells loop, IList<(Link, ColorIdentifier)> links,
-		in Cells extraCellsMap, bool onlyFindOne)
+		ICollection<BivalueOddagonStep> accumulator, in Grid grid, int d1, int d2, in Cells loop,
+		IEnumerable<LinkViewNode> links, in Cells extraCellsMap, bool onlyFindOne)
 	{
 		int extraCell = extraCellsMap[0];
 		var conclusions = new List<Conclusion>(2);
@@ -155,16 +155,16 @@ public sealed unsafe class BivalueOddagonStepSearcher : IBivalueOddagonStepSearc
 			goto ReturnNull;
 		}
 
-		var candidateOffsets = new List<(int, ColorIdentifier)>(30);
+		var candidateOffsets = new List<CandidateViewNode>(30);
 		foreach (int cell in loop - extraCell)
 		{
-			candidateOffsets.Add((cell * 9 + d1, (ColorIdentifier)0));
-			candidateOffsets.Add((cell * 9 + d2, (ColorIdentifier)0));
+			candidateOffsets.Add(new(0, cell * 9 + d1));
+			candidateOffsets.Add(new(0, cell * 9 + d2));
 		}
 
 		var step = new BivalueOddagonType1Step(
 			ImmutableArray.CreateRange(conclusions),
-			ImmutableArray.Create(new PresentationData { Candidates = candidateOffsets, Links = links }),
+			ImmutableArray.Create(View.Empty + candidateOffsets + links),
 			loop,
 			d1,
 			d2,
@@ -184,7 +184,7 @@ public sealed unsafe class BivalueOddagonStepSearcher : IBivalueOddagonStepSearc
 
 	private Step? CheckType2(
 		ICollection<BivalueOddagonStep> accumulator, in Grid grid, int d1, int d2, in Cells loop,
-		IList<(Link, ColorIdentifier)> links, in Cells extraCellsMap, short comparer, bool onlyFindOne)
+		IEnumerable<LinkViewNode> links, in Cells extraCellsMap, short comparer, bool onlyFindOne)
 	{
 		short mask = (short)(grid.GetDigitsUnion(extraCellsMap) & ~comparer);
 		if (!IsPow2(mask))
@@ -198,18 +198,18 @@ public sealed unsafe class BivalueOddagonStepSearcher : IBivalueOddagonStepSearc
 			goto ReturnNull;
 		}
 
-		var candidateOffsets = new List<(int, ColorIdentifier)>();
+		var candidateOffsets = new List<CandidateViewNode>();
 		foreach (int cell in loop)
 		{
 			foreach (int digit in grid.GetCandidates(cell))
 			{
-				candidateOffsets.Add((cell * 9 + digit, (ColorIdentifier)(digit == extraDigit ? 1 : 0)));
+				candidateOffsets.Add(new(digit == extraDigit ? 1 : 0, cell * 9 + digit));
 			}
 		}
 
 		var step = new BivalueOddagonType2Step(
 			elimMap.ToImmutableConclusions(extraDigit),
-			ImmutableArray.Create(new PresentationData { Candidates = candidateOffsets, Links = links }),
+			ImmutableArray.Create(View.Empty + candidateOffsets + links),
 			loop,
 			d1,
 			d2,
@@ -228,9 +228,8 @@ public sealed unsafe class BivalueOddagonStepSearcher : IBivalueOddagonStepSearc
 	}
 
 	private Step? CheckType3(
-		ICollection<BivalueOddagonStep> accumulator, in Grid grid, int d1, int d2,
-		in Cells loop, IList<(Link, ColorIdentifier)> links, in Cells extraCellsMap,
-		short comparer, bool onlyFindOne)
+		ICollection<BivalueOddagonStep> accumulator, in Grid grid, int d1, int d2, in Cells loop,
+		IEnumerable<LinkViewNode> links, in Cells extraCellsMap, short comparer, bool onlyFindOne)
 	{
 		bool notSatisfiedType3 = false;
 		foreach (int cell in extraCellsMap)
@@ -291,15 +290,15 @@ public sealed unsafe class BivalueOddagonStepSearcher : IBivalueOddagonStepSearc
 						continue;
 					}
 
-					var candidateOffsets = new List<(int, ColorIdentifier)>();
+					var candidateOffsets = new List<CandidateViewNode>();
 					foreach (int cell in loop)
 					{
 						foreach (int digit in grid.GetCandidates(cell))
 						{
 							candidateOffsets.Add(
-								(
-									cell * 9 + digit,
-									(ColorIdentifier)((otherDigitsMask >> digit & 1) != 0 ? 1 : 0)
+								new(
+									(otherDigitsMask >> digit & 1) != 0 ? 1 : 0,
+									cell * 9 + digit
 								)
 							);
 						}
@@ -308,18 +307,13 @@ public sealed unsafe class BivalueOddagonStepSearcher : IBivalueOddagonStepSearc
 					{
 						foreach (int digit in grid.GetCandidates(cell))
 						{
-							candidateOffsets.Add((cell * 9 + digit, (ColorIdentifier)1));
+							candidateOffsets.Add(new(1, cell * 9 + digit));
 						}
 					}
 
 					var step = new BivalueOddagonType3Step(
 						ImmutableArray.CreateRange(conclusions),
-						ImmutableArray.Create(new PresentationData
-						{
-							Candidates = candidateOffsets,
-							Regions = new[] { (region, (ColorIdentifier)0) },
-							Links = links
-						}),
+						ImmutableArray.Create(View.Empty + candidateOffsets + new RegionViewNode(0, region) + links),
 						loop,
 						d1,
 						d2,

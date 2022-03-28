@@ -97,17 +97,17 @@ public sealed unsafe class TwoStrongLinksStepSearcher : ITwoStrongLinksStepSearc
 
 					var step = new TwoStrongLinksStep(
 						gridMap.ToImmutableConclusions(digit),
-						ImmutableArray.Create(new PresentationData
-						{
-							Candidates = new[]
-							{
-								(cells1[c1Index] * 9 + digit, (ColorIdentifier)0),
-								(cells2[c2Index] * 9 + digit, (ColorIdentifier)0),
-								(head * 9 + digit, (ColorIdentifier)0),
-								(tail * 9 + digit, (ColorIdentifier)0)
-							},
-							Regions = new[] { (sameRegion, (ColorIdentifier)1) }
-						}),
+						ImmutableArray.Create(
+							View.Empty
+								+ new CandidateViewNode[]
+								{
+									new(0, cells1[c1Index] * 9 + digit),
+									new(0, cells2[c2Index] * 9 + digit),
+									new(0, head * 9 + digit),
+									new(0, tail * 9 + digit)
+								}
+								+ new RegionViewNode(1, sameRegion)
+						),
 						digit,
 						r1,
 						r2

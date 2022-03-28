@@ -16,7 +16,7 @@ namespace Sudoku.Solving.Manual.Steps;
 /// <param name="ExtraCell">Indicates the extra cell.</param>
 public sealed record BivalueOddagonType1Step(
 	ImmutableArray<Conclusion> Conclusions,
-	ImmutableArray<PresentationData> Views,
+	ImmutableArray<View> Views,
 	in Cells Loop,
 	int Digit1,
 	int Digit2,

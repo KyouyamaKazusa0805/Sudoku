@@ -14,7 +14,7 @@ namespace Sudoku.Solving.Manual.Steps;
 /// <param name="Cells">Indicates the cells used.</param>
 public sealed record MultisectorLockedSetsStep(
 	ImmutableArray<Conclusion> Conclusions,
-	ImmutableArray<PresentationData> Views,
+	ImmutableArray<View> Views,
 	in Cells Cells
 ) : RankTheoryStep(Conclusions, Views), IStepWithRank
 {

@@ -1,5 +1,4 @@
-﻿using Sudoku.Collections;
-using Sudoku.Presentation;
+﻿using Sudoku.Presentation;
 using Sudoku.Solving.Collections;
 using Sudoku.Solving.Manual.Searchers;
 using Sudoku.Solving.Manual.Text;
@@ -17,7 +16,7 @@ namespace Sudoku.Solving.Manual.Steps;
 /// <param name="YEnabled"><inheritdoc cref="AlternatingInferenceChainStepSearcher.YEnabled"/></param>
 public sealed record AlternatingInferenceChainStep(
 	ImmutableArray<Conclusion> Conclusions,
-	ImmutableArray<PresentationData> Views,
+	ImmutableArray<View> Views,
 	AlternatingInferenceChain Chain,
 	bool XEnabled,
 	bool YEnabled
@@ -106,21 +105,19 @@ public sealed record AlternatingInferenceChainStep(
 	{
 		get
 		{
-			if (Views[0].Links is { } links)
+			var realChainNodes = Chain.RealChainNodes;
+			for (int i = 0, count = realChainNodes.Length; i < count; i += 2)
 			{
-				for (int i = 0, count = links.Count; i < count; i += 2)
+#pragma warning disable IDE0055
+				if ((realChainNodes[i].Cells, realChainNodes[i + 1].Cells) is not ([var c1], [var c2])
+					|| c1 != c2)
 				{
-					var (link, _) = links[i];
-					if (link.StartCandidate / 9 != link.EndCandidate / 9)
-					{
-						return false;
-					}
+					return false;
 				}
-
-				return true;
+#pragma warning restore IDE0055
 			}
 
-			return false;
+			return true;
 		}
 	}
 
@@ -240,6 +237,6 @@ public sealed record AlternatingInferenceChainStep(
 	internal string ChainStr
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => new LinkCollection(from pair in Views[0].Links! select pair.Link).ToString();
+		get => Chain.ToString();
 	}
 }

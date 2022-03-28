@@ -15,7 +15,7 @@ namespace Sudoku.Solving.Manual.Steps;
 /// <param name="ExtraMask">Indicates the extra digits mask.</param>
 public sealed record UniquePolygonType4Step(
 	ImmutableArray<Conclusion> Conclusions,
-	ImmutableArray<PresentationData> Views,
+	ImmutableArray<View> Views,
 	in Cells Map,
 	short DigitsMask,
 	in Cells ConjugateRegion,

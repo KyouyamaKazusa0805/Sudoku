@@ -14,26 +14,16 @@ public interface IChainStepSearcher : IStepSearcher
 	/// </summary>
 	/// <param name="chain">The chain.</param>
 	/// <returns>An array of presentation data of links.</returns>
-	protected static (Link, ColorIdentifier)[] GetViewOnLinks(in AlternatingInferenceChain chain)
+	protected static LinkViewNode[] GetViewOnLinks(in AlternatingInferenceChain chain)
 	{
 		var realChainNodes = chain.RealChainNodes;
-		var result = new (Link, ColorIdentifier)[realChainNodes.Length];
+		var result = new LinkViewNode[realChainNodes.Length];
 		for (int i = 0; i < realChainNodes.Length - 1; i++)
 		{
-			// TODO: I'll re-implement the data structure to support grouped nodes.
-			if (
-#pragma warning disable IDE0055
-				(realChainNodes[i], realChainNodes[i + 1]) is (
-					{ Cells: [var aFirst, ..], Digit: var aDigit },
-					{ Cells: [var bFirst, ..], Digit: var bDigit }
-				)
-#pragma warning restore IDE0055
-			)
+			if (realChainNodes[i] is { Cells: var aCells, Digit: var aDigit }
+				&& realChainNodes[i + 1] is { Cells: var bCells, Digit: var bDigit })
 			{
-				result[i] = (
-					new(aFirst * 9 + aDigit, bFirst * 9 + bDigit, LinkKind.Strong),
-					(ColorIdentifier)0
-				);
+				result[i] = new(0, new(aDigit, aCells), new(bDigit, bCells), LinkKind.Strong);
 			}
 		}
 

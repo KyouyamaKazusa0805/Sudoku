@@ -13,21 +13,17 @@ public interface ILoopLikeStepSearcher : IStepSearcher
 	/// <param name="this">The list of cells.</param>
 	/// <param name="offset">The offset. The default value is <c>4</c>.</param>
 	/// <returns>All links.</returns>
-	protected static IList<(Link, ColorIdentifier)> GetLinks(IReadOnlyList<int> @this, int offset = 4)
+	protected static IEnumerable<LinkViewNode> GetLinks(IReadOnlyList<int> @this, int offset = 4)
 	{
-		var result = new List<(Link, ColorIdentifier)>();
+		var result = new List<LinkViewNode>();
 
 		for (int i = 0, length = @this.Count - 1; i < length; i++)
 		{
 			result.Add(
-				(
-					new(@this[i] * 9 + offset, @this[i + 1] * 9 + offset, LinkKind.Line),
-					(ColorIdentifier)0
-				)
-			);
+				new(0, new(offset, new() { @this[i] }), new(offset, new() { @this[i + 1] }), LinkKind.Line));
 		}
 
-		result.Add((new(@this[^1] * 9 + offset, @this[0] * 9 + offset, LinkKind.Line), (ColorIdentifier)0));
+		result.Add(new(0, new(offset, new() { @this[^1] }), new(offset, new() { @this[0] }), LinkKind.Line));
 
 		return result;
 	}

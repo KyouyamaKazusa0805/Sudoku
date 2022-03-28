@@ -166,45 +166,45 @@ public sealed unsafe class AlmostLockedCandidatesStepSearcher : IAlmostLockedCan
 			}
 
 			// Gather highlight candidates.
-			var candidateOffsets = new List<(int, ColorIdentifier)>();
+			var candidateOffsets = new List<CandidateViewNode>();
 			foreach (int digit in mask)
 			{
 				foreach (int cell in cells & CandMaps[digit])
 				{
-					candidateOffsets.Add((cell * 9 + digit, (ColorIdentifier)0));
+					candidateOffsets.Add(new(0, cell * 9 + digit));
 				}
 			}
 			foreach (int cell in c)
 			{
 				foreach (int digit in mask & grid.GetCandidates(cell))
 				{
-					candidateOffsets.Add((cell * 9 + digit, (ColorIdentifier)1));
+					candidateOffsets.Add(new(1, cell * 9 + digit));
 				}
 			}
 			foreach (int cell in ahsCells)
 			{
 				foreach (int digit in mask & grid.GetCandidates(cell))
 				{
-					candidateOffsets.Add((cell * 9 + digit, (ColorIdentifier)0));
+					candidateOffsets.Add(new(0, cell * 9 + digit));
 				}
 			}
 
 			var map = (cells | ahsCells) - EmptyMap;
-			var valueCells = new List<(int, ColorIdentifier)>(map.Count);
+			var valueCells = new List<CellViewNode>(map.Count);
 			foreach (int cell in map)
 			{
-				valueCells.Add((cell, (ColorIdentifier)0));
+				valueCells.Add(new(0, cell));
 			}
 
 			bool hasValueCell = valueCells.Count != 0;
 			var step = new AlmostLockedCandidatesStep(
 				ImmutableArray.CreateRange(conclusions),
-				ImmutableArray.Create(new PresentationData
-				{
-					Cells = hasValueCell ? valueCells : null,
-					Candidates = candidateOffsets,
-					Regions = new[] { (baseSet, (ColorIdentifier)0), (coverSet, (ColorIdentifier)2) }
-				}),
+				ImmutableArray.Create(
+					View.Empty
+						+ (hasValueCell ? valueCells : null)
+						+ candidateOffsets
+						+ new RegionViewNode[] { new(0, baseSet), new(2, coverSet) }
+				),
 				mask,
 				cells,
 				ahsCells,

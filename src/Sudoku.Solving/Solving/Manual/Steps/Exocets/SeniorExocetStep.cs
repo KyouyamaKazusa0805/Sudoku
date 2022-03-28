@@ -16,7 +16,7 @@ namespace Sudoku.Solving.Manual.Steps;
 /// <param name="ExtraRegionsMask">Indicates the mask tnat holds the extra regions used.</param>
 /// <param name="Eliminations"><inheritdoc/></param>
 public sealed record SeniorExocetStep(
-	ImmutableArray<PresentationData> Views,
+	ImmutableArray<View> Views,
 	in ExocetPattern Exocet,
 	short DigitsMask,
 	int EndoTargetCell,

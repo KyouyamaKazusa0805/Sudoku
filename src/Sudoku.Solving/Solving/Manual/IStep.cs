@@ -152,7 +152,7 @@ public interface IStep
 	/// <summary>
 	/// Indicates the views of the step that may be displayed onto the screen using pictures.
 	/// </summary>
-	ImmutableArray<PresentationData> Views { get; }
+	ImmutableArray<View> Views { get; }
 
 	/// <summary>
 	/// Indicates the string representation of the conclusions.

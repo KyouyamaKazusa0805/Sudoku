@@ -14,7 +14,7 @@ namespace Sudoku.Solving.Manual.Steps;
 /// <param name="DigitsMask">Indicates the mask that contains the digits used.</param>
 public abstract record ExtendedRectangleStep(
 	ImmutableArray<Conclusion> Conclusions,
-	ImmutableArray<PresentationData> Views,
+	ImmutableArray<View> Views,
 	in Cells Cells,
 	short DigitsMask
 ) : DeadlyPatternStep(Conclusions, Views)

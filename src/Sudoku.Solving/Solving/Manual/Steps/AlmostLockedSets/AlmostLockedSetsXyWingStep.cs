@@ -19,7 +19,7 @@ namespace Sudoku.Solving.Manual.Steps;
 /// <param name="ZDigitsMask">Indicates the mask that holds the digits for the Z value.</param>
 public sealed record AlmostLockedSetsXyWingStep(
 	ImmutableArray<Conclusion> Conclusions,
-	ImmutableArray<PresentationData> Views,
+	ImmutableArray<View> Views,
 	in AlmostLockedSet Als1,
 	in AlmostLockedSet Als2,
 	in AlmostLockedSet Bridge,

@@ -15,7 +15,7 @@ namespace Sudoku.Solving.Manual.Steps;
 /// <param name="DigitsMask"><inheritdoc/></param>
 public sealed record HiddenSubsetStep(
 	ImmutableArray<Conclusion> Conclusions,
-	ImmutableArray<PresentationData> Views,
+	ImmutableArray<View> Views,
 	int Region,
 	in Cells Cells,
 	short DigitsMask
