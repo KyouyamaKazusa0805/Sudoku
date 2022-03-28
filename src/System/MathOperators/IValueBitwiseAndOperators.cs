@@ -1,7 +1,4 @@
 ﻿#if FEATURE_GENERIC_MATH && FEATURE_GENERIC_MATH_IN_ARG
-using System.Runtime.Versioning;
-using Sudoku.Diagnostics.CodeAnalysis;
-
 namespace System;
 
 /// <summary>
@@ -16,7 +13,7 @@ namespace System;
 /// <typeparam name="TOther">The type that takes part in the operation.</typeparam>
 /// <typeparam name="TResult">The type of the result value.</typeparam>
 [RequiresPreviewFeatures]
-public interface IValueBitwiseAndOperators<[Self] TSelf, TOther, TResult>
+public interface IValueBitwiseAndOperators<TSelf, TOther, TResult>
 	where TSelf : struct, IValueBitwiseAndOperators<TSelf, TOther, TResult>
 	where TOther : struct
 	where TResult : struct

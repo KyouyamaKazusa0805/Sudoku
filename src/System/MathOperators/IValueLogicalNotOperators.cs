@@ -1,7 +1,4 @@
 ﻿#if FEATURE_GENERIC_MATH && FEATURE_GENERIC_MATH_IN_ARG
-using System.Runtime.Versioning;
-using Sudoku.Diagnostics.CodeAnalysis;
-
 namespace System;
 
 /// <summary>
@@ -12,7 +9,7 @@ namespace System;
 /// </summary>
 /// <typeparam name="TSelf">The type of the current instance.</typeparam>
 [RequiresPreviewFeatures]
-public interface IValueLogicalNotOperators<[Self] TSelf> where TSelf : struct, IValueLogicalNotOperators<TSelf>
+public interface IValueLogicalNotOperators<TSelf> where TSelf : struct, IValueLogicalNotOperators<TSelf>
 {
 	/// <summary>
 	/// Gets the logical-not result value from the instance.

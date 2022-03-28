@@ -1,7 +1,4 @@
-﻿using System.Buffers;
-using static System.Numerics.BitOperations;
-
-namespace System;
+﻿namespace System;
 
 /// <summary>
 /// Provides extension methods on <see cref="BitArray"/>.

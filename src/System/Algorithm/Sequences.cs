@@ -1,6 +1,4 @@
-﻿using static System.MathF;
-
-namespace System.Algorithm;
+﻿namespace System.Algorithm;
 
 /// <summary>
 /// Defines some sequences that has been recorded in the

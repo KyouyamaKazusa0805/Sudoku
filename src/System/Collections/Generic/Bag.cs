@@ -1,8 +1,5 @@
 ﻿#undef USE_EQUALITY_COMPARER
 
-using System.Buffers;
-using System.Runtime.InteropServices;
-
 namespace System.Collections.Generic;
 
 /// <summary>

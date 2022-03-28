@@ -1,7 +1,4 @@
 ﻿#if FEATURE_GENERIC_MATH && FEATURE_GENERIC_MATH_IN_ARG
-using System.Runtime.Versioning;
-using Sudoku.Diagnostics.CodeAnalysis;
-
 namespace System;
 
 /// <summary>
@@ -12,7 +9,7 @@ namespace System;
 /// </summary>
 /// <typeparam name="TSelf">The type of the current instance.</typeparam>
 [RequiresPreviewFeatures]
-public interface IValueDecrementOperators<[Self] TSelf>
+public interface IValueDecrementOperators<TSelf>
 	where TSelf : struct, IDecrementOperators<TSelf>, IValueDecrementOperators<TSelf>
 {
 	/// <summary>

@@ -1,7 +1,4 @@
 ﻿#if FEATURE_GENERIC_MATH && FEATURE_GENERIC_MATH_IN_ARG
-using System.Runtime.Versioning;
-using Sudoku.Diagnostics.CodeAnalysis;
-
 namespace System;
 
 /// <summary>
@@ -20,8 +17,7 @@ namespace System;
 /// </see>.
 /// </remarks>
 [RequiresPreviewFeatures]
-public interface IValueMetaLogicalOperators<[Self] TSelf>
-	where TSelf : struct, IValueMetaLogicalOperators<TSelf>
+public interface IValueMetaLogicalOperators<TSelf> where TSelf : struct, IValueMetaLogicalOperators<TSelf>
 {
 	/// <summary>
 	/// <para>

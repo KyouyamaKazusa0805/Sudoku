@@ -1,7 +1,4 @@
-﻿using System.Reflection;
-using static System.Numerics.BitOperations;
-
-namespace System.Collections.Generic;
+﻿namespace System.Collections.Generic;
 
 /// <summary>
 /// Defines an enumerator that iterates the possible fields of an enumeration type.

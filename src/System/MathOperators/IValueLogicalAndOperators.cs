@@ -1,7 +1,4 @@
 ﻿#if FEATURE_GENERIC_MATH && FEATURE_GENERIC_MATH_IN_ARG
-using System.Runtime.Versioning;
-using Sudoku.Diagnostics.CodeAnalysis;
-
 namespace System;
 
 /// <summary>
@@ -14,7 +11,7 @@ namespace System;
 /// </summary>
 /// <typeparam name="TSelf">The type of the current instance.</typeparam>
 [RequiresPreviewFeatures]
-public interface IValueLogicalAndOperators<[Self] TSelf> where TSelf : struct, IValueLogicalAndOperators<TSelf>
+public interface IValueLogicalAndOperators<TSelf> where TSelf : struct, IValueLogicalAndOperators<TSelf>
 {
 	/// <summary>
 	/// Make logical-and operation on two <typeparamref name="TSelf"/>-typed instance.

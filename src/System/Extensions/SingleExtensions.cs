@@ -1,6 +1,4 @@
-﻿using static System.Math;
-
-namespace System;
+﻿namespace System;
 
 /// <summary>
 /// Provides extension methods on <see cref="float"/>.
@@ -28,5 +26,5 @@ public static class SingleExtensions
 	/// <returns>A <see cref="bool"/> result indicating that.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static bool NearlyEquals(this float @this, float other, float epsilon) =>
-		Abs(@this - other) < epsilon;
+		MathF.Abs(@this - other) < epsilon;
 }
