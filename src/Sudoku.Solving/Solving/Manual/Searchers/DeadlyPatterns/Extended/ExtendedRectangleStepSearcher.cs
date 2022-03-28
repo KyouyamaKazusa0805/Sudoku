@@ -80,7 +80,7 @@ public sealed unsafe class ExtendedRectangleStepSearcher : IExtendedRectangleSte
 				int c13 = c11 + 18, c23 = c21 + 18;
 				combinations.Add(
 					(
-						new() { c11, c12, c13, c21, c22, c23 },
+						Cells.Empty + c11 + c12 + c13 + c21 + c22 + c23,
 						new[] { (c11, c21), (c12, c22), (c13, c23) },
 						3
 					)
@@ -96,7 +96,7 @@ public sealed unsafe class ExtendedRectangleStepSearcher : IExtendedRectangleSte
 				int c13 = c11 + 2, c23 = c21 + 2;
 				combinations.Add(
 					(
-						new() { c11, c12, c13, c21, c22, c23 },
+						Cells.Empty + c11 + c12 + c13 + c21 + c22 + c23,
 						new[] { (c11, c21), (c12, c22), (c13, c23) },
 						3
 					)

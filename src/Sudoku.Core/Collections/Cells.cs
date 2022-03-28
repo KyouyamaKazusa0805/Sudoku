@@ -52,11 +52,10 @@ public unsafe struct Cells :
 	/// <summary>
 	/// <para>Indicates an empty instance (all bits are 0).</para>
 	/// <para>
-	/// I strongly recommend you <b>should</b> use this instance instead of default constructor
-	/// <see cref="Cells()"/> and <see langword="default"/>(<see cref="Cells"/>).
+	/// I strongly recommend you <b>should</b> use this instance instead of the expression
+	/// <see langword="default"/>(<see cref="Cells"/>).
 	/// </para>
 	/// </summary>
-	/// <seealso cref="Cells()"/>
 	public static readonly Cells Empty;
 
 
@@ -69,17 +68,13 @@ public unsafe struct Cells :
 
 
 	/// <summary>
-	/// Initializes a <see cref="Cells"/> instance via the read-only field <see cref="Empty"/>.
 	/// </summary>
-	/// <remarks>
-	/// <include
-	///     file='../../global-doc-comments.xml'
-	///     path='g/csharp9/feature[@name="parameterless-struct-constructor"]/target[@name="constructor"]' />
-	/// </remarks>
+	/// <exception cref="NotSupportedException">Always throws.</exception>
 	/// <seealso cref="Empty"/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	[DebuggerHidden]
 	[EditorBrowsable(EditorBrowsableState.Never)]
-	public Cells() => this = Empty;
+	[Obsolete($"Please use the read-only field '{nameof(Cells)}.{nameof(Empty)}' instead.", true)]
+	public Cells() => throw new NotSupportedException();
 
 	/// <summary>
 	/// Initializes an instance with the specified cell offset
@@ -160,8 +155,9 @@ public unsafe struct Cells :
 	/// Note that all offsets will be set <see langword="true"/>, but their own peers
 	/// won't be set <see langword="true"/>.
 	/// </remarks>
-	public Cells(IEnumerable<int> cells) : this()
+	public Cells(IEnumerable<int> cells)
 	{
+		this = default;
 		foreach (int offset in cells)
 		{
 			InternalAdd(offset, true);

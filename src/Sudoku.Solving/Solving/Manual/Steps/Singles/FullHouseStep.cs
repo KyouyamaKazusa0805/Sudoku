@@ -27,7 +27,7 @@ public sealed record FullHouseStep(
 	internal string CellStr
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => new Cells { Cell }.ToString();
+		get => (Cells.Empty + Cell).ToString();
 	}
 
 	[FormatItem]

@@ -34,14 +34,14 @@ public sealed record WWingStep(
 	internal string StartCellStr
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => new Cells { StartCell }.ToString();
+		get => (Cells.Empty + StartCell).ToString();
 	}
 
 	[FormatItem]
 	internal string EndCellStr
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => new Cells { EndCell }.ToString();
+		get => (Cells.Empty + EndCell).ToString();
 	}
 
 	[FormatItem]

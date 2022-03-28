@@ -11,7 +11,7 @@ public sealed class SoleCandidateNode : Node
 	/// <param name="cell">Indicates the cell used.</param>
 	/// <param name="digit">Indicates the digit used.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public SoleCandidateNode(byte cell, byte digit) : base(NodeType.Sole, digit, new() { cell })
+	public SoleCandidateNode(byte cell, byte digit) : base(NodeType.Sole, digit, Cells.Empty + cell)
 	{
 	}
 

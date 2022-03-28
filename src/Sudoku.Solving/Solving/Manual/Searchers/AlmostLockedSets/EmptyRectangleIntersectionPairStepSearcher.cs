@@ -34,7 +34,7 @@ public sealed unsafe class EmptyRectangleIntersectionPairStepSearcher : IEmptyRe
 				}
 
 				// Check the two cells are not in same region.
-				if (new Cells { c1, c2 }.InOneRegion)
+				if ((Cells.Empty + c1 + c2).InOneRegion)
 				{
 					continue;
 				}
@@ -47,7 +47,7 @@ public sealed unsafe class EmptyRectangleIntersectionPairStepSearcher : IEmptyRe
 				}
 
 				// Check the block that two cells both see.
-				var interMap = !new Cells { c1, c2 };
+				var interMap = !(Cells.Empty + c1 + c2);
 				var unionMap = new Cells(c1) | new Cells(c2);
 				foreach (int interCell in interMap)
 				{
@@ -73,8 +73,8 @@ public sealed unsafe class EmptyRectangleIntersectionPairStepSearcher : IEmptyRe
 					// Check eliminations.
 					var conclusions = new List<Conclusion>();
 					int z = (interMap & regionMap)[0];
-					var c1Map = RegionMaps[new Cells { z, c1 }.CoveredLine];
-					var c2Map = RegionMaps[new Cells { z, c2 }.CoveredLine];
+					var c1Map = RegionMaps[(Cells.Empty + z + c1).CoveredLine];
+					var c2Map = RegionMaps[(Cells.Empty + z + c2).CoveredLine];
 					foreach (int elimCell in (c1Map | c2Map) - c1 - c2 - erMap)
 					{
 						if (grid.Exists(elimCell, d1) is true)

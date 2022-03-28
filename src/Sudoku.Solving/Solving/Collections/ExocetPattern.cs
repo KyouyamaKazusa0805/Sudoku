@@ -72,7 +72,7 @@ public readonly record struct ExocetPattern(
 	public Cells BaseCellsMap
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => new() { Base1, Base2 };
+		get => Cells.Empty + Base1 + Base2;
 	}
 
 	/// <summary>
@@ -81,7 +81,7 @@ public readonly record struct ExocetPattern(
 	public Cells TargetCellsMap
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => new() { TargetQ1, TargetQ2, TargetR1, TargetR2 };
+		get => Cells.Empty + TargetQ1 + TargetQ2 + TargetR1 + TargetR2;
 	}
 
 
@@ -94,10 +94,10 @@ public readonly record struct ExocetPattern(
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public bool Equals(in ExocetPattern other) =>
 		Base1 == other.Base1 && Base2 == other.Base2 && TargetQ1 == other.TargetQ1
-		&& TargetQ2 == other.TargetQ2 && TargetR1 == other.TargetR1 && TargetR2 == other.TargetR2
-		&& CrossLine == other.CrossLine && MirrorQ1 == other.MirrorQ1 && MirrorQ2 == other.MirrorQ2
-		&& other.MirrorR1 == other.MirrorR1 && MirrorR2 == other.MirrorR2
-		&& BaseCellsMap == other.BaseCellsMap && TargetCellsMap == other.TargetCellsMap;
+			&& TargetQ2 == other.TargetQ2 && TargetR1 == other.TargetR1 && TargetR2 == other.TargetR2
+			&& CrossLine == other.CrossLine && MirrorQ1 == other.MirrorQ1 && MirrorQ2 == other.MirrorQ2
+			&& other.MirrorR1 == other.MirrorR1 && MirrorR2 == other.MirrorR2
+			&& BaseCellsMap == other.BaseCellsMap && TargetCellsMap == other.TargetCellsMap;
 
 	/// <inheritdoc cref="object.GetHashCode"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -124,8 +124,8 @@ public readonly record struct ExocetPattern(
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public override string ToString()
 	{
-		string baseCellsStr = new Cells { Base1, Base2 }.ToString();
-		string targetCellsStr = new Cells { TargetQ1, TargetQ2, TargetR1, TargetR2 }.ToString();
+		string baseCellsStr = (Cells.Empty + Base1 + Base2).ToString();
+		string targetCellsStr = (Cells.Empty + TargetQ1 + TargetQ2 + TargetR1 + TargetR2).ToString();
 		return $"Exocet: base {baseCellsStr}, target {targetCellsStr}";
 	}
 }

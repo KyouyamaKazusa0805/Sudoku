@@ -47,7 +47,7 @@ public sealed record UniqueRectangleWithUnknownCoveringStep(
 	internal string TargetCellStr
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => new Cells { TargetCell }.ToString();
+		get => (Cells.Empty + TargetCell).ToString();
 	}
 
 	[FormatItem]

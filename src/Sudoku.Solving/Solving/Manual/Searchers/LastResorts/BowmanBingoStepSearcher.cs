@@ -154,7 +154,14 @@ public sealed unsafe class BowmanBingoStepSearcher : IBowmanBingoStepSearcher
 		for (int i = 0, iterationCount = _tempConclusions.Count - 1; i < iterationCount; i++)
 		{
 			int c1 = _tempConclusions[i].Candidate, c2 = _tempConclusions[i + 1].Candidate;
-			result.Add(new(0, new(c1 % 9, new() { c1 / 9 }), new(c2 % 9, new() { c2 / 9 }), LinkKind.Default));
+			result.Add(
+				new(
+					0,
+					new(c1 % 9, Cells.Empty + c1 / 9),
+					new(c2 % 9, Cells.Empty + c2 / 9),
+					LinkKind.Default
+				)
+			);
 		}
 
 		return result;

@@ -14,7 +14,7 @@ public sealed class LockedCandidatesNode : Node
 	/// <param name="cell2">The cell 2.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public LockedCandidatesNode(byte digit, byte cell1, byte cell2) :
-		base(NodeType.LockedCandidates, digit, new() { cell1, cell2 })
+		base(NodeType.LockedCandidates, digit, Cells.Empty + cell1 + cell2)
 	{
 	}
 
@@ -28,7 +28,7 @@ public sealed class LockedCandidatesNode : Node
 	/// <param name="cell3">The cell 3.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public LockedCandidatesNode(byte digit, byte cell1, byte cell2, byte cell3) :
-		base(NodeType.LockedCandidates, digit, new() { cell1, cell2, cell3 })
+		base(NodeType.LockedCandidates, digit, Cells.Empty + cell1 + cell2 + cell3)
 	{
 	}
 

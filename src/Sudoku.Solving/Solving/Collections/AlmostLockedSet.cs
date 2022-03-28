@@ -158,7 +158,7 @@ public readonly record struct AlmostLockedSet(
 		var result = new List<AlmostLockedSet>();
 		foreach (int cell in BivalueMap)
 		{
-			result.Add(new(grid.GetCandidates(cell), new() { cell }, PeerMaps[cell] & EmptyMap));
+			result.Add(new(grid.GetCandidates(cell), Cells.Empty + cell, PeerMaps[cell] & EmptyMap));
 		}
 
 		// Get all non-bi-value-cell ALSes.

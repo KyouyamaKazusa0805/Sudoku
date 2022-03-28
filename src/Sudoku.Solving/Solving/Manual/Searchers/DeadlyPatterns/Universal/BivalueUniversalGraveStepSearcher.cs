@@ -429,10 +429,10 @@ public sealed unsafe class BivalueUniversalGraveStepSearcher : IBivalueUniversal
 
 			// BUG-XZ found.
 			var conclusions = new List<Conclusion>();
-			bool condition = new Cells { c1, cell }.InOneRegion;
+			bool condition = (Cells.Empty + c1 + cell).InOneRegion;
 			int anotherCell = condition ? c2 : c1;
 			int anotherDigit = condition ? d2 : d1;
-			foreach (int peer in !new Cells { cell, anotherCell })
+			foreach (int peer in !(Cells.Empty + cell + anotherCell))
 			{
 				if (grid.Exists(peer, anotherDigit) is true)
 				{
@@ -454,7 +454,7 @@ public sealed unsafe class BivalueUniversalGraveStepSearcher : IBivalueUniversal
 				ImmutableArray.CreateRange(conclusions),
 				ImmutableArray.Create(View.Empty + new CellViewNode(0, cell) + candidateOffsets),
 				mask,
-				new() { c1, c2 },
+				Cells.Empty + c1 + c2,
 				cell
 			);
 			if (onlyFindOne)

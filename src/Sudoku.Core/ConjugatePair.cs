@@ -32,7 +32,7 @@ public readonly record struct ConjugatePair(int From, int To, int Digit, in Cell
 	/// <param name="from">The from cell.</param>
 	/// <param name="to">The to cell.</param>
 	/// <param name="digit">The digit.</param>
-	public ConjugatePair(int from, int to, int digit) : this(from, to, digit, new() { from, to })
+	public ConjugatePair(int from, int to, int digit) : this(from, to, digit, Cells.Empty + from + to)
 	{
 	}
 
@@ -87,5 +87,5 @@ public readonly record struct ConjugatePair(int From, int To, int Digit, in Cell
 
 	/// <inheritdoc cref="object.ToString"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public override string ToString() => $"{new Cells { From }} == {new Cells { To }}({Digit + 1})";
+	public override string ToString() => $"{Cells.Empty + From} == {Cells.Empty + To}({Digit + 1})";
 }

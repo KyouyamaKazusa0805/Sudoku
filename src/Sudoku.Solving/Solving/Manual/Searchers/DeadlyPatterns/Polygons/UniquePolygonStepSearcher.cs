@@ -73,8 +73,8 @@ public sealed unsafe class UniquePolygonStepSearcher : IUniquePolygonStepSearche
 					continue;
 				}
 
-				int region1 = new Cells { t1, t2 }.CoveredLine;
-				int region2 = new Cells { t1, t3 }.CoveredLine;
+				int region1 = (Cells.Empty + t1 + t2).CoveredLine;
+				int region2 = (Cells.Empty + t1 + t3).CoveredLine;
 				int[,] pair1 = new int[6, 2], pair2 = new int[6, 2];
 				var (incre1, incre2) = i switch
 				{
@@ -137,8 +137,8 @@ public sealed unsafe class UniquePolygonStepSearcher : IUniquePolygonStepSearche
 				return;
 			}
 
-			int region1 = new Cells { t1, t2 }.CoveredLine;
-			int region2 = new Cells { t1, t3 }.CoveredLine;
+			int region1 = (Cells.Empty + t1 + t2).CoveredLine;
+			int region2 = (Cells.Empty + t1 + t3).CoveredLine;
 			int[,] pair1 = new int[6, 2], pair2 = new int[6, 2];
 			var (incre1, incre2) = i switch
 			{

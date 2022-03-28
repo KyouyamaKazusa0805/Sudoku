@@ -94,10 +94,10 @@ public interface IExocetStepSearcher : IStepSearcher
 							tr1,
 							bb[bc[i, 1]] + rq[l, 1],
 							new(crossline[7..]),
-							new() { bb[bc[i, 1]] + m[l, 2], bb[bc[i, 1]] + m[l, 3] },
-							new() { bb[bc[i, 1]] + m[l, 0], bb[bc[i, 1]] + m[l, 1] },
-							new() { bb[bc[i, 0]] + m[k, 2], bb[bc[i, 0]] + m[k, 3] },
-							new() { bb[bc[i, 0]] + m[k, 0], bb[bc[i, 0]] + m[k, 1] }
+							Cells.Empty + (bb[bc[i, 1]] + m[l, 2]) + (bb[bc[i, 1]] + m[l, 3]),
+							Cells.Empty + (bb[bc[i, 1]] + m[l, 0]) + (bb[bc[i, 1]] + m[l, 1]),
+							Cells.Empty + (bb[bc[i, 0]] + m[k, 2]) + (bb[bc[i, 0]] + m[k, 3]),
+							Cells.Empty + (bb[bc[i, 0]] + m[k, 0]) + (bb[bc[i, 0]] + m[k, 1])
 						);
 
 						n++;

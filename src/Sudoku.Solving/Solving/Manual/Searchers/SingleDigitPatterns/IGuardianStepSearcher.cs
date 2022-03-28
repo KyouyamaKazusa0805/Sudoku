@@ -17,10 +17,24 @@ public interface IGuardianStepSearcher : ISingleDigitPatternStepSearcher
 
 		for (int i = 0, length = cells.Count - 1; i < length; i++)
 		{
-			result.Add(new(0, new(offset, new() { cells[i] }), new(offset, new() { cells[i + 1] }), LinkKind.Line));
+			result.Add(
+				new(
+					0,
+					new(offset, Cells.Empty + cells[i]),
+					new(offset, Cells.Empty + cells[i + 1]),
+					LinkKind.Line
+				)
+			);
 		}
 
-		result.Add(new(0, new(offset, new() { cells[^1] }), new(offset, new() { cells[0] }), LinkKind.Line));
+		result.Add(
+			new(
+				0,
+				new(offset, Cells.Empty + cells[^1]),
+				new(offset, Cells.Empty + cells[0]),
+				LinkKind.Line
+			)
+		);
 
 		return result;
 	}
@@ -40,7 +54,7 @@ public interface IGuardianStepSearcher : ISingleDigitPatternStepSearcher
 	protected static Cells CreateGuardianMap(int cell1, int cell2, int digit, in Cells guardians)
 	{
 		var tempMap = Cells.Empty;
-		foreach (int coveredRegion in new Cells { cell1, cell2 }.CoveredRegions)
+		foreach (int coveredRegion in (Cells.Empty + cell1 + cell2).CoveredRegions)
 		{
 			tempMap |= RegionMaps[coveredRegion];
 		}

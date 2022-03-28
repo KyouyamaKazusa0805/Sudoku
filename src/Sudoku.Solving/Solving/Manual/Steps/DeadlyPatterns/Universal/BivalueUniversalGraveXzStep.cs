@@ -43,6 +43,6 @@ public sealed record BivalueUniversalGraveXzStep(
 	internal string ExtraCellStr
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => new Cells { ExtraCell }.ToString();
+		get => (Cells.Empty + ExtraCell).ToString();
 	}
 }

@@ -87,15 +87,15 @@ public sealed unsafe class WWingStepSearcher : IIregularWingStepSearcher
 						}
 
 						// Check whether the cells are the same region as the head and the tail cell.
-						if (!new Cells { c1, a }.InOneRegion || !new Cells { c2, b }.InOneRegion
-							&& !new Cells { c1, b }.InOneRegion || !new Cells { c2, a }.InOneRegion)
+						if (!(Cells.Empty + c1 + a).InOneRegion || !(Cells.Empty + c2 + b).InOneRegion
+							&& !(Cells.Empty + c1 + b).InOneRegion || !(Cells.Empty + c2 + a).InOneRegion)
 						{
 							continue;
 						}
 
 						// Check for eliminations.
 						int anotherDigit = TrailingZeroCount(grid.GetCandidates(c1) & ~(1 << digit));
-						if ((CandMaps[anotherDigit] & !new Cells { c1, c2 }) is not { Count: not 0 } elimMap)
+						if ((CandMaps[anotherDigit] & !(Cells.Empty + c1 + c2)) is not { Count: not 0 } elimMap)
 						{
 							continue;
 						}

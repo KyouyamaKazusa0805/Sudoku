@@ -54,9 +54,9 @@ public sealed unsafe class SueDeCoqStepSearcher : ISueDeCoqStepSearcher
 					}
 					case [var i, var j, var k]:
 					{
-						list.Add(new() { i, j });
-						list.Add(new() { j, k });
-						list.Add(new() { i, k });
+						list.Add(Cells.Empty + (i + j));
+						list.Add(Cells.Empty + (j + k));
+						list.Add(Cells.Empty + (i + k));
 						list.Add(emptyCellsInInterMap);
 
 						break;

@@ -65,7 +65,7 @@ public sealed unsafe class TwoStrongLinksStepSearcher : ITwoStrongLinksStepSearc
 						for (int j = 0; j < 2; j++)
 						{
 							int cell2 = cells2[j];
-							if (new Cells { cell1, cell2 }.AllSetsAreInOneRegion(out sameRegion))
+							if ((Cells.Empty + cell1 + cell2).AllSetsAreInOneRegion(out sameRegion))
 							{
 								c1Index = i;
 								c2Index = j;

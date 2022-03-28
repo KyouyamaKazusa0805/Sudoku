@@ -18,10 +18,23 @@ public interface ILoopLikeStepSearcher : IStepSearcher
 		for (int i = 0, length = @this.Count - 1; i < length; i++)
 		{
 			result.Add(
-				new(0, new(offset, new() { @this[i] }), new(offset, new() { @this[i + 1] }), LinkKind.Line));
+				new(
+					0,
+					new(offset, Cells.Empty + @this[i]),
+					new(offset, Cells.Empty + @this[i + 1]),
+					LinkKind.Line
+				)
+			);
 		}
 
-		result.Add(new(0, new(offset, new() { @this[^1] }), new(offset, new() { @this[0] }), LinkKind.Line));
+		result.Add(
+			new(
+				0,
+				new(offset, Cells.Empty + @this[^1]),
+				new(offset, Cells.Empty + @this[0]),
+				LinkKind.Line
+			)
+		);
 
 		return result;
 	}

@@ -33,7 +33,7 @@ public sealed class CellViewNode : ViewNode
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public override string ToString() =>
-		$"{nameof(CellViewNode)} {{ {nameof(Identifier)} = {Identifier}, {nameof(Cell)} = {new Cells { Cell }} }}";
+		$"{nameof(CellViewNode)} {{ {nameof(Identifier)} = {Identifier}, {nameof(Cell)} = {Cells.Empty + Cell} }}";
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

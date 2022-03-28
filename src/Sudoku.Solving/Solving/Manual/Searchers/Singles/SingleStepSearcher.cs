@@ -169,7 +169,7 @@ public sealed unsafe class SingleStepSearcher : ISingleStepSearcher
 						{
 							if (grid[peerCell] == i)
 							{
-								directLines.Add(new(0, new() { peerCell}, Cells.Empty, digit));
+								directLines.Add(new(0, Cells.Empty + peerCell, Cells.Empty, digit));
 								flag = true;
 								break;
 							}
@@ -279,7 +279,7 @@ public sealed unsafe class SingleStepSearcher : ISingleStepSearcher
 				{
 					if ((PeerMaps[cell] & tempMap) is { Count: not 0 } removableCells)
 					{
-						directLines.Add(new(0, new() { cell }, removableCells, digit));
+						directLines.Add(new(0, Cells.Empty + cell, removableCells, digit));
 						tempMap -= removableCells;
 					}
 				}

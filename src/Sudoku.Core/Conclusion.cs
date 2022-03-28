@@ -173,7 +173,7 @@ public readonly record struct Conclusion(int Mask) :
 	/// <inheritdoc cref="object.ToString"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public override string ToString() =>
-		$"{new Cells { Cell }}{ConclusionType.GetNotation()}{Digit + 1}";
+		$"{Cells.Empty + Cell}{ConclusionType.GetNotation()}{Digit + 1}";
 
 #if FEATURE_GENERIC_MATH
 	/// <inheritdoc/>

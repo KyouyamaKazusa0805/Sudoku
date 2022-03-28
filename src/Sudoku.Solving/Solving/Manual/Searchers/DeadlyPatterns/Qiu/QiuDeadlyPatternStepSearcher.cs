@@ -49,25 +49,24 @@ public sealed unsafe class QiuDeadlyPatternStepSearcher : IQiuDeadlyPatternStepS
 				int c1 = StartCells[j, 0], c2 = StartCells[j, 1];
 				for (int k = 0; k < 9; k++, c1 += isRow ? 9 : 1, c2 += isRow ? 9 : 1)
 				{
-					var pairMap = new Cells { c1, c2 };
-					if (
-						(baseLineMap & pairMap) is not []
-						|| (
-							baseLineMap & (
-								RegionMaps[c1.ToRegionIndex(Region.Block)]
-								| RegionMaps[c2.ToRegionIndex(Region.Block)]
-							)
-						) is not []
-					)
+					var pairMap = Cells.Empty + c1 + c2;
+					if ((baseLineMap & pairMap) is not [])
 					{
 						continue;
 					}
 
-					var squareMap = baseLineMap & (
-						RegionMaps[c1.ToRegionIndex(isRow ? Region.Column : Region.Row)]
-						| RegionMaps[c2.ToRegionIndex(isRow ? Region.Column : Region.Row)]
-					);
+					var tempMapBlock =
+						RegionMaps[c1.ToRegionIndex(Region.Block)]
+							| RegionMaps[c2.ToRegionIndex(Region.Block)];
+					if ((baseLineMap & tempMapBlock) is not [])
+					{
+						continue;
+					}
 
+					var tempMapLine =
+						RegionMaps[c1.ToRegionIndex(isRow ? Region.Column : Region.Row)]
+							| RegionMaps[c2.ToRegionIndex(isRow ? Region.Column : Region.Row)];
+					var squareMap = baseLineMap & tempMapLine;
 					Patterns[n++] = new(squareMap, baseLineMap - squareMap, pairMap);
 				}
 			}
