@@ -75,14 +75,12 @@ public unsafe partial struct Grid :
 
 	/// <summary>
 	/// The empty grid that is valid during implementation or running the program
-	/// (all values are <see cref="DefaultMask"/>, i.e. empty cells), which is same initialization result
-	/// as the constructor <see cref="Grid()"/>.
+	/// (all values are <see cref="DefaultMask"/>, i.e. empty cells).
 	/// </summary>
 	/// <remarks>
 	/// This field is initialized by the static constructor of this structure.
 	/// </remarks>
 	/// <seealso cref="DefaultMask"/>
-	/// <seealso cref="Grid()"/>
 	public static readonly Grid Empty;
 
 	/// <summary>
@@ -134,19 +132,11 @@ public unsafe partial struct Grid :
 
 
 	/// <summary>
-	/// Initializes a <see cref="Grid"/> instance using the <see cref="Empty"/> instance to initialize,
-	/// which is equivalent to assignment <c>this = Empty;</c>.
 	/// </summary>
-	/// <remarks>
-	/// <include
-	///     file='../../global-doc-comments.xml'
-	///     path='g/csharp9/feature[@name="parameterless-struct-constructor"]/target[@name="constructor"]' />
-	/// </remarks>
-	[DebuggerHidden]
+	/// <exception cref="NotSupportedException">Always throws.</exception>
 	[EditorBrowsable(EditorBrowsableState.Never)]
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	[Obsolete($"Please call '{nameof(Empty)}' instead.", true)]
-	public Grid() => this = Empty;
+	[Obsolete($"Please use the read-only field '{nameof(Grid)}.{nameof(Empty)}' instead.", true)]
+	public Grid() => throw new NotSupportedException();
 
 	/// <summary>
 	/// Creates an instance using grid values.

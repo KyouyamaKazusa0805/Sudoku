@@ -1708,14 +1708,12 @@
         <member name="F:Sudoku.Collections.Grid.Empty">
             <summary>
             The empty grid that is valid during implementation or running the program
-            (all values are <see cref="F:Sudoku.Collections.Grid.DefaultMask"/>, i.e. empty cells), which is same initialization result
-            as the constructor <see cref="M:Sudoku.Collections.Grid.#ctor"/>.
+            (all values are <see cref="F:Sudoku.Collections.Grid.DefaultMask"/>, i.e. empty cells).
             </summary>
             <remarks>
             This field is initialized by the static constructor of this structure.
             </remarks>
             <seealso cref="F:Sudoku.Collections.Grid.DefaultMask"/>
-            <seealso cref="M:Sudoku.Collections.Grid.#ctor"/>
         </member>
         <member name="F:Sudoku.Collections.Grid.Solver">
             <summary>
@@ -1765,18 +1763,8 @@
         </member>
         <member name="M:Sudoku.Collections.Grid.#ctor">
             <summary>
-            Initializes a <see cref="T:Sudoku.Collections.Grid" /> instance using the <see cref="F:Sudoku.Collections.Grid.Empty" /> instance to initialize,
-            which is equivalent to assignment <c>this = Empty;</c>.
             </summary>
-            <remarks>
-            <target name="constructor">
-				<i>
-					The feature "Custom parameterless struct constructor" makes the parameterless struct constructor
-					different with <c>default(T)</c>. If you has defined a parameterless struct constructor,
-					<c>new T()</c> is no longer with the same meaning as <c>default(T)</c>.
-				</i>
-			</target>
-            </remarks>
+            <exception cref="T:System.NotSupportedException">Always throws.</exception>
         </member>
         <member name="M:Sudoku.Collections.Grid.#ctor(System.Int32[],Sudoku.Collections.GridCreatingOption)">
             <summary>
