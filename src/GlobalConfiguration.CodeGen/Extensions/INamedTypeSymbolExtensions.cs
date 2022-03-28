@@ -1,6 +1,4 @@
-﻿using Sudoku.Diagnostics.CodeGen;
-
-namespace Microsoft.CodeAnalysis;
+﻿namespace Microsoft.CodeAnalysis;
 
 /// <summary>
 /// Provides extension methods for <see cref="INamedTypeSymbol"/>.
