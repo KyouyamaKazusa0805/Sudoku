@@ -327,7 +327,7 @@ partial class Constants
 
 
 		/// <include file='../../global-doc-comments.xml' path='g/static-constructor' />
-		static Tables()
+		static unsafe Tables()
 		{
 			PeerMaps = new Cells[81];
 			for (int i = 0; i < 81; i++)
@@ -341,23 +341,22 @@ partial class Constants
 				RegionMaps[i] = RegionCells[i];
 			}
 
-			unsafe
+			byte* r = stackalloc byte[] { 0, 1, 2, 3, 4, 5, 6, 7, 8 };
+			byte* c = stackalloc byte[] { 0, 3, 6, 1, 4, 7, 2, 5, 8 };
+			var dic = new Dictionary<(byte, byte), (Cells, Cells, Cells, byte[])>(new ValueTupleComparer());
+			for (byte bs = 9; bs < 27; bs++)
 			{
-				byte* r = stackalloc byte[] { 0, 1, 2, 3, 4, 5, 6, 7, 8 };
-				byte* c = stackalloc byte[] { 0, 3, 6, 1, 4, 7, 2, 5, 8 };
-				var dic = new Dictionary<(byte, byte), (Cells, Cells, Cells, byte[])>(new ValueTupleComparer());
-				for (byte bs = 9; bs < 27; bs++)
+				for (byte j = 0; j < 3; j++)
 				{
-					for (byte j = 0; j < 3; j++)
-					{
-						byte cs = bs < 18 ? r[(bs - 9) / 3 * 3 + j] : c[(bs - 18) / 3 * 3 + j];
-						Cells bm = RegionMaps[bs], cm = RegionMaps[cs], i = bm & cm;
-						dic.Add((bs, cs), (bm - i, cm - i, i, IntersectionBlockTable[(bs - 9) * 3 + j]));
-					}
+					byte cs = bs < 18 ? r[(bs - 9) / 3 * 3 + j] : c[(bs - 18) / 3 * 3 + j];
+					ref readonly var bm = ref RegionMaps[bs];
+					ref readonly var cm = ref RegionMaps[cs];
+					var i = bm & cm;
+					dic.Add((bs, cs), (bm - i, cm - i, i, IntersectionBlockTable[(bs - 9) * 3 + j]));
 				}
-
-				IntersectionMaps = dic;
 			}
+
+			IntersectionMaps = dic;
 		}
 
 
