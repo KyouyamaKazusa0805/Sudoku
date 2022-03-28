@@ -56,15 +56,17 @@ public sealed class GlobalConfigValueGenerator : ISourceGenerator
 
 		context.AddSource(
 			"Constants.Version.g.cs",
-			$@"namespace Sudoku.Diagnostics.CodeGen;
+			$$"""
+			namespace Sudoku.Diagnostics.CodeGen;
 
-partial class Constants
-{{
-	/// <summary>
-	/// Indicates the version of this project.
-	/// </summary>
-	public const string VersionValue = ""{versionResult!}"";
-}}"
+			partial class Constants
+			{
+				/// <summary>
+				/// Indicates the version of this project.
+				/// </summary>
+				public const string VersionValue = "{{versionResult}}";
+			}
+			"""
 		);
 
 
