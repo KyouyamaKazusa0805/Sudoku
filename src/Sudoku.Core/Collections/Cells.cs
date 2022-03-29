@@ -1258,14 +1258,9 @@ public unsafe struct Cells :
 	public static Candidates operator *(in Cells @base, int digit)
 	{
 		var result = Candidates.Empty;
-		int[] cells = @base.Offsets;
-		fixed (int* p = cells)
+		foreach (int cell in @base.Offsets)
 		{
-			int* ptr = p;
-			for (int i = 0, length = cells.Length; i < length; ptr++)
-			{
-				result.AddAnyway(*ptr * 9 + digit);
-			}
+			result.AddAnyway(cell * 9 + digit);
 		}
 
 		return result;
