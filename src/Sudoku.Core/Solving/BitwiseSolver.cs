@@ -2,7 +2,6 @@
 
 #pragma warning disable IDE0011
 
-
 namespace Sudoku.Solving;
 
 /// <summary>
