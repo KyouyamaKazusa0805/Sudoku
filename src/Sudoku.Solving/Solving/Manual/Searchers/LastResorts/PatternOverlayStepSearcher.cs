@@ -8,13 +8,8 @@
 /// </list>
 /// </summary>
 [StepSearcher]
-public sealed unsafe class PatternOverlayStepSearcher : IPatternOverlayStepSearcher
+public sealed unsafe partial class PatternOverlayStepSearcher : IPatternOverlayStepSearcher
 {
-	/// <inheritdoc/>
-	public SearchingOptions Options { get; set; } =
-		new(20, DisplayingLevel.C, EnabledAreas: EnabledAreas.Gathering, DisabledReason: DisabledReason.LastResort);
-
-
 	/// <inheritdoc/>
 	public Step? GetAll(ICollection<Step> accumulator, in Grid grid, bool onlyFindOne)
 	{

@@ -31,7 +31,7 @@
 [StepSearcher]
 [SeparatedStepSearcher(0, nameof(XEnabled), true, nameof(YEnabled), false)]
 [SeparatedStepSearcher(1, nameof(XEnabled), true, nameof(YEnabled), true)]
-public sealed class AlternatingInferenceChainStepSearcher : IAlternatingInferenceChainStepSearcher
+public sealed partial class AlternatingInferenceChainStepSearcher : IAlternatingInferenceChainStepSearcher
 {
 	/// <summary>
 	/// Indicates the field that stores the temporary strong inferences during the searching.
@@ -126,9 +126,6 @@ public sealed class AlternatingInferenceChainStepSearcher : IAlternatingInferenc
 	/// The default value is <c>3000</c>.
 	/// </remarks>
 	public int MaxCapacity { get; set; } = 3000;
-
-	/// <inheritdoc/>
-	public SearchingOptions Options { get; set; } = new(13, DisplayingLevel.B);
 
 	/// <inheritdoc/>
 	/// <remarks>
@@ -820,7 +817,7 @@ public sealed class AlternatingInferenceChainStepSearcher : IAlternatingInferenc
 							otherCells is not
 							{
 								Count: > 1 and <= 3,
-								CoveredLine: not Constants.InvalidFirstSet,
+								CoveredLine: not InvalidFirstSet,
 								CoveredRegions: var coveredRegions
 							}
 						)
@@ -983,7 +980,7 @@ public sealed class AlternatingInferenceChainStepSearcher : IAlternatingInferenc
 
 									// e.g. aaa==aaa
 									{
-										CoveredLine: not Constants.InvalidFirstSet,
+										CoveredLine: not InvalidFirstSet,
 										CoveredRegions: var coveredRegions
 									} otherCells => region.ToRegion() switch
 									{
@@ -1143,7 +1140,7 @@ public sealed class AlternatingInferenceChainStepSearcher : IAlternatingInferenc
 							if (
 								region.ToRegion() is var label && (
 									label == Region.Block
-									&& otherCells.CoveredLine == Constants.InvalidFirstSet
+									&& otherCells.CoveredLine == InvalidFirstSet
 									|| label is Region.Row or Region.Column
 									&& TrailingZeroCount(otherCells.CoveredRegions) >= 9
 								)

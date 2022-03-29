@@ -31,16 +31,13 @@
 /// </list>
 /// </summary>
 [StepSearcher]
-public sealed unsafe class UniqueRectangleStepSearcher : IUniqueRectangleStepSearcher
+public sealed unsafe partial class UniqueRectangleStepSearcher : IUniqueRectangleStepSearcher
 {
 	/// <inheritdoc/>
 	public bool AllowIncompleteUniqueRectangles { get; set; }
 
 	/// <inheritdoc/>
 	public bool SearchForExtendedUniqueRectangles { get; set; }
-
-	/// <inheritdoc/>
-	public SearchingOptions Options { get; set; } = new(8, DisplayingLevel.B);
 
 
 	/// <inheritdoc/>

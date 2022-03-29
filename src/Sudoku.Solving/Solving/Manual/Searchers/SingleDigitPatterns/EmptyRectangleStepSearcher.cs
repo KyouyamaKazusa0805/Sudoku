@@ -8,12 +8,8 @@
 /// </list>
 /// </summary>
 [StepSearcher]
-public sealed unsafe class EmptyRectangleStepSearcher : IEmptyRectangleStepSearcher
+public sealed unsafe partial class EmptyRectangleStepSearcher : IEmptyRectangleStepSearcher
 {
-	/// <inheritdoc/>
-	public SearchingOptions Options { get; set; } = new(12, DisplayingLevel.B);
-
-
 	/// <inheritdoc/>
 	public Step? GetAll(ICollection<Step> accumulator, in Grid grid, bool onlyFindOne)
 	{

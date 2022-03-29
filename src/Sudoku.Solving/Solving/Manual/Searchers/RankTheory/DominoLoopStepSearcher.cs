@@ -8,7 +8,7 @@
 /// </list>
 /// </summary>
 [StepSearcher]
-public sealed unsafe class DominoLoopStepSearcher : IDominoLoopStepSearcher
+public sealed unsafe partial class DominoLoopStepSearcher : IDominoLoopStepSearcher
 {
 	/// <summary>
 	/// The position table of all SK-loops.
@@ -94,10 +94,6 @@ public sealed unsafe class DominoLoopStepSearcher : IDominoLoopStepSearcher
 			}
 		}
 	}
-
-
-	/// <inheritdoc/>
-	public SearchingOptions Options { get; set; } = new(34, DisplayingLevel.D);
 
 
 	/// <inheritdoc/>

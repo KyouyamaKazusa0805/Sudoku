@@ -11,12 +11,8 @@
 /// </summary>
 [StepSearcher]
 [StepSearcherOptions(PuzzleNotRelying = true)]
-public sealed unsafe class TwoStrongLinksStepSearcher : ITwoStrongLinksStepSearcher
+public sealed unsafe partial class TwoStrongLinksStepSearcher : ITwoStrongLinksStepSearcher
 {
-	/// <inheritdoc/>
-	public SearchingOptions Options { get; set; } = new(5, DisplayingLevel.B);
-
-
 	/// <inheritdoc/>
 	public Step? GetAll(ICollection<Step> accumulator, /*[IsDiscard]*/ in Grid grid, bool onlyFindOne)
 	{

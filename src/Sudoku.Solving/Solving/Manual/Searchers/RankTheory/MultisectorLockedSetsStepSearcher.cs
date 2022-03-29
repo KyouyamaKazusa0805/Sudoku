@@ -8,7 +8,7 @@
 /// </list>
 /// </summary>
 [StepSearcher]
-public sealed unsafe class MultisectorLockedSetsStepSearcher : IMultisectorLockedSetsStepSearcher
+public sealed unsafe partial class MultisectorLockedSetsStepSearcher : IMultisectorLockedSetsStepSearcher
 {
 	/// <summary>
 	/// Indicates the list initialized with the static constructor.
@@ -64,10 +64,6 @@ public sealed unsafe class MultisectorLockedSetsStepSearcher : IMultisectorLocke
 
 		Patterns = result;
 	}
-
-
-	/// <inheritdoc/>
-	public SearchingOptions Options { get; set; } = new(33, DisplayingLevel.D);
 
 
 	/// <inheritdoc/>

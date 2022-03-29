@@ -8,12 +8,8 @@
 /// </list>
 /// </summary>
 [StepSearcher]
-public sealed unsafe class SueDeCoq3DemensionStepSearcher : ISueDeCoq3DemensionStepSearcher
+public sealed unsafe partial class SueDeCoq3DemensionStepSearcher : ISueDeCoq3DemensionStepSearcher
 {
-	/// <inheritdoc/>
-	public SearchingOptions Options { get; set; } = new(22, DisplayingLevel.B);
-
-
 	/// <inheritdoc/>
 	public Step? GetAll(ICollection<Step> accumulator, in Grid grid, bool onlyFindOne)
 	{

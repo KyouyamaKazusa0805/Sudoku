@@ -8,13 +8,10 @@
 /// </list>
 /// </summary>
 [StepSearcher]
-public sealed unsafe class AlmostLockedSetsXyWingStepSearcher : IAlmostLockedSetsXyWingStepSearcher
+public sealed unsafe partial class AlmostLockedSetsXyWingStepSearcher : IAlmostLockedSetsXyWingStepSearcher
 {
 	/// <inheritdoc/>
 	public bool AllowCollision { get; set; }
-
-	/// <inheritdoc/>
-	public SearchingOptions Options { get; set; } = new(27, DisplayingLevel.B);
 
 
 	/// <inheritdoc/>

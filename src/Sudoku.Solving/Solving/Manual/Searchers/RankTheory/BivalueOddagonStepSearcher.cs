@@ -11,12 +11,8 @@
 /// </list>
 /// </summary>
 [StepSearcher]
-public sealed unsafe class BivalueOddagonStepSearcher : IBivalueOddagonStepSearcher
+public sealed unsafe partial class BivalueOddagonStepSearcher : IBivalueOddagonStepSearcher
 {
-	/// <inheritdoc/>
-	public SearchingOptions Options { get; set; } = new(14, DisplayingLevel.B);
-
-
 	/// <inheritdoc/>
 	public Step? GetAll(ICollection<Step> accumulator, in Grid grid, bool onlyFindOne)
 	{

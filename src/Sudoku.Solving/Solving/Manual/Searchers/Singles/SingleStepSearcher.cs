@@ -11,7 +11,7 @@
 /// </summary>
 [StepSearcher]
 [StepSearcherOptions(IsDirect = true, IsOptionsFixed = true)]
-public sealed unsafe class SingleStepSearcher : ISingleStepSearcher
+public sealed unsafe partial class SingleStepSearcher : ISingleStepSearcher
 {
 	/// <inheritdoc/>
 	public bool EnableFullHouse { get; set; }
@@ -24,9 +24,6 @@ public sealed unsafe class SingleStepSearcher : ISingleStepSearcher
 
 	/// <inheritdoc/>
 	public bool ShowDirectLines { get; set; }
-
-	/// <inheritdoc/>
-	public SearchingOptions Options { get; set; } = new(1, DisplayingLevel.A);
 
 
 	/// <inheritdoc/>

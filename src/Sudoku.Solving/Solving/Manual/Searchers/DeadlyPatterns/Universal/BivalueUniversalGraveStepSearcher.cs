@@ -13,13 +13,10 @@
 /// </list>
 /// </summary>
 [StepSearcher]
-public sealed unsafe class BivalueUniversalGraveStepSearcher : IBivalueUniversalGraveStepSearcher
+public sealed unsafe partial class BivalueUniversalGraveStepSearcher : IBivalueUniversalGraveStepSearcher
 {
 	/// <inheritdoc/>
 	public bool SearchExtendedTypes { get; set; }
-
-	/// <inheritdoc/>
-	public SearchingOptions Options { get; set; } = new(24, DisplayingLevel.B);
 
 
 	/// <inheritdoc/>

@@ -15,7 +15,7 @@
 /// </list>
 /// </summary>
 [StepSearcher]
-public sealed unsafe class RegularWingStepSearcher : IRegularWingStepSearcher
+public sealed unsafe partial class RegularWingStepSearcher : IRegularWingStepSearcher
 {
 	/// <summary>
 	/// The inner field of the property <see cref="MaxSize"/>.
@@ -27,13 +27,12 @@ public sealed unsafe class RegularWingStepSearcher : IRegularWingStepSearcher
 	/// <inheritdoc/>
 	public int MaxSize
 	{
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => _maxSize;
 
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		set => _maxSize = value > 9 ? throw new ArgumentOutOfRangeException(nameof(value)) : value;
 	}
-
-	/// <inheritdoc/>
-	public SearchingOptions Options { get; set; } = new(6, DisplayingLevel.B);
 
 
 	/// <inheritdoc/>

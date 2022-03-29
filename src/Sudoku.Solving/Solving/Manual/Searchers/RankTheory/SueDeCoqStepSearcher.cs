@@ -10,12 +10,8 @@
 /// </list>
 /// </summary>
 [StepSearcher]
-public sealed unsafe class SueDeCoqStepSearcher : ISueDeCoqStepSearcher
+public sealed unsafe partial class SueDeCoqStepSearcher : ISueDeCoqStepSearcher
 {
-	/// <inheritdoc/>
-	public SearchingOptions Options { get; set; } = new(15, DisplayingLevel.C);
-
-
 	/// <inheritdoc/>
 	public Step? GetAll(ICollection<Step> accumulator, in Grid grid, bool onlyFindOne)
 	{

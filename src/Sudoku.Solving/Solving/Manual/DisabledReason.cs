@@ -24,5 +24,10 @@ public enum DisabledReason : short
 	/// <summary>
 	/// Indicates the searcher runs so slowly that the author himself can't stand to use it.
 	/// </summary>
-	TooSlow = 4
+	TooSlow = 4,
+
+	/// <summary>
+	/// Indicates the searcher has not been implemented, or has been deprecated.
+	/// </summary>
+	DeprecatedOrNotImplemented = 8
 }

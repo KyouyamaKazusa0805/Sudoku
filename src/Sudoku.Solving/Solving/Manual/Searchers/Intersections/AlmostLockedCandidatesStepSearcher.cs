@@ -10,13 +10,10 @@
 /// </list>
 /// </summary>
 [StepSearcher]
-public sealed unsafe class AlmostLockedCandidatesStepSearcher : IAlmostLockedCandidatesStepSearcher
+public sealed unsafe partial class AlmostLockedCandidatesStepSearcher : IAlmostLockedCandidatesStepSearcher
 {
 	/// <inheritdoc/>
 	public bool CheckAlmostLockedQuadruple { get; set; }
-
-	/// <inheritdoc/>
-	public SearchingOptions Options { get; set; } = new(9, DisplayingLevel.B);
 
 	/// <inheritdoc/>
 	bool IAlmostLockedCandidatesStepSearcher.CheckForValues { get; set; } = false;

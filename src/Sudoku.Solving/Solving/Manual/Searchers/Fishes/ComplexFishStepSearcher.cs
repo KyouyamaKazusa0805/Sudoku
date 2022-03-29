@@ -21,13 +21,10 @@
 /// </list>
 /// </summary>
 [StepSearcher]
-public sealed unsafe class ComplexFishStepSearcher : IComplexFishStepSearcher
+public sealed unsafe partial class ComplexFishStepSearcher : IComplexFishStepSearcher
 {
 	/// <inheritdoc/>
 	public int MaxSize { get; set; }
-
-	/// <inheritdoc/>
-	public SearchingOptions Options { get; set; } = new(29, DisplayingLevel.B);
 
 
 	/// <inheritdoc/>

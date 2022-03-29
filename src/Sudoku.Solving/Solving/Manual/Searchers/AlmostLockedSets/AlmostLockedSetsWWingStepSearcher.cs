@@ -8,12 +8,8 @@
 /// </list>
 /// </summary>
 [StepSearcher]
-public sealed unsafe class AlmostLockedSetsWWingStepSearcher : IAlmostLockedSetsWWingStepSearcher
+public sealed unsafe partial class AlmostLockedSetsWWingStepSearcher : IAlmostLockedSetsWWingStepSearcher
 {
-	/// <inheritdoc/>
-	public SearchingOptions Options { get; set; } = new(28, DisplayingLevel.B);
-
-
 	/// <inheritdoc/>
 	public Step? GetAll(ICollection<Step> accumulator, in Grid grid, bool onlyFindOne)
 	{

@@ -11,7 +11,7 @@
 /// </list>
 /// </summary>
 [StepSearcher]
-public sealed unsafe class UniqueSquareStepSearcher : IUniqueSquareStepSearcher
+public sealed unsafe partial class UniqueSquareStepSearcher : IUniqueSquareStepSearcher
 {
 	/// <summary>
 	/// Indicates the patterns.
@@ -61,10 +61,6 @@ public sealed unsafe class UniqueSquareStepSearcher : IUniqueSquareStepSearcher
 			}
 		}
 	}
-
-
-	/// <inheritdoc/>
-	public SearchingOptions Options { get; set; } = new(16, DisplayingLevel.B);
 
 
 	/// <inheritdoc/>

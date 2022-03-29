@@ -12,7 +12,7 @@
 /// </list>
 /// </summary>
 [StepSearcher]
-public sealed unsafe class QiuDeadlyPatternStepSearcher : IQiuDeadlyPatternStepSearcher
+public sealed unsafe partial class QiuDeadlyPatternStepSearcher : IQiuDeadlyPatternStepSearcher
 {
 	/// <summary>
 	/// All different patterns.
@@ -72,10 +72,6 @@ public sealed unsafe class QiuDeadlyPatternStepSearcher : IQiuDeadlyPatternStepS
 			}
 		}
 	}
-
-
-	/// <inheritdoc/>
-	public SearchingOptions Options { get; set; } = new(25, DisplayingLevel.B);
 
 
 	/// <inheritdoc/>

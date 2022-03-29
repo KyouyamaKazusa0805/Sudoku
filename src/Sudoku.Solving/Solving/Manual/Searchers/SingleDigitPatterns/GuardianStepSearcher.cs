@@ -8,12 +8,8 @@
 /// </list>
 /// </summary>
 [StepSearcher]
-public sealed unsafe class GuardianStepSearcher : IGuardianStepSearcher
+public sealed unsafe partial class GuardianStepSearcher : IGuardianStepSearcher
 {
-	/// <inheritdoc/>
-	public SearchingOptions Options { get; set; } = new(18, DisplayingLevel.B);
-
-
 	/// <inheritdoc/>
 	public Step? GetAll(ICollection<Step> accumulator, in Grid grid, bool onlyFindOne)
 	{

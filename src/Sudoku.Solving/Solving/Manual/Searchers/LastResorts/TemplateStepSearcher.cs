@@ -9,17 +9,10 @@
 /// </list>
 /// </summary>
 [StepSearcher]
-public sealed unsafe class TemplateStepSearcher : ITemplateStepSearcher
+public sealed unsafe partial class TemplateStepSearcher : ITemplateStepSearcher
 {
 	/// <inheritdoc/>
 	public bool TemplateDeleteOnly { get; set; }
-
-	/// <inheritdoc/>
-	public SearchingOptions Options { get; set; } = new(21, DisplayingLevel.C)
-	{
-		EnabledAreas = EnabledAreas.None,
-		DisabledReason = DisabledReason.LastResort
-	};
 
 	/// <inheritdoc/>
 	public Grid* Solution { get; set; }

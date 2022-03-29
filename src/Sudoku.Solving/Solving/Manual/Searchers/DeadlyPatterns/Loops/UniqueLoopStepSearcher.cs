@@ -11,12 +11,10 @@
 /// </list>
 /// </summary>
 [StepSearcher]
-public sealed unsafe class UniqueLoopStepSearcher : IUniqueLoopStepSearcher, IUniqueLoopOrBivalueOddagonStepSearcher
+public sealed unsafe partial class UniqueLoopStepSearcher :
+	IUniqueLoopStepSearcher,
+	IUniqueLoopOrBivalueOddagonStepSearcher
 {
-	/// <inheritdoc/>
-	public SearchingOptions Options { get; set; } = new(10, DisplayingLevel.B);
-
-
 	/// <inheritdoc/>
 	public Step? GetAll(ICollection<Step> accumulator, in Grid grid, bool onlyFindOne)
 	{

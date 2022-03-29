@@ -8,13 +8,10 @@
 /// </list>
 /// </summary>
 [StepSearcher]
-public sealed unsafe class JuniorExocetStepSearcher : IJuniorExocetStepSearcher
+public sealed unsafe partial class JuniorExocetStepSearcher : IJuniorExocetStepSearcher
 {
 	/// <inheritdoc/>
 	public bool CheckAdvanced { get; set; }
-
-	/// <inheritdoc/>
-	public SearchingOptions Options { get; set; } = new(31, DisplayingLevel.D);
 
 
 	/// <inheritdoc/>

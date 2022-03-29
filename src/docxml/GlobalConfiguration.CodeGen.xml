@@ -142,6 +142,31 @@
             <param name="this">The collection itself.</param>
             <param name="action">The action.</param>
         </member>
+        <member name="T:System.Collections.Generic.KeyValuePairExtensions">
+            <summary>
+            Provides with the extension methods on type <see cref="T:System.Collections.Generic.KeyValuePair`2"/>.
+            </summary>
+        </member>
+        <member name="M:System.Collections.Generic.KeyValuePairExtensions.Deconstruct``2(System.Collections.Generic.KeyValuePair{``0,``1},``0@,``1@)">
+            <summary>
+            Deconstruct the instance of type <see cref="T:System.Collections.Generic.KeyValuePair`2"/> into two values:
+            <list type="table">
+            <item>
+            <term><see cref="P:System.Collections.Generic.KeyValuePair`2.Key"/></term>
+            <description>The key.</description>
+            </item>
+            <item>
+            <term><see cref="P:System.Collections.Generic.KeyValuePair`2.Value"/></term>
+            <description>The value.</description>
+            </item>
+            </list>
+            </summary>
+            <typeparam name="TKey">The type of the key.</typeparam>
+            <typeparam name="TValue">The type of the value.</typeparam>
+            <param name="this">The instance to be deconstructed.</param>
+            <param name="key">The key.</param>
+            <param name="value">The value.</param>
+        </member>
         <member name="T:System.Text.RegularExpressions.RegexExtensions">
             <summary>
             Provides extension methods on <see cref="T:System.Text.RegularExpressions.Regex"/>.

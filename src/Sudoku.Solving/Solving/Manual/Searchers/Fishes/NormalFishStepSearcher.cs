@@ -15,11 +15,8 @@
 /// </list>
 /// </summary>
 [StepSearcher]
-public sealed unsafe class NormalFishStepSearcher : INormalFishStepSearcher
+public sealed unsafe partial class NormalFishStepSearcher : INormalFishStepSearcher
 {
-	/// <inheritdoc/>
-	public SearchingOptions Options { get; set; } = new(4, DisplayingLevel.B);
-
 	/// <inheritdoc/>
 	/// <remarks>
 	/// I hide this member on purpose because 4 is the maximum size of subsets found in practice.

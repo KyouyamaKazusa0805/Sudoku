@@ -9,7 +9,7 @@
 /// </summary>
 [StepSearcher]
 [StepSearcherOptions(IsOptionsFixed = true, IsDirect = true)]
-public sealed unsafe class BruteForceStepSearcher : IBruteForceStepSearcher
+public sealed unsafe partial class BruteForceStepSearcher : IBruteForceStepSearcher
 {
 	/// <summary>
 	/// The order of cell offsets to get values.
@@ -30,13 +30,6 @@ public sealed unsafe class BruteForceStepSearcher : IBruteForceStepSearcher
 
 	/// <inheritdoc/>
 	public Grid Solution { get; set; }
-
-	/// <inheritdoc/>
-	public SearchingOptions Options { get; set; } = new(35, DisplayingLevel.E)
-	{
-		EnabledAreas = EnabledAreas.Default,
-		DisabledReason = DisabledReason.LastResort
-	};
 
 
 	/// <inheritdoc/>

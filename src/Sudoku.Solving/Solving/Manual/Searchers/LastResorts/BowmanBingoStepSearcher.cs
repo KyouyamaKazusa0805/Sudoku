@@ -8,7 +8,7 @@
 /// </list>
 /// </summary>
 [StepSearcher]
-public sealed unsafe class BowmanBingoStepSearcher : IBowmanBingoStepSearcher
+public sealed unsafe partial class BowmanBingoStepSearcher : IBowmanBingoStepSearcher
 {
 	/// <summary>
 	/// The singles searcher.
@@ -23,13 +23,6 @@ public sealed unsafe class BowmanBingoStepSearcher : IBowmanBingoStepSearcher
 
 	/// <inheritdoc/>
 	public int MaxLength { get; set; }
-
-	/// <inheritdoc/>
-	public SearchingOptions Options { get; set; } = new(19, DisplayingLevel.C)
-	{
-		EnabledAreas = EnabledAreas.None,
-		DisabledReason = DisabledReason.LastResort | DisabledReason.TooSlow
-	};
 
 
 	/// <inheritdoc/>

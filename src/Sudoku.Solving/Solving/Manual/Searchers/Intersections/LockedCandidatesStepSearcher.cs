@@ -9,12 +9,8 @@
 /// </list>
 /// </summary>
 [StepSearcher]
-public sealed unsafe class LockedCandidatesStepSearcher : ILockedCandidatesStepSearcher
+public sealed unsafe partial class LockedCandidatesStepSearcher : ILockedCandidatesStepSearcher
 {
-	/// <inheritdoc/>
-	public SearchingOptions Options { get; set; } = new(2, DisplayingLevel.A);
-
-
 	/// <inheritdoc/>
 	/// <remarks>
 	/// <para>
@@ -49,7 +45,7 @@ public sealed unsafe class LockedCandidatesStepSearcher : ILockedCandidatesStepS
 	/// all possible location where may form a locked candidate.
 	/// </para>
 	/// </remarks>
-	public unsafe Step? GetAll(ICollection<Step> accumulator, in Grid grid, bool onlyFindOne)
+	public Step? GetAll(ICollection<Step> accumulator, in Grid grid, bool onlyFindOne)
 	{
 		int* r = stackalloc int[2];
 		foreach (var ((baseSet, coverSet), (a, b, c, _)) in IntersectionMaps)

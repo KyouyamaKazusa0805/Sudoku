@@ -10,16 +10,13 @@
 /// </list>
 /// </summary>
 [StepSearcher]
-public sealed unsafe class AlmostLockedSetsXzStepSearcher : IAlmostLockedSetsXzStepSearcher
+public sealed unsafe partial class AlmostLockedSetsXzStepSearcher : IAlmostLockedSetsXzStepSearcher
 {
 	/// <inheritdoc/>
 	public bool AllowCollision { get; set; }
 
 	/// <inheritdoc/>
 	public bool AllowLoopedPatterns { get; set; }
-
-	/// <inheritdoc/>
-	public SearchingOptions Options { get; set; } = new(23, DisplayingLevel.B);
 
 
 	/// <inheritdoc/>

@@ -8,12 +8,8 @@
 /// </list>
 /// </summary>
 [StepSearcher]
-public sealed unsafe class WWingStepSearcher : IIregularWingStepSearcher
+public sealed unsafe partial class WWingStepSearcher : IIregularWingStepSearcher
 {
-	/// <inheritdoc/>
-	public SearchingOptions Options { get; set; } = new(7, DisplayingLevel.B);
-
-
 	/// <inheritdoc/>
 	/// <remarks>
 	/// In fact, <c>Hybrid-Wing</c>s, <c>Local-Wing</c>s, <c>Split-Wing</c>s and <c>M-Wing</c>s can
