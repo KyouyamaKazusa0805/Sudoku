@@ -5580,68 +5580,6 @@
             Rows where single found: <c>000</c> to <c>111</c>.
             </summary>
         </member>
-        <member name="T:Sudoku.Solving.Constants">
-            <summary>
-            Provides with the constants that bind the things about the solving operations.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Solving.Constants.UniqueRectanglePatterns">
-            <summary>
-            The table of all <b>Unique Rectangle</b> cells.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Solving.Constants.IntersectionMaps">
-            <summary>
-            <para>
-            Indicates all maps that forms the each intersection. The pattern will be like:
-            <code><![CDATA[
-            .-------.-------.-------.
-            | C C C | A A A | A A A |
-            | B B B | . . . | . . . |
-            | B B B | . . . | . . . |
-            '-------'-------'-------'
-            ]]></code>
-            </para>
-            <para>
-            In addition, in this data structure, a <b>CoverSet</b> is a block and a <b>BaseSet</b> is a line.
-            </para>
-            </summary>
-        </member>
-        <member name="F:Sudoku.Solving.Constants.IntersectionBlockTable">
-            <summary>
-            <para>The table of all blocks to iterate for each blocks.</para>
-            <para>
-            This field is only used for providing the data for another field <see cref="F:Sudoku.Solving.Constants.IntersectionMaps"/>.
-            </para>
-            </summary>
-            <seealso cref="F:Sudoku.Solving.Constants.IntersectionMaps"/>
-        </member>
-        <member name="M:Sudoku.Solving.Constants.#cctor">
-            <static-constructor>
-		<summary>
-			<para>
-				Indicates the <see langword="static" /> constructor of the current type.
-			</para>
-			<para>
-				This constructor will initialize some <see langword="static readonly" /> data members
-				of this type that can't use a simple expression to describe the initial value.
-			</para>
-		</summary>
-	</static-constructor>
-        </member>
-        <member name="T:Sudoku.Solving.Constants.ValueTupleComparer">
-            <summary>
-            The inner comparer of <see cref="T:System.ValueTuple`2"/> used for
-            the field <see cref="F:Sudoku.Solving.Constants.IntersectionMaps"/>.
-            </summary>
-            <seealso cref="F:Sudoku.Solving.Constants.IntersectionMaps"/>
-        </member>
-        <member name="M:Sudoku.Solving.Constants.ValueTupleComparer.Equals(System.ValueTuple{System.Byte,System.Byte},System.ValueTuple{System.Byte,System.Byte})">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Solving.Constants.ValueTupleComparer.GetHashCode(System.ValueTuple{System.Byte,System.Byte})">
-            <inheritdoc/>
-        </member>
         <member name="T:Sudoku.SymmetryType">
             <summary>
             Define a symmetry type.

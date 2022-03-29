@@ -1883,6 +1883,11 @@
             Indicates the mask that means all regions.
             </summary>
         </member>
+        <member name="F:Sudoku.Solving.Manual.Constants.UniqueRectanglePatterns">
+            <summary>
+            The table of all <b>Unique Rectangle</b> cells.
+            </summary>
+        </member>
         <member name="F:Sudoku.Solving.Manual.Constants.SubsetNames">
             <summary>
             <para>The names of all subsets by their sizes.</para>
@@ -1907,6 +1912,58 @@
             Here the digit <c>3</c> is the size you want to get.
             </para>
             </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.Constants.IntersectionMaps">
+            <summary>
+            <para>
+            Indicates all maps that forms the each intersection. The pattern will be like:
+            <code><![CDATA[
+            .-------.-------.-------.
+            | C C C | A A A | A A A |
+            | B B B | . . . | . . . |
+            | B B B | . . . | . . . |
+            '-------'-------'-------'
+            ]]></code>
+            </para>
+            <para>
+            In addition, in this data structure, a <b>CoverSet</b> is a block and a <b>BaseSet</b> is a line.
+            </para>
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.Constants.IntersectionBlockTable">
+            <summary>
+            <para>The table of all blocks to iterate for each blocks.</para>
+            <para>
+            This field is only used for providing the data for another field <see cref="F:Sudoku.Solving.Manual.Constants.IntersectionMaps"/>.
+            </para>
+            </summary>
+            <seealso cref="F:Sudoku.Solving.Manual.Constants.IntersectionMaps"/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Constants.#cctor">
+            <static-constructor>
+		<summary>
+			<para>
+				Indicates the <see langword="static" /> constructor of the current type.
+			</para>
+			<para>
+				This constructor will initialize some <see langword="static readonly" /> data members
+				of this type that can't use a simple expression to describe the initial value.
+			</para>
+		</summary>
+	</static-constructor>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Constants.ValueTupleComparer">
+            <summary>
+            The inner comparer of <see cref="T:System.ValueTuple`2"/> used for
+            the field <see cref="F:Sudoku.Solving.Manual.Constants.IntersectionMaps"/>.
+            </summary>
+            <seealso cref="F:Sudoku.Solving.Manual.Constants.IntersectionMaps"/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Constants.ValueTupleComparer.Equals(System.ValueTuple{System.Byte,System.Byte},System.ValueTuple{System.Byte,System.Byte})">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.Constants.ValueTupleComparer.GetHashCode(System.ValueTuple{System.Byte,System.Byte})">
+            <inheritdoc/>
         </member>
         <member name="T:Sudoku.Solving.Manual.DifficultyLevel">
             <summary>
