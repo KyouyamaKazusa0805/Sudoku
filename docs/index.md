@@ -14,6 +14,7 @@
 
 * 项目介绍
   * [快捷按键](hotkeys)
+  * [代码风格](code-style)
 * 解决方案的架构
   * [项目列表](projects)
   * [条件编译符号列表](compilation-symbols)

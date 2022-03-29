@@ -7,6 +7,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Global Files", "Global File
 	ProjectSection(SolutionItems) = preProject
 		.editorconfig = .editorconfig
 		.filenesting.json = .filenesting.json
+		docs\code-style.md = docs\code-style.md
 		Directory.Build.props = Directory.Build.props
 		global-doc-comments.xml = global-doc-comments.xml
 		global.json = global.json
@@ -30,7 +31,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GlobalConfiguration.CodeGen
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sudoku.UI", "src\Sudoku.UI\Sudoku.UI.csproj", "{C77EC482-143E-47C1-9524-BC3BAE815838}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sudoku.Solving.CodeGen", "src\Sudoku.Solving.CodeGen\Sudoku.Solving.CodeGen.csproj", "{1E97A417-606D-4719-92EE-1C406A5AB062}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sudoku.Solving.CodeGen", "src\Sudoku.Solving.CodeGen\Sudoku.Solving.CodeGen.csproj", "{1E97A417-606D-4719-92EE-1C406A5AB062}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -220,8 +221,8 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {E2B6A644-F820-4AB3-8508-C3C59838C955}
-		RESX_Rules = {"EnabledRules":["StringFormat"]}
 		RESX_ShowErrorsInErrorList = False
+		RESX_Rules = {"EnabledRules":["StringFormat"]}
+		SolutionGuid = {E2B6A644-F820-4AB3-8508-C3C59838C955}
 	EndGlobalSection
 EndGlobal
