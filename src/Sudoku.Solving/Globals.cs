@@ -2,7 +2,6 @@
 global using System.ComponentModel;
 global using System.Globalization;
 global using System.Reflection;
-global using System.Runtime.InteropServices;
 global using System.Runtime.Intrinsics;
 global using System.Runtime.Serialization;
 global using Sudoku.Collections;
@@ -54,9 +53,9 @@ global using static Sudoku.Solving.Manual.Constants;
 [assembly: SearcherInitializerOption<AlmostLockedSetsXyWingStepSearcher>(27, DisplayingLevel.B)]
 [assembly: SearcherInitializerOption<AlmostLockedSetsWWingStepSearcher>(28, DisplayingLevel.B)]
 [assembly: SearcherInitializerOption<ComplexFishStepSearcher>(29, DisplayingLevel.B)]
-[assembly: SearcherInitializerOption<JuniorExocetStepSearcher>(31, DisplayingLevel.D, EnabledAreas = EnabledAreas.None, DisabledReason = DisabledReason.DeprecatedOrNotImplemented)]
-[assembly: SearcherInitializerOption<SeniorExocetStepSearcher>(32, DisplayingLevel.D, EnabledAreas = EnabledAreas.None, DisabledReason = DisabledReason.DeprecatedOrNotImplemented)]
-[assembly: SearcherInitializerOption<MultisectorLockedSetsStepSearcher>(33, DisplayingLevel.D)]
-[assembly: SearcherInitializerOption<DominoLoopStepSearcher>(34, DisplayingLevel.D)]
-[assembly: SearcherInitializerOption<BruteForceStepSearcher>(35, DisplayingLevel.E, EnabledAreas = EnabledAreas.Default, DisabledReason = DisabledReason.LastResort)]
+[assembly: SearcherInitializerOption<JuniorExocetStepSearcher>(30, DisplayingLevel.D, EnabledAreas = EnabledAreas.None, DisabledReason = DisabledReason.DeprecatedOrNotImplemented)]
+[assembly: SearcherInitializerOption<SeniorExocetStepSearcher>(31, DisplayingLevel.D, EnabledAreas = EnabledAreas.None, DisabledReason = DisabledReason.DeprecatedOrNotImplemented)]
+[assembly: SearcherInitializerOption<MultisectorLockedSetsStepSearcher>(32, DisplayingLevel.D)]
+[assembly: SearcherInitializerOption<DominoLoopStepSearcher>(33, DisplayingLevel.D)]
+[assembly: SearcherInitializerOption<BruteForceStepSearcher>(34, DisplayingLevel.E, EnabledAreas = EnabledAreas.Default, DisabledReason = DisabledReason.LastResort)]
 [module: SkipLocalsInit]
