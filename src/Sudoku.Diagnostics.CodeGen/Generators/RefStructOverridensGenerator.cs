@@ -24,7 +24,7 @@ public sealed class RefStructOverridensGenerator : ISourceGenerator
 			return;
 		}
 
-		if (diagnostics is [_, ..])
+		if (diagnostics.Count != 0)
 		{
 			diagnostics.ForEach(context.ReportDiagnostic);
 
