@@ -16,7 +16,7 @@ internal sealed record RefStructOverridensReceiver(CancellationToken Cancellatio
 		category: "SourceGen",
 		defaultSeverity: DiagnosticSeverity.Error,
 		isEnabledByDefault: true,
-		helpLinkUri: "https://github.com/SunnieShine/Sudoku/tree/main/docs/code-analysis/sca0001"
+		helpLinkUri: "https://sunnieshine.github.io/Sudoku/code-analysis/sca0001"
 	);
 
 

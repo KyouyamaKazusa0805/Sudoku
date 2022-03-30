@@ -25,7 +25,7 @@ public sealed class StepSearcherOptionsGenerator : ISourceGenerator
 		"Usage",
 		DiagnosticSeverity.Error,
 		true,
-		helpLinkUri: "https://github.com/SunnieShine/Sudoku/tree/main/docs/code-analysis/sca0101"
+		helpLinkUri: "https://sunnieshine.github.io/Sudoku/code-analysis/sca0101"
 	);
 
 	private static readonly DiagnosticDescriptor SCA0102 = new(
@@ -35,7 +35,7 @@ public sealed class StepSearcherOptionsGenerator : ISourceGenerator
 		"Design",
 		DiagnosticSeverity.Error,
 		true,
-		helpLinkUri: "https://github.com/SunnieShine/Sudoku/tree/main/docs/code-analysis/sca0102"
+		helpLinkUri: "https://sunnieshine.github.io/Sudoku/code-analysis/sca0102"
 	);
 
 
