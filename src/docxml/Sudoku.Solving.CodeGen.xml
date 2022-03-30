@@ -4,6 +4,220 @@
         <name>Sudoku.Solving.CodeGen</name>
     </assembly>
     <members>
+        <member name="T:Sudoku.Solving.Manual.DisabledReason">
+            <summary>
+            Indicates a reason why the searcher is disabled.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.DisabledReason.None">
+            <summary>
+            Indicates the searcher is normal one and isn't disabled.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.DisabledReason.LastResort">
+            <summary>
+            Indicates the searcher searches for last resorts, which don't need to show.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.DisabledReason.HasBugs">
+            <summary>
+            Indicates the searcher has bugs while searching.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.DisabledReason.TooSlow">
+            <summary>
+            Indicates the searcher runs so slowly that the author himself can't stand to use it.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.DisabledReason.DeprecatedOrNotImplemented">
+            <summary>
+            Indicates the searcher has not been implemented, or has been deprecated.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.DisplayingLevel">
+            <summary>
+            Indicates the difficulty level of the step.
+            This enumeration type is used for the displaying of the step information list.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.DisplayingLevel.None">
+            <summary>
+            Indicates the level is none.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.DisplayingLevel.A">
+            <summary>
+            Indicates the level is the elementary searchers, which means the techniques found
+            in the current step searcher is the elementary ones.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.DisplayingLevel.B">
+            <summary>
+            Indicates the level is the moderate searchers, which means the techniques found
+            in the current step searcher is more difficult than the elementary ones,
+            but they aren't very difficult to comprehend the backing logic.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.DisplayingLevel.C">
+            <summary>
+            Indicates the level is the hard searchers, which means the techniques found
+            in the current step searcher is more difficult than the moderate ones.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.DisplayingLevel.D">
+            <summary>
+            Indicates the level is the fiendish searchers, which means the techniques found
+            in the current step searcher is more difficult than the hard ones.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.DisplayingLevel.E">
+            <summary>
+            <para>
+            Indicates the level is the hidden searchers, which means the techniques found
+            in the current step searcher should be hidden no matter how easy the technique is.
+            </para>
+            <para>The well-known technique searcher of this level is Brute Force.</para>
+            </summary>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.EnabledAreas">
+            <summary>
+            Represents the data about where a step searcher can be enabled and used.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.EnabledAreas.None">
+            <summary>
+            Indicates all modes are disabled.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.EnabledAreas.Default">
+            <summary>
+            Indicates the default mode (Sudoku Explainer or Hodoku mode).
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.EnabledAreas.Gathering">
+            <summary>
+            Indicates the gathering mode (All steps will be found here).
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.EnabledAreas.Experimental">
+            <summary>
+            Indicates the experimental function can use the step searcher.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.SearchingOptions">
+            <summary>
+            Indicates the options for a step searcher used while searching.
+            </summary>
+            <param name="Priority">Indicates the priority of this technique.</param>
+            <param name="EnabledAreas">
+            Indicates which areas the step searcher is enabled and works well.
+            The default value is both <see cref="F:Sudoku.Solving.Manual.EnabledAreas.Default"/> and <see cref="F:Sudoku.Solving.Manual.EnabledAreas.Gathering"/>.
+            </param>
+            <param name="DisplayingLevel">
+            <para>Indicates the displaying level of this technique.</para>
+            <para>
+            The display level means the which level the technique is at. All higher leveled techniques
+            won't display on the screen when the searchers at the current level have found technique
+            instances.
+            </para>
+            <para>
+            In order to enhance the performance, this attribute is used on a step gatherer.
+            For example, if Alternating Inference Chain (AIC) is at the level <see cref="F:Sudoku.Solving.Manual.DisplayingLevel.D"/>
+            but Forcing Chains (FC) is at the level <see cref="F:Sudoku.Solving.Manual.DisplayingLevel.E"/>,
+            when we find any AIC technique instances, FC won't be checked at the same time.
+            </para>
+            <para>
+            This attribute is also used for grouping those the searchers, especially in Sudoku Explainer mode.
+            </para>
+            </param>
+            <param name="DisabledReason">
+            <para>
+            Indicates whether the current searcher has bug to fix, or something else to describe why
+            the searcher is (or should be) disabled.
+            </para>
+            <para>
+            The property <b>must</b> contain a value that differs with <see cref="F:Sudoku.Solving.Manual.DisabledReason.None"/>
+            when the property <see cref="P:Sudoku.Solving.Manual.SearchingOptions.EnabledAreas"/> isn't <see cref="F:Sudoku.Solving.Manual.EnabledAreas.Default"/>.
+            </para>
+            </param>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.SearchingOptions.#ctor(System.Int32,Sudoku.Solving.Manual.DisplayingLevel,Sudoku.Solving.Manual.EnabledAreas,Sudoku.Solving.Manual.DisabledReason)">
+            <summary>
+            Indicates the options for a step searcher used while searching.
+            </summary>
+            <param name="Priority">Indicates the priority of this technique.</param>
+            <param name="EnabledAreas">
+            Indicates which areas the step searcher is enabled and works well.
+            The default value is both <see cref="F:Sudoku.Solving.Manual.EnabledAreas.Default"/> and <see cref="F:Sudoku.Solving.Manual.EnabledAreas.Gathering"/>.
+            </param>
+            <param name="DisplayingLevel">
+            <para>Indicates the displaying level of this technique.</para>
+            <para>
+            The display level means the which level the technique is at. All higher leveled techniques
+            won't display on the screen when the searchers at the current level have found technique
+            instances.
+            </para>
+            <para>
+            In order to enhance the performance, this attribute is used on a step gatherer.
+            For example, if Alternating Inference Chain (AIC) is at the level <see cref="F:Sudoku.Solving.Manual.DisplayingLevel.D"/>
+            but Forcing Chains (FC) is at the level <see cref="F:Sudoku.Solving.Manual.DisplayingLevel.E"/>,
+            when we find any AIC technique instances, FC won't be checked at the same time.
+            </para>
+            <para>
+            This attribute is also used for grouping those the searchers, especially in Sudoku Explainer mode.
+            </para>
+            </param>
+            <param name="DisabledReason">
+            <para>
+            Indicates whether the current searcher has bug to fix, or something else to describe why
+            the searcher is (or should be) disabled.
+            </para>
+            <para>
+            The property <b>must</b> contain a value that differs with <see cref="F:Sudoku.Solving.Manual.DisabledReason.None"/>
+            when the property <see cref="P:Sudoku.Solving.Manual.SearchingOptions.EnabledAreas"/> isn't <see cref="F:Sudoku.Solving.Manual.EnabledAreas.Default"/>.
+            </para>
+            </param>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.SearchingOptions.Priority">
+            <summary>Indicates the priority of this technique.</summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.SearchingOptions.DisplayingLevel">
+            <summary>
+            <para>Indicates the displaying level of this technique.</para>
+            <para>
+            The display level means the which level the technique is at. All higher leveled techniques
+            won't display on the screen when the searchers at the current level have found technique
+            instances.
+            </para>
+            <para>
+            In order to enhance the performance, this attribute is used on a step gatherer.
+            For example, if Alternating Inference Chain (AIC) is at the level <see cref="F:Sudoku.Solving.Manual.DisplayingLevel.D"/>
+            but Forcing Chains (FC) is at the level <see cref="F:Sudoku.Solving.Manual.DisplayingLevel.E"/>,
+            when we find any AIC technique instances, FC won't be checked at the same time.
+            </para>
+            <para>
+            This attribute is also used for grouping those the searchers, especially in Sudoku Explainer mode.
+            </para>
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.SearchingOptions.EnabledAreas">
+            <summary>
+            Indicates which areas the step searcher is enabled and works well.
+            The default value is both <see cref="F:Sudoku.Solving.Manual.EnabledAreas.Default"/> and <see cref="F:Sudoku.Solving.Manual.EnabledAreas.Gathering"/>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.SearchingOptions.DisabledReason">
+            <summary>
+            <para>
+            Indicates whether the current searcher has bug to fix, or something else to describe why
+            the searcher is (or should be) disabled.
+            </para>
+            <para>
+            The property <b>must</b> contain a value that differs with <see cref="F:Sudoku.Solving.Manual.DisabledReason.None"/>
+            when the property <see cref="P:Sudoku.Solving.Manual.SearchingOptions.EnabledAreas"/> isn't <see cref="F:Sudoku.Solving.Manual.EnabledAreas.Default"/>.
+            </para>
+            </summary>
+        </member>
         <member name="T:Sudoku.Diagnostics.CodeGen.Generators.StepSearcherOptionsGenerator">
             <summary>
             Defines a source generator that generates the source code for the searcher options

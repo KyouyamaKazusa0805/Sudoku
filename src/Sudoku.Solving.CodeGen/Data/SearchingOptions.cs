@@ -1,7 +1,7 @@
 ﻿namespace Sudoku.Solving.Manual;
 
 /// <summary>
-/// Indicates the options aiming to <see cref="IStepSearcher"/>s while searching.
+/// Indicates the options for a step searcher used while searching.
 /// </summary>
 /// <param name="Priority">Indicates the priority of this technique.</param>
 /// <param name="EnabledAreas">
@@ -16,7 +16,7 @@
 /// instances.
 /// </para>
 /// <para>
-/// In order to enhance the performance, this attribute is used on <see cref="StepsGatherer"/>.
+/// In order to enhance the performance, this attribute is used on a step gatherer.
 /// For example, if Alternating Inference Chain (AIC) is at the level <see cref="DisplayingLevel.D"/>
 /// but Forcing Chains (FC) is at the level <see cref="DisplayingLevel.E"/>,
 /// when we find any AIC technique instances, FC won't be checked at the same time.
@@ -35,8 +35,6 @@
 /// when the property <see cref="EnabledAreas"/> isn't <see cref="EnabledAreas.Default"/>.
 /// </para>
 /// </param>
-/// <seealso cref="IStepSearcher"/>
-/// <seealso cref="StepsGatherer"/>
 [StructLayout(LayoutKind.Explicit)]
 public readonly record struct SearchingOptions(
 	[field: FieldOffset(5)] int Priority,

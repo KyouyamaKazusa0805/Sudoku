@@ -10,7 +10,12 @@ public sealed class StepSearcherOptionsGenerator : ISourceGenerator
 	/// <inheritdoc/>
 	public void Execute(GeneratorExecutionContext context)
 	{
-		if (context is not { Compilation.Assembly: { Name: "Sudoku.Solving" } assemblySymbol })
+		if (
+			context is not
+			{
+				Compilation.Assembly: { Name: "Sudoku.Solving" } assemblySymbol
+			}
+		)
 		{
 			return;
 		}
@@ -56,11 +61,11 @@ public sealed class StepSearcherOptionsGenerator : ISourceGenerator
 			}
 
 			object? enabledAreas = null, disabledReason = null;
-			if (namedArguments.Length != 0)
+			if (namedArguments is { IsDefaultOrEmpty: false, Length: not 0 })
 			{
 				foreach (var (name, value) in namedArguments)
 				{
-					(name == "EnabledAreas" ? ref enabledAreas : ref disabledReason) = value.Value;
+					(name == nameof(EnabledAreas) ? ref enabledAreas : ref disabledReason) = value.Value;
 				}
 			}
 
@@ -70,11 +75,11 @@ public sealed class StepSearcherOptionsGenerator : ISourceGenerator
 				sb = new StringBuilder().Append(comma);
 				if (enabledAreas is not null)
 				{
-					sb.Append($"EnabledAreas: (global::Sudoku.Solving.Manual.EnabledAreas){enabledAreas}{comma}");
+					sb.Append($"{nameof(EnabledAreas)}: (global::{typeof(EnabledAreas).FullName}){enabledAreas}{comma}");
 				}
 				if (disabledReason is not null)
 				{
-					sb.Append($"DisabledReason: (global::Sudoku.Solving.Manual.DisabledReason){disabledReason}{comma}");
+					sb.Append($"{nameof(DisabledReason)}: (global::{typeof(DisabledReason).FullName}){disabledReason}{comma}");
 				}
 
 				sb.Remove(sb.Length - comma.Length, comma.Length);
@@ -91,8 +96,8 @@ public sealed class StepSearcherOptionsGenerator : ISourceGenerator
 					/// <inheritdoc/>
 					[global::{{typeof(GeneratedCodeAttribute).FullName}}("{{typeof(StepSearcherOptionsGenerator).FullName}}", "{{VersionValue}}")]
 					[global::{{typeof(CompilerGeneratedAttribute).FullName}}]
-					public global::Sudoku.Solving.Manual.SearchingOptions Options { get; set; } =
-						new({{priority}}, (global::Sudoku.Solving.Manual.DisplayingLevel){{displayingLevel}}{{sb}});
+					public global::{{typeof(SearchingOptions).FullName}} Options { get; set; } =
+						new({{priority}}, (global::{{typeof(DisplayingLevel).FullName}}){{displayingLevel}}{{sb}});
 				}
 				"""
 			);
