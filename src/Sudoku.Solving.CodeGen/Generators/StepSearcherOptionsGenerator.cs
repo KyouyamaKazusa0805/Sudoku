@@ -1,4 +1,15 @@
-﻿namespace Sudoku.Diagnostics.CodeGen.Generators;
+﻿using Tuple = System.ValueTuple<
+	Microsoft.CodeAnalysis.INamedTypeSymbol,
+	Microsoft.CodeAnalysis.INamespaceSymbol,
+	int,
+	Sudoku.Solving.Manual.DisplayingLevel,
+	string,
+	System.Collections.Immutable.ImmutableArray<
+		System.Collections.Generic.KeyValuePair<
+			string,
+			Microsoft.CodeAnalysis.TypedConstant>>>;
+
+namespace Sudoku.Diagnostics.CodeGen.Generators;
 
 /// <summary>
 /// Defines a source generator that generates the source code for the searcher options
@@ -7,9 +18,31 @@
 [Generator(LanguageNames.CSharp)]
 public sealed class StepSearcherOptionsGenerator : ISourceGenerator
 {
+	private static readonly DiagnosticDescriptor SCA0101 = new(
+		nameof(SCA0101),
+		"The source generator can only applied to the assembly 'Sudoku.Solving'",
+		"The source generator can only applied to the assembly 'Sudoku.Solving'",
+		"Usage",
+		DiagnosticSeverity.Error,
+		true,
+		helpLinkUri: null
+	);
+
+	private static readonly DiagnosticDescriptor SCA0102 = new(
+		nameof(SCA0102),
+		"Duplicated priority value found",
+		"Duplicated priority value found",
+		"Design",
+		DiagnosticSeverity.Error,
+		true,
+		helpLinkUri: null
+	);
+
+
 	/// <inheritdoc/>
 	public void Execute(GeneratorExecutionContext context)
 	{
+		// Checks whether the reference project is valid.
 		if (
 			context is not
 			{
@@ -17,18 +50,23 @@ public sealed class StepSearcherOptionsGenerator : ISourceGenerator
 			}
 		)
 		{
+			context.ReportDiagnostic(Diagnostic.Create(SCA0101, null, messageArgs: null));
 			return;
 		}
 
+		// Checks whether the assembly has marked any attributes.
 		if (assemblySymbol.GetAttributes() is not { IsDefaultOrEmpty: false } attributesData)
 		{
 			return;
 		}
 
+		// Gather the valid attributes data.
+		var foundAttributesData = new List<Tuple>();
 		const string comma = ", ";
 		const string attributeTypeName = "Sudoku.Solving.Manual.SearcherInitializerOptionAttribute<>";
 		foreach (var attributeData in attributesData)
 		{
+			// Check validity.
 			if (
 #pragma warning disable IDE0055
 				attributeData is not
@@ -46,14 +84,8 @@ public sealed class StepSearcherOptionsGenerator : ISourceGenerator
 						]
 					} attributeClassSymbol,
 					ConstructorArguments: [
-						{
-							Type.SpecialType: SpecialType.System_Int32,
-							Value: int priority
-						},
-						{
-							Type.TypeKind: TypeKind.Enum,
-							Value: byte dl
-						}
+						{ Type.SpecialType: SpecialType.System_Int32, Value: int priority },
+						{ Type.TypeKind: TypeKind.Enum, Value: byte dl }
 					],
 					NamedArguments: var namedArguments
 				}
@@ -63,30 +95,63 @@ public sealed class StepSearcherOptionsGenerator : ISourceGenerator
 				continue;
 			}
 
+			// Checks whether the type is valid.
 			var unboundAttributeTypeSymbol = attributeClassSymbol.ConstructUnboundGenericType();
 			if (unboundAttributeTypeSymbol.ToDisplayString(TypeFormats.FullName) != attributeTypeName)
 			{
 				continue;
 			}
 
-			var displayingLevel = (DisplayingLevel)dl;
+			// Adds the necessary info into the collection.
+			foundAttributesData.Add(
+				(
+					stepSearcherTypeSymbol,
+					containingNamespace,
+					priority,
+					(DisplayingLevel)dl,
+					stepSearcherName,
+					namedArguments
+				)
+			);
+		}
+
+		// Checks whether the collection has duplicated priority values.
+		for (int i = 0; i < foundAttributesData.Count - 1; i++)
+		{
+			int a = foundAttributesData[i].Item3;
+			for (int j = i + 1; j < foundAttributesData.Count; j++)
+			{
+				int b = foundAttributesData[j].Item3;
+				if (a == b)
+				{
+					context.ReportDiagnostic(Diagnostic.Create(SCA0102, null, messageArgs: null));
+				}
+			}
+		}
+
+		// Iterate on each valid attribute data, and checks the inner value to be used
+		// by the source generator to output.
+		foreach (var (type, @namespace, priority, level, name, namedArguments) in foundAttributesData)
+		{
+			// Checks whether the attribute has configured any extra options.
 			EnabledAreas? enabledAreas = null;
 			DisabledReason? disabledReason = null;
 			if (namedArguments is { IsDefaultOrEmpty: false, Length: not 0 })
 			{
-				foreach (var (name, value) in namedArguments)
+				foreach (var (argName, value) in namedArguments)
 				{
-					if (name == nameof(EnabledAreas) && value.Value is byte ea)
+					if (argName == nameof(EnabledAreas) && value.Value is byte ea)
 					{
 						enabledAreas = (EnabledAreas)ea;
 					}
-					if (name == nameof(DisabledReason) && value.Value is short dr)
+					if (argName == nameof(DisabledReason) && value.Value is short dr)
 					{
 						disabledReason = (DisabledReason)dr;
 					}
 				}
 			}
 
+			// Gather the extra options on step searcher.
 			StringBuilder? sb = null;
 			if (enabledAreas is not null || disabledReason is not null)
 			{
@@ -105,32 +170,34 @@ public sealed class StepSearcherOptionsGenerator : ISourceGenerator
 				sb.Remove(sb.Length - comma.Length, comma.Length);
 			}
 
+			// Output the generated code.
 			context.AddSource(
-				stepSearcherTypeSymbol.ToFileName(),
+				type.ToFileName(),
 				"sso",
 				$$"""
-				namespace {{containingNamespace.ToDisplayString(TypeFormats.FullName)}};
+				namespace {{@namespace.ToDisplayString(TypeFormats.FullName)}};
 				
-				partial class {{stepSearcherName}}
+				partial class {{name}}
 				{
 					/// <inheritdoc/>
 					[global::{{typeof(GeneratedCodeAttribute).FullName}}("{{typeof(StepSearcherOptionsGenerator).FullName}}", "{{VersionValue}}")]
 					[global::{{typeof(CompilerGeneratedAttribute).FullName}}]
 					public global::{{typeof(SearchingOptions).FullName}} Options { get; set; } =
-						new({{priority}}, global::{{typeof(DisplayingLevel).FullName}}.{{displayingLevel}}{{sb}});
+						new({{priority}}, global::{{typeof(DisplayingLevel).FullName}}.{{level}}{{sb}});
 				}
+				
 				"""
 			);
-
-
-			[MethodImpl(MethodImplOptions.AggressiveInlining)]
-			static string f<TEnum>(TEnum field) where TEnum : Enum =>
-				string.Join(
-					" | ",
-					from e in field.ToString().Split(new[] { ',', ' ' }, StringSplitOptions.RemoveEmptyEntries)
-					select $"global::{typeof(TEnum).FullName}.{e}"
-				);
 		}
+
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		static string f<TEnum>(TEnum field) where TEnum : Enum =>
+			string.Join(
+				" | ",
+				from e in field.ToString().Split(new[] { ',', ' ' }, StringSplitOptions.RemoveEmptyEntries)
+				select $"global::{typeof(TEnum).FullName}.{e}"
+			);
 	}
 
 	/// <inheritdoc/>
