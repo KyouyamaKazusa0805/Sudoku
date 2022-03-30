@@ -45,7 +45,16 @@ public sealed class StepSearcherOptionsGenerator : ISourceGenerator
 							} stepSearcherTypeSymbol
 						]
 					} attributeClassSymbol,
-					ConstructorArguments: [{ Value: { } priority }, { Value: { } displayingLevel }],
+					ConstructorArguments: [
+						{
+							Type.SpecialType: SpecialType.System_Int32,
+							Value: int priority
+						},
+						{
+							Type.TypeKind: TypeKind.Enum,
+							Value: byte dl
+						}
+					],
 					NamedArguments: var namedArguments
 				}
 #pragma warning restore IDE0055
@@ -60,12 +69,21 @@ public sealed class StepSearcherOptionsGenerator : ISourceGenerator
 				continue;
 			}
 
-			object? enabledAreas = null, disabledReason = null;
+			var displayingLevel = (DisplayingLevel)dl;
+			EnabledAreas? enabledAreas = null;
+			DisabledReason? disabledReason = null;
 			if (namedArguments is { IsDefaultOrEmpty: false, Length: not 0 })
 			{
 				foreach (var (name, value) in namedArguments)
 				{
-					(name == nameof(EnabledAreas) ? ref enabledAreas : ref disabledReason) = value.Value;
+					if (name == nameof(EnabledAreas) && value.Value is byte ea)
+					{
+						enabledAreas = (EnabledAreas)ea;
+					}
+					if (name == nameof(DisabledReason) && value.Value is short dr)
+					{
+						disabledReason = (DisabledReason)dr;
+					}
 				}
 			}
 
@@ -73,13 +91,24 @@ public sealed class StepSearcherOptionsGenerator : ISourceGenerator
 			if (enabledAreas is not null || disabledReason is not null)
 			{
 				sb = new StringBuilder().Append(comma);
-				if (enabledAreas is not null)
+				if (enabledAreas is { } ea)
 				{
-					sb.Append($"{nameof(EnabledAreas)}: (global::{typeof(EnabledAreas).FullName}){enabledAreas}{comma}");
+					string targetStr = string.Join(
+						" | ",
+						from e in ea.ToString().Split(new[] { ' ', ',' }, StringSplitOptions.RemoveEmptyEntries)
+						select $"global::{typeof(EnabledAreas).FullName}.{e}"
+					);
+					sb.Append($"{nameof(EnabledAreas)}: {targetStr}{comma}");
 				}
-				if (disabledReason is not null)
+				if (disabledReason is { } dr)
 				{
-					sb.Append($"{nameof(DisabledReason)}: (global::{typeof(DisabledReason).FullName}){disabledReason}{comma}");
+					string targetStr = string.Join(
+						" | ",
+						from e in dr.ToString().Split(new[] { ' ', ',' }, StringSplitOptions.RemoveEmptyEntries)
+						select $"global::{typeof(DisabledReason).FullName}.{e}"
+					);
+
+					sb.Append($"{nameof(DisabledReason)}: {targetStr}{comma}");
 				}
 
 				sb.Remove(sb.Length - comma.Length, comma.Length);
@@ -97,7 +126,7 @@ public sealed class StepSearcherOptionsGenerator : ISourceGenerator
 					[global::{{typeof(GeneratedCodeAttribute).FullName}}("{{typeof(StepSearcherOptionsGenerator).FullName}}", "{{VersionValue}}")]
 					[global::{{typeof(CompilerGeneratedAttribute).FullName}}]
 					public global::{{typeof(SearchingOptions).FullName}} Options { get; set; } =
-						new({{priority}}, (global::{{typeof(DisplayingLevel).FullName}}){{displayingLevel}}{{sb}});
+						new({{priority}}, global::{{typeof(DisplayingLevel).FullName}}.{{displayingLevel}}{{sb}});
 				}
 				"""
 			);
