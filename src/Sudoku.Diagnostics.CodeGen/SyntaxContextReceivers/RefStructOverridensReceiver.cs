@@ -11,12 +11,12 @@ internal sealed record RefStructOverridensReceiver(CancellationToken Cancellatio
 {
 	private static readonly DiagnosticDescriptor SCA0001 = new(
 		id: nameof(SCA0001),
-		title: "Ref structs requires the keyword 'partial'",
-		messageFormat: "Ref structs requires the keyword 'partial'",
+		title: "Ref structs lacks of the keyword 'partial'",
+		messageFormat: "Ref structs lacks of the keyword 'partial'",
 		category: "SourceGen",
 		defaultSeverity: DiagnosticSeverity.Error,
 		isEnabledByDefault: true,
-		helpLinkUri: null
+		helpLinkUri: "https://github.com/SunnieShine/Sudoku/tree/main/docs/code-analysis/sca0001"
 	);
 
 
