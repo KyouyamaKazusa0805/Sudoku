@@ -1082,41 +1082,6 @@ public unsafe partial struct Grid :
 	public readonly CellStatus GetStatus(int cell) => MaskToStatus(_values[cell]);
 
 	/// <summary>
-	/// Forms a slice out of the current grid that begins at a specified cell as the index.
-	/// </summary>
-	/// <param name="startCell">The cell as the index at which to begin the slice.</param>
-	/// <returns>
-	/// A grid segment that consists of all elements of the current grid from <paramref name="startCell"/>
-	/// to the end of the grid.
-	/// </returns>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public readonly GridSegment Slice(int startCell) => Slice(startCell, 81 - startCell);
-
-	/// <summary>
-	/// Forms a slice out of the current grid starting at a specified cell as the index for a specified length.
-	/// </summary>
-	/// <param name="startCell">The cell as the index at which to begin this slice.</param>
-	/// <param name="length">The desired length for the slice.</param>
-	/// <returns>
-	/// A grid segment that consists of <paramref name="length"/> elements from the current grid
-	/// starting at <paramref name="startCell"/>.
-	/// </returns>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public readonly GridSegment Slice(int startCell, int length) =>
-		new(this, new Cells(startCell..(startCell + length)));
-
-	/// <summary>
-	/// Filters the cells that only satisfy the specified condition.
-	/// </summary>
-	/// <param name="predicate">The condition to filter cells.</param>
-	/// <returns>
-	/// The <see cref="GridSegment"/> instance that holds the specified cells
-	/// having satisfied the specified condition.
-	/// </returns>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public readonly GridSegment Where(delegate*<in Grid, int, bool> predicate) => new(this, GetCells(predicate));
-
-	/// <summary>
 	/// Gets the enumerator of the current instance in order to use <see langword="foreach"/> loop.
 	/// </summary>
 	/// <returns>The enumerator instance.</returns>

@@ -1469,8 +1469,13 @@ public unsafe ref partial struct StringHandler
 	/// Provides with the default way to convert the specified instance of type <see cref="short"/>
 	/// into a <see cref="string"/> value.
 	/// </summary>
+	/// <typeparam name="TNotNull">The type of the argument.</typeparam>
 	/// <param name="this">The instance.</param>
 	/// <returns>The <see cref="string"/> value.</returns>
+	/// <exception cref="InvalidOperationException">
+	/// Throws when the argument <paramref name="this"/> return <see langword="null"/>
+	/// as the <c>ToString</c> method result.
+	/// </exception>
 	/// <remarks>
 	/// You can put this method as the argument into the method invocation
 	/// <see cref="AppendRangeWithSeparatorUnsafe{TUnmanaged}(TUnmanaged*, int, delegate*{TUnmanaged, string?}, string)"/>
@@ -1480,7 +1485,8 @@ public unsafe ref partial struct StringHandler
 	/// <seealso cref="AppendRangeWithSeparatorUnsafe{TUnmanaged}(TUnmanaged*, int, Func{TUnmanaged, string?}, string)"/>
 #pragma warning restore CS1584, CS1658
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static string ElementToStringConverter(short @this) => @this.ToString();
+	public static string ElementToStringConverter<TNotNull>(TNotNull @this) where TNotNull : notnull =>
+		@this.ToString() ?? throw new InvalidOperationException("The argument cannot return null.");
 
 
 	/// <summary>

@@ -1979,13 +1979,18 @@
             <param name="right">The right instance.</param>
             <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
         </member>
-        <member name="M:System.Text.StringHandler.ElementToStringConverter(System.Int16)">
+        <member name="M:System.Text.StringHandler.ElementToStringConverter``1(``0)">
             <summary>
             Provides with the default way to convert the specified instance of type <see cref="T:System.Int16"/>
             into a <see cref="T:System.String"/> value.
             </summary>
+            <typeparam name="TNotNull">The type of the argument.</typeparam>
             <param name="this">The instance.</param>
             <returns>The <see cref="T:System.String"/> value.</returns>
+            <exception cref="T:System.InvalidOperationException">
+            Throws when the argument <paramref name="this"/> return <see langword="null"/>
+            as the <c>ToString</c> method result.
+            </exception>
             <remarks>
             You can put this method as the argument into the method invocation
             <see cref="!:AppendRangeWithSeparatorUnsafe&lt;TUnmanaged&gt;(TUnmanaged*, int, delegate*&lt;TUnmanaged, string?&gt;, string)"/>

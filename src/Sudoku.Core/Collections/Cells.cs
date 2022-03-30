@@ -164,20 +164,6 @@ public unsafe struct Cells :
 	}
 
 	/// <summary>
-	/// Initializes an instance with the specified range.
-	/// </summary>
-	/// <param name="range">The range.</param>
-	public Cells(Range range)
-	{
-		int start = range.Start.GetOffset(81);
-		int end = range.End.GetOffset(81);
-		for (int i = start; i < end; i++)
-		{
-			InternalAdd(i, true);
-		}
-	}
-
-	/// <summary>
 	/// Initializes an instance with two binary values.
 	/// </summary>
 	/// <param name="high">Higher 40 bits.</param>
@@ -679,7 +665,8 @@ public unsafe struct Cells :
 
 	/// <inheritdoc cref="object.Equals(object?)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public override readonly bool Equals([NotNullWhen(true)] object? obj) => obj is Cells comparer && Equals(comparer);
+	public override readonly bool Equals([NotNullWhen(true)] object? obj) =>
+		obj is Cells comparer && Equals(comparer);
 
 	/// <summary>
 	/// Determine whether the two elements are equal.
@@ -796,54 +783,11 @@ public unsafe struct Cells :
 	}
 
 	/// <summary>
-	/// To gets the cells that is in the cells that both <see langword="this"/>
-	/// and <paramref name="limit"/> see (i.e. peer intersection of <c><![CDATA[this & limit]]></c>),
-	/// and gets the result map that is in the map above, and only lies in <paramref name="limit"/>.
-	/// </summary>
-	/// <param name="limit">
-	/// The map to limit the result peer intersection.
-	/// </param>
-	/// <returns>The result map.</returns>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public readonly Cells PeerIntersectionLimitsWith(in Cells limit) => this % limit;
-
-	/// <summary>
-	/// Slice the collection, to preserve the cell offsets you want to get.
-	/// </summary>
-	/// <param name="start">The desired start index to slice.</param>
-	/// <param name="count">The number of cell offsets you want to slice.</param>
-	/// <returns>The new <see cref="Cells"/> instance.</returns>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public readonly Cells Slice(int start, int count) => (Cells)Offsets[start..(count + start)];
-
-	/// <summary>
-	/// Converts the current instance to a <see cref="Span{T}"/> of type <see cref="int"/>.
-	/// </summary>
-	/// <returns>The <see cref="Span{T}"/> of <see cref="int"/> result.</returns>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public readonly Span<int> ToSpan() => Offsets.AsSpan();
-
-	/// <summary>
-	/// Converts the current instance to a <see cref="ReadOnlySpan{T}"/> of type <see cref="int"/>.
-	/// </summary>
-	/// <returns>The <see cref="ReadOnlySpan{T}"/> of <see cref="int"/> result.</returns>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public readonly ReadOnlySpan<int> ToReadOnlySpan() => Offsets.AsSpan();
-
-	/// <summary>
 	/// Gets the enumerator of the current instance in order to use <see langword="foreach"/> loop.
 	/// </summary>
 	/// <returns>The enumerator instance.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public readonly OneDimensionalArrayEnumerator<int> GetEnumerator() => Offsets.EnumerateImmutable();
-
-	/// <summary>
-	/// Expands the current instance, using the specified digit.
-	/// </summary>
-	/// <param name="digit">The digit.</param>
-	/// <returns>The candidate list.</returns>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public readonly Candidates Expand(int digit) => this * digit;
 
 	/// <summary>
 	/// Gets the <see cref="Vector128{T}"/> instance via the basic data.
@@ -970,11 +914,11 @@ public unsafe struct Cells :
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	readonly IEnumerator<int> IEnumerable<int>.GetEnumerator() => ((IEnumerable<int>)Offsets).GetEnumerator();
+	readonly IEnumerator IEnumerable.GetEnumerator() => Offsets.GetEnumerator();
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	readonly IEnumerator IEnumerable.GetEnumerator() => Offsets.GetEnumerator();
+	readonly IEnumerator<int> IEnumerable<int>.GetEnumerator() => ((IEnumerable<int>)Offsets).GetEnumerator();
 
 	/// <summary>
 	/// The internal operation for adding an offset into the current collection.
@@ -1025,7 +969,6 @@ public unsafe struct Cells :
 	/// <remarks>
 	/// A <b>Peer Intersection</b> is a set of cells that all cells from the base collection can be seen.
 	/// </remarks>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static Cells operator !(in Cells offsets)
 	{
 		long lowerBits = 0, higherBits = 0;
@@ -1246,8 +1189,7 @@ public unsafe struct Cells :
 	/// <param name="template">The template map that the base map to check and cover.</param>
 	/// <returns>The result map.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static Cells operator %(in Cells @base, in Cells template) =>
-		!(@base & template) & template;
+	public static Cells operator %(in Cells @base, in Cells template) => !(@base & template) & template;
 
 	/// <summary>
 	/// Expands via the specified digit.
@@ -1494,47 +1436,6 @@ public unsafe struct Cells :
 	public static implicit operator Cells(in ReadOnlySpan<int> offsets) => new(offsets);
 
 	/// <summary>
-	/// Explicit cast from <see cref="Range"/> to <see cref="Cells"/>.
-	/// </summary>
-	/// <param name="range">The range.</param>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static explicit operator Cells(Range range) => new(range);
-
-	/// <summary>
-	/// Explicit cast from <see cref="Cells"/> to <see cref="Range"/>?.
-	/// Returns <see langword="null"/> if the cells are discontinuous,
-	/// which cannot be converted to a valid <see cref="Range"/> result.
-	/// </summary>
-	/// <param name="offsets">The offsets.</param>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static explicit operator Range?(in Cells offsets)
-	{
-		int first = offsets[0];
-		int lastCell = first;
-		foreach (int cell in offsets)
-		{
-			if (cell == first)
-			{
-				continue;
-			}
-
-			if (cell - lastCell != 1)
-			{
-				return null;
-			}
-
-			lastCell = cell;
-		}
-
-		return (81 - lastCell) switch
-		{
-			1 => first..,
-			var indexFromLast and (2 or 3) => first..^(indexFromLast - 1),
-			_ => first..lastCell
-		};
-	}
-
-	/// <summary>
 	/// Explicit cast from <see cref="Cells"/> to <see cref="int"/>[].
 	/// </summary>
 	/// <param name="offsets">The offsets.</param>
@@ -1546,12 +1447,12 @@ public unsafe struct Cells :
 	/// </summary>
 	/// <param name="offsets">The offsets.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static explicit operator Span<int>(in Cells offsets) => offsets.ToSpan();
+	public static explicit operator Span<int>(in Cells offsets) => offsets.Offsets;
 
 	/// <summary>
 	/// Explicit cast from <see cref="Cells"/> to <see cref="ReadOnlySpan{T}"/>.
 	/// </summary>
 	/// <param name="offsets">The offsets.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static explicit operator ReadOnlySpan<int>(in Cells offsets) => offsets.ToReadOnlySpan();
+	public static explicit operator ReadOnlySpan<int>(in Cells offsets) => offsets.Offsets;
 }

@@ -792,12 +792,6 @@
             won't be set <see langword="true"/>.
             </remarks>
         </member>
-        <member name="M:Sudoku.Collections.Cells.#ctor(System.Range)">
-            <summary>
-            Initializes an instance with the specified range.
-            </summary>
-            <param name="range">The range.</param>
-        </member>
         <member name="M:Sudoku.Collections.Cells.#ctor(System.Int64,System.Int64)">
             <summary>
             Initializes an instance with two binary values.
@@ -1037,49 +1031,11 @@
         <member name="M:Sudoku.Collections.Cells.ToString(System.String)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Collections.Cells.PeerIntersectionLimitsWith(Sudoku.Collections.Cells@)">
-            <summary>
-            To gets the cells that is in the cells that both <see langword="this"/>
-            and <paramref name="limit"/> see (i.e. peer intersection of <c><![CDATA[this & limit]]></c>),
-            and gets the result map that is in the map above, and only lies in <paramref name="limit"/>.
-            </summary>
-            <param name="limit">
-            The map to limit the result peer intersection.
-            </param>
-            <returns>The result map.</returns>
-        </member>
-        <member name="M:Sudoku.Collections.Cells.Slice(System.Int32,System.Int32)">
-            <summary>
-            Slice the collection, to preserve the cell offsets you want to get.
-            </summary>
-            <param name="start">The desired start index to slice.</param>
-            <param name="count">The number of cell offsets you want to slice.</param>
-            <returns>The new <see cref="T:Sudoku.Collections.Cells"/> instance.</returns>
-        </member>
-        <member name="M:Sudoku.Collections.Cells.ToSpan">
-            <summary>
-            Converts the current instance to a <see cref="T:System.Span`1"/> of type <see cref="T:System.Int32"/>.
-            </summary>
-            <returns>The <see cref="T:System.Span`1"/> of <see cref="T:System.Int32"/> result.</returns>
-        </member>
-        <member name="M:Sudoku.Collections.Cells.ToReadOnlySpan">
-            <summary>
-            Converts the current instance to a <see cref="T:System.ReadOnlySpan`1"/> of type <see cref="T:System.Int32"/>.
-            </summary>
-            <returns>The <see cref="T:System.ReadOnlySpan`1"/> of <see cref="T:System.Int32"/> result.</returns>
-        </member>
         <member name="M:Sudoku.Collections.Cells.GetEnumerator">
             <summary>
             Gets the enumerator of the current instance in order to use <see langword="foreach"/> loop.
             </summary>
             <returns>The enumerator instance.</returns>
-        </member>
-        <member name="M:Sudoku.Collections.Cells.Expand(System.Int32)">
-            <summary>
-            Expands the current instance, using the specified digit.
-            </summary>
-            <param name="digit">The digit.</param>
-            <returns>The candidate list.</returns>
         </member>
         <member name="M:Sudoku.Collections.Cells.ToVector">
             <summary>
@@ -1152,10 +1108,10 @@
         <member name="M:Sudoku.Collections.Cells.System#IEquatable{Sudoku#Collections#Cells}#Equals(Sudoku.Collections.Cells)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Collections.Cells.System#Collections#Generic#IEnumerable{System#Int32}#GetEnumerator">
+        <member name="M:Sudoku.Collections.Cells.System#Collections#IEnumerable#GetEnumerator">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Collections.Cells.System#Collections#IEnumerable#GetEnumerator">
+        <member name="M:Sudoku.Collections.Cells.System#Collections#Generic#IEnumerable{System#Int32}#GetEnumerator">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Collections.Cells.InternalAdd(System.Int32,System.Boolean)">
@@ -1378,20 +1334,6 @@
         <member name="M:Sudoku.Collections.Cells.op_Implicit(System.ReadOnlySpan{System.Int32}@)~Sudoku.Collections.Cells">
             <summary>
             Implicit cast from <see cref="T:System.ReadOnlySpan`1"/> to <see cref="T:Sudoku.Collections.Cells"/>.
-            </summary>
-            <param name="offsets">The offsets.</param>
-        </member>
-        <member name="M:Sudoku.Collections.Cells.op_Explicit(System.Range)~Sudoku.Collections.Cells">
-            <summary>
-            Explicit cast from <see cref="T:System.Range"/> to <see cref="T:Sudoku.Collections.Cells"/>.
-            </summary>
-            <param name="range">The range.</param>
-        </member>
-        <member name="M:Sudoku.Collections.Cells.op_Explicit(Sudoku.Collections.Cells@)~System.Nullable{System.Range}">
-            <summary>
-            Explicit cast from <see cref="T:Sudoku.Collections.Cells"/> to <see cref="T:System.Range"/>?.
-            Returns <see langword="null"/> if the cells are discontinuous,
-            which cannot be converted to a valid <see cref="T:System.Range"/> result.
             </summary>
             <param name="offsets">The offsets.</param>
         </member>
@@ -2257,37 +2199,6 @@
             </summary>
             <param name="cell">The cell.</param>
             <returns>The cell status.</returns>
-        </member>
-        <member name="M:Sudoku.Collections.Grid.Slice(System.Int32)">
-            <summary>
-            Forms a slice out of the current grid that begins at a specified cell as the index.
-            </summary>
-            <param name="startCell">The cell as the index at which to begin the slice.</param>
-            <returns>
-            A grid segment that consists of all elements of the current grid from <paramref name="startCell"/>
-            to the end of the grid.
-            </returns>
-        </member>
-        <member name="M:Sudoku.Collections.Grid.Slice(System.Int32,System.Int32)">
-            <summary>
-            Forms a slice out of the current grid starting at a specified cell as the index for a specified length.
-            </summary>
-            <param name="startCell">The cell as the index at which to begin this slice.</param>
-            <param name="length">The desired length for the slice.</param>
-            <returns>
-            A grid segment that consists of <paramref name="length"/> elements from the current grid
-            starting at <paramref name="startCell"/>.
-            </returns>
-        </member>
-        <member name="M:Sudoku.Collections.Grid.Where()">
-            <summary>
-            Filters the cells that only satisfy the specified condition.
-            </summary>
-            <param name="predicate">The condition to filter cells.</param>
-            <returns>
-            The <see cref="T:Sudoku.Collections.GridSegment"/> instance that holds the specified cells
-            having satisfied the specified condition.
-            </returns>
         </member>
         <member name="M:Sudoku.Collections.Grid.GetEnumerator">
             <summary>
