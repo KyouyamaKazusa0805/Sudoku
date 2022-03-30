@@ -227,8 +227,8 @@ public sealed unsafe partial class NormalFishStepSearcher : INormalFishStepSearc
 							GetDirectView(grid, digit, bs, cs, fins, searchRow)
 						),
 						digit,
-						new RegionCollection(bs).GetHashCode(), // The mask itself.
-						new RegionCollection(cs).GetHashCode(), // The mask itself.
+						new RegionCollection(bs).Mask,
+						new RegionCollection(cs).Mask,
 						fins,
 						IFishStepSearcher.IsSashimi(bs, fins, digit)
 					);

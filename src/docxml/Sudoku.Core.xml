@@ -3263,11 +3263,6 @@
             Indicates a region collection.
             </summary>
         </member>
-        <member name="F:Sudoku.Collections.RegionCollection._mask">
-            <summary>
-            The inner mask.
-            </summary>
-        </member>
         <member name="M:Sudoku.Collections.RegionCollection.#ctor(System.Int32)">
             <summary>
             Initializes an empty collection and add one region into the list.
@@ -3289,6 +3284,11 @@
         <member name="P:Sudoku.Collections.RegionCollection.Count">
             <summary>
             Indicates the number of regions that contain in this collection.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Collections.RegionCollection.Mask">
+            <summary>
+            Indicates the mask used.
             </summary>
         </member>
         <member name="P:Sudoku.Collections.RegionCollection.Item(System.Int32)">

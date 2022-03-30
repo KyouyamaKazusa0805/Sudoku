@@ -6,16 +6,10 @@
 public readonly ref partial struct RegionCollection
 {
 	/// <summary>
-	/// The inner mask.
-	/// </summary>
-	private readonly int _mask;
-
-
-	/// <summary>
 	/// Initializes an empty collection and add one region into the list.
 	/// </summary>
 	/// <param name="region">The region.</param>
-	public RegionCollection(int region) : this() => _mask |= 1 << region;
+	public RegionCollection(int region) : this() => Mask |= 1 << region;
 
 	/// <summary>
 	/// Initializes an instance with the specified regions.
@@ -25,7 +19,7 @@ public readonly ref partial struct RegionCollection
 	{
 		foreach (int region in regions)
 		{
-			_mask |= 1 << region;
+			Mask |= 1 << region;
 		}
 	}
 
@@ -37,7 +31,7 @@ public readonly ref partial struct RegionCollection
 	{
 		foreach (int region in regions)
 		{
-			_mask |= 1 << region;
+			Mask |= 1 << region;
 		}
 	}
 
@@ -45,7 +39,12 @@ public readonly ref partial struct RegionCollection
 	/// <summary>
 	/// Indicates the number of regions that contain in this collection.
 	/// </summary>
-	public int Count => PopCount((uint)_mask);
+	public int Count => PopCount((uint)Mask);
+
+	/// <summary>
+	/// Indicates the mask used.
+	/// </summary>
+	public int Mask { get; }
 
 
 	/// <summary>
@@ -54,7 +53,7 @@ public readonly ref partial struct RegionCollection
 	/// </summary>
 	/// <param name="region">The region.</param>
 	/// <returns>A <see cref="bool"/> value.</returns>
-	public bool this[int region] => (_mask >> region & 1) != 0;
+	public bool this[int region] => (Mask >> region & 1) != 0;
 
 
 	/// <summary>
@@ -62,10 +61,10 @@ public readonly ref partial struct RegionCollection
 	/// </summary>
 	/// <param name="other">The collection to compare.</param>
 	/// <returns>A <see cref="bool"/> result.</returns>
-	public bool Equals(in RegionCollection other) => _mask == other._mask;
+	public bool Equals(in RegionCollection other) => Mask == other.Mask;
 
 	/// <inheritdoc cref="object.GetHashCode"/>
-	public override int GetHashCode() => _mask;
+	public override int GetHashCode() => Mask;
 
 	/// <inheritdoc cref="object.ToString"/>
 	public override string ToString()
@@ -73,7 +72,7 @@ public readonly ref partial struct RegionCollection
 		return Count switch
 		{
 			0 => string.Empty,
-			1 when TrailingZeroCount(_mask) is var r => $"{GetLabel(r / 9)}{r % 9 + 1}",
+			1 when TrailingZeroCount(Mask) is var r => $"{GetLabel(r / 9)}{r % 9 + 1}",
 			_ => f(this)
 		};
 
@@ -133,7 +132,7 @@ public readonly ref partial struct RegionCollection
 	/// </summary>
 	/// <returns>The enumerator instance.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public ReadOnlySpan<int>.Enumerator GetEnumerator() => _mask.GetEnumerator();
+	public ReadOnlySpan<int>.Enumerator GetEnumerator() => Mask.GetEnumerator();
 
 	/// <summary>
 	/// Get the label of each region.
