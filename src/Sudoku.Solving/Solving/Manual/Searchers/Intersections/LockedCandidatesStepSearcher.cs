@@ -92,7 +92,7 @@ public sealed unsafe partial class LockedCandidatesStepSearcher : ILockedCandida
 
 				// Okay, now accumulate into the collection.
 				var step = new LockedCandidatesStep(
-					elimMap.ToImmutableConclusions(digit),
+					ImmutableArray.Create(Conclusion.ToConclusions(elimMap, digit, ConclusionType.Elimination)),
 					ImmutableArray.Create(
 						View.Empty
 							+ candidateOffsets

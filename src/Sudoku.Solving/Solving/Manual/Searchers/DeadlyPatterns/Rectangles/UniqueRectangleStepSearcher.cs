@@ -508,7 +508,7 @@ public sealed unsafe partial class UniqueRectangleStepSearcher : IUniqueRectangl
 		bool isType5 = !(Cells.Empty + corner1 + corner2).InOneRegion;
 		accumulator.Add(
 			new UniqueRectangleType2Step(
-				elimMap.ToImmutableConclusions(extraDigit),
+				ImmutableArray.Create(Conclusion.ToConclusions(elimMap, extraDigit, ConclusionType.Elimination)),
 				ImmutableArray.Create(
 					View.Empty
 						+ (arMode ? GetHighlightCells(urCells) : null)
@@ -760,7 +760,7 @@ public sealed unsafe partial class UniqueRectangleStepSearcher : IUniqueRectangl
 					}
 				}
 
-				var conclusions = elimMap.ToImmutableConclusions(elimDigit);
+				var conclusions = Conclusion.ToConclusions(elimMap, elimDigit, ConclusionType.Elimination);
 				if (!AllowIncompleteUniqueRectangles && (candidateOffsets.Count, conclusions.Length) != (6, 2))
 				{
 					continue;
@@ -769,7 +769,7 @@ public sealed unsafe partial class UniqueRectangleStepSearcher : IUniqueRectangl
 				int[] offsets = otherCellsMap.ToArray();
 				accumulator.Add(
 					new UniqueRectangleWithConjugatePairStep(
-						conclusions,
+						ImmutableArray.Create(conclusions),
 						ImmutableArray.Create(
 							View.Empty
 								+ (arMode ? GetHighlightCells(urCells) : null)
@@ -865,7 +865,7 @@ public sealed unsafe partial class UniqueRectangleStepSearcher : IUniqueRectangl
 
 		accumulator.Add(
 			new UniqueRectangleType2Step(
-				elimMap.ToImmutableConclusions(extraDigit),
+				ImmutableArray.Create(Conclusion.ToConclusions(elimMap, extraDigit, ConclusionType.Elimination)),
 				ImmutableArray.Create(
 					View.Empty
 						+ (arMode ? GetHighlightCells(urCells) : null)
@@ -979,7 +979,7 @@ public sealed unsafe partial class UniqueRectangleStepSearcher : IUniqueRectangl
 				}
 			}
 
-			var conclusions = elimMap.ToImmutableConclusions(digit);
+			var conclusions = Conclusion.ToConclusions(elimMap, digit, ConclusionType.Elimination);
 			if (!AllowIncompleteUniqueRectangles && (candidateOffsets.Count, conclusions.Length) != (6, 2))
 			{
 				return;
@@ -987,7 +987,7 @@ public sealed unsafe partial class UniqueRectangleStepSearcher : IUniqueRectangl
 
 			accumulator.Add(
 				new UniqueRectangleWithConjugatePairStep(
-					conclusions,
+					ImmutableArray.Create(conclusions),
 					ImmutableArray.Create(
 						View.Empty
 							+ (arMode ? GetHighlightCells(urCells) : null)
@@ -2644,7 +2644,9 @@ public sealed unsafe partial class UniqueRectangleStepSearcher : IUniqueRectangl
 
 						accumulator.Add(
 							new UniqueRectangleWithWingStep(
-								elimMap.ToImmutableConclusions(elimDigit),
+								ImmutableArray.Create(
+									Conclusion.ToConclusions(elimMap, elimDigit, ConclusionType.Elimination)
+								),
 								ImmutableArray.Create(
 									View.Empty
 										+ (arMode ? GetHighlightCells(urCells) : null)
@@ -2748,7 +2750,13 @@ public sealed unsafe partial class UniqueRectangleStepSearcher : IUniqueRectangl
 
 								accumulator.Add(
 									new UniqueRectangleWithWingStep(
-										elimMap.ToImmutableConclusions(elimDigit),
+										ImmutableArray.Create(
+											Conclusion.ToConclusions(
+												elimMap,
+												elimDigit,
+												ConclusionType.Elimination
+											)
+										),
 										ImmutableArray.Create(
 											View.Empty
 												+ (arMode ? GetHighlightCells(urCells) : null)
@@ -2852,7 +2860,13 @@ public sealed unsafe partial class UniqueRectangleStepSearcher : IUniqueRectangl
 
 									accumulator.Add(
 										new UniqueRectangleWithWingStep(
-											elimMap.ToImmutableConclusions(elimDigit),
+											ImmutableArray.Create(
+												Conclusion.ToConclusions(
+													elimMap,
+													elimDigit,
+													ConclusionType.Elimination
+												)
+											),
 											ImmutableArray.Create(
 												View.Empty
 													+ (arMode ? GetHighlightCells(urCells) : null)
@@ -3584,7 +3598,9 @@ public sealed unsafe partial class UniqueRectangleStepSearcher : IUniqueRectangl
 
 			accumulator.Add(
 				new UniqueRectangleWithGuardianStep(
-					elimMap.ToImmutableConclusions(guardianDigit),
+					ImmutableArray.Create(
+						Conclusion.ToConclusions(elimMap, guardianDigit, ConclusionType.Elimination)
+					),
 					ImmutableArray.Create(
 						View.Empty
 							+ candidateOffsets

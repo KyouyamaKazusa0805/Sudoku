@@ -157,7 +157,7 @@ public sealed unsafe partial class UniqueLoopStepSearcher :
 
 		var step = new UniqueLoopType1Step(
 			ImmutableArray.CreateRange(conclusions),
-			ImmutableArray.Create(new View[] { View.Empty + candidateOffsets + links }),
+			ImmutableArray.Create(View.Empty + candidateOffsets + links),
 			d1,
 			d2,
 			loop
@@ -214,8 +214,8 @@ public sealed unsafe partial class UniqueLoopStepSearcher :
 		}
 
 		var step = new UniqueLoopType2Step(
-			elimMap.ToImmutableConclusions(extraDigit),
-			ImmutableArray.Create(new View[] { View.Empty + candidateOffsets + links }),
+			ImmutableArray.Create(Conclusion.ToConclusions(elimMap, extraDigit, ConclusionType.Elimination)),
+			ImmutableArray.Create(View.Empty + candidateOffsets + links),
 			d1,
 			d2,
 			loop,
@@ -328,10 +328,10 @@ public sealed unsafe partial class UniqueLoopStepSearcher :
 					var step = new UniqueLoopType3Step(
 						ImmutableArray.CreateRange(conclusions),
 						ImmutableArray.Create(
-							new View[]
-							{
-								View.Empty + candidateOffsets + new RegionViewNode(0, region) + links
-							}
+							View.Empty
+								+ candidateOffsets
+								+ new RegionViewNode(0, region)
+								+ links
 						),
 						d1,
 						d2,
@@ -419,10 +419,10 @@ public sealed unsafe partial class UniqueLoopStepSearcher :
 				var step = new UniqueLoopType4Step(
 					ImmutableArray.CreateRange(conclusions),
 					ImmutableArray.Create(
-						new View[]
-						{
-							View.Empty + candidateOffsets + new RegionViewNode(0, region) + links
-						}
+						View.Empty
+							+ candidateOffsets
+							+ new RegionViewNode(0, region)
+							+ links
 					),
 					d1,
 					d2,

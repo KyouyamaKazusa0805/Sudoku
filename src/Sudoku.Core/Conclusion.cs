@@ -185,6 +185,19 @@ public readonly record struct Conclusion(int Mask) :
 #endif
 
 
+	/// <summary>
+	/// Gets the conclusion list whose inner value is from the specified cells,
+	/// the specified digit used and the specified conclusion type.
+	/// </summary>
+	/// <param name="cells">The cells that the conclusions are used.</param>
+	/// <param name="digit">The digit used.</param>
+	/// <param name="type">The type of the conclusion.</param>
+	/// <returns>An array of type <see cref="Conclusion"/>.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static Conclusion[] ToConclusions(in Cells cells, int digit, ConclusionType type) =>
+		from cell in cells.ToArray() select new Conclusion(type, cell, digit);
+
+
 	/// <inheritdoc/>
 	public static bool operator <(Conclusion left, Conclusion right) => left.CompareTo(right) < 0;
 

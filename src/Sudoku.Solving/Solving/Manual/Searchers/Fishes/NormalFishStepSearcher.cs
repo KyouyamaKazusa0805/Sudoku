@@ -219,13 +219,12 @@ public sealed unsafe partial class NormalFishStepSearcher : INormalFishStepSearc
 
 					// Gather the result.
 					var step = new NormalFishStep(
-						elimMap.ToImmutableConclusions(digit),
 						ImmutableArray.Create(
-							new View[]
-							{
-								View.Empty + candidateOffsets + regionOffsets,
-								GetDirectView(grid, digit, bs, cs, fins, searchRow)
-							}
+							Conclusion.ToConclusions(elimMap, digit, ConclusionType.Elimination)
+						),
+						ImmutableArray.Create(
+							View.Empty + candidateOffsets + regionOffsets,
+							GetDirectView(grid, digit, bs, cs, fins, searchRow)
 						),
 						digit,
 						new RegionCollection(bs).GetHashCode(), // The mask itself.

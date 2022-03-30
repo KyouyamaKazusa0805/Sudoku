@@ -142,7 +142,9 @@ public sealed unsafe partial class RegularWingStepSearcher : IRegularWingStepSea
 					}
 
 					var step = new RegularWingStep(
-						elimMap.ToImmutableConclusions(zDigit),
+						ImmutableArray.Create(
+							Conclusion.ToConclusions(elimMap, zDigit, ConclusionType.Elimination)
+						),
 						ImmutableArray.Create(View.Empty + candidateOffsets),
 						pivot,
 						PopCount((uint)mask),

@@ -3494,6 +3494,16 @@
         <member name="M:Sudoku.Conclusion.System#IComparable#CompareTo(System.Object)">
             <inheritdoc/>
         </member>
+        <member name="M:Sudoku.Conclusion.ToConclusions(Sudoku.Collections.Cells@,System.Int32,Sudoku.ConclusionType)">
+            <summary>
+            Gets the conclusion list whose inner value is from the specified cells,
+            the specified digit used and the specified conclusion type.
+            </summary>
+            <param name="cells">The cells that the conclusions are used.</param>
+            <param name="digit">The digit used.</param>
+            <param name="type">The type of the conclusion.</param>
+            <returns>An array of type <see cref="T:Sudoku.Conclusion"/>.</returns>
+        </member>
         <member name="M:Sudoku.Conclusion.op_LessThan(Sudoku.Conclusion,Sudoku.Conclusion)">
             <inheritdoc/>
         </member>

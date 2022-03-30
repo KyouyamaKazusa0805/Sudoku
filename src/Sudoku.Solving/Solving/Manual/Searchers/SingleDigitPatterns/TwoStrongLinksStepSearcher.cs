@@ -85,7 +85,9 @@ public sealed unsafe partial class TwoStrongLinksStepSearcher : ITwoStrongLinksS
 					}
 
 					var step = new TwoStrongLinksStep(
-						gridMap.ToImmutableConclusions(digit),
+						ImmutableArray.Create(
+							Conclusion.ToConclusions(gridMap, digit, ConclusionType.Elimination)
+						),
 						ImmutableArray.Create(
 							View.Empty
 								+ new CandidateViewNode[]

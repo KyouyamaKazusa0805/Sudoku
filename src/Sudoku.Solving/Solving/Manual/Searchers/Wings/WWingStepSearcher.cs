@@ -98,7 +98,9 @@ public sealed unsafe partial class WWingStepSearcher : IIregularWingStepSearcher
 
 						// Now W-Wing found. Store it into the accumulator.
 						var step = new WWingStep(
-							elimMap.ToImmutableConclusions(anotherDigit),
+							ImmutableArray.Create(
+								Conclusion.ToConclusions(elimMap, anotherDigit, ConclusionType.Elimination)
+							),
 							ImmutableArray.Create(
 								View.Empty
 									+ new CandidateViewNode[]
