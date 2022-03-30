@@ -9,12 +9,8 @@
 internal sealed record RefStructOverridensReceiver(CancellationToken CancellationToken) :
 	IResultCollectionReceiver<INamedTypeSymbol>
 {
-	/// <summary>
-	/// Indicates the descriptor <c>SCA0013</c>
-	/// (<see langword="ref struct"/>s requires the keyword <see langword="partial"/>).
-	/// </summary>
-	private static readonly DiagnosticDescriptor SCA0013 = new(
-		id: nameof(SCA0013),
+	private static readonly DiagnosticDescriptor SCA0001 = new(
+		id: nameof(SCA0001),
 		title: "Ref structs requires the keyword 'partial'",
 		messageFormat: "Ref structs requires the keyword 'partial'",
 		category: "SourceGen",
@@ -42,7 +38,7 @@ internal sealed record RefStructOverridensReceiver(CancellationToken Cancellatio
 				Node: TypeDeclarationSyntax
 				{
 					Identifier: var identifier,
-					Modifiers: [_, ..] modifiers
+					Modifiers: { Count: not 0 } modifiers
 				} n,
 				SemanticModel: { Compilation: { } compilation } semanticModel
 			}
@@ -64,8 +60,7 @@ internal sealed record RefStructOverridensReceiver(CancellationToken Cancellatio
 
 		if (!modifiers.Any(SyntaxKind.PartialKeyword))
 		{
-			Diagnostics.Add(Diagnostic.Create(SCA0013, identifier.GetLocation(), messageArgs: null));
-
+			Diagnostics.Add(Diagnostic.Create(SCA0001, identifier.GetLocation(), messageArgs: null));
 			return;
 		}
 

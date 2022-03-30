@@ -45,12 +45,6 @@
         <member name="P:Sudoku.Diagnostics.CodeGen.SyntaxContextReceivers.RefStructOverridensReceiver.CancellationToken">
             <summary>The cancellation token to cancel the operation.</summary>
         </member>
-        <member name="F:Sudoku.Diagnostics.CodeGen.SyntaxContextReceivers.RefStructOverridensReceiver.SCA0013">
-            <summary>
-            Indicates the descriptor <c>SCA0013</c>
-            (<see langword="ref struct"/>s requires the keyword <see langword="partial"/>).
-            </summary>
-        </member>
         <member name="P:Sudoku.Diagnostics.CodeGen.SyntaxContextReceivers.RefStructOverridensReceiver.Collection">
             <inheritdoc/>
         </member>
