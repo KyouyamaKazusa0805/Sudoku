@@ -51,7 +51,7 @@ public readonly unsafe struct GridSegment :
 			var result = Cells.Empty;
 			foreach (ushort value in _values)
 			{
-				result.AddAnyway(value >> 9);
+				result.Add(value >> 9);
 			}
 
 			return result;

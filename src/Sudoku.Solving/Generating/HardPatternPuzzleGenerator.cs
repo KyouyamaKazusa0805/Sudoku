@@ -91,7 +91,7 @@ public sealed unsafe class HardPatternPuzzleGenerator : IPuzzleGenerator
 					int cell = Random.Shared.Next(0, 81);
 					if (!map.Contains(cell))
 					{
-						map.AddAnyway(cell);
+						map.Add(cell);
 						break;
 					}
 				}

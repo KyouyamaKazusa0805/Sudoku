@@ -477,7 +477,7 @@ public unsafe struct Candidates :
 				var cells = Cells.Empty;
 				foreach (int candidate in digitGroup)
 				{
-					cells.AddAnyway(candidate / 9);
+					cells.Add(candidate / 9);
 				}
 
 				sb.Append(cells);
@@ -505,7 +505,7 @@ public unsafe struct Candidates :
 		{
 			if (Contains(cell * 9 + digit))
 			{
-				result.AddAnyway(cell);
+				result.Add(cell);
 			}
 		}
 

@@ -1229,7 +1229,7 @@ public unsafe partial struct Grid :
 			{
 				if (predicate(this, cell, digit))
 				{
-					map.AddAnyway(cell);
+					map.Add(cell);
 				}
 			}
 		}
@@ -1251,7 +1251,7 @@ public unsafe partial struct Grid :
 		{
 			if (predicate(this, cell))
 			{
-				result.AddAnyway(cell);
+				result.Add(cell);
 			}
 		}
 

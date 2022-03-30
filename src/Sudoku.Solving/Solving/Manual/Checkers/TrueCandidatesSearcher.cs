@@ -67,7 +67,7 @@ public sealed unsafe class TrueCandidatesSearcher
 			foreach (int digit in Puzzle.GetCandidates(cell))
 			{
 				ref var map = ref stack[0, digit];
-				map.AddAnyway(cell);
+				map.Add(cell);
 
 				cell.CopyRegionInfo(peerRegions);
 				for (int i = 0; i < 3; i++)
@@ -124,7 +124,7 @@ public sealed unsafe class TrueCandidatesSearcher
 				foreach (int digit in pairs[currentIndex - 1, i])
 				{
 					var temp = stack[currentIndex - 1, digit];
-					temp.AddAnyway(currentCell);
+					temp.Add(currentCell);
 
 					fixed (int* p = playground)
 					{
@@ -155,8 +155,8 @@ public sealed unsafe class TrueCandidatesSearcher
 				chosen[currentIndex] = i;
 				int pos1 = TrailingZeroCount(mask);
 
-				stack[currentIndex, pos1].AddAnyway(currentCell);
-				stack[currentIndex, mask.GetNextSet(pos1)].AddAnyway(currentCell);
+				stack[currentIndex, pos1].Add(currentCell);
+				stack[currentIndex, mask.GetNextSet(pos1)].Add(currentCell);
 				if (currentIndex == multivalueCellsCount)
 				{
 					// Iterate on each digit.

@@ -797,6 +797,24 @@ public unsafe struct Cells :
 	public readonly Vector128<long> ToVector() => Vector128.Create(_high, _low);
 
 	/// <summary>
+	/// Gets the <see cref="Cells"/> instance that starts with the specified index.
+	/// </summary>
+	/// <param name="start">The start index.</param>
+	/// <param name="count">The desired number of offsets.</param>
+	/// <returns>The <see cref="Cells"/> result.</returns>
+	public readonly Cells Slice(int start, int count)
+	{
+		var result = Empty;
+		int[] offsets = Offsets;
+		for (int i = start; i < count; i++)
+		{
+			result += offsets[i];
+		}
+
+		return result;
+	}
+
+	/// <summary>
 	/// Being called by <see cref="RowMask"/>, <see cref="ColumnMask"/> and <see cref="BlockMask"/>.
 	/// </summary>
 	/// <param name="start">The start index.</param>
@@ -820,26 +838,11 @@ public unsafe struct Cells :
 	}
 
 	/// <summary>
-	/// Set the specified offset as <see langword="true"/> or <see langword="false"/> value.
+	/// Set the specified offset as <see langword="true"/> value.
 	/// </summary>
-	/// <param name="offset">
-	/// The offset. This value can be positive and negative. If 
-	/// negative, the offset will be assigned <see langword="false"/>
-	/// into the corresponding bit position of its absolute value.
-	/// </param>
+	/// <param name="offset">The offset.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	[EditorBrowsable(EditorBrowsableState.Never)]
-	public void Add(int offset)
-	{
-		if (offset >= 0) // Positive or zero.
-		{
-			InternalAdd(offset, true);
-		}
-		else // Negative values.
-		{
-			InternalAdd(~offset, false);
-		}
-	}
+	public void Add(int offset) => InternalAdd(offset, true);
 
 	/// <summary>
 	/// Set the specified cell as <see langword="true"/> value.
@@ -859,18 +862,6 @@ public unsafe struct Cells :
 	}
 
 	/// <summary>
-	/// Set the specified offset as <see langword="true"/> value.
-	/// </summary>
-	/// <param name="offset">The offset.</param>
-	/// <remarks>
-	/// Different with <see cref="Add(int)"/>, the method will process negative values,
-	/// but this won't.
-	/// </remarks>
-	/// <seealso cref="Add(int)"/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public void AddAnyway(int offset) => InternalAdd(offset, true);
-
-	/// <summary>
 	/// Set the specified offsets as <see langword="true"/> value.
 	/// </summary>
 	/// <param name="offsets">The offsets to add.</param>
@@ -878,7 +869,7 @@ public unsafe struct Cells :
 	{
 		foreach (int cell in offsets)
 		{
-			AddAnyway(cell);
+			Add(cell);
 		}
 	}
 
@@ -887,7 +878,7 @@ public unsafe struct Cells :
 	{
 		foreach (int cell in offsets)
 		{
-			AddAnyway(cell);
+			Add(cell);
 		}
 	}
 
@@ -895,10 +886,6 @@ public unsafe struct Cells :
 	/// Set the specified offset as <see langword="false"/> value.
 	/// </summary>
 	/// <param name="offset">The offset.</param>
-	/// <remarks>
-	/// Different with <see cref="Add(int)"/>, this method <b>can't</b> receive the negative value as the parameter.
-	/// </remarks>
-	/// <seealso cref="Add(int)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public void Remove(int offset) => InternalAdd(offset, false);
 

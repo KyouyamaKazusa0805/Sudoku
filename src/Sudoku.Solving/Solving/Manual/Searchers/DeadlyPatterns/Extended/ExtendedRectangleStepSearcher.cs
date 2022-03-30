@@ -124,8 +124,8 @@ public sealed unsafe partial class ExtendedRectangleStepSearcher : IExtendedRect
 					foreach (int pos in mask)
 					{
 						int cell1 = RegionCells[region1][pos], cell2 = RegionCells[region2][pos];
-						map.AddAnyway(cell1);
-						map.AddAnyway(cell2);
+						map.Add(cell1);
+						map.Add(cell2);
 						pairs.Add((cell1, cell2));
 					}
 
@@ -231,7 +231,7 @@ public sealed unsafe partial class ExtendedRectangleStepSearcher : IExtendedRect
 					{
 						if (grid[cell, digit])
 						{
-							extraCellsMap.AddAnyway(cell);
+							extraCellsMap.Add(cell);
 							break;
 						}
 					}

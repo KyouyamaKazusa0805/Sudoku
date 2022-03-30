@@ -184,7 +184,7 @@ public abstract class RxCyNotation : ICellNotation
 			{
 				for (int j = 0; j < cIndex; j++)
 				{
-					result.AddAnyway(bufferRows[i] * 9 + bufferColumns[j]);
+					result.Add(bufferRows[i] * 9 + bufferColumns[j]);
 				}
 			}
 		}

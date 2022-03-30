@@ -26,7 +26,7 @@ public interface IUniqueLoopOrBivalueOddagonStepSearcher : IStepSearcher, ILoopL
 		int allowedExtraCellsCount, ref Cells loopMap, List<int> tempLoop,
 		Func<bool> predicate, List<(Cells, IEnumerable<LinkViewNode>)> loops)
 	{
-		loopMap.AddAnyway(cell);
+		loopMap.Add(cell);
 		tempLoop.Add(cell);
 
 		foreach (var region in Regions)
@@ -80,7 +80,7 @@ public interface IUniqueLoopOrBivalueOddagonStepSearcher : IStepSearcher, ILoopL
 		}
 
 		// Backtrack.
-		loopMap.Remove(cell);
+		loopMap -= cell;
 		tempLoop.RemoveAt(tempLoop.Count - 1);
 	}
 }

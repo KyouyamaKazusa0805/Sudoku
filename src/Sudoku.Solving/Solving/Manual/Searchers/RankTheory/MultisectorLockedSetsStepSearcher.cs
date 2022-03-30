@@ -147,7 +147,7 @@ public sealed unsafe partial class MultisectorLockedSetsStepSearcher : IMultisec
 					{
 						if (map.Contains(cell))
 						{
-							canL[digit].AddAnyway(cell);
+							canL[digit].Add(cell);
 						}
 
 						conclusions.Add(new(ConclusionType.Elimination, cell, digit));

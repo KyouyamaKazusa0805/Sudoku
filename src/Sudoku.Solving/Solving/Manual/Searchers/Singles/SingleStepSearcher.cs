@@ -257,7 +257,7 @@ public sealed unsafe partial class SingleStepSearcher : ISingleStepSearcher
 				{
 					if (cell != resultCell && grid.GetStatus(cell) == CellStatus.Empty)
 					{
-						tempMap.AddAnyway(cell);
+						tempMap.Add(cell);
 					}
 				}
 				foreach (int cell in tempMap)
@@ -266,7 +266,7 @@ public sealed unsafe partial class SingleStepSearcher : ISingleStepSearcher
 					{
 						if (cell != resultCell && grid[peerCell] == digit)
 						{
-							crosshatchingCells.AddAnyway(peerCell);
+							crosshatchingCells.Add(peerCell);
 						}
 					}
 				}

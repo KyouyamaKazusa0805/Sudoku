@@ -31,7 +31,7 @@ public sealed unsafe partial class DominoLoopStepSearcher : IDominoLoopStepSearc
 			ref var map = ref RegionMaps[i];
 			foreach (int cell in RegionCells[i])
 			{
-				map.AddAnyway(cell);
+				map.Add(cell);
 			}
 		}
 

@@ -65,7 +65,7 @@ public unsafe interface IBivalueUniversalGraveStepSearcher : IUniversalStepSearc
 			foreach (int digit in grid.GetCandidates(cell))
 			{
 				ref var map = ref stack[0, digit];
-				map.AddAnyway(cell);
+				map.Add(cell);
 
 				fixed (int* p = span)
 				{
@@ -125,7 +125,7 @@ public unsafe interface IBivalueUniversalGraveStepSearcher : IUniversalStepSearc
 				foreach (int digit in pairs[currentIndex - 1, i])
 				{
 					var temp = stack[currentIndex - 1, digit];
-					temp.AddAnyway(currentCell);
+					temp.Add(currentCell);
 
 					fixed (int* p = playground)
 					{
@@ -156,8 +156,8 @@ public unsafe interface IBivalueUniversalGraveStepSearcher : IUniversalStepSearc
 				chosen[currentIndex] = i;
 				int pos1 = TrailingZeroCount(mask);
 
-				stack[currentIndex, pos1].AddAnyway(currentCell);
-				stack[currentIndex, mask.GetNextSet(pos1)].AddAnyway(currentCell);
+				stack[currentIndex, pos1].Add(currentCell);
+				stack[currentIndex, mask.GetNextSet(pos1)].Add(currentCell);
 				if (currentIndex == multivalueCellsCount)
 				{
 					// Iterate on each digit.

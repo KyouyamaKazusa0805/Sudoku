@@ -80,8 +80,8 @@ public sealed unsafe class SymmetricPuzzleGenerator : IPuzzleGenerator
 					foreach (int tCell in GetCells(selectedType, r, c))
 					{
 						pSolution[tCell] = '0';
-						totalMap.AddAnyway(tCell);
-						tempMap.AddAnyway(tCell);
+						totalMap.Add(tCell);
+						tempMap.Add(tCell);
 					}
 
 					if (cancellationToken.IsCancellationRequested)
@@ -119,7 +119,7 @@ public sealed unsafe class SymmetricPuzzleGenerator : IPuzzleGenerator
 					int cell = Random.Shared.Next(0, 81);
 					if (!map.Contains(cell))
 					{
-						map.AddAnyway(cell);
+						map.Add(cell);
 						break;
 					}
 				}

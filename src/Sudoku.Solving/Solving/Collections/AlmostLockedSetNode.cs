@@ -40,7 +40,7 @@ public sealed class AlmostLockedSetNode : Node
 			while (otherCells != 0)
 			{
 				int cell = (int)(otherCells >> Shifting & 127);
-				result.AddAnyway(cell);
+				result.Add(cell);
 
 				otherCells >>= Shifting;
 			}

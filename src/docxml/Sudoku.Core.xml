@@ -1043,6 +1043,14 @@
             </summary>
             <returns>The <see cref="T:System.Runtime.Intrinsics.Vector128`1"/> instance.</returns>
         </member>
+        <member name="M:Sudoku.Collections.Cells.Slice(System.Int32,System.Int32)">
+            <summary>
+            Gets the <see cref="T:Sudoku.Collections.Cells"/> instance that starts with the specified index.
+            </summary>
+            <param name="start">The start index.</param>
+            <param name="count">The desired number of offsets.</param>
+            <returns>The <see cref="T:Sudoku.Collections.Cells"/> result.</returns>
+        </member>
         <member name="M:Sudoku.Collections.Cells.CreateMask(System.Int32,System.Int32)">
             <summary>
             Being called by <see cref="P:Sudoku.Collections.Cells.RowMask"/>, <see cref="P:Sudoku.Collections.Cells.ColumnMask"/> and <see cref="P:Sudoku.Collections.Cells.BlockMask"/>.
@@ -1056,30 +1064,15 @@
         </member>
         <member name="M:Sudoku.Collections.Cells.Add(System.Int32)">
             <summary>
-            Set the specified offset as <see langword="true"/> or <see langword="false"/> value.
+            Set the specified offset as <see langword="true"/> value.
             </summary>
-            <param name="offset">
-            The offset. This value can be positive and negative. If 
-            negative, the offset will be assigned <see langword="false"/>
-            into the corresponding bit position of its absolute value.
-            </param>
+            <param name="offset">The offset.</param>
         </member>
         <member name="M:Sudoku.Collections.Cells.Add(System.String)">
             <summary>
             Set the specified cell as <see langword="true"/> value.
             </summary>
             <param name="offset">The cell to add, represented as a <see cref="T:System.String"/> value.</param>
-        </member>
-        <member name="M:Sudoku.Collections.Cells.AddAnyway(System.Int32)">
-            <summary>
-            Set the specified offset as <see langword="true"/> value.
-            </summary>
-            <param name="offset">The offset.</param>
-            <remarks>
-            Different with <see cref="M:Sudoku.Collections.Cells.Add(System.Int32)"/>, the method will process negative values,
-            but this won't.
-            </remarks>
-            <seealso cref="M:Sudoku.Collections.Cells.Add(System.Int32)"/>
         </member>
         <member name="M:Sudoku.Collections.Cells.AddRange(System.ReadOnlySpan{System.Int32}@)">
             <summary>
@@ -1095,10 +1088,6 @@
             Set the specified offset as <see langword="false"/> value.
             </summary>
             <param name="offset">The offset.</param>
-            <remarks>
-            Different with <see cref="M:Sudoku.Collections.Cells.Add(System.Int32)"/>, this method <b>can't</b> receive the negative value as the parameter.
-            </remarks>
-            <seealso cref="M:Sudoku.Collections.Cells.Add(System.Int32)"/>
         </member>
         <member name="M:Sudoku.Collections.Cells.Clear">
             <summary>

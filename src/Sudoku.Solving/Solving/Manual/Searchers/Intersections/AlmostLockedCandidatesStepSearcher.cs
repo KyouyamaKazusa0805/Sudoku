@@ -124,7 +124,7 @@ public sealed unsafe partial class AlmostLockedCandidatesStepSearcher : IAlmostL
 			var ahsCells = Cells.Empty;
 			foreach (int pos in ahsMask)
 			{
-				ahsCells.AddAnyway(RegionCells[coverSet][pos]);
+				ahsCells.Add(RegionCells[coverSet][pos]);
 			}
 
 			// Gather all eliminations.

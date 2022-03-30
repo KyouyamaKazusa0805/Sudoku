@@ -23,7 +23,7 @@ public sealed unsafe partial class GuardianStepSearcher : IGuardianStepSearcher
 			var pMap = eliminationMaps + step.Digit;
 			foreach (var conclusion in step.Conclusions)
 			{
-				pMap->AddAnyway(conclusion.Cell);
+				pMap->Add(conclusion.Cell);
 			}
 		}
 
@@ -99,7 +99,7 @@ public sealed unsafe partial class GuardianStepSearcher : IGuardianStepSearcher
 					// 009050007060030080000009200100700800002400005080000040010820600000010000300007010
 					void f(int cell, Region lastRegion, Cells guardians)
 					{
-						loopMap.AddAnyway(cell);
+						loopMap.Add(cell);
 						tempLoop.Add(cell);
 
 						foreach (var region in Regions)
@@ -136,7 +136,7 @@ public sealed unsafe partial class GuardianStepSearcher : IGuardianStepSearcher
 							}
 						}
 
-						loopMap.Remove(cell);
+						loopMap -= cell;
 						tempLoop.RemoveAt(tempLoop.Count - 1);
 					}
 				}

@@ -21,11 +21,11 @@ public interface IPatternOverlayStepSearcher : ILastResortStepSearcher
 			{
 				if ((grid.GetCandidates(cell) >> digit & 1) == 0)
 				{
-					invalidPos[digit].AddAnyway(cell);
+					invalidPos[digit].Add(cell);
 				}
 				else if (grid[cell] == digit)
 				{
-					mustPos[digit].AddAnyway(cell);
+					mustPos[digit].Add(cell);
 				}
 			}
 		}

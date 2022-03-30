@@ -94,7 +94,7 @@ public readonly record struct AlmostLockedSet(
 		{
 			if ((grid.GetCandidates(cell) >> digit & 1) != 0)
 			{
-				result.AddAnyway(cell);
+				result.Add(cell);
 			}
 		}
 
