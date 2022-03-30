@@ -1391,16 +1391,6 @@ public unsafe partial struct Grid :
 
 
 	/// <summary>
-	/// Gets the grid segment that uses the specified grid as the template,
-	/// and a <see cref="Cells"/> instance as the pattern.
-	/// </summary>
-	/// <param name="grid">The grid.</param>
-	/// <param name="pattern">The pattern.</param>
-	/// <returns>The result grid.</returns>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static GridSegment operator &(in Grid grid, in Cells pattern) => new(grid, pattern);
-
-	/// <summary>
 	/// Determine whether two <see cref="Grid"/>s are same.
 	/// </summary>
 	/// <param name="left">The left-side instance to compare.</param>
