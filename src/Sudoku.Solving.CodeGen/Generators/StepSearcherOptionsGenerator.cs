@@ -93,21 +93,12 @@ public sealed class StepSearcherOptionsGenerator : ISourceGenerator
 				sb = new StringBuilder().Append(comma);
 				if (enabledAreas is { } ea)
 				{
-					string targetStr = string.Join(
-						" | ",
-						from e in ea.ToString().Split(new[] { ' ', ',' }, StringSplitOptions.RemoveEmptyEntries)
-						select $"global::{typeof(EnabledAreas).FullName}.{e}"
-					);
+					string targetStr = f(ea);
 					sb.Append($"{nameof(EnabledAreas)}: {targetStr}{comma}");
 				}
 				if (disabledReason is { } dr)
 				{
-					string targetStr = string.Join(
-						" | ",
-						from e in dr.ToString().Split(new[] { ' ', ',' }, StringSplitOptions.RemoveEmptyEntries)
-						select $"global::{typeof(DisabledReason).FullName}.{e}"
-					);
-
+					string targetStr = f(dr);
 					sb.Append($"{nameof(DisabledReason)}: {targetStr}{comma}");
 				}
 
@@ -130,6 +121,15 @@ public sealed class StepSearcherOptionsGenerator : ISourceGenerator
 				}
 				"""
 			);
+
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			static string f<TEnum>(TEnum field) where TEnum : Enum =>
+				string.Join(
+					" | ",
+					from e in field.ToString().Split(new[] { ',', ' ' }, StringSplitOptions.RemoveEmptyEntries)
+					select $"global::{typeof(TEnum).FullName}.{e}"
+				);
 		}
 	}
 
