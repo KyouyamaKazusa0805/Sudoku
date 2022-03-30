@@ -7,7 +7,8 @@
 	System.Collections.Immutable.ImmutableArray<
 		System.Collections.Generic.KeyValuePair<
 			string,
-			Microsoft.CodeAnalysis.TypedConstant>>>;
+			Microsoft.CodeAnalysis.TypedConstant>>,
+	Microsoft.CodeAnalysis.Location>;
 
 namespace Sudoku.Diagnostics.CodeGen.Generators;
 
@@ -36,6 +37,16 @@ public sealed class StepSearcherOptionsGenerator : ISourceGenerator
 		DiagnosticSeverity.Error,
 		true,
 		helpLinkUri: "https://sunnieshine.github.io/Sudoku/code-analysis/sca0102"
+	);
+
+	private static readonly DiagnosticDescriptor SCA0103 = new(
+		nameof(SCA0103),
+		"Priority value cannot be negative even if the type is 'int'",
+		"Priority value cannot be negative even if the type is 'int'",
+		"Design",
+		DiagnosticSeverity.Warning,
+		true,
+		helpLinkUri: "https://sunnieshine.github.io/Sudoku/code-analysis/sca0103"
 	);
 
 
@@ -87,7 +98,8 @@ public sealed class StepSearcherOptionsGenerator : ISourceGenerator
 						{ Type.SpecialType: SpecialType.System_Int32, Value: int priority },
 						{ Type.TypeKind: TypeKind.Enum, Value: byte dl }
 					],
-					NamedArguments: var namedArguments
+					NamedArguments: var namedArguments,
+					ApplicationSyntaxReference: { SyntaxTree: var syntaxTree, Span: var span }
 				}
 #pragma warning restore IDE0055
 			)
@@ -102,6 +114,14 @@ public sealed class StepSearcherOptionsGenerator : ISourceGenerator
 				continue;
 			}
 
+			var location = Location.Create(syntaxTree, span);
+
+			// The priority value cannot be negative or zero.
+			if (priority <= 0)
+			{
+				context.ReportDiagnostic(Diagnostic.Create(SCA0103, location, messageArgs: null));
+			}
+
 			// Adds the necessary info into the collection.
 			foundAttributesData.Add(
 				(
@@ -110,7 +130,8 @@ public sealed class StepSearcherOptionsGenerator : ISourceGenerator
 					priority,
 					(DisplayingLevel)dl,
 					stepSearcherName,
-					namedArguments
+					namedArguments,
+					location
 				)
 			);
 		}
@@ -124,14 +145,15 @@ public sealed class StepSearcherOptionsGenerator : ISourceGenerator
 				int b = foundAttributesData[j].Item3;
 				if (a == b)
 				{
-					context.ReportDiagnostic(Diagnostic.Create(SCA0102, null, messageArgs: null));
+					context.ReportDiagnostic(
+						Diagnostic.Create(SCA0102, foundAttributesData[j].Item7, messageArgs: null));
 				}
 			}
 		}
 
 		// Iterate on each valid attribute data, and checks the inner value to be used
 		// by the source generator to output.
-		foreach (var (type, @namespace, priority, level, name, namedArguments) in foundAttributesData)
+		foreach (var (type, @namespace, priority, level, name, namedArguments, _) in foundAttributesData)
 		{
 			// Checks whether the attribute has configured any extra options.
 			EnabledAreas? enabledAreas = null;
