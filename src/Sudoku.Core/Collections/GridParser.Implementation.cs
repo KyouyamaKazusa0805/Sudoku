@@ -85,13 +85,7 @@ partial struct GridParser
 		{
 			foreach (string digitString in value.Split(new[] { '\t' }))
 			{
-				unsafe
-				{
-					fixed (char* c = digitString)
-					{
-						sb.Append(string.IsNullOrEmpty(digitString) ? '.' : *c);
-					}
-				}
+				sb.Append(string.IsNullOrEmpty(digitString) ? '.' : digitString[0]);
 			}
 		}
 
@@ -483,24 +477,17 @@ partial struct GridParser
 			}
 
 			var result = Grid.Empty;
-			unsafe
+			for (int i = 0; i < candidatesCount; i++)
 			{
-				fixed (char* pStr = parsingValue)
+				char c = parsingValue[i];
+				if (c is not (>= '0' and <= '9' or '.'))
 				{
-					int i = 0;
-					for (char* p = pStr; i < candidatesCount; p++, i++)
-					{
-						char c = *p;
-						if (c is not (>= '0' and <= '9' or '.'))
-						{
-							return Grid.Undefined;
-						}
+					return Grid.Undefined;
+				}
 
-						if (c is '0' or '.')
-						{
-							result[i / 9, i % 9] = false;
-						}
-					}
+				if (c is '0' or '.')
+				{
+					result[i / 9, i % 9] = false;
 				}
 			}
 

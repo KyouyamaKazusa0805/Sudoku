@@ -216,10 +216,11 @@ public unsafe partial struct Grid :
 			throw new ArgumentException("The length of the array argument should be 81.", nameof(masks));
 		}
 
-		fixed (short* pArray = masks, pValues = _values)
-		{
-			Unsafe.CopyBlock(pValues, pArray, sizeof(short) * 81);
-		}
+		Unsafe.CopyBlock(
+			ref Unsafe.As<short, byte>(ref _values[0]),
+			ref Unsafe.As<short, byte>(ref MemoryMarshal.GetArrayDataReference(masks)),
+			sizeof(short) * 81
+		);
 	}
 
 	/// <summary>
@@ -246,19 +247,17 @@ public unsafe partial struct Grid :
 		this = Empty;
 
 		// Then traverse the array (span, pointer or etc.), to get refresh the values.
-		fixed (int* p = &firstElement)
+		bool minusOneEnabled = creatingOption == GridCreatingOption.MinusOne;
+		for (int i = 0; i < 81; i++)
 		{
-			bool minusOneEnabled = creatingOption == GridCreatingOption.MinusOne;
-			for (int i = 0; i < 81; i++)
+			int value = Unsafe.AddByteOffset(ref Unsafe.AsRef(firstElement), (nuint)(i * sizeof(int)));
+			if ((minusOneEnabled ? value - 1 : value) is var realValue and not -1)
 			{
-				if (p[i] is var value && (minusOneEnabled ? value - 1 : value) is var realValue and not -1)
-				{
-					// Calls the indexer to trigger the event (Clear the candidates in peer cells).
-					this[i] = realValue;
+				// Calls the indexer to trigger the event (Clear the candidates in peer cells).
+				this[i] = realValue;
 
-					// Set the status to 'CellStatus.Given'.
-					SetStatus(i, CellStatus.Given);
-				}
+				// Set the status to 'CellStatus.Given'.
+				SetStatus(i, CellStatus.Given);
 			}
 		}
 	}
@@ -269,13 +268,10 @@ public unsafe partial struct Grid :
 	{
 		// Initializes the empty grid.
 		Empty = default;
-		fixed (short* p = Empty._values)
+		ref short firstElement = ref Empty._values[0];
+		for (int i = 0; i < 81; i++)
 		{
-			int i = 0;
-			for (short* ptrP = p; i < 81; i++)
-			{
-				*ptrP++ = DefaultMask;
-			}
+			Unsafe.AddByteOffset(ref firstElement, (nuint)(i * sizeof(short))) = DefaultMask;
 		}
 
 		// Initializes events.
@@ -1043,12 +1039,15 @@ public unsafe partial struct Grid :
 	public readonly string ToMaskString()
 	{
 		const string separator = ", ";
-		fixed (short* pArr = _values)
-		{
-			var sb = new StringHandler(400);
-			sb.AppendRangeWithSeparatorUnsafe(pArr, 81, &StringHandler.ElementToStringConverter, separator);
-			return sb.ToStringAndClear();
-		}
+		var sb = new StringHandler(400);
+		sb.AppendRangeWithSeparatorUnsafe(
+			(short*)Unsafe.AsPointer(ref Unsafe.AsRef(_values[0])),
+			81,
+			&StringHandler.ElementToStringConverter,
+			separator
+		);
+
+		return sb.ToStringAndClear();
 	}
 
 	/// <inheritdoc cref="object.ToString"/>

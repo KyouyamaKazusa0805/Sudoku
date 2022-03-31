@@ -207,12 +207,9 @@ public unsafe struct Cells :
 	/// </remarks>
 	private Cells(in int cell, int length)
 	{
-		fixed (int* p = &cell)
+		for (int i = 0; i < length; i++)
 		{
-			for (int i = 0; i < length; i++)
-			{
-				InternalAdd(p[i], true);
-			}
+			InternalAdd(Unsafe.AddByteOffset(ref Unsafe.AsRef(cell), (nuint)(i * sizeof(int))), true);
 		}
 	}
 
@@ -470,26 +467,23 @@ public unsafe struct Cells :
 			long value;
 			int i, pos = 0;
 			int[] arr = new int[Count];
-			fixed (int* pArr = arr)
+			if (_low != 0)
 			{
-				if (_low != 0)
+				for (value = _low, i = 0; i < Shifting; i++, value >>= 1)
 				{
-					for (value = _low, i = 0; i < Shifting; i++, value >>= 1)
+					if ((value & 1) != 0)
 					{
-						if ((value & 1) != 0)
-						{
-							pArr[pos++] = i;
-						}
+						arr[pos++] = i;
 					}
 				}
-				if (_high != 0)
+			}
+			if (_high != 0)
+			{
+				for (value = _high, i = Shifting; i < 81; i++, value >>= 1)
 				{
-					for (value = _high, i = Shifting; i < 81; i++, value >>= 1)
+					if ((value & 1) != 0)
 					{
-						if ((value & 1) != 0)
-						{
-							pArr[pos++] = i;
-						}
+						arr[pos++] = i;
 					}
 				}
 			}
