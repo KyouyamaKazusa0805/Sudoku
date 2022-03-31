@@ -187,7 +187,7 @@ public static unsafe class GridTransformations
 	}
 
 	/// <summary>
-	/// Rotate the grid <c><see cref="Math.PI"/></c> degrees.
+	/// Rotate the grid <c><see cref="PI"/></c> degrees.
 	/// </summary>
 	/// <param name="this">The grid.</param>
 	/// <returns>The result.</returns>

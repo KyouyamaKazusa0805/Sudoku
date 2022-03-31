@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Collections;
+﻿namespace Sudoku.Concepts.Formatting;
 
 /// <summary>
 /// Provides a grid format option.

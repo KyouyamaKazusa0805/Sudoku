@@ -1,7 +1,8 @@
 ﻿#undef USE_TO_MASK_STRING_METHOD
 #define SOLUTION_DISPLAY_MODIFIABLES
 
-namespace Sudoku.Collections;
+
+namespace Sudoku.Concepts.Collections;
 
 /// <summary>
 /// Represents a sudoku grid that uses the mask list to construct the data structure.

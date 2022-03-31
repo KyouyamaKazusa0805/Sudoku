@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Collections;
+﻿namespace Sudoku.Concepts.Enumerators;
 
 partial struct BitSubsetsGenerator
 {

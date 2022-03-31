@@ -59,13 +59,6 @@
 		<Using Include="Sudoku.Diagnostics.CodeGen.Constants" Static="true"/>
 	</ItemGroup>
 
-	<!--Import custom global using directives on UI project.-->
-	<ItemGroup Condition="'$(MSBuildProjectFile)'=='Sudoku.UI.csproj' And ('$(LangVersion)'=='preview' Or '$(LangVersion)'=='latest' Or '$(LangVersion)'&gt;='10.0')">
-		<Using Include="Microsoft.UI.Xaml"/>
-		<Using Include="Microsoft.UI.Xaml.Controls"/>
-		<Using Include="Sudoku.UI.StringResource" Static="true"/>
-	</ItemGroup>
-
 	<!--Set the root namespaces.-->
 	<Choose>
 		<When Condition="'$(MSBuildProjectFile.TrimEnd(`.csproj`).EndsWith(`.CodeGen`))'=='true'">

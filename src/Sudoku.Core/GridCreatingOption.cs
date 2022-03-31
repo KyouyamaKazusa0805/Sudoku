@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Collections;
+﻿namespace Sudoku;
 
 /// <summary>
 /// Indicates the grid creating option.

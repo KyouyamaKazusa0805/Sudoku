@@ -1,4 +1,4 @@
-﻿namespace Sudoku;
+﻿namespace Sudoku.Concepts;
 
 /// <summary>
 /// Defines a region type.

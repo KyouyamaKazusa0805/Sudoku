@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Collections;
+﻿namespace Sudoku.Concepts.Enumerators;
 
 /// <summary>
 /// Encapsulates a bit combination generator.

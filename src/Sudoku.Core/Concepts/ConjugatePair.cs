@@ -1,4 +1,4 @@
-﻿namespace Sudoku;
+﻿namespace Sudoku.Concepts;
 
 /// <summary>
 /// Encapsulates a conjugate pair.

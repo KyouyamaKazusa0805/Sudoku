@@ -1839,7 +1839,7 @@
             The callback method that triggers when the inner undo-redo steps are updated.
             </param>
         </member>
-        <member name="M:Sudoku.UI.Drawing.Shapes.SudokuGrid.#ctor(Sudoku.Collections.Grid@,Sudoku.UI.UserPreference,System.Double,System.Double,System.Action)">
+        <member name="M:Sudoku.UI.Drawing.Shapes.SudokuGrid.#ctor(Sudoku.Concepts.Collections.Grid@,Sudoku.UI.UserPreference,System.Double,System.Double,System.Action)">
             <summary>
             Initializes a <see cref="T:Sudoku.UI.Drawing.Shapes.SudokuGrid"/> instance via the details.
             </summary>
@@ -1921,7 +1921,7 @@
             will be cleared.
             </summary>
         </member>
-        <member name="M:Sudoku.UI.Drawing.Shapes.SudokuGrid.ReplaceGrid(Sudoku.Collections.Grid@)">
+        <member name="M:Sudoku.UI.Drawing.Shapes.SudokuGrid.ReplaceGrid(Sudoku.Concepts.Collections.Grid@)">
             <summary>
             To replace with the new grid.
             </summary>
@@ -1942,7 +1942,7 @@
         <member name="M:Sudoku.UI.Drawing.Shapes.SudokuGrid.GetControl">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.UI.Drawing.Shapes.SudokuGrid.AddStep(Sudoku.Collections.Grid@)">
+        <member name="M:Sudoku.UI.Drawing.Shapes.SudokuGrid.AddStep(Sudoku.Concepts.Collections.Grid@)">
             <summary>
             Adds the specified step into the collection.
             </summary>
@@ -2438,7 +2438,7 @@
             To reset the grid, to revert the grid to the initial status.
             </summary>
         </member>
-        <member name="M:Sudoku.UI.Views.Controls.SudokuPane.ReplaceGridUndoable(Sudoku.Collections.Grid@)">
+        <member name="M:Sudoku.UI.Views.Controls.SudokuPane.ReplaceGridUndoable(Sudoku.Concepts.Collections.Grid@)">
             <summary>
             To replace the grid with the new one, in order to make the current operation undoable.
             </summary>
@@ -2719,7 +2719,7 @@
         </member>
         <member name="M:Sudoku.UI.Views.Pages.SudokuPage.OpenFileAsync">
             <summary>
-            Asynchronously opening the file, and get the inner content to be parsed to a <see cref="T:Sudoku.Collections.Grid"/> result
+            Asynchronously opening the file, and get the inner content to be parsed to a <see cref="T:Sudoku.Concepts.Collections.Grid"/> result
             to display.
             </summary>
             <returns>
