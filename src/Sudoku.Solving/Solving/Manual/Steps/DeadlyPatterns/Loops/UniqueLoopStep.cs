@@ -1,4 +1,7 @@
-﻿namespace Sudoku.Solving.Manual.Steps;
+﻿using U3 = Sudoku.Solving.Manual.Steps.UniqueLoopType3Step;
+using U4 = Sudoku.Solving.Manual.Steps.UniqueLoopType4Step;
+
+namespace Sudoku.Solving.Manual.Steps;
 
 /// <summary>
 /// Provides with a step that is a <b>Unique Loop</b> technique.
@@ -76,19 +79,12 @@ public abstract record UniqueLoopStep(
 
 	/// <inheritdoc/>
 	public static bool Equals(UniqueLoopStep left, UniqueLoopStep right) =>
-		left.Type == right.Type
-		&& left.Loop == right.Loop
-		&& (1 << left.Digit1 | 1 << left.Digit2) == (1 << right.Digit1 | 1 << right.Digit2)
-		&& (Left: left, Right: right) switch
-		{
-			(
-				Left: UniqueLoopType3Step { SubsetDigitsMask: var a },
-				Right: UniqueLoopType3Step { SubsetDigitsMask: var b }
-			) => a == b,
-			(
-				Left: UniqueLoopType4Step { ConjugatePair: var a },
-				Right: UniqueLoopType4Step { ConjugatePair: var b }
-			) => a == b,
-			_ => true
-		};
+		left.Type == right.Type && left.Loop == right.Loop
+			&& (1 << left.Digit1 | 1 << left.Digit2) == (1 << right.Digit1 | 1 << right.Digit2)
+			&& (left, right) switch
+			{
+				(U3 { SubsetDigitsMask: var a }, U3 { SubsetDigitsMask: var b }) => a == b,
+				(U4 { ConjugatePair: var a }, U4 { ConjugatePair: var b }) => a == b,
+				_ => true
+			};
 }

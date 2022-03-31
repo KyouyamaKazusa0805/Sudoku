@@ -75,10 +75,10 @@ public sealed partial class MainPage : Page
 	private void ViewRouterFrame_Navigated(object sender, NavigationEventArgs e)
 	{
 		if (
-			(Sender: sender, EventArg: e, Router: _cViewRouter) is not (
-				Sender: Frame { SourcePageType: not null },
-				EventArg: { SourcePageType: var sourcePageType },
-				Router: { MenuItems: var menuItems, FooterMenuItems: var footerMenuItems }
+			(sender, e, _cViewRouter) is not (
+				Frame { SourcePageType: not null },
+				{ SourcePageType: var sourcePageType },
+				{ MenuItems: var menuItems, FooterMenuItems: var footerMenuItems }
 			)
 		)
 		{

@@ -108,14 +108,11 @@ partial record ManualSolverResult
 
 						string d = $"({info.Difficulty,5:0.0}";
 						string s = $"{i + 1,4}";
-						string labelInfo = (
-							ShowStepLabel: options.Flags(SolverResultFormattingOptions.ShowStepLabel),
-							ShowDiff: showDiff
-						) switch
+						string labelInfo = (options.Flags(SolverResultFormattingOptions.ShowStepLabel), showDiff) switch
 						{
-							(ShowStepLabel: true, ShowDiff: true) => $"{s}, {d}) ",
-							(ShowStepLabel: true, ShowDiff: false) => $"{s} ",
-							(ShowStepLabel: false, ShowDiff: true) => $"{d}) ",
+							(true, true) => $"{s}, {d}) ",
+							(true, false) => $"{s} ",
+							(false, true) => $"{d}) ",
 							_ => string.Empty,
 						};
 

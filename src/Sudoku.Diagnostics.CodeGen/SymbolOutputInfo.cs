@@ -73,10 +73,10 @@ internal sealed record SymbolOutputInfo(
 
 		string typeKind = (symbol.IsRecord, symbol.TypeKind) switch
 		{
-			(IsRecord: true, TypeKind: Kind.Class) => "record ",
-			(IsRecord: true, TypeKind: Kind.Struct) => "record struct ",
-			(IsRecord: false, TypeKind: Kind.Class) => "class ",
-			(IsRecord: false, TypeKind: Kind.Struct) => "struct ",
+			(true, Kind.Class) => "record ",
+			(true, Kind.Struct) => "record struct ",
+			(false, Kind.Class) => "class ",
+			(false, Kind.Struct) => "struct ",
 			_ => string.Empty
 		};
 		string readonlyKeyword = (

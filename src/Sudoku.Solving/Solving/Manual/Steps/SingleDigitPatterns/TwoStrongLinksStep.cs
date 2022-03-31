@@ -37,11 +37,11 @@ public sealed record TwoStrongLinksStep(
 
 	/// <inheritdoc/>
 	public override Technique TechniqueCode =>
-		(BaseKind: BaseRegion / 9, TargetKind: TargetRegion / 9) switch
+		(BaseRegion / 9, TargetRegion / 9) switch
 		{
-			(BaseKind: 0, _) or (_, TargetKind: 0) => Technique.TurbotFish,
-			(BaseKind: 1, TargetKind: 1) or (BaseKind: 2, TargetKind: 2) => Technique.Skyscraper,
-			(BaseKind: 1, TargetKind: 2) or (BaseKind: 2, TargetKind: 1) => Technique.TwoStringKite,
+			(0, _) or (_, 0) => Technique.TurbotFish,
+			(1, 1) or (2, 2) => Technique.Skyscraper,
+			(1, 2) or (2, 1) => Technique.TwoStringKite,
 			_ => throw new InvalidOperationException("The currnet status is invalid.")
 		};
 

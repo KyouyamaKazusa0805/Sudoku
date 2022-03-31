@@ -132,13 +132,7 @@ public sealed unsafe partial class DominoLoopStepSearcher : IDominoLoopStepSearc
 					pairs[i] |= grid.GetCandidates(cells[(i << 1) + 1]);
 				}
 
-				if (
-					(
-						NumbersCount: n,
-						PairNumbersCount: PopCount((uint)pairs[i]),
-						PairMask: pairs[i]
-					) is not (NumbersCount: <= 4, PairNumbersCount: <= 5, PairMask: not 0)
-				)
+				if (n > 4 || PopCount((uint)pairs[i]) > 5 || pairs[i] == 0)
 				{
 					break;
 				}

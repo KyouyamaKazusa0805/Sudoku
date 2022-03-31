@@ -40,12 +40,7 @@ public abstract class DrawingElement :
 	/// <returns>The result.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static bool operator ==(DrawingElement? left, DrawingElement? right) =>
-		(A: left, B: right) switch
-		{
-			(A: null, B: null) => true,
-			(A: not null, B: not null) => left.Equals(right),
-			_ => false
-		};
+		(left, right) switch { (null, null) => true, (not null, not null) => left.Equals(right), _ => false };
 
 	/// <summary>
 	/// Determines whether the two <see cref="DrawingElement"/>s aren't equal of both type and inner value. 

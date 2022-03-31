@@ -198,27 +198,27 @@ public abstract record Step(ImmutableArray<Conclusion> Conclusions, ImmutableArr
 		int formatCount = 0;
 		for (int i = 0, iterationLength = length - 1; i < iterationLength; i++)
 		{
-			switch ((Left: format[i], Right: format[i + 1]))
+			switch ((format[i], format[i + 1]))
 			{
-				case (Left: '{', Right: '}'):
+				case ('{', '}'):
 				{
 					throw new InvalidOperationException("The interpolation part cannot contain empty value.");
 				}
-				case (Left: '{', Right: '{'):
+				case ('{', '{'):
 				{
 					sb.Append("{{");
 					i++;
 
 					break;
 				}
-				case (Left: '}', Right: '}'):
+				case ('}', '}'):
 				{
 					sb.Append("}}");
 					i++;
 
 					break;
 				}
-				case (Left: '{', Right: not '{'):
+				case ('{', not '{'):
 				{
 					int pos = -1;
 					for (int j = i + 1; j < length; j++)
@@ -244,7 +244,7 @@ public abstract record Step(ImmutableArray<Conclusion> Conclusions, ImmutableArr
 
 					break;
 				}
-				case (Left: '\\', var right) when handleEscaping: // Unescape the escaping characters.
+				case ('\\', var right) when handleEscaping: // Unescape the escaping characters.
 				{
 					sb.Append(right);
 					i++;

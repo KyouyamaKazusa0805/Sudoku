@@ -75,11 +75,11 @@ public sealed partial record ComplexFishStep(
 	public override Rarity Rarity =>
 		(Size, ShapeModifier, FinModifier) switch
 		{
-			(Size: 3, _, _) => Rarity.Sometimes,
-			(Size: 4, ShapeModifier: ShapeModifiers.Franken, _) => Rarity.Sometimes,
-			(Size: 4, ShapeModifier: ShapeModifiers.Mutant, _) => Rarity.Seldom,
-			(Size: 5, ShapeModifier: ShapeModifiers.Franken, FinModifier: FinModifiers.Sashimi) => Rarity.Seldom,
-			(Size: 5, ShapeModifier: ShapeModifiers.Mutant, _) => Rarity.Seldom,
+			(3, _, _) => Rarity.Sometimes,
+			(4, ShapeModifiers.Franken, _) => Rarity.Sometimes,
+			(4, ShapeModifiers.Mutant, _) => Rarity.Seldom,
+			(5, ShapeModifiers.Franken, FinModifiers.Sashimi) => Rarity.Seldom,
+			(5, ShapeModifiers.Mutant, _) => Rarity.Seldom,
 			_ => Rarity.HardlyEver
 		};
 

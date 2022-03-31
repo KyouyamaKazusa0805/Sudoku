@@ -92,19 +92,19 @@ public sealed unsafe partial class ManualSolver : IPuzzleSolver
 		InitializeMaps(playground);
 		foreach (var searcher in StepSearcherPool.Collection)
 		{
-			switch ((IsSukaku: isSukaku, Searcher: searcher, This: this))
+			switch ((isSukaku, searcher, this))
 			{
-				case (IsSukaku: true, Searcher: IDeadlyPatternStepSearcher, _):
+				case (true, IDeadlyPatternStepSearcher, _):
 				{
 					// Sukaku puzzles can't use deadly pattern techniques.
 					continue;
 				}
-				case (_, Searcher: { Options.EnabledAreas: EnabledAreas.None }, _):
+				case (_, { Options.EnabledAreas: EnabledAreas.None }, _):
 				{
 					// If the searcher is currently disabled, just skip it.
 					continue;
 				}
-				case (_, _, This: { IsFastSearching: var isFastSearching }):
+				case (_, _, { IsFastSearching: var isFastSearching }):
 				{
 					searcher.GetAll(tempSteps, playground, false);
 					if (tempSteps.Count == 0)

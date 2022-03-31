@@ -178,11 +178,11 @@ public sealed unsafe partial class UniqueRectangleStepSearcher : IUniqueRectangl
 								}
 							}
 
-							switch ((CornerCell1: c1, CornerCell2: c2))
+							switch ((c1, c2))
 							{
 								// Diagonal type.
-								case (CornerCell1: 0, CornerCell2: 3):
-								case (CornerCell1: 1, CornerCell2: 2):
+								case (0, 3):
+								case (1, 2):
 								{
 									if (!arMode)
 									{
@@ -516,12 +516,12 @@ public sealed unsafe partial class UniqueRectangleStepSearcher : IUniqueRectangl
 				),
 				d1,
 				d2,
-				(IsAvoidableRectangle: arMode, IsType5: isType5) switch
+				(arMode, isType5) switch
 				{
-					(IsAvoidableRectangle: true, IsType5: true) => Technique.AvoidableRectangleType5,
-					(IsAvoidableRectangle: true, IsType5: false) => Technique.AvoidableRectangleType2,
-					(IsAvoidableRectangle: false, IsType5: true) => Technique.UniqueRectangleType5,
-					(IsAvoidableRectangle: false, IsType5: false) => Technique.UniqueRectangleType2
+					(true, true) => Technique.AvoidableRectangleType5,
+					(true, false) => Technique.AvoidableRectangleType2,
+					(false, true) => Technique.UniqueRectangleType5,
+					(false, false) => Technique.UniqueRectangleType2
 				},
 				urCells,
 				arMode,

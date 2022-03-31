@@ -59,14 +59,14 @@ public sealed record NakedSubsetStep(
 	public override Technique TechniqueCode =>
 		(IsLocked, Size) switch
 		{
-			(IsLocked: true, Size: 2) => Technique.LockedPair,
-			(IsLocked: false, Size: 2) => Technique.NakedPairPlus,
-			(IsLocked: null, Size: 2) => Technique.NakedPair,
-			(IsLocked: true, Size: 3) => Technique.LockedTriple,
-			(IsLocked: false, Size: 3) => Technique.NakedTriplePlus,
-			(IsLocked: null, Size: 3) => Technique.NakedTriple,
-			(IsLocked: false, Size: 4) => Technique.NakedQuadruplePlus,
-			(IsLocked: null, Size: 4) => Technique.NakedQuadruple,
+			(true, 2) => Technique.LockedPair,
+			(false, 2) => Technique.NakedPairPlus,
+			(null, 2) => Technique.NakedPair,
+			(true, 3) => Technique.LockedTriple,
+			(false, 3) => Technique.NakedTriplePlus,
+			(null, 3) => Technique.NakedTriple,
+			(false, 4) => Technique.NakedQuadruplePlus,
+			(null, 4) => Technique.NakedQuadruple,
 			_ => throw new InvalidOperationException("The current status is invalid.")
 		};
 

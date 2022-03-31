@@ -82,15 +82,10 @@ public sealed unsafe partial class ComplexFishStepSearcher : IComplexFishStepSea
 			// Synchronize the tasks.
 			Task.WaitAll(searchingTasks);
 		}
-		catch (AggregateException ex) when (
-			(Exception: ex, PossibleStep: firstPossibleStep) is (
-				Exception: { InnerException: OperationCanceledException },
-				PossibleStep: not null
-			)
-		)
+		catch (AggregateException ex) when (ex.InnerException is OperationCanceledException)
 		{
 			// User has cancelled the operation.
-			return firstPossibleStep;
+			return firstPossibleStep!;
 		}
 
 		// Remove duplicate items.
