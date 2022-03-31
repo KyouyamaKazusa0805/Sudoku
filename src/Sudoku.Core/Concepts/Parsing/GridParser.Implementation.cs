@@ -9,7 +9,7 @@ partial struct GridParser
 	/// <returns>The result.</returns>
 	private static partial Grid OnParsingSimpleMultilineGrid(ref GridParser parser)
 	{
-		string[] matches = parser.ParsingValue.MatchAll(RegularExpressions.DigitOrEmptyCell);
+		string[] matches = parser.ParsingValue.MatchAll("""(\+?\d|\.)""");
 		int length = matches.Length;
 		if (length is not (81 or 85))
 		{
@@ -99,7 +99,7 @@ partial struct GridParser
 	/// <returns>The result.</returns>
 	private static partial Grid OnParsingOpenSudoku(ref GridParser parser)
 	{
-		if (parser.ParsingValue.Match(RegularExpressions.OpenSudoku) is not { } match)
+		if (parser.ParsingValue.Match("""\d(\|\d){242}""") is not { } match)
 		{
 			return Grid.Undefined;
 		}
@@ -144,7 +144,7 @@ partial struct GridParser
 	private static partial Grid OnParsingPencilMarked(ref GridParser parser)
 	{
 		// Older regular expression pattern:
-		if (parser.ParsingValue.MatchAll(RegularExpressions.PmGridUnit) is not { Length: 81 } matches)
+		if (parser.ParsingValue.MatchAll("""(\<\d\>|\*\d\*|\d*[\+\-]?\d+)""") is not { Length: 81 } matches)
 		{
 			return Grid.Undefined;
 		}
@@ -205,7 +205,7 @@ partial struct GridParser
 					return Grid.Undefined;
 				}
 			}
-			else if (s.SatisfyPattern(RegularExpressions.PmGridCandidates))
+			else if (s.SatisfyPattern("""[1-9]{1,9}"""))
 			{
 				// Candidates.
 				// Here don't need to check the length of the string,
@@ -251,7 +251,7 @@ partial struct GridParser
 	/// <returns>The grid.</returns>
 	private static partial Grid OnParsingSimpleTable(ref GridParser parser)
 	{
-		if (parser.ParsingValue.Match(RegularExpressions.SimpleTable) is not { } match)
+		if (parser.ParsingValue.Match("""([\d\.\+]{9}(\r|\n|\r\n)){8}[\d\.\+]{9}""") is not { } match)
 		{
 			return Grid.Undefined;
 		}
@@ -273,8 +273,8 @@ partial struct GridParser
 	{
 		string? match = parser.ParsingValue.Match(
 			shortenSusser
-				? RegularExpressions.ShortenSusser
-				: RegularExpressions.Susser
+				? """[\d\.\*]{1,9}(,[\d\.\*]{1,9}){8}"""
+				: """[\d\.\+]{80,}(\:(\d{3}\s+)*\d{3})?"""
 		);
 
 		switch (shortenSusser)
@@ -362,9 +362,9 @@ partial struct GridParser
 
 		// Step 2: eliminates candidates if exist.
 		// If we have met the colon sign ':', this loop would not be executed.
-		if (match.Match(RegularExpressions.ExtendedSusserEliminations) is { } elimMatch)
+		if (match.Match(Grid.ExtendedSusserEliminationsRegexPattern) is { } elimMatch)
 		{
-			foreach (string elimBlock in elimMatch.MatchAll(RegularExpressions.ThreeDigitsCandidate))
+			foreach (string elimBlock in elimMatch.MatchAll("""\d{3}"""))
 			{
 				// Set the candidate true value to eliminate the candidate.
 				if (elimBlock is not [var a, var b, var c, ..])
@@ -495,7 +495,7 @@ partial struct GridParser
 		}
 		else
 		{
-			string[] matches = parser.ParsingValue.MatchAll(RegularExpressions.PmGridCandidatesUnit);
+			string[] matches = parser.ParsingValue.MatchAll("""\d*[\-\+]?\d+""");
 			if (matches is { Length: not 81 })
 			{
 				return Grid.Undefined;

@@ -36,14 +36,14 @@ public sealed record FileCounterResult(
 		};
 
 		return $$"""
-			Results:
-			* Code lines: {{ResultLines}}
-			* Files: {{FilesCount}}
-			* Characters: {{CharactersCount}}
-			* Bytes: {{bytesConvertedStr}} {{bytesUnitStr}} ({{Bytes}} Bytes)
-			* Time elapsed: {{Elapsed:hh\:mm\.ss\.fff}}
+		Results:
+		* Code lines: {{ResultLines}}
+		* Files: {{FilesCount}}
+		* Characters: {{CharactersCount}}
+		* Bytes: {{bytesConvertedStr}} {{bytesUnitStr}} ({{Bytes}} Bytes)
+		* Time elapsed: {{Elapsed:hh\:mm\.ss\.fff}}
 
-			About more information, please call each property in this instance.
-			""";
+		About more information, please call each property in this instance.
+		""";
 	}
 }

@@ -368,10 +368,9 @@ public unsafe struct Cells :
 	/// Indicates the covered line.
 	/// </summary>
 	/// <remarks>
-	/// When the covered region can't be found, it'll return <see cref="InvalidFirstSet"/>
-	/// (i.e. 32) always.
+	/// When the covered region can't be found, it'll return 32. For more information,
+	/// please visit <see href="https://source.dot.net/#System.Private.CoreLib/BitOperations.cs,515">this link</see>.
 	/// </remarks>
-	/// <seealso cref="InvalidFirstSet"/>
 	public readonly int CoveredLine
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]

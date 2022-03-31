@@ -689,7 +689,7 @@ public unsafe struct Candidates :
 		}
 
 		var regex = new Regex(
-			RegularExpressions.CandidateOrCandidateList,
+			"""([1-9]{3}|[1-9]{1,9}(R[1-9]{1,9}C[1-9]{1,9}|r[1-9]{1,9}c[1-9]{1,9}|\{\s*(R[1-9]{1,9}C[1-9]{1,9}|r[1-9]{1,9}c[1-9]{1,9}),\s*(R[1-9]{1,9}C[1-9]{1,9}|r[1-9]{1,9}c[1-9]{1,9})*\s*\})|\{\s*(R[1-9]{1,9}C[1-9]{1,9}|r[1-9]{1,9}c[1-9]{1,9}),\s*(R[1-9]{1,9}C[1-9]{1,9}|r[1-9]{1,9}c[1-9]{1,9})*\s*\}\([1-9]{1,9}\))""",
 			RegexOptions.ExplicitCapture,
 			TimeSpan.FromSeconds(5)
 		);
@@ -709,14 +709,14 @@ public unsafe struct Candidates :
 		{
 			string value = match.Value;
 			if (options.Flags(CandidatesParsingOptions.ShortForm)
-				&& value.SatisfyPattern(RegularExpressions.CandidateListShortForm)
+				&& value.SatisfyPattern("""[1-9]{3}""")
 				&& value is [var a, var b, var c, ..])
 			{
 				result.AddAnyway((b - '1') * 81 + (c - '1') * 9 + a - '1');
 			}
 			else if (
 				options.Flags(CandidatesParsingOptions.BracketForm)
-				&& value.SatisfyPattern(RegularExpressions.CandidateListPrepositionalForm)
+				&& value.SatisfyPattern("""[1-9]{1,9}(R[1-9]{1,9}C[1-9]{1,9}|r[1-9]{1,9}c[1-9]{1,9}|\{\s*(R[1-9]{1,9}C[1-9]{1,9}|r[1-9]{1,9}c[1-9]{1,9}),\s*(R[1-9]{1,9}C[1-9]{1,9}|r[1-9]{1,9}c[1-9]{1,9})*\s*\})""")
 			)
 			{
 				var cells = Cells.Parse(value);
@@ -739,7 +739,7 @@ public unsafe struct Candidates :
 			}
 			else if (
 				options.Flags(CandidatesParsingOptions.PrepositionalForm)
-				&& value.SatisfyPattern(RegularExpressions.CandidateListPostpositionalForm)
+				&& value.SatisfyPattern("""\{\s*(R[1-9]{1,9}C[1-9]{1,9}|r[1-9]{1,9}c[1-9]{1,9}),\s*(R[1-9]{1,9}C[1-9]{1,9}|r[1-9]{1,9}c[1-9]{1,9})*\s*\}\([1-9]{1,9}\)""")
 			)
 			{
 				var cells = Cells.Parse(value);

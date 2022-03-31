@@ -13,8 +13,7 @@ global using static System.Algorithm.Sequences;
 global using static System.Algorithm.Sorting;
 global using static System.Math;
 global using static System.Numerics.BitOperations;
-global using static Sudoku.Constants;
-global using static Sudoku.Constants.Tables;
+global using static Sudoku.Runtime.AnalysisServices.CommonReadOnlies;
 
 [assembly: InternalsVisibleTo("Sudoku.Diagnostics")]
 [assembly: InternalsVisibleTo("Sudoku.Solving")]

@@ -23,9 +23,8 @@ global using static System.Algorithm.Combinatorics;
 global using static System.Algorithm.Sequences;
 global using static System.Math;
 global using static System.Numerics.BitOperations;
-global using static Sudoku.Constants.Tables;
+global using static Sudoku.Runtime.AnalysisServices.CommonReadOnlies;
 global using static Sudoku.Solving.Manual.Buffer.FastProperties;
-global using static Sudoku.Solving.Manual.Constants;
 
 [assembly: SearcherInitializerOption<SingleStepSearcher>(1, DisplayingLevel.A)]
 [assembly: SearcherInitializerOption<LockedCandidatesStepSearcher>(2, DisplayingLevel.A)]

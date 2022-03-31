@@ -27,7 +27,7 @@ public abstract class RxCyNotation : ICellNotation
 	/// Indicates the regular expression for matching a cell or cell-list.
 	/// </summary>
 	private static readonly Regex CellOrCellListRegex = new(
-		RegularExpressions.CellOrCellList,
+		"""(R[1-9]{1,9}C[1-9]{1,9}|r[1-9]{1,9}c[1-9]{1,9})""",
 		RegexOptions.ExplicitCapture,
 		TimeSpan.FromSeconds(5)
 	);

@@ -34,7 +34,7 @@ public sealed class K9Notation : ICellNotation
 	/// Indicates the regular expression for matching a cell or cell-list.
 	/// </summary>
 	private static readonly Regex CellOrCellListRegex = new(
-		RegularExpressions.CellOrCellListK9,
+		"""[A-IKa-ik]{1,9}[1-9]{1,9}""",
 		RegexOptions.ExplicitCapture,
 		TimeSpan.FromSeconds(5)
 	);

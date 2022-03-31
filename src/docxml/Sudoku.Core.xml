@@ -1102,9 +1102,9 @@
             will set the bit of itself.
             </param>
             <remarks>
-            If you want to use this constructor, please use <see cref="F:Sudoku.Constants.Tables.PeerMaps"/> instead.
+            If you want to use this constructor, please use <see cref="F:Sudoku.Runtime.AnalysisServices.CommonReadOnlies.PeerMaps"/> instead.
             </remarks>
-            <seealso cref="F:Sudoku.Constants.Tables.PeerMaps"/>
+            <seealso cref="F:Sudoku.Runtime.AnalysisServices.CommonReadOnlies.PeerMaps"/>
         </member>
         <member name="P:Sudoku.Concepts.Collections.Cells.InOneRegion">
             <summary>
@@ -1145,10 +1145,9 @@
             Indicates the covered line.
             </summary>
             <remarks>
-            When the covered region can't be found, it'll return <see cref="F:Sudoku.Constants.InvalidFirstSet"/>
-            (i.e. 32) always.
+            When the covered region can't be found, it'll return 32. For more information,
+            please visit <see href="https://source.dot.net/#System.Private.CoreLib/BitOperations.cs,515">this link</see>.
             </remarks>
-            <seealso cref="F:Sudoku.Constants.InvalidFirstSet"/>
         </member>
         <member name="P:Sudoku.Concepts.Collections.Cells.Count">
             <summary>
@@ -1694,6 +1693,11 @@
         <member name="F:Sudoku.Concepts.Collections.Grid.GivenMask">
             <summary>
             Indicates the given mask.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Concepts.Collections.Grid.ExtendedSusserEliminationsRegexPattern">
+            <summary>
+            Indicates the eliminations in the extended susser format.
             </summary>
         </member>
         <member name="F:Sudoku.Concepts.Collections.Grid.EmptyString">
@@ -3707,235 +3711,6 @@
             or <see cref="F:Sudoku.ConclusionType.Elimination"/>.
             </exception>
         </member>
-        <member name="T:Sudoku.Constants">
-            <summary>
-            Encapsulates the class that stores all constants used in the whole project.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Constants.InvalidFirstSet">
-            <summary>
-            Indicates the invalid return value of <see cref="M:System.Numerics.BitOperations.PopCount(System.UInt32)"/>.
-            </summary>
-            <seealso cref="M:System.Numerics.BitOperations.PopCount(System.UInt32)"/>
-        </member>
-        <member name="F:Sudoku.Constants.InvalidFirstSetLong">
-            <summary>
-            Indicates the invalid return value of <see cref="M:System.Numerics.BitOperations.PopCount(System.UInt64)"/>.
-            </summary>
-            <seealso cref="M:System.Numerics.BitOperations.PopCount(System.UInt64)"/>
-        </member>
-        <member name="T:Sudoku.Constants.RegularExpressions">
-            <summary>
-            The class that stores all regular expressions used in this solution.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Constants.RegularExpressions.CommentLine">
-            <summary>
-            Indicates a comment line.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Constants.RegularExpressions.PmGridCandidates">
-            <summary>
-            Indicates each candidates group in the PM grid.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Constants.RegularExpressions.ExtendedSusserEliminations">
-            <summary>
-            Indicates the eliminations in the extended susser format.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Constants.RegularExpressions.SimpleTable">
-            <summary>
-            Indicates the normal sudoku grid table (with only blank cells and numbers).
-            </summary>
-        </member>
-        <member name="F:Sudoku.Constants.RegularExpressions.Susser">
-            <summary>
-            Indicates the susser format.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Constants.RegularExpressions.ShortenSusser">
-            <summary>
-            Indicates the shorten susser format.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Constants.RegularExpressions.OpenSudoku">
-            <summary>
-            Indicates the open sudoku format.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Constants.RegularExpressions.DigitOrEmptyCell">
-            <summary>
-            Indicates the regular expression of a digit or empty cell placeholder.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Constants.RegularExpressions.PmGridUnit">
-            <summary>
-            Indicates the unit in the extended PM grid.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Constants.RegularExpressions.ThreeDigitsCandidate">
-            <summary>
-            Indicates the candidate unit that used in the elimination list.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Constants.RegularExpressions.PmGridCandidatesUnit">
-            <summary>
-            Indicates the candidate list unit in the PM grid.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Constants.RegularExpressions.Cell">
-            <summary>
-            Indicates a cell string.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Constants.RegularExpressions.CellOrCellList">
-            <summary>
-            Indicates the cell list string.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Constants.RegularExpressions.CellOrCellListK9">
-            <summary>
-            Indicates the cell list string, K9 notation.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Constants.RegularExpressions.Region">
-            <summary>
-            Indicates the region string.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Constants.RegularExpressions.Candidate">
-            <summary>
-            Indicates a candidate string.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Constants.RegularExpressions.CandidateListShortForm">
-            <summary>
-            Indicates the candidate list string that matches the triplet form candidate list.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Constants.RegularExpressions.CandidateListPrepositionalForm">
-            <summary>
-            Indicates the candidate list string that matches the prepositional form candidate list.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Constants.RegularExpressions.CandidateListPostpositionalForm">
-            <summary>
-            Indicates the candidate list string that matches the postpositional form candidate list.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Constants.RegularExpressions.CandidateOrCandidateList">
-            <summary>
-            Indicates a candidate list string.
-            </summary>
-            <remarks>
-            The regular expression can match the following formats:
-            <list type="table">
-            <item>
-            <term><c>312</c></term>
-            <description>The digit 3 in the cell row 1 column 2 (i.e. <c>r1c2</c>).</description>
-            </item>
-            <item>
-            <term><c>{r1c1, r9c4}(13)</c></term>
-            <description>The digit 1 and 3 in the cell <c>r1c1</c> and <c>r9c4</c>.</description>
-            </item>
-            <item>
-            <term><c>13{r1c1, r9c3}</c></term>
-            <description>The digit 1 and 3 in the cell <c>r1c1</c> and <c>r9c3</c>.</description>
-            </item>
-            </list>
-            </remarks>
-        </member>
-        <member name="F:Sudoku.Constants.RegularExpressions.Conclusion">
-            <summary>
-            Indicates the regular expression to match a conclusion.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Constants.RegularExpressions.ConjugatePair">
-            <summary>
-            Indicates the regular expression to match a conjugate pair.
-            </summary>
-        </member>
-        <member name="T:Sudoku.Constants.Tables">
-            <summary>
-            The tables for grid processing.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Constants.Tables.RegionFirst">
-            <summary>
-            Indicates the first cell offset for each region.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Constants.Tables.Peers">
-            <summary>
-            <para>Indicates a table for each cell's peers.</para>
-            </summary>
-            <example>
-            '<c>Peers[0]</c>': the array of peers for the cell 0 (row 1 column 1).
-            </example>
-        </member>
-        <member name="F:Sudoku.Constants.Tables.RegionCells">
-            <summary>
-            <para>
-            The map of all cell offsets in its specified region.
-            The indices is between 0 and 26, where:
-            <list type="table">
-            <item>
-            <term><c>0..9</c></term>
-            <description>Block 1 to 9.</description>
-            </item>
-            <item>
-            <term><c>9..18</c></term>
-            <description>Row 1 to 9.</description>
-            </item>
-            <item>
-            <term><c>18..27</c></term>
-            <description>Column 1 to 9.</description>
-            </item>
-            </list>
-            </para>
-            </summary>
-            <example>
-            '<c>RegionTable[0]</c>': all cell offsets in the region 0 (block 1).
-            </example>
-        </member>
-        <member name="F:Sudoku.Constants.Tables.RegionMaps">
-            <summary>
-            Indicates all grid maps that a grid contains.
-            </summary>
-            <example>
-            '<c>RegionMaps[0]</c>': The map containing all cells in the block 1.
-            </example>
-        </member>
-        <member name="F:Sudoku.Constants.Tables.PeerMaps">
-            <summary>
-            Indicates the peer maps using <see cref="F:Sudoku.Constants.Tables.Peers"/> table.
-            </summary>
-            <seealso cref="F:Sudoku.Constants.Tables.Peers"/>
-        </member>
-        <member name="F:Sudoku.Constants.Tables.Regions">
-            <summary>
-            Indicates the possible region types to iterate.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Constants.Tables.Combinatorials">
-            <summary>
-            Indicates the combinatorial numbers from <c>C(1, 1)</c> to <c>C(30, 30)</c>.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Constants.Tables.#cctor">
-            <static-constructor>
-		<summary>
-			<para>
-				Indicates the <see langword="static" /> constructor of the current type.
-			</para>
-			<para>
-				This constructor will initialize some <see langword="static readonly" /> data members
-				of this type that can't use a simple expression to describe the initial value.
-			</para>
-		</summary>
-	</static-constructor>
-        </member>
         <member name="T:Sudoku.DataHandling.ICellNotation">
             <summary>
             Defines a notation instance that can convert the <see cref="T:Sudoku.Concepts.Collections.Cells"/> to the target <see cref="T:System.String"/>
@@ -5047,6 +4822,213 @@
             <param name="left">The first instance to be compared.</param>
             <param name="right">The second instance to be compared.</param>
             <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
+        </member>
+        <member name="T:Sudoku.Runtime.AnalysisServices.CommonReadOnlies">
+            <summary>
+            Represents a type holding some common read-only fields used by runtime or compiling-time.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Runtime.AnalysisServices.CommonReadOnlies.InvalidFirstSet">
+            <summary>
+            Indicates the invalid first set value
+            after called <see cref="M:System.Numerics.BitOperations.TrailingZeroCount(System.Int32)"/> and <see cref="M:System.Numerics.BitOperations.TrailingZeroCount(System.UInt32)"/>.
+            </summary>
+            <remarks>
+            For more details you want to learn about, please visit
+            <see href="https://github.com/dotnet/runtime/blob/a67d5680186ead0c9afdab7e004389c979d5fc1f/src/libraries/System.Private.CoreLib/src/System/Numerics/BitOperations.cs#L467">this link</see>
+            to get the inner code.
+            </remarks>
+            <seealso cref="M:System.Numerics.BitOperations.TrailingZeroCount(System.Int32)"/>
+            <seealso cref="M:System.Numerics.BitOperations.TrailingZeroCount(System.UInt32)"/>
+        </member>
+        <member name="F:Sudoku.Runtime.AnalysisServices.CommonReadOnlies.UniqueSquareTemplatesCount">
+            <summary>
+            Indicates the total number of unique square patterns.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Runtime.AnalysisServices.CommonReadOnlies.QiuDeadlyPatternTemplatesCount">
+            <summary>
+            Indicates the total number of Qiu's deadly patterns.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Runtime.AnalysisServices.CommonReadOnlies.ExocetTemplatesCount">
+            <summary>
+            Indicates the total number of exocet patterns.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Runtime.AnalysisServices.CommonReadOnlies.BdpTemplatesSize3Count">
+            <summary>
+            Indicates the total number of Unique Polygon (Heptagon) possible templates of size 3.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Runtime.AnalysisServices.CommonReadOnlies.BdpTemplatesSize4Count">
+            <summary>
+            Indicates the total number of Unique Polygon (Octagon) possible templates of size 4.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Runtime.AnalysisServices.CommonReadOnlies.MultisectorLockedSetsTemplatesCount">
+            <summary>
+            Indicates the total number of multi-sector locked sets possible templates.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Runtime.AnalysisServices.CommonReadOnlies.AllRowsMask">
+            <summary>
+            Indicates the mask that means all rows.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Runtime.AnalysisServices.CommonReadOnlies.AllColumnsMask">
+            <summary>
+            Indicates the mask that means all columns.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Runtime.AnalysisServices.CommonReadOnlies.AllRegionsMask">
+            <summary>
+            Indicates the mask that means all regions.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Runtime.AnalysisServices.CommonReadOnlies.RegionFirst">
+            <summary>
+            Indicates the first cell offset for each region.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Runtime.AnalysisServices.CommonReadOnlies.UniqueRectanglePatterns">
+            <summary>
+            The table of all <b>Unique Rectangle</b> cells.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Runtime.AnalysisServices.CommonReadOnlies.Peers">
+            <summary>
+            <para>Indicates a table for each cell's peers.</para>
+            </summary>
+            <example>
+            '<c>Peers[0]</c>': the array of peers for the cell 0 (row 1 column 1).
+            </example>
+        </member>
+        <member name="F:Sudoku.Runtime.AnalysisServices.CommonReadOnlies.RegionCells">
+            <summary>
+            <para>
+            The map of all cell offsets in its specified region.
+            The indices is between 0 and 26, where:
+            <list type="table">
+            <item>
+            <term><c>0..9</c></term>
+            <description>Block 1 to 9.</description>
+            </item>
+            <item>
+            <term><c>9..18</c></term>
+            <description>Row 1 to 9.</description>
+            </item>
+            <item>
+            <term><c>18..27</c></term>
+            <description>Column 1 to 9.</description>
+            </item>
+            </list>
+            </para>
+            </summary>
+            <example>
+            '<c>RegionTable[0]</c>': all cell offsets in the region 0 (block 1).
+            </example>
+        </member>
+        <member name="F:Sudoku.Runtime.AnalysisServices.CommonReadOnlies.SubsetNames">
+            <summary>
+            <para>The names of all subsets by their sizes.</para>
+            <para>
+            For example, if you want to get the name of the size 3, the code will be
+            <code><![CDATA[string name = SubsetNames[3];]]></code>
+            Here the digit <c>3</c> is the size you want to get.
+            </para>
+            </summary>
+        </member>
+        <member name="F:Sudoku.Runtime.AnalysisServices.CommonReadOnlies.FishNames">
+            <summary>
+            The names of all fishes by their sizes.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Runtime.AnalysisServices.CommonReadOnlies.RegularWingNames">
+            <summary>
+            <para>The names of all regular wings by their sizes.</para>
+            <para>
+            For example, if you want to get the name of the size 3, the code will be
+            <code><![CDATA[string name = RegularWingNames[3];]]></code>
+            Here the digit <c>3</c> is the size you want to get.
+            </para>
+            </summary>
+        </member>
+        <member name="F:Sudoku.Runtime.AnalysisServices.CommonReadOnlies.RegionMaps">
+            <summary>
+            Indicates all grid maps that a grid contains.
+            </summary>
+            <example>
+            '<c>RegionMaps[0]</c>': The map containing all cells in the block 1.
+            </example>
+        </member>
+        <member name="F:Sudoku.Runtime.AnalysisServices.CommonReadOnlies.PeerMaps">
+            <summary>
+            Indicates the peer maps using <see cref="F:Sudoku.Runtime.AnalysisServices.CommonReadOnlies.Peers"/> table.
+            </summary>
+            <seealso cref="F:Sudoku.Runtime.AnalysisServices.CommonReadOnlies.Peers"/>
+        </member>
+        <member name="F:Sudoku.Runtime.AnalysisServices.CommonReadOnlies.Regions">
+            <summary>
+            Indicates the possible region types to iterate.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Runtime.AnalysisServices.CommonReadOnlies.IntersectionMaps">
+            <summary>
+            <para>
+            Indicates all maps that forms the each intersection. The pattern will be like:
+            <code><![CDATA[
+            .-------.-------.-------.
+            | C C C | A A A | A A A |
+            | B B B | . . . | . . . |
+            | B B B | . . . | . . . |
+            '-------'-------'-------'
+            ]]></code>
+            </para>
+            <para>
+            In addition, in this data structure, a <b>CoverSet</b> is a block and a <b>BaseSet</b> is a line.
+            </para>
+            </summary>
+        </member>
+        <member name="F:Sudoku.Runtime.AnalysisServices.CommonReadOnlies.IntersectionBlockTable">
+            <summary>
+            <para>The table of all blocks to iterate for each blocks.</para>
+            <para>
+            This field is only used for providing the data for another field <see cref="F:Sudoku.Runtime.AnalysisServices.CommonReadOnlies.IntersectionMaps"/>.
+            </para>
+            </summary>
+            <seealso cref="F:Sudoku.Runtime.AnalysisServices.CommonReadOnlies.IntersectionMaps"/>
+        </member>
+        <member name="F:Sudoku.Runtime.AnalysisServices.CommonReadOnlies.Combinatorials">
+            <summary>
+            Indicates the combinatorial numbers from <c>C(1, 1)</c> to <c>C(30, 30)</c>.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Runtime.AnalysisServices.CommonReadOnlies.#cctor">
+            <static-constructor>
+		<summary>
+			<para>
+				Indicates the <see langword="static" /> constructor of the current type.
+			</para>
+			<para>
+				This constructor will initialize some <see langword="static readonly" /> data members
+				of this type that can't use a simple expression to describe the initial value.
+			</para>
+		</summary>
+	</static-constructor>
+        </member>
+        <member name="T:Sudoku.Runtime.AnalysisServices.CommonReadOnlies.ValueTupleComparer">
+            <summary>
+            The inner comparer of <see cref="T:System.ValueTuple`2"/> used for
+            the field <see cref="F:Sudoku.Runtime.AnalysisServices.CommonReadOnlies.IntersectionMaps"/>.
+            </summary>
+            <seealso cref="F:Sudoku.Runtime.AnalysisServices.CommonReadOnlies.IntersectionMaps"/>
+        </member>
+        <member name="M:Sudoku.Runtime.AnalysisServices.CommonReadOnlies.ValueTupleComparer.Equals(System.ValueTuple{System.Byte,System.Byte},System.ValueTuple{System.Byte,System.Byte})">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Runtime.AnalysisServices.CommonReadOnlies.ValueTupleComparer.GetHashCode(System.ValueTuple{System.Byte,System.Byte})">
+            <inheritdoc/>
         </member>
         <member name="T:Sudoku.Serialization.Converters.CandidatesConverter">
             <summary>

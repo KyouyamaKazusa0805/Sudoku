@@ -1,6 +1,4 @@
-﻿using static Sudoku.Constants.Tables;
-
-namespace Sudoku.UI.Drawing.Shapes;
+﻿namespace Sudoku.UI.Drawing.Shapes;
 
 /// <summary>
 /// Defines a sudoku grid.
