@@ -74,7 +74,7 @@ public sealed class StepSearcherOptionsGenerator : ISourceGenerator
 		// Gather the valid attributes data.
 		var foundAttributesData = new List<Tuple>();
 		const string comma = ", ";
-		const string attributeTypeName = "Sudoku.Solving.Manual.SearcherInitializerOptionAttribute<>";
+		const string attributeTypeName = "Sudoku.Solving.Manual.SearcherConfigurationAttribute<>";
 		foreach (var attributeData in attributesData)
 		{
 			// Check validity.

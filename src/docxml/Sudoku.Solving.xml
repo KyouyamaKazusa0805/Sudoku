@@ -2059,40 +2059,40 @@
             Indicates the technique can't appear because the technique will be replaced with another technique.
             </summary>
         </member>
-        <member name="T:Sudoku.Solving.Manual.SearcherInitializerOptionAttribute`1">
+        <member name="T:Sudoku.Solving.Manual.SearcherConfigurationAttribute`1">
             <summary>
             Defines an attribute that can be applied to the solving assembly,
             to tell the source generator that the searcher option instance will be generated in the specified type.
             </summary>
             <typeparam name="TStepSearcher">The type of the step searcher.</typeparam>
         </member>
-        <member name="M:Sudoku.Solving.Manual.SearcherInitializerOptionAttribute`1.#ctor(System.Int32,Sudoku.Solving.Manual.DisplayingLevel)">
+        <member name="M:Sudoku.Solving.Manual.SearcherConfigurationAttribute`1.#ctor(System.Int32,Sudoku.Solving.Manual.DisplayingLevel)">
             <summary>
-            Initializes a <see cref="T:Sudoku.Solving.Manual.SearcherInitializerOptionAttribute`1"/> instance
+            Initializes a <see cref="T:Sudoku.Solving.Manual.SearcherConfigurationAttribute`1"/> instance
             via the specified priority.
             </summary>
             <param name="priority">The priority value. The value must be unique.</param>
             <param name="displayingLevel">The displaying level.</param>
         </member>
-        <member name="P:Sudoku.Solving.Manual.SearcherInitializerOptionAttribute`1.Priority">
+        <member name="P:Sudoku.Solving.Manual.SearcherConfigurationAttribute`1.Priority">
             <summary>
             Indicates the priority of the step searcher. The priority value must be unique,
             which means that different step searchers must hold different priority values.
             </summary>
         </member>
-        <member name="P:Sudoku.Solving.Manual.SearcherInitializerOptionAttribute`1.DisplayingLevel">
+        <member name="P:Sudoku.Solving.Manual.SearcherConfigurationAttribute`1.DisplayingLevel">
             <summary>
             Indicates the level of the step searcher.
             </summary>
         </member>
-        <member name="P:Sudoku.Solving.Manual.SearcherInitializerOptionAttribute`1.EnabledAreas">
+        <member name="P:Sudoku.Solving.Manual.SearcherConfigurationAttribute`1.EnabledAreas">
             <summary>
             Indicates the area that the step searcher can be used and available.
             </summary>
         </member>
-        <member name="P:Sudoku.Solving.Manual.SearcherInitializerOptionAttribute`1.DisabledReason">
+        <member name="P:Sudoku.Solving.Manual.SearcherConfigurationAttribute`1.DisabledReason">
             <summary>
-            Indicates why the step searcher is disabled, which means the property <see cref="P:Sudoku.Solving.Manual.SearcherInitializerOptionAttribute`1.EnabledAreas"/>
+            Indicates why the step searcher is disabled, which means the property <see cref="P:Sudoku.Solving.Manual.SearcherConfigurationAttribute`1.EnabledAreas"/>
             is <see cref="F:Sudoku.Solving.Manual.EnabledAreas.None"/>.
             </summary>
             <seealso cref="F:Sudoku.Solving.Manual.EnabledAreas.None"/>
