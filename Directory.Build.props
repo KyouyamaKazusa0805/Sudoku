@@ -26,18 +26,9 @@
 	</PropertyGroup>
 
 	<!--Set the root namespaces.-->
-	<Choose>
-		<When Condition="'$(MSBuildProjectFile.TrimEnd(`.csproj`).EndsWith(`.CodeGen`))'=='true'">
-			<PropertyGroup>
-				<RootNamespace>Sudoku.Diagnostics.CodeGen</RootNamespace>
-			</PropertyGroup>
-		</When>
-		<When Condition="'$(MSBuildProjectFile.TrimEnd(`.csproj`).EndsWith(`.CodeAnalysis`))'=='true'">
-			<PropertyGroup>
-				<RootNamespace>Sudoku.Diagnostics.CodeAnalysis</RootNamespace>
-			</PropertyGroup>
-		</When>
-	</Choose>
+	<PropertyGroup Condition="'$(MSBuildProjectFile.TrimEnd(`.csproj`).EndsWith(`.CodeGen`))'=='true'">
+		<RootNamespace>Sudoku.Diagnostics.CodeGen</RootNamespace>
+	</PropertyGroup>
 
 	<!--Select the default configuration as 'DEBUG', and set the compilation symbols.-->
 	<Choose>
@@ -66,16 +57,6 @@
 		<PackageReference Include="Microsoft.CodeAnalysis.CSharp.Workspaces" Version="4.0.1" />
 		<PackageReference Include="IndexRange" Version="1.0.0" />
 	</ItemGroup>
-
-	<!--Try to reference the code analysis project.-->
-	<Choose>
-		<!--We will skip to reference code analysis project to prevent a cycle referencing.-->
-		<When Condition="'$(MSBuildProjectFile)'=='Sudoku.Diagnostics.CodeAnalysis.CodeGen.csproj'" />
-		<When Condition="'$(MSBuildProjectFile)'=='GlobalConfiguration.CodeGen.csproj'" />
-
-		<!--If the project is not a C# project, just skip it.-->
-		<When Condition="'$(MSBuildProjectFile.EndsWith(`.csproj`))'=='false'" />
-	</Choose>
 
 	<!--Import 'GlobalConfiguration.CodeGen' project into the source genrator projects.-->
 	<ItemGroup Condition="'$(MSBuildProjectFile.TrimEnd(`.csproj`).EndsWith(`.CodeGen`))'=='true' And '$(MSBuildProjectFile)'!='GlobalConfiguration.CodeGen.csproj'">
