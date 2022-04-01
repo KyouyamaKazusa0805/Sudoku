@@ -4146,26 +4146,6 @@
             <param name="unit">The unit.</param>
             <returns>The value of the specified size unit.</returns>
         </member>
-        <member name="T:Sudoku.Collections.Utf8JsonWriterExtensionsOnSudokuCollections">
-            <summary>
-            Provides extension methods on <see cref="T:System.Text.Json.Utf8JsonWriter"/>, and writes the collection values
-            as an array into it.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Collections.Utf8JsonWriterExtensionsOnSudokuCollections.WriteCollection(System.Text.Json.Utf8JsonWriter,Sudoku.Concepts.Collections.Cells@)">
-            <summary>
-            Writes an array of <see cref="T:Sudoku.Concepts.Collections.Cells"/> into the JSON stream.
-            </summary>
-            <param name="this">The writer.</param>
-            <param name="cells">The cells to be written.</param>
-        </member>
-        <member name="M:Sudoku.Collections.Utf8JsonWriterExtensionsOnSudokuCollections.WriteCollection(System.Text.Json.Utf8JsonWriter,Sudoku.Concepts.Collections.Candidates@)">
-            <summary>
-            Writes an array of <see cref="T:Sudoku.Concepts.Collections.Candidates"/> into the JSON stream.
-            </summary>
-            <param name="this">The writer.</param>
-            <param name="candidates">The candidates to be written.</param>
-        </member>
         <member name="T:Sudoku.GridCreatingOption">
             <summary>
             Indicates the grid creating option.

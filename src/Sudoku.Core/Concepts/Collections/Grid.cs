@@ -1,7 +1,6 @@
 ﻿#undef USE_TO_MASK_STRING_METHOD
 #define SOLUTION_DISPLAY_MODIFIABLES
 
-
 namespace Sudoku.Concepts.Collections;
 
 /// <summary>

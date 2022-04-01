@@ -28,6 +28,19 @@ public sealed class CellsConverter : JsonConverter<Cells>
 	}
 
 	/// <inheritdoc/>
-	public override void Write(Utf8JsonWriter writer, Cells value, JsonSerializerOptions options) =>
-		writer.WriteCollection(value);
+	public override void Write(Utf8JsonWriter writer, Cells value, JsonSerializerOptions options)
+	{
+		writeCollection(writer, value);
+
+
+		static void writeCollection(Utf8JsonWriter @this, in Cells cells)
+		{
+			@this.WriteStartArray();
+			foreach (byte cell in cells)
+			{
+				@this.WriteStringValue((Cells.Empty + cell).ToString());
+			}
+			@this.WriteEndArray();
+		}
+	}
 }

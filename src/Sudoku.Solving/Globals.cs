@@ -4,7 +4,6 @@ global using System.Globalization;
 global using System.Reflection;
 global using System.Runtime.Intrinsics;
 global using System.Runtime.Serialization;
-global using Sudoku.Collections;
 global using Sudoku.Concepts;
 global using Sudoku.Concepts.Collections;
 global using Sudoku.Concepts.Collections.Handlers;

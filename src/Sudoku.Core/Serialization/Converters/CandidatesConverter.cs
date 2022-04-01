@@ -28,6 +28,19 @@ public sealed class CandidatesConverter : JsonConverter<Candidates>
 	}
 
 	/// <inheritdoc/>
-	public override void Write(Utf8JsonWriter writer, Candidates value, JsonSerializerOptions options) =>
-		writer.WriteCollection(value);
+	public override void Write(Utf8JsonWriter writer, Candidates value, JsonSerializerOptions options)
+	{
+		writeCollection(writer, value);
+
+
+		static void writeCollection(Utf8JsonWriter @this, in Candidates candidates)
+		{
+			@this.WriteStartArray();
+			foreach (int candidate in candidates)
+			{
+				@this.WriteStringValue((Candidates.Empty + candidate).ToString());
+			}
+			@this.WriteEndArray();
+		}
+	}
 }

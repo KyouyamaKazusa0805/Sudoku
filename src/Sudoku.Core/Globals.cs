@@ -2,7 +2,6 @@
 global using System.ComponentModel;
 global using System.Runtime.InteropServices;
 global using System.Runtime.Intrinsics;
-global using Sudoku.Collections;
 global using Sudoku.Concepts;
 global using Sudoku.Concepts.Collections;
 global using Sudoku.Concepts.Collections.Handlers;
