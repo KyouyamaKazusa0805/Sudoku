@@ -7,7 +7,7 @@
 internal static class GeneratorExecutionContextExtensions
 {
 	/// <summary>
-	/// Simply calls <see cref="GeneratorExecutionContext.AddSource(string, string)"/>,
+	/// Simply calls <see cref="GeneratorExecutionContext.AddSource(string, string)"/>.
 	/// </summary>
 	/// <param name="this">The current context.</param>
 	/// <param name="fileName">The file name. The file name may be same as the symbol name</param>

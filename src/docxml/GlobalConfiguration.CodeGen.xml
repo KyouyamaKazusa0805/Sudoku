@@ -33,7 +33,7 @@
         </member>
         <member name="M:Microsoft.CodeAnalysis.GeneratorExecutionContextExtensions.AddSource(Microsoft.CodeAnalysis.GeneratorExecutionContext@,System.String,System.String,System.String)">
             <summary>
-            Simply calls <see cref="M:Microsoft.CodeAnalysis.GeneratorExecutionContext.AddSource(System.String,System.String)"/>,
+            Simply calls <see cref="M:Microsoft.CodeAnalysis.GeneratorExecutionContext.AddSource(System.String,System.String)"/>.
             </summary>
             <param name="this">The current context.</param>
             <param name="fileName">The file name. The file name may be same as the symbol name</param>
