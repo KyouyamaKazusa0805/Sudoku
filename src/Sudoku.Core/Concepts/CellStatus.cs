@@ -1,4 +1,4 @@
-﻿namespace Sudoku;
+﻿namespace Sudoku.Concepts;
 
 /// <summary>
 /// Represents a cell status.

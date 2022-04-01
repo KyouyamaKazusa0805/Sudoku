@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Runtime.CompilerServices;
+using Sudoku.Concepts;
 
 namespace Sudoku.UI.Drawing.Shapes;
 

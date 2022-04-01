@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Serialization.Converters;
+﻿namespace Sudoku.Concepts.Collections.Serialization;
 
 /// <summary>
 /// Defines a serialization converter to convert the <see cref="Cells"/>

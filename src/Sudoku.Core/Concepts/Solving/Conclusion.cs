@@ -1,4 +1,4 @@
-﻿namespace Sudoku;
+﻿namespace Sudoku.Concepts.Solving;
 
 /// <summary>
 /// Encapsulates a conclusion representation while solving in logic.
@@ -83,7 +83,7 @@ public readonly record struct Conclusion(int Mask) :
 	public int Candidate
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => Mask & ((1 << 10) - 1);
+		get => Mask & (1 << 10) - 1;
 	}
 
 	/// <summary>
@@ -121,7 +121,7 @@ public readonly record struct Conclusion(int Mask) :
 	public void Deconstruct(out ConclusionType conclusionType, out int candidate)
 	{
 		conclusionType = (ConclusionType)(Mask >> 10 & 1);
-		candidate = Mask & ((1 << 10) - 1);
+		candidate = Mask & (1 << 10) - 1;
 	}
 
 	/// <summary>
