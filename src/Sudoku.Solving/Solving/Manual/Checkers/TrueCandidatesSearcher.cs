@@ -187,15 +187,4 @@ public sealed unsafe class TrueCandidatesSearcher
 
 		return result;
 	}
-
-	/// <summary>
-	/// Get all true candidates when the number of empty cells
-	/// is below than the argument asynchronously.
-	/// </summary>
-	/// <param name="maximumEmptyCells">The maximum number of the empty cells.</param>
-	/// <param name="cancellationToken">The cancellation token to cancel the operation.</param>
-	/// <returns>The task to get all true candidates.</returns>
-	public ValueTask<Candidates> GetAllTrueCandidatesAsync(
-		int maximumEmptyCells, CancellationToken cancellationToken = default
-	) => new(GetAllTrueCandidates(maximumEmptyCells, cancellationToken));
 }

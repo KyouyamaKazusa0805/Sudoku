@@ -1,4 +1,6 @@
-﻿namespace Sudoku.UI;
+﻿using System;
+
+namespace Sudoku.UI;
 
 /// <summary>
 /// Defines a set of properties to describe an image.

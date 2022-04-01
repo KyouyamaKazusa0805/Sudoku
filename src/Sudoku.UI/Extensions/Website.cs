@@ -1,4 +1,7 @@
-﻿namespace Sudoku.UI;
+﻿using System.Diagnostics;
+using System.Runtime.CompilerServices;
+
+namespace Sudoku.UI;
 
 /// <summary>
 /// Provides methods on website visiting.

@@ -1782,15 +1782,6 @@
             <param name="cancellationToken">The cancellation token to cancel the operation.</param>
             <returns>All true candidates.</returns>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Checkers.TrueCandidatesSearcher.GetAllTrueCandidatesAsync(System.Int32,System.Threading.CancellationToken)">
-            <summary>
-            Get all true candidates when the number of empty cells
-            is below than the argument asynchronously.
-            </summary>
-            <param name="maximumEmptyCells">The maximum number of the empty cells.</param>
-            <param name="cancellationToken">The cancellation token to cancel the operation.</param>
-            <returns>The task to get all true candidates.</returns>
-        </member>
         <member name="T:Sudoku.Solving.Manual.DifficultyLevel">
             <summary>
             Provides a difficulty kind for a puzzle.

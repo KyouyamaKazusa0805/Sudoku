@@ -1,4 +1,6 @@
-﻿namespace Sudoku.UI;
+﻿using System.Runtime.CompilerServices;
+
+namespace Sudoku.UI;
 
 /// <summary>
 /// Defines a <see langword="static class"/> that provides the method

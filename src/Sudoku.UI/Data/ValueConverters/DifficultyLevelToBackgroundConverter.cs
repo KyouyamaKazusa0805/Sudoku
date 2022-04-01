@@ -1,4 +1,6 @@
-﻿using Microsoft.UI;
+﻿using System;
+using System.Diagnostics.CodeAnalysis;
+using Microsoft.UI;
 using Microsoft.UI.Xaml.Data;
 using Microsoft.UI.Xaml.Media;
 using Sudoku.Solving.Manual;

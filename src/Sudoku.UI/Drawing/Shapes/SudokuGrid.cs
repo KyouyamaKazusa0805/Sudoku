@@ -1,4 +1,9 @@
-﻿namespace Sudoku.UI.Drawing.Shapes;
+﻿using System;
+using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
+using System.Runtime.CompilerServices;
+
+namespace Sudoku.UI.Drawing.Shapes;
 
 /// <summary>
 /// Defines a sudoku grid.

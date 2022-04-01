@@ -1,4 +1,9 @@
-﻿namespace Sudoku.UI.Drawing.Shapes;
+﻿using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Runtime.CompilerServices;
+
+namespace Sudoku.UI.Drawing.Shapes;
 
 partial class DrawingElementBag
 {

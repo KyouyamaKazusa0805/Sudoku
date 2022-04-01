@@ -22,9 +22,7 @@ public readonly struct Identifier :
 	/// Initializes an <see cref="Identifier"/> instance.
 	/// </summary>
 	/// <exception cref="NotSupportedException">Always throws.</exception>
-	[DebuggerHidden]
 	[EditorBrowsable(EditorBrowsableState.Never)]
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	[Obsolete("You cannot use the parameterless constructor to construct the data structure. Please use factory method instead.", true, DiagnosticId = "SUDOKULIB001")]
 	public Identifier() => throw new NotSupportedException();
 

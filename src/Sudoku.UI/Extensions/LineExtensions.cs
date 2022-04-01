@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel;
+using System.Runtime.CompilerServices;
 using Windows.Foundation;
 
 namespace Microsoft.UI.Xaml.Shapes;

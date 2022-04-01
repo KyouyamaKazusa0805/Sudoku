@@ -10,11 +10,7 @@ public static class Casing
 	/// Defines a regular expression pattern that matches for an identifier based on UTF-8 format.
 	/// </summary>
 	private static readonly Regex Utf8IdentifierPattern =
-		new(
-			@"[A-Za-z_]\w*",
-			RegexOptions.Compiled,
-			TimeSpan.FromSeconds(5)
-		);
+		new(@"[A-Za-z_]\w*", RegexOptions.Compiled, TimeSpan.FromSeconds(5));
 
 	/// <summary>
 	/// Checks whether the specified string value is a valid identifier name.

@@ -1,4 +1,5 @@
-﻿using Microsoft.UI.Windowing;
+﻿using System.Runtime.CompilerServices;
+using Microsoft.UI.Windowing;
 using WinRT.Interop;
 
 namespace Microsoft.UI.Xaml;

@@ -1,4 +1,8 @@
-﻿using Microsoft.UI.Xaml.Media.Animation;
+﻿using System;
+using System.Diagnostics.CodeAnalysis;
+using System.Linq;
+using System.Runtime.CompilerServices;
+using Microsoft.UI.Xaml.Media.Animation;
 using Microsoft.UI.Xaml.Navigation;
 
 namespace Sudoku.UI.Views.Pages;

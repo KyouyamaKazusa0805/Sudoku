@@ -1,4 +1,6 @@
-﻿namespace Sudoku.UI.Data;
+﻿using System;
+
+namespace Sudoku.UI.Data;
 
 /// <inheritdoc/>
 public sealed class HyperlinkMessage : InfoBarMessage

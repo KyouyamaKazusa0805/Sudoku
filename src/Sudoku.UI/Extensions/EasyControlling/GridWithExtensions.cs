@@ -1,4 +1,7 @@
-﻿namespace Microsoft.UI.Xaml.Controls;
+﻿using System;
+using System.Runtime.CompilerServices;
+
+namespace Microsoft.UI.Xaml.Controls;
 
 /// <summary>
 /// Provides extension methods on <see cref="GridLayout"/>.

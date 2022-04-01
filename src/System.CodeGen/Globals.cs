@@ -1,11 +1,6 @@
 ﻿global using System;
-global using System.CodeDom.Compiler;
 global using System.Collections.Generic;
-global using System.ComponentModel;
 global using System.Linq;
-global using System.Runtime.CompilerServices;
-global using System.Runtime.InteropServices;
 global using System.Text;
 global using Microsoft.CodeAnalysis;
-global using Sudoku.Solving.Manual;
 global using static Sudoku.Diagnostics.CodeGen.Constants;

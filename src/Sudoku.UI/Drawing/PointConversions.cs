@@ -1,4 +1,6 @@
-﻿using Windows.Foundation;
+﻿using System;
+using System.Runtime.CompilerServices;
+using Windows.Foundation;
 
 namespace Sudoku.UI.Drawing;
 

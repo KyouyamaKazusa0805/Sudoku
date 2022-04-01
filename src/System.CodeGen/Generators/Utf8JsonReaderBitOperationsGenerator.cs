@@ -9,7 +9,7 @@ public sealed class Utf8JsonReaderBitOperationsGenerator : ISourceGenerator
 	/// <inheritdoc/>
 	public void Execute(GeneratorExecutionContext context)
 	{
-		var quadriples = new (string Type, string Name, string RealName, string? Conversion)[]
+		var quadruples = new (string Type, string Name, string RealName, string? Conversion)[]
 		{
 			("sbyte", "Int32", "SByte", "(sbyte)"),
 			("byte", "Int32", "Byte", "(byte)"),
@@ -22,7 +22,7 @@ public sealed class Utf8JsonReaderBitOperationsGenerator : ISourceGenerator
 		};
 		string c = string.Join(
 			"\r\n\r\n\t",
-			from quadruple in quadriples
+			from quadruple in quadruples
 			select $@"/// <summary>
 	/// Reads the array of <see cref=""{quadruple.Type}""/>s.
 	/// </summary>

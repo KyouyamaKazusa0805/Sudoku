@@ -1,4 +1,9 @@
-﻿using static System.Numerics.BitOperations;
+﻿using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
+using System.Runtime.CompilerServices;
+using static System.Numerics.BitOperations;
 
 namespace Sudoku.UI.Drawing.Shapes;
 
