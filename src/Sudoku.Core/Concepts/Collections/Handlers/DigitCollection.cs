@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Collections;
+﻿namespace Sudoku.Concepts.Collections.Handlers;
 
 /// <summary>
 /// Indicates a collection that contains the several digits.
@@ -17,35 +17,15 @@ public readonly ref partial struct DigitCollection
 	/// <param name="mask">The mask.</param>
 	public DigitCollection(short mask) => _mask = mask;
 
-	/// <summary>
-	/// Initializes an instance with the specified digits.
-	/// </summary>
-	/// <param name="digits">The digits.</param>
-	public DigitCollection(in ReadOnlySpan<int> digits) : this()
-	{
-		foreach (int digit in digits)
-		{
-			_mask |= (short)(1 << digit);
-		}
-	}
-
-	/// <summary>
-	/// Initializes an instance with the specified digits.
-	/// </summary>
-	/// <param name="digits">The digits.</param>
-	public DigitCollection(IEnumerable<int> digits) : this()
-	{
-		foreach (int digit in digits)
-		{
-			_mask |= (short)(1 << digit);
-		}
-	}
-
 
 	/// <summary>
 	/// Get the number of digits in the collection.
 	/// </summary>
-	public int Count => PopCount((uint)_mask);
+	public int Count
+	{
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		get => PopCount((uint)_mask);
+	}
 
 
 	/// <summary>
@@ -53,10 +33,19 @@ public readonly ref partial struct DigitCollection
 	/// </summary>
 	/// <param name="digit">The digit.</param>
 	/// <returns>A <see cref="bool"/> value.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public bool Contains(int digit) => (_mask >> digit & 1) != 0;
 
 	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public override string ToString() => ToString(", ");
+
+	/// <summary>
+	/// Returns a string that represents the current object without the specified format string.
+	/// </summary>
+	/// <returns>The string result.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public string ToSimpleString() => ToString(null);
 
 	/// <summary>
 	/// Returns a string that represents the current object with the specified format string.
@@ -101,7 +90,19 @@ public readonly ref partial struct DigitCollection
 	/// </summary>
 	/// <param name="collection">The instance to negate.</param>
 	/// <returns>The negative result.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static DigitCollection operator ~(DigitCollection collection) => new((short)~collection._mask);
+
+	/// <summary>
+	/// Apply the subtraction with <paramref name="left"/> as the subtrahend,
+	/// and <paramref name="right"/> as the subtractor.
+	/// </summary>
+	/// <param name="left">The left instance.</param>
+	/// <param name="right">The right instance.</param>
+	/// <returns>The result collection.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static DigitCollection operator -(DigitCollection left, DigitCollection right) =>
+		new((short)(left._mask & ~right._mask));
 
 	/// <summary>
 	/// Apply the intersection from two <see cref="DigitCollection"/>s.
@@ -109,6 +110,7 @@ public readonly ref partial struct DigitCollection
 	/// <param name="left">The left instance.</param>
 	/// <param name="right">The right instance.</param>
 	/// <returns>The result collection.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static DigitCollection operator &(DigitCollection left, DigitCollection right) =>
 		new((short)(left._mask & right._mask));
 
@@ -118,6 +120,7 @@ public readonly ref partial struct DigitCollection
 	/// <param name="left">The left instance.</param>
 	/// <param name="right">The right instance.</param>
 	/// <returns>The result collection.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static DigitCollection operator |(DigitCollection left, DigitCollection right) =>
 		new((short)(left._mask | right._mask));
 
@@ -127,6 +130,7 @@ public readonly ref partial struct DigitCollection
 	/// <param name="left">The left instance.</param>
 	/// <param name="right">The right instance.</param>
 	/// <returns>The result collection.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static DigitCollection operator ^(DigitCollection left, DigitCollection right) =>
 		new((short)(left._mask ^ right._mask));
 }

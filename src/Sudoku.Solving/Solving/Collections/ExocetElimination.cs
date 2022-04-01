@@ -54,7 +54,7 @@ public readonly record struct ExocetElimination(in Candidates Eliminations, Exoc
 	{
 		string header = R[$"Exocet{Reason}EliminationName"]!;
 		string snippet = R["ExocetElimination"]!;
-		string elim = new ConclusionCollection(AsSpan()).ToString();
+		string elim = new ConclusionCollection(ToArray()).ToString();
 		return $"* {header}{snippet}{elim}";
 	}
 
@@ -63,7 +63,7 @@ public readonly record struct ExocetElimination(in Candidates Eliminations, Exoc
 	/// </summary>
 	/// <returns>The enumerator instance.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public ReadOnlySpan<Conclusion>.Enumerator GetEnumerator() => AsSpan().GetEnumerator();
+	public OneDimensionalArrayEnumerator<Conclusion> GetEnumerator() => ToArray().EnumerateImmutable();
 
 	/// <summary>
 	/// Converts all elements to <see cref="Conclusion"/>.
@@ -71,7 +71,7 @@ public readonly record struct ExocetElimination(in Candidates Eliminations, Exoc
 	/// <returns>The <see cref="ReadOnlySpan{T}"/> of type <see cref="Conclusion"/>.</returns>
 	/// <seealso cref="ReadOnlySpan{T}"/>
 	/// <seealso cref="Conclusion"/>
-	public ReadOnlySpan<Conclusion> AsSpan()
+	public Conclusion[] ToArray()
 	{
 		var result = new Conclusion[Eliminations.Count];
 		for (int i = 0, count = Eliminations.Count; i < count; i++)

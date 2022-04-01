@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Collections;
+﻿namespace Sudoku.Concepts.Collections.Handlers;
 
 /// <summary>
 /// Provides a collection that contains the conclusions.
@@ -8,34 +8,25 @@ public readonly ref partial struct ConclusionCollection
 	/// <summary>
 	/// The internal collection.
 	/// </summary>
-	private readonly ReadOnlySpan<Conclusion> _collection;
+	private readonly Conclusion[] _collection;
 
 
 	/// <summary>
 	/// Initializes an instance with the specified collection.
 	/// </summary>
 	/// <param name="collection">The collection.</param>
-	public ConclusionCollection(in ReadOnlySpan<Conclusion> collection) : this() => _collection = collection;
-
-	/// <summary>
-	/// Initializes an instance with the specified collection. 
-	/// </summary>
-	/// <param name="collection">The collection.</param>
-	public ConclusionCollection(in ImmutableArray<Conclusion> collection) : this() =>
-		_collection = collection.ToArray();
-
-	/// <summary>
-	/// Initializes an instance with the specified collection.
-	/// </summary>
-	/// <param name="collection">The collection.</param>
-	public ConclusionCollection(IEnumerable<Conclusion> collection) : this() =>
-		_collection = collection.ToArray().AsSpan();
-
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public ConclusionCollection(Conclusion[] collection) : this() => _collection = collection;
+	
 
 	/// <summary>
 	/// Indicates all cells used in this conclusions list.
 	/// </summary>
-	public Cells Cells => new(from conclusion in _collection select conclusion.Cell);
+	public Cells Cells
+	{
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		get => new(from conclusion in _collection select conclusion.Cell);
+	}
 
 	/// <summary>
 	/// Indicates all digits used in this conclusions list, represented as a mask.
@@ -60,7 +51,7 @@ public readonly ref partial struct ConclusionCollection
 	/// </summary>
 	/// <param name="other">The collection to compare.</param>
 	/// <returns>A <see cref="bool"/> result.</returns>
-	public bool Equals(in ConclusionCollection other) => _collection == other._collection;
+	public bool Equals(ConclusionCollection other) => _collection == other._collection;
 
 	/// <inheritdoc cref="object.ToString"/>
 	public override string ToString() => ToString(true, ", ");

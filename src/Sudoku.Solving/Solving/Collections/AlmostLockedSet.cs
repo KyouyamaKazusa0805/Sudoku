@@ -126,8 +126,8 @@ public readonly record struct AlmostLockedSet(
 	/// <inheritdoc/>
 	public override string ToString() =>
 		IsBivalueCell
-			? $"{new DigitCollection(DigitsMask).ToString(null)}/{Map}"
-			: $"{new DigitCollection(DigitsMask).ToString(null)}/{Map} {R["KeywordIn"]} {new RegionCollection(Region).ToString()}";
+			? $"{new DigitCollection(DigitsMask).ToSimpleString()}/{Map}"
+			: $"{new DigitCollection(DigitsMask).ToSimpleString()}/{Map} {R["KeywordIn"]} {new RegionCollection(Region).ToString()}";
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

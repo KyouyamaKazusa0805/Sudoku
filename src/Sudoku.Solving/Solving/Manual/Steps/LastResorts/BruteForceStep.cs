@@ -29,6 +29,6 @@ public sealed record BruteForceStep(
 	internal string AssignmentStr
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => new ConclusionCollection(Conclusions).ToString();
+		get => new ConclusionCollection(Conclusions.ToArray()).ToString();
 	}
 }

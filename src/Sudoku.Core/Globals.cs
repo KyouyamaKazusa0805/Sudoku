@@ -5,6 +5,7 @@ global using System.Runtime.Intrinsics;
 global using Sudoku.Collections;
 global using Sudoku.Concepts;
 global using Sudoku.Concepts.Collections;
+global using Sudoku.Concepts.Collections.Handlers;
 global using Sudoku.Concepts.Formatting;
 global using Sudoku.Concepts.Parsing;
 global using Sudoku.DataHandling;

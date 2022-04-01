@@ -742,7 +742,7 @@
             </summary>
             <returns>The enumerator instance.</returns>
         </member>
-        <member name="M:Sudoku.Solving.Collections.ExocetElimination.AsSpan">
+        <member name="M:Sudoku.Solving.Collections.ExocetElimination.ToArray">
             <summary>
             Converts all elements to <see cref="T:Sudoku.Conclusion"/>.
             </summary>

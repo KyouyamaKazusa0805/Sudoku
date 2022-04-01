@@ -66,7 +66,7 @@ public sealed record SueDeCoqStep(
 	internal string IntersectionDigitsStr
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => new DigitCollection(IntersectionMask).ToString(null);
+		get => new DigitCollection(IntersectionMask).ToSimpleString();
 	}
 
 	[FormatItem]
@@ -80,7 +80,7 @@ public sealed record SueDeCoqStep(
 	internal string BlockDigitsStr
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => new DigitCollection(BlockMask).ToString(null);
+		get => new DigitCollection(BlockMask).ToSimpleString();
 	}
 
 	[FormatItem]
@@ -94,6 +94,6 @@ public sealed record SueDeCoqStep(
 	internal string LineDigitsStr
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => new DigitCollection(LineMask).ToString(null);
+		get => new DigitCollection(LineMask).ToSimpleString();
 	}
 }

@@ -32,353 +32,6 @@
             other words, the value is a given (or a hint, clue, etc.).
             </summary>
         </member>
-        <member name="T:Sudoku.Collections.ConclusionCollection">
-            <summary>
-            Provides a collection that contains the conclusions.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Collections.ConclusionCollection._collection">
-            <summary>
-            The internal collection.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Collections.ConclusionCollection.#ctor(System.ReadOnlySpan{Sudoku.Conclusion}@)">
-            <summary>
-            Initializes an instance with the specified collection.
-            </summary>
-            <param name="collection">The collection.</param>
-        </member>
-        <member name="M:Sudoku.Collections.ConclusionCollection.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Conclusion}@)">
-            <summary>
-            Initializes an instance with the specified collection. 
-            </summary>
-            <param name="collection">The collection.</param>
-        </member>
-        <member name="M:Sudoku.Collections.ConclusionCollection.#ctor(System.Collections.Generic.IEnumerable{Sudoku.Conclusion})">
-            <summary>
-            Initializes an instance with the specified collection.
-            </summary>
-            <param name="collection">The collection.</param>
-        </member>
-        <member name="P:Sudoku.Collections.ConclusionCollection.Cells">
-            <summary>
-            Indicates all cells used in this conclusions list.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Collections.ConclusionCollection.Digits">
-            <summary>
-            Indicates all digits used in this conclusions list, represented as a mask.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Collections.ConclusionCollection.Equals(Sudoku.Collections.ConclusionCollection@)">
-            <summary>
-            Determine whether the two collections are equal.
-            </summary>
-            <param name="other">The collection to compare.</param>
-            <returns>A <see cref="T:System.Boolean"/> result.</returns>
-        </member>
-        <member name="M:Sudoku.Collections.ConclusionCollection.ToString">
-            <inheritdoc cref="M:System.Object.ToString"/>
-        </member>
-        <member name="M:Sudoku.Collections.ConclusionCollection.ToString(System.Boolean,System.String)">
-            <summary>
-            Converts the current instance to <see cref="T:System.String"/> with the specified separator.
-            </summary>
-            <param name="shouldSort">Indicates whether the specified collection should be sorted first.</param>
-            <param name="separator">The separator.</param>
-            <returns>The string result.</returns>
-        </member>
-        <member name="M:Sudoku.Collections.ConclusionCollection.Equals(System.Object)">
-            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
-            <exception cref="T:System.NotSupportedException">Always throws.</exception>
-        </member>
-        <member name="M:Sudoku.Collections.ConclusionCollection.GetHashCode">
-            <inheritdoc cref="M:System.Object.GetHashCode"/>
-            <exception cref="T:System.NotSupportedException">Always throws.</exception>
-        </member>
-        <member name="T:Sudoku.Collections.DigitCollection">
-            <summary>
-            Indicates a collection that contains the several digits.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Collections.DigitCollection._mask">
-            <summary>
-            Indicates the inner mask.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Collections.DigitCollection.#ctor(System.Int16)">
-            <summary>
-            Initializes the collection using a mask.
-            </summary>
-            <param name="mask">The mask.</param>
-        </member>
-        <member name="M:Sudoku.Collections.DigitCollection.#ctor(System.ReadOnlySpan{System.Int32}@)">
-            <summary>
-            Initializes an instance with the specified digits.
-            </summary>
-            <param name="digits">The digits.</param>
-        </member>
-        <member name="M:Sudoku.Collections.DigitCollection.#ctor(System.Collections.Generic.IEnumerable{System.Int32})">
-            <summary>
-            Initializes an instance with the specified digits.
-            </summary>
-            <param name="digits">The digits.</param>
-        </member>
-        <member name="P:Sudoku.Collections.DigitCollection.Count">
-            <summary>
-            Get the number of digits in the collection.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Collections.DigitCollection.Contains(System.Int32)">
-            <summary>
-            Indicates whether the specified collection contains the digit.
-            </summary>
-            <param name="digit">The digit.</param>
-            <returns>A <see cref="T:System.Boolean"/> value.</returns>
-        </member>
-        <member name="M:Sudoku.Collections.DigitCollection.ToString">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Collections.DigitCollection.ToString(System.String)">
-            <summary>
-            Returns a string that represents the current object with the specified format string.
-            </summary>
-            <param name="format">The format. If available, the parameter can be <see langword="null"/>.</param>
-            <returns>The string result.</returns>
-        </member>
-        <member name="M:Sudoku.Collections.DigitCollection.GetEnumerator">
-            <summary>
-            Get the enumerator of the current instance in order to use <see langword="foreach"/> loop.
-            </summary>
-            <returns>The enumerator instance.</returns>
-        </member>
-        <member name="M:Sudoku.Collections.DigitCollection.op_OnesComplement(Sudoku.Collections.DigitCollection)">
-            <summary>
-            Make all <see langword="true"/> bits to be set <see langword="false"/>,
-            and make all <see langword="false"/> bits to be set <see langword="true"/>.
-            </summary>
-            <param name="collection">The instance to negate.</param>
-            <returns>The negative result.</returns>
-        </member>
-        <member name="M:Sudoku.Collections.DigitCollection.op_BitwiseAnd(Sudoku.Collections.DigitCollection,Sudoku.Collections.DigitCollection)">
-            <summary>
-            Apply the intersection from two <see cref="T:Sudoku.Collections.DigitCollection"/>s.
-            </summary>
-            <param name="left">The left instance.</param>
-            <param name="right">The right instance.</param>
-            <returns>The result collection.</returns>
-        </member>
-        <member name="M:Sudoku.Collections.DigitCollection.op_BitwiseOr(Sudoku.Collections.DigitCollection,Sudoku.Collections.DigitCollection)">
-            <summary>
-            Apply the union of two <see cref="T:Sudoku.Collections.DigitCollection"/>s.
-            </summary>
-            <param name="left">The left instance.</param>
-            <param name="right">The right instance.</param>
-            <returns>The result collection.</returns>
-        </member>
-        <member name="M:Sudoku.Collections.DigitCollection.op_ExclusiveOr(Sudoku.Collections.DigitCollection,Sudoku.Collections.DigitCollection)">
-            <summary>
-            Apply the exclusive union of two <see cref="T:Sudoku.Collections.DigitCollection"/>s.
-            </summary>
-            <param name="left">The left instance.</param>
-            <param name="right">The right instance.</param>
-            <returns>The result collection.</returns>
-        </member>
-        <member name="M:Sudoku.Collections.DigitCollection.Equals(System.Object)">
-            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
-            <exception cref="T:System.NotSupportedException">Always throws.</exception>
-        </member>
-        <member name="M:Sudoku.Collections.DigitCollection.GetHashCode">
-            <inheritdoc cref="M:System.Object.GetHashCode"/>
-            <exception cref="T:System.NotSupportedException">Always throws.</exception>
-        </member>
-        <member name="T:Sudoku.Collections.GridTransformations">
-            <summary>
-            Provides methods for <see cref="T:Sudoku.Concepts.Collections.Grid"/> instances on transformations.
-            </summary>
-            <seealso cref="T:Sudoku.Concepts.Collections.Grid"/>
-        </member>
-        <member name="F:Sudoku.Collections.GridTransformations.ClockwiseTable">
-            <summary>
-            The table of clockwise rotation.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Collections.GridTransformations.CounterclockwiseTable">
-            <summary>
-            The table of counter-clockwise rotation.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Collections.GridTransformations.PiRotateTable">
-            <summary>
-            The table of pi-rotation.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Collections.GridTransformations.MirrorLeftRight(Sudoku.Concepts.Collections.Grid@)">
-            <summary>
-            Mirror left-right the grid.
-            </summary>
-            <param name="this">The grid.</param>
-            <returns>The result grid.</returns>
-        </member>
-        <member name="M:Sudoku.Collections.GridTransformations.MirrorTopBottom(Sudoku.Concepts.Collections.Grid@)">
-            <summary>
-            Mirror top-bottom the grid.
-            </summary>
-            <param name="this">The grid.</param>
-            <returns>The result grid.</returns>
-        </member>
-        <member name="M:Sudoku.Collections.GridTransformations.MirrorDiagonal(Sudoku.Concepts.Collections.Grid@)">
-            <summary>
-            Mirror diagonal the grid.
-            </summary>
-            <param name="this">The grid.</param>
-            <returns>The result grid.</returns>
-        </member>
-        <member name="M:Sudoku.Collections.GridTransformations.Transpose(Sudoku.Concepts.Collections.Grid@)">
-            <summary>
-            Transpose the grid.
-            </summary>
-            <param name="this">The grid.</param>
-            <returns>The result grid.</returns>
-        </member>
-        <member name="M:Sudoku.Collections.GridTransformations.MirrorAntidiagonal(Sudoku.Concepts.Collections.Grid@)">
-            <summary>
-            Mirror anti-diagonal the grid.
-            </summary>
-            <param name="this">The grid.</param>
-            <returns>The result grid.</returns>
-        </member>
-        <member name="M:Sudoku.Collections.GridTransformations.RotateClockwise(Sudoku.Concepts.Collections.Grid@)">
-            <summary>
-            Rotate the grid clockwise.
-            </summary>
-            <param name="this">The grid.</param>
-            <returns>The result.</returns>
-        </member>
-        <member name="M:Sudoku.Collections.GridTransformations.RotateCounterclockwise(Sudoku.Concepts.Collections.Grid@)">
-            <summary>
-            Rotate the grid counterclockwise.
-            </summary>
-            <param name="this">The grid.</param>
-            <returns>The result.</returns>
-        </member>
-        <member name="M:Sudoku.Collections.GridTransformations.RotatePi(Sudoku.Concepts.Collections.Grid@)">
-            <summary>
-            Rotate the grid <c><see cref="F:System.Math.PI"/></c> degrees.
-            </summary>
-            <param name="this">The grid.</param>
-            <returns>The result.</returns>
-        </member>
-        <member name="M:Sudoku.Collections.GridTransformations.SwapTwoRegions(Sudoku.Concepts.Collections.Grid@,System.Int32,System.Int32)">
-            <summary>
-            Swap to regions.
-            </summary>
-            <param name="this">The grid.</param>
-            <param name="region1">The region 1.</param>
-            <param name="region2">The region 2.</param>
-            <returns>The result.</returns>
-            <exception cref="T:System.ArgumentException">
-            Throws when two specified region argument is not in valid range (0..27)
-            or two regions are not in same region type.
-            </exception>
-        </member>
-        <member name="T:Sudoku.Collections.RegionCollection">
-            <summary>
-            Indicates a region collection.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Collections.RegionCollection.#ctor(System.Int32)">
-            <summary>
-            Initializes an empty collection and add one region into the list.
-            </summary>
-            <param name="region">The region.</param>
-        </member>
-        <member name="M:Sudoku.Collections.RegionCollection.#ctor(System.ReadOnlySpan{System.Int32}@)">
-            <summary>
-            Initializes an instance with the specified regions.
-            </summary>
-            <param name="regions">The regions.</param>
-        </member>
-        <member name="M:Sudoku.Collections.RegionCollection.#ctor(System.Collections.Generic.IEnumerable{System.Int32})">
-            <summary>
-            Initializes an instance with the specified regions.
-            </summary>
-            <param name="regions">The regions.</param>
-        </member>
-        <member name="P:Sudoku.Collections.RegionCollection.Count">
-            <summary>
-            Indicates the number of regions that contain in this collection.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Collections.RegionCollection.Mask">
-            <summary>
-            Indicates the mask used.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Collections.RegionCollection.Item(System.Int32)">
-            <summary>
-            Gets a <see cref="T:System.Boolean"/> value indicating whether the bit of the corresponding specified region
-            is set <see langword="true"/>.
-            </summary>
-            <param name="region">The region.</param>
-            <returns>A <see cref="T:System.Boolean"/> value.</returns>
-        </member>
-        <member name="M:Sudoku.Collections.RegionCollection.Equals(Sudoku.Collections.RegionCollection@)">
-            <summary>
-            Determine whether the two collections are equal.
-            </summary>
-            <param name="other">The collection to compare.</param>
-            <returns>A <see cref="T:System.Boolean"/> result.</returns>
-        </member>
-        <member name="M:Sudoku.Collections.RegionCollection.GetHashCode">
-            <inheritdoc cref="M:System.Object.GetHashCode"/>
-        </member>
-        <member name="M:Sudoku.Collections.RegionCollection.ToString">
-            <inheritdoc cref="M:System.Object.ToString"/>
-        </member>
-        <member name="M:Sudoku.Collections.RegionCollection.ToSimpleString">
-            <summary>
-            To string but only output the labels ('r', 'c' or 'b').
-            </summary>
-            <returns>The labels.</returns>
-        </member>
-        <member name="M:Sudoku.Collections.RegionCollection.GetEnumerator">
-            <summary>
-            Gets the enumerator of the instance in order to use <see langword="foreach"/> loop.
-            </summary>
-            <returns>The enumerator instance.</returns>
-        </member>
-        <member name="M:Sudoku.Collections.RegionCollection.GetLabel(System.Int32)">
-            <summary>
-            Get the label of each region.
-            </summary>
-            <param name="index">The index.</param>
-            <returns>The label.</returns>
-        </member>
-        <member name="M:Sudoku.Collections.RegionCollection.Equals(System.Object)">
-            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
-            <exception cref="T:System.NotSupportedException">Always throws.</exception>
-        </member>
-        <member name="T:Sudoku.Collections.Utf8JsonWriterExtensionsOnSudokuCollections">
-            <summary>
-            Provides extension methods on <see cref="T:System.Text.Json.Utf8JsonWriter"/>, and writes the collection values
-            as an array into it.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Collections.Utf8JsonWriterExtensionsOnSudokuCollections.WriteCollection(System.Text.Json.Utf8JsonWriter,Sudoku.Concepts.Collections.Cells@)">
-            <summary>
-            Writes an array of <see cref="T:Sudoku.Concepts.Collections.Cells"/> into the JSON stream.
-            </summary>
-            <param name="this">The writer.</param>
-            <param name="cells">The cells to be written.</param>
-        </member>
-        <member name="M:Sudoku.Collections.Utf8JsonWriterExtensionsOnSudokuCollections.WriteCollection(System.Text.Json.Utf8JsonWriter,Sudoku.Concepts.Collections.Candidates@)">
-            <summary>
-            Writes an array of <see cref="T:Sudoku.Concepts.Collections.Candidates"/> into the JSON stream.
-            </summary>
-            <param name="this">The writer.</param>
-            <param name="candidates">The candidates to be written.</param>
-        </member>
         <member name="T:Sudoku.Concepts.Collections.Candidates">
             <summary>
             Encapsulates a map that contains 729 positions to represent a candidate.
@@ -2542,6 +2195,324 @@
             <inheritdoc cref="M:System.Object.ToString"/>
             <exception cref="T:System.NotSupportedException">Always throws.</exception>
         </member>
+        <member name="T:Sudoku.Concepts.Collections.GridTransformations">
+            <summary>
+            Provides methods for <see cref="T:Sudoku.Concepts.Collections.Grid"/> instances on transformations.
+            </summary>
+            <seealso cref="T:Sudoku.Concepts.Collections.Grid"/>
+        </member>
+        <member name="F:Sudoku.Concepts.Collections.GridTransformations.ClockwiseTable">
+            <summary>
+            The table of clockwise rotation.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Concepts.Collections.GridTransformations.CounterclockwiseTable">
+            <summary>
+            The table of counter-clockwise rotation.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Concepts.Collections.GridTransformations.PiRotateTable">
+            <summary>
+            The table of pi-rotation.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Concepts.Collections.GridTransformations.MirrorLeftRight(Sudoku.Concepts.Collections.Grid@)">
+            <summary>
+            Mirror left-right the grid.
+            </summary>
+            <param name="this">The grid.</param>
+            <returns>The result grid.</returns>
+        </member>
+        <member name="M:Sudoku.Concepts.Collections.GridTransformations.MirrorTopBottom(Sudoku.Concepts.Collections.Grid@)">
+            <summary>
+            Mirror top-bottom the grid.
+            </summary>
+            <param name="this">The grid.</param>
+            <returns>The result grid.</returns>
+        </member>
+        <member name="M:Sudoku.Concepts.Collections.GridTransformations.MirrorDiagonal(Sudoku.Concepts.Collections.Grid@)">
+            <summary>
+            Mirror diagonal the grid.
+            </summary>
+            <param name="this">The grid.</param>
+            <returns>The result grid.</returns>
+        </member>
+        <member name="M:Sudoku.Concepts.Collections.GridTransformations.Transpose(Sudoku.Concepts.Collections.Grid@)">
+            <summary>
+            Transpose the grid.
+            </summary>
+            <param name="this">The grid.</param>
+            <returns>The result grid.</returns>
+        </member>
+        <member name="M:Sudoku.Concepts.Collections.GridTransformations.MirrorAntidiagonal(Sudoku.Concepts.Collections.Grid@)">
+            <summary>
+            Mirror anti-diagonal the grid.
+            </summary>
+            <param name="this">The grid.</param>
+            <returns>The result grid.</returns>
+        </member>
+        <member name="M:Sudoku.Concepts.Collections.GridTransformations.RotateClockwise(Sudoku.Concepts.Collections.Grid@)">
+            <summary>
+            Rotate the grid clockwise.
+            </summary>
+            <param name="this">The grid.</param>
+            <returns>The result.</returns>
+        </member>
+        <member name="M:Sudoku.Concepts.Collections.GridTransformations.RotateCounterclockwise(Sudoku.Concepts.Collections.Grid@)">
+            <summary>
+            Rotate the grid counterclockwise.
+            </summary>
+            <param name="this">The grid.</param>
+            <returns>The result.</returns>
+        </member>
+        <member name="M:Sudoku.Concepts.Collections.GridTransformations.RotatePi(Sudoku.Concepts.Collections.Grid@)">
+            <summary>
+            Rotate the grid <c><see cref="F:System.Math.PI"/></c> degrees.
+            </summary>
+            <param name="this">The grid.</param>
+            <returns>The result.</returns>
+        </member>
+        <member name="M:Sudoku.Concepts.Collections.GridTransformations.SwapTwoRegions(Sudoku.Concepts.Collections.Grid@,System.Int32,System.Int32)">
+            <summary>
+            Swap to regions.
+            </summary>
+            <param name="this">The grid.</param>
+            <param name="region1">The region 1.</param>
+            <param name="region2">The region 2.</param>
+            <returns>The result.</returns>
+            <exception cref="T:System.ArgumentException">
+            Throws when two specified region argument is not in valid range (0..27)
+            or two regions are not in same region type.
+            </exception>
+        </member>
+        <member name="T:Sudoku.Concepts.Collections.Handlers.ConclusionCollection">
+            <summary>
+            Provides a collection that contains the conclusions.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Concepts.Collections.Handlers.ConclusionCollection._collection">
+            <summary>
+            The internal collection.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Concepts.Collections.Handlers.ConclusionCollection.#ctor(Sudoku.Conclusion[])">
+            <summary>
+            Initializes an instance with the specified collection.
+            </summary>
+            <param name="collection">The collection.</param>
+        </member>
+        <member name="P:Sudoku.Concepts.Collections.Handlers.ConclusionCollection.Cells">
+            <summary>
+            Indicates all cells used in this conclusions list.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.Collections.Handlers.ConclusionCollection.Digits">
+            <summary>
+            Indicates all digits used in this conclusions list, represented as a mask.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Concepts.Collections.Handlers.ConclusionCollection.Equals(Sudoku.Concepts.Collections.Handlers.ConclusionCollection)">
+            <summary>
+            Determine whether the two collections are equal.
+            </summary>
+            <param name="other">The collection to compare.</param>
+            <returns>A <see cref="T:System.Boolean"/> result.</returns>
+        </member>
+        <member name="M:Sudoku.Concepts.Collections.Handlers.ConclusionCollection.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
+        <member name="M:Sudoku.Concepts.Collections.Handlers.ConclusionCollection.ToString(System.Boolean,System.String)">
+            <summary>
+            Converts the current instance to <see cref="T:System.String"/> with the specified separator.
+            </summary>
+            <param name="shouldSort">Indicates whether the specified collection should be sorted first.</param>
+            <param name="separator">The separator.</param>
+            <returns>The string result.</returns>
+        </member>
+        <member name="M:Sudoku.Concepts.Collections.Handlers.ConclusionCollection.Equals(System.Object)">
+            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
+            <exception cref="T:System.NotSupportedException">Always throws.</exception>
+        </member>
+        <member name="M:Sudoku.Concepts.Collections.Handlers.ConclusionCollection.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+            <exception cref="T:System.NotSupportedException">Always throws.</exception>
+        </member>
+        <member name="T:Sudoku.Concepts.Collections.Handlers.DigitCollection">
+            <summary>
+            Indicates a collection that contains the several digits.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Concepts.Collections.Handlers.DigitCollection._mask">
+            <summary>
+            Indicates the inner mask.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Concepts.Collections.Handlers.DigitCollection.#ctor(System.Int16)">
+            <summary>
+            Initializes the collection using a mask.
+            </summary>
+            <param name="mask">The mask.</param>
+        </member>
+        <member name="P:Sudoku.Concepts.Collections.Handlers.DigitCollection.Count">
+            <summary>
+            Get the number of digits in the collection.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Concepts.Collections.Handlers.DigitCollection.Contains(System.Int32)">
+            <summary>
+            Indicates whether the specified collection contains the digit.
+            </summary>
+            <param name="digit">The digit.</param>
+            <returns>A <see cref="T:System.Boolean"/> value.</returns>
+        </member>
+        <member name="M:Sudoku.Concepts.Collections.Handlers.DigitCollection.ToString">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.Collections.Handlers.DigitCollection.ToSimpleString">
+            <summary>
+            Returns a string that represents the current object without the specified format string.
+            </summary>
+            <returns>The string result.</returns>
+        </member>
+        <member name="M:Sudoku.Concepts.Collections.Handlers.DigitCollection.ToString(System.String)">
+            <summary>
+            Returns a string that represents the current object with the specified format string.
+            </summary>
+            <param name="format">The format. If available, the parameter can be <see langword="null"/>.</param>
+            <returns>The string result.</returns>
+        </member>
+        <member name="M:Sudoku.Concepts.Collections.Handlers.DigitCollection.GetEnumerator">
+            <summary>
+            Get the enumerator of the current instance in order to use <see langword="foreach"/> loop.
+            </summary>
+            <returns>The enumerator instance.</returns>
+        </member>
+        <member name="M:Sudoku.Concepts.Collections.Handlers.DigitCollection.op_OnesComplement(Sudoku.Concepts.Collections.Handlers.DigitCollection)">
+            <summary>
+            Make all <see langword="true"/> bits to be set <see langword="false"/>,
+            and make all <see langword="false"/> bits to be set <see langword="true"/>.
+            </summary>
+            <param name="collection">The instance to negate.</param>
+            <returns>The negative result.</returns>
+        </member>
+        <member name="M:Sudoku.Concepts.Collections.Handlers.DigitCollection.op_Subtraction(Sudoku.Concepts.Collections.Handlers.DigitCollection,Sudoku.Concepts.Collections.Handlers.DigitCollection)">
+            <summary>
+            Apply the subtraction with <paramref name="left"/> as the subtrahend,
+            and <paramref name="right"/> as the subtractor.
+            </summary>
+            <param name="left">The left instance.</param>
+            <param name="right">The right instance.</param>
+            <returns>The result collection.</returns>
+        </member>
+        <member name="M:Sudoku.Concepts.Collections.Handlers.DigitCollection.op_BitwiseAnd(Sudoku.Concepts.Collections.Handlers.DigitCollection,Sudoku.Concepts.Collections.Handlers.DigitCollection)">
+            <summary>
+            Apply the intersection from two <see cref="T:Sudoku.Concepts.Collections.Handlers.DigitCollection"/>s.
+            </summary>
+            <param name="left">The left instance.</param>
+            <param name="right">The right instance.</param>
+            <returns>The result collection.</returns>
+        </member>
+        <member name="M:Sudoku.Concepts.Collections.Handlers.DigitCollection.op_BitwiseOr(Sudoku.Concepts.Collections.Handlers.DigitCollection,Sudoku.Concepts.Collections.Handlers.DigitCollection)">
+            <summary>
+            Apply the union of two <see cref="T:Sudoku.Concepts.Collections.Handlers.DigitCollection"/>s.
+            </summary>
+            <param name="left">The left instance.</param>
+            <param name="right">The right instance.</param>
+            <returns>The result collection.</returns>
+        </member>
+        <member name="M:Sudoku.Concepts.Collections.Handlers.DigitCollection.op_ExclusiveOr(Sudoku.Concepts.Collections.Handlers.DigitCollection,Sudoku.Concepts.Collections.Handlers.DigitCollection)">
+            <summary>
+            Apply the exclusive union of two <see cref="T:Sudoku.Concepts.Collections.Handlers.DigitCollection"/>s.
+            </summary>
+            <param name="left">The left instance.</param>
+            <param name="right">The right instance.</param>
+            <returns>The result collection.</returns>
+        </member>
+        <member name="M:Sudoku.Concepts.Collections.Handlers.DigitCollection.Equals(System.Object)">
+            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
+            <exception cref="T:System.NotSupportedException">Always throws.</exception>
+        </member>
+        <member name="M:Sudoku.Concepts.Collections.Handlers.DigitCollection.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+            <exception cref="T:System.NotSupportedException">Always throws.</exception>
+        </member>
+        <member name="T:Sudoku.Concepts.Collections.Handlers.RegionCollection">
+            <summary>
+            Indicates a region collection.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Concepts.Collections.Handlers.RegionCollection.#ctor(System.Int32)">
+            <summary>
+            Initializes an empty collection and add one region into the list.
+            </summary>
+            <param name="region">The region.</param>
+        </member>
+        <member name="M:Sudoku.Concepts.Collections.Handlers.RegionCollection.#ctor(System.ReadOnlySpan{System.Int32}@)">
+            <summary>
+            Initializes an instance with the specified regions.
+            </summary>
+            <param name="regions">The regions.</param>
+        </member>
+        <member name="M:Sudoku.Concepts.Collections.Handlers.RegionCollection.#ctor(System.Collections.Generic.IEnumerable{System.Int32})">
+            <summary>
+            Initializes an instance with the specified regions.
+            </summary>
+            <param name="regions">The regions.</param>
+        </member>
+        <member name="P:Sudoku.Concepts.Collections.Handlers.RegionCollection.Count">
+            <summary>
+            Indicates the number of regions that contain in this collection.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.Collections.Handlers.RegionCollection.Mask">
+            <summary>
+            Indicates the mask used.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.Collections.Handlers.RegionCollection.Item(System.Int32)">
+            <summary>
+            Gets a <see cref="T:System.Boolean"/> value indicating whether the bit of the corresponding specified region
+            is set <see langword="true"/>.
+            </summary>
+            <param name="region">The region.</param>
+            <returns>A <see cref="T:System.Boolean"/> value.</returns>
+        </member>
+        <member name="M:Sudoku.Concepts.Collections.Handlers.RegionCollection.Equals(Sudoku.Concepts.Collections.Handlers.RegionCollection)">
+            <summary>
+            Determine whether the two collections are equal.
+            </summary>
+            <param name="other">The collection to compare.</param>
+            <returns>A <see cref="T:System.Boolean"/> result.</returns>
+        </member>
+        <member name="M:Sudoku.Concepts.Collections.Handlers.RegionCollection.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="M:Sudoku.Concepts.Collections.Handlers.RegionCollection.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
+        <member name="M:Sudoku.Concepts.Collections.Handlers.RegionCollection.ToSimpleString">
+            <summary>
+            To string but only output the labels ('r', 'c' or 'b').
+            </summary>
+            <returns>The labels.</returns>
+        </member>
+        <member name="M:Sudoku.Concepts.Collections.Handlers.RegionCollection.GetEnumerator">
+            <summary>
+            Gets the enumerator of the instance in order to use <see langword="foreach"/> loop.
+            </summary>
+            <returns>The enumerator instance.</returns>
+        </member>
+        <member name="M:Sudoku.Concepts.Collections.Handlers.RegionCollection.GetLabel(System.Int32)">
+            <summary>
+            Get the label of each region.
+            </summary>
+            <param name="index">The index.</param>
+            <returns>The label.</returns>
+        </member>
+        <member name="M:Sudoku.Concepts.Collections.Handlers.RegionCollection.Equals(System.Object)">
+            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
+            <exception cref="T:System.NotSupportedException">Always throws.</exception>
+        </member>
         <member name="T:Sudoku.Concepts.ConjugatePair">
             <summary>
             Encapsulates a conjugate pair.
@@ -4174,6 +4145,26 @@
             <param name="bytes">The bytes.</param>
             <param name="unit">The unit.</param>
             <returns>The value of the specified size unit.</returns>
+        </member>
+        <member name="T:Sudoku.Collections.Utf8JsonWriterExtensionsOnSudokuCollections">
+            <summary>
+            Provides extension methods on <see cref="T:System.Text.Json.Utf8JsonWriter"/>, and writes the collection values
+            as an array into it.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Collections.Utf8JsonWriterExtensionsOnSudokuCollections.WriteCollection(System.Text.Json.Utf8JsonWriter,Sudoku.Concepts.Collections.Cells@)">
+            <summary>
+            Writes an array of <see cref="T:Sudoku.Concepts.Collections.Cells"/> into the JSON stream.
+            </summary>
+            <param name="this">The writer.</param>
+            <param name="cells">The cells to be written.</param>
+        </member>
+        <member name="M:Sudoku.Collections.Utf8JsonWriterExtensionsOnSudokuCollections.WriteCollection(System.Text.Json.Utf8JsonWriter,Sudoku.Concepts.Collections.Candidates@)">
+            <summary>
+            Writes an array of <see cref="T:Sudoku.Concepts.Collections.Candidates"/> into the JSON stream.
+            </summary>
+            <param name="this">The writer.</param>
+            <param name="candidates">The candidates to be written.</param>
         </member>
         <member name="T:Sudoku.GridCreatingOption">
             <summary>

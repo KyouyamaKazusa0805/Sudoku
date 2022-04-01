@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Collections;
+﻿namespace Sudoku.Concepts.Collections.Handlers;
 
 /// <summary>
 /// Indicates a region collection.
@@ -9,13 +9,14 @@ public readonly ref partial struct RegionCollection
 	/// Initializes an empty collection and add one region into the list.
 	/// </summary>
 	/// <param name="region">The region.</param>
-	public RegionCollection(int region) : this() => Mask |= 1 << region;
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public RegionCollection(int region) => Mask |= 1 << region;
 
 	/// <summary>
 	/// Initializes an instance with the specified regions.
 	/// </summary>
 	/// <param name="regions">The regions.</param>
-	public RegionCollection(in ReadOnlySpan<int> regions) : this()
+	public RegionCollection(in ReadOnlySpan<int> regions)
 	{
 		foreach (int region in regions)
 		{
@@ -27,7 +28,7 @@ public readonly ref partial struct RegionCollection
 	/// Initializes an instance with the specified regions.
 	/// </summary>
 	/// <param name="regions">The regions.</param>
-	public RegionCollection(IEnumerable<int> regions) : this()
+	public RegionCollection(IEnumerable<int> regions)
 	{
 		foreach (int region in regions)
 		{
@@ -39,12 +40,16 @@ public readonly ref partial struct RegionCollection
 	/// <summary>
 	/// Indicates the number of regions that contain in this collection.
 	/// </summary>
-	public int Count => PopCount((uint)Mask);
+	public int Count
+	{
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		get => PopCount((uint)Mask);
+	}
 
 	/// <summary>
 	/// Indicates the mask used.
 	/// </summary>
-	public int Mask { get; }
+	public int Mask { get; } = 0;
 
 
 	/// <summary>
@@ -53,7 +58,11 @@ public readonly ref partial struct RegionCollection
 	/// </summary>
 	/// <param name="region">The region.</param>
 	/// <returns>A <see cref="bool"/> value.</returns>
-	public bool this[int region] => (Mask >> region & 1) != 0;
+	public bool this[int region]
+	{
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		get => (Mask >> region & 1) != 0;
+	}
 
 
 	/// <summary>
@@ -61,23 +70,26 @@ public readonly ref partial struct RegionCollection
 	/// </summary>
 	/// <param name="other">The collection to compare.</param>
 	/// <returns>A <see cref="bool"/> result.</returns>
-	public bool Equals(in RegionCollection other) => Mask == other.Mask;
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public bool Equals(RegionCollection other) => Mask == other.Mask;
 
 	/// <inheritdoc cref="object.GetHashCode"/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public override int GetHashCode() => Mask;
 
 	/// <inheritdoc cref="object.ToString"/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public override string ToString()
 	{
 		return Count switch
 		{
 			0 => string.Empty,
-			1 when TrailingZeroCount(Mask) is var r => $"{GetLabel(r / 9)}{r % 9 + 1}",
+			1 when Log2((uint)Mask) is var r => $"{GetLabel(r / 9)}{r % 9 + 1}",
 			_ => f(this)
 		};
 
 
-		static string f(in RegionCollection @this)
+		static string f(RegionCollection @this)
 		{
 			var dic = new Dictionary<int, ICollection<int>>();
 			foreach (int region in @this)
