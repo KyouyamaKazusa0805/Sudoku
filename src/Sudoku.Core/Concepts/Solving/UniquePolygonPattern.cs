@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Solving.Collections;
+﻿namespace Sudoku.Concepts.Solving;
 
 /// <summary>
 /// Defines a pattern that is a unique polygon technique structure in theory. The sketch is like:
@@ -49,7 +49,7 @@
 /// Due to the rendering engine, you have to check this file rather than the tip window.
 /// </para>
 /// </remarks>
-public readonly record struct UniquePolygonPattern(long Mask) : IPattern<UniquePolygonPattern>
+public readonly record struct UniquePolygonPattern(long Mask) : ITechniquePattern<UniquePolygonPattern>
 {
 	/// <summary>
 	/// Indicates whether the specified pattern is a heptagon.

@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Solving.Collections;
+﻿namespace Sudoku.Concepts.Solving;
 
 /// <summary>
 /// <para>
@@ -45,18 +45,9 @@
 /// <param name="MirrorR2">Indicates the second mirror cell in the R part.</param>
 /// <param name="CrossLine">Indicates the cross-line cells.</param>
 public readonly record struct ExocetPattern(
-	int Base1,
-	int Base2,
-	int TargetQ1,
-	int TargetQ2,
-	int TargetR1,
-	int TargetR2,
-	in Cells CrossLine,
-	in Cells MirrorQ1,
-	in Cells MirrorQ2,
-	in Cells MirrorR1,
-	in Cells MirrorR2
-) : IPattern<ExocetPattern>
+	int Base1, int Base2, int TargetQ1, int TargetQ2, int TargetR1, int TargetR2, in Cells CrossLine,
+	in Cells MirrorQ1, in Cells MirrorQ2, in Cells MirrorR1, in Cells MirrorR2) :
+	ITechniquePattern<ExocetPattern>
 {
 	/// <inheritdoc/>
 	public Cells Map => CrossLine + TargetQ1 + TargetQ2 + TargetR1 + TargetR2 + Base1 + Base2;

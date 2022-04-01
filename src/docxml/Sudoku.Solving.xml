@@ -764,174 +764,6 @@
             Throws when two instances contains different eliminated reason.
             </exception>
         </member>
-        <member name="T:Sudoku.Solving.Collections.ExocetPattern">
-            <summary>
-            <para>
-            Indicates an exocet pattern. The pattern will be like:
-            <code><![CDATA[
-            .-------.-------.-------.
-            | B B E | E . . | E . . |
-            | . . E | Q . . | R . . |
-            | . . E | Q . . | R . . |
-            :-------+-------+-------:
-            | . . S | S . . | S . . |
-            | . . S | S . . | S . . |
-            | . . S | S . . | S . . |
-            :-------+-------+-------:
-            | . . S | S . . | S . . |
-            | . . S | S . . | S . . |
-            | . . S | S . . | S . . |
-            '-------'-------'-------'
-            ]]></code>
-            Where:
-            <list type="table">
-            <item><term>B</term><description>Base Cells.</description></item>
-            <item><term>Q</term><description>1st Object Pair (Target cells pair 1).</description></item>
-            <item><term>R</term><description>2nd Object Pair (Target cells pair 2).</description></item>
-            <item><term>S</term><description>Cross-line Cells.</description></item>
-            <item><term>E</term><description>Escape Cells.</description></item>
-            </list>
-            </para>
-            <para>
-            In the data structure, all letters will be used as the same one in this exemplar.
-            In addition, if senior exocet, one of two target cells will lie in cross-line cells,
-            and the lines of two target cells lying on can't contain any base digits.
-            </para>
-            </summary>
-            <param name="Base1">Indicates the first base cell.</param>
-            <param name="Base2">Indicates the second base cell.</param>
-            <param name="TargetQ1">Indicates the first target cell in the Q part.</param>
-            <param name="TargetQ2">Indicates the second target cell in the Q part.</param>
-            <param name="TargetR1">Indicates the first target cell in the R part.</param>
-            <param name="TargetR2">Indicates the second target cell in the R part.</param>
-            <param name="MirrorQ1">Indicates the first mirror cell in the Q part.</param>
-            <param name="MirrorQ2">Indicates the second mirror cell in the Q part.</param>
-            <param name="MirrorR1">Indicates the first mirror cell in the R part.</param>
-            <param name="MirrorR2">Indicates the second mirror cell in the R part.</param>
-            <param name="CrossLine">Indicates the cross-line cells.</param>
-        </member>
-        <member name="M:Sudoku.Solving.Collections.ExocetPattern.#ctor(System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,Sudoku.Concepts.Collections.Cells@,Sudoku.Concepts.Collections.Cells@,Sudoku.Concepts.Collections.Cells@,Sudoku.Concepts.Collections.Cells@,Sudoku.Concepts.Collections.Cells@)">
-            <summary>
-            <para>
-            Indicates an exocet pattern. The pattern will be like:
-            <code><![CDATA[
-            .-------.-------.-------.
-            | B B E | E . . | E . . |
-            | . . E | Q . . | R . . |
-            | . . E | Q . . | R . . |
-            :-------+-------+-------:
-            | . . S | S . . | S . . |
-            | . . S | S . . | S . . |
-            | . . S | S . . | S . . |
-            :-------+-------+-------:
-            | . . S | S . . | S . . |
-            | . . S | S . . | S . . |
-            | . . S | S . . | S . . |
-            '-------'-------'-------'
-            ]]></code>
-            Where:
-            <list type="table">
-            <item><term>B</term><description>Base Cells.</description></item>
-            <item><term>Q</term><description>1st Object Pair (Target cells pair 1).</description></item>
-            <item><term>R</term><description>2nd Object Pair (Target cells pair 2).</description></item>
-            <item><term>S</term><description>Cross-line Cells.</description></item>
-            <item><term>E</term><description>Escape Cells.</description></item>
-            </list>
-            </para>
-            <para>
-            In the data structure, all letters will be used as the same one in this exemplar.
-            In addition, if senior exocet, one of two target cells will lie in cross-line cells,
-            and the lines of two target cells lying on can't contain any base digits.
-            </para>
-            </summary>
-            <param name="Base1">Indicates the first base cell.</param>
-            <param name="Base2">Indicates the second base cell.</param>
-            <param name="TargetQ1">Indicates the first target cell in the Q part.</param>
-            <param name="TargetQ2">Indicates the second target cell in the Q part.</param>
-            <param name="TargetR1">Indicates the first target cell in the R part.</param>
-            <param name="TargetR2">Indicates the second target cell in the R part.</param>
-            <param name="MirrorQ1">Indicates the first mirror cell in the Q part.</param>
-            <param name="MirrorQ2">Indicates the second mirror cell in the Q part.</param>
-            <param name="MirrorR1">Indicates the first mirror cell in the R part.</param>
-            <param name="MirrorR2">Indicates the second mirror cell in the R part.</param>
-            <param name="CrossLine">Indicates the cross-line cells.</param>
-        </member>
-        <member name="P:Sudoku.Solving.Collections.ExocetPattern.Base1">
-            <summary>Indicates the first base cell.</summary>
-        </member>
-        <member name="P:Sudoku.Solving.Collections.ExocetPattern.Base2">
-            <summary>Indicates the second base cell.</summary>
-        </member>
-        <member name="P:Sudoku.Solving.Collections.ExocetPattern.TargetQ1">
-            <summary>Indicates the first target cell in the Q part.</summary>
-        </member>
-        <member name="P:Sudoku.Solving.Collections.ExocetPattern.TargetQ2">
-            <summary>Indicates the second target cell in the Q part.</summary>
-        </member>
-        <member name="P:Sudoku.Solving.Collections.ExocetPattern.TargetR1">
-            <summary>Indicates the first target cell in the R part.</summary>
-        </member>
-        <member name="P:Sudoku.Solving.Collections.ExocetPattern.TargetR2">
-            <summary>Indicates the second target cell in the R part.</summary>
-        </member>
-        <member name="P:Sudoku.Solving.Collections.ExocetPattern.CrossLine">
-            <summary>Indicates the cross-line cells.</summary>
-        </member>
-        <member name="P:Sudoku.Solving.Collections.ExocetPattern.MirrorQ1">
-            <summary>Indicates the first mirror cell in the Q part.</summary>
-        </member>
-        <member name="P:Sudoku.Solving.Collections.ExocetPattern.MirrorQ2">
-            <summary>Indicates the second mirror cell in the Q part.</summary>
-        </member>
-        <member name="P:Sudoku.Solving.Collections.ExocetPattern.MirrorR1">
-            <summary>Indicates the first mirror cell in the R part.</summary>
-        </member>
-        <member name="P:Sudoku.Solving.Collections.ExocetPattern.MirrorR2">
-            <summary>Indicates the second mirror cell in the R part.</summary>
-        </member>
-        <member name="P:Sudoku.Solving.Collections.ExocetPattern.Map">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Solving.Collections.ExocetPattern.MapWithMirrors">
-            <summary>
-            Indicates the full map, with mirror cells.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Solving.Collections.ExocetPattern.BaseCellsMap">
-            <summary>
-            Indicates the base cells.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Solving.Collections.ExocetPattern.TargetCellsMap">
-            <summary>
-            Indicates the target cells.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Solving.Collections.ExocetPattern.Equals(Sudoku.Solving.Collections.ExocetPattern@)">
-            <summary>
-            Determine whether the specified <see cref="T:Sudoku.Solving.Collections.ExocetPattern"/> instance holds the same cell maps
-            as the current instance.
-            </summary>
-            <param name="other">The instance to compare.</param>
-            <returns>A <see cref="T:System.Boolean"/> result.</returns>
-        </member>
-        <member name="M:Sudoku.Solving.Collections.ExocetPattern.GetHashCode">
-            <inheritdoc cref="M:System.Object.GetHashCode"/>
-        </member>
-        <member name="M:Sudoku.Solving.Collections.ExocetPattern.ToString">
-            <inheritdoc cref="M:System.Object.ToString"/>
-        </member>
-        <member name="T:Sudoku.Solving.Collections.IPattern`1">
-            <summary>
-            Defines a normal pattern.
-            </summary>
-            <typeparam name="T">The type of the pattern itself.</typeparam>
-        </member>
-        <member name="P:Sudoku.Solving.Collections.IPattern`1.Map">
-            <summary>
-            Indicates the summary map that holds all cells of this pattern.
-            </summary>
-        </member>
         <member name="T:Sudoku.Solving.Collections.LockedCandidatesNode">
             <summary>
             Defines a chain node that provides with the data for a locked candidates.
@@ -1127,90 +959,6 @@
             Indicates the name.
             </summary>
         </member>
-        <member name="T:Sudoku.Solving.Collections.QiuDeadlyPattern">
-            <summary>
-            Defines a pattern that is a Qiu's deadly pattern technique structure in theory. The sketch is like:
-            <code><![CDATA[
-            .-------.-------.-------.
-            | . . . | . . . | . . . |
-            | . . . | . . . | . . . |
-            | P P . | . . . | . . . |
-            :-------+-------+-------:
-            | S S B | B B B | B B B |
-            | S S B | B B B | B B B |
-            | . . . | . . . | . . . |
-            :-------+-------+-------:
-            | . . . | . . . | . . . |
-            | . . . | . . . | . . . |
-            | . . . | . . . | . . . |
-            '-------'-------'-------'
-            ]]></code>
-            Where:
-            <list type="table">
-            <item><term>P</term><description>Pair Cells.</description></item>
-            <item><term>S</term><description>Square Cells.</description></item>
-            <item><term>B</term><description>Base-line Cells.</description></item>
-            </list>
-            </summary>
-            <param name="Square">The square cells that is <c>S</c> in that sketch.</param>
-            <param name="BaseLine">The base-line cells that is <c>B</c> in that sketch.</param>
-            <param name="Pair">The pair cells that is <c>P</c> in that sketch.</param>
-        </member>
-        <member name="M:Sudoku.Solving.Collections.QiuDeadlyPattern.#ctor(Sudoku.Concepts.Collections.Cells@,Sudoku.Concepts.Collections.Cells@,Sudoku.Concepts.Collections.Cells@)">
-            <summary>
-            Defines a pattern that is a Qiu's deadly pattern technique structure in theory. The sketch is like:
-            <code><![CDATA[
-            .-------.-------.-------.
-            | . . . | . . . | . . . |
-            | . . . | . . . | . . . |
-            | P P . | . . . | . . . |
-            :-------+-------+-------:
-            | S S B | B B B | B B B |
-            | S S B | B B B | B B B |
-            | . . . | . . . | . . . |
-            :-------+-------+-------:
-            | . . . | . . . | . . . |
-            | . . . | . . . | . . . |
-            | . . . | . . . | . . . |
-            '-------'-------'-------'
-            ]]></code>
-            Where:
-            <list type="table">
-            <item><term>P</term><description>Pair Cells.</description></item>
-            <item><term>S</term><description>Square Cells.</description></item>
-            <item><term>B</term><description>Base-line Cells.</description></item>
-            </list>
-            </summary>
-            <param name="Square">The square cells that is <c>S</c> in that sketch.</param>
-            <param name="BaseLine">The base-line cells that is <c>B</c> in that sketch.</param>
-            <param name="Pair">The pair cells that is <c>P</c> in that sketch.</param>
-        </member>
-        <member name="P:Sudoku.Solving.Collections.QiuDeadlyPattern.Square">
-            <summary>The square cells that is <c>S</c> in that sketch.</summary>
-        </member>
-        <member name="P:Sudoku.Solving.Collections.QiuDeadlyPattern.BaseLine">
-            <summary>The base-line cells that is <c>B</c> in that sketch.</summary>
-        </member>
-        <member name="P:Sudoku.Solving.Collections.QiuDeadlyPattern.Pair">
-            <summary>The pair cells that is <c>P</c> in that sketch.</summary>
-        </member>
-        <member name="P:Sudoku.Solving.Collections.QiuDeadlyPattern.Map">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Solving.Collections.QiuDeadlyPattern.Equals(Sudoku.Solving.Collections.QiuDeadlyPattern@)">
-            <summary>
-            Determine whether the specified <see cref="T:Sudoku.Solving.Collections.QiuDeadlyPattern"/> instance holds the same
-            cell maps as the current instance.
-            </summary>
-            <param name="other">The instance to compare.</param>
-            <returns>A <see cref="T:System.Boolean"/> result.</returns>
-        </member>
-        <member name="M:Sudoku.Solving.Collections.QiuDeadlyPattern.GetHashCode">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Solving.Collections.QiuDeadlyPattern.ToString">
-            <inheritdoc cref="M:System.Object.ToString"/>
-        </member>
         <member name="T:Sudoku.Solving.Collections.SearcherNodeTypes">
             <summary>
             Defines a node type that provides with the choices for the chain node types.
@@ -1277,163 +1025,6 @@
             <summary>
             Indicates the candidate used.
             </summary>
-        </member>
-        <member name="T:Sudoku.Solving.Collections.UniquePolygonPattern">
-            <summary>
-            Defines a pattern that is a unique polygon technique structure in theory. The sketch is like:
-            <code><![CDATA[
-            .-------.-------.-------.
-            | . . . | . . . | . . . |
-            | . . . | . . . | . . . |
-            | . . . | . . . | . . . |
-            :-------+-------+-------:
-            | . . . | . . . | . . . |
-            | . . . | . . . | . . . |
-            | . . . | . . . | P P . |
-            :-------+-------+-------:
-            | . . . | . . Q | S S . |
-            | . . . | . . Q | S(S). |
-            | . . . | . . . | . . . |
-            '-------'-------'-------'
-            ]]></code>
-            Where:
-            <list type="table">
-            <item><term>P</term><description>The first group of cells.</description></item>
-            <item><term>Q</term><description>The second group of cells.</description></item>
-            <item>
-            <term>S</term>
-            <description>
-            The square cells of size 3 or 4. The cell with the bracket (r8c8 in the picture)
-            is optional.
-            </description>
-            </item>
-            </list>
-            </summary>
-            <param name="Mask">The mask that forms a structure.</param>
-            <remarks>
-            <para>
-            This <see cref="P:Sudoku.Solving.Collections.UniquePolygonPattern.Mask"/> is of type <see cref="T:System.Int64"/>,
-            where the distribution of each bit is as follows:
-            <code><![CDATA[
-            0      7     14     21     28     35     42     49     56
-            ↓      ↓      ↓      ↓      ↓      ↓      ↓      ↓      ↓
-            |-------|-------|-------|-------|-------|-------|-------|-------|
-            ↑       ↑       ↑       ↑       ↑       ↑       ↑       ↑       ↑
-            0       8      16      24      32      40      48      56      64
-            ]]></code>
-            where the bit <c>[0..56]</c> is for 8 cells, the last 7 bits determine the pattern is a
-            heptagon or a octagon. If the value is 127 (not available), the pattern will be a heptagon.
-            </para>
-            <para>
-            Due to the rendering engine, you have to check this file rather than the tip window.
-            </para>
-            </remarks>
-        </member>
-        <member name="M:Sudoku.Solving.Collections.UniquePolygonPattern.#ctor(System.Int64)">
-            <summary>
-            Defines a pattern that is a unique polygon technique structure in theory. The sketch is like:
-            <code><![CDATA[
-            .-------.-------.-------.
-            | . . . | . . . | . . . |
-            | . . . | . . . | . . . |
-            | . . . | . . . | . . . |
-            :-------+-------+-------:
-            | . . . | . . . | . . . |
-            | . . . | . . . | . . . |
-            | . . . | . . . | P P . |
-            :-------+-------+-------:
-            | . . . | . . Q | S S . |
-            | . . . | . . Q | S(S). |
-            | . . . | . . . | . . . |
-            '-------'-------'-------'
-            ]]></code>
-            Where:
-            <list type="table">
-            <item><term>P</term><description>The first group of cells.</description></item>
-            <item><term>Q</term><description>The second group of cells.</description></item>
-            <item>
-            <term>S</term>
-            <description>
-            The square cells of size 3 or 4. The cell with the bracket (r8c8 in the picture)
-            is optional.
-            </description>
-            </item>
-            </list>
-            </summary>
-            <param name="Mask">The mask that forms a structure.</param>
-            <remarks>
-            <para>
-            This <see cref="P:Sudoku.Solving.Collections.UniquePolygonPattern.Mask"/> is of type <see cref="T:System.Int64"/>,
-            where the distribution of each bit is as follows:
-            <code><![CDATA[
-            0      7     14     21     28     35     42     49     56
-            ↓      ↓      ↓      ↓      ↓      ↓      ↓      ↓      ↓
-            |-------|-------|-------|-------|-------|-------|-------|-------|
-            ↑       ↑       ↑       ↑       ↑       ↑       ↑       ↑       ↑
-            0       8      16      24      32      40      48      56      64
-            ]]></code>
-            where the bit <c>[0..56]</c> is for 8 cells, the last 7 bits determine the pattern is a
-            heptagon or a octagon. If the value is 127 (not available), the pattern will be a heptagon.
-            </para>
-            <para>
-            Due to the rendering engine, you have to check this file rather than the tip window.
-            </para>
-            </remarks>
-        </member>
-        <member name="P:Sudoku.Solving.Collections.UniquePolygonPattern.Mask">
-            <summary>The mask that forms a structure.</summary>
-        </member>
-        <member name="P:Sudoku.Solving.Collections.UniquePolygonPattern.IsHeptagon">
-            <summary>
-            Indicates whether the specified pattern is a heptagon.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Solving.Collections.UniquePolygonPattern.Pair1Map">
-            <summary>
-            Indicates the map of pair 1 cells.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Solving.Collections.UniquePolygonPattern.Pair2Map">
-            <summary>
-            Indicates the map of pair 2 cells.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Solving.Collections.UniquePolygonPattern.CenterCellsMap">
-            <summary>
-            The map of other three (or four) cells.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Solving.Collections.UniquePolygonPattern.Map">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Solving.Collections.UniquePolygonPattern.Pair1">
-            <summary>
-            Indicates the pair 1.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Solving.Collections.UniquePolygonPattern.Pair2">
-            <summary>
-            Indicates the pair 2.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Solving.Collections.UniquePolygonPattern.CenterCells">
-            <summary>
-            Indicates the other three (or four) cells.
-            </summary>
-            <remarks>
-            <b>If and only if</b> the fourth value in the returned quadruple is available.
-            </remarks>
-        </member>
-        <member name="M:Sudoku.Solving.Collections.UniquePolygonPattern.Deconstruct(System.ValueTuple{System.Int32,System.Int32}@,System.ValueTuple{System.Int32,System.Int32}@,System.ValueTuple{System.Int32,System.Int32,System.Int32,System.Int32}@)">
-            <summary>
-            Deconstruct the instance to multiple values.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Solving.Collections.UniquePolygonPattern.GetHashCode">
-            <inheritdoc cref="M:System.Object.GetHashCode"/>
-        </member>
-        <member name="M:Sudoku.Solving.Collections.UniquePolygonPattern.ToString">
-            <inheritdoc cref="M:System.Object.ToString"/>
         </member>
         <member name="T:Sudoku.Solving.FailedReason">
             <summary>
@@ -6576,7 +6167,7 @@
             <param name="Pattern"><inheritdoc/></param>
             <param name="Candidates">Indicates the candidates used.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Steps.QiuDeadlyPatternLockedTypeStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Concepts.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},Sudoku.Solving.Collections.QiuDeadlyPattern@,System.Collections.Generic.IReadOnlyList{System.Int32})">
+        <member name="M:Sudoku.Solving.Manual.Steps.QiuDeadlyPatternLockedTypeStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Concepts.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},Sudoku.Concepts.Solving.QiuDeadlyPattern@,System.Collections.Generic.IReadOnlyList{System.Int32})">
             <summary>
             Provides with a step that is a <b>Qiu's Deadly Pattern Locked Type</b> technique.
             </summary>
@@ -6602,7 +6193,7 @@
             <param name="Views"><inheritdoc/></param>
             <param name="Pattern">Indicates the pattern used.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Steps.QiuDeadlyPatternStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Concepts.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},Sudoku.Solving.Collections.QiuDeadlyPattern@)">
+        <member name="M:Sudoku.Solving.Manual.Steps.QiuDeadlyPatternStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Concepts.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},Sudoku.Concepts.Solving.QiuDeadlyPattern@)">
             <summary>
             Provides with a step that is a <b>Qiu's Deadly Pattern</b> technique.
             </summary>
@@ -6650,7 +6241,7 @@
             <param name="Pattern"><inheritdoc/></param>
             <param name="Candidate">Indicates the extra candidate used.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Steps.QiuDeadlyPatternType1Step.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Concepts.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},Sudoku.Solving.Collections.QiuDeadlyPattern@,System.Int32)">
+        <member name="M:Sudoku.Solving.Manual.Steps.QiuDeadlyPatternType1Step.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Concepts.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},Sudoku.Concepts.Solving.QiuDeadlyPattern@,System.Int32)">
             <summary>
             Provides with a step that is a <b>Qiu's Deadly Pattern Type 1</b> technique.
             </summary>
@@ -6674,7 +6265,7 @@
             <param name="Pattern"><inheritdoc/></param>
             <param name="ExtraDigit">Indicates the extra digit used.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Steps.QiuDeadlyPatternType2Step.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Concepts.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},Sudoku.Solving.Collections.QiuDeadlyPattern@,System.Int32)">
+        <member name="M:Sudoku.Solving.Manual.Steps.QiuDeadlyPatternType2Step.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Concepts.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},Sudoku.Concepts.Solving.QiuDeadlyPattern@,System.Int32)">
             <summary>
             Provides with a step that is a <b>Qiu's Deadly Pattern Type 2</b> technique.
             </summary>
@@ -6703,7 +6294,7 @@
             <param name="ExtraCells">Indicates the extra cells used.</param>
             <param name="IsNaked">Indicates whether the subset is a naked subset.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Steps.QiuDeadlyPatternType3Step.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Concepts.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},Sudoku.Solving.Collections.QiuDeadlyPattern@,System.Int16,Sudoku.Concepts.Collections.Cells@,System.Boolean)">
+        <member name="M:Sudoku.Solving.Manual.Steps.QiuDeadlyPatternType3Step.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Concepts.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},Sudoku.Concepts.Solving.QiuDeadlyPattern@,System.Int16,Sudoku.Concepts.Collections.Cells@,System.Boolean)">
             <summary>
             Provides with a step that is a <b>Qiu's Deadly Pattern Type 3</b> technique.
             </summary>
@@ -6738,7 +6329,7 @@
             <param name="Pattern"><inheritdoc/></param>
             <param name="ConjugatePair">Indicates the conjugate pair used.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Steps.QiuDeadlyPatternType4Step.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Concepts.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},Sudoku.Solving.Collections.QiuDeadlyPattern@,Sudoku.Concepts.ConjugatePair@)">
+        <member name="M:Sudoku.Solving.Manual.Steps.QiuDeadlyPatternType4Step.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Concepts.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},Sudoku.Concepts.Solving.QiuDeadlyPattern@,Sudoku.Concepts.ConjugatePair@)">
             <summary>
             Provides with a step that is a <b>Qiu's Deadly Pattern Type 4</b> technique.
             </summary>
@@ -7941,7 +7532,7 @@
             <param name="DigitsMask">Indicates the mask that holds all possible digits used.</param>
             <param name="Eliminations">Indicates all possible eliminations.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Steps.ExocetStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},Sudoku.Solving.Collections.ExocetPattern@,System.Int16,System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Collections.ExocetElimination})">
+        <member name="M:Sudoku.Solving.Manual.Steps.ExocetStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},Sudoku.Concepts.Solving.ExocetPattern@,System.Int16,System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Collections.ExocetElimination})">
             <summary>
             Provides with a step that is an <b>Exocet</b> technique.
             </summary>
@@ -8031,7 +7622,7 @@
             <param name="LockedMemberR">Indicates the locked member bound with R cells.</param>
             <param name="Eliminations"><inheritdoc/></param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Steps.JuniorExocetStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},Sudoku.Solving.Collections.ExocetPattern@,System.Int16,System.Int16,System.Int16,System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Collections.ExocetElimination})">
+        <member name="M:Sudoku.Solving.Manual.Steps.JuniorExocetStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},Sudoku.Concepts.Solving.ExocetPattern@,System.Int16,System.Int16,System.Int16,System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Collections.ExocetElimination})">
             <summary>
             Provides with a step that is a <b>Junior Exocet</b> technique.
             </summary>
@@ -8095,7 +7686,7 @@
             <param name="ExtraRegionsMask">Indicates the mask tnat holds the extra regions used.</param>
             <param name="Eliminations"><inheritdoc/></param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Steps.SeniorExocetStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},Sudoku.Solving.Collections.ExocetPattern@,System.Int16,System.Int32,System.Int32[],System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Collections.ExocetElimination})">
+        <member name="M:Sudoku.Solving.Manual.Steps.SeniorExocetStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},Sudoku.Concepts.Solving.ExocetPattern@,System.Int16,System.Int32,System.Int32[],System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Collections.ExocetElimination})">
             <summary>
             Provides with a step that is a <b>Senior Exocet</b> technique.
             </summary>
