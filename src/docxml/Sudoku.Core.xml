@@ -7185,6 +7185,28 @@
             <param name="right">The second instance to be compared.</param>
             <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
         </member>
+        <member name="T:Sudoku.Runtime.AnalysisServices.AlgorithmAttribute">
+            <summary>
+            Defines an attribute that modifies a type of a <see langword="class"/> or a <see langword="struct"/>,
+            indicating the type having been modified this attribute is reserved for the developers used for studying.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Runtime.AnalysisServices.AlgorithmAttribute.#ctor(System.String)">
+            <summary>
+            Initializes an <see cref="T:Sudoku.Runtime.AnalysisServices.AlgorithmAttribute"/> instance via the specified algorithm name.
+            </summary>
+            <param name="algorithmName">The name of the algorithm.</param>
+        </member>
+        <member name="P:Sudoku.Runtime.AnalysisServices.AlgorithmAttribute.AlgorithmName">
+            <summary>
+            Indicates the name of the algorithm.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Runtime.AnalysisServices.AlgorithmAttribute.UriLink">
+            <summary>
+            Indicates the URI link for the introduction about the algorithm.
+            </summary>
+        </member>
         <member name="T:Sudoku.Runtime.AnalysisServices.CommonReadOnlies">
             <summary>
             Represents a type holding some common read-only fields used by runtime or compiling-time.
@@ -7390,6 +7412,28 @@
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Runtime.AnalysisServices.CommonReadOnlies.ValueTupleComparer.GetHashCode(System.ValueTuple{System.Byte,System.Byte})">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Solving.BacktrackingSolver">
+            <summary>
+            Defines a solver that can solve a sudoku puzzle, using backtracking algorithm.
+            </summary>
+            <remarks>
+            <para>
+            Please note that the solve has no optimization on solving sudokus, sometimes the puzzle will be
+            extremely slowly to be solved although it is not very hard. One of the examples described above
+            is this:
+            <code>
+            ..............3.85..1.2.......5.7.....4...1...9.......5......73..2.1........4...9
+            </code>
+            The solver will spend about 4.5 min on solving this puzzle.
+            </para>
+            <para>
+            For more information, please visit <see href="http://www.matrix67.com/blog/archives/725">this link</see>.
+            </para>
+            </remarks>
+        </member>
+        <member name="M:Sudoku.Solving.BacktrackingSolver.Solve(Sudoku.Concepts.Collections.Grid@,Sudoku.Concepts.Collections.Grid@)">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Solving.BitwiseSolver">
@@ -7672,6 +7716,44 @@
             <summary>
             Rows where single found: <c>000</c> to <c>111</c>.
             </summary>
+        </member>
+        <member name="T:Sudoku.Solving.ISimpleSolver">
+            <summary>
+            Defines a simple solver.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.ISimpleSolver.Solve(Sudoku.Concepts.Collections.Grid@,Sudoku.Concepts.Collections.Grid@)">
+            <summary>
+            To solve the specified grid.
+            </summary>
+            <param name="grid">The grid to be solved.</param>
+            <param name="result">The result of the grid.</param>
+            <returns>
+            A <see cref="T:System.Boolean"/>? value indicating whether the grid can be solved, i.e. has a unique solution.
+            Please note that the method will return three possible values:
+            <list type="table">
+            <item>
+            <term><see langword="true"/></term>
+            <description>The puzzle has a unique solution.</description>
+            </item>
+            <item>
+            <term><see langword="false"/></term>
+            <description>The puzzle has multiple solutions.</description>
+            </item>
+            <item>
+            <term><see langword="null"/></term>
+            <description>The puzzle has no solution.</description>
+            </item>
+            </list>
+            </returns>
+        </member>
+        <member name="T:Sudoku.Solving.LinqSolver">
+            <summary>
+            Defines a solver that can solve a sudoku puzzle, using LINQ.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.LinqSolver.Solve(Sudoku.Concepts.Collections.Grid@,Sudoku.Concepts.Collections.Grid@)">
+            <inheritdoc/>
         </member>
         <member name="T:Sudoku.SymmetryType">
             <summary>

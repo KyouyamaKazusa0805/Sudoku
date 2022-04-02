@@ -22,7 +22,6 @@ public unsafe partial struct Grid :
 	IEqualityOperators<Grid, Grid>
 #if FEATURE_GENERIC_MATH_IN_ARG
 	,
-	IValueBitwiseAndOperators<Grid, Cells, GridSegment>,
 	IValueEqualityOperators<Grid, Grid>
 #endif
 #endif
@@ -881,12 +880,7 @@ public unsafe partial struct Grid :
 	/// <inheritdoc cref="object.GetHashCode"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public override readonly int GetHashCode() =>
-		this switch
-		{
-			{ IsUndefined: true } => 0,
-			{ IsEmpty: true } => 1,
-			_ => $"{this:#}".GetHashCode()
-		};
+		this switch { { IsUndefined: true } => 0, { IsEmpty: true } => 1, _ => $"{this:#}".GetHashCode() };
 
 
 	/// <summary>

@@ -23,6 +23,7 @@ global using Sudoku.Concepts.Formatting;
 global using Sudoku.Concepts.Parsing;
 global using Sudoku.Concepts.Solving;
 global using Sudoku.DataHandling;
+global using Sudoku.Runtime.AnalysisServices;
 global using Sudoku.Solving;
 global using static System.Algorithm.Sequences;
 global using static System.Algorithm.Sorting;
