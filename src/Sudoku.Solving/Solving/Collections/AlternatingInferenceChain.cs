@@ -119,12 +119,12 @@ public readonly partial struct AlternatingInferenceChain :
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public override int GetHashCode() =>
-		RealChainNodes is [var a, .., var b]
+		RealChainNodes is not [var a, .., var b]
+			? 0
 			// Here we use a trick to remove the ordering of the chain,
 			// in order to remove the bug that the equality comparer cannot remove
 			// chains with different directions, as the only difference.
-			? HashCode.Combine(a, b, _startsWithWeak) + HashCode.Combine(b, a, _startsWithWeak)
-			: 0;
+			: HashCode.Combine(a, b, _startsWithWeak) + HashCode.Combine(b, a, _startsWithWeak);
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
