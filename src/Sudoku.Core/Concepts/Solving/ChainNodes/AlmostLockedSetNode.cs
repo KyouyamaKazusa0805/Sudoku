@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Solving.Collections;
+﻿namespace Sudoku.Concepts.Solving.ChainNodes;
 
 /// <summary>
 /// Defines a chain node that provides with the data for an almost locked set.
@@ -36,7 +36,7 @@ public sealed class AlmostLockedSetNode : Node
 		get
 		{
 			var result = Cells;
-			long otherCells = _other >> Shifting & ((1L << ((sizeof(long) << 3) - Shifting)) - 1);
+			long otherCells = _other >> Shifting & (1L << (sizeof(long) << 3) - Shifting) - 1;
 			while (otherCells != 0)
 			{
 				int cell = (int)(otherCells >> Shifting & 127);
@@ -77,7 +77,7 @@ public sealed class AlmostLockedSetNode : Node
 		int i = 0;
 		foreach (int cell in extraCells)
 		{
-			finalMask |= (long)(cell << (Shifting * i++));
+			finalMask |= (long)(cell << Shifting * i++);
 		}
 
 		// Preserve the specified bits being zeroed.

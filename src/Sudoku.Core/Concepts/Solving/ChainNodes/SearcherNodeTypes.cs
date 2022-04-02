@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Solving.Collections;
+﻿namespace Sudoku.Concepts.Solving.ChainNodes;
 
 /// <summary>
 /// Defines a node type that provides with the choices for the chain node types.

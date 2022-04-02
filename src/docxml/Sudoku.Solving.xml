@@ -441,47 +441,6 @@
         <member name="M:Sudoku.Solving.Collections.AlmostLockedSet.System#IEqualityOperators{Sudoku#Solving#Collections#AlmostLockedSet,Sudoku#Solving#Collections#AlmostLockedSet}#op_Inequality(Sudoku.Solving.Collections.AlmostLockedSet,Sudoku.Solving.Collections.AlmostLockedSet)">
             <inheritdoc/>
         </member>
-        <member name="T:Sudoku.Solving.Collections.AlmostLockedSetNode">
-            <summary>
-            Defines a chain node that provides with the data for an almost locked set.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Solving.Collections.AlmostLockedSetNode.Shifting">
-            <summary>
-            Indicates the shifting bits that each cell stores in the <see cref="F:Sudoku.Solving.Collections.Node._other"/> mask.
-            </summary>
-            <seealso cref="F:Sudoku.Solving.Collections.Node._other"/>
-        </member>
-        <member name="M:Sudoku.Solving.Collections.AlmostLockedSetNode.#ctor(System.Byte,Sudoku.Concepts.Collections.Cells@,Sudoku.Concepts.Collections.Cells@)">
-            <summary>
-            Initializes an <see cref="T:Sudoku.Solving.Collections.AlmostLockedSetNode"/> instance via the digit used
-            and the cells used.
-            </summary>
-            <param name="digit">The digit used.</param>
-            <param name="cells">The cells used.</param>
-            <param name="extraCells">
-            Indicates the extra cells that the current ALS used, but the current digit doesn't used.
-            </param>
-        </member>
-        <member name="P:Sudoku.Solving.Collections.AlmostLockedSetNode.FullCells">
-            <summary>
-            Indicates the whole ALS map.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Solving.Collections.AlmostLockedSetNode.ToSimpleString">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Solving.Collections.AlmostLockedSetNode.InitOtherMask(Sudoku.Concepts.Collections.Cells@)">
-            <summary>
-            Gets the part of the other mask value that represents the extra cells used.
-            </summary>
-            <param name="extraCells">The extra cells used.</param>
-            <returns>The mask of type <see cref="T:System.Int64"/>.</returns>
-            <exception cref="T:System.ArgumentException">
-            Throws when the number of elements in the argument <paramref name="extraCells"/>
-            is greater than 8.
-            </exception>
-        </member>
         <member name="T:Sudoku.Solving.Collections.AlternatingInferenceChain">
             <summary>
             Defines a data structure that can automatically inference the strong and weak inferences.
@@ -497,7 +456,7 @@
             Indicates the inner chain nodes stored.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Collections.AlternatingInferenceChain.#ctor(Sudoku.Solving.Collections.Node[],System.Boolean)">
+        <member name="M:Sudoku.Solving.Collections.AlternatingInferenceChain.#ctor(Sudoku.Concepts.Solving.ChainNodes.Node[],System.Boolean)">
             <summary>
             Initializes an <see cref="T:Sudoku.Solving.Collections.AlternatingInferenceChain"/> instance via the specified nodes.
             </summary>
@@ -513,20 +472,20 @@
         </member>
         <member name="P:Sudoku.Solving.Collections.AlternatingInferenceChain.Count">
             <summary>
-            Indicates the number of <see cref="T:Sudoku.Solving.Collections.Node"/>s stored in this collection.
+            Indicates the number of <see cref="T:Sudoku.Concepts.Solving.ChainNodes.Node"/>s stored in this collection.
             </summary>
         </member>
         <member name="P:Sudoku.Solving.Collections.AlternatingInferenceChain.RealChainNodes">
             <summary>
-            Indicates the <see cref="T:Sudoku.Solving.Collections.Node"/>s that ignores the first and the last node.
+            Indicates the <see cref="T:Sudoku.Concepts.Solving.ChainNodes.Node"/>s that ignores the first and the last node.
             </summary>
         </member>
         <member name="P:Sudoku.Solving.Collections.AlternatingInferenceChain.Item(System.Int32)">
             <summary>
-            Gets the result <see cref="T:Sudoku.Solving.Collections.Node"/> instance at the specified index.
+            Gets the result <see cref="T:Sudoku.Concepts.Solving.ChainNodes.Node"/> instance at the specified index.
             </summary>
             <param name="index">The desired index value.</param>
-            <returns>The result <see cref="T:Sudoku.Solving.Collections.Node"/> instance.</returns>
+            <returns>The result <see cref="T:Sudoku.Concepts.Solving.ChainNodes.Node"/> instance.</returns>
         </member>
         <member name="M:Sudoku.Solving.Collections.AlternatingInferenceChain.Equals(System.Object)">
             <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
@@ -576,7 +535,7 @@
         <member name="M:Sudoku.Solving.Collections.AlternatingInferenceChain.System#Collections#IEnumerable#GetEnumerator">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Solving.Collections.AlternatingInferenceChain.System#Collections#Generic#IEnumerable{Sudoku#Solving#Collections#Node}#GetEnumerator">
+        <member name="M:Sudoku.Solving.Collections.AlternatingInferenceChain.System#Collections#Generic#IEnumerable{Sudoku#Concepts#Solving#ChainNodes#Node}#GetEnumerator">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Solving.Collections.AlternatingInferenceChain.GetEliminationsMultipleDigits(Sudoku.Concepts.Collections.Grid@,System.Int32,System.Int32,System.Byte,System.Byte)">
@@ -619,7 +578,7 @@
             Indicates the index being iterated.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Collections.AlternatingInferenceChain.Enumerator.#ctor(Sudoku.Solving.Collections.Node[])">
+        <member name="M:Sudoku.Solving.Collections.AlternatingInferenceChain.Enumerator.#ctor(Sudoku.Concepts.Solving.ChainNodes.Node[])">
             <summary>
             Initializes an <see cref="T:Sudoku.Solving.Collections.AlternatingInferenceChain.Enumerator"/> instance via the nodes to be iterated.
             </summary>
@@ -763,268 +722,6 @@
             <exception cref="T:System.ArgumentException">
             Throws when two instances contains different eliminated reason.
             </exception>
-        </member>
-        <member name="T:Sudoku.Solving.Collections.LockedCandidatesNode">
-            <summary>
-            Defines a chain node that provides with the data for a locked candidates.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Solving.Collections.LockedCandidatesNode.#ctor(System.Byte,System.Byte,System.Byte)">
-            <summary>
-            Initializes a <see cref="T:Sudoku.Solving.Collections.LockedCandidatesNode"/> instance via the digit used,
-            and two cells used.
-            </summary>
-            <param name="digit">The digit used.</param>
-            <param name="cell1">The cell 1.</param>
-            <param name="cell2">The cell 2.</param>
-        </member>
-        <member name="M:Sudoku.Solving.Collections.LockedCandidatesNode.#ctor(System.Byte,System.Byte,System.Byte,System.Byte)">
-            <summary>
-            Initializes a <see cref="T:Sudoku.Solving.Collections.LockedCandidatesNode"/> instance via the digit used,
-            and three cells used.
-            </summary>
-            <param name="digit">The digit used.</param>
-            <param name="cell1">The cell 1.</param>
-            <param name="cell2">The cell 2.</param>
-            <param name="cell3">The cell 3.</param>
-        </member>
-        <member name="M:Sudoku.Solving.Collections.LockedCandidatesNode.#ctor(System.Byte,Sudoku.Concepts.Collections.Cells@)">
-            <summary>
-            Initializes a <see cref="T:Sudoku.Solving.Collections.LockedCandidatesNode"/> instance via the digit used and cells used.
-            </summary>
-            <param name="digit">The digit used.</param>
-            <param name="cells">The cells used.</param>
-        </member>
-        <member name="T:Sudoku.Solving.Collections.Node">
-            <summary>
-            Defines a chain node.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Solving.Collections.Node.PreservedBitsCount">
-            <summary>
-            Indicates the number of bits that is preserved by the bit mask field <see cref="F:Sudoku.Solving.Collections.Node._other"/>.
-            </summary>
-            <seealso cref="F:Sudoku.Solving.Collections.Node._other"/>
-        </member>
-        <member name="F:Sudoku.Solving.Collections.Node._higher">
-            <summary>
-            Indicates the bits used. <see cref="F:Sudoku.Solving.Collections.Node._higher"/> and <see cref="F:Sudoku.Solving.Collections.Node._lower"/>
-            store the basic data of the cells used.
-            </summary>
-            <remarks>
-            Please note that the lower 7 bits in the field <see cref="F:Sudoku.Solving.Collections.Node._other"/> are reserved ones,
-            which represents the basic data for the digit used, and the type of the node.
-            You cannot modify them.
-            </remarks>
-        </member>
-        <member name="F:Sudoku.Solving.Collections.Node._lower">
-            <summary>
-            Indicates the bits used. <see cref="F:Sudoku.Solving.Collections.Node._higher"/> and <see cref="F:Sudoku.Solving.Collections.Node._lower"/>
-            store the basic data of the cells used.
-            </summary>
-            <remarks>
-            Please note that the lower 7 bits in the field <see cref="F:Sudoku.Solving.Collections.Node._other"/> are reserved ones,
-            which represents the basic data for the digit used, and the type of the node.
-            You cannot modify them.
-            </remarks>
-        </member>
-        <member name="F:Sudoku.Solving.Collections.Node._other">
-            <summary>
-            Indicates the bits used. <see cref="F:Sudoku.Solving.Collections.Node._higher"/> and <see cref="F:Sudoku.Solving.Collections.Node._lower"/>
-            store the basic data of the cells used.
-            </summary>
-            <remarks>
-            Please note that the lower 7 bits in the field <see cref="F:Sudoku.Solving.Collections.Node._other"/> are reserved ones,
-            which represents the basic data for the digit used, and the type of the node.
-            You cannot modify them.
-            </remarks>
-        </member>
-        <member name="M:Sudoku.Solving.Collections.Node.#ctor(Sudoku.Solving.Collections.NodeType,System.Byte,Sudoku.Concepts.Collections.Cells@)">
-            <summary>
-            Initializes a <see cref="T:Sudoku.Solving.Collections.Node"/> instance via the basic data.
-            </summary>
-            <param name="nodeType">The node type.</param>
-            <param name="digit">The digit used.</param>
-            <param name="cells">The cells used.</param>
-        </member>
-        <member name="M:Sudoku.Solving.Collections.Node.#ctor(Sudoku.Solving.Collections.NodeType,System.Byte,Sudoku.Concepts.Collections.Cells@,System.Int64)">
-            <summary>
-            Initializes a <see cref="T:Sudoku.Solving.Collections.Node"/> instance via the basic data.
-            </summary>
-            <param name="nodeType">The node type.</param>
-            <param name="digit">The digit used.</param>
-            <param name="cells">The cells used.</param>
-            <param name="otherMask">
-            The other mask. Here the mask provided must preserve the lower 7 bits zeroed
-            because they are reserved one.
-            </param>
-        </member>
-        <member name="M:Sudoku.Solving.Collections.Node.#ctor(System.Int64,System.Int64,System.Int64)">
-            <summary>
-            Initializes a <see cref="T:Sudoku.Solving.Collections.Node"/> instance via the basic data.
-            </summary>
-            <param name="higher">The higher 64 bits.</param>
-            <param name="lower">The lower 64 bits.</param>
-            <param name="other">The other 64 bits.</param>
-        </member>
-        <member name="P:Sudoku.Solving.Collections.Node.Digit">
-            <summary>
-            Indicates the digit used.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Solving.Collections.Node.IsGroupedNode">
-            <summary>
-            Indicates whether the current node is a grouped node, which means it uses more than 1 cell.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Solving.Collections.Node.Cells">
-            <summary>
-            Indicates the cells used.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Solving.Collections.Node.Type">
-            <summary>
-            Indicates the type of the node.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Solving.Collections.Node.Equals(System.Object)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Solving.Collections.Node.Equals(Sudoku.Solving.Collections.Node)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Solving.Collections.Node.GetHashCode">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Solving.Collections.Node.ToSimpleString">
-            <summary>
-            Gets the simplified string value that only displays the important information.
-            </summary>
-            <returns>The string value.</returns>
-        </member>
-        <member name="M:Sudoku.Solving.Collections.Node.ToString">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Solving.Collections.Node.op_Equality(Sudoku.Solving.Collections.Node,Sudoku.Solving.Collections.Node)">
-            <summary>
-            Determines whether two <see cref="T:Sudoku.Solving.Collections.Node"/>s are same.
-            </summary>
-            <param name="left">Indicates the left-side instance to compare.</param>
-            <param name="right">Indicates the right-side instance to compare.</param>
-            <returns>A <see cref="T:System.Boolean"/> result.</returns>
-        </member>
-        <member name="M:Sudoku.Solving.Collections.Node.op_Inequality(Sudoku.Solving.Collections.Node,Sudoku.Solving.Collections.Node)">
-            <summary>
-            Determines whether two <see cref="T:Sudoku.Solving.Collections.Node"/>s are not totally same.
-            </summary>
-            <param name="left">Indicates the left-side instance to compare.</param>
-            <param name="right">Indicates the right-side instance to compare.</param>
-            <returns>A <see cref="T:System.Boolean"/> result.</returns>
-        </member>
-        <member name="T:Sudoku.Solving.Collections.NodeType">
-            <summary>
-            Defines a node type.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Solving.Collections.NodeType.Sole">
-            <summary>
-            Indicates the node type is a sole candidate.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Solving.Collections.NodeType.LockedCandidates">
-            <summary>
-            Indicates the node type is a locked candidates.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Solving.Collections.NodeType.AlmostLockedSets">
-            <summary>
-            Indicates the node type is an almost locked sets.
-            </summary>
-        </member>
-        <member name="T:Sudoku.Solving.Collections.NodeTypeNameAttribute">
-            <summary>
-            Defines an attribute that can be applied to a field in the type <see cref="T:Sudoku.Solving.Collections.NodeType"/>,
-            to tell the runtime that the name is bound with the field, in order to display in the console or UI.
-            </summary>
-            <seealso cref="T:Sudoku.Solving.Collections.NodeType"/>
-        </member>
-        <member name="M:Sudoku.Solving.Collections.NodeTypeNameAttribute.#ctor(System.String)">
-            <summary>
-            Initializes a <see cref="T:Sudoku.Solving.Collections.NodeTypeNameAttribute"/> instance via the name.
-            </summary>
-            <param name="name">The name.</param>
-        </member>
-        <member name="P:Sudoku.Solving.Collections.NodeTypeNameAttribute.Name">
-            <summary>
-            Indicates the name.
-            </summary>
-        </member>
-        <member name="T:Sudoku.Solving.Collections.SearcherNodeTypes">
-            <summary>
-            Defines a node type that provides with the choices for the chain node types.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Solving.Collections.SearcherNodeTypes.None">
-            <summary>
-            Indicates the searcher doesn't search for any extended-typed nodes.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Solving.Collections.SearcherNodeTypes.SoleDigit">
-            <summary>
-            Indicates the searcher can search on sole digit in the same region.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Solving.Collections.SearcherNodeTypes.SoleCell">
-            <summary>
-            Indicates the searcher can search on candidates in a same cell.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Solving.Collections.SearcherNodeTypes.LockedCandidates">
-            <summary>
-            Indicates the searcher can search for locked candidate nodes.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Solving.Collections.SearcherNodeTypes.LockedSet">
-            <summary>
-            Indicates the searcher can search for locked set nodes.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Solving.Collections.SearcherNodeTypes.HiddenSet">
-            <summary>
-            Indicates the searcher can search for hidden set nodes.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Solving.Collections.SearcherNodeTypes.UniqueRectangle">
-            <summary>
-            Indicates the searcher can search for almost rectangle nodes.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Solving.Collections.SearcherNodeTypes.Kraken">
-            <summary>
-            Indicates the searcher can search for kraken fish nodes.
-            </summary>
-        </member>
-        <member name="T:Sudoku.Solving.Collections.SoleCandidateNode">
-            <summary>
-            Provides with the node that stores a sole candidate.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Solving.Collections.SoleCandidateNode.#ctor(System.Byte,System.Byte)">
-            <summary>
-            Initializes a <see cref="T:Sudoku.Solving.Collections.SoleCandidateNode"/> instance via the candidate and its current status.
-            </summary>
-            <param name="cell">Indicates the cell used.</param>
-            <param name="digit">Indicates the digit used.</param>
-        </member>
-        <member name="P:Sudoku.Solving.Collections.SoleCandidateNode.Cell">
-            <summary>
-            Indicates the cell used.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Solving.Collections.SoleCandidateNode.Candidate">
-            <summary>
-            Indicates the candidate used.
-            </summary>
         </member>
         <member name="T:Sudoku.Solving.FailedReason">
             <summary>
@@ -2294,9 +1991,9 @@
         <member name="F:Sudoku.Solving.Manual.Searchers.AlternatingInferenceChainStepSearcher._idLookup">
             <summary>
             Indicates the lookup table that can get the target ID value
-            via the corresponding <see cref="T:Sudoku.Solving.Collections.Node"/> instance.
+            via the corresponding <see cref="T:Sudoku.Concepts.Solving.ChainNodes.Node"/> instance.
             </summary>
-            <seealso cref="T:Sudoku.Solving.Collections.Node"/>
+            <seealso cref="T:Sudoku.Concepts.Solving.ChainNodes.Node"/>
         </member>
         <member name="F:Sudoku.Solving.Manual.Searchers.AlternatingInferenceChainStepSearcher._foundChains">
             <summary>
@@ -2310,7 +2007,7 @@
         </member>
         <member name="F:Sudoku.Solving.Manual.Searchers.AlternatingInferenceChainStepSearcher._nodeLookup">
             <summary>
-            Indicates the lookup table that can get the target <see cref="T:Sudoku.Solving.Collections.Node"/> instance
+            Indicates the lookup table that can get the target <see cref="T:Sudoku.Concepts.Solving.ChainNodes.Node"/> instance
             via the corresponding ID value specified as the index.
             </summary>
         </member>
@@ -2336,23 +2033,23 @@
             <inheritdoc/>
             <remarks>
             The default value is <c>
-            <see cref="F:Sudoku.Solving.Collections.SearcherNodeTypes.SoleCell"/> | <see cref="F:Sudoku.Solving.Collections.SearcherNodeTypes.SoleDigit"/>
-            | <see cref="F:Sudoku.Solving.Collections.SearcherNodeTypes.LockedCandidates"/>
-            | <see cref="F:Sudoku.Solving.Collections.SearcherNodeTypes.LockedSet"/> | <see cref="F:Sudoku.Solving.Collections.SearcherNodeTypes.HiddenSet"/>
+            <see cref="F:Sudoku.Concepts.Solving.ChainNodes.SearcherNodeTypes.SoleCell"/> | <see cref="F:Sudoku.Concepts.Solving.ChainNodes.SearcherNodeTypes.SoleDigit"/>
+            | <see cref="F:Sudoku.Concepts.Solving.ChainNodes.SearcherNodeTypes.LockedCandidates"/>
+            | <see cref="F:Sudoku.Concepts.Solving.ChainNodes.SearcherNodeTypes.LockedSet"/> | <see cref="F:Sudoku.Concepts.Solving.ChainNodes.SearcherNodeTypes.HiddenSet"/>
             </c>.
             </remarks>
         </member>
         <member name="M:Sudoku.Solving.Manual.Searchers.AlternatingInferenceChainStepSearcher.GetAll(System.Collections.Generic.ICollection{Sudoku.Solving.Manual.Step},Sudoku.Concepts.Collections.Grid@,System.Boolean)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Searchers.AlternatingInferenceChainStepSearcher.AddNode(Sudoku.Solving.Collections.Node,System.Collections.Generic.HashSet{System.Int32}@)">
+        <member name="M:Sudoku.Solving.Manual.Searchers.AlternatingInferenceChainStepSearcher.AddNode(Sudoku.Concepts.Solving.ChainNodes.Node,System.Collections.Generic.HashSet{System.Int32}@)">
             <summary>
             Adds the specified node into the collection, or just get the ID value.
             </summary>
             <param name="nextNode">The next node.</param>
             <param name="list">The list.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Searchers.AlternatingInferenceChainStepSearcher.UpdateInferenceTable(System.Collections.Generic.HashSet{System.Int32},Sudoku.Solving.Collections.Node,System.Collections.Generic.Dictionary{System.Int32,System.Collections.Generic.HashSet{System.Int32}})">
+        <member name="M:Sudoku.Solving.Manual.Searchers.AlternatingInferenceChainStepSearcher.UpdateInferenceTable(System.Collections.Generic.HashSet{System.Int32},Sudoku.Concepts.Solving.ChainNodes.Node,System.Collections.Generic.Dictionary{System.Int32,System.Collections.Generic.HashSet{System.Int32}})">
             <summary>
             To assign the recorded IDs into the dictionary.
             </summary>
@@ -2470,46 +2167,46 @@
             <description>Description (What kind of nodes can be searched)</description>
             </listheader>
             <item>
-            <term><see cref="F:Sudoku.Solving.Collections.SearcherNodeTypes.SoleDigit"/></term>
+            <term><see cref="F:Sudoku.Concepts.Solving.ChainNodes.SearcherNodeTypes.SoleDigit"/></term>
             <description>
             The strong and weak inferences between 2 sole candidate nodes of a same digit
             (i.e. X-Chain).
             </description>
             </item>
             <item>
-            <term><see cref="F:Sudoku.Solving.Collections.SearcherNodeTypes.SoleCell"/></term>
+            <term><see cref="F:Sudoku.Concepts.Solving.ChainNodes.SearcherNodeTypes.SoleCell"/></term>
             <description>
             The strong and weak inferences between 2 sole candidate nodes of a same cell
             (i.e. Y-Chain).
             </description>
             </item>
             <item>
-            <term><see cref="F:Sudoku.Solving.Collections.SearcherNodeTypes.LockedCandidates"/></term>
+            <term><see cref="F:Sudoku.Concepts.Solving.ChainNodes.SearcherNodeTypes.LockedCandidates"/></term>
             <description>
             The strong and weak inferences between 2 nodes, where at least one node is a locked candidates node.
             </description>
             </item>
             <item>
-            <term><see cref="F:Sudoku.Solving.Collections.SearcherNodeTypes.LockedSet"/></term>
+            <term><see cref="F:Sudoku.Concepts.Solving.ChainNodes.SearcherNodeTypes.LockedSet"/></term>
             <description>
             The strong inferences between 2 nodes, where at least one node is an almost locked set node.
             </description>
             </item>
             <item>
-            <term><see cref="F:Sudoku.Solving.Collections.SearcherNodeTypes.HiddenSet"/></term>
+            <term><see cref="F:Sudoku.Concepts.Solving.ChainNodes.SearcherNodeTypes.HiddenSet"/></term>
             <description>
             The weak inferences between 2 nodes, where at least one node is an almost hidden set node.
             </description>
             </item>
             <item>
-            <term><see cref="F:Sudoku.Solving.Collections.SearcherNodeTypes.UniqueRectangle"/></term>
+            <term><see cref="F:Sudoku.Concepts.Solving.ChainNodes.SearcherNodeTypes.UniqueRectangle"/></term>
             <description>
             The strong and weak inferences between 2 nodes, where at least one node
             is an almost unique rectangle node.
             </description>
             </item>
             <item>
-            <term><see cref="F:Sudoku.Solving.Collections.SearcherNodeTypes.Kraken"/></term>
+            <term><see cref="F:Sudoku.Concepts.Solving.ChainNodes.SearcherNodeTypes.Kraken"/></term>
             <description>
             The strong and weak inferences between 2 nodes, where at least one node
             is a kraken fish node.

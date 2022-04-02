@@ -3545,6 +3545,309 @@
             </list>
             </returns>
         </member>
+        <member name="T:Sudoku.Concepts.Solving.ChainNodes.AlmostLockedSetNode">
+            <summary>
+            Defines a chain node that provides with the data for an almost locked set.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Concepts.Solving.ChainNodes.AlmostLockedSetNode.Shifting">
+            <summary>
+            Indicates the shifting bits that each cell stores in the <see cref="F:Sudoku.Concepts.Solving.ChainNodes.Node._other"/> mask.
+            </summary>
+            <seealso cref="F:Sudoku.Concepts.Solving.ChainNodes.Node._other"/>
+        </member>
+        <member name="M:Sudoku.Concepts.Solving.ChainNodes.AlmostLockedSetNode.#ctor(System.Byte,Sudoku.Concepts.Collections.Cells@,Sudoku.Concepts.Collections.Cells@)">
+            <summary>
+            Initializes an <see cref="T:Sudoku.Concepts.Solving.ChainNodes.AlmostLockedSetNode"/> instance via the digit used
+            and the cells used.
+            </summary>
+            <param name="digit">The digit used.</param>
+            <param name="cells">The cells used.</param>
+            <param name="extraCells">
+            Indicates the extra cells that the current ALS used, but the current digit doesn't used.
+            </param>
+        </member>
+        <member name="P:Sudoku.Concepts.Solving.ChainNodes.AlmostLockedSetNode.FullCells">
+            <summary>
+            Indicates the whole ALS map.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Concepts.Solving.ChainNodes.AlmostLockedSetNode.ToSimpleString">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.Solving.ChainNodes.AlmostLockedSetNode.InitOtherMask(Sudoku.Concepts.Collections.Cells@)">
+            <summary>
+            Gets the part of the other mask value that represents the extra cells used.
+            </summary>
+            <param name="extraCells">The extra cells used.</param>
+            <returns>The mask of type <see cref="T:System.Int64"/>.</returns>
+            <exception cref="T:System.ArgumentException">
+            Throws when the number of elements in the argument <paramref name="extraCells"/>
+            is greater than 8.
+            </exception>
+        </member>
+        <member name="T:Sudoku.Concepts.Solving.ChainNodes.LockedCandidatesNode">
+            <summary>
+            Defines a chain node that provides with the data for a locked candidates.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Concepts.Solving.ChainNodes.LockedCandidatesNode.#ctor(System.Byte,System.Byte,System.Byte)">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Concepts.Solving.ChainNodes.LockedCandidatesNode"/> instance via the digit used,
+            and two cells used.
+            </summary>
+            <param name="digit">The digit used.</param>
+            <param name="cell1">The cell 1.</param>
+            <param name="cell2">The cell 2.</param>
+        </member>
+        <member name="M:Sudoku.Concepts.Solving.ChainNodes.LockedCandidatesNode.#ctor(System.Byte,System.Byte,System.Byte,System.Byte)">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Concepts.Solving.ChainNodes.LockedCandidatesNode"/> instance via the digit used,
+            and three cells used.
+            </summary>
+            <param name="digit">The digit used.</param>
+            <param name="cell1">The cell 1.</param>
+            <param name="cell2">The cell 2.</param>
+            <param name="cell3">The cell 3.</param>
+        </member>
+        <member name="M:Sudoku.Concepts.Solving.ChainNodes.LockedCandidatesNode.#ctor(System.Byte,Sudoku.Concepts.Collections.Cells@)">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Concepts.Solving.ChainNodes.LockedCandidatesNode"/> instance via the digit used and cells used.
+            </summary>
+            <param name="digit">The digit used.</param>
+            <param name="cells">The cells used.</param>
+        </member>
+        <member name="T:Sudoku.Concepts.Solving.ChainNodes.Node">
+            <summary>
+            Defines a chain node.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Concepts.Solving.ChainNodes.Node.PreservedBitsCount">
+            <summary>
+            Indicates the number of bits that is preserved by the bit mask field <see cref="F:Sudoku.Concepts.Solving.ChainNodes.Node._other"/>.
+            </summary>
+            <seealso cref="F:Sudoku.Concepts.Solving.ChainNodes.Node._other"/>
+        </member>
+        <member name="F:Sudoku.Concepts.Solving.ChainNodes.Node._higher">
+            <summary>
+            Indicates the bits used. <see cref="F:Sudoku.Concepts.Solving.ChainNodes.Node._higher"/> and <see cref="F:Sudoku.Concepts.Solving.ChainNodes.Node._lower"/>
+            store the basic data of the cells used.
+            </summary>
+            <remarks>
+            Please note that the lower 7 bits in the field <see cref="F:Sudoku.Concepts.Solving.ChainNodes.Node._other"/> are reserved ones,
+            which represents the basic data for the digit used, and the type of the node.
+            You cannot modify them.
+            </remarks>
+        </member>
+        <member name="F:Sudoku.Concepts.Solving.ChainNodes.Node._lower">
+            <summary>
+            Indicates the bits used. <see cref="F:Sudoku.Concepts.Solving.ChainNodes.Node._higher"/> and <see cref="F:Sudoku.Concepts.Solving.ChainNodes.Node._lower"/>
+            store the basic data of the cells used.
+            </summary>
+            <remarks>
+            Please note that the lower 7 bits in the field <see cref="F:Sudoku.Concepts.Solving.ChainNodes.Node._other"/> are reserved ones,
+            which represents the basic data for the digit used, and the type of the node.
+            You cannot modify them.
+            </remarks>
+        </member>
+        <member name="F:Sudoku.Concepts.Solving.ChainNodes.Node._other">
+            <summary>
+            Indicates the bits used. <see cref="F:Sudoku.Concepts.Solving.ChainNodes.Node._higher"/> and <see cref="F:Sudoku.Concepts.Solving.ChainNodes.Node._lower"/>
+            store the basic data of the cells used.
+            </summary>
+            <remarks>
+            Please note that the lower 7 bits in the field <see cref="F:Sudoku.Concepts.Solving.ChainNodes.Node._other"/> are reserved ones,
+            which represents the basic data for the digit used, and the type of the node.
+            You cannot modify them.
+            </remarks>
+        </member>
+        <member name="M:Sudoku.Concepts.Solving.ChainNodes.Node.#ctor(Sudoku.Concepts.Solving.ChainNodes.NodeType,System.Byte,Sudoku.Concepts.Collections.Cells@)">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Concepts.Solving.ChainNodes.Node"/> instance via the basic data.
+            </summary>
+            <param name="nodeType">The node type.</param>
+            <param name="digit">The digit used.</param>
+            <param name="cells">The cells used.</param>
+        </member>
+        <member name="M:Sudoku.Concepts.Solving.ChainNodes.Node.#ctor(Sudoku.Concepts.Solving.ChainNodes.NodeType,System.Byte,Sudoku.Concepts.Collections.Cells@,System.Int64)">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Concepts.Solving.ChainNodes.Node"/> instance via the basic data.
+            </summary>
+            <param name="nodeType">The node type.</param>
+            <param name="digit">The digit used.</param>
+            <param name="cells">The cells used.</param>
+            <param name="otherMask">
+            The other mask. Here the mask provided must preserve the lower 7 bits zeroed
+            because they are reserved one.
+            </param>
+        </member>
+        <member name="M:Sudoku.Concepts.Solving.ChainNodes.Node.#ctor(System.Int64,System.Int64,System.Int64)">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Concepts.Solving.ChainNodes.Node"/> instance via the basic data.
+            </summary>
+            <param name="higher">The higher 64 bits.</param>
+            <param name="lower">The lower 64 bits.</param>
+            <param name="other">The other 64 bits.</param>
+        </member>
+        <member name="P:Sudoku.Concepts.Solving.ChainNodes.Node.Digit">
+            <summary>
+            Indicates the digit used.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.Solving.ChainNodes.Node.IsGroupedNode">
+            <summary>
+            Indicates whether the current node is a grouped node, which means it uses more than 1 cell.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.Solving.ChainNodes.Node.Cells">
+            <summary>
+            Indicates the cells used.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.Solving.ChainNodes.Node.Type">
+            <summary>
+            Indicates the type of the node.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Concepts.Solving.ChainNodes.Node.Equals(System.Object)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.Solving.ChainNodes.Node.Equals(Sudoku.Concepts.Solving.ChainNodes.Node)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.Solving.ChainNodes.Node.GetHashCode">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.Solving.ChainNodes.Node.ToSimpleString">
+            <summary>
+            Gets the simplified string value that only displays the important information.
+            </summary>
+            <returns>The string value.</returns>
+        </member>
+        <member name="M:Sudoku.Concepts.Solving.ChainNodes.Node.ToString">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.Solving.ChainNodes.Node.op_Equality(Sudoku.Concepts.Solving.ChainNodes.Node,Sudoku.Concepts.Solving.ChainNodes.Node)">
+            <summary>
+            Determines whether two <see cref="T:Sudoku.Concepts.Solving.ChainNodes.Node"/>s are same.
+            </summary>
+            <param name="left">Indicates the left-side instance to compare.</param>
+            <param name="right">Indicates the right-side instance to compare.</param>
+            <returns>A <see cref="T:System.Boolean"/> result.</returns>
+        </member>
+        <member name="M:Sudoku.Concepts.Solving.ChainNodes.Node.op_Inequality(Sudoku.Concepts.Solving.ChainNodes.Node,Sudoku.Concepts.Solving.ChainNodes.Node)">
+            <summary>
+            Determines whether two <see cref="T:Sudoku.Concepts.Solving.ChainNodes.Node"/>s are not totally same.
+            </summary>
+            <param name="left">Indicates the left-side instance to compare.</param>
+            <param name="right">Indicates the right-side instance to compare.</param>
+            <returns>A <see cref="T:System.Boolean"/> result.</returns>
+        </member>
+        <member name="T:Sudoku.Concepts.Solving.ChainNodes.NodeType">
+            <summary>
+            Defines a node type.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Concepts.Solving.ChainNodes.NodeType.Sole">
+            <summary>
+            Indicates the node type is a sole candidate.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Concepts.Solving.ChainNodes.NodeType.LockedCandidates">
+            <summary>
+            Indicates the node type is a locked candidates.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Concepts.Solving.ChainNodes.NodeType.AlmostLockedSets">
+            <summary>
+            Indicates the node type is an almost locked sets.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Concepts.Solving.ChainNodes.NodeTypeNameAttribute">
+            <summary>
+            Defines an attribute that can be applied to a field in the type <see cref="T:Sudoku.Concepts.Solving.ChainNodes.NodeType"/>,
+            to tell the runtime that the name is bound with the field, in order to display in the console or UI.
+            </summary>
+            <seealso cref="T:Sudoku.Concepts.Solving.ChainNodes.NodeType"/>
+        </member>
+        <member name="M:Sudoku.Concepts.Solving.ChainNodes.NodeTypeNameAttribute.#ctor(System.String)">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Concepts.Solving.ChainNodes.NodeTypeNameAttribute"/> instance via the name.
+            </summary>
+            <param name="name">The name.</param>
+        </member>
+        <member name="P:Sudoku.Concepts.Solving.ChainNodes.NodeTypeNameAttribute.Name">
+            <summary>
+            Indicates the name.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Concepts.Solving.ChainNodes.SearcherNodeTypes">
+            <summary>
+            Defines a node type that provides with the choices for the chain node types.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Concepts.Solving.ChainNodes.SearcherNodeTypes.None">
+            <summary>
+            Indicates the searcher doesn't search for any extended-typed nodes.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Concepts.Solving.ChainNodes.SearcherNodeTypes.SoleDigit">
+            <summary>
+            Indicates the searcher can search on sole digit in the same region.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Concepts.Solving.ChainNodes.SearcherNodeTypes.SoleCell">
+            <summary>
+            Indicates the searcher can search on candidates in a same cell.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Concepts.Solving.ChainNodes.SearcherNodeTypes.LockedCandidates">
+            <summary>
+            Indicates the searcher can search for locked candidate nodes.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Concepts.Solving.ChainNodes.SearcherNodeTypes.LockedSet">
+            <summary>
+            Indicates the searcher can search for locked set nodes.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Concepts.Solving.ChainNodes.SearcherNodeTypes.HiddenSet">
+            <summary>
+            Indicates the searcher can search for hidden set nodes.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Concepts.Solving.ChainNodes.SearcherNodeTypes.UniqueRectangle">
+            <summary>
+            Indicates the searcher can search for almost rectangle nodes.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Concepts.Solving.ChainNodes.SearcherNodeTypes.Kraken">
+            <summary>
+            Indicates the searcher can search for kraken fish nodes.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Concepts.Solving.ChainNodes.SoleCandidateNode">
+            <summary>
+            Provides with the node that stores a sole candidate.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Concepts.Solving.ChainNodes.SoleCandidateNode.#ctor(System.Byte,System.Byte)">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Concepts.Solving.ChainNodes.SoleCandidateNode"/> instance via the candidate and its current status.
+            </summary>
+            <param name="cell">Indicates the cell used.</param>
+            <param name="digit">Indicates the digit used.</param>
+        </member>
+        <member name="P:Sudoku.Concepts.Solving.ChainNodes.SoleCandidateNode.Cell">
+            <summary>
+            Indicates the cell used.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.Solving.ChainNodes.SoleCandidateNode.Candidate">
+            <summary>
+            Indicates the candidate used.
+            </summary>
+        </member>
         <member name="T:Sudoku.Concepts.Solving.Conclusion">
             <summary>
             Encapsulates a conclusion representation while solving in logic.

@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Solving.Collections;
+﻿namespace Sudoku.Concepts.Solving.ChainNodes;
 
 /// <summary>
 /// Defines an attribute that can be applied to a field in the type <see cref="NodeType"/>,
