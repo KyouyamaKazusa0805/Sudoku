@@ -9,12 +9,8 @@
 /// <param name="IsBivalueCell">Indicates whether this instance is a bi-value-cell ALS.</param>
 /// <param name="Region">Indicates the region that the instance lies in.</param>
 public readonly record struct AlmostLockedSet(
-	short DigitsMask,
-	in Cells Map,
-	in Cells PossibleEliminationSet,
-	bool IsBivalueCell,
-	int Region = -1
-) :
+	short DigitsMask, in Cells Map, in Cells PossibleEliminationSet,
+	bool IsBivalueCell, int Region = -1) :
 	IEquatable<AlmostLockedSet>
 #if FEATURE_GENERIC_MATH
 	,
@@ -78,7 +74,7 @@ public readonly record struct AlmostLockedSet(
 	/// <param name="other">The instance to compare.</param>
 	/// <returns>A <see cref="bool"/> result.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public readonly bool Equals(in AlmostLockedSet other) => DigitsMask == other.DigitsMask && Map == other.Map;
+	public bool Equals(in AlmostLockedSet other) => DigitsMask == other.DigitsMask && Map == other.Map;
 
 	/// <summary>
 	/// Indicates whether the specified grid contains the digit.
