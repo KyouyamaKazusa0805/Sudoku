@@ -11,7 +11,7 @@ public sealed class LinqSolver : IPuzzleSolver
 		var stopwatch = new Stopwatch();
 
 		stopwatch.Start();
-		var results = SolveStrings($"{puzzle:0}");
+		var results = solveStrings($"{puzzle:0}");
 		stopwatch.Stop();
 
 		var solverResult = new BruteForceSolverResult(puzzle, ElapsedTime: stopwatch.Elapsed);
@@ -21,6 +21,11 @@ public sealed class LinqSolver : IPuzzleSolver
 			[var result] => solverResult with { Solution = Grid.Parse(result) },
 			_ => solverResult with { IsSolved = false, FailedReason = FailedReason.PuzzleHasNoSolution }
 		};
+
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		static IReadOnlyList<string> solveStrings([InterpolatedStringHandlerArgument] in StringHandler handler) =>
+			SolveStrings(handler.ToStringAndClear());
 	}
 
 
@@ -55,14 +60,4 @@ public sealed class LinqSolver : IPuzzleSolver
 
 		return result;
 	}
-
-	/// <summary>
-	/// Internal solving method.
-	/// </summary>
-	/// <param name="handler">The puzzle string, with placeholder character '0'.</param>
-	/// <returns>The result strings (i.e. All solutions).</returns>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	private static IReadOnlyList<string> SolveStrings(
-		[InterpolatedStringHandlerArgument] in StringHandler handler
-	) => SolveStrings(handler.ToStringAndClear());
 }
