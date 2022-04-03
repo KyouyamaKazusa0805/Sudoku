@@ -9,7 +9,14 @@ internal interface ISimpleSolver
 	/// To solve the specified grid.
 	/// </summary>
 	/// <param name="grid">The grid to be solved.</param>
-	/// <param name="result">The result of the grid.</param>
+	/// <param name="result">
+	/// <para>The result of the grid.</para>
+	/// <para>
+	/// Please note that if the return value is not <see langword="true"/>,
+	/// the value should be a discard and should not be used, because the argument
+	/// keeps a memory-randomized value currently.
+	/// </para>
+	/// </param>
 	/// <returns>
 	/// A <see cref="bool"/>? value indicating whether the grid can be solved, i.e. has a unique solution.
 	/// Please note that the method will return three possible values:

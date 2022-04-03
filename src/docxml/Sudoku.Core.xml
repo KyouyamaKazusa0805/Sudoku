@@ -7494,13 +7494,8 @@
             Indicates the number of solutions found.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.BitwiseSolver.Solve(Sudoku.Concepts.Collections.Grid@)">
-            <summary>
-            To solve the puzzle, and get the solution.
-            </summary>
-            <param name="puzzle">The puzzle to solve.</param>
-            <returns>The solution. If failed to solve, <see cref="F:Sudoku.Concepts.Collections.Grid.Undefined"/>.</returns>
-            <seealso cref="F:Sudoku.Concepts.Collections.Grid.Undefined"/>
+        <member name="M:Sudoku.Solving.BitwiseSolver.Solve(Sudoku.Concepts.Collections.Grid@,Sudoku.Concepts.Collections.Grid@)">
+            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Solving.BitwiseSolver.Solve(System.Char*,System.Char*,System.Int32)">
             <summary>
@@ -7566,6 +7561,14 @@
             <param name="grid">The grid.</param>
             <param name="solutionIfUnique">The solution if the puzzle is unique.</param>
             <returns>The <see cref="T:System.Boolean"/> result. <see langword="true"/> for unique solution.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.BitwiseSolver.Solve(Sudoku.Concepts.Collections.Grid@)">
+            <summary>
+            To solve the puzzle, and get the solution.
+            </summary>
+            <param name="puzzle">The puzzle to solve.</param>
+            <returns>The solution. If failed to solve, <see cref="F:Sudoku.Concepts.Collections.Grid.Undefined"/>.</returns>
+            <seealso cref="F:Sudoku.Concepts.Collections.Grid.Undefined"/>
         </member>
         <member name="M:Sudoku.Solving.BitwiseSolver.SetSolvedDigit(System.Int32,System.Int32)">
             <summary>
@@ -7727,7 +7730,14 @@
             To solve the specified grid.
             </summary>
             <param name="grid">The grid to be solved.</param>
-            <param name="result">The result of the grid.</param>
+            <param name="result">
+            <para>The result of the grid.</para>
+            <para>
+            Please note that if the return value is not <see langword="true"/>,
+            the value should be a discard and should not be used, because the argument
+            keeps a memory-randomized value currently.
+            </para>
+            </param>
             <returns>
             A <see cref="T:System.Boolean"/>? value indicating whether the grid can be solved, i.e. has a unique solution.
             Please note that the method will return three possible values:

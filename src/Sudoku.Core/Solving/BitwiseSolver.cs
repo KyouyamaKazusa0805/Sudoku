@@ -12,7 +12,7 @@ namespace Sudoku.Solving;
 /// to handle a sudoku grid, which is efficient.
 /// </remarks>
 [SuppressMessage("Style", "IDE0032:Use auto property", Justification = "<Pending>")]
-public sealed unsafe partial class BitwiseSolver
+public sealed unsafe partial class BitwiseSolver : ISimpleSolver
 {
 	/// <summary>
 	/// The buffer length of a solution puzzle.
@@ -66,20 +66,15 @@ public sealed unsafe partial class BitwiseSolver
 	internal long LimitSolutions => _limitSolutions;
 
 
-	/// <summary>
-	/// To solve the puzzle, and get the solution.
-	/// </summary>
-	/// <param name="puzzle">The puzzle to solve.</param>
-	/// <returns>The solution. If failed to solve, <see cref="Grid.Undefined"/>.</returns>
-	/// <seealso cref="Grid.Undefined"/>
+	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public Grid Solve(in Grid puzzle)
+	public bool? Solve(in Grid grid, out Grid result)
 	{
 #if CLEAR_STATE_STACK_FOR_EACH_CHECK_VALIDITY_AND_SOLVE_INVOKES
 		Array.Clear(_stack);
 #endif
 
-		string puzzleStr = puzzle.ToString("0");
+		string puzzleStr = grid.ToString("0");
 		char* solutionStr = stackalloc char[BufferLength];
 		long solutions = 0;
 		fixed (char* pPuzzleStr = puzzleStr)
@@ -87,7 +82,23 @@ public sealed unsafe partial class BitwiseSolver
 			solutions = InternalSolve(pPuzzleStr, solutionStr, 2);
 		}
 
-		return solutions == 1 ? Grid.Parse(new ReadOnlySpan<char>(solutionStr, BufferLength)) : Grid.Undefined;
+		Unsafe.SkipInit(out result);
+		switch (solutions)
+		{
+			case 0:
+			{
+				return null;
+			}
+			case 1:
+			{
+				result = Grid.Parse(new ReadOnlySpan<char>(solutionStr, BufferLength));
+				return true;
+			}
+			default:
+			{
+				return false;
+			}
+		}
 	}
 
 	/// <summary>
@@ -260,6 +271,15 @@ public sealed unsafe partial class BitwiseSolver
 			}
 		}
 	}
+
+	/// <summary>
+	/// To solve the puzzle, and get the solution.
+	/// </summary>
+	/// <param name="puzzle">The puzzle to solve.</param>
+	/// <returns>The solution. If failed to solve, <see cref="Grid.Undefined"/>.</returns>
+	/// <seealso cref="Grid.Undefined"/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public Grid Solve(in Grid puzzle) => Solve(puzzle, out var result) is true ? result : Grid.Undefined;
 
 	/// <summary>
 	/// Set a cell as solved - used in <see cref="InitSudoku"/>.
