@@ -3102,45 +3102,25 @@
             Indicates each value should minus one before creation.
             </summary>
         </member>
-        <member name="T:Sudoku.Concepts.Notations.INotation">
+        <member name="T:Sudoku.Concepts.Notation">
             <summary>
-            Defines an notation that obeys the rule of the sudoku basic elements.
+            Represents a notation.
             </summary>
         </member>
-        <member name="T:Sudoku.Concepts.Notations.IRegionNotation">
+        <member name="F:Sudoku.Concepts.Notation.RxCy">
             <summary>
-            Defines the notation that handles for the regions.
+            Indicates the RxCy notation.
             </summary>
         </member>
-        <member name="M:Sudoku.Concepts.Notations.IRegionNotation.ToRegionString(System.Int32[])">
+        <member name="F:Sudoku.Concepts.Notation.K9">
             <summary>
-            Gets the string representation of the regions.
-            </summary>
-            <param name="regions">The regions.</param>
-            <returns>The string representation of the regions.</returns>
-        </member>
-        <member name="M:Sudoku.Concepts.Notations.IRegionNotation.ToRegionStringSimple(System.Int32[])">
-            <summary>
-            Gets the shortcut of string as the representation of the regions.
-            </summary>
-            <param name="regions">The regions.</param>
-            <returns>The string representation of the regions.</returns>
-        </member>
-        <member name="T:Sudoku.Concepts.Notations.RxCyNotation">
-            <summary>
-            Defines the notation using RxCy notation.
+            Indicates the K9 notation.
             </summary>
         </member>
-        <member name="M:Sudoku.Concepts.Notations.RxCyNotation.#ctor">
+        <member name="F:Sudoku.Concepts.Notation.HodokuElimination">
             <summary>
+            Indicates the notation that is used by the program called Hodoku, as the eliminations.
             </summary>
-            <exception cref="T:System.NotSupportedException">Always throws.</exception>
-        </member>
-        <member name="M:Sudoku.Concepts.Notations.RxCyNotation.ToRegionString(System.Int32[])">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.Notations.RxCyNotation.ToRegionStringSimple(System.Int32[])">
-            <inheritdoc/>
         </member>
         <member name="T:Sudoku.Concepts.Parsing.CandidatesParsingOptions">
             <summary>
