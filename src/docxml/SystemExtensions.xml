@@ -1881,6 +1881,11 @@
             <see cref="M:System.Text.StringHandler.ToStringAndClear"/> is called on any one of them.
             </remarks>
         </member>
+        <member name="M:System.Text.StringHandler.Dispose">
+            <summary>
+            To dispose the object, releasing the memory allocated temporarily.
+            </summary>
+        </member>
         <member name="M:System.Text.StringHandler.AppendStringDirect(System.String)">
             <summary>
             Writes the specified string to the handler.

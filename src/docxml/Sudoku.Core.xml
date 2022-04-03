@@ -3102,6 +3102,46 @@
             Indicates each value should minus one before creation.
             </summary>
         </member>
+        <member name="T:Sudoku.Concepts.Notations.INotation">
+            <summary>
+            Defines an notation that obeys the rule of the sudoku basic elements.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Concepts.Notations.IRegionNotation">
+            <summary>
+            Defines the notation that handles for the regions.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Concepts.Notations.IRegionNotation.ToRegionString(System.Int32[])">
+            <summary>
+            Gets the string representation of the regions.
+            </summary>
+            <param name="regions">The regions.</param>
+            <returns>The string representation of the regions.</returns>
+        </member>
+        <member name="M:Sudoku.Concepts.Notations.IRegionNotation.ToRegionStringSimple(System.Int32[])">
+            <summary>
+            Gets the shortcut of string as the representation of the regions.
+            </summary>
+            <param name="regions">The regions.</param>
+            <returns>The string representation of the regions.</returns>
+        </member>
+        <member name="T:Sudoku.Concepts.Notations.RxCyNotation">
+            <summary>
+            Defines the notation using RxCy notation.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Concepts.Notations.RxCyNotation.#ctor">
+            <summary>
+            </summary>
+            <exception cref="T:System.NotSupportedException">Always throws.</exception>
+        </member>
+        <member name="M:Sudoku.Concepts.Notations.RxCyNotation.ToRegionString(System.Int32[])">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.Notations.RxCyNotation.ToRegionStringSimple(System.Int32[])">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Concepts.Parsing.CandidatesParsingOptions">
             <summary>
             Encapsulates an option that is specified to parse the <see cref="T:Sudoku.Concepts.Collections.Candidates"/> instance.

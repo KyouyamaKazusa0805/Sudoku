@@ -1250,6 +1250,12 @@ public unsafe ref partial struct StringHandler
 	}
 
 	/// <summary>
+	/// To dispose the object, releasing the memory allocated temporarily.
+	/// </summary>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public void Dispose() => Clear();
+
+	/// <summary>
 	/// Writes the specified string to the handler.
 	/// </summary>
 	/// <param name="value">The string to write.</param>
