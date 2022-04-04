@@ -1,4 +1,4 @@
-﻿namespace Sudoku.DataHandling;
+﻿namespace Sudoku.Concepts.Notations;
 
 /// <summary>
 /// Defines the type that handles the <see cref="Cells"/> instance for the conversion
@@ -21,7 +21,7 @@
 /// a <see langword="private"/> instance constructor, which disallows you deriving any types.
 /// </para>
 /// </remarks>
-public abstract class RxCyNotation : ICellNotation
+public sealed class RxCyNotation : INotation, ICellNotation
 {
 	/// <summary>
 	/// Indicates the regular expression for matching a cell or cell-list.
@@ -33,34 +33,35 @@ public abstract class RxCyNotation : ICellNotation
 	);
 
 
-	/// <summary>
-	/// The <see langword="private"/> instance constructor of this type.
-	/// The type is <see langword="static"/>-<see langword="class"/>-like type
-	/// so you cannot initialize any instances of this type.
-	/// </summary>
-	/// <exception cref="NotSupportedException">Always throws.</exception>
-	RxCyNotation() => throw new NotSupportedException();
+	[Obsolete("Please don't call this constructor.", true)]
+	private RxCyNotation() => throw new NotSupportedException();
 
 
 	/// <inheritdoc/>
-	public static string Name => "RxCy";
+	public Notation Notation => Notation.RxCy;
 
 
 	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static string ToDisplayString(in Cells cells) => ToDisplayString(cells, RxCyNotationOptions.Default);
+	public static bool TryParseCells(string str, out Cells result)
+	{
+		try
+		{
+			result = ParseCells(str);
+			return true;
+		}
+		catch (FormatException)
+		{
+			Unsafe.SkipInit(out result);
+			return false;
+		}
+	}
 
-	/// <summary>
-	/// Gets the <see cref="string"/> representation of the current notation
-	/// of the specified <see cref="Cells"/> instance, using the specified casing of the capital letters.
-	/// </summary>
-	/// <param name="cells">
-	/// The list of cells to be converted to the <see cref="string"/> representation of the current notation.
-	/// </param>
-	/// <param name="options">The extra options that controls the output behavior.</param>
-	/// <returns>The <see cref="string"/> representation of the current notation.</returns>
+	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static string ToDisplayString(in Cells cells, in RxCyNotationOptions options)
+	public static string ToCellsString(in Cells cells) => ToCellsString(cells, RxCyNotationOptions.Default);
+
+	/// <inheritdoc/>
+	public static string ToCellsString(in Cells cells, in RxCyNotationOptions options)
 	{
 		bool upperCasing = options.UpperCasing;
 		return cells switch
@@ -136,7 +137,7 @@ public abstract class RxCyNotation : ICellNotation
 	}
 
 	/// <inheritdoc/>
-	public static unsafe Cells Parse(string str)
+	public static unsafe Cells ParseCells(string str)
 	{
 		// Check whether the match is successful.
 		if (CellOrCellListRegex.Matches(str) is not [_, ..] matches)
@@ -145,7 +146,7 @@ public abstract class RxCyNotation : ICellNotation
 		}
 
 		// Declare the buffer.
-		int* bufferRows = stackalloc int[9], bufferColumns = stackalloc int[9];
+		Span<int> bufferRows = stackalloc int[9], bufferColumns = stackalloc int[9];
 
 		// Declare the result variable.
 		var result = Cells.Empty;
@@ -191,20 +192,5 @@ public abstract class RxCyNotation : ICellNotation
 
 		// Returns the result.
 		return result;
-	}
-
-	/// <inheritdoc/>
-	public static bool TryParse(string str, out Cells result)
-	{
-		try
-		{
-			result = Parse(str);
-			return true;
-		}
-		catch (FormatException)
-		{
-			Unsafe.SkipInit(out result);
-			return false;
-		}
 	}
 }

@@ -1,4 +1,4 @@
-﻿namespace Sudoku.DataHandling;
+﻿namespace Sudoku.Concepts.Notations;
 
 /// <summary>
 /// Provides with a type that is used for displaying a cell list, using RxCy notation.

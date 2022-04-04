@@ -1,4 +1,6 @@
-﻿namespace Sudoku.Concepts.Collections;
+﻿#pragma warning disable IDE0011
+
+namespace Sudoku.Concepts.Collections;
 
 /// <summary>
 /// Encapsulates a binary series of cell status table.
@@ -9,7 +11,6 @@
 /// and the <see langword="false"/> bit (0) is for the cell not containing
 /// the digit.
 /// </remarks>
-[SuppressMessage("Style", "IDE0011:Add braces", Justification = "<Pending>")]
 public unsafe struct Cells :
 	IDefaultable<Cells>,
 	IEnumerable<int>,
@@ -697,7 +698,7 @@ public unsafe struct Cells :
 	{
 		return format switch
 		{
-			null or "N" or "n" => RxCyNotation.ToDisplayString(this),
+			null or "N" or "n" => RxCyNotation.ToCellsString(this),
 			"B" or "b" => binaryToString(this, false),
 			"T" or "t" => tableToString(this),
 			_ => throw new FormatException("The specified format is invalid.")
@@ -934,11 +935,13 @@ public unsafe struct Cells :
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static Cells Parse(string str) => RxCyNotation.Parse(str);
+	[Obsolete($"Please use the method '{nameof(RxCyNotation)}.{nameof(RxCyNotation.ParseCells)}({nameof(String)})' instead.", false)]
+	public static Cells Parse(string str) => RxCyNotation.ParseCells(str);
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static bool TryParse(string str, out Cells result) => RxCyNotation.TryParse(str, out result);
+	[Obsolete($"Please use the method '{nameof(RxCyNotation)}.{nameof(RxCyNotation.TryParseCells)}({nameof(String)}, {nameof(Boolean)})' instead.", false)]
+	public static bool TryParse(string str, out Cells result) => RxCyNotation.TryParseCells(str, out result);
 
 
 	/// <summary>
