@@ -1,6 +1,7 @@
 ﻿global using System;
 global using System.Collections;
 global using System.Collections.Generic;
+global using System.Collections.Immutable;
 global using System.CommonComparers.Equality;
 global using System.ComponentModel;
 global using System.Diagnostics;
@@ -23,6 +24,7 @@ global using Sudoku.Concepts.Formatting;
 global using Sudoku.Concepts.Notations;
 global using Sudoku.Concepts.Parsing;
 global using Sudoku.Concepts.Solving;
+global using Sudoku.Concepts.Solving.ChainNodes;
 global using Sudoku.Runtime.AnalysisServices;
 global using Sudoku.Solving;
 global using static System.Algorithm.Sequences;

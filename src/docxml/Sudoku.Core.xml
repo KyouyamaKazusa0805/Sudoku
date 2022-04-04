@@ -3984,6 +3984,90 @@
             </list>
             </returns>
         </member>
+        <member name="T:Sudoku.Concepts.Solving.Chain">
+            <summary>
+            Defines a chain.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Concepts.Solving.Chain._nodesStatus">
+            <summary>
+            Indicates the status of those nodes.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Concepts.Solving.Chain._nodes">
+            <summary>
+            Indicates the nodes that is used in the current chain.
+            Generally, the first element and the last element are same.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Concepts.Solving.Chain.#ctor(Sudoku.Concepts.Solving.ChainNodes.Node[],System.Boolean[])">
+            <summary>
+            Initializes a instance whose type is derived from <see cref="T:Sudoku.Concepts.Solving.Chain"/>,
+            using the specified nodes and their own status respectively.
+            </summary>
+            <param name="nodes">The nodes.</param>
+            <param name="nodesStatus">The nodes' status.</param>
+            <exception cref="T:System.ArgumentException">
+            Throws when the arguments <paramref name="nodes"/> and <paramref name="nodesStatus"/>
+            don't hold the same number of elements.
+            </exception>
+        </member>
+        <member name="P:Sudoku.Concepts.Solving.Chain.Count">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Concepts.Solving.Chain.Item(System.Int32)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.Solving.Chain.Equals(System.Object)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.Solving.Chain.Equals(Sudoku.Concepts.Solving.Chain)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.Solving.Chain.GetHashCode">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.Solving.Chain.ToString">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.Solving.Chain.ToRawArray">
+            <summary>
+            Creates an array that stores the values with each element of a pair, where:
+            <list type="table">
+            <item>
+            <term>The first tuple element</term>
+            <description>The node itself.</description>
+            </item>
+            <item>
+            <term>The second tuple element</term>
+            <description>The status of the current node, indicating whether the node is on currently.</description>
+            </item>
+            </list>
+            </summary>
+            <returns>An array that stores the values with each element of a pair.</returns>
+        </member>
+        <member name="M:Sudoku.Concepts.Solving.Chain.GetEnumerator">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.Solving.Chain.System#Collections#IEnumerable#GetEnumerator">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.Solving.Chain.op_Equality(Sudoku.Concepts.Solving.Chain,Sudoku.Concepts.Solving.Chain)">
+            <summary>
+            Determines whether two <see cref="T:Sudoku.Concepts.Solving.Chain"/>s are same.
+            </summary>
+            <param name="left">The left instance to be compared.</param>
+            <param name="right">The right instance to be compared.</param>
+            <returns>A <see cref="T:System.Boolean"/> value indicating the result.</returns>
+        </member>
+        <member name="M:Sudoku.Concepts.Solving.Chain.op_Inequality(Sudoku.Concepts.Solving.Chain,Sudoku.Concepts.Solving.Chain)">
+            <summary>
+            Determines whether two <see cref="T:Sudoku.Concepts.Solving.Chain"/>s are not same.
+            </summary>
+            <param name="left">The left instance to be compared.</param>
+            <param name="right">The right instance to be compared.</param>
+            <returns>A <see cref="T:System.Boolean"/> value indicating the result.</returns>
+        </member>
         <member name="T:Sudoku.Concepts.Solving.ChainNodes.AlmostLockedSetNode">
             <summary>
             Defines a chain node that provides with the data for an almost locked set.
