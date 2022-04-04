@@ -174,77 +174,61 @@ partial struct GridFormatter
 	private partial string ToSingleLineStringCore(in Grid grid)
 	{
 		var sb = new StringHandler(162);
-		var elims = new StringHandler();
 		var originalGrid = WithCandidates && !ShortenSusser ? Grid.Parse(grid.ToString(".+")) : Grid.Undefined;
 
-		unsafe
+		var eliminatedCandidates = Candidates.Empty;
+		for (int c = 0; c < 81; c++)
 		{
-			for (int c = 0; c < 81; c++)
+			var status = grid.GetStatus(c);
+			if (status == CellStatus.Empty && !originalGrid.IsUndefined && WithCandidates)
 			{
-				var status = grid.GetStatus(c);
-				if (status == CellStatus.Empty && !originalGrid.IsUndefined && WithCandidates)
+				// Check if the value has been set 'true'
+				// and the value has already deleted at the grid
+				// with only givens and modifiables.
+				foreach (int i in originalGrid.GetMask(c) & Grid.MaxCandidatesMask)
 				{
-					// Check if the value has been set 'true'
-					// and the value has already deleted at the grid
-					// with only givens and modifiables.
-					foreach (int i in originalGrid.GetMask(c) & Grid.MaxCandidatesMask)
+					if (!grid[c, i])
 					{
-						if (!grid[c, i])
-						{
-							// The value is 'true', which means the digit has already been deleted.
-							elims.Append(i + 1);
-							elims.Append(c / 9 + 1);
-							elims.Append(c % 9 + 1);
-							elims.Append(' ');
-						}
+						// The value is 'false', which means the digit has already been deleted.
+						eliminatedCandidates.Add(c * 9 + i);
 					}
 				}
+			}
 
-				switch (status)
+			switch (status)
+			{
+				case CellStatus.Empty:
 				{
-					case CellStatus.Empty:
+					sb.Append(Placeholder);
+					break;
+				}
+				case CellStatus.Modifiable:
+				{
+					if (WithModifiables && !ShortenSusser)
+					{
+						sb.Append('+');
+						sb.Append(grid[c] + 1);
+					}
+					else
 					{
 						sb.Append(Placeholder);
-						break;
 					}
-					case CellStatus.Modifiable:
-					{
-						if (WithModifiables && !ShortenSusser)
-						{
-							sb.Append('+');
-							sb.Append(grid[c] + 1);
-						}
-						else
-						{
-							sb.Append(Placeholder);
-						}
 
-						break;
-					}
-					case CellStatus.Given:
-					{
-						sb.Append(grid[c] + 1);
-						break;
-					}
-					default:
-					{
-						throw new InvalidOperationException("The specified status is invalid.");
-					}
+					break;
+				}
+				case CellStatus.Given:
+				{
+					sb.Append(grid[c] + 1);
+					break;
+				}
+				default:
+				{
+					throw new InvalidOperationException("The specified status is invalid.");
 				}
 			}
 		}
 
-		string elimsStr;
-		if (elims.Length <= 3)
-		{
-			elimsStr = elims.ToStringAndClear();
-		}
-		else
-		{
-			elims.RemoveFromEnd(1);
-			elimsStr = elims.ToStringAndClear();
-		}
-
+		string elimsStr = EliminationNotation.ToCandidatesString(eliminatedCandidates);
 		string @base = sb.ToStringAndClear();
 		return ShortenSusser
 			? shorten(@base, Placeholder)

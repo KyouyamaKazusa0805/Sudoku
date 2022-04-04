@@ -271,11 +271,9 @@ partial struct GridParser
 	/// <returns>The result.</returns>
 	private static partial Grid OnParsingSusser(ref GridParser parser, bool shortenSusser)
 	{
-		string? match = parser.ParsingValue.Match(
-			shortenSusser
-				? """[\d\.\*]{1,9}(,[\d\.\*]{1,9}){8}"""
-				: """[\d\.\+]{80,}(\:(\d{3}\s+)*\d{3})?"""
-		);
+		string? match = shortenSusser
+			? parser.ParsingValue.Match("""[\d\.\*]{1,9}(,[\d\.\*]{1,9}){8}""")
+			: parser.ParsingValue.Match("""[\d\.\+]{80,}(\:(\d{3}\s+)*\d{3})?""");
 
 		switch (shortenSusser)
 		{
@@ -364,15 +362,10 @@ partial struct GridParser
 		// If we have met the colon sign ':', this loop would not be executed.
 		if (match.Match(Grid.ExtendedSusserEliminationsRegexPattern) is { } elimMatch)
 		{
-			foreach (string elimBlock in elimMatch.MatchAll("""\d{3}"""))
+			foreach (int candidate in EliminationNotation.ParseCandidates(elimMatch))
 			{
-				// Set the candidate true value to eliminate the candidate.
-				if (elimBlock is not [var a, var b, var c, ..])
-				{
-					continue;
-				}
-
-				result[(b - '1') * 9 + c - '1', a - '1'] = false;
+				// Set the candidate with false to eliminate the candidate.
+				result[candidate / 9, candidate % 9] = false;
 			}
 		}
 
