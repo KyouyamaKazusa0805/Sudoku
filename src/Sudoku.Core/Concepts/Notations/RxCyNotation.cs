@@ -1,8 +1,9 @@
 ﻿namespace Sudoku.Concepts.Notations;
 
 /// <summary>
-/// Defines the type that handles the <see cref="Cells"/> instance for the conversion
-/// to the RxCy notation.
+/// Encapsulates a set of methods that handles a variety of instances, using RxCy notation
+/// to output the <see cref="string"/> representation, or parse a <see cref="string"/> value to convert
+/// it to the suitable-typed instance.
 /// </summary>
 /// <remarks>
 /// <para>

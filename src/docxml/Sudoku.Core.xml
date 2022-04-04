@@ -3102,6 +3102,42 @@
             Indicates each value should minus one before creation.
             </summary>
         </member>
+        <member name="T:Sudoku.Concepts.Notations.HodokuEliminationNotation">
+            <summary>
+            Encapsulates a set of methods that handles a variety of instances, using Hodoku elimination notation
+            to output the <see cref="T:System.String"/> representation, or parse a <see cref="T:System.String"/> value to convert
+            it to the suitable-typed instance.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.Notations.HodokuEliminationNotation.Notation">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Concepts.Notations.HodokuEliminationNotationOptions">
+            <summary>
+            Provides with a type that is used for displaying a cell list, using hodoku elimination notation.
+            </summary>
+            <param name="DigitFirst">Indicates whether the output string will put the digit at first.</param>
+        </member>
+        <member name="M:Sudoku.Concepts.Notations.HodokuEliminationNotationOptions.#ctor(System.Boolean)">
+            <summary>
+            Provides with a type that is used for displaying a cell list, using hodoku elimination notation.
+            </summary>
+            <param name="DigitFirst">Indicates whether the output string will put the digit at first.</param>
+        </member>
+        <member name="P:Sudoku.Concepts.Notations.HodokuEliminationNotationOptions.DigitFirst">
+            <summary>Indicates whether the output string will put the digit at first.</summary>
+        </member>
+        <member name="F:Sudoku.Concepts.Notations.HodokuEliminationNotationOptions.Default">
+            <summary>
+            Indicates the default instance.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.Notations.HodokuEliminationNotationOptions.System#IDefaultable{Sudoku#Concepts#Notations#HodokuEliminationNotationOptions}#IsDefault">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Concepts.Notations.HodokuEliminationNotationOptions.System#IDefaultable{Sudoku#Concepts#Notations#HodokuEliminationNotationOptions}#Default">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Concepts.Notations.ICellNotation`2">
             <summary>
             Defines a type that can convert a <see cref="T:Sudoku.Concepts.Collections.Cells"/> instance into a result <see cref="T:System.String"/>
@@ -3174,8 +3210,9 @@
         </member>
         <member name="T:Sudoku.Concepts.Notations.K9Notation">
             <summary>
-            Defines the type that handles the <see cref="T:Sudoku.Concepts.Collections.Cells"/> instance for the conversion
-            to the K9 notation.
+            Encapsulates a set of methods that handles a variety of instances, using K9 notation
+            to output the <see cref="T:System.String"/> representation, or parse a <see cref="T:System.String"/> value to convert
+            it to the suitable-typed instance.
             </summary>
             <remarks>
             <para>
@@ -3313,8 +3350,9 @@
         </member>
         <member name="T:Sudoku.Concepts.Notations.RxCyNotation">
             <summary>
-            Defines the type that handles the <see cref="T:Sudoku.Concepts.Collections.Cells"/> instance for the conversion
-            to the RxCy notation.
+            Encapsulates a set of methods that handles a variety of instances, using RxCy notation
+            to output the <see cref="T:System.String"/> representation, or parse a <see cref="T:System.String"/> value to convert
+            it to the suitable-typed instance.
             </summary>
             <remarks>
             <para>
