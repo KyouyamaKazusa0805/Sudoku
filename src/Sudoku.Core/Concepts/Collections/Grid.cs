@@ -1061,7 +1061,7 @@ public unsafe partial struct Grid :
 		{
 			{ IsEmpty: true } => "<Empty>",
 			{ IsUndefined: true } => "<Undefined>",
-			_ when GridFormatter.Create(format) is var f => format switch
+			_ when GridFormatterFactory.Create(format) is var f => format switch
 			{
 				":" => f.ToString(this).Match(ExtendedSusserEliminationsRegexPattern) ?? string.Empty,
 				"!" => f.ToString(this).RemoveAll('+'),
