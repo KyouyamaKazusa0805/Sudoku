@@ -1,4 +1,4 @@
-﻿namespace Sudoku.DataHandling;
+﻿namespace Sudoku.Concepts.Notations;
 
 /// <summary>
 /// Provides with a type that is used for displaying a cell list, using K9 notation.
@@ -18,13 +18,19 @@
 /// is <c>"|"</c>.
 /// </param>
 public readonly record struct K9NotationOptions(
-	bool UpperCasing = false,
-	bool AvoidConfusionOnRowLetters = false,
-	string Separator = "|"
-)
+	bool UpperCasing = false, bool AvoidConfusionOnRowLetters = false, string Separator = "|") :
+	IDefaultable<K9NotationOptions>,
+	INotationHandlerOptions<K9NotationOptions>
 {
 	/// <summary>
 	/// Indicates the default instance.
 	/// </summary>
 	public static readonly K9NotationOptions Default = new(false, false, "|");
+
+
+	/// <inheritdoc/>
+	bool IDefaultable<K9NotationOptions>.IsDefault => this == Default;
+
+	/// <inheritdoc/>
+	static K9NotationOptions IDefaultable<K9NotationOptions>.Default => Default;
 }

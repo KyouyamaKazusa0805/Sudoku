@@ -21,7 +21,7 @@
 /// a <see langword="private"/> instance constructor, which disallows you deriving any types.
 /// </para>
 /// </remarks>
-public sealed class RxCyNotation : INotation, ICellNotation
+public sealed class RxCyNotation : INotationHandler, ICellNotation<RxCyNotation, RxCyNotationOptions>
 {
 	/// <summary>
 	/// Indicates the regular expression for matching a cell or cell-list.

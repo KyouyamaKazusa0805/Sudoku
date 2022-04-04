@@ -1,4 +1,4 @@
-﻿namespace Sudoku.DataHandling;
+﻿namespace Sudoku.Concepts.Notations;
 
 /// <summary>
 /// Defines the type that handles the <see cref="Cells"/> instance for the conversion
@@ -23,7 +23,7 @@
 /// a <see langword="private"/> instance constructor, which disallows you deriving any types.
 /// </para>
 /// </remarks>
-public sealed class K9Notation : ICellNotation
+public sealed class K9Notation : INotationHandler, ICellNotation<K9Notation, K9NotationOptions>
 {
 	/// <summary>
 	/// Indicates all possible letters that used in the row notation.
@@ -40,34 +40,20 @@ public sealed class K9Notation : ICellNotation
 	);
 
 
-	/// <summary>
-	/// The <see langword="private"/> instance constructor of this type.
-	/// The type is <see langword="static"/>-<see langword="class"/>-like type
-	/// so you cannot initialize any instances of this type.
-	/// </summary>
-	/// <exception cref="NotSupportedException">Always throws.</exception>
-	K9Notation() => throw new NotSupportedException();
+	[Obsolete("Please don't call this constructor.", true)]
+	private K9Notation() => throw new NotSupportedException();
 
 
 	/// <inheritdoc/>
-	public static string Name => "K9";
+	public Notation Notation => Notation.K9;
 
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static string ToDisplayString(in Cells cells) => ToDisplayString(cells, K9NotationOptions.Default);
+	public static string ToCellsString(in Cells cells) => ToCellsString(cells, K9NotationOptions.Default);
 
-	/// <summary>
-	/// Gets the <see cref="string"/> representation of the current notation
-	/// of the specified <see cref="Cells"/> instance, using the specified casing of the capital letters.
-	/// </summary>
-	/// <param name="cells">
-	/// The list of cells to be converted to the <see cref="string"/> representation of the current notation.
-	/// </param>
-	/// <param name="options">The extra options that controls the output behavior.</param>
-	/// <returns>The <see cref="string"/> representation of the current notation.</returns>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static string ToDisplayString(in Cells cells, in K9NotationOptions options)
+	/// <inheritdoc/>
+	public static string ToCellsString(in Cells cells, in K9NotationOptions options)
 	{
 		return cells switch
 		{
@@ -154,7 +140,7 @@ public sealed class K9Notation : ICellNotation
 	}
 
 	/// <inheritdoc/>
-	public static unsafe Cells Parse(string str)
+	public static unsafe Cells ParseCells(string str)
 	{
 		// Check whether the match is successful.
 		if (CellOrCellListRegex.Matches(str) is not [_, ..] matches)
@@ -214,11 +200,11 @@ public sealed class K9Notation : ICellNotation
 	}
 
 	/// <inheritdoc/>
-	public static bool TryParse(string str, out Cells result)
+	public static bool TryParseCells(string str, out Cells result)
 	{
 		try
 		{
-			result = Parse(str);
+			result = ParseCells(str);
 			return true;
 		}
 		catch (FormatException)

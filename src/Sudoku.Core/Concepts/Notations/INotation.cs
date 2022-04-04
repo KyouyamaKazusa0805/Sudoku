@@ -1,12 +1,12 @@
 ﻿namespace Sudoku.Concepts.Notations;
 
 /// <summary>
-/// Defines a type that describes the notation.
+/// Defines a type that handles using the current notation.
 /// </summary>
-internal interface INotation
+public interface INotationHandler
 {
 	/// <summary>
-	/// Indicates the notation.
+	/// Indicates the notation of the current provider type.
 	/// </summary>
 	Notation Notation { get; }
 }

@@ -4,7 +4,11 @@
 /// Defines a type that can convert a <see cref="Cells"/> instance into a result <see cref="string"/>
 /// representation to describe the cell collection.
 /// </summary>
-public interface ICellNotation
+/// <typeparam name="TBaseType">The base type that applies the interface.</typeparam>
+/// <typeparam name="TOptions">The type that is used as the provider for extra options.</typeparam>
+public interface ICellNotation</*[Self]*/ TBaseType, TOptions>
+	where TBaseType : class, INotationHandler, ICellNotation<TBaseType, TOptions>
+	where TOptions : struct, INotationHandlerOptions<TOptions>, IDefaultable<TOptions>
 {
 	/// <summary>
 	/// Gets the <see cref="string"/> representation of a list of cells.
@@ -19,7 +23,7 @@ public interface ICellNotation
 	/// <param name="cells">The cell list.</param>
 	/// <param name="options">The extra options to control the output style.</param>
 	/// <returns>The <see cref="string"/> representation describe the cell list.</returns>
-	static abstract string ToCellsString(in Cells cells, in RxCyNotationOptions options);
+	static abstract string ToCellsString(in Cells cells, in TOptions options);
 
 	/// <summary>
 	/// Try to parse the specified <see cref="string"/> value, and convert it into the <see cref="Cells"/>
