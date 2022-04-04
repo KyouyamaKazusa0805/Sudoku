@@ -28,7 +28,6 @@ public struct Grid :
     public static readonly Grid Undefined;
     public static readonly Grid Empty;
 
-    public Grid();
     public Grid(short[] masks);
     public Grid(int[] gridValues, GridCreatingOption creatingOption = GridCreatingOption.None);
     public Grid(int* pGridValues, GridCreatingOption creatingOption = GridCreatingOption.None);
@@ -157,9 +156,7 @@ byte status = mask >> 9 & 7; // Gets the status of the cell.
 
 ### 无参构造器 `Grid()`
 
-无参构造器在 C# 10 里允许用户自定义，因此此时无参构造器等价于 `this = Empty`，即赋值 `Empty` 的实例化过程。请注意，这个构造器在早期因为无法自定义而等价于 `Undefined`，但在 C# 10 后，它被我们自行定义了，因此实例化的情况也发生了变化。
-
-不过，它仍然会产生内存分配，因此建议使用 `Empty` 字段的赋值过程。
+无参构造器在 C# 10 里允许用户自定义，因为将其重写。不过要注意的是，这个无参构造器永远会引发 `NotSupportedException` 异常，因为我们永远建议你使用 `Empty` 字段或者 `Undefined` 字段。
 
 ### 构造器 `Grid(short[])`
 

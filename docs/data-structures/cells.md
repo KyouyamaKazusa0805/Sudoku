@@ -38,7 +38,6 @@ public struct Cells :
 {
     public static readonly Cells Empty;
 
-    public Cells();
     public Cells(int cell);
     public Cells(int[] cells);
     public Cells(Index cellIndex);
@@ -138,15 +137,16 @@ bool Contains(int offset) => ((offset < 41 ? _low : _high) >> offset % 41 & 1) !
 
 该数据类型提供了一个叫做 `Empty` 的字段，它用来表示一个空序列。这个字段因为是静态的只读字段，因此它在项目初始化和启动的时候被初始化一次，然后不再初始化。
 
-为了减少使用 `new` 表达式创建和分配内存空间，我们总是建议你使用 `Empty` 属性来初始化赋值给一个 `Cells` 类型的对象作为它的初始数值：
+我们总是建议你使用 `Empty` 属性来初始化赋值给一个 `Cells` 类型的对象作为它的初始数值：
 
 ```csharp
 var cells = Cells.Empty;
-var cells = new Cells();
 var cells = default(Cells);
 ```
 
-从数值上讲，上述三种初始化后的结果是完全一样的，但是 `new Cells()` 语法会导致 CLR 产生分配内存空间的代码，而使用 `default` 表达式的写法 `default(Cells)` 则和 `Cells.Empty` 是一样的，但为了统一代码的书写规范和风格，我们总是建议你使用 `Cells.Empty`。
+从数值上讲，上述两种初始化后的结果是完全一样的，但是使用 `default` 表达式的写法 `default(Cells)` 则和 `Cells.Empty` 是一样的，但为了统一代码的书写规范和风格，我们总是建议你使用 `Cells.Empty`。
+
+另外，无参构造器 `new Cells()` 永远不希望你使用。在项目里，无参构造器永远会引发 `NotSupportedException` 异常，因为我们永远建议你使用 `Cells.Empty` 字段。
 
 除了一种情况我们必须使用 `default` 表达式，就是 C# 4 的可选参数语法。值类型的无参构造器在 C# 10 里开放给用户自定义，在自定义后，值类型的无参构造器的数值结果就不再和 `default` 表达式一致。因此，早期的 `new T()` 语法在值类型里是允许作为初始化结果放在可选参数上赋值的，而如今自定义了无参构造器的值类型后，这样的语法就不再允许放在上面了，而 `Cells.Empty` 是静态只读量而不是常量也不是字面量，因此无法放在方法的可选参数上进行参数的默认初始化表达式，在这种情况下，只能使用 `default` 表达式来初始化：
 
