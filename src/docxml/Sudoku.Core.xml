@@ -3102,41 +3102,130 @@
             Indicates each value should minus one before creation.
             </summary>
         </member>
-        <member name="T:Sudoku.Concepts.Notations.HodokuEliminationNotation">
+        <member name="T:Sudoku.Concepts.Notations.EliminationNotation">
             <summary>
             Encapsulates a set of methods that handles a variety of instances, using Hodoku elimination notation
             to output the <see cref="T:System.String"/> representation, or parse a <see cref="T:System.String"/> value to convert
             it to the suitable-typed instance.
             </summary>
         </member>
-        <member name="P:Sudoku.Concepts.Notations.HodokuEliminationNotation.Notation">
+        <member name="P:Sudoku.Concepts.Notations.EliminationNotation.Notation">
             <inheritdoc/>
         </member>
-        <member name="T:Sudoku.Concepts.Notations.HodokuEliminationNotationOptions">
+        <member name="M:Sudoku.Concepts.Notations.EliminationNotation.TryParseCandidates(System.String,Sudoku.Concepts.Collections.Candidates@)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.Notations.EliminationNotation.ToCandidatesString(Sudoku.Concepts.Collections.Candidates@)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.Notations.EliminationNotation.ToCandidatesString(Sudoku.Concepts.Collections.Candidates@,Sudoku.Concepts.Notations.EliminationNotationOptions@)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.Notations.EliminationNotation.ParseCandidates(System.String)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Concepts.Notations.EliminationNotationOptions">
             <summary>
             Provides with a type that is used for displaying a cell list, using hodoku elimination notation.
             </summary>
-            <param name="DigitFirst">Indicates whether the output string will put the digit at first.</param>
+            <param name="DigitFirst">
+            <para>Indicates whether the output string will put the digit at first.</para>
+            <para>The default value is <see langword="true"/>.</para>
+            </param>
+            <param name="Separator">
+            <para>Indicates the separator that is used for the insertion between 2 adjacent candidate elements.</para>
+            <para>The default value is <c>" "</c>.</para>
+            </param>
         </member>
-        <member name="M:Sudoku.Concepts.Notations.HodokuEliminationNotationOptions.#ctor(System.Boolean)">
+        <member name="M:Sudoku.Concepts.Notations.EliminationNotationOptions.#ctor(System.Boolean,System.String)">
             <summary>
             Provides with a type that is used for displaying a cell list, using hodoku elimination notation.
             </summary>
-            <param name="DigitFirst">Indicates whether the output string will put the digit at first.</param>
+            <param name="DigitFirst">
+            <para>Indicates whether the output string will put the digit at first.</para>
+            <para>The default value is <see langword="true"/>.</para>
+            </param>
+            <param name="Separator">
+            <para>Indicates the separator that is used for the insertion between 2 adjacent candidate elements.</para>
+            <para>The default value is <c>" "</c>.</para>
+            </param>
         </member>
-        <member name="P:Sudoku.Concepts.Notations.HodokuEliminationNotationOptions.DigitFirst">
-            <summary>Indicates whether the output string will put the digit at first.</summary>
+        <member name="P:Sudoku.Concepts.Notations.EliminationNotationOptions.DigitFirst">
+            <summary>
+            <para>Indicates whether the output string will put the digit at first.</para>
+            <para>The default value is <see langword="true"/>.</para>
+            </summary>
         </member>
-        <member name="F:Sudoku.Concepts.Notations.HodokuEliminationNotationOptions.Default">
+        <member name="P:Sudoku.Concepts.Notations.EliminationNotationOptions.Separator">
+            <summary>
+            <para>Indicates the separator that is used for the insertion between 2 adjacent candidate elements.</para>
+            <para>The default value is <c>" "</c>.</para>
+            </summary>
+        </member>
+        <member name="F:Sudoku.Concepts.Notations.EliminationNotationOptions.Default">
             <summary>
             Indicates the default instance.
             </summary>
         </member>
-        <member name="P:Sudoku.Concepts.Notations.HodokuEliminationNotationOptions.System#IDefaultable{Sudoku#Concepts#Notations#HodokuEliminationNotationOptions}#IsDefault">
+        <member name="P:Sudoku.Concepts.Notations.EliminationNotationOptions.System#IDefaultable{Sudoku#Concepts#Notations#EliminationNotationOptions}#IsDefault">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Concepts.Notations.HodokuEliminationNotationOptions.System#IDefaultable{Sudoku#Concepts#Notations#HodokuEliminationNotationOptions}#Default">
+        <member name="P:Sudoku.Concepts.Notations.EliminationNotationOptions.System#IDefaultable{Sudoku#Concepts#Notations#EliminationNotationOptions}#Default">
             <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Concepts.Notations.ICandidateNotation`2">
+            <summary>
+            Defines a type that can convert a <see cref="T:Sudoku.Concepts.Collections.Candidates"/> instance into a result <see cref="T:System.String"/>
+            representation to describe the candidate collection.
+            </summary>
+            <typeparam name="TBaseType">The base type that applies the interface.</typeparam>
+            <typeparam name="TOptions">The type that is used as the provider for extra options.</typeparam>
+        </member>
+        <member name="M:Sudoku.Concepts.Notations.ICandidateNotation`2.TryParseCandidates(System.String,Sudoku.Concepts.Collections.Candidates@)">
+            <summary>
+            <para>
+            Try to parse the specified <see cref="T:System.String"/> value, and convert it into the <see cref="T:Sudoku.Concepts.Collections.Candidates"/>
+            instance.
+            </para>
+            <para>
+            Different with the method <see cref="M:Sudoku.Concepts.Notations.ICandidateNotation`2.ParseCandidates(System.String)"/>, the method will return a
+            <see cref="T:System.Boolean"/> value instead, indicating whether the operation is successful. Therefore,
+            the method won't throw <see cref="T:System.FormatException"/>.
+            </para>
+            </summary>
+            <param name="str">The <see cref="T:System.String"/> value.</param>
+            <param name="result">
+            The <see cref="T:Sudoku.Concepts.Collections.Candidates"/> result. If the return value is <see langword="false"/>,
+            this argument will be a discard and cannot be used.
+            </param>
+            <returns>A <see cref="T:System.Boolean"/> value indicating whether the parsing operation is successful.</returns>
+            <seealso cref="M:Sudoku.Concepts.Notations.ICandidateNotation`2.ParseCandidates(System.String)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.Notations.ICandidateNotation`2.ToCandidatesString(Sudoku.Concepts.Collections.Candidates@)">
+            <summary>
+            Gets the <see cref="T:System.String"/> representation of a list of candidates.
+            </summary>
+            <param name="candidates">The candidate list.</param>
+            <returns>The <see cref="T:System.String"/> representation describe the candidate list.</returns>
+        </member>
+        <member name="M:Sudoku.Concepts.Notations.ICandidateNotation`2.ToCandidatesString(Sudoku.Concepts.Collections.Candidates@,`1@)">
+            <summary>
+            Gets the <see cref="T:System.String"/> representation of a list of candidates.
+            </summary>
+            <param name="candidates">The candidates list.</param>
+            <param name="options">The extra options to control the output style.</param>
+            <returns>The <see cref="T:System.String"/> representation describe the candidate list.</returns>
+        </member>
+        <member name="M:Sudoku.Concepts.Notations.ICandidateNotation`2.ParseCandidates(System.String)">
+            <summary>
+            Try to parse the specified <see cref="T:System.String"/> value, and convert it into the <see cref="T:Sudoku.Concepts.Collections.Candidates"/>
+            instance.
+            </summary>
+            <param name="str">The <see cref="T:System.String"/> value.</param>
+            <returns>The <see cref="T:Sudoku.Concepts.Collections.Candidates"/> result.</returns>
+            <exception cref="T:System.FormatException">
+            Throws when the parsing operation is failed due to invalid characters or invalid operation.
+            </exception>
         </member>
         <member name="T:Sudoku.Concepts.Notations.ICellNotation`2">
             <summary>
@@ -3145,6 +3234,26 @@
             </summary>
             <typeparam name="TBaseType">The base type that applies the interface.</typeparam>
             <typeparam name="TOptions">The type that is used as the provider for extra options.</typeparam>
+        </member>
+        <member name="M:Sudoku.Concepts.Notations.ICellNotation`2.TryParseCells(System.String,Sudoku.Concepts.Collections.Cells@)">
+            <summary>
+            <para>
+            Try to parse the specified <see cref="T:System.String"/> value, and convert it into the <see cref="T:Sudoku.Concepts.Collections.Cells"/>
+            instance.
+            </para>
+            <para>
+            Different with the method <see cref="M:Sudoku.Concepts.Notations.ICellNotation`2.ParseCells(System.String)"/>, the method will return a
+            <see cref="T:System.Boolean"/> value instead, indicating whether the operation is successful. Therefore,
+            the method won't throw <see cref="T:System.FormatException"/>.
+            </para>
+            </summary>
+            <param name="str">The <see cref="T:System.String"/> value.</param>
+            <param name="result">
+            The <see cref="T:Sudoku.Concepts.Collections.Cells"/> result. If the return value is <see langword="false"/>,
+            this argument will be a discard and cannot be used.
+            </param>
+            <returns>A <see cref="T:System.Boolean"/> value indicating whether the parsing operation is successful.</returns>
+            <seealso cref="M:Sudoku.Concepts.Notations.ICellNotation`2.ParseCells(System.String)"/>
         </member>
         <member name="M:Sudoku.Concepts.Notations.ICellNotation`2.ToCellsString(Sudoku.Concepts.Collections.Cells@)">
             <summary>
@@ -3171,26 +3280,6 @@
             <exception cref="T:System.FormatException">
             Throws when the parsing operation is failed due to invalid characters or invalid operation.
             </exception>
-        </member>
-        <member name="M:Sudoku.Concepts.Notations.ICellNotation`2.TryParseCells(System.String,Sudoku.Concepts.Collections.Cells@)">
-            <summary>
-            <para>
-            Try to parse the specified <see cref="T:System.String"/> value, and convert it into the <see cref="T:Sudoku.Concepts.Collections.Cells"/>
-            instance.
-            </para>
-            <para>
-            Different with the method <see cref="M:Sudoku.Concepts.Notations.ICellNotation`2.ParseCells(System.String)"/>, the method will return a
-            <see cref="T:System.Boolean"/> value instead, indicating whether the operation is successful. Therefore,
-            the method won't throw <see cref="T:System.FormatException"/>.
-            </para>
-            </summary>
-            <param name="str">The <see cref="T:System.String"/> value.</param>
-            <param name="result">
-            The <see cref="T:Sudoku.Concepts.Collections.Cells"/> result. If the return value is <see langword="false"/>,
-            this argument will be a discard and cannot be used.
-            </param>
-            <returns>A <see cref="T:System.Boolean"/> value indicating whether the parsing operation is successful.</returns>
-            <seealso cref="M:Sudoku.Concepts.Notations.ICellNotation`2.ParseCells(System.String)"/>
         </member>
         <member name="T:Sudoku.Concepts.Notations.INotationHandler">
             <summary>
