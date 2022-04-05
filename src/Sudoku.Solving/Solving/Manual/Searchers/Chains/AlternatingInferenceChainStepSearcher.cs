@@ -198,7 +198,7 @@ public sealed partial class AlternatingInferenceChainStepSearcher : IAlternating
 					conclusions,
 					ImmutableArray.Create(
 						View.Empty
-							// TODO: Append candidates.
+							+ IChainStepSearcher.GetViewOnCandidates(chain)
 							+ IChainStepSearcher.GetViewOnLinks(chain)
 					),
 					chain,

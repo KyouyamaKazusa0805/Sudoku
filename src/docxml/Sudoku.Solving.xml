@@ -2016,6 +2016,14 @@
             Defines a step searcher that searches for chain steps.
             </summary>
         </member>
+        <member name="M:Sudoku.Solving.Manual.Searchers.IChainStepSearcher.GetViewOnCandidates(Sudoku.Concepts.Solving.AlternatingInferenceChain)">
+            <summary>
+            Creates an array of presentation data of candidates
+            via the specified instance of type <see cref="T:Sudoku.Concepts.Solving.AlternatingInferenceChain"/>.
+            </summary>
+            <param name="chain">The chain.</param>
+            <returns>An array of presentation data of candidates.</returns>
+        </member>
         <member name="M:Sudoku.Solving.Manual.Searchers.IChainStepSearcher.GetViewOnLinks(Sudoku.Concepts.Solving.AlternatingInferenceChain@)">
             <summary>
             Creates an array of the presentation data of links
