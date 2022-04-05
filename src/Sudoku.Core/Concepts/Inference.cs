@@ -28,5 +28,10 @@ public enum Inference : byte
 	/// <summary>
 	/// Indicates the inference is conjugate pair.
 	/// </summary>
-	ConjuagtePair
+	ConjuagtePair,
+
+	/// <summary>
+	/// Indicates the inference is the default case that doesn't belong to above.
+	/// </summary>
+	Default
 }

@@ -7,21 +7,16 @@ public sealed class LinkViewNode : ViewNode
 {
 	/// <summary>
 	/// Initializes a <see cref="LinkViewNode"/> instance via the specified identifier,
-	/// the specified start and end point, and the link kind.
+	/// the specified start and end point, and the inference type.
 	/// </summary>
 	/// <param name="identifier">The identifier.</param>
 	/// <param name="startPoint">The start point of the link.</param>
 	/// <param name="endPoint">The end point of the link.</param>
-	/// <param name="linkKind">The kind of the link.</param>
+	/// <param name="inference">The inference type.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public LinkViewNode(
-		Identifier identifier, in LockedTarget startPoint, in LockedTarget endPoint, LinkKind linkKind) :
-		base(identifier)
-	{
-		Start = startPoint;
-		End = endPoint;
-		LinkKind = linkKind;
-	}
+		Identifier identifier, in LockedTarget startPoint, in LockedTarget endPoint, Inference inference) :
+		base(identifier) => (Start, End, Inference) = (startPoint, endPoint, inference);
 
 
 	/// <summary>
@@ -35,28 +30,28 @@ public sealed class LinkViewNode : ViewNode
 	public LockedTarget End { get; }
 
 	/// <summary>
-	/// Indicates the link kind.
+	/// Indicates the inference type.
 	/// </summary>
-	public LinkKind LinkKind { get; }
+	public Inference Inference { get; }
 
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public override bool Equals([NotNullWhen(true)] ViewNode? other) =>
 		other is LinkViewNode comparer
-			&& Start == comparer.Start && End == comparer.End && LinkKind == comparer.LinkKind;
+			&& Start == comparer.Start && End == comparer.End && Inference == comparer.Inference;
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public override int GetHashCode() =>
-		HashCode.Combine(nameof(LinkViewNode), Start.Cells, Start.Digit, End.Cells, End.Digit, LinkKind);
+		HashCode.Combine(nameof(LinkViewNode), Start.Cells, Start.Digit, End.Cells, End.Digit, Inference);
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public override string ToString() =>
-		$"{nameof(LinkViewNode)} {{ {nameof(Start)} = {Start}, {nameof(End)} = {End}, {nameof(LinkKind)} = {LinkKind} }}";
+		$"{nameof(LinkViewNode)} {{ {nameof(Start)} = {Start}, {nameof(End)} = {End}, {nameof(Inference)} = {Inference} }}";
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public override LinkViewNode Clone() => new(Identifier, Start, End, LinkKind);
+	public override LinkViewNode Clone() => new(Identifier, Start, End, Inference);
 }

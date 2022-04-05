@@ -22,7 +22,7 @@ public interface IGuardianStepSearcher : ISingleDigitPatternStepSearcher
 					0,
 					new(offset, Cells.Empty + cells[i]),
 					new(offset, Cells.Empty + cells[i + 1]),
-					LinkKind.Line
+					Inference.Default
 				)
 			);
 		}
@@ -32,7 +32,7 @@ public interface IGuardianStepSearcher : ISingleDigitPatternStepSearcher
 				0,
 				new(offset, Cells.Empty + cells[^1]),
 				new(offset, Cells.Empty + cells[0]),
-				LinkKind.Line
+				Inference.Default
 			)
 		);
 

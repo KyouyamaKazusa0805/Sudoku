@@ -38,24 +38,30 @@ public interface IChainStepSearcher : IStepSearcher
 	/// <returns>An array of presentation data of links.</returns>
 	protected static LinkViewNode[] GetViewOnLinks(AlternatingInferenceChain chain)
 	{
-		var realChainNodes = chain.RealChainNodes;
-		var result = new LinkViewNode[realChainNodes.Length + 1];
-		for (int i = 0; i < realChainNodes.Length - 1; i++)
+		if (
+			chain.RealChainNodes is not (
+				[
+					{ Cells: var firstCells, Digit: var firstDigit },
+					..,
+					{ Cells: var lastCells, Digit: var lastDigit }
+				] realChainNodes and { Length: var length }
+			)
+		)
+		{
+			throw new InvalidOperationException("Invalid status.");
+		}
+
+		var result = new LinkViewNode[length + 1];
+		for (int i = 0; i < length - 1; i++)
 		{
 			if (realChainNodes[i] is { Cells: var aCells, Digit: var aDigit }
 				&& realChainNodes[i + 1] is { Cells: var bCells, Digit: var bDigit })
 			{
-				// TODO: Disctinct strong and weak link.
-				result[i] = new(0, new(aDigit, aCells), new(bDigit, bCells), LinkKind.Strong);
+				result[i] = new(0, new(aDigit, aCells), new(bDigit, bCells), (Inference)(i & 1));
 			}
 		}
 
-		result[realChainNodes.Length] = new(
-			0,
-			new(realChainNodes[^1].Digit, realChainNodes[^1].Cells),
-			new(realChainNodes[0].Digit, realChainNodes[0].Cells),
-			LinkKind.Strong
-		);
+		result[length] = new(0, new(lastDigit, lastCells), new(firstDigit, firstCells), Inference.Strong);
 
 		return result;
 	}

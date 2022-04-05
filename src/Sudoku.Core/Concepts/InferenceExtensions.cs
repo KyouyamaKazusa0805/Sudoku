@@ -11,6 +11,9 @@ public static class InferenceExtensions
 	/// </summary>
 	/// <param name="this">The inference.</param>
 	/// <returns>The identifier value.</returns>
+	/// <exception cref="ArgumentOutOfRangeException">
+	/// Throws when the argument <paramref name="this"/> is not defined.
+	/// </exception>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static string GetIdentifier(this Inference @this) =>
 		@this switch
@@ -20,6 +23,7 @@ public static class InferenceExtensions
 			Inference.StrongGeneralized => " =~ ",
 			Inference.WeakGeneralized => " -~ ",
 			Inference.ConjuagtePair => " == ",
+			Inference.Default => " -- ",
 			_ => throw new ArgumentOutOfRangeException(nameof(@this))
 		};
 }

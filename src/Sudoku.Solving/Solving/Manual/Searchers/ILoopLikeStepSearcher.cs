@@ -22,7 +22,7 @@ public interface ILoopLikeStepSearcher : IStepSearcher
 					0,
 					new(offset, Cells.Empty + @this[i]),
 					new(offset, Cells.Empty + @this[i + 1]),
-					LinkKind.Line
+					Inference.Default
 				)
 			);
 		}
@@ -32,7 +32,7 @@ public interface ILoopLikeStepSearcher : IStepSearcher
 				0,
 				new(offset, Cells.Empty + @this[^1]),
 				new(offset, Cells.Empty + @this[0]),
-				LinkKind.Line
+				Inference.Default
 			)
 		);
 

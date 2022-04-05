@@ -147,14 +147,7 @@ public sealed unsafe partial class BowmanBingoStepSearcher : IBowmanBingoStepSea
 		for (int i = 0, iterationCount = _tempConclusions.Count - 1; i < iterationCount; i++)
 		{
 			int c1 = _tempConclusions[i].Candidate, c2 = _tempConclusions[i + 1].Candidate;
-			result.Add(
-				new(
-					0,
-					new(c1 % 9, Cells.Empty + c1 / 9),
-					new(c2 % 9, Cells.Empty + c2 / 9),
-					LinkKind.Default
-				)
-			);
+			result.Add(new(0, new(c1 % 9, Cells.Empty + c1 / 9), new(c2 % 9, Cells.Empty + c2 / 9), Inference.Default));
 		}
 
 		return result;
@@ -167,8 +160,7 @@ public sealed unsafe partial class BowmanBingoStepSearcher : IBowmanBingoStepSea
 	/// <param name="cell">The cell.</param>
 	/// <param name="digit">The digit.</param>
 	/// <returns>The result.</returns>
-	private static (IReadOnlyList<int> CandidateList, short Mask) RecordUndoInfo(
-		in Grid grid, int cell, int digit)
+	private static (IReadOnlyList<int> CandidateList, short Mask) RecordUndoInfo(in Grid grid, int cell, int digit)
 	{
 		var list = new List<int>();
 		foreach (int c in PeerMaps[cell] & CandMaps[digit])

@@ -3137,6 +3137,11 @@
             Indicates the inference is conjugate pair.
             </summary>
         </member>
+        <member name="F:Sudoku.Concepts.Inference.Default">
+            <summary>
+            Indicates the inference is the default case that doesn't belong to above.
+            </summary>
+        </member>
         <member name="T:Sudoku.Concepts.InferenceExtensions">
             <summary>
             Provides the extensions methods on <see cref="T:Sudoku.Concepts.Inference"/>.
@@ -3149,6 +3154,9 @@
             </summary>
             <param name="this">The inference.</param>
             <returns>The identifier value.</returns>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+            Throws when the argument <paramref name="this"/> is not defined.
+            </exception>
         </member>
         <member name="T:Sudoku.Concepts.Notations.EliminationNotation">
             <summary>
@@ -6999,50 +7007,6 @@
             <param name="unit">The unit.</param>
             <returns>The value of the specified size unit.</returns>
         </member>
-        <member name="T:Sudoku.LinkKind">
-            <summary>
-            Defines a link kind.
-            </summary>
-        </member>
-        <member name="F:Sudoku.LinkKind.Default">
-            <summary>
-            Indicates the default-kind link.
-            </summary>
-        </member>
-        <member name="F:Sudoku.LinkKind.Weak">
-            <summary>
-            Indicates the weak link.
-            </summary>
-        </member>
-        <member name="F:Sudoku.LinkKind.Strong">
-            <summary>
-            Indicates the strong link.
-            </summary>
-        </member>
-        <member name="F:Sudoku.LinkKind.ConjugatePair">
-            <summary>
-            Indicates the conjugate pair.
-            </summary>
-        </member>
-        <member name="F:Sudoku.LinkKind.Line">
-            <summary>
-            Indicates the line-kind link.
-            </summary>
-        </member>
-        <member name="T:Sudoku.LinkKindExtensions">
-            <summary>
-            Provides extension methods on <see cref="T:Sudoku.LinkKind"/>.
-            </summary>
-            <seealso cref="T:Sudoku.LinkKind"/>
-        </member>
-        <member name="M:Sudoku.LinkKindExtensions.GetNotation(Sudoku.LinkKind)">
-            <summary>
-            Gets the notation of the link kind.
-            </summary>
-            <param name="this">The link kind.</param>
-            <returns>The notation.</returns>
-            <exception cref="T:System.ArgumentOutOfRangeException">Throws when the link kind is not defined.</exception>
-        </member>
         <member name="T:Sudoku.Presentation.CandidateViewNode">
             <summary>
             Defines a view node that highlights for a candidate.
@@ -7310,15 +7274,15 @@
             Defines a view node that highlights for a link.
             </summary>
         </member>
-        <member name="M:Sudoku.Presentation.LinkViewNode.#ctor(Sudoku.Presentation.Identifier,Sudoku.Presentation.LockedTarget@,Sudoku.Presentation.LockedTarget@,Sudoku.LinkKind)">
+        <member name="M:Sudoku.Presentation.LinkViewNode.#ctor(Sudoku.Presentation.Identifier,Sudoku.Presentation.LockedTarget@,Sudoku.Presentation.LockedTarget@,Sudoku.Concepts.Inference)">
             <summary>
             Initializes a <see cref="T:Sudoku.Presentation.LinkViewNode"/> instance via the specified identifier,
-            the specified start and end point, and the link kind.
+            the specified start and end point, and the inference type.
             </summary>
             <param name="identifier">The identifier.</param>
             <param name="startPoint">The start point of the link.</param>
             <param name="endPoint">The end point of the link.</param>
-            <param name="linkKind">The kind of the link.</param>
+            <param name="inference">The inference type.</param>
         </member>
         <member name="P:Sudoku.Presentation.LinkViewNode.Start">
             <summary>
@@ -7330,9 +7294,9 @@
             Indicates the end point.
             </summary>
         </member>
-        <member name="P:Sudoku.Presentation.LinkViewNode.LinkKind">
+        <member name="P:Sudoku.Presentation.LinkViewNode.Inference">
             <summary>
-            Indicates the link kind.
+            Indicates the inference type.
             </summary>
         </member>
         <member name="M:Sudoku.Presentation.LinkViewNode.Equals(Sudoku.Presentation.ViewNode)">
