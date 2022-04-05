@@ -396,51 +396,6 @@
         <member name="M:Sudoku.Solving.Collections.AlmostLockedSet.System#IEqualityOperators{Sudoku#Solving#Collections#AlmostLockedSet,Sudoku#Solving#Collections#AlmostLockedSet}#op_Inequality(Sudoku.Solving.Collections.AlmostLockedSet,Sudoku.Solving.Collections.AlmostLockedSet)">
             <inheritdoc/>
         </member>
-        <member name="T:Sudoku.Solving.Collections.ExocetEliminatedReason">
-            <summary>
-            Encapsulates a type that represents the reason why the exocet eliminations can be removed.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Solving.Collections.ExocetEliminatedReason.Basic">
-            <summary>
-            Indicates the elimination is the basic elimination (Target eliminations).
-            </summary>
-        </member>
-        <member name="F:Sudoku.Solving.Collections.ExocetEliminatedReason.TargetInference">
-            <summary>
-            Indicates the target inference eliminations (that is eliminated via mirror cells).
-            </summary>
-        </member>
-        <member name="F:Sudoku.Solving.Collections.ExocetEliminatedReason.Mirror">
-            <summary>
-            Indicates the mirror eliminations.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Solving.Collections.ExocetEliminatedReason.BiBiPattern">
-            <summary>
-            Indicates the bi-bi pattern.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Solving.Collections.ExocetEliminatedReason.TargetPair">
-            <summary>
-            Indicates the target pair eliminations.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Solving.Collections.ExocetEliminatedReason.GeneralizedSwordfish">
-            <summary>
-            Indicates the generalized swordfish eliminations.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Solving.Collections.ExocetEliminatedReason.TrueBase">
-            <summary>
-            Indicates the true base eliminations.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Solving.Collections.ExocetEliminatedReason.CompatibilityTest">
-            <summary>
-            Indicates the compatibility test eliminations.
-            </summary>
-        </member>
         <member name="T:Sudoku.Solving.Collections.ExocetElimination">
             <summary>
             Defines an elimination that is created by searchers
