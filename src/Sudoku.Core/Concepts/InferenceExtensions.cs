@@ -16,14 +16,6 @@ public static class InferenceExtensions
 	/// </exception>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static string GetIdentifier(this Inference @this) =>
-		@this switch
-		{
-			Inference.Strong => " == ",
-			Inference.Weak => " -- ",
-			Inference.StrongGeneralized => " =~ ",
-			Inference.WeakGeneralized => " -~ ",
-			Inference.ConjuagtePair => " == ",
-			Inference.Default => " -- ",
-			_ => throw new ArgumentOutOfRangeException(nameof(@this))
-		};
+		typeof(Inference).GetField(@this.ToString())?.GetCustomAttribute<EnumFieldNameAttribute>()?.Name
+			?? throw new ArgumentOutOfRangeException(nameof(@this));
 }

@@ -91,7 +91,7 @@
         <member name="M:Sudoku.Generating.SymmetricPuzzleGenerator.Generate(System.Threading.CancellationToken)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Generating.SymmetricPuzzleGenerator.Generate(System.Int32,Sudoku.SymmetryType,System.Threading.CancellationToken)">
+        <member name="M:Sudoku.Generating.SymmetricPuzzleGenerator.Generate(System.Int32,Sudoku.Concepts.SymmetryType,System.Threading.CancellationToken)">
             <summary>
             Generates a sudoku puzzle, via the specified number of givens used, the symmetry type, and
             a cancellation token to cancel the operation.
@@ -110,7 +110,7 @@
             The pointer that points to the solution. The result value will be changed here.
             </param>
         </member>
-        <member name="M:Sudoku.Generating.SymmetricPuzzleGenerator.GetCells(Sudoku.SymmetryType,System.Int32,System.Int32)">
+        <member name="M:Sudoku.Generating.SymmetricPuzzleGenerator.GetCells(Sudoku.Concepts.SymmetryType,System.Int32,System.Int32)">
             <summary>
             Get the cells that is used for swapping via the specified symmetry type, and the specified row
             and column value.
