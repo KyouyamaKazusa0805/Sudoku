@@ -7466,106 +7466,6 @@
             <param name="unit">The unit.</param>
             <returns>The value of the specified size unit.</returns>
         </member>
-        <member name="T:Sudoku.Presentation.CandidateViewNode">
-            <summary>
-            Defines a view node that highlights for a candidate.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Presentation.CandidateViewNode.#ctor(Sudoku.Presentation.Identifier,System.Int32)">
-            <summary>
-            Initializes a <see cref="T:Sudoku.Presentation.CandidateViewNode"/> instance via the identifier and the highlight candidate.
-            </summary>
-            <param name="identifier">The identifier.</param>
-            <param name="candidate">The candidate.</param>
-        </member>
-        <member name="P:Sudoku.Presentation.CandidateViewNode.Candidate">
-            <summary>
-            Indicates the candidate highlighted.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Presentation.CandidateViewNode.Equals(Sudoku.Presentation.ViewNode)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Presentation.CandidateViewNode.GetHashCode">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Presentation.CandidateViewNode.ToString">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Presentation.CandidateViewNode.Clone">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Presentation.CellViewNode">
-            <summary>
-            Defines a view node that highlights for a cell.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Presentation.CellViewNode.#ctor(Sudoku.Presentation.Identifier,System.Int32)">
-            <summary>
-            Initializes a <see cref="T:Sudoku.Presentation.CellViewNode"/> instance via the identifier and the highlight cell.
-            </summary>
-            <param name="identifier">The identifier.</param>
-            <param name="cell">The cell.</param>
-        </member>
-        <member name="P:Sudoku.Presentation.CellViewNode.Cell">
-            <summary>
-            Indicates the cell highlighted.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Presentation.CellViewNode.Equals(Sudoku.Presentation.ViewNode)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Presentation.CellViewNode.GetHashCode">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Presentation.CellViewNode.ToString">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Presentation.CellViewNode.Clone">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Presentation.CrosshatchViewNode">
-            <summary>
-            Defines a view node that highlights for a crosshatch.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Presentation.CrosshatchViewNode.#ctor(Sudoku.Presentation.Identifier,Sudoku.Concepts.Collections.Cells@,Sudoku.Concepts.Collections.Cells@,System.Int32)">
-            <summary>
-            Initializes a <see cref="T:Sudoku.Presentation.CrosshatchViewNode"/> instance via the specified identifier,
-            start point, end point cells and the digit used.
-            </summary>
-            <param name="identifier">The identifier.</param>
-            <param name="startPoint">The start point of the crosshatch.</param>
-            <param name="endPoint">The end point of the crosshatch.</param>
-            <param name="digit">The digit used.</param>
-        </member>
-        <member name="P:Sudoku.Presentation.CrosshatchViewNode.Digit">
-            <summary>
-            Indicates the digit used.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Presentation.CrosshatchViewNode.Start">
-            <summary>
-            Indicates the start point cells.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Presentation.CrosshatchViewNode.End">
-            <summary>
-            Indicates the end point cells.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Presentation.CrosshatchViewNode.Equals(Sudoku.Presentation.ViewNode)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Presentation.CrosshatchViewNode.GetHashCode">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Presentation.CrosshatchViewNode.ToString">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Presentation.CrosshatchViewNode.Clone">
-            <inheritdoc/>
-        </member>
         <member name="T:Sudoku.Presentation.Identifier">
             <summary>
             Defines an identifier that can differ colors.
@@ -7728,48 +7628,6 @@
             </summary>
             <param name="id">The ID value.</param>
         </member>
-        <member name="T:Sudoku.Presentation.LinkViewNode">
-            <summary>
-            Defines a view node that highlights for a link.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Presentation.LinkViewNode.#ctor(Sudoku.Presentation.Identifier,Sudoku.Presentation.LockedTarget@,Sudoku.Presentation.LockedTarget@,Sudoku.Concepts.Inference)">
-            <summary>
-            Initializes a <see cref="T:Sudoku.Presentation.LinkViewNode"/> instance via the specified identifier,
-            the specified start and end point, and the inference type.
-            </summary>
-            <param name="identifier">The identifier.</param>
-            <param name="startPoint">The start point of the link.</param>
-            <param name="endPoint">The end point of the link.</param>
-            <param name="inference">The inference type.</param>
-        </member>
-        <member name="P:Sudoku.Presentation.LinkViewNode.Start">
-            <summary>
-            Indicates the start point.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Presentation.LinkViewNode.End">
-            <summary>
-            Indicates the end point.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Presentation.LinkViewNode.Inference">
-            <summary>
-            Indicates the inference type.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Presentation.LinkViewNode.Equals(Sudoku.Presentation.ViewNode)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Presentation.LinkViewNode.GetHashCode">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Presentation.LinkViewNode.ToString">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Presentation.LinkViewNode.Clone">
-            <inheritdoc/>
-        </member>
         <member name="T:Sudoku.Presentation.LockedTarget">
             <summary>
             Defines the data structure that stores a set of cells and a digit, indicating the information
@@ -7835,43 +7693,185 @@
         <member name="M:Sudoku.Presentation.LockedTarget.System#IEqualityOperators{Sudoku#Presentation#LockedTarget,Sudoku#Presentation#LockedTarget}#op_Inequality(Sudoku.Presentation.LockedTarget,Sudoku.Presentation.LockedTarget)">
             <inheritdoc/>
         </member>
-        <member name="T:Sudoku.Presentation.RegionViewNode">
+        <member name="T:Sudoku.Presentation.Nodes.CandidateViewNode">
+            <summary>
+            Defines a view node that highlights for a candidate.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.CandidateViewNode.#ctor(Sudoku.Presentation.Identifier,System.Int32)">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Presentation.Nodes.CandidateViewNode"/> instance via the identifier and the highlight candidate.
+            </summary>
+            <param name="identifier">The identifier.</param>
+            <param name="candidate">The candidate.</param>
+        </member>
+        <member name="P:Sudoku.Presentation.Nodes.CandidateViewNode.Candidate">
+            <summary>
+            Indicates the candidate highlighted.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.CandidateViewNode.Equals(Sudoku.Presentation.Nodes.ViewNode)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.CandidateViewNode.GetHashCode">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.CandidateViewNode.ToString">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.CandidateViewNode.Clone">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Presentation.Nodes.CellViewNode">
+            <summary>
+            Defines a view node that highlights for a cell.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.CellViewNode.#ctor(Sudoku.Presentation.Identifier,System.Int32)">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Presentation.Nodes.CellViewNode"/> instance via the identifier and the highlight cell.
+            </summary>
+            <param name="identifier">The identifier.</param>
+            <param name="cell">The cell.</param>
+        </member>
+        <member name="P:Sudoku.Presentation.Nodes.CellViewNode.Cell">
+            <summary>
+            Indicates the cell highlighted.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.CellViewNode.Equals(Sudoku.Presentation.Nodes.ViewNode)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.CellViewNode.GetHashCode">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.CellViewNode.ToString">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.CellViewNode.Clone">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Presentation.Nodes.CrosshatchViewNode">
+            <summary>
+            Defines a view node that highlights for a crosshatch.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.CrosshatchViewNode.#ctor(Sudoku.Presentation.Identifier,Sudoku.Concepts.Collections.Cells@,Sudoku.Concepts.Collections.Cells@,System.Int32)">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Presentation.Nodes.CrosshatchViewNode"/> instance via the specified identifier,
+            start point, end point cells and the digit used.
+            </summary>
+            <param name="identifier">The identifier.</param>
+            <param name="startPoint">The start point of the crosshatch.</param>
+            <param name="endPoint">The end point of the crosshatch.</param>
+            <param name="digit">The digit used.</param>
+        </member>
+        <member name="P:Sudoku.Presentation.Nodes.CrosshatchViewNode.Digit">
+            <summary>
+            Indicates the digit used.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Presentation.Nodes.CrosshatchViewNode.Start">
+            <summary>
+            Indicates the start point cells.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Presentation.Nodes.CrosshatchViewNode.End">
+            <summary>
+            Indicates the end point cells.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.CrosshatchViewNode.Equals(Sudoku.Presentation.Nodes.ViewNode)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.CrosshatchViewNode.GetHashCode">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.CrosshatchViewNode.ToString">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.CrosshatchViewNode.Clone">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Presentation.Nodes.LinkViewNode">
+            <summary>
+            Defines a view node that highlights for a link.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.LinkViewNode.#ctor(Sudoku.Presentation.Identifier,Sudoku.Presentation.LockedTarget@,Sudoku.Presentation.LockedTarget@,Sudoku.Concepts.Inference)">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Presentation.Nodes.LinkViewNode"/> instance via the specified identifier,
+            the specified start and end point, and the inference type.
+            </summary>
+            <param name="identifier">The identifier.</param>
+            <param name="startPoint">The start point of the link.</param>
+            <param name="endPoint">The end point of the link.</param>
+            <param name="inference">The inference type.</param>
+        </member>
+        <member name="P:Sudoku.Presentation.Nodes.LinkViewNode.Start">
+            <summary>
+            Indicates the start point.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Presentation.Nodes.LinkViewNode.End">
+            <summary>
+            Indicates the end point.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Presentation.Nodes.LinkViewNode.Inference">
+            <summary>
+            Indicates the inference type.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.LinkViewNode.Equals(Sudoku.Presentation.Nodes.ViewNode)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.LinkViewNode.GetHashCode">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.LinkViewNode.ToString">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.LinkViewNode.Clone">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Presentation.Nodes.RegionViewNode">
             <summary>
             Defines a view node that highlights for a region.
             </summary>
         </member>
-        <member name="M:Sudoku.Presentation.RegionViewNode.#ctor(Sudoku.Presentation.Identifier,System.Int32)">
+        <member name="M:Sudoku.Presentation.Nodes.RegionViewNode.#ctor(Sudoku.Presentation.Identifier,System.Int32)">
             <summary>
-            Initializes a <see cref="T:Sudoku.Presentation.RegionViewNode"/> instance via the identifier and the highlight region.
+            Initializes a <see cref="T:Sudoku.Presentation.Nodes.RegionViewNode"/> instance via the identifier and the highlight region.
             </summary>
             <param name="identifier">The identifier.</param>
             <param name="region">The region.</param>
         </member>
-        <member name="P:Sudoku.Presentation.RegionViewNode.Region">
+        <member name="P:Sudoku.Presentation.Nodes.RegionViewNode.Region">
             <summary>
             Indicates the region highlighted.
             </summary>
         </member>
-        <member name="M:Sudoku.Presentation.RegionViewNode.Equals(Sudoku.Presentation.ViewNode)">
+        <member name="M:Sudoku.Presentation.Nodes.RegionViewNode.Equals(Sudoku.Presentation.Nodes.ViewNode)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Presentation.RegionViewNode.GetHashCode">
+        <member name="M:Sudoku.Presentation.Nodes.RegionViewNode.GetHashCode">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Presentation.RegionViewNode.ToString">
+        <member name="M:Sudoku.Presentation.Nodes.RegionViewNode.ToString">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Presentation.RegionViewNode.Clone">
+        <member name="M:Sudoku.Presentation.Nodes.RegionViewNode.Clone">
             <inheritdoc/>
         </member>
-        <member name="T:Sudoku.Presentation.UnknownViewNode">
+        <member name="T:Sudoku.Presentation.Nodes.UnknownViewNode">
             <summary>
             Defines a view node that highlights for a unknown.
             </summary>
         </member>
-        <member name="M:Sudoku.Presentation.UnknownViewNode.#ctor(Sudoku.Presentation.Identifier,System.Int32,System.Byte,System.Int16)">
+        <member name="M:Sudoku.Presentation.Nodes.UnknownViewNode.#ctor(Sudoku.Presentation.Identifier,System.Int32,System.Byte,System.Int16)">
             <summary>
-            Initializes an <see cref="T:Sudoku.Presentation.UnknownViewNode"/> instance via the specified identifier,
+            Initializes an <see cref="T:Sudoku.Presentation.Nodes.UnknownViewNode"/> instance via the specified identifier,
             the cell used, the unknown value character and the mask representing the digits used.
             </summary>
             <param name="identifier">The identifier.</param>
@@ -7879,32 +7879,85 @@
             <param name="unknownValueChar">The character that represents the range of the unknown.</param>
             <param name="digitsMask">The mask representing digits used.</param>
         </member>
-        <member name="P:Sudoku.Presentation.UnknownViewNode.Cell">
+        <member name="P:Sudoku.Presentation.Nodes.UnknownViewNode.Cell">
             <summary>
             Indicates the cell used.
             </summary>
         </member>
-        <member name="P:Sudoku.Presentation.UnknownViewNode.UnknownValueChar">
+        <member name="P:Sudoku.Presentation.Nodes.UnknownViewNode.UnknownValueChar">
             <summary>
             Indicates the character that represents the unknown range.
             </summary>
         </member>
-        <member name="P:Sudoku.Presentation.UnknownViewNode.DigitsMask">
+        <member name="P:Sudoku.Presentation.Nodes.UnknownViewNode.DigitsMask">
             <summary>
             Indicates the digits used.
             </summary>
         </member>
-        <member name="M:Sudoku.Presentation.UnknownViewNode.Equals(Sudoku.Presentation.ViewNode)">
+        <member name="M:Sudoku.Presentation.Nodes.UnknownViewNode.Equals(Sudoku.Presentation.Nodes.ViewNode)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Presentation.UnknownViewNode.GetHashCode">
+        <member name="M:Sudoku.Presentation.Nodes.UnknownViewNode.GetHashCode">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Presentation.UnknownViewNode.ToString">
+        <member name="M:Sudoku.Presentation.Nodes.UnknownViewNode.ToString">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Presentation.UnknownViewNode.Clone">
+        <member name="M:Sudoku.Presentation.Nodes.UnknownViewNode.Clone">
             <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Presentation.Nodes.ViewNode">
+            <summary>
+            Defines a view node.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.ViewNode.#ctor(Sudoku.Presentation.Identifier)">
+            <summary>
+            Assigns the <see cref="T:Sudoku.Presentation.Identifier"/> instance as the basic information.
+            </summary>
+            <param name="identifier">The <see cref="T:Sudoku.Presentation.Identifier"/> instance.</param>
+        </member>
+        <member name="P:Sudoku.Presentation.Nodes.ViewNode.Identifier">
+            <summary>
+            Indicates the identifier used.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.ViewNode.Equals(System.Object)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.ViewNode.Equals(Sudoku.Presentation.Nodes.ViewNode)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.ViewNode.GetHashCode">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.ViewNode.ToString">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.ViewNode.Clone">
+            <summary>
+            Creates a new instance whose inner data is totally same as the current instance.
+            </summary>
+            <returns>The result <see cref="T:Sudoku.Presentation.Nodes.ViewNode"/> as the copy.</returns>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.ViewNode.System#ICloneable#Clone">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.ViewNode.op_Equality(Sudoku.Presentation.Nodes.ViewNode,Sudoku.Presentation.Nodes.ViewNode)">
+            <summary>
+            Determines whether two <see cref="T:Sudoku.Presentation.Nodes.ViewNode"/>s are same type, and hold a same value.
+            </summary>
+            <param name="left">The first instance to be compared.</param>
+            <param name="right">The second instance to be compared.</param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.ViewNode.op_Inequality(Sudoku.Presentation.Nodes.ViewNode,Sudoku.Presentation.Nodes.ViewNode)">
+            <summary>
+            Determines whether two <see cref="T:Sudoku.Presentation.Nodes.ViewNode"/>s are not same type, or not totally hold a same value.
+            </summary>
+            <param name="left">The first instance to be compared.</param>
+            <param name="right">The second instance to be compared.</param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
         </member>
         <member name="T:Sudoku.Presentation.View">
             <summary>
@@ -7921,7 +7974,7 @@
             Creates an empty <see cref="T:Sudoku.Presentation.View"/> instance.
             </summary>
         </member>
-        <member name="M:Sudoku.Presentation.View.#ctor(System.Collections.Generic.List{Sudoku.Presentation.ViewNode})">
+        <member name="M:Sudoku.Presentation.View.#ctor(System.Collections.Generic.List{Sudoku.Presentation.Nodes.ViewNode})">
             <summary>
             Initializes a <see cref="T:Sudoku.Presentation.View"/> instance via the specified list as the raw value.
             </summary>
@@ -7939,24 +7992,24 @@
         </member>
         <member name="P:Sudoku.Presentation.View.Item(System.Int32)">
             <summary>
-            Gets the <see cref="T:Sudoku.Presentation.ViewNode"/> at the specified position.
+            Gets the <see cref="T:Sudoku.Presentation.Nodes.ViewNode"/> at the specified position.
             </summary>
             <param name="index">The index.</param>
-            <returns>The <see cref="T:Sudoku.Presentation.ViewNode"/> instance.</returns>
+            <returns>The <see cref="T:Sudoku.Presentation.Nodes.ViewNode"/> instance.</returns>
         </member>
-        <member name="M:Sudoku.Presentation.View.Add(Sudoku.Presentation.ViewNode)">
+        <member name="M:Sudoku.Presentation.View.Add(Sudoku.Presentation.Nodes.ViewNode)">
             <summary>
-            Adds the specified <see cref="T:Sudoku.Presentation.ViewNode"/> into the collection.
+            Adds the specified <see cref="T:Sudoku.Presentation.Nodes.ViewNode"/> into the collection.
             </summary>
-            <param name="node">The <see cref="T:Sudoku.Presentation.ViewNode"/> instance.</param>
+            <param name="node">The <see cref="T:Sudoku.Presentation.Nodes.ViewNode"/> instance.</param>
         </member>
-        <member name="M:Sudoku.Presentation.View.AddRange(System.Collections.Generic.IEnumerable{Sudoku.Presentation.ViewNode})">
+        <member name="M:Sudoku.Presentation.View.AddRange(System.Collections.Generic.IEnumerable{Sudoku.Presentation.Nodes.ViewNode})">
             <summary>
             Adds a serial of elements into the collection.
             </summary>
-            <param name="nodes">The <see cref="T:Sudoku.Presentation.ViewNode"/> instances to be added.</param>
+            <param name="nodes">The <see cref="T:Sudoku.Presentation.Nodes.ViewNode"/> instances to be added.</param>
         </member>
-        <member name="M:Sudoku.Presentation.View.Contains(Sudoku.Presentation.ViewNode)">
+        <member name="M:Sudoku.Presentation.View.Contains(Sudoku.Presentation.Nodes.ViewNode)">
             <summary>
             Determines whether an element is in the current collection.
             </summary>
@@ -7975,10 +8028,10 @@
         <member name="M:Sudoku.Presentation.View.System#Collections#IEnumerable#GetEnumerator">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Presentation.View.System#Collections#Generic#IEnumerable{Sudoku#Presentation#ViewNode}#GetEnumerator">
+        <member name="M:Sudoku.Presentation.View.System#Collections#Generic#IEnumerable{Sudoku#Presentation#Nodes#ViewNode}#GetEnumerator">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Presentation.View.op_Addition(Sudoku.Presentation.View,Sudoku.Presentation.ViewNode)">
+        <member name="M:Sudoku.Presentation.View.op_Addition(Sudoku.Presentation.View,Sudoku.Presentation.Nodes.ViewNode)">
             <summary>
             Adds a new node into the collection.
             </summary>
@@ -7990,7 +8043,7 @@
             is based on the argument <paramref name="originalView"/>.
             </remarks>
         </member>
-        <member name="M:Sudoku.Presentation.View.op_Addition(Sudoku.Presentation.View,System.Collections.Generic.IEnumerable{Sudoku.Presentation.ViewNode})">
+        <member name="M:Sudoku.Presentation.View.op_Addition(Sudoku.Presentation.View,System.Collections.Generic.IEnumerable{Sudoku.Presentation.Nodes.ViewNode})">
             <summary>
             Adds a serial of view nodes into the collection.
             </summary>
@@ -8001,59 +8054,6 @@
             Please note that the operator is mutable one, which means the appending operation
             is based on the argument <paramref name="originalView"/>.
             </remarks>
-        </member>
-        <member name="T:Sudoku.Presentation.ViewNode">
-            <summary>
-            Defines a view node.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Presentation.ViewNode.#ctor(Sudoku.Presentation.Identifier)">
-            <summary>
-            Assigns the <see cref="T:Sudoku.Presentation.Identifier"/> instance as the basic information.
-            </summary>
-            <param name="identifier">The <see cref="T:Sudoku.Presentation.Identifier"/> instance.</param>
-        </member>
-        <member name="P:Sudoku.Presentation.ViewNode.Identifier">
-            <summary>
-            Indicates the identifier used.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Presentation.ViewNode.Equals(System.Object)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Presentation.ViewNode.Equals(Sudoku.Presentation.ViewNode)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Presentation.ViewNode.GetHashCode">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Presentation.ViewNode.ToString">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Presentation.ViewNode.Clone">
-            <summary>
-            Creates a new instance whose inner data is totally same as the current instance.
-            </summary>
-            <returns>The result <see cref="T:Sudoku.Presentation.ViewNode"/> as the copy.</returns>
-        </member>
-        <member name="M:Sudoku.Presentation.ViewNode.System#ICloneable#Clone">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Presentation.ViewNode.op_Equality(Sudoku.Presentation.ViewNode,Sudoku.Presentation.ViewNode)">
-            <summary>
-            Determines whether two <see cref="T:Sudoku.Presentation.ViewNode"/>s are same type, and hold a same value.
-            </summary>
-            <param name="left">The first instance to be compared.</param>
-            <param name="right">The second instance to be compared.</param>
-            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
-        </member>
-        <member name="M:Sudoku.Presentation.ViewNode.op_Inequality(Sudoku.Presentation.ViewNode,Sudoku.Presentation.ViewNode)">
-            <summary>
-            Determines whether two <see cref="T:Sudoku.Presentation.ViewNode"/>s are not same type, or not totally hold a same value.
-            </summary>
-            <param name="left">The first instance to be compared.</param>
-            <param name="right">The second instance to be compared.</param>
-            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
         </member>
         <member name="T:Sudoku.Runtime.AnalysisServices.AlgorithmAttribute">
             <summary>

@@ -25,6 +25,7 @@ global using Sudoku.Concepts.Notations;
 global using Sudoku.Concepts.Parsing;
 global using Sudoku.Concepts.Solving;
 global using Sudoku.Concepts.Solving.ChainNodes;
+global using Sudoku.Presentation.Nodes;
 global using Sudoku.Runtime.AnalysisServices;
 global using Sudoku.Runtime.Reflection;
 global using Sudoku.Solving;

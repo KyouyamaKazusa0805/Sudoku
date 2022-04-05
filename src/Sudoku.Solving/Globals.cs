@@ -21,6 +21,7 @@ global using Sudoku.Concepts.Enumerators;
 global using Sudoku.Concepts.Solving;
 global using Sudoku.Concepts.Solving.ChainNodes;
 global using Sudoku.Presentation;
+global using Sudoku.Presentation.Nodes;
 global using Sudoku.Resources;
 global using Sudoku.Runtime.Reflection;
 global using Sudoku.Solving.BruteForces;

@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Presentation;
+﻿namespace Sudoku.Presentation.Nodes;
 
 /// <summary>
 /// Defines a view node that highlights for a candidate.
