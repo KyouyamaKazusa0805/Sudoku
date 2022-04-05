@@ -63,7 +63,8 @@
 成员名称按照如下的命名法来命名：
 1. 字段：
     1. 如果是 `static readonly` 组合修饰或是 `const` 修饰，用 `PascalCase`；
-    2. 其它所有情况的字段都用 `_camelCase`。
+    2. 如果是 `public` 修饰，用 `PascalCase`；
+    3. 其它所有情况的字段都用 `_camelCase`。
 2. 属性、方法、字段风格的事件以及完整事件标识符：`PascalCase`；
 3. 类型名：
     1. 接口：`IPascalCase`；
