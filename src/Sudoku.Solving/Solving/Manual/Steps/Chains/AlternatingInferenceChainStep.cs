@@ -26,7 +26,7 @@ public sealed record AlternatingInferenceChainStep(
 		};
 
 	/// <inheritdoc/>
-	public override int FlatComplexity => Chain.RealChainNodes.Length - 1;
+	public override int FlatComplexity => Chain.RealChainNodes.Length;
 
 	/// <inheritdoc/>
 	public override TechniqueGroup TechniqueGroup =>

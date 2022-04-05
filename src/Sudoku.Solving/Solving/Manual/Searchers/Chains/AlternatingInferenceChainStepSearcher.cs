@@ -181,7 +181,7 @@ public sealed partial class AlternatingInferenceChainStepSearcher : IAlternating
 				Bfs();
 			}
 
-			var tempList = new Dictionary<AlternatingInferenceChain, Conclusion[]>();
+			var tempList = new Dictionary<AlternatingInferenceChain, ImmutableArray<Conclusion>>();
 			foreach (var (nids, startsWithWeak) in _foundChains)
 			{
 				var chain = new AlternatingInferenceChain(from nid in nids select _nodeLookup[nid], startsWithWeak);
@@ -195,10 +195,10 @@ public sealed partial class AlternatingInferenceChainStepSearcher : IAlternating
 			{
 				// Adds into the accumulator.
 				var step = new AlternatingInferenceChainStep(
-					ImmutableArray.Create(conclusions),
+					conclusions,
 					ImmutableArray.Create(
 						View.Empty
-							// TODO: Append cells.
+							// TODO: Append candidates.
 							+ IChainStepSearcher.GetViewOnLinks(chain)
 					),
 					chain,

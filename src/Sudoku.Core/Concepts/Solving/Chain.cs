@@ -44,7 +44,7 @@ public abstract class Chain :
 
 
 	/// <inheritdoc/>
-	public int Count
+	public virtual int Count
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => _nodes.Length - 1;
@@ -52,7 +52,7 @@ public abstract class Chain :
 
 
 	/// <inheritdoc/>
-	public Node this[int index]
+	public virtual Node this[int index]
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => _nodes[index];
@@ -83,6 +83,26 @@ public abstract class Chain :
 
 	/// <inheritdoc/>
 	public abstract override string ToString();
+
+	/// <summary>
+	/// Gets the conclusions of the current chain.
+	/// </summary>
+	/// <param name="grid">The grid.</param>
+	/// <returns>The conclusions of the current chain.</returns>
+	/// <remarks>
+	/// <para><b>TODO</b>: Append extra eliminations that requires the extended elimination rules.</para>
+	/// <para>
+	/// e.g.
+	/// <code>
+	/// a. 25 | d. 28
+	/// b. 25 | e. 38
+	/// c. 3+ | f. 5+
+	/// </code>
+	/// Chain: <c>a(5) == d(8) -- e(8 == 3) => b != 5</c>, where the cell <c>c</c> and <c>f</c>
+	/// are filled with modifiable values.
+	/// </para>
+	/// </remarks>
+	public abstract ImmutableArray<Conclusion> GetConclusions(in Grid grid);
 
 	/// <summary>
 	/// Creates an array that stores the values with each element of a pair, where:

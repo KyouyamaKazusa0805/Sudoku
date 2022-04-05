@@ -3107,6 +3107,49 @@
             Indicates each value should minus one before creation.
             </summary>
         </member>
+        <member name="T:Sudoku.Concepts.Inference">
+            <summary>
+            Defines an inference.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Concepts.Inference.Strong">
+            <summary>
+            Indicates the inference is strong inference.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Concepts.Inference.Weak">
+            <summary>
+            Indicates the inference is weak inference.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Concepts.Inference.StrongGeneralized">
+            <summary>
+            Indicates the inference is strong inference that is generalized.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Concepts.Inference.WeakGeneralized">
+            <summary>
+            Indicates the inference is weak inference that is generalized.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Concepts.Inference.ConjuagtePair">
+            <summary>
+            Indicates the inference is conjugate pair.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Concepts.InferenceExtensions">
+            <summary>
+            Provides the extensions methods on <see cref="T:Sudoku.Concepts.Inference"/>.
+            </summary>
+            <seealso cref="T:Sudoku.Concepts.Inference"/>
+        </member>
+        <member name="M:Sudoku.Concepts.InferenceExtensions.GetIdentifier(Sudoku.Concepts.Inference)">
+            <summary>
+            Gets the identifier of the inference.
+            </summary>
+            <param name="this">The inference.</param>
+            <returns>The identifier value.</returns>
+        </member>
         <member name="T:Sudoku.Concepts.Notations.EliminationNotation">
             <summary>
             Encapsulates a set of methods that handles a variety of instances, using Hodoku elimination notation
@@ -3984,6 +4027,126 @@
             </list>
             </returns>
         </member>
+        <member name="T:Sudoku.Concepts.Solving.AlternatingInferenceChain">
+            <summary>
+            Defines an alternating inference chain. The data structure can describe the following techniques:
+            <list type="bullet">
+            <item>
+            Short chains:
+            <list type="bullet">
+            <item>Irregular Wings</item>
+            </list>
+            </item>
+            <item>
+            Normal chains:
+            <list type="bullet">
+            <item>Discontinuous Nice Loop</item>
+            <item>Alternating Inference Chain</item>
+            <!--<item>Continuous Nice Loop</item>-->
+            </list>
+            </item>
+            <item>
+            Grouped chains (which means the nodes are not limited in sole candidates):
+            <list type="bullet">
+            <item>Grouped Discontinuous Nice Loop</item>
+            <item>Grouped Alternating Inference Chain</item>
+            <!--<item>Grouped Continuous Nice Loop</item>-->
+            </list>
+            </item>
+            </list>
+            </summary>
+        </member>
+        <member name="M:Sudoku.Concepts.Solving.AlternatingInferenceChain.#ctor(Sudoku.Concepts.Solving.ChainNodes.Node[],System.Boolean)">
+            <summary>
+            Initializes an <see cref="T:Sudoku.Concepts.Solving.AlternatingInferenceChain"/> instance via the specified nodes
+            and the <see cref="T:System.Boolean"/> value indicating whether the chain starts and ends
+            with strong inferences.
+            </summary>
+            <param name="nodes">The nodes used.</param>
+            <param name="isStrong">Indicates whether the chain starts and ends with strong inferences.</param>
+            <exception cref="T:System.ArgumentException">
+            Throws when the length of the argument <paramref name="nodes"/> is less than or equals 3,
+            or the first and the last node aren't the same when the arguemnt <paramref name="isStrong"/>
+            is <see langword="true"/>.
+            </exception>
+        </member>
+        <member name="P:Sudoku.Concepts.Solving.AlternatingInferenceChain.IsStrong">
+            <summary>
+            Indicates whether the alternating inference chain starts with a strong inference,
+            and ends with another strong inference.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.Solving.AlternatingInferenceChain.Count">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Concepts.Solving.AlternatingInferenceChain.RealChainNodes">
+            <summary>
+            <para>Indicates the nodes that represents the main chain node data for the current chain.</para>
+            <para>
+            The property value will be different if the property <see cref="P:Sudoku.Concepts.Solving.AlternatingInferenceChain.IsStrong"/> is different.
+            <list type="table">
+            <listheader>
+            <term>The value of the property <see cref="P:Sudoku.Concepts.Solving.AlternatingInferenceChain.IsStrong"/></term>
+            <description>Description</description>
+            </listheader>
+            <item>
+            <term><see langword="true"/></term>
+            <description>All nodes will be returned (i.e. <c>_nodes[..]</c>).</description>
+            </item>
+            <item>
+            <term><see langword="false"/></term>
+            <description>
+            Returns the sliced array from the nodes being stored in the current instance,
+            without the first and the last node (i.e. <c>_nodes[1..^1]</c>).
+            </description>
+            </item>
+            </list>
+            </para>
+            </summary>
+            <seealso cref="P:Sudoku.Concepts.Solving.AlternatingInferenceChain.IsStrong"/>
+        </member>
+        <member name="P:Sudoku.Concepts.Solving.AlternatingInferenceChain.Item(System.Int32)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.Solving.AlternatingInferenceChain.Equals(Sudoku.Concepts.Solving.Chain)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.Solving.AlternatingInferenceChain.ToString">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.Solving.AlternatingInferenceChain.GetConclusions(Sudoku.Concepts.Collections.Grid@)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.Solving.AlternatingInferenceChain.InitializeFieldNodeStatus(Sudoku.Concepts.Solving.ChainNodes.Node[],System.Boolean)">
+            <summary>
+            Try to initializes the field <see cref="F:Sudoku.Concepts.Solving.Chain._nodesStatus"/>.
+            </summary>
+            <param name="nodes">The nodes.</param>
+            <param name="startsWithStrong">
+            Indicates whether the chain starts and ends with strong inferences.
+            </param>
+            <returns>The array of type <see cref="T:System.Boolean"/>[].</returns>
+            <seealso cref="F:Sudoku.Concepts.Solving.Chain._nodesStatus"/>
+        </member>
+        <member name="M:Sudoku.Concepts.Solving.AlternatingInferenceChain.GetEliminationsMultipleDigits(Sudoku.Concepts.Collections.Grid@,System.Int32,System.Int32,System.Byte,System.Byte)">
+            <summary>
+            Try to get eliminations via different digits.
+            </summary>
+            <param name="grid">The grid as the candidate reference.</param>
+            <param name="c1">The only cell in the first node.</param>
+            <param name="c2">The only cell in the second node.</param>
+            <param name="d1">The digit 1.</param>
+            <param name="d2">The digit 2.</param>
+            <returns>The conclusions.</returns>
+        </member>
+        <member name="M:Sudoku.Concepts.Solving.AlternatingInferenceChain.GetEliminationsSingleDigit(Sudoku.Concepts.Collections.Cells@,System.Byte)">
+            <summary>
+            Try to get eliminations via the digit and the elimination cells.
+            </summary>
+            <param name="elimMap">The elimination cells.</param>
+            <param name="digit">The digit.</param>
+            <returns>The conclusions.</returns>
+        </member>
         <member name="T:Sudoku.Concepts.Solving.Chain">
             <summary>
             Defines a chain.
@@ -4029,6 +4192,26 @@
         </member>
         <member name="M:Sudoku.Concepts.Solving.Chain.ToString">
             <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.Solving.Chain.GetConclusions(Sudoku.Concepts.Collections.Grid@)">
+            <summary>
+            Gets the conclusions of the current chain.
+            </summary>
+            <param name="grid">The grid.</param>
+            <returns>The conclusions of the current chain.</returns>
+            <remarks>
+            <para><b>TODO</b>: Append extra eliminations that requires the extended elimination rules.</para>
+            <para>
+            e.g.
+            <code>
+            a. 25 | d. 28
+            b. 25 | e. 38
+            c. 3+ | f. 5+
+            </code>
+            Chain: <c>a(5) == d(8) -- e(8 == 3) => b != 5</c>, where the cell <c>c</c> and <c>f</c>
+            are filled with modifiable values.
+            </para>
+            </remarks>
         </member>
         <member name="M:Sudoku.Concepts.Solving.Chain.ToRawArray">
             <summary>
