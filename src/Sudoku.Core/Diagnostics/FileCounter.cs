@@ -100,7 +100,7 @@ public sealed class FileCounter
 		var (filesCount, resultLines, charactersCount, bytes) = default((int, int, long, long));
 		foreach (string fileName in FileList)
 		{
-			StreamReader? sr = null;
+			Unsafe.SkipInit(out StreamReader sr);
 			try
 			{
 				sr = new(fileName);
