@@ -1480,6 +1480,22 @@
             Defines a step searcher that searches for almost locked sets steps.
             </summary>
         </member>
+        <member name="M:Sudoku.Solving.Manual.Searchers.IAlmostLockedSetsStepSearcher.Gather(Sudoku.Concepts.Collections.Grid@)">
+            <summary>
+            Gathers all possible <see cref="T:Sudoku.Concepts.Solving.AlmostLockedSet"/>s in the specified grid.
+            </summary>
+            <param name="grid">The grid.</param>
+            <returns>All possible found <see cref="T:Sudoku.Concepts.Solving.AlmostLockedSet"/>.</returns>
+            <remarks>
+            Different with the original method <see cref="M:Sudoku.Concepts.Solving.AlmostLockedSet.Gather(Sudoku.Concepts.Collections.Grid@)"/>,
+            this method will only uses the buffer to determine the info, which is unsafe
+            when calling the method without having initialized those maps in the buffer type,
+            <see cref="T:Sudoku.Solving.Manual.Buffer.FastProperties"/>.
+            </remarks>
+            <seealso cref="T:Sudoku.Concepts.Solving.AlmostLockedSet"/>
+            <seealso cref="M:Sudoku.Concepts.Solving.AlmostLockedSet.Gather(Sudoku.Concepts.Collections.Grid@)"/>
+            <seealso cref="T:Sudoku.Solving.Manual.Buffer.FastProperties"/>
+        </member>
         <member name="T:Sudoku.Solving.Manual.Searchers.IAlmostLockedSetsWWingStepSearcher">
             <summary>
             Defines a step searcher that searches for almost locked sets W-Wing steps.

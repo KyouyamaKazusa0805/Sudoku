@@ -13,7 +13,7 @@ public sealed unsafe partial class AlmostLockedSetsWWingStepSearcher : IAlmostLo
 	/// <inheritdoc/>
 	public Step? GetAll(ICollection<Step> accumulator, in Grid grid, bool onlyFindOne)
 	{
-		var alses = AlmostLockedSet.Gather(grid);
+		var alses = IAlmostLockedSetsStepSearcher.Gather(grid);
 
 		// Gather all conjugate pairs.
 		var conjugatePairs = new ICollection<ConjugatePair>?[9];

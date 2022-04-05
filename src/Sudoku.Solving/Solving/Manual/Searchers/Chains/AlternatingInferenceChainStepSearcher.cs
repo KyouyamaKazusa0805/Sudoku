@@ -1103,7 +1103,7 @@ public sealed partial class AlternatingInferenceChainStepSearcher : IAlternating
 	/// <param name="grid">The grid.</param>
 	private void GatherInferences_AlmostLockedSet(in Grid grid)
 	{
-		var alses = AlmostLockedSet.Gather(grid);
+		var alses = IAlmostLockedSetsStepSearcher.Gather(grid);
 		foreach (var als in alses)
 		{
 			short digitsMask = als.DigitsMask;
