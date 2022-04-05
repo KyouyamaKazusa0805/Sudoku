@@ -998,7 +998,7 @@
             the property invoked. You should create 3 properties whose names are <c>Name</c>, <c>CellsStr</c>
             and <c>ElimsStr</c>, and return the corresponding correct string result,
             making them non-<see langword="public"/> (suggested keyword is <see langword="internal"/>)
-            and applying attribute <see cref="T:Sudoku.Solving.Manual.Text.FormatItemAttribute"/> to it.
+            and applying attribute <see cref="T:Sudoku.Runtime.Reflection.FormatItemAttribute"/> to it.
             </para>
             <para>
             The recommended implementation pattern is:
@@ -1031,7 +1031,7 @@
             </para>
             </remarks>
             <seealso cref="M:Sudoku.Solving.Manual.IStep.ToFullString"/>
-            <seealso cref="T:Sudoku.Solving.Manual.Text.FormatItemAttribute"/>
+            <seealso cref="T:Sudoku.Runtime.Reflection.FormatItemAttribute"/>
             <seealso cref="F:Sudoku.Resources.MergedResources.R"/>
         </member>
         <member name="P:Sudoku.Solving.Manual.IStep.Difficulty">
@@ -9106,11 +9106,6 @@
         </member>
         <member name="P:Sudoku.Solving.Manual.Steps.WWingStep.Rarity">
             <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Solving.Manual.Text.FormatItemAttribute">
-            <summary>
-            Marks on a property to tell the user the property is only used for the formatting.
-            </summary>
         </member>
         <member name="T:Sudoku.Solving.Manual.WrongStepException">
             <summary>

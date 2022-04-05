@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Solving.Manual.Text;
+﻿namespace Sudoku.Runtime.Reflection;
 
 /// <summary>
 /// Marks on a property to tell the user the property is only used for the formatting.
