@@ -36,7 +36,7 @@ public interface IChainStepSearcher : IStepSearcher
 	/// </summary>
 	/// <param name="chain">The chain.</param>
 	/// <returns>An array of presentation data of links.</returns>
-	protected static LinkViewNode[] GetViewOnLinks(in AlternatingInferenceChain chain)
+	protected static LinkViewNode[] GetViewOnLinks(AlternatingInferenceChain chain)
 	{
 		var realChainNodes = chain.RealChainNodes;
 		var result = new LinkViewNode[realChainNodes.Length + 1];
