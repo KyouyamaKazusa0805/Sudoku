@@ -257,145 +257,6 @@
         <member name="M:Sudoku.Solving.BruteForces.FastSolver.CheckValidity(System.String)">
             <inheritdoc cref="M:Sudoku.Solving.BitwiseSolver.CheckValidity(System.String)"/>
         </member>
-        <member name="T:Sudoku.Solving.Collections.AlmostLockedSet">
-            <summary>
-            Encapsulates a normal almost locked set (ALS as its abberivation).
-            </summary>
-            <param name="DigitsMask">Indicates the mask of each digit.</param>
-            <param name="Map">Indicates the map that ALS lying on.</param>
-            <param name="PossibleEliminationSet">Indicates the possible elimination set.</param>
-            <param name="IsBivalueCell">Indicates whether this instance is a bi-value-cell ALS.</param>
-            <param name="Region">Indicates the region that the instance lies in.</param>
-        </member>
-        <member name="M:Sudoku.Solving.Collections.AlmostLockedSet.#ctor(System.Int16,Sudoku.Concepts.Collections.Cells@,Sudoku.Concepts.Collections.Cells@,System.Boolean,System.Int32)">
-            <summary>
-            Encapsulates a normal almost locked set (ALS as its abberivation).
-            </summary>
-            <param name="DigitsMask">Indicates the mask of each digit.</param>
-            <param name="Map">Indicates the map that ALS lying on.</param>
-            <param name="PossibleEliminationSet">Indicates the possible elimination set.</param>
-            <param name="IsBivalueCell">Indicates whether this instance is a bi-value-cell ALS.</param>
-            <param name="Region">Indicates the region that the instance lies in.</param>
-        </member>
-        <member name="P:Sudoku.Solving.Collections.AlmostLockedSet.DigitsMask">
-            <summary>Indicates the mask of each digit.</summary>
-        </member>
-        <member name="P:Sudoku.Solving.Collections.AlmostLockedSet.Map">
-            <summary>Indicates the map that ALS lying on.</summary>
-        </member>
-        <member name="P:Sudoku.Solving.Collections.AlmostLockedSet.PossibleEliminationSet">
-            <summary>Indicates the possible elimination set.</summary>
-        </member>
-        <member name="P:Sudoku.Solving.Collections.AlmostLockedSet.IsBivalueCell">
-            <summary>Indicates whether this instance is a bi-value-cell ALS.</summary>
-        </member>
-        <member name="P:Sudoku.Solving.Collections.AlmostLockedSet.Region">
-            <summary>Indicates the region that the instance lies in.</summary>
-        </member>
-        <member name="F:Sudoku.Solving.Collections.AlmostLockedSet.StrongRelationsCount">
-            <summary>
-            Indicates an array of the total number of the strong relations in an ALS of the different size.
-            The field is only unsed in the property <see cref="P:Sudoku.Solving.Collections.AlmostLockedSet.StrongLinksMask"/>.
-            </summary>
-            <seealso cref="P:Sudoku.Solving.Collections.AlmostLockedSet.StrongLinksMask"/>
-        </member>
-        <member name="M:Sudoku.Solving.Collections.AlmostLockedSet.#ctor(System.Int16,Sudoku.Concepts.Collections.Cells@,Sudoku.Concepts.Collections.Cells@)">
-            <summary>
-            Initializes an instance with the specified digit mask and the map of cells.
-            </summary>
-            <param name="digitMask">The digit mask.</param>
-            <param name="map">The map.</param>
-            <param name="possibleEliminationSet">The possible elimination set.</param>
-        </member>
-        <member name="P:Sudoku.Solving.Collections.AlmostLockedSet.StrongLinksMask">
-            <summary>
-            Indicates all strong links in this ALS. The result will be represented
-            as a <see cref="T:System.Int16"/> mask of 9 bits indicating which bits used.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Solving.Collections.AlmostLockedSet.Equals(Sudoku.Solving.Collections.AlmostLockedSet@)">
-            <summary>
-            Determine whether the specified <see cref="T:Sudoku.Solving.Collections.AlmostLockedSet"/> instance holds the same
-            <see cref="P:Sudoku.Solving.Collections.AlmostLockedSet.DigitsMask"/> and <see cref="P:Sudoku.Solving.Collections.AlmostLockedSet.Map"/> property values as the current instance.
-            </summary>
-            <param name="other">The instance to compare.</param>
-            <returns>A <see cref="T:System.Boolean"/> result.</returns>
-        </member>
-        <member name="M:Sudoku.Solving.Collections.AlmostLockedSet.ContainsDigit(Sudoku.Concepts.Collections.Grid@,System.Int32,Sudoku.Concepts.Collections.Cells@)">
-            <summary>
-            Indicates whether the specified grid contains the digit.
-            </summary>
-            <param name="grid">The grid.</param>
-            <param name="digit">The digit.</param>
-            <param name="result">The result.</param>
-            <returns>A <see cref="T:System.Boolean"/> value.</returns>
-        </member>
-        <member name="M:Sudoku.Solving.Collections.AlmostLockedSet.GetHashCode">
-            <inheritdoc cref="M:System.Object.GetHashCode"/>
-            <remarks>
-            If you want to determine the equality of two instance, I recommend you
-            <b>should</b> use method <see cref="M:Sudoku.Solving.Collections.AlmostLockedSet.Equals(Sudoku.Solving.Collections.AlmostLockedSet@)"/> instead of this method.
-            </remarks>
-        </member>
-        <member name="M:Sudoku.Solving.Collections.AlmostLockedSet.ToString">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Solving.Collections.AlmostLockedSet.System#IEquatable{Sudoku#Solving#Collections#AlmostLockedSet}#Equals(Sudoku.Solving.Collections.AlmostLockedSet)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Solving.Collections.AlmostLockedSet.Gather(Sudoku.Concepts.Collections.Grid@)">
-            <summary>
-            To search for all ALSes from the specified grid.
-            </summary>
-            <param name="grid">The grid.</param>
-            <returns>All ALSes searched.</returns>
-            <remarks>
-            <see cref="T:Sudoku.Solving.Collections.AlmostLockedSet"/> is a large-object type. If you want to iterate them,
-            you can use the new feature '<see langword="ref"/> and <see langword="ref readonly"/> iteration variable' to do so, just call
-            the extension method <see cref="M:System.Collections.Generic.CollectionEnumeration.EnumerateRef``1(``0[])"/>. Then you can get:
-            <code><![CDATA[
-            var collection = GetAllAlses(grid);
-            foreach (ref readonly var als in collection.EnumerateRef())
-            {
-                // ...
-            }
-            ]]></code>
-            </remarks>
-            <seealso cref="M:System.Collections.Generic.CollectionEnumeration.EnumerateRef``1(``0[])"/>
-        </member>
-        <member name="M:Sudoku.Solving.Collections.AlmostLockedSet.InitRegionProperty(Sudoku.Concepts.Collections.Cells@)">
-            <summary>
-            To initialize the property <see cref="P:Sudoku.Solving.Collections.AlmostLockedSet.Region"/>.
-            </summary>
-            <param name="map">The value of property <see cref="P:Sudoku.Solving.Collections.AlmostLockedSet.Map"/>.</param>
-            <returns>The region value.</returns>
-            <seealso cref="P:Sudoku.Solving.Collections.AlmostLockedSet.Region"/>
-            <seealso cref="P:Sudoku.Solving.Collections.AlmostLockedSet.Map"/>
-        </member>
-        <member name="M:Sudoku.Solving.Collections.AlmostLockedSet.op_Equality(Sudoku.Solving.Collections.AlmostLockedSet@,Sudoku.Solving.Collections.AlmostLockedSet@)">
-            <summary>
-            Determine whether two <see cref="T:Sudoku.Solving.Collections.AlmostLockedSet"/>s hold a same <see cref="P:Sudoku.Solving.Collections.AlmostLockedSet.DigitsMask"/>
-            and <see cref="P:Sudoku.Solving.Collections.AlmostLockedSet.Map"/> property values.
-            </summary>
-            <param name="left">The left-side instance to compare.</param>
-            <param name="right">The right-side instance to compare.</param>
-            <returns>A <see cref="T:System.Boolean"/> result.</returns>
-        </member>
-        <member name="M:Sudoku.Solving.Collections.AlmostLockedSet.op_Inequality(Sudoku.Solving.Collections.AlmostLockedSet@,Sudoku.Solving.Collections.AlmostLockedSet@)">
-            <summary>
-            Determine whether two <see cref="T:Sudoku.Solving.Collections.AlmostLockedSet"/>s don't hold a same <see cref="P:Sudoku.Solving.Collections.AlmostLockedSet.DigitsMask"/>
-            and <see cref="P:Sudoku.Solving.Collections.AlmostLockedSet.Map"/> property values.
-            </summary>
-            <param name="left">The left-side instance to compare.</param>
-            <param name="right">The right-side instance to compare.</param>
-            <returns>A <see cref="T:System.Boolean"/> result.</returns>
-        </member>
-        <member name="M:Sudoku.Solving.Collections.AlmostLockedSet.System#IEqualityOperators{Sudoku#Solving#Collections#AlmostLockedSet,Sudoku#Solving#Collections#AlmostLockedSet}#op_Equality(Sudoku.Solving.Collections.AlmostLockedSet,Sudoku.Solving.Collections.AlmostLockedSet)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Solving.Collections.AlmostLockedSet.System#IEqualityOperators{Sudoku#Solving#Collections#AlmostLockedSet,Sudoku#Solving#Collections#AlmostLockedSet}#op_Inequality(Sudoku.Solving.Collections.AlmostLockedSet,Sudoku.Solving.Collections.AlmostLockedSet)">
-            <inheritdoc/>
-        </member>
         <member name="T:Sudoku.Solving.Collections.ExocetElimination">
             <summary>
             Defines an elimination that is created by searchers
@@ -4595,7 +4456,7 @@
             <param name="WDigitsMask">Indicates the mask that holds the W digit.</param>
             <param name="X">Indicates the X digit.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Steps.AlmostLockedSetsWWingStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Concepts.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},Sudoku.Solving.Collections.AlmostLockedSet@,Sudoku.Solving.Collections.AlmostLockedSet@,Sudoku.Concepts.ConjugatePair@,System.Int16,System.Int32)">
+        <member name="M:Sudoku.Solving.Manual.Steps.AlmostLockedSetsWWingStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Concepts.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},Sudoku.Concepts.Solving.AlmostLockedSet@,Sudoku.Concepts.Solving.AlmostLockedSet@,Sudoku.Concepts.ConjugatePair@,System.Int16,System.Int32)">
             <summary>
             Provides with a step that is an <b>Almost Locked Sets W-Wing</b> technique.
             </summary>
@@ -4653,7 +4514,7 @@
             <param name="YDigitsMask">Indicates the mask that holds the digits for the Y value.</param>
             <param name="ZDigitsMask">Indicates the mask that holds the digits for the Z value.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Steps.AlmostLockedSetsXyWingStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Concepts.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},Sudoku.Solving.Collections.AlmostLockedSet@,Sudoku.Solving.Collections.AlmostLockedSet@,Sudoku.Solving.Collections.AlmostLockedSet@,System.Int16,System.Int16,System.Int16)">
+        <member name="M:Sudoku.Solving.Manual.Steps.AlmostLockedSetsXyWingStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Concepts.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},Sudoku.Concepts.Solving.AlmostLockedSet@,Sudoku.Concepts.Solving.AlmostLockedSet@,Sudoku.Concepts.Solving.AlmostLockedSet@,System.Int16,System.Int16,System.Int16)">
             <summary>
             Provides with a step that is an <b>Almost Locked Sets XY-Wing</b> technique.
             </summary>
@@ -4714,7 +4575,7 @@
             <param name="ZDigitsMask">Indicates the Z digit used in this ALS-XZ pattern.</param>
             <param name="IsDoublyLinked">Indicates whether the ALS-XZ is doubly-linked.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Steps.AlmostLockedSetsXzStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Concepts.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},Sudoku.Solving.Collections.AlmostLockedSet@,Sudoku.Solving.Collections.AlmostLockedSet@,System.Int16,System.Int16,System.Nullable{System.Boolean})">
+        <member name="M:Sudoku.Solving.Manual.Steps.AlmostLockedSetsXzStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Concepts.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},Sudoku.Concepts.Solving.AlmostLockedSet@,Sudoku.Concepts.Solving.AlmostLockedSet@,System.Int16,System.Int16,System.Nullable{System.Boolean})">
             <summary>
             Provides with a step that is an <b>Almost Locked Sets XZ</b> technique.
             </summary>

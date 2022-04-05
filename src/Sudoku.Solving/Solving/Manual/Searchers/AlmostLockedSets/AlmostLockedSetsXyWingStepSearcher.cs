@@ -23,12 +23,14 @@ public sealed unsafe partial class AlmostLockedSetsXyWingStepSearcher : IAlmostL
 		// Gather all RCCs.
 		for (int i = 0, length = alses.Length, iterationLengthOuter = length - 1; i < iterationLengthOuter; i++)
 		{
-			ref readonly var als1 = ref alses[i];
-			_ = als1 is { DigitsMask: var mask1, Map: var map1 };
+			var als1 = alses[i];
+			var map1 = als1.Map;
+			short mask1 = als1.DigitsMask;
 			for (int j = i + 1; j < length; j++)
 			{
-				ref readonly var als2 = ref alses[j];
-				_ = als2 is { DigitsMask: var mask2, Map: var map2 };
+				var als2 = alses[j];
+				var map2 = als2.Map;
+				short mask2 = als2.DigitsMask;
 				var map = map1 | map2;
 				if (map.InOneRegion || (map1 & map2) is not [])
 				{
@@ -78,13 +80,11 @@ public sealed unsafe partial class AlmostLockedSetsXyWingStepSearcher : IAlmostL
 					? (als12, als22, als11)
 					: als11 == als22
 						? (als12, als21, als11)
-						: als12 == als21
-							? (als11, als22, als12)
-							: (als11, als21, als12);
+						: als12 == als21 ? (als11, als22, als12) : (als11, als21, als12);
 
-				_ = a is { Region: var aRegion, DigitsMask: var aMask, Map: var aMap };
-				_ = b is { Region: var bRegion, DigitsMask: var bMask, Map: var bMap };
-				_ = c is { Region: var cRegion, Map: var cMap };
+				int aRegion = a.Region, bRegion = b.Region, cRegion = c.Region;
+				short aMask = a.DigitsMask, bMask = b.DigitsMask;
+				Cells aMap = a.Map, bMap = b.Map, cMap = c.Map;
 				var map = aMap | bMap;
 				if (map == aMap || map == bMap)
 				{

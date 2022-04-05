@@ -1104,9 +1104,10 @@ public sealed partial class AlternatingInferenceChainStepSearcher : IAlternating
 	private void GatherInferences_AlmostLockedSet(in Grid grid)
 	{
 		var alses = AlmostLockedSet.Gather(grid);
-		foreach (ref readonly var als in alses.EnumerateRef())
+		foreach (var als in alses)
 		{
-			_ = als is { DigitsMask: var digitsMask, Map: var alsMap };
+			short digitsMask = als.DigitsMask;
+			var alsMap = als.Map;
 
 			// Sole candidate -> Almost locked sets.
 			// Locked candidates -> Almost locked sets.

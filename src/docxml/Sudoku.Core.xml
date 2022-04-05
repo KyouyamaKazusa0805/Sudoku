@@ -4035,6 +4035,119 @@
             </list>
             </returns>
         </member>
+        <member name="T:Sudoku.Concepts.Solving.AlmostLockedSet">
+            <summary>
+            Defines a data structure that describes an ALS.
+            </summary>
+            <remarks>
+            An <b>Almost Locked Set</b> is a sudoku concept, which describes a case that
+            <c>n</c> cells contains <c>(n + 1)</c> kinds of different digits.
+            The special case is a bi-value cell.
+            </remarks>
+        </member>
+        <member name="F:Sudoku.Concepts.Solving.AlmostLockedSet.StrongRelationsCount">
+            <summary>
+            Indicates an array of the total number of the strong relations in an ALS of the different size.
+            The field is only unsed in the property <see cref="P:Sudoku.Concepts.Solving.AlmostLockedSet.StrongLinksMask"/>.
+            </summary>
+            <seealso cref="P:Sudoku.Concepts.Solving.AlmostLockedSet.StrongLinksMask"/>
+        </member>
+        <member name="M:Sudoku.Concepts.Solving.AlmostLockedSet.#ctor(System.Int16,Sudoku.Concepts.Collections.Cells@,Sudoku.Concepts.Collections.Cells@)">
+            <summary>
+            Initializes an <see cref="T:Sudoku.Concepts.Solving.AlmostLockedSet"/> instance
+            via the specified digit mask and the map of cells.
+            </summary>
+            <param name="digitMask">The digit mask.</param>
+            <param name="map">The map.</param>
+            <param name="possibleEliminationMap">
+            Indicates the possible cells that can be as the elimination.
+            </param>
+        </member>
+        <member name="P:Sudoku.Concepts.Solving.AlmostLockedSet.Region">
+            <summary>
+            Indicates the region used.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.Solving.AlmostLockedSet.IsBivalueCell">
+            <summary>
+            Indicates whether the ALS only uses a bi-value cell.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.Solving.AlmostLockedSet.DigitsMask">
+            <summary>
+            Indicates the mask of digits used.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.Solving.AlmostLockedSet.StrongLinksMask">
+            <summary>
+            Indicates all strong links in this ALS. The result will be represented
+            as a <see cref="T:System.Int16"/> mask of 9 bits indicating which bits used.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.Solving.AlmostLockedSet.Map">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Concepts.Solving.AlmostLockedSet.PossibleEliminationMap">
+            <summary>
+            Gets the possible cells that can store eliminations for the ALS.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Concepts.Solving.AlmostLockedSet.ContainsDigit(Sudoku.Concepts.Collections.Grid@,System.Int32,Sudoku.Concepts.Collections.Cells@)">
+            <summary>
+            Indicates whether the specified grid contains the digit.
+            </summary>
+            <param name="grid">The grid.</param>
+            <param name="digit">The digit.</param>
+            <param name="result">The result.</param>
+            <returns>A <see cref="T:System.Boolean"/> value.</returns>
+        </member>
+        <member name="M:Sudoku.Concepts.Solving.AlmostLockedSet.Equals(System.Object)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.Solving.AlmostLockedSet.Equals(Sudoku.Concepts.Solving.AlmostLockedSet)">
+            <summary>
+            Determine whether the specified <see cref="T:Sudoku.Concepts.Solving.AlmostLockedSet"/> instance holds the same
+            <see cref="P:Sudoku.Concepts.Solving.AlmostLockedSet.DigitsMask"/> and <see cref="P:Sudoku.Concepts.Solving.AlmostLockedSet.Map"/> property values as the current instance.
+            </summary>
+            <param name="other">The instance to compare.</param>
+            <returns>A <see cref="T:System.Boolean"/> result.</returns>
+        </member>
+        <member name="M:Sudoku.Concepts.Solving.AlmostLockedSet.GetHashCode">
+            <inheritdoc/>
+            <remarks>
+            If you want to determine the equality of two instance, I recommend you
+            <b>should</b> use method <see cref="M:Sudoku.Concepts.Solving.AlmostLockedSet.Equals(Sudoku.Concepts.Solving.AlmostLockedSet)"/> instead of this method.
+            </remarks>
+            <seealso cref="M:Sudoku.Concepts.Solving.AlmostLockedSet.Equals(Sudoku.Concepts.Solving.AlmostLockedSet)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.Solving.AlmostLockedSet.ToString">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.Solving.AlmostLockedSet.Gather(Sudoku.Concepts.Collections.Grid@)">
+            <summary>
+            Gathers all possible <see cref="T:Sudoku.Concepts.Solving.AlmostLockedSet"/>s in the specified grid.
+            </summary>
+            <param name="grid">The grid.</param>
+            <returns>All possible found <see cref="T:Sudoku.Concepts.Solving.AlmostLockedSet"/>.</returns>
+        </member>
+        <member name="M:Sudoku.Concepts.Solving.AlmostLockedSet.op_Equality(Sudoku.Concepts.Solving.AlmostLockedSet,Sudoku.Concepts.Solving.AlmostLockedSet)">
+            <summary>
+            Determine whether two <see cref="T:Sudoku.Concepts.Solving.AlmostLockedSet"/>s hold a same <see cref="P:Sudoku.Concepts.Solving.AlmostLockedSet.DigitsMask"/>
+            and <see cref="P:Sudoku.Concepts.Solving.AlmostLockedSet.Map"/> property values.
+            </summary>
+            <param name="left">The left-side instance to compare.</param>
+            <param name="right">The right-side instance to compare.</param>
+            <returns>A <see cref="T:System.Boolean"/> result.</returns>
+        </member>
+        <member name="M:Sudoku.Concepts.Solving.AlmostLockedSet.op_Inequality(Sudoku.Concepts.Solving.AlmostLockedSet,Sudoku.Concepts.Solving.AlmostLockedSet)">
+            <summary>
+            Determine whether two <see cref="T:Sudoku.Concepts.Solving.AlmostLockedSet"/>s don't hold a same <see cref="P:Sudoku.Concepts.Solving.AlmostLockedSet.DigitsMask"/>
+            and <see cref="P:Sudoku.Concepts.Solving.AlmostLockedSet.Map"/> property values.
+            </summary>
+            <param name="left">The left-side instance to compare.</param>
+            <param name="right">The right-side instance to compare.</param>
+            <returns>A <see cref="T:System.Boolean"/> result.</returns>
+        </member>
         <member name="T:Sudoku.Concepts.Solving.AlternatingInferenceChain">
             <summary>
             Defines an alternating inference chain. The data structure can describe the following techniques:

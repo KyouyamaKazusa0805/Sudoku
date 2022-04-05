@@ -27,12 +27,16 @@ public sealed unsafe partial class AlmostLockedSetsXzStepSearcher : IAlmostLocke
 
 		for (int i = 0, length = alses.Length, iterationLengthOuter = length - 1; i < iterationLengthOuter; i++)
 		{
-			ref readonly var als1 = ref alses[i];
-			_ = als1 is { Region: var region1, DigitsMask: var mask1, Map: var map1, PossibleEliminationSet: var possibleElimMap1 };
+			var als1 = alses[i];
+			int region1 = als1.Region;
+			short mask1 = als1.DigitsMask;
+			Cells map1 = als1.Map, possibleElimMap1 = als1.PossibleEliminationMap;
 			for (int j = i + 1; j < length; j++)
 			{
-				ref readonly var als2 = ref alses[j];
-				_ = als2 is { Region: var region2, DigitsMask: var mask2, Map: var map2, PossibleEliminationSet: var possibleElimMap2 };
+				var als2 = alses[j];
+				int region2 = als2.Region;
+				short mask2 = als2.DigitsMask;
+				Cells map2 = als2.Map, possibleElimMap2 = als2.PossibleEliminationMap;
 				short xzMask = (short)(mask1 & mask2);
 				var map = map1 | map2;
 				var overlapMap = map1 & map2;
