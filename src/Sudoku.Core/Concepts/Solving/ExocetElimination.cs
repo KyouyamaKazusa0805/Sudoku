@@ -1,13 +1,11 @@
-﻿namespace Sudoku.Solving.Collections;
+﻿namespace Sudoku.Concepts.Solving;
 
 /// <summary>
-/// Defines an elimination that is created by searchers
-/// <see cref="IJuniorExocetStepSearcher"/> and <see cref="ISeniorExocetStepSearcher"/>.
+/// Represents a data structure that describes the eliminations that are created and proved
+/// by the exocet technique.
 /// </summary>
 /// <param name="Eliminations">Indicates the eliminations.</param>
 /// <param name="Reason">Indicates the reason why these candidates can be eliminated.</param>
-/// <seealso cref="IJuniorExocetStepSearcher"/>
-/// <seealso cref="ISeniorExocetStepSearcher"/>
 public readonly record struct ExocetElimination(in Candidates Eliminations, ExocetEliminatedReason Reason) :
 	IEquatable<ExocetElimination>
 #if FEATURE_GENERIC_MATH
@@ -52,10 +50,12 @@ public readonly record struct ExocetElimination(in Candidates Eliminations, Exoc
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public override string ToString()
 	{
-		string header = R[$"Exocet{Reason}EliminationName"]!;
-		string snippet = R["ExocetElimination"]!;
-		string elim = new ConclusionCollection(ToArray()).ToString();
-		return $"* {header}{snippet}{elim}";
+		string header = typeof(ExocetEliminatedReason)
+			.GetField(Reason.ToString())!
+			.GetCustomAttribute<EnumFieldNameAttribute>()!
+			.Name;
+
+		return $"* {header}eliminations: {new ConclusionCollection(ToArray()).ToString()}";
 	}
 
 	/// <summary>

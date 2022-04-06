@@ -257,82 +257,6 @@
         <member name="M:Sudoku.Solving.BruteForces.FastSolver.CheckValidity(System.String)">
             <inheritdoc cref="M:Sudoku.Solving.BitwiseSolver.CheckValidity(System.String)"/>
         </member>
-        <member name="T:Sudoku.Solving.Collections.ExocetElimination">
-            <summary>
-            Defines an elimination that is created by searchers
-            <see cref="T:Sudoku.Solving.Manual.Searchers.IJuniorExocetStepSearcher"/> and <see cref="T:Sudoku.Solving.Manual.Searchers.ISeniorExocetStepSearcher"/>.
-            </summary>
-            <param name="Eliminations">Indicates the eliminations.</param>
-            <param name="Reason">Indicates the reason why these candidates can be eliminated.</param>
-            <seealso cref="T:Sudoku.Solving.Manual.Searchers.IJuniorExocetStepSearcher"/>
-            <seealso cref="T:Sudoku.Solving.Manual.Searchers.ISeniorExocetStepSearcher"/>
-        </member>
-        <member name="M:Sudoku.Solving.Collections.ExocetElimination.#ctor(Sudoku.Concepts.Collections.Candidates@,Sudoku.Solving.Collections.ExocetEliminatedReason)">
-            <summary>
-            Defines an elimination that is created by searchers
-            <see cref="T:Sudoku.Solving.Manual.Searchers.IJuniorExocetStepSearcher"/> and <see cref="T:Sudoku.Solving.Manual.Searchers.ISeniorExocetStepSearcher"/>.
-            </summary>
-            <param name="Eliminations">Indicates the eliminations.</param>
-            <param name="Reason">Indicates the reason why these candidates can be eliminated.</param>
-            <seealso cref="T:Sudoku.Solving.Manual.Searchers.IJuniorExocetStepSearcher"/>
-            <seealso cref="T:Sudoku.Solving.Manual.Searchers.ISeniorExocetStepSearcher"/>
-        </member>
-        <member name="P:Sudoku.Solving.Collections.ExocetElimination.Eliminations">
-            <summary>Indicates the eliminations.</summary>
-        </member>
-        <member name="P:Sudoku.Solving.Collections.ExocetElimination.Reason">
-            <summary>Indicates the reason why these candidates can be eliminated.</summary>
-        </member>
-        <member name="P:Sudoku.Solving.Collections.ExocetElimination.Count">
-            <summary>
-            Indicates how many eliminations the instance contains.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Solving.Collections.ExocetElimination.Equals(Sudoku.Solving.Collections.ExocetElimination)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Solving.Collections.ExocetElimination.Equals(Sudoku.Solving.Collections.ExocetElimination@)">
-            <summary>
-            Determine whether the specified <see cref="T:Sudoku.Solving.Collections.ExocetElimination"/> instance holds a same set of eliminations
-            and the eliminated reason as the current instance.
-            </summary>
-            <param name="other">The instance to compare.</param>
-            <returns>A <see cref="T:System.Boolean"/> result.</returns>
-        </member>
-        <member name="M:Sudoku.Solving.Collections.ExocetElimination.GetHashCode">
-            <inheritdoc cref="M:System.Object.GetHashCode"/>
-        </member>
-        <member name="M:Sudoku.Solving.Collections.ExocetElimination.ToString">
-            <inheritdoc cref="M:System.Object.ToString"/>
-        </member>
-        <member name="M:Sudoku.Solving.Collections.ExocetElimination.GetEnumerator">
-            <summary>
-            Gets the enumerator of the current instance in order to use <see langword="foreach"/> loop.
-            </summary>
-            <returns>The enumerator instance.</returns>
-        </member>
-        <member name="M:Sudoku.Solving.Collections.ExocetElimination.ToArray">
-            <summary>
-            Converts all elements to <see cref="T:Sudoku.Concepts.Solving.Conclusion"/>.
-            </summary>
-            <returns>The <see cref="T:System.ReadOnlySpan`1"/> of type <see cref="T:Sudoku.Concepts.Solving.Conclusion"/>.</returns>
-            <seealso cref="T:System.ReadOnlySpan`1"/>
-            <seealso cref="T:Sudoku.Concepts.Solving.Conclusion"/>
-        </member>
-        <member name="M:Sudoku.Solving.Collections.ExocetElimination.op_BitwiseOr(Sudoku.Solving.Collections.ExocetElimination@,Sudoku.Solving.Collections.ExocetElimination@)">
-            <summary>
-            To merge two different instances, and return the merged result.
-            </summary>
-            <param name="left">The left instance.</param>
-            <param name="right">The right instance.</param>
-            <returns>
-            The merged result. The result will contain all eliminations from two instances, and
-            the reason should be same.
-            </returns>
-            <exception cref="T:System.ArgumentException">
-            Throws when two instances contains different eliminated reason.
-            </exception>
-        </member>
         <member name="T:Sudoku.Solving.FailedReason">
             <summary>
             Defines a reason why the <see cref="T:Sudoku.Solving.IPuzzleSolver"/> is failed to solve a puzzle.
@@ -6863,7 +6787,7 @@
             <param name="DigitsMask">Indicates the mask that holds all possible digits used.</param>
             <param name="Eliminations">Indicates all possible eliminations.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Steps.ExocetStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},Sudoku.Concepts.Solving.ExocetPattern@,System.Int16,System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Collections.ExocetElimination})">
+        <member name="M:Sudoku.Solving.Manual.Steps.ExocetStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},Sudoku.Concepts.Solving.ExocetPattern@,System.Int16,System.Collections.Immutable.ImmutableArray{Sudoku.Concepts.Solving.ExocetElimination})">
             <summary>
             Provides with a step that is an <b>Exocet</b> technique.
             </summary>
@@ -6936,7 +6860,7 @@
         <member name="M:Sudoku.Solving.Manual.Steps.ExocetStep.ToFullString">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Steps.ExocetStep.GatherConclusions(System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Collections.ExocetElimination})">
+        <member name="M:Sudoku.Solving.Manual.Steps.ExocetStep.GatherConclusions(System.Collections.Immutable.ImmutableArray{Sudoku.Concepts.Solving.ExocetElimination})">
             <summary>
             Gather conclusions.
             </summary>
@@ -6953,7 +6877,7 @@
             <param name="LockedMemberR">Indicates the locked member bound with R cells.</param>
             <param name="Eliminations"><inheritdoc/></param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Steps.JuniorExocetStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},Sudoku.Concepts.Solving.ExocetPattern@,System.Int16,System.Int16,System.Int16,System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Collections.ExocetElimination})">
+        <member name="M:Sudoku.Solving.Manual.Steps.JuniorExocetStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},Sudoku.Concepts.Solving.ExocetPattern@,System.Int16,System.Int16,System.Int16,System.Collections.Immutable.ImmutableArray{Sudoku.Concepts.Solving.ExocetElimination})">
             <summary>
             Provides with a step that is a <b>Junior Exocet</b> technique.
             </summary>
@@ -7017,7 +6941,7 @@
             <param name="ExtraRegionsMask">Indicates the mask tnat holds the extra regions used.</param>
             <param name="Eliminations"><inheritdoc/></param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Steps.SeniorExocetStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},Sudoku.Concepts.Solving.ExocetPattern@,System.Int16,System.Int32,System.Int32[],System.Collections.Immutable.ImmutableArray{Sudoku.Solving.Collections.ExocetElimination})">
+        <member name="M:Sudoku.Solving.Manual.Steps.SeniorExocetStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},Sudoku.Concepts.Solving.ExocetPattern@,System.Int16,System.Int32,System.Int32[],System.Collections.Immutable.ImmutableArray{Sudoku.Concepts.Solving.ExocetElimination})">
             <summary>
             Provides with a step that is a <b>Senior Exocet</b> technique.
             </summary>
