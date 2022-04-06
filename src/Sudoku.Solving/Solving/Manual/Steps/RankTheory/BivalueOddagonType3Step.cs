@@ -10,15 +10,10 @@
 /// <param name="Digit2"><inheritdoc/></param>
 /// <param name="ExtraCells">Indicates the extra cells used.</param>
 /// <param name="ExtraDigitsMask">Indicates the mask that contains all extra digits used.</param>
-public sealed record BivalueOddagonType3Step(
-	ImmutableArray<Conclusion> Conclusions,
-	ImmutableArray<View> Views,
-	in Cells Loop,
-	int Digit1,
-	int Digit2,
-	in Cells ExtraCells,
-	short ExtraDigitsMask
-) : BivalueOddagonStep(Conclusions, Views, Loop, Digit1, Digit2)
+public sealed record class BivalueOddagonType3Step(
+	ImmutableArray<Conclusion> Conclusions, ImmutableArray<View> Views,
+	in Cells Loop, int Digit1, int Digit2, in Cells ExtraCells, short ExtraDigitsMask) :
+	BivalueOddagonStep(Conclusions, Views, Loop, Digit1, Digit2)
 {
 	/// <inheritdoc/>
 	public override decimal Difficulty => base.Difficulty + (ExtraCells.Count >> 1) * .1M;

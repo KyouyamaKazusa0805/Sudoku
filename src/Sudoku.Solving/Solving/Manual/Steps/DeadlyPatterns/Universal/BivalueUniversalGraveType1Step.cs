@@ -5,10 +5,9 @@
 /// </summary>
 /// <param name="Conclusions"><inheritdoc/></param>
 /// <param name="Views"><inheritdoc/></param>
-public sealed record BivalueUniversalGraveType1Step(
-	ImmutableArray<Conclusion> Conclusions,
-	ImmutableArray<View> Views
-) : BivalueUniversalGraveStep(Conclusions, Views)
+public sealed record class BivalueUniversalGraveType1Step(
+	ImmutableArray<Conclusion> Conclusions, ImmutableArray<View> Views) :
+	BivalueUniversalGraveStep(Conclusions, Views)
 {
 	/// <inheritdoc/>
 	public override Technique TechniqueCode => Technique.BivalueUniversalGraveType1;

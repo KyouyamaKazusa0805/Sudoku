@@ -11,14 +11,10 @@
 /// <param name="ExtraDigitsMask">
 /// Indicates the extra digits that forms a subset with <paramref name="DigitsMask"/>.
 /// </param>
-public sealed record UniqueSquareType3Step(
-	ImmutableArray<Conclusion> Conclusions,
-	ImmutableArray<View> Views,
-	in Cells Cells,
-	short DigitsMask,
-	short ExtraDigitsMask,
-	in Cells ExtraCells
-) : UniqueSquareStep(Conclusions, Views, Cells, DigitsMask)
+public sealed record class UniqueSquareType3Step(
+	ImmutableArray<Conclusion> Conclusions, ImmutableArray<View> Views,
+	in Cells Cells, short DigitsMask, short ExtraDigitsMask, in Cells ExtraCells) :
+	UniqueSquareStep(Conclusions, Views, Cells, DigitsMask)
 {
 	/// <inheritdoc/>
 	public override decimal Difficulty => base.Difficulty + PopCount((uint)ExtraDigitsMask) * .1M;

@@ -20,13 +20,9 @@
 /// <para><inheritdoc/></para>
 /// <para>The default value is <see cref="TimeSpan.Zero"/>.</para>
 /// </param>
-public sealed record BruteForceSolverResult(
-	in Grid OriginalPuzzle,
-	bool IsSolved = true,
-	FailedReason FailedReason = FailedReason.Nothing,
-	in Grid Solution = default,
-	TimeSpan ElapsedTime = default
-) : ISolverResult
+public sealed record class BruteForceSolverResult(
+	in Grid OriginalPuzzle, bool IsSolved = true, FailedReason FailedReason = FailedReason.Nothing,
+	in Grid Solution = default, TimeSpan ElapsedTime = default) : ISolverResult
 {
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

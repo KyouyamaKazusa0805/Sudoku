@@ -5,7 +5,7 @@
 /// </summary>
 /// <param name="Conclusions"><inheritdoc/></param>
 /// <param name="Views"><inheritdoc/></param>
-public abstract record WingStep(ImmutableArray<Conclusion> Conclusions, ImmutableArray<View> Views) :
+public abstract record class WingStep(ImmutableArray<Conclusion> Conclusions, ImmutableArray<View> Views) :
 	Step(Conclusions, Views)
 {
 	/// <inheritdoc/>

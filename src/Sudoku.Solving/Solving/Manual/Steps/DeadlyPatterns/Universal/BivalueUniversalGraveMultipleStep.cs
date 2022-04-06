@@ -6,11 +6,9 @@
 /// <param name="Conclusions"><inheritdoc/></param>
 /// <param name="Views"><inheritdoc/></param>
 /// <param name="Candidates">Indicates the true candidates.</param>
-public sealed record BivalueUniversalGraveMultipleStep(
-	ImmutableArray<Conclusion> Conclusions,
-	ImmutableArray<View> Views,
-	IReadOnlyList<int> Candidates
-) : BivalueUniversalGraveStep(Conclusions, Views)
+public sealed record class BivalueUniversalGraveMultipleStep(
+	ImmutableArray<Conclusion> Conclusions, ImmutableArray<View> Views, IReadOnlyList<int> Candidates) :
+	BivalueUniversalGraveStep(Conclusions, Views)
 {
 	/// <inheritdoc/>
 	public override string Name => $"{base.Name} + {Candidates.Count}";

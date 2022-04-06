@@ -6,11 +6,9 @@
 /// <param name="Conclusions"><inheritdoc/></param>
 /// <param name="Views"><inheritdoc/></param>
 /// <param name="ContradictionLinks">Indicates the list of contradiction links.</param>
-public sealed record BowmanBingoStep(
-	ImmutableArray<Conclusion> Conclusions,
-	ImmutableArray<View> Views,
-	ImmutableArray<Conclusion> ContradictionLinks
-) : LastResortStep(Conclusions, Views), IChainLikeStep
+public sealed record class BowmanBingoStep(
+	ImmutableArray<Conclusion> Conclusions, ImmutableArray<View> Views,
+	ImmutableArray<Conclusion> ContradictionLinks) : LastResortStep(Conclusions, Views), IChainLikeStep
 {
 	/// <inheritdoc/>
 	public override decimal Difficulty =>

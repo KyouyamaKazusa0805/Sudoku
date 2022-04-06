@@ -8,13 +8,9 @@
 /// <param name="Cells"><inheritdoc/></param>
 /// <param name="DigitsMask"><inheritdoc/></param>
 /// <param name="ExtraDigit">Indicates the extra digit used.</param>
-public sealed record UniqueSquareType2Step(
-	ImmutableArray<Conclusion> Conclusions,
-	ImmutableArray<View> Views,
-	in Cells Cells,
-	short DigitsMask,
-	int ExtraDigit
-) : UniqueSquareStep(Conclusions, Views, Cells, DigitsMask)
+public sealed record class UniqueSquareType2Step(
+	ImmutableArray<Conclusion> Conclusions, ImmutableArray<View> Views,
+	in Cells Cells, short DigitsMask, int ExtraDigit) : UniqueSquareStep(Conclusions, Views, Cells, DigitsMask)
 {
 	/// <inheritdoc/>
 	public override decimal Difficulty => base.Difficulty + .1M;

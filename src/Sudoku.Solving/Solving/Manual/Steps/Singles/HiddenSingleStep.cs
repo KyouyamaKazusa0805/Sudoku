@@ -11,14 +11,9 @@
 /// <param name="EnableAndIsLastDigit">
 /// Indicates whether the current step is a <b>Last Digit</b> technique usage.
 /// </param>
-public sealed record HiddenSingleStep(
-	ImmutableArray<Conclusion> Conclusions,
-	ImmutableArray<View> Views,
-	int Cell,
-	int Digit,
-	int Region,
-	bool EnableAndIsLastDigit
-) : SingleStep(Conclusions, Views, Cell, Digit)
+public sealed record class HiddenSingleStep(
+	ImmutableArray<Conclusion> Conclusions, ImmutableArray<View> Views,
+	int Cell, int Digit, int Region, bool EnableAndIsLastDigit) : SingleStep(Conclusions, Views, Cell, Digit)
 {
 	/// <inheritdoc/>
 	public override decimal Difficulty => EnableAndIsLastDigit ? 1.1M : Region < 9 ? 1.2M : 1.5M;

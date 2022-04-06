@@ -9,14 +9,10 @@
 /// <param name="Digit1"><inheritdoc/></param>
 /// <param name="Digit2"><inheritdoc/></param>
 /// <param name="ExtraCell">Indicates the extra cell.</param>
-public sealed record BivalueOddagonType1Step(
-	ImmutableArray<Conclusion> Conclusions,
-	ImmutableArray<View> Views,
-	in Cells Loop,
-	int Digit1,
-	int Digit2,
-	int ExtraCell
-) : BivalueOddagonStep(Conclusions, Views, Loop, Digit1, Digit2)
+public sealed record class BivalueOddagonType1Step(
+	ImmutableArray<Conclusion> Conclusions, ImmutableArray<View> Views,
+	in Cells Loop, int Digit1, int Digit2, int ExtraCell) :
+	BivalueOddagonStep(Conclusions, Views, Loop, Digit1, Digit2)
 {
 	/// <inheritdoc/>
 	public override Technique TechniqueCode => Technique.BivalueOddagonType1;

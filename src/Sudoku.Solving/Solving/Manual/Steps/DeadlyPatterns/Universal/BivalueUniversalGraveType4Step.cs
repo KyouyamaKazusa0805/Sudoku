@@ -8,13 +8,10 @@
 /// <param name="DigitsMask">Indicates the digits used.</param>
 /// <param name="Cells">Indicates the cells used.</param>
 /// <param name="ConjugatePair">Indicates the conjugate pair used.</param>
-public sealed record BivalueUniversalGraveType4Step(
-	ImmutableArray<Conclusion> Conclusions,
-	ImmutableArray<View> Views,
-	short DigitsMask,
-	in Cells Cells,
-	in ConjugatePair ConjugatePair
-) : BivalueUniversalGraveStep(Conclusions, Views)
+public sealed record class BivalueUniversalGraveType4Step(
+	ImmutableArray<Conclusion> Conclusions, ImmutableArray<View> Views,
+	short DigitsMask, in Cells Cells, in ConjugatePair ConjugatePair) :
+	BivalueUniversalGraveStep(Conclusions, Views)
 {
 	/// <inheritdoc/>
 	public override decimal Difficulty => base.Difficulty + .1M;

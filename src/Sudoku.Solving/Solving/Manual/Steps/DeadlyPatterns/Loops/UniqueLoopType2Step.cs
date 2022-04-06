@@ -9,14 +9,10 @@
 /// <param name="Digit2"><inheritdoc/></param>
 /// <param name="Loop"><inheritdoc/></param>
 /// <param name="ExtraDigit">Indicates the extra digit.</param>
-public sealed record UniqueLoopType2Step(
-	ImmutableArray<Conclusion> Conclusions,
-	ImmutableArray<View> Views,
-	int Digit1,
-	int Digit2,
-	in Cells Loop,
-	int ExtraDigit
-) : UniqueLoopStep(Conclusions, Views, Digit1, Digit2, Loop)
+public sealed record class UniqueLoopType2Step(
+	ImmutableArray<Conclusion> Conclusions, ImmutableArray<View> Views,
+	int Digit1, int Digit2, in Cells Loop, int ExtraDigit) :
+	UniqueLoopStep(Conclusions, Views, Digit1, Digit2, Loop)
 {
 	/// <inheritdoc/>
 	public override int Type => 2;

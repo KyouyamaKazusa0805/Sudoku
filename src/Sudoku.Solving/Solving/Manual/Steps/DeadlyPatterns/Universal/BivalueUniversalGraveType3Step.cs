@@ -9,14 +9,10 @@
 /// <param name="DigitsMask">Indicates the digits used.</param>
 /// <param name="Cells">Indicates the cells used.</param>
 /// <param name="IsNaked">Indicates whether the specified subset is naked subset.</param>
-public sealed record BivalueUniversalGraveType3Step(
-	ImmutableArray<Conclusion> Conclusions,
-	ImmutableArray<View> Views,
-	IReadOnlyList<int> TrueCandidates,
-	short DigitsMask,
-	in Cells Cells,
-	bool IsNaked
-) : BivalueUniversalGraveStep(Conclusions, Views)
+public sealed record class BivalueUniversalGraveType3Step(
+	ImmutableArray<Conclusion> Conclusions, ImmutableArray<View> Views,
+	IReadOnlyList<int> TrueCandidates, short DigitsMask, in Cells Cells, bool IsNaked) :
+	BivalueUniversalGraveStep(Conclusions, Views)
 {
 	/// <inheritdoc/>
 	public override decimal Difficulty =>

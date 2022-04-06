@@ -4396,7 +4396,7 @@
             <param name="WDigitsMask">Indicates the mask that holds the W digit.</param>
             <param name="X">Indicates the X digit.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Steps.AlmostLockedSetsWWingStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Concepts.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},Sudoku.Concepts.Solving.AlmostLockedSet@,Sudoku.Concepts.Solving.AlmostLockedSet@,Sudoku.Concepts.ConjugatePair@,System.Int16,System.Int32)">
+        <member name="M:Sudoku.Solving.Manual.Steps.AlmostLockedSetsWWingStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Concepts.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},Sudoku.Concepts.Solving.AlmostLockedSet,Sudoku.Concepts.Solving.AlmostLockedSet,Sudoku.Concepts.ConjugatePair@,System.Int16,System.Int32)">
             <summary>
             Provides with a step that is an <b>Almost Locked Sets W-Wing</b> technique.
             </summary>
@@ -4454,7 +4454,7 @@
             <param name="YDigitsMask">Indicates the mask that holds the digits for the Y value.</param>
             <param name="ZDigitsMask">Indicates the mask that holds the digits for the Z value.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Steps.AlmostLockedSetsXyWingStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Concepts.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},Sudoku.Concepts.Solving.AlmostLockedSet@,Sudoku.Concepts.Solving.AlmostLockedSet@,Sudoku.Concepts.Solving.AlmostLockedSet@,System.Int16,System.Int16,System.Int16)">
+        <member name="M:Sudoku.Solving.Manual.Steps.AlmostLockedSetsXyWingStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Concepts.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},Sudoku.Concepts.Solving.AlmostLockedSet,Sudoku.Concepts.Solving.AlmostLockedSet,Sudoku.Concepts.Solving.AlmostLockedSet,System.Int16,System.Int16,System.Int16)">
             <summary>
             Provides with a step that is an <b>Almost Locked Sets XY-Wing</b> technique.
             </summary>
@@ -4515,7 +4515,7 @@
             <param name="ZDigitsMask">Indicates the Z digit used in this ALS-XZ pattern.</param>
             <param name="IsDoublyLinked">Indicates whether the ALS-XZ is doubly-linked.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Steps.AlmostLockedSetsXzStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Concepts.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},Sudoku.Concepts.Solving.AlmostLockedSet@,Sudoku.Concepts.Solving.AlmostLockedSet@,System.Int16,System.Int16,System.Nullable{System.Boolean})">
+        <member name="M:Sudoku.Solving.Manual.Steps.AlmostLockedSetsXzStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Concepts.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},Sudoku.Concepts.Solving.AlmostLockedSet,Sudoku.Concepts.Solving.AlmostLockedSet,System.Int16,System.Int16,System.Nullable{System.Boolean})">
             <summary>
             Provides with a step that is an <b>Almost Locked Sets XZ</b> technique.
             </summary>
@@ -5180,7 +5180,9 @@
             <param name="Digit1"><inheritdoc/></param>
             <param name="Digit2"><inheritdoc/></param>
             <param name="Loop"><inheritdoc/></param>
-            <param name="SubsetDigitsMask">Indicates the mask that contains the subset digits used in this instance.</param>
+            <param name="SubsetDigitsMask">
+            Indicates the mask that contains the subset digits used in this instance.
+            </param>
             <param name="SubsetCells">Indicates the subset cells.</param>
         </member>
         <member name="M:Sudoku.Solving.Manual.Steps.UniqueLoopType3Step.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Concepts.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},System.Int32,System.Int32,Sudoku.Concepts.Collections.Cells@,System.Int16,Sudoku.Concepts.Collections.Cells@)">
@@ -5192,11 +5194,15 @@
             <param name="Digit1"><inheritdoc/></param>
             <param name="Digit2"><inheritdoc/></param>
             <param name="Loop"><inheritdoc/></param>
-            <param name="SubsetDigitsMask">Indicates the mask that contains the subset digits used in this instance.</param>
+            <param name="SubsetDigitsMask">
+            Indicates the mask that contains the subset digits used in this instance.
+            </param>
             <param name="SubsetCells">Indicates the subset cells.</param>
         </member>
         <member name="P:Sudoku.Solving.Manual.Steps.UniqueLoopType3Step.SubsetDigitsMask">
-            <summary>Indicates the mask that contains the subset digits used in this instance.</summary>
+            <summary>
+            Indicates the mask that contains the subset digits used in this instance.
+            </summary>
         </member>
         <member name="P:Sudoku.Solving.Manual.Steps.UniqueLoopType3Step.SubsetCells">
             <summary>Indicates the subset cells.</summary>

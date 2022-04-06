@@ -7,12 +7,9 @@
 /// <param name="Views"><inheritdoc/></param>
 /// <param name="Cells">Indicates the cells used.</param>
 /// <param name="DigitsMask">Indicates the mask that contains the digits used.</param>
-public abstract record ExtendedRectangleStep(
-	ImmutableArray<Conclusion> Conclusions,
-	ImmutableArray<View> Views,
-	in Cells Cells,
-	short DigitsMask
-) : DeadlyPatternStep(Conclusions, Views)
+public abstract record class ExtendedRectangleStep(
+	ImmutableArray<Conclusion> Conclusions, ImmutableArray<View> Views,
+	in Cells Cells, short DigitsMask) : DeadlyPatternStep(Conclusions, Views)
 {
 	/// <summary>
 	/// Indicates the type of the step. The value must be between 1 and 4.

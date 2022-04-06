@@ -26,15 +26,10 @@
 /// </item>
 /// </list>
 /// </param>
-public sealed record NormalFishStep(
-	ImmutableArray<Conclusion> Conclusions,
-	ImmutableArray<View> Views,
-	int Digit,
-	int BaseSetsMask,
-	int CoverSetsMask,
-	in Cells Fins,
-	bool? IsSashimi
-) : FishStep(Conclusions, Views, Digit, BaseSetsMask, CoverSetsMask)
+public sealed record class NormalFishStep(
+	ImmutableArray<Conclusion> Conclusions, ImmutableArray<View> Views,
+	int Digit, int BaseSetsMask, int CoverSetsMask, in Cells Fins, bool? IsSashimi) :
+	FishStep(Conclusions, Views, Digit, BaseSetsMask, CoverSetsMask)
 {
 	/// <inheritdoc/>
 	public override decimal Difficulty =>

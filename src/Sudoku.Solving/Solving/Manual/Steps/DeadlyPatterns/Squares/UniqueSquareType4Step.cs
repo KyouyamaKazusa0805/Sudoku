@@ -10,15 +10,10 @@
 /// <param name="Digit1">Indicates the digit 1 used.</param>
 /// <param name="Digit2">Indicates the digit 2 used.</param>
 /// <param name="ConjugateRegion">Indicates the cells used as the conjugation region.</param>
-public sealed record UniqueSquareType4Step(
-	ImmutableArray<Conclusion> Conclusions,
-	ImmutableArray<View> Views,
-	in Cells Cells,
-	short DigitsMask,
-	int Digit1,
-	int Digit2,
-	in Cells ConjugateRegion
-) : UniqueSquareStep(Conclusions, Views, Cells, DigitsMask)
+public sealed record class UniqueSquareType4Step(
+	ImmutableArray<Conclusion> Conclusions, ImmutableArray<View> Views,
+	in Cells Cells, short DigitsMask, int Digit1, int Digit2, in Cells ConjugateRegion) :
+	UniqueSquareStep(Conclusions, Views, Cells, DigitsMask)
 {
 	/// <inheritdoc/>
 	public override int Type => 4;

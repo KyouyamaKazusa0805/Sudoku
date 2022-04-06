@@ -7,12 +7,10 @@
 /// <param name="Views"><inheritdoc/></param>
 /// <param name="Pattern"><inheritdoc/></param>
 /// <param name="ConjugatePair">Indicates the conjugate pair used.</param>
-public sealed record QiuDeadlyPatternType4Step(
-	ImmutableArray<Conclusion> Conclusions,
-	ImmutableArray<View> Views,
-	in QiuDeadlyPattern Pattern,
-	in ConjugatePair ConjugatePair
-) : QiuDeadlyPatternStep(Conclusions, Views, Pattern)
+public sealed record class QiuDeadlyPatternType4Step(
+	ImmutableArray<Conclusion> Conclusions, ImmutableArray<View> Views,
+	in QiuDeadlyPattern Pattern, in ConjugatePair ConjugatePair) :
+	QiuDeadlyPatternStep(Conclusions, Views, Pattern)
 {
 	/// <inheritdoc/>
 	public override decimal Difficulty => base.Difficulty + .2M;

@@ -7,12 +7,9 @@
 /// <param name="Views"><inheritdoc/></param>
 /// <param name="Conclusions"><inheritdoc/></param>
 /// <param name="Digit"><inheritdoc/></param>
-public sealed record FullHouseStep(
-	ImmutableArray<Conclusion> Conclusions,
-	ImmutableArray<View> Views,
-	int Cell,
-	int Digit
-) : SingleStep(Conclusions, Views, Cell, Digit)
+public sealed record class FullHouseStep(
+	ImmutableArray<Conclusion> Conclusions, ImmutableArray<View> Views, int Cell, int Digit) :
+	SingleStep(Conclusions, Views, Cell, Digit)
 {
 	/// <inheritdoc/>
 	public override decimal Difficulty => 1.0M;

@@ -11,16 +11,10 @@
 /// <param name="XDigitsMask">Indicates the mask that holds the digits for the X value.</param>
 /// <param name="YDigitsMask">Indicates the mask that holds the digits for the Y value.</param>
 /// <param name="ZDigitsMask">Indicates the mask that holds the digits for the Z value.</param>
-public sealed record AlmostLockedSetsXyWingStep(
-	ImmutableArray<Conclusion> Conclusions,
-	ImmutableArray<View> Views,
-	in AlmostLockedSet Als1,
-	in AlmostLockedSet Als2,
-	in AlmostLockedSet Bridge,
-	short XDigitsMask,
-	short YDigitsMask,
-	short ZDigitsMask
-) : AlmostLockedSetsStep(Conclusions, Views)
+public sealed record class AlmostLockedSetsXyWingStep(
+	ImmutableArray<Conclusion> Conclusions, ImmutableArray<View> Views,
+	AlmostLockedSet Als1, AlmostLockedSet Als2, AlmostLockedSet Bridge,
+	short XDigitsMask, short YDigitsMask, short ZDigitsMask) : AlmostLockedSetsStep(Conclusions, Views)
 {
 	/// <inheritdoc/>
 	public override decimal Difficulty => 6.0M;

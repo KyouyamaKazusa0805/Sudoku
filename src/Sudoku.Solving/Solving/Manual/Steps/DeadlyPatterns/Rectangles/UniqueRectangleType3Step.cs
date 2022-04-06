@@ -32,28 +32,14 @@
 /// </list>
 /// </para>
 /// </param>
-public sealed record UniqueRectangleType3Step(
-	ImmutableArray<Conclusion> Conclusions,
-	ImmutableArray<View> Views,
-	int Digit1,
-	int Digit2,
-	in Cells Cells,
-	in Cells ExtraCells,
-	short ExtraDigitsMask,
-	int Region,
-	bool IsAvoidable,
-	int AbsoluteOffset,
-	bool IsNaked = true
-) : UniqueRectangleStep(
-	Conclusions,
-	Views,
-	IsAvoidable ? Technique.AvoidableRectangleType3 : Technique.UniqueRectangleType3,
-	Digit1,
-	Digit2,
-	Cells,
-	IsAvoidable,
-	AbsoluteOffset
-)
+public sealed record class UniqueRectangleType3Step(
+	ImmutableArray<Conclusion> Conclusions, ImmutableArray<View> Views,
+	int Digit1, int Digit2, in Cells Cells, in Cells ExtraCells,
+	short ExtraDigitsMask, int Region, bool IsAvoidable, int AbsoluteOffset, bool IsNaked = true) :
+	UniqueRectangleStep(
+		Conclusions, Views,
+		IsAvoidable ? Technique.AvoidableRectangleType3 : Technique.UniqueRectangleType3,
+		Digit1, Digit2, Cells, IsAvoidable, AbsoluteOffset)
 {
 	/// <inheritdoc/>
 	public override decimal Difficulty =>

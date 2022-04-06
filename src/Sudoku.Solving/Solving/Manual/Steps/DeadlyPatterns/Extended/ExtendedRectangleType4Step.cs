@@ -8,13 +8,10 @@
 /// <param name="Cells"><inheritdoc/></param>
 /// <param name="DigitsMask"><inheritdoc/></param>
 /// <param name="ConjugatePair">Indicates the conjugate pair used.</param>
-public sealed record ExtendedRectangleType4Step(
-	ImmutableArray<Conclusion> Conclusions,
-	ImmutableArray<View> Views,
-	in Cells Cells,
-	short DigitsMask,
-	in ConjugatePair ConjugatePair
-) : ExtendedRectangleStep(Conclusions, Views, Cells, DigitsMask)
+public sealed record class ExtendedRectangleType4Step(
+	ImmutableArray<Conclusion> Conclusions, ImmutableArray<View> Views,
+	in Cells Cells, short DigitsMask, in ConjugatePair ConjugatePair) :
+	ExtendedRectangleStep(Conclusions, Views, Cells, DigitsMask)
 {
 	/// <inheritdoc/>
 	public override int Type => 4;

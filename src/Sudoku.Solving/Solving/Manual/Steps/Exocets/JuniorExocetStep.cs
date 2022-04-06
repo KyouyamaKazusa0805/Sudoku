@@ -9,14 +9,10 @@
 /// <param name="LockedMemberQ">Indicates the locked member bound with Q cells.</param>
 /// <param name="LockedMemberR">Indicates the locked member bound with R cells.</param>
 /// <param name="Eliminations"><inheritdoc/></param>
-public sealed record JuniorExocetStep(
-	ImmutableArray<View> Views,
-	in ExocetPattern Exocet,
-	short DigitsMask,
-	short LockedMemberQ,
-	short LockedMemberR,
-	ImmutableArray<ExocetElimination> Eliminations
-) : ExocetStep(Views, Exocet, DigitsMask, Eliminations)
+public sealed record class JuniorExocetStep(
+	ImmutableArray<View> Views, in ExocetPattern Exocet, short DigitsMask, short LockedMemberQ,
+	short LockedMemberR, ImmutableArray<ExocetElimination> Eliminations) :
+	ExocetStep(Views, Exocet, DigitsMask, Eliminations)
 {
 	/// <inheritdoc/>
 	public override decimal Difficulty =>

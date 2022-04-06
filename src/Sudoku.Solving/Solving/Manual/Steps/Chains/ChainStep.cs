@@ -5,7 +5,7 @@
 /// </summary>
 /// <param name="Conclusions"><inheritdoc/></param>
 /// <param name="Views"><inheritdoc/></param>
-public abstract record ChainStep(ImmutableArray<Conclusion> Conclusions, ImmutableArray<View> Views) :
+public abstract record class ChainStep(ImmutableArray<Conclusion> Conclusions, ImmutableArray<View> Views) :
 	Step(Conclusions, Views),
 	IChainStep,
 	IChainLikeStep

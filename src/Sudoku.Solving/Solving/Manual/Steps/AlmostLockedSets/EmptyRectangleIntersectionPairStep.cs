@@ -10,15 +10,9 @@
 /// <param name="Region">The region that forms the dual empty rectangle.</param>
 /// <param name="Digit1">Indicates the digit 1 used in this pattern.</param>
 /// <param name="Digit2">Indicates the digit 2 used in this pattern.</param>
-public sealed record EmptyRectangleIntersectionPairStep(
-	ImmutableArray<Conclusion> Conclusions,
-	ImmutableArray<View> Views,
-	int StartCell,
-	int EndCell,
-	int Region,
-	int Digit1,
-	int Digit2
-) : AlmostLockedSetsStep(Conclusions, Views)
+public sealed record class EmptyRectangleIntersectionPairStep(
+	ImmutableArray<Conclusion> Conclusions, ImmutableArray<View> Views,
+	int StartCell, int EndCell, int Region, int Digit1, int Digit2) : AlmostLockedSetsStep(Conclusions, Views)
 {
 	/// <inheritdoc/>
 	public override decimal Difficulty => 6.0M;

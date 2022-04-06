@@ -34,18 +34,10 @@
 /// as a nullable annotation <c>?</c> onto the parameter types.
 /// </param>
 /// <param name="IsGeneric">A <see cref="bool"/> value indicating whether the type is a generic type.</param>
-internal sealed record SymbolOutputInfo(
-	string TypeName,
-	string FullTypeName,
-	string NamespaceName,
-	string GenericParameterList,
-	string GenericParameterListWithoutConstraint,
-	string TypeKind,
-	string ReadOnlyKeyword,
-	string InKeyword,
-	string NullableAnnotation,
-	bool IsGeneric
-)
+internal sealed record class SymbolOutputInfo(
+	string TypeName, string FullTypeName, string NamespaceName, string GenericParameterList,
+	string GenericParameterListWithoutConstraint, string TypeKind, string ReadOnlyKeyword,
+	string InKeyword, string NullableAnnotation, bool IsGeneric)
 {
 	/// <summary>
 	/// Creates a <see cref="SymbolOutputInfo"/> instance via the specified <paramref name="symbol"/>,
@@ -73,7 +65,7 @@ internal sealed record SymbolOutputInfo(
 
 		string typeKind = (symbol.IsRecord, symbol.TypeKind) switch
 		{
-			(true, Kind.Class) => "record ",
+			(true, Kind.Class) => "record class ",
 			(true, Kind.Struct) => "record struct ",
 			(false, Kind.Class) => "class ",
 			(false, Kind.Struct) => "struct ",

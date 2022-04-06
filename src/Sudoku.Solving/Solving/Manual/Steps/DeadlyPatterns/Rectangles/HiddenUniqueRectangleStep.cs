@@ -11,23 +11,10 @@
 /// <param name="IsAvoidable"><inheritdoc/></param>
 /// <param name="ConjugatePairs"><inheritdoc/></param>
 /// <param name="AbsoluteOffset"><inheritdoc/></param>
-public sealed record HiddenUniqueRectangleStep(
-	ImmutableArray<Conclusion> Conclusions,
-	ImmutableArray<View> Views,
-	int Digit1,
-	int Digit2,
-	in Cells Cells,
-	bool IsAvoidable,
-	ConjugatePair[] ConjugatePairs,
-	int AbsoluteOffset
-) : UniqueRectangleWithConjugatePairStep(
-	Conclusions,
-	Views,
-	IsAvoidable ? Technique.HiddenAvoidableRectangle : Technique.HiddenUniqueRectangle,
-	Digit1,
-	Digit2,
-	Cells,
-	IsAvoidable,
-	ConjugatePairs,
-	AbsoluteOffset
-);
+public sealed record class HiddenUniqueRectangleStep(
+	ImmutableArray<Conclusion> Conclusions, ImmutableArray<View> Views, int Digit1, int Digit2,
+	in Cells Cells, bool IsAvoidable, ConjugatePair[] ConjugatePairs, int AbsoluteOffset) :
+	UniqueRectangleWithConjugatePairStep(
+		Conclusions, Views,
+		IsAvoidable ? Technique.HiddenAvoidableRectangle : Technique.HiddenUniqueRectangle,
+		Digit1, Digit2, Cells, IsAvoidable, ConjugatePairs, AbsoluteOffset);

@@ -4,7 +4,7 @@
 /// Provides with a step that is a <b>Pattern Overlay</b> technique.
 /// </summary>
 /// <param name="Conclusions"><inheritdoc/></param>
-public sealed record PatternOverlayStep(ImmutableArray<Conclusion> Conclusions) :
+public sealed record class PatternOverlayStep(ImmutableArray<Conclusion> Conclusions) :
 	LastResortStep(Conclusions, ImmutableArray<View>.Empty)
 {
 	/// <summary>

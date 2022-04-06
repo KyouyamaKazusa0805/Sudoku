@@ -6,7 +6,7 @@
 /// </summary>
 /// <param name="CancellationToken">The cancellation token to cancel the operation.</param>
 /// <seealso cref="RefStructOverridensGenerator"/>
-internal sealed record RefStructOverridensReceiver(CancellationToken CancellationToken) :
+internal sealed record class RefStructOverridensReceiver(CancellationToken CancellationToken) :
 	IResultCollectionReceiver<INamedTypeSymbol>
 {
 	private static readonly DiagnosticDescriptor SCA0001 = new(

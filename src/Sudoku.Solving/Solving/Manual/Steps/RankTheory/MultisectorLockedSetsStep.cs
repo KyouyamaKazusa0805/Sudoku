@@ -6,11 +6,10 @@
 /// <param name="Conclusions"><inheritdoc/></param>
 /// <param name="Views"><inheritdoc/></param>
 /// <param name="Cells">Indicates the cells used.</param>
-public sealed record MultisectorLockedSetsStep(
-	ImmutableArray<Conclusion> Conclusions,
-	ImmutableArray<View> Views,
-	in Cells Cells
-) : RankTheoryStep(Conclusions, Views), IStepWithRank
+public sealed record class MultisectorLockedSetsStep(
+	ImmutableArray<Conclusion> Conclusions, ImmutableArray<View> Views, in Cells Cells) :
+	RankTheoryStep(Conclusions, Views),
+	IStepWithRank
 {
 	/// <inheritdoc/>
 	public override decimal Difficulty => 9.4M + A002024(Cells.Count) * .1M;

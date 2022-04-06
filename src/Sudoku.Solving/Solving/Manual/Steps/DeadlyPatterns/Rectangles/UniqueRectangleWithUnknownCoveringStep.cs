@@ -11,25 +11,12 @@
 /// <param name="TargetCell">Indicates the target cell.</param>
 /// <param name="ExtraDigit">Indicates the extra digit used.</param>
 /// <param name="AbsoluteOffset"><inheritdoc/></param>
-public sealed record UniqueRectangleWithUnknownCoveringStep(
-	ImmutableArray<Conclusion> Conclusions,
-	ImmutableArray<View> Views,
-	int Digit1,
-	int Digit2,
-	in Cells Cells,
-	int TargetCell,
-	int ExtraDigit,
-	int AbsoluteOffset
-) : UniqueRectangleStep(
-	Conclusions,
-	Views,
-	Technique.UniqueRectangleUnknownCovering,
-	Digit1,
-	Digit2,
-	Cells,
-	false,
-	AbsoluteOffset
-)
+public sealed record class UniqueRectangleWithUnknownCoveringStep(
+	ImmutableArray<Conclusion> Conclusions, ImmutableArray<View> Views,
+	int Digit1, int Digit2, in Cells Cells, int TargetCell, int ExtraDigit, int AbsoluteOffset) :
+	UniqueRectangleStep(
+		Conclusions, Views, Technique.UniqueRectangleUnknownCovering,
+		Digit1, Digit2, Cells, false, AbsoluteOffset)
 {
 	/// <inheritdoc/>
 	public override decimal Difficulty => 4.9M;

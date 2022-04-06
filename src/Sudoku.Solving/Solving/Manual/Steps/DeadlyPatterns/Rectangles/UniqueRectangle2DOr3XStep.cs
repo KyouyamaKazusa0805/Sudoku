@@ -14,19 +14,11 @@
 /// <param name="YDigit">Indicates the digit Y.</param>
 /// <param name="XyCell">Indicates the cell XY.</param>
 /// <param name="AbsoluteOffset"><inheritdoc/></param>
-public sealed record UniqueRectangle2DOr3XStep(
-	ImmutableArray<Conclusion> Conclusions,
-	ImmutableArray<View> Views,
-	Technique TechniqueCode2,
-	int Digit1,
-	int Digit2,
-	in Cells Cells,
-	bool IsAvoidable,
-	int XDigit,
-	int YDigit,
-	int XyCell,
-	int AbsoluteOffset
-) : UniqueRectangleStep(Conclusions, Views, TechniqueCode2, Digit1, Digit2, Cells, IsAvoidable, AbsoluteOffset)
+public sealed record class UniqueRectangle2DOr3XStep(
+	ImmutableArray<Conclusion> Conclusions, ImmutableArray<View> Views,
+	Technique TechniqueCode2, int Digit1, int Digit2, in Cells Cells,
+	bool IsAvoidable, int XDigit, int YDigit, int XyCell, int AbsoluteOffset) :
+	UniqueRectangleStep(Conclusions, Views, TechniqueCode2, Digit1, Digit2, Cells, IsAvoidable, AbsoluteOffset)
 {
 	/// <inheritdoc/>
 	public override decimal Difficulty => 4.7M;

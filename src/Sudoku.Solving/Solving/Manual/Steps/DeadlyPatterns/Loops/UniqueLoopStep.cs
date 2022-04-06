@@ -11,13 +11,11 @@ namespace Sudoku.Solving.Manual.Steps;
 /// <param name="Digit1">Indicates the first digit.</param>
 /// <param name="Digit2">Indicates the second digit.</param>
 /// <param name="Loop">Indicates the loop that the instance used.</param>
-public abstract record UniqueLoopStep(
-	ImmutableArray<Conclusion> Conclusions,
-	ImmutableArray<View> Views,
-	int Digit1,
-	int Digit2,
-	in Cells Loop
-) : DeadlyPatternStep(Conclusions, Views), IDistinctableStep<UniqueLoopStep>
+public abstract record class UniqueLoopStep(
+	ImmutableArray<Conclusion> Conclusions, ImmutableArray<View> Views,
+	int Digit1, int Digit2, in Cells Loop) :
+	DeadlyPatternStep(Conclusions, Views),
+	IDistinctableStep<UniqueLoopStep>
 {
 	/// <inheritdoc/>
 	public override decimal Difficulty =>

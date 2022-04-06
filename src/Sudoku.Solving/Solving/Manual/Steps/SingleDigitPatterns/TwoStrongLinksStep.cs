@@ -8,13 +8,12 @@
 /// <param name="Digit"><inheritdoc/></param>
 /// <param name="BaseRegion">Indicates the base region used.</param>
 /// <param name="TargetRegion">Indicates the target region used.</param>
-public sealed record TwoStrongLinksStep(
-	ImmutableArray<Conclusion> Conclusions,
-	ImmutableArray<View> Views,
-	int Digit,
-	int BaseRegion,
-	int TargetRegion
-) : SingleDigitPatternStep(Conclusions, Views, Digit), IChainLikeStep, IStepWithRank
+public sealed record class TwoStrongLinksStep(
+	ImmutableArray<Conclusion> Conclusions, ImmutableArray<View> Views,
+	int Digit, int BaseRegion, int TargetRegion) :
+	SingleDigitPatternStep(Conclusions, Views, Digit),
+	IChainLikeStep,
+	IStepWithRank
 {
 	/// <inheritdoc/>
 	public override decimal Difficulty =>

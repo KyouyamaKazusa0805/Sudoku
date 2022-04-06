@@ -8,13 +8,12 @@
 /// <param name="Chain">Indicates the whole chain.</param>
 /// <param name="XEnabled"><inheritdoc cref="AlternatingInferenceChainStepSearcher.XEnabled"/></param>
 /// <param name="YEnabled"><inheritdoc cref="AlternatingInferenceChainStepSearcher.YEnabled"/></param>
-public sealed record AlternatingInferenceChainStep(
-	ImmutableArray<Conclusion> Conclusions,
-	ImmutableArray<View> Views,
-	AlternatingInferenceChain Chain,
-	bool XEnabled,
-	bool YEnabled
-) : ChainStep(Conclusions, Views), IChainStep, IChainLikeStep
+public sealed record class AlternatingInferenceChainStep(
+	ImmutableArray<Conclusion> Conclusions, ImmutableArray<View> Views,
+	AlternatingInferenceChain Chain, bool XEnabled, bool YEnabled) :
+	ChainStep(Conclusions, Views),
+	IChainStep,
+	IChainLikeStep
 {
 	/// <inheritdoc/>
 	public override decimal Difficulty =>

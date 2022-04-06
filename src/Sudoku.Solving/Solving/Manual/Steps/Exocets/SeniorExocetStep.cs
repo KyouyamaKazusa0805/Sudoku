@@ -9,14 +9,10 @@
 /// <param name="EndoTargetCell">Indicates the target cell that is embedded into the cross-line cells.</param>
 /// <param name="ExtraRegionsMask">Indicates the mask tnat holds the extra regions used.</param>
 /// <param name="Eliminations"><inheritdoc/></param>
-public sealed record SeniorExocetStep(
-	ImmutableArray<View> Views,
-	in ExocetPattern Exocet,
-	short DigitsMask,
-	int EndoTargetCell,
-	int[]? ExtraRegionsMask,
-	ImmutableArray<ExocetElimination> Eliminations
-) : ExocetStep(Views, Exocet, DigitsMask, Eliminations)
+public sealed record class SeniorExocetStep(
+	ImmutableArray<View> Views, in ExocetPattern Exocet, short DigitsMask,
+	int EndoTargetCell, int[]? ExtraRegionsMask, ImmutableArray<ExocetElimination> Eliminations) :
+	ExocetStep(Views, Exocet, DigitsMask, Eliminations)
 {
 	/// <summary>
 	/// Indicates whether the specified instance contains any extra regions.
@@ -27,7 +23,7 @@ public sealed record SeniorExocetStep(
 	/// <inheritdoc/>
 	public override decimal Difficulty =>
 		9.6M // Base difficulty.
-		+ (ContainsExtraRegions ? 0 : .2M); // Extra region difficulty.
+			+ (ContainsExtraRegions ? 0 : .2M); // Extra region difficulty.
 
 	/// <inheritdoc/>
 	public override Technique TechniqueCode =>

@@ -9,14 +9,10 @@
 /// <param name="ExtraDigitsMask">Indicates the extra digits used to form the subset.</param>
 /// <param name="ExtraCells">Indicates the extra cells used.</param>
 /// <param name="IsNaked">Indicates whether the subset is a naked subset.</param>
-public sealed record QiuDeadlyPatternType3Step(
-	ImmutableArray<Conclusion> Conclusions,
-	ImmutableArray<View> Views,
-	in QiuDeadlyPattern Pattern,
-	short ExtraDigitsMask,
-	in Cells ExtraCells,
-	bool IsNaked
-) : QiuDeadlyPatternStep(Conclusions, Views, Pattern)
+public sealed record class QiuDeadlyPatternType3Step(
+	ImmutableArray<Conclusion> Conclusions, ImmutableArray<View> Views,
+	in QiuDeadlyPattern Pattern, short ExtraDigitsMask, in Cells ExtraCells, bool IsNaked) :
+	QiuDeadlyPatternStep(Conclusions, Views, Pattern)
 {
 	/// <inheritdoc/>
 	public override decimal Difficulty => base.Difficulty + PopCount((uint)ExtraDigitsMask) * .1M;

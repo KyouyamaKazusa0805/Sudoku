@@ -25,14 +25,10 @@
 /// </item>
 /// </list>
 /// </param>
-public sealed record NakedSubsetStep(
-	ImmutableArray<Conclusion> Conclusions,
-	ImmutableArray<View> Views,
-	int Region,
-	in Cells Cells,
-	short DigitsMask,
-	bool? IsLocked
-) : SubsetStep(Conclusions, Views, Region, Cells, DigitsMask)
+public sealed record class NakedSubsetStep(
+	ImmutableArray<Conclusion> Conclusions, ImmutableArray<View> Views,
+	int Region, in Cells Cells, short DigitsMask, bool? IsLocked) :
+	SubsetStep(Conclusions, Views, Region, Cells, DigitsMask)
 {
 	/// <inheritdoc/>
 	public override decimal Difficulty =>

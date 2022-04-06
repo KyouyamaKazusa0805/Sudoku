@@ -10,15 +10,10 @@
 /// <param name="ExtraCells">Indicates the extra cells used.</param>
 /// <param name="ExtraDigitsMask">Indicates the mask that contains the extra digits.</param>
 /// <param name="Region">Indicates the region that extra subset formed.</param>
-public sealed record ExtendedRectangleType3Step(
-	ImmutableArray<Conclusion> Conclusions,
-	ImmutableArray<View> Views,
-	in Cells Cells,
-	short DigitsMask,
-	in Cells ExtraCells,
-	short ExtraDigitsMask,
-	int Region
-) : ExtendedRectangleStep(Conclusions, Views, Cells, DigitsMask)
+public sealed record class ExtendedRectangleType3Step(
+	ImmutableArray<Conclusion> Conclusions, ImmutableArray<View> Views, in Cells Cells,
+	short DigitsMask, in Cells ExtraCells, short ExtraDigitsMask, int Region) :
+	ExtendedRectangleStep(Conclusions, Views, Cells, DigitsMask)
 {
 	/// <inheritdoc/>
 	public override int Type => 3;

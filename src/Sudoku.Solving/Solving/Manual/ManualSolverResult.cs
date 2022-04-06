@@ -4,7 +4,9 @@
 /// Provides the solver result after <see cref="ManualSolver"/> solves a puzzle.
 /// </summary>
 /// <param name="OriginalPuzzle"><inheritdoc/></param>
-public sealed unsafe partial record ManualSolverResult(in Grid OriginalPuzzle) : ISimpleFormattable, ISolverResult
+public sealed unsafe partial record class ManualSolverResult(in Grid OriginalPuzzle) :
+	ISimpleFormattable,
+	ISolverResult
 {
 	/// <inheritdoc/>
 	public bool IsSolved { get; init; }

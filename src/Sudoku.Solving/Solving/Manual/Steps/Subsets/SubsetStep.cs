@@ -8,13 +8,13 @@
 /// <param name="Region">The region that structure lies in.</param>
 /// <param name="Cells">All cells used.</param>
 /// <param name="DigitsMask">The maks that contains all digits used.</param>
-public abstract record SubsetStep(
-	ImmutableArray<Conclusion> Conclusions,
-	ImmutableArray<View> Views,
-	int Region,
-	in Cells Cells,
-	short DigitsMask
-) : Step(Conclusions, Views), IStepWithSize, IStepWithRank, IElementaryStep
+public abstract record class SubsetStep(
+	ImmutableArray<Conclusion> Conclusions, ImmutableArray<View> Views,
+	int Region, in Cells Cells, short DigitsMask) :
+	Step(Conclusions, Views),
+	IStepWithSize,
+	IStepWithRank,
+	IElementaryStep
 {
 	/// <inheritdoc/>
 	public sealed override bool ShowDifficulty => base.ShowDifficulty;

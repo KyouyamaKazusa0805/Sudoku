@@ -9,14 +9,10 @@
 /// <param name="DigitsMask"><inheritdoc/></param>
 /// <param name="ConjugateRegion">Indicates the cells that forms the conjugate region.</param>
 /// <param name="ExtraMask">Indicates the extra digits mask.</param>
-public sealed record UniquePolygonType4Step(
-	ImmutableArray<Conclusion> Conclusions,
-	ImmutableArray<View> Views,
-	in Cells Map,
-	short DigitsMask,
-	in Cells ConjugateRegion,
-	short ExtraMask
-) : UniquePolygonStep(Conclusions, Views, Map, DigitsMask)
+public sealed record class UniquePolygonType4Step(
+	ImmutableArray<Conclusion> Conclusions, ImmutableArray<View> Views,
+	in Cells Map, short DigitsMask, in Cells ConjugateRegion, short ExtraMask) :
+	UniquePolygonStep(Conclusions, Views, Map, DigitsMask)
 {
 	/// <inheritdoc/>
 	public override decimal Difficulty => 5.5M;

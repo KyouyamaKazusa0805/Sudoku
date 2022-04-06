@@ -29,34 +29,15 @@
 /// Indicates the cells in the intersection from regions <see cref="Block"/> and <see cref="Line"/>.
 /// </param>
 /// <param name="AbsoluteOffset"><inheritdoc/></param>
-public sealed record UniqueRectangleWithSueDeCoqStep(
-	ImmutableArray<Conclusion> Conclusions,
-	ImmutableArray<View> Views,
-	int Digit1,
-	int Digit2,
-	in Cells Cells,
-	bool IsAvoidable,
-	int Block,
-	int Line,
-	short BlockMask,
-	short LineMask,
-	short IntersectionMask,
-	bool IsCannibalistic,
-	short IsolatedDigitsMask,
-	in Cells BlockCells,
-	in Cells LineCells,
-	in Cells IntersectionCells,
-	int AbsoluteOffset
-) : UniqueRectangleStep(
-	Conclusions,
-	Views,
-	IsAvoidable ? Technique.AvoidableRectangleSueDeCoq : Technique.UniqueRectangleSueDeCoq,
-	Digit1,
-	Digit2,
-	Cells,
-	IsAvoidable,
-	AbsoluteOffset
-)
+public sealed record class UniqueRectangleWithSueDeCoqStep(
+	ImmutableArray<Conclusion> Conclusions, ImmutableArray<View> Views, int Digit1, int Digit2,
+	in Cells Cells, bool IsAvoidable, int Block, int Line, short BlockMask, short LineMask,
+	short IntersectionMask, bool IsCannibalistic, short IsolatedDigitsMask,
+	in Cells BlockCells, in Cells LineCells, in Cells IntersectionCells, int AbsoluteOffset) :
+	UniqueRectangleStep(
+		Conclusions, Views,
+		IsAvoidable ? Technique.AvoidableRectangleSueDeCoq : Technique.UniqueRectangleSueDeCoq,
+		Digit1, Digit2, Cells, IsAvoidable, AbsoluteOffset)
 {
 	/// <inheritdoc/>
 	public override decimal Difficulty =>

@@ -15,20 +15,12 @@
 /// <param name="BlockCells">The map of block cells.</param>
 /// <param name="LineCells">The map of line cells.</param>
 /// <param name="IntersectionCells">The map of intersection cells.</param>
-public sealed record SueDeCoqStep(
-	ImmutableArray<Conclusion> Conclusions,
-	ImmutableArray<View> Views,
-	int Block,
-	int Line,
-	short BlockMask,
-	short LineMask,
-	short IntersectionMask,
-	bool IsCannibalistic,
-	short IsolatedDigitsMask,
-	in Cells BlockCells,
-	in Cells LineCells,
-	in Cells IntersectionCells
-) : RankTheoryStep(Conclusions, Views), IStepWithRank
+public sealed record class SueDeCoqStep(
+	ImmutableArray<Conclusion> Conclusions, ImmutableArray<View> Views, int Block, int Line,
+	short BlockMask, short LineMask, short IntersectionMask, bool IsCannibalistic,
+	short IsolatedDigitsMask, in Cells BlockCells, in Cells LineCells, in Cells IntersectionCells) :
+	RankTheoryStep(Conclusions, Views),
+	IStepWithRank
 {
 	/// <inheritdoc/>
 	public override decimal Difficulty =>

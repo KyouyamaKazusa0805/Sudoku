@@ -8,13 +8,12 @@
 /// <param name="Digit">Indicates the digit used.</param>
 /// <param name="BaseSet">Indicates the region that the current locked candidates forms.</param>
 /// <param name="CoverSet">Indicates the region that the current locked candidates influences.</param>
-public sealed record LockedCandidatesStep(
-	ImmutableArray<Conclusion> Conclusions,
-	ImmutableArray<View> Views,
-	int Digit,
-	int BaseSet,
-	int CoverSet
-) : IntersectionStep(Conclusions, Views), IElementaryStep, IStepWithRank
+public sealed record class LockedCandidatesStep(
+	ImmutableArray<Conclusion> Conclusions, ImmutableArray<View> Views,
+	int Digit, int BaseSet, int CoverSet) :
+	IntersectionStep(Conclusions, Views),
+	IElementaryStep,
+	IStepWithRank
 {
 	/// <inheritdoc/>
 	public override decimal Difficulty => BaseSet < 9 ? 2.6M : 2.8M;

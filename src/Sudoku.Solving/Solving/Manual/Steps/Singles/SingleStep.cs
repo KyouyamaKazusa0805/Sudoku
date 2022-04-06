@@ -7,12 +7,10 @@
 /// <param name="Views"><inheritdoc/></param>
 /// <param name="Cell">Indicates the cell used.</param>
 /// <param name="Digit">Indicates the digit used.</param>
-public abstract record SingleStep(
-	ImmutableArray<Conclusion> Conclusions,
-	ImmutableArray<View> Views,
-	int Cell,
-	int Digit
-) : Step(Conclusions, Views), IElementaryStep
+public abstract record class SingleStep(
+	ImmutableArray<Conclusion> Conclusions, ImmutableArray<View> Views, int Cell, int Digit) :
+	Step(Conclusions, Views),
+	IElementaryStep
 {
 	/// <inheritdoc/>
 	public sealed override bool ShowDifficulty => base.ShowDifficulty;

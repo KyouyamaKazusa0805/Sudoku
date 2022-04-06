@@ -8,17 +8,14 @@
 /// <param name="Digit1"><inheritdoc/></param>
 /// <param name="Digit2"><inheritdoc/></param>
 /// <param name="Loop"><inheritdoc/></param>
-/// <param name="SubsetDigitsMask">Indicates the mask that contains the subset digits used in this instance.</param>
+/// <param name="SubsetDigitsMask">
+/// Indicates the mask that contains the subset digits used in this instance.
+/// </param>
 /// <param name="SubsetCells">Indicates the subset cells.</param>
-public sealed record UniqueLoopType3Step(
-	ImmutableArray<Conclusion> Conclusions,
-	ImmutableArray<View> Views,
-	int Digit1,
-	int Digit2,
-	in Cells Loop,
-	short SubsetDigitsMask,
-	in Cells SubsetCells
-) : UniqueLoopStep(Conclusions, Views, Digit1, Digit2, Loop)
+public sealed record class UniqueLoopType3Step(
+	ImmutableArray<Conclusion> Conclusions, ImmutableArray<View> Views,
+	int Digit1, int Digit2, in Cells Loop, short SubsetDigitsMask, in Cells SubsetCells) :
+	UniqueLoopStep(Conclusions, Views, Digit1, Digit2, Loop)
 {
 	/// <inheritdoc/>
 	public override decimal Difficulty => base.Difficulty + SubsetCells.Count * .1M;

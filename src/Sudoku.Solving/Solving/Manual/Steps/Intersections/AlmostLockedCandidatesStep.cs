@@ -9,7 +9,7 @@
 /// <param name="BaseCells">Indicates the base cells.</param>
 /// <param name="TargetCells">Indicates the target cells.</param>
 /// <param name="HasValueCell">Indicates whether the step contains value cells.</param>
-public sealed record AlmostLockedCandidatesStep(
+public sealed record class AlmostLockedCandidatesStep(
 	ImmutableArray<Conclusion> Conclusions,
 	ImmutableArray<View> Views,
 	short DigitsMask,
