@@ -4,7 +4,6 @@ global using System.Collections.Generic;
 global using System.Collections.Immutable;
 global using System.Diagnostics;
 global using System.Diagnostics.CodeAnalysis;
-global using System.Globalization;
 global using System.Linq;
 global using System.Numerics;
 global using System.Reflection;
@@ -34,6 +33,7 @@ global using static System.Algorithm.Combinatorics;
 global using static System.Algorithm.Sequences;
 global using static System.Math;
 global using static System.Numerics.BitOperations;
+global using static Sudoku.Resources.MergedResources;
 global using static Sudoku.Runtime.AnalysisServices.CommonReadOnlies;
 global using static Sudoku.Solving.Manual.Buffer.FastProperties;
 

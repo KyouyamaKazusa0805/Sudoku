@@ -160,7 +160,7 @@ public sealed class AlmostLockedSet :
 	{
 		string digitsStr = new DigitCollection(DigitsMask).ToSimpleString();
 		string regionStr = new RegionCollection(Region).ToString();
-		return IsBivalueCell ? $"{digitsStr}/{Map}" : $"{digitsStr}/{Map} in {regionStr}";
+		return IsBivalueCell ? $"{digitsStr}/{Map}" : $"{digitsStr}/{Map} {R["KeywordIn"]} {regionStr}";
 	}
 
 

@@ -6,6 +6,7 @@ global using System.CommonComparers.Equality;
 global using System.ComponentModel;
 global using System.Diagnostics;
 global using System.Diagnostics.CodeAnalysis;
+global using System.Globalization;
 global using System.IO;
 global using System.Linq;
 global using System.Numerics;
@@ -33,6 +34,7 @@ global using static System.Algorithm.Sequences;
 global using static System.Algorithm.Sorting;
 global using static System.Math;
 global using static System.Numerics.BitOperations;
+global using static Sudoku.Resources.MergedResources;
 global using static Sudoku.Runtime.AnalysisServices.CommonReadOnlies;
 
 [assembly: InternalsVisibleTo("Sudoku.Solving")]

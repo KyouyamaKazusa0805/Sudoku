@@ -50,12 +50,21 @@ public readonly record struct ExocetElimination(in Candidates Eliminations, Exoc
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public override string ToString()
 	{
+#if true
+		// Use resource to get the result.
+		string header = R[$"Exocet{Reason}EliminationName"]!;
+		string snippet = R["ExocetElimination"]!;
+		string elim = new ConclusionCollection(ToArray()).ToString();
+		return $"* {header}{snippet}{elim}";
+#else
+		// Use attribute to get the result.
 		string header = typeof(ExocetEliminatedReason)
 			.GetField(Reason.ToString())!
 			.GetCustomAttribute<EnumFieldNameAttribute>()!
 			.Name;
 
 		return $"* {header}eliminations: {new ConclusionCollection(ToArray()).ToString()}";
+#endif
 	}
 
 	/// <summary>

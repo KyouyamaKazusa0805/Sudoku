@@ -8,12 +8,26 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<None Include="$(SolutionDir)Resources\lang\**" CopyToOutputDirectory="PreserveNewest" />
+		<ProjectReference Include="..\System\SystemExtensions.csproj" />
+		<ProjectReference Include="..\Sudoku.Diagnostics.CodeGen\Sudoku.Diagnostics.CodeGen.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="true" />
 	</ItemGroup>
 
 	<ItemGroup>
-		<ProjectReference Include="..\System\SystemExtensions.csproj" />
-		<ProjectReference Include="..\Sudoku.Diagnostics.CodeGen\Sudoku.Diagnostics.CodeGen.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="true" />
+		<Compile Update="Resources\Resources.Designer.cs">
+			<DependentUpon>Resources.resx</DependentUpon>
+			<DesignTime>True</DesignTime>
+			<AutoGen>True</AutoGen>
+		</Compile>
+	</ItemGroup>
+
+	<ItemGroup>
+		<EmbeddedResource Update="Resources\Resources.resx">
+			<LastGenOutput>Resources.Designer.cs</LastGenOutput>
+			<Generator>ResXFileCodeGenerator</Generator>
+		</EmbeddedResource>
+		<EmbeddedResource Update="Resources\Resources.zh-CN.resx">
+			<SubType>Designer</SubType>
+		</EmbeddedResource>
 	</ItemGroup>
 
 </Project>
