@@ -56,9 +56,8 @@ public sealed class BacktrackingSolver : ISimpleSolver
 				}
 
 				// We should catch the result.
-				// If we use normal assignment, we well get the
-				// initial grid rather a solution, because
-				// this is a recursive function!!!
+				// If we use normal assignment, we well get the initial grid rather a solution,
+				// because this is a recursive function!!!
 				result = (int[])gridValues.Clone();
 				return; // Exit the recursion.
 			}
@@ -70,8 +69,7 @@ public sealed class BacktrackingSolver : ISimpleSolver
 			else
 			{
 				// Here may try 9 times.
-				// Of course, you can add a new variable to save
-				// all candidates to let the algorithm run faster.
+				// Of course, you can add a new variable to save all candidates to let the algorithm run faster.
 				int r = finishedCellsCount / 9, c = finishedCellsCount % 9;
 				for (int i = 0; i < 9; i++)
 				{
@@ -82,8 +80,7 @@ public sealed class BacktrackingSolver : ISimpleSolver
 					}
 				}
 
-				// All values are wrong, which means the value before
-				// we calculate is already wrong.
+				// All values are wrong, which means the value before we calculate is already wrong.
 				// Backtracking the cell...
 				gridValues[finishedCellsCount] = 0;
 			}
