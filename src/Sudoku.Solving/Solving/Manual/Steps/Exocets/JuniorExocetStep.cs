@@ -12,38 +12,27 @@
 public sealed record class JuniorExocetStep(
 	ImmutableArray<View> Views, in ExocetPattern Exocet, short DigitsMask, short LockedMemberQ,
 	short LockedMemberR, ImmutableArray<ExocetElimination> Eliminations) :
-	ExocetStep(Views, Exocet, DigitsMask, Eliminations)
+	ExocetStep(Views, Exocet, DigitsMask, Eliminations),
+	IStepWithPhasedDifficulty
 {
 	/// <inheritdoc/>
-	public override decimal Difficulty =>
-		9.4M + MirrorDifficulty + BiBiDifficulty + TargetPairDifficulty + GeneralizedSwordfishDifficulty;
+	public override decimal Difficulty => ((IStepWithPhasedDifficulty)this).TotalDifficulty;
+
+	/// <inheritdoc/>
+	public decimal BaseDifficulty => 9.4M;
+
+	/// <inheritdoc/>
+	public (string Name, decimal Value)[] ExtraDifficultyValues =>
+		new[]
+		{
+			("Mirror", Eliminations.Any(static e => e.Reason == ExocetEliminatedReason.Mirror) ? .1M : 0),
+			("Bi-bi pattern", Eliminations.Any(static e => e.Reason == ExocetEliminatedReason.BiBiPattern) ? .3M : 0),
+			("Target pair", Eliminations.Any(static e => e.Reason == ExocetEliminatedReason.TargetPair) ? .1M : 0),
+			("Generalized swordfish", Eliminations.Any(static e => e.Reason == ExocetEliminatedReason.GeneralizedSwordfish) ? .2M : 0)
+		};
 
 	/// <inheritdoc/>
 	public override Technique TechniqueCode => Technique.JuniorExocet;
-
-	/// <summary>
-	/// Indicates extra difficulty on mirror eliminations.
-	/// </summary>
-	private decimal MirrorDifficulty =>
-		Eliminations.Any(static e => e.Reason == ExocetEliminatedReason.Mirror) ? .1M : 0;
-
-	/// <summary>
-	/// Indicates extra difficulty on Bi-Bi pattern eliminations.
-	/// </summary>
-	private decimal BiBiDifficulty =>
-		Eliminations.Any(static e => e.Reason == ExocetEliminatedReason.BiBiPattern) ? .3M : 0;
-
-	/// <summary>
-	/// Indicates extra difficulty on target pair eliminations.
-	/// </summary>
-	private decimal TargetPairDifficulty =>
-		Eliminations.Any(static e => e.Reason == ExocetEliminatedReason.TargetPair) ? .1M : 0;
-
-	/// <summary>
-	/// Indicates extra difficulty on generalized swordfish eliminations.
-	/// </summary>
-	private decimal GeneralizedSwordfishDifficulty =>
-		Eliminations.Any(static e => e.Reason == ExocetEliminatedReason.GeneralizedSwordfish) ? .2M : 0;
 
 	/// <summary>
 	/// Indicates the locked member Q string.

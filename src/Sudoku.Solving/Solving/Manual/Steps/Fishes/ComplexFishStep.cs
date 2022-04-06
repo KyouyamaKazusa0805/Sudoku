@@ -12,49 +12,40 @@
 /// <param name="Endofins">The endo-fins.</param>
 /// <param name="IsFranken">Indicates whether the fish is a Franken fish.</param>
 /// <param name="IsSashimi">Indicates whether the fish is a Sashimi fish.</param>
-public sealed partial record ComplexFishStep(
-	ImmutableArray<Conclusion> Conclusions,
-	ImmutableArray<View> Views,
-	int Digit,
-	int BaseSetsMask,
-	int CoverSetsMask,
-	in Cells Exofins,
-	in Cells Endofins,
-	bool IsFranken,
-	bool? IsSashimi
-) : FishStep(Conclusions, Views, Digit, BaseSetsMask, CoverSetsMask), IDistinctableStep<ComplexFishStep>
+public sealed partial record class ComplexFishStep(
+	ImmutableArray<Conclusion> Conclusions, ImmutableArray<View> Views,
+	int Digit, int BaseSetsMask, int CoverSetsMask, in Cells Exofins, in Cells Endofins,
+	bool IsFranken, bool? IsSashimi) :
+	FishStep(Conclusions, Views, Digit, BaseSetsMask, CoverSetsMask),
+	IDistinctableStep<ComplexFishStep>,
+	IStepWithPhasedDifficulty
 {
-	/// <summary>
-	/// The basic difficulty rating table.
-	/// </summary>
-	private static readonly decimal[] BasicDiff = { 0, 0, 3.2M, 3.8M, 5.2M, 6.0M, 6.0M, 6.6M, 7.0M };
-
-	/// <summary>
-	/// The finned difficulty rating table.
-	/// </summary>
-	private static readonly decimal[] FinnedDiff = { 0, 0, .2M, .2M, .2M, .3M, .3M, .3M, .4M };
-
-	/// <summary>
-	/// The sashimi difficulty rating table.
-	/// </summary>
-	private static readonly decimal[] SashimiDiff = { 0, 0, .3M, .3M, .4M, .4M, .5M, .6M, .7M };
-
-	/// <summary>
-	/// The Franken shape extra difficulty rating table.
-	/// </summary>
-	private static readonly decimal[] FrankenShapeDiffExtra = { 0, 0, .2M, 1.2M, 1.2M, 1.3M, 1.3M, 1.3M, 1.4M };
-
-	/// <summary>
-	/// The mutant shape extra difficulty rating table.
-	/// </summary>
-	private static readonly decimal[] MutantShapeDiffExtra = { 0, 0, .3M, 1.4M, 1.4M, 1.5M, 1.5M, 1.5M, 1.6M };
-
+	/// <inheritdoc/>
+	public override decimal Difficulty => ((IStepWithPhasedDifficulty)this).TotalDifficulty;
 
 	/// <inheritdoc/>
-	public override decimal Difficulty =>
-		BasicDiff[Size] // Base difficulty.
-			+ IsSashimi switch { false => FinnedDiff[Size], true => SashimiDiff[Size], _ => 0 } // Sashimi difficulty.
-			+ (IsFranken ? FrankenShapeDiffExtra[Size] : MutantShapeDiffExtra[Size]); // Shape difficulty.
+	public decimal BaseDifficulty => new[] { 0, 0, 3.2M, 3.8M, 5.2M, 6.0M, 6.0M, 6.6M, 7.0M }[Size];
+
+	/// <inheritdoc/>
+	public (string Name, decimal Value)[] ExtraDifficultyValues =>
+		new[]
+		{
+			(
+				"Sashimi",
+				IsSashimi switch
+				{
+					false => new[] { 0, 0, .2M, .2M, .2M, .3M, .3M, .3M, .4M }[Size],
+					true => new[] { 0, 0, .3M, .3M, .4M, .4M, .5M, .6M, .7M }[Size],
+					_ => 0
+				}
+			),
+			(
+				"Shape",
+				IsFranken
+					? new[] { 0, 0, .2M, 1.2M, 1.2M, 1.3M, 1.3M, 1.3M, 1.4M }[Size]
+					: new[] { 0, 0, .3M, 1.4M, 1.4M, 1.5M, 1.5M, 1.5M, 1.6M }[Size]
+			)
+		};
 
 	/// <inheritdoc/>
 	public override DifficultyLevel DifficultyLevel =>

@@ -11,10 +11,17 @@
 public sealed record class BivalueUniversalGraveXzStep(
 	ImmutableArray<Conclusion> Conclusions, ImmutableArray<View> Views,
 	short DigitsMask, in Cells Cells, int ExtraCell) :
-	BivalueUniversalGraveStep(Conclusions, Views)
+	BivalueUniversalGraveStep(Conclusions, Views),
+	IStepWithPhasedDifficulty
 {
 	/// <inheritdoc/>
-	public override decimal Difficulty => base.Difficulty + .2M;
+	public override decimal Difficulty => ((IStepWithPhasedDifficulty)this).TotalDifficulty;
+
+	/// <inheritdoc/>
+	public decimal BaseDifficulty => base.Difficulty;
+
+	/// <inheritdoc/>
+	public (string Name, decimal Value)[] ExtraDifficultyValues => new[] { ("Extra digit", .2M) };
 
 	/// <inheritdoc/>
 	public override Technique TechniqueCode => Technique.BivalueUniversalGraveXzRule;

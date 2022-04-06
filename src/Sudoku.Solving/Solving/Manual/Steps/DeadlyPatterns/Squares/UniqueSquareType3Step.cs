@@ -14,10 +14,18 @@
 public sealed record class UniqueSquareType3Step(
 	ImmutableArray<Conclusion> Conclusions, ImmutableArray<View> Views,
 	in Cells Cells, short DigitsMask, short ExtraDigitsMask, in Cells ExtraCells) :
-	UniqueSquareStep(Conclusions, Views, Cells, DigitsMask)
+	UniqueSquareStep(Conclusions, Views, Cells, DigitsMask),
+	IStepWithPhasedDifficulty
 {
 	/// <inheritdoc/>
-	public override decimal Difficulty => base.Difficulty + PopCount((uint)ExtraDigitsMask) * .1M;
+	public override decimal Difficulty => ((IStepWithPhasedDifficulty)this).TotalDifficulty;
+
+	/// <inheritdoc/>
+	public decimal BaseDifficulty => base.Difficulty;
+
+	/// <inheritdoc/>
+	public (string Name, decimal Value)[] ExtraDifficultyValues =>
+		new[] { ("Extra digits", PopCount((uint)ExtraDigitsMask) * .1M) };
 
 	/// <inheritdoc/>
 	public override int Type => 3;

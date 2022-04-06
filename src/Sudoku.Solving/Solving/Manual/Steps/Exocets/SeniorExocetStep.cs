@@ -12,7 +12,8 @@
 public sealed record class SeniorExocetStep(
 	ImmutableArray<View> Views, in ExocetPattern Exocet, short DigitsMask,
 	int EndoTargetCell, int[]? ExtraRegionsMask, ImmutableArray<ExocetElimination> Eliminations) :
-	ExocetStep(Views, Exocet, DigitsMask, Eliminations)
+	ExocetStep(Views, Exocet, DigitsMask, Eliminations),
+	IStepWithPhasedDifficulty
 {
 	/// <summary>
 	/// Indicates whether the specified instance contains any extra regions.
@@ -21,9 +22,14 @@ public sealed record class SeniorExocetStep(
 		ExtraRegionsMask is not null && Array.Exists(ExtraRegionsMask, static m => m != 0);
 
 	/// <inheritdoc/>
-	public override decimal Difficulty =>
-		9.6M // Base difficulty.
-			+ (ContainsExtraRegions ? 0 : .2M); // Extra region difficulty.
+	public override decimal Difficulty => ((IStepWithPhasedDifficulty)this).TotalDifficulty;
+
+	/// <inheritdoc/>
+	public decimal BaseDifficulty => 9.6M;
+
+	/// <inheritdoc/>
+	public (string Name, decimal Value)[] ExtraDifficultyValues =>
+		new[] { ("Extra region", ContainsExtraRegions ? 0 : .2M) };
 
 	/// <inheritdoc/>
 	public override Technique TechniqueCode =>

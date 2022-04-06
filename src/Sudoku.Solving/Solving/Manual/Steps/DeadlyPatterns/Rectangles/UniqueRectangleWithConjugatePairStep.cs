@@ -16,10 +16,18 @@ public record class UniqueRectangleWithConjugatePairStep(
 	ImmutableArray<Conclusion> Conclusions, ImmutableArray<View> Views,
 	Technique TechniqueCode2, int Digit1, int Digit2, in Cells Cells, bool IsAvoidable,
 	ConjugatePair[] ConjugatePairs, int AbsoluteOffset) :
-	UniqueRectangleStep(Conclusions, Views, TechniqueCode2, Digit1, Digit2, Cells, IsAvoidable, AbsoluteOffset)
+	UniqueRectangleStep(Conclusions, Views, TechniqueCode2, Digit1, Digit2, Cells, IsAvoidable, AbsoluteOffset),
+	IStepWithPhasedDifficulty
 {
 	/// <inheritdoc/>
-	public sealed override decimal Difficulty => 4.4M + ConjugatePairs.Length * .2M;
+	public sealed override decimal Difficulty => ((IStepWithPhasedDifficulty)this).TotalDifficulty;
+
+	/// <inheritdoc/>
+	public decimal BaseDifficulty => 4.4M;
+
+	/// <inheritdoc/>
+	public (string Name, decimal Value)[] ExtraDifficultyValues =>
+		new[] { ("Conjugate pairs", ConjugatePairs.Length * .2M) };
 
 	/// <inheritdoc/>
 	public sealed override DifficultyLevel DifficultyLevel => DifficultyLevel.Hard;
@@ -29,7 +37,7 @@ public record class UniqueRectangleWithConjugatePairStep(
 
 	/// <inheritdoc/>
 	public override Rarity Rarity => Rarity.Often;
-
+	
 	/// <summary>
 	/// Indicates the conjugate pair string.
 	/// </summary>

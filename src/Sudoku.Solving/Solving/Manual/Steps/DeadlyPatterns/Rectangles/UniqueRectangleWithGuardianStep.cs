@@ -18,13 +18,22 @@ public sealed record class UniqueRectangleWithGuardianStep(
 	int GuardianDigit, bool IsIncomplete, int AbsoluteOffset) :
 	UniqueRectangleStep(
 		Conclusions, Views, Technique.UniqueRectangleBrokenWing,
-		Digit1, Digit2, Cells, false, AbsoluteOffset)
+		Digit1, Digit2, Cells, false, AbsoluteOffset),
+	IStepWithPhasedDifficulty
 {
 	/// <inheritdoc/>
-	public override decimal Difficulty =>
-		4.5M
-			+ .1M * (GuardianCells.Count >> 1) // Guardian count difficulty.
-			+ (IsIncomplete ? .1M : 0); // Incompleteness difficulty.
+	public override decimal Difficulty => ((IStepWithPhasedDifficulty)this).TotalDifficulty;
+
+	/// <inheritdoc/>
+	public decimal BaseDifficulty => 4.5M;
+
+	/// <inheritdoc/>
+	public (string Name, decimal Value)[] ExtraDifficultyValues =>
+		new[]
+		{
+			("Guardians", (GuardianCells.Count >> 1) * .1M),
+			("Incompleteness", IsIncomplete ? .1M : 0)
+		};
 
 	/// <inheritdoc/>
 	public override DifficultyLevel DifficultyLevel => DifficultyLevel.Fiendish;

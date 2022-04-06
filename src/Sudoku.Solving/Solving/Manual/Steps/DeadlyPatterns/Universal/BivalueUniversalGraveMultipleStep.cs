@@ -8,13 +8,21 @@
 /// <param name="Candidates">Indicates the true candidates.</param>
 public sealed record class BivalueUniversalGraveMultipleStep(
 	ImmutableArray<Conclusion> Conclusions, ImmutableArray<View> Views, IReadOnlyList<int> Candidates) :
-	BivalueUniversalGraveStep(Conclusions, Views)
+	BivalueUniversalGraveStep(Conclusions, Views),
+	IStepWithPhasedDifficulty
 {
 	/// <inheritdoc/>
 	public override string Name => $"{base.Name} + {Candidates.Count}";
 
 	/// <inheritdoc/>
-	public override decimal Difficulty => base.Difficulty + .1M + A002024(Candidates.Count) * .1M;
+	public override decimal Difficulty => ((IStepWithPhasedDifficulty)this).TotalDifficulty;
+
+	/// <inheritdoc/>
+	public decimal BaseDifficulty => base.Difficulty;
+
+	/// <inheritdoc/>
+	public (string Name, decimal Value)[] ExtraDifficultyValues =>
+		new[] { ("Offset", .1M), ("Size", A002024(Candidates.Count) * .1M) };
 
 	/// <inheritdoc/>
 	public override Technique TechniqueCode => Technique.BivalueUniversalGravePlusN;

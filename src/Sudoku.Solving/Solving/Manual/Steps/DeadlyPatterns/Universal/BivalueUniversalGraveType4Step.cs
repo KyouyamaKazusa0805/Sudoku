@@ -11,10 +11,17 @@
 public sealed record class BivalueUniversalGraveType4Step(
 	ImmutableArray<Conclusion> Conclusions, ImmutableArray<View> Views,
 	short DigitsMask, in Cells Cells, in ConjugatePair ConjugatePair) :
-	BivalueUniversalGraveStep(Conclusions, Views)
+	BivalueUniversalGraveStep(Conclusions, Views),
+	IStepWithPhasedDifficulty
 {
 	/// <inheritdoc/>
-	public override decimal Difficulty => base.Difficulty + .1M;
+	public override decimal Difficulty => ((IStepWithPhasedDifficulty)this).TotalDifficulty;
+
+	/// <inheritdoc/>
+	public decimal BaseDifficulty => base.Difficulty;
+
+	/// <inheritdoc/>
+	public (string Name, decimal Value)[] ExtraDifficultyValues => new[] { ("Conjugate pair", .1M) };
 
 	/// <inheritdoc/>
 	public override Technique TechniqueCode => Technique.BivalueUniversalGraveType4;

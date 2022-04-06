@@ -9,10 +9,18 @@
 public sealed record class MultisectorLockedSetsStep(
 	ImmutableArray<Conclusion> Conclusions, ImmutableArray<View> Views, in Cells Cells) :
 	RankTheoryStep(Conclusions, Views),
-	IStepWithRank
+	IStepWithRank,
+	IStepWithPhasedDifficulty
 {
 	/// <inheritdoc/>
-	public override decimal Difficulty => 9.4M + A002024(Cells.Count) * .1M;
+	public override decimal Difficulty => ((IStepWithPhasedDifficulty)this).TotalDifficulty;
+
+	/// <inheritdoc/>
+	public decimal BaseDifficulty => 9.4M;
+
+	/// <inheritdoc/>
+	public (string Name, decimal Value)[] ExtraDifficultyValues =>
+		new[] { ("Size", A002024(Cells.Count) * .1M) };
 
 	/// <inheritdoc/>
 	public int Rank => 0;

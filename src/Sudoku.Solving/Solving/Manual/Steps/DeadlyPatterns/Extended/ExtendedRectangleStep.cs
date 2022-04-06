@@ -8,8 +8,9 @@
 /// <param name="Cells">Indicates the cells used.</param>
 /// <param name="DigitsMask">Indicates the mask that contains the digits used.</param>
 public abstract record class ExtendedRectangleStep(
-	ImmutableArray<Conclusion> Conclusions, ImmutableArray<View> Views,
-	in Cells Cells, short DigitsMask) : DeadlyPatternStep(Conclusions, Views)
+	ImmutableArray<Conclusion> Conclusions, ImmutableArray<View> Views, in Cells Cells, short DigitsMask) :
+	DeadlyPatternStep(Conclusions, Views),
+	IStepWithPhasedDifficulty
 {
 	/// <summary>
 	/// Indicates the type of the step. The value must be between 1 and 4.
@@ -17,7 +18,14 @@ public abstract record class ExtendedRectangleStep(
 	public abstract int Type { get; }
 
 	/// <inheritdoc/>
-	public override decimal Difficulty => 4.5M + ((Cells.Count >> 1) - 2) * .1M;
+	public override decimal Difficulty => ((IStepWithPhasedDifficulty)this).TotalDifficulty;
+
+	/// <inheritdoc/>
+	public decimal BaseDifficulty => 4.5M;
+
+	/// <inheritdoc/>
+	public (string Name, decimal Value)[] ExtraDifficultyValues =>
+		new[] { ("Size", ((Cells.Count >> 1) - 2) * .1M) };
 
 	/// <inheritdoc/>
 	public sealed override Technique TechniqueCode => Enum.Parse<Technique>($"ExtendedRectangleType{Type}");

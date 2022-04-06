@@ -14,16 +14,24 @@ public sealed record class GuardianStep(
 	SingleDigitPatternStep(Conclusions, Views, Digit),
 	IDistinctableStep<GuardianStep>,
 	ILoopLikeStep,
-	IStepWithRank
+	IStepWithRank,
+	IStepWithPhasedDifficulty
 {
 	/// <inheritdoc/>
 	public bool? IsNice => null;
 
 	/// <inheritdoc/>
-	public int Rank => -1;
+	public override decimal Difficulty => ((IStepWithPhasedDifficulty)this).TotalDifficulty;
 
 	/// <inheritdoc/>
-	public override decimal Difficulty => 5.5M + .1M * (Loop.Count + (Guardians.Count >> 1) >> 1);
+	public decimal BaseDifficulty => 5.5M;
+
+	/// <inheritdoc/>
+	public (string Name, decimal Value)[] ExtraDifficultyValues =>
+		new[] { ("Loop length", (Loop.Count + (Guardians.Count >> 1) >> 1) * .1M) };
+
+	/// <inheritdoc/>
+	public int Rank => -1;
 
 	/// <inheritdoc/>
 	public override Technique TechniqueCode => Technique.BrokenWing;

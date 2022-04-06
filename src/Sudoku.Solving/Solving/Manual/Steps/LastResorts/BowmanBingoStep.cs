@@ -8,12 +8,20 @@
 /// <param name="ContradictionLinks">Indicates the list of contradiction links.</param>
 public sealed record class BowmanBingoStep(
 	ImmutableArray<Conclusion> Conclusions, ImmutableArray<View> Views,
-	ImmutableArray<Conclusion> ContradictionLinks) : LastResortStep(Conclusions, Views), IChainLikeStep
+	ImmutableArray<Conclusion> ContradictionLinks) :
+	LastResortStep(Conclusions, Views),
+	IChainLikeStep,
+	IStepWithPhasedDifficulty
 {
 	/// <inheritdoc/>
-	public override decimal Difficulty =>
-		8.0M // Base difficulty.
-			+ IChainLikeStep.GetExtraDifficultyByLength(ContradictionLinks.Length); // Length difficulty.
+	public override decimal Difficulty => ((IStepWithPhasedDifficulty)this).TotalDifficulty;
+
+	/// <inheritdoc/>
+	public decimal BaseDifficulty => 8.0M;
+
+	/// <inheritdoc/>
+	public (string Name, decimal Value)[] ExtraDifficultyValues =>
+		new[] { ("Length", IChainLikeStep.GetExtraDifficultyByLength(ContradictionLinks.Length)) };
 
 	/// <inheritdoc/>
 	public override DifficultyLevel DifficultyLevel => DifficultyLevel.LastResort;

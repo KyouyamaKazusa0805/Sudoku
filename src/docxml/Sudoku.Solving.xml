@@ -4646,6 +4646,12 @@
         <member name="P:Sudoku.Solving.Manual.Steps.AlternatingInferenceChainStep.Difficulty">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.AlternatingInferenceChainStep.BaseDifficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.AlternatingInferenceChainStep.ExtraDifficultyValues">
+            <inheritdoc/>
+        </member>
         <member name="P:Sudoku.Solving.Manual.Steps.AlternatingInferenceChainStep.FlatComplexity">
             <inheritdoc/>
         </member>
@@ -4666,6 +4672,11 @@
         </member>
         <member name="P:Sudoku.Solving.Manual.Steps.AlternatingInferenceChainStep.SortKey">
             <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.AlternatingInferenceChainStep.IsIrregularWing">
+            <summary>
+            Indicates whether the current chain is irregular wing.
+            </summary>
         </member>
         <member name="P:Sudoku.Solving.Manual.Steps.AlternatingInferenceChainStep.IsXyChain">
             <summary>
@@ -4895,6 +4906,12 @@
         <member name="P:Sudoku.Solving.Manual.Steps.ExtendedRectangleStep.Difficulty">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.ExtendedRectangleStep.BaseDifficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.ExtendedRectangleStep.ExtraDifficultyValues">
+            <inheritdoc/>
+        </member>
         <member name="P:Sudoku.Solving.Manual.Steps.ExtendedRectangleStep.TechniqueCode">
             <inheritdoc/>
         </member>
@@ -4970,6 +4987,12 @@
         <member name="P:Sudoku.Solving.Manual.Steps.ExtendedRectangleType2Step.Difficulty">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.ExtendedRectangleType2Step.BaseDifficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.ExtendedRectangleType2Step.ExtraDifficultyValues">
+            <inheritdoc/>
+        </member>
         <member name="P:Sudoku.Solving.Manual.Steps.ExtendedRectangleType2Step.Rarity">
             <inheritdoc/>
         </member>
@@ -5012,6 +5035,12 @@
         <member name="P:Sudoku.Solving.Manual.Steps.ExtendedRectangleType3Step.Difficulty">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.ExtendedRectangleType3Step.BaseDifficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.ExtendedRectangleType3Step.ExtraDifficultyValues">
+            <inheritdoc/>
+        </member>
         <member name="P:Sudoku.Solving.Manual.Steps.ExtendedRectangleType3Step.Rarity">
             <inheritdoc/>
         </member>
@@ -5042,6 +5071,12 @@
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Manual.Steps.ExtendedRectangleType4Step.Difficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.ExtendedRectangleType4Step.BaseDifficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.ExtendedRectangleType4Step.ExtraDifficultyValues">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Manual.Steps.ExtendedRectangleType4Step.Rarity">
@@ -5077,6 +5112,12 @@
             <summary>Indicates the loop that the instance used.</summary>
         </member>
         <member name="P:Sudoku.Solving.Manual.Steps.UniqueLoopStep.Difficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.UniqueLoopStep.BaseDifficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.UniqueLoopStep.ExtraDifficultyValues">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Manual.Steps.UniqueLoopStep.Type">
@@ -5208,6 +5249,12 @@
             <summary>Indicates the subset cells.</summary>
         </member>
         <member name="P:Sudoku.Solving.Manual.Steps.UniqueLoopType3Step.Difficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.UniqueLoopType3Step.BaseDifficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.UniqueLoopType3Step.ExtraDifficultyValues">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Manual.Steps.UniqueLoopType3Step.Type">
@@ -5443,6 +5490,12 @@
         <member name="P:Sudoku.Solving.Manual.Steps.QiuDeadlyPatternLockedTypeStep.Difficulty">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.QiuDeadlyPatternLockedTypeStep.BaseDifficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.QiuDeadlyPatternLockedTypeStep.ExtraDifficultyValues">
+            <inheritdoc/>
+        </member>
         <member name="P:Sudoku.Solving.Manual.Steps.QiuDeadlyPatternLockedTypeStep.Type">
             <inheritdoc/>
         </member>
@@ -5541,6 +5594,12 @@
         <member name="P:Sudoku.Solving.Manual.Steps.QiuDeadlyPatternType2Step.Difficulty">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.QiuDeadlyPatternType2Step.BaseDifficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.QiuDeadlyPatternType2Step.ExtraDifficultyValues">
+            <inheritdoc/>
+        </member>
         <member name="P:Sudoku.Solving.Manual.Steps.QiuDeadlyPatternType2Step.Type">
             <inheritdoc/>
         </member>
@@ -5578,6 +5637,12 @@
         <member name="P:Sudoku.Solving.Manual.Steps.QiuDeadlyPatternType3Step.Difficulty">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.QiuDeadlyPatternType3Step.BaseDifficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.QiuDeadlyPatternType3Step.ExtraDifficultyValues">
+            <inheritdoc/>
+        </member>
         <member name="P:Sudoku.Solving.Manual.Steps.QiuDeadlyPatternType3Step.Type">
             <inheritdoc/>
         </member>
@@ -5603,6 +5668,12 @@
             <summary>Indicates the conjugate pair used.</summary>
         </member>
         <member name="P:Sudoku.Solving.Manual.Steps.QiuDeadlyPatternType4Step.Difficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.QiuDeadlyPatternType4Step.BaseDifficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.QiuDeadlyPatternType4Step.ExtraDifficultyValues">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Manual.Steps.QiuDeadlyPatternType4Step.Type">
@@ -6049,6 +6120,12 @@
         <member name="P:Sudoku.Solving.Manual.Steps.UniqueRectangleType3Step.Difficulty">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.UniqueRectangleType3Step.BaseDifficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.UniqueRectangleType3Step.ExtraDifficultyValues">
+            <inheritdoc/>
+        </member>
         <member name="P:Sudoku.Solving.Manual.Steps.UniqueRectangleType3Step.DifficultyLevel">
             <inheritdoc/>
         </member>
@@ -6087,6 +6164,12 @@
             <summary>Indicates the conjugate pairs used.</summary>
         </member>
         <member name="P:Sudoku.Solving.Manual.Steps.UniqueRectangleWithConjugatePairStep.Difficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.UniqueRectangleWithConjugatePairStep.BaseDifficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.UniqueRectangleWithConjugatePairStep.ExtraDifficultyValues">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Manual.Steps.UniqueRectangleWithConjugatePairStep.DifficultyLevel">
@@ -6141,6 +6224,12 @@
             <summary>Indicates whether the rectangle is incomplete.</summary>
         </member>
         <member name="P:Sudoku.Solving.Manual.Steps.UniqueRectangleWithGuardianStep.Difficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.UniqueRectangleWithGuardianStep.BaseDifficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.UniqueRectangleWithGuardianStep.ExtraDifficultyValues">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Manual.Steps.UniqueRectangleWithGuardianStep.DifficultyLevel">
@@ -6256,6 +6345,12 @@
         <member name="P:Sudoku.Solving.Manual.Steps.UniqueRectangleWithSueDeCoqStep.Difficulty">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.UniqueRectangleWithSueDeCoqStep.BaseDifficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.UniqueRectangleWithSueDeCoqStep.ExtraDifficultyValues">
+            <inheritdoc/>
+        </member>
         <member name="P:Sudoku.Solving.Manual.Steps.UniqueRectangleWithSueDeCoqStep.DifficultyLevel">
             <inheritdoc/>
         </member>
@@ -6351,6 +6446,12 @@
             <summary>Indicates the mask that contains all extra digits.</summary>
         </member>
         <member name="P:Sudoku.Solving.Manual.Steps.UniqueRectangleWithWingStep.Difficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.UniqueRectangleWithWingStep.BaseDifficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.UniqueRectangleWithWingStep.ExtraDifficultyValues">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Manual.Steps.UniqueRectangleWithWingStep.DifficultyLevel">
@@ -6471,6 +6572,12 @@
         <member name="P:Sudoku.Solving.Manual.Steps.UniqueSquareType2Step.Difficulty">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.UniqueSquareType2Step.BaseDifficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.UniqueSquareType2Step.ExtraDifficultyValues">
+            <inheritdoc/>
+        </member>
         <member name="P:Sudoku.Solving.Manual.Steps.UniqueSquareType2Step.Type">
             <inheritdoc/>
         </member>
@@ -6509,6 +6616,12 @@
             <summary>Indicates the extra cells used.</summary>
         </member>
         <member name="P:Sudoku.Solving.Manual.Steps.UniqueSquareType3Step.Difficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.UniqueSquareType3Step.BaseDifficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.UniqueSquareType3Step.ExtraDifficultyValues">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Manual.Steps.UniqueSquareType3Step.Type">
@@ -6573,6 +6686,12 @@
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Manual.Steps.BivalueUniversalGraveMultipleStep.Difficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.BivalueUniversalGraveMultipleStep.BaseDifficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.BivalueUniversalGraveMultipleStep.ExtraDifficultyValues">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Manual.Steps.BivalueUniversalGraveMultipleStep.TechniqueCode">
@@ -6654,6 +6773,12 @@
         <member name="P:Sudoku.Solving.Manual.Steps.BivalueUniversalGraveType2Step.Difficulty">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.BivalueUniversalGraveType2Step.BaseDifficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.BivalueUniversalGraveType2Step.ExtraDifficultyValues">
+            <inheritdoc/>
+        </member>
         <member name="P:Sudoku.Solving.Manual.Steps.BivalueUniversalGraveType2Step.TechniqueCode">
             <inheritdoc/>
         </member>
@@ -6695,6 +6820,12 @@
             <summary>Indicates whether the specified subset is naked subset.</summary>
         </member>
         <member name="P:Sudoku.Solving.Manual.Steps.BivalueUniversalGraveType3Step.Difficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.BivalueUniversalGraveType3Step.BaseDifficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.BivalueUniversalGraveType3Step.ExtraDifficultyValues">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Manual.Steps.BivalueUniversalGraveType3Step.TechniqueCode">
@@ -6740,6 +6871,12 @@
         <member name="P:Sudoku.Solving.Manual.Steps.BivalueUniversalGraveType4Step.Difficulty">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.BivalueUniversalGraveType4Step.BaseDifficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.BivalueUniversalGraveType4Step.ExtraDifficultyValues">
+            <inheritdoc/>
+        </member>
         <member name="P:Sudoku.Solving.Manual.Steps.BivalueUniversalGraveType4Step.TechniqueCode">
             <inheritdoc/>
         </member>
@@ -6776,6 +6913,12 @@
             <summary>Indicates the XZ cell.</summary>
         </member>
         <member name="P:Sudoku.Solving.Manual.Steps.BivalueUniversalGraveXzStep.Difficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.BivalueUniversalGraveXzStep.BaseDifficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.BivalueUniversalGraveXzStep.ExtraDifficultyValues">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Manual.Steps.BivalueUniversalGraveXzStep.TechniqueCode">
@@ -6903,28 +7046,14 @@
         <member name="P:Sudoku.Solving.Manual.Steps.JuniorExocetStep.Difficulty">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Solving.Manual.Steps.JuniorExocetStep.TechniqueCode">
+        <member name="P:Sudoku.Solving.Manual.Steps.JuniorExocetStep.BaseDifficulty">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Solving.Manual.Steps.JuniorExocetStep.MirrorDifficulty">
-            <summary>
-            Indicates extra difficulty on mirror eliminations.
-            </summary>
+        <member name="P:Sudoku.Solving.Manual.Steps.JuniorExocetStep.ExtraDifficultyValues">
+            <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Solving.Manual.Steps.JuniorExocetStep.BiBiDifficulty">
-            <summary>
-            Indicates extra difficulty on Bi-Bi pattern eliminations.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.Steps.JuniorExocetStep.TargetPairDifficulty">
-            <summary>
-            Indicates extra difficulty on target pair eliminations.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.Steps.JuniorExocetStep.GeneralizedSwordfishDifficulty">
-            <summary>
-            Indicates extra difficulty on generalized swordfish eliminations.
-            </summary>
+        <member name="P:Sudoku.Solving.Manual.Steps.JuniorExocetStep.TechniqueCode">
+            <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Manual.Steps.JuniorExocetStep.LockedMemberQStr">
             <summary>
@@ -6972,6 +7101,12 @@
         <member name="P:Sudoku.Solving.Manual.Steps.SeniorExocetStep.Difficulty">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.SeniorExocetStep.BaseDifficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.SeniorExocetStep.ExtraDifficultyValues">
+            <inheritdoc/>
+        </member>
         <member name="P:Sudoku.Solving.Manual.Steps.SeniorExocetStep.TechniqueCode">
             <inheritdoc/>
         </member>
@@ -7015,32 +7150,13 @@
         <member name="P:Sudoku.Solving.Manual.Steps.ComplexFishStep.IsSashimi">
             <summary>Indicates whether the fish is a Sashimi fish.</summary>
         </member>
-        <member name="F:Sudoku.Solving.Manual.Steps.ComplexFishStep.BasicDiff">
-            <summary>
-            The basic difficulty rating table.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Solving.Manual.Steps.ComplexFishStep.FinnedDiff">
-            <summary>
-            The finned difficulty rating table.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Solving.Manual.Steps.ComplexFishStep.SashimiDiff">
-            <summary>
-            The sashimi difficulty rating table.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Solving.Manual.Steps.ComplexFishStep.FrankenShapeDiffExtra">
-            <summary>
-            The Franken shape extra difficulty rating table.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Solving.Manual.Steps.ComplexFishStep.MutantShapeDiffExtra">
-            <summary>
-            The mutant shape extra difficulty rating table.
-            </summary>
-        </member>
         <member name="P:Sudoku.Solving.Manual.Steps.ComplexFishStep.Difficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.ComplexFishStep.BaseDifficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.ComplexFishStep.ExtraDifficultyValues">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Manual.Steps.ComplexFishStep.DifficultyLevel">
@@ -7279,6 +7395,12 @@
         <member name="P:Sudoku.Solving.Manual.Steps.NormalFishStep.Difficulty">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.NormalFishStep.BaseDifficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.NormalFishStep.ExtraDifficultyValues">
+            <inheritdoc/>
+        </member>
         <member name="P:Sudoku.Solving.Manual.Steps.NormalFishStep.DifficultyLevel">
             <inheritdoc/>
         </member>
@@ -7479,6 +7601,12 @@
         <member name="P:Sudoku.Solving.Manual.Steps.AlmostLockedCandidatesStep.Difficulty">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.AlmostLockedCandidatesStep.BaseDifficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.AlmostLockedCandidatesStep.ExtraDifficultyValues">
+            <inheritdoc/>
+        </member>
         <member name="P:Sudoku.Solving.Manual.Steps.AlmostLockedCandidatesStep.DifficultyLevel">
             <inheritdoc/>
         </member>
@@ -7567,6 +7695,26 @@
         <member name="P:Sudoku.Solving.Manual.Steps.LockedCandidatesStep.Rarity">
             <inheritdoc/>
         </member>
+        <member name="T:Sudoku.Solving.Manual.Steps.IStepWithPhasedDifficulty">
+            <summary>
+            Defines a type that holds an extra property to control advanced rule with extra difficulty value.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.IStepWithPhasedDifficulty.BaseDifficulty">
+            <summary>
+            Indicates the base difficulty of the step.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.IStepWithPhasedDifficulty.ExtraDifficultyValues">
+            <summary>
+            Indicates the extra difficulty values of the step, and its corresponding description.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.IStepWithPhasedDifficulty.TotalDifficulty">
+            <summary>
+            Indicates the total difficulty value of the step.
+            </summary>
+        </member>
         <member name="T:Sudoku.Solving.Manual.Steps.IStepWithRank">
             <summary>
             Defines a step whose technique used is related to the rank theory,
@@ -7648,6 +7796,12 @@
             <summary>Indicates the list of contradiction links.</summary>
         </member>
         <member name="P:Sudoku.Solving.Manual.Steps.BowmanBingoStep.Difficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.BowmanBingoStep.BaseDifficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.BowmanBingoStep.ExtraDifficultyValues">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Manual.Steps.BowmanBingoStep.DifficultyLevel">
@@ -7894,6 +8048,12 @@
         <member name="P:Sudoku.Solving.Manual.Steps.BivalueOddagonType2Step.Difficulty">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.BivalueOddagonType2Step.BaseDifficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.BivalueOddagonType2Step.ExtraDifficultyValues">
+            <inheritdoc/>
+        </member>
         <member name="P:Sudoku.Solving.Manual.Steps.BivalueOddagonType2Step.TechniqueCode">
             <inheritdoc/>
         </member>
@@ -7934,6 +8094,12 @@
             <summary>Indicates the mask that contains all extra digits used.</summary>
         </member>
         <member name="P:Sudoku.Solving.Manual.Steps.BivalueOddagonType3Step.Difficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.BivalueOddagonType3Step.BaseDifficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.BivalueOddagonType3Step.ExtraDifficultyValues">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Manual.Steps.BivalueOddagonType3Step.TechniqueCode">
@@ -8005,6 +8171,12 @@
             <summary>Indicates the cells used.</summary>
         </member>
         <member name="P:Sudoku.Solving.Manual.Steps.MultisectorLockedSetsStep.Difficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.MultisectorLockedSetsStep.BaseDifficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.MultisectorLockedSetsStep.ExtraDifficultyValues">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Manual.Steps.MultisectorLockedSetsStep.Rank">
@@ -8186,6 +8358,12 @@
         <member name="P:Sudoku.Solving.Manual.Steps.SueDeCoqStep.Difficulty">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.SueDeCoqStep.BaseDifficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.SueDeCoqStep.ExtraDifficultyValues">
+            <inheritdoc/>
+        </member>
         <member name="P:Sudoku.Solving.Manual.Steps.SueDeCoqStep.Rank">
             <inheritdoc/>
         </member>
@@ -8280,10 +8458,16 @@
         <member name="P:Sudoku.Solving.Manual.Steps.GuardianStep.IsNice">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Solving.Manual.Steps.GuardianStep.Rank">
+        <member name="P:Sudoku.Solving.Manual.Steps.GuardianStep.Difficulty">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Solving.Manual.Steps.GuardianStep.Difficulty">
+        <member name="P:Sudoku.Solving.Manual.Steps.GuardianStep.BaseDifficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.GuardianStep.ExtraDifficultyValues">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.GuardianStep.Rank">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Manual.Steps.GuardianStep.TechniqueCode">
@@ -8629,6 +8813,12 @@
         <member name="P:Sudoku.Solving.Manual.Steps.NakedSubsetStep.Difficulty">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.NakedSubsetStep.BaseDifficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.NakedSubsetStep.ExtraDifficultyValues">
+            <inheritdoc/>
+        </member>
         <member name="P:Sudoku.Solving.Manual.Steps.NakedSubsetStep.TechniqueCode">
             <inheritdoc/>
         </member>
@@ -8771,6 +8961,12 @@
             </remarks>
         </member>
         <member name="P:Sudoku.Solving.Manual.Steps.RegularWingStep.Difficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.RegularWingStep.BaseDifficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.RegularWingStep.ExtraDifficultyValues">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.Manual.Steps.RegularWingStep.TechniqueCode">

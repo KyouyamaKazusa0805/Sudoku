@@ -15,10 +15,18 @@
 public sealed record class UniqueLoopType3Step(
 	ImmutableArray<Conclusion> Conclusions, ImmutableArray<View> Views,
 	int Digit1, int Digit2, in Cells Loop, short SubsetDigitsMask, in Cells SubsetCells) :
-	UniqueLoopStep(Conclusions, Views, Digit1, Digit2, Loop)
+	UniqueLoopStep(Conclusions, Views, Digit1, Digit2, Loop),
+	IStepWithPhasedDifficulty
 {
 	/// <inheritdoc/>
-	public override decimal Difficulty => base.Difficulty + SubsetCells.Count * .1M;
+	public override decimal Difficulty => ((IStepWithPhasedDifficulty)this).TotalDifficulty;
+
+	/// <inheritdoc/>
+	public new decimal BaseDifficulty => base.Difficulty;
+
+	/// <inheritdoc/>
+	public new (string Name, decimal Value)[] ExtraDifficultyValues =>
+		new[] { ("Subset size", SubsetCells.Count * .1M) };
 
 	/// <inheritdoc/>
 	public override int Type => 3;

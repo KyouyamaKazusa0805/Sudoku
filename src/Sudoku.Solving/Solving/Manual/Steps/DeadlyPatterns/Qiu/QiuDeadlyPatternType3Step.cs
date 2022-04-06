@@ -12,10 +12,18 @@
 public sealed record class QiuDeadlyPatternType3Step(
 	ImmutableArray<Conclusion> Conclusions, ImmutableArray<View> Views,
 	in QiuDeadlyPattern Pattern, short ExtraDigitsMask, in Cells ExtraCells, bool IsNaked) :
-	QiuDeadlyPatternStep(Conclusions, Views, Pattern)
+	QiuDeadlyPatternStep(Conclusions, Views, Pattern),
+	IStepWithPhasedDifficulty
 {
 	/// <inheritdoc/>
-	public override decimal Difficulty => base.Difficulty + PopCount((uint)ExtraDigitsMask) * .1M;
+	public override decimal Difficulty => ((IStepWithPhasedDifficulty)this).TotalDifficulty;
+
+	/// <inheritdoc/>
+	public decimal BaseDifficulty => base.Difficulty;
+
+	/// <inheritdoc/>
+	public (string Name, decimal Value)[] ExtraDifficultyValues =>
+		new[] { ("Subset size", PopCount((uint)ExtraDigitsMask) * .1M) };
 
 	/// <inheritdoc/>
 	public override int Type => 3;

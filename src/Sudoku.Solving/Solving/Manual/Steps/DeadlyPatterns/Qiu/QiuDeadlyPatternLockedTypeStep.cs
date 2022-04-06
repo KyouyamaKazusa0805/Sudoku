@@ -10,10 +10,17 @@
 public sealed record class QiuDeadlyPatternLockedTypeStep(
 	ImmutableArray<Conclusion> Conclusions, ImmutableArray<View> Views,
 	in QiuDeadlyPattern Pattern, IReadOnlyList<int> Candidates) :
-	QiuDeadlyPatternStep(Conclusions, Views, Pattern)
+	QiuDeadlyPatternStep(Conclusions, Views, Pattern),
+	IStepWithPhasedDifficulty
 {
 	/// <inheritdoc/>
-	public override decimal Difficulty => base.Difficulty + .2M;
+	public override decimal Difficulty => ((IStepWithPhasedDifficulty)this).TotalDifficulty;
+
+	/// <inheritdoc/>
+	public decimal BaseDifficulty => base.Difficulty;
+
+	/// <inheritdoc/>
+	public (string Name, decimal Value)[] ExtraDifficultyValues => new[] { ("Locked digit", .2M) };
 
 	/// <inheritdoc/>
 	public override int Type => 5;

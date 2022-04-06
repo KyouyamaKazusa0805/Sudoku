@@ -13,7 +13,8 @@ public sealed record class RegularWingStep(
 	ImmutableArray<Conclusion> Conclusions, ImmutableArray<View> Views,
 	int Pivot, int PivotCandidatesCount, short DigitsMask, in Cells Petals) :
 	WingStep(Conclusions, Views),
-	IStepWithSize
+	IStepWithSize,
+	IStepWithPhasedDifficulty
 {
 	/// <summary>
 	/// Indicates whether the structure is incomplete.
@@ -61,7 +62,10 @@ public sealed record class RegularWingStep(
 	public int Size => PopCount((uint)DigitsMask);
 
 	/// <inheritdoc/>
-	public override decimal Difficulty =>
+	public override decimal Difficulty => ((IStepWithPhasedDifficulty)this).TotalDifficulty;
+
+	/// <inheritdoc/>
+	public decimal BaseDifficulty =>
 		Size switch
 		{
 			3 => 4.2M,
@@ -72,8 +76,11 @@ public sealed record class RegularWingStep(
 			8 => 5.5M,
 			9 => 5.9M,
 			_ => throw new NotSupportedException("The specified size is not supported.")
-		} // Base difficulty.
-			+ (IsIncomplete ? Size == 3 ? 0.2M : 0.1M : 0); // Incomplete difficuly.
+		};
+
+	/// <inheritdoc/>
+	public (string Name, decimal Value)[] ExtraDifficultyValues =>
+		new[] { ("Incompleteness", IsIncomplete ? Size == 3 ? 0.2M : 0.1M : 0) };
 
 	/// <inheritdoc/>
 	public override Technique TechniqueCode =>

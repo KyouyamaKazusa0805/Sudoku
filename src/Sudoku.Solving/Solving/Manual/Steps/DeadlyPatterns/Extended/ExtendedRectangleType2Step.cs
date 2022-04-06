@@ -11,13 +11,20 @@
 public sealed record class ExtendedRectangleType2Step(
 	ImmutableArray<Conclusion> Conclusions, ImmutableArray<View> Views,
 	in Cells Cells, short DigitsMask, int ExtraDigit) :
-	ExtendedRectangleStep(Conclusions, Views, Cells, DigitsMask)
+	ExtendedRectangleStep(Conclusions, Views, Cells, DigitsMask),
+	IStepWithPhasedDifficulty
 {
 	/// <inheritdoc/>
 	public override int Type => 2;
 
 	/// <inheritdoc/>
-	public override decimal Difficulty => base.Difficulty + .1M;
+	public override decimal Difficulty => ((IStepWithPhasedDifficulty)this).TotalDifficulty;
+
+	/// <inheritdoc/>
+	public new decimal BaseDifficulty => base.Difficulty;
+
+	/// <inheritdoc/>
+	public new (string Name, decimal Value)[] ExtraDifficultyValues => new[] { ("Extra digit", .1M) };
 
 	/// <inheritdoc/>
 	public override Rarity Rarity => Rarity.Sometimes;

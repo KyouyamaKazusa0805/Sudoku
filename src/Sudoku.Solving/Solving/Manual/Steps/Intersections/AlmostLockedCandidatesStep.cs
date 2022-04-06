@@ -10,33 +10,44 @@
 /// <param name="TargetCells">Indicates the target cells.</param>
 /// <param name="HasValueCell">Indicates whether the step contains value cells.</param>
 public sealed record class AlmostLockedCandidatesStep(
-	ImmutableArray<Conclusion> Conclusions,
-	ImmutableArray<View> Views,
-	short DigitsMask,
-	in Cells BaseCells,
-	in Cells TargetCells,
-	bool HasValueCell
-) : IntersectionStep(Conclusions, Views), IStepWithSize
+	ImmutableArray<Conclusion> Conclusions, ImmutableArray<View> Views,
+	short DigitsMask, in Cells BaseCells, in Cells TargetCells, bool HasValueCell) :
+	IntersectionStep(Conclusions, Views),
+	IStepWithSize,
+	IStepWithPhasedDifficulty
 {
 	/// <inheritdoc/>
 	public int Size => PopCount((uint)DigitsMask);
 
 	/// <inheritdoc/>
-	public override decimal Difficulty =>
+	public override decimal Difficulty => ((IStepWithPhasedDifficulty)this).TotalDifficulty;
+
+	/// <inheritdoc/>
+	public decimal BaseDifficulty =>
 		Size switch
 		{
 			2 => 4.5M,
 			3 => 5.2M,
 			4 => 5.7M,
 			_ => throw new NotSupportedException("The specified size is not supported.")
-		} // Base difficulty.
-			+ (HasValueCell ? Size switch
-			{
-				2 => .1M,
-				3 => .1M,
-				4 => .2M,
-				_ => throw new NotSupportedException("The specified size is not supported.")
-			} : 0); // Extra difficulty.
+		};
+
+	/// <inheritdoc/>
+	public (string Name, decimal Value)[] ExtraDifficultyValues =>
+		new[]
+		{
+			(
+				"Extra",
+				!HasValueCell
+					? 0
+					: Size switch
+					{
+						2 or 3 => .1M,
+						4 => .2M,
+						_ => throw new NotSupportedException("The specified size is not supported.")
+					}
+			)
+		};
 
 	/// <inheritdoc/>
 	public override DifficultyLevel DifficultyLevel => DifficultyLevel.Hard;

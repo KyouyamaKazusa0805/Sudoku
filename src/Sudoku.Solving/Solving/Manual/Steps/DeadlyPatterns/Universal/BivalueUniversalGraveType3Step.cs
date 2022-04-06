@@ -12,13 +12,18 @@
 public sealed record class BivalueUniversalGraveType3Step(
 	ImmutableArray<Conclusion> Conclusions, ImmutableArray<View> Views,
 	IReadOnlyList<int> TrueCandidates, short DigitsMask, in Cells Cells, bool IsNaked) :
-	BivalueUniversalGraveStep(Conclusions, Views)
+	BivalueUniversalGraveStep(Conclusions, Views),
+	IStepWithPhasedDifficulty
 {
 	/// <inheritdoc/>
-	public override decimal Difficulty =>
-		base.Difficulty
-			+ Size * .1M // Subset extra difficulty.
-			+ (IsNaked ? 0 : .1M); // Hidden subset extra difficulty.
+	public override decimal Difficulty => ((IStepWithPhasedDifficulty)this).TotalDifficulty;
+
+	/// <inheritdoc/>
+	public decimal BaseDifficulty => base.Difficulty;
+
+	/// <inheritdoc/>
+	public (string Name, decimal Value)[] ExtraDifficultyValues =>
+		new[] { ("Subset", Size * .1M), ("Hidden subset", IsNaked ? 0 : .1M) };
 
 	/// <inheritdoc/>
 	public override Technique TechniqueCode => Technique.BivalueUniversalGraveType3;

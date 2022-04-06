@@ -18,19 +18,28 @@ public sealed record class UniqueRectangleWithWingStep(
 	ImmutableArray<Conclusion> Conclusions, ImmutableArray<View> Views, Technique TechniqueCode2,
 	int Digit1, int Digit2, in Cells Cells, bool IsAvoidable, in Cells Pivots,
 	in Cells Petals, short ExtraDigitsMask, int AbsoluteOffset) :
-	UniqueRectangleStep(Conclusions, Views, TechniqueCode2, Digit1, Digit2, Cells, IsAvoidable, AbsoluteOffset)
+	UniqueRectangleStep(Conclusions, Views, TechniqueCode2, Digit1, Digit2, Cells, IsAvoidable, AbsoluteOffset),
+	IStepWithPhasedDifficulty
 {
 	/// <inheritdoc/>
-	public override decimal Difficulty =>
-		4.4M // Base difficulty.
-			+ (IsAvoidable ? .1M : 0) // Avoidable difficulty.
-			+ TechniqueCode switch
+	public override decimal Difficulty => ((IStepWithPhasedDifficulty)this).TotalDifficulty;
+
+	/// <inheritdoc/>
+	public decimal BaseDifficulty => 4.4M;
+
+	/// <inheritdoc/>
+	public (string Name, decimal Value)[] ExtraDifficultyValues =>
+		new[]
+		{
+			("Avoidable rectangle", IsAvoidable ? .1M : 0),
+			("Wing", TechniqueCode switch
 			{
 				Technique.UniqueRectangleXyWing or Technique.AvoidableRectangleXyWing => .2M,
 				Technique.UniqueRectangleXyzWing or Technique.AvoidableRectangleXyzWing => .3M,
 				Technique.UniqueRectangleWxyzWing or Technique.AvoidableRectangleWxyzWing => .5M,
 				_ => throw new NotSupportedException("The specified technique code is not supported.")
-			}; // Wing difficulty.
+			})
+		};
 
 	/// <inheritdoc/>
 	public override DifficultyLevel DifficultyLevel => DifficultyLevel.Hard;

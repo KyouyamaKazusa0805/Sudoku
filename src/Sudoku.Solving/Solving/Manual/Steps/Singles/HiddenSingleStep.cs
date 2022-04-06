@@ -16,7 +16,8 @@ public sealed record class HiddenSingleStep(
 	int Cell, int Digit, int Region, bool EnableAndIsLastDigit) : SingleStep(Conclusions, Views, Cell, Digit)
 {
 	/// <inheritdoc/>
-	public override decimal Difficulty => EnableAndIsLastDigit ? 1.1M : Region < 9 ? 1.2M : 1.5M;
+	public override decimal Difficulty =>
+		this switch { { EnableAndIsLastDigit: true } => 1.1M, { Region: < 9 } => 1.2M, _ => 1.5M };
 
 	/// <inheritdoc/>
 	public override Rarity Rarity => EnableAndIsLastDigit || Region < 9 ? Rarity.Always : Rarity.Often;

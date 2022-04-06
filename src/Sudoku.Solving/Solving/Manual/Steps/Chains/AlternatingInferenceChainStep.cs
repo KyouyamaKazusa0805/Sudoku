@@ -13,16 +13,24 @@ public sealed record class AlternatingInferenceChainStep(
 	AlternatingInferenceChain Chain, bool XEnabled, bool YEnabled) :
 	ChainStep(Conclusions, Views),
 	IChainStep,
-	IChainLikeStep
+	IChainLikeStep,
+	IStepWithPhasedDifficulty
 {
 	/// <inheritdoc/>
-	public override decimal Difficulty =>
+	public override decimal Difficulty => ((IStepWithPhasedDifficulty)this).TotalDifficulty;
+
+	/// <inheritdoc/>
+	public decimal BaseDifficulty =>
 		TechniqueCode switch
 		{
 			Technique.MWing => 4.5M,
 			Technique.SplitWing or Technique.HybridWing or Technique.LocalWing => 4.8M,
-			_ => (XEnabled && YEnabled ? 5.0M : 4.6M) + IChainLikeStep.GetExtraDifficultyByLength(FlatComplexity - 2)
+			_ => XEnabled && YEnabled ? 5.0M : 4.6M
 		};
+
+	/// <inheritdoc/>
+	public (string Name, decimal Value)[] ExtraDifficultyValues =>
+		new[] { ("Length", IsIrregularWing ? 0 : IChainLikeStep.GetExtraDifficultyByLength(FlatComplexity)) };
 
 	/// <inheritdoc/>
 	public override int FlatComplexity => Chain.RealChainNodes.Length;
@@ -38,12 +46,7 @@ public sealed record class AlternatingInferenceChainStep(
 
 	/// <inheritdoc/>
 	public override TechniqueTags TechniqueTags =>
-		this switch
-		{
-			{ IsMWing: true } => TechniqueTags.Wings,
-			{ IsLocalWing: true } or { IsSplitWing: true } or { IsHybridWing: true } => TechniqueTags.Wings,
-			_ => TechniqueTags.LongChaining
-		};
+		IsIrregularWing ? TechniqueTags.Wings : TechniqueTags.LongChaining;
 
 	/// <inheritdoc/>
 	public override Technique TechniqueCode =>
@@ -68,9 +71,7 @@ public sealed record class AlternatingInferenceChainStep(
 
 	/// <inheritdoc/>
 	public override DifficultyLevel DifficultyLevel =>
-		TechniqueCode is Technique.MWing or Technique.SplitWing or Technique.HybridWing or Technique.LocalWing
-			? DifficultyLevel.Hard
-			: DifficultyLevel.Fiendish;
+		IsIrregularWing ? DifficultyLevel.Hard : DifficultyLevel.Fiendish;
 
 	/// <inheritdoc/>
 	public override Rarity Rarity =>
@@ -90,6 +91,12 @@ public sealed record class AlternatingInferenceChainStep(
 
 	/// <inheritdoc/>
 	public override ChainTypeCode SortKey => Enum.Parse<ChainTypeCode>(TechniqueCode.ToString());
+
+	/// <summary>
+	/// Indicates whether the current chain is irregular wing.
+	/// </summary>
+	private bool IsIrregularWing =>
+		TechniqueCode is Technique.MWing or Technique.SplitWing or Technique.HybridWing or Technique.LocalWing;
 
 	/// <summary>
 	/// Indicates whether the specified chain is an XY-Chain.

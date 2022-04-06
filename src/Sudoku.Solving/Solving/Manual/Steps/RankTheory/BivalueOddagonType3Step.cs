@@ -13,10 +13,18 @@
 public sealed record class BivalueOddagonType3Step(
 	ImmutableArray<Conclusion> Conclusions, ImmutableArray<View> Views,
 	in Cells Loop, int Digit1, int Digit2, in Cells ExtraCells, short ExtraDigitsMask) :
-	BivalueOddagonStep(Conclusions, Views, Loop, Digit1, Digit2)
+	BivalueOddagonStep(Conclusions, Views, Loop, Digit1, Digit2),
+	IStepWithPhasedDifficulty
 {
 	/// <inheritdoc/>
-	public override decimal Difficulty => base.Difficulty + (ExtraCells.Count >> 1) * .1M;
+	public override decimal Difficulty => ((IStepWithPhasedDifficulty)this).TotalDifficulty;
+
+	/// <inheritdoc/>
+	public decimal BaseDifficulty => base.Difficulty;
+
+	/// <inheritdoc/>
+	public (string Name, decimal Value)[] ExtraDifficultyValues =>
+		new[] { ("Length", (ExtraCells.Count >> 1) * .1M) };
 
 	/// <inheritdoc/>
 	public override Technique TechniqueCode => Technique.BivalueOddagonType3;

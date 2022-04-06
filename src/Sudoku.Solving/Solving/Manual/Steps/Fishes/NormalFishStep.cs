@@ -29,29 +29,38 @@
 public sealed record class NormalFishStep(
 	ImmutableArray<Conclusion> Conclusions, ImmutableArray<View> Views,
 	int Digit, int BaseSetsMask, int CoverSetsMask, in Cells Fins, bool? IsSashimi) :
-	FishStep(Conclusions, Views, Digit, BaseSetsMask, CoverSetsMask)
+	FishStep(Conclusions, Views, Digit, BaseSetsMask, CoverSetsMask),
+	IStepWithPhasedDifficulty
 {
 	/// <inheritdoc/>
-	public override decimal Difficulty =>
+	public override decimal Difficulty => ((IStepWithPhasedDifficulty)this).TotalDifficulty;
+
+	/// <inheritdoc/>
+	public decimal BaseDifficulty =>
 		Size switch
 		{
 			2 => 3.2M,
 			3 => 3.8M,
 			4 => 5.2M,
 			_ => throw new NotSupportedException("The specified size is not supported.")
-		} // Size difficulty.
-			+ IsSashimi switch
+		};
+
+	/// <inheritdoc/>
+	public (string Name, decimal Value)[] ExtraDifficultyValues =>
+		new[]
+		{
+			("Sashimi", IsSashimi switch
 			{
 				null => 0,
 				true => Size switch
 				{
-					2 => .3M,
-					3 => .3M,
+					2 or 3 => .3M,
 					4 => .4M,
 					_ => throw new NotSupportedException("The specified size is not supported.")
 				},
 				false => .2M
-			};
+			})
+		};
 
 	/// <inheritdoc/>
 	public override DifficultyLevel DifficultyLevel => DifficultyLevel.Hard;

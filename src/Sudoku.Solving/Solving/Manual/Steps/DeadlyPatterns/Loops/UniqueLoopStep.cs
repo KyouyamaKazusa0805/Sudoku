@@ -15,17 +15,24 @@ public abstract record class UniqueLoopStep(
 	ImmutableArray<Conclusion> Conclusions, ImmutableArray<View> Views,
 	int Digit1, int Digit2, in Cells Loop) :
 	DeadlyPatternStep(Conclusions, Views),
-	IDistinctableStep<UniqueLoopStep>
+	IDistinctableStep<UniqueLoopStep>,
+	IStepWithPhasedDifficulty
 {
 	/// <inheritdoc/>
-	public override decimal Difficulty =>
+	public override decimal Difficulty => ((IStepWithPhasedDifficulty)this).TotalDifficulty;
+
+	/// <inheritdoc/>
+	public decimal BaseDifficulty =>
 		Type switch
 		{
 			1 or 3 => 4.5M,
 			2 or 4 => 4.6M,
 			_ => throw new NotSupportedException("The specified type is not supported.")
-		} // Type difficulty.
-			+ ((Loop.Count >> 1) - 3) * .1M; // Length difficulty.
+		};
+
+	/// <inheritdoc/>
+	public (string Name, decimal Value)[] ExtraDifficultyValues =>
+		new[] { ("Length", ((Loop.Count >> 1) - 3) * .1M) };
 
 	/// <summary>
 	/// Indicates the type.

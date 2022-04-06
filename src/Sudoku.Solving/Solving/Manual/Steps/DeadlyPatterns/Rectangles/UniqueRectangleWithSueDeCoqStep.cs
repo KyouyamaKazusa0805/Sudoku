@@ -37,15 +37,24 @@ public sealed record class UniqueRectangleWithSueDeCoqStep(
 	UniqueRectangleStep(
 		Conclusions, Views,
 		IsAvoidable ? Technique.AvoidableRectangleSueDeCoq : Technique.UniqueRectangleSueDeCoq,
-		Digit1, Digit2, Cells, IsAvoidable, AbsoluteOffset)
+		Digit1, Digit2, Cells, IsAvoidable, AbsoluteOffset),
+	IStepWithPhasedDifficulty
 {
 	/// <inheritdoc/>
-	public override decimal Difficulty =>
-		5.0M // Base difficulty.
-			+ (LineCells | BlockCells).Count * .1M // Sue de Coq base difficulty.
-			+ (!IsCannibalistic && IsolatedDigitsMask != 0 ? .1M : 0) // Isolated difficulty.
-			+ (IsCannibalistic ? .1M : 0) // Cannibalism difficulty.
-			+ (IsAvoidable ? .1M : 0); // Avoidable Rectangle difficulty.
+	public override decimal Difficulty => ((IStepWithPhasedDifficulty)this).TotalDifficulty;
+
+	/// <inheritdoc/>
+	public decimal BaseDifficulty => 5.0M;
+
+	/// <inheritdoc/>
+	public (string Name, decimal Value)[] ExtraDifficultyValues =>
+		new[]
+		{
+			("Sue de Coq base", (LineCells | BlockCells).Count * .1M),
+			("Isolated", !IsCannibalistic && IsolatedDigitsMask != 0 ? .1M : 0),
+			("Cannibalism", IsCannibalistic ? .1M : 0),
+			("Avoidable rectangle", IsAvoidable ? .1M : 0)
+		};
 
 	/// <inheritdoc/>
 	public override DifficultyLevel DifficultyLevel => DifficultyLevel.Fiendish;

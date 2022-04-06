@@ -13,13 +13,21 @@
 public sealed record class ExtendedRectangleType3Step(
 	ImmutableArray<Conclusion> Conclusions, ImmutableArray<View> Views, in Cells Cells,
 	short DigitsMask, in Cells ExtraCells, short ExtraDigitsMask, int Region) :
-	ExtendedRectangleStep(Conclusions, Views, Cells, DigitsMask)
+	ExtendedRectangleStep(Conclusions, Views, Cells, DigitsMask),
+	IStepWithPhasedDifficulty
 {
 	/// <inheritdoc/>
 	public override int Type => 3;
 
 	/// <inheritdoc/>
-	public override decimal Difficulty => base.Difficulty + .1M * PopCount((uint)ExtraDigitsMask);
+	public override decimal Difficulty => ((IStepWithPhasedDifficulty)this).TotalDifficulty;
+
+	/// <inheritdoc/>
+	public new decimal BaseDifficulty => base.Difficulty;
+
+	/// <inheritdoc/>
+	public new (string Name, decimal Value)[] ExtraDifficultyValues =>
+		new[] { ("Extra digits", PopCount((uint)ExtraDigitsMask) * .1M) };
 
 	/// <inheritdoc/>
 	public override Rarity Rarity => Rarity.Seldom;

@@ -10,10 +10,17 @@
 public sealed record class QiuDeadlyPatternType4Step(
 	ImmutableArray<Conclusion> Conclusions, ImmutableArray<View> Views,
 	in QiuDeadlyPattern Pattern, in ConjugatePair ConjugatePair) :
-	QiuDeadlyPatternStep(Conclusions, Views, Pattern)
+	QiuDeadlyPatternStep(Conclusions, Views, Pattern),
+	IStepWithPhasedDifficulty
 {
 	/// <inheritdoc/>
-	public override decimal Difficulty => base.Difficulty + .2M;
+	public override decimal Difficulty => ((IStepWithPhasedDifficulty)this).TotalDifficulty;
+
+	/// <inheritdoc/>
+	public decimal BaseDifficulty => base.Difficulty;
+
+	/// <inheritdoc/>
+	public (string Name, decimal Value)[] ExtraDifficultyValues => new[] { ("Conjugate pair", .2M) };
 
 	/// <inheritdoc/>
 	public override int Type => 4;

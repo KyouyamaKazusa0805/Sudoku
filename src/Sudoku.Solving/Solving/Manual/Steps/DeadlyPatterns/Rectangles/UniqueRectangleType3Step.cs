@@ -39,12 +39,18 @@ public sealed record class UniqueRectangleType3Step(
 	UniqueRectangleStep(
 		Conclusions, Views,
 		IsAvoidable ? Technique.AvoidableRectangleType3 : Technique.UniqueRectangleType3,
-		Digit1, Digit2, Cells, IsAvoidable, AbsoluteOffset)
+		Digit1, Digit2, Cells, IsAvoidable, AbsoluteOffset),
+	IStepWithPhasedDifficulty
 {
 	/// <inheritdoc/>
-	public override decimal Difficulty =>
-		(IsNaked ? 4.5M : 4.6M) // Base difficulty.
-			+ .1M * PopCount((uint)ExtraDigitsMask); // Size difficulty.
+	public override decimal Difficulty => ((IStepWithPhasedDifficulty)this).TotalDifficulty;
+
+	/// <inheritdoc/>
+	public decimal BaseDifficulty => IsNaked ? 4.5M : 4.6M;
+
+	/// <inheritdoc/>
+	public (string Name, decimal Value)[] ExtraDifficultyValues =>
+		new[] { ("Size", PopCount((uint)ExtraDigitsMask) * .1M) };
 
 	/// <inheritdoc/>
 	public override DifficultyLevel DifficultyLevel => DifficultyLevel.Hard;

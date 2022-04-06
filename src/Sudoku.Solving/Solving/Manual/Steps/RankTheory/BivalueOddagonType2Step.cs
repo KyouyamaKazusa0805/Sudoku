@@ -12,10 +12,17 @@
 public sealed record class BivalueOddagonType2Step(
 	ImmutableArray<Conclusion> Conclusions, ImmutableArray<View> Views,
 	in Cells Loop, int Digit1, int Digit2, int ExtraDigit) :
-	BivalueOddagonStep(Conclusions, Views, Loop, Digit1, Digit2)
+	BivalueOddagonStep(Conclusions, Views, Loop, Digit1, Digit2),
+	IStepWithPhasedDifficulty
 {
 	/// <inheritdoc/>
-	public override decimal Difficulty => base.Difficulty + .1M;
+	public override decimal Difficulty => ((IStepWithPhasedDifficulty)this).TotalDifficulty;
+
+	/// <inheritdoc/>
+	public decimal BaseDifficulty => base.Difficulty;
+
+	/// <inheritdoc/>
+	public (string Name, decimal Value)[] ExtraDifficultyValues => new[] { ("Extra digit", .1M) };
 
 	/// <inheritdoc/>
 	public override Technique TechniqueCode => Technique.BivalueOddagonType2;

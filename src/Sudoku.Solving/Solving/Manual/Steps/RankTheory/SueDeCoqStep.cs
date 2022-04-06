@@ -20,13 +20,22 @@ public sealed record class SueDeCoqStep(
 	short BlockMask, short LineMask, short IntersectionMask, bool IsCannibalistic,
 	short IsolatedDigitsMask, in Cells BlockCells, in Cells LineCells, in Cells IntersectionCells) :
 	RankTheoryStep(Conclusions, Views),
-	IStepWithRank
+	IStepWithRank,
+	IStepWithPhasedDifficulty
 {
 	/// <inheritdoc/>
-	public override decimal Difficulty =>
-		5.0M // Base difficulty.
-			+ (IsolatedDigitsMask != 0 ? .1M : 0) // The extra difficulty for isolated digit existence.
-			+ (IsCannibalistic ? .2M : 0); // The extra difficulty for cannibalism.
+	public override decimal Difficulty => ((IStepWithPhasedDifficulty)this).TotalDifficulty;
+
+	/// <inheritdoc/>
+	public decimal BaseDifficulty => 5.0M;
+
+	/// <inheritdoc/>
+	public (string Name, decimal Value)[] ExtraDifficultyValues =>
+		new[]
+		{
+			("Isolated", IsolatedDigitsMask != 0 ? .1M : 0),
+			("Cannibal", IsCannibalistic ? .2M : 0)
+		};
 
 	/// <inheritdoc/>
 	public int Rank => 0;
