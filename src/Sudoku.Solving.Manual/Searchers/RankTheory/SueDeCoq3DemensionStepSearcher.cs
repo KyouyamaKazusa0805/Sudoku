@@ -186,7 +186,7 @@ public sealed unsafe partial class SueDeCoq3DemensionStepSearcher : ISueDeCoq3De
 												}
 
 												var step = new SueDeCoq3DimensionStep(
-													conclusions.ToImmutableArray(),
+													ImmutableArray.CreateRange(conclusions),
 													ImmutableArray.Create(
 														View.Empty
 															+ candidateOffsets

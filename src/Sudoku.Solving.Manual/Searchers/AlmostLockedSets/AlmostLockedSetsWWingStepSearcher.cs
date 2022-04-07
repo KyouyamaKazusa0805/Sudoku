@@ -153,7 +153,7 @@ public sealed unsafe partial class AlmostLockedSetsWWingStepSearcher : IAlmostLo
 
 							accumulator.Add(
 								new AlmostLockedSetsWWingStep(
-									conclusions.ToImmutableArray(),
+									ImmutableArray.CreateRange(conclusions),
 									ImmutableArray.Create(
 										View.Empty
 											+ candidateOffsets

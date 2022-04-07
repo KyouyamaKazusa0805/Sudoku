@@ -191,7 +191,7 @@ public sealed unsafe partial class AlmostLockedSetsXyWingStepSearcher : IAlmostL
 						}
 
 						var step = new AlmostLockedSetsXyWingStep(
-							conclusions.ToImmutableArray(),
+							ImmutableArray.CreateRange(conclusions),
 							ImmutableArray.Create(
 								View.Empty
 									+ candidateOffsets

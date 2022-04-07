@@ -195,8 +195,8 @@ public sealed unsafe partial class ManualSolver : IPuzzleSolver
 			IsSolved = false,
 			FailedReason = FailedReason.PuzzleIsTooHard,
 			ElapsedTime = stopwatch.Elapsed,
-			Steps = recordedSteps.ToImmutableArray(),
-			StepGrids = stepGrids.ToImmutableArray()
+			Steps = ImmutableArray.CreateRange(recordedSteps),
+			StepGrids = ImmutableArray.CreateRange(stepGrids)
 		};
 	}
 
@@ -259,8 +259,8 @@ public sealed unsafe partial class ManualSolver : IPuzzleSolver
 				{
 					IsSolved = true,
 					ElapsedTime = stopwatch.Elapsed,
-					Steps = steps.ToImmutableArray(),
-					StepGrids = stepGrids.ToImmutableArray()
+					Steps = ImmutableArray.CreateRange(steps),
+					StepGrids = ImmutableArray.CreateRange(stepGrids)
 				};
 				return true;
 			}

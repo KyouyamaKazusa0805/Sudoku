@@ -113,6 +113,6 @@ public abstract record class ExocetStep(
 			result.AddRange(eliminationInstance.ToArray());
 		}
 
-		return result.ToImmutableArray();
+		return ImmutableArray.CreateRange(result);
 	}
 }

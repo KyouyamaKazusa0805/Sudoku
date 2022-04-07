@@ -316,7 +316,7 @@ public sealed unsafe partial class UniquePolygonStepSearcher : IUniquePolygonSte
 			}
 
 			var step = new UniquePolygonType1Step(
-				conclusions.ToImmutableArray(),
+				ImmutableArray.CreateRange(conclusions),
 				ImmutableArray.Create(View.Empty + candidateOffsets),
 				map,
 				tempMask
@@ -375,7 +375,7 @@ public sealed unsafe partial class UniquePolygonStepSearcher : IUniquePolygonSte
 			}
 
 			var step = new UniquePolygonType2Step(
-				conclusions.ToImmutableArray(),
+				ImmutableArray.CreateRange(conclusions),
 				ImmutableArray.Create(View.Empty + candidateOffsets),
 				map,
 				tempMask,
@@ -474,7 +474,7 @@ public sealed unsafe partial class UniquePolygonStepSearcher : IUniquePolygonSte
 						}
 
 						var step = new UniquePolygonType3Step(
-							conclusions.ToImmutableArray(),
+							ImmutableArray.CreateRange(conclusions),
 							ImmutableArray.Create(View.Empty + candidateOffsets + new RegionViewNode(0, region)),
 							map,
 							tempMask,
@@ -596,7 +596,7 @@ public sealed unsafe partial class UniquePolygonStepSearcher : IUniquePolygonSte
 					}
 
 					var step = new UniquePolygonType4Step(
-						conclusions.ToImmutableArray(),
+						ImmutableArray.CreateRange(conclusions),
 						ImmutableArray.Create(View.Empty + candidateOffsets + new RegionViewNode(0, region)),
 						map,
 						otherMask,

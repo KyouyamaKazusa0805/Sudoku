@@ -437,7 +437,7 @@ public sealed unsafe partial class ComplexFishStepSearcher : IComplexFishStepSea
 
 								// Add into the 'accumulator'.
 								var step = new ComplexFishStep(
-									conclusions.ToImmutableArray(),
+									ImmutableArray.CreateRange(conclusions),
 									ImmutableArray.Create(View.Empty + candidateOffsets + regionOffsets),
 									digit,
 									baseSetsMask,

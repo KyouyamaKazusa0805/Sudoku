@@ -77,7 +77,7 @@ public sealed unsafe partial class GuardianStepSearcher : IGuardianStepSearcher
 						}
 
 						var step = new GuardianStep(
-							conclusions.ToImmutableArray(),
+							ImmutableArray.CreateRange(conclusions),
 							ImmutableArray.Create(View.Empty + candidateOffsets + links),
 							digit,
 							map,

@@ -58,7 +58,7 @@ public sealed unsafe partial class BowmanBingoStepSearcher : IBowmanBingoStepSea
 						new BowmanBingoStep(
 							ImmutableArray.Create(new Conclusion(ConclusionType.Elimination, startCandidate)),
 							ImmutableArray.Create(View.Empty + candidateOffsets + GetLinks()),
-							_tempConclusions.ToImmutableArray()
+							ImmutableArray.CreateRange(_tempConclusions)
 						)
 					);
 				}
@@ -118,7 +118,7 @@ public sealed unsafe partial class BowmanBingoStepSearcher : IBowmanBingoStepSea
 			var step = new BowmanBingoStep(
 				ImmutableArray.Create(new Conclusion(ConclusionType.Elimination, startCand)),
 				ImmutableArray.Create(View.Empty + candidateOffsets + GetLinks()),
-				_tempConclusions.ToImmutableArray()
+				ImmutableArray.CreateRange(_tempConclusions)
 			);
 			if (onlyFindOne)
 			{

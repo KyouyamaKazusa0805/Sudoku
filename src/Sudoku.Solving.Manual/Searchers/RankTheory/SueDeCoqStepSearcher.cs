@@ -213,7 +213,7 @@ public sealed unsafe partial class SueDeCoqStepSearcher : ISueDeCoqStepSearcher
 										}
 
 										var step = new SueDeCoqStep(
-											conclusions.ToImmutableArray(),
+											ImmutableArray.CreateRange(conclusions),
 											ImmutableArray.Create(
 												View.Empty
 													+ candidateOffsets

@@ -141,7 +141,7 @@ public sealed unsafe partial class UniqueSquareStepSearcher : IUniqueSquareStepS
 			}
 
 			var step = new UniqueSquareType1Step(
-				conclusions.ToImmutableArray(),
+				ImmutableArray.CreateRange(conclusions),
 				ImmutableArray.Create(View.Empty + candidateOffsets),
 				pattern,
 				digitsMask,
@@ -199,7 +199,7 @@ public sealed unsafe partial class UniqueSquareStepSearcher : IUniqueSquareStepS
 			}
 
 			var step = new UniqueSquareType2Step(
-				conclusions.ToImmutableArray(),
+				ImmutableArray.CreateRange(conclusions),
 				ImmutableArray.Create(View.Empty + candidateOffsets),
 				pattern,
 				digitsMask,
@@ -283,7 +283,7 @@ public sealed unsafe partial class UniqueSquareStepSearcher : IUniqueSquareStepS
 						}
 
 						var step = new UniqueSquareType3Step(
-							conclusions.ToImmutableArray(),
+							ImmutableArray.CreateRange(conclusions),
 							ImmutableArray.Create(View.Empty + candidateOffsets + new RegionViewNode(0, region)),
 							pattern,
 							digitsMask,
@@ -384,7 +384,7 @@ public sealed unsafe partial class UniqueSquareStepSearcher : IUniqueSquareStepS
 				}
 
 				var step = new UniqueSquareType4Step(
-					conclusions.ToImmutableArray(),
+					ImmutableArray.CreateRange(conclusions),
 					ImmutableArray.Create(View.Empty + candidateOffsets + new RegionViewNode(0, region)),
 					pattern,
 					digitsMask,

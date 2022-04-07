@@ -256,7 +256,7 @@ public sealed unsafe partial class DominoLoopStepSearcher : IDominoLoopStepSearc
 
 				// Gather the result.
 				var step = new DominoLoopStep(
-					conclusions.ToImmutableArray(),
+					ImmutableArray.CreateRange(conclusions),
 					ImmutableArray.Create(View.Empty + candidateOffsets),
 					cells
 				);

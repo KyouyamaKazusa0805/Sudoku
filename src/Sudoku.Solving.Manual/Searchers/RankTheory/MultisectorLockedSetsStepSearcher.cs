@@ -187,7 +187,7 @@ public sealed unsafe partial class MultisectorLockedSetsStepSearcher : IMultisec
 				}
 
 				var step = new MultisectorLockedSetsStep(
-					conclusions.ToImmutableArray(),
+					ImmutableArray.CreateRange(conclusions),
 					ImmutableArray.Create(View.Empty + candidateOffsets),
 					map
 				);

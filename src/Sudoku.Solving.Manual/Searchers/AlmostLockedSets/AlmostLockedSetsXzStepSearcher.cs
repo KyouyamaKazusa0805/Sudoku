@@ -222,7 +222,7 @@ public sealed unsafe partial class AlmostLockedSetsXzStepSearcher : IAlmostLocke
 				}
 
 				var step = new AlmostLockedSetsXzStep(
-					conclusions.ToImmutableArray(),
+					ImmutableArray.CreateRange(conclusions),
 					ImmutableArray.Create(
 						View.Empty
 							+ candidateOffsets
