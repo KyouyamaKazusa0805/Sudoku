@@ -234,8 +234,8 @@
   <data name="HiddenKeyword" xml:space="preserve">
     <value>hidden</value>
   </data>
-  <data name="IncludedExtraRegion" xml:space="preserve">
-    <value>. Extra regions will be included:</value>
+  <data name="IncludedExtraHouse" xml:space="preserve">
+    <value>. Extra houses will be included:</value>
   </data>
   <data name="KeywordIn" xml:space="preserve">
     <value>in</value>
@@ -289,7 +289,7 @@
     <value>{Name}: Chain {ChainStr} =&gt; {ElimStr}</value>
   </data>
   <data name="TechniqueFormat_AvoidableRectangleWithHiddenSingleStep" xml:space="preserve">
-    <value>{Name}: Digits {D1Str} and {D2Str} in {CellsStr} with hidden single: if cell {BaseCellStr} is filled with the digit {Digit1Str}, region {RegionStr} will only contain a cell {TargetCellStr} can be filled with that digit, but will raise the deadly pattern =&gt; {ElimStr}</value>
+    <value>{Name}: Digits {D1Str} and {D2Str} in {CellsStr} with hidden single: if cell {BaseCellStr} is filled with the digit {Digit1Str}, house {HouseStr} will only contain a cell {TargetCellStr} can be filled with that digit, but will raise the deadly pattern =&gt; {ElimStr}</value>
   </data>
   <data name="TechniqueFormat_BinaryChainingStep" xml:space="preserve">
     <value>{Name}: It can be proved to be a contradiction if {AnchorIsTrueOrFalseStr} is {AnchorIsNotOnStr} =&gt; {ElimStr}</value>
@@ -340,10 +340,10 @@
     <value>{Name}: {CellsCountStr} cells {CellsStr} =&gt; {ElimStr}</value>
   </data>
   <data name="TechniqueFormat_EmptyRectangleIntersectionPairStep" xml:space="preserve">
-    <value>{Name}: Digits {Digit1Str}, {Digit2Str} in bivalue cells {StartCellStr} and {EndCellStr} with empty rectangle in {RegionStr} =&gt; {ElimStr}</value>
+    <value>{Name}: Digits {Digit1Str}, {Digit2Str} in bivalue cells {StartCellStr} and {EndCellStr} with empty rectangle in {HouseStr} =&gt; {ElimStr}</value>
   </data>
   <data name="TechniqueFormat_EmptyRectangleStep" xml:space="preserve">
-    <value>{Name}: {DigitStr} in {RegionStr} with conjugate pair {ConjStr} =&gt; {ElimStr}</value>
+    <value>{Name}: {DigitStr} in {HouseStr} with conjugate pair {ConjStr} =&gt; {ElimStr}</value>
   </data>
   <data name="TechniqueFormat_ExtendedRectangleType1Step" xml:space="preserve">
     <value>{Name}: {DigitsStr} in {CellsStr} =&gt; {ElimStr}</value>
@@ -352,7 +352,7 @@
     <value>{Name}: {DigitsStr} in {CellsStr} with extra digit {ExtraDigitStr} =&gt; {ElimStr}</value>
   </data>
   <data name="TechniqueFormat_ExtendedRectangleType3Step" xml:space="preserve">
-    <value>{Name}: {DigitsStr} in {CellsStr} with {ExtraDigitsStr} in cells {ExtraCellsStr} in {RegionStr} =&gt; {ElimStr}</value>
+    <value>{Name}: {DigitsStr} in {CellsStr} with {ExtraDigitsStr} in cells {ExtraCellsStr} in {HouseStr} =&gt; {ElimStr}</value>
   </data>
   <data name="TechniqueFormat_ExtendedRectangleType4Step" xml:space="preserve">
     <value>{Name}: {DigitsStr} in {CellsStr} with the conjugate pair {ConjStr} =&gt; {ElimStr}</value>
@@ -370,10 +370,10 @@
     <value>{Name}: Cells {CellsStr} with {GuardianSingularOrPlural} {GuardianStr} =&gt; {ElimStr}</value>
   </data>
   <data name="TechniqueFormat_HiddenSingle" xml:space="preserve">
-    <value>{Name}: {CellStr} = {DigitStr} in {RegionStr}</value>
+    <value>{Name}: {CellStr} = {DigitStr} in {HouseStr}</value>
   </data>
   <data name="TechniqueFormat_HiddenSubsetStep" xml:space="preserve">
-    <value>{Name}: {DigitStr} in {RegionStr} =&gt; {ElimStr}</value>
+    <value>{Name}: {DigitStr} in {HouseStr} =&gt; {ElimStr}</value>
   </data>
   <data name="TechniqueFormat_LastDigit" xml:space="preserve">
     <value>{Name}: {CellStr} = {DigitStr}</value>
@@ -388,7 +388,7 @@
     <value>{Name}: {CellStr} = {DigitStr}</value>
   </data>
   <data name="TechniqueFormat_NakedSubsetStep" xml:space="preserve">
-    <value>{Name}: {DigitsStr} in {RegionStr} =&gt; {ElimStr}</value>
+    <value>{Name}: {DigitsStr} in {HouseStr} =&gt; {ElimStr}</value>
   </data>
   <data name="TechniqueFormat_NormalFishStep" xml:space="preserve">
     <value>{Name}: {DigitStr} in {BaseSetStr}\\{CoverSetStr}{FinsStr} =&gt; {ElimStr}</value>
@@ -411,8 +411,8 @@
   <data name="TechniqueFormat_QiuDeadlyPatternType4Step" xml:space="preserve">
     <value>{Name}: Cells {PatternStr} will be a deadly pattern if another digit in either cells lying on the conjugate pair {ConjStr} is true =&gt; {ElimStr}</value>
   </data>
-  <data name="TechniqueFormat_RegionChainingStep" xml:space="preserve">
-    <value>{Name}: It can be proved using chains that digit {DigitStr} from {RegionStr} are false =&gt; {ElimStr}</value>
+  <data name="TechniqueFormat_HouseChainingStep" xml:space="preserve">
+    <value>{Name}: It can be proved using chains that digit {DigitStr} from {HouseStr} are false =&gt; {ElimStr}</value>
   </data>
   <data name="TechniqueFormat_RegularWingStep" xml:space="preserve">
     <value>{Name}: {DigitsStr} in {PivotCellStr} with {CellsStr} =&gt; {ElimStr}</value>
@@ -427,7 +427,7 @@
     <value>{Name}: Digit {DigitStr} =&gt; {ElimStr}</value>
   </data>
   <data name="TechniqueFormat_TwoStrongLinksStep" xml:space="preserve">
-    <value>{Name}: {DigitStr} in {BaseRegionStr}\\{TargetRegionStr} =&gt; {ElimStr}</value>
+    <value>{Name}: {DigitStr} in {BaseHouseStr}\\{TargetHouseStr} =&gt; {ElimStr}</value>
   </data>
   <data name="TechniqueFormat_UniqueLoopType1Step" xml:space="preserve">
     <value>{Name}: Digits {Digit1Str}, {Digit2Str} in cells {LoopStr} =&gt; {ElimStr}</value>
@@ -451,7 +451,7 @@
     <value>{Name}: {DigitsStr} in cells {CellsStr} with the digits {ExtraDigitsStr} in cells {ExtraCellsStr} =&gt; {ElimStr}</value>
   </data>
   <data name="TechniqueFormat_UniquePolygonType4Step" xml:space="preserve">
-    <value>{Name}: {DigitsStr} in cells {CellsStr} with the conjugate region {ConjRegionStr} of the extra digits {ExtraCombStr} =&gt; {ElimStr}</value>
+    <value>{Name}: {DigitsStr} in cells {CellsStr} with the conjugate house {ConjHouseStr} of the extra digits {ExtraCombStr} =&gt; {ElimStr}</value>
   </data>
   <data name="TechniqueFormat_UniqueRectangle2DOr3XStep" xml:space="preserve">
     <value>{Name}: Digits {D1Str} and {D2Str} in {CellsStr}, with X = {XDigitStr}, Y = {YDigitStr} and a bi-value cell {XYCellsStr} =&gt; {ElimStr}</value>
@@ -463,7 +463,7 @@
     <value>{Name}: Digits {D1Str} and {D2Str} in {CellsStr}, with the extra digit {ExtraDigitStr} =&gt; {ElimStr}</value>
   </data>
   <data name="TechniqueFormat_UniqueRectangleType3Step" xml:space="preserve">
-    <value>{Name}: Digits {D1Str} and {D2Str} in {CellsStr}, with the digit {DigitsStr} in {OnlyKeyword}cells {CellsStr} in {RegionStr} =&gt; {ElimStr}</value>
+    <value>{Name}: Digits {D1Str} and {D2Str} in {CellsStr}, with the digit {DigitsStr} in {OnlyKeyword}cells {CellsStr} in {HouseStr} =&gt; {ElimStr}</value>
   </data>
   <data name="TechniqueFormat_UniqueRectangleWithConjugatePairStep" xml:space="preserve">
     <value>{Name}: Digits {D1Str} and {D2Str} in {CellsStr} with {Prefix}conjugate pair{Suffix} {ConjPairsStr} =&gt; {ElimStr}</value>
@@ -490,7 +490,7 @@
     <value>{Name}: Digits {DigitsStr} in cells {CellsStr} can be avoid to form a deadly pattern if and only if the digits {ExtraDigitStr} in cells {ExtraCellsStr} form a naked {SubsetName} =&gt; {ElimStr}</value>
   </data>
   <data name="TechniqueFormat_UniqueSquareType4Step" xml:space="preserve">
-    <value>{Name}: Digits {DigitsStr} in cells {CellsStr} can avoid to form a deadly pattern if and only if the conjugate region {ConjStr} can't set the digit neither {Digit1Str} nor {Digit2Str} =&gt; {ElimStr}</value>
+    <value>{Name}: Digits {DigitsStr} in cells {CellsStr} can avoid to form a deadly pattern if and only if the conjugate house {ConjStr} can't set the digit neither {Digit1Str} nor {Digit2Str} =&gt; {ElimStr}</value>
   </data>
   <data name="TechniqueFormat_WWingStep" xml:space="preserve">
     <value>{Name}: {StartCellStr} to {EndCellStr} with conjugate pair {ConjStr} =&gt; {ElimStr}</value>

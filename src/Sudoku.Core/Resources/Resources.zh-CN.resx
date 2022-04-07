@@ -237,7 +237,7 @@
   <data name="HiddenKeyword" xml:space="preserve">
     <value>隐性</value>
   </data>
-  <data name="IncludedExtraRegion" xml:space="preserve">
+  <data name="IncludedExtraHouse" xml:space="preserve">
     <value>。额外的需要计算进来的区域：</value>
   </data>
   <data name="KeywordIn" xml:space="preserve">
@@ -295,7 +295,7 @@
     <value>{Name}：链 {ChainStr} =&gt; {ElimStr}</value>
   </data>
   <data name="TechniqueFormat_AvoidableRectangleWithHiddenSingleStep" xml:space="preserve">
-    <value>{Name}：数字 {D1Str} 和 {D2Str} 位于单元格 {CellsStr} 构成结构，并带排除法：如果单元格 {BaseCellStr} 填上了数字 {Digit1Str}，{RegionStr} 区域仅能让 {TargetCellStr} 填入该数字，便出现致命形式 =&gt; {ElimStr}</value>
+    <value>{Name}：数字 {D1Str} 和 {D2Str} 位于单元格 {CellsStr} 构成结构，并带排除法：如果单元格 {BaseCellStr} 填上了数字 {Digit1Str}，{HouseStr} 区域仅能让 {TargetCellStr} 填入该数字，便出现致命形式 =&gt; {ElimStr}</value>
   </data>
   <data name="TechniqueFormat_BinaryChainingStep" xml:space="preserve">
     <value>{Name}：可以证明如果 {AnchorCandidateStr} 为{AnchorIsTrueOrFalseStr}时会产生矛盾 =&gt; {ElimStr}</value>
@@ -346,10 +346,10 @@
     <value>{Name}：{CellsCountStr} 个单元格 {CellsStr} 构成多米诺环 =&gt; {ElimStr}</value>
   </data>
   <data name="TechniqueFormat_EmptyRectangleIntersectionPairStep" xml:space="preserve">
-    <value>{Name}：数字 {Digit1Str} 和 {Digit2Str} 位于双值格 {StartCellStr} 和 {EndCellStr} 里，并在区域 {RegionStr} 里带有此两数交织起来的空矩形 =&gt; {ElimStr}</value>
+    <value>{Name}：数字 {Digit1Str} 和 {Digit2Str} 位于双值格 {StartCellStr} 和 {EndCellStr} 里，并在区域 {HouseStr} 里带有此两数交织起来的空矩形 =&gt; {ElimStr}</value>
   </data>
   <data name="TechniqueFormat_EmptyRectangleStep" xml:space="preserve">
-    <value>{Name}：数字 {DigitStr} 位于区域 {RegionStr} 下拥有共轭对 {ConjStr} =&gt; {ElimStr}</value>
+    <value>{Name}：数字 {DigitStr} 位于区域 {HouseStr} 下拥有共轭对 {ConjStr} =&gt; {ElimStr}</value>
   </data>
   <data name="TechniqueFormat_ExtendedRectangleType1Step" xml:space="preserve">
     <value>{Name}：数字 {DigitsStr} 位于单元格 {CellsStr} 里构成结构 =&gt; {ElimStr}</value>
@@ -358,7 +358,7 @@
     <value>{Name}：数字 {DigitsStr} 位于单元格 {CellsStr} 里构成结构，带有额外数字 {ExtraDigitStr} =&gt; {ElimStr}</value>
   </data>
   <data name="TechniqueFormat_ExtendedRectangleType3Step" xml:space="preserve">
-    <value>{Name}：数字 {DigitsStr} 位于单元格 {CellsStr} 里构成结构，在区域 {RegionStr} 带有数组，涉及单元格 {ExtraCellsStr} 的数字 {ExtraDigitsStr} =&gt; {ElimStr}</value>
+    <value>{Name}：数字 {DigitsStr} 位于单元格 {CellsStr} 里构成结构，在区域 {HouseStr} 带有数组，涉及单元格 {ExtraCellsStr} 的数字 {ExtraDigitsStr} =&gt; {ElimStr}</value>
   </data>
   <data name="TechniqueFormat_ExtendedRectangleType4Step" xml:space="preserve">
     <value>{Name}：数字 {DigitsStr} 位于单元格 {CellsStr} 里构成结构，带有共轭对 {ConjStr} =&gt; {ElimStr}</value>
@@ -376,10 +376,10 @@
     <value>{Name}：单元格 {CellsStr} 并带有{GuardianSingularOrPlural} {GuardianStr} =&gt; {ElimStr}</value>
   </data>
   <data name="TechniqueFormat_HiddenSingle" xml:space="preserve">
-    <value>{Name}：在区域 {RegionStr} 里有 {CellStr} = {DigitStr}</value>
+    <value>{Name}：在区域 {HouseStr} 里有 {CellStr} = {DigitStr}</value>
   </data>
   <data name="TechniqueFormat_HiddenSubsetStep" xml:space="preserve">
-    <value>{Name}：数字 {DigitStr} 位于区域 {RegionStr} 里有隐性数组结构 =&gt; {ElimStr}</value>
+    <value>{Name}：数字 {DigitStr} 位于区域 {HouseStr} 里有隐性数组结构 =&gt; {ElimStr}</value>
   </data>
   <data name="TechniqueFormat_LastDigit" xml:space="preserve">
     <value>{Name}：{CellStr} = {DigitStr}</value>
@@ -394,7 +394,7 @@
     <value>{Name}：{CellStr} = {DigitStr}</value>
   </data>
   <data name="TechniqueFormat_NakedSubsetStep" xml:space="preserve">
-    <value>{Name}：{DigitsStr} 位于区域 {RegionStr} 里有显性{SubsetName}结构 =&gt; {ElimStr}</value>
+    <value>{Name}：{DigitsStr} 位于区域 {HouseStr} 里有显性{SubsetName}结构 =&gt; {ElimStr}</value>
   </data>
   <data name="TechniqueFormat_NormalFishStep" xml:space="preserve">
     <value>{Name}：数字 {DigitStr} 位于区域 {BaseSetStr}\\{CoverSetStr} 里有鱼结构{FinsStr} =&gt; {ElimStr}</value>
@@ -417,8 +417,8 @@
   <data name="TechniqueFormat_QiuDeadlyPatternType4Step" xml:space="preserve">
     <value>{Name}：如果涉及结构的、和共轭对 {ConjStr} 涉及外的数字被放在了共轭对上，单元格 {PatternStr} 将产生致命形式 =&gt; {ElimStr}</value>
   </data>
-  <data name="TechniqueFormat_RegionChainingStep" xml:space="preserve">
-    <value>{Name}：可以使用强制链证得位于区域 {RegionStr} 的数字 {DigitStr} 全为假的矛盾 =&gt; {ElimStr}</value>
+  <data name="TechniqueFormat_HouseChainingStep" xml:space="preserve">
+    <value>{Name}：可以使用强制链证得位于区域 {HouseStr} 的数字 {DigitStr} 全为假的矛盾 =&gt; {ElimStr}</value>
   </data>
   <data name="TechniqueFormat_RegularWingStep" xml:space="preserve">
     <value>{Name}：数字 {DigitsStr} 位于拐点 {PivotCellStr} 上，往单元格 {CellsStr} 上进行推理 =&gt; {ElimStr}</value>
@@ -433,7 +433,7 @@
     <value>{Name}：关于数字 {DigitStr} =&gt; {ElimStr}</value>
   </data>
   <data name="TechniqueFormat_TwoStrongLinksStep" xml:space="preserve">
-    <value>{Name}：数字 {DigitStr} 位于区域 {BaseRegionStr}\\{TargetRegionStr} =&gt; {ElimStr}</value>
+    <value>{Name}：数字 {DigitStr} 位于区域 {BaseHouseStr}\\{TargetHouseStr} =&gt; {ElimStr}</value>
   </data>
   <data name="TechniqueFormat_UniqueLoopType1Step" xml:space="preserve">
     <value>{Name}：数字 {Digit1Str} 和 {Digit2Str} 位于单元格 {LoopStr} 里构成结构 =&gt; {ElimStr}</value>
@@ -457,7 +457,7 @@
     <value>{Name}：数字 {DigitsStr} 位于单元格 {CellsStr} 里，在单元格 {ExtraCellsStr} 里带有额外数字 {ExtraDigitsStr} =&gt; {ElimStr}</value>
   </data>
   <data name="TechniqueFormat_UniquePolygonType4Step" xml:space="preserve">
-    <value>{Name}：数字 {DigitsStr} 位于单元格 {CellsStr} 里，带有一个关于数字 {ExtraCombStr} 的共轭组，位于单元格 {ConjRegionStr} 里 =&gt; {ElimStr}</value>
+    <value>{Name}：数字 {DigitsStr} 位于单元格 {CellsStr} 里，带有一个关于数字 {ExtraCombStr} 的共轭组，位于单元格 {ConjHouseStr} 里 =&gt; {ElimStr}</value>
   </data>
   <data name="TechniqueFormat_UniqueRectangle2DOr3XStep" xml:space="preserve">
     <value>{Name}：数字 {D1Str} 和 {D2Str} 在结构 {CellsStr} 里，X 为 {XDigitStr}、Y 为 {YDigitStr}、双值格为 {XYCellsStr} =&gt; {ElimStr}</value>
@@ -469,7 +469,7 @@
     <value>{Name}：数字 {D1Str} 和 {D2Str} 在结构 {CellsStr} 里，带额外数字 {ExtraDigitStr} =&gt; {ElimStr}</value>
   </data>
   <data name="TechniqueFormat_UniqueRectangleType3Step" xml:space="preserve">
-    <value>{Name}：数字 {D1Str} 和 {D2Str} 在结构 {CellsStr} 里，带额外数字 {DigitsStr} {OnlyKeywordZhCn}在区域 {RegionStr} 的 {CellsStr} 这几格里{AppearLimitKeyword} =&gt; {ElimStr}</value>
+    <value>{Name}：数字 {D1Str} 和 {D2Str} 在结构 {CellsStr} 里，带额外数字 {DigitsStr} {OnlyKeywordZhCn}在区域 {HouseStr} 的 {CellsStr} 这几格里{AppearLimitKeyword} =&gt; {ElimStr}</value>
   </data>
   <data name="TechniqueFormat_UniqueRectangleWithConjugatePairStep" xml:space="preserve">
     <value>{Name}：数字 {D1Str} 和 {D2Str} 在结构 {CellsStr} 里，并带共轭对 {ConjPairsStr} =&gt; {ElimStr}</value>

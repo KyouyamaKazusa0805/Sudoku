@@ -1375,11 +1375,11 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to . Extra regions will be included:.
+        ///   Looks up a localized string similar to . Extra houses will be included:.
         /// </summary>
-        internal static string IncludedExtraRegion {
+        internal static string IncludedExtraHouse {
             get {
-                return ResourceManager.GetString("IncludedExtraRegion", resourceCulture);
+                return ResourceManager.GetString("IncludedExtraHouse", resourceCulture);
             }
         }
         
@@ -2491,7 +2491,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {Name}: Digits {D1Str} and {D2Str} in {CellsStr} with hidden single: if cell {BaseCellStr} is filled with the digit {Digit1Str}, region {RegionStr} will only contain a cell {TargetCellStr} can be filled with that digit, but will raise the deadly pattern =&gt; {ElimStr}.
+        ///   Looks up a localized string similar to {Name}: Digits {D1Str} and {D2Str} in {CellsStr} with hidden single: if cell {BaseCellStr} is filled with the digit {Digit1Str}, house {HouseStr} will only contain a cell {TargetCellStr} can be filled with that digit, but will raise the deadly pattern =&gt; {ElimStr}.
         /// </summary>
         internal static string TechniqueFormat_AvoidableRectangleWithHiddenSingleStep {
             get {
@@ -2644,7 +2644,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {Name}: Digits {Digit1Str}, {Digit2Str} in bivalue cells {StartCellStr} and {EndCellStr} with empty rectangle in {RegionStr} =&gt; {ElimStr}.
+        ///   Looks up a localized string similar to {Name}: Digits {Digit1Str}, {Digit2Str} in bivalue cells {StartCellStr} and {EndCellStr} with empty rectangle in {HouseStr} =&gt; {ElimStr}.
         /// </summary>
         internal static string TechniqueFormat_EmptyRectangleIntersectionPairStep {
             get {
@@ -2653,7 +2653,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {Name}: {DigitStr} in {RegionStr} with conjugate pair {ConjStr} =&gt; {ElimStr}.
+        ///   Looks up a localized string similar to {Name}: {DigitStr} in {HouseStr} with conjugate pair {ConjStr} =&gt; {ElimStr}.
         /// </summary>
         internal static string TechniqueFormat_EmptyRectangleStep {
             get {
@@ -2680,7 +2680,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {Name}: {DigitsStr} in {CellsStr} with {ExtraDigitsStr} in cells {ExtraCellsStr} in {RegionStr} =&gt; {ElimStr}.
+        ///   Looks up a localized string similar to {Name}: {DigitsStr} in {CellsStr} with {ExtraDigitsStr} in cells {ExtraCellsStr} in {HouseStr} =&gt; {ElimStr}.
         /// </summary>
         internal static string TechniqueFormat_ExtendedRectangleType3Step {
             get {
@@ -2734,7 +2734,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {Name}: {CellStr} = {DigitStr} in {RegionStr}.
+        ///   Looks up a localized string similar to {Name}: {CellStr} = {DigitStr} in {HouseStr}.
         /// </summary>
         internal static string TechniqueFormat_HiddenSingle {
             get {
@@ -2743,11 +2743,20 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {Name}: {DigitStr} in {RegionStr} =&gt; {ElimStr}.
+        ///   Looks up a localized string similar to {Name}: {DigitStr} in {HouseStr} =&gt; {ElimStr}.
         /// </summary>
         internal static string TechniqueFormat_HiddenSubsetStep {
             get {
                 return ResourceManager.GetString("TechniqueFormat_HiddenSubsetStep", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {Name}: It can be proved using chains that digit {DigitStr} from {HouseStr} are false =&gt; {ElimStr}.
+        /// </summary>
+        internal static string TechniqueFormat_HouseChainingStep {
+            get {
+                return ResourceManager.GetString("TechniqueFormat_HouseChainingStep", resourceCulture);
             }
         }
         
@@ -2788,7 +2797,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {Name}: {DigitsStr} in {RegionStr} =&gt; {ElimStr}.
+        ///   Looks up a localized string similar to {Name}: {DigitsStr} in {HouseStr} =&gt; {ElimStr}.
         /// </summary>
         internal static string TechniqueFormat_NakedSubsetStep {
             get {
@@ -2860,15 +2869,6 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {Name}: It can be proved using chains that digit {DigitStr} from {RegionStr} are false =&gt; {ElimStr}.
-        /// </summary>
-        internal static string TechniqueFormat_RegionChainingStep {
-            get {
-                return ResourceManager.GetString("TechniqueFormat_RegionChainingStep", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to {Name}: {DigitsStr} in {PivotCellStr} with {CellsStr} =&gt; {ElimStr}.
         /// </summary>
         internal static string TechniqueFormat_RegularWingStep {
@@ -2905,7 +2905,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {Name}: {DigitStr} in {BaseRegionStr}\\{TargetRegionStr} =&gt; {ElimStr}.
+        ///   Looks up a localized string similar to {Name}: {DigitStr} in {BaseHouseStr}\\{TargetHouseStr} =&gt; {ElimStr}.
         /// </summary>
         internal static string TechniqueFormat_TwoStrongLinksStep {
             get {
@@ -2977,7 +2977,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {Name}: {DigitsStr} in cells {CellsStr} with the conjugate region {ConjRegionStr} of the extra digits {ExtraCombStr} =&gt; {ElimStr}.
+        ///   Looks up a localized string similar to {Name}: {DigitsStr} in cells {CellsStr} with the conjugate house {ConjHouseStr} of the extra digits {ExtraCombStr} =&gt; {ElimStr}.
         /// </summary>
         internal static string TechniqueFormat_UniquePolygonType4Step {
             get {
@@ -3013,7 +3013,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {Name}: Digits {D1Str} and {D2Str} in {CellsStr}, with the digit {DigitsStr} in {OnlyKeyword}cells {CellsStr} in {RegionStr} =&gt; {ElimStr}.
+        ///   Looks up a localized string similar to {Name}: Digits {D1Str} and {D2Str} in {CellsStr}, with the digit {DigitsStr} in {OnlyKeyword}cells {CellsStr} in {HouseStr} =&gt; {ElimStr}.
         /// </summary>
         internal static string TechniqueFormat_UniqueRectangleType3Step {
             get {
@@ -3094,7 +3094,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {Name}: Digits {DigitsStr} in cells {CellsStr} can avoid to form a deadly pattern if and only if the conjugate region {ConjStr} can&apos;t set the digit neither {Digit1Str} nor {Digit2Str} =&gt; {ElimStr}.
+        ///   Looks up a localized string similar to {Name}: Digits {DigitsStr} in cells {CellsStr} can avoid to form a deadly pattern if and only if the conjugate house {ConjStr} can&apos;t set the digit neither {Digit1Str} nor {Digit2Str} =&gt; {ElimStr}.
         /// </summary>
         internal static string TechniqueFormat_UniqueSquareType4Step {
             get {
