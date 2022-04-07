@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Solving;
+﻿namespace Sudoku.Solving.Manual;
 
 /// <summary>
 /// Defines a reason why the <see cref="IPuzzleSolver"/> is failed to solve a puzzle.

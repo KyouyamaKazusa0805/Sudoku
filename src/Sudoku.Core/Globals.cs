@@ -38,5 +38,5 @@ global using static System.Numerics.BitOperations;
 global using static Sudoku.Resources.MergedResources;
 global using static Sudoku.Runtime.AnalysisServices.CommonReadOnlies;
 
-[assembly: InternalsVisibleTo("Sudoku.Solving")]
+[assembly: InternalsVisibleTo("Sudoku.Solving.Manual")]
 [module: SkipLocalsInit]

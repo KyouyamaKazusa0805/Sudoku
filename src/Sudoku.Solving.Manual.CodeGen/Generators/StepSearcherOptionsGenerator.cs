@@ -21,8 +21,8 @@ public sealed class StepSearcherOptionsGenerator : ISourceGenerator
 {
 	private static readonly DiagnosticDescriptor SCA0101 = new(
 		nameof(SCA0101),
-		"The source generator can only applied to the assembly 'Sudoku.Solving'",
-		"The source generator can only applied to the assembly 'Sudoku.Solving'",
+		"The source generator can only applied to the assembly 'Sudoku.Solving.Manual'",
+		"The source generator can only applied to the assembly 'Sudoku.Solving.Manual'",
 		"Usage",
 		DiagnosticSeverity.Error,
 		true,
@@ -57,7 +57,7 @@ public sealed class StepSearcherOptionsGenerator : ISourceGenerator
 		if (
 			context is not
 			{
-				Compilation.Assembly: { Name: "Sudoku.Solving" } assemblySymbol
+				Compilation.Assembly: { Name: "Sudoku.Solving.Manual" } assemblySymbol
 			}
 		)
 		{

@@ -11,7 +11,6 @@ using Microsoft.UI.Xaml.Controls.Primitives;
 using Microsoft.UI.Xaml.Input;
 using Microsoft.UI.Xaml.Media.Imaging;
 using Sudoku.Generating;
-using Sudoku.Solving;
 using Sudoku.Solving.Manual;
 using Windows.ApplicationModel.DataTransfer;
 using Windows.Graphics.Imaging;

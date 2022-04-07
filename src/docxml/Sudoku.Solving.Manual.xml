@@ -1,257 +1,9 @@
 <?xml version="1.0"?>
 <doc>
     <assembly>
-        <name>Sudoku.Solving</name>
+        <name>Sudoku.Solving.Manual</name>
     </assembly>
     <members>
-        <member name="T:Sudoku.Solving.ModuleInitializer">
-            <target name="type">
-				<summary>
-					<para>
-						Provides with the type that contains a module initializer method, called automatically by the CLR
-						(Common Language Runtime) to initialize some values.
-					</para>
-					<para>
-						<i>
-							The type is called by the compiler and the CLR (Common Language Runtime),
-							which means you cannot use any members in this type manually.
-						</i>
-					</para>
-				</summary>
-			</target>
-        </member>
-        <member name="M:Sudoku.Solving.ModuleInitializer.Initialize">
-            <target name="method">
-				<summary>
-					Called by the runtime automatically while booting on this solution to initialize the values,
-					data members or any other things that can or should be initialized here.
-				</summary>
-				<remarks>
-					The concept <b>module</b> is different with <b>assembly</b>.
-					The solution can contain multiple assemblies, while each assembly can contain multiple modules.
-					However, due to the design of Visual Studio project file system, each assembly will only contain
-					one module by default.
-				</remarks>
-			</target>
-        </member>
-        <member name="T:Sudoku.Solving.BruteForces.BruteForceSolverResult">
-            <summary>
-            Encapsulates a solver result information that is created by a brute force solver.
-            </summary>
-            <param name="OriginalPuzzle"><inheritdoc/></param>
-            <param name="IsSolved">
-            <para><inheritdoc/></para>
-            <para>The default value is <see langword="true"/>.</para>
-            </param>
-            <param name="FailedReason">
-            <para><inheritdoc/></para>
-            <para>The default value is <see cref="F:Sudoku.Solving.FailedReason.Nothing"/>.</para>
-            </param>
-            <param name="Solution">
-            <para><inheritdoc/></para>
-            <para>The default value is <see cref="F:Sudoku.Concepts.Collections.Grid.Undefined"/>.</para>
-            </param>
-            <param name="ElapsedTime">
-            <para><inheritdoc/></para>
-            <para>The default value is <see cref="F:System.TimeSpan.Zero"/>.</para>
-            </param>
-        </member>
-        <member name="M:Sudoku.Solving.BruteForces.BruteForceSolverResult.#ctor(Sudoku.Concepts.Collections.Grid@,System.Boolean,Sudoku.Solving.FailedReason,Sudoku.Concepts.Collections.Grid@,System.TimeSpan)">
-            <summary>
-            Encapsulates a solver result information that is created by a brute force solver.
-            </summary>
-            <param name="OriginalPuzzle"><inheritdoc/></param>
-            <param name="IsSolved">
-            <para><inheritdoc/></para>
-            <para>The default value is <see langword="true"/>.</para>
-            </param>
-            <param name="FailedReason">
-            <para><inheritdoc/></para>
-            <para>The default value is <see cref="F:Sudoku.Solving.FailedReason.Nothing"/>.</para>
-            </param>
-            <param name="Solution">
-            <para><inheritdoc/></para>
-            <para>The default value is <see cref="F:Sudoku.Concepts.Collections.Grid.Undefined"/>.</para>
-            </param>
-            <param name="ElapsedTime">
-            <para><inheritdoc/></para>
-            <para>The default value is <see cref="F:System.TimeSpan.Zero"/>.</para>
-            </param>
-        </member>
-        <member name="P:Sudoku.Solving.BruteForces.BruteForceSolverResult.OriginalPuzzle">
-            <summary><inheritdoc/></summary>
-        </member>
-        <member name="P:Sudoku.Solving.BruteForces.BruteForceSolverResult.IsSolved">
-            <summary>
-            <para><inheritdoc/></para>
-            <para>The default value is <see langword="true"/>.</para>
-            </summary>
-        </member>
-        <member name="P:Sudoku.Solving.BruteForces.BruteForceSolverResult.FailedReason">
-            <summary>
-            <para><inheritdoc/></para>
-            <para>The default value is <see cref="F:Sudoku.Solving.FailedReason.Nothing"/>.</para>
-            </summary>
-        </member>
-        <member name="P:Sudoku.Solving.BruteForces.BruteForceSolverResult.Solution">
-            <summary>
-            <para><inheritdoc/></para>
-            <para>The default value is <see cref="F:Sudoku.Concepts.Collections.Grid.Undefined"/>.</para>
-            </summary>
-        </member>
-        <member name="P:Sudoku.Solving.BruteForces.BruteForceSolverResult.ElapsedTime">
-            <summary>
-            <para><inheritdoc/></para>
-            <para>The default value is <see cref="F:System.TimeSpan.Zero"/>.</para>
-            </summary>
-        </member>
-        <member name="M:Sudoku.Solving.BruteForces.BruteForceSolverResult.ToDisplayString">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Solving.BruteForces.BruteForceSolverResult.ToString">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Solving.BruteForces.FastSolver">
-            <summary>
-            Defines a fast solver.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Solving.BruteForces.FastSolver.BitwiseSolver">
-            <summary>
-            The inner solver.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Solving.BruteForces.FastSolver.Solve(Sudoku.Concepts.Collections.Grid@,System.Threading.CancellationToken)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Solving.BruteForces.FastSolver.Solve(System.Char*,System.Char*,System.Int32)">
-            <inheritdoc cref="M:Sudoku.Solving.BitwiseSolver.Solve(System.Char*,System.Char*,System.Int32)"/>
-        </member>
-        <member name="M:Sudoku.Solving.BruteForces.FastSolver.CheckValidity(System.Char*)">
-            <inheritdoc cref="M:Sudoku.Solving.BitwiseSolver.CheckValidity(System.Char*,System.Boolean)"/>
-        </member>
-        <member name="M:Sudoku.Solving.BruteForces.FastSolver.CheckValidity(System.String)">
-            <inheritdoc cref="M:Sudoku.Solving.BitwiseSolver.CheckValidity(System.String)"/>
-        </member>
-        <member name="T:Sudoku.Solving.FailedReason">
-            <summary>
-            Defines a reason why the <see cref="T:Sudoku.Solving.IPuzzleSolver"/> is failed to solve a puzzle.
-            </summary>
-            <seealso cref="T:Sudoku.Solving.IPuzzleSolver"/>
-        </member>
-        <member name="F:Sudoku.Solving.FailedReason.Nothing">
-            <summary>
-            Indicates nothing goes wrong.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Solving.FailedReason.PuzzleIsInvalid">
-            <summary>
-            Indicates the failed reason is that the puzzle doesn't contain a valid unique solution.
-            Different with <see cref="F:Sudoku.Solving.FailedReason.PuzzleHasMultipleSolutions"/> and <see cref="F:Sudoku.Solving.FailedReason.PuzzleHasNoSolution"/>,
-            this field will include more generic cases. If the puzzle doesn't pass the pre-process operation
-            before solving, we should use this field.
-            </summary>
-            <seealso cref="F:Sudoku.Solving.FailedReason.PuzzleHasNoSolution"/>
-            <seealso cref="F:Sudoku.Solving.FailedReason.PuzzleHasMultipleSolutions"/>
-        </member>
-        <member name="F:Sudoku.Solving.FailedReason.PuzzleHasNoSolution">
-            <summary>
-            Indicates the failed reason is that the puzzle doesn't contain a valid solution.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Solving.FailedReason.PuzzleHasMultipleSolutions">
-            <summary>
-            Indicates the failed reason is that the puzzle contains multiple valid solutions.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Solving.FailedReason.UserCancelled">
-            <summary>
-            Indicates the failed reason is that the user has cancelled the task.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Solving.FailedReason.NotImplemented">
-            <summary>
-            Indicates the failed reason is that the solver doesn't implemented some function
-            that causes the operation can't be finished.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Solving.FailedReason.ExceptionThrown">
-            <summary>
-            Indicates the failed reason is that the solver has encountered an error and couldn't solve,
-            then an exception thrown.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Solving.FailedReason.WrongStep">
-            <summary>
-            Indicates the failed reason is that the solver has found a wrong step that cause the grid become invalid.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Solving.FailedReason.PuzzleIsTooHard">
-            <summary>
-            Indicates the failed reason is that the puzzle is too hard to solve. The solver gave up.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Solving.FailedReason.Unknown">
-            <summary>
-            Indicates the other reason to cause the error.
-            </summary>
-        </member>
-        <member name="T:Sudoku.Solving.IPuzzleSolver">
-            <summary>
-            Defines and provides with a solver that used for solving a sudoku puzzle.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Solving.IPuzzleSolver.Solve(Sudoku.Concepts.Collections.Grid@,System.Threading.CancellationToken)">
-            <summary>
-            To solve the specified puzzle.
-            </summary>
-            <param name="puzzle">The puzzle to be solved.</param>
-            <param name="cancellationToken">The cancellation token to cancel the operation.</param>
-            <returns>The solver result that provides the information after solving.</returns>
-        </member>
-        <member name="T:Sudoku.Solving.ISolverResult">
-            <summary>
-            Defines a result that created by a solver to represent a result of analysis after the solver calculated.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Solving.ISolverResult.IsSolved">
-            <summary>
-            Indicates whether the solver has solved the puzzle.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Solving.ISolverResult.FailedReason">
-            <summary>
-            Indicates why the solving operation is failed. This property is useless when <see cref="P:Sudoku.Solving.ISolverResult.IsSolved"/>
-            keeps the <see langword="true"/> value.
-            </summary>
-            <seealso cref="P:Sudoku.Solving.ISolverResult.IsSolved"/>
-        </member>
-        <member name="P:Sudoku.Solving.ISolverResult.OriginalPuzzle">
-            <summary>
-            Indicates the original sudoku puzzle to solve.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Solving.ISolverResult.Solution">
-            <summary>
-            Indicates the result sudoku grid solved. If the solver can't solve this puzzle, the value will be
-            <see cref="F:Sudoku.Concepts.Collections.Grid.Undefined"/>.
-            </summary>
-            <seealso cref="F:Sudoku.Concepts.Collections.Grid.Undefined"/>
-        </member>
-        <member name="P:Sudoku.Solving.ISolverResult.ElapsedTime">
-            <summary>
-            Indicates the elapsed time used during solving the puzzle. The value may not be an useful value.
-            Some case if the puzzle doesn't contain a valid unique solution, the value may be
-            <see cref="F:System.TimeSpan.Zero"/>.
-            </summary>
-            <seealso cref="F:System.TimeSpan.Zero"/>
-        </member>
-        <member name="M:Sudoku.Solving.ISolverResult.ToDisplayString">
-            <summary>
-            Get the string representation of the current instance.
-            </summary>
-            <returns>The string representation of the current instance.</returns>
-        </member>
         <member name="T:Sudoku.Solving.Manual.Buffer.FastProperties">
             <summary>
             Provides and encapsulates the fast properties that is used in solving and analyzing a sudoku puzzle.
@@ -521,6 +273,69 @@
             unless using last resort methods.
             </summary>
         </member>
+        <member name="T:Sudoku.Solving.Manual.FailedReason">
+            <summary>
+            Defines a reason why the <see cref="T:Sudoku.Solving.Manual.IPuzzleSolver"/> is failed to solve a puzzle.
+            </summary>
+            <seealso cref="T:Sudoku.Solving.Manual.IPuzzleSolver"/>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.FailedReason.Nothing">
+            <summary>
+            Indicates nothing goes wrong.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.FailedReason.PuzzleIsInvalid">
+            <summary>
+            Indicates the failed reason is that the puzzle doesn't contain a valid unique solution.
+            Different with <see cref="F:Sudoku.Solving.Manual.FailedReason.PuzzleHasMultipleSolutions"/> and <see cref="F:Sudoku.Solving.Manual.FailedReason.PuzzleHasNoSolution"/>,
+            this field will include more generic cases. If the puzzle doesn't pass the pre-process operation
+            before solving, we should use this field.
+            </summary>
+            <seealso cref="F:Sudoku.Solving.Manual.FailedReason.PuzzleHasNoSolution"/>
+            <seealso cref="F:Sudoku.Solving.Manual.FailedReason.PuzzleHasMultipleSolutions"/>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.FailedReason.PuzzleHasNoSolution">
+            <summary>
+            Indicates the failed reason is that the puzzle doesn't contain a valid solution.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.FailedReason.PuzzleHasMultipleSolutions">
+            <summary>
+            Indicates the failed reason is that the puzzle contains multiple valid solutions.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.FailedReason.UserCancelled">
+            <summary>
+            Indicates the failed reason is that the user has cancelled the task.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.FailedReason.NotImplemented">
+            <summary>
+            Indicates the failed reason is that the solver doesn't implemented some function
+            that causes the operation can't be finished.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.FailedReason.ExceptionThrown">
+            <summary>
+            Indicates the failed reason is that the solver has encountered an error and couldn't solve,
+            then an exception thrown.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.FailedReason.WrongStep">
+            <summary>
+            Indicates the failed reason is that the solver has found a wrong step that cause the grid become invalid.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.FailedReason.PuzzleIsTooHard">
+            <summary>
+            Indicates the failed reason is that the puzzle is too hard to solve. The solver gave up.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.FailedReason.Unknown">
+            <summary>
+            Indicates the other reason to cause the error.
+            </summary>
+        </member>
         <member name="T:Sudoku.Solving.Manual.IManualSolverOptions">
             <summary>
             Defines an instance that stores the options that bound with a <see cref="T:Sudoku.Solving.Manual.ManualSolver"/> instance.
@@ -566,6 +381,62 @@
             <summary>
             Indicates whether the solver will apply the steps via the asecending order.
             </summary>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.IPuzzleSolver">
+            <summary>
+            Defines and provides with a solver that used for solving a sudoku puzzle.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.IPuzzleSolver.Solve(Sudoku.Concepts.Collections.Grid@,System.Threading.CancellationToken)">
+            <summary>
+            To solve the specified puzzle.
+            </summary>
+            <param name="puzzle">The puzzle to be solved.</param>
+            <param name="cancellationToken">The cancellation token to cancel the operation.</param>
+            <returns>The solver result that provides the information after solving.</returns>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.ISolverResult">
+            <summary>
+            Defines a result that created by a solver to represent a result of analysis after the solver calculated.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.ISolverResult.IsSolved">
+            <summary>
+            Indicates whether the solver has solved the puzzle.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.ISolverResult.FailedReason">
+            <summary>
+            Indicates why the solving operation is failed. This property is useless when <see cref="P:Sudoku.Solving.Manual.ISolverResult.IsSolved"/>
+            keeps the <see langword="true"/> value.
+            </summary>
+            <seealso cref="P:Sudoku.Solving.Manual.ISolverResult.IsSolved"/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.ISolverResult.OriginalPuzzle">
+            <summary>
+            Indicates the original sudoku puzzle to solve.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.ISolverResult.Solution">
+            <summary>
+            Indicates the result sudoku grid solved. If the solver can't solve this puzzle, the value will be
+            <see cref="F:Sudoku.Concepts.Collections.Grid.Undefined"/>.
+            </summary>
+            <seealso cref="F:Sudoku.Concepts.Collections.Grid.Undefined"/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.ISolverResult.ElapsedTime">
+            <summary>
+            Indicates the elapsed time used during solving the puzzle. The value may not be an useful value.
+            Some case if the puzzle doesn't contain a valid unique solution, the value may be
+            <see cref="F:System.TimeSpan.Zero"/>.
+            </summary>
+            <seealso cref="F:System.TimeSpan.Zero"/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.ISolverResult.ToDisplayString">
+            <summary>
+            Get the string representation of the current instance.
+            </summary>
+            <returns>The string representation of the current instance.</returns>
         </member>
         <member name="T:Sudoku.Solving.Manual.IStep">
             <summary>
@@ -1007,10 +878,10 @@
         <member name="P:Sudoku.Solving.Manual.ManualSolverResult.UnhandledException">
             <summary>
             Indicates the unhandled exception thrown. You can visit the property value
-            if the property <see cref="P:Sudoku.Solving.Manual.ManualSolverResult.FailedReason"/> is <see cref="F:Sudoku.Solving.FailedReason.ExceptionThrown"/>.
+            if the property <see cref="P:Sudoku.Solving.Manual.ManualSolverResult.FailedReason"/> is <see cref="F:Sudoku.Solving.Manual.FailedReason.ExceptionThrown"/>.
             </summary>
             <seealso cref="P:Sudoku.Solving.Manual.ManualSolverResult.FailedReason"/>
-            <seealso cref="F:Sudoku.Solving.FailedReason.ExceptionThrown"/>
+            <seealso cref="F:Sudoku.Solving.Manual.FailedReason.ExceptionThrown"/>
         </member>
         <member name="P:Sudoku.Solving.Manual.ManualSolverResult.Item(System.Int32)">
             <summary>
@@ -1040,8 +911,8 @@
         <member name="M:Sudoku.Solving.Manual.ManualSolverResult.ToString(System.String)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Solving.Manual.ManualSolverResult.ToString(Sudoku.Solving.SolverResultFormattingOptions)">
-            <inheritdoc cref="M:Sudoku.Solving.Manual.ManualSolverResult.Formatter.ToString(Sudoku.Solving.SolverResultFormattingOptions)"/>
+        <member name="M:Sudoku.Solving.Manual.ManualSolverResult.ToString(Sudoku.Solving.Manual.SolverResultFormattingOptions)">
+            <inheritdoc cref="M:Sudoku.Solving.Manual.ManualSolverResult.Formatter.ToString(Sudoku.Solving.Manual.SolverResultFormattingOptions)"/>
         </member>
         <member name="M:Sudoku.Solving.Manual.ManualSolverResult.ToDisplayString">
             <inheritdoc/>
@@ -1094,7 +965,7 @@
             and the format provider can't work.
             </exception>
         </member>
-        <member name="M:Sudoku.Solving.Manual.ManualSolverResult.Formatter.ToString(Sudoku.Solving.SolverResultFormattingOptions)">
+        <member name="M:Sudoku.Solving.Manual.ManualSolverResult.Formatter.ToString(Sudoku.Solving.Manual.SolverResultFormattingOptions)">
             <summary>
             Get the string result with the specified formatting options.
             </summary>
@@ -3933,6 +3804,56 @@
         </member>
         <member name="M:Sudoku.Solving.Manual.SeparatedStepSearcherAttributeComparer.Compare(Sudoku.Solving.Manual.SeparatedStepSearcherAttribute,Sudoku.Solving.Manual.SeparatedStepSearcherAttribute)">
             <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.SolverResultFormattingOptions">
+            <summary>
+            Indicates the formatting options of <see cref="T:Sudoku.Solving.Manual.ISolverResult"/> instance.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.SolverResultFormattingOptions.None">
+            <summary>
+            Indicates the none of the formatting option.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.SolverResultFormattingOptions.ShowSeparators">
+            <summary>
+            Indicates the analysis result will append separators.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.SolverResultFormattingOptions.ShowStepLabel">
+            <summary>
+            Indicates the analysis result will append the step label.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.SolverResultFormattingOptions.ShowSimple">
+            <summary>
+            Indicates the analysis result will use simple mode to show steps.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.SolverResultFormattingOptions.ShowBottleneck">
+            <summary>
+            Indicates the analysis result will show the bottleneck.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.SolverResultFormattingOptions.ShowDifficulty">
+            <summary>
+            Indicates the analysis result will show the difficulty.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.SolverResultFormattingOptions.ShowStepsAfterBottleneck">
+            <summary>
+            Indicates the analysis result will show all steps after the bottleneck.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.SolverResultFormattingOptions.ShowStepDetail">
+            <summary>
+            Indicates the analysis result will show the step detail.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Manual.SolverResultFormattingOptions.ShowSteps">
+            <summary>
+            Indicates the analysis result will show the steps.
+            </summary>
         </member>
         <member name="T:Sudoku.Solving.Manual.Stableness">
             <summary>
@@ -8974,55 +8895,35 @@
         <member name="M:Sudoku.Solving.Manual.WrongStepException.GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
             <inheritdoc/>
         </member>
-        <member name="T:Sudoku.Solving.SolverResultFormattingOptions">
-            <summary>
-            Indicates the formatting options of <see cref="T:Sudoku.Solving.ISolverResult"/> instance.
-            </summary>
+        <member name="T:Sudoku.Solving.ModuleInitializer">
+            <target name="type">
+				<summary>
+					<para>
+						Provides with the type that contains a module initializer method, called automatically by the CLR
+						(Common Language Runtime) to initialize some values.
+					</para>
+					<para>
+						<i>
+							The type is called by the compiler and the CLR (Common Language Runtime),
+							which means you cannot use any members in this type manually.
+						</i>
+					</para>
+				</summary>
+			</target>
         </member>
-        <member name="F:Sudoku.Solving.SolverResultFormattingOptions.None">
-            <summary>
-            Indicates the none of the formatting option.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Solving.SolverResultFormattingOptions.ShowSeparators">
-            <summary>
-            Indicates the analysis result will append separators.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Solving.SolverResultFormattingOptions.ShowStepLabel">
-            <summary>
-            Indicates the analysis result will append the step label.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Solving.SolverResultFormattingOptions.ShowSimple">
-            <summary>
-            Indicates the analysis result will use simple mode to show steps.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Solving.SolverResultFormattingOptions.ShowBottleneck">
-            <summary>
-            Indicates the analysis result will show the bottleneck.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Solving.SolverResultFormattingOptions.ShowDifficulty">
-            <summary>
-            Indicates the analysis result will show the difficulty.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Solving.SolverResultFormattingOptions.ShowStepsAfterBottleneck">
-            <summary>
-            Indicates the analysis result will show all steps after the bottleneck.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Solving.SolverResultFormattingOptions.ShowStepDetail">
-            <summary>
-            Indicates the analysis result will show the step detail.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Solving.SolverResultFormattingOptions.ShowSteps">
-            <summary>
-            Indicates the analysis result will show the steps.
-            </summary>
+        <member name="M:Sudoku.Solving.ModuleInitializer.Initialize">
+            <target name="method">
+				<summary>
+					Called by the runtime automatically while booting on this solution to initialize the values,
+					data members or any other things that can or should be initialized here.
+				</summary>
+				<remarks>
+					The concept <b>module</b> is different with <b>assembly</b>.
+					The solution can contain multiple assemblies, while each assembly can contain multiple modules.
+					However, due to the design of Visual Studio project file system, each assembly will only contain
+					one module by default.
+				</remarks>
+			</target>
         </member>
     </members>
 </doc>

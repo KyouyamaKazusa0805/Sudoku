@@ -23,7 +23,6 @@ global using Sudoku.Presentation;
 global using Sudoku.Presentation.Nodes;
 global using Sudoku.Resources;
 global using Sudoku.Runtime.Reflection;
-global using Sudoku.Solving.BruteForces;
 global using Sudoku.Solving.Manual;
 global using Sudoku.Solving.Manual.Buffer;
 global using Sudoku.Solving.Manual.Checkers;

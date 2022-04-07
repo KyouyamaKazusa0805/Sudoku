@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Solving;
+﻿namespace Sudoku.Solving.Manual;
 
 /// <summary>
 /// Indicates the formatting options of <see cref="ISolverResult"/> instance.
