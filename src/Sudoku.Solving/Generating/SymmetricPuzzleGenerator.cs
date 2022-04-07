@@ -1,6 +1,4 @@
-﻿using static Sudoku.Generating.IPuzzleGenerator;
-
-namespace Sudoku.Generating;
+﻿namespace Sudoku.Generating;
 
 /// <summary>
 /// Defines a symmetric puzzle generator, that is, a generator than can include the symmetrical placement
@@ -89,7 +87,7 @@ public sealed unsafe class SymmetricPuzzleGenerator : IPuzzleGenerator
 						throw new OperationCanceledException();
 					}
 				} while (81 - totalMap.Count > max);
-			} while (!Solver.CheckValidity(result = solution));
+			} while (!IPuzzleGenerator.Solver.CheckValidity(result = solution));
 
 			return Grid.Parse(result);
 		}
@@ -132,7 +130,7 @@ public sealed unsafe class SymmetricPuzzleGenerator : IPuzzleGenerator
 					pPuzzle[cell] = (char)(Random.Shared.Next(1, 9) + '0');
 				} while (CheckDuplicate(pPuzzle, cell));
 			}
-		} while (Solver.Solve(pPuzzle, pSolution, 2) == 0);
+		} while (IPuzzleGenerator.Solver.Solve(pPuzzle, pSolution, 2) == 0);
 	}
 
 

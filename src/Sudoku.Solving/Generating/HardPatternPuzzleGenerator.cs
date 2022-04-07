@@ -1,6 +1,4 @@
-﻿using static Sudoku.Generating.IPuzzleGenerator;
-
-namespace Sudoku.Generating;
+﻿namespace Sudoku.Generating;
 
 /// <summary>
 /// Defines a puzzle generator that makes the given pattern as a hard one. However,
@@ -50,14 +48,14 @@ public sealed unsafe class HardPatternPuzzleGenerator : IPuzzleGenerator
 					char temp = solution[p];
 					solution[p] = '0';
 
-					if (!Solver.CheckValidity(solution))
+					if (!IPuzzleGenerator.Solver.CheckValidity(solution))
 					{
 						// Reset the value.
 						solution[p] = temp;
 					}
 				}
 
-				if (Solver.CheckValidity(solution) && Grid.Parse(solution) is var grid)
+				if (IPuzzleGenerator.Solver.CheckValidity(solution) && Grid.Parse(solution) is var grid)
 				{
 					return grid;
 				}
@@ -104,7 +102,7 @@ public sealed unsafe class HardPatternPuzzleGenerator : IPuzzleGenerator
 					pPuzzle[cell] = (char)(Random.Shared.Next(1, 9) + '0');
 				} while (CheckDuplicate(pPuzzle, cell));
 			}
-		} while (Solver.Solve(pPuzzle, pSolution, 2) == 0);
+		} while (IPuzzleGenerator.Solver.Solve(pPuzzle, pSolution, 2) == 0);
 	}
 
 	/// <summary>
