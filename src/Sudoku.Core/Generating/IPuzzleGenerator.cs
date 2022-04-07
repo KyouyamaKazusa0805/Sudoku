@@ -8,7 +8,7 @@ public interface IPuzzleGenerator
 	/// <summary>
 	/// Provides a default fast solver to solve the puzzle.
 	/// </summary>
-	protected internal static readonly FastSolver Solver = new();
+	protected internal static readonly BitwiseSolver Solver = new();
 
 
 	/// <summary>
