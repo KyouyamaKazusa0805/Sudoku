@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Solving.Manual;
+﻿namespace Sudoku.Solving.Manual.Steps;
 
 /// <summary>
 /// Provides a basic manual solving step.
