@@ -41,7 +41,7 @@ public sealed unsafe partial class UniqueLoopStepSearcher :
 			tempLoop.Clear();
 
 			IUniqueLoopOrBivalueOddagonStepSearcher.SearchForPossibleLoopPatterns(
-				grid, d1, d2, cell, (Region)byte.MaxValue, 0, 2, ref loopMap,
+				grid, d1, d2, cell, (HouseType)byte.MaxValue, 0, 2, ref loopMap,
 				tempLoop, () => IUniqueLoopStepSearcher.IsValidLoop(tempLoop), loops
 			);
 
@@ -260,7 +260,7 @@ public sealed unsafe partial class UniqueLoopStepSearcher :
 				break;
 			}
 		}
-		if (!extraCellsMap.InOneRegion || notSatisfiedType3)
+		if (!extraCellsMap.InOneHouse || notSatisfiedType3)
 		{
 			goto ReturnNull;
 		}
@@ -272,14 +272,14 @@ public sealed unsafe partial class UniqueLoopStepSearcher :
 		}
 
 		short otherDigitsMask = (short)(m & ~comparer);
-		foreach (int region in extraCellsMap.CoveredRegions)
+		foreach (int houseIndex in extraCellsMap.CoveredHouses)
 		{
-			if (((ValueMaps[d1] | ValueMaps[d2]) & RegionMaps[region]) is not [])
+			if (((ValueMaps[d1] | ValueMaps[d2]) & HouseMaps[houseIndex]) is not [])
 			{
 				continue;
 			}
 
-			var otherCells = (RegionMaps[region] & EmptyMap) - loop;
+			var otherCells = (HouseMaps[houseIndex] & EmptyMap) - loop;
 			for (int size = PopCount((uint)otherDigitsMask) - 1, count = otherCells.Count; size < count; size++)
 			{
 				foreach (int[] cells in otherCells & size)
@@ -290,7 +290,7 @@ public sealed unsafe partial class UniqueLoopStepSearcher :
 						continue;
 					}
 
-					if ((RegionMaps[region] & EmptyMap) - cells - loop is not { Count: not 0 } elimMap)
+					if ((HouseMaps[houseIndex] & EmptyMap) - cells - loop is not { Count: not 0 } elimMap)
 					{
 						continue;
 					}
@@ -330,7 +330,7 @@ public sealed unsafe partial class UniqueLoopStepSearcher :
 						ImmutableArray.Create(
 							View.Empty
 								+ candidateOffsets
-								+ new RegionViewNode(0, region)
+								+ new HouseViewNode(0, houseIndex)
 								+ links
 						),
 						d1,
@@ -371,19 +371,19 @@ public sealed unsafe partial class UniqueLoopStepSearcher :
 		ICollection<UniqueLoopStep> accumulator, in Grid grid, int d1, int d2, in Cells loop,
 		IEnumerable<LinkViewNode> links, in Cells extraCellsMap, short comparer, bool onlyFindOne)
 	{
-		if (!extraCellsMap.InOneRegion)
+		if (!extraCellsMap.InOneHouse)
 		{
 			goto ReturnNull;
 		}
 
 		var digitPairs = stackalloc[] { (d1, d2), (d2, d1) };
-		foreach (int region in extraCellsMap.CoveredRegions)
+		foreach (int houseIndex in extraCellsMap.CoveredHouses)
 		{
 			for (int digitPairIndex = 0; digitPairIndex < 2; digitPairIndex++)
 			{
 				var (digit, otherDigit) = digitPairs[digitPairIndex];
-				var map = RegionMaps[region] & CandMaps[digit];
-				if (map != (RegionMaps[region] & loop))
+				var map = HouseMaps[houseIndex] & CandMaps[digit];
+				if (map != (HouseMaps[houseIndex] & loop))
 				{
 					continue;
 				}
@@ -421,7 +421,7 @@ public sealed unsafe partial class UniqueLoopStepSearcher :
 					ImmutableArray.Create(
 						View.Empty
 							+ candidateOffsets
-							+ new RegionViewNode(0, region)
+							+ new HouseViewNode(0, houseIndex)
 							+ links
 					),
 					d1,

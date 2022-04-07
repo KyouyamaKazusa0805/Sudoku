@@ -9,10 +9,10 @@
 /// <param name="DigitsMask"><inheritdoc/></param>
 /// <param name="ExtraCells">Indicates the extra cells used.</param>
 /// <param name="ExtraDigitsMask">Indicates the mask that contains the extra digits.</param>
-/// <param name="Region">Indicates the region that extra subset formed.</param>
+/// <param name="House">Indicates the house that extra subset formed.</param>
 public sealed record class ExtendedRectangleType3Step(
 	ImmutableArray<Conclusion> Conclusions, ImmutableArray<View> Views, in Cells Cells,
-	short DigitsMask, in Cells ExtraCells, short ExtraDigitsMask, int Region) :
+	short DigitsMask, in Cells ExtraCells, short ExtraDigitsMask, int House) :
 	ExtendedRectangleStep(Conclusions, Views, Cells, DigitsMask),
 	IStepWithPhasedDifficulty
 {
@@ -47,9 +47,9 @@ public sealed record class ExtendedRectangleType3Step(
 	}
 
 	[FormatItem]
-	internal string RegionStr
+	internal string HouseStr
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => new RegionCollection(Region).ToString();
+		get => new HouseCollection(House).ToString();
 	}
 }

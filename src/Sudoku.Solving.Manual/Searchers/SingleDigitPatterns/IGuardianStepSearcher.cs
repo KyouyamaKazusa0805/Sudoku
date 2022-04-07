@@ -47,16 +47,16 @@ public interface IGuardianStepSearcher : ISingleDigitPatternStepSearcher
 	/// <param name="digit">The current digit.</param>
 	/// <param name="guardians">
 	/// The current guardian cells.
-	/// This map may not contain cells that lies in the region
+	/// This map may not contain cells that lies in the house
 	/// that <paramref name="cell1"/> and <paramref name="cell2"/> both lies in.
 	/// </param>
 	/// <returns>All guardians.</returns>
 	protected static Cells CreateGuardianMap(int cell1, int cell2, int digit, in Cells guardians)
 	{
 		var tempMap = Cells.Empty;
-		foreach (int coveredRegion in (Cells.Empty + cell1 + cell2).CoveredRegions)
+		foreach (int coveredHouse in (Cells.Empty + cell1 + cell2).CoveredHouses)
 		{
-			tempMap |= RegionMaps[coveredRegion];
+			tempMap |= HouseMaps[coveredHouse];
 		}
 
 		tempMap &= CandMaps[digit];

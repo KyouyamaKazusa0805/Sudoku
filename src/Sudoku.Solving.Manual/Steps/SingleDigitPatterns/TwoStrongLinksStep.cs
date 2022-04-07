@@ -6,11 +6,11 @@
 /// <param name="Conclusions"><inheritdoc/></param>
 /// <param name="Views"><inheritdoc/></param>
 /// <param name="Digit"><inheritdoc/></param>
-/// <param name="BaseRegion">Indicates the base region used.</param>
-/// <param name="TargetRegion">Indicates the target region used.</param>
+/// <param name="BaseHouse">Indicates the base house used.</param>
+/// <param name="TargetHouse">Indicates the target house used.</param>
 public sealed record class TwoStrongLinksStep(
 	ImmutableArray<Conclusion> Conclusions, ImmutableArray<View> Views,
-	int Digit, int BaseRegion, int TargetRegion) :
+	int Digit, int BaseHouse, int TargetHouse) :
 	SingleDigitPatternStep(Conclusions, Views, Digit),
 	IChainLikeStep,
 	IStepWithRank
@@ -36,7 +36,7 @@ public sealed record class TwoStrongLinksStep(
 
 	/// <inheritdoc/>
 	public override Technique TechniqueCode =>
-		(BaseRegion / 9, TargetRegion / 9) switch
+		(BaseHouse / 9, TargetHouse / 9) switch
 		{
 			(0, _) or (_, 0) => Technique.TurbotFish,
 			(1, 1) or (2, 2) => Technique.Skyscraper,
@@ -55,16 +55,16 @@ public sealed record class TwoStrongLinksStep(
 	}
 
 	[FormatItem]
-	internal string BaseRegionStr
+	internal string BaseHouseStr
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => new RegionCollection(BaseRegion).ToString();
+		get => new HouseCollection(BaseHouse).ToString();
 	}
 
 	[FormatItem]
-	internal string TargetRegionStr
+	internal string TargetHouseStr
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => new RegionCollection(TargetRegion).ToString();
+		get => new HouseCollection(TargetHouse).ToString();
 	}
 }

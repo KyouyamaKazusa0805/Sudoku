@@ -431,15 +431,15 @@ public unsafe struct Candidates :
 	/// <summary>
 	/// Get the subview mask of this map.
 	/// </summary>
-	/// <param name="region">The region.</param>
+	/// <param name="hosue">The house index.</param>
 	/// <param name="digit">The digit.</param>
 	/// <returns>The mask.</returns>
-	public readonly short GetSubviewMask(int region, int digit)
+	public readonly short GetSubviewMask(int hosue, int digit)
 	{
 		short p = 0;
-		for (int i = 0, length = RegionCells[region].Length; i < length; i++)
+		for (int i = 0, length = HouseCells[hosue].Length; i < length; i++)
 		{
-			if (Contains(RegionCells[region][i] * 9 + digit))
+			if (Contains(HouseCells[hosue][i] * 9 + digit))
 			{
 				p |= (short)(1 << i);
 			}

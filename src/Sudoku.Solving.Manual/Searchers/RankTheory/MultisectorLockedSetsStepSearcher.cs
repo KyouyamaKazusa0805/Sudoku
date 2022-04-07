@@ -34,7 +34,7 @@ public sealed unsafe partial class MultisectorLockedSetsStepSearcher : IMultisec
 				foreach (int row in rowList)
 				{
 					rowMask |= (short)(1 << row);
-					rowMap |= RegionMaps[row + 9];
+					rowMap |= HouseMaps[row + 9];
 				}
 
 				if ((rowMask & a) == 0 || (rowMask & b) == 0 || (rowMask & c) == 0)
@@ -49,7 +49,7 @@ public sealed unsafe partial class MultisectorLockedSetsStepSearcher : IMultisec
 					foreach (int column in columnList)
 					{
 						columnMask |= (short)(1 << column);
-						columnMap |= RegionMaps[column + 18];
+						columnMap |= HouseMaps[column + 18];
 					}
 
 					if ((columnMask & a) == 0 || (columnMask & b) == 0 || (columnMask & c) == 0)
@@ -69,7 +69,7 @@ public sealed unsafe partial class MultisectorLockedSetsStepSearcher : IMultisec
 	/// <inheritdoc/>
 	public Step? GetAll(ICollection<Step> accumulator, in Grid grid, bool onlyFindOne)
 	{
-		short* linkForEachRegion = stackalloc short[27];
+		short* linkForEachHouse = stackalloc short[27];
 		var linkForEachDigit = stackalloc Cells[9];
 		for (int globalIndex = 0, iterationCount = Patterns.Count; globalIndex < iterationCount; globalIndex++)
 		{
@@ -112,9 +112,9 @@ public sealed unsafe partial class MultisectorLockedSetsStepSearcher : IMultisec
 						check++;
 						foreach (int i in rMask)
 						{
-							int region = i + 9;
-							linkForEachRegion[region] |= q;
-							elimMap |= !(CandMaps[digit] & RegionMaps[region] & map);
+							int house = i + 9;
+							linkForEachHouse[house] |= q;
+							elimMap |= !(CandMaps[digit] & HouseMaps[house] & map);
 						}
 					}
 					if (PopCount(cMask) == temp)
@@ -122,9 +122,9 @@ public sealed unsafe partial class MultisectorLockedSetsStepSearcher : IMultisec
 						check++;
 						foreach (int i in cMask)
 						{
-							int region = i + 18;
-							linkForEachRegion[region] |= q;
-							elimMap |= !(CandMaps[digit] & RegionMaps[region] & map);
+							int house = i + 18;
+							linkForEachHouse[house] |= q;
+							elimMap |= !(CandMaps[digit] & HouseMaps[house] & map);
 						}
 					}
 					if (PopCount(bMask) == temp)
@@ -132,8 +132,8 @@ public sealed unsafe partial class MultisectorLockedSetsStepSearcher : IMultisec
 						check++;
 						foreach (int i in bMask)
 						{
-							linkForEachRegion[i] |= q;
-							elimMap |= !(CandMaps[digit] & RegionMaps[i] & map);
+							linkForEachHouse[i] |= q;
+							elimMap |= !(CandMaps[digit] & HouseMaps[i] & map);
 						}
 					}
 
@@ -159,15 +159,15 @@ public sealed unsafe partial class MultisectorLockedSetsStepSearcher : IMultisec
 					continue;
 				}
 
-				for (int region = 0; region < 27; region++)
+				for (int house = 0; house < 27; house++)
 				{
-					short linkMask = linkForEachRegion[region];
+					short linkMask = linkForEachHouse[house];
 					if (linkMask == 0)
 					{
 						continue;
 					}
 
-					foreach (int cell in map & RegionMaps[region])
+					foreach (int cell in map & HouseMaps[house])
 					{
 						short cands = (short)(grid.GetCandidates(cell) & linkMask);
 						if (cands == 0)
@@ -180,7 +180,7 @@ public sealed unsafe partial class MultisectorLockedSetsStepSearcher : IMultisec
 							if (!canL[cand].Contains(cell))
 							{
 								candidateOffsets.Add(
-									new(region switch { < 9 => 2, < 18 => 0, _ => 1 }, cell * 9 + cand));
+									new(house switch { < 9 => 2, < 18 => 0, _ => 1 }, cell * 9 + cand));
 							}
 						}
 					}

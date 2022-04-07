@@ -10,15 +10,15 @@
 /// <param name="Cells"><inheritdoc/></param>
 /// <param name="BaseCell"></param>
 /// <param name="TargetCell"></param>
-/// <param name="Region"></param>
+/// <param name="House"></param>
 /// <param name="AbsoluteOffset"><inheritdoc/></param>
 public sealed record class AvoidableRectangleWithHiddenSingleStep(
 	ImmutableArray<Conclusion> Conclusions, ImmutableArray<View> Views,
 	int Digit1, int Digit2, in Cells Cells, int BaseCell, int TargetCell,
-	int Region, int AbsoluteOffset) :
+	int House, int AbsoluteOffset) :
 	UniqueRectangleStep(
 		Conclusions, Views,
-		(Technique)((int)Technique.AvoidableRectangleHiddenSingleBlock + (int)Region.ToRegion()),
+		(Technique)((int)Technique.AvoidableRectangleHiddenSingleBlock + (int)House.ToHouse()),
 		Digit1, Digit2, Cells, true, AbsoluteOffset)
 {
 	/// <inheritdoc/>
@@ -48,10 +48,10 @@ public sealed record class AvoidableRectangleWithHiddenSingleStep(
 	}
 
 	[FormatItem]
-	internal string RegionStr
+	internal string HouseStr
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => new RegionCollection(Region).ToString();
+		get => new HouseCollection(House).ToString();
 	}
 
 	[FormatItem]

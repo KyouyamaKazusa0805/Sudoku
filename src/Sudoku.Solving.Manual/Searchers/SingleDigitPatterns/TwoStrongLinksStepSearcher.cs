@@ -23,8 +23,8 @@ public sealed unsafe partial class TwoStrongLinksStepSearcher : ITwoStrongLinksS
 				for (int r2 = r1 + 1; r2 < 27; r2++)
 				{
 					// Get masks.
-					short mask1 = (RegionMaps[r1] & CandMaps[digit]) / r1;
-					short mask2 = (RegionMaps[r2] & CandMaps[digit]) / r2;
+					short mask1 = (HouseMaps[r1] & CandMaps[digit]) / r1;
+					short mask2 = (HouseMaps[r2] & CandMaps[digit]) / r2;
 					if (PopCount((uint)mask1) != 2 || PopCount((uint)mask2) != 2)
 					{
 						continue;
@@ -37,13 +37,13 @@ public sealed unsafe partial class TwoStrongLinksStepSearcher : ITwoStrongLinksS
 					var cells2 = new List<int>();
 					foreach (int pos1 in mask1)
 					{
-						int cell1 = RegionCells[r1][pos1];
+						int cell1 = HouseCells[r1][pos1];
 						cells1.Add(cell1);
 						map1.Add(cell1);
 					}
 					foreach (int pos2 in mask2)
 					{
-						int cell2 = RegionCells[r2][pos2];
+						int cell2 = HouseCells[r2][pos2];
 						cells2.Add(cell2);
 						map2.Add(cell2);
 					}
@@ -53,15 +53,15 @@ public sealed unsafe partial class TwoStrongLinksStepSearcher : ITwoStrongLinksS
 						continue;
 					}
 
-					// Check two cells share a same region.
-					int sameRegion, headIndex, tailIndex, c1Index, c2Index;
+					// Check two cells share a same house.
+					int sameHouse, headIndex, tailIndex, c1Index, c2Index;
 					for (int i = 0; i < 2; i++)
 					{
 						int cell1 = cells1[i];
 						for (int j = 0; j < 2; j++)
 						{
 							int cell2 = cells2[j];
-							if ((Cells.Empty + cell1 + cell2).AllSetsAreInOneRegion(out sameRegion))
+							if ((Cells.Empty + cell1 + cell2).AllSetsAreInOneHouse(out sameHouse))
 							{
 								c1Index = i;
 								c2Index = j;
@@ -97,7 +97,7 @@ public sealed unsafe partial class TwoStrongLinksStepSearcher : ITwoStrongLinksS
 									new(0, head * 9 + digit),
 									new(0, tail * 9 + digit)
 								}
-								+ new RegionViewNode(1, sameRegion)
+								+ new HouseViewNode(1, sameHouse)
 						),
 						digit,
 						r1,

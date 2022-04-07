@@ -39,7 +39,7 @@ public sealed unsafe partial class BivalueOddagonStepSearcher : IBivalueOddagonS
 			tempLoop.Clear();
 
 			IUniqueLoopOrBivalueOddagonStepSearcher.SearchForPossibleLoopPatterns(
-				grid, d1, d2, cell, (Region)255, 0, 2, ref loopMap,
+				grid, d1, d2, cell, (HouseType)255, 0, 2, ref loopMap,
 				tempLoop, () => isValid(ref loopMap), loops
 			);
 
@@ -113,9 +113,9 @@ public sealed unsafe partial class BivalueOddagonStepSearcher : IBivalueOddagonS
 
 		static bool isValid(ref Cells cells)
 		{
-			foreach (int region in cells.Regions)
+			foreach (int house in cells.Houses)
 			{
-				if ((cells & RegionMaps[region]).Count >= 3)
+				if ((cells & HouseMaps[house]).Count >= 3)
 				{
 					return false;
 				}
@@ -231,7 +231,7 @@ public sealed unsafe partial class BivalueOddagonStepSearcher : IBivalueOddagonS
 			}
 		}
 
-		if (!extraCellsMap.InOneRegion || notSatisfiedType3)
+		if (!extraCellsMap.InOneHouse || notSatisfiedType3)
 		{
 			goto ReturnNull;
 		}
@@ -243,14 +243,14 @@ public sealed unsafe partial class BivalueOddagonStepSearcher : IBivalueOddagonS
 		}
 
 		short otherDigitsMask = (short)(m & ~comparer);
-		foreach (int region in extraCellsMap.CoveredRegions)
+		foreach (int house in extraCellsMap.CoveredHouses)
 		{
-			if (((ValueMaps[d1] | ValueMaps[d2]) & RegionMaps[region]) is not [])
+			if (((ValueMaps[d1] | ValueMaps[d2]) & HouseMaps[house]) is not [])
 			{
 				goto ReturnNull;
 			}
 
-			var otherCells = (RegionMaps[region] & EmptyMap) - loop;
+			var otherCells = (HouseMaps[house] & EmptyMap) - loop;
 			for (int size = PopCount((uint)otherDigitsMask) - 1, count = otherCells.Count; size < count; size++)
 			{
 				foreach (var cells in otherCells & size)
@@ -261,7 +261,7 @@ public sealed unsafe partial class BivalueOddagonStepSearcher : IBivalueOddagonS
 						continue;
 					}
 
-					if ((RegionMaps[region] & EmptyMap) - cells - loop is not { Count: not 0 } elimMap)
+					if ((HouseMaps[house] & EmptyMap) - cells - loop is not { Count: not 0 } elimMap)
 					{
 						continue;
 					}
@@ -302,7 +302,7 @@ public sealed unsafe partial class BivalueOddagonStepSearcher : IBivalueOddagonS
 
 					var step = new BivalueOddagonType3Step(
 						ImmutableArray.CreateRange(conclusions),
-						ImmutableArray.Create(View.Empty + candidateOffsets + new RegionViewNode(0, region) + links),
+						ImmutableArray.Create(View.Empty + candidateOffsets + new HouseViewNode(0, house) + links),
 						loop,
 						d1,
 						d2,

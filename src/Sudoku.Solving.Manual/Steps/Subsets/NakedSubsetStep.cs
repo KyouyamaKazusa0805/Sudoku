@@ -5,7 +5,7 @@
 /// </summary>
 /// <param name="Conclusions"><inheritdoc/></param>
 /// <param name="Views"><inheritdoc/></param>
-/// <param name="Region"><inheritdoc/></param>
+/// <param name="House"><inheritdoc/></param>
 /// <param name="Cells"><inheritdoc/></param>
 /// <param name="DigitsMask"><inheritdoc/></param>
 /// <param name="IsLocked">
@@ -27,8 +27,8 @@
 /// </param>
 public sealed record class NakedSubsetStep(
 	ImmutableArray<Conclusion> Conclusions, ImmutableArray<View> Views,
-	int Region, in Cells Cells, short DigitsMask, bool? IsLocked) :
-	SubsetStep(Conclusions, Views, Region, Cells, DigitsMask),
+	int House, in Cells Cells, short DigitsMask, bool? IsLocked) :
+	SubsetStep(Conclusions, Views, House, Cells, DigitsMask),
 	IStepWithPhasedDifficulty
 {
 	/// <inheritdoc/>
@@ -87,10 +87,10 @@ public sealed record class NakedSubsetStep(
 	}
 
 	[FormatItem]
-	internal string RegionStr
+	internal string HouseStr
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => new RegionCollection(Region).ToString();
+		get => new HouseCollection(House).ToString();
 	}
 
 	[FormatItem]

@@ -5,12 +5,12 @@
 /// </summary>
 /// <param name="Conclusions"><inheritdoc/></param>
 /// <param name="Views"><inheritdoc/></param>
-/// <param name="Region"><inheritdoc/></param>
+/// <param name="House"><inheritdoc/></param>
 /// <param name="Cells"><inheritdoc/></param>
 /// <param name="DigitsMask"><inheritdoc/></param>
 public sealed record class HiddenSubsetStep(
 	ImmutableArray<Conclusion> Conclusions, ImmutableArray<View> Views,
-	int Region, in Cells Cells, short DigitsMask) : SubsetStep(Conclusions, Views, Region, Cells, DigitsMask)
+	int House, in Cells Cells, short DigitsMask) : SubsetStep(Conclusions, Views, House, Cells, DigitsMask)
 {
 	/// <inheritdoc/>
 	public override decimal Difficulty =>
@@ -40,9 +40,9 @@ public sealed record class HiddenSubsetStep(
 	}
 
 	[FormatItem]
-	internal string RegionStr
+	internal string HouseStr
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => new RegionCollection(Region).ToString();
+		get => new HouseCollection(House).ToString();
 	}
 }

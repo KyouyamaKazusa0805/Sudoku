@@ -5,7 +5,7 @@
 /// </summary>
 /// <remarks>
 /// <b>Conjugate pair</b> is a candidate pair (two candidates),
-/// these two candidates is in the same region where all cells has only
+/// these two candidates is in the same house where all cells has only
 /// two position can fill this candidate.
 /// </remarks>
 /// <param name="From">Indicates the cell that is the start cell.</param>
@@ -57,13 +57,13 @@ public readonly record struct ConjugatePair(int From, int To, int Digit, in Cell
 	}
 
 	/// <summary>
-	/// Indicates the region that two cells lie in.
+	/// Indicates the house that two cells lie in.
 	/// </summary>
-	/// <remarks><inheritdoc cref="Cells.CoveredRegions"/></remarks>
-	public int Regions
+	/// <remarks><inheritdoc cref="Cells.CoveredHouses"/></remarks>
+	public int Houses
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => Map.CoveredRegions;
+		get => Map.CoveredHouses;
 	}
 
 	/// <inheritdoc/>

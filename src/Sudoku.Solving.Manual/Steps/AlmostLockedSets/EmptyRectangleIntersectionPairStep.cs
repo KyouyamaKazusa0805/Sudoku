@@ -7,12 +7,12 @@
 /// <param name="Views"><inheritdoc/></param>
 /// <param name="StartCell">Indicates the start cell used.</param>
 /// <param name="EndCell">Indicates the end cell used.</param>
-/// <param name="Region">The region that forms the dual empty rectangle.</param>
+/// <param name="House">The house that forms the dual empty rectangle.</param>
 /// <param name="Digit1">Indicates the digit 1 used in this pattern.</param>
 /// <param name="Digit2">Indicates the digit 2 used in this pattern.</param>
 public sealed record class EmptyRectangleIntersectionPairStep(
 	ImmutableArray<Conclusion> Conclusions, ImmutableArray<View> Views,
-	int StartCell, int EndCell, int Region, int Digit1, int Digit2) : AlmostLockedSetsStep(Conclusions, Views)
+	int StartCell, int EndCell, int House, int Digit1, int Digit2) : AlmostLockedSetsStep(Conclusions, Views)
 {
 	/// <inheritdoc/>
 	public override decimal Difficulty => 6.0M;
@@ -58,9 +58,9 @@ public sealed record class EmptyRectangleIntersectionPairStep(
 	}
 
 	[FormatItem]
-	internal string RegionStr
+	internal string HouseStr
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => new RegionCollection(Region).ToString();
+		get => new HouseCollection(House).ToString();
 	}
 }

@@ -32,9 +32,9 @@ public sealed unsafe partial class SubsetStepSearcher : ISubsetStepSearcher
 		for (int size = 2; size <= ((ISubsetStepSearcher)this).MaxSize; size++)
 		{
 			// Naked subsets.
-			for (int region = 0; region < 27; region++)
+			for (int house = 0; house < 27; house++)
 			{
-				if ((RegionMaps[region] & EmptyMap) is not { Count: >= 2 } currentEmptyMap)
+				if ((HouseMaps[house] & EmptyMap) is not { Count: >= 2 } currentEmptyMap)
 				{
 					continue;
 				}
@@ -54,7 +54,7 @@ public sealed unsafe partial class SubsetStepSearcher : ISubsetStepSearcher
 					foreach (int digit in mask)
 					{
 						var map = cells % CandMaps[digit];
-						flagMask |= (short)(map.InOneRegion ? 0 : 1 << digit);
+						flagMask |= (short)(map.InOneHouse ? 0 : 1 << digit);
 
 						foreach (int cell in map)
 						{
@@ -78,8 +78,8 @@ public sealed unsafe partial class SubsetStepSearcher : ISubsetStepSearcher
 					bool? isLocked = flagMask == mask ? true : flagMask != 0 ? false : null;
 					var step = new NakedSubsetStep(
 						ImmutableArray.CreateRange(conclusions),
-						ImmutableArray.Create(View.Empty + candidateOffsets + new RegionViewNode(0, region)),
-						region,
+						ImmutableArray.Create(View.Empty + candidateOffsets + new HouseViewNode(0, house)),
+						house,
 						cells,
 						mask,
 						isLocked
@@ -95,9 +95,9 @@ public sealed unsafe partial class SubsetStepSearcher : ISubsetStepSearcher
 			}
 
 			// Hidden subsets.
-			for (int region = 0; region < 27; region++)
+			for (int house = 0; house < 27; house++)
 			{
-				var traversingMap = RegionMaps[region] - EmptyMap;
+				var traversingMap = HouseMaps[house] - EmptyMap;
 				if (traversingMap.Count >= 8)
 				{
 					// No available digit (Or hidden single).
@@ -118,7 +118,7 @@ public sealed unsafe partial class SubsetStepSearcher : ISubsetStepSearcher
 					{
 						tempMask &= (short)~(1 << digit);
 						digitsMask |= (short)(1 << digit);
-						map |= RegionMaps[region] & CandMaps[digit];
+						map |= HouseMaps[house] & CandMaps[digit];
 					}
 					if (map.Count != size)
 					{
@@ -151,8 +151,8 @@ public sealed unsafe partial class SubsetStepSearcher : ISubsetStepSearcher
 
 					var step = new HiddenSubsetStep(
 						ImmutableArray.CreateRange(conclusions),
-						ImmutableArray.Create(View.Empty + candidateOffsets + new RegionViewNode(0, region)),
-						region,
+						ImmutableArray.Create(View.Empty + candidateOffsets + new HouseViewNode(0, house)),
+						house,
 						map,
 						digitsMask
 					);

@@ -241,11 +241,11 @@ public unsafe struct Cells :
 
 
 	/// <summary>
-	/// Same as <see cref="AllSetsAreInOneRegion(out int)"/>, but only contains
-	/// the <see cref="bool"/> result.
+	/// Same as the method <see cref="AllSetsAreInOneHouse(out int)"/>, but this property doesn't contain
+	/// the <see langword="out"/> argument, as the optimization.
 	/// </summary>
-	/// <seealso cref="AllSetsAreInOneRegion(out int)"/>
-	public readonly bool InOneRegion
+	/// <seealso cref="AllSetsAreInOneHouse(out int)"/>
+	public readonly bool InOneHouse
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get
@@ -297,15 +297,15 @@ public unsafe struct Cells :
 		get
 		{
 			short result = 0;
-			if ((this & RegionMaps[0]).Count != 0) result |= 1;
-			if ((this & RegionMaps[1]).Count != 0) result |= 2;
-			if ((this & RegionMaps[2]).Count != 0) result |= 4;
-			if ((this & RegionMaps[3]).Count != 0) result |= 8;
-			if ((this & RegionMaps[4]).Count != 0) result |= 16;
-			if ((this & RegionMaps[5]).Count != 0) result |= 32;
-			if ((this & RegionMaps[6]).Count != 0) result |= 64;
-			if ((this & RegionMaps[7]).Count != 0) result |= 128;
-			if ((this & RegionMaps[8]).Count != 0) result |= 256;
+			if ((this & HouseMaps[0]).Count != 0) result |= 1;
+			if ((this & HouseMaps[1]).Count != 0) result |= 2;
+			if ((this & HouseMaps[2]).Count != 0) result |= 4;
+			if ((this & HouseMaps[3]).Count != 0) result |= 8;
+			if ((this & HouseMaps[4]).Count != 0) result |= 16;
+			if ((this & HouseMaps[5]).Count != 0) result |= 32;
+			if ((this & HouseMaps[6]).Count != 0) result |= 64;
+			if ((this & HouseMaps[7]).Count != 0) result |= 128;
+			if ((this & HouseMaps[8]).Count != 0) result |= 256;
 
 			return result;
 		}
@@ -324,15 +324,15 @@ public unsafe struct Cells :
 		get
 		{
 			short result = 0;
-			if ((this & RegionMaps[9]).Count != 0) result |= 1;
-			if ((this & RegionMaps[10]).Count != 0) result |= 2;
-			if ((this & RegionMaps[11]).Count != 0) result |= 4;
-			if ((this & RegionMaps[12]).Count != 0) result |= 8;
-			if ((this & RegionMaps[13]).Count != 0) result |= 16;
-			if ((this & RegionMaps[14]).Count != 0) result |= 32;
-			if ((this & RegionMaps[15]).Count != 0) result |= 64;
-			if ((this & RegionMaps[16]).Count != 0) result |= 128;
-			if ((this & RegionMaps[17]).Count != 0) result |= 256;
+			if ((this & HouseMaps[9]).Count != 0) result |= 1;
+			if ((this & HouseMaps[10]).Count != 0) result |= 2;
+			if ((this & HouseMaps[11]).Count != 0) result |= 4;
+			if ((this & HouseMaps[12]).Count != 0) result |= 8;
+			if ((this & HouseMaps[13]).Count != 0) result |= 16;
+			if ((this & HouseMaps[14]).Count != 0) result |= 32;
+			if ((this & HouseMaps[15]).Count != 0) result |= 64;
+			if ((this & HouseMaps[16]).Count != 0) result |= 128;
+			if ((this & HouseMaps[17]).Count != 0) result |= 256;
 
 			return result;
 		}
@@ -351,15 +351,15 @@ public unsafe struct Cells :
 		get
 		{
 			short result = 0;
-			if ((this & RegionMaps[18]).Count != 0) result |= 1;
-			if ((this & RegionMaps[19]).Count != 0) result |= 2;
-			if ((this & RegionMaps[20]).Count != 0) result |= 4;
-			if ((this & RegionMaps[21]).Count != 0) result |= 8;
-			if ((this & RegionMaps[22]).Count != 0) result |= 16;
-			if ((this & RegionMaps[23]).Count != 0) result |= 32;
-			if ((this & RegionMaps[24]).Count != 0) result |= 64;
-			if ((this & RegionMaps[25]).Count != 0) result |= 128;
-			if ((this & RegionMaps[26]).Count != 0) result |= 256;
+			if ((this & HouseMaps[18]).Count != 0) result |= 1;
+			if ((this & HouseMaps[19]).Count != 0) result |= 2;
+			if ((this & HouseMaps[20]).Count != 0) result |= 4;
+			if ((this & HouseMaps[21]).Count != 0) result |= 8;
+			if ((this & HouseMaps[22]).Count != 0) result |= 16;
+			if ((this & HouseMaps[23]).Count != 0) result |= 32;
+			if ((this & HouseMaps[24]).Count != 0) result |= 64;
+			if ((this & HouseMaps[25]).Count != 0) result |= 128;
+			if ((this & HouseMaps[26]).Count != 0) result |= 256;
 
 			return result;
 		}
@@ -369,13 +369,13 @@ public unsafe struct Cells :
 	/// Indicates the covered line.
 	/// </summary>
 	/// <remarks>
-	/// When the covered region can't be found, it'll return 32. For more information,
-	/// please visit <see href="https://source.dot.net/#System.Private.CoreLib/BitOperations.cs,515">this link</see>.
+	/// When the covered house can't be found, it'll return <see cref="InvalidFirstSet"/>.
 	/// </remarks>
+	/// <seealso cref="InvalidFirstSet"/>
 	public readonly int CoveredLine
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => TrailingZeroCount(CoveredRegions & ~511);
+		get => TrailingZeroCount(CoveredHouses & ~511);
 	}
 
 	/// <summary>
@@ -384,17 +384,17 @@ public unsafe struct Cells :
 	public int Count { get; private set; } = 0;
 
 	/// <summary>
-	/// Indicates all regions covered. This property is used to check all regions that all cells
+	/// Indicates all houses covered. This property is used to check all houses that all cells
 	/// of this instance covered. For example, if the cells are <c>{ 0, 1 }</c>, the property
-	/// <see cref="CoveredRegions"/> will return the region 0 (block 1) and region 9 (row 1);
-	/// however, if cells spanned two regions or more (e.g. cells <c>{ 0, 1, 27 }</c>),
-	/// this property won't contain any regions.
+	/// <see cref="CoveredHouses"/> will return the house index 0 (block 1) and 9 (row 1);
+	/// however, if cells spanned two houses or more (e.g. cells <c>{ 0, 1, 27 }</c>),
+	/// this property won't contain any houses.
 	/// </summary>
 	/// <remarks>
-	/// The return value will be an <see cref="int"/> value indicating each regions.
-	/// Bits set 1 are covered regions.
+	/// The return value will be an <see cref="int"/> value indicating each houses.
+	/// Bits set 1 are covered houses.
 	/// </remarks>
-	public readonly int CoveredRegions
+	public readonly int CoveredHouses
 	{
 		get
 		{
@@ -435,12 +435,12 @@ public unsafe struct Cells :
 	}
 
 	/// <summary>
-	/// All regions that the map spanned. This property is used to check all regions that all cells of
+	/// All houses that the map spanned. This property is used to check all houses that all cells of
 	/// this instance spanned. For example, if the cells are <c>{ 0, 1 }</c>, the property
-	/// <see cref="Regions"/> will return the region 0 (block 1), region 9 (row 1), region 18 (column 1)
-	/// and the region 19 (column 2).
+	/// <see cref="Houses"/> will return the house index 0 (block 1), 9 (row 1), 18 (column 1)
+	/// and 19 (column 2).
 	/// </summary>
-	public readonly int Regions
+	public readonly int Houses
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => (int)BlockMask | RowMask << 9 | ColumnMask << 18;
@@ -600,51 +600,51 @@ public unsafe struct Cells :
 	}
 
 	/// <summary>
-	/// Indicates whether all cells in this instance are in one region.
+	/// Indicates whether all cells in this instance are in one house.
 	/// </summary>
-	/// <param name="region">
-	/// The region covered. If the return value
-	/// is false, this value will be the constant -1.
+	/// <param name="houseIndex">
+	/// The house index whose corresponding house covered.
+	/// If the return value is <see langword="false"/>, this value will be the constant -1.
 	/// </param>
 	/// <returns>A <see cref="bool"/> result.</returns>
 	/// <remarks>
 	/// If you don't want to use the <see langword="out"/> parameter value, please
-	/// use the property <see cref="InOneRegion"/> to improve the performance.
+	/// use the property <see cref="InOneHouse"/> to improve the performance.
 	/// </remarks>
-	/// <seealso cref="InOneRegion"/>
-	public readonly bool AllSetsAreInOneRegion(out int region)
+	/// <seealso cref="InOneHouse"/>
+	public readonly bool AllSetsAreInOneHouse(out int houseIndex)
 	{
 #pragma warning disable IDE0055
-		if ((_high &            -1L) == 0 && (_low & ~     0x1C0E07L) == 0) { region =  0; return true; }
-		if ((_high &            -1L) == 0 && (_low & ~     0xE07038L) == 0) { region =  1; return true; }
-		if ((_high &            -1L) == 0 && (_low & ~    0x70381C0L) == 0) { region =  2; return true; }
-		if ((_high & ~        0x70L) == 0 && (_low & ~ 0x7038000000L) == 0) { region =  3; return true; }
-		if ((_high & ~       0x381L) == 0 && (_low & ~0x181C0000000L) == 0) { region =  4; return true; }
-		if ((_high & ~      0x1C0EL) == 0 && (_low & ~  0xE00000000L) == 0) { region =  5; return true; }
-		if ((_high & ~ 0x381C0E000L) == 0 && (_low &             -1L) == 0) { region =  6; return true; }
-		if ((_high & ~0x1C0E070000L) == 0 && (_low &             -1L) == 0) { region =  7; return true; }
-		if ((_high & ~0xE070380000L) == 0 && (_low &             -1L) == 0) { region =  8; return true; }
-		if ((_high &            -1L) == 0 && (_low & ~        0x1FFL) == 0) { region =  9; return true; }
-		if ((_high &            -1L) == 0 && (_low & ~      0x3FE00L) == 0) { region = 10; return true; }
-		if ((_high &            -1L) == 0 && (_low & ~    0x7FC0000L) == 0) { region = 11; return true; }
-		if ((_high &            -1L) == 0 && (_low & ~  0xFF8000000L) == 0) { region = 12; return true; }
-		if ((_high & ~         0xFL) == 0 && (_low & ~0x1F000000000L) == 0) { region = 13; return true; }
-		if ((_high & ~      0x1FF0L) == 0 && (_low &             -1L) == 0) { region = 14; return true; }
-		if ((_high & ~    0x3FE000L) == 0 && (_low &             -1L) == 0) { region = 15; return true; }
-		if ((_high & ~  0x7FC00000L) == 0 && (_low &             -1L) == 0) { region = 16; return true; }
-		if ((_high & ~0xFF80000000L) == 0 && (_low &             -1L) == 0) { region = 17; return true; }
-		if ((_high & ~  0x80402010L) == 0 && (_low & ~ 0x1008040201L) == 0) { region = 18; return true; }
-		if ((_high & ~ 0x100804020L) == 0 && (_low & ~ 0x2010080402L) == 0) { region = 19; return true; }
-		if ((_high & ~ 0x201008040L) == 0 && (_low & ~ 0x4020100804L) == 0) { region = 20; return true; }
-		if ((_high & ~ 0x402010080L) == 0 && (_low & ~ 0x8040201008L) == 0) { region = 21; return true; }
-		if ((_high & ~ 0x804020100L) == 0 && (_low & ~0x10080402010L) == 0) { region = 22; return true; }
-		if ((_high & ~0x1008040201L) == 0 && (_low & ~  0x100804020L) == 0) { region = 23; return true; }
-		if ((_high & ~0x2010080402L) == 0 && (_low & ~  0x201008040L) == 0) { region = 24; return true; }
-		if ((_high & ~0x4020100804L) == 0 && (_low & ~  0x402010080L) == 0) { region = 25; return true; }
-		if ((_high & ~0x8040201008L) == 0 && (_low & ~  0x804020100L) == 0) { region = 26; return true; }
+		if ((_high &            -1L) == 0 && (_low & ~     0x1C0E07L) == 0) { houseIndex =  0; return true; }
+		if ((_high &            -1L) == 0 && (_low & ~     0xE07038L) == 0) { houseIndex =  1; return true; }
+		if ((_high &            -1L) == 0 && (_low & ~    0x70381C0L) == 0) { houseIndex =  2; return true; }
+		if ((_high & ~        0x70L) == 0 && (_low & ~ 0x7038000000L) == 0) { houseIndex =  3; return true; }
+		if ((_high & ~       0x381L) == 0 && (_low & ~0x181C0000000L) == 0) { houseIndex =  4; return true; }
+		if ((_high & ~      0x1C0EL) == 0 && (_low & ~  0xE00000000L) == 0) { houseIndex =  5; return true; }
+		if ((_high & ~ 0x381C0E000L) == 0 && (_low &             -1L) == 0) { houseIndex =  6; return true; }
+		if ((_high & ~0x1C0E070000L) == 0 && (_low &             -1L) == 0) { houseIndex =  7; return true; }
+		if ((_high & ~0xE070380000L) == 0 && (_low &             -1L) == 0) { houseIndex =  8; return true; }
+		if ((_high &            -1L) == 0 && (_low & ~        0x1FFL) == 0) { houseIndex =  9; return true; }
+		if ((_high &            -1L) == 0 && (_low & ~      0x3FE00L) == 0) { houseIndex = 10; return true; }
+		if ((_high &            -1L) == 0 && (_low & ~    0x7FC0000L) == 0) { houseIndex = 11; return true; }
+		if ((_high &            -1L) == 0 && (_low & ~  0xFF8000000L) == 0) { houseIndex = 12; return true; }
+		if ((_high & ~         0xFL) == 0 && (_low & ~0x1F000000000L) == 0) { houseIndex = 13; return true; }
+		if ((_high & ~      0x1FF0L) == 0 && (_low &             -1L) == 0) { houseIndex = 14; return true; }
+		if ((_high & ~    0x3FE000L) == 0 && (_low &             -1L) == 0) { houseIndex = 15; return true; }
+		if ((_high & ~  0x7FC00000L) == 0 && (_low &             -1L) == 0) { houseIndex = 16; return true; }
+		if ((_high & ~0xFF80000000L) == 0 && (_low &             -1L) == 0) { houseIndex = 17; return true; }
+		if ((_high & ~  0x80402010L) == 0 && (_low & ~ 0x1008040201L) == 0) { houseIndex = 18; return true; }
+		if ((_high & ~ 0x100804020L) == 0 && (_low & ~ 0x2010080402L) == 0) { houseIndex = 19; return true; }
+		if ((_high & ~ 0x201008040L) == 0 && (_low & ~ 0x4020100804L) == 0) { houseIndex = 20; return true; }
+		if ((_high & ~ 0x402010080L) == 0 && (_low & ~ 0x8040201008L) == 0) { houseIndex = 21; return true; }
+		if ((_high & ~ 0x804020100L) == 0 && (_low & ~0x10080402010L) == 0) { houseIndex = 22; return true; }
+		if ((_high & ~0x1008040201L) == 0 && (_low & ~  0x100804020L) == 0) { houseIndex = 23; return true; }
+		if ((_high & ~0x2010080402L) == 0 && (_low & ~  0x201008040L) == 0) { houseIndex = 24; return true; }
+		if ((_high & ~0x4020100804L) == 0 && (_low & ~  0x402010080L) == 0) { houseIndex = 25; return true; }
+		if ((_high & ~0x8040201008L) == 0 && (_low & ~  0x804020100L) == 0) { houseIndex = 26; return true; }
 #pragma warning restore IDE0055
 
-		region = -1;
+		houseIndex = -1;
 		return false;
 	}
 
@@ -673,10 +673,10 @@ public unsafe struct Cells :
 	/// <summary>
 	/// Get the subview mask of this map.
 	/// </summary>
-	/// <param name="region">The region.</param>
+	/// <param name="houseIndex">The house index.</param>
 	/// <returns>The mask.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public readonly short GetSubviewMask(int region) => this / region;
+	public readonly short GetSubviewMask(int houseIndex) => this / houseIndex;
 
 	/// <inheritdoc cref="object.GetHashCode"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -813,7 +813,7 @@ public unsafe struct Cells :
 	/// </summary>
 	/// <param name="start">The start index.</param>
 	/// <param name="end">The end index.</param>
-	/// <returns>The region mask.</returns>
+	/// <returns>The house mask.</returns>
 	/// <seealso cref="RowMask"/>
 	/// <seealso cref="ColumnMask"/>
 	/// <seealso cref="BlockMask"/>
@@ -822,7 +822,7 @@ public unsafe struct Cells :
 		short result = 0;
 		for (int i = start; i < end; i++)
 		{
-			if ((this & RegionMaps[i]).Count != 0)
+			if ((this & HouseMaps[i]).Count != 0)
 			{
 				result |= (short)(1 << i - start);
 			}
@@ -1195,12 +1195,12 @@ public unsafe struct Cells :
 	/// Get the subview mask of this map.
 	/// </summary>
 	/// <param name="map">The map.</param>
-	/// <param name="region">The region.</param>
+	/// <param name="houseIndex">The house index.</param>
 	/// <returns>The mask.</returns>
-	public static short operator /(in Cells map, int region)
+	public static short operator /(in Cells map, int houseIndex)
 	{
 		short p = 0, i = 0;
-		foreach (int cell in RegionCells[region])
+		foreach (int cell in HouseCells[houseIndex])
 		{
 			if (map.Contains(cell))
 			{

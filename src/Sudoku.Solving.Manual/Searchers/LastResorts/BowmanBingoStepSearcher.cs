@@ -190,7 +190,7 @@ public sealed unsafe partial class BowmanBingoStepSearcher : IBowmanBingoStepSea
 
 	/// <summary>
 	/// To check the specified cell has a same digit filled in a cell
-	/// which is same region with the current one.
+	/// which is same house with the current one.
 	/// </summary>
 	/// <param name="grid">The grid.</param>
 	/// <param name="cell">The cell.</param>

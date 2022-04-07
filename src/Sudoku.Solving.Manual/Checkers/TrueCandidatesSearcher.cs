@@ -60,7 +60,7 @@ public sealed unsafe class TrueCandidatesSearcher
 		}
 
 		// Store all bivalue cells and construct the relations.
-		int* peerRegions = stackalloc int[3];
+		int* peerHouses = stackalloc int[3];
 		var stack = new Cells[multivalueCellsCount + 1, 9];
 		foreach (int cell in BivalueMap)
 		{
@@ -69,12 +69,12 @@ public sealed unsafe class TrueCandidatesSearcher
 				ref var map = ref stack[0, digit];
 				map.Add(cell);
 
-				cell.CopyRegionInfo(peerRegions);
+				cell.CopyHouseInfo(peerHouses);
 				for (int i = 0; i < 3; i++)
 				{
-					if ((map & RegionMaps[peerRegions[i]]).Count > 2)
+					if ((map & HouseMaps[peerHouses[i]]).Count > 2)
 					{
-						// The specified region contains at least three positions to fill with the digit,
+						// The specified house contains at least three positions to fill with the digit,
 						// which is invalid in any BUG + n patterns.
 						return Array.Empty<int>();
 					}
@@ -128,11 +128,11 @@ public sealed unsafe class TrueCandidatesSearcher
 
 					fixed (int* p = playground)
 					{
-						currentCell.CopyRegionInfo(p);
+						currentCell.CopyHouseInfo(p);
 					}
-					foreach (int region in playground)
+					foreach (int houseIndex in playground)
 					{
-						if ((temp & RegionMaps[region]).Count > 2)
+						if ((temp & HouseMaps[houseIndex]).Count > 2)
 						{
 							@continue = false;
 							break;

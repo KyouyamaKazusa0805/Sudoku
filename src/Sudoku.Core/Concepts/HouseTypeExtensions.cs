@@ -1,10 +1,10 @@
 ﻿namespace Sudoku.Concepts;
 
 /// <summary>
-/// Provides extension methods on <see cref="Region"/>.
+/// Provides extension methods on <see cref="HouseType"/>.
 /// </summary>
-/// <seealso cref="Region"/>
-public static class RegionExtensions
+/// <seealso cref="HouseType"/>
+public static class HouseTypeExtensions
 {
 	private static readonly int[] BlockTable =
 	{
@@ -46,9 +46,9 @@ public static class RegionExtensions
 	};
 
 
-	/// <inheritdoc cref="CopyRegionInfo(int, int*)"/>
+	/// <inheritdoc cref="CopyHouseInfo(int, int*)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static unsafe void CopyRegionInfo(this byte cell, byte* ptr!!)
+	public static unsafe void CopyHouseInfo(this byte cell, byte* ptr!!)
 	{
 		ptr[0] = (byte)BlockTable[cell];
 		ptr[1] = (byte)RowTable[cell];
@@ -66,7 +66,7 @@ public static class RegionExtensions
 	/// Throws when the argument <paramref name="ptr"/> is <see langword="null"/>.
 	/// </exception>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static unsafe void CopyRegionInfo(this int cell, int* ptr!!)
+	public static unsafe void CopyHouseInfo(this int cell, int* ptr!!)
 	{
 		ptr[0] = BlockTable[cell];
 		ptr[1] = RowTable[cell];
@@ -74,61 +74,61 @@ public static class RegionExtensions
 	}
 
 	/// <summary>
-	/// Get the region index (0..27 for block 1-9, row 1-9 and column 1-9)
-	/// for the specified cell and the region type.
+	/// Get the house index (0..27 for block 1-9, row 1-9 and column 1-9)
+	/// for the specified cell and the house type.
 	/// </summary>
 	/// <param name="cell">The cell. The available values must be between 0 and 80.</param>
-	/// <param name="region">The region type.</param>
-	/// <returns>The region index. The return value must be between 0 and 26.</returns>
+	/// <param name="houseType">The house type.</param>
+	/// <returns>The house index. The return value must be between 0 and 26.</returns>
 	/// <exception cref="ArgumentOutOfRangeException">
-	/// Throws when the argument <paramref name="region"/> is not defined.
+	/// Throws when the argument <paramref name="houseType"/> is not defined.
 	/// </exception>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static int ToRegionIndex(this byte cell, Region region) =>
-		region switch
+	public static int ToHouseIndex(this byte cell, HouseType houseType) =>
+		houseType switch
 		{
-			Region.Block => BlockTable[cell],
-			Region.Row => RowTable[cell],
-			Region.Column => ColumnTable[cell],
-			_ => throw new ArgumentOutOfRangeException(nameof(region))
+			HouseType.Block => BlockTable[cell],
+			HouseType.Row => RowTable[cell],
+			HouseType.Column => ColumnTable[cell],
+			_ => throw new ArgumentOutOfRangeException(nameof(houseType))
 		};
 
-	/// <inheritdoc cref="ToRegionIndex(byte, Region)"/>
+	/// <inheritdoc cref="ToHouseIndex(byte, HouseType)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static int ToRegionIndex(this int cell, Region region) =>
-		region switch
+	public static int ToHouseIndex(this int cell, HouseType houseType) =>
+		houseType switch
 		{
-			Region.Block => BlockTable[cell],
-			Region.Row => RowTable[cell],
-			Region.Column => ColumnTable[cell],
-			_ => throw new ArgumentOutOfRangeException(nameof(region))
+			HouseType.Block => BlockTable[cell],
+			HouseType.Row => RowTable[cell],
+			HouseType.Column => ColumnTable[cell],
+			_ => throw new ArgumentOutOfRangeException(nameof(houseType))
 		};
 
 	/// <summary>
-	/// Get the region type for the specified region index.
+	/// Get the house type for the specified house index.
 	/// </summary>
-	/// <param name="regionIndex">The region index.</param>
+	/// <param name="houseIndex">The house index.</param>
 	/// <returns>
-	/// The region type. The possible return values are:
+	/// The house type. The possible return values are:
 	/// <list type="table">
 	/// <listheader>
-	/// <term>Range for the region index</term>
+	/// <term>House indices</term>
 	/// <description>Return value</description>
 	/// </listheader>
 	/// <item>
-	/// <term><paramref name="regionIndex"/> is <![CDATA[>= 0 and < 9]]></term>
-	/// <description><see cref="Region.Block"/></description>
+	/// <term><paramref name="houseIndex"/> is <![CDATA[>= 0 and < 9]]></term>
+	/// <description><see cref="HouseType.Block"/></description>
 	/// </item>
 	/// <item>
-	/// <term><paramref name="regionIndex"/> is <![CDATA[>= 9 and < 18]]></term>
-	/// <description><see cref="Region.Row"/></description>
+	/// <term><paramref name="houseIndex"/> is <![CDATA[>= 9 and < 18]]></term>
+	/// <description><see cref="HouseType.Row"/></description>
 	/// </item>
 	/// <item>
-	/// <term><paramref name="regionIndex"/> is <![CDATA[>= 18 and < 27]]></term>
-	/// <description><see cref="Region.Column"/></description>
+	/// <term><paramref name="houseIndex"/> is <![CDATA[>= 18 and < 27]]></term>
+	/// <description><see cref="HouseType.Column"/></description>
 	/// </item>
 	/// </list>
 	/// </returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static Region ToRegion(this int regionIndex) => (Region)/*(byte)*/(regionIndex / 9);
+	public static HouseType ToHouse(this int houseIndex) => (HouseType)/*(byte)*/(houseIndex / 9);
 }

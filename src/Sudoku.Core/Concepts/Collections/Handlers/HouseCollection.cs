@@ -1,44 +1,44 @@
 ﻿namespace Sudoku.Concepts.Collections.Handlers;
 
 /// <summary>
-/// Indicates a region collection.
+/// Indicates a house collection.
 /// </summary>
-public readonly ref partial struct RegionCollection
+public readonly ref partial struct HouseCollection
 {
 	/// <summary>
-	/// Initializes an empty collection and add one region into the list.
+	/// Initializes an empty collection and add one house into the list.
 	/// </summary>
-	/// <param name="region">The region.</param>
+	/// <param name="houseIndex">The house index.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public RegionCollection(int region) => Mask |= 1 << region;
+	public HouseCollection(int houseIndex) => Mask |= 1 << houseIndex;
 
 	/// <summary>
-	/// Initializes an instance with the specified regions.
+	/// Initializes an instance with the specified houses.
 	/// </summary>
-	/// <param name="regions">The regions.</param>
-	public RegionCollection(in ReadOnlySpan<int> regions)
+	/// <param name="houseIndices">The house indices.</param>
+	public HouseCollection(in ReadOnlySpan<int> houseIndices)
 	{
-		foreach (int region in regions)
+		foreach (int houseIndex in houseIndices)
 		{
-			Mask |= 1 << region;
+			Mask |= 1 << houseIndex;
 		}
 	}
 
 	/// <summary>
-	/// Initializes an instance with the specified regions.
+	/// Initializes an instance with the specified houses.
 	/// </summary>
-	/// <param name="regions">The regions.</param>
-	public RegionCollection(IEnumerable<int> regions)
+	/// <param name="houseIndices">The house indices.</param>
+	public HouseCollection(IEnumerable<int> houseIndices)
 	{
-		foreach (int region in regions)
+		foreach (int houseIndex in houseIndices)
 		{
-			Mask |= 1 << region;
+			Mask |= 1 << houseIndex;
 		}
 	}
 
 
 	/// <summary>
-	/// Indicates the number of regions that contain in this collection.
+	/// Indicates the number of houses that contain in this collection.
 	/// </summary>
 	public int Count
 	{
@@ -53,15 +53,15 @@ public readonly ref partial struct RegionCollection
 
 
 	/// <summary>
-	/// Gets a <see cref="bool"/> value indicating whether the bit of the corresponding specified region
-	/// is set <see langword="true"/>.
+	/// Gets a <see cref="bool"/> value indicating whether the bit
+	/// of the corresponding specified house is set <see langword="true"/>.
 	/// </summary>
-	/// <param name="region">The region.</param>
+	/// <param name="houseIndex">The house index.</param>
 	/// <returns>A <see cref="bool"/> value.</returns>
-	public bool this[int region]
+	public bool this[int houseIndex]
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => (Mask >> region & 1) != 0;
+		get => (Mask >> houseIndex & 1) != 0;
 	}
 
 
@@ -71,7 +71,7 @@ public readonly ref partial struct RegionCollection
 	/// <param name="other">The collection to compare.</param>
 	/// <returns>A <see cref="bool"/> result.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public bool Equals(RegionCollection other) => Mask == other.Mask;
+	public bool Equals(HouseCollection other) => Mask == other.Mask;
 
 	/// <inheritdoc cref="object.GetHashCode"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -89,17 +89,17 @@ public readonly ref partial struct RegionCollection
 		};
 
 
-		static string f(RegionCollection @this)
+		static string f(HouseCollection @this)
 		{
 			var dic = new Dictionary<int, ICollection<int>>();
-			foreach (int region in @this)
+			foreach (int houseIndex in @this)
 			{
-				if (!dic.ContainsKey(region / 9))
+				if (!dic.ContainsKey(houseIndex / 9))
 				{
-					dic.Add(region / 9, new List<int>());
+					dic.Add(houseIndex / 9, new List<int>());
 				}
 
-				dic[region / 9].Add(region % 9);
+				dic[houseIndex / 9].Add(houseIndex % 9);
 			}
 
 			var sb = new StringHandler(30);
@@ -128,11 +128,11 @@ public readonly ref partial struct RegionCollection
 	public string ToSimpleString()
 	{
 		var sb = new StringHandler(27);
-		for (int region = 9, i = 0; i < 27; i++, region = (region + 1) % 27)
+		for (int houseIndex = 9, i = 0; i < 27; i++, houseIndex = (houseIndex + 1) % 27)
 		{
-			if (this[region])
+			if (this[houseIndex])
 			{
-				sb.Append(GetLabel(region / 9));
+				sb.Append(GetLabel(houseIndex / 9));
 			}
 		}
 
@@ -147,10 +147,10 @@ public readonly ref partial struct RegionCollection
 	public ReadOnlySpan<int>.Enumerator GetEnumerator() => Mask.GetEnumerator();
 
 	/// <summary>
-	/// Get the label of each region.
+	/// Get the label of each house.
 	/// </summary>
-	/// <param name="index">The index.</param>
+	/// <param name="houseIndex">The house index.</param>
 	/// <returns>The label.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	private char GetLabel(int index) => index == 0 ? 'b' : index == 1 ? 'r' : index == 2 ? 'c' : '\0';
+	private char GetLabel(int houseIndex) => houseIndex switch { 0 => 'b', 1 => 'r', 2 => 'c', _ => default };
 }

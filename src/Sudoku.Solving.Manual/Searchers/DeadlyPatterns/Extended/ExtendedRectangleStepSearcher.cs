@@ -40,7 +40,7 @@ public sealed unsafe partial class ExtendedRectangleStepSearcher : IExtendedRect
 	/// <include file='../../global-doc-comments.xml' path='g/static-constructor' />
 	static ExtendedRectangleStepSearcher()
 	{
-		int[,] regions =
+		int[,] houses =
 		{
 			{ 9, 10 }, { 9, 11 }, { 10, 11 },
 			{ 12, 13 }, { 12, 14 }, { 13, 14 },
@@ -107,12 +107,12 @@ public sealed unsafe partial class ExtendedRectangleStepSearcher : IExtendedRect
 		// Initializes fat types.
 		for (int size = 3; size <= 7; size++)
 		{
-			for (int i = 0, length = regions.Length >> 1; i < length; i++)
+			for (int i = 0, length = houses.Length >> 1; i < length; i++)
 			{
-				int region1 = regions[i, 0], region2 = regions[i, 1];
+				int house1 = houses[i, 0], house2 = houses[i, 1];
 				foreach (short mask in new BitSubsetsGenerator(9, size))
 				{
-					// Check whether all cells are in same region.
+					// Check whether all cells are in same house.
 					// If so, continue the loop immediately.
 					if (size == 3 && (mask >> 6 == 7 || (mask >> 3 & 7) == 7 || (mask & 7) == 7))
 					{
@@ -123,7 +123,7 @@ public sealed unsafe partial class ExtendedRectangleStepSearcher : IExtendedRect
 					var pairs = new List<(int, int)>();
 					foreach (int pos in mask)
 					{
-						int cell1 = RegionCells[region1][pos], cell2 = RegionCells[region2][pos];
+						int cell1 = HouseCells[house1][pos], cell2 = HouseCells[house2][pos];
 						map.Add(cell1);
 						map.Add(cell2);
 						pairs.Add((cell1, cell2));
@@ -167,7 +167,7 @@ public sealed unsafe partial class ExtendedRectangleStepSearcher : IExtendedRect
 				continue;
 			}
 
-			// Check the mask of cells from two regions.
+			// Check the mask of cells from two houses.
 			short m1 = 0, m2 = 0;
 			foreach (var (l, r) in pairs)
 			{
@@ -237,7 +237,7 @@ public sealed unsafe partial class ExtendedRectangleStepSearcher : IExtendedRect
 					}
 				}
 
-				if (!extraCellsMap.InOneRegion)
+				if (!extraCellsMap.InOneHouse)
 				{
 					continue;
 				}
@@ -380,9 +380,9 @@ public sealed unsafe partial class ExtendedRectangleStepSearcher : IExtendedRect
 		ICollection<Step> accumulator, in Grid grid, in Cells allCellsMap,
 		short normalDigits, short extraDigits, in Cells extraCellsMap, bool onlyFindOne)
 	{
-		foreach (int region in extraCellsMap.CoveredRegions)
+		foreach (int houseIndex in extraCellsMap.CoveredHouses)
 		{
-			var otherCells = (RegionMaps[region] & EmptyMap) - allCellsMap;
+			var otherCells = (HouseMaps[houseIndex] & EmptyMap) - allCellsMap;
 			for (int size = 1, length = otherCells.Count; size < length; size++)
 			{
 				foreach (var cells in otherCells & size)
@@ -393,7 +393,8 @@ public sealed unsafe partial class ExtendedRectangleStepSearcher : IExtendedRect
 						continue;
 					}
 
-					if ((RegionMaps[region] & EmptyMap) - allCellsMap - cells is not { Count: not 0 } elimMap)
+					var elimMap = (HouseMaps[houseIndex] & EmptyMap) - allCellsMap - cells;
+					if (elimMap is [])
 					{
 						continue;
 					}
@@ -436,12 +437,12 @@ public sealed unsafe partial class ExtendedRectangleStepSearcher : IExtendedRect
 
 					var step = new ExtendedRectangleType3Step(
 						ImmutableArray.CreateRange(conclusions),
-						ImmutableArray.Create(View.Empty + candidateOffsets + new RegionViewNode(0, region)),
+						ImmutableArray.Create(View.Empty + candidateOffsets + new HouseViewNode(0, houseIndex)),
 						allCellsMap,
 						normalDigits,
 						cells,
 						mask,
-						region
+						houseIndex
 					);
 
 					if (onlyFindOne)
@@ -536,10 +537,10 @@ public sealed unsafe partial class ExtendedRectangleStepSearcher : IExtendedRect
 
 				foreach (int conjugateDigit in conjugateMask)
 				{
-					foreach (int region in extraCellsMap.CoveredRegions)
+					foreach (int houseIndex in extraCellsMap.CoveredHouses)
 					{
-						var map = RegionMaps[region] & extraCellsMap;
-						if (map != extraCellsMap || map != (CandMaps[conjugateDigit] & RegionMaps[region]))
+						var map = HouseMaps[houseIndex] & extraCellsMap;
+						if (map != extraCellsMap || map != (CandMaps[conjugateDigit] & HouseMaps[houseIndex]))
 						{
 							continue;
 						}
@@ -573,7 +574,11 @@ public sealed unsafe partial class ExtendedRectangleStepSearcher : IExtendedRect
 
 						var step = new ExtendedRectangleType4Step(
 							ImmutableArray.CreateRange(conclusions),
-							ImmutableArray.Create(View.Empty + candidateOffsets + new RegionViewNode(0, region)),
+							ImmutableArray.Create(
+								View.Empty
+									+ candidateOffsets
+									+ new HouseViewNode(0, houseIndex)
+							),
 							allCellsMap,
 							normalDigits,
 							new(extraCellsMap, conjugateDigit)

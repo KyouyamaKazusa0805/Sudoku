@@ -12,33 +12,34 @@ public interface IUniqueLoopStepSearcher : IDeadlyPatternStepSearcher, IUniqueLo
 	/// <returns>A <see cref="bool"/> result.</returns>
 	protected static bool IsValidLoop(IList<int> loopCells)
 	{
-		int visitedOddRegions = 0, visitedEvenRegions = 0;
+		int visitedOddHouses = 0, visitedEvenHouses = 0;
+
 		Unsafe.SkipInit(out bool isOdd);
 		foreach (int cell in loopCells)
 		{
-			foreach (var region in Regions)
+			foreach (var houseType in Houses)
 			{
-				int regionIndex = cell.ToRegionIndex(region);
+				int houseIndex = cell.ToHouseIndex(houseType);
 				if (isOdd)
 				{
-					if ((visitedOddRegions >> regionIndex & 1) != 0)
+					if ((visitedOddHouses >> houseIndex & 1) != 0)
 					{
 						return false;
 					}
 					else
 					{
-						visitedOddRegions |= 1 << regionIndex;
+						visitedOddHouses |= 1 << houseIndex;
 					}
 				}
 				else
 				{
-					if ((visitedEvenRegions >> regionIndex & 1) != 0)
+					if ((visitedEvenHouses >> houseIndex & 1) != 0)
 					{
 						return false;
 					}
 					else
 					{
-						visitedEvenRegions |= 1 << regionIndex;
+						visitedEvenHouses |= 1 << houseIndex;
 					}
 				}
 			}
@@ -46,6 +47,6 @@ public interface IUniqueLoopStepSearcher : IDeadlyPatternStepSearcher, IUniqueLo
 			isOdd = !isOdd;
 		}
 
-		return visitedEvenRegions == visitedOddRegions;
+		return visitedEvenHouses == visitedOddHouses;
 	}
 }

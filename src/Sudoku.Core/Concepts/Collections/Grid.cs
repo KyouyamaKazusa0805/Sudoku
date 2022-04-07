@@ -455,24 +455,24 @@ public unsafe partial struct Grid :
 	}
 
 	/// <summary>
-	/// <para>Indicates which regions are null regions.</para>
-	/// <para>A <b>Null Region</b> is a region whose hold cells are all empty cells.</para>
+	/// <para>Indicates which houses are null houses.</para>
+	/// <para>A <b>Null House</b> is a house whose hold cells are all empty cells.</para>
 	/// <para>
-	/// The property returns an <see cref="int"/> value as a mask that contains all possible regions.
-	/// For example, if the row 5, column 5 and block 5 (1-9) are null regions, the property will return
+	/// The property returns an <see cref="int"/> value as a mask that contains all possible house indices.
+	/// For example, if the row 5, column 5 and block 5 (1-9) are null houces, the property will return
 	/// the result <see cref="int"/> value, <c>000010000_000010000_000010000</c> as binary.
 	/// </para>
 	/// </summary>
-	public readonly int NullRegions
+	public readonly int NullHouses
 	{
 		get
 		{
 			int maskResult = 0;
-			for (int region = 0; region < 27; region++)
+			for (int houseIndex = 0; houseIndex < 27; houseIndex++)
 			{
-				if ((EmptyCells & RegionMaps[region]).Count == 9)
+				if ((EmptyCells & HouseMaps[houseIndex]).Count == 9)
 				{
-					maskResult |= 1 << region;
+					maskResult |= 1 << houseIndex;
 				}
 			}
 

@@ -34,11 +34,11 @@ public sealed unsafe partial class SingleStepSearcher : ISingleStepSearcher
 			goto CheckHiddenSingle;
 		}
 
-		for (int region = 0; region < 27; region++)
+		for (int house = 0; house < 27; house++)
 		{
 			int count = 0, resultCell = -1;
 			bool flag = true;
-			foreach (int cell in RegionMaps[region])
+			foreach (int cell in HouseMaps[house])
 			{
 				if (grid.GetStatus(cell) == CellStatus.Empty)
 				{
@@ -61,7 +61,7 @@ public sealed unsafe partial class SingleStepSearcher : ISingleStepSearcher
 				ImmutableArray.Create(
 					View.Empty
 						+ new CandidateViewNode(0, resultCell * 9 + digit)
-						+ new RegionViewNode(0, region)
+						+ new HouseViewNode(0, house)
 				),
 				resultCell,
 				digit
@@ -78,11 +78,11 @@ public sealed unsafe partial class SingleStepSearcher : ISingleStepSearcher
 		if (HiddenSinglesInBlockFirst)
 		{
 			// If block first, we'll extract all blocks and iterate on them firstly.
-			for (int region = 0; region < 9; region++)
+			for (int house = 0; house < 9; house++)
 			{
 				for (int digit = 0; digit < 9; digit++)
 				{
-					if (g(grid, digit, region) is not { } step)
+					if (g(grid, digit, house) is not { } step)
 					{
 						continue;
 					}
@@ -97,11 +97,11 @@ public sealed unsafe partial class SingleStepSearcher : ISingleStepSearcher
 			}
 
 			// Then secondly rows and columns.
-			for (int region = 9; region < 27; region++)
+			for (int house = 9; house < 27; house++)
 			{
 				for (int digit = 0; digit < 9; digit++)
 				{
-					if (g(grid, digit, region) is not { } step)
+					if (g(grid, digit, house) is not { } step)
 					{
 						continue;
 					}
@@ -117,14 +117,14 @@ public sealed unsafe partial class SingleStepSearcher : ISingleStepSearcher
 		}
 		else
 		{
-			// We'll directly iterate on each region.
+			// We'll directly iterate on each house.
 			// Theoretically, this iteration should be faster than above one, but in practice,
 			// we may found hidden singles in block much more times than in row or column.
 			for (int digit = 0; digit < 9; digit++)
 			{
-				for (int region = 0; region < 27; region++)
+				for (int house = 0; house < 27; house++)
 				{
-					if (g(grid, digit, region) is not { } step)
+					if (g(grid, digit, house) is not { } step)
 					{
 						continue;
 					}
@@ -197,14 +197,14 @@ public sealed unsafe partial class SingleStepSearcher : ISingleStepSearcher
 		return null;
 
 
-		Step? g(in Grid grid, int digit, int region)
+		Step? g(in Grid grid, int digit, int house)
 		{
-			// The main idea of hidden single is to search for a digit can only appear once in a region,
-			// so we should check all possibilities in a region to found whether the region exists a digit
+			// The main idea of hidden single is to search for a digit can only appear once in a house,
+			// so we should check all possibilities in a house to found whether the house exists a digit
 			// that only appears once indeed.
 			int count = 0, resultCell = -1;
 			bool flag = true;
-			foreach (int cell in RegionMaps[region])
+			foreach (int cell in HouseMaps[house])
 			{
 				if (grid.Exists(cell, digit) is true)
 				{
@@ -218,9 +218,8 @@ public sealed unsafe partial class SingleStepSearcher : ISingleStepSearcher
 			}
 			if (!flag || count == 0)
 			{
-				// The digit has been filled into the region, or the digit
-				// appears more than once, which means the digit is invalid case for hidden single.
-				// Just skip it.
+				// The digit has been filled into the house, or the digit appears more than once,
+				// the digit will be invalid for a hidden single. Just skip it.
 				return null;
 			}
 
@@ -253,7 +252,7 @@ public sealed unsafe partial class SingleStepSearcher : ISingleStepSearcher
 				// Step 1: Get all source cells that makes the result cell
 				// can't be filled with the result digit.
 				Cells crosshatchingCells = Cells.Empty, tempMap = Cells.Empty;
-				foreach (int cell in RegionCells[region])
+				foreach (int cell in HouseCells[house])
 				{
 					if (cell != resultCell && grid.GetStatus(cell) == CellStatus.Empty)
 					{
@@ -271,7 +270,7 @@ public sealed unsafe partial class SingleStepSearcher : ISingleStepSearcher
 					}
 				}
 
-				// Step 2: Get all removed cells in this region.
+				// Step 2: Get all removed cells in this house.
 				foreach (int cell in crosshatchingCells)
 				{
 					if ((PeerMaps[cell] & tempMap) is { Count: not 0 } removableCells)
@@ -288,12 +287,12 @@ public sealed unsafe partial class SingleStepSearcher : ISingleStepSearcher
 					View.Empty
 						+ (enableAndIsLastDigit ? cellOffsets : null)
 						+ new CandidateViewNode(0, resultCell * 9 + digit)
-						+ (enableAndIsLastDigit ? null : new RegionViewNode(0, region))
+						+ (enableAndIsLastDigit ? null : new HouseViewNode(0, house))
 						+ directLines
 				),
 				resultCell,
 				digit,
-				region,
+				house,
 				enableAndIsLastDigit
 			);
 		}

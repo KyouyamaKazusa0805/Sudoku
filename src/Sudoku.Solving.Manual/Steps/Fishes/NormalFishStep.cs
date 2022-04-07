@@ -130,14 +130,14 @@ public sealed record class NormalFishStep(
 	internal string BaseSetStr
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => new RegionCollection(BaseSetsMask.GetAllSets()).ToString();
+		get => new HouseCollection(BaseSetsMask.GetAllSets()).ToString();
 	}
 
 	[FormatItem]
 	internal string CoverSetStr
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => new RegionCollection(CoverSetsMask.GetAllSets()).ToString();
+		get => new HouseCollection(CoverSetsMask.GetAllSets()).ToString();
 	}
 
 	[FormatItem]

@@ -39,12 +39,12 @@ public sealed unsafe partial class NormalFishStepSearcher : INormalFishStepSearc
 			}
 
 			// Gather.
-			for (int region = 9; region < 27; region++)
+			for (int house = 9; house < 27; house++)
 			{
-				if ((RegionMaps[region] & CandMaps[digit]) is not [])
+				if ((HouseMaps[house] & CandMaps[digit]) is not [])
 				{
 #pragma warning disable CA2014
-					if (region < 18)
+					if (house < 18)
 					{
 						if (r[digit] == null)
 						{
@@ -54,7 +54,7 @@ public sealed unsafe partial class NormalFishStepSearcher : INormalFishStepSearc
 							r[digit] = ptr;
 						}
 
-						r[digit][++r[digit][0]] = region;
+						r[digit][++r[digit][0]] = house;
 					}
 					else
 					{
@@ -66,7 +66,7 @@ public sealed unsafe partial class NormalFishStepSearcher : INormalFishStepSearc
 							c[digit] = ptr;
 						}
 
-						c[digit][++c[digit][0]] = region;
+						c[digit][++c[digit][0]] = house;
 					}
 #pragma warning restore CA2014
 				}
@@ -133,10 +133,10 @@ public sealed unsafe partial class NormalFishStepSearcher : INormalFishStepSearc
 				// 'baseLine' is the map that contains all base set cells.
 				var baseLine = size switch
 				{
-					2 => CandMaps[digit] & (RegionMaps[bs[0]] | RegionMaps[bs[1]]),
-					3 => CandMaps[digit] & (RegionMaps[bs[0]] | RegionMaps[bs[1]] | RegionMaps[bs[2]]),
+					2 => CandMaps[digit] & (HouseMaps[bs[0]] | HouseMaps[bs[1]]),
+					3 => CandMaps[digit] & (HouseMaps[bs[0]] | HouseMaps[bs[1]] | HouseMaps[bs[2]]),
 					4 => CandMaps[digit] & (
-						RegionMaps[bs[0]] | RegionMaps[bs[1]] | RegionMaps[bs[2]] | RegionMaps[bs[3]]
+						HouseMaps[bs[0]] | HouseMaps[bs[1]] | HouseMaps[bs[2]] | HouseMaps[bs[3]]
 					),
 					_ => throw new NotSupportedException("The specified size isn't supported.")
 				};
@@ -147,10 +147,10 @@ public sealed unsafe partial class NormalFishStepSearcher : INormalFishStepSearc
 					// 'coverLine' is the map that contains all cover set cells.
 					var coverLine = size switch
 					{
-						2 => CandMaps[digit] & (RegionMaps[cs[0]] | RegionMaps[cs[1]]),
-						3 => CandMaps[digit] & (RegionMaps[cs[0]] | RegionMaps[cs[1]] | RegionMaps[cs[2]]),
+						2 => CandMaps[digit] & (HouseMaps[cs[0]] | HouseMaps[cs[1]]),
+						3 => CandMaps[digit] & (HouseMaps[cs[0]] | HouseMaps[cs[1]] | HouseMaps[cs[2]]),
 						4 => CandMaps[digit] & (
-							RegionMaps[cs[0]] | RegionMaps[cs[1]] | RegionMaps[cs[2]] | RegionMaps[cs[3]]
+							HouseMaps[cs[0]] | HouseMaps[cs[1]] | HouseMaps[cs[2]] | HouseMaps[cs[3]]
 						),
 						_ => throw new NotSupportedException("The specified size isn't supported.")
 					};
@@ -179,24 +179,24 @@ public sealed unsafe partial class NormalFishStepSearcher : INormalFishStepSearc
 
 						// Cover set shouldn't overlap with the block of all fins lying in.
 						int finBlock = TrailingZeroCount(blockMask);
-						if ((coverLine & RegionMaps[finBlock]) is [])
+						if ((coverLine & HouseMaps[finBlock]) is [])
 						{
 							continue;
 						}
 
 						// Don't intersect.
-						if ((RegionMaps[finBlock] & coverLine - baseLine) is [])
+						if ((HouseMaps[finBlock] & coverLine - baseLine) is [])
 						{
 							continue;
 						}
 
 						// Finally, get the elimination cells.
-						elimMap = coverLine - baseLine & RegionMaps[finBlock];
+						elimMap = coverLine - baseLine & HouseMaps[finBlock];
 					}
 
-					// Gather the conclusions and candidates or regions to be highlighted.
+					// Gather the conclusions and candidates or houses to be highlighted.
 					var candidateOffsets = new List<CandidateViewNode>();
-					var regionOffsets = new List<RegionViewNode>();
+					var houseOffsets = new List<HouseViewNode>();
 					foreach (int cell in withFin ? baseLine - fins : baseLine)
 					{
 						candidateOffsets.Add(new(0, cell * 9 + digit));
@@ -210,11 +210,11 @@ public sealed unsafe partial class NormalFishStepSearcher : INormalFishStepSearc
 					}
 					foreach (int baseSet in bs)
 					{
-						regionOffsets.Add(new(0, baseSet));
+						houseOffsets.Add(new(0, baseSet));
 					}
 					foreach (int coverSet in cs)
 					{
-						regionOffsets.Add(new(2, coverSet));
+						houseOffsets.Add(new(2, coverSet));
 					}
 
 					// Gather the result.
@@ -223,12 +223,12 @@ public sealed unsafe partial class NormalFishStepSearcher : INormalFishStepSearc
 							Conclusion.ToConclusions(elimMap, digit, ConclusionType.Elimination)
 						),
 						ImmutableArray.Create(
-							View.Empty + candidateOffsets + regionOffsets,
+							View.Empty + candidateOffsets + houseOffsets,
 							GetDirectView(grid, digit, bs, cs, fins, searchRow)
 						),
 						digit,
-						new RegionCollection(bs).Mask,
-						new RegionCollection(cs).Mask,
+						new HouseCollection(bs).Mask,
+						new HouseCollection(cs).Mask,
 						fins,
 						IFishStepSearcher.IsSashimi(bs, fins, digit)
 					);
@@ -266,7 +266,7 @@ public sealed unsafe partial class NormalFishStepSearcher : INormalFishStepSearc
 		var candidateOffsets = fins is [] ? null : new List<CandidateViewNode>();
 		foreach (int baseSet in baseSets)
 		{
-			foreach (int cell in RegionMaps[baseSet])
+			foreach (int cell in HouseMaps[baseSet])
 			{
 				switch (grid.Exists(cell, digit))
 				{
@@ -281,7 +281,7 @@ public sealed unsafe partial class NormalFishStepSearcher : INormalFishStepSearc
 						bool flag = false;
 						foreach (int c in ValueMaps[digit])
 						{
-							if (RegionMaps[c.ToRegionIndex(searchRow ? Region.Column : Region.Row)].Contains(cell))
+							if (HouseMaps[c.ToHouseIndex(searchRow ? HouseType.Column : HouseType.Row)].Contains(cell))
 							{
 								flag = true;
 								break;
@@ -295,11 +295,11 @@ public sealed unsafe partial class NormalFishStepSearcher : INormalFishStepSearc
 						Cells baseMap = Cells.Empty, coverMap = Cells.Empty;
 						foreach (int b in baseSets)
 						{
-							baseMap |= RegionMaps[b];
+							baseMap |= HouseMaps[b];
 						}
 						foreach (int c in coverSets)
 						{
-							coverMap |= RegionMaps[c];
+							coverMap |= HouseMaps[c];
 						}
 						baseMap &= coverMap;
 						if (baseMap.Contains(cell))

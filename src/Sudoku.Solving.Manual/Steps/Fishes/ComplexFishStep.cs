@@ -104,17 +104,17 @@ public sealed partial record class ComplexFishStep(
 	private ShapeModifiers ShapeModifier => IsFranken ? ShapeModifiers.Franken : ShapeModifiers.Mutant;
 
 	/// <summary>
-	/// Indicates the base regions.
+	/// Indicates the base houses.
 	/// </summary>
-	private int[] BaseRegions
+	private int[] BaseHouses
 	{
 		get
 		{
 			int[] result = new int[PopCount((uint)BaseSetsMask)];
 			int i = 0;
-			foreach (int region in BaseSetsMask)
+			foreach (int house in BaseSetsMask)
 			{
-				result[i++] = region;
+				result[i++] = house;
 			}
 
 			return result;
@@ -122,17 +122,17 @@ public sealed partial record class ComplexFishStep(
 	}
 
 	/// <summary>
-	/// Indicates the cover regions.
+	/// Indicates the cover houses.
 	/// </summary>
-	private int[] CoverRegions
+	private int[] CoverHouses
 	{
 		get
 		{
 			int[] result = new int[PopCount((uint)CoverSetsMask)];
 			int i = 0;
-			foreach (int region in CoverSetsMask)
+			foreach (int house in CoverSetsMask)
 			{
-				result[i++] = region;
+				result[i++] = house;
 			}
 
 			return result;
@@ -150,14 +150,14 @@ public sealed partial record class ComplexFishStep(
 	internal string BaseSetsStr
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => new RegionCollection(BaseRegions).ToString();
+		get => new HouseCollection(BaseHouses).ToString();
 	}
 
 	[FormatItem]
 	internal string CoverSetsStr
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => new RegionCollection(CoverRegions).ToString();
+		get => new HouseCollection(CoverHouses).ToString();
 	}
 
 	[FormatItem]

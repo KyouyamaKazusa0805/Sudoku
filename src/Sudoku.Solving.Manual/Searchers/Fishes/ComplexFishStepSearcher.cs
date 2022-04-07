@@ -107,7 +107,7 @@ public sealed unsafe partial class ComplexFishStepSearcher : IComplexFishStepSea
 		ICollection<ComplexFishStep> accumulator, in Grid grid,
 		IList<Conclusion>?[] pomElims, int digit, bool onlyFindOne)
 	{
-		const Region bothLines = (Region)3;
+		const HouseType bothLines = (HouseType)3;
 
 		int* currentCoverSets = stackalloc int[MaxSize];
 		bool* searchForMutantCases = stackalloc[] { false, true };
@@ -145,8 +145,8 @@ public sealed unsafe partial class ComplexFishStepSearcher : IComplexFishStepSea
 					// and we can get a map of all possible cells that can be filled with the digit.
 					var possibleMap = CandMaps[digit] - new Cells(cell);
 
-					// Get the table of all possible regions that contains that digit.
-					var baseTable = possibleMap.Regions.GetAllSets();
+					// Get the table of all possible houses that contains that digit.
+					var baseTable = possibleMap.Houses.GetAllSets();
 
 					// If the 'table.Length' property is lower than '2 * size',
 					// we can't find any possible complex fish now. Just skip it.
@@ -165,7 +165,7 @@ public sealed unsafe partial class ComplexFishStepSearcher : IComplexFishStepSea
 							baseSetsMask |= 1 << baseSet;
 						}
 
-						// Franken fishes doesn't contain both row and column two region types.
+						// Franken fishes doesn't contain both row and column two house types.
 						if (!searchForMutant
 							&& (baseSetsMask & AllRowsMask) != 0 && (baseSetsMask & AllColumnsMask) != 0)
 						{
@@ -179,10 +179,10 @@ public sealed unsafe partial class ComplexFishStepSearcher : IComplexFishStepSea
 							int baseSet = baseSets[i];
 							if (i != 0)
 							{
-								endofins |= RegionMaps[baseSet] & tempMap;
+								endofins |= HouseMaps[baseSet] & tempMap;
 							}
 
-							tempMap |= RegionMaps[baseSet];
+							tempMap |= HouseMaps[baseSet];
 						}
 						endofins &= possibleMap;
 
@@ -199,17 +199,17 @@ public sealed unsafe partial class ComplexFishStepSearcher : IComplexFishStepSea
 						}
 
 						// Get the mask for checking for mutant fish.
-						Unsafe.SkipInit(out Region baseRegionTypes);
+						Unsafe.SkipInit(out HouseType baseHouseTypes);
 						if (searchForMutant)
 						{
-							baseRegionTypes = Region.Block;
+							baseHouseTypes = HouseType.Block;
 							if ((baseSetsMask & AllRowsMask) != 0)
 							{
-								baseRegionTypes |= Region.Row;
+								baseHouseTypes |= HouseType.Row;
 							}
 							if ((baseSetsMask & AllColumnsMask) != 0)
 							{
-								baseRegionTypes |= Region.Column;
+								baseHouseTypes |= HouseType.Column;
 							}
 						}
 
@@ -218,7 +218,7 @@ public sealed unsafe partial class ComplexFishStepSearcher : IComplexFishStepSea
 						var baseMap = Cells.Empty;
 						foreach (int baseSet in baseSets)
 						{
-							baseMap |= RegionMaps[baseSet];
+							baseMap |= HouseMaps[baseSet];
 							usedInBaseSets |= 1 << baseSet;
 						}
 
@@ -227,7 +227,7 @@ public sealed unsafe partial class ComplexFishStepSearcher : IComplexFishStepSea
 						baseMap &= possibleMap;
 
 						// Now check the possible cover sets to iterate.
-						int z = baseMap.Regions & ~usedInBaseSets & AllRegionsMask;
+						int z = baseMap.Houses & ~usedInBaseSets & AllHousesMask;
 						if (z == 0)
 						{
 							continue;
@@ -250,7 +250,7 @@ public sealed unsafe partial class ComplexFishStepSearcher : IComplexFishStepSea
 							var coverMap = Cells.Empty;
 							foreach (int coverSet in coverSets)
 							{
-								coverMap |= RegionMaps[coverSet];
+								coverMap |= HouseMaps[coverSet];
 							}
 
 							// All cells in base sets should lie in cover sets.
@@ -268,38 +268,38 @@ public sealed unsafe partial class ComplexFishStepSearcher : IComplexFishStepSea
 							}
 							actualBaseMap &= CandMaps[digit];
 
-							// Now iterate on three different region types, to check the final region
+							// Now iterate on three different house types, to check the final house
 							// that is the elimination lies in.
-							foreach (var region in Regions)
+							foreach (var houseType in Houses)
 							{
-								int regionIndex = cell.ToRegionIndex(region);
+								int houseIndex = cell.ToHouseIndex(houseType);
 
-								// Check whether the region is both used in base sets and cover sets.
-								if ((usedInBaseSets >> regionIndex & 1) != 0
-									|| (usedInCoverSets >> regionIndex & 1) != 0)
+								// Check whether the house is both used in base sets and cover sets.
+								if ((usedInBaseSets >> houseIndex & 1) != 0
+									|| (usedInCoverSets >> houseIndex & 1) != 0)
 								{
 									continue;
 								}
 
-								// Add the region into the cover sets, and check the cover region types.
-								usedInCoverSets |= 1 << regionIndex;
-								Unsafe.SkipInit(out Region coverRegionTypes);
+								// Add the house into the cover sets, and check the cover house types.
+								usedInCoverSets |= 1 << houseIndex;
+								Unsafe.SkipInit(out HouseType coverHouseTypes);
 								if (searchForMutant)
 								{
-									coverRegionTypes = Region.Block;
+									coverHouseTypes = HouseType.Block;
 									if ((usedInCoverSets & AllRowsMask) != 0)
 									{
-										coverRegionTypes |= Region.Row;
+										coverHouseTypes |= HouseType.Row;
 									}
 									if ((usedInCoverSets & AllColumnsMask) != 0)
 									{
-										coverRegionTypes |= Region.Column;
+										coverHouseTypes |= HouseType.Column;
 									}
 								}
 
 								// Now check whether the current fish is normal ones,
 								// or neither base sets nor cover sets of the mutant fish
-								// contain both row and column regions.
+								// contain both row and column houses.
 								if ((usedInBaseSets & AllRowsMask) == usedInBaseSets
 									&& (usedInCoverSets & AllColumnsMask) == usedInCoverSets
 									|| (usedInBaseSets & AllColumnsMask) == usedInBaseSets
@@ -318,14 +318,14 @@ public sealed unsafe partial class ComplexFishStepSearcher : IComplexFishStepSea
 								}
 
 								if (searchForMutant
-									&& baseRegionTypes != bothLines && coverRegionTypes != bothLines)
+									&& baseHouseTypes != bothLines && coverHouseTypes != bothLines)
 								{
 									// Not Mutant fish.
 									goto BacktrackValue;
 								}
 
-								// Now actual base sets must overlap the current region.
-								if ((actualBaseMap & RegionMaps[regionIndex]) is [])
+								// Now actual base sets must overlap the current house.
+								if ((actualBaseMap & HouseMaps[houseIndex]) is [])
 								{
 									goto BacktrackValue;
 								}
@@ -339,19 +339,19 @@ public sealed unsafe partial class ComplexFishStepSearcher : IComplexFishStepSea
 								int j = size - 2;
 								for (; j >= 0; j--)
 								{
-									if (currentCoverSets[j] >= regionIndex)
+									if (currentCoverSets[j] >= houseIndex)
 									{
 										currentCoverSets[j + 1] = currentCoverSets[j];
 									}
 									else
 									{
-										currentCoverSets[j + 1] = regionIndex;
+										currentCoverSets[j + 1] = houseIndex;
 										break;
 									}
 								}
 								if (j < 0)
 								{
-									currentCoverSets[0] = regionIndex;
+									currentCoverSets[0] = houseIndex;
 								}
 
 								// Collect all endo-fins firstly.
@@ -359,22 +359,22 @@ public sealed unsafe partial class ComplexFishStepSearcher : IComplexFishStepSea
 								{
 									if (j > 0)
 									{
-										endofins |= RegionMaps[baseSets[j]] & tempMap;
+										endofins |= HouseMaps[baseSets[j]] & tempMap;
 									}
 
 									if (j == 0)
 									{
-										tempMap = RegionMaps[baseSets[j]];
+										tempMap = HouseMaps[baseSets[j]];
 									}
 									else
 									{
-										tempMap |= RegionMaps[baseSets[j]];
+										tempMap |= HouseMaps[baseSets[j]];
 									}
 								}
 								endofins &= CandMaps[digit];
 
-								// Add the new region into the cover sets map.
-								var nowCoverMap = coverMap | RegionMaps[regionIndex];
+								// Add the new house into the cover sets map.
+								var nowCoverMap = coverMap | HouseMaps[houseIndex];
 
 								// Collect all exo-fins, in order to get all eliminations.
 								var exofins = actualBaseMap - nowCoverMap - endofins;
@@ -400,7 +400,7 @@ public sealed unsafe partial class ComplexFishStepSearcher : IComplexFishStepSea
 
 								// Collect highlighting candidates.
 								var candidateOffsets = new List<CandidateViewNode>();
-								var regionOffsets = new List<RegionViewNode>();
+								var houseOffsets = new List<HouseViewNode>();
 								foreach (int body in actualBaseMap)
 								{
 									candidateOffsets.Add(new(0, body * 9 + digit));
@@ -421,24 +421,24 @@ public sealed unsafe partial class ComplexFishStepSearcher : IComplexFishStepSea
 								{
 									actualCoverSets[p] = coverSets[p];
 								}
-								actualCoverSets[^1] = regionIndex;
+								actualCoverSets[^1] = houseIndex;
 
-								// Collect highlighting regions.
+								// Collect highlighting houses.
 								int coverSetsMask = 0;
 								foreach (int baseSet in baseSets)
 								{
-									regionOffsets.Add(new(0, baseSet));
+									houseOffsets.Add(new(0, baseSet));
 								}
 								foreach (int coverSet in actualCoverSets)
 								{
-									regionOffsets.Add(new(2, coverSet));
+									houseOffsets.Add(new(2, coverSet));
 									coverSetsMask |= 1 << coverSet;
 								}
 
 								// Add into the 'accumulator'.
 								var step = new ComplexFishStep(
 									ImmutableArray.CreateRange(conclusions),
-									ImmutableArray.Create(View.Empty + candidateOffsets + regionOffsets),
+									ImmutableArray.Create(View.Empty + candidateOffsets + houseOffsets),
 									digit,
 									baseSetsMask,
 									coverSetsMask,
@@ -456,7 +456,7 @@ public sealed unsafe partial class ComplexFishStepSearcher : IComplexFishStepSea
 
 							// Backtracking.
 							BacktrackValue:
-								usedInCoverSets &= ~(1 << regionIndex);
+								usedInCoverSets &= ~(1 << houseIndex);
 							}
 						}
 					}

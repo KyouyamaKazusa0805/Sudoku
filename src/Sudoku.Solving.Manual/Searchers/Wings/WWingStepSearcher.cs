@@ -57,18 +57,18 @@ public sealed unsafe partial class WWingStepSearcher : IIregularWingStepSearcher
 					continue;
 				}
 
-				// Iterate on each region.
-				for (int region = 0; region < 27; region++)
+				// Iterate on each house.
+				for (int house = 0; house < 27; house++)
 				{
-					if (region == c1.ToRegionIndex(Region.Block)
-						|| region == c1.ToRegionIndex(Region.Row)
-						|| region == c1.ToRegionIndex(Region.Column)
-						|| region == c2.ToRegionIndex(Region.Block)
-						|| region == c2.ToRegionIndex(Region.Row)
-						|| region == c2.ToRegionIndex(Region.Column))
+					if (house == c1.ToHouseIndex(HouseType.Block)
+						|| house == c1.ToHouseIndex(HouseType.Row)
+						|| house == c1.ToHouseIndex(HouseType.Column)
+						|| house == c2.ToHouseIndex(HouseType.Block)
+						|| house == c2.ToHouseIndex(HouseType.Row)
+						|| house == c2.ToHouseIndex(HouseType.Column))
 					{
-						// The region to search for conjugate pairs shouldn't
-						// be the same as those two cells' regions.
+						// The house to search for conjugate pairs shouldn't
+						// be the same as those two cells' houses.
 						continue;
 					}
 
@@ -76,15 +76,15 @@ public sealed unsafe partial class WWingStepSearcher : IIregularWingStepSearcher
 					foreach (int digit in digits)
 					{
 						// Now search for conjugate pair.
-						if ((CandMaps[digit] & RegionMaps[region]) is not [var a, var b] conjugate)
+						if ((CandMaps[digit] & HouseMaps[house]) is not [var a, var b] conjugate)
 						{
-							// The current region doesn't contain the conjugate pair of this digit.
+							// The current house doesn't contain the conjugate pair of this digit.
 							continue;
 						}
 
-						// Check whether the cells are the same region as the head and the tail cell.
-						if (!(Cells.Empty + c1 + a).InOneRegion || !(Cells.Empty + c2 + b).InOneRegion
-							&& !(Cells.Empty + c1 + b).InOneRegion || !(Cells.Empty + c2 + a).InOneRegion)
+						// Check whether the cells are the same house as the head and the tail cell.
+						if (!(Cells.Empty + c1 + a).InOneHouse || !(Cells.Empty + c2 + b).InOneHouse
+							&& !(Cells.Empty + c1 + b).InOneHouse || !(Cells.Empty + c2 + a).InOneHouse)
 						{
 							continue;
 						}
@@ -112,7 +112,7 @@ public sealed unsafe partial class WWingStepSearcher : IIregularWingStepSearcher
 										new(1, a * 9 + digit),
 										new(1, b * 9 + digit)
 									}
-									+ new RegionViewNode(0, region)),
+									+ new HouseViewNode(0, house)),
 							a,
 							b,
 							new(conjugate, digit)

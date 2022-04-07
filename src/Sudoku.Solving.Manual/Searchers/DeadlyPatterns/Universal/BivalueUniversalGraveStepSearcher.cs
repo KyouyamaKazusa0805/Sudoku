@@ -141,9 +141,9 @@ public sealed unsafe partial class BivalueUniversalGraveStepSearcher : IBivalueU
 	private static Step? CheckType3Naked(
 		ICollection<Step> accumulator, in Grid grid, IReadOnlyList<int> trueCandidates, bool onlyFindOne)
 	{
-		// Check whether all true candidates lie in a same region.
+		// Check whether all true candidates lie in a same house.
 		var map = new Cells(from c in trueCandidates group c by c / 9 into z select z.Key);
-		if (!map.InOneRegion)
+		if (!map.InOneHouse)
 		{
 			return null;
 		}
@@ -155,11 +155,11 @@ public sealed unsafe partial class BivalueUniversalGraveStepSearcher : IBivalueU
 			digitsMask |= (short)(1 << candidate % 9);
 		}
 
-		// Iterate on each region that the true candidates lying on.
-		foreach (int region in map.CoveredRegions)
+		// Iterate on each house that the true candidates lying on.
+		foreach (int house in map.CoveredHouses)
 		{
-			var regionMap = RegionMaps[region];
-			if ((regionMap & EmptyMap) - map is not { Count: not 0 } otherCellsMap)
+			var houseMap = HouseMaps[house];
+			if ((houseMap & EmptyMap) - map is not { Count: not 0 } otherCellsMap)
 			{
 				continue;
 			}
@@ -175,7 +175,7 @@ public sealed unsafe partial class BivalueUniversalGraveStepSearcher : IBivalueU
 						continue;
 					}
 
-					if (((regionMap - cells - map) & EmptyMap) is not { Count: not 0 } elimMap)
+					if (((houseMap - cells - map) & EmptyMap) is not { Count: not 0 } elimMap)
 					{
 						continue;
 					}
@@ -211,7 +211,7 @@ public sealed unsafe partial class BivalueUniversalGraveStepSearcher : IBivalueU
 
 					var step = new BivalueUniversalGraveType3Step(
 						ImmutableArray.CreateRange(conclusions),
-						ImmutableArray.Create(View.Empty + candidateOffsets + new RegionViewNode(0, region)),
+						ImmutableArray.Create(View.Empty + candidateOffsets + new HouseViewNode(0, house)),
 						trueCandidates,
 						digitsMask,
 						cells,
@@ -240,21 +240,21 @@ public sealed unsafe partial class BivalueUniversalGraveStepSearcher : IBivalueU
 			return null;
 		}
 
-		// Check two cell has same region.
+		// Check two cell has same house.
 		var cells = new List<int>();
 		foreach (var candGroupByCell in candsGroupByCell)
 		{
 			cells.Add(candGroupByCell.Key);
 		}
 
-		int regions = new Cells(cells).CoveredRegions;
-		if (regions != 0)
+		int houses = new Cells(cells).CoveredHouses;
+		if (houses != 0)
 		{
 			return null;
 		}
 
-		// Check for each region.
-		foreach (int region in regions)
+		// Check for each house.
+		foreach (int house in houses)
 		{
 			// Add up all digits.
 			var digits = new HashSet<int>();
@@ -266,11 +266,11 @@ public sealed unsafe partial class BivalueUniversalGraveStepSearcher : IBivalueU
 				}
 			}
 
-			// Check whether exists a conjugate pair in this region.
+			// Check whether exists a conjugate pair in this house.
 			for (int conjuagtePairDigit = 0; conjuagtePairDigit < 9; conjuagtePairDigit++)
 			{
 				// Check whether forms a conjugate pair.
-				short mask = (RegionMaps[region] & CandMaps[conjuagtePairDigit]) / region;
+				short mask = (HouseMaps[house] & CandMaps[conjuagtePairDigit]) / house;
 				if (PopCount((uint)mask) != 2)
 				{
 					continue;
@@ -278,7 +278,7 @@ public sealed unsafe partial class BivalueUniversalGraveStepSearcher : IBivalueU
 
 				// Check whether the conjugate pair lies in current two cells.
 				int first = TrailingZeroCount(mask), second = mask.GetNextSet(first);
-				int c1 = RegionCells[region][first], c2 = RegionCells[region][second];
+				int c1 = HouseCells[house][first], c2 = HouseCells[house][second];
 				if (c1 != cells[0] || c2 != cells[1])
 				{
 					continue;
@@ -338,7 +338,7 @@ public sealed unsafe partial class BivalueUniversalGraveStepSearcher : IBivalueU
 
 				var step = new BivalueUniversalGraveType4Step(
 					ImmutableArray.CreateRange(conclusions),
-					ImmutableArray.Create(View.Empty + candidateOffsets + new RegionViewNode(0, region)),
+					ImmutableArray.Create(View.Empty + candidateOffsets + new HouseViewNode(0, house)),
 					digitsMask,
 					new(cells),
 					new(c1, c2, conjuagtePairDigit)
@@ -426,7 +426,7 @@ public sealed unsafe partial class BivalueUniversalGraveStepSearcher : IBivalueU
 
 			// BUG-XZ found.
 			var conclusions = new List<Conclusion>();
-			bool condition = (Cells.Empty + c1 + cell).InOneRegion;
+			bool condition = (Cells.Empty + c1 + cell).InOneHouse;
 			int anotherCell = condition ? c2 : c1;
 			int anotherDigit = condition ? d2 : d1;
 			foreach (int peer in !(Cells.Empty + cell + anotherCell))

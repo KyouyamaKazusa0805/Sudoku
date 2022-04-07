@@ -9,10 +9,10 @@
 /// <param name="DigitsMask"><inheritdoc/></param>
 /// <param name="Digit1">Indicates the digit 1 used.</param>
 /// <param name="Digit2">Indicates the digit 2 used.</param>
-/// <param name="ConjugateRegion">Indicates the cells used as the conjugation region.</param>
+/// <param name="ConjugateHouse">Indicates the cells used as the conjugate house.</param>
 public sealed record class UniqueSquareType4Step(
 	ImmutableArray<Conclusion> Conclusions, ImmutableArray<View> Views,
-	in Cells Cells, short DigitsMask, int Digit1, int Digit2, in Cells ConjugateRegion) :
+	in Cells Cells, short DigitsMask, int Digit1, int Digit2, in Cells ConjugateHouse) :
 	UniqueSquareStep(Conclusions, Views, Cells, DigitsMask)
 {
 	/// <inheritdoc/>
@@ -22,7 +22,7 @@ public sealed record class UniqueSquareType4Step(
 	internal string ConjStr
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => ConjugateRegion.ToString();
+		get => ConjugateHouse.ToString();
 	}
 
 	[FormatItem]

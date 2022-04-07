@@ -217,7 +217,7 @@ public sealed unsafe partial class SueDeCoqStepSearcher : ISueDeCoqStepSearcher
 											ImmutableArray.Create(
 												View.Empty
 													+ candidateOffsets
-													+ new RegionViewNode[] { new(0, coverSet), new(2, baseSet) }
+													+ new HouseViewNode[] { new(0, coverSet), new(2, baseSet) }
 											),
 											coverSet,
 											baseSet,

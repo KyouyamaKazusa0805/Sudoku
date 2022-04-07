@@ -39,15 +39,15 @@ public sealed class AlmostLockedSet :
 
 
 	/// <summary>
-	/// Indicates the region used.
+	/// Indicates the house used.
 	/// </summary>
-	public int Region
+	public int House
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get
 		{
-			_ = Map.AllSetsAreInOneRegion(out int region);
-			return region;
+			_ = Map.AllSetsAreInOneHouse(out int houseIndex);
+			return houseIndex;
 		}
 	}
 
@@ -141,7 +141,7 @@ public sealed class AlmostLockedSet :
 	{
 		short mask = 0;
 		int i = 0;
-		foreach (int cell in RegionCells[Region])
+		foreach (int cell in HouseCells[House])
 		{
 			if (Map.Contains(cell))
 			{
@@ -151,7 +151,7 @@ public sealed class AlmostLockedSet :
 			i++;
 		}
 
-		return Region << 18 | mask << 9 | (int)DigitsMask;
+		return House << 18 | mask << 9 | (int)DigitsMask;
 	}
 
 	/// <inheritdoc/>
@@ -159,8 +159,8 @@ public sealed class AlmostLockedSet :
 	public override string ToString()
 	{
 		string digitsStr = new DigitCollection(DigitsMask).ToSimpleString();
-		string regionStr = new RegionCollection(Region).ToString();
-		return IsBivalueCell ? $"{digitsStr}/{Map}" : $"{digitsStr}/{Map} {R["KeywordIn"]} {regionStr}";
+		string houseStr = new HouseCollection(House).ToString();
+		return IsBivalueCell ? $"{digitsStr}/{Map}" : $"{digitsStr}/{Map} {R["KeywordIn"]} {houseStr}";
 	}
 
 
@@ -181,9 +181,9 @@ public sealed class AlmostLockedSet :
 		}
 
 		// Get all non-bi-value-cell ALSes.
-		for (int region = 0; region < 27; region++)
+		for (int houseIndex = 0; houseIndex < 27; houseIndex++)
 		{
-			if ((RegionMaps[region] & emptyMap) is not { Count: >= 3 } tempMap)
+			if ((HouseMaps[houseIndex] & emptyMap) is not { Count: >= 3 } tempMap)
 			{
 				continue;
 			}
@@ -193,7 +193,7 @@ public sealed class AlmostLockedSet :
 				foreach (var map in tempMap & size)
 				{
 					short blockMask = map.BlockMask;
-					if (IsPow2(blockMask) && region >= 9)
+					if (IsPow2(blockMask) && houseIndex >= 9)
 					{
 						// All ALS cells lying on a box-row or a box-column
 						// will be processed as a block ALS.
@@ -216,8 +216,8 @@ public sealed class AlmostLockedSet :
 						new(
 							digitsMask,
 							map,
-							region < 9 && coveredLine is >= 9 and not InvalidFirstSet
-								? ((RegionMaps[region] | RegionMaps[coveredLine]) & emptyMap) - map
+							houseIndex < 9 && coveredLine is >= 9 and not InvalidFirstSet
+								? ((HouseMaps[houseIndex] | HouseMaps[coveredLine]) & emptyMap) - map
 								: tempMap - map
 						)
 					);

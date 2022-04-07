@@ -6,8 +6,8 @@
 /// <param name="Conclusions"><inheritdoc/></param>
 /// <param name="Views"><inheritdoc/></param>
 /// <param name="Digit">Indicates the digit used.</param>
-/// <param name="BaseSet">Indicates the region that the current locked candidates forms.</param>
-/// <param name="CoverSet">Indicates the region that the current locked candidates influences.</param>
+/// <param name="BaseSet">Indicates the house that the current locked candidates forms.</param>
+/// <param name="CoverSet">Indicates the house that the current locked candidates influences.</param>
 public sealed record class LockedCandidatesStep(
 	ImmutableArray<Conclusion> Conclusions, ImmutableArray<View> Views,
 	int Digit, int BaseSet, int CoverSet) :
@@ -44,13 +44,13 @@ public sealed record class LockedCandidatesStep(
 	internal string BaseSetStr
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => new RegionCollection(BaseSet).ToString();
+		get => new HouseCollection(BaseSet).ToString();
 	}
 
 	[FormatItem]
 	internal string CoverSetStr
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => new RegionCollection(CoverSet).ToString();
+		get => new HouseCollection(CoverSet).ToString();
 	}
 }

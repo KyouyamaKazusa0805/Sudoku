@@ -19,7 +19,7 @@ public sealed unsafe partial class EmptyRectangleStepSearcher : IEmptyRectangleS
 			{
 				// Check the empty rectangle occupies more than 2 cells.
 				// and the structure forms an empty rectangle.
-				var erMap = CandMaps[digit] & RegionMaps[block];
+				var erMap = CandMaps[digit] & HouseMaps[block];
 				if (erMap.Count < 2
 					|| !IEmptyRectangleStepSearcher.IsEmptyRectangle(erMap, block, out int row, out int column))
 				{
@@ -29,7 +29,7 @@ public sealed unsafe partial class EmptyRectangleStepSearcher : IEmptyRectangleS
 				// Search for conjugate pair.
 				for (int i = 0; i < 12; i++)
 				{
-					var linkMap = CandMaps[digit] & RegionMaps[LinkIds[block, i]];
+					var linkMap = CandMaps[digit] & HouseMaps[LinkIds[block, i]];
 					if (linkMap.Count != 2)
 					{
 						continue;
@@ -37,15 +37,15 @@ public sealed unsafe partial class EmptyRectangleStepSearcher : IEmptyRectangleS
 
 					short blockMask = linkMap.BlockMask;
 					if (IsPow2(blockMask)
-						|| i < 6 && (linkMap & RegionMaps[column]) is []
-						|| i >= 6 && (linkMap & RegionMaps[row]) is [])
+						|| i < 6 && (linkMap & HouseMaps[column]) is []
+						|| i >= 6 && (linkMap & HouseMaps[row]) is [])
 					{
 						continue;
 					}
 
-					int t = (linkMap - RegionMaps[i < 6 ? column : row])[0];
-					int elimRegion = i < 6 ? t % 9 + 18 : t / 9 + 9;
-					var elimCellMap = CandMaps[digit] & RegionMaps[elimRegion] & RegionMaps[i < 6 ? row : column];
+					int t = (linkMap - HouseMaps[i < 6 ? column : row])[0];
+					int elimHouse = i < 6 ? t % 9 + 18 : t / 9 + 9;
+					var elimCellMap = CandMaps[digit] & HouseMaps[elimHouse] & HouseMaps[i < 6 ? row : column];
 					if (elimCellMap is not [var elimCell, ..])
 					{
 						continue;
@@ -59,7 +59,7 @@ public sealed unsafe partial class EmptyRectangleStepSearcher : IEmptyRectangleS
 					// Gather all highlight candidates.
 					var candidateOffsets = new List<CandidateViewNode>();
 					var cpCells = new List<int>(2);
-					foreach (int cell in RegionMaps[block] & CandMaps[digit])
+					foreach (int cell in HouseMaps[block] & CandMaps[digit])
 					{
 						candidateOffsets.Add(new(1, cell * 9 + digit));
 					}
@@ -71,7 +71,7 @@ public sealed unsafe partial class EmptyRectangleStepSearcher : IEmptyRectangleS
 
 					var step = new EmptyRectangleStep(
 						ImmutableArray.Create(new Conclusion(ConclusionType.Elimination, elimCell, digit)),
-						ImmutableArray.Create(View.Empty + candidateOffsets + new RegionViewNode(0, block)),
+						ImmutableArray.Create(View.Empty + candidateOffsets + new HouseViewNode(0, block)),
 						digit,
 						block,
 						new(cpCells[0], cpCells[1], digit)
@@ -92,8 +92,7 @@ public sealed unsafe partial class EmptyRectangleStepSearcher : IEmptyRectangleS
 
 
 	/// <summary>
-	/// Indicates all regions iterating on the specified block
-	/// forming an empty rectangle.
+	/// Indicates all houses iterating on the specified block forming an empty rectangle.
 	/// </summary>
 	private static readonly int[,] LinkIds =
 	{

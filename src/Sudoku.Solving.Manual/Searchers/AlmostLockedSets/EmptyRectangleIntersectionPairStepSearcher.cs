@@ -30,14 +30,14 @@ public sealed unsafe partial class EmptyRectangleIntersectionPairStepSearcher :
 					continue;
 				}
 
-				// Check the two cells are not in same region.
-				if ((Cells.Empty + c1 + c2).InOneRegion)
+				// Check the two cells are not in same house index.
+				if ((Cells.Empty + c1 + c2).InOneHouse)
 				{
 					continue;
 				}
 
-				int block1 = c1.ToRegionIndex(Region.Block);
-				int block2 = c2.ToRegionIndex(Region.Block);
+				int block1 = c1.ToHouseIndex(HouseType.Block);
+				int block2 = c2.ToHouseIndex(HouseType.Block);
 				if (block1 % 3 == block2 % 3 || block1 / 3 == block2 / 3)
 				{
 					continue;
@@ -48,19 +48,19 @@ public sealed unsafe partial class EmptyRectangleIntersectionPairStepSearcher :
 				var unionMap = new Cells(c1) | new Cells(c2);
 				foreach (int interCell in interMap)
 				{
-					int block = interCell.ToRegionIndex(Region.Block);
-					var regionMap = RegionMaps[block];
-					var checkingMap = regionMap - unionMap & regionMap;
+					int block = interCell.ToHouseIndex(HouseType.Block);
+					var houseMap = HouseMaps[block];
+					var checkingMap = houseMap - unionMap & houseMap;
 					if ((checkingMap & CandMaps[d1]) is not [] || (checkingMap & CandMaps[d2]) is not [])
 					{
 						continue;
 					}
 
 					// Check whether two digits are both in the same empty rectangle.
-					int b1 = c1.ToRegionIndex(Region.Block);
-					int b2 = c2.ToRegionIndex(Region.Block);
-					var erMap = (unionMap & RegionMaps[b1] - interMap) | (unionMap & RegionMaps[b2] - interMap);
-					var erCellsMap = regionMap & erMap;
+					int b1 = c1.ToHouseIndex(HouseType.Block);
+					int b2 = c2.ToHouseIndex(HouseType.Block);
+					var erMap = (unionMap & HouseMaps[b1] - interMap) | (unionMap & HouseMaps[b2] - interMap);
+					var erCellsMap = houseMap & erMap;
 					short m = grid.GetDigitsUnion(erCellsMap);
 					if ((m & mask) != mask)
 					{
@@ -69,9 +69,9 @@ public sealed unsafe partial class EmptyRectangleIntersectionPairStepSearcher :
 
 					// Check eliminations.
 					var conclusions = new List<Conclusion>();
-					int z = (interMap & regionMap)[0];
-					var c1Map = RegionMaps[(Cells.Empty + z + c1).CoveredLine];
-					var c2Map = RegionMaps[(Cells.Empty + z + c2).CoveredLine];
+					int z = (interMap & houseMap)[0];
+					var c1Map = HouseMaps[(Cells.Empty + z + c1).CoveredLine];
+					var c2Map = HouseMaps[(Cells.Empty + z + c2).CoveredLine];
 					foreach (int elimCell in (c1Map | c2Map) - c1 - c2 - erMap)
 					{
 						if (grid.Exists(elimCell, d1) is true)
@@ -115,7 +115,7 @@ public sealed unsafe partial class EmptyRectangleIntersectionPairStepSearcher :
 						ImmutableArray.Create(
 							View.Empty
 								+ candidateOffsets
-								+ new RegionViewNode(0, block)
+								+ new HouseViewNode(0, block)
 						),
 						c1,
 						c2,

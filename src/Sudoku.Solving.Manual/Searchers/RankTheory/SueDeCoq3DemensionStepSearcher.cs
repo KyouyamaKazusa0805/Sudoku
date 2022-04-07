@@ -16,11 +16,11 @@ public sealed unsafe partial class SueDeCoq3DemensionStepSearcher : ISueDeCoq3De
 		using ValueList<Cells> rbList = new(3), cbList = new(3);
 		foreach (int pivot in EmptyMap)
 		{
-			int r = pivot.ToRegionIndex(Region.Row);
-			int c = pivot.ToRegionIndex(Region.Column);
-			int b = pivot.ToRegionIndex(Region.Block);
-			var rbMap = RegionMaps[r] & RegionMaps[b];
-			var cbMap = RegionMaps[c] & RegionMaps[b];
+			int r = pivot.ToHouseIndex(HouseType.Row);
+			int c = pivot.ToHouseIndex(HouseType.Column);
+			int b = pivot.ToHouseIndex(HouseType.Block);
+			var rbMap = HouseMaps[r] & HouseMaps[b];
+			var cbMap = HouseMaps[c] & HouseMaps[b];
 			var rbEmptyMap = rbMap & EmptyMap;
 			var cbEmptyMap = cbMap & EmptyMap;
 			if (rbEmptyMap.Count < 2 || cbEmptyMap.Count < 2)
@@ -54,9 +54,9 @@ public sealed unsafe partial class SueDeCoq3DemensionStepSearcher : ISueDeCoq3De
 					}
 
 					// Get all maps to use later.
-					var blockMap = RegionMaps[b] - rbCurrentMap - cbCurrentMap & EmptyMap;
-					var rowMap = RegionMaps[r] - RegionMaps[b] & EmptyMap;
-					var columnMap = RegionMaps[c] - RegionMaps[b] & EmptyMap;
+					var blockMap = HouseMaps[b] - rbCurrentMap - cbCurrentMap & EmptyMap;
+					var rowMap = HouseMaps[r] - HouseMaps[b] & EmptyMap;
+					var columnMap = HouseMaps[c] - HouseMaps[b] & EmptyMap;
 
 					// Iterate on the number of the cells that should be selected in block.
 					for (int i = 1, count = blockMap.Count; i < count; i++)
@@ -84,7 +84,7 @@ public sealed unsafe partial class SueDeCoq3DemensionStepSearcher : ISueDeCoq3De
 									{
 										elimMapRow |= CandMaps[digit];
 									}
-									elimMapRow &= RegionMaps[r] - rbCurrentMap - selectedRowCells;
+									elimMapRow &= HouseMaps[r] - rbCurrentMap - selectedRowCells;
 
 									for (int k = 1; k <= MathExtensions.Min(9 - i - j - selectedBlockCells.Count - selectedRowCells.Count, rowMap.Count, columnMap.Count); k++)
 									{
@@ -97,7 +97,7 @@ public sealed unsafe partial class SueDeCoq3DemensionStepSearcher : ISueDeCoq3De
 											{
 												elimMapColumn |= CandMaps[digit];
 											}
-											elimMapColumn &= RegionMaps[c] - cbCurrentMap - selectedColumnCells;
+											elimMapColumn &= HouseMaps[c] - cbCurrentMap - selectedColumnCells;
 
 											if ((blockMask & rowMask) != 0
 												&& (rowMask & columnMask) != 0
@@ -112,7 +112,7 @@ public sealed unsafe partial class SueDeCoq3DemensionStepSearcher : ISueDeCoq3De
 											short mask = grid.GetDigitsUnion(otherMap_row);
 											if ((mask & rowMask) != 0)
 											{
-												// At least one digit spanned two regions.
+												// At least one digit spanned two houses.
 												continue;
 											}
 
@@ -190,7 +190,7 @@ public sealed unsafe partial class SueDeCoq3DemensionStepSearcher : ISueDeCoq3De
 													ImmutableArray.Create(
 														View.Empty
 															+ candidateOffsets
-															+ new RegionViewNode[]
+															+ new HouseViewNode[]
 															{
 																new(0, r),
 																new(2, c),

@@ -111,7 +111,7 @@ public sealed class BacktrackingSolver : ISimpleSolver
 					}
 				}
 
-				// All region are checked and passed, return true.
+				// All houses are checked and passed, return true.
 				return true;
 			}
 		}

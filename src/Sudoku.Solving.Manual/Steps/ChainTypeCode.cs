@@ -71,7 +71,7 @@ public enum ChainTypeCode : byte
 	CellFc,
 
 	/// <summary>
-	/// Indicates the region forcing chains.
+	/// Indicates the region forcing chains (i.e. house forcing chains).
 	/// </summary>
 	RegionFc,
 
@@ -91,7 +91,7 @@ public enum ChainTypeCode : byte
 	DynamicCellFc,
 
 	/// <summary>
-	/// Indicates the dynamic region forcing chains.
+	/// Indicates the dynamic region forcing chains (i.e. dynamic house forcing chains).
 	/// </summary>
 	DynamicRegionFc,
 

@@ -10,7 +10,7 @@
 /// <param name="Cells"><inheritdoc/></param>
 /// <param name="ExtraCells">Indicates the extra cells used.</param>
 /// <param name="ExtraDigitsMask">Indicates the mask that contains all extra digits used.</param>
-/// <param name="Region">Indicates the region used.</param>
+/// <param name="House">Indicates the house used.</param>
 /// <param name="IsAvoidable"><inheritdoc/></param>
 /// <param name="AbsoluteOffset"><inheritdoc/></param>
 /// <param name="IsNaked">
@@ -35,7 +35,7 @@
 public sealed record class UniqueRectangleType3Step(
 	ImmutableArray<Conclusion> Conclusions, ImmutableArray<View> Views,
 	int Digit1, int Digit2, in Cells Cells, in Cells ExtraCells,
-	short ExtraDigitsMask, int Region, bool IsAvoidable, int AbsoluteOffset, bool IsNaked = true) :
+	short ExtraDigitsMask, int House, bool IsAvoidable, int AbsoluteOffset, bool IsNaked = true) :
 	UniqueRectangleStep(
 		Conclusions, Views,
 		IsAvoidable ? Technique.AvoidableRectangleType3 : Technique.UniqueRectangleType3,
@@ -80,10 +80,10 @@ public sealed record class UniqueRectangleType3Step(
 	}
 
 	[FormatItem]
-	internal string RegionStr
+	internal string HouseStr
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => new RegionCollection(Region).ToString();
+		get => new HouseCollection(House).ToString();
 	}
 
 	[FormatItem]

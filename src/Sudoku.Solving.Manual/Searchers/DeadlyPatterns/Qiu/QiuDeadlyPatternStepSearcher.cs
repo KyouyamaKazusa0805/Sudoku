@@ -43,7 +43,7 @@ public sealed unsafe partial class QiuDeadlyPatternStepSearcher : IQiuDeadlyPatt
 		)
 		{
 			bool isRow = i < length >> 2;
-			var baseLineMap = RegionMaps[BaseLineIterator[i, 0]] | RegionMaps[BaseLineIterator[i, 1]];
+			var baseLineMap = HouseMaps[BaseLineIterator[i, 0]] | HouseMaps[BaseLineIterator[i, 1]];
 			for (int j = isRow ? 0 : 9, z = 0, iterationLengthInner = length >> 2; z < iterationLengthInner; j++, z++)
 			{
 				int c1 = StartCells[j, 0], c2 = StartCells[j, 1];
@@ -56,16 +56,16 @@ public sealed unsafe partial class QiuDeadlyPatternStepSearcher : IQiuDeadlyPatt
 					}
 
 					var tempMapBlock =
-						RegionMaps[c1.ToRegionIndex(Region.Block)]
-							| RegionMaps[c2.ToRegionIndex(Region.Block)];
+						HouseMaps[c1.ToHouseIndex(HouseType.Block)]
+							| HouseMaps[c2.ToHouseIndex(HouseType.Block)];
 					if ((baseLineMap & tempMapBlock) is not [])
 					{
 						continue;
 					}
 
 					var tempMapLine =
-						RegionMaps[c1.ToRegionIndex(isRow ? Region.Column : Region.Row)]
-							| RegionMaps[c2.ToRegionIndex(isRow ? Region.Column : Region.Row)];
+						HouseMaps[c1.ToHouseIndex(isRow ? HouseType.Column : HouseType.Row)]
+							| HouseMaps[c2.ToHouseIndex(isRow ? HouseType.Column : HouseType.Row)];
 					var squareMap = baseLineMap & tempMapLine;
 					Patterns[n++] = new(squareMap, baseLineMap - squareMap, pairMap);
 				}
@@ -101,14 +101,14 @@ public sealed unsafe partial class QiuDeadlyPatternStepSearcher : IQiuDeadlyPatt
 			// Step 1: To determine whether the distinction degree of base line is 1.
 			short appearedDigitsMask = 0, distinctionMask = 0;
 			int appearedParts = 0;
-			for (int j = 0, region = isRow ? 18 : 9; j < 9; j++, region++)
+			for (int j = 0, house = isRow ? 18 : 9; j < 9; j++, house++)
 			{
-				var regionMap = RegionMaps[region];
-				if ((baseLine & regionMap) is { Count: not 0 } tempMap)
+				var houseMap = HouseMaps[house];
+				if ((baseLine & houseMap) is { Count: not 0 } tempMap)
 				{
 					f(grid, tempMap, ref appearedDigitsMask, ref distinctionMask, ref appearedParts);
 				}
-				else if ((square & regionMap) is { Count: not 0 } squareMap)
+				else if ((square & houseMap) is { Count: not 0 } squareMap)
 				{
 					// Don't forget to record the square cells.
 					f(grid, squareMap, ref appearedDigitsMask, ref distinctionMask, ref appearedParts);
@@ -187,7 +187,7 @@ public sealed unsafe partial class QiuDeadlyPatternStepSearcher : IQiuDeadlyPatt
 						comparer |= (short)(1 << digit);
 					}
 					short otherDigitsMask = (short)(pairMask & ~comparer);
-					if (appearingMap == (tempMap & RegionMaps[TrailingZeroCount(square.BlockMask)]))
+					if (appearingMap == (tempMap & HouseMaps[TrailingZeroCount(square.BlockMask)]))
 					{
 						// Qdp forms.
 						// Now check each type.
@@ -278,7 +278,7 @@ public sealed unsafe partial class QiuDeadlyPatternStepSearcher : IQiuDeadlyPatt
 				View.Empty
 					+ cellOffsets
 					+ candidateOffsets
-					+ from pos in lineMask.GetAllSets() select new RegionViewNode(0, pos + (isRow ? 9 : 18))
+					+ from pos in lineMask.GetAllSets() select new HouseViewNode(0, pos + (isRow ? 9 : 18))
 			),
 			pattern,
 			elimCell * 9 + extraDigit
@@ -346,7 +346,7 @@ public sealed unsafe partial class QiuDeadlyPatternStepSearcher : IQiuDeadlyPatt
 				View.Empty
 					+ cellOffsets
 					+ candidateOffsets
-					+ from pos in lineMask.GetAllSets() select new RegionViewNode(0, pos + (isRow ? 9 : 18))
+					+ from pos in lineMask.GetAllSets() select new HouseViewNode(0, pos + (isRow ? 9 : 18))
 			),
 			pattern,
 			extraDigit
@@ -366,9 +366,9 @@ public sealed unsafe partial class QiuDeadlyPatternStepSearcher : IQiuDeadlyPatt
 		in Cells pair, in Cells square, in Cells baseLine, in QiuDeadlyPattern pattern,
 		short comparer, short otherDigitsMask, bool onlyFindOne)
 	{
-		foreach (int region in pair.CoveredRegions)
+		foreach (int houseIndex in pair.CoveredHouses)
 		{
-			var allCellsMap = (RegionMaps[region] & EmptyMap) - pair;
+			var allCellsMap = (HouseMaps[houseIndex] & EmptyMap) - pair;
 			for (
 				int size = PopCount((uint)otherDigitsMask) - 1, length = allCellsMap.Count;
 				size < length;
@@ -434,7 +434,7 @@ public sealed unsafe partial class QiuDeadlyPatternStepSearcher : IQiuDeadlyPatt
 							View.Empty
 								+ cellOffsets
 								+ candidateOffsets
-								+ from pos in lineMask.GetAllSets() select new RegionViewNode(0, pos + (isRow ? 9 : 18))
+								+ from pos in lineMask.GetAllSets() select new HouseViewNode(0, pos + (isRow ? 9 : 18))
 						),
 						pattern,
 						mask,
@@ -458,11 +458,11 @@ public sealed unsafe partial class QiuDeadlyPatternStepSearcher : IQiuDeadlyPatt
 		ICollection<Step> accumulator, bool isRow, in Cells pair, in Cells square, in Cells baseLine,
 		in QiuDeadlyPattern pattern, short comparer, bool onlyFindOne)
 	{
-		foreach (int region in pair.CoveredRegions)
+		foreach (int houseIndex in pair.CoveredHouses)
 		{
 			foreach (int digit in comparer)
 			{
-				if ((CandMaps[digit] & RegionMaps[region]) != pair)
+				if ((CandMaps[digit] & HouseMaps[houseIndex]) != pair)
 				{
 					continue;
 				}
@@ -471,8 +471,8 @@ public sealed unsafe partial class QiuDeadlyPatternStepSearcher : IQiuDeadlyPatt
 				bool flag = false;
 				foreach (int d in otherDigitsMask)
 				{
-					if ((ValueMaps[d] & RegionMaps[region]) is not []
-						|| (RegionMaps[region] & CandMaps[d]) != square)
+					if ((ValueMaps[d] & HouseMaps[houseIndex]) is not []
+						|| (HouseMaps[houseIndex] & CandMaps[d]) != square)
 					{
 						flag = true;
 						break;
@@ -523,7 +523,7 @@ public sealed unsafe partial class QiuDeadlyPatternStepSearcher : IQiuDeadlyPatt
 						View.Empty
 							+ cellOffsets
 							+ candidateOffsets
-							+ from pos in lineMask.GetAllSets() select new RegionViewNode(0, pos + (isRow ? 9 : 18))
+							+ from pos in lineMask.GetAllSets() select new HouseViewNode(0, pos + (isRow ? 9 : 18))
 					),
 					pattern,
 					new(pair, digit)
@@ -547,14 +547,14 @@ public sealed unsafe partial class QiuDeadlyPatternStepSearcher : IQiuDeadlyPatt
 	{
 		// Firstly, we should check the cells in the block that the square cells lying on.
 		int block = TrailingZeroCount(square.BlockMask);
-		var otherCellsMap = (RegionMaps[block] & EmptyMap) - square;
+		var otherCellsMap = (HouseMaps[block] & EmptyMap) - square;
 		var tempMap = Cells.Empty;
 		var pairDigits = comparer.GetAllSets();
 
 		bool flag = false;
 		foreach (int digit in pairDigits)
 		{
-			if ((ValueMaps[digit] & RegionMaps[block]) is not [])
+			if ((ValueMaps[digit] & HouseMaps[block]) is not [])
 			{
 				flag = true;
 				break;
@@ -573,8 +573,7 @@ public sealed unsafe partial class QiuDeadlyPatternStepSearcher : IQiuDeadlyPatt
 			return null;
 		}
 
-		// May be in one region or span two regions.
-		// Now we check for this case.
+		// May be in one house or span two houses. Now we check for this case.
 		var candidates = new List<int>();
 		foreach (int cell in otherCellsMap)
 		{
@@ -639,7 +638,7 @@ public sealed unsafe partial class QiuDeadlyPatternStepSearcher : IQiuDeadlyPatt
 				View.Empty
 					+ cellOffsets
 					+ candidateOffsets
-					+ from pos in lineMask.GetAllSets() select new RegionViewNode(0, pos + (isRow ? 9 : 18))
+					+ from pos in lineMask.GetAllSets() select new HouseViewNode(0, pos + (isRow ? 9 : 18))
 			),
 			pattern,
 			candidates

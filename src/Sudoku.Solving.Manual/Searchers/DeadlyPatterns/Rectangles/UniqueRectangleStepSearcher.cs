@@ -279,17 +279,17 @@ public sealed unsafe partial class UniqueRectangleStepSearcher : IUniqueRectangl
 	}
 
 	/// <summary>
-	/// To determine whether the specified region forms a conjugate pair
+	/// To determine whether the specified house forms a conjugate pair
 	/// of the specified digit, and the cells where they contain the digit
 	/// is same as the given map contains.
 	/// </summary>
 	/// <param name="digit">The digit.</param>
 	/// <param name="map">The map.</param>
-	/// <param name="region">The region.</param>
+	/// <param name="houseIndex">The house index.</param>
 	/// <returns>A <see cref="bool"/> value.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	private static bool IsConjugatePair(int digit, in Cells map, int region) =>
-		(RegionMaps[region] & CandMaps[digit]) == map;
+	private static bool IsConjugatePair(int digit, in Cells map, int houseIndex) =>
+		(HouseMaps[houseIndex] & CandMaps[digit]) == map;
 
 	/// <summary>
 	/// Check whether the highlight UR candidates is incomplete.
@@ -321,21 +321,21 @@ public sealed unsafe partial class UniqueRectangleStepSearcher : IUniqueRectangl
 					: urCells[0];
 
 	/// <summary>
-	/// Get whether two cells are in a same region.
+	/// Get whether two cells are in a same house.
 	/// </summary>
 	/// <param name="cell1">The cell 1 to check.</param>
 	/// <param name="cell2">The cell 2 to check.</param>
-	/// <param name="region">
-	/// The result regions that both two cells lie in. If the cell can't be found, this argument will be 0.
+	/// <param name="houseIndex">
+	/// The result houses that both two cells lie in. If the cell can't be found, this argument will be 0.
 	/// </param>
 	/// <returns>
-	/// The <see cref="bool"/> value indicating whether the another cell is same region as the current one.
+	/// The <see cref="bool"/> value indicating whether the another cell is same house as the current one.
 	/// </returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	private static bool IsSameRegionCell(int cell1, int cell2, out int region)
+	private static bool IsSameHouseCell(int cell1, int cell2, out int houseIndex)
 	{
-		int v = (Cells.Empty + cell1 + cell2).CoveredRegions;
-		(bool r, region) = v != 0 ? (true, v) : (false, 0);
+		int v = (Cells.Empty + cell1 + cell2).CoveredHouses;
+		(bool r, houseIndex) = v != 0 ? (true, v) : (false, 0);
 		return r;
 	}
 
@@ -505,7 +505,7 @@ public sealed unsafe partial class UniqueRectangleStepSearcher : IUniqueRectangl
 			return;
 		}
 
-		bool isType5 = !(Cells.Empty + corner1 + corner2).InOneRegion;
+		bool isType5 = !(Cells.Empty + corner1 + corner2).InOneHouse;
 		accumulator.Add(
 			new UniqueRectangleType2Step(
 				ImmutableArray.Create(Conclusion.ToConclusions(elimMap, extraDigit, ConclusionType.Elimination)),
@@ -583,14 +583,14 @@ public sealed unsafe partial class UniqueRectangleStepSearcher : IUniqueRectangl
 		}
 
 		short otherDigitsMask = (short)(mask ^ comparer);
-		foreach (int region in otherCellsMap.CoveredRegions)
+		foreach (int houseIndex in otherCellsMap.CoveredHouses)
 		{
-			if (((ValueMaps[d1] | ValueMaps[d2]) & RegionMaps[region]) is not [])
+			if (((ValueMaps[d1] | ValueMaps[d2]) & HouseMaps[houseIndex]) is not [])
 			{
 				return;
 			}
 
-			var iterationMap = (RegionMaps[region] & EmptyMap) - otherCellsMap;
+			var iterationMap = (HouseMaps[houseIndex] & EmptyMap) - otherCellsMap;
 			for (int size = PopCount((uint)otherDigitsMask) - 1, count = iterationMap.Count; size < count; size++)
 			{
 				foreach (var iteratedCells in iterationMap & size)
@@ -655,14 +655,14 @@ public sealed unsafe partial class UniqueRectangleStepSearcher : IUniqueRectangl
 								View.Empty
 									+ (arMode ? cellOffsets : null)
 									+ candidateOffsets
-									+ new RegionViewNode(0, region)
+									+ new HouseViewNode(0, houseIndex)
 							),
 							d1,
 							d2,
 							urCells,
 							iteratedCells,
 							otherDigitsMask,
-							region,
+							houseIndex,
 							arMode,
 							index
 						)
@@ -707,9 +707,9 @@ public sealed unsafe partial class UniqueRectangleStepSearcher : IUniqueRectangl
 		}
 
 		int* p = stackalloc[] { d1, d2 };
-		foreach (int region in otherCellsMap.CoveredRegions)
+		foreach (int houseIndex in otherCellsMap.CoveredHouses)
 		{
-			if (region < 9)
+			if (houseIndex < 9)
 			{
 				// Process the case in lines.
 				continue;
@@ -718,7 +718,7 @@ public sealed unsafe partial class UniqueRectangleStepSearcher : IUniqueRectangl
 			for (int digitIndex = 0; digitIndex < 2; digitIndex++)
 			{
 				int digit = p[digitIndex];
-				if (!IsConjugatePair(digit, otherCellsMap, region))
+				if (!IsConjugatePair(digit, otherCellsMap, houseIndex))
 				{
 					continue;
 				}
@@ -774,7 +774,7 @@ public sealed unsafe partial class UniqueRectangleStepSearcher : IUniqueRectangl
 							View.Empty
 								+ (arMode ? GetHighlightCells(urCells) : null)
 								+ candidateOffsets
-								+ new RegionViewNode(0, region)
+								+ new HouseViewNode(0, houseIndex)
 						),
 						Technique.UniqueRectangleType4,
 						d1,
@@ -916,34 +916,34 @@ public sealed unsafe partial class UniqueRectangleStepSearcher : IUniqueRectangl
 		}
 
 		int o1 = otherCellsMap[0], o2 = otherCellsMap[1];
-		int r1 = corner1.ToRegionIndex(Region.Row);
-		int c1 = corner1.ToRegionIndex(Region.Column);
-		int r2 = corner2.ToRegionIndex(Region.Row);
-		int c2 = corner2.ToRegionIndex(Region.Column);
+		int r1 = corner1.ToHouseIndex(HouseType.Row);
+		int c1 = corner1.ToHouseIndex(HouseType.Column);
+		int r2 = corner2.ToHouseIndex(HouseType.Row);
+		int c2 = corner2.ToHouseIndex(HouseType.Column);
 		int* p = stackalloc[] { d1, d2 };
 		var q = stackalloc[] { (r1, r2), (c1, c2) };
 		for (int digitIndex = 0; digitIndex < 2; digitIndex++)
 		{
 			int digit = p[digitIndex];
-			for (int regionPairIndex = 0; regionPairIndex < 2; regionPairIndex++)
+			for (int housePairIndex = 0; housePairIndex < 2; housePairIndex++)
 			{
-				var (region1, region2) = q[regionPairIndex];
-				gather(grid, otherCellsMap, region1 is >= 9 and < 18, digit, region1, region2);
+				var (h1, h2) = q[housePairIndex];
+				gather(grid, otherCellsMap, h1 is >= 9 and < 18, digit, h1, h2);
 			}
 		}
 
 
-		void gather(in Grid grid, in Cells otherCellsMap, bool isRow, int digit, int region1, int region2)
+		void gather(in Grid grid, in Cells otherCellsMap, bool isRow, int digit, int house1, int house2)
 		{
 			if (
 				(
 					!isRow
-						|| !IsConjugatePair(digit, Cells.Empty + corner1 + o1, region1)
-						|| !IsConjugatePair(digit, Cells.Empty + corner2 + o2, region2)
+						|| !IsConjugatePair(digit, Cells.Empty + corner1 + o1, house1)
+						|| !IsConjugatePair(digit, Cells.Empty + corner2 + o2, house2)
 				) && (
 					isRow
-						|| !IsConjugatePair(digit, Cells.Empty + corner1 + o2, region1)
-						|| !IsConjugatePair(digit, Cells.Empty + corner2 + o1, region2)
+						|| !IsConjugatePair(digit, Cells.Empty + corner1 + o2, house1)
+						|| !IsConjugatePair(digit, Cells.Empty + corner2 + o1, house2)
 				)
 			)
 			{
@@ -992,7 +992,7 @@ public sealed unsafe partial class UniqueRectangleStepSearcher : IUniqueRectangl
 						View.Empty
 							+ (arMode ? GetHighlightCells(urCells) : null)
 							+ candidateOffsets
-							+ new RegionViewNode[] { new(0, region1), new(0, region2) }
+							+ new HouseViewNode[] { new(0, house1), new(0, house2) }
 					),
 					Technique.UniqueRectangleType6,
 					d1,
@@ -1044,7 +1044,7 @@ public sealed unsafe partial class UniqueRectangleStepSearcher : IUniqueRectangl
 		int abzCell = GetDiagonalCell(urCells, cornerCell);
 		var adjacentCellsMap = otherCellsMap - abzCell;
 		int abxCell = adjacentCellsMap[0], abyCell = adjacentCellsMap[1];
-		int r = abzCell.ToRegionIndex(Region.Row), c = abzCell.ToRegionIndex(Region.Column);
+		int r = abzCell.ToHouseIndex(HouseType.Row), c = abzCell.ToHouseIndex(HouseType.Column);
 		int* p = stackalloc[] { d1, d2 };
 		for (int digitIndex = 0; digitIndex < 2; digitIndex++)
 		{
@@ -1104,7 +1104,7 @@ public sealed unsafe partial class UniqueRectangleStepSearcher : IUniqueRectangl
 						View.Empty
 							+ (arMode ? GetHighlightCells(urCells) : null)
 							+ candidateOffsets
-							+ new RegionViewNode[] { new(0, r), new(0, c) }
+							+ new HouseViewNode[] { new(0, r), new(0, c) }
 					),
 					d1,
 					d2,
@@ -1300,14 +1300,14 @@ public sealed unsafe partial class UniqueRectangleStepSearcher : IUniqueRectangl
 			int cell = corners[cellIndex];
 			foreach (int otherCell in otherCellsMap)
 			{
-				if (!IsSameRegionCell(cell, otherCell, out int regions))
+				if (!IsSameHouseCell(cell, otherCell, out int houses))
 				{
 					continue;
 				}
 
-				foreach (int region in regions)
+				foreach (int house in houses)
 				{
-					if (region < 9)
+					if (house < 9)
 					{
 						continue;
 					}
@@ -1315,7 +1315,7 @@ public sealed unsafe partial class UniqueRectangleStepSearcher : IUniqueRectangl
 					for (int digitIndex = 0; digitIndex < 2; digitIndex++)
 					{
 						int digit = digits[digitIndex];
-						if (!IsConjugatePair(digit, Cells.Empty + cell + otherCell, region))
+						if (!IsConjugatePair(digit, Cells.Empty + cell + otherCell, house))
 						{
 							continue;
 						}
@@ -1342,8 +1342,8 @@ public sealed unsafe partial class UniqueRectangleStepSearcher : IUniqueRectangl
 						{
 							if (urCell == corner1 || urCell == corner2)
 							{
-								int coveredRegions = (Cells.Empty + urCell + otherCell).CoveredRegions;
-								if ((coveredRegions >> region & 1) != 0)
+								int coveredHouses = (Cells.Empty + urCell + otherCell).CoveredHouses;
+								if ((coveredHouses >> house & 1) != 0)
 								{
 									foreach (int d in grid.GetCandidates(urCell))
 									{
@@ -1399,7 +1399,7 @@ public sealed unsafe partial class UniqueRectangleStepSearcher : IUniqueRectangl
 									View.Empty
 										+ (arMode ? GetHighlightCells(urCells) : null)
 										+ candidateOffsets
-										+ new RegionViewNode(0, region)
+										+ new HouseViewNode(0, house)
 								),
 								Technique.UniqueRectangle2B1,
 								d1,
@@ -1459,14 +1459,14 @@ public sealed unsafe partial class UniqueRectangleStepSearcher : IUniqueRectangl
 			int cell = corners[cellIndex];
 			foreach (int otherCell in otherCellsMap)
 			{
-				if (!IsSameRegionCell(cell, otherCell, out int regions))
+				if (!IsSameHouseCell(cell, otherCell, out int houses))
 				{
 					continue;
 				}
 
-				foreach (int region in regions)
+				foreach (int house in houses)
 				{
-					if (region < 9)
+					if (house < 9)
 					{
 						continue;
 					}
@@ -1474,7 +1474,7 @@ public sealed unsafe partial class UniqueRectangleStepSearcher : IUniqueRectangl
 					for (int digitIndex = 0; digitIndex < 2; digitIndex++)
 					{
 						int digit = digits[digitIndex];
-						if (!IsConjugatePair(digit, Cells.Empty + cell + otherCell, region))
+						if (!IsConjugatePair(digit, Cells.Empty + cell + otherCell, house))
 						{
 							continue;
 						}
@@ -1501,9 +1501,9 @@ public sealed unsafe partial class UniqueRectangleStepSearcher : IUniqueRectangl
 							if (urCell == corner1 || urCell == corner2)
 							{
 								bool flag = false;
-								foreach (int r in (Cells.Empty + urCell + otherCell).CoveredRegions)
+								foreach (int r in (Cells.Empty + urCell + otherCell).CoveredHouses)
 								{
-									if (r == region)
+									if (r == house)
 									{
 										flag = true;
 										break;
@@ -1552,7 +1552,7 @@ public sealed unsafe partial class UniqueRectangleStepSearcher : IUniqueRectangl
 									View.Empty
 										+ (arMode ? GetHighlightCells(urCells) : null)
 										+ candidateOffsets
-										+ new RegionViewNode(0, region)
+										+ new HouseViewNode(0, house)
 								),
 								Technique.UniqueRectangle2D1,
 								d1,
@@ -1806,7 +1806,7 @@ public sealed unsafe partial class UniqueRectangleStepSearcher : IUniqueRectangl
 						View.Empty
 							+ (arMode ? GetHighlightCells(urCells) : null)
 							+ candidateOffsets
-							+ new RegionViewNode[] { new(0, map1.CoveredLine), new(1, map2.CoveredLine) }
+							+ new HouseViewNode[] { new(0, map1.CoveredLine), new(1, map2.CoveredLine) }
 					),
 					Technique.UniqueRectangle3X2,
 					d1,
@@ -1929,7 +1929,7 @@ public sealed unsafe partial class UniqueRectangleStepSearcher : IUniqueRectangl
 							View.Empty
 								+ (arMode ? GetHighlightCells(urCells) : null)
 								+ candidateOffsets
-								+ new RegionViewNode[]
+								+ new HouseViewNode[]
 								{
 									new(0, conjugatePairs[0].Line),
 									new(1, conjugatePairs[1].Line)
@@ -2049,7 +2049,7 @@ public sealed unsafe partial class UniqueRectangleStepSearcher : IUniqueRectangl
 							View.Empty
 								+ (arMode ? GetHighlightCells(urCells) : null)
 								+ candidateOffsets
-								+ new RegionViewNode[]
+								+ new HouseViewNode[]
 								{
 									new(0, conjugatePairs[0].Line),
 									new(1, conjugatePairs[1].Line)
@@ -2169,7 +2169,7 @@ public sealed unsafe partial class UniqueRectangleStepSearcher : IUniqueRectangl
 							View.Empty
 								+ (arMode ? GetHighlightCells(urCells) : null)
 								+ candidateOffsets
-								+ new RegionViewNode[]
+								+ new HouseViewNode[]
 								{
 									new(0, conjugatePairs[0].Line),
 									new(1, conjugatePairs[1].Line)
@@ -2312,7 +2312,7 @@ public sealed unsafe partial class UniqueRectangleStepSearcher : IUniqueRectangl
 							View.Empty
 								+ (arMode ? GetHighlightCells(urCells) : null)
 								+ candidateOffsets
-								+ new RegionViewNode[]
+								+ new HouseViewNode[]
 								{
 									new(0, conjugatePairs[0].Line),
 									new(1, conjugatePairs[1].Line),
@@ -2464,7 +2464,7 @@ public sealed unsafe partial class UniqueRectangleStepSearcher : IUniqueRectangl
 								View.Empty
 									+ (arMode ? GetHighlightCells(urCells) : null)
 									+ candidateOffsets
-									+ new RegionViewNode[]
+									+ new HouseViewNode[]
 									{
 										new(0, conjugatePairs[0].Line),
 										new(0, conjugatePairs[1].Line),
@@ -2512,7 +2512,7 @@ public sealed unsafe partial class UniqueRectangleStepSearcher : IUniqueRectangl
 	/// (ab )  abxy  *
 	///   ↑ corner2
 	/// ]]></code>
-	/// Note that the pair of cells <c>abxy</c> should be in the same region.
+	/// Note that the pair of cells <c>abxy</c> should be in the same house.
 	/// </para>
 	/// <para>
 	/// Subtype 2:
@@ -2534,7 +2534,7 @@ public sealed unsafe partial class UniqueRectangleStepSearcher : IUniqueRectangl
 			return;
 		}
 
-		if ((Cells.Empty + corner1 + corner2).AllSetsAreInOneRegion(out int region) && region < 9)
+		if ((Cells.Empty + corner1 + corner2).AllSetsAreInOneHouse(out int house) && house < 9)
 		{
 			// Subtype 1.
 			int[] offsets = otherCellsMap.ToArray();
@@ -2959,7 +2959,7 @@ public sealed unsafe partial class UniqueRectangleStepSearcher : IUniqueRectangl
 
 		short otherDigitsMask = (short)(mergedMaskInOtherCells & ~comparer);
 		byte line = (byte)otherCellsMap.CoveredLine;
-		byte block = (byte)TrailingZeroCount(otherCellsMap.CoveredRegions & ~(1 << line));
+		byte block = (byte)TrailingZeroCount(otherCellsMap.CoveredHouses & ~(1 << line));
 		var (a, _, _, d) = IntersectionMaps[(line, block)];
 		var list = new ValueList<Cells>(4);
 		for (int caseIndex = 0; caseIndex < 2; caseIndex++)
@@ -2967,14 +2967,14 @@ public sealed unsafe partial class UniqueRectangleStepSearcher : IUniqueRectangl
 			bool cannibalMode = cannibalModeCases[caseIndex];
 			foreach (byte otherBlock in d)
 			{
-				var emptyCellsInInterMap = RegionMaps[otherBlock] & RegionMaps[line] & EmptyMap;
+				var emptyCellsInInterMap = HouseMaps[otherBlock] & HouseMaps[line] & EmptyMap;
 				if (emptyCellsInInterMap.Count < 2)
 				{
 					// The intersection needs at least two empty cells.
 					continue;
 				}
 
-				Cells b = RegionMaps[otherBlock] - RegionMaps[line], c = a & b;
+				Cells b = HouseMaps[otherBlock] - HouseMaps[line], c = a & b;
 
 				list.Clear();
 				switch (emptyCellsInInterMap)
@@ -3170,7 +3170,7 @@ public sealed unsafe partial class UniqueRectangleStepSearcher : IUniqueRectangl
 							View.Empty
 								+ (arMode ? GetHighlightCells(urCells) : null)
 								+ candidateOffsets
-								+ new RegionViewNode[] { new(0, block), new(2, line) }
+								+ new HouseViewNode[] { new(0, block), new(2, line) }
 						),
 						digit1,
 						digit2,
@@ -3259,8 +3259,8 @@ public sealed unsafe partial class UniqueRectangleStepSearcher : IUniqueRectangl
 			// Iterate on each cell.
 			foreach (int targetCell in cells)
 			{
-				int block = targetCell.ToRegionIndex(Region.Block);
-				var bivalueCellsToCheck = (PeerMaps[targetCell] & RegionMaps[block] & BivalueMap) - cells;
+				int block = targetCell.ToHouseIndex(HouseType.Block);
+				var bivalueCellsToCheck = (PeerMaps[targetCell] & HouseMaps[block] & BivalueMap) - cells;
 				if (bivalueCellsToCheck is [])
 				{
 					continue;
@@ -3281,16 +3281,16 @@ public sealed unsafe partial class UniqueRectangleStepSearcher : IUniqueRectangl
 						continue;
 					}
 
-					int urCellInSameBlock = ((RegionMaps[block] & cells) - targetCell)[0];
+					int urCellInSameBlock = ((HouseMaps[block] & cells) - targetCell)[0];
 					int coveredLine = (Cells.Empty + bivalueCellToCheck + urCellInSameBlock).CoveredLine;
 					if (coveredLine == InvalidFirstSet)
 					{
-						// The bi-value cell 'bivalueCellToCheck' should be lie on a same region
+						// The bi-value cell 'bivalueCellToCheck' should be lie on a same house
 						// as 'urCellInSameBlock'.
 						continue;
 					}
 
-					int anotherCell = (cells - urCellInSameBlock & RegionMaps[coveredLine])[0];
+					int anotherCell = (cells - urCellInSameBlock & HouseMaps[coveredLine])[0];
 					foreach (int extraDigit in grid.GetCandidates(targetCell) & ~comparer)
 					{
 						short abcMask = (short)(comparer | (short)(1 << extraDigit));
@@ -3371,7 +3371,7 @@ public sealed unsafe partial class UniqueRectangleStepSearcher : IUniqueRectangl
 									View.Empty
 										+ new CellViewNode(0, targetCell)
 										+ candidateOffsets
-										+ new RegionViewNode[] { new(0, block), new(1, line) },
+										+ new HouseViewNode[] { new(0, block), new(1, line) },
 									View.Empty
 										+ new CandidateViewNode[]
 										{
@@ -3483,7 +3483,7 @@ public sealed unsafe partial class UniqueRectangleStepSearcher : IUniqueRectangl
 									View.Empty
 										+ new CellViewNode(0, targetCell)
 										+ candidateOffsetsAnotherSubtype
-										+ new RegionViewNode[]
+										+ new HouseViewNode[]
 										{
 											new(0, block),
 											new(1, line),
@@ -3546,18 +3546,18 @@ public sealed unsafe partial class UniqueRectangleStepSearcher : IUniqueRectangl
 			return;
 		}
 
-		// Iterate on two regions used.
-		foreach (int[] regionCombination in cells.Regions.GetAllSets().GetSubsets(2))
+		// Iterate on two houses used.
+		foreach (int[] houseCombination in cells.Houses.GetAllSets().GetSubsets(2))
 		{
-			var regionCells = RegionMaps[regionCombination[0]] | RegionMaps[regionCombination[1]];
-			if ((regionCells & cells) != cells)
+			var houseCells = HouseMaps[houseCombination[0]] | HouseMaps[houseCombination[1]];
+			if ((houseCells & cells) != cells)
 			{
-				// The regions must contain all 4 UR cells.
+				// The houses must contain all 4 UR cells.
 				continue;
 			}
 
-			var guardian1 = regionCells - cells & CandMaps[d1];
-			var guardian2 = regionCells - cells & CandMaps[d2];
+			var guardian1 = houseCells - cells & CandMaps[d1];
+			var guardian2 = houseCells - cells & CandMaps[d2];
 			if (!(guardian1 is [] ^ guardian2 is []))
 			{
 				// Only one digit can contain guardians.
@@ -3604,7 +3604,7 @@ public sealed unsafe partial class UniqueRectangleStepSearcher : IUniqueRectangl
 					ImmutableArray.Create(
 						View.Empty
 							+ candidateOffsets
-							+ new RegionViewNode[] { new(0, regionCombination[0]), new(0, regionCombination[1]) }
+							+ new HouseViewNode[] { new(0, houseCombination[0]), new(0, houseCombination[1]) }
 					),
 					d1,
 					d2,
@@ -3689,24 +3689,24 @@ public sealed unsafe partial class UniqueRectangleStepSearcher : IUniqueRectangl
 				? (otherCellsMap[0], otherCellsMap[1])
 				: (otherCellsMap[1], otherCellsMap[0]);
 
-			// Iterate on each region type.
-			foreach (var region in Regions)
+			// Iterate on each house type.
+			foreach (var houseType in Houses)
 			{
-				int regionIndex = baseCell.ToRegionIndex(region);
+				int houseIndex = baseCell.ToHouseIndex(houseType);
 
-				// If the region doesn't overlap with the specified region, just skip it.
-				if ((cellsThatTwoOtherCellsBothCanSee & RegionMaps[regionIndex]) is [])
+				// If the house doesn't overlap with the specified house, just skip it.
+				if ((cellsThatTwoOtherCellsBothCanSee & HouseMaps[houseIndex]) is [])
 				{
 					continue;
 				}
 
-				var otherCells = RegionMaps[regionIndex] & CandMaps[otherDigit] & PeerMaps[anotherCell];
-				int sameRegions = (otherCells + anotherCell).CoveredRegions;
-				foreach (int sameRegion in sameRegions)
+				var otherCells = HouseMaps[houseIndex] & CandMaps[otherDigit] & PeerMaps[anotherCell];
+				int sameHouses = (otherCells + anotherCell).CoveredHouses;
+				foreach (int sameHouse in sameHouses)
 				{
-					// Check whether all possible positions of the digit 'b' in this region only
+					// Check whether all possible positions of the digit 'b' in this house only
 					// lies in the given cells above ('cellsThatTwoOtherCellsBothCanSee').
-					if ((RegionMaps[sameRegion] - anotherCell & CandMaps[otherDigit]) != otherCells)
+					if ((HouseMaps[sameHouse] - anotherCell & CandMaps[otherDigit]) != otherCells)
 					{
 						continue;
 					}
@@ -3737,14 +3737,14 @@ public sealed unsafe partial class UniqueRectangleStepSearcher : IUniqueRectangl
 								View.Empty
 									+ cellOffsets
 									+ candidateOffsets
-									+ new RegionViewNode(0, sameRegion)
+									+ new HouseViewNode(0, sameHouse)
 							),
 							d1,
 							d2,
 							urCells,
 							baseCell,
 							anotherCell,
-							sameRegion,
+							sameHouse,
 							index
 						)
 					);

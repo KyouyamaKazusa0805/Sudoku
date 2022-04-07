@@ -60,10 +60,10 @@ public sealed unsafe partial class UniquePolygonStepSearcher : IUniquePolygonSte
 
 			int[][] triplets = new int[4][]
 			{
-				new[] { q1, q2, q3 }, // (0, 1) and (0, 2) is same region.
-				new[] { q2, q1, q4 }, // (0, 1) and (1, 3) is same region.
-				new[] { q3, q1, q4 }, // (0, 2) and (2, 3) is same region.
-				new[] { q4, q2, q3 }, // (1, 3) and (2, 3) is same region.
+				new[] { q1, q2, q3 }, // (0, 1) and (0, 2) is same house.
+				new[] { q2, q1, q4 }, // (0, 1) and (1, 3) is same house.
+				new[] { q3, q1, q4 }, // (0, 2) and (2, 3) is same house.
+				new[] { q4, q2, q3 }, // (1, 3) and (2, 3) is same house.
 			};
 
 			for (int j = 0; j < 4; j++)
@@ -73,8 +73,8 @@ public sealed unsafe partial class UniquePolygonStepSearcher : IUniquePolygonSte
 					continue;
 				}
 
-				int region1 = (Cells.Empty + t1 + t2).CoveredLine;
-				int region2 = (Cells.Empty + t1 + t3).CoveredLine;
+				int house1 = (Cells.Empty + t1 + t2).CoveredLine;
+				int house2 = (Cells.Empty + t1 + t3).CoveredLine;
 				int[,] pair1 = new int[6, 2], pair2 = new int[6, 2];
 				var (incre1, incre2) = i switch
 				{
@@ -84,17 +84,17 @@ public sealed unsafe partial class UniquePolygonStepSearcher : IUniquePolygonSte
 					8 => (18, 2),
 					_ => throw new()
 				};
-				if (region1 is >= 9 and < 18)
+				if (house1 is >= 9 and < 18)
 				{
-					// 'region1' is a row and 'region2' is a column.
-					r(block, region1, pair1, incre1, j);
-					r(block, region2, pair2, incre2, j);
+					// 'house1' is a row and 'house2' is a column.
+					r(block, house1, pair1, incre1, j);
+					r(block, house2, pair2, incre2, j);
 				}
 				else
 				{
-					// 'region1' is a column and 'region2' is a row.
-					r(block, region1, pair1, incre2, j);
-					r(block, region2, pair2, incre1, j);
+					// 'house1' is a column and 'house2' is a row.
+					r(block, house1, pair1, incre2, j);
+					r(block, house2, pair2, incre1, j);
 				}
 
 				for (int i1 = 0; i1 < 6; i1++)
@@ -137,8 +137,8 @@ public sealed unsafe partial class UniquePolygonStepSearcher : IUniquePolygonSte
 				return;
 			}
 
-			int region1 = (Cells.Empty + t1 + t2).CoveredLine;
-			int region2 = (Cells.Empty + t1 + t3).CoveredLine;
+			int house1 = (Cells.Empty + t1 + t2).CoveredLine;
+			int house2 = (Cells.Empty + t1 + t3).CoveredLine;
 			int[,] pair1 = new int[6, 2], pair2 = new int[6, 2];
 			var (incre1, incre2) = i switch
 			{
@@ -148,17 +148,17 @@ public sealed unsafe partial class UniquePolygonStepSearcher : IUniquePolygonSte
 				8 => (18, 2),
 				_ => throw new()
 			};
-			if (region1 is >= 9 and < 18)
+			if (house1 is >= 9 and < 18)
 			{
-				// 'region1' is a row and 'region2' is a column.
-				r(block, region1, pair1, incre1, 0);
-				r(block, region2, pair2, incre2, 0);
+				// 'house1' is a row and 'house2' is a column.
+				r(block, house1, pair1, incre1, 0);
+				r(block, house2, pair2, incre2, 0);
 			}
 			else
 			{
-				// 'region1' is a column and 'region2' is a row.
-				r(block, region1, pair1, incre2, 0);
-				r(block, region2, pair2, incre1, 0);
+				// 'house1' is a column and 'house2' is a row.
+				r(block, house1, pair1, incre2, 0);
+				r(block, house2, pair2, incre1, 0);
 			}
 
 			for (int i1 = 0; i1 < 6; i1++)
@@ -190,12 +190,12 @@ public sealed unsafe partial class UniquePolygonStepSearcher : IUniquePolygonSte
 			}
 		}
 
-		static void r(int block, int region, int[,] pair, int increment, int index)
+		static void r(int block, int houseIndex, int[,] pair, int increment, int index)
 		{
 			for (int i = 0, cur = 0; i < 9; i++)
 			{
-				int cell = RegionCells[region][i];
-				if (block == cell.ToRegionIndex(Region.Block))
+				int cell = HouseCells[houseIndex][i];
+				if (block == cell.ToHouseIndex(HouseType.Block))
 				{
 					continue;
 				}
@@ -203,8 +203,8 @@ public sealed unsafe partial class UniquePolygonStepSearcher : IUniquePolygonSte
 				(pair[cur, 0], pair[cur, 1]) = index switch
 				{
 					0 => (cell, cell + increment),
-					1 => region is >= 18 and < 27 ? (cell - increment, cell) : (cell, cell + increment),
-					2 => region is >= 9 and < 18 ? (cell - increment, cell) : (cell, cell + increment),
+					1 => houseIndex is >= 18 and < 27 ? (cell - increment, cell) : (cell, cell + increment),
+					2 => houseIndex is >= 9 and < 18 ? (cell - increment, cell) : (cell, cell + increment),
 					3 => (cell - increment, cell),
 					_ => throw new()
 				};
@@ -398,9 +398,9 @@ public sealed unsafe partial class UniquePolygonStepSearcher : IUniquePolygonSte
 		bool findOnlyOne, short cornerMask1, short cornerMask2, short centerMask, in Cells map)
 	{
 		short orMask = (short)((short)(cornerMask1 | cornerMask2) | centerMask);
-		foreach (int region in map.Regions)
+		foreach (int houseIndex in map.Houses)
 		{
-			var currentMap = RegionMaps[region] & map;
+			var currentMap = HouseMaps[houseIndex] & map;
 			var otherCellsMap = map - currentMap;
 			short otherMask = grid.GetDigitsUnion(otherCellsMap);
 
@@ -417,7 +417,7 @@ public sealed unsafe partial class UniquePolygonStepSearcher : IUniquePolygonSte
 				}
 
 				// Iterate on the cells by the specified size.
-				var iterationCellsMap = (RegionMaps[region] - currentMap) & EmptyMap;
+				var iterationCellsMap = (HouseMaps[houseIndex] - currentMap) & EmptyMap;
 				short otherDigitsMask = (short)(orMask & ~tempMask);
 				for (int size = PopCount((uint)otherDigitsMask) - 1, count = iterationCellsMap.Count; size < count; size++)
 				{
@@ -475,7 +475,7 @@ public sealed unsafe partial class UniquePolygonStepSearcher : IUniquePolygonSte
 
 						var step = new UniquePolygonType3Step(
 							ImmutableArray.CreateRange(conclusions),
-							ImmutableArray.Create(View.Empty + candidateOffsets + new RegionViewNode(0, region)),
+							ImmutableArray.Create(View.Empty + candidateOffsets + new HouseViewNode(0, houseIndex)),
 							map,
 							tempMask,
 							combination,
@@ -500,11 +500,11 @@ public sealed unsafe partial class UniquePolygonStepSearcher : IUniquePolygonSte
 		bool findOnlyOne, short cornerMask1, short cornerMask2, short centerMask, in Cells map)
 	{
 		// The type 4 may be complex and terrible to process.
-		// All regions that the pattern lies in should be checked.
+		// All houses that the pattern lies in should be checked.
 		short orMask = (short)((short)(cornerMask1 | cornerMask2) | centerMask);
-		foreach (int region in map.Regions)
+		foreach (int houseIndex in map.Houses)
 		{
-			var currentMap = RegionMaps[region] & map;
+			var currentMap = HouseMaps[houseIndex] & map;
 			var otherCellsMap = map - currentMap;
 			short otherMask = grid.GetDigitsUnion(otherCellsMap);
 
@@ -524,8 +524,8 @@ public sealed unsafe partial class UniquePolygonStepSearcher : IUniquePolygonSte
 				}
 
 				// Iterate on each combination.
-				// Only one digit should be eliminated, and other digits should form a "conjugate region".
-				// In a so-called conjugate region, the digits can only appear in these cells in this region.
+				// Only one digit should be eliminated, and other digits should form a "conjugate house".
+				// In a so-called conjugate house, the digits can only appear in these cells in this house.
 				foreach (int[] combination in (tempMask & orMask).GetAllSets().GetSubsets(currentMap.Count - 1))
 				{
 					short combinationMask = 0;
@@ -533,25 +533,25 @@ public sealed unsafe partial class UniquePolygonStepSearcher : IUniquePolygonSte
 					bool flag = false;
 					foreach (int digit in combination)
 					{
-						if ((ValueMaps[digit] & RegionMaps[region]) is not [])
+						if ((ValueMaps[digit] & HouseMaps[houseIndex]) is not [])
 						{
 							flag = true;
 							break;
 						}
 
 						combinationMask |= (short)(1 << digit);
-						combinationMap |= CandMaps[digit] & RegionMaps[region];
+						combinationMap |= CandMaps[digit] & HouseMaps[houseIndex];
 					}
 					if (flag)
 					{
-						// The region contains digit value, which is not a normal pattern.
+						// The house contains digit value, which is not a normal pattern.
 						continue;
 					}
 
 					if (combinationMap != currentMap)
 					{
-						// If not equal, the map may contains other digits in this region.
-						// Therefore the conjugate region can't form.
+						// If not equal, the map may contains other digits in this house.
+						// Therefore the conjugate house can't form.
 						continue;
 					}
 
@@ -597,7 +597,7 @@ public sealed unsafe partial class UniquePolygonStepSearcher : IUniquePolygonSte
 
 					var step = new UniquePolygonType4Step(
 						ImmutableArray.CreateRange(conclusions),
-						ImmutableArray.Create(View.Empty + candidateOffsets + new RegionViewNode(0, region)),
+						ImmutableArray.Create(View.Empty + candidateOffsets + new HouseViewNode(0, houseIndex)),
 						map,
 						otherMask,
 						currentMap,

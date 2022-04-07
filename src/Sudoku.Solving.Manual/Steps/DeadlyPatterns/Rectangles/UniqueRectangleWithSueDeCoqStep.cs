@@ -19,14 +19,14 @@
 /// </param>
 /// <param name="IntersectionMask">
 /// Indicates the mask that contains all digits from the intersection
-/// of regions <see cref="Block"/> and <see cref="Line"/>
+/// of houses <see cref="Block"/> and <see cref="Line"/>
 /// </param>
 /// <param name="IsCannibalistic">Indicates whether the Sue de Coq structure is a cannibalism.</param>
 /// <param name="IsolatedDigitsMask">Indicates the mask that contains all isolated digtis.</param>
 /// <param name="BlockCells">Indicates the cells in the block of the Sue de Coq structure.</param>
 /// <param name="LineCells">Indicates the cells in the line of the Sue de Coq structure.</param>
 /// <param name="IntersectionCells">
-/// Indicates the cells in the intersection from regions <see cref="Block"/> and <see cref="Line"/>.
+/// Indicates the cells in the intersection from houses <see cref="Block"/> and <see cref="Line"/>.
 /// </param>
 /// <param name="AbsoluteOffset"><inheritdoc/></param>
 public sealed record class UniqueRectangleWithSueDeCoqStep(

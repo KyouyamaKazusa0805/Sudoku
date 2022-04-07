@@ -1227,7 +1227,7 @@ public enum Technique : short
 	NishioForcingChains,
 
 	/// <summary>
-	/// Indicates the region forcing chains.
+	/// Indicates the region forcing chains (i.e. house forcing chains).
 	/// </summary>
 	RegionForcingChains,
 
@@ -1237,7 +1237,7 @@ public enum Technique : short
 	CellForcingChains,
 
 	/// <summary>
-	/// Indicates the dynamic region forcing chains.
+	/// Indicates the dynamic region forcing chains (i.e. dynamic house forcing chains).
 	/// </summary>
 	DynamicRegionForcingChains,
 

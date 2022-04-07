@@ -19,9 +19,9 @@ public sealed unsafe partial class AlmostLockedSetsWWingStepSearcher : IAlmostLo
 		var conjugatePairs = new ICollection<ConjugatePair>?[9];
 		for (int digit = 0; digit < 9; digit++)
 		{
-			for (int region = 0; region < 27; region++)
+			for (int houseIndex = 0; houseIndex < 27; houseIndex++)
 			{
-				if ((RegionMaps[region] & CandMaps[digit]) is { Count: 2 } temp)
+				if ((HouseMaps[houseIndex] & CandMaps[digit]) is { Count: 2 } temp)
 				{
 					(conjugatePairs[digit] ??= new List<ConjugatePair>()).Add(new(temp, digit));
 				}
@@ -33,20 +33,20 @@ public sealed unsafe partial class AlmostLockedSetsWWingStepSearcher : IAlmostLo
 		{
 			var als1 = alses[i];
 			var map1 = als1.Map;
-			int region1 = als1.Region;
+			int house1 = als1.House;
 			short mask1 = als1.DigitsMask;
 			for (int j = i + 1; j < length; j++)
 			{
 				var als2 = alses[j];
 				var map2 = als2.Map;
-				int region2 = als2.Region;
+				int house2 = als2.House;
 				short mask2 = als2.DigitsMask;
 
 				// Now we have got two ALSes to check.
 				// Firstly, we should check whether two ALSes overlap with each other.
-				if ((map1 & map2) is not [] || (map1 | map2).InOneRegion)
+				if ((map1 & map2) is not [] || (map1 | map2).InOneHouse)
 				{
-					// If overlap (or in a same region), just skip it.
+					// If overlap (or in a same house), just skip it.
 					continue;
 				}
 
@@ -157,11 +157,11 @@ public sealed unsafe partial class AlmostLockedSetsWWingStepSearcher : IAlmostLo
 									ImmutableArray.Create(
 										View.Empty
 											+ candidateOffsets
-											+ new RegionViewNode[]
+											+ new HouseViewNode[]
 											{
-												new(101, region1),
-												new(102, region2),
-												new(0, TrailingZeroCount(conjugatePair.Regions))
+												new(101, house1),
+												new(102, house2),
+												new(0, TrailingZeroCount(conjugatePair.Houses))
 											}
 									),
 									als1,

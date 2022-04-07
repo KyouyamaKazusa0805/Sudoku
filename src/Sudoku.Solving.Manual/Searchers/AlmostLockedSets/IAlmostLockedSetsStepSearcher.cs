@@ -29,9 +29,9 @@ public interface IAlmostLockedSetsStepSearcher : IStepSearcher
 		}
 
 		// Get all non-bi-value-cell ALSes.
-		for (int region = 0; region < 27; region++)
+		for (int houseIndex = 0; houseIndex < 27; houseIndex++)
 		{
-			if ((RegionMaps[region] & EmptyMap) is not { Count: >= 3 } tempMap)
+			if ((HouseMaps[houseIndex] & EmptyMap) is not { Count: >= 3 } tempMap)
 			{
 				continue;
 			}
@@ -41,7 +41,7 @@ public interface IAlmostLockedSetsStepSearcher : IStepSearcher
 				foreach (var map in tempMap & size)
 				{
 					short blockMask = map.BlockMask;
-					if (IsPow2(blockMask) && region >= 9)
+					if (IsPow2(blockMask) && houseIndex >= 9)
 					{
 						// All ALS cells lying on a box-row or a box-column
 						// will be processed as a block ALS.
@@ -64,8 +64,8 @@ public interface IAlmostLockedSetsStepSearcher : IStepSearcher
 						new(
 							digitsMask,
 							map,
-							region < 9 && coveredLine is >= 9 and not InvalidFirstSet
-								? ((RegionMaps[region] | RegionMaps[coveredLine]) & EmptyMap) - map
+							houseIndex < 9 && coveredLine is >= 9 and not InvalidFirstSet
+								? ((HouseMaps[houseIndex] | HouseMaps[coveredLine]) & EmptyMap) - map
 								: tempMap - map
 						)
 					);

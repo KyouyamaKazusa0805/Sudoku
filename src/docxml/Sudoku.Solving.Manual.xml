@@ -1751,13 +1751,13 @@
         </member>
         <member name="M:Sudoku.Solving.Manual.Searchers.UniqueRectangleStepSearcher.IsConjugatePair(System.Int32,Sudoku.Concepts.Collections.Cells@,System.Int32)">
             <summary>
-            To determine whether the specified region forms a conjugate pair
+            To determine whether the specified house forms a conjugate pair
             of the specified digit, and the cells where they contain the digit
             is same as the given map contains.
             </summary>
             <param name="digit">The digit.</param>
             <param name="map">The map.</param>
-            <param name="region">The region.</param>
+            <param name="houseIndex">The house index.</param>
             <returns>A <see cref="T:System.Boolean"/> value.</returns>
         </member>
         <member name="M:Sudoku.Solving.Manual.Searchers.UniqueRectangleStepSearcher.IsIncompleteUr(System.Collections.Generic.IEnumerable{Sudoku.Presentation.Nodes.CandidateViewNode})">
@@ -1778,17 +1778,17 @@
             Throws when the specified argument <paramref name="cell"/> is invalid.
             </exception>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Searchers.UniqueRectangleStepSearcher.IsSameRegionCell(System.Int32,System.Int32,System.Int32@)">
+        <member name="M:Sudoku.Solving.Manual.Searchers.UniqueRectangleStepSearcher.IsSameHouseCell(System.Int32,System.Int32,System.Int32@)">
             <summary>
-            Get whether two cells are in a same region.
+            Get whether two cells are in a same house.
             </summary>
             <param name="cell1">The cell 1 to check.</param>
             <param name="cell2">The cell 2 to check.</param>
-            <param name="region">
-            The result regions that both two cells lie in. If the cell can't be found, this argument will be 0.
+            <param name="houseIndex">
+            The result houses that both two cells lie in. If the cell can't be found, this argument will be 0.
             </param>
             <returns>
-            The <see cref="T:System.Boolean"/> value indicating whether the another cell is same region as the current one.
+            The <see cref="T:System.Boolean"/> value indicating whether the another cell is same house as the current one.
             </returns>
         </member>
         <member name="M:Sudoku.Solving.Manual.Searchers.UniqueRectangleStepSearcher.GetHighlightCells(System.Int32[])">
@@ -2270,7 +2270,7 @@
             (ab )  abxy  *
               ↑ corner2
             ]]></code>
-            Note that the pair of cells <c>abxy</c> should be in the same region.
+            Note that the pair of cells <c>abxy</c> should be in the same house.
             </para>
             <para>
             Subtype 2:
@@ -2946,7 +2946,7 @@
             Defines a step searcher that searches for unique loop or bi-value oddagon steps.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Searchers.IUniqueLoopOrBivalueOddagonStepSearcher.SearchForPossibleLoopPatterns(Sudoku.Concepts.Collections.Grid@,System.Int32,System.Int32,System.Int32,Sudoku.Concepts.Region,System.Int16,System.Int32,Sudoku.Concepts.Collections.Cells@,System.Collections.Generic.List{System.Int32},System.Func{System.Boolean},System.Collections.Generic.List{System.ValueTuple{Sudoku.Concepts.Collections.Cells,System.Collections.Generic.IEnumerable{Sudoku.Presentation.Nodes.LinkViewNode}}})">
+        <member name="M:Sudoku.Solving.Manual.Searchers.IUniqueLoopOrBivalueOddagonStepSearcher.SearchForPossibleLoopPatterns(Sudoku.Concepts.Collections.Grid@,System.Int32,System.Int32,System.Int32,Sudoku.Concepts.HouseType,System.Int16,System.Int32,Sudoku.Concepts.Collections.Cells@,System.Collections.Generic.List{System.Int32},System.Func{System.Boolean},System.Collections.Generic.List{System.ValueTuple{Sudoku.Concepts.Collections.Cells,System.Collections.Generic.IEnumerable{Sudoku.Presentation.Nodes.LinkViewNode}}})">
             <summary>
             Searches for possible bi-value oddagon or unique loop patterns.
             </summary>
@@ -2954,7 +2954,7 @@
             <param name="d1">The first digit used.</param>
             <param name="d2">The second digit used.</param>
             <param name="cell">The current cell calculated.</param>
-            <param name="lastRegion">Indicates the last region type used.</param>
+            <param name="lastHouseType">Indicates the last house type used.</param>
             <param name="exDigitsMask">The extra digits mask.</param>
             <param name="allowedExtraCellsCount">Indicates the number of cells can be with extra digits.</param>
             <param name="loopMap">Indicates the map of the loop.</param>
@@ -3016,7 +3016,7 @@
         <member name="M:Sudoku.Solving.Manual.Searchers.BowmanBingoStepSearcher.IsValidGrid(Sudoku.Concepts.Collections.Grid@,System.Int32)">
             <summary>
             To check the specified cell has a same digit filled in a cell
-            which is same region with the current one.
+            which is same house with the current one.
             </summary>
             <param name="grid">The grid.</param>
             <param name="cell">The cell.</param>
@@ -3178,9 +3178,9 @@
             The position table of all SK-loops.
             </summary>
         </member>
-        <member name="F:Sudoku.Solving.Manual.Searchers.DominoLoopStepSearcher.RegionMaps">
+        <member name="F:Sudoku.Solving.Manual.Searchers.DominoLoopStepSearcher.HouseMaps">
             <summary>
-            The region maps.
+            The house maps.
             </summary>
         </member>
         <member name="M:Sudoku.Solving.Manual.Searchers.DominoLoopStepSearcher.#cctor">
@@ -3311,8 +3311,7 @@
         </member>
         <member name="F:Sudoku.Solving.Manual.Searchers.EmptyRectangleStepSearcher.LinkIds">
             <summary>
-            Indicates all regions iterating on the specified block
-            forming an empty rectangle.
+            Indicates all houses iterating on the specified block forming an empty rectangle.
             </summary>
         </member>
         <member name="P:Sudoku.Solving.Manual.Searchers.EmptyRectangleStepSearcher.Options">
@@ -3370,7 +3369,7 @@
             <param name="digit">The current digit.</param>
             <param name="guardians">
             The current guardian cells.
-            This map may not contain cells that lies in the region
+            This map may not contain cells that lies in the house
             that <paramref name="cell1"/> and <paramref name="cell2"/> both lies in.
             </param>
             <returns>All guardians.</returns>
@@ -4022,7 +4021,7 @@
             <param name="Views"><inheritdoc/></param>
             <param name="StartCell">Indicates the start cell used.</param>
             <param name="EndCell">Indicates the end cell used.</param>
-            <param name="Region">The region that forms the dual empty rectangle.</param>
+            <param name="House">The house that forms the dual empty rectangle.</param>
             <param name="Digit1">Indicates the digit 1 used in this pattern.</param>
             <param name="Digit2">Indicates the digit 2 used in this pattern.</param>
         </member>
@@ -4034,7 +4033,7 @@
             <param name="Views"><inheritdoc/></param>
             <param name="StartCell">Indicates the start cell used.</param>
             <param name="EndCell">Indicates the end cell used.</param>
-            <param name="Region">The region that forms the dual empty rectangle.</param>
+            <param name="House">The house that forms the dual empty rectangle.</param>
             <param name="Digit1">Indicates the digit 1 used in this pattern.</param>
             <param name="Digit2">Indicates the digit 2 used in this pattern.</param>
         </member>
@@ -4044,8 +4043,8 @@
         <member name="P:Sudoku.Solving.Manual.Steps.EmptyRectangleIntersectionPairStep.EndCell">
             <summary>Indicates the end cell used.</summary>
         </member>
-        <member name="P:Sudoku.Solving.Manual.Steps.EmptyRectangleIntersectionPairStep.Region">
-            <summary>The region that forms the dual empty rectangle.</summary>
+        <member name="P:Sudoku.Solving.Manual.Steps.EmptyRectangleIntersectionPairStep.House">
+            <summary>The house that forms the dual empty rectangle.</summary>
         </member>
         <member name="P:Sudoku.Solving.Manual.Steps.EmptyRectangleIntersectionPairStep.Digit1">
             <summary>Indicates the digit 1 used in this pattern.</summary>
@@ -4263,7 +4262,7 @@
         </member>
         <member name="F:Sudoku.Solving.Manual.Steps.ChainTypeCode.RegionFc">
             <summary>
-            Indicates the region forcing chains.
+            Indicates the region forcing chains (i.e. house forcing chains).
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Manual.Steps.ChainTypeCode.ContradictionFc">
@@ -4283,7 +4282,7 @@
         </member>
         <member name="F:Sudoku.Solving.Manual.Steps.ChainTypeCode.DynamicRegionFc">
             <summary>
-            Indicates the dynamic region forcing chains.
+            Indicates the dynamic region forcing chains (i.e. dynamic house forcing chains).
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Manual.Steps.ChainTypeCode.DynamicContradictionFc">
@@ -4460,7 +4459,7 @@
             <param name="DigitsMask"><inheritdoc/></param>
             <param name="ExtraCells">Indicates the extra cells used.</param>
             <param name="ExtraDigitsMask">Indicates the mask that contains the extra digits.</param>
-            <param name="Region">Indicates the region that extra subset formed.</param>
+            <param name="House">Indicates the house that extra subset formed.</param>
         </member>
         <member name="M:Sudoku.Solving.Manual.Steps.ExtendedRectangleType3Step.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Concepts.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},Sudoku.Concepts.Collections.Cells@,System.Int16,Sudoku.Concepts.Collections.Cells@,System.Int16,System.Int32)">
             <summary>
@@ -4472,7 +4471,7 @@
             <param name="DigitsMask"><inheritdoc/></param>
             <param name="ExtraCells">Indicates the extra cells used.</param>
             <param name="ExtraDigitsMask">Indicates the mask that contains the extra digits.</param>
-            <param name="Region">Indicates the region that extra subset formed.</param>
+            <param name="House">Indicates the house that extra subset formed.</param>
         </member>
         <member name="P:Sudoku.Solving.Manual.Steps.ExtendedRectangleType3Step.ExtraCells">
             <summary>Indicates the extra cells used.</summary>
@@ -4480,8 +4479,8 @@
         <member name="P:Sudoku.Solving.Manual.Steps.ExtendedRectangleType3Step.ExtraDigitsMask">
             <summary>Indicates the mask that contains the extra digits.</summary>
         </member>
-        <member name="P:Sudoku.Solving.Manual.Steps.ExtendedRectangleType3Step.Region">
-            <summary>Indicates the region that extra subset formed.</summary>
+        <member name="P:Sudoku.Solving.Manual.Steps.ExtendedRectangleType3Step.House">
+            <summary>Indicates the house that extra subset formed.</summary>
         </member>
         <member name="P:Sudoku.Solving.Manual.Steps.ExtendedRectangleType3Step.Type">
             <inheritdoc/>
@@ -4894,7 +4893,7 @@
             <param name="Views"><inheritdoc/></param>
             <param name="Map"><inheritdoc/></param>
             <param name="DigitsMask"><inheritdoc/></param>
-            <param name="ConjugateRegion">Indicates the cells that forms the conjugate region.</param>
+            <param name="ConjugateHouse">Indicates the cells that forms the conjugate house.</param>
             <param name="ExtraMask">Indicates the extra digits mask.</param>
         </member>
         <member name="M:Sudoku.Solving.Manual.Steps.UniquePolygonType4Step.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Concepts.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},Sudoku.Concepts.Collections.Cells@,System.Int16,Sudoku.Concepts.Collections.Cells@,System.Int16)">
@@ -4905,11 +4904,11 @@
             <param name="Views"><inheritdoc/></param>
             <param name="Map"><inheritdoc/></param>
             <param name="DigitsMask"><inheritdoc/></param>
-            <param name="ConjugateRegion">Indicates the cells that forms the conjugate region.</param>
+            <param name="ConjugateHouse">Indicates the cells that forms the conjugate house.</param>
             <param name="ExtraMask">Indicates the extra digits mask.</param>
         </member>
-        <member name="P:Sudoku.Solving.Manual.Steps.UniquePolygonType4Step.ConjugateRegion">
-            <summary>Indicates the cells that forms the conjugate region.</summary>
+        <member name="P:Sudoku.Solving.Manual.Steps.UniquePolygonType4Step.ConjugateHouse">
+            <summary>Indicates the cells that forms the conjugate house.</summary>
         </member>
         <member name="P:Sudoku.Solving.Manual.Steps.UniquePolygonType4Step.ExtraMask">
             <summary>Indicates the extra digits mask.</summary>
@@ -5144,7 +5143,7 @@
             <param name="Cells"><inheritdoc/></param>
             <param name="BaseCell"></param>
             <param name="TargetCell"></param>
-            <param name="Region"></param>
+            <param name="House"></param>
             <param name="AbsoluteOffset"><inheritdoc/></param>
         </member>
         <member name="M:Sudoku.Solving.Manual.Steps.AvoidableRectangleWithHiddenSingleStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Concepts.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},System.Int32,System.Int32,Sudoku.Concepts.Collections.Cells@,System.Int32,System.Int32,System.Int32,System.Int32)">
@@ -5158,7 +5157,7 @@
             <param name="Cells"><inheritdoc/></param>
             <param name="BaseCell"></param>
             <param name="TargetCell"></param>
-            <param name="Region"></param>
+            <param name="House"></param>
             <param name="AbsoluteOffset"><inheritdoc/></param>
         </member>
         <member name="P:Sudoku.Solving.Manual.Steps.AvoidableRectangleWithHiddenSingleStep.BaseCell">
@@ -5167,7 +5166,7 @@
         <member name="P:Sudoku.Solving.Manual.Steps.AvoidableRectangleWithHiddenSingleStep.TargetCell">
             <summary></summary>
         </member>
-        <member name="P:Sudoku.Solving.Manual.Steps.AvoidableRectangleWithHiddenSingleStep.Region">
+        <member name="P:Sudoku.Solving.Manual.Steps.AvoidableRectangleWithHiddenSingleStep.House">
             <summary></summary>
         </member>
         <member name="P:Sudoku.Solving.Manual.Steps.AvoidableRectangleWithHiddenSingleStep.Difficulty">
@@ -5484,7 +5483,7 @@
             <param name="Cells"><inheritdoc/></param>
             <param name="ExtraCells">Indicates the extra cells used.</param>
             <param name="ExtraDigitsMask">Indicates the mask that contains all extra digits used.</param>
-            <param name="Region">Indicates the region used.</param>
+            <param name="House">Indicates the house used.</param>
             <param name="IsAvoidable"><inheritdoc/></param>
             <param name="AbsoluteOffset"><inheritdoc/></param>
             <param name="IsNaked">
@@ -5518,7 +5517,7 @@
             <param name="Cells"><inheritdoc/></param>
             <param name="ExtraCells">Indicates the extra cells used.</param>
             <param name="ExtraDigitsMask">Indicates the mask that contains all extra digits used.</param>
-            <param name="Region">Indicates the region used.</param>
+            <param name="House">Indicates the house used.</param>
             <param name="IsAvoidable"><inheritdoc/></param>
             <param name="AbsoluteOffset"><inheritdoc/></param>
             <param name="IsNaked">
@@ -5547,8 +5546,8 @@
         <member name="P:Sudoku.Solving.Manual.Steps.UniqueRectangleType3Step.ExtraDigitsMask">
             <summary>Indicates the mask that contains all extra digits used.</summary>
         </member>
-        <member name="P:Sudoku.Solving.Manual.Steps.UniqueRectangleType3Step.Region">
-            <summary>Indicates the region used.</summary>
+        <member name="P:Sudoku.Solving.Manual.Steps.UniqueRectangleType3Step.House">
+            <summary>Indicates the house used.</summary>
         </member>
         <member name="P:Sudoku.Solving.Manual.Steps.UniqueRectangleType3Step.IsNaked">
             <summary>
@@ -5715,14 +5714,14 @@
             </param>
             <param name="IntersectionMask">
             Indicates the mask that contains all digits from the intersection
-            of regions <see cref="P:Sudoku.Solving.Manual.Steps.UniqueRectangleWithSueDeCoqStep.Block"/> and <see cref="P:Sudoku.Solving.Manual.Steps.UniqueRectangleWithSueDeCoqStep.Line"/>
+            of houses <see cref="P:Sudoku.Solving.Manual.Steps.UniqueRectangleWithSueDeCoqStep.Block"/> and <see cref="P:Sudoku.Solving.Manual.Steps.UniqueRectangleWithSueDeCoqStep.Line"/>
             </param>
             <param name="IsCannibalistic">Indicates whether the Sue de Coq structure is a cannibalism.</param>
             <param name="IsolatedDigitsMask">Indicates the mask that contains all isolated digtis.</param>
             <param name="BlockCells">Indicates the cells in the block of the Sue de Coq structure.</param>
             <param name="LineCells">Indicates the cells in the line of the Sue de Coq structure.</param>
             <param name="IntersectionCells">
-            Indicates the cells in the intersection from regions <see cref="P:Sudoku.Solving.Manual.Steps.UniqueRectangleWithSueDeCoqStep.Block"/> and <see cref="P:Sudoku.Solving.Manual.Steps.UniqueRectangleWithSueDeCoqStep.Line"/>.
+            Indicates the cells in the intersection from houses <see cref="P:Sudoku.Solving.Manual.Steps.UniqueRectangleWithSueDeCoqStep.Block"/> and <see cref="P:Sudoku.Solving.Manual.Steps.UniqueRectangleWithSueDeCoqStep.Line"/>.
             </param>
             <param name="AbsoluteOffset"><inheritdoc/></param>
         </member>
@@ -5746,14 +5745,14 @@
             </param>
             <param name="IntersectionMask">
             Indicates the mask that contains all digits from the intersection
-            of regions <see cref="P:Sudoku.Solving.Manual.Steps.UniqueRectangleWithSueDeCoqStep.Block"/> and <see cref="P:Sudoku.Solving.Manual.Steps.UniqueRectangleWithSueDeCoqStep.Line"/>
+            of houses <see cref="P:Sudoku.Solving.Manual.Steps.UniqueRectangleWithSueDeCoqStep.Block"/> and <see cref="P:Sudoku.Solving.Manual.Steps.UniqueRectangleWithSueDeCoqStep.Line"/>
             </param>
             <param name="IsCannibalistic">Indicates whether the Sue de Coq structure is a cannibalism.</param>
             <param name="IsolatedDigitsMask">Indicates the mask that contains all isolated digtis.</param>
             <param name="BlockCells">Indicates the cells in the block of the Sue de Coq structure.</param>
             <param name="LineCells">Indicates the cells in the line of the Sue de Coq structure.</param>
             <param name="IntersectionCells">
-            Indicates the cells in the intersection from regions <see cref="P:Sudoku.Solving.Manual.Steps.UniqueRectangleWithSueDeCoqStep.Block"/> and <see cref="P:Sudoku.Solving.Manual.Steps.UniqueRectangleWithSueDeCoqStep.Line"/>.
+            Indicates the cells in the intersection from houses <see cref="P:Sudoku.Solving.Manual.Steps.UniqueRectangleWithSueDeCoqStep.Block"/> and <see cref="P:Sudoku.Solving.Manual.Steps.UniqueRectangleWithSueDeCoqStep.Line"/>.
             </param>
             <param name="AbsoluteOffset"><inheritdoc/></param>
         </member>
@@ -5776,7 +5775,7 @@
         <member name="P:Sudoku.Solving.Manual.Steps.UniqueRectangleWithSueDeCoqStep.IntersectionMask">
             <summary>
             Indicates the mask that contains all digits from the intersection
-            of regions <see cref="P:Sudoku.Solving.Manual.Steps.UniqueRectangleWithSueDeCoqStep.Block"/> and <see cref="P:Sudoku.Solving.Manual.Steps.UniqueRectangleWithSueDeCoqStep.Line"/>
+            of houses <see cref="P:Sudoku.Solving.Manual.Steps.UniqueRectangleWithSueDeCoqStep.Block"/> and <see cref="P:Sudoku.Solving.Manual.Steps.UniqueRectangleWithSueDeCoqStep.Line"/>
             </summary>
         </member>
         <member name="P:Sudoku.Solving.Manual.Steps.UniqueRectangleWithSueDeCoqStep.IsCannibalistic">
@@ -5793,7 +5792,7 @@
         </member>
         <member name="P:Sudoku.Solving.Manual.Steps.UniqueRectangleWithSueDeCoqStep.IntersectionCells">
             <summary>
-            Indicates the cells in the intersection from regions <see cref="P:Sudoku.Solving.Manual.Steps.UniqueRectangleWithSueDeCoqStep.Block"/> and <see cref="P:Sudoku.Solving.Manual.Steps.UniqueRectangleWithSueDeCoqStep.Line"/>.
+            Indicates the cells in the intersection from houses <see cref="P:Sudoku.Solving.Manual.Steps.UniqueRectangleWithSueDeCoqStep.Block"/> and <see cref="P:Sudoku.Solving.Manual.Steps.UniqueRectangleWithSueDeCoqStep.Line"/>.
             </summary>
         </member>
         <member name="P:Sudoku.Solving.Manual.Steps.UniqueRectangleWithSueDeCoqStep.Difficulty">
@@ -6091,7 +6090,7 @@
             <param name="DigitsMask"><inheritdoc/></param>
             <param name="Digit1">Indicates the digit 1 used.</param>
             <param name="Digit2">Indicates the digit 2 used.</param>
-            <param name="ConjugateRegion">Indicates the cells used as the conjugation region.</param>
+            <param name="ConjugateHouse">Indicates the cells used as the conjugate house.</param>
         </member>
         <member name="M:Sudoku.Solving.Manual.Steps.UniqueSquareType4Step.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Concepts.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},Sudoku.Concepts.Collections.Cells@,System.Int16,System.Int32,System.Int32,Sudoku.Concepts.Collections.Cells@)">
             <summary>
@@ -6103,7 +6102,7 @@
             <param name="DigitsMask"><inheritdoc/></param>
             <param name="Digit1">Indicates the digit 1 used.</param>
             <param name="Digit2">Indicates the digit 2 used.</param>
-            <param name="ConjugateRegion">Indicates the cells used as the conjugation region.</param>
+            <param name="ConjugateHouse">Indicates the cells used as the conjugate house.</param>
         </member>
         <member name="P:Sudoku.Solving.Manual.Steps.UniqueSquareType4Step.Digit1">
             <summary>Indicates the digit 1 used.</summary>
@@ -6111,8 +6110,8 @@
         <member name="P:Sudoku.Solving.Manual.Steps.UniqueSquareType4Step.Digit2">
             <summary>Indicates the digit 2 used.</summary>
         </member>
-        <member name="P:Sudoku.Solving.Manual.Steps.UniqueSquareType4Step.ConjugateRegion">
-            <summary>Indicates the cells used as the conjugation region.</summary>
+        <member name="P:Sudoku.Solving.Manual.Steps.UniqueSquareType4Step.ConjugateHouse">
+            <summary>Indicates the cells used as the conjugate house.</summary>
         </member>
         <member name="P:Sudoku.Solving.Manual.Steps.UniqueSquareType4Step.Type">
             <inheritdoc/>
@@ -6527,7 +6526,7 @@
             <param name="Exocet"><inheritdoc/></param>
             <param name="DigitsMask"><inheritdoc/></param>
             <param name="EndoTargetCell">Indicates the target cell that is embedded into the cross-line cells.</param>
-            <param name="ExtraRegionsMask">Indicates the mask tnat holds the extra regions used.</param>
+            <param name="ExtraHousesMask">Indicates the mask tnat holds the extra houses used.</param>
             <param name="Eliminations"><inheritdoc/></param>
         </member>
         <member name="M:Sudoku.Solving.Manual.Steps.SeniorExocetStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},Sudoku.Concepts.Solving.ExocetPattern@,System.Int16,System.Int32,System.Int32[],System.Collections.Immutable.ImmutableArray{Sudoku.Concepts.Solving.ExocetElimination})">
@@ -6538,18 +6537,18 @@
             <param name="Exocet"><inheritdoc/></param>
             <param name="DigitsMask"><inheritdoc/></param>
             <param name="EndoTargetCell">Indicates the target cell that is embedded into the cross-line cells.</param>
-            <param name="ExtraRegionsMask">Indicates the mask tnat holds the extra regions used.</param>
+            <param name="ExtraHousesMask">Indicates the mask tnat holds the extra houses used.</param>
             <param name="Eliminations"><inheritdoc/></param>
         </member>
         <member name="P:Sudoku.Solving.Manual.Steps.SeniorExocetStep.EndoTargetCell">
             <summary>Indicates the target cell that is embedded into the cross-line cells.</summary>
         </member>
-        <member name="P:Sudoku.Solving.Manual.Steps.SeniorExocetStep.ExtraRegionsMask">
-            <summary>Indicates the mask tnat holds the extra regions used.</summary>
+        <member name="P:Sudoku.Solving.Manual.Steps.SeniorExocetStep.ExtraHousesMask">
+            <summary>Indicates the mask tnat holds the extra houses used.</summary>
         </member>
-        <member name="P:Sudoku.Solving.Manual.Steps.SeniorExocetStep.ContainsExtraRegions">
+        <member name="P:Sudoku.Solving.Manual.Steps.SeniorExocetStep.ContainsExtraHouses">
             <summary>
-            Indicates whether the specified instance contains any extra regions.
+            Indicates whether the specified instance contains any extra houses.
             </summary>
         </member>
         <member name="P:Sudoku.Solving.Manual.Steps.SeniorExocetStep.Difficulty">
@@ -6640,14 +6639,14 @@
             The shape modifier.
             </summary>
         </member>
-        <member name="P:Sudoku.Solving.Manual.Steps.ComplexFishStep.BaseRegions">
+        <member name="P:Sudoku.Solving.Manual.Steps.ComplexFishStep.BaseHouses">
             <summary>
-            Indicates the base regions.
+            Indicates the base houses.
             </summary>
         </member>
-        <member name="P:Sudoku.Solving.Manual.Steps.ComplexFishStep.CoverRegions">
+        <member name="P:Sudoku.Solving.Manual.Steps.ComplexFishStep.CoverHouses">
             <summary>
-            Indicates the cover regions.
+            Indicates the cover houses.
             </summary>
         </member>
         <member name="M:Sudoku.Solving.Manual.Steps.ComplexFishStep.Equals(Sudoku.Solving.Manual.Steps.ComplexFishStep,Sudoku.Solving.Manual.Steps.ComplexFishStep)">
@@ -7109,8 +7108,8 @@
             <param name="Conclusions"><inheritdoc/></param>
             <param name="Views"><inheritdoc/></param>
             <param name="Digit">Indicates the digit used.</param>
-            <param name="BaseSet">Indicates the region that the current locked candidates forms.</param>
-            <param name="CoverSet">Indicates the region that the current locked candidates influences.</param>
+            <param name="BaseSet">Indicates the house that the current locked candidates forms.</param>
+            <param name="CoverSet">Indicates the house that the current locked candidates influences.</param>
         </member>
         <member name="M:Sudoku.Solving.Manual.Steps.LockedCandidatesStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Concepts.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},System.Int32,System.Int32,System.Int32)">
             <summary>
@@ -7119,17 +7118,17 @@
             <param name="Conclusions"><inheritdoc/></param>
             <param name="Views"><inheritdoc/></param>
             <param name="Digit">Indicates the digit used.</param>
-            <param name="BaseSet">Indicates the region that the current locked candidates forms.</param>
-            <param name="CoverSet">Indicates the region that the current locked candidates influences.</param>
+            <param name="BaseSet">Indicates the house that the current locked candidates forms.</param>
+            <param name="CoverSet">Indicates the house that the current locked candidates influences.</param>
         </member>
         <member name="P:Sudoku.Solving.Manual.Steps.LockedCandidatesStep.Digit">
             <summary>Indicates the digit used.</summary>
         </member>
         <member name="P:Sudoku.Solving.Manual.Steps.LockedCandidatesStep.BaseSet">
-            <summary>Indicates the region that the current locked candidates forms.</summary>
+            <summary>Indicates the house that the current locked candidates forms.</summary>
         </member>
         <member name="P:Sudoku.Solving.Manual.Steps.LockedCandidatesStep.CoverSet">
-            <summary>Indicates the region that the current locked candidates influences.</summary>
+            <summary>Indicates the house that the current locked candidates influences.</summary>
         </member>
         <member name="P:Sudoku.Solving.Manual.Steps.LockedCandidatesStep.Difficulty">
             <inheritdoc/>
@@ -8180,8 +8179,8 @@
             <param name="Conclusions"><inheritdoc/></param>
             <param name="Views"><inheritdoc/></param>
             <param name="Digit"><inheritdoc/></param>
-            <param name="BaseRegion">Indicates the base region used.</param>
-            <param name="TargetRegion">Indicates the target region used.</param>
+            <param name="BaseHouse">Indicates the base house used.</param>
+            <param name="TargetHouse">Indicates the target house used.</param>
         </member>
         <member name="M:Sudoku.Solving.Manual.Steps.TwoStrongLinksStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Concepts.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},System.Int32,System.Int32,System.Int32)">
             <summary>
@@ -8190,14 +8189,14 @@
             <param name="Conclusions"><inheritdoc/></param>
             <param name="Views"><inheritdoc/></param>
             <param name="Digit"><inheritdoc/></param>
-            <param name="BaseRegion">Indicates the base region used.</param>
-            <param name="TargetRegion">Indicates the target region used.</param>
+            <param name="BaseHouse">Indicates the base house used.</param>
+            <param name="TargetHouse">Indicates the target house used.</param>
         </member>
-        <member name="P:Sudoku.Solving.Manual.Steps.TwoStrongLinksStep.BaseRegion">
-            <summary>Indicates the base region used.</summary>
+        <member name="P:Sudoku.Solving.Manual.Steps.TwoStrongLinksStep.BaseHouse">
+            <summary>Indicates the base house used.</summary>
         </member>
-        <member name="P:Sudoku.Solving.Manual.Steps.TwoStrongLinksStep.TargetRegion">
-            <summary>Indicates the target region used.</summary>
+        <member name="P:Sudoku.Solving.Manual.Steps.TwoStrongLinksStep.TargetHouse">
+            <summary>Indicates the target house used.</summary>
         </member>
         <member name="P:Sudoku.Solving.Manual.Steps.TwoStrongLinksStep.Difficulty">
             <inheritdoc/>
@@ -8252,7 +8251,7 @@
             <param name="Views"><inheritdoc/></param>
             <param name="Cell"><inheritdoc/></param>
             <param name="Digit"><inheritdoc/></param>
-            <param name="Region">Indicates the region used.</param>
+            <param name="House">Indicates the house used.</param>
             <param name="EnableAndIsLastDigit">
             Indicates whether the current step is a <b>Last Digit</b> technique usage.
             </param>
@@ -8265,13 +8264,13 @@
             <param name="Views"><inheritdoc/></param>
             <param name="Cell"><inheritdoc/></param>
             <param name="Digit"><inheritdoc/></param>
-            <param name="Region">Indicates the region used.</param>
+            <param name="House">Indicates the house used.</param>
             <param name="EnableAndIsLastDigit">
             Indicates whether the current step is a <b>Last Digit</b> technique usage.
             </param>
         </member>
-        <member name="P:Sudoku.Solving.Manual.Steps.HiddenSingleStep.Region">
-            <summary>Indicates the region used.</summary>
+        <member name="P:Sudoku.Solving.Manual.Steps.HiddenSingleStep.House">
+            <summary>Indicates the house used.</summary>
         </member>
         <member name="P:Sudoku.Solving.Manual.Steps.HiddenSingleStep.EnableAndIsLastDigit">
             <summary>
@@ -8544,7 +8543,7 @@
             </summary>
             <param name="Conclusions"><inheritdoc/></param>
             <param name="Views"><inheritdoc/></param>
-            <param name="Region"><inheritdoc/></param>
+            <param name="House"><inheritdoc/></param>
             <param name="Cells"><inheritdoc/></param>
             <param name="DigitsMask"><inheritdoc/></param>
         </member>
@@ -8554,7 +8553,7 @@
             </summary>
             <param name="Conclusions"><inheritdoc/></param>
             <param name="Views"><inheritdoc/></param>
-            <param name="Region"><inheritdoc/></param>
+            <param name="House"><inheritdoc/></param>
             <param name="Cells"><inheritdoc/></param>
             <param name="DigitsMask"><inheritdoc/></param>
         </member>
@@ -8570,7 +8569,7 @@
             </summary>
             <param name="Conclusions"><inheritdoc/></param>
             <param name="Views"><inheritdoc/></param>
-            <param name="Region"><inheritdoc/></param>
+            <param name="House"><inheritdoc/></param>
             <param name="Cells"><inheritdoc/></param>
             <param name="DigitsMask"><inheritdoc/></param>
             <param name="IsLocked">
@@ -8597,7 +8596,7 @@
             </summary>
             <param name="Conclusions"><inheritdoc/></param>
             <param name="Views"><inheritdoc/></param>
-            <param name="Region"><inheritdoc/></param>
+            <param name="House"><inheritdoc/></param>
             <param name="Cells"><inheritdoc/></param>
             <param name="DigitsMask"><inheritdoc/></param>
             <param name="IsLocked">
@@ -8655,7 +8654,7 @@
             </summary>
             <param name="Conclusions"><inheritdoc/></param>
             <param name="Views"><inheritdoc/></param>
-            <param name="Region">The region that structure lies in.</param>
+            <param name="House">The house that structure lies in.</param>
             <param name="Cells">All cells used.</param>
             <param name="DigitsMask">The maks that contains all digits used.</param>
         </member>
@@ -8665,12 +8664,12 @@
             </summary>
             <param name="Conclusions"><inheritdoc/></param>
             <param name="Views"><inheritdoc/></param>
-            <param name="Region">The region that structure lies in.</param>
+            <param name="House">The house that structure lies in.</param>
             <param name="Cells">All cells used.</param>
             <param name="DigitsMask">The maks that contains all digits used.</param>
         </member>
-        <member name="P:Sudoku.Solving.Manual.Steps.SubsetStep.Region">
-            <summary>The region that structure lies in.</summary>
+        <member name="P:Sudoku.Solving.Manual.Steps.SubsetStep.House">
+            <summary>The house that structure lies in.</summary>
         </member>
         <member name="P:Sudoku.Solving.Manual.Steps.SubsetStep.Cells">
             <summary>All cells used.</summary>

@@ -97,7 +97,7 @@ public sealed unsafe partial class AlmostLockedCandidatesStepSearcher : IAlmostL
 			bool isOverlapped = false;
 			foreach (int digit in mask)
 			{
-				if ((ValueMaps[digit] & RegionMaps[coverSet]) is not [])
+				if ((ValueMaps[digit] & HouseMaps[coverSet]) is not [])
 				{
 					isOverlapped = true;
 					break;
@@ -108,12 +108,12 @@ public sealed unsafe partial class AlmostLockedCandidatesStepSearcher : IAlmostL
 				continue;
 			}
 
-			// Then check whether the another region (left-side block in those diagrams)
+			// Then check whether the another house (left-side block in those diagrams)
 			// forms an AHS (i.e. those digits must appear in the specified cells).
 			short ahsMask = 0;
 			foreach (int digit in mask)
 			{
-				ahsMask |= (RegionMaps[coverSet] & CandMaps[digit] & b) / coverSet;
+				ahsMask |= (HouseMaps[coverSet] & CandMaps[digit] & b) / coverSet;
 			}
 			if (PopCount((uint)ahsMask) != size - 1)
 			{
@@ -124,7 +124,7 @@ public sealed unsafe partial class AlmostLockedCandidatesStepSearcher : IAlmostL
 			var ahsCells = Cells.Empty;
 			foreach (int pos in ahsMask)
 			{
-				ahsCells.Add(RegionCells[coverSet][pos]);
+				ahsCells.Add(HouseCells[coverSet][pos]);
 			}
 
 			// Gather all eliminations.
@@ -193,7 +193,7 @@ public sealed unsafe partial class AlmostLockedCandidatesStepSearcher : IAlmostL
 					View.Empty
 						+ (hasValueCell ? valueCells : null)
 						+ candidateOffsets
-						+ new RegionViewNode[] { new(0, baseSet), new(2, coverSet) }
+						+ new HouseViewNode[] { new(0, baseSet), new(2, coverSet) }
 				),
 				mask,
 				cells,

@@ -12,7 +12,7 @@ public enum SearcherNodeTypes
 	None = 0,
 
 	/// <summary>
-	/// Indicates the searcher can search on sole digit in the same region.
+	/// Indicates the searcher can search on sole digit in the same house.
 	/// </summary>
 	SoleDigit = 1,
 

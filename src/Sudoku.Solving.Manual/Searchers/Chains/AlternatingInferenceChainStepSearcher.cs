@@ -731,13 +731,13 @@ public sealed partial class AlternatingInferenceChainStepSearcher : IAlternating
 			{
 				HashSet<int>? list = null;
 
-				// Get bi-location regions.
+				// Get bi-location houses.
 				if (NodeTypes.Flags(SearcherNodeTypes.SoleDigit))
 				{
-					foreach (var label in Regions)
+					foreach (var houseType in Houses)
 					{
-						int region = cell.ToRegionIndex(label);
-						var posCells = (RegionMaps[region] & grid.CandidatesMap[digit]) - cell;
+						int houseIndex = cell.ToHouseIndex(houseType);
+						var posCells = (HouseMaps[houseIndex] & grid.CandidatesMap[digit]) - cell;
 						if (posCells is [var posCell])
 						{
 							var nextNode = new SoleCandidateNode((byte)posCell, digit);
@@ -809,30 +809,30 @@ public sealed partial class AlternatingInferenceChainStepSearcher : IAlternating
 
 				if (NodeTypes.Flags(SearcherNodeTypes.LockedCandidates))
 				{
-					foreach (var label in Regions)
+					foreach (var houseType in Houses)
 					{
-						int region = cell.ToRegionIndex(label);
-						var otherCells = RegionMaps[region] & grid.CandidatesMap[digit] - cell;
+						int houseIndex = cell.ToHouseIndex(houseType);
+						var otherCells = HouseMaps[houseIndex] & grid.CandidatesMap[digit] - cell;
 						if (
 							otherCells is not
 							{
 								Count: > 1 and <= 3,
 								CoveredLine: not InvalidFirstSet,
-								CoveredRegions: var coveredRegions
+								CoveredHouses: var coveredHouses
 							}
 						)
 						{
 							// Optimization:
-							// 1) If the number of all other cells in the current region
-							// is greater than 3, the region doesn't hold a valid strong inference
-							// from the current candidate to a locked candidates,
+							// 1) If the number of all other cells in the current house index
+							// is greater than 3, the corresponding house doesn't hold
+							// a valid strong inference from the current candidate to a locked candidates,
 							// because a locked candidates node at most use 3 cells.
 							// 2) If all other cells don't lie in a same row or column, those cells
 							// can still not form a locked candidates node.
 							continue;
 						}
 
-						if (TrailingZeroCount(coveredRegions) >= 9)
+						if (TrailingZeroCount(coveredHouses) >= 9)
 						{
 							// The cells must be in a same block.
 							continue;
@@ -854,10 +854,10 @@ public sealed partial class AlternatingInferenceChainStepSearcher : IAlternating
 
 				if (NodeTypes.Flags(SearcherNodeTypes.LockedCandidates))
 				{
-					foreach (var label in Regions)
+					foreach (var houseType in Houses)
 					{
-						int region = cell.ToRegionIndex(label);
-						var otherCells = RegionMaps[region] & grid.CandidatesMap[digit] - cell;
+						int houseIndex = cell.ToHouseIndex(houseType);
+						var otherCells = HouseMaps[houseIndex] & grid.CandidatesMap[digit] - cell;
 						if (otherCells.Count <= 1)
 						{
 							continue;
@@ -865,12 +865,12 @@ public sealed partial class AlternatingInferenceChainStepSearcher : IAlternating
 
 						// Okay. Now we get a set of cells.
 						// Now we should gather all possible covered rows and columns.
-						if (label == Region.Block)
+						if (houseType == HouseType.Block)
 						{
-							int block = cell.ToRegionIndex(Region.Block);
-							foreach (int subRegions in otherCells.RowMask << 9 | otherCells.ColumnMask << 18)
+							int block = cell.ToHouseIndex(HouseType.Block);
+							foreach (int subHouses in otherCells.RowMask << 9 | otherCells.ColumnMask << 18)
 							{
-								var intersectionMap = RegionMaps[block] & RegionMaps[subRegions];
+								var intersectionMap = HouseMaps[block] & HouseMaps[subHouses];
 								var subOtherCells = grid.CandidatesMap[digit] & intersectionMap - cell;
 								if (subOtherCells.Count is not (var count and not (0 or 1)))
 								{
@@ -901,9 +901,9 @@ public sealed partial class AlternatingInferenceChainStepSearcher : IAlternating
 						else
 						{
 							triplets.Clear();
-							triplets[0] = RegionMaps[region][0..3];
-							triplets[1] = RegionMaps[region][3..6];
-							triplets[2] = RegionMaps[region][6..9];
+							triplets[0] = HouseMaps[houseIndex][0..3];
+							triplets[1] = HouseMaps[houseIndex][3..6];
+							triplets[2] = HouseMaps[houseIndex][6..9];
 
 							foreach (ref readonly var triplet in triplets)
 							{
@@ -971,9 +971,9 @@ public sealed partial class AlternatingInferenceChainStepSearcher : IAlternating
 
 						if (NodeTypes.Flags(SearcherNodeTypes.LockedCandidates))
 						{
-							foreach (int region in cells.CoveredRegions)
+							foreach (int houseIndex in cells.CoveredHouses)
 							{
-								var node = (RegionMaps[region] & grid.CandidatesMap[digit] - cells) switch
+								var node = (HouseMaps[houseIndex] & grid.CandidatesMap[digit] - cells) switch
 								{
 									// e.g. aaa==a
 									[var onlyCell] => new SoleCandidateNode((byte)onlyCell, digit),
@@ -981,11 +981,11 @@ public sealed partial class AlternatingInferenceChainStepSearcher : IAlternating
 									// e.g. aaa==aaa
 									{
 										CoveredLine: not InvalidFirstSet,
-										CoveredRegions: var coveredRegions
-									} otherCells => region.ToRegion() switch
+										CoveredHouses: var coveredHouses
+									} otherCells => houseIndex.ToHouse() switch
 									{
-										Region.Block => new LockedCandidatesNode(digit, otherCells),
-										_ => TrailingZeroCount(coveredRegions) switch
+										HouseType.Block => new LockedCandidatesNode(digit, otherCells),
+										_ => TrailingZeroCount(coveredHouses) switch
 										{
 											< 9 => new LockedCandidatesNode(digit, otherCells),
 											_ => default(Node?)
@@ -1012,14 +1012,14 @@ public sealed partial class AlternatingInferenceChainStepSearcher : IAlternating
 
 						if (NodeTypes.Flags(SearcherNodeTypes.LockedCandidates))
 						{
-							foreach (int region in cells.CoveredRegions)
+							foreach (int houseIndex in cells.CoveredHouses)
 							{
-								var otherCells = grid.CandidatesMap[digit] & RegionMaps[region] - cells;
-								if (region.ToRegion() == Region.Block)
+								var otherCells = grid.CandidatesMap[digit] & HouseMaps[houseIndex] - cells;
+								if (houseIndex.ToHouse() == HouseType.Block)
 								{
-									foreach (int subRegion in otherCells.RowMask << 9 | otherCells.ColumnMask << 18)
+									foreach (int subHouse in otherCells.RowMask << 9 | otherCells.ColumnMask << 18)
 									{
-										var intersectionMap = RegionMaps[region] & RegionMaps[subRegion];
+										var intersectionMap = HouseMaps[houseIndex] & HouseMaps[subHouse];
 										var subOtherCells = otherCells & intersectionMap;
 										switch (subOtherCells)
 										{
@@ -1052,9 +1052,9 @@ public sealed partial class AlternatingInferenceChainStepSearcher : IAlternating
 								else
 								{
 									triplets.Clear();
-									triplets[0] = RegionMaps[region][0..3];
-									triplets[1] = RegionMaps[region][3..6];
-									triplets[2] = RegionMaps[region][6..9];
+									triplets[0] = HouseMaps[houseIndex][0..3];
+									triplets[1] = HouseMaps[houseIndex][3..6];
+									triplets[2] = HouseMaps[houseIndex][6..9];
 
 									foreach (ref readonly var triplet in triplets)
 									{
@@ -1130,20 +1130,20 @@ public sealed partial class AlternatingInferenceChainStepSearcher : IAlternating
 
 					if (NodeTypes.Flags(SearcherNodeTypes.LockedSet))
 					{
-						foreach (int region in digitCellsUsed.CoveredRegions)
+						foreach (int houseIndex in digitCellsUsed.CoveredHouses)
 						{
-							var otherCells = RegionMaps[region] & grid.CandidatesMap[digit] - digitCellsUsed;
+							var otherCells = HouseMaps[houseIndex] & grid.CandidatesMap[digit] - digitCellsUsed;
 							if (otherCells.Count is 0 or > 3)
 							{
 								continue;
 							}
 
 							if (
-								region.ToRegion() is var label && (
-									label == Region.Block
+								houseIndex.ToHouse() is var label && (
+									label == HouseType.Block
 									&& otherCells.CoveredLine == InvalidFirstSet
-									|| label is Region.Row or Region.Column
-									&& TrailingZeroCount(otherCells.CoveredRegions) >= 9
+									|| label is HouseType.Row or HouseType.Column
+									&& TrailingZeroCount(otherCells.CoveredHouses) >= 9
 								)
 							)
 							{
@@ -1184,14 +1184,14 @@ public sealed partial class AlternatingInferenceChainStepSearcher : IAlternating
 
 					if (NodeTypes.Flags(SearcherNodeTypes.LockedSet))
 					{
-						foreach (int region in digitCellsUsed.CoveredRegions)
+						foreach (int houseIndex in digitCellsUsed.CoveredHouses)
 						{
-							var otherCells = grid.CandidatesMap[digit] & RegionMaps[region] - digitCellsUsed;
-							if (region.ToRegion() == Region.Block)
+							var otherCells = grid.CandidatesMap[digit] & HouseMaps[houseIndex] - digitCellsUsed;
+							if (houseIndex.ToHouse() == HouseType.Block)
 							{
-								foreach (int subRegion in otherCells.RowMask << 9 | otherCells.ColumnMask << 18)
+								foreach (int subHouse in otherCells.RowMask << 9 | otherCells.ColumnMask << 18)
 								{
-									var intersectionMap = RegionMaps[region] & RegionMaps[subRegion];
+									var intersectionMap = HouseMaps[houseIndex] & HouseMaps[subHouse];
 									var subOtherCells = otherCells & intersectionMap;
 									switch (subOtherCells)
 									{
@@ -1224,9 +1224,9 @@ public sealed partial class AlternatingInferenceChainStepSearcher : IAlternating
 							else
 							{
 								triplets.Clear();
-								triplets[0] = RegionMaps[region][0..3];
-								triplets[1] = RegionMaps[region][3..6];
-								triplets[2] = RegionMaps[region][6..9];
+								triplets[0] = HouseMaps[houseIndex][0..3];
+								triplets[1] = HouseMaps[houseIndex][3..6];
+								triplets[2] = HouseMaps[houseIndex][6..9];
 
 								foreach (ref readonly var triplet in triplets)
 								{

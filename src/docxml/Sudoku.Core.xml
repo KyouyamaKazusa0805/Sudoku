@@ -271,7 +271,7 @@
             <summary>
             Get the subview mask of this map.
             </summary>
-            <param name="region">The region.</param>
+            <param name="hosue">The house index.</param>
             <param name="digit">The digit.</param>
             <returns>The mask.</returns>
         </member>
@@ -759,12 +759,12 @@
             </remarks>
             <seealso cref="F:Sudoku.Runtime.AnalysisServices.CommonReadOnlies.PeerMaps"/>
         </member>
-        <member name="P:Sudoku.Concepts.Collections.Cells.InOneRegion">
+        <member name="P:Sudoku.Concepts.Collections.Cells.InOneHouse">
             <summary>
-            Same as <see cref="M:Sudoku.Concepts.Collections.Cells.AllSetsAreInOneRegion(System.Int32@)"/>, but only contains
-            the <see cref="T:System.Boolean"/> result.
+            Same as the method <see cref="M:Sudoku.Concepts.Collections.Cells.AllSetsAreInOneHouse(System.Int32@)"/>, but this property doesn't contain
+            the <see langword="out"/> argument, as the optimization.
             </summary>
-            <seealso cref="M:Sudoku.Concepts.Collections.Cells.AllSetsAreInOneRegion(System.Int32@)"/>
+            <seealso cref="M:Sudoku.Concepts.Collections.Cells.AllSetsAreInOneHouse(System.Int32@)"/>
         </member>
         <member name="P:Sudoku.Concepts.Collections.Cells.BlockMask">
             <summary>
@@ -798,34 +798,34 @@
             Indicates the covered line.
             </summary>
             <remarks>
-            When the covered region can't be found, it'll return 32. For more information,
-            please visit <see href="https://source.dot.net/#System.Private.CoreLib/BitOperations.cs,515">this link</see>.
+            When the covered house can't be found, it'll return <see cref="F:Sudoku.Runtime.AnalysisServices.CommonReadOnlies.InvalidFirstSet"/>.
             </remarks>
+            <seealso cref="F:Sudoku.Runtime.AnalysisServices.CommonReadOnlies.InvalidFirstSet"/>
         </member>
         <member name="P:Sudoku.Concepts.Collections.Cells.Count">
             <summary>
             Indicates the number of the values stored in this collection.
             </summary>
         </member>
-        <member name="P:Sudoku.Concepts.Collections.Cells.CoveredRegions">
+        <member name="P:Sudoku.Concepts.Collections.Cells.CoveredHouses">
             <summary>
-            Indicates all regions covered. This property is used to check all regions that all cells
+            Indicates all houses covered. This property is used to check all houses that all cells
             of this instance covered. For example, if the cells are <c>{ 0, 1 }</c>, the property
-            <see cref="P:Sudoku.Concepts.Collections.Cells.CoveredRegions"/> will return the region 0 (block 1) and region 9 (row 1);
-            however, if cells spanned two regions or more (e.g. cells <c>{ 0, 1, 27 }</c>),
-            this property won't contain any regions.
+            <see cref="P:Sudoku.Concepts.Collections.Cells.CoveredHouses"/> will return the house index 0 (block 1) and 9 (row 1);
+            however, if cells spanned two houses or more (e.g. cells <c>{ 0, 1, 27 }</c>),
+            this property won't contain any houses.
             </summary>
             <remarks>
-            The return value will be an <see cref="T:System.Int32"/> value indicating each regions.
-            Bits set 1 are covered regions.
+            The return value will be an <see cref="T:System.Int32"/> value indicating each houses.
+            Bits set 1 are covered houses.
             </remarks>
         </member>
-        <member name="P:Sudoku.Concepts.Collections.Cells.Regions">
+        <member name="P:Sudoku.Concepts.Collections.Cells.Houses">
             <summary>
-            All regions that the map spanned. This property is used to check all regions that all cells of
+            All houses that the map spanned. This property is used to check all houses that all cells of
             this instance spanned. For example, if the cells are <c>{ 0, 1 }</c>, the property
-            <see cref="P:Sudoku.Concepts.Collections.Cells.Regions"/> will return the region 0 (block 1), region 9 (row 1), region 18 (column 1)
-            and the region 19 (column 2).
+            <see cref="P:Sudoku.Concepts.Collections.Cells.Houses"/> will return the house index 0 (block 1), 9 (row 1), 18 (column 1)
+            and 19 (column 2).
             </summary>
         </member>
         <member name="P:Sudoku.Concepts.Collections.Cells.System#IDefaultable{Sudoku#Concepts#Collections#Cells}#IsDefault">
@@ -869,20 +869,20 @@
             The target <see cref="T:System.Span`1"/> instance.
             </param>
         </member>
-        <member name="M:Sudoku.Concepts.Collections.Cells.AllSetsAreInOneRegion(System.Int32@)">
+        <member name="M:Sudoku.Concepts.Collections.Cells.AllSetsAreInOneHouse(System.Int32@)">
             <summary>
-            Indicates whether all cells in this instance are in one region.
+            Indicates whether all cells in this instance are in one house.
             </summary>
-            <param name="region">
-            The region covered. If the return value
-            is false, this value will be the constant -1.
+            <param name="houseIndex">
+            The house index whose corresponding house covered.
+            If the return value is <see langword="false"/>, this value will be the constant -1.
             </param>
             <returns>A <see cref="T:System.Boolean"/> result.</returns>
             <remarks>
             If you don't want to use the <see langword="out"/> parameter value, please
-            use the property <see cref="P:Sudoku.Concepts.Collections.Cells.InOneRegion"/> to improve the performance.
+            use the property <see cref="P:Sudoku.Concepts.Collections.Cells.InOneHouse"/> to improve the performance.
             </remarks>
-            <seealso cref="P:Sudoku.Concepts.Collections.Cells.InOneRegion"/>
+            <seealso cref="P:Sudoku.Concepts.Collections.Cells.InOneHouse"/>
         </member>
         <member name="M:Sudoku.Concepts.Collections.Cells.Contains(System.Int32)">
             <summary>
@@ -905,7 +905,7 @@
             <summary>
             Get the subview mask of this map.
             </summary>
-            <param name="region">The region.</param>
+            <param name="houseIndex">The house index.</param>
             <returns>The mask.</returns>
         </member>
         <member name="M:Sudoku.Concepts.Collections.Cells.GetHashCode">
@@ -949,7 +949,7 @@
             </summary>
             <param name="start">The start index.</param>
             <param name="end">The end index.</param>
-            <returns>The region mask.</returns>
+            <returns>The house mask.</returns>
             <seealso cref="P:Sudoku.Concepts.Collections.Cells.RowMask"/>
             <seealso cref="P:Sudoku.Concepts.Collections.Cells.ColumnMask"/>
             <seealso cref="P:Sudoku.Concepts.Collections.Cells.BlockMask"/>
@@ -1148,7 +1148,7 @@
             Get the subview mask of this map.
             </summary>
             <param name="map">The map.</param>
-            <param name="region">The region.</param>
+            <param name="houseIndex">The house index.</param>
             <returns>The mask.</returns>
         </member>
         <member name="M:Sudoku.Concepts.Collections.Cells.op_Equality(Sudoku.Concepts.Collections.Cells@,Sudoku.Concepts.Collections.Cells@)">
@@ -1595,13 +1595,13 @@
             Indicates the total number of empty cells.
             </summary>
         </member>
-        <member name="P:Sudoku.Concepts.Collections.Grid.NullRegions">
+        <member name="P:Sudoku.Concepts.Collections.Grid.NullHouses">
             <summary>
-            <para>Indicates which regions are null regions.</para>
-            <para>A <b>Null Region</b> is a region whose hold cells are all empty cells.</para>
+            <para>Indicates which houses are null houses.</para>
+            <para>A <b>Null House</b> is a house whose hold cells are all empty cells.</para>
             <para>
-            The property returns an <see cref="T:System.Int32"/> value as a mask that contains all possible regions.
-            For example, if the row 5, column 5 and block 5 (1-9) are null regions, the property will return
+            The property returns an <see cref="T:System.Int32"/> value as a mask that contains all possible house indices.
+            For example, if the row 5, column 5 and block 5 (1-9) are null houces, the property will return
             the result <see cref="T:System.Int32"/> value, <c>000010000_000010000_000010000</c> as binary.
             </para>
             </summary>
@@ -2272,17 +2272,17 @@
             <param name="this">The grid.</param>
             <returns>The result.</returns>
         </member>
-        <member name="M:Sudoku.Concepts.Collections.GridTransformations.SwapTwoRegions(Sudoku.Concepts.Collections.Grid@,System.Int32,System.Int32)">
+        <member name="M:Sudoku.Concepts.Collections.GridTransformations.SwapTwoHouses(Sudoku.Concepts.Collections.Grid@,System.Int32,System.Int32)">
             <summary>
-            Swap to regions.
+            Swap to houses.
             </summary>
             <param name="this">The grid.</param>
-            <param name="region1">The region 1.</param>
-            <param name="region2">The region 2.</param>
+            <param name="houseIndex1">The house 1 to be swapped.</param>
+            <param name="houseIndex2">The house 2 to be swapped.</param>
             <returns>The result.</returns>
             <exception cref="T:System.ArgumentException">
-            Throws when two specified region argument is not in valid range (0..27)
-            or two regions are not in same region type.
+            Throws when two specified house argument is not in valid range (0..27)
+            or two houses are not in same house type.
             </exception>
         </member>
         <member name="T:Sudoku.Concepts.Collections.Handlers.ConclusionCollection">
@@ -2436,80 +2436,80 @@
             <inheritdoc cref="M:System.Object.GetHashCode"/>
             <exception cref="T:System.NotSupportedException">Always throws.</exception>
         </member>
-        <member name="T:Sudoku.Concepts.Collections.Handlers.RegionCollection">
+        <member name="T:Sudoku.Concepts.Collections.Handlers.HouseCollection">
             <summary>
-            Indicates a region collection.
+            Indicates a house collection.
             </summary>
         </member>
-        <member name="M:Sudoku.Concepts.Collections.Handlers.RegionCollection.#ctor(System.Int32)">
+        <member name="M:Sudoku.Concepts.Collections.Handlers.HouseCollection.#ctor(System.Int32)">
             <summary>
-            Initializes an empty collection and add one region into the list.
+            Initializes an empty collection and add one house into the list.
             </summary>
-            <param name="region">The region.</param>
+            <param name="houseIndex">The house index.</param>
         </member>
-        <member name="M:Sudoku.Concepts.Collections.Handlers.RegionCollection.#ctor(System.ReadOnlySpan{System.Int32}@)">
+        <member name="M:Sudoku.Concepts.Collections.Handlers.HouseCollection.#ctor(System.ReadOnlySpan{System.Int32}@)">
             <summary>
-            Initializes an instance with the specified regions.
+            Initializes an instance with the specified houses.
             </summary>
-            <param name="regions">The regions.</param>
+            <param name="houseIndices">The house indices.</param>
         </member>
-        <member name="M:Sudoku.Concepts.Collections.Handlers.RegionCollection.#ctor(System.Collections.Generic.IEnumerable{System.Int32})">
+        <member name="M:Sudoku.Concepts.Collections.Handlers.HouseCollection.#ctor(System.Collections.Generic.IEnumerable{System.Int32})">
             <summary>
-            Initializes an instance with the specified regions.
+            Initializes an instance with the specified houses.
             </summary>
-            <param name="regions">The regions.</param>
+            <param name="houseIndices">The house indices.</param>
         </member>
-        <member name="P:Sudoku.Concepts.Collections.Handlers.RegionCollection.Count">
+        <member name="P:Sudoku.Concepts.Collections.Handlers.HouseCollection.Count">
             <summary>
-            Indicates the number of regions that contain in this collection.
+            Indicates the number of houses that contain in this collection.
             </summary>
         </member>
-        <member name="P:Sudoku.Concepts.Collections.Handlers.RegionCollection.Mask">
+        <member name="P:Sudoku.Concepts.Collections.Handlers.HouseCollection.Mask">
             <summary>
             Indicates the mask used.
             </summary>
         </member>
-        <member name="P:Sudoku.Concepts.Collections.Handlers.RegionCollection.Item(System.Int32)">
+        <member name="P:Sudoku.Concepts.Collections.Handlers.HouseCollection.Item(System.Int32)">
             <summary>
-            Gets a <see cref="T:System.Boolean"/> value indicating whether the bit of the corresponding specified region
-            is set <see langword="true"/>.
+            Gets a <see cref="T:System.Boolean"/> value indicating whether the bit
+            of the corresponding specified house is set <see langword="true"/>.
             </summary>
-            <param name="region">The region.</param>
+            <param name="houseIndex">The house index.</param>
             <returns>A <see cref="T:System.Boolean"/> value.</returns>
         </member>
-        <member name="M:Sudoku.Concepts.Collections.Handlers.RegionCollection.Equals(Sudoku.Concepts.Collections.Handlers.RegionCollection)">
+        <member name="M:Sudoku.Concepts.Collections.Handlers.HouseCollection.Equals(Sudoku.Concepts.Collections.Handlers.HouseCollection)">
             <summary>
             Determine whether the two collections are equal.
             </summary>
             <param name="other">The collection to compare.</param>
             <returns>A <see cref="T:System.Boolean"/> result.</returns>
         </member>
-        <member name="M:Sudoku.Concepts.Collections.Handlers.RegionCollection.GetHashCode">
+        <member name="M:Sudoku.Concepts.Collections.Handlers.HouseCollection.GetHashCode">
             <inheritdoc cref="M:System.Object.GetHashCode"/>
         </member>
-        <member name="M:Sudoku.Concepts.Collections.Handlers.RegionCollection.ToString">
+        <member name="M:Sudoku.Concepts.Collections.Handlers.HouseCollection.ToString">
             <inheritdoc cref="M:System.Object.ToString"/>
         </member>
-        <member name="M:Sudoku.Concepts.Collections.Handlers.RegionCollection.ToSimpleString">
+        <member name="M:Sudoku.Concepts.Collections.Handlers.HouseCollection.ToSimpleString">
             <summary>
             To string but only output the labels ('r', 'c' or 'b').
             </summary>
             <returns>The labels.</returns>
         </member>
-        <member name="M:Sudoku.Concepts.Collections.Handlers.RegionCollection.GetEnumerator">
+        <member name="M:Sudoku.Concepts.Collections.Handlers.HouseCollection.GetEnumerator">
             <summary>
             Gets the enumerator of the instance in order to use <see langword="foreach"/> loop.
             </summary>
             <returns>The enumerator instance.</returns>
         </member>
-        <member name="M:Sudoku.Concepts.Collections.Handlers.RegionCollection.GetLabel(System.Int32)">
+        <member name="M:Sudoku.Concepts.Collections.Handlers.HouseCollection.GetLabel(System.Int32)">
             <summary>
-            Get the label of each region.
+            Get the label of each house.
             </summary>
-            <param name="index">The index.</param>
+            <param name="houseIndex">The house index.</param>
             <returns>The label.</returns>
         </member>
-        <member name="M:Sudoku.Concepts.Collections.Handlers.RegionCollection.Equals(System.Object)">
+        <member name="M:Sudoku.Concepts.Collections.Handlers.HouseCollection.Equals(System.Object)">
             <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
             <exception cref="T:System.NotSupportedException">Always throws.</exception>
         </member>
@@ -2560,7 +2560,7 @@
             </summary>
             <remarks>
             <b>Conjugate pair</b> is a candidate pair (two candidates),
-            these two candidates is in the same region where all cells has only
+            these two candidates is in the same house where all cells has only
             two position can fill this candidate.
             </remarks>
             <param name="From">Indicates the cell that is the start cell.</param>
@@ -2574,7 +2574,7 @@
             </summary>
             <remarks>
             <b>Conjugate pair</b> is a candidate pair (two candidates),
-            these two candidates is in the same region where all cells has only
+            these two candidates is in the same house where all cells has only
             two position can fill this candidate.
             </remarks>
             <param name="From">Indicates the cell that is the start cell.</param>
@@ -2620,11 +2620,11 @@
             Indicates the line that two cells lie in.
             </summary>
         </member>
-        <member name="P:Sudoku.Concepts.ConjugatePair.Regions">
+        <member name="P:Sudoku.Concepts.ConjugatePair.Houses">
             <summary>
-            Indicates the region that two cells lie in.
+            Indicates the house that two cells lie in.
             </summary>
-            <remarks><inheritdoc cref="P:Sudoku.Concepts.Collections.Cells.CoveredRegions"/></remarks>
+            <remarks><inheritdoc cref="P:Sudoku.Concepts.Collections.Cells.CoveredHouses"/></remarks>
         </member>
         <member name="P:Sudoku.Concepts.ConjugatePair.System#IDefaultable{Sudoku#Concepts#ConjugatePair}#IsDefault">
             <inheritdoc/>
@@ -3106,6 +3106,89 @@
             <summary>
             Indicates each value should minus one before creation.
             </summary>
+        </member>
+        <member name="T:Sudoku.Concepts.HouseType">
+            <summary>
+            Represents a house type.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Concepts.HouseType.Block">
+            <summary>
+            Indicates the house type is a block.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Concepts.HouseType.Row">
+            <summary>
+            Indicates the house type is a row.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Concepts.HouseType.Column">
+            <summary>
+            Indicates the house type is a column.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Concepts.HouseTypeExtensions">
+            <summary>
+            Provides extension methods on <see cref="T:Sudoku.Concepts.HouseType"/>.
+            </summary>
+            <seealso cref="T:Sudoku.Concepts.HouseType"/>
+        </member>
+        <member name="M:Sudoku.Concepts.HouseTypeExtensions.CopyHouseInfo(System.Byte,System.Byte*)">
+            <inheritdoc cref="M:Sudoku.Concepts.HouseTypeExtensions.CopyHouseInfo(System.Int32,System.Int32*)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.HouseTypeExtensions.CopyHouseInfo(System.Int32,System.Int32*)">
+            <summary>
+            Gets the row, column and block value and copies to the specified array that represents by a pointer
+            of 3 elements, where the first element stores the block index, second element stores the row index
+            and the third element stores the column index.
+            </summary>
+            <param name="cell">The cell. The available values must be between 0 and 80.</param>
+            <param name="ptr">The specified array that represents by a pointer of 3 elements.</param>
+            <exception cref="T:System.ArgumentNullException">
+            Throws when the argument <paramref name="ptr"/> is <see langword="null"/>.
+            </exception>
+        </member>
+        <member name="M:Sudoku.Concepts.HouseTypeExtensions.ToHouseIndex(System.Byte,Sudoku.Concepts.HouseType)">
+            <summary>
+            Get the house index (0..27 for block 1-9, row 1-9 and column 1-9)
+            for the specified cell and the house type.
+            </summary>
+            <param name="cell">The cell. The available values must be between 0 and 80.</param>
+            <param name="houseType">The house type.</param>
+            <returns>The house index. The return value must be between 0 and 26.</returns>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+            Throws when the argument <paramref name="houseType"/> is not defined.
+            </exception>
+        </member>
+        <member name="M:Sudoku.Concepts.HouseTypeExtensions.ToHouseIndex(System.Int32,Sudoku.Concepts.HouseType)">
+            <inheritdoc cref="M:Sudoku.Concepts.HouseTypeExtensions.ToHouseIndex(System.Byte,Sudoku.Concepts.HouseType)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.HouseTypeExtensions.ToHouse(System.Int32)">
+            <summary>
+            Get the house type for the specified house index.
+            </summary>
+            <param name="houseIndex">The house index.</param>
+            <returns>
+            The house type. The possible return values are:
+            <list type="table">
+            <listheader>
+            <term>House indices</term>
+            <description>Return value</description>
+            </listheader>
+            <item>
+            <term><paramref name="houseIndex"/> is <![CDATA[>= 0 and < 9]]></term>
+            <description><see cref="F:Sudoku.Concepts.HouseType.Block"/></description>
+            </item>
+            <item>
+            <term><paramref name="houseIndex"/> is <![CDATA[>= 9 and < 18]]></term>
+            <description><see cref="F:Sudoku.Concepts.HouseType.Row"/></description>
+            </item>
+            <item>
+            <term><paramref name="houseIndex"/> is <![CDATA[>= 18 and < 27]]></term>
+            <description><see cref="F:Sudoku.Concepts.HouseType.Column"/></description>
+            </item>
+            </list>
+            </returns>
         </member>
         <member name="T:Sudoku.Concepts.Inference">
             <summary>
@@ -3952,89 +4035,6 @@
             </para>
             </summary>
         </member>
-        <member name="T:Sudoku.Concepts.Region">
-            <summary>
-            Defines a region type.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Concepts.Region.Block">
-            <summary>
-            Indicates the region type is a block.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Concepts.Region.Row">
-            <summary>
-            Indicates the region type is a row.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Concepts.Region.Column">
-            <summary>
-            Indicates the region type is a column.
-            </summary>
-        </member>
-        <member name="T:Sudoku.Concepts.RegionExtensions">
-            <summary>
-            Provides extension methods on <see cref="T:Sudoku.Concepts.Region"/>.
-            </summary>
-            <seealso cref="T:Sudoku.Concepts.Region"/>
-        </member>
-        <member name="M:Sudoku.Concepts.RegionExtensions.CopyRegionInfo(System.Byte,System.Byte*)">
-            <inheritdoc cref="M:Sudoku.Concepts.RegionExtensions.CopyRegionInfo(System.Int32,System.Int32*)"/>
-        </member>
-        <member name="M:Sudoku.Concepts.RegionExtensions.CopyRegionInfo(System.Int32,System.Int32*)">
-            <summary>
-            Gets the row, column and block value and copies to the specified array that represents by a pointer
-            of 3 elements, where the first element stores the block index, second element stores the row index
-            and the third element stores the column index.
-            </summary>
-            <param name="cell">The cell. The available values must be between 0 and 80.</param>
-            <param name="ptr">The specified array that represents by a pointer of 3 elements.</param>
-            <exception cref="T:System.ArgumentNullException">
-            Throws when the argument <paramref name="ptr"/> is <see langword="null"/>.
-            </exception>
-        </member>
-        <member name="M:Sudoku.Concepts.RegionExtensions.ToRegionIndex(System.Byte,Sudoku.Concepts.Region)">
-            <summary>
-            Get the region index (0..27 for block 1-9, row 1-9 and column 1-9)
-            for the specified cell and the region type.
-            </summary>
-            <param name="cell">The cell. The available values must be between 0 and 80.</param>
-            <param name="region">The region type.</param>
-            <returns>The region index. The return value must be between 0 and 26.</returns>
-            <exception cref="T:System.ArgumentOutOfRangeException">
-            Throws when the argument <paramref name="region"/> is not defined.
-            </exception>
-        </member>
-        <member name="M:Sudoku.Concepts.RegionExtensions.ToRegionIndex(System.Int32,Sudoku.Concepts.Region)">
-            <inheritdoc cref="M:Sudoku.Concepts.RegionExtensions.ToRegionIndex(System.Byte,Sudoku.Concepts.Region)"/>
-        </member>
-        <member name="M:Sudoku.Concepts.RegionExtensions.ToRegion(System.Int32)">
-            <summary>
-            Get the region type for the specified region index.
-            </summary>
-            <param name="regionIndex">The region index.</param>
-            <returns>
-            The region type. The possible return values are:
-            <list type="table">
-            <listheader>
-            <term>Range for the region index</term>
-            <description>Return value</description>
-            </listheader>
-            <item>
-            <term><paramref name="regionIndex"/> is <![CDATA[>= 0 and < 9]]></term>
-            <description><see cref="F:Sudoku.Concepts.Region.Block"/></description>
-            </item>
-            <item>
-            <term><paramref name="regionIndex"/> is <![CDATA[>= 9 and < 18]]></term>
-            <description><see cref="F:Sudoku.Concepts.Region.Row"/></description>
-            </item>
-            <item>
-            <term><paramref name="regionIndex"/> is <![CDATA[>= 18 and < 27]]></term>
-            <description><see cref="F:Sudoku.Concepts.Region.Column"/></description>
-            </item>
-            </list>
-            </returns>
-        </member>
         <member name="T:Sudoku.Concepts.Solving.AlmostLockedSet">
             <summary>
             Defines a data structure that describes an ALS.
@@ -4063,9 +4063,9 @@
             Indicates the possible cells that can be as the elimination.
             </param>
         </member>
-        <member name="P:Sudoku.Concepts.Solving.AlmostLockedSet.Region">
+        <member name="P:Sudoku.Concepts.Solving.AlmostLockedSet.House">
             <summary>
-            Indicates the region used.
+            Indicates the house used.
             </summary>
         </member>
         <member name="P:Sudoku.Concepts.Solving.AlmostLockedSet.IsBivalueCell">
@@ -4620,7 +4620,7 @@
         </member>
         <member name="F:Sudoku.Concepts.Solving.ChainNodes.SearcherNodeTypes.SoleDigit">
             <summary>
-            Indicates the searcher can search on sole digit in the same region.
+            Indicates the searcher can search on sole digit in the same house.
             </summary>
         </member>
         <member name="F:Sudoku.Concepts.Solving.ChainNodes.SearcherNodeTypes.SoleCell">
@@ -6465,7 +6465,7 @@
         </member>
         <member name="F:Sudoku.Concepts.Solving.Technique.RegionForcingChains">
             <summary>
-            Indicates the region forcing chains.
+            Indicates the region forcing chains (i.e. house forcing chains).
             </summary>
         </member>
         <member name="F:Sudoku.Concepts.Solving.Technique.CellForcingChains">
@@ -6475,7 +6475,7 @@
         </member>
         <member name="F:Sudoku.Concepts.Solving.Technique.DynamicRegionForcingChains">
             <summary>
-            Indicates the dynamic region forcing chains.
+            Indicates the dynamic region forcing chains (i.e. dynamic house forcing chains).
             </summary>
         </member>
         <member name="F:Sudoku.Concepts.Solving.Technique.DynamicCellForcingChains">
@@ -7751,6 +7751,35 @@
         <member name="M:Sudoku.Presentation.Nodes.CrosshatchViewNode.Clone">
             <inheritdoc/>
         </member>
+        <member name="T:Sudoku.Presentation.Nodes.HouseViewNode">
+            <summary>
+            Defines a view node that highlights for a house.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.HouseViewNode.#ctor(Sudoku.Presentation.Identifier,System.Int32)">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Presentation.Nodes.HouseViewNode"/> instance via the identifier and the highlight house.
+            </summary>
+            <param name="identifier">The identifier.</param>
+            <param name="houseIndex">The house index.</param>
+        </member>
+        <member name="P:Sudoku.Presentation.Nodes.HouseViewNode.House">
+            <summary>
+            Indicates the house highlighted.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.HouseViewNode.Equals(Sudoku.Presentation.Nodes.ViewNode)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.HouseViewNode.GetHashCode">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.HouseViewNode.ToString">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.HouseViewNode.Clone">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Presentation.Nodes.LinkViewNode">
             <summary>
             Defines a view node that highlights for a link.
@@ -7791,35 +7820,6 @@
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Presentation.Nodes.LinkViewNode.Clone">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Presentation.Nodes.RegionViewNode">
-            <summary>
-            Defines a view node that highlights for a region.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Presentation.Nodes.RegionViewNode.#ctor(Sudoku.Presentation.Identifier,System.Int32)">
-            <summary>
-            Initializes a <see cref="T:Sudoku.Presentation.Nodes.RegionViewNode"/> instance via the identifier and the highlight region.
-            </summary>
-            <param name="identifier">The identifier.</param>
-            <param name="region">The region.</param>
-        </member>
-        <member name="P:Sudoku.Presentation.Nodes.RegionViewNode.Region">
-            <summary>
-            Indicates the region highlighted.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Presentation.Nodes.RegionViewNode.Equals(Sudoku.Presentation.Nodes.ViewNode)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Presentation.Nodes.RegionViewNode.GetHashCode">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Presentation.Nodes.RegionViewNode.ToString">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Presentation.Nodes.RegionViewNode.Clone">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Presentation.Nodes.UnknownViewNode">
@@ -10195,14 +10195,14 @@
             Indicates the mask that means all columns.
             </summary>
         </member>
-        <member name="F:Sudoku.Runtime.AnalysisServices.CommonReadOnlies.AllRegionsMask">
+        <member name="F:Sudoku.Runtime.AnalysisServices.CommonReadOnlies.AllHousesMask">
             <summary>
-            Indicates the mask that means all regions.
+            Indicates the mask that means all houses.
             </summary>
         </member>
-        <member name="F:Sudoku.Runtime.AnalysisServices.CommonReadOnlies.RegionFirst">
+        <member name="F:Sudoku.Runtime.AnalysisServices.CommonReadOnlies.HouseFirst">
             <summary>
-            Indicates the first cell offset for each region.
+            Indicates the first cell offset for each house.
             </summary>
         </member>
         <member name="F:Sudoku.Runtime.AnalysisServices.CommonReadOnlies.UniqueRectanglePatterns">
@@ -10218,10 +10218,10 @@
             '<c>Peers[0]</c>': the array of peers for the cell 0 (row 1 column 1).
             </example>
         </member>
-        <member name="F:Sudoku.Runtime.AnalysisServices.CommonReadOnlies.RegionCells">
+        <member name="F:Sudoku.Runtime.AnalysisServices.CommonReadOnlies.HouseCells">
             <summary>
             <para>
-            The map of all cell offsets in its specified region.
+            The map of all cell offsets in its specified house.
             The indices is between 0 and 26, where:
             <list type="table">
             <item>
@@ -10240,7 +10240,7 @@
             </para>
             </summary>
             <example>
-            '<c>RegionTable[0]</c>': all cell offsets in the region 0 (block 1).
+            '<c>HouseCells[0]</c>': all cell offsets in the house 0 (block 1).
             </example>
         </member>
         <member name="F:Sudoku.Runtime.AnalysisServices.CommonReadOnlies.SubsetNames">
@@ -10268,12 +10268,12 @@
             </para>
             </summary>
         </member>
-        <member name="F:Sudoku.Runtime.AnalysisServices.CommonReadOnlies.RegionMaps">
+        <member name="F:Sudoku.Runtime.AnalysisServices.CommonReadOnlies.HouseMaps">
             <summary>
             Indicates all grid maps that a grid contains.
             </summary>
             <example>
-            '<c>RegionMaps[0]</c>': The map containing all cells in the block 1.
+            '<c>HouseMaps[0]</c>': The map containing all cells in the block 1.
             </example>
         </member>
         <member name="F:Sudoku.Runtime.AnalysisServices.CommonReadOnlies.PeerMaps">
@@ -10282,9 +10282,9 @@
             </summary>
             <seealso cref="F:Sudoku.Runtime.AnalysisServices.CommonReadOnlies.Peers"/>
         </member>
-        <member name="F:Sudoku.Runtime.AnalysisServices.CommonReadOnlies.Regions">
+        <member name="F:Sudoku.Runtime.AnalysisServices.CommonReadOnlies.Houses">
             <summary>
-            Indicates the possible region types to iterate.
+            Indicates the possible house types to iterate.
             </summary>
         </member>
         <member name="F:Sudoku.Runtime.AnalysisServices.CommonReadOnlies.IntersectionMaps">

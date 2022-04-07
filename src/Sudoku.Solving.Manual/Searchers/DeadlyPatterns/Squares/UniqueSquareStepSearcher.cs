@@ -233,14 +233,14 @@ public sealed unsafe partial class UniqueSquareStepSearcher : IUniqueSquareStepS
 			{
 				tempMap |= CandMaps[digit];
 			}
-			if (tempMap.InOneRegion)
+			if (tempMap.InOneHouse)
 			{
 				continue;
 			}
 
-			foreach (int region in tempMap.CoveredRegions)
+			foreach (int house in tempMap.CoveredHouses)
 			{
-				var allCells = (RegionMaps[region] & EmptyMap) - pattern;
+				var allCells = (HouseMaps[house] & EmptyMap) - pattern;
 				for (int size = PopCount((uint)extraDigitsMask) - 1, count = allCells.Count; size < count; size++)
 				{
 					foreach (var cells in allCells & size)
@@ -284,7 +284,7 @@ public sealed unsafe partial class UniqueSquareStepSearcher : IUniqueSquareStepS
 
 						var step = new UniqueSquareType3Step(
 							ImmutableArray.CreateRange(conclusions),
-							ImmutableArray.Create(View.Empty + candidateOffsets + new RegionViewNode(0, region)),
+							ImmutableArray.Create(View.Empty + candidateOffsets + new HouseViewNode(0, house)),
 							pattern,
 							digitsMask,
 							extraDigitsMask,
@@ -321,18 +321,18 @@ public sealed unsafe partial class UniqueSquareStepSearcher : IUniqueSquareStepS
 			{
 				tempMap |= CandMaps[digit];
 			}
-			if (tempMap.InOneRegion)
+			if (tempMap.InOneHouse)
 			{
 				continue;
 			}
 
-			foreach (int region in tempMap.CoveredRegions)
+			foreach (int house in tempMap.CoveredHouses)
 			{
 				int d1 = -1, d2 = -1, count = 0;
-				var compareMap = RegionMaps[region] & pattern;
+				var compareMap = HouseMaps[house] & pattern;
 				foreach (int digit in digits)
 				{
-					if ((compareMap | RegionMaps[region] & CandMaps[digit]) == compareMap)
+					if ((compareMap | HouseMaps[house] & CandMaps[digit]) == compareMap)
 					{
 						switch (count++)
 						{
@@ -385,7 +385,7 @@ public sealed unsafe partial class UniqueSquareStepSearcher : IUniqueSquareStepS
 
 				var step = new UniqueSquareType4Step(
 					ImmutableArray.CreateRange(conclusions),
-					ImmutableArray.Create(View.Empty + candidateOffsets + new RegionViewNode(0, region)),
+					ImmutableArray.Create(View.Empty + candidateOffsets + new HouseViewNode(0, house)),
 					pattern,
 					digitsMask,
 					d1,

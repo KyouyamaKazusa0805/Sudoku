@@ -59,14 +59,14 @@ public static partial class CommonReadOnlies
 	public const int AllColumnsMask = 0b111_111_111__000_000_000__000_000_000;
 
 	/// <summary>
-	/// Indicates the mask that means all regions.
+	/// Indicates the mask that means all houses.
 	/// </summary>
-	public const int AllRegionsMask = 0b111_111_111__111_111_111__111_111_111;
+	public const int AllHousesMask = 0b111_111_111__111_111_111__111_111_111;
 
 	/// <summary>
-	/// Indicates the first cell offset for each region.
+	/// Indicates the first cell offset for each house.
 	/// </summary>
-	public static readonly int[] RegionFirst =
+	public static readonly int[] HouseFirst =
 	{
 		0,  3,  6, 27, 30, 33, 54, 57, 60,
 		0,  9, 18, 27, 36, 45, 54, 63, 72,
@@ -227,7 +227,7 @@ public static partial class CommonReadOnlies
 
 	/// <summary>
 	/// <para>
-	/// The map of all cell offsets in its specified region.
+	/// The map of all cell offsets in its specified house.
 	/// The indices is between 0 and 26, where:
 	/// <list type="table">
 	/// <item>
@@ -246,9 +246,9 @@ public static partial class CommonReadOnlies
 	/// </para>
 	/// </summary>
 	/// <example>
-	/// '<c>RegionTable[0]</c>': all cell offsets in the region 0 (block 1).
+	/// '<c>HouseCells[0]</c>': all cell offsets in the house 0 (block 1).
 	/// </example>
-	public static readonly int[][] RegionCells =
+	public static readonly int[][] HouseCells =
 	{
 		new[] {  0,  1,  2,  9, 10, 11, 18, 19, 20, },
 		new[] {  3,  4,  5, 12, 13, 14, 21, 22, 23, },
@@ -320,9 +320,9 @@ public static partial class CommonReadOnlies
 	/// Indicates all grid maps that a grid contains.
 	/// </summary>
 	/// <example>
-	/// '<c>RegionMaps[0]</c>': The map containing all cells in the block 1.
+	/// '<c>HouseMaps[0]</c>': The map containing all cells in the block 1.
 	/// </example>
-	public static readonly Cells[] RegionMaps;
+	public static readonly Cells[] HouseMaps;
 
 	/// <summary>
 	/// Indicates the peer maps using <see cref="Peers"/> table.
@@ -331,9 +331,9 @@ public static partial class CommonReadOnlies
 	public static readonly Cells[] PeerMaps;
 
 	/// <summary>
-	/// Indicates the possible region types to iterate.
+	/// Indicates the possible house types to iterate.
 	/// </summary>
-	public static readonly Region[] Regions = { Region.Block, Region.Row, Region.Column };
+	public static readonly HouseType[] Houses = { HouseType.Block, HouseType.Row, HouseType.Column };
 
 	/// <summary>
 	/// <para>
@@ -428,10 +428,10 @@ public static partial class CommonReadOnlies
 			PeerMaps[i] = Peers[i];
 		}
 
-		RegionMaps = new Cells[27];
+		HouseMaps = new Cells[27];
 		for (int i = 0; i < 27; i++)
 		{
-			RegionMaps[i] = RegionCells[i];
+			HouseMaps[i] = HouseCells[i];
 		}
 
 
@@ -443,8 +443,8 @@ public static partial class CommonReadOnlies
 			for (byte j = 0; j < 3; j++)
 			{
 				byte cs = (byte)(bs < 18 ? r[(bs - 9) / 3 * 3 + j] : c[(bs - 18) / 3 * 3 + j]);
-				ref readonly var bm = ref RegionMaps[bs];
-				ref readonly var cm = ref RegionMaps[cs];
+				ref readonly var bm = ref HouseMaps[bs];
+				ref readonly var cm = ref HouseMaps[cs];
 				var i = bm & cm;
 				dic.Add((bs, cs), (bm - i, cm - i, i, IntersectionBlockTable[(bs - 9) * 3 + j]));
 			}

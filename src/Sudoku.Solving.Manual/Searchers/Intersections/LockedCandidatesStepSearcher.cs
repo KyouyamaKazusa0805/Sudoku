@@ -83,7 +83,7 @@ public sealed unsafe partial class LockedCandidatesStepSearcher : ILockedCandida
 					continue;
 				}
 
-				// Gather the information, such as the type of the locked candidates, the located region, etc..
+				// Gather the information, such as the type of the locked candidates, the located house, etc..
 				var candidateOffsets = new List<CandidateViewNode>();
 				foreach (int cell in c & CandMaps[digit])
 				{
@@ -96,7 +96,7 @@ public sealed unsafe partial class LockedCandidatesStepSearcher : ILockedCandida
 					ImmutableArray.Create(
 						View.Empty
 							+ candidateOffsets
-							+ new RegionViewNode[] { new(0, r[0]), new(1, r[1]) }
+							+ new HouseViewNode[] { new(0, r[0]), new(1, r[1]) }
 					),
 					digit,
 					r[0],

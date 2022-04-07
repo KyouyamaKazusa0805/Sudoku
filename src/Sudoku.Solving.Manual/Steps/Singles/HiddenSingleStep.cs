@@ -7,26 +7,26 @@
 /// <param name="Views"><inheritdoc/></param>
 /// <param name="Cell"><inheritdoc/></param>
 /// <param name="Digit"><inheritdoc/></param>
-/// <param name="Region">Indicates the region used.</param>
+/// <param name="House">Indicates the house used.</param>
 /// <param name="EnableAndIsLastDigit">
 /// Indicates whether the current step is a <b>Last Digit</b> technique usage.
 /// </param>
 public sealed record class HiddenSingleStep(
 	ImmutableArray<Conclusion> Conclusions, ImmutableArray<View> Views,
-	int Cell, int Digit, int Region, bool EnableAndIsLastDigit) : SingleStep(Conclusions, Views, Cell, Digit)
+	int Cell, int Digit, int House, bool EnableAndIsLastDigit) : SingleStep(Conclusions, Views, Cell, Digit)
 {
 	/// <inheritdoc/>
 	public override decimal Difficulty =>
-		this switch { { EnableAndIsLastDigit: true } => 1.1M, { Region: < 9 } => 1.2M, _ => 1.5M };
+		this switch { { EnableAndIsLastDigit: true } => 1.1M, { House: < 9 } => 1.2M, _ => 1.5M };
 
 	/// <inheritdoc/>
-	public override Rarity Rarity => EnableAndIsLastDigit || Region < 9 ? Rarity.Always : Rarity.Often;
+	public override Rarity Rarity => EnableAndIsLastDigit || House < 9 ? Rarity.Always : Rarity.Often;
 
 	/// <inheritdoc/>
 	public override Technique TechniqueCode =>
 		EnableAndIsLastDigit
 			? Technique.LastDigit
-			: (Technique)((int)Technique.HiddenSingleBlock + (int)Region.ToRegion());
+			: (Technique)((int)Technique.HiddenSingleBlock + (int)House.ToHouse());
 
 	/// <inheritdoc/>
 	public override string? Format =>
@@ -47,9 +47,9 @@ public sealed record class HiddenSingleStep(
 	}
 
 	[FormatItem]
-	internal string RegionStr
+	internal string HouseStr
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => new RegionCollection(Region).ToString();
+		get => new HouseCollection(House).ToString();
 	}
 }

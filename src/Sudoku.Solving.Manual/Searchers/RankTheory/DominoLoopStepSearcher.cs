@@ -16,20 +16,20 @@ public sealed unsafe partial class DominoLoopStepSearcher : IDominoLoopStepSearc
 	private static readonly int[][] SkLoopTable = new int[729][];
 
 	/// <summary>
-	/// The region maps.
+	/// The house maps.
 	/// </summary>
-	private static readonly Cells[] RegionMaps;
+	private static readonly Cells[] HouseMaps;
 
 
 	/// <include file='../../global-doc-comments.xml' path='g/static-constructor' />
 	static DominoLoopStepSearcher()
 	{
-		// Initialize for region maps.
-		RegionMaps = new Cells[27];
+		// Initialize for house maps.
+		HouseMaps = new Cells[27];
 		for (int i = 0; i < 27; i++)
 		{
-			ref var map = ref RegionMaps[i];
-			foreach (int cell in RegionCells[i])
+			ref var map = ref HouseMaps[i];
+			foreach (int cell in HouseCells[i])
 			{
 				map.Add(cell);
 			}
@@ -55,8 +55,8 @@ public sealed unsafe partial class DominoLoopStepSearcher : IDominoLoopStepSearc
 							continue;
 						}
 
-						var all = RegionMaps[a] | RegionMaps[b] | RegionMaps[c] | RegionMaps[d];
-						var overlap = (RegionMaps[a] | RegionMaps[b]) & (RegionMaps[c] | RegionMaps[d]);
+						var all = HouseMaps[a] | HouseMaps[b] | HouseMaps[c] | HouseMaps[d];
+						var overlap = (HouseMaps[a] | HouseMaps[b]) & (HouseMaps[c] | HouseMaps[d]);
 						short blockMask = overlap.BlockMask;
 						for (int i = 0, count = 0; count < 4 && i < 16; i++)
 						{
@@ -66,25 +66,25 @@ public sealed unsafe partial class DominoLoopStepSearcher : IDominoLoopStepSearc
 							}
 						}
 
-						all &= RegionMaps[s[0]] | RegionMaps[s[1]] | RegionMaps[s[2]] | RegionMaps[s[3]];
+						all &= HouseMaps[s[0]] | HouseMaps[s[1]] | HouseMaps[s[2]] | HouseMaps[s[3]];
 						all -= overlap;
 
 						SkLoopTable[n] = new int[16];
 						int pos = 0;
-						foreach (int cell in all & RegionMaps[a])
+						foreach (int cell in all & HouseMaps[a])
 						{
 							SkLoopTable[n][pos++] = cell;
 						}
-						foreach (int cell in all & RegionMaps[d])
+						foreach (int cell in all & HouseMaps[d])
 						{
 							SkLoopTable[n][pos++] = cell;
 						}
-						int[] cells = (all & RegionMaps[b]).ToArray();
+						int[] cells = (all & HouseMaps[b]).ToArray();
 						SkLoopTable[n][pos++] = cells[2];
 						SkLoopTable[n][pos++] = cells[3];
 						SkLoopTable[n][pos++] = cells[0];
 						SkLoopTable[n][pos++] = cells[1];
-						cells = (all & RegionMaps[c]).ToArray();
+						cells = (all & HouseMaps[c]).ToArray();
 						SkLoopTable[n][pos++] = cells[2];
 						SkLoopTable[n][pos++] = cells[3];
 						SkLoopTable[n][pos++] = cells[0];
@@ -100,7 +100,7 @@ public sealed unsafe partial class DominoLoopStepSearcher : IDominoLoopStepSearc
 	public Step? GetAll(ICollection<Step> accumulator, in Grid grid, bool onlyFindOne)
 	{
 		short* pairs = stackalloc short[8], tempLink = stackalloc short[8];
-		int* linkRegion = stackalloc int[8];
+		int* linkHouse = stackalloc int[8];
 		foreach (int[] cells in SkLoopTable)
 		{
 			// Initialize the elements.
@@ -108,7 +108,7 @@ public sealed unsafe partial class DominoLoopStepSearcher : IDominoLoopStepSearc
 			for (i = 0; i < 8; i++)
 			{
 				pairs[i] = default;
-				linkRegion[i] = default;
+				linkHouse[i] = default;
 			}
 
 			// Get the values count ('n') and pairs list ('pairs').
@@ -196,19 +196,19 @@ public sealed unsafe partial class DominoLoopStepSearcher : IDominoLoopStepSearc
 				}
 
 				// Check elimination map.
-				linkRegion[0] = cells[0].ToRegionIndex(Region.Row);
-				linkRegion[1] = cells[2].ToRegionIndex(Region.Block);
-				linkRegion[2] = cells[4].ToRegionIndex(Region.Column);
-				linkRegion[3] = cells[6].ToRegionIndex(Region.Block);
-				linkRegion[4] = cells[8].ToRegionIndex(Region.Row);
-				linkRegion[5] = cells[10].ToRegionIndex(Region.Block);
-				linkRegion[6] = cells[12].ToRegionIndex(Region.Column);
-				linkRegion[7] = cells[14].ToRegionIndex(Region.Block);
+				linkHouse[0] = cells[0].ToHouseIndex(HouseType.Row);
+				linkHouse[1] = cells[2].ToHouseIndex(HouseType.Block);
+				linkHouse[2] = cells[4].ToHouseIndex(HouseType.Column);
+				linkHouse[3] = cells[6].ToHouseIndex(HouseType.Block);
+				linkHouse[4] = cells[8].ToHouseIndex(HouseType.Row);
+				linkHouse[5] = cells[10].ToHouseIndex(HouseType.Block);
+				linkHouse[6] = cells[12].ToHouseIndex(HouseType.Column);
+				linkHouse[7] = cells[14].ToHouseIndex(HouseType.Block);
 				var conclusions = new List<Conclusion>();
 				var map = cells & EmptyMap;
 				for (k = 0; k < 8; k++)
 				{
-					if ((RegionMaps[linkRegion[k]] & EmptyMap) - map is not { Count: not 0 } elimMap)
+					if ((HouseMaps[linkHouse[k]] & EmptyMap) - map is not { Count: not 0 } elimMap)
 					{
 						continue;
 					}
@@ -237,8 +237,8 @@ public sealed unsafe partial class DominoLoopStepSearcher : IDominoLoopStepSearc
 				short[] link = new short[27];
 				for (k = 0; k < 8; k++)
 				{
-					link[linkRegion[k]] = tempLink[k];
-					foreach (int cell in map & RegionMaps[linkRegion[k]])
+					link[linkHouse[k]] = tempLink[k];
+					foreach (int cell in map & HouseMaps[linkHouse[k]])
 					{
 						short cands = (short)(grid.GetCandidates(cell) & tempLink[k]);
 						if (cands == 0)

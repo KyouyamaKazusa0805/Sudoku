@@ -32,7 +32,7 @@ public sealed unsafe partial class AlmostLockedSetsXyWingStepSearcher : IAlmostL
 				var map2 = als2.Map;
 				short mask2 = als2.DigitsMask;
 				var map = map1 | map2;
-				if (map.InOneRegion || (map1 & map2) is not [])
+				if (map.InOneHouse || (map1 & map2) is not [])
 				{
 					continue;
 				}
@@ -42,7 +42,7 @@ public sealed unsafe partial class AlmostLockedSetsXyWingStepSearcher : IAlmostL
 					short rccMask = 0;
 					foreach (int digit in mask)
 					{
-						if ((map & CandMaps[digit]).InOneRegion)
+						if ((map & CandMaps[digit]).InOneHouse)
 						{
 							rccMask |= (short)(1 << digit);
 						}
@@ -82,7 +82,7 @@ public sealed unsafe partial class AlmostLockedSetsXyWingStepSearcher : IAlmostL
 						? (als12, als21, als11)
 						: als12 == als21 ? (als11, als22, als12) : (als11, als21, als12);
 
-				int aRegion = a.Region, bRegion = b.Region, cRegion = c.Region;
+				int aHouse = a.House, bHouse = b.House, cHouse = c.House;
 				short aMask = a.DigitsMask, bMask = b.DigitsMask;
 				Cells aMap = a.Map, bMap = b.Map, cMap = c.Map;
 				var map = aMap | bMap;
@@ -195,11 +195,11 @@ public sealed unsafe partial class AlmostLockedSetsXyWingStepSearcher : IAlmostL
 							ImmutableArray.Create(
 								View.Empty
 									+ candidateOffsets
-									+ new RegionViewNode[]
+									+ new HouseViewNode[]
 									{
-										new(101, aRegion),
-										new(102, bRegion),
-										new(103, cRegion)
+										new(101, aHouse),
+										new(102, bHouse),
+										new(103, cHouse)
 									}
 							),
 							a,

@@ -28,13 +28,13 @@ public sealed unsafe partial class AlmostLockedSetsXzStepSearcher : IAlmostLocke
 		for (int i = 0, length = alses.Length, iterationLengthOuter = length - 1; i < iterationLengthOuter; i++)
 		{
 			var als1 = alses[i];
-			int region1 = als1.Region;
+			int house1 = als1.House;
 			short mask1 = als1.DigitsMask;
 			Cells map1 = als1.Map, possibleElimMap1 = als1.PossibleEliminationMap;
 			for (int j = i + 1; j < length; j++)
 			{
 				var als2 = alses[j];
-				int region2 = als2.Region;
+				int house2 = als2.House;
 				short mask2 = als2.DigitsMask;
 				Cells map2 = als2.Map, possibleElimMap2 = als2.PossibleEliminationMap;
 				short xzMask = (short)(mask1 & mask2);
@@ -54,7 +54,7 @@ public sealed unsafe partial class AlmostLockedSetsXzStepSearcher : IAlmostLocke
 
 				// If the number of digits that both two ALSes contain is only one (or zero),
 				// the ALS-XZ won't be formed.
-				if (PopCount((uint)xzMask) < 2 || map.AllSetsAreInOneRegion(out int region))
+				if (PopCount((uint)xzMask) < 2 || map.AllSetsAreInOneHouse(out int houseIndex))
 				{
 					continue;
 				}
@@ -63,11 +63,11 @@ public sealed unsafe partial class AlmostLockedSetsXzStepSearcher : IAlmostLocke
 				int nh = 0;
 				foreach (int digit in xzMask)
 				{
-					if ((map & CandMaps[digit]).AllSetsAreInOneRegion(out region))
+					if ((map & CandMaps[digit]).AllSetsAreInOneHouse(out houseIndex))
 					{
 						// 'digit' is the RCC digit.
 						rccMask |= (short)(1 << digit);
-						house[nh++] = region;
+						house[nh++] = houseIndex;
 					}
 					else
 					{
@@ -123,7 +123,7 @@ public sealed unsafe partial class AlmostLockedSetsXzStepSearcher : IAlmostLocke
 					int k = 0;
 					foreach (int digit in rccMask)
 					{
-						foreach (int cell in (RegionMaps[house[k]] & CandMaps[digit]) - map)
+						foreach (int cell in (HouseMaps[house[k]] & CandMaps[digit]) - map)
 						{
 							conclusions.Add(new(ConclusionType.Elimination, cell, digit));
 						}
@@ -226,7 +226,7 @@ public sealed unsafe partial class AlmostLockedSetsXzStepSearcher : IAlmostLocke
 					ImmutableArray.Create(
 						View.Empty
 							+ candidateOffsets
-							+ (isEsp ? null : new RegionViewNode[] { new(0, region1), new(1, region2) })
+							+ (isEsp ? null : new HouseViewNode[] { new(0, house1), new(1, house2) })
 					),
 					als1,
 					als2,

@@ -7,11 +7,11 @@
 /// <param name="Views"><inheritdoc/></param>
 /// <param name="Map"><inheritdoc/></param>
 /// <param name="DigitsMask"><inheritdoc/></param>
-/// <param name="ConjugateRegion">Indicates the cells that forms the conjugate region.</param>
+/// <param name="ConjugateHouse">Indicates the cells that forms the conjugate house.</param>
 /// <param name="ExtraMask">Indicates the extra digits mask.</param>
 public sealed record class UniquePolygonType4Step(
 	ImmutableArray<Conclusion> Conclusions, ImmutableArray<View> Views,
-	in Cells Map, short DigitsMask, in Cells ConjugateRegion, short ExtraMask) :
+	in Cells Map, short DigitsMask, in Cells ConjugateHouse, short ExtraMask) :
 	UniquePolygonStep(Conclusions, Views, Map, DigitsMask)
 {
 	/// <inheritdoc/>
@@ -28,9 +28,9 @@ public sealed record class UniquePolygonType4Step(
 	}
 
 	[FormatItem]
-	internal string ConjRegionStr
+	internal string ConjHouseStr
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => ConjugateRegion.ToString();
+		get => ConjugateHouse.ToString();
 	}
 }

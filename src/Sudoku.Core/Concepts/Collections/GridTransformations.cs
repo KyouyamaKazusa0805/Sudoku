@@ -206,29 +206,29 @@ public static unsafe class GridTransformations
 	}
 
 	/// <summary>
-	/// Swap to regions.
+	/// Swap to houses.
 	/// </summary>
 	/// <param name="this">The grid.</param>
-	/// <param name="region1">The region 1.</param>
-	/// <param name="region2">The region 2.</param>
+	/// <param name="houseIndex1">The house 1 to be swapped.</param>
+	/// <param name="houseIndex2">The house 2 to be swapped.</param>
 	/// <returns>The result.</returns>
 	/// <exception cref="ArgumentException">
-	/// Throws when two specified region argument is not in valid range (0..27)
-	/// or two regions are not in same region type.
+	/// Throws when two specified house argument is not in valid range (0..27)
+	/// or two houses are not in same house type.
 	/// </exception>
-	public static Grid SwapTwoRegions(this in Grid @this, int region1, int region2)
+	public static Grid SwapTwoHouses(this in Grid @this, int houseIndex1, int houseIndex2)
 	{
-		if (region1 is < 0 or >= 18)
+		if (houseIndex1 is not (>= 9 and < 27))
 		{
-			throw new ArgumentException("The specified argument is out of valid range.", nameof(region1));
+			throw new ArgumentException("The specified argument is out of valid range.", nameof(houseIndex1));
 		}
-		if (region2 is < 0 or >= 18)
+		if (houseIndex2 is not (>= 9 and < 27))
 		{
-			throw new ArgumentException("The specified argument is out of valid range.", nameof(region2));
+			throw new ArgumentException("The specified argument is out of valid range.", nameof(houseIndex2));
 		}
-		if (region1 / 9 != region2 / 9)
+		if (houseIndex1 / 9 != houseIndex2 / 9)
 		{
-			throw new ArgumentException("Two region should be the same region type.");
+			throw new ArgumentException("Two houses should be the same house type.");
 		}
 
 		var result = @this;
@@ -236,7 +236,7 @@ public static unsafe class GridTransformations
 		{
 			for (int i = 0; i < 9; i++)
 			{
-				PointerMarshal.Swap(pResult + RegionCells[region1][i], pThis + RegionCells[region2][i]);
+				PointerMarshal.Swap(pResult + HouseCells[houseIndex1][i], pThis + HouseCells[houseIndex2][i]);
 			}
 		}
 

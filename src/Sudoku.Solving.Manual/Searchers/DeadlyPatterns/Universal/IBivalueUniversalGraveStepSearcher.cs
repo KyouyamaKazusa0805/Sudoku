@@ -69,13 +69,13 @@ public unsafe interface IBivalueUniversalGraveStepSearcher : IUniversalStepSearc
 
 				fixed (int* p = span)
 				{
-					cell.CopyRegionInfo(p);
+					cell.CopyHouseInfo(p);
 				}
-				foreach (int region in span)
+				foreach (int house in span)
 				{
-					if ((map & RegionMaps[region]).Count > 2)
+					if ((map & HouseMaps[house]).Count > 2)
 					{
-						// The specified region contains at least three positions to fill with the digit,
+						// The specified house contains at least three positions to fill with the digit,
 						// which is invalid in any BUG + n patterns.
 						goto ReturnFalse;
 					}
@@ -129,11 +129,11 @@ public unsafe interface IBivalueUniversalGraveStepSearcher : IUniversalStepSearc
 
 					fixed (int* p = playground)
 					{
-						currentCell.CopyRegionInfo(p);
+						currentCell.CopyHouseInfo(p);
 					}
-					foreach (int region in playground)
+					foreach (int house in playground)
 					{
-						if ((temp & RegionMaps[region]).Count > 2)
+						if ((temp & HouseMaps[house]).Count > 2)
 						{
 							@continue = false;
 							break;

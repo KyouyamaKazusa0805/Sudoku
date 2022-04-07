@@ -44,10 +44,10 @@ public sealed record class EmptyRectangleStep(
 	}
 
 	[FormatItem]
-	internal string RegionStr
+	internal string HouseStr
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => new RegionCollection(Block).ToString();
+		get => new HouseCollection(Block).ToString();
 	}
 
 	[FormatItem]
