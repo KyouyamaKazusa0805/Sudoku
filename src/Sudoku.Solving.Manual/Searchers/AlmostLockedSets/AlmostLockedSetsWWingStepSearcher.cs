@@ -16,14 +16,14 @@ public sealed unsafe partial class AlmostLockedSetsWWingStepSearcher : IAlmostLo
 		var alses = IAlmostLockedSetsStepSearcher.Gather(grid);
 
 		// Gather all conjugate pairs.
-		var conjugatePairs = new ICollection<ConjugatePair>?[9];
+		var conjugatePairs = new ICollection<Conjugate>?[9];
 		for (int digit = 0; digit < 9; digit++)
 		{
 			for (int houseIndex = 0; houseIndex < 27; houseIndex++)
 			{
 				if ((HouseMaps[houseIndex] & CandMaps[digit]) is { Count: 2 } temp)
 				{
-					(conjugatePairs[digit] ??= new List<ConjugatePair>()).Add(new(temp, digit));
+					(conjugatePairs[digit] ??= new List<Conjugate>()).Add(new(temp, digit));
 				}
 			}
 		}

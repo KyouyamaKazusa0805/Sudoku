@@ -3849,7 +3849,7 @@
             <param name="WDigitsMask">Indicates the mask that holds the W digit.</param>
             <param name="X">Indicates the X digit.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Steps.AlmostLockedSetsWWingStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Concepts.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},Sudoku.Concepts.Solving.AlmostLockedSet,Sudoku.Concepts.Solving.AlmostLockedSet,Sudoku.Concepts.ConjugatePair@,System.Int16,System.Int32)">
+        <member name="M:Sudoku.Solving.Manual.Steps.AlmostLockedSetsWWingStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Concepts.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},Sudoku.Concepts.Solving.AlmostLockedSet,Sudoku.Concepts.Solving.AlmostLockedSet,Sudoku.Concepts.Conjugate@,System.Int16,System.Int32)">
             <summary>
             Provides with a step that is an <b>Almost Locked Sets W-Wing</b> technique.
             </summary>
@@ -4507,7 +4507,7 @@
             <param name="DigitsMask"><inheritdoc/></param>
             <param name="ConjugatePair">Indicates the conjugate pair used.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Steps.ExtendedRectangleType4Step.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Concepts.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},Sudoku.Concepts.Collections.Cells@,System.Int16,Sudoku.Concepts.ConjugatePair@)">
+        <member name="M:Sudoku.Solving.Manual.Steps.ExtendedRectangleType4Step.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Concepts.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},Sudoku.Concepts.Collections.Cells@,System.Int16,Sudoku.Concepts.Conjugate@)">
             <summary>
             Provides with a step that is an <b>Extended Rectangle Type 4</b> technique.
             </summary>
@@ -4727,7 +4727,7 @@
             <param name="Loop"><inheritdoc/></param>
             <param name="ConjugatePair">Indicates the conjugate pair used.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Steps.UniqueLoopType4Step.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Concepts.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},System.Int32,System.Int32,Sudoku.Concepts.Collections.Cells@,Sudoku.Concepts.ConjugatePair@)">
+        <member name="M:Sudoku.Solving.Manual.Steps.UniqueLoopType4Step.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Concepts.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},System.Int32,System.Int32,Sudoku.Concepts.Collections.Cells@,Sudoku.Concepts.Conjugate@)">
             <summary>
             Provides with a step that is a <b>Unique Loop Type 4</b> technique.
             </summary>
@@ -5108,7 +5108,7 @@
             <param name="Pattern"><inheritdoc/></param>
             <param name="ConjugatePair">Indicates the conjugate pair used.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Steps.QiuDeadlyPatternType4Step.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Concepts.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},Sudoku.Concepts.Solving.QiuDeadlyPattern@,Sudoku.Concepts.ConjugatePair@)">
+        <member name="M:Sudoku.Solving.Manual.Steps.QiuDeadlyPatternType4Step.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Concepts.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},Sudoku.Concepts.Solving.QiuDeadlyPattern@,Sudoku.Concepts.Conjugate@)">
             <summary>
             Provides with a step that is a <b>Qiu's Deadly Pattern Type 4</b> technique.
             </summary>
@@ -5194,7 +5194,7 @@
             <param name="ConjugatePairs"><inheritdoc/></param>
             <param name="AbsoluteOffset"><inheritdoc/></param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Steps.HiddenUniqueRectangleStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Concepts.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},System.Int32,System.Int32,Sudoku.Concepts.Collections.Cells@,System.Boolean,Sudoku.Concepts.ConjugatePair[],System.Int32)">
+        <member name="M:Sudoku.Solving.Manual.Steps.HiddenUniqueRectangleStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Concepts.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},System.Int32,System.Int32,Sudoku.Concepts.Collections.Cells@,System.Boolean,Sudoku.Concepts.Conjugate[],System.Int32)">
             <summary>
             Provides with a step that is a <b>Hidden Unique Rectangle</b> technique.
             </summary>
@@ -5599,7 +5599,7 @@
             <param name="ConjugatePairs">Indicates the conjugate pairs used.</param>
             <param name="AbsoluteOffset"><inheritdoc/></param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Steps.UniqueRectangleWithConjugatePairStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Concepts.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},Sudoku.Concepts.Solving.Technique,System.Int32,System.Int32,Sudoku.Concepts.Collections.Cells@,System.Boolean,Sudoku.Concepts.ConjugatePair[],System.Int32)">
+        <member name="M:Sudoku.Solving.Manual.Steps.UniqueRectangleWithConjugatePairStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Concepts.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},Sudoku.Concepts.Solving.Technique,System.Int32,System.Int32,Sudoku.Concepts.Collections.Cells@,System.Boolean,Sudoku.Concepts.Conjugate[],System.Int32)">
             <summary>
             Provides with a step that is a <b>Unique Rectangle with Conjugate Pair(s)</b> technique.
             </summary>
@@ -6302,7 +6302,7 @@
             <param name="Cells">Indicates the cells used.</param>
             <param name="ConjugatePair">Indicates the conjugate pair used.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Steps.BivalueUniversalGraveType4Step.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Concepts.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},System.Int16,Sudoku.Concepts.Collections.Cells@,Sudoku.Concepts.ConjugatePair@)">
+        <member name="M:Sudoku.Solving.Manual.Steps.BivalueUniversalGraveType4Step.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Concepts.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},System.Int16,Sudoku.Concepts.Collections.Cells@,Sudoku.Concepts.Conjugate@)">
             <summary>
             Provides with a step that is a <b>Bivalue Universal Grave Type 4</b> technique.
             </summary>
@@ -8039,7 +8039,7 @@
             <param name="Block">Indicates the block that the empty rectangle structure formed.</param>
             <param name="ConjugatePair">Indicates the conjugate pair used.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Steps.EmptyRectangleStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Concepts.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},System.Int32,System.Int32,Sudoku.Concepts.ConjugatePair@)">
+        <member name="M:Sudoku.Solving.Manual.Steps.EmptyRectangleStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Concepts.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},System.Int32,System.Int32,Sudoku.Concepts.Conjugate@)">
             <summary>
             Provides with a step that is an <b>Empty Rectangle</b> technique.
             </summary>
@@ -8856,7 +8856,7 @@
             Indicates the conjugate pair that connects cells <see cref="P:Sudoku.Solving.Manual.Steps.WWingStep.StartCell"/> and <see cref="P:Sudoku.Solving.Manual.Steps.WWingStep.EndCell"/>.
             </param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Steps.WWingStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Concepts.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},System.Int32,System.Int32,Sudoku.Concepts.ConjugatePair@)">
+        <member name="M:Sudoku.Solving.Manual.Steps.WWingStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Concepts.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},System.Int32,System.Int32,Sudoku.Concepts.Conjugate@)">
             <summary>
             Provides with a step that is a <b>W-Wing</b> technique.
             </summary>

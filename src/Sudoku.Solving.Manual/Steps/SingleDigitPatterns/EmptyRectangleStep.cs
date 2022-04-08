@@ -10,7 +10,7 @@
 /// <param name="ConjugatePair">Indicates the conjugate pair used.</param>
 public sealed record class EmptyRectangleStep(
 	ImmutableArray<Conclusion> Conclusions, ImmutableArray<View> Views,
-	int Digit, int Block, in ConjugatePair ConjugatePair) :
+	int Digit, int Block, in Conjugate ConjugatePair) :
 	SingleDigitPatternStep(Conclusions, Views, Digit),
 	IChainLikeStep,
 	IStepWithRank

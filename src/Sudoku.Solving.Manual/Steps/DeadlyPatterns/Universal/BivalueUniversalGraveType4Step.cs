@@ -10,7 +10,7 @@
 /// <param name="ConjugatePair">Indicates the conjugate pair used.</param>
 public sealed record class BivalueUniversalGraveType4Step(
 	ImmutableArray<Conclusion> Conclusions, ImmutableArray<View> Views,
-	short DigitsMask, in Cells Cells, in ConjugatePair ConjugatePair) :
+	short DigitsMask, in Cells Cells, in Conjugate ConjugatePair) :
 	BivalueUniversalGraveStep(Conclusions, Views),
 	IStepWithPhasedDifficulty
 {

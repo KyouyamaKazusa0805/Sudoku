@@ -9,7 +9,7 @@
 /// <param name="ConjugatePair">Indicates the conjugate pair used.</param>
 public sealed record class QiuDeadlyPatternType4Step(
 	ImmutableArray<Conclusion> Conclusions, ImmutableArray<View> Views,
-	in QiuDeadlyPattern Pattern, in ConjugatePair ConjugatePair) :
+	in QiuDeadlyPattern Pattern, in Conjugate ConjugatePair) :
 	QiuDeadlyPatternStep(Conclusions, Views, Pattern),
 	IStepWithPhasedDifficulty
 {

@@ -13,7 +13,7 @@
 /// <param name="AbsoluteOffset"><inheritdoc/></param>
 public sealed record class HiddenUniqueRectangleStep(
 	ImmutableArray<Conclusion> Conclusions, ImmutableArray<View> Views, int Digit1, int Digit2,
-	in Cells Cells, bool IsAvoidable, ConjugatePair[] ConjugatePairs, int AbsoluteOffset) :
+	in Cells Cells, bool IsAvoidable, Conjugate[] ConjugatePairs, int AbsoluteOffset) :
 	UniqueRectangleWithConjugatePairStep(
 		Conclusions, Views,
 		IsAvoidable ? Technique.HiddenAvoidableRectangle : Technique.HiddenUniqueRectangle,

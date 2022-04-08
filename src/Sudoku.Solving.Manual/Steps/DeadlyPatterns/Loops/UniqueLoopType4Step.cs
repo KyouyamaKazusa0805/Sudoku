@@ -11,7 +11,7 @@
 /// <param name="ConjugatePair">Indicates the conjugate pair used.</param>
 public sealed record class UniqueLoopType4Step(
 	ImmutableArray<Conclusion> Conclusions, ImmutableArray<View> Views,
-	int Digit1, int Digit2, in Cells Loop, in ConjugatePair ConjugatePair) :
+	int Digit1, int Digit2, in Cells Loop, in Conjugate ConjugatePair) :
 	UniqueLoopStep(Conclusions, Views, Digit1, Digit2, Loop)
 {
 	/// <inheritdoc/>

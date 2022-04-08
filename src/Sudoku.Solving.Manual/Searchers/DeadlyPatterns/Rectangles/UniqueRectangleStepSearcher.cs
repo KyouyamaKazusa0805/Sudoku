@@ -781,7 +781,7 @@ public sealed unsafe partial class UniqueRectangleStepSearcher : IUniqueRectangl
 						d2,
 						urCells,
 						arMode,
-						new ConjugatePair[] { new(offsets[0], offsets[1], digit) },
+						new Conjugate[] { new(offsets[0], offsets[1], digit) },
 						index
 					)
 				);
@@ -999,7 +999,7 @@ public sealed unsafe partial class UniqueRectangleStepSearcher : IUniqueRectangl
 					d2,
 					urCells,
 					false,
-					new ConjugatePair[]
+					new Conjugate[]
 					{
 						new(corner1, isRow ? o1 : o2, digit),
 						new(corner2, isRow ? o2 : o1, digit)
@@ -1110,7 +1110,7 @@ public sealed unsafe partial class UniqueRectangleStepSearcher : IUniqueRectangl
 					d2,
 					urCells,
 					arMode,
-					new ConjugatePair[] { new(abzCell, abxCell, digit), new(abzCell, abyCell, digit) },
+					new Conjugate[] { new(abzCell, abxCell, digit), new(abzCell, abyCell, digit) },
 					index
 				)
 			);
@@ -1406,7 +1406,7 @@ public sealed unsafe partial class UniqueRectangleStepSearcher : IUniqueRectangl
 								d2,
 								urCells,
 								arMode,
-								new ConjugatePair[] { new(cell, otherCell, digit) },
+								new Conjugate[] { new(cell, otherCell, digit) },
 								index
 							)
 						);
@@ -1559,7 +1559,7 @@ public sealed unsafe partial class UniqueRectangleStepSearcher : IUniqueRectangl
 								d2,
 								urCells,
 								arMode,
-								new ConjugatePair[] { new(cell, otherCell, digit) },
+								new Conjugate[] { new(cell, otherCell, digit) },
 								index
 							)
 						);
@@ -1813,7 +1813,7 @@ public sealed unsafe partial class UniqueRectangleStepSearcher : IUniqueRectangl
 					d2,
 					urCells,
 					arMode,
-					new ConjugatePair[] { new(abxCell, abzCell, b), new(abyCell, abzCell, a) },
+					new Conjugate[] { new(abxCell, abzCell, b), new(abyCell, abzCell, a) },
 					index
 				)
 			);
@@ -1921,7 +1921,7 @@ public sealed unsafe partial class UniqueRectangleStepSearcher : IUniqueRectangl
 					continue;
 				}
 
-				var conjugatePairs = new ConjugatePair[] { new(cornerCell, begin, a), new(begin, abzCell, b) };
+				var conjugatePairs = new Conjugate[] { new(cornerCell, begin, a), new(begin, abzCell, b) };
 				accumulator.Add(
 					new UniqueRectangleWithConjugatePairStep(
 						ImmutableArray.Create(new Conclusion(ConclusionType.Elimination, end, a)),
@@ -2041,7 +2041,7 @@ public sealed unsafe partial class UniqueRectangleStepSearcher : IUniqueRectangl
 					continue;
 				}
 
-				var conjugatePairs = new ConjugatePair[] { new(cornerCell, end, a), new(begin, abzCell, b) };
+				var conjugatePairs = new Conjugate[] { new(cornerCell, end, a), new(begin, abzCell, b) };
 				accumulator.Add(
 					new UniqueRectangleWithConjugatePairStep(
 						ImmutableArray.Create(new Conclusion(ConclusionType.Elimination, begin, a)),
@@ -2161,7 +2161,7 @@ public sealed unsafe partial class UniqueRectangleStepSearcher : IUniqueRectangl
 					continue;
 				}
 
-				var conjugatePairs = new ConjugatePair[] { new(cornerCell, end, a), new(begin, abzCell, a) };
+				var conjugatePairs = new Conjugate[] { new(cornerCell, end, a), new(begin, abzCell, a) };
 				accumulator.Add(
 					new UniqueRectangleWithConjugatePairStep(
 						ImmutableArray.Create(new Conclusion(ConclusionType.Elimination, abzCell, b)),
@@ -2299,7 +2299,7 @@ public sealed unsafe partial class UniqueRectangleStepSearcher : IUniqueRectangl
 					continue;
 				}
 
-				var conjugatePairs = new ConjugatePair[]
+				var conjugatePairs = new Conjugate[]
 				{
 					new(head, begin, a),
 					new(begin, end, b),
@@ -2451,7 +2451,7 @@ public sealed unsafe partial class UniqueRectangleStepSearcher : IUniqueRectangl
 					}
 
 					int[] offsets = linkMap.ToArray();
-					var conjugatePairs = new ConjugatePair[]
+					var conjugatePairs = new Conjugate[]
 					{
 						new(abx, aby, a),
 						new(aby, abw, a),

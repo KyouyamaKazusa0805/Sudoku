@@ -12,7 +12,7 @@
 /// <param name="X">Indicates the X digit.</param>
 public sealed record class AlmostLockedSetsWWingStep(
 	ImmutableArray<Conclusion> Conclusions, ImmutableArray<View> Views,
-	AlmostLockedSet Als1, AlmostLockedSet Als2, in ConjugatePair ConjugatePair,
+	AlmostLockedSet Als1, AlmostLockedSet Als2, in Conjugate ConjugatePair,
 	short WDigitsMask, int X) : AlmostLockedSetsStep(Conclusions, Views)
 {
 	/// <inheritdoc/>

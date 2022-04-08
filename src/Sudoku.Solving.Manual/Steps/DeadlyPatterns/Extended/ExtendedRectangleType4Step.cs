@@ -10,7 +10,7 @@
 /// <param name="ConjugatePair">Indicates the conjugate pair used.</param>
 public sealed record class ExtendedRectangleType4Step(
 	ImmutableArray<Conclusion> Conclusions, ImmutableArray<View> Views,
-	in Cells Cells, short DigitsMask, in ConjugatePair ConjugatePair) :
+	in Cells Cells, short DigitsMask, in Conjugate ConjugatePair) :
 	ExtendedRectangleStep(Conclusions, Views, Cells, DigitsMask),
 	IStepWithPhasedDifficulty
 {
