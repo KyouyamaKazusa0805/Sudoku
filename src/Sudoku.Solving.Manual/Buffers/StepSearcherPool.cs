@@ -1,6 +1,6 @@
 ﻿#nullable disable warnings
 
-namespace Sudoku.Solving.Manual.Buffer;
+namespace Sudoku.Solving.Manual.Buffers;
 
 /// <summary>
 /// Indicates a pool that stores the <see cref="IStepSearcher"/>s.

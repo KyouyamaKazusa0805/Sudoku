@@ -24,7 +24,7 @@ global using Sudoku.Presentation.Nodes;
 global using Sudoku.Resources;
 global using Sudoku.Runtime.Reflection;
 global using Sudoku.Solving.Manual;
-global using Sudoku.Solving.Manual.Buffer;
+global using Sudoku.Solving.Manual.Buffers;
 global using Sudoku.Solving.Manual.Checkers;
 global using Sudoku.Solving.Manual.Searchers;
 global using Sudoku.Solving.Manual.Steps;
@@ -34,7 +34,7 @@ global using static System.Math;
 global using static System.Numerics.BitOperations;
 global using static Sudoku.Resources.MergedResources;
 global using static Sudoku.Runtime.AnalysisServices.CommonReadOnlies;
-global using static Sudoku.Solving.Manual.Buffer.FastProperties;
+global using static Sudoku.Solving.Manual.Buffers.FastProperties;
 
 [assembly: SearcherConfiguration<SingleStepSearcher>(1, DisplayingLevel.A)]
 [assembly: SearcherConfiguration<LockedCandidatesStepSearcher>(2, DisplayingLevel.A)]

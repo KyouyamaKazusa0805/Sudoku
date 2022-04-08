@@ -4,7 +4,7 @@
         <name>Sudoku.Solving.Manual</name>
     </assembly>
     <members>
-        <member name="T:Sudoku.Solving.Manual.Buffer.FastProperties">
+        <member name="T:Sudoku.Solving.Manual.Buffers.FastProperties">
             <summary>
             Provides and encapsulates the fast properties that is used in solving and analyzing a sudoku puzzle.
             </summary>
@@ -17,111 +17,111 @@
             </para>
             <para>
             Some step searchers rely on this type. If you want to call them separately, you should ensure the method
-            <see cref="M:Sudoku.Solving.Manual.Buffer.FastProperties.InitializeMaps(Sudoku.Concepts.Collections.Grid@)"/> in this type must be called before using these properties.
+            <see cref="M:Sudoku.Solving.Manual.Buffers.FastProperties.InitializeMaps(Sudoku.Concepts.Collections.Grid@)"/> in this type must be called before using these properties.
             </para>
             <para>
             If a step searcher doesn't rely on this class, it'll be <see langword="true"/> for the property named
             <see cref="P:Sudoku.Solving.Manual.StepSearcherOptionsAttribute.IsDirect"/>.
             If you find that the step searcher marks that attribute,
             you can call it everywhere safely; however, if the searcher isn't marked that attribute, you
-            can't call it everywhere unless you call the method <see cref="M:Sudoku.Solving.Manual.Buffer.FastProperties.InitializeMaps(Sudoku.Concepts.Collections.Grid@)"/>.
+            can't call it everywhere unless you call the method <see cref="M:Sudoku.Solving.Manual.Buffers.FastProperties.InitializeMaps(Sudoku.Concepts.Collections.Grid@)"/>.
             </para>
             <para>
             Please note, all names of properties in this class can also be found in <see cref="T:Sudoku.Concepts.Collections.Grid"/>,
             which means you can also call the property by <see cref="T:Sudoku.Concepts.Collections.Grid"/>. Of course, some of them
             doesn't contain the same one in <see cref="T:Sudoku.Concepts.Collections.Grid"/>, but you can find a same property whose
             execution logic (handling logic) is totally same.
-            For example, <see cref="P:Sudoku.Solving.Manual.Buffer.FastProperties.EmptyMap"/> is same as <see cref="P:Sudoku.Concepts.Collections.Grid.EmptyCells"/>. The difference
-            between them is that you shouldn't use <see cref="P:Sudoku.Solving.Manual.Buffer.FastProperties.EmptyMap"/> until you have called
-            <see cref="M:Sudoku.Solving.Manual.Buffer.FastProperties.InitializeMaps(Sudoku.Concepts.Collections.Grid@)"/>, while <see cref="P:Sudoku.Concepts.Collections.Grid.EmptyCells"/> can be used
+            For example, <see cref="P:Sudoku.Solving.Manual.Buffers.FastProperties.EmptyMap"/> is same as <see cref="P:Sudoku.Concepts.Collections.Grid.EmptyCells"/>. The difference
+            between them is that you shouldn't use <see cref="P:Sudoku.Solving.Manual.Buffers.FastProperties.EmptyMap"/> until you have called
+            <see cref="M:Sudoku.Solving.Manual.Buffers.FastProperties.InitializeMaps(Sudoku.Concepts.Collections.Grid@)"/>, while <see cref="P:Sudoku.Concepts.Collections.Grid.EmptyCells"/> can be used
             everywhere, because it isn't an instant property (which means the calculation begins
             when you called them, i.e. lazy ones; in contrast, some properties only store values directly,
             so their values can be got instantly, i.e. instant ones).
             </para>
             </remarks>
-            <seealso cref="M:Sudoku.Solving.Manual.Buffer.FastProperties.InitializeMaps(Sudoku.Concepts.Collections.Grid@)"/>
+            <seealso cref="M:Sudoku.Solving.Manual.Buffers.FastProperties.InitializeMaps(Sudoku.Concepts.Collections.Grid@)"/>
             <seealso cref="T:Sudoku.Solving.Manual.ManualSolver"/>
             <seealso cref="P:Sudoku.Solving.Manual.StepSearcherOptionsAttribute.IsDirect"/>
             <seealso cref="T:Sudoku.Concepts.Collections.Grid"/>
         </member>
-        <member name="P:Sudoku.Solving.Manual.Buffer.FastProperties.EmptyMap">
+        <member name="P:Sudoku.Solving.Manual.Buffers.FastProperties.EmptyMap">
             <summary>
             The empty cells map.
             </summary>
             <remarks>
-            This map <b>should</b> be used after <see cref="M:Sudoku.Solving.Manual.Buffer.FastProperties.InitializeMaps(Sudoku.Concepts.Collections.Grid@)"/> called, and you<b>'d better</b>
+            This map <b>should</b> be used after <see cref="M:Sudoku.Solving.Manual.Buffers.FastProperties.InitializeMaps(Sudoku.Concepts.Collections.Grid@)"/> called, and you<b>'d better</b>
             not use this field on instances which are marked the attribute
             <see cref="P:Sudoku.Solving.Manual.StepSearcherOptionsAttribute.IsDirect"/>.
             </remarks>
-            <seealso cref="M:Sudoku.Solving.Manual.Buffer.FastProperties.InitializeMaps(Sudoku.Concepts.Collections.Grid@)"/>
+            <seealso cref="M:Sudoku.Solving.Manual.Buffers.FastProperties.InitializeMaps(Sudoku.Concepts.Collections.Grid@)"/>
             <seealso cref="P:Sudoku.Solving.Manual.StepSearcherOptionsAttribute.IsDirect"/>
         </member>
-        <member name="P:Sudoku.Solving.Manual.Buffer.FastProperties.BivalueMap">
+        <member name="P:Sudoku.Solving.Manual.Buffers.FastProperties.BivalueMap">
             <summary>
             The bi-value cells map.
             </summary>
             <remarks>
-            This map <b>should</b> be used after <see cref="M:Sudoku.Solving.Manual.Buffer.FastProperties.InitializeMaps(Sudoku.Concepts.Collections.Grid@)"/> called, and you<b>'d better</b>
+            This map <b>should</b> be used after <see cref="M:Sudoku.Solving.Manual.Buffers.FastProperties.InitializeMaps(Sudoku.Concepts.Collections.Grid@)"/> called, and you<b>'d better</b>
             not use this field on instances which are marked the attribute
             <see cref="P:Sudoku.Solving.Manual.StepSearcherOptionsAttribute.IsDirect"/>.
             </remarks>
-            <seealso cref="M:Sudoku.Solving.Manual.Buffer.FastProperties.InitializeMaps(Sudoku.Concepts.Collections.Grid@)"/>
+            <seealso cref="M:Sudoku.Solving.Manual.Buffers.FastProperties.InitializeMaps(Sudoku.Concepts.Collections.Grid@)"/>
             <seealso cref="P:Sudoku.Solving.Manual.StepSearcherOptionsAttribute.IsDirect"/>
         </member>
-        <member name="P:Sudoku.Solving.Manual.Buffer.FastProperties.CandMaps">
+        <member name="P:Sudoku.Solving.Manual.Buffers.FastProperties.CandMaps">
             <summary>
             The candidate maps.
             </summary>
             <remarks>
-            This map <b>should</b> be used after <see cref="M:Sudoku.Solving.Manual.Buffer.FastProperties.InitializeMaps(Sudoku.Concepts.Collections.Grid@)"/> called, and you<b>'d better</b>
+            This map <b>should</b> be used after <see cref="M:Sudoku.Solving.Manual.Buffers.FastProperties.InitializeMaps(Sudoku.Concepts.Collections.Grid@)"/> called, and you<b>'d better</b>
             not use this field on instances which are marked the attribute
             <see cref="P:Sudoku.Solving.Manual.StepSearcherOptionsAttribute.IsDirect"/>.
             </remarks>
-            <seealso cref="M:Sudoku.Solving.Manual.Buffer.FastProperties.InitializeMaps(Sudoku.Concepts.Collections.Grid@)"/>
+            <seealso cref="M:Sudoku.Solving.Manual.Buffers.FastProperties.InitializeMaps(Sudoku.Concepts.Collections.Grid@)"/>
             <seealso cref="P:Sudoku.Solving.Manual.StepSearcherOptionsAttribute.IsDirect"/>
         </member>
-        <member name="P:Sudoku.Solving.Manual.Buffer.FastProperties.DigitMaps">
+        <member name="P:Sudoku.Solving.Manual.Buffers.FastProperties.DigitMaps">
             <summary>
             The digit maps.
             </summary>
             <remarks>
-            This map <b>should</b> be used after <see cref="M:Sudoku.Solving.Manual.Buffer.FastProperties.InitializeMaps(Sudoku.Concepts.Collections.Grid@)"/> called, and you<b>'d better</b>
+            This map <b>should</b> be used after <see cref="M:Sudoku.Solving.Manual.Buffers.FastProperties.InitializeMaps(Sudoku.Concepts.Collections.Grid@)"/> called, and you<b>'d better</b>
             not use this field on instances which are marked the attribute
             <see cref="P:Sudoku.Solving.Manual.StepSearcherOptionsAttribute.IsDirect"/>.
             </remarks>
-            <seealso cref="M:Sudoku.Solving.Manual.Buffer.FastProperties.InitializeMaps(Sudoku.Concepts.Collections.Grid@)"/>
+            <seealso cref="M:Sudoku.Solving.Manual.Buffers.FastProperties.InitializeMaps(Sudoku.Concepts.Collections.Grid@)"/>
             <seealso cref="P:Sudoku.Solving.Manual.StepSearcherOptionsAttribute.IsDirect"/>
         </member>
-        <member name="P:Sudoku.Solving.Manual.Buffer.FastProperties.ValueMaps">
+        <member name="P:Sudoku.Solving.Manual.Buffers.FastProperties.ValueMaps">
             <summary>
             The value maps.
             </summary>
             <remarks>
-            This map <b>should</b> be used after <see cref="M:Sudoku.Solving.Manual.Buffer.FastProperties.InitializeMaps(Sudoku.Concepts.Collections.Grid@)"/> called, and you<b>'d better</b>
+            This map <b>should</b> be used after <see cref="M:Sudoku.Solving.Manual.Buffers.FastProperties.InitializeMaps(Sudoku.Concepts.Collections.Grid@)"/> called, and you<b>'d better</b>
             not use this field on instances which are marked the attribute
             <see cref="P:Sudoku.Solving.Manual.StepSearcherOptionsAttribute.IsDirect"/>.
             </remarks>
-            <seealso cref="M:Sudoku.Solving.Manual.Buffer.FastProperties.InitializeMaps(Sudoku.Concepts.Collections.Grid@)"/>
+            <seealso cref="M:Sudoku.Solving.Manual.Buffers.FastProperties.InitializeMaps(Sudoku.Concepts.Collections.Grid@)"/>
             <seealso cref="P:Sudoku.Solving.Manual.StepSearcherOptionsAttribute.IsDirect"/>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Buffer.FastProperties.InitializeMaps(Sudoku.Concepts.Collections.Grid@)">
+        <member name="M:Sudoku.Solving.Manual.Buffers.FastProperties.InitializeMaps(Sudoku.Concepts.Collections.Grid@)">
             <summary>
             Initialize the maps that used later.
             </summary>
             <param name="grid">The grid.</param>
         </member>
-        <member name="T:Sudoku.Solving.Manual.Buffer.StepSearcherPool">
+        <member name="T:Sudoku.Solving.Manual.Buffers.StepSearcherPool">
             <summary>
             Indicates a pool that stores the <see cref="T:Sudoku.Solving.Manual.Searchers.IStepSearcher"/>s.
             </summary>
             <seealso cref="T:Sudoku.Solving.Manual.Searchers.IStepSearcher"/>
         </member>
-        <member name="F:Sudoku.Solving.Manual.Buffer.StepSearcherPool.Collection">
+        <member name="F:Sudoku.Solving.Manual.Buffers.StepSearcherPool.Collection">
             <summary>
             The step searchers to find steps to apply to a certain puzzle.
             </summary>
         </member>
-        <member name="P:Sudoku.Solving.Manual.Buffer.StepSearcherPool.Searchers">
+        <member name="P:Sudoku.Solving.Manual.Buffers.StepSearcherPool.Searchers">
             <summary>
             Gets the <see cref="T:Sudoku.Solving.Manual.Searchers.IStepSearcher"/>s.
             </summary>
@@ -997,11 +997,11 @@
             Different with the original method <see cref="M:Sudoku.Concepts.Solving.AlmostLockedSet.Gather(Sudoku.Concepts.Collections.Grid@)"/>,
             this method will only uses the buffer to determine the info, which is unsafe
             when calling the method without having initialized those maps in the buffer type,
-            <see cref="T:Sudoku.Solving.Manual.Buffer.FastProperties"/>.
+            <see cref="T:Sudoku.Solving.Manual.Buffers.FastProperties"/>.
             </remarks>
             <seealso cref="T:Sudoku.Concepts.Solving.AlmostLockedSet"/>
             <seealso cref="M:Sudoku.Concepts.Solving.AlmostLockedSet.Gather(Sudoku.Concepts.Collections.Grid@)"/>
-            <seealso cref="T:Sudoku.Solving.Manual.Buffer.FastProperties"/>
+            <seealso cref="T:Sudoku.Solving.Manual.Buffers.FastProperties"/>
         </member>
         <member name="T:Sudoku.Solving.Manual.Searchers.IAlmostLockedSetsWWingStepSearcher">
             <summary>
@@ -3747,7 +3747,7 @@
             </para>
             <para>
             If <see langword="true"/>, the searcher can't use those <see langword="static"/>
-            properties such as <see cref="P:Sudoku.Solving.Manual.Buffer.FastProperties.CandMaps"/> in its method
+            properties such as <see cref="P:Sudoku.Solving.Manual.Buffers.FastProperties.CandMaps"/> in its method
             <see cref="M:Sudoku.Solving.Manual.Searchers.IStepSearcher.GetAll(System.Collections.Generic.ICollection{Sudoku.Solving.Manual.Steps.Step},Sudoku.Concepts.Collections.Grid@,System.Boolean)"/>.
             </para>
             <para><i>The default value is <see langword="false"/>.</i></para>
@@ -3756,15 +3756,15 @@
             <para>
             All disallowed properties are:
             <list type="bullet">
-            <item><see cref="P:Sudoku.Solving.Manual.Buffer.FastProperties.DigitMaps"/></item>
-            <item><see cref="P:Sudoku.Solving.Manual.Buffer.FastProperties.ValueMaps"/></item>
-            <item><see cref="P:Sudoku.Solving.Manual.Buffer.FastProperties.CandMaps"/></item>
-            <item><see cref="P:Sudoku.Solving.Manual.Buffer.FastProperties.BivalueMap"/></item>
-            <item><see cref="P:Sudoku.Solving.Manual.Buffer.FastProperties.EmptyMap"/></item>
+            <item><see cref="P:Sudoku.Solving.Manual.Buffers.FastProperties.DigitMaps"/></item>
+            <item><see cref="P:Sudoku.Solving.Manual.Buffers.FastProperties.ValueMaps"/></item>
+            <item><see cref="P:Sudoku.Solving.Manual.Buffers.FastProperties.CandMaps"/></item>
+            <item><see cref="P:Sudoku.Solving.Manual.Buffers.FastProperties.BivalueMap"/></item>
+            <item><see cref="P:Sudoku.Solving.Manual.Buffers.FastProperties.EmptyMap"/></item>
             </list>
             The disallowed method is:
             <list type="bullet">
-            <item><see cref="M:Sudoku.Solving.Manual.Buffer.FastProperties.InitializeMaps(Sudoku.Concepts.Collections.Grid@)"/></item>
+            <item><see cref="M:Sudoku.Solving.Manual.Buffers.FastProperties.InitializeMaps(Sudoku.Concepts.Collections.Grid@)"/></item>
             </list>
             </para>
             <para>
@@ -3774,7 +3774,7 @@
             </para>
             </remarks>
             <seealso cref="T:Sudoku.Solving.Manual.Searchers.IStepSearcher"/>
-            <seealso cref="T:Sudoku.Solving.Manual.Buffer.FastProperties"/>
+            <seealso cref="T:Sudoku.Solving.Manual.Buffers.FastProperties"/>
         </member>
         <member name="P:Sudoku.Solving.Manual.StepSearcherOptionsAttribute.PuzzleNotRelying">
             <summary>
