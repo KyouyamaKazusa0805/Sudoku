@@ -12,6 +12,7 @@ namespace Sudoku.Concepts.Collections;
 /// the digit.
 /// </remarks>
 public unsafe struct Cells :
+	IComparable<Cells>,
 	IDefaultable<Cells>,
 	IEnumerable<int>,
 	IEquatable<Cells>,
@@ -682,6 +683,23 @@ public unsafe struct Cells :
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public override readonly int GetHashCode() => ToString("b").GetHashCode();
 
+	/// <inheritdoc cref="IComparable{T}.CompareTo(T)"/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public readonly int CompareTo(in Cells other)
+	{
+		if (this > other)
+		{
+			return 1;
+		}
+
+		if (other > this) // 'other > this' is different with 'this < other'.
+		{
+			return -1;
+		}
+
+		return 0;
+	}
+
 	/// <summary>
 	/// Get all offsets whose bits are set <see langword="true"/>.
 	/// </summary>
@@ -892,6 +910,10 @@ public unsafe struct Cells :
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	readonly bool IEquatable<Cells>.Equals(Cells other) => Equals(other);
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	readonly int IComparable<Cells>.CompareTo(Cells other) => CompareTo(other);
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

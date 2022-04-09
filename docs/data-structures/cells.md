@@ -4,6 +4,7 @@
 
 ```csharp
 public struct Cells :
+    IComparable<Cells>,
     IDefaultable<Cells>,
     IEnumerable<int>,
     IEquatable<Cells>,
@@ -51,13 +52,13 @@ public struct Cells :
 
     public readonly int this[int index] { get; }
 
-    public readonly bool InOneRegion { get; }
+    public readonly bool InOneHouse { get; }
     public readonly bool IsEmpty { get; }
-    public readonly int Regions { get; }
-    public readonly int CoveredRegions { get; }
+    public readonly int CoveredHouses { get; }
     public readonly int Count { get; }
     public readonly int CoveredLine { get; }
     public readonly short ColumnMask { get; }
+    public readonly int Houses { get; }
     public readonly short RowMask { get; }
     public readonly short BlockMask { get; }
 
@@ -68,8 +69,9 @@ public struct Cells :
     public void AddAnyway(int offset);
     public void AddRange(in ReadOnlySpan<int> offsets);
     public void AddRange(IEnumerable<int> offsets);
-    public readonly bool AllSetsAreInOneRegion(out int region);
+    public readonly bool AllSetsAreInOneHouse(out int house);
     public void Clear();
+    public readonly int CompareTo(in Cells other);
     public readonly bool Contains(int offset);
     public readonly void CopyTo(int* arr, int length);
     public readonly void CopyTo(ref Span<int> span);
@@ -78,12 +80,10 @@ public struct Cells :
     public readonly Candidates Expand(int digit);
     public readonly OneDimensionalArrayEnumerator<int> GetEnumerator();
     public readonly override int GetHashCode();
-    public readonly short GetSubviewMask(int region);
+    public readonly short GetSubviewMask(int house);
     public readonly Cells PeerIntersectionLimitsWith(in Cells limit);
     public void Remove(int offset);
     public readonly int[] ToArray();
-    public readonly ReadOnlySpan<int> ToReadOnlySpan();
-    public readonly Span<int> ToSpan();
     public readonly override string ToString();
     public readonly string ToString(string? format);
 
@@ -92,7 +92,7 @@ public struct Cells :
     public static Cells operator -(in Cells left, in Cells right);
     public static Cells operator ~(in Cells offsets);
     public static Candidates operator *(in Cells @base, int digit);
-    public static short operator /(in Cells map, int region);
+    public static short operator /(in Cells map, int house);
     public static Cells operator %(in Cells @base, in Cells template);
     public static Cells operator !(in Cells offsets);
     public static Cells[] operator &(in Cells cell, int subsetSize);
@@ -236,11 +236,11 @@ bool isEmpty = cells is [];
 
 这样和写 `IsEmpty` 属性在语法和调用上没有任何的区别，只不过 `[]` 是模式匹配语法，用于数据判断，而具体类型下很少这么做。
 
-### 属性 `InOneRegion` 和方法 `AllSetsAreInOneRegion(out int)`
+### 属性 `InOneHouse` 和方法 `AllSetsAreInOneHouse(out int)`
 
 这两个成员都用来判断是否当前集合里所有记录了的单元格位于同一个行（或列、宫）上。换句话说，是否我能找到一个行（或列、宫），能够包含所有的这些行、列、宫。
 
-这两个成员的计算区别在于，方法 `AllSetsAreInOneRegion(out int)` 带有一个 `out` 参数，可以返回得到这个区域的结果；而 `InOneRegion` 属性仅用来计算是否有这个行（或列、宫），即只返回一个 `bool` 结果。所以它们的区别只是有没有把这个行（或列、宫）的具体数值给反馈出来。
+这两个成员的计算区别在于，方法 `AllSetsAreInOneHouse(out int)` 带有一个 `out` 参数，可以返回得到这个区域的结果；而 `InOneHouse` 属性仅用来计算是否有这个行（或列、宫），即只返回一个 `bool` 结果。所以它们的区别只是有没有把这个行（或列、宫）的具体数值给反馈出来。
 
 注意，反馈的结果数值可能有 -1 到 26 这些情况。其中 -1 表示没有找到这样的区域，而 0 到 26 分别表示的是 27 个按照数独规则划分出来的区域。其中 0 到 8 是第 1 宫到第 9 宫，9 到 17 是第 1 行到第 9 行，而 18 到 26 则是第 1 列到第 9 列，即：
 
@@ -249,20 +249,20 @@ bool isEmpty = cells is [];
 * 9 到 17：当属性或方法返回 `true` 时，找到的区域是第 1 行到第 9 行的元素；
 * 18 到 26：当属性或方法返回 `true` 时，找到的区域是第 1 列到第 9 列的元素。
 
-因为 C# 语法的设计规则，我不能给这两个操作完全一样的不同类型的成员使用同一个名字，因此方法名显得更长一些；另外，同一种处理结果用两种不同的成员的真实原因是，`InOneRegion` 属性因为不含有反馈参数结果数值的操作，因此性能上有一定的优化。
+因为 C# 语法的设计规则，我不能给这两个操作完全一样的不同类型的成员使用同一个名字，因此方法名显得更长一些；另外，同一种处理结果用两种不同的成员的真实原因是，`InOneHouse` 属性因为不含有反馈参数结果数值的操作，因此性能上有一定的优化。
 
 因此，如果你要考虑性能的使用的话，如果不使用这个 `out` 参数的数值，你可以考虑使用属性代替掉方法的调用：
 
 ```csharp
 var cells = new Cells { 1, 3, 6 };
-bool condition = cells.AllSetsAreInOneRegion(out _); // Here.
+bool condition = cells.AllSetsAreInOneHouse(out _); // Here.
 
 // We suggest you change the code to:
 var cells = new Cells { 1, 3, 6 };
-bool condition = cells.InOneRegion;
+bool condition = cells.InOneHouse;
 ```
 
-### 属性 `BlockMask`、`RowMask`、`ColumnMask` 和 `Regions`
+### 属性 `BlockMask`、`RowMask`、`ColumnMask` 和 `Houses`
 
 这三个属性用来获取整个集合下，包含的单元格一共出现在哪些行（或列、宫）里。举个例子，第一行第一列和第一行第二列这两个单元格涉及第 1 行、第 1、2 列和第 1 宫。
 
@@ -277,36 +277,36 @@ int rows = cells.RowMask; // 000000001 (1 in decimal)
 int columns = cells.ColumnMask; // 000000011 (3 in decimal)
 ```
 
-最后，`Regions` 属性获取的结果是将这三个九位二进制结果进行叠加整合在一起之后得到的最终数值。也就是说，比如前面给出的 `cells` 是 { 1, 2 } 两个单元格，那么：
+最后，`Houses` 属性获取的结果是将这三个九位二进制结果进行叠加整合在一起之后得到的最终数值。也就是说，比如前面给出的 `cells` 是 { 1, 2 } 两个单元格，那么：
 
 ```csharp
 var cells = new Cells { 1, 2 };
-int blocks = cells.Regions; // 000000011_000000001_000000001 (786945 in decimal)
+int blocks = cells.Houses; // 000000011_000000001_000000001 (786945 in decimal)
 ```
 
-### 属性 `CoveredRegions` 和 `CoveredLine`
+### 属性 `CoveredHouses` 和 `CoveredLine`
 
-这两个属性是用来获取整个集合涉及的单元格都跨越了哪些行、列、宫。这两个属性的计算方式和 `InOneRegion` 以及 `AllSetsAreInOneRegion` 比较类似，也都是看是否所有单元格位于同一行（或列、宫），只不过 `CoveredRegions` 和 `CoveredLine` 属性侧重于求值，即获取这个区域的数值结果，而不是 `bool` 结果。
+这两个属性是用来获取整个集合涉及的单元格都跨越了哪些行、列、宫。这两个属性的计算方式和 `InOneHouse` 以及 `AllSetsAreInOneHouse` 比较类似，也都是看是否所有单元格位于同一行（或列、宫），只不过 `CoveredHouses` 和 `CoveredLine` 属性侧重于求值，即获取这个区域的数值结果，而不是 `bool` 结果。
 
-其中，`CoveredRegions` 属性会得到这个集合涉及的行、列、宫。比如说：
+其中，`CoveredHouses` 属性会得到这个集合涉及的行、列、宫。比如说：
 
 ```csharp
 var cells = new Cells { 0, 1 }; // Block 1 and Row 1.
-int coveredRegions = cells.CoveredRegions; // 000000000_000000001_000000001 (513 in decimal)
+int coveredHouses = cells.CoveredHouses; // 000000000_000000001_000000001 (513 in decimal)
 ```
 
 可以看到结果是 513，二进制是 000000000000000001000000001。我们将这个结果数值从右往左看作是第 0 到 26 编号的区域，然后发现比特位是 1 的区域是编号 0 和 9 的，所以按照前文给出的宫、行、列的顺序的设计规则，这个数值就对应的是第 1 宫和第 1 行是这个集合所处区域的情况。
 
-不过，`CoveredLine` 属性会将 `CoveredRegions` 属性的结果作为基本数据进行再一次地处理，使得结果只是行或列的情况。按照数独的基本技巧的搜寻原则和存在的情况的规律性，技巧结构（例如区块）就会出现类似刚才的 { 0, 1 } 这样的单元格的情况；而这样的情况一定是属于一个宫和一个行（或列）的，因此 `CoveredLine` 属性的处理操作只会取出对应的行（或列）的准确结果。换句话说，就 { 0, 1 } 这个集合的话，`CoveredLine` 属性的结果应该是准确的结果数值 9，而不是二进制数 1000000000（二进制下的 1 后面 9 个 0）。
+不过，`CoveredLine` 属性会将 `CoveredHouses` 属性的结果作为基本数据进行再一次地处理，使得结果只是行或列的情况。按照数独的基本技巧的搜寻原则和存在的情况的规律性，技巧结构（例如区块）就会出现类似刚才的 { 0, 1 } 这样的单元格的情况；而这样的情况一定是属于一个宫和一个行（或列）的，因此 `CoveredLine` 属性的处理操作只会取出对应的行（或列）的准确结果。换句话说，就 { 0, 1 } 这个集合的话，`CoveredLine` 属性的结果应该是准确的结果数值 9，而不是二进制数 1000000000（二进制下的 1 后面 9 个 0）。
 
 ```csharp
 var cells = new Cells { 0, 1 }; // Block 1 and Row 1.
-int coveredRegions = cells.CoveredLine; // 9
+int coveredHouses = cells.CoveredLine; // 9
 ```
 
 正是因为这个原因，`CoveredLine` 属性的属性名的 line 单词没有使用复数形式，因为它只获取这个准确结果数值，是一个实际的数字。
 
-如果这个 `CoveredRegions` 属性的结果不同属于行（或列）的话，那么因为高比特位上都是 0，因此 `CoveredLine` 属性在处理之后，是出于找不到合适结果的一个状态，因此在这种情况下，`CoveredLine` 属性会默认返回 32。注意，返回的是 32，不是别的，不是 -1！不是 -1！不是 -1！重要的事情说三遍。至于为什么返回 32，请自行参看 .NET 库文件的源代码（位于 `BitOperations.TrailingZeroCount` 方法里）。
+如果这个 `CoveredHouses` 属性的结果不同属于行（或列）的话，那么因为高比特位上都是 0，因此 `CoveredLine` 属性在处理之后，是出于找不到合适结果的一个状态，因此在这种情况下，`CoveredLine` 属性会默认返回 32。注意，返回的是 32，不是别的，不是 -1！不是 -1！不是 -1！重要的事情说三遍。至于为什么返回 32，请自行参看 .NET 库文件的源代码（位于 `BitOperations.TrailingZeroCount` 方法里）。
 
 ### 索引器 `this[int]` 和 `this[Index]`
 
@@ -454,7 +454,7 @@ cells.Clear();
 string str = "{ r1c1, r2c12 }";
 var cells = Cells.Parse(str); // 0, 9, 10
 int count = cells.Count; // 3
-int coveredRegions = cells.CoveredRegions; // 0 (for block 0)
+int coveredHouses = cells.CoveredHouses; // 0 (for block 0)
 foreach (int cell in cells)
 {
     // ...

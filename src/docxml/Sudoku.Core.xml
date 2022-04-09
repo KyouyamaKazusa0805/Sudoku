@@ -911,6 +911,9 @@
         <member name="M:Sudoku.Concepts.Collections.Cells.GetHashCode">
             <inheritdoc cref="M:System.Object.GetHashCode"/>
         </member>
+        <member name="M:Sudoku.Concepts.Collections.Cells.CompareTo(Sudoku.Concepts.Collections.Cells@)">
+            <inheritdoc cref="M:System.IComparable`1.CompareTo(`0)"/>
+        </member>
         <member name="M:Sudoku.Concepts.Collections.Cells.ToArray">
             <summary>
             Get all offsets whose bits are set <see langword="true"/>.
@@ -987,6 +990,9 @@
             </summary>
         </member>
         <member name="M:Sudoku.Concepts.Collections.Cells.System#IEquatable{Sudoku#Concepts#Collections#Cells}#Equals(Sudoku.Concepts.Collections.Cells)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.Collections.Cells.System#IComparable{Sudoku#Concepts#Collections#Cells}#CompareTo(Sudoku.Concepts.Collections.Cells)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.Collections.Cells.System#Collections#IEnumerable#GetEnumerator">
