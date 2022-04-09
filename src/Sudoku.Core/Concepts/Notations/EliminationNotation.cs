@@ -56,7 +56,11 @@ public sealed class EliminationNotation :
 			sb.Append(separator);
 		}
 
-		sb.RemoveFromEnd(separator.Length);
+		if (candidates is not [])
+		{
+			sb.RemoveFromEnd(separator.Length);
+		}
+		
 		return sb.ToStringAndClear();
 	}
 
