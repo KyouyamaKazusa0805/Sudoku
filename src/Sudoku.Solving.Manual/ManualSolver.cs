@@ -6,12 +6,6 @@
 /// </summary>
 public sealed unsafe partial class ManualSolver : IPuzzleSolver
 {
-	/// <summary>
-	/// Indicates the shared instance that can solve puzzles without initialization firstly.
-	/// </summary>
-	public static readonly ManualSolver Shared = new();
-
-
 	/// <inheritdoc/>
 	public ISolverResult Solve(in Grid puzzle, CancellationToken cancellationToken = default)
 	{
