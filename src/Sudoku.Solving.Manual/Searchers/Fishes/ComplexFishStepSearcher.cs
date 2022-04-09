@@ -65,16 +65,17 @@ public sealed unsafe partial class ComplexFishStepSearcher : IComplexFishStepSea
 			// Create a background thread to work on searching for fishes of this digit.
 			// Here we use the local function because all captured objects will be encapsulated
 			// by a struct instead of a class.
-			searchingTasks[count++] = Task.Run(innerProcess, cts.Token);
-
-			void innerProcess()
-			{
-				if (GetAll(tempList, tempGrid, pomElims, currentDigit, onlyFindOne) is { } step)
+			searchingTasks[count++] = Task.Run(
+				() =>
 				{
-					firstPossibleStep = step;
-					cts.Cancel();
-				}
-			}
+					if (GetAll(tempList, tempGrid, pomElims, currentDigit, onlyFindOne) is { } step)
+					{
+						firstPossibleStep = step;
+						cts.Cancel();
+					}
+				},
+				cts.Token
+			);
 		}
 
 		try
