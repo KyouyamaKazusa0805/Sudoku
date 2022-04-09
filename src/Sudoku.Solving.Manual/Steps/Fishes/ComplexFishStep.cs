@@ -164,7 +164,7 @@ public sealed partial record class ComplexFishStep(
 	internal string ExofinsStr
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => Exofins is [] ? string.Empty : $"f{Exofins} ";
+		get => Exofins is [] ? string.Empty : $"t{Exofins} ";
 	}
 
 	[FormatItem]

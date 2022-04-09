@@ -55,11 +55,13 @@ internal static class ModuleInitializer
 						{
 							case 0:
 							{
-								throw new InvalidOperationException("The array is empty.");
+								t("The array is empty.");
+								break;
 							}
 							case var length when (length & 1) != 0:
 							{
-								throw new InvalidOperationException("The property value is invalid.");
+								t("The property value is invalid.");
+								break;
 							}
 							case var length:
 							{
@@ -71,8 +73,8 @@ internal static class ModuleInitializer
 									(
 										type.GetProperty(propertyName) switch
 										{
-											null => throw new InvalidOperationException("Such property name cannot be found."),
-											{ CanWrite: false } => throw new InvalidOperationException("The property is read-only and cannot be assigned."),
+											null => t("Such property name cannot be found."),
+											{ CanWrite: false } => t("The property is read-only and cannot be assigned."),
 											var p => p
 										}
 									).SetValue(instance, propertyValue);
@@ -93,6 +95,11 @@ internal static class ModuleInitializer
 
 					break;
 				}
+
+
+				[DoesNotReturn]
+				[MethodImpl(MethodImplOptions.AggressiveInlining)]
+				static PropertyInfo? t(string s) => throw new InvalidOperationException(s);
 			}
 		}
 
