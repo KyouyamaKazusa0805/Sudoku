@@ -434,7 +434,6 @@ public static partial class CommonReadOnlies
 			HouseMaps[i] = HouseCells[i];
 		}
 
-
 		var r = (stackalloc[] { 0, 1, 2, 3, 4, 5, 6, 7, 8 });
 		var c = (stackalloc[] { 0, 3, 6, 1, 4, 7, 2, 5, 8 });
 		var dic = new Dictionary<(byte, byte), (Cells, Cells, Cells, byte[])>(new ValueTupleComparer());
