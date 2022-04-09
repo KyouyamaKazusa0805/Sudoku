@@ -131,48 +131,34 @@ public sealed record class AlternatingInferenceChainStep(
 	/// </summary>
 	/// <returns>A <see cref="bool"/> value indicating that.</returns>
 	private bool IsMWing =>
-		Chain is
-		{
-			RealChainNodes: [
-				_,
-				SoleCandidateNode { Cell: var a },
-				SoleCandidateNode { Cell: var b },
-				SoleCandidateNode { Cell: var c },
-				SoleCandidateNode { Cell: var d },
-				SoleCandidateNode { Cell: var e },
-				SoleCandidateNode { Cell: var f },
-				..
-			]
-		} && (
-			a / 9 == b / 9 && d / 9 == e / 9
-			&& b % 9 == c % 9 && c % 9 == d % 9
-			&& a % 9 == e % 9 && e % 9 == f % 9
-			|| f / 9 == e / 9 && c / 9 == b / 9 // Reverse case.
-			&& d % 9 == e % 9 && c % 9 == d % 9
-			&& b % 9 == f % 9 && a % 9 == b % 9
-		);
+		Chain.RealChainNodes is [
+			_,
+			SoleCandidateNode { Cell: var a },
+			SoleCandidateNode { Cell: var b },
+			SoleCandidateNode { Cell: var c },
+			SoleCandidateNode { Cell: var d },
+			SoleCandidateNode { Cell: var e },
+			SoleCandidateNode { Cell: var f },
+			..
+		]
+		&& MWing(a, b, c, d, e, f);
 
 	/// <summary>
 	/// Indicates whether the chain is Split-Wing (<c>x = x - (x = y) - y = y</c>).
 	/// </summary>
 	/// <returns>A <see cref="bool"/> value indicating that.</returns>
 	private bool IsSplitWing =>
-		Chain is
-		{
-			RealChainNodes: [
-				_,
-				SoleCandidateNode { Cell: var a },
-				SoleCandidateNode { Cell: var b },
-				SoleCandidateNode { Cell: var c },
-				SoleCandidateNode { Cell: var d },
-				SoleCandidateNode { Cell: var e },
-				SoleCandidateNode { Cell: var f },
-				..
-			]
-		}
-		&& a % 9 == b % 9 && b % 9 == c % 9 // First three nodes hold a same digit.
-		&& d % 9 == e % 9 && e % 9 == f % 9 // Last three nodes hold a same digit.
-		&& c / 9 == d / 9; // In same cell.
+		Chain.RealChainNodes is [
+			_,
+			SoleCandidateNode { Cell: var a },
+			SoleCandidateNode { Cell: var b },
+			SoleCandidateNode { Cell: var c },
+			SoleCandidateNode { Cell: var d },
+			SoleCandidateNode { Cell: var e },
+			SoleCandidateNode { Cell: var f },
+			..
+		]
+		&& SplitWing(a, b, c, d, e, f);
 
 	/// <summary>
 	/// Indicates whether the chain is Hybrid-Wing.
@@ -184,54 +170,34 @@ public sealed record class AlternatingInferenceChainStep(
 	/// </summary>
 	/// <returns>A <see cref="bool"/> value indicating that.</returns>
 	private bool IsHybridWing =>
-		Chain is
-		{
-			RealChainNodes: [
-				_,
-				SoleCandidateNode { Cell: var a },
-				SoleCandidateNode { Cell: var b },
-				SoleCandidateNode { Cell: var c },
-				SoleCandidateNode { Cell: var d },
-				SoleCandidateNode { Cell: var e },
-				SoleCandidateNode { Cell: var f },
-				..
-			]
-		}
-		&& (
-			a / 9 == b / 9 && d / 9 == e / 9
-			&& b % 9 == c % 9 && c % 9 == d % 9
-			&& e % 9 == f % 9
-			|| e / 9 == f / 9 && b / 9 == c / 9
-			&& d % 9 == e % 9 && c % 9 == d % 9
-			&& a % 9 == b % 9
-			|| a / 9 == b / 9 && c / 9 == d / 9 // Reverse case.
-			&& b % 9 == c % 9
-			&& d % 9 == e % 9 && e % 9 == f % 9
-			|| e / 9 == f / 9 && c / 9 == d / 9
-			&& d % 9 == e % 9
-			&& b % 9 == c % 9 && a % 9 == b % 9
-		);
+		Chain.RealChainNodes is [
+			_,
+			SoleCandidateNode { Cell: var a },
+			SoleCandidateNode { Cell: var b },
+			SoleCandidateNode { Cell: var c },
+			SoleCandidateNode { Cell: var d },
+			SoleCandidateNode { Cell: var e },
+			SoleCandidateNode { Cell: var f },
+			..
+		]
+		&& HybridWing(a, b, c, d, e, f);
 
 	/// <summary>
 	/// Indicates whether the chain is Local-Wing (<c>x = (x - z) = (z - y) = y</c>).
 	/// </summary>
 	/// <returns>A <see cref="bool"/> value indicating that.</returns>
 	private bool IsLocalWing =>
-		Chain is
-		{
-			RealChainNodes: [
-				_,
-				SoleCandidateNode { Cell: var a },
-				SoleCandidateNode { Cell: var b },
-				SoleCandidateNode { Cell: var c },
-				SoleCandidateNode { Cell: var d },
-				SoleCandidateNode { Cell: var e },
-				SoleCandidateNode { Cell: var f },
-				..
-			]
-		}
-		&& b / 9 == c / 9 && d / 9 == e / 9
-		&& a % 9 == b % 9 && c % 9 == d % 9 && e % 9 == f % 9;
+		Chain.RealChainNodes is [
+			_,
+			SoleCandidateNode { Cell: var a },
+			SoleCandidateNode { Cell: var b },
+			SoleCandidateNode { Cell: var c },
+			SoleCandidateNode { Cell: var d },
+			SoleCandidateNode { Cell: var e },
+			SoleCandidateNode { Cell: var f },
+			..
+		]
+		&& LocalWing(a, b, c, d, e, f);
 
 	[FormatItem]
 	internal string ChainStr
@@ -239,4 +205,25 @@ public sealed record class AlternatingInferenceChainStep(
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => Chain.ToString();
 	}
+
+
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	private bool MWing(byte a, byte b, byte c, byte d, byte e, byte f) =>
+		a / 9 == b / 9 && d / 9 == e / 9 && b % 9 == c % 9 && c % 9 == d % 9 && a % 9 == e % 9 && e % 9 == f % 9
+			|| f / 9 == e / 9 && c / 9 == b / 9 && d % 9 == e % 9 && c % 9 == d % 9 && b % 9 == f % 9 && a % 9 == b % 9;
+
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	private bool SplitWing(byte a, byte b, byte c, byte d, byte e, byte f) =>
+		a % 9 == b % 9 && b % 9 == c % 9 && d % 9 == e % 9 && e % 9 == f % 9 && c / 9 == d / 9;
+
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	private bool HybridWing(byte a, byte b, byte c, byte d, byte e, byte f) =>
+		a / 9 == b / 9 && d / 9 == e / 9 && b % 9 == c % 9 && c % 9 == d % 9 && e % 9 == f % 9
+			|| e / 9 == f / 9 && b / 9 == c / 9 && d % 9 == e % 9 && c % 9 == d % 9 && a % 9 == b % 9
+			|| a / 9 == b / 9 && c / 9 == d / 9 && b % 9 == c % 9 && d % 9 == e % 9 && e % 9 == f % 9
+			|| e / 9 == f / 9 && c / 9 == d / 9 && d % 9 == e % 9 && b % 9 == c % 9 && a % 9 == b % 9;
+
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	private bool LocalWing(byte a, byte b, byte c, byte d, byte e, byte f) =>
+		b / 9 == c / 9 && d / 9 == e / 9 && a % 9 == b % 9 && c % 9 == d % 9 && e % 9 == f % 9;
 }

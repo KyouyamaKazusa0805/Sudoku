@@ -455,11 +455,6 @@
             to check and solve a sudoku puzzle.
             </summary>
         </member>
-        <member name="F:Sudoku.Solving.Manual.ManualSolver.Shared">
-            <summary>
-            Indicates the shared instance that can solve puzzles without initialization firstly.
-            </summary>
-        </member>
         <member name="M:Sudoku.Solving.Manual.ManualSolver.Solve(Sudoku.Concepts.Collections.Grid@,System.Threading.CancellationToken)">
             <inheritdoc/>
         </member>
