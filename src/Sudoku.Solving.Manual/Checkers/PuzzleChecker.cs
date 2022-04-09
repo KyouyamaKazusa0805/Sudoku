@@ -46,8 +46,10 @@ public static class PuzzleChecker
 	/// </param>
 	/// <returns>A <see cref="bool"/> value indicating that.</returns>
 	/// <seealso cref="Grid.Undefined"/>
-	public static bool IsValid(this in Grid @this, out Grid solutionIfValid, [NotNullWhen(true)] out bool? sukaku)
+	public static bool IsValid(
+		this in Grid @this, out Grid solutionIfValid, [NotNullWhen(true)] out bool? sukaku)
 	{
+		Unsafe.SkipInit(out solutionIfValid);
 		if (Solver.CheckValidity(@this.ToString(null), out string? solution))
 		{
 			solutionIfValid = Grid.Parse(solution);
@@ -62,7 +64,6 @@ public static class PuzzleChecker
 		}
 		else
 		{
-			solutionIfValid = Grid.Undefined;
 			sukaku = null;
 			return false;
 		}
