@@ -108,7 +108,9 @@ static partial class Program
 ### DFS 搜索部分
 
 ```csharp
-void dfs(in Grid grid, int c1, int c2, List<int> list1, List<int> list2, ref Cells cells1, ref Cells cells2)
+void dfs(
+    in Grid grid, int c1, int c2, List<int> list1, List<int> list2,
+    ref Cells cells1, ref Cells cells2)
 {
     // 双层循环迭代 c1 和 c2 自己的所有周围单元格。
     foreach (int adjacentCell1 in AdjacentCells[c1])
@@ -181,8 +183,6 @@ void dfs(in Grid grid, int c1, int c2, List<int> list1, List<int> list2, ref Cel
 #endif
                 }
 
-                Console.WriteLine();
-
                 // 注意这里必须要退出，避免继续搜寻导致的不必要的浪费时间。
                 // 可以算是在递归的时候进行剪枝。
                 return;
@@ -218,6 +218,8 @@ using System.Runtime.CompilerServices;
 using Sudoku.Concepts.Collections;
 using Sudoku.Generating;
 
+const int length = 81;
+
 // 声明一个出题器对象。
 var generator = new HardPatternPuzzleGenerator();
 
@@ -239,9 +241,9 @@ var cells1 = Cells.Empty;
 var cells2 = Cells.Empty;
 
 // 两层循环枚举迭代回文序列的开头和结尾。
-for (int c1 = 0; c1 < 71; c1++)
+for (int c1 = 0; c1 < length - 1; c1++)
 {
-    for (int c2 = c1 + 1; c2 < 72; c2++)
+    for (int c2 = c1 + 1; c2 < length; c2++)
     {
         if (solution[c1] != solution[c2])
         {
