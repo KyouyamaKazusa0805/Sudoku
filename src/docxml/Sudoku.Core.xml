@@ -7331,6 +7331,16 @@
             Indicates the swapping factor.
             </summary>
         </member>
+        <member name="F:Sudoku.Generating.HardPatternPuzzleGenerator._random">
+            <summary>
+            Indicates the random number generator.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Generating.HardPatternPuzzleGenerator.#ctor">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Generating.HardPatternPuzzleGenerator"/> instance.
+            </summary>
+        </member>
         <member name="M:Sudoku.Generating.HardPatternPuzzleGenerator.Generate(System.Threading.CancellationToken)">
             <inheritdoc/>
         </member>

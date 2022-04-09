@@ -28,9 +28,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GlobalConfiguration.CodeGen
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sudoku.UI", "src\Sudoku.UI\Sudoku.UI.csproj", "{C77EC482-143E-47C1-9524-BC3BAE815838}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sudoku.Solving.Manual", "src\Sudoku.Solving.Manual\Sudoku.Solving.Manual.csproj", "{5451F367-F1E0-44AC-9EA1-1819B410050C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sudoku.Solving.Manual", "src\Sudoku.Solving.Manual\Sudoku.Solving.Manual.csproj", "{5451F367-F1E0-44AC-9EA1-1819B410050C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sudoku.Solving.Manual.CodeGen", "src\Sudoku.Solving.Manual.CodeGen\Sudoku.Solving.Manual.CodeGen.csproj", "{83F2352B-69B1-44F4-BD9B-B98DBF07562D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sudoku.Solving.Manual.CodeGen", "src\Sudoku.Solving.Manual.CodeGen\Sudoku.Solving.Manual.CodeGen.csproj", "{83F2352B-69B1-44F4-BD9B-B98DBF07562D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

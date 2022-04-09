@@ -21,6 +21,19 @@ public sealed unsafe class HardPatternPuzzleGenerator : IPuzzleGenerator
 	};
 
 
+	/// <summary>
+	/// Indicates the random number generator.
+	/// </summary>
+	private readonly Random _random;
+
+
+	/// <summary>
+	/// Initializes a <see cref="HardPatternPuzzleGenerator"/> instance.
+	/// </summary>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public HardPatternPuzzleGenerator() => _random = Random.Shared;
+
+
 	/// <inheritdoc/>
 	public Grid Generate(CancellationToken cancellationToken = default)
 	{
@@ -86,7 +99,7 @@ public sealed unsafe class HardPatternPuzzleGenerator : IPuzzleGenerator
 			{
 				while (true)
 				{
-					int cell = Random.Shared.Next(0, 81);
+					int cell = _random.Next(0, 81);
 					if (!map.Contains(cell))
 					{
 						map.Add(cell);
@@ -99,7 +112,7 @@ public sealed unsafe class HardPatternPuzzleGenerator : IPuzzleGenerator
 			{
 				do
 				{
-					pPuzzle[cell] = (char)(Random.Shared.Next(1, 9) + '0');
+					pPuzzle[cell] = (char)(_random.Next(1, 9) + '0');
 				} while (CheckDuplicate(pPuzzle, cell));
 			}
 		} while (IPuzzleGenerator.Solver.Solve(pPuzzle, pSolution, 2) == 0);
@@ -114,7 +127,7 @@ public sealed unsafe class HardPatternPuzzleGenerator : IPuzzleGenerator
 		int a = 54, b = 0;
 		for (int i = 0; i < 9; i++)
 		{
-			int n = (int)(Random.Shared.NextDouble() * 6);
+			int n = (int)(_random.NextDouble() * 6);
 			for (int j = 0; j < 3; j++)
 			{
 				for (int k = 0; k < 3; k++)
@@ -127,30 +140,30 @@ public sealed unsafe class HardPatternPuzzleGenerator : IPuzzleGenerator
 		RecreatePattern(pattern);
 	}
 
-
 	/// <summary>
 	/// To re-create the pattern.
 	/// </summary>
 	/// <param name="pattern">The pointer that points to an array of the pattern values.</param>
-	private static void RecreatePattern(int* pattern)
+	private void RecreatePattern(int* pattern)
 	{
 		for (int i = 23; i >= 0; i--)
 		{
-			PointerMarshal.Swap(pattern + i, pattern + (int)((i + 1) * Random.Shared.NextDouble()));
+			PointerMarshal.Swap(pattern + i, pattern + (int)((i + 1) * _random.NextDouble()));
 		}
 		for (int i = 47; i >= 24; i--)
 		{
-			PointerMarshal.Swap(pattern + i, pattern + 24 + (int)((i - 23) * Random.Shared.NextDouble()));
+			PointerMarshal.Swap(pattern + i, pattern + 24 + (int)((i - 23) * _random.NextDouble()));
 		}
 		for (int i = 53; i >= 48; i--)
 		{
-			PointerMarshal.Swap(pattern + i, pattern + 48 + (int)((i - 47) * Random.Shared.NextDouble()));
+			PointerMarshal.Swap(pattern + i, pattern + 48 + (int)((i - 47) * _random.NextDouble()));
 		}
 		for (int i = 80; i >= 54; i--)
 		{
-			PointerMarshal.Swap(pattern + i, pattern + 54 + (int)(27 * Random.Shared.NextDouble()));
+			PointerMarshal.Swap(pattern + i, pattern + 54 + (int)(27 * _random.NextDouble()));
 		}
 	}
+
 
 	/// <summary>
 	/// Check whether the digit in its peer cells has duplicate ones.
