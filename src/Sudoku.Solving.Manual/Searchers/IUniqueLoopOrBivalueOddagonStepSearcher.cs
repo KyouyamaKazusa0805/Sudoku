@@ -29,7 +29,7 @@ public interface IUniqueLoopOrBivalueOddagonStepSearcher : IStepSearcher, ILoopL
 		loopMap.Add(cell);
 		tempLoop.Add(cell);
 
-		foreach (var houseType in Houses)
+		foreach (var houseType in HouseTypes)
 		{
 			if (houseType == lastHouseType)
 			{

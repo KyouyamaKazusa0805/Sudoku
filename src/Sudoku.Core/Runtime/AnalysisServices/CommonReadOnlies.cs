@@ -333,7 +333,7 @@ public static partial class CommonReadOnlies
 	/// <summary>
 	/// Indicates the possible house types to iterate.
 	/// </summary>
-	public static readonly HouseType[] Houses = { HouseType.Block, HouseType.Row, HouseType.Column };
+	public static readonly HouseType[] HouseTypes = { HouseType.Block, HouseType.Row, HouseType.Column };
 
 	/// <summary>
 	/// <para>

@@ -3690,7 +3690,7 @@ public sealed unsafe partial class UniqueRectangleStepSearcher : IUniqueRectangl
 				: (otherCellsMap[1], otherCellsMap[0]);
 
 			// Iterate on each house type.
-			foreach (var houseType in Houses)
+			foreach (var houseType in HouseTypes)
 			{
 				int houseIndex = baseCell.ToHouseIndex(houseType);
 

@@ -10291,7 +10291,7 @@
             </summary>
             <seealso cref="F:Sudoku.Runtime.AnalysisServices.CommonReadOnlies.Peers"/>
         </member>
-        <member name="F:Sudoku.Runtime.AnalysisServices.CommonReadOnlies.Houses">
+        <member name="F:Sudoku.Runtime.AnalysisServices.CommonReadOnlies.HouseTypes">
             <summary>
             Indicates the possible house types to iterate.
             </summary>

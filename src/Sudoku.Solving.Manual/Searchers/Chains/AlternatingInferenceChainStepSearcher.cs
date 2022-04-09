@@ -734,7 +734,7 @@ public sealed partial class AlternatingInferenceChainStepSearcher : IAlternating
 				// Get bi-location houses.
 				if (NodeTypes.Flags(SearcherNodeTypes.SoleDigit))
 				{
-					foreach (var houseType in Houses)
+					foreach (var houseType in HouseTypes)
 					{
 						int houseIndex = cell.ToHouseIndex(houseType);
 						var posCells = (HouseMaps[houseIndex] & grid.CandidatesMap[digit]) - cell;
@@ -809,7 +809,7 @@ public sealed partial class AlternatingInferenceChainStepSearcher : IAlternating
 
 				if (NodeTypes.Flags(SearcherNodeTypes.LockedCandidates))
 				{
-					foreach (var houseType in Houses)
+					foreach (var houseType in HouseTypes)
 					{
 						int houseIndex = cell.ToHouseIndex(houseType);
 						var otherCells = HouseMaps[houseIndex] & grid.CandidatesMap[digit] - cell;
@@ -854,7 +854,7 @@ public sealed partial class AlternatingInferenceChainStepSearcher : IAlternating
 
 				if (NodeTypes.Flags(SearcherNodeTypes.LockedCandidates))
 				{
-					foreach (var houseType in Houses)
+					foreach (var houseType in HouseTypes)
 					{
 						int houseIndex = cell.ToHouseIndex(houseType);
 						var otherCells = HouseMaps[houseIndex] & grid.CandidatesMap[digit] - cell;

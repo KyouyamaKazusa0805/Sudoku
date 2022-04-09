@@ -102,7 +102,7 @@ public sealed unsafe partial class GuardianStepSearcher : IGuardianStepSearcher
 						loopMap.Add(cell);
 						tempLoop.Add(cell);
 
-						foreach (var houseType in Houses)
+						foreach (var houseType in HouseTypes)
 						{
 							if (houseType == lastHouseType)
 							{

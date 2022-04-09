@@ -270,7 +270,7 @@ public sealed unsafe partial class ComplexFishStepSearcher : IComplexFishStepSea
 
 							// Now iterate on three different house types, to check the final house
 							// that is the elimination lies in.
-							foreach (var houseType in Houses)
+							foreach (var houseType in HouseTypes)
 							{
 								int houseIndex = cell.ToHouseIndex(houseType);
 

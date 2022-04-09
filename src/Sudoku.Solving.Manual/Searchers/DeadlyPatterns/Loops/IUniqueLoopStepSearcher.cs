@@ -17,7 +17,7 @@ public interface IUniqueLoopStepSearcher : IDeadlyPatternStepSearcher, IUniqueLo
 		Unsafe.SkipInit(out bool isOdd);
 		foreach (int cell in loopCells)
 		{
-			foreach (var houseType in Houses)
+			foreach (var houseType in HouseTypes)
 			{
 				int houseIndex = cell.ToHouseIndex(houseType);
 				if (isOdd)
