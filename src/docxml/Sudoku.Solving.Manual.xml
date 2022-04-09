@@ -7143,26 +7143,6 @@
         <member name="P:Sudoku.Solving.Manual.Steps.LockedCandidatesStep.Rarity">
             <inheritdoc/>
         </member>
-        <member name="T:Sudoku.Solving.Manual.Steps.IStepWithPhasedDifficulty">
-            <summary>
-            Defines a type that holds an extra property to control advanced rule with extra difficulty value.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.Steps.IStepWithPhasedDifficulty.BaseDifficulty">
-            <summary>
-            Indicates the base difficulty of the step.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.Steps.IStepWithPhasedDifficulty.ExtraDifficultyValues">
-            <summary>
-            Indicates the extra difficulty values of the step, and its corresponding description.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.Steps.IStepWithPhasedDifficulty.TotalDifficulty">
-            <summary>
-            Indicates the total difficulty value of the step.
-            </summary>
-        </member>
         <member name="T:Sudoku.Solving.Manual.Steps.IStep">
             <summary>
             Provides a basic manual solving step.
@@ -7356,6 +7336,26 @@
             </list>
             </exception>
             <seealso cref="P:Sudoku.Solving.Manual.Steps.IStep.Format"/>
+        </member>
+        <member name="T:Sudoku.Solving.Manual.Steps.IStepWithPhasedDifficulty">
+            <summary>
+            Defines a type that holds an extra property to control advanced rule with extra difficulty value.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.IStepWithPhasedDifficulty.BaseDifficulty">
+            <summary>
+            Indicates the base difficulty of the step.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.IStepWithPhasedDifficulty.ExtraDifficultyValues">
+            <summary>
+            Indicates the extra difficulty values of the step, and its corresponding description.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.Steps.IStepWithPhasedDifficulty.TotalDifficulty">
+            <summary>
+            Indicates the total difficulty value of the step.
+            </summary>
         </member>
         <member name="T:Sudoku.Solving.Manual.Steps.IStepWithRank">
             <summary>
