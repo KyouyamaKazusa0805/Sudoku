@@ -1,5 +1,11 @@
 <center>Language switch to: <a href="README.md">English</a></center>
 
+> 由于 WindowsAppSdk 的 bug 导致 `KernelBase.dll` 文件总是崩溃，导致我没办法调试 UI 项目。这里列举一篇关于这个相同问题的 issue。
+>
+> https://github.com/microsoft/microsoft-ui-xaml/issues/6757
+>
+> UI 暂时不更新了，等待修复这一点。
+
 # 向向的数独解决方案
 
 ## 正文
