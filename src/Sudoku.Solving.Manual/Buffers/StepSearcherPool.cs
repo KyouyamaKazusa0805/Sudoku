@@ -1,21 +1,13 @@
-﻿#nullable disable warnings
-
-namespace Sudoku.Solving.Manual.Buffers;
+﻿namespace Sudoku.Solving.Manual.Buffers;
 
 /// <summary>
 /// Indicates a pool that stores the <see cref="IStepSearcher"/>s.
 /// </summary>
 /// <seealso cref="IStepSearcher"/>
-public static class StepSearcherPool
+internal static class StepSearcherPool
 {
 	/// <summary>
 	/// The step searchers to find steps to apply to a certain puzzle.
 	/// </summary>
-	internal static IStepSearcher[] Collection;
-
-
-	/// <summary>
-	/// Gets the <see cref="IStepSearcher"/>s.
-	/// </summary>
-	public static IStepSearcher[] Searchers => Collection;
+	public static IStepSearcher[] Collection = null!;
 }

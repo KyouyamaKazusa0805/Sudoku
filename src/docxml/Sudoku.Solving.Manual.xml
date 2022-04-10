@@ -121,11 +121,6 @@
             The step searchers to find steps to apply to a certain puzzle.
             </summary>
         </member>
-        <member name="P:Sudoku.Solving.Manual.Buffers.StepSearcherPool.Searchers">
-            <summary>
-            Gets the <see cref="T:Sudoku.Solving.Manual.Searchers.IStepSearcher"/>s.
-            </summary>
-        </member>
         <member name="T:Sudoku.Solving.Manual.Checkers.MissingCandidateSearcher">
             <summary>
             Provides a searcher that checks the missing candidate for a sudoku grid.
