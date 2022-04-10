@@ -1,7 +1,7 @@
 ﻿namespace Sudoku.Concepts;
 
 /// <summary>
-/// Represents a conjugate pair.
+/// Represents a <see href="https://sunnieshine.github.io/Sudoku/terms/conjugate-pair">conjugate pair</see>.
 /// </summary>
 /// <remarks>
 /// <para>

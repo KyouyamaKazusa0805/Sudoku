@@ -1,7 +1,7 @@
 ﻿namespace Sudoku.Concepts;
 
 /// <summary>
-/// Represents a house type.
+/// Represents a <see href="https://sunnieshine.github.io/Sudoku/terms/house">house type</see>.
 /// </summary>
 public enum HouseType : byte
 {

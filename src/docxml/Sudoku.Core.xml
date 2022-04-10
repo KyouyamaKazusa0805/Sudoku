@@ -2562,7 +2562,7 @@
         </member>
         <member name="T:Sudoku.Concepts.Conjugate">
             <summary>
-            Represents a conjugate pair.
+            Represents a <see href="https://sunnieshine.github.io/Sudoku/terms/conjugate-pair">conjugate pair</see>.
             </summary>
             <remarks>
             <para>
@@ -3124,7 +3124,7 @@
         </member>
         <member name="T:Sudoku.Concepts.HouseType">
             <summary>
-            Represents a house type.
+            Represents a <see href="https://sunnieshine.github.io/Sudoku/terms/house">house type</see>.
             </summary>
         </member>
         <member name="F:Sudoku.Concepts.HouseType.Block">
