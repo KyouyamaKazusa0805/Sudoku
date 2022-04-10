@@ -132,13 +132,11 @@ public sealed partial class AlternatingInferenceChainStepSearcher : IAlternating
 	/// The default value is <c>
 	/// <see cref="SearcherNodeTypes.SoleCell"/> | <see cref="SearcherNodeTypes.SoleDigit"/>
 	/// | <see cref="SearcherNodeTypes.LockedCandidates"/>
-	/// | <see cref="SearcherNodeTypes.LockedSet"/> | <see cref="SearcherNodeTypes.HiddenSet"/>
 	/// </c>.
 	/// </remarks>
 	public SearcherNodeTypes NodeTypes { get; set; } =
 		SearcherNodeTypes.SoleDigit | SearcherNodeTypes.SoleCell
-			| SearcherNodeTypes.LockedCandidates
-			| SearcherNodeTypes.LockedSet | SearcherNodeTypes.HiddenSet;
+			| SearcherNodeTypes.LockedCandidates;
 
 
 	/// <inheritdoc/>

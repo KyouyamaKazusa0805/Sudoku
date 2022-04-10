@@ -1163,7 +1163,6 @@
             The default value is <c>
             <see cref="F:Sudoku.Concepts.Solving.ChainNodes.SearcherNodeTypes.SoleCell"/> | <see cref="F:Sudoku.Concepts.Solving.ChainNodes.SearcherNodeTypes.SoleDigit"/>
             | <see cref="F:Sudoku.Concepts.Solving.ChainNodes.SearcherNodeTypes.LockedCandidates"/>
-            | <see cref="F:Sudoku.Concepts.Solving.ChainNodes.SearcherNodeTypes.LockedSet"/> | <see cref="F:Sudoku.Concepts.Solving.ChainNodes.SearcherNodeTypes.HiddenSet"/>
             </c>.
             </remarks>
         </member>
