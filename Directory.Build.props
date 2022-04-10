@@ -52,10 +52,10 @@
 
 	<!--Import 'Microsoft.CodeAnalysis.*' packages if the project is a source generator project.-->
 	<ItemGroup Condition="'$(MSBuildProjectFile.TrimEnd(`.csproj`).EndsWith(`.CodeGen`))'=='true' Or '$(MSBuildProjectFile)'=='Sudoku.Diagnostics.CodeAnalysis.csproj'">
-		<PackageReference Include="Microsoft.CodeAnalysis.Common" Version="4.0.1" />
-		<PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="4.0.1" />
-		<PackageReference Include="Microsoft.CodeAnalysis.CSharp.Workspaces" Version="4.0.1" />
-		<PackageReference Include="IndexRange" Version="1.0.0" />
+		<PackageReference Include="Microsoft.CodeAnalysis.Common" Version="4.1.0" />
+		<PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="4.1.0" />
+		<PackageReference Include="Microsoft.CodeAnalysis.CSharp.Workspaces" Version="4.1.0" />
+		<PackageReference Include="IndexRange" Version="1.0.1" />
 	</ItemGroup>
 
 	<!--Import 'GlobalConfiguration.CodeGen' project into the source genrator projects.-->
