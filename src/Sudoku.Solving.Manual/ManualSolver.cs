@@ -36,8 +36,7 @@ public sealed unsafe partial class ManualSolver : IPuzzleSolver
 						FailedReason = FailedReason.WrongStep,
 						WrongStep = wrongStep
 					},
-					OperationCanceledException { CancellationToken: var c }
-					when c == cancellationToken => solverResult with
+					OperationCanceledException { CancellationToken: var c } when c == cancellationToken => solverResult with
 					{
 						IsSolved = false,
 						FailedReason = FailedReason.UserCancelled
