@@ -9,8 +9,7 @@
 /// <param name="Digit1">Indicates the first digit.</param>
 /// <param name="Digit2">Indicates the second digit.</param>
 public abstract record class BivalueOddagonStep(
-	ImmutableArray<Conclusion> Conclusions, ImmutableArray<View> Views,
-	in Cells Loop, int Digit1, int Digit2) :
+	ConclusionList Conclusions, ViewList Views, in Cells Loop, int Digit1, int Digit2) :
 	RankTheoryStep(Conclusions, Views),
 	IDistinctableStep<BivalueOddagonStep>,
 	ILoopLikeStep,

@@ -9,8 +9,7 @@
 /// <param name="Cells">All cells used.</param>
 /// <param name="DigitsMask">The maks that contains all digits used.</param>
 public abstract record class SubsetStep(
-	ImmutableArray<Conclusion> Conclusions, ImmutableArray<View> Views,
-	int House, in Cells Cells, short DigitsMask) :
+	ConclusionList Conclusions, ViewList Views, int House, in Cells Cells, short DigitsMask) :
 	Step(Conclusions, Views),
 	IStepWithSize,
 	IStepWithRank,

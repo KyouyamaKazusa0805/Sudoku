@@ -11,11 +11,10 @@
 /// <param name="IsAvoidable"><inheritdoc/></param>
 /// <param name="AbsoluteOffset"><inheritdoc/></param>
 public sealed record class UniqueRectangleType1Step(
-	ImmutableArray<Conclusion> Conclusions, ImmutableArray<View> Views,
-	int Digit1, int Digit2, in Cells Cells, bool IsAvoidable, int AbsoluteOffset) :
+	ConclusionList Conclusions, ViewList Views, int Digit1, int Digit2,
+	in Cells Cells, bool IsAvoidable, int AbsoluteOffset) :
 	UniqueRectangleStep(
-		Conclusions, Views,
-		IsAvoidable ? Technique.AvoidableRectangleType1 : Technique.UniqueRectangleType1,
+		Conclusions, Views, IsAvoidable ? Technique.AvoidableRectangleType1 : Technique.UniqueRectangleType1,
 		Digit1, Digit2, Cells, IsAvoidable, AbsoluteOffset)
 {
 	/// <inheritdoc/>

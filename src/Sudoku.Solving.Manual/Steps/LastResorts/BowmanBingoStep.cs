@@ -7,8 +7,7 @@
 /// <param name="Views"><inheritdoc/></param>
 /// <param name="ContradictionLinks">Indicates the list of contradiction links.</param>
 public sealed record class BowmanBingoStep(
-	ImmutableArray<Conclusion> Conclusions, ImmutableArray<View> Views,
-	ImmutableArray<Conclusion> ContradictionLinks) :
+	ConclusionList Conclusions, ViewList Views, ConclusionList ContradictionLinks) :
 	LastResortStep(Conclusions, Views),
 	IChainLikeStep,
 	IStepWithPhasedDifficulty

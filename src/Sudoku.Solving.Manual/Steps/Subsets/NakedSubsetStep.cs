@@ -26,8 +26,7 @@
 /// </list>
 /// </param>
 public sealed record class NakedSubsetStep(
-	ImmutableArray<Conclusion> Conclusions, ImmutableArray<View> Views,
-	int House, in Cells Cells, short DigitsMask, bool? IsLocked) :
+	ConclusionList Conclusions, ViewList Views, int House, in Cells Cells, short DigitsMask, bool? IsLocked) :
 	SubsetStep(Conclusions, Views, House, Cells, DigitsMask),
 	IStepWithPhasedDifficulty
 {

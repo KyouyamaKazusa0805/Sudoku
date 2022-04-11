@@ -9,8 +9,7 @@
 /// <param name="BaseSet">Indicates the house that the current locked candidates forms.</param>
 /// <param name="CoverSet">Indicates the house that the current locked candidates influences.</param>
 public sealed record class LockedCandidatesStep(
-	ImmutableArray<Conclusion> Conclusions, ImmutableArray<View> Views,
-	int Digit, int BaseSet, int CoverSet) :
+	ConclusionList Conclusions, ViewList Views, int Digit, int BaseSet, int CoverSet) :
 	IntersectionStep(Conclusions, Views),
 	IElementaryStep,
 	IStepWithRank

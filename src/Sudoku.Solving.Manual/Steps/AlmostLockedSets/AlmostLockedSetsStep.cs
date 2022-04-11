@@ -5,8 +5,7 @@
 /// </summary>
 /// <param name="Conclusions"><inheritdoc/></param>
 /// <param name="Views"><inheritdoc/></param>
-public abstract record class AlmostLockedSetsStep(
-	ImmutableArray<Conclusion> Conclusions, ImmutableArray<View> Views) :
+public abstract record class AlmostLockedSetsStep(ConclusionList Conclusions, ViewList Views) :
 	Step(Conclusions, Views)
 {
 	/// <inheritdoc/>

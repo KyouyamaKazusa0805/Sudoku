@@ -30,10 +30,10 @@
 /// </param>
 /// <param name="AbsoluteOffset"><inheritdoc/></param>
 public sealed record class UniqueRectangleWithSueDeCoqStep(
-	ImmutableArray<Conclusion> Conclusions, ImmutableArray<View> Views, int Digit1, int Digit2,
-	in Cells Cells, bool IsAvoidable, int Block, int Line, short BlockMask, short LineMask,
-	short IntersectionMask, bool IsCannibalistic, short IsolatedDigitsMask,
-	in Cells BlockCells, in Cells LineCells, in Cells IntersectionCells, int AbsoluteOffset) :
+	ConclusionList Conclusions, ViewList Views, int Digit1, int Digit2, in Cells Cells,
+	bool IsAvoidable, int Block, int Line, short BlockMask, short LineMask, short IntersectionMask,
+	bool IsCannibalistic, short IsolatedDigitsMask, in Cells BlockCells, in Cells LineCells,
+	in Cells IntersectionCells, int AbsoluteOffset) :
 	UniqueRectangleStep(
 		Conclusions, Views,
 		IsAvoidable ? Technique.AvoidableRectangleSueDeCoq : Technique.UniqueRectangleSueDeCoq,

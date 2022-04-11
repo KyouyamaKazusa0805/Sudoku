@@ -13,9 +13,8 @@
 /// <param name="IsFranken">Indicates whether the fish is a Franken fish.</param>
 /// <param name="IsSashimi">Indicates whether the fish is a Sashimi fish.</param>
 public sealed partial record class ComplexFishStep(
-	ImmutableArray<Conclusion> Conclusions, ImmutableArray<View> Views,
-	int Digit, int BaseSetsMask, int CoverSetsMask, in Cells Exofins, in Cells Endofins,
-	bool IsFranken, bool? IsSashimi) :
+	ConclusionList Conclusions, ViewList Views, int Digit, int BaseSetsMask, int CoverSetsMask,
+	in Cells Exofins, in Cells Endofins, bool IsFranken, bool? IsSashimi) :
 	FishStep(Conclusions, Views, Digit, BaseSetsMask, CoverSetsMask),
 	IDistinctableStep<ComplexFishStep>,
 	IStepWithPhasedDifficulty

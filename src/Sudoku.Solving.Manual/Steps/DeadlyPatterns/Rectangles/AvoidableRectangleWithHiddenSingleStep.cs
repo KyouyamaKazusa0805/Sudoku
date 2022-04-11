@@ -13,9 +13,8 @@
 /// <param name="House"></param>
 /// <param name="AbsoluteOffset"><inheritdoc/></param>
 public sealed record class AvoidableRectangleWithHiddenSingleStep(
-	ImmutableArray<Conclusion> Conclusions, ImmutableArray<View> Views,
-	int Digit1, int Digit2, in Cells Cells, int BaseCell, int TargetCell,
-	int House, int AbsoluteOffset) :
+	ConclusionList Conclusions, ViewList Views, int Digit1, int Digit2, in Cells Cells,
+	int BaseCell, int TargetCell, int House, int AbsoluteOffset) :
 	UniqueRectangleStep(
 		Conclusions, Views,
 		(Technique)((int)Technique.AvoidableRectangleHiddenSingleBlock + (int)House.ToHouse()),

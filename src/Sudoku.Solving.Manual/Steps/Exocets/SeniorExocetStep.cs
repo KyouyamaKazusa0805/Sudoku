@@ -10,8 +10,8 @@
 /// <param name="ExtraHousesMask">Indicates the mask tnat holds the extra houses used.</param>
 /// <param name="Eliminations"><inheritdoc/></param>
 public sealed record class SeniorExocetStep(
-	ImmutableArray<View> Views, in ExocetPattern Exocet, short DigitsMask,
-	int EndoTargetCell, int[]? ExtraHousesMask, ImmutableArray<ExocetElimination> Eliminations) :
+	ViewList Views, in ExocetPattern Exocet, short DigitsMask, int EndoTargetCell,
+	int[]? ExtraHousesMask, ImmutableArray<ExocetElimination> Eliminations) :
 	ExocetStep(Views, Exocet, DigitsMask, Eliminations),
 	IStepWithPhasedDifficulty
 {

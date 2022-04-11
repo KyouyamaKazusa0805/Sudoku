@@ -9,8 +9,7 @@
 /// <param name="BaseHouse">Indicates the base house used.</param>
 /// <param name="TargetHouse">Indicates the target house used.</param>
 public sealed record class TwoStrongLinksStep(
-	ImmutableArray<Conclusion> Conclusions, ImmutableArray<View> Views,
-	int Digit, int BaseHouse, int TargetHouse) :
+	ConclusionList Conclusions, ViewList Views, int Digit, int BaseHouse, int TargetHouse) :
 	SingleDigitPatternStep(Conclusions, Views, Digit),
 	IChainLikeStep,
 	IStepWithRank

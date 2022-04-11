@@ -179,7 +179,7 @@ public sealed partial class AlternatingInferenceChainStepSearcher : IAlternating
 				Bfs();
 			}
 
-			var tempList = new Dictionary<AlternatingInferenceChain, ImmutableArray<Conclusion>>();
+			var tempList = new Dictionary<AlternatingInferenceChain, ConclusionList>();
 			foreach (var (nids, startsWithWeak) in _foundChains)
 			{
 				var chain = new AlternatingInferenceChain(from nid in nids select _nodeLookup[nid], startsWithWeak);

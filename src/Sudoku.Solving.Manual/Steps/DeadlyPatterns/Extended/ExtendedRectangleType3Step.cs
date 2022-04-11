@@ -11,8 +11,8 @@
 /// <param name="ExtraDigitsMask">Indicates the mask that contains the extra digits.</param>
 /// <param name="House">Indicates the house that extra subset formed.</param>
 public sealed record class ExtendedRectangleType3Step(
-	ImmutableArray<Conclusion> Conclusions, ImmutableArray<View> Views, in Cells Cells,
-	short DigitsMask, in Cells ExtraCells, short ExtraDigitsMask, int House) :
+	ConclusionList Conclusions, ViewList Views, in Cells Cells, short DigitsMask,
+	in Cells ExtraCells, short ExtraDigitsMask, int House) :
 	ExtendedRectangleStep(Conclusions, Views, Cells, DigitsMask),
 	IStepWithPhasedDifficulty
 {

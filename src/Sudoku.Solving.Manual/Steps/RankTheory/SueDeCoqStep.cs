@@ -16,9 +16,9 @@
 /// <param name="LineCells">The map of line cells.</param>
 /// <param name="IntersectionCells">The map of intersection cells.</param>
 public sealed record class SueDeCoqStep(
-	ImmutableArray<Conclusion> Conclusions, ImmutableArray<View> Views, int Block, int Line,
-	short BlockMask, short LineMask, short IntersectionMask, bool IsCannibalistic,
-	short IsolatedDigitsMask, in Cells BlockCells, in Cells LineCells, in Cells IntersectionCells) :
+	ConclusionList Conclusions, ViewList Views, int Block, int Line, short BlockMask, short LineMask,
+	short IntersectionMask, bool IsCannibalistic, short IsolatedDigitsMask,
+	in Cells BlockCells, in Cells LineCells, in Cells IntersectionCells) :
 	RankTheoryStep(Conclusions, Views),
 	IStepWithRank,
 	IStepWithPhasedDifficulty

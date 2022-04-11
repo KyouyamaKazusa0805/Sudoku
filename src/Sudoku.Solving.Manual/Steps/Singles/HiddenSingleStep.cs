@@ -12,8 +12,8 @@
 /// Indicates whether the current step is a <b>Last Digit</b> technique usage.
 /// </param>
 public sealed record class HiddenSingleStep(
-	ImmutableArray<Conclusion> Conclusions, ImmutableArray<View> Views,
-	int Cell, int Digit, int House, bool EnableAndIsLastDigit) : SingleStep(Conclusions, Views, Cell, Digit)
+	ConclusionList Conclusions, ViewList Views, int Cell, int Digit, int House, bool EnableAndIsLastDigit) :
+	SingleStep(Conclusions, Views, Cell, Digit)
 {
 	/// <inheritdoc/>
 	public override decimal Difficulty =>

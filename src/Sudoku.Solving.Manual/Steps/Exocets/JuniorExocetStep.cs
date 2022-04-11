@@ -10,7 +10,7 @@
 /// <param name="LockedMemberR">Indicates the locked member bound with R cells.</param>
 /// <param name="Eliminations"><inheritdoc/></param>
 public sealed record class JuniorExocetStep(
-	ImmutableArray<View> Views, in ExocetPattern Exocet, short DigitsMask, short LockedMemberQ,
+	ViewList Views, in ExocetPattern Exocet, short DigitsMask, short LockedMemberQ,
 	short LockedMemberR, ImmutableArray<ExocetElimination> Eliminations) :
 	ExocetStep(Views, Exocet, DigitsMask, Eliminations),
 	IStepWithPhasedDifficulty

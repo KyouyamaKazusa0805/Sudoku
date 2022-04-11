@@ -11,8 +11,8 @@
 /// <param name="Digit1">Indicates the digit 1 used in this pattern.</param>
 /// <param name="Digit2">Indicates the digit 2 used in this pattern.</param>
 public sealed record class EmptyRectangleIntersectionPairStep(
-	ImmutableArray<Conclusion> Conclusions, ImmutableArray<View> Views,
-	int StartCell, int EndCell, int House, int Digit1, int Digit2) : AlmostLockedSetsStep(Conclusions, Views)
+	ConclusionList Conclusions, ViewList Views, int StartCell, int EndCell, int House, int Digit1, int Digit2) :
+	AlmostLockedSetsStep(Conclusions, Views)
 {
 	/// <inheritdoc/>
 	public override decimal Difficulty => 6.0M;

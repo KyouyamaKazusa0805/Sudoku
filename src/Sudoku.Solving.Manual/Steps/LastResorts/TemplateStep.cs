@@ -6,8 +6,7 @@
 /// <param name="Conclusions"><inheritdoc/></param>
 /// <param name="Views"><inheritdoc/></param>
 /// <param name="IsTemplateDeletion">Indicates whether the step is a deletion.</param>
-public sealed record class TemplateStep(
-	ImmutableArray<Conclusion> Conclusions, ImmutableArray<View> Views, bool IsTemplateDeletion) :
+public sealed record class TemplateStep(ConclusionList Conclusions, ViewList Views, bool IsTemplateDeletion) :
 	LastResortStep(Conclusions, Views)
 {
 	/// <summary>

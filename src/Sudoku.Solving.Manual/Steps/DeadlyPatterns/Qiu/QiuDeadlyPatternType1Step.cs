@@ -8,8 +8,8 @@
 /// <param name="Pattern"><inheritdoc/></param>
 /// <param name="Candidate">Indicates the extra candidate used.</param>
 public sealed record class QiuDeadlyPatternType1Step(
-	ImmutableArray<Conclusion> Conclusions, ImmutableArray<View> Views,
-	in QiuDeadlyPattern Pattern, int Candidate) : QiuDeadlyPatternStep(Conclusions, Views, Pattern)
+	ConclusionList Conclusions, ViewList Views, in QiuDeadlyPattern Pattern, int Candidate) :
+	QiuDeadlyPatternStep(Conclusions, Views, Pattern)
 {
 	/// <inheritdoc/>
 	public override int Type => 1;

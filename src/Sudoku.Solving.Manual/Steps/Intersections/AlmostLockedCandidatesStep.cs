@@ -10,8 +10,8 @@
 /// <param name="TargetCells">Indicates the target cells.</param>
 /// <param name="HasValueCell">Indicates whether the step contains value cells.</param>
 public sealed record class AlmostLockedCandidatesStep(
-	ImmutableArray<Conclusion> Conclusions, ImmutableArray<View> Views,
-	short DigitsMask, in Cells BaseCells, in Cells TargetCells, bool HasValueCell) :
+	ConclusionList Conclusions, ViewList Views, short DigitsMask,
+	in Cells BaseCells, in Cells TargetCells, bool HasValueCell) :
 	IntersectionStep(Conclusions, Views),
 	IStepWithSize,
 	IStepWithPhasedDifficulty

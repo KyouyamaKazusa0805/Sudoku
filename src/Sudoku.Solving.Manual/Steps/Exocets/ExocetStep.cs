@@ -8,8 +8,7 @@
 /// <param name="DigitsMask">Indicates the mask that holds all possible digits used.</param>
 /// <param name="Eliminations">Indicates all possible eliminations.</param>
 public abstract record class ExocetStep(
-	ImmutableArray<View> Views, in ExocetPattern Exocet, short DigitsMask,
-	ImmutableArray<ExocetElimination> Eliminations) :
+	ViewList Views, in ExocetPattern Exocet, short DigitsMask, ImmutableArray<ExocetElimination> Eliminations) :
 	Step(GatherConclusions(Eliminations), Views),
 	IStepWithRank
 {
@@ -105,7 +104,7 @@ public abstract record class ExocetStep(
 	/// Gather conclusions.
 	/// </summary>
 	/// <returns>The gathered result.</returns>
-	private static ImmutableArray<Conclusion> GatherConclusions(ImmutableArray<ExocetElimination> eliminations)
+	private static ConclusionList GatherConclusions(ImmutableArray<ExocetElimination> eliminations)
 	{
 		var result = new List<Conclusion>();
 		foreach (var eliminationInstance in eliminations)

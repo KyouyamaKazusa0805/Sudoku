@@ -10,8 +10,8 @@
 /// <param name="ExtraCells">Indicates the extra cells used.</param>
 /// <param name="IsNaked">Indicates whether the subset is a naked subset.</param>
 public sealed record class QiuDeadlyPatternType3Step(
-	ImmutableArray<Conclusion> Conclusions, ImmutableArray<View> Views,
-	in QiuDeadlyPattern Pattern, short ExtraDigitsMask, in Cells ExtraCells, bool IsNaked) :
+	ConclusionList Conclusions, ViewList Views, in QiuDeadlyPattern Pattern,
+	short ExtraDigitsMask, in Cells ExtraCells, bool IsNaked) :
 	QiuDeadlyPatternStep(Conclusions, Views, Pattern),
 	IStepWithPhasedDifficulty
 {

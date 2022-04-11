@@ -8,8 +8,8 @@
 /// <param name="Cells"><inheritdoc/></param>
 /// <param name="DigitsMask"><inheritdoc/></param>
 public sealed record class ExtendedRectangleType1Step(
-	ImmutableArray<Conclusion> Conclusions, ImmutableArray<View> Views,
-	in Cells Cells, short DigitsMask) : ExtendedRectangleStep(Conclusions, Views, Cells, DigitsMask)
+	ConclusionList Conclusions, ViewList Views, in Cells Cells, short DigitsMask) :
+	ExtendedRectangleStep(Conclusions, Views, Cells, DigitsMask)
 {
 	/// <inheritdoc/>
 	public override int Type => 1;

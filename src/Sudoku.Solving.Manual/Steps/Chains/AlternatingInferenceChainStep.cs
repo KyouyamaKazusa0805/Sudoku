@@ -9,7 +9,7 @@
 /// <param name="XEnabled"><inheritdoc cref="AlternatingInferenceChainStepSearcher.XEnabled"/></param>
 /// <param name="YEnabled"><inheritdoc cref="AlternatingInferenceChainStepSearcher.YEnabled"/></param>
 public sealed record class AlternatingInferenceChainStep(
-	ImmutableArray<Conclusion> Conclusions, ImmutableArray<View> Views,
+	ConclusionList Conclusions, ViewList Views,
 	AlternatingInferenceChain Chain, bool XEnabled, bool YEnabled) :
 	ChainStep(Conclusions, Views),
 	IChainStep,

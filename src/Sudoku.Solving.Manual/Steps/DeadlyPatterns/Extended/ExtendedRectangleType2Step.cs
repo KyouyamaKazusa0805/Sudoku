@@ -9,8 +9,7 @@
 /// <param name="DigitsMask"><inheritdoc/></param>
 /// <param name="ExtraDigit">Indicates the extra digit used.</param>
 public sealed record class ExtendedRectangleType2Step(
-	ImmutableArray<Conclusion> Conclusions, ImmutableArray<View> Views,
-	in Cells Cells, short DigitsMask, int ExtraDigit) :
+	ConclusionList Conclusions, ViewList Views, in Cells Cells, short DigitsMask, int ExtraDigit) :
 	ExtendedRectangleStep(Conclusions, Views, Cells, DigitsMask),
 	IStepWithPhasedDifficulty
 {

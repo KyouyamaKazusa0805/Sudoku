@@ -141,12 +141,12 @@ public interface IStep
 	/// <summary>
 	/// Indicates the conclusions that the step can be eliminated or assigned to.
 	/// </summary>
-	ImmutableArray<Conclusion> Conclusions { get; }
+	ConclusionList Conclusions { get; }
 
 	/// <summary>
 	/// Indicates the views of the step that may be displayed onto the screen using pictures.
 	/// </summary>
-	ImmutableArray<View> Views { get; }
+	ViewList Views { get; }
 
 	/// <summary>
 	/// Indicates the string representation of the conclusions.

@@ -9,8 +9,7 @@
 /// <param name="Loop">Indicates the loop cells used.</param>
 /// <param name="Guardians">Indicates the guardian cells used.</param>
 public sealed record class GuardianStep(
-	ImmutableArray<Conclusion> Conclusions, ImmutableArray<View> Views,
-	int Digit, in Cells Loop, in Cells Guardians) :
+	ConclusionList Conclusions, ViewList Views, int Digit, in Cells Loop, in Cells Guardians) :
 	SingleDigitPatternStep(Conclusions, Views, Digit),
 	IDistinctableStep<GuardianStep>,
 	ILoopLikeStep,

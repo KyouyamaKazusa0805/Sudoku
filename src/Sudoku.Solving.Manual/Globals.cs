@@ -35,6 +35,8 @@ global using static System.Numerics.BitOperations;
 global using static Sudoku.Resources.MergedResources;
 global using static Sudoku.Runtime.AnalysisServices.CommonReadOnlies;
 global using static Sudoku.Solving.Manual.Buffers.FastProperties;
+global using ConclusionList = System.Collections.Immutable.ImmutableArray<Sudoku.Concepts.Solving.Conclusion>;
+global using ViewList = System.Collections.Immutable.ImmutableArray<Sudoku.Presentation.View>;
 
 [assembly: SearcherConfiguration<SingleStepSearcher>(1, DisplayingLevel.A)]
 [assembly: SearcherConfiguration<LockedCandidatesStepSearcher>(2, DisplayingLevel.A)]

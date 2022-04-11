@@ -13,8 +13,7 @@
 /// <param name="IsIncomplete">Indicates whether the rectangle is incomplete.</param>
 /// <param name="AbsoluteOffset"><inheritdoc/></param>
 public sealed record class UniqueRectangleWithGuardianStep(
-	ImmutableArray<Conclusion> Conclusions, ImmutableArray<View> Views,
-	int Digit1, int Digit2, in Cells Cells, in Cells GuardianCells,
+	ConclusionList Conclusions, ViewList Views, int Digit1, int Digit2, in Cells Cells, in Cells GuardianCells,
 	int GuardianDigit, bool IsIncomplete, int AbsoluteOffset) :
 	UniqueRectangleStep(
 		Conclusions, Views, Technique.UniqueRectangleBrokenWing,

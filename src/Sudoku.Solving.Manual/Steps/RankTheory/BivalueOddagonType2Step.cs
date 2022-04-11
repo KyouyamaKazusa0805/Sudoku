@@ -10,8 +10,7 @@
 /// <param name="Digit2"><inheritdoc/></param>
 /// <param name="ExtraDigit">Indicates the extra digit.</param>
 public sealed record class BivalueOddagonType2Step(
-	ImmutableArray<Conclusion> Conclusions, ImmutableArray<View> Views,
-	in Cells Loop, int Digit1, int Digit2, int ExtraDigit) :
+	ConclusionList Conclusions, ViewList Views, in Cells Loop, int Digit1, int Digit2, int ExtraDigit) :
 	BivalueOddagonStep(Conclusions, Views, Loop, Digit1, Digit2),
 	IStepWithPhasedDifficulty
 {

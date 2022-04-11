@@ -8,8 +8,8 @@
 /// <param name="Cells">Indicates the cells used.</param>
 /// <param name="DigitsMask">Indicates the digits used.</param>
 public abstract record class UniqueSquareStep(
-	ImmutableArray<Conclusion> Conclusions, ImmutableArray<View> Views,
-	in Cells Cells, short DigitsMask) : DeadlyPatternStep(Conclusions, Views)
+	ConclusionList Conclusions, ViewList Views, in Cells Cells, short DigitsMask) :
+	DeadlyPatternStep(Conclusions, Views)
 {
 	/// <inheritdoc/>
 	public override decimal Difficulty => 5.3M;

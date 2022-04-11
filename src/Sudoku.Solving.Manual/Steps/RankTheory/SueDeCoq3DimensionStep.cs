@@ -12,9 +12,8 @@
 /// <param name="ColumnCells">The column cells map.</param>
 /// <param name="BlockCells">The block cells map.</param>
 public sealed record class SueDeCoq3DimensionStep(
-	ImmutableArray<Conclusion> Conclusions, ImmutableArray<View> Views,
-	short RowDigitsMask, short ColumnDigitsMask, short BlockDigitsMask,
-	in Cells RowCells, in Cells ColumnCells, in Cells BlockCells) :
+	ConclusionList Conclusions, ViewList Views, short RowDigitsMask, short ColumnDigitsMask,
+	short BlockDigitsMask, in Cells RowCells, in Cells ColumnCells, in Cells BlockCells) :
 	RankTheoryStep(Conclusions, Views),
 	IStepWithRank
 {

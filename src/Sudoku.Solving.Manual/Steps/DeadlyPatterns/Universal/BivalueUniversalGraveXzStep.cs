@@ -9,8 +9,7 @@
 /// <param name="Cells">Indicates the cells used.</param>
 /// <param name="ExtraCell">Indicates the XZ cell.</param>
 public sealed record class BivalueUniversalGraveXzStep(
-	ImmutableArray<Conclusion> Conclusions, ImmutableArray<View> Views,
-	short DigitsMask, in Cells Cells, int ExtraCell) :
+	ConclusionList Conclusions, ViewList Views, short DigitsMask, in Cells Cells, int ExtraCell) :
 	BivalueUniversalGraveStep(Conclusions, Views),
 	IStepWithPhasedDifficulty
 {

@@ -9,8 +9,8 @@
 /// <param name="Cells"><inheritdoc/></param>
 /// <param name="DigitsMask"><inheritdoc/></param>
 public sealed record class HiddenSubsetStep(
-	ImmutableArray<Conclusion> Conclusions, ImmutableArray<View> Views,
-	int House, in Cells Cells, short DigitsMask) : SubsetStep(Conclusions, Views, House, Cells, DigitsMask)
+	ConclusionList Conclusions, ViewList Views, int House, in Cells Cells, short DigitsMask) :
+	SubsetStep(Conclusions, Views, House, Cells, DigitsMask)
 {
 	/// <inheritdoc/>
 	public override decimal Difficulty =>

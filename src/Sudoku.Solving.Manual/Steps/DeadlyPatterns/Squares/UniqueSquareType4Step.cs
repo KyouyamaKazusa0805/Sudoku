@@ -11,8 +11,8 @@
 /// <param name="Digit2">Indicates the digit 2 used.</param>
 /// <param name="ConjugateHouse">Indicates the cells used as the conjugate house.</param>
 public sealed record class UniqueSquareType4Step(
-	ImmutableArray<Conclusion> Conclusions, ImmutableArray<View> Views,
-	in Cells Cells, short DigitsMask, int Digit1, int Digit2, in Cells ConjugateHouse) :
+	ConclusionList Conclusions, ViewList Views, in Cells Cells, short DigitsMask,
+	int Digit1, int Digit2, in Cells ConjugateHouse) :
 	UniqueSquareStep(Conclusions, Views, Cells, DigitsMask)
 {
 	/// <inheritdoc/>

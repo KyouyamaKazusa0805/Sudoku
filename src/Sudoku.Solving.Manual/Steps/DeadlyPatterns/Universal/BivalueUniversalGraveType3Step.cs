@@ -10,8 +10,8 @@
 /// <param name="Cells">Indicates the cells used.</param>
 /// <param name="IsNaked">Indicates whether the specified subset is naked subset.</param>
 public sealed record class BivalueUniversalGraveType3Step(
-	ImmutableArray<Conclusion> Conclusions, ImmutableArray<View> Views,
-	IReadOnlyList<int> TrueCandidates, short DigitsMask, in Cells Cells, bool IsNaked) :
+	ConclusionList Conclusions, ViewList Views, IReadOnlyList<int> TrueCandidates,
+	short DigitsMask, in Cells Cells, bool IsNaked) :
 	BivalueUniversalGraveStep(Conclusions, Views),
 	IStepWithPhasedDifficulty
 {

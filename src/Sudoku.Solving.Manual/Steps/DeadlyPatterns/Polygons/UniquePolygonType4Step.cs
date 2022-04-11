@@ -10,8 +10,8 @@
 /// <param name="ConjugateHouse">Indicates the cells that forms the conjugate house.</param>
 /// <param name="ExtraMask">Indicates the extra digits mask.</param>
 public sealed record class UniquePolygonType4Step(
-	ImmutableArray<Conclusion> Conclusions, ImmutableArray<View> Views,
-	in Cells Map, short DigitsMask, in Cells ConjugateHouse, short ExtraMask) :
+	ConclusionList Conclusions, ViewList Views, in Cells Map, short DigitsMask,
+	in Cells ConjugateHouse, short ExtraMask) :
 	UniquePolygonStep(Conclusions, Views, Map, DigitsMask)
 {
 	/// <inheritdoc/>

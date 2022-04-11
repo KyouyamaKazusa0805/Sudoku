@@ -8,8 +8,8 @@
 /// <param name="Map">The map that contains the cells used for this technique.</param>
 /// <param name="DigitsMask">The mask that contains all digits used.</param>
 public abstract record class UniquePolygonStep(
-	ImmutableArray<Conclusion> Conclusions, ImmutableArray<View> Views,
-	in Cells Map, short DigitsMask) : DeadlyPatternStep(Conclusions, Views)
+	ConclusionList Conclusions, ViewList Views, in Cells Map, short DigitsMask) :
+	DeadlyPatternStep(Conclusions, Views)
 {
 	/// <inheritdoc/>
 	public override decimal Difficulty => 5.3M;

@@ -12,8 +12,8 @@
 /// <param name="YDigitsMask">Indicates the mask that holds the digits for the Y value.</param>
 /// <param name="ZDigitsMask">Indicates the mask that holds the digits for the Z value.</param>
 public sealed record class AlmostLockedSetsXyWingStep(
-	ImmutableArray<Conclusion> Conclusions, ImmutableArray<View> Views, AlmostLockedSet Als1,
-	AlmostLockedSet Als2, AlmostLockedSet Bridge, short XDigitsMask, short YDigitsMask, short ZDigitsMask) :
+	ConclusionList Conclusions, ViewList Views, AlmostLockedSet Als1, AlmostLockedSet Als2,
+	AlmostLockedSet Bridge, short XDigitsMask, short YDigitsMask, short ZDigitsMask) :
 	AlmostLockedSetsStep(Conclusions, Views)
 {
 	/// <inheritdoc/>

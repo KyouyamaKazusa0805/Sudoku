@@ -5,8 +5,8 @@
 /// </summary>
 /// <param name="Conclusions"><inheritdoc/></param>
 /// <param name="Views"><inheritdoc/></param>
-public abstract record class IntersectionStep(
-	ImmutableArray<Conclusion> Conclusions, ImmutableArray<View> Views) : Step(Conclusions, Views)
+public abstract record class IntersectionStep(ConclusionList Conclusions, ViewList Views) :
+	Step(Conclusions, Views)
 {
 	/// <inheritdoc/>
 	public sealed override bool ShowDifficulty => base.ShowDifficulty;

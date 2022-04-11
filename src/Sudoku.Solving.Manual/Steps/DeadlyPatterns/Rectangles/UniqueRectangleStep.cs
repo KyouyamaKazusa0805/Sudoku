@@ -36,9 +36,8 @@
 /// </param>
 /// <seealso cref="Step.TechniqueCode"/>
 public abstract record class UniqueRectangleStep(
-	ImmutableArray<Conclusion> Conclusions, ImmutableArray<View> Views,
-	Technique TechniqueCode2, int Digit1, int Digit2, in Cells Cells,
-	bool IsAvoidable, int AbsoluteOffset) :
+	ConclusionList Conclusions, ViewList Views, Technique TechniqueCode2,
+	int Digit1, int Digit2, in Cells Cells, bool IsAvoidable, int AbsoluteOffset) :
 	DeadlyPatternStep(Conclusions, Views),
 	IDistinctableStep<UniqueRectangleStep>
 {

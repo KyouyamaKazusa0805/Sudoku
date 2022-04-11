@@ -5,8 +5,8 @@
 /// </summary>
 /// <param name="Conclusions"><inheritdoc/></param>
 /// <param name="Views"><inheritdoc/></param>
-public abstract record class BivalueUniversalGraveStep(
-	ImmutableArray<Conclusion> Conclusions, ImmutableArray<View> Views) : DeadlyPatternStep(Conclusions, Views)
+public abstract record class BivalueUniversalGraveStep(ConclusionList Conclusions, ViewList Views) :
+	DeadlyPatternStep(Conclusions, Views)
 {
 	/// <inheritdoc/>
 	public override decimal Difficulty => 5.6M;

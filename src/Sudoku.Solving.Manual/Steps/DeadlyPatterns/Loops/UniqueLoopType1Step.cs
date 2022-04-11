@@ -9,8 +9,8 @@
 /// <param name="Digit2"><inheritdoc/></param>
 /// <param name="Loop"><inheritdoc/></param>
 public sealed record class UniqueLoopType1Step(
-	ImmutableArray<Conclusion> Conclusions, ImmutableArray<View> Views,
-	int Digit1, int Digit2, in Cells Loop) : UniqueLoopStep(Conclusions, Views, Digit1, Digit2, Loop)
+	ConclusionList Conclusions, ViewList Views, int Digit1, int Digit2, in Cells Loop) :
+	UniqueLoopStep(Conclusions, Views, Digit1, Digit2, Loop)
 {
 	/// <inheritdoc/>
 	public override int Type => 1;

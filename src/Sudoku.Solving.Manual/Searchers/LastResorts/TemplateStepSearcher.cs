@@ -75,7 +75,7 @@ public sealed unsafe partial class TemplateStepSearcher : ITemplateStepSearcher
 
 			var templateDeleteStep = new TemplateStep(
 				ImmutableArray.Create(templateDeleteConclusions),
-				ImmutableArray<View>.Empty,
+				ViewList.Empty,
 				true
 			);
 			if (onlyFindOne)

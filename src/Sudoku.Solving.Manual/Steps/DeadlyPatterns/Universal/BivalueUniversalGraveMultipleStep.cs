@@ -7,7 +7,7 @@
 /// <param name="Views"><inheritdoc/></param>
 /// <param name="Candidates">Indicates the true candidates.</param>
 public sealed record class BivalueUniversalGraveMultipleStep(
-	ImmutableArray<Conclusion> Conclusions, ImmutableArray<View> Views, IReadOnlyList<int> Candidates) :
+	ConclusionList Conclusions, ViewList Views, IReadOnlyList<int> Candidates) :
 	BivalueUniversalGraveStep(Conclusions, Views),
 	IStepWithPhasedDifficulty
 {
