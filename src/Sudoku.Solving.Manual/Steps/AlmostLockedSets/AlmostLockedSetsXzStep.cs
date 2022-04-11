@@ -11,9 +11,9 @@
 /// <param name="ZDigitsMask">Indicates the Z digit used in this ALS-XZ pattern.</param>
 /// <param name="IsDoublyLinked">Indicates whether the ALS-XZ is doubly-linked.</param>
 public sealed record class AlmostLockedSetsXzStep(
-	ImmutableArray<Conclusion> Conclusions, ImmutableArray<View> Views,
-	AlmostLockedSet Als1, AlmostLockedSet Als2,
-	short XDigitsMask, short ZDigitsMask, bool? IsDoublyLinked) : AlmostLockedSetsStep(Conclusions, Views)
+	ImmutableArray<Conclusion> Conclusions, ImmutableArray<View> Views, AlmostLockedSet Als1,
+	AlmostLockedSet Als2, short XDigitsMask, short ZDigitsMask, bool? IsDoublyLinked) :
+	AlmostLockedSetsStep(Conclusions, Views)
 {
 	/// <inheritdoc/>
 	public override decimal Difficulty => IsDoublyLinked is true ? 5.7M : 5.5M;
