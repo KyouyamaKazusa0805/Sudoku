@@ -31,7 +31,6 @@ public sealed class RefStructOverridensGenerator : ISourceGenerator
 			return;
 		}
 
-#pragma warning disable RS1024
 		(
 			from typeSymbol in typeSymbols
 			group typeSymbol by typeSymbol.ContainingType is null into @group
@@ -40,7 +39,6 @@ public sealed class RefStructOverridensGenerator : ISourceGenerator
 			from type in @group
 			select (Action: f, Type: type)
 		).ForEach(e => e.Action(context, e.Type, compilation));
-#pragma warning restore RS1024
 	}
 
 	/// <inheritdoc/>
