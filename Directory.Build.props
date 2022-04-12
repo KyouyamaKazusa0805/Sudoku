@@ -12,14 +12,6 @@
 		<LangVersion>preview</LangVersion>
 	</PropertyGroup>
 
-	<!--
-	If the language version is set 'preview', we will allow it using preview runtime features,
-	such as the preview feature 'static abstracts in interfaces'.
-	-->
-	<PropertyGroup Condition="'$(LangVersion)'=='preview'">
-		<EnablePreviewFeatures>true</EnablePreviewFeatures>
-	</PropertyGroup>
-
 	<!--Set the nullable is enable if the language version is greater than or equals to C# 8.0.-->
 	<PropertyGroup Condition="'$(LangVersion)'=='preview' Or '$(LangVersion)'=='latest' Or '$(LangVersion)'&gt;='8.0'">
 		<Nullable>enable</Nullable>
@@ -28,6 +20,12 @@
 	<!--Set the root namespaces.-->
 	<PropertyGroup Condition="'$(MSBuildProjectFile.TrimEnd(`.csproj`).EndsWith(`.CodeGen`))'=='true'">
 		<RootNamespace>Sudoku.Diagnostics.CodeGen</RootNamespace>
+	</PropertyGroup>
+
+	<!--Enables the preview features if the project is not the source generators.-->
+	<PropertyGroup Condition="'$(MSBuildProjectFile.TrimEnd(`.csproj`).EndsWith(`.CodeGen`))'=='false' And '$(LangVersion)'=='preview'">
+		<EnablePreviewFeatures>true</EnablePreviewFeatures>
+		<GenerateRequiresPreviewFeaturesAttribute>true</GenerateRequiresPreviewFeaturesAttribute>
 	</PropertyGroup>
 
 	<!--Select the default configuration as 'DEBUG', and set the compilation symbols.-->
