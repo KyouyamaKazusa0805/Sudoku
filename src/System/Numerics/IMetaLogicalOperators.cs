@@ -1,23 +1,26 @@
-﻿#if FEATURE_GENERIC_MATH && FEATURE_GENERIC_MATH_IN_ARG
-namespace System;
+﻿namespace System.Numerics;
 
 /// <summary>
-/// Defines the meta logical operators. The operators are:
+/// Defines the type that can use the following operators:
 /// <list type="bullet">
-/// <item><see cref="operator true(in TSelf)"/></item>
-/// <item><see cref="operator false(in TSelf)"/></item>
+/// <item><see cref="operator true(TSelf)"/></item>
+/// <item><see cref="operator false(TSelf)"/></item>
 /// </list>
 /// </summary>
 /// <typeparam name="TSelf">The type of the current instance.</typeparam>
 /// <remarks>
+/// <para>
 /// The meta logical operators can be used as a part of the full expansion
-/// of operators <c><![CDATA[&&]]></c> and <c><![CDATA[||]]></c>. For more information, you can visit
+/// of operators <c><![CDATA[&&]]></c> and <c><![CDATA[||]]></c>.
+/// </para>
+/// <para>
+/// For more information, you can visit
 /// <see href="https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/operators/true-false-operators">
 /// this link
 /// </see>.
+/// </para>
 /// </remarks>
-[RequiresPreviewFeatures]
-public interface IValueMetaLogicalOperators<TSelf> where TSelf : struct, IValueMetaLogicalOperators<TSelf>
+public interface IMetaLogicalOperators</*[Self]*/ TSelf> where TSelf : IMetaLogicalOperators<TSelf>
 {
 	/// <summary>
 	/// <para>
@@ -34,7 +37,7 @@ public interface IValueMetaLogicalOperators<TSelf> where TSelf : struct, IValueM
 	/// The <see cref="bool"/> result indicating whether the current instance is
 	/// at the <see langword="true"/> status.
 	/// </returns>
-	static abstract bool operator true(in TSelf value);
+	static abstract bool operator true(TSelf value);
 
 	/// <summary>
 	/// <para>
@@ -51,7 +54,5 @@ public interface IValueMetaLogicalOperators<TSelf> where TSelf : struct, IValueM
 	/// The <see cref="bool"/> result indicating whether the current instance is
 	/// at the <see langword="false"/> status.
 	/// </returns>
-	static abstract bool operator false(in TSelf value);
+	static abstract bool operator false(TSelf value);
 }
-
-#endif
