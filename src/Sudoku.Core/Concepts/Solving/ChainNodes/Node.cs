@@ -3,12 +3,7 @@
 /// <summary>
 /// Defines a chain node.
 /// </summary>
-public abstract class Node :
-	IEquatable<Node>
-#if FEATURE_GENERIC_MATH
-	,
-	IEqualityOperators<Node, Node>
-#endif
+public abstract class Node : IEquatable<Node>, IEqualityOperators<Node, Node>
 {
 	/// <summary>
 	/// Indicates the number of bits that is preserved by the bit mask field <see cref="_other"/>.

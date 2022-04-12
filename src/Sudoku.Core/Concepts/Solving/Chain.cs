@@ -7,11 +7,8 @@ public abstract class Chain :
 	IEquatable<Chain>,
 	IEnumerable<Node>,
 	IReadOnlyCollection<Node>,
-	IReadOnlyList<Node>
-#if FEATURE_GENERIC_MATH
-	,
+	IReadOnlyList<Node>,
 	IEqualityOperators<Chain, Chain>
-#endif
 {
 	/// <summary>
 	/// Indicates the status of those nodes.

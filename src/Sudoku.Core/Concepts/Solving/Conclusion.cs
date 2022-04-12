@@ -24,12 +24,9 @@
 public readonly record struct Conclusion(int Mask) :
 	IComparable<Conclusion>,
 	IDefaultable<Conclusion>,
-	IEquatable<Conclusion>
-#if FEATURE_GENERIC_MATH
-	,
+	IEquatable<Conclusion>,
 	IComparisonOperators<Conclusion, Conclusion>,
 	IEqualityOperators<Conclusion, Conclusion>
-#endif
 {
 	/// <summary>
 	/// <inheritdoc cref="IDefaultable{T}.Default"/>
@@ -175,14 +172,12 @@ public readonly record struct Conclusion(int Mask) :
 	public override string ToString() =>
 		$"{Cells.Empty + Cell}{ConclusionType.GetNotation()}{Digit + 1}";
 
-#if FEATURE_GENERIC_MATH
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	int IComparable.CompareTo(object? obj) =>
 		obj is Conclusion comparer
 			? CompareTo(comparer)
 			: throw new ArgumentException($"The argument must be of type '{nameof(Conclusion)}'", nameof(obj));
-#endif
 
 
 	/// <summary>

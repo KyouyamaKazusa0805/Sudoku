@@ -10,11 +10,8 @@
 /// </remarks>
 public sealed class AlmostLockedSet :
 	IEquatable<AlmostLockedSet>,
-	ITechniquePattern<AlmostLockedSet>
-#if FEATURE_GENERIC_MATH
-	,
+	ITechniquePattern<AlmostLockedSet>,
 	IEqualityOperators<AlmostLockedSet, AlmostLockedSet>
-#endif
 {
 	/// <summary>
 	/// Indicates an array of the total number of the strong relations in an ALS of the different size.

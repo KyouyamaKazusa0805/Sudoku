@@ -33,19 +33,21 @@
 		<When Condition="'$(Configuration)'==''">
 			<PropertyGroup>
 				<Configuration>Debug</Configuration>
-				<DefineConstants>DEBUG;FEATURE_GENERIC_MATH</DefineConstants>
+				<DefineConstants>DEBUG</DefineConstants>
 			</PropertyGroup>
 		</When>
 		<When Condition="'$(Configuration)'=='Debug'">
 			<PropertyGroup>
-				<DefineConstants>DEBUG;FEATURE_GENERIC_MATH</DefineConstants>
+				<DefineConstants>DEBUG</DefineConstants>
 			</PropertyGroup>
 		</When>
+		<!--
 		<When Condition="'$(Configuration)'=='Release'">
 			<PropertyGroup>
-				<DefineConstants>FEATURE_GENERIC_MATH</DefineConstants>
+				<DefineConstants>TRACE</DefineConstants>
 			</PropertyGroup>
 		</When>
+		-->
 	</Choose>
 
 	<!--Import 'Microsoft.CodeAnalysis.*' packages if the project is a source generator project.-->

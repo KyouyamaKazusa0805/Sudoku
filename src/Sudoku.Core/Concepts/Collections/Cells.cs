@@ -17,9 +17,7 @@ public unsafe struct Cells :
 	IEnumerable<int>,
 	IEquatable<Cells>,
 	ISimpleFormattable,
-	ISimpleParseable<Cells>
-#if FEATURE_GENERIC_MATH
-	,
+	ISimpleParseable<Cells>,
 	IAdditionOperators<Cells, int, Cells>,
 	ISubtractionOperators<Cells, int, Cells>,
 	ISubtractionOperators<Cells, Cells, Cells>,
@@ -27,23 +25,6 @@ public unsafe struct Cells :
 	IModulusOperators<Cells, Cells, Cells>,
 	IBitwiseOperators<Cells, Cells, Cells>,
 	IEqualityOperators<Cells, Cells>
-#if FEATURE_GENEIC_MATH_IN_ARG
-	,
-	IValueAdditionOperators<Cells, int, Cells>,
-	IValueSubtractionOperators<Cells, int, Cells>,
-	IValueSubtractionOperators<Cells, Cells, Cells>,
-	IValueDivisionOperators<Cells, int, short>,
-	IValueModulusOperators<Cells, Cells, Cells>,
-	IValueBitwiseAndOperators<Cells, Cells, Cells>,
-	IValueBitwiseOrOperators<Cells, Cells, Cells>,
-	IValueBitwiseNotOperators<Cells, Cells>,
-	IValueBitwiseExclusiveOrOperators<Cells, Cells, Cells>,
-	IValueEqualityOperators<Cells, Cells>,
-	IValueGreaterThanOrLessThanOperators<Cells, Cells>,
-	IValueMetaLogicalOperators<Cells>,
-	IValueLogicalNotOperators<Cells>
-#endif
-#endif
 {
 	/// <summary>
 	/// The value used for shifting.
@@ -1254,7 +1235,6 @@ public unsafe struct Cells :
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static bool operator !=(in Cells left, in Cells right) => !(left == right);
 
-#if FEATURE_GENERIC_MATH
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	static Cells IAdditionOperators<Cells, int, Cells>.operator +(Cells left, int right) => left + right;
@@ -1300,124 +1280,6 @@ public unsafe struct Cells :
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	static bool IEqualityOperators<Cells, Cells>.operator !=(Cells left, Cells right) => left != right;
 
-#if FEATURE_GENERIC_MATH_IN_ARG
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	static Cells IValueAdditionOperators<Cells, int, Cells>.operator +(Cells left, in int right) =>
-		left + right;
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	static Cells IValueAdditionOperators<Cells, int, Cells>.operator +(in Cells left, in int right) =>
-		left + right;
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	static Cells IValueSubtractionOperators<Cells, int, Cells>.operator -(Cells left, in int right) =>
-		left - right;
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	static Cells IValueSubtractionOperators<Cells, int, Cells>.operator -(in Cells left, in int right) =>
-		left - right;
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	static Cells IValueSubtractionOperators<Cells, Cells, Cells>.operator -(Cells left, in Cells right) =>
-		left - right;
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	static Cells IValueSubtractionOperators<Cells, Cells, Cells>.operator -(in Cells left, Cells right) =>
-		left - right;
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	static short IValueDivisionOperators<Cells, int, short>.operator /(Cells left, in int right) =>
-		left / right;
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	static short IValueDivisionOperators<Cells, int, short>.operator /(in Cells left, in int right) =>
-		left / right;
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	static Cells IValueModulusOperators<Cells, Cells, Cells>.operator %(Cells left, in Cells right) =>
-		left % right;
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	static Cells IValueModulusOperators<Cells, Cells, Cells>.operator %(in Cells left, Cells right) =>
-		left % right;
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	static bool IValueEqualityOperators<Cells, Cells>.operator ==(Cells left, in Cells right) => left == right;
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	static bool IValueEqualityOperators<Cells, Cells>.operator ==(in Cells left, Cells right) => left == right;
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	static bool IValueEqualityOperators<Cells, Cells>.operator !=(Cells left, in Cells right) => left != right;
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	static bool IValueEqualityOperators<Cells, Cells>.operator !=(in Cells left, Cells right) => left != right;
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	static Cells IValueBitwiseAndOperators<Cells, Cells, Cells>.operator &(Cells left, in Cells right) =>
-		left & right;
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	static Cells IValueBitwiseAndOperators<Cells, Cells, Cells>.operator &(in Cells left, Cells right) =>
-		left & right;
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	static Cells IValueBitwiseOrOperators<Cells, Cells, Cells>.operator |(Cells left, in Cells right) =>
-		left | right;
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	static Cells IValueBitwiseOrOperators<Cells, Cells, Cells>.operator |(in Cells left, Cells right) =>
-		left | right;
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	static Cells IValueBitwiseExclusiveOrOperators<Cells, Cells, Cells>.operator ^(Cells left, in Cells right) =>
-		left ^ right;
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	static Cells IValueBitwiseExclusiveOrOperators<Cells, Cells, Cells>.operator ^(in Cells left, Cells right) =>
-		left ^ right;
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	static bool IValueGreaterThanOrLessThanOperators<Cells, Cells>.operator >(Cells left, in Cells right) =>
-		left > right;
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	static bool IValueGreaterThanOrLessThanOperators<Cells, Cells>.operator >(in Cells left, Cells right) =>
-		left > right;
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	static bool IValueGreaterThanOrLessThanOperators<Cells, Cells>.operator <(Cells left, in Cells right) =>
-		left < right;
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	static bool IValueGreaterThanOrLessThanOperators<Cells, Cells>.operator <(in Cells left, Cells right) =>
-		left < right;
-#endif
-#endif
 
 	/// <summary>
 	/// Implicit cast from <see cref="int"/>[] to <see cref="Cells"/>.

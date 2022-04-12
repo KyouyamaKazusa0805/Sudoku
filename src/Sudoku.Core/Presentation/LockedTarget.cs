@@ -4,16 +4,7 @@
 /// Defines the data structure that stores a set of cells and a digit, indicating the information
 /// about the locked candidate node.
 /// </summary>
-public readonly struct LockedTarget :
-	IEquatable<LockedTarget>
-#if FEATURE_GENERIC_MATH
-	,
-	IEqualityOperators<LockedTarget, LockedTarget>
-#if FEATURE_GENEIC_MATH_IN_ARG
-	,
-	IValueEqualityOperators<LockedTarget, LockedTarget>
-#endif
-#endif
+public readonly struct LockedTarget : IEquatable<LockedTarget>, IEqualityOperators<LockedTarget, LockedTarget>
 {
 	/// <summary>
 	/// Initializes a <see cref="LockedTarget"/> instance via the specified cells and the specified digit used.
@@ -84,7 +75,6 @@ public readonly struct LockedTarget :
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static bool operator !=(in LockedTarget left, in LockedTarget right) => !(left == right);
 
-#if FEATURE_GENERIC_MATH
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	static bool IEqualityOperators<LockedTarget, LockedTarget>.operator ==(LockedTarget left, LockedTarget right) =>
@@ -94,27 +84,4 @@ public readonly struct LockedTarget :
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	static bool IEqualityOperators<LockedTarget, LockedTarget>.operator !=(LockedTarget left, LockedTarget right) =>
 		left != right;
-
-#if FEATURE_GENERIC_MATH_IN_ARG
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	static bool IValueEqualityOperators<LockedTarget, LockedTarget>.operator ==(LockedTarget left, in LockedTarget right) =>
-		left == right;
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	static bool IValueEqualityOperators<LockedTarget, LockedTarget>.operator ==(in LockedTarget left, LockedTarget right) =>
-		left == right;
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	static bool IValueEqualityOperators<LockedTarget, LockedTarget>.operator !=(LockedTarget left, in LockedTarget right) =>
-		left != right;
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	static bool IValueEqualityOperators<LockedTarget, LockedTarget>.operator !=(in LockedTarget left, LockedTarget right) =>
-		left != right;
-#endif
-#endif
 }

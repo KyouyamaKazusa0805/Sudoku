@@ -7,9 +7,7 @@ public unsafe struct Candidates :
 	IDefaultable<Candidates>,
 	IEnumerable<int>,
 	IEquatable<Candidates>,
-	ISimpleFormattable
-#if FEATURE_GENERIC_MATH
-	,
+	ISimpleFormattable,
 	IAdditionOperators<Candidates, int, Candidates>,
 	ISubtractionOperators<Candidates, int, Candidates>,
 	ISubtractionOperators<Candidates, Candidates, Candidates>,
@@ -17,23 +15,6 @@ public unsafe struct Candidates :
 	IModulusOperators<Candidates, Candidates, Candidates>,
 	IBitwiseOperators<Candidates, Candidates, Candidates>,
 	IEqualityOperators<Candidates, Candidates>
-#if FEATURE_GENERIC_MATH_IN_ARG
-	,
-	IValueAdditionOperators<Candidates, int, Candidates>,
-	IValueSubtractionOperators<Candidates, int, Candidates>,
-	IValueSubtractionOperators<Candidates, Candidates, Candidates>,
-	IValueDivisionOperators<Candidates, int, Cells>,
-	IValueModulusOperators<Candidates, Candidates, Candidates>,
-	IValueEqualityOperators<Candidates, Candidates>,
-	IValueBitwiseNotOperators<Candidates, Candidates>,
-	IValueBitwiseAndOperators<Candidates, Candidates, Candidates>,
-	IValueBitwiseOrOperators<Candidates, Candidates, Candidates>,
-	IValueBitwiseExclusiveOrOperators<Candidates, Candidates, Candidates>,
-	IValueMetaLogicalOperators<Candidates>,
-	IValueLogicalNotOperators<Candidates>,
-	IValueGreaterThanOrLessThanOperators<Candidates, Candidates>
-#endif
-#endif
 {
 	/// <summary>
 	/// Indicates the size of each unit.
@@ -1077,7 +1058,6 @@ public unsafe struct Candidates :
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static bool operator !=(in Candidates left, in Candidates right) => !(left == right);
 
-#if FEATURE_GENERIC_MATH
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	static bool IEqualityOperators<Candidates, Candidates>.operator ==(Candidates left, Candidates right) =>
@@ -1132,129 +1112,6 @@ public unsafe struct Candidates :
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	static Candidates IBitwiseOperators<Candidates, Candidates, Candidates>.operator ^(Candidates left, Candidates right) =>
 		left ^ right;
-
-#if FEATURE_GENERIC_MATH_IN_ARG
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	static Candidates IValueAdditionOperators<Candidates, int, Candidates>.operator +(Candidates left, in int right) =>
-		left + right;
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	static Candidates IValueAdditionOperators<Candidates, int, Candidates>.operator +(in Candidates left, in int right) =>
-		left + right;
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	static Candidates IValueSubtractionOperators<Candidates, int, Candidates>.operator -(Candidates left, in int right) =>
-		left - right;
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	static Candidates IValueSubtractionOperators<Candidates, int, Candidates>.operator -(in Candidates left, in int right) =>
-		left - right;
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	static Candidates IValueSubtractionOperators<Candidates, Candidates, Candidates>.operator -(Candidates left, in Candidates right) =>
-		left - right;
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	static Candidates IValueSubtractionOperators<Candidates, Candidates, Candidates>.operator -(in Candidates left, Candidates right) =>
-		left - right;
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	static Cells IValueDivisionOperators<Candidates, int, Cells>.operator /(Candidates left, in int right) =>
-		left / right;
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	static Cells IValueDivisionOperators<Candidates, int, Cells>.operator /(in Candidates left, in int right) =>
-		left / right;
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	static Candidates IValueModulusOperators<Candidates, Candidates, Candidates>.operator %(Candidates left, in Candidates right) =>
-		left % right;
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	static Candidates IValueModulusOperators<Candidates, Candidates, Candidates>.operator %(in Candidates left, Candidates right) =>
-		left % right;
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	static bool IValueEqualityOperators<Candidates, Candidates>.operator ==(Candidates left, in Candidates right) =>
-		left == right;
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	static bool IValueEqualityOperators<Candidates, Candidates>.operator ==(in Candidates left, Candidates right) =>
-		left == right;
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	static bool IValueEqualityOperators<Candidates, Candidates>.operator !=(Candidates left, in Candidates right) =>
-		left != right;
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	static bool IValueEqualityOperators<Candidates, Candidates>.operator !=(in Candidates left, Candidates right) =>
-		left != right;
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	static Candidates IValueBitwiseAndOperators<Candidates, Candidates, Candidates>.operator &(in Candidates left, Candidates right) =>
-		left & right;
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	static Candidates IValueBitwiseAndOperators<Candidates, Candidates, Candidates>.operator &(Candidates left, in Candidates right) =>
-		left & right;
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	static Candidates IValueBitwiseOrOperators<Candidates, Candidates, Candidates>.operator |(Candidates left, in Candidates right) =>
-		left | right;
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	static Candidates IValueBitwiseOrOperators<Candidates, Candidates, Candidates>.operator |(in Candidates left, Candidates right) =>
-		left | right;
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	static Candidates IValueBitwiseExclusiveOrOperators<Candidates, Candidates, Candidates>.operator ^(Candidates left, in Candidates right) =>
-		left ^ right;
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	static Candidates IValueBitwiseExclusiveOrOperators<Candidates, Candidates, Candidates>.operator ^(in Candidates left, Candidates right) =>
-		left ^ right;
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	static bool IValueGreaterThanOrLessThanOperators<Candidates, Candidates>.operator >(Candidates left, in Candidates right) =>
-		left > right;
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	static bool IValueGreaterThanOrLessThanOperators<Candidates, Candidates>.operator >(in Candidates left, Candidates right) =>
-		left > right;
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	static bool IValueGreaterThanOrLessThanOperators<Candidates, Candidates>.operator <(Candidates left, in Candidates right) =>
-		left < right;
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	static bool IValueGreaterThanOrLessThanOperators<Candidates, Candidates>.operator <(in Candidates left, Candidates right) =>
-		left < right;
-#endif
-#endif
 
 
 	/// <summary>

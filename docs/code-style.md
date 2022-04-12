@@ -305,12 +305,9 @@ namespace Sudoku;
 public readonly record struct Conclusion(int Mask) :
     IComparable<Conclusion>,
     IDefaultable<Conclusion>,
-    IEquatable<Conclusion>
-#if FEATURE_GENERIC_MATH
-    ,
+    IEquatable<Conclusion>,
     IComparisonOperators<Conclusion, Conclusion>,
     IEqualityOperators<Conclusion, Conclusion>
-#endif
 {
     /// <summary>
     /// <inheritdoc cref="IDefaultable{T}.Default"/>
@@ -324,8 +321,7 @@ public readonly record struct Conclusion(int Mask) :
     /// <param name="type">The conclusion type.</param>
     /// <param name="candidate">The candidate offset.</param>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public Conclusion(ConclusionType type, int candidate) :
-        this(((int)type << 10) + candidate)
+    public Conclusion(ConclusionType type, int candidate) : this(((int)type << 10) + candidate)
     {
     }
 
@@ -336,8 +332,7 @@ public readonly record struct Conclusion(int Mask) :
     /// <param name="cell">The cell.</param>
     /// <param name="digit">The digit.</param>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public Conclusion(ConclusionType type, int cell, int digit) :
-        this(((int)type << 10) + cell * 9 + digit)
+    public Conclusion(ConclusionType type, int cell, int digit) : this(((int)type << 10) + cell * 9 + digit)
     {
     }
 
@@ -458,14 +453,12 @@ public readonly record struct Conclusion(int Mask) :
     public override string ToString() =>
         $"{Cells.Empty + Cell}{ConclusionType.GetNotation()}{Digit + 1}";
 
-#if FEATURE_GENERIC_MATH
     /// <inheritdoc/>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     int IComparable.CompareTo(object? obj) =>
         obj is Conclusion comparer
             ? CompareTo(comparer)
             : throw new ArgumentException($"The argument must be of type '{nameof(Conclusion)}'", nameof(obj));
-#endif
 
 
     /// <inheritdoc/>

@@ -16,15 +16,8 @@ namespace Sudoku.Concepts.Collections;
 public unsafe partial struct Grid :
 	IDefaultable<Grid>,
 	ISimpleFormattable,
-	ISimpleParseable<Grid>
-#if FEATURE_GENERIC_MATH
-	,
+	ISimpleParseable<Grid>,
 	IEqualityOperators<Grid, Grid>
-#if FEATURE_GENERIC_MATH_IN_ARG
-	,
-	IValueEqualityOperators<Grid, Grid>
-#endif
-#endif
 {
 	/// <summary>
 	/// Indicates the default mask of a cell (an empty cell, with all 9 candidates left).
@@ -1204,11 +1197,9 @@ public unsafe partial struct Grid :
 		f(ref this, cell, copied, m, -1);
 	}
 
-#if FEATURE_GENERIC_MATH
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	readonly bool IEquatable<Grid>.Equals(Grid other) => Equals(this, other);
-#endif
 
 	/// <summary>
 	/// Called by properties <see cref="CandidatesMap"/>, <see cref="DigitsMap"/> and <see cref="ValuesMap"/>.
@@ -1407,7 +1398,6 @@ public unsafe partial struct Grid :
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static bool operator !=(in Grid left, in Grid right) => !(left == right);
 
-#if FEATURE_GENERIC_MATH
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	static bool IEqualityOperators<Grid, Grid>.operator ==(Grid left, Grid right) => left == right;
@@ -1415,33 +1405,4 @@ public unsafe partial struct Grid :
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	static bool IEqualityOperators<Grid, Grid>.operator !=(Grid left, Grid right) => left != right;
-
-#if FEATURE_GENERIC_MATH_IN_ARG
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	static GridSegment IValueBitwiseAndOperators<Grid, Cells, GridSegment>.operator &(in Grid left, Cells right) =>
-		left & right;
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	static GridSegment IValueBitwiseAndOperators<Grid, Cells, GridSegment>.operator &(Grid left, in Cells right) =>
-		left & right;
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	static bool IValueEqualityOperators<Grid, Grid>.operator ==(Grid left, in Grid right) => left == right;
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	static bool IValueEqualityOperators<Grid, Grid>.operator ==(in Grid left, Grid right) => left == right;
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	static bool IValueEqualityOperators<Grid, Grid>.operator !=(Grid left, in Grid right) => left != right;
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	static bool IValueEqualityOperators<Grid, Grid>.operator !=(in Grid left, Grid right) => left != right;
-#endif
-#endif
 }

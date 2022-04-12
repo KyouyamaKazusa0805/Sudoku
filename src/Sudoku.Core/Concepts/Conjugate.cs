@@ -15,11 +15,8 @@
 /// </remarks>
 public readonly struct Conjugate :
 	IDefaultable<Conjugate>,
-	IEquatable<Conjugate>
-#if FEATURE_GENERIC_MATH
-	,
+	IEquatable<Conjugate>,
 	IEqualityOperators<Conjugate, Conjugate>
-#endif
 {
 	/// <summary>
 	/// <inheritdoc cref="IDefaultable{T}.Default"/>

@@ -3,13 +3,7 @@
 /// <summary>
 /// Defines a view node.
 /// </summary>
-public abstract class ViewNode :
-	ICloneable,
-	IEquatable<ViewNode>
-#if FEATURE_GENERIC_MATH
-	,
-	IEqualityOperators<ViewNode, ViewNode>
-#endif
+public abstract class ViewNode : ICloneable, IEquatable<ViewNode>, IEqualityOperators<ViewNode, ViewNode>
 {
 	/// <summary>
 	/// Assigns the <see cref="Presentation.Identifier"/> instance as the basic information.

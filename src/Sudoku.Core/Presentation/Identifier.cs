@@ -4,12 +4,7 @@
 /// Defines an identifier that can differ colors.
 /// </summary>
 [StructLayout(LayoutKind.Explicit)]
-public readonly struct Identifier :
-	IEquatable<Identifier>
-#if FEATURE_GENERIC_MATH
-	,
-	IEqualityOperators<Identifier, Identifier>
-#endif
+public readonly struct Identifier : IEquatable<Identifier>, IEqualityOperators<Identifier, Identifier>
 {
 	/// <summary>
 	/// Indicates the raw value of the color.
