@@ -3,11 +3,11 @@
 /// <summary>
 /// Defines the type that can use the following operators:
 /// <list type="bullet">
-/// <item><see cref="operator true(TSelf)"/></item>
-/// <item><see cref="operator false(TSelf)"/></item>
+/// <item><see cref="operator true(T)"/></item>
+/// <item><see cref="operator false(T)"/></item>
 /// </list>
 /// </summary>
-/// <typeparam name="TSelf">The type of the current instance.</typeparam>
+/// <typeparam name="T">The type of the current instance.</typeparam>
 /// <remarks>
 /// <para>
 /// The meta logical operators can be used as a part of the full expansion
@@ -20,7 +20,7 @@
 /// </see>.
 /// </para>
 /// </remarks>
-public interface IMetaLogicalOperators</*[Self]*/ TSelf> where TSelf : IMetaLogicalOperators<TSelf>
+public interface IMetaLogicalOperators</*[Self]*/ T> where T : IMetaLogicalOperators<T>
 {
 	/// <summary>
 	/// <para>
@@ -37,7 +37,7 @@ public interface IMetaLogicalOperators</*[Self]*/ TSelf> where TSelf : IMetaLogi
 	/// The <see cref="bool"/> result indicating whether the current instance is
 	/// at the <see langword="true"/> status.
 	/// </returns>
-	static abstract bool operator true(TSelf value);
+	static abstract bool operator true(T value);
 
 	/// <summary>
 	/// <para>
@@ -54,5 +54,5 @@ public interface IMetaLogicalOperators</*[Self]*/ TSelf> where TSelf : IMetaLogi
 	/// The <see cref="bool"/> result indicating whether the current instance is
 	/// at the <see langword="false"/> status.
 	/// </returns>
-	static abstract bool operator false(TSelf value);
+	static abstract bool operator false(T value);
 }

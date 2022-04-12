@@ -3,8 +3,8 @@
 /// <summary>
 /// Defines a pattern that is a technique.
 /// </summary>
-/// <typeparam name="TSelf">The type of the technique pattern.</typeparam>
-public interface ITechniquePattern</*[Self]*/ TSelf> where TSelf : IEquatable<TSelf>, ITechniquePattern<TSelf>
+/// <typeparam name="T">The type of the technique pattern.</typeparam>
+public interface ITechniquePattern</*[Self]*/ T> where T : IEquatable<T>, ITechniquePattern<T>
 {
 	/// <summary>
 	/// Indicates the whole map of cells that the technique used.

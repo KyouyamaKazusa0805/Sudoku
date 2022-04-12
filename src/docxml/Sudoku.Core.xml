@@ -3449,7 +3449,7 @@
             <summary>
             Defines a type that provides the extra options that is used by the <see cref="T:Sudoku.Concepts.Notations.INotationHandler"/> instance.
             </summary>
-            <typeparam name="TSelf">The type of the handler.</typeparam>
+            <typeparam name="T">The type of the handler.</typeparam>
         </member>
         <member name="T:Sudoku.Concepts.Notations.K9Notation">
             <summary>
@@ -5161,7 +5161,7 @@
             <summary>
             Defines a pattern that is a technique.
             </summary>
-            <typeparam name="TSelf">The type of the technique pattern.</typeparam>
+            <typeparam name="T">The type of the technique pattern.</typeparam>
         </member>
         <member name="P:Sudoku.Concepts.Solving.ITechniquePattern`1.Map">
             <summary>

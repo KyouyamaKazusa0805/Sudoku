@@ -2378,7 +2378,7 @@
             <item><see cref="M:System.Numerics.IMetaLogicalOperators`1.op_False(`0)"/></item>
             </list>
             </summary>
-            <typeparam name="TSelf">The type of the current instance.</typeparam>
+            <typeparam name="T">The type of the current instance.</typeparam>
             <remarks>
             <para>
             The meta logical operators can be used as a part of the full expansion
