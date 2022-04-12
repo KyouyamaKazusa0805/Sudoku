@@ -71,14 +71,14 @@ Please visit the following tables.
 
 > I'm sorry that I haven't created wiki in English, because it's too complex to me. I have been working for English for many years, but it's so hard to me for some description (especially expression of some detail) to translate into English still.
 
-| Coding Information                 |                                       |
-| ---------------------------------- | ------------------------------------- |
-| Programming language and version   | C# 10                                 |
-| Framework                          | .NET 6                                |
-| Indenting                          | Tabs                                  |
-| Integrated development environment | Visual Studio 2022 (17.2 Preview 2.1) |
-| Natural languages support          | English, Simplified Chinese           |
-| User Interface                     | Project `Suoku.UI`                    |
+| Coding Information                 |                                                          |
+| ---------------------------------- | -------------------------------------------------------- |
+| Programming language and version   | C# 11 Preview                                            |
+| Framework                          | .NET 7 (.NET Standard 2.0 for source generator projects) |
+| Indenting                          | Tabs                                                     |
+| Integrated development environment | Visual Studio 2022 (17.2 Preview 2.1)                    |
+| Natural languages support          | English, Simplified Chinese                              |
+| User Interface                     | Project `Suoku.UI`                                       |
 
 > Please note that the programming language version is always used as 'preview', which means some preview features are still used in this solution.
 >

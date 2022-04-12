@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<TargetFramework>net6.0</TargetFramework>
+		<TargetFramework>net7.0</TargetFramework>
 		<AssemblyName>SystemExtensions</AssemblyName>
 		<Description>Provides the extension methods for the System library instances.</Description>
 		<RootNamespace>System</RootNamespace>
@@ -9,7 +9,7 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<PackageReference Include="System.Runtime.Experimental" Version="6.0.1" />
+		<PackageReference Include="System.Runtime.Experimental" Version="7.0.0-preview.2.22152.2" />
 	</ItemGroup>
 
 	<ItemGroup>
