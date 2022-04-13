@@ -33,9 +33,24 @@ internal enum ErrorCode
 	ArgAttributeNameIsInvalid = -101,
 
 	/// <summary>
+	/// Indicates the error case that the range pattern is invalid.
+	/// </summary>
+	RangePatternIsInvalid = -201,
+
+	/// <summary>
+	/// Indicates the error case that the minimum value in the range pattern is invalid.
+	/// </summary>
+	RangePatternMinValueIsInvalid = -202,
+
+	/// <summary>
+	/// Indicates the error case that the maximum value in the range pattern is invalid.
+	/// </summary>
+	RangePatternMaxValueIsInvalid = -203,
+
+	/// <summary>
 	/// Indicates the error case that the website link is failed to be used to visit.
 	/// </summary>
-	SiteIsFailedToVisit = -201,
+	SiteIsFailedToVisit = -301,
 
 	/// <summary>
 	/// Indicates the error case that the command line arguments are failed to be parsed.

@@ -1,9 +1,10 @@
 ﻿// Try to invoke the root command.
 return (int)Parser.Default
-	.ParseArguments<SolveGridOptions, CheckGridOptions, VisitOptions>(args)
+	.ParseArguments<SolveGridOptions, CheckGridOptions, GenerateGridOptions, VisitOptions>(args)
 	.MapResult(
 		static (SolveGridOptions o) => solveGridHandler(o),
 		static (CheckGridOptions o) => checkGridHandler(o),
+		static (GenerateGridOptions o) => generateHandler(o),
 		static (VisitOptions o) => visitHandler(o),
 		parseFailedHandler
 	);
@@ -60,6 +61,55 @@ static ErrorCode checkGridHandler(CheckGridOptions options)
 		{
 			return ErrorCode.ArgAttributeNameIsInvalid;
 		}
+	}
+}
+
+static ErrorCode generateHandler(GenerateGridOptions options)
+{
+	int min, max;
+	string rangePattern = options.Range;
+	if (rangePattern == "all")
+	{
+		(min, max) = (17, 81);
+	}
+	else if (rangePattern.IndexOf("..") is var pos and not -1)
+	{
+		string minStr = pos == 0 ? "17" : rangePattern[..pos];
+		string maxStr = pos + 2 is var latter && latter >= rangePattern.Length ? "81" : rangePattern[(pos + 2)..];
+
+		if (!int.TryParse(minStr, out min))
+		{
+			return ErrorCode.RangePatternMinValueIsInvalid;
+		}
+
+		if (!int.TryParse(maxStr, out max))
+		{
+			return ErrorCode.RangePatternMaxValueIsInvalid;
+		}
+	}
+	else
+	{
+		return ErrorCode.RangePatternIsInvalid;
+	}
+
+	var generator = new HardPatternPuzzleGenerator();
+	while (true)
+	{
+		var targetPuzzle = generator.Generate();
+		int c = targetPuzzle.GivensCount;
+		if (c < min || c >= max)
+		{
+			continue;
+		}
+
+		Console.WriteLine(
+			$"""
+			The puzzle generated:
+			{targetPuzzle:0}
+			"""
+		);
+
+		return ErrorCode.None;
 	}
 }
 

@@ -7,3 +7,4 @@ global using CommandLine;
 global using Sudoku.CommandLine;
 global using Sudoku.CommandLine.Commands;
 global using Sudoku.Concepts.Collections;
+global using Sudoku.Generating;
