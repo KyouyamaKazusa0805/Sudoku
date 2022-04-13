@@ -14,6 +14,7 @@
 | `CLEAR_STATE_STACK_FOR_EACH_CHECK_VALIDITY_AND_SOLVE_INVOKES` | 有         | [BitwiseSolver.cs](https://github.com/SunnieShine/Sudoku/blob/main/src/Sudoku.Core/Solving/BitwiseSolver.cs)<br />[FastSolver.cs](https://github.com/SunnieShine/Sudoku/blob/main/src/Sudoku.Solving/Solving/BruteForces/FastSolver.cs) | 表示是否在每一次解题和验证题目之前都刷新一下底层字段的内存空间，以获得最佳效果。如果没有这一步，程序可以运行并且仍然会表现得很好，不过时而也会导致一些 bug，比如问题 [#229](https://github.com/SunnieShine/Sudoku/issues/229)。 |
 | `SOLUTION_DISPLAY_MODIFIABLES`                               | 有         | [Grid.cs](https://github.com/SunnieShine/Sudoku/blob/main/src/Sudoku.Core/Collections/Grid.cs) | 表示是否显示出终盘里自己填入的数据信息。如果没有该符号的话，所有数字都会被当作提示数显示。 |
 | `USE_EQUALITY_COMPARER`                                      | 无         | [Bag.cs](https://github.com/SunnieShine/Sudoku/blob/main/src/System/Collections/Generic/Bag.cs) | 表示是否使用 `EqualityComparer<T>` 类型来给对象进行比较运算操作。 |
+| `VISIT_SITE_DIRECTLY`                                        | 无         | [MainMethod.cs](https://github.com/SunnieShine/Sudoku/tree/main/src/Sudoku.CommandLine/MainMethod.cs) | 表示是否直接弹出浏览器显示指定的链接。如果不设置该符号的话，那么就只会输出网址信息到控制台。 |
 
 ## 项目的条件编译符号
 
