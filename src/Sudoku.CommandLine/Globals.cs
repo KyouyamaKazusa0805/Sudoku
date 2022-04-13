@@ -4,6 +4,7 @@ global using System.ComponentModel;
 global using System.Reflection;
 global using System.Runtime.CompilerServices;
 global using CommandLine;
+global using CommandLine.Text;
 global using Sudoku.CommandLine;
 global using Sudoku.CommandLine.Commands;
 global using Sudoku.Concepts.Collections;

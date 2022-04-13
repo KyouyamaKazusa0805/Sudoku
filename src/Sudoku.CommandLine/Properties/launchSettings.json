@@ -3,7 +3,8 @@
     "Sudoku.CommandLine": {
       "commandName": "Project",
       //"commandLineArgs": "check ...892.....2...3..75.....69.359.814...........713.659.96.....21..4...6.....621... -v"
-      "commandLineArgs": "generate -h -c 24.."
+      //"commandLineArgs": "generate -h -c 24.."
+      "commandLineArgs": "visit -?"
     }
   }
 }

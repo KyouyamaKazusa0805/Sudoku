@@ -4,7 +4,7 @@
 /// Introduces the options that are used for generating a sudoku grid.
 /// </summary>
 [Verb("generate", HelpText = "To generate a sudoku puzzle.")]
-public sealed class GenerateGridOptions
+public sealed class GenerateGridOptions : IUsageProvider
 {
 	/// <summary>
 	/// Indicates whether the generator will use hard-puzzle pattern to generate puzzles.
@@ -19,4 +19,24 @@ public sealed class GenerateGridOptions
 	/// </summary>
 	[Option('c', "count", HelpText = "Indicates the puzzle generated will contain the specified range of number of given digits.", Default = "..30")]
 	public string Range { get; set; } = "..30";
+
+
+#nullable disable
+	/// <inheritdoc/>
+	[Usage(ApplicationAlias = "Sudoku.CommandLine.exe")]
+	public static IEnumerable<Example> Examples
+	{
+		get
+		{
+			yield return new(
+				"Generates a sudoku grid with givens with default settings on givens count.",
+				new GenerateGridOptions { WithHardPattern = true }
+			);
+			yield return new(
+				"Generates a sudoku grid with givens between 24 and 30.",
+				new GenerateGridOptions { WithHardPattern = true, Range = "24..30" }
+			);
+		}
+	}
+#nullable restore
 }

@@ -4,7 +4,7 @@
 /// Introduces the options that are used for visiting the author's profile and the program's site.
 /// </summary>
 [Verb("visit", HelpText = "To display the gathered websites that are about the author himself and the program.")]
-public sealed class VisitOptions
+public sealed class VisitOptions : IUsageProvider
 {
 	/// <summary>
 	/// To visit the author's GitHub site.
@@ -47,4 +47,26 @@ public sealed class VisitOptions
 	[Option("repo-gitee", HelpText = "Indicates the repo's Gitee page.", SetName = "page-repo-gitee")]
 	[Description("https://gitee.com/SunnieShine/Sudoku")]
 	public bool RepoGitee { get; set; }
+
+
+#nullable disable
+	/// <inheritdoc/>
+	[Usage(ApplicationAlias = "Sudoku.CommandLine.exe")]
+	public static IEnumerable<Example> Examples
+	{
+		get
+		{
+			yield return new(
+				"Gets the link for the Bilibili page.",
+				UnParserSettings.WithGroupSwitchesOnly(),
+				new VisitOptions { Bilibili = true }
+			);
+			yield return new(
+				"Gets the wiki page of the current sudoku repo.",
+				UnParserSettings.WithGroupSwitchesOnly(),
+				new VisitOptions { RepoWiki = true }
+			);
+		}
+	}
+#nullable restore
 }
