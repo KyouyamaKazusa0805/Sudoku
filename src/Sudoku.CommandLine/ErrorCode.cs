@@ -13,47 +13,47 @@ internal enum ErrorCode
 	/// <summary>
 	/// Indicates the error case that the argument is currently <see langword="null"/>.
 	/// </summary>
-	ArgGridValueIsNull = -1,
+	ArgGridValueIsNull = 1,
 
 	/// <summary>
 	/// Indicates the error case that the argument is invalid to be parsed into type <see cref="Grid"/>.
 	/// </summary>
 	/// <seealso cref="Grid"/>
-	ArgGridValueIsInvalidWhileParsing = -2,
+	ArgGridValueIsInvalidWhileParsing,
 
 	/// <summary>
 	/// Indicates the error case that the argument parsed into type <see cref="Grid"/> is not unique.
 	/// </summary>
 	/// <seealso cref="Grid"/>
-	ArgGridValueIsNotUnique = -3,
+	ArgGridValueIsNotUnique,
 
 	/// <summary>
 	/// Indicates the error case that the attribute name is invalid.
 	/// </summary>
-	ArgAttributeNameIsInvalid = -101,
+	ArgAttributeNameIsInvalid = 101,
 
 	/// <summary>
 	/// Indicates the error case that the range pattern is invalid.
 	/// </summary>
-	RangePatternIsInvalid = -201,
+	RangePatternIsInvalid = 201,
 
 	/// <summary>
 	/// Indicates the error case that the minimum value in the range pattern is invalid.
 	/// </summary>
-	RangePatternMinValueIsInvalid = -202,
+	RangePatternMinValueIsInvalid,
 
 	/// <summary>
 	/// Indicates the error case that the maximum value in the range pattern is invalid.
 	/// </summary>
-	RangePatternMaxValueIsInvalid = -203,
+	RangePatternMaxValueIsInvalid,
 
 	/// <summary>
 	/// Indicates the error case that the website link is failed to be used to visit.
 	/// </summary>
-	SiteIsFailedToVisit = -301,
+	SiteIsFailedToVisit = 301,
 
 	/// <summary>
 	/// Indicates the error case that the command line arguments are failed to be parsed.
 	/// </summary>
-	ParseFailed = -1001,
+	ParseFailed = 1001,
 }

@@ -1,5 +1,4 @@
-﻿// Try to invoke the root command.
-return (int)Parser.Default
+﻿var resultCode = Parser.Default
 	.ParseArguments<SolveGridOptions, CheckGridOptions, GenerateGridOptions, VisitOptions>(args)
 	.MapResult(
 		static (SolveGridOptions o) => solveGridHandler(o),
@@ -8,6 +7,7 @@ return (int)Parser.Default
 		static (VisitOptions o) => visitHandler(o),
 		parseFailedHandler
 	);
+return resultCode is ErrorCode.None ? 0 : -(int)resultCode;
 
 
 static ErrorCode solveGridHandler(SolveGridOptions options)
@@ -50,7 +50,7 @@ static ErrorCode checkGridHandler(CheckGridOptions options)
 				$"""
 				Puzzle:
 				{grid:#}
-			
+				
 				The puzzle {(grid.IsValid ? "has" : "doesn't have")} a unique solution.
 				"""
 			);
