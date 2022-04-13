@@ -76,7 +76,7 @@ Please visit the following tables.
 | Programming language and version   | C# 11 Preview                                            |
 | Framework                          | .NET 7 (.NET Standard 2.0 for source generator projects) |
 | Indenting                          | Tabs                                                     |
-| Integrated development environment | Visual Studio 2022 (17.2 Preview 2.1)                    |
+| Integrated development environment | Visual Studio 2022 (17.2 Preview 3)                      |
 | Natural languages support          | English, Simplified Chinese                              |
 | User Interface                     | Project `Suoku.UI`                                       |
 

@@ -77,7 +77,7 @@ Console.WriteLine(analysisResult.ToDisplayString());
 | 编程语言和版本 | C# 11 预览版                         |
 | 框架           | .NET 7（源代码生成器则用的是 .NET Standard 2.0） |
 | 缩进           | Tab（制表符）                          |
-| 集成开发环境   | Visual Studio 2022（17.2 预览版 2.1）   |
+| 集成开发环境   | Visual Studio 2022（17.2 预览版 3）     |
 | 自然语言支持   | 英语、简体中文                           |
 | 用户接口       | `Sudoku.UI`                           |
 
