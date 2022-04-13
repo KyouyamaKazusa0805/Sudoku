@@ -28,13 +28,7 @@ static ErrorCode formatHandler(FormatOptions options)
 			{rawGridValue}
 			
 			Format:
-			'{(
-				format is null
-					? "<null>"
-					: string.IsNullOrWhiteSpace(format)
-						? "<empty>"
-						: format
-			)}'
+			'{c(format)}'
 			
 			Result:
 			{grid.ToString(format)}
@@ -42,6 +36,10 @@ static ErrorCode formatHandler(FormatOptions options)
 		);
 
 		return ErrorCode.None;
+
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		static string c(string f) => f is null ? "<null>" : string.IsNullOrWhiteSpace(f) ? "<empty>" : f;
 	}
 	catch (FormatException)
 	{
@@ -51,7 +49,7 @@ static ErrorCode formatHandler(FormatOptions options)
 
 static ErrorCode solveGridHandler(SolveGridOptions options)
 {
-	if (tryParseGrid(options.GridValue, out var grid) is var errorCode and not 0)
+	if (tryParseGrid(options.GridValue, out var grid) is var errorCode and not ErrorCode.None)
 	{
 		return errorCode;
 	}
@@ -80,7 +78,7 @@ static ErrorCode checkGridHandler(CheckGridOptions options)
 	{
 		case { ChecksForValidity: true }:
 		{
-			if (tryParseGrid(options.GridValue, out var grid) is var errorCode and not 0)
+			if (tryParseGrid(options.GridValue, out var grid) is var errorCode and not ErrorCode.None)
 			{
 				return errorCode;
 			}
@@ -105,30 +103,10 @@ static ErrorCode checkGridHandler(CheckGridOptions options)
 
 static ErrorCode generateHandler(GenerateGridOptions options)
 {
-	int min, max;
 	string rangePattern = options.Range;
-	if (rangePattern == "all")
+	if (tryParseRange(rangePattern, out int min, out int max) is var errorCode and not ErrorCode.None)
 	{
-		(min, max) = (17, 81);
-	}
-	else if (rangePattern.IndexOf("..") is var pos and not -1)
-	{
-		string minStr = pos == 0 ? "17" : rangePattern[..pos];
-		string maxStr = pos + 2 is var latter && latter >= rangePattern.Length ? "81" : rangePattern[latter..];
-
-		if (!int.TryParse(minStr, out min))
-		{
-			return ErrorCode.RangePatternMinValueIsInvalid;
-		}
-
-		if (!int.TryParse(maxStr, out max))
-		{
-			return ErrorCode.RangePatternMaxValueIsInvalid;
-		}
-	}
-	else
-	{
-		return ErrorCode.RangePatternIsInvalid;
+		return errorCode;
 	}
 
 	var generator = new HardPatternPuzzleGenerator();
@@ -230,5 +208,36 @@ static ErrorCode tryParseGrid(string? gridValue, out Grid result)
 	}
 
 	result = grid;
+	return ErrorCode.None;
+}
+
+static ErrorCode tryParseRange(string rangeValue, out int min, out int max)
+{
+	Unsafe.SkipInit(out min);
+	Unsafe.SkipInit(out max);
+	if (rangeValue == "all")
+	{
+		(min, max) = (17, 81);
+	}
+	else if (rangeValue.IndexOf("..") is var pos and not -1)
+	{
+		string minStr = pos == 0 ? "17" : rangeValue[..pos];
+		string maxStr = pos + 2 is var latter && latter >= rangeValue.Length ? "81" : rangeValue[latter..];
+
+		if (!int.TryParse(minStr, out min))
+		{
+			return ErrorCode.RangePatternMinValueIsInvalid;
+		}
+
+		if (!int.TryParse(maxStr, out max))
+		{
+			return ErrorCode.RangePatternMaxValueIsInvalid;
+		}
+	}
+	else
+	{
+		return ErrorCode.RangePatternIsInvalid;
+	}
+
 	return ErrorCode.None;
 }
