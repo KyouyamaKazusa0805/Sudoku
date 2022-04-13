@@ -92,6 +92,7 @@ Console.WriteLine(analysisResult.ToDisplayString());
 ### 完成列表
 
 * [x] API
+* [x] 控制台项目
 * [ ] UI 项目
   * [ ] 桌面项目
     * [x] ~~WPF 项目（删掉了，因为过时了）~~

@@ -91,6 +91,7 @@ Please visit the following tables.
 ### To-do List
 
 * [x] API
+* [x] Console Project
 * [ ] UI Projects
   * [ ] Desktop Projects
     * [x] ~~WPF (Removed due to deprecated)~~
