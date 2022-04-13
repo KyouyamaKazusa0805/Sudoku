@@ -7,7 +7,7 @@
 		static (VisitOptions o) => visitHandler(o),
 		parseFailedHandler
 	);
-return resultCode is ErrorCode.None ? 0 : -(int)resultCode;
+return resultCode == ErrorCode.None ? 0 : -(int)resultCode;
 
 
 static ErrorCode solveGridHandler(SolveGridOptions options)
