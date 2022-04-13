@@ -11,7 +11,7 @@ public sealed class GenerateGridOptions : IUsageProvider
 	/// The puzzle may be hard than the normal cases.
 	/// </summary>
 	/// <!--Today the value may be useless because other kinds of generators hasn't implemented.-->
-	[Option('h', "hard-pattern", HelpText = "Generates the puzzle with the hard pattern.", Default = false)]
+	[Option('h', "hard-pattern", HelpText = "Generates the puzzle with the hard pattern.", Default = false, SetName = "generate-hard")]
 	public bool WithHardPattern { get; set; }
 
 	/// <summary>
@@ -30,10 +30,12 @@ public sealed class GenerateGridOptions : IUsageProvider
 		{
 			yield return new(
 				"Generates a sudoku grid with givens with default settings on givens count.",
+				UnParserSettings.WithGroupSwitchesOnly(),
 				new GenerateGridOptions { WithHardPattern = true }
 			);
 			yield return new(
 				"Generates a sudoku grid with givens between 24 and 30.",
+				UnParserSettings.WithGroupSwitchesOnly(),
 				new GenerateGridOptions { WithHardPattern = true, Range = "24..30" }
 			);
 		}
