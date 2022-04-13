@@ -1,10 +1,12 @@
-﻿namespace Sudoku.CommandLine.Commands;
+﻿#nullable disable
+
+namespace Sudoku.CommandLine.Commands;
 
 /// <summary>
 /// Introduces the options that are used for generating a sudoku grid.
 /// </summary>
 [Verb("generate", HelpText = "To generate a sudoku puzzle.")]
-public sealed class GenerateGridOptions : IUsageProvider
+public sealed class GenerateGridOptions : IRootCommand
 {
 	/// <summary>
 	/// Indicates whether the generator will use hard-puzzle pattern to generate puzzles.
@@ -21,7 +23,6 @@ public sealed class GenerateGridOptions : IUsageProvider
 	public string Range { get; set; } = "..30";
 
 
-#nullable disable
 	/// <inheritdoc/>
 	[Usage(ApplicationAlias = "Sudoku.CommandLine.exe")]
 	public static IEnumerable<Example> Examples
@@ -40,5 +41,4 @@ public sealed class GenerateGridOptions : IUsageProvider
 			);
 		}
 	}
-#nullable restore
 }

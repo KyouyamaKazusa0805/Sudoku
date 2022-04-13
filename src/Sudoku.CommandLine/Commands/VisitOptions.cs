@@ -1,10 +1,12 @@
-﻿namespace Sudoku.CommandLine.Commands;
+﻿#nullable disable
+
+namespace Sudoku.CommandLine.Commands;
 
 /// <summary>
 /// Introduces the options that are used for visiting the author's profile and the program's site.
 /// </summary>
 [Verb("visit", HelpText = "To display the gathered websites that are about the author himself and the program.")]
-public sealed class VisitOptions : IUsageProvider
+public sealed class VisitOptions : IRootCommand
 {
 	/// <summary>
 	/// To visit the author's GitHub site.
@@ -49,7 +51,6 @@ public sealed class VisitOptions : IUsageProvider
 	public bool RepoGitee { get; set; }
 
 
-#nullable disable
 	/// <inheritdoc/>
 	[Usage(ApplicationAlias = "Sudoku.CommandLine.exe")]
 	public static IEnumerable<Example> Examples
@@ -68,5 +69,4 @@ public sealed class VisitOptions : IUsageProvider
 			);
 		}
 	}
-#nullable restore
 }

@@ -1,16 +1,18 @@
-﻿namespace Sudoku.CommandLine.Commands;
+﻿#nullable disable
+
+namespace Sudoku.CommandLine.Commands;
 
 /// <summary>
 /// Introduces the options that are used for formatting a sudoku grid.
 /// </summary>
 [Verb("format", HelpText = "To format a sudoku grid using string as the result representation.")]
-public sealed class FormatOptions : IUsageProvider
+public sealed class FormatOptions : IRootCommand
 {
 	/// <summary>
 	/// Indicates the grid as <see cref="string"/> representation.
 	/// </summary>
 	[Option('g', "grid", Required = true, HelpText = "Indicates the grid to be formatted.")]
-	public string GridValue { get; set; } = string.Empty;
+	public string GridValue { get; set; }
 
 	/// <summary>
 	/// Indicates the format string.
@@ -19,7 +21,6 @@ public sealed class FormatOptions : IUsageProvider
 	public string FormatString { get; set; } = string.Empty;
 
 
-#nullable disable
 	/// <inheritdoc/>
 	[Usage(ApplicationAlias = "Sudoku.CommandLine.exe")]
 	public static IEnumerable<Example> Examples
@@ -43,5 +44,4 @@ public sealed class FormatOptions : IUsageProvider
 			);
 		}
 	}
-#nullable restore
 }

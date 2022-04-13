@@ -1,16 +1,18 @@
-﻿namespace Sudoku.CommandLine.Commands;
+﻿#nullable disable
+
+namespace Sudoku.CommandLine.Commands;
 
 /// <summary>
 /// Introduces the options that are used for checking attributes for a sudoku grid.
 /// </summary>
 [Verb("check", HelpText = "To check the attributes for a sudoku grid.")]
-public sealed class CheckGridOptions : IUsageProvider
+public sealed class CheckGridOptions : IRootCommand
 {
 	/// <summary>
 	/// Indicates the grid value.
 	/// </summary>
 	[Value(0, HelpText = "Indicates the sudoku grid as string representation.", Required = true)]
-	public string GridValue { get; set; } = string.Empty;
+	public string GridValue { get; set; }
 
 	/// <summary>
 	/// Indicates the operation is for checking the validity of the grid.
@@ -19,7 +21,6 @@ public sealed class CheckGridOptions : IUsageProvider
 	public bool ChecksForValidity { get; set; }
 
 
-#nullable disable
 	/// <inheritdoc/>
 	[Usage(ApplicationAlias = "Sudoku.CommandLine.exe")]
 	public static IEnumerable<Example> Examples
@@ -37,5 +38,4 @@ public sealed class CheckGridOptions : IUsageProvider
 			);
 		}
 	}
-#nullable restore
 }
