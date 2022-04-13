@@ -75,7 +75,7 @@ static ErrorCode generateHandler(GenerateGridOptions options)
 	else if (rangePattern.IndexOf("..") is var pos and not -1)
 	{
 		string minStr = pos == 0 ? "17" : rangePattern[..pos];
-		string maxStr = pos + 2 is var latter && latter >= rangePattern.Length ? "81" : rangePattern[(pos + 2)..];
+		string maxStr = pos + 2 is var latter && latter >= rangePattern.Length ? "81" : rangePattern[latter..];
 
 		if (!int.TryParse(minStr, out min))
 		{
