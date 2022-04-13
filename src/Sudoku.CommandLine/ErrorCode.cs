@@ -11,9 +11,14 @@ internal enum ErrorCode
 	None = 0,
 
 	/// <summary>
+	/// Indicates the error case that the format string is invalid.
+	/// </summary>
+	ArgFormatIsInvalid = 101,
+
+	/// <summary>
 	/// Indicates the error case that the argument is currently <see langword="null"/>.
 	/// </summary>
-	ArgGridValueIsNull = 1,
+	ArgGridValueIsNull = 201,
 
 	/// <summary>
 	/// Indicates the error case that the argument is invalid to be parsed into type <see cref="Grid"/>.
@@ -30,12 +35,12 @@ internal enum ErrorCode
 	/// <summary>
 	/// Indicates the error case that the attribute name is invalid.
 	/// </summary>
-	ArgAttributeNameIsInvalid = 101,
+	ArgAttributeNameIsInvalid = 301,
 
 	/// <summary>
 	/// Indicates the error case that the range pattern is invalid.
 	/// </summary>
-	RangePatternIsInvalid = 201,
+	RangePatternIsInvalid = 401,
 
 	/// <summary>
 	/// Indicates the error case that the minimum value in the range pattern is invalid.
@@ -50,7 +55,7 @@ internal enum ErrorCode
 	/// <summary>
 	/// Indicates the error case that the website link is failed to be used to visit.
 	/// </summary>
-	SiteIsFailedToVisit = 301,
+	SiteIsFailedToVisit = 501,
 
 	/// <summary>
 	/// Indicates the error case that the command line arguments are failed to be parsed.

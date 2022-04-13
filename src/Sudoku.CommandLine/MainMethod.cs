@@ -1,6 +1,7 @@
 ﻿var resultCode = Parser.Default
-	.ParseArguments<SolveGridOptions, CheckGridOptions, GenerateGridOptions, VisitOptions>(args)
+	.ParseArguments<FormatOptions, SolveGridOptions, CheckGridOptions, GenerateGridOptions, VisitOptions>(args)
 	.MapResult(
+		static (FormatOptions o) => formatHandler(o),
 		static (SolveGridOptions o) => solveGridHandler(o),
 		static (CheckGridOptions o) => checkGridHandler(o),
 		static (GenerateGridOptions o) => generateHandler(o),
@@ -9,6 +10,44 @@
 	);
 return resultCode == ErrorCode.None ? 0 : -(int)resultCode;
 
+
+static ErrorCode formatHandler(FormatOptions options)
+{
+	string rawGridValue = options.GridValue;
+	if (tryParseGrid(rawGridValue, out var grid) is var errorCode and not 0)
+	{
+		return errorCode;
+	}
+
+	string format = options.FormatString;
+	try
+	{
+		Console.WriteLine(
+			$"""
+			Grid:
+			{rawGridValue}
+			
+			Format:
+			'{(
+				format is null
+					? "<null>"
+					: string.IsNullOrWhiteSpace(format)
+						? "<empty>"
+						: format
+			)}'
+			
+			Result:
+			{grid.ToString(format)}
+			"""
+		);
+
+		return ErrorCode.None;
+	}
+	catch (FormatException)
+	{
+		return ErrorCode.ArgFormatIsInvalid;
+	}
+}
 
 static ErrorCode solveGridHandler(SolveGridOptions options)
 {
