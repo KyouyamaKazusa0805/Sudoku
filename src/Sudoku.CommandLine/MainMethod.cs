@@ -6,7 +6,7 @@
 		static (CheckGridOptions o) => checkGridHandler(o),
 		static (GenerateGridOptions o) => generateHandler(o),
 		static (VisitOptions o) => visitHandler(o),
-		parseFailedHandler
+		static _ => ErrorCode.ParseFailed
 	);
 return resultCode == ErrorCode.None ? 0 : -(int)resultCode;
 
@@ -191,8 +191,6 @@ static ErrorCode visitHandler(VisitOptions options)
 
 	throw new("Unexpected error. The program cannot be reached here.");
 }
-
-static ErrorCode parseFailedHandler(IEnumerable<Error> _) => ErrorCode.ParseFailed;
 
 static ErrorCode tryParseGrid(string? gridValue, out Grid result)
 {
