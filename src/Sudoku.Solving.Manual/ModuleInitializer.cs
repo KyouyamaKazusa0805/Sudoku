@@ -15,14 +15,19 @@ internal static class ModuleInitializer
 		foreach (var type in typeof(ModuleInitializer).Assembly.GetTypes())
 		{
 			// The step searcher must be applied the attribute 'StepSearcherAttribute'.
-			if (type.IsDefined(typeof(StepSearcherAttribute))
-				|| type.GetCustomAttribute<StepSearcherOptionsAttribute>() is not { IsDeprecated: false })
+			if (!type.IsDefined(typeof(StepSearcherAttribute)))
+			{
+				continue;
+			}
+
+			// The step searcher cannot be deprecated.
+			if (type.GetCustomAttribute<StepSearcherOptionsAttribute>() is { IsDeprecated: true })
 			{
 				continue;
 			}
 
 			// The step searcher must implement the interface 'IStepSearcher'.
-			if (!type.IsAssignableFrom(typeof(IStepSearcher)))
+			if (!type.IsAssignableTo(typeof(IStepSearcher)))
 			{
 				continue;
 			}
@@ -104,6 +109,7 @@ internal static class ModuleInitializer
 		}
 
 		// Assign the result.
+		listOfStepSearchers.Sort(static (s1, s2) => s1.Options.Priority - s2.Options.Priority);
 		StepSearcherPool.Collection = listOfStepSearchers.ToArray();
 	}
 }

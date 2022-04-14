@@ -3,7 +3,7 @@
 /// <summary>
 /// Defines a simple solver.
 /// </summary>
-internal interface ISimpleSolver
+public interface ISimpleSolver
 {
 	/// <summary>
 	/// To solve the specified grid.

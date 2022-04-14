@@ -33,6 +33,11 @@ internal enum ErrorCode
 	ArgGridValueIsNotUnique,
 
 	/// <summary>
+	/// Indicates the error case that the solving method is invalid.
+	/// </summary>
+	ArgMethodIsInvalid,
+
+	/// <summary>
 	/// Indicates the error case that the attribute name is invalid.
 	/// </summary>
 	ArgAttributeNameIsInvalid = 301,

@@ -55,17 +55,68 @@ static ErrorCode solveGridHandler(SolveGridOptions options)
 		return ErrorCode.ArgGridValueIsNotUnique;
 	}
 
-	Console.WriteLine(
-		$"""
-		Puzzle:
-		{grid:#}
-		
-		Solution grid:
-		{solution:!}
-		"""
-	);
+	string? methodNameUsed = null;
+	foreach (var (full, @short, index, type) in SolveGridOptions.MethodNames)
+	{
+		if (Array.IndexOf(new[] { full, @short, index }, options.Method) == -1)
+		{
+			continue;
+		}
 
-	return ErrorCode.None;
+		methodNameUsed = full;
+
+		switch (Activator.CreateInstance(type))
+		{
+			case ISimpleSolver simpleSolver:
+			{
+				if (simpleSolver.Solve(grid, out _) is not true)
+				{
+					return ErrorCode.ArgGridValueIsNotUnique;
+				}
+
+				// .NET Runtime issue: If the type does not implement 'IFormattable',
+				// the format string is meaningless to be used in the interpolated string holes.
+				// In this invocation, type 'Grid' does not implement the type 'IFormattable',
+				// therefore, we cannot use the interpolated string syntax like '$"{grid:#}"'
+				// to get the same result as 'grid.ToString("#")'; on contrast, 'grid.ToString("#")'
+				// as expected will be replaced with 'grid.ToString()'.
+				// Same reason for the below output case.
+				Console.WriteLine(
+					$"""
+					Puzzle: {grid.ToString("#")}
+					Method name used: '{methodNameUsed}'
+					Solution grid: {solution.ToString("!")}
+					"""
+				);
+
+				break;
+			}
+			case IPuzzleSolver puzzleSolver:
+			{
+				if (puzzleSolver.Solve(grid) is not { IsSolved: true } solverResult)
+				{
+					return ErrorCode.ArgGridValueIsNotUnique;
+				}
+
+				Console.WriteLine(
+					$"""
+					Puzzle: {grid.ToString("#")}
+					Method name used: '{methodNameUsed}'
+					Solution grid: {solution.ToString("!")}
+					---
+					Solving steps:
+					{solverResult}
+					"""
+				);
+
+				break;
+			}
+		}
+		
+		break;
+	}
+
+	return methodNameUsed is null ? ErrorCode.ArgMethodIsInvalid : ErrorCode.None;
 }
 
 static ErrorCode checkGridHandler(CheckGridOptions options)
@@ -82,7 +133,7 @@ static ErrorCode checkGridHandler(CheckGridOptions options)
 			Console.WriteLine(
 				$"""
 				Puzzle:
-				{grid:#}
+				{grid.ToString("#")}
 				
 				The puzzle {(grid.IsValid ? "has" : "doesn't have")} a unique solution.
 				"""
@@ -118,7 +169,7 @@ static ErrorCode generateHandler(GenerateGridOptions options)
 		Console.WriteLine(
 			$"""
 			The puzzle generated:
-			{targetPuzzle:0}
+			{targetPuzzle.ToString("0")}
 			"""
 		);
 
