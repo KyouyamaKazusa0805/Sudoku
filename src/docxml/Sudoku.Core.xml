@@ -1317,18 +1317,6 @@
         <member name="M:Sudoku.Concepts.Collections.Grid.CandidateCollectionEnumerator.GetEnumerator">
             <inheritdoc cref="M:System.Collections.Generic.IEnumerable`1.GetEnumerator"/>
         </member>
-        <member name="M:Sudoku.Concepts.Collections.Grid.CandidateCollectionEnumerator.Equals(System.Object)">
-            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
-            <exception cref="T:System.NotSupportedException">Always throws.</exception>
-        </member>
-        <member name="M:Sudoku.Concepts.Collections.Grid.CandidateCollectionEnumerator.GetHashCode">
-            <inheritdoc cref="M:System.Object.GetHashCode"/>
-            <exception cref="T:System.NotSupportedException">Always throws.</exception>
-        </member>
-        <member name="M:Sudoku.Concepts.Collections.Grid.CandidateCollectionEnumerator.ToString">
-            <inheritdoc cref="M:System.Object.ToString"/>
-            <exception cref="T:System.NotSupportedException">Always throws.</exception>
-        </member>
         <member name="F:Sudoku.Concepts.Collections.Grid.DefaultMask">
             <summary>
             Indicates the default mask of a cell (an empty cell, with all 9 candidates left).
@@ -2189,18 +2177,6 @@
         <member name="M:Sudoku.Concepts.Collections.Grid.MaskCollectionEnumerator.GetEnumerator">
             <inheritdoc cref="M:System.Collections.Generic.IEnumerable`1.GetEnumerator"/>
         </member>
-        <member name="M:Sudoku.Concepts.Collections.Grid.MaskCollectionEnumerator.Equals(System.Object)">
-            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
-            <exception cref="T:System.NotSupportedException">Always throws.</exception>
-        </member>
-        <member name="M:Sudoku.Concepts.Collections.Grid.MaskCollectionEnumerator.GetHashCode">
-            <inheritdoc cref="M:System.Object.GetHashCode"/>
-            <exception cref="T:System.NotSupportedException">Always throws.</exception>
-        </member>
-        <member name="M:Sudoku.Concepts.Collections.Grid.MaskCollectionEnumerator.ToString">
-            <inheritdoc cref="M:System.Object.ToString"/>
-            <exception cref="T:System.NotSupportedException">Always throws.</exception>
-        </member>
         <member name="T:Sudoku.Concepts.Collections.GridTransformations">
             <summary>
             Provides methods for <see cref="T:Sudoku.Concepts.Collections.Grid"/> instances on transformations.
@@ -2335,14 +2311,6 @@
             <param name="separator">The separator.</param>
             <returns>The string result.</returns>
         </member>
-        <member name="M:Sudoku.Concepts.Collections.Handlers.ConclusionCollection.Equals(System.Object)">
-            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
-            <exception cref="T:System.NotSupportedException">Always throws.</exception>
-        </member>
-        <member name="M:Sudoku.Concepts.Collections.Handlers.ConclusionCollection.GetHashCode">
-            <inheritdoc cref="M:System.Object.GetHashCode"/>
-            <exception cref="T:System.NotSupportedException">Always throws.</exception>
-        </member>
         <member name="T:Sudoku.Concepts.Collections.Handlers.DigitCollection">
             <summary>
             Indicates a collection that contains the several digits.
@@ -2434,14 +2402,6 @@
             <param name="right">The right instance.</param>
             <returns>The result collection.</returns>
         </member>
-        <member name="M:Sudoku.Concepts.Collections.Handlers.DigitCollection.Equals(System.Object)">
-            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
-            <exception cref="T:System.NotSupportedException">Always throws.</exception>
-        </member>
-        <member name="M:Sudoku.Concepts.Collections.Handlers.DigitCollection.GetHashCode">
-            <inheritdoc cref="M:System.Object.GetHashCode"/>
-            <exception cref="T:System.NotSupportedException">Always throws.</exception>
-        </member>
         <member name="T:Sudoku.Concepts.Collections.Handlers.HouseCollection">
             <summary>
             Indicates a house collection.
@@ -2514,10 +2474,6 @@
             </summary>
             <param name="houseIndex">The house index.</param>
             <returns>The label.</returns>
-        </member>
-        <member name="M:Sudoku.Concepts.Collections.Handlers.HouseCollection.Equals(System.Object)">
-            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
-            <exception cref="T:System.NotSupportedException">Always throws.</exception>
         </member>
         <member name="T:Sudoku.Concepts.Collections.Serialization.CandidatesConverter">
             <summary>
@@ -2721,30 +2677,6 @@
         </member>
         <member name="M:Sudoku.Concepts.Enumerators.BitSubsetsGenerator.Enumerator.MoveNext">
             <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.Enumerators.BitSubsetsGenerator.Enumerator.Equals(System.Object)">
-            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
-            <exception cref="T:System.NotSupportedException">Always throws.</exception>
-        </member>
-        <member name="M:Sudoku.Concepts.Enumerators.BitSubsetsGenerator.Enumerator.GetHashCode">
-            <inheritdoc cref="M:System.Object.GetHashCode"/>
-            <exception cref="T:System.NotSupportedException">Always throws.</exception>
-        </member>
-        <member name="M:Sudoku.Concepts.Enumerators.BitSubsetsGenerator.Enumerator.ToString">
-            <inheritdoc cref="M:System.Object.ToString"/>
-            <exception cref="T:System.NotSupportedException">Always throws.</exception>
-        </member>
-        <member name="M:Sudoku.Concepts.Enumerators.BitSubsetsGenerator.Equals(System.Object)">
-            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
-            <exception cref="T:System.NotSupportedException">Always throws.</exception>
-        </member>
-        <member name="M:Sudoku.Concepts.Enumerators.BitSubsetsGenerator.GetHashCode">
-            <inheritdoc cref="M:System.Object.GetHashCode"/>
-            <exception cref="T:System.NotSupportedException">Always throws.</exception>
-        </member>
-        <member name="M:Sudoku.Concepts.Enumerators.BitSubsetsGenerator.ToString">
-            <inheritdoc cref="M:System.Object.ToString"/>
-            <exception cref="T:System.NotSupportedException">Always throws.</exception>
         </member>
         <member name="T:Sudoku.Concepts.Formatting.GridFormatter">
             <summary>
@@ -2986,18 +2918,6 @@
             </summary>
             <param name="grid">The grid.</param>
             <returns>The result.</returns>
-        </member>
-        <member name="M:Sudoku.Concepts.Formatting.GridFormatter.Equals(System.Object)">
-            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
-            <exception cref="T:System.NotSupportedException">Always throws.</exception>
-        </member>
-        <member name="M:Sudoku.Concepts.Formatting.GridFormatter.GetHashCode">
-            <inheritdoc cref="M:System.Object.GetHashCode"/>
-            <exception cref="T:System.NotSupportedException">Always throws.</exception>
-        </member>
-        <member name="M:Sudoku.Concepts.Formatting.GridFormatter.ToString">
-            <inheritdoc cref="M:System.Object.ToString"/>
-            <exception cref="T:System.NotSupportedException">Always throws.</exception>
         </member>
         <member name="T:Sudoku.Concepts.Formatting.GridFormatterFactory">
             <summary>
@@ -3858,18 +3778,6 @@
             Indicates whether the algorithm uses compatibility mode to check and parse sudoku grid.
             </param>
             <returns>The result.</returns>
-        </member>
-        <member name="M:Sudoku.Concepts.Parsing.GridParser.Equals(System.Object)">
-            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
-            <exception cref="T:System.NotSupportedException">Always throws.</exception>
-        </member>
-        <member name="M:Sudoku.Concepts.Parsing.GridParser.GetHashCode">
-            <inheritdoc cref="M:System.Object.GetHashCode"/>
-            <exception cref="T:System.NotSupportedException">Always throws.</exception>
-        </member>
-        <member name="M:Sudoku.Concepts.Parsing.GridParser.ToString">
-            <inheritdoc cref="M:System.Object.ToString"/>
-            <exception cref="T:System.NotSupportedException">Always throws.</exception>
         </member>
         <member name="T:Sudoku.Concepts.Parsing.GridParsingOption">
             <summary>
