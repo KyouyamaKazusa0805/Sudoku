@@ -1,11 +1,7 @@
 ﻿var resultCode = Parser.Default
 	.ParseArguments<FormatOptions, SolveGridOptions, CheckGridOptions, GenerateGridOptions, VisitOptions>(args)
-	.MapResult(
-		static (FormatOptions o) => formatHandler(o),
-		static (SolveGridOptions o) => solveGridHandler(o),
-		static (CheckGridOptions o) => checkGridHandler(o),
-		static (GenerateGridOptions o) => generateHandler(o),
-		static (VisitOptions o) => visitHandler(o),
+	.MapResult<FormatOptions, SolveGridOptions, CheckGridOptions, GenerateGridOptions, VisitOptions, ErrorCode>(
+		formatHandler, solveGridHandler, checkGridHandler, generateHandler, visitHandler,
 		static _ => ErrorCode.ParseFailed
 	);
 return resultCode == ErrorCode.None ? 0 : -(int)resultCode;
