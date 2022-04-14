@@ -2918,5 +2918,110 @@
             </remarks>
             <seealso cref="M:System.PointerMarshal.GetArrayFromStart``1(``0*,System.Int32,System.Int32)"/>
         </member>
+        <member name="T:System.Utf8String">
+            <summary>
+            Represents text as a sequence of UTF-8 code units.
+            </summary>
+        </member>
+        <member name="F:System.Utf8String.Empty">
+            <summary>
+            Indicates the empty <see cref="T:System.Utf8String"/> instance.
+            </summary>
+        </member>
+        <member name="F:System.Utf8String._value">
+            <summary>
+            Indicates the inner value.
+            </summary>
+        </member>
+        <member name="M:System.Utf8String.#ctor(System.Byte[])">
+            <summary>
+            Initializes a <see cref="T:System.Utf8String"/> instance via the specified array of <see cref="T:System.Byte"/>s
+            as the underlying array.
+            </summary>
+            <param name="underlyingArray">The underlying array.</param>
+        </member>
+        <member name="P:System.Utf8String.Length">
+            <inheritdoc/>
+        </member>
+        <member name="P:System.Utf8String.UnderlyingArray">
+            <summary>
+            Indicates the underlying array.
+            </summary>
+        </member>
+        <member name="P:System.Utf8String.System#IDefaultable{System#Utf8String}#IsDefault">
+            <inheritdoc/>
+        </member>
+        <member name="P:System.Utf8String.System#IDefaultable{System#Utf8String}#Default">
+            <inheritdoc/>
+        </member>
+        <member name="P:System.Utf8String.Item(System.Int32)">
+            <summary>
+            Gets the reference of a character at the specified index in the current string.
+            </summary>
+            <param name="index">The index.</param>
+            <returns>The reference of the character.</returns>
+        </member>
+        <member name="M:System.Utf8String.Equals(System.Object)">
+            <inheritdoc/>
+        </member>
+        <member name="M:System.Utf8String.Equals(System.Utf8String)">
+            <inheritdoc/>
+        </member>
+        <member name="M:System.Utf8String.GetHashCode">
+            <inheritdoc/>
+        </member>
+        <member name="M:System.Utf8String.CompareTo(System.Utf8String)">
+            <inheritdoc/>
+        </member>
+        <member name="M:System.Utf8String.ToString">
+            <inheritdoc/>
+        </member>
+        <member name="M:System.Utf8String.System#IComparable#CompareTo(System.Object)">
+            <inheritdoc/>
+        </member>
+        <member name="M:System.Utf8String.Compare(System.Utf8String,System.Utf8String)">
+            <summary>
+            Compares two values.
+            </summary>
+            <param name="strA">The first string to be compared.</param>
+            <param name="strB">The second string to be compared.</param>
+            <returns>An <see cref="T:System.Int32"/> value indicating which one is greater.</returns>
+        </member>
+        <member name="M:System.Utf8String.op_Equality(System.Utf8String,System.Utf8String)">
+            <inheritdoc/>
+        </member>
+        <member name="M:System.Utf8String.op_Inequality(System.Utf8String,System.Utf8String)">
+            <inheritdoc/>
+        </member>
+        <member name="M:System.Utf8String.op_GreaterThan(System.Utf8String,System.Utf8String)">
+            <inheritdoc/>
+        </member>
+        <member name="M:System.Utf8String.op_GreaterThanOrEqual(System.Utf8String,System.Utf8String)">
+            <inheritdoc/>
+        </member>
+        <member name="M:System.Utf8String.op_LessThan(System.Utf8String,System.Utf8String)">
+            <inheritdoc/>
+        </member>
+        <member name="M:System.Utf8String.op_LessThanOrEqual(System.Utf8String,System.Utf8String)">
+            <inheritdoc/>
+        </member>
+        <member name="M:System.Utf8String.op_Explicit(System.Utf8String)~System.String">
+            <summary>
+            Explicitly cast from <see cref="T:System.Utf8String"/> to <see cref="T:System.String"/>.
+            </summary>
+            <param name="s">The string.</param>
+        </member>
+        <member name="M:System.Utf8String.op_Explicit(System.Utf8String)~System.Byte[]">
+            <summary>
+            Explicitly cast from <see cref="T:System.Utf8String"/> to <see cref="T:System.Byte"/>[].
+            </summary>
+            <param name="s">The string.</param>
+        </member>
+        <member name="M:System.Utf8String.op_Implicit(System.Byte[])~System.Utf8String">
+            <summary>
+            Implicitly cast from <see cref="T:System.Byte"/>[] to <see cref="T:System.Utf8String"/>.
+            </summary>
+            <param name="underlyingArray">The underlying array.</param>
+        </member>
     </members>
 </doc>
