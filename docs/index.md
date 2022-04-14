@@ -16,6 +16,7 @@
   * [术语词汇列表](terms)
 * 项目介绍
   * [快捷按键](hotkeys)
+  * [控制台参数](command-line)
   * [代码风格](code-style)
 * 解决方案的架构
   * [项目列表](projects)
