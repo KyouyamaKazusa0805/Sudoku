@@ -12,15 +12,6 @@ public static class PuzzleChecker
 
 
 	/// <summary>
-	/// Checks whether the specified grid contains a valid unique solution.
-	/// </summary>
-	/// <param name="this">The grid to be checked.</param>
-	/// <returns>The <see cref="bool"/> indicating that.</returns>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static bool IsValid(this in Grid @this) =>
-		Solver.CheckValidity(@this.ToString(null)) || Solver.CheckValidity(@this.ToString("~"));
-
-	/// <summary>
 	/// To check if a puzzle has only one solution or not.
 	/// </summary>
 	/// <param name="this">The puzzle to check.</param>

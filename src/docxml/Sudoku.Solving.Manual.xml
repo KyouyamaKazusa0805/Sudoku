@@ -156,13 +156,6 @@
             Indicates the inner solver.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Checkers.PuzzleChecker.IsValid(Sudoku.Concepts.Collections.Grid@)">
-            <summary>
-            Checks whether the specified grid contains a valid unique solution.
-            </summary>
-            <param name="this">The grid to be checked.</param>
-            <returns>The <see cref="T:System.Boolean"/> indicating that.</returns>
-        </member>
         <member name="M:Sudoku.Solving.Manual.Checkers.PuzzleChecker.IsValid(Sudoku.Concepts.Collections.Grid@,Sudoku.Concepts.Collections.Grid@,System.Nullable{System.Boolean}@)">
             <summary>
             To check if a puzzle has only one solution or not.
