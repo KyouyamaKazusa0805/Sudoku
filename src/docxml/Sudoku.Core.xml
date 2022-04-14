@@ -1737,6 +1737,39 @@
             <param name="other">The instance to compare.</param>
             <returns>A <see cref="T:System.Boolean"/> result.</returns>
         </member>
+        <member name="M:Sudoku.Concepts.Collections.Grid.ExactlyValidate(Sudoku.Concepts.Collections.Grid@,System.Nullable{System.Boolean}@)">
+            <summary>
+            <para>
+            Determines whether the current grid is valid, checking on both normal and sukaku cases
+            and returning a <see cref="T:System.Boolean"/>? value indicating whether the current sudoku grid is valid
+            only on sukaku case.
+            </para>
+            <para>
+            For more information, please see the introduction about the parameter
+            <paramref name="sukaku"/>.
+            </para>
+            </summary>
+            <param name="solutionIfValid">
+            The solution if the puzzle is valid; otherwise, <see cref="F:Sudoku.Concepts.Collections.Grid.Undefined"/>.
+            </param>
+            <param name="sukaku">Indicates whether the current mode is sukaku mode.<list type="table">
+            <item>
+            <term><see langword="true"/></term>
+            <description>The puzzle is a sukaku puzzle.</description>
+            </item>
+            <item>
+            <term><see langword="false"/></term>
+            <description>The puzzle is a normal sudoku puzzle.</description>
+            </item>
+            <item>
+            <term><see langword="null"/></term>
+            <description>The puzzle is invalid.</description>
+            </item>
+            </list>
+            </param>
+            <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
+            <seealso cref="F:Sudoku.Concepts.Collections.Grid.Undefined"/>
+        </member>
         <member name="M:Sudoku.Concepts.Collections.Grid.Exists(System.Int32)">
             <summary>
             Indicates whether the current grid contains the specified candidate offset.

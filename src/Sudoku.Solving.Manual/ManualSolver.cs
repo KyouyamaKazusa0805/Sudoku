@@ -10,7 +10,7 @@ public sealed unsafe partial class ManualSolver : IPuzzleSolver
 	public ISolverResult Solve(in Grid puzzle, CancellationToken cancellationToken = default)
 	{
 		var solverResult = new ManualSolverResult(puzzle);
-		if (puzzle.IsValid(out var solution, out bool? sukaku))
+		if (puzzle.ExactlyValidate(out var solution, out bool? sukaku))
 		{
 			try
 			{

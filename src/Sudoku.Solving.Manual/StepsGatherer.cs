@@ -3,7 +3,7 @@
 /// <summary>
 /// Defines a steps gatherer.
 /// </summary>
-public sealed unsafe partial class StepsGatherer
+public sealed partial class StepsGatherer
 {
 	/// <summary>
 	/// Search for all possible steps in a grid.
@@ -12,9 +12,10 @@ public sealed unsafe partial class StepsGatherer
 	/// <param name="cancellationToken">The cancellation token used for cancelling an operation.</param>
 	/// <returns>The result grouped by technique names.</returns>
 	/// <exception cref="OperationCanceledException">Throws when the operation is cancelled.</exception>
-	public IEnumerable<IGrouping<string, Step>> Search(in Grid puzzle, CancellationToken cancellationToken = default)
+	public IEnumerable<IGrouping<string, Step>> Search(
+		in Grid puzzle, CancellationToken cancellationToken = default)
 	{
-		if (puzzle.IsSolved || !puzzle.IsValid(out _, out bool? sukaku))
+		if (puzzle.IsSolved || !puzzle.ExactlyValidate(out _, out bool? sukaku))
 		{
 			return Array.Empty<IGrouping<string, Step>>();
 		}

@@ -787,6 +787,60 @@ public unsafe partial struct Grid :
 	public readonly bool Equals(in Grid other) => Equals(this, other);
 
 	/// <summary>
+	/// <para>
+	/// Determines whether the current grid is valid, checking on both normal and sukaku cases
+	/// and returning a <see cref="bool"/>? value indicating whether the current sudoku grid is valid
+	/// only on sukaku case.
+	/// </para>
+	/// <para>
+	/// For more information, please see the introduction about the parameter
+	/// <paramref name="sukaku"/>.
+	/// </para>
+	/// </summary>
+	/// <param name="solutionIfValid">
+	/// The solution if the puzzle is valid; otherwise, <see cref="Undefined"/>.
+	/// </param>
+	/// <param name="sukaku">Indicates whether the current mode is sukaku mode.<list type="table">
+	/// <item>
+	/// <term><see langword="true"/></term>
+	/// <description>The puzzle is a sukaku puzzle.</description>
+	/// </item>
+	/// <item>
+	/// <term><see langword="false"/></term>
+	/// <description>The puzzle is a normal sudoku puzzle.</description>
+	/// </item>
+	/// <item>
+	/// <term><see langword="null"/></term>
+	/// <description>The puzzle is invalid.</description>
+	/// </item>
+	/// </list>
+	/// </param>
+	/// <returns>A <see cref="bool"/> value indicating that.</returns>
+	/// <seealso cref="Undefined"/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public readonly bool ExactlyValidate(out Grid solutionIfValid, [NotNullWhen(true)] out bool? sukaku)
+	{
+		Unsafe.SkipInit(out solutionIfValid);
+		if (Solver.CheckValidity(ToString(null), out string? solution))
+		{
+			solutionIfValid = Parse(solution);
+			sukaku = false;
+			return true;
+		}
+		else if (Solver.CheckValidity(ToString("~"), out solution))
+		{
+			solutionIfValid = Parse(solution);
+			sukaku = true;
+			return true;
+		}
+		else
+		{
+			sukaku = null;
+			return false;
+		}
+	}
+
+	/// <summary>
 	/// Indicates whether the current grid contains the specified candidate offset.
 	/// </summary>
 	/// <param name="candidate">The candidate offset.</param>
