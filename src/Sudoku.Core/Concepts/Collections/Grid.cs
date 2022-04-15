@@ -927,7 +927,7 @@ public unsafe partial struct Grid :
 	/// <inheritdoc cref="object.GetHashCode"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public override readonly int GetHashCode() =>
-		this switch { { IsUndefined: true } => 0, { IsEmpty: true } => 1, _ => $"{this:#}".GetHashCode() };
+		this switch { { IsUndefined: true } => 0, { IsEmpty: true } => 1, _ => ToString("#").GetHashCode() };
 
 
 	/// <summary>

@@ -48,7 +48,7 @@ public sealed class WrongStepException : Exception
 	/// <inheritdoc/>
 	public override void GetObjectData(SerializationInfo info, StreamingContext context)
 	{
-		info.AddValue(nameof(InvalidPuzzle), $"{InvalidPuzzle:#}", typeof(string));
+		info.AddValue(nameof(InvalidPuzzle), InvalidPuzzle.ToString("#"), typeof(string));
 		info.AddValue(nameof(WrongStep), WrongStep?.ToString() ?? "<unknown step>", typeof(string));
 
 		base.GetObjectData(info, context);
