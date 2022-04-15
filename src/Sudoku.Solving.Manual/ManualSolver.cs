@@ -140,8 +140,7 @@ public sealed class ManualSolver : IManualSolverOptions
 								if (
 									RecordStep(
 										recordedSteps, step, ref playground, stopwatch, stepGrids,
-										baseSolverResult, cancellationToken, out var result
-									)
+										baseSolverResult, cancellationToken, out var result)
 								)
 								{
 									return result;
@@ -177,8 +176,7 @@ public sealed class ManualSolver : IManualSolverOptions
 							if (
 								RecordStep(
 									recordedSteps, step, ref playground, stopwatch, stepGrids,
-									baseSolverResult, cancellationToken, out var result
-								)
+									baseSolverResult, cancellationToken, out var result)
 							)
 							{
 								return result;

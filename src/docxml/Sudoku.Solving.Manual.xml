@@ -8808,9 +8808,6 @@
             <param name="grid">The invalid sudoku grid.</param>
             <param name="wrongStep">The wrong step.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.WrongStepException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
-            <inheritdoc/>
-        </member>
         <member name="P:Sudoku.Solving.Manual.WrongStepException.Message">
             <inheritdoc/>
         </member>
@@ -8825,9 +8822,6 @@
             <summary>
             Indicates the wrong step.
             </summary>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.WrongStepException.GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
-            <inheritdoc/>
         </member>
     </members>
 </doc>
