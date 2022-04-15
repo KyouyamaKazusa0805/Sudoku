@@ -1,7 +1,7 @@
 ﻿namespace Sudoku.Solving.Manual;
 
 /// <summary>
-/// Indicates the formatting options of <see cref="ISolverResult"/> instance.
+/// Indicates the formatting options of <see cref="ManualSolverResult"/> instance.
 /// </summary>
 [Flags]
 public enum SolverResultFormattingOptions : short

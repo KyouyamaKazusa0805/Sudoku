@@ -4,10 +4,25 @@
 /// Provides a manual solver that solves a sudoku puzzle using the human minds and ways
 /// to check and solve a sudoku puzzle.
 /// </summary>
-public sealed unsafe partial class ManualSolver : IPuzzleSolver
+public sealed class ManualSolver : IManualSolverOptions
 {
 	/// <inheritdoc/>
-	public ISolverResult Solve(in Grid puzzle, CancellationToken cancellationToken = default)
+	public bool IsHodokuMode { get; set; } = true;
+
+	/// <inheritdoc/>
+	public bool IsFastSearching { get; set; }
+
+	/// <inheritdoc/>
+	public bool OptimizedApplyingOrder { get; set; }
+
+
+	/// <summary>
+	/// To solve the specified puzzle.
+	/// </summary>
+	/// <param name="puzzle">The puzzle to be solved.</param>
+	/// <param name="cancellationToken">The cancellation token to cancel the operation.</param>
+	/// <returns>The solver result that provides the information after solving.</returns>
+	public ManualSolverResult Solve(in Grid puzzle, CancellationToken cancellationToken = default)
 	{
 		var solverResult = new ManualSolverResult(puzzle);
 		if (puzzle.ExactlyValidate(out var solution, out bool? sukaku))

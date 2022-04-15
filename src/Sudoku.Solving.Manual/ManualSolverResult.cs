@@ -3,12 +3,12 @@
 /// <summary>
 /// Provides the solver result after <see cref="ManualSolver"/> solves a puzzle.
 /// </summary>
-/// <param name="OriginalPuzzle"><inheritdoc/></param>
-public sealed unsafe partial record class ManualSolverResult(in Grid OriginalPuzzle) :
-	ISimpleFormattable,
-	ISolverResult
+/// <param name="OriginalPuzzle">Indicates the original sudoku puzzle to solve.</param>
+public sealed unsafe partial record class ManualSolverResult(in Grid OriginalPuzzle) : ISimpleFormattable
 {
-	/// <inheritdoc/>
+	/// <summary>
+	/// Indicates whether the solver has solved the puzzle.
+	/// </summary>
 	public bool IsSolved { get; init; }
 
 	/// <summary>
@@ -112,7 +112,11 @@ public sealed unsafe partial record class ManualSolverResult(in Grid OriginalPuz
 	/// </summary>
 	public int SolvingStepsCount => Steps.IsDefault ? 1 : Steps.Length;
 
-	/// <inheritdoc/>
+	/// <summary>
+	/// Indicates why the solving operation is failed. This property is useless when <see cref="IsSolved"/>
+	/// keeps the <see langword="true"/> value.
+	/// </summary>
+	/// <seealso cref="IsSolved"/>
 	public FailedReason FailedReason { get; init; }
 
 	/// <summary>
@@ -140,10 +144,19 @@ public sealed unsafe partial record class ManualSolverResult(in Grid OriginalPuz
 		}
 	}
 
-	/// <inheritdoc/>
+	/// <summary>
+	/// Indicates the result sudoku grid solved. If the solver can't solve this puzzle, the value will be
+	/// <see cref="Grid.Undefined"/>.
+	/// </summary>
+	/// <seealso cref="Grid.Undefined"/>
 	public Grid Solution { get; init; }
 
-	/// <inheritdoc/>
+	/// <summary>
+	/// Indicates the elapsed time used during solving the puzzle. The value may not be an useful value.
+	/// Some case if the puzzle doesn't contain a valid unique solution, the value may be
+	/// <see cref="TimeSpan.Zero"/>.
+	/// </summary>
+	/// <seealso cref="TimeSpan.Zero"/>
 	public TimeSpan ElapsedTime { get; init; }
 
 	/// <summary>
@@ -314,10 +327,6 @@ public sealed unsafe partial record class ManualSolverResult(in Grid OriginalPuz
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public string ToString(SolverResultFormattingOptions options) => new Formatter(this).ToString(options);
 
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public string ToDisplayString() => ToString();
-
 	/// <summary>
 	/// Gets the enumerator of the current instance in order to use <see langword="foreach"/> loop.
 	/// </summary>
@@ -334,7 +343,8 @@ public sealed unsafe partial record class ManualSolverResult(in Grid OriginalPuz
 	/// </param>
 	/// <returns>The result.</returns>
 	/// <seealso cref="Steps"/>
-	private decimal Evaluator(delegate*<IEnumerable<Step>, delegate*<Step, decimal>, decimal> executor, decimal d)
+	private decimal Evaluator(
+		delegate*<IEnumerable<Step>, delegate*<Step, decimal>, decimal> executor, decimal d)
 	{
 		return Steps.IsDefaultOrEmpty ? d : executor(Steps, &f);
 

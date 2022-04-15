@@ -91,7 +91,7 @@ static ErrorCode solveGridHandler(SolveGridOptions options)
 
 				break;
 			}
-			case IPuzzleSolver puzzleSolver:
+			case ManualSolver puzzleSolver:
 			{
 				if (puzzleSolver.Solve(grid) is not { IsSolved: true } solverResult)
 				{

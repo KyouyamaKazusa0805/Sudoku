@@ -225,9 +225,9 @@
         </member>
         <member name="T:Sudoku.Solving.Manual.FailedReason">
             <summary>
-            Defines a reason why the <see cref="T:Sudoku.Solving.Manual.IPuzzleSolver"/> is failed to solve a puzzle.
+            Defines a reason why the <see cref="T:Sudoku.Solving.Manual.ManualSolverResult"/> is failed to solve a puzzle.
             </summary>
-            <seealso cref="T:Sudoku.Solving.Manual.IPuzzleSolver"/>
+            <seealso cref="T:Sudoku.Solving.Manual.ManualSolverResult"/>
         </member>
         <member name="F:Sudoku.Solving.Manual.FailedReason.Nothing">
             <summary>
@@ -332,62 +332,6 @@
             Indicates whether the solver will apply the steps via the asecending order.
             </summary>
         </member>
-        <member name="T:Sudoku.Solving.Manual.IPuzzleSolver">
-            <summary>
-            Defines and provides with a solver that used for solving a sudoku puzzle.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.IPuzzleSolver.Solve(Sudoku.Concepts.Collections.Grid@,System.Threading.CancellationToken)">
-            <summary>
-            To solve the specified puzzle.
-            </summary>
-            <param name="puzzle">The puzzle to be solved.</param>
-            <param name="cancellationToken">The cancellation token to cancel the operation.</param>
-            <returns>The solver result that provides the information after solving.</returns>
-        </member>
-        <member name="T:Sudoku.Solving.Manual.ISolverResult">
-            <summary>
-            Defines a result that created by a solver to represent a result of analysis after the solver calculated.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.ISolverResult.IsSolved">
-            <summary>
-            Indicates whether the solver has solved the puzzle.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.ISolverResult.FailedReason">
-            <summary>
-            Indicates why the solving operation is failed. This property is useless when <see cref="P:Sudoku.Solving.Manual.ISolverResult.IsSolved"/>
-            keeps the <see langword="true"/> value.
-            </summary>
-            <seealso cref="P:Sudoku.Solving.Manual.ISolverResult.IsSolved"/>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.ISolverResult.OriginalPuzzle">
-            <summary>
-            Indicates the original sudoku puzzle to solve.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.ISolverResult.Solution">
-            <summary>
-            Indicates the result sudoku grid solved. If the solver can't solve this puzzle, the value will be
-            <see cref="F:Sudoku.Concepts.Collections.Grid.Undefined"/>.
-            </summary>
-            <seealso cref="F:Sudoku.Concepts.Collections.Grid.Undefined"/>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.ISolverResult.ElapsedTime">
-            <summary>
-            Indicates the elapsed time used during solving the puzzle. The value may not be an useful value.
-            Some case if the puzzle doesn't contain a valid unique solution, the value may be
-            <see cref="F:System.TimeSpan.Zero"/>.
-            </summary>
-            <seealso cref="F:System.TimeSpan.Zero"/>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.ISolverResult.ToDisplayString">
-            <summary>
-            Get the string representation of the current instance.
-            </summary>
-            <returns>The string representation of the current instance.</returns>
-        </member>
         <member name="T:Sudoku.Solving.Manual.IStepsGathererOptions">
             <summary>
             Defines an instance that stores the options that bound with a <see cref="T:Sudoku.Solving.Manual.StepsGatherer"/> instance.
@@ -405,8 +349,22 @@
             to check and solve a sudoku puzzle.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Manual.ManualSolver.Solve(Sudoku.Concepts.Collections.Grid@,System.Threading.CancellationToken)">
+        <member name="P:Sudoku.Solving.Manual.ManualSolver.IsHodokuMode">
             <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.ManualSolver.IsFastSearching">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.Manual.ManualSolver.OptimizedApplyingOrder">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.ManualSolver.Solve(Sudoku.Concepts.Collections.Grid@,System.Threading.CancellationToken)">
+            <summary>
+            To solve the specified puzzle.
+            </summary>
+            <param name="puzzle">The puzzle to be solved.</param>
+            <param name="cancellationToken">The cancellation token to cancel the operation.</param>
+            <returns>The solver result that provides the information after solving.</returns>
         </member>
         <member name="M:Sudoku.Solving.Manual.ManualSolver.Solve_HodokuMode(Sudoku.Concepts.Collections.Grid@,Sudoku.Concepts.Collections.Grid@,System.Boolean,Sudoku.Solving.Manual.ManualSolverResult,System.Threading.CancellationToken)">
             <summary>
@@ -455,32 +413,25 @@
             <param name="step">The step to check.</param>
             <returns>A <see cref="T:System.Boolean"/> indicating that.</returns>
         </member>
-        <member name="P:Sudoku.Solving.Manual.ManualSolver.IsHodokuMode">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.ManualSolver.IsFastSearching">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Solving.Manual.ManualSolver.OptimizedApplyingOrder">
-            <inheritdoc/>
-        </member>
         <member name="T:Sudoku.Solving.Manual.ManualSolverResult">
             <summary>
             Provides the solver result after <see cref="T:Sudoku.Solving.Manual.ManualSolver"/> solves a puzzle.
             </summary>
-            <param name="OriginalPuzzle"><inheritdoc/></param>
+            <param name="OriginalPuzzle">Indicates the original sudoku puzzle to solve.</param>
         </member>
         <member name="M:Sudoku.Solving.Manual.ManualSolverResult.#ctor(Sudoku.Concepts.Collections.Grid@)">
             <summary>
             Provides the solver result after <see cref="T:Sudoku.Solving.Manual.ManualSolver"/> solves a puzzle.
             </summary>
-            <param name="OriginalPuzzle"><inheritdoc/></param>
+            <param name="OriginalPuzzle">Indicates the original sudoku puzzle to solve.</param>
         </member>
         <member name="P:Sudoku.Solving.Manual.ManualSolverResult.OriginalPuzzle">
-            <summary><inheritdoc/></summary>
+            <summary>Indicates the original sudoku puzzle to solve.</summary>
         </member>
         <member name="P:Sudoku.Solving.Manual.ManualSolverResult.IsSolved">
-            <inheritdoc/>
+            <summary>
+            Indicates whether the solver has solved the puzzle.
+            </summary>
         </member>
         <member name="P:Sudoku.Solving.Manual.ManualSolverResult.MaxDifficulty">
             <summary>
@@ -546,7 +497,11 @@
             </summary>
         </member>
         <member name="P:Sudoku.Solving.Manual.ManualSolverResult.FailedReason">
-            <inheritdoc/>
+            <summary>
+            Indicates why the solving operation is failed. This property is useless when <see cref="P:Sudoku.Solving.Manual.ManualSolverResult.IsSolved"/>
+            keeps the <see langword="true"/> value.
+            </summary>
+            <seealso cref="P:Sudoku.Solving.Manual.ManualSolverResult.IsSolved"/>
         </member>
         <member name="P:Sudoku.Solving.Manual.ManualSolverResult.DifficultyLevel">
             <summary>
@@ -556,10 +511,19 @@
             </summary>
         </member>
         <member name="P:Sudoku.Solving.Manual.ManualSolverResult.Solution">
-            <inheritdoc/>
+            <summary>
+            Indicates the result sudoku grid solved. If the solver can't solve this puzzle, the value will be
+            <see cref="F:Sudoku.Concepts.Collections.Grid.Undefined"/>.
+            </summary>
+            <seealso cref="F:Sudoku.Concepts.Collections.Grid.Undefined"/>
         </member>
         <member name="P:Sudoku.Solving.Manual.ManualSolverResult.ElapsedTime">
-            <inheritdoc/>
+            <summary>
+            Indicates the elapsed time used during solving the puzzle. The value may not be an useful value.
+            Some case if the puzzle doesn't contain a valid unique solution, the value may be
+            <see cref="F:System.TimeSpan.Zero"/>.
+            </summary>
+            <seealso cref="F:System.TimeSpan.Zero"/>
         </member>
         <member name="P:Sudoku.Solving.Manual.ManualSolverResult.StepGrids">
             <summary>
@@ -664,9 +628,6 @@
         </member>
         <member name="M:Sudoku.Solving.Manual.ManualSolverResult.ToString(Sudoku.Solving.Manual.SolverResultFormattingOptions)">
             <inheritdoc cref="M:Sudoku.Solving.Manual.ManualSolverResult.Formatter.ToString(Sudoku.Solving.Manual.SolverResultFormattingOptions)"/>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.ManualSolverResult.ToDisplayString">
-            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Solving.Manual.ManualSolverResult.GetEnumerator">
             <summary>
@@ -3586,7 +3547,7 @@
         </member>
         <member name="T:Sudoku.Solving.Manual.SolverResultFormattingOptions">
             <summary>
-            Indicates the formatting options of <see cref="T:Sudoku.Solving.Manual.ISolverResult"/> instance.
+            Indicates the formatting options of <see cref="T:Sudoku.Solving.Manual.ManualSolverResult"/> instance.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Manual.SolverResultFormattingOptions.None">
