@@ -36,32 +36,34 @@ public sealed class ManualSolver : IManualSolverOptions
 					// TODO: Implement a sudoku-explainer mode solving module.
 					: throw new NotImplementedException();
 			}
+			catch (NotImplementedException)
+			{
+				return solverResult with { IsSolved = false, FailedReason = FailedReason.NotImplemented };
+			}
+			catch (WrongStepException ex)
+			{
+				return solverResult with
+				{
+					IsSolved = false,
+					FailedReason = FailedReason.WrongStep,
+					WrongStep = ex.WrongStep
+				};
+			}
+			catch (OperationCanceledException ex) when (ex.CancellationToken == cancellationToken)
+			{
+				return solverResult with { IsSolved = false, FailedReason = FailedReason.UserCancelled };
+			}
+			catch (OperationCanceledException)
+			{
+				throw;
+			}
 			catch (Exception ex)
 			{
-				return ex switch
+				return solverResult with
 				{
-					NotImplementedException => solverResult with
-					{
-						IsSolved = false,
-						FailedReason = FailedReason.NotImplemented
-					},
-					WrongStepException { WrongStep: var wrongStep } => solverResult with
-					{
-						IsSolved = false,
-						FailedReason = FailedReason.WrongStep,
-						WrongStep = wrongStep
-					},
-					OperationCanceledException { CancellationToken: var c } when c == cancellationToken => solverResult with
-					{
-						IsSolved = false,
-						FailedReason = FailedReason.UserCancelled
-					},
-					_ => solverResult with
-					{
-						IsSolved = false,
-						FailedReason = FailedReason.ExceptionThrown,
-						UnhandledException = ex
-					}
+					IsSolved = false,
+					FailedReason = FailedReason.ExceptionThrown,
+					UnhandledException = ex
 				};
 			}
 		}
