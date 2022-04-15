@@ -43,7 +43,13 @@ Console.WriteLine(analysisResult.ToDisplayString());
 
 以后，我想把这个解决方案用于**几乎所有平台**上。我可能会完成 Win10 App 项目、安卓项目、常用网络平台上的机器人（比如可能 QQ 啊，哔哩哔哩之类的）。
 
-### UI 界面
+### 界面
+
+控制台：
+
+![](docs/pic/command-line.png)
+
+UI：
 
 ![](docs/pic/win-ui.png)
 

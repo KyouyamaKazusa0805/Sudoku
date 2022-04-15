@@ -44,7 +44,13 @@ Console.WriteLine(analysisResult.ToDisplayString());
 
 In the future, I'd like to apply this solution to **almost every platform**. I may finish the Win10 app project, android app project, bot on common online platforms (QQ, Bilibili and so on).
 
-### UI Preface
+### Prefaces
+
+Command line:
+
+![](docs/pic/command-line.png)
+
+UI:
 
 ![](docs/pic/win-ui.png)
 
