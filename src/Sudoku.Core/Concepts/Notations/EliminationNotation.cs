@@ -60,7 +60,7 @@ public sealed class EliminationNotation :
 		{
 			sb.RemoveFromEnd(separator.Length);
 		}
-		
+
 		return sb.ToStringAndClear();
 	}
 
@@ -78,16 +78,16 @@ public sealed class EliminationNotation :
 		{
 			if (
 				segment is not [
-					var digitChar and >= '0' and < '9',
-					var rowChar and >= '0' and < '9',
-					var columnChar and >= '0' and < '9'
+					var digitChar and >= '1' and <= '9',
+					var rowChar and >= '1' and <= '9',
+					var columnChar and >= '1' and <= '9'
 				]
 			)
 			{
 				throw new FormatException("Each candidate segment contains invalid character.");
 			}
 
-			int digit = digitChar - '0', cell = (rowChar - '0') * 9 + columnChar - '0';
+			int digit = digitChar - '1', cell = (rowChar - '1') * 9 + columnChar - '1';
 			result.AddAnyway(cell * 9 + digit);
 		}
 

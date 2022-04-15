@@ -93,6 +93,11 @@ public sealed class ManualSolver : IManualSolverOptions
 		List<Step> tempSteps = new(20), recordedSteps = new(100);
 		var stepGrids = new List<Grid>(100);
 
+		var stepSearchers = StepSearcherPool.Collection;
+
+		// Bug fix: Sets the solution grid to the step searchers that will use the property value.
+		((BruteForceStepSearcher)StepSearcherPool.Collection[^1]).Solution = solution;
+
 		var stopwatch = new Stopwatch();
 		stopwatch.Start();
 
@@ -100,98 +105,92 @@ public sealed class ManualSolver : IManualSolverOptions
 		tempSteps.Clear();
 
 		InitializeMaps(playground);
-		foreach (var searcher in StepSearcherPool.Collection)
+		for (int i = 0, length = stepSearchers.Length; i < length; i++)
 		{
-			switch ((isSukaku, searcher, this))
+			var searcher = stepSearchers[i];
+			if (isSukaku && searcher is IDeadlyPatternStepSearcher
+				|| searcher.Options.EnabledAreas == EnabledAreas.None)
 			{
-				case (true, IDeadlyPatternStepSearcher, _):
+				// Skips on those two cases:
+				// 1. Sukaku puzzles can't use deadly pattern techniques.
+				// 2. If the searcher is currently disabled, just skip it.
+				continue;
+			}
+
+			searcher.GetAll(tempSteps, playground, false);
+			if (tempSteps.Count == 0)
+			{
+				// Nothing found.
+				continue;
+			}
+
+			if (IsFastSearching)
+			{
+				Step? wrongStep = null;
+				foreach (var tempStep in tempSteps)
 				{
-					// Sukaku puzzles can't use deadly pattern techniques.
-					continue;
-				}
-				case (_, { Options.EnabledAreas: EnabledAreas.None }, _):
-				{
-					// If the searcher is currently disabled, just skip it.
-					continue;
-				}
-				case (_, _, { IsFastSearching: var isFastSearching }):
-				{
-					searcher.GetAll(tempSteps, playground, false);
-					if (tempSteps.Count == 0)
+					if (!AreConclusionsValid(solution, tempStep))
 					{
-						// Nothing found.
-						continue;
+						wrongStep = tempStep;
+						break;
 					}
+				}
 
-					if (isFastSearching)
+				if (wrongStep is null)
+				{
+					foreach (var step in tempSteps)
 					{
-						Step? wrongStep = null;
-						foreach (var tempStep in tempSteps)
-						{
-							if (!AreConclusionsValid(solution, tempStep))
-							{
-								wrongStep = tempStep;
-								break;
-							}
-						}
-
-						if (wrongStep is null)
-						{
-							foreach (var step in tempSteps)
-							{
-								if (
-									RecordStep(
-										recordedSteps, step, ref playground, stopwatch, stepGrids,
-										baseSolverResult, cancellationToken, out var result)
-								)
-								{
-									return result;
-								}
-							}
-
-							// The puzzle has not been finished, we should turn to the first step finder
-							// to continue solving puzzle.
-							goto Restart;
-						}
-
-						throw new WrongStepException(puzzle, wrongStep);
-					}
-					else
-					{
-						// If the searcher is only used in the fast mode, just skip it.
 						if (
-							Enumerable.FirstOrDefault<Step>(
-								OptimizedApplyingOrder
-									? from info in tempSteps orderby info.Difficulty select info
-									: tempSteps
-							) is not { } step
+							RecordStep(
+								recordedSteps, step, ref playground, stopwatch, stepGrids,
+								baseSolverResult, cancellationToken, out var result)
 						)
 						{
-							// If current step can't find any steps,
-							// we will turn to the next step finder to
-							// continue solving puzzle.
-							continue;
+							return result;
 						}
-
-						if (AreConclusionsValid(solution, step))
-						{
-							if (
-								RecordStep(
-									recordedSteps, step, ref playground, stopwatch, stepGrids,
-									baseSolverResult, cancellationToken, out var result)
-							)
-							{
-								return result;
-							}
-
-							// The puzzle has not been finished, we should turn to the first step finder
-							// to continue solving puzzle.
-							goto Restart;
-						}
-
-						throw new WrongStepException(puzzle, step);
 					}
+
+					// The puzzle has not been finished, we should turn to the first step finder
+					// to continue solving puzzle.
+					goto Restart;
 				}
+
+				throw new WrongStepException(puzzle, wrongStep);
+			}
+			else
+			{
+				// If the searcher is only used in the fast mode, just skip it.
+				if (
+					Enumerable.FirstOrDefault<Step>(
+						OptimizedApplyingOrder
+							? from info in tempSteps orderby info.Difficulty select info
+							: tempSteps
+					) is not { } step
+				)
+				{
+					// If current step can't find any steps,
+					// we will turn to the next step finder to
+					// continue solving puzzle.
+					continue;
+				}
+
+				if (AreConclusionsValid(solution, step))
+				{
+					if (
+						RecordStep(
+							recordedSteps, step, ref playground, stopwatch, stepGrids,
+							baseSolverResult, cancellationToken, out var result)
+					)
+					{
+						return result;
+					}
+
+					// The puzzle has not been finished, we should turn to the first step finder
+					// to continue solving puzzle.
+					goto Restart;
+				}
+
+				throw new WrongStepException(puzzle, step);
 			}
 		}
 

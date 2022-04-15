@@ -49,6 +49,17 @@ public interface IDistinctableStep<in TStep> : IStep where TStep : Step
 	public static IEnumerable<TDistinctableStep> Distinct<TDistinctableStep>(IList<TDistinctableStep> list)
 		where TDistinctableStep : Step, IDistinctableStep<TDistinctableStep>
 	{
+		if (list.Count == 1)
+		{
+			// Special case: If the collection only contains a single element,
+			// just add it into the result collection and return.
+#if true
+			return new[] { list[0] };
+#else
+			return list;
+#endif
+		}
+
 		var resultList = new List<TDistinctableStep>();
 		for (int i = 0, length = list.Count, outerLength = length - 1; i < outerLength; i++)
 		{

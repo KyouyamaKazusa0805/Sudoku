@@ -83,8 +83,12 @@ public sealed unsafe partial class WWingStepSearcher : IIregularWingStepSearcher
 						}
 
 						// Check whether the cells are the same house as the head and the tail cell.
-						if (!(Cells.Empty + c1 + a).InOneHouse || !(Cells.Empty + c2 + b).InOneHouse
-							&& !(Cells.Empty + c1 + b).InOneHouse || !(Cells.Empty + c2 + a).InOneHouse)
+						if (
+							!(
+								(Cells.Empty + c1 + a).InOneHouse && (Cells.Empty + c2 + b).InOneHouse
+									|| (Cells.Empty + c1 + b).InOneHouse && (Cells.Empty + c2 + a).InOneHouse
+							)
+						)
 						{
 							continue;
 						}

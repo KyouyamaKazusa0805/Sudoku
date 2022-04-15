@@ -138,7 +138,7 @@ public sealed unsafe partial class UniqueRectangleStepSearcher : IUniqueRectangl
 					for (int c1 = 0; c1 < 4; c1++)
 					{
 						int corner1 = urCells[c1];
-						var otherCellsMap = new Cells(urCells) { ~corner1 };
+						var otherCellsMap = new Cells(urCells) - corner1;
 
 						CheckType1(gathered, grid, urCells, arMode, comparer, d1, d2, corner1, otherCellsMap, index);
 						CheckType5(gathered, grid, urCells, arMode, comparer, d1, d2, corner1, otherCellsMap, index);
@@ -936,14 +936,13 @@ public sealed unsafe partial class UniqueRectangleStepSearcher : IUniqueRectangl
 		void gather(in Grid grid, in Cells otherCellsMap, bool isRow, int digit, int house1, int house2)
 		{
 			if (
-				(
-					!isRow
-						|| !IsConjugatePair(digit, Cells.Empty + corner1 + o1, house1)
-						|| !IsConjugatePair(digit, Cells.Empty + corner2 + o2, house2)
-				) && (
+				!(
 					isRow
-						|| !IsConjugatePair(digit, Cells.Empty + corner1 + o2, house1)
-						|| !IsConjugatePair(digit, Cells.Empty + corner2 + o1, house2)
+						&& IsConjugatePair(digit, Cells.Empty + corner1 + o1, house1)
+						&& IsConjugatePair(digit, Cells.Empty + corner2 + o2, house2)
+						|| !isRow
+						&& IsConjugatePair(digit, Cells.Empty + corner1 + o2, house1)
+						&& IsConjugatePair(digit, Cells.Empty + corner2 + o1, house2)
 				)
 			)
 			{
@@ -1051,8 +1050,14 @@ public sealed unsafe partial class UniqueRectangleStepSearcher : IUniqueRectangl
 			int digit = p[digitIndex];
 			var map1 = Cells.Empty + abzCell + abxCell;
 			var map2 = Cells.Empty + abzCell + abyCell;
-			if (!IsConjugatePair(digit, map1, map1.CoveredLine)
-				|| !IsConjugatePair(digit, map2, map2.CoveredLine))
+			if (map1.CoveredLine is not (var m1cl and not InvalidFirstSet)
+				|| map2.CoveredLine is not (var m2cl and not InvalidFirstSet))
+			{
+				// There's no common covered line to display.
+				continue;
+			}
+
+			if (!IsConjugatePair(digit, map1, m1cl) || !IsConjugatePair(digit, map2, m2cl))
 			{
 				continue;
 			}
