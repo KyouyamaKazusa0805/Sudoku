@@ -45,7 +45,7 @@ public sealed class ManualSolver : IManualSolverOptions
 						IsSolved = false,
 						FailedReason = FailedReason.NotImplemented
 					},
-					WrongStepException { WrongStep: { } wrongStep } => solverResult with
+					WrongStepException { WrongStep: var wrongStep } => solverResult with
 					{
 						IsSolved = false,
 						FailedReason = FailedReason.WrongStep,
