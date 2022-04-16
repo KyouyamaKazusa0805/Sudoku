@@ -16,17 +16,18 @@
   * [术语词汇列表](terms)
   * [技巧介绍](techniques)
 * 项目介绍
-  * [快捷按键](hotkeys)
-  * [控制台参数](command-line)
-  * [代码风格](code-style)
-* 解决方案的架构
-  * [项目列表](projects)
-  * [条件编译符号列表](compilation-symbols)
-* 常见数据结构介绍
-  * [`Cells` 结构](data-structures/cells)
-  * `Grid` 结构
-    * [API 用法介绍](data-structures/grid)
-    * `Grid` 会用到的格式化字符串
-* 代码分析
-* 用法示例
-  * [示例表](usages)
+  * 项目相关内容
+    * [快捷按键](hotkeys)
+    * [控制台参数](command-line)
+    * [代码风格](code-style)
+  * 解决方案的架构
+    * [项目列表](projects)
+    * [条件编译符号列表](compilation-symbols)
+  * 常见数据结构介绍
+    * [`Cells` 结构](data-structures/cells)
+    * `Grid` 结构
+      * [API 用法介绍](data-structures/grid)
+      * `Grid` 会用到的格式化字符串
+  * 代码分析规则
+  * 用法示例
+    * [示例表](usages)
