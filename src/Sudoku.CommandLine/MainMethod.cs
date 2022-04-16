@@ -20,14 +20,9 @@ static ErrorCode formatHandler(FormatOptions options)
 	{
 		Console.WriteLine(
 			$"""
-			Grid:
-			{rawGridValue}
-			
-			Format:
-			'{c(format)}'
-			
-			Result:
-			{grid.ToString(format)}
+			Grid: '{rawGridValue}'
+			Format: '{c(format)}'
+			Result: {grid.ToString(format)}
 			"""
 		);
 
@@ -132,9 +127,7 @@ static ErrorCode checkGridHandler(CheckGridOptions options)
 
 			Console.WriteLine(
 				$"""
-				Puzzle:
-				{grid.ToString("#")}
-				
+				Puzzle: '{grid.ToString("#")}'
 				The puzzle {(grid.IsValid ? "has" : "doesn't have")} a unique solution.
 				"""
 			);
@@ -166,12 +159,7 @@ static ErrorCode generateHandler(GenerateGridOptions options)
 			continue;
 		}
 
-		Console.WriteLine(
-			$"""
-			The puzzle generated:
-			{targetPuzzle.ToString("0")}
-			"""
-		);
+		Console.WriteLine($"""The puzzle generated: '{targetPuzzle.ToString("0")}'""");
 
 		return ErrorCode.None;
 	}
