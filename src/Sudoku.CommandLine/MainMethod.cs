@@ -86,7 +86,7 @@ static ErrorCode solveGridHandler(SolveGridOptions options)
 
 				break;
 			}
-			case ManualSolver puzzleSolver:
+			case IComplexSolver<ManualSolverResult> puzzleSolver:
 			{
 				if (puzzleSolver.Solve(grid) is not { IsSolved: true } solverResult)
 				{

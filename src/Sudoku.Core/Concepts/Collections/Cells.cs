@@ -700,7 +700,7 @@ public unsafe partial struct Cells :
 		{
 			null or "N" or "n" => RxCyNotation.ToCellsString(this),
 			"B" or "b" => binaryToString(this, false),
-			"T" or "t" => tableToString(this),
+			"TSolverResult" or "t" => tableToString(this),
 			_ => throw new FormatException("The specified format is invalid.")
 		};
 

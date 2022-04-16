@@ -359,12 +359,7 @@
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Solving.Manual.ManualSolver.Solve(Sudoku.Concepts.Collections.Grid@,System.Threading.CancellationToken)">
-            <summary>
-            To solve the specified puzzle.
-            </summary>
-            <param name="puzzle">The puzzle to be solved.</param>
-            <param name="cancellationToken">The cancellation token to cancel the operation.</param>
-            <returns>The solver result that provides the information after solving.</returns>
+            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Solving.Manual.ManualSolver.Solve_HodokuMode(Sudoku.Concepts.Collections.Grid@,Sudoku.Concepts.Collections.Grid@,System.Boolean,Sudoku.Solving.Manual.ManualSolverResult,System.Threading.CancellationToken)">
             <summary>
