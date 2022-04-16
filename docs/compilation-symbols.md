@@ -22,12 +22,15 @@
 
 ```mermaid
 graph LR
+subgraph 项目引用关系
 Z(Sudoku 解决方案) -->|派生| P1(Sudoku.Core)
 Z -->|派生| P3(Sudoku.CommandLine)
 Z -->|派生| P4(Sudoku.Solving)
 Z -->|派生| P2(SystemExtensions)
 style Z fill:#FFF
+end
 
+subgraph 文件和符号对应关系
 P1 -->|文件| A(Grid.cs)
 P1 -->|文件| D(BitwiseSolver.cs)
 P1 -->|文件| E(FastSolver.cs)
@@ -72,6 +75,7 @@ style S8 fill:#EEE
 style S9 fill:#EEE
 style S10 fill:#EEE
 style S11 fill:#CCC
+end
 ```
 
 如图所示，深灰色的条件编译符号没有，而浅灰色的条件编译符号有。绿色为文件名，白色的则是项目名。

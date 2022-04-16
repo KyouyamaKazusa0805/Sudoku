@@ -14,6 +14,7 @@
 
 * 数独教程以及介绍文档
   * [术语词汇列表](terms)
+  * [技巧介绍](techniques)
 * 项目介绍
   * [快捷按键](hotkeys)
   * [控制台参数](command-line)
