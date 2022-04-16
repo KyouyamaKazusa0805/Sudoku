@@ -248,29 +248,11 @@ static ErrorCode tryParseRange(string rangeValue, out int min, out int max)
 {
 	Unsafe.SkipInit(out min);
 	Unsafe.SkipInit(out max);
-	if (rangeValue == "all")
-	{
-		(min, max) = (17, 81);
-	}
-	else if (rangeValue.IndexOf("..") is var pos and not -1)
-	{
-		string minStr = pos == 0 ? "17" : rangeValue[..pos];
-		string maxStr = pos + 2 is var latter && latter >= rangeValue.Length ? "81" : rangeValue[latter..];
-
-		if (!int.TryParse(minStr, out min))
-		{
-			return ErrorCode.RangePatternMinValueIsInvalid;
-		}
-
-		if (!int.TryParse(maxStr, out max))
-		{
-			return ErrorCode.RangePatternMaxValueIsInvalid;
-		}
-	}
-	else
+	if (!CellRange.TryParse(rangeValue, out var cellRange))
 	{
 		return ErrorCode.RangePatternIsInvalid;
 	}
 
+	(min, max) = cellRange;
 	return ErrorCode.None;
 }

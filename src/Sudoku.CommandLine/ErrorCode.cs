@@ -48,16 +48,6 @@ internal enum ErrorCode
 	RangePatternIsInvalid = 401,
 
 	/// <summary>
-	/// Indicates the error case that the minimum value in the range pattern is invalid.
-	/// </summary>
-	RangePatternMinValueIsInvalid,
-
-	/// <summary>
-	/// Indicates the error case that the maximum value in the range pattern is invalid.
-	/// </summary>
-	RangePatternMaxValueIsInvalid,
-
-	/// <summary>
 	/// Indicates the error case that the website link is failed to be used to visit.
 	/// </summary>
 	SiteIsFailedToVisit = 501,
