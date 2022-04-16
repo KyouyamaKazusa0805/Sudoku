@@ -15,12 +15,7 @@ public sealed class UnknownViewNode : ViewNode
 	/// <param name="digitsMask">The mask representing digits used.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public UnknownViewNode(Identifier identifier, int cell, byte unknownValueChar, short digitsMask) :
-		base(identifier)
-	{
-		Cell = cell;
-		UnknownValueChar = unknownValueChar;
-		DigitsMask = digitsMask;
-	}
+		base(identifier) => (Cell, UnknownValueChar, DigitsMask) = (cell, unknownValueChar, digitsMask);
 
 
 	/// <summary>

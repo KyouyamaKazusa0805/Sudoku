@@ -86,14 +86,9 @@ public sealed class SudokuGrid : DrawingElement
 		in Grid grid, UserPreference userPreference, double paneSize, double outsideOffset,
 		Action? elementUpdatedCallback)
 	{
-		_userPreference = userPreference;
-		_grid = grid;
-		_paneSize = paneSize;
-		_outsideOffset = outsideOffset;
-		_gridLayout = initializeGridLayout(paneSize, outsideOffset);
-
-		// Adds the event handler into the undo-redo handler.
-		_undoRedoStepsUpdatedCallback = elementUpdatedCallback;
+		(_userPreference, _grid, _paneSize, _outsideOffset, _gridLayout, _undoRedoStepsUpdatedCallback) = (
+			userPreference, grid, paneSize, outsideOffset, initializeGridLayout(paneSize, outsideOffset),
+			elementUpdatedCallback);
 
 		// Initializes values.
 		initializeValues();

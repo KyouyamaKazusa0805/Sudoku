@@ -39,11 +39,7 @@ partial class DrawingElementBag
 		/// <param name="elements">The elements to be iterated.</param>
 		/// <param name="count">The number of elements to be iterated.</param>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal OfTypeEnumerator(DrawingElement[] elements, int count)
-		{
-			_count = count;
-			_elements = elements;
-		}
+		internal OfTypeEnumerator(DrawingElement[] elements, int count) => (_count, _elements) = (count, elements);
 
 
 		/// <inheritdoc cref="IEnumerator{T}.Current"/>

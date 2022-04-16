@@ -34,9 +34,7 @@ public abstract class Node : IEquatable<Node>, IEqualityOperators<Node, Node>
 	protected Node(NodeType nodeType, byte digit, in Cells cells)
 	{
 		var vector = cells.ToVector();
-		_higher = vector.GetElement(0);
-		_lower = vector.GetElement(1);
-		_other = (int)nodeType << 4 | digit;
+		(_higher, _lower, _other) = (vector.GetElement(0), vector.GetElement(1), (int)nodeType << 4 | digit);
 	}
 
 	/// <summary>
@@ -60,12 +58,7 @@ public abstract class Node : IEquatable<Node>, IEqualityOperators<Node, Node>
 	/// <param name="lower">The lower 64 bits.</param>
 	/// <param name="other">The other 64 bits.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	protected Node(long higher, long lower, long other)
-	{
-		_higher = higher;
-		_lower = lower;
-		_other = other;
-	}
+	protected Node(long higher, long lower, long other) => (_higher, _lower, _other) = (higher, lower, other);
 
 
 	/// <summary>

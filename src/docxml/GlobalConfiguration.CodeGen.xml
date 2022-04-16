@@ -146,6 +146,7 @@
             <summary>
             Provides with the extension methods on type <see cref="T:System.Collections.Generic.KeyValuePair`2"/>.
             </summary>
+            <seealso cref="T:System.Collections.Generic.KeyValuePair`2"/>
         </member>
         <member name="M:System.Collections.Generic.KeyValuePairExtensions.Deconstruct``2(System.Collections.Generic.KeyValuePair{``0,``1},``0@,``1@)">
             <summary>

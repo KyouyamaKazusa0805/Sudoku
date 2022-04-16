@@ -15,12 +15,7 @@ public sealed class CrosshatchViewNode : ViewNode
 	/// <param name="digit">The digit used.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public CrosshatchViewNode(Identifier identifier, in Cells startPoint, in Cells endPoint, int digit) :
-		base(identifier)
-	{
-		Digit = digit;
-		Start = startPoint;
-		End = endPoint;
-	}
+		base(identifier) => (Digit, Start, End) = (digit, startPoint, endPoint);
 
 
 	/// <summary>

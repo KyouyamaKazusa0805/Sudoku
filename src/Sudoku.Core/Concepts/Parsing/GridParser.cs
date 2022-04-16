@@ -50,12 +50,9 @@ public unsafe ref partial struct GridParser
 	/// </param>
 	/// <param name="shortenSusser">Indicates the parser will shorten the susser format result.</param>
 	/// <seealso cref="CompatibleFirst"/>
-	public GridParser(string parsingValue, bool compatibleFirst, bool shortenSusser)
-	{
-		ParsingValue = parsingValue;
-		CompatibleFirst = compatibleFirst;
-		ShortenSusserFormat = shortenSusser;
-	}
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public GridParser(string parsingValue, bool compatibleFirst, bool shortenSusser) =>
+		(ParsingValue, CompatibleFirst, ShortenSusserFormat) = (parsingValue, compatibleFirst, shortenSusser);
 
 
 	/// <include file='../../global-doc-comments.xml' path='g/static-constructor' />

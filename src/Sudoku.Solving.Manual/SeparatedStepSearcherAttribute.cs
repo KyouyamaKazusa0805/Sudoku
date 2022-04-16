@@ -18,11 +18,8 @@ public sealed class SeparatedStepSearcherAttribute : Attribute, IComparable<Sepa
 	/// </summary>
 	/// <param name="priority">Indicates the priority that will be used for the ordering.</param>
 	/// <param name="propertyNamesAndValues">The array of property names and their values.</param>
-	public SeparatedStepSearcherAttribute(int priority, params object[] propertyNamesAndValues)
-	{
-		Priority = priority;
-		PropertyNamesAndValues = propertyNamesAndValues;
-	}
+	public SeparatedStepSearcherAttribute(int priority, params object[] propertyNamesAndValues) =>
+		(Priority, PropertyNamesAndValues) = (priority, propertyNamesAndValues);
 
 
 	/// <summary>

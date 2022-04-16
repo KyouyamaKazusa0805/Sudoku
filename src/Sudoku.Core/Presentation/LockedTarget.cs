@@ -15,11 +15,7 @@ public readonly partial struct LockedTarget :
 	/// <param name="digit">Indicates the digit used.</param>
 	/// <param name="cells">Indicates the cells used.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public LockedTarget(int digit, in Cells cells)
-	{
-		Digit = digit;
-		Cells = cells;
-	}
+	public LockedTarget(int digit, in Cells cells) => (Digit, Cells) = (digit, cells);
 
 
 	/// <summary>

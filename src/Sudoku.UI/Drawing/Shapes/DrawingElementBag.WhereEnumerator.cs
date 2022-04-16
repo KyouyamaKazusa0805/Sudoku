@@ -70,11 +70,7 @@ partial class DrawingElementBag
 		/// <param name="elements">The elements.</param>
 		/// <param name="count">The number of values to be iterated.</param>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		private WhereEnumerator(DrawingElement[] elements, int count)
-		{
-			_count = count;
-			_elements = elements;
-		}
+		private WhereEnumerator(DrawingElement[] elements, int count) => (_count, _elements) = (count, elements);
 
 
 		/// <inheritdoc cref="IEnumerator{T}.Current"/>

@@ -49,10 +49,9 @@ public sealed class CellLine : DrawingElement
 	/// </param>
 	public CellLine(Color strokeColor, double strokeThickness, double paneSize, double outsideOffset, byte order)
 	{
-		_paneSize = paneSize;
-		_outsideOffset = outsideOffset;
-		Order = order;
-		var ((x1, y1), (x2, y2)) = PointConversions.GetCellLine(paneSize, outsideOffset, order);
+		(_paneSize, _outsideOffset, Order, var ((x1, y1), (x2, y2))) = (
+			paneSize, outsideOffset, order, PointConversions.GetCellLine(paneSize, outsideOffset, order));
+
 		_line = new Line
 		{
 			Stroke = new SolidColorBrush(strokeColor),

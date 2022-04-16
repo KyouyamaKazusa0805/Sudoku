@@ -49,10 +49,9 @@ public sealed class BlockLine : DrawingElement
 	/// </param>
 	public BlockLine(Color strokeColor, double strokeThickness, double paneSize, double outsideOffset, byte order)
 	{
-		_paneSize = paneSize;
-		_outsideOffset = outsideOffset;
-		Order = order;
-		var ((x1, y1), (x2, y2)) = PointConversions.GetBlockLine(paneSize, outsideOffset, order);
+		(_paneSize, _outsideOffset, Order, var ((x1, y1), (x2, y2))) = (
+			paneSize, outsideOffset, order, PointConversions.GetBlockLine(paneSize, outsideOffset, order));
+
 		_line = new Line
 		{
 			Stroke = new SolidColorBrush(strokeColor),

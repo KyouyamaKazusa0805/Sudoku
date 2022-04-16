@@ -62,8 +62,7 @@ internal sealed class CellDigit : DrawingElement
 			throw new ArgumentOutOfRangeException(nameof(digit));
 		}
 
-		_userPreference = userPreference;
-		_isGiven = isGiven;
+		(_userPreference, _isGiven) = (userPreference, isGiven);
 		_textBlock = new()
 		{
 			Text = digit == byte.MaxValue ? string.Empty : (digit + 1).ToString(),

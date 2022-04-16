@@ -134,12 +134,8 @@ public readonly record struct UniquePolygonPattern(long Mask) : ITechniquePatter
 	/// </summary>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	[EditorBrowsable(EditorBrowsableState.Never)]
-	public void Deconstruct(out (int A, int B) pair1, out (int A, int B) pair2, out (int A, int B, int C, int D) centerCells)
-	{
-		pair1 = Pair1;
-		pair2 = Pair2;
-		centerCells = CenterCells;
-	}
+	public void Deconstruct(out (int A, int B) pair1, out (int A, int B) pair2, out (int A, int B, int C, int D) centerCells) =>
+		(pair1, pair2, centerCells) = (Pair1, Pair2, CenterCells);
 
 	/// <inheritdoc cref="object.GetHashCode"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

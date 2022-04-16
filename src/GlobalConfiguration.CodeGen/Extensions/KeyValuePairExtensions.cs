@@ -3,6 +3,7 @@
 /// <summary>
 /// Provides with the extension methods on type <see cref="KeyValuePair{TKey, TValue}"/>.
 /// </summary>
+/// <seealso cref="KeyValuePair{TKey, TValue}"/>
 public static class KeyValuePairExtensions
 {
 	/// <summary>
@@ -26,9 +27,6 @@ public static class KeyValuePairExtensions
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	[EditorBrowsable(EditorBrowsableState.Never)]
 	public static void Deconstruct<TKey, TValue>(
-		this KeyValuePair<TKey, TValue> @this, out TKey key, out TValue value)
-	{
-		key = @this.Key;
-		value = @this.Value;
-	}
+		this KeyValuePair<TKey, TValue> @this, out TKey key, out TValue value) =>
+		(key, value) = (@this.Key, @this.Value);
 }

@@ -14,9 +14,5 @@ public static class PointExtensions
 	/// </summary>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	[EditorBrowsable(EditorBrowsableState.Never)]
-	public static void Deconstruct(this in Point @this, out double x, out double y)
-	{
-		x = @this.X;
-		y = @this.Y;
-	}
+	public static void Deconstruct(this in Point @this, out double x, out double y) => (x, y) = (@this.X, @this.Y);
 }

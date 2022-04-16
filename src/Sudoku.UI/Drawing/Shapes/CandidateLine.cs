@@ -50,9 +50,7 @@ public sealed class CandidateLine : DrawingElement
 	public CandidateLine(
 		Color strokeColor, double strokeThickness, double paneSize, double outsideOffset, byte order)
 	{
-		_paneSize = paneSize;
-		_outsideOffset = outsideOffset;
-		Order = order;
+		(_paneSize, _outsideOffset, Order) = (paneSize, outsideOffset, order);
 		var ((x1, y1), (x2, y2)) = PointConversions.GetCandidateLine(paneSize, outsideOffset, order);
 		_line = new Line
 		{

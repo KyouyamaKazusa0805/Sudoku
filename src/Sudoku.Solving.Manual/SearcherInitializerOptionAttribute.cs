@@ -15,11 +15,8 @@ public sealed class SearcherConfigurationAttribute<TStepSearcher> : Attribute
 	/// </summary>
 	/// <param name="priority">The priority value. The value must be unique.</param>
 	/// <param name="displayingLevel">The displaying level.</param>
-	public SearcherConfigurationAttribute(int priority, DisplayingLevel displayingLevel)
-	{
-		Priority = priority;
-		DisplayingLevel = displayingLevel;
-	}
+	public SearcherConfigurationAttribute(int priority, DisplayingLevel displayingLevel) =>
+		(Priority, DisplayingLevel) = (priority, displayingLevel);
 
 
 	/// <summary>

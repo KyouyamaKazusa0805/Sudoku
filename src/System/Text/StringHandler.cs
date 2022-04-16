@@ -161,21 +161,6 @@ public unsafe ref partial struct StringHandler
 #endif
 		);
 
-#if DISCARD_INTERPOLATION_INFO
-	/// <summary>
-	/// Creates a handler used to translate an interpolated string into a <see cref="string"/>.
-	/// </summary>
-	/// <param name="_"/>
-	/// <param name="__"/>
-	/// <param name="initialBuffer">
-	/// A buffer temporarily transferred to the handler for use as part of its formatting.
-	/// Contents may be overwritten.
-	/// </param>
-	/// <remarks>
-	/// This is intended to be called only by compiler-generated code.
-	/// Arguments are not validated as they'd otherwise be for members intended to be used directly.
-	/// </remarks>
-#else
 	/// <summary>
 	/// Creates a handler used to translate an interpolated string into a <see cref="string"/>.
 	/// </summary>
@@ -191,25 +176,12 @@ public unsafe ref partial struct StringHandler
 	/// This is intended to be called only by compiler-generated code.
 	/// Arguments are not validated as they'd otherwise be for members intended to be used directly.
 	/// </remarks>
-#endif
 	[EditorBrowsable(EditorBrowsableState.Never)]
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public StringHandler(
-#if DISCARD_INTERPOLATION_INFO
-		int _,
-#else
-		int literalLength,
-#endif
-#if DISCARD_INTERPOLATION_INFO
-		int __,
-#else
-		int holeCount,
-#endif
-		Span<char> initialBuffer)
+	public StringHandler(int literalLength, int holeCount, Span<char> initialBuffer)
 	{
 #if !DISCARD_INTERPOLATION_INFO
-		_literalLength = literalLength;
-		_holeCount = holeCount;
+		(_literalLength, _holeCount) = (literalLength, holeCount);
 #endif
 
 		_chars = initialBuffer;

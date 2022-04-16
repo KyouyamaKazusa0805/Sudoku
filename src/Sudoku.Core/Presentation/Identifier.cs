@@ -30,9 +30,7 @@ public readonly partial struct Identifier : IEquatable<Identifier>, IEqualityOpe
 	private Identifier(int id)
 	{
 		Unsafe.SkipInit(out this);
-
-		UseId = true;
-		Id = id;
+		(UseId, Id) = (true, id);
 	}
 
 	/// <summary>
@@ -46,9 +44,7 @@ public readonly partial struct Identifier : IEquatable<Identifier>, IEqualityOpe
 	private Identifier(byte a, byte r, byte g, byte b)
 	{
 		Unsafe.SkipInit(out this);
-
-		UseId = false;
-		_colorRawValue = a << 24 | r << 16 | g << 8 | b;
+		(UseId, _colorRawValue) = (false, a << 24 | r << 16 | g << 8 | b);
 	}
 
 

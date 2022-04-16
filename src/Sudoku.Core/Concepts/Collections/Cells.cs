@@ -153,12 +153,8 @@ public unsafe partial struct Cells :
 	/// <param name="high">Higher 40 bits.</param>
 	/// <param name="low">Lower 41 bits.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public Cells(long high, long low)
-	{
-		_high = high;
-		_low = low;
-		Count = PopCount((ulong)_high) + PopCount((ulong)_low);
-	}
+	public Cells(long high, long low) =>
+		(_high, _low, Count) = (high, low, PopCount((ulong)high) + PopCount((ulong)low));
 
 	/// <summary>
 	/// Initializes an instance with three binary values.

@@ -115,23 +115,16 @@ public readonly record struct Conclusion(int Mask) :
 	/// </summary>
 	[EditorBrowsable(EditorBrowsableState.Never)]
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public void Deconstruct(out ConclusionType conclusionType, out int candidate)
-	{
-		conclusionType = (ConclusionType)(Mask >> 10 & 1);
-		candidate = Mask & (1 << 10) - 1;
-	}
+	public void Deconstruct(out ConclusionType conclusionType, out int candidate) =>
+		(conclusionType, candidate) = ((ConclusionType)(Mask >> 10 & 1), Mask & (1 << 10) - 1);
 
 	/// <summary>
 	/// Deconstruct the instance into multiple values.
 	/// </summary>
 	[EditorBrowsable(EditorBrowsableState.Never)]
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public void Deconstruct(out ConclusionType conclusionType, out int cell, out int digit)
-	{
-		conclusionType = (ConclusionType)(Mask >> 10 & 1);
-		cell = Candidate / 9;
-		digit = Candidate % 9;
-	}
+	public void Deconstruct(out ConclusionType conclusionType, out int cell, out int digit) =>
+		(conclusionType, cell, digit) = ((ConclusionType)(Mask >> 10 & 1), Candidate / 9, Candidate % 9);
 
 	/// <summary>
 	/// Put this instance into the specified grid.

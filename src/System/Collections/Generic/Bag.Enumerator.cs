@@ -30,11 +30,7 @@ partial struct Bag<T>
 		/// <param name="instance">The array instance.</param>
 		/// <param name="count">The number of elements to be iterated.</param>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal Enumerator(T[] instance, int count)
-		{
-			_instance = instance;
-			_count = count;
-		}
+		internal Enumerator(T[] instance, int count) => (_instance, _count) = (instance, count);
 
 
 		/// <inheritdoc cref="IEnumerator.Current"/>
