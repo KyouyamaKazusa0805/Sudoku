@@ -4,7 +4,10 @@
 /// Defines the data structure that stores a set of cells and a digit, indicating the information
 /// about the locked candidate node.
 /// </summary>
-public readonly struct LockedTarget : IEquatable<LockedTarget>, IEqualityOperators<LockedTarget, LockedTarget>
+[JsonConverter(typeof(JsonConverter))]
+public readonly partial struct LockedTarget :
+	IEquatable<LockedTarget>,
+	IEqualityOperators<LockedTarget, LockedTarget>
 {
 	/// <summary>
 	/// Initializes a <see cref="LockedTarget"/> instance via the specified cells and the specified digit used.

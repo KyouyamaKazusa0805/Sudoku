@@ -13,6 +13,7 @@ namespace Sudoku.Concepts.Collections;
 [DebuggerDisplay($$"""{{{nameof(ToString)}}("#")}""")]
 #endif // !USE_TO_MASK_STRING_METHOD
 #endif // !DEBUG
+[JsonConverter(typeof(JsonConverter))]
 public unsafe partial struct Grid :
 	IDefaultable<Grid>,
 	ISimpleFormattable,

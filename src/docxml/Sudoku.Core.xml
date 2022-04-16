@@ -1327,6 +1327,17 @@
             </summary>
             <param name="offsets">The offsets.</param>
         </member>
+        <member name="T:Sudoku.Concepts.Collections.Cells.JsonConverter">
+            <summary>
+            Defines a JSON converter.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Concepts.Collections.Cells.JsonConverter.Read(System.Text.Json.Utf8JsonReader@,System.Type,System.Text.Json.JsonSerializerOptions)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.Collections.Cells.JsonConverter.Write(System.Text.Json.Utf8JsonWriter,Sudoku.Concepts.Collections.Cells,System.Text.Json.JsonSerializerOptions)">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Concepts.Collections.Grid">
             <summary>
             Represents a sudoku grid that uses the mask list to construct the data structure.
@@ -2242,6 +2253,17 @@
         <member name="M:Sudoku.Concepts.Collections.Grid.System#IEqualityOperators{Sudoku#Concepts#Collections#Grid,Sudoku#Concepts#Collections#Grid}#op_Inequality(Sudoku.Concepts.Collections.Grid,Sudoku.Concepts.Collections.Grid)">
             <inheritdoc/>
         </member>
+        <member name="T:Sudoku.Concepts.Collections.Grid.JsonConverter">
+            <summary>
+            Defines a JSON converter.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Concepts.Collections.Grid.JsonConverter.Read(System.Text.Json.Utf8JsonReader@,System.Type,System.Text.Json.JsonSerializerOptions)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.Collections.Grid.JsonConverter.Write(System.Text.Json.Utf8JsonWriter,Sudoku.Concepts.Collections.Grid,System.Text.Json.JsonSerializerOptions)">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Concepts.Collections.Grid.MaskCollectionEnumerator">
             <summary>
             Defines the default enumerator that iterates the <see cref="T:Sudoku.Concepts.Collections.Grid"/>
@@ -2636,47 +2658,6 @@
         <member name="M:Sudoku.Concepts.Collections.Handlers.HouseCollection.Equals(System.Object)">
             <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
             <exception cref="T:System.NotSupportedException">Always throws.</exception>
-        </member>
-        <member name="T:Sudoku.Concepts.Collections.Serialization.CandidatesConverter">
-            <summary>
-            Defines a serialization converter to convert the <see cref="T:Sudoku.Concepts.Collections.Candidates"/>
-            to a JSON <see cref="T:System.String"/> or vice versa.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Concepts.Collections.Serialization.CandidatesConverter.Read(System.Text.Json.Utf8JsonReader@,System.Type,System.Text.Json.JsonSerializerOptions)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.Collections.Serialization.CandidatesConverter.Write(System.Text.Json.Utf8JsonWriter,Sudoku.Concepts.Collections.Candidates,System.Text.Json.JsonSerializerOptions)">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Concepts.Collections.Serialization.CellsConverter">
-            <summary>
-            Defines a serialization converter to convert the <see cref="T:Sudoku.Concepts.Collections.Cells"/>
-            to a JSON <see cref="T:System.String"/> or vice versa.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Concepts.Collections.Serialization.CellsConverter.Read(System.Text.Json.Utf8JsonReader@,System.Type,System.Text.Json.JsonSerializerOptions)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.Collections.Serialization.CellsConverter.Write(System.Text.Json.Utf8JsonWriter,Sudoku.Concepts.Collections.Cells,System.Text.Json.JsonSerializerOptions)">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Concepts.Collections.Serialization.GridConverter">
-            <summary>
-            Defines a serialization converter to convert the <see cref="T:Sudoku.Concepts.Collections.Grid"/>
-            to a JSON <see cref="T:System.String"/> or vice versa.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Concepts.Collections.Serialization.GridConverter.PropertyName">
-            <summary>
-            The property name.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Concepts.Collections.Serialization.GridConverter.Read(System.Text.Json.Utf8JsonReader@,System.Type,System.Text.Json.JsonSerializerOptions)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.Collections.Serialization.GridConverter.Write(System.Text.Json.Utf8JsonWriter,Sudoku.Concepts.Collections.Grid,System.Text.Json.JsonSerializerOptions)">
-            <inheritdoc/>
         </member>
         <member name="T:Sudoku.Concepts.Conjugate">
             <summary>
@@ -7567,6 +7548,31 @@
             <param name="cell">The cell.</param>
             <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
         </member>
+        <member name="T:Sudoku.Presentation.ColorInternal">
+            <summary>
+            The internal color structure.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Presentation.ColorInternal.A">
+            <summary>
+            The alpha value.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Presentation.ColorInternal.R">
+            <summary>
+            The red value.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Presentation.ColorInternal.G">
+            <summary>
+            The green value.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Presentation.ColorInternal.B">
+            <summary>
+            The blue value.
+            </summary>
+        </member>
         <member name="T:Sudoku.Presentation.Identifier">
             <summary>
             Defines an identifier that can differ colors.
@@ -7729,6 +7735,17 @@
             </summary>
             <param name="id">The ID value.</param>
         </member>
+        <member name="T:Sudoku.Presentation.Identifier.JsonConverter">
+            <summary>
+            Defines a JSON converter.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Presentation.Identifier.JsonConverter.Read(System.Text.Json.Utf8JsonReader@,System.Type,System.Text.Json.JsonSerializerOptions)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Presentation.Identifier.JsonConverter.Write(System.Text.Json.Utf8JsonWriter,Sudoku.Presentation.Identifier,System.Text.Json.JsonSerializerOptions)">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Presentation.LockedTarget">
             <summary>
             Defines the data structure that stores a set of cells and a digit, indicating the information
@@ -7792,6 +7809,17 @@
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Presentation.LockedTarget.System#IEqualityOperators{Sudoku#Presentation#LockedTarget,Sudoku#Presentation#LockedTarget}#op_Inequality(Sudoku.Presentation.LockedTarget,Sudoku.Presentation.LockedTarget)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Presentation.LockedTarget.JsonConverter">
+            <summary>
+            Defines a JSON converter.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Presentation.LockedTarget.JsonConverter.Read(System.Text.Json.Utf8JsonReader@,System.Type,System.Text.Json.JsonSerializerOptions)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Presentation.LockedTarget.JsonConverter.Write(System.Text.Json.Utf8JsonWriter,Sudoku.Presentation.LockedTarget,System.Text.Json.JsonSerializerOptions)">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Presentation.Nodes.CandidateViewNode">
@@ -10507,6 +10535,54 @@
             <summary>
             Marks on a property to tell the user the property is only used for the formatting.
             </summary>
+        </member>
+        <member name="T:Sudoku.Runtime.Serialization.Context.CandidateViewNodeSerializerContext">
+            <summary>
+            Indicates the serializer context that binds with the type <see cref="T:Sudoku.Presentation.Nodes.CandidateViewNode"/>.
+            </summary>
+            <seealso cref="T:Sudoku.Presentation.Nodes.CandidateViewNode"/>
+        </member>
+        <member name="T:Sudoku.Runtime.Serialization.Context.CellViewNodeSerializerContext">
+            <summary>
+            Indicates the serializer context that binds with the type <see cref="T:Sudoku.Presentation.Nodes.CellViewNode"/>.
+            </summary>
+            <seealso cref="T:Sudoku.Presentation.Nodes.CellViewNode"/>
+        </member>
+        <member name="T:Sudoku.Runtime.Serialization.Context.CrosshatchViewNodeSerializerContext">
+            <summary>
+            Indicates the serializer context that binds
+            with the type <see cref="T:Sudoku.Presentation.Nodes.CrosshatchViewNode"/>.
+            </summary>
+            <seealso cref="T:Sudoku.Presentation.Nodes.CrosshatchViewNode"/>
+        </member>
+        <member name="T:Sudoku.Runtime.Serialization.Context.HouseViewNodeSerializerContext">
+            <summary>
+            Indicates the serializer context that binds with the type <see cref="T:Sudoku.Presentation.Nodes.HouseViewNode"/>.
+            </summary>
+            <seealso cref="T:Sudoku.Presentation.Nodes.HouseViewNode"/>
+        </member>
+        <member name="T:Sudoku.Runtime.Serialization.Context.LinkViewNodeSerializerContext">
+            <summary>
+            Indicates the serializer context that binds with the type <see cref="T:Sudoku.Presentation.Nodes.LinkViewNode"/>.
+            </summary>
+            <seealso cref="T:Sudoku.Presentation.Nodes.LinkViewNode"/>
+        </member>
+        <member name="T:Sudoku.Runtime.Serialization.Context.UnknownViewNodeSerializerContext">
+            <summary>
+            Indicates the serializer context that binds with the type <see cref="T:Sudoku.Presentation.Nodes.UnknownViewNode"/>.
+            </summary>
+            <seealso cref="T:Sudoku.Presentation.Nodes.UnknownViewNode"/>
+        </member>
+        <member name="T:Sudoku.Runtime.Serialization.InferenceJsonConverter">
+            <summary>
+            Defines a JSON converter.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Runtime.Serialization.InferenceJsonConverter.Read(System.Text.Json.Utf8JsonReader@,System.Type,System.Text.Json.JsonSerializerOptions)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Runtime.Serialization.InferenceJsonConverter.Write(System.Text.Json.Utf8JsonWriter,Sudoku.Concepts.Inference,System.Text.Json.JsonSerializerOptions)">
+            <inheritdoc/>
         </member>
         <member name="T:Sudoku.Solving.BacktrackingSolver">
             <summary>

@@ -11,7 +11,8 @@ namespace Sudoku.Concepts.Collections;
 /// and the <see langword="false"/> bit (0) is for the cell not containing
 /// the digit.
 /// </remarks>
-public unsafe struct Cells :
+[JsonConverter(typeof(JsonConverter))]
+public unsafe partial struct Cells :
 	IComparable<Cells>,
 	IDefaultable<Cells>,
 	IEnumerable<int>,

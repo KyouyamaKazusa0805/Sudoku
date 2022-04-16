@@ -4,7 +4,8 @@
 /// Defines an identifier that can differ colors.
 /// </summary>
 [StructLayout(LayoutKind.Explicit)]
-public readonly struct Identifier : IEquatable<Identifier>, IEqualityOperators<Identifier, Identifier>
+[JsonConverter(typeof(JsonConverter))]
+public readonly partial struct Identifier : IEquatable<Identifier>, IEqualityOperators<Identifier, Identifier>
 {
 	/// <summary>
 	/// Indicates the raw value of the color.

@@ -3,6 +3,7 @@
 /// <summary>
 /// Defines an inference.
 /// </summary>
+[JsonConverter(typeof(InferenceJsonConverter))]
 public enum Inference : byte
 {
 	/// <summary>
