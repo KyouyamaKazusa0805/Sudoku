@@ -4,15 +4,8 @@
 /// Provides extension methods on <see cref="string"/>.
 /// </summary>
 /// <seealso cref="string"/>
-public static unsafe class StringExtensions
+public static unsafe partial class StringExtensions
 {
-	/// <summary>
-	/// Indicates the regular expression to match all null lines and header spaces in their lines.
-	/// </summary>
-	[StringSyntax(StringSyntaxAttribute.Regex)]
-	private const string NullLinesOrHeaderSpaces = """(^\s*|(?<=\r\n)\s+)""";
-
-
 	/// <summary>
 	/// Indicates the time span that is used for matching.
 	/// </summary>
@@ -166,7 +159,7 @@ public static unsafe class StringExtensions
 	/// <seealso cref="Regex.Match(string, string, RegexOptions)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static string? Match(
-		this string @this, [StringSyntax(StringSyntaxAttribute.Regex)] string pattern, RegexOptions regexOption) =>
+		this string @this, [StringSyntax(StringSyntaxAttribute.Regex, "regexOption")] string pattern, RegexOptions regexOption) =>
 		pattern.IsRegexPattern()
 			? Regex.Match(@this, pattern, regexOption, MatchingTimeSpan) is { Success: true, Value: var value }
 				? value
@@ -193,7 +186,8 @@ public static unsafe class StringExtensions
 	/// </exception>
 	/// <seealso cref="Regex.Matches(string, string)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static string[] MatchAll(this string @this, [StringSyntax(StringSyntaxAttribute.Regex)] string pattern) =>
+	public static string[] MatchAll(
+		this string @this, [StringSyntax(StringSyntaxAttribute.Regex)] string pattern) =>
 		pattern.IsRegexPattern() ? @this.MatchAll(pattern, RegexOptions.None) : throw InvalidOperation;
 
 	/// <summary>
@@ -219,7 +213,8 @@ public static unsafe class StringExtensions
 	/// <seealso cref="Regex.Matches(string, string, RegexOptions)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static string[] MatchAll(
-		this string @this, [StringSyntax(StringSyntaxAttribute.Regex)] string pattern, RegexOptions regexOption) =>
+		this string @this, [StringSyntax(StringSyntaxAttribute.Regex, "regexOption")] string pattern,
+		RegexOptions regexOption) =>
 		pattern.IsRegexPattern()
 			? from m in Regex.Matches(@this, pattern, regexOption, MatchingTimeSpan) select m.Value
 			: throw InvalidOperation;
@@ -306,4 +301,10 @@ public static unsafe class StringExtensions
 			return false;
 		}
 	}
+
+	/// <summary>
+	/// Indicates the regular expression to match all null lines and header spaces in their lines.
+	/// </summary>
+	[RegexGenerator("""(^\s*|(?<=\r\n)\s+)""", RegexOptions.Compiled, 5000)]
+	internal static partial Regex NullLinesOrHeaderSpacesRegex();
 }

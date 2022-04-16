@@ -45,12 +45,6 @@ public unsafe partial struct Grid :
 	/// </summary>
 	public const short GivenMask = (int)CellStatus.Given << 9;
 
-	/// <summary>
-	/// Indicates the eliminations in the extended susser format.
-	/// </summary>
-	[StringSyntax(StringSyntaxAttribute.Regex)]
-	internal const string ExtendedSusserEliminationsRegexPattern = """(?<=\:)(\d{3}\s+)*\d{3}""";
-
 
 	/// <summary>
 	/// Indicates the empty grid string.
@@ -1111,7 +1105,11 @@ public unsafe partial struct Grid :
 			{ IsUndefined: true } => "<Undefined>",
 			_ when GridFormatterFactory.Create(format) is var f => format switch
 			{
-				":" => f.ToString(this).Match(ExtendedSusserEliminationsRegexPattern) ?? string.Empty,
+				":" => ExtendedSusserEliminationsRegex().Match(f.ToString(this)) is
+				{
+					Success: true,
+					Value: var value
+				} ? value : string.Empty,
 				"!" => f.ToString(this).RemoveAll('+'),
 				".!" or "!." or "0!" or "!0" => f.ToString(this).RemoveAll('+'),
 				".!:" or "!.:" or "0!:" => f.ToString(this).RemoveAll('+'),
@@ -1433,6 +1431,12 @@ public unsafe partial struct Grid :
 	/// <returns>The cell status.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	internal static CellStatus MaskToStatus(short mask) => (CellStatus)(mask >> 9 & 7);
+
+	/// <summary>
+	/// Indicates the eliminations in the extended susser format.
+	/// </summary>
+	[RegexGenerator("""(?<=\:)(\d{3}\s+)*\d{3}""", RegexOptions.Compiled, 5000)]
+	internal static partial Regex ExtendedSusserEliminationsRegex();
 
 
 	/// <summary>

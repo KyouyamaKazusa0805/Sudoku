@@ -24,21 +24,12 @@
 /// a <see langword="private"/> instance constructor, which disallows you deriving any types.
 /// </para>
 /// </remarks>
-public sealed class K9Notation : INotationHandler, ICellNotation<K9Notation, K9NotationOptions>
+public sealed partial class K9Notation : INotationHandler, ICellNotation<K9Notation, K9NotationOptions>
 {
 	/// <summary>
 	/// Indicates all possible letters that used in the row notation.
 	/// </summary>
 	private static readonly char[] Letters = { 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'K' };
-
-	/// <summary>
-	/// Indicates the regular expression for matching a cell or cell-list.
-	/// </summary>
-	private static readonly Regex CellOrCellListRegex = new(
-		"""[A-IKa-ik]{1,9}[1-9]{1,9}""",
-		RegexOptions.ExplicitCapture,
-		TimeSpan.FromSeconds(5)
-	);
 
 
 	[Obsolete("Please don't call this constructor.", true)]
@@ -144,7 +135,7 @@ public sealed class K9Notation : INotationHandler, ICellNotation<K9Notation, K9N
 	public static unsafe Cells ParseCells(string str)
 	{
 		// Check whether the match is successful.
-		if (CellOrCellListRegex.Matches(str) is not [_, ..] matches)
+		if (CellOrCellListRegex().Matches(str) is not [_, ..] matches)
 		{
 			throw new FormatException("The specified string can't match any cell instance.");
 		}
@@ -214,4 +205,10 @@ public sealed class K9Notation : INotationHandler, ICellNotation<K9Notation, K9N
 			return false;
 		}
 	}
+
+	/// <summary>
+	/// Indicates the regular expression for matching a cell or cell-list.
+	/// </summary>
+	[RegexGenerator("""[A-IKa-ik]{1,9}[1-9]{1,9}""", RegexOptions.ExplicitCapture, 5000)]
+	private static partial Regex CellOrCellListRegex();
 }

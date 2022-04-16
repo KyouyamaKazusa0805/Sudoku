@@ -4,21 +4,15 @@
 /// Provides a set of methods that handles for a <see cref="string"/>, to convert the value
 /// into the specified case.
 /// </summary>
-public static class Casing
+public static partial class Casing
 {
-	/// <summary>
-	/// Defines a regular expression pattern that matches for an identifier based on UTF-8 format.
-	/// </summary>
-	private static readonly Regex Utf8IdentifierPattern =
-		new(@"[A-Za-z_]\w*", RegexOptions.Compiled, TimeSpan.FromSeconds(5));
-
 	/// <summary>
 	/// Checks whether the specified string value is a valid identifier name.
 	/// </summary>
 	/// <param name="str">The string to check.</param>
 	/// <returns>A <see cref="bool"/> result.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static bool IsValidIdentifier(string str) => Utf8IdentifierPattern.IsMatch(str);
+	public static bool IsValidIdentifier(string str) => Utf8IdentifierRegex().IsMatch(str);
 
 	/// <summary>
 	/// Converts the current string identifier into the camel-casing (like <c>camelCasingVariable</c>).
@@ -55,14 +49,20 @@ public static class Casing
 	/// </exception>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static string ToPascalCase(string str) =>
-		!IsValidIdentifier(str)
-			? throw new ArgumentException("The specified string is not an identifier.", nameof(str))
-			: str switch
+		IsValidIdentifier(str)
+			? str switch
 			{
 				[] => throw new ArgumentException("The specified string is empty.", nameof(str)),
 				[var firstChar and >= 'a' and <= 'z', .. var otherChars] => $"{firstChar}{otherChars}",
 				[>= 'A' and <= 'Z', ..] => str,
 				['_', .. var otherChars] => ToCamelCase(otherChars),
 				_ => throw new ArgumentException("The specified string is invalid due to containing invalid characters.", nameof(str))
-			};
+			}
+			: throw new ArgumentException("The specified string is not an identifier.", nameof(str));
+
+	/// <summary>
+	/// Defines a regular expression pattern that matches for an identifier based on UTF-8 format.
+	/// </summary>
+	[RegexGenerator("""[A-Za-z_]\w*""", RegexOptions.Compiled, 5000)]
+	private static partial Regex Utf8IdentifierRegex();
 }

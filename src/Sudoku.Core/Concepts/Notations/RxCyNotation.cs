@@ -22,18 +22,8 @@
 /// a <see langword="private"/> instance constructor, which disallows you deriving any types.
 /// </para>
 /// </remarks>
-public sealed class RxCyNotation : INotationHandler, ICellNotation<RxCyNotation, RxCyNotationOptions>
+public sealed partial class RxCyNotation : INotationHandler, ICellNotation<RxCyNotation, RxCyNotationOptions>
 {
-	/// <summary>
-	/// Indicates the regular expression for matching a cell or cell-list.
-	/// </summary>
-	private static readonly Regex CellOrCellListRegex = new(
-		"""(R[1-9]{1,9}C[1-9]{1,9}|r[1-9]{1,9}c[1-9]{1,9})""",
-		RegexOptions.ExplicitCapture,
-		TimeSpan.FromSeconds(5)
-	);
-
-
 	[Obsolete("Please don't call this constructor.", true)]
 	private RxCyNotation() => throw new NotSupportedException();
 
@@ -141,7 +131,7 @@ public sealed class RxCyNotation : INotationHandler, ICellNotation<RxCyNotation,
 	public static unsafe Cells ParseCells(string str)
 	{
 		// Check whether the match is successful.
-		if (CellOrCellListRegex.Matches(str) is not [_, ..] matches)
+		if (CellOrCellListRegex().Matches(str) is not [_, ..] matches)
 		{
 			throw new FormatException("The specified string can't match any cell instance.");
 		}
@@ -194,4 +184,10 @@ public sealed class RxCyNotation : INotationHandler, ICellNotation<RxCyNotation,
 		// Returns the result.
 		return result;
 	}
+
+	/// <summary>
+	/// Indicates the regular expression for matching a cell or cell-list.
+	/// </summary>
+	[RegexGenerator("""(R[1-9]{1,9}C[1-9]{1,9}|r[1-9]{1,9}c[1-9]{1,9})""", RegexOptions.ExplicitCapture, 5000)]
+	private static partial Regex CellOrCellListRegex();
 }

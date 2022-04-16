@@ -1450,11 +1450,6 @@
             Indicates the given mask.
             </summary>
         </member>
-        <member name="F:Sudoku.Concepts.Collections.Grid.ExtendedSusserEliminationsRegexPattern">
-            <summary>
-            Indicates the eliminations in the extended susser format.
-            </summary>
-        </member>
         <member name="F:Sudoku.Concepts.Collections.Grid.EmptyString">
             <summary>
             Indicates the empty grid string.
@@ -2230,6 +2225,11 @@
             </summary>
             <param name="mask">The mask.</param>
             <returns>The cell status.</returns>
+        </member>
+        <member name="M:Sudoku.Concepts.Collections.Grid.ExtendedSusserEliminationsRegex">
+            <summary>
+            Indicates the eliminations in the extended susser format.
+            </summary>
         </member>
         <member name="M:Sudoku.Concepts.Collections.Grid.op_Equality(Sudoku.Concepts.Collections.Grid@,Sudoku.Concepts.Collections.Grid@)">
             <summary>
@@ -3581,11 +3581,6 @@
             Indicates all possible letters that used in the row notation.
             </summary>
         </member>
-        <member name="F:Sudoku.Concepts.Notations.K9Notation.CellOrCellListRegex">
-            <summary>
-            Indicates the regular expression for matching a cell or cell-list.
-            </summary>
-        </member>
         <member name="P:Sudoku.Concepts.Notations.K9Notation.Notation">
             <inheritdoc/>
         </member>
@@ -3600,6 +3595,11 @@
         </member>
         <member name="M:Sudoku.Concepts.Notations.K9Notation.TryParseCells(System.String,Sudoku.Concepts.Collections.Cells@)">
             <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.Notations.K9Notation.CellOrCellListRegex">
+            <summary>
+            Indicates the regular expression for matching a cell or cell-list.
+            </summary>
         </member>
         <member name="T:Sudoku.Concepts.Notations.K9NotationOptions">
             <summary>
@@ -3714,11 +3714,6 @@
             </para>
             </remarks>
         </member>
-        <member name="F:Sudoku.Concepts.Notations.RxCyNotation.CellOrCellListRegex">
-            <summary>
-            Indicates the regular expression for matching a cell or cell-list.
-            </summary>
-        </member>
         <member name="P:Sudoku.Concepts.Notations.RxCyNotation.Notation">
             <inheritdoc/>
         </member>
@@ -3733,6 +3728,11 @@
         </member>
         <member name="M:Sudoku.Concepts.Notations.RxCyNotation.ParseCells(System.String)">
             <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.Notations.RxCyNotation.CellOrCellListRegex">
+            <summary>
+            Indicates the regular expression for matching a cell or cell-list.
+            </summary>
         </member>
         <member name="T:Sudoku.Concepts.Notations.RxCyNotationOptions">
             <summary>

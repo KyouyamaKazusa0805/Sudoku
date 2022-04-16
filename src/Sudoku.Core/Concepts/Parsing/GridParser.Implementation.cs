@@ -360,7 +360,7 @@ partial struct GridParser
 
 		// Step 2: eliminates candidates if exist.
 		// If we have met the colon sign ':', this loop would not be executed.
-		if (match.Match(Grid.ExtendedSusserEliminationsRegexPattern) is { } elimMatch)
+		if (Grid.ExtendedSusserEliminationsRegex().Match(match) is { Success: true, Value: var elimMatch })
 		{
 			foreach (int candidate in EliminationNotation.ParseCandidates(elimMatch))
 			{

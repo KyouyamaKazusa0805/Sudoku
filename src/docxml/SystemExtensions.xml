@@ -752,11 +752,6 @@
             into the specified case.
             </summary>
         </member>
-        <member name="F:System.Casing.Utf8IdentifierPattern">
-            <summary>
-            Defines a regular expression pattern that matches for an identifier based on UTF-8 format.
-            </summary>
-        </member>
         <member name="M:System.Casing.IsValidIdentifier(System.String)">
             <summary>
             Checks whether the specified string value is a valid identifier name.
@@ -787,6 +782,14 @@
             <exception cref="T:System.ArgumentException">
             Throws when the argument <paramref name="str"/> is not an identifier.
             </exception>
+        </member>
+        <member name="M:System.Casing.Utf8IdentifierRegex">
+            <summary>
+            Defines a regular expression pattern that matches for an identifier based on UTF-8 format.
+            </summary>
+        </member>
+        <member name="M:System.Casing.GeneratedRegex_Utf8IdentifierRegex_97F8565E.RunnerFactory.Runner.IsWordChar(System.Char)">
+            <summary>Determines whether the character is part of the [\w] set.</summary>
         </member>
         <member name="T:System.DelegateExtensions">
             <summary>
@@ -2085,11 +2088,6 @@
             </summary>
             <seealso cref="T:System.String"/>
         </member>
-        <member name="F:System.StringExtensions.NullLinesOrHeaderSpaces">
-            <summary>
-            Indicates the regular expression to match all null lines and header spaces in their lines.
-            </summary>
-        </member>
         <member name="F:System.StringExtensions.MatchingTimeSpan">
             <summary>
             Indicates the time span that is used for matching.
@@ -2286,6 +2284,11 @@
             </summary>
             <param name="this">The value to check.</param>
             <returns>A <see cref="T:System.Boolean"/> indicating that.</returns>
+        </member>
+        <member name="M:System.StringExtensions.NullLinesOrHeaderSpacesRegex">
+            <summary>
+            Indicates the regular expression to match all null lines and header spaces in their lines.
+            </summary>
         </member>
         <member name="T:System.IDefaultable`1">
             <summary>
