@@ -1,23 +1,11 @@
-﻿using Tuple = System.ValueTuple<
-	Microsoft.CodeAnalysis.INamedTypeSymbol,
-	Microsoft.CodeAnalysis.INamespaceSymbol,
-	int,
-	Sudoku.Solving.Manual.DisplayingLevel,
-	string,
-	System.Collections.Immutable.ImmutableArray<
-		System.Collections.Generic.KeyValuePair<
-			string,
-			Microsoft.CodeAnalysis.TypedConstant>>,
-	Microsoft.CodeAnalysis.Location>;
-
-namespace Sudoku.Diagnostics.CodeGen.Generators;
+﻿namespace Sudoku.Diagnostics.CodeGen.Generators;
 
 /// <summary>
 /// Defines a source generator that generates the source code for the searcher options
 /// on a step searcher.
 /// </summary>
 [Generator(LanguageNames.CSharp)]
-public sealed class StepSearcherOptionsGenerator : ISourceGenerator
+public sealed partial class StepSearcherOptionsGenerator : ISourceGenerator
 {
 	private static readonly DiagnosticDescriptor SCA0101 = new(
 		nameof(SCA0101),
@@ -54,12 +42,7 @@ public sealed class StepSearcherOptionsGenerator : ISourceGenerator
 	public void Execute(GeneratorExecutionContext context)
 	{
 		// Checks whether the reference project is valid.
-		if (
-			context is not
-			{
-				Compilation.Assembly: { Name: "Sudoku.Solving.Manual" } assemblySymbol
-			}
-		)
+		if (context is not { Compilation.Assembly: { Name: "Sudoku.Solving.Manual" } assemblySymbol })
 		{
 			context.ReportDiagnostic(Diagnostic.Create(SCA0101, null, messageArgs: null));
 			return;
@@ -124,29 +107,22 @@ public sealed class StepSearcherOptionsGenerator : ISourceGenerator
 
 			// Adds the necessary info into the collection.
 			foundAttributesData.Add(
-				(
-					stepSearcherTypeSymbol,
-					containingNamespace,
-					priority,
-					(DisplayingLevel)dl,
-					stepSearcherName,
-					namedArguments,
-					location
-				)
-			);
+				new(
+					stepSearcherTypeSymbol, containingNamespace, priority, (DisplayingLevel)dl,
+					stepSearcherName, namedArguments, location));
 		}
 
 		// Checks whether the collection has duplicated priority values.
 		for (int i = 0; i < foundAttributesData.Count - 1; i++)
 		{
-			int a = foundAttributesData[i].Item3;
+			int a = foundAttributesData[i].Priority;
 			for (int j = i + 1; j < foundAttributesData.Count; j++)
 			{
-				int b = foundAttributesData[j].Item3;
+				int b = foundAttributesData[j].Priority;
 				if (a == b)
 				{
 					context.ReportDiagnostic(
-						Diagnostic.Create(SCA0102, foundAttributesData[j].Item7, messageArgs: null));
+						Diagnostic.Create(SCA0102, foundAttributesData[j].Location, messageArgs: null));
 				}
 			}
 		}
