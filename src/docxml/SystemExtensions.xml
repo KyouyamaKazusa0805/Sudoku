@@ -2981,7 +2981,16 @@
         <member name="M:System.Utf8String.ToString">
             <inheritdoc/>
         </member>
+        <member name="M:System.Utf8String.GetEnumerator">
+            <inheritdoc cref="M:System.Collections.Generic.IEnumerable`1.GetEnumerator"/>
+        </member>
         <member name="M:System.Utf8String.System#IComparable#CompareTo(System.Object)">
+            <inheritdoc/>
+        </member>
+        <member name="M:System.Utf8String.System#Collections#IEnumerable#GetEnumerator">
+            <inheritdoc/>
+        </member>
+        <member name="M:System.Utf8String.System#Collections#Generic#IEnumerable{System#Byte}#GetEnumerator">
             <inheritdoc/>
         </member>
         <member name="M:System.Utf8String.Compare(System.Utf8String,System.Utf8String)">

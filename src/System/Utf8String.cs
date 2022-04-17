@@ -7,6 +7,7 @@ public readonly unsafe struct Utf8String :
 	IComparable<Utf8String>,
 	IComparisonOperators<Utf8String, Utf8String>,
 	IDefaultable<Utf8String>,
+	IEnumerable<byte>,
 	IEqualityOperators<Utf8String, Utf8String>,
 	IEquatable<Utf8String>
 {
@@ -32,18 +33,34 @@ public readonly unsafe struct Utf8String :
 
 
 	/// <inheritdoc/>
-	public int Length => _value.Length;
+	public int Length
+	{
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		get => _value.Length;
+	}
 
 	/// <summary>
 	/// Indicates the underlying array.
 	/// </summary>
-	public ReadOnlySpan<byte> UnderlyingArray => _value;
+	public ReadOnlySpan<byte> UnderlyingArray
+	{
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		get => _value;
+	}
 
 	/// <inheritdoc/>
-	bool IDefaultable<Utf8String>.IsDefault => CompareTo(Empty) == 0;
+	bool IDefaultable<Utf8String>.IsDefault
+	{
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		get => CompareTo(Empty) == 0;
+	}
 
 	/// <inheritdoc/>
-	static Utf8String IDefaultable<Utf8String>.Default => Empty;
+	static Utf8String IDefaultable<Utf8String>.Default
+	{
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		get => Empty;
+	}
 
 
 	/// <summary>
@@ -151,12 +168,24 @@ public readonly unsafe struct Utf8String :
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public override string ToString() => Encoding.UTF8.GetString(_value);
 
+	/// <inheritdoc cref="IEnumerable{T}.GetEnumerator"/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public OneDimensionalArrayRefEnumerator<byte> GetEnumerator() => _value.EnumerateRef();
+
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	int IComparable.CompareTo([NotNullWhen(true)] object? obj) =>
 		obj is Utf8String comparer
 			? CompareTo(comparer)
 			: throw new ArgumentException($"The target value must be of type '{nameof(Utf8String)}'.");
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	IEnumerator IEnumerable.GetEnumerator() => _value.GetEnumerator();
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	IEnumerator<byte> IEnumerable<byte>.GetEnumerator() => ((IEnumerable<byte>)_value).GetEnumerator();
 
 
 	/// <summary>
@@ -223,8 +252,7 @@ public readonly unsafe struct Utf8String :
 	/// </summary>
 	/// <param name="s">The string.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static explicit operator string(Utf8String s) =>
-		Encoding.UTF8.GetString(s._value);
+	public static explicit operator string(Utf8String s) => Encoding.UTF8.GetString(s._value);
 
 	/// <summary>
 	/// Explicitly cast from <see cref="Utf8String"/> to <see cref="byte"/>[].
