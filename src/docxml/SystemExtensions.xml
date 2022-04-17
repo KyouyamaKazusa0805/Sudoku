@@ -2945,6 +2945,14 @@
             </summary>
             <param name="underlyingArray">The underlying array.</param>
         </member>
+        <member name="M:System.Utf8String.#ctor(System.Byte,System.Int32)">
+            <summary>
+            Initializes a <see cref="T:System.Utf8String"/> instance via the specified UTF-8 character and the specified
+            times of the appearance.
+            </summary>
+            <param name="c">The character.</param>
+            <param name="count">The times of the appearance.</param>
+        </member>
         <member name="P:System.Utf8String.Length">
             <inheritdoc/>
         </member>
@@ -2954,6 +2962,9 @@
             </summary>
         </member>
         <member name="P:System.Utf8String.System#IDefaultable{System#Utf8String}#IsDefault">
+            <inheritdoc/>
+        </member>
+        <member name="P:System.Utf8String.System#Collections#Generic#IReadOnlyCollection{System#Byte}#Count">
             <inheritdoc/>
         </member>
         <member name="P:System.Utf8String.System#IDefaultable{System#Utf8String}#Default">
@@ -2966,17 +2977,42 @@
             <param name="index">The index.</param>
             <returns>The reference of the character.</returns>
         </member>
+        <member name="P:System.Utf8String.System#Collections#Generic#IReadOnlyList{System#Byte}#Item(System.Int32)">
+            <inheritdoc/>
+        </member>
         <member name="M:System.Utf8String.Equals(System.Object)">
             <inheritdoc/>
         </member>
         <member name="M:System.Utf8String.Equals(System.Utf8String)">
             <inheritdoc/>
         </member>
+        <member name="M:System.Utf8String.Contains(System.Byte)">
+            <summary>
+            Determines whether the current string contains the specified UTF-8 character.
+            </summary>
+            <param name="c">The character.</param>
+            <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
+        </member>
+        <member name="M:System.Utf8String.GetPinnableReference">
+            <summary>
+            Gets the pinnable reference of the current string, positioned at the zero index.
+            </summary>
+            <returns>The reference of the first character in this string.</returns>
+        </member>
         <member name="M:System.Utf8String.GetHashCode">
             <inheritdoc/>
         </member>
         <member name="M:System.Utf8String.CompareTo(System.Utf8String)">
             <inheritdoc/>
+        </member>
+        <member name="M:System.Utf8String.IndexOf(System.Byte)">
+            <summary>
+            Reports the zero-based index of the first occurrence of the specified UTF-8 character in this string.
+            </summary>
+            <param name="c">The character.</param>
+            <returns>
+            The zero-based index position of <paramref name="c"/> if that character is found, or -1 if it is not.
+            </returns>
         </member>
         <member name="M:System.Utf8String.ToString">
             <inheritdoc/>
@@ -3018,6 +3054,14 @@
         </member>
         <member name="M:System.Utf8String.op_LessThanOrEqual(System.Utf8String,System.Utf8String)">
             <inheritdoc/>
+        </member>
+        <member name="M:System.Utf8String.op_Addition(System.Utf8String,System.Utf8String)">
+            <summary>
+            Catenate two <see cref="T:System.Utf8String"/> instances.
+            </summary>
+            <param name="left">The left-side instance to be catenated.</param>
+            <param name="right">The right-side instance to be catenated.</param>
+            <returns>The final string.</returns>
         </member>
         <member name="M:System.Utf8String.op_Explicit(System.Utf8String)~System.String">
             <summary>
