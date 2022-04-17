@@ -1391,7 +1391,7 @@ public unsafe partial struct Grid :
 			result = Parse(str);
 			return !result.IsUndefined;
 		}
-		catch (Exception ex) when (ex is FormatException or ArgumentNullException)
+		catch (FormatException)
 		{
 			result = Undefined;
 			return false;
@@ -1417,7 +1417,7 @@ public unsafe partial struct Grid :
 			result = Parse(str, option);
 			return true;
 		}
-		catch (Exception ex) when (ex is FormatException or ArgumentNullException)
+		catch (FormatException)
 		{
 			result = Undefined;
 			return false;
