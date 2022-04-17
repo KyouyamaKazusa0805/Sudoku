@@ -332,6 +332,13 @@ public readonly struct Utf8String :
 	public static explicit operator Utf8Char[](Utf8String s) => (Utf8Char[])s._value.Clone();
 
 	/// <summary>
+	/// Explicitly cast from <see cref="string"/> to <see cref="Utf8String"/> instance.
+	/// </summary>
+	/// <param name="s">The string.</param>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static explicit operator Utf8String(string s) => new(Encoding.Default.GetBytes(s));
+
+	/// <summary>
 	/// Implicitly cast from <see cref="Utf8Char"/>[] to <see cref="Utf8String"/>.
 	/// </summary>
 	/// <param name="underlyingArray">The underlying array.</param>
