@@ -10250,28 +10250,6 @@
               Looks up a localized string similar to Y-Chain.
             </summary>
         </member>
-        <member name="T:Sudoku.Runtime.AnalysisServices.AlgorithmAttribute">
-            <summary>
-            Defines an attribute that modifies a type of a <see langword="class"/> or a <see langword="struct"/>,
-            indicating the type having been modified this attribute is reserved for the developers used for studying.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Runtime.AnalysisServices.AlgorithmAttribute.#ctor(System.String)">
-            <summary>
-            Initializes an <see cref="T:Sudoku.Runtime.AnalysisServices.AlgorithmAttribute"/> instance via the specified algorithm name.
-            </summary>
-            <param name="algorithmName">The name of the algorithm.</param>
-        </member>
-        <member name="P:Sudoku.Runtime.AnalysisServices.AlgorithmAttribute.AlgorithmName">
-            <summary>
-            Indicates the name of the algorithm.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Runtime.AnalysisServices.AlgorithmAttribute.UriLink">
-            <summary>
-            Indicates the URI link for the introduction about the algorithm.
-            </summary>
-        </member>
         <member name="T:Sudoku.Runtime.AnalysisServices.CommonReadOnlies">
             <summary>
             Represents a type holding some common read-only fields used by runtime or compiling-time.
@@ -10563,9 +10541,18 @@
             The solver will spend about 4.5 min on solving this puzzle.
             </para>
             <para>
-            For more information, please visit <see href="http://www.matrix67.com/blog/archives/725">this link</see>.
+            For more information, please visit
+            <see href="https://en.wikipedia.org/wiki/Sudoku_solving_algorithms#cite_note-difficult_17_clue-1">
+            this link
+            </see>.
             </para>
             </remarks>
+        </member>
+        <member name="P:Sudoku.Solving.BacktrackingSolver.Name">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.BacktrackingSolver.UriLink">
+            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Solving.BacktrackingSolver.Solve(Sudoku.Concepts.Collections.Grid@,Sudoku.Concepts.Collections.Grid@)">
             <inheritdoc/>
@@ -10622,6 +10609,12 @@
             <summary>
             Pointer to the currently active slot.
             </summary>
+        </member>
+        <member name="P:Sudoku.Solving.BitwiseSolver.Name">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.BitwiseSolver.UriLink">
+            <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.BitwiseSolver.LimitSolutions">
             <summary>
@@ -10879,6 +10872,12 @@
             Indicates the root node of the full link map.
             </summary>
         </member>
+        <member name="P:Sudoku.Solving.DancingLinksSolver.Name">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.DancingLinksSolver.UriLink">
+            <inheritdoc/>
+        </member>
         <member name="M:Sudoku.Solving.DancingLinksSolver.Solve(Sudoku.Concepts.Collections.Grid@,Sudoku.Concepts.Collections.Grid@)">
             <inheritdoc/>
         </member>
@@ -11073,6 +11072,19 @@
             Defines a simple solver.
             </summary>
         </member>
+        <member name="P:Sudoku.Solving.ISimpleSolver.Name">
+            <summary>
+            Indicates the name of the solver.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.ISimpleSolver.UriLink">
+            <summary>
+            Indicates the URI link that links to the introduction of the algorithm.
+            </summary>
+            <remarks>
+            This property is reserved as information that is offered to the algorithm learners.
+            </remarks>
+        </member>
         <member name="M:Sudoku.Solving.ISimpleSolver.Solve(Sudoku.Concepts.Collections.Grid@,Sudoku.Concepts.Collections.Grid@)">
             <summary>
             To solve the specified grid.
@@ -11109,6 +11121,12 @@
             <summary>
             Defines a solver that can solve a sudoku puzzle, using LINQ.
             </summary>
+        </member>
+        <member name="P:Sudoku.Solving.LinqSolver.Name">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Solving.LinqSolver.UriLink">
+            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Solving.LinqSolver.Solve(Sudoku.Concepts.Collections.Grid@,Sudoku.Concepts.Collections.Grid@)">
             <inheritdoc/>

@@ -6,6 +6,20 @@
 public interface ISimpleSolver
 {
 	/// <summary>
+	/// Indicates the name of the solver.
+	/// </summary>
+	string Name { get; }
+
+	/// <summary>
+	/// Indicates the URI link that links to the introduction of the algorithm.
+	/// </summary>
+	/// <remarks>
+	/// This property is reserved as information that is offered to the algorithm learners.
+	/// </remarks>
+	string? UriLink { get; }
+
+
+	/// <summary>
 	/// To solve the specified grid.
 	/// </summary>
 	/// <param name="grid">The grid to be solved.</param>

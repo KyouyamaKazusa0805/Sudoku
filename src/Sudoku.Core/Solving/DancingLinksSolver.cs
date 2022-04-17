@@ -3,7 +3,6 @@
 /// <summary>
 /// Defines a solver that uses the dancing links algorithm.
 /// </summary>
-[Algorithm("Dancing links", UriLink = "https://en.wikipedia.org/wiki/Dancing_Links")]
 public sealed class DancingLinksSolver : ISimpleSolver
 {
 	/// <summary>
@@ -26,6 +25,13 @@ public sealed class DancingLinksSolver : ISimpleSolver
 	/// Indicates the root node of the full link map.
 	/// </summary>
 	private ColumnNode? _root;
+
+
+	/// <inheritdoc/>
+	public string Name => "Dancing links";
+
+	/// <inheritdoc/>
+	public string UriLink => "https://en.wikipedia.org/wiki/Dancing_Links";
 
 
 	/// <inheritdoc/>

@@ -14,12 +14,21 @@
 /// The solver will spend about 4.5 min on solving this puzzle.
 /// </para>
 /// <para>
-/// For more information, please visit <see href="http://www.matrix67.com/blog/archives/725">this link</see>.
+/// For more information, please visit
+/// <see href="https://en.wikipedia.org/wiki/Sudoku_solving_algorithms#cite_note-difficult_17_clue-1">
+/// this link
+/// </see>.
 /// </para>
 /// </remarks>
-[Algorithm("Backtracking", UriLink = "https://simple.wikipedia.org/wiki/Backtracking")]
 public sealed class BacktrackingSolver : ISimpleSolver
 {
+	/// <inheritdoc/>
+	public string Name => "Backtracking";
+
+	/// <inheritdoc/>
+	public string UriLink => "https://simple.wikipedia.org/wiki/Backtracking";
+
+
 	/// <inheritdoc/>
 	public bool? Solve(in Grid grid, out Grid result)
 	{

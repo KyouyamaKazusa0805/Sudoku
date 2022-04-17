@@ -60,6 +60,12 @@ public sealed unsafe partial class BitwiseSolver : ISimpleSolver
 	private State* _g;
 
 
+	/// <inheritdoc/>
+	public string Name => "Bitwise";
+
+	/// <inheritdoc/>
+	public string? UriLink => null;
+
 	/// <summary>
 	/// Indicates the number of solutions found.
 	/// </summary>

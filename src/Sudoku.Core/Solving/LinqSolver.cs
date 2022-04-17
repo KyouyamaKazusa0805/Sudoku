@@ -3,9 +3,15 @@
 /// <summary>
 /// Defines a solver that can solve a sudoku puzzle, using LINQ.
 /// </summary>
-[Algorithm("LINQ")]
 public sealed class LinqSolver : ISimpleSolver
 {
+	/// <inheritdoc/>
+	public string Name => "LINQ";
+
+	/// <inheritdoc/>
+	public string? UriLink => null;
+
+
 	/// <inheritdoc/>
 	public bool? Solve(in Grid grid, out Grid result)
 	{
