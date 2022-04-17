@@ -166,6 +166,7 @@ public readonly struct Utf8String :
 	/// </summary>
 	/// <returns>The reference of the first character in this string.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	[EditorBrowsable(EditorBrowsableState.Never)]
 	public ref Utf8Char GetPinnableReference() => ref MemoryMarshal.GetArrayDataReference(_value);
 
 	/// <inheritdoc/>
