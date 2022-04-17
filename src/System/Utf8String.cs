@@ -49,7 +49,7 @@ public readonly struct Utf8String :
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public Utf8String(Utf8Char[] underlyingArray) => _value = (Utf8Char[])underlyingArray.Clone();
 
-	
+
 	/// <inheritdoc/>
 	public int Length
 	{
