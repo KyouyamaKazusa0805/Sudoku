@@ -3,17 +3,6 @@
 /// <summary>
 /// Encapsulates a conclusion representation while solving in logic.
 /// </summary>
-/// <param name="Mask">
-/// Indicates the mask that holds the information for the cell, digit and the conclusion type.
-/// The bits distribution is like:
-/// <code><![CDATA[
-/// 16       8       0
-///  |-------|-------|
-///  |     |---------|
-/// 16    10         0
-///        |   used  |
-/// ]]></code>
-/// </param>
 /// <remarks>
 /// Two <see cref="Conclusion"/>s can be compared with each other. If one of those two is an elimination
 /// (i.e. holds the value <see cref="ConclusionType.Elimination"/> as the type), the instance
@@ -21,17 +10,31 @@
 /// the global index of the candidate position is greater, it is greater.
 /// </remarks>
 /// <seealso cref="ConclusionType.Elimination"/>
-public readonly record struct Conclusion(int Mask) :
+public readonly struct Conclusion :
 	IComparable<Conclusion>,
-	IDefaultable<Conclusion>,
-	IEquatable<Conclusion>,
 	IComparisonOperators<Conclusion, Conclusion>,
-	IEqualityOperators<Conclusion, Conclusion>
+	IDefaultable<Conclusion>,
+	IEqualityOperators<Conclusion, Conclusion>,
+	IEquatable<Conclusion>
 {
 	/// <summary>
 	/// <inheritdoc cref="IDefaultable{T}.Default"/>
 	/// </summary>
 	public static readonly Conclusion Default = default;
+
+
+	/// <summary>
+	/// Indicates the mask that holds the information for the cell, digit and the conclusion type.
+	/// The bits distribution is like:
+	/// <code><![CDATA[
+	/// 16       8       0
+	///  |-------|-------|
+	///  |     |---------|
+	/// 16    10         0
+	///        |   used  |
+	/// ]]></code>
+	/// </summary>
+	private readonly int _mask;
 
 
 	/// <summary>
@@ -54,6 +57,13 @@ public readonly record struct Conclusion(int Mask) :
 	public Conclusion(ConclusionType type, int cell, int digit) : this(((int)type << 10) + cell * 9 + digit)
 	{
 	}
+
+	/// <summary>
+	/// Initializes a <see cref="Conclusion"/> instance with the specified mask.
+	/// </summary>
+	/// <param name="mask">The mask value.</param>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	private Conclusion(int mask) => _mask = mask;
 
 
 	/// <summary>
@@ -80,7 +90,7 @@ public readonly record struct Conclusion(int Mask) :
 	public int Candidate
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => Mask & (1 << 10) - 1;
+		get => _mask & (1 << 10) - 1;
 	}
 
 	/// <summary>
@@ -92,7 +102,7 @@ public readonly record struct Conclusion(int Mask) :
 	public ConclusionType ConclusionType
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => (ConclusionType)(Mask >> 10 & 1);
+		get => (ConclusionType)(_mask >> 10 & 1);
 	}
 
 	/// <inheritdoc/>
@@ -116,7 +126,7 @@ public readonly record struct Conclusion(int Mask) :
 	[EditorBrowsable(EditorBrowsableState.Never)]
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public void Deconstruct(out ConclusionType conclusionType, out int candidate) =>
-		(conclusionType, candidate) = ((ConclusionType)(Mask >> 10 & 1), Mask & (1 << 10) - 1);
+		(conclusionType, candidate) = ((ConclusionType)(_mask >> 10 & 1), _mask & (1 << 10) - 1);
 
 	/// <summary>
 	/// Deconstruct the instance into multiple values.
@@ -124,7 +134,7 @@ public readonly record struct Conclusion(int Mask) :
 	[EditorBrowsable(EditorBrowsableState.Never)]
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public void Deconstruct(out ConclusionType conclusionType, out int cell, out int digit) =>
-		(conclusionType, cell, digit) = ((ConclusionType)(Mask >> 10 & 1), Candidate / 9, Candidate % 9);
+		(conclusionType, cell, digit) = ((ConclusionType)(_mask >> 10 & 1), Candidate / 9, Candidate % 9);
 
 	/// <summary>
 	/// Put this instance into the specified grid.
@@ -148,22 +158,25 @@ public readonly record struct Conclusion(int Mask) :
 		}
 	}
 
-	/// <inheritdoc cref="object.GetHashCode"/>
+	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public bool Equals(Conclusion other) => Mask == other.Mask;
+	public override bool Equals([NotNullWhen(true)] object? obj) => obj is Conclusion comparer && Equals(comparer);
 
 	/// <inheritdoc cref="object.GetHashCode"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public override int GetHashCode() => Mask;
+	public bool Equals(Conclusion other) => _mask == other._mask;
+
+	/// <inheritdoc cref="object.GetHashCode"/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public override int GetHashCode() => _mask;
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public int CompareTo(Conclusion other) => Mask - other.Mask;
+	public int CompareTo(Conclusion other) => _mask - other._mask;
 
 	/// <inheritdoc cref="object.ToString"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public override string ToString() =>
-		$"{Cells.Empty + Cell}{ConclusionType.GetNotation()}{Digit + 1}";
+	public override string ToString() => $"{Cells.Empty + Cell}{ConclusionType.GetNotation()}{Digit + 1}";
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -187,14 +200,26 @@ public readonly record struct Conclusion(int Mask) :
 
 
 	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static bool operator ==(Conclusion left, Conclusion right) => left.Equals(right);
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static bool operator !=(Conclusion left, Conclusion right) => !(left == right);
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static bool operator <(Conclusion left, Conclusion right) => left.CompareTo(right) < 0;
 
 	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static bool operator <=(Conclusion left, Conclusion right) => left.CompareTo(right) <= 0;
 
 	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static bool operator >(Conclusion left, Conclusion right) => left.CompareTo(right) > 0;
 
 	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static bool operator >=(Conclusion left, Conclusion right) => left.CompareTo(right) >= 0;
 }

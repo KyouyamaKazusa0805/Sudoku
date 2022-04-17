@@ -4780,17 +4780,6 @@
             <summary>
             Encapsulates a conclusion representation while solving in logic.
             </summary>
-            <param name="Mask">
-            Indicates the mask that holds the information for the cell, digit and the conclusion type.
-            The bits distribution is like:
-            <code><![CDATA[
-            16       8       0
-             |-------|-------|
-             |     |---------|
-            16    10         0
-                   |   used  |
-            ]]></code>
-            </param>
             <remarks>
             Two <see cref="T:Sudoku.Concepts.Solving.Conclusion"/>s can be compared with each other. If one of those two is an elimination
             (i.e. holds the value <see cref="F:Sudoku.Concepts.Solving.ConclusionType.Elimination"/> as the type), the instance
@@ -4798,46 +4787,23 @@
             the global index of the candidate position is greater, it is greater.
             </remarks>
             <seealso cref="F:Sudoku.Concepts.Solving.ConclusionType.Elimination"/>
-        </member>
-        <member name="M:Sudoku.Concepts.Solving.Conclusion.#ctor(System.Int32)">
-            <summary>
-            Encapsulates a conclusion representation while solving in logic.
-            </summary>
-            <param name="Mask">
-            Indicates the mask that holds the information for the cell, digit and the conclusion type.
-            The bits distribution is like:
-            <code><![CDATA[
-            16       8       0
-             |-------|-------|
-             |     |---------|
-            16    10         0
-                   |   used  |
-            ]]></code>
-            </param>
-            <remarks>
-            Two <see cref="T:Sudoku.Concepts.Solving.Conclusion"/>s can be compared with each other. If one of those two is an elimination
-            (i.e. holds the value <see cref="F:Sudoku.Concepts.Solving.ConclusionType.Elimination"/> as the type), the instance
-            will be greater; if those two hold same conclusion type, but one of those two holds
-            the global index of the candidate position is greater, it is greater.
-            </remarks>
-            <seealso cref="F:Sudoku.Concepts.Solving.ConclusionType.Elimination"/>
-        </member>
-        <member name="P:Sudoku.Concepts.Solving.Conclusion.Mask">
-            <summary>
-            Indicates the mask that holds the information for the cell, digit and the conclusion type.
-            The bits distribution is like:
-            <code><![CDATA[
-            16       8       0
-             |-------|-------|
-             |     |---------|
-            16    10         0
-                   |   used  |
-            ]]></code>
-            </summary>
         </member>
         <member name="F:Sudoku.Concepts.Solving.Conclusion.Default">
             <summary>
             <inheritdoc cref="P:System.IDefaultable`1.Default"/>
+            </summary>
+        </member>
+        <member name="F:Sudoku.Concepts.Solving.Conclusion._mask">
+            <summary>
+            Indicates the mask that holds the information for the cell, digit and the conclusion type.
+            The bits distribution is like:
+            <code><![CDATA[
+            16       8       0
+             |-------|-------|
+             |     |---------|
+            16    10         0
+                   |   used  |
+            ]]></code>
             </summary>
         </member>
         <member name="M:Sudoku.Concepts.Solving.Conclusion.#ctor(Sudoku.Concepts.Solving.ConclusionType,System.Int32)">
@@ -4854,6 +4820,12 @@
             <param name="type">The conclusion type.</param>
             <param name="cell">The cell.</param>
             <param name="digit">The digit.</param>
+        </member>
+        <member name="M:Sudoku.Concepts.Solving.Conclusion.#ctor(System.Int32)">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Concepts.Solving.Conclusion"/> instance with the specified mask.
+            </summary>
+            <param name="mask">The mask value.</param>
         </member>
         <member name="P:Sudoku.Concepts.Solving.Conclusion.Cell">
             <summary>
@@ -4900,6 +4872,9 @@
             </summary>
             <param name="grid">The grid.</param>
         </member>
+        <member name="M:Sudoku.Concepts.Solving.Conclusion.Equals(System.Object)">
+            <inheritdoc/>
+        </member>
         <member name="M:Sudoku.Concepts.Solving.Conclusion.Equals(Sudoku.Concepts.Solving.Conclusion)">
             <inheritdoc cref="M:System.Object.GetHashCode"/>
         </member>
@@ -4924,6 +4899,12 @@
             <param name="digit">The digit used.</param>
             <param name="type">The type of the conclusion.</param>
             <returns>An array of type <see cref="T:Sudoku.Concepts.Solving.Conclusion"/>.</returns>
+        </member>
+        <member name="M:Sudoku.Concepts.Solving.Conclusion.op_Equality(Sudoku.Concepts.Solving.Conclusion,Sudoku.Concepts.Solving.Conclusion)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.Solving.Conclusion.op_Inequality(Sudoku.Concepts.Solving.Conclusion,Sudoku.Concepts.Solving.Conclusion)">
+            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.Solving.Conclusion.op_LessThan(Sudoku.Concepts.Solving.Conclusion,Sudoku.Concepts.Solving.Conclusion)">
             <inheritdoc/>
