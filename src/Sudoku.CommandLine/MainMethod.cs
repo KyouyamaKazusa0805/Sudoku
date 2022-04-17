@@ -58,11 +58,9 @@ static ErrorCode solveGridHandler(SolveGridOptions options)
 			continue;
 		}
 
-		methodNameUsed = full;
-
 		switch (Activator.CreateInstance(type))
 		{
-			case ISimpleSolver simpleSolver:
+			case ISimpleSolver { Name: var name, UriLink: var uri } simpleSolver:
 			{
 				if (simpleSolver.Solve(grid, out _) is not true)
 				{
@@ -79,8 +77,10 @@ static ErrorCode solveGridHandler(SolveGridOptions options)
 				Console.WriteLine(
 					$"""
 					Puzzle: {grid.ToString("#")}
-					Method name used: '{methodNameUsed}'
-					Solution grid: {solution.ToString("!")}
+					Method name used: '{name}'
+					URI link: '{uri ?? "<No link>"}'
+					---
+					Solution: {solution.ToString("!")}
 					"""
 				);
 
@@ -97,9 +97,9 @@ static ErrorCode solveGridHandler(SolveGridOptions options)
 					$"""
 					Puzzle: {grid.ToString("#")}
 					Method name used: '{methodNameUsed}'
-					Solution grid: {solution.ToString("!")}
 					---
-					Solving steps:
+					Solution: {solution.ToString("!")}
+					Solving details:
 					{solverResult}
 					"""
 				);
