@@ -10854,6 +10854,206 @@
             Rows where single found: <c>000</c> to <c>111</c>.
             </summary>
         </member>
+        <member name="T:Sudoku.Solving.DancingLinksSolver">
+            <summary>
+            Defines a solver that uses the dancing links algorithm.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.DancingLinksSolver._answerNodesStack">
+            <summary>
+            Indicates the stack that stores the raw data for the solutions.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.DancingLinksSolver._solutionCount">
+            <summary>
+            indicates the number of all found solutions.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.DancingLinksSolver._solution">
+            <summary>
+            Indicates the found solution.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.DancingLinksSolver._root">
+            <summary>
+            Indicates the root node of the full link map.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.DancingLinksSolver.Solve(Sudoku.Concepts.Collections.Grid@,Sudoku.Concepts.Collections.Grid@)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.DancingLinksSolver.Search">
+            <summary>
+            Try to search the full dancing link map and get the possible solution.
+            </summary>
+            <exception cref="T:System.InvalidOperationException">Throws when the puzzle has multiple solutions.</exception>
+        </member>
+        <member name="M:Sudoku.Solving.DancingLinksSolver.Cover(Sudoku.Solving.DancingLinx.DataNode)">
+            <summary>
+            Cover the nodes for the specified column.
+            </summary>
+            <param name="column">The column.</param>
+        </member>
+        <member name="M:Sudoku.Solving.DancingLinksSolver.Uncover(Sudoku.Solving.DancingLinx.DataNode)">
+            <summary>
+            Uncover the nodes for the specified column.
+            </summary>
+            <param name="column">The column.</param>
+        </member>
+        <member name="M:Sudoku.Solving.DancingLinksSolver.RecordSolution(System.Collections.Generic.Stack{Sudoku.Solving.DancingLinx.DataNode},Sudoku.Concepts.Collections.Grid@)">
+            <summary>
+            Try to gather all possible solutions, and determine whether the puzzle is valid.
+            </summary>
+            <param name="answer">The answers found.</param>
+            <param name="result">The solution if the puzzle is unique.</param>
+            <exception cref="T:System.InvalidOperationException">
+            Throws when the puzzle has no possible solutions.
+            </exception>
+        </member>
+        <member name="M:Sudoku.Solving.DancingLinksSolver.ChooseNextColumn">
+            <summary>
+            Try to choose the next column node.
+            </summary>
+            <returns>The chosen next column node.</returns>
+        </member>
+        <member name="T:Sudoku.Solving.DancingLinx.ColumnNode">
+            <summary>
+            Represents a column node.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.DancingLinx.ColumnNode.#ctor(System.Int32)">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Solving.DancingLinx.ColumnNode"/> instance via the specified ID value.
+            </summary>
+            <param name="id">The ID value.</param>
+        </member>
+        <member name="P:Sudoku.Solving.DancingLinx.ColumnNode.Size">
+            <summary>
+            Indicates the size of the node.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Solving.DancingLinx.DancingLink">
+            <summary>
+            Represents as a dancing link.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.DancingLinx.DancingLink.#ctor(Sudoku.Solving.DancingLinx.ColumnNode)">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Solving.DancingLinx.DancingLink"/> instance via the specified root node.
+            </summary>
+            <param name="root">The root node.</param>
+        </member>
+        <member name="P:Sudoku.Solving.DancingLinx.DancingLink.Root">
+            <summary>
+            Indicates the root node.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.DancingLinx.DancingLink.CreateLinkedList(System.Int32[])">
+            <summary>
+            Creates the links.
+            </summary>
+            <param name="gridArray">The grid array.</param>
+            <returns>The column node for the root node.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.DancingLinx.DancingLink.LinkRow(Sudoku.Solving.DancingLinx.DancingLink.MatrixRow@)">
+            <summary>
+            Links the row.
+            </summary>
+            <param name="d">The matrix row instance.</param>
+        </member>
+        <member name="M:Sudoku.Solving.DancingLinx.DancingLink.LinkRowToColumn(Sudoku.Solving.DancingLinx.DataNode)">
+            <summary>
+            Links the row to the column.
+            </summary>
+            <param name="section">The section.</param>
+        </member>
+        <member name="M:Sudoku.Solving.DancingLinx.DancingLink.FormLinx(System.Collections.Generic.List{Sudoku.Solving.DancingLinx.ColumnNode},System.Int32,System.Int32,System.Int32)">
+            <summary>
+            To form the links via the specified columns, the cell index and the digit used.
+            </summary>
+            <param name="columns">The columns having been stored.</param>
+            <param name="x">The current row index.</param>
+            <param name="y">The current column index.</param>
+            <param name="d">The current digit.</param>
+        </member>
+        <member name="T:Sudoku.Solving.DancingLinx.DancingLink.MatrixRow">
+            <summary>
+            Represents a matrix row.
+            </summary>
+            <param name="Cell">Indicates the node that represents the current cell.</param>
+            <param name="Row">Indicates the nodes at the current row.</param>
+            <param name="Column">Indicates the nodes at the current column.</param>
+            <param name="Block">Indicates the nodes at the current block.</param>
+        </member>
+        <member name="M:Sudoku.Solving.DancingLinx.DancingLink.MatrixRow.#ctor(Sudoku.Solving.DancingLinx.DataNode,Sudoku.Solving.DancingLinx.DataNode,Sudoku.Solving.DancingLinx.DataNode,Sudoku.Solving.DancingLinx.DataNode)">
+            <summary>
+            Represents a matrix row.
+            </summary>
+            <param name="Cell">Indicates the node that represents the current cell.</param>
+            <param name="Row">Indicates the nodes at the current row.</param>
+            <param name="Column">Indicates the nodes at the current column.</param>
+            <param name="Block">Indicates the nodes at the current block.</param>
+        </member>
+        <member name="P:Sudoku.Solving.DancingLinx.DancingLink.MatrixRow.Cell">
+            <summary>Indicates the node that represents the current cell.</summary>
+        </member>
+        <member name="P:Sudoku.Solving.DancingLinx.DancingLink.MatrixRow.Row">
+            <summary>Indicates the nodes at the current row.</summary>
+        </member>
+        <member name="P:Sudoku.Solving.DancingLinx.DancingLink.MatrixRow.Column">
+            <summary>Indicates the nodes at the current column.</summary>
+        </member>
+        <member name="P:Sudoku.Solving.DancingLinx.DancingLink.MatrixRow.Block">
+            <summary>Indicates the nodes at the current block.</summary>
+        </member>
+        <member name="T:Sudoku.Solving.DancingLinx.DataNode">
+            <summary>
+            Represents a data node.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.DancingLinx.DataNode.#ctor(System.Int32)">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Solving.DancingLinx.DataNode"/> instance via the specfied ID value and the column node.
+            </summary>
+            <param name="id">The ID value.</param>
+        </member>
+        <member name="M:Sudoku.Solving.DancingLinx.DataNode.#ctor(System.Int32,Sudoku.Solving.DancingLinx.ColumnNode)">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Solving.DancingLinx.DataNode"/> instance via the specfied ID value and the column node.
+            </summary>
+            <param name="id">The ID value.</param>
+            <param name="column">The column node.</param>
+        </member>
+        <member name="P:Sudoku.Solving.DancingLinx.DataNode.Id">
+            <summary>
+            Indicates the ID of the node.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.DancingLinx.DataNode.Column">
+            <summary>
+            Indicates the current column node.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.DancingLinx.DataNode.Left">
+            <summary>
+            Indicates the pointer that points to the left node.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.DancingLinx.DataNode.Right">
+            <summary>
+            Indicates the pointer that points to the right node.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.DancingLinx.DataNode.Up">
+            <summary>
+            Indicates the pointer that points to the up node.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.DancingLinx.DataNode.Down">
+            <summary>
+            Indicates the pointer that points to the down node.
+            </summary>
+        </member>
         <member name="T:Sudoku.Solving.IComplexSolver`1">
             <summary>
             Defines a complex solver.
