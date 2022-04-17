@@ -2993,10 +2993,10 @@
             <returns>An <see cref="T:System.Int32"/> value indicating which one is greater.</returns>
         </member>
         <member name="M:System.Utf8String.op_Equality(System.Utf8String,System.Utf8String)">
-            <inheritdoc/>
+            <inheritdoc cref="M:System.String.op_Equality(System.String,System.String)"/>
         </member>
         <member name="M:System.Utf8String.op_Inequality(System.Utf8String,System.Utf8String)">
-            <inheritdoc/>
+            <inheritdoc cref="M:System.String.op_Inequality(System.String,System.String)"/>
         </member>
         <member name="M:System.Utf8String.op_GreaterThan(System.Utf8String,System.Utf8String)">
             <inheritdoc/>

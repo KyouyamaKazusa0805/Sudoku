@@ -3,7 +3,7 @@
 /// <summary>
 /// Represents text as a sequence of UTF-8 code units.
 /// </summary>
-public sealed unsafe class Utf8String :
+public readonly unsafe struct Utf8String :
 	IComparable<Utf8String>,
 	IComparisonOperators<Utf8String, Utf8String>,
 	IDefaultable<Utf8String>,
@@ -19,7 +19,7 @@ public sealed unsafe class Utf8String :
 	/// <summary>
 	/// Indicates the inner value.
 	/// </summary>
-	private readonly byte[]? _value;
+	private readonly byte[] _value;
 
 
 	/// <summary>
@@ -28,11 +28,11 @@ public sealed unsafe class Utf8String :
 	/// </summary>
 	/// <param name="underlyingArray">The underlying array.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public Utf8String(byte[]? underlyingArray) => _value = underlyingArray;
+	public Utf8String(byte[] underlyingArray) => _value = (byte[])underlyingArray.Clone();
 
 
 	/// <inheritdoc/>
-	public int Length => _value?.Length ?? 0;
+	public int Length => _value.Length;
 
 	/// <summary>
 	/// Indicates the underlying array.
@@ -54,35 +54,17 @@ public sealed unsafe class Utf8String :
 	public ref byte this[int index]
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get
-		{
-			if (_value is null)
-			{
-				throw new NullReferenceException();
-			}
-
-			return ref _value[index];
-		}
+		get => ref _value[index];
 	}
 
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public override bool Equals([NotNullWhen(true)] object? obj) => Equals(obj as Utf8String);
+	public override bool Equals([NotNullWhen(true)] object? obj) => obj is Utf8String comparer && Equals(comparer);
 
 	/// <inheritdoc/>
-	public bool Equals([NotNullWhen(true)] Utf8String? other)
+	public bool Equals(Utf8String other)
 	{
-		if (other is null)
-		{
-			return false;
-		}
-
-		if (_value is null)
-		{
-			throw new NullReferenceException();
-		}
-
 		int length = _value.Length;
 		if (length != other.Length)
 		{
@@ -133,11 +115,6 @@ public sealed unsafe class Utf8String :
 	/// <inheritdoc/>
 	public override int GetHashCode()
 	{
-		if (_value is null)
-		{
-			return 0;
-		}
-
 		int length = _value.Length;
 		uint hash = (uint)length;
 		fixed (byte* ap = _value)
@@ -168,12 +145,11 @@ public sealed unsafe class Utf8String :
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public int CompareTo([NotNull] Utf8String? other!!) => Compare(this, other);
+	public int CompareTo(Utf8String other) => Compare(this, other);
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public override string ToString() =>
-		_value is null ? throw new NullReferenceException() : Encoding.UTF8.GetString(_value);
+	public override string ToString() => Encoding.UTF8.GetString(_value);
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -217,14 +193,13 @@ public sealed unsafe class Utf8String :
 	}
 
 
-	/// <inheritdoc/>
+	/// <inheritdoc cref="string.operator ==(string, string)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static bool operator ==(Utf8String? left, Utf8String? right) =>
-		(left, right) switch { (null, null) => true, (not null, not null) => left.Equals(right), _ => false };
+	public static bool operator ==(Utf8String left, Utf8String right) => left.Equals(right);
 
-	/// <inheritdoc/>
+	/// <inheritdoc cref="string.operator !=(string, string)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static bool operator !=(Utf8String? left, Utf8String? right) => !(left == right);
+	public static bool operator !=(Utf8String left, Utf8String right) => !(left == right);
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -249,14 +224,14 @@ public sealed unsafe class Utf8String :
 	/// <param name="s">The string.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static explicit operator string(Utf8String s) =>
-		Encoding.UTF8.GetString(s._value ?? throw new NullReferenceException());
+		Encoding.UTF8.GetString(s._value);
 
 	/// <summary>
 	/// Explicitly cast from <see cref="Utf8String"/> to <see cref="byte"/>[].
 	/// </summary>
 	/// <param name="s">The string.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static explicit operator byte[](Utf8String s) => s._value ?? throw new NullReferenceException();
+	public static explicit operator byte[](Utf8String s) => (byte[])s._value.Clone();
 
 	/// <summary>
 	/// Implicitly cast from <see cref="byte"/>[] to <see cref="Utf8String"/>.
