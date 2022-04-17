@@ -149,22 +149,11 @@ public sealed class DancingLinksSolver : ISimpleSolver
 	/// </exception>
 	private void RecordSolution(Stack<DataNode> answer, out Grid result)
 	{
-		int[] resultArray = new int[81];
 		var idList = new List<int>(from k in answer select k.Id);
 		idList.Sort();
+		int[] gridArray = (from id in idList select id % 9 + 1).ToArray();
 
-		var gridList = new List<int>(from id in idList select id % 9 + 1);
-		for (int i = 0, x = 0, y = 0; i < 81; i++)
-		{
-			resultArray[y * 9 + x++] = gridList[i];
-			if ((i + 1) % 9 == 0)
-			{
-				y++;
-				x = 0;
-			}
-		}
-
-		result = new Grid(resultArray) is { IsValid: true } grid
+		result = new Grid(gridArray, GridCreatingOption.MinusOne) is { IsValid: true } grid
 			? grid
 			: throw new InvalidOperationException("The puzzle has no possible solutions.");
 	}
