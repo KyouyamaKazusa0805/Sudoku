@@ -217,13 +217,10 @@
         </member>
         <member name="T:Sudoku.Diagnostics.CodeGen.Generators.GlobalConfigValueGenerator">
             <summary>
-            Defines the global configuration value source generator.
+            Defines the incremental source generator that is used for the generation on sync the solution version.
             </summary>
         </member>
-        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.GlobalConfigValueGenerator.Execute(Microsoft.CodeAnalysis.GeneratorExecutionContext)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.GlobalConfigValueGenerator.Initialize(Microsoft.CodeAnalysis.GeneratorInitializationContext)">
+        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.GlobalConfigValueGenerator.Initialize(Microsoft.CodeAnalysis.IncrementalGeneratorInitializationContext)">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Diagnostics.CodeGen.TypeFormats">

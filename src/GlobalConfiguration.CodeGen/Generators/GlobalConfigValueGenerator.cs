@@ -1,82 +1,46 @@
 ﻿namespace Sudoku.Diagnostics.CodeGen.Generators;
 
 /// <summary>
-/// Defines the global configuration value source generator.
+/// Defines the incremental source generator that is used for the generation on sync the solution version.
 /// </summary>
 [Generator(LanguageNames.CSharp)]
-public sealed class GlobalConfigValueGenerator : ISourceGenerator
+public sealed class GlobalConfigValueGenerator : IIncrementalGenerator
 {
 	/// <inheritdoc/>
-	public void Execute(GeneratorExecutionContext context)
-	{
-		if (context.AdditionalFiles is not { IsDefaultOrEmpty: false } additionalFiles)
-		{
-			return;
-		}
-
-		var additionalFile = additionalFiles.FirstOrDefault(globalConfigurationFileChecker);
-		if (additionalFile is not { Path: var path })
-		{
-			return;
-		}
-
-		var xmlDocument = new XmlDocument().OnLoading(path);
-		if (xmlDocument is not { DocumentElement: { } root })
-		{
-			return;
-		}
-
-		if (root.SelectNodes("descendant::PropertyGroup") is not { } propertyGroupList)
-		{
-			return;
-		}
-
-		if (propertyGroupList.Cast<XmlNode>().FirstOrDefault() is not { ChildNodes: [_, ..] elements })
-		{
-			return;
-		}
-
-		Unsafe.SkipInit(out Version versionResult);
-		bool found = false;
-		foreach (object element in elements)
-		{
-			if (element is XmlNode { Name: "Version", InnerText: var v }
-				&& Version.TryParse(v, out versionResult))
-			{
-				found = true;
-				break;
-			}
-		}
-		if (!found)
-		{
-			return;
-		}
-
-		context.AddSource(
-			"Constants.Version.g.cs",
-			$$"""
-			namespace Sudoku.Diagnostics.CodeGen;
-
-			partial class Constants
-			{
-				/// <summary>
-				/// Indicates the version of this project.
-				/// </summary>
-				public const string VersionValue = "{{versionResult}}";
-			}
-			"""
+	public void Initialize(IncrementalGeneratorInitializationContext context) =>
+		context.RegisterSourceOutput(
+			context.AdditionalTextsProvider
+				.Where(static file => file.Path.EndsWith("Directory.Build.props"))
+				.Select((text, _) => VersionXmlNodeDeterminer(text)),
+			static (spc, v) => spc.AddSource("Constants.Version.g.cs", GetSource(v))
 		);
 
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	private static string VersionXmlNodeDeterminer(AdditionalText text) =>
+		new XmlDocument()
+			.OnLoading(text.Path)
+			.DocumentElement
+			.SelectNodes("descendant::PropertyGroup")
+			.Cast<XmlNode>()
+			.FirstOrDefault()
+			.ChildNodes
+			.OfType<XmlNode>()
+			.Where(static element => element.Name == "Version")
+			.Select(static element => element.InnerText)
+			.First()
+			.ToString();
 
-		static bool globalConfigurationFileChecker(AdditionalText additionalText)
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	private static string GetSource(string versionValue) =>
+		$$"""
+		namespace Sudoku.Diagnostics.CodeGen;
+		
+		partial class Constants
 		{
-			const string comparer = "Directory.Build.props";
-			return additionalText.Path is var path && (path == comparer || path.EndsWith(comparer));
+			/// <summary>
+			/// Indicates the version of this project.
+			/// </summary>
+			public const string VersionValue = "{{versionValue}}";
 		}
-	}
-
-	/// <inheritdoc/>
-	public void Initialize(GeneratorInitializationContext context)
-	{
-	}
+		""";
 }
