@@ -29,14 +29,6 @@ public readonly struct Utf8String :
 
 
 	/// <summary>
-	/// Initializes a <see cref="Utf8String"/> instance via the specified array of <see cref="Utf8Char"/>s
-	/// as the underlying array.
-	/// </summary>
-	/// <param name="underlyingArray">The underlying array.</param>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public Utf8String(Utf8Char[] underlyingArray) => _value = (Utf8Char[])underlyingArray.Clone();
-
-	/// <summary>
 	/// Initializes a <see cref="Utf8String"/> instance via the specified UTF-8 character and the specified
 	/// times of the appearance.
 	/// </summary>
@@ -49,7 +41,15 @@ public readonly struct Utf8String :
 		Array.Fill(_value, c);
 	}
 
+	/// <summary>
+	/// Initializes a <see cref="Utf8String"/> instance via the specified array of <see cref="Utf8Char"/>s
+	/// as the underlying array.
+	/// </summary>
+	/// <param name="underlyingArray">The underlying array.</param>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public Utf8String(Utf8Char[] underlyingArray) => _value = (Utf8Char[])underlyingArray.Clone();
 
+	
 	/// <inheritdoc/>
 	public int Length
 	{

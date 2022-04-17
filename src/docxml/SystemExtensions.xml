@@ -2938,13 +2938,6 @@
             Indicates the inner value.
             </summary>
         </member>
-        <member name="M:System.Utf8String.#ctor(System.Byte[])">
-            <summary>
-            Initializes a <see cref="T:System.Utf8String"/> instance via the specified array of <see cref="T:System.Byte"/>s
-            as the underlying array.
-            </summary>
-            <param name="underlyingArray">The underlying array.</param>
-        </member>
         <member name="M:System.Utf8String.#ctor(System.Byte,System.Int32)">
             <summary>
             Initializes a <see cref="T:System.Utf8String"/> instance via the specified UTF-8 character and the specified
@@ -2952,6 +2945,13 @@
             </summary>
             <param name="c">The character.</param>
             <param name="count">The times of the appearance.</param>
+        </member>
+        <member name="M:System.Utf8String.#ctor(System.Byte[])">
+            <summary>
+            Initializes a <see cref="T:System.Utf8String"/> instance via the specified array of <see cref="T:System.Byte"/>s
+            as the underlying array.
+            </summary>
+            <param name="underlyingArray">The underlying array.</param>
         </member>
         <member name="P:System.Utf8String.Length">
             <inheritdoc/>
