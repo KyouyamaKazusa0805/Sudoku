@@ -4945,10 +4945,6 @@
             </summary>
             <param name="this">The conclusion type.</param>
             <returns>The notation of the conclusion type.</returns>
-            <exception cref="T:System.ArgumentOutOfRangeException">
-            Throws when the argument is not <see cref="F:Sudoku.Concepts.Solving.ConclusionType.Assignment"/>
-            or <see cref="F:Sudoku.Concepts.Solving.ConclusionType.Elimination"/>.
-            </exception>
         </member>
         <member name="T:Sudoku.Concepts.Solving.ExocetEliminatedReason">
             <summary>
