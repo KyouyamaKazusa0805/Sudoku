@@ -31,13 +31,13 @@ public sealed class RefStructOverridensGenerator : ISourceGenerator
 			return;
 		}
 
+		var onTopLevel = OnTopLevel;
+		var onNestedLevel = OnNested;
 		(
 			from typeSymbol in typeSymbols
 			group typeSymbol by typeSymbol.ContainingType is null into @group
-			let key = @group.Key
-			let f = key ? new Action<GeneratorExecutionContext, INamedTypeSymbol, Compilation>(OnTopLevel) : OnNested
 			from type in @group
-			select (Action: f, Type: type)
+			select (Action: @group.Key ? onTopLevel : onNestedLevel, Type: type)
 		).ForEach(e => e.Action(context, e.Type, compilation));
 	}
 
