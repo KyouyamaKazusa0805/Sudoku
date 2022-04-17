@@ -12,5 +12,5 @@ public interface IComplexSolver<out TSolverResult> where TSolverResult : ISimple
 	/// <param name="puzzle">The puzzle to be solved.</param>
 	/// <param name="cancellationToken">The cancellation token to cancel the operation.</param>
 	/// <returns>The solver result that provides the information after solving.</returns>
-	public TSolverResult Solve(in Grid puzzle, CancellationToken cancellationToken = default);
+	TSolverResult Solve(in Grid puzzle, CancellationToken cancellationToken = default);
 }
