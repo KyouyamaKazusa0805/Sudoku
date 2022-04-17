@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Concepts;
+﻿namespace Sudoku.Concepts.Parsing;
 
 /// <summary>
 /// Defines a range of cells.
@@ -80,7 +80,7 @@ public readonly struct CellRange :
 	/// <param name="other">The other instance to be compared.</param>
 	/// <returns>A <see cref="bool"/> result.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public bool OverlapsWith(CellRange other) => (((Cells)this) & ((Cells)other)) is not [];
+	public bool OverlapsWith(CellRange other) => ((Cells)this & (Cells)other) is not [];
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

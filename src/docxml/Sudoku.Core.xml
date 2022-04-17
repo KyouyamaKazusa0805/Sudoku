@@ -4,91 +4,6 @@
         <name>Sudoku.Core</name>
     </assembly>
     <members>
-        <member name="T:Sudoku.Concepts.CellRange">
-            <summary>
-            Defines a range of cells.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Concepts.CellRange._mask">
-            <summary>
-            Indicates the inner mask.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Concepts.CellRange.#ctor(System.Int32,System.Int32)">
-            <summary>
-            Initializes a <see cref="T:Sudoku.Concepts.CellRange"/> instance via the specified start and end cell.
-            </summary>
-            <param name="start">The start cell.</param>
-            <param name="end">The end cell.</param>
-            <exception cref="T:System.ArgumentException">
-            Throws when:
-            <list type="bullet">
-            <item>The argument <paramref name="start"/> is greater than <paramref name="end"/>.</item>
-            <item>The argument <paramref name="start"/> is below than 0 or greater than 80.</item>
-            <item>The argument <paramref name="end"/> is below than 0 or greater than 81.</item>
-            </list>
-            </exception>
-        </member>
-        <member name="P:Sudoku.Concepts.CellRange.StartCell">
-            <summary>
-            Indicates the start cell.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Concepts.CellRange.EndCell">
-            <summary>
-            Indicates the end cell.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Concepts.CellRange.Deconstruct(System.Int32@,System.Int32@)">
-            <summary>
-            Deconstruct the instance into multiple values.
-            </summary>
-            <param name="startCell">The start cell.</param>
-            <param name="endCell">The end cell.</param>
-        </member>
-        <member name="M:Sudoku.Concepts.CellRange.Equals(System.Object)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.CellRange.Equals(Sudoku.Concepts.CellRange)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.CellRange.OverlapsWith(Sudoku.Concepts.CellRange)">
-            <summary>
-            Determines whether the two <see cref="T:Sudoku.Concepts.CellRange"/> instances are overlapping with each other.
-            </summary>
-            <param name="other">The other instance to be compared.</param>
-            <returns>A <see cref="T:System.Boolean"/> result.</returns>
-        </member>
-        <member name="M:Sudoku.Concepts.CellRange.GetHashCode">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.CellRange.ToString">
-            <inheritdoc cref="M:System.Object.ToString"/>
-        </member>
-        <member name="M:Sudoku.Concepts.CellRange.Parse(System.String)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.CellRange.TryParse(System.String,Sudoku.Concepts.CellRange@)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.CellRange.op_Equality(Sudoku.Concepts.CellRange,Sudoku.Concepts.CellRange)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.CellRange.op_Inequality(Sudoku.Concepts.CellRange,Sudoku.Concepts.CellRange)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.CellRange.op_Implicit(System.Range)~Sudoku.Concepts.CellRange">
-            <summary>
-            Implicitly cast from <see cref="T:System.Range"/> to <see cref="T:Sudoku.Concepts.CellRange"/>.
-            </summary>
-            <param name="range">The range instance.</param>
-        </member>
-        <member name="M:Sudoku.Concepts.CellRange.op_Implicit(Sudoku.Concepts.CellRange)~Sudoku.Concepts.Collections.Cells">
-            <summary>
-            Implicitly cast from <see cref="T:Sudoku.Concepts.CellRange"/> to <see cref="T:Sudoku.Concepts.Collections.Cells"/>.
-            </summary>
-            <param name="range">The cell range instance.</param>
-        </member>
         <member name="T:Sudoku.Concepts.CellStatus">
             <summary>
             Represents a cell status.
@@ -3809,6 +3724,91 @@
             <summary>
             Indicates the prepositional form, such as <c>12{ r1c1, r3c3 }</c>.
             </summary>
+        </member>
+        <member name="T:Sudoku.Concepts.Parsing.CellRange">
+            <summary>
+            Defines a range of cells.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Concepts.Parsing.CellRange._mask">
+            <summary>
+            Indicates the inner mask.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Concepts.Parsing.CellRange.#ctor(System.Int32,System.Int32)">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Concepts.Parsing.CellRange"/> instance via the specified start and end cell.
+            </summary>
+            <param name="start">The start cell.</param>
+            <param name="end">The end cell.</param>
+            <exception cref="T:System.ArgumentException">
+            Throws when:
+            <list type="bullet">
+            <item>The argument <paramref name="start"/> is greater than <paramref name="end"/>.</item>
+            <item>The argument <paramref name="start"/> is below than 0 or greater than 80.</item>
+            <item>The argument <paramref name="end"/> is below than 0 or greater than 81.</item>
+            </list>
+            </exception>
+        </member>
+        <member name="P:Sudoku.Concepts.Parsing.CellRange.StartCell">
+            <summary>
+            Indicates the start cell.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.Parsing.CellRange.EndCell">
+            <summary>
+            Indicates the end cell.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Concepts.Parsing.CellRange.Deconstruct(System.Int32@,System.Int32@)">
+            <summary>
+            Deconstruct the instance into multiple values.
+            </summary>
+            <param name="startCell">The start cell.</param>
+            <param name="endCell">The end cell.</param>
+        </member>
+        <member name="M:Sudoku.Concepts.Parsing.CellRange.Equals(System.Object)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.Parsing.CellRange.Equals(Sudoku.Concepts.Parsing.CellRange)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.Parsing.CellRange.OverlapsWith(Sudoku.Concepts.Parsing.CellRange)">
+            <summary>
+            Determines whether the two <see cref="T:Sudoku.Concepts.Parsing.CellRange"/> instances are overlapping with each other.
+            </summary>
+            <param name="other">The other instance to be compared.</param>
+            <returns>A <see cref="T:System.Boolean"/> result.</returns>
+        </member>
+        <member name="M:Sudoku.Concepts.Parsing.CellRange.GetHashCode">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.Parsing.CellRange.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
+        <member name="M:Sudoku.Concepts.Parsing.CellRange.Parse(System.String)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.Parsing.CellRange.TryParse(System.String,Sudoku.Concepts.Parsing.CellRange@)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.Parsing.CellRange.op_Equality(Sudoku.Concepts.Parsing.CellRange,Sudoku.Concepts.Parsing.CellRange)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.Parsing.CellRange.op_Inequality(Sudoku.Concepts.Parsing.CellRange,Sudoku.Concepts.Parsing.CellRange)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.Parsing.CellRange.op_Implicit(System.Range)~Sudoku.Concepts.Parsing.CellRange">
+            <summary>
+            Implicitly cast from <see cref="T:System.Range"/> to <see cref="T:Sudoku.Concepts.Parsing.CellRange"/>.
+            </summary>
+            <param name="range">The range instance.</param>
+        </member>
+        <member name="M:Sudoku.Concepts.Parsing.CellRange.op_Implicit(Sudoku.Concepts.Parsing.CellRange)~Sudoku.Concepts.Collections.Cells">
+            <summary>
+            Implicitly cast from <see cref="T:Sudoku.Concepts.Parsing.CellRange"/> to <see cref="T:Sudoku.Concepts.Collections.Cells"/>.
+            </summary>
+            <param name="range">The cell range instance.</param>
         </member>
         <member name="T:Sudoku.Concepts.Parsing.GridParser">
             <summary>
