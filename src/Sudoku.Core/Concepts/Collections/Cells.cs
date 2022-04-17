@@ -143,7 +143,7 @@ public unsafe partial struct Cells :
 		this = default;
 		foreach (int offset in cells)
 		{
-			InternalAdd(offset, true);
+			Add(offset);
 		}
 	}
 
@@ -189,7 +189,7 @@ public unsafe partial struct Cells :
 	{
 		for (int i = 0; i < length; i++)
 		{
-			InternalAdd(Unsafe.AddByteOffset(ref Unsafe.AsRef(cell), (nuint)(i * sizeof(int))), true);
+			Add(Unsafe.AddByteOffset(ref Unsafe.AsRef(cell), (nuint)(i * sizeof(int))));
 		}
 	}
 
@@ -215,7 +215,10 @@ public unsafe partial struct Cells :
 		//(this = PeerMaps[cell]).InternalAdd(cell, setItself);
 		// This is a bug for the compiler, see sharplab http://bitly.ws/fRdf
 		this = PeerMaps[cell];
-		InternalAdd(cell, setItself);
+		if (setItself)
+		{
+			Add(cell);
+		}
 	}
 
 
@@ -428,9 +431,6 @@ public unsafe partial struct Cells :
 	/// <inheritdoc/>
 	readonly bool IDefaultable<Cells>.IsDefault => Count == 0;
 
-	/// <inheritdoc/>
-	static Cells IDefaultable<Cells>.Default => Empty;
-
 	/// <summary>
 	/// Indicates the cell offsets in this collection.
 	/// </summary>
@@ -470,6 +470,10 @@ public unsafe partial struct Cells :
 			return arr;
 		}
 	}
+
+
+	/// <inheritdoc/>
+	static Cells IDefaultable<Cells>.Default => Empty;
 
 
 	/// <summary>
@@ -832,22 +836,14 @@ public unsafe partial struct Cells :
 	/// </summary>
 	/// <param name="offset">The offset.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public void Add(int offset) => InternalAdd(offset, true);
-
-	/// <summary>
-	/// Set the specified cell as <see langword="true"/> value.
-	/// </summary>
-	/// <param name="offset">The cell to add, represented as a <see cref="string"/> value.</param>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	[EditorBrowsable(EditorBrowsableState.Never)]
-	public void Add(string offset)
+	public void Add(int offset)
 	{
-		if (TryParse(offset, out var result))
+		ref long v = ref offset / Shifting == 0 ? ref _low : ref _high;
+		bool older = Contains(offset);
+		v |= 1L << offset % Shifting;
+		if (!older)
 		{
-			foreach (int cell in result)
-			{
-				InternalAdd(cell, true);
-			}
+			Count++;
 		}
 	}
 
@@ -877,7 +873,16 @@ public unsafe partial struct Cells :
 	/// </summary>
 	/// <param name="offset">The offset.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public void Remove(int offset) => InternalAdd(offset, false);
+	public void Remove(int offset)
+	{
+		ref long v = ref offset / Shifting == 0 ? ref _low : ref _high;
+		bool older = Contains(offset);
+		v &= ~(1L << offset % Shifting);
+		if (older)
+		{
+			Count--;
+		}
+	}
 
 	/// <summary>
 	/// Clear all bits.
@@ -900,37 +905,6 @@ public unsafe partial struct Cells :
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	readonly IEnumerator<int> IEnumerable<int>.GetEnumerator() => ((IEnumerable<int>)Offsets).GetEnumerator();
-
-	/// <summary>
-	/// The internal operation for adding an offset into the current collection.
-	/// </summary>
-	/// <param name="offset">The cell to add into.</param>
-	/// <param name="value">The value to add.</param>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	private void InternalAdd(int offset, bool value)
-	{
-		if (offset is >= 0 and < 81)
-		{
-			ref long v = ref offset / Shifting == 0 ? ref _low : ref _high;
-			bool older = Contains(offset);
-			if (value)
-			{
-				v |= 1L << offset % Shifting;
-				if (!older)
-				{
-					Count++;
-				}
-			}
-			else
-			{
-				v &= ~(1L << offset % Shifting);
-				if (older)
-				{
-					Count--;
-				}
-			}
-		}
-	}
 
 
 	/// <inheritdoc/>

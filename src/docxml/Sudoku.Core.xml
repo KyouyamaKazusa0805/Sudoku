@@ -831,13 +831,13 @@
         <member name="P:Sudoku.Concepts.Collections.Cells.System#IDefaultable{Sudoku#Concepts#Collections#Cells}#IsDefault">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Concepts.Collections.Cells.System#IDefaultable{Sudoku#Concepts#Collections#Cells}#Default">
-            <inheritdoc/>
-        </member>
         <member name="P:Sudoku.Concepts.Collections.Cells.Offsets">
             <summary>
             Indicates the cell offsets in this collection.
             </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.Collections.Cells.System#IDefaultable{Sudoku#Concepts#Collections#Cells}#Default">
+            <inheritdoc/>
         </member>
         <member name="P:Sudoku.Concepts.Collections.Cells.Item(System.Int32)">
             <summary>
@@ -963,12 +963,6 @@
             </summary>
             <param name="offset">The offset.</param>
         </member>
-        <member name="M:Sudoku.Concepts.Collections.Cells.Add(System.String)">
-            <summary>
-            Set the specified cell as <see langword="true"/> value.
-            </summary>
-            <param name="offset">The cell to add, represented as a <see cref="T:System.String"/> value.</param>
-        </member>
         <member name="M:Sudoku.Concepts.Collections.Cells.AddRange(System.ReadOnlySpan{System.Int32}@)">
             <summary>
             Set the specified offsets as <see langword="true"/> value.
@@ -1000,13 +994,6 @@
         </member>
         <member name="M:Sudoku.Concepts.Collections.Cells.System#Collections#Generic#IEnumerable{System#Int32}#GetEnumerator">
             <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.Collections.Cells.InternalAdd(System.Int32,System.Boolean)">
-            <summary>
-            The internal operation for adding an offset into the current collection.
-            </summary>
-            <param name="offset">The cell to add into.</param>
-            <param name="value">The value to add.</param>
         </member>
         <member name="M:Sudoku.Concepts.Collections.Cells.Parse(System.String)">
             <inheritdoc/>
