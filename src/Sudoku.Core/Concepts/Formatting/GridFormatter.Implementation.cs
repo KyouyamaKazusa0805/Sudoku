@@ -174,7 +174,7 @@ partial struct GridFormatter
 	private partial string ToSingleLineStringCore(in Grid grid)
 	{
 		var sb = new StringHandler(162);
-		var originalGrid = WithCandidates && !ShortenSusser ? Grid.Parse(grid.ToString(".+")) : Grid.Undefined;
+		var originalGrid = WithCandidates && !ShortenSusser ? Grid.Parse($"{grid:.+}") : Grid.Undefined;
 
 		var eliminatedCandidates = Candidates.Empty;
 		for (int c = 0; c < 81; c++)

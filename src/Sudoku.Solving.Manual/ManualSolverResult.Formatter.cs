@@ -78,7 +78,7 @@ partial record class ManualSolverResult
 			// Print header.
 			var sb = new StringHandler();
 			sb.Append(R["AnalysisResultPuzzle"]!);
-			sb.Append(puzzle.ToString("#"));
+			sb.Append($"{puzzle:#}");
 			sb.AppendLine();
 
 			// Print solving steps (if worth).
@@ -213,7 +213,7 @@ partial record class ManualSolverResult
 			if (!solution.IsUndefined)
 			{
 				sb.Append(R["AnalysisResultPuzzleSolution"]!);
-				sb.Append(solution.ToString("!"));
+				sb.Append($"{solution:!}");
 			}
 
 			// Print the elapsed time.

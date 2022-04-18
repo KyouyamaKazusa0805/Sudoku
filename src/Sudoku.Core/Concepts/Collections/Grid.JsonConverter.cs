@@ -52,7 +52,7 @@ partial struct Grid
 		public override void Write(Utf8JsonWriter writer, Grid value, JsonSerializerOptions options)
 		{
 #if GRID_SERIALIZE_STRINGS
-			writer.WriteStringValue(value.ToString("#"));
+			writer.WriteStringValue($"{value:#}");
 #elif GRID_SERIALIZE_RAW_DATA
 			writer.WriteStartArray();
 			foreach (short mask in value.EnumerateMasks())

@@ -18,7 +18,7 @@ static ErrorCode formatHandler(FormatOptions options)
 	string format = options.FormatString;
 	try
 	{
-		Console.WriteLine(
+		ConsoleExtensions.WriteLine(
 			$"""
 			Grid: '{rawGridValue}'
 			Format: '{c(format)}'
@@ -81,9 +81,9 @@ static ErrorCode solveGridHandler(SolveGridOptions options)
 				// to get the same result as 'grid.ToString("#")'; on contrast, 'grid.ToString("#")'
 				// as expected will be replaced with 'grid.ToString()'.
 				// Same reason for the below output case.
-				Console.WriteLine(
+				ConsoleExtensions.WriteLine(
 					$"""
-					Puzzle: {grid.ToString("#")}
+					Puzzle: {grid:#}
 					Method name used: '{name}'{(
 						uriLink is null
 							? string.Empty
@@ -93,7 +93,7 @@ static ErrorCode solveGridHandler(SolveGridOptions options)
 							"""
 					)}
 					---
-					Solution: {solution.ToString("!")}
+					Solution: {solution:!}
 					"""
 				);
 
@@ -106,12 +106,12 @@ static ErrorCode solveGridHandler(SolveGridOptions options)
 					return ErrorCode.ArgGridValueIsNotUnique;
 				}
 
-				Console.WriteLine(
+				ConsoleExtensions.WriteLine(
 					$"""
-					Puzzle: {grid.ToString("#")}
+					Puzzle: {grid:#}
 					Method name used: '{methodNameUsed}'
 					---
-					Solution: {solution.ToString("!")}
+					Solution: {solution:!}
 					Solving details:
 					{solverResult}
 					"""
@@ -136,9 +136,9 @@ static ErrorCode checkGridHandler(CheckGridOptions options)
 				return errorCode;
 			}
 
-			Console.WriteLine(
+			ConsoleExtensions.WriteLine(
 				$"""
-				Puzzle: '{grid.ToString("#")}'
+				Puzzle: '{grid:#}'
 				The puzzle {(grid.IsValid ? "has" : "doesn't have")} a unique solution.
 				"""
 			);
@@ -170,7 +170,7 @@ static ErrorCode generateHandler(GenerateGridOptions options)
 			continue;
 		}
 
-		Console.WriteLine($"""The puzzle generated: '{targetPuzzle.ToString("0")}'""");
+		ConsoleExtensions.WriteLine($"""The puzzle generated: '{targetPuzzle:0}'""");
 
 		return ErrorCode.None;
 	}

@@ -1383,6 +1383,11 @@ public unsafe partial struct Grid :
 	public static Grid Parse(string str, GridParsingOption gridParsingOption) =>
 		new GridParser(str).Parse(gridParsingOption);
 
+	/// <inheritdoc cref="Parse(string)"/>
+	/// <param name="handler">The string handler.</param>
+	public static Grid Parse([InterpolatedStringHandlerArgument] ref StringHandler handler) =>
+		Parse(handler.ToStringAndClear());
+
 	/// <inheritdoc/>
 	public static bool TryParse(string str, out Grid result)
 	{

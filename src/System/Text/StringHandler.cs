@@ -970,10 +970,6 @@ public unsafe ref partial struct StringHandler
 	/// Writes the specified interpolated string into the handler.
 	/// </summary>
 	/// <param name="handler">The handler that creates the interpolated string as this argument.</param>
-	/// <remarks><b>
-	/// Don't use <see langword="ref"/> keyword instead of here <see langword="in"/> <paramref name="handler"/>;
-	/// otherwise, the compiler error CS8751 (internal compiler erorr) will be raised.
-	/// </b></remarks>
 	public void AppendFormatted([InterpolatedStringHandlerArgument] in StringHandler handler)
 	{
 		string result = handler.ToStringAndClear();

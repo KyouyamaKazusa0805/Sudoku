@@ -2104,6 +2104,10 @@
             <param name="gridParsingOption">The grid parsing type.</param>
             <returns>The result instance had converted.</returns>
         </member>
+        <member name="M:Sudoku.Concepts.Collections.Grid.Parse(System.Text.StringHandler@)">
+            <inheritdoc cref="M:Sudoku.Concepts.Collections.Grid.Parse(System.String)"/>
+            <param name="handler">The string handler.</param>
+        </member>
         <member name="M:Sudoku.Concepts.Collections.Grid.TryParse(System.String,Sudoku.Concepts.Collections.Grid@)">
             <inheritdoc/>
         </member>

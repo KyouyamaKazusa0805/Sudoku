@@ -7,23 +7,12 @@
 public static class Utf8JsonWriterExtensions
 {
 	/// <summary>
-	/// Try to write an object.
+	/// Writes a string text value specified as a <see cref="StringHandler"/> instance as an element
+	/// of a JSON array.
 	/// </summary>
-	/// <typeparam name="T">The type of the value.</typeparam>
-	/// <param name="this">The instance.</param>
-	/// <param name="value">The value to serialize.</param>
-	/// <param name="converter">The converter.</param>
-	/// <param name="options">The options on serialization.</param>
-	public static void WriteObject<T>(
-		this Utf8JsonWriter @this, T value, JsonConverter<T>? converter, JsonSerializerOptions options)
-	{
-		if (converter is not null)
-		{
-			converter.Write(@this, value, options);
-		}
-		else
-		{
-			JsonSerializer.Serialize(@this, value, options);
-		}
-	}
+	/// <param name="this">The <see cref="Utf8JsonWriter"/> instance.</param>
+	/// <param name="handler">The string handler.</param>
+	public static void WriteStringValue(
+		this Utf8JsonWriter @this, [InterpolatedStringHandlerArgument] ref StringHandler handler) =>
+		@this.WriteStringValue(handler.ToStringAndClear());
 }
