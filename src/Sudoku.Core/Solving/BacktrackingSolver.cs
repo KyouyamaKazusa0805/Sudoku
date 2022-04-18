@@ -23,10 +23,13 @@
 public sealed class BacktrackingSolver : ISimpleSolver
 {
 	/// <inheritdoc/>
-	public string Name => "Backtracking";
+	public static char Shortcut => 't';
 
 	/// <inheritdoc/>
-	public string UriLink => "https://simple.wikipedia.org/wiki/Backtracking";
+	public static string Name => "Backtracking";
+
+	/// <inheritdoc/>
+	public static string UriLink => "https://simple.wikipedia.org/wiki/Backtracking";
 
 
 	/// <inheritdoc/>

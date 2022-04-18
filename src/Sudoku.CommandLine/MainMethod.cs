@@ -51,16 +51,23 @@ static ErrorCode solveGridHandler(SolveGridOptions options)
 	}
 
 	string? methodNameUsed = null;
-	foreach (var (full, @short, index, type) in SolveGridOptions.MethodNames)
+	foreach (var type in
+		from type in typeof(ISimpleSolver).Assembly.GetTypes()
+		where type.IsClass && type.IsAssignableTo(typeof(ISimpleSolver)) && type.GetConstructor(Array.Empty<Type>()) is not null
+		select type)
 	{
-		if (Array.IndexOf(new[] { full, @short, index }, options.Method) == -1)
+		string methodName = options.Method;
+		string name = (string)type.GetProperty(nameof(ISimpleSolver.Name))!.GetValue(null)!;
+		string shortcutStr = ((char)type.GetProperty(nameof(ISimpleSolver.Shortcut))!.GetValue(null)!).ToString();
+		string? uriLink = (string?)type.GetProperty(nameof(ISimpleSolver.UriLink))!.GetValue(null);
+		if (methodName != name && methodName != shortcutStr)
 		{
 			continue;
 		}
 
 		switch (Activator.CreateInstance(type))
 		{
-			case ISimpleSolver { Name: var name, UriLink: var uri } simpleSolver:
+			case ISimpleSolver simpleSolver:
 			{
 				if (simpleSolver.Solve(grid, out _) is not true)
 				{
@@ -77,8 +84,14 @@ static ErrorCode solveGridHandler(SolveGridOptions options)
 				Console.WriteLine(
 					$"""
 					Puzzle: {grid.ToString("#")}
-					Method name used: '{name}'
-					URI link: '{uri ?? "<No link>"}'
+					Method name used: '{name}'{(
+						uriLink is null
+							? string.Empty
+							: $"""
+							
+							URI link: '{uriLink}'
+							"""
+					)}
 					---
 					Solution: {solution.ToString("!")}
 					"""
@@ -107,8 +120,6 @@ static ErrorCode solveGridHandler(SolveGridOptions options)
 				break;
 			}
 		}
-		
-		break;
 	}
 
 	return methodNameUsed is null ? ErrorCode.ArgMethodIsInvalid : ErrorCode.None;

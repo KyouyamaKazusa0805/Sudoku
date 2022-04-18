@@ -6,9 +6,14 @@
 public interface ISimpleSolver
 {
 	/// <summary>
+	/// Indicates the shortcut of the simple solver.
+	/// </summary>
+	static abstract char Shortcut { get; }
+
+	/// <summary>
 	/// Indicates the name of the solver.
 	/// </summary>
-	string Name { get; }
+	static abstract string Name { get; }
 
 	/// <summary>
 	/// Indicates the URI link that links to the introduction of the algorithm.
@@ -16,7 +21,7 @@ public interface ISimpleSolver
 	/// <remarks>
 	/// This property is reserved as information that is offered to the algorithm learners.
 	/// </remarks>
-	string? UriLink { get; }
+	static abstract string? UriLink { get; }
 
 
 	/// <summary>

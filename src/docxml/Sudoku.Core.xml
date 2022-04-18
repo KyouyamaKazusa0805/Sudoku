@@ -10548,6 +10548,9 @@
             </para>
             </remarks>
         </member>
+        <member name="P:Sudoku.Solving.BacktrackingSolver.Shortcut">
+            <inheritdoc/>
+        </member>
         <member name="P:Sudoku.Solving.BacktrackingSolver.Name">
             <inheritdoc/>
         </member>
@@ -10610,16 +10613,19 @@
             Pointer to the currently active slot.
             </summary>
         </member>
+        <member name="P:Sudoku.Solving.BitwiseSolver.LimitSolutions">
+            <summary>
+            Indicates the number of solutions found.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.BitwiseSolver.Shortcut">
+            <inheritdoc/>
+        </member>
         <member name="P:Sudoku.Solving.BitwiseSolver.Name">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.BitwiseSolver.UriLink">
             <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Solving.BitwiseSolver.LimitSolutions">
-            <summary>
-            Indicates the number of solutions found.
-            </summary>
         </member>
         <member name="M:Sudoku.Solving.BitwiseSolver.Solve(Sudoku.Concepts.Collections.Grid@,Sudoku.Concepts.Collections.Grid@)">
             <inheritdoc/>
@@ -10872,6 +10878,9 @@
             Indicates the root node of the full link map.
             </summary>
         </member>
+        <member name="P:Sudoku.Solving.DancingLinksSolver.Shortcut">
+            <inheritdoc/>
+        </member>
         <member name="P:Sudoku.Solving.DancingLinksSolver.Name">
             <inheritdoc/>
         </member>
@@ -11072,6 +11081,11 @@
             Defines a simple solver.
             </summary>
         </member>
+        <member name="P:Sudoku.Solving.ISimpleSolver.Shortcut">
+            <summary>
+            Indicates the shortcut of the simple solver.
+            </summary>
+        </member>
         <member name="P:Sudoku.Solving.ISimpleSolver.Name">
             <summary>
             Indicates the name of the solver.
@@ -11121,6 +11135,9 @@
             <summary>
             Defines a solver that can solve a sudoku puzzle, using LINQ.
             </summary>
+        </member>
+        <member name="P:Sudoku.Solving.LinqSolver.Shortcut">
+            <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.LinqSolver.Name">
             <inheritdoc/>
@@ -11191,6 +11208,9 @@
 			</para>
 		</summary>
 	</static-constructor>
+        </member>
+        <member name="P:Sudoku.Solving.LinqSolver2.Shortcut">
+            <inheritdoc/>
         </member>
         <member name="P:Sudoku.Solving.LinqSolver2.Name">
             <inheritdoc/>
