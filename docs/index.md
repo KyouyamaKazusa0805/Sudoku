@@ -27,7 +27,7 @@
     * [`Cells` 结构](data-structures/cells)
     * `Grid` 结构
       * [API 用法介绍](data-structures/grid)
-      * `Grid` 会用到的格式化字符串
+      * [`Grid` 会用到的格式化字符串](data-structures/grid-text-format)
   * 代码分析规则
   * 用法示例
     * [示例表](usages)

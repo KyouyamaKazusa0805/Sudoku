@@ -61,6 +61,7 @@ public struct Grid :
     public static Grid Parse(string str, bool compatibleFirst);
     public static Grid Parse(ReadOnlySpan<char> str);
     public static Grid Parse(string str);
+    public static Grid Parse([InterpolatedStringHandlerArgument] StringHandler str);
     public static bool TryParse(string str, GridParsingOption option, out Grid result);
     public static bool TryParse(string str, out Grid result);
     public readonly CandidateCollectionEnumerator EnumerateCandidates();
