@@ -57,10 +57,7 @@ internal sealed class CellDigit : DrawingElement
 	/// </exception>
 	public CellDigit(byte digit, bool? isGiven, UserPreference userPreference)
 	{
-		if (digit is >= 9 and not byte.MaxValue)
-		{
-			throw new ArgumentOutOfRangeException(nameof(digit));
-		}
+		Argument.ThrowIfFalse(digit is < 9 or byte.MaxValue);
 
 		(_userPreference, _isGiven) = (userPreference, isGiven);
 		_textBlock = new()

@@ -218,18 +218,9 @@ public static unsafe class GridTransformations
 	/// </exception>
 	public static Grid SwapTwoHouses(this in Grid @this, int houseIndex1, int houseIndex2)
 	{
-		if (houseIndex1 is not (>= 9 and < 27))
-		{
-			throw new ArgumentException("The specified argument is out of valid range.", nameof(houseIndex1));
-		}
-		if (houseIndex2 is not (>= 9 and < 27))
-		{
-			throw new ArgumentException("The specified argument is out of valid range.", nameof(houseIndex2));
-		}
-		if (houseIndex1 / 9 != houseIndex2 / 9)
-		{
-			throw new ArgumentException("Two houses should be the same house type.");
-		}
+		Argument.ThrowIfFalse(houseIndex1 is >= 9 and < 27, "The specified argument is out of valid range.");
+		Argument.ThrowIfFalse(houseIndex2 is >= 9 and < 27, "The specified argument is out of valid range.");
+		Argument.ThrowIfFalse(houseIndex1 / 9 == houseIndex2 / 9, "Two houses should be the same house type.");
 
 		var result = @this;
 		fixed (short* pThis = @this, pResult = result)

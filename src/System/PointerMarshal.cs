@@ -18,8 +18,8 @@ public static unsafe class PointerMarshal
 	public static void Swap<TUnmanaged>(/*[Restrict]*/ TUnmanaged* left, /*[Restrict]*/ TUnmanaged* right)
 		where TUnmanaged : unmanaged
 	{
-		Nullability.ThrowIfNull(left);
-		Nullability.ThrowIfNull(right);
+		Argument.ThrowIfNull(left);
+		Argument.ThrowIfNull(right);
 
 		var temp = *left;
 		*left = *right;
@@ -43,7 +43,7 @@ public static unsafe class PointerMarshal
 	/// </remarks>
 	public static int StringLengthOf(char* ptr)
 	{
-		Nullability.ThrowIfNull(ptr);
+		Argument.ThrowIfNull(ptr);
 
 #if true
 		int result = 0;
@@ -82,7 +82,7 @@ public static unsafe class PointerMarshal
 	public static TUnmanaged[] GetArrayFromStart<TUnmanaged>(TUnmanaged* ptr, int length, int index)
 		where TUnmanaged : unmanaged
 	{
-		Nullability.ThrowIfNull(ptr);
+		Argument.ThrowIfNull(ptr);
 
 		var result = new TUnmanaged[length - index];
 		for (int i = index; i < length; i++)
@@ -116,7 +116,7 @@ public static unsafe class PointerMarshal
 	/// <seealso cref="GetArrayFromStart{TUnmanaged}(TUnmanaged*, int, int)"/>
 	public static int[] GetArrayFromStart(int* ptr, int length, int index, bool removeTrailingZeros)
 	{
-		Nullability.ThrowIfNull(ptr);
+		Argument.ThrowIfNull(ptr);
 
 		if (removeTrailingZeros)
 		{

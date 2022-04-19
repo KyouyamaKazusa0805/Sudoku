@@ -138,6 +138,69 @@
             </remarks>
             <seealso cref="!:Sort&lt;T&gt;(T[], delegate*&lt;T, T, int&gt;, int, int)"/>
         </member>
+        <member name="T:System.Argument">
+            <summary>
+            Represents a type that holds argument checking operations.
+            </summary>
+        </member>
+        <member name="M:System.Argument.ThrowIfNotEqual``1(``0,``0,System.String)">
+            <summary>
+            Checks whether the specified value is equivalent to the specified value. Otherwise,
+            an <see cref="T:System.ArgumentException"/> will be thrown.
+            </summary>
+            <typeparam name="TEquatable">The type of the instance.</typeparam>
+            <param name="instance">The instance.</param>
+            <param name="value">The value that the argument <paramref name="argName"/> must be.</param>
+            <param name="argName">The argument name.</param>
+            <exception cref="T:System.ArgumentException">
+            Throws when the argument <paramref name="argName"/> is not equal to <paramref name="value"/>.
+            </exception>
+        </member>
+        <member name="M:System.Argument.ThrowIfFalse(System.Boolean,System.String,System.String)">
+            <summary>
+            Checks whether the specified condition is <see langword="true"/>. Otherwise,
+            an <see cref="T:System.ArgumentException"/> will be thrown.
+            </summary>
+            <param name="condition">The condition.</param>
+            <param name="message">The error message.</param>
+            <param name="conditionStr">The string representation of the condition expression.</param>
+            <exception cref="T:System.ArgumentException">
+            Throws when checking failed on argument <paramref name="condition"/>.
+            </exception>
+        </member>
+        <member name="M:System.Argument.ThrowIfInvalid(System.Boolean,System.String,System.String)">
+            <summary>
+            Checks whether the specified condition is <see langword="true"/>. Otherwise,
+            an <see cref="T:System.InvalidOperationException"/> will be thrown.
+            </summary>
+            <param name="condition">The condition.</param>
+            <param name="message">The error message.</param>
+            <param name="conditionStr">The string representation of the condition expression.</param>
+            <exception cref="T:System.InvalidOperationException">
+            Throws when checking failed on argument <paramref name="condition"/>.
+            </exception>
+        </member>
+        <member name="M:System.Argument.ThrowIfNull(System.Void*,System.String)">
+            <summary>
+            Checks whether the specified pointer value is not <see langword="null"/>. Otherwise,
+            an <see cref="T:System.ArgumentNullException"/> will be thrown.
+            </summary>
+            <param name="pointer">The pointer value.</param>
+            <param name="argName">The argument name.</param>
+            <exception cref="T:System.ArgumentNullException">
+            Throws when the <paramref name="argName"/> is <see langword="null"/>.
+            </exception>
+        </member>
+        <member name="M:System.Argument.ThrowIfNullRef``1(``0@,System.String)">
+            <summary>
+            Checks whether the specified reference value is not <see langword="null"/>. Otherwise,
+            an <see cref="T:System.ArgumentNullException"/> will be thrown.
+            </summary>
+            <typeparam name="TStruct">The type of the real instance.</typeparam>
+            <param name="ref">The pointer value.</param>
+            <param name="argName">The argument name.</param>
+            <exception cref="T:System.ArgumentNullException"></exception>
+        </member>
         <member name="T:System.Collections.Generic.Bag`1">
             <summary>
             Defines a data structure that stores the items without any remove operations,
@@ -2339,32 +2402,6 @@
             <returns>
             A <see cref="T:System.Boolean"/> result indicating whether the operation is successful to execute.
             </returns>
-        </member>
-        <member name="T:System.Nullability">
-            <summary>
-            Represents a type that holds the <see langword="null"/>-checking operation.
-            </summary>
-        </member>
-        <member name="M:System.Nullability.ThrowIfNull(System.Void*,System.String)">
-            <summary>
-            Checks whether the specified pointer value is not <see langword="null"/>. Otherwise,
-            an <see cref="T:System.ArgumentNullException"/> will be thrown.
-            </summary>
-            <param name="pointer">The pointer value.</param>
-            <param name="argName">The argument name.</param>
-            <exception cref="T:System.ArgumentNullException">
-            Throws when the <paramref name="argName"/> is <see langword="null"/>.
-            </exception>
-        </member>
-        <member name="M:System.Nullability.ThrowIfNullRef``1(``0@,System.String)">
-            <summary>
-            Checks whether the specified reference value is not <see langword="null"/>. Otherwise,
-            an <see cref="T:System.ArgumentNullException"/> will be thrown.
-            </summary>
-            <typeparam name="TStruct">The type of the real instance.</typeparam>
-            <param name="ref">The pointer value.</param>
-            <param name="argName">The argument name.</param>
-            <exception cref="T:System.ArgumentNullException"></exception>
         </member>
         <member name="T:System.Numerics.IMetaLogicalOperators`1">
             <summary>

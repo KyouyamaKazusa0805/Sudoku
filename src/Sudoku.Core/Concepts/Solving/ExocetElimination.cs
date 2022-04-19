@@ -100,10 +100,7 @@ public readonly record struct ExocetElimination(in Candidates Eliminations, Exoc
 	{
 		_ = left is { Eliminations: var le, Reason: var lr };
 		_ = right is { Eliminations: var re, Reason: var rr };
-		if (lr != rr)
-		{
-			throw new ArgumentException("Two arguments should contains same eliminated reason.");
-		}
+		Argument.ThrowIfFalse(lr == rr, "Two arguments should contains same eliminated reason.");
 
 		int totalCount = le.Count + re.Count;
 		int* merged = stackalloc int[totalCount];

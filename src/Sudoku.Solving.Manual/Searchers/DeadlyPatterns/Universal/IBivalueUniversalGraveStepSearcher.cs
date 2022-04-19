@@ -34,10 +34,7 @@ public unsafe interface IBivalueUniversalGraveStepSearcher : IUniversalStepSearc
 		in Grid grid, [NotNullWhen(true)] out IReadOnlyList<int>? trueCandidates,
 		int maximumCellsToCheck = 20)
 	{
-		if (!grid.IsValid)
-		{
-			throw new InvalidOperationException("The puzzle must be valid (containing a unique solution).");
-		}
+		Argument.ThrowIfInvalid(grid.IsValid, "The puzzle must be valid (containing a unique solution).");
 
 		InitializeMaps(grid);
 

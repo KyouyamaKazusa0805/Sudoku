@@ -186,6 +186,7 @@ public abstract record class Step(ConclusionList Conclusions, ViewList Views) : 
 	public string Formatize(bool handleEscaping = false)
 	{
 		// Check whether the format property is not null.
+
 		if (Format is not { } format)
 		{
 			throw new InvalidOperationException("The format can't be null.");

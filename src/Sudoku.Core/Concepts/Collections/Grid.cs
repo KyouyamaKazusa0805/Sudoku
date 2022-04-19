@@ -201,10 +201,7 @@ public unsafe partial struct Grid :
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public Grid(short[] masks)
 	{
-		if (masks.Length != 81)
-		{
-			throw new ArgumentException("The length of the array argument should be 81.", nameof(masks));
-		}
+		Argument.ThrowIfNotEqual(masks.Length, 81, nameof(masks));
 
 		Unsafe.CopyBlock(
 			ref Unsafe.As<short, byte>(ref _values[0]),
@@ -236,7 +233,7 @@ public unsafe partial struct Grid :
 	/// </exception>
 	private Grid(in int firstElement, GridCreatingOption creatingOption = GridCreatingOption.None)
 	{
-		Nullability.ThrowIfNullRef(firstElement);
+		Argument.ThrowIfNullRef(firstElement);
 
 		// Firstly we should initialize the inner values.
 		this = Empty;
@@ -1351,7 +1348,7 @@ public unsafe partial struct Grid :
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static Grid Parse(char* ptrStr)
 	{
-		Nullability.ThrowIfNull(ptrStr);
+		Argument.ThrowIfNull(ptrStr);
 
 		return Parse(new string(ptrStr));
 	}

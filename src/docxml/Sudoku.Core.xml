@@ -380,6 +380,12 @@
         <member name="M:Sudoku.Concepts.Collections.Candidates.TryParse(System.String,Sudoku.Concepts.Collections.Candidates@)">
             <inheritdoc/>
         </member>
+        <member name="M:Sudoku.Concepts.Collections.Candidates.CandidatePattern">
+            <summary>
+            Indicates the candidate regular expression pattern.
+            </summary>
+            <returns>The regular expression pattern instance.</returns>
+        </member>
         <member name="M:Sudoku.Concepts.Collections.Candidates.op_LogicalNot(Sudoku.Concepts.Collections.Candidates@)">
             <summary>
             Gets the peer intersection of the current instance.

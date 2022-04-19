@@ -60,7 +60,7 @@ partial class DrawingElementBag
 			internal SelectEnumerator(WhereEnumerator enumerator, delegate*<DrawingElement, T> selector) :
 				this(enumerator)
 			{
-				Nullability.ThrowIfNull(selector);
+				Argument.ThrowIfNull(selector);
 
 				_selectorMethodPtr = selector;
 			}

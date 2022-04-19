@@ -187,7 +187,7 @@ public unsafe partial struct Cells :
 	/// </exception>
 	private Cells(in int cell, int length)
 	{
-		Nullability.ThrowIfNullRef(cell);
+		Argument.ThrowIfNullRef(cell);
 
 		for (int i = 0; i < length; i++)
 		{
@@ -535,17 +535,14 @@ public unsafe partial struct Cells :
 	/// </exception>
 	public readonly void CopyTo(int* arr, int length)
 	{
-		Nullability.ThrowIfNull(arr);
+		Argument.ThrowIfNull(arr);
 
 		if (Count == 0)
 		{
 			return;
 		}
 
-		if (Count > length)
-		{
-			throw new InvalidOperationException("The capacity is not enough.");
-		}
+		Argument.ThrowIfInvalid(Count <= length, "The capacity is not enough.");
 
 		long value;
 		int i, pos = 0;

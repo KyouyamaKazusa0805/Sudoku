@@ -99,10 +99,7 @@ public unsafe ref partial struct ValueList<TUnmanaged> where TUnmanaged : unmana
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public void Add(TUnmanaged element)
 	{
-		if (_length >= _capacity)
-		{
-			throw new InvalidOperationException("Cannot add because the collection is full.");
-		}
+		Argument.ThrowIfInvalid(_length < _capacity, "Cannot add because the collection is full.");
 
 		_startPtr[_length++] = element;
 	}

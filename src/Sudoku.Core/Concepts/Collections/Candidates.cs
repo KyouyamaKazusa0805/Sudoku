@@ -3,7 +3,7 @@
 /// <summary>
 /// Encapsulates a map that contains 729 positions to represent a candidate.
 /// </summary>
-public unsafe struct Candidates :
+public unsafe partial struct Candidates :
 	IDefaultable<Candidates>,
 	IEnumerable<int>,
 	IEquatable<Candidates>,
@@ -64,7 +64,7 @@ public unsafe struct Candidates :
 	/// </exception>
 	public Candidates(int* candidates, int length)
 	{
-		Nullability.ThrowIfNull(candidates);
+		Argument.ThrowIfNull(candidates);
 
 		this = default;
 		for (int i = 0; i < length; i++)
@@ -118,10 +118,7 @@ public unsafe struct Candidates :
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public Candidates(long[] binary)
 	{
-		if (binary.Length != 12)
-		{
-			throw new ArgumentException($"The length of the array should be 12.", nameof(binary));
-		}
+		Argument.ThrowIfNotEqual(binary.Length, 12, nameof(binary));
 
 		int count = 0;
 
@@ -153,12 +150,8 @@ public unsafe struct Candidates :
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public Candidates(long* binary, int length)
 	{
-		Nullability.ThrowIfNull(binary);
-
-		if (length != 12)
-		{
-			throw new ArgumentException($"Argument '{nameof(length)}' should be {12}.", nameof(length));
-		}
+		Argument.ThrowIfNull(binary);
+		Argument.ThrowIfNotEqual(length, 12);
 
 		int count = 0;
 
@@ -316,17 +309,14 @@ public unsafe struct Candidates :
 	/// </exception>
 	public readonly void CopyTo(int* arr, int length)
 	{
-		Nullability.ThrowIfNull(arr);
+		Argument.ThrowIfNull(arr);
 
 		if (Count == 0)
 		{
 			return;
 		}
 
-		if (length < Count)
-		{
-			throw new ArgumentException("The capacity is not enough.", nameof(arr));
-		}
+		Argument.ThrowIfFalse(length >= Count, "The capacity is not enough.");
 
 		for (int i = 0, count = 0; i < 729; i++)
 		{
@@ -670,19 +660,10 @@ public unsafe struct Candidates :
 	/// <exception cref="FormatException">Throws when the specified text is invalid to parse.</exception>
 	public static Candidates Parse(string str, CandidatesParsingOptions options)
 	{
-		if (options is 0 or > (CandidatesParsingOptions)7)
-		{
-			throw new ArgumentException("The option is invalid.", nameof(options));
-		}
-
-		var regex = new Regex(
-			"""([1-9]{3}|[1-9]{1,9}(R[1-9]{1,9}C[1-9]{1,9}|r[1-9]{1,9}c[1-9]{1,9}|\{\s*(R[1-9]{1,9}C[1-9]{1,9}|r[1-9]{1,9}c[1-9]{1,9}),\s*(R[1-9]{1,9}C[1-9]{1,9}|r[1-9]{1,9}c[1-9]{1,9})*\s*\})|\{\s*(R[1-9]{1,9}C[1-9]{1,9}|r[1-9]{1,9}c[1-9]{1,9}),\s*(R[1-9]{1,9}C[1-9]{1,9}|r[1-9]{1,9}c[1-9]{1,9})*\s*\}\([1-9]{1,9}\))""",
-			RegexOptions.ExplicitCapture,
-			TimeSpan.FromSeconds(5)
-		);
+		Argument.ThrowIfFalse(options is not (0 or > (CandidatesParsingOptions)7), "The option is invalid.");
 
 		// Check whether the match is successful.
-		var matches = regex.Matches(str);
+		var matches = CandidatePattern().Matches(str);
 		if (matches.Count == 0)
 		{
 			throw new FormatException("The specified string can't match any candidate instance.");
@@ -763,6 +744,13 @@ public unsafe struct Candidates :
 			return false;
 		}
 	}
+
+	/// <summary>
+	/// Indicates the candidate regular expression pattern.
+	/// </summary>
+	/// <returns>The regular expression pattern instance.</returns>
+	[RegexGenerator("""([1-9]{3}|[1-9]{1,9}(R[1-9]{1,9}C[1-9]{1,9}|r[1-9]{1,9}c[1-9]{1,9}|\{\s*(R[1-9]{1,9}C[1-9]{1,9}|r[1-9]{1,9}c[1-9]{1,9}),\s*(R[1-9]{1,9}C[1-9]{1,9}|r[1-9]{1,9}c[1-9]{1,9})*\s*\})|\{\s*(R[1-9]{1,9}C[1-9]{1,9}|r[1-9]{1,9}c[1-9]{1,9}),\s*(R[1-9]{1,9}C[1-9]{1,9}|r[1-9]{1,9}c[1-9]{1,9})*\s*\}\([1-9]{1,9}\))""", RegexOptions.ExplicitCapture, 5000)]
+	private static partial Regex CandidatePattern();
 
 
 	/// <summary>

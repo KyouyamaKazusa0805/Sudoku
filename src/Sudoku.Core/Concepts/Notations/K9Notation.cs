@@ -135,7 +135,7 @@ public sealed partial class K9Notation : INotationHandler, ICellNotation<K9Notat
 	public static unsafe Cells ParseCells(string str)
 	{
 		// Check whether the match is successful.
-		if (CellOrCellListRegex().Matches(str) is not [_, ..] matches)
+		if (CellOrCellListRegex().Matches(str) is not { Count: not 0 } matches)
 		{
 			throw new FormatException("The specified string can't match any cell instance.");
 		}

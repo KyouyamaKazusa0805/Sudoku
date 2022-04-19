@@ -123,7 +123,7 @@ public sealed unsafe partial class BitwiseSolver : ISimpleSolver
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public long Solve(/*[Restrict]*/ char* puzzle, /*[Restrict]*/ char* solution, int limit)
 	{
-		Nullability.ThrowIfNull(puzzle);
+		Argument.ThrowIfNull(puzzle);
 
 #if CLEAR_STATE_STACK_FOR_EACH_CHECK_VALIDITY_AND_SOLVE_INVOKES
 		Array.Clear(_stack);
@@ -225,7 +225,7 @@ public sealed unsafe partial class BitwiseSolver : ISimpleSolver
 #endif
 	)
 	{
-		Nullability.ThrowIfNull(grid);
+		Argument.ThrowIfNull(grid);
 
 #if CLEAR_STATE_STACK_FOR_EACH_CHECK_VALIDITY_AND_SOLVE_INVOKES
 		if (clearFirst)
