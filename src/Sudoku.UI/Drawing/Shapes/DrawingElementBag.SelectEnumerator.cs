@@ -67,8 +67,13 @@ partial class DrawingElementBag
 		/// Throws when the argument <paramref name="selector"/> is <see langword="null"/>.
 		/// </exception>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal SelectEnumerator(DrawingElement[] elements, int count, delegate*<DrawingElement, T> selector!!) :
-			this(elements, count) => _selectorMethodPtr = selector;
+		internal SelectEnumerator(DrawingElement[] elements, int count, delegate*<DrawingElement, T> selector) :
+			this(elements, count)
+		{
+			Nullability.ThrowIfNull(selector);
+
+			_selectorMethodPtr = selector;
+		}
 
 		/// <summary>
 		/// Initializes the items.

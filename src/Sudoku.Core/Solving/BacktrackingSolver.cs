@@ -69,7 +69,7 @@ public sealed class BacktrackingSolver : ISimpleSolver
 
 				// We should catch the result.
 				// If we use normal assignment, we well get the initial grid rather a solution,
-				// because this is a recursive function!!!
+				// because this is a recursive function.
 				result = (int[])gridValues.Clone();
 				return; // Exit the recursion.
 			}

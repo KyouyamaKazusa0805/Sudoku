@@ -444,8 +444,10 @@ public unsafe ref partial struct StringHandler
 	/// <exception cref="ArgumentNullException">
 	/// Throws when the argument <paramref name="value"/> is <see langword="null"/>.
 	/// </exception>
-	public void Append(char* value!!, int length)
+	public void Append(char* value, int length)
 	{
+		Nullability.ThrowIfNull(value);
+
 		int pos = Length;
 		if (pos > _chars.Length - length)
 		{
@@ -665,9 +667,12 @@ public unsafe ref partial struct StringHandler
 	/// is <see langword="null"/>.
 	/// </exception>
 	public void AppendRangeWithSeparatorUnsafe<TUnmanaged>(
-		TUnmanaged* list!!, int length, delegate*<TUnmanaged, string?> converter!!, string separator)
+		TUnmanaged* list, int length, delegate*<TUnmanaged, string?> converter, string separator)
 		where TUnmanaged : unmanaged
 	{
+		Nullability.ThrowIfNull(list);
+		Nullability.ThrowIfNull(converter);
+
 		for (int i = 0; i < length; i++)
 		{
 			var element = list[i];
@@ -693,9 +698,11 @@ public unsafe ref partial struct StringHandler
 	/// Throws when the argument <paramref name="list"/> is <see langword="null"/>.
 	/// </exception>
 	public void AppendRangeWithSeparatorUnsafe<TUnmanaged>(
-		TUnmanaged* list!!, int length, Func<TUnmanaged, string?> converter, string separator)
+		TUnmanaged* list, int length, Func<TUnmanaged, string?> converter, string separator)
 		where TUnmanaged : unmanaged
 	{
+		Nullability.ThrowIfNull(list);
+
 		for (int i = 0; i < length; i++)
 		{
 			var element = list[i];

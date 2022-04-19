@@ -121,8 +121,10 @@ public sealed unsafe partial class BitwiseSolver : ISimpleSolver
 	/// Throws when the argument <paramref name="puzzle"/> is <see langword="null"/>.
 	/// </exception>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public long Solve(/*[Restrict]*/ char* puzzle!!, /*[Restrict]*/ char* solution, int limit)
+	public long Solve(/*[Restrict]*/ char* puzzle, /*[Restrict]*/ char* solution, int limit)
 	{
+		Nullability.ThrowIfNull(puzzle);
+
 #if CLEAR_STATE_STACK_FOR_EACH_CHECK_VALIDITY_AND_SOLVE_INVOKES
 		Array.Clear(_stack);
 #endif
@@ -216,13 +218,15 @@ public sealed unsafe partial class BitwiseSolver : ISimpleSolver
 #endif
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public bool CheckValidity(
-		char* grid!!
+		char* grid
 #if CLEAR_STATE_STACK_FOR_EACH_CHECK_VALIDITY_AND_SOLVE_INVOKES
 		,
 		bool clearFirst = true
 #endif
 	)
 	{
+		Nullability.ThrowIfNull(grid);
+
 #if CLEAR_STATE_STACK_FOR_EACH_CHECK_VALIDITY_AND_SOLVE_INVOKES
 		if (clearFirst)
 		{

@@ -60,9 +60,13 @@ partial class DrawingElementBag
 		/// Throws when the argument <paramref name="predicate"/> is <see langword="null"/>.
 		/// </exception>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal WhereEnumerator(
-			DrawingElement[] elements, int count, delegate*<DrawingElement, bool> predicate!!) :
-			this(elements, count) => _predicateMethodPtr = predicate;
+		internal WhereEnumerator(DrawingElement[] elements, int count, delegate*<DrawingElement, bool> predicate) :
+			this(elements, count)
+		{
+			Nullability.ThrowIfNull(predicate);
+
+			_predicateMethodPtr = predicate;
+		}
 
 		/// <summary>
 		/// Initializes the items.

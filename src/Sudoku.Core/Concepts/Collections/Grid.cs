@@ -147,11 +147,8 @@ public unsafe partial struct Grid :
 	/// </summary>
 	/// <param name="pGridValues">The pointer parameter indicating the array of cell digits.</param>
 	/// <param name="creatingOption">The grid creating option.</param>
-	/// <exception cref="ArgumentNullException">
-	/// Throws when the argument <paramref name="pGridValues"/> is <see langword="null"/>.
-	/// </exception>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public Grid(int* pGridValues!!, GridCreatingOption creatingOption = GridCreatingOption.None) :
+	public Grid(int* pGridValues, GridCreatingOption creatingOption = GridCreatingOption.None) :
 		this(*pGridValues, creatingOption)
 	{
 	}
@@ -234,8 +231,13 @@ public unsafe partial struct Grid :
 	///     file='../../global-doc-comments.xml'
 	///     path='g/csharp7/feature[@name="ref-returns"]/target[@name="method"]'/>
 	/// </remarks>
+	/// <exception cref="ArgumentNullException">
+	/// Throws when the argument <paramref name="firstElement"/> is <see langword="null"/> reference.
+	/// </exception>
 	private Grid(in int firstElement, GridCreatingOption creatingOption = GridCreatingOption.None)
 	{
+		Nullability.ThrowIfNullRef(firstElement);
+
 		// Firstly we should initialize the inner values.
 		this = Empty;
 
@@ -1347,7 +1349,12 @@ public unsafe partial struct Grid :
 	/// Throws when the only argument is <see langword="null"/>.
 	/// </exception>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static Grid Parse(char* ptrStr!!) => Parse(new string(ptrStr));
+	public static Grid Parse(char* ptrStr)
+	{
+		Nullability.ThrowIfNull(ptrStr);
+
+		return Parse(new string(ptrStr));
+	}
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

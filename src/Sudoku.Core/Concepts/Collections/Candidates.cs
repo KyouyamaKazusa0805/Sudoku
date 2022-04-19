@@ -62,8 +62,10 @@ public unsafe struct Candidates :
 	/// <exception cref="ArgumentNullException">
 	/// Throws when the argument <paramref name="candidates"/> is <see langword="null"/>.
 	/// </exception>
-	public Candidates(int* candidates!!, int length)
+	public Candidates(int* candidates, int length)
 	{
+		Nullability.ThrowIfNull(candidates);
+
 		this = default;
 		for (int i = 0; i < length; i++)
 		{
@@ -149,8 +151,10 @@ public unsafe struct Candidates :
 	/// </exception>
 	/// <exception cref="ArgumentException">Throws when the length is invalid.</exception>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public Candidates(long* binary!!, int length)
+	public Candidates(long* binary, int length)
 	{
+		Nullability.ThrowIfNull(binary);
+
 		if (length != 12)
 		{
 			throw new ArgumentException($"Argument '{nameof(length)}' should be {12}.", nameof(length));
@@ -310,8 +314,10 @@ public unsafe struct Candidates :
 	/// <exception cref="InvalidOperationException">
 	/// Throws when the capacity isn't enough to store all values.
 	/// </exception>
-	public readonly void CopyTo(int* arr!!, int length)
+	public readonly void CopyTo(int* arr, int length)
 	{
+		Nullability.ThrowIfNull(arr);
+
 		if (Count == 0)
 		{
 			return;

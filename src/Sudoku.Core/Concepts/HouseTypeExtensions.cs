@@ -48,8 +48,10 @@ public static class HouseTypeExtensions
 
 	/// <inheritdoc cref="CopyHouseInfo(int, int*)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static unsafe void CopyHouseInfo(this byte cell, byte* ptr!!)
+	public static unsafe void CopyHouseInfo(this byte cell, byte* ptr)
 	{
+		Nullability.ThrowIfNull(ptr);
+
 		ptr[0] = (byte)BlockTable[cell];
 		ptr[1] = (byte)RowTable[cell];
 		ptr[2] = (byte)ColumnTable[cell];
@@ -66,8 +68,10 @@ public static class HouseTypeExtensions
 	/// Throws when the argument <paramref name="ptr"/> is <see langword="null"/>.
 	/// </exception>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static unsafe void CopyHouseInfo(this int cell, int* ptr!!)
+	public static unsafe void CopyHouseInfo(this int cell, int* ptr)
 	{
+		Nullability.ThrowIfNull(ptr);
+
 		ptr[0] = BlockTable[cell];
 		ptr[1] = RowTable[cell];
 		ptr[2] = ColumnTable[cell];

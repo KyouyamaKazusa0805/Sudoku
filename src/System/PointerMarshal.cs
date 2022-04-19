@@ -15,9 +15,12 @@ public static unsafe class PointerMarshal
 	/// Throws when <paramref name="left"/> or <paramref name="right"/> is <see langword="null"/>.
 	/// </exception>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static void Swap<TUnmanaged>(/*[Restrict]*/ TUnmanaged* left!!, /*[Restrict]*/ TUnmanaged* right!!)
+	public static void Swap<TUnmanaged>(/*[Restrict]*/ TUnmanaged* left, /*[Restrict]*/ TUnmanaged* right)
 		where TUnmanaged : unmanaged
 	{
+		Nullability.ThrowIfNull(left);
+		Nullability.ThrowIfNull(right);
+
 		var temp = *left;
 		*left = *right;
 		*right = temp;
@@ -38,8 +41,10 @@ public static unsafe class PointerMarshal
 	/// <see cref="char"/>[], they ends with the terminator symbol <c>'\0'</c>.
 	/// However, C# not.
 	/// </remarks>
-	public static int StringLengthOf(char* ptr!!)
+	public static int StringLengthOf(char* ptr)
 	{
+		Nullability.ThrowIfNull(ptr);
+
 #if true
 		int result = 0;
 		for (char* p = ptr; *p != '\0'; p++)
@@ -74,9 +79,11 @@ public static unsafe class PointerMarshal
 	/// the parameter <paramref name="length"/> should keep the value 5 because the array contains
 	/// 5 elements in this case.
 	/// </remarks>
-	public static TUnmanaged[] GetArrayFromStart<TUnmanaged>(TUnmanaged* ptr!!, int length, int index)
+	public static TUnmanaged[] GetArrayFromStart<TUnmanaged>(TUnmanaged* ptr, int length, int index)
 		where TUnmanaged : unmanaged
 	{
+		Nullability.ThrowIfNull(ptr);
+
 		var result = new TUnmanaged[length - index];
 		for (int i = index; i < length; i++)
 		{
@@ -107,8 +114,10 @@ public static unsafe class PointerMarshal
 	/// 5 elements in this case.
 	/// </remarks>
 	/// <seealso cref="GetArrayFromStart{TUnmanaged}(TUnmanaged*, int, int)"/>
-	public static int[] GetArrayFromStart(int* ptr!!, int length, int index, bool removeTrailingZeros)
+	public static int[] GetArrayFromStart(int* ptr, int length, int index, bool removeTrailingZeros)
 	{
+		Nullability.ThrowIfNull(ptr);
+
 		if (removeTrailingZeros)
 		{
 			int count = 0;

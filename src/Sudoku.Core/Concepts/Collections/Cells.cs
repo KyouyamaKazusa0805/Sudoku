@@ -74,11 +74,8 @@ public unsafe partial struct Cells :
 	/// </summary>
 	/// <param name="cells">The pointer points to an array of elements.</param>
 	/// <param name="length">The length of the array.</param>
-	/// <exception cref="ArgumentNullException">
-	/// Throws when the argument <paramref name="cells"/> is <see langword="null"/>.
-	/// </exception>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public Cells(int* cells!!, int length) : this(in *cells, length)
+	public Cells(int* cells, int length) : this(in *cells, length)
 	{
 	}
 
@@ -185,8 +182,13 @@ public unsafe partial struct Cells :
 	///     file='../../global-doc-comments.xml'
 	///     path='g/csharp7/feature[@name="ref-returns"]/target[@name="method"]'/>
 	/// </remarks>
+	/// <exception cref="ArgumentNullException">
+	/// Throws when the argument <paramref name="cell"/> is <see langword="null"/> reference.
+	/// </exception>
 	private Cells(in int cell, int length)
 	{
+		Nullability.ThrowIfNullRef(cell);
+
 		for (int i = 0; i < length; i++)
 		{
 			Add(Unsafe.AddByteOffset(ref Unsafe.AsRef(cell), (nuint)(i * sizeof(int))));
@@ -531,8 +533,10 @@ public unsafe partial struct Cells :
 	/// <exception cref="InvalidOperationException">
 	/// Throws when the capacity isn't enough to store all values.
 	/// </exception>
-	public readonly void CopyTo(int* arr!!, int length)
+	public readonly void CopyTo(int* arr, int length)
 	{
+		Nullability.ThrowIfNull(arr);
+
 		if (Count == 0)
 		{
 			return;

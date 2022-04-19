@@ -635,9 +635,6 @@
             </summary>
             <param name="cells">The pointer points to an array of elements.</param>
             <param name="length">The length of the array.</param>
-            <exception cref="T:System.ArgumentNullException">
-            Throws when the argument <paramref name="cells"/> is <see langword="null"/>.
-            </exception>
         </member>
         <member name="M:Sudoku.Concepts.Collections.Cells.#ctor(System.Int32[])">
             <summary>
@@ -741,6 +738,9 @@
 				</i>
 			</target>
             </remarks>
+            <exception cref="T:System.ArgumentNullException">
+            Throws when the argument <paramref name="cell" /> is <see langword="null" /> reference.
+            </exception>
         </member>
         <member name="M:Sudoku.Concepts.Collections.Cells.#ctor(System.Int32,System.Boolean)">
             <summary>
@@ -1446,9 +1446,6 @@
             </summary>
             <param name="pGridValues">The pointer parameter indicating the array of cell digits.</param>
             <param name="creatingOption">The grid creating option.</param>
-            <exception cref="T:System.ArgumentNullException">
-            Throws when the argument <paramref name="pGridValues"/> is <see langword="null"/>.
-            </exception>
         </member>
         <member name="M:Sudoku.Concepts.Collections.Grid.#ctor(System.ReadOnlySpan{System.Int32},Sudoku.Concepts.GridCreatingOption)">
             <summary>
@@ -1535,6 +1532,9 @@
 				</i>
 			</target>
             </remarks>
+            <exception cref="T:System.ArgumentNullException">
+            Throws when the argument <paramref name="firstElement" /> is <see langword="null" /> reference.
+            </exception>
         </member>
         <member name="M:Sudoku.Concepts.Collections.Grid.#cctor">
             <static-constructor>
