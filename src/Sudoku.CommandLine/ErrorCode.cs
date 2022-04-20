@@ -48,9 +48,19 @@ public enum ErrorCode
 	RangePatternIsInvalid = 401,
 
 	/// <summary>
+	/// Indicates the error case that the method is invalid.
+	/// </summary>
+	MethodIsInvalid,
+
+	/// <summary>
 	/// Indicates the error case that the website link is failed to be used to visit.
 	/// </summary>
 	SiteIsFailedToVisit = 501,
+
+	/// <summary>
+	/// Indicates the error case that the website links is invalid.
+	/// </summary>
+	SiteLinkIsInvalid,
 
 	/// <summary>
 	/// Indicates the error case that the command line arguments are failed to be parsed.

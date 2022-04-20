@@ -12,14 +12,15 @@ public sealed class CommandAttribute : CommandLineAttributeBase
 	/// </summary>
 	/// <param name="shortName">The short name of the command.</param>
 	/// <param name="fullName">The full name of the command. The command should not contain the prefix.</param>
+	/// <param name="description">The description of the command.</param>
 	/// <exception cref="ArgumentOutOfRangeException">
 	/// Throws when the argument <paramref name="shortName"/> is not a letter.
 	/// </exception>
 	/// <exception cref="ArgumentException">
 	/// Throws when the argument <paramref name="fullName"/> doesn't start with a letter, or a hyphen.
 	/// </exception>
-	public CommandAttribute(char shortName, string fullName) =>
-		(ShortName, FullName) = (
+	public CommandAttribute(char shortName, string fullName, string description) =>
+		(ShortName, FullName, Description) = (
 			shortName is >= 'A' and <= 'Z' or >= 'a' and <= 'z'
 				? shortName
 				: throw new ArgumentOutOfRangeException(nameof(shortName)),
@@ -27,7 +28,8 @@ public sealed class CommandAttribute : CommandLineAttributeBase
 				? fullName
 				: throw new ArgumentException(
 					"The argument must start with a letter or a hyphen.",
-					nameof(fullName))
+					nameof(fullName)),
+			description
 		);
 
 
@@ -40,4 +42,9 @@ public sealed class CommandAttribute : CommandLineAttributeBase
 	/// Indicates the full name.
 	/// </summary>
 	public string FullName { get; }
+
+	/// <summary>
+	/// Indicates the description of the command.
+	/// </summary>
+	public string Description { get; }
 }
