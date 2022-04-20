@@ -18,7 +18,7 @@ public readonly record struct Parser(string[] Arguments) :
 	/// potential boxing and unboxing operations, which will make an unexpected error that the assignment
 	/// will always be failed on <see langword="struct"/> types.
 	/// </remarks>
-	/// <exception cref="InvalidOperationException">
+	/// <exception cref="CommandLineParserException">
 	/// Throws when the command line arguments is <see langword="null"/> or empty currently,
 	/// or the command name is invalid.
 	/// </exception>
@@ -34,7 +34,7 @@ public readonly record struct Parser(string[] Arguments) :
 					return;
 				}
 
-				throw new InvalidOperationException("Don't require any command line arguments now.");
+				throw new CommandLineParserException(ParserError.SpecialCommandDoNotRequireOtherArguments);
 			}
 			default:
 			{
@@ -49,14 +49,14 @@ public readonly record struct Parser(string[] Arguments) :
 		// Checks the validity of the command line arguments.
 		if (Arguments is not [var possibleCommandName, .. var otherArgs])
 		{
-			throw new InvalidOperationException("The command line arguments is invalid.");
+			throw new CommandLineParserException(ParserError.ArgumentFormatInvalid);
 		}
 
 		// Checks whether the current command line name matches the specified one.
 		bool rootCommandMatcher(string e) => e.Equals(possibleCommandName, StringComparison.OrdinalIgnoreCase);
 		if (TRootCommand.SupportedCommands.Any(rootCommandMatcher))
 		{
-			throw new InvalidOperationException("The command name is invalid.");
+			throw new CommandLineParserException(ParserError.CommandNameIsInvalid);
 		}
 
 		// Now gets the information of the global configration.
@@ -86,7 +86,7 @@ public readonly record struct Parser(string[] Arguments) :
 				).ToArray();
 				if (properties is not [{ PropertyType: var propertyType } property])
 				{
-					throw new InvalidOperationException("Ambiguous matched or mismatched.");
+					throw new CommandLineParserException(ParserError.ArgumentsAmbiguousMatchedOrMismatched);
 				}
 
 				// Assign the real value.
@@ -114,7 +114,7 @@ public readonly record struct Parser(string[] Arguments) :
 				).ToArray();
 				if (properties is not [{ PropertyType: var propertyType } property])
 				{
-					throw new InvalidOperationException("Ambiguous matched or mismatched.");
+					throw new CommandLineParserException(ParserError.ArgumentsAmbiguousMatchedOrMismatched);
 				}
 
 				// Assign the real value.
@@ -126,7 +126,7 @@ public readonly record struct Parser(string[] Arguments) :
 			else
 			{
 				// Mismatched.
-				throw new InvalidOperationException("The argument mismatched.");
+				throw new CommandLineParserException(ParserError.ArgumentMismatched);
 			}
 
 
@@ -134,7 +134,7 @@ public readonly record struct Parser(string[] Arguments) :
 			{
 				if (i + 1 >= otherArgs.Length)
 				{
-					throw new InvalidOperationException("Cannot operate due to the lack of the real value.");
+					throw new CommandLineParserException(ParserError.ArgumentExpected);
 				}
 
 				// Converts the real argument value into the target property typed instance.
@@ -154,7 +154,7 @@ public readonly record struct Parser(string[] Arguments) :
 						rootCommand,
 						propertyType == typeof(string)
 							? realValue
-							: throw new InvalidOperationException("The target type must be a string."));
+							: throw new CommandLineParserException(ParserError.ConvertedTypeMustBeString));
 				}
 			}
 		}

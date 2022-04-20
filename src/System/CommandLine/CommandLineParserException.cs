@@ -10,7 +10,13 @@ public sealed class CommandLineParserException : Exception
 	/// </summary>
 	/// <param name="errorCode">The error code.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public CommandLineParserException(ParserError errorCode) : base() => ErrorCode = errorCode;
+	public CommandLineParserException(ParserError errorCode) :
+		base(
+			typeof(ParserError)
+				.GetField(errorCode.ToString())!
+				.GetCustomAttribute<DescriptionAttribute>()!
+				.Description
+		) => ErrorCode = errorCode;
 
 
 	/// <summary>

@@ -988,7 +988,7 @@
             potential boxing and unboxing operations, which will make an unexpected error that the assignment
             will always be failed on <see langword="struct"/> types.
             </remarks>
-            <exception cref="T:System.InvalidOperationException">
+            <exception cref="T:System.CommandLine.CommandLineParserException">
             Throws when the command line arguments is <see langword="null"/> or empty currently,
             or the command name is invalid.
             </exception>
@@ -1005,6 +1005,41 @@
         <member name="T:System.CommandLine.ParserError">
             <summary>
             Defines a parser error.
+            </summary>
+        </member>
+        <member name="F:System.CommandLine.ParserError.SpecialCommandDoNotRequireOtherArguments">
+            <summary>
+            Indicates the error that the unexpected arguments.
+            </summary>
+        </member>
+        <member name="F:System.CommandLine.ParserError.ArgumentFormatInvalid">
+            <summary>
+            Indicates the error that the command line arguments is invalid.
+            </summary>
+        </member>
+        <member name="F:System.CommandLine.ParserError.CommandNameIsInvalid">
+            <summary>
+            Indicates the error that the command name is invalid.
+            </summary>
+        </member>
+        <member name="F:System.CommandLine.ParserError.ArgumentsAmbiguousMatchedOrMismatched">
+            <summary>
+            Indicates the error that ambiguous matched or mismatched.
+            </summary>
+        </member>
+        <member name="F:System.CommandLine.ParserError.ArgumentMismatched">
+            <summary>
+            Indicates the error that the argument is mismatched.
+            </summary>
+        </member>
+        <member name="F:System.CommandLine.ParserError.ArgumentExpected">
+            <summary>
+            Indicates the error that the argument is expected.
+            </summary>
+        </member>
+        <member name="F:System.CommandLine.ParserError.ConvertedTypeMustBeString">
+            <summary>
+            Indicates the error that the converted type must be a <see cref="T:System.String"/>.
             </summary>
         </member>
         <member name="T:System.CommonComparers.Equality.MatchLengthComparer">
