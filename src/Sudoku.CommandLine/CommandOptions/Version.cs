@@ -28,7 +28,7 @@ public sealed class Version : IVersionCommand
 			throw new CommandLineException((int)ErrorCode.AssemblyNameIsNull);
 		}
 
-		Console.WriteLine(
+		Terminal.WriteLine(
 			$"""
 			Project {realName}
 			Version {version}

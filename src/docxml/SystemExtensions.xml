@@ -1042,6 +1042,84 @@
             Indicates the error that the converted type must be a <see cref="T:System.String"/>.
             </summary>
         </member>
+        <member name="T:System.CommandLine.Terminal">
+            <summary>
+            Provides with the operations for the terminal.
+            </summary>
+        </member>
+        <member name="M:System.CommandLine.Terminal.Write(System.Text.StringHandler@)">
+            <summary>
+            Writes the string value specified the <see cref="T:System.Text.StringHandler"/> as an interpolated string,
+            followed by the current line terminator to the standard output stream.
+            </summary>
+            <param name="handler">The string handler that holds the interpolated string.</param>
+        </member>
+        <member name="M:System.CommandLine.Terminal.Write(System.Text.StringHandler@,System.ConsoleColor)">
+            <summary>
+            Writes the string value specified the <see cref="T:System.Text.StringHandler"/> as an interpolated string,
+            followed by the current line terminator to the standard output stream.
+            </summary>
+            <param name="handler">The string handler that holds the interpolated string.</param>
+            <param name="foreground">The foreground color.</param>
+        </member>
+        <member name="M:System.CommandLine.Terminal.Write(System.Text.StringHandler@,System.ConsoleColor,System.ConsoleColor)">
+            <summary>
+            Writes the string value specified the <see cref="T:System.Text.StringHandler"/> as an interpolated string,
+            followed by the current line terminator to the standard output stream.
+            </summary>
+            <param name="handler">The string handler that holds the interpolated string.</param>
+            <param name="foreground">The foreground color.</param>
+            <param name="background">The background color.</param>
+        </member>
+        <member name="M:System.CommandLine.Terminal.Write``1(``0)">
+            <inheritdoc cref="M:System.Console.Write(System.Object)"/>
+        </member>
+        <member name="M:System.CommandLine.Terminal.Write``1(``0,System.ConsoleColor)">
+            <summary>
+            Writes the text representation of the specified object to the standard output stream,
+            with the specified foreground.
+            </summary>
+            <typeparam name="T">The type of the object to be displayed.</typeparam>
+            <param name="value"><inheritdoc cref="M:System.Console.Write(System.Object)"/></param>
+            <param name="foreground">The foreground color.</param>
+        </member>
+        <member name="M:System.CommandLine.Terminal.Write``1(``0,System.ConsoleColor,System.ConsoleColor)">
+            <summary>
+            Writes the text representation of the specified object to the standard output stream,
+            with the specified foreground.
+            </summary>
+            <typeparam name="T">The type of the object to be displayed.</typeparam>
+            <param name="value"><inheritdoc cref="M:System.Console.Write(System.Object)"/></param>
+            <param name="foreground">The foreground color.</param>
+            <param name="background">The background color.</param>
+        </member>
+        <member name="M:System.CommandLine.Terminal.WriteLine">
+            <inheritdoc cref="M:System.Console.WriteLine"/>
+        </member>
+        <member name="M:System.CommandLine.Terminal.WriteLine(System.Text.StringHandler@)">
+            <summary>
+            Writes the string value specified the <see cref="T:System.Text.StringHandler"/> as an interpolated string,
+            followed by the current line terminator to the standard output stream.
+            </summary>
+            <param name="handler">The string handler that holds the interpolated string.</param>
+        </member>
+        <member name="M:System.CommandLine.Terminal.WriteLine(System.Text.StringHandler@,System.ConsoleColor)">
+            <summary>
+            Writes the string value specified the <see cref="T:System.Text.StringHandler"/> as an interpolated string,
+            followed by the current line terminator to the standard output stream.
+            </summary>
+            <param name="handler">The string handler that holds the interpolated string.</param>
+            <param name="foreground">The foreground color.</param>
+        </member>
+        <member name="M:System.CommandLine.Terminal.WriteLine(System.Text.StringHandler@,System.ConsoleColor,System.ConsoleColor)">
+            <summary>
+            Writes the string value specified the <see cref="T:System.Text.StringHandler"/> as an interpolated string,
+            followed by the current line terminator to the standard output stream.
+            </summary>
+            <param name="handler">The string handler that holds the interpolated string.</param>
+            <param name="foreground">The foreground color.</param>
+            <param name="background">The background color.</param>
+        </member>
         <member name="T:System.CommonComparers.Equality.MatchLengthComparer">
             <summary>
             Indicates the inner equality comparer to determine the equality of length
@@ -1111,19 +1189,6 @@
         </member>
         <member name="M:System.Casing.GeneratedRegex_Utf8IdentifierRegex_97F8565E.RunnerFactory.Runner.IsWordChar(System.Char)">
             <summary>Determines whether the character is part of the [\w] set.</summary>
-        </member>
-        <member name="T:System.ConsoleExtensions">
-            <summary>
-            Provides with extension methods on <see cref="T:System.Console"/>.
-            </summary>
-            <seealso cref="T:System.Console"/>
-        </member>
-        <member name="M:System.ConsoleExtensions.WriteLine(System.Text.StringHandler@)">
-            <summary>
-            Writes the string value specified the <see cref="T:System.Text.StringHandler"/> as an interpolated string,
-            followed by the current line terminator to the standard output stream.
-            </summary>
-            <param name="handler">The string handler that holds the interpolated string.</param>
         </member>
         <member name="T:System.DelegateExtensions">
             <summary>

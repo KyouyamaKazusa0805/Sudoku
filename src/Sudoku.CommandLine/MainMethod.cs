@@ -18,7 +18,7 @@ static ErrorCode formatHandler(FormatOptions options)
 	string format = options.FormatString;
 	try
 	{
-		ConsoleExtensions.WriteLine(
+		Terminal.WriteLine(
 			$"""
 			Grid: '{rawGridValue}'
 			Format: '{c(format)}'
@@ -81,7 +81,7 @@ static ErrorCode solveGridHandler(SolveGridOptions options)
 				// to get the same result as 'grid.ToString("#")'; on contrast, 'grid.ToString("#")'
 				// as expected will be replaced with 'grid.ToString()'.
 				// Same reason for the below output case.
-				ConsoleExtensions.WriteLine(
+				Terminal.WriteLine(
 					$"""
 					Puzzle: {grid:#}
 					Method name used: '{name}'{(
@@ -106,7 +106,7 @@ static ErrorCode solveGridHandler(SolveGridOptions options)
 					return ErrorCode.ArgGridValueIsNotUnique;
 				}
 
-				ConsoleExtensions.WriteLine(
+				Terminal.WriteLine(
 					$"""
 					Puzzle: {grid:#}
 					Method name used: '{methodNameUsed}'
@@ -136,7 +136,7 @@ static ErrorCode checkGridHandler(CheckGridOptions options)
 				return errorCode;
 			}
 
-			ConsoleExtensions.WriteLine(
+			Terminal.WriteLine(
 				$"""
 				Puzzle: '{grid:#}'
 				The puzzle {(grid.IsValid ? "has" : "doesn't have")} a unique solution.
@@ -170,7 +170,7 @@ static ErrorCode generateHandler(GenerateGridOptions options)
 			continue;
 		}
 
-		ConsoleExtensions.WriteLine($"""The puzzle generated: '{targetPuzzle:0}'""");
+		Terminal.WriteLine($"""The puzzle generated: '{targetPuzzle:0}'""");
 
 		return ErrorCode.None;
 	}
@@ -218,7 +218,7 @@ static ErrorCode visitHandler(VisitOptions options)
 			);
 #else
 			// Output the site link.
-			Console.WriteLine(
+			Terminal.WriteLine(
 				$"""
 				Please visit the following site to learn more information.
 				{uriSite}

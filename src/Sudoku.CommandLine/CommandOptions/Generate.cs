@@ -58,7 +58,7 @@ public sealed class Generate : IRootCommand
 						continue;
 					}
 
-					ConsoleExtensions.WriteLine($"""The puzzle generated: '{targetPuzzle:0}'""");
+					Terminal.WriteLine($"""The puzzle generated: '{targetPuzzle:0}'""");
 
 					return;
 				}

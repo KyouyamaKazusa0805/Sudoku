@@ -48,7 +48,7 @@ public sealed class Check : IRootCommand
 		{
 			case CheckType.Validity:
 			{
-				ConsoleExtensions.WriteLine(
+				Terminal.WriteLine(
 					$"""
 					Puzzle: '{Grid:#}'
 					The puzzle {(Grid.IsValid ? "has" : "doesn't have")} a unique solution.

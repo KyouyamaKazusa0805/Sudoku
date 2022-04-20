@@ -78,7 +78,7 @@ public sealed class Solve : IRootCommand
 					// to get the same result as 'grid.ToString("#")'; on contrast, 'grid.ToString("#")'
 					// as expected will be replaced with 'grid.ToString()'.
 					// Same reason for the below output case.
-					ConsoleExtensions.WriteLine(
+					Terminal.WriteLine(
 						$"""
 						Puzzle: {Grid:#}
 						Method name used: '{name}'{(
@@ -103,7 +103,7 @@ public sealed class Solve : IRootCommand
 						throw new CommandLineException((int)ErrorCode.ArgGridValueIsNotUnique);
 					}
 
-					ConsoleExtensions.WriteLine(
+					Terminal.WriteLine(
 						$"""
 						Puzzle: {Grid:#}
 						Method name used: '{methodNameUsed}'

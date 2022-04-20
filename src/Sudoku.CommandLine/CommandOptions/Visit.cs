@@ -64,7 +64,7 @@ public sealed class Visit : IRootCommand
 		}
 #else
 		// Output the site link.
-		Console.WriteLine(
+		Terminal.WriteLine(
 			$"""
 			Please visit the following site to learn more information.
 			{link}

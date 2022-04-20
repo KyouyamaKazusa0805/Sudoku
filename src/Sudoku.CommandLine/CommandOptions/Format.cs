@@ -46,7 +46,7 @@ public sealed class Format : IRootCommand
 		string format = FormatString;
 		try
 		{
-			ConsoleExtensions.WriteLine(
+			Terminal.WriteLine(
 				$"""
 				Grid: '{Grid.ToString("0")}'
 				Format: '{c(format)}'
