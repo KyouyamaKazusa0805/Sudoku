@@ -5,7 +5,7 @@ namespace Sudoku.CommandLine.CommandOptions;
 /// <summary>
 /// Represents a visit command.
 /// </summary>
-public sealed class Visit : IRootCommand<ErrorCode>
+public sealed class Visit : IRootCommand
 {
 	/// <summary>
 	/// Indicates the link to visit.
@@ -37,13 +37,13 @@ public sealed class Visit : IRootCommand<ErrorCode>
 
 
 	/// <inheritdoc/>
-	public ErrorCode Execute()
+	public void Execute()
 	{
 		var attribute = typeof(Visit).GetProperty(nameof(VisitLink))!.GetCustomAttribute<DescriptionAttribute>()!;
 		string link = attribute.Description;
 		if (!Uri.TryCreate(link, UriKind.Absolute, out _))
 		{
-			return ErrorCode.SiteLinkIsInvalid;
+			throw new CommandLineException((int)ErrorCode.SiteLinkIsInvalid);
 		}
 
 #if VISIT_SITE_DIRECTLY
@@ -57,13 +57,10 @@ public sealed class Visit : IRootCommand<ErrorCode>
 				new ProcessStartInfo(targetUri.AbsoluteUri)
 #endif
 			);
-
-			// Just return, because only one value will be set to true in the target option set.
-			return ErrorCode.None;
 		}
 		catch
 		{
-			return ErrorCode.SiteIsFailedToVisit;
+			throw new CommandLineException((int)ErrorCode.SiteIsFailedToVisit);
 		}
 #else
 		// Output the site link.
@@ -73,9 +70,6 @@ public sealed class Visit : IRootCommand<ErrorCode>
 			{link}
 			"""
 		);
-
-		// Just return, because only one value will be set to true in the target option set.
-		return ErrorCode.None;
 #endif
 	}
 }

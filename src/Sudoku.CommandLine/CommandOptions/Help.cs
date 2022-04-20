@@ -3,7 +3,7 @@
 /// <summary>
 /// Defines the type that stores the help options.
 /// </summary>
-public sealed class Help : IHelpCommand<ErrorCode>
+public sealed class Help : IHelpCommand
 {
 	/// <inheritdoc/>
 	public static string Name => "help";
@@ -20,15 +20,13 @@ public sealed class Help : IHelpCommand<ErrorCode>
 
 
 	/// <inheritdoc/>
-	public ErrorCode Execute()
+	public void Execute()
 	{
 		var commandTypes =
 			from type in typeof(Help).Assembly.GetTypes()
-			where type.IsAssignableTo(typeof(IRootCommand<ErrorCode>))
+			where type.IsAssignableTo(typeof(IRootCommand))
 			select type;
 
 		// TODO: Implement the displaying logic.
-
-		return ErrorCode.None;
 	}
 }

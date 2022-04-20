@@ -6,7 +6,7 @@ namespace Sudoku.CommandLine.Commands;
 /// Introduces the options that are used for formatting a sudoku grid.
 /// </summary>
 [Verb("format", HelpText = "To format a sudoku grid using string as the result representation.")]
-public sealed class FormatOptions : IRootCommand
+public sealed class FormatOptions
 {
 	/// <summary>
 	/// Indicates the grid as <see cref="string"/> representation.
@@ -21,7 +21,16 @@ public sealed class FormatOptions : IRootCommand
 	public string FormatString { get; set; } = string.Empty;
 
 
-	/// <inheritdoc/>
+	/// <summary>
+	/// Introduces the usages of the current command.
+	/// </summary>
+	/// <remarks><b><i>
+	/// Due to the bug of the command line nuget package, we should disable the
+	/// implicitly-generated nullable attribute and then use this property; otherwise
+	/// the <see cref="InvalidCastException"/>-typed exception instance will be thrown.
+	/// For more details on this bug, please visit
+	/// <see href="https://github.com/commandlineparser/commandline/issues/714">this link</see>.
+	/// </i></b></remarks>
 	[Usage(ApplicationAlias = "Sudoku.CommandLine.exe")]
 	public static IEnumerable<Example> Examples
 	{

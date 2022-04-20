@@ -3,7 +3,7 @@
 /// <summary>
 /// Represents a solve command.
 /// </summary>
-public sealed class Solve : IRootCommand<ErrorCode>
+public sealed class Solve : IRootCommand
 {
 	/// <summary>
 	/// Indicates the method to be used.
@@ -41,11 +41,11 @@ public sealed class Solve : IRootCommand<ErrorCode>
 
 
 	/// <inheritdoc/>
-	public ErrorCode Execute()
+	public void Execute()
 	{
 		if (Grid.Solution is not { IsUndefined: false } solution)
 		{
-			return ErrorCode.ArgGridValueIsNotUnique;
+			throw new CommandLineException((int)ErrorCode.ArgGridValueIsNotUnique);
 		}
 
 		string? methodNameUsed = null;
@@ -68,7 +68,7 @@ public sealed class Solve : IRootCommand<ErrorCode>
 				{
 					if (simpleSolver.Solve(Grid, out _) is not true)
 					{
-						return ErrorCode.ArgGridValueIsNotUnique;
+						throw new CommandLineException((int)ErrorCode.ArgGridValueIsNotUnique);
 					}
 
 					// .NET Runtime issue: If the type does not implement 'IFormattable',
@@ -100,7 +100,7 @@ public sealed class Solve : IRootCommand<ErrorCode>
 				{
 					if (puzzleSolver.Solve(Grid) is not { IsSolved: true } solverResult)
 					{
-						return ErrorCode.ArgGridValueIsNotUnique;
+						throw new CommandLineException((int)ErrorCode.ArgGridValueIsNotUnique);
 					}
 
 					ConsoleExtensions.WriteLine(
@@ -119,6 +119,9 @@ public sealed class Solve : IRootCommand<ErrorCode>
 			}
 		}
 
-		return methodNameUsed is null ? ErrorCode.ArgMethodIsInvalid : ErrorCode.None;
+		if (methodNameUsed is null)
+		{
+			throw new CommandLineException((int)ErrorCode.ArgMethodIsInvalid);
+		}
 	}
 }

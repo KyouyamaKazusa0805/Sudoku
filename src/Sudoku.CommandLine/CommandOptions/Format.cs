@@ -3,7 +3,7 @@
 /// <summary>
 /// Represents a format command.
 /// </summary>
-public sealed class Format : IRootCommand<ErrorCode>
+public sealed class Format : IRootCommand
 {
 	/// <summary>
 	/// Indicates the format string.
@@ -41,7 +41,7 @@ public sealed class Format : IRootCommand<ErrorCode>
 
 
 	/// <inheritdoc/>
-	public ErrorCode Execute()
+	public void Execute()
 	{
 		string format = FormatString;
 		try
@@ -54,15 +54,13 @@ public sealed class Format : IRootCommand<ErrorCode>
 				"""
 			);
 
-			return ErrorCode.None;
-
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			static string c(string f) => f is null ? "<null>" : string.IsNullOrWhiteSpace(f) ? "<empty>" : f;
 		}
 		catch (FormatException)
 		{
-			return ErrorCode.ArgFormatIsInvalid;
+			throw new CommandLineException((int)ErrorCode.ArgFormatIsInvalid);
 		}
 	}
 }

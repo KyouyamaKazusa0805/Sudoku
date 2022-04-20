@@ -3,8 +3,7 @@
 /// <summary>
 /// Represents a root command.
 /// </summary>
-/// <typeparam name="TErrorCode">The type of the error.</typeparam>
-public interface IRootCommand<TErrorCode> where TErrorCode : Enum
+public interface IRootCommand
 {
 	/// <summary>
 	/// Indicates the name of the root command.
@@ -30,6 +29,6 @@ public interface IRootCommand<TErrorCode> where TErrorCode : Enum
 	/// <summary>
 	/// Try to execute the command, and returns the result reflected the execution.
 	/// </summary>
-	/// <returns>An enumeration typed instance to indicate the error.</returns>
-	TErrorCode Execute();
+	/// <exception cref="CommandLineException">Throws when an error has been encountered.</exception>
+	void Execute();
 }

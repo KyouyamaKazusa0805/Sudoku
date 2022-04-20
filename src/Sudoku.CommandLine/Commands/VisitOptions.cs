@@ -6,7 +6,7 @@ namespace Sudoku.CommandLine.Commands;
 /// Introduces the options that are used for visiting the author's profile and the program's site.
 /// </summary>
 [Verb("visit", HelpText = "To display the gathered websites that are about the author himself and the program.")]
-public sealed class VisitOptions : IRootCommand
+public sealed class VisitOptions
 {
 	/// <summary>
 	/// To visit the author's GitHub site.
@@ -51,7 +51,16 @@ public sealed class VisitOptions : IRootCommand
 	public bool RepoGitee { get; set; }
 
 
-	/// <inheritdoc/>
+	/// <summary>
+	/// Introduces the usages of the current command.
+	/// </summary>
+	/// <remarks><b><i>
+	/// Due to the bug of the command line nuget package, we should disable the
+	/// implicitly-generated nullable attribute and then use this property; otherwise
+	/// the <see cref="InvalidCastException"/>-typed exception instance will be thrown.
+	/// For more details on this bug, please visit
+	/// <see href="https://github.com/commandlineparser/commandline/issues/714">this link</see>.
+	/// </i></b></remarks>
 	[Usage(ApplicationAlias = "Sudoku.CommandLine.exe")]
 	public static IEnumerable<Example> Examples
 	{

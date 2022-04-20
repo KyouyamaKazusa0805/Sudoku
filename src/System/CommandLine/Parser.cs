@@ -12,7 +12,6 @@ public readonly record struct Parser(string[] Arguments) :
 	/// Try to parse the command line arguments and apply to the options into the specified instance.
 	/// </summary>
 	/// <typeparam name="TRootCommand">The type of the instance.</typeparam>
-	/// <typeparam name="TErrorCode">The type suggests the result.</typeparam>
 	/// <param name="rootCommand">The option instance that stores the options.</param>
 	/// <remarks>
 	/// Due to using reflection, the type argument must be a <see langword="class"/> in order to prevent
@@ -23,14 +22,12 @@ public readonly record struct Parser(string[] Arguments) :
 	/// Throws when the command line arguments is <see langword="null"/> or empty currently,
 	/// or the command name is invalid.
 	/// </exception>
-	public void ParseAndApplyTo<TRootCommand, TErrorCode>(TRootCommand rootCommand)
-		where TRootCommand : class, IRootCommand<TErrorCode>
-		where TErrorCode : Enum
+	public void ParseAndApplyTo<TRootCommand>(TRootCommand rootCommand) where TRootCommand : class, IRootCommand
 	{
 		switch (rootCommand)
 		{
 			// Special case: If the type is the special one, just return.
-			case ISpecialCommand<TErrorCode>:
+			case ISpecialCommand:
 			{
 				if (predicate(Arguments))
 				{

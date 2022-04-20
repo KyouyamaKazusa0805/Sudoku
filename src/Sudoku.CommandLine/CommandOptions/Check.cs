@@ -3,7 +3,7 @@
 /// <summary>
 /// Represents a check command.
 /// </summary>
-public sealed class Check : IRootCommand<ErrorCode>
+public sealed class Check : IRootCommand
 {
 	/// <summary>
 	/// Indicates the check type.
@@ -42,7 +42,7 @@ public sealed class Check : IRootCommand<ErrorCode>
 
 
 	/// <inheritdoc/>
-	public ErrorCode Execute()
+	public void Execute()
 	{
 		switch (CheckType)
 		{
@@ -55,11 +55,11 @@ public sealed class Check : IRootCommand<ErrorCode>
 					"""
 				);
 
-				return ErrorCode.None;
+				return;
 			}
 			default:
 			{
-				return ErrorCode.ArgAttributeNameIsInvalid;
+				throw new CommandLineException((int)ErrorCode.ArgAttributeNameIsInvalid);
 			}
 		}
 	}

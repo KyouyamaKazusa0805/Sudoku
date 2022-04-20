@@ -3,7 +3,7 @@
 /// <summary>
 /// Defines the type that stores the version options.
 /// </summary>
-public sealed class Version : IVersionCommand<ErrorCode>
+public sealed class Version : IVersionCommand
 {
 	/// <inheritdoc/>
 	public static string Name => "version";
@@ -20,12 +20,12 @@ public sealed class Version : IVersionCommand<ErrorCode>
 
 
 	/// <inheritdoc/>
-	public ErrorCode Execute()
+	public void Execute()
 	{
 		if (typeof(Version).Assembly.GetName() is not { Name: { } realName, Version: var version })
 		{
 			// Returns an error that cannot fetch the assembly name correctly.
-			return ErrorCode.AssemblyNameIsNull;
+			throw new CommandLineException((int)ErrorCode.AssemblyNameIsNull);
 		}
 
 		Console.WriteLine(
@@ -34,6 +34,5 @@ public sealed class Version : IVersionCommand<ErrorCode>
 			Version {version}
 			"""
 		);
-		return ErrorCode.None;
 	}
 }

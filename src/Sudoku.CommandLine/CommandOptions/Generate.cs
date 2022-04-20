@@ -3,7 +3,7 @@
 /// <summary>
 /// Represents a generate command.
 /// </summary>
-public sealed class Generate : IRootCommand<ErrorCode>
+public sealed class Generate : IRootCommand
 {
 	/// <summary>
 	/// Indicates the range of givens that generated puzzle should be.
@@ -42,7 +42,7 @@ public sealed class Generate : IRootCommand<ErrorCode>
 
 
 	/// <inheritdoc/>
-	public ErrorCode Execute()
+	public void Execute()
 	{
 		switch (GenerateType)
 		{
@@ -60,12 +60,12 @@ public sealed class Generate : IRootCommand<ErrorCode>
 
 					ConsoleExtensions.WriteLine($"""The puzzle generated: '{targetPuzzle:0}'""");
 
-					return ErrorCode.None;
+					return;
 				}
 			}
 			default:
 			{
-				return ErrorCode.MethodIsInvalid;
+				throw new CommandLineException((int)ErrorCode.MethodIsInvalid);
 			}
 		}
 	}

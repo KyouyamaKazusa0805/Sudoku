@@ -6,7 +6,7 @@ namespace Sudoku.CommandLine.Commands;
 /// Introduces the options that are used for generating a sudoku grid.
 /// </summary>
 [Verb("generate", HelpText = "To generate a sudoku puzzle.")]
-public sealed class GenerateGridOptions : IRootCommand
+public sealed class GenerateGridOptions
 {
 	/// <summary>
 	/// Indicates whether the generator will use hard-puzzle pattern to generate puzzles.
@@ -23,7 +23,16 @@ public sealed class GenerateGridOptions : IRootCommand
 	public string Range { get; set; } = "..30";
 
 
-	/// <inheritdoc/>
+	/// <summary>
+	/// Introduces the usages of the current command.
+	/// </summary>
+	/// <remarks><b><i>
+	/// Due to the bug of the command line nuget package, we should disable the
+	/// implicitly-generated nullable attribute and then use this property; otherwise
+	/// the <see cref="InvalidCastException"/>-typed exception instance will be thrown.
+	/// For more details on this bug, please visit
+	/// <see href="https://github.com/commandlineparser/commandline/issues/714">this link</see>.
+	/// </i></b></remarks>
 	[Usage(ApplicationAlias = "Sudoku.CommandLine.exe")]
 	public static IEnumerable<Example> Examples
 	{

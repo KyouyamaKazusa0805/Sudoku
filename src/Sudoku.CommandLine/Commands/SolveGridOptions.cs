@@ -6,7 +6,7 @@ namespace Sudoku.CommandLine.Commands;
 /// Introduces the options that are used for getting the solution from a sudoku grid.
 /// </summary>
 [Verb("solve", HelpText = "To solve a sudoku grid, and get the solution grid.")]
-public sealed class SolveGridOptions : IRootCommand
+public sealed class SolveGridOptions
 {
 	/// <summary>
 	/// Indicates the grid value.
@@ -21,7 +21,16 @@ public sealed class SolveGridOptions : IRootCommand
 	public string Method { get; set; }
 
 
-	/// <inheritdoc/>
+	/// <summary>
+	/// Introduces the usages of the current command.
+	/// </summary>
+	/// <remarks><b><i>
+	/// Due to the bug of the command line nuget package, we should disable the
+	/// implicitly-generated nullable attribute and then use this property; otherwise
+	/// the <see cref="InvalidCastException"/>-typed exception instance will be thrown.
+	/// For more details on this bug, please visit
+	/// <see href="https://github.com/commandlineparser/commandline/issues/714">this link</see>.
+	/// </i></b></remarks>
 	[Usage(ApplicationAlias = "Sudoku.CommandLine.exe")]
 	public static IEnumerable<Example> Examples
 	{
