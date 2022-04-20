@@ -24,7 +24,7 @@ public interface IRootCommand<TErrorCode> where TErrorCode : Enum
 	/// <summary>
 	/// Indicates the commands that is provided for the usages.
 	/// </summary>
-	static abstract IEnumerable<IRootCommand<TErrorCode>>? UsageCommands { get; }
+	static abstract IEnumerable<(string CommandLine, string Meaning)>? UsageCommands { get; }
 
 
 	/// <summary>

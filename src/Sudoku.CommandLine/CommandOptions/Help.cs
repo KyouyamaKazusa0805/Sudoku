@@ -15,7 +15,8 @@ public sealed class Help : IHelpCommand<ErrorCode>
 	public static string[] SupportedCommands => new[] { "help", "?" };
 
 	/// <inheritdoc/>
-	public static IEnumerable<IRootCommand<ErrorCode>>? UsageCommands => new[] { new Help() };
+	public static IEnumerable<(string CommandLine, string Meaning)>? UsageCommands =>
+		new[] { ("""help""", "Lists the help information.") };
 
 
 	/// <inheritdoc/>

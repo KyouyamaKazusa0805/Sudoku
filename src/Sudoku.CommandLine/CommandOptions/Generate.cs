@@ -29,7 +29,16 @@ public sealed class Generate : IRootCommand<ErrorCode>
 	public static string[] SupportedCommands => new[] { "generate" };
 
 	/// <inheritdoc/>
-	public static IEnumerable<IRootCommand<ErrorCode>>? UsageCommands => throw new NotImplementedException();
+	public static IEnumerable<(string CommandLine, string Meaning)>? UsageCommands =>
+		new[]
+		{
+			(
+				"""
+				generate -m hard -c 24..30
+				""",
+				"Generates a sudoku puzzle, which contains givens of number between 24 and 30, and using the hard-pattern algorithm to generate puzzle."
+			)
+		};
 
 
 	/// <inheritdoc/>

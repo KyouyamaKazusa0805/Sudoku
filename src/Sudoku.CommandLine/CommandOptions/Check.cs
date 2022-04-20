@@ -29,15 +29,15 @@ public sealed class Check : IRootCommand<ErrorCode>
 	public static string[] SupportedCommands => new[] { "check" };
 
 	/// <inheritdoc/>
-	public static IEnumerable<IRootCommand<ErrorCode>>? UsageCommands =>
+	public static IEnumerable<(string CommandLine, string Meaning)>? UsageCommands =>
 		new[]
 		{
-			new Check
-			{
-				// TODO: Use raw command line.
-				Grid = Grid.Parse("...892.....2...3..75.....69.359.814...........713.659.96.....21..4...6.....621..."),
-				CheckType = CheckType.Validity
-			}
+			(
+				"""
+				check -g "...892.....2...3..75.....69.359.814...........713.659.96.....21..4...6.....621..." -t validity
+				""",
+				"To check the validity of the specified sudoku grid."
+			)
 		};
 
 

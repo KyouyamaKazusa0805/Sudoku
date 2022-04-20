@@ -24,7 +24,16 @@ public sealed class Visit : IRootCommand<ErrorCode>
 	public static string[] SupportedCommands => new[] { "visit" };
 
 	/// <inheritdoc/>
-	public static IEnumerable<IRootCommand<ErrorCode>>? UsageCommands => throw new NotImplementedException();
+	public static IEnumerable<(string CommandLine, string Meaning)>? UsageCommands =>
+		new[]
+		{
+			(
+				"""
+				visit -l "author github"
+				""",
+				"Visits the GitHub link of the author."
+			)
+		};
 
 
 	/// <inheritdoc/>

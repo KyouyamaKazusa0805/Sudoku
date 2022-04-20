@@ -15,7 +15,8 @@ public sealed class Version : IVersionCommand<ErrorCode>
 	public static string[] SupportedCommands => new[] { "version" };
 
 	/// <inheritdoc/>
-	public static IEnumerable<IRootCommand<ErrorCode>>? UsageCommands => new[] { new Version() };
+	public static IEnumerable<(string CommandLine, string Meaning)>? UsageCommands =>
+		new[] { ("""version""", "Gets the version information.") };
 
 
 	/// <inheritdoc/>
