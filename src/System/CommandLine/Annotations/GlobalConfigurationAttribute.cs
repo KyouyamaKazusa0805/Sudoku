@@ -4,7 +4,7 @@
 /// Defines an attribute type that provides with the global configuration.
 /// </summary>
 [AttributeUsage(AttributeTargets.Assembly, AllowMultiple = false, Inherited = false)]
-public sealed class GlobalConfigurationAttribute : CommandLineAttributeBase
+public sealed class GlobalConfigurationAttribute : Attribute
 {
 	/// <summary>
 	/// Initializes a <see cref="GlobalConfigurationAttribute"/> instance.

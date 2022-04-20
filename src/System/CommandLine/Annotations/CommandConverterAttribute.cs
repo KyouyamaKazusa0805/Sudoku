@@ -6,7 +6,7 @@
 /// </summary>
 /// <seealso cref="IValueConverter"/>
 [AttributeUsage(AttributeTargets.Property, AllowMultiple = false, Inherited = false)]
-public sealed class CommandConverterAttribute : CommandLineAttributeBase
+public sealed class CommandConverterAttribute : Attribute
 {
 	/// <summary>
 	/// Initializes a <see cref="CommandConverterAttribute"/> instance.

@@ -5,7 +5,7 @@
 /// indicating the property receives the value corresponded to a certain command line argument.
 /// </summary>
 [AttributeUsage(AttributeTargets.Property, AllowMultiple = false, Inherited = false)]
-public sealed class CommandAttribute : CommandLineAttributeBase
+public sealed class CommandAttribute : Attribute
 {
 	/// <summary>
 	/// Initializes a <see cref="CommandAttribute"/> instance via the specified short name and the full name.
