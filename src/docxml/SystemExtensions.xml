@@ -921,6 +921,12 @@
             </summary>
             <returns>An enumeration typed instance to indicate the error.</returns>
         </member>
+        <member name="T:System.CommandLine.ISpecialCommand`1">
+            <summary>
+            Defines a special command for the special use.
+            </summary>
+            <typeparam name="TErrorCode"><inheritdoc/></typeparam>
+        </member>
         <member name="T:System.CommandLine.IValueConverter">
             <summary>
             Represents a value converter.

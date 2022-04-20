@@ -29,8 +29,8 @@ public readonly record struct Parser(string[] Arguments) :
 	{
 		switch (rootCommand)
 		{
-			// Special case: If the type is the help command, just return.
-			case IHelpCommand<TErrorCode> or IVersionCommand<TErrorCode>:
+			// Special case: If the type is the special one, just return.
+			case ISpecialCommand<TErrorCode>:
 			{
 				if (predicate(Arguments))
 				{
