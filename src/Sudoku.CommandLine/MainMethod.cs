@@ -1,4 +1,4 @@
-﻿var resultCode = Parser.Default
+﻿var resultCode = CommandLine.Parser.Default
 	.ParseArguments<FormatOptions, SolveGridOptions, CheckGridOptions, GenerateGridOptions, VisitOptions>(args)
 	.MapResult<FormatOptions, SolveGridOptions, CheckGridOptions, GenerateGridOptions, VisitOptions, ErrorCode>(
 		formatHandler, solveGridHandler, checkGridHandler, generateHandler, visitHandler,

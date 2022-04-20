@@ -784,6 +784,196 @@
             <param name="this">The collection.</param>
             <param name="element">The element to be prepended.</param>
         </member>
+        <member name="T:System.CommandLine.Annotations.CommandAttribute">
+            <summary>
+            Represents an attribute type that is applied to a property in the option type,
+            indicating the property receives the value corresponded to a certain command line argument.
+            </summary>
+        </member>
+        <member name="M:System.CommandLine.Annotations.CommandAttribute.#ctor(System.Char,System.String)">
+            <summary>
+            Initializes a <see cref="T:System.CommandLine.Annotations.CommandAttribute"/> instance via the specified short name and the full name.
+            </summary>
+            <param name="shortName">The short name of the command.</param>
+            <param name="fullName">The full name of the command. The command should not contain the prefix.</param>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+            Throws when the argument <paramref name="shortName"/> is not a letter.
+            </exception>
+            <exception cref="T:System.ArgumentException">
+            Throws when the argument <paramref name="fullName"/> doesn't start with a letter, or a hyphen.
+            </exception>
+        </member>
+        <member name="P:System.CommandLine.Annotations.CommandAttribute.ShortName">
+            <summary>
+            Indicates the short name.
+            </summary>
+        </member>
+        <member name="P:System.CommandLine.Annotations.CommandAttribute.FullName">
+            <summary>
+            Indicates the full name.
+            </summary>
+        </member>
+        <member name="T:System.CommandLine.Annotations.CommandConverterAttribute">
+            <summary>
+            Represents an attribute that is applied to a property, indicating the property value should be converted
+            through a <see cref="T:System.CommandLine.IValueConverter"/>.
+            </summary>
+            <seealso cref="T:System.CommandLine.IValueConverter"/>
+        </member>
+        <member name="M:System.CommandLine.Annotations.CommandConverterAttribute.#ctor(System.Type)">
+            <summary>
+            Initializes a <see cref="T:System.CommandLine.Annotations.CommandConverterAttribute"/> instance.
+            </summary>
+            <param name="converterType">The converter type.</param>
+        </member>
+        <member name="P:System.CommandLine.Annotations.CommandConverterAttribute.ConverterType">
+            <summary>
+            Indicates the value converter type that allows the conversion
+            from <see cref="T:System.String"/> to the target type.
+            </summary>
+        </member>
+        <member name="T:System.CommandLine.Annotations.GlobalConfigurationAttribute">
+            <summary>
+            Defines an attribute type that provides with the global configuration.
+            </summary>
+        </member>
+        <member name="M:System.CommandLine.Annotations.GlobalConfigurationAttribute.#ctor">
+            <summary>
+            Initializes a <see cref="T:System.CommandLine.Annotations.GlobalConfigurationAttribute"/> instance.
+            </summary>
+        </member>
+        <member name="P:System.CommandLine.Annotations.GlobalConfigurationAttribute.FullCommandNamePrefix">
+            <summary>
+            <para>
+            Indicates the prefix of the full command name. For example, the characters <c>--</c>
+            in the command name <c>--say-hello</c>.
+            </para>
+            <para>
+            The default value is <c>"--"</c>. Generally the value can be <c>"--"</c> or <c>"/"</c>.
+            <b>Please do not assign empty string.</b>
+            </para>
+            </summary>
+        </member>
+        <member name="P:System.CommandLine.Annotations.GlobalConfigurationAttribute.ShortCommandNamePrefix">
+            <summary>
+            <para>
+            Indicates the prefix of the short command name. For example, the character <c>-</c>
+            in the command name <c>-s</c>.
+            </para>
+            <para>
+            The default value is <c>"-"</c>. Generally the value should be <c>"-"</c>.
+            <b>Please do not assign empty string.</b>
+            </para>
+            </summary>
+        </member>
+        <member name="T:System.CommandLine.CommandLineAttributeBase">
+            <summary>
+            Defines a base attribute type that is used for the inheritance of the attribute types
+            used in the command line environment.
+            </summary>
+        </member>
+        <member name="M:System.CommandLine.CommandLineAttributeBase.#ctor">
+            <summary>
+            Assigns the basic information for a <see cref="T:System.CommandLine.CommandLineAttributeBase"/>-typed instance.
+            </summary>
+        </member>
+        <member name="T:System.CommandLine.IHelpCommand`1">
+            <summary>
+            Defines a help command.
+            </summary>
+            <typeparam name="TErrorCode"><inheritdoc/></typeparam>
+        </member>
+        <member name="T:System.CommandLine.IRootCommand`1">
+            <summary>
+            Represents a root command.
+            </summary>
+            <typeparam name="TErrorCode">The type of the error.</typeparam>
+        </member>
+        <member name="P:System.CommandLine.IRootCommand`1.Name">
+            <summary>
+            Indicates the name of the root command.
+            </summary>
+        </member>
+        <member name="P:System.CommandLine.IRootCommand`1.Description">
+            <summary>
+            Indicates the description of the root command.
+            </summary>
+        </member>
+        <member name="P:System.CommandLine.IRootCommand`1.SupportedCommands">
+            <summary>
+            Indicates the supported commands.
+            </summary>
+        </member>
+        <member name="P:System.CommandLine.IRootCommand`1.UsageCommands">
+            <summary>
+            Indicates the commands that is provided for the usages.
+            </summary>
+        </member>
+        <member name="M:System.CommandLine.IRootCommand`1.Execute">
+            <summary>
+            Try to execute the command, and returns the result reflected the execution.
+            </summary>
+            <returns>An enumeration typed instance to indicate the error.</returns>
+        </member>
+        <member name="T:System.CommandLine.IValueConverter">
+            <summary>
+            Represents a value converter.
+            </summary>
+        </member>
+        <member name="M:System.CommandLine.IValueConverter.Convert(System.String)">
+            <summary>
+            Converts a string value as the command line argument into the target typed instance.
+            </summary>
+            <param name="value">The string value as the command line argument.</param>
+            <returns>The target typed instance as the result.</returns>
+        </member>
+        <member name="T:System.CommandLine.IVersionCommand`1">
+            <summary>
+            Defines a version command.
+            </summary>
+            <typeparam name="TErrorCode"><inheritdoc/></typeparam>
+        </member>
+        <member name="T:System.CommandLine.Parser">
+            <summary>
+            Defines a command line parser that can parse the command line arguments as real instances.
+            </summary>
+            <param name="Arguments">Indicates the command line arguments.</param>
+        </member>
+        <member name="M:System.CommandLine.Parser.#ctor(System.String[])">
+            <summary>
+            Defines a command line parser that can parse the command line arguments as real instances.
+            </summary>
+            <param name="Arguments">Indicates the command line arguments.</param>
+        </member>
+        <member name="P:System.CommandLine.Parser.Arguments">
+            <summary>Indicates the command line arguments.</summary>
+        </member>
+        <member name="M:System.CommandLine.Parser.ParseAndApplyTo``2(``0)">
+            <summary>
+            Try to parse the command line arguments and apply to the options into the specified instance.
+            </summary>
+            <typeparam name="TRootCommand">The type of the instance.</typeparam>
+            <typeparam name="TErrorCode">The type suggests the result.</typeparam>
+            <param name="rootCommand">The option instance that stores the options.</param>
+            <remarks>
+            Due to using reflection, the type argument must be a <see langword="class"/> in order to prevent
+            potential boxing and unboxing operations, which will make an unexpected error that the assignment
+            will always be failed on <see langword="struct"/> types.
+            </remarks>
+            <exception cref="T:System.InvalidOperationException">
+            Throws when the command line arguments is <see langword="null"/> or empty currently,
+            or the command name is invalid.
+            </exception>
+        </member>
+        <member name="M:System.CommandLine.Parser.Equals(System.CommandLine.Parser)">
+            <inheritdoc/>
+        </member>
+        <member name="M:System.CommandLine.Parser.GetHashCode">
+            <inheritdoc/>
+        </member>
+        <member name="M:System.CommandLine.Parser.ToString">
+            <inheritdoc/>
+        </member>
         <member name="T:System.CommonComparers.Equality.MatchLengthComparer">
             <summary>
             Indicates the inner equality comparer to determine the equality of length

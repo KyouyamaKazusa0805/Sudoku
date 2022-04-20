@@ -1,6 +1,7 @@
 ﻿global using System.Buffers;
 global using System.Collections;
 global using System.Collections.Generic;
+global using System.CommandLine.Annotations;
 global using System.ComponentModel;
 global using System.Diagnostics;
 global using System.Diagnostics.CodeAnalysis;

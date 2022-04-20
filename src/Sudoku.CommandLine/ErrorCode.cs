@@ -3,7 +3,7 @@
 /// <summary>
 /// Provides with an error case that introduces why the runtime has been crashed.
 /// </summary>
-internal enum ErrorCode
+public enum ErrorCode
 {
 	/// <summary>
 	/// Indicates that everything looks good.
@@ -56,4 +56,9 @@ internal enum ErrorCode
 	/// Indicates the error case that the command line arguments are failed to be parsed.
 	/// </summary>
 	ParseFailed = 1001,
+
+	/// <summary>
+	/// Indicates the error case that the command line cannot correctly fetch the assembly name.
+	/// </summary>
+	AssemblyNameIsNull = 2001,
 }

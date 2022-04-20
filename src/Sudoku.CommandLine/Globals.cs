@@ -1,5 +1,7 @@
 ﻿global using System;
 global using System.Collections.Generic;
+global using System.CommandLine;
+global using System.CommandLine.Annotations;
 global using System.ComponentModel;
 global using System.Linq;
 global using System.Reflection;
@@ -13,3 +15,5 @@ global using Sudoku.Concepts.Parsing;
 global using Sudoku.Generating;
 global using Sudoku.Solving;
 global using Sudoku.Solving.Manual;
+
+[assembly: GlobalConfiguration(FullCommandNamePrefix = "/")]
