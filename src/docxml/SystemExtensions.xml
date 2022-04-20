@@ -883,6 +883,22 @@
             Assigns the basic information for a <see cref="T:System.CommandLine.CommandLineAttributeBase"/>-typed instance.
             </summary>
         </member>
+        <member name="T:System.CommandLine.CommandLineParserException">
+            <summary>
+            Defines the command line parser exception.
+            </summary>
+        </member>
+        <member name="M:System.CommandLine.CommandLineParserException.#ctor(System.CommandLine.ParserError)">
+            <summary>
+            Initializes a <see cref="T:System.CommandLine.CommandLineParserException"/> instance via the specified error case.
+            </summary>
+            <param name="errorCode">The error code.</param>
+        </member>
+        <member name="P:System.CommandLine.CommandLineParserException.ErrorCode">
+            <summary>
+            Indicates the error code.
+            </summary>
+        </member>
         <member name="T:System.CommandLine.IHelpCommand`1">
             <summary>
             Defines a help command.
@@ -985,6 +1001,11 @@
         </member>
         <member name="M:System.CommandLine.Parser.ToString">
             <inheritdoc/>
+        </member>
+        <member name="T:System.CommandLine.ParserError">
+            <summary>
+            Defines a parser error.
+            </summary>
         </member>
         <member name="T:System.CommonComparers.Equality.MatchLengthComparer">
             <summary>
