@@ -18,7 +18,7 @@ internal static class RootCommand
 	{
 		if (args is not [var rootCommand, ..])
 		{
-			throw new CommandLineParserException(ParserError.ArgumentIsEmpty);
+			throw new CommandLineParserException(CommandLineInternalError.ArgumentIsEmpty);
 		}
 
 		bool e(string s) => s.Equals(rootCommand, StringComparison.OrdinalIgnoreCase);

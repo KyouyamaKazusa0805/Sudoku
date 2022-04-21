@@ -1,9 +1,13 @@
 ﻿namespace System.CommandLine;
 
 /// <summary>
-/// Defines a parser error.
+/// Defines an error that is raised by the command-line handler runtime.
 /// </summary>
-public enum ParserError
+/// <remarks><b>
+/// All possible internal error uses the integers between 1001 and 2000. If you has defined a new error code type,
+/// please avoid the range of these integers.
+/// </b></remarks>
+public enum CommandLineInternalError
 {
 	/// <summary>
 	/// Indicates the error that the unexpected arguments.
@@ -48,8 +52,15 @@ public enum ParserError
 	ConvertedTypeMustBeString,
 
 	/// <summary>
-	/// Indicates the error tha the command line arguments is empty.
+	/// Indicates the error that the command line arguments is empty.
 	/// </summary>
 	[Description("The command line argument cannot be empty.")]
-	ArgumentIsEmpty
+	ArgumentIsEmpty,
+
+	/// <summary>
+	/// Indicates the error that the command converter cannot convert the specified text into the target type
+	/// due to invalid text.
+	/// </summary>
+	[Description("The command convert cannot convert the value into the target type due to invalid text.")]
+	ConverterError = 1101,
 }

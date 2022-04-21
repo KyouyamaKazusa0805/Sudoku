@@ -10,7 +10,7 @@ public sealed class CommandLineParserException : CommandLineException
 	/// </summary>
 	/// <param name="errorCode">The error code.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public CommandLineParserException(ParserError errorCode) :
+	public CommandLineParserException(CommandLineInternalError errorCode) :
 		base((int)errorCode, InitializePropertyMessage(errorCode))
 	{
 	}
@@ -22,8 +22,8 @@ public sealed class CommandLineParserException : CommandLineException
 	/// <param name="errorCode">The error code.</param>
 	/// <returns>The message string value.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	private static string InitializePropertyMessage(ParserError errorCode) =>
-		typeof(ParserError)
+	private static string InitializePropertyMessage(CommandLineInternalError errorCode) =>
+		typeof(CommandLineInternalError)
 			.GetField(errorCode.ToString())!
 			.GetCustomAttribute<DescriptionAttribute>()!
 			.Description!;

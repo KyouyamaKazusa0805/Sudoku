@@ -63,11 +63,6 @@ public enum ErrorCode
 	SiteLinkIsInvalid,
 
 	/// <summary>
-	/// Indicates the error case that the command line arguments are failed to be parsed.
-	/// </summary>
-	ParseFailed = 1001,
-
-	/// <summary>
 	/// Indicates the error case that the command line cannot correctly fetch the assembly name.
 	/// </summary>
 	AssemblyNameIsNull = 2001,
@@ -75,7 +70,7 @@ public enum ErrorCode
 	/// <summary>
 	/// Indicates the error that the command line arguments is empty.
 	/// </summary>
-	EmptyCommandLineArguments = 9001,
+	EmptyCommandLineArguments = 2101,
 
 	/// <summary>
 	/// Indicates the error case that the command line has encountered an error that isn't recorded

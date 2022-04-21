@@ -9,7 +9,7 @@ public sealed class CommandConverterException : CommandLineException
 	/// Initializes a <see cref="CommandConverterAttribute"/> instance.
 	/// </summary>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public CommandConverterException() : base(1002)
+	public CommandConverterException() : base((int)CommandLineInternalError.ConverterError)
 	{
 	}
 
@@ -18,7 +18,7 @@ public sealed class CommandConverterException : CommandLineException
 	/// </summary>
 	/// <param name="message">The error message.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public CommandConverterException(string message) : base(1002, message)
+	public CommandConverterException(string message) : base((int)CommandLineInternalError.ConverterError, message)
 	{
 	}
 }

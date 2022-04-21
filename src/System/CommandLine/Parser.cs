@@ -35,7 +35,7 @@ public static class Parser
 					return;
 				}
 
-				throw new CommandLineParserException(ParserError.SpecialCommandDoNotRequireOtherArguments);
+				throw new CommandLineParserException(CommandLineInternalError.SpecialCommandDoNotRequireOtherArguments);
 			}
 			default:
 			{
@@ -46,7 +46,7 @@ public static class Parser
 		// Checks the validity of the command line arguments.
 		if (commandLineArguments is not [var possibleCommandName, .. var otherArgs])
 		{
-			throw new CommandLineParserException(ParserError.ArgumentFormatInvalid);
+			throw new CommandLineParserException(CommandLineInternalError.ArgumentFormatInvalid);
 		}
 
 		// Checks whether the current command line name matches the specified one.
@@ -54,7 +54,7 @@ public static class Parser
 		string[] supportedCommands = FetchPropertyValue<string[]>(nameof(IRootCommand.SupportedCommands), typeOfRootCommand);
 		if (!supportedCommands.Any(rootCommandMatcher))
 		{
-			throw new CommandLineParserException(ParserError.CommandNameIsInvalid);
+			throw new CommandLineParserException(CommandLineInternalError.CommandNameIsInvalid);
 		}
 
 		// Now gets the information of the global configration.
@@ -84,7 +84,7 @@ public static class Parser
 				).ToArray();
 				if (properties is not [{ PropertyType: var propertyType } property])
 				{
-					throw new CommandLineParserException(ParserError.ArgumentsAmbiguousMatchedOrMismatched);
+					throw new CommandLineParserException(CommandLineInternalError.ArgumentsAmbiguousMatchedOrMismatched);
 				}
 
 				// Assign the real value.
@@ -112,7 +112,7 @@ public static class Parser
 				).ToArray();
 				if (properties is not [{ PropertyType: var propertyType } property])
 				{
-					throw new CommandLineParserException(ParserError.ArgumentsAmbiguousMatchedOrMismatched);
+					throw new CommandLineParserException(CommandLineInternalError.ArgumentsAmbiguousMatchedOrMismatched);
 				}
 
 				// Assign the real value.
@@ -124,7 +124,7 @@ public static class Parser
 			else
 			{
 				// Mismatched.
-				throw new CommandLineParserException(ParserError.ArgumentMismatched);
+				throw new CommandLineParserException(CommandLineInternalError.ArgumentMismatched);
 			}
 
 
@@ -132,7 +132,7 @@ public static class Parser
 			{
 				if (i + 1 >= otherArgs.Length)
 				{
-					throw new CommandLineParserException(ParserError.ArgumentExpected);
+					throw new CommandLineParserException(CommandLineInternalError.ArgumentExpected);
 				}
 
 				// Converts the real argument value into the target property typed instance.
@@ -152,7 +152,7 @@ public static class Parser
 						rootCommand,
 						propertyType == typeof(string)
 							? realValue
-							: throw new CommandLineParserException(ParserError.ConvertedTypeMustBeString));
+							: throw new CommandLineParserException(CommandLineInternalError.ConvertedTypeMustBeString));
 				}
 			}
 		}

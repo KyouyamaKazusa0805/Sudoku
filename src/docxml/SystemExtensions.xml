@@ -955,18 +955,73 @@
             Indicates the error code.
             </summary>
         </member>
+        <member name="T:System.CommandLine.CommandLineInternalError">
+            <summary>
+            Defines an error that is raised by the command-line handler runtime.
+            </summary>
+            <remarks><b>
+            All possible internal error uses the integers between 1001 and 2000. If you has defined a new error code type,
+            please avoid the range of these integers.
+            </b></remarks>
+        </member>
+        <member name="F:System.CommandLine.CommandLineInternalError.SpecialCommandDoNotRequireOtherArguments">
+            <summary>
+            Indicates the error that the unexpected arguments.
+            </summary>
+        </member>
+        <member name="F:System.CommandLine.CommandLineInternalError.ArgumentFormatInvalid">
+            <summary>
+            Indicates the error that the command line arguments is invalid.
+            </summary>
+        </member>
+        <member name="F:System.CommandLine.CommandLineInternalError.CommandNameIsInvalid">
+            <summary>
+            Indicates the error that the command name is invalid.
+            </summary>
+        </member>
+        <member name="F:System.CommandLine.CommandLineInternalError.ArgumentsAmbiguousMatchedOrMismatched">
+            <summary>
+            Indicates the error that ambiguous matched or mismatched.
+            </summary>
+        </member>
+        <member name="F:System.CommandLine.CommandLineInternalError.ArgumentMismatched">
+            <summary>
+            Indicates the error that the argument is mismatched.
+            </summary>
+        </member>
+        <member name="F:System.CommandLine.CommandLineInternalError.ArgumentExpected">
+            <summary>
+            Indicates the error that the argument is expected.
+            </summary>
+        </member>
+        <member name="F:System.CommandLine.CommandLineInternalError.ConvertedTypeMustBeString">
+            <summary>
+            Indicates the error that the converted type must be a <see cref="T:System.String"/>.
+            </summary>
+        </member>
+        <member name="F:System.CommandLine.CommandLineInternalError.ArgumentIsEmpty">
+            <summary>
+            Indicates the error that the command line arguments is empty.
+            </summary>
+        </member>
+        <member name="F:System.CommandLine.CommandLineInternalError.ConverterError">
+            <summary>
+            Indicates the error that the command converter cannot convert the specified text into the target type
+            due to invalid text.
+            </summary>
+        </member>
         <member name="T:System.CommandLine.CommandLineParserException">
             <summary>
             Defines the command line parser exception.
             </summary>
         </member>
-        <member name="M:System.CommandLine.CommandLineParserException.#ctor(System.CommandLine.ParserError)">
+        <member name="M:System.CommandLine.CommandLineParserException.#ctor(System.CommandLine.CommandLineInternalError)">
             <summary>
             Initializes a <see cref="T:System.CommandLine.CommandLineParserException"/> instance via the specified error case.
             </summary>
             <param name="errorCode">The error code.</param>
         </member>
-        <member name="M:System.CommandLine.CommandLineParserException.InitializePropertyMessage(System.CommandLine.ParserError)">
+        <member name="M:System.CommandLine.CommandLineParserException.InitializePropertyMessage(System.CommandLine.CommandLineInternalError)">
             <summary>
             To initializes the property <see cref="P:System.Exception.Message"/> via the specified error code.
             </summary>
@@ -1074,51 +1129,6 @@
             <param name="name">The name of the <see langword="static"/> property.</param>
             <param name="type">The containing type.</param>
             <returns>The instance of type <typeparamref name="TClass"/>.</returns>
-        </member>
-        <member name="T:System.CommandLine.ParserError">
-            <summary>
-            Defines a parser error.
-            </summary>
-        </member>
-        <member name="F:System.CommandLine.ParserError.SpecialCommandDoNotRequireOtherArguments">
-            <summary>
-            Indicates the error that the unexpected arguments.
-            </summary>
-        </member>
-        <member name="F:System.CommandLine.ParserError.ArgumentFormatInvalid">
-            <summary>
-            Indicates the error that the command line arguments is invalid.
-            </summary>
-        </member>
-        <member name="F:System.CommandLine.ParserError.CommandNameIsInvalid">
-            <summary>
-            Indicates the error that the command name is invalid.
-            </summary>
-        </member>
-        <member name="F:System.CommandLine.ParserError.ArgumentsAmbiguousMatchedOrMismatched">
-            <summary>
-            Indicates the error that ambiguous matched or mismatched.
-            </summary>
-        </member>
-        <member name="F:System.CommandLine.ParserError.ArgumentMismatched">
-            <summary>
-            Indicates the error that the argument is mismatched.
-            </summary>
-        </member>
-        <member name="F:System.CommandLine.ParserError.ArgumentExpected">
-            <summary>
-            Indicates the error that the argument is expected.
-            </summary>
-        </member>
-        <member name="F:System.CommandLine.ParserError.ConvertedTypeMustBeString">
-            <summary>
-            Indicates the error that the converted type must be a <see cref="T:System.String"/>.
-            </summary>
-        </member>
-        <member name="F:System.CommandLine.ParserError.ArgumentIsEmpty">
-            <summary>
-            Indicates the error tha the command line arguments is empty.
-            </summary>
         </member>
         <member name="T:System.CommandLine.Terminal">
             <summary>
