@@ -21,15 +21,17 @@ internal static class RootCommand
 			throw new CommandLineParserException(ParserError.ArgumentIsEmpty);
 		}
 
+		bool e(string s) => s.Equals(rootCommand, StringComparison.OrdinalIgnoreCase);
+		const BindingFlags staticProp = BindingFlags.Public | BindingFlags.Static;
 		var type = (
 			from t in typeof(Program).Assembly.GetTypes()
 			where t.IsAssignableTo(typeof(IRootCommand)) && t is { IsClass: true, IsAbstract: false }
 			let parameterlessConstructorInfo = t.GetConstructor(Array.Empty<Type>())
 			where parameterlessConstructorInfo is not null
-			let propertyInfo = t.GetProperty(nameof(IRootCommand.SupportedCommands), BindingFlags.Public | BindingFlags.Static)
+			let propertyInfo = t.GetProperty(nameof(IRootCommand.SupportedCommands), staticProp)
 			where propertyInfo is { CanRead: true, CanWrite: false }
 			let propertyValue = propertyInfo.GetValue(null) as string[]
-			where propertyValue?.Any(e => e.Equals(rootCommand, StringComparison.OrdinalIgnoreCase)) ?? false
+			where propertyValue is not null && propertyValue.Any(e)
 			select t
 		).Single();
 
