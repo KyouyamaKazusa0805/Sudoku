@@ -1,4 +1,6 @@
-﻿namespace System.CommandLine;
+﻿using Isha = System.Runtime.CompilerServices.InterpolatedStringHandlerArgumentAttribute;
+
+namespace System.CommandLine;
 
 /// <summary>
 /// Provides with the operations for the terminal.
@@ -11,8 +13,7 @@ public static class Terminal
 	/// </summary>
 	/// <param name="handler">The string handler that holds the interpolated string.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static void Write([InterpolatedStringHandlerArgument] ref StringHandler handler) =>
-		Console.Write(handler.ToStringAndClear());
+	public static void Write([Isha] ref StringHandler handler) => Console.Write(handler.ToStringAndClear());
 
 	/// <summary>
 	/// Writes the string value specified the <see cref="StringHandler"/> as an interpolated string,
@@ -20,8 +21,7 @@ public static class Terminal
 	/// </summary>
 	/// <param name="handler">The string handler that holds the interpolated string.</param>
 	/// <param name="foreground">The foreground color.</param>
-	public static void Write(
-		[InterpolatedStringHandlerArgument] ref StringHandler handler, ConsoleColor foreground)
+	public static void Write([Isha] ref StringHandler handler, ConsoleColor foreground)
 	{
 		Console.ForegroundColor = foreground;
 		Console.Write(handler.ToStringAndClear());
@@ -35,9 +35,7 @@ public static class Terminal
 	/// <param name="handler">The string handler that holds the interpolated string.</param>
 	/// <param name="foreground">The foreground color.</param>
 	/// <param name="background">The background color.</param>
-	public static void Write(
-		[InterpolatedStringHandlerArgument] ref StringHandler handler, ConsoleColor foreground,
-		ConsoleColor background)
+	public static void Write([Isha] ref StringHandler handler, ConsoleColor foreground, ConsoleColor background)
 	{
 		Console.ForegroundColor = foreground;
 		Console.BackgroundColor = background;
@@ -119,7 +117,7 @@ public static class Terminal
 	/// </summary>
 	/// <param name="handler">The string handler that holds the interpolated string.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static void WriteLine([InterpolatedStringHandlerArgument] ref StringHandler handler) =>
+	public static void WriteLine([Isha] ref StringHandler handler) =>
 		Console.WriteLine(handler.ToStringAndClear());
 
 	/// <summary>
@@ -129,8 +127,7 @@ public static class Terminal
 	/// <param name="handler">The string handler that holds the interpolated string.</param>
 	/// <param name="foreground">The foreground color.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static void WriteLine(
-		[InterpolatedStringHandlerArgument] ref StringHandler handler, ConsoleColor foreground)
+	public static void WriteLine([Isha] ref StringHandler handler, ConsoleColor foreground)
 	{
 		Console.ForegroundColor = foreground;
 		Console.WriteLine(handler.ToStringAndClear());
@@ -145,9 +142,7 @@ public static class Terminal
 	/// <param name="foreground">The foreground color.</param>
 	/// <param name="background">The background color.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static void WriteLine(
-		[InterpolatedStringHandlerArgument] ref StringHandler handler, ConsoleColor foreground,
-		ConsoleColor background)
+	public static void WriteLine([Isha] ref StringHandler handler, ConsoleColor foreground, ConsoleColor background)
 	{
 		Console.ForegroundColor = foreground;
 		Console.BackgroundColor = background;
