@@ -872,6 +872,32 @@
             </para>
             </summary>
         </member>
+        <member name="T:System.CommandLine.Annotations.SupportedNamesAttribute">
+            <summary>
+            Represents an attribute that is applied to an enumeration typed field, indicating all specified commands
+            are supported to be used as a part of the command line arguments when introducing the enumeration instance.
+            </summary>
+        </member>
+        <member name="M:System.CommandLine.Annotations.SupportedNamesAttribute.#ctor(System.String[])">
+            <summary>
+            Initializes a <see cref="T:System.CommandLine.Annotations.SupportedNamesAttribute"/> instance
+            via the specified array of supported names.
+            </summary>
+            <param name="supportedNames">The supported names corresponding to the current enumeration field.</param>
+        </member>
+        <member name="P:System.CommandLine.Annotations.SupportedNamesAttribute.SupportedNames">
+            <summary>
+            Indicates the supported names corresponding to the current enumeration field.
+            </summary>
+        </member>
+        <member name="P:System.CommandLine.Annotations.SupportedNamesAttribute.IgnoreCase">
+            <summary>
+            <para>
+            Indicates whether the parser will ignore the case of the names when parsing to the actual instance.
+            </para>
+            <para>The default value is <see langword="true"/>.</para>
+            </summary>
+        </member>
         <member name="T:System.CommandLine.CommandLineException">
             <summary>
             Defines an exception type that will be thrown when an error has been encountered while command line handling.

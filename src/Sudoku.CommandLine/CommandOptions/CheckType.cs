@@ -8,5 +8,6 @@ public enum CheckType
 	/// <summary>
 	/// Indicates the validity.
 	/// </summary>
+	[SupportedNames("validity", "v")]
 	Validity
 }
