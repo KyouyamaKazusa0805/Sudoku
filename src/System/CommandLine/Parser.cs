@@ -27,8 +27,10 @@ public static class Parser
 			// Special case: If the type is the special one, just return.
 			case ISpecialCommand:
 			{
+				const string propName = nameof(IRootCommand.SupportedCommands);
 				if (commandLineArguments is [var c]
-					&& c == FetchPropertyValue<string>(nameof(IRootCommand.Name), typeOfRootCommand))
+					&& FetchPropertyValue<string[]>(propName, typeOfRootCommand) is var tempSupportedNames
+					&& tempSupportedNames.Any(e => e.Equals(c, StringComparison.OrdinalIgnoreCase)))
 				{
 					return;
 				}

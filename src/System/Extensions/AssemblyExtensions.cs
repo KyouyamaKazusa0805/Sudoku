@@ -14,10 +14,8 @@ public static class AssemblyExtensions
 	/// <param name="baseType">The type as the base type.</param>
 	/// <returns>All possible derived types.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static Type[] GetDerivedTypes(this Assembly @this, Type baseType) =>
-		(
-			from type in @this.GetTypes()
-			where type.IsAssignableTo(baseType)
-			select type
-		).ToArray();
+	public static IEnumerable<Type> GetDerivedTypes(this Assembly @this, Type baseType) =>
+		from type in @this.GetTypes()
+		where type.IsAssignableTo(baseType)
+		select type;
 }

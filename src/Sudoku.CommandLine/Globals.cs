@@ -6,15 +6,16 @@ global using System.ComponentModel;
 global using System.Linq;
 global using System.Reflection;
 global using System.Runtime.CompilerServices;
+global using System.Text;
 global using CommandLine;
 global using CommandLine.Text;
 global using Sudoku.CommandLine;
-global using Sudoku.CommandLine.Commands;
 global using Sudoku.CommandLine.ValueConverters;
 global using Sudoku.Concepts.Collections;
 global using Sudoku.Concepts.Parsing;
 global using Sudoku.Generating;
 global using Sudoku.Solving;
 global using Sudoku.Solving.Manual;
+global using static System.Math;
 
 [assembly: GlobalConfiguration(FullCommandNamePrefix = "/")]
