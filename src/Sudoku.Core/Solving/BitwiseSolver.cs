@@ -66,12 +66,6 @@ public sealed unsafe partial class BitwiseSolver : ISimpleSolver
 	internal long LimitSolutions => _limitSolutions;
 
 	/// <inheritdoc/>
-	public static char Shortcut => 'b';
-
-	/// <inheritdoc/>
-	public static string Name => "Bitwise";
-
-	/// <inheritdoc/>
 	public static string? UriLink => null;
 
 

@@ -83,12 +83,6 @@ public sealed class LinqSolver2 : ISimpleSolver
 
 
 	/// <inheritdoc/>
-	public static char Shortcut => 'L';
-
-	/// <inheritdoc/>
-	public static string Name => "LINQ 2";
-
-	/// <inheritdoc/>
 	public static string? UriLink => "http://aspadvice.com/blogs/rbirkby/attachment/34077.ashx";
 
 

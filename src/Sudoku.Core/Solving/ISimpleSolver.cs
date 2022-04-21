@@ -6,16 +6,6 @@
 public interface ISimpleSolver
 {
 	/// <summary>
-	/// Indicates the shortcut of the simple solver.
-	/// </summary>
-	static abstract char Shortcut { get; }
-
-	/// <summary>
-	/// Indicates the name of the solver.
-	/// </summary>
-	static abstract string Name { get; }
-
-	/// <summary>
 	/// Indicates the URI link that links to the introduction of the algorithm.
 	/// </summary>
 	/// <remarks>

@@ -6,12 +6,6 @@
 public sealed class LinqSolver : ISimpleSolver
 {
 	/// <inheritdoc/>
-	public static char Shortcut => 'l';
-
-	/// <inheritdoc/>
-	public static string Name => "LINQ";
-
-	/// <inheritdoc/>
 	public static string? UriLink => null;
 
 

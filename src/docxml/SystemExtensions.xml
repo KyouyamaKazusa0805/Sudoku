@@ -872,6 +872,23 @@
             </para>
             </summary>
         </member>
+        <member name="T:System.CommandLine.Annotations.RouteToTypeAttribute">
+            <summary>
+            Represents an attribute type that is applied to an enumeration field,
+            indicating the routed type.
+            </summary>
+        </member>
+        <member name="M:System.CommandLine.Annotations.RouteToTypeAttribute.#ctor(System.Type)">
+            <summary>
+            Initializes a <see cref="T:System.CommandLine.Annotations.RouteToTypeAttribute"/> instance via the type to route.
+            </summary>
+            <param name="typeToRoute">The type to route.</param>
+        </member>
+        <member name="P:System.CommandLine.Annotations.RouteToTypeAttribute.TypeToRoute">
+            <summary>
+            Indicates the type to be routed.
+            </summary>
+        </member>
         <member name="T:System.CommandLine.Annotations.SupportedNamesAttribute">
             <summary>
             Represents an attribute that is applied to an enumeration typed field, indicating all specified commands

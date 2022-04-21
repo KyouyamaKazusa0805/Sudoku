@@ -28,12 +28,6 @@ public sealed class DancingLinksSolver : ISimpleSolver
 
 
 	/// <inheritdoc/>
-	public static char Shortcut => 'd';
-
-	/// <inheritdoc/>
-	public static string Name => "Dancing links";
-
-	/// <inheritdoc/>
 	public static string UriLink => "https://en.wikipedia.org/wiki/Dancing_Links";
 
 

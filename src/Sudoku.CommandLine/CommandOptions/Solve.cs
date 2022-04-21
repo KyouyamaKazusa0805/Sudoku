@@ -9,7 +9,8 @@ public sealed class Solve : IRootCommand
 	/// Indicates the method to be used.
 	/// </summary>
 	[Command('m', "method", "Indicates the method to be used for solving a sudoku.")]
-	public string SolveMethod { get; set; } = "bitwise";
+	[CommandConverter(typeof(EnumTypeConverter<SolveAlgorithm>))]
+	public SolveAlgorithm SolveMethod { get; set; } = SolveAlgorithm.Bitwise;
 
 	/// <summary>
 	/// Indicates the grid used.
@@ -51,17 +52,20 @@ public sealed class Solve : IRootCommand
 		string? methodNameUsed = null;
 		foreach (var type in
 			from type in typeof(ISimpleSolver).Assembly.GetTypes()
-			where type.IsClass && type.IsAssignableTo(typeof(ISimpleSolver)) && type.GetConstructor(Array.Empty<Type>()) is not null
+			where type.IsClass && type.IsAssignableTo(typeof(ISimpleSolver))
+			let parameterlessConstructor = type.GetConstructor(Array.Empty<Type>())
+			where parameterlessConstructor is not null
 			select type)
 		{
-			string name = (string)type.GetProperty(nameof(ISimpleSolver.Name))!.GetValue(null)!;
-			string shortcutStr = ((char)type.GetProperty(nameof(ISimpleSolver.Shortcut))!.GetValue(null)!).ToString();
-			string? uriLink = (string?)type.GetProperty(nameof(ISimpleSolver.UriLink))!.GetValue(null);
-			if (SolveMethod != name && SolveMethod != shortcutStr)
+			var fieldInfo = typeof(SolveAlgorithm).GetField(SolveMethod.ToString())!;
+			var actualType = fieldInfo.GetCustomAttribute<RouteToTypeAttribute>()!.TypeToRoute;
+			if (actualType != type)
 			{
 				continue;
 			}
 
+			string? uriLink = (string?)type.GetProperty(nameof(ISimpleSolver.UriLink))!.GetValue(null);
+			string name = fieldInfo.GetCustomAttribute<DescriptionAttribute>()!.Description;
 			switch (Activator.CreateInstance(type))
 			{
 				case ISimpleSolver simpleSolver:
