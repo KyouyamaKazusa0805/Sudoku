@@ -7,5 +7,5 @@ public sealed class GridConverter : IValueConverter
 {
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public object? Convert(string value) => Grid.TryParse(value, out var result) ? result : Grid.Undefined;
+	public object? Convert(string value) => Grid.TryParse(value, out var result) ? result : null;
 }
