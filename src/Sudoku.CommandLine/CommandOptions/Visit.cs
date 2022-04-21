@@ -43,7 +43,7 @@ public sealed class Visit : IRootCommand
 		string link = attribute.Description;
 		if (!Uri.TryCreate(link, UriKind.Absolute, out _))
 		{
-			throw new CommandLineException((int)ErrorCode.SiteLinkIsInvalid);
+			throw new CommandLineRuntimeException((int)ErrorCode.SiteLinkIsInvalid);
 		}
 
 #if VISIT_SITE_DIRECTLY

@@ -59,7 +59,7 @@ public sealed class Check : IRootCommand
 			}
 			default:
 			{
-				throw new CommandLineException((int)ErrorCode.ArgAttributeNameIsInvalid);
+				throw new CommandLineRuntimeException((int)ErrorCode.ArgAttributeNameIsInvalid);
 			}
 		}
 	}

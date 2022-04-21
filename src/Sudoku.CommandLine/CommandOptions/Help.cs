@@ -27,7 +27,7 @@ public sealed class Help : IHelpCommand
 		if (typeof(Version).Assembly.GetName() is not { Name: { } realName, Version: var version })
 		{
 			// Returns an error that cannot fetch the assembly name correctly.
-			throw new CommandLineException((int)ErrorCode.AssemblyNameIsNull);
+			throw new CommandLineRuntimeException((int)ErrorCode.AssemblyNameIsNull);
 		}
 
 		// Iterates on each command type, to get the maximum length of the command, in order to display

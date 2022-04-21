@@ -13,7 +13,7 @@ internal static class RootCommand
 	/// Throws when the command line arguments is <see langword="null"/> or empty currently,
 	/// or the command name is invalid, or the command line arguments is empty.
 	/// </exception>
-	/// <exception cref="CommandLineException">Throws when an error has been encountered.</exception>
+	/// <exception cref="CommandLineRuntimeException">Throws when an error has been encountered.</exception>
 	public static void Route(string[] args)
 	{
 		if (args is not [var rootCommand, ..])

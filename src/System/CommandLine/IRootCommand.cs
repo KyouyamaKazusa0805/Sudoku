@@ -29,6 +29,6 @@ public interface IRootCommand
 	/// <summary>
 	/// Try to execute the command, and returns the result reflected the execution.
 	/// </summary>
-	/// <exception cref="CommandLineException">Throws when an error has been encountered.</exception>
+	/// <exception cref="CommandLineRuntimeException">Throws when an error has been encountered.</exception>
 	void Execute();
 }

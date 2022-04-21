@@ -25,11 +25,7 @@ catch (Exception ex)
 		// This exception will only be thrown if the command line arguments is empty.
 		InvalidOperationException => -(int)ErrorCode.EmptyCommandLineArguments,
 
-		// This exception will be thrown when the parser has encountered an error
-		// that is not related to the runtime.
-		CommandLineParserException { ErrorCode: var code } => -(int)code,
-
-		// This exception will be thrown when the routing and exeuction operation has encountered an error.
+		// This exception will be thrown when the parser has encountered an error.
 		CommandLineException { ErrorCode: var code } => -code,
 
 		// Other errors. Just mark this as a "runtime error" and return the corresponding value.

@@ -3,7 +3,7 @@
 /// <summary>
 /// Defines the command line parser exception.
 /// </summary>
-public sealed class CommandLineParserException : Exception
+public sealed class CommandLineParserException : CommandLineException
 {
 	/// <summary>
 	/// Initializes a <see cref="CommandLineParserException"/> instance via the specified error case.
@@ -11,16 +11,20 @@ public sealed class CommandLineParserException : Exception
 	/// <param name="errorCode">The error code.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public CommandLineParserException(ParserError errorCode) :
-		base(
-			typeof(ParserError)
-				.GetField(errorCode.ToString())!
-				.GetCustomAttribute<DescriptionAttribute>()!
-				.Description
-		) => ErrorCode = errorCode;
+		base((int)errorCode, InitializePropertyMessage(errorCode))
+	{
+	}
 
 
 	/// <summary>
-	/// Indicates the error code.
+	/// To initializes the property <see cref="Exception.Message"/> via the specified error code.
 	/// </summary>
-	public ParserError ErrorCode { get; }
+	/// <param name="errorCode">The error code.</param>
+	/// <returns>The message string value.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	private static string InitializePropertyMessage(ParserError errorCode) =>
+		typeof(ParserError)
+			.GetField(errorCode.ToString())!
+			.GetCustomAttribute<DescriptionAttribute>()!
+			.Description!;
 }

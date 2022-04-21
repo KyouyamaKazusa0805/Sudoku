@@ -65,7 +65,7 @@ public sealed class Generate : IRootCommand
 			}
 			default:
 			{
-				throw new CommandLineException((int)ErrorCode.MethodIsInvalid);
+				throw new CommandLineRuntimeException((int)ErrorCode.MethodIsInvalid);
 			}
 		}
 	}

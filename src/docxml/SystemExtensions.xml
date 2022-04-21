@@ -917,14 +917,22 @@
         </member>
         <member name="T:System.CommandLine.CommandLineException">
             <summary>
-            Defines an exception type that will be thrown when an error has been encountered while command line handling.
+            Represents a command line exception that will be thrown while parsing or executing a command.
             </summary>
         </member>
         <member name="M:System.CommandLine.CommandLineException.#ctor(System.Int32)">
             <summary>
-            Initializes a <see cref="T:System.CommandLine.CommandLineException"/> instance via the specified error code.
+            Initializes the property <see cref="P:System.CommandLine.CommandLineException.ErrorCode"/> with the specified value.
             </summary>
-            <param name="errorCode">The error code.</param>
+            <param name="errorCode">The error code value.</param>
+        </member>
+        <member name="M:System.CommandLine.CommandLineException.#ctor(System.Int32,System.String)">
+            <summary>
+            Initializes the property <see cref="P:System.CommandLine.CommandLineException.ErrorCode"/> and <see cref="P:System.Exception.Message"/>
+            with the specified value.
+            </summary>
+            <param name="errorCode">The error code value.</param>
+            <param name="message">The error message.</param>
         </member>
         <member name="P:System.CommandLine.CommandLineException.ErrorCode">
             <summary>
@@ -942,10 +950,23 @@
             </summary>
             <param name="errorCode">The error code.</param>
         </member>
-        <member name="P:System.CommandLine.CommandLineParserException.ErrorCode">
+        <member name="M:System.CommandLine.CommandLineParserException.InitializePropertyMessage(System.CommandLine.ParserError)">
             <summary>
-            Indicates the error code.
+            To initializes the property <see cref="P:System.Exception.Message"/> via the specified error code.
             </summary>
+            <param name="errorCode">The error code.</param>
+            <returns>The message string value.</returns>
+        </member>
+        <member name="T:System.CommandLine.CommandLineRuntimeException">
+            <summary>
+            Defines an exception type that will be thrown when an error has been encountered while command line handling.
+            </summary>
+        </member>
+        <member name="M:System.CommandLine.CommandLineRuntimeException.#ctor(System.Int32)">
+            <summary>
+            Initializes a <see cref="T:System.CommandLine.CommandLineRuntimeException"/> instance via the specified error code.
+            </summary>
+            <param name="errorCode">The error code.</param>
         </member>
         <member name="T:System.CommandLine.IHelpCommand">
             <summary>
@@ -981,7 +1002,7 @@
             <summary>
             Try to execute the command, and returns the result reflected the execution.
             </summary>
-            <exception cref="T:System.CommandLine.CommandLineException">Throws when an error has been encountered.</exception>
+            <exception cref="T:System.CommandLine.CommandLineRuntimeException">Throws when an error has been encountered.</exception>
         </member>
         <member name="T:System.CommandLine.ISpecialCommand">
             <summary>

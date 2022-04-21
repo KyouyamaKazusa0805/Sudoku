@@ -25,7 +25,7 @@ public sealed class Version : IVersionCommand
 		if (typeof(Version).Assembly.GetName() is not { Name: { } realName, Version: var version })
 		{
 			// Returns an error that cannot fetch the assembly name correctly.
-			throw new CommandLineException((int)ErrorCode.AssemblyNameIsNull);
+			throw new CommandLineRuntimeException((int)ErrorCode.AssemblyNameIsNull);
 		}
 
 		Terminal.WriteLine(

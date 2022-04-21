@@ -46,7 +46,7 @@ public sealed class Solve : IRootCommand
 	{
 		if (Grid.Solution is not { IsUndefined: false } solution)
 		{
-			throw new CommandLineException((int)ErrorCode.ArgGridValueIsNotUnique);
+			throw new CommandLineRuntimeException((int)ErrorCode.ArgGridValueIsNotUnique);
 		}
 
 		string? methodNameUsed = null;
@@ -72,7 +72,7 @@ public sealed class Solve : IRootCommand
 				{
 					if (simpleSolver.Solve(Grid, out _) is not true)
 					{
-						throw new CommandLineException((int)ErrorCode.ArgGridValueIsNotUnique);
+						throw new CommandLineRuntimeException((int)ErrorCode.ArgGridValueIsNotUnique);
 					}
 
 					// .NET Runtime issue: If the type does not implement 'IFormattable',
@@ -98,7 +98,7 @@ public sealed class Solve : IRootCommand
 				{
 					if (puzzleSolver.Solve(Grid) is not { IsSolved: true } solverResult)
 					{
-						throw new CommandLineException((int)ErrorCode.ArgGridValueIsNotUnique);
+						throw new CommandLineRuntimeException((int)ErrorCode.ArgGridValueIsNotUnique);
 					}
 
 					Terminal.WriteLine(
@@ -119,7 +119,7 @@ public sealed class Solve : IRootCommand
 
 		if (methodNameUsed is null)
 		{
-			throw new CommandLineException((int)ErrorCode.ArgMethodIsInvalid);
+			throw new CommandLineRuntimeException((int)ErrorCode.ArgMethodIsInvalid);
 		}
 	}
 }

@@ -60,7 +60,7 @@ public sealed class Format : IRootCommand
 		}
 		catch (FormatException)
 		{
-			throw new CommandLineException((int)ErrorCode.ArgFormatIsInvalid);
+			throw new CommandLineRuntimeException((int)ErrorCode.ArgFormatIsInvalid);
 		}
 	}
 }
