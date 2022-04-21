@@ -6,15 +6,14 @@
 public sealed class CellCountRangeConverter : IValueConverter
 {
 	/// <inheritdoc/>
-	public object? Convert(string value)
+	public object Convert(string value)
 	{
-		Unsafe.SkipInit(out int min);
-		Unsafe.SkipInit(out int max);
-		if (!CellRange.TryParse(value, out var cellRange))
+		if (CellRange.TryParse(value, out var cellRange))
 		{
-			return null;
+			var (min, max) = cellRange;
+			return (min, max);
 		}
 
-		return (min, max) = cellRange;
+		throw new CommandConverterException("The text value cannot be parsed as a valid range.");
 	}
 }

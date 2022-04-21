@@ -915,6 +915,22 @@
             <para>The default value is <see langword="true"/>.</para>
             </summary>
         </member>
+        <member name="T:System.CommandLine.CommandConverterException">
+            <summary>
+            Represents an error case that is thrown if command converter has encountered it.
+            </summary>
+        </member>
+        <member name="M:System.CommandLine.CommandConverterException.#ctor">
+            <summary>
+            Initializes a <see cref="T:System.CommandLine.Annotations.CommandConverterAttribute"/> instance.
+            </summary>
+        </member>
+        <member name="M:System.CommandLine.CommandConverterException.#ctor(System.String)">
+            <summary>
+            Initializes a <see cref="T:System.CommandLine.Annotations.CommandConverterAttribute"/> instance via the specified error message.
+            </summary>
+            <param name="message">The error message.</param>
+        </member>
         <member name="T:System.CommandLine.CommandLineException">
             <summary>
             Represents a command line exception that will be thrown while parsing or executing a command.
@@ -1020,6 +1036,9 @@
             </summary>
             <param name="value">The string value as the command line argument.</param>
             <returns>The target typed instance as the result.</returns>
+            <exception cref="T:System.CommandLine.Annotations.CommandConverterAttribute">
+            Throws when the current method has encountered an unexpected error.
+            </exception>
         </member>
         <member name="T:System.CommandLine.IVersionCommand">
             <summary>

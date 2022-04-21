@@ -8,13 +8,13 @@ public sealed class EnumTypeConverter<TEnum> : IValueConverter where TEnum : unm
 {
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public object? Convert(string value)
+	public object Convert(string value)
 	{
 		return viaName(value, out var namedResult)
 			? namedResult
 			: viaAttribute(value, out var attributeResult)
 				? attributeResult
-				: null;
+				: throw new CommandConverterException("The text cannot be parsed as the enumeration field.");
 
 
 		static bool viaName(string value, out TEnum result)
