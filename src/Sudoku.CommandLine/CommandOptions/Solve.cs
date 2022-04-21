@@ -82,17 +82,11 @@ public sealed class Solve : IRootCommand
 					// to get the same result as 'grid.ToString("#")'; on contrast, 'grid.ToString("#")'
 					// as expected will be replaced with 'grid.ToString()'.
 					// Same reason for the below output case.
+					string uriLinkRealStr = uriLink is null ? string.Empty : $"\r\nURI link: '{uriLink}'";
 					Terminal.WriteLine(
 						$"""
 						Puzzle: {Grid:#}
-						Method name used: '{name}'{(
-							uriLink is null
-								? string.Empty
-								: $"""
-							
-								URI link: '{uriLink}'
-								"""
-						)}
+						Method name used: '{name}'{uriLinkRealStr}
 						---
 						Solution: {solution:!}
 						"""
