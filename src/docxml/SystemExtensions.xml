@@ -1184,6 +1184,21 @@
         <member name="M:System.CommonComparers.Equality.MatchLengthComparer.GetHashCode(System.Text.RegularExpressions.Match)">
             <inheritdoc/>
         </member>
+        <member name="T:System.Reflection.AssemblyExtensions">
+            <summary>
+            Provides with extension methods on <see cref="T:System.Reflection.Assembly"/>.
+            </summary>
+            <seealso cref="T:System.Reflection.Assembly"/>
+        </member>
+        <member name="M:System.Reflection.AssemblyExtensions.GetDerivedTypes(System.Reflection.Assembly,System.Type)">
+            <summary>
+            Gets all possible types derived from an <see langword="interface"/> type,
+            or a base <see langword="class"/> type, in the specified assembly.
+            </summary>
+            <param name="this">The assembly to be checked.</param>
+            <param name="baseType">The type as the base type.</param>
+            <returns>All possible derived types.</returns>
+        </member>
         <member name="T:System.BitArrayExtensions">
             <summary>
             Provides extension methods on <see cref="T:System.Collections.BitArray"/>.

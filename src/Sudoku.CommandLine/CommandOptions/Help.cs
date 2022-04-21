@@ -22,10 +22,7 @@ public sealed class Help : IHelpCommand
 	/// <inheritdoc/>
 	public void Execute()
 	{
-		var commandTypes =
-			from type in typeof(Help).Assembly.GetTypes()
-			where type.IsAssignableTo(typeof(IRootCommand))
-			select type;
+		var commandTypes = typeof(Help).Assembly.GetDerivedTypes(typeof(IRootCommand));
 
 		// TODO: Implement the displaying logic.
 	}
