@@ -71,4 +71,15 @@ public enum ErrorCode
 	/// Indicates the error case that the command line cannot correctly fetch the assembly name.
 	/// </summary>
 	AssemblyNameIsNull = 2001,
+
+	/// <summary>
+	/// Indicates the error that the command line arguments is empty.
+	/// </summary>
+	EmptyCommandLineArguments = 9001,
+
+	/// <summary>
+	/// Indicates the error case that the command line has encountered an error that isn't recorded
+	/// in the current enumeration type.
+	/// </summary>
+	OtherRuntimeError,
 }

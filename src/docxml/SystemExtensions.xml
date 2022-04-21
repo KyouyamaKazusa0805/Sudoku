@@ -966,22 +966,12 @@
             <summary>
             Defines a command line parser that can parse the command line arguments as real instances.
             </summary>
-            <param name="Arguments">Indicates the command line arguments.</param>
         </member>
-        <member name="M:System.CommandLine.Parser.#ctor(System.String[])">
-            <summary>
-            Defines a command line parser that can parse the command line arguments as real instances.
-            </summary>
-            <param name="Arguments">Indicates the command line arguments.</param>
-        </member>
-        <member name="P:System.CommandLine.Parser.Arguments">
-            <summary>Indicates the command line arguments.</summary>
-        </member>
-        <member name="M:System.CommandLine.Parser.ParseAndApplyTo``1(``0)">
+        <member name="M:System.CommandLine.Parser.ParseAndApplyTo(System.String[],System.CommandLine.IRootCommand)">
             <summary>
             Try to parse the command line arguments and apply to the options into the specified instance.
             </summary>
-            <typeparam name="TRootCommand">The type of the instance.</typeparam>
+            <param name="commandLineArguments">Indicates the command line arguments.</param>
             <param name="rootCommand">The option instance that stores the options.</param>
             <remarks>
             Due to using reflection, the type argument must be a <see langword="class"/> in order to prevent
@@ -993,14 +983,14 @@
             or the command name is invalid.
             </exception>
         </member>
-        <member name="M:System.CommandLine.Parser.Equals(System.CommandLine.Parser)">
-            <inheritdoc/>
-        </member>
-        <member name="M:System.CommandLine.Parser.GetHashCode">
-            <inheritdoc/>
-        </member>
-        <member name="M:System.CommandLine.Parser.ToString">
-            <inheritdoc/>
+        <member name="M:System.CommandLine.Parser.FetchPropertyValue``1(System.String,System.Type)">
+            <summary>
+            To fetch the property value via reflection.
+            </summary>
+            <typeparam name="TClass">The type of the target property.</typeparam>
+            <param name="name">The name of the <see langword="static"/> property.</param>
+            <param name="type">The containing type.</param>
+            <returns>The instance of type <typeparamref name="TClass"/>.</returns>
         </member>
         <member name="T:System.CommandLine.ParserError">
             <summary>
@@ -1040,6 +1030,11 @@
         <member name="F:System.CommandLine.ParserError.ConvertedTypeMustBeString">
             <summary>
             Indicates the error that the converted type must be a <see cref="T:System.String"/>.
+            </summary>
+        </member>
+        <member name="F:System.CommandLine.ParserError.ArgumentIsEmpty">
+            <summary>
+            Indicates the error tha the command line arguments is empty.
             </summary>
         </member>
         <member name="T:System.CommandLine.Terminal">
@@ -1095,6 +1090,20 @@
         </member>
         <member name="M:System.CommandLine.Terminal.WriteLine">
             <inheritdoc cref="M:System.Console.WriteLine"/>
+        </member>
+        <member name="M:System.CommandLine.Terminal.WriteLine``1(``0)">
+            <inheritdoc cref="M:System.Console.WriteLine(System.Object)"/>
+        </member>
+        <member name="M:System.CommandLine.Terminal.WriteLine``1(``0,System.ConsoleColor)">
+            <inheritdoc cref="M:System.Console.WriteLine(System.Object)"/>
+            <param name="value"><inheritdoc/></param>
+            <param name="foreground">The foreground color.</param>
+        </member>
+        <member name="M:System.CommandLine.Terminal.WriteLine``1(``0,System.ConsoleColor,System.ConsoleColor)">
+            <inheritdoc cref="M:System.Console.WriteLine(System.Object)"/>
+            <param name="value"><inheritdoc/></param>
+            <param name="foreground">The foreground color.</param>
+            <param name="background">The background color.</param>
         </member>
         <member name="M:System.CommandLine.Terminal.WriteLine(System.Text.StringHandler@)">
             <summary>

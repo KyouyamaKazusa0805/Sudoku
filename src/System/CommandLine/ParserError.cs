@@ -46,4 +46,10 @@ public enum ParserError
 	/// </summary>
 	[Description("The target type must be a string.")]
 	ConvertedTypeMustBeString,
+
+	/// <summary>
+	/// Indicates the error tha the command line arguments is empty.
+	/// </summary>
+	[Description("The command line argument cannot be empty.")]
+	ArgumentIsEmpty
 }

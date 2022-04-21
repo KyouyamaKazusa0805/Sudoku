@@ -82,7 +82,36 @@ public static class Terminal
 	}
 
 	/// <inheritdoc cref="Console.WriteLine()"/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static void WriteLine() => Console.WriteLine();
+
+	/// <inheritdoc cref="Console.WriteLine(object?)"/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static void WriteLine<T>(T value) => Console.WriteLine(value?.ToString());
+
+	/// <inheritdoc cref="Console.WriteLine(object?)"/>
+	/// <param name="value"><inheritdoc/></param>
+	/// <param name="foreground">The foreground color.</param>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static void WriteLine<T>(T value, ConsoleColor foreground)
+	{
+		Console.ForegroundColor = foreground;
+		Console.WriteLine(value?.ToString());
+		Console.ResetColor();
+	}
+
+	/// <inheritdoc cref="Console.WriteLine(object?)"/>
+	/// <param name="value"><inheritdoc/></param>
+	/// <param name="foreground">The foreground color.</param>
+	/// <param name="background">The background color.</param>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static void WriteLine<T>(T value, ConsoleColor foreground, ConsoleColor background)
+	{
+		Console.ForegroundColor = foreground;
+		Console.BackgroundColor = background;
+		Console.WriteLine(value?.ToString());
+		Console.ResetColor();
+	}
 
 	/// <summary>
 	/// Writes the string value specified the <see cref="StringHandler"/> as an interpolated string,

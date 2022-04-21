@@ -1,4 +1,31 @@
-﻿var resultCode = CommandLine.Parser.Default
+﻿#if true
+try
+{
+	RootCommand.Route(args);
+	return 0;
+}
+catch (Exception ex)
+{
+	Terminal.WriteLine(
+		$"""
+		An error has been encountered.
+		---
+		Error info:
+		{ex.ToString()}
+		""",
+		ConsoleColor.Red
+	);
+
+	return ex switch
+	{
+		InvalidOperationException => -(int)ErrorCode.EmptyCommandLineArguments,
+		CommandLineParserException { ErrorCode: var code } => -(int)code,
+		CommandLineException { ErrorCode: var code } => -code,
+		_ => -(int)ErrorCode.OtherRuntimeError
+	};
+}
+#else
+var resultCode = CommandLine.Parser.Default
 	.ParseArguments<FormatOptions, SolveGridOptions, CheckGridOptions, GenerateGridOptions, VisitOptions>(args)
 	.MapResult<FormatOptions, SolveGridOptions, CheckGridOptions, GenerateGridOptions, VisitOptions, ErrorCode>(
 		formatHandler, solveGridHandler, checkGridHandler, generateHandler, visitHandler,
@@ -267,3 +294,4 @@ static ErrorCode tryParseRange(string rangeValue, out int min, out int max)
 	(min, max) = cellRange;
 	return ErrorCode.None;
 }
+#endif

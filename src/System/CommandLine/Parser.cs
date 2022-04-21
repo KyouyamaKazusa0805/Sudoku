@@ -3,15 +3,12 @@
 /// <summary>
 /// Defines a command line parser that can parse the command line arguments as real instances.
 /// </summary>
-/// <param name="Arguments">Indicates the command line arguments.</param>
-public readonly record struct Parser(string[] Arguments) :
-	IEquatable<Parser>,
-	IEqualityOperators<Parser, Parser>
+public static class Parser
 {
 	/// <summary>
 	/// Try to parse the command line arguments and apply to the options into the specified instance.
 	/// </summary>
-	/// <typeparam name="TRootCommand">The type of the instance.</typeparam>
+	/// <param name="commandLineArguments">Indicates the command line arguments.</param>
 	/// <param name="rootCommand">The option instance that stores the options.</param>
 	/// <remarks>
 	/// Due to using reflection, the type argument must be a <see langword="class"/> in order to prevent
@@ -22,14 +19,16 @@ public readonly record struct Parser(string[] Arguments) :
 	/// Throws when the command line arguments is <see langword="null"/> or empty currently,
 	/// or the command name is invalid.
 	/// </exception>
-	public void ParseAndApplyTo<TRootCommand>(TRootCommand rootCommand) where TRootCommand : class, IRootCommand
+	public static void ParseAndApplyTo(string[] commandLineArguments, IRootCommand rootCommand)
 	{
+		var typeOfRootCommand = rootCommand.GetType();
 		switch (rootCommand)
 		{
 			// Special case: If the type is the special one, just return.
 			case ISpecialCommand:
 			{
-				if (predicate(Arguments))
+				if (commandLineArguments is [var c]
+					&& c == FetchPropertyValue<string>(nameof(IRootCommand.Name), typeOfRootCommand))
 				{
 					return;
 				}
@@ -40,27 +39,24 @@ public readonly record struct Parser(string[] Arguments) :
 			{
 				break;
 			}
-
-
-			[MethodImpl(MethodImplOptions.AggressiveInlining)]
-			static bool predicate(string[] args) => args is [var c] && c == TRootCommand.Name;
 		}
 
 		// Checks the validity of the command line arguments.
-		if (Arguments is not [var possibleCommandName, .. var otherArgs])
+		if (commandLineArguments is not [var possibleCommandName, .. var otherArgs])
 		{
 			throw new CommandLineParserException(ParserError.ArgumentFormatInvalid);
 		}
 
 		// Checks whether the current command line name matches the specified one.
 		bool rootCommandMatcher(string e) => e.Equals(possibleCommandName, StringComparison.OrdinalIgnoreCase);
-		if (TRootCommand.SupportedCommands.Any(rootCommandMatcher))
+		string[] supportedCommands = FetchPropertyValue<string[]>(nameof(IRootCommand.SupportedCommands), typeOfRootCommand);
+		if (!supportedCommands.Any(rootCommandMatcher))
 		{
 			throw new CommandLineParserException(ParserError.CommandNameIsInvalid);
 		}
 
 		// Now gets the information of the global configration.
-		var targetAssembly = typeof(TRootCommand).Assembly;
+		var targetAssembly = typeOfRootCommand.Assembly;
 		var globalOptions = targetAssembly.GetCustomAttribute<GlobalConfigurationAttribute>() ?? new();
 
 		// Checks for each argument of type string, and assigns the value using reflection.
@@ -78,7 +74,7 @@ public readonly record struct Parser(string[] Arguments) :
 
 				// Then find property in the type.
 				var properties = (
-					from propertyInfo in typeof(TRootCommand).GetProperties()
+					from propertyInfo in typeOfRootCommand.GetProperties()
 					where propertyInfo is { CanRead: true, CanWrite: true }
 					let attribute = propertyInfo.GetCustomAttribute<CommandAttribute>()
 					where attribute?.FullName.Equals(realSubcommand, StringComparison.OrdinalIgnoreCase) ?? false
@@ -106,7 +102,7 @@ public readonly record struct Parser(string[] Arguments) :
 
 				// Then find property in the type.
 				var properties = (
-					from propertyInfo in typeof(TRootCommand).GetProperties()
+					from propertyInfo in typeOfRootCommand.GetProperties()
 					where propertyInfo is { CanRead: true, CanWrite: true }
 					let attribute = propertyInfo.GetCustomAttribute<CommandAttribute>()
 					where attribute?.ShortName == realSubcommand
@@ -160,23 +156,14 @@ public readonly record struct Parser(string[] Arguments) :
 		}
 	}
 
-	/// <inheritdoc/>
+	/// <summary>
+	/// To fetch the property value via reflection.
+	/// </summary>
+	/// <typeparam name="TClass">The type of the target property.</typeparam>
+	/// <param name="name">The name of the <see langword="static"/> property.</param>
+	/// <param name="type">The containing type.</param>
+	/// <returns>The instance of type <typeparamref name="TClass"/>.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public bool Equals(Parser other) => Enumerable.SequenceEqual(Arguments, other.Arguments);
-
-	/// <inheritdoc/>
-	public override int GetHashCode()
-	{
-		var hashCode = new HashCode();
-		foreach (string argument in Arguments)
-		{
-			hashCode.Add(argument);
-		}
-
-		return hashCode.ToHashCode();
-	}
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public override string ToString() => string.Join(' ', Arguments);
+	private static TClass FetchPropertyValue<TClass>(string name, Type type) where TClass : class =>
+		(TClass)type.GetProperty(name, BindingFlags.Public | BindingFlags.Static)!.GetValue(null)!;
 }
