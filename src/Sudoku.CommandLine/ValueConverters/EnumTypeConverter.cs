@@ -10,12 +10,58 @@ public sealed class EnumTypeConverter<TEnum> : IValueConverter where TEnum : unm
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public object? Convert(string value)
 	{
-		if (!int.TryParse(value, out int targetValue))
+		return viaName(value, out var namedResult)
+			? namedResult
+			: viaAttribute(value, out var attributeResult)
+				? attributeResult
+				: null;
+
+
+		static bool viaName(string value, out TEnum result)
 		{
-			return null;
+			Unsafe.SkipInit(out result);
+			if (!int.TryParse(value, out int targetValue))
+			{
+				return false;
+			}
+
+			var checkType = Unsafe.As<int, TEnum>(ref targetValue);
+			if (Enum.IsDefined(checkType))
+			{
+				result = checkType;
+				return true;
+			}
+
+			return false;
 		}
 
-		var checkType = Unsafe.As<int, TEnum>(ref targetValue);
-		return Enum.IsDefined(checkType) ? checkType : null;
+		static bool viaAttribute(string value, out TEnum result)
+		{
+			Unsafe.SkipInit(out result);
+			foreach (var fieldInfo in typeof(TEnum).GetFields())
+			{
+				if (
+					fieldInfo.GetCustomAttribute<SupportedNamesAttribute>() is not
+					{
+						SupportedNames: var supportedNames,
+						IgnoreCase: var ignoreCase
+					}
+				)
+				{
+					continue;
+				}
+
+				var comparisonOption = ignoreCase ? StringComparison.OrdinalIgnoreCase : StringComparison.Ordinal;
+				if (supportedNames.All(e => !e.Equals(value, comparisonOption)))
+				{
+					continue;
+				}
+
+				result = Enum.Parse<TEnum>(fieldInfo.Name);
+				return true;
+			}
+
+			return false;
+		}
 	}
 }
