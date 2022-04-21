@@ -9,9 +9,9 @@ catch (Exception ex)
 	Terminal.WriteLine(
 		$"""
 		An error has been encountered.
-		---
+		
 		Error info:
-		{ex.ToString()}
+		{ex}
 		""",
 		ConsoleColor.Red
 	);

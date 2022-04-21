@@ -3,6 +3,7 @@
     "Sudoku.CommandLine": {
       "commandName": "Project",
       "commandLineArgs": "?"
+      //"commandLineArgs": "miss"
       //"commandLineArgs": "solve -m d -g 698100000001000000070020000007084050230070049010930700000010030000000400000007681"
       //"commandLineArgs": "check -g ...892.....2...3..75.....69.359.814...........713.659.96.....21..4...6.....621... -t validity"
       //"commandLineArgs": "generate -m hard -c 24.."
