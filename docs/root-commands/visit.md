@@ -2,30 +2,10 @@
 
 **介绍**：`visit` 指令用于获取程序和作者介绍信息的网页网址。
 
-**用法**：`visit {--github|--bilibili|--gitee|--repo-wiki|--repo|--repo-gitee}`
+**用法**：`visit --link <网页名称>`
 
-## 组参数
+## 参数
 
-### `--github` 参数（简写 `-g`）
+### `--link` 参数（简写 `-l`）
 
-该参数表示获取的是作者的 GitHub 主页。
-
-### `--bilibili` 参数（简写 `-b`）
-
-该参数表示获取的是作者的哔哩哔哩（B 站）主页。
-
-### `--gitee` 参数
-
-该参数表示获取的是作者的 Gitee 主页。
-
-### `--repo-wiki` 参数（简写 `-w`）
-
-该参数表示获取的是项目的 Wiki 介绍页面。
-
-### `--repo` 参数（简写 `-r`）
-
-该参数表示获取的是项目的 GitHub 仓库地址。
-
-### `--repo-gitee` 参数
-
-该参数表示获取的是项目的 Gitee 仓库地址。
+`--link` 参数指定的是你要访问的页面。至于要跟的网页名称，可以查看 [`VisitLink` 类型](https://github.com/SunnieShine/Sudoku/blob/main/src/Sudoku.CommandLine/CommandOptions/VisitLink.cs)的相关代码。
