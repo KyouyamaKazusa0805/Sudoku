@@ -6,29 +6,29 @@
 	// If succeed, return 0.
 	return 0;
 }
-catch (Exception ex)
+catch (CommandLineException ex)
 {
-	// If any unhandled exceptions is thrown, the program will output the error message,
-	// with a non-zero return value.
 	Terminal.WriteLine(
 		$"""
-		An error has been encountered.
+		The parsing or runtime operation is unexpected.
 		
-		Error info:
 		{ex}
 		""",
 		ConsoleColor.Red
 	);
 
-	return ex switch
-	{
-		// This exception will only be thrown if the command line arguments is empty.
-		InvalidOperationException => -(int)ErrorCode.EmptyCommandLineArguments,
+	return -ex.ErrorCode;
+}
+catch (Exception ex)
+{
+	Terminal.WriteLine(
+		$"""
+		An unexpected error has been encountered.
+		
+		{ex}
+		""",
+		ConsoleColor.Red
+	);
 
-		// This exception will be thrown when the parser has encountered an error.
-		CommandLineException { ErrorCode: var code } => -code,
-
-		// Other errors. Just mark this as a "runtime error" and return the corresponding value.
-		_ => -(int)ErrorCode.OtherRuntimeError
-	};
+	return -(int)ErrorCode.OtherRuntimeError;
 }
