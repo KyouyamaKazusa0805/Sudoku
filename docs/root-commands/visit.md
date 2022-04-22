@@ -8,4 +8,4 @@
 
 ### `--link` 参数（简写 `-l`）
 
-`--link` 参数指定的是你要访问的页面。至于要跟的网页名称，可以查看 [`VisitLink` 类型](https://github.com/SunnieShine/Sudoku/blob/main/src/Sudoku.CommandLine/CommandOptions/VisitLink.cs)的相关代码。
+`--link` 参数指定的是你要访问的页面。至于要跟的网页名称，可以查看 [`VisitLink` 类型](https://github.com/SunnieShine/Sudoku/blob/main/src/Sudoku.CommandLine/RootCommands/VisitLink.cs)的相关代码。

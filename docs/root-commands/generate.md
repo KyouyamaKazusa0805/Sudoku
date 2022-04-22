@@ -14,4 +14,4 @@
 
 ### `--method` 参数（简写 `-m`）
 
-`--method` 参数指定你需要生成题目的时候用到什么算法。详情的设置项目可以查看 [`GenerateType` 类型](https://github.com/SunnieShine/Sudoku/blob/main/src/Sudoku.CommandLine/CommandOptions/GenerateType.cs)的相关代码。
+`--method` 参数指定你需要生成题目的时候用到什么算法。详情的设置项目可以查看 [`GenerateType` 类型](https://github.com/SunnieShine/Sudoku/blob/main/src/Sudoku.CommandLine/RootCommands/GenerateType.cs)的相关代码。

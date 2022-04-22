@@ -12,4 +12,4 @@
 
 ### `--type` 参数（简写 `-t`）
 
-`--type` 参数主要给出的是判断的题目的类型。所有支持的类型可以前往 [`CheckType` 类型](https://github.com/SunnieShine/Sudoku/blob/main/src/Sudoku.CommandLine/CommandOptions/CheckType.cs)的相关代码进行查看。
+`--type` 参数主要给出的是判断的题目的类型。所有支持的类型可以前往 [`CheckType` 类型](https://github.com/SunnieShine/Sudoku/blob/main/src/Sudoku.CommandLine/RootCommands/CheckType.cs)的相关代码进行查看。
