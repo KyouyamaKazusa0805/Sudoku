@@ -1,6 +1,4 @@
-﻿using Utf8Char = System.Byte;
-
-namespace System;
+﻿namespace System;
 
 /// <summary>
 /// Represents text as a sequence of UTF-8 code units.
@@ -48,6 +46,21 @@ public readonly struct Utf8String :
 	/// <param name="underlyingArray">The underlying array.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public Utf8String(Utf8Char[] underlyingArray) => _value = (Utf8Char[])underlyingArray.Clone();
+
+	/// <summary>
+	/// Initializes a <see cref="Utf8String"/> instance via the specified array of <see cref="byte"/>s
+	/// as the underlying values.
+	/// </summary>
+	/// <param name="array">The array of <see cref="byte"/>s.</param>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	private Utf8String(byte[] array)
+	{
+		_value = new Utf8Char[array.Length];
+		Unsafe.CopyBlock(
+			ref Unsafe.As<Utf8Char, byte>(ref _value[0]),
+			ref array[0],
+			(uint)(sizeof(byte) * array.Length));
+	}
 
 
 	/// <inheritdoc/>
@@ -176,7 +189,7 @@ public readonly struct Utf8String :
 		uint hash = (uint)length;
 		fixed (Utf8Char* ap = _value)
 		{
-			Utf8Char* a = ap;
+			var a = ap;
 
 			while (length >= 4)
 			{
@@ -192,7 +205,7 @@ public readonly struct Utf8String :
 			}
 			if (length > 0)
 			{
-				hash = (hash + RotateLeft(hash, 5)) ^ *a;
+				hash = (hash + RotateLeft(hash, 5)) ^ (byte)*a;
 			}
 
 			hash += RotateLeft(hash, 7);
@@ -218,7 +231,19 @@ public readonly struct Utf8String :
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public override string ToString() => Encoding.UTF8.GetString(_value);
+	public override unsafe string ToString()
+	{
+		byte[] array = new byte[_value.Length];
+		fixed (Utf8Char* a = _value)
+		{
+			Unsafe.CopyBlock(
+				ref array[0],
+				ref Unsafe.As<Utf8Char, byte>(ref *a),
+				(uint)(sizeof(byte) * _value.Length));
+		}
+
+		return Encoding.UTF8.GetString(array);
+	}
 
 	/// <inheritdoc cref="IEnumerable{T}.GetEnumerator"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -255,7 +280,7 @@ public readonly struct Utf8String :
 			{
 				if (*a != *b)
 				{
-					return *a - *b;
+					return (byte)*a - (byte)*b;
 				}
 			}
 
@@ -298,15 +323,28 @@ public readonly struct Utf8String :
 	/// <param name="left">The left-side instance to be catenated.</param>
 	/// <param name="right">The right-side instance to be catenated.</param>
 	/// <returns>The final string.</returns>
-	public static Utf8String operator +(Utf8String left, Utf8String right)
+	public static unsafe Utf8String operator +(Utf8String left, Utf8String right)
 	{
 		Unsafe.SkipInit(out Utf8Char[] targetBuffer);
 		try
 		{
 			int totalLength = left._value.Length + right._value.Length;
 			targetBuffer = ArrayPool<Utf8Char>.Shared.Rent(totalLength);
-			Unsafe.CopyBlock(ref targetBuffer[0], ref left._value[0], (uint)(sizeof(Utf8Char) * left._value.Length));
-			Unsafe.CopyBlock(ref targetBuffer[left._value.Length], ref right._value[0], (uint)(sizeof(Utf8Char) * right._value.Length));
+			fixed (Utf8Char* destination = targetBuffer)
+			{
+				fixed (Utf8Char* src = left._value)
+				{
+					Unsafe.CopyBlock(destination, src, (uint)(sizeof(byte) * left._value.Length));
+				}
+
+				fixed (Utf8Char* src = right._value)
+				{
+					Unsafe.CopyBlock(
+						destination + left._value.Length,
+						src,
+						(uint)(sizeof(byte) * right._value.Length));
+				}
+			}
 
 			return targetBuffer[..totalLength];
 		}
@@ -322,7 +360,7 @@ public readonly struct Utf8String :
 	/// </summary>
 	/// <param name="s">The string.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static explicit operator string(Utf8String s) => Encoding.UTF8.GetString(s._value);
+	public static explicit operator string(Utf8String s) => s.ToString();
 
 	/// <summary>
 	/// Explicitly cast from <see cref="Utf8String"/> to <see cref="Utf8Char"/>[].
