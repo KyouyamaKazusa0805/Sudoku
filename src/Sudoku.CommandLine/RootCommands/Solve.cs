@@ -1,4 +1,4 @@
-﻿namespace Sudoku.CommandLine.CommandOptions;
+﻿namespace Sudoku.CommandLine.RootCommands;
 
 /// <summary>
 /// Represents a solve command.
@@ -65,7 +65,7 @@ public sealed class Solve : IRootCommand
 			}
 
 			string? uriLink = (string?)type.GetProperty(nameof(ISimpleSolver.UriLink))!.GetValue(null);
-			string name = fieldInfo.GetCustomAttribute<DescriptionAttribute>()!.Description;
+			string name = fieldInfo.GetCustomAttribute<NameAttribute>()!.Name;
 			switch (Activator.CreateInstance(type))
 			{
 				case ISimpleSolver simpleSolver:

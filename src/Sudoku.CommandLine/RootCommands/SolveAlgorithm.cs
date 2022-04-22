@@ -1,4 +1,4 @@
-﻿namespace Sudoku.CommandLine.CommandOptions;
+﻿namespace Sudoku.CommandLine.RootCommands;
 
 /// <summary>
 /// Defines an algorithm that is used for solving a sudoku puzzle.
@@ -10,7 +10,7 @@ public enum SolveAlgorithm
 	/// </summary>
 	[SupportedNames(new[] { "manual", "m" })]
 	[RouteToType(typeof(ManualSolver))]
-	[Description("Manual")]
+	[Name("Manual")]
 	Manual,
 
 	/// <summary>
@@ -18,7 +18,7 @@ public enum SolveAlgorithm
 	/// </summary>
 	[SupportedNames(new[] { "bitwise", "b" })]
 	[RouteToType(typeof(BitwiseSolver))]
-	[Description("Bitwise")]
+	[Name("Bitwise")]
 	Bitwise,
 
 	/// <summary>
@@ -26,7 +26,7 @@ public enum SolveAlgorithm
 	/// </summary>
 	[SupportedNames(new[] { "backtracking", "t" })]
 	[RouteToType(typeof(BacktrackingSolver))]
-	[Description("Backtracking")]
+	[Name("Backtracking")]
 	Backtracking,
 
 	/// <summary>
@@ -34,7 +34,7 @@ public enum SolveAlgorithm
 	/// </summary>
 	[SupportedNames(new[] { "dancing-links", "dlx", "d" })]
 	[RouteToType(typeof(DancingLinksSolver))]
-	[Description("Dancing Links")]
+	[Name("Dancing Links")]
 	DancingLinks,
 
 	/// <summary>
@@ -42,7 +42,7 @@ public enum SolveAlgorithm
 	/// </summary>
 	[SupportedNames(new[] { "linq-query", "linq", "l" })]
 	[RouteToType(typeof(LinqSolver))]
-	[Description("LINQ (Based on Query)")]
+	[Name("LINQ (Based on Query)")]
 	LinqBasedOnQuery,
 
 	/// <summary>
@@ -50,6 +50,6 @@ public enum SolveAlgorithm
 	/// </summary>
 	[SupportedNames(new[] { "linq-dictionary", "linq-dic" })]
 	[RouteToType(typeof(LinqSolver2))]
-	[Description("LINQ (Based on Dictionary<string, string>)")]
+	[Name("LINQ (Based on Dictionary<string, string>)")]
 	LinqBasedOnDictionary
 }

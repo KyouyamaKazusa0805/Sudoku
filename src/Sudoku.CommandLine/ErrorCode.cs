@@ -58,11 +58,6 @@ public enum ErrorCode
 	SiteIsFailedToVisit = 501,
 
 	/// <summary>
-	/// Indicates the error case that the website links is invalid.
-	/// </summary>
-	SiteLinkIsInvalid,
-
-	/// <summary>
 	/// Indicates the error case that the command line cannot correctly fetch the assembly name.
 	/// </summary>
 	AssemblyNameIsNull = 2001,

@@ -1,6 +1,6 @@
 ﻿#undef VISIT_SITE_DIRECTLY
 
-namespace Sudoku.CommandLine.CommandOptions;
+namespace Sudoku.CommandLine.RootCommands;
 
 /// <summary>
 /// Represents a visit command.
@@ -39,35 +39,31 @@ public sealed class Visit : IRootCommand
 	/// <inheritdoc/>
 	public void Execute()
 	{
-		var attribute = typeof(Visit).GetProperty(nameof(VisitLink))!.GetCustomAttribute<DescriptionAttribute>()!;
-		string link = attribute.Description;
-		if (!Uri.TryCreate(link, UriKind.Absolute, out _))
-		{
-			throw new CommandLineRuntimeException((int)ErrorCode.SiteLinkIsInvalid);
-		}
+		var attribute = typeof(Visit).GetProperty(nameof(VisitLink))!.GetCustomAttribute<WebsiteAttribute>()!;
+		var link = attribute.Site;
 
 #if VISIT_SITE_DIRECTLY
 		try
 		{
 			// Directly visit the site.
-			Process.Start(
+			System.Diagnostics.Process.Start(
 #if NET5_0_OR_GREATER
-				new ProcessStartInfo(targetUri.AbsoluteUri) { UseShellExecute = true }
+				new System.Diagnostics.ProcessStartInfo(link.AbsoluteUri) { UseShellExecute = true }
 #else
-				new ProcessStartInfo(targetUri.AbsoluteUri)
+				new System.Diagnostics.ProcessStartInfo(link.AbsoluteUri)
 #endif
 			);
 		}
 		catch
 		{
-			throw new CommandLineException((int)ErrorCode.SiteIsFailedToVisit);
+			throw new CommandLineRuntimeException((int)ErrorCode.SiteIsFailedToVisit);
 		}
 #else
 		// Output the site link.
 		Terminal.WriteLine(
 			$"""
 			Please visit the following site to learn more information.
-			{link}
+			{link.AbsoluteUri}
 			"""
 		);
 #endif

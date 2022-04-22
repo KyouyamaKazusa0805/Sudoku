@@ -1,4 +1,4 @@
-﻿namespace Sudoku.CommandLine;
+﻿namespace Sudoku.CommandLine.RootCommands;
 
 /// <summary>
 /// Defines a generate type.

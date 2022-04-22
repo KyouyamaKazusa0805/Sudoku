@@ -1,4 +1,4 @@
-﻿namespace Sudoku.CommandLine.CommandOptions;
+﻿namespace Sudoku.CommandLine.RootCommands;
 
 /// <summary>
 /// Represents a check command.

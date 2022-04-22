@@ -872,6 +872,22 @@
             </para>
             </summary>
         </member>
+        <member name="T:System.CommandLine.Annotations.NameAttribute">
+            <summary>
+            Defines an attribute that is applied to an enumeration field, indicating the name of the field.
+            </summary>
+        </member>
+        <member name="M:System.CommandLine.Annotations.NameAttribute.#ctor(System.String)">
+            <summary>
+            Initializes a <see cref="T:System.CommandLine.Annotations.NameAttribute"/> instance via the name of the field.
+            </summary>
+            <param name="name">The name of the field.</param>
+        </member>
+        <member name="P:System.CommandLine.Annotations.NameAttribute.Name">
+            <summary>
+            Indicates the name of the enumeration field.
+            </summary>
+        </member>
         <member name="T:System.CommandLine.Annotations.RouteToTypeAttribute">
             <summary>
             Represents an attribute type that is applied to an enumeration field,
@@ -913,6 +929,22 @@
             Indicates whether the parser will ignore the case of the names when parsing to the actual instance.
             </para>
             <para>The default value is <see langword="true"/>.</para>
+            </summary>
+        </member>
+        <member name="T:System.CommandLine.Annotations.WebsiteAttribute">
+            <summary>
+            Defines an attribute that is applied to an enumeration field, indicating the website of the field.
+            </summary>
+        </member>
+        <member name="M:System.CommandLine.Annotations.WebsiteAttribute.#ctor(System.String)">
+            <summary>
+            Initializes a <see cref="T:System.CommandLine.Annotations.WebsiteAttribute"/> instance via the website of the field.
+            </summary>
+            <param name="uriString">The website of the field.</param>
+        </member>
+        <member name="P:System.CommandLine.Annotations.WebsiteAttribute.Site">
+            <summary>
+            Indicates the website of the enumeration field.
             </summary>
         </member>
         <member name="T:System.CommandLine.CommandConverterException">
