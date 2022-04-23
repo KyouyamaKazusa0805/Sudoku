@@ -22,15 +22,13 @@ public static class Parser
 	public static void ParseAndApplyTo(string[] commandLineArguments, IRootCommand rootCommand)
 	{
 		var typeOfRootCommand = rootCommand.GetType();
+		string[] supportedArguments = getArgs(typeOfRootCommand, out var comparisonOption);
 		switch (rootCommand)
 		{
 			// Special case: If the type is the special one, just return.
 			case ISpecialCommand:
 			{
-				const string propName = nameof(IRootCommand.SupportedCommands);
-				if (commandLineArguments is [var c]
-					&& FetchPropertyValue<string[]>(propName, typeOfRootCommand) is var tempSupportedNames
-					&& tempSupportedNames.Any(e => e.Equals(c, StringComparison.OrdinalIgnoreCase)))
+				if (commandLineArguments is [var c] && supportedArguments.Any(e => rootCommandMatcher(c, e)))
 				{
 					return;
 				}
@@ -57,9 +55,7 @@ public static class Parser
 		}
 
 		// Checks whether the current command line name matches the specified one.
-		bool rootCommandMatcher(string e) => e.Equals(possibleCommandName, StringComparison.OrdinalIgnoreCase);
-		string[] supportedCommands = FetchPropertyValue<string[]>(nameof(IRootCommand.SupportedCommands), typeOfRootCommand);
-		if (!supportedCommands.Any(rootCommandMatcher))
+		if (!supportedArguments.Any(e => rootCommandMatcher(possibleCommandName, e)))
 		{
 			throw new CommandLineParserException(CommandLineInternalError.CommandNameIsInvalid);
 		}
@@ -184,16 +180,19 @@ public static class Parser
 				listOfRequiredProperties.RemoveAll(p => p == property);
 			}
 		}
-	}
 
-	/// <summary>
-	/// To fetch the property value via reflection.
-	/// </summary>
-	/// <typeparam name="TClass">The type of the target property.</typeparam>
-	/// <param name="name">The name of the <see langword="static"/> property.</param>
-	/// <param name="type">The containing type.</param>
-	/// <returns>The instance of type <typeparamref name="TClass"/>.</returns>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	private static TClass FetchPropertyValue<TClass>(string name, Type type) where TClass : class =>
-		(TClass)type.GetProperty(name, BindingFlags.Public | BindingFlags.Static)!.GetValue(null)!;
+
+		bool rootCommandMatcher(string c, string e) => e.Equals(c, comparisonOption);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		static string[] getArgs(Type typeOfRootCommand, out StringComparison comparisonOption)
+		{
+			var attribute = typeOfRootCommand.GetCustomAttribute<SupportedArgumentsAttribute>()!;
+			comparisonOption = attribute.IgnoreCase
+				? StringComparison.OrdinalIgnoreCase
+				: StringComparison.Ordinal;
+
+			return attribute.SupportedArguments;
+		}
+	}
 }

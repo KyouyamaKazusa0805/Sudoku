@@ -3,6 +3,7 @@
 /// <summary>
 /// Represents a solve command.
 /// </summary>
+[SupportedArguments(new[] { "solve" })]
 [Usage("solve -g <grid> -m <method>", IsFact = true)]
 [Usage($"""solve -g "{SampleGrid}" -m bitwise""", "Solves a sudoku puzzle, using the bitwise algorithm.")]
 public sealed class Solve : IRootCommand
@@ -26,9 +27,6 @@ public sealed class Solve : IRootCommand
 
 	/// <inheritdoc/>
 	public static string Description => "To solve a sudoku grid using the specified algorithm.";
-
-	/// <inheritdoc/>
-	public static string[] SupportedCommands => new[] { "solve" };
 
 
 	/// <inheritdoc/>

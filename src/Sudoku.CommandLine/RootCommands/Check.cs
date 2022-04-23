@@ -3,6 +3,7 @@
 /// <summary>
 /// Represents a check command.
 /// </summary>
+[SupportedArguments(new[] { "check" })]
 [Usage("check --grid <grid> --type <type>", IsFact = true)]
 [Usage($"""check -g "{SampleGrid}" -t validity""", "To check the validity of the specified sudoku grid.")]
 public sealed class Check : IRootCommand
@@ -26,9 +27,6 @@ public sealed class Check : IRootCommand
 
 	/// <inheritdoc/>
 	public static string Description => "To check the attributes for a sudoku grid.";
-
-	/// <inheritdoc/>
-	public static string[] SupportedCommands => new[] { "check" };
 
 
 	/// <inheritdoc/>

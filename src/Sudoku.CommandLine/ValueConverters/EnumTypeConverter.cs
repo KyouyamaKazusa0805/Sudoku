@@ -41,9 +41,9 @@ public sealed class EnumTypeConverter<TEnum> : IValueConverter where TEnum : unm
 			foreach (var fieldInfo in typeof(TEnum).GetFields())
 			{
 				if (
-					fieldInfo.GetCustomAttribute<SupportedNamesAttribute>() is not
+					fieldInfo.GetCustomAttribute<SupportedArgumentsAttribute>() is not
 					{
-						SupportedNames: var supportedNames,
+						SupportedArguments: var supportedNames,
 						IgnoreCase: var ignoreCase
 					}
 				)

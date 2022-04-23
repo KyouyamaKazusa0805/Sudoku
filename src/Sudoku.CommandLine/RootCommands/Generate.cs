@@ -3,6 +3,7 @@
 /// <summary>
 /// Represents a generate command.
 /// </summary>
+[SupportedArguments(new[] { "generate", "gen" })]
 [Usage("generate -m <method> -c <range>", IsFact = true)]
 [Usage("""generate -m hard -c 24..30""", "Generates a sudoku puzzle, which contains givens of number between 24 and 30, and using the hard-pattern algorithm to generate puzzle.")]
 public sealed class Generate : IRootCommand
@@ -26,9 +27,6 @@ public sealed class Generate : IRootCommand
 
 	/// <inheritdoc/>
 	public static string Description => "To generate a sudoku puzzle.";
-
-	/// <inheritdoc/>
-	public static string[] SupportedCommands => new[] { "generate" };
 
 
 	/// <inheritdoc/>

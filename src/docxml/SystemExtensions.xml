@@ -911,25 +911,25 @@
             Indicates the type to be routed.
             </summary>
         </member>
-        <member name="T:System.CommandLine.Annotations.SupportedNamesAttribute">
+        <member name="T:System.CommandLine.Annotations.SupportedArgumentsAttribute">
             <summary>
             Represents an attribute that is applied to an enumeration typed field, indicating all specified commands
             are supported to be used as a part of the command line arguments when introducing the enumeration instance.
             </summary>
         </member>
-        <member name="M:System.CommandLine.Annotations.SupportedNamesAttribute.#ctor(System.String[])">
+        <member name="M:System.CommandLine.Annotations.SupportedArgumentsAttribute.#ctor(System.String[])">
             <summary>
-            Initializes a <see cref="T:System.CommandLine.Annotations.SupportedNamesAttribute"/> instance
+            Initializes a <see cref="T:System.CommandLine.Annotations.SupportedArgumentsAttribute"/> instance
             via the specified array of supported names.
             </summary>
             <param name="supportedNames">The supported names corresponding to the current enumeration field.</param>
         </member>
-        <member name="P:System.CommandLine.Annotations.SupportedNamesAttribute.SupportedNames">
+        <member name="P:System.CommandLine.Annotations.SupportedArgumentsAttribute.SupportedArguments">
             <summary>
             Indicates the supported names corresponding to the current enumeration field.
             </summary>
         </member>
-        <member name="P:System.CommandLine.Annotations.SupportedNamesAttribute.IgnoreCase">
+        <member name="P:System.CommandLine.Annotations.SupportedArgumentsAttribute.IgnoreCase">
             <summary>
             <para>
             Indicates whether the parser will ignore the case of the names when parsing to the actual instance.
@@ -1189,11 +1189,6 @@
             Indicates the description of the root command.
             </summary>
         </member>
-        <member name="P:System.CommandLine.IRootCommand.SupportedCommands">
-            <summary>
-            Indicates the supported commands.
-            </summary>
-        </member>
         <member name="M:System.CommandLine.IRootCommand.Execute">
             <summary>
             Try to execute the command, and returns the result reflected the execution.
@@ -1245,15 +1240,6 @@
             Throws when the command line arguments is <see langword="null"/> or empty currently,
             or the command name is invalid.
             </exception>
-        </member>
-        <member name="M:System.CommandLine.Parser.FetchPropertyValue``1(System.String,System.Type)">
-            <summary>
-            To fetch the property value via reflection.
-            </summary>
-            <typeparam name="TClass">The type of the target property.</typeparam>
-            <param name="name">The name of the <see langword="static"/> property.</param>
-            <param name="type">The containing type.</param>
-            <returns>The instance of type <typeparamref name="TClass"/>.</returns>
         </member>
         <member name="T:System.CommandLine.Terminal">
             <summary>

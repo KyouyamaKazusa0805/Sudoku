@@ -8,7 +8,7 @@ public enum SolveAlgorithm
 	/// <summary>
 	/// Indicates the solver is manually solver.
 	/// </summary>
-	[SupportedNames(new[] { "manual", "m" })]
+	[SupportedArguments(new[] { "manual", "m" })]
 	[RouteToType(typeof(ManualSolver))]
 	[Name("Manual")]
 	Manual,
@@ -16,7 +16,7 @@ public enum SolveAlgorithm
 	/// <summary>
 	/// Indicates the solver is bitwise solver.
 	/// </summary>
-	[SupportedNames(new[] { "bitwise", "b" })]
+	[SupportedArguments(new[] { "bitwise", "b" })]
 	[RouteToType(typeof(BitwiseSolver))]
 	[Name("Bitwise")]
 	Bitwise,
@@ -24,7 +24,7 @@ public enum SolveAlgorithm
 	/// <summary>
 	/// Indicates the solver is backtracking solver.
 	/// </summary>
-	[SupportedNames(new[] { "backtracking", "t" })]
+	[SupportedArguments(new[] { "backtracking", "t" })]
 	[RouteToType(typeof(BacktrackingSolver))]
 	[Name("Backtracking")]
 	Backtracking,
@@ -32,7 +32,7 @@ public enum SolveAlgorithm
 	/// <summary>
 	/// Indicates the solver is dancing links solver.
 	/// </summary>
-	[SupportedNames(new[] { "dancing-links", "dlx", "d" })]
+	[SupportedArguments(new[] { "dancing-links", "dlx", "d" })]
 	[RouteToType(typeof(DancingLinksSolver))]
 	[Name("Dancing Links")]
 	DancingLinks,
@@ -40,7 +40,7 @@ public enum SolveAlgorithm
 	/// <summary>
 	/// Indicates the solver is the LINQ solver based on query.
 	/// </summary>
-	[SupportedNames(new[] { "linq-query", "linq", "l" })]
+	[SupportedArguments(new[] { "linq-query", "linq", "l" })]
 	[RouteToType(typeof(LinqSolver))]
 	[Name("LINQ (Based on Query)")]
 	LinqBasedOnQuery,
@@ -48,7 +48,7 @@ public enum SolveAlgorithm
 	/// <summary>
 	/// Indicates the solver is the LINQ solver based on type <see cref="Dictionary{TKey, TValue}"/>.
 	/// </summary>
-	[SupportedNames(new[] { "linq-dictionary", "linq-dic" })]
+	[SupportedArguments(new[] { "linq-dictionary", "linq-dic" })]
 	[RouteToType(typeof(LinqSolver2))]
 	[Name("LINQ (Based on Dictionary<string, string>)")]
 	LinqBasedOnDictionary

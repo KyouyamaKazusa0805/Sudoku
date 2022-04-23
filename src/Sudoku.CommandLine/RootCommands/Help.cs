@@ -3,6 +3,7 @@
 /// <summary>
 /// Defines the type that stores the help options.
 /// </summary>
+[SupportedArguments(new[] { "help", "?" })]
 [Usage("help", IsFact = true)]
 public sealed class Help : IHelpCommand
 {
@@ -11,9 +12,6 @@ public sealed class Help : IHelpCommand
 
 	/// <inheritdoc/>
 	public static string Description => "Displays all possible root commands provided.";
-
-	/// <inheritdoc/>
-	public static string[] SupportedCommands => new[] { "help", "?" };
 
 
 	/// <inheritdoc/>

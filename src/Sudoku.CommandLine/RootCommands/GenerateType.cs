@@ -8,6 +8,6 @@ public enum GenerateType
 	/// <summary>
 	/// Indicates the generate type is to generate a puzzle with the hard-pattern algorithm.
 	/// </summary>
-	[SupportedNames(new[] { "hard-pattern", "hard", "h" })]
+	[SupportedArguments(new[] { "hard-pattern", "hard", "h" })]
 	HardPatternLike,
 }

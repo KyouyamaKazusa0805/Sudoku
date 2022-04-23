@@ -5,8 +5,9 @@ namespace Sudoku.CommandLine.RootCommands;
 /// <summary>
 /// Represents a visit command.
 /// </summary>
+[SupportedArguments(new[] { "visit" })]
 [Usage("visit -l <link>", IsFact = true)]
-[Usage(@"visit -l ""author github""", "Visits the GitHub link of the author.")]
+[Usage("""visit -l author-github""", "Visits the GitHub link of the author.")]
 public sealed class Visit : IRootCommand
 {
 	/// <summary>
@@ -21,9 +22,6 @@ public sealed class Visit : IRootCommand
 
 	/// <inheritdoc/>
 	public static string Description => "To fetch the author or the repository link.";
-
-	/// <inheritdoc/>
-	public static string[] SupportedCommands => new[] { "visit" };
 
 
 	/// <inheritdoc/>

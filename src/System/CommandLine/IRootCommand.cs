@@ -15,11 +15,6 @@ public interface IRootCommand
 	/// </summary>
 	static abstract string Description { get; }
 
-	/// <summary>
-	/// Indicates the supported commands.
-	/// </summary>
-	static abstract string[] SupportedCommands { get; }
-
 
 	/// <summary>
 	/// Try to execute the command, and returns the result reflected the execution.
