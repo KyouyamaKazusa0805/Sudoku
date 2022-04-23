@@ -894,6 +894,34 @@
             Indicates the name of the enumeration field.
             </summary>
         </member>
+        <member name="T:System.CommandLine.Annotations.RootCommandAttribute">
+            <summary>
+            Represents a root command description.
+            </summary>
+        </member>
+        <member name="M:System.CommandLine.Annotations.RootCommandAttribute.#ctor(System.String,System.String)">
+            <summary>
+            Initializes a <see cref="T:System.CommandLine.Annotations.RootCommandAttribute"/> instance via the name and its description.
+            </summary>
+            <param name="name">The name of the command.</param>
+            <param name="description">The description of the command.</param>
+        </member>
+        <member name="P:System.CommandLine.Annotations.RootCommandAttribute.IsSpecial">
+            <summary>
+            <para>Indicates whether the command is special.</para>
+            <para>The default value is <see langword="false"/>.</para>
+            </summary>
+        </member>
+        <member name="P:System.CommandLine.Annotations.RootCommandAttribute.Name">
+            <summary>
+            Indicates the name of the command.
+            </summary>
+        </member>
+        <member name="P:System.CommandLine.Annotations.RootCommandAttribute.Description">
+            <summary>
+            Indicates the description of the command.
+            </summary>
+        </member>
         <member name="T:System.CommandLine.Annotations.RouteToTypeAttribute">
             <summary>
             Represents an attribute type that is applied to an enumeration field,
@@ -1177,16 +1205,6 @@
         <member name="T:System.CommandLine.IRootCommand">
             <summary>
             Represents a root command.
-            </summary>
-        </member>
-        <member name="P:System.CommandLine.IRootCommand.Name">
-            <summary>
-            Indicates the name of the root command.
-            </summary>
-        </member>
-        <member name="P:System.CommandLine.IRootCommand.Description">
-            <summary>
-            Indicates the description of the root command.
             </summary>
         </member>
         <member name="M:System.CommandLine.IRootCommand.Execute">

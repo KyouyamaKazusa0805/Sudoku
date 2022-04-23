@@ -3,6 +3,7 @@
 /// <summary>
 /// Represents a generate command.
 /// </summary>
+[RootCommand("generate", "To generate a sudoku puzzle.")]
 [SupportedArguments(new[] { "generate", "gen" })]
 [Usage("generate -m <method> -c <range>", IsFact = true)]
 [Usage("""generate -m hard -c 24..30""", "Generates a sudoku puzzle, which contains givens of number between 24 and 30, and using the hard-pattern algorithm to generate puzzle.")]
@@ -21,12 +22,6 @@ public sealed class Generate : IRootCommand
 	[Command('m', "method", "The method that defines what algorithm used for generating a sudoku puzzle.")]
 	[CommandConverter(typeof(EnumTypeConverter<GenerateType>))]
 	public GenerateType GenerateType { get; set; } = GenerateType.HardPatternLike;
-
-	/// <inheritdoc/>
-	public static string Name => "generate";
-
-	/// <inheritdoc/>
-	public static string Description => "To generate a sudoku puzzle.";
 
 
 	/// <inheritdoc/>

@@ -3,6 +3,7 @@
 /// <summary>
 /// Represents a check command.
 /// </summary>
+[RootCommand("check", "To check the attributes for a sudoku grid.")]
 [SupportedArguments(new[] { "check" })]
 [Usage("check --grid <grid> --type <type>", IsFact = true)]
 [Usage($"""check -g "{SampleGrid}" -t validity""", "To check the validity of the specified sudoku grid.")]
@@ -21,12 +22,6 @@ public sealed class Check : IRootCommand
 	[Command('g', "grid", "Indicates the sudoku grid as string representation.", IsRequired = true)]
 	[CommandConverter(typeof(GridConverter))]
 	public Grid Grid { get; set; }
-
-	/// <inheritdoc/>
-	public static string Name => "check";
-
-	/// <inheritdoc/>
-	public static string Description => "To check the attributes for a sudoku grid.";
 
 
 	/// <inheritdoc/>

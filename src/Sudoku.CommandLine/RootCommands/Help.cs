@@ -3,22 +3,14 @@
 /// <summary>
 /// Defines the type that stores the help options.
 /// </summary>
+[RootCommand("help", "Displays all possible root commands provided.", IsSpecial = true)]
 [SupportedArguments(new[] { "help", "?" })]
 [Usage("help", IsFact = true)]
 public sealed class Help : IHelpCommand
 {
 	/// <inheritdoc/>
-	public static string Name => "help";
-
-	/// <inheritdoc/>
-	public static string Description => "Displays all possible root commands provided.";
-
-
-	/// <inheritdoc/>
 	public void Execute()
 	{
-		const BindingFlags staticProp = BindingFlags.Static | BindingFlags.Public;
-
 		if (typeof(Version).Assembly.GetName() is not { Name: { } realName, Version: var version })
 		{
 			// Returns an error that cannot fetch the assembly name correctly.
@@ -32,11 +24,12 @@ public sealed class Help : IHelpCommand
 		var listOfDescriptionParts = new List<(string CommandName, IEnumerable<string> DescriptionRawParts)>();
 		foreach (var commandType in commandTypes)
 		{
-			string commandName = (string)commandType.GetProperty(nameof(IRootCommand.Name), staticProp)!.GetValue(null)!;
+			var commandAttribute = commandType.GetCustomAttribute<RootCommandAttribute>()!;
+
+			string commandName = commandAttribute.Name;
 			maxWidth = Max(commandName.Length, maxWidth);
 
-			string description = (string)commandType.GetProperty(nameof(IRootCommand.Description), staticProp)!.GetValue(null)!;
-			var parts = description.SplitByLength(Console.LargestWindowWidth);
+			var parts = commandAttribute.Description.SplitByLength(Console.LargestWindowWidth);
 
 			listOfDescriptionParts.Add((commandName, parts));
 		}

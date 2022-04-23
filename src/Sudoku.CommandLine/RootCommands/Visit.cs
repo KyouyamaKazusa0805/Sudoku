@@ -5,6 +5,7 @@ namespace Sudoku.CommandLine.RootCommands;
 /// <summary>
 /// Represents a visit command.
 /// </summary>
+[RootCommand("visit", "To fetch the author or the repository link.")]
 [SupportedArguments(new[] { "visit" })]
 [Usage("visit -l <link>", IsFact = true)]
 [Usage("""visit -l author-github""", "Visits the GitHub link of the author.")]
@@ -16,12 +17,6 @@ public sealed class Visit : IRootCommand
 	[Command('l', "link", "Indicates the link that outputs.")]
 	[CommandConverter(typeof(EnumTypeConverter<VisitLink>))]
 	public VisitLink VisitLink { get; set; } = VisitLink.AuthorGitHub;
-
-	/// <inheritdoc/>
-	public static string Name => "visit";
-
-	/// <inheritdoc/>
-	public static string Description => "To fetch the author or the repository link.";
 
 
 	/// <inheritdoc/>

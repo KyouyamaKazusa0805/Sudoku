@@ -3,17 +3,11 @@
 /// <summary>
 /// Defines the type that stores the version options.
 /// </summary>
+[RootCommand("version", "Displays the version of the current command line project.", IsSpecial = true)]
 [SupportedArguments(new[] { "version", "ver" })]
 [Usage("version", IsFact = true)]
 public sealed class Version : IVersionCommand
 {
-	/// <inheritdoc/>
-	public static string Name => "version";
-
-	/// <inheritdoc/>
-	public static string Description => "Displays the version of the current command line project.";
-
-
 	/// <inheritdoc/>
 	public void Execute()
 	{

@@ -3,6 +3,7 @@
 /// <summary>
 /// Represents a solve command.
 /// </summary>
+[RootCommand("solve", "To solve a sudoku grid using the specified algorithm.")]
 [SupportedArguments(new[] { "solve" })]
 [Usage("solve -g <grid> -m <method>", IsFact = true)]
 [Usage($"""solve -g "{SampleGrid}" -m bitwise""", "Solves a sudoku puzzle, using the bitwise algorithm.")]
@@ -21,12 +22,6 @@ public sealed class Solve : IRootCommand
 	[Command('g', "grid", "Indicates the grid used for being solved.", IsRequired = true)]
 	[CommandConverter(typeof(GridConverter))]
 	public Grid Grid { get; set; }
-
-	/// <inheritdoc/>
-	public static string Name => "solve";
-
-	/// <inheritdoc/>
-	public static string Description => "To solve a sudoku grid using the specified algorithm.";
 
 
 	/// <inheritdoc/>
