@@ -7,7 +7,7 @@ namespace Sudoku.CommandLine.RootCommands;
 /// </summary>
 [RootCommand("visit", "To fetch the author or the repository link.")]
 [SupportedArguments(new[] { "visit" })]
-[Usage("visit -l <link>", IsFact = true)]
+[Usage("visit -l <link>", IsPattern = true)]
 [Usage("""visit -l author-github""", "Visits the GitHub link of the author.")]
 public sealed class Visit : IExecutable
 {

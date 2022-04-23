@@ -5,7 +5,7 @@
 /// </summary>
 [RootCommand("help", "Displays all possible root commands provided.", IsSpecial = true)]
 [SupportedArguments(new[] { "help", "?" })]
-[Usage("help", IsFact = true)]
+[Usage("help", IsPattern = true)]
 public sealed class Help : IExecutable
 {
 	/// <summary>

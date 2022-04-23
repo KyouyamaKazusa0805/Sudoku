@@ -69,7 +69,7 @@ public sealed class UsageAttribute : Attribute
 	/// </item>
 	/// </list>
 	/// </remarks>
-	public bool IsFact { get; init; } = false;
+	public bool IsPattern { get; init; } = false;
 
 	/// <summary>
 	/// Indicates the example command.

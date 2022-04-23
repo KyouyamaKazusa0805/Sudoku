@@ -5,7 +5,7 @@
 /// </summary>
 [RootCommand("format", "To format a sudoku grid using string as the result representation.")]
 [SupportedArguments(new[] { "format" })]
-[Usage("format -g <grid> -f <format>", IsFact = true)]
+[Usage("format -g <grid> -f <format>", IsPattern = true)]
 [Usage($"""format -g "{SampleGrid}" -f 0""", @"Formats the specified grid, using the string ""0"" as the format one, which means the grid only displays the given cells, modifiables are treated as the empty ones, and all empty cells will be displayed as a zero character '0'.")]
 public sealed class Format : IExecutable
 {

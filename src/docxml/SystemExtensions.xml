@@ -1012,7 +1012,7 @@
             <param name="example">The example command.</param>
             <param name="description">The description.</param>
         </member>
-        <member name="P:System.CommandLine.Annotations.UsageAttribute.IsFact">
+        <member name="P:System.CommandLine.Annotations.UsageAttribute.IsPattern">
             <summary>
             <para>
             Indicates whether the example command is fact, which means whether the current example command
