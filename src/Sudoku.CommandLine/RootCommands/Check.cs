@@ -3,6 +3,8 @@
 /// <summary>
 /// Represents a check command.
 /// </summary>
+[Usage("check --grid <grid> --type <type>", IsFact = true)]
+[Usage($"""check -g "{SampleGrid}" -t validity""", "To check the validity of the specified sudoku grid.")]
 public sealed class Check : IRootCommand
 {
 	/// <summary>
@@ -27,18 +29,6 @@ public sealed class Check : IRootCommand
 
 	/// <inheritdoc/>
 	public static string[] SupportedCommands => new[] { "check" };
-
-	/// <inheritdoc/>
-	public static IEnumerable<(string CommandLine, string Meaning)>? UsageCommands =>
-		new[]
-		{
-			(
-				"""
-				check -g "...892.....2...3..75.....69.359.814...........713.659.96.....21..4...6.....621..." -t validity
-				""",
-				"To check the validity of the specified sudoku grid."
-			)
-		};
 
 
 	/// <inheritdoc/>

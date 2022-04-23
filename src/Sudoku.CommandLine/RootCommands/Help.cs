@@ -3,6 +3,7 @@
 /// <summary>
 /// Defines the type that stores the help options.
 /// </summary>
+[Usage("help", IsFact = true)]
 public sealed class Help : IHelpCommand
 {
 	/// <inheritdoc/>
@@ -13,10 +14,6 @@ public sealed class Help : IHelpCommand
 
 	/// <inheritdoc/>
 	public static string[] SupportedCommands => new[] { "help", "?" };
-
-	/// <inheritdoc/>
-	public static IEnumerable<(string CommandLine, string Meaning)>? UsageCommands =>
-		new[] { ("""help""", "Lists the help information.") };
 
 
 	/// <inheritdoc/>

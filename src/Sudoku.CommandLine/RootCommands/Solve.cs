@@ -3,6 +3,8 @@
 /// <summary>
 /// Represents a solve command.
 /// </summary>
+[Usage("solve -g <grid> -m <method>", IsFact = true)]
+[Usage($"""solve -g "{SampleGrid}" -m bitwise""", "Solves a sudoku puzzle, using the bitwise algorithm.")]
 public sealed class Solve : IRootCommand
 {
 	/// <summary>
@@ -27,18 +29,6 @@ public sealed class Solve : IRootCommand
 
 	/// <inheritdoc/>
 	public static string[] SupportedCommands => new[] { "solve" };
-
-	/// <inheritdoc/>
-	public static IEnumerable<(string CommandLine, string Meaning)>? UsageCommands =>
-		new[]
-		{
-			(
-				"""
-				solve -g "...892.....2...3..75.....69.359.814...........713.659.96.....21..4...6.....621..." -m bitwise
-				""",
-				"Solves a sudoku puzzle, using the bitwise algorithm."
-			)
-		};
 
 
 	/// <inheritdoc/>

@@ -3,6 +3,7 @@
 /// <summary>
 /// Defines the type that stores the version options.
 /// </summary>
+[Usage("version", IsFact = true)]
 public sealed class Version : IVersionCommand
 {
 	/// <inheritdoc/>
@@ -13,10 +14,6 @@ public sealed class Version : IVersionCommand
 
 	/// <inheritdoc/>
 	public static string[] SupportedCommands => new[] { "version" };
-
-	/// <inheritdoc/>
-	public static IEnumerable<(string CommandLine, string Meaning)>? UsageCommands =>
-		new[] { ("""version""", "Gets the version information.") };
 
 
 	/// <inheritdoc/>

@@ -20,11 +20,6 @@ public interface IRootCommand
 	/// </summary>
 	static abstract string[] SupportedCommands { get; }
 
-	/// <summary>
-	/// Indicates the commands that is provided for the usages.
-	/// </summary>
-	static abstract IEnumerable<(string CommandLine, string Meaning)>? UsageCommands { get; }
-
 
 	/// <summary>
 	/// Try to execute the command, and returns the result reflected the execution.

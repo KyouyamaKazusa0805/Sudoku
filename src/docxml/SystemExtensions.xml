@@ -931,6 +931,84 @@
             <para>The default value is <see langword="true"/>.</para>
             </summary>
         </member>
+        <member name="T:System.CommandLine.Annotations.UsageAttribute">
+            <summary>
+            Represents an attriubute that is applied to a command type, indicating the usage of the current root command.
+            </summary>
+        </member>
+        <member name="M:System.CommandLine.Annotations.UsageAttribute.#ctor(System.String,System.String)">
+            <summary>
+            Initializes a <see cref="T:System.CommandLine.Annotations.UsageAttribute"/> instance via the specified example command and the description.
+            </summary>
+            <param name="example">The example command.</param>
+            <param name="description">The description.</param>
+        </member>
+        <member name="P:System.CommandLine.Annotations.UsageAttribute.IsFact">
+            <summary>
+            <para>
+            Indicates whether the example command is fact, which means whether the current example command
+            contains any wildcards or fuzzy argument patterns.
+            </para>
+            <para>The default value is <see langword="false"/>.</para>
+            </summary>
+            <remarks>
+            Fuzzy argument patterns:
+            <list type="table">
+            <listheader>
+            <term>Patterns</term>
+            <description>Description</description>
+            </listheader>
+            <item>
+            <term><c><![CDATA[<name>]]></c></term>
+            <description>
+            Indicates the arguments that is passed whose main idea is surrounded with the name "<c>name</c>".
+            </description>
+            </item>
+            <item>
+            <term><c>{a|b|c|...}</c></term>
+            <description>
+            Indicates you should choose a value from the given values inside the curly brace.
+            </description>
+            </item>
+            <item>
+            <term><c>[-argName value]</c></term>
+            <description>
+            Indicates the current value is optional, which means the current argument "<c>argName</c>"
+            has a default value even if you don't assign to it.
+            </description>
+            </item>
+            </list>
+            The wildcards:
+            <list type="table">
+            <listheader>
+            <term>Wildcard</term>
+            <description>Description</description>
+            </listheader>
+            <item>
+            <term>Question mark <c>?</c></term>
+            <description>Indicates the current argument can only appear no more than once.</description>
+            </item>
+            <item>
+            <term>Star <c>*</c></term>
+            <description>Indicates the current argument can appear arbitary times.</description>
+            </item>
+            <item>
+            <term>Plus sign <c>+</c></term>
+            <description>Indicates the current argument can appear at least once.</description>
+            </item>
+            </list>
+            </remarks>
+        </member>
+        <member name="P:System.CommandLine.Annotations.UsageAttribute.ExampleCommand">
+            <summary>
+            Indicates the example command.
+            </summary>
+        </member>
+        <member name="P:System.CommandLine.Annotations.UsageAttribute.Description">
+            <summary>
+            Indicates the description of the example command.
+            </summary>
+        </member>
         <member name="T:System.CommandLine.Annotations.WebsiteAttribute">
             <summary>
             Defines an attribute that is applied to an enumeration field, indicating the website of the field.
@@ -1094,11 +1172,6 @@
         <member name="P:System.CommandLine.IRootCommand.SupportedCommands">
             <summary>
             Indicates the supported commands.
-            </summary>
-        </member>
-        <member name="P:System.CommandLine.IRootCommand.UsageCommands">
-            <summary>
-            Indicates the commands that is provided for the usages.
             </summary>
         </member>
         <member name="M:System.CommandLine.IRootCommand.Execute">

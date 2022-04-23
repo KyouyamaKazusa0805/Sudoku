@@ -3,6 +3,8 @@
 /// <summary>
 /// Represents a format command.
 /// </summary>
+[Usage("format -g <grid> -f <format>", IsFact = true)]
+[Usage($"""format -g "{SampleGrid}" -f 0""", """Formats the specified grid, using the string "0" as the format one, which means the grid only displays the given cells, modifiables are treated as the empty ones, and all empty cells will be displayed as a zero character '0'.""")]
 public sealed class Format : IRootCommand
 {
 	/// <summary>
@@ -26,18 +28,6 @@ public sealed class Format : IRootCommand
 
 	/// <inheritdoc/>
 	public static string[] SupportedCommands => new[] { "format" };
-
-	/// <inheritdoc/>
-	public static IEnumerable<(string CommandLine, string Meaning)>? UsageCommands =>
-		new[]
-		{
-			(
-				"""
-				format -g "...892.....2...3..75.....69.359.814...........713.659.96.....21..4...6.....621..." -f "0"
-				""",
-				"""Formats the specified grid, using the string "0" as the format one, which means the grid only displays the given cells, modifiables are treated as the empty ones, and all empty cells will be displayed as a zero character '0'."""
-			)
-		};
 
 
 	/// <inheritdoc/>
