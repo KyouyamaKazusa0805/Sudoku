@@ -10,16 +10,10 @@
 public enum CommandLineInternalError
 {
 	/// <summary>
-	/// Indicates the error that the unexpected arguments.
-	/// </summary>
-	[Description("Don't require any command line arguments now.")]
-	SpecialCommandDoNotRequireOtherArguments = 1001,
-
-	/// <summary>
 	/// Indicates the error that the command line arguments is invalid.
 	/// </summary>
 	[Description("The command line arguments is invalid.")]
-	ArgumentFormatInvalid,
+	ArgumentFormatInvalid = 1001,
 
 	/// <summary>
 	/// Indicates the error that the command name is invalid.
@@ -34,10 +28,10 @@ public enum CommandLineInternalError
 	ArgumentsAmbiguousMatchedOrMismatched,
 
 	/// <summary>
-	/// Indicates the error that the argument is mismatched.
+	/// Indicates the error that multiple single-argument commands found in a same root command type.
 	/// </summary>
-	[Description("The argument mismatched.")]
-	ArgumentMismatched,
+	[Description("Multiple single-argument command properties found.")]
+	MultipleSingleArgumentCommandPropertiesFound,
 
 	/// <summary>
 	/// Indicates the error that the argument is expected.

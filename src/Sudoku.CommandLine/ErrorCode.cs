@@ -63,6 +63,22 @@ public enum ErrorCode
 	AssemblyNameIsNull = 2001,
 
 	/// <summary>
+	/// Indicates the error case that the type cannot be <see cref="Help"/>.
+	/// </summary>
+	/// <seealso cref="Help"/>
+	TypeCannotBeHelp,
+
+	/// <summary>
+	/// Indicates the error case that the type name cannot be found.
+	/// </summary>
+	TypeCannotBeFound,
+
+	/// <summary>
+	/// Indicates the error case that the command argument cannot be multiple kinds.
+	/// </summary>
+	CommandArgumentCannotBeMultipleKind,
+
+	/// <summary>
 	/// Indicates the error case that the command line has encountered an error that isn't recorded
 	/// in the current enumeration type.
 	/// </summary>

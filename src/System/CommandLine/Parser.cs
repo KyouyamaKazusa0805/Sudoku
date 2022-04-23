@@ -24,17 +24,6 @@ public static class Parser
 		var typeOfRootCommand = rootCommand.GetType();
 		string[] supportedArguments = getArgs(typeOfRootCommand, out var comparisonOption);
 
-		if (typeOfRootCommand.GetCustomAttribute<RootCommandAttribute>() is { IsSpecial: true })
-		{
-			// Special case: If the type is the special one, just return.
-			if (commandLineArguments is [var c] && supportedArguments.Any(e => rootCommandMatcher(c, e)))
-			{
-				return;
-			}
-
-			throw new CommandLineParserException(CommandLineInternalError.SpecialCommandDoNotRequireOtherArguments);
-		}
-
 		// Get all required properties.
 		var listOfRequiredProperties = (
 			from property in typeOfRootCommand.GetProperties(BindingFlags.Instance | BindingFlags.Public)
@@ -75,7 +64,7 @@ public static class Parser
 				var properties = (
 					from propertyInfo in typeOfRootCommand.GetProperties()
 					where propertyInfo is { CanRead: true, CanWrite: true }
-					let attribute = propertyInfo.GetCustomAttribute<CommandAttribute>()
+					let attribute = propertyInfo.GetCustomAttribute<DoubleArgumentsCommandAttribute>()
 					where attribute?.FullName.Equals(realSubcommand, StringComparison.OrdinalIgnoreCase) ?? false
 					select propertyInfo
 				).ToArray();
@@ -85,7 +74,7 @@ public static class Parser
 				}
 
 				// Assign the real value.
-				assignPropertyValue(property, propertyType);
+				assignPropertyValue(property, propertyType, i + 1);
 
 				// Advances the move.
 				i += 2;
@@ -103,7 +92,7 @@ public static class Parser
 				var properties = (
 					from propertyInfo in typeOfRootCommand.GetProperties()
 					where propertyInfo is { CanRead: true, CanWrite: true }
-					let attribute = propertyInfo.GetCustomAttribute<CommandAttribute>()
+					let attribute = propertyInfo.GetCustomAttribute<DoubleArgumentsCommandAttribute>()
 					where attribute?.ShortName == realSubcommand
 					select propertyInfo
 				).ToArray();
@@ -113,15 +102,31 @@ public static class Parser
 				}
 
 				// Assign the real value.
-				assignPropertyValue(property, propertyType);
+				assignPropertyValue(property, propertyType, i + 1);
 
 				// Advances the move.
 				i += 2;
 			}
 			else
 			{
-				// Mismatched.
-				throw new CommandLineParserException(CommandLineInternalError.ArgumentMismatched);
+				// Try to treat the argument as the single-argument command.
+				var properties = (
+					from propertyInfo in typeOfRootCommand.GetProperties()
+					where propertyInfo is { CanRead: true, CanWrite: true }
+					let attribute = propertyInfo.GetCustomAttribute<SingleArgumentCommandAttribute>()
+					where attribute is not null
+					select propertyInfo
+				).ToArray();
+				if (properties is not [{ PropertyType: var propertyType } property])
+				{
+					throw new CommandLineParserException(CommandLineInternalError.MultipleSingleArgumentCommandPropertiesFound);
+				}
+
+				// Assign the real value.
+				assignPropertyValue(property, propertyType, i);
+
+				// Advances the move.
+				i++;
 			}
 
 			// Checks whether all required properties are assigned explicitly.
@@ -132,7 +137,7 @@ public static class Parser
 					"\r\n    ",
 					from propertyInfo in listOfRequiredProperties
 					let name = propertyInfo.Name
-					let attribute = propertyInfo.GetCustomAttribute<CommandAttribute>()!
+					let attribute = propertyInfo.GetCustomAttribute<DoubleArgumentsCommandAttribute>()!
 					let pair = (attribute.ShortName, attribute.FullName)
 					select $"Command {name} (short: {pair.ShortName}, long: {pair.FullName})"
 				);
@@ -143,15 +148,15 @@ public static class Parser
 			}
 
 
-			void assignPropertyValue(PropertyInfo property, Type propertyType)
+			void assignPropertyValue(PropertyInfo property, Type propertyType, int argPos)
 			{
-				if (i + 1 >= otherArgs.Length)
+				if (argPos >= otherArgs.Length)
 				{
 					throw new CommandLineParserException(CommandLineInternalError.ArgumentExpected);
 				}
 
 				// Converts the real argument value into the target property typed instance.
-				string realValue = otherArgs[i + 1];
+				string realValue = otherArgs[argPos];
 				var propertyConverterAttribute = property.GetCustomAttribute<CommandConverterAttribute>();
 				if (propertyConverterAttribute is { ConverterType: var converterType })
 				{

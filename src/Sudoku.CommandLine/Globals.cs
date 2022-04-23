@@ -7,6 +7,7 @@ global using System.Reflection;
 global using System.Runtime.CompilerServices;
 global using System.Text;
 global using Sudoku.CommandLine;
+global using Sudoku.CommandLine.RootCommands;
 global using Sudoku.CommandLine.ValueConverters;
 global using Sudoku.Concepts.Collections;
 global using Sudoku.Concepts.Parsing;

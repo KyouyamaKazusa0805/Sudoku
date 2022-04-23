@@ -1,14 +1,14 @@
 ﻿namespace System.CommandLine.Annotations;
 
 /// <summary>
-/// Represents an attribute type that is applied to a property in the option type,
-/// indicating the property receives the value corresponded to a certain command line argument.
+/// Represents a double-argument command. The command requires an argument name, following with a real vlaue,
+/// such as "<c>-g grid</c>".
 /// </summary>
 [AttributeUsage(AttributeTargets.Property, AllowMultiple = false, Inherited = false)]
-public sealed class CommandAttribute : Attribute
+public sealed class DoubleArgumentsCommandAttribute : Attribute
 {
 	/// <summary>
-	/// Initializes a <see cref="CommandAttribute"/> instance via the specified short name and the full name.
+	/// Initializes a <see cref="DoubleArgumentsCommandAttribute"/> instance via the specified short name and the full name.
 	/// </summary>
 	/// <param name="shortName">The short name of the command.</param>
 	/// <param name="fullName">The full name of the command. The command should not contain the prefix.</param>
@@ -19,7 +19,7 @@ public sealed class CommandAttribute : Attribute
 	/// <exception cref="ArgumentException">
 	/// Throws when the argument <paramref name="fullName"/> doesn't start with a letter, or a hyphen.
 	/// </exception>
-	public CommandAttribute(char shortName, string fullName, string description) =>
+	public DoubleArgumentsCommandAttribute(char shortName, string fullName, string description) =>
 		(ShortName, FullName, Description) = (shortName, fullName, description);
 
 

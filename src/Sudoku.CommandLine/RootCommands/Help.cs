@@ -8,6 +8,13 @@
 [Usage("help", IsFact = true)]
 public sealed class Help : IExecutable
 {
+	/// <summary>
+	/// Indicates the name of the help command. If <see langword="null"/>, all commands will be displayed.
+	/// </summary>
+	[SingleArgumentCommand("type-name", "Indicates the type name whose corresponding command introduction is what you want to see.")]
+	public string? HelpCommandName { get; set; }
+
+
 	/// <inheritdoc/>
 	public void Execute()
 	{
@@ -17,42 +24,161 @@ public sealed class Help : IExecutable
 			throw new CommandLineRuntimeException((int)ErrorCode.AssemblyNameIsNull);
 		}
 
-		// Iterates on each command type, to get the maximum length of the command, in order to display
-		// the commands alignedly.
-		var commandTypes = typeof(Help).Assembly.GetDerivedTypes(typeof(IExecutable)).ToArray();
-		int maxWidth = 0;
-		var listOfDescriptionParts = new List<(string CommandName, IEnumerable<string> DescriptionRawParts)>();
-		foreach (var commandType in commandTypes)
-		{
-			var commandAttribute = commandType.GetCustomAttribute<RootCommandAttribute>()!;
-
-			string commandName = commandAttribute.Name;
-			maxWidth = Max(commandName.Length, maxWidth);
-
-			var parts = commandAttribute.Description.SplitByLength(Console.LargestWindowWidth);
-
-			listOfDescriptionParts.Add((commandName, parts));
-		}
+		var thisType = GetType();
+		var thisAssembly = thisType.Assembly;
 
 		// Defines a builder that stores the content in order to output.
 		var helpTextContentBuilder = new StringBuilder($"Project {realName}\r\nVersion {version}")
 			.AppendLine()
 			.AppendLine();
 
-		// TODO: Output usage.
-
-		// Build the content.
-		helpTextContentBuilder.AppendLine("Commands:").AppendLine();
-		foreach (var (commandName, parts) in listOfDescriptionParts)
+		if (HelpCommandName is null)
 		{
-			helpTextContentBuilder
-				.Append(commandName.PadLeft(maxWidth + 1))
-				.Append(new string(' ', 3))
-				.AppendLine(string.Join($"\r\n{new string(' ', 3 + maxWidth)}", parts))
-				.AppendLine();
-		}
+			// Iterates on each command type, to get the maximum length of the command,
+			// in order to display the commands alignedly.
+			var commandTypes = thisAssembly.GetDerivedTypes(typeof(IExecutable));
+			int maxWidth = 0;
+			var listOfDescriptionParts = new List<(string CommandName, IEnumerable<string> DescriptionRawParts)>();
+			foreach (var commandType in commandTypes)
+			{
+				var commandAttribute = commandType.GetCustomAttribute<RootCommandAttribute>()!;
 
-		// Output the value.
-		Terminal.Write(helpTextContentBuilder.ToString());
+				string commandName = commandAttribute.Name;
+				maxWidth = Max(commandName.Length, maxWidth);
+
+				var parts = commandAttribute.Description.SplitByLength(Console.LargestWindowWidth);
+
+				listOfDescriptionParts.Add((commandName, parts));
+			}
+
+			// Build the content.
+			helpTextContentBuilder.AppendLine("Root commands:").AppendLine();
+			foreach (var (commandName, parts) in listOfDescriptionParts)
+			{
+				helpTextContentBuilder
+					.Append(commandName.PadLeft(maxWidth + 1))
+					.Append(new string(' ', 3))
+					.AppendLine(string.Join($"\r\n{new string(' ', 3 + maxWidth)}", parts))
+					.AppendLine();
+			}
+
+			// Output the value.
+			Terminal.Write(helpTextContentBuilder.ToString());
+		}
+		else
+		{
+			// Iterates on each root command type, to validate whether the property points to the type.
+			IExecutable? instance = null;
+			foreach (var type in thisType.Assembly.GetDerivedTypes(typeof(IExecutable)))
+			{
+				var propertyInfo = thisType.GetProperty(nameof(HelpCommandName))!;
+				var attribute = propertyInfo.GetCustomAttribute<SingleArgumentCommandAttribute>()!;
+				var comparisonOption = attribute.IgnoreCase
+					? StringComparison.OrdinalIgnoreCase
+					: StringComparison.Ordinal;
+				if (type.Name.Equals(HelpCommandName, comparisonOption))
+				{
+					instance = !type.Name.Equals(nameof(Help), comparisonOption)
+						? (IExecutable)Activator.CreateInstance(type)!
+						: throw new CommandLineRuntimeException((int)ErrorCode.TypeCannotBeHelp);
+					break;
+				}
+			}
+
+			// If none found, just throw exception to report the wrong case.
+			if (instance is null)
+			{
+				throw new CommandLineRuntimeException((int)ErrorCode.TypeCannotBeFound);
+			}
+
+			List<(string CommandName, IEnumerable<string> DescriptionRawParts)>
+				singleArguments = new(),
+				doubleArguments = new();
+
+			// Gets and iterates on all possible commands of the instance type.
+			foreach (var (type, l1, l2) in
+				from property in instance.GetType().GetProperties(BindingFlags.Instance | BindingFlags.Public)
+				where property is { CanRead: true, CanWrite: true }
+				let l1 = property.GetCustomAttribute<SingleArgumentCommandAttribute>()
+				let l2 = property.GetCustomAttribute<DoubleArgumentsCommandAttribute>()
+				where l1 is not null || l2 is not null
+				let rootCommandAttribute = instance.GetType().GetCustomAttribute<RootCommandAttribute>()
+				where rootCommandAttribute is not null
+				select (Type: rootCommandAttribute, L1: l1, L2: l2))
+			{
+				switch ((l1, l2))
+				{
+#pragma warning disable IDE0055
+					case (
+						{ Notation: var notation, Description: var description, IsRequired: var isRequired },
+						null
+					):
+#pragma warning restore IDE0055
+					{
+						// l1 is not null
+						singleArguments.Add(
+							(
+								$"<{notation}>",
+								description.SplitByLength(Console.LargestWindowWidth - 4)
+							)
+						);
+
+						break;
+					}
+#pragma warning disable IDE0055
+					case (
+						null,
+						{
+							FullName: var fullName,
+							ShortName: var shortName,
+							Description: var description,
+							IsRequired: var isRequired
+						}
+					):
+#pragma warning restore IDE0055
+					{
+						// l2 is not null
+						var config = thisAssembly.GetCustomAttribute<GlobalConfigurationAttribute>() ?? new();
+						string fullCommandNameSuffix = config.FullCommandNamePrefix;
+						string shortCommandNameSuffix = config.ShortCommandNamePrefix;
+						string fullCommand = $"{fullCommandNameSuffix}{fullName}";
+						string shortCommand = $"{shortCommandNameSuffix}{shortName}";
+
+						doubleArguments.Add(
+							(
+								$"{fullCommand} ({shortCommand}){(isRequired ? ", required" : string.Empty)}",
+								description.SplitByLength(Console.LargestWindowWidth - 4)
+							)
+						);
+
+						break;
+					}
+					default:
+					{
+						throw new CommandLineRuntimeException((int)ErrorCode.CommandArgumentCannotBeMultipleKind);
+					}
+				}
+			}
+
+			// Build the content.
+			helpTextContentBuilder.AppendLine("Commands:").AppendLine();
+			foreach (var (commandName, parts) in singleArguments)
+			{
+				helpTextContentBuilder
+					.AppendLine($"{new string(' ', 4)}{commandName}")
+					.AppendLine(string.Concat(from part in parts select $"{new string(' ', 8)}{part}"))
+					.AppendLine();
+			}
+			foreach (var (commandName, parts) in doubleArguments)
+			{
+				helpTextContentBuilder
+					.AppendLine($"{new string(' ', 4)}{commandName}")
+					.AppendLine(string.Concat(from part in parts select $"{new string(' ', 8)}{part}"))
+					.AppendLine();
+			}
+
+			// Output the value.
+			Terminal.Write(helpTextContentBuilder.ToString());
+		}
 	}
 }

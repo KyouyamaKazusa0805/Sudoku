@@ -784,47 +784,6 @@
             <param name="this">The collection.</param>
             <param name="element">The element to be prepended.</param>
         </member>
-        <member name="T:System.CommandLine.Annotations.CommandAttribute">
-            <summary>
-            Represents an attribute type that is applied to a property in the option type,
-            indicating the property receives the value corresponded to a certain command line argument.
-            </summary>
-        </member>
-        <member name="M:System.CommandLine.Annotations.CommandAttribute.#ctor(System.Char,System.String,System.String)">
-            <summary>
-            Initializes a <see cref="T:System.CommandLine.Annotations.CommandAttribute"/> instance via the specified short name and the full name.
-            </summary>
-            <param name="shortName">The short name of the command.</param>
-            <param name="fullName">The full name of the command. The command should not contain the prefix.</param>
-            <param name="description">The description of the command.</param>
-            <exception cref="T:System.ArgumentOutOfRangeException">
-            Throws when the argument <paramref name="shortName"/> is not a letter.
-            </exception>
-            <exception cref="T:System.ArgumentException">
-            Throws when the argument <paramref name="fullName"/> doesn't start with a letter, or a hyphen.
-            </exception>
-        </member>
-        <member name="P:System.CommandLine.Annotations.CommandAttribute.IsRequired">
-            <summary>
-            <para>Indicates whether the command is required.</para>
-            <para>The default value is <see langword="false"/>.</para>
-            </summary>
-        </member>
-        <member name="P:System.CommandLine.Annotations.CommandAttribute.ShortName">
-            <summary>
-            Indicates the short name.
-            </summary>
-        </member>
-        <member name="P:System.CommandLine.Annotations.CommandAttribute.FullName">
-            <summary>
-            Indicates the full name.
-            </summary>
-        </member>
-        <member name="P:System.CommandLine.Annotations.CommandAttribute.Description">
-            <summary>
-            Indicates the description of the command.
-            </summary>
-        </member>
         <member name="T:System.CommandLine.Annotations.CommandConverterAttribute">
             <summary>
             Represents an attribute that is applied to a property, indicating the property value should be converted
@@ -842,6 +801,47 @@
             <summary>
             Indicates the value converter type that allows the conversion
             from <see cref="T:System.String"/> to the target type.
+            </summary>
+        </member>
+        <member name="T:System.CommandLine.Annotations.DoubleArgumentsCommandAttribute">
+            <summary>
+            Represents a double-argument command. The command requires an argument name, following with a real vlaue,
+            such as "<c>-g grid</c>".
+            </summary>
+        </member>
+        <member name="M:System.CommandLine.Annotations.DoubleArgumentsCommandAttribute.#ctor(System.Char,System.String,System.String)">
+            <summary>
+            Initializes a <see cref="T:System.CommandLine.Annotations.DoubleArgumentsCommandAttribute"/> instance via the specified short name and the full name.
+            </summary>
+            <param name="shortName">The short name of the command.</param>
+            <param name="fullName">The full name of the command. The command should not contain the prefix.</param>
+            <param name="description">The description of the command.</param>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+            Throws when the argument <paramref name="shortName"/> is not a letter.
+            </exception>
+            <exception cref="T:System.ArgumentException">
+            Throws when the argument <paramref name="fullName"/> doesn't start with a letter, or a hyphen.
+            </exception>
+        </member>
+        <member name="P:System.CommandLine.Annotations.DoubleArgumentsCommandAttribute.IsRequired">
+            <summary>
+            <para>Indicates whether the command is required.</para>
+            <para>The default value is <see langword="false"/>.</para>
+            </summary>
+        </member>
+        <member name="P:System.CommandLine.Annotations.DoubleArgumentsCommandAttribute.ShortName">
+            <summary>
+            Indicates the short name.
+            </summary>
+        </member>
+        <member name="P:System.CommandLine.Annotations.DoubleArgumentsCommandAttribute.FullName">
+            <summary>
+            Indicates the full name.
+            </summary>
+        </member>
+        <member name="P:System.CommandLine.Annotations.DoubleArgumentsCommandAttribute.Description">
+            <summary>
+            Indicates the description of the command.
             </summary>
         </member>
         <member name="T:System.CommandLine.Annotations.GlobalConfigurationAttribute">
@@ -937,6 +937,41 @@
         <member name="P:System.CommandLine.Annotations.RouteToTypeAttribute.TypeToRoute">
             <summary>
             Indicates the type to be routed.
+            </summary>
+        </member>
+        <member name="T:System.CommandLine.Annotations.SingleArgumentCommandAttribute">
+            <summary>
+            Represents a single-argument command. The command don't require any argument name such as "<c>-f</c>".
+            </summary>
+        </member>
+        <member name="M:System.CommandLine.Annotations.SingleArgumentCommandAttribute.#ctor(System.String,System.String)">
+            <summary>
+            Initializes a <see cref="T:System.CommandLine.Annotations.SingleArgumentCommandAttribute"/> instance via the specified description
+            for the command.
+            </summary>
+            <param name="notation">The notation of the command.</param>
+            <param name="description">The description.</param>
+        </member>
+        <member name="P:System.CommandLine.Annotations.SingleArgumentCommandAttribute.IgnoreCase">
+            <summary>
+            <para>Indicates whether the command value can ignore the casing.</para>
+            <para>The default value is <see langword="true"/>.</para>
+            </summary>
+        </member>
+        <member name="P:System.CommandLine.Annotations.SingleArgumentCommandAttribute.IsRequired">
+            <summary>
+            <para>Indicates whether the command is required.</para>
+            <para>The default value is <see langword="false"/>.</para>
+            </summary>
+        </member>
+        <member name="P:System.CommandLine.Annotations.SingleArgumentCommandAttribute.Notation">
+            <summary>
+            Indicates the fast notation to introduce the command, which is used for the displaying the help text.
+            </summary>
+        </member>
+        <member name="P:System.CommandLine.Annotations.SingleArgumentCommandAttribute.Description">
+            <summary>
+            Indicates the description of the argument.
             </summary>
         </member>
         <member name="T:System.CommandLine.Annotations.SupportedArgumentsAttribute">
@@ -1108,11 +1143,6 @@
             please avoid the range of these integers.
             </b></remarks>
         </member>
-        <member name="F:System.CommandLine.CommandLineInternalError.SpecialCommandDoNotRequireOtherArguments">
-            <summary>
-            Indicates the error that the unexpected arguments.
-            </summary>
-        </member>
         <member name="F:System.CommandLine.CommandLineInternalError.ArgumentFormatInvalid">
             <summary>
             Indicates the error that the command line arguments is invalid.
@@ -1128,9 +1158,9 @@
             Indicates the error that ambiguous matched or mismatched.
             </summary>
         </member>
-        <member name="F:System.CommandLine.CommandLineInternalError.ArgumentMismatched">
+        <member name="F:System.CommandLine.CommandLineInternalError.MultipleSingleArgumentCommandPropertiesFound">
             <summary>
-            Indicates the error that the argument is mismatched.
+            Indicates the error that multiple single-argument commands found in a same root command type.
             </summary>
         </member>
         <member name="F:System.CommandLine.CommandLineInternalError.ArgumentExpected">

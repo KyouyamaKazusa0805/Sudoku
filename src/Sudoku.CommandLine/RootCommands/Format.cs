@@ -12,13 +12,13 @@ public sealed class Format : IExecutable
 	/// <summary>
 	/// Indicates the format string.
 	/// </summary>
-	[Command('f', "format", "Indicates the format string used.")]
+	[DoubleArgumentsCommand('f', "format", "Indicates the format string used.")]
 	public string FormatString { get; set; } = "0";
 
 	/// <summary>
 	/// Indicates the grid used.
 	/// </summary>
-	[Command('g', "grid", "Indicates the grid to be formatted.", IsRequired = true)]
+	[DoubleArgumentsCommand('g', "grid", "Indicates the grid to be formatted.", IsRequired = true)]
 	[CommandConverter(typeof(GridConverter))]
 	public Grid Grid { get; set; }
 
