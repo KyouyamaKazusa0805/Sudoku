@@ -20,18 +20,14 @@ public sealed class CommandAttribute : Attribute
 	/// Throws when the argument <paramref name="fullName"/> doesn't start with a letter, or a hyphen.
 	/// </exception>
 	public CommandAttribute(char shortName, string fullName, string description) =>
-		(ShortName, FullName, Description) = (
-			shortName is >= 'A' and <= 'Z' or >= 'a' and <= 'z'
-				? shortName
-				: throw new ArgumentOutOfRangeException(nameof(shortName)),
-			fullName is [>= 'A' and <= 'Z' or >= 'a' and <= 'z' or '-', ..]
-				? fullName
-				: throw new ArgumentException(
-					"The argument must start with a letter or a hyphen.",
-					nameof(fullName)),
-			description
-		);
+		(ShortName, FullName, Description) = (shortName, fullName, description);
 
+
+	/// <summary>
+	/// <para>Indicates whether the command is required.</para>
+	/// <para>The default value is <see langword="false"/>.</para>
+	/// </summary>
+	public bool IsRequired { get; init; } = false;
 
 	/// <summary>
 	/// Indicates the short name.

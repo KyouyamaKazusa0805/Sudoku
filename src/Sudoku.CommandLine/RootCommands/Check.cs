@@ -17,7 +17,7 @@ public sealed class Check : IRootCommand
 	/// <summary>
 	/// Indicates the grid used.
 	/// </summary>
-	[Command('g', "grid", "Indicates the sudoku grid as string representation.")]
+	[Command('g', "grid", "Indicates the sudoku grid as string representation.", IsRequired = true)]
 	[CommandConverter(typeof(GridConverter))]
 	public Grid Grid { get; set; }
 

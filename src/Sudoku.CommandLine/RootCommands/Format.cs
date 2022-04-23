@@ -16,7 +16,7 @@ public sealed class Format : IRootCommand
 	/// <summary>
 	/// Indicates the grid used.
 	/// </summary>
-	[Command('g', "grid", "Indicates the grid to be formatted.")]
+	[Command('g', "grid", "Indicates the grid to be formatted.", IsRequired = true)]
 	[CommandConverter(typeof(GridConverter))]
 	public Grid Grid { get; set; }
 

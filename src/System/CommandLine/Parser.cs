@@ -43,6 +43,13 @@ public static class Parser
 			}
 		}
 
+		// Get all required properties.
+		var listOfRequiredProperties = (
+			from property in typeOfRootCommand.GetProperties(BindingFlags.Instance | BindingFlags.Public)
+			where property is { CanRead: true, CanWrite: true }
+			select property
+		).ToList();
+
 		// Checks the validity of the command line arguments.
 		if (commandLineArguments is not [var possibleCommandName, .. var otherArgs])
 		{
@@ -127,6 +134,24 @@ public static class Parser
 				throw new CommandLineParserException(CommandLineInternalError.ArgumentMismatched);
 			}
 
+			// Checks whether all required properties are assigned explicitly.
+			// If not, an exception will be thrown.
+			if (listOfRequiredProperties.Count != 0)
+			{
+				string requiredPropertiesNotAssignedStr = string.Join(
+					"\r\n    ",
+					from propertyInfo in listOfRequiredProperties
+					let name = propertyInfo.Name
+					let attribute = propertyInfo.GetCustomAttribute<CommandAttribute>()!
+					let pair = (attribute.ShortName, attribute.FullName)
+					select $"Command {name} (short: {pair.ShortName}, long: {pair.FullName})"
+				);
+
+				throw new CommandLineParserException(
+					CommandLineInternalError.NotAllRequiredPropertiesAreAssigned,
+					$"Required properties not assigned: {requiredPropertiesNotAssignedStr}");
+			}
+
 
 			void assignPropertyValue(PropertyInfo property, Type propertyType)
 			{
@@ -154,6 +179,9 @@ public static class Parser
 							? realValue
 							: throw new CommandLineParserException(CommandLineInternalError.ConvertedTypeMustBeString));
 				}
+
+				// Removes the value from the required property list.
+				listOfRequiredProperties.RemoveAll(p => p == property);
 			}
 		}
 	}

@@ -58,6 +58,12 @@ public enum CommandLineInternalError
 	ArgumentIsEmpty,
 
 	/// <summary>
+	/// Indicates the error that not all requied properties are assigned.
+	/// </summary>
+	[Description("Not all required properties are assigned.")]
+	NotAllRequiredPropertiesAreAssigned,
+
+	/// <summary>
 	/// Indicates the error that the command converter cannot convert the specified text into the target type
 	/// due to invalid text.
 	/// </summary>

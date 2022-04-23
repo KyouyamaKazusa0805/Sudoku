@@ -17,7 +17,7 @@ public sealed class Solve : IRootCommand
 	/// <summary>
 	/// Indicates the grid used.
 	/// </summary>
-	[Command('g', "grid", "Indicates the grid used for being solved.")]
+	[Command('g', "grid", "Indicates the grid used for being solved.", IsRequired = true)]
 	[CommandConverter(typeof(GridConverter))]
 	public Grid Grid { get; set; }
 

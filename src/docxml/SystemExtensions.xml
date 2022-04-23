@@ -804,6 +804,12 @@
             Throws when the argument <paramref name="fullName"/> doesn't start with a letter, or a hyphen.
             </exception>
         </member>
+        <member name="P:System.CommandLine.Annotations.CommandAttribute.IsRequired">
+            <summary>
+            <para>Indicates whether the command is required.</para>
+            <para>The default value is <see langword="false"/>.</para>
+            </summary>
+        </member>
         <member name="P:System.CommandLine.Annotations.CommandAttribute.ShortName">
             <summary>
             Indicates the short name.
@@ -1114,6 +1120,11 @@
             Indicates the error that the command line arguments is empty.
             </summary>
         </member>
+        <member name="F:System.CommandLine.CommandLineInternalError.NotAllRequiredPropertiesAreAssigned">
+            <summary>
+            Indicates the error that not all requied properties are assigned.
+            </summary>
+        </member>
         <member name="F:System.CommandLine.CommandLineInternalError.ConverterError">
             <summary>
             Indicates the error that the command converter cannot convert the specified text into the target type
@@ -1131,11 +1142,20 @@
             </summary>
             <param name="errorCode">The error code.</param>
         </member>
-        <member name="M:System.CommandLine.CommandLineParserException.InitializePropertyMessage(System.CommandLine.CommandLineInternalError)">
+        <member name="M:System.CommandLine.CommandLineParserException.#ctor(System.CommandLine.CommandLineInternalError,System.String)">
+            <summary>
+            Initializes a <see cref="T:System.CommandLine.CommandLineParserException"/> instance via the specified error case,
+            and the extra message to describe the extra information.
+            </summary>
+            <param name="errorCode">The error code.</param>
+            <param name="extraErrorMessage">The extra error message.</param>
+        </member>
+        <member name="M:System.CommandLine.CommandLineParserException.InitializePropertyMessage(System.CommandLine.CommandLineInternalError,System.String)">
             <summary>
             To initializes the property <see cref="P:System.Exception.Message"/> via the specified error code.
             </summary>
             <param name="errorCode">The error code.</param>
+            <param name="extraMessage">The extra error message.</param>
             <returns>The message string value.</returns>
         </member>
         <member name="T:System.CommandLine.CommandLineRuntimeException">
