@@ -6,7 +6,7 @@
 internal static class RootCommand
 {
 	/// <summary>
-	/// Routes the command line arguments to the specified <see cref="IRootCommand"/> instances.
+	/// Routes the command line arguments to the specified <see cref="IExecutable"/> instances.
 	/// </summary>
 	/// <param name="args">The arguments.</param>
 	/// <exception cref="CommandLineParserException">
@@ -23,7 +23,7 @@ internal static class RootCommand
 
 		var type = (
 			from t in typeof(Program).Assembly.GetTypes()
-			where t.IsAssignableTo(typeof(IRootCommand)) && t is { IsClass: true, IsAbstract: false }
+			where t.IsAssignableTo(typeof(IExecutable)) && t is { IsClass: true, IsAbstract: false }
 			let parameterlessConstructorInfo = t.GetConstructor(Array.Empty<Type>())
 			where parameterlessConstructorInfo is not null
 			let attribute = t.GetCustomAttribute<SupportedArgumentsAttribute>()
@@ -34,7 +34,7 @@ internal static class RootCommand
 			select t
 		).Single();
 
-		var rootCommandInstance = (IRootCommand)Activator.CreateInstance(type)!;
+		var rootCommandInstance = (IExecutable)Activator.CreateInstance(type)!;
 		Parser.ParseAndApplyTo(args, rootCommandInstance);
 		rootCommandInstance.Execute();
 	}

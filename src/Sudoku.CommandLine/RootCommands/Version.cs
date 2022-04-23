@@ -6,7 +6,7 @@
 [RootCommand("version", "Displays the version of the current command line project.", IsSpecial = true)]
 [SupportedArguments(new[] { "version", "ver" })]
 [Usage("version", IsFact = true)]
-public sealed class Version : IVersionCommand
+public sealed class Version : IExecutable
 {
 	/// <inheritdoc/>
 	public void Execute()

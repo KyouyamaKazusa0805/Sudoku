@@ -19,26 +19,20 @@ public static class Parser
 	/// Throws when the command line arguments is <see langword="null"/> or empty currently,
 	/// or the command name is invalid.
 	/// </exception>
-	public static void ParseAndApplyTo(string[] commandLineArguments, IRootCommand rootCommand)
+	public static void ParseAndApplyTo(string[] commandLineArguments, IExecutable rootCommand)
 	{
 		var typeOfRootCommand = rootCommand.GetType();
 		string[] supportedArguments = getArgs(typeOfRootCommand, out var comparisonOption);
-		switch (rootCommand)
+
+		if (typeOfRootCommand.GetCustomAttribute<RootCommandAttribute>() is { IsSpecial: true })
 		{
 			// Special case: If the type is the special one, just return.
-			case ISpecialCommand:
+			if (commandLineArguments is [var c] && supportedArguments.Any(e => rootCommandMatcher(c, e)))
 			{
-				if (commandLineArguments is [var c] && supportedArguments.Any(e => rootCommandMatcher(c, e)))
-				{
-					return;
-				}
+				return;
+			}
 
-				throw new CommandLineParserException(CommandLineInternalError.SpecialCommandDoNotRequireOtherArguments);
-			}
-			default:
-			{
-				break;
-			}
+			throw new CommandLineParserException(CommandLineInternalError.SpecialCommandDoNotRequireOtherArguments);
 		}
 
 		// Get all required properties.

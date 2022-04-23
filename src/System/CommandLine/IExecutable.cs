@@ -1,9 +1,9 @@
 ﻿namespace System.CommandLine;
 
 /// <summary>
-/// Represents a root command.
+/// Represents an executable command.
 /// </summary>
-public interface IRootCommand
+public interface IExecutable
 {
 	/// <summary>
 	/// Try to execute the command, and returns the result reflected the execution.

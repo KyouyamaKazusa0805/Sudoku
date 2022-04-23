@@ -7,7 +7,7 @@
 [SupportedArguments(new[] { "check" })]
 [Usage("check --grid <grid> --type <type>", IsFact = true)]
 [Usage($"""check -g "{SampleGrid}" -t validity""", "To check the validity of the specified sudoku grid.")]
-public sealed class Check : IRootCommand
+public sealed class Check : IExecutable
 {
 	/// <summary>
 	/// Indicates the check type.

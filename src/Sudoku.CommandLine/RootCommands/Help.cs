@@ -6,7 +6,7 @@
 [RootCommand("help", "Displays all possible root commands provided.", IsSpecial = true)]
 [SupportedArguments(new[] { "help", "?" })]
 [Usage("help", IsFact = true)]
-public sealed class Help : IHelpCommand
+public sealed class Help : IExecutable
 {
 	/// <inheritdoc/>
 	public void Execute()
@@ -19,7 +19,7 @@ public sealed class Help : IHelpCommand
 
 		// Iterates on each command type, to get the maximum length of the command, in order to display
 		// the commands alignedly.
-		var commandTypes = typeof(Help).Assembly.GetDerivedTypes(typeof(IRootCommand)).ToArray();
+		var commandTypes = typeof(Help).Assembly.GetDerivedTypes(typeof(IExecutable)).ToArray();
 		int maxWidth = 0;
 		var listOfDescriptionParts = new List<(string CommandName, IEnumerable<string> DescriptionRawParts)>();
 		foreach (var commandType in commandTypes)

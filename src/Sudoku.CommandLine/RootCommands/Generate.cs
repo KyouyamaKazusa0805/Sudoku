@@ -7,7 +7,7 @@
 [SupportedArguments(new[] { "generate", "gen" })]
 [Usage("generate -m <method> -c <range>", IsFact = true)]
 [Usage("""generate -m hard -c 24..30""", "Generates a sudoku puzzle, which contains givens of number between 24 and 30, and using the hard-pattern algorithm to generate puzzle.")]
-public sealed class Generate : IRootCommand
+public sealed class Generate : IExecutable
 {
 	/// <summary>
 	/// Indicates the range of givens that generated puzzle should be.

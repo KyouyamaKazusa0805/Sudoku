@@ -7,7 +7,7 @@
 [SupportedArguments(new[] { "solve" })]
 [Usage("solve -g <grid> -m <method>", IsFact = true)]
 [Usage($"""solve -g "{SampleGrid}" -m bitwise""", "Solves a sudoku puzzle, using the bitwise algorithm.")]
-public sealed class Solve : IRootCommand
+public sealed class Solve : IExecutable
 {
 	/// <summary>
 	/// Indicates the method to be used.

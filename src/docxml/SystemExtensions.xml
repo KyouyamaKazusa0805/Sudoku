@@ -1197,26 +1197,16 @@
             </summary>
             <param name="errorCode">The error code.</param>
         </member>
-        <member name="T:System.CommandLine.IHelpCommand">
+        <member name="T:System.CommandLine.IExecutable">
             <summary>
-            Defines a help command.
+            Represents an executable command.
             </summary>
         </member>
-        <member name="T:System.CommandLine.IRootCommand">
-            <summary>
-            Represents a root command.
-            </summary>
-        </member>
-        <member name="M:System.CommandLine.IRootCommand.Execute">
+        <member name="M:System.CommandLine.IExecutable.Execute">
             <summary>
             Try to execute the command, and returns the result reflected the execution.
             </summary>
             <exception cref="T:System.CommandLine.CommandLineRuntimeException">Throws when an error has been encountered.</exception>
-        </member>
-        <member name="T:System.CommandLine.ISpecialCommand">
-            <summary>
-            Defines a special command for the special use.
-            </summary>
         </member>
         <member name="T:System.CommandLine.IValueConverter">
             <summary>
@@ -1233,17 +1223,12 @@
             Throws when the current method has encountered an unexpected error.
             </exception>
         </member>
-        <member name="T:System.CommandLine.IVersionCommand">
-            <summary>
-            Defines a version command.
-            </summary>
-        </member>
         <member name="T:System.CommandLine.Parser">
             <summary>
             Defines a command line parser that can parse the command line arguments as real instances.
             </summary>
         </member>
-        <member name="M:System.CommandLine.Parser.ParseAndApplyTo(System.String[],System.CommandLine.IRootCommand)">
+        <member name="M:System.CommandLine.Parser.ParseAndApplyTo(System.String[],System.CommandLine.IExecutable)">
             <summary>
             Try to parse the command line arguments and apply to the options into the specified instance.
             </summary>

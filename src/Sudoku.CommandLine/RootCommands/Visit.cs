@@ -9,7 +9,7 @@ namespace Sudoku.CommandLine.RootCommands;
 [SupportedArguments(new[] { "visit" })]
 [Usage("visit -l <link>", IsFact = true)]
 [Usage("""visit -l author-github""", "Visits the GitHub link of the author.")]
-public sealed class Visit : IRootCommand
+public sealed class Visit : IExecutable
 {
 	/// <summary>
 	/// Indicates the link to visit.
