@@ -116,7 +116,6 @@ public readonly struct Utf8String :
 	Utf8Char IReadOnlyList<Utf8Char>.this[int index] => _value[index];
 
 
-
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public override bool Equals([NotNullWhen(true)] object? obj) => obj is Utf8String comparer && Equals(comparer);
