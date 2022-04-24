@@ -79,6 +79,13 @@ public enum ErrorCode
 	CommandArgumentCannotBeMultipleKind,
 
 	/// <summary>
+	/// Indicates the error case that the multiple usage instances set the property
+	/// <see cref="UsageAttribute.IsPattern"/> with <see langword="true"/> value.
+	/// </summary>
+	/// <seealso cref="UsageAttribute.IsPattern"/>
+	MultipleSyntaxPatternUsagesFound,
+
+	/// <summary>
 	/// Indicates the error case that the command line has encountered an error that isn't recorded
 	/// in the current enumeration type.
 	/// </summary>

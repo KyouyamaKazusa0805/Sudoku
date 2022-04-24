@@ -69,6 +69,7 @@ public sealed class UsageAttribute : Attribute
 	/// </item>
 	/// </list>
 	/// </remarks>
+	[MemberNotNullWhen(false, nameof(Description))]
 	public bool IsPattern { get; init; } = false;
 
 	/// <summary>

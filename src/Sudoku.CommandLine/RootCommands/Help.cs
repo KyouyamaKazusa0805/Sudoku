@@ -91,13 +91,61 @@ public sealed class Help : IExecutable
 				throw new CommandLineRuntimeException((int)ErrorCode.TypeCannotBeFound);
 			}
 
+			// Display usage text.
+			var instanceType = instance.GetType();
+			var usageAttributes = instanceType.GetCustomAttributes<UsageAttribute>().ToArray();
+			if (usageAttributes is [{ IsPattern: var firstIsPattern }, .. { Length: var otherArgsCount }])
+			{
+				// Output the title.
+				helpTextContentBuilder.AppendLine("Syntax & Usage:").AppendLine();
+
+				// Determines whether the collection has more than one pattern syntax usages.
+				if (Array.FindAll(usageAttributes, static e => e.IsPattern).Length >= 2)
+				{
+					throw new CommandLineRuntimeException((int)ErrorCode.MultipleSyntaxPatternUsagesFound);
+				}
+
+				// Sort the attributes, and put the pattern syntax as the first place always.
+				if (!firstIsPattern)
+				{
+					for (int i = 1; i < otherArgsCount + 1; i++)
+					{
+						if (usageAttributes[i].IsPattern)
+						{
+							(usageAttributes[i], usageAttributes[0]) = (usageAttributes[0], usageAttributes[i]);
+							break;
+						}
+					}
+				}
+
+				// Then output the details.
+				foreach (var usageAttribute in usageAttributes)
+				{
+					string patternSyntax = usageAttribute.ExampleCommand;
+					var parts = usageAttribute.Description?.SplitByLength(Console.LargestWindowWidth);
+					if (usageAttribute.IsPattern)
+					{
+						helpTextContentBuilder.AppendLine($"{new string(' ', 4)}{patternSyntax}").AppendLine();
+					}
+					else if (parts is not null)
+					{
+						helpTextContentBuilder
+							.AppendLine($"{new string(' ', 4)}{patternSyntax}")
+							.AppendLine(string.Concat(from part in parts select $"{new string(' ', 8)}{part}"))
+							.AppendLine();
+					}
+				}
+
+				helpTextContentBuilder.AppendLine();
+			}
+
 			List<(string CommandName, IEnumerable<string> DescriptionRawParts)>
 				singleArguments = new(),
 				doubleArguments = new();
 
 			// Gets and iterates on all possible commands of the instance type.
 			foreach (var (type, l1, l2) in
-				from property in instance.GetType().GetProperties(BindingFlags.Instance | BindingFlags.Public)
+				from property in instanceType.GetProperties(BindingFlags.Instance | BindingFlags.Public)
 				where property is { CanRead: true, CanWrite: true }
 				let l1 = property.GetCustomAttribute<SingleArgumentCommandAttribute>()
 				let l2 = property.GetCustomAttribute<DoubleArgumentsCommandAttribute>()
