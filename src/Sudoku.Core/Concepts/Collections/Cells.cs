@@ -12,6 +12,7 @@ namespace Sudoku.Concepts.Collections;
 /// the digit.
 /// </remarks>
 [JsonConverter(typeof(JsonConverter))]
+[DisableParameterlessConstructor(MemberName = nameof(Empty))]
 public unsafe partial struct Cells :
 	IComparable<Cells>,
 	IDefaultable<Cells>,

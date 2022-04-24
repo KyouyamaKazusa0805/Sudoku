@@ -14,6 +14,7 @@ namespace Sudoku.Concepts.Collections;
 #endif // !USE_TO_MASK_STRING_METHOD
 #endif // !DEBUG
 [JsonConverter(typeof(JsonConverter))]
+[DisableParameterlessConstructor(MemberName = nameof(Empty))]
 public unsafe partial struct Grid :
 	IDefaultable<Grid>,
 	ISimpleFormattable,

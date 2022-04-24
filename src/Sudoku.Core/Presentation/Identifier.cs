@@ -5,6 +5,7 @@
 /// </summary>
 [StructLayout(LayoutKind.Explicit)]
 [JsonConverter(typeof(JsonConverter))]
+[DisableParameterlessConstructor(Message = "You cannot use the parameterless constructor to construct the data structure. Please use factory method instead.")]
 public readonly partial struct Identifier : IEquatable<Identifier>, IEqualityOperators<Identifier, Identifier>
 {
 	/// <summary>

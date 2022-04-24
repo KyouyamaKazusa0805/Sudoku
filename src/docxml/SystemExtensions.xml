@@ -1378,6 +1378,22 @@
         <member name="M:System.CommonComparers.Equality.MatchLengthComparer.GetHashCode(System.Text.RegularExpressions.Match)">
             <inheritdoc/>
         </member>
+        <member name="T:System.Diagnostics.CodeGen.DisableParameterlessConstructorAttribute">
+            <summary>
+            Represents an attribute that limits a <see langword="struct"/> type cannot create an instance by
+            the parameterless constructor.
+            </summary>
+        </member>
+        <member name="P:System.Diagnostics.CodeGen.DisableParameterlessConstructorAttribute.MemberName">
+            <summary>
+            Indicates the data member name you want to allow the user using.
+            </summary>
+        </member>
+        <member name="P:System.Diagnostics.CodeGen.DisableParameterlessConstructorAttribute.Message">
+            <summary>
+            Indicates the message you want to tell the user.
+            </summary>
+        </member>
         <member name="T:System.Reflection.AssemblyExtensions">
             <summary>
             Provides with extension methods on <see cref="T:System.Reflection.Assembly"/>.
