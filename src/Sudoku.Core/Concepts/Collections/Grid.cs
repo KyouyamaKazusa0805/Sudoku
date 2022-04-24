@@ -594,7 +594,6 @@ public unsafe partial struct Grid :
 	/// </summary>
 	public readonly Grid ResetGrid
 	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get
 		{
 			var arr = (stackalloc int[81]);
