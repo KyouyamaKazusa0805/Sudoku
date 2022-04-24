@@ -2576,14 +2576,8 @@
             Represents a <see href="https://sunnieshine.github.io/Sudoku/terms/conjugate-pair">conjugate pair</see>.
             </summary>
             <remarks>
-            <para>
             A <b>Conjugate pair</b> is a pair of two candidates, in the same house where all cells has only
             two position can fill this candidate.
-            </para>
-            <para>
-            For more information please visit
-            <see href="http://sudopedia.enjoysudoku.com/Conjugate_pair.html">this link</see>.
-            </para>
             </remarks>
         </member>
         <member name="F:Sudoku.Concepts.Conjugate.Default">

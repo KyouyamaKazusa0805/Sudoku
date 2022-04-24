@@ -4,14 +4,8 @@
 /// Represents a <see href="https://sunnieshine.github.io/Sudoku/terms/conjugate-pair">conjugate pair</see>.
 /// </summary>
 /// <remarks>
-/// <para>
 /// A <b>Conjugate pair</b> is a pair of two candidates, in the same house where all cells has only
 /// two position can fill this candidate.
-/// </para>
-/// <para>
-/// For more information please visit
-/// <see href="http://sudopedia.enjoysudoku.com/Conjugate_pair.html">this link</see>.
-/// </para>
 /// </remarks>
 public readonly struct Conjugate :
 	IDefaultable<Conjugate>,
@@ -123,8 +117,7 @@ public readonly struct Conjugate :
 
 	/// <inheritdoc cref="object.Equals(object?)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public override bool Equals([NotNullWhen(true)] object? obj) =>
-		obj is Conjugate comparer && Equals(comparer);
+	public override bool Equals([NotNullWhen(true)] object? obj) => obj is Conjugate comparer && Equals(comparer);
 
 	/// <summary>
 	/// Determine whether the two conjugate pairs are same.
