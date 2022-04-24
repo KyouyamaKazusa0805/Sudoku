@@ -3734,48 +3734,41 @@
         </member>
         <member name="M:Sudoku.Concepts.Parsing.CellRange.#ctor(System.Int32,System.Int32)">
             <summary>
-            Initializes a <see cref="T:Sudoku.Concepts.Parsing.CellRange"/> instance via the specified start and end cell.
+            Initializes a <see cref="T:Sudoku.Concepts.Parsing.CellRange"/> instance via the specified value controlling the range.
             </summary>
-            <param name="start">The start cell.</param>
-            <param name="end">The end cell.</param>
+            <param name="min">The minimum value.</param>
+            <param name="max">The maximum value.</param>
             <exception cref="T:System.ArgumentException">
             Throws when:
             <list type="bullet">
-            <item>The argument <paramref name="start"/> is greater than <paramref name="end"/>.</item>
-            <item>The argument <paramref name="start"/> is below than 0 or greater than 80.</item>
-            <item>The argument <paramref name="end"/> is below than 0 or greater than 81.</item>
+            <item>The argument <paramref name="min"/> is greater than <paramref name="max"/>.</item>
+            <item>The argument <paramref name="min"/> is below than 0 or greater than 80.</item>
+            <item>The argument <paramref name="max"/> is below than 0 or greater than 81.</item>
             </list>
             </exception>
         </member>
-        <member name="P:Sudoku.Concepts.Parsing.CellRange.StartCell">
+        <member name="P:Sudoku.Concepts.Parsing.CellRange.MinValue">
             <summary>
-            Indicates the start cell.
+            Indicates the minimum value.
             </summary>
         </member>
-        <member name="P:Sudoku.Concepts.Parsing.CellRange.EndCell">
+        <member name="P:Sudoku.Concepts.Parsing.CellRange.MaxValue">
             <summary>
-            Indicates the end cell.
+            Indicates the maximum value.
             </summary>
         </member>
         <member name="M:Sudoku.Concepts.Parsing.CellRange.Deconstruct(System.Int32@,System.Int32@)">
             <summary>
             Deconstruct the instance into multiple values.
             </summary>
-            <param name="startCell">The start cell.</param>
-            <param name="endCell">The end cell.</param>
+            <param name="minValue">The minimum value.</param>
+            <param name="maxValue">The maximum value.</param>
         </member>
         <member name="M:Sudoku.Concepts.Parsing.CellRange.Equals(System.Object)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.Parsing.CellRange.Equals(Sudoku.Concepts.Parsing.CellRange)">
             <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.Parsing.CellRange.OverlapsWith(Sudoku.Concepts.Parsing.CellRange)">
-            <summary>
-            Determines whether the two <see cref="T:Sudoku.Concepts.Parsing.CellRange"/> instances are overlapping with each other.
-            </summary>
-            <param name="other">The other instance to be compared.</param>
-            <returns>A <see cref="T:System.Boolean"/> result.</returns>
         </member>
         <member name="M:Sudoku.Concepts.Parsing.CellRange.GetHashCode">
             <inheritdoc/>
@@ -3795,17 +3788,11 @@
         <member name="M:Sudoku.Concepts.Parsing.CellRange.op_Inequality(Sudoku.Concepts.Parsing.CellRange,Sudoku.Concepts.Parsing.CellRange)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.Parsing.CellRange.op_Implicit(System.Range)~Sudoku.Concepts.Parsing.CellRange">
+        <member name="M:Sudoku.Concepts.Parsing.CellRange.op_Explicit(System.Range)~Sudoku.Concepts.Parsing.CellRange">
             <summary>
             Implicitly cast from <see cref="T:System.Range"/> to <see cref="T:Sudoku.Concepts.Parsing.CellRange"/>.
             </summary>
             <param name="range">The range instance.</param>
-        </member>
-        <member name="M:Sudoku.Concepts.Parsing.CellRange.op_Implicit(Sudoku.Concepts.Parsing.CellRange)~Sudoku.Concepts.Collections.Cells">
-            <summary>
-            Implicitly cast from <see cref="T:Sudoku.Concepts.Parsing.CellRange"/> to <see cref="T:Sudoku.Concepts.Collections.Cells"/>.
-            </summary>
-            <param name="range">The cell range instance.</param>
         </member>
         <member name="T:Sudoku.Concepts.Parsing.GridParser">
             <summary>

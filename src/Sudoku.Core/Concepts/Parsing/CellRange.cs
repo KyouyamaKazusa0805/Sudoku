@@ -15,42 +15,42 @@ public readonly struct CellRange :
 
 
 	/// <summary>
-	/// Initializes a <see cref="CellRange"/> instance via the specified start and end cell.
+	/// Initializes a <see cref="CellRange"/> instance via the specified value controlling the range.
 	/// </summary>
-	/// <param name="start">The start cell.</param>
-	/// <param name="end">The end cell.</param>
+	/// <param name="min">The minimum value.</param>
+	/// <param name="max">The maximum value.</param>
 	/// <exception cref="ArgumentException">
 	/// Throws when:
 	/// <list type="bullet">
-	/// <item>The argument <paramref name="start"/> is greater than <paramref name="end"/>.</item>
-	/// <item>The argument <paramref name="start"/> is below than 0 or greater than 80.</item>
-	/// <item>The argument <paramref name="end"/> is below than 0 or greater than 81.</item>
+	/// <item>The argument <paramref name="min"/> is greater than <paramref name="max"/>.</item>
+	/// <item>The argument <paramref name="min"/> is below than 0 or greater than 80.</item>
+	/// <item>The argument <paramref name="max"/> is below than 0 or greater than 81.</item>
 	/// </list>
 	/// </exception>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public CellRange(int start, int end) =>
-		_mask = start <= end
-			? start is >= 0 and < 81
-				? end is >= 0 and <= 81
-					? (short)(end << 7 | start)
-					: throw new ArgumentException($"The argument '{nameof(end)}' must be between 0 and 81.", nameof(end))
-				: throw new ArgumentException($"The argument '{nameof(start)}' must be between 0 and 80.", nameof(start))
-			: throw new ArgumentException($"The argument '{nameof(start)}' must be less than '{nameof(end)}'");
+	public CellRange(int min, int max) =>
+		_mask = min <= max
+			? min is >= 0 and < 81
+				? max is >= 0 and <= 81
+					? (short)(max << 7 | min)
+					: throw new ArgumentException($"The argument '{nameof(max)}' must be between 0 and 81.", nameof(max))
+				: throw new ArgumentException($"The argument '{nameof(min)}' must be between 0 and 80.", nameof(min))
+			: throw new ArgumentException($"The argument '{nameof(min)}' must be less than '{nameof(max)}'");
 
 
 	/// <summary>
-	/// Indicates the start cell.
+	/// Indicates the minimum value.
 	/// </summary>
-	public int StartCell
+	public int MinValue
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => _mask >> 7 & 127;
 	}
 
 	/// <summary>
-	/// Indicates the end cell.
+	/// Indicates the maximum value.
 	/// </summary>
-	public int EndCell
+	public int MaxValue
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => _mask & 127;
@@ -60,10 +60,10 @@ public readonly struct CellRange :
 	/// <summary>
 	/// Deconstruct the instance into multiple values.
 	/// </summary>
-	/// <param name="startCell">The start cell.</param>
-	/// <param name="endCell">The end cell.</param>
+	/// <param name="minValue">The minimum value.</param>
+	/// <param name="maxValue">The maximum value.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public void Deconstruct(out int startCell, out int endCell) => (startCell, endCell) = (StartCell, EndCell);
+	public void Deconstruct(out int minValue, out int maxValue) => (minValue, maxValue) = (MinValue, MaxValue);
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -74,14 +74,6 @@ public readonly struct CellRange :
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public bool Equals(CellRange other) => _mask == other._mask;
 
-	/// <summary>
-	/// Determines whether the two <see cref="CellRange"/> instances are overlapping with each other.
-	/// </summary>
-	/// <param name="other">The other instance to be compared.</param>
-	/// <returns>A <see cref="bool"/> result.</returns>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public bool OverlapsWith(CellRange other) => ((Cells)this & (Cells)other) is not [];
-
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public override int GetHashCode() => HashCode.Combine(_mask);
@@ -90,8 +82,8 @@ public readonly struct CellRange :
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public override string ToString()
 	{
-		string s = StartCell == 0 ? string.Empty : (StartCell + 1).ToString();
-		string e = EndCell switch { 81 => string.Empty, 80 => "^1", 79 => "^2", _ => EndCell.ToString() };
+		string s = MinValue == 0 ? string.Empty : (MinValue + 1).ToString();
+		string e = MaxValue switch { 81 => string.Empty, 80 => "^1", 79 => "^2", _ => MaxValue.ToString() };
 		return $"{s}..{e}";
 	}
 
@@ -116,7 +108,7 @@ public readonly struct CellRange :
 
 		if (startStr.Contains('^'))
 		{
-			throw new FormatException("The start cell index cannot contain index-negation operator '^'.");
+			throw new FormatException("The min cell index cannot contain index-negation operator '^'.");
 		}
 
 		return new(
@@ -159,21 +151,6 @@ public readonly struct CellRange :
 	/// </summary>
 	/// <param name="range">The range instance.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static implicit operator CellRange(Range range) =>
+	public static explicit operator CellRange(Range range) =>
 		new(range.Start.GetOffset(81), range.End.GetOffset(81));
-
-	/// <summary>
-	/// Implicitly cast from <see cref="CellRange"/> to <see cref="Cells"/>.
-	/// </summary>
-	/// <param name="range">The cell range instance.</param>
-	public static implicit operator Cells(CellRange range)
-	{
-		var result = Cells.Empty;
-		for (int i = range.StartCell; i < range.EndCell; i++)
-		{
-			result.Add(i);
-		}
-
-		return result;
-	}
 }
