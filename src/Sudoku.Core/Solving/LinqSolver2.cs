@@ -234,12 +234,10 @@ public sealed class LinqSolver2 : ISimpleSolver
 	/// Eliminate all the other values (except d) from <c>values[s]</c> and propagate.
 	/// </summary>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	private Dictionary<string, string>? Assign(Dictionary<string, string> values, string s, string d) =>
-		AllNotNull(
-			from d2 in values[s]
-			where d2.ToString() != d
-			select Eliminate(values, s, d2.ToString())
-		) ? values : null;
+	private Dictionary<string, string>? Assign(Dictionary<string, string> values, string s, string d)
+		=> AllNotNull(from d2 in values[s] where d2.ToString() != d select Eliminate(values, s, d2.ToString()))
+			? values
+			: null;
 
 	/// <summary>
 	/// Eliminate d from <c>values[s]</c>; propagate when values or places <![CDATA[<=]]> 2.

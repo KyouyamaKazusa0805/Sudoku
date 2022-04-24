@@ -29,8 +29,8 @@ public abstract record class BivalueOddagonStep(
 
 
 	/// <inheritdoc/>
-	public static bool Equals(BivalueOddagonStep left, BivalueOddagonStep right) =>
-		left.GetType() == right.GetType()
-		&& (1 << left.Digit1 | 1 << left.Digit2) == (1 << right.Digit1 | 1 << right.Digit2)
-		&& left.Loop == right.Loop;
+	public static bool Equals(BivalueOddagonStep left, BivalueOddagonStep right)
+		=> left.GetType() == right.GetType()
+			&& (1 << left.Digit1 | 1 << left.Digit2) == (1 << right.Digit1 | 1 << right.Digit2)
+			&& left.Loop == right.Loop;
 }

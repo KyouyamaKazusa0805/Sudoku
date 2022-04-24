@@ -33,11 +33,10 @@ public abstract class Chain :
 	/// don't hold the same number of elements.
 	/// </exception>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	private protected Chain(Node[] nodes, bool[] nodesStatus) =>
-		(_nodes, _nodesStatus) =
-			nodes.Length == nodesStatus.Length
-				? (nodes, nodesStatus)
-				: throw new ArgumentException("Two arguments must keep the same number of elements.");
+	private protected Chain(Node[] nodes, bool[] nodesStatus)
+		=> (_nodes, _nodesStatus) = nodes.Length == nodesStatus.Length
+			? (nodes, nodesStatus)
+			: throw new ArgumentException("Two arguments must keep the same number of elements.");
 
 
 	/// <inheritdoc/>

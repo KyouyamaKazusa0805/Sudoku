@@ -22,8 +22,8 @@ public sealed record class JuniorExocetStep(
 	public decimal BaseDifficulty => 9.4M;
 
 	/// <inheritdoc/>
-	public (string Name, decimal Value)[] ExtraDifficultyValues =>
-		new[]
+	public (string Name, decimal Value)[] ExtraDifficultyValues
+		=> new[]
 		{
 			("Mirror", Eliminations.Any(static e => e.Reason == ExocetEliminatedReason.Mirror) ? .1M : 0),
 			("Bi-bi pattern", Eliminations.Any(static e => e.Reason == ExocetEliminatedReason.BiBiPattern) ? .3M : 0),

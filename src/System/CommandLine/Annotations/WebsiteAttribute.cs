@@ -10,8 +10,8 @@ public sealed class WebsiteAttribute : Attribute
 	/// Initializes a <see cref="WebsiteAttribute"/> instance via the website of the field.
 	/// </summary>
 	/// <param name="uriString">The website of the field.</param>
-	public WebsiteAttribute(string uriString) =>
-		Site = Uri.TryCreate(uriString, UriKind.Absolute, out var result)
+	public WebsiteAttribute(string uriString)
+		=> Site = Uri.TryCreate(uriString, UriKind.Absolute, out var result)
 			? result
 			: throw new ArgumentException("The specified string cannot be parsed as a URI link.");
 

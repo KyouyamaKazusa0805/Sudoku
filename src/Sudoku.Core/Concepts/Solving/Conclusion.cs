@@ -125,16 +125,16 @@ public readonly struct Conclusion :
 	/// </summary>
 	[EditorBrowsable(EditorBrowsableState.Never)]
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public void Deconstruct(out ConclusionType conclusionType, out int candidate) =>
-		(conclusionType, candidate) = ((ConclusionType)(_mask >> 10 & 1), _mask & (1 << 10) - 1);
+	public void Deconstruct(out ConclusionType conclusionType, out int candidate)
+		=> (conclusionType, candidate) = ((ConclusionType)(_mask >> 10 & 1), _mask & (1 << 10) - 1);
 
 	/// <summary>
 	/// Deconstruct the instance into multiple values.
 	/// </summary>
 	[EditorBrowsable(EditorBrowsableState.Never)]
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public void Deconstruct(out ConclusionType conclusionType, out int cell, out int digit) =>
-		(conclusionType, cell, digit) = ((ConclusionType)(_mask >> 10 & 1), Candidate / 9, Candidate % 9);
+	public void Deconstruct(out ConclusionType conclusionType, out int cell, out int digit)
+		=> (conclusionType, cell, digit) = ((ConclusionType)(_mask >> 10 & 1), Candidate / 9, Candidate % 9);
 
 	/// <summary>
 	/// Put this instance into the specified grid.
@@ -180,8 +180,8 @@ public readonly struct Conclusion :
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	int IComparable.CompareTo(object? obj) =>
-		obj is Conclusion comparer
+	int IComparable.CompareTo(object? obj)
+		=> obj is Conclusion comparer
 			? CompareTo(comparer)
 			: throw new ArgumentException($"The argument must be of type '{nameof(Conclusion)}'", nameof(obj));
 
@@ -195,8 +195,8 @@ public readonly struct Conclusion :
 	/// <param name="type">The type of the conclusion.</param>
 	/// <returns>An array of type <see cref="Conclusion"/>.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static Conclusion[] ToConclusions(in Cells cells, int digit, ConclusionType type) =>
-		from cell in cells.ToArray() select new Conclusion(type, cell, digit);
+	public static Conclusion[] ToConclusions(in Cells cells, int digit, ConclusionType type)
+		=> from cell in cells.ToArray() select new Conclusion(type, cell, digit);
 
 
 	/// <inheritdoc/>

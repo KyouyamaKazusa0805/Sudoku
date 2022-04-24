@@ -12,8 +12,8 @@ public sealed class SingleArgumentCommandAttribute : Attribute
 	/// </summary>
 	/// <param name="notation">The notation of the command.</param>
 	/// <param name="description">The description.</param>
-	public SingleArgumentCommandAttribute(string description, string notation) =>
-		(Notation, Description) = (notation, description);
+	public SingleArgumentCommandAttribute(string description, string notation)
+		=> (Notation, Description) = (notation, description);
 
 
 	/// <summary>

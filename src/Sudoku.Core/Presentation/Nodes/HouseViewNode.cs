@@ -22,8 +22,8 @@ public sealed class HouseViewNode : ViewNode
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public override bool Equals([NotNullWhen(true)] ViewNode? other) =>
-		other is HouseViewNode comparer && Identifier == comparer.Identifier && House == comparer.House;
+	public override bool Equals([NotNullWhen(true)] ViewNode? other)
+		=> other is HouseViewNode comparer && Identifier == comparer.Identifier && House == comparer.House;
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -31,8 +31,8 @@ public sealed class HouseViewNode : ViewNode
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public override string ToString() =>
-		$"{nameof(HouseViewNode)} {{ {nameof(Identifier)} = {Identifier}, {nameof(House)} = {new HouseCollection(House).ToString()} }}";
+	public override string ToString()
+		=> $"{nameof(HouseViewNode)} {{ {nameof(Identifier)} = {Identifier}, {nameof(House)} = {new HouseCollection(House).ToString()} }}";
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

@@ -28,8 +28,8 @@ public readonly struct CellRange :
 	/// </list>
 	/// </exception>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public CellRange(int min, int max) =>
-		_mask = min <= max
+	public CellRange(int min, int max)
+		=> _mask = min <= max
 			? min is >= 0 and < 81
 				? max is >= 0 and <= 81
 					? (short)(max << 7 | min)
@@ -67,8 +67,7 @@ public readonly struct CellRange :
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public override bool Equals([NotNullWhen(true)] object? obj) =>
-		obj is CellRange comparer && Equals(comparer);
+	public override bool Equals([NotNullWhen(true)] object? obj) => obj is CellRange comparer && Equals(comparer);
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -151,6 +150,5 @@ public readonly struct CellRange :
 	/// </summary>
 	/// <param name="range">The range instance.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static explicit operator CellRange(Range range) =>
-		new(range.Start.GetOffset(81), range.End.GetOffset(81));
+	public static explicit operator CellRange(Range range) => new(range.Start.GetOffset(81), range.End.GetOffset(81));
 }

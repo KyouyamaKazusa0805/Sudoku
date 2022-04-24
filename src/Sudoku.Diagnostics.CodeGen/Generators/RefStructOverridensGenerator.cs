@@ -42,8 +42,8 @@ public sealed class RefStructOverridensGenerator : ISourceGenerator
 	}
 
 	/// <inheritdoc/>
-	public void Initialize(GeneratorInitializationContext context) =>
-		context.RegisterForSyntaxNotifications(() => new RefStructOverridensReceiver(context.CancellationToken));
+	public void Initialize(GeneratorInitializationContext context)
+		=> context.RegisterForSyntaxNotifications(() => new RefStructOverridensReceiver(context.CancellationToken));
 
 
 	private void OnTopLevel(GeneratorExecutionContext context, INamedTypeSymbol type, Compilation compilation)

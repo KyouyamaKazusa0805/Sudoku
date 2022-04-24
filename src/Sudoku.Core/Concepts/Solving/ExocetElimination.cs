@@ -31,8 +31,7 @@ public readonly record struct ExocetElimination(in Candidates Eliminations, Exoc
 	/// <param name="other">The instance to compare.</param>
 	/// <returns>A <see cref="bool"/> result.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public bool Equals(in ExocetElimination other) =>
-		Eliminations == other.Eliminations && Reason == other.Reason;
+	public bool Equals(in ExocetElimination other) => Eliminations == other.Eliminations && Reason == other.Reason;
 
 	/// <inheritdoc cref="object.GetHashCode"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

@@ -12,8 +12,8 @@ internal static class PropertySymbolExtensions
 	/// <param name="this">The property symbol.</param>
 	/// <returns>A <see cref="bool"/> result.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static bool IsAutoProperty(this IPropertySymbol @this) =>
-		@this
+	public static bool IsAutoProperty(this IPropertySymbol @this)
+		=> @this
 			.ContainingType
 			.GetMembers()
 			.OfType<IFieldSymbol>()

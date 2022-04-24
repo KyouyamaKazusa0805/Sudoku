@@ -25,6 +25,5 @@ public static class SingleExtensions
 	/// <param name="epsilon">The epsilon value (the minimal differ).</param>
 	/// <returns>A <see cref="bool"/> result indicating that.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static bool NearlyEquals(this float @this, float other, float epsilon) =>
-		MathF.Abs(@this - other) < epsilon;
+	public static bool NearlyEquals(this float @this, float other, float epsilon) => MathF.Abs(@this - other) < epsilon;
 }

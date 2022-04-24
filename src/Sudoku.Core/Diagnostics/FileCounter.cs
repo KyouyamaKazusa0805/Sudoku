@@ -58,9 +58,8 @@ public sealed class FileCounter
 	/// </param>
 	/// <param name="fileList">A file list.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	private FileCounter(string root, string? extension, bool withBinOrObjDirectory, IList<string> fileList) =>
-		(Root, Pattern, WithBinOrObjDirectory, FileList) = (
-			root, $@".+\.{extension}$", withBinOrObjDirectory, fileList);
+	private FileCounter(string root, string? extension, bool withBinOrObjDirectory, IList<string> fileList)
+		=> (Root, Pattern, WithBinOrObjDirectory, FileList) = (root, $@".+\.{extension}$", withBinOrObjDirectory, fileList);
 
 
 	/// <summary>

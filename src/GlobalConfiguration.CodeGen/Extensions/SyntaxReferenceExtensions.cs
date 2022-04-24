@@ -13,6 +13,5 @@ internal static class SyntaxReferenceExtensions
 	/// <param name="this">The instance.</param>
 	/// <returns>The <see cref="Location"/> result.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static Location ToLocation(this SyntaxReference @this) =>
-		Location.Create(@this.SyntaxTree, @this.Span);
+	public static Location ToLocation(this SyntaxReference @this) => Location.Create(@this.SyntaxTree, @this.Span);
 }

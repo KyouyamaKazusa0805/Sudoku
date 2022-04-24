@@ -101,8 +101,8 @@ public readonly ref partial struct DigitCollection
 	/// <param name="right">The right instance.</param>
 	/// <returns>The result collection.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static DigitCollection operator -(DigitCollection left, DigitCollection right) =>
-		new((short)(left._mask & ~right._mask));
+	public static DigitCollection operator -(DigitCollection left, DigitCollection right)
+		=> new((short)(left._mask & ~right._mask));
 
 	/// <summary>
 	/// Apply the intersection from two <see cref="DigitCollection"/>s.
@@ -111,8 +111,8 @@ public readonly ref partial struct DigitCollection
 	/// <param name="right">The right instance.</param>
 	/// <returns>The result collection.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static DigitCollection operator &(DigitCollection left, DigitCollection right) =>
-		new((short)(left._mask & right._mask));
+	public static DigitCollection operator &(DigitCollection left, DigitCollection right)
+		=> new((short)(left._mask & right._mask));
 
 	/// <summary>
 	/// Apply the union of two <see cref="DigitCollection"/>s.
@@ -121,8 +121,8 @@ public readonly ref partial struct DigitCollection
 	/// <param name="right">The right instance.</param>
 	/// <returns>The result collection.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static DigitCollection operator |(DigitCollection left, DigitCollection right) =>
-		new((short)(left._mask | right._mask));
+	public static DigitCollection operator |(DigitCollection left, DigitCollection right)
+		=> new((short)(left._mask | right._mask));
 
 	/// <summary>
 	/// Apply the exclusive union of two <see cref="DigitCollection"/>s.
@@ -131,6 +131,6 @@ public readonly ref partial struct DigitCollection
 	/// <param name="right">The right instance.</param>
 	/// <returns>The result collection.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static DigitCollection operator ^(DigitCollection left, DigitCollection right) =>
-		new((short)(left._mask ^ right._mask));
+	public static DigitCollection operator ^(DigitCollection left, DigitCollection right)
+		=> new((short)(left._mask ^ right._mask));
 }

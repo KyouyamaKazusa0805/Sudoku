@@ -150,8 +150,7 @@ public unsafe partial struct Cells :
 	/// <param name="high">Higher 40 bits.</param>
 	/// <param name="low">Lower 41 bits.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public Cells(long high, long low) =>
-		(_high, _low, Count) = (high, low, PopCount((ulong)high) + PopCount((ulong)low));
+	public Cells(long high, long low) => (_high, _low, Count) = (high, low, PopCount((ulong)high) + PopCount((ulong)low));
 
 	/// <summary>
 	/// Initializes an instance with three binary values.
@@ -638,13 +637,11 @@ public unsafe partial struct Cells :
 	/// <param name="offset">The offset.</param>
 	/// <returns>A <see cref="bool"/> value indicating that.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public readonly bool Contains(int offset) =>
-		((offset < Shifting ? _low : _high) >> offset % Shifting & 1) != 0;
+	public readonly bool Contains(int offset) => ((offset < Shifting ? _low : _high) >> offset % Shifting & 1) != 0;
 
 	/// <inheritdoc cref="object.Equals(object?)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public override readonly bool Equals([NotNullWhen(true)] object? obj) =>
-		obj is Cells comparer && Equals(comparer);
+	public override readonly bool Equals([NotNullWhen(true)] object? obj) => obj is Cells comparer && Equals(comparer);
 
 	/// <summary>
 	/// Determine whether the two elements are equal.
@@ -963,8 +960,8 @@ public unsafe partial struct Cells :
 	/// <param name="offsets">The instance to negate.</param>
 	/// <returns>The negative result.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static Cells operator ~(in Cells offsets) =>
-		new(~offsets._high & 0xFF_FFFF_FFFFL, ~offsets._low & 0x1FF_FFFF_FFFFL);
+	public static Cells operator ~(in Cells offsets)
+		=> new(~offsets._high & 0xFF_FFFF_FFFFL, ~offsets._low & 0x1FF_FFFF_FFFFL);
 
 	/// <summary>
 	/// The syntactic sugar for <c>(<paramref name="left"/> - <paramref name="right"/>).Count != 0</c>.
@@ -1115,8 +1112,7 @@ public unsafe partial struct Cells :
 	/// <param name="right">The right instance.</param>
 	/// <returns>The result.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static Cells operator &(in Cells left, in Cells right) =>
-		new(left._high & right._high, left._low & right._low);
+	public static Cells operator &(in Cells left, in Cells right) => new(left._high & right._high, left._low & right._low);
 
 	/// <summary>
 	/// Combine the elements from <paramref name="left"/> and <paramref name="right"/>,
@@ -1126,8 +1122,7 @@ public unsafe partial struct Cells :
 	/// <param name="right">The right instance.</param>
 	/// <returns>The result.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static Cells operator |(in Cells left, in Cells right) =>
-		new(left._high | right._high, left._low | right._low);
+	public static Cells operator |(in Cells left, in Cells right) => new(left._high | right._high, left._low | right._low);
 
 	/// <summary>
 	/// Get the elements that either <paramref name="left"/> or <paramref name="right"/> contains.
@@ -1136,8 +1131,7 @@ public unsafe partial struct Cells :
 	/// <param name="right">The right instance.</param>
 	/// <returns>The result.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static Cells operator ^(in Cells left, in Cells right) =>
-		new(left._high ^ right._high, left._low ^ right._low);
+	public static Cells operator ^(in Cells left, in Cells right) => new(left._high ^ right._high, left._low ^ right._low);
 
 	/// <summary>
 	/// <para>Expands the operator to <c><![CDATA[!(a & b) & b]]></c>.</para>
@@ -1195,8 +1189,8 @@ public unsafe partial struct Cells :
 	/// <param name="right">The right-side instance to compare.</param>
 	/// <returns>A <see cref="bool"/> result.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static bool operator ==(in Cells left, in Cells right) =>
-		left._low == right._low && left._high == right._high;
+	public static bool operator ==(in Cells left, in Cells right)
+		=> left._low == right._low && left._high == right._high;
 
 	/// <summary>
 	/// Indicates whether the two <see cref="Cells"/> collection don't hold a same set of cells.
@@ -1217,8 +1211,7 @@ public unsafe partial struct Cells :
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	static Cells ISubtractionOperators<Cells, Cells, Cells>.operator -(Cells left, Cells right) =>
-		left - right;
+	static Cells ISubtractionOperators<Cells, Cells, Cells>.operator -(Cells left, Cells right) => left - right;
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

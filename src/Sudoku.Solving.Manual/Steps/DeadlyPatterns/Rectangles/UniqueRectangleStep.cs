@@ -83,7 +83,7 @@ public abstract record class UniqueRectangleStep(
 
 
 	/// <inheritdoc/>
-	public static bool Equals(UniqueRectangleStep left, UniqueRectangleStep right) =>
-		left.TechniqueCode == right.TechniqueCode && left.AbsoluteOffset == right.AbsoluteOffset
-		&& left.Digit1 == right.Digit1 && left.Digit2 == right.Digit2;
+	public static bool Equals(UniqueRectangleStep left, UniqueRectangleStep right)
+		=> left.TechniqueCode == right.TechniqueCode && left.AbsoluteOffset == right.AbsoluteOffset
+			&& left.Digit1 == right.Digit1 && left.Digit2 == right.Digit2;
 }

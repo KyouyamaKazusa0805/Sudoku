@@ -19,8 +19,8 @@ public sealed class DoubleArgumentsCommandAttribute : Attribute
 	/// <exception cref="ArgumentException">
 	/// Throws when the argument <paramref name="fullName"/> doesn't start with a letter, or a hyphen.
 	/// </exception>
-	public DoubleArgumentsCommandAttribute(char shortName, string fullName, string description) =>
-		(ShortName, FullName, Description) = (shortName, fullName, description);
+	public DoubleArgumentsCommandAttribute(char shortName, string fullName, string description)
+		=> (ShortName, FullName, Description) = (shortName, fullName, description);
 
 
 	/// <summary>

@@ -95,8 +95,7 @@ partial struct GridFormatter
 	/// </summary>
 	/// <param name="grid">The grid.</param>
 	/// <returns>The string.</returns>
-	private partial string ToHodokuLibraryFormatString(in Grid grid) =>
-		$":0000:x:{ToSingleLineStringCore(grid)}:::";
+	private partial string ToHodokuLibraryFormatString(in Grid grid) => $":0000:x:{ToSingleLineStringCore(grid)}:::";
 
 	/// <summary>
 	/// To string with the sukaku format.

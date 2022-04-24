@@ -98,8 +98,8 @@ public sealed class SudokuGrid : DrawingElement
 
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		static GridLayout initializeGridLayout(double paneSize, double outsideOffset) =>
-			new GridLayout
+		static GridLayout initializeGridLayout(double paneSize, double outsideOffset)
+			=> new GridLayout
 			{
 				Width = paneSize,
 				Height = paneSize,
@@ -372,8 +372,8 @@ public sealed class SudokuGrid : DrawingElement
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public override bool Equals([NotNullWhen(true)] DrawingElement? other) =>
-		other is SudokuGrid comparer && _grid == comparer._grid;
+	public override bool Equals([NotNullWhen(true)] DrawingElement? other)
+		=> other is SudokuGrid comparer && _grid == comparer._grid;
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

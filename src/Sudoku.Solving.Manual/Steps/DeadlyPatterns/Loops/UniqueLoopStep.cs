@@ -21,8 +21,8 @@ public abstract record class UniqueLoopStep(
 	public override decimal Difficulty => ((IStepWithPhasedDifficulty)this).TotalDifficulty;
 
 	/// <inheritdoc/>
-	public decimal BaseDifficulty =>
-		Type switch
+	public decimal BaseDifficulty
+		=> Type switch
 		{
 			1 or 3 => 4.5M,
 			2 or 4 => 4.6M,
@@ -30,8 +30,7 @@ public abstract record class UniqueLoopStep(
 		};
 
 	/// <inheritdoc/>
-	public (string Name, decimal Value)[] ExtraDifficultyValues =>
-		new[] { ("Length", ((Loop.Count >> 1) - 3) * .1M) };
+	public (string Name, decimal Value)[] ExtraDifficultyValues => new[] { ("Length", ((Loop.Count >> 1) - 3) * .1M) };
 
 	/// <summary>
 	/// Indicates the type.
@@ -82,8 +81,8 @@ public abstract record class UniqueLoopStep(
 
 
 	/// <inheritdoc/>
-	public static bool Equals(UniqueLoopStep left, UniqueLoopStep right) =>
-		left.Type == right.Type && left.Loop == right.Loop
+	public static bool Equals(UniqueLoopStep left, UniqueLoopStep right)
+		=> left.Type == right.Type && left.Loop == right.Loop
 			&& (1 << left.Digit1 | 1 << left.Digit2) == (1 << right.Digit1 | 1 << right.Digit2)
 			&& (left, right) switch
 			{

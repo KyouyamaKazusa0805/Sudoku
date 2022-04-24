@@ -22,9 +22,8 @@ public sealed class CellViewNode : ViewNode
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public override bool Equals([NotNullWhen(true)] ViewNode? other) =>
-		other is CellViewNode comparer
-			&& Identifier == comparer.Identifier && Cell == comparer.Cell;
+	public override bool Equals([NotNullWhen(true)] ViewNode? other)
+		=> other is CellViewNode comparer && Identifier == comparer.Identifier && Cell == comparer.Cell;
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -32,8 +31,8 @@ public sealed class CellViewNode : ViewNode
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public override string ToString() =>
-		$"{nameof(CellViewNode)} {{ {nameof(Identifier)} = {Identifier}, {nameof(Cell)} = {Cells.Empty + Cell} }}";
+	public override string ToString()
+		=> $"{nameof(CellViewNode)} {{ {nameof(Identifier)} = {Identifier}, {nameof(Cell)} = {Cells.Empty + Cell} }}";
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

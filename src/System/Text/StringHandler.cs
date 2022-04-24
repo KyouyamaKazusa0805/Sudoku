@@ -136,8 +136,8 @@ public unsafe ref partial struct StringHandler
 	/// The number of constant characters as the default memory to initialize.
 	/// </param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public StringHandler(int initialCapacity) =>
-		_chars = _arrayToReturnToPool = ArrayPool<char>.Shared.Rent(initialCapacity);
+	public StringHandler(int initialCapacity)
+		=> _chars = _arrayToReturnToPool = ArrayPool<char>.Shared.Rent(initialCapacity);
 
 	/// <summary>
 	/// Creates a handler used to translate an interpolated string into a <see cref="string"/>.
@@ -152,8 +152,8 @@ public unsafe ref partial struct StringHandler
 	/// </remarks>
 	[EditorBrowsable(EditorBrowsableState.Never)]
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public StringHandler(int literalLength, int holeCount) =>
-		_chars = _arrayToReturnToPool = ArrayPool<char>.Shared.Rent(
+	public StringHandler(int literalLength, int holeCount)
+		=> _chars = _arrayToReturnToPool = ArrayPool<char>.Shared.Rent(
 #if DECREASE_INITIALIZATION_MEMORY_ALLOCATION
 			(int)RoundUpToPowerOf2((uint)(literalLength + holeCount * GuessedLengthPerHole))
 #else
@@ -391,8 +391,8 @@ public unsafe ref partial struct StringHandler
 
 	/// <inheritdoc cref="AppendFormatted(object?, int, string?)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public void Append(object? value, int alignment = 0, string? format = null) =>
-		AppendFormatted<object?>(value, alignment, format);
+	public void Append(object? value, int alignment = 0, string? format = null)
+		=> AppendFormatted<object?>(value, alignment, format);
 
 	/// <summary>
 	/// Append a character at the tail of the collection.
@@ -469,8 +469,8 @@ public unsafe ref partial struct StringHandler
 
 	/// <inheritdoc cref="AppendFormatted(string?, int, string?)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public void Append(string value, int alignment, string? format = null) =>
-		AppendFormatted<string>(value, alignment, format);
+	public void Append(string value, int alignment, string? format = null)
+		=> AppendFormatted<string>(value, alignment, format);
 
 	/// <inheritdoc cref="AppendFormatted(ReadOnlySpan{char})"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -478,8 +478,8 @@ public unsafe ref partial struct StringHandler
 
 	/// <inheritdoc cref="AppendFormatted(ReadOnlySpan{char}, int, string?)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public void Append(ReadOnlySpan<char> value, int alignment, string? format = null) =>
-		AppendFormatted(value, alignment, format);
+	public void Append(ReadOnlySpan<char> value, int alignment, string? format = null)
+		=> AppendFormatted(value, alignment, format);
 
 	/// <inheritdoc cref="AppendFormatted(in StringHandler)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -523,8 +523,7 @@ public unsafe ref partial struct StringHandler
 
 	/// <inheritdoc cref="AppendFormatted{T}(T, int, string?)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public void Append<T>(T value, int alignment, string? format = null) =>
-		AppendFormatted(value, alignment, format);
+	public void Append<T>(T value, int alignment, string? format = null) => AppendFormatted(value, alignment, format);
 
 	/// <summary>
 	/// Append a new line string <see cref="Environment.NewLine"/>.
@@ -877,8 +876,8 @@ public unsafe ref partial struct StringHandler
 	/// </list>
 	/// It exists purely to help make cases from (b) compile. Just delegate to the <c>T</c>-based implementation.
 	/// </remarks>
-	public void AppendFormatted(object? value, int alignment = 0, string? format = null) =>
-		AppendFormatted<object?>(value, alignment, format);
+	public void AppendFormatted(object? value, int alignment = 0, string? format = null)
+		=> AppendFormatted<object?>(value, alignment, format);
 
 	/// <summary>
 	/// Writes the specified value to the handler.
@@ -913,8 +912,8 @@ public unsafe ref partial struct StringHandler
 	/// as <see cref="string"/> is implicitly convertible to both.
 	/// Just delegate to the <c>T</c>-based implementation.
 	/// </remarks>
-	public void AppendFormatted(string? value, int alignment = 0, string? format = null) =>
-		AppendFormatted<string?>(value, alignment, format);
+	public void AppendFormatted(string? value, int alignment = 0, string? format = null)
+		=> AppendFormatted<string?>(value, alignment, format);
 
 	/// <summary>
 	/// Writes the specified character span to the handler.
@@ -1466,8 +1465,8 @@ public unsafe ref partial struct StringHandler
 	/// <seealso cref="AppendRangeWithSeparatorUnsafe{TUnmanaged}(TUnmanaged*, int, Func{TUnmanaged, string?}, string)"/>
 #pragma warning restore CS1584, CS1658
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static string ElementToStringConverter<TNotNull>(TNotNull @this) where TNotNull : notnull =>
-		@this.ToString() ?? throw new InvalidOperationException("The argument cannot return null.");
+	public static string ElementToStringConverter<TNotNull>(TNotNull @this) where TNotNull : notnull
+		=> @this.ToString() ?? throw new InvalidOperationException("The argument cannot return null.");
 
 
 	/// <summary>

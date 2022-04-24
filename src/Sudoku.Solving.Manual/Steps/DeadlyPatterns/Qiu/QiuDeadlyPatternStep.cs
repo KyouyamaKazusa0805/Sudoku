@@ -22,8 +22,8 @@ public abstract record class QiuDeadlyPatternStep(
 	public sealed override string Name => base.Name;
 
 	/// <inheritdoc/>
-	public sealed override Technique TechniqueCode =>
-		Type == 5 ? Technique.LockedQiuDeadlyPattern : Enum.Parse<Technique>($"QiuDeadlyPatternType{Type}");
+	public sealed override Technique TechniqueCode
+		=> Type == 5 ? Technique.LockedQiuDeadlyPattern : Enum.Parse<Technique>($"QiuDeadlyPatternType{Type}");
 
 	/// <inheritdoc/>
 	public sealed override DifficultyLevel DifficultyLevel => DifficultyLevel.Hard;

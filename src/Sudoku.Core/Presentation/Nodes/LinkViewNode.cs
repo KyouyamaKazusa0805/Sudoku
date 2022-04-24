@@ -37,19 +37,19 @@ public sealed class LinkViewNode : ViewNode
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public override bool Equals([NotNullWhen(true)] ViewNode? other) =>
-		other is LinkViewNode comparer
+	public override bool Equals([NotNullWhen(true)] ViewNode? other)
+		=> other is LinkViewNode comparer
 			&& Start == comparer.Start && End == comparer.End && Inference == comparer.Inference;
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public override int GetHashCode() =>
-		HashCode.Combine(nameof(LinkViewNode), Start.Cells, Start.Digit, End.Cells, End.Digit, Inference);
+	public override int GetHashCode()
+		=> HashCode.Combine(nameof(LinkViewNode), Start.Cells, Start.Digit, End.Cells, End.Digit, Inference);
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public override string ToString() =>
-		$"{nameof(LinkViewNode)} {{ {nameof(Start)} = {Start}, {nameof(End)} = {End}, {nameof(Inference)} = {Inference} }}";
+	public override string ToString()
+		=> $"{nameof(LinkViewNode)} {{ {nameof(Start)} = {Start}, {nameof(End)} = {End}, {nameof(Inference)} = {Inference} }}";
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

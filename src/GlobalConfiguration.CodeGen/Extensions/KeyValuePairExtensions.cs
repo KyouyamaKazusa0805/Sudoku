@@ -26,7 +26,6 @@ public static class KeyValuePairExtensions
 	/// <param name="value">The value.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	[EditorBrowsable(EditorBrowsableState.Never)]
-	public static void Deconstruct<TKey, TValue>(
-		this KeyValuePair<TKey, TValue> @this, out TKey key, out TValue value) =>
-		(key, value) = (@this.Key, @this.Value);
+	public static void Deconstruct<TKey, TValue>(this KeyValuePair<TKey, TValue> @this, out TKey key, out TValue value)
+		=> (key, value) = (@this.Key, @this.Value);
 }

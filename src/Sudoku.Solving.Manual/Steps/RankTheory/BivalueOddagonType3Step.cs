@@ -23,8 +23,7 @@ public sealed record class BivalueOddagonType3Step(
 	public decimal BaseDifficulty => base.Difficulty;
 
 	/// <inheritdoc/>
-	public (string Name, decimal Value)[] ExtraDifficultyValues =>
-		new[] { ("Length", (ExtraCells.Count >> 1) * .1M) };
+	public (string Name, decimal Value)[] ExtraDifficultyValues => new[] { ("Length", (ExtraCells.Count >> 1) * .1M) };
 
 	/// <inheritdoc/>
 	public override Technique TechniqueCode => Technique.BivalueOddagonType3;

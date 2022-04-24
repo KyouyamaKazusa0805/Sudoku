@@ -23,8 +23,8 @@ public sealed record class AlmostLockedCandidatesStep(
 	public override decimal Difficulty => ((IStepWithPhasedDifficulty)this).TotalDifficulty;
 
 	/// <inheritdoc/>
-	public decimal BaseDifficulty =>
-		Size switch
+	public decimal BaseDifficulty
+		=> Size switch
 		{
 			2 => 4.5M,
 			3 => 5.2M,
@@ -33,8 +33,8 @@ public sealed record class AlmostLockedCandidatesStep(
 		};
 
 	/// <inheritdoc/>
-	public (string Name, decimal Value)[] ExtraDifficultyValues =>
-		new[]
+	public (string Name, decimal Value)[] ExtraDifficultyValues
+		=> new[]
 		{
 			(
 				"Extra",

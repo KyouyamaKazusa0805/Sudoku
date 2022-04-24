@@ -22,8 +22,8 @@ public sealed record class QiuDeadlyPatternType3Step(
 	public decimal BaseDifficulty => base.Difficulty;
 
 	/// <inheritdoc/>
-	public (string Name, decimal Value)[] ExtraDifficultyValues =>
-		new[] { ("Subset size", PopCount((uint)ExtraDigitsMask) * .1M) };
+	public (string Name, decimal Value)[] ExtraDifficultyValues
+		=> new[] { ("Subset size", PopCount((uint)ExtraDigitsMask) * .1M) };
 
 	/// <inheritdoc/>
 	public override int Type => 3;

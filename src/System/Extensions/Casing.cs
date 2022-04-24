@@ -25,8 +25,8 @@ public static partial class Casing
 	/// Throws when the argument <paramref name="str"/> is not an identifier.
 	/// </exception>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static string ToCamelCase(string str) =>
-		!IsValidIdentifier(str)
+	public static string ToCamelCase(string str)
+		=> !IsValidIdentifier(str)
 			? throw new ArgumentException("The specified string is not an identifier.", nameof(str))
 			: str switch
 			{
@@ -48,8 +48,8 @@ public static partial class Casing
 	/// Throws when the argument <paramref name="str"/> is not an identifier.
 	/// </exception>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static string ToPascalCase(string str) =>
-		IsValidIdentifier(str)
+	public static string ToPascalCase(string str)
+		=> IsValidIdentifier(str)
 			? str switch
 			{
 				[] => throw new ArgumentException("The specified string is empty.", nameof(str)),

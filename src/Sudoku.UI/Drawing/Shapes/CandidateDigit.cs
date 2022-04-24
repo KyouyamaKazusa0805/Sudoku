@@ -204,8 +204,8 @@ internal sealed class CandidateDigit : DrawingElement
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public override bool Equals([NotNullWhen(true)] DrawingElement? other) =>
-		other is CandidateDigit comparer && _candidateMask == comparer._candidateMask;
+	public override bool Equals([NotNullWhen(true)] DrawingElement? other)
+		=> other is CandidateDigit comparer && _candidateMask == comparer._candidateMask;
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

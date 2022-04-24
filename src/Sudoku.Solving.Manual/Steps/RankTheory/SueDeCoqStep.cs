@@ -30,8 +30,8 @@ public sealed record class SueDeCoqStep(
 	public decimal BaseDifficulty => 5.0M;
 
 	/// <inheritdoc/>
-	public (string Name, decimal Value)[] ExtraDifficultyValues =>
-		new[]
+	public (string Name, decimal Value)[] ExtraDifficultyValues
+		=> new[]
 		{
 			("Isolated", IsolatedDigitsMask != 0 ? .1M : 0),
 			("Cannibal", IsCannibalistic ? .2M : 0)
@@ -44,8 +44,7 @@ public sealed record class SueDeCoqStep(
 	public override TechniqueTags TechniqueTags => TechniqueTags.RankTheory | TechniqueTags.Als;
 
 	/// <inheritdoc/>
-	public override Technique TechniqueCode =>
-		IsCannibalistic ? Technique.SueDeCoqCannibalism : Technique.SueDeCoq;
+	public override Technique TechniqueCode => IsCannibalistic ? Technique.SueDeCoqCannibalism : Technique.SueDeCoq;
 
 	/// <inheritdoc/>
 	public override DifficultyLevel DifficultyLevel => DifficultyLevel.Fiendish;

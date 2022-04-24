@@ -28,8 +28,8 @@ public ref partial struct OneDimensionalArrayEnumerator<TStruct>
 	/// </summary>
 	/// <param name="innerArray">The array to iterate.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	internal OneDimensionalArrayEnumerator(TStruct[] innerArray) =>
-		(_innerArray, _length) = (innerArray, innerArray.Length);
+	internal OneDimensionalArrayEnumerator(TStruct[] innerArray)
+		=> (_innerArray, _length) = (innerArray, innerArray.Length);
 
 
 	/// <summary>

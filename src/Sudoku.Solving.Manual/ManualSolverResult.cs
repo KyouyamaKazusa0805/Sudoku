@@ -51,8 +51,8 @@ public sealed unsafe partial record class ManualSolverResult(in Grid OriginalPuz
 	/// </para>
 	/// </summary>
 	/// <seealso cref="ManualSolver"/>
-	public decimal PearlDifficulty =>
-		Steps.IsDefaultOrEmpty
+	public decimal PearlDifficulty
+		=> Steps.IsDefaultOrEmpty
 			? 0
 			: Steps.FirstOrDefault(static info => info.ShowDifficulty)?.Difficulty ?? 0;
 
@@ -294,8 +294,8 @@ public sealed unsafe partial record class ManualSolverResult(in Grid OriginalPuz
 	/// </exception>
 	/// <exception cref="IndexOutOfRangeException">Throws when the index is out of range.</exception>
 	/// <seealso cref="Steps"/>
-	public Step this[int index] =>
-		Steps is not [_, ..]
+	public Step this[int index]
+		=> Steps is not [_, ..]
 			? throw new InvalidOperationException("You can't extract any elements because of being null or empty.")
 			: index >= Steps.Length || index < 0
 				? throw new IndexOutOfRangeException($"Parameter '{nameof(index)}' is out of range.")
@@ -309,8 +309,8 @@ public sealed unsafe partial record class ManualSolverResult(in Grid OriginalPuz
 	/// <exception cref="InvalidOperationException">
 	/// Throws when the list doesn't contain any valid instance to get.
 	/// </exception>
-	public Step this[Technique code] =>
-		IsSolved
+	public Step this[Technique code]
+		=> IsSolved
 			? Steps.First(step => step.TechniqueCode == code)
 			: throw new InvalidOperationException("The specified instance can't get the result.");
 

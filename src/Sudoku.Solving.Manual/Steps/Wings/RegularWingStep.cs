@@ -65,8 +65,8 @@ public sealed record class RegularWingStep(
 	public override decimal Difficulty => ((IStepWithPhasedDifficulty)this).TotalDifficulty;
 
 	/// <inheritdoc/>
-	public decimal BaseDifficulty =>
-		Size switch
+	public decimal BaseDifficulty
+		=> Size switch
 		{
 			3 => 4.2M,
 			4 => 4.4M,
@@ -79,12 +79,12 @@ public sealed record class RegularWingStep(
 		};
 
 	/// <inheritdoc/>
-	public (string Name, decimal Value)[] ExtraDifficultyValues =>
-		new[] { ("Incompleteness", IsIncomplete ? Size == 3 ? 0.2M : 0.1M : 0) };
+	public (string Name, decimal Value)[] ExtraDifficultyValues
+		=> new[] { ("Incompleteness", IsIncomplete ? Size == 3 ? 0.2M : 0.1M : 0) };
 
 	/// <inheritdoc/>
-	public override Technique TechniqueCode =>
-		InternalName switch
+	public override Technique TechniqueCode
+		=> InternalName switch
 		{
 			"XY-Wing" => Technique.XyWing,
 			"XYZ-Wing" => Technique.XyzWing,
@@ -107,8 +107,8 @@ public sealed record class RegularWingStep(
 	public override TechniqueTags TechniqueTags => base.TechniqueTags | TechniqueTags.ShortChaining;
 
 	/// <inheritdoc/>
-	public override DifficultyLevel DifficultyLevel =>
-		Size switch
+	public override DifficultyLevel DifficultyLevel
+		=> Size switch
 		{
 			3 or 4 => DifficultyLevel.Hard,
 			5 => DifficultyLevel.Fiendish,
@@ -117,8 +117,8 @@ public sealed record class RegularWingStep(
 		};
 
 	/// <inheritdoc/>
-	public override Rarity Rarity =>
-		Size switch
+	public override Rarity Rarity
+		=> Size switch
 		{
 			2 => Rarity.Often,
 			3 or 4 => Rarity.Seldom,
@@ -130,8 +130,8 @@ public sealed record class RegularWingStep(
 	/// <summary>
 	/// Indicates the internal name.
 	/// </summary>
-	private string InternalName =>
-		Size switch
+	private string InternalName
+		=> Size switch
 		{
 			3 => IsIncomplete ? "XY-Wing" : "XYZ-Wing",
 			>= 4 and < 9 when Size switch

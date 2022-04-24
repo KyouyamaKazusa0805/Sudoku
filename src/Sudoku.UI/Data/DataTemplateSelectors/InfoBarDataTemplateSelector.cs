@@ -31,8 +31,8 @@ public sealed class InfoBarDataTemplateSelector : DataTemplateSelector
 	/// Throws when the type of the argument <paramref name="item"/> doesn't derive
 	/// from <see cref="InfoBarMessage"/>.
 	/// </exception>
-	protected override DataTemplate SelectTemplateCore(object item) =>
-		item switch
+	protected override DataTemplate SelectTemplateCore(object item)
+		=> item switch
 		{
 			PlainMessage => PlainMessageTemplate,
 			HyperlinkMessage => HyperlinkMessageTemplate,

@@ -58,8 +58,8 @@ public readonly partial struct Identifier : IEquatable<Identifier>, IEqualityOpe
 	/// Indicates the alpha value.
 	/// </summary>
 	/// <exception cref="InvalidOperationException">Throws when the current instance uses ID.</exception>
-	public byte A =>
-		UseId
+	public byte A
+		=> UseId
 			? throw new InvalidOperationException("Can't take the value because the current operation uses ID.")
 			: (byte)(_colorRawValue >> 24 & byte.MaxValue);
 
@@ -67,8 +67,8 @@ public readonly partial struct Identifier : IEquatable<Identifier>, IEqualityOpe
 	/// Indicates the red value.
 	/// </summary>
 	/// <exception cref="InvalidOperationException">Throws when the current instance uses ID.</exception>
-	public byte R =>
-		UseId
+	public byte R
+		=> UseId
 			? throw new InvalidOperationException("Can't take the value because the current operation uses ID.")
 			: (byte)(_colorRawValue >> 16 & byte.MaxValue);
 
@@ -76,8 +76,8 @@ public readonly partial struct Identifier : IEquatable<Identifier>, IEqualityOpe
 	/// Indicates the green value.
 	/// </summary>
 	/// <exception cref="InvalidOperationException">Throws when the current instance uses ID.</exception>
-	public byte G =>
-		UseId
+	public byte G
+		=> UseId
 			? throw new InvalidOperationException("Can't take the value because the current operation uses ID.")
 			: (byte)(_colorRawValue >> 8 & byte.MaxValue);
 
@@ -85,8 +85,8 @@ public readonly partial struct Identifier : IEquatable<Identifier>, IEqualityOpe
 	/// Indicates the blue value.
 	/// </summary>
 	/// <exception cref="InvalidOperationException">Throws when the current instance uses ID.</exception>
-	public byte B =>
-		UseId
+	public byte B
+		=> UseId
 			? throw new InvalidOperationException("Can't take the value because the current operation uses ID.")
 			: (byte)(_colorRawValue & byte.MaxValue);
 
@@ -111,8 +111,8 @@ public readonly partial struct Identifier : IEquatable<Identifier>, IEqualityOpe
 
 	/// <inheritdoc cref="object.ToString"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public override string ToString() =>
-		$"{nameof(Identifier)} {{ {(UseId ? $"ID = {Id}" : $"Color = #{A:X2}{R:X2}{G:X2}{B:X2}")} }}";
+	public override string ToString()
+		=> $"{nameof(Identifier)} {{ {(UseId ? $"ID = {Id}" : $"Color = #{A:X2}{R:X2}{G:X2}{B:X2}")} }}";
 
 	/// <summary>
 	/// Try to cast the current identifier instance into the result color value.
@@ -168,8 +168,8 @@ public readonly partial struct Identifier : IEquatable<Identifier>, IEqualityOpe
 	/// </summary>
 	/// <param name="identifier">The <see cref="Identifier"/> instance.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static explicit operator int(Identifier identifier) =>
-		identifier.UseId
+	public static explicit operator int(Identifier identifier)
+		=> identifier.UseId
 			? identifier.Id
 			: throw new InvalidCastException("The instance cannot be converted to an 'int' due to invalid status.");
 
@@ -179,8 +179,8 @@ public readonly partial struct Identifier : IEquatable<Identifier>, IEqualityOpe
 	/// </summary>
 	/// <param name="identifier">The <see cref="Identifier"/> instance.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static explicit operator (byte R, byte G, byte B)(Identifier identifier) =>
-		identifier.UseId || identifier.A != byte.MaxValue
+	public static explicit operator (byte R, byte G, byte B)(Identifier identifier)
+		=> identifier.UseId || identifier.A != byte.MaxValue
 			? throw new InvalidCastException("The instance cannot be converted to a triple due to invalid status.")
 			: (identifier.R, identifier.G, identifier.B);
 
@@ -190,8 +190,8 @@ public readonly partial struct Identifier : IEquatable<Identifier>, IEqualityOpe
 	/// </summary>
 	/// <param name="identifier">The <see cref="Identifier"/> instance.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static explicit operator (byte A, byte R, byte G, byte B)(Identifier identifier) =>
-		identifier.UseId
+	public static explicit operator (byte A, byte R, byte G, byte B)(Identifier identifier)
+		=> identifier.UseId
 			? throw new InvalidCastException("The instance cannot be converted to a quadruple due to invalid status.")
 			: (identifier.A, identifier.R, identifier.G, identifier.B);
 
@@ -204,8 +204,8 @@ public readonly partial struct Identifier : IEquatable<Identifier>, IEqualityOpe
 	/// and <see cref="byte"/>.
 	/// </param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static implicit operator Identifier((byte A, byte R, byte G, byte B) colorQuadruple) =>
-		new(colorQuadruple.A, colorQuadruple.R, colorQuadruple.G, colorQuadruple.B);
+	public static implicit operator Identifier((byte A, byte R, byte G, byte B) colorQuadruple)
+		=> new(colorQuadruple.A, colorQuadruple.R, colorQuadruple.G, colorQuadruple.B);
 
 	/// <summary>
 	/// Implicit cast from (<see cref="byte"/>, <see cref="byte"/>, <see cref="byte"/>)
@@ -215,8 +215,8 @@ public readonly partial struct Identifier : IEquatable<Identifier>, IEqualityOpe
 	/// The quadruple of element types <see cref="byte"/>, <see cref="byte"/> and <see cref="byte"/>.
 	/// </param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static implicit operator Identifier((byte R, byte G, byte B) colorTriple) =>
-		new(byte.MaxValue, colorTriple.R, colorTriple.G, colorTriple.B);
+	public static implicit operator Identifier((byte R, byte G, byte B) colorTriple)
+		=> new(byte.MaxValue, colorTriple.R, colorTriple.G, colorTriple.B);
 
 	/// <summary>
 	/// Implicit cast from <see cref="int"/> indicating the ID value to <see cref="Identifier"/>.

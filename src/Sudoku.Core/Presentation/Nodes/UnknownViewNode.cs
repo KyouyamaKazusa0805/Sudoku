@@ -36,21 +36,21 @@ public sealed class UnknownViewNode : ViewNode
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public override bool Equals([NotNullWhen(true)] ViewNode? other) =>
-		other is UnknownViewNode comparer
+	public override bool Equals([NotNullWhen(true)] ViewNode? other)
+		=> other is UnknownViewNode comparer
 			&& Identifier == comparer.Identifier
 			&& Cell == comparer.Cell && DigitsMask == comparer.DigitsMask
 			&& UnknownValueChar == comparer.UnknownValueChar;
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public override int GetHashCode() =>
-		HashCode.Combine(nameof(UnknownViewNode), Identifier, Cell, DigitsMask, UnknownValueChar);
+	public override int GetHashCode()
+		=> HashCode.Combine(nameof(UnknownViewNode), Identifier, Cell, DigitsMask, UnknownValueChar);
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public override string ToString() =>
-		$"{nameof(UnknownViewNode)} {{ {nameof(Cell)} = {Cells.Empty + Cell}, {nameof(DigitsMask)} = {new DigitCollection(DigitsMask).ToString()}, {nameof(UnknownValueChar)} = '{(char)UnknownValueChar}' }}";
+	public override string ToString()
+		=> $"{nameof(UnknownViewNode)} {{ {nameof(Cell)} = {Cells.Empty + Cell}, {nameof(DigitsMask)} = {new DigitCollection(DigitsMask).ToString()}, {nameof(UnknownValueChar)} = '{(char)UnknownValueChar}' }}";
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

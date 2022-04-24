@@ -20,8 +20,8 @@ public sealed record class AlternatingInferenceChainStep(
 	public override decimal Difficulty => ((IStepWithPhasedDifficulty)this).TotalDifficulty;
 
 	/// <inheritdoc/>
-	public decimal BaseDifficulty =>
-		TechniqueCode switch
+	public decimal BaseDifficulty
+		=> TechniqueCode switch
 		{
 			Technique.MWing => 4.5M,
 			Technique.SplitWing or Technique.HybridWing or Technique.LocalWing => 4.8M,
@@ -29,15 +29,15 @@ public sealed record class AlternatingInferenceChainStep(
 		};
 
 	/// <inheritdoc/>
-	public (string Name, decimal Value)[] ExtraDifficultyValues =>
-		new[] { ("Length", IsIrregularWing ? 0 : IChainLikeStep.GetExtraDifficultyByLength(FlatComplexity)) };
+	public (string Name, decimal Value)[] ExtraDifficultyValues
+		=> new[] { ("Length", IsIrregularWing ? 0 : IChainLikeStep.GetExtraDifficultyByLength(FlatComplexity)) };
 
 	/// <inheritdoc/>
 	public override int FlatComplexity => Chain.RealChainNodes.Length;
 
 	/// <inheritdoc/>
-	public override TechniqueGroup TechniqueGroup =>
-		this switch
+	public override TechniqueGroup TechniqueGroup
+		=> this switch
 		{
 			{ IsMWing: true } => TechniqueGroup.Wing,
 			{ IsLocalWing: true } or { IsSplitWing: true } or { IsHybridWing: true } => TechniqueGroup.Wing,
@@ -45,12 +45,11 @@ public sealed record class AlternatingInferenceChainStep(
 		};
 
 	/// <inheritdoc/>
-	public override TechniqueTags TechniqueTags =>
-		IsIrregularWing ? TechniqueTags.Wings : TechniqueTags.LongChaining;
+	public override TechniqueTags TechniqueTags => IsIrregularWing ? TechniqueTags.Wings : TechniqueTags.LongChaining;
 
 	/// <inheritdoc/>
-	public override Technique TechniqueCode =>
-		this switch
+	public override Technique TechniqueCode
+		=> this switch
 		{
 			{ IsXChain: true } => Technique.XChain,
 			{ IsMWing: true } => Technique.MWing,
@@ -70,12 +69,11 @@ public sealed record class AlternatingInferenceChainStep(
 		};
 
 	/// <inheritdoc/>
-	public override DifficultyLevel DifficultyLevel =>
-		IsIrregularWing ? DifficultyLevel.Hard : DifficultyLevel.Fiendish;
+	public override DifficultyLevel DifficultyLevel => IsIrregularWing ? DifficultyLevel.Hard : DifficultyLevel.Fiendish;
 
 	/// <inheritdoc/>
-	public override Rarity Rarity =>
-		TechniqueCode switch
+	public override Rarity Rarity
+		=> TechniqueCode switch
 		{
 			Technique.MWing => Rarity.Sometimes,
 			Technique.SplitWing => Rarity.Sometimes,
@@ -95,8 +93,8 @@ public sealed record class AlternatingInferenceChainStep(
 	/// <summary>
 	/// Indicates whether the current chain is irregular wing.
 	/// </summary>
-	private bool IsIrregularWing =>
-		TechniqueCode is Technique.MWing or Technique.SplitWing or Technique.HybridWing or Technique.LocalWing;
+	private bool IsIrregularWing
+		=> TechniqueCode is Technique.MWing or Technique.SplitWing or Technique.HybridWing or Technique.LocalWing;
 
 	/// <summary>
 	/// Indicates whether the specified chain is an XY-Chain.
@@ -130,8 +128,8 @@ public sealed record class AlternatingInferenceChainStep(
 	/// Indicates whether the chain is M-Wing (<c>(x = y) - y = (y - x) = x</c>).
 	/// </summary>
 	/// <returns>A <see cref="bool"/> value indicating that.</returns>
-	private bool IsMWing =>
-		Chain.RealChainNodes is [
+	private bool IsMWing
+		=> Chain.RealChainNodes is [
 			_,
 			SoleCandidateNode { Cell: var a },
 			SoleCandidateNode { Cell: var b },
@@ -147,8 +145,8 @@ public sealed record class AlternatingInferenceChainStep(
 	/// Indicates whether the chain is Split-Wing (<c>x = x - (x = y) - y = y</c>).
 	/// </summary>
 	/// <returns>A <see cref="bool"/> value indicating that.</returns>
-	private bool IsSplitWing =>
-		Chain.RealChainNodes is [
+	private bool IsSplitWing
+		=> Chain.RealChainNodes is [
 			_,
 			SoleCandidateNode { Cell: var a },
 			SoleCandidateNode { Cell: var b },
@@ -169,8 +167,8 @@ public sealed record class AlternatingInferenceChainStep(
 	/// </list>
 	/// </summary>
 	/// <returns>A <see cref="bool"/> value indicating that.</returns>
-	private bool IsHybridWing =>
-		Chain.RealChainNodes is [
+	private bool IsHybridWing
+		=> Chain.RealChainNodes is [
 			_,
 			SoleCandidateNode { Cell: var a },
 			SoleCandidateNode { Cell: var b },
@@ -186,8 +184,8 @@ public sealed record class AlternatingInferenceChainStep(
 	/// Indicates whether the chain is Local-Wing (<c>x = (x - z) = (z - y) = y</c>).
 	/// </summary>
 	/// <returns>A <see cref="bool"/> value indicating that.</returns>
-	private bool IsLocalWing =>
-		Chain.RealChainNodes is [
+	private bool IsLocalWing
+		=> Chain.RealChainNodes is [
 			_,
 			SoleCandidateNode { Cell: var a },
 			SoleCandidateNode { Cell: var b },
@@ -208,22 +206,22 @@ public sealed record class AlternatingInferenceChainStep(
 
 
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	private bool MWing(byte a, byte b, byte c, byte d, byte e, byte f) =>
-		a / 9 == b / 9 && d / 9 == e / 9 && b % 9 == c % 9 && c % 9 == d % 9 && a % 9 == e % 9 && e % 9 == f % 9
+	private bool MWing(byte a, byte b, byte c, byte d, byte e, byte f)
+		=> a / 9 == b / 9 && d / 9 == e / 9 && b % 9 == c % 9 && c % 9 == d % 9 && a % 9 == e % 9 && e % 9 == f % 9
 			|| f / 9 == e / 9 && c / 9 == b / 9 && d % 9 == e % 9 && c % 9 == d % 9 && b % 9 == f % 9 && a % 9 == b % 9;
 
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	private bool SplitWing(byte a, byte b, byte c, byte d, byte e, byte f) =>
-		a % 9 == b % 9 && b % 9 == c % 9 && d % 9 == e % 9 && e % 9 == f % 9 && c / 9 == d / 9;
+	private bool SplitWing(byte a, byte b, byte c, byte d, byte e, byte f)
+		=> a % 9 == b % 9 && b % 9 == c % 9 && d % 9 == e % 9 && e % 9 == f % 9 && c / 9 == d / 9;
 
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	private bool HybridWing(byte a, byte b, byte c, byte d, byte e, byte f) =>
-		a / 9 == b / 9 && d / 9 == e / 9 && b % 9 == c % 9 && c % 9 == d % 9 && e % 9 == f % 9
+	private bool HybridWing(byte a, byte b, byte c, byte d, byte e, byte f)
+		=> a / 9 == b / 9 && d / 9 == e / 9 && b % 9 == c % 9 && c % 9 == d % 9 && e % 9 == f % 9
 			|| e / 9 == f / 9 && b / 9 == c / 9 && d % 9 == e % 9 && c % 9 == d % 9 && a % 9 == b % 9
 			|| a / 9 == b / 9 && c / 9 == d / 9 && b % 9 == c % 9 && d % 9 == e % 9 && e % 9 == f % 9
 			|| e / 9 == f / 9 && c / 9 == d / 9 && d % 9 == e % 9 && b % 9 == c % 9 && a % 9 == b % 9;
 
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	private bool LocalWing(byte a, byte b, byte c, byte d, byte e, byte f) =>
-		b / 9 == c / 9 && d / 9 == e / 9 && a % 9 == b % 9 && c % 9 == d % 9 && e % 9 == f % 9;
+	private bool LocalWing(byte a, byte b, byte c, byte d, byte e, byte f)
+		=> b / 9 == c / 9 && d / 9 == e / 9 && a % 9 == b % 9 && c % 9 == d % 9 && e % 9 == f % 9;
 }

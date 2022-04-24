@@ -47,8 +47,8 @@ public sealed record class UniqueRectangleWithSueDeCoqStep(
 	public decimal BaseDifficulty => 5.0M;
 
 	/// <inheritdoc/>
-	public (string Name, decimal Value)[] ExtraDifficultyValues =>
-		new[]
+	public (string Name, decimal Value)[] ExtraDifficultyValues
+		=> new[]
 		{
 			("Sue de Coq base", (LineCells | BlockCells).Count * .1M),
 			("Isolated", !IsCannibalistic && IsolatedDigitsMask != 0 ? .1M : 0),

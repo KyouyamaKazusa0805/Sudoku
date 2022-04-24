@@ -19,8 +19,8 @@ public sealed record class AlmostLockedSetsXzStep(
 	public override decimal Difficulty => IsDoublyLinked is true ? 5.7M : 5.5M;
 
 	/// <inheritdoc/>
-	public override string? Format =>
-		R[
+	public override string? Format
+		=> R[
 			IsDoublyLinked is null
 				? ZDigitsMask == 0
 					? "TechniqueFormat_ExtendedSubsetPrincipleWithoutDuplicate"
@@ -35,8 +35,8 @@ public sealed record class AlmostLockedSetsXzStep(
 	public override DifficultyLevel DifficultyLevel => DifficultyLevel.Fiendish;
 
 	/// <inheritdoc/>
-	public override Technique TechniqueCode =>
-		IsDoublyLinked switch
+	public override Technique TechniqueCode
+		=> IsDoublyLinked switch
 		{
 			true => Technique.DoublyLinkedAlmostLockedSetsXzRule,
 			false => Technique.SinglyLinkedAlmostLockedSetsXzRule,

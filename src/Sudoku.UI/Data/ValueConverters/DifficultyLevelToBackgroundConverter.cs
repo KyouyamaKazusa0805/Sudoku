@@ -35,8 +35,8 @@ public sealed class DifficultyLevelToBackgroundConverter : IValueConverter
 	/// Throws when the argument <paramref name="targetType"/> is not <see cref="Brush"/>.
 	/// </exception>
 	[return: NotNullIfNotNull("value")]
-	public object? Convert(object? value, Type targetType, object? parameter, string language) =>
-		targetType != typeof(Brush)
+	public object? Convert(object? value, Type targetType, object? parameter, string language)
+		=> targetType != typeof(Brush)
 			? throw new ArgumentException($"The desired target type must be '{nameof(Brush)}'.", nameof(targetType))
 			: value switch
 			{
@@ -48,6 +48,6 @@ public sealed class DifficultyLevelToBackgroundConverter : IValueConverter
 	/// <inheritdoc/>
 	/// <exception cref="NotImplementedException">Always throws due to not implemented.</exception>
 	[DoesNotReturn]
-	public object ConvertBack(object value, Type targetType, object parameter, string language) =>
-		throw new NotImplementedException();
+	public object ConvertBack(object value, Type targetType, object parameter, string language)
+		=> throw new NotImplementedException();
 }

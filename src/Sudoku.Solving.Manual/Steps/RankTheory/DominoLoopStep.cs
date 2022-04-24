@@ -17,8 +17,8 @@ public sealed record class DominoLoopStep(ConclusionList Conclusions, ViewList V
 	public int Rank => 0;
 
 	/// <inheritdoc/>
-	public override TechniqueTags TechniqueTags =>
-		base.TechniqueTags | TechniqueTags.LongChaining | TechniqueTags.RankTheory;
+	public override TechniqueTags TechniqueTags
+		=> base.TechniqueTags | TechniqueTags.LongChaining | TechniqueTags.RankTheory;
 
 	/// <inheritdoc/>
 	public override TechniqueGroup TechniqueGroup => TechniqueGroup.DominoLoop;

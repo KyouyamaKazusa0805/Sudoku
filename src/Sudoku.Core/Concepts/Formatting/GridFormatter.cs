@@ -289,8 +289,8 @@ public readonly ref partial struct GridFormatter
 	/// <param name="grid">The grid.</param>
 	/// <returns>The string.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public string ToString(in Grid grid) =>
-		Sukaku
+	public string ToString(in Grid grid)
+		=> Sukaku
 			? ToSukakuString(grid)
 			: Multiline
 				? WithCandidates
@@ -320,8 +320,8 @@ public readonly ref partial struct GridFormatter
 	/// <param name="gridOutputOption">The grid output options.</param>
 	/// <returns>The grid formatter.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static GridFormatter Create(GridFormattingOptions gridOutputOption) =>
-		gridOutputOption switch
+	public static GridFormatter Create(GridFormattingOptions gridOutputOption)
+		=> gridOutputOption switch
 		{
 			GridFormattingOptions.Excel => new(true) { Excel = true },
 			GridFormattingOptions.OpenSudoku => new(false) { OpenSudoku = true },

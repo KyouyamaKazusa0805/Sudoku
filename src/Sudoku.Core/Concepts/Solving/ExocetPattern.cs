@@ -83,8 +83,8 @@ public readonly record struct ExocetPattern(
 	/// <param name="other">The instance to compare.</param>
 	/// <returns>A <see cref="bool"/> result.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public bool Equals(in ExocetPattern other) =>
-		Base1 == other.Base1 && Base2 == other.Base2 && TargetQ1 == other.TargetQ1
+	public bool Equals(in ExocetPattern other)
+		=> Base1 == other.Base1 && Base2 == other.Base2 && TargetQ1 == other.TargetQ1
 			&& TargetQ2 == other.TargetQ2 && TargetR1 == other.TargetR1 && TargetR2 == other.TargetR2
 			&& CrossLine == other.CrossLine && MirrorQ1 == other.MirrorQ1 && MirrorQ2 == other.MirrorQ2
 			&& other.MirrorR1 == other.MirrorR1 && MirrorR2 == other.MirrorR2

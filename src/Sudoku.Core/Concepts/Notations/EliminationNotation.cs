@@ -34,8 +34,8 @@ public sealed class EliminationNotation :
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static string ToCandidatesString(in Candidates candidates) =>
-		ToCandidatesString(candidates, EliminationNotationOptions.Default);
+	public static string ToCandidatesString(in Candidates candidates)
+		=> ToCandidatesString(candidates, EliminationNotationOptions.Default);
 
 	/// <inheritdoc/>
 	public static string ToCandidatesString(in Candidates candidates, in EliminationNotationOptions options)

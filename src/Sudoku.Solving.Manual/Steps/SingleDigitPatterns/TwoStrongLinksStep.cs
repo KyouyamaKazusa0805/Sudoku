@@ -15,8 +15,8 @@ public sealed record class TwoStrongLinksStep(
 	IStepWithRank
 {
 	/// <inheritdoc/>
-	public override decimal Difficulty =>
-		TechniqueCode switch
+	public override decimal Difficulty
+		=> TechniqueCode switch
 		{
 			Technique.TurbotFish => 4.2M,
 			Technique.Skyscraper => 4.0M,
@@ -34,8 +34,8 @@ public sealed record class TwoStrongLinksStep(
 	public override TechniqueTags TechniqueTags => base.TechniqueTags | TechniqueTags.ShortChaining;
 
 	/// <inheritdoc/>
-	public override Technique TechniqueCode =>
-		(BaseHouse / 9, TargetHouse / 9) switch
+	public override Technique TechniqueCode
+		=> (BaseHouse / 9, TargetHouse / 9) switch
 		{
 			(0, _) or (_, 0) => Technique.TurbotFish,
 			(1, 1) or (2, 2) => Technique.Skyscraper,

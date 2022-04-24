@@ -117,8 +117,7 @@ public static class Terminal
 	/// </summary>
 	/// <param name="handler">The string handler that holds the interpolated string.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static void WriteLine([Isha] ref StringHandler handler) =>
-		Console.WriteLine(handler.ToStringAndClear());
+	public static void WriteLine([Isha] ref StringHandler handler) => Console.WriteLine(handler.ToStringAndClear());
 
 	/// <summary>
 	/// Writes the string value specified the <see cref="StringHandler"/> as an interpolated string,

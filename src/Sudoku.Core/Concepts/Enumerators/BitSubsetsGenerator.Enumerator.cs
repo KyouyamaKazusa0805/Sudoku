@@ -26,8 +26,8 @@ partial struct BitSubsetsGenerator
 		/// <param name="bitCount">The number of bits.</param>
 		/// <param name="oneCount">The number of <see langword="true"/> bits.</param>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal Enumerator(int bitCount, int oneCount) =>
-			(Current, _mask, _isLast) = ((1 << oneCount) - 1, (1 << bitCount - oneCount) - 1, bitCount == 0);
+		internal Enumerator(int bitCount, int oneCount)
+			=> (Current, _mask, _isLast) = ((1 << oneCount) - 1, (1 << bitCount - oneCount) - 1, bitCount == 0);
 
 
 		/// <inheritdoc/>

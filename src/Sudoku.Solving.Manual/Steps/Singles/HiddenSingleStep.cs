@@ -16,21 +16,21 @@ public sealed record class HiddenSingleStep(
 	SingleStep(Conclusions, Views, Cell, Digit)
 {
 	/// <inheritdoc/>
-	public override decimal Difficulty =>
-		this switch { { EnableAndIsLastDigit: true } => 1.1M, { House: < 9 } => 1.2M, _ => 1.5M };
+	public override decimal Difficulty
+		=> this switch { { EnableAndIsLastDigit: true } => 1.1M, { House: < 9 } => 1.2M, _ => 1.5M };
 
 	/// <inheritdoc/>
 	public override Rarity Rarity => EnableAndIsLastDigit || House < 9 ? Rarity.Always : Rarity.Often;
 
 	/// <inheritdoc/>
-	public override Technique TechniqueCode =>
-		EnableAndIsLastDigit
+	public override Technique TechniqueCode
+		=> EnableAndIsLastDigit
 			? Technique.LastDigit
 			: (Technique)((int)Technique.HiddenSingleBlock + (int)House.ToHouse());
 
 	/// <inheritdoc/>
-	public override string? Format =>
-		R[EnableAndIsLastDigit ? "TechniqueFormat_LastDigit" : "TechniqueFormat_HiddenSingle"];
+	public override string? Format
+		=> R[EnableAndIsLastDigit ? "TechniqueFormat_LastDigit" : "TechniqueFormat_HiddenSingle"];
 
 	[FormatItem]
 	internal string CellStr

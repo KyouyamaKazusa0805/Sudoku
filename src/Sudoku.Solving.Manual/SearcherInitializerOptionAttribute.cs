@@ -6,8 +6,7 @@
 /// </summary>
 /// <typeparam name="TStepSearcher">The type of the step searcher.</typeparam>
 [AttributeUsage(AttributeTargets.Assembly, AllowMultiple = true, Inherited = false)]
-public sealed class SearcherConfigurationAttribute<TStepSearcher> : Attribute
-	where TStepSearcher : class, IStepSearcher
+public sealed class SearcherConfigurationAttribute<TStepSearcher> : Attribute where TStepSearcher : class, IStepSearcher
 {
 	/// <summary>
 	/// Initializes a <see cref="SearcherConfigurationAttribute{TStepSearcher}"/> instance
@@ -15,8 +14,8 @@ public sealed class SearcherConfigurationAttribute<TStepSearcher> : Attribute
 	/// </summary>
 	/// <param name="priority">The priority value. The value must be unique.</param>
 	/// <param name="displayingLevel">The displaying level.</param>
-	public SearcherConfigurationAttribute(int priority, DisplayingLevel displayingLevel) =>
-		(Priority, DisplayingLevel) = (priority, displayingLevel);
+	public SearcherConfigurationAttribute(int priority, DisplayingLevel displayingLevel)
+		=> (Priority, DisplayingLevel) = (priority, displayingLevel);
 
 
 	/// <summary>

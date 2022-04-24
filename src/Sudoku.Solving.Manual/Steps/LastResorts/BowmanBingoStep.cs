@@ -19,15 +19,15 @@ public sealed record class BowmanBingoStep(
 	public decimal BaseDifficulty => 8.0M;
 
 	/// <inheritdoc/>
-	public (string Name, decimal Value)[] ExtraDifficultyValues =>
-		new[] { ("Length", IChainLikeStep.GetExtraDifficultyByLength(ContradictionLinks.Length)) };
+	public (string Name, decimal Value)[] ExtraDifficultyValues
+		=> new[] { ("Length", IChainLikeStep.GetExtraDifficultyByLength(ContradictionLinks.Length)) };
 
 	/// <inheritdoc/>
 	public override DifficultyLevel DifficultyLevel => DifficultyLevel.LastResort;
 
 	/// <inheritdoc/>
-	public override TechniqueTags TechniqueTags =>
-		base.TechniqueTags | TechniqueTags.LongChaining | TechniqueTags.ForcingChains;
+	public override TechniqueTags TechniqueTags
+		=> base.TechniqueTags | TechniqueTags.LongChaining | TechniqueTags.ForcingChains;
 
 	/// <inheritdoc/>
 	public override Technique TechniqueCode => Technique.BowmanBingo;

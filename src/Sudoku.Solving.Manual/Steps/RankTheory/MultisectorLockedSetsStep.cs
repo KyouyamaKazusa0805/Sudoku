@@ -18,8 +18,7 @@ public sealed record class MultisectorLockedSetsStep(ConclusionList Conclusions,
 	public decimal BaseDifficulty => 9.4M;
 
 	/// <inheritdoc/>
-	public (string Name, decimal Value)[] ExtraDifficultyValues =>
-		new[] { ("Size", A002024(Cells.Count) * .1M) };
+	public (string Name, decimal Value)[] ExtraDifficultyValues => new[] { ("Size", A002024(Cells.Count) * .1M) };
 
 	/// <inheritdoc/>
 	public int Rank => 0;

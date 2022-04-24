@@ -8,8 +8,8 @@ internal sealed class SeparatedStepSearcherAttributeComparer : IComparer<Separat
 {
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public int Compare(SeparatedStepSearcherAttribute? x, SeparatedStepSearcherAttribute? y) =>
-		(x, y) switch
+	public int Compare(SeparatedStepSearcherAttribute? x, SeparatedStepSearcherAttribute? y)
+		=> (x, y) switch
 		{
 			(null, null) => 0, // Same.
 			(not null, not null) => ((IComparable<SeparatedStepSearcherAttribute>)x).CompareTo(y),

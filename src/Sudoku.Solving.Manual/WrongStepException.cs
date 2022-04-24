@@ -28,8 +28,7 @@ public sealed class WrongStepException : Exception
 			);
 
 
-			static string s([InterpolatedStringHandlerArgument] ref StringHandler handler) =>
-				handler.ToStringAndClear();
+			static string s([InterpolatedStringHandlerArgument] ref StringHandler handler) => handler.ToStringAndClear();
 		}
 	}
 

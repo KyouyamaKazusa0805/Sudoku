@@ -55,8 +55,8 @@ public sealed partial class MainPage : Page
 	/// </summary>
 	/// <param name="sender">The object that triggers the event.</param>
 	/// <param name="e">The event arguments provided.</param>
-	private void ViewRouter_Loaded(object sender, RoutedEventArgs e) =>
-		OnNavigate(nameof(SudokuPage), new EntranceNavigationTransitionInfo());
+	private void ViewRouter_Loaded(object sender, RoutedEventArgs e)
+		=> OnNavigate(nameof(SudokuPage), new EntranceNavigationTransitionInfo());
 
 	/// <summary>
 	/// Triggers when the navigation is failed. The method will be invoked if and only if the routing is invalid.
@@ -68,8 +68,8 @@ public sealed partial class MainPage : Page
 	/// the throwing is expected.
 	/// </exception>
 	[DoesNotReturn]
-	private void ViewRouterFrame_NavigationFailed(object sender, NavigationFailedEventArgs e) =>
-		throw new InvalidOperationException($"Cannot find the page '{e.SourcePageType.FullName}'.");
+	private void ViewRouterFrame_NavigationFailed(object sender, NavigationFailedEventArgs e)
+		=> throw new InvalidOperationException($"Cannot find the page '{e.SourcePageType.FullName}'.");
 
 	/// <summary>
 	/// Triggers when the frame of the navigation view control has navigated to a certain page.

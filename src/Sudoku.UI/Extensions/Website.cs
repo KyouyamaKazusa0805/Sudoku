@@ -14,6 +14,5 @@ public static class Website
 	/// <param name="uri">The URI website.</param>
 	/// <returns>The process.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static Process? Visit(string uri) =>
-		Process.Start(new ProcessStartInfo(uri) { UseShellExecute = true });
+	public static Process? Visit(string uri) => Process.Start(new ProcessStartInfo(uri) { UseShellExecute = true });
 }

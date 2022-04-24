@@ -346,8 +346,8 @@ public sealed partial class AlternatingInferenceChainStepSearcher : IAlternating
 	/// </summary>
 	/// <param name="chainIds">The IDs.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	private string PrintChainData(int[] chainIds) =>
-		string.Join(" -> ", from id in chainIds select _nodeLookup[id]!.ToString());
+	private string PrintChainData(int[] chainIds)
+		=> string.Join(" -> ", from id in chainIds select _nodeLookup[id]!.ToString());
 	#endregion
 
 	#region Chaining methods

@@ -22,8 +22,8 @@ public sealed record class BivalueUniversalGraveType3Step(
 	public decimal BaseDifficulty => base.Difficulty;
 
 	/// <inheritdoc/>
-	public (string Name, decimal Value)[] ExtraDifficultyValues =>
-		new[] { ("Subset", Size * .1M), ("Hidden subset", IsNaked ? 0 : .1M) };
+	public (string Name, decimal Value)[] ExtraDifficultyValues
+		=> new[] { ("Subset", Size * .1M), ("Hidden subset", IsNaked ? 0 : .1M) };
 
 	/// <inheritdoc/>
 	public override Technique TechniqueCode => Technique.BivalueUniversalGraveType3;

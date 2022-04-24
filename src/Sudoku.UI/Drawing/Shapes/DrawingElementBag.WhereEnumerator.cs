@@ -147,8 +147,7 @@ partial class DrawingElementBag
 		/// <param name="selector">The selector to convert the element.</param>
 		/// <returns>The enumerator instance.</returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public readonly SelectEnumerator<T> Select<T>(delegate*<DrawingElement, T> selector) =>
-			new(this, selector);
+		public readonly SelectEnumerator<T> Select<T>(delegate*<DrawingElement, T> selector) => new(this, selector);
 
 		/// <summary>
 		/// Gets the only element.

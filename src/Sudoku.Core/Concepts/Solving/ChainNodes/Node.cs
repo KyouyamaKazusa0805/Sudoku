@@ -104,8 +104,8 @@ public abstract class Node : IEquatable<Node>, IEqualityOperators<Node, Node>
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public bool Equals([NotNullWhen(true)] Node? other) =>
-		other is { Cells: var c, Digit: var d } && c == Cells && d == Digit;
+	public bool Equals([NotNullWhen(true)] Node? other)
+		=> other is { Cells: var c, Digit: var d } && c == Cells && d == Digit;
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -143,8 +143,8 @@ public abstract class Node : IEquatable<Node>, IEqualityOperators<Node, Node>
 	/// <param name="right">Indicates the right-side instance to compare.</param>
 	/// <returns>A <see cref="bool"/> result.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static bool operator ==(Node? left, Node? right) =>
-		(left, right) switch { (null, null) => true, (not null, not null) => left.Equals(right), _ => false };
+	public static bool operator ==(Node? left, Node? right)
+		=> (left, right) switch { (null, null) => true, (not null, not null) => left.Equals(right), _ => false };
 
 	/// <summary>
 	/// Determines whether two <see cref="Node"/>s are not totally same.

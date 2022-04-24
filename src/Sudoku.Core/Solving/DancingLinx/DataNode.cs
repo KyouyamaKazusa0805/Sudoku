@@ -10,8 +10,7 @@ internal class DataNode
 	/// </summary>
 	/// <param name="id">The ID value.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	protected internal DataNode(int id) =>
-		(Id, Column, Left, Right, Up, Down) = (id, null, this, this, this, this);
+	protected internal DataNode(int id) => (Id, Column, Left, Right, Up, Down) = (id, null, this, this, this, this);
 
 	/// <summary>
 	/// Initializes a <see cref="DataNode"/> instance via the specfied ID value and the column node.
@@ -19,8 +18,8 @@ internal class DataNode
 	/// <param name="id">The ID value.</param>
 	/// <param name="column">The column node.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	protected internal DataNode(int id, ColumnNode? column) =>
-		(Id, Column, Left, Right, Up, Down) = (id, column, this, this, this, this);
+	protected internal DataNode(int id, ColumnNode? column)
+		=> (Id, Column, Left, Right, Up, Down) = (id, column, this, this, this, this);
 
 
 	/// <summary>

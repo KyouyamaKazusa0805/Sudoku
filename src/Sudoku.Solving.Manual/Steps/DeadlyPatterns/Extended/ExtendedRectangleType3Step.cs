@@ -26,8 +26,8 @@ public sealed record class ExtendedRectangleType3Step(
 	public new decimal BaseDifficulty => base.Difficulty;
 
 	/// <inheritdoc/>
-	public new (string Name, decimal Value)[] ExtraDifficultyValues =>
-		new[] { ("Extra digits", PopCount((uint)ExtraDigitsMask) * .1M) };
+	public new (string Name, decimal Value)[] ExtraDifficultyValues
+		=> new[] { ("Extra digits", PopCount((uint)ExtraDigitsMask) * .1M) };
 
 	/// <inheritdoc/>
 	public override Rarity Rarity => Rarity.Seldom;

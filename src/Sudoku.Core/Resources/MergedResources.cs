@@ -71,16 +71,16 @@ internal sealed class MergedResources
 	/// The LCID of the culture, such as <c>1033</c> for <c>en-US</c> or <c>2052</c> for <c>zh-CN</c>.
 	/// </param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public void ChangeLanguage(int lcid) =>
-		Resources.Culture = lcid == NeutralLanguageLcid ? Neutral : CultureInfo.GetCultureInfo(lcid);
+	public void ChangeLanguage(int lcid)
+		=> Resources.Culture = lcid == NeutralLanguageLcid ? Neutral : CultureInfo.GetCultureInfo(lcid);
 
 	/// <summary>
 	/// Changes the language to the specified language.
 	/// </summary>
 	/// <param name="name">The culture string, such as <c>"en-US"</c> or <c>"zh-CN"</c>.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public void ChangeLanguage(string name) =>
-		Resources.Culture = name.Equals(NeutralLanguageName, StringComparison.OrdinalIgnoreCase)
+	public void ChangeLanguage(string name)
+		=> Resources.Culture = name.Equals(NeutralLanguageName, StringComparison.OrdinalIgnoreCase)
 			? Neutral
 			: CultureInfo.GetCultureInfo(name);
 

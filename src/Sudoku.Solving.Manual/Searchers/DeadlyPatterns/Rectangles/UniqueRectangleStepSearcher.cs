@@ -288,8 +288,8 @@ public sealed unsafe partial class UniqueRectangleStepSearcher : IUniqueRectangl
 	/// <param name="houseIndex">The house index.</param>
 	/// <returns>A <see cref="bool"/> value.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	private static bool IsConjugatePair(int digit, in Cells map, int houseIndex) =>
-		(HouseMaps[houseIndex] & CandMaps[digit]) == map;
+	private static bool IsConjugatePair(int digit, in Cells map, int houseIndex)
+		=> (HouseMaps[houseIndex] & CandMaps[digit]) == map;
 
 	/// <summary>
 	/// Check whether the highlight UR candidates is incomplete.
@@ -297,9 +297,8 @@ public sealed unsafe partial class UniqueRectangleStepSearcher : IUniqueRectangl
 	/// <param name="list">The list to check.</param>
 	/// <returns>A <see cref="bool"/> result.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	private bool IsIncompleteUr(IEnumerable<CandidateViewNode> list) =>
-		!AllowIncompleteUniqueRectangles
-			&& list.Count(static d => d.Identifier is { UseId: true, Id: 0 }) != 8;
+	private bool IsIncompleteUr(IEnumerable<CandidateViewNode> list)
+		=> !AllowIncompleteUniqueRectangles && list.Count(static d => d.Identifier is { UseId: true, Id: 0 }) != 8;
 
 	/// <summary>
 	/// Get a cell that can't see each other.
@@ -311,8 +310,8 @@ public sealed unsafe partial class UniqueRectangleStepSearcher : IUniqueRectangl
 	/// Throws when the specified argument <paramref name="cell"/> is invalid.
 	/// </exception>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	private static int GetDiagonalCell(int[] urCells, int cell) =>
-		cell == urCells[0]
+	private static int GetDiagonalCell(int[] urCells, int cell)
+		=> cell == urCells[0]
 			? urCells[3]
 			: cell == urCells[1]
 				? urCells[2]
@@ -345,8 +344,8 @@ public sealed unsafe partial class UniqueRectangleStepSearcher : IUniqueRectangl
 	/// <param name="urCells">The all UR cells used.</param>
 	/// <returns>The list of highlight cells.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	private static IEnumerable<CellViewNode> GetHighlightCells(int[] urCells) =>
-		new CellViewNode[]
+	private static IEnumerable<CellViewNode> GetHighlightCells(int[] urCells)
+		=> new CellViewNode[]
 		{
 			new(0, urCells[0]),
 			new(0, urCells[1]),

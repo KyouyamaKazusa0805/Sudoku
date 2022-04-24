@@ -42,9 +42,8 @@ public sealed class AlternatingInferenceChain : Chain
 	/// is <see langword="true"/>.
 	/// </exception>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public AlternatingInferenceChain(Node[] nodes, bool isStrong) :
-		base(nodes, InitializeFieldNodeStatus(nodes, isStrong)) =>
-		IsStrong = nodes.Length < 3
+	public AlternatingInferenceChain(Node[] nodes, bool isStrong) : base(nodes, InitializeFieldNodeStatus(nodes, isStrong))
+		=> IsStrong = nodes.Length < 3
 			? throw new ArgumentException($"The length of the argument '{nameof(nodes)}' must be greater than 3.", nameof(nodes))
 			: isStrong && nodes[0] != nodes[^1]
 				? throw new ArgumentException("If the alternating inference chain starts with the strong inference, the first and the last node should be the same.")
@@ -104,8 +103,8 @@ public sealed class AlternatingInferenceChain : Chain
 
 
 	/// <inheritdoc/>
-	public override bool Equals([NotNullWhen(true)] Chain? other) =>
-		other is AlternatingInferenceChain comparer
+	public override bool Equals([NotNullWhen(true)] Chain? other)
+		=> other is AlternatingInferenceChain comparer
 			&& IsStrong == comparer.IsStrong
 			&& RealChainNodes is [var a1, .., var b1] && comparer.RealChainNodes is [var a2, .., var b2]
 			&& (a1 == a2 && b1 == b2 || a1 == b2 && a2 == b1);
@@ -126,8 +125,8 @@ public sealed class AlternatingInferenceChain : Chain
 	}
 
 	/// <inheritdoc/>
-	public override ImmutableArray<Conclusion> GetConclusions(in Grid grid) =>
-		ImmutableArray.Create(
+	public override ImmutableArray<Conclusion> GetConclusions(in Grid grid)
+		=> ImmutableArray.Create(
 			IsStrong switch
 			{
 				true => _nodes switch

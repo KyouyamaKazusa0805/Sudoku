@@ -13,6 +13,6 @@ public static class Utf8JsonWriterExtensions
 	/// <param name="this">The <see cref="Utf8JsonWriter"/> instance.</param>
 	/// <param name="handler">The string handler.</param>
 	public static void WriteStringValue(
-		this Utf8JsonWriter @this, [InterpolatedStringHandlerArgument] ref StringHandler handler) =>
-		@this.WriteStringValue(handler.ToStringAndClear());
+		this Utf8JsonWriter @this, [InterpolatedStringHandlerArgument] ref StringHandler handler)
+		=> @this.WriteStringValue(handler.ToStringAndClear());
 }

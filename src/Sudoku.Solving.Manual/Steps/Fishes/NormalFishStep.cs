@@ -36,8 +36,8 @@ public sealed record class NormalFishStep(
 	public override decimal Difficulty => ((IStepWithPhasedDifficulty)this).TotalDifficulty;
 
 	/// <inheritdoc/>
-	public decimal BaseDifficulty =>
-		Size switch
+	public decimal BaseDifficulty
+		=> Size switch
 		{
 			2 => 3.2M,
 			3 => 3.8M,
@@ -46,8 +46,8 @@ public sealed record class NormalFishStep(
 		};
 
 	/// <inheritdoc/>
-	public (string Name, decimal Value)[] ExtraDifficultyValues =>
-		new[]
+	public (string Name, decimal Value)[] ExtraDifficultyValues
+		=> new[]
 		{
 			("Sashimi", IsSashimi switch
 			{
@@ -92,8 +92,8 @@ public sealed record class NormalFishStep(
 	public override TechniqueGroup TechniqueGroup => TechniqueGroup.NormalFish;
 
 	/// <inheritdoc/>
-	public override Rarity Rarity =>
-		Size switch
+	public override Rarity Rarity
+		=> Size switch
 		{
 			2 => Rarity.Sometimes,
 			3 or 4 => Rarity.Seldom,

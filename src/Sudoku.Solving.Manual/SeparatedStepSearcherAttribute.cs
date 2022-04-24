@@ -18,8 +18,8 @@ public sealed class SeparatedStepSearcherAttribute : Attribute, IComparable<Sepa
 	/// </summary>
 	/// <param name="priority">Indicates the priority that will be used for the ordering.</param>
 	/// <param name="propertyNamesAndValues">The array of property names and their values.</param>
-	public SeparatedStepSearcherAttribute(int priority, params object[] propertyNamesAndValues) =>
-		(Priority, PropertyNamesAndValues) = (priority, propertyNamesAndValues);
+	public SeparatedStepSearcherAttribute(int priority, params object[] propertyNamesAndValues)
+		=> (Priority, PropertyNamesAndValues) = (priority, propertyNamesAndValues);
 
 
 	/// <summary>
@@ -35,8 +35,8 @@ public sealed class SeparatedStepSearcherAttribute : Attribute, IComparable<Sepa
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	int IComparable<SeparatedStepSearcherAttribute>.CompareTo(SeparatedStepSearcherAttribute? other) =>
-		other is null
+	int IComparable<SeparatedStepSearcherAttribute>.CompareTo(SeparatedStepSearcherAttribute? other)
+		=> other is null
 			? throw new ArgumentNullException(nameof(other))
 			: Priority.CompareTo(other.Priority);
 }

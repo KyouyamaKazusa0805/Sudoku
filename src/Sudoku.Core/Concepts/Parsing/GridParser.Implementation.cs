@@ -132,8 +132,8 @@ partial struct GridParser
 
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		static bool whenClause(int i, string match, string pattern1, string pattern2) =>
-			i == 80 * 6 ? match[(i + 1)..(i + 5)] == pattern1 : match[(i + 1)..(i + 6)] == pattern2;
+		static bool whenClause(int i, string match, string pattern1, string pattern2)
+			=> i == 80 * 6 ? match[(i + 1)..(i + 5)] == pattern1 : match[(i + 1)..(i + 6)] == pattern2;
 	}
 
 	/// <summary>

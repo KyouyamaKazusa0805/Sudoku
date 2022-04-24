@@ -33,8 +33,8 @@ public ref partial struct FlagsEnumTypeFieldEnumerator<TEnum> where TEnum : unma
 	/// Throws when the type <typeparamref name="TEnum"/> is not marked <see cref="FlagsAttribute"/>.
 	/// </exception>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	internal FlagsEnumTypeFieldEnumerator(TEnum @base) =>
-		(_base, _fields) = typeof(TEnum).IsDefined(typeof(FlagsAttribute))
+	internal FlagsEnumTypeFieldEnumerator(TEnum @base)
+		=> (_base, _fields) = typeof(TEnum).IsDefined(typeof(FlagsAttribute))
 			? (@base, Enum.GetValues<TEnum>())
 			: throw new InvalidOperationException($"Cannot operate because the type '{typeof(TEnum).Name}' isn't applied attribute type '{nameof(FlagsAttribute)}'.");
 

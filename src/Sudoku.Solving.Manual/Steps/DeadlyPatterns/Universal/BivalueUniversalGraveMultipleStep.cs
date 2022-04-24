@@ -21,8 +21,8 @@ public sealed record class BivalueUniversalGraveMultipleStep(
 	public decimal BaseDifficulty => base.Difficulty;
 
 	/// <inheritdoc/>
-	public (string Name, decimal Value)[] ExtraDifficultyValues =>
-		new[] { ("Offset", .1M), ("Size", A002024(Candidates.Count) * .1M) };
+	public (string Name, decimal Value)[] ExtraDifficultyValues
+		=> new[] { ("Offset", .1M), ("Size", A002024(Candidates.Count) * .1M) };
 
 	/// <inheritdoc/>
 	public override Technique TechniqueCode => Technique.BivalueUniversalGravePlusN;

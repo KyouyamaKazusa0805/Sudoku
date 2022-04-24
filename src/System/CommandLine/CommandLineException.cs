@@ -19,8 +19,7 @@ public abstract class CommandLineException : Exception
 	/// <param name="errorCode">The error code value.</param>
 	/// <param name="message">The error message.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	private protected CommandLineException(int errorCode, string message) : base(message) =>
-		ErrorCode = errorCode;
+	private protected CommandLineException(int errorCode, string message) : base(message) => ErrorCode = errorCode;
 
 
 	/// <summary>

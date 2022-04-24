@@ -24,6 +24,6 @@ public static class JsonSerializerOptionsExtensions
 	/// <seealso cref="JsonSerializerOptions.Converters"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static JsonConverter<T> GetConverter<T, TConverter>(this JsonSerializerOptions @this)
-		where TConverter : JsonConverter<T>, new() =>
-		(JsonConverter<T>?)@this.GetConverter(typeof(T)) ?? new TConverter();
+		where TConverter : JsonConverter<T>, new()
+		=> (JsonConverter<T>?)@this.GetConverter(typeof(T)) ?? new TConverter();
 }

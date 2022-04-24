@@ -190,8 +190,8 @@ public sealed partial class StepSearcherOptionsGenerator : ISourceGenerator
 
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		static string f<TEnum>(TEnum field) where TEnum : Enum =>
-			string.Join(
+		static string f<TEnum>(TEnum field) where TEnum : Enum
+			=> string.Join(
 				" | ",
 				from e in field.ToString().Split(new[] { ',', ' ' }, StringSplitOptions.RemoveEmptyEntries)
 				select $"global::{typeof(TEnum).FullName}.{e}"

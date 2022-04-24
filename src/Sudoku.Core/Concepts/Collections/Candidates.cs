@@ -351,25 +351,25 @@ public unsafe partial struct Candidates :
 	/// Throws when the argument <paramref name="offset"/> is out of range.
 	/// </exception>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public readonly bool Contains(int offset) =>
-	(
-		(offset / Shifting) switch
-		{
-			0 => _0,
-			1 => _1,
-			2 => _2,
-			3 => _3,
-			4 => _4,
-			5 => _5,
-			6 => _6,
-			7 => _7,
-			8 => _8,
-			9 => _9,
-			10 => _10,
-			11 => _11,
-			_ => throw new ArgumentOutOfRangeException(nameof(offset))
-		} >> offset % Shifting & 1
-	) != 0;
+	public readonly bool Contains(int offset)
+		=> (
+			(offset / Shifting) switch
+			{
+				0 => _0,
+				1 => _1,
+				2 => _2,
+				3 => _3,
+				4 => _4,
+				5 => _5,
+				6 => _6,
+				7 => _7,
+				8 => _8,
+				9 => _9,
+				10 => _10,
+				11 => _11,
+				_ => throw new ArgumentOutOfRangeException(nameof(offset))
+			} >> offset % Shifting & 1
+		) != 0;
 
 	/// <inheritdoc cref="object.Equals(object?)"/>
 	public override readonly bool Equals([NotNullWhen(true)] object? obj) => base.Equals(obj);
@@ -381,15 +381,15 @@ public unsafe partial struct Candidates :
 	/// <param name="other">The instance to compare.</param>
 	/// <returns>A <see cref="bool"/> result.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public readonly bool Equals(in Candidates other) =>
-		_0 == other._0 && _1 == other._1 && _2 == other._2 && _3 == other._3
+	public readonly bool Equals(in Candidates other)
+		=> _0 == other._0 && _1 == other._1 && _2 == other._2 && _3 == other._3
 		&& _4 == other._4 && _5 == other._5 && _6 == other._6 && _7 == other._7
 		&& _8 == other._8 && _9 == other._9 && _10 == other._10 && _11 == other._11;
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public override int GetHashCode() =>
-		(int)(
+	public override int GetHashCode()
+		=> (int)(
 			RotateLeft((ulong)_0, 3) ^ RotateRight((ulong)_1, 3)
 			^ RotateLeft((ulong)_2, 6) ^ RotateRight((ulong)_3, 6)
 			^ RotateLeft((ulong)_4, 9) ^ RotateRight((ulong)_5, 9)
@@ -1021,8 +1021,8 @@ public unsafe partial struct Candidates :
 	/// <param name="template">The template map that the base map to check and cover.</param>
 	/// <returns>The result map.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static Candidates operator %(in Candidates @base, in Candidates template) =>
-		!(@base & template) & template;
+	public static Candidates operator %(in Candidates @base, in Candidates template)
+		=> !(@base & template) & template;
 
 	/// <summary>
 	/// Simplified calls <see cref="Reduce(int)"/>.
@@ -1054,58 +1054,56 @@ public unsafe partial struct Candidates :
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	static bool IEqualityOperators<Candidates, Candidates>.operator ==(Candidates left, Candidates right) =>
-		left == right;
+	static bool IEqualityOperators<Candidates, Candidates>.operator ==(Candidates left, Candidates right)
+		=> left == right;
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	static bool IEqualityOperators<Candidates, Candidates>.operator !=(Candidates left, Candidates right) =>
-		left != right;
+	static bool IEqualityOperators<Candidates, Candidates>.operator !=(Candidates left, Candidates right)
+		=> left != right;
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	static Candidates IAdditionOperators<Candidates, int, Candidates>.operator +(Candidates left, int right) =>
-		left + right;
+	static Candidates IAdditionOperators<Candidates, int, Candidates>.operator +(Candidates left, int right)
+		=> left + right;
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	static Candidates ISubtractionOperators<Candidates, int, Candidates>.operator -(Candidates left, int right) =>
-		left - right;
+	static Candidates ISubtractionOperators<Candidates, int, Candidates>.operator -(Candidates left, int right)
+		=> left - right;
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	static Candidates ISubtractionOperators<Candidates, Candidates, Candidates>.operator -(Candidates left, Candidates right) =>
-		left - right;
+	static Candidates ISubtractionOperators<Candidates, Candidates, Candidates>.operator -(Candidates left, Candidates right)
+		=> left - right;
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	static Cells IDivisionOperators<Candidates, int, Cells>.operator /(Candidates left, int right) =>
-		left / right;
+	static Cells IDivisionOperators<Candidates, int, Cells>.operator /(Candidates left, int right) => left / right;
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	static Candidates IModulusOperators<Candidates, Candidates, Candidates>.operator %(Candidates left, Candidates right) =>
-		left % right;
+	static Candidates IModulusOperators<Candidates, Candidates, Candidates>.operator %(Candidates left, Candidates right)
+		=> left % right;
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	static Candidates IBitwiseOperators<Candidates, Candidates, Candidates>.operator ~(Candidates value) =>
-		~value;
+	static Candidates IBitwiseOperators<Candidates, Candidates, Candidates>.operator ~(Candidates value) => ~value;
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	static Candidates IBitwiseOperators<Candidates, Candidates, Candidates>.operator &(Candidates left, Candidates right) =>
-		left & right;
+	static Candidates IBitwiseOperators<Candidates, Candidates, Candidates>.operator &(Candidates left, Candidates right)
+		=> left & right;
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	static Candidates IBitwiseOperators<Candidates, Candidates, Candidates>.operator |(Candidates left, Candidates right) =>
-		left | right;
+	static Candidates IBitwiseOperators<Candidates, Candidates, Candidates>.operator |(Candidates left, Candidates right)
+		=> left | right;
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	static Candidates IBitwiseOperators<Candidates, Candidates, Candidates>.operator ^(Candidates left, Candidates right) =>
-		left ^ right;
+	static Candidates IBitwiseOperators<Candidates, Candidates, Candidates>.operator ^(Candidates left, Candidates right)
+		=> left ^ right;
 
 
 	/// <summary>

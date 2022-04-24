@@ -88,8 +88,8 @@ public static class HouseTypeExtensions
 	/// Throws when the argument <paramref name="houseType"/> is not defined.
 	/// </exception>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static int ToHouseIndex(this byte cell, HouseType houseType) =>
-		houseType switch
+	public static int ToHouseIndex(this byte cell, HouseType houseType)
+		=> houseType switch
 		{
 			HouseType.Block => BlockTable[cell],
 			HouseType.Row => RowTable[cell],
@@ -99,8 +99,8 @@ public static class HouseTypeExtensions
 
 	/// <inheritdoc cref="ToHouseIndex(byte, HouseType)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static int ToHouseIndex(this int cell, HouseType houseType) =>
-		houseType switch
+	public static int ToHouseIndex(this int cell, HouseType houseType)
+		=> houseType switch
 		{
 			HouseType.Block => BlockTable[cell],
 			HouseType.Row => RowTable[cell],

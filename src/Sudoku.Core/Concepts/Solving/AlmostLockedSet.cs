@@ -31,8 +31,8 @@ public sealed class AlmostLockedSet :
 	/// Indicates the possible cells that can be as the elimination.
 	/// </param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public AlmostLockedSet(short digitMask, in Cells map, in Cells possibleEliminationMap) =>
-		(DigitsMask, Map, PossibleEliminationMap) = (digitMask, map, possibleEliminationMap);
+	public AlmostLockedSet(short digitMask, in Cells map, in Cells possibleEliminationMap)
+		=> (DigitsMask, Map, PossibleEliminationMap) = (digitMask, map, possibleEliminationMap);
 
 
 	/// <summary>
@@ -125,8 +125,8 @@ public sealed class AlmostLockedSet :
 	/// <param name="other">The instance to compare.</param>
 	/// <returns>A <see cref="bool"/> result.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public bool Equals([NotNullWhen(true)] AlmostLockedSet? other) =>
-		other is not null && DigitsMask == other.DigitsMask && Map == other.Map;
+	public bool Equals([NotNullWhen(true)] AlmostLockedSet? other)
+		=> other is not null && DigitsMask == other.DigitsMask && Map == other.Map;
 
 	/// <inheritdoc/>
 	/// <remarks>

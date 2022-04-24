@@ -28,8 +28,8 @@ public sealed record class UniqueRectangleWithWingStep(
 	public decimal BaseDifficulty => 4.4M;
 
 	/// <inheritdoc/>
-	public (string Name, decimal Value)[] ExtraDifficultyValues =>
-		new[]
+	public (string Name, decimal Value)[] ExtraDifficultyValues
+		=> new[]
 		{
 			("Avoidable rectangle", IsAvoidable ? .1M : 0),
 			("Wing", TechniqueCode switch

@@ -25,8 +25,8 @@ public sealed class OutsideRectangle : DrawingElement
 	/// <param name="paneSize">The pane size.</param>
 	/// <param name="strokeThickness">The stroke thickness.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public OutsideRectangle(Color strokeColor, double paneSize, double strokeThickness) =>
-		_rect = new()
+	public OutsideRectangle(Color strokeColor, double paneSize, double strokeThickness)
+		=> _rect = new()
 		{
 			Width = paneSize,
 			Height = paneSize,
@@ -74,8 +74,8 @@ public sealed class OutsideRectangle : DrawingElement
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public override bool Equals([NotNullWhen(true)] DrawingElement? other) =>
-		other is OutsideRectangle comparer && ReferenceEquals(_rect, comparer._rect);
+	public override bool Equals([NotNullWhen(true)] DrawingElement? other)
+		=> other is OutsideRectangle comparer && ReferenceEquals(_rect, comparer._rect);
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

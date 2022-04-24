@@ -143,6 +143,5 @@ public sealed partial class InfoBarBoard : UserControl, INotifyPropertyChanged, 
 	/// </summary>
 	/// <param name="sender">The object that triggers the event.</param>
 	/// <param name="e">The event arguments provided.</param>
-	private void UserControl_Loaded(object sender, RoutedEventArgs e) =>
-		_list.CollectionChanged += CollectionChanged;
+	private void UserControl_Loaded(object sender, RoutedEventArgs e) => _list.CollectionChanged += CollectionChanged;
 }

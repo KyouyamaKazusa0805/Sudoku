@@ -26,8 +26,8 @@ public sealed record class GuardianStep(
 	public decimal BaseDifficulty => 5.5M;
 
 	/// <inheritdoc/>
-	public (string Name, decimal Value)[] ExtraDifficultyValues =>
-		new[] { ("Loop length", (Loop.Count + (Guardians.Count >> 1) >> 1) * .1M) };
+	public (string Name, decimal Value)[] ExtraDifficultyValues
+		=> new[] { ("Loop length", (Loop.Count + (Guardians.Count >> 1) >> 1) * .1M) };
 
 	/// <inheritdoc/>
 	public int Rank => -1;
@@ -70,6 +70,6 @@ public sealed record class GuardianStep(
 
 
 	/// <inheritdoc/>
-	public static bool Equals(GuardianStep left, GuardianStep right) =>
-		left.Digit == right.Digit && left.Loop == right.Loop && left.Guardians == right.Guardians;
+	public static bool Equals(GuardianStep left, GuardianStep right)
+		=> left.Digit == right.Digit && left.Loop == right.Loop && left.Guardians == right.Guardians;
 }

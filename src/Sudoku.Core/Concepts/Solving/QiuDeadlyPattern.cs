@@ -45,8 +45,8 @@ public readonly record struct QiuDeadlyPattern(in Cells Square, in Cells BaseLin
 	/// <param name="other">The instance to compare.</param>
 	/// <returns>A <see cref="bool"/> result.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public bool Equals(in QiuDeadlyPattern other) =>
-		Square == other.Square && BaseLine == other.BaseLine && Pair == other.Pair;
+	public bool Equals(in QiuDeadlyPattern other)
+		=> Square == other.Square && BaseLine == other.BaseLine && Pair == other.Pair;
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

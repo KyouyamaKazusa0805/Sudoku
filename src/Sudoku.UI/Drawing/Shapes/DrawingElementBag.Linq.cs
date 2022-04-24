@@ -91,8 +91,8 @@ partial class DrawingElementBag
 	/// <param name="predicate">The condition.</param>
 	/// <returns>The only element that may satisfy the condition.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public DrawingElement Single(Predicate<DrawingElement> predicate) =>
-		new WhereEnumerator(_elements, Count, predicate).Single();
+	public DrawingElement Single(Predicate<DrawingElement> predicate)
+		=> new WhereEnumerator(_elements, Count, predicate).Single();
 
 	/// <summary>
 	/// Retrieve the collection, to get the only element that may satisfy the specified condition.
@@ -100,8 +100,8 @@ partial class DrawingElementBag
 	/// <param name="predicate">The condition.</param>
 	/// <returns>The only element that may satisfy the condition.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public unsafe DrawingElement Single(delegate*<DrawingElement, bool> predicate) =>
-		new WhereEnumerator(_elements, Count, predicate).Single();
+	public unsafe DrawingElement Single(delegate*<DrawingElement, bool> predicate)
+		=> new WhereEnumerator(_elements, Count, predicate).Single();
 
 	/// <summary>
 	/// Retrieve the collection, to get the only element that may satisfy the specified condition.
@@ -112,8 +112,8 @@ partial class DrawingElementBag
 	/// has multiple values satisfying the condition.
 	/// </returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public DrawingElement? SingleOrDefault(Predicate<DrawingElement> predicate) =>
-		new WhereEnumerator(_elements, Count, predicate).SingleOrDefault();
+	public DrawingElement? SingleOrDefault(Predicate<DrawingElement> predicate)
+		=> new WhereEnumerator(_elements, Count, predicate).SingleOrDefault();
 
 	/// <summary>
 	/// Retrieve the collection, to get the only element that may satisfy the specified condition.
@@ -124,8 +124,8 @@ partial class DrawingElementBag
 	/// has multiple values satisfying the condition.
 	/// </returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public unsafe DrawingElement? SingleOrDefault(delegate*<DrawingElement, bool> predicate) =>
-		new WhereEnumerator(_elements, Count, predicate).SingleOrDefault();
+	public unsafe DrawingElement? SingleOrDefault(delegate*<DrawingElement, bool> predicate)
+		=> new WhereEnumerator(_elements, Count, predicate).SingleOrDefault();
 
 	/// <summary>
 	/// Gets all possible elements that are all of type <typeparamref name="TDrawingElement"/>.
@@ -135,8 +135,8 @@ partial class DrawingElementBag
 	/// The enumerator instance that allows you using <see langword="foreach"/> loop to iterate on them.
 	/// </returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public OfTypeEnumerator<TDrawingElement> OfType<TDrawingElement>() where TDrawingElement : DrawingElement =>
-		new(_elements, Count);
+	public OfTypeEnumerator<TDrawingElement> OfType<TDrawingElement>() where TDrawingElement : DrawingElement
+		=> new(_elements, Count);
 
 	/// <summary>
 	/// Gets all possible elements that are all of either type <typeparamref name="T1"/>
@@ -148,8 +148,8 @@ partial class DrawingElementBag
 	/// The enumerator instance that allows you using <see langword="foreach"/> loop to iterate on them.
 	/// </returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public OfTypeEnumerator<T1, T2> OfType<T1, T2>() where T1 : DrawingElement where T2 : DrawingElement =>
-		new(_elements, Count);
+	public OfTypeEnumerator<T1, T2> OfType<T1, T2>() where T1 : DrawingElement where T2 : DrawingElement
+		=> new(_elements, Count);
 
 	/// <summary>
 	/// Gets all possible elements that are all of type <typeparamref name="T1"/>,
@@ -163,7 +163,10 @@ partial class DrawingElementBag
 	/// </returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public OfTypeEnumerator<T1, T2, T3> OfType<T1, T2, T3>()
-		where T1 : DrawingElement where T2 : DrawingElement where T3 : DrawingElement => new(_elements, Count);
+		where T1 : DrawingElement
+		where T2 : DrawingElement
+		where T3 : DrawingElement
+		=> new(_elements, Count);
 
 	/// <summary>
 	/// Makes a projection that converts each element to the target value of type <typeparamref name="T"/>,
@@ -196,8 +199,7 @@ partial class DrawingElementBag
 	/// <param name="selector">The selector to convert the element.</param>
 	/// <returns>The enumerator instance.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public unsafe SelectEnumerator<T> Select<T>(delegate*<DrawingElement, T> selector) =>
-		new(_elements, Count, selector);
+	public unsafe SelectEnumerator<T> Select<T>(delegate*<DrawingElement, T> selector) => new(_elements, Count, selector);
 
 	/// <summary>
 	/// Makes a filerting that removes the elements not satisfied the specified condition.
@@ -228,6 +230,5 @@ partial class DrawingElementBag
 	/// <param name="predicate">The filtering condition method.</param>
 	/// <returns>The enumerator instance.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public unsafe WhereEnumerator Where(delegate*<DrawingElement, bool> predicate) =>
-		new(_elements, Count, predicate);
+	public unsafe WhereEnumerator Where(delegate*<DrawingElement, bool> predicate) => new(_elements, Count, predicate);
 }

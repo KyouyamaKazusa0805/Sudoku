@@ -224,8 +224,8 @@ public static partial class BitOperationsExensions
 	/// </summary>
 	/// <param name="typeName">The type name.</param>
 	/// <returns>The code.</returns>
-	private string G_GetEnumerator(string typeName) =>
-		$@"/// <summary>
+	private string G_GetEnumerator(string typeName)
+		=> $@"/// <summary>
 	/// <para>Extension get enumerator of the type <see cref=""{typeName}""/>.</para>
 	/// <para>
 	/// This method will allow you to use <see langword=""foreach""/> loop to iterate on
@@ -246,8 +246,8 @@ public static partial class BitOperationsExensions
 	[global::System.CodeDom.Compiler.GeneratedCode(""{GetType().FullName}"", ""{VersionValue}"")]
 	[global::System.Runtime.CompilerServices.CompilerGenerated]
 	[global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
-	public static partial ReadOnlySpan<int>.Enumerator GetEnumerator(this {typeName} @this) =>
-		@this.GetAllSets().GetEnumerator();";
+	public static partial ReadOnlySpan<int>.Enumerator GetEnumerator(this {typeName} @this)
+		=> @this.GetAllSets().GetEnumerator();";
 
 	/// <summary>
 	/// Generates the file of the method <c>GetNextSet</c>.
@@ -255,8 +255,8 @@ public static partial class BitOperationsExensions
 	/// <param name="typeName">The type name.</param>
 	/// <param name="size">The size of the type.</param>
 	/// <returns>The code.</returns>
-	private string G_GetNextSet(string typeName, int size) =>
-		$@"/// <summary>
+	private string G_GetNextSet(string typeName, int size)
+		=> $@"/// <summary>
 	/// Find a index of the binary representation of a value after the specified index,
 	/// whose bit is set <see langword=""true""/>.
 	/// </summary>
@@ -329,8 +329,8 @@ public static partial class BitOperationsExensions
 	/// </summary>
 	/// <param name="typeName">The type name.</param>
 	/// <returns>The code.</returns>
-	private string G_SetAt(string typeName) =>
-		$@"/// <summary>
+	private string G_SetAt(string typeName)
+		=> $@"/// <summary>
 	/// Get an <see cref=""int""/> value, indicating that the absolute position of
 	/// all set bits with the specified set bit order.
 	/// </summary>

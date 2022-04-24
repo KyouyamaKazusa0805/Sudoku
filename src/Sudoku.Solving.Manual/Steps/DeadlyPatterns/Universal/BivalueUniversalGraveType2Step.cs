@@ -19,8 +19,7 @@ public sealed record class BivalueUniversalGraveType2Step(
 	public decimal BaseDifficulty => base.Difficulty;
 
 	/// <inheritdoc/>
-	public (string Name, decimal Value)[] ExtraDifficultyValues =>
-		new[] { ("Extra digit", A002024(Cells.Count) * .1M) };
+	public (string Name, decimal Value)[] ExtraDifficultyValues => new[] { ("Extra digit", A002024(Cells.Count) * .1M) };
 
 	/// <inheritdoc/>
 	public override Technique TechniqueCode => Technique.BivalueUniversalGraveType2;

@@ -13,8 +13,8 @@ public sealed record class HiddenSubsetStep(
 	SubsetStep(Conclusions, Views, House, Cells, DigitsMask)
 {
 	/// <inheritdoc/>
-	public override decimal Difficulty =>
-		Size switch
+	public override decimal Difficulty
+		=> Size switch
 		{
 			2 => 3.4M,
 			3 => 4.0M,
@@ -23,8 +23,8 @@ public sealed record class HiddenSubsetStep(
 		};
 
 	/// <inheritdoc/>
-	public override Technique TechniqueCode =>
-		Size switch
+	public override Technique TechniqueCode
+		=> Size switch
 		{
 			2 => Technique.HiddenPair,
 			3 => Technique.HiddenTriple,

@@ -34,8 +34,8 @@ public sealed record class NakedSubsetStep(
 	public override decimal Difficulty => ((IStepWithPhasedDifficulty)this).TotalDifficulty;
 
 	/// <inheritdoc/>
-	public decimal BaseDifficulty =>
-		Size switch
+	public decimal BaseDifficulty
+		=> Size switch
 		{
 			2 => 3.0M,
 			3 => 3.6M,
@@ -44,8 +44,8 @@ public sealed record class NakedSubsetStep(
 		};
 
 	/// <inheritdoc/>
-	public (string Name, decimal Value)[] ExtraDifficultyValues =>
-		new[]
+	public (string Name, decimal Value)[] ExtraDifficultyValues
+		=> new[]
 		{
 			(
 				"Locked",
@@ -64,8 +64,8 @@ public sealed record class NakedSubsetStep(
 		};
 
 	/// <inheritdoc/>
-	public override Technique TechniqueCode =>
-		(IsLocked, Size) switch
+	public override Technique TechniqueCode
+		=> (IsLocked, Size) switch
 		{
 			(true, 2) => Technique.LockedPair,
 			(false, 2) => Technique.NakedPairPlus,

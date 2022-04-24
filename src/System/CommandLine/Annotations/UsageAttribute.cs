@@ -11,8 +11,8 @@ public sealed class UsageAttribute : Attribute
 	/// </summary>
 	/// <param name="example">The example command.</param>
 	/// <param name="description">The description.</param>
-	public UsageAttribute(string example, string? description = null) =>
-		(ExampleCommand, Description) = (example, description);
+	public UsageAttribute(string example, string? description = null)
+		=> (ExampleCommand, Description) = (example, description);
 
 
 	/// <summary>

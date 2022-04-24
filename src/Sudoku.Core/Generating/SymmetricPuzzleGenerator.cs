@@ -143,8 +143,8 @@ public sealed unsafe class SymmetricPuzzleGenerator : IPuzzleGenerator
 	/// <param name="column">The column value.</param>
 	/// <returns>The cells.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	private static int[] GetCells(SymmetryType symmetryType, int row, int column) =>
-		symmetryType switch
+	private static int[] GetCells(SymmetryType symmetryType, int row, int column)
+		=> symmetryType switch
 		{
 			SymmetryType.Central => new[] { row * 9 + column, (8 - row) * 9 + 8 - column },
 			SymmetryType.Diagonal => new[] { row * 9 + column, column * 9 + row },

@@ -26,8 +26,8 @@ public sealed partial record class ComplexFishStep(
 	public decimal BaseDifficulty => new[] { 0, 0, 3.2M, 3.8M, 5.2M, 6.0M, 6.0M, 6.6M, 7.0M }[Size];
 
 	/// <inheritdoc/>
-	public (string Name, decimal Value)[] ExtraDifficultyValues =>
-		new[]
+	public (string Name, decimal Value)[] ExtraDifficultyValues
+		=> new[]
 		{
 			(
 				"Sashimi",
@@ -47,8 +47,8 @@ public sealed partial record class ComplexFishStep(
 		};
 
 	/// <inheritdoc/>
-	public override DifficultyLevel DifficultyLevel =>
-		Size switch
+	public override DifficultyLevel DifficultyLevel
+		=> Size switch
 		{
 			2 => DifficultyLevel.Hard,
 			3 or 4 => DifficultyLevel.Fiendish,
@@ -62,8 +62,8 @@ public sealed partial record class ComplexFishStep(
 	public override TechniqueGroup TechniqueGroup => TechniqueGroup.ComplexFish;
 
 	/// <inheritdoc/>
-	public override Rarity Rarity =>
-		(Size, ShapeModifier, FinModifier) switch
+	public override Rarity Rarity
+		=> (Size, ShapeModifier, FinModifier) switch
 		{
 			(3, _, _) => Rarity.Sometimes,
 			(4, ShapeModifiers.Franken, _) => Rarity.Sometimes,
@@ -89,13 +89,8 @@ public sealed partial record class ComplexFishStep(
 	/// <summary>
 	/// Indicates the fin modifier.
 	/// </summary>
-	private FinModifiers FinModifier =>
-		IsSashimi switch
-		{
-			true => FinModifiers.Sashimi,
-			false => FinModifiers.Finned,
-			_ => FinModifiers.Normal
-		};
+	private FinModifiers FinModifier
+		=> IsSashimi switch { true => FinModifiers.Sashimi, false => FinModifiers.Finned, _ => FinModifiers.Normal };
 
 	/// <summary>
 	/// The shape modifier.
@@ -175,10 +170,10 @@ public sealed partial record class ComplexFishStep(
 
 
 	/// <inheritdoc/>
-	public static bool Equals(ComplexFishStep left, ComplexFishStep right) =>
-		left.Digit == right.Digit
-		&& left.BaseSetsMask == right.BaseSetsMask
-		&& left.CoverSetsMask == right.CoverSetsMask
-		&& left.Exofins == right.Exofins
-		&& left.Endofins == right.Endofins;
+	public static bool Equals(ComplexFishStep left, ComplexFishStep right)
+		=> left.Digit == right.Digit
+			&& left.BaseSetsMask == right.BaseSetsMask
+			&& left.CoverSetsMask == right.CoverSetsMask
+			&& left.Exofins == right.Exofins
+			&& left.Endofins == right.Endofins;
 }

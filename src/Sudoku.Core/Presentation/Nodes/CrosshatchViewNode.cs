@@ -36,20 +36,19 @@ public sealed class CrosshatchViewNode : ViewNode
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public override bool Equals([NotNullWhen(true)] ViewNode? other) =>
-		other is CrosshatchViewNode comparer
+	public override bool Equals([NotNullWhen(true)] ViewNode? other)
+		=> other is CrosshatchViewNode comparer
 			&& Identifier == comparer.Identifier
 			&& Digit == comparer.Digit && Start == comparer.Start && End == comparer.End;
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public override int GetHashCode() =>
-		HashCode.Combine(nameof(CrosshatchViewNode), Identifier, Digit, Start, End);
+	public override int GetHashCode() => HashCode.Combine(nameof(CrosshatchViewNode), Identifier, Digit, Start, End);
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public override string ToString() =>
-		$"{nameof(CrosshatchViewNode)} {{ {nameof(Digit)} = {Digit + 1}, {nameof(Start)} = {Start}, {nameof(End)} = {End} }}";
+	public override string ToString()
+		=> $"{nameof(CrosshatchViewNode)} {{ {nameof(Digit)} = {Digit + 1}, {nameof(Start)} = {Start}, {nameof(End)} = {End} }}";
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

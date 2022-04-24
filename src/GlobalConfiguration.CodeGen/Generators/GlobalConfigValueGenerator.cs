@@ -7,8 +7,8 @@
 public sealed class GlobalConfigValueGenerator : IIncrementalGenerator
 {
 	/// <inheritdoc/>
-	public void Initialize(IncrementalGeneratorInitializationContext context) =>
-		context.RegisterSourceOutput(
+	public void Initialize(IncrementalGeneratorInitializationContext context)
+		=> context.RegisterSourceOutput(
 			context.AdditionalTextsProvider
 				.Where(static file => file.Path.EndsWith("Directory.Build.props"))
 				.Select((text, _) => VersionXmlNodeDeterminer(text)),
@@ -16,8 +16,8 @@ public sealed class GlobalConfigValueGenerator : IIncrementalGenerator
 		);
 
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	private static string VersionXmlNodeDeterminer(AdditionalText text) =>
-		new XmlDocument()
+	private static string VersionXmlNodeDeterminer(AdditionalText text)
+		=> new XmlDocument()
 			.OnLoading(text.Path)
 			.DocumentElement
 			.SelectNodes("descendant::PropertyGroup")
@@ -31,8 +31,8 @@ public sealed class GlobalConfigValueGenerator : IIncrementalGenerator
 			.ToString();
 
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	private static string GetSource(string versionValue) =>
-		$$"""
+	private static string GetSource(string versionValue)
+		=> $$"""
 		namespace Sudoku.Diagnostics.CodeGen;
 		
 		partial class Constants

@@ -45,8 +45,8 @@ internal sealed partial class DrawingElementBag :
 	/// </summary>
 	/// <param name="elements">The list of <see cref="DrawingElement"/>s.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public DrawingElementBag(DrawingElement[] elements) : this(RoundUpToPowerOf2((uint)elements.Length)) =>
-		Array.Copy(elements, _elements, elements.Length);
+	public DrawingElementBag(DrawingElement[] elements) : this(RoundUpToPowerOf2((uint)elements.Length))
+		=> Array.Copy(elements, _elements, elements.Length);
 
 	/// <summary>
 	/// Initializes a <see cref="DrawingElementBag"/> instance
@@ -69,8 +69,7 @@ internal sealed partial class DrawingElementBag :
 	/// be the power of 2.
 	/// </remarks>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	private DrawingElementBag(uint capacity) =>
-		_elements = new DrawingElement[_capacity = RoundUpToPowerOf2(capacity)];
+	private DrawingElementBag(uint capacity) => _elements = new DrawingElement[_capacity = RoundUpToPowerOf2(capacity)];
 
 
 	/// <summary>
@@ -177,8 +176,8 @@ internal sealed partial class DrawingElementBag :
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	IEnumerator<DrawingElement> IEnumerable<DrawingElement>.GetEnumerator() =>
-		((IEnumerable<DrawingElement>)_elements[..Count]).GetEnumerator();
+	IEnumerator<DrawingElement> IEnumerable<DrawingElement>.GetEnumerator()
+		=> ((IEnumerable<DrawingElement>)_elements[..Count]).GetEnumerator();
 
 	/// <summary>
 	/// Ensures the capacity, allowing new element being added into the current collection.

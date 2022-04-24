@@ -60,8 +60,7 @@ public abstract record class Step(ConclusionList Conclusions, ViewList Views) : 
 	/// -->
 	/// </list>
 	/// </summary>
-	public bool IsChaining =>
-		HasTag(TechniqueTags.Wings | TechniqueTags.ShortChaining | TechniqueTags.LongChaining);
+	public bool IsChaining => HasTag(TechniqueTags.Wings | TechniqueTags.ShortChaining | TechniqueTags.LongChaining);
 
 	/// <summary>
 	/// Indicates whether the corresponding technique of the current step is a deadly pattern.
@@ -114,8 +113,8 @@ public abstract record class Step(ConclusionList Conclusions, ViewList Views) : 
 	public abstract TechniqueTags TechniqueTags { get; }
 
 	/// <inheritdoc/>
-	public virtual TechniqueGroup TechniqueGroup =>
-		Enum.TryParse<TechniqueGroup>(TechniqueCode.ToString(), out var inst) ? inst : TechniqueGroup.None;
+	public virtual TechniqueGroup TechniqueGroup
+		=> Enum.TryParse<TechniqueGroup>(TechniqueCode.ToString(), out var inst) ? inst : TechniqueGroup.None;
 
 	/// <inheritdoc/>
 	public abstract DifficultyLevel DifficultyLevel { get; }
@@ -156,8 +155,8 @@ public abstract record class Step(ConclusionList Conclusions, ViewList Views) : 
 	/// </param>
 	/// <returns>A <see cref="bool"/> result.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public bool HasTag(TechniqueTags flags) =>
-		flags.IsFlag() ? TechniqueTags.Flags(flags) : TechniqueTags.MultiFlags(flags);
+	public bool HasTag(TechniqueTags flags)
+		=> flags.IsFlag() ? TechniqueTags.Flags(flags) : TechniqueTags.MultiFlags(flags);
 
 	/// <summary>
 	/// Returns a string that only contains the name and the basic information.

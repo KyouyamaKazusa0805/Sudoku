@@ -22,9 +22,8 @@ public sealed class CandidateViewNode : ViewNode
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public override bool Equals([NotNullWhen(true)] ViewNode? other) =>
-		other is CandidateViewNode comparer
-			&& Identifier == comparer.Identifier && Candidate == comparer.Candidate;
+	public override bool Equals([NotNullWhen(true)] ViewNode? other)
+		=> other is CandidateViewNode comparer && Identifier == comparer.Identifier && Candidate == comparer.Candidate;
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -32,8 +31,8 @@ public sealed class CandidateViewNode : ViewNode
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public override string ToString() =>
-		$"{nameof(CandidateViewNode)} {{ {nameof(Identifier)} = {Identifier}, {nameof(Candidate)} = {Candidates.Empty + Candidate} }}";
+	public override string ToString()
+		=> $"{nameof(CandidateViewNode)} {{ {nameof(Identifier)} = {Identifier}, {nameof(Candidate)} = {Candidates.Empty + Candidate} }}";
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

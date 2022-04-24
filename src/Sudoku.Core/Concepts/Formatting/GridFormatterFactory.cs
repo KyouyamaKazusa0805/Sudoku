@@ -11,8 +11,8 @@ public static class GridFormatterFactory
 	/// <param name="format">The format.</param>
 	/// <returns>The grid formatter.</returns>
 	/// <exception cref="FormatException">Throws when the format string is invalid.</exception>
-	public static GridFormatter Create(string? format) =>
-		format switch
+	public static GridFormatter Create(string? format)
+		=> format switch
 		{
 			null or "." => new(false),
 			"+" or ".+" or "+." => new(false) { WithModifiables = true },

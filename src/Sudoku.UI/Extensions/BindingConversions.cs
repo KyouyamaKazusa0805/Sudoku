@@ -33,8 +33,8 @@ internal static class BindingConversions
 	/// <returns>The title of the info bar.</returns>
 	/// <exception cref="ArgumentOutOfRangeException">Throws when the severity is not defined.</exception>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static string InfoBarTitle(InfoBarSeverity severity) =>
-		Get(
+	public static string InfoBarTitle(InfoBarSeverity severity)
+		=> Get(
 			severity switch
 			{
 				InfoBarSeverity.Informational => "SudokuPage_InfoBar_SeverityInfo",

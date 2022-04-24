@@ -233,8 +233,8 @@ internal sealed class CellDigit : DrawingElement
 	/// </summary>
 	[DebuggerBrowsable(DebuggerBrowsableState.Never)]
 	[EditorBrowsable(EditorBrowsableState.Never)]
-	private string DebuggerDisplayView =>
-		$$"""
+	private string DebuggerDisplayView
+		=> $$"""
 		{{
 			nameof(CellDigit)}} { Status = {{
 			(_isGiven is true ? "Given" : "Modifiable")}}, Digit = {{
@@ -245,8 +245,8 @@ internal sealed class CellDigit : DrawingElement
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public override bool Equals([NotNullWhen(true)] DrawingElement? other) =>
-		other is CellDigit comparer && _isGiven == comparer._isGiven && Digit == comparer.Digit;
+	public override bool Equals([NotNullWhen(true)] DrawingElement? other)
+		=> other is CellDigit comparer && _isGiven == comparer._isGiven && Digit == comparer.Digit;
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

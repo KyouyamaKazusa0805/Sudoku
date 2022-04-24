@@ -27,8 +27,8 @@ public sealed record class UniqueRectangleWithGuardianStep(
 	public decimal BaseDifficulty => 4.5M;
 
 	/// <inheritdoc/>
-	public (string Name, decimal Value)[] ExtraDifficultyValues =>
-		new[]
+	public (string Name, decimal Value)[] ExtraDifficultyValues
+		=> new[]
 		{
 			("Guardians", (GuardianCells.Count >> 1) * .1M),
 			("Incompleteness", IsIncomplete ? .1M : 0)

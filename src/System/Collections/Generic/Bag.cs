@@ -205,9 +205,6 @@ public ref partial struct Bag<T>
 	/// </summary>
 	/// <returns>The string representation of the instance.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	private readonly string GetDebuggerDisplay() =>
-		$$"""
-		Bag { ElementType = {{typeof(T)}}, Count = {{Count}} }
-		""";
+	private readonly string GetDebuggerDisplay() => $$"""Bag { ElementType = {{typeof(T)}}, Count = {{Count}} }""";
 #endif
 }

@@ -15,7 +15,7 @@ public static class InferenceExtensions
 	/// Throws when the argument <paramref name="this"/> is not defined.
 	/// </exception>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static string GetIdentifier(this Inference @this) =>
-		typeof(Inference).GetField(@this.ToString())?.GetCustomAttribute<EnumFieldNameAttribute>()?.Name
+	public static string GetIdentifier(this Inference @this)
+		=> typeof(Inference).GetField(@this.ToString())?.GetCustomAttribute<EnumFieldNameAttribute>()?.Name
 			?? throw new ArgumentOutOfRangeException(nameof(@this));
 }

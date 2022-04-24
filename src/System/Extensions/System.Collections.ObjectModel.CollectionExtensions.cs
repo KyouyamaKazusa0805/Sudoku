@@ -16,6 +16,6 @@ public static class CollectionExtensions
 	/// <param name="this">The collection.</param>
 	/// <param name="element">The element to be prepended.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static void Prepend<T, TDerived>(this Collection<T> @this, TDerived element) where TDerived : T =>
-		@this.Insert(0, element);
+	public static void Prepend<T, TDerived>(this Collection<T> @this, TDerived element) where TDerived : T
+		=> @this.Insert(0, element);
 }

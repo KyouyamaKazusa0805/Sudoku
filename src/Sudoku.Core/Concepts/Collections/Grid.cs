@@ -767,8 +767,7 @@ public unsafe partial struct Grid :
 
 	/// <inheritdoc cref="object.Equals(object?)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public override readonly bool Equals([NotNullWhen(true)] object? obj) =>
-		obj is Grid comparer && Equals(comparer);
+	public override readonly bool Equals([NotNullWhen(true)] object? obj) => obj is Grid comparer && Equals(comparer);
 
 	/// <summary>
 	/// Determine whether the specified <see cref="Grid"/> instance hold the same values
@@ -914,13 +913,12 @@ public unsafe partial struct Grid :
 	/// </remarks>
 	/// <seealso cref="this[int, int]"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public readonly bool? Exists(int cell, int digit) =>
-		GetStatus(cell) == CellStatus.Empty ? this[cell, digit] : null;
+	public readonly bool? Exists(int cell, int digit) => GetStatus(cell) == CellStatus.Empty ? this[cell, digit] : null;
 
 	/// <inheritdoc cref="object.GetHashCode"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public override readonly int GetHashCode() =>
-		this switch { { IsUndefined: true } => 0, { IsEmpty: true } => 1, _ => ToString("#").GetHashCode() };
+	public override readonly int GetHashCode()
+		=> this switch { { IsUndefined: true } => 0, { IsEmpty: true } => 1, _ => ToString("#").GetHashCode() };
 
 
 	/// <summary>
@@ -1096,8 +1094,8 @@ public unsafe partial struct Grid :
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public readonly string ToString(string? format) =>
-		this switch
+	public readonly string ToString(string? format)
+		=> this switch
 		{
 			{ IsEmpty: true } => "<Empty>",
 			{ IsUndefined: true } => "<Undefined>",
@@ -1383,13 +1381,13 @@ public unsafe partial struct Grid :
 	/// <param name="gridParsingOption">The grid parsing type.</param>
 	/// <returns>The result instance had converted.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static Grid Parse(string str, GridParsingOption gridParsingOption) =>
-		new GridParser(str).Parse(gridParsingOption);
+	public static Grid Parse(string str, GridParsingOption gridParsingOption)
+		=> new GridParser(str).Parse(gridParsingOption);
 
 	/// <inheritdoc cref="Parse(string)"/>
 	/// <param name="handler">The string handler.</param>
-	public static Grid Parse([InterpolatedStringHandlerArgument] ref StringHandler handler) =>
-		Parse(handler.ToStringAndClear());
+	public static Grid Parse([InterpolatedStringHandlerArgument] ref StringHandler handler)
+		=> Parse(handler.ToStringAndClear());
 
 	/// <inheritdoc/>
 	public static bool TryParse(string str, out Grid result)

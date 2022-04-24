@@ -51,8 +51,8 @@ public unsafe ref partial struct GridParser
 	/// <param name="shortenSusser">Indicates the parser will shorten the susser format result.</param>
 	/// <seealso cref="CompatibleFirst"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public GridParser(string parsingValue, bool compatibleFirst, bool shortenSusser) =>
-		(ParsingValue, CompatibleFirst, ShortenSusserFormat) = (parsingValue, compatibleFirst, shortenSusser);
+	public GridParser(string parsingValue, bool compatibleFirst, bool shortenSusser)
+		=> (ParsingValue, CompatibleFirst, ShortenSusserFormat) = (parsingValue, compatibleFirst, shortenSusser);
 
 
 	/// <include file='../../global-doc-comments.xml' path='g/static-constructor' />
@@ -159,8 +159,8 @@ public unsafe ref partial struct GridParser
 	/// <exception cref="ArgumentOutOfRangeException">
 	/// Throws when the argument <paramref name="gridParsingOption"/> is not defined.
 	/// </exception>
-	public Grid Parse(GridParsingOption gridParsingOption) =>
-		gridParsingOption switch
+	public Grid Parse(GridParsingOption gridParsingOption)
+		=> gridParsingOption switch
 		{
 			GridParsingOption.Susser => OnParsingSusser(ref this, false),
 			GridParsingOption.ShortenSusser => OnParsingSusser(ref this, true),

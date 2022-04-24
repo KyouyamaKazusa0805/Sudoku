@@ -20,6 +20,6 @@ internal static class CompilationExtensions
 	/// <returns>The corresponding <see cref="INamedTypeSymbol"/> result.</returns>
 	/// <seealso cref="INamedTypeSymbol"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static INamedTypeSymbol GetTypeSymbol<TNotNull>(this Compilation @this) where TNotNull : notnull =>
-		@this.GetTypeByMetadataName(typeof(TNotNull).FullName)!;
+	public static INamedTypeSymbol GetTypeSymbol<TNotNull>(this Compilation @this) where TNotNull : notnull
+		=> @this.GetTypeByMetadataName(typeof(TNotNull).FullName)!;
 }

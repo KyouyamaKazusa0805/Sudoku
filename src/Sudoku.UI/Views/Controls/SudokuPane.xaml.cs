@@ -271,8 +271,8 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		static bool modifierKeyIsPressed(VirtualKey key) =>
-			InputKeyboardSource.GetKeyStateForCurrentThread(key).Flags(CoreVirtualKeyStates.Down);
+		static bool modifierKeyIsPressed(VirtualKey key)
+			=> InputKeyboardSource.GetKeyStateForCurrentThread(key).Flags(CoreVirtualKeyStates.Down);
 	}
 
 	/// <inheritdoc/>
@@ -305,8 +305,8 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		Visibility getVisibilityViaCandidate(int cell, int i) =>
-			Grid.Exists(cell, i) is true ? Visibility.Visible : Visibility.Collapsed;
+		Visibility getVisibilityViaCandidate(int cell, int i)
+			=> Grid.Exists(cell, i) is true ? Visibility.Visible : Visibility.Collapsed;
 	}
 
 	/// <summary>
@@ -395,9 +395,9 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 	/// </summary>
 	/// <param name="sender">The object to trigger the event.</param>
 	/// <param name="e">The event arguments provided.</param>
-	private void SudokuPane_PointerEntered(object sender, PointerRoutedEventArgs e) =>
+	private void SudokuPane_PointerEntered(object sender, PointerRoutedEventArgs e)
 		// Set the focus to the control in order to trigger the 'KeyDown' event.
-		Focus(FocusState.Programmatic);
+		=> Focus(FocusState.Programmatic);
 
 	/// <summary>
 	/// Triggers when the target <see cref="MenuFlyoutItem"/> is clicked.

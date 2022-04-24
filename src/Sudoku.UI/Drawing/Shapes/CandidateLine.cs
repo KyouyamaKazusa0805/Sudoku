@@ -165,8 +165,8 @@ public sealed class CandidateLine : DrawingElement
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public override bool Equals([NotNullWhen(true)] DrawingElement? other) =>
-		other is CandidateLine comparer
+	public override bool Equals([NotNullWhen(true)] DrawingElement? other)
+		=> other is CandidateLine comparer
 			&& _line.X1.NearlyEquals(comparer._line.X1, 1E-2)
 			&& _line.X2.NearlyEquals(comparer._line.X2, 1E-2)
 			&& _line.Y1.NearlyEquals(comparer._line.Y1, 1E-2)
@@ -174,8 +174,7 @@ public sealed class CandidateLine : DrawingElement
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public override int GetHashCode() =>
-		HashCode.Combine(nameof(CandidateLine), _line.X1, _line.X2, _line.Y1, _line.Y2);
+	public override int GetHashCode() => HashCode.Combine(nameof(CandidateLine), _line.X1, _line.X2, _line.Y1, _line.Y2);
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

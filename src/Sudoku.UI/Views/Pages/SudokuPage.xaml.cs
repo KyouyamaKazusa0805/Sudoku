@@ -116,18 +116,19 @@ public sealed partial class SudokuPage : Page
 		}
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		static bool modifierKeyIsPressed(VirtualKey key) =>
-			InputKeyboardSource.GetKeyStateForCurrentThread(key).Flags(CoreVirtualKeyStates.Down);
+		static bool modifierKeyIsPressed(VirtualKey key)
+			=> InputKeyboardSource.GetKeyStateForCurrentThread(key).Flags(CoreVirtualKeyStates.Down);
 	}
 
 	/// <summary>
 	/// Adds the initial sudoku-technique based <see cref="InfoBar"/> instance.
 	/// </summary>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	private void InitialAddSudokuTechniqueInfoBar() =>
-		_cInfoBoard.AddMessage(
+	private void InitialAddSudokuTechniqueInfoBar()
+		=> _cInfoBoard.AddMessage(
 			InfoBarSeverity.Informational, Get("SudokuPage_InfoBar_Welcome"),
-			Get("Link_SudokuTutorial"), Get("Link_SudokuTutorialDescription"));
+			Get("Link_SudokuTutorial"), Get("Link_SudokuTutorialDescription")
+		);
 
 	/// <summary>
 	/// Clear the current sudoku grid, and revert the status to the empty grid.
@@ -488,36 +489,35 @@ public sealed partial class SudokuPage : Page
 	/// </summary>
 	/// <param name="sender">The object that triggers the event.</param>
 	/// <param name="e">The event arguments provided.</param>
-	private void Page_Loaded(object sender, RoutedEventArgs e) =>
-		InitialAddSudokuTechniqueInfoBar();
+	private void Page_Loaded(object sender, RoutedEventArgs e) => InitialAddSudokuTechniqueInfoBar();
 
 	/// <summary>
 	/// Triggers when the inner collection of the control <see cref="_cInfoBoard"/> is changed.
 	/// </summary>
 	/// <param name="sender">The object that triggers the event.</param>
 	/// <param name="e">The event arguments provided.</param>
-	private void InfoBoard_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e) =>
-		UpdateIsEnabledStatus();
+	private void InfoBoard_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
+		=> UpdateIsEnabledStatus();
 
 	/// <summary>
 	/// Indicates the event trigger callback method that determines
 	/// whether the current window status can execute the following operation.
 	/// </summary>
-	private void CommandOpenOrSaveSudokuFile_CanExecuteRequested(
-		XamlUICommand sender, CanExecuteRequestedEventArgs args) => EnsureUnsnapped();
+	private void CommandOpenOrSaveSudokuFile_CanExecuteRequested(XamlUICommand sender, CanExecuteRequestedEventArgs args)
+		=> EnsureUnsnapped();
 
 	/// <summary>
 	/// Indicates the event trigger callback method that executes opening sudoku file.
 	/// </summary>
-	private async void CommandOpenSudokuFile_ExecuteRequestedAsync(
-		XamlUICommand sender, ExecuteRequestedEventArgs args) => await OpenFileAsync();
+	private async void CommandOpenSudokuFile_ExecuteRequestedAsync(XamlUICommand sender, ExecuteRequestedEventArgs args)
+		=> await OpenFileAsync();
 
 	/// <summary>
 	/// Indicates the event trigger callback method that executes
 	/// copying the string text representing as the current sudoku grid.
 	/// </summary>
-	private void CommandCopySudokuGridText_ExecuteRequested(
-		XamlUICommand sender, ExecuteRequestedEventArgs args) => CopySudokuCode();
+	private void CommandCopySudokuGridText_ExecuteRequested(XamlUICommand sender, ExecuteRequestedEventArgs args)
+		=> CopySudokuCode();
 
 	/// <summary>
 	/// Indicates the event trigger callback method that executes
@@ -543,8 +543,8 @@ public sealed partial class SudokuPage : Page
 	/// <summary>
 	/// Indicates the event trigger callback method that executes saving sudoku file.
 	/// </summary>
-	private async void CommandSaveSudokuFile_ExecuteRequestedAsync(
-		XamlUICommand sender, ExecuteRequestedEventArgs args) => await SaveFileAsync();
+	private async void CommandSaveSudokuFile_ExecuteRequestedAsync(XamlUICommand sender, ExecuteRequestedEventArgs args)
+		=> await SaveFileAsync();
 
 	/// <summary>
 	/// Indicates the event trigger callback method that executes returning back to the empty grid.
@@ -562,8 +562,8 @@ public sealed partial class SudokuPage : Page
 	/// <summary>
 	/// Indicates the event trigger callback method that executes resetting the grid to the initial status.
 	/// </summary>
-	private void CommandReset_ExecuteRequested(XamlUICommand sender, ExecuteRequestedEventArgs args) =>
-		ResetGrid();
+	private void CommandReset_ExecuteRequested(XamlUICommand sender, ExecuteRequestedEventArgs args)
+		=> ResetGrid();
 
 	/// <summary>
 	/// Indicates the event trigger callback method that executes fixing digits.
@@ -573,8 +573,7 @@ public sealed partial class SudokuPage : Page
 	/// <summary>
 	/// Indicates the event trigger callback method that executes unfixing digits.
 	/// </summary>
-	private void CommandUnfix_ExecuteRequested(XamlUICommand sender, ExecuteRequestedEventArgs args) =>
-		UnfixGrid();
+	private void CommandUnfix_ExecuteRequested(XamlUICommand sender, ExecuteRequestedEventArgs args) => UnfixGrid();
 
 	/// <summary>
 	/// Indicates the event trigger callback method that executes undoing a step.
@@ -589,24 +588,24 @@ public sealed partial class SudokuPage : Page
 	/// <summary>
 	/// Indicates the event trigger callback method that executes clearing all messages.
 	/// </summary>
-	private void CommandClearMessages_ExecuteRequested(XamlUICommand sender, ExecuteRequestedEventArgs args) =>
-		ClearMessages();
+	private void CommandClearMessages_ExecuteRequested(XamlUICommand sender, ExecuteRequestedEventArgs args)
+		=> ClearMessages();
 
 	/// <summary>
 	/// Indicates the event trigger callback method that executes generating a puzzle.
 	/// </summary>
-	private async void CommandGenerate_ExecuteRequestedAsync(XamlUICommand sender, ExecuteRequestedEventArgs args) =>
-		await GenerateAsync(_cButtonGenerate);
+	private async void CommandGenerate_ExecuteRequestedAsync(XamlUICommand sender, ExecuteRequestedEventArgs args)
+		=> await GenerateAsync(_cButtonGenerate);
 
 	/// <summary>
 	/// Indicates the event trigger callback method that gets the solution of the puzzle.
 	/// </summary>
-	private void CommandGetSolution_ExecuteRequested(XamlUICommand sender, ExecuteRequestedEventArgs args) =>
-		GetSolution();
+	private void CommandGetSolution_ExecuteRequested(XamlUICommand sender, ExecuteRequestedEventArgs args)
+		=> GetSolution();
 
 	/// <summary>
 	/// Indicates the event trigger callback method that analyzes the puzzle.
 	/// </summary>
-	private async void CommandAnalysis_ExecuteRequestedAsync(XamlUICommand sender, ExecuteRequestedEventArgs args) =>
-		await AnalyzeAsync(_cButtonAnalyze);
+	private async void CommandAnalysis_ExecuteRequestedAsync(XamlUICommand sender, ExecuteRequestedEventArgs args)
+		=> await AnalyzeAsync(_cButtonAnalyze);
 }

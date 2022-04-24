@@ -47,8 +47,8 @@ public sealed record class UniqueRectangleType3Step(
 	public decimal BaseDifficulty => IsNaked ? 4.5M : 4.6M;
 
 	/// <inheritdoc/>
-	public (string Name, decimal Value)[] ExtraDifficultyValues =>
-		new[] { ("Size", PopCount((uint)ExtraDigitsMask) * .1M) };
+	public (string Name, decimal Value)[] ExtraDifficultyValues
+		=> new[] { ("Size", PopCount((uint)ExtraDigitsMask) * .1M) };
 
 	/// <inheritdoc/>
 	public override DifficultyLevel DifficultyLevel => DifficultyLevel.Hard;

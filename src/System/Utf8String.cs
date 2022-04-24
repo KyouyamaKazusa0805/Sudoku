@@ -250,8 +250,8 @@ public readonly struct Utf8String :
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	int IComparable.CompareTo([NotNullWhen(true)] object? obj) =>
-		obj is Utf8String comparer
+	int IComparable.CompareTo([NotNullWhen(true)] object? obj)
+		=> obj is Utf8String comparer
 			? CompareTo(comparer)
 			: throw new ArgumentException($"The target value must be of type '{nameof(Utf8String)}'.");
 

@@ -25,8 +25,7 @@ internal static class PointConversions
 	/// <param name="outsideOffset">The outside offset value. The value must be a positive value.</param>
 	/// <returns>The block size.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static double BlockSize(double paneSize, double outsideOffset) =>
-		GridSize(paneSize, outsideOffset) / 3;
+	public static double BlockSize(double paneSize, double outsideOffset) => GridSize(paneSize, outsideOffset) / 3;
 
 	/// <summary>
 	/// Gets the cell size from the specified pane size and the outside offset.
@@ -35,8 +34,7 @@ internal static class PointConversions
 	/// <param name="outsideOffset">The outside offset value. The value must be a positive value.</param>
 	/// <returns>The cell size.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static double CellSize(double paneSize, double outsideOffset) =>
-		GridSize(paneSize, outsideOffset) / 9;
+	public static double CellSize(double paneSize, double outsideOffset) => GridSize(paneSize, outsideOffset) / 9;
 
 	/// <summary>
 	/// Gets the candidate size from the specified pane size and the outside offset.
@@ -45,8 +43,7 @@ internal static class PointConversions
 	/// <param name="outsideOffset">The outside offset value. The value must be a positive value.</param>
 	/// <returns>The candidate size.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static double CandidateSize(double paneSize, double outsideOffset) =>
-		GridSize(paneSize, outsideOffset) / 27;
+	public static double CandidateSize(double paneSize, double outsideOffset) => GridSize(paneSize, outsideOffset) / 27;
 
 	/// <summary>
 	/// Gets the start and end point that corresponds to the target block line at the specified index.
@@ -56,8 +53,8 @@ internal static class PointConversions
 	/// <param name="order">The index of the target block line. The value must be between 0 and 3.</param>
 	/// <returns>The two points indicating the start and end point of the line.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static (Point Start, Point End) GetBlockLine(double paneSize, double outsideOffset, byte order) =>
-		GetLine(paneSize, outsideOffset, order, 3);
+	public static (Point Start, Point End) GetBlockLine(double paneSize, double outsideOffset, byte order)
+		=> GetLine(paneSize, outsideOffset, order, 3);
 
 	/// <summary>
 	/// Gets the start and end point that corresponds to the target cell line at the specified index.
@@ -67,8 +64,8 @@ internal static class PointConversions
 	/// <param name="order">The index of the target cell line. The value must be between 0 and 9.</param>
 	/// <returns>The two points indicating the start and end point of the line.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static (Point Start, Point End) GetCellLine(double paneSize, double outsideOffset, byte order) =>
-		GetLine(paneSize, outsideOffset, order, 9);
+	public static (Point Start, Point End) GetCellLine(double paneSize, double outsideOffset, byte order)
+		=> GetLine(paneSize, outsideOffset, order, 9);
 
 	/// <summary>
 	/// Gets the start and end point that corresponds to the target candidate line at the specified index.
@@ -78,8 +75,8 @@ internal static class PointConversions
 	/// <param name="order">The index of the target candidate line. The value must be between 0 and 27.</param>
 	/// <returns>The two points indicating the start and end point of the line.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static (Point Start, Point End) GetCandidateLine(double paneSize, double outsideOffset, byte order) =>
-		GetLine(paneSize, outsideOffset, order, 27);
+	public static (Point Start, Point End) GetCandidateLine(double paneSize, double outsideOffset, byte order)
+		=> GetLine(paneSize, outsideOffset, order, 27);
 
 	/// <summary>
 	/// Gets the cell index via the <see cref="Point"/> value through the mouse interaction.
@@ -92,8 +89,8 @@ internal static class PointConversions
 	/// the return value will be -1.
 	/// </returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static int GetCell(in Point point, double paneSize, double outsideOffset) =>
-		point with { X = point.X - outsideOffset, Y = point.Y - outsideOffset } is var (x, y)
+	public static int GetCell(in Point point, double paneSize, double outsideOffset)
+		=> point with { X = point.X - outsideOffset, Y = point.Y - outsideOffset } is var (x, y)
 			&& GridSize(paneSize, outsideOffset) is var gs
 			&& x >= 0 && x <= gs && y >= 0 && y <= gs
 			&& CellSize(paneSize, outsideOffset) is var cs
@@ -112,8 +109,8 @@ internal static class PointConversions
 	/// the return value will be -1.
 	/// </returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static int GetCandidate(in Point point, double paneSize, double outsideOffset) =>
-		point is var (x, y)
+	public static int GetCandidate(in Point point, double paneSize, double outsideOffset)
+		=> point is var (x, y)
 			&& CandidateSize(paneSize, outsideOffset) is var cs
 			&& (int)((y - outsideOffset) / cs) % 3 * 3 + (int)((x - outsideOffset) / cs) % 3 is var candidateOffset
 			&& GetCell(point, paneSize, outsideOffset) is var cellOffset and not -1

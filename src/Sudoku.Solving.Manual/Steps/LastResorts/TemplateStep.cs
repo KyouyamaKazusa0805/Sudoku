@@ -21,8 +21,7 @@ public sealed record class TemplateStep(ConclusionList Conclusions, ViewList Vie
 	public override DifficultyLevel DifficultyLevel => DifficultyLevel.LastResort;
 
 	/// <inheritdoc/>
-	public override Technique TechniqueCode =>
-		IsTemplateDeletion ? Technique.TemplateDelete : Technique.TemplateSet;
+	public override Technique TechniqueCode => IsTemplateDeletion ? Technique.TemplateDelete : Technique.TemplateSet;
 
 	/// <inheritdoc/>
 	public override TechniqueGroup TechniqueGroup => TechniqueGroup.Templating;

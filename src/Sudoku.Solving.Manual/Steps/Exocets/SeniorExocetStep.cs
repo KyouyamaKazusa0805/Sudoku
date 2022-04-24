@@ -18,8 +18,7 @@ public sealed record class SeniorExocetStep(
 	/// <summary>
 	/// Indicates whether the specified instance contains any extra houses.
 	/// </summary>
-	public bool ContainsExtraHouses =>
-		ExtraHousesMask is not null && Array.Exists(ExtraHousesMask, static m => m != 0);
+	public bool ContainsExtraHouses => ExtraHousesMask is not null && Array.Exists(ExtraHousesMask, static m => m != 0);
 
 	/// <inheritdoc/>
 	public override decimal Difficulty => ((IStepWithPhasedDifficulty)this).TotalDifficulty;
@@ -28,12 +27,12 @@ public sealed record class SeniorExocetStep(
 	public decimal BaseDifficulty => 9.6M;
 
 	/// <inheritdoc/>
-	public (string Name, decimal Value)[] ExtraDifficultyValues =>
-		new[] { ("Extra house", ContainsExtraHouses ? 0 : .2M) };
+	public (string Name, decimal Value)[] ExtraDifficultyValues
+		=> new[] { ("Extra house", ContainsExtraHouses ? 0 : .2M) };
 
 	/// <inheritdoc/>
-	public override Technique TechniqueCode =>
-		ContainsExtraHouses ? Technique.ComplexSeniorExocet : Technique.SeniorExocet;
+	public override Technique TechniqueCode
+		=> ContainsExtraHouses ? Technique.ComplexSeniorExocet : Technique.SeniorExocet;
 
 	[FormatItem]
 	internal string AdditionalFormat

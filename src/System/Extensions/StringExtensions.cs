@@ -57,8 +57,8 @@ public static unsafe partial class StringExtensions
 	/// </exception>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static bool SatisfyPattern(
-		this string @this, [StringSyntax(StringSyntaxAttribute.Regex), NotNullWhen(true)] string? pattern) =>
-		pattern?.IsRegexPattern() ?? false ? @this.Match(pattern) == @this : throw InvalidOperation;
+		this string @this, [StringSyntax(StringSyntaxAttribute.Regex), NotNullWhen(true)] string? pattern)
+		=> pattern?.IsRegexPattern() ?? false ? @this.Match(pattern) == @this : throw InvalidOperation;
 
 	/// <summary>
 	/// Check whether the specified string instance can match the value
@@ -77,8 +77,8 @@ public static unsafe partial class StringExtensions
 	/// expression pattern.
 	/// </exception>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static bool IsMatch(this string @this, [StringSyntax(StringSyntaxAttribute.Regex)] string pattern) =>
-		pattern.IsRegexPattern()
+	public static bool IsMatch(this string @this, [StringSyntax(StringSyntaxAttribute.Regex)] string pattern)
+		=> pattern.IsRegexPattern()
 			? Regex.IsMatch(@this, pattern, RegexOptions.ExplicitCapture, MatchingTimeSpan)
 			: throw InvalidOperation;
 
@@ -111,8 +111,7 @@ public static unsafe partial class StringExtensions
 	/// <param name="character">The character to be removed from the base string.</param>
 	/// <returns>The result string value after removal.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static string RemoveAll(this string @this, char character) =>
-		@this.Replace(character.ToString(), string.Empty);
+	public static string RemoveAll(this string @this, char character) => @this.Replace(character.ToString(), string.Empty);
 
 	/// <summary>
 	/// Searches the specified input string for the first occurrence of
@@ -134,8 +133,8 @@ public static unsafe partial class StringExtensions
 	/// expression pattern.
 	/// </exception>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static string? Match(this string @this, [StringSyntax(StringSyntaxAttribute.Regex)] string pattern) =>
-		pattern.IsRegexPattern() ? @this.Match(pattern, RegexOptions.None) : throw InvalidOperation;
+	public static string? Match(this string @this, [StringSyntax(StringSyntaxAttribute.Regex)] string pattern)
+		=> pattern.IsRegexPattern() ? @this.Match(pattern, RegexOptions.None) : throw InvalidOperation;
 
 	/// <summary>
 	/// Searches the input string for the first occurrence of the specified regular
@@ -159,8 +158,8 @@ public static unsafe partial class StringExtensions
 	/// <seealso cref="Regex.Match(string, string, RegexOptions)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static string? Match(
-		this string @this, [StringSyntax(StringSyntaxAttribute.Regex, "regexOption")] string pattern, RegexOptions regexOption) =>
-		pattern.IsRegexPattern()
+		this string @this, [StringSyntax(StringSyntaxAttribute.Regex, "regexOption")] string pattern, RegexOptions regexOption)
+		=> pattern.IsRegexPattern()
 			? Regex.Match(@this, pattern, regexOption, MatchingTimeSpan) is { Success: true, Value: var value }
 				? value
 				: null
@@ -186,9 +185,8 @@ public static unsafe partial class StringExtensions
 	/// </exception>
 	/// <seealso cref="Regex.Matches(string, string)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static string[] MatchAll(
-		this string @this, [StringSyntax(StringSyntaxAttribute.Regex)] string pattern) =>
-		pattern.IsRegexPattern() ? @this.MatchAll(pattern, RegexOptions.None) : throw InvalidOperation;
+	public static string[] MatchAll(this string @this, [StringSyntax(StringSyntaxAttribute.Regex)] string pattern)
+		=> pattern.IsRegexPattern() ? @this.MatchAll(pattern, RegexOptions.None) : throw InvalidOperation;
 
 	/// <summary>
 	/// Searches the specified input string for all occurrences of a
@@ -214,8 +212,8 @@ public static unsafe partial class StringExtensions
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static string[] MatchAll(
 		this string @this, [StringSyntax(StringSyntaxAttribute.Regex, "regexOption")] string pattern,
-		RegexOptions regexOption) =>
-		pattern.IsRegexPattern()
+		RegexOptions regexOption)
+		=> pattern.IsRegexPattern()
 			? from m in Regex.Matches(@this, pattern, regexOption, MatchingTimeSpan) select m.Value
 			: throw InvalidOperation;
 
@@ -250,8 +248,7 @@ public static unsafe partial class StringExtensions
 	/// Throws when the <paramref name="reservePattern"/> is invalid.
 	/// All possible patterns are shown in the tip for the parameter <paramref name="reservePattern"/>.
 	/// </exception>
-	public static string Reserve(
-		this string @this, [StringSyntax(StringSyntaxAttribute.Regex)] string reservePattern)
+	public static string Reserve(this string @this, [StringSyntax(StringSyntaxAttribute.Regex)] string reservePattern)
 	{
 		delegate*<char, bool> predicate = reservePattern switch
 		{
@@ -280,6 +277,7 @@ public static unsafe partial class StringExtensions
 
 
 		static bool isTab(char c) => c == '\t';
+
 		static bool isLetterDigitOrUnderscore(char c) => c == '_' || char.IsLetterOrDigit(c);
 	}
 

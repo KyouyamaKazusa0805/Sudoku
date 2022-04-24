@@ -25,8 +25,8 @@ public record class UniqueRectangleWithConjugatePairStep(
 	public decimal BaseDifficulty => 4.4M;
 
 	/// <inheritdoc/>
-	public (string Name, decimal Value)[] ExtraDifficultyValues =>
-		new[] { ("Conjugate pairs", ConjugatePairs.Length * .2M) };
+	public (string Name, decimal Value)[] ExtraDifficultyValues
+		=> new[] { ("Conjugate pairs", ConjugatePairs.Length * .2M) };
 
 	/// <inheritdoc/>
 	public sealed override DifficultyLevel DifficultyLevel => DifficultyLevel.Hard;

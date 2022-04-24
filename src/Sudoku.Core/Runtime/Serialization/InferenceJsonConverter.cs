@@ -19,6 +19,6 @@ public sealed class InferenceJsonConverter : JsonConverter<Inference>
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public override void Write(Utf8JsonWriter writer, Inference value, JsonSerializerOptions options) =>
-		writer.WriteStringValue(value.ToString());
+	public override void Write(Utf8JsonWriter writer, Inference value, JsonSerializerOptions options)
+		=> writer.WriteStringValue(value.ToString());
 }
