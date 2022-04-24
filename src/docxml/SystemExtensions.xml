@@ -1384,9 +1384,9 @@
             the parameterless constructor.
             </summary>
         </member>
-        <member name="P:System.Diagnostics.CodeGen.DisableParameterlessConstructorAttribute.MemberName">
+        <member name="P:System.Diagnostics.CodeGen.DisableParameterlessConstructorAttribute.SuggestedMemberName">
             <summary>
-            Indicates the data member name you want to allow the user using.
+            Indicates the suggested member you want to allow the user using.
             </summary>
         </member>
         <member name="P:System.Diagnostics.CodeGen.DisableParameterlessConstructorAttribute.Message">

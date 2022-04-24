@@ -16,14 +16,6 @@ public readonly partial struct Identifier : IEquatable<Identifier>, IEqualityOpe
 
 
 	/// <summary>
-	/// Initializes an <see cref="Identifier"/> instance.
-	/// </summary>
-	/// <exception cref="NotSupportedException">Always throws.</exception>
-	[EditorBrowsable(EditorBrowsableState.Never)]
-	[Obsolete("You cannot use the parameterless constructor to construct the data structure. Please use factory method instead.", true, DiagnosticId = "SUDOKULIB001")]
-	public Identifier() => throw new NotSupportedException();
-
-	/// <summary>
 	/// Initializes an <see cref="Identifier"/> instance via the ID value.
 	/// </summary>
 	/// <param name="id">The ID value.</param>

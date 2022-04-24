@@ -9,17 +9,6 @@
 internal sealed record class RefStructOverridensReceiver(CancellationToken CancellationToken) :
 	IResultCollectionReceiver<INamedTypeSymbol>
 {
-	private static readonly DiagnosticDescriptor SCA0001 = new(
-		id: nameof(SCA0001),
-		title: "Ref structs lacks of the keyword 'partial'",
-		messageFormat: "Ref structs lacks of the keyword 'partial'",
-		category: "SourceGen",
-		defaultSeverity: DiagnosticSeverity.Error,
-		isEnabledByDefault: true,
-		helpLinkUri: "https://sunnieshine.github.io/Sudoku/code-analysis/sca0001"
-	);
-
-
 	/// <inheritdoc/>
 	public ICollection<INamedTypeSymbol> Collection { get; } = new List<INamedTypeSymbol>();
 

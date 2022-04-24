@@ -14,7 +14,7 @@ namespace Sudoku.Concepts.Collections;
 #endif // !USE_TO_MASK_STRING_METHOD
 #endif // !DEBUG
 [JsonConverter(typeof(JsonConverter))]
-[DisableParameterlessConstructor(MemberName = nameof(Empty))]
+[DisableParameterlessConstructor(SuggestedMemberName = nameof(Empty))]
 public unsafe partial struct Grid :
 	IDefaultable<Grid>,
 	ISimpleFormattable,
@@ -124,13 +124,6 @@ public unsafe partial struct Grid :
 	/// <seealso cref="CellStatus"/>
 	private fixed short _values[81];
 
-
-	/// <summary>
-	/// </summary>
-	/// <exception cref="NotSupportedException">Always throws.</exception>
-	[EditorBrowsable(EditorBrowsableState.Never)]
-	[Obsolete($"Please use the read-only field '{nameof(Grid)}.{nameof(Empty)}' instead.", true)]
-	public Grid() => throw new NotSupportedException();
 
 	/// <summary>
 	/// Creates an instance using grid values.

@@ -3,7 +3,7 @@
 /// <summary>
 /// Encapsulates a map that contains 729 positions to represent a candidate.
 /// </summary>
-[DisableParameterlessConstructor(MemberName = nameof(Empty))]
+[DisableParameterlessConstructor(SuggestedMemberName = nameof(Empty))]
 public unsafe partial struct Candidates :
 	IDefaultable<Candidates>,
 	IEnumerable<int>,
@@ -38,13 +38,6 @@ public unsafe partial struct Candidates :
 	/// </summary>
 	private long _0 = 0, _1 = 0, _2 = 0, _3 = 0, _4 = 0, _5 = 0, _6 = 0, _7 = 0, _8 = 0, _9 = 0, _10 = 0, _11 = 0;
 
-
-	/// <summary>
-	/// </summary>
-	/// <exception cref="NotSupportedException">Always throws.</exception>
-	[EditorBrowsable(EditorBrowsableState.Never)]
-	[Obsolete($"Please use the read-only field '{nameof(Candidates)}.{nameof(Empty)}' instead.", true)]
-	public Candidates() => throw new NotSupportedException();
 
 	/// <summary>
 	/// Initializes an instance with the specified candidate and its peers.

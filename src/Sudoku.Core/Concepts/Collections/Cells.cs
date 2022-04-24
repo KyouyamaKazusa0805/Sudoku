@@ -12,7 +12,7 @@ namespace Sudoku.Concepts.Collections;
 /// the digit.
 /// </remarks>
 [JsonConverter(typeof(JsonConverter))]
-[DisableParameterlessConstructor(MemberName = nameof(Empty))]
+[DisableParameterlessConstructor(SuggestedMemberName = nameof(Empty))]
 public unsafe partial struct Cells :
 	IComparable<Cells>,
 	IDefaultable<Cells>,
@@ -51,14 +51,6 @@ public unsafe partial struct Cells :
 	/// </summary>
 	private long _high = 0, _low = 0;
 
-
-	/// <summary>
-	/// </summary>
-	/// <exception cref="NotSupportedException">Always throws.</exception>
-	/// <seealso cref="Empty"/>
-	[EditorBrowsable(EditorBrowsableState.Never)]
-	[Obsolete($"Please use the read-only field '{nameof(Cells)}.{nameof(Empty)}' instead.", true)]
-	public Cells() => throw new NotSupportedException();
 
 	/// <summary>
 	/// Initializes an instance with the specified cell offset
