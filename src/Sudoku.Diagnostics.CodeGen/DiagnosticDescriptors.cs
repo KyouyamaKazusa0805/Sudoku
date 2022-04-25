@@ -25,8 +25,8 @@ internal static class DiagnosticDescriptors
 
 	public static readonly DiagnosticDescriptor SCA0003 = new(
 		id: nameof(SCA0003),
-		title: "The struct type has already contains a parameterless constructor",
-		messageFormat: "The struct type has already contains a parameterless constructor; please remove it",
+		title: "The struct type has already had a parameterless constructor",
+		messageFormat: "The struct type has already had a parameterless constructor; please remove it",
 		category: "SourceGen",
 		defaultSeverity: DiagnosticSeverity.Error,
 		isEnabledByDefault: true,
