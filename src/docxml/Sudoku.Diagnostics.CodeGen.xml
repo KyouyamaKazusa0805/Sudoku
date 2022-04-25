@@ -32,16 +32,6 @@
         <member name="M:Sudoku.Diagnostics.CodeGen.Generators.RefStructOverridensGenerator.Initialize(Microsoft.CodeAnalysis.GeneratorInitializationContext)">
             <inheritdoc/>
         </member>
-        <member name="T:Sudoku.Diagnostics.CodeGen.SpecialMemberNames">
-            <summary>
-            Provides with the special member names.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Diagnostics.CodeGen.SpecialMemberNames.Constructor">
-            <summary>
-            Indicates the name of a constructor.
-            </summary>
-        </member>
         <member name="T:Sudoku.Diagnostics.CodeGen.SyntaxContextReceivers.DisableParameterlessConstructorReceiver">
             <summary>
             Defines a syntax context receiver that provides the gathered node for the usages on the source generator
