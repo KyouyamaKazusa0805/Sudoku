@@ -9,9 +9,7 @@ public struct Cells :
     IEnumerable<int>,
     IEquatable<Cells>,
     ISimpleFormattable,
-    ISimpleParseable<Cells>
-#if FEATURE_GENERIC_MATH
-    ,
+    ISimpleParseable<Cells>,
     IAdditionOperators<Cells, int, Cells>,
     ISubtractionOperators<Cells, int, Cells>,
     ISubtractionOperators<Cells, Cells, Cells>,
@@ -19,23 +17,6 @@ public struct Cells :
     IModulusOperators<Cells, Cells, Cells>,
     IBitwiseOperators<Cells, Cells, Cells>,
     IEqualityOperators<Cells, Cells>
-#if FEATURE_GENEIC_MATH_IN_ARG
-    ,
-    IValueAdditionOperators<Cells, int, Cells>,
-    IValueSubtractionOperators<Cells, int, Cells>,
-    IValueSubtractionOperators<Cells, Cells, Cells>,
-    IValueDivisionOperators<Cells, int, short>,
-    IValueModulusOperators<Cells, Cells, Cells>,
-    IValueBitwiseAndOperators<Cells, Cells, Cells>,
-    IValueBitwiseOrOperators<Cells, Cells, Cells>,
-    IValueBitwiseNotOperators<Cells, Cells>,
-    IValueBitwiseExclusiveOrOperators<Cells, Cells, Cells>,
-    IValueEqualityOperators<Cells, Cells>,
-    IValueGreaterThanOrLessThanOperators<Cells, Cells>,
-    IValueMetaLogicalOperators<Cells>,
-    IValueLogicalNotOperators<Cells>
-#endif
-#endif
 {
     public static readonly Cells Empty;
 

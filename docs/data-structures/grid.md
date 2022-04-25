@@ -7,15 +7,8 @@ public struct Grid :
     IDefaultable<Grid>,
     ISimpleFormattable,
     ISimpleParseable<Grid>,
-    IEquatable<Grid>
-#if FEATURE_GENERIC_MATH
-    ,
+    IEquatable<Grid>,
     IEqualityOperators<Grid, Grid>
-#if FEATURE_GENEIC_MATH_IN_ARG
-    ,
-    IValueEqualityOperators<Grid, Grid>
-#endif
-#endif
 {
     public const short DefaultMask = 1023;
     public const short MaxCandidatesMask = 511;
