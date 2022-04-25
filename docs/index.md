@@ -24,7 +24,8 @@
     * [项目列表](projects)
     * [条件编译符号列表](compilation-symbols)
   * 常见数据结构介绍
-    * [`Cells` 结构](data-structures/cells)
+    * `Cells` 结构
+      * [API 用法介绍](data-structures/cells)
     * `Grid` 结构
       * [API 用法介绍](data-structures/grid)
       * [`Grid` 会用到的格式化字符串](data-structures/grid-text-format)
