@@ -51,17 +51,17 @@ internal sealed record class DisableParameterlessConstructorReceiver(Cancellatio
 		}
 
 		var referencedLocation = identifier.GetLocation();
-		if (containingTypeSymbol is not null)
-		{
-			Diagnostics.Add(Diagnostic.Create(SCA0006, referencedLocation, messageArgs: null));
-			return;
-		}
-
 		var attributeTypeSymbol = compilation.GetTypeByMetadataName(BoundAttributeFullName);
 		var attributeData = typeSymbol.GetAttributes().FirstOrDefault(predicate);
 		bool predicate(AttributeData e) => SymbolEqualityComparer.Default.Equals(e.AttributeClass, attributeTypeSymbol);
 		if (attributeData is null)
 		{
+			return;
+		}
+
+		if (containingTypeSymbol is not null)
+		{
+			Diagnostics.Add(Diagnostic.Create(SCA0006, referencedLocation, messageArgs: null));
 			return;
 		}
 

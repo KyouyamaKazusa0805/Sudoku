@@ -86,20 +86,7 @@ public sealed class AutoDeconstructionGenerator : ISourceGenerator
 
 	/// <inheritdoc/>
 	public void Initialize(GeneratorInitializationContext context)
-	{
-#if false
 		=> context.RegisterForSyntaxNotifications(() => new AutoDeconstructionReceiver(context.CancellationToken));
-#endif
-
-#if DEBUG
-		if (!System.Diagnostics.Debugger.IsAttached)
-		{
-			System.Diagnostics.Debugger.Launch();
-		}
-#endif
-
-		context.RegisterForSyntaxNotifications(() => new AutoDeconstructionReceiver(context.CancellationToken));
-	}
 
 	/// <summary>
 	/// Gets the raw code parts for instance deconstruction methods via the specified list of attributes data.
