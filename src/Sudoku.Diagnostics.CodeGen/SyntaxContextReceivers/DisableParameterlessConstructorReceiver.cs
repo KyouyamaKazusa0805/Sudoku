@@ -13,7 +13,8 @@ internal sealed record class DisableParameterlessConstructorReceiver(Cancellatio
 
 
 	/// <inheritdoc/>
-	public ICollection<(INamedTypeSymbol Symbol, AttributeData, Location)> Collection { get; } = new List<(INamedTypeSymbol, AttributeData, Location)>();
+	public ICollection<(INamedTypeSymbol Symbol, AttributeData, Location)> Collection { get; } =
+		new List<(INamedTypeSymbol, AttributeData, Location)>();
 
 	/// <summary>
 	/// Indicates the diagnostic results found.
@@ -27,7 +28,7 @@ internal sealed record class DisableParameterlessConstructorReceiver(Cancellatio
 		if (
 			context is not
 			{
-				Node: TypeDeclarationSyntax
+				Node: StructDeclarationSyntax
 				{
 					Identifier: var identifier,
 					Modifiers: { Count: not 0 } modifiers
@@ -42,7 +43,6 @@ internal sealed record class DisableParameterlessConstructorReceiver(Cancellatio
 		if (
 			semanticModel.GetDeclaredSymbol(n, CancellationToken) is not
 			{
-				TypeKind: TypeKind.Struct,
 				ContainingType: var containingTypeSymbol
 			} typeSymbol
 		)

@@ -15,7 +15,7 @@ public sealed class AutoDeconstructionAttribute : Attribute
 	/// <param name="memberExpression">The name of the members you want to deconstruct.</param>
 	/// <exception cref="ArgumentException">Throws when the argument is empty.</exception>
 	public AutoDeconstructionAttribute(params string[] memberExpression)
-		=> MemberExpression = memberExpression is []
+		=> MemberExpression = memberExpression.Length == 0
 			? throw new ArgumentException("You must set at least one instance to be deconstructed.")
 			: memberExpression;
 

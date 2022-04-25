@@ -3,7 +3,8 @@
 /// <summary>
 /// Defines a range of cells.
 /// </summary>
-public readonly struct CellRange :
+[AutoDeconstruction(nameof(MinValue), nameof(MaxValue))]
+public readonly partial struct CellRange :
 	IEquatable<CellRange>,
 	IEqualityOperators<CellRange, CellRange>,
 	ISimpleParseable<CellRange>
@@ -56,14 +57,6 @@ public readonly struct CellRange :
 		get => _mask & 127;
 	}
 
-
-	/// <summary>
-	/// Deconstruct the instance into multiple values.
-	/// </summary>
-	/// <param name="minValue">The minimum value.</param>
-	/// <param name="maxValue">The maximum value.</param>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public void Deconstruct(out int minValue, out int maxValue) => (minValue, maxValue) = (MinValue, MaxValue);
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

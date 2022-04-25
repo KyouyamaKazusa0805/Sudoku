@@ -49,7 +49,8 @@
 /// Due to the rendering engine, you have to check this file rather than the tip window.
 /// </para>
 /// </remarks>
-public readonly record struct UniquePolygonPattern(long Mask) : ITechniquePattern<UniquePolygonPattern>
+[AutoDeconstruction(nameof(Pair1), nameof(Pair2), nameof(CenterCells))]
+public readonly partial record struct UniquePolygonPattern(long Mask) : ITechniquePattern<UniquePolygonPattern>
 {
 	/// <summary>
 	/// Indicates whether the specified pattern is a heptagon.
@@ -128,14 +129,6 @@ public readonly record struct UniquePolygonPattern(long Mask) : ITechniquePatter
 		get => ((int)(Mask >> 49 & 127), (int)(Mask >> 42 & 127), (int)(Mask >> 35 & 127), (int)(Mask >> 28 & 127));
 	}
 
-
-	/// <summary>
-	/// Deconstruct the instance to multiple values.
-	/// </summary>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	[EditorBrowsable(EditorBrowsableState.Never)]
-	public void Deconstruct(out (int A, int B) pair1, out (int A, int B) pair2, out (int A, int B, int C, int D) centerCells)
-		=> (pair1, pair2, centerCells) = (Pair1, Pair2, CenterCells);
 
 	/// <inheritdoc cref="object.GetHashCode"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

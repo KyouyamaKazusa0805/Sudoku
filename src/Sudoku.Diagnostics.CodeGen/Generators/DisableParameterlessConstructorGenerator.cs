@@ -33,7 +33,7 @@ public sealed class DisableParameterlessConstructorGenerator : ISourceGenerator
 
 		foreach (var (type, attributeData, location) in typeSymbols)
 		{
-			var (_, _, namespaceName, genericParameterList, _, _, readOnlyKeyword, _, _, _) = SymbolOutputInfo.FromSymbol(type);
+			var (_, _, namespaceName, genericParameterList, _, _, _, _, _, _) = SymbolOutputInfo.FromSymbol(type);
 
 			string? rawMessage = (
 				from namedArg in attributeData.NamedArguments
@@ -53,15 +53,16 @@ public sealed class DisableParameterlessConstructorGenerator : ISourceGenerator
 				_ => rawMessage
 			};
 
-			void c(DiagnosticDescriptor d) => context.ReportDiagnostic(Diagnostic.Create(d, location, messageArgs: null));
-			(
-				message switch
-				{
-					nameof(SCA0004) => () => c(SCA0004),
-					nameof(SCA0005) => () => c(SCA0005),
-					_ => default(Action)
-				}
-			)?.Invoke();
+			if (message == nameof(SCA0004))
+			{
+				context.ReportDiagnostic(Diagnostic.Create(SCA0004, location, messageArgs: null));
+				continue;
+			}
+			else if (message == nameof(SCA0005))
+			{
+				context.ReportDiagnostic(Diagnostic.Create(SCA0005, location, messageArgs: null));
+				continue;
+			}
 
 			context.AddSource(
 				type.ToFileName(),

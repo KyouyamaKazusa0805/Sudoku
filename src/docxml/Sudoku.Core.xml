@@ -3655,13 +3655,6 @@
             Indicates the maximum value.
             </summary>
         </member>
-        <member name="M:Sudoku.Concepts.Parsing.CellRange.Deconstruct(System.Int32@,System.Int32@)">
-            <summary>
-            Deconstruct the instance into multiple values.
-            </summary>
-            <param name="minValue">The minimum value.</param>
-            <param name="maxValue">The maximum value.</param>
-        </member>
         <member name="M:Sudoku.Concepts.Parsing.CellRange.Equals(System.Object)">
             <inheritdoc/>
         </member>
@@ -6981,11 +6974,6 @@
             <remarks>
             <b>If and only if</b> the fourth value in the returned quadruple is available.
             </remarks>
-        </member>
-        <member name="M:Sudoku.Concepts.Solving.UniquePolygonPattern.Deconstruct(System.ValueTuple{System.Int32,System.Int32}@,System.ValueTuple{System.Int32,System.Int32}@,System.ValueTuple{System.Int32,System.Int32,System.Int32,System.Int32}@)">
-            <summary>
-            Deconstruct the instance to multiple values.
-            </summary>
         </member>
         <member name="M:Sudoku.Concepts.Solving.UniquePolygonPattern.GetHashCode">
             <inheritdoc cref="M:System.Object.GetHashCode"/>
