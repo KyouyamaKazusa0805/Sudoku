@@ -39,8 +39,21 @@ internal sealed record class DisableParameterlessConstructorReceiver(Cancellatio
 			return;
 		}
 
-		if (semanticModel.GetDeclaredSymbol(n, CancellationToken) is not { TypeKind: TypeKind.Struct } typeSymbol)
+		if (
+			semanticModel.GetDeclaredSymbol(n, CancellationToken) is not
+			{
+				TypeKind: TypeKind.Struct,
+				ContainingType: var containingTypeSymbol
+			} typeSymbol
+		)
 		{
+			return;
+		}
+
+		var referencedLocation = identifier.GetLocation();
+		if (containingTypeSymbol is not null)
+		{
+			Diagnostics.Add(Diagnostic.Create(SCA0006, referencedLocation, messageArgs: null));
 			return;
 		}
 
@@ -52,7 +65,6 @@ internal sealed record class DisableParameterlessConstructorReceiver(Cancellatio
 			return;
 		}
 
-		var referencedLocation = identifier.GetLocation();
 		if (!modifiers.Any(SyntaxKind.PartialKeyword))
 		{
 			Diagnostics.Add(Diagnostic.Create(SCA0002, referencedLocation, messageArgs: null));

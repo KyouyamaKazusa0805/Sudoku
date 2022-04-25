@@ -49,4 +49,13 @@ internal static class DiagnosticDescriptors
 		defaultSeverity: DiagnosticSeverity.Warning,
 		isEnabledByDefault: true,
 		helpLinkUri: "https://sunnieshine.github.io/Sudoku/code-analysis/sca0005");
+
+	public static readonly DiagnosticDescriptor SCA0006 = new(
+		id: nameof(SCA0006),
+		title: "The attribute type can only work for top-levelled types",
+		messageFormat: "The attribute type can only work for top-levelled types",
+		category: "SourceGen",
+		defaultSeverity: DiagnosticSeverity.Warning,
+		isEnabledByDefault: true,
+		helpLinkUri: "https://sunnieshine.github.io/Sudoku/code-analysis/sca0006");
 }
