@@ -1378,6 +1378,24 @@
         <member name="M:System.CommonComparers.Equality.MatchLengthComparer.GetHashCode(System.Text.RegularExpressions.Match)">
             <inheritdoc/>
         </member>
+        <member name="T:System.Diagnostics.CodeGen.AutoDeconstructionAttribute">
+            <summary>
+            Defines an attribute that is used for controlling the source generation on deconstruction methods.
+            </summary>
+        </member>
+        <member name="M:System.Diagnostics.CodeGen.AutoDeconstructionAttribute.#ctor(System.String[])">
+            <summary>
+            Initializes an <see cref="T:System.Diagnostics.CodeGen.AutoDeconstructionAttribute"/> instance
+            via the specified property names you want to deconstruct.
+            </summary>
+            <param name="propertyNames">The name of the properties you want to deconstruct.</param>
+            <exception cref="T:System.ArgumentException">Throws when the argument is empty.</exception>
+        </member>
+        <member name="P:System.Diagnostics.CodeGen.AutoDeconstructionAttribute.PropertyNames">
+            <summary>
+            Indicates the property names whose corresponding properties will be able to be deconstructed.
+            </summary>
+        </member>
         <member name="T:System.Diagnostics.CodeGen.DisableParameterlessConstructorAttribute">
             <summary>
             Represents an attribute that limits a <see langword="struct"/> type cannot create an instance by
