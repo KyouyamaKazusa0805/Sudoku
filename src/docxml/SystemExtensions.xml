@@ -1386,14 +1386,28 @@
         <member name="M:System.Diagnostics.CodeGen.AutoDeconstructionAttribute.#ctor(System.String[])">
             <summary>
             Initializes an <see cref="T:System.Diagnostics.CodeGen.AutoDeconstructionAttribute"/> instance
-            via the specified property names you want to deconstruct.
+            via the specified member expressions you want to deconstruct.
             </summary>
-            <param name="propertyNames">The name of the properties you want to deconstruct.</param>
+            <param name="memberExpression">The name of the members you want to deconstruct.</param>
             <exception cref="T:System.ArgumentException">Throws when the argument is empty.</exception>
         </member>
-        <member name="P:System.Diagnostics.CodeGen.AutoDeconstructionAttribute.PropertyNames">
+        <member name="P:System.Diagnostics.CodeGen.AutoDeconstructionAttribute.GenerateAsExtension">
             <summary>
-            Indicates the property names whose corresponding properties will be able to be deconstructed.
+            <para>
+            Indicates whether the source generator will generate the current deconstruction method as extension ones.
+            </para>
+            <para>The default value is <see langword="false"/>.</para>
+            </summary>
+        </member>
+        <member name="P:System.Diagnostics.CodeGen.AutoDeconstructionAttribute.GeneratedFileNameSuffix">
+            <summary>
+            Indicates the suffix of the generated file. The property is available when the property
+            <see cref="P:System.Diagnostics.CodeGen.AutoDeconstructionAttribute.GenerateAsExtension"/> is <see langword="true"/>.
+            </summary>
+        </member>
+        <member name="P:System.Diagnostics.CodeGen.AutoDeconstructionAttribute.MemberExpression">
+            <summary>
+            Indicates the member names whose corresponding members will be able to be deconstructed.
             </summary>
         </member>
         <member name="T:System.Diagnostics.CodeGen.DisableParameterlessConstructorAttribute">
