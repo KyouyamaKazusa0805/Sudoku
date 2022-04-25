@@ -11,7 +11,8 @@ public sealed class GlobalConfigValueGenerator : IIncrementalGenerator
 		=> context.RegisterSourceOutput(
 			context.AdditionalTextsProvider
 				.Where(static file => file.Path.EndsWith("Directory.Build.props"))
-				.Select((text, _) => VersionXmlNodeDeterminer(text)),
+				.Select((text, _) => VersionXmlNodeDeterminer(text)
+			),
 			static (spc, v) => spc.AddSource("Constants.Version.g.cs", GetSource(v))
 		);
 
