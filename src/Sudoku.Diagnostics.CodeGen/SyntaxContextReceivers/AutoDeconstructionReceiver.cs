@@ -9,7 +9,9 @@
 internal sealed record class AutoDeconstructionReceiver(CancellationToken CancellationToken) :
 	IResultCollectionReceiver<(INamedTypeSymbol Symbol, AttributeData[], Location)>
 {
-	private const string BoundAttributeFullName = "System.Diagnostics.CodeGen.AutoDeconstructionAttribute";
+	private const string
+		BoundAttributeFullName = "System.Diagnostics.CodeGen.AutoDeconstructionAttribute",
+		BoundAttributeFullNameExtension = "System.Diagnostics.CodeGen.AutoExtensionDeconstructionAttribute";
 
 
 	/// <inheritdoc/>

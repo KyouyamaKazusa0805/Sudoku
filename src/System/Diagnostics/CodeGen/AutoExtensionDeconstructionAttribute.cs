@@ -43,23 +43,6 @@ public sealed class AutoExtensionDeconstructionAttribute : Attribute
 	public string? Namespace { get; init; } = null;
 
 	/// <summary>
-	/// Indicates the suffix of the generated file.
-	/// </summary>
-	public string GeneratedFileNameSuffix
-	{
-		get
-		{
-			var hashCode = new HashCode();
-			foreach (string propertyName in MemberExpression)
-			{
-				hashCode.Add(propertyName);
-			}
-
-			return $"Extensions_{hashCode.ToHashCode():X}";
-		}
-	}
-
-	/// <summary>
 	/// Indicates the member names whose corresponding members will be able to be deconstructed.
 	/// </summary>
 	public string[] MemberExpression { get; }

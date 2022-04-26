@@ -61,7 +61,7 @@ public sealed class AutoDeconstructionGenerator : ISourceGenerator
 				let namedArg = attributeData.NamedArguments.FirstOrDefault(static e => e.Key == "GenerateAsExtension")
 				group attributeData by ((bool?)namedArg.Value.Value) ?? false)
 			{
-				if (group.Key)
+				if (!group.Key)
 				{
 					var listOfMethodsRawCode = GetForInstance(ref context, group, location, type, readOnlyKeyword);
 					string finalCode = string.Join("\r\n\r\n\t", listOfMethodsRawCode);

@@ -1429,11 +1429,6 @@
             <para>The default value is <see langword="null"/>.</para>
             </summary>
         </member>
-        <member name="P:System.Diagnostics.CodeGen.AutoExtensionDeconstructionAttribute.GeneratedFileNameSuffix">
-            <summary>
-            Indicates the suffix of the generated file.
-            </summary>
-        </member>
         <member name="P:System.Diagnostics.CodeGen.AutoExtensionDeconstructionAttribute.MemberExpression">
             <summary>
             Indicates the member names whose corresponding members will be able to be deconstructed.
