@@ -21,32 +21,6 @@ public sealed class AutoDeconstructionAttribute : Attribute
 
 
 	/// <summary>
-	/// <para>
-	/// Indicates whether the source generator will generate the current deconstruction method as extension ones.
-	/// </para>
-	/// <para>The default value is <see langword="false"/>.</para>
-	/// </summary>
-	public bool GenerateAsExtension { get; init; }
-
-	/// <summary>
-	/// Indicates the suffix of the generated file. The property is available when the property
-	/// <see cref="GenerateAsExtension"/> is <see langword="true"/>.
-	/// </summary>
-	public string GeneratedFileNameSuffix
-	{
-		get
-		{
-			var hashCode = new HashCode();
-			foreach (string propertyName in MemberExpression)
-			{
-				hashCode.Add(propertyName);
-			}
-
-			return $"Extensions_{hashCode.ToHashCode():X}";
-		}
-	}
-
-	/// <summary>
 	/// Indicates the member names whose corresponding members will be able to be deconstructed.
 	/// </summary>
 	public string[] MemberExpression { get; }

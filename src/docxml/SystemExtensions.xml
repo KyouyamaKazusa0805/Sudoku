@@ -1391,23 +1391,57 @@
             <param name="memberExpression">The name of the members you want to deconstruct.</param>
             <exception cref="T:System.ArgumentException">Throws when the argument is empty.</exception>
         </member>
-        <member name="P:System.Diagnostics.CodeGen.AutoDeconstructionAttribute.GenerateAsExtension">
+        <member name="P:System.Diagnostics.CodeGen.AutoDeconstructionAttribute.MemberExpression">
+            <summary>
+            Indicates the member names whose corresponding members will be able to be deconstructed.
+            </summary>
+        </member>
+        <member name="T:System.Diagnostics.CodeGen.AutoExtensionDeconstructionAttribute">
+            <summary>
+            Defines an attribute that is used for controlling the source generation on extension deconstruction methods.
+            </summary>
+        </member>
+        <member name="M:System.Diagnostics.CodeGen.AutoExtensionDeconstructionAttribute.#ctor(System.Type,System.String[])">
+            <summary>
+            Initializes an <see cref="T:System.Diagnostics.CodeGen.AutoExtensionDeconstructionAttribute"/> instance via the specified type,
+            and the member expression.
+            </summary>
+            <param name="type">The type.</param>
+            <param name="memberExpression">The member expression.</param>
+            <exception cref="T:System.ArgumentException">
+            Throws when the argument <paramref name="type"/> is not a valid type (<see langword="class"/>,
+            <see langword="struct"/> or <see langword="interface"/>),
+            or the argument <paramref name="memberExpression"/> is empty.
+            </exception>
+        </member>
+        <member name="P:System.Diagnostics.CodeGen.AutoExtensionDeconstructionAttribute.EmitsInKeyword">
             <summary>
             <para>
-            Indicates whether the source generator will generate the current deconstruction method as extension ones.
+            Indicates whether the source generator will emit keyword <see langword="in"/> as modifier
+            for the only <see langword="this"/> argument.
             </para>
             <para>The default value is <see langword="false"/>.</para>
             </summary>
         </member>
-        <member name="P:System.Diagnostics.CodeGen.AutoDeconstructionAttribute.GeneratedFileNameSuffix">
+        <member name="P:System.Diagnostics.CodeGen.AutoExtensionDeconstructionAttribute.Namespace">
             <summary>
-            Indicates the suffix of the generated file. The property is available when the property
-            <see cref="P:System.Diagnostics.CodeGen.AutoDeconstructionAttribute.GenerateAsExtension"/> is <see langword="true"/>.
+            <para>Indicates the namespace the source generator emits.</para>
+            <para>The default value is <see langword="null"/>.</para>
             </summary>
         </member>
-        <member name="P:System.Diagnostics.CodeGen.AutoDeconstructionAttribute.MemberExpression">
+        <member name="P:System.Diagnostics.CodeGen.AutoExtensionDeconstructionAttribute.GeneratedFileNameSuffix">
+            <summary>
+            Indicates the suffix of the generated file.
+            </summary>
+        </member>
+        <member name="P:System.Diagnostics.CodeGen.AutoExtensionDeconstructionAttribute.MemberExpression">
             <summary>
             Indicates the member names whose corresponding members will be able to be deconstructed.
+            </summary>
+        </member>
+        <member name="P:System.Diagnostics.CodeGen.AutoExtensionDeconstructionAttribute.Type">
+            <summary>
+            Indicates the desired type on which the source generator emits extension methods.
             </summary>
         </member>
         <member name="T:System.Diagnostics.CodeGen.DisableParameterlessConstructorAttribute">

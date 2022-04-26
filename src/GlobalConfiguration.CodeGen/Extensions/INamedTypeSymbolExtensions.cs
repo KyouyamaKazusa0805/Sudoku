@@ -7,6 +7,22 @@
 internal static class INamedTypeSymbolExtensions
 {
 	/// <summary>
+	/// Gets all possible members in a type, even including its base type members.
+	/// </summary>
+	/// <param name="this">The type symbol.</param>
+	/// <returns>All members.</returns>
+	public static IEnumerable<ISymbol> GetAllMembers(this INamedTypeSymbol @this)
+	{
+		for (var current = @this; current is not null; current = current.BaseType)
+		{
+			foreach (var member in @this.GetMembers())
+			{
+				yield return member;
+			}
+		}
+	}
+
+	/// <summary>
 	/// Get the file name of the type symbol.
 	/// </summary>
 	/// <param name="this">The symbol.</param>

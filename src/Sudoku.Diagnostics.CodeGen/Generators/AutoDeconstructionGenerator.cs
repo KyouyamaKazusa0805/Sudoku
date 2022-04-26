@@ -56,30 +56,34 @@ public sealed class AutoDeconstructionGenerator : ISourceGenerator
 				_ => default!
 			};
 
-			foreach (var attributesDataGroup in
+			foreach (var group in
 				from attributeData in attributesData
 				let namedArg = attributeData.NamedArguments.FirstOrDefault(static e => e.Key == "GenerateAsExtension")
-				let generateAsExtension = ((bool?)namedArg.Value.Value) ?? false
-				group attributeData by generateAsExtension into currentGroup
-				where !currentGroup.Key // TODO: Allow extension method generation.
-				select currentGroup)
+				group attributeData by ((bool?)namedArg.Value.Value) ?? false)
 			{
-				var listOfMethodsRawCode = GetForInstance(ref context, attributesDataGroup, location, type);
-				string finalCode = string.Join("\r\n\r\n\t", listOfMethodsRawCode);
-				context.AddSource(
-					type.ToFileName(),
-					"d",
-					$$"""
-					#nullable enable
-					
-					namespace {{namespaceName}};
-					
-					partial {{typeKindName}} {{type.Name}}
-					{
-					{{finalCode}}
-					}
-					"""
-				);
+				if (group.Key)
+				{
+					var listOfMethodsRawCode = GetForInstance(ref context, group, location, type, readOnlyKeyword);
+					string finalCode = string.Join("\r\n\r\n\t", listOfMethodsRawCode);
+					context.AddSource(
+						type.ToFileName(),
+						"d",
+						$$"""
+						#nullable enable
+						
+						namespace {{namespaceName}};
+						
+						partial {{typeKindName}} {{type.Name}}
+						{
+						{{finalCode}}
+						}
+						"""
+					);
+				}
+				else
+				{
+					// TODO: Get for extension methods.
+				}
 			}
 		}
 	}
@@ -97,10 +101,11 @@ public sealed class AutoDeconstructionGenerator : ISourceGenerator
 	/// The <see cref="Location"/> instance to be reported if any diagnostic warnings or errors has been encountered.
 	/// </param>
 	/// <param name="type">The type to be used.</param>
+	/// <param name="readOnlyKeyword">The read-only keyword token.</param>
 	/// <returns>The collection of raw code parts for instance deconstruction methods.</returns>
 	private IReadOnlyCollection<string> GetForInstance(
 		ref GeneratorExecutionContext context, IEnumerable<AttributeData> attributesData,
-		Location location, INamedTypeSymbol type)
+		Location location, INamedTypeSymbol type, string? readOnlyKeyword)
 	{
 		var result = new List<string>();
 
@@ -157,12 +162,12 @@ public sealed class AutoDeconstructionGenerator : ISourceGenerator
 			string args = string.Join(
 				", ",
 				from element in pairs
-				select $"out {element.Symbol.ToDisplayString(TypeFormats.FullName)} {element.Name.ToLower()}"
+				select $"out {element.Symbol.ToDisplayString(TypeFormats.FullName)} {element.Name.ToCamelCase()}"
 			);
 			string assignments = string.Join(
 				"\r\n\t\t",
 				from element in pairs
-				select $"{element.Name.ToLower()} = {element.Name};"
+				select $"{element.Name.ToCamelCase()} = {element.Name};"
 			);
 			result.Add(
 				// Here we should insert an extra indentation, on purpose.
@@ -207,7 +212,7 @@ public sealed class AutoDeconstructionGenerator : ISourceGenerator
 					[global::System.Runtime.CompilerServices.CompilerGenerated]
 					[global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 					[global::System.CodeDom.Compiler.GeneratedCode("{{GetType().FullName}}", "{{VersionValue}}")]
-					public void Deconstruct({{args}})
+					public {{readOnlyKeyword}}void Deconstruct({{args}})
 					{
 						{{assignments}}
 					}

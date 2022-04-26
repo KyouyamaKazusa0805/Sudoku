@@ -25,7 +25,7 @@
         <member name="M:Sudoku.Diagnostics.CodeGen.Generators.AutoDeconstructionGenerator.Initialize(Microsoft.CodeAnalysis.GeneratorInitializationContext)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.AutoDeconstructionGenerator.GetForInstance(Microsoft.CodeAnalysis.GeneratorExecutionContext@,System.Collections.Generic.IEnumerable{Microsoft.CodeAnalysis.AttributeData},Microsoft.CodeAnalysis.Location,Microsoft.CodeAnalysis.INamedTypeSymbol)">
+        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.AutoDeconstructionGenerator.GetForInstance(Microsoft.CodeAnalysis.GeneratorExecutionContext@,System.Collections.Generic.IEnumerable{Microsoft.CodeAnalysis.AttributeData},Microsoft.CodeAnalysis.Location,Microsoft.CodeAnalysis.INamedTypeSymbol,System.String)">
             <summary>
             Gets the raw code parts for instance deconstruction methods via the specified list of attributes data.
             </summary>
@@ -35,6 +35,7 @@
             The <see cref="T:Microsoft.CodeAnalysis.Location"/> instance to be reported if any diagnostic warnings or errors has been encountered.
             </param>
             <param name="type">The type to be used.</param>
+            <param name="readOnlyKeyword">The read-only keyword token.</param>
             <returns>The collection of raw code parts for instance deconstruction methods.</returns>
         </member>
         <member name="T:Sudoku.Diagnostics.CodeGen.Generators.DisableParameterlessConstructorGenerator">
