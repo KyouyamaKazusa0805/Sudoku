@@ -8,6 +8,10 @@
 
 # Sunnie's Sudoku Solution
 
+[![stars](https://img.shields.io/github/stars/SunnieShine/Sudoku?color=097abb)](https://github.com/SunnieShine/Sudoku/stargazers) [![issues](https://img.shields.io/github/issues/SunnieShine/Sudoku?color=097abb)](https://github.com/SunnieShine/Sudoku/issues) [![license](https://img.shields.io/github/license/SunnieShine/Sudoku?color=097abb)](https://github.com/SunnieShine/Sudoku/blob/main/LICENSE) [![frequency](https://img.shields.io/github/commit-activity/m/SunnieShine/Sudoku?color=097abb)](https://github.com/badges/SunnieShine/Sudoku)
+
+[![bilibili](https://img.shields.io/badge/bilibili-SunnieShine-%23fb7299?logo=bilibili)](https://space.bilibili.com/23736703)
+
 ## Content
 
 ### Introduction
