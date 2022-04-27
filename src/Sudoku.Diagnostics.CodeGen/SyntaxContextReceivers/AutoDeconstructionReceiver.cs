@@ -7,16 +7,14 @@
 /// <param name="CancellationToken">The cancellation token to cancel the operation.</param>
 /// <seealso cref="AutoDeconstructionGenerator"/>
 internal sealed record class AutoDeconstructionReceiver(CancellationToken CancellationToken) :
-	IResultCollectionReceiver<(INamedTypeSymbol Symbol, AttributeData[], Location)>
+	IResultCollectionReceiver<(bool IsExtension, INamedTypeSymbol Symbol, AttributeData AttributeData, Location Location)>
 {
-	private const string
-		BoundAttributeFullName = "System.Diagnostics.CodeGen.AutoDeconstructionAttribute",
-		BoundAttributeFullNameExtension = "System.Diagnostics.CodeGen.AutoExtensionDeconstructionAttribute";
+	private const string BoundAttributeFullNameInstance = "System.Diagnostics.CodeGen.AutoDeconstructionAttribute";
 
 
 	/// <inheritdoc/>
-	public ICollection<(INamedTypeSymbol Symbol, AttributeData[], Location)> Collection { get; } =
-		new List<(INamedTypeSymbol Symbol, AttributeData[], Location)>();
+	public ICollection<(bool IsExtension, INamedTypeSymbol Symbol, AttributeData AttributeData, Location Location)> Collection { get; } =
+		new List<(bool IsExtension, INamedTypeSymbol Symbol, AttributeData AttributeData, Location Location)>();
 
 	/// <summary>
 	/// Indicates the diagnostic results found.
@@ -48,7 +46,7 @@ internal sealed record class AutoDeconstructionReceiver(CancellationToken Cancel
 			return;
 		}
 
-		var attributeTypeSymbol = compilation.GetTypeByMetadataName(BoundAttributeFullName);
+		var attributeTypeSymbol = compilation.GetTypeByMetadataName(BoundAttributeFullNameInstance);
 		var attributesData = (
 			from e in typeSymbol.GetAttributes()
 			where SymbolEqualityComparer.Default.Equals(e.AttributeClass, attributeTypeSymbol)
@@ -74,7 +72,10 @@ internal sealed record class AutoDeconstructionReceiver(CancellationToken Cancel
 
 		if (!Collection.Any(t => SymbolEqualityComparer.Default.Equals(t.Symbol, typeSymbol)))
 		{
-			Collection.Add((typeSymbol, attributesData, referencedLocation));
+			foreach (var attributeData in attributesData)
+			{
+				Collection.Add((false, typeSymbol, attributeData, referencedLocation));
+			}
 		}
 	}
 }

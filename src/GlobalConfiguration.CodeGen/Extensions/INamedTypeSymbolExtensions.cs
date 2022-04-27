@@ -57,4 +57,27 @@ internal static class INamedTypeSymbolExtensions
 
 		return buffer[..pointer].ToString();
 	}
+
+	/// <summary>
+	/// Gets the type kind modifier for a symbol.
+	/// </summary>
+	/// <param name="this">The named type symbol.</param>
+	/// <returns>The string as the representation of the type kind modifier.</returns>
+	/// <exception cref="ArgumentException">
+	/// Throws when the current named type symbol holds an invalid case that doesn't contain
+	/// any possible type kind modifier.
+	/// </exception>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	internal static string GetTypeKindModifier(this INamedTypeSymbol @this)
+		=> (@this.TypeKind, @this.IsRecord) switch
+		{
+			(TypeKind.Class, true) => "record class",
+			(TypeKind.Class, _) => "class",
+			(TypeKind.Struct, true) => "record struct",
+			(TypeKind.Struct, _) => "struct",
+			(TypeKind.Interface, _) => "interface",
+			//(TypeKind.Delegate, _) => "delegate",
+			//(TypeKind.Enum, _) => "enum",
+			_ => throw new ArgumentException("The specified argument holds an invalid type that doesn't contain any possible type kind modifier.")
+		};
 }

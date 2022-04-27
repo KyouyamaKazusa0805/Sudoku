@@ -366,6 +366,9 @@ dotnet_diagnostic.CS8619.severity = error
 # CS8620: Argument cannot be used for parameter due to differences in the nullability of reference types.
 dotnet_diagnostic.CS8620.severity = error
 
+# CS8621: Nullability of reference types in return type doesn't match the target delegate (possibly because of nullability attributes).
+dotnet_diagnostic.CS8621.severity = error
+
 # CS8622: Nullability of reference types in type of parameter doesn't match the target delegate.
 dotnet_diagnostic.CS8622.severity = error
 

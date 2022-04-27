@@ -71,6 +71,17 @@
             </list>
             </returns>
         </member>
+        <member name="M:Microsoft.CodeAnalysis.INamedTypeSymbolExtensions.GetTypeKindModifier(Microsoft.CodeAnalysis.INamedTypeSymbol)">
+            <summary>
+            Gets the type kind modifier for a symbol.
+            </summary>
+            <param name="this">The named type symbol.</param>
+            <returns>The string as the representation of the type kind modifier.</returns>
+            <exception cref="T:System.ArgumentException">
+            Throws when the current named type symbol holds an invalid case that doesn't contain
+            any possible type kind modifier.
+            </exception>
+        </member>
         <member name="T:Microsoft.CodeAnalysis.ISymbolExtensions">
             <summary>
             Provides with extension methods on <see cref="T:Microsoft.CodeAnalysis.ISymbol"/>.
