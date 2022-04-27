@@ -1101,6 +1101,18 @@
         <member name="M:Sudoku.UI.Drawing.Shapes.DrawingElementBag.Enumerator.MoveNext">
             <inheritdoc cref="M:System.Collections.IEnumerator.MoveNext"/>
         </member>
+        <member name="M:Sudoku.UI.Drawing.Shapes.DrawingElementBag.Enumerator.Equals(System.Object)">
+            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
+            <exception cref="T:System.NotSupportedException">Always throws.</exception>
+        </member>
+        <member name="M:Sudoku.UI.Drawing.Shapes.DrawingElementBag.Enumerator.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+            <exception cref="T:System.NotSupportedException">Always throws.</exception>
+        </member>
+        <member name="M:Sudoku.UI.Drawing.Shapes.DrawingElementBag.Enumerator.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+            <exception cref="T:System.NotSupportedException">Always throws.</exception>
+        </member>
         <member name="M:Sudoku.UI.Drawing.Shapes.DrawingElementBag.First(System.Predicate{Sudoku.UI.Drawing.Shapes.DrawingElement})">
             <summary>
             Gets the first element that satisfies the specified condition.
@@ -1318,6 +1330,18 @@
             Throws when the enumerator cannot step advanced.
             </exception>
         </member>
+        <member name="M:Sudoku.UI.Drawing.Shapes.DrawingElementBag.OfTypeEnumerator`1.Equals(System.Object)">
+            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
+            <exception cref="T:System.NotSupportedException">Always throws.</exception>
+        </member>
+        <member name="M:Sudoku.UI.Drawing.Shapes.DrawingElementBag.OfTypeEnumerator`1.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+            <exception cref="T:System.NotSupportedException">Always throws.</exception>
+        </member>
+        <member name="M:Sudoku.UI.Drawing.Shapes.DrawingElementBag.OfTypeEnumerator`1.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+            <exception cref="T:System.NotSupportedException">Always throws.</exception>
+        </member>
         <member name="T:Sudoku.UI.Drawing.Shapes.DrawingElementBag.OfTypeEnumerator`2">
             <summary>
             Indicates the enumerator type that allows iterating on <see cref="T:Sudoku.UI.Drawing.Shapes.DrawingElementBag"/> instances,
@@ -1376,6 +1400,18 @@
             <exception cref="T:System.InvalidOperationException">
             Throws when the enumerator cannot step advanced.
             </exception>
+        </member>
+        <member name="M:Sudoku.UI.Drawing.Shapes.DrawingElementBag.OfTypeEnumerator`2.Equals(System.Object)">
+            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
+            <exception cref="T:System.NotSupportedException">Always throws.</exception>
+        </member>
+        <member name="M:Sudoku.UI.Drawing.Shapes.DrawingElementBag.OfTypeEnumerator`2.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+            <exception cref="T:System.NotSupportedException">Always throws.</exception>
+        </member>
+        <member name="M:Sudoku.UI.Drawing.Shapes.DrawingElementBag.OfTypeEnumerator`2.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+            <exception cref="T:System.NotSupportedException">Always throws.</exception>
         </member>
         <member name="T:Sudoku.UI.Drawing.Shapes.DrawingElementBag.OfTypeEnumerator`3">
             <summary>
@@ -1437,6 +1473,18 @@
             <exception cref="T:System.InvalidOperationException">
             Throws when the enumerator cannot step advanced.
             </exception>
+        </member>
+        <member name="M:Sudoku.UI.Drawing.Shapes.DrawingElementBag.OfTypeEnumerator`3.Equals(System.Object)">
+            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
+            <exception cref="T:System.NotSupportedException">Always throws.</exception>
+        </member>
+        <member name="M:Sudoku.UI.Drawing.Shapes.DrawingElementBag.OfTypeEnumerator`3.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+            <exception cref="T:System.NotSupportedException">Always throws.</exception>
+        </member>
+        <member name="M:Sudoku.UI.Drawing.Shapes.DrawingElementBag.OfTypeEnumerator`3.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+            <exception cref="T:System.NotSupportedException">Always throws.</exception>
         </member>
         <member name="T:Sudoku.UI.Drawing.Shapes.DrawingElementBag.SelectEnumerator`1">
             <summary>
@@ -1529,6 +1577,18 @@
             <exception cref="T:System.InvalidOperationException">
             Throws when the enumerator cannot step advanced.
             </exception>
+        </member>
+        <member name="M:Sudoku.UI.Drawing.Shapes.DrawingElementBag.SelectEnumerator`1.Equals(System.Object)">
+            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
+            <exception cref="T:System.NotSupportedException">Always throws.</exception>
+        </member>
+        <member name="M:Sudoku.UI.Drawing.Shapes.DrawingElementBag.SelectEnumerator`1.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+            <exception cref="T:System.NotSupportedException">Always throws.</exception>
+        </member>
+        <member name="M:Sudoku.UI.Drawing.Shapes.DrawingElementBag.SelectEnumerator`1.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+            <exception cref="T:System.NotSupportedException">Always throws.</exception>
         </member>
         <member name="T:Sudoku.UI.Drawing.Shapes.DrawingElementBag.WhereEnumerator">
             <summary>
@@ -1730,6 +1790,30 @@
             <exception cref="T:System.InvalidOperationException">
             Throws when the enumerator cannot step advanced.
             </exception>
+        </member>
+        <member name="M:Sudoku.UI.Drawing.Shapes.DrawingElementBag.WhereEnumerator.SelectEnumerator`1.Equals(System.Object)">
+            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
+            <exception cref="T:System.NotSupportedException">Always throws.</exception>
+        </member>
+        <member name="M:Sudoku.UI.Drawing.Shapes.DrawingElementBag.WhereEnumerator.SelectEnumerator`1.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+            <exception cref="T:System.NotSupportedException">Always throws.</exception>
+        </member>
+        <member name="M:Sudoku.UI.Drawing.Shapes.DrawingElementBag.WhereEnumerator.SelectEnumerator`1.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+            <exception cref="T:System.NotSupportedException">Always throws.</exception>
+        </member>
+        <member name="M:Sudoku.UI.Drawing.Shapes.DrawingElementBag.WhereEnumerator.Equals(System.Object)">
+            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
+            <exception cref="T:System.NotSupportedException">Always throws.</exception>
+        </member>
+        <member name="M:Sudoku.UI.Drawing.Shapes.DrawingElementBag.WhereEnumerator.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+            <exception cref="T:System.NotSupportedException">Always throws.</exception>
+        </member>
+        <member name="M:Sudoku.UI.Drawing.Shapes.DrawingElementBag.WhereEnumerator.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+            <exception cref="T:System.NotSupportedException">Always throws.</exception>
         </member>
         <member name="T:Sudoku.UI.Drawing.Shapes.OutsideRectangle">
             <summary>
@@ -2990,10 +3074,50 @@
             Deconstruct the instance to multiple values.
             </summary>
         </member>
-        <member name="M:Microsoft.UI.Xaml.Shapes.LineExtensions.Deconstruct(Microsoft.UI.Xaml.Shapes.Line,System.Double@,System.Double@,System.Double@,System.Double@)">
+        <member name="T:Microsoft.UI.Xaml.Shapes.Line_DED029E7E2">
             <summary>
-            Deconstruct the instance to multiple values.
+            Provides with extension deconstruction methods on this type.
             </summary>
+        </member>
+        <member name="M:Microsoft.UI.Xaml.Shapes.Line_DED029E7E2.Deconstruct(Microsoft.UI.Xaml.Shapes.Line,System.Double@,System.Double@,System.Double@,System.Double@)">
+            <summary>
+            Deconstruct the current instance into multiple values, which means you can use
+            the value-tuple syntax to define your own deconstruction logic.
+            </summary>
+            <remarks>
+            <para>
+            For example,
+            if you have defined a <see langword="static"/> deconstruction method <c>Deconstruct</c>
+            in a <see langword="static class"/>, without any return value:
+            <code><![CDATA[
+            public static void Deconstruct(out string name, out int age)
+            {
+                name = Name;
+                age = Age;
+            }
+            ]]></code>
+            The following code will be legal.
+            <code><![CDATA[
+            // Use explicitly typed variables to get a deconstruction.
+            (string name, int age) = student;
+            
+            // Or use the type inferring to omit the type of each variable having been deconstructed.
+            var (name, age) = student;
+            
+            // Of course, you can also use the instance-method-like invocation to get values.
+            student.Deconstruct(out string name, out int age);
+            ]]></code>
+            </para>
+            <para>
+            Static deconstruction methods also allow you using deconstruction patterns, like this:
+            <code><![CDATA[
+            if (student is (name: var name, age: >= 18))
+            {
+                Console.WriteLine(name);
+            }
+            ]]></code>
+            </para>
+            </remarks>
         </member>
         <member name="T:Microsoft.UI.Xaml.WindowExtensions">
             <summary>
@@ -3033,16 +3157,50 @@
             </summary>
             <param name="this">The instance.</param>
         </member>
-        <member name="T:Windows.Foundation.PointExtensions">
+        <member name="T:Windows.Foundation.Point_DE7BE3B162">
             <summary>
-            Provides extension methods on <see cref="T:Windows.Foundation.Point"/>.
+            Provides with extension deconstruction methods on this type.
             </summary>
-            <seealso cref="T:Windows.Foundation.Point"/>
         </member>
-        <member name="M:Windows.Foundation.PointExtensions.Deconstruct(Windows.Foundation.Point@,System.Double@,System.Double@)">
+        <member name="M:Windows.Foundation.Point_DE7BE3B162.Deconstruct(Windows.Foundation.Point,System.Double@,System.Double@)">
             <summary>
-            Deconstruct the instance to multiple values.
+            Deconstruct the current instance into multiple values, which means you can use
+            the value-tuple syntax to define your own deconstruction logic.
             </summary>
+            <remarks>
+            <para>
+            For example,
+            if you have defined a <see langword="static"/> deconstruction method <c>Deconstruct</c>
+            in a <see langword="static class"/>, without any return value:
+            <code><![CDATA[
+            public static void Deconstruct(out string name, out int age)
+            {
+                name = Name;
+                age = Age;
+            }
+            ]]></code>
+            The following code will be legal.
+            <code><![CDATA[
+            // Use explicitly typed variables to get a deconstruction.
+            (string name, int age) = student;
+            
+            // Or use the type inferring to omit the type of each variable having been deconstructed.
+            var (name, age) = student;
+            
+            // Of course, you can also use the instance-method-like invocation to get values.
+            student.Deconstruct(out string name, out int age);
+            ]]></code>
+            </para>
+            <para>
+            Static deconstruction methods also allow you using deconstruction patterns, like this:
+            <code><![CDATA[
+            if (student is (name: var name, age: >= 18))
+            {
+                Console.WriteLine(name);
+            }
+            ]]></code>
+            </para>
+            </remarks>
         </member>
     </members>
 </doc>

@@ -43,9 +43,27 @@ public sealed class RefStructOverridensGenerator : ISourceGenerator
 
 	/// <inheritdoc/>
 	public void Initialize(GeneratorInitializationContext context)
+#if true
 		=> context.RegisterForSyntaxNotifications(() => new RefStructOverridensReceiver(context.CancellationToken));
+#else
+	{
+#if DEBUG
+		if (!System.Diagnostics.Debugger.IsAttached)
+		{
+			System.Diagnostics.Debugger.Launch();
+		}
+#endif
 
+		context.RegisterForSyntaxNotifications(() => new RefStructOverridensReceiver(context.CancellationToken));
+	}
+#endif
 
+	/// <summary>
+	/// Generates for top-levelled <see langword="ref struct"/> types.
+	/// </summary>
+	/// <param name="context">The context.</param>
+	/// <param name="type">The type.</param>
+	/// <param name="compilation">The compilation instance.</param>
 	private void OnTopLevel(GeneratorExecutionContext context, INamedTypeSymbol type, Compilation compilation)
 	{
 		var (_, _, namespaceName, genericParameterList, _, _, readOnlyKeyword, _, _, _) = SymbolOutputInfo.FromSymbol(type);
@@ -63,7 +81,7 @@ public sealed class RefStructOverridensGenerator : ISourceGenerator
 		)
 			? $@"// Can't generate '{nameof(Equals)}' because the method is impl'ed by user."
 			: $@"/// <inheritdoc cref=""object.Equals(object?)""/>
-	/// <exception cref=""NotSupportedException"">Always throws.</exception>
+	/// <exception cref=""global::System.NotSupportedException"">Always throws.</exception>
 	[global::System.CodeDom.Compiler.GeneratedCode(""{GetType().FullName}"", ""{VersionValue}"")]
 	[global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
 #if NETSTANDARD2_1_OR_GREATER || NET5_0_OR_GREATER || (NETCOREAPP3_0 || NETCOREAPP3_1)
@@ -71,7 +89,7 @@ public sealed class RefStructOverridensGenerator : ISourceGenerator
 #endif
 	[global::System.Obsolete(""You can't use or call this method."", true, DiagnosticId = ""BAN"")]
 	[global::System.Runtime.CompilerServices.CompilerGenerated]
-	public override {readOnlyKeyword}bool Equals(object? obj) => throw new NotSupportedException();";
+	public override {readOnlyKeyword}bool Equals(object? obj) => throw new global::System.NotSupportedException();";
 
 		string getHashCodeMethod = Array.Exists(
 			methods,
@@ -85,7 +103,7 @@ public sealed class RefStructOverridensGenerator : ISourceGenerator
 		)
 			? $@"// Can't generate '{nameof(GetHashCode)}' because the method is impl'ed by user."
 			: $@"/// <inheritdoc cref=""object.GetHashCode""/>
-	/// <exception cref=""NotSupportedException"">Always throws.</exception>
+	/// <exception cref=""global::System.NotSupportedException"">Always throws.</exception>
 	[global::System.CodeDom.Compiler.GeneratedCode(""{GetType().FullName}"", ""{VersionValue}"")]
 	[global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
 #if NETSTANDARD2_1_OR_GREATER || NET5_0_OR_GREATER || (NETCOREAPP3_0 || NETCOREAPP3_1)
@@ -93,7 +111,7 @@ public sealed class RefStructOverridensGenerator : ISourceGenerator
 #endif
 	[global::System.Obsolete(""You can't use or call this method."", true, DiagnosticId = ""BAN"")]
 	[global::System.Runtime.CompilerServices.CompilerGenerated]
-	public override {readOnlyKeyword}int GetHashCode() => throw new NotSupportedException();";
+	public override {readOnlyKeyword}int GetHashCode() => throw new global::System.NotSupportedException();";
 
 		string toStringMethod = Array.Exists(
 			methods,
@@ -107,7 +125,7 @@ public sealed class RefStructOverridensGenerator : ISourceGenerator
 		)
 			? $@"// Can't generate '{nameof(ToString)}' because the method is impl'ed by user."
 			: $@"/// <inheritdoc cref=""object.ToString""/>
-	/// <exception cref=""NotSupportedException"">Always throws.</exception>
+	/// <exception cref=""global::System.NotSupportedException"">Always throws.</exception>
 	[global::System.CodeDom.Compiler.GeneratedCode(""{GetType().FullName}"", ""{VersionValue}"")]
 	[global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
 #if NETSTANDARD2_1_OR_GREATER || NET5_0_OR_GREATER || (NETCOREAPP3_0 || NETCOREAPP3_1)
@@ -115,7 +133,7 @@ public sealed class RefStructOverridensGenerator : ISourceGenerator
 #endif
 	[global::System.Obsolete(""You can't use or call this method."", true, DiagnosticId = ""BAN"")]
 	[global::System.Runtime.CompilerServices.CompilerGenerated]
-	public override {readOnlyKeyword}string? ToString() => throw new NotSupportedException();";
+	public override {readOnlyKeyword}string? ToString() => throw new global::System.NotSupportedException();";
 
 		context.AddSource(
 			type.ToFileName(),
@@ -138,6 +156,12 @@ partial struct {type.Name}{genericParameterList}
 		);
 	}
 
+	/// <summary>
+	/// Generates for nested-levelled <see langword="ref struct"/> types.
+	/// </summary>
+	/// <param name="context">The context.</param>
+	/// <param name="type">The type.</param>
+	/// <param name="compilation">The compilation instance.</param>
 	private void OnNested(GeneratorExecutionContext context, INamedTypeSymbol type, Compilation compilation)
 	{
 		var (_, _, namespaceName, genericParameterList, _, _, readOnlyKeyword, _, _, _) = SymbolOutputInfo.FromSymbol(type);
@@ -148,7 +172,8 @@ partial struct {type.Name}{genericParameterList}
 		//
 		// We should remove the characters before the dot.
 		if (!string.IsNullOrEmpty(genericParameterList)
-			&& genericParameterList.LastIndexOf('.') is var dot and not -1)
+			&& (genericParameterList.IndexOf("where") is var tempIndex and not -1 ? ..tempIndex : ..) is var range
+			&& genericParameterList[range].LastIndexOf('.') is var dot and not -1)
 		{
 			if (dot + 1 >= genericParameterList.Length)
 			{
@@ -256,13 +281,13 @@ partial struct {type.Name}{genericParameterList}
 		)
 			? $"{methodIndenting}// Can't generate '{nameof(Equals)}' because the method is impl'ed by user."
 			: $@"{methodIndenting}/// <inheritdoc cref=""object.Equals(object?)""/>
-{methodIndenting}/// <exception cref=""NotSupportedException"">Always throws.</exception>
+{methodIndenting}/// <exception cref=""global::System.NotSupportedException"">Always throws.</exception>
 {methodIndenting}[global::System.CodeDom.Compiler.GeneratedCode(""{GetType().FullName}"", ""{VersionValue}"")]
 {methodIndenting}[global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
 {methodIndenting}[global::System.Diagnostics.CodeAnalysis.DoesNotReturn]
 {methodIndenting}[global::System.Obsolete(""You can't use or call this method."", true, DiagnosticId = ""BAN"")]
 {methodIndenting}[global::System.Runtime.CompilerServices.CompilerGenerated]
-{methodIndenting}public override {readOnlyKeyword}bool Equals(object? obj) => throw new NotSupportedException();";
+{methodIndenting}public override {readOnlyKeyword}bool Equals(object? obj) => throw new global::System.NotSupportedException();";
 
 		string getHashCodeMethod = Array.Exists(
 			methods,
@@ -276,13 +301,13 @@ partial struct {type.Name}{genericParameterList}
 		)
 			? $"{methodIndenting}// Can't generate '{nameof(GetHashCode)}' because the method is impl'ed by user."
 			: $@"{methodIndenting}/// <inheritdoc cref=""object.GetHashCode""/>
-{methodIndenting}/// <exception cref=""NotSupportedException"">Always throws.</exception>
+{methodIndenting}/// <exception cref=""global::System.NotSupportedException"">Always throws.</exception>
 {methodIndenting}[global::System.CodeDom.Compiler.GeneratedCode(""{GetType().FullName}"", ""{VersionValue}"")]
 {methodIndenting}[global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
 {methodIndenting}[global::System.Diagnostics.CodeAnalysis.DoesNotReturn]
 {methodIndenting}[global::System.Obsolete(""You can't use or call this method."", true, DiagnosticId = ""BAN"")]
 {methodIndenting}[global::System.Runtime.CompilerServices.CompilerGenerated]
-{methodIndenting}public override {readOnlyKeyword}int GetHashCode() => throw new NotSupportedException();";
+{methodIndenting}public override {readOnlyKeyword}int GetHashCode() => throw new global::System.NotSupportedException();";
 
 		string toStringMethod = Array.Exists(
 			methods,
@@ -296,13 +321,13 @@ partial struct {type.Name}{genericParameterList}
 		)
 			? $"{methodIndenting}// Can't generate '{nameof(ToString)}' because the method is impl'ed by user."
 			: $@"{methodIndenting}/// <inheritdoc cref=""object.ToString""/>
-{methodIndenting}/// <exception cref=""NotSupportedException"">Always throws.</exception>
+{methodIndenting}/// <exception cref=""global::System.NotSupportedException"">Always throws.</exception>
 {methodIndenting}[global::System.CodeDom.Compiler.GeneratedCode(""{GetType().FullName}"", ""{VersionValue}"")]
 {methodIndenting}[global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
 {methodIndenting}[global::System.Diagnostics.CodeAnalysis.DoesNotReturn]
 {methodIndenting}[global::System.Obsolete(""You can't use or call this method."", true, DiagnosticId = ""BAN"")]
 {methodIndenting}[global::System.Runtime.CompilerServices.CompilerGenerated]
-{methodIndenting}public override {readOnlyKeyword}string? ToString() => throw new NotSupportedException();";
+{methodIndenting}public override {readOnlyKeyword}string? ToString() => throw new global::System.NotSupportedException();";
 
 		context.AddSource(
 			type.ToFileName(),
