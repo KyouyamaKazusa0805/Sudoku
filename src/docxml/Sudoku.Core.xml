@@ -4908,16 +4908,6 @@
         <member name="P:Sudoku.Concepts.Solving.Conclusion.System#IDefaultable{Sudoku#Concepts#Solving#Conclusion}#Default">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.Solving.Conclusion.Deconstruct(Sudoku.Concepts.Solving.ConclusionType@,System.Int32@)">
-            <summary>
-            Deconstruct the instance into multiple values.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Concepts.Solving.Conclusion.Deconstruct(Sudoku.Concepts.Solving.ConclusionType@,System.Int32@,System.Int32@)">
-            <summary>
-            Deconstruct the instance into multiple values.
-            </summary>
-        </member>
         <member name="M:Sudoku.Concepts.Solving.Conclusion.ApplyTo(Sudoku.Concepts.Collections.Grid@)">
             <summary>
             Put this instance into the specified grid.
@@ -4969,6 +4959,84 @@
         </member>
         <member name="M:Sudoku.Concepts.Solving.Conclusion.op_GreaterThanOrEqual(Sudoku.Concepts.Solving.Conclusion,Sudoku.Concepts.Solving.Conclusion)">
             <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.Solving.Conclusion.Deconstruct(Sudoku.Concepts.Solving.ConclusionType@,System.Int32@)">
+            <summary>
+            Deconstruct the current instance into multiple values, which means you can use
+            the value-tuple syntax to define your own deconstruction logic.
+            </summary>
+            <remarks>
+            <para>
+            For example,
+            if you have defined a deconstruction method <c>Deconstruct</c> with no return value:
+            <code><![CDATA[
+            public void Deconstruct(out string name, out int age)
+            {
+                name = Name;
+                age = Age;
+            }
+            ]]></code>
+            The following code will be legal.
+            <code><![CDATA[
+            // Use explicitly typed variables to get a deconstruction.
+            (string name, int age) = student;
+            
+            // Or use the type inferring to omit the type of each variable having been deconstructed.
+            var (name, age) = student;
+            
+            // Of course, you can also use the pure invocation to get values.
+            student.Deconstruct(out string name, out int age);
+            ]]></code>
+            </para>
+            <para>
+            Deconstruction methods also allow you using deconstruction patterns, like this:
+            <code><![CDATA[
+            if (student is (name: var name, age: >= 18))
+            {
+                Console.WriteLine(name);
+            }
+            ]]></code>
+            </para>
+            </remarks>
+        </member>
+        <member name="M:Sudoku.Concepts.Solving.Conclusion.Deconstruct(Sudoku.Concepts.Solving.ConclusionType@,System.Int32@,System.Int32@)">
+            <summary>
+            Deconstruct the current instance into multiple values, which means you can use
+            the value-tuple syntax to define your own deconstruction logic.
+            </summary>
+            <remarks>
+            <para>
+            For example,
+            if you have defined a deconstruction method <c>Deconstruct</c> with no return value:
+            <code><![CDATA[
+            public void Deconstruct(out string name, out int age)
+            {
+                name = Name;
+                age = Age;
+            }
+            ]]></code>
+            The following code will be legal.
+            <code><![CDATA[
+            // Use explicitly typed variables to get a deconstruction.
+            (string name, int age) = student;
+            
+            // Or use the type inferring to omit the type of each variable having been deconstructed.
+            var (name, age) = student;
+            
+            // Of course, you can also use the pure invocation to get values.
+            student.Deconstruct(out string name, out int age);
+            ]]></code>
+            </para>
+            <para>
+            Deconstruction methods also allow you using deconstruction patterns, like this:
+            <code><![CDATA[
+            if (student is (name: var name, age: >= 18))
+            {
+                Console.WriteLine(name);
+            }
+            ]]></code>
+            </para>
+            </remarks>
         </member>
         <member name="T:Sudoku.Concepts.Solving.ConclusionType">
             <summary>

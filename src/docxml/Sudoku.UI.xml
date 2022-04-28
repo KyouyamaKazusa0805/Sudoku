@@ -3063,16 +3063,19 @@
             Throws when the argument <paramref name="count"/> is negative.
             </exception>
         </member>
-        <member name="T:Microsoft.UI.Xaml.Shapes.LineExtensions">
+        <member name="T:Microsoft.UI.Xaml.WindowExtensions">
             <summary>
-            Provides extension methods on <see cref="T:Microsoft.UI.Xaml.Shapes.Line"/>.
+            Provides extension methods on <see cref="T:Microsoft.UI.Xaml.Window"/>.
             </summary>
-            <seealso cref="T:Microsoft.UI.Xaml.Shapes.Line"/>
+            <seealso cref="T:Microsoft.UI.Xaml.Window"/>
         </member>
-        <member name="M:Microsoft.UI.Xaml.Shapes.LineExtensions.Deconstruct(Microsoft.UI.Xaml.Shapes.Line,Windows.Foundation.Point@,Windows.Foundation.Point@)">
+        <member name="M:Microsoft.UI.Xaml.WindowExtensions.GetAppWindow``1(``0)">
             <summary>
-            Deconstruct the instance to multiple values.
+            Gets the <see cref="T:Microsoft.UI.Windowing.AppWindow"/> instance via the specified <see cref="T:Microsoft.UI.Xaml.Window"/>.
             </summary>
+            <typeparam name="TWindow">The type of the window.</typeparam>
+            <param name="this">The <typeparamref name="TWindow"/>-typed instance.</param>
+            <returns>The <see cref="T:Microsoft.UI.Windowing.AppWindow"/> instance.</returns>
         </member>
         <member name="T:Microsoft.UI.Xaml.Shapes.Line_DED029E7E2">
             <summary>
@@ -3118,20 +3121,6 @@
             ]]></code>
             </para>
             </remarks>
-        </member>
-        <member name="T:Microsoft.UI.Xaml.WindowExtensions">
-            <summary>
-            Provides extension methods on <see cref="T:Microsoft.UI.Xaml.Window"/>.
-            </summary>
-            <seealso cref="T:Microsoft.UI.Xaml.Window"/>
-        </member>
-        <member name="M:Microsoft.UI.Xaml.WindowExtensions.GetAppWindow``1(``0)">
-            <summary>
-            Gets the <see cref="T:Microsoft.UI.Windowing.AppWindow"/> instance via the specified <see cref="T:Microsoft.UI.Xaml.Window"/>.
-            </summary>
-            <typeparam name="TWindow">The type of the window.</typeparam>
-            <param name="this">The <typeparamref name="TWindow"/>-typed instance.</param>
-            <returns>The <see cref="T:Microsoft.UI.Windowing.AppWindow"/> instance.</returns>
         </member>
         <member name="T:Windows.Storage.Pickers.FileOpenPickerExtensions">
             <summary>
