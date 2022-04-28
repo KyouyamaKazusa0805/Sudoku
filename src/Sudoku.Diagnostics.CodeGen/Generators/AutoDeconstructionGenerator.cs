@@ -235,16 +235,11 @@ public sealed class AutoDeconstructionGenerator : ISourceGenerator
 			// If so, check whether the validity of the first argument (must be 'System.Type')
 			// and the second argument (must be 'params string[]').
 			if (
-#pragma warning disable IDE0055
 				attributeData is not
 				{
-					ConstructorArguments: [
-						{ Value: INamedTypeSymbol typeOfResult },
-						{ Values: var typedConstants }
-					],
+					ConstructorArguments: [{ Value: INamedTypeSymbol typeOfResult }, { Values: var typedConstants }],
 					NamedArguments: var namedArgs
 				}
-#pragma warning restore IDE0055
 			)
 			{
 				// Invalid case.
