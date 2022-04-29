@@ -7222,9 +7222,6 @@
         <member name="M:Sudoku.Concepts.Solving.UniquePolygonPattern.GetHashCode">
             <inheritdoc cref="M:System.Object.GetHashCode"/>
         </member>
-        <member name="M:Sudoku.Concepts.Solving.UniquePolygonPattern.ToString">
-            <inheritdoc cref="M:System.Object.ToString"/>
-        </member>
         <member name="M:Sudoku.Concepts.Solving.UniquePolygonPattern.Deconstruct(System.ValueTuple{System.Int32,System.Int32}@,System.ValueTuple{System.Int32,System.Int32}@,System.ValueTuple{System.Int32,System.Int32,System.Int32,System.Int32}@)">
             <summary>
             Deconstruct the current instance into multiple values, which means you can use
@@ -7263,6 +7260,9 @@
             ]]></code>
             </para>
             </remarks>
+        </member>
+        <member name="M:Sudoku.Concepts.Solving.UniquePolygonPattern.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
         </member>
         <member name="T:Sudoku.Concepts.SymmetryType">
             <summary>
@@ -7972,11 +7972,11 @@
         <member name="M:Sudoku.Presentation.Nodes.CandidateViewNode.GetHashCode">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Presentation.Nodes.CandidateViewNode.ToString">
-            <inheritdoc/>
-        </member>
         <member name="M:Sudoku.Presentation.Nodes.CandidateViewNode.Clone">
             <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.CandidateViewNode.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
         </member>
         <member name="T:Sudoku.Presentation.Nodes.CellViewNode">
             <summary>
@@ -8001,11 +8001,11 @@
         <member name="M:Sudoku.Presentation.Nodes.CellViewNode.GetHashCode">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Presentation.Nodes.CellViewNode.ToString">
-            <inheritdoc/>
-        </member>
         <member name="M:Sudoku.Presentation.Nodes.CellViewNode.Clone">
             <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.CellViewNode.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
         </member>
         <member name="T:Sudoku.Presentation.Nodes.CrosshatchViewNode">
             <summary>
@@ -8043,11 +8043,11 @@
         <member name="M:Sudoku.Presentation.Nodes.CrosshatchViewNode.GetHashCode">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Presentation.Nodes.CrosshatchViewNode.ToString">
-            <inheritdoc/>
-        </member>
         <member name="M:Sudoku.Presentation.Nodes.CrosshatchViewNode.Clone">
             <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.CrosshatchViewNode.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
         </member>
         <member name="T:Sudoku.Presentation.Nodes.HouseViewNode">
             <summary>
@@ -8072,11 +8072,11 @@
         <member name="M:Sudoku.Presentation.Nodes.HouseViewNode.GetHashCode">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Presentation.Nodes.HouseViewNode.ToString">
-            <inheritdoc/>
-        </member>
         <member name="M:Sudoku.Presentation.Nodes.HouseViewNode.Clone">
             <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.HouseViewNode.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
         </member>
         <member name="T:Sudoku.Presentation.Nodes.LinkViewNode">
             <summary>
@@ -8114,11 +8114,11 @@
         <member name="M:Sudoku.Presentation.Nodes.LinkViewNode.GetHashCode">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Presentation.Nodes.LinkViewNode.ToString">
-            <inheritdoc/>
-        </member>
         <member name="M:Sudoku.Presentation.Nodes.LinkViewNode.Clone">
             <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.LinkViewNode.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
         </member>
         <member name="T:Sudoku.Presentation.Nodes.UnknownViewNode">
             <summary>
@@ -8156,11 +8156,11 @@
         <member name="M:Sudoku.Presentation.Nodes.UnknownViewNode.GetHashCode">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Presentation.Nodes.UnknownViewNode.ToString">
-            <inheritdoc/>
-        </member>
         <member name="M:Sudoku.Presentation.Nodes.UnknownViewNode.Clone">
             <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Presentation.Nodes.UnknownViewNode.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
         </member>
         <member name="T:Sudoku.Presentation.Nodes.ViewNode">
             <summary>

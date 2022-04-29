@@ -50,6 +50,7 @@
 /// </para>
 /// </remarks>
 [AutoDeconstruction(nameof(Pair1), nameof(Pair2), nameof(CenterCells))]
+[AutoOverridesToString(nameof(Map))]
 public readonly partial record struct UniquePolygonPattern(long Mask) : ITechniquePattern<UniquePolygonPattern>
 {
 	/// <summary>
@@ -133,8 +134,4 @@ public readonly partial record struct UniquePolygonPattern(long Mask) : ITechniq
 	/// <inheritdoc cref="object.GetHashCode"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public override int GetHashCode() => (int)Mask;
-
-	/// <inheritdoc cref="object.ToString"/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public override string ToString() => Map.ToString();
 }

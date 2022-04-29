@@ -3,7 +3,8 @@
 /// <summary>
 /// Defines a view node that highlights for a house.
 /// </summary>
-public sealed class HouseViewNode : ViewNode
+[AutoOverridesToString(nameof(Identifier), nameof(House))]
+public sealed partial class HouseViewNode : ViewNode
 {
 	/// <summary>
 	/// Initializes a <see cref="HouseViewNode"/> instance via the identifier and the highlight house.
@@ -28,11 +29,6 @@ public sealed class HouseViewNode : ViewNode
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public override int GetHashCode() => HashCode.Combine(nameof(HouseViewNode), Identifier, House);
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public override string ToString()
-		=> $"{nameof(HouseViewNode)} {{ {nameof(Identifier)} = {Identifier}, {nameof(House)} = {new HouseCollection(House).ToString()} }}";
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

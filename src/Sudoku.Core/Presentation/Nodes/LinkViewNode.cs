@@ -3,7 +3,8 @@
 /// <summary>
 /// Defines a view node that highlights for a link.
 /// </summary>
-public sealed class LinkViewNode : ViewNode
+[AutoOverridesToString(nameof(Identifier), nameof(Start), nameof(End), nameof(Inference))]
+public sealed partial class LinkViewNode : ViewNode
 {
 	/// <summary>
 	/// Initializes a <see cref="LinkViewNode"/> instance via the specified identifier,
@@ -45,11 +46,6 @@ public sealed class LinkViewNode : ViewNode
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public override int GetHashCode()
 		=> HashCode.Combine(nameof(LinkViewNode), Start.Cells, Start.Digit, End.Cells, End.Digit, Inference);
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public override string ToString()
-		=> $"{nameof(LinkViewNode)} {{ {nameof(Start)} = {Start}, {nameof(End)} = {End}, {nameof(Inference)} = {Inference} }}";
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

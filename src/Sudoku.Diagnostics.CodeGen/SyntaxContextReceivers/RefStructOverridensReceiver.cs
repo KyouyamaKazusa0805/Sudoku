@@ -24,7 +24,7 @@ internal sealed record class RefStructOverridensReceiver(CancellationToken Cance
 		if (
 			context is not
 			{
-				Node: TypeDeclarationSyntax
+				Node: StructDeclarationSyntax
 				{
 					Identifier: var identifier,
 					Modifiers: { Count: not 0 } modifiers
@@ -41,8 +41,7 @@ internal sealed record class RefStructOverridensReceiver(CancellationToken Cance
 			return;
 		}
 
-		var symbol = semanticModel.GetDeclaredSymbol(n, CancellationToken);
-		if (symbol is not { TypeKind: TypeKind.Struct } typeSymbol)
+		if (semanticModel.GetDeclaredSymbol(n, CancellationToken) is not { } typeSymbol)
 		{
 			return;
 		}

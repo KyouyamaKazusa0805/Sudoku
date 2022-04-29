@@ -3,7 +3,8 @@
 /// <summary>
 /// Defines a view node that highlights for a unknown.
 /// </summary>
-public sealed class UnknownViewNode : ViewNode
+[AutoOverridesToString(nameof(Identifier), nameof(Cell), nameof(DigitsMask), nameof(UnknownValueChar))]
+public sealed partial class UnknownViewNode : ViewNode
 {
 	/// <summary>
 	/// Initializes an <see cref="UnknownViewNode"/> instance via the specified identifier,
@@ -46,11 +47,6 @@ public sealed class UnknownViewNode : ViewNode
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public override int GetHashCode()
 		=> HashCode.Combine(nameof(UnknownViewNode), Identifier, Cell, DigitsMask, UnknownValueChar);
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public override string ToString()
-		=> $"{nameof(UnknownViewNode)} {{ {nameof(Cell)} = {Cells.Empty + Cell}, {nameof(DigitsMask)} = {new DigitCollection(DigitsMask).ToString()}, {nameof(UnknownValueChar)} = '{(char)UnknownValueChar}' }}";
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

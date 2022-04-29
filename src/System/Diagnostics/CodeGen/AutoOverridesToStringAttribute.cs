@@ -9,4 +9,17 @@
 [AttributeUsage(AttributeTargets.Class | AttributeTargets.Struct, AllowMultiple = false, Inherited = true)]
 public sealed class AutoOverridesToStringAttribute : Attribute
 {
+	/// <summary>
+	/// Initializes an <see cref="AutoOverridesToStringAttribute"/> instance via the specified array
+	/// of <see cref="string"/> elements indicating the names of the data members you want to be output
+	/// in the output source file.
+	/// </summary>
+	/// <param name="memberNames">The name of data members, represented as a <see cref="string"/> array.</param>
+	public AutoOverridesToStringAttribute(params string[] memberNames) => MemberNames = memberNames;
+
+
+	/// <summary>
+	/// Indicate the name of members that take part in the output.
+	/// </summary>
+	public string[] MemberNames { get; }
 }

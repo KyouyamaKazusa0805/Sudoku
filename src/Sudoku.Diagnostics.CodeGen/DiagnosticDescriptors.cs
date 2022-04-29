@@ -94,4 +94,13 @@ internal static class DiagnosticDescriptors
 		defaultSeverity: DiagnosticSeverity.Warning,
 		isEnabledByDefault: true,
 		helpLinkUri: "https://sunnieshine.github.io/Sudoku/code-analysis/sca0010");
+
+	public static readonly DiagnosticDescriptor SCA0011 = new(
+		id: nameof(SCA0011),
+		title: "Method 'ToString' has already been declared by user",
+		messageFormat: "Method 'ToString' has already been declared by user; please remove it",
+		category: "SourceGen",
+		defaultSeverity: DiagnosticSeverity.Warning,
+		isEnabledByDefault: true,
+		helpLinkUri: "https://sunnieshine.github.io/Sudoku/code-analysis/sca0011");
 }

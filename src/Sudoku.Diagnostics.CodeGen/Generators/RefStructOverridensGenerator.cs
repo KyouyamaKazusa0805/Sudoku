@@ -43,20 +43,7 @@ public sealed class RefStructOverridensGenerator : ISourceGenerator
 
 	/// <inheritdoc/>
 	public void Initialize(GeneratorInitializationContext context)
-#if true
 		=> context.RegisterForSyntaxNotifications(() => new RefStructOverridensReceiver(context.CancellationToken));
-#else
-	{
-#if DEBUG
-		if (!System.Diagnostics.Debugger.IsAttached)
-		{
-			System.Diagnostics.Debugger.Launch();
-		}
-#endif
-
-		context.RegisterForSyntaxNotifications(() => new RefStructOverridensReceiver(context.CancellationToken));
-	}
-#endif
 
 	/// <summary>
 	/// Generates for top-levelled <see langword="ref struct"/> types.

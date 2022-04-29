@@ -15,7 +15,7 @@ internal static class INamedTypeSymbolExtensions
 	{
 		for (var current = @this; current is not null; current = current.BaseType)
 		{
-			foreach (var member in @this.GetMembers())
+			foreach (var member in current.GetMembers())
 			{
 				yield return member;
 			}

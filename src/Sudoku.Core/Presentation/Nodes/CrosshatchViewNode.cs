@@ -3,7 +3,8 @@
 /// <summary>
 /// Defines a view node that highlights for a crosshatch.
 /// </summary>
-public sealed class CrosshatchViewNode : ViewNode
+[AutoOverridesToString(nameof(Digit), nameof(Start), nameof(End))]
+public sealed partial class CrosshatchViewNode : ViewNode
 {
 	/// <summary>
 	/// Initializes a <see cref="CrosshatchViewNode"/> instance via the specified identifier,
@@ -44,11 +45,6 @@ public sealed class CrosshatchViewNode : ViewNode
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public override int GetHashCode() => HashCode.Combine(nameof(CrosshatchViewNode), Identifier, Digit, Start, End);
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public override string ToString()
-		=> $"{nameof(CrosshatchViewNode)} {{ {nameof(Digit)} = {Digit + 1}, {nameof(Start)} = {Start}, {nameof(End)} = {End} }}";
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

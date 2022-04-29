@@ -27,7 +27,8 @@
 /// <param name="Square">The square cells that is <c>S</c> in that sketch.</param>
 /// <param name="BaseLine">The base-line cells that is <c>B</c> in that sketch.</param>
 /// <param name="Pair">The pair cells that is <c>P</c> in that sketch.</param>
-public readonly record struct QiuDeadlyPattern(in Cells Square, in Cells BaseLine, in Cells Pair) :
+[AutoOverridesToString(nameof(Map))]
+public readonly partial record struct QiuDeadlyPattern(in Cells Square, in Cells BaseLine, in Cells Pair) :
 	ITechniquePattern<QiuDeadlyPattern>
 {
 	/// <inheritdoc/>
@@ -51,8 +52,4 @@ public readonly record struct QiuDeadlyPattern(in Cells Square, in Cells BaseLin
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public override int GetHashCode() => HashCode.Combine(Square, BaseLine, Pair);
-
-	/// <inheritdoc cref="object.ToString"/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public override string ToString() => Map.ToString();
 }

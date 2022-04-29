@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
+using System.Diagnostics.CodeGen;
 using System.Runtime.CompilerServices;
 using static System.Numerics.BitOperations;
 
@@ -10,6 +11,7 @@ namespace Sudoku.UI.Drawing.Shapes;
 /// <summary>
 /// Defines a custom collection that stores the <see cref="DrawingElement"/>s.
 /// </summary>
+[AutoOverridesToString(nameof(Count))]
 internal sealed partial class DrawingElementBag :
 	IReadOnlyCollection<DrawingElement>,
 	IReadOnlyList<DrawingElement>,
@@ -142,10 +144,6 @@ internal sealed partial class DrawingElementBag :
 
 		return false;
 	}
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public override string ToString() => $"{nameof(DrawingElementBag)} {{ {nameof(Count)} = {Count} }}";
 
 	/// <inheritdoc cref="IEnumerable{T}.GetEnumerator"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

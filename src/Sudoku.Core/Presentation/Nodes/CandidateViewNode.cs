@@ -3,7 +3,8 @@
 /// <summary>
 /// Defines a view node that highlights for a candidate.
 /// </summary>
-public sealed class CandidateViewNode : ViewNode
+[AutoOverridesToString(nameof(Identifier), nameof(Candidate))]
+public sealed partial class CandidateViewNode : ViewNode
 {
 	/// <summary>
 	/// Initializes a <see cref="CandidateViewNode"/> instance via the identifier and the highlight candidate.
@@ -28,11 +29,6 @@ public sealed class CandidateViewNode : ViewNode
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public override int GetHashCode() => HashCode.Combine(nameof(CandidateViewNode), Identifier, Candidate);
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public override string ToString()
-		=> $"{nameof(CandidateViewNode)} {{ {nameof(Identifier)} = {Identifier}, {nameof(Candidate)} = {Candidates.Empty + Candidate} }}";
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

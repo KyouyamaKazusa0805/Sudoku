@@ -3,7 +3,8 @@
 /// <summary>
 /// Defines a view node that highlights for a cell.
 /// </summary>
-public sealed class CellViewNode : ViewNode
+[AutoOverridesToString(nameof(Identifier), nameof(Cell))]
+public sealed partial class CellViewNode : ViewNode
 {
 	/// <summary>
 	/// Initializes a <see cref="CellViewNode"/> instance via the identifier and the highlight cell.
@@ -28,11 +29,6 @@ public sealed class CellViewNode : ViewNode
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public override int GetHashCode() => HashCode.Combine(nameof(CellViewNode), Identifier, Cell);
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public override string ToString()
-		=> $"{nameof(CellViewNode)} {{ {nameof(Identifier)} = {Identifier}, {nameof(Cell)} = {Cells.Empty + Cell} }}";
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
