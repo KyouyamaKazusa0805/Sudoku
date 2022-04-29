@@ -30,6 +30,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sudoku.Solving.Manual.CodeG
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sudoku.CommandLine", "src\Sudoku.CommandLine\Sudoku.CommandLine.csproj", "{53AA4AE8-2517-4D85-9215-9ABB53FC751E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sudoku.Bot.Oicq", "src\Sudoku.Bot.Oicq\Sudoku.Bot.Oicq.csproj", "{466E38B7-88D9-474D-BD84-92B8CFF4002A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -233,13 +235,33 @@ Global
 		{53AA4AE8-2517-4D85-9215-9ABB53FC751E}.Release|x64.Build.0 = Release|Any CPU
 		{53AA4AE8-2517-4D85-9215-9ABB53FC751E}.Release|x86.ActiveCfg = Release|Any CPU
 		{53AA4AE8-2517-4D85-9215-9ABB53FC751E}.Release|x86.Build.0 = Release|Any CPU
+		{466E38B7-88D9-474D-BD84-92B8CFF4002A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{466E38B7-88D9-474D-BD84-92B8CFF4002A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{466E38B7-88D9-474D-BD84-92B8CFF4002A}.Debug|ARM.ActiveCfg = Debug|Any CPU
+		{466E38B7-88D9-474D-BD84-92B8CFF4002A}.Debug|ARM.Build.0 = Debug|Any CPU
+		{466E38B7-88D9-474D-BD84-92B8CFF4002A}.Debug|ARM64.ActiveCfg = Debug|Any CPU
+		{466E38B7-88D9-474D-BD84-92B8CFF4002A}.Debug|ARM64.Build.0 = Debug|Any CPU
+		{466E38B7-88D9-474D-BD84-92B8CFF4002A}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{466E38B7-88D9-474D-BD84-92B8CFF4002A}.Debug|x64.Build.0 = Debug|Any CPU
+		{466E38B7-88D9-474D-BD84-92B8CFF4002A}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{466E38B7-88D9-474D-BD84-92B8CFF4002A}.Debug|x86.Build.0 = Debug|Any CPU
+		{466E38B7-88D9-474D-BD84-92B8CFF4002A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{466E38B7-88D9-474D-BD84-92B8CFF4002A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{466E38B7-88D9-474D-BD84-92B8CFF4002A}.Release|ARM.ActiveCfg = Release|Any CPU
+		{466E38B7-88D9-474D-BD84-92B8CFF4002A}.Release|ARM.Build.0 = Release|Any CPU
+		{466E38B7-88D9-474D-BD84-92B8CFF4002A}.Release|ARM64.ActiveCfg = Release|Any CPU
+		{466E38B7-88D9-474D-BD84-92B8CFF4002A}.Release|ARM64.Build.0 = Release|Any CPU
+		{466E38B7-88D9-474D-BD84-92B8CFF4002A}.Release|x64.ActiveCfg = Release|Any CPU
+		{466E38B7-88D9-474D-BD84-92B8CFF4002A}.Release|x64.Build.0 = Release|Any CPU
+		{466E38B7-88D9-474D-BD84-92B8CFF4002A}.Release|x86.ActiveCfg = Release|Any CPU
+		{466E38B7-88D9-474D-BD84-92B8CFF4002A}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {E2B6A644-F820-4AB3-8508-C3C59838C955}
-		RESX_Rules = {"EnabledRules":["StringFormat"]}
 		RESX_ShowErrorsInErrorList = False
+		RESX_Rules = {"EnabledRules":["StringFormat"]}
+		SolutionGuid = {E2B6A644-F820-4AB3-8508-C3C59838C955}
 	EndGlobalSection
 EndGlobal
