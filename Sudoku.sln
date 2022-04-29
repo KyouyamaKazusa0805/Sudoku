@@ -32,6 +32,12 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sudoku.CommandLine", "src\S
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sudoku.Bot.Oicq", "src\Sudoku.Bot.Oicq\Sudoku.Bot.Oicq.csproj", "{466E38B7-88D9-474D-BD84-92B8CFF4002A}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Project - Source Generators", "Project - Source Generators", "{51C5B3CD-2CD9-4AA0-82F4-FF783669BAE4}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Project - Bots", "Project - Bots", "{F20539FA-E4D5-462E-A570-7F4619F32D00}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Project - Extensions", "Project - Extensions", "{255FCD08-0810-483B-A275-88D50F5984E3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -258,6 +264,14 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{5BF11834-ABCF-4BB8-BFA2-17B072D56A2C} = {255FCD08-0810-483B-A275-88D50F5984E3}
+		{D9245FB8-31D4-4ED7-BCAF-DF21033A2D93} = {51C5B3CD-2CD9-4AA0-82F4-FF783669BAE4}
+		{F57DE449-8AB7-4C19-881C-0F81D9106D75} = {51C5B3CD-2CD9-4AA0-82F4-FF783669BAE4}
+		{906B3060-FD92-41BD-A84D-944AC70B8656} = {51C5B3CD-2CD9-4AA0-82F4-FF783669BAE4}
+		{83F2352B-69B1-44F4-BD9B-B98DBF07562D} = {51C5B3CD-2CD9-4AA0-82F4-FF783669BAE4}
+		{466E38B7-88D9-474D-BD84-92B8CFF4002A} = {F20539FA-E4D5-462E-A570-7F4619F32D00}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		RESX_ShowErrorsInErrorList = False
