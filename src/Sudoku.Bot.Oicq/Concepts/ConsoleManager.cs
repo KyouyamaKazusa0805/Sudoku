@@ -31,13 +31,9 @@ public static class ConsoleManager
 				var consoleError = type.GetField("_error", privateStatic);
 				var consoleInitializeStdOutError = type.GetMethod("InitializeStdOutError", privateStatic);
 
-				Debug.Assert(consoleOut is not null);
-				Debug.Assert(consoleError is not null);
-				Debug.Assert(consoleInitializeStdOutError is not null);
-
-				consoleOut.SetValue(null, null);
-				consoleError.SetValue(null, null);
-				consoleInitializeStdOutError.Invoke(null, new object[] { true });
+				consoleOut!.SetValue(null, null);
+				consoleError!.SetValue(null, null);
+				consoleInitializeStdOutError!.Invoke(null, new object[] { true });
 			}
 		}
 	}

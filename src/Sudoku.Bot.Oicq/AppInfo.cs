@@ -8,4 +8,4 @@
 /// <param name="Author">Indicates the author of the plugin.</param>
 /// <param name="Description">Indicates the description of the plugin.</param>
 /// <param name="AppId">Indicates the App ID value.</param>
-public readonly record struct AppInfo(string Name, string Version, string Author, string Description, string AppId);
+public sealed record class AppInfo(string Name, string Version, string Author, string Description, string AppId);

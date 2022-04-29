@@ -110,7 +110,7 @@
             <summary>
             Adds the specified app info converter into the collection via the key.
             </summary>
-            <typeparam name="T">The type of the converter.</typeparam>
+            <typeparam name="TAppInfoConverter">The type of the app info converter.</typeparam>
             <param name="key">The key that corresponds to the app info converter.</param>
         </member>
         <member name="M:Sudoku.Bot.Oicq.AppService.Log(System.Object[])">
@@ -156,7 +156,7 @@
             Indicates the time stamp.
             </summary>
         </member>
-        <member name="P:Sudoku.Bot.Oicq.Concepts.AmiableEventArgs.Robot">
+        <member name="P:Sudoku.Bot.Oicq.Concepts.AmiableEventArgs.Bot">
             <summary>
             Indicates the QQ number that points to the bot triggering the event.
             </summary>
@@ -333,6 +333,36 @@
             Defines an IR code provider.
             </summary>
         </member>
+        <member name="T:Sudoku.Bot.Oicq.Concepts.CommonEventType">
+            <summary>
+            The basic event type of QQ.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Bot.Oicq.Concepts.CommonEventType.Friend">
+            <summary>
+            C2C message for a QQ friend.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Bot.Oicq.Concepts.CommonEventType.Group">
+            <summary>
+            Group message.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Bot.Oicq.Concepts.CommonEventType.GroupTmp">
+            <summary>
+            Temporary message from a group.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Bot.Oicq.Concepts.CommonEventType.AddFriendReply">
+            <summary>
+            C2C message for QQ adding friend window.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Bot.Oicq.Concepts.CommonEventType.Money">
+            <summary>
+            Interact message.
+            </summary>
+        </member>
         <member name="T:Sudoku.Bot.Oicq.Concepts.ConsoleManager">
             <summary>
             Defines the console manager.
@@ -500,41 +530,6 @@
             to a stream for presentation on another terminal window elsewhere.
             </para>
             </remarks>
-        </member>
-        <member name="T:Sudoku.Bot.Oicq.Concepts.DefaultEventConverter">
-            <summary>
-            Defines a default event converter.
-            </summary>
-        </member>
-        <member name="T:Sudoku.Bot.Oicq.Concepts.DefaultEventConverter.CommonEventType">
-            <summary>
-            The basic event type of QQ.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Bot.Oicq.Concepts.DefaultEventConverter.CommonEventType.Friend">
-            <summary>
-            C2C message for a QQ friend.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Bot.Oicq.Concepts.DefaultEventConverter.CommonEventType.Group">
-            <summary>
-            Group message.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Bot.Oicq.Concepts.DefaultEventConverter.CommonEventType.GroupTmp">
-            <summary>
-            Temporary message from a group.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Bot.Oicq.Concepts.DefaultEventConverter.CommonEventType.AddFriendReply">
-            <summary>
-            C2C message for QQ adding friend window.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Bot.Oicq.Concepts.DefaultEventConverter.CommonEventType.Money">
-            <summary>
-            Interact message.
-            </summary>
         </member>
         <member name="T:Sudoku.Bot.Oicq.Concepts.EnumConverter`1">
             <summary>

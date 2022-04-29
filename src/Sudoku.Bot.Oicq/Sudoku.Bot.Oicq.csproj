@@ -1,11 +1,18 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<TargetFramework>net7.0</TargetFramework>
+		<TargetFramework>netstandard2.0</TargetFramework>
 		<DocumentationFile>..\docxml\Sudoku.Bot.Oicq.xml</DocumentationFile>
 		<PackageVersion>0.1.0</PackageVersion>
 		<AssemblyVersion>0.1.0</AssemblyVersion>
 		<CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
+		<EnablePreviewFeatures>false</EnablePreviewFeatures>
+		<GenerateRequiresPreviewFeaturesAttribute>false</GenerateRequiresPreviewFeaturesAttribute>
 	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="IndexRange" Version="1.0.2" />
+		<PackageReference Include="System.Text.Json" Version="6.0.3" />
+	</ItemGroup>
 
 </Project>

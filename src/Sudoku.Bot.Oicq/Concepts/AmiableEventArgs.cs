@@ -19,7 +19,7 @@ public class AmiableEventArgs : EventArgs
 	/// <summary>
 	/// The app info.
 	/// </summary>
-	public AppInfo AppInfo;
+	public AppInfo AppInfo = null!;
 
 
 	/// <summary>
@@ -32,7 +32,7 @@ public class AmiableEventArgs : EventArgs
 	/// Indicates the QQ number that points to the bot triggering the event.
 	/// </summary>
 	[JsonPropertyName("self_id")]
-	public long Robot { get; set; }
+	public long Bot { get; set; }
 
 	/// <summary>
 	/// Indicates the event type. The property is referenced from <see href="https://onebot.dev/">Onebot</see> protocol.

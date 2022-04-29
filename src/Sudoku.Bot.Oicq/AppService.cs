@@ -41,7 +41,7 @@ public class AppService
 	/// <summary>
 	/// Indicates the App information.
 	/// </summary>
-	public AppInfo AppInfo;
+	public AppInfo AppInfo = null!;
 
 
 	/// <summary>
@@ -96,10 +96,10 @@ public class AppService
 	/// <summary>
 	/// Adds the specified app info converter into the collection via the key.
 	/// </summary>
-	/// <typeparam name="T">The type of the converter.</typeparam>
+	/// <typeparam name="TAppInfoConverter">The type of the app info converter.</typeparam>
 	/// <param name="key">The key that corresponds to the app info converter.</param>
-	public void AddAppInfoConverter<T>(string key) where T : IAppInfoConverter, new()
-		=> _appInfoConverters.Add(key, new T());
+	public void AddAppInfoConverter<TAppInfoConverter>(string key) where TAppInfoConverter : IAppInfoConverter, new()
+		=> _appInfoConverters.Add(key, new TAppInfoConverter());
 
 	/// <summary>
 	/// Logs the text via the arguments.

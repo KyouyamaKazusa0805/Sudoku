@@ -35,7 +35,13 @@ public sealed class HttpGetPost
 		using var client = new HttpClient();
 		try
 		{
-			string querystr = string.Join('&', from kvp in values select $"{kvp.Key}={kvp.Value}");
+			string querystr =
+#if NETSTANDARD
+				string.Join("&", from kvp in values select $"{kvp.Key}={kvp.Value}");
+#else
+				string.Join('&', from kvp in values select $"{kvp.Key}={kvp.Value}");
+#endif
+
 			return client.GetStringAsync($"{url}?{querystr}").Result;
 		}
 		catch
