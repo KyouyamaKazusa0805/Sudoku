@@ -9,7 +9,7 @@ public static partial class AmiableService
 	/// Sets the app info.
 	/// </summary>
 	public static void SetAppInfo()
-		=> App.AppInfo = new("Sudoku.Bot.Oicq.Exporting", "0.1.0", "SunnieShine", "测试机器人程序", "app.sunnie.demo");
+		=> App.AppInfo = new("Sudoku.Bot.Oicq.Exporting", "0.1.0", "SunnieShine", "Sudoku bot", "sunnie.app.sudoku");
 
 	/// <summary>
 	/// Builds the services and make compatible platform configurations.
