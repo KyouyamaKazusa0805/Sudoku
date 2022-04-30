@@ -4,6 +4,7 @@
 /// Defines a view node that highlights for a link.
 /// </summary>
 [AutoOverridesToString(nameof(Identifier), nameof(Start), nameof(End), nameof(Inference))]
+[AutoOverridesGetHashCode(nameof(TypeIdentifier), nameof(Identifier), nameof(Start), nameof(End))]
 public sealed partial class LinkViewNode : ViewNode
 {
 	/// <summary>
@@ -35,17 +36,15 @@ public sealed partial class LinkViewNode : ViewNode
 	/// </summary>
 	public Inference Inference { get; }
 
+	/// <inheritdoc/>
+	protected override string TypeIdentifier => nameof(LinkViewNode);
+
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public override bool Equals([NotNullWhen(true)] ViewNode? other)
 		=> other is LinkViewNode comparer
 			&& Start == comparer.Start && End == comparer.End && Inference == comparer.Inference;
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public override int GetHashCode()
-		=> HashCode.Combine(nameof(LinkViewNode), Start.Cells, Start.Digit, End.Cells, End.Digit, Inference);
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

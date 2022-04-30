@@ -4,6 +4,7 @@
 /// Defines a view node that highlights for a candidate.
 /// </summary>
 [AutoOverridesToString(nameof(Identifier), nameof(Candidate))]
+[AutoOverridesGetHashCode(nameof(TypeIdentifier), nameof(Identifier), nameof(Candidate))]
 public sealed partial class CandidateViewNode : ViewNode
 {
 	/// <summary>
@@ -20,15 +21,14 @@ public sealed partial class CandidateViewNode : ViewNode
 	/// </summary>
 	public int Candidate { get; }
 
+	/// <inheritdoc/>
+	protected override string TypeIdentifier => nameof(CandidateViewNode);
+
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public override bool Equals([NotNullWhen(true)] ViewNode? other)
 		=> other is CandidateViewNode comparer && Identifier == comparer.Identifier && Candidate == comparer.Candidate;
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public override int GetHashCode() => HashCode.Combine(nameof(CandidateViewNode), Identifier, Candidate);
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

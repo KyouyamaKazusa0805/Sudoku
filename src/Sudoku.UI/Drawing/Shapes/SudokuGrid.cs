@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
+using System.Diagnostics.CodeGen;
 using System.Runtime.CompilerServices;
 using Sudoku.Concepts;
 
@@ -9,7 +10,8 @@ namespace Sudoku.UI.Drawing.Shapes;
 /// <summary>
 /// Defines a sudoku grid.
 /// </summary>
-public sealed class SudokuGrid : DrawingElement
+[AutoOverridesGetHashCode(nameof(TypeIdentifier), nameof(_grid))]
+public sealed partial class SudokuGrid : DrawingElement
 {
 	/// <summary>
 	/// Indicates the inner grid layout control.
@@ -228,6 +230,8 @@ public sealed class SudokuGrid : DrawingElement
 	/// </summary>
 	internal int RedoStepsCount => _redoSteps.Count;
 
+	private string TypeIdentifier => nameof(SudokuGrid);
+
 
 	/// <summary>
 	/// To undo a step.
@@ -374,10 +378,6 @@ public sealed class SudokuGrid : DrawingElement
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public override bool Equals([NotNullWhen(true)] DrawingElement? other)
 		=> other is SudokuGrid comparer && _grid == comparer._grid;
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public override int GetHashCode() => HashCode.Combine(nameof(SudokuGrid), _grid.GetHashCode());
 
 	/// <summary>
 	/// Gets the inner grid instance by reference.

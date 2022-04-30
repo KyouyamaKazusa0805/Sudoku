@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Diagnostics.CodeAnalysis;
+using System.Diagnostics.CodeGen;
 using System.Runtime.CompilerServices;
 using Microsoft.UI.Xaml.Media;
 using Microsoft.UI.Xaml.Shapes;
@@ -10,7 +11,8 @@ namespace Sudoku.UI.Drawing.Shapes;
 /// <summary>
 /// Defines an outside rectangle.
 /// </summary>
-public sealed class OutsideRectangle : DrawingElement
+[AutoOverridesGetHashCode(nameof(TypeIdentifier), nameof(RectHashCode))]
+public sealed partial class OutsideRectangle : DrawingElement
 {
 	/// <summary>
 	/// The inner rectangle.
@@ -71,15 +73,15 @@ public sealed class OutsideRectangle : DrawingElement
 		set => _rect.Stroke = new SolidColorBrush(value);
 	}
 
+	private int RectHashCode => HashCode.Combine(_rect.Width, _rect.Height);
+
+	private string TypeIdentifier => nameof(OutsideRectangle);
+
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public override bool Equals([NotNullWhen(true)] DrawingElement? other)
 		=> other is OutsideRectangle comparer && ReferenceEquals(_rect, comparer._rect);
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public override int GetHashCode() => HashCode.Combine(nameof(OutsideRectangle), _rect.Width, _rect.Height);
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

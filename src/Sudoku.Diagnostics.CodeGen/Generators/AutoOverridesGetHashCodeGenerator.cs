@@ -4,7 +4,7 @@
 /// Defines a source generator that generates for the code that is for the overriden of a type.
 /// </summary>
 [Generator(LanguageNames.CSharp)]
-public sealed class AutoOverridesToStringGenerator : ISourceGenerator
+public sealed class AutoOverridesGetHashCodeGenerator : ISourceGenerator
 {
 	/// <inheritdoc/>
 	public void Execute(GeneratorExecutionContext context)
@@ -13,7 +13,7 @@ public sealed class AutoOverridesToStringGenerator : ISourceGenerator
 		if (
 			context is not
 			{
-				SyntaxContextReceiver: AutoOverridesToStringReceiver
+				SyntaxContextReceiver: AutoOverridesGetHashCodeReceiver
 				{
 					Diagnostics: var diagnostics,
 					Collection: var collection
@@ -50,9 +50,9 @@ public sealed class AutoOverridesToStringGenerator : ISourceGenerator
 						ContainingType.SpecialType: not (SpecialType.System_Object or SpecialType.System_ValueType),
 						IsStatic: false,
 						IsAbstract: false,
-						Name: nameof(ToString),
+						Name: nameof(GetHashCode),
 						Parameters: [],
-						ReturnType.SpecialType: SpecialType.System_String,
+						ReturnType.SpecialType: SpecialType.System_Int32,
 						IsImplicitlyDeclared: false
 					}
 				)
@@ -83,17 +83,17 @@ public sealed class AutoOverridesToStringGenerator : ISourceGenerator
 				{
 					case IFieldSymbol { Name: var fieldName }:
 					{
-						targetSymbolsRawString.Add($"{{nameof({fieldName})}} = {{{fieldName}}}");
+						targetSymbolsRawString.Add(fieldName);
 						break;
 					}
 					case IPropertySymbol { GetMethod: not null, Name: var propertyName }:
 					{
-						targetSymbolsRawString.Add($"{{nameof({propertyName})}} = {{{propertyName}}}");
+						targetSymbolsRawString.Add(propertyName);
 						break;
 					}
 					case IMethodSymbol { Name: var methodName, Parameters: [], ReturnsVoid: false }:
 					{
-						targetSymbolsRawString.Add($"{{nameof({methodName})}} = {{{methodName}()}}");
+						targetSymbolsRawString.Add($"{methodName}()");
 						break;
 					}
 					default:
@@ -104,11 +104,26 @@ public sealed class AutoOverridesToStringGenerator : ISourceGenerator
 				}
 			}
 
+			string sealedKeyword = attributeData.NamedArguments is [{ Value.Value: var realValue } namedArg, ..]
+				&& ((bool?)realValue ?? false)
+				&& type.TypeKind != TypeKind.Struct ? "sealed " : string.Empty;
+
 			string typeKindString = type.GetTypeKindModifier();
-			string finalString = $"{type.Name} {{{{ {string.Join(", ", targetSymbolsRawString)} }}}}";
+			string methodBody = targetSymbolsRawString.Count switch
+			{
+				<= 8 => $"\t\t=> global::System.HashCode.Combine({string.Join(", ", targetSymbolsRawString)});",
+				_ => $$"""
+					{
+						var final = new global::System.HashCode();
+						{{string.Join("\r\n\t\t", from e in targetSymbolsRawString select $"final.Add({e});")}}
+						return final.ToHashCode();
+					}
+				"""
+			};
+
 			context.AddSource(
 				type.ToFileName(),
-				"aot",
+				"aog",
 				$$"""
 				#nullable enable
 				
@@ -120,8 +135,8 @@ public sealed class AutoOverridesToStringGenerator : ISourceGenerator
 					[global::System.Runtime.CompilerServices.CompilerGenerated]
 					[global::System.CodeDom.Compiler.GeneratedCode("{{GetType().FullName}}", "{{VersionValue}}")]
 					[global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
-					public override {{readOnlyKeyword}}string ToString()
-						=> $"{{finalString}}";
+					public {{sealedKeyword}}override {{readOnlyKeyword}}int GetHashCode()
+				{{methodBody}}
 				}
 				"""
 			);
@@ -130,5 +145,5 @@ public sealed class AutoOverridesToStringGenerator : ISourceGenerator
 
 	/// <inheritdoc/>
 	public void Initialize(GeneratorInitializationContext context)
-		=> context.RegisterForSyntaxNotifications(() => new AutoOverridesToStringReceiver(context.CancellationToken));
+		=> context.RegisterForSyntaxNotifications(() => new AutoOverridesGetHashCodeReceiver(context.CancellationToken));
 }

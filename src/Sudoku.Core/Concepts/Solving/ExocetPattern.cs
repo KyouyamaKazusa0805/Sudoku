@@ -44,7 +44,11 @@
 /// <param name="MirrorR1">Indicates the first mirror cell in the R part.</param>
 /// <param name="MirrorR2">Indicates the second mirror cell in the R part.</param>
 /// <param name="CrossLine">Indicates the cross-line cells.</param>
-public readonly record struct ExocetPattern(
+[AutoOverridesGetHashCode(
+	nameof(Base1), nameof(Base2), nameof(TargetQ1), nameof(TargetQ2),
+	nameof(TargetR1), nameof(TargetR2), nameof(MirrorQ1), nameof(MirrorQ2),
+	nameof(MirrorR1), nameof(MirrorR2), nameof(BaseCellsMap), nameof(TargetCellsMap))]
+public readonly partial record struct ExocetPattern(
 	int Base1, int Base2, int TargetQ1, int TargetQ2, int TargetR1, int TargetR2, in Cells CrossLine,
 	in Cells MirrorQ1, in Cells MirrorQ2, in Cells MirrorR1, in Cells MirrorR2) :
 	ITechniquePattern<ExocetPattern>
@@ -89,27 +93,6 @@ public readonly record struct ExocetPattern(
 			&& CrossLine == other.CrossLine && MirrorQ1 == other.MirrorQ1 && MirrorQ2 == other.MirrorQ2
 			&& other.MirrorR1 == other.MirrorR1 && MirrorR2 == other.MirrorR2
 			&& BaseCellsMap == other.BaseCellsMap && TargetCellsMap == other.TargetCellsMap;
-
-	/// <inheritdoc cref="object.GetHashCode"/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public override int GetHashCode()
-	{
-		var result = new HashCode();
-		result.Add(Base1);
-		result.Add(Base2);
-		result.Add(TargetQ1);
-		result.Add(TargetQ2);
-		result.Add(TargetR1);
-		result.Add(TargetR2);
-		result.Add(MirrorQ1);
-		result.Add(MirrorQ2);
-		result.Add(MirrorR1);
-		result.Add(MirrorR2);
-		result.Add(BaseCellsMap);
-		result.Add(TargetCellsMap);
-
-		return result.ToHashCode();
-	}
 
 	/// <inheritdoc cref="object.ToString"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

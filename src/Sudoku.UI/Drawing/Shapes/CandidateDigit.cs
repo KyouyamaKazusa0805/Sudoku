@@ -2,6 +2,7 @@
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
+using System.Diagnostics.CodeGen;
 using System.Numerics;
 using System.Runtime.CompilerServices;
 using System.Text;
@@ -17,7 +18,8 @@ namespace Sudoku.UI.Drawing.Shapes;
 #if DEBUG
 [DebuggerDisplay($$"""{{{nameof(DebuggerDisplayView)}},nq}""")]
 #endif
-internal sealed class CandidateDigit : DrawingElement
+[AutoOverridesGetHashCode(nameof(TypeIdentifier), nameof(_candidateMask))]
+internal sealed partial class CandidateDigit : DrawingElement
 {
 	/// <summary>
 	/// Indicates the inner grid.
@@ -173,6 +175,8 @@ internal sealed class CandidateDigit : DrawingElement
 		}
 	}
 
+	private string TypeIdentifier => nameof(CandidateDigit);
+
 #if DEBUG
 	/// <summary>
 	/// Defines the debugger view.
@@ -206,10 +210,6 @@ internal sealed class CandidateDigit : DrawingElement
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public override bool Equals([NotNullWhen(true)] DrawingElement? other)
 		=> other is CandidateDigit comparer && _candidateMask == comparer._candidateMask;
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public override int GetHashCode() => HashCode.Combine(nameof(CandidateDigit), _candidateMask);
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

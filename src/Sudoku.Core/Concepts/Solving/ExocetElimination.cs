@@ -6,7 +6,8 @@
 /// </summary>
 /// <param name="Eliminations">Indicates the eliminations.</param>
 /// <param name="Reason">Indicates the reason why these candidates can be eliminated.</param>
-public readonly record struct ExocetElimination(in Candidates Eliminations, ExocetEliminatedReason Reason) :
+[AutoOverridesGetHashCode(nameof(Eliminations), nameof(Reason))]
+public readonly partial record struct ExocetElimination(in Candidates Eliminations, ExocetEliminatedReason Reason) :
 	IEquatable<ExocetElimination>,
 	IEqualityOperators<ExocetElimination, ExocetElimination>
 {
@@ -32,10 +33,6 @@ public readonly record struct ExocetElimination(in Candidates Eliminations, Exoc
 	/// <returns>A <see cref="bool"/> result.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public bool Equals(in ExocetElimination other) => Eliminations == other.Eliminations && Reason == other.Reason;
-
-	/// <inheritdoc cref="object.GetHashCode"/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public override int GetHashCode() => HashCode.Combine(Eliminations, Reason);
 
 	/// <inheritdoc cref="object.ToString"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

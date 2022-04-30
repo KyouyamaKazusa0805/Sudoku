@@ -4,6 +4,7 @@
 /// Defines a view node that highlights for a house.
 /// </summary>
 [AutoOverridesToString(nameof(Identifier), nameof(House))]
+[AutoOverridesGetHashCode(nameof(TypeIdentifier), nameof(Identifier), nameof(House))]
 public sealed partial class HouseViewNode : ViewNode
 {
 	/// <summary>
@@ -20,15 +21,14 @@ public sealed partial class HouseViewNode : ViewNode
 	/// </summary>
 	public int House { get; }
 
+	/// <inheritdoc/>
+	protected override string TypeIdentifier => nameof(HouseViewNode);
+
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public override bool Equals([NotNullWhen(true)] ViewNode? other)
 		=> other is HouseViewNode comparer && Identifier == comparer.Identifier && House == comparer.House;
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public override int GetHashCode() => HashCode.Combine(nameof(HouseViewNode), Identifier, House);
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

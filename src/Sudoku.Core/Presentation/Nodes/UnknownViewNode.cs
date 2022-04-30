@@ -4,6 +4,7 @@
 /// Defines a view node that highlights for a unknown.
 /// </summary>
 [AutoOverridesToString(nameof(Identifier), nameof(Cell), nameof(DigitsMask), nameof(UnknownValueChar))]
+[AutoOverridesGetHashCode(nameof(TypeIdentifier), nameof(Identifier), nameof(Cell), nameof(DigitsMask), nameof(UnknownValueChar))]
 public sealed partial class UnknownViewNode : ViewNode
 {
 	/// <summary>
@@ -15,8 +16,8 @@ public sealed partial class UnknownViewNode : ViewNode
 	/// <param name="unknownValueChar">The character that represents the range of the unknown.</param>
 	/// <param name="digitsMask">The mask representing digits used.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public UnknownViewNode(Identifier identifier, int cell, byte unknownValueChar, short digitsMask) :
-		base(identifier) => (Cell, UnknownValueChar, DigitsMask) = (cell, unknownValueChar, digitsMask);
+	public UnknownViewNode(Identifier identifier, int cell, byte unknownValueChar, short digitsMask) : base(identifier)
+		=> (Cell, UnknownValueChar, DigitsMask) = (cell, unknownValueChar, digitsMask);
 
 
 	/// <summary>
@@ -34,6 +35,9 @@ public sealed partial class UnknownViewNode : ViewNode
 	/// </summary>
 	public short DigitsMask { get; }
 
+	/// <inheritdoc/>
+	protected override string TypeIdentifier => nameof(UnknownViewNode);
+
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -42,11 +46,6 @@ public sealed partial class UnknownViewNode : ViewNode
 			&& Identifier == comparer.Identifier
 			&& Cell == comparer.Cell && DigitsMask == comparer.DigitsMask
 			&& UnknownValueChar == comparer.UnknownValueChar;
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public override int GetHashCode()
-		=> HashCode.Combine(nameof(UnknownViewNode), Identifier, Cell, DigitsMask, UnknownValueChar);
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

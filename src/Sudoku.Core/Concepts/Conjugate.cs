@@ -7,7 +7,8 @@
 /// A <b>Conjugate pair</b> is a pair of two candidates, in the same house where all cells has only
 /// two position can fill this candidate.
 /// </remarks>
-public readonly struct Conjugate :
+[AutoOverridesGetHashCode(nameof(Map), nameof(Digit))]
+public readonly partial struct Conjugate :
 	IDefaultable<Conjugate>,
 	IEquatable<Conjugate>,
 	IEqualityOperators<Conjugate, Conjugate>
@@ -126,10 +127,6 @@ public readonly struct Conjugate :
 	/// <returns>A <see cref="bool"/> result.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public bool Equals(Conjugate other) => Map == other.Map && Digit == other.Digit;
-
-	/// <inheritdoc cref="object.GetHashCode"/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public override int GetHashCode() => HashCode.Combine(Map, Digit);
 
 	/// <inheritdoc cref="object.ToString"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

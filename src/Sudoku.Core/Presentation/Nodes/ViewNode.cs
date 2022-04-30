@@ -18,6 +18,12 @@ public abstract class ViewNode : ICloneable, IEquatable<ViewNode>, IEqualityOper
 	/// </summary>
 	public Identifier Identifier { get; protected set; }
 
+	/// <summary>
+	/// Indicates the inner identifier to distinct the different types that is derived from <see cref="ViewNode"/>.
+	/// </summary>
+	/// <seealso cref="ViewNode"/>
+	protected abstract string TypeIdentifier { get; }
+
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

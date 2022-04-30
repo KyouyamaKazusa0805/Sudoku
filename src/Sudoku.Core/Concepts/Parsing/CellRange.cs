@@ -4,6 +4,7 @@
 /// Defines a range of cells.
 /// </summary>
 [AutoDeconstruction(nameof(MinValue), nameof(MaxValue))]
+[AutoOverridesGetHashCode(nameof(_mask))]
 public readonly partial struct CellRange :
 	IEquatable<CellRange>,
 	IEqualityOperators<CellRange, CellRange>,
@@ -65,10 +66,6 @@ public readonly partial struct CellRange :
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public bool Equals(CellRange other) => _mask == other._mask;
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public override int GetHashCode() => HashCode.Combine(_mask);
 
 	/// <inheritdoc cref="object.ToString"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

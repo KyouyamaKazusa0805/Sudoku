@@ -4,6 +4,7 @@
 /// Defines a view node that highlights for a crosshatch.
 /// </summary>
 [AutoOverridesToString(nameof(Digit), nameof(Start), nameof(End))]
+[AutoOverridesGetHashCode(nameof(TypeIdentifier), nameof(Identifier), nameof(Digit), nameof(Start), nameof(End))]
 public sealed partial class CrosshatchViewNode : ViewNode
 {
 	/// <summary>
@@ -34,6 +35,9 @@ public sealed partial class CrosshatchViewNode : ViewNode
 	/// </summary>
 	public Cells End { get; }
 
+	/// <inheritdoc/>
+	protected override string TypeIdentifier => nameof(CrosshatchViewNode);
+
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -41,10 +45,6 @@ public sealed partial class CrosshatchViewNode : ViewNode
 		=> other is CrosshatchViewNode comparer
 			&& Identifier == comparer.Identifier
 			&& Digit == comparer.Digit && Start == comparer.Start && End == comparer.End;
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public override int GetHashCode() => HashCode.Combine(nameof(CrosshatchViewNode), Identifier, Digit, Start, End);
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

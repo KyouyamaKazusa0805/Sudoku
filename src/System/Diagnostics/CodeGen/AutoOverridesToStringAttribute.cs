@@ -6,6 +6,22 @@
 /// for method <see cref="object.ToString"/>, and make source generator generates their own <c>ToString</c>
 /// method automatically.
 /// </summary>
+/// <remarks>
+/// At default, the generated string value will be the concatenation of assignment styled string with key-value pairs.
+/// For example, if the attribute references two properties in the type:
+/// <code><![CDATA[
+/// [AutoOverridesToString(nameof(A), nameof(B))]
+/// public sealed class ExampleType
+/// {
+///     public int A { get; } = 42;
+///     public int B { get; } = 108;
+/// }
+/// ]]></code>
+/// The generated output string will be:
+/// <code><![CDATA[
+/// ExampleType { A = 42, B = 108 }
+/// ]]></code>
+/// </remarks>
 [AttributeUsage(AttributeTargets.Class | AttributeTargets.Struct, AllowMultiple = false, Inherited = true)]
 public sealed class AutoOverridesToStringAttribute : Attribute
 {

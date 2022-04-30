@@ -1439,6 +1439,50 @@
             Indicates the desired type on which the source generator emits extension methods.
             </summary>
         </member>
+        <member name="T:System.Diagnostics.CodeGen.AutoOverridesGetHashCodeAttribute">
+            <summary>
+            Defines an attributes that allows user using it applying to a type
+            (especially for <see langword="class"/> or <see langword="struct"/>), indicating the overriden metadata
+            for method <see cref="M:System.Object.GetHashCode"/>, and make source generator generates their own <c>GetHashCode</c>
+            method automatically.
+            </summary>
+            <remarks>
+            At default, the generated method will invoke <see cref="M:System.HashCode.Combine``1(``0)"/> and other methods
+            in this method group (i.e. the method group <c>HashCode.Combine</c>) to get the final hash code.
+            For example, if the attribute references two properties in the type:
+            <code><![CDATA[
+            [AutoOverridesGetHashCode(nameof(A), nameof(B))]
+            public sealed class ExampleType
+            {
+                public int A { get; } = 42;
+                public int B { get; } = 108;
+            }
+            ]]></code>
+            The generated code will be:
+            <code><![CDATA[
+            public override int GetHashCode() => HashCode.Combine(A, B);
+            ]]></code>
+            </remarks>
+            <seealso cref="T:System.HashCode"/>
+        </member>
+        <member name="M:System.Diagnostics.CodeGen.AutoOverridesGetHashCodeAttribute.#ctor(System.String[])">
+            <summary>
+            Initializes an <see cref="T:System.Diagnostics.CodeGen.AutoOverridesGetHashCodeAttribute"/> instance via the specified array
+            of <see cref="T:System.String"/> elements indicating the names of the data members you want to take part in
+            the hash code calculation.
+            </summary>
+            <param name="memberNames">The name of data members, represented as a <see cref="T:System.String"/> array.</param>
+        </member>
+        <member name="P:System.Diagnostics.CodeGen.AutoOverridesGetHashCodeAttribute.EmitSealedKeyword">
+            <summary>
+            Indicates whether the source generator will emit the keyword <see langword="sealed"/> to the generated code.
+            </summary>
+        </member>
+        <member name="P:System.Diagnostics.CodeGen.AutoOverridesGetHashCodeAttribute.MemberNames">
+            <summary>
+            Indicate the name of members that take part in the output.
+            </summary>
+        </member>
         <member name="T:System.Diagnostics.CodeGen.AutoOverridesToStringAttribute">
             <summary>
             Defines an attributes that allows user using it applying to a type
@@ -1446,6 +1490,22 @@
             for method <see cref="M:System.Object.ToString"/>, and make source generator generates their own <c>ToString</c>
             method automatically.
             </summary>
+            <remarks>
+            At default, the generated string value will be the concatenation of assignment styled string with key-value pairs.
+            For example, if the attribute references two properties in the type:
+            <code><![CDATA[
+            [AutoOverridesToString(nameof(A), nameof(B))]
+            public sealed class ExampleType
+            {
+                public int A { get; } = 42;
+                public int B { get; } = 108;
+            }
+            ]]></code>
+            The generated output string will be:
+            <code><![CDATA[
+            ExampleType { A = 42, B = 108 }
+            ]]></code>
+            </remarks>
         </member>
         <member name="M:System.Diagnostics.CodeGen.AutoOverridesToStringAttribute.#ctor(System.String[])">
             <summary>

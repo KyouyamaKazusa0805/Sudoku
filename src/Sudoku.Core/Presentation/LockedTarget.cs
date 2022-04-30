@@ -5,6 +5,7 @@
 /// about the locked candidate node.
 /// </summary>
 [JsonConverter(typeof(JsonConverter))]
+[AutoOverridesGetHashCode(nameof(Cells), nameof(Digit))]
 public readonly partial struct LockedTarget :
 	IEquatable<LockedTarget>,
 	IEqualityOperators<LockedTarget, LockedTarget>
@@ -41,10 +42,6 @@ public readonly partial struct LockedTarget :
 	/// <inheritdoc cref="IEquatable{T}.Equals(T)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public bool Equals(in LockedTarget other) => Digit == other.Digit && Cells == other.Cells;
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public override int GetHashCode() => HashCode.Combine(Cells, Digit);
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

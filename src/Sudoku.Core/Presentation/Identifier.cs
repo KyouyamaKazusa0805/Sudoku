@@ -6,6 +6,7 @@
 [StructLayout(LayoutKind.Explicit)]
 [JsonConverter(typeof(JsonConverter))]
 [DisableParameterlessConstructor(Message = "You cannot use the parameterless constructor to construct the data structure. Please use factory method instead.")]
+[AutoOverridesGetHashCode(nameof(UseId), nameof(_colorRawValue))]
 public readonly partial struct Identifier : IEquatable<Identifier>, IEqualityOperators<Identifier, Identifier>
 {
 	/// <summary>
@@ -97,10 +98,6 @@ public readonly partial struct Identifier : IEquatable<Identifier>, IEqualityOpe
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public bool Equals(Identifier other) => UseId == other.UseId && Id == other.Id;
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public override int GetHashCode() => HashCode.Combine(UseId, _colorRawValue);
 
 	/// <inheritdoc cref="object.ToString"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

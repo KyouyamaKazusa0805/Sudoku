@@ -4,6 +4,7 @@
 /// Defines a view node that highlights for a cell.
 /// </summary>
 [AutoOverridesToString(nameof(Identifier), nameof(Cell))]
+[AutoOverridesGetHashCode(nameof(TypeIdentifier), nameof(Identifier), nameof(Cell))]
 public sealed partial class CellViewNode : ViewNode
 {
 	/// <summary>
@@ -20,15 +21,14 @@ public sealed partial class CellViewNode : ViewNode
 	/// </summary>
 	public int Cell { get; }
 
+	/// <inheritdoc/>
+	protected override string TypeIdentifier => nameof(CellViewNode);
+
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public override bool Equals([NotNullWhen(true)] ViewNode? other)
 		=> other is CellViewNode comparer && Identifier == comparer.Identifier && Cell == comparer.Cell;
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public override int GetHashCode() => HashCode.Combine(nameof(CellViewNode), Identifier, Cell);
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

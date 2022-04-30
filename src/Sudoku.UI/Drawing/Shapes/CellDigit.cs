@@ -2,6 +2,7 @@
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
+using System.Diagnostics.CodeGen;
 using System.Runtime.CompilerServices;
 using Microsoft.UI.Xaml.Media;
 using Windows.UI;
@@ -14,7 +15,8 @@ namespace Sudoku.UI.Drawing.Shapes;
 #if DEBUG
 [DebuggerDisplay($$"""{{{nameof(DebuggerDisplayView)}},nq}""")]
 #endif
-internal sealed class CellDigit : DrawingElement
+[AutoOverridesGetHashCode(nameof(TypeIdentifier), nameof(_isGiven), nameof(Digit))]
+internal sealed partial class CellDigit : DrawingElement
 {
 	/// <summary>
 	/// The inner text block.
@@ -227,6 +229,8 @@ internal sealed class CellDigit : DrawingElement
 		}
 	}
 
+	private string TypeIdentifier => nameof(CellDigit);
+
 #if DEBUG
 	/// <summary>
 	/// Defines the debugger view.
@@ -247,10 +251,6 @@ internal sealed class CellDigit : DrawingElement
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public override bool Equals([NotNullWhen(true)] DrawingElement? other)
 		=> other is CellDigit comparer && _isGiven == comparer._isGiven && Digit == comparer.Digit;
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public override int GetHashCode() => HashCode.Combine(nameof(CellDigit), _isGiven, Digit);
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

@@ -2,6 +2,7 @@
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
+using System.Diagnostics.CodeGen;
 using System.Runtime.CompilerServices;
 using Microsoft.UI.Xaml.Media;
 using Microsoft.UI.Xaml.Shapes;
@@ -16,7 +17,8 @@ namespace Sudoku.UI.Drawing.Shapes;
 #if DEBUG
 [DebuggerDisplay($$"""{{{nameof(DebuggerDisplayView)}},nq}""")]
 #endif
-public sealed class CellLine : DrawingElement
+[AutoOverridesGetHashCode(nameof(TypeIdentifier), nameof(LineHashCode))]
+public sealed partial class CellLine : DrawingElement
 {
 	/// <summary>
 	/// The inner line.
@@ -146,6 +148,10 @@ public sealed class CellLine : DrawingElement
 		set => _line.Stroke = new SolidColorBrush(value);
 	}
 
+	private int LineHashCode => HashCode.Combine(_line.X1, _line.X2, _line.Y1, _line.Y2);
+
+	private string TypeIdentifier => nameof(CellLine);
+
 #if DEBUG
 	/// <summary>
 	/// Defines the debugger view.
@@ -171,10 +177,6 @@ public sealed class CellLine : DrawingElement
 			&& _line.X2.NearlyEquals(comparer._line.X2, 1E-2)
 			&& _line.Y1.NearlyEquals(comparer._line.Y1, 1E-2)
 			&& _line.Y2.NearlyEquals(comparer._line.Y2, 1E-2);
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public override int GetHashCode() => HashCode.Combine(nameof(CellLine), _line.X1, _line.X2, _line.Y1, _line.Y2);
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
