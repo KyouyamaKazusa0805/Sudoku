@@ -6,24 +6,22 @@
 public sealed class AmiableMessageEventArgs : AmiableEventArgs
 {
 	/// <summary>
-	/// Indicates the message type.
+	/// Indicates the sender that triggers the event.
 	/// </summary>
-	[JsonPropertyName("message_type")]
-	[JsonConverter(typeof(EnumConverter<MessageEventType>))]
-	public MessageEventType MessageType { get; set; }
-
-	/// <summary>
-	/// Indicates the sub type of the message.
-	/// </summary>
-	[JsonPropertyName("sub_type")]
-	[JsonConverter(typeof(EnumConverter<MessageEventSubType>))]
-	public MessageEventSubType SubType { get; set; }
+	[JsonPropertyName("sender")]
+	public object? Sender { get; set; }
 
 	/// <summary>
 	/// Indicates the message ID value.
 	/// </summary>
 	[JsonPropertyName("message_id")]
 	public int MessageId { get; set; }
+
+	/// <summary>
+	/// Indicates the font of the message.
+	/// </summary>
+	[JsonPropertyName("font")]
+	public int Font { get; set; }
 
 	/// <summary>
 	/// Indicates the QQ of the group.
@@ -43,17 +41,21 @@ public sealed class AmiableMessageEventArgs : AmiableEventArgs
 	[JsonPropertyName("raw_message")]
 	public string? RawMessage { get; set; }
 
-	/// <summary>
-	/// Indicates the font of the message.
-	/// </summary>
-	[JsonPropertyName("font")]
-	public int Font { get; set; }
 
 	/// <summary>
-	/// Indicates the sender that triggers the event.
+	/// Indicates the message type.
 	/// </summary>
-	[JsonPropertyName("sender")]
-	public object? Sender { get; set; }
+	[JsonPropertyName("message_type")]
+	[JsonConverter(typeof(EnumConverter<MessageEventType>))]
+	public MessageEventType MessageType { get; set; }
+
+	/// <summary>
+	/// Indicates the sub type of the message.
+	/// </summary>
+	[JsonPropertyName("sub_type")]
+	[JsonConverter(typeof(EnumConverter<MessageEventSubType>))]
+	public MessageEventSubType SubType { get; set; }
+
 
 	/// <summary>
 	/// Send message to the source.
@@ -68,7 +70,7 @@ public sealed class AmiableMessageEventArgs : AmiableEventArgs
 
 		string content = string.Concat(contents);
 		var sendGroupMessage = ApiWrapper.SendGroupMessage;
-		var sendC2cMessage = ApiWrapper.SendPrivateMessage;
+		var sendC2cMessage = ApiWrapper.SendC2cMessage;
 		var (targetSendingMethod, qq) = MessageType switch
 		{
 			MessageEventType.Group => (sendGroupMessage, GroupId.ToString()),

@@ -29,7 +29,7 @@ public interface IApiWrapper : ICloneable
 	/// </summary>
 	/// <param name="qq">The QQ number of the target friend.</param>
 	/// <param name="msg">The message content.</param>
-	void SendPrivateMessage(string qq, string msg);
+	void SendC2cMessage(string qq, string msg);
 
 	/// <summary>
 	/// Sets the requests for a group.

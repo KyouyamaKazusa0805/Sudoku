@@ -9,7 +9,9 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>Sudoku.Bot.Oicq.Exporting</AssemblyName>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <LangVersion>preview</LangVersion>
     <Nullable>enable</Nullable>
+    <DocumentationFile>..\docxml\Sudoku.Bot.Oicq.Exporting.xml</DocumentationFile>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
     <NuGetPackageImportStamp>
@@ -78,21 +80,26 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AppServiceExtensions.cs" />
-    <Compile Include="ApiWrapper.cs" />
-    <Compile Include="AppInfoConverter.cs" />
-    <Compile Include="Api.cs" />
-    <Compile Include="AmiableService.cs" />
-    <Compile Include="EventRouter.cs" />
-    <Compile Include="EventTriggerer.cs" />
-    <Compile Include="PluginEvents.cs" />
-    <Compile Include="RequestEvents.cs" />
+    <Compile Include="Extensions\AppServiceExtensions.cs" />
+    <Compile Include="Extensibility\ApiWrapper.cs" />
+    <Compile Include="Extensibility\AppInfoConverter.cs" />
+    <Compile Include="Extensibility\Api.cs" />
+    <Compile Include="Extensibility\AmiableService.cs" />
+    <Compile Include="Extensions\CommandStringComparer.cs" />
+    <Compile Include="Eventing\EventRouter.cs" />
+    <Compile Include="Eventing\EventTriggerer.cs" />
+    <Compile Include="Eventing\RequestEvents.cs" />
     <Compile Include="Globals.cs" />
-    <Compile Include="BackingEventHandler.cs" />
+    <Compile Include="Extensibility\BackingEventHandler.cs" />
     <Compile Include="Exportability.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="AmiableService.Core.cs" />
-    <Compile Include="PluginEventHandlers\TestPluginEventHandler.cs" />
+    <Compile Include="Extensibility\Handlers\DefaultPluginEventHandler.cs" />
+    <Compile Include="Resources\ResourcesRouter.cs" />
+    <Compile Include="Resources\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
@@ -106,6 +113,12 @@
       <Project>{466e38b7-88d9-474d-bd84-92b8cff4002a}</Project>
       <Name>Sudoku.Bot.Oicq</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="packages\HuajiTech.UnmanagedExports.MSBuild.1.0.0-rc2\build\HuajiTech.UnmanagedExports.MSBuild.targets" Condition="Exists('packages\HuajiTech.UnmanagedExports.MSBuild.1.0.0-rc2\build\HuajiTech.UnmanagedExports.MSBuild.targets')" />

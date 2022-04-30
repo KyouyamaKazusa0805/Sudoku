@@ -2,7 +2,7 @@
 
 #nullable enable
 
-namespace Sudoku.Bot.Oicq.Exporting;
+namespace Sudoku.Bot.Oicq.Eventing;
 
 /// <summary>
 /// Provides a triggerer that can converts the values into the Onebot standard object types.
@@ -44,7 +44,7 @@ public static class EventTriggerer
 	/// Triggers group event.
 	/// </summary>
 	public static int TriggerGroupEvent(
-		long time, long selfId, string subtype, int msg_id, long group_id, long userId,
+		long time, long selfId, string subtype, int msgId, long groupId, long userId,
 		string message, int font, object? senderInfo)
 		=> TriggerGroupEvent(
 			new AmiableMessageEventArgs
@@ -55,8 +55,8 @@ public static class EventTriggerer
 				Bot = selfId,
 				RawMessage = message,
 				Font = font,
-				GroupId = group_id,
-				MessageId = msg_id,
+				GroupId = groupId,
+				MessageId = msgId,
 				UserId = userId,
 				Sender = senderInfo,
 			}

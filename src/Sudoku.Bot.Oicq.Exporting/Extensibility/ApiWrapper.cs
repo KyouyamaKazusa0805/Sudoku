@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Bot.Oicq.Exporting;
+﻿namespace Sudoku.Bot.Oicq.Extensibility;
 
 /// <summary>
 /// Provides an API wrapper.
@@ -15,7 +15,7 @@ public sealed class ApiWrapper : IApiWrapper
 	public void SendGroupMessage(string group, string msg) => Api.SendMessage(_bot, 0, 2, group, string.Empty, msg, 0);
 
 	/// <inheritdoc/>
-	public void SendPrivateMessage(string qq, string msg) => Api.SendMessage(_bot, 0, 1, string.Empty, qq, msg, 0);
+	public void SendC2cMessage(string qq, string msg) => Api.SendMessage(_bot, 0, 1, string.Empty, qq, msg, 0);
 
 	/// <inheritdoc/>
 	public void OutputLog(string message) => Api.Output(message);
@@ -41,6 +41,7 @@ public sealed class ApiWrapper : IApiWrapper
 	/// <inheritdoc/>
 	public bool SignIn(string group, string address, string message) => throw new NotImplementedException();
 
+	/// <inheritdoc/>
 	public string GetAppDirectory(string AppName)
 	{
 		string dir = Path.Combine(Directory.GetCurrentDirectory(), "config", AppName);

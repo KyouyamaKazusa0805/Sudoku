@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Bot.Oicq.Exporting;
+﻿namespace Sudoku.Bot.Oicq.Extensibility;
 
 /// <summary>
 /// Provides a converter that can convert the <see cref="AppInfo"/> instance into MyQQ-formatted JSON string value.

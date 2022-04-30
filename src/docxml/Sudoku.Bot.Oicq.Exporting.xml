@@ -1,0 +1,387 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Sudoku.Bot.Oicq.Exporting</name>
+    </assembly>
+    <members>
+        <member name="T:Sudoku.Bot.Oicq.AppServiceExtensions">
+            <summary>
+            Provides with methods that adds the Kum SDK configuration into the <see cref="T:Sudoku.Bot.Oicq.AppService"/> instance.
+            </summary>
+            <seealso cref="T:Sudoku.Bot.Oicq.AppService"/>
+        </member>
+        <member name="M:Sudoku.Bot.Oicq.AppServiceExtensions.AddConfig(Sudoku.Bot.Oicq.AppService)">
+            <summary>
+            Provides with the API wrapper for MyQQ SDK.
+            </summary>
+            <param name="this">The <see cref="T:Sudoku.Bot.Oicq.AppService"/> instance.</param>
+            <returns>The reference that is same as <paramref name="this"/>.</returns>
+        </member>
+        <member name="T:Sudoku.Bot.Oicq.Extensibility.ApiWrapper">
+            <summary>
+            Provides an API wrapper.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Bot.Oicq.Extensibility.ApiWrapper._bot">
+            <summary>
+            Indicates the QQ number of the bot.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Bot.Oicq.Extensibility.ApiWrapper.SendGroupMessage(System.String,System.String)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Bot.Oicq.Extensibility.ApiWrapper.SendC2cMessage(System.String,System.String)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Bot.Oicq.Extensibility.ApiWrapper.OutputLog(System.String)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Bot.Oicq.Extensibility.ApiWrapper.Init(System.Object[])">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Bot.Oicq.Extensibility.ApiWrapper.SetData(Sudoku.Bot.Oicq.Concepts.AmiableEventArgs)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Bot.Oicq.Extensibility.ApiWrapper.HandleGroupEvent(System.Int32,System.String,System.String,System.String,System.Int32,System.String)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Bot.Oicq.Extensibility.ApiWrapper.Clone">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Bot.Oicq.Extensibility.ApiWrapper.IsOnline(System.String)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Bot.Oicq.Extensibility.ApiWrapper.SignIn(System.String,System.String,System.String)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Bot.Oicq.Extensibility.ApiWrapper.GetAppDirectory(System.String)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Bot.Oicq.Extensibility.ApiWrapper.GetFriendsRemark(System.String)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Bot.Oicq.Extensibility.ApiWrapper.GetGroupAdmin(System.String)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Bot.Oicq.Extensibility.ApiWrapper.GetGroupName(System.String)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Bot.Oicq.Extensibility.ApiWrapper.GetNick(System.String)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Bot.Oicq.Extensibility.ApiWrapper.GetPictureLink(System.Int32,System.String,System.String)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Bot.Oicq.Extensibility.ApiWrapper.GetBotOnlineInfo">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Bot.Oicq.Extensibility.ApiWrapper.GetVoiceLink(System.String)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Bot.Oicq.Extensibility.ApiWrapper.Like(System.String)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Bot.Oicq.Extensibility.ApiWrapper.RecallGroupMessage(System.String,System.String,System.String)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Bot.Oicq.Extensibility.AppInfoConverter">
+            <summary>
+            Provides a converter that can convert the <see cref="T:Sudoku.Bot.Oicq.AppInfo"/> instance into MyQQ-formatted JSON string value.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Bot.Oicq.Extensibility.AppInfoConverter.Convert(Sudoku.Bot.Oicq.AppInfo)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Bot.Oicq.Extensibility.Api">
+            <summary>
+            Provides with the MyQQ framework-wide dynamic linking library.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Bot.Oicq.Extensibility.AmiableService">
+            <summary>
+            Provides with the Amiable service as the base service. The type will be used automatically.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Bot.Oicq.Extensibility.AmiableService.ApiKey">
+            <summary>
+            Indicates the API key.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Bot.Oicq.Extensibility.AmiableService.App">
+            <summary>
+            Indicates the app service instance.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Bot.Oicq.Extensibility.AmiableService.EventHandlers">
+            <summary>
+            Indicates the events handler.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Bot.Oicq.Extensibility.AmiableService.#cctor">
+            <static-constructor>
+		<summary>
+			<para>
+				Indicates the <see langword="static" /> constructor of the current type.
+			</para>
+			<para>
+				This constructor will initialize some <see langword="static readonly" /> data members
+				of this type that can't use a simple expression to describe the initial value.
+			</para>
+		</summary>
+	</static-constructor>
+        </member>
+        <member name="M:Sudoku.Bot.Oicq.Extensibility.AmiableService.SetAppInfo">
+            <summary>
+            Sets the app info.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Bot.Oicq.Extensibility.AmiableService.ServiceBuilder(Sudoku.Bot.Oicq.AppService)">
+            <summary>
+            Builds the services and make compatible platform configurations.
+            </summary>
+            <param name="service">The current service.</param>
+        </member>
+        <member name="M:Sudoku.Bot.Oicq.Extensibility.AmiableService.AddPluginEventHandler``1">
+            <summary>
+            Adds the specified <see cref="T:Sudoku.Bot.Oicq.Concepts.IPluginEventHandler"/> instance into the event handler collection.
+            </summary>
+            <typeparam name="TPluginEventHandler">The type of the plugin event handler.</typeparam>
+        </member>
+        <member name="M:Sudoku.Bot.Oicq.Extensibility.AmiableService.RegisterPluginModule">
+            <summary>
+            Registers the plugin module.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Bot.Oicq.Extensibility.BackingEventHandler">
+            <summary>
+            The core type to handle the events.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Bot.Oicq.Extensibility.BackingEventHandler.Test">
+            <summary>
+            Test method.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Bot.Oicq.Extensibility.BackingEventHandler.PreInitEvent(System.Object[])">
+            <summary>
+            Indicates the pre-loading event.
+            </summary>
+            <param name="args">The arguments.</param>
+        </member>
+        <member name="M:Sudoku.Bot.Oicq.Extensibility.BackingEventHandler.InitEvent(System.Object[])">
+            <summary>
+            Indicates the initialization event.
+            </summary>
+            <param name="args">The arguments.</param>
+            <returns>The app info string.</returns>
+        </member>
+        <member name="M:Sudoku.Bot.Oicq.Extensibility.BackingEventHandler.AfterInitEvent(System.Object[])">
+            <summary>
+            Indicates the after-initialized event.
+            </summary>
+            <param name="args">The arguments.</param>
+        </member>
+        <member name="M:Sudoku.Bot.Oicq.Extensibility.BackingEventHandler.InvokeEvent(Sudoku.Bot.Oicq.Concepts.AmiableEventType,Sudoku.Bot.Oicq.Concepts.AmiableEventArgs)">
+            <summary>
+            Invokes an event.
+            </summary>
+            <param name="type">The event type to trigger.</param>
+            <param name="e">The event arguments provided.</param>
+        </member>
+        <member name="M:Sudoku.Bot.Oicq.Extensibility.BackingEventHandler.GetAmiableEventArgs(System.Int64,System.Int64,Sudoku.Bot.Oicq.Concepts.EventType)">
+            <summary>
+            Gets an Amiable event arguments instance.
+            </summary>
+            <param name="timestamp">The timestamp.</param>
+            <param name="bot">The QQ of the bot.</param>
+            <param name="eventType">The event type.</param>
+            <returns>The Amiable event arguments instance.</returns>
+        </member>
+        <member name="T:Sudoku.Bot.Oicq.Extensibility.Handlers.DefaultPluginEventHandler">
+            <summary>
+            Defines a default event handler.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Bot.Oicq.Extensibility.Handlers.DefaultPluginEventHandler.Routing">
+            <summary>
+            Indicates the routing methods.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Oicq.Extensibility.Handlers.DefaultPluginEventHandler.EventType">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Bot.Oicq.Extensibility.Handlers.DefaultPluginEventHandler.Process(Sudoku.Bot.Oicq.Concepts.AmiableEventArgs)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Bot.Oicq.Extensibility.Handlers.DefaultPluginEventHandler.TestConnection(Sudoku.Bot.Oicq.Concepts.AmiableMessageEventArgs)">
+            <summary>
+            To test the connection.
+            </summary>
+            <param name="e">The event arguments provided.</param>
+        </member>
+        <member name="M:Sudoku.Bot.Oicq.Extensibility.Handlers.DefaultPluginEventHandler.Help(Sudoku.Bot.Oicq.Concepts.AmiableMessageEventArgs)">
+            <summary>
+            To display the help text.
+            </summary>
+            <param name="e">The event arguments provided.</param>
+        </member>
+        <member name="M:Sudoku.Bot.Oicq.Extensibility.Handlers.DefaultPluginEventHandler.IsSupportedGroup(System.Int64)">
+            <summary>
+            Determines whether the current group is supported.
+            </summary>
+            <param name="groupId">The group QQ number.</param>
+            <returns>A <see cref="T:System.Boolean"/> value indicating the result.</returns>
+        </member>
+        <member name="M:Sudoku.Bot.Oicq.Extensibility.Handlers.DefaultPluginEventHandler.SplitCommand(System.String,System.Char)">
+            <summary>
+            Split the command.
+            </summary>
+            <param name="commandStr">The full command string.</param>
+            <param name="separator">The separator.</param>
+            <returns>The split result.</returns>
+        </member>
+        <member name="T:Sudoku.Bot.Oicq.CommandStringComparer">
+            <summary>
+            Defines a string comparer that can recorgnize the command raw values.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Bot.Oicq.CommandStringComparer.AreEqual(System.String,System.String)">
+            <summary>
+            Compares two <see cref="T:System.String"/>s.
+            </summary>
+            <param name="a">The first <see cref="T:System.String"/> to be compared.</param>
+            <param name="b">The second <see cref="T:System.String"/> to be compared.</param>
+            <returns>A <see cref="T:System.Boolean"/> result.</returns>
+        </member>
+        <member name="T:Sudoku.Bot.Oicq.Eventing.EventRouter">
+            <summary>
+            Provides with a router that can route and execute the specified event via the raw data.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Bot.Oicq.Eventing.EventRouter.Route(System.String,System.Int32,System.Int32,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.Int64)">
+            <summary>
+            Routes the event with raw data.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Bot.Oicq.Eventing.EventTriggerer">
+            <summary>
+            Provides a triggerer that can converts the values into the Onebot standard object types.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Bot.Oicq.Eventing.EventTriggerer.TriggerC2CEvent(System.Int64,System.Int64,System.String,System.Int32,System.Int64,System.String,System.Int32,System.Object)">
+            <summary>
+            Triggers C2C event.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Bot.Oicq.Eventing.EventTriggerer.TriggerC2CEvent(Sudoku.Bot.Oicq.Concepts.AmiableMessageEventArgs)">
+            <summary>
+            Triggers C2C event.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Bot.Oicq.Eventing.EventTriggerer.TriggerGroupEvent(System.Int64,System.Int64,System.String,System.Int32,System.Int64,System.Int64,System.String,System.Int32,System.Object)">
+            <summary>
+            Triggers group event.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Bot.Oicq.Eventing.EventTriggerer.TriggerGroupEvent(Sudoku.Bot.Oicq.Concepts.AmiableMessageEventArgs)">
+            <summary>
+            Triggers group event.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Bot.Oicq.Eventing.RequestEvents">
+            <summary>
+            Provides with the request events. The type has not been implemented now.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Bot.Oicq.Exporting.Exportability">
+            <summary>
+            Provides with a type that is used by expoting to a dynamic linking library,
+            in order to be used and invoked by MyQQ engine.
+            </summary>
+            <remarks><b>
+            Due to the limitation of the exportability, all members in this type marked <see cref="T:HuajiTech.UnmanagedExports.DllExportAttribute"/>
+            cannot be renamed and changed.
+            </b></remarks>
+            <seealso cref="T:HuajiTech.UnmanagedExports.DllExportAttribute"/>
+        </member>
+        <member name="T:Sudoku.Bot.Oicq.Resources.ResourcesRouter">
+            <summary>
+            Defines a resource router that can get the specified resource via the key.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Bot.Oicq.Resources.ResourcesRouter.R">
+            <summary>
+            <para>
+            Indicates the instance that has the ability to call the resource, and distinct with different
+            natural languages.
+            </para>
+            <para>
+            If you want to check the resource, please use the indexer <see cref="P:Sudoku.Bot.Oicq.Resources.ResourcesRouter.Item(System.String)"/> to get them.
+            The return value of the indexer is <c><see cref="T:System.String"/>?</c>:
+            <code>
+            using static Sudoku.Resources.MergedResources;
+            
+            string? resourceValue = R["SuchKeyYouWantToSearchFor"];
+            if (resourceValue is not null)
+            {
+                // Insert the arbitrary code using 'resourceValue'.
+            }
+            </code>
+            </para>
+            <para>
+            In addition, the return value of that indexer can be <see langword="null"/>
+            if the resource doesn't find such value via the specified key.
+            </para>
+            </summary>
+            <seealso cref="P:Sudoku.Bot.Oicq.Resources.ResourcesRouter.Item(System.String)"/>
+        </member>
+        <member name="P:Sudoku.Bot.Oicq.Resources.ResourcesRouter.Item(System.String)">
+            <summary>
+            Gets the value via the specified string key.
+            </summary>
+            <param name="key">The resource key.</param>
+            <returns>The value. If none found, <see langword="null"/>.</returns>
+        </member>
+        <member name="T:Resources.Resources">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:Resources.Resources.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:Resources.Resources.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="P:Resources.Resources.CommandHelp">
+            <summary>
+              Looks up a localized string similar to #帮助,#？,#?.
+            </summary>
+        </member>
+        <member name="P:Resources.Resources.CommandHelpReply">
+            <summary>
+              Looks up a localized string similar to 向日葵的数独机器人！\n作者：SunnieShine（群主）\n命令：\n* #测试 - 测试连接。\n* #帮助、#？ - 显示帮助文字。.
+            </summary>
+        </member>
+        <member name="P:Resources.Resources.CommandTest">
+            <summary>
+              Looks up a localized string similar to #测试.
+            </summary>
+        </member>
+        <member name="P:Resources.Resources.CommandTestReply">
+            <summary>
+              Looks up a localized string similar to 成功。.
+            </summary>
+        </member>
+        <member name="P:Resources.Resources.SupportedGroups">
+            <summary>
+              Looks up a localized string similar to 663888612,924849321.
+            </summary>
+        </member>
+    </members>
+</doc>

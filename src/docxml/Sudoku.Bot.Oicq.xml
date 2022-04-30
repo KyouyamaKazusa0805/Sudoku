@@ -231,19 +231,19 @@
             Provides with the event arguments for the messaging.
             </summary>
         </member>
-        <member name="P:Sudoku.Bot.Oicq.Concepts.AmiableMessageEventArgs.MessageType">
+        <member name="P:Sudoku.Bot.Oicq.Concepts.AmiableMessageEventArgs.Sender">
             <summary>
-            Indicates the message type.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Bot.Oicq.Concepts.AmiableMessageEventArgs.SubType">
-            <summary>
-            Indicates the sub type of the message.
+            Indicates the sender that triggers the event.
             </summary>
         </member>
         <member name="P:Sudoku.Bot.Oicq.Concepts.AmiableMessageEventArgs.MessageId">
             <summary>
             Indicates the message ID value.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Oicq.Concepts.AmiableMessageEventArgs.Font">
+            <summary>
+            Indicates the font of the message.
             </summary>
         </member>
         <member name="P:Sudoku.Bot.Oicq.Concepts.AmiableMessageEventArgs.GroupId">
@@ -261,14 +261,14 @@
             Indicates the raw message.
             </summary>
         </member>
-        <member name="P:Sudoku.Bot.Oicq.Concepts.AmiableMessageEventArgs.Font">
+        <member name="P:Sudoku.Bot.Oicq.Concepts.AmiableMessageEventArgs.MessageType">
             <summary>
-            Indicates the font of the message.
+            Indicates the message type.
             </summary>
         </member>
-        <member name="P:Sudoku.Bot.Oicq.Concepts.AmiableMessageEventArgs.Sender">
+        <member name="P:Sudoku.Bot.Oicq.Concepts.AmiableMessageEventArgs.SubType">
             <summary>
-            Indicates the sender that triggers the event.
+            Indicates the sub type of the message.
             </summary>
         </member>
         <member name="M:Sudoku.Bot.Oicq.Concepts.AmiableMessageEventArgs.SendMessage(System.Object[])">
@@ -823,7 +823,7 @@
             <param name="group">The group.</param>
             <param name="msg">The message content.</param>
         </member>
-        <member name="M:Sudoku.Bot.Oicq.Concepts.IApiWrapper.SendPrivateMessage(System.String,System.String)">
+        <member name="M:Sudoku.Bot.Oicq.Concepts.IApiWrapper.SendC2cMessage(System.String,System.String)">
             <summary>
             Sends the C2C message to the specified friend.
             </summary>

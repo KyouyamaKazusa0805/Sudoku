@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Bot.Oicq.Exporting;
+﻿namespace Sudoku.Bot.Oicq.Extensibility;
 
 /// <summary>
 /// Provides with the MyQQ framework-wide dynamic linking library.
@@ -104,7 +104,7 @@ internal static class Api
 	[DllImport("MyQQApi", EntryPoint = "Api_Tea\u52A0\u5BC6", CharSet = CharSet.Ansi)]
 	public static extern IntPtr TeaEncode(string str, string key);
 
-	[DllImport("MyQQApi", EntryPoint = "Api_Tea\u89E3\u5bC6", CharSet = CharSet.Ansi)]
+	[DllImport("MyQQApi", EntryPoint = "Api_Tea\u89E3\u5BC6", CharSet = CharSet.Ansi)]
 	public static extern IntPtr TeaDecode(string str, string key);
 
 	[DllImport("MyQQApi", EntryPoint = "Api_SessionKey", CharSet = CharSet.Ansi)]

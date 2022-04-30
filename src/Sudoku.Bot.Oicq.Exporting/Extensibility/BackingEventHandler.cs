@@ -1,12 +1,15 @@
 ﻿#pragma warning disable IDE0060
 
-namespace Sudoku.Bot.Oicq.Exporting;
+namespace Sudoku.Bot.Oicq.Extensibility;
 
 /// <summary>
 /// The core type to handle the events.
 /// </summary>
 public static class BackingEventHandler
 {
+	/// <summary>
+	/// Test method.
+	/// </summary>
 	[DllExport]
 	public static int Test() => 0;
 

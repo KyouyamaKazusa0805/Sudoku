@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Bot.Oicq.Exporting;
+﻿namespace Sudoku.Bot.Oicq;
 
 /// <summary>
 /// Provides with methods that adds the Kum SDK configuration into the <see cref="AppService"/> instance.
@@ -11,11 +11,11 @@ public static class AppServiceExtensions
 	/// </summary>
 	/// <param name="this">The <see cref="AppService"/> instance.</param>
 	/// <returns>The reference that is same as <paramref name="this"/>.</returns>
-	public static AppService AddConfig(this AppService service)
+	public static AppService AddConfig(this AppService @this)
 	{
-		service.AddAppInfoConverter<AppInfoConverter>("MQ");
-		service.ApiWrappers.Add("MQ", new ApiWrapper());
-		service.CodeProviders.Add("MQ", new IrCodeProvider());
-		return service;
+		@this.AddAppInfoConverter<AppInfoConverter>("MQ");
+		@this.ApiWrappers.Add("MQ", new ApiWrapper());
+		@this.CodeProviders.Add("MQ", new IrCodeProvider());
+		return @this;
 	}
 }

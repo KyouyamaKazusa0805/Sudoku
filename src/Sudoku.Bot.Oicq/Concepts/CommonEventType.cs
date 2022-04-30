@@ -76,7 +76,7 @@ public enum CommonEventType
 
 	PluginLoaded = 12000,
 
-	PluginEnable = 12001,
+	PluginEnabled = 12001,
 
 	PluginClicked = 12003,
 }

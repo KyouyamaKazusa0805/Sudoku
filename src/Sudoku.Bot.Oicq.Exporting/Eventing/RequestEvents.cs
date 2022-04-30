@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Bot.Oicq.Exporting;
+﻿namespace Sudoku.Bot.Oicq.Eventing;
 
 /// <summary>
 /// Provides with the request events. The type has not been implemented now.

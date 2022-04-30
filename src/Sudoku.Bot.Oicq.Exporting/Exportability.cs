@@ -1,4 +1,4 @@
-﻿#pragma warning disable IDE0060
+﻿#pragma warning disable CS1591, IDE0060
 
 namespace Sudoku.Bot.Oicq.Exporting;
 
@@ -24,7 +24,11 @@ public static class Exportability
 	public static void MQ_Set()
 	{
 		AmiableService.ApiKey = "MQ";
-		PluginEvents.Event_PluginMenu(new() { Bot = 0, EventType = EventType.MetaEvent, Timestamp = DateTime.Now.Ticks });
+		pluginMenuInvoked(new() { Bot = 0, EventType = EventType.MetaEvent, Timestamp = DateTime.Now.Ticks });
+
+
+		static void pluginMenuInvoked(AmiableEventArgs eventArgs)
+			=> BackingEventHandler.InvokeEvent(AmiableEventType.PluginMenuInvoked, eventArgs);
 	}
 
 	[DllExport]
