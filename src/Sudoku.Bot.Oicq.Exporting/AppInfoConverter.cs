@@ -1,9 +1,9 @@
-﻿namespace Sudoku.Bot.Oicq.Adapter;
+﻿namespace Sudoku.Bot.Oicq.Exporting;
 
 /// <summary>
 /// Provides a converter that can convert the <see cref="AppInfo"/> instance into MyQQ-formatted JSON string value.
 /// </summary>
-public sealed class MqAppInfoConverter : IAppInfoConverter
+public sealed class AppInfoConverter : IAppInfoConverter
 {
 	/// <inheritdoc/>
 	public string Convert(AppInfo info)
@@ -17,7 +17,7 @@ public sealed class MqAppInfoConverter : IAppInfoConverter
 		json.WriteString("skey", "SDG5D4Ys89h7DJ849d");
 		json.WriteString("author", info.Author);
 		json.WriteString("description", info.Description);
-		json.WriteString("sdk", typeof(MqAppInfoConverter).Assembly.GetName().Version.ToString());
+		json.WriteString("sdk", typeof(AppInfoConverter).Assembly.GetName().Version.ToString());
 		json.WriteEndObject();
 		json.Flush();
 		json.Dispose();

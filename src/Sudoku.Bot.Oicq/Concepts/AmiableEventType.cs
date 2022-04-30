@@ -13,7 +13,7 @@ public enum AmiableEventType
 	/// <summary>
 	/// Indicates the event that is triggered in C2C.
 	/// </summary>
-	Private,
+	C2C,
 
 	/// <summary>
 	/// Indicates the event that is triggered in QQ group.
@@ -33,7 +33,7 @@ public enum AmiableEventType
 	/// <summary>
 	/// Indicates the event that is triggered when the plugin is enabled.
 	/// </summary>
-	PluginEnable,
+	PluginEnabled,
 
 	/// <summary>
 	/// Indicates the event that is triggered when the plugin is loaded.
@@ -43,7 +43,7 @@ public enum AmiableEventType
 	/// <summary>
 	/// Indicates the event that is triggered when the plugin menu is invoked.
 	/// </summary>
-	PluginMenu,
+	PluginMenuInvoked,
 
 	/// <summary>
 	/// Indicates the Amiable framework is loaded.

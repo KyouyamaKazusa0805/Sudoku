@@ -11,5 +11,5 @@ public interface IEventFilter
 	/// <param name="pluginEvent">The plugin event.</param>
 	/// <param name="eventArgs">The event arguments provided.</param>
 	/// <returns>The result.</returns>
-	bool FilterResult(IPluginEvent pluginEvent, AmiableEventArgs eventArgs);
+	bool FilterResult(IPluginEventHandler pluginEvent, AmiableEventArgs eventArgs);
 }

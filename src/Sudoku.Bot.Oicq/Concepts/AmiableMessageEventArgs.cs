@@ -71,8 +71,8 @@ public sealed class AmiableMessageEventArgs : AmiableEventArgs
 		var sendC2cMessage = ApiWrapper.SendPrivateMessage;
 		var (targetSendingMethod, qq) = MessageType switch
 		{
-			MessageEventType.GROUP => (sendGroupMessage, GroupId.ToString()),
-			MessageEventType.PRIVATE => (sendC2cMessage, UserId.ToString()),
+			MessageEventType.Group => (sendGroupMessage, GroupId.ToString()),
+			MessageEventType.C2C => (sendC2cMessage, UserId.ToString()),
 			_ => default
 		};
 

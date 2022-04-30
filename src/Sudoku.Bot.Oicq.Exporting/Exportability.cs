@@ -3,9 +3,15 @@
 namespace Sudoku.Bot.Oicq.Exporting;
 
 /// <summary>
-/// Provides the type that can export the methods.
+/// Provides with a type that is used by expoting to a dynamic linking library,
+/// in order to be used and invoked by MyQQ engine.
 /// </summary>
-public static class MqExport
+/// <remarks><b>
+/// Due to the limitation of the exportability, all members in this type marked <see cref="DllExportAttribute"/>
+/// cannot be renamed and changed.
+/// </b></remarks>
+/// <seealso cref="DllExportAttribute"/>
+public static class Exportability
 {
 	[DllExport]
 	public static int MQ_End() => 0;
@@ -18,14 +24,14 @@ public static class MqExport
 	public static void MQ_Set()
 	{
 		AmiableService.ApiKey = "MQ";
-		PluginEvents.Event_PluginMenu(new() { Bot = 0, EventType = EventType.META_EVENT, Timestamp = DateTime.Now.Ticks });
+		PluginEvents.Event_PluginMenu(new() { Bot = 0, EventType = EventType.MetaEvent, Timestamp = DateTime.Now.Ticks });
 	}
 
 	[DllExport]
 	public static string MQ_Info()
 	{
 		AmiableService.ApiKey = "MQ";
-		return EventCore.InitEvent();
+		return BackingEventHandler.InitEvent();
 	}
 
 	[DllExport]
@@ -36,12 +42,12 @@ public static class MqExport
 		AmiableService.ApiKey = "MQ";
 		try
 		{
-			return CommonEvents.XX_Event(
+			return EventRouter.Route(
 				robotQQ, eventType, extraType, from, fromQQ, targetQQ, content, index, msgid, udpmsg, unix, p.ToInt64());
 		}
 		catch (Exception ex)
 		{
-			AmiableService.App.Log($"Event异常:{ex}");
+			AmiableService.App.Log($"Event exception: {ex}");
 			return 0;
 		}
 	}

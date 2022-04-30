@@ -51,7 +51,7 @@ public sealed class IniObject
 
 
 	/// <summary>
-	/// 一行一行解析
+	/// Parse the INI string line by line.
 	/// </summary>
 	public void Load()
 	{
@@ -79,9 +79,10 @@ public sealed class IniObject
 					{
 						if (section != null)
 						{
-							//将上一次解析的section存入列表
+							// Adds it into the current section.
 							Sections.Add(section);
-							//创建新的Section
+
+							// Creates a new section.
 							section = new IniSection(line, true);
 						}
 						else
@@ -95,7 +96,7 @@ public sealed class IniObject
 						section!.Values.Add(
 							section is not null
 								? new(a.Trim(), b.Trim())
-								: throw new Exception("Section不存在但解析到Key-Value对")
+								: throw new InvalidOperationException("The key-value pair is found but the section doesn't exist.")
 						);
 					}
 
@@ -115,7 +116,7 @@ public sealed class IniObject
 	}
 
 	/// <summary>
-	/// 将文件保存
+	/// Saves the file.
 	/// </summary>
 	public void Save()
 	{

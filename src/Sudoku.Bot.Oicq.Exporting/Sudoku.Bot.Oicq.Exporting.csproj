@@ -78,21 +78,21 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Adapter\MqAppServiceExtension.cs" />
-    <Compile Include="Adapter\MqApiWrapper.cs" />
-    <Compile Include="Adapter\MqAppInfoConverter.cs" />
-    <Compile Include="Adapter\MqDynamicLinkLib.cs" />
+    <Compile Include="AppServiceExtensions.cs" />
+    <Compile Include="ApiWrapper.cs" />
+    <Compile Include="AppInfoConverter.cs" />
+    <Compile Include="Api.cs" />
     <Compile Include="AmiableService.cs" />
-    <Compile Include="CommonEvents.cs" />
-    <Compile Include="MessageEvents.cs" />
+    <Compile Include="EventRouter.cs" />
+    <Compile Include="EventTriggerer.cs" />
     <Compile Include="PluginEvents.cs" />
     <Compile Include="RequestEvents.cs" />
     <Compile Include="Globals.cs" />
-    <Compile Include="EventCore.cs" />
-    <Compile Include="MqExport.cs" />
+    <Compile Include="BackingEventHandler.cs" />
+    <Compile Include="Exportability.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="AmiableService.Core.cs" />
-    <Compile Include="TestEvent.cs" />
+    <Compile Include="PluginEventHandlers\TestPluginEventHandler.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

@@ -5,7 +5,7 @@ namespace Sudoku.Bot.Oicq.Exporting;
 /// <summary>
 /// The core type to handle the events.
 /// </summary>
-public static class EventCore
+public static class BackingEventHandler
 {
 	[DllExport]
 	public static int Test() => 0;
@@ -53,11 +53,11 @@ public static class EventCore
 	public static void AfterInitEvent(params object[] args) => AmiableService.App.SetApiKey(AmiableService.ApiKey);
 
 	/// <summary>
-	/// Triggers an event.
+	/// Invokes an event.
 	/// </summary>
 	/// <param name="type">The event type to trigger.</param>
 	/// <param name="e">The event arguments provided.</param>
-	public static void InvokeEvents(AmiableEventType type, AmiableEventArgs e)
+	public static void InvokeEvent(AmiableEventType type, AmiableEventArgs e)
 	{
 		try
 		{
@@ -69,11 +69,15 @@ public static class EventCore
 			e.ApiWrapper = apiWrapper;
 			e.AppInfo = AmiableService.App.AppInfo;
 
-			AmiableService.Events.FindAll(x => x.EventType == type).ForEach(x => x.Process(e));
+			AmiableService.EventHandlers.FindAll(x => x.EventType == type).ForEach(x => x.Process(e));
 		}
 		catch (Exception ex) when (ex is { Source: var source, Message: var message, StackTrace: var stackTrace })
 		{
-			AmiableService.App.Log($"[事件错误]\n来源:{source}\n问题:{message}\nStack{stackTrace}");
+			AmiableService.App.Log(
+				string.Join(
+					"\n",
+					new[] { "[Event error]", $"Source: {source}", $"Message: {message}", $"Stack: {stackTrace}" })
+			);
 		}
 	}
 

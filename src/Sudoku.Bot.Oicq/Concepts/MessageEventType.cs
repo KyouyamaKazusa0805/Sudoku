@@ -8,10 +8,10 @@ public enum MessageEventType
 	/// <summary>
 	/// Indicates the message type is from C2C.
 	/// </summary>
-	PRIVATE = 1,
+	C2C = 1,
 
 	/// <summary>
 	/// Indicates the message type is from group.
 	/// </summary>
-	GROUP = 2
+	Group = 2
 }

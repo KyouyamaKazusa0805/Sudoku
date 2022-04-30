@@ -8,19 +8,20 @@ public enum EventType
 	/// <summary>
 	/// Indicates the event type is a message.
 	/// </summary>
-	MESSAGE,
+	Message,
+
 	/// <summary>
 	/// Indicates the event type is a notice.
 	/// </summary>
-	NOTICE,
+	Notice,
 
 	/// <summary>
 	/// Indicates the event type is a request.
 	/// </summary>
-	REQUEST,
+	Request,
 
 	/// <summary>
 	/// Indicates the event type is a meta event.
 	/// </summary>
-	META_EVENT
+	MetaEvent
 }

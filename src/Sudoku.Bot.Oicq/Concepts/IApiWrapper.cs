@@ -103,7 +103,7 @@ public interface IApiWrapper : ICloneable
 	/// Gets the online info for a bot.
 	/// </summary>
 	/// <returns>The info.</returns>
-	string GetRobotOnlineInfo();
+	string GetBotOnlineInfo();
 
 	/// <summary>
 	/// Gets the link of a picture via the <see cref="Guid"/> of the picture.
@@ -112,14 +112,14 @@ public interface IApiWrapper : ICloneable
 	/// <param name="group">The group QQ number.</param>
 	/// <param name="pictureGuid">The <see cref="Guid"/> value as string representation of the picture.</param>
 	/// <returns>The link of the picture.</returns>
-	string GetPicLink(int pictureType, string group, string pictureGuid);
+	string GetPictureLink(int pictureType, string group, string pictureGuid);
 
 	/// <summary>
 	/// Gets the link of a voice.
 	/// </summary>
 	/// <param name="message">The message for a voice.</param>
 	/// <returns>The voice link.</returns>
-	string GetVoiLink(string message);
+	string GetVoiceLink(string message);
 
 	/// <summary>
 	/// Recalls a message item in the specified group.

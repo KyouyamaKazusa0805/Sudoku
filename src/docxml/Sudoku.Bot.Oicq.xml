@@ -186,7 +186,7 @@
             Indicate the event that the code cannot be parsed successfully. The event is not supported at present.
             </summary>
         </member>
-        <member name="F:Sudoku.Bot.Oicq.Concepts.AmiableEventType.Private">
+        <member name="F:Sudoku.Bot.Oicq.Concepts.AmiableEventType.C2C">
             <summary>
             Indicates the event that is triggered in C2C.
             </summary>
@@ -206,7 +206,7 @@
             Indicates the event that is triggered while joining in a QQ group.
             </summary>
         </member>
-        <member name="F:Sudoku.Bot.Oicq.Concepts.AmiableEventType.PluginEnable">
+        <member name="F:Sudoku.Bot.Oicq.Concepts.AmiableEventType.PluginEnabled">
             <summary>
             Indicates the event that is triggered when the plugin is enabled.
             </summary>
@@ -216,7 +216,7 @@
             Indicates the event that is triggered when the plugin is loaded.
             </summary>
         </member>
-        <member name="F:Sudoku.Bot.Oicq.Concepts.AmiableEventType.PluginMenu">
+        <member name="F:Sudoku.Bot.Oicq.Concepts.AmiableEventType.PluginMenuInvoked">
             <summary>
             Indicates the event that is triggered when the plugin menu is invoked.
             </summary>
@@ -648,22 +648,22 @@
             Indicates the event type that is defined by <see href="https://onebot.dev/">Onebot</see> protocol.
             </summary>
         </member>
-        <member name="F:Sudoku.Bot.Oicq.Concepts.EventType.MESSAGE">
+        <member name="F:Sudoku.Bot.Oicq.Concepts.EventType.Message">
             <summary>
             Indicates the event type is a message.
             </summary>
         </member>
-        <member name="F:Sudoku.Bot.Oicq.Concepts.EventType.NOTICE">
+        <member name="F:Sudoku.Bot.Oicq.Concepts.EventType.Notice">
             <summary>
             Indicates the event type is a notice.
             </summary>
         </member>
-        <member name="F:Sudoku.Bot.Oicq.Concepts.EventType.REQUEST">
+        <member name="F:Sudoku.Bot.Oicq.Concepts.EventType.Request">
             <summary>
             Indicates the event type is a request.
             </summary>
         </member>
-        <member name="F:Sudoku.Bot.Oicq.Concepts.EventType.META_EVENT">
+        <member name="F:Sudoku.Bot.Oicq.Concepts.EventType.MetaEvent">
             <summary>
             Indicates the event type is a meta event.
             </summary>
@@ -735,12 +735,12 @@
         </member>
         <member name="M:Sudoku.Bot.Oicq.Concepts.Helpers.IniObject.Load">
             <summary>
-            一行一行解析
+            Parse the INI string line by line.
             </summary>
         </member>
         <member name="M:Sudoku.Bot.Oicq.Concepts.Helpers.IniObject.Save">
             <summary>
-            将文件保存
+            Saves the file.
             </summary>
         </member>
         <member name="T:Sudoku.Bot.Oicq.Concepts.Helpers.IniObjectExtensions">
@@ -898,13 +898,13 @@
             <param name="group">The group QQ as the string representation.</param>
             <returns>The group name.</returns>
         </member>
-        <member name="M:Sudoku.Bot.Oicq.Concepts.IApiWrapper.GetRobotOnlineInfo">
+        <member name="M:Sudoku.Bot.Oicq.Concepts.IApiWrapper.GetBotOnlineInfo">
             <summary>
             Gets the online info for a bot.
             </summary>
             <returns>The info.</returns>
         </member>
-        <member name="M:Sudoku.Bot.Oicq.Concepts.IApiWrapper.GetPicLink(System.Int32,System.String,System.String)">
+        <member name="M:Sudoku.Bot.Oicq.Concepts.IApiWrapper.GetPictureLink(System.Int32,System.String,System.String)">
             <summary>
             Gets the link of a picture via the <see cref="T:System.Guid"/> of the picture.
             </summary>
@@ -913,7 +913,7 @@
             <param name="pictureGuid">The <see cref="T:System.Guid"/> value as string representation of the picture.</param>
             <returns>The link of the picture.</returns>
         </member>
-        <member name="M:Sudoku.Bot.Oicq.Concepts.IApiWrapper.GetVoiLink(System.String)">
+        <member name="M:Sudoku.Bot.Oicq.Concepts.IApiWrapper.GetVoiceLink(System.String)">
             <summary>
             Gets the link of a voice.
             </summary>
@@ -953,7 +953,7 @@
             Defines an event filter.
             </summary>
         </member>
-        <member name="M:Sudoku.Bot.Oicq.Concepts.IEventFilter.FilterResult(Sudoku.Bot.Oicq.Concepts.IPluginEvent,Sudoku.Bot.Oicq.Concepts.AmiableEventArgs)">
+        <member name="M:Sudoku.Bot.Oicq.Concepts.IEventFilter.FilterResult(Sudoku.Bot.Oicq.Concepts.IPluginEventHandler,Sudoku.Bot.Oicq.Concepts.AmiableEventArgs)">
             <summary>
             Filters the specified plugin event and the Amiable event arguments.
             </summary>
@@ -961,17 +961,17 @@
             <param name="eventArgs">The event arguments provided.</param>
             <returns>The result.</returns>
         </member>
-        <member name="T:Sudoku.Bot.Oicq.Concepts.IPluginEvent">
+        <member name="T:Sudoku.Bot.Oicq.Concepts.IPluginEventHandler">
             <summary>
-            Defines a plugin event.
+            Defines a plugin event handler.
             </summary>
         </member>
-        <member name="P:Sudoku.Bot.Oicq.Concepts.IPluginEvent.EventType">
+        <member name="P:Sudoku.Bot.Oicq.Concepts.IPluginEventHandler.EventType">
             <summary>
             Indicates the event type that the Amiable is able to trigger.
             </summary>
         </member>
-        <member name="M:Sudoku.Bot.Oicq.Concepts.IPluginEvent.Process(Sudoku.Bot.Oicq.Concepts.AmiableEventArgs)">
+        <member name="M:Sudoku.Bot.Oicq.Concepts.IPluginEventHandler.Process(Sudoku.Bot.Oicq.Concepts.AmiableEventArgs)">
             <summary>
             To process the operation via the event arguments.
             </summary>
@@ -1017,12 +1017,12 @@
             Indicates the event type that is defined by <see href="https://onebot.dev/">Onebot</see> protocol.
             </summary>
         </member>
-        <member name="F:Sudoku.Bot.Oicq.Concepts.MessageEventType.PRIVATE">
+        <member name="F:Sudoku.Bot.Oicq.Concepts.MessageEventType.C2C">
             <summary>
             Indicates the message type is from C2C.
             </summary>
         </member>
-        <member name="F:Sudoku.Bot.Oicq.Concepts.MessageEventType.GROUP">
+        <member name="F:Sudoku.Bot.Oicq.Concepts.MessageEventType.Group">
             <summary>
             Indicates the message type is from group.
             </summary>

@@ -15,10 +15,10 @@ public static partial class AmiableService
 	/// Builds the services and make compatible platform configurations.
 	/// </summary>
 	/// <param name="service">The current service.</param>
-	public static void ServiceBuilder(AppService service) => service.AddMQConfig();
+	public static void ServiceBuilder(AppService service) => service.AddConfig();
 
 	/// <summary>
 	/// Registers the plugin module.
 	/// </summary>
-	private static void RegisterPluginModule() => AddPluginEvent<TestPluginEvent>();
+	private static void RegisterPluginModule() => AddPluginEvent<TestPluginEventHandler>();
 }

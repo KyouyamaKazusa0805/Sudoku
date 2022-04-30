@@ -9,20 +9,20 @@ public static class PluginEvents
 	/// Triggers the plugin load event.
 	/// </summary>
 	public static void Event_PluginLoad(AmiableEventArgs eventArgs)
-		=> EventCore.InvokeEvents(AmiableEventType.PluginLoaded, eventArgs);
+		=> BackingEventHandler.InvokeEvent(AmiableEventType.PluginLoaded, eventArgs);
 
 	/// <summary>
 	/// Triggers the event that describes the case that the plugin is enabled.
 	/// </summary>
 	public static void Event_PluginEnable(AmiableEventArgs eventArgs)
-		=> EventCore.InvokeEvents(AmiableEventType.PluginEnable, eventArgs);
+		=> BackingEventHandler.InvokeEvent(AmiableEventType.PluginEnabled, eventArgs);
 
 	/// <summary>
 	/// Triggers the event that describes the case that the menu is invoked.
 	/// </summary>
 	public static int Event_PluginMenu(AmiableEventArgs eventArgs)
 	{
-		EventCore.InvokeEvents(AmiableEventType.PluginMenu, eventArgs);
+		BackingEventHandler.InvokeEvent(AmiableEventType.PluginMenuInvoked, eventArgs);
 
 		return 0;
 	}
