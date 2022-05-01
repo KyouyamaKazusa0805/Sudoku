@@ -1724,9 +1724,6 @@
             </value>
             <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
         </member>
-        <member name="M:Sudoku.Concepts.Collections.Grid.Equals(System.Object)">
-            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
-        </member>
         <member name="M:Sudoku.Concepts.Collections.Grid.Equals(Sudoku.Concepts.Collections.Grid@)">
             <summary>
             Determine whether the specified <see cref="T:Sudoku.Concepts.Collections.Grid"/> instance hold the same values
@@ -2027,9 +2024,6 @@
             <param name="cell">The cell.</param>
             <param name="mask">The mask to set.</param>
         </member>
-        <member name="M:Sudoku.Concepts.Collections.Grid.System#IEquatable{Sudoku#Concepts#Collections#Grid}#Equals(Sudoku.Concepts.Collections.Grid)">
-            <inheritdoc/>
-        </member>
         <member name="M:Sudoku.Concepts.Collections.Grid.GetMap()">
             <summary>
             Called by properties <see cref="P:Sudoku.Concepts.Collections.Grid.CandidatesMap"/>, <see cref="P:Sudoku.Concepts.Collections.Grid.DigitsMap"/> and <see cref="P:Sudoku.Concepts.Collections.Grid.ValuesMap"/>.
@@ -2251,6 +2245,12 @@
         <member name="M:Sudoku.Concepts.Collections.Grid.MaskCollectionEnumerator.ToString">
             <inheritdoc cref="M:System.Object.ToString"/>
             <exception cref="T:System.NotSupportedException">Always throws.</exception>
+        </member>
+        <member name="M:Sudoku.Concepts.Collections.Grid.Equals(System.Object)">
+            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.Collections.Grid.System#IEquatable{Sudoku#Concepts#Collections#Grid}#Equals(Sudoku.Concepts.Collections.Grid)">
+            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.Collections.Grid.#ctor">
             <summary>
@@ -5141,6 +5141,9 @@
             <exception cref="T:System.ArgumentException">
             Throws when two instances contains different eliminated reason.
             </exception>
+        </member>
+        <member name="M:Sudoku.Concepts.Solving.ExocetElimination.System#IEquatable{Sudoku#Concepts#Solving#ExocetElimination}#Equals(Sudoku.Concepts.Solving.ExocetElimination)">
+            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.Solving.ExocetElimination.GetHashCode">
             <inheritdoc cref="M:System.Object.GetHashCode"/>

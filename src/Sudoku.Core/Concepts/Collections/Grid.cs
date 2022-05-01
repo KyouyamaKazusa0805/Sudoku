@@ -15,6 +15,7 @@ namespace Sudoku.Concepts.Collections;
 #endif // !DEBUG
 [JsonConverter(typeof(JsonConverter))]
 [DisableParameterlessConstructor(SuggestedMemberName = nameof(Empty))]
+[AutoOverridesEquals(UseExplicitlyImplementation = true)]
 public unsafe partial struct Grid :
 	IDefaultable<Grid>,
 	ISimpleFormattable,
@@ -317,7 +318,7 @@ public unsafe partial struct Grid :
 			{
 				if (GetStatus(i) == CellStatus.Empty)
 				{
-					goto ReturnFalse;
+					return false;
 				}
 			}
 
@@ -333,7 +334,7 @@ public unsafe partial struct Grid :
 						{
 							if (curDigit == this[cell])
 							{
-								goto ReturnFalse;
+								return false;
 							}
 						}
 
@@ -345,15 +346,12 @@ public unsafe partial struct Grid :
 					}
 					default:
 					{
-						goto ReturnFalse;
+						return false;
 					}
 				}
 			}
 
 			return true;
-
-		ReturnFalse:
-			return false;
 		}
 	}
 
@@ -759,10 +757,6 @@ public unsafe partial struct Grid :
 	}
 
 
-	/// <inheritdoc cref="object.Equals(object?)"/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public override readonly bool Equals([NotNullWhen(true)] object? obj) => obj is Grid comparer && Equals(comparer);
-
 	/// <summary>
 	/// Determine whether the specified <see cref="Grid"/> instance hold the same values
 	/// as the current instance.
@@ -1093,18 +1087,19 @@ public unsafe partial struct Grid :
 		{
 			{ IsEmpty: true } => "<Empty>",
 			{ IsUndefined: true } => "<Undefined>",
-			_ when GridFormatterFactory.Create(format) is var f => format switch
-			{
-				":" => ExtendedSusserEliminationsRegex().Match(f.ToString(this)) is
+			_ when GridFormatterFactory.Create(format) is var f
+				=> format switch
 				{
-					Success: true,
-					Value: var value
-				} ? value : string.Empty,
-				"!" => f.ToString(this).RemoveAll('+'),
-				".!" or "!." or "0!" or "!0" => f.ToString(this).RemoveAll('+'),
-				".!:" or "!.:" or "0!:" => f.ToString(this).RemoveAll('+'),
-				_ => f.ToString(this)
-			},
+					":" => ExtendedSusserEliminationsRegex().Match(f.ToString(this)) is
+					{
+						Success: true,
+						Value: var value
+					} ? value : string.Empty,
+					"!" => f.ToString(this).RemoveAll('+'),
+					".!" or "!." or "0!" or "!0" => f.ToString(this).RemoveAll('+'),
+					".!:" or "!.:" or "0!:" => f.ToString(this).RemoveAll('+'),
+					_ => f.ToString(this)
+				},
 			_ => throw new FormatException("The current status is invalid.")
 		};
 
@@ -1239,10 +1234,6 @@ public unsafe partial struct Grid :
 		var f = (delegate*<ref Grid, int, short, short, int, void>)ValueChanged;
 		f(ref this, cell, copied, m, -1);
 	}
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	readonly bool IEquatable<Grid>.Equals(Grid other) => Equals(this, other);
 
 	/// <summary>
 	/// Called by properties <see cref="CandidatesMap"/>, <see cref="DigitsMap"/> and <see cref="ValuesMap"/>.

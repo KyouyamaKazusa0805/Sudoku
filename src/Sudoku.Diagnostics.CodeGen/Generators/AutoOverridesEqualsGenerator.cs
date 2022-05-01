@@ -99,34 +99,35 @@ public sealed class AutoOverridesEqualsGenerator : ISourceGenerator
 						=> {{equalsObjectImpl}};
 				""";
 
+			bool methodPredicate(IMethodSymbol method)
+				=> method is
+				{
+					Name: nameof(object.Equals),
+					Parameters: [{ Type: var parameterType }],
+					ReturnType.SpecialType: SpecialType.System_Boolean
+				} && SymbolEqualityComparer.Default.Equals(parameterType, type);
 			string nullableAnnotation = typeKind == TypeKind.Class ? "?" : string.Empty;
-			string genericEquals = type.GetMembers().OfType<IMethodSymbol>().Any(
-				method =>
-					method is
-					{
-						Name: nameof(object.Equals),
-						Parameters: [{ Type: var parameterType }],
-						ReturnType.SpecialType: SpecialType.System_Boolean
-					}
-					&& SymbolEqualityComparer.Default.Equals(parameterType, type))
-				? $"\t// The method 'Equals({fullTypeName}{nullableAnnotation})' exists."
-				: isExplicitImpl
-				? $$"""
+			bool containsGenericEquals = type.GetMembers().OfType<IMethodSymbol>().Any(methodPredicate);
+			string genericEquals = (containsGenericEquals, isExplicitImpl) switch
+			{
+				(true, false) => $"\t// The method 'Equals({fullTypeName}{nullableAnnotation})' exists.",
+				(_, true) => $$"""
 					/// <inheritdoc/>
 					[global::System.Runtime.CompilerServices.CompilerGenerated]
 					[global::System.CodeDom.Compiler.GeneratedCode("{{GetType().FullName}}", "{{VersionValue}}")]
 					[global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 					{{readOnlyKeyword}}bool global::System.IEquatable<{{fullTypeName}}>.Equals({{nullableAttribute}}{{fullTypeName}}{{nullableAnnotation}} other)
 						=> Equals(other);
-				"""
-				: $$"""
+				""",
+				_ => $$"""
 					/// <inheritdoc cref="IEquatable{T}.Equals(T)"/>
 					[global::System.Runtime.CompilerServices.CompilerGenerated]
 					[global::System.CodeDom.Compiler.GeneratedCode("{{GetType().FullName}}", "{{VersionValue}}")]
 					[global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 					public {{readOnlyKeyword}}bool Equals({{nullableAttribute}}{{inKeyword}}{{fullTypeName}}{{nullableAnnotation}} other)
 						=> {{string.Join(" && ", targetSymbolsRawString)}};
-				""";
+				"""
+			};
 
 			context.AddSource(
 				type.ToFileName(),
@@ -149,18 +150,5 @@ public sealed class AutoOverridesEqualsGenerator : ISourceGenerator
 
 	/// <inheritdoc/>
 	public void Initialize(GeneratorInitializationContext context)
-#if false
-	{
-#if DEBUG
-		if (!System.Diagnostics.Debugger.IsAttached)
-		{
-			System.Diagnostics.Debugger.Launch();
-		}
-#endif
-
-		context.RegisterForSyntaxNotifications(() => new AutoOverridesEqualsReceiver(context.CancellationToken));
-	}
-#else
 		=> context.RegisterForSyntaxNotifications(() => new AutoOverridesEqualsReceiver(context.CancellationToken));
-#endif
 }
