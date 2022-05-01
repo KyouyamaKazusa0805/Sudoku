@@ -9,13 +9,7 @@ public sealed class AutoOverridesEqualsGenerator : ISourceGenerator
 	/// <inheritdoc/>
 	public void Execute(GeneratorExecutionContext context)
 	{
-		if (
-			context is not
-			{
-				SyntaxContextReceiver: AutoOverridesEqualsReceiver { Collection: var collection } receiver,
-				Compilation: { Assembly: var assembly } compilation
-			}
-		)
+		if (context is not { SyntaxContextReceiver: AutoOverridesEqualsReceiver { Collection: var collection } })
 		{
 			return;
 		}

@@ -7,6 +7,7 @@
 [JsonConverter(typeof(JsonConverter))]
 [AutoOverridesGetHashCode(nameof(Cells), nameof(Digit))]
 [AutoOverridesEquals(nameof(Digit), nameof(Cells), UseExplicitlyImplementation = true)]
+[AutoOverloadsEqualityOperators(EmitInKeyword = true)]
 public readonly partial struct LockedTarget :
 	IEquatable<LockedTarget>,
 	IEqualityOperators<LockedTarget, LockedTarget>
@@ -40,24 +41,6 @@ public readonly partial struct LockedTarget :
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public override string ToString() => $"Locked target: {Digit + 1}{Cells}";
 
-
-	/// <summary>
-	/// Determines whether two <see cref="LockedTarget"/> instances are considered equal.
-	/// </summary>
-	/// <param name="left">The first element to be compared.</param>
-	/// <param name="right">The second element to be compared.</param>
-	/// <returns>A <see cref="bool"/> result indicating that.</returns>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static bool operator ==(in LockedTarget left, in LockedTarget right) => left.Equals(right);
-
-	/// <summary>
-	/// Determines whether two <see cref="LockedTarget"/> instances are not considered equal.
-	/// </summary>
-	/// <param name="left">The first element to be compared.</param>
-	/// <param name="right">The second element to be compared.</param>
-	/// <returns>A <see cref="bool"/> result indicating that.</returns>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static bool operator !=(in LockedTarget left, in LockedTarget right) => !(left == right);
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

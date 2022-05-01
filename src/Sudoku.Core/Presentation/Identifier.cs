@@ -9,6 +9,7 @@
 [AutoOverridesGetHashCode(nameof(UseId), nameof(_colorRawValue))]
 [AutoOverridesEquals(nameof(UseId), nameof(Id))]
 [AutoOverridesToString(nameof(RawValueDisplayer))]
+[AutoOverloadsEqualityOperators]
 public readonly partial struct Identifier : IEquatable<Identifier>, IEqualityOperators<Identifier, Identifier>
 {
 	/// <summary>
@@ -133,15 +134,6 @@ public readonly partial struct Identifier : IEquatable<Identifier>, IEqualityOpe
 	/// <returns>The result <see cref="Identifier"/> instance.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static Identifier FromColor(byte a, byte r, byte g, byte b) => new(a, r, g, b);
-
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static bool operator ==(Identifier left, Identifier right) => left.Equals(right);
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static bool operator !=(Identifier left, Identifier right) => !(left == right);
 
 
 	/// <summary>

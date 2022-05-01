@@ -1,11 +1,11 @@
-﻿using static System.AttributeTargets;
-
-namespace System.Diagnostics.CodeGen;
+﻿namespace System.Diagnostics.CodeGen;
 
 /// <summary>
 /// Defines an attribute that is used for controlling the source generation on deconstruction methods.
 /// </summary>
-[AttributeUsage(Class | Struct | Interface, AllowMultiple = true, Inherited = false)]
+[AttributeUsage(
+	AttributeTargets.Class | AttributeTargets.Struct | AttributeTargets.Interface,
+	AllowMultiple = true, Inherited = false)]
 public sealed class AutoDeconstructionAttribute : Attribute
 {
 	/// <summary>

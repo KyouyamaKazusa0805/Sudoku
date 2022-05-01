@@ -9,6 +9,7 @@
 /// </remarks>
 [AutoOverridesGetHashCode(nameof(Map), nameof(Digit))]
 [AutoOverridesEquals(nameof(Map), nameof(Digit))]
+[AutoOverloadsEqualityOperators]
 public readonly partial struct Conjugate :
 	IDefaultable<Conjugate>,
 	IEquatable<Conjugate>,
@@ -120,13 +121,4 @@ public readonly partial struct Conjugate :
 	/// <inheritdoc cref="object.ToString"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public override string ToString() => $"{Cells.Empty + From} == {Cells.Empty + To}({Digit + 1})";
-
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static bool operator ==(Conjugate left, Conjugate right) => left.Equals(right);
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static bool operator !=(Conjugate left, Conjugate right) => !(left == right);
 }

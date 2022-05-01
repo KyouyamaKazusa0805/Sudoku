@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Diagnostics.CodeAnalysis;
+using System.Diagnostics.CodeGen;
 using System.Runtime.CompilerServices;
 
 namespace Sudoku.UI.Drawing.Shapes;
@@ -7,7 +8,8 @@ namespace Sudoku.UI.Drawing.Shapes;
 /// <summary>
 /// Defines a drawing element that represents a sudoku information.
 /// </summary>
-public abstract class DrawingElement :
+[AutoOverloadsEqualityOperators(WithNullableAnnotation = true)]
+public abstract partial class DrawingElement :
 	IEquatable<DrawingElement>,
 	IEqualityOperators<DrawingElement, DrawingElement>
 {
@@ -34,24 +36,4 @@ public abstract class DrawingElement :
 	/// </summary>
 	/// <returns>The <see cref="UIElement"/> control instance.</returns>
 	public abstract UIElement GetControl();
-
-
-	/// <summary>
-	/// Determines whether the two <see cref="DrawingElement"/>s are equal of both type and inner value. 
-	/// </summary>
-	/// <param name="left">The left-side instance to compare.</param>
-	/// <param name="right">The right-side instance to compare.</param>
-	/// <returns>The result.</returns>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static bool operator ==(DrawingElement? left, DrawingElement? right)
-		=> (left, right) switch { (null, null) => true, (not null, not null) => left.Equals(right), _ => false };
-
-	/// <summary>
-	/// Determines whether the two <see cref="DrawingElement"/>s aren't equal of both type and inner value. 
-	/// </summary>
-	/// <param name="left">The left-side instance to compare.</param>
-	/// <param name="right">The right-side instance to compare.</param>
-	/// <returns>The result.</returns>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static bool operator !=(DrawingElement? left, DrawingElement? right) => !(left == right);
 }

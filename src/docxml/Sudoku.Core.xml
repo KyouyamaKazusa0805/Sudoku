@@ -476,22 +476,6 @@
             <returns>The cells.</returns>
             <seealso cref="M:Sudoku.Concepts.Collections.Candidates.Reduce(System.Int32)"/>
         </member>
-        <member name="M:Sudoku.Concepts.Collections.Candidates.op_Equality(Sudoku.Concepts.Collections.Candidates@,Sudoku.Concepts.Collections.Candidates@)">
-            <summary>
-            Determine whether the two <see cref="T:Sudoku.Concepts.Collections.Candidates"/> instance hold same bits.
-            </summary>
-            <param name="left">The left-side instance to compare.</param>
-            <param name="right">The right-side instance to compare.</param>
-            <returns>A <see cref="T:System.Boolean"/> result.</returns>
-        </member>
-        <member name="M:Sudoku.Concepts.Collections.Candidates.op_Inequality(Sudoku.Concepts.Collections.Candidates@,Sudoku.Concepts.Collections.Candidates@)">
-            <summary>
-            Determine whether the two <see cref="T:Sudoku.Concepts.Collections.Candidates"/> instance don't hold same bits.
-            </summary>
-            <param name="left">The left-side instance to compare.</param>
-            <param name="right">The right-side instance to compare.</param>
-            <returns>A <see cref="T:System.Boolean"/> result.</returns>
-        </member>
         <member name="M:Sudoku.Concepts.Collections.Candidates.System#IEqualityOperators{Sudoku#Concepts#Collections#Candidates,Sudoku#Concepts#Collections#Candidates}#op_Equality(Sudoku.Concepts.Collections.Candidates,Sudoku.Concepts.Collections.Candidates)">
             <inheritdoc/>
         </member>
@@ -560,6 +544,22 @@
             Explicit cast from <see cref="T:Sudoku.Concepts.Collections.Candidates"/> to <see cref="T:System.ReadOnlySpan`1"/>.
             </summary>
             <param name="offsets">The offsets.</param>
+        </member>
+        <member name="M:Sudoku.Concepts.Collections.Candidates.op_Equality(Sudoku.Concepts.Collections.Candidates@,Sudoku.Concepts.Collections.Candidates@)">
+            <summary>
+            Determines whether two instances hold a same value.
+            </summary>
+            <param name="left">The left-side instance to take part in the comparison operation.</param>
+            <param name="right">The right-side instance to take part in the comparison operation.</param>
+            <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
+        </member>
+        <member name="M:Sudoku.Concepts.Collections.Candidates.op_Inequality(Sudoku.Concepts.Collections.Candidates@,Sudoku.Concepts.Collections.Candidates@)">
+            <summary>
+            Determines whether two instances don't hold a same value.
+            </summary>
+            <param name="left">The left-side instance to take part in the comparison operation.</param>
+            <param name="right">The right-side instance to take part in the comparison operation.</param>
+            <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
         </member>
         <member name="M:Sudoku.Concepts.Collections.Candidates.Equals(System.Object)">
             <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
@@ -1130,22 +1130,6 @@
             <param name="houseIndex">The house index.</param>
             <returns>The mask.</returns>
         </member>
-        <member name="M:Sudoku.Concepts.Collections.Cells.op_Equality(Sudoku.Concepts.Collections.Cells@,Sudoku.Concepts.Collections.Cells@)">
-            <summary>
-            Indicates whether the two <see cref="T:Sudoku.Concepts.Collections.Cells"/> collection hold a same set of cells.
-            </summary>
-            <param name="left">The left-side instance to compare.</param>
-            <param name="right">The right-side instance to compare.</param>
-            <returns>A <see cref="T:System.Boolean"/> result.</returns>
-        </member>
-        <member name="M:Sudoku.Concepts.Collections.Cells.op_Inequality(Sudoku.Concepts.Collections.Cells@,Sudoku.Concepts.Collections.Cells@)">
-            <summary>
-            Indicates whether the two <see cref="T:Sudoku.Concepts.Collections.Cells"/> collection don't hold a same set of cells.
-            </summary>
-            <param name="left">The left-side instance to compare.</param>
-            <param name="right">The right-side instance to compare.</param>
-            <returns>A <see cref="T:System.Boolean"/> result.</returns>
-        </member>
         <member name="M:Sudoku.Concepts.Collections.Cells.System#IAdditionOperators{Sudoku#Concepts#Collections#Cells,System#Int32,Sudoku#Concepts#Collections#Cells}#op_Addition(Sudoku.Concepts.Collections.Cells,System.Int32)">
             <inheritdoc/>
         </member>
@@ -1225,6 +1209,22 @@
         </member>
         <member name="M:Sudoku.Concepts.Collections.Cells.JsonConverter.Write(System.Text.Json.Utf8JsonWriter,Sudoku.Concepts.Collections.Cells,System.Text.Json.JsonSerializerOptions)">
             <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.Collections.Cells.op_Equality(Sudoku.Concepts.Collections.Cells@,Sudoku.Concepts.Collections.Cells@)">
+            <summary>
+            Determines whether two instances hold a same value.
+            </summary>
+            <param name="left">The left-side instance to take part in the comparison operation.</param>
+            <param name="right">The right-side instance to take part in the comparison operation.</param>
+            <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
+        </member>
+        <member name="M:Sudoku.Concepts.Collections.Cells.op_Inequality(Sudoku.Concepts.Collections.Cells@,Sudoku.Concepts.Collections.Cells@)">
+            <summary>
+            Determines whether two instances don't hold a same value.
+            </summary>
+            <param name="left">The left-side instance to take part in the comparison operation.</param>
+            <param name="right">The right-side instance to take part in the comparison operation.</param>
+            <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
         </member>
         <member name="M:Sudoku.Concepts.Collections.Cells.Equals(System.Object)">
             <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
@@ -2136,22 +2136,6 @@
             Indicates the eliminations in the extended susser format.
             </summary>
         </member>
-        <member name="M:Sudoku.Concepts.Collections.Grid.op_Equality(Sudoku.Concepts.Collections.Grid@,Sudoku.Concepts.Collections.Grid@)">
-            <summary>
-            Determine whether two <see cref="T:Sudoku.Concepts.Collections.Grid"/>s are same.
-            </summary>
-            <param name="left">The left-side instance to compare.</param>
-            <param name="right">The right-side instance to compare.</param>
-            <returns>A <see cref="T:System.Boolean"/> result.</returns>
-        </member>
-        <member name="M:Sudoku.Concepts.Collections.Grid.op_Inequality(Sudoku.Concepts.Collections.Grid@,Sudoku.Concepts.Collections.Grid@)">
-            <summary>
-            Determine whether two <see cref="T:Sudoku.Concepts.Collections.Grid"/>s aren't same.
-            </summary>
-            <param name="left">The left-side instance to compare.</param>
-            <param name="right">The right-side instance to compare.</param>
-            <returns>A <see cref="T:System.Boolean"/> result.</returns>
-        </member>
         <member name="M:Sudoku.Concepts.Collections.Grid.System#IEqualityOperators{Sudoku#Concepts#Collections#Grid,Sudoku#Concepts#Collections#Grid}#op_Equality(Sudoku.Concepts.Collections.Grid,Sudoku.Concepts.Collections.Grid)">
             <inheritdoc/>
         </member>
@@ -2245,6 +2229,22 @@
         <member name="M:Sudoku.Concepts.Collections.Grid.MaskCollectionEnumerator.ToString">
             <inheritdoc cref="M:System.Object.ToString"/>
             <exception cref="T:System.NotSupportedException">Always throws.</exception>
+        </member>
+        <member name="M:Sudoku.Concepts.Collections.Grid.op_Equality(Sudoku.Concepts.Collections.Grid@,Sudoku.Concepts.Collections.Grid@)">
+            <summary>
+            Determines whether two instances hold a same value.
+            </summary>
+            <param name="left">The left-side instance to take part in the comparison operation.</param>
+            <param name="right">The right-side instance to take part in the comparison operation.</param>
+            <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
+        </member>
+        <member name="M:Sudoku.Concepts.Collections.Grid.op_Inequality(Sudoku.Concepts.Collections.Grid@,Sudoku.Concepts.Collections.Grid@)">
+            <summary>
+            Determines whether two instances don't hold a same value.
+            </summary>
+            <param name="left">The left-side instance to take part in the comparison operation.</param>
+            <param name="right">The right-side instance to take part in the comparison operation.</param>
+            <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
         </member>
         <member name="M:Sudoku.Concepts.Collections.Grid.Equals(System.Object)">
             <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
@@ -2653,10 +2653,20 @@
             <inheritdoc cref="M:System.Object.ToString"/>
         </member>
         <member name="M:Sudoku.Concepts.Conjugate.op_Equality(Sudoku.Concepts.Conjugate,Sudoku.Concepts.Conjugate)">
-            <inheritdoc/>
+            <summary>
+            Determines whether two instances hold a same value.
+            </summary>
+            <param name="left">The left-side instance to take part in the comparison operation.</param>
+            <param name="right">The right-side instance to take part in the comparison operation.</param>
+            <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
         </member>
         <member name="M:Sudoku.Concepts.Conjugate.op_Inequality(Sudoku.Concepts.Conjugate,Sudoku.Concepts.Conjugate)">
-            <inheritdoc/>
+            <summary>
+            Determines whether two instances don't hold a same value.
+            </summary>
+            <param name="left">The left-side instance to take part in the comparison operation.</param>
+            <param name="right">The right-side instance to take part in the comparison operation.</param>
+            <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
         </member>
         <member name="M:Sudoku.Concepts.Conjugate.Equals(System.Object)">
             <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
@@ -3762,12 +3772,6 @@
         <member name="M:Sudoku.Concepts.Parsing.CellRange.TryParse(System.String,Sudoku.Concepts.Parsing.CellRange@)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.Parsing.CellRange.op_Equality(Sudoku.Concepts.Parsing.CellRange,Sudoku.Concepts.Parsing.CellRange)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.Parsing.CellRange.op_Inequality(Sudoku.Concepts.Parsing.CellRange,Sudoku.Concepts.Parsing.CellRange)">
-            <inheritdoc/>
-        </member>
         <member name="M:Sudoku.Concepts.Parsing.CellRange.op_Explicit(System.Range)~Sudoku.Concepts.Parsing.CellRange">
             <summary>
             Implicitly cast from <see cref="T:System.Range"/> to <see cref="T:Sudoku.Concepts.Parsing.CellRange"/>.
@@ -3812,6 +3816,22 @@
             ]]></code>
             </para>
             </remarks>
+        </member>
+        <member name="M:Sudoku.Concepts.Parsing.CellRange.op_Equality(Sudoku.Concepts.Parsing.CellRange,Sudoku.Concepts.Parsing.CellRange)">
+            <summary>
+            Determines whether two instances hold a same value.
+            </summary>
+            <param name="left">The left-side instance to take part in the comparison operation.</param>
+            <param name="right">The right-side instance to take part in the comparison operation.</param>
+            <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
+        </member>
+        <member name="M:Sudoku.Concepts.Parsing.CellRange.op_Inequality(Sudoku.Concepts.Parsing.CellRange,Sudoku.Concepts.Parsing.CellRange)">
+            <summary>
+            Determines whether two instances don't hold a same value.
+            </summary>
+            <param name="left">The left-side instance to take part in the comparison operation.</param>
+            <param name="right">The right-side instance to take part in the comparison operation.</param>
+            <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
         </member>
         <member name="M:Sudoku.Concepts.Parsing.CellRange.Equals(System.Object)">
             <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
@@ -4258,21 +4278,19 @@
         </member>
         <member name="M:Sudoku.Concepts.Solving.AlmostLockedSet.op_Equality(Sudoku.Concepts.Solving.AlmostLockedSet,Sudoku.Concepts.Solving.AlmostLockedSet)">
             <summary>
-            Determine whether two <see cref="T:Sudoku.Concepts.Solving.AlmostLockedSet"/>s hold a same <see cref="P:Sudoku.Concepts.Solving.AlmostLockedSet.DigitsMask"/>
-            and <see cref="P:Sudoku.Concepts.Solving.AlmostLockedSet.Map"/> property values.
+            Determines whether two instances hold a same value.
             </summary>
-            <param name="left">The left-side instance to compare.</param>
-            <param name="right">The right-side instance to compare.</param>
-            <returns>A <see cref="T:System.Boolean"/> result.</returns>
+            <param name="left">The left-side instance to take part in the comparison operation.</param>
+            <param name="right">The right-side instance to take part in the comparison operation.</param>
+            <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
         </member>
         <member name="M:Sudoku.Concepts.Solving.AlmostLockedSet.op_Inequality(Sudoku.Concepts.Solving.AlmostLockedSet,Sudoku.Concepts.Solving.AlmostLockedSet)">
             <summary>
-            Determine whether two <see cref="T:Sudoku.Concepts.Solving.AlmostLockedSet"/>s don't hold a same <see cref="P:Sudoku.Concepts.Solving.AlmostLockedSet.DigitsMask"/>
-            and <see cref="P:Sudoku.Concepts.Solving.AlmostLockedSet.Map"/> property values.
+            Determines whether two instances don't hold a same value.
             </summary>
-            <param name="left">The left-side instance to compare.</param>
-            <param name="right">The right-side instance to compare.</param>
-            <returns>A <see cref="T:System.Boolean"/> result.</returns>
+            <param name="left">The left-side instance to take part in the comparison operation.</param>
+            <param name="right">The right-side instance to take part in the comparison operation.</param>
+            <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
         </member>
         <member name="T:Sudoku.Concepts.Solving.AlternatingInferenceChain">
             <summary>
@@ -4484,19 +4502,19 @@
         </member>
         <member name="M:Sudoku.Concepts.Solving.Chain.op_Equality(Sudoku.Concepts.Solving.Chain,Sudoku.Concepts.Solving.Chain)">
             <summary>
-            Determines whether two <see cref="T:Sudoku.Concepts.Solving.Chain"/>s are same.
+            Determines whether two instances hold a same value.
             </summary>
-            <param name="left">The left instance to be compared.</param>
-            <param name="right">The right instance to be compared.</param>
-            <returns>A <see cref="T:System.Boolean"/> value indicating the result.</returns>
+            <param name="left">The left-side instance to take part in the comparison operation.</param>
+            <param name="right">The right-side instance to take part in the comparison operation.</param>
+            <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
         </member>
         <member name="M:Sudoku.Concepts.Solving.Chain.op_Inequality(Sudoku.Concepts.Solving.Chain,Sudoku.Concepts.Solving.Chain)">
             <summary>
-            Determines whether two <see cref="T:Sudoku.Concepts.Solving.Chain"/>s are not same.
+            Determines whether two instances don't hold a same value.
             </summary>
-            <param name="left">The left instance to be compared.</param>
-            <param name="right">The right instance to be compared.</param>
-            <returns>A <see cref="T:System.Boolean"/> value indicating the result.</returns>
+            <param name="left">The left-side instance to take part in the comparison operation.</param>
+            <param name="right">The right-side instance to take part in the comparison operation.</param>
+            <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
         </member>
         <member name="T:Sudoku.Concepts.Solving.ChainNodes.AlmostLockedSetNode">
             <summary>
@@ -4679,19 +4697,19 @@
         </member>
         <member name="M:Sudoku.Concepts.Solving.ChainNodes.Node.op_Equality(Sudoku.Concepts.Solving.ChainNodes.Node,Sudoku.Concepts.Solving.ChainNodes.Node)">
             <summary>
-            Determines whether two <see cref="T:Sudoku.Concepts.Solving.ChainNodes.Node"/>s are same.
+            Determines whether two instances hold a same value.
             </summary>
-            <param name="left">Indicates the left-side instance to compare.</param>
-            <param name="right">Indicates the right-side instance to compare.</param>
-            <returns>A <see cref="T:System.Boolean"/> result.</returns>
+            <param name="left">The left-side instance to take part in the comparison operation.</param>
+            <param name="right">The right-side instance to take part in the comparison operation.</param>
+            <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
         </member>
         <member name="M:Sudoku.Concepts.Solving.ChainNodes.Node.op_Inequality(Sudoku.Concepts.Solving.ChainNodes.Node,Sudoku.Concepts.Solving.ChainNodes.Node)">
             <summary>
-            Determines whether two <see cref="T:Sudoku.Concepts.Solving.ChainNodes.Node"/>s are not totally same.
+            Determines whether two instances don't hold a same value.
             </summary>
-            <param name="left">Indicates the left-side instance to compare.</param>
-            <param name="right">Indicates the right-side instance to compare.</param>
-            <returns>A <see cref="T:System.Boolean"/> result.</returns>
+            <param name="left">The left-side instance to take part in the comparison operation.</param>
+            <param name="right">The right-side instance to take part in the comparison operation.</param>
+            <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
         </member>
         <member name="M:Sudoku.Concepts.Solving.ChainNodes.Node.GetHashCode">
             <inheritdoc cref="M:System.Object.GetHashCode"/>
@@ -4906,12 +4924,6 @@
             <param name="type">The type of the conclusion.</param>
             <returns>An array of type <see cref="T:Sudoku.Concepts.Solving.Conclusion"/>.</returns>
         </member>
-        <member name="M:Sudoku.Concepts.Solving.Conclusion.op_Equality(Sudoku.Concepts.Solving.Conclusion,Sudoku.Concepts.Solving.Conclusion)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.Solving.Conclusion.op_Inequality(Sudoku.Concepts.Solving.Conclusion,Sudoku.Concepts.Solving.Conclusion)">
-            <inheritdoc/>
-        </member>
         <member name="M:Sudoku.Concepts.Solving.Conclusion.op_LessThan(Sudoku.Concepts.Solving.Conclusion,Sudoku.Concepts.Solving.Conclusion)">
             <inheritdoc/>
         </member>
@@ -5001,6 +5013,22 @@
             ]]></code>
             </para>
             </remarks>
+        </member>
+        <member name="M:Sudoku.Concepts.Solving.Conclusion.op_Equality(Sudoku.Concepts.Solving.Conclusion,Sudoku.Concepts.Solving.Conclusion)">
+            <summary>
+            Determines whether two instances hold a same value.
+            </summary>
+            <param name="left">The left-side instance to take part in the comparison operation.</param>
+            <param name="right">The right-side instance to take part in the comparison operation.</param>
+            <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
+        </member>
+        <member name="M:Sudoku.Concepts.Solving.Conclusion.op_Inequality(Sudoku.Concepts.Solving.Conclusion,Sudoku.Concepts.Solving.Conclusion)">
+            <summary>
+            Determines whether two instances don't hold a same value.
+            </summary>
+            <param name="left">The left-side instance to take part in the comparison operation.</param>
+            <param name="right">The right-side instance to take part in the comparison operation.</param>
+            <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
         </member>
         <member name="M:Sudoku.Concepts.Solving.Conclusion.Equals(System.Object)">
             <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
@@ -7749,12 +7777,6 @@
             <param name="b">The blue value.</param>
             <returns>The result <see cref="T:Sudoku.Presentation.Identifier"/> instance.</returns>
         </member>
-        <member name="M:Sudoku.Presentation.Identifier.op_Equality(Sudoku.Presentation.Identifier,Sudoku.Presentation.Identifier)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Presentation.Identifier.op_Inequality(Sudoku.Presentation.Identifier,Sudoku.Presentation.Identifier)">
-            <inheritdoc/>
-        </member>
         <member name="M:Sudoku.Presentation.Identifier.op_Explicit(Sudoku.Presentation.Identifier)~System.Int32">
             <summary>
             Explicit cast from <see cref="T:Sudoku.Presentation.Identifier"/> to <see cref="T:System.Int32"/> indicating the ID value.
@@ -7810,6 +7832,22 @@
         </member>
         <member name="M:Sudoku.Presentation.Identifier.JsonConverter.Write(System.Text.Json.Utf8JsonWriter,Sudoku.Presentation.Identifier,System.Text.Json.JsonSerializerOptions)">
             <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Presentation.Identifier.op_Equality(Sudoku.Presentation.Identifier,Sudoku.Presentation.Identifier)">
+            <summary>
+            Determines whether two instances hold a same value.
+            </summary>
+            <param name="left">The left-side instance to take part in the comparison operation.</param>
+            <param name="right">The right-side instance to take part in the comparison operation.</param>
+            <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
+        </member>
+        <member name="M:Sudoku.Presentation.Identifier.op_Inequality(Sudoku.Presentation.Identifier,Sudoku.Presentation.Identifier)">
+            <summary>
+            Determines whether two instances don't hold a same value.
+            </summary>
+            <param name="left">The left-side instance to take part in the comparison operation.</param>
+            <param name="right">The right-side instance to take part in the comparison operation.</param>
+            <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
         </member>
         <member name="M:Sudoku.Presentation.Identifier.Equals(System.Object)">
             <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
@@ -7869,22 +7907,6 @@
         <member name="M:Sudoku.Presentation.LockedTarget.ToString">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Presentation.LockedTarget.op_Equality(Sudoku.Presentation.LockedTarget@,Sudoku.Presentation.LockedTarget@)">
-            <summary>
-            Determines whether two <see cref="T:Sudoku.Presentation.LockedTarget"/> instances are considered equal.
-            </summary>
-            <param name="left">The first element to be compared.</param>
-            <param name="right">The second element to be compared.</param>
-            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
-        </member>
-        <member name="M:Sudoku.Presentation.LockedTarget.op_Inequality(Sudoku.Presentation.LockedTarget@,Sudoku.Presentation.LockedTarget@)">
-            <summary>
-            Determines whether two <see cref="T:Sudoku.Presentation.LockedTarget"/> instances are not considered equal.
-            </summary>
-            <param name="left">The first element to be compared.</param>
-            <param name="right">The second element to be compared.</param>
-            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
-        </member>
         <member name="M:Sudoku.Presentation.LockedTarget.System#IEqualityOperators{Sudoku#Presentation#LockedTarget,Sudoku#Presentation#LockedTarget}#op_Equality(Sudoku.Presentation.LockedTarget,Sudoku.Presentation.LockedTarget)">
             <inheritdoc/>
         </member>
@@ -7901,6 +7923,22 @@
         </member>
         <member name="M:Sudoku.Presentation.LockedTarget.JsonConverter.Write(System.Text.Json.Utf8JsonWriter,Sudoku.Presentation.LockedTarget,System.Text.Json.JsonSerializerOptions)">
             <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Presentation.LockedTarget.op_Equality(Sudoku.Presentation.LockedTarget@,Sudoku.Presentation.LockedTarget@)">
+            <summary>
+            Determines whether two instances hold a same value.
+            </summary>
+            <param name="left">The left-side instance to take part in the comparison operation.</param>
+            <param name="right">The right-side instance to take part in the comparison operation.</param>
+            <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
+        </member>
+        <member name="M:Sudoku.Presentation.LockedTarget.op_Inequality(Sudoku.Presentation.LockedTarget@,Sudoku.Presentation.LockedTarget@)">
+            <summary>
+            Determines whether two instances don't hold a same value.
+            </summary>
+            <param name="left">The left-side instance to take part in the comparison operation.</param>
+            <param name="right">The right-side instance to take part in the comparison operation.</param>
+            <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
         </member>
         <member name="M:Sudoku.Presentation.LockedTarget.Equals(System.Object)">
             <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
@@ -8187,19 +8225,19 @@
         </member>
         <member name="M:Sudoku.Presentation.Nodes.ViewNode.op_Equality(Sudoku.Presentation.Nodes.ViewNode,Sudoku.Presentation.Nodes.ViewNode)">
             <summary>
-            Determines whether two <see cref="T:Sudoku.Presentation.Nodes.ViewNode"/>s are same type, and hold a same value.
+            Determines whether two instances hold a same value.
             </summary>
-            <param name="left">The first instance to be compared.</param>
-            <param name="right">The second instance to be compared.</param>
-            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
+            <param name="left">The left-side instance to take part in the comparison operation.</param>
+            <param name="right">The right-side instance to take part in the comparison operation.</param>
+            <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
         </member>
         <member name="M:Sudoku.Presentation.Nodes.ViewNode.op_Inequality(Sudoku.Presentation.Nodes.ViewNode,Sudoku.Presentation.Nodes.ViewNode)">
             <summary>
-            Determines whether two <see cref="T:Sudoku.Presentation.Nodes.ViewNode"/>s are not same type, or not totally hold a same value.
+            Determines whether two instances don't hold a same value.
             </summary>
-            <param name="left">The first instance to be compared.</param>
-            <param name="right">The second instance to be compared.</param>
-            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
+            <param name="left">The left-side instance to take part in the comparison operation.</param>
+            <param name="right">The right-side instance to take part in the comparison operation.</param>
+            <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
         </member>
         <member name="T:Sudoku.Presentation.View">
             <summary>

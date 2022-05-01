@@ -4,6 +4,7 @@
 /// Represents text as a sequence of UTF-8 code units.
 /// </summary>
 [AutoOverridesEquals]
+[AutoOverloadsEqualityOperators]
 public readonly partial struct Utf8String :
 	IAdditionOperators<Utf8String, Utf8String, Utf8String>,
 	IComparable<Utf8String>,
@@ -288,14 +289,6 @@ public readonly partial struct Utf8String :
 		}
 	}
 
-
-	/// <inheritdoc cref="string.operator ==(string, string)"/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static bool operator ==(Utf8String left, Utf8String right) => left.Equals(right);
-
-	/// <inheritdoc cref="string.operator !=(string, string)"/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static bool operator !=(Utf8String left, Utf8String right) => !(left == right);
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

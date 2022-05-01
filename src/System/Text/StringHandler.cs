@@ -35,6 +35,7 @@ namespace System.Text;
 /// <seealso cref="DefaultInterpolatedStringHandler"/>
 /// <seealso cref="IFormatProvider"/>
 [InterpolatedStringHandler]
+[AutoOverloadsEqualityOperators(EmitInKeyword = true)]
 public unsafe ref partial struct StringHandler
 {
 #if USE_NEWER_CONSTANT_VALUES
@@ -1467,23 +1468,4 @@ public unsafe ref partial struct StringHandler
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static string ElementToStringConverter<TNotNull>(TNotNull @this) where TNotNull : notnull
 		=> @this.ToString() ?? throw new InvalidOperationException("The argument cannot return null.");
-
-
-	/// <summary>
-	/// Determine whether two <see cref="StringHandler"/>s hold a same character set.
-	/// </summary>
-	/// <param name="left">The left-side instance to compare.</param>
-	/// <param name="right">The right-side instance to compare.</param>
-	/// <returns>A <see cref="bool"/> result.</returns>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static bool operator ==(in StringHandler left, in StringHandler right) => Equals(left, right);
-
-	/// <summary>
-	/// Determine whether two <see cref="StringHandler"/>s don't hold a same character set.
-	/// </summary>
-	/// <param name="left">The left-side instance to compare.</param>
-	/// <param name="right">The right-side instance to compare.</param>
-	/// <returns>A <see cref="bool"/> result.</returns>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static bool operator !=(in StringHandler left, in StringHandler right) => !(left == right);
 }

@@ -3,7 +3,8 @@
 /// <summary>
 /// Defines a chain.
 /// </summary>
-public abstract class Chain :
+[AutoOverloadsEqualityOperators]
+public abstract partial class Chain :
 	IEquatable<Chain>,
 	IEnumerable<Node>,
 	IReadOnlyCollection<Node>,
@@ -133,23 +134,4 @@ public abstract class Chain :
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
-
-
-	/// <summary>
-	/// Determines whether two <see cref="Chain"/>s are same.
-	/// </summary>
-	/// <param name="left">The left instance to be compared.</param>
-	/// <param name="right">The right instance to be compared.</param>
-	/// <returns>A <see cref="bool"/> value indicating the result.</returns>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static bool operator ==(Chain left, Chain right) => left.Equals(right);
-
-	/// <summary>
-	/// Determines whether two <see cref="Chain"/>s are not same.
-	/// </summary>
-	/// <param name="left">The left instance to be compared.</param>
-	/// <param name="right">The right instance to be compared.</param>
-	/// <returns>A <see cref="bool"/> value indicating the result.</returns>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static bool operator !=(Chain left, Chain right) => !(left == right);
 }

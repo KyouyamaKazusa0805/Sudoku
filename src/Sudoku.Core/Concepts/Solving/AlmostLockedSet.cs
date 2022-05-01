@@ -8,7 +8,8 @@
 /// <c>n</c> cells contains <c>(n + 1)</c> kinds of different digits.
 /// The special case is a bi-value cell.
 /// </remarks>
-public sealed class AlmostLockedSet :
+[AutoOverloadsEqualityOperators]
+public sealed partial class AlmostLockedSet :
 	IEquatable<AlmostLockedSet>,
 	IEqualityOperators<AlmostLockedSet, AlmostLockedSet>,
 	ITechniquePattern<AlmostLockedSet>
@@ -224,25 +225,4 @@ public sealed class AlmostLockedSet :
 
 		return result.ToArray();
 	}
-
-
-	/// <summary>
-	/// Determine whether two <see cref="AlmostLockedSet"/>s hold a same <see cref="DigitsMask"/>
-	/// and <see cref="Map"/> property values.
-	/// </summary>
-	/// <param name="left">The left-side instance to compare.</param>
-	/// <param name="right">The right-side instance to compare.</param>
-	/// <returns>A <see cref="bool"/> result.</returns>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static bool operator ==(AlmostLockedSet left, AlmostLockedSet right) => left.Equals(right);
-
-	/// <summary>
-	/// Determine whether two <see cref="AlmostLockedSet"/>s don't hold a same <see cref="DigitsMask"/>
-	/// and <see cref="Map"/> property values.
-	/// </summary>
-	/// <param name="left">The left-side instance to compare.</param>
-	/// <param name="right">The right-side instance to compare.</param>
-	/// <returns>A <see cref="bool"/> result.</returns>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static bool operator !=(AlmostLockedSet left, AlmostLockedSet right) => !(left == right);
 }

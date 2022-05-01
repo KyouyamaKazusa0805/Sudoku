@@ -925,19 +925,19 @@
         </member>
         <member name="M:Sudoku.UI.Drawing.Shapes.DrawingElement.op_Equality(Sudoku.UI.Drawing.Shapes.DrawingElement,Sudoku.UI.Drawing.Shapes.DrawingElement)">
             <summary>
-            Determines whether the two <see cref="T:Sudoku.UI.Drawing.Shapes.DrawingElement"/>s are equal of both type and inner value. 
+            Determines whether two instances hold a same value.
             </summary>
-            <param name="left">The left-side instance to compare.</param>
-            <param name="right">The right-side instance to compare.</param>
-            <returns>The result.</returns>
+            <param name="left">The left-side instance to take part in the comparison operation.</param>
+            <param name="right">The right-side instance to take part in the comparison operation.</param>
+            <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
         </member>
         <member name="M:Sudoku.UI.Drawing.Shapes.DrawingElement.op_Inequality(Sudoku.UI.Drawing.Shapes.DrawingElement,Sudoku.UI.Drawing.Shapes.DrawingElement)">
             <summary>
-            Determines whether the two <see cref="T:Sudoku.UI.Drawing.Shapes.DrawingElement"/>s aren't equal of both type and inner value. 
+            Determines whether two instances don't hold a same value.
             </summary>
-            <param name="left">The left-side instance to compare.</param>
-            <param name="right">The right-side instance to compare.</param>
-            <returns>The result.</returns>
+            <param name="left">The left-side instance to take part in the comparison operation.</param>
+            <param name="right">The right-side instance to take part in the comparison operation.</param>
+            <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
         </member>
         <member name="T:Sudoku.UI.Drawing.Shapes.DrawingElementBag">
             <summary>

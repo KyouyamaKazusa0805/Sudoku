@@ -11,6 +11,7 @@
 	nameof(_0), nameof(_1), nameof(_2), nameof(_3), nameof(_4), nameof(_5),
 	nameof(_6), nameof(_7), nameof(_8), nameof(_9), nameof(_10), nameof(_11),
 	UseExplicitlyImplementation = true, EmitInKeyword = true)]
+[AutoOverloadsEqualityOperators(EmitInKeyword = true)]
 public unsafe partial struct Candidates :
 	IDefaultable<Candidates>,
 	IEnumerable<int>,
@@ -1003,24 +1004,6 @@ public unsafe partial struct Candidates :
 	/// <seealso cref="Reduce(int)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static Cells operator /(in Candidates candidates, int digit) => candidates.Reduce(digit);
-
-	/// <summary>
-	/// Determine whether the two <see cref="Candidates"/> instance hold same bits.
-	/// </summary>
-	/// <param name="left">The left-side instance to compare.</param>
-	/// <param name="right">The right-side instance to compare.</param>
-	/// <returns>A <see cref="bool"/> result.</returns>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static bool operator ==(in Candidates left, in Candidates right) => left.Equals(right);
-
-	/// <summary>
-	/// Determine whether the two <see cref="Candidates"/> instance don't hold same bits.
-	/// </summary>
-	/// <param name="left">The left-side instance to compare.</param>
-	/// <param name="right">The right-side instance to compare.</param>
-	/// <returns>A <see cref="bool"/> result.</returns>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static bool operator !=(in Candidates left, in Candidates right) => !(left == right);
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

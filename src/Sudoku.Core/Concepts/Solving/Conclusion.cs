@@ -14,6 +14,7 @@
 [AutoDeconstruction(nameof(ConclusionType), nameof(Cell), nameof(Digit))]
 [AutoOverridesGetHashCode(nameof(_mask))]
 [AutoOverridesEquals(nameof(_mask))]
+[AutoOverloadsEqualityOperators]
 public readonly partial struct Conclusion :
 	IComparable<Conclusion>,
 	IComparisonOperators<Conclusion, Conclusion>,
@@ -174,14 +175,6 @@ public readonly partial struct Conclusion :
 	public static Conclusion[] ToConclusions(in Cells cells, int digit, ConclusionType type)
 		=> from cell in cells.ToArray() select new Conclusion(type, cell, digit);
 
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static bool operator ==(Conclusion left, Conclusion right) => left.Equals(right);
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static bool operator !=(Conclusion left, Conclusion right) => !(left == right);
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

@@ -1439,6 +1439,29 @@
             Indicates the desired type on which the source generator emits extension methods.
             </summary>
         </member>
+        <member name="T:System.Diagnostics.CodeGen.AutoOverloadsEqualityOperatorsAttribute">
+            <summary>
+            Defines an attributes that allows user using it applying to a type
+            (especially for <see langword="class"/> or <see langword="struct"/>), indicating the overriden metadata
+            for <c><see langword="operator"/> ==</c> and <c><see langword="operator"/> !=</c>,
+            and make source generator generates their own operators automatically.
+            </summary>
+            <remarks>
+            At default, the emitted generated operator overloading will use <see cref="M:System.IEquatable`1.Equals(`0)"/> invocation.
+            </remarks>
+        </member>
+        <member name="P:System.Diagnostics.CodeGen.AutoOverloadsEqualityOperatorsAttribute.EmitInKeyword">
+            <summary>
+            Indicates whether the source generator will emit keyword <see langword="in"/> to the parameters.
+            The default value is <see langword="false"/>.
+            </summary>
+        </member>
+        <member name="P:System.Diagnostics.CodeGen.AutoOverloadsEqualityOperatorsAttribute.WithNullableAnnotation">
+            <summary>
+            Indicates whether the source generator will emit nullable annotation <c>?</c> onto the arguments.
+            The default value is <see langword="false"/>.
+            </summary>
+        </member>
         <member name="T:System.Diagnostics.CodeGen.AutoOverridesEqualsAttribute">
             <summary>
             Defines an attributes that allows user using it applying to a type
@@ -2809,22 +2832,6 @@
             <seealso cref="!:AppendRangeWithSeparatorUnsafe&lt;TUnmanaged&gt;(TUnmanaged*, int, delegate*&lt;TUnmanaged, string?&gt;, string)"/>
             <seealso cref="M:System.Text.StringHandler.AppendRangeWithSeparatorUnsafe``1(``0*,System.Int32,System.Func{``0,System.String},System.String)"/>
         </member>
-        <member name="M:System.Text.StringHandler.op_Equality(System.Text.StringHandler@,System.Text.StringHandler@)">
-            <summary>
-            Determine whether two <see cref="T:System.Text.StringHandler"/>s hold a same character set.
-            </summary>
-            <param name="left">The left-side instance to compare.</param>
-            <param name="right">The right-side instance to compare.</param>
-            <returns>A <see cref="T:System.Boolean"/> result.</returns>
-        </member>
-        <member name="M:System.Text.StringHandler.op_Inequality(System.Text.StringHandler@,System.Text.StringHandler@)">
-            <summary>
-            Determine whether two <see cref="T:System.Text.StringHandler"/>s don't hold a same character set.
-            </summary>
-            <param name="left">The left-side instance to compare.</param>
-            <param name="right">The right-side instance to compare.</param>
-            <returns>A <see cref="T:System.Boolean"/> result.</returns>
-        </member>
         <member name="T:System.Text.StringHandler.Enumerator">
             <summary>
             Encapsulates the enumerator of this collection.
@@ -2869,6 +2876,22 @@
         <member name="M:System.Text.StringHandler.Enumerator.ToString">
             <inheritdoc cref="M:System.Object.ToString"/>
             <exception cref="T:System.NotSupportedException">Always throws.</exception>
+        </member>
+        <member name="M:System.Text.StringHandler.op_Equality(System.Text.StringHandler@,System.Text.StringHandler@)">
+            <summary>
+            Determines whether two instances hold a same value.
+            </summary>
+            <param name="left">The left-side instance to take part in the comparison operation.</param>
+            <param name="right">The right-side instance to take part in the comparison operation.</param>
+            <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
+        </member>
+        <member name="M:System.Text.StringHandler.op_Inequality(System.Text.StringHandler@,System.Text.StringHandler@)">
+            <summary>
+            Determines whether two instances don't hold a same value.
+            </summary>
+            <param name="left">The left-side instance to take part in the comparison operation.</param>
+            <param name="right">The right-side instance to take part in the comparison operation.</param>
+            <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
         </member>
         <member name="M:System.Text.StringHandler.Equals(System.Object)">
             <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
@@ -3856,22 +3879,6 @@
         <member name="M:System.Utf8Char.System#IComparable#CompareTo(System.Object)">
             <inheritdoc/>
         </member>
-        <member name="M:System.Utf8Char.op_Equality(System.Utf8Char,System.Utf8Char)">
-            <summary>
-            Determines whether two <see cref="T:System.Utf8Char"/> instances are considered equal.
-            </summary>
-            <param name="left">The left-side instance to be compared.</param>
-            <param name="right">The right-side instance to be compared.</param>
-            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
-        </member>
-        <member name="M:System.Utf8Char.op_Inequality(System.Utf8Char,System.Utf8Char)">
-            <summary>
-            Determines whether two <see cref="T:System.Utf8Char"/> instances are not considered equal.
-            </summary>
-            <param name="left">The left-side instance to be compared.</param>
-            <param name="right">The right-side instance to be compared.</param>
-            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
-        </member>
         <member name="M:System.Utf8Char.op_GreaterThan(System.Utf8Char,System.Utf8Char)">
             <summary>
             Determines whether the <paramref name="left"/>-side instance is greater than
@@ -3931,6 +3938,22 @@
             Implicitly cast from <see cref="T:System.Byte"/> instance to <see cref="T:System.Utf8Char"/> instance.
             </summary>
             <param name="byteValue">The <see cref="T:System.Byte"/> instance.</param>
+        </member>
+        <member name="M:System.Utf8Char.op_Equality(System.Utf8Char,System.Utf8Char)">
+            <summary>
+            Determines whether two instances hold a same value.
+            </summary>
+            <param name="left">The left-side instance to take part in the comparison operation.</param>
+            <param name="right">The right-side instance to take part in the comparison operation.</param>
+            <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
+        </member>
+        <member name="M:System.Utf8Char.op_Inequality(System.Utf8Char,System.Utf8Char)">
+            <summary>
+            Determines whether two instances don't hold a same value.
+            </summary>
+            <param name="left">The left-side instance to take part in the comparison operation.</param>
+            <param name="right">The right-side instance to take part in the comparison operation.</param>
+            <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
         </member>
         <member name="M:System.Utf8Char.Equals(System.Object)">
             <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
@@ -4059,12 +4082,6 @@
             <param name="strB">The second string to be compared.</param>
             <returns>An <see cref="T:System.Int32"/> value indicating which one is greater.</returns>
         </member>
-        <member name="M:System.Utf8String.op_Equality(System.Utf8String,System.Utf8String)">
-            <inheritdoc cref="M:System.String.op_Equality(System.String,System.String)"/>
-        </member>
-        <member name="M:System.Utf8String.op_Inequality(System.Utf8String,System.Utf8String)">
-            <inheritdoc cref="M:System.String.op_Inequality(System.String,System.String)"/>
-        </member>
         <member name="M:System.Utf8String.op_GreaterThan(System.Utf8String,System.Utf8String)">
             <inheritdoc/>
         </member>
@@ -4108,6 +4125,22 @@
             Implicitly cast from <see cref="T:System.Utf8Char"/>[] to <see cref="T:System.Utf8String"/>.
             </summary>
             <param name="underlyingArray">The underlying array.</param>
+        </member>
+        <member name="M:System.Utf8String.op_Equality(System.Utf8String,System.Utf8String)">
+            <summary>
+            Determines whether two instances hold a same value.
+            </summary>
+            <param name="left">The left-side instance to take part in the comparison operation.</param>
+            <param name="right">The right-side instance to take part in the comparison operation.</param>
+            <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
+        </member>
+        <member name="M:System.Utf8String.op_Inequality(System.Utf8String,System.Utf8String)">
+            <summary>
+            Determines whether two instances don't hold a same value.
+            </summary>
+            <param name="left">The left-side instance to take part in the comparison operation.</param>
+            <param name="right">The right-side instance to take part in the comparison operation.</param>
+            <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
         </member>
         <member name="M:System.Utf8String.Equals(System.Object)">
             <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
