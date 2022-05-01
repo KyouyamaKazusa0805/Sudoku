@@ -3,7 +3,8 @@
 /// <summary>
 /// Represents text as a sequence of UTF-8 code units.
 /// </summary>
-public readonly struct Utf8String :
+[AutoOverridesEquals]
+public readonly partial struct Utf8String :
 	IAdditionOperators<Utf8String, Utf8String, Utf8String>,
 	IComparable<Utf8String>,
 	IComparisonOperators<Utf8String, Utf8String>,
@@ -115,10 +116,6 @@ public readonly struct Utf8String :
 	/// <inheritdoc/>
 	Utf8Char IReadOnlyList<Utf8Char>.this[int index] => _value[index];
 
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public override bool Equals([NotNullWhen(true)] object? obj) => obj is Utf8String comparer && Equals(comparer);
 
 	/// <inheritdoc/>
 	public unsafe bool Equals(Utf8String other)

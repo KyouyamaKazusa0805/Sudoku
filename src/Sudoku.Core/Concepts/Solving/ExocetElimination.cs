@@ -7,6 +7,7 @@
 /// <param name="Eliminations">Indicates the eliminations.</param>
 /// <param name="Reason">Indicates the reason why these candidates can be eliminated.</param>
 [AutoOverridesGetHashCode(nameof(Eliminations), nameof(Reason))]
+[AutoOverridesEquals(nameof(Eliminations), nameof(Reason), EmitInKeyword = true, UseExplicitlyImplementation = true)]
 public readonly partial record struct ExocetElimination(in Candidates Eliminations, ExocetEliminatedReason Reason) :
 	IEquatable<ExocetElimination>,
 	IEqualityOperators<ExocetElimination, ExocetElimination>
@@ -20,19 +21,6 @@ public readonly partial record struct ExocetElimination(in Candidates Eliminatio
 		get => Eliminations.Count;
 	}
 
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public bool Equals(ExocetElimination other) => Equals(in other);
-
-	/// <summary>
-	/// Determine whether the specified <see cref="ExocetElimination"/> instance holds a same set of eliminations
-	/// and the eliminated reason as the current instance.
-	/// </summary>
-	/// <param name="other">The instance to compare.</param>
-	/// <returns>A <see cref="bool"/> result.</returns>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public bool Equals(in ExocetElimination other) => Eliminations == other.Eliminations && Reason == other.Reason;
 
 	/// <inheritdoc cref="object.ToString"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

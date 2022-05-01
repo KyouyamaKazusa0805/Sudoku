@@ -8,6 +8,7 @@
 /// two position can fill this candidate.
 /// </remarks>
 [AutoOverridesGetHashCode(nameof(Map), nameof(Digit))]
+[AutoOverridesEquals(nameof(Map), nameof(Digit))]
 public readonly partial struct Conjugate :
 	IDefaultable<Conjugate>,
 	IEquatable<Conjugate>,
@@ -115,18 +116,6 @@ public readonly partial struct Conjugate :
 		get => Default;
 	}
 
-
-	/// <inheritdoc cref="object.Equals(object?)"/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public override bool Equals([NotNullWhen(true)] object? obj) => obj is Conjugate comparer && Equals(comparer);
-
-	/// <summary>
-	/// Determine whether the two conjugate pairs are same.
-	/// </summary>
-	/// <param name="other">The other instance to compare.</param>
-	/// <returns>A <see cref="bool"/> result.</returns>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public bool Equals(Conjugate other) => Map == other.Map && Digit == other.Digit;
 
 	/// <inheritdoc cref="object.ToString"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

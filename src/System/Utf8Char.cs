@@ -3,7 +3,9 @@
 /// <summary>
 /// Represents a character as a UTF-8 code unit.
 /// </summary>
-public readonly struct Utf8Char :
+[AutoOverridesGetHashCode(nameof(_char))]
+[AutoOverridesEquals(nameof(_char))]
+public readonly partial struct Utf8Char :
 	IComparable,
 	IComparable<Utf8Char>,
 	IComparisonOperators<Utf8Char, Utf8Char>,
@@ -50,15 +52,6 @@ public readonly struct Utf8Char :
 	static Utf8Char IDefaultable<Utf8Char>.Default => MinValue;
 
 
-	/// <inheritdoc cref="char.Equals(object?)"/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public override bool Equals([NotNullWhen(true)] object? obj) => obj is Utf8Char comparer && Equals(comparer);
-
-	/// <inheritdoc cref="char.Equals(char)"/>
-	/// <param name="other"><inheritdoc/></param>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public bool Equals(Utf8Char other) => _char == other._char;
-
 	/// <summary>
 	/// Determines whether the current character is a digit.
 	/// </summary>
@@ -93,10 +86,6 @@ public readonly struct Utf8Char :
 	/// <returns>A <see cref="bool"/> result.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public bool IsLetterOrDigit() => IsLetter() || IsDigit();
-
-	/// <inheritdoc cref="char.GetHashCode"/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public override int GetHashCode() => _char;
 
 	/// <inheritdoc cref="char.CompareTo(char)"/>
 	/// <param name="other"><inheritdoc/></param>

@@ -4,6 +4,13 @@
 /// Encapsulates a map that contains 729 positions to represent a candidate.
 /// </summary>
 [DisableParameterlessConstructor(SuggestedMemberName = nameof(Empty))]
+[AutoOverridesGetHashCode(
+	nameof(_0), nameof(_1), nameof(_2), nameof(_3), nameof(_4), nameof(_5),
+	nameof(_6), nameof(_7), nameof(_8), nameof(_9), nameof(_10), nameof(_11))]
+[AutoOverridesEquals(
+	nameof(_0), nameof(_1), nameof(_2), nameof(_3), nameof(_4), nameof(_5),
+	nameof(_6), nameof(_7), nameof(_8), nameof(_9), nameof(_10), nameof(_11),
+	UseExplicitlyImplementation = true, EmitInKeyword = true)]
 public unsafe partial struct Candidates :
 	IDefaultable<Candidates>,
 	IEnumerable<int>,
@@ -365,33 +372,6 @@ public unsafe partial struct Candidates :
 			} >> offset % Shifting & 1
 		) != 0;
 
-	/// <inheritdoc cref="object.Equals(object?)"/>
-	public override readonly bool Equals([NotNullWhen(true)] object? obj) => base.Equals(obj);
-
-	/// <summary>
-	/// Determine whether the specified <see cref="Candidates"/> instance holds the same
-	/// bits as the current instance.
-	/// </summary>
-	/// <param name="other">The instance to compare.</param>
-	/// <returns>A <see cref="bool"/> result.</returns>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public readonly bool Equals(in Candidates other)
-		=> _0 == other._0 && _1 == other._1 && _2 == other._2 && _3 == other._3
-		&& _4 == other._4 && _5 == other._5 && _6 == other._6 && _7 == other._7
-		&& _8 == other._8 && _9 == other._9 && _10 == other._10 && _11 == other._11;
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public override int GetHashCode()
-		=> (int)(
-			RotateLeft((ulong)_0, 3) ^ RotateRight((ulong)_1, 3)
-			^ RotateLeft((ulong)_2, 6) ^ RotateRight((ulong)_3, 6)
-			^ RotateLeft((ulong)_4, 9) ^ RotateRight((ulong)_5, 9)
-			^ RotateLeft((ulong)_6, 12) ^ RotateRight((ulong)_7, 12)
-			^ RotateLeft((ulong)_8, 15) ^ RotateRight((ulong)_9, 15)
-			^ RotateLeft((ulong)_10, 18) ^ RotateRight((ulong)_11, 18)
-		);
-
 	/// <summary>
 	/// Get all offsets whose bits are set <see langword="true"/>.
 	/// </summary>
@@ -584,10 +564,6 @@ public unsafe partial struct Candidates :
 		_0 = _1 = _2 = _3 = _4 = _5 = _6 = _7 = _8 = _9 = _10 = _11 = 0;
 		Count = 0;
 	}
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	readonly bool IEquatable<Candidates>.Equals(Candidates other) => Equals(other);
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

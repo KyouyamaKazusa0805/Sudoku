@@ -3,6 +3,7 @@
 /// <summary>
 /// Provides a collection that contains the conclusions.
 /// </summary>
+[AutoOverridesEquals(nameof(_collection))]
 public readonly ref partial struct ConclusionCollection
 {
 	/// <summary>
@@ -45,13 +46,6 @@ public readonly ref partial struct ConclusionCollection
 		}
 	}
 
-
-	/// <summary>
-	/// Determine whether the two collections are equal.
-	/// </summary>
-	/// <param name="other">The collection to compare.</param>
-	/// <returns>A <see cref="bool"/> result.</returns>
-	public bool Equals(ConclusionCollection other) => _collection == other._collection;
 
 	/// <inheritdoc cref="object.ToString"/>
 	public override string ToString() => ToString(true, ", ");

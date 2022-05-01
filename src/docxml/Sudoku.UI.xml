@@ -525,7 +525,7 @@
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.UI.Drawing.Shapes.BlockLine.GetHashCode">
-            <inheritdoc cref="M:System.Object.ToString"/>
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
         </member>
         <member name="T:Sudoku.UI.Drawing.Shapes.CandidateDigit">
             <summary>
@@ -602,7 +602,7 @@
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.UI.Drawing.Shapes.CandidateDigit.GetHashCode">
-            <inheritdoc cref="M:System.Object.ToString"/>
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
         </member>
         <member name="T:Sudoku.UI.Drawing.Shapes.CandidateLine">
             <summary>
@@ -690,7 +690,7 @@
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.UI.Drawing.Shapes.CandidateLine.GetHashCode">
-            <inheritdoc cref="M:System.Object.ToString"/>
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
         </member>
         <member name="T:Sudoku.UI.Drawing.Shapes.CellDigit">
             <summary>
@@ -806,7 +806,7 @@
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.UI.Drawing.Shapes.CellDigit.GetHashCode">
-            <inheritdoc cref="M:System.Object.ToString"/>
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
         </member>
         <member name="T:Sudoku.UI.Drawing.Shapes.CellLine">
             <summary>
@@ -894,7 +894,7 @@
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.UI.Drawing.Shapes.CellLine.GetHashCode">
-            <inheritdoc cref="M:System.Object.ToString"/>
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
         </member>
         <member name="T:Sudoku.UI.Drawing.Shapes.DrawingElement">
             <summary>
@@ -1855,7 +1855,7 @@
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.UI.Drawing.Shapes.OutsideRectangle.GetHashCode">
-            <inheritdoc cref="M:System.Object.ToString"/>
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
         </member>
         <member name="T:Sudoku.UI.Drawing.Shapes.SudokuGrid">
             <summary>
@@ -2035,7 +2035,7 @@
             </summary>
         </member>
         <member name="M:Sudoku.UI.Drawing.Shapes.SudokuGrid.GetHashCode">
-            <inheritdoc cref="M:System.Object.ToString"/>
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
         </member>
         <member name="T:Sudoku.UI.BindingConversions">
             <summary>

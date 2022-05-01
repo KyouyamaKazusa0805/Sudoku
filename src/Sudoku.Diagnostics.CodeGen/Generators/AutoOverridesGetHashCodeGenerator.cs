@@ -131,7 +131,7 @@ public sealed class AutoOverridesGetHashCodeGenerator : ISourceGenerator
 				
 				partial {{typeKindString}} {{type.Name}}{{genericParameterList}}
 				{
-					/// <inheritdoc cref="object.ToString"/>
+					/// <inheritdoc cref="object.GetHashCode"/>
 					[global::System.Runtime.CompilerServices.CompilerGenerated]
 					[global::System.CodeDom.Compiler.GeneratedCode("{{GetType().FullName}}", "{{VersionValue}}")]
 					[global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]

@@ -3,6 +3,8 @@
 /// <summary>
 /// Indicates a house collection.
 /// </summary>
+[AutoOverridesEquals(nameof(Mask))]
+[AutoOverridesGetHashCode(nameof(Mask))]
 public readonly ref partial struct HouseCollection
 {
 	/// <summary>
@@ -64,18 +66,6 @@ public readonly ref partial struct HouseCollection
 		get => (Mask >> houseIndex & 1) != 0;
 	}
 
-
-	/// <summary>
-	/// Determine whether the two collections are equal.
-	/// </summary>
-	/// <param name="other">The collection to compare.</param>
-	/// <returns>A <see cref="bool"/> result.</returns>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public bool Equals(HouseCollection other) => Mask == other.Mask;
-
-	/// <inheritdoc cref="object.GetHashCode"/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public override int GetHashCode() => Mask;
 
 	/// <inheritdoc cref="object.ToString"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

@@ -13,6 +13,8 @@ namespace Sudoku.Concepts.Collections;
 /// </remarks>
 [JsonConverter(typeof(JsonConverter))]
 [DisableParameterlessConstructor(SuggestedMemberName = nameof(Empty))]
+[AutoOverridesGetHashCode(nameof(BinaryCode))]
+[AutoOverridesEquals(nameof(_low), nameof(_high), UseExplicitlyImplementation = true, EmitInKeyword = true)]
 public unsafe partial struct Cells :
 	IComparable<Cells>,
 	IDefaultable<Cells>,
@@ -425,6 +427,8 @@ public unsafe partial struct Cells :
 	/// <inheritdoc/>
 	readonly bool IDefaultable<Cells>.IsDefault => Count == 0;
 
+	private readonly string BinaryCode => ToString("b");
+
 	/// <summary>
 	/// Indicates the cell offsets in this collection.
 	/// </summary>
@@ -632,18 +636,6 @@ public unsafe partial struct Cells :
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public readonly bool Contains(int offset) => ((offset < Shifting ? _low : _high) >> offset % Shifting & 1) != 0;
 
-	/// <inheritdoc cref="object.Equals(object?)"/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public override readonly bool Equals([NotNullWhen(true)] object? obj) => obj is Cells comparer && Equals(comparer);
-
-	/// <summary>
-	/// Determine whether the two elements are equal.
-	/// </summary>
-	/// <param name="other">The object to compare.</param>
-	/// <returns>A <see cref="bool"/> result.</returns>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public readonly bool Equals(in Cells other) => _low == other._low && _high == other._high;
-
 	/// <summary>
 	/// Get the subview mask of this map.
 	/// </summary>
@@ -651,10 +643,6 @@ public unsafe partial struct Cells :
 	/// <returns>The mask.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public readonly short GetSubviewMask(int houseIndex) => this / houseIndex;
-
-	/// <inheritdoc cref="object.GetHashCode"/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public override readonly int GetHashCode() => ToString("b").GetHashCode();
 
 	/// <inheritdoc cref="IComparable{T}.CompareTo(T)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -880,10 +868,6 @@ public unsafe partial struct Cells :
 	/// </summary>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public void Clear() => _low = _high = Count = 0;
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	readonly bool IEquatable<Cells>.Equals(Cells other) => Equals(other);
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

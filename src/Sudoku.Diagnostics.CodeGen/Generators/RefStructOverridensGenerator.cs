@@ -12,11 +12,7 @@ public sealed class RefStructOverridensGenerator : ISourceGenerator
 		if (
 			context is not
 			{
-				SyntaxContextReceiver: RefStructOverridensReceiver
-				{
-					Diagnostics: var diagnostics,
-					Collection: var typeSymbols
-				} receiver,
+				SyntaxContextReceiver: RefStructOverridensReceiver { Collection: var tuples } receiver,
 				Compilation: var compilation
 			}
 		)
@@ -24,21 +20,14 @@ public sealed class RefStructOverridensGenerator : ISourceGenerator
 			return;
 		}
 
-		if (diagnostics.Count != 0)
-		{
-			diagnostics.ForEach(context.ReportDiagnostic);
-
-			return;
-		}
-
 		var onTopLevel = OnTopLevel;
 		var onNestedLevel = OnNested;
 		(
-			from typeSymbol in typeSymbols
-			group typeSymbol by typeSymbol.ContainingType is null into @group
-			from type in @group
-			select (Action: @group.Key ? onTopLevel : onNestedLevel, Type: type)
-		).ForEach(e => e.Action(context, e.Type, compilation));
+			from tuple in tuples
+			group tuple by tuple.Symbol.ContainingType is null into tupleGroupedByIsNested
+			from typeTuple in tupleGroupedByIsNested
+			select (Action: tupleGroupedByIsNested.Key ? onTopLevel : onNestedLevel, TypeTuple: typeTuple)
+		).ForEach(e => e.Action(context, e.TypeTuple, compilation));
 	}
 
 	/// <inheritdoc/>
@@ -49,11 +38,16 @@ public sealed class RefStructOverridensGenerator : ISourceGenerator
 	/// Generates for top-levelled <see langword="ref struct"/> types.
 	/// </summary>
 	/// <param name="context">The context.</param>
-	/// <param name="type">The type.</param>
+	/// <param name="tuple">The tuple.</param>
 	/// <param name="compilation">The compilation instance.</param>
-	private void OnTopLevel(GeneratorExecutionContext context, INamedTypeSymbol type, Compilation compilation)
+	private void OnTopLevel(
+		GeneratorExecutionContext context, (INamedTypeSymbol Type, bool GenerateGetHashCode, bool GenerateToString) tuple,
+		Compilation compilation)
 	{
-		var (_, _, namespaceName, genericParameterList, _, _, readOnlyKeyword, _, _, _) = SymbolOutputInfo.FromSymbol(type);
+		var type = tuple.Type;
+
+		var (_, _, namespaceName, genericParameterList, _, _, readOnlyKeyword, _, _, _) =
+			SymbolOutputInfo.FromSymbol(type);
 
 		var methods = type.GetMembers().OfType<IMethodSymbol>().ToArray();
 		string equalsMethod = Array.Exists(
@@ -87,7 +81,7 @@ public sealed class RefStructOverridensGenerator : ISourceGenerator
 				Parameters: [],
 				ReturnType.SpecialType: SpecialType.System_Int32
 			}
-		)
+		) || !tuple.GenerateGetHashCode
 			? $@"// Can't generate '{nameof(GetHashCode)}' because the method is impl'ed by user."
 			: $@"/// <inheritdoc cref=""object.GetHashCode""/>
 	/// <exception cref=""global::System.NotSupportedException"">Always throws.</exception>
@@ -109,7 +103,7 @@ public sealed class RefStructOverridensGenerator : ISourceGenerator
 				Parameters: [],
 				ReturnType.SpecialType: SpecialType.System_String
 			}
-		)
+		) || !tuple.GenerateToString
 			? $@"// Can't generate '{nameof(ToString)}' because the method is impl'ed by user."
 			: $@"/// <inheritdoc cref=""object.ToString""/>
 	/// <exception cref=""global::System.NotSupportedException"">Always throws.</exception>
@@ -147,11 +141,16 @@ partial struct {type.Name}{genericParameterList}
 	/// Generates for nested-levelled <see langword="ref struct"/> types.
 	/// </summary>
 	/// <param name="context">The context.</param>
-	/// <param name="type">The type.</param>
+	/// <param name="tuple">The tuple.</param>
 	/// <param name="compilation">The compilation instance.</param>
-	private void OnNested(GeneratorExecutionContext context, INamedTypeSymbol type, Compilation compilation)
+	private void OnNested(
+		GeneratorExecutionContext context, (INamedTypeSymbol Type, bool GenerateGetHashCode, bool GenerateToString) tuple,
+		Compilation compilation)
 	{
-		var (_, _, namespaceName, genericParameterList, _, _, readOnlyKeyword, _, _, _) = SymbolOutputInfo.FromSymbol(type);
+		var type = tuple.Type;
+
+		var (_, _, namespaceName, genericParameterList, _, _, readOnlyKeyword, _, _, _) =
+			SymbolOutputInfo.FromSymbol(type);
 
 		// If nested type, the 'genericParametersList' may contain the dot '.' such as
 		//
@@ -285,7 +284,7 @@ partial struct {type.Name}{genericParameterList}
 				Parameters: [],
 				ReturnType.SpecialType: SpecialType.System_Int32
 			}
-		)
+		) || !tuple.GenerateGetHashCode
 			? $"{methodIndenting}// Can't generate '{nameof(GetHashCode)}' because the method is impl'ed by user."
 			: $@"{methodIndenting}/// <inheritdoc cref=""object.GetHashCode""/>
 {methodIndenting}/// <exception cref=""global::System.NotSupportedException"">Always throws.</exception>
@@ -305,7 +304,7 @@ partial struct {type.Name}{genericParameterList}
 				Parameters: [],
 				ReturnType.SpecialType: SpecialType.System_String
 			}
-		)
+		) || !tuple.GenerateToString
 			? $"{methodIndenting}// Can't generate '{nameof(ToString)}' because the method is impl'ed by user."
 			: $@"{methodIndenting}/// <inheritdoc cref=""object.ToString""/>
 {methodIndenting}/// <exception cref=""global::System.NotSupportedException"">Always throws.</exception>

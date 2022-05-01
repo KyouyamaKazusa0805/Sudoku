@@ -7,6 +7,8 @@
 [JsonConverter(typeof(JsonConverter))]
 [DisableParameterlessConstructor(Message = "You cannot use the parameterless constructor to construct the data structure. Please use factory method instead.")]
 [AutoOverridesGetHashCode(nameof(UseId), nameof(_colorRawValue))]
+[AutoOverridesEquals(nameof(UseId), nameof(Id))]
+[AutoOverridesToString(nameof(RawValueDisplayer))]
 public readonly partial struct Identifier : IEquatable<Identifier>, IEqualityOperators<Identifier, Identifier>
 {
 	/// <summary>
@@ -90,19 +92,8 @@ public readonly partial struct Identifier : IEquatable<Identifier>, IEqualityOpe
 	[field: FieldOffset(4)]
 	public int Id { get; }
 
+	private string RawValueDisplayer => UseId ? $"ID = {Id}" : $"Color = #{A:X2}{R:X2}{G:X2}{B:X2}";
 
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public override bool Equals([NotNullWhen(true)] object? obj) => base.Equals(obj);
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public bool Equals(Identifier other) => UseId == other.UseId && Id == other.Id;
-
-	/// <inheritdoc cref="object.ToString"/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public override string ToString()
-		=> $"{nameof(Identifier)} {{ {(UseId ? $"ID = {Id}" : $"Color = #{A:X2}{R:X2}{G:X2}{B:X2}")} }}";
 
 	/// <summary>
 	/// Try to cast the current identifier instance into the result color value.

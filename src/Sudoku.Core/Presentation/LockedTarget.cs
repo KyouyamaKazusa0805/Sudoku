@@ -6,6 +6,7 @@
 /// </summary>
 [JsonConverter(typeof(JsonConverter))]
 [AutoOverridesGetHashCode(nameof(Cells), nameof(Digit))]
+[AutoOverridesEquals(nameof(Digit), nameof(Cells), UseExplicitlyImplementation = true)]
 public readonly partial struct LockedTarget :
 	IEquatable<LockedTarget>,
 	IEqualityOperators<LockedTarget, LockedTarget>
@@ -37,19 +38,7 @@ public readonly partial struct LockedTarget :
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public override bool Equals([NotNullWhen(true)] object? obj) => obj is LockedTarget comparer && Equals(comparer);
-
-	/// <inheritdoc cref="IEquatable{T}.Equals(T)"/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public bool Equals(in LockedTarget other) => Digit == other.Digit && Cells == other.Cells;
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public override string ToString() => $"Locked target: {Digit + 1}{Cells}";
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	bool IEquatable<LockedTarget>.Equals(LockedTarget other) => Equals(other);
 
 
 	/// <summary>

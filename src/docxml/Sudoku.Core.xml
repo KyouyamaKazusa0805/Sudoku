@@ -242,20 +242,6 @@
             Throws when the argument <paramref name="offset"/> is out of range.
             </exception>
         </member>
-        <member name="M:Sudoku.Concepts.Collections.Candidates.Equals(System.Object)">
-            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
-        </member>
-        <member name="M:Sudoku.Concepts.Collections.Candidates.Equals(Sudoku.Concepts.Collections.Candidates@)">
-            <summary>
-            Determine whether the specified <see cref="T:Sudoku.Concepts.Collections.Candidates"/> instance holds the same
-            bits as the current instance.
-            </summary>
-            <param name="other">The instance to compare.</param>
-            <returns>A <see cref="T:System.Boolean"/> result.</returns>
-        </member>
-        <member name="M:Sudoku.Concepts.Collections.Candidates.GetHashCode">
-            <inheritdoc/>
-        </member>
         <member name="M:Sudoku.Concepts.Collections.Candidates.ToArray">
             <summary>
             Get all offsets whose bits are set <see langword="true"/>.
@@ -346,9 +332,6 @@
             <summary>
             Clear all bits.
             </summary>
-        </member>
-        <member name="M:Sudoku.Concepts.Collections.Candidates.System#IEquatable{Sudoku#Concepts#Collections#Candidates}#Equals(Sudoku.Concepts.Collections.Candidates)">
-            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.Collections.Candidates.System#Collections#Generic#IEnumerable{System#Int32}#GetEnumerator">
             <inheritdoc/>
@@ -577,6 +560,15 @@
             Explicit cast from <see cref="T:Sudoku.Concepts.Collections.Candidates"/> to <see cref="T:System.ReadOnlySpan`1"/>.
             </summary>
             <param name="offsets">The offsets.</param>
+        </member>
+        <member name="M:Sudoku.Concepts.Collections.Candidates.Equals(System.Object)">
+            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.Collections.Candidates.System#IEquatable{Sudoku#Concepts#Collections#Candidates}#Equals(Sudoku.Concepts.Collections.Candidates)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.Collections.Candidates.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
         </member>
         <member name="M:Sudoku.Concepts.Collections.Candidates.#ctor">
             <summary>
@@ -901,25 +893,12 @@
             <param name="offset">The offset.</param>
             <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
         </member>
-        <member name="M:Sudoku.Concepts.Collections.Cells.Equals(System.Object)">
-            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
-        </member>
-        <member name="M:Sudoku.Concepts.Collections.Cells.Equals(Sudoku.Concepts.Collections.Cells@)">
-            <summary>
-            Determine whether the two elements are equal.
-            </summary>
-            <param name="other">The object to compare.</param>
-            <returns>A <see cref="T:System.Boolean"/> result.</returns>
-        </member>
         <member name="M:Sudoku.Concepts.Collections.Cells.GetSubviewMask(System.Int32)">
             <summary>
             Get the subview mask of this map.
             </summary>
             <param name="houseIndex">The house index.</param>
             <returns>The mask.</returns>
-        </member>
-        <member name="M:Sudoku.Concepts.Collections.Cells.GetHashCode">
-            <inheritdoc cref="M:System.Object.GetHashCode"/>
         </member>
         <member name="M:Sudoku.Concepts.Collections.Cells.CompareTo(Sudoku.Concepts.Collections.Cells@)">
             <inheritdoc cref="M:System.IComparable`1.CompareTo(`0)"/>
@@ -992,9 +971,6 @@
             <summary>
             Clear all bits.
             </summary>
-        </member>
-        <member name="M:Sudoku.Concepts.Collections.Cells.System#IEquatable{Sudoku#Concepts#Collections#Cells}#Equals(Sudoku.Concepts.Collections.Cells)">
-            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.Collections.Cells.System#IComparable{Sudoku#Concepts#Collections#Cells}#CompareTo(Sudoku.Concepts.Collections.Cells)">
             <inheritdoc/>
@@ -1249,6 +1225,15 @@
         </member>
         <member name="M:Sudoku.Concepts.Collections.Cells.JsonConverter.Write(System.Text.Json.Utf8JsonWriter,Sudoku.Concepts.Collections.Cells,System.Text.Json.JsonSerializerOptions)">
             <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.Collections.Cells.Equals(System.Object)">
+            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.Collections.Cells.System#IEquatable{Sudoku#Concepts#Collections#Cells}#Equals(Sudoku.Concepts.Collections.Cells)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.Collections.Cells.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
         </member>
         <member name="M:Sudoku.Concepts.Collections.Cells.#ctor">
             <summary>
@@ -2398,13 +2383,6 @@
             Indicates all digits used in this conclusions list, represented as a mask.
             </summary>
         </member>
-        <member name="M:Sudoku.Concepts.Collections.Handlers.ConclusionCollection.Equals(Sudoku.Concepts.Collections.Handlers.ConclusionCollection)">
-            <summary>
-            Determine whether the two collections are equal.
-            </summary>
-            <param name="other">The collection to compare.</param>
-            <returns>A <see cref="T:System.Boolean"/> result.</returns>
-        </member>
         <member name="M:Sudoku.Concepts.Collections.Handlers.ConclusionCollection.ToString">
             <inheritdoc cref="M:System.Object.ToString"/>
         </member>
@@ -2415,6 +2393,9 @@
             <param name="shouldSort">Indicates whether the specified collection should be sorted first.</param>
             <param name="separator">The separator.</param>
             <returns>The string result.</returns>
+        </member>
+        <member name="M:Sudoku.Concepts.Collections.Handlers.ConclusionCollection.Equals(Sudoku.Concepts.Collections.Handlers.ConclusionCollection)">
+            <inheritdoc cref="M:System.IEquatable`1.Equals(`0)"/>
         </member>
         <member name="M:Sudoku.Concepts.Collections.Handlers.ConclusionCollection.Equals(System.Object)">
             <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
@@ -2564,16 +2545,6 @@
             <param name="houseIndex">The house index.</param>
             <returns>A <see cref="T:System.Boolean"/> value.</returns>
         </member>
-        <member name="M:Sudoku.Concepts.Collections.Handlers.HouseCollection.Equals(Sudoku.Concepts.Collections.Handlers.HouseCollection)">
-            <summary>
-            Determine whether the two collections are equal.
-            </summary>
-            <param name="other">The collection to compare.</param>
-            <returns>A <see cref="T:System.Boolean"/> result.</returns>
-        </member>
-        <member name="M:Sudoku.Concepts.Collections.Handlers.HouseCollection.GetHashCode">
-            <inheritdoc cref="M:System.Object.GetHashCode"/>
-        </member>
         <member name="M:Sudoku.Concepts.Collections.Handlers.HouseCollection.ToString">
             <inheritdoc cref="M:System.Object.ToString"/>
         </member>
@@ -2595,6 +2566,12 @@
             </summary>
             <param name="houseIndex">The house index.</param>
             <returns>The label.</returns>
+        </member>
+        <member name="M:Sudoku.Concepts.Collections.Handlers.HouseCollection.Equals(Sudoku.Concepts.Collections.Handlers.HouseCollection)">
+            <inheritdoc cref="M:System.IEquatable`1.Equals(`0)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.Collections.Handlers.HouseCollection.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
         </member>
         <member name="M:Sudoku.Concepts.Collections.Handlers.HouseCollection.Equals(System.Object)">
             <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
@@ -2672,16 +2649,6 @@
         <member name="P:Sudoku.Concepts.Conjugate.System#IDefaultable{Sudoku#Concepts#Conjugate}#Default">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.Conjugate.Equals(System.Object)">
-            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
-        </member>
-        <member name="M:Sudoku.Concepts.Conjugate.Equals(Sudoku.Concepts.Conjugate)">
-            <summary>
-            Determine whether the two conjugate pairs are same.
-            </summary>
-            <param name="other">The other instance to compare.</param>
-            <returns>A <see cref="T:System.Boolean"/> result.</returns>
-        </member>
         <member name="M:Sudoku.Concepts.Conjugate.ToString">
             <inheritdoc cref="M:System.Object.ToString"/>
         </member>
@@ -2691,8 +2658,14 @@
         <member name="M:Sudoku.Concepts.Conjugate.op_Inequality(Sudoku.Concepts.Conjugate,Sudoku.Concepts.Conjugate)">
             <inheritdoc/>
         </member>
+        <member name="M:Sudoku.Concepts.Conjugate.Equals(System.Object)">
+            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.Conjugate.Equals(Sudoku.Concepts.Conjugate)">
+            <inheritdoc cref="M:System.IEquatable`1.Equals(`0)"/>
+        </member>
         <member name="M:Sudoku.Concepts.Conjugate.GetHashCode">
-            <inheritdoc cref="M:System.Object.ToString"/>
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
         </member>
         <member name="T:Sudoku.Concepts.Enumerators.BitSubsetsGenerator">
             <summary>
@@ -3780,12 +3753,6 @@
             Indicates the maximum value.
             </summary>
         </member>
-        <member name="M:Sudoku.Concepts.Parsing.CellRange.Equals(System.Object)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.Parsing.CellRange.Equals(Sudoku.Concepts.Parsing.CellRange)">
-            <inheritdoc/>
-        </member>
         <member name="M:Sudoku.Concepts.Parsing.CellRange.ToString">
             <inheritdoc cref="M:System.Object.ToString"/>
         </member>
@@ -3846,8 +3813,14 @@
             </para>
             </remarks>
         </member>
+        <member name="M:Sudoku.Concepts.Parsing.CellRange.Equals(System.Object)">
+            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.Parsing.CellRange.Equals(Sudoku.Concepts.Parsing.CellRange)">
+            <inheritdoc cref="M:System.IEquatable`1.Equals(`0)"/>
+        </member>
         <member name="M:Sudoku.Concepts.Parsing.CellRange.GetHashCode">
-            <inheritdoc cref="M:System.Object.ToString"/>
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
         </member>
         <member name="T:Sudoku.Concepts.Parsing.GridParser">
             <summary>
@@ -4721,7 +4694,7 @@
             <returns>A <see cref="T:System.Boolean"/> result.</returns>
         </member>
         <member name="M:Sudoku.Concepts.Solving.ChainNodes.Node.GetHashCode">
-            <inheritdoc cref="M:System.Object.ToString"/>
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
         </member>
         <member name="T:Sudoku.Concepts.Solving.ChainNodes.NodeType">
             <summary>
@@ -4914,15 +4887,6 @@
             </summary>
             <param name="grid">The grid.</param>
         </member>
-        <member name="M:Sudoku.Concepts.Solving.Conclusion.Equals(System.Object)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.Solving.Conclusion.Equals(Sudoku.Concepts.Solving.Conclusion)">
-            <inheritdoc cref="M:System.Object.GetHashCode"/>
-        </member>
-        <member name="M:Sudoku.Concepts.Solving.Conclusion.GetHashCode">
-            <inheritdoc cref="M:System.Object.GetHashCode"/>
-        </member>
         <member name="M:Sudoku.Concepts.Solving.Conclusion.CompareTo(Sudoku.Concepts.Solving.Conclusion)">
             <inheritdoc/>
         </member>
@@ -5038,6 +5002,15 @@
             </para>
             </remarks>
         </member>
+        <member name="M:Sudoku.Concepts.Solving.Conclusion.Equals(System.Object)">
+            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.Solving.Conclusion.Equals(Sudoku.Concepts.Solving.Conclusion)">
+            <inheritdoc cref="M:System.IEquatable`1.Equals(`0)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.Solving.Conclusion.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
         <member name="T:Sudoku.Concepts.Solving.ConclusionType">
             <summary>
             Provides a conclusion type.
@@ -5138,17 +5111,6 @@
             Indicates how many eliminations the instance contains.
             </summary>
         </member>
-        <member name="M:Sudoku.Concepts.Solving.ExocetElimination.Equals(Sudoku.Concepts.Solving.ExocetElimination)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.Solving.ExocetElimination.Equals(Sudoku.Concepts.Solving.ExocetElimination@)">
-            <summary>
-            Determine whether the specified <see cref="T:Sudoku.Concepts.Solving.ExocetElimination"/> instance holds a same set of eliminations
-            and the eliminated reason as the current instance.
-            </summary>
-            <param name="other">The instance to compare.</param>
-            <returns>A <see cref="T:System.Boolean"/> result.</returns>
-        </member>
         <member name="M:Sudoku.Concepts.Solving.ExocetElimination.ToString">
             <inheritdoc cref="M:System.Object.ToString"/>
         </member>
@@ -5181,7 +5143,7 @@
             </exception>
         </member>
         <member name="M:Sudoku.Concepts.Solving.ExocetElimination.GetHashCode">
-            <inheritdoc cref="M:System.Object.ToString"/>
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
         </member>
         <member name="T:Sudoku.Concepts.Solving.ExocetPattern">
             <summary>
@@ -5338,7 +5300,7 @@
             <inheritdoc cref="M:System.Object.ToString"/>
         </member>
         <member name="M:Sudoku.Concepts.Solving.ExocetPattern.GetHashCode">
-            <inheritdoc cref="M:System.Object.ToString"/>
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
         </member>
         <member name="T:Sudoku.Concepts.Solving.ITechniquePattern`1">
             <summary>
@@ -5430,7 +5392,7 @@
             <returns>A <see cref="T:System.Boolean"/> result.</returns>
         </member>
         <member name="M:Sudoku.Concepts.Solving.QiuDeadlyPattern.GetHashCode">
-            <inheritdoc cref="M:System.Object.ToString"/>
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
         </member>
         <member name="M:Sudoku.Concepts.Solving.QiuDeadlyPattern.ToString">
             <inheritdoc cref="M:System.Object.ToString"/>
@@ -7750,15 +7712,6 @@
             Indicates the ID value used.
             </summary>
         </member>
-        <member name="M:Sudoku.Presentation.Identifier.Equals(System.Object)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Presentation.Identifier.Equals(Sudoku.Presentation.Identifier)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Presentation.Identifier.ToString">
-            <inheritdoc cref="M:System.Object.ToString"/>
-        </member>
         <member name="M:Sudoku.Presentation.Identifier.GetColor``1(System.Converter{Sudoku.Presentation.Identifier,``0})">
             <summary>
             Try to cast the current identifier instance into the result color value.
@@ -7855,7 +7808,16 @@
         <member name="M:Sudoku.Presentation.Identifier.JsonConverter.Write(System.Text.Json.Utf8JsonWriter,Sudoku.Presentation.Identifier,System.Text.Json.JsonSerializerOptions)">
             <inheritdoc/>
         </member>
+        <member name="M:Sudoku.Presentation.Identifier.Equals(System.Object)">
+            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
+        </member>
+        <member name="M:Sudoku.Presentation.Identifier.Equals(Sudoku.Presentation.Identifier)">
+            <inheritdoc cref="M:System.IEquatable`1.Equals(`0)"/>
+        </member>
         <member name="M:Sudoku.Presentation.Identifier.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="M:Sudoku.Presentation.Identifier.ToString">
             <inheritdoc cref="M:System.Object.ToString"/>
         </member>
         <member name="M:Sudoku.Presentation.Identifier.#ctor">
@@ -7901,16 +7863,7 @@
             Indicates the cells used.
             </summary>
         </member>
-        <member name="M:Sudoku.Presentation.LockedTarget.Equals(System.Object)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Presentation.LockedTarget.Equals(Sudoku.Presentation.LockedTarget@)">
-            <inheritdoc cref="M:System.IEquatable`1.Equals(`0)"/>
-        </member>
         <member name="M:Sudoku.Presentation.LockedTarget.ToString">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Presentation.LockedTarget.System#IEquatable{Sudoku#Presentation#LockedTarget}#Equals(Sudoku.Presentation.LockedTarget)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Presentation.LockedTarget.op_Equality(Sudoku.Presentation.LockedTarget@,Sudoku.Presentation.LockedTarget@)">
@@ -7946,8 +7899,14 @@
         <member name="M:Sudoku.Presentation.LockedTarget.JsonConverter.Write(System.Text.Json.Utf8JsonWriter,Sudoku.Presentation.LockedTarget,System.Text.Json.JsonSerializerOptions)">
             <inheritdoc/>
         </member>
+        <member name="M:Sudoku.Presentation.LockedTarget.Equals(System.Object)">
+            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
+        </member>
+        <member name="M:Sudoku.Presentation.LockedTarget.System#IEquatable{Sudoku#Presentation#LockedTarget}#Equals(Sudoku.Presentation.LockedTarget)">
+            <inheritdoc/>
+        </member>
         <member name="M:Sudoku.Presentation.LockedTarget.GetHashCode">
-            <inheritdoc cref="M:System.Object.ToString"/>
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
         </member>
         <member name="T:Sudoku.Presentation.Nodes.CandidateViewNode">
             <summary>
@@ -7976,7 +7935,7 @@
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Presentation.Nodes.CandidateViewNode.GetHashCode">
-            <inheritdoc cref="M:System.Object.ToString"/>
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
         </member>
         <member name="M:Sudoku.Presentation.Nodes.CandidateViewNode.ToString">
             <inheritdoc cref="M:System.Object.ToString"/>
@@ -8008,7 +7967,7 @@
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Presentation.Nodes.CellViewNode.GetHashCode">
-            <inheritdoc cref="M:System.Object.ToString"/>
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
         </member>
         <member name="M:Sudoku.Presentation.Nodes.CellViewNode.ToString">
             <inheritdoc cref="M:System.Object.ToString"/>
@@ -8053,7 +8012,7 @@
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Presentation.Nodes.CrosshatchViewNode.GetHashCode">
-            <inheritdoc cref="M:System.Object.ToString"/>
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
         </member>
         <member name="M:Sudoku.Presentation.Nodes.CrosshatchViewNode.ToString">
             <inheritdoc cref="M:System.Object.ToString"/>
@@ -8085,7 +8044,7 @@
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Presentation.Nodes.HouseViewNode.GetHashCode">
-            <inheritdoc cref="M:System.Object.ToString"/>
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
         </member>
         <member name="M:Sudoku.Presentation.Nodes.HouseViewNode.ToString">
             <inheritdoc cref="M:System.Object.ToString"/>
@@ -8130,7 +8089,7 @@
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Presentation.Nodes.LinkViewNode.GetHashCode">
-            <inheritdoc cref="M:System.Object.ToString"/>
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
         </member>
         <member name="M:Sudoku.Presentation.Nodes.LinkViewNode.ToString">
             <inheritdoc cref="M:System.Object.ToString"/>
@@ -8175,7 +8134,7 @@
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Presentation.Nodes.UnknownViewNode.GetHashCode">
-            <inheritdoc cref="M:System.Object.ToString"/>
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
         </member>
         <member name="M:Sudoku.Presentation.Nodes.UnknownViewNode.ToString">
             <inheritdoc cref="M:System.Object.ToString"/>

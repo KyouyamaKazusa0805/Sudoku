@@ -1439,6 +1439,66 @@
             Indicates the desired type on which the source generator emits extension methods.
             </summary>
         </member>
+        <member name="T:System.Diagnostics.CodeGen.AutoOverridesEqualsAttribute">
+            <summary>
+            Defines an attributes that allows user using it applying to a type
+            (especially for <see langword="class"/> or <see langword="struct"/>), indicating the overriden metadata
+            for method <see cref="M:System.Object.Equals(System.Object)"/>, and make source generator generates their own <c>Equals</c>
+            method automatically.
+            </summary>
+            <remarks>
+            At default, the generated method will emit operator <see langword="is"/> to determine whether the instance
+            is of the current type, and compares the inner values one by one using <c>operator ==</c> if implemented,
+            or invoking <see cref="P:System.Collections.Generic.EqualityComparer`1.Default"/> to compare two values.
+            For example, if the attribute references two properties in the type:
+            <code><![CDATA[
+            [AutoOverridesEquals(nameof(A), nameof(B))]
+            public sealed class ExampleType
+            {
+                public int A { get; } = 42;
+                public int B { get; } = 108;
+            }
+            ]]></code>
+            The generated code will be:
+            <code><![CDATA[
+            public override bool Equals(object? obj) => Equals(comparer as ExampleType);
+            
+            public bool Equals(ExampleType? other) => other is not null && A == other.A && B == other.B;
+            ]]></code>
+            </remarks>
+            <seealso cref="P:System.Collections.Generic.EqualityComparer`1.Default"/>
+        </member>
+        <member name="M:System.Diagnostics.CodeGen.AutoOverridesEqualsAttribute.#ctor(System.String[])">
+            <summary>
+            Initializes an <see cref="T:System.Diagnostics.CodeGen.AutoOverridesEqualsAttribute"/> instance via the specified array
+            of <see cref="T:System.String"/> elements indicating the names of the data members you want to take part in
+            the hash code calculation.
+            </summary>
+            <param name="memberNames">The name of data members, represented as a <see cref="T:System.String"/> array.</param>
+        </member>
+        <member name="P:System.Diagnostics.CodeGen.AutoOverridesEqualsAttribute.UseExplicitlyImplementation">
+            <summary>
+            Indicates whether the source generator will emit explicit implmentation to implement the method
+            <see cref="M:System.IEquatable`1.Equals(`0)"/>. The default value is <see langword="false"/>.
+            </summary>
+        </member>
+        <member name="P:System.Diagnostics.CodeGen.AutoOverridesEqualsAttribute.EmitSealedKeyword">
+            <summary>
+            Indicates whether the source generator will emit the keyword <see langword="sealed"/> to the generated code.
+            The default value is <see langword="false"/>.
+            </summary>
+        </member>
+        <member name="P:System.Diagnostics.CodeGen.AutoOverridesEqualsAttribute.EmitInKeyword">
+            <summary>
+            Indicates whether the source generator will emit keyword <see langword="in"/> to the parameters.
+            The default value is <see langword="false"/>.
+            </summary>
+        </member>
+        <member name="P:System.Diagnostics.CodeGen.AutoOverridesEqualsAttribute.MemberNames">
+            <summary>
+            Indicate the name of members that take part in the output.
+            </summary>
+        </member>
         <member name="T:System.Diagnostics.CodeGen.AutoOverridesGetHashCodeAttribute">
             <summary>
             Defines an attributes that allows user using it applying to a type
@@ -3744,13 +3804,6 @@
         <member name="P:System.Utf8Char.System#IDefaultable{System#Utf8Char}#Default">
             <inheritdoc/>
         </member>
-        <member name="M:System.Utf8Char.Equals(System.Object)">
-            <inheritdoc cref="M:System.Char.Equals(System.Object)"/>
-        </member>
-        <member name="M:System.Utf8Char.Equals(System.Utf8Char)">
-            <inheritdoc cref="M:System.Char.Equals(System.Char)"/>
-            <param name="other"><inheritdoc/></param>
-        </member>
         <member name="M:System.Utf8Char.IsDigit">
             <summary>
             Determines whether the current character is a digit.
@@ -3780,9 +3833,6 @@
             Determines whether a character is a letter or a digit.
             </summary>
             <returns>A <see cref="T:System.Boolean"/> result.</returns>
-        </member>
-        <member name="M:System.Utf8Char.GetHashCode">
-            <inheritdoc cref="M:System.Char.GetHashCode"/>
         </member>
         <member name="M:System.Utf8Char.CompareTo(System.Utf8Char)">
             <inheritdoc cref="M:System.Char.CompareTo(System.Char)"/>
@@ -3882,6 +3932,15 @@
             </summary>
             <param name="byteValue">The <see cref="T:System.Byte"/> instance.</param>
         </member>
+        <member name="M:System.Utf8Char.Equals(System.Object)">
+            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
+        </member>
+        <member name="M:System.Utf8Char.Equals(System.Utf8Char)">
+            <inheritdoc cref="M:System.IEquatable`1.Equals(`0)"/>
+        </member>
+        <member name="M:System.Utf8Char.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
         <member name="T:System.Utf8String">
             <summary>
             Represents text as a sequence of UTF-8 code units.
@@ -3944,9 +4003,6 @@
             <returns>The reference of the character.</returns>
         </member>
         <member name="P:System.Utf8String.System#Collections#Generic#IReadOnlyList{System#Utf8Char}#Item(System.Int32)">
-            <inheritdoc/>
-        </member>
-        <member name="M:System.Utf8String.Equals(System.Object)">
             <inheritdoc/>
         </member>
         <member name="M:System.Utf8String.Equals(System.Utf8String)">
@@ -4052,6 +4108,9 @@
             Implicitly cast from <see cref="T:System.Utf8Char"/>[] to <see cref="T:System.Utf8String"/>.
             </summary>
             <param name="underlyingArray">The underlying array.</param>
+        </member>
+        <member name="M:System.Utf8String.Equals(System.Object)">
+            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
         </member>
     </members>
 </doc>

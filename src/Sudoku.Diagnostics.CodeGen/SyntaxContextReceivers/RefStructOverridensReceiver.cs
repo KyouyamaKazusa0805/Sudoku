@@ -7,15 +7,16 @@
 /// <param name="CancellationToken">The cancellation token to cancel the operation.</param>
 /// <seealso cref="RefStructOverridensGenerator"/>
 internal sealed record class RefStructOverridensReceiver(CancellationToken CancellationToken) :
-	IResultCollectionReceiver<INamedTypeSymbol>
+	IResultCollectionReceiver<(INamedTypeSymbol Symbol, bool, bool)>
 {
-	/// <inheritdoc/>
-	public ICollection<INamedTypeSymbol> Collection { get; } = new List<INamedTypeSymbol>();
+	private const string
+		GetHashCodeAttributeFullName = "System.Diagnostics.CodeGen.AutoOverridesGetHashCodeAttribute",
+		ToStringAttributeFullName = "System.Diagnostics.CodeGen.AutoOverridesToStringAttribute";
 
-	/// <summary>
-	/// Indicates the diagnostic results found.
-	/// </summary>
-	internal List<Diagnostic> Diagnostics { get; } = new();
+
+	/// <inheritdoc/>
+	public ICollection<(INamedTypeSymbol Symbol, bool, bool)> Collection { get; } =
+		new List<(INamedTypeSymbol, bool, bool)>();
 
 
 	/// <inheritdoc/>
@@ -24,11 +25,7 @@ internal sealed record class RefStructOverridensReceiver(CancellationToken Cance
 		if (
 			context is not
 			{
-				Node: StructDeclarationSyntax
-				{
-					Identifier: var identifier,
-					Modifiers: { Count: not 0 } modifiers
-				} n,
+				Node: StructDeclarationSyntax { Modifiers: var modifiers and not [] } n,
 				SemanticModel: { Compilation: { } compilation } semanticModel
 			}
 		)
@@ -36,7 +33,7 @@ internal sealed record class RefStructOverridensReceiver(CancellationToken Cance
 			return;
 		}
 
-		if (!modifiers.Any(SyntaxKind.RefKeyword))
+		if (!modifiers.Any(SyntaxKind.RefKeyword) || !modifiers.Any(SyntaxKind.PartialKeyword))
 		{
 			return;
 		}
@@ -46,12 +43,12 @@ internal sealed record class RefStructOverridensReceiver(CancellationToken Cance
 			return;
 		}
 
-		if (!modifiers.Any(SyntaxKind.PartialKeyword))
-		{
-			Diagnostics.Add(Diagnostic.Create(SCA0001, identifier.GetLocation(), messageArgs: null));
-			return;
-		}
+		var attributesData = typeSymbol.GetAttributes();
+		var getHashCodeAttribute = compilation.GetTypeByMetadataName(GetHashCodeAttributeFullName);
+		var toStringAttribute = compilation.GetTypeByMetadataName(ToStringAttributeFullName);
+		bool mayGenerateGetHashCode = !attributesData.Any(e => SymbolEqualityComparer.Default.Equals(e.AttributeClass, getHashCodeAttribute));
+		bool mayGenerateToString = !attributesData.Any(e => SymbolEqualityComparer.Default.Equals(e.AttributeClass, toStringAttribute));
 
-		Collection.Add(typeSymbol);
+		Collection.Add((typeSymbol, mayGenerateGetHashCode, mayGenerateToString));
 	}
 }
