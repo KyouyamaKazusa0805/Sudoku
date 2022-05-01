@@ -13,11 +13,7 @@ public sealed class AutoOverridesToStringGenerator : ISourceGenerator
 		if (
 			context is not
 			{
-				SyntaxContextReceiver: AutoOverridesToStringReceiver
-				{
-					Diagnostics: var diagnostics,
-					Collection: var collection
-				} receiver,
+				SyntaxContextReceiver: AutoOverridesToStringReceiver { Collection: var collection } receiver,
 				Compilation: { Assembly: var assembly } compilation
 			}
 		)
@@ -25,21 +21,9 @@ public sealed class AutoOverridesToStringGenerator : ISourceGenerator
 			return;
 		}
 
-		// Report diagnostics if worth.
-		if (diagnostics.Count != 0)
-		{
-			diagnostics.ForEach(context.ReportDiagnostic);
-			return;
-		}
-
 		// Iterates on each pair in the collection.
-		foreach (var (type, attributeData, identifier) in collection)
+		foreach (var (type, attributeData) in collection)
 		{
-			if (attributeData.ApplicationSyntaxReference is not { Span: var textSpan, SyntaxTree: var syntaxTree })
-			{
-				continue;
-			}
-
 			var members = type.GetAllMembers();
 			var methods = members.OfType<IMethodSymbol>().ToArray();
 			if (
@@ -58,7 +42,6 @@ public sealed class AutoOverridesToStringGenerator : ISourceGenerator
 				)
 			)
 			{
-				context.ReportDiagnostic(Diagnostic.Create(SCA0011, identifier.GetLocation(), messageArgs: null));
 				continue;
 			}
 
@@ -66,7 +49,6 @@ public sealed class AutoOverridesToStringGenerator : ISourceGenerator
 				SymbolOutputInfo.FromSymbol(type);
 
 			var targetSymbolsRawString = new List<string>();
-			var location = Location.Create(syntaxTree, textSpan);
 			foreach (var typedConstant in attributeData.ConstructorArguments[0].Values)
 			{
 				string memberName = (string)typedConstant.Value!;
@@ -75,7 +57,6 @@ public sealed class AutoOverridesToStringGenerator : ISourceGenerator
 				var selectedMembers = (from member in members where member.Name == memberName select member).ToArray();
 				if (selectedMembers is not [var memberSymbol, ..])
 				{
-					context.ReportDiagnostic(Diagnostic.Create(SCA0008, location, messageArgs: null));
 					continue;
 				}
 
@@ -94,11 +75,6 @@ public sealed class AutoOverridesToStringGenerator : ISourceGenerator
 					case IMethodSymbol { Name: var methodName, Parameters: [], ReturnsVoid: false }:
 					{
 						targetSymbolsRawString.Add($"{{nameof({methodName})}} = {{{methodName}()}}");
-						break;
-					}
-					default:
-					{
-						context.ReportDiagnostic(Diagnostic.Create(SCA0009, location, messageArgs: null));
 						break;
 					}
 				}

@@ -29,8 +29,6 @@
     * `Grid` 结构
       * [API 用法介绍](data-structures/grid)
       * [`Grid` 会用到的格式化字符串](data-structures/grid-text-format)
-  * 代码分析和代码生成
-    * [代码生成](code-gen)
-    * 代码分析
+  * [代码生成](code-gen)
   * 用法示例
     * [示例表](usages)

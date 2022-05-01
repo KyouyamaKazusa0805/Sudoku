@@ -7,31 +7,23 @@
 /// <param name="CancellationToken">The cancellation token to cancel the operation.</param>
 /// <seealso cref="AutoOverridesGetHashCodeGenerator"/>
 internal sealed record class AutoOverridesGetHashCodeReceiver(CancellationToken CancellationToken) :
-	IResultCollectionReceiver<(INamedTypeSymbol Symbol, AttributeData AttributeData, SyntaxToken Identifier)>
+	IResultCollectionReceiver<(INamedTypeSymbol Symbol, AttributeData AttributeData)>
 {
-	private const string AttributeFullName = "System.Diagnostics.CodeGen.AutoOverridesGetHashCodeAttribute";
-
-
 	/// <inheritdoc/>
-	public ICollection<(INamedTypeSymbol Symbol, AttributeData AttributeData, SyntaxToken Identifier)> Collection { get; } =
-		new List<(INamedTypeSymbol, AttributeData, SyntaxToken)>();
-
-	/// <summary>
-	/// Indicates the diagnostic results found.
-	/// </summary>
-	internal List<Diagnostic> Diagnostics { get; } = new();
+	public ICollection<(INamedTypeSymbol Symbol, AttributeData AttributeData)> Collection { get; } =
+		new List<(INamedTypeSymbol, AttributeData)>();
 
 
 	/// <inheritdoc/>
 	public void OnVisitSyntaxNode(GeneratorSyntaxContext context)
 	{
+		const string attributeFullName = "System.Diagnostics.CodeGen.AutoOverridesGetHashCodeAttribute";
 		if (
 			context is not
 			{
 				Node: TypeDeclarationSyntax
 				{
-					Identifier: var identifier,
-					Modifiers: { Count: not 0 } modifiers
+					Modifiers: var modifiers and not []
 				} n and (ClassDeclarationSyntax or StructDeclarationSyntax or RecordDeclarationSyntax),
 				SemanticModel: { Compilation: { } compilation } semanticModel
 			}
@@ -40,43 +32,30 @@ internal sealed record class AutoOverridesGetHashCodeReceiver(CancellationToken 
 			return;
 		}
 
-		if (semanticModel.GetDeclaredSymbol(n, CancellationToken) is not { ContainingType: var containingType } typeSymbol)
+		if (semanticModel.GetDeclaredSymbol(n, CancellationToken) is not { ContainingType: null } typeSymbol)
 		{
 			return;
 		}
 
-		var attributeTypeSymbol = compilation.GetTypeByMetadataName(AttributeFullName);
+		var attributeTypeSymbol = compilation.GetTypeByMetadataName(attributeFullName);
 		var attributeData = (
 			from a in typeSymbol.GetAttributes()
 			where SymbolEqualityComparer.Default.Equals(a.AttributeClass, attributeTypeSymbol)
 			select a
 		).FirstOrDefault();
-		if (attributeData is not { ConstructorArguments: [{ Values: var values }] })
+		if (attributeData is not { ConstructorArguments: [{ Values: not [] }] })
 		{
-			return;
-		}
-
-		if (values is [])
-		{
-			Diagnostics.Add(Diagnostic.Create(SCA0007, identifier.GetLocation(), messageArgs: null));
-			return;
-		}
-
-		if (containingType is not null)
-		{
-			Diagnostics.Add(Diagnostic.Create(SCA0006, identifier.GetLocation(), messageArgs: null));
 			return;
 		}
 
 		if (!modifiers.Any(SyntaxKind.PartialKeyword))
 		{
-			Diagnostics.Add(Diagnostic.Create(SCA0002, identifier.GetLocation(), messageArgs: null));
 			return;
 		}
 
 		if (!Collection.Any(t => SymbolEqualityComparer.Default.Equals(t.Symbol, typeSymbol)))
 		{
-			Collection.Add((typeSymbol, attributeData, identifier));
+			Collection.Add((typeSymbol, attributeData));
 		}
 	}
 }

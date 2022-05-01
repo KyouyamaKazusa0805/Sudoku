@@ -13,11 +13,7 @@ public sealed class AutoOverridesGetHashCodeGenerator : ISourceGenerator
 		if (
 			context is not
 			{
-				SyntaxContextReceiver: AutoOverridesGetHashCodeReceiver
-				{
-					Diagnostics: var diagnostics,
-					Collection: var collection
-				} receiver,
+				SyntaxContextReceiver: AutoOverridesGetHashCodeReceiver { Collection: var collection } receiver,
 				Compilation: { Assembly: var assembly } compilation
 			}
 		)
@@ -25,15 +21,8 @@ public sealed class AutoOverridesGetHashCodeGenerator : ISourceGenerator
 			return;
 		}
 
-		// Report diagnostics if worth.
-		if (diagnostics.Count != 0)
-		{
-			diagnostics.ForEach(context.ReportDiagnostic);
-			return;
-		}
-
 		// Iterates on each pair in the collection.
-		foreach (var (type, attributeData, identifier) in collection)
+		foreach (var (type, attributeData) in collection)
 		{
 			if (attributeData.ApplicationSyntaxReference is not { Span: var textSpan, SyntaxTree: var syntaxTree })
 			{
@@ -58,7 +47,6 @@ public sealed class AutoOverridesGetHashCodeGenerator : ISourceGenerator
 				)
 			)
 			{
-				context.ReportDiagnostic(Diagnostic.Create(SCA0011, identifier.GetLocation(), messageArgs: null));
 				continue;
 			}
 
@@ -75,7 +63,6 @@ public sealed class AutoOverridesGetHashCodeGenerator : ISourceGenerator
 				var selectedMembers = (from member in members where member.Name == memberName select member).ToArray();
 				if (selectedMembers is not [var memberSymbol, ..])
 				{
-					context.ReportDiagnostic(Diagnostic.Create(SCA0008, location, messageArgs: null));
 					continue;
 				}
 
@@ -94,11 +81,6 @@ public sealed class AutoOverridesGetHashCodeGenerator : ISourceGenerator
 					case IMethodSymbol { Name: var methodName, Parameters: [], ReturnsVoid: false }:
 					{
 						targetSymbolsRawString.Add($"{methodName}()");
-						break;
-					}
-					default:
-					{
-						context.ReportDiagnostic(Diagnostic.Create(SCA0009, location, messageArgs: null));
 						break;
 					}
 				}

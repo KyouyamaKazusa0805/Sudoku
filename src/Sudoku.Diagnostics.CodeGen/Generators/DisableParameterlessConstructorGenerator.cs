@@ -13,25 +13,14 @@ public sealed class DisableParameterlessConstructorGenerator : ISourceGenerator
 		if (
 			context is not
 			{
-				SyntaxContextReceiver: DisableParameterlessConstructorReceiver
-				{
-					Diagnostics: var diagnostics,
-					Collection: var typeSymbols
-				} receiver,
-				Compilation: var compilation
+				SyntaxContextReceiver: DisableParameterlessConstructorReceiver { Collection: var typeSymbols } receiver
 			}
 		)
 		{
 			return;
 		}
 
-		if (diagnostics.Count != 0)
-		{
-			diagnostics.ForEach(context.ReportDiagnostic);
-			return;
-		}
-
-		foreach (var (type, attributeData, location) in typeSymbols)
+		foreach (var (type, attributeData) in typeSymbols)
 		{
 			var (_, _, namespaceName, genericParameterList, _, _, _, _, _, _) = SymbolOutputInfo.FromSymbol(type);
 
@@ -45,22 +34,16 @@ public sealed class DisableParameterlessConstructorGenerator : ISourceGenerator
 				where namedArg is { Key: "SuggestedMemberName", Value.Value: string }
 				select (string)namedArg.Value.Value!
 			).FirstOrDefault();
-			string message = (rawMessage, memberName) switch
+			if (
+				(rawMessage, memberName) switch
+				{
+					(not null, not null) => null,
+					(null, null) => null,
+					(null, not null) => $"Please use the member '{memberName}' instead.",
+					_ => rawMessage
+				} is not { } message
+			)
 			{
-				(not null, not null) => nameof(SCA0005),
-				(null, null) => nameof(SCA0004),
-				(null, not null) => $"Please use the member '{memberName}' instead.",
-				_ => rawMessage
-			};
-
-			if (message == nameof(SCA0004))
-			{
-				context.ReportDiagnostic(Diagnostic.Create(SCA0004, location, messageArgs: null));
-				continue;
-			}
-			else if (message == nameof(SCA0005))
-			{
-				context.ReportDiagnostic(Diagnostic.Create(SCA0005, location, messageArgs: null));
 				continue;
 			}
 

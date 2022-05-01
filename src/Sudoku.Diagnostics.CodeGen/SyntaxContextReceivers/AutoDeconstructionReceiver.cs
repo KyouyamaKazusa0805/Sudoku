@@ -7,32 +7,21 @@
 /// <param name="CancellationToken">The cancellation token to cancel the operation.</param>
 /// <seealso cref="AutoDeconstructionGenerator"/>
 internal sealed record class AutoDeconstructionReceiver(CancellationToken CancellationToken) :
-	IResultCollectionReceiver<(bool IsExtension, INamedTypeSymbol Symbol, AttributeData AttributeData, Location Location)>
+	IResultCollectionReceiver<(bool IsExtension, INamedTypeSymbol Symbol, AttributeData AttributeData)>
 {
-	private const string BoundAttributeFullNameInstance = "System.Diagnostics.CodeGen.AutoDeconstructionAttribute";
-
-
 	/// <inheritdoc/>
-	public ICollection<(bool IsExtension, INamedTypeSymbol Symbol, AttributeData AttributeData, Location Location)> Collection { get; } =
-		new List<(bool IsExtension, INamedTypeSymbol Symbol, AttributeData AttributeData, Location Location)>();
-
-	/// <summary>
-	/// Indicates the diagnostic results found.
-	/// </summary>
-	internal List<Diagnostic> Diagnostics { get; } = new();
+	public ICollection<(bool IsExtension, INamedTypeSymbol Symbol, AttributeData AttributeData)> Collection { get; } =
+		new List<(bool IsExtension, INamedTypeSymbol Symbol, AttributeData AttributeData)>();
 
 
 	/// <inheritdoc/>
 	public void OnVisitSyntaxNode(GeneratorSyntaxContext context)
 	{
+		const string attributeFullName = "System.Diagnostics.CodeGen.AutoDeconstructionAttribute";
 		if (
 			context is not
 			{
-				Node: TypeDeclarationSyntax
-				{
-					Identifier: var identifier,
-					Modifiers: { Count: not 0 } modifiers
-				} n,
+				Node: TypeDeclarationSyntax { Modifiers: var modifiers and not [] } n,
 				SemanticModel: { Compilation: { } compilation } semanticModel
 			}
 		)
@@ -40,13 +29,12 @@ internal sealed record class AutoDeconstructionReceiver(CancellationToken Cancel
 			return;
 		}
 
-		var typeSymbol = semanticModel.GetDeclaredSymbol(n, CancellationToken);
-		if (typeSymbol is not { ContainingType: var containingTypeSymbol })
+		if (semanticModel.GetDeclaredSymbol(n, CancellationToken) is not { ContainingType: null } typeSymbol)
 		{
 			return;
 		}
 
-		var attributeTypeSymbol = compilation.GetTypeByMetadataName(BoundAttributeFullNameInstance);
+		var attributeTypeSymbol = compilation.GetTypeByMetadataName(attributeFullName);
 		var attributesData = (
 			from e in typeSymbol.GetAttributes()
 			where SymbolEqualityComparer.Default.Equals(e.AttributeClass, attributeTypeSymbol)
@@ -57,16 +45,8 @@ internal sealed record class AutoDeconstructionReceiver(CancellationToken Cancel
 			return;
 		}
 
-		var referencedLocation = identifier.GetLocation();
-		if (containingTypeSymbol is not null)
-		{
-			Diagnostics.Add(Diagnostic.Create(SCA0006, referencedLocation, messageArgs: null));
-			return;
-		}
-
 		if (!modifiers.Any(SyntaxKind.PartialKeyword))
 		{
-			Diagnostics.Add(Diagnostic.Create(SCA0002, referencedLocation, messageArgs: null));
 			return;
 		}
 
@@ -74,7 +54,7 @@ internal sealed record class AutoDeconstructionReceiver(CancellationToken Cancel
 		{
 			foreach (var attributeData in attributesData)
 			{
-				Collection.Add((false, typeSymbol, attributeData, referencedLocation));
+				Collection.Add((false, typeSymbol, attributeData));
 			}
 		}
 	}

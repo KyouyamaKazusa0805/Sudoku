@@ -11,5 +11,4 @@ global using Sudoku.Diagnostics.CodeGen;
 global using Sudoku.Diagnostics.CodeGen.Generators;
 global using Sudoku.Diagnostics.CodeGen.SyntaxContextReceivers;
 global using static Sudoku.Diagnostics.CodeGen.Constants;
-global using static Sudoku.Diagnostics.CodeGen.DiagnosticDescriptors;
 global using Kind = Microsoft.CodeAnalysis.TypeKind;

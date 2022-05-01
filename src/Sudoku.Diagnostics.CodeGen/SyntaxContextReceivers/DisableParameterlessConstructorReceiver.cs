@@ -7,32 +7,22 @@
 /// <param name="CancellationToken">The cancellation token to cancel the operation.</param>
 /// <seealso cref="DisableParameterlessConstructorGenerator"/>
 internal sealed record class DisableParameterlessConstructorReceiver(CancellationToken CancellationToken) :
-	IResultCollectionReceiver<(INamedTypeSymbol Symbol, AttributeData, Location)>
+	IResultCollectionReceiver<(INamedTypeSymbol Symbol, AttributeData)>
 {
-	private const string BoundAttributeFullName = "System.Diagnostics.CodeGen.DisableParameterlessConstructorAttribute";
-
-
 	/// <inheritdoc/>
-	public ICollection<(INamedTypeSymbol Symbol, AttributeData, Location)> Collection { get; } =
-		new List<(INamedTypeSymbol, AttributeData, Location)>();
-
-	/// <summary>
-	/// Indicates the diagnostic results found.
-	/// </summary>
-	internal List<Diagnostic> Diagnostics { get; } = new();
+	public ICollection<(INamedTypeSymbol Symbol, AttributeData)> Collection { get; } =
+		new List<(INamedTypeSymbol, AttributeData)>();
 
 
 	/// <inheritdoc/>
 	public void OnVisitSyntaxNode(GeneratorSyntaxContext context)
 	{
+		const string attributeFullName = "System.Diagnostics.CodeGen.DisableParameterlessConstructorAttribute";
+
 		if (
 			context is not
 			{
-				Node: StructDeclarationSyntax
-				{
-					Identifier: var identifier,
-					Modifiers: { Count: not 0 } modifiers
-				} n,
+				Node: StructDeclarationSyntax { Modifiers: var modifiers and not [] } n,
 				SemanticModel: { Compilation: { } compilation } semanticModel
 			}
 		)
@@ -40,47 +30,33 @@ internal sealed record class DisableParameterlessConstructorReceiver(Cancellatio
 			return;
 		}
 
-		if (
-			semanticModel.GetDeclaredSymbol(n, CancellationToken) is not
-			{
-				ContainingType: var containingTypeSymbol
-			} typeSymbol
-		)
+		var typeSymbol = semanticModel.GetDeclaredSymbol(n, CancellationToken);
+		if (typeSymbol is not { ContainingType: null, InstanceConstructors: var instanceConstructors })
 		{
 			return;
 		}
 
-		var referencedLocation = identifier.GetLocation();
-		var attributeTypeSymbol = compilation.GetTypeByMetadataName(BoundAttributeFullName);
-		var attributeData = typeSymbol.GetAttributes().FirstOrDefault(predicate);
+		var attributeTypeSymbol = compilation.GetTypeByMetadataName(attributeFullName);
 		bool predicate(AttributeData e) => SymbolEqualityComparer.Default.Equals(e.AttributeClass, attributeTypeSymbol);
-		if (attributeData is null)
+		if (typeSymbol.GetAttributes().FirstOrDefault(predicate) is not { } attributeData)
 		{
-			return;
-		}
-
-		if (containingTypeSymbol is not null)
-		{
-			Diagnostics.Add(Diagnostic.Create(SCA0006, referencedLocation, messageArgs: null));
 			return;
 		}
 
 		if (!modifiers.Any(SyntaxKind.PartialKeyword))
 		{
-			Diagnostics.Add(Diagnostic.Create(SCA0002, referencedLocation, messageArgs: null));
 			return;
 		}
 
 		// Check whether the type contains a user-defined parameterless constructor.
-		if (typeSymbol.InstanceConstructors.Any(static e => e is { Parameters: [], IsImplicitlyDeclared: false }))
+		if (instanceConstructors.Any(static e => e is { Parameters: [], IsImplicitlyDeclared: false }))
 		{
-			Diagnostics.Add(Diagnostic.Create(SCA0003, referencedLocation, messageArgs: null));
 			return;
 		}
 
 		if (!Collection.Any(t => SymbolEqualityComparer.Default.Equals(t.Symbol, typeSymbol)))
 		{
-			Collection.Add((typeSymbol, attributeData, referencedLocation));
+			Collection.Add((typeSymbol, attributeData));
 		}
 	}
 }

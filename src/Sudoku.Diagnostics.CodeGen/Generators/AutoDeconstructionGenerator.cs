@@ -23,11 +23,7 @@ public sealed class AutoDeconstructionGenerator : ISourceGenerator
 		if (
 			context is not
 			{
-				SyntaxContextReceiver: AutoDeconstructionReceiver
-				{
-					Diagnostics: var diagnostics,
-					Collection: var collection
-				} receiver,
+				SyntaxContextReceiver: AutoDeconstructionReceiver { Collection: var collection } receiver,
 				Compilation: { Assembly: var assembly } compilation
 			}
 		)
@@ -43,15 +39,8 @@ public sealed class AutoDeconstructionGenerator : ISourceGenerator
 		var attributeTypeSymbolExtension = compilation.GetTypeByMetadataName(attributeFullNameExtension);
 		GatherAssemblyAttributes(attributeTypeSymbolExtension, assembly, collection);
 
-		// Report diagnostics if worth.
-		if (diagnostics.Count != 0)
-		{
-			diagnostics.ForEach(context.ReportDiagnostic);
-			return;
-		}
-
 		// Iterates on each value.
-		static ITypeSymbol symbolSelector((bool, INamedTypeSymbol Symbol, AttributeData, Location) e) => e.Symbol;
+		static ITypeSymbol symbolSelector((bool, INamedTypeSymbol Symbol, AttributeData) e) => e.Symbol;
 		foreach (var tuplesGroupedByMethodType in from tuple in collection group tuple by tuple.IsExtension)
 		{
 			// Checks the key, indicating whether the current source generator generates
@@ -66,8 +55,8 @@ public sealed class AutoDeconstructionGenerator : ISourceGenerator
 				{
 					var type = (INamedTypeSymbol)tuplesGroupedByType.Key!;
 
-					var attributesData = (from tuple in tuplesGroupedByType select (tuple.AttributeData, tuple.Location)).ToArray();
-					if (attributesData is not [(AttributeData: { NamedArguments: var firstNamedArgs }, _), ..])
+					var attributesData = (from tuple in tuplesGroupedByType select tuple.AttributeData).ToArray();
+					if (attributesData is not [{ NamedArguments: var firstNamedArgs }, ..])
 					{
 						continue;
 					}
@@ -86,9 +75,7 @@ public sealed class AutoDeconstructionGenerator : ISourceGenerator
 					string fullTypeNameWithoutConstraint = type.ToDisplayString(TypeFormats.FullNameWithConstraints);
 					string finalCode = string.Join(
 						"\r\n\r\n\t",
-						GetForExtension(
-							ref context, attributesData, genericParameterListWithoutConstraint,
-							fullTypeNameWithoutConstraint)
+						GetForExtension(attributesData, genericParameterListWithoutConstraint, fullTypeNameWithoutConstraint)
 					);
 
 					// Hash code value will be used for the distinction for the different types
@@ -142,8 +129,7 @@ public sealed class AutoDeconstructionGenerator : ISourceGenerator
 					string finalCode = string.Join(
 						"\r\n\r\n\t",
 						GetForInstance(
-							ref context, type, readOnlyKeyword,
-							(from tuple in tupleArray select (tuple.AttributeData, tuple.Location)).ToArray())
+							type, readOnlyKeyword, (from tuple in tupleArray select tuple.AttributeData).ToArray())
 					);
 
 					// Emit the generated source.
@@ -180,7 +166,7 @@ public sealed class AutoDeconstructionGenerator : ISourceGenerator
 	/// <param name="collection">The target collection to store the results.</param>
 	private void GatherAssemblyAttributes(
 		INamedTypeSymbol? attributeTypeSymbol, IAssemblySymbol assembly,
-		ICollection<(bool, INamedTypeSymbol, AttributeData, Location)> collection)
+		ICollection<(bool, INamedTypeSymbol, AttributeData)> collection)
 	{
 		// Gather assembly-applied attributes, and group them by the actual type applying to.
 		// Here I use the method syntax 'GroupBy(...)' instead of keyword-styled syntax
@@ -204,7 +190,7 @@ public sealed class AutoDeconstructionGenerator : ISourceGenerator
 			// Adds them into the target collection.
 			foreach (var (attributeData, location) in attributesDataGroupedByType)
 			{
-				collection.Add((true, type, attributeData, location));
+				collection.Add((true, type, attributeData));
 			}
 		}
 	}
@@ -212,14 +198,13 @@ public sealed class AutoDeconstructionGenerator : ISourceGenerator
 	/// <summary>
 	/// Gets the raw code parts for extension deconstruction methods via the specified list of attributes data.
 	/// </summary>
-	/// <param name="context">The context to report diagnostics.</param>
 	/// <param name="attributesData">The attributes data, with the corresponding location.</param>
 	/// <param name="genericParameterListWithoutConstraint">The generic parameter list.</param>
 	/// <param name="fullTypeNameWithoutConstraint">The full type name, without the generic constraint.</param>
 	/// <returns>The collection of raw code parts for extension deconstruction methods.</returns>
 	private IReadOnlyCollection<string> GetForExtension(
-		ref GeneratorExecutionContext context, (AttributeData, Location)[] attributesData,
-		string? genericParameterListWithoutConstraint, string fullTypeNameWithoutConstraint)
+		AttributeData[] attributesData, string? genericParameterListWithoutConstraint,
+		string fullTypeNameWithoutConstraint)
 	{
 		string constraint = fullTypeNameWithoutConstraint.IndexOf("where") is var index and not -1
 			? fullTypeNameWithoutConstraint[index..]
@@ -229,28 +214,25 @@ public sealed class AutoDeconstructionGenerator : ISourceGenerator
 		var result = new List<string>();
 
 		// Iterates on each attribute data instance.
-		foreach (var (attributeData, location) in attributesData)
+		foreach (var attributeData in attributesData)
 		{
 			// Checks whether the number of constructor arguments is 2.
 			// If so, check whether the validity of the first argument (must be 'System.Type')
 			// and the second argument (must be 'params string[]').
 			if (
+#pragma warning disable IDE0055
 				attributeData is not
 				{
-					ConstructorArguments: [{ Value: INamedTypeSymbol typeOfResult }, { Values: var typedConstants }],
+					ConstructorArguments: [
+						{ Value: INamedTypeSymbol typeOfResult },
+						{ Values: var typedConstants and not [] }
+					],
 					NamedArguments: var namedArgs
 				}
+#pragma warning restore IDE0055
 			)
 			{
 				// Invalid case.
-				continue;
-			}
-
-			// Checks whether the second argument holds an empty array.
-			// If so, the argument will be invalid. Therefore the source generator will emit a diagnostic.
-			if (typedConstants is [])
-			{
-				context.ReportDiagnostic(Diagnostic.Create(SCA0007, location, messageArgs: null));
 				continue;
 			}
 
@@ -280,7 +262,6 @@ public sealed class AutoDeconstructionGenerator : ISourceGenerator
 				// that can tell the user the argument will be ignored.
 				if (!ExpressionPattern.IsMatch(s))
 				{
-					context.ReportDiagnostic(Diagnostic.Create(SCA0008, location, messageArgs: null));
 					continue;
 				}
 
@@ -288,43 +269,25 @@ public sealed class AutoDeconstructionGenerator : ISourceGenerator
 				// If the member is a property, the operation will be successful.
 				switch (typeOfResult.GetMembers(s).FirstOrDefault())
 				{
-					case IFieldSymbol { Type: var fieldType, Name: var fieldName }:
+					case IFieldSymbol
 					{
-						// We don't suggest any users use deconstruction method
-						// with pointer-typed out parameters.
-						// Although you can use the normal method invocation syntax to get the values,
-						// the inconsistency will be raised that deconstruction syntax cannot be used in this case.
-						if (fieldType is IPointerTypeSymbol or IFunctionPointerTypeSymbol)
-						{
-							context.ReportDiagnostic(Diagnostic.Create(SCA0010, location, messageArgs: null));
-							continue;
-						}
-
+						Type: var fieldType and not (IPointerTypeSymbol or IFunctionPointerTypeSymbol),
+						Name: var fieldName
+					}:
+					{
 						// Add it into the collection.
 						pairs.Add((fieldType, fieldName));
 						break;
 					}
-					case IPropertySymbol { Type: var propertyType, Name: var propertyName }:
+					case IPropertySymbol
 					{
-						// We don't suggest any users use deconstruction method
-						// with pointer-typed out parameters.
-						// Although you can use the normal method invocation syntax to get the values,
-						// the inconsistency will be raised that deconstruction syntax cannot be used in this case.
-						if (propertyType is IPointerTypeSymbol or IFunctionPointerTypeSymbol)
-						{
-							context.ReportDiagnostic(Diagnostic.Create(SCA0010, location, messageArgs: null));
-							continue;
-						}
-
+						Type: var propertyType and not (IPointerTypeSymbol or IFunctionPointerTypeSymbol),
+						Name: var propertyName
+					}:
+					{
 						// Add it into the collection.
 						pairs.Add((propertyType, propertyName));
 						break;
-					}
-					default:
-					{
-						// TODO: Support expression member.
-						context.ReportDiagnostic(Diagnostic.Create(SCA0009, location, messageArgs: null));
-						continue;
 					}
 				}
 			}
@@ -398,32 +361,22 @@ public sealed class AutoDeconstructionGenerator : ISourceGenerator
 	/// <summary>
 	/// Gets the raw code parts for instance deconstruction methods via the specified list of attributes data.
 	/// </summary>
-	/// <param name="context">The context to report diagnostics.</param>
 	/// <param name="type">The type to be used.</param>
 	/// <param name="readOnlyKeyword">The read-only keyword token.</param>
 	/// <param name="attributesData">The attributes data, and the corresponding location.</param>
 	/// <returns>The collection of raw code parts for instance deconstruction methods.</returns>
 	private IReadOnlyCollection<string> GetForInstance(
-		ref GeneratorExecutionContext context, INamedTypeSymbol type, string? readOnlyKeyword,
-		IEnumerable<(AttributeData AttributeData, Location Location)> attributesData)
+		INamedTypeSymbol type, string? readOnlyKeyword, IEnumerable<AttributeData> attributesData)
 	{
 		var result = new List<string>();
 
-		foreach (var (attributeData, location) in attributesData)
+		foreach (var attributeData in attributesData)
 		{
 			// Checks whether the number of constructor arguments is 1.
 			// If so, check whether the validity of the only argument.
-			if (attributeData.ConstructorArguments is not [{ Values: var typedConstants }])
+			if (attributeData.ConstructorArguments is not [{ Values: var typedConstants and not [] }])
 			{
 				// Invalid case.
-				continue;
-			}
-
-			// Checks whether the argument holds an empty array.
-			// If so, the argument will be invalid. Therefore the source generator will emit a diagnostic.
-			if (typedConstants is [])
-			{
-				context.ReportDiagnostic(Diagnostic.Create(SCA0007, location, messageArgs: null));
 				continue;
 			}
 
@@ -446,7 +399,6 @@ public sealed class AutoDeconstructionGenerator : ISourceGenerator
 				// that can tell the user the argument will be ignored.
 				if (!ExpressionPattern.IsMatch(s))
 				{
-					context.ReportDiagnostic(Diagnostic.Create(SCA0008, location, messageArgs: null));
 					continue;
 				}
 
@@ -454,43 +406,25 @@ public sealed class AutoDeconstructionGenerator : ISourceGenerator
 				// If the member is a property, the operation will be successful.
 				switch (type.GetMembers(s).FirstOrDefault())
 				{
-					case IFieldSymbol { Type: var fieldType, Name: var fieldName }:
+					case IFieldSymbol
 					{
-						// We don't suggest any users use deconstruction method
-						// with pointer-typed out parameters.
-						// Although you can use the normal method invocation syntax to get the values,
-						// the inconsistency will be raised that deconstruction syntax cannot be used in this case.
-						if (fieldType is IPointerTypeSymbol or IFunctionPointerTypeSymbol)
-						{
-							context.ReportDiagnostic(Diagnostic.Create(SCA0010, location, messageArgs: null));
-							continue;
-						}
-
+						Type: var fieldType and not (IPointerTypeSymbol or IFunctionPointerTypeSymbol),
+						Name: var fieldName
+					}:
+					{
 						// Add it into the collection.
 						pairs.Add((fieldType, fieldName));
 						break;
 					}
-					case IPropertySymbol { Type: var propertyType, Name: var propertyName }:
+					case IPropertySymbol
 					{
-						// We don't suggest any users use deconstruction method
-						// with pointer-typed out parameters.
-						// Although you can use the normal method invocation syntax to get the values,
-						// the inconsistency will be raised that deconstruction syntax cannot be used in this case.
-						if (propertyType is IPointerTypeSymbol or IFunctionPointerTypeSymbol)
-						{
-							context.ReportDiagnostic(Diagnostic.Create(SCA0010, location, messageArgs: null));
-							continue;
-						}
-
+						Type: var propertyType and not (IPointerTypeSymbol or IFunctionPointerTypeSymbol),
+						Name: var propertyName
+					}:
+					{
 						// Add it into the collection.
 						pairs.Add((propertyType, propertyName));
 						break;
-					}
-					default:
-					{
-						// TODO: Support expression member.
-						context.ReportDiagnostic(Diagnostic.Create(SCA0009, location, messageArgs: null));
-						continue;
 					}
 				}
 			}

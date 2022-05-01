@@ -4,11 +4,6 @@
         <name>Sudoku.Diagnostics.CodeGen</name>
     </assembly>
     <members>
-        <member name="T:Sudoku.Diagnostics.CodeGen.DiagnosticDescriptors">
-            <summary>
-            Provides with the shared <see cref="T:Microsoft.CodeAnalysis.DiagnosticDescriptor"/> instances.
-            </summary>
-        </member>
         <member name="T:Sudoku.Diagnostics.CodeGen.Generators.AutoDeconstructionGenerator">
             <summary>
             Defines a source generator that generates deconstruction methods of a type.
@@ -25,7 +20,7 @@
         <member name="M:Sudoku.Diagnostics.CodeGen.Generators.AutoDeconstructionGenerator.Initialize(Microsoft.CodeAnalysis.GeneratorInitializationContext)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.AutoDeconstructionGenerator.GatherAssemblyAttributes(Microsoft.CodeAnalysis.INamedTypeSymbol,Microsoft.CodeAnalysis.IAssemblySymbol,System.Collections.Generic.ICollection{System.ValueTuple{System.Boolean,Microsoft.CodeAnalysis.INamedTypeSymbol,Microsoft.CodeAnalysis.AttributeData,Microsoft.CodeAnalysis.Location}})">
+        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.AutoDeconstructionGenerator.GatherAssemblyAttributes(Microsoft.CodeAnalysis.INamedTypeSymbol,Microsoft.CodeAnalysis.IAssemblySymbol,System.Collections.Generic.ICollection{System.ValueTuple{System.Boolean,Microsoft.CodeAnalysis.INamedTypeSymbol,Microsoft.CodeAnalysis.AttributeData}})">
             <summary>
             Get for assembly-targeted attributes on generation.
             </summary>
@@ -33,21 +28,19 @@
             <param name="assembly">The assembly symbol.</param>
             <param name="collection">The target collection to store the results.</param>
         </member>
-        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.AutoDeconstructionGenerator.GetForExtension(Microsoft.CodeAnalysis.GeneratorExecutionContext@,System.ValueTuple{Microsoft.CodeAnalysis.AttributeData,Microsoft.CodeAnalysis.Location}[],System.String,System.String)">
+        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.AutoDeconstructionGenerator.GetForExtension(Microsoft.CodeAnalysis.AttributeData[],System.String,System.String)">
             <summary>
             Gets the raw code parts for extension deconstruction methods via the specified list of attributes data.
             </summary>
-            <param name="context">The context to report diagnostics.</param>
             <param name="attributesData">The attributes data, with the corresponding location.</param>
             <param name="genericParameterListWithoutConstraint">The generic parameter list.</param>
             <param name="fullTypeNameWithoutConstraint">The full type name, without the generic constraint.</param>
             <returns>The collection of raw code parts for extension deconstruction methods.</returns>
         </member>
-        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.AutoDeconstructionGenerator.GetForInstance(Microsoft.CodeAnalysis.GeneratorExecutionContext@,Microsoft.CodeAnalysis.INamedTypeSymbol,System.String,System.Collections.Generic.IEnumerable{System.ValueTuple{Microsoft.CodeAnalysis.AttributeData,Microsoft.CodeAnalysis.Location}})">
+        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.AutoDeconstructionGenerator.GetForInstance(Microsoft.CodeAnalysis.INamedTypeSymbol,System.String,System.Collections.Generic.IEnumerable{Microsoft.CodeAnalysis.AttributeData})">
             <summary>
             Gets the raw code parts for instance deconstruction methods via the specified list of attributes data.
             </summary>
-            <param name="context">The context to report diagnostics.</param>
             <param name="type">The type to be used.</param>
             <param name="readOnlyKeyword">The read-only keyword token.</param>
             <param name="attributesData">The attributes data, and the corresponding location.</param>
@@ -147,11 +140,6 @@
         <member name="P:Sudoku.Diagnostics.CodeGen.SyntaxContextReceivers.AutoDeconstructionReceiver.Collection">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Diagnostics.CodeGen.SyntaxContextReceivers.AutoDeconstructionReceiver.Diagnostics">
-            <summary>
-            Indicates the diagnostic results found.
-            </summary>
-        </member>
         <member name="M:Sudoku.Diagnostics.CodeGen.SyntaxContextReceivers.AutoDeconstructionReceiver.OnVisitSyntaxNode(Microsoft.CodeAnalysis.GeneratorSyntaxContext)">
             <inheritdoc/>
         </member>
@@ -202,11 +190,6 @@
         <member name="P:Sudoku.Diagnostics.CodeGen.SyntaxContextReceivers.AutoOverridesGetHashCodeReceiver.Collection">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Diagnostics.CodeGen.SyntaxContextReceivers.AutoOverridesGetHashCodeReceiver.Diagnostics">
-            <summary>
-            Indicates the diagnostic results found.
-            </summary>
-        </member>
         <member name="M:Sudoku.Diagnostics.CodeGen.SyntaxContextReceivers.AutoOverridesGetHashCodeReceiver.OnVisitSyntaxNode(Microsoft.CodeAnalysis.GeneratorSyntaxContext)">
             <inheritdoc/>
         </member>
@@ -232,11 +215,6 @@
         <member name="P:Sudoku.Diagnostics.CodeGen.SyntaxContextReceivers.AutoOverridesToStringReceiver.Collection">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Diagnostics.CodeGen.SyntaxContextReceivers.AutoOverridesToStringReceiver.Diagnostics">
-            <summary>
-            Indicates the diagnostic results found.
-            </summary>
-        </member>
         <member name="M:Sudoku.Diagnostics.CodeGen.SyntaxContextReceivers.AutoOverridesToStringReceiver.OnVisitSyntaxNode(Microsoft.CodeAnalysis.GeneratorSyntaxContext)">
             <inheritdoc/>
         </member>
@@ -261,11 +239,6 @@
         </member>
         <member name="P:Sudoku.Diagnostics.CodeGen.SyntaxContextReceivers.DisableParameterlessConstructorReceiver.Collection">
             <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Diagnostics.CodeGen.SyntaxContextReceivers.DisableParameterlessConstructorReceiver.Diagnostics">
-            <summary>
-            Indicates the diagnostic results found.
-            </summary>
         </member>
         <member name="M:Sudoku.Diagnostics.CodeGen.SyntaxContextReceivers.DisableParameterlessConstructorReceiver.OnVisitSyntaxNode(Microsoft.CodeAnalysis.GeneratorSyntaxContext)">
             <inheritdoc/>
