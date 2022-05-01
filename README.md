@@ -100,23 +100,29 @@ Please visit the following tables.
 
 ### To-do List
 
-* [x] API
-* [x] Console Project
-* [ ] UI Projects
-  * [ ] Desktop Projects
-    * [x] ~~WPF (Removed due to deprecated)~~
-    * [ ] ~~UWP (May not be considered)~~
-    * [x] ~~Winform (Removed due to deprecated)~~
-    * [ ] **Windows UI (I'm working on this)**
-  * [ ] MAUI
-* [ ] Platform Robots
-  * [ ] Bilibili (Requires APIs)
-  * [x] ~~QICQ (Removed due to deprecated)~~
-  * [ ] WeChat
-  * [ ] Others...
+* [x] API Implementation
+  * [x] Data structures
+  * [x] Generator (To generate sudokus)
+  * [x] Solvers
+    * [x] Human solving techniques
+    * [x] Brute forces
 * [ ] Wiki Documentation
-  * [ ] Basic Docs
-  * [ ] Sudoku Tutorial
+  * [ ] Basic docs
+  * [ ] Sudoku tutorial
+* Solutions
+  * [x] Console
+  * [ ] User Interfaces
+    * [ ] **Windows UI (I'm working on this)**
+    * [ ] MAUI
+  * [ ] Platform Bots
+    * [ ] Bilibili
+    * [ ] QQ
+    * [ ] WeChat
+* Miscellaneous
+  * [ ] ~~Nuget packages~~ (Don't consider due to large modifications on APIs)
+  * [ ] ~~Code analysis plug-ins~~ (Don't consider for same reason mentioned above)
+
+> Some items aren't displayed because they are deprecated. In fact, the current repository did implement those like WPF. But now .NET has been updating very frequently, so I won't consider to maintain older frameworks of this repository, large complexity.
 
 ### Open Resource License
 
