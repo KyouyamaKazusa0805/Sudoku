@@ -1463,6 +1463,31 @@
             Indicates the member name to compare.
             </summary>
         </member>
+        <member name="T:System.Diagnostics.CodeGen.AutoOverloadsComparisonOperatorsAttribute">
+            <summary>
+            Defines an attributes that allows user using it applying to a type
+            (especially for <see langword="class"/> or <see langword="struct"/>), indicating the overriden metadata
+            for <c><see langword="operator"/> &gt;</c> and <c><see langword="operator"/> &lt;</c>,
+            <c><see langword="operator"/> &gt;=</c> and <c><see langword="operator"/> &lt;=</c>,
+            and make source generator generates their own operators automatically.
+            </summary>
+            <remarks>
+            At default, the emitted generated operator overloading will use <see cref="M:System.IComparable`1.CompareTo(`0)"/> invocation.
+            </remarks>
+            <seealso cref="M:System.IComparable`1.CompareTo(`0)"/>
+        </member>
+        <member name="P:System.Diagnostics.CodeGen.AutoOverloadsComparisonOperatorsAttribute.EmitInKeyword">
+            <summary>
+            Indicates whether the source generator will emit keyword <see langword="in"/> to the parameters.
+            The default value is <see langword="false"/>.
+            </summary>
+        </member>
+        <member name="P:System.Diagnostics.CodeGen.AutoOverloadsComparisonOperatorsAttribute.WithNullableAnnotation">
+            <summary>
+            Indicates whether the source generator will emit nullable annotation <c>?</c> onto the arguments.
+            The default value is <see langword="false"/>.
+            </summary>
+        </member>
         <member name="T:System.Diagnostics.CodeGen.AutoOverloadsEqualityOperatorsAttribute">
             <summary>
             Defines an attributes that allows user using it applying to a type
@@ -1473,6 +1498,7 @@
             <remarks>
             At default, the emitted generated operator overloading will use <see cref="M:System.IEquatable`1.Equals(`0)"/> invocation.
             </remarks>
+            <seealso cref="M:System.IEquatable`1.Equals(`0)"/>
         </member>
         <member name="P:System.Diagnostics.CodeGen.AutoOverloadsEqualityOperatorsAttribute.EmitInKeyword">
             <summary>
@@ -3899,42 +3925,6 @@
         <member name="M:System.Utf8Char.System#IComparable#CompareTo(System.Object)">
             <inheritdoc/>
         </member>
-        <member name="M:System.Utf8Char.op_GreaterThan(System.Utf8Char,System.Utf8Char)">
-            <summary>
-            Determines whether the <paramref name="left"/>-side instance is greater than
-            the <paramref name="right"/>-side one.
-            </summary>
-            <param name="left">The left-side instance to be compared.</param>
-            <param name="right">The right-side instance to be compared.</param>
-            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
-        </member>
-        <member name="M:System.Utf8Char.op_GreaterThanOrEqual(System.Utf8Char,System.Utf8Char)">
-            <summary>
-            Determines whether the <paramref name="left"/>-side instance is greater than
-            the <paramref name="right"/>-side one, or they are considered equal.
-            </summary>
-            <param name="left">The left-side instance to be compared.</param>
-            <param name="right">The right-side instance to be compared.</param>
-            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
-        </member>
-        <member name="M:System.Utf8Char.op_LessThan(System.Utf8Char,System.Utf8Char)">
-            <summary>
-            Determines whether the <paramref name="left"/>-side instance is less than
-            the <paramref name="right"/>-side one.
-            </summary>
-            <param name="left">The left-side instance to be compared.</param>
-            <param name="right">The right-side instance to be compared.</param>
-            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
-        </member>
-        <member name="M:System.Utf8Char.op_LessThanOrEqual(System.Utf8Char,System.Utf8Char)">
-            <summary>
-            Determines whether the <paramref name="left"/>-side instance is less than
-            the <paramref name="right"/>-side one, or they are considered equal.
-            </summary>
-            <param name="left">The left-side instance to be compared.</param>
-            <param name="right">The right-side instance to be compared.</param>
-            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
-        </member>
         <member name="M:System.Utf8Char.op_Explicit(System.Char)~System.Utf8Char">
             <summary>
             Explicitly cast from <see cref="T:System.Char"/> instance to <see cref="T:System.Utf8Char"/> instance.
@@ -3990,6 +3980,42 @@
             </item>
             </list>
             </returns>
+        </member>
+        <member name="M:System.Utf8Char.op_LessThan(System.Utf8Char,System.Utf8Char)">
+            <summary>
+            Determines whether the <paramref name="left"/>-side instance is less than
+            the <paramref name="right"/>-side one.
+            </summary>
+            <param name="left">The left-side instance to be compared.</param>
+            <param name="right">The right-side instance to be compared.</param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
+        </member>
+        <member name="M:System.Utf8Char.op_LessThanOrEqual(System.Utf8Char,System.Utf8Char)">
+            <summary>
+            Determines whether the <paramref name="left"/>-side instance is less than
+            the <paramref name="right"/>-side one, or they are considered equal.
+            </summary>
+            <param name="left">The left-side instance to be compared.</param>
+            <param name="right">The right-side instance to be compared.</param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
+        </member>
+        <member name="M:System.Utf8Char.op_GreaterThan(System.Utf8Char,System.Utf8Char)">
+            <summary>
+            Determines whether the <paramref name="left"/>-side instance is greater than
+            the <paramref name="right"/>-side one.
+            </summary>
+            <param name="left">The left-side instance to be compared.</param>
+            <param name="right">The right-side instance to be compared.</param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
+        </member>
+        <member name="M:System.Utf8Char.op_GreaterThanOrEqual(System.Utf8Char,System.Utf8Char)">
+            <summary>
+            Determines whether the <paramref name="left"/>-side instance is greater than
+            the <paramref name="right"/>-side one, or they are considered equal.
+            </summary>
+            <param name="left">The left-side instance to be compared.</param>
+            <param name="right">The right-side instance to be compared.</param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
         </member>
         <member name="M:System.Utf8Char.op_Equality(System.Utf8Char,System.Utf8Char)">
             <summary>
@@ -4134,18 +4160,6 @@
             <param name="strB">The second string to be compared.</param>
             <returns>An <see cref="T:System.Int32"/> value indicating which one is greater.</returns>
         </member>
-        <member name="M:System.Utf8String.op_GreaterThan(System.Utf8String,System.Utf8String)">
-            <inheritdoc/>
-        </member>
-        <member name="M:System.Utf8String.op_GreaterThanOrEqual(System.Utf8String,System.Utf8String)">
-            <inheritdoc/>
-        </member>
-        <member name="M:System.Utf8String.op_LessThan(System.Utf8String,System.Utf8String)">
-            <inheritdoc/>
-        </member>
-        <member name="M:System.Utf8String.op_LessThanOrEqual(System.Utf8String,System.Utf8String)">
-            <inheritdoc/>
-        </member>
         <member name="M:System.Utf8String.op_Addition(System.Utf8String,System.Utf8String)">
             <summary>
             Catenate two <see cref="T:System.Utf8String"/> instances.
@@ -4177,6 +4191,42 @@
             Implicitly cast from <see cref="T:System.Utf8Char"/>[] to <see cref="T:System.Utf8String"/>.
             </summary>
             <param name="underlyingArray">The underlying array.</param>
+        </member>
+        <member name="M:System.Utf8String.op_LessThan(System.Utf8String,System.Utf8String)">
+            <summary>
+            Determines whether the <paramref name="left"/>-side instance is less than
+            the <paramref name="right"/>-side one.
+            </summary>
+            <param name="left">The left-side instance to be compared.</param>
+            <param name="right">The right-side instance to be compared.</param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
+        </member>
+        <member name="M:System.Utf8String.op_LessThanOrEqual(System.Utf8String,System.Utf8String)">
+            <summary>
+            Determines whether the <paramref name="left"/>-side instance is less than
+            the <paramref name="right"/>-side one, or they are considered equal.
+            </summary>
+            <param name="left">The left-side instance to be compared.</param>
+            <param name="right">The right-side instance to be compared.</param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
+        </member>
+        <member name="M:System.Utf8String.op_GreaterThan(System.Utf8String,System.Utf8String)">
+            <summary>
+            Determines whether the <paramref name="left"/>-side instance is greater than
+            the <paramref name="right"/>-side one.
+            </summary>
+            <param name="left">The left-side instance to be compared.</param>
+            <param name="right">The right-side instance to be compared.</param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
+        </member>
+        <member name="M:System.Utf8String.op_GreaterThanOrEqual(System.Utf8String,System.Utf8String)">
+            <summary>
+            Determines whether the <paramref name="left"/>-side instance is greater than
+            the <paramref name="right"/>-side one, or they are considered equal.
+            </summary>
+            <param name="left">The left-side instance to be compared.</param>
+            <param name="right">The right-side instance to be compared.</param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
         </member>
         <member name="M:System.Utf8String.op_Equality(System.Utf8String,System.Utf8String)">
             <summary>

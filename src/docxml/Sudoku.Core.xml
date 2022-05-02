@@ -4950,18 +4950,6 @@
             <param name="type">The type of the conclusion.</param>
             <returns>An array of type <see cref="T:Sudoku.Concepts.Solving.Conclusion"/>.</returns>
         </member>
-        <member name="M:Sudoku.Concepts.Solving.Conclusion.op_LessThan(Sudoku.Concepts.Solving.Conclusion,Sudoku.Concepts.Solving.Conclusion)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.Solving.Conclusion.op_LessThanOrEqual(Sudoku.Concepts.Solving.Conclusion,Sudoku.Concepts.Solving.Conclusion)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.Solving.Conclusion.op_GreaterThan(Sudoku.Concepts.Solving.Conclusion,Sudoku.Concepts.Solving.Conclusion)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.Solving.Conclusion.op_GreaterThanOrEqual(Sudoku.Concepts.Solving.Conclusion,Sudoku.Concepts.Solving.Conclusion)">
-            <inheritdoc/>
-        </member>
         <member name="M:Sudoku.Concepts.Solving.Conclusion.Deconstruct(Sudoku.Concepts.Solving.ConclusionType@,System.Int32@)">
             <summary>
             Deconstruct the current instance into multiple values, which means you can use
@@ -5071,6 +5059,42 @@
             </item>
             </list>
             </returns>
+        </member>
+        <member name="M:Sudoku.Concepts.Solving.Conclusion.op_LessThan(Sudoku.Concepts.Solving.Conclusion,Sudoku.Concepts.Solving.Conclusion)">
+            <summary>
+            Determines whether the <paramref name="left"/>-side instance is less than
+            the <paramref name="right"/>-side one.
+            </summary>
+            <param name="left">The left-side instance to be compared.</param>
+            <param name="right">The right-side instance to be compared.</param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
+        </member>
+        <member name="M:Sudoku.Concepts.Solving.Conclusion.op_LessThanOrEqual(Sudoku.Concepts.Solving.Conclusion,Sudoku.Concepts.Solving.Conclusion)">
+            <summary>
+            Determines whether the <paramref name="left"/>-side instance is less than
+            the <paramref name="right"/>-side one, or they are considered equal.
+            </summary>
+            <param name="left">The left-side instance to be compared.</param>
+            <param name="right">The right-side instance to be compared.</param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
+        </member>
+        <member name="M:Sudoku.Concepts.Solving.Conclusion.op_GreaterThan(Sudoku.Concepts.Solving.Conclusion,Sudoku.Concepts.Solving.Conclusion)">
+            <summary>
+            Determines whether the <paramref name="left"/>-side instance is greater than
+            the <paramref name="right"/>-side one.
+            </summary>
+            <param name="left">The left-side instance to be compared.</param>
+            <param name="right">The right-side instance to be compared.</param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
+        </member>
+        <member name="M:Sudoku.Concepts.Solving.Conclusion.op_GreaterThanOrEqual(Sudoku.Concepts.Solving.Conclusion,Sudoku.Concepts.Solving.Conclusion)">
+            <summary>
+            Determines whether the <paramref name="left"/>-side instance is greater than
+            the <paramref name="right"/>-side one, or they are considered equal.
+            </summary>
+            <param name="left">The left-side instance to be compared.</param>
+            <param name="right">The right-side instance to be compared.</param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
         </member>
         <member name="M:Sudoku.Concepts.Solving.Conclusion.op_Equality(Sudoku.Concepts.Solving.Conclusion,Sudoku.Concepts.Solving.Conclusion)">
             <summary>

@@ -5,8 +5,9 @@
 /// </summary>
 [AutoOverridesGetHashCode(nameof(_char))]
 [AutoOverridesEquals(nameof(_char))]
-[AutoOverloadsEqualityOperators]
 [AutoImplementsComparable(nameof(_char))]
+[AutoOverloadsEqualityOperators]
+[AutoOverloadsComparisonOperators]
 public readonly partial struct Utf8Char :
 	IComparable,
 	IComparable<Utf8Char>,
@@ -114,47 +115,6 @@ public readonly partial struct Utf8Char :
 			? CompareTo(comparer)
 			: throw new ArgumentException("Cannot operate because the argument is not a UTF-8 formatted character.", nameof(obj));
 	
-
-	/// <summary>
-	/// Determines whether the <paramref name="left"/>-side instance is greater than
-	/// the <paramref name="right"/>-side one.
-	/// </summary>
-	/// <param name="left">The left-side instance to be compared.</param>
-	/// <param name="right">The right-side instance to be compared.</param>
-	/// <returns>A <see cref="bool"/> result indicating that.</returns>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static bool operator >(Utf8Char left, Utf8Char right) => left.CompareTo(right) > 0;
-
-	/// <summary>
-	/// Determines whether the <paramref name="left"/>-side instance is greater than
-	/// the <paramref name="right"/>-side one, or they are considered equal.
-	/// </summary>
-	/// <param name="left">The left-side instance to be compared.</param>
-	/// <param name="right">The right-side instance to be compared.</param>
-	/// <returns>A <see cref="bool"/> result indicating that.</returns>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static bool operator >=(Utf8Char left, Utf8Char right) => left.CompareTo(right) >= 0;
-
-	/// <summary>
-	/// Determines whether the <paramref name="left"/>-side instance is less than
-	/// the <paramref name="right"/>-side one.
-	/// </summary>
-	/// <param name="left">The left-side instance to be compared.</param>
-	/// <param name="right">The right-side instance to be compared.</param>
-	/// <returns>A <see cref="bool"/> result indicating that.</returns>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static bool operator <(Utf8Char left, Utf8Char right) => left.CompareTo(right) < 0;
-
-	/// <summary>
-	/// Determines whether the <paramref name="left"/>-side instance is less than
-	/// the <paramref name="right"/>-side one, or they are considered equal.
-	/// </summary>
-	/// <param name="left">The left-side instance to be compared.</param>
-	/// <param name="right">The right-side instance to be compared.</param>
-	/// <returns>A <see cref="bool"/> result indicating that.</returns>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static bool operator <=(Utf8Char left, Utf8Char right) => left.CompareTo(right) <= 0;
-
 
 	/// <summary>
 	/// Explicitly cast from <see cref="char"/> instance to <see cref="Utf8Char"/> instance.
