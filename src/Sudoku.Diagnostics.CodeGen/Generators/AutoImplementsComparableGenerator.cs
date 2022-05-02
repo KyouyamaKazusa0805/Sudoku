@@ -21,10 +21,8 @@ public sealed partial class AutoImplementsComparableGenerator : ISourceGenerator
 				SymbolOutputInfo.FromSymbol(type);
 
 			string fullName = type.ToDisplayString(TypeFormats.FullName);
-			var namedArgs = attributeData.NamedArguments;
-			static bool isExplicitly(KeyValuePair<string, TypedConstant> n) => n.Key == "UseExplicitImplementation";
 			string? memberName = (string?)attributeData.ConstructorArguments[0].Value;
-			bool @explicit = (bool?)namedArgs.FirstOrDefault(isExplicitly).Value.Value ?? false;
+			bool @explicit = attributeData.GetNamedArgument<bool>("UseExplicitImplementation");
 			bool isStruct = type.TypeKind == TypeKind.Struct;
 			string method = (@explicit, isStruct, memberName) switch
 			{

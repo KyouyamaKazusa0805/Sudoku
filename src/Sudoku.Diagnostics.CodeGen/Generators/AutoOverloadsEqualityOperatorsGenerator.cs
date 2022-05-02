@@ -19,18 +19,16 @@ public sealed partial class AutoOverloadsEqualityOperatorsGenerator : ISourceGen
 		{
 			var (_, _, namespaceName, genericParameterList, _, _, _, _, _, _) = SymbolOutputInfo.FromSymbol(type);
 
-			var namedArgs = attributeData.NamedArguments;
-			static bool inKeywordChecker(KeyValuePair<string, TypedConstant> n) => n.Key == "EmitInKeyword";
-			static bool nullableAnnotationChecker(KeyValuePair<string, TypedConstant> n) => n.Key == "WithNullableAnnotation";
-			string inKeyword = (bool?)namedArgs.FirstOrDefault(inKeywordChecker).Value.Value ?? false
-				? "in "
-				: string.Empty;
-			string nullableAnnotation = (bool?)namedArgs.FirstOrDefault(nullableAnnotationChecker).Value.Value ?? false
-				? "?"
-				: string.Empty;
-			string realComparisonExpression = (bool?)namedArgs.FirstOrDefault(nullableAnnotationChecker).Value.Value ?? false
-				? "(left, right) switch { (null, null) => true, (not null, not null) => left.Equals(right), _ => false }"
-				: "left.Equals(right)";
+			string inKeyword = attributeData.GetNamedArgument<bool>("EmitInKeyword") ? "in " : string.Empty;
+			var (nullableAnnotation, realComparisonExpression) =
+				attributeData.GetNamedArgument<bool>("WithNullableAnnotation")
+					? (
+						"?",
+						"(left, right) switch { (null, null) => true, (not null, not null) => left.Equals(right), _ => false }"
+					) : (
+						string.Empty,
+						"left.Equals(right)"
+					);
 
 			string fullName = type.ToDisplayString(TypeFormats.FullName);
 			context.AddSource(

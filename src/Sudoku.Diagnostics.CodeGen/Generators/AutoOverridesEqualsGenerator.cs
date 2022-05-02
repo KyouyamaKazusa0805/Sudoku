@@ -65,14 +65,11 @@ public sealed partial class AutoOverridesEqualsGenerator : ISourceGenerator
 			}
 
 			var namedArgs = attributeData.NamedArguments;
-			var emitInKeywordTypedConstant = namedArgs.FirstOrDefault(namedArg => namedArg.Key == "EmitInKeyword");
-			string inKeyword = (bool?)emitInKeywordTypedConstant.Value.Value is true ? "in " : string.Empty;
-			var emitSealedTypedConstant = namedArgs.FirstOrDefault(namedArg => namedArg.Key == "EmitSealedKeyword");
-			string sealedKeyword = (bool?)emitSealedTypedConstant.Value.Value is true && typeKind == TypeKind.Class
+			string inKeyword = attributeData.GetNamedArgument<bool>("EmitInKeyword") ? "in " : string.Empty;
+			string sealedKeyword = attributeData.GetNamedArgument<bool>("EmitSealedKeyword") && typeKind == TypeKind.Class
 				? "sealed "
 				: string.Empty;
-			var explicitImplTypedConstant = namedArgs.FirstOrDefault(namedArg => namedArg.Key == "UseExplicitlyImplementation");
-			bool isExplicitImpl = (bool?)explicitImplTypedConstant.Value.Value is true;
+			bool isExplicitImpl = attributeData.GetNamedArgument<bool>("UseExplicitlyImplementation");
 
 			string fullTypeName = type.ToDisplayString(TypeFormats.FullName);
 			string typeKindString = type.GetTypeKindModifier();

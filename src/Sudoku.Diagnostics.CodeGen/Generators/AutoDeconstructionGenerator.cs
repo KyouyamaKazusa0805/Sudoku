@@ -56,7 +56,7 @@ public sealed partial class AutoDeconstructionGenerator : ISourceGenerator
 					var type = (INamedTypeSymbol)tuplesGroupedByType.Key!;
 
 					var attributesData = (from tuple in tuplesGroupedByType select tuple.AttributeData).ToArray();
-					if (attributesData is not [{ NamedArguments: var firstNamedArgs }, ..])
+					if (attributesData is not [var attributeData, ..])
 					{
 						continue;
 					}
@@ -67,9 +67,7 @@ public sealed partial class AutoDeconstructionGenerator : ISourceGenerator
 					// Gets the namespace applied to.
 					// TODO: Check and make diagnostics if same type don't set same namespace;
 					// non-first values are ignored.
-					static bool keySelector(KeyValuePair<string, TypedConstant> e) => e.Key == "Namespace";
-					var selectedKvp = firstNamedArgs.FirstOrDefault(keySelector);
-					string namespaceNameResult = ((string?)selectedKvp.Value.Value) ?? namespaceName;
+					string namespaceNameResult = attributeData.GetNamedArgument<string>("Namespace") ?? namespaceName;
 
 					// The final code.
 					string fullTypeNameWithoutConstraint = type.ToDisplayString(TypeFormats.FullNameWithConstraints);
@@ -239,9 +237,7 @@ public sealed partial class AutoDeconstructionGenerator : ISourceGenerator
 			// Gets the string segment for the keyword 'in' if necessary.
 			// If the type is a large structure, user will set the property value to true,
 			// in order to optimize the argument-passing operation.
-			static bool isPropertyInKeyword(KeyValuePair<string, TypedConstant> e) => e.Key == "EmitsInKeyword";
-			var inKeywordRawValueKvp = namedArgs.FirstOrDefault(isPropertyInKeyword);
-			string inKeyword = (bool?)inKeywordRawValueKvp.Value.Value is true ? "in " : string.Empty;
+			string inKeyword = attributeData.GetNamedArgument<bool>("EmitsInKeyword") ? "in " : string.Empty;
 
 			// Creates a collection that is used for storing a pair of information on the target propeties.
 			// Here the target property means the corresponding property searching it through the attribute value

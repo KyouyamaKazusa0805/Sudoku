@@ -24,16 +24,8 @@ public sealed partial class DisableParameterlessConstructorGenerator : ISourceGe
 		{
 			var (_, _, namespaceName, genericParameterList, _, _, _, _, _, _) = SymbolOutputInfo.FromSymbol(type);
 
-			string? rawMessage = (
-				from namedArg in attributeData.NamedArguments
-				where namedArg is { Key: "Message", Value.Value: string }
-				select (string)namedArg.Value.Value!
-			).FirstOrDefault();
-			string? memberName = (
-				from namedArg in attributeData.NamedArguments
-				where namedArg is { Key: "SuggestedMemberName", Value.Value: string }
-				select (string)namedArg.Value.Value!
-			).FirstOrDefault();
+			string? rawMessage = attributeData.GetNamedArgument<string>("Message");
+			string? memberName = attributeData.GetNamedArgument<string>("SuggestedMemberName");
 			if (
 				(rawMessage, memberName) switch
 				{
@@ -83,6 +75,5 @@ public sealed partial class DisableParameterlessConstructorGenerator : ISourceGe
 
 	/// <inheritdoc/>
 	public void Initialize(GeneratorInitializationContext context)
-		=> context.RegisterForSyntaxNotifications(
-			() => new Receiver(context.CancellationToken));
+		=> context.RegisterForSyntaxNotifications(() => new Receiver(context.CancellationToken));
 }

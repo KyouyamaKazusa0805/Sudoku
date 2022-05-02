@@ -86,9 +86,9 @@ public sealed partial class AutoOverridesGetHashCodeGenerator : ISourceGenerator
 				}
 			}
 
-			string sealedKeyword = attributeData.NamedArguments is [{ Value.Value: var realValue } namedArg, ..]
-				&& ((bool?)realValue ?? false)
-				&& type.TypeKind != TypeKind.Struct ? "sealed " : string.Empty;
+			string sealedKeyword = attributeData.GetNamedArgument<bool>("EmitSealedKeyword") && type.TypeKind != TypeKind.Struct
+				? "sealed "
+				: string.Empty;
 
 			string typeKindString = type.GetTypeKindModifier();
 			string methodBody = targetSymbolsRawString.Count switch
