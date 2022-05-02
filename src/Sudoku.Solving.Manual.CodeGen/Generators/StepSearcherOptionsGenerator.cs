@@ -65,13 +65,11 @@ public sealed partial class StepSearcherOptionsGenerator : ISourceGenerator
 				continue;
 			}
 
-			var location = Location.Create(syntaxTree, span);
-
 			// Adds the necessary info into the collection.
 			foundAttributesData.Add(
 				new(
 					stepSearcherTypeSymbol, containingNamespace, priority, (DisplayingLevel)dl,
-					stepSearcherName, namedArguments, location));
+					stepSearcherName, namedArguments));
 		}
 
 		// Checks whether the collection has duplicated priority values.
@@ -90,7 +88,7 @@ public sealed partial class StepSearcherOptionsGenerator : ISourceGenerator
 
 		// Iterate on each valid attribute data, and checks the inner value to be used
 		// by the source generator to output.
-		foreach (var (type, @namespace, priority, level, name, namedArguments, _) in foundAttributesData)
+		foreach (var (type, @namespace, priority, level, name, namedArguments) in foundAttributesData)
 		{
 			// Checks whether the attribute has configured any extra options.
 			EnabledAreas? enabledAreas = null;
