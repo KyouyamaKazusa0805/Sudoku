@@ -16,5 +16,3 @@ global using Sudoku.Solving;
 global using Sudoku.Solving.Manual;
 global using static System.Math;
 global using static Sudoku.CommandLine.CommonConstants;
-
-[assembly: GlobalConfiguration(FullCommandNamePrefix = "/")]

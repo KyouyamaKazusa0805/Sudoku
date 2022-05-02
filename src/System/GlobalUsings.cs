@@ -16,5 +16,3 @@ global using System.Text.RegularExpressions;
 global using static System.Math;
 global using static System.MathF;
 global using static System.Numerics.BitOperations;
-
-[assembly: InternalsVisibleTo("Sudoku.Core")]

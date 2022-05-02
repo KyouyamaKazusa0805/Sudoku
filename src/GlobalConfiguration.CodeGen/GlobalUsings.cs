@@ -9,8 +9,3 @@ global using System.Xml;
 global using Microsoft.CodeAnalysis;
 global using Microsoft.CodeAnalysis.Text;
 global using Sudoku.Diagnostics.CodeGen;
-
-[assembly: InternalsVisibleTo("Sudoku.Core.CodeGen")]
-[assembly: InternalsVisibleTo("Sudoku.Diagnostics.CodeGen")]
-[assembly: InternalsVisibleTo("Sudoku.Solving.Manual.CodeGen")]
-[assembly: InternalsVisibleTo("SystemExtensions.CodeGen")]

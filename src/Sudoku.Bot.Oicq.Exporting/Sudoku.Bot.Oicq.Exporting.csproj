@@ -89,7 +89,7 @@
     <Compile Include="Eventing\EventRouter.cs" />
     <Compile Include="Eventing\EventTriggerer.cs" />
     <Compile Include="Eventing\RequestEvents.cs" />
-    <Compile Include="Globals.cs" />
+    <Compile Include="GlobalUsings.cs" />
     <Compile Include="Extensibility\BackingEventHandler.cs" />
     <Compile Include="Exportability.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
