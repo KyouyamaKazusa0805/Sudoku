@@ -7,44 +7,12 @@
 [Generator(LanguageNames.CSharp)]
 public sealed partial class StepSearcherOptionsGenerator : ISourceGenerator
 {
-	private static readonly DiagnosticDescriptor SCA0101 = new(
-		nameof(SCA0101),
-		"The source generator can only applied to the assembly 'Sudoku.Solving.Manual'",
-		"The source generator can only applied to the assembly 'Sudoku.Solving.Manual'",
-		"Usage",
-		DiagnosticSeverity.Error,
-		true,
-		helpLinkUri: "https://sunnieshine.github.io/Sudoku/code-analysis/sca0101"
-	);
-
-	private static readonly DiagnosticDescriptor SCA0102 = new(
-		nameof(SCA0102),
-		"Duplicated priority value found",
-		"Duplicated priority value found",
-		"Design",
-		DiagnosticSeverity.Error,
-		true,
-		helpLinkUri: "https://sunnieshine.github.io/Sudoku/code-analysis/sca0102"
-	);
-
-	private static readonly DiagnosticDescriptor SCA0103 = new(
-		nameof(SCA0103),
-		"Priority value cannot be negative even if the type is 'int'",
-		"Priority value cannot be negative even if the type is 'int'",
-		"Design",
-		DiagnosticSeverity.Warning,
-		true,
-		helpLinkUri: "https://sunnieshine.github.io/Sudoku/code-analysis/sca0103"
-	);
-
-
 	/// <inheritdoc/>
 	public void Execute(GeneratorExecutionContext context)
 	{
 		// Checks whether the reference project is valid.
 		if (context is not { Compilation.Assembly: { Name: "Sudoku.Solving.Manual" } assemblySymbol })
 		{
-			context.ReportDiagnostic(Diagnostic.Create(SCA0101, null, messageArgs: null));
 			return;
 		}
 
@@ -99,12 +67,6 @@ public sealed partial class StepSearcherOptionsGenerator : ISourceGenerator
 
 			var location = Location.Create(syntaxTree, span);
 
-			// The priority value cannot be negative or zero.
-			if (priority <= 0)
-			{
-				context.ReportDiagnostic(Diagnostic.Create(SCA0103, location, messageArgs: null));
-			}
-
 			// Adds the necessary info into the collection.
 			foundAttributesData.Add(
 				new(
@@ -121,8 +83,7 @@ public sealed partial class StepSearcherOptionsGenerator : ISourceGenerator
 				int b = foundAttributesData[j].Priority;
 				if (a == b)
 				{
-					context.ReportDiagnostic(
-						Diagnostic.Create(SCA0102, foundAttributesData[j].Location, messageArgs: null));
+					throw new InvalidOperationException("Cannot operate because two found step searchers has a same priority value.");
 				}
 			}
 		}
@@ -183,7 +144,6 @@ public sealed partial class StepSearcherOptionsGenerator : ISourceGenerator
 					public global::{{typeof(SearchingOptions).FullName}} Options { get; set; } =
 						new({{priority}}, global::{{typeof(DisplayingLevel).FullName}}.{{level}}{{sb}});
 				}
-				
 				"""
 			);
 		}
