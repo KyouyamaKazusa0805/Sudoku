@@ -5,12 +5,12 @@
 /// or <c><see langword="operator"/> !=</c>.
 /// </summary>
 [Generator(LanguageNames.CSharp)]
-public sealed class AutoOverloadsEqualityOperatorsGenerator : ISourceGenerator
+public sealed partial class AutoOverloadsEqualityOperatorsGenerator : ISourceGenerator
 {
 	/// <inheritdoc/>
 	public void Execute(GeneratorExecutionContext context)
 	{
-		if (context is not { SyntaxContextReceiver: AutoOverloadsEqualityOperatorsReceiver { Collection: var collection } })
+		if (context is not { SyntaxContextReceiver: Receiver { Collection: var collection } })
 		{
 			return;
 		}
@@ -74,6 +74,5 @@ public sealed class AutoOverloadsEqualityOperatorsGenerator : ISourceGenerator
 
 	/// <inheritdoc/>
 	public void Initialize(GeneratorInitializationContext context)
-		=> context.RegisterForSyntaxNotifications(
-			() => new AutoOverloadsEqualityOperatorsReceiver(context.CancellationToken));
+		=> context.RegisterForSyntaxNotifications(() => new Receiver(context.CancellationToken));
 }

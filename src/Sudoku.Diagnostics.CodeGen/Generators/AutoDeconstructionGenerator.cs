@@ -4,7 +4,7 @@
 /// Defines a source generator that generates deconstruction methods of a type.
 /// </summary>
 [Generator(LanguageNames.CSharp)]
-public sealed class AutoDeconstructionGenerator : ISourceGenerator
+public sealed partial class AutoDeconstructionGenerator : ISourceGenerator
 {
 	/// <summary>
 	/// Defines the pattern that matches for an expression.
@@ -23,7 +23,7 @@ public sealed class AutoDeconstructionGenerator : ISourceGenerator
 		if (
 			context is not
 			{
-				SyntaxContextReceiver: AutoDeconstructionReceiver { Collection: var collection } receiver,
+				SyntaxContextReceiver: Receiver { Collection: var collection },
 				Compilation: { Assembly: var assembly } compilation
 			}
 		)
@@ -156,7 +156,7 @@ public sealed class AutoDeconstructionGenerator : ISourceGenerator
 
 	/// <inheritdoc/>
 	public void Initialize(GeneratorInitializationContext context)
-		=> context.RegisterForSyntaxNotifications(() => new AutoDeconstructionReceiver(context.CancellationToken));
+		=> context.RegisterForSyntaxNotifications(() => new Receiver(context.CancellationToken));
 
 	/// <summary>
 	/// Get for assembly-targeted attributes on generation.

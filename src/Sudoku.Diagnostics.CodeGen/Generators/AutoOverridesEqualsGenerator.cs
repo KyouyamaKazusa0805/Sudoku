@@ -4,12 +4,12 @@
 /// Defines a source generator that generates for the code that is for the overriden of a type.
 /// </summary>
 [Generator(LanguageNames.CSharp)]
-public sealed class AutoOverridesEqualsGenerator : ISourceGenerator
+public sealed partial class AutoOverridesEqualsGenerator : ISourceGenerator
 {
 	/// <inheritdoc/>
 	public void Execute(GeneratorExecutionContext context)
 	{
-		if (context is not { SyntaxContextReceiver: AutoOverridesEqualsReceiver { Collection: var collection } })
+		if (context is not { SyntaxContextReceiver: Receiver { Collection: var collection } })
 		{
 			return;
 		}
@@ -144,5 +144,5 @@ public sealed class AutoOverridesEqualsGenerator : ISourceGenerator
 
 	/// <inheritdoc/>
 	public void Initialize(GeneratorInitializationContext context)
-		=> context.RegisterForSyntaxNotifications(() => new AutoOverridesEqualsReceiver(context.CancellationToken));
+		=> context.RegisterForSyntaxNotifications(() => new Receiver(context.CancellationToken));
 }

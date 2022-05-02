@@ -4,7 +4,7 @@
 /// Defines a source generator that generates for the code that is for the overriden of a type.
 /// </summary>
 [Generator(LanguageNames.CSharp)]
-public sealed class AutoOverridesGetHashCodeGenerator : ISourceGenerator
+public sealed partial class AutoOverridesGetHashCodeGenerator : ISourceGenerator
 {
 	/// <inheritdoc/>
 	public void Execute(GeneratorExecutionContext context)
@@ -13,7 +13,7 @@ public sealed class AutoOverridesGetHashCodeGenerator : ISourceGenerator
 		if (
 			context is not
 			{
-				SyntaxContextReceiver: AutoOverridesGetHashCodeReceiver { Collection: var collection } receiver,
+				SyntaxContextReceiver: Receiver { Collection: var collection } receiver,
 				Compilation: { Assembly: var assembly } compilation
 			}
 		)
@@ -127,5 +127,5 @@ public sealed class AutoOverridesGetHashCodeGenerator : ISourceGenerator
 
 	/// <inheritdoc/>
 	public void Initialize(GeneratorInitializationContext context)
-		=> context.RegisterForSyntaxNotifications(() => new AutoOverridesGetHashCodeReceiver(context.CancellationToken));
+		=> context.RegisterForSyntaxNotifications(() => new Receiver(context.CancellationToken));
 }

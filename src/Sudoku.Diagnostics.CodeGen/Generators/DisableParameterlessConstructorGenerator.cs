@@ -5,7 +5,7 @@
 /// to disallow any invokes for them from user.
 /// </summary>
 [Generator(LanguageNames.CSharp)]
-public sealed class DisableParameterlessConstructorGenerator : ISourceGenerator
+public sealed partial class DisableParameterlessConstructorGenerator : ISourceGenerator
 {
 	/// <inheritdoc/>
 	public void Execute(GeneratorExecutionContext context)
@@ -13,7 +13,7 @@ public sealed class DisableParameterlessConstructorGenerator : ISourceGenerator
 		if (
 			context is not
 			{
-				SyntaxContextReceiver: DisableParameterlessConstructorReceiver { Collection: var typeSymbols } receiver
+				SyntaxContextReceiver: Receiver { Collection: var typeSymbols } receiver
 			}
 		)
 		{
@@ -84,5 +84,5 @@ public sealed class DisableParameterlessConstructorGenerator : ISourceGenerator
 	/// <inheritdoc/>
 	public void Initialize(GeneratorInitializationContext context)
 		=> context.RegisterForSyntaxNotifications(
-			() => new DisableParameterlessConstructorReceiver(context.CancellationToken));
+			() => new Receiver(context.CancellationToken));
 }

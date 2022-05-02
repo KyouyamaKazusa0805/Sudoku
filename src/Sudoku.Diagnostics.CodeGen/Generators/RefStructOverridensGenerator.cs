@@ -4,18 +4,12 @@
 /// Indicates the generator that generates the default overriden methods in a <see langword="ref struct"/>.
 /// </summary>
 [Generator(LanguageNames.CSharp)]
-public sealed class RefStructOverridensGenerator : ISourceGenerator
+public sealed partial class RefStructOverridensGenerator : ISourceGenerator
 {
 	/// <inheritdoc/>
 	public void Execute(GeneratorExecutionContext context)
 	{
-		if (
-			context is not
-			{
-				SyntaxContextReceiver: RefStructOverridensReceiver { Collection: var tuples } receiver,
-				Compilation: var compilation
-			}
-		)
+		if (context is not { SyntaxContextReceiver: Receiver { Collection: var tuples }, Compilation: var compilation })
 		{
 			return;
 		}
@@ -32,7 +26,7 @@ public sealed class RefStructOverridensGenerator : ISourceGenerator
 
 	/// <inheritdoc/>
 	public void Initialize(GeneratorInitializationContext context)
-		=> context.RegisterForSyntaxNotifications(() => new RefStructOverridensReceiver(context.CancellationToken));
+		=> context.RegisterForSyntaxNotifications(() => new Receiver(context.CancellationToken));
 
 	/// <summary>
 	/// Generates for top-levelled <see langword="ref struct"/> types.

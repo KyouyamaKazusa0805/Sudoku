@@ -5,12 +5,12 @@
 /// </summary>
 /// <seealso cref="IComparable{T}"/>
 [Generator(LanguageNames.CSharp)]
-public sealed class AutoImplementsComparableGenerator : ISourceGenerator
+public sealed partial class AutoImplementsComparableGenerator : ISourceGenerator
 {
 	/// <inheritdoc/>
 	public void Execute(GeneratorExecutionContext context)
 	{
-		if (context is not { SyntaxContextReceiver: AutoImplementsComparableReceiver { Collection: var collection } })
+		if (context is not { SyntaxContextReceiver: Receiver { Collection: var collection } })
 		{
 			return;
 		}
@@ -136,5 +136,5 @@ public sealed class AutoImplementsComparableGenerator : ISourceGenerator
 
 	/// <inheritdoc/>
 	public void Initialize(GeneratorInitializationContext context)
-		=> context.RegisterForSyntaxNotifications(() => new AutoImplementsComparableReceiver(context.CancellationToken));
+		=> context.RegisterForSyntaxNotifications(() => new Receiver(context.CancellationToken));
 }

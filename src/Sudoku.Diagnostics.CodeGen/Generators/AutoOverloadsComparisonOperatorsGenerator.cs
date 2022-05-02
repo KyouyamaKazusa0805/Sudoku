@@ -5,12 +5,12 @@
 /// <c><![CDATA[>]]></c>, <c><![CDATA[<]]></c>, <c><![CDATA[>=]]></c> and <c><![CDATA[<=]]></c>.
 /// </summary>
 [Generator(LanguageNames.CSharp)]
-public sealed class AutoOverloadsComparisonOperatorsGenerator : ISourceGenerator
+public sealed partial class AutoOverloadsComparisonOperatorsGenerator : ISourceGenerator
 {
 	/// <inheritdoc/>
 	public void Execute(GeneratorExecutionContext context)
 	{
-		if (context is not { SyntaxContextReceiver: AutoOverloadsComparisonOperatorsReceiver { Collection: var collection } })
+		if (context is not { SyntaxContextReceiver: Receiver { Collection: var collection } })
 		{
 			return;
 		}
@@ -94,6 +94,5 @@ public sealed class AutoOverloadsComparisonOperatorsGenerator : ISourceGenerator
 
 	/// <inheritdoc/>
 	public void Initialize(GeneratorInitializationContext context)
-		=> context.RegisterForSyntaxNotifications(
-			() => new AutoOverloadsComparisonOperatorsReceiver(context.CancellationToken));
+		=> context.RegisterForSyntaxNotifications(() => new Receiver(context.CancellationToken));
 }
