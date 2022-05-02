@@ -2,8 +2,8 @@
 
 partial class StepSearcherOptionsGenerator
 {
-	private readonly record struct Tuple(
+	private sealed record class Tuple(
 		INamedTypeSymbol StepSearcherSymbol, INamespaceSymbol ContainingNamespace,
-		int Priority, DisplayingLevel DisplayingLevel, string StepSearcherName,
+		int Priority, byte DisplayingLevel, string StepSearcherName,
 		ImmutableArray<KeyValuePair<string, TypedConstant>> NamedArguments);
 }

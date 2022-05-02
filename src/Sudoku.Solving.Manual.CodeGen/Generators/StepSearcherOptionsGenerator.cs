@@ -11,7 +11,17 @@ public sealed partial class StepSearcherOptionsGenerator : ISourceGenerator
 	public void Execute(GeneratorExecutionContext context)
 	{
 		// Checks whether the reference project is valid.
-		if (context is not { Compilation.Assembly: { Name: "Sudoku.Solving.Manual" } assemblySymbol })
+		if (
+			context is not
+			{
+				Compilation.Assembly: { Name: "Sudoku.Solving.Manual" } assemblySymbol,
+				SyntaxContextReceiver: Receiver
+				{
+					EnabledAreasFields: var enabledAreaFields,
+					DisabledReasonFields: var disabledReasonFields
+				}
+			}
+		)
 		{
 			return;
 		}
@@ -49,8 +59,7 @@ public sealed partial class StepSearcherOptionsGenerator : ISourceGenerator
 						{ Type.SpecialType: SpecialType.System_Int32, Value: int priority },
 						{ Type.TypeKind: TypeKind.Enum, Value: byte dl }
 					],
-					NamedArguments: var namedArguments,
-					ApplicationSyntaxReference: { SyntaxTree: var syntaxTree, Span: var span }
+					NamedArguments: var namedArguments
 				}
 #pragma warning restore IDE0055
 			)
@@ -67,9 +76,7 @@ public sealed partial class StepSearcherOptionsGenerator : ISourceGenerator
 
 			// Adds the necessary info into the collection.
 			foundAttributesData.Add(
-				new(
-					stepSearcherTypeSymbol, containingNamespace, priority, (DisplayingLevel)dl,
-					stepSearcherName, namedArguments));
+				new(stepSearcherTypeSymbol, containingNamespace, priority, dl, stepSearcherName, namedArguments));
 		}
 
 		// Checks whether the collection has duplicated priority values.
@@ -81,7 +88,8 @@ public sealed partial class StepSearcherOptionsGenerator : ISourceGenerator
 				int b = foundAttributesData[j].Priority;
 				if (a == b)
 				{
-					throw new InvalidOperationException("Cannot operate because two found step searchers has a same priority value.");
+					throw new InvalidOperationException(
+						"Cannot operate because two found step searchers has a same priority value.");
 				}
 			}
 		}
@@ -91,19 +99,24 @@ public sealed partial class StepSearcherOptionsGenerator : ISourceGenerator
 		foreach (var (type, @namespace, priority, level, name, namedArguments) in foundAttributesData)
 		{
 			// Checks whether the attribute has configured any extra options.
-			EnabledAreas? enabledAreas = null;
-			DisabledReason? disabledReason = null;
-			if (namedArguments is { IsDefaultOrEmpty: false, Length: not 0 })
+			byte? enabledAreas = null;
+			short? disabledReason = null;
+			if (namedArguments is not [])
 			{
-				foreach (var (argName, value) in namedArguments)
+				foreach (var kvp in namedArguments)
 				{
-					if (argName == nameof(EnabledAreas) && value.Value is byte ea)
+					switch (kvp)
 					{
-						enabledAreas = (EnabledAreas)ea;
-					}
-					if (argName == nameof(DisabledReason) && value.Value is short dr)
-					{
-						disabledReason = (DisabledReason)dr;
+						case ("EnabledAreas", { Value: byte ea }):
+						{
+							enabledAreas = ea;
+							break;
+						}
+						case ("DisabledReason", { Value: short dr }):
+						{
+							disabledReason = dr;
+							break;
+						}
 					}
 				}
 			}
@@ -115,13 +128,13 @@ public sealed partial class StepSearcherOptionsGenerator : ISourceGenerator
 				sb = new StringBuilder().Append(comma);
 				if (enabledAreas is { } ea)
 				{
-					string targetStr = f(ea);
-					sb.Append($"{nameof(EnabledAreas)}: {targetStr}{comma}");
+					string targetStr = f(ea, "EnabledAreas");
+					sb.Append($"EnabledAreas: {targetStr}{comma}");
 				}
 				if (disabledReason is { } dr)
 				{
-					string targetStr = f(dr);
-					sb.Append($"{nameof(DisabledReason)}: {targetStr}{comma}");
+					string targetStr = f(dr, "DisabledReason");
+					sb.Append($"DisabledReason: {targetStr}{comma}");
 				}
 
 				sb.Remove(sb.Length - comma.Length, comma.Length);
@@ -139,25 +152,60 @@ public sealed partial class StepSearcherOptionsGenerator : ISourceGenerator
 					/// <inheritdoc/>
 					[global::{{typeof(GeneratedCodeAttribute).FullName}}("{{typeof(StepSearcherOptionsGenerator).FullName}}", "{{VersionValue}}")]
 					[global::{{typeof(CompilerGeneratedAttribute).FullName}}]
-					public global::{{typeof(SearchingOptions).FullName}} Options { get; set; } =
-						new({{priority}}, global::{{typeof(DisplayingLevel).FullName}}.{{level}}{{sb}});
+					public global::Sudoku.Solving.Manual.SearchingOptions Options { get; set; } =
+						new({{priority}}, global::Sudoku.Solving.Manual.DisplayingLevel.{{(char)(level + 'A' - 1)}}{{sb}});
 				}
 				"""
 			);
 		}
 
 
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		static string f<TEnum>(TEnum field) where TEnum : Enum
-			=> string.Join(
-				" | ",
-				from e in field.ToString().Split(new[] { ',', ' ' }, StringSplitOptions.RemoveEmptyEntries)
-				select $"global::{typeof(TEnum).FullName}.{e}"
-			);
+		unsafe string f<T>(T field, string typeName) where T : unmanaged
+		{
+			long l = sizeof(T) switch
+			{
+				1 or 2 or 4 => Unsafe.As<T, int>(ref field),
+				8 => Unsafe.As<T, long>(ref field),
+				_ => default
+			};
+
+			// Special case: If the value is zero, just get the default field in the enumeration field
+			// or just get the expression '(T)0' as the emitted code.
+			if (l == 0)
+			{
+				return $"(global::Sudoku.Solving.Manual.{typeName})0";
+			}
+
+			var targetList = new List<string>();
+			for (var (temp, i) = (l, 0); temp != 0; temp >>= 1, i++)
+			{
+				if ((temp & 1) == 0)
+				{
+					continue;
+				}
+
+				switch (typeName)
+				{
+					case "EnabledAreas" when enabledAreaFields[(byte)(1 << i)] is var fieldValue:
+					{
+						targetList.Add($"global::Sudoku.Solving.Manual.EnabledAreas.{fieldValue}");
+
+						break;
+					}
+					case "DisabledReason" when disabledReasonFields[(short)(1 << i)] is var fieldValue:
+					{
+						targetList.Add($"global::Sudoku.Solving.Manual.DisabledReason.{fieldValue}");
+
+						break;
+					}
+				}
+			}
+
+			return string.Join(" | ", targetList);
+		}
 	}
 
 	/// <inheritdoc/>
 	public void Initialize(GeneratorInitializationContext context)
-	{
-	}
+		=> context.RegisterForSyntaxNotifications(() => new Receiver(context.CancellationToken));
 }
