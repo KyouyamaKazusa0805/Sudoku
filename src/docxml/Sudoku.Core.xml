@@ -972,9 +972,6 @@
             Clear all bits.
             </summary>
         </member>
-        <member name="M:Sudoku.Concepts.Collections.Cells.System#IComparable{Sudoku#Concepts#Collections#Cells}#CompareTo(Sudoku.Concepts.Collections.Cells)">
-            <inheritdoc/>
-        </member>
         <member name="M:Sudoku.Concepts.Collections.Cells.System#Collections#IEnumerable#GetEnumerator">
             <inheritdoc/>
         </member>
@@ -1209,6 +1206,38 @@
         </member>
         <member name="M:Sudoku.Concepts.Collections.Cells.JsonConverter.Write(System.Text.Json.Utf8JsonWriter,Sudoku.Concepts.Collections.Cells,System.Text.Json.JsonSerializerOptions)">
             <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.Collections.Cells.System#IComparable{Sudoku#Concepts#Collections#Cells}#CompareTo(Sudoku.Concepts.Collections.Cells)">
+            <summary>
+            Compares the current instance with another object of the same type and returns an integer
+            that indicates whether the current instance precedes, follows, or occurs in the same position
+            in the sort order as the other object.
+            </summary>
+            <param name="other">An object to compare with this instance.</param>
+            <returns>
+            A value that indicates the relative order of the objects being compared.
+            The return value has these meanings:
+            <list type="table">
+            <listheader>
+            <term>Value</term>
+            <description>Meaning</description>
+            </listheader>
+            <item>
+            <term>Less than zero</term>
+            <description>This instance precedes <paramref name="other"/> in the sort order.</description>
+            </item>
+            <item>
+            <term>Zero</term>
+            <description>
+            The instance occurs in the same position in the sort order as <paramref name="other"/>.
+            </description>
+            </item>
+            <item>
+            <term>Greater than zero</term>
+            <description>The instance follows <paramref name="other"/> in the sort order.</description>
+            </item>
+            </list>
+            </returns>
         </member>
         <member name="M:Sudoku.Concepts.Collections.Cells.op_Equality(Sudoku.Concepts.Collections.Cells@,Sudoku.Concepts.Collections.Cells@)">
             <summary>
@@ -4905,9 +4934,6 @@
             </summary>
             <param name="grid">The grid.</param>
         </member>
-        <member name="M:Sudoku.Concepts.Solving.Conclusion.CompareTo(Sudoku.Concepts.Solving.Conclusion)">
-            <inheritdoc/>
-        </member>
         <member name="M:Sudoku.Concepts.Solving.Conclusion.ToString">
             <inheritdoc cref="M:System.Object.ToString"/>
         </member>
@@ -5013,6 +5039,38 @@
             ]]></code>
             </para>
             </remarks>
+        </member>
+        <member name="M:Sudoku.Concepts.Solving.Conclusion.CompareTo(Sudoku.Concepts.Solving.Conclusion)">
+            <summary>
+            Compares the current instance with another object of the same type and returns an integer
+            that indicates whether the current instance precedes, follows, or occurs in the same position
+            in the sort order as the other object.
+            </summary>
+            <param name="other">An object to compare with this instance.</param>
+            <returns>
+            A value that indicates the relative order of the objects being compared.
+            The return value has these meanings:
+            <list type="table">
+            <listheader>
+            <term>Value</term>
+            <description>Meaning</description>
+            </listheader>
+            <item>
+            <term>Less than zero</term>
+            <description>This instance precedes <paramref name="other"/> in the sort order.</description>
+            </item>
+            <item>
+            <term>Zero</term>
+            <description>
+            The instance occurs in the same position in the sort order as <paramref name="other"/>.
+            </description>
+            </item>
+            <item>
+            <term>Greater than zero</term>
+            <description>The instance follows <paramref name="other"/> in the sort order.</description>
+            </item>
+            </list>
+            </returns>
         </member>
         <member name="M:Sudoku.Concepts.Solving.Conclusion.op_Equality(Sudoku.Concepts.Solving.Conclusion,Sudoku.Concepts.Solving.Conclusion)">
             <summary>

@@ -6,6 +6,7 @@
 [AutoOverridesGetHashCode(nameof(_char))]
 [AutoOverridesEquals(nameof(_char))]
 [AutoOverloadsEqualityOperators]
+[AutoImplementsComparable(nameof(_char))]
 public readonly partial struct Utf8Char :
 	IComparable,
 	IComparable<Utf8Char>,
@@ -87,11 +88,6 @@ public readonly partial struct Utf8Char :
 	/// <returns>A <see cref="bool"/> result.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public bool IsLetterOrDigit() => IsLetter() || IsDigit();
-
-	/// <inheritdoc cref="char.CompareTo(char)"/>
-	/// <param name="other"><inheritdoc/></param>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public int CompareTo(Utf8Char other) => _char.CompareTo(other._char);
 
 	/// <inheritdoc cref="char.GetHashCode"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

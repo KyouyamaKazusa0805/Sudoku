@@ -15,6 +15,7 @@
 [AutoOverridesGetHashCode(nameof(_mask))]
 [AutoOverridesEquals(nameof(_mask))]
 [AutoOverloadsEqualityOperators]
+[AutoImplementsComparable(nameof(_mask))]
 public readonly partial struct Conclusion :
 	IComparable<Conclusion>,
 	IComparisonOperators<Conclusion, Conclusion>,
@@ -146,10 +147,6 @@ public readonly partial struct Conclusion :
 			}
 		}
 	}
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public int CompareTo(Conclusion other) => _mask - other._mask;
 
 	/// <inheritdoc cref="object.ToString"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

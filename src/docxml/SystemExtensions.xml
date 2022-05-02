@@ -1439,6 +1439,30 @@
             Indicates the desired type on which the source generator emits extension methods.
             </summary>
         </member>
+        <member name="T:System.Diagnostics.CodeGen.AutoImplementsComparableAttribute">
+            <summary>
+            Defines an attribute that is used for controlling the source generation on automatically implementing
+            <see cref="T:System.IComparable`1"/>.
+            </summary>
+            <seealso cref="T:System.IComparable`1"/>
+        </member>
+        <member name="M:System.Diagnostics.CodeGen.AutoImplementsComparableAttribute.#ctor(System.String)">
+            <summary>
+            Initializes an <see cref="T:System.Diagnostics.CodeGen.AutoImplementsComparableAttribute"/> instance via the member name.
+            </summary>
+            <param name="memberName">The member name.</param>
+        </member>
+        <member name="P:System.Diagnostics.CodeGen.AutoImplementsComparableAttribute.UseExplicitImplementation">
+            <summary>
+            Indiactes whether the source generator will emit explicit interface implementation instead
+            of implicit one. The default value is <see langword="false"/>.
+            </summary>
+        </member>
+        <member name="P:System.Diagnostics.CodeGen.AutoImplementsComparableAttribute.MemberName">
+            <summary>
+            Indicates the member name to compare.
+            </summary>
+        </member>
         <member name="T:System.Diagnostics.CodeGen.AutoOverloadsEqualityOperatorsAttribute">
             <summary>
             Defines an attributes that allows user using it applying to a type
@@ -3857,10 +3881,6 @@
             </summary>
             <returns>A <see cref="T:System.Boolean"/> result.</returns>
         </member>
-        <member name="M:System.Utf8Char.CompareTo(System.Utf8Char)">
-            <inheritdoc cref="M:System.Char.CompareTo(System.Char)"/>
-            <param name="other"><inheritdoc/></param>
-        </member>
         <member name="M:System.Utf8Char.ToString">
             <inheritdoc cref="M:System.Char.GetHashCode"/>
         </member>
@@ -3938,6 +3958,38 @@
             Implicitly cast from <see cref="T:System.Byte"/> instance to <see cref="T:System.Utf8Char"/> instance.
             </summary>
             <param name="byteValue">The <see cref="T:System.Byte"/> instance.</param>
+        </member>
+        <member name="M:System.Utf8Char.CompareTo(System.Utf8Char)">
+            <summary>
+            Compares the current instance with another object of the same type and returns an integer
+            that indicates whether the current instance precedes, follows, or occurs in the same position
+            in the sort order as the other object.
+            </summary>
+            <param name="other">An object to compare with this instance.</param>
+            <returns>
+            A value that indicates the relative order of the objects being compared.
+            The return value has these meanings:
+            <list type="table">
+            <listheader>
+            <term>Value</term>
+            <description>Meaning</description>
+            </listheader>
+            <item>
+            <term>Less than zero</term>
+            <description>This instance precedes <paramref name="other"/> in the sort order.</description>
+            </item>
+            <item>
+            <term>Zero</term>
+            <description>
+            The instance occurs in the same position in the sort order as <paramref name="other"/>.
+            </description>
+            </item>
+            <item>
+            <term>Greater than zero</term>
+            <description>The instance follows <paramref name="other"/> in the sort order.</description>
+            </item>
+            </list>
+            </returns>
         </member>
         <member name="M:System.Utf8Char.op_Equality(System.Utf8Char,System.Utf8Char)">
             <summary>

@@ -16,6 +16,7 @@ namespace Sudoku.Concepts.Collections;
 [AutoOverridesGetHashCode(nameof(BinaryCode))]
 [AutoOverridesEquals(nameof(_low), nameof(_high), UseExplicitlyImplementation = true, EmitInKeyword = true)]
 [AutoOverloadsEqualityOperators(EmitInKeyword = true)]
+[AutoImplementsComparable(UseExplicitImplementation = true)]
 public unsafe partial struct Cells :
 	IComparable<Cells>,
 	IDefaultable<Cells>,
@@ -869,10 +870,6 @@ public unsafe partial struct Cells :
 	/// </summary>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public void Clear() => _low = _high = Count = 0;
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	readonly int IComparable<Cells>.CompareTo(Cells other) => CompareTo(other);
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

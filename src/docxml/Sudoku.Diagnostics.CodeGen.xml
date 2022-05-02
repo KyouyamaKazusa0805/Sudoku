@@ -46,6 +46,18 @@
             <param name="attributesData">The attributes data, and the corresponding location.</param>
             <returns>The collection of raw code parts for instance deconstruction methods.</returns>
         </member>
+        <member name="T:Sudoku.Diagnostics.CodeGen.Generators.AutoImplementsComparableGenerator">
+            <summary>
+            Defines a source generator that generates the source code on implementation for the type <see cref="T:System.IComparable`1"/>.
+            </summary>
+            <seealso cref="T:System.IComparable`1"/>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.AutoImplementsComparableGenerator.Execute(Microsoft.CodeAnalysis.GeneratorExecutionContext)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.AutoImplementsComparableGenerator.Initialize(Microsoft.CodeAnalysis.GeneratorInitializationContext)">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Diagnostics.CodeGen.Generators.AutoOverloadsEqualityOperatorsGenerator">
             <summary>
             Defines a source generator that generates the code that overloads the <c><see langword="operator"/> ==</c>
@@ -153,6 +165,31 @@
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Diagnostics.CodeGen.SyntaxContextReceivers.AutoDeconstructionReceiver.OnVisitSyntaxNode(Microsoft.CodeAnalysis.GeneratorSyntaxContext)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Diagnostics.CodeGen.SyntaxContextReceivers.AutoImplementsComparableReceiver">
+            <summary>
+            Defines a syntax context receiver that provides the gathered node for the usages on the source generator
+            <see cref="T:Sudoku.Diagnostics.CodeGen.Generators.AutoImplementsComparableGenerator"/>.
+            </summary>
+            <param name="CancellationToken">The cancellation token to cancel the operation.</param>
+            <seealso cref="T:Sudoku.Diagnostics.CodeGen.Generators.AutoImplementsComparableGenerator"/>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeGen.SyntaxContextReceivers.AutoImplementsComparableReceiver.#ctor(System.Threading.CancellationToken)">
+            <summary>
+            Defines a syntax context receiver that provides the gathered node for the usages on the source generator
+            <see cref="T:Sudoku.Diagnostics.CodeGen.Generators.AutoImplementsComparableGenerator"/>.
+            </summary>
+            <param name="CancellationToken">The cancellation token to cancel the operation.</param>
+            <seealso cref="T:Sudoku.Diagnostics.CodeGen.Generators.AutoImplementsComparableGenerator"/>
+        </member>
+        <member name="P:Sudoku.Diagnostics.CodeGen.SyntaxContextReceivers.AutoImplementsComparableReceiver.CancellationToken">
+            <summary>The cancellation token to cancel the operation.</summary>
+        </member>
+        <member name="P:Sudoku.Diagnostics.CodeGen.SyntaxContextReceivers.AutoImplementsComparableReceiver.Collection">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeGen.SyntaxContextReceivers.AutoImplementsComparableReceiver.OnVisitSyntaxNode(Microsoft.CodeAnalysis.GeneratorSyntaxContext)">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Diagnostics.CodeGen.SyntaxContextReceivers.AutoOverloadsEqualityOperatorsReceiver">
