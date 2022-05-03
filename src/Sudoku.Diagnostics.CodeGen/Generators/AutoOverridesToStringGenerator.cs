@@ -48,19 +48,28 @@ public sealed partial class AutoOverridesToStringGenerator : ISourceGenerator
 			var (_, _, namespaceName, genericParameterList, _, _, readOnlyKeyword, _, _, _) =
 				SymbolOutputInfo.FromSymbol(type);
 
+			// Iterates on each member in member name list having been defined in the attribute data
+			// whose corresponding attribute is needed.
+			// Here, 'targetSymbolsRawString' is a list that stores all valid member assignments.
+			// For example, expression '{{{nameof(Hello)}}} = {{{Hello}}}',
+			// while 'symbolsRawValue' is a list that stores all valid member names.
 			var targetSymbolsRawString = new List<string>();
 			var symbolsRawValue = new List<string>();
 			foreach (var typedConstant in attributeData.ConstructorArguments[0].Values)
 			{
+				// Gets the member name via the constructor arguments.
 				string memberName = (string)typedConstant.Value!;
 
 				// Checks whether the specified member is in the target type.
+				// Please note that we call the method 'GetAllMembers', which means all members
+				// in base types or interfaces may also be to be checked.
 				var selectedMembers = (from member in members where member.Name == memberName select member).ToArray();
 				if (selectedMembers is not [var memberSymbol, ..])
 				{
 					continue;
 				}
 
+				// Gets the valid names and the raw assignment string value.
 				switch (memberSymbol)
 				{
 					case IFieldSymbol { Name: var fieldName }:
@@ -84,6 +93,15 @@ public sealed partial class AutoOverridesToStringGenerator : ISourceGenerator
 				}
 			}
 
+			// Gets the final output expression via the user-defined pattern syntax and the normal one.
+			// If the property 'Pattern' is null, the source generator will use the return value
+			// of record-like 'ToString' method invocation to emit the string as the result,
+			// like the following expression:
+			// 
+			//     Type { Property1 = value1, Property2 = value2 }
+			// 
+			// Which put the type name at the first side, and list all property names and their own values,
+			// separated by commas.
 			string outputStringExpression = attributeData.GetNamedArgument<string>("Pattern") is { } pattern
 				? convert(pattern) is var convertedPattern && isSimpleInterpolatedPattern(pattern)
 					? convertedPattern[1..^1]
@@ -93,6 +111,8 @@ public sealed partial class AutoOverridesToStringGenerator : ISourceGenerator
 				: $$""""
 				$$"""{{type.Name}} { {{string.Join(", ", targetSymbolsRawString)}} }"""
 				"""";
+
+			// Emits the source code.
 			context.AddSource(
 				type.ToFileName(),
 				"aot",
