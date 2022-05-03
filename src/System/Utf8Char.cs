@@ -6,6 +6,7 @@
 [AutoOverridesGetHashCode(nameof(_char))]
 [AutoOverridesEquals(nameof(_char))]
 [AutoImplementsComparable(nameof(_char))]
+[AutoOverridesToString(nameof(_char), Pattern = "{((char)[0]).*}")]
 [AutoOverloadsEqualityOperators]
 [AutoOverloadsComparisonOperators]
 public readonly partial struct Utf8Char :
@@ -89,10 +90,6 @@ public readonly partial struct Utf8Char :
 	/// <returns>A <see cref="bool"/> result.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public bool IsLetterOrDigit() => IsLetter() || IsDigit();
-
-	/// <inheritdoc cref="char.GetHashCode"/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public override string ToString() => ((char)_char).ToString();
 
 	/// <summary>
 	/// Converts the current character to the upper-casing letter.

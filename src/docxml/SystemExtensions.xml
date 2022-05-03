@@ -1713,6 +1713,38 @@
             </summary>
             <param name="memberNames">The name of data members, represented as a <see cref="T:System.String"/> array.</param>
         </member>
+        <member name="P:System.Diagnostics.CodeGen.AutoOverridesToStringAttribute.Pattern">
+            <summary>
+            <para>
+            Indicates the pattern that describes the final output string.
+            For example, if the current property is <see langword="null"/>, the source generator will emit
+            type name at the first place, then property-value pairs list.
+            </para>
+            <para>
+            You can use the following symbols to help you define your own pattern:
+            <list type="table">
+            <listheader>
+            <term>Symbol</term>
+            <description>Meaning</description>
+            </listheader>
+            <item>
+            <term><c>[index]</c>, where <c>index</c> is an index value beginning from 0</term>
+            <description>The member name at the specified index stored in the property <see cref="P:System.Diagnostics.CodeGen.AutoOverridesToStringAttribute.MemberNames"/></description>
+            </item>
+            <item>
+            <term><c>*</c></term>
+            <description>Will be expanded to the code <c>ToString()</c></description>
+            </item>
+            </list>
+            </para>
+            <para>
+            For example, the pattern <c>((char)[0]).*</c> means the first element in the array <see cref="P:System.Diagnostics.CodeGen.AutoOverridesToStringAttribute.MemberNames"/>
+            will be converted into a <see cref="T:System.Char"/>, and then invoke the method <see cref="M:System.Char.ToString"/>
+            to get the result value.
+            </para>
+            <para>The default value is <see langword="null"/>.</para>
+            </summary>
+        </member>
         <member name="P:System.Diagnostics.CodeGen.AutoOverridesToStringAttribute.MemberNames">
             <summary>
             Indicate the name of members that take part in the output.
@@ -2411,12 +2443,6 @@
             </param>
             <seealso cref="P:System.Text.StringHandler.Length"/>
         </member>
-        <member name="M:System.Text.StringHandler.ToString">
-            <summary>
-            Gets the built <see cref="T:System.String"/>.
-            </summary>
-            <returns>The built string.</returns>
-        </member>
         <member name="M:System.Text.StringHandler.GetEnumerator">
             <summary>
             Gets the enumerator of the current instance in order to use <see langword="foreach"/> loop.
@@ -3007,6 +3033,9 @@
             <param name="left">The left-side instance to take part in the comparison operation.</param>
             <param name="right">The right-side instance to take part in the comparison operation.</param>
             <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
+        </member>
+        <member name="M:System.Text.StringHandler.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
         </member>
         <member name="M:System.Text.StringHandler.Equals(System.Object)">
             <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
@@ -3972,9 +4001,6 @@
             </summary>
             <returns>A <see cref="T:System.Boolean"/> result.</returns>
         </member>
-        <member name="M:System.Utf8Char.ToString">
-            <inheritdoc cref="M:System.Char.GetHashCode"/>
-        </member>
         <member name="M:System.Utf8Char.ToUpper">
             <summary>
             Converts the current character to the upper-casing letter.
@@ -4106,6 +4132,9 @@
         </member>
         <member name="M:System.Utf8Char.GetHashCode">
             <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="M:System.Utf8Char.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
         </member>
         <member name="T:System.Utf8String">
             <summary>

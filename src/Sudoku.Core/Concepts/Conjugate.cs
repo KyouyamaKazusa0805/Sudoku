@@ -9,6 +9,9 @@
 /// </remarks>
 [AutoOverridesGetHashCode(nameof(Map), nameof(Digit))]
 [AutoOverridesEquals(nameof(Map), nameof(Digit))]
+[AutoOverridesToString(
+	nameof(From), nameof(To), nameof(Digit),
+	Pattern = "{Sudoku.Concepts.Collections.Cells.Empty + [0]} == {Sudoku.Concepts.Collections.Cells.Empty + [1]}({[2] + 1})")]
 [AutoOverloadsEqualityOperators]
 public readonly partial struct Conjugate :
 	IDefaultable<Conjugate>,
@@ -116,9 +119,4 @@ public readonly partial struct Conjugate :
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => Default;
 	}
-
-
-	/// <inheritdoc cref="object.ToString"/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public override string ToString() => $"{Cells.Empty + From} == {Cells.Empty + To}({Digit + 1})";
 }

@@ -49,6 +49,7 @@ public sealed partial class AutoOverridesToStringGenerator : ISourceGenerator
 				SymbolOutputInfo.FromSymbol(type);
 
 			var targetSymbolsRawString = new List<string>();
+			var symbolsRawValue = new List<string>();
 			foreach (var typedConstant in attributeData.ConstructorArguments[0].Values)
 			{
 				string memberName = (string)typedConstant.Value!;
@@ -64,24 +65,34 @@ public sealed partial class AutoOverridesToStringGenerator : ISourceGenerator
 				{
 					case IFieldSymbol { Name: var fieldName }:
 					{
-						targetSymbolsRawString.Add($"{{nameof({fieldName})}} = {{{fieldName}}}");
+						targetSymbolsRawString.Add($$$"""{{nameof({{{fieldName}}})}} = {{{{{fieldName}}}}}""");
+						symbolsRawValue.Add(fieldName);
 						break;
 					}
 					case IPropertySymbol { GetMethod: not null, Name: var propertyName }:
 					{
-						targetSymbolsRawString.Add($"{{nameof({propertyName})}} = {{{propertyName}}}");
+						targetSymbolsRawString.Add($$$"""{{nameof({{{propertyName}}})}} = {{{{{propertyName}}}}}""");
+						symbolsRawValue.Add(propertyName);
 						break;
 					}
 					case IMethodSymbol { Name: var methodName, Parameters: [], ReturnsVoid: false }:
 					{
-						targetSymbolsRawString.Add($"{{nameof({methodName})}} = {{{methodName}()}}");
+						targetSymbolsRawString.Add($$$"""{{nameof({{{methodName}}})}} = {{{{{methodName}}}()}}""");
+						symbolsRawValue.Add($"{methodName}()");
 						break;
 					}
 				}
 			}
 
-			string typeKindString = type.GetTypeKindModifier();
-			string finalString = $"{type.Name} {{{{ {string.Join(", ", targetSymbolsRawString)} }}}}";
+			string outputStringExpression = attributeData.GetNamedArgument<string>("Pattern") is { } pattern
+				? convert(pattern) is var convertedPattern && isSimpleInterpolatedPattern(pattern)
+					? convertedPattern[1..^1]
+					: $"""
+					{interpolatedStringSuffix(pattern)}"{convertedPattern}"
+					"""
+				: $$""""
+				$$"""{{type.Name}} { {{string.Join(", ", targetSymbolsRawString)}} }"""
+				"""";
 			context.AddSource(
 				type.ToFileName(),
 				"aot",
@@ -90,17 +101,29 @@ public sealed partial class AutoOverridesToStringGenerator : ISourceGenerator
 				
 				namespace {{namespaceName}};
 				
-				partial {{typeKindString}} {{type.Name}}{{genericParameterList}}
+				partial {{type.GetTypeKindModifier()}} {{type.Name}}{{genericParameterList}}
 				{
 					/// <inheritdoc cref="object.ToString"/>
 					[global::System.Runtime.CompilerServices.CompilerGenerated]
 					[global::System.CodeDom.Compiler.GeneratedCode("{{GetType().FullName}}", "{{VersionValue}}")]
 					[global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 					public override {{readOnlyKeyword}}string ToString()
-						=> $"{{finalString}}";
+						=> {{outputStringExpression}};
 				}
 				"""
 			);
+
+
+			static bool isSimpleInterpolatedPattern(string pattern)
+				=> Regex.Matches(pattern, """(?<={).+?(?=})""").Count == 1 && pattern is ['{', .., '}'];
+
+			string convert(string pattern)
+				=> Regex
+					.Replace(pattern, """(\[0\]|\[[1-9]\d*\])""", m => symbolsRawValue[int.Parse(m.Value[1..^1])])
+					.Replace("*", $"{nameof(ToString)}()");
+
+			static string interpolatedStringSuffix(string pattern)
+				=> Regex.IsMatch(pattern, """(?<={).+?(?=})""") ? "$" : string.Empty;
 		}
 	}
 

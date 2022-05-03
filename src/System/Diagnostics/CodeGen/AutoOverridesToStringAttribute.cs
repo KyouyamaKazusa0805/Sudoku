@@ -35,6 +35,38 @@ public sealed class AutoOverridesToStringAttribute : Attribute
 
 
 	/// <summary>
+	/// <para>
+	/// Indicates the pattern that describes the final output string.
+	/// For example, if the current property is <see langword="null"/>, the source generator will emit
+	/// type name at the first place, then property-value pairs list.
+	/// </para>
+	/// <para>
+	/// You can use the following symbols to help you define your own pattern:
+	/// <list type="table">
+	/// <listheader>
+	/// <term>Symbol</term>
+	/// <description>Meaning</description>
+	/// </listheader>
+	/// <item>
+	/// <term><c>[index]</c>, where <c>index</c> is an index value beginning from 0</term>
+	/// <description>The member name at the specified index stored in the property <see cref="MemberNames"/></description>
+	/// </item>
+	/// <item>
+	/// <term><c>*</c></term>
+	/// <description>Will be expanded to the code <c>ToString()</c></description>
+	/// </item>
+	/// </list>
+	/// </para>
+	/// <para>
+	/// For example, the pattern <c>((char)[0]).*</c> means the first element in the array <see cref="MemberNames"/>
+	/// will be converted into a <see cref="char"/>, and then invoke the method <see cref="char.ToString()"/>
+	/// to get the result value.
+	/// </para>
+	/// <para>The default value is <see langword="null"/>.</para>
+	/// </summary>
+	public string? Pattern { get; init; }
+
+	/// <summary>
 	/// Indicate the name of members that take part in the output.
 	/// </summary>
 	public string[] MemberNames { get; }

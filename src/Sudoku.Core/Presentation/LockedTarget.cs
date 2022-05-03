@@ -7,6 +7,7 @@
 [JsonConverter(typeof(JsonConverter))]
 [AutoOverridesGetHashCode(nameof(Cells), nameof(Digit))]
 [AutoOverridesEquals(nameof(Digit), nameof(Cells), UseExplicitlyImplementation = true)]
+[AutoOverridesToString(nameof(Digit), nameof(Cells), Pattern = "Locked target: {[0] + 1}{[1]}")]
 [AutoOverloadsEqualityOperators(EmitInKeyword = true)]
 public readonly partial struct LockedTarget :
 	IEquatable<LockedTarget>,
@@ -35,11 +36,6 @@ public readonly partial struct LockedTarget :
 	/// Indicates the cells used.
 	/// </summary>
 	public Cells Cells { get; }
-
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public override string ToString() => $"Locked target: {Digit + 1}{Cells}";
 
 
 	/// <inheritdoc/>

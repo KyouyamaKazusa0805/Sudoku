@@ -14,6 +14,9 @@
 [AutoDeconstruction(nameof(ConclusionType), nameof(Cell), nameof(Digit))]
 [AutoOverridesGetHashCode(nameof(_mask))]
 [AutoOverridesEquals(nameof(_mask))]
+[AutoOverridesToString(
+	nameof(Cell), nameof(ConclusionType), nameof(Digit),
+	Pattern = "{Sudoku.Concepts.Collections.Cells.Empty + [0]}{[1].GetNotation()}{[2] + 1}")]
 [AutoOverloadsComparisonOperators]
 [AutoOverloadsEqualityOperators]
 [AutoImplementsComparable(nameof(_mask))]
@@ -148,10 +151,6 @@ public readonly partial struct Conclusion :
 			}
 		}
 	}
-
-	/// <inheritdoc cref="object.ToString"/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public override string ToString() => $"{Cells.Empty + Cell}{ConclusionType.GetNotation()}{Digit + 1}";
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
