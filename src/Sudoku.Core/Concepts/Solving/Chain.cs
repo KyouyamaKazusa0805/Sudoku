@@ -4,6 +4,7 @@
 /// Defines a chain.
 /// </summary>
 [AutoOverloadsEqualityOperators]
+[AutoImplementsEnumerable(typeof(Node), nameof(_nodes), UseExplicitImplementation = true, ConversionExpression = "((IEnumerable<!>)@).*")]
 public abstract partial class Chain :
 	IEquatable<Chain>,
 	IEnumerable<Node>,
@@ -126,12 +127,4 @@ public abstract partial class Chain :
 
 		return result;
 	}
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public IEnumerator<Node> GetEnumerator() => ((IEnumerable<Node>)_nodes).GetEnumerator();
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
 }

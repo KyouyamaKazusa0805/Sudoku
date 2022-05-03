@@ -12,6 +12,7 @@
 	nameof(_6), nameof(_7), nameof(_8), nameof(_9), nameof(_10), nameof(_11),
 	UseExplicitlyImplementation = true, EmitInKeyword = true)]
 [AutoOverloadsEqualityOperators(EmitInKeyword = true)]
+[AutoImplementsEnumerable(typeof(int), nameof(Offsets), UseExplicitImplementation = true, ConversionExpression = "((IEnumerable<int>)@).*")]
 public unsafe partial struct Candidates :
 	IDefaultable<Candidates>,
 	IEnumerable<int>,
@@ -565,14 +566,6 @@ public unsafe partial struct Candidates :
 		_0 = _1 = _2 = _3 = _4 = _5 = _6 = _7 = _8 = _9 = _10 = _11 = 0;
 		Count = 0;
 	}
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	readonly IEnumerator<int> IEnumerable<int>.GetEnumerator() => ((IEnumerable<int>)Offsets).GetEnumerator();
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	readonly IEnumerator IEnumerable.GetEnumerator() => Offsets.GetEnumerator();
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

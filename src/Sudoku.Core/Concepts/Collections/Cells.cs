@@ -17,6 +17,7 @@ namespace Sudoku.Concepts.Collections;
 [AutoOverridesEquals(nameof(_low), nameof(_high), UseExplicitlyImplementation = true, EmitInKeyword = true)]
 [AutoOverloadsEqualityOperators(EmitInKeyword = true)]
 [AutoImplementsComparable(UseExplicitImplementation = true)]
+[AutoImplementsEnumerable(typeof(int), nameof(Offsets), UseExplicitImplementation = true, ConversionExpression = "((IEnumerable<int>)@).*")]
 public unsafe partial struct Cells :
 	IComparable<Cells>,
 	IDefaultable<Cells>,
@@ -870,14 +871,6 @@ public unsafe partial struct Cells :
 	/// </summary>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public void Clear() => _low = _high = Count = 0;
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	readonly IEnumerator IEnumerable.GetEnumerator() => Offsets.GetEnumerator();
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	readonly IEnumerator<int> IEnumerable<int>.GetEnumerator() => ((IEnumerable<int>)Offsets).GetEnumerator();
 
 
 	/// <inheritdoc/>

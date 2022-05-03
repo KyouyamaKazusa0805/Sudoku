@@ -84,7 +84,7 @@ public sealed partial class AutoImplementsComparableGenerator : ISourceGenerator
 
 			context.AddSource(
 				type.ToFileName(),
-				"eq",
+				"ac",
 				$$"""
 				#nullable enable
 				

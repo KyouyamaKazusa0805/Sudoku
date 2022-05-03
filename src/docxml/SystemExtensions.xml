@@ -1463,6 +1463,71 @@
             Indicates the member name to compare.
             </summary>
         </member>
+        <member name="T:System.Diagnostics.CodeGen.AutoImplementsEnumerableAttribute">
+            <summary>
+            Defines an attribute that is used for controlling the source generation on automatically implementing
+            <see cref="T:System.Collections.Generic.IEnumerable`1"/>.
+            </summary>
+            <seealso cref="T:System.Collections.Generic.IEnumerable`1"/>
+        </member>
+        <member name="M:System.Diagnostics.CodeGen.AutoImplementsEnumerableAttribute.#ctor(System.Type,System.String)">
+            <summary>
+            Initializes an <see cref="T:System.Diagnostics.CodeGen.AutoImplementsEnumerableAttribute"/> instance via the specified element type
+            and the member name that is the base instance to get its enumerator as the type's enumerator instance.
+            </summary>
+            <param name="elementType">The element type.</param>
+            <param name="memberName">The member name.</param>
+        </member>
+        <member name="P:System.Diagnostics.CodeGen.AutoImplementsEnumerableAttribute.UseExplicitImplementation">
+            <summary>
+            Indiactes whether the source generator will emit explicit interface implementation instead
+            of implicit one. The default value is <see langword="false"/>.
+            </summary>
+        </member>
+        <member name="P:System.Diagnostics.CodeGen.AutoImplementsEnumerableAttribute.ConversionExpression">
+            <summary>
+            <para>
+            Indicates the conversion expression. The default value is <c>"*"</c>. The conversion expression
+            uses the C# basic expression, symbol <c>!</c>, <c>@</c> and <c>*</c> to construct.
+            </para>
+            <para>
+            <list type="table">
+            <listheader>
+            <term>Symbol</term>
+            <description>Meaning</description>
+            </listheader>
+            <item>
+            <term><c>!</c></term>
+            <description>
+            Will be expanded to the full name of the elements, which is same as <see cref="P:System.Diagnostics.CodeGen.AutoImplementsEnumerableAttribute.ElementType"/>.
+            </description>
+            </item>
+            <item>
+            <term><c>@</c></term>
+            <description>Will be expanded to the member name, which is same as <see cref="P:System.Diagnostics.CodeGen.AutoImplementsEnumerableAttribute.MemberName"/>.</description>
+            </item>
+            <item>
+            <term><c>*</c></term>
+            <description>Will be expanded to <c>GetEnumerator()</c> invocation.</description>
+            </item>
+            </list>
+            </para>
+            <para>
+            For example, <c><![CDATA[((IEnumerable<!>)@).*]]></c> will be expanded to the expression
+            <c><![CDATA[((IEnumerable<ElementType>)MemberName).GetEnumerator()]]></c>.
+            </para>
+            </summary>
+        </member>
+        <member name="P:System.Diagnostics.CodeGen.AutoImplementsEnumerableAttribute.MemberName">
+            <summary>
+            Indicates the member name to compare.
+            </summary>
+        </member>
+        <member name="P:System.Diagnostics.CodeGen.AutoImplementsEnumerableAttribute.ElementType">
+            <summary>
+            Indicates the element type.
+            </summary>
+        </member>
         <member name="T:System.Diagnostics.CodeGen.AutoOverloadsComparisonOperatorsAttribute">
             <summary>
             Defines an attributes that allows user using it applying to a type
@@ -4146,12 +4211,6 @@
         <member name="M:System.Utf8String.System#IComparable#CompareTo(System.Object)">
             <inheritdoc/>
         </member>
-        <member name="M:System.Utf8String.System#Collections#IEnumerable#GetEnumerator">
-            <inheritdoc/>
-        </member>
-        <member name="M:System.Utf8String.System#Collections#Generic#IEnumerable{System#Utf8Char}#GetEnumerator">
-            <inheritdoc/>
-        </member>
         <member name="M:System.Utf8String.Compare(System.Utf8String,System.Utf8String)">
             <summary>
             Compares two values.
@@ -4191,6 +4250,12 @@
             Implicitly cast from <see cref="T:System.Utf8Char"/>[] to <see cref="T:System.Utf8String"/>.
             </summary>
             <param name="underlyingArray">The underlying array.</param>
+        </member>
+        <member name="M:System.Utf8String.System#Collections#IEnumerable#GetEnumerator">
+            <inheritdoc/>
+        </member>
+        <member name="M:System.Utf8String.System#Collections#Generic#IEnumerable{System#Utf8Char}#GetEnumerator">
+            <inheritdoc/>
         </member>
         <member name="M:System.Utf8String.op_LessThan(System.Utf8String,System.Utf8String)">
             <summary>

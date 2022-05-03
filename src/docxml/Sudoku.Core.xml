@@ -333,12 +333,6 @@
             Clear all bits.
             </summary>
         </member>
-        <member name="M:Sudoku.Concepts.Collections.Candidates.System#Collections#Generic#IEnumerable{System#Int32}#GetEnumerator">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.Collections.Candidates.System#Collections#IEnumerable#GetEnumerator">
-            <inheritdoc/>
-        </member>
         <member name="M:Sudoku.Concepts.Collections.Candidates.InternalAdd(System.Int32,System.Boolean)">
             <inheritdoc/>
         </member>
@@ -544,6 +538,12 @@
             Explicit cast from <see cref="T:Sudoku.Concepts.Collections.Candidates"/> to <see cref="T:System.ReadOnlySpan`1"/>.
             </summary>
             <param name="offsets">The offsets.</param>
+        </member>
+        <member name="M:Sudoku.Concepts.Collections.Candidates.System#Collections#IEnumerable#GetEnumerator">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.Collections.Candidates.System#Collections#Generic#IEnumerable{System#Int32}#GetEnumerator">
+            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.Collections.Candidates.op_Equality(Sudoku.Concepts.Collections.Candidates@,Sudoku.Concepts.Collections.Candidates@)">
             <summary>
@@ -972,12 +972,6 @@
             Clear all bits.
             </summary>
         </member>
-        <member name="M:Sudoku.Concepts.Collections.Cells.System#Collections#IEnumerable#GetEnumerator">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.Collections.Cells.System#Collections#Generic#IEnumerable{System#Int32}#GetEnumerator">
-            <inheritdoc/>
-        </member>
         <member name="M:Sudoku.Concepts.Collections.Cells.Parse(System.String)">
             <inheritdoc/>
         </member>
@@ -1238,6 +1232,12 @@
             </item>
             </list>
             </returns>
+        </member>
+        <member name="M:Sudoku.Concepts.Collections.Cells.System#Collections#IEnumerable#GetEnumerator">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.Collections.Cells.System#Collections#Generic#IEnumerable{System#Int32}#GetEnumerator">
+            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.Collections.Cells.op_Equality(Sudoku.Concepts.Collections.Cells@,Sudoku.Concepts.Collections.Cells@)">
             <summary>
@@ -4523,10 +4523,10 @@
             </summary>
             <returns>An array that stores the values with each element of a pair.</returns>
         </member>
-        <member name="M:Sudoku.Concepts.Solving.Chain.GetEnumerator">
+        <member name="M:Sudoku.Concepts.Solving.Chain.System#Collections#IEnumerable#GetEnumerator">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.Solving.Chain.System#Collections#IEnumerable#GetEnumerator">
+        <member name="M:Sudoku.Concepts.Solving.Chain.System#Collections#Generic#IEnumerable{Sudoku#Concepts#Solving#ChainNodes#Node}#GetEnumerator">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.Solving.Chain.op_Equality(Sudoku.Concepts.Solving.Chain,Sudoku.Concepts.Solving.Chain)">
@@ -8387,12 +8387,6 @@
         <member name="M:Sudoku.Presentation.View.System#ICloneable#Clone">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Presentation.View.System#Collections#IEnumerable#GetEnumerator">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Presentation.View.System#Collections#Generic#IEnumerable{Sudoku#Presentation#Nodes#ViewNode}#GetEnumerator">
-            <inheritdoc/>
-        </member>
         <member name="M:Sudoku.Presentation.View.op_Addition(Sudoku.Presentation.View,Sudoku.Presentation.Nodes.ViewNode)">
             <summary>
             Adds a new node into the collection.
@@ -8416,6 +8410,12 @@
             Please note that the operator is mutable one, which means the appending operation
             is based on the argument <paramref name="originalView"/>.
             </remarks>
+        </member>
+        <member name="M:Sudoku.Presentation.View.System#Collections#IEnumerable#GetEnumerator">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Presentation.View.System#Collections#Generic#IEnumerable{Sudoku#Presentation#Nodes#ViewNode}#GetEnumerator">
+            <inheritdoc/>
         </member>
         <member name="T:Sudoku.Resources.MergedResources">
             <summary>

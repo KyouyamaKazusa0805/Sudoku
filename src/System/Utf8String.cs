@@ -6,6 +6,7 @@
 [AutoOverridesEquals]
 [AutoOverloadsComparisonOperators]
 [AutoOverloadsEqualityOperators]
+[AutoImplementsEnumerable(typeof(Utf8Char), nameof(_value), UseExplicitImplementation = true, ConversionExpression = "((IEnumerable<!>)@).*")]
 public readonly partial struct Utf8String :
 	IAdditionOperators<Utf8String, Utf8String, Utf8String>,
 	IComparable<Utf8String>,
@@ -253,14 +254,6 @@ public readonly partial struct Utf8String :
 		=> obj is Utf8String comparer
 			? CompareTo(comparer)
 			: throw new ArgumentException($"The target value must be of type '{nameof(Utf8String)}'.");
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	IEnumerator IEnumerable.GetEnumerator() => _value.GetEnumerator();
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	IEnumerator<Utf8Char> IEnumerable<Utf8Char>.GetEnumerator() => ((IEnumerable<Utf8Char>)_value).GetEnumerator();
 
 
 	/// <summary>
