@@ -38,7 +38,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Project - Bots", "Project -
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Project - Extensions", "Project - Extensions", "{255FCD08-0810-483B-A275-88D50F5984E3}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Project - End-point Solution", "Project - End-point Solution", "{0D732DB7-E4C8-482F-AFBB-8F674305AE6A}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Project - End-point Solutions", "Project - End-point Solutions", "{0D732DB7-E4C8-482F-AFBB-8F674305AE6A}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sudoku.Bot.Oicq.Exporting", "src\Sudoku.Bot.Oicq.Exporting\Sudoku.Bot.Oicq.Exporting.csproj", "{930D789A-B5DC-4DC4-B7AB-AE29F6920FD9}"
 EndProject
@@ -416,8 +416,8 @@ Global
 		{930D789A-B5DC-4DC4-B7AB-AE29F6920FD9} = {F20539FA-E4D5-462E-A570-7F4619F32D00}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {E2B6A644-F820-4AB3-8508-C3C59838C955}
-		RESX_Rules = {"EnabledRules":["StringFormat"]}
 		RESX_ShowErrorsInErrorList = False
+		RESX_Rules = {"EnabledRules":["StringFormat"]}
+		SolutionGuid = {E2B6A644-F820-4AB3-8508-C3C59838C955}
 	EndGlobalSection
 EndGlobal
