@@ -42,6 +42,11 @@ public sealed class AutoOverridesGetHashCodeAttribute : Attribute
 	public bool EmitSealedKeyword { get; init; } = false;
 
 	/// <summary>
+	/// Indicates the pattern. The default value is <see langword="null"/>.
+	/// </summary>
+	public string? Pattern { get; init; }
+
+	/// <summary>
 	/// Indicate the name of members that take part in the output.
 	/// </summary>
 	public string[] MemberNames { get; }

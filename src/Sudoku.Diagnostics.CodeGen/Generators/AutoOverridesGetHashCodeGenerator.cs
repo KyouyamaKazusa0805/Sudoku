@@ -54,6 +54,7 @@ public sealed partial class AutoOverridesGetHashCodeGenerator : ISourceGenerator
 				SymbolOutputInfo.FromSymbol(type);
 
 			var targetSymbolsRawString = new List<string>();
+			var symbolsRawValue = new List<string>();
 			var location = Location.Create(syntaxTree, textSpan);
 			foreach (var typedConstant in attributeData.ConstructorArguments[0].Values)
 			{
@@ -71,29 +72,35 @@ public sealed partial class AutoOverridesGetHashCodeGenerator : ISourceGenerator
 					case IFieldSymbol { Name: var fieldName }:
 					{
 						targetSymbolsRawString.Add(fieldName);
+						symbolsRawValue.Add(fieldName);
 						break;
 					}
 					case IPropertySymbol { GetMethod: not null, Name: var propertyName }:
 					{
 						targetSymbolsRawString.Add(propertyName);
+						symbolsRawValue.Add(propertyName);
 						break;
 					}
 					case IMethodSymbol { Name: var methodName, Parameters: [], ReturnsVoid: false }:
 					{
 						targetSymbolsRawString.Add($"{methodName}()");
+						symbolsRawValue.Add($"{methodName}()");
 						break;
 					}
 				}
 			}
 
-			string sealedKeyword = attributeData.GetNamedArgument<bool>("EmitSealedKeyword") && type.TypeKind != TypeKind.Struct
-				? "sealed "
-				: string.Empty;
-
-			string typeKindString = type.GetTypeKindModifier();
+			bool isNotStruct = type.TypeKind != TypeKind.Struct;
+			string? pattern = attributeData.GetNamedArgument<string>("Pattern");
+			bool withSealedKeyword = attributeData.GetNamedArgument<bool>("EmitSealedKeyword");
+			string sealedKeyword = withSealedKeyword && isNotStruct ? "sealed " : string.Empty;
 			string methodBody = targetSymbolsRawString.Count switch
 			{
-				<= 8 => $"\t\t=> global::System.HashCode.Combine({string.Join(", ", targetSymbolsRawString)});",
+				<= 8 => pattern switch
+				{
+					null => $"\t\t=> global::System.HashCode.Combine({string.Join(", ", targetSymbolsRawString)});",
+					_ => $"\t\t=> {convert(pattern)};",
+				},
 				_ => $$"""
 					{
 						var final = new global::System.HashCode();
@@ -111,7 +118,7 @@ public sealed partial class AutoOverridesGetHashCodeGenerator : ISourceGenerator
 				
 				namespace {{namespaceName}};
 				
-				partial {{typeKindString}} {{type.Name}}{{genericParameterList}}
+				partial {{type.GetTypeKindModifier()}} {{type.Name}}{{genericParameterList}}
 				{
 					/// <inheritdoc cref="object.GetHashCode"/>
 					[global::System.Runtime.CompilerServices.CompilerGenerated]
@@ -122,6 +129,12 @@ public sealed partial class AutoOverridesGetHashCodeGenerator : ISourceGenerator
 				}
 				"""
 			);
+
+
+			string convert(string pattern)
+				=> Regex
+					.Replace(pattern, """(\[0\]|\[[1-9]\d*\])""", m => symbolsRawValue[int.Parse(m.Value[1..^1])])
+					.Replace("*", $"{nameof(GetHashCode)}()");
 		}
 	}
 

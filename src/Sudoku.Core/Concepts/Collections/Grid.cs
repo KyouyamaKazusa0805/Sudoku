@@ -17,6 +17,9 @@ namespace Sudoku.Concepts.Collections;
 [DisableParameterlessConstructor(SuggestedMemberName = nameof(Empty))]
 [AutoOverridesEquals(UseExplicitlyImplementation = true)]
 [AutoOverloadsEqualityOperators(EmitInKeyword = true)]
+[AutoOverridesGetHashCode(
+	nameof(IsUndefined), nameof(IsEmpty),
+	Pattern = """this switch { { [0]: true } => 0, { [1]: true } => 1, _ => ToString("#").* }""")]
 public unsafe partial struct Grid :
 	IDefaultable<Grid>,
 	ISimpleFormattable,
@@ -903,11 +906,6 @@ public unsafe partial struct Grid :
 	/// <seealso cref="this[int, int]"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public readonly bool? Exists(int cell, int digit) => GetStatus(cell) == CellStatus.Empty ? this[cell, digit] : null;
-
-	/// <inheritdoc cref="object.GetHashCode"/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public override readonly int GetHashCode()
-		=> this switch { { IsUndefined: true } => 0, { IsEmpty: true } => 1, _ => ToString("#").GetHashCode() };
 
 
 	/// <summary>

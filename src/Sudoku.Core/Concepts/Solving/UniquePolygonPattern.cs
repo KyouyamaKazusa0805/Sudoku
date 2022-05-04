@@ -51,6 +51,7 @@
 /// </remarks>
 [AutoDeconstruction(nameof(Pair1), nameof(Pair2), nameof(CenterCells))]
 [AutoOverridesToString(nameof(Map))]
+[AutoOverridesGetHashCode(nameof(Mask), Pattern = "(int)[0]")]
 public readonly partial record struct UniquePolygonPattern(long Mask) : ITechniquePattern<UniquePolygonPattern>
 {
 	/// <summary>
@@ -129,9 +130,4 @@ public readonly partial record struct UniquePolygonPattern(long Mask) : ITechniq
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => ((int)(Mask >> 49 & 127), (int)(Mask >> 42 & 127), (int)(Mask >> 35 & 127), (int)(Mask >> 28 & 127));
 	}
-
-
-	/// <inheritdoc cref="object.GetHashCode"/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public override int GetHashCode() => (int)Mask;
 }

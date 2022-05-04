@@ -1875,9 +1875,6 @@
             </remarks>
             <seealso cref="P:Sudoku.Concepts.Collections.Grid.Item(System.Int32,System.Int32)"/>
         </member>
-        <member name="M:Sudoku.Concepts.Collections.Grid.GetHashCode">
-            <inheritdoc cref="M:System.Object.GetHashCode"/>
-        </member>
         <member name="M:Sudoku.Concepts.Collections.Grid.ToArray">
             <summary>
             Serializes this instance to an array, where all digit value will be stored.
@@ -2280,6 +2277,9 @@
         </member>
         <member name="M:Sudoku.Concepts.Collections.Grid.System#IEquatable{Sudoku#Concepts#Collections#Grid}#Equals(Sudoku.Concepts.Collections.Grid)">
             <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.Collections.Grid.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
         </member>
         <member name="M:Sudoku.Concepts.Collections.Grid.#ctor">
             <summary>
@@ -7294,9 +7294,6 @@
             <b>If and only if</b> the fourth value in the returned quadruple is available.
             </remarks>
         </member>
-        <member name="M:Sudoku.Concepts.Solving.UniquePolygonPattern.GetHashCode">
-            <inheritdoc cref="M:System.Object.GetHashCode"/>
-        </member>
         <member name="M:Sudoku.Concepts.Solving.UniquePolygonPattern.Deconstruct(System.ValueTuple{System.Int32,System.Int32}@,System.ValueTuple{System.Int32,System.Int32}@,System.ValueTuple{System.Int32,System.Int32,System.Int32,System.Int32}@)">
             <summary>
             Deconstruct the current instance into multiple values, which means you can use
@@ -7335,6 +7332,9 @@
             ]]></code>
             </para>
             </remarks>
+        </member>
+        <member name="M:Sudoku.Concepts.Solving.UniquePolygonPattern.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
         </member>
         <member name="M:Sudoku.Concepts.Solving.UniquePolygonPattern.ToString">
             <inheritdoc cref="M:System.Object.ToString"/>

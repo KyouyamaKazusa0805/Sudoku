@@ -1676,6 +1676,11 @@
             Indicates whether the source generator will emit the keyword <see langword="sealed"/> to the generated code.
             </summary>
         </member>
+        <member name="P:System.Diagnostics.CodeGen.AutoOverridesGetHashCodeAttribute.Pattern">
+            <summary>
+            Indicates the pattern. The default value is <see langword="null"/>.
+            </summary>
+        </member>
         <member name="P:System.Diagnostics.CodeGen.AutoOverridesGetHashCodeAttribute.MemberNames">
             <summary>
             Indicate the name of members that take part in the output.
