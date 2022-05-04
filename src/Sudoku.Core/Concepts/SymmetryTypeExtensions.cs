@@ -11,16 +11,8 @@ public static class SymmetryTypeExtensions
 	/// </summary>
 	/// <param name="this">The type.</param>
 	/// <returns>The name.</returns>
-	public static string GetName(this SymmetryType @this)
+	public static string GetNameMulti(this SymmetryType @this)
 	{
-		if (Enum.IsDefined(@this))
-		{
-			return typeof(SymmetryType)
-				.GetField(@this.ToString())!
-				.GetCustomAttribute<EnumFieldNameAttribute>()!
-				.Name;
-		}
-
 		const string separator = ", ";
 		var sb = new StringHandler(210);
 		var flags = Enum.GetValues<SymmetryType>()[1..];

@@ -4,41 +4,42 @@
 /// Defines an inference.
 /// </summary>
 [JsonConverter(typeof(InferenceJsonConverter))]
+[EnumSwitchExpressionRoot("GetIdentifier")]
 public enum Inference : byte
 {
 	/// <summary>
 	/// Indicates the inference is strong inference.
 	/// </summary>
-	[EnumFieldName(" == ")]
+	[EnumSwitchExpressionArm("GetIdentifier", " == ")]
 	Strong,
 
 	/// <summary>
 	/// Indicates the inference is weak inference.
 	/// </summary>
-	[EnumFieldName(" -- ")]
+	[EnumSwitchExpressionArm("GetIdentifier", " -- ")]
 	Weak,
 
 	/// <summary>
 	/// Indicates the inference is strong inference that is generalized.
 	/// </summary>
-	[EnumFieldName(" =~ ")]
+	[EnumSwitchExpressionArm("GetIdentifier", " =~ ")]
 	StrongGeneralized,
 
 	/// <summary>
 	/// Indicates the inference is weak inference that is generalized.
 	/// </summary>
-	[EnumFieldName(" -~ ")]
+	[EnumSwitchExpressionArm("GetIdentifier", " -~ ")]
 	WeakGeneralized,
 
 	/// <summary>
 	/// Indicates the inference is conjugate pair.
 	/// </summary>
-	[EnumFieldName(" == ")]
+	[EnumSwitchExpressionArm("GetIdentifier", " == ")]
 	ConjuagtePair,
 
 	/// <summary>
 	/// Indicates the inference is the default case that doesn't belong to above.
 	/// </summary>
-	[EnumFieldName(" -- ")]
+	[EnumSwitchExpressionArm("GetIdentifier", " -- ")]
 	Default
 }

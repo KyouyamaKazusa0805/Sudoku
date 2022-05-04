@@ -1771,6 +1771,70 @@
             Indicates the message you want to tell the user.
             </summary>
         </member>
+        <member name="T:System.Diagnostics.CodeGen.EnumSwitchExpressionArmAttribute">
+            <summary>
+            Defines an attribute that can be applied to a field in an <see cref="T:System.Enum"/> type,
+            indicating the source generator will generate the <see langword="switch"/> expression arm
+            for this field, with binding a key-value pair for the generation.
+            </summary>
+        </member>
+        <member name="M:System.Diagnostics.CodeGen.EnumSwitchExpressionArmAttribute.#ctor(System.String,System.String)">
+            <summary>
+            Initializes an <see cref="T:System.Diagnostics.CodeGen.EnumSwitchExpressionArmAttribute"/> instance via the specified value.
+            </summary>
+            <param name="key">The key.</param>
+            <param name="value">The value.</param>
+        </member>
+        <member name="P:System.Diagnostics.CodeGen.EnumSwitchExpressionArmAttribute.Key">
+            <summary>
+            Indicates the key of the <see langword="switch"/> expression arm.
+            </summary>
+        </member>
+        <member name="P:System.Diagnostics.CodeGen.EnumSwitchExpressionArmAttribute.Value">
+            <summary>
+            Indicates the value of the <see langword="switch"/> expression arm.
+            </summary>
+        </member>
+        <member name="T:System.Diagnostics.CodeGen.EnumSwitchExpressionNotDefinedBehavior">
+            <summary>
+            Defines a case that the specified attribute is not found.
+            </summary>
+        </member>
+        <member name="F:System.Diagnostics.CodeGen.EnumSwitchExpressionNotDefinedBehavior.ReturnByCorrespondingIntegerValue">
+            <summary>
+            Indicates the result behavior is to return the string representation of the integer value
+            corrsponding to the current enumeration field.
+            </summary>
+        </member>
+        <member name="F:System.Diagnostics.CodeGen.EnumSwitchExpressionNotDefinedBehavior.ThrowForNotDefined">
+            <summary>
+            Indicates the result behavior is to throw an <see cref="T:System.ArgumentOutOfRangeException"/> to report it.
+            </summary>
+            <seealso cref="T:System.ArgumentOutOfRangeException"/>
+        </member>
+        <member name="T:System.Diagnostics.CodeGen.EnumSwitchExpressionRootAttribute">
+            <summary>
+            Defines an attribute that can be applied to an <see cref="T:System.Enum"/> type,
+            indicating the source generator will generate the code for routing enumeration fields.
+            </summary>
+        </member>
+        <member name="M:System.Diagnostics.CodeGen.EnumSwitchExpressionRootAttribute.#ctor(System.String)">
+            <summary>
+            Initializes an <see cref="T:System.Diagnostics.CodeGen.EnumSwitchExpressionRootAttribute"/> instance via the key.
+            </summary>
+            <param name="key">The key.</param>
+        </member>
+        <member name="P:System.Diagnostics.CodeGen.EnumSwitchExpressionRootAttribute.Key">
+            <summary>
+            Indicates the name of the switch expression root.
+            </summary>
+        </member>
+        <member name="P:System.Diagnostics.CodeGen.EnumSwitchExpressionRootAttribute.NotDefinedBehavior">
+            <summary>
+            Indicates the error case that the specified attribute cannot be found in an enumeration field.
+            The default value is <see cref="F:System.Diagnostics.CodeGen.EnumSwitchExpressionNotDefinedBehavior.ThrowForNotDefined"/>.
+            </summary>
+        </member>
         <member name="T:System.Reflection.AssemblyExtensions">
             <summary>
             Provides with extension methods on <see cref="T:System.Reflection.Assembly"/>.

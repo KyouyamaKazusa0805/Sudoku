@@ -3286,22 +3286,6 @@
             Indicates the inference is the default case that doesn't belong to above.
             </summary>
         </member>
-        <member name="T:Sudoku.Concepts.InferenceExtensions">
-            <summary>
-            Provides the extensions methods on <see cref="T:Sudoku.Concepts.Inference"/>.
-            </summary>
-            <seealso cref="T:Sudoku.Concepts.Inference"/>
-        </member>
-        <member name="M:Sudoku.Concepts.InferenceExtensions.GetIdentifier(Sudoku.Concepts.Inference)">
-            <summary>
-            Gets the identifier of the inference.
-            </summary>
-            <param name="this">The inference.</param>
-            <returns>The identifier value.</returns>
-            <exception cref="T:System.ArgumentOutOfRangeException">
-            Throws when the argument <paramref name="this"/> is not defined.
-            </exception>
-        </member>
         <member name="T:Sudoku.Concepts.Notations.EliminationNotation">
             <summary>
             Encapsulates a set of methods that handles a variety of instances, using Hodoku elimination notation
@@ -7395,12 +7379,36 @@
             </summary>
             <seealso cref="T:Sudoku.Concepts.SymmetryType"/>
         </member>
-        <member name="M:Sudoku.Concepts.SymmetryTypeExtensions.GetName(Sudoku.Concepts.SymmetryType)">
+        <member name="M:Sudoku.Concepts.SymmetryTypeExtensions.GetNameMulti(Sudoku.Concepts.SymmetryType)">
             <summary>
             Get the name of the current symmetry type.
             </summary>
             <param name="this">The type.</param>
             <returns>The name.</returns>
+        </member>
+        <member name="T:Sudoku.Concepts.Inference_EnumSwitchExpressionExtensions">
+            <summary>
+            Provides with extension methods for switching on the current type.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Concepts.Inference_EnumSwitchExpressionExtensions.GetIdentifier(Sudoku.Concepts.Inference)">
+            <summary>
+            Method <c>GetIdentifier</c>.
+            </summary>
+            <returns>The result value.</returns>
+            <!--TODO: Wait for adding options to modify on documentation comments here.-->
+        </member>
+        <member name="T:Sudoku.Concepts.SymmetryType_EnumSwitchExpressionExtensions">
+            <summary>
+            Provides with extension methods for switching on the current type.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Concepts.SymmetryType_EnumSwitchExpressionExtensions.GetName(Sudoku.Concepts.SymmetryType)">
+            <summary>
+            Method <c>GetName</c>.
+            </summary>
+            <returns>The result value.</returns>
+            <!--TODO: Wait for adding options to modify on documentation comments here.-->
         </member>
         <member name="T:Sudoku.Diagnostics.FileCounter">
             <summary>
