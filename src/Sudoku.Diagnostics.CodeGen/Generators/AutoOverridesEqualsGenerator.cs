@@ -122,7 +122,7 @@ public sealed partial class AutoOverridesEqualsGenerator : ISourceGenerator
 
 			context.AddSource(
 				type.ToFileName(),
-				"aoe",
+				Shortcuts.AutoOverridesEquals,
 				$$"""
 				#nullable enable
 				

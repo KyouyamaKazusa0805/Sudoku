@@ -41,7 +41,7 @@ public sealed partial class DisableParameterlessConstructorGenerator : ISourceGe
 
 			context.AddSource(
 				type.ToFileName(),
-				"dpc",
+				Shortcuts.DisableParametelessConstructor,
 				$$"""
 				#nullable enable
 				

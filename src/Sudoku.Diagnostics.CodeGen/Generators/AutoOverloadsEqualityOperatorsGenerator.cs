@@ -33,7 +33,7 @@ public sealed partial class AutoOverloadsEqualityOperatorsGenerator : ISourceGen
 			string fullName = type.ToDisplayString(TypeFormats.FullName);
 			context.AddSource(
 				type.ToFileName(),
-				"eq",
+				Shortcuts.AutoOverloadsEqualityOperators,
 				$$"""
 				#nullable enable
 				

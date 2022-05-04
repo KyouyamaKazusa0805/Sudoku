@@ -51,7 +51,7 @@ public sealed partial class AutoImplementsEnumerableGenerator : ISourceGenerator
 
 			context.AddSource(
 				type.ToFileName(),
-				"ag",
+				Shortcuts.AutoImplementsEnumerable,
 				$$"""
 				#nullable enable
 				

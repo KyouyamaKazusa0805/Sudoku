@@ -23,7 +23,7 @@ public sealed partial class AutoOverloadsComparisonOperatorsGenerator : ISourceG
 			string fullName = type.ToDisplayString(TypeFormats.FullName);
 			context.AddSource(
 				type.ToFileName(),
-				"ieq",
+				Shortcuts.AutoOverloadsComparisonOperators,
 				$$"""
 				#nullable enable
 				

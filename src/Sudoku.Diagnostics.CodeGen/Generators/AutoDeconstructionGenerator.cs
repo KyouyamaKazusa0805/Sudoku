@@ -87,7 +87,7 @@ public sealed partial class AutoDeconstructionGenerator : ISourceGenerator
 					// Emit the generated source.
 					context.AddSource(
 						type.ToFileName(),
-						"ed",
+						Shortcuts.AutoExtensionDeconstruction,
 						$$"""
 						#nullable enable
 						
@@ -133,7 +133,7 @@ public sealed partial class AutoDeconstructionGenerator : ISourceGenerator
 					// Emit the generated source.
 					context.AddSource(
 						type.ToFileName(),
-						"d",
+						Shortcuts.AutoDeconstruction,
 						$$"""
 						#nullable enable
 						

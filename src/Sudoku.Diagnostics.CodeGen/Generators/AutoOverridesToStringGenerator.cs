@@ -115,7 +115,7 @@ public sealed partial class AutoOverridesToStringGenerator : ISourceGenerator
 			// Emits the source code.
 			context.AddSource(
 				type.ToFileName(),
-				"aot",
+				Shortcuts.AutoOverridesToString,
 				$$"""
 				#nullable enable
 				

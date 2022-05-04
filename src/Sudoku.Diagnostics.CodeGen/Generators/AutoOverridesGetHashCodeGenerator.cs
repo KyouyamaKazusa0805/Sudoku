@@ -112,7 +112,7 @@ public sealed partial class AutoOverridesGetHashCodeGenerator : ISourceGenerator
 
 			context.AddSource(
 				type.ToFileName(),
-				"aog",
+				Shortcuts.AutoOverridesGetHashCode,
 				$$"""
 				#nullable enable
 				

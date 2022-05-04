@@ -548,6 +548,11 @@
         <member name="M:Sudoku.Diagnostics.CodeGen.Generators.RefStructOverridensGenerator.Receiver.OnVisitSyntaxNode(Microsoft.CodeAnalysis.GeneratorSyntaxContext)">
             <inheritdoc/>
         </member>
+        <member name="T:Sudoku.Diagnostics.CodeGen.Shortcuts">
+            <summary>
+            Defines the shortcuts of the source generators.
+            </summary>
+        </member>
         <member name="F:Sudoku.Diagnostics.CodeGen.Constants.VersionValue">
             <summary>
             Indicates the version of this project.
