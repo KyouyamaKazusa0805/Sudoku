@@ -1,11 +1,5 @@
 <center>语言切换：<a href="README-zh-cn.md">简体中文</a></center>
 
-> There is something wrong with the package `WindowsAppSdk` that causes the crash on `KernelBase.dll`, which makes me not able to debug on this project. Here is the detail link to introduce the same problem:
->
-> https://github.com/microsoft/microsoft-ui-xaml/issues/6757
->
-> I'm waiting for fixing this issue, so I don't update UI currently.
-
 # Sunnie's Sudoku Solution
 
 [![stars](https://img.shields.io/github/stars/SunnieShine/Sudoku?color=097abb)](https://github.com/SunnieShine/Sudoku/stargazers) [![issues](https://img.shields.io/github/issues/SunnieShine/Sudoku?color=097abb)](https://github.com/SunnieShine/Sudoku/issues) [![license](https://img.shields.io/github/license/SunnieShine/Sudoku?color=097abb)](https://github.com/SunnieShine/Sudoku/blob/main/LICENSE) [![frequency](https://img.shields.io/github/commit-activity/m/SunnieShine/Sudoku?color=097abb)](https://github.com/badges/SunnieShine/Sudoku)
