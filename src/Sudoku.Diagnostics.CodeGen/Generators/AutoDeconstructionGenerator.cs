@@ -65,8 +65,7 @@ public sealed partial class AutoDeconstructionGenerator : ISourceGenerator
 						SymbolOutputInfo.FromSymbol(type);
 
 					// Gets the namespace applied to.
-					// TODO: Check and make diagnostics if same type don't set same namespace;
-					// non-first values are ignored.
+					// If multiple attributes use different namespace, we will only use the first one as the result case.
 					string namespaceNameResult = attributeData.GetNamedArgument<string>("Namespace") ?? namespaceName;
 
 					// The final code.
