@@ -2,13 +2,25 @@
 
 # 向向的数独解决方案
 
-[![Stars](https://img.shields.io/github/stars/SunnieShine/Sudoku?color=097abb)](https://github.com/SunnieShine/Sudoku/stargazers) [![问题列表](https://img.shields.io/github/issues/SunnieShine/Sudoku?color=097abb)](https://github.com/SunnieShine/Sudoku/issues) [![开源协议](https://img.shields.io/github/license/SunnieShine/Sudoku?color=097abb)](https://github.com/SunnieShine/Sudoku/blob/main/LICENSE) [![frequency](https://img.shields.io/github/commit-activity/m/SunnieShine/Sudoku?color=097abb)](https://github.com/badges/SunnieShine/Sudoku)
+[![stars](https://img.shields.io/github/stars/SunnieShine/Sudoku?color=097abb)](https://github.com/SunnieShine/Sudoku/stargazers)
+[![issues](https://img.shields.io/github/issues/SunnieShine/Sudoku?color=097abb)](https://github.com/SunnieShine/Sudoku/issues)
+[![license](https://img.shields.io/github/license/SunnieShine/Sudoku?color=097abb)](https://github.com/SunnieShine/Sudoku/blob/main/LICENSE)
+[![frequency](https://img.shields.io/github/commit-activity/m/SunnieShine/Sudoku?color=097abb)](https://github.com/badges/SunnieShine/Sudoku)
+
+![](https://img.shields.io/badge/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80-C%23%2011%20%E9%A2%84%E8%A7%88%E7%89%88-%23178600)
+![](https://img.shields.io/badge/%E5%9F%BA%E6%9C%AC%E6%A1%86%E6%9E%B6-.NET%207-blueviolet)
+![](https://img.shields.io/badge/%E7%BC%A9%E8%BF%9B-Tab-lightgrey)
+![](https://img.shields.io/badge/IDE-Visual%20Studio%202022%20v17.2%20%E9%A2%84%E8%A7%88%E7%89%88-%23cf98fb)
+![](https://img.shields.io/badge/%E8%AF%AD%E8%A8%80-%E8%8B%B1%E8%AF%AD%E3%80%81%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87-success)
+[![](https://img.shields.io/badge/UI%20%E9%A1%B9%E7%9B%AE-%E5%90%8D%E4%B9%83%EF%BC%88Sudoku.UI%EF%BC%89-%230d1117)](https://github.com/SunnieShine/Sudoku/tree/main/src/Sudoku.UI)
+
+[![](https://img.shields.io/badge/GitHub-%E7%82%B9%E6%88%91%EF%BC%81-%230d1117?logo=github)](https://github.com/SunnieShine/Sudoku)
+[![](https://img.shields.io/badge/Gitee-%E7%82%B9%E6%88%91%EF%BC%81-%230d1117?logo=gitee)](https://gitee.com/SunnieShine/Sudoku)
+[![](https://img.shields.io/badge/Wiki-%E7%82%B9%E6%88%91%EF%BC%81-%230d1117)](https://sunnieshine.github.io/Sudoku/)
 
 [![哔哩哔哩](https://img.shields.io/badge/dynamic/json?color=%23fb7299&label=%E5%93%94%E5%93%A9%E5%93%94%E5%93%A9&logo=bilibili&query=%24.data.follower&suffix=%20%E5%85%B3%E6%B3%A8&url=https%3A%2F%2Fapi.bilibili.com%2Fx%2Frelation%2Fstat%3Fvmid%3D23736703)](https://space.bilibili.com/23736703)
 
-## 正文
-
-### 简介
+## 简介
 
 一个使用暴力破解和普通逻辑算法解题的数独分析解题 SDK。目前该解决方案支持对数独的题目生成、使用逻辑技巧或无逻辑技巧解题和一些常见数独特性的验证（例如，验证是否一个指定的盘面是一个最小题目。所谓的最小题目指的是，盘面任意一个数字消失后，都会使得题目多解的题）。
 
@@ -41,7 +53,17 @@ Console.WriteLine(analysisResult.ToDisplayString());
 
 以后，我想把这个解决方案用于**几乎所有平台**上。我可能会完成 Win10 App 项目、安卓项目、常用网络平台上的机器人（比如可能 QQ 啊，哔哩哔哩之类的）。
 
-### 界面
+我很遗憾我并未创建英文版的 Wiki 内容，因为工程量太大了。我学了很多年的英语，但是对于一些描述（尤其是细节的表达）要翻译成英语仍然有点困难。
+
+请注意，编程语言的版本我一直用的是预览版，也就意味着即使有些语言特性不属于我上方给出的版本支持的特性，但是项目也在使用它们。
+
+当然，你也可以使用 JetBrains 的 Rider 作为你的 IDE 来开发。随便你用什么都行，甚至是记事本（大笑）。虽说 C# 拥有一些只能在 VS 上使用的语法（`__makeref` 之类的关键字），不过这个项目里没有使用这些内容，因此你可以大大方方地使用别的 IDE 开发。
+
+另外，框架和 IDE 使用版本可能在以后会继续更新。换句话说，它们并非一直都不变。这些信息**仅供参考**。
+
+MVVM 框架对我来说有些复杂，我还在学习期间，所以如果上手使用 MVVM 会影响我设计程序的进度，这有点太慢了，所以我暂时不打算考虑用这个框架进行架构的定义和设计。
+
+## 界面
 
 控制台：
 
@@ -53,7 +75,7 @@ UI：
 
 程序还在完成之中！
 
-### 关于该仓库的克隆仓库（Fork）以及代码更新推并请求（Pull Requests）
+## 关于该仓库的克隆仓库（Fork）以及代码推并请求（Pull Requests）
 
 当然，你可以复制这个仓库到你的账号下，然后做你想做的任何事情。你可以在基于 [MIT](https://github.com/SunnieShine/Sudoku/blob/main/LICENSE) 开源协议的情况下做你任何想做的事情。不过，由于 Gitee 是从 GitHub 拷贝过来的，所以 Gitee 项目暂时不支持任何的代码推并请求，敬请谅解；不过这两个仓库都可以创建 issue。详情请参考下面的“基本信息”一栏的内容。
 
@@ -61,39 +83,7 @@ UI：
 
 实际上，每天至少一次更新的内容多数都是在重构代码，API 更进其实确实比较少。不过，数独游戏这种东西要想模拟人工解题算法的话，写代码的话就不容易看懂。我非常注重代码的整洁、代码的可读性，所以我要权衡算法的性能和可读性，找到一个平衡点。总之，敬请期待吧。
 
-### 基本信息
-
-请查看下面的表格获取更多信息。
-
-| 项目地址 |                                                             | 备注                                                 |
-| -------- | ----------------------------------------------------------- | ---------------------------------------------------- |
-| GitHub   | [SunnieShine/Sudoku](https://github.com/SunnieShine/Sudoku) |                                                      |
-| Gitee    | [SunnieShine/Sudoku](https://gitee.com/SunnieShine/Sudoku)  | 这个仓库从 GitHub 拷贝和同步过来的，是一个备份仓库。 |
-
-| 百科页面 |                                                |
-| -------- | ---------------------------------------------- |
-| 中文介绍 | [GitHub](https://sunnieshine.github.io/Sudoku) |
-
-> 我很遗憾我并未创建英文版的 Wiki 内容，因为工程量太大了。我学了很多年的英语，但是对于一些描述（尤其是细节的表达）要翻译成英语仍然有点困难。
-
-| 编码信息       |                                       |
-| -------------- | ------------------------------------- |
-| 编程语言和版本 | C# 11 预览版                         |
-| 框架           | .NET 7（源代码生成器则用的是 .NET Standard 2.0） |
-| 缩进           | Tab（制表符）                          |
-| 集成开发环境   | Visual Studio 2022（17.2 预览版 6）     |
-| 自然语言支持   | 英语、简体中文                           |
-| 用户接口       | `Sudoku.UI`                           |
-
-> 请注意，编程语言的版本我一直用的是预览版，也就意味着即使有些语言特性不属于我上方给出的版本支持的特性，但是项目也在使用它们。
->
-> 当然，你也可以使用 JetBrains 的 Rider 作为你的 IDE 来开发。随便你用什么都行，甚至是记事本（大笑）。虽说 C# 拥有一些只能在 VS 上使用的语法（`__makeref` 之类的关键字），不过这个项目里没有使用这些内容，因此你可以大大方方地使用别的 IDE 开发。
->
-> 另外，框架和 IDE 使用版本可能在以后会继续更新。换句话说，它们并非一直都不变。这些信息**仅供参考**。
->
-> MVVM 框架对我来说有些复杂，我还在学习期间，所以如果上手使用 MVVM 会影响我设计程序的进度，这有点太慢了，所以我暂时不打算考虑用这个框架进行架构的定义和设计。
-
-### 完成列表
+## 完成列表
 
 * [x] API 基本功能实现
   * [x] 数独相关的数据结构
@@ -119,18 +109,18 @@ UI：
 
 > 部分并未列举出来，比如 WPF 和 UWP 项目，没有列举它们的原因多数都是因为过时。早期在提交代码的时候已经包含了它们，但因为现如今 .NET 技术更新换代比较多，因此很多新的框架有诞生，因此考虑到项目的复杂性，基本上做得差不多的功能的解决方案就不再考虑翻新整改，以及修复 bug 了。
 
-### 项目开源许可证
+## 项目开源许可证
 
 [麻省理工开源许可证](https://github.com/SunnieShine/Sudoku/blob/main/LICENSE)
 
-### 数独技巧参考
+## 数独技巧参考
 
 我列举一些我这个解决方案里用到和参考的数独技巧网站。这些网站内容都是我自己写和出品的，所以如果你想要了解数独技巧的具体细节，你可以参考这些链接来了解它们。是中文链接。
 
 * [标准数独技巧教程（视频）_bilibili](https://www.bilibili.com/video/BV1Mx411z7uq)
 * [标准数独技巧教程（专栏）_bilibili](https://www.bilibili.com/read/readlist/rl291187)
 
-### 作者
+## 作者
 
 小向，来自成都的一名四川~~普通大学~~师范大学的本科大学生。
 
