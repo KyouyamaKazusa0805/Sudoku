@@ -4,9 +4,9 @@
 /// Indicates the options for a step searcher used while searching.
 /// </summary>
 /// <param name="Priority">Indicates the priority of this technique.</param>
-/// <param name="EnabledAreas">
+/// <param name="EnabledArea">
 /// Indicates which areas the step searcher is enabled and works well.
-/// The default value is both <see cref="EnabledAreas.Default"/> and <see cref="EnabledAreas.Gathering"/>.
+/// The default value is both <see cref="EnabledArea.Default"/> and <see cref="EnabledArea.Gathering"/>.
 /// </param>
 /// <param name="DisplayingLevel">
 /// <para>Indicates the displaying level of this technique.</para>
@@ -32,13 +32,13 @@
 /// </para>
 /// <para>
 /// The property <b>must</b> contain a value that differs with <see cref="DisabledReason.None"/>
-/// when the property <see cref="EnabledAreas"/> isn't <see cref="EnabledAreas.Default"/>.
+/// when the property <see cref="EnabledArea"/> isn't <see cref="EnabledArea.Default"/>.
 /// </para>
 /// </param>
 [StructLayout(LayoutKind.Explicit)]
 public readonly record struct SearchingOptions(
 	[field: FieldOffset(5)] int Priority,
 	[field: FieldOffset(1)] DisplayingLevel DisplayingLevel,
-	[field: FieldOffset(0)] EnabledAreas EnabledAreas = EnabledAreas.Default | EnabledAreas.Gathering,
+	[field: FieldOffset(0)] EnabledArea EnabledArea = EnabledArea.Default | EnabledArea.Gathering,
 	[field: FieldOffset(2)] DisabledReason DisabledReason = DisabledReason.None
 );

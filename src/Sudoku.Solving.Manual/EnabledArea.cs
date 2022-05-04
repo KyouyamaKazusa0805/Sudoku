@@ -4,7 +4,7 @@
 /// Represents the data about where a step searcher can be enabled and used.
 /// </summary>
 [Flags]
-public enum EnabledAreas : byte
+public enum EnabledArea : byte
 {
 	/// <summary>
 	/// Indicates all modes are disabled.

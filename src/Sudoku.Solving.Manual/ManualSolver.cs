@@ -103,8 +103,7 @@ public sealed class ManualSolver : IComplexSolver<ManualSolverResult>, IManualSo
 		for (int i = 0, length = stepSearchers.Length; i < length; i++)
 		{
 			var searcher = stepSearchers[i];
-			if (isSukaku && searcher is IDeadlyPatternStepSearcher
-				|| searcher.Options.EnabledAreas == EnabledAreas.None)
+			if (isSukaku && searcher is IDeadlyPatternStepSearcher || searcher.Options.EnabledArea == EnabledArea.None)
 			{
 				// Skips on those two cases:
 				// 1. Sukaku puzzles can't use deadly pattern techniques.

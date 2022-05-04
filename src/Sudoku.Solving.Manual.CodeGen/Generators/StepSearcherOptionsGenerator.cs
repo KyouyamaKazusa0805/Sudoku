@@ -79,6 +79,7 @@ public sealed partial class StepSearcherOptionsGenerator : ISourceGenerator
 				new(stepSearcherTypeSymbol, containingNamespace, priority, dl, stepSearcherName, namedArguments));
 		}
 
+#if false
 		// Checks whether the collection has duplicated priority values.
 		for (int i = 0; i < foundAttributesData.Count - 1; i++)
 		{
@@ -93,13 +94,14 @@ public sealed partial class StepSearcherOptionsGenerator : ISourceGenerator
 				}
 			}
 		}
+#endif
 
 		// Iterate on each valid attribute data, and checks the inner value to be used
 		// by the source generator to output.
 		foreach (var (type, @namespace, priority, level, name, namedArguments) in foundAttributesData)
 		{
 			// Checks whether the attribute has configured any extra options.
-			byte? enabledAreas = null;
+			byte? enabledArea = null;
 			short? disabledReason = null;
 			if (namedArguments is not [])
 			{
@@ -107,9 +109,9 @@ public sealed partial class StepSearcherOptionsGenerator : ISourceGenerator
 				{
 					switch (kvp)
 					{
-						case ("EnabledAreas", { Value: byte ea }):
+						case ("EnabledArea", { Value: byte ea }):
 						{
-							enabledAreas = ea;
+							enabledArea = ea;
 							break;
 						}
 						case ("DisabledReason", { Value: short dr }):
@@ -123,13 +125,13 @@ public sealed partial class StepSearcherOptionsGenerator : ISourceGenerator
 
 			// Gather the extra options on step searcher.
 			StringBuilder? sb = null;
-			if (enabledAreas is not null || disabledReason is not null)
+			if (enabledArea is not null || disabledReason is not null)
 			{
 				sb = new StringBuilder().Append(comma);
-				if (enabledAreas is { } ea)
+				if (enabledArea is { } ea)
 				{
-					string targetStr = f(ea, "EnabledAreas");
-					sb.Append($"EnabledAreas: {targetStr}{comma}");
+					string targetStr = f(ea, "EnabledArea");
+					sb.Append($"EnabledArea: {targetStr}{comma}");
 				}
 				if (disabledReason is { } dr)
 				{
@@ -186,9 +188,9 @@ public sealed partial class StepSearcherOptionsGenerator : ISourceGenerator
 
 				switch (typeName)
 				{
-					case "EnabledAreas" when enabledAreaFields[(byte)(1 << i)] is var fieldValue:
+					case "EnabledArea" when enabledAreaFields[(byte)(1 << i)] is var fieldValue:
 					{
-						targetList.Add($"global::Sudoku.Solving.Manual.EnabledAreas.{fieldValue}");
+						targetList.Add($"global::Sudoku.Solving.Manual.EnabledArea.{fieldValue}");
 
 						break;
 					}

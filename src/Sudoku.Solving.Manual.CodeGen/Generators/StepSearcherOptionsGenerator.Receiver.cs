@@ -5,7 +5,7 @@ partial class StepSearcherOptionsGenerator
 	private sealed record class Receiver(CancellationToken CancellationToken) : ISyntaxContextReceiver
 	{
 		/// <summary>
-		/// Defines a dictionary that stores the lookup table for fields in the enumeration type <c>EnabledAreas</c>.
+		/// Defines a dictionary that stores the lookup table for fields in the enumeration type <c>EnabledArea</c>.
 		/// </summary>
 		public IDictionary<byte, string> EnabledAreasFields { get; } = new Dictionary<byte, string>();
 
@@ -35,7 +35,7 @@ partial class StepSearcherOptionsGenerator
 			}
 
 			var enumTypeSymbol = (INamedTypeSymbol)semanticModel.GetDeclaredSymbol(enumTypeNode, CancellationToken)!;
-			var enabledAreaTypeSymbol = compilation.GetTypeByMetadataName("Sudoku.Solving.Manual.EnabledAreas")!;
+			var enabledAreaTypeSymbol = compilation.GetTypeByMetadataName("Sudoku.Solving.Manual.EnabledArea")!;
 			var disabledReasonTypeSymbol = compilation.GetTypeByMetadataName("Sudoku.Solving.Manual.DisabledReason")!;
 
 			var operation = semanticModel.GetOperation(equalsValueSyntax, CancellationToken);

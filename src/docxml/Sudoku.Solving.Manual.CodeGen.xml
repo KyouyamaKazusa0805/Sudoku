@@ -18,7 +18,7 @@
         </member>
         <member name="P:Sudoku.Diagnostics.CodeGen.Generators.StepSearcherOptionsGenerator.Receiver.EnabledAreasFields">
             <summary>
-            Defines a dictionary that stores the lookup table for fields in the enumeration type <c>EnabledAreas</c>.
+            Defines a dictionary that stores the lookup table for fields in the enumeration type <c>EnabledArea</c>.
             </summary>
         </member>
         <member name="P:Sudoku.Diagnostics.CodeGen.Generators.StepSearcherOptionsGenerator.Receiver.DisabledReasonFields">

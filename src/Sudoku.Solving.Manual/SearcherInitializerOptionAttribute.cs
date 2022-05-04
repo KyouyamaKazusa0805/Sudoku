@@ -32,12 +32,12 @@ public sealed class SearcherConfigurationAttribute<TStepSearcher> : Attribute wh
 	/// <summary>
 	/// Indicates the area that the step searcher can be used and available.
 	/// </summary>
-	public EnabledAreas EnabledAreas { get; init; } = EnabledAreas.Default | EnabledAreas.Gathering;
+	public EnabledArea EnabledArea { get; init; } = EnabledArea.Default | EnabledArea.Gathering;
 
 	/// <summary>
-	/// Indicates why the step searcher is disabled, which means the property <see cref="EnabledAreas"/>
-	/// is <see cref="EnabledAreas.None"/>.
+	/// Indicates why the step searcher is disabled, which means the property <see cref="EnabledArea"/>
+	/// is <see cref="EnabledArea.None"/>.
 	/// </summary>
-	/// <seealso cref="EnabledAreas.None"/>
+	/// <seealso cref="EnabledArea.None"/>
 	public DisabledReason DisabledReason { get; init; } = DisabledReason.None;
 }

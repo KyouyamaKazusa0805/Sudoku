@@ -27,7 +27,7 @@ public sealed partial class StepsGatherer
 		{
 			switch (searcher)
 			{
-				case { Options.EnabledAreas: var enabledAreas } when !enabledAreas.Flags(EnabledAreas.Gathering):
+				case { Options.EnabledArea: var enabledArea } when !enabledArea.Flags(EnabledArea.Gathering):
 				{
 					// Skip the searcher that is disabled in this case.
 					continue;

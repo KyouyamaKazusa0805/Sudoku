@@ -298,27 +298,27 @@
             <para>The well-known technique searcher of this level is Brute Force.</para>
             </summary>
         </member>
-        <member name="T:Sudoku.Solving.Manual.EnabledAreas">
+        <member name="T:Sudoku.Solving.Manual.EnabledArea">
             <summary>
             Represents the data about where a step searcher can be enabled and used.
             </summary>
         </member>
-        <member name="F:Sudoku.Solving.Manual.EnabledAreas.None">
+        <member name="F:Sudoku.Solving.Manual.EnabledArea.None">
             <summary>
             Indicates all modes are disabled.
             </summary>
         </member>
-        <member name="F:Sudoku.Solving.Manual.EnabledAreas.Default">
+        <member name="F:Sudoku.Solving.Manual.EnabledArea.Default">
             <summary>
             Indicates the default mode (Sudoku Explainer or Hodoku mode).
             </summary>
         </member>
-        <member name="F:Sudoku.Solving.Manual.EnabledAreas.Gathering">
+        <member name="F:Sudoku.Solving.Manual.EnabledArea.Gathering">
             <summary>
             Indicates the gathering mode (All steps will be found here).
             </summary>
         </member>
-        <member name="F:Sudoku.Solving.Manual.EnabledAreas.Experimental">
+        <member name="F:Sudoku.Solving.Manual.EnabledArea.Experimental">
             <summary>
             Indicates the experimental function can use the step searcher.
             </summary>
@@ -900,17 +900,17 @@
             Indicates the level of the step searcher.
             </summary>
         </member>
-        <member name="P:Sudoku.Solving.Manual.SearcherConfigurationAttribute`1.EnabledAreas">
+        <member name="P:Sudoku.Solving.Manual.SearcherConfigurationAttribute`1.EnabledArea">
             <summary>
             Indicates the area that the step searcher can be used and available.
             </summary>
         </member>
         <member name="P:Sudoku.Solving.Manual.SearcherConfigurationAttribute`1.DisabledReason">
             <summary>
-            Indicates why the step searcher is disabled, which means the property <see cref="P:Sudoku.Solving.Manual.SearcherConfigurationAttribute`1.EnabledAreas"/>
-            is <see cref="F:Sudoku.Solving.Manual.EnabledAreas.None"/>.
+            Indicates why the step searcher is disabled, which means the property <see cref="P:Sudoku.Solving.Manual.SearcherConfigurationAttribute`1.EnabledArea"/>
+            is <see cref="F:Sudoku.Solving.Manual.EnabledArea.None"/>.
             </summary>
-            <seealso cref="F:Sudoku.Solving.Manual.EnabledAreas.None"/>
+            <seealso cref="F:Sudoku.Solving.Manual.EnabledArea.None"/>
         </member>
         <member name="T:Sudoku.Solving.Manual.Searchers.AlmostLockedSetsWWingStepSearcher">
             <summary>
@@ -3604,9 +3604,9 @@
             Indicates the options for a step searcher used while searching.
             </summary>
             <param name="Priority">Indicates the priority of this technique.</param>
-            <param name="EnabledAreas">
+            <param name="EnabledArea">
             Indicates which areas the step searcher is enabled and works well.
-            The default value is both <see cref="F:Sudoku.Solving.Manual.EnabledAreas.Default"/> and <see cref="F:Sudoku.Solving.Manual.EnabledAreas.Gathering"/>.
+            The default value is both <see cref="F:Sudoku.Solving.Manual.EnabledArea.Default"/> and <see cref="F:Sudoku.Solving.Manual.EnabledArea.Gathering"/>.
             </param>
             <param name="DisplayingLevel">
             <para>Indicates the displaying level of this technique.</para>
@@ -3632,18 +3632,18 @@
             </para>
             <para>
             The property <b>must</b> contain a value that differs with <see cref="F:Sudoku.Solving.Manual.DisabledReason.None"/>
-            when the property <see cref="P:Sudoku.Solving.Manual.SearchingOptions.EnabledAreas"/> isn't <see cref="F:Sudoku.Solving.Manual.EnabledAreas.Default"/>.
+            when the property <see cref="P:Sudoku.Solving.Manual.SearchingOptions.EnabledArea"/> isn't <see cref="F:Sudoku.Solving.Manual.EnabledArea.Default"/>.
             </para>
             </param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.SearchingOptions.#ctor(System.Int32,Sudoku.Solving.Manual.DisplayingLevel,Sudoku.Solving.Manual.EnabledAreas,Sudoku.Solving.Manual.DisabledReason)">
+        <member name="M:Sudoku.Solving.Manual.SearchingOptions.#ctor(System.Int32,Sudoku.Solving.Manual.DisplayingLevel,Sudoku.Solving.Manual.EnabledArea,Sudoku.Solving.Manual.DisabledReason)">
             <summary>
             Indicates the options for a step searcher used while searching.
             </summary>
             <param name="Priority">Indicates the priority of this technique.</param>
-            <param name="EnabledAreas">
+            <param name="EnabledArea">
             Indicates which areas the step searcher is enabled and works well.
-            The default value is both <see cref="F:Sudoku.Solving.Manual.EnabledAreas.Default"/> and <see cref="F:Sudoku.Solving.Manual.EnabledAreas.Gathering"/>.
+            The default value is both <see cref="F:Sudoku.Solving.Manual.EnabledArea.Default"/> and <see cref="F:Sudoku.Solving.Manual.EnabledArea.Gathering"/>.
             </param>
             <param name="DisplayingLevel">
             <para>Indicates the displaying level of this technique.</para>
@@ -3669,7 +3669,7 @@
             </para>
             <para>
             The property <b>must</b> contain a value that differs with <see cref="F:Sudoku.Solving.Manual.DisabledReason.None"/>
-            when the property <see cref="P:Sudoku.Solving.Manual.SearchingOptions.EnabledAreas"/> isn't <see cref="F:Sudoku.Solving.Manual.EnabledAreas.Default"/>.
+            when the property <see cref="P:Sudoku.Solving.Manual.SearchingOptions.EnabledArea"/> isn't <see cref="F:Sudoku.Solving.Manual.EnabledArea.Default"/>.
             </para>
             </param>
         </member>
@@ -3695,10 +3695,10 @@
             </para>
             </summary>
         </member>
-        <member name="P:Sudoku.Solving.Manual.SearchingOptions.EnabledAreas">
+        <member name="P:Sudoku.Solving.Manual.SearchingOptions.EnabledArea">
             <summary>
             Indicates which areas the step searcher is enabled and works well.
-            The default value is both <see cref="F:Sudoku.Solving.Manual.EnabledAreas.Default"/> and <see cref="F:Sudoku.Solving.Manual.EnabledAreas.Gathering"/>.
+            The default value is both <see cref="F:Sudoku.Solving.Manual.EnabledArea.Default"/> and <see cref="F:Sudoku.Solving.Manual.EnabledArea.Gathering"/>.
             </summary>
         </member>
         <member name="P:Sudoku.Solving.Manual.SearchingOptions.DisabledReason">
@@ -3709,7 +3709,7 @@
             </para>
             <para>
             The property <b>must</b> contain a value that differs with <see cref="F:Sudoku.Solving.Manual.DisabledReason.None"/>
-            when the property <see cref="P:Sudoku.Solving.Manual.SearchingOptions.EnabledAreas"/> isn't <see cref="F:Sudoku.Solving.Manual.EnabledAreas.Default"/>.
+            when the property <see cref="P:Sudoku.Solving.Manual.SearchingOptions.EnabledArea"/> isn't <see cref="F:Sudoku.Solving.Manual.EnabledArea.Default"/>.
             </para>
             </summary>
         </member>
