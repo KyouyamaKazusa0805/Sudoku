@@ -3,7 +3,7 @@
 /// <summary>
 /// Provides with a data structure that displays a view for basic information.
 /// </summary>
-[AutoImplementsEnumerable(typeof(ViewNode), ConversionExpression = "*|*", UseExplicitImplementation = true)]
+[AutoImplementsEnumerable(typeof(ViewNode), Pattern = "*|*", UseExplicitImplementation = true)]
 public sealed partial class View : ICloneable, IEnumerable<ViewNode>
 {
 	/// <summary>

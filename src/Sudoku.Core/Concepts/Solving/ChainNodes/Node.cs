@@ -3,7 +3,7 @@
 /// <summary>
 /// Defines a chain node.
 /// </summary>
-[AutoOverridesGetHashCode(nameof(Cells), nameof(Digit), EmitSealedKeyword = true)]
+[AutoOverridesGetHashCode(nameof(Cells), nameof(Digit), EmitsSealedKeyword = true)]
 [AutoOverloadsEqualityOperators(WithNullableAnnotation = true)]
 public abstract partial class Node : IEquatable<Node>, IEqualityOperators<Node, Node>
 {

@@ -19,7 +19,7 @@ public sealed partial class AutoOverloadsEqualityOperatorsGenerator : ISourceGen
 		{
 			var (_, _, namespaceName, genericParameterList, _, _, _, _, _, _) = SymbolOutputInfo.FromSymbol(type);
 
-			string inKeyword = attributeData.GetNamedArgument<bool>("EmitInKeyword") ? "in " : string.Empty;
+			string inKeyword = attributeData.GetNamedArgument<bool>("EmitsInKeyword") ? "in " : string.Empty;
 			var (nullableAnnotation, realComparisonExpression) =
 				attributeData.GetNamedArgument<bool>("WithNullableAnnotation")
 					? (

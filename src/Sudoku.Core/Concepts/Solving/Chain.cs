@@ -4,7 +4,7 @@
 /// Defines a chain.
 /// </summary>
 [AutoOverloadsEqualityOperators]
-[AutoImplementsEnumerable(typeof(Node), nameof(_nodes), UseExplicitImplementation = true, ConversionExpression = "((IEnumerable<!>)@).*")]
+[AutoImplementsEnumerable(typeof(Node), nameof(_nodes), UseExplicitImplementation = true, Pattern = "((IEnumerable<!>)@).*")]
 public abstract partial class Chain :
 	IEquatable<Chain>,
 	IEnumerable<Node>,

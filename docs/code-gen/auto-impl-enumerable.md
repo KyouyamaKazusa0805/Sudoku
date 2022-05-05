@@ -45,7 +45,7 @@ partial struct Cells
 
 此时请你注意，由于 C# 对于 `IEnumerable<>` 接口的设计（它从 `IEnumerable` 接口派生），因此你在实现的时候还要求实现 `IEnumerable` 接口里的非泛型 `GetEnumerator` 方法。该方法也会被源代码生成器自动实现，但它不论泛型版本的实现是显式的还是隐式的，这个非泛型版本的 `GetEnumerator` 方法都会按显式接口实现来实现，这是在设置此属性的时候改不了的行为。
 
-### `ConversionExpression` 属性
+### `Pattern` 属性
 
 该属性用于控制你返回表达式的具体表达式执行。一般来说，我们直接返回实例的 `GetEnumerator` 方法即可完成，不过有些时候这样的实现是不够灵活的，因此此属性可控制返回表达式的具体形式。
 

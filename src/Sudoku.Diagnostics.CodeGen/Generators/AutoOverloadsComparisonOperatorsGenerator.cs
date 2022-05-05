@@ -19,7 +19,7 @@ public sealed partial class AutoOverloadsComparisonOperatorsGenerator : ISourceG
 		{
 			var (_, _, namespaceName, genericParameterList, _, _, _, _, _, _) = SymbolOutputInfo.FromSymbol(type);
 
-			string inKeyword = attributeData.GetNamedArgument<bool>("EmitInKeyword") ? "in " : string.Empty;
+			string inKeyword = attributeData.GetNamedArgument<bool>("EmitsInKeyword") ? "in " : string.Empty;
 			string fullName = type.ToDisplayString(TypeFormats.FullName);
 			context.AddSource(
 				type.ToFileName(),

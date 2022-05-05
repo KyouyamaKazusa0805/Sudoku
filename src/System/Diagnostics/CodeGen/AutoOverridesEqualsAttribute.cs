@@ -28,37 +28,31 @@
 /// </remarks>
 /// <seealso cref="EqualityComparer{T}.Default"/>
 [AttributeUsage(AttributeTargets.Class | AttributeTargets.Struct, AllowMultiple = false, Inherited = true)]
-public sealed class AutoOverridesEqualsAttribute : Attribute
+public sealed class AutoOverridesEqualsAttribute :
+	Attribute,
+	IMultipleMembersBinder,
+	IInModifierEmitter,
+	ISealedModifierEmitter,
+	IInterfaceImplementingCaseController
 {
 	/// <summary>
 	/// Initializes an <see cref="AutoOverridesEqualsAttribute"/> instance via the specified array
 	/// of <see cref="string"/> elements indicating the names of the data members you want to take part in
 	/// the hash code calculation.
 	/// </summary>
-	/// <param name="memberNames">The name of data members, represented as a <see cref="string"/> array.</param>
-	public AutoOverridesEqualsAttribute(params string[] memberNames) => MemberNames = memberNames;
+	/// <param name="memberExpressions">The name of data members, represented as a <see cref="string"/> array.</param>
+	public AutoOverridesEqualsAttribute(params string[] memberExpressions) => MemberExpressions = memberExpressions;
 
 
-	/// <summary>
-	/// Indicates whether the source generator will emit explicit implmentation to implement the method
-	/// <see cref="IEquatable{T}.Equals(T)"/>. The default value is <see langword="false"/>.
-	/// </summary>
-	public bool UseExplicitlyImplementation { get; init; } = false;
+	/// <inheritdoc/>
+	public bool UseExplicitImplementation { get; init; } = false;
 
-	/// <summary>
-	/// Indicates whether the source generator will emit the keyword <see langword="sealed"/> to the generated code.
-	/// The default value is <see langword="false"/>.
-	/// </summary>
-	public bool EmitSealedKeyword { get; init; } = false;
+	/// <inheritdoc/>
+	public bool EmitsSealedKeyword { get; init; } = false;
 
-	/// <summary>
-	/// Indicates whether the source generator will emit keyword <see langword="in"/> to the parameters.
-	/// The default value is <see langword="false"/>.
-	/// </summary>
-	public bool EmitInKeyword { get; init; } = false;
+	/// <inheritdoc/>
+	public bool EmitsInKeyword { get; init; } = false;
 
-	/// <summary>
-	/// Indicate the name of members that take part in the output.
-	/// </summary>
-	public string[] MemberNames { get; }
+	/// <inheritdoc/>
+	public string[] MemberExpressions { get; }
 }

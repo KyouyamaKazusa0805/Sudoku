@@ -15,8 +15,8 @@ namespace Sudoku.Concepts.Collections;
 #endif // !DEBUG
 [JsonConverter(typeof(JsonConverter))]
 [DisableParameterlessConstructor(SuggestedMemberName = nameof(Empty))]
-[AutoOverridesEquals(UseExplicitlyImplementation = true)]
-[AutoOverloadsEqualityOperators(EmitInKeyword = true)]
+[AutoOverridesEquals(UseExplicitImplementation = true)]
+[AutoOverloadsEqualityOperators(EmitsInKeyword = true)]
 [AutoOverridesGetHashCode(
 	nameof(IsUndefined), nameof(IsEmpty),
 	Pattern = """this switch { { [0]: true } => 0, { [1]: true } => 1, _ => ToString("#").* }""")]

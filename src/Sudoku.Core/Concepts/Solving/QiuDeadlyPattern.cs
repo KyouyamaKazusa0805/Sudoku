@@ -29,7 +29,7 @@
 /// <param name="Pair">The pair cells that is <c>P</c> in that sketch.</param>
 [AutoOverridesToString(nameof(Map))]
 [AutoOverridesGetHashCode(nameof(Square), nameof(BaseLine), nameof(Pair))]
-[AutoOverridesEquals(nameof(Square), nameof(BaseLine), nameof(Pair), EmitInKeyword = true)]
+[AutoOverridesEquals(nameof(Square), nameof(BaseLine), nameof(Pair), EmitsInKeyword = true)]
 public readonly partial record struct QiuDeadlyPattern(in Cells Square, in Cells BaseLine, in Cells Pair) :
 	ITechniquePattern<QiuDeadlyPattern>
 {

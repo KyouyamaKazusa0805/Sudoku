@@ -7,7 +7,7 @@
 /// <param name="Eliminations">Indicates the eliminations.</param>
 /// <param name="Reason">Indicates the reason why these candidates can be eliminated.</param>
 [AutoOverridesGetHashCode(nameof(Eliminations), nameof(Reason))]
-[AutoOverridesEquals(nameof(Eliminations), nameof(Reason), EmitInKeyword = true, UseExplicitlyImplementation = true)]
+[AutoOverridesEquals(nameof(Eliminations), nameof(Reason), EmitsInKeyword = true, UseExplicitImplementation = true)]
 public readonly partial record struct ExocetElimination(in Candidates Eliminations, ExocetEliminatedReason Reason) :
 	IEquatable<ExocetElimination>,
 	IEqualityOperators<ExocetElimination, ExocetElimination>

@@ -6,7 +6,10 @@
 /// </summary>
 /// <seealso cref="IComparable{T}"/>
 [AttributeUsage(AttributeTargets.Class | AttributeTargets.Struct, AllowMultiple = false, Inherited = true)]
-public sealed class AutoImplementsComparableAttribute : Attribute
+public sealed class AutoImplementsComparableAttribute :
+	Attribute,
+	IInterfaceImplementingCaseController,
+	ISingleMemberBinder
 {
 	/// <summary>
 	/// Initializes an <see cref="AutoImplementsComparableAttribute"/> instance via the member name.
@@ -15,14 +18,9 @@ public sealed class AutoImplementsComparableAttribute : Attribute
 	public AutoImplementsComparableAttribute(string? memberName = null) => MemberName = memberName;
 
 
-	/// <summary>
-	/// Indiactes whether the source generator will emit explicit interface implementation instead
-	/// of implicit one. The default value is <see langword="false"/>.
-	/// </summary>
+	/// <inheritdoc/>
 	public bool UseExplicitImplementation { get; init; } = false;
 
-	/// <summary>
-	/// Indicates the member name to compare.
-	/// </summary>
+	/// <inheritdoc/>
 	public string? MemberName { get; }
 }

@@ -52,7 +52,7 @@
 	nameof(Base1), nameof(Base2), nameof(TargetQ1), nameof(TargetQ2),
 	nameof(TargetR1), nameof(TargetR2), nameof(MirrorQ1), nameof(MirrorQ2),
 	nameof(MirrorR1), nameof(MirrorR2), nameof(BaseCellsMap), nameof(TargetCellsMap), nameof(CrossLine),
-	EmitInKeyword = true)]
+	EmitsInKeyword = true)]
 public readonly partial record struct ExocetPattern(
 	int Base1, int Base2, int TargetQ1, int TargetQ2, int TargetR1, int TargetR2, in Cells CrossLine,
 	in Cells MirrorQ1, in Cells MirrorQ2, in Cells MirrorR1, in Cells MirrorR2) :

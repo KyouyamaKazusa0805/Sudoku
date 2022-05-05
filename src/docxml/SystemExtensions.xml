@@ -1388,13 +1388,11 @@
             Initializes an <see cref="T:System.Diagnostics.CodeGen.AutoDeconstructionAttribute"/> instance
             via the specified member expressions you want to deconstruct.
             </summary>
-            <param name="memberExpression">The name of the members you want to deconstruct.</param>
+            <param name="memberExpressions">The name of the members you want to deconstruct.</param>
             <exception cref="T:System.ArgumentException">Throws when the argument is empty.</exception>
         </member>
-        <member name="P:System.Diagnostics.CodeGen.AutoDeconstructionAttribute.MemberExpression">
-            <summary>
-            Indicates the member names whose corresponding members will be able to be deconstructed.
-            </summary>
+        <member name="P:System.Diagnostics.CodeGen.AutoDeconstructionAttribute.MemberExpressions">
+            <inheritdoc/>
         </member>
         <member name="T:System.Diagnostics.CodeGen.AutoExtensionDeconstructionAttribute">
             <summary>
@@ -1407,37 +1405,24 @@
             and the member expression.
             </summary>
             <param name="type">The type.</param>
-            <param name="memberExpression">The member expression.</param>
+            <param name="memberExpressions">The member expression.</param>
             <exception cref="T:System.ArgumentException">
             Throws when the argument <paramref name="type"/> is not a valid type (<see langword="class"/>,
             <see langword="struct"/> or <see langword="interface"/>),
-            or the argument <paramref name="memberExpression"/> is empty.
+            or the argument <paramref name="memberExpressions"/> is empty.
             </exception>
         </member>
         <member name="P:System.Diagnostics.CodeGen.AutoExtensionDeconstructionAttribute.EmitsInKeyword">
-            <summary>
-            <para>
-            Indicates whether the source generator will emit keyword <see langword="in"/> as modifier
-            for the only <see langword="this"/> argument.
-            </para>
-            <para>The default value is <see langword="false"/>.</para>
-            </summary>
+            <inheritdoc/>
         </member>
         <member name="P:System.Diagnostics.CodeGen.AutoExtensionDeconstructionAttribute.Namespace">
-            <summary>
-            <para>Indicates the namespace the source generator emits.</para>
-            <para>The default value is <see langword="null"/>.</para>
-            </summary>
+            <inheritdoc/>
         </member>
-        <member name="P:System.Diagnostics.CodeGen.AutoExtensionDeconstructionAttribute.MemberExpression">
-            <summary>
-            Indicates the member names whose corresponding members will be able to be deconstructed.
-            </summary>
+        <member name="P:System.Diagnostics.CodeGen.AutoExtensionDeconstructionAttribute.MemberExpressions">
+            <inheritdoc/>
         </member>
         <member name="P:System.Diagnostics.CodeGen.AutoExtensionDeconstructionAttribute.Type">
-            <summary>
-            Indicates the desired type on which the source generator emits extension methods.
-            </summary>
+            <inheritdoc/>
         </member>
         <member name="T:System.Diagnostics.CodeGen.AutoImplementsComparableAttribute">
             <summary>
@@ -1453,15 +1438,10 @@
             <param name="memberName">The member name.</param>
         </member>
         <member name="P:System.Diagnostics.CodeGen.AutoImplementsComparableAttribute.UseExplicitImplementation">
-            <summary>
-            Indiactes whether the source generator will emit explicit interface implementation instead
-            of implicit one. The default value is <see langword="false"/>.
-            </summary>
+            <inheritdoc/>
         </member>
         <member name="P:System.Diagnostics.CodeGen.AutoImplementsComparableAttribute.MemberName">
-            <summary>
-            Indicates the member name to compare.
-            </summary>
+            <inheritdoc/>
         </member>
         <member name="T:System.Diagnostics.CodeGen.AutoImplementsEnumerableAttribute">
             <summary>
@@ -1479,12 +1459,9 @@
             <param name="memberName">The member name.</param>
         </member>
         <member name="P:System.Diagnostics.CodeGen.AutoImplementsEnumerableAttribute.UseExplicitImplementation">
-            <summary>
-            Indiactes whether the source generator will emit explicit interface implementation instead
-            of implicit one. The default value is <see langword="false"/>.
-            </summary>
+            <inheritdoc/>
         </member>
-        <member name="P:System.Diagnostics.CodeGen.AutoImplementsEnumerableAttribute.ConversionExpression">
+        <member name="P:System.Diagnostics.CodeGen.AutoImplementsEnumerableAttribute.Pattern">
             <summary>
             <para>
             Indicates the conversion expression. The default value is <c>"*"</c>. The conversion expression
@@ -1499,7 +1476,7 @@
             <item>
             <term><c>!</c></term>
             <description>
-            Will be expanded to the full name of the elements, which is same as <see cref="P:System.Diagnostics.CodeGen.AutoImplementsEnumerableAttribute.ElementType"/>.
+            Will be expanded to the full name of the elements, which is same as <see cref="P:System.Diagnostics.CodeGen.AutoImplementsEnumerableAttribute.Type"/>.
             </description>
             </item>
             <item>
@@ -1519,14 +1496,10 @@
             </summary>
         </member>
         <member name="P:System.Diagnostics.CodeGen.AutoImplementsEnumerableAttribute.MemberName">
-            <summary>
-            Indicates the member name to compare.
-            </summary>
+            <inheritdoc/>
         </member>
-        <member name="P:System.Diagnostics.CodeGen.AutoImplementsEnumerableAttribute.ElementType">
-            <summary>
-            Indicates the element type.
-            </summary>
+        <member name="P:System.Diagnostics.CodeGen.AutoImplementsEnumerableAttribute.Type">
+            <inheritdoc/>
         </member>
         <member name="T:System.Diagnostics.CodeGen.AutoOverloadsComparisonOperatorsAttribute">
             <summary>
@@ -1541,17 +1514,11 @@
             </remarks>
             <seealso cref="M:System.IComparable`1.CompareTo(`0)"/>
         </member>
-        <member name="P:System.Diagnostics.CodeGen.AutoOverloadsComparisonOperatorsAttribute.EmitInKeyword">
-            <summary>
-            Indicates whether the source generator will emit keyword <see langword="in"/> to the parameters.
-            The default value is <see langword="false"/>.
-            </summary>
+        <member name="P:System.Diagnostics.CodeGen.AutoOverloadsComparisonOperatorsAttribute.EmitsInKeyword">
+            <inheritdoc/>
         </member>
         <member name="P:System.Diagnostics.CodeGen.AutoOverloadsComparisonOperatorsAttribute.WithNullableAnnotation">
-            <summary>
-            Indicates whether the source generator will emit nullable annotation <c>?</c> onto the arguments.
-            The default value is <see langword="false"/>.
-            </summary>
+            <inheritdoc/>
         </member>
         <member name="T:System.Diagnostics.CodeGen.AutoOverloadsEqualityOperatorsAttribute">
             <summary>
@@ -1565,17 +1532,11 @@
             </remarks>
             <seealso cref="M:System.IEquatable`1.Equals(`0)"/>
         </member>
-        <member name="P:System.Diagnostics.CodeGen.AutoOverloadsEqualityOperatorsAttribute.EmitInKeyword">
-            <summary>
-            Indicates whether the source generator will emit keyword <see langword="in"/> to the parameters.
-            The default value is <see langword="false"/>.
-            </summary>
+        <member name="P:System.Diagnostics.CodeGen.AutoOverloadsEqualityOperatorsAttribute.EmitsInKeyword">
+            <inheritdoc/>
         </member>
         <member name="P:System.Diagnostics.CodeGen.AutoOverloadsEqualityOperatorsAttribute.WithNullableAnnotation">
-            <summary>
-            Indicates whether the source generator will emit nullable annotation <c>?</c> onto the arguments.
-            The default value is <see langword="false"/>.
-            </summary>
+            <inheritdoc/>
         </member>
         <member name="T:System.Diagnostics.CodeGen.AutoOverridesEqualsAttribute">
             <summary>
@@ -1612,30 +1573,19 @@
             of <see cref="T:System.String"/> elements indicating the names of the data members you want to take part in
             the hash code calculation.
             </summary>
-            <param name="memberNames">The name of data members, represented as a <see cref="T:System.String"/> array.</param>
+            <param name="memberExpressions">The name of data members, represented as a <see cref="T:System.String"/> array.</param>
         </member>
-        <member name="P:System.Diagnostics.CodeGen.AutoOverridesEqualsAttribute.UseExplicitlyImplementation">
-            <summary>
-            Indicates whether the source generator will emit explicit implmentation to implement the method
-            <see cref="M:System.IEquatable`1.Equals(`0)"/>. The default value is <see langword="false"/>.
-            </summary>
+        <member name="P:System.Diagnostics.CodeGen.AutoOverridesEqualsAttribute.UseExplicitImplementation">
+            <inheritdoc/>
         </member>
-        <member name="P:System.Diagnostics.CodeGen.AutoOverridesEqualsAttribute.EmitSealedKeyword">
-            <summary>
-            Indicates whether the source generator will emit the keyword <see langword="sealed"/> to the generated code.
-            The default value is <see langword="false"/>.
-            </summary>
+        <member name="P:System.Diagnostics.CodeGen.AutoOverridesEqualsAttribute.EmitsSealedKeyword">
+            <inheritdoc/>
         </member>
-        <member name="P:System.Diagnostics.CodeGen.AutoOverridesEqualsAttribute.EmitInKeyword">
-            <summary>
-            Indicates whether the source generator will emit keyword <see langword="in"/> to the parameters.
-            The default value is <see langword="false"/>.
-            </summary>
+        <member name="P:System.Diagnostics.CodeGen.AutoOverridesEqualsAttribute.EmitsInKeyword">
+            <inheritdoc/>
         </member>
-        <member name="P:System.Diagnostics.CodeGen.AutoOverridesEqualsAttribute.MemberNames">
-            <summary>
-            Indicate the name of members that take part in the output.
-            </summary>
+        <member name="P:System.Diagnostics.CodeGen.AutoOverridesEqualsAttribute.MemberExpressions">
+            <inheritdoc/>
         </member>
         <member name="T:System.Diagnostics.CodeGen.AutoOverridesGetHashCodeAttribute">
             <summary>
@@ -1671,20 +1621,16 @@
             </summary>
             <param name="memberNames">The name of data members, represented as a <see cref="T:System.String"/> array.</param>
         </member>
-        <member name="P:System.Diagnostics.CodeGen.AutoOverridesGetHashCodeAttribute.EmitSealedKeyword">
-            <summary>
-            Indicates whether the source generator will emit the keyword <see langword="sealed"/> to the generated code.
-            </summary>
+        <member name="P:System.Diagnostics.CodeGen.AutoOverridesGetHashCodeAttribute.EmitsSealedKeyword">
+            <inheritdoc/>
         </member>
         <member name="P:System.Diagnostics.CodeGen.AutoOverridesGetHashCodeAttribute.Pattern">
             <summary>
             Indicates the pattern. The default value is <see langword="null"/>.
             </summary>
         </member>
-        <member name="P:System.Diagnostics.CodeGen.AutoOverridesGetHashCodeAttribute.MemberNames">
-            <summary>
-            Indicate the name of members that take part in the output.
-            </summary>
+        <member name="P:System.Diagnostics.CodeGen.AutoOverridesGetHashCodeAttribute.MemberExpressions">
+            <inheritdoc/>
         </member>
         <member name="T:System.Diagnostics.CodeGen.AutoOverridesToStringAttribute">
             <summary>
@@ -1716,7 +1662,7 @@
             of <see cref="T:System.String"/> elements indicating the names of the data members you want to be output
             in the output source file.
             </summary>
-            <param name="memberNames">The name of data members, represented as a <see cref="T:System.String"/> array.</param>
+            <param name="memberExpressions">The name of data members, represented as a <see cref="T:System.String"/> array.</param>
         </member>
         <member name="P:System.Diagnostics.CodeGen.AutoOverridesToStringAttribute.Pattern">
             <summary>
@@ -1734,7 +1680,7 @@
             </listheader>
             <item>
             <term><c>[index]</c>, where <c>index</c> is an index value beginning from 0</term>
-            <description>The member name at the specified index stored in the property <see cref="P:System.Diagnostics.CodeGen.AutoOverridesToStringAttribute.MemberNames"/></description>
+            <description>The member name at the specified index stored in the property <see cref="P:System.Diagnostics.CodeGen.AutoOverridesToStringAttribute.MemberExpressions"/></description>
             </item>
             <item>
             <term><c>*</c></term>
@@ -1743,17 +1689,15 @@
             </list>
             </para>
             <para>
-            For example, the pattern <c>((char)[0]).*</c> means the first element in the array <see cref="P:System.Diagnostics.CodeGen.AutoOverridesToStringAttribute.MemberNames"/>
+            For example, the pattern <c>((char)[0]).*</c> means the first element in the array <see cref="P:System.Diagnostics.CodeGen.AutoOverridesToStringAttribute.MemberExpressions"/>
             will be converted into a <see cref="T:System.Char"/>, and then invoke the method <see cref="M:System.Char.ToString"/>
             to get the result value.
             </para>
             <para>The default value is <see langword="null"/>.</para>
             </summary>
         </member>
-        <member name="P:System.Diagnostics.CodeGen.AutoOverridesToStringAttribute.MemberNames">
-            <summary>
-            Indicate the name of members that take part in the output.
-            </summary>
+        <member name="P:System.Diagnostics.CodeGen.AutoOverridesToStringAttribute.MemberExpressions">
+            <inheritdoc/>
         </member>
         <member name="T:System.Diagnostics.CodeGen.DisableParameterlessConstructorAttribute">
             <summary>
@@ -1851,6 +1795,100 @@
             <summary>
             Indicates the error case that the specified attribute cannot be found in an enumeration field.
             The default value is <see cref="F:System.Diagnostics.CodeGen.EnumSwitchExpressionNotDefinedBehavior.ThrowForNotDefined"/>.
+            </summary>
+        </member>
+        <member name="T:System.Diagnostics.CodeGen.ICustomizedNamespaceEmitter">
+            <summary>
+            Indicates an attribute type that can emit customized namespaces.
+            </summary>
+        </member>
+        <member name="P:System.Diagnostics.CodeGen.ICustomizedNamespaceEmitter.Namespace">
+            <summary>
+            <para>Indicates the namespace the source generator emits.</para>
+            <para>The default value is <see langword="null"/>.</para>
+            </summary>
+        </member>
+        <member name="T:System.Diagnostics.CodeGen.IInModifierEmitter">
+            <summary>
+            Indicates an attribute type that can emit <see langword="in"/> keyword.
+            </summary>
+        </member>
+        <member name="P:System.Diagnostics.CodeGen.IInModifierEmitter.EmitsInKeyword">
+            <summary>
+            <para>
+            Indicates whether the source generator will emit keyword <see langword="in"/> as modifier.
+            </para>
+            <para>The default value is <see langword="false"/>.</para>
+            </summary>
+        </member>
+        <member name="T:System.Diagnostics.CodeGen.IInterfaceImplementingCaseController">
+            <summary>
+            Indicates an attribute type that can control the implementation case on interfaces.
+            </summary>
+        </member>
+        <member name="P:System.Diagnostics.CodeGen.IInterfaceImplementingCaseController.UseExplicitImplementation">
+            <summary>
+            Indicates whether the source generator will emit explicit implmentation to implement the method.
+            The default value is <see langword="false"/>.
+            </summary>
+        </member>
+        <member name="T:System.Diagnostics.CodeGen.IMultipleMembersBinder">
+            <summary>
+            Indicates an attribute type that is used for gathering a set of members.
+            </summary>
+        </member>
+        <member name="P:System.Diagnostics.CodeGen.IMultipleMembersBinder.MemberExpressions">
+            <summary>
+            Indicates the name of members that will be referenced.
+            </summary>
+        </member>
+        <member name="T:System.Diagnostics.CodeGen.INullableAnnotationEmitter">
+            <summary>
+            Indicates an attribute type that can emit nullable annotation <c>?</c>.
+            </summary>
+        </member>
+        <member name="P:System.Diagnostics.CodeGen.INullableAnnotationEmitter.WithNullableAnnotation">
+            <summary>
+            Indicates whether the source generator will emit nullable annotation <c>?</c> onto the arguments.
+            The default value is <see langword="false"/>.
+            </summary>
+        </member>
+        <member name="T:System.Diagnostics.CodeGen.IPatternProvider">
+            <summary>
+            Indicates an attribute type that can control the customized patterns.
+            </summary>
+        </member>
+        <member name="T:System.Diagnostics.CodeGen.ISealedModifierEmitter">
+            <summary>
+            Indicates an attribute type that can emit <see langword="sealed"/> keyword.
+            </summary>
+        </member>
+        <member name="P:System.Diagnostics.CodeGen.ISealedModifierEmitter.EmitsSealedKeyword">
+            <summary>
+            <para>
+            Indicates whether the source generator will emit keyword <see langword="sealed"/> as modifier.
+            </para>
+            <para>The default value is <see langword="false"/>.</para>
+            </summary>
+        </member>
+        <member name="T:System.Diagnostics.CodeGen.ISingleMemberBinder">
+            <summary>
+            Indicates an attribute type that binds with a single member, referenced by its name.
+            </summary>
+        </member>
+        <member name="P:System.Diagnostics.CodeGen.ISingleMemberBinder.MemberName">
+            <summary>
+            Indicates the member name to be referenced.
+            </summary>
+        </member>
+        <member name="T:System.Diagnostics.CodeGen.ISourceGeneratorOptionProvider">
+            <summary>
+            Indicates an attribute type that can provide with options that can customize the option on some cases.
+            </summary>
+        </member>
+        <member name="T:System.Diagnostics.CodeGen.ITypeBinder">
+            <summary>
+            Indicates an attribute type that binds with type.
             </summary>
         </member>
         <member name="T:System.Reflection.AssemblyExtensions">

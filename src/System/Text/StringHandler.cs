@@ -35,7 +35,7 @@ namespace System.Text;
 /// <seealso cref="DefaultInterpolatedStringHandler"/>
 /// <seealso cref="IFormatProvider"/>
 [InterpolatedStringHandler]
-[AutoOverloadsEqualityOperators(EmitInKeyword = true)]
+[AutoOverloadsEqualityOperators(EmitsInKeyword = true)]
 [AutoOverridesToString(nameof(Text), Pattern = "{new([0])}")]
 public unsafe ref partial struct StringHandler
 {

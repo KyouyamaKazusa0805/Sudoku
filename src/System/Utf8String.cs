@@ -6,7 +6,7 @@
 [AutoOverridesEquals]
 [AutoOverloadsComparisonOperators]
 [AutoOverloadsEqualityOperators]
-[AutoImplementsEnumerable(typeof(Utf8Char), nameof(_value), UseExplicitImplementation = true, ConversionExpression = "((IEnumerable<!>)@).*")]
+[AutoImplementsEnumerable(typeof(Utf8Char), nameof(_value), UseExplicitImplementation = true, Pattern = "((IEnumerable<!>)@).*")]
 public readonly partial struct Utf8String :
 	IAdditionOperators<Utf8String, Utf8String, Utf8String>,
 	IComparable<Utf8String>,

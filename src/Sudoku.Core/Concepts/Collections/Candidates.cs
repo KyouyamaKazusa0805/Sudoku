@@ -10,9 +10,9 @@
 [AutoOverridesEquals(
 	nameof(_0), nameof(_1), nameof(_2), nameof(_3), nameof(_4), nameof(_5),
 	nameof(_6), nameof(_7), nameof(_8), nameof(_9), nameof(_10), nameof(_11),
-	UseExplicitlyImplementation = true, EmitInKeyword = true)]
-[AutoOverloadsEqualityOperators(EmitInKeyword = true)]
-[AutoImplementsEnumerable(typeof(int), nameof(Offsets), UseExplicitImplementation = true, ConversionExpression = "((IEnumerable<int>)@).*")]
+	UseExplicitImplementation = true, EmitsInKeyword = true)]
+[AutoOverloadsEqualityOperators(EmitsInKeyword = true)]
+[AutoImplementsEnumerable(typeof(int), nameof(Offsets), UseExplicitImplementation = true, Pattern = "((IEnumerable<int>)@).*")]
 public unsafe partial struct Candidates :
 	IDefaultable<Candidates>,
 	IEnumerable<int>,

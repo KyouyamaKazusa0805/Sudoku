@@ -37,7 +37,7 @@ public sealed partial class AutoImplementsEnumerableGenerator : ISourceGenerator
 			string fullName = type.ToDisplayString(TypeFormats.FullName);
 			bool @explicit = attributeData.GetNamedArgument<bool>("UseExplicitImplementation");
 			string elementTypeFullName = elementType.ToDisplayString(TypeFormats.FullName);
-			string[] rawConversionExprs = attributeData.GetNamedArgument("ConversionExpression", "*")!.Split('|');
+			string[] rawConversionExprs = attributeData.GetNamedArgument("Pattern", "*")!.Split('|');
 			string[] conversionExprs = rawConversionExprs is [var first] ? new[] { first, "@.*" } : rawConversionExprs;
 			convert(ref conversionExprs[0]);
 			convert(ref conversionExprs[1]);

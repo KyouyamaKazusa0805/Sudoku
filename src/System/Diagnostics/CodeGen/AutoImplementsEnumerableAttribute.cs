@@ -6,7 +6,12 @@
 /// </summary>
 /// <seealso cref="IEnumerable{T}"/>
 [AttributeUsage(AttributeTargets.Class | AttributeTargets.Struct, AllowMultiple = false, Inherited = true)]
-public sealed class AutoImplementsEnumerableAttribute : Attribute
+public sealed class AutoImplementsEnumerableAttribute :
+	Attribute,
+	ITypeBinder,
+	IInterfaceImplementingCaseController,
+	ISingleMemberBinder,
+	IPatternProvider
 {
 	/// <summary>
 	/// Initializes an <see cref="AutoImplementsEnumerableAttribute"/> instance via the specified element type
@@ -15,13 +20,10 @@ public sealed class AutoImplementsEnumerableAttribute : Attribute
 	/// <param name="elementType">The element type.</param>
 	/// <param name="memberName">The member name.</param>
 	public AutoImplementsEnumerableAttribute(Type elementType, string? memberName = null)
-		=> (ElementType, MemberName) = (elementType, memberName);
+		=> (Type, MemberName) = (elementType, memberName);
 
 
-	/// <summary>
-	/// Indiactes whether the source generator will emit explicit interface implementation instead
-	/// of implicit one. The default value is <see langword="false"/>.
-	/// </summary>
+	/// <inheritdoc/>
 	public bool UseExplicitImplementation { get; init; } = false;
 
 	/// <summary>
@@ -38,7 +40,7 @@ public sealed class AutoImplementsEnumerableAttribute : Attribute
 	/// <item>
 	/// <term><c>!</c></term>
 	/// <description>
-	/// Will be expanded to the full name of the elements, which is same as <see cref="ElementType"/>.
+	/// Will be expanded to the full name of the elements, which is same as <see cref="Type"/>.
 	/// </description>
 	/// </item>
 	/// <item>
@@ -56,15 +58,12 @@ public sealed class AutoImplementsEnumerableAttribute : Attribute
 	/// <c><![CDATA[((IEnumerable<ElementType>)MemberName).GetEnumerator()]]></c>.
 	/// </para>
 	/// </summary>
-	public string ConversionExpression { get; init; } = "*";
+	[DisallowNull]
+	public string? Pattern { get; init; } = "*";
 
-	/// <summary>
-	/// Indicates the member name to compare.
-	/// </summary>
+	/// <inheritdoc/>
 	public string? MemberName { get; }
 
-	/// <summary>
-	/// Indicates the element type.
-	/// </summary>
-	public Type ElementType { get; }
+	/// <inheritdoc/>
+	public Type Type { get; }
 }

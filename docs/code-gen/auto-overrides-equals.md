@@ -51,19 +51,19 @@ partial class Student
 
 这样就可以了。
 
-### `UseExplicitlyImplementation` 属性
+### `UseExplicitImplementation` 属性
 
 仔细看前面的实现代码，可以发现具体类型的 `Equals` 方法其实是实现的 `IEquatable<>` 接口里的那个方法签名。如果类型实现了该接口的话，我们可以试着设置该属性为 `true`，这样的话，源代码生成器将会把此时的具体类型的 `Equals` 比较代码改成显式接口实现。
 
 对于需要带有 `in` 参数但又需要实现该接口的类型，该属性会比较有用。
 
-### `EmitSealedKeyword` 属性
+### `EmitsSealedKeyword` 属性
 
 该属性表示是否对从基类型派生下来的这个 `Equals` 方法设置 `sealed` 修饰符。如果设置了该属性的话，那么生成的这个代码就被密封起来，派生类型就不可重写此 `Equals` 方法了。
 
 注意这里说的是 `object.Equals(object?)` 这个重写，而不是 `IEquatable<T>.Equals(T?)` 这个。
 
-### `EmitInKeyword` 属性
+### `EmitsInKeyword` 属性
 
 该属性表示是否对实现的具体类型参数的 `Equals` 方法，给参数标记 `in` 修饰符。对于大值类型来说会比较有用，拷贝起来直接拷贝引用，可以起到一定的性能提升效果。
 

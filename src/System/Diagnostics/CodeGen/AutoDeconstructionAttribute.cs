@@ -6,22 +6,20 @@
 [AttributeUsage(
 	AttributeTargets.Class | AttributeTargets.Struct | AttributeTargets.Interface,
 	AllowMultiple = true, Inherited = false)]
-public sealed class AutoDeconstructionAttribute : Attribute
+public sealed class AutoDeconstructionAttribute : Attribute, IMultipleMembersBinder
 {
 	/// <summary>
 	/// Initializes an <see cref="AutoDeconstructionAttribute"/> instance
 	/// via the specified member expressions you want to deconstruct.
 	/// </summary>
-	/// <param name="memberExpression">The name of the members you want to deconstruct.</param>
+	/// <param name="memberExpressions">The name of the members you want to deconstruct.</param>
 	/// <exception cref="ArgumentException">Throws when the argument is empty.</exception>
-	public AutoDeconstructionAttribute(params string[] memberExpression)
-		=> MemberExpression = memberExpression.Length == 0
+	public AutoDeconstructionAttribute(params string[] memberExpressions)
+		=> MemberExpressions = memberExpressions.Length == 0
 			? throw new ArgumentException("You must set at least one instance to be deconstructed.")
-			: memberExpression;
+			: memberExpressions;
 
 
-	/// <summary>
-	/// Indicates the member names whose corresponding members will be able to be deconstructed.
-	/// </summary>
-	public string[] MemberExpression { get; }
+	/// <inheritdoc/>
+	public string[] MemberExpressions { get; }
 }

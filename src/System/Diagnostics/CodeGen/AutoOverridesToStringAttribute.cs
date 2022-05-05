@@ -23,15 +23,18 @@
 /// ]]></code>
 /// </remarks>
 [AttributeUsage(AttributeTargets.Class | AttributeTargets.Struct, AllowMultiple = false, Inherited = true)]
-public sealed class AutoOverridesToStringAttribute : Attribute
+public sealed class AutoOverridesToStringAttribute :
+	Attribute,
+	IMultipleMembersBinder,
+	IPatternProvider
 {
 	/// <summary>
 	/// Initializes an <see cref="AutoOverridesToStringAttribute"/> instance via the specified array
 	/// of <see cref="string"/> elements indicating the names of the data members you want to be output
 	/// in the output source file.
 	/// </summary>
-	/// <param name="memberNames">The name of data members, represented as a <see cref="string"/> array.</param>
-	public AutoOverridesToStringAttribute(params string[] memberNames) => MemberNames = memberNames;
+	/// <param name="memberExpressions">The name of data members, represented as a <see cref="string"/> array.</param>
+	public AutoOverridesToStringAttribute(params string[] memberExpressions) => MemberExpressions = memberExpressions;
 
 
 	/// <summary>
@@ -49,7 +52,7 @@ public sealed class AutoOverridesToStringAttribute : Attribute
 	/// </listheader>
 	/// <item>
 	/// <term><c>[index]</c>, where <c>index</c> is an index value beginning from 0</term>
-	/// <description>The member name at the specified index stored in the property <see cref="MemberNames"/></description>
+	/// <description>The member name at the specified index stored in the property <see cref="MemberExpressions"/></description>
 	/// </item>
 	/// <item>
 	/// <term><c>*</c></term>
@@ -58,16 +61,15 @@ public sealed class AutoOverridesToStringAttribute : Attribute
 	/// </list>
 	/// </para>
 	/// <para>
-	/// For example, the pattern <c>((char)[0]).*</c> means the first element in the array <see cref="MemberNames"/>
+	/// For example, the pattern <c>((char)[0]).*</c> means the first element in the array <see cref="MemberExpressions"/>
 	/// will be converted into a <see cref="char"/>, and then invoke the method <see cref="char.ToString()"/>
 	/// to get the result value.
 	/// </para>
 	/// <para>The default value is <see langword="null"/>.</para>
 	/// </summary>
+	[DisallowNull]
 	public string? Pattern { get; init; }
 
-	/// <summary>
-	/// Indicate the name of members that take part in the output.
-	/// </summary>
-	public string[] MemberNames { get; }
+	/// <inheritdoc/>
+	public string[] MemberExpressions { get; }
 }

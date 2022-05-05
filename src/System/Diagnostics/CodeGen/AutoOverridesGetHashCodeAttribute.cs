@@ -25,7 +25,11 @@
 /// </remarks>
 /// <seealso cref="HashCode"/>
 [AttributeUsage(AttributeTargets.Class | AttributeTargets.Struct, AllowMultiple = false, Inherited = true)]
-public sealed class AutoOverridesGetHashCodeAttribute : Attribute
+public sealed class AutoOverridesGetHashCodeAttribute :
+	Attribute,
+	IMultipleMembersBinder,
+	ISealedModifierEmitter,
+	IPatternProvider
 {
 	/// <summary>
 	/// Initializes an <see cref="AutoOverridesGetHashCodeAttribute"/> instance via the specified array
@@ -33,21 +37,18 @@ public sealed class AutoOverridesGetHashCodeAttribute : Attribute
 	/// the hash code calculation.
 	/// </summary>
 	/// <param name="memberNames">The name of data members, represented as a <see cref="string"/> array.</param>
-	public AutoOverridesGetHashCodeAttribute(params string[] memberNames) => MemberNames = memberNames;
+	public AutoOverridesGetHashCodeAttribute(params string[] memberNames) => MemberExpressions = memberNames;
 
 
-	/// <summary>
-	/// Indicates whether the source generator will emit the keyword <see langword="sealed"/> to the generated code.
-	/// </summary>
-	public bool EmitSealedKeyword { get; init; } = false;
+	/// <inheritdoc/>
+	public bool EmitsSealedKeyword { get; init; } = false;
 
 	/// <summary>
 	/// Indicates the pattern. The default value is <see langword="null"/>.
 	/// </summary>
+	[DisallowNull]
 	public string? Pattern { get; init; }
 
-	/// <summary>
-	/// Indicate the name of members that take part in the output.
-	/// </summary>
-	public string[] MemberNames { get; }
+	/// <inheritdoc/>
+	public string[] MemberExpressions { get; }
 }

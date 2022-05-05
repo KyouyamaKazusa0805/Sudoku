@@ -14,10 +14,10 @@ namespace Sudoku.Concepts.Collections;
 [JsonConverter(typeof(JsonConverter))]
 [DisableParameterlessConstructor(SuggestedMemberName = nameof(Empty))]
 [AutoOverridesGetHashCode(nameof(BinaryCode))]
-[AutoOverridesEquals(nameof(_low), nameof(_high), UseExplicitlyImplementation = true, EmitInKeyword = true)]
-[AutoOverloadsEqualityOperators(EmitInKeyword = true)]
+[AutoOverridesEquals(nameof(_low), nameof(_high), UseExplicitImplementation = true, EmitsInKeyword = true)]
+[AutoOverloadsEqualityOperators(EmitsInKeyword = true)]
 [AutoImplementsComparable(UseExplicitImplementation = true)]
-[AutoImplementsEnumerable(typeof(int), nameof(Offsets), UseExplicitImplementation = true, ConversionExpression = "((IEnumerable<int>)@).*")]
+[AutoImplementsEnumerable(typeof(int), nameof(Offsets), UseExplicitImplementation = true, Pattern = "((IEnumerable<int>)@).*")]
 public unsafe partial struct Cells :
 	IComparable<Cells>,
 	IDefaultable<Cells>,

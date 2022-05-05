@@ -12,7 +12,7 @@ namespace Sudoku.UI.Drawing.Shapes;
 /// Defines a custom collection that stores the <see cref="DrawingElement"/>s.
 /// </summary>
 [AutoOverridesToString(nameof(Count))]
-[AutoImplementsEnumerable(typeof(DrawingElement), nameof(_elements), UseExplicitImplementation = true, ConversionExpression = "((IEnumerable<!>)@[..Count]).*|((IEnumerable<!>)this).*")]
+[AutoImplementsEnumerable(typeof(DrawingElement), nameof(_elements), UseExplicitImplementation = true, Pattern = "((IEnumerable<!>)@[..Count]).*|((IEnumerable<!>)this).*")]
 internal sealed partial class DrawingElementBag :
 	IReadOnlyCollection<DrawingElement>,
 	IReadOnlyList<DrawingElement>,

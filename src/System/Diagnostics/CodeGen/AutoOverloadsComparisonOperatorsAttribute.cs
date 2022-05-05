@@ -12,17 +12,14 @@
 /// </remarks>
 /// <seealso cref="IComparable{T}.CompareTo(T)"/>
 [AttributeUsage(AttributeTargets.Class | AttributeTargets.Struct, AllowMultiple = false, Inherited = true)]
-public sealed class AutoOverloadsComparisonOperatorsAttribute : Attribute
+public sealed class AutoOverloadsComparisonOperatorsAttribute :
+	Attribute,
+	IInModifierEmitter,
+	INullableAnnotationEmitter
 {
-	/// <summary>
-	/// Indicates whether the source generator will emit keyword <see langword="in"/> to the parameters.
-	/// The default value is <see langword="false"/>.
-	/// </summary>
-	public bool EmitInKeyword { get; init; } = false;
+	/// <inheritdoc/>
+	public bool EmitsInKeyword { get; init; } = false;
 
-	/// <summary>
-	/// Indicates whether the source generator will emit nullable annotation <c>?</c> onto the arguments.
-	/// The default value is <see langword="false"/>.
-	/// </summary>
+	/// <inheritdoc/>
 	public bool WithNullableAnnotation { get; init; } = false;
 }

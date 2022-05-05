@@ -35,7 +35,7 @@ readonly partial struct Utf8Char
 }
 ```
 
-### `EmitSealedKeyword` 属性
+### `EmitsSealedKeyword` 属性
 
 该属性表示，是否我给实现的 `GetHashCode` 方法上追加 `sealed` 修饰符来防止对象派生时重写此方法。对于引用类型的话会比较好用，值类型显得比较没有意义：因为值类型没办法使用自定义的派生继承机制，因此 `sealed` 修饰符对于值类型来说没有特殊含义，甚至有编译器错误。
 

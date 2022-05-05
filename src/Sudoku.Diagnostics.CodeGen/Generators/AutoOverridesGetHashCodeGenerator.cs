@@ -92,7 +92,7 @@ public sealed partial class AutoOverridesGetHashCodeGenerator : ISourceGenerator
 
 			bool isNotStruct = type.TypeKind != TypeKind.Struct;
 			string? pattern = attributeData.GetNamedArgument<string>("Pattern");
-			bool withSealedKeyword = attributeData.GetNamedArgument<bool>("EmitSealedKeyword");
+			bool withSealedKeyword = attributeData.GetNamedArgument<bool>("EmitsSealedKeyword");
 			string sealedKeyword = withSealedKeyword && isNotStruct ? "sealed " : string.Empty;
 			string methodBody = targetSymbolsRawString.Count switch
 			{

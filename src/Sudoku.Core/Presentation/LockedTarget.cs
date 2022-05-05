@@ -6,9 +6,9 @@
 /// </summary>
 [JsonConverter(typeof(JsonConverter))]
 [AutoOverridesGetHashCode(nameof(Cells), nameof(Digit))]
-[AutoOverridesEquals(nameof(Digit), nameof(Cells), UseExplicitlyImplementation = true)]
+[AutoOverridesEquals(nameof(Digit), nameof(Cells), UseExplicitImplementation = true)]
 [AutoOverridesToString(nameof(Digit), nameof(Cells), Pattern = "Locked target: {[0] + 1}{[1]}")]
-[AutoOverloadsEqualityOperators(EmitInKeyword = true)]
+[AutoOverloadsEqualityOperators(EmitsInKeyword = true)]
 public readonly partial struct LockedTarget :
 	IEquatable<LockedTarget>,
 	IEqualityOperators<LockedTarget, LockedTarget>
