@@ -48,6 +48,11 @@
 	nameof(Base1), nameof(Base2), nameof(TargetQ1), nameof(TargetQ2),
 	nameof(TargetR1), nameof(TargetR2), nameof(MirrorQ1), nameof(MirrorQ2),
 	nameof(MirrorR1), nameof(MirrorR2), nameof(BaseCellsMap), nameof(TargetCellsMap))]
+[AutoOverridesEquals(
+	nameof(Base1), nameof(Base2), nameof(TargetQ1), nameof(TargetQ2),
+	nameof(TargetR1), nameof(TargetR2), nameof(MirrorQ1), nameof(MirrorQ2),
+	nameof(MirrorR1), nameof(MirrorR2), nameof(BaseCellsMap), nameof(TargetCellsMap), nameof(CrossLine),
+	EmitInKeyword = true)]
 public readonly partial record struct ExocetPattern(
 	int Base1, int Base2, int TargetQ1, int TargetQ2, int TargetR1, int TargetR2, in Cells CrossLine,
 	in Cells MirrorQ1, in Cells MirrorQ2, in Cells MirrorR1, in Cells MirrorR2) :
@@ -79,20 +84,6 @@ public readonly partial record struct ExocetPattern(
 		get => Cells.Empty + TargetQ1 + TargetQ2 + TargetR1 + TargetR2;
 	}
 
-
-	/// <summary>
-	/// Determine whether the specified <see cref="ExocetPattern"/> instance holds the same cell maps
-	/// as the current instance.
-	/// </summary>
-	/// <param name="other">The instance to compare.</param>
-	/// <returns>A <see cref="bool"/> result.</returns>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public bool Equals(in ExocetPattern other)
-		=> Base1 == other.Base1 && Base2 == other.Base2 && TargetQ1 == other.TargetQ1
-			&& TargetQ2 == other.TargetQ2 && TargetR1 == other.TargetR1 && TargetR2 == other.TargetR2
-			&& CrossLine == other.CrossLine && MirrorQ1 == other.MirrorQ1 && MirrorQ2 == other.MirrorQ2
-			&& other.MirrorR1 == other.MirrorR1 && MirrorR2 == other.MirrorR2
-			&& BaseCellsMap == other.BaseCellsMap && TargetCellsMap == other.TargetCellsMap;
 
 	/// <inheritdoc cref="object.ToString"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

@@ -29,6 +29,7 @@
 /// <param name="Pair">The pair cells that is <c>P</c> in that sketch.</param>
 [AutoOverridesToString(nameof(Map))]
 [AutoOverridesGetHashCode(nameof(Square), nameof(BaseLine), nameof(Pair))]
+[AutoOverridesEquals(nameof(Square), nameof(BaseLine), nameof(Pair), EmitInKeyword = true)]
 public readonly partial record struct QiuDeadlyPattern(in Cells Square, in Cells BaseLine, in Cells Pair) :
 	ITechniquePattern<QiuDeadlyPattern>
 {
@@ -38,15 +39,4 @@ public readonly partial record struct QiuDeadlyPattern(in Cells Square, in Cells
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => Square | BaseLine | Pair;
 	}
-
-
-	/// <summary>
-	/// Determine whether the specified <see cref="QiuDeadlyPattern"/> instance holds the same
-	/// cell maps as the current instance.
-	/// </summary>
-	/// <param name="other">The instance to compare.</param>
-	/// <returns>A <see cref="bool"/> result.</returns>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public bool Equals(in QiuDeadlyPattern other)
-		=> Square == other.Square && BaseLine == other.BaseLine && Pair == other.Pair;
 }

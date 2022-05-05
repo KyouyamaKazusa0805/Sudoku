@@ -5432,16 +5432,11 @@
             Indicates the target cells.
             </summary>
         </member>
-        <member name="M:Sudoku.Concepts.Solving.ExocetPattern.Equals(Sudoku.Concepts.Solving.ExocetPattern@)">
-            <summary>
-            Determine whether the specified <see cref="T:Sudoku.Concepts.Solving.ExocetPattern"/> instance holds the same cell maps
-            as the current instance.
-            </summary>
-            <param name="other">The instance to compare.</param>
-            <returns>A <see cref="T:System.Boolean"/> result.</returns>
-        </member>
         <member name="M:Sudoku.Concepts.Solving.ExocetPattern.ToString">
             <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
+        <member name="M:Sudoku.Concepts.Solving.ExocetPattern.Equals(Sudoku.Concepts.Solving.ExocetPattern@)">
+            <inheritdoc cref="M:System.IEquatable`1.Equals(`0)"/>
         </member>
         <member name="M:Sudoku.Concepts.Solving.ExocetPattern.GetHashCode">
             <inheritdoc cref="M:System.Object.GetHashCode"/>
@@ -5528,12 +5523,7 @@
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.Solving.QiuDeadlyPattern.Equals(Sudoku.Concepts.Solving.QiuDeadlyPattern@)">
-            <summary>
-            Determine whether the specified <see cref="T:Sudoku.Concepts.Solving.QiuDeadlyPattern"/> instance holds the same
-            cell maps as the current instance.
-            </summary>
-            <param name="other">The instance to compare.</param>
-            <returns>A <see cref="T:System.Boolean"/> result.</returns>
+            <inheritdoc cref="M:System.IEquatable`1.Equals(`0)"/>
         </member>
         <member name="M:Sudoku.Concepts.Solving.QiuDeadlyPattern.GetHashCode">
             <inheritdoc cref="M:System.Object.GetHashCode"/>

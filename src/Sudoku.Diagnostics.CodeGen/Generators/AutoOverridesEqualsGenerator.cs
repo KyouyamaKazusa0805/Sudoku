@@ -23,7 +23,8 @@ public sealed partial class AutoOverridesEqualsGenerator : ISourceGenerator
 				SymbolOutputInfo.FromSymbol(type);
 
 			var targetSymbolsRawString = new List<string>();
-			if (typeKind == TypeKind.Class)
+			bool isClass = typeKind == TypeKind.Class, isStruct = typeKind == TypeKind.Struct;
+			if (isClass)
 			{
 				targetSymbolsRawString.Add("other is not null");
 			}
@@ -66,27 +67,27 @@ public sealed partial class AutoOverridesEqualsGenerator : ISourceGenerator
 
 			var namedArgs = attributeData.NamedArguments;
 			string inKeyword = attributeData.GetNamedArgument<bool>("EmitInKeyword") ? "in " : string.Empty;
-			string sealedKeyword = attributeData.GetNamedArgument<bool>("EmitSealedKeyword") && typeKind == TypeKind.Class
+			string sealedKeyword = attributeData.GetNamedArgument<bool>("EmitSealedKeyword") && isClass
 				? "sealed "
 				: string.Empty;
 			bool isExplicitImpl = attributeData.GetNamedArgument<bool>("UseExplicitlyImplementation");
 
 			string fullTypeName = type.ToDisplayString(TypeFormats.FullName);
 			string typeKindString = type.GetTypeKindModifier();
-			string nullableAttribute = typeKind == TypeKind.Class ? "[NotNullWhen(true)] " : string.Empty;
-			string equalsObjectImpl = typeKind == TypeKind.Struct
+			string nullableAttribute = isClass ? "[NotNullWhen(true)] " : string.Empty;
+			string equalsObjectImpl = isStruct
 				? $"obj is {fullTypeName} comparer && Equals(comparer)"
 				: $"Equals(comparer as {fullTypeName})";
 			string objectEquals = type.IsRecord
-				? "\t// The method 'Equals(object?)' exists."
+				? $"\t// The method '{nameof(Equals)}(object?)' exists."
 				: type.IsRefLikeType
 				? "\t// The method cannot be generated because the type is a ref struct."
 				: $$"""
-					/// <inheritdoc cref="object.Equals(object?)"/>
+					/// <inheritdoc cref="object.{{nameof(Equals)}}(object?)"/>
 					[global::System.Runtime.CompilerServices.CompilerGenerated]
 					[global::System.CodeDom.Compiler.GeneratedCode("{{GetType().FullName}}", "{{VersionValue}}")]
 					[global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
-					public {{sealedKeyword}}override {{readOnlyKeyword}}bool Equals([global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)] object? obj)
+					public {{sealedKeyword}}override {{readOnlyKeyword}}bool {{nameof(Equals)}}([global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)] object? obj)
 						=> {{equalsObjectImpl}};
 				""";
 
@@ -96,26 +97,26 @@ public sealed partial class AutoOverridesEqualsGenerator : ISourceGenerator
 					Name: nameof(object.Equals),
 					Parameters: [{ Type: var parameterType }],
 					ReturnType.SpecialType: SpecialType.System_Boolean
-				} && SymbolEqualityComparer.Default.Equals(parameterType, type);
+				} && SymbolEqualityComparer.Default.Equals(parameterType, type) && !type.IsRecord;
 			string nullableAnnotation = typeKind == TypeKind.Class ? "?" : string.Empty;
 			bool containsGenericEquals = type.GetMembers().OfType<IMethodSymbol>().Any(methodPredicate);
 			string genericEquals = (containsGenericEquals, isExplicitImpl) switch
 			{
-				(true, false) => $"\t// The method 'Equals({fullTypeName}{nullableAnnotation})' exists.",
+				(true, false) => $"\t// The method '{nameof(Equals)}({fullTypeName}{nullableAnnotation})' exists.",
 				(_, true) => $$"""
 					/// <inheritdoc/>
 					[global::System.Runtime.CompilerServices.CompilerGenerated]
 					[global::System.CodeDom.Compiler.GeneratedCode("{{GetType().FullName}}", "{{VersionValue}}")]
 					[global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
-					{{readOnlyKeyword}}bool global::System.IEquatable<{{fullTypeName}}>.Equals({{nullableAttribute}}{{fullTypeName}}{{nullableAnnotation}} other)
-						=> Equals(other);
+					{{readOnlyKeyword}}bool global::System.IEquatable<{{fullTypeName}}>.{{nameof(Equals)}}({{nullableAttribute}}{{fullTypeName}}{{nullableAnnotation}} other)
+						=> {{nameof(Equals)}}(other);
 				""",
 				_ => $$"""
 					/// <inheritdoc cref="IEquatable{T}.Equals(T)"/>
 					[global::System.Runtime.CompilerServices.CompilerGenerated]
 					[global::System.CodeDom.Compiler.GeneratedCode("{{GetType().FullName}}", "{{VersionValue}}")]
 					[global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
-					public {{readOnlyKeyword}}bool Equals({{nullableAttribute}}{{inKeyword}}{{fullTypeName}}{{nullableAnnotation}} other)
+					public {{readOnlyKeyword}}bool {{nameof(Equals)}}({{nullableAttribute}}{{inKeyword}}{{fullTypeName}}{{nullableAnnotation}} other)
 						=> {{string.Join(" && ", targetSymbolsRawString)}};
 				"""
 			};
