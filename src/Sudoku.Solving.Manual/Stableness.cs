@@ -19,15 +19,15 @@ public enum Stableness : byte
 	/// <summary>
 	/// Indicates the stableness is less unstable.
 	/// </summary>
-	LessUnstable = 2,
+	LessUnstable = 1 << 1,
 
 	/// <summary>
 	/// Indicates the stableness is unstable.
 	/// </summary>
-	Unstable = 4,
+	Unstable = 1 << 2,
 
 	/// <summary>
 	/// Indicates the stableness is expremely unstable.
 	/// </summary>
-	ExtremelyUnstable = 8
+	ExtremelyUnstable = 1 << 3
 }

@@ -19,30 +19,30 @@ public enum SearcherNodeTypes
 	/// <summary>
 	/// Indicates the searcher can search on candidates in a same cell.
 	/// </summary>
-	SoleCell = 2,
+	SoleCell = 1 << 1,
 
 	/// <summary>
 	/// Indicates the searcher can search for locked candidate nodes.
 	/// </summary>
-	LockedCandidates = 4,
+	LockedCandidates = 1 << 2,
 
 	/// <summary>
 	/// Indicates the searcher can search for locked set nodes.
 	/// </summary>
-	LockedSet = 8,
+	LockedSet = 1 << 3,
 
 	/// <summary>
 	/// Indicates the searcher can search for hidden set nodes.
 	/// </summary>
-	HiddenSet = 16,
+	HiddenSet = 1 << 4,
 
 	/// <summary>
 	/// Indicates the searcher can search for almost rectangle nodes.
 	/// </summary>
-	UniqueRectangle = 32,
+	UniqueRectangle = 1 << 5,
 
 	/// <summary>
 	/// Indicates the searcher can search for kraken fish nodes.
 	/// </summary>
-	Kraken = 64
+	Kraken = 1 << 6
 }

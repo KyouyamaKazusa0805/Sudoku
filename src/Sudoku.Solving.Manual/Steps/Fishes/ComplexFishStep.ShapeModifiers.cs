@@ -16,11 +16,11 @@ partial record class ComplexFishStep
 		/// <summary>
 		/// Indicates the franken fish.
 		/// </summary>
-		Franken = 2,
+		Franken = 1 << 1,
 
 		/// <summary>
 		/// Indicates the mutant fish.
 		/// </summary>
-		Mutant = 4
+		Mutant = 1 << 2
 	}
 }

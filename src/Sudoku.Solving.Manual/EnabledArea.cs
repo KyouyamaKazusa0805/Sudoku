@@ -20,10 +20,10 @@ public enum EnabledArea : byte
 	/// <summary>
 	/// Indicates the gathering mode (All steps will be found here).
 	/// </summary>
-	Gathering = 2,
+	Gathering = 1 << 1,
 
 	/// <summary>
 	/// Indicates the experimental function can use the step searcher.
 	/// </summary>
-	Experimental = 4,
+	Experimental = 1 << 2
 }

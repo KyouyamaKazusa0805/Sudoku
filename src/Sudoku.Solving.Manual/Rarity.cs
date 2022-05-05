@@ -19,30 +19,30 @@ public enum Rarity : byte
 	/// <summary>
 	/// Indicates the rarity is often appears.
 	/// </summary>
-	Often = 2,
+	Often = 1 << 1,
 
 	/// <summary>
 	/// Indicates the rarity is sometimes appears.
 	/// </summary>
-	Sometimes = 4,
+	Sometimes = 1 << 2,
 
 	/// <summary>
 	/// Indicates the rarity is seldom appears.
 	/// </summary>
-	Seldom = 8,
+	Seldom = 1 << 3,
 
 	/// <summary>
 	/// Indicates the rarity is hardly ever appears.
 	/// </summary>
-	HardlyEver = 16,
+	HardlyEver = 1 << 4,
 
 	/// <summary>
 	/// Indicates the technique only appears in the special puzzles designed on purpose.
 	/// </summary>
-	OnlyForSpecialPuzzles = 32,
+	OnlyForSpecialPuzzles = 1 << 5,
 
 	/// <summary>
 	/// Indicates the technique can't appear because the technique will be replaced with another technique.
 	/// </summary>
-	ReplacedByOtherTechniques = 64
+	ReplacedByOtherTechniques = 1 << 6
 }

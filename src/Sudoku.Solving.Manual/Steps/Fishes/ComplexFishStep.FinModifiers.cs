@@ -17,17 +17,17 @@ partial record class ComplexFishStep
 		/// Indicates the finned fish
 		/// (i.e. contains fins, but the fish may be regular when the fins are removed).
 		/// </summary>
-		Finned = 2,
+		Finned = 1 << 1,
 
 		/// <summary>
 		/// Indicates the sashimi fish
 		/// (i.e. contains fins, and the fish may be degenerated to hidden singles when the fins are removed).
 		/// </summary>
-		Sashimi = 4,
+		Sashimi = 1 << 2,
 
 		/// <summary>
 		/// Indicates the siamese fish (i.e. two fish with different cover sets).
 		/// </summary>
-		Siamese = 8
+		Siamese = 1 << 3
 	}
 }

@@ -19,26 +19,26 @@ public enum DifficultyLevel : byte
 	/// <summary>
 	/// Indicates the difficulty is moderate.
 	/// </summary>
-	Moderate = 2,
+	Moderate = 1 << 1,
 
 	/// <summary>
 	/// Indicates the difficulty is hard.
 	/// </summary>
-	Hard = 4,
+	Hard = 1 << 2,
 
 	/// <summary>
 	/// Indicates the difficulty is fiendish.
 	/// </summary>
-	Fiendish = 8,
+	Fiendish = 1 << 3,
 
 	/// <summary>
 	/// Indicates the difficulty is nightmare.
 	/// </summary>
-	Nightmare = 16,
+	Nightmare = 1 << 4,
 
 	/// <summary>
 	/// Indicates the puzzle can't be solved
 	/// unless using last resort methods.
 	/// </summary>
-	LastResort = 32,
+	LastResort = 1 << 5,
 }

@@ -19,35 +19,35 @@ public enum SolverResultFormattingOptions : short
 	/// <summary>
 	/// Indicates the analysis result will append the step label.
 	/// </summary>
-	ShowStepLabel = 2,
+	ShowStepLabel = 1 << 1,
 
 	/// <summary>
 	/// Indicates the analysis result will use simple mode to show steps.
 	/// </summary>
-	ShowSimple = 4,
+	ShowSimple = 1 << 2,
 
 	/// <summary>
 	/// Indicates the analysis result will show the bottleneck.
 	/// </summary>
-	ShowBottleneck = 8,
+	ShowBottleneck = 1 << 3,
 
 	/// <summary>
 	/// Indicates the analysis result will show the difficulty.
 	/// </summary>
-	ShowDifficulty = 16,
+	ShowDifficulty = 1 << 4,
 
 	/// <summary>
 	/// Indicates the analysis result will show all steps after the bottleneck.
 	/// </summary>
-	ShowStepsAfterBottleneck = 32,
+	ShowStepsAfterBottleneck = 1 << 5,
 
 	/// <summary>
 	/// Indicates the analysis result will show the step detail.
 	/// </summary>
-	ShowStepDetail = 64,
+	ShowStepDetail = 1 << 6,
 
 	/// <summary>
 	/// Indicates the analysis result will show the steps.
 	/// </summary>
-	ShowSteps = 128
+	ShowSteps = 1 << 7
 }

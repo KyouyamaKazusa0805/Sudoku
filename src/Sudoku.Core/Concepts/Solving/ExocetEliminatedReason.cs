@@ -16,41 +16,41 @@ public enum ExocetEliminatedReason : byte
 	/// Indicates the target inference eliminations (that is eliminated via mirror cells).
 	/// </summary>
 	[EnumFieldName("Target inference")]
-	TargetInference = 2,
+	TargetInference = 1 << 1,
 
 	/// <summary>
 	/// Indicates the mirror eliminations.
 	/// </summary>
 	[EnumFieldName("Mirror")]
-	Mirror = 4,
+	Mirror = 1 << 2,
 
 	/// <summary>
 	/// Indicates the bi-bi pattern.
 	/// </summary>
 	[EnumFieldName("Bi-bi pattern")]
-	BiBiPattern = 8,
+	BiBiPattern = 1 << 3,
 
 	/// <summary>
 	/// Indicates the target pair eliminations.
 	/// </summary>
 	[EnumFieldName("Target pair")]
-	TargetPair = 16,
+	TargetPair = 1 << 4,
 
 	/// <summary>
 	/// Indicates the generalized swordfish eliminations.
 	/// </summary>
 	[EnumFieldName("Generalized swordfish")]
-	GeneralizedSwordfish = 32,
+	GeneralizedSwordfish = 1 << 5,
 
 	/// <summary>
 	/// Indicates the true base eliminations.
 	/// </summary>
 	[EnumFieldName("True base")]
-	TrueBase = 64,
+	TrueBase = 1 << 6,
 
 	/// <summary>
 	/// Indicates the compatibility test eliminations.
 	/// </summary>
 	[EnumFieldName("Compatibility test")]
-	CompatibilityTest = 128
+	CompatibilityTest = 1 << 7
 }

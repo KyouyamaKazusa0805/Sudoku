@@ -19,15 +19,15 @@ public enum DisabledReason : short
 	/// <summary>
 	/// Indicates the searcher has bugs while searching.
 	/// </summary>
-	HasBugs = 2,
+	HasBugs = 1 << 1,
 
 	/// <summary>
 	/// Indicates the searcher runs so slowly that the author himself can't stand to use it.
 	/// </summary>
-	TooSlow = 4,
+	TooSlow = 1 << 2,
 
 	/// <summary>
 	/// Indicates the searcher has not been implemented, or has been deprecated.
 	/// </summary>
-	DeprecatedOrNotImplemented = 8
+	DeprecatedOrNotImplemented = 1 << 3
 }

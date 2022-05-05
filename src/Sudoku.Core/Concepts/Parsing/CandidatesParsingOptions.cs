@@ -15,10 +15,10 @@ public enum CandidatesParsingOptions : byte
 	/// <summary>
 	/// Indicates the bracket form, such as <c>{ r1c1, r3c3 }(12)</c>.
 	/// </summary>
-	BracketForm = 2,
+	BracketForm = 1 << 1,
 
 	/// <summary>
 	/// Indicates the prepositional form, such as <c>12{ r1c1, r3c3 }</c>.
 	/// </summary>
-	PrepositionalForm = 4
+	PrepositionalForm = 1 << 2
 }
