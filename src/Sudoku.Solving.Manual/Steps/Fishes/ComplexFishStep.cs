@@ -12,7 +12,7 @@
 /// <param name="Endofins">The endo-fins.</param>
 /// <param name="IsFranken">Indicates whether the fish is a Franken fish.</param>
 /// <param name="IsSashimi">Indicates whether the fish is a Sashimi fish.</param>
-public sealed partial record class ComplexFishStep(
+public sealed record class ComplexFishStep(
 	ConclusionList Conclusions, ViewList Views, int Digit, int BaseSetsMask, int CoverSetsMask,
 	in Cells Exofins, in Cells Endofins, bool IsFranken, bool? IsSashimi) :
 	FishStep(Conclusions, Views, Digit, BaseSetsMask, CoverSetsMask),
@@ -66,10 +66,10 @@ public sealed partial record class ComplexFishStep(
 		=> (Size, ShapeModifier, FinModifier) switch
 		{
 			(3, _, _) => Rarity.Sometimes,
-			(4, ShapeModifiers.Franken, _) => Rarity.Sometimes,
-			(4, ShapeModifiers.Mutant, _) => Rarity.Seldom,
-			(5, ShapeModifiers.Franken, FinModifiers.Sashimi) => Rarity.Seldom,
-			(5, ShapeModifiers.Mutant, _) => Rarity.Seldom,
+			(4, ComplexFishShapeKind.Franken, _) => Rarity.Sometimes,
+			(4, ComplexFishShapeKind.Mutant, _) => Rarity.Seldom,
+			(5, ComplexFishShapeKind.Franken, ComplexFishFinKind.Sashimi) => Rarity.Seldom,
+			(5, ComplexFishShapeKind.Mutant, _) => Rarity.Seldom,
 			_ => Rarity.HardlyEver
 		};
 
@@ -80,8 +80,8 @@ public sealed partial record class ComplexFishStep(
 	{
 		get
 		{
-			string? fin = FinModifier == FinModifiers.Normal ? null : $"{FinModifier} ";
-			string? shape = ShapeModifier == ShapeModifiers.Basic ? null : $"{ShapeModifier}";
+			string? fin = FinModifier == ComplexFishFinKind.Normal ? null : $"{FinModifier} ";
+			string? shape = ShapeModifier == ComplexFishShapeKind.Basic ? null : $"{ShapeModifier}";
 			return $"{fin}{shape}{FishNames[Size]}";
 		}
 	}
@@ -89,13 +89,18 @@ public sealed partial record class ComplexFishStep(
 	/// <summary>
 	/// Indicates the fin modifier.
 	/// </summary>
-	private FinModifiers FinModifier
-		=> IsSashimi switch { true => FinModifiers.Sashimi, false => FinModifiers.Finned, _ => FinModifiers.Normal };
+	private ComplexFishFinKind FinModifier
+		=> IsSashimi switch
+		{
+			true => ComplexFishFinKind.Sashimi,
+			false => ComplexFishFinKind.Finned,
+			_ => ComplexFishFinKind.Normal
+		};
 
 	/// <summary>
 	/// The shape modifier.
 	/// </summary>
-	private ShapeModifiers ShapeModifier => IsFranken ? ShapeModifiers.Franken : ShapeModifiers.Mutant;
+	private ComplexFishShapeKind ShapeModifier => IsFranken ? ComplexFishShapeKind.Franken : ComplexFishShapeKind.Mutant;
 
 	/// <summary>
 	/// Indicates the base houses.

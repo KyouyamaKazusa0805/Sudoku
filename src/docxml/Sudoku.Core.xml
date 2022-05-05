@@ -4832,6 +4832,53 @@
             Indicates the candidate used.
             </summary>
         </member>
+        <member name="T:Sudoku.Concepts.Solving.ComplexFishFinKind">
+            <summary>
+            Indicates the fin modifiers.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Concepts.Solving.ComplexFishFinKind.Normal">
+            <summary>
+            Indicates the normal fish (i.e. no fins).
+            </summary>
+        </member>
+        <member name="F:Sudoku.Concepts.Solving.ComplexFishFinKind.Finned">
+            <summary>
+            Indicates the finned fish
+            (i.e. contains fins, but the fish may be regular when the fins are removed).
+            </summary>
+        </member>
+        <member name="F:Sudoku.Concepts.Solving.ComplexFishFinKind.Sashimi">
+            <summary>
+            Indicates the sashimi fish
+            (i.e. contains fins, and the fish may be degenerated to hidden singles when the fins are removed).
+            </summary>
+        </member>
+        <member name="F:Sudoku.Concepts.Solving.ComplexFishFinKind.Siamese">
+            <summary>
+            Indicates the siamese fish (i.e. two fish share same base sets, with different cover sets).
+            </summary>
+        </member>
+        <member name="T:Sudoku.Concepts.Solving.ComplexFishShapeKind">
+            <summary>
+            Indicates the shape modifiers.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Concepts.Solving.ComplexFishShapeKind.Basic">
+            <summary>
+            Indicates the basic fish.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Concepts.Solving.ComplexFishShapeKind.Franken">
+            <summary>
+            Indicates the franken fish.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Concepts.Solving.ComplexFishShapeKind.Mutant">
+            <summary>
+            Indicates the mutant fish.
+            </summary>
+        </member>
         <member name="T:Sudoku.Concepts.Solving.Conclusion">
             <summary>
             Encapsulates a conclusion representation while solving in logic.

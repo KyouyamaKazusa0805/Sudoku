@@ -6795,53 +6795,6 @@
         <member name="M:Sudoku.Solving.Manual.Steps.ComplexFishStep.Equals(Sudoku.Solving.Manual.Steps.ComplexFishStep,Sudoku.Solving.Manual.Steps.ComplexFishStep)">
             <inheritdoc/>
         </member>
-        <member name="T:Sudoku.Solving.Manual.Steps.ComplexFishStep.FinModifiers">
-            <summary>
-            Indicates the fin modifiers.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Solving.Manual.Steps.ComplexFishStep.FinModifiers.Normal">
-            <summary>
-            Indicates the normal fish (i.e. no fins).
-            </summary>
-        </member>
-        <member name="F:Sudoku.Solving.Manual.Steps.ComplexFishStep.FinModifiers.Finned">
-            <summary>
-            Indicates the finned fish
-            (i.e. contains fins, but the fish may be regular when the fins are removed).
-            </summary>
-        </member>
-        <member name="F:Sudoku.Solving.Manual.Steps.ComplexFishStep.FinModifiers.Sashimi">
-            <summary>
-            Indicates the sashimi fish
-            (i.e. contains fins, and the fish may be degenerated to hidden singles when the fins are removed).
-            </summary>
-        </member>
-        <member name="F:Sudoku.Solving.Manual.Steps.ComplexFishStep.FinModifiers.Siamese">
-            <summary>
-            Indicates the siamese fish (i.e. two fish with different cover sets).
-            </summary>
-        </member>
-        <member name="T:Sudoku.Solving.Manual.Steps.ComplexFishStep.ShapeModifiers">
-            <summary>
-            Indicates the shape modifiers.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Solving.Manual.Steps.ComplexFishStep.ShapeModifiers.Basic">
-            <summary>
-            Indicates the basic fish.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Solving.Manual.Steps.ComplexFishStep.ShapeModifiers.Franken">
-            <summary>
-            Indicates the franken fish.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Solving.Manual.Steps.ComplexFishStep.ShapeModifiers.Mutant">
-            <summary>
-            Indicates the mutant fish.
-            </summary>
-        </member>
         <member name="T:Sudoku.Solving.Manual.Steps.FishStep">
             <summary>
             Provides with a step that is a <b>Fish</b> technique.
