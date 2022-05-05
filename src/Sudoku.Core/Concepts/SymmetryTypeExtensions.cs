@@ -15,8 +15,7 @@ public static class SymmetryTypeExtensions
 	{
 		const string separator = ", ";
 		var sb = new StringHandler(210);
-		var flags = Enum.GetValues<SymmetryType>()[1..];
-		foreach (var flag in flags)
+		foreach (var flag in Enum.GetValues<SymmetryType>()[1..])
 		{
 			if (@this.Flags(flag))
 			{
@@ -25,7 +24,7 @@ public static class SymmetryTypeExtensions
 			}
 		}
 
-		if (sb.Length != 0)
+		if (sb is not [])
 		{
 			sb.RemoveFromEnd(separator.Length);
 			return sb.ToStringAndClear();
