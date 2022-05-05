@@ -13,6 +13,10 @@
 
 本部分列举一下项目所使用到的源代码生成器的基本类型，以及生成的具体内容。
 
+* [解构函数生成器](auto-decon)：生成解构函数的代码。
+* [实现 `CompareTo` 方法的生成器](auto-impl-comparable)：生成关于 `IComparable<>` 接口实现的代码。
+* [实现 `GetEnumerator` 方法的生成器](auto-impl-enumerable)：生成关于 `IEnumerable<>` 接口实现的代码。
+
 **`GlobalConfigValueGenerator`**（实现 `IIncrementalGenerator`）
 
 只给源代码生成器提供服务。用于给源代码生成器的项目提供基本的程序信息，比如版本号以及项目名称。
