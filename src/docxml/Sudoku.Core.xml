@@ -7393,10 +7393,10 @@
         </member>
         <member name="M:Sudoku.Concepts.Inference_EnumSwitchExpressionExtensions.GetIdentifier(Sudoku.Concepts.Inference)">
             <summary>
-            Method <c>GetIdentifier</c>.
+            Gets the identifier of the inference.
             </summary>
-            <returns>The result value.</returns>
-            <!--TODO: Wait for adding options to modify on documentation comments here.-->
+            <param name="this">The inference.</param>
+            <returns>The identifier value.</returns>
         </member>
         <member name="T:Sudoku.Concepts.SymmetryType_EnumSwitchExpressionExtensions">
             <summary>
@@ -7405,10 +7405,10 @@
         </member>
         <member name="M:Sudoku.Concepts.SymmetryType_EnumSwitchExpressionExtensions.GetName(Sudoku.Concepts.SymmetryType)">
             <summary>
-            Method <c>GetName</c>.
+            Get the name of the current symmetry type.
             </summary>
-            <returns>The result value.</returns>
-            <!--TODO: Wait for adding options to modify on documentation comments here.-->
+            <param name="this">The type.</param>
+            <returns>The name.</returns>
         </member>
         <member name="T:Sudoku.Diagnostics.FileCounter">
             <summary>

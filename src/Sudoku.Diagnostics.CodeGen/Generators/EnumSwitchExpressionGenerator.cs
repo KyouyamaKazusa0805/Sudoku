@@ -44,13 +44,20 @@ public sealed partial class EnumSwitchExpressionGenerator : ISourceGenerator
 					_ => "throw new global::System.ArgumentOutOfRangeException(nameof(@this))"
 				};
 
+				string methodDescription = typeAttributeData.GetNamedArgument<string>("MethodDescription")
+					?? $"Method <c>{key}</c>";
+				string thisParamDescription = typeAttributeData.GetNamedArgument<string>("ThisParameterDescription")
+					?? "The current instance.";
+				string returnValueDescription = typeAttributeData.GetNamedArgument<string>("ReturnValueDescription")
+					?? "The result value.";
+
 				emittedMethods.Add(
 					$$"""
 					/// <summary>
-						/// Method <c>{{key}}</c>.
+						/// {{methodDescription}}
 						/// </summary>
-						/// <returns>The result value.</returns>
-						/// <!--TODO: Wait for adding options to modify on documentation comments here.-->
+						/// <param name="this">{{thisParamDescription}}</param>
+						/// <returns>{{returnValueDescription}}</returns>
 						[global::System.Runtime.CompilerServices.CompilerGenerated]
 						[global::System.CodeDom.Compiler.GeneratedCode("{{GetType().FullName}}", "{{VersionValue}}")]
 						[global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]

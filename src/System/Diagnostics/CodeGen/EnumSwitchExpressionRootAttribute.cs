@@ -15,6 +15,24 @@ public sealed class EnumSwitchExpressionRootAttribute : Attribute
 
 
 	/// <summary>
+	/// Indicates the description of the method, which will be emitted as the <c>summary</c> block.
+	/// The default value is <see langword="null"/>.
+	/// </summary>
+	public string? MethodDescription { get; init; }
+
+	/// <summary>
+	/// Indicates the description of the parameter <c>@this</c>, which will be emitted as the <c>param</c> block.
+	/// The default value is <see langword="null"/>.
+	/// </summary>
+	public string? ThisParameterDescription { get; init; }
+
+	/// <summary>
+	/// Indicates the description of the return value, which will be emitted as the <c>returns</c> block.
+	/// The default value is <see langword="null"/>.
+	/// </summary>
+	public string? ReturnValueDescription { get; init; }
+
+	/// <summary>
 	/// Indicates the name of the switch expression root.
 	/// </summary>
 	public string Key { get; }
