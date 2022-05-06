@@ -106,10 +106,6 @@ In addition, this repo may update **frequently** (At least 1 commit in a day).
 
 > Some items aren't displayed because they are deprecated. In fact, the current repository did implement those like WPF. But now .NET has been updating very frequently, so I won't consider to maintain older frameworks of this repository, large complexity.
 
-## Open Resource License
-
-[MIT License](https://github.com/SunnieShine/Sudoku/blob/main/LICENSE)
-
 ## Sudoku Technique References
 
 Here we list some websites about sudoku techniques that I used and referenced. The contents are constructed by myself, so if you want to learn more about sudoku techniques that this solution used and implemented, you can visit the following links to learn about more information. In Chinese.
