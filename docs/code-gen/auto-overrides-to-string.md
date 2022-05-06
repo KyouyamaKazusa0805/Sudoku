@@ -2,7 +2,7 @@
 
 ## 基本介绍
 
-**功能**：通过特性生成 `GetHashCode` 方法的重写代码。
+**功能**：通过特性生成 `ToString` 方法的重写代码。
 
 **类型名**：[`AutoOverridesToStringGenerator`](https://github.com/SunnieShine/Sudoku/blob/main/src/Sudoku.Diagnostics.CodeGen/Generators/AutoOverridesToStringGenerator.cs)
 

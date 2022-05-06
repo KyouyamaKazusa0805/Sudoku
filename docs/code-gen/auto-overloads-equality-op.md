@@ -2,7 +2,7 @@
 
 ## 基本介绍
 
-**功能**：通过特性生成 `>`、`>=`、`<` 和 `<=` 运算符的重载规则。
+**功能**：通过特性生成 `==` 和 `!=` 运算符的重载规则。
 
 **类型名**：[`AutoOverloadsEqualityOperatorsGenerator`](https://github.com/SunnieShine/Sudoku/blob/main/src/Sudoku.Diagnostics.CodeGen/Generators/AutoOverloadsEqualityOperatorsGenerator.cs)
 
