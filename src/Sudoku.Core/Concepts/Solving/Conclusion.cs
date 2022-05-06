@@ -20,6 +20,7 @@
 [AutoOverloadsComparisonOperators]
 [AutoOverloadsEqualityOperators]
 [AutoImplementsComparable(nameof(_mask))]
+[AutoImplementsDefaultable("Default")]
 public readonly partial struct Conclusion :
 	IComparable<Conclusion>,
 	IComparisonOperators<Conclusion, Conclusion>,
@@ -27,12 +28,6 @@ public readonly partial struct Conclusion :
 	IEqualityOperators<Conclusion, Conclusion>,
 	IEquatable<Conclusion>
 {
-	/// <summary>
-	/// <inheritdoc cref="IDefaultable{T}.Default"/>
-	/// </summary>
-	public static readonly Conclusion Default = default;
-
-
 	/// <summary>
 	/// Indicates the mask that holds the information for the cell, digit and the conclusion type.
 	/// The bits distribution is like:
@@ -113,20 +108,6 @@ public readonly partial struct Conclusion :
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => (ConclusionType)(_mask >> 10 & 1);
-	}
-
-	/// <inheritdoc/>
-	bool IDefaultable<Conclusion>.IsDefault
-	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => this == default;
-	}
-
-	/// <inheritdoc/>
-	static Conclusion IDefaultable<Conclusion>.Default
-	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => Default;
 	}
 
 

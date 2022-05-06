@@ -1474,6 +1474,40 @@
         <member name="P:System.Diagnostics.CodeGen.AutoImplementsComparableAttribute.MemberName">
             <inheritdoc/>
         </member>
+        <member name="T:System.Diagnostics.CodeGen.AutoImplementsDefaultableAttribute">
+            <summary>
+            Defines an attribute that is used for controlling the source generation on automatically implementing
+            <see cref="T:System.IDefaultable`1"/>.
+            </summary>
+            <seealso cref="T:System.IDefaultable`1"/>
+        </member>
+        <member name="M:System.Diagnostics.CodeGen.AutoImplementsDefaultableAttribute.#ctor(System.String)">
+            <summary>
+            Initializes an <see cref="T:System.Diagnostics.CodeGen.AutoImplementsDefaultableAttribute"/> instance via the specified default field name.
+            </summary>
+            <param name="defaultFieldName">The default field name.</param>
+        </member>
+        <member name="P:System.Diagnostics.CodeGen.AutoImplementsDefaultableAttribute.DefaultFieldDescription">
+            <summary>
+            Indicates the description of the default field.
+            </summary>
+        </member>
+        <member name="P:System.Diagnostics.CodeGen.AutoImplementsDefaultableAttribute.DefaultFieldName">
+            <summary>
+            Indicates the name of the default field.
+            </summary>
+        </member>
+        <member name="P:System.Diagnostics.CodeGen.AutoImplementsDefaultableAttribute.Pattern">
+            <summary>
+            Indicates the pattern that initializes the default field.
+            </summary>
+        </member>
+        <member name="P:System.Diagnostics.CodeGen.AutoImplementsDefaultableAttribute.IsDefaultExpression">
+            <summary>
+            Indicates the expression that determines whether the current instance is default.
+            The default value is <see langword="null"/>.
+            </summary>
+        </member>
         <member name="T:System.Diagnostics.CodeGen.AutoImplementsEnumerableAttribute">
             <summary>
             Defines an attribute that is used for controlling the source generation on automatically implementing
@@ -4327,11 +4361,6 @@
             Represents text as a sequence of UTF-8 code units.
             </summary>
         </member>
-        <member name="F:System.Utf8String.Empty">
-            <summary>
-            Indicates the empty <see cref="T:System.Utf8String"/> instance.
-            </summary>
-        </member>
         <member name="F:System.Utf8String._value">
             <summary>
             Indicates the inner value.
@@ -4367,13 +4396,7 @@
             Indicates the underlying array.
             </summary>
         </member>
-        <member name="P:System.Utf8String.System#IDefaultable{System#Utf8String}#IsDefault">
-            <inheritdoc/>
-        </member>
         <member name="P:System.Utf8String.System#Collections#Generic#IReadOnlyCollection{System#Utf8Char}#Count">
-            <inheritdoc/>
-        </member>
-        <member name="P:System.Utf8String.System#IDefaultable{System#Utf8String}#Default">
             <inheritdoc/>
         </member>
         <member name="P:System.Utf8String.Item(System.Int32)">
@@ -4490,6 +4513,17 @@
             }
             </code>
             </remarks>
+        </member>
+        <member name="F:System.Utf8String.Empty">
+            <summary>
+            Indicates the default instance.
+            </summary>
+        </member>
+        <member name="P:System.Utf8String.System#IDefaultable{System#Utf8String}#IsDefault">
+            <inheritdoc/>
+        </member>
+        <member name="P:System.Utf8String.System#IDefaultable{System#Utf8String}#Default">
+            <inheritdoc/>
         </member>
         <member name="M:System.Utf8String.System#Collections#IEnumerable#GetEnumerator">
             <inheritdoc/>

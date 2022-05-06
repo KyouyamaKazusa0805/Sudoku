@@ -21,6 +21,9 @@ namespace Sudoku.Concepts.Collections;
 	nameof(IsUndefined), nameof(IsEmpty),
 	Pattern = """this switch { { [0]: true } => 0, { [1]: true } => 1, _ => ToString("#").* }""")]
 [AutoBePinnable(typeof(short), "_values[0]")]
+[AutoImplementsDefaultable(
+	"Undefined", IsDefaultExpression = "IsUndefined",
+	DefaultFieldDescription = "Indicates the default grid that all values are initialized 0.")]
 public unsafe partial struct Grid :
 	IDefaultable<Grid>,
 	ISimpleFormattable,
@@ -67,11 +70,6 @@ public unsafe partial struct Grid :
 	/// Indicates the event triggered when should re-compute candidates.
 	/// </summary>
 	public static readonly void* RefreshingCandidates;
-
-	/// <summary>
-	/// Indicates the default grid that all values are initialized 0.
-	/// </summary>
-	public static readonly Grid Undefined;
 
 	/// <summary>
 	/// The empty grid that is valid during implementation or running the program
@@ -643,12 +641,6 @@ public unsafe partial struct Grid :
 			return result;
 		}
 	}
-
-	/// <inheritdoc/>
-	bool IDefaultable<Grid>.IsDefault => IsUndefined;
-
-	/// <inheritdoc/>
-	static Grid IDefaultable<Grid>.Default => Undefined;
 
 
 	/// <summary>

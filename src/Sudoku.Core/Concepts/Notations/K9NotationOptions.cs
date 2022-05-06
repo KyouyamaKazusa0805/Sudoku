@@ -17,20 +17,8 @@
 /// For example, cells <c>C1</c> and <c>D2</c> can be combined to <c>C1|D2</c> if the seperator
 /// is <c>"|"</c>.
 /// </param>
-public readonly record struct K9NotationOptions(
+[AutoImplementsDefaultable("Default", Pattern = """new(false, false, "|")""")]
+public readonly partial record struct K9NotationOptions(
 	bool UpperCasing = false, bool AvoidConfusionOnRowLetters = false, string Separator = "|") :
 	IDefaultable<K9NotationOptions>,
-	INotationHandlerOptions<K9NotationOptions>
-{
-	/// <summary>
-	/// Indicates the default instance.
-	/// </summary>
-	public static readonly K9NotationOptions Default = new(false, false, "|");
-
-
-	/// <inheritdoc/>
-	bool IDefaultable<K9NotationOptions>.IsDefault => this == Default;
-
-	/// <inheritdoc/>
-	static K9NotationOptions IDefaultable<K9NotationOptions>.Default => Default;
-}
+	INotationHandlerOptions<K9NotationOptions>;

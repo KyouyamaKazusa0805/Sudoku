@@ -12,7 +12,12 @@
 	nameof(_6), nameof(_7), nameof(_8), nameof(_9), nameof(_10), nameof(_11),
 	UseExplicitImplementation = true, EmitsInKeyword = true)]
 [AutoOverloadsEqualityOperators(EmitsInKeyword = true)]
-[AutoImplementsEnumerable(typeof(int), nameof(Offsets), UseExplicitImplementation = true, Pattern = "((IEnumerable<int>)@).*")]
+[AutoImplementsEnumerable(
+	typeof(int), nameof(Offsets),
+	UseExplicitImplementation = true, Pattern = "((IEnumerable<int>)@).*")]
+[AutoImplementsDefaultable(
+	"Empty", IsDefaultExpression = "Count == 0",
+	DefaultFieldDescription = "Indicates an empty instance (all bits are 0).")]
 public unsafe partial struct Candidates :
 	IDefaultable<Candidates>,
 	IEnumerable<int>,
@@ -30,16 +35,6 @@ public unsafe partial struct Candidates :
 	/// Indicates the size of each unit.
 	/// </summary>
 	private const int Shifting = sizeof(long) * 8;
-
-
-	/// <summary>
-	/// <para>Indicates an empty instance (all bits are 0).</para>
-	/// <para>
-	/// I strongly recommend you <b>should</b> use this instance instead of the expression
-	/// <see langword="default"/>(<see cref="Candidates"/>).
-	/// </para>
-	/// </summary>
-	public static readonly Candidates Empty;
 
 
 	/// <summary>
@@ -241,12 +236,6 @@ public unsafe partial struct Candidates :
 	/// Indicates the number of the values stored in this collection.
 	/// </summary>
 	public int Count { get; private set; } = 0;
-
-	/// <inheritdoc/>
-	readonly bool IDefaultable<Candidates>.IsDefault => Count == 0;
-
-	/// <inheritdoc/>
-	static Candidates IDefaultable<Candidates>.Default => Empty;
 
 	/// <summary>
 	/// Indicates all indices of set bits.

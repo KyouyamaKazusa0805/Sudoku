@@ -19,6 +19,7 @@
 
 * [解构函数生成器](auto-decon)：生成解构函数的代码。
 * [实现 `CompareTo` 方法的生成器](auto-impl-comparable)：生成关于 `IComparable<>` 接口实现的代码。
+* [实现 `IDefaultable<>` 接口的生成器](auto-impl-defaultable)：生成关于 `IDefaultable<>` 接口实现的代码。
 * [实现 `GetEnumerator` 方法的生成器](auto-impl-enumerable)：生成关于 `IEnumerable<>` 接口实现的代码。
 * [自动重载大小比较运算符的生成器](auto-overloads-comparison-op)：生成关于 `IComparisonOperators<,,>` 接口实现的运算符重载代码。
 * [自动重载相等性比较运算符的生成器](auto-overloads-equality-op)：生成关于 `IEqualityOperators<,,>` 接口实现的运算符重载代码。

@@ -11,19 +11,7 @@
 /// <para>Indicates the separator that is used for the insertion between 2 adjacent candidate elements.</para>
 /// <para>The default value is <c>" "</c>.</para>
 /// </param>
-public readonly record struct EliminationNotationOptions(bool DigitFirst = true, string Separator = " ") :
+[AutoImplementsDefaultable("Default", Pattern = """new(true, " ")""")]
+public readonly partial record struct EliminationNotationOptions(bool DigitFirst = true, string Separator = " ") :
 	IDefaultable<EliminationNotationOptions>,
-	INotationHandlerOptions<EliminationNotationOptions>
-{
-	/// <summary>
-	/// Indicates the default instance.
-	/// </summary>
-	public static readonly EliminationNotationOptions Default = new(true, " ");
-
-
-	/// <inheritdoc/>
-	bool IDefaultable<EliminationNotationOptions>.IsDefault => this == Default;
-
-	/// <inheritdoc/>
-	static EliminationNotationOptions IDefaultable<EliminationNotationOptions>.Default => Default;
-}
+	INotationHandlerOptions<EliminationNotationOptions>;

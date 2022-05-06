@@ -291,6 +291,41 @@
         <member name="M:Sudoku.Diagnostics.CodeGen.Generators.AutoImplementsComparableGenerator.Receiver.OnVisitSyntaxNode(Microsoft.CodeAnalysis.GeneratorSyntaxContext)">
             <inheritdoc/>
         </member>
+        <member name="T:Sudoku.Diagnostics.CodeGen.Generators.AutoImplementsDefaultableGenerator">
+            <summary>
+            Defines a source generator that can generate the source code
+            that implements the interface type <c><![CDATA[IDefaultable<T>]]></c>.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.AutoImplementsDefaultableGenerator.Execute(Microsoft.CodeAnalysis.GeneratorExecutionContext)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.AutoImplementsDefaultableGenerator.Initialize(Microsoft.CodeAnalysis.GeneratorInitializationContext)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Diagnostics.CodeGen.Generators.AutoImplementsDefaultableGenerator.Receiver">
+            <summary>
+            The inner syntax context receiver instance.
+            </summary>
+            <param name="CancellationToken">The cancellation token to cancel the operation.</param>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.AutoImplementsDefaultableGenerator.Receiver.#ctor(System.Threading.CancellationToken)">
+            <summary>
+            The inner syntax context receiver instance.
+            </summary>
+            <param name="CancellationToken">The cancellation token to cancel the operation.</param>
+        </member>
+        <member name="P:Sudoku.Diagnostics.CodeGen.Generators.AutoImplementsDefaultableGenerator.Receiver.CancellationToken">
+            <summary>The cancellation token to cancel the operation.</summary>
+        </member>
+        <member name="P:Sudoku.Diagnostics.CodeGen.Generators.AutoImplementsDefaultableGenerator.Receiver.Collection">
+            <summary>
+            Indicates the result collection.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.AutoImplementsDefaultableGenerator.Receiver.OnVisitSyntaxNode(Microsoft.CodeAnalysis.GeneratorSyntaxContext)">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Diagnostics.CodeGen.Generators.AutoImplementsEnumerableGenerator">
             <summary>
             Defines a source generator that generates the source code on implementation for the type <see cref="T:System.Collections.Generic.IEnumerable`1"/>.

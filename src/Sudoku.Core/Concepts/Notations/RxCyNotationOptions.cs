@@ -13,19 +13,7 @@
 /// For example, cells <c>R3C1</c> and <c>R4C2</c> can be combined to <c>R3C1|R4C2</c> if the seperator
 /// is <c>"|"</c>.
 /// </param>
-public readonly record struct RxCyNotationOptions(bool UpperCasing = false, string Separator = "|") :
+[AutoImplementsDefaultable("Default", Pattern = """new(false, "|")""")]
+public readonly partial record struct RxCyNotationOptions(bool UpperCasing = false, string Separator = "|") :
 	IDefaultable<RxCyNotationOptions>,
-	INotationHandlerOptions<RxCyNotationOptions>
-{
-	/// <summary>
-	/// Indicates the default instance.
-	/// </summary>
-	public static readonly RxCyNotationOptions Default = new(false, "|");
-
-
-	/// <inheritdoc/>
-	bool IDefaultable<RxCyNotationOptions>.IsDefault => this == Default;
-
-	/// <inheritdoc/>
-	static RxCyNotationOptions IDefaultable<RxCyNotationOptions>.Default => Default;
-}
+	INotationHandlerOptions<RxCyNotationOptions>;

@@ -17,7 +17,12 @@ namespace Sudoku.Concepts.Collections;
 [AutoOverridesEquals(nameof(_low), nameof(_high), UseExplicitImplementation = true, EmitsInKeyword = true)]
 [AutoOverloadsEqualityOperators(EmitsInKeyword = true)]
 [AutoImplementsComparable(UseExplicitImplementation = true)]
-[AutoImplementsEnumerable(typeof(int), nameof(Offsets), UseExplicitImplementation = true, Pattern = "((IEnumerable<int>)@).*")]
+[AutoImplementsDefaultable(
+	"Empty", IsDefaultExpression = "Count == 0",
+	DefaultFieldDescription = "Indicates an empty instance (all bits are 0).")]
+[AutoImplementsEnumerable(
+	typeof(int), nameof(Offsets),
+	UseExplicitImplementation = true, Pattern = "((IEnumerable<int>)@).*")]
 public unsafe partial struct Cells :
 	IComparable<Cells>,
 	IDefaultable<Cells>,
@@ -37,16 +42,6 @@ public unsafe partial struct Cells :
 	/// The value used for shifting.
 	/// </summary>
 	private const int Shifting = 41;
-
-
-	/// <summary>
-	/// <para>Indicates an empty instance (all bits are 0).</para>
-	/// <para>
-	/// I strongly recommend you <b>should</b> use this instance instead of the expression
-	/// <see langword="default"/>(<see cref="Cells"/>).
-	/// </para>
-	/// </summary>
-	public static readonly Cells Empty;
 
 
 	/// <summary>
@@ -427,9 +422,6 @@ public unsafe partial struct Cells :
 		get => (int)BlockMask | RowMask << 9 | ColumnMask << 18;
 	}
 
-	/// <inheritdoc/>
-	readonly bool IDefaultable<Cells>.IsDefault => Count == 0;
-
 	private readonly string BinaryCode => ToString("b");
 
 	/// <summary>
@@ -471,10 +463,6 @@ public unsafe partial struct Cells :
 			return arr;
 		}
 	}
-
-
-	/// <inheritdoc/>
-	static Cells IDefaultable<Cells>.Default => Empty;
 
 
 	/// <summary>

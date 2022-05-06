@@ -6,8 +6,16 @@
 [AutoOverridesEquals]
 [AutoOverloadsComparisonOperators]
 [AutoOverloadsEqualityOperators]
-[AutoImplementsEnumerable(typeof(Utf8Char), nameof(_value), UseExplicitImplementation = true, Pattern = "((IEnumerable<!>)@).*")]
-[AutoBePinnable(typeof(Utf8Char), "global::System.Runtime.InteropServices.MemoryMarshal.GetArrayDataReference(_value)", ReturnsReadOnlyReference = false)]
+[AutoImplementsEnumerable(
+	typeof(Utf8Char), nameof(_value),
+	UseExplicitImplementation = true, Pattern = "((IEnumerable<!>)@).*")]
+[AutoBePinnable(
+	typeof(Utf8Char), "global::System.Runtime.InteropServices.MemoryMarshal.GetArrayDataReference(_value)",
+	ReturnsReadOnlyReference = false)]
+[AutoImplementsDefaultable(
+	"Empty", IsDefaultExpression = "CompareTo(Empty) == 0",
+	Pattern = "new(global::System.Array.Empty<global::System.Utf8Char>())",
+	DefaultFieldDescription = "Indicates the default instance.")]
 public readonly partial struct Utf8String :
 	IAdditionOperators<Utf8String, Utf8String, Utf8String>,
 	IComparable<Utf8String>,
@@ -19,12 +27,6 @@ public readonly partial struct Utf8String :
 	IReadOnlyCollection<Utf8Char>,
 	IReadOnlyList<Utf8Char>
 {
-	/// <summary>
-	/// Indicates the empty <see cref="Utf8String"/> instance.
-	/// </summary>
-	public static readonly Utf8String Empty = new(Array.Empty<Utf8Char>());
-
-
 	/// <summary>
 	/// Indicates the inner value.
 	/// </summary>
@@ -83,26 +85,12 @@ public readonly partial struct Utf8String :
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => _value;
 	}
-
-	/// <inheritdoc/>
-	bool IDefaultable<Utf8String>.IsDefault
-	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => CompareTo(Empty) == 0;
-	}
-
+	
 	/// <inheritdoc/>
 	int IReadOnlyCollection<Utf8Char>.Count
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => Length;
-	}
-
-	/// <inheritdoc/>
-	static Utf8String IDefaultable<Utf8String>.Default
-	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => Empty;
 	}
 
 
