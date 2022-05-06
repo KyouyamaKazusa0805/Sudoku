@@ -37,8 +37,6 @@
 /// </param>
 [StructLayout(LayoutKind.Explicit)]
 public readonly record struct SearchingOptions(
-	[field: FieldOffset(5)] int Priority,
-	[field: FieldOffset(1)] DisplayingLevel DisplayingLevel,
+	[field: FieldOffset(5)] int Priority, [field: FieldOffset(1)] DisplayingLevel DisplayingLevel,
 	[field: FieldOffset(0)] EnabledArea EnabledArea = EnabledArea.Default | EnabledArea.Gathering,
-	[field: FieldOffset(2)] DisabledReason DisabledReason = DisabledReason.None
-);
+	[field: FieldOffset(2)] DisabledReason DisabledReason = DisabledReason.None);
