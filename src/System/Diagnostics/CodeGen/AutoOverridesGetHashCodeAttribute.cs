@@ -24,9 +24,9 @@
 /// ]]></code>
 /// </remarks>
 /// <seealso cref="HashCode"/>
-[AttributeUsage(AttributeTargets.Class | AttributeTargets.Struct, AllowMultiple = false, Inherited = true)]
+[AttributeUsage(AttributeTargets.Class | AttributeTargets.Struct)]
 public sealed class AutoOverridesGetHashCodeAttribute :
-	Attribute,
+	SourceGeneratorOptionProviderAttribute,
 	IMultipleMembersBinder,
 	ISealedModifierEmitter,
 	IPatternProvider

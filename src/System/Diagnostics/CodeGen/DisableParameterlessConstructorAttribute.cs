@@ -4,8 +4,8 @@
 /// Represents an attribute that limits a <see langword="struct"/> type cannot create an instance by
 /// the parameterless constructor.
 /// </summary>
-[AttributeUsage(AttributeTargets.Struct, AllowMultiple = false, Inherited = false)]
-public sealed class DisableParameterlessConstructorAttribute : Attribute
+[AttributeUsage(AttributeTargets.Struct, Inherited = false)]
+public sealed class DisableParameterlessConstructorAttribute : SourceGeneratorOptionProviderAttribute
 {
 	/// <summary>
 	/// Indicates the suggested member you want to allow the user using.

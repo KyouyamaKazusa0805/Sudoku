@@ -5,7 +5,7 @@
 /// indicating the source generator will generate the code for routing enumeration fields.
 /// </summary>
 [AttributeUsage(AttributeTargets.Enum, AllowMultiple = true, Inherited = false)]
-public sealed class EnumSwitchExpressionRootAttribute : Attribute
+public sealed class EnumSwitchExpressionRootAttribute : SourceGeneratorOptionProviderAttribute
 {
 	/// <summary>
 	/// Initializes an <see cref="EnumSwitchExpressionRootAttribute"/> instance via the key.
@@ -39,8 +39,7 @@ public sealed class EnumSwitchExpressionRootAttribute : Attribute
 
 	/// <summary>
 	/// Indicates the error case that the specified attribute cannot be found in an enumeration field.
-	/// The default value is <see cref="EnumSwitchExpressionNotDefinedBehavior.ThrowForNotDefined"/>.
+	/// The default value is <see cref="EnumSwitchExpressionDefaultBehavior.Throw"/>.
 	/// </summary>
-	public EnumSwitchExpressionNotDefinedBehavior NotDefinedBehavior { get; init; }
-		= EnumSwitchExpressionNotDefinedBehavior.ThrowForNotDefined;
+	public EnumSwitchExpressionDefaultBehavior DefaultBehavior { get; init; } = EnumSwitchExpressionDefaultBehavior.Throw;
 }

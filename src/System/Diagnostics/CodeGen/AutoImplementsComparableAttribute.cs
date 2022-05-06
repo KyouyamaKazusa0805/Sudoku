@@ -5,9 +5,9 @@
 /// <see cref="IComparable{T}"/>.
 /// </summary>
 /// <seealso cref="IComparable{T}"/>
-[AttributeUsage(AttributeTargets.Class | AttributeTargets.Struct, AllowMultiple = false, Inherited = true)]
+[AttributeUsage(AttributeTargets.Class | AttributeTargets.Struct)]
 public sealed class AutoImplementsComparableAttribute :
-	Attribute,
+	SourceGeneratorOptionProviderAttribute,
 	IInterfaceImplementingCaseController,
 	ISingleMemberBinder
 {

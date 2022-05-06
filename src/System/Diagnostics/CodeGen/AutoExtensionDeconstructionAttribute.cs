@@ -5,7 +5,7 @@
 /// </summary>
 [AttributeUsage(AttributeTargets.Assembly, AllowMultiple = true, Inherited = false)]
 public sealed class AutoExtensionDeconstructionAttribute :
-	Attribute,
+	SourceGeneratorOptionProviderAttribute,
 	IMultipleMembersBinder,
 	IInModifierEmitter,
 	ICustomizedNamespaceEmitter,

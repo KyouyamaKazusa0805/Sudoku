@@ -3,10 +3,8 @@
 /// <summary>
 /// Defines an attribute that is used for controlling the source generation on deconstruction methods.
 /// </summary>
-[AttributeUsage(
-	AttributeTargets.Class | AttributeTargets.Struct | AttributeTargets.Interface,
-	AllowMultiple = true, Inherited = false)]
-public sealed class AutoDeconstructionAttribute : Attribute, IMultipleMembersBinder
+[AttributeUsage(AttributeTargets.Class | AttributeTargets.Struct | AttributeTargets.Interface, AllowMultiple = true)]
+public sealed class AutoDeconstructionAttribute : SourceGeneratorOptionProviderAttribute, IMultipleMembersBinder
 {
 	/// <summary>
 	/// Initializes an <see cref="AutoDeconstructionAttribute"/> instance

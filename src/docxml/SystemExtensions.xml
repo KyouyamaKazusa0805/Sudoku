@@ -1770,18 +1770,18 @@
             Indicates the value of the <see langword="switch"/> expression arm.
             </summary>
         </member>
-        <member name="T:System.Diagnostics.CodeGen.EnumSwitchExpressionNotDefinedBehavior">
+        <member name="T:System.Diagnostics.CodeGen.EnumSwitchExpressionDefaultBehavior">
             <summary>
             Defines a case that the specified attribute is not found.
             </summary>
         </member>
-        <member name="F:System.Diagnostics.CodeGen.EnumSwitchExpressionNotDefinedBehavior.ReturnByCorrespondingIntegerValue">
+        <member name="F:System.Diagnostics.CodeGen.EnumSwitchExpressionDefaultBehavior.ReturnByCorrespondingIntegerValue">
             <summary>
             Indicates the result behavior is to return the string representation of the integer value
             corrsponding to the current enumeration field.
             </summary>
         </member>
-        <member name="F:System.Diagnostics.CodeGen.EnumSwitchExpressionNotDefinedBehavior.ThrowForNotDefined">
+        <member name="F:System.Diagnostics.CodeGen.EnumSwitchExpressionDefaultBehavior.Throw">
             <summary>
             Indicates the result behavior is to throw an <see cref="T:System.ArgumentOutOfRangeException"/> to report it.
             </summary>
@@ -1822,10 +1822,10 @@
             Indicates the name of the switch expression root.
             </summary>
         </member>
-        <member name="P:System.Diagnostics.CodeGen.EnumSwitchExpressionRootAttribute.NotDefinedBehavior">
+        <member name="P:System.Diagnostics.CodeGen.EnumSwitchExpressionRootAttribute.DefaultBehavior">
             <summary>
             Indicates the error case that the specified attribute cannot be found in an enumeration field.
-            The default value is <see cref="F:System.Diagnostics.CodeGen.EnumSwitchExpressionNotDefinedBehavior.ThrowForNotDefined"/>.
+            The default value is <see cref="F:System.Diagnostics.CodeGen.EnumSwitchExpressionDefaultBehavior.Throw"/>.
             </summary>
         </member>
         <member name="T:System.Diagnostics.CodeGen.ICustomizedNamespaceEmitter">
@@ -1925,6 +1925,12 @@
         <member name="P:System.Diagnostics.CodeGen.ITypeBinder.Type">
             <summary>
             Indicates the type that the attribute used and bound.
+            </summary>
+        </member>
+        <member name="T:System.Diagnostics.CodeGen.SourceGeneratorOptionProviderAttribute">
+            <summary>
+            Defines an attribute type that binds with a source generator, providing with the necessary and optional options
+            that is used or called by the source generator.
             </summary>
         </member>
         <member name="T:System.Reflection.AssemblyExtensions">

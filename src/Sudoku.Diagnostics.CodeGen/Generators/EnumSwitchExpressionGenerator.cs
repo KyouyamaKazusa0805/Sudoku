@@ -35,7 +35,7 @@ public sealed partial class EnumSwitchExpressionGenerator : ISourceGenerator
 					innerParts.Add($"""{fullName}.{fieldSymbol.Name} => "{value}",""");
 				}
 
-				string notFoundBehaviorStr = typeAttributeData.GetNamedArgument<byte>("NotDefinedBehavior", 1) switch
+				string notFoundBehaviorStr = typeAttributeData.GetNamedArgument<byte>("DefaultBehavior", 1) switch
 				{
 					// ReturnByCorrespondingIntegerValue
 					0 => "@this.ToString()",

@@ -5,8 +5,8 @@
 /// <see langword="struct"/> or <see langword="class"/>), indicating the source generator
 /// will automatically generate <c>GetPinnableReference</c> method.
 /// </summary>
-[AttributeUsage(AttributeTargets.Class | AttributeTargets.Struct, AllowMultiple = false, Inherited = true)]
-public sealed class AutoBePinnableAttribute : Attribute, ITypeBinder, IPatternProvider
+[AttributeUsage(AttributeTargets.Class | AttributeTargets.Struct)]
+public sealed class AutoBePinnableAttribute : SourceGeneratorOptionProviderAttribute, ITypeBinder, IPatternProvider
 {
 	/// <summary>
 	/// Initializes an <see cref="AutoBePinnableAttribute"/> instance via the specified returning type,

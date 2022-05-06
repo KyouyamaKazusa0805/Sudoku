@@ -22,9 +22,9 @@
 /// ExampleType { A = 42, B = 108 }
 /// ]]></code>
 /// </remarks>
-[AttributeUsage(AttributeTargets.Class | AttributeTargets.Struct, AllowMultiple = false, Inherited = true)]
+[AttributeUsage(AttributeTargets.Class | AttributeTargets.Struct)]
 public sealed class AutoOverridesToStringAttribute :
-	Attribute,
+	SourceGeneratorOptionProviderAttribute,
 	IMultipleMembersBinder,
 	IPatternProvider
 {

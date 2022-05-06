@@ -6,7 +6,7 @@
 /// for this field, with binding a key-value pair for the generation.
 /// </summary>
 [AttributeUsage(AttributeTargets.Field, AllowMultiple = true, Inherited = false)]
-public sealed class EnumSwitchExpressionArmAttribute : Attribute
+public sealed class EnumSwitchExpressionArmAttribute : SourceGeneratorOptionProviderAttribute
 {
 	/// <summary>
 	/// Initializes an <see cref="EnumSwitchExpressionArmAttribute"/> instance via the specified value.

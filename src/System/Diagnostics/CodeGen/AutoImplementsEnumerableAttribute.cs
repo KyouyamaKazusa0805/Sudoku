@@ -5,9 +5,9 @@
 /// <see cref="IEnumerable{T}"/>.
 /// </summary>
 /// <seealso cref="IEnumerable{T}"/>
-[AttributeUsage(AttributeTargets.Class | AttributeTargets.Struct, AllowMultiple = false, Inherited = true)]
+[AttributeUsage(AttributeTargets.Class | AttributeTargets.Struct)]
 public sealed class AutoImplementsEnumerableAttribute :
-	Attribute,
+	SourceGeneratorOptionProviderAttribute,
 	ITypeBinder,
 	IInterfaceImplementingCaseController,
 	ISingleMemberBinder,

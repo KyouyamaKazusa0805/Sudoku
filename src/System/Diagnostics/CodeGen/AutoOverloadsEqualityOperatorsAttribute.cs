@@ -10,9 +10,9 @@
 /// At default, the emitted generated operator overloading will use <see cref="IEquatable{T}.Equals(T)"/> invocation.
 /// </remarks>
 /// <seealso cref="IEquatable{T}.Equals(T)"/>
-[AttributeUsage(AttributeTargets.Class | AttributeTargets.Struct, AllowMultiple = false, Inherited = true)]
+[AttributeUsage(AttributeTargets.Class | AttributeTargets.Struct)]
 public sealed class AutoOverloadsEqualityOperatorsAttribute :
-	Attribute,
+	SourceGeneratorOptionProviderAttribute,
 	IInModifierEmitter,
 	INullableAnnotationEmitter
 {

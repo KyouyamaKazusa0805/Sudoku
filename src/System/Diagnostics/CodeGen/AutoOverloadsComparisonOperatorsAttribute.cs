@@ -11,9 +11,9 @@
 /// At default, the emitted generated operator overloading will use <see cref="IComparable{T}.CompareTo(T)"/> invocation.
 /// </remarks>
 /// <seealso cref="IComparable{T}.CompareTo(T)"/>
-[AttributeUsage(AttributeTargets.Class | AttributeTargets.Struct, AllowMultiple = false, Inherited = true)]
+[AttributeUsage(AttributeTargets.Class | AttributeTargets.Struct)]
 public sealed class AutoOverloadsComparisonOperatorsAttribute :
-	Attribute,
+	SourceGeneratorOptionProviderAttribute,
 	IInModifierEmitter,
 	INullableAnnotationEmitter
 {

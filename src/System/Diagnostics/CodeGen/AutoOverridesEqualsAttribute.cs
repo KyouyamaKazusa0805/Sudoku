@@ -27,9 +27,9 @@
 /// ]]></code>
 /// </remarks>
 /// <seealso cref="EqualityComparer{T}.Default"/>
-[AttributeUsage(AttributeTargets.Class | AttributeTargets.Struct, AllowMultiple = false, Inherited = true)]
+[AttributeUsage(AttributeTargets.Class | AttributeTargets.Struct)]
 public sealed class AutoOverridesEqualsAttribute :
-	Attribute,
+	SourceGeneratorOptionProviderAttribute,
 	IMultipleMembersBinder,
 	IInModifierEmitter,
 	ISealedModifierEmitter,
