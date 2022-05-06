@@ -1,4 +1,4 @@
-﻿namespace System.Diagnostics.CodeGen;
+﻿namespace System.Diagnostics.CodeGen.OptionProviders;
 
 /// <summary>
 /// Indicates an attribute type that is used for gathering a set of members.
