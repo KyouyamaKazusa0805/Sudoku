@@ -37,6 +37,7 @@ namespace System.Text;
 [InterpolatedStringHandler]
 [AutoOverloadsEqualityOperators(EmitsInKeyword = true)]
 [AutoOverridesToString(nameof(Text), Pattern = "{new([0])}")]
+[AutoBePinnable(typeof(char), "global::System.Runtime.InteropServices.MemoryMarshal.GetReference(_chars)")]
 public unsafe ref partial struct StringHandler
 {
 #if USE_NEWER_CONSTANT_VALUES
@@ -251,19 +252,6 @@ public unsafe ref partial struct StringHandler
 	/// <returns>A <see cref="bool"/> result.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public readonly bool Equals(in StringHandler other) => Equals(this, other);
-
-	/// <summary>
-	/// <para>
-	/// Get a pinnable reference to the handler.
-	/// The operation does not ensure there is a null char after <see cref="Length"/>.
-	/// </para>
-	/// <para>
-	/// This overload is pattern matched in the C# 7.3+ compiler so you can omit
-	/// the explicit method call, and write eg <c>fixed (char* c = handler)</c>.
-	/// </para>
-	/// </summary>
-	[EditorBrowsable(EditorBrowsableState.Never)]
-	public readonly ref readonly char GetPinnableReference() => ref MemoryMarshal.GetReference(_chars);
 
 	/// <summary>
 	/// Get a pinnable reference to the builder.

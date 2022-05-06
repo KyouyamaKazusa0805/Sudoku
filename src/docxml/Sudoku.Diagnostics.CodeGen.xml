@@ -156,6 +156,41 @@
             </param>
             <returns>The <see cref="T:Microsoft.CodeAnalysis.SymbolOutputInfo"/> instance.</returns>
         </member>
+        <member name="T:Sudoku.Diagnostics.CodeGen.Generators.AutoBePinnableGenerator">
+            <summary>
+            Defines a source generator that generates the source code on implementation
+            for the method <c>GetPinnableReference</c>.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.AutoBePinnableGenerator.Execute(Microsoft.CodeAnalysis.GeneratorExecutionContext)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.AutoBePinnableGenerator.Initialize(Microsoft.CodeAnalysis.GeneratorInitializationContext)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Diagnostics.CodeGen.Generators.AutoBePinnableGenerator.Receiver">
+            <summary>
+            The inner syntax context receiver instance.
+            </summary>
+            <param name="CancellationToken">The cancellation token to cancel the operation.</param>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.AutoBePinnableGenerator.Receiver.#ctor(System.Threading.CancellationToken)">
+            <summary>
+            The inner syntax context receiver instance.
+            </summary>
+            <param name="CancellationToken">The cancellation token to cancel the operation.</param>
+        </member>
+        <member name="P:Sudoku.Diagnostics.CodeGen.Generators.AutoBePinnableGenerator.Receiver.CancellationToken">
+            <summary>The cancellation token to cancel the operation.</summary>
+        </member>
+        <member name="P:Sudoku.Diagnostics.CodeGen.Generators.AutoBePinnableGenerator.Receiver.Collection">
+            <summary>
+            Indicates the result collection.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.AutoBePinnableGenerator.Receiver.OnVisitSyntaxNode(Microsoft.CodeAnalysis.GeneratorSyntaxContext)">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Diagnostics.CodeGen.Generators.AutoDeconstructionGenerator">
             <summary>
             Defines a source generator that generates deconstruction methods of a type.

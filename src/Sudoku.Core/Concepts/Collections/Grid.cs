@@ -20,6 +20,7 @@ namespace Sudoku.Concepts.Collections;
 [AutoOverridesGetHashCode(
 	nameof(IsUndefined), nameof(IsEmpty),
 	Pattern = """this switch { { [0]: true } => 0, { [1]: true } => 1, _ => ToString("#").* }""")]
+[AutoBePinnable(typeof(short), "_values[0]")]
 public unsafe partial struct Grid :
 	IDefaultable<Grid>,
 	ISimpleFormattable,
@@ -1041,14 +1042,6 @@ public unsafe partial struct Grid :
 
 		return result;
 	}
-
-	/// <summary>
-	/// Returns a reference to the element of the <see cref="Grid"/> at index zero.
-	/// </summary>
-	/// <returns>A reference to the element of the <see cref="Grid"/> at index zero.</returns>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	[EditorBrowsable(EditorBrowsableState.Never)]
-	public readonly ref readonly short GetPinnableReference() => ref _values[0];
 
 	/// <summary>
 	/// Get all masks and print them.

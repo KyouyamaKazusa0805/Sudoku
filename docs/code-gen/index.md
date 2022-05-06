@@ -25,6 +25,7 @@
 * [自动重写 `Equals` 方法的生成器](auto-overrides-equals)：生成关于基类型 `Equals` 虚方法或非密封方法的重写代码，同时也会实现 `IEquatable<>` 接口。
 * [自动重写 `GetHashCode` 方法的生成器](auto-overrides-get-hash-code)：生成关于基类型 `GetHashCode` 虚方法或非密封方法的重写代码。
 * [自动重写 `ToString` 方法的生成器](auto-overrides-to-string)：生成关于基类型 `ToString` 虚方法或非密封方法的重写代码。
+* [自动实现 `GetPinnableReference` 方法的生成器](auto-pinnable)：生成关于 `GetPinnableReference` 方法的代码，允许类型使用 `fixed` 声明。
 * [禁用值类型的无参构造器](disable-parameterless-ctor)：对于值类型生成无参构造器的禁用代码。
 * [自动生成枚举类型相关的执行和路由操作](enum-switch-expr)：生成为枚举类型的所有字段进行路由和处理，构造操作的代码。
 * [自动重写 `ref struct` 派生下来的方法代码](ref-struct-default-overrides)：对 `ref struct` 类型生成从 `ValueType` 类型派生下来的方法的重写代码。

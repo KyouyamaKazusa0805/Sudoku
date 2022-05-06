@@ -17,4 +17,5 @@ internal static class Shortcuts
 	public const string DisableParametelessConstructor = "dpc";
 	public const string RefStructDefaultOverrides = "rsd";
 	public const string EnumSwitchExpression = "ese";
+	public const string AutoBePinnable = "ap";
 }

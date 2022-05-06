@@ -7,6 +7,7 @@
 [AutoOverloadsComparisonOperators]
 [AutoOverloadsEqualityOperators]
 [AutoImplementsEnumerable(typeof(Utf8Char), nameof(_value), UseExplicitImplementation = true, Pattern = "((IEnumerable<!>)@).*")]
+[AutoBePinnable(typeof(Utf8Char), "global::System.Runtime.InteropServices.MemoryMarshal.GetArrayDataReference(_value)", ReturnsReadOnlyReference = false)]
 public readonly partial struct Utf8String :
 	IAdditionOperators<Utf8String, Utf8String, Utf8String>,
 	IComparable<Utf8String>,
@@ -172,14 +173,6 @@ public readonly partial struct Utf8String :
 	/// <returns>A <see cref="bool"/> value indicating that.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public bool Contains(Utf8Char c) => IndexOf(c) != -1;
-
-	/// <summary>
-	/// Gets the pinnable reference of the current string, positioned at the zero index.
-	/// </summary>
-	/// <returns>The reference of the first character in this string.</returns>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	[EditorBrowsable(EditorBrowsableState.Never)]
-	public ref Utf8Char GetPinnableReference() => ref MemoryMarshal.GetArrayDataReference(_value);
 
 	/// <inheritdoc/>
 	public override unsafe int GetHashCode()

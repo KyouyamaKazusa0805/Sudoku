@@ -5,5 +5,8 @@
 /// </summary>
 internal interface ITypeBinder : ISourceGeneratorOptionProvider
 {
+	/// <summary>
+	/// Indicates the type that the attribute used and bound.
+	/// </summary>
 	Type Type { get; }
 }
