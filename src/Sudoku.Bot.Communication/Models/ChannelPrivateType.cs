@@ -1,20 +1,26 @@
 ﻿namespace Sudoku.Bot.Communication.Models;
 
 /// <summary>
-/// 子频道私密类型
+/// Indicates the private type that describes a channel.
 /// </summary>
+/// <remarks>
+/// The data type is referenced from
+/// <see href="https://bot.q.qq.com/wiki/develop/api/openapi/channel/model.html#privatetype">this link</see>.
+/// </remarks>
 public enum ChannelPrivateType
 {
 	/// <summary>
-	/// 公开频道
+	/// Indicates the channel is exposed to everyone.
 	/// </summary>
-	Public,
+	Everyone,
+
 	/// <summary>
-	/// 群主和管理员可见
+	/// Indicates the channel is only exposed to the owner and administrators.
 	/// </summary>
-	Admin,
+	SpecialIdentities,
+
 	/// <summary>
-	/// 群主和管理员+指定成员可见
+	/// Indicates the channel is only exposed to the owner, administrators and some specified members.
 	/// </summary>
-	Members
+	SpecialIdentitiesAndSpecifiedMembers
 }

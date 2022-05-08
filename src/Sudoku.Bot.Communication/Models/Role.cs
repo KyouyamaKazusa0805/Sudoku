@@ -1,43 +1,52 @@
 ﻿namespace Sudoku.Bot.Communication.Models;
 
 /// <summary>
-/// 身分组对象
+/// Indicates the instance that describes for a real role.
 /// </summary>
-public class Role
+public sealed class Role
 {
 	/// <summary>
-	/// 身份组ID, 默认值可参考 <see cref="DefaultRoles"/>
+	/// Indicates the role ID. The default value can be referenced from <see cref="DefaultRoles"/>.
 	/// </summary>
+	/// <seealso cref="DefaultRoles"/>
 	[JsonPropertyName("id")]
 	public string Id { get; set; } = string.Empty;
+
 	/// <summary>
-	/// 身分组名称
+	/// Indicates the role name.
 	/// </summary>
 	[JsonPropertyName("name")]
 	public string Name { get; set; } = string.Empty;
+
 	/// <summary>
-	/// 身份组颜色
+	/// Indicates the color of the role.
 	/// </summary>
 	[JsonPropertyName("color"), JsonConverter(typeof(ColorToUint32Converter))]
 	public Color Color { get; set; }
+
 	/// <summary>
-	/// ARGB颜色值的HTML表现形式（如：#FFFFFFFF）
-	/// </summary>
-	[JsonIgnore]
-	public string? ColorHtml { get => $"#{Color.ToArgb():X8}"; }
-	/// <summary>
-	/// 该身分组是否在成员列表中单独展示
+	/// Indicates whether the role is displayed alone. <see langword="true"/> means
+	/// that the role will be displayed alone.
 	/// </summary>
 	[JsonPropertyName("hoist"), JsonConverter(typeof(BoolToInt32Converter))]
 	public bool Hoist { get; set; }
+
 	/// <summary>
-	/// 该身分组的人数
+	/// Indicates the total number of the members that is in the current role.
 	/// </summary>
 	[JsonPropertyName("number")]
 	public uint Number { get; set; }
+
 	/// <summary>
-	/// 成员上限
+	/// Indicates the maximum number of members that can be in the current role.
 	/// </summary>
 	[JsonPropertyName("member_limit")]
 	public uint MemberLimit { get; set; }
+
+	/// <summary>
+	/// Indicates the HTML-formatted color value. The value is displayed by a string
+	/// using 8 hex digits (from 0 to F), leading with a tag sign <c>#</c>.
+	/// </summary>
+	[JsonIgnore]
+	public string? ColorHtml => $"#{Color.ToArgb():X8}";
 }

@@ -1,40 +1,51 @@
 ﻿namespace Sudoku.Bot.Communication.Models;
 
 /// <summary>
-/// 子频道类型
+/// Indicates the type of the channel.
 /// </summary>
+/// <remarks>
+/// The data type is referenced from
+/// <see href="https://bot.q.qq.com/wiki/develop/api/openapi/channel/model.html#channeltype">this link</see>.
+/// </remarks>
 public enum ChannelType
 {
 	/// <summary>
-	/// 文字子频道
+	/// Indicates the text channel.
 	/// </summary>
-	文字 = 0,
+	Text = 0,
+
 	/// <summary>
-	/// 保留，不可用
+	/// The value doesn't correspond to any meaningful channel types. The field is only used for being reserved.
 	/// </summary>
-	Reserve1 = 1,
+	ReservedField_1 = 1,
+
 	/// <summary>
-	/// 语音子频道
+	/// Indicates the audio channel.
 	/// </summary>
-	语音 = 2,
+	Audio = 2,
+
 	/// <summary>
-	/// 保留，不可用
+	/// The value doesn't correspond to any meaningful channel types. The field is only used for being reserved.
 	/// </summary>
-	Reserve2 = 3,
+	ReservedField_2 = 3,
+
 	/// <summary>
-	/// 子频道分组
+	/// Indicates the grouping channel.
 	/// </summary>
-	分组 = 4,
+	Grouping = 4,
+
 	/// <summary>
-	/// 直播子频道
+	/// Indicates the live channel.
 	/// </summary>
-	直播 = 10005,
+	Live = 10005,
+
 	/// <summary>
-	/// 应用子频道
+	/// Indicates the application channel.
 	/// </summary>
-	应用 = 10006,
+	Application = 10006,
+
 	/// <summary>
-	/// 论坛子频道
+	/// Indicates the BBS channel.
 	/// </summary>
-	论坛 = 10007
+	Bbs = 10007
 }

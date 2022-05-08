@@ -2105,302 +2105,362 @@
         </member>
         <member name="T:Sudoku.Bot.Communication.Models.AudioAction">
             <summary>
-            语音Action
+            Indicates the instance that describes an audio action.
             </summary>
+            <remarks>
+            The data type is referenced from
+            <see href="https://bot.q.qq.com/wiki/develop/api/openapi/audio/model.html#audioaction">this link</see>.
+            </remarks>
         </member>
         <member name="P:Sudoku.Bot.Communication.Models.AudioAction.GuildId">
             <summary>
-            频道id
+            Indicates the GUILD ID.
             </summary>
         </member>
         <member name="P:Sudoku.Bot.Communication.Models.AudioAction.ChannelId">
             <summary>
-            子频道id
+            Indicates the channel ID.
             </summary>
         </member>
         <member name="P:Sudoku.Bot.Communication.Models.AudioAction.AudioUrl">
             <summary>
-            音频数据的url status为0时传
+            Inidcates the URL corresponds to the audio itself.
+            The audio data will be transferred when the property <see cref="P:Sudoku.Bot.Communication.Models.AudioControl.Status"/> is 0.
             </summary>
+            <seealso cref="P:Sudoku.Bot.Communication.Models.AudioControl.Status"/>
         </member>
         <member name="P:Sudoku.Bot.Communication.Models.AudioAction.Text">
             <summary>
-            状态文本（比如：简单爱-周杰伦），可选，status为0时传，其他操作不传
+            Indicates the text that introduces the audio.
+            The audio data will be transferred when the property <see cref="P:Sudoku.Bot.Communication.Models.AudioControl.Status"/> is 0.
             </summary>
+            <seealso cref="P:Sudoku.Bot.Communication.Models.AudioControl.Status"/>
         </member>
         <member name="T:Sudoku.Bot.Communication.Models.AudioControl">
             <summary>
-            音频对象
+            Indicates the instance that describes an audio instance.
             </summary>
-        </member>
-        <member name="M:Sudoku.Bot.Communication.Models.AudioControl.#ctor(Sudoku.Bot.Communication.Models.PlayingStatus,System.String,System.String)">
-            <summary>
-            构建音频消息
-            </summary>
-            <param name="status">播放状态</param>
-            <param name="audioUrl">音频数据URL</param>
-            <param name="text">状态文本</param>
+            <remarks>
+            The data type is referenced from
+            <see href="https://bot.q.qq.com/wiki/develop/api/openapi/audio/model.html#audiocontrol">this link</see>.
+            </remarks>
         </member>
         <member name="P:Sudoku.Bot.Communication.Models.AudioControl.AudioUrl">
             <summary>
-            音频数据的url status为0时传
+            Inidcates the URL corresponds to the audio itself.
+            The audio data will be transferred when the property <see cref="P:Sudoku.Bot.Communication.Models.AudioControl.Status"/> is 0.
             </summary>
+            <seealso cref="P:Sudoku.Bot.Communication.Models.AudioControl.Status"/>
         </member>
         <member name="P:Sudoku.Bot.Communication.Models.AudioControl.Text">
             <summary>
-            状态文本（比如：简单爱-周杰伦），可选，status为0时传，其他操作不传
+            Indicates the text that introduces the audio instance.
+            The audio data will be transferred when the property <see cref="P:Sudoku.Bot.Communication.Models.AudioControl.Status"/> is 0.
             </summary>
+            <seealso cref="P:Sudoku.Bot.Communication.Models.AudioControl.Status"/>
         </member>
         <member name="P:Sudoku.Bot.Communication.Models.AudioControl.Status">
             <summary>
-            播放状态，参考 <see cref="T:Sudoku.Bot.Communication.Models.PlayingStatus"/>
+            Indicates the playing status for an audio instance.
             </summary>
         </member>
         <member name="T:Sudoku.Bot.Communication.Models.Channel">
             <summary>
-            子频道对象
+            Defines a channel instance. Please note that the channel is different with a GUILD instance.
+            A GUILD instance is a global environment for a chatting unit, and we can create multiple different channels
+            in a GUILD.
             </summary>
+            <remarks>
+            The data type is referenced from
+            <see href="https://bot.q.qq.com/wiki/develop/api/openapi/channel/model.html#channel">this link</see>.
+            </remarks>
         </member>
         <member name="P:Sudoku.Bot.Communication.Models.Channel.Id">
             <summary>
-            子频道id
+            Indicates the ID of the channel.
             </summary>
         </member>
         <member name="P:Sudoku.Bot.Communication.Models.Channel.GuildId">
             <summary>
-            频道id
+            Indicates the containing GUILD ID value.
             </summary>
         </member>
         <member name="P:Sudoku.Bot.Communication.Models.Channel.Name">
             <summary>
-            子频道名称
+            Indicates the name of the channel.
             </summary>
         </member>
         <member name="P:Sudoku.Bot.Communication.Models.Channel.Type">
             <summary>
-            子频道类型
+            Indicates the type of the channel.
             </summary>
         </member>
-        <member name="P:Sudoku.Bot.Communication.Models.Channel.SubType">
+        <member name="P:Sudoku.Bot.Communication.Models.Channel.Subtype">
             <summary>
-            子频道子类型
+            Indicates the subtype of the channel.
             </summary>
         </member>
         <member name="P:Sudoku.Bot.Communication.Models.Channel.Possition">
             <summary>
-            频道位置排序，非必填，但不能够和其他子频道的值重复
+            Indicates the ordering of the channel.
             </summary>
+            <remarks>
+            About more descriptions for this property please visit
+            <see href="https://bot.q.qq.com/wiki/develop/api/openapi/channel/model.html#%E6%9C%89%E5%85%B3-position-%E7%9A%84%E8%AF%B4%E6%98%8E">this link</see>.
+            </remarks>
         </member>
         <member name="P:Sudoku.Bot.Communication.Models.Channel.ParentId">
             <summary>
-            分组Id
+            Indicates the parent ID. The value is unavailable when <see cref="P:Sudoku.Bot.Communication.Models.Channel.Type"/> is <see cref="F:Sudoku.Bot.Communication.Models.ChannelType.Grouping"/>.
             </summary>
+            <seealso cref="P:Sudoku.Bot.Communication.Models.Channel.Type"/>
+            <seealso cref="F:Sudoku.Bot.Communication.Models.ChannelType.Grouping"/>
         </member>
         <member name="P:Sudoku.Bot.Communication.Models.Channel.OwerId">
             <summary>
-            创建人Id
+            Indicates the ID that corresponds to the owner.
             </summary>
         </member>
         <member name="P:Sudoku.Bot.Communication.Models.Channel.PrivateType">
             <summary>
-            子频道私密类型
+            Indicates the type that introduces the level that the channel can expose to what kinds of roles.
             </summary>
         </member>
         <member name="P:Sudoku.Bot.Communication.Models.Channel.PrivateUserIds">
             <summary>
-            子频道私密类型成员Id
+            Indicates the specified users that can visit the private channels. The field is useful when
+            the property <see cref="P:Sudoku.Bot.Communication.Models.Channel.PrivateType"/> is <see cref="F:Sudoku.Bot.Communication.Models.ChannelPrivateType.SpecialIdentitiesAndSpecifiedMembers"/>.
             </summary>
+            <seealso cref="F:Sudoku.Bot.Communication.Models.ChannelPrivateType.SpecialIdentitiesAndSpecifiedMembers"/>
         </member>
-        <member name="P:Sudoku.Bot.Communication.Models.Channel.SpeakPermission">
+        <member name="P:Sudoku.Bot.Communication.Models.Channel.TalkingPermission">
             <summary>
-            子频道发言权限
+            Indicates the permission level on talking.
             </summary>
         </member>
         <member name="P:Sudoku.Bot.Communication.Models.Channel.ApplicationId">
             <summary>
-            用于标识应用子频道应用类型，仅应用子频道时会使用该字段
-            <para>具体定义请参考 <see href="https://bot.q.qq.com/wiki/develop/api/openapi/channel/model.html#应用子频道的应用类型">应用子频道的应用类型</see></para>
+            Indicates the value that identities the application channel type.
+            This property is only available when the property <see cref="P:Sudoku.Bot.Communication.Models.Channel.Type"/> is <see cref="F:Sudoku.Bot.Communication.Models.ChannelType.Application"/>.
+            </summary>
+            <remarks>
+            About more information for this property please visit
+            <see href="https://bot.q.qq.com/wiki/develop/api/openapi/channel/model.html#%E5%BA%94%E7%94%A8%E5%AD%90%E9%A2%91%E9%81%93%E7%9A%84%E5%BA%94%E7%94%A8%E7%B1%BB%E5%9E%8B">this link</see>.
+            </remarks>
+            <seealso cref="P:Sudoku.Bot.Communication.Models.Channel.Type"/>
+            <seealso cref="F:Sudoku.Bot.Communication.Models.ChannelType.Application"/>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Models.Channel.Tag">
+            <summary>
+            Indicates the tag of the channel. The property will return the value <c>#channelName tag</c>.
+            The property returns the string expression like <c><![CDATA[<#ChannelId>]]></c>.
             </summary>
         </member>
         <member name="P:Sudoku.Bot.Communication.Models.Channel.AppType">
             <summary>
-            应用子频道类型列表
+            Indicates the list of all possible application channel types.
             </summary>
-        </member>
-        <member name="P:Sudoku.Bot.Communication.Models.Channel.Tag">
-            <summary>
-            #频道名 标签
-            <para>数据内容为：&lt;#ChannelId&gt;</para>
-            </summary>
+            <remarks>
+            The dictionary is referenced from
+            <see href="https://bot.q.qq.com/wiki/develop/api/openapi/channel/model.html#%E5%BA%94%E7%94%A8%E5%AD%90%E9%A2%91%E9%81%93%E7%9A%84%E5%BA%94%E7%94%A8%E7%B1%BB%E5%9E%8B">this link</see>.
+            </remarks>
         </member>
         <member name="T:Sudoku.Bot.Communication.Models.ChannelPermissions">
             <summary>
-            子频道权限对象
+            Indicates the channel permissions.
             </summary>
+            <remarks>
+            The data type is referenced from
+            <see href="https://bot.q.qq.com/wiki/develop/api/openapi/channel_permissions/model.html">this link</see>.
+            </remarks>
         </member>
-        <member name="P:Sudoku.Bot.Communication.Models.ChannelPermissions.ChaannelId">
+        <member name="P:Sudoku.Bot.Communication.Models.ChannelPermissions.ChannelId">
             <summary>
-            子频道Id
+            Indicates the channel ID.
             </summary>
         </member>
         <member name="P:Sudoku.Bot.Communication.Models.ChannelPermissions.UserId">
             <summary>
-            用户Id
-            <para><em>此属性和RoleId只会同时存在一个</em></para>
+            Indicates the user ID.
+            When the current property is available, the property <see cref="P:Sudoku.Bot.Communication.Models.ChannelPermissions.RoleId"/> will be unavailable.
             </summary>
+            <seealso cref="P:Sudoku.Bot.Communication.Models.ChannelPermissions.RoleId"/>
         </member>
         <member name="P:Sudoku.Bot.Communication.Models.ChannelPermissions.RoleId">
             <summary>
-            身份组Id
-            <para><em>此属性和UserId只会同时存在一个</em></para>
+            Indicates the role ID.
+            When the current property is available, the property <see cref="P:Sudoku.Bot.Communication.Models.ChannelPermissions.UserId"/> will be unavailable.
             </summary>
+            <seealso cref="P:Sudoku.Bot.Communication.Models.ChannelPermissions.UserId"/>
         </member>
         <member name="P:Sudoku.Bot.Communication.Models.ChannelPermissions.Permissions">
             <summary>
-            用户拥有的子频道权限
-            <para>
-            "1" - 查看 <br/>
-            "2" - 管理 <br/>
-            "4" - 发言
-            </para>
+            Indicates the privacy type that the user is allowed doing in the current channel.
             </summary>
         </member>
         <member name="T:Sudoku.Bot.Communication.Models.ChannelPrivateType">
             <summary>
-            子频道私密类型
+            Indicates the private type that describes a channel.
+            </summary>
+            <remarks>
+            The data type is referenced from
+            <see href="https://bot.q.qq.com/wiki/develop/api/openapi/channel/model.html#privatetype">this link</see>.
+            </remarks>
+        </member>
+        <member name="F:Sudoku.Bot.Communication.Models.ChannelPrivateType.Everyone">
+            <summary>
+            Indicates the channel is exposed to everyone.
             </summary>
         </member>
-        <member name="F:Sudoku.Bot.Communication.Models.ChannelPrivateType.Public">
+        <member name="F:Sudoku.Bot.Communication.Models.ChannelPrivateType.SpecialIdentities">
             <summary>
-            公开频道
+            Indicates the channel is only exposed to the owner and administrators.
             </summary>
         </member>
-        <member name="F:Sudoku.Bot.Communication.Models.ChannelPrivateType.Admin">
+        <member name="F:Sudoku.Bot.Communication.Models.ChannelPrivateType.SpecialIdentitiesAndSpecifiedMembers">
             <summary>
-            群主和管理员可见
-            </summary>
-        </member>
-        <member name="F:Sudoku.Bot.Communication.Models.ChannelPrivateType.Members">
-            <summary>
-            群主和管理员+指定成员可见
-            </summary>
-        </member>
-        <member name="T:Sudoku.Bot.Communication.Models.ChannelSpeakPermission">
-            <summary>
-            子频道发言权限
-            </summary>
-        </member>
-        <member name="F:Sudoku.Bot.Communication.Models.ChannelSpeakPermission.Null">
-            <summary>
-            无效类型
-            </summary>
-        </member>
-        <member name="F:Sudoku.Bot.Communication.Models.ChannelSpeakPermission.Everyone">
-            <summary>
-            所有人
-            </summary>
-        </member>
-        <member name="F:Sudoku.Bot.Communication.Models.ChannelSpeakPermission.Members">
-            <summary>
-            群主和管理员+指定成员
+            Indicates the channel is only exposed to the owner, administrators and some specified members.
             </summary>
         </member>
         <member name="T:Sudoku.Bot.Communication.Models.ChannelSubtype">
             <summary>
-            子频道子类型(目前只有文字子频道有)
+            Indicates the subtype of the channel. The type will only be used if the property <see cref="P:Sudoku.Bot.Communication.Models.Channel.Type"/>
+            corresponds to <see cref="F:Sudoku.Bot.Communication.Models.ChannelType.Text"/>.
+            </summary>
+            <remarks>
+            The data type is referenced from
+            <see href="https://bot.q.qq.com/wiki/develop/api/openapi/channel/model.html#channelsubtype">this link</see>.
+            </remarks>
+            <seealso cref="P:Sudoku.Bot.Communication.Models.Channel.Type"/>
+            <seealso cref="T:Sudoku.Bot.Communication.Models.ChannelType"/>
+        </member>
+        <member name="F:Sudoku.Bot.Communication.Models.ChannelSubtype.Gossiping">
+            <summary>
+            Indicates the subtype is gossiping.
             </summary>
         </member>
-        <member name="F:Sudoku.Bot.Communication.Models.ChannelSubtype.闲聊">
+        <member name="F:Sudoku.Bot.Communication.Models.ChannelSubtype.Announcement">
             <summary>
-            闲聊
+            Indicates the subtype is an announcement.
             </summary>
         </member>
-        <member name="F:Sudoku.Bot.Communication.Models.ChannelSubtype.公告">
+        <member name="F:Sudoku.Bot.Communication.Models.ChannelSubtype.Strategy">
             <summary>
-            公告
+            Indicates the subtype is strategy.
             </summary>
         </member>
-        <member name="F:Sudoku.Bot.Communication.Models.ChannelSubtype.攻略">
+        <member name="F:Sudoku.Bot.Communication.Models.ChannelSubtype.GammingOnHok">
             <summary>
-            攻略
+            Indicates the subtype is gaming (on game called "Honor of Kings").
+            </summary>
+            <remarks>
+            The abbreviation "HoK" in this field is the game name "Honor of Kings".
+            </remarks>
+        </member>
+        <member name="T:Sudoku.Bot.Communication.Models.ChannelTalkingPermission">
+            <summary>
+            Indicates the type that controls the user talking in a channel.
+            </summary>
+            <remarks>
+            The data type is referenced from
+            <see href="https://bot.q.qq.com/wiki/develop/api/openapi/channel/model.html#speakpermission">this link</see>.
+            </remarks>
+        </member>
+        <member name="F:Sudoku.Bot.Communication.Models.ChannelTalkingPermission.Null">
+            <summary>
+            Indicates the permission is invalid.
             </summary>
         </member>
-        <member name="F:Sudoku.Bot.Communication.Models.ChannelSubtype.开黑">
+        <member name="F:Sudoku.Bot.Communication.Models.ChannelTalkingPermission.Everyone">
             <summary>
-            开黑
+            Indicates the permission level is everyone can talk in this channel.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Bot.Communication.Models.ChannelTalkingPermission.SpecialIdentitiesWithSpecifiedMembers">
+            <summary>
+            Indicates the permission level is that only channel owner, administrators and some specified members
+            can talk in this channel.
             </summary>
         </member>
         <member name="T:Sudoku.Bot.Communication.Models.ChannelType">
             <summary>
-            子频道类型
+            Indicates the type of the channel.
+            </summary>
+            <remarks>
+            The data type is referenced from
+            <see href="https://bot.q.qq.com/wiki/develop/api/openapi/channel/model.html#channeltype">this link</see>.
+            </remarks>
+        </member>
+        <member name="F:Sudoku.Bot.Communication.Models.ChannelType.Text">
+            <summary>
+            Indicates the text channel.
             </summary>
         </member>
-        <member name="F:Sudoku.Bot.Communication.Models.ChannelType.文字">
+        <member name="F:Sudoku.Bot.Communication.Models.ChannelType.ReservedField_1">
             <summary>
-            文字子频道
+            The value doesn't correspond to any meaningful channel types. The field is only used for being reserved.
             </summary>
         </member>
-        <member name="F:Sudoku.Bot.Communication.Models.ChannelType.Reserve1">
+        <member name="F:Sudoku.Bot.Communication.Models.ChannelType.Audio">
             <summary>
-            保留，不可用
+            Indicates the audio channel.
             </summary>
         </member>
-        <member name="F:Sudoku.Bot.Communication.Models.ChannelType.语音">
+        <member name="F:Sudoku.Bot.Communication.Models.ChannelType.ReservedField_2">
             <summary>
-            语音子频道
+            The value doesn't correspond to any meaningful channel types. The field is only used for being reserved.
             </summary>
         </member>
-        <member name="F:Sudoku.Bot.Communication.Models.ChannelType.Reserve2">
+        <member name="F:Sudoku.Bot.Communication.Models.ChannelType.Grouping">
             <summary>
-            保留，不可用
+            Indicates the grouping channel.
             </summary>
         </member>
-        <member name="F:Sudoku.Bot.Communication.Models.ChannelType.分组">
+        <member name="F:Sudoku.Bot.Communication.Models.ChannelType.Live">
             <summary>
-            子频道分组
+            Indicates the live channel.
             </summary>
         </member>
-        <member name="F:Sudoku.Bot.Communication.Models.ChannelType.直播">
+        <member name="F:Sudoku.Bot.Communication.Models.ChannelType.Application">
             <summary>
-            直播子频道
+            Indicates the application channel.
             </summary>
         </member>
-        <member name="F:Sudoku.Bot.Communication.Models.ChannelType.应用">
+        <member name="F:Sudoku.Bot.Communication.Models.ChannelType.Bbs">
             <summary>
-            应用子频道
-            </summary>
-        </member>
-        <member name="F:Sudoku.Bot.Communication.Models.ChannelType.论坛">
-            <summary>
-            论坛子频道
+            Indicates the BBS channel.
             </summary>
         </member>
         <member name="T:Sudoku.Bot.Communication.Models.CreateRoleRes">
             <summary>
-            新建频道身份组的返回值
+            Indicates the returning value that describes the operation for creating a GUILD.
             </summary>
+            <remarks>
+            The data type is referenced from
+            <see href="https://bot.q.qq.com/wiki/develop/api/openapi/guild/post_guild_role.html#%E8%BF%94%E5%9B%9E">this link</see>.
+            </remarks>
         </member>
         <member name="P:Sudoku.Bot.Communication.Models.CreateRoleRes.RoleId">
             <summary>
-            身份组ID
+            Indicates the role ID.
             </summary>
         </member>
         <member name="P:Sudoku.Bot.Communication.Models.CreateRoleRes.Role">
             <summary>
-            新创建的频道身份组对象
+            Indicates the role instance that creates the GUILD.
             </summary>
         </member>
         <member name="T:Sudoku.Bot.Communication.Models.DefaultRoles">
             <summary>
-            系统默认身份组
+            Indicates the default roles.
             </summary>
         </member>
         <member name="M:Sudoku.Bot.Communication.Models.DefaultRoles.Get(System.String)">
             <summary>
-            获取系统默认身份组名称
+            Gets the role description via the role ID, a <see cref="T:System.String"/> representation.
             </summary>
-            <param name="roleId"></param>
-            <returns></returns>
+            <param name="roleId">The role ID.</param>
+            <returns>The string value that describes the role.</returns>
         </member>
         <member name="T:Sudoku.Bot.Communication.Models.DirectMessageSource">
             <summary>
@@ -3674,54 +3734,63 @@
             <param name="content">文字内容</param>
             <returns></returns>
         </member>
-        <member name="T:Sudoku.Bot.Communication.Models.PlayingStatus">
+        <member name="T:Sudoku.Bot.Communication.Models.AudioPlayingStatus">
             <summary>
-            枚举播放状态
+            Indicates the playing status for an <see cref="T:Sudoku.Bot.Communication.Models.AudioControl"/> instance.
+            </summary>
+            <remarks>
+            The data type is referenced from
+            <see href="https://bot.q.qq.com/wiki/develop/api/openapi/audio/model.html#status">this link</see>.
+            </remarks>
+        </member>
+        <member name="F:Sudoku.Bot.Communication.Models.AudioPlayingStatus.Start">
+            <summary>
+            Indicates the audio is started playing.
             </summary>
         </member>
-        <member name="F:Sudoku.Bot.Communication.Models.PlayingStatus.START">
+        <member name="F:Sudoku.Bot.Communication.Models.AudioPlayingStatus.Pause">
             <summary>
-            开始播放操作
+            Indicates the audio is paused.
             </summary>
         </member>
-        <member name="F:Sudoku.Bot.Communication.Models.PlayingStatus.PAUSE">
+        <member name="F:Sudoku.Bot.Communication.Models.AudioPlayingStatus.Resume">
             <summary>
-            暂停播放操作
+            Indicates the audio is resumed.
             </summary>
         </member>
-        <member name="F:Sudoku.Bot.Communication.Models.PlayingStatus.RESUME">
+        <member name="F:Sudoku.Bot.Communication.Models.AudioPlayingStatus.Stop">
             <summary>
-            继续播放操作
-            </summary>
-        </member>
-        <member name="F:Sudoku.Bot.Communication.Models.PlayingStatus.STOP">
-            <summary>
-            停止播放操作
+            Indicates the audio is stopped.
             </summary>
         </member>
         <member name="T:Sudoku.Bot.Communication.Models.PrivacyType">
             <summary>
-            子频道私密权限
+            Indicates the privacy type that corresponds to the cases
+            that a user is allowed doing in a channel.
+            </summary>
+            <remarks>
+            The data type is referenced from
+            <see href="https://bot.q.qq.com/wiki/develop/api/openapi/channel_permissions/model.html#permissions">this link</see>.
+            </remarks>
+        </member>
+        <member name="F:Sudoku.Bot.Communication.Models.PrivacyType.None">
+            <summary>
+            Indicates the user has no permissions to visit the channel.
             </summary>
         </member>
-        <member name="F:Sudoku.Bot.Communication.Models.PrivacyType.隐藏">
+        <member name="F:Sudoku.Bot.Communication.Models.PrivacyType.Visible">
             <summary>
-            没有任何权限
+            Indicates the user can visit the channel. In other words, the channel is visible for the user.
             </summary>
         </member>
-        <member name="F:Sudoku.Bot.Communication.Models.PrivacyType.查看">
+        <member name="F:Sudoku.Bot.Communication.Models.PrivacyType.Managable">
             <summary>
-            可查看子频道	
+            Indicates the user can manage the channel.
             </summary>
         </member>
-        <member name="F:Sudoku.Bot.Communication.Models.PrivacyType.管理">
+        <member name="F:Sudoku.Bot.Communication.Models.PrivacyType.Speakable">
             <summary>
-            可管理子频道
-            </summary>
-        </member>
-        <member name="F:Sudoku.Bot.Communication.Models.PrivacyType.发言">
-            <summary>
-            可发言子频道
+            Indicates the user can talk in the channel.
             </summary>
         </member>
         <member name="T:Sudoku.Bot.Communication.Models.ReactionTarget">
@@ -3829,42 +3898,45 @@
         </member>
         <member name="T:Sudoku.Bot.Communication.Models.Role">
             <summary>
-            身分组对象
+            Indicates the instance that describes for a real role.
             </summary>
         </member>
         <member name="P:Sudoku.Bot.Communication.Models.Role.Id">
             <summary>
-            身份组ID, 默认值可参考 <see cref="T:Sudoku.Bot.Communication.Models.DefaultRoles"/>
+            Indicates the role ID. The default value can be referenced from <see cref="T:Sudoku.Bot.Communication.Models.DefaultRoles"/>.
             </summary>
+            <seealso cref="T:Sudoku.Bot.Communication.Models.DefaultRoles"/>
         </member>
         <member name="P:Sudoku.Bot.Communication.Models.Role.Name">
             <summary>
-            身分组名称
+            Indicates the role name.
             </summary>
         </member>
         <member name="P:Sudoku.Bot.Communication.Models.Role.Color">
             <summary>
-            身份组颜色
-            </summary>
-        </member>
-        <member name="P:Sudoku.Bot.Communication.Models.Role.ColorHtml">
-            <summary>
-            ARGB颜色值的HTML表现形式（如：#FFFFFFFF）
+            Indicates the color of the role.
             </summary>
         </member>
         <member name="P:Sudoku.Bot.Communication.Models.Role.Hoist">
             <summary>
-            该身分组是否在成员列表中单独展示
+            Indicates whether the role is displayed alone. <see langword="true"/> means
+            that the role will be displayed alone.
             </summary>
         </member>
         <member name="P:Sudoku.Bot.Communication.Models.Role.Number">
             <summary>
-            该身分组的人数
+            Indicates the total number of the members that is in the current role.
             </summary>
         </member>
         <member name="P:Sudoku.Bot.Communication.Models.Role.MemberLimit">
             <summary>
-            成员上限
+            Indicates the maximum number of members that can be in the current role.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Models.Role.ColorHtml">
+            <summary>
+            Indicates the HTML-formatted color value. The value is displayed by a string
+            using 8 hex digits (from 0 to F), leading with a tag sign <c>#</c>.
             </summary>
         </member>
         <member name="T:Sudoku.Bot.Communication.Models.Schedule">
@@ -4201,6 +4273,54 @@
             <summary>
             Indicates a connection is ready for receiving messages.
             </summary>
+        </member>
+        <member name="T:Sudoku.Bot.Communication.Resources.ResourceDictionary">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.Name_Administrator">
+            <summary>
+              Looks up a localized string similar to 管理员.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.Name_ChannelManager">
+            <summary>
+              Looks up a localized string similar to 子频道管理员.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.Name_GuildOwner">
+            <summary>
+              Looks up a localized string similar to 频道主.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.Name_NormalMember">
+            <summary>
+              Looks up a localized string similar to 普通成员.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Bot.Communication.Resources.StringResource">
+            <summary>
+            Provides a type that can easily get the string resources.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Bot.Communication.Resources.StringResource.Get(System.String)">
+            <summary>
+            Try to get the value via the specified key.
+            </summary>
+            <param name="key">The key.</param>
+            <returns>The value.</returns>
         </member>
         <member name="T:Sudoku.Bot.Communication.Sender">
             <summary>

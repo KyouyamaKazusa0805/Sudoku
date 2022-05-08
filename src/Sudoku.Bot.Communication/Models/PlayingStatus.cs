@@ -1,27 +1,31 @@
 ﻿namespace Sudoku.Bot.Communication.Models;
 
 /// <summary>
-/// 枚举播放状态
+/// Indicates the playing status for an <see cref="AudioControl"/> instance.
 /// </summary>
-public enum PlayingStatus
+/// <remarks>
+/// The data type is referenced from
+/// <see href="https://bot.q.qq.com/wiki/develop/api/openapi/audio/model.html#status">this link</see>.
+/// </remarks>
+public enum AudioPlayingStatus
 {
 	/// <summary>
-	/// 开始播放操作
+	/// Indicates the audio is started playing.
 	/// </summary>
-	START,
+	Start,
 
 	/// <summary>
-	/// 暂停播放操作
+	/// Indicates the audio is paused.
 	/// </summary>
-	PAUSE,
+	Pause,
 
 	/// <summary>
-	/// 继续播放操作
+	/// Indicates the audio is resumed.
 	/// </summary>
-	RESUME,
+	Resume,
 
 	/// <summary>
-	/// 停止播放操作
+	/// Indicates the audio is stopped.
 	/// </summary>
-	STOP
+	Stop
 }

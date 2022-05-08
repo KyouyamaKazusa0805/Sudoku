@@ -1,17 +1,22 @@
 ﻿namespace Sudoku.Bot.Communication.Models;
 
 /// <summary>
-/// 新建频道身份组的返回值
+/// Indicates the returning value that describes the operation for creating a GUILD.
 /// </summary>
-public class CreateRoleRes
+/// <remarks>
+/// The data type is referenced from
+/// <see href="https://bot.q.qq.com/wiki/develop/api/openapi/guild/post_guild_role.html#%E8%BF%94%E5%9B%9E">this link</see>.
+/// </remarks>
+public sealed class CreateRoleRes
 {
 	/// <summary>
-	/// 身份组ID
+	/// Indicates the role ID.
 	/// </summary>
 	[JsonPropertyName("role_id")]
 	public string? RoleId { get; set; }
+
 	/// <summary>
-	/// 新创建的频道身份组对象
+	/// Indicates the role instance that creates the GUILD.
 	/// </summary>
 	[JsonPropertyName("role")]
 	public Role? Role { get; set; }

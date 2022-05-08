@@ -44,7 +44,7 @@ partial class BotClient
 			{
 				channels = (
 					from channel in channels
-					where channel.SubType == channelSubType
+					where channel.Subtype == channelSubType
 					select channel
 				).ToList();
 			}

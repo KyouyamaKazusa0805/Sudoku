@@ -1,24 +1,37 @@
 ﻿namespace Sudoku.Bot.Communication.Models;
 
 /// <summary>
-/// 子频道子类型(目前只有文字子频道有)
+/// Indicates the subtype of the channel. The type will only be used if the property <see cref="Channel.Type"/>
+/// corresponds to <see cref="ChannelType.Text"/>.
 /// </summary>
+/// <remarks>
+/// The data type is referenced from
+/// <see href="https://bot.q.qq.com/wiki/develop/api/openapi/channel/model.html#channelsubtype">this link</see>.
+/// </remarks>
+/// <seealso cref="Channel.Type"/>
+/// <seealso cref="ChannelType"/>
 public enum ChannelSubtype
 {
 	/// <summary>
-	/// 闲聊
+	/// Indicates the subtype is gossiping.
 	/// </summary>
-	闲聊,
+	Gossiping,
+
 	/// <summary>
-	/// 公告
+	/// Indicates the subtype is an announcement.
 	/// </summary>
-	公告,
+	Announcement,
+
 	/// <summary>
-	/// 攻略
+	/// Indicates the subtype is strategy.
 	/// </summary>
-	攻略,
+	Strategy,
+
 	/// <summary>
-	/// 开黑
+	/// Indicates the subtype is gaming (on game called "Honor of Kings").
 	/// </summary>
-	开黑
+	/// <remarks>
+	/// The abbreviation "HoK" in this field is the game name "Honor of Kings".
+	/// </remarks>
+	GammingOnHok
 }

@@ -1,38 +1,33 @@
 ﻿namespace Sudoku.Bot.Communication.Models;
 
 /// <summary>
-/// 音频对象
+/// Indicates the instance that describes an audio instance.
 /// </summary>
-public class AudioControl
+/// <remarks>
+/// The data type is referenced from
+/// <see href="https://bot.q.qq.com/wiki/develop/api/openapi/audio/model.html#audiocontrol">this link</see>.
+/// </remarks>
+public sealed class AudioControl
 {
 	/// <summary>
-	/// 构建音频消息
+	/// Inidcates the URL corresponds to the audio itself.
+	/// The audio data will be transferred when the property <see cref="Status"/> is 0.
 	/// </summary>
-	/// <param name="status">播放状态</param>
-	/// <param name="audioUrl">音频数据URL</param>
-	/// <param name="text">状态文本</param>
-	public AudioControl(PlayingStatus status, string? audioUrl = null, string? text = null)
-	{
-		AudioUrl = audioUrl;
-		Status = status;
-		Text = text;
-	}
-
-	/// <summary>
-	/// 音频数据的url status为0时传
-	/// </summary>
+	/// <seealso cref="Status"/>
 	[JsonPropertyName("audio_url")]
 	public string? AudioUrl { get; set; }
 
 	/// <summary>
-	/// 状态文本（比如：简单爱-周杰伦），可选，status为0时传，其他操作不传
+	/// Indicates the text that introduces the audio instance.
+	/// The audio data will be transferred when the property <see cref="Status"/> is 0.
 	/// </summary>
+	/// <seealso cref="Status"/>
 	[JsonPropertyName("text")]
 	public string? Text { get; set; }
 
 	/// <summary>
-	/// 播放状态，参考 <see cref="PlayingStatus"/>
+	/// Indicates the playing status for an audio instance.
 	/// </summary>
 	[JsonPropertyName("status")]
-	public PlayingStatus Status { get; set; }
+	public AudioPlayingStatus Status { get; set; }
 }

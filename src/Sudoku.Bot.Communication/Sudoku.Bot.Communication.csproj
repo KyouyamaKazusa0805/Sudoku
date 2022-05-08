@@ -7,4 +7,19 @@
 		<Description>The project that makes commnication with QQ bot server.</Description>
 	</PropertyGroup>
 
+	<ItemGroup>
+		<Compile Update="Resources\ResourceDictionary.Designer.cs">
+			<DesignTime>True</DesignTime>
+			<AutoGen>True</AutoGen>
+			<DependentUpon>ResourceDictionary.resx</DependentUpon>
+		</Compile>
+	</ItemGroup>
+
+	<ItemGroup>
+		<EmbeddedResource Update="Resources\ResourceDictionary.resx">
+			<Generator>ResXFileCodeGenerator</Generator>
+			<LastGenOutput>ResourceDictionary.Designer.cs</LastGenOutput>
+		</EmbeddedResource>
+	</ItemGroup>
+
 </Project>

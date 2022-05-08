@@ -1,31 +1,39 @@
 ﻿namespace Sudoku.Bot.Communication.Models;
 
 /// <summary>
-/// 语音Action
+/// Indicates the instance that describes an audio action.
 /// </summary>
-public class AudioAction
+/// <remarks>
+/// The data type is referenced from
+/// <see href="https://bot.q.qq.com/wiki/develop/api/openapi/audio/model.html#audioaction">this link</see>.
+/// </remarks>
+public sealed class AudioAction
 {
 	/// <summary>
-	/// 频道id
+	/// Indicates the GUILD ID.
 	/// </summary>
 	[JsonPropertyName("guild_id")]
 	public string? GuildId { get; set; }
 
 	/// <summary>
-	/// 子频道id
+	/// Indicates the channel ID.
 	/// </summary>
 	[JsonPropertyName("channel_id")]
 	public string? ChannelId { get; set; }
 
 	/// <summary>
-	/// 音频数据的url status为0时传
+	/// Inidcates the URL corresponds to the audio itself.
+	/// The audio data will be transferred when the property <see cref="AudioControl.Status"/> is 0.
 	/// </summary>
+	/// <seealso cref="AudioControl.Status"/>
 	[JsonPropertyName("audio_url")]
 	public string? AudioUrl { get; set; }
 
 	/// <summary>
-	/// 状态文本（比如：简单爱-周杰伦），可选，status为0时传，其他操作不传
+	/// Indicates the text that introduces the audio.
+	/// The audio data will be transferred when the property <see cref="AudioControl.Status"/> is 0.
 	/// </summary>
+	/// <seealso cref="AudioControl.Status"/>
 	[JsonPropertyName("text")]
 	public string? Text { set; get; }
 }

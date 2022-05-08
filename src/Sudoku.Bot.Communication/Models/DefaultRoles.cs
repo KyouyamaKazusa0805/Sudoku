@@ -1,22 +1,22 @@
 ﻿namespace Sudoku.Bot.Communication.Models;
 
 /// <summary>
-/// 系统默认身份组
+/// Indicates the default roles.
 /// </summary>
 public static class DefaultRoles
 {
 	/// <summary>
-	/// 获取系统默认身份组名称
+	/// Gets the role description via the role ID, a <see cref="string"/> representation.
 	/// </summary>
-	/// <param name="roleId"></param>
-	/// <returns></returns>
+	/// <param name="roleId">The role ID.</param>
+	/// <returns>The string value that describes the role.</returns>
 	public static string? Get(string roleId)
 		=> roleId switch
 		{
-			"1" => "普通成员",
-			"2" => "管理员",
-			"4" => "频道主",
-			"5" => "子频道管理员",
+			"1" => StringResource.Get("Name_NormalMember"),
+			"2" => StringResource.Get("Name_Administrator"),
+			"4" => StringResource.Get("Name_GuildOwner"),
+			"5" => StringResource.Get("Name_ChannelManager"),
 			_ => null
 		};
 }

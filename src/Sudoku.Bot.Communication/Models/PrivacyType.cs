@@ -1,25 +1,33 @@
 ﻿namespace Sudoku.Bot.Communication.Models;
 
 /// <summary>
-/// 子频道私密权限
+/// Indicates the privacy type that corresponds to the cases
+/// that a user is allowed doing in a channel.
 /// </summary>
+/// <remarks>
+/// The data type is referenced from
+/// <see href="https://bot.q.qq.com/wiki/develop/api/openapi/channel_permissions/model.html#permissions">this link</see>.
+/// </remarks>
 [Flags]
 public enum PrivacyType
 {
 	/// <summary>
-	/// 没有任何权限
+	/// Indicates the user has no permissions to visit the channel.
 	/// </summary>
-	隐藏 = 0,
+	None = 0,
+
 	/// <summary>
-	/// 可查看子频道	
+	/// Indicates the user can visit the channel. In other words, the channel is visible for the user.
 	/// </summary>
-	查看 = 1 << 0,
+	Visible = 1 << 0,
+
 	/// <summary>
-	/// 可管理子频道
+	/// Indicates the user can manage the channel.
 	/// </summary>
-	管理 = 1 << 1,
+	Managable = 1 << 1,
+
 	/// <summary>
-	/// 可发言子频道
+	/// Indicates the user can talk in the channel.
 	/// </summary>
-	发言 = 1 << 2
+	Speakable = 1 << 2
 }
