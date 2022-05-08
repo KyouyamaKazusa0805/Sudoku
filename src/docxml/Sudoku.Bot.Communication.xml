@@ -1048,7 +1048,7 @@
             <param name="sender"></param>
             <returns></returns>
         </member>
-        <member name="M:Sudoku.Bot.Communication.BotClient.MuteGuildAsync(System.String,Sudoku.Bot.Communication.Models.JinxTime,Sudoku.Bot.Communication.Sender)">
+        <member name="M:Sudoku.Bot.Communication.BotClient.MuteGuildAsync(System.String,Sudoku.Bot.Communication.Models.JinxTimeSpan,Sudoku.Bot.Communication.Sender)">
             <summary>
             频道全局禁言
             <para>
@@ -1062,7 +1062,7 @@
             <param name="sender"></param>
             <returns></returns>
         </member>
-        <member name="M:Sudoku.Bot.Communication.BotClient.MuteMemberAsync(System.String,System.String,Sudoku.Bot.Communication.Models.JinxTime,Sudoku.Bot.Communication.Sender)">
+        <member name="M:Sudoku.Bot.Communication.BotClient.MuteMemberAsync(System.String,System.String,Sudoku.Bot.Communication.Models.JinxTimeSpan,Sudoku.Bot.Communication.Sender)">
             <summary>
             频道指定成员禁言
             <para>
@@ -2704,56 +2704,72 @@
             Indicates whether the user is hoisted.
             </summary>
         </member>
-        <member name="T:Sudoku.Bot.Communication.Models.JinxMaker">
+        <member name="T:Sudoku.Bot.Communication.Models.JinxTimeSpan">
             <summary>
-            根据时间字符串构建禁言时间
+            Indicates the jinx time span.
             </summary>
         </member>
-        <member name="M:Sudoku.Bot.Communication.Models.JinxMaker.#ctor(System.String)">
+        <member name="F:Sudoku.Bot.Communication.Models.JinxTimeSpan.Default">
             <summary>
-            构造禁言时间
-            <para>
-            支持以下正则匹配的格式 (优先使用时间戳模式)：<br/>
-            时间戳模式 - "^(\d{4})[-年](\d\d)[-月](\d\d)[\s日]*(\d\d)[:点时](\d\d)[:分](\d\d)秒?\s*$"<br/>
-            倒计时模式 - "^(\d+)\s*(年|星期|周|日|天|小?时|分钟?|秒钟?)?\s*$"
-            </para>
+            Indicates the default instance.
             </summary>
         </member>
-        <member name="T:Sudoku.Bot.Communication.Models.JinxTime">
+        <member name="F:Sudoku.Bot.Communication.Models.JinxTimeSpan.TimeStampPattern">
             <summary>
-            禁言时间
+            Indicates the timestamp pattern.
             </summary>
         </member>
-        <member name="M:Sudoku.Bot.Communication.Models.JinxTime.#ctor">
+        <member name="F:Sudoku.Bot.Communication.Models.JinxTimeSpan.CountdownPattern">
             <summary>
-            禁言时间（默认1分钟）
+            Indicates the time-countdown pattern.
             </summary>
         </member>
-        <member name="M:Sudoku.Bot.Communication.Models.JinxTime.#ctor(System.Int32)">
+        <member name="F:Sudoku.Bot.Communication.Models.JinxTimeSpan.SecondsTable">
             <summary>
-            禁言指定的时长
-            </summary>
-            <param name="seconds">禁言多少秒</param>
-        </member>
-        <member name="M:Sudoku.Bot.Communication.Models.JinxTime.#ctor(System.String)">
-            <summary>
-            禁言到指定时间
-            </summary>
-            <param name="timestamp">解禁时间戳
-            <para>
-            格式："yyyy-MM-dd HH:mm:ss"<br/>
-            示例："2077-01-01 08:00:00"
-            </para></param>
-        </member>
-        <member name="P:Sudoku.Bot.Communication.Models.JinxTime.JinxEndTimestamp">
-            <summary>
-            禁言到期时间戳，绝对时间戳，单位：秒
+            The table of all possible date time units, and the representing number of seconds.
             </summary>
         </member>
-        <member name="P:Sudoku.Bot.Communication.Models.JinxTime.JinxSeconds">
+        <member name="M:Sudoku.Bot.Communication.Models.JinxTimeSpan.#ctor">
             <summary>
-            禁言多少秒
+            Initializes a <see cref="T:Sudoku.Bot.Communication.Models.JinxTimeSpan"/> instance via the default time span (60 seconds).
             </summary>
+        </member>
+        <member name="M:Sudoku.Bot.Communication.Models.JinxTimeSpan.#ctor(System.Int32)">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Bot.Communication.Models.JinxTimeSpan"/> instance via the specified seconds.
+            </summary>
+            <param name="seconds">The specified seconds you want to jinx someone.</param>
+        </member>
+        <member name="M:Sudoku.Bot.Communication.Models.JinxTimeSpan.#ctor(System.String)">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Bot.Communication.Models.JinxTimeSpan"/> instance via the specified timestamp value, as string representation.
+            </summary>
+            <param name="timestamp">
+            The timestamp value that defines the time span. The format is <c>"yyyy-MM-dd HH:mm:ss"</c>.
+            For example: <c>"2077-01-01 08:00:00"</c>.
+            </param>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Models.JinxTimeSpan.JinxEndTimestamp">
+            <summary>
+            Indicates the time that ends the jinx. The value is absolute.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Models.JinxTimeSpan.JinxSeconds">
+            <summary>
+            Indicates the jinx time span. In seconds.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Models.JinxTimeSpan.OneMinute">
+            <summary>
+            Indicates the <see cref="T:Sudoku.Bot.Communication.Models.JinxTimeSpan"/> instance with one-minute time span.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Bot.Communication.Models.JinxTimeSpan.FromTimeSpanString(System.String)">
+            <summary>
+            Creates a <see cref="T:Sudoku.Bot.Communication.Models.JinxTimeSpan"/> instance via the specified time span, as the string representation.
+            </summary>
+            <param name="timeString">The time-span string.</param>
+            <returns>The <see cref="T:Sudoku.Bot.Communication.Models.JinxTimeSpan"/> instance.</returns>
         </member>
         <member name="T:Sudoku.Bot.Communication.Models.Message">
             <summary>
@@ -4308,6 +4324,71 @@
               resource lookups using this strongly typed resource class.
             </summary>
         </member>
+        <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.Command_About">
+            <summary>
+              Looks up a localized string similar to 关于.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.Command_Repeat">
+            <summary>
+              Looks up a localized string similar to 复读.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.DateTimeUnit_Day1">
+            <summary>
+              Looks up a localized string similar to 日.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.DateTimeUnit_Day2">
+            <summary>
+              Looks up a localized string similar to 天.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.DateTimeUnit_Hour1">
+            <summary>
+              Looks up a localized string similar to 小时.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.DateTimeUnit_Hour2">
+            <summary>
+              Looks up a localized string similar to 时.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.DateTimeUnit_Minute1">
+            <summary>
+              Looks up a localized string similar to 分钟.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.DateTimeUnit_Minute2">
+            <summary>
+              Looks up a localized string similar to 分.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.DateTimeUnit_Week1">
+            <summary>
+              Looks up a localized string similar to 星期.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.DateTimeUnit_Week2">
+            <summary>
+              Looks up a localized string similar to 周.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.DateTimeUnit_Year">
+            <summary>
+              Looks up a localized string similar to 年.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.JinxTimeCountdownPattern">
+            <summary>
+              Looks up a localized string similar to (\d+)\s*(年|星期|周|日|天|小?时|分钟?|秒钟?).
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.JinxTimestampPattern">
+            <summary>
+              Looks up a localized string similar to (\d{4})[-年](\d\d)[-月](\d\d)[\s日]*(\d\d)[:点时](\d\d)[:分](\d\d)秒?.
+            </summary>
+        </member>
         <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.Name_Administrator">
             <summary>
               Looks up a localized string similar to 管理员.
@@ -4660,14 +4741,14 @@
             <param name="guild_id">私信会话频道Id</param>
             <returns></returns>
         </member>
-        <member name="M:Sudoku.Bot.Communication.Sender.MuteGuildAsync(Sudoku.Bot.Communication.Models.JinxTime)">
+        <member name="M:Sudoku.Bot.Communication.Sender.MuteGuildAsync(Sudoku.Bot.Communication.Models.JinxTimeSpan)">
             <summary>
             禁言全员
             </summary>
             <param name="muteTime"></param>
             <returns></returns>
         </member>
-        <member name="M:Sudoku.Bot.Communication.Sender.MuteMemberAsync(Sudoku.Bot.Communication.Models.User,Sudoku.Bot.Communication.Models.JinxTime)">
+        <member name="M:Sudoku.Bot.Communication.Sender.MuteMemberAsync(Sudoku.Bot.Communication.Models.User,Sudoku.Bot.Communication.Models.JinxTimeSpan)">
             <summary>
             禁言指定成员
             </summary>

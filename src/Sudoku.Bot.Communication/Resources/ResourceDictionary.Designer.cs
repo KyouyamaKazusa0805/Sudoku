@@ -61,6 +61,123 @@ namespace Sudoku.Bot.Communication.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 关于.
+        /// </summary>
+        internal static string Command_About {
+            get {
+                return ResourceManager.GetString("Command_About", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 复读.
+        /// </summary>
+        internal static string Command_Repeat {
+            get {
+                return ResourceManager.GetString("Command_Repeat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 日.
+        /// </summary>
+        internal static string DateTimeUnit_Day1 {
+            get {
+                return ResourceManager.GetString("DateTimeUnit_Day1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 天.
+        /// </summary>
+        internal static string DateTimeUnit_Day2 {
+            get {
+                return ResourceManager.GetString("DateTimeUnit_Day2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 小时.
+        /// </summary>
+        internal static string DateTimeUnit_Hour1 {
+            get {
+                return ResourceManager.GetString("DateTimeUnit_Hour1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 时.
+        /// </summary>
+        internal static string DateTimeUnit_Hour2 {
+            get {
+                return ResourceManager.GetString("DateTimeUnit_Hour2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 分钟.
+        /// </summary>
+        internal static string DateTimeUnit_Minute1 {
+            get {
+                return ResourceManager.GetString("DateTimeUnit_Minute1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 分.
+        /// </summary>
+        internal static string DateTimeUnit_Minute2 {
+            get {
+                return ResourceManager.GetString("DateTimeUnit_Minute2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 星期.
+        /// </summary>
+        internal static string DateTimeUnit_Week1 {
+            get {
+                return ResourceManager.GetString("DateTimeUnit_Week1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 周.
+        /// </summary>
+        internal static string DateTimeUnit_Week2 {
+            get {
+                return ResourceManager.GetString("DateTimeUnit_Week2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 年.
+        /// </summary>
+        internal static string DateTimeUnit_Year {
+            get {
+                return ResourceManager.GetString("DateTimeUnit_Year", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to (\d+)\s*(年|星期|周|日|天|小?时|分钟?|秒钟?).
+        /// </summary>
+        internal static string JinxTimeCountdownPattern {
+            get {
+                return ResourceManager.GetString("JinxTimeCountdownPattern", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to (\d{4})[-年](\d\d)[-月](\d\d)[\s日]*(\d\d)[:点时](\d\d)[:分](\d\d)秒?.
+        /// </summary>
+        internal static string JinxTimestampPattern {
+            get {
+                return ResourceManager.GetString("JinxTimestampPattern", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 管理员.
         /// </summary>
         internal static string Name_Administrator {

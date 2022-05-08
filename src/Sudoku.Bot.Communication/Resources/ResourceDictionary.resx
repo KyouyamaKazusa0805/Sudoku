@@ -117,6 +117,45 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Command_About" xml:space="preserve">
+    <value>关于</value>
+  </data>
+  <data name="Command_Repeat" xml:space="preserve">
+    <value>复读</value>
+  </data>
+  <data name="DateTimeUnit_Day1" xml:space="preserve">
+    <value>日</value>
+  </data>
+  <data name="DateTimeUnit_Day2" xml:space="preserve">
+    <value>天</value>
+  </data>
+  <data name="DateTimeUnit_Hour1" xml:space="preserve">
+    <value>小时</value>
+  </data>
+  <data name="DateTimeUnit_Hour2" xml:space="preserve">
+    <value>时</value>
+  </data>
+  <data name="DateTimeUnit_Minute1" xml:space="preserve">
+    <value>分钟</value>
+  </data>
+  <data name="DateTimeUnit_Minute2" xml:space="preserve">
+    <value>分</value>
+  </data>
+  <data name="DateTimeUnit_Week1" xml:space="preserve">
+    <value>星期</value>
+  </data>
+  <data name="DateTimeUnit_Week2" xml:space="preserve">
+    <value>周</value>
+  </data>
+  <data name="DateTimeUnit_Year" xml:space="preserve">
+    <value>年</value>
+  </data>
+  <data name="JinxTimeCountdownPattern" xml:space="preserve">
+    <value>(\d+)\s*(年|星期|周|日|天|小?时|分钟?|秒钟?)</value>
+  </data>
+  <data name="JinxTimestampPattern" xml:space="preserve">
+    <value>(\d{4})[-年](\d\d)[-月](\d\d)[\s日]*(\d\d)[:点时](\d\d)[:分](\d\d)秒?</value>
+  </data>
   <data name="Name_Administrator" xml:space="preserve">
     <value>管理员</value>
   </data>

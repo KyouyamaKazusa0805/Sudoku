@@ -14,7 +14,7 @@ partial class BotClient
 	/// <param name="muteTime">禁言模式</param>
 	/// <param name="sender"></param>
 	/// <returns></returns>
-	public async Task<bool> MuteGuildAsync(string guild_id, JinxTime muteTime, Sender? sender = null)
+	public async Task<bool> MuteGuildAsync(string guild_id, JinxTimeSpan muteTime, Sender? sender = null)
 	{
 		var api = BotApis.禁言全员;
 		var response = await HttpSendAsync(
@@ -40,7 +40,7 @@ partial class BotClient
 	/// <param name="muteTime">禁言时间</param>
 	/// <param name="sender"></param>
 	/// <returns></returns>
-	public async Task<bool> MuteMemberAsync(string guild_id, string user_id, JinxTime muteTime, Sender? sender = null)
+	public async Task<bool> MuteMemberAsync(string guild_id, string user_id, JinxTimeSpan muteTime, Sender? sender = null)
 	{
 		var api = BotApis.禁言指定成员;
 		var response = await HttpSendAsync(

@@ -381,7 +381,7 @@ public class Sender
 	/// </summary>
 	/// <param name="muteTime"></param>
 	/// <returns></returns>
-	public async Task<bool> MuteGuildAsync(JinxTime muteTime) => await Bot.MuteGuildAsync(GuildId, muteTime, this);
+	public async Task<bool> MuteGuildAsync(JinxTimeSpan muteTime) => await Bot.MuteGuildAsync(GuildId, muteTime, this);
 
 	/// <summary>
 	/// 禁言指定成员
@@ -389,7 +389,7 @@ public class Sender
 	/// <param name="user">目标成员用户</param>
 	/// <param name="muteTime">禁言时间</param>
 	/// <returns></returns>
-	public async Task<bool> MuteMemberAsync(User user, JinxTime muteTime)
+	public async Task<bool> MuteMemberAsync(User user, JinxTimeSpan muteTime)
 		=> await Bot.MuteMemberAsync(GuildId, user.Id, muteTime, this);
 
 	/// <summary>
