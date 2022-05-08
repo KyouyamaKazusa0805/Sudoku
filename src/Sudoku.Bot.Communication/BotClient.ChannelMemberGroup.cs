@@ -48,7 +48,8 @@ partial class BotClient
 	/// <param name="filter">标识需要设置哪些字段,若不填则根据Info自动推测</param>
 	/// <param name="sender"></param>
 	/// <returns></returns>
-	public async Task<Role?> EditRoleAsync(string guild_id, string role_id, Info info, Filter? filter = null, Sender? sender = null)
+	public async Task<Role?> EditRoleAsync(
+		string guild_id, string role_id, Info info, Filter? filter = null, Sender? sender = null)
 	{
 		var api = BotApis.修改频道身份组;
 		filter ??= new(!string.IsNullOrWhiteSpace(info.Name), info.Color != null, info.Hoist ?? false);

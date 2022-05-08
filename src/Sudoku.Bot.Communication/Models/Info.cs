@@ -1,53 +1,64 @@
 ﻿namespace Sudoku.Bot.Communication.Models;
 
 /// <summary>
-/// 携带需要设置的字段内容
+/// Defines a type that stores the data that can be taken by the message.
 /// </summary>
-public class Info
+public sealed class Info
 {
 	/// <summary>
-	/// 构造身份组信息
+	/// Initializes a <see cref="Info"/> instance via the specified name, color and a <see cref="bool"/>
+	/// value indicating whether the user is hoisted.
 	/// </summary>
-	/// <param name="name">名称</param>
-	/// <param name="color">颜色</param>
-	/// <param name="hoist">在成员列表中单独展示</param>
-	public Info(string? name = null, Color? color = null, bool? hoist = null)
-		=> (Name, Color, Hoist) = (name, color, hoist);
+	/// <param name="name">The name.</param>
+	/// <param name="color">The color.</param>
+	/// <param name="isHoisted">Indicates whether the user is hoisted.</param>
+	public Info(string? name = null, Color? color = null, bool? isHoisted = null)
+		=> (Name, Color, Hoist) = (name, color, isHoisted);
 
 	/// <summary>
-	/// 构造身份组信息
+	/// Initializes a <see cref="Info"/> instance via the specified name, color and a <see cref="bool"/>
+	/// value indicating whether the user is hoisted.
 	/// </summary>
-	/// <param name="name">名称</param>
-	/// <param name="colorHtml">ARGB颜色值的HTML表现形式（如：#FFFFFFFF）</param>
-	/// <param name="hoist">在成员列表中单独展示</param>
-	public Info(string? name = null, string? colorHtml = null, bool? hoist = null)
-		=> (Name, ColorHtml, Hoist) = (name, colorHtml, hoist);
+	/// <param name="name">The name.</param>
+	/// <param name="colorHtml">The color, as hex string representation.</param>
+	/// <param name="isHoisted">Indicates whether the user is hoisted.</param>
+	public Info(string? name = null, string? colorHtml = null, bool? isHoisted = null)
+		=> (Name, ColorHtml, Hoist) = (name, colorHtml, isHoisted);
 
 
 	/// <summary>
-	/// 名称
+	/// Indicates the name of the user.
 	/// </summary>
 	[JsonPropertyName("name")]
 	public string? Name { get; set; }
 
 	/// <summary>
-	/// 颜色
+	/// Indicates the color of the user being displayed.
 	/// </summary>
 	[JsonPropertyName("color"), JsonConverter(typeof(ColorToUint32Converter))]
 	public Color? Color { get; set; }
 
 	/// <summary>
-	/// ARGB的HTML十六进制颜色值
-	/// <para>
-	/// 支持这些格式(忽略大小写和前后空白字符)：<br/>
-	/// #FFFFFFFF #FFFFFF #FFFF #FFF
-	/// </para>
-	/// <para><em>注: 因官方API有BUG，框架暂时强制Alpha通道固定为1.0，对功能无影响。 [2021-12-21]</em></para>
+	/// Indicates the color of the user being displayed, as hex string representation.
+	/// All possible formats are:
+	/// <list type="bullet">
+	/// <item>ARGB format (e.g. <c>#FFFFFFFF</c>)</item>
+	/// <item>RGB format (e.g. <c>#FFFFFF</c>)</item>
+	/// <item>Duplicated ARGB format (e.g. <c>#FFFF</c>)</item>
+	/// <item>Duplicated RGB format (e.g. <c>#FFF</c>)</item>
+	/// </list>
 	/// </summary>
+	/// <remarks>
+	/// <b>
+	/// Please note that due to the bug waiting for being fixed by the offical APIs,
+	/// the framework doesn't support alpha value. The alpha value will be set to 1.0 as the constant value.
+	/// </b>
+	/// (note date: 2021/12/21)
+	/// </remarks>
 	[JsonIgnore]
 	public string? ColorHtml
 	{
-		get => Color == null ? null : ColorTranslator.ToHtml(Color.Value);
+		get => Color is null ? null : ColorTranslator.ToHtml(Color.Value);
 
 		set
 		{
@@ -65,7 +76,7 @@ public class Info
 	}
 
 	/// <summary>
-	/// 在成员列表中单独展示
+	/// Indicates whether the user is hoisted.
 	/// </summary>
 	[JsonPropertyName("hoist"), JsonConverter(typeof(BoolToInt32Converter))]
 	public bool? Hoist { get; set; }
