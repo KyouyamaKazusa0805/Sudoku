@@ -12,7 +12,7 @@ public class Info
 	/// <param name="color">颜色</param>
 	/// <param name="hoist">在成员列表中单独展示</param>
 	public Info(string? name = null, Color? color = null, bool? hoist = null)
-		=> (Name, Color, Hoist) = (name, Color, hoist);
+		=> (Name, Color, Hoist) = (name, color, hoist);
 
 	/// <summary>
 	/// 构造身份组信息
