@@ -1,23 +1,24 @@
 ﻿namespace Sudoku.Bot.Communication.Models;
 
 /// <summary>
-/// 频道身份组列表
+/// Indicates the roles of the GUILD.
 /// </summary>
-public class GuildRoles
+public sealed class GuildRoles
 {
 	/// <summary>
-	/// 频道Id
+	/// Indicates the GUILD value.
 	/// </summary>
 	[JsonPropertyName("guild_id")]
 	public string? GuildId { get; set; }
 
 	/// <summary>
-	/// 身份组
+	/// Indicates the role list.
 	/// </summary>
 	[JsonPropertyName("roles")]
 	public List<Role>? Roles { get; set; }
+
 	/// <summary>
-	/// 默认分组上限
+	/// Indicates the maximum value of the possible roles in this GUILD.
 	/// </summary>
 	[JsonPropertyName("role_num_limit")]
 	public string? RoleNumLimit { get; set; }

@@ -2570,97 +2570,81 @@
         </member>
         <member name="T:Sudoku.Bot.Communication.Models.Guild">
             <summary>
-            频道对象
+            Indicates the GUILD instance.
             </summary>
+            <remarks>
+            The data type is referenced from
+            <see href="https://bot.q.qq.com/wiki/develop/api/openapi/guild/model.html">this link</see>.
+            </remarks>
         </member>
         <member name="P:Sudoku.Bot.Communication.Models.Guild.Id">
             <summary>
-            频道ID
+            Indicates the GUILD ID value.
             </summary>
         </member>
         <member name="P:Sudoku.Bot.Communication.Models.Guild.Name">
             <summary>
-            频道名称
+            Indicates the name of the GUILD.
             </summary>
         </member>
         <member name="P:Sudoku.Bot.Communication.Models.Guild.Icon">
             <summary>
-            频道头像地址
+            Indicates the URL link that corresponds to the avatar of the current GUILD.
             </summary>
         </member>
         <member name="P:Sudoku.Bot.Communication.Models.Guild.OwnerId">
             <summary>
-            频道创建人用户ID
+            Indicates the ID value that corresponds to the owner of the GUILD.
             </summary>
         </member>
         <member name="P:Sudoku.Bot.Communication.Models.Guild.Owner">
             <summary>
-            当前人是否是频道创建人
+            Indicates whether the current role is the owner.
             </summary>
         </member>
         <member name="P:Sudoku.Bot.Communication.Models.Guild.MemberCount">
             <summary>
-            成员数
+            Indicates the number of members joined in this GUILD.
             </summary>
         </member>
         <member name="P:Sudoku.Bot.Communication.Models.Guild.MaxMembers">
             <summary>
-            最大成员数
+            Indicates the maximum number of members can be joined in this GUILD.
             </summary>
         </member>
         <member name="P:Sudoku.Bot.Communication.Models.Guild.Description">
             <summary>
-            频道描述
+            Indicates the description of the GUILD.
             </summary>
         </member>
         <member name="P:Sudoku.Bot.Communication.Models.Guild.JoinedAt">
             <summary>
-            频道创建时间
+            Indicates the date time describes when the GUILD is joined.
             </summary>
         </member>
         <member name="P:Sudoku.Bot.Communication.Models.Guild.APIPermissions">
             <summary>
-            机器人在本频道内拥有的权限的列表
-            </summary>
-        </member>
-        <member name="T:Sudoku.Bot.Communication.Models.GuildInfo">
-            <summary>
-            频道信息
-            </summary>
-        </member>
-        <member name="P:Sudoku.Bot.Communication.Models.GuildInfo.Channels">
-            <summary>
-            子频道列表
-            </summary>
-        </member>
-        <member name="P:Sudoku.Bot.Communication.Models.GuildInfo.Roles">
-            <summary>
-            角色列表
-            </summary>
-        </member>
-        <member name="P:Sudoku.Bot.Communication.Models.GuildInfo.Members">
-            <summary>
-            成员列表
+            Indicates the permissions that the bot can use in this GUILD.
             </summary>
         </member>
         <member name="T:Sudoku.Bot.Communication.Models.GuildRoles">
             <summary>
-            频道身份组列表
+            Indicates the roles of the GUILD.
             </summary>
         </member>
         <member name="P:Sudoku.Bot.Communication.Models.GuildRoles.GuildId">
             <summary>
-            频道Id
+            Indicates the GUILD value.
             </summary>
         </member>
         <member name="P:Sudoku.Bot.Communication.Models.GuildRoles.Roles">
             <summary>
-            身份组
+            Indicates the role list.
             </summary>
         </member>
         <member name="P:Sudoku.Bot.Communication.Models.GuildRoles.RoleNumLimit">
             <summary>
-            默认分组上限
+            Indicates the maximum value of the possible roles in this GUILD.
             </summary>
         </member>
         <member name="T:Sudoku.Bot.Communication.Models.Info">
