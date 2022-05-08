@@ -4,12 +4,13 @@ Log.LogLevel = LogLevel.INFO;
 // Initializes an identity instance.
 // Please note that the token and secret code corresponds to the info for the bot.
 // For more information please visit the link https://q.qq.com/bot/#/home
-var identity = loadBotFileFromLocal("""P:\Bot\bot.json""", out string testChannelId);
+const string localPath = """P:\Bot\bot.json""";
+var identity = loadBotFileFromLocal(localPath, out string testChannelId);
 
 // Initializes a bot client.
-var bot = new BotClient(identity)
+var bot = new BotClient(identity, sandBoxApi: true, reportApiError: true)
 {
-	Intents = Intents.Private,
+	Intents = Intents.PrivateDomain,
 	CommandPrefix = "/",
 	MessageFilter = sender => sender.ChannelId != testChannelId
 };

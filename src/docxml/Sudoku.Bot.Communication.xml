@@ -1,0 +1,4652 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Sudoku.Bot.Communication</name>
+    </assembly>
+    <members>
+        <member name="T:Sudoku.Bot.Communication.ApiErrorInfo">
+            <summary>
+            API请求出错的关键信息
+            </summary>
+        </member>
+        <member name="M:Sudoku.Bot.Communication.ApiErrorInfo.#ctor(System.String,System.String,System.Int32,System.String,Sudoku.Bot.Communication.FreezeTime)">
+            <summary>
+            API请求出错的关键信息
+            </summary>
+            <param name="path">接口地址</param>
+            <param name="method">请求方式</param>
+            <param name="code">错误代码</param>
+            <param name="detail">错误详情</param>
+            <param name="freezeTime">接口被暂时停用的时间</param>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.ApiErrorInfo.Path">
+            <summary>
+            接口地址
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.ApiErrorInfo.Method">
+            <summary>
+            请求方式
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.ApiErrorInfo.Code">
+            <summary>
+            错误代码
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.ApiErrorInfo.Detail">
+            <summary>
+            错误信息
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.ApiErrorInfo.FreezeTime">
+            <summary>
+            接口被暂时停用的时间
+            </summary>
+        </member>
+        <member name="T:Sudoku.Bot.Communication.ApiStatus">
+            <summary>
+            API请求状态
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.ApiStatus.Code">
+            <summary>
+            代码
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.ApiStatus.Message">
+            <summary>
+            原因
+            </summary>
+        </member>
+        <member name="T:Sudoku.Bot.Communication.ApiType">
+            <summary>
+            Indicates the type of the API.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Bot.Communication.ApiType.Both">
+            <summary>
+            Indicates the API is used for both domains.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Bot.Communication.ApiType.PublicDomain">
+            <summary>
+            Indicates the API is used for public domain.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Bot.Communication.ApiType.PrivateDomain">
+            <summary>
+            Indicates the API is used for private domain.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Bot.Communication.BotApi">
+            <summary>
+            Indicates the structure of the API message unit.
+            </summary>
+            <param name="Type">The type of the API.</param>
+            <param name="Method">The method called.</param>
+            <param name="Path">The path.</param>
+            <completionlist cref="T:Sudoku.Bot.Communication.BotApis"/>
+        </member>
+        <member name="M:Sudoku.Bot.Communication.BotApi.#ctor(Sudoku.Bot.Communication.ApiType,System.Net.Http.HttpMethod,System.String)">
+            <summary>
+            Indicates the structure of the API message unit.
+            </summary>
+            <param name="Type">The type of the API.</param>
+            <param name="Method">The method called.</param>
+            <param name="Path">The path.</param>
+            <completionlist cref="T:Sudoku.Bot.Communication.BotApis"/>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.BotApi.Type">
+            <summary>The type of the API.</summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.BotApi.Method">
+            <summary>The method called.</summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.BotApi.Path">
+            <summary>The path.</summary>
+        </member>
+        <member name="T:Sudoku.Bot.Communication.BotApis">
+            <summary>
+            Provides with a set of APIs.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.BotApis.获取用户详情">
+            <summary>
+            Gets the details of the bot.
+            <list type="bullet">
+            <item>Documentation: <see href="https://bot.q.qq.com/wiki/develop/api/openapi/user/me.html">here</see>.</item>
+            <item>Corresponding: <c>GET /users/@me</c></item>
+            <item>Need authorization: false</item>
+            </list>
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.BotApis.获取用户频道列表">
+            <summary>
+            获取当前用户（机器人）所加入的频道列表
+            <para>
+            <see href="https://bot.q.qq.com/wiki/develop/api/openapi/user/guilds.html">接口文档</see><br/>
+            无需鉴权<br/>
+            GET /users/@me/guilds
+            </para>
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.BotApis.获取频道详情">
+            <summary>
+            获取 guild_id 指定的频道的详情
+            <para>
+            <see href="https://bot.q.qq.com/wiki/develop/api/openapi/guild/get_guild.html">接口文档</see><br/>
+            公域鉴权<br/>
+            GET /guilds/{guild_id}
+            </para>
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.BotApis.获取子频道列表">
+            <summary>
+            获取 guild_id 指定的频道下的子频道列表
+            <para>
+            <see href="https://bot.q.qq.com/wiki/develop/api/openapi/channel/get_channels.html">接口文档</see><br/>
+            公域鉴权<br/>
+            GET /guilds/{guild_id}/channels
+            </para>
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.BotApis.获取子频道详情">
+            <summary>
+            获取 channel_id 指定的子频道的详情
+            <para>
+            <see href="https://bot.q.qq.com/wiki/develop/api/openapi/channel/get_channel.html">接口文档</see><br/>
+            公域鉴权<br/>
+            GET /channels/{channel_id}
+            </para>
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.BotApis.创建子频道">
+            <summary>
+            在 guild_id 指定的频道下创建一个子频道
+            <para>
+            <see href="https://bot.q.qq.com/wiki/develop/api/openapi/channel/post_channels.html">接口文档</see><br/>
+            私域鉴权<br/>
+            POST /guilds/{guild_id}/channels
+            </para>
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.BotApis.修改子频道">
+            <summary>
+            修改 channel_id 指定的子频道的信息
+            <para>
+            <see href="https://bot.q.qq.com/wiki/develop/api/openapi/channel/patch_channel.html">接口文档</see><br/>
+            私域鉴权<br/>
+            PATCH /channels/{channel_id}
+            </para>
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.BotApis.删除子频道">
+            <summary>
+            删除 channel_id 指定的子频道
+            <para>
+            <see href="https://bot.q.qq.com/wiki/develop/api/openapi/channel/delete_channel.html">接口文档</see><br/>
+            私域鉴权<br/>
+            DELETE /channels/{channel_id}
+            </para>
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.BotApis.获取频道成员列表">
+            <summary>
+            获取 guild_id 指定的频道中所有成员的详情列表
+            <para>
+            <see href="https://bot.q.qq.com/wiki/develop/api/openapi/member/get_members.html">接口文档</see><br/>
+            私域鉴权<br/>
+            GET /guilds/{guild_id}/members
+            </para>
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.BotApis.获取成员详情">
+            <summary>
+            获取 guild_id 指定的频道中 user_id 对应成员的详细信息
+            <para>
+            <see href="https://bot.q.qq.com/wiki/develop/api/openapi/member/get_member.html">接口文档</see><br/>
+            公域鉴权<br/>
+            GET /guilds/{guild_id}/members/{user_id}
+            </para>
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.BotApis.删除频道成员">
+            <summary>
+            删除 guild_id 指定的频道中 user_id 对应的成员
+            <para>
+            <see href="https://bot.q.qq.com/wiki/develop/api/openapi/member/delete_member.html">接口文档</see><br/>
+            私域鉴权<br/>
+            DELETE /guilds/{guild_id}/members/{user_id}
+            </para>
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.BotApis.获取频道身份组列表">
+            <summary>
+            获取 guild_id 指定的频道下的身份组列表
+            <para>
+            <see href="https://bot.q.qq.com/wiki/develop/api/openapi/guild/get_guild_roles.html">接口文档</see><br/>
+            公域鉴权<br/>
+            GET /guilds/{guild_id}/roles
+            </para>
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.BotApis.创建频道身份组">
+            <summary>
+            在 guild_id 指定的频道下创建一个身份组
+            <para>
+            <see href="https://bot.q.qq.com/wiki/develop/api/openapi/guild/post_guild_role.html">接口文档</see><br/>
+            公域鉴权<br/>
+            POST /guilds/{guild_id}/roles
+            </para>
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.BotApis.修改频道身份组">
+            <summary>
+            修改频道 guild_id 下 role_id 指定的身份组
+            <para>
+            <see href="https://bot.q.qq.com/wiki/develop/api/openapi/guild/patch_guild_role.html">接口文档</see><br/>
+            公域鉴权<br/>
+            PATCH /guilds/{guild_id}/roles/{role_id}
+            </para>
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.BotApis.删除频道身份组">
+            <summary>
+            删除频道 guild_id 下 role_id 指定的身份组
+            <para>
+            <see href="https://bot.q.qq.com/wiki/develop/api/openapi/guild/delete_guild_role.html">接口文档</see><br/>
+            公域鉴权<br/>
+            DELETE /guilds/{guild_id}/roles/{role_id}
+            </para>
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.BotApis.添加频道身份组成员">
+            <summary>
+            将频道 guild_id 下的用户 user_id 添加到身份组 role_id
+            <para>
+            <see href="https://bot.q.qq.com/wiki/develop/api/openapi/guild/put_guild_member_role.html">接口文档</see><br/>
+            公域鉴权<br/>
+            PUT /guilds/{guild_id}/members/{user_id}/roles/{role_id}
+            </para>
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.BotApis.删除频道身份组成员">
+            <summary>
+            将用户 user_id 从频道 guild_id 的 role_id 身份组中移除
+            <para>
+            <see href="https://bot.q.qq.com/wiki/develop/api/openapi/guild/delete_guild_member_role.html">接口文档</see><br/>
+            公域鉴权<br/>
+            DELETE /guilds/{guild_id}/members/{user_id}/roles/{role_id}
+            </para>
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.BotApis.获取子频道用户权限">
+            <summary>
+            获取子频道 channel_id 下用户 user_id 的权限
+            <para>
+            <see href="https://bot.q.qq.com/wiki/develop/api/openapi/channel_permissions/get_channel_permissions.html">接口文档</see><br/>
+            公域鉴权<br/>
+            GET /channels/{channel_id}/members/{user_id}/permissions
+            </para>
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.BotApis.修改子频道用户权限">
+            <summary>
+            修改子频道 channel_id 下用户 user_id 的权限
+            <para>
+            <see href="https://bot.q.qq.com/wiki/develop/api/openapi/channel_permissions/put_channel_permissions.html">接口文档</see><br/>
+            公域鉴权<br/>
+            PUT /channels/{channel_id}/members/{user_id}/permissions
+            </para>
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.BotApis.获取子频道身份组权限">
+            <summary>
+            获取子频道 channel_id 下身份组 role_id 的权限
+            <para>
+            <see href="https://bot.q.qq.com/wiki/develop/api/openapi/channel_permissions/get_channel_roles_permissions.html">接口文档</see><br/>
+            公域鉴权<br/>
+            GET /channels/{channel_id}/roles/{role_id}/permissions
+            </para>
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.BotApis.修改子频道身份组权限">
+            <summary>
+            修改子频道 channel_id 下身份组 role_id 的权限
+            <para>
+            <see href="https://bot.q.qq.com/wiki/develop/api/openapi/channel_permissions/put_channel_roles_permissions.html">接口文档</see><br/>
+            公域鉴权<br/>
+            PUT /channels/{channel_id}/roles/{role_id}/permissions
+            </para>
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.BotApis.获取指定消息">
+            <summary>
+            获取子频道 channel_id 下的消息 message_id 的详情
+            <para>
+            <see href="https://bot.q.qq.com/wiki/develop/api/openapi/message/get_message_of_id.html">接口文档</see><br/>
+            公域鉴权<br/>
+            GET /channels/{channel_id}/messages/{message_id}
+            </para>
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.BotApis.获取消息列表">
+            <summary>
+            获取子频道 channel_id 下的消息列表
+            <para>
+            <see href="https://bot.q.qq.com/wiki/develop/pythonsdk/api/message/get_messages.html">接口文档</see><br/>
+            私域鉴权<br/>
+            GET /channels/{channel_id}/messages
+            </para>
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.BotApis.发送消息">
+            <summary>
+            向 channel_id 指定的子频道发送消息
+            <para>
+            <see href="https://bot.q.qq.com/wiki/develop/api/openapi/message/post_messages.html">接口文档</see><br/>
+            公域鉴权<br/>
+            POST /channels/{channel_id}/messages
+            </para>
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.BotApis.撤回消息">
+            <summary>
+            撤回 message_id 指定的消息
+            <para>
+            <see href="https://bot.q.qq.com/wiki/develop/nodesdk/message/delete_message.html">接口文档</see><br/>
+            私域鉴权<br/>
+            DELETE /channels/{channel_id}/messages/{message_id}
+            </para>
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.BotApis.创建私信会话">
+            <summary>
+            机器人和在同一个频道内的成员创建私信会话
+            <para>
+            <see href="https://bot.q.qq.com/wiki/develop/api/openapi/dms/post_dms.html">接口文档</see><br/>
+            公域鉴权<br/>
+            POST /users/@me/dms
+            </para>
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.BotApis.发送私信">
+            <summary>
+            发送私信消息（已经创建私信会话后）
+            <para>
+            <see href="https://bot.q.qq.com/wiki/develop/api/openapi/dms/post_dms_messages.html">接口文档</see><br/>
+            公域鉴权<br/>
+            POST /dms/{guild_id}/messages
+            </para>
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.BotApis.禁言全员">
+            <summary>
+            将频道的全体成员（非管理员）禁言
+            <para>
+            <see href="https://bot.q.qq.com/wiki/develop/api/openapi/guild/patch_guild_mute.html">接口文档</see><br/>
+            公域鉴权<br/>
+            PATCH /guilds/{guild_id}/mute
+            </para>
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.BotApis.禁言指定成员">
+            <summary>
+            禁言频道 guild_id 下的成员 user_id
+            <para>
+            <see href="https://bot.q.qq.com/wiki/develop/api/openapi/guild/patch_guild_member_mute.html">接口文档</see><br/>
+            公域鉴权<br/>
+            PATCH /guilds/{guild_id}/members/{user_id}/mute
+            </para>
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.BotApis.创建频道公告">
+            <summary>
+            将频道 guild_id 内的某条消息设置为频道全局公告
+            <para>
+            <see href="https://bot.q.qq.com/wiki/develop/api/openapi/announces/post_guild_announces.html">接口文档</see><br/>
+            公域鉴权<br/>
+            POST /guilds/{guild_id}/announces
+            </para>
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.BotApis.删除频道公告">
+            <summary>
+            删除频道 guild_id 下 message_id 指定的全局公告
+            <para>
+            <see href="https://bot.q.qq.com/wiki/develop/api/openapi/announces/delete_guild_announces.html">接口文档</see><br/>
+            公域鉴权<br/>
+            DELETE /guilds/{guild_id}/announces/{message_id}
+            </para>
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.BotApis.创建子频道公告">
+            <summary>
+            将子频道 channel_id 内的某条消息设置为子频道公告
+            <para>
+            <see href="https://bot.q.qq.com/wiki/develop/api/openapi/announces/post_channel_announces.html">接口文档</see><br/>
+            公域鉴权<br/>
+            POST /channels/{channel_id}/announces
+            </para>
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.BotApis.删除子频道公告">
+            <summary>
+            删除子频道 channel_id 下 message_id 指定的子频道公告
+            <para>
+            <see href="https://bot.q.qq.com/wiki/develop/api/openapi/announces/delete_channel_announces.html">接口文档</see><br/>
+            公域鉴权<br/>
+            DELETE /channels/{channel_id}/announces/{message_id}
+            </para>
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.BotApis.获取频道日程列表">
+            <summary>
+            获取 channel_id 指定的子频道中当天的日程列表
+            <para>
+            <see href="https://bot.q.qq.com/wiki/develop/api/openapi/schedule/get_schedules.html">接口文档</see><br/>
+            公域鉴权<br/>
+            GET /channels/{channel_id}/schedules
+            </para>
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.BotApis.获取日程详情">
+            <summary>
+            获取日程子频道 channel_id 下 schedule_id 指定的的日程的详情
+            <para>
+            <see href="https://bot.q.qq.com/wiki/develop/api/openapi/schedule/get_schedule.html">接口文档</see><br/>
+            公域鉴权<br/>
+            GET /channels/{channel_id}/schedules/{schedule_id}
+            </para>
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.BotApis.创建日程">
+            <summary>
+            在 channel_id 指定的日程子频道下创建一个日程
+            <para>
+            <see href="https://bot.q.qq.com/wiki/develop/api/openapi/schedule/post_schedule.html">接口文档</see><br/>
+            公域鉴权<br/>
+            POST /channels/{channel_id}/schedules
+            </para>
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.BotApis.修改日程">
+            <summary>
+            修改日程子频道 channel_id 下 schedule_id 指定的日程的详情
+            <para>
+            <see href="https://bot.q.qq.com/wiki/develop/api/openapi/schedule/patch_schedule.html">接口文档</see><br/>
+            公域鉴权<br/>
+            PATCH /channels/{channel_id}/schedules/{schedule_id}
+            </para>
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.BotApis.删除日程">
+            <summary>
+            删除日程子频道 channel_id 下 schedule_id 指定的日程
+            <para>
+            <see href="https://bot.q.qq.com/wiki/develop/api/openapi/schedule/delete_schedule.html">接口文档</see><br/>
+            公域鉴权<br/>
+            DELETE /channels/{channel_id}/schedules/{schedule_id}
+            </para>
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.BotApis.音频控制">
+            <summary>
+            控制子频道 channel_id 下的音频
+            <para>
+            <see href="https://bot.q.qq.com/wiki/develop/api/openapi/audio/audio_control.html">接口文档</see><br/>
+            公域鉴权<br/>
+            POST /channels/{channel_id}/audio
+            </para>
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.BotApis.获取频道可用权限列表">
+            <summary>
+            获取机器人在频道 guild_id 内可以使用的权限列表
+            <para>
+            <see href="https://bot.q.qq.com/wiki/develop/api/openapi/api_permissions/get_guild_api_permission.html">接口文档</see><br/>
+            无需鉴权<br/>
+            GET /guilds/{guild_id}/api_permission
+            </para>
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.BotApis.创建频道接口授权链接">
+            <summary>
+            创建 API 接口权限授权链接，该链接指向 guild_id 对应的频道
+            <para>
+            <see href="https://bot.q.qq.com/wiki/develop/api/openapi/api_permissions/post_api_permission_demand.html">接口文档</see><br/>
+            无需鉴权<br/>
+            POST /guilds/{guild_id}/api_permission/demand
+            </para>
+            </summary>
+        </member>
+        <member name="T:Sudoku.Bot.Communication.BotClient">
+            <summary>
+            <para>Defines a bot client instance.</para>
+            <para>
+            The optional properties are:
+            <list type="bullet">
+            <item>BotAccessInfo - 机器人鉴权登陆信息,见<see cref="T:Sudoku.Bot.Communication.Identity"/></item>
+            <item>SadboxGuildId - 指定用于调试机器人的沙箱频道(DebugBot=true时有效)</item>
+            <item>DebugBot - 指定机器人运行的模式[true:测试; false:正式]；默认值=false</item>
+            <item>Info - 机器人的 <see cref="T:Sudoku.Bot.Communication.Models.User"/> 信息(在机器人鉴权通过后更新)；默认值=null</item>
+            <item>Members - 自动记录机器人在各频道内的身份组信息</item>
+            <item>ReportApiError - 向前端消息发出者报告API错误[true:报告;false:静默]；默认值=false</item>
+            <item>SandBox - 机器人调用API的模式[true:沙箱;false:正式]；默认值=false</item>
+            <item>ApiOrigin - (只读) 获取机器人当前使用的ApiUrl</item>
+            <item>
+            Intents - 订阅频道事件,详见:<see cref="T:Sudoku.Bot.Communication.Intent"/>；默认值=(GUILDS|GUILD_MEMBERS|AT_MESSAGES|GUILD_MESSAGE_REACTIONS)
+            </item>
+            <item>Guilds - 机器人已加入的频道列表</item>
+            </list>
+            </para>
+            </summary>
+        </member>
+        <member name="M:Sudoku.Bot.Communication.BotClient.AudioControlAsync(System.String,Sudoku.Bot.Communication.Models.AudioControl,Sudoku.Bot.Communication.Sender)">
+            <summary>
+            音频控制
+            </summary>
+            <param name="channel_id">子频道Id</param>
+            <param name="audioControl">音频对象</param>
+            <param name="sender"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Sudoku.Bot.Communication.BotClient.CreateAnnouncesGlobalAsync(System.String,System.String,System.String,Sudoku.Bot.Communication.Sender)">
+            <summary>
+            创建频道全局公告
+            </summary>
+            <param name="guild_id">频道Id</param>
+            <param name="channel_id">消息所在子频道Id</param>
+            <param name="message_id">消息Id</param>
+            <param name="sender"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Sudoku.Bot.Communication.BotClient.DeleteAnnouncesGlobalAsync(System.String,System.String,Sudoku.Bot.Communication.Sender)">
+            <summary>
+            删除频道全局公告
+            </summary>
+            <param name="guild_id">频道Id</param>
+            <param name="message_id">用于创建公告的消息Id</param>
+            <param name="sender"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Sudoku.Bot.Communication.BotClient.CreateAnnouncesAsync(System.String,System.String,Sudoku.Bot.Communication.Sender)">
+            <summary>
+            创建子频道公告
+            </summary>
+            <param name="channel_id">子频道Id</param>
+            <param name="message_id">消息Id</param>
+            <param name="sender"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Sudoku.Bot.Communication.BotClient.DeleteAnnouncesAsync(System.String,System.String,Sudoku.Bot.Communication.Sender)">
+            <summary>
+            删除子频道公告
+            </summary>
+            <param name="channel_id">子频道Id</param>
+            <param name="message_id">用于创建公告的消息Id</param>
+            <param name="sender"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Sudoku.Bot.Communication.BotClient.GetGuildAsync(System.String,Sudoku.Bot.Communication.Sender)">
+            <summary>
+            获取频道详情
+            </summary>
+            <param name="guild_id">频道Id</param>
+            <param name="sender"></param>
+            <returns>Guild?</returns>
+        </member>
+        <member name="M:Sudoku.Bot.Communication.BotClient.GetRolesAsync(System.String,Sudoku.Bot.Communication.Sender)">
+            <summary>
+            获取频道身份组列表
+            </summary>
+            <param name="guild_id">频道Id</param>
+            <param name="sender"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Sudoku.Bot.Communication.BotClient.CreateRoleAsync(System.String,Sudoku.Bot.Communication.Models.Info,Sudoku.Bot.Communication.Models.Filter,Sudoku.Bot.Communication.Sender)">
+            <summary>
+            创建频道身份组
+            </summary>
+            <param name="guild_id">频道Id</param>
+            <param name="info">携带需要设置的字段内容</param>
+            <param name="filter">标识需要设置哪些字段,若不填则根据Info自动推测</param>
+            <param name="sender"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Sudoku.Bot.Communication.BotClient.EditRoleAsync(System.String,System.String,Sudoku.Bot.Communication.Models.Info,Sudoku.Bot.Communication.Models.Filter,Sudoku.Bot.Communication.Sender)">
+            <summary>
+            修改频道身份组
+            </summary>
+            <param name="guild_id">频道Id</param>
+            <param name="role_id">角色Id</param>
+            <param name="info">携带需要修改的字段内容</param>
+            <param name="filter">标识需要设置哪些字段,若不填则根据Info自动推测</param>
+            <param name="sender"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Sudoku.Bot.Communication.BotClient.DeleteRoleAsync(System.String,System.String,Sudoku.Bot.Communication.Sender)">
+            <summary>
+            删除频道身份组
+            <para><em>HTTP状态码 204 表示成功</em></para>
+            </summary>
+            <param name="guild_id">频道Id</param>
+            <param name="role_id">身份Id</param>
+            <param name="sender"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Sudoku.Bot.Communication.BotClient.AddRoleMemberAsync(System.String,System.String,System.String,System.String,Sudoku.Bot.Communication.Sender)">
+            <summary>
+            增加频道身份组成员
+            <para>
+            需要使用的 token 对应的用户具备增加身份组成员权限。如果是机器人，要求被添加为管理员。 <br/>
+            如果要增加的身份组ID是(5-子频道管理员)，需要增加 channel_id 来指定具体是哪个子频道。
+            </para>
+            </summary>
+            <param name="guild_id">频道Id</param>
+            <param name="user_id">用户Id</param>
+            <param name="role_id">身份组Id</param>
+            <param name="channel_id">子频道Id</param>
+            <param name="sender"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Sudoku.Bot.Communication.BotClient.DeleteRoleMemberAsync(System.String,System.String,System.String,System.String,Sudoku.Bot.Communication.Sender)">
+            <summary>
+            删除频道身份组成员
+            <para>
+            需要使用的 token 对应的用户具备删除身份组成员权限。如果是机器人，要求被添加为管理员。 <br/>
+            如果要删除的身份组ID是(5-子频道管理员)，需要设置 channel_id 来指定具体是哪个子频道。 <br/>
+            详情查阅 <see href="https://bot.q.qq.com/wiki/develop/api/openapi/guild/delete_guild_member_role.html">QQ机器人文档</see>
+            </para>
+            </summary>
+            <param name="guild_id">频道Id</param>
+            <param name="user_id">要加入身份组的用户Id</param>
+            <param name="role_id">身份组Id</param>
+            <param name="channel_id">子频道Id</param>
+            <param name="sender"></param>
+            <returns></returns>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.BotClient.CommandPrefix">
+            <summary>
+            自定义指令前缀
+            <para>
+            当机器人识别到消息的头部包含指令前缀时触发指令识别功能<br/>
+            默认值："/"
+            </para>
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.BotClient.Commands">
+            <summary>
+            缓存动态注册的消息指令事件
+            </summary>
+        </member>
+        <member name="M:Sudoku.Bot.Communication.BotClient.AddCommand(Sudoku.Bot.Communication.Command,System.Boolean)">
+            <summary>
+            添加消息指令
+            <para>
+            注1：指令匹配忽略消息前的 @机器人 标签，并移除所有前导和尾随空白字符。<br/>
+            注2：被指令命中的消息不会再触发 OnAtMessage 和 OnMsgCreate 事件
+            </para>
+            </summary>
+            <param name="command">指令对象</param>
+            <param name="overwrite">指令名称重复的处理办法<para>true:替换, false:忽略</para></param>
+            <returns></returns>
+        </member>
+        <member name="M:Sudoku.Bot.Communication.BotClient.DelCommand(System.String)">
+            <summary>
+            删除消息指令
+            </summary>
+            <param name="cmdName">指令名称</param>
+            <returns></returns>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.BotClient.GetCommands">
+            <summary>
+            获取所有已注册的指令
+            </summary>
+        </member>
+        <member name="M:Sudoku.Bot.Communication.BotClient.#ctor(Sudoku.Bot.Communication.Identity,System.Boolean,System.Boolean)">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Bot.Communication.BotClient"/> instance via the identity instance and two <see cref="T:System.Boolean"/>
+            values indicating whether the API is based on sandbox, and whether the client will report errors on APIs
+            during running respectively.
+            </summary>
+            <param name="identity">The identity instance.</param>
+            <param name="sandBoxApi">Indicates whetehr the API is based on sandbox.</param>
+            <param name="reportApiError">Indicates whether the client will report errors to foreground.</param>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.BotClient.ReportApiError">
+            <summary>
+            向前端指令发出者报告API错误
+            <para>注：该属性作为 <see cref="P:Sudoku.Bot.Communication.Sender.ReportError"/> 的默认值使用</para>
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.BotClient.ShardId">
+            <summary>
+            会话分片id
+            <para>
+            分片是按照频道id进行哈希的，同一个频道的信息会固定从同一个链接推送。<br/>
+            详见 <see href="https://bot.q.qq.com/wiki/develop/api/gateway/shard.html">Shard机制</see>
+            </para>
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.BotClient.ApiOrigin">
+            <summary>
+            机器人接口域名
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.BotClient.BotAccessInfo">
+            <summary>
+            鉴权信息
+            <para>可在这里查询 <see href="https://bot.q.qq.com/#/developer/developer-setting">QQ机器人开发设置</see></para>
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.BotClient.Intents">
+            <summary>
+            此次连接所需要接收的事件
+            <para>具体可参考 <see href="https://bot.q.qq.com/wiki/develop/api/gateway/intents.html">事件订阅</see></para>
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.BotClient.Info">
+            <summary>
+            机器人用户信息
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.BotClient.Guilds">
+            <summary>
+            缓存机器人已加入的频道
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.BotClient.Members">
+            <summary>
+            保存机器人在各频道内的角色信息
+            <para>
+            string - GUILD_ID<br/>
+            Member - 角色信息
+            </para>
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.BotClient.MessageFilter">
+            <summary>
+            消息过滤器
+            <para>当返回值为True时，该消息将被拦截并丢弃</para>
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.BotClient.IsResume">
+            <summary>
+            断线重连状态标志
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.BotClient.WebSocketLastSeq">
+            <summary>
+            Socket客户端收到的最新的消息的s，如果是第一次连接，传null
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.BotClient.WebSoketSessionId">
+            <summary>
+            Socket客户端存储的SessionId
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.BotClient.WebSocketClient">
+            <summary>
+            Socket客户端
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.BotClient.HeartBeatTimer">
+            <summary>
+            Socket心跳定时器
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.BotClient.GateLimit">
+            <summary>
+            会话分片信息
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.BotClient.StackMessage">
+            <summary>
+            缓存消息
+            <para>
+            string - UserId<br/>
+            List&lt;Message&gt; - 用户消息列表
+            </para>
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.BotClient.SDK">
+            <summary>
+            返回SDK相关信息
+            <para>
+            框架名称_版本号<br/>
+            代码仓库地址<br/>
+            版权信息<br/>
+            <em>作者夹带的一点私货</em>
+            </para>
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.BotClient.StartTime">
+            <summary>
+            Indicates the time that records the bot being running.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.BotClient.ReleaseApi">
+            <summary>
+            正式环境
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.BotClient.SandboxApi">
+            <summary>
+            沙箱环境
+            <para>
+            沙箱环境只会收到测试频道的事件，且调用openapi仅能操作测试频道
+            </para>
+            </summary>
+        </member>
+        <member name="E:Sudoku.Bot.Communication.BotClient.OnWebSocketConnected">
+            <summary>
+            WebSocketClient连接后触发
+            <para>等同于 WebSocket.OnOpen 事件</para>
+            </summary>
+        </member>
+        <member name="E:Sudoku.Bot.Communication.BotClient.OnWebSocketClosed">
+            <summary>
+            WebSocketClient关闭后触发
+            </summary>
+        </member>
+        <member name="E:Sudoku.Bot.Communication.BotClient.OnWebSoketSending">
+            <summary>
+            WebSocketClient发送数据前触发
+            </summary>
+        </member>
+        <member name="E:Sudoku.Bot.Communication.BotClient.OnWebSocketReceived">
+            <summary>
+            WebSocketClient收到数据后触发
+            </summary>
+        </member>
+        <member name="E:Sudoku.Bot.Communication.BotClient.OnDispatch">
+            <summary>
+            收到服务端推送的消息时触发
+            </summary>
+        </member>
+        <member name="E:Sudoku.Bot.Communication.BotClient.OnHeartbeat">
+            <summary>
+            客户端发送心跳或收到服务端推送心跳时触发
+            </summary>
+        </member>
+        <member name="E:Sudoku.Bot.Communication.BotClient.OnIdentify">
+            <summary>
+            客户端发送鉴权时触发
+            </summary>
+        </member>
+        <member name="E:Sudoku.Bot.Communication.BotClient.OnResume">
+            <summary>
+            客户端恢复连接时触发
+            </summary>
+        </member>
+        <member name="E:Sudoku.Bot.Communication.BotClient.OnReconnect">
+            <summary>
+            服务端通知客户端重新连接时触发
+            </summary>
+        </member>
+        <member name="E:Sudoku.Bot.Communication.BotClient.OnInvalidSession">
+            <summary>
+            当identify或resume的时候，参数错误的时候触发
+            </summary>
+        </member>
+        <member name="E:Sudoku.Bot.Communication.BotClient.OnHello">
+            <summary>
+            当客户端与网关建立ws连接的时候触发
+            </summary>
+        </member>
+        <member name="E:Sudoku.Bot.Communication.BotClient.OnHeartbeatACK">
+            <summary>
+            客户端发送心跳被服务端接收后触发
+            </summary>
+        </member>
+        <member name="E:Sudoku.Bot.Communication.BotClient.OnReady">
+            <summary>
+            鉴权连接成功后触发
+            <para>注:此时获取的User对象只有3个属性 {id,username,bot}</para>
+            </summary>
+        </member>
+        <member name="E:Sudoku.Bot.Communication.BotClient.OnResumed">
+            <summary>
+            恢复连接成功后触发
+            </summary>
+        </member>
+        <member name="E:Sudoku.Bot.Communication.BotClient.OnGuildMsg">
+            <summary>
+            频道信息变更后触发
+            <para>
+            机器人加入频道, 频道资料变更, 机器人退出频道<br/>
+            BotClient - 机器人对象<br/>
+            Guild - 频道对象<br/>
+            string - 事件类型（GUILD_ADD | GUILD_UPDATE | GUILD_REMOVE）
+            </para>
+            </summary>
+        </member>
+        <member name="E:Sudoku.Bot.Communication.BotClient.OnChannelMsg">
+            <summary>
+            子频道被修改后触发
+            <para>
+            子频道被创建, 子频道资料变更, 子频道被删除<br/>
+            BotClient - 机器人对象<br/>
+            Channel - 频道对象（没有分组Id和排序位置属性）<br/>
+            string - 事件类型（CHANNEL_CREATE|CHANNEL_UPDATE|CHANNEL_DELETE）
+            </para>
+            </summary>
+        </member>
+        <member name="E:Sudoku.Bot.Communication.BotClient.OnGuildMemberMsg">
+            <summary>
+            成员信息变更后触发
+            <para>
+            成员加入, 资料变更, 移除成员<br/>
+            BotClient - 机器人对象<br/>
+            MemberWithGuildID - 成员对象<br/>
+            string - 事件类型（GUILD_MEMBER_ADD | GUILD_MEMBER_UPDATE | GUILD_MEMBER_REMOVE）
+            </para>
+            </summary>
+        </member>
+        <member name="E:Sudoku.Bot.Communication.BotClient.OnMessageReaction">
+            <summary>
+            修改表情表态后触发
+            <para>
+            添加表情表态, 删除表情表态<br/>
+            BotClient - 机器人对象<br/>
+            MessageReaction - 表情表态对象<br/>
+            string - 事件类型（MESSAGE_REACTION_ADD|MESSAGE_REACTION_REMOVE）
+            </para>
+            </summary>
+        </member>
+        <member name="E:Sudoku.Bot.Communication.BotClient.OnMessageAudit">
+            <summary>
+            消息审核出结果后触发
+            <para>
+            消息审核通过才有MessageId属性<br/>
+            BotClient - 机器人对象<br/>
+            MessageAudited - 消息审核对象<br/>
+            MessageAudited.IsPassed - 消息审核是否通过
+            </para>
+            </summary>
+        </member>
+        <member name="E:Sudoku.Bot.Communication.BotClient.OnAudioMsg">
+            <summary>
+            音频状态变更后触发
+            </summary>
+        </member>
+        <member name="E:Sudoku.Bot.Communication.BotClient.OnMsgCreate">
+            <summary>
+            频道内有人发消息就触发 (包含 @机器人 消息)
+            <para>
+            Sender - 发件人对象<br/>
+            <see cref="P:Sudoku.Bot.Communication.Sender.MessageType"/> 包含消息类别（公开，AT机器人，AT全员，私聊）
+            </para>
+            </summary>
+        </member>
+        <member name="E:Sudoku.Bot.Communication.BotClient.OnApiError">
+            <summary>
+            API调用出错时触发
+            <para>
+            Sender - 发件人对象（仅当调用API的主体为Sender时才有）<br/>
+            List&lt;string&gt; - API错误信息{接口地址，请求方式，异常代码，异常原因}<br/>
+            FreezeTime - 对访问出错的接口，暂停使用的时间
+            </para>
+            </summary>
+        </member>
+        <member name="M:Sudoku.Bot.Communication.BotClient.HttpSendAsync(System.String,System.Net.Http.HttpMethod,System.Net.Http.HttpContent,Sudoku.Bot.Communication.Sender)">
+            <summary>
+            集中处理机器人的HTTP请求
+            </summary>
+            <param name="url">请求网址</param>
+            <param name="method">请求类型(默认GET)</param>
+            <param name="content">请求数据</param>
+            <param name="sender">指示本次请求由谁发起的</param>
+            <returns></returns>
+        </member>
+        <member name="M:Sudoku.Bot.Communication.BotClient.LastMessage(Sudoku.Bot.Communication.Models.Message,System.Boolean)">
+            <summary>
+            存取最后一次发送的消息
+            <para>注：目的是为了用于撤回消息（自动删除已过5分钟的记录）</para>
+            </summary>
+            <param name="msg">需要存储的msg，或者用于检索同频道的msg</param>
+            <param name="push">fase-出栈；true-入栈</param>
+        </member>
+        <member name="M:Sudoku.Bot.Communication.BotClient.Close">
+            <summary>
+            关闭机器人并释放所有占用的资源
+            </summary>
+        </member>
+        <member name="M:Sudoku.Bot.Communication.BotClient.Start(System.Int32)">
+            <summary>
+            Starts the bot, with the specified number of retrying times.
+            </summary>
+            <param name="retryCount">The specified number of retrying times. The default value is 3.</param>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.BotClient.GodId">
+            <summary>
+            上帝ID
+            <para>仅用于测试,方便机器人开发者验证功能</para>
+            </summary>
+        </member>
+        <member name="M:Sudoku.Bot.Communication.BotClient.GetGuildPermissionsAsync(System.String,Sudoku.Bot.Communication.Sender)">
+            <summary>
+            获取频道可用权限列表
+            <para>
+            获取机器人在频道 guild_id 内可以使用的权限列表
+            </para>
+            </summary>
+            <param name="guild_id">频道Id</param>
+            <param name="sender"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Sudoku.Bot.Communication.BotClient.SendPermissionDemandAsync(System.String,System.String,Sudoku.Bot.Communication.Models.ApiPermissionDemandIdentify,System.String,Sudoku.Bot.Communication.Sender)">
+            <summary>
+            创建频道 API 接口权限授权链接
+            </summary>
+            <param name="guild_id">频道Id</param>
+            <param name="channel_id">子频道Id</param>
+            <param name="api_identify">权限需求标识对象</param>
+            <param name="desc">机器人申请对应的 API 接口权限后可以使用功能的描述</param>
+            <param name="sender"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Sudoku.Bot.Communication.BotClient.MuteGuildAsync(System.String,Sudoku.Bot.Communication.Models.JinxTime,Sudoku.Bot.Communication.Sender)">
+            <summary>
+            频道全局禁言
+            <para>
+            muteTime - 禁言时间：<br/>
+            mute_end_timestamp 禁言到期时间戳，绝对时间戳，单位：秒<br/>
+            mute_seconds 禁言多少秒
+            </para>
+            </summary>
+            <param name="guild_id">频道Id</param>
+            <param name="muteTime">禁言模式</param>
+            <param name="sender"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Sudoku.Bot.Communication.BotClient.MuteMemberAsync(System.String,System.String,Sudoku.Bot.Communication.Models.JinxTime,Sudoku.Bot.Communication.Sender)">
+            <summary>
+            频道指定成员禁言
+            <para>
+            muteTime - 禁言时间：<br/>
+            mute_end_timestamp 禁言到期时间戳，绝对时间戳，单位：秒<br/>
+            mute_seconds 禁言多少秒
+            </para>
+            </summary>
+            <param name="guild_id">频道Id</param>
+            <param name="user_id">成员Id</param>
+            <param name="muteTime">禁言时间</param>
+            <param name="sender"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Sudoku.Bot.Communication.BotClient.GetGuildMembersAsync(System.String,System.Int32,System.String,Sudoku.Bot.Communication.Sender)">
+            <summary>
+            获取频道成员列表（仅私域可用）
+            <para>
+            guild_id - 频道Id<br/>
+            limit - 分页大小1-1000（默认值10）<br/>
+            after - 上次回包中最后一个Member的用户ID，首次请求填0
+            </para>
+            </summary>
+            <param name="guild_id">频道Id</param>
+            <param name="limit">分页大小1-1000（默认值10）</param>
+            <param name="after">上次回包中最后一个Member的用户ID，首次请求填"0"</param>
+            <param name="sender"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Sudoku.Bot.Communication.BotClient.GetMemberAsync(System.String,System.String,Sudoku.Bot.Communication.Sender)">
+            <summary>
+            获取频道成员详情
+            </summary>
+            <param name="guild_id">频道Id</param>
+            <param name="user_id">成员用户Id</param>
+            <param name="sender"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Sudoku.Bot.Communication.BotClient.DeleteGuildMemberAsync(System.String,System.String,Sudoku.Bot.Communication.Sender)">
+            <summary>
+            删除指定频道成员（仅私域可用）
+            </summary>
+            <param name="guild_id">频道Id</param>
+            <param name="user_id">用户Id</param>
+            <param name="sender"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Sudoku.Bot.Communication.BotClient.GetMessageAsync(System.String,System.String,Sudoku.Bot.Communication.Sender)">
+            <summary>
+            获取指定消息
+            </summary>
+            <param name="channel_id">子频道Id</param>
+            <param name="message_id">消息Id</param>
+            <param name="sender"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Sudoku.Bot.Communication.BotClient.GetMessagesAsync(Sudoku.Bot.Communication.Models.Message,System.Int32,System.Nullable{Sudoku.Bot.Communication.Models.GetMsgTypesEnum},Sudoku.Bot.Communication.Sender)">
+            <summary>
+            获取消息列表（2022年1月29日暂未开通）
+            </summary>
+            <param name="message">作为坐标的消息（需要消息Id和子频道Id）</param>
+            <param name="limit">分页大小（1-20）</param>
+            <param name="typesEnum">拉取类型（默认拉取最新消息）</param>
+            <param name="sender"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Sudoku.Bot.Communication.BotClient.SendMessageAsync(System.String,Sudoku.Bot.Communication.Models.MessageToCreate,Sudoku.Bot.Communication.Sender)">
+            <summary>
+            发送消息
+            <para>
+            要求操作人在该子频道具有"发送消息"的权限 <br/>
+            发送成功之后，会触发一个创建消息的事件 <br/>
+            被动回复消息有效期为 5 分钟 <br/>
+            主动推送消息每个子频道限 2 条/天 <br/>
+            发送消息接口要求机器人接口需要链接到websocket gateway 上保持在线状态
+            </para>
+            </summary>
+            <param name="channel_id">子频道Id</param>
+            <param name="message">消息对象</param>
+            <param name="sender"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Sudoku.Bot.Communication.BotClient.DeleteMessageAsync(System.String,System.String,Sudoku.Bot.Communication.Sender)">
+            <summary>
+            撤回消息
+            </summary>
+            <param name="channel_id">子频道Id</param>
+            <param name="message_id">消息Id</param>
+            <param name="sender"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Sudoku.Bot.Communication.BotClient.DeleteLastMessageAsync(Sudoku.Bot.Communication.Models.Message,Sudoku.Bot.Communication.Sender)">
+            <summary>
+            撤回目标用户在当前子频道发出的最后一条消息
+            <para>
+            需要传入指令发出者的消息对象<br/>
+            用于检索指令发出者所在频道信息
+            </para>
+            </summary>
+            <param name="masterMessage">
+            被撤回消息的目标用户信息<br/>
+            需要：message.GuildId、message.ChannelId、message.Author.Id
+            </param>
+            <param name="sender"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Sudoku.Bot.Communication.BotClient.MessageCenterAsync(Sudoku.Bot.Communication.Models.Message,System.String)">
+            <summary>
+            集中处理聊天消息
+            </summary>
+            <param name="message">消息对象</param>
+            <param name="type">消息类型
+            <para>
+            DIRECT_MESSAGE_CREATE - 私信<br/>
+            AT_MESSAGE_CREATE - 频道内 @机器人<br/>
+            MESSAGE_CREATE - 频道内任意消息(仅私域支持)<br/>
+            </para></param>
+            <returns></returns>
+        </member>
+        <member name="M:Sudoku.Bot.Communication.BotClient.GetSchedulesAsync(System.String,System.Nullable{System.DateTime},Sudoku.Bot.Communication.Sender)">
+            <summary>
+            获取频道日程列表
+            <para>
+            获取某个日程子频道里中当天的日程列表; <br/>
+            若带了参数 since，则返回结束时间在 since 之后的日程列表; <br/>
+            若未带参数 since，则默认返回当天的日程列表。
+            </para>
+            </summary>
+            <param name="channel_id">日程子频道Id</param>
+            <param name="since">筛选日程开始时间（默认为当日全天）</param>
+            <param name="sender"></param>
+            <returns>List&lt;Schedule&gt;?</returns>
+        </member>
+        <member name="M:Sudoku.Bot.Communication.BotClient.GetScheduleAsync(System.String,System.String,Sudoku.Bot.Communication.Sender)">
+            <summary>
+            获取日程详情
+            </summary>
+            <param name="channel_id">日程子频道Id</param>
+            <param name="schedule_id">日程Id</param>
+            <param name="sender"></param>
+            <returns>目标 Schedule 对象</returns>
+        </member>
+        <member name="M:Sudoku.Bot.Communication.BotClient.CreateScheduleAsync(System.String,Sudoku.Bot.Communication.Models.Schedule,Sudoku.Bot.Communication.Sender)">
+            <summary>
+            创建日程
+            <para>
+            要求操作人具有"管理频道"的权限，如果是机器人，则需要将机器人设置为管理员。<br/>
+            创建成功后，返回创建成功的日程对象。<br/>
+            日程开始时间必须大于当前时间。
+            </para>
+            </summary>
+            <param name="channel_id">日程子频道Id</param>
+            <param name="schedule">新的日程对象，不需要带Id</param>
+            <param name="sender"></param>
+            <returns>新创建的 Schedule 对象</returns>
+        </member>
+        <member name="M:Sudoku.Bot.Communication.BotClient.EditScheduleAsync(System.String,Sudoku.Bot.Communication.Models.Schedule,Sudoku.Bot.Communication.Sender)">
+            <summary>
+            修改日程
+            <para>
+            要求操作人具有"管理频道"的权限，如果是机器人，则需要将机器人设置为管理员。<br/>
+            修改成功后，返回修改后的日程对象。
+            </para>
+            </summary>
+            <param name="channel_id">日程子频道Id</param>
+            <param name="schedule">修改后的日程对象</param>
+            <param name="sender"></param>
+            <returns>修改后的 Schedule 对象</returns>
+        </member>
+        <member name="M:Sudoku.Bot.Communication.BotClient.DeleteScheduleAsync(System.String,Sudoku.Bot.Communication.Models.Schedule,Sudoku.Bot.Communication.Sender)">
+            <summary>
+            删除日程
+            <para>
+            要求操作人具有"管理频道"的权限，如果是机器人，则需要将机器人设置为管理员。
+            </para>
+            </summary>
+            <param name="channel_id">日程子频道Id</param>
+            <param name="schedule">日程对象
+            <para>这里是为了获取日程Id，为了防错设计为传递日程对象</para></param>
+            <param name="sender"></param>
+            <returns>HTTP 状态码 204</returns>
+        </member>
+        <member name="M:Sudoku.Bot.Communication.BotClient.GetChannelAsync(System.String,Sudoku.Bot.Communication.Sender)">
+            <summary>
+            获取子频道详情
+            </summary>
+            <param name="channel_id">子频道Id</param>
+            <param name="sender"></param>
+            <returns>Channel?</returns>
+        </member>
+        <member name="M:Sudoku.Bot.Communication.BotClient.GetChannelsAsync(System.String,System.Nullable{Sudoku.Bot.Communication.Models.ChannelType},System.Nullable{Sudoku.Bot.Communication.Models.ChannelSubtype},Sudoku.Bot.Communication.Sender)">
+            <summary>
+            获取频道下的子频道列表
+            </summary>
+            <param name="guild_id">频道Id</param>
+            <param name="channelType">筛选子频道类型</param>
+            <param name="channelSubType">筛选子频道子类型</param>
+            <param name="sender"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Sudoku.Bot.Communication.BotClient.CreateChannelAsync(Sudoku.Bot.Communication.Models.Channel,Sudoku.Bot.Communication.Sender)">
+            <summary>
+            创建子频道（仅私域可用）
+            </summary>
+            <param name="channel">用于创建子频道的对象（需提前填充必要字段）</param>
+            <param name="sender"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Sudoku.Bot.Communication.BotClient.EditChannelAsync(Sudoku.Bot.Communication.Models.Channel,Sudoku.Bot.Communication.Sender)">
+            <summary>
+            修改子频道（仅私域可用）
+            </summary>
+            <param name="channel">修改属性后的子频道对象</param>
+            <param name="sender"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Sudoku.Bot.Communication.BotClient.DeleteChannelAsync(System.String,Sudoku.Bot.Communication.Sender)">
+            <summary>
+            删除指定子频道（仅私域可用）
+            </summary>
+            <param name="channel_id">要删除的子频道Id</param>
+            <param name="sender"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Sudoku.Bot.Communication.BotClient.GetChannelPermissionsAsync(System.String,System.String,Sudoku.Bot.Communication.Sender)">
+            <summary>
+            获取用户在指定子频道的权限
+            </summary>
+            <param name="channel_id">子频道Id</param>
+            <param name="user_id">用户Id</param>
+            <param name="sender"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Sudoku.Bot.Communication.BotClient.EditChannelPermissionsAsync(System.String,System.String,System.String,System.String,Sudoku.Bot.Communication.Sender)">
+            <summary>
+            修改用户在指定子频道的权限
+            </summary>
+            <param name="channel_id">子频道Id</param>
+            <param name="user_id">用户Id</param>
+            <param name="add">添加的权限</param>
+            <param name="remove">删除的权限</param>
+            <param name="sender"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Sudoku.Bot.Communication.BotClient.GetMemberChannelPermissionsAsync(System.String,System.String,Sudoku.Bot.Communication.Sender)">
+            <summary>
+            获取指定身份组在指定子频道的权限
+            </summary>
+            <param name="channel_id">子频道Id</param>
+            <param name="role_id">身份组Id</param>
+            <param name="sender"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Sudoku.Bot.Communication.BotClient.EditMemberChannelPermissionsAsync(System.String,System.String,System.String,System.String,Sudoku.Bot.Communication.Sender)">
+            <summary>
+            修改指定身份组在指定子频道的权限
+            </summary>
+            <param name="channel_id">子频道Id</param>
+            <param name="role_id">身份组Id</param>
+            <param name="add">添加的权限</param>
+            <param name="remove">删除的权限</param>
+            <param name="sender"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Sudoku.Bot.Communication.BotClient.GetMeAsync(Sudoku.Bot.Communication.Sender)">
+            <summary>
+            获取当前用户(机器人)信息
+            <para>此API无需任何权限</para>
+            </summary>
+            <param name="sender"></param>
+            <returns>当前用户对象</returns>
+        </member>
+        <member name="M:Sudoku.Bot.Communication.BotClient.GetMeGuildsAsync(System.String,System.Boolean,System.Int32,Sudoku.Bot.Communication.Sender)">
+            <summary>
+            获取当前用户(机器人)已加入频道列表
+            <para>此API无需任何权限</para>
+            </summary>
+            <param name="guild_id">频道Id（作为拉取下一次列表的分页坐标使用）</param>
+            <param name="route">数据拉取方向（true-向前查找 | false-向后查找）</param>
+            <param name="limit">数据分页（默认每次拉取100条）</param>
+            <param name="sender"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Sudoku.Bot.Communication.BotClient.GetWssUrlAsync">
+            <summary>
+            Gets the common WSS URL.
+            </summary>
+            <returns>An address that is used for the web socket.</returns>
+        </member>
+        <member name="M:Sudoku.Bot.Communication.BotClient.GetWssUrlWithSharedAsync">
+            <summary>
+            获取带分片 WSS 接入点
+            <para>
+            详情查阅: <see href="https://bot.q.qq.com/wiki/develop/api/openapi/wss/shard_url_get.html">QQ机器人文档</see>
+            </para>
+            </summary>
+            <returns>一个用于连接 websocket 的地址。<br/>同时返回建议的分片数，以及目前连接数使用情况。</returns>
+        </member>
+        <member name="M:Sudoku.Bot.Communication.BotClient.ConnectAsync(System.Int32)">
+            <summary>
+            建立到服务器的连接
+            <para><em>RetryCount</em> 连接失败后允许的重试次数</para>
+            </summary>
+            <param name="retryCount">连接失败后允许的重试次数</param>
+            <returns></returns>
+        </member>
+        <member name="M:Sudoku.Bot.Communication.BotClient.SendIdentifyAsync">
+            <summary>
+            鉴权连接
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Sudoku.Bot.Communication.BotClient.SendHeartBeatAsync">
+            <summary>
+            发送心跳
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Sudoku.Bot.Communication.BotClient.SendResumeAsync">
+            <summary>
+            恢复连接
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Sudoku.Bot.Communication.BotClient.WebSocketSendAsync(System.String,System.Net.WebSockets.WebSocketMessageType,System.Boolean,System.Nullable{System.Threading.CancellationToken})">
+            <summary>
+            WebScoket发送数据到服务端
+            </summary>
+            <param name="data">要发送的数据</param>
+            <param name="msgType">WebSocket消息类型</param>
+            <param name="endOfMsg">表示数据已发送结束</param>
+            <param name="cancelToken">用于传播应取消此操作的通知的取消令牌。</param>
+            <returns></returns>
+        </member>
+        <member name="M:Sudoku.Bot.Communication.BotClient.ReceiveAsync">
+            <summary>
+            WebSocket接收服务端数据
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Sudoku.Bot.Communication.BotClient.ExcuteCommandAsync(System.Text.Json.JsonElement)">
+            <summary>
+            根据收到的数据分析用途
+            </summary>
+            <param name="wssJson">Wss接收的数据</param>
+            <returns></returns>
+        </member>
+        <member name="M:Sudoku.Bot.Communication.BotClient.CreateDMSAsync(System.String,System.String,Sudoku.Bot.Communication.Sender)">
+            <summary>
+            创建私信会话
+            </summary>
+            <param name="recipient_id">接收者Id</param>
+            <param name="source_guild_id">源频道Id</param>
+            <param name="sender"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Sudoku.Bot.Communication.BotClient.SendPMAsync(System.String,Sudoku.Bot.Communication.Models.MessageToCreate,Sudoku.Bot.Communication.Sender)">
+            <summary>
+            发送私信
+            <para>用于发送私信消息，前提是已经创建了私信会话。</para>
+            </summary>
+            <param name="guild_id">私信频道Id</param>
+            <param name="message">消息对象</param>
+            <param name="sender"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Sudoku.Bot.Communication.BotHttpClient">
+            <summary>
+            经过封装的HttpClient
+            <para>内置了请求日志功能</para>
+            </summary>
+        </member>
+        <member name="F:Sudoku.Bot.Communication.BotHttpClient.FreezeUrl">
+            <summary>
+            临时冻结无权限访问的URL
+            <para>
+            value.Item1 - 解封时间(DateTime)
+            value.Item2 - 再次封禁增加的时间(TimeSpan)
+            </para>
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.BotHttpClient.FreezeAddTime">
+            <summary>
+            URL访问失败的默认冻结时间
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.BotHttpClient.FreezeMaxTime">
+            <summary>
+            URL访问失败的最高冻结时间
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.BotHttpClient.HttpClient">
+            <summary>
+            Http客户端
+            <para>这里设置禁止重定向：AllowAutoRedirect = false</para>
+            <para>这里设置超时时间为15s</para>
+            </summary>
+        </member>
+        <member name="M:Sudoku.Bot.Communication.BotHttpClient.SendAsync(System.Net.Http.HttpRequestMessage,System.Action{System.Net.Http.HttpResponseMessage,Sudoku.Bot.Communication.FreezeTime})">
+            <summary>
+            发起HTTP异步请求
+            </summary>
+            <param name="request">请求消息</param>
+            <param name="action">请求失败的回调函数</param>
+            <returns></returns>
+        </member>
+        <member name="M:Sudoku.Bot.Communication.BotHttpClient.GetAsync(System.String)">
+            <summary>
+            HTTP异步GET
+            </summary>
+            <param name="url">请求地址</param>
+            <returns></returns>
+        </member>
+        <member name="M:Sudoku.Bot.Communication.BotHttpClient.PostAsync(System.String,System.Net.Http.HttpContent)">
+            <summary>
+            HTTP异步Post
+            </summary>
+            <param name="url">请求地址</param>
+            <param name="content">请求内容</param>
+            <returns></returns>
+        </member>
+        <member name="M:Sudoku.Bot.Communication.BotHttpClient.PutAsync(System.String,System.Net.Http.HttpContent)">
+            <summary>
+            HTTP异步Put
+            </summary>
+            <param name="url">请求地址</param>
+            <param name="content">请求内容</param>
+            <returns></returns>
+        </member>
+        <member name="M:Sudoku.Bot.Communication.BotHttpClient.DeleteAsync(System.String,System.Net.Http.HttpContent)">
+            <summary>
+            HTTP异步Delete
+            </summary>
+            <param name="url">请求地址</param>
+            <param name="content">请求内容</param>
+            <returns></returns>
+        </member>
+        <member name="T:Sudoku.Bot.Communication.Command">
+            <summary>
+            指令对象
+            <para>提前封装的指令类，用于方便的处理指令</para>
+            </summary>
+        </member>
+        <member name="M:Sudoku.Bot.Communication.Command.#ctor(System.String,System.Action{Sudoku.Bot.Communication.Sender,System.String},System.Text.RegularExpressions.Regex,System.Boolean,System.String)">
+            <summary>
+            构造指令对象
+            <para>
+            匹配指令将调用 Rule 属性进行正则匹配<br/>
+            若rule未赋值，默认为 "^name(?=\s|\n|&lt;@!\d+&gt;|$)"
+            </para>
+            </summary>
+            <param name="name">指令名称</param>
+            <param name="callBack">回调函数</param>
+            <param name="rule">匹配指令用的正则表达式<para>默认值：Regex("^name(?=\s|\n|&lt;@!\d+&gt;|$)")</para></param>
+            <param name="needAdmin">需要管理员权限</param>
+            <param name="note">备注,用户自定义属性功能用途</param>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Command.Name">
+            <summary>
+            指令名称
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Command.CallBack">
+            <summary>
+            指令命中后的回调函数
+            <para>例：(sender, args)=>{}</para>
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Command.CompiledRule">
+            <summary>
+            编译为程序集的正则表达式（可加快正则匹配速度）
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Command.Rule">
+            <summary>
+            匹配规则
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Command.NeedAdmin">
+            <summary>
+            管理员权限
+            <para>若设定为true，将只有管理员才能触发该指令</para>
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Command.Note">
+            <summary>
+            备注
+            <para>用户自定义属性功能用途</para>
+            </summary>
+        </member>
+        <member name="T:Sudoku.Bot.Communication.FreezeTime">
+            <summary>
+            时间冻结类
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.FreezeTime.EndTime">
+            <summary>
+            结束时间
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.FreezeTime.AddTime">
+            <summary>
+            附加时间
+            </summary>
+        </member>
+        <member name="T:Sudoku.Bot.Communication.HttpLoggingHandler">
+            <summary>
+            HttpClient请求拦截器
+            </summary>
+        </member>
+        <member name="F:Sudoku.Bot.Communication.HttpLoggingHandler.PrintLength">
+            <summary>
+            Indicates the print buffer length.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Bot.Communication.HttpLoggingHandler.#ctor(System.Net.Http.HttpMessageHandler)">
+            <summary>
+            HttpClient请求拦截器构造函数
+            </summary>
+            <param name="innerHandler"></param>
+        </member>
+        <member name="M:Sudoku.Bot.Communication.HttpLoggingHandler.SendAsync(System.Net.Http.HttpRequestMessage,System.Threading.CancellationToken)">
+            <summary>
+            发起异步Http请求
+            </summary>
+            <param name="request"></param>
+            <param name="cancellationToken"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Sudoku.Bot.Communication.Identity">
+            <summary>
+            The identity instance.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Identity.BotAppId">
+            <summary>
+            The ID of the bot. The value corresponds to the AppID.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Identity.BotToken">
+            <summary>
+            The token of the bot.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Identity.BotSecret">
+            <summary>
+            The secret key of the bot.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Bot.Communication.InfoSdk">
+            <summary>
+            SDK信息
+            </summary>
+        </member>
+        <member name="F:Sudoku.Bot.Communication.InfoSdk.Sdk">
+            <summary>
+            Indicates the SDK assembly name.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.InfoSdk.GitHTTPS">
+            <summary>
+            The open-source HTTPS link.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.InfoSdk.GitSSH">
+            <summary>
+            The open-source SSH link.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.InfoSdk.Copyright">
+            <summary>
+            The copyright.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.InfoSdk.Name">
+            <summary>
+            SDK name.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.InfoSdk.Version">
+            <summary>
+            SDK version.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Bot.Communication.Intent">
+            <summary>
+            事件订阅权限
+            <para>
+            基础事件(默认有订阅权限)：GUILDS, GUILD_MEMBERS, AT_MESSAGES, GUILD_MESSAGE_REACTIONS<br/>
+            详见：<see href="https://bot.q.qq.com/wiki/develop/api/gateway/intents.html">官方文档</see>
+            </para>
+            </summary>
+            <completionlist cref="T:Sudoku.Bot.Communication.Intents"/>
+        </member>
+        <member name="F:Sudoku.Bot.Communication.Intent.GUILDS">
+            <summary>
+            <para>
+            GUILD_CREATE - 当机器人加入新guild时 <br/>
+            GUILD_UPDATE - 当guild资料发生变更时 <br/>
+            GUILD_DELETE - 当机器人退出guild时 <br/>
+            CHANNEL_CREATE - 当channel被创建时 <br/>
+            CHANNEL_UPDATE - 当channel被更新时 <br/>
+            CHANNEL_DELETE - 当channel被删除时
+            </para>
+            </summary>
+        </member>
+        <member name="F:Sudoku.Bot.Communication.Intent.GUILD_MEMBERS">
+            <summary>
+            <para>
+            GUILD_MEMBER_ADD - 当成员加入时 <br/>
+            GUILD_MEMBER_UPDATE - 当成员资料变更时 <br/>
+            GUILD_MEMBER_REMOVE - 当成员被移除时
+            </para>
+            </summary>
+        </member>
+        <member name="F:Sudoku.Bot.Communication.Intent.MESSAGE_CREATE">
+            <summary>
+            MESSAGE_CREATE - 频道内发送的所有消息的事件（仅私域可用）
+            </summary>
+        </member>
+        <member name="F:Sudoku.Bot.Communication.Intent.GUILD_MESSAGE_REACTIONS">
+            <summary>
+            <para>
+            MESSAGE_REACTION_ADD - 为消息添加表情表态 <br/>
+            MESSAGE_REACTION_REMOVE - 为消息删除表情表态
+            </para>
+            </summary>
+        </member>
+        <member name="F:Sudoku.Bot.Communication.Intent.DIRECT_MESSAGE_CREATE">
+            <summary>
+            DIRECT_MESSAGE_CREATE - 当收到用户发给机器人的私信消息时
+            </summary>
+        </member>
+        <member name="F:Sudoku.Bot.Communication.Intent.MESSAGE_AUDIT">
+            <summary>
+            MESSAGE_AUDIT_PASS - 消息审核通过
+            MESSAGE_AUDIT_REJECT - 消息审核被拒绝
+            </summary>
+        </member>
+        <member name="F:Sudoku.Bot.Communication.Intent.FORUM_EVENT">
+            <summary>
+            <para>
+            THREAD_CREATE - 当用户创建主题时 <br/>
+            THREAD_UPDATE - 当用户更新主题时 <br/>
+            THREAD_DELETE - 当用户删除主题时 <br/>
+            POST_CREATE - 当用户创建帖子时 <br/>
+            POST_DELETE - 当用户删除帖子时 <br/>
+            REPLY_CREATE - 当用户回复评论时 <br/>
+            REPLY_DELETE - 当用户删除评论时
+            </para>
+            </summary>
+        </member>
+        <member name="F:Sudoku.Bot.Communication.Intent.AUDIO_ACTION">
+            <summary>
+            <para>
+            AUDIO_START - 音频播放开始时 <br/>
+            AUDIO_FINISH - 音频播放结束时 <br/>
+            AUDIO_ON_MIC - 上麦时 <br/>
+            AUDIO_OFF_MIC - 下麦时
+            </para>
+            </summary>
+        </member>
+        <member name="F:Sudoku.Bot.Communication.Intent.AT_MESSAGE_CREATE">
+            <summary>
+            AT_MESSAGE_CREATE - 当收到@机器人的消息时
+            </summary>
+        </member>
+        <member name="T:Sudoku.Bot.Communication.Intents">
+            <summary>
+            Provides with the default configuration on private or public domains.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Bot.Communication.Intents.PublicDomain">
+            <summary>
+            Indicates the events being able to be used in public domain.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Bot.Communication.Intents.PrivateDomain">
+            <summary>
+            Indicates the events being able to be used in private domain.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Bot.Communication.JsonConverters.BoolToInt32Converter">
+            <summary>
+            JSON序列化时将 bool 转换为 int<br/>
+            JSON反序列化时将 int 转换为 bool
+            </summary>
+        </member>
+        <member name="M:Sudoku.Bot.Communication.JsonConverters.BoolToInt32Converter.Write(System.Text.Json.Utf8JsonWriter,System.Boolean,System.Text.Json.JsonSerializerOptions)">
+            <summary>
+            序列化JSON时 bool 转 int
+            </summary>
+            <param name="writer"></param>
+            <param name="value"></param>
+            <param name="options"></param>
+        </member>
+        <member name="M:Sudoku.Bot.Communication.JsonConverters.BoolToInt32Converter.Read(System.Text.Json.Utf8JsonReader@,System.Type,System.Text.Json.JsonSerializerOptions)">
+            <summary>
+            反序列化JSON时 int 转 bool
+            </summary>
+            <param name="reader"></param>
+            <param name="typeToConvert"></param>
+            <param name="options"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Sudoku.Bot.Communication.JsonConverters.ColorToUint32Converter">
+            <summary>
+            JSON序列化时将 Color 转换为 UInt32<br/>
+            JSON反序列化时将 UInt32 转换为 Color
+            </summary>
+        </member>
+        <member name="M:Sudoku.Bot.Communication.JsonConverters.ColorToUint32Converter.Write(System.Text.Json.Utf8JsonWriter,System.Drawing.Color,System.Text.Json.JsonSerializerOptions)">
+            <summary>
+            序列化JSON时 Color 转 int
+            </summary>
+            <param name="writer"></param>
+            <param name="value"></param>
+            <param name="options"></param>
+        </member>
+        <member name="M:Sudoku.Bot.Communication.JsonConverters.ColorToUint32Converter.Read(System.Text.Json.Utf8JsonReader@,System.Type,System.Text.Json.JsonSerializerOptions)">
+            <summary>
+            反序列化JSON时 int 转 Color
+            </summary>
+            <param name="reader"></param>
+            <param name="typeToConvert"></param>
+            <param name="options"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Sudoku.Bot.Communication.JsonConverters.DateTimeToStringTimestamp">
+            <summary>
+            JSON序列化JSON时将 DateTime 转换为 Timestamp<br/>
+            JSON反序列化JSON时将 Timestamp 转换为 DateTime
+            </summary>
+        </member>
+        <member name="M:Sudoku.Bot.Communication.JsonConverters.DateTimeToStringTimestamp.Write(System.Text.Json.Utf8JsonWriter,System.DateTime,System.Text.Json.JsonSerializerOptions)">
+            <summary>
+            序列化JSON时 DateTime 转 Timestamp
+            </summary>
+            <param name="writer"></param>
+            <param name="value"></param>
+            <param name="options"></param>
+        </member>
+        <member name="M:Sudoku.Bot.Communication.JsonConverters.DateTimeToStringTimestamp.Read(System.Text.Json.Utf8JsonReader@,System.Type,System.Text.Json.JsonSerializerOptions)">
+            <summary>
+            反序列化JSON时 Timestamp 转 DateTime
+            </summary>
+            <param name="reader"></param>
+            <param name="typeToConvert"></param>
+            <param name="options"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Sudoku.Bot.Communication.JsonConverters.IntentToStringArrayConverter">
+            <summary>
+            JSON序列化时将 Intent 转换为 StringArray<br/>
+            JSON反序列化时将 StringArray 转换为 Intent
+            </summary>
+        </member>
+        <member name="M:Sudoku.Bot.Communication.JsonConverters.IntentToStringArrayConverter.Write(System.Text.Json.Utf8JsonWriter,Sudoku.Bot.Communication.Intent,System.Text.Json.JsonSerializerOptions)">
+            <summary>
+            JSON序列化时将 RemindType 转 StringNumber
+            </summary>
+            <param name="writer"></param>
+            <param name="value"></param>
+            <param name="options"></param>
+        </member>
+        <member name="M:Sudoku.Bot.Communication.JsonConverters.IntentToStringArrayConverter.Read(System.Text.Json.Utf8JsonReader@,System.Type,System.Text.Json.JsonSerializerOptions)">
+            <summary>
+            JSON反序列化时将 StringNumber 转 RemindType
+            </summary>
+            <param name="reader"></param>
+            <param name="typeToConvert"></param>
+            <param name="options"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Sudoku.Bot.Communication.JsonConverters.PrivacyTypeToStringNumberConverter">
+            <summary>
+            JSON序列化时将 PrivacyType 转换为 StringNumber<br/>
+            JSON反序列化时将 StringNumber 转换为 PrivacyType
+            </summary>
+        </member>
+        <member name="M:Sudoku.Bot.Communication.JsonConverters.PrivacyTypeToStringNumberConverter.Write(System.Text.Json.Utf8JsonWriter,Sudoku.Bot.Communication.Models.PrivacyType,System.Text.Json.JsonSerializerOptions)">
+            <summary>
+            JSON序列化时将 PrivacyType 转 StringNumber
+            </summary>
+            <param name="writer"></param>
+            <param name="value"></param>
+            <param name="options"></param>
+        </member>
+        <member name="M:Sudoku.Bot.Communication.JsonConverters.PrivacyTypeToStringNumberConverter.Read(System.Text.Json.Utf8JsonReader@,System.Type,System.Text.Json.JsonSerializerOptions)">
+            <summary>
+            JSON反序列化时将 StringNumber 转 PrivacyType
+            </summary>
+            <param name="reader"></param>
+            <param name="typeToConvert"></param>
+            <param name="options"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Sudoku.Bot.Communication.JsonConverters.RemindTypeToStringNumberConverter">
+            <summary>
+            JSON序列化时将 RemindType 转换为 StringNumber<br/>
+            JSON反序列化时将 StringNumber 转换为 RemindType
+            </summary>
+        </member>
+        <member name="M:Sudoku.Bot.Communication.JsonConverters.RemindTypeToStringNumberConverter.Write(System.Text.Json.Utf8JsonWriter,Sudoku.Bot.Communication.Models.RemindType,System.Text.Json.JsonSerializerOptions)">
+            <summary>
+            JSON序列化时将 RemindType 转 StringNumber
+            </summary>
+            <param name="writer"></param>
+            <param name="value"></param>
+            <param name="options"></param>
+        </member>
+        <member name="M:Sudoku.Bot.Communication.JsonConverters.RemindTypeToStringNumberConverter.Read(System.Text.Json.Utf8JsonReader@,System.Type,System.Text.Json.JsonSerializerOptions)">
+            <summary>
+            JSON反序列化时将 StringNumber 转 RemindType
+            </summary>
+            <param name="reader"></param>
+            <param name="typeToConvert"></param>
+            <param name="options"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Sudoku.Bot.Communication.Log">
+            <summary>
+            集中处理日志信息
+            </summary>
+        </member>
+        <member name="F:Sudoku.Bot.Communication.Log.LogQueue">
+            <summary>
+            日志输出队列
+            </summary>
+        </member>
+        <member name="F:Sudoku.Bot.Communication.Log._isWorking">
+            <summary>
+            Indicates whether the bot is now working.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Log.TimeFormatter">
+            <summary>
+            时间格式化器
+            <para>定义日志输出的时间戳格式 (默认值 HH:mm:ss.fff)</para>
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Log.LogLevel">
+            <summary>
+            日志记录级别
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Log.TimeStamp">
+            <summary>
+            获取格式化的日期标签
+            </summary>
+        </member>
+        <member name="E:Sudoku.Bot.Communication.Log.LogTo">
+            <summary>
+            自定义日志输出
+            </summary>
+        </member>
+        <member name="M:Sudoku.Bot.Communication.Log.Print(Sudoku.Bot.Communication.LogEntry)">
+            <summary>
+            打印日志
+            </summary>
+        </member>
+        <member name="M:Sudoku.Bot.Communication.Log.Debug(System.String)">
+            <summary>
+            打印调试
+            </summary>
+            <param name="message"></param>
+        </member>
+        <member name="M:Sudoku.Bot.Communication.Log.Info(System.String)">
+            <summary>
+            打印日志
+            </summary>
+            <param name="message"></param>
+        </member>
+        <member name="M:Sudoku.Bot.Communication.Log.Warn(System.String)">
+            <summary>
+            打印警告
+            </summary>
+            <param name="message"></param>
+        </member>
+        <member name="M:Sudoku.Bot.Communication.Log.Error(System.String)">
+            <summary>
+            打印错误
+            </summary>
+            <param name="message"></param>
+        </member>
+        <member name="T:Sudoku.Bot.Communication.LogEntry">
+            <summary>
+            The log data.
+            </summary>
+            <param name="Level">The report level of the log.</param>
+            <param name="Message">The message content.</param>
+            <param name="TimeStamp">The timestamp.</param>
+        </member>
+        <member name="M:Sudoku.Bot.Communication.LogEntry.#ctor(Sudoku.Bot.Communication.LogLevel,System.String,System.String)">
+            <summary>
+            The log data.
+            </summary>
+            <param name="Level">The report level of the log.</param>
+            <param name="Message">The message content.</param>
+            <param name="TimeStamp">The timestamp.</param>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.LogEntry.Level">
+            <summary>The report level of the log.</summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.LogEntry.Message">
+            <summary>The message content.</summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.LogEntry.TimeStamp">
+            <summary>The timestamp.</summary>
+        </member>
+        <member name="T:Sudoku.Bot.Communication.LogLevel">
+            <summary>
+            Defines a level that controls the output message limited to it.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Bot.Communication.LogLevel.DEBUG">
+            <summary>
+            Indicates the log level is limited to debugging.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Bot.Communication.LogLevel.INFO">
+            <summary>
+            Indicates the log level is limited to information.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Bot.Communication.LogLevel.WARRNING">
+            <summary>
+            Indicates the log level is limited to warning.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Bot.Communication.LogLevel.ERROR">
+            <summary>
+            Indicates the log level is limited to error.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Bot.Communication.Member">
+            <summary>
+            成员
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Member.User">
+            <summary>
+            用户基础信息，来自QQ资料，只有成员相关接口中会填充此信息
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Member.Nick">
+            <summary>
+            用户在频道内的昵称(默认为空)
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Member.Roles">
+            <summary>
+            用户在频道内的身份组ID, 默认值可参考DefaultRoles
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Member.JoinedAt">
+            <summary>
+            用户加入频道的时间 ISO8601 timestamp
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Member.Deaf">
+            <summary>
+            该字段作用未知，等待官方文档更新
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Member.Mute">
+            <summary>
+            该成员是否被禁言
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Member.Pending">
+            <summary>
+            该字段作用未知，等待官方文档更新
+            </summary>
+        </member>
+        <member name="T:Sudoku.Bot.Communication.MemberWithGuildID">
+            <summary>
+            有频道ID的成员
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.MemberWithGuildID.GuildId">
+            <summary>
+            频道id
+            </summary>
+        </member>
+        <member name="T:Sudoku.Bot.Communication.Models.Announces">
+            <summary>
+            公告对象
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Models.Announces.GuildId">
+            <summary>
+            频道 id
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Models.Announces.ChannelId">
+            <summary>
+            子频道 id
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Models.Announces.MessageId">
+            <summary>
+            消息 id
+            </summary>
+        </member>
+        <member name="T:Sudoku.Bot.Communication.Models.ApiPermission">
+            <summary>
+            接口权限对象
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Models.ApiPermission.Path">
+            <summary>
+            接口地址
+            <para>
+            例：/guilds/{guild_id}/members/{user_id}
+            </para>
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Models.ApiPermission.Method">
+            <summary>
+            请求方法，例：GET
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Models.ApiPermission.Desc">
+            <summary>
+            API 接口名称，例：获取频道信息
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Models.ApiPermission.AuthStatus">
+            <summary>
+            授权状态
+            <para>
+            0 - 未授权<br/>
+            1 - 已授权
+            </para>
+            </summary>
+        </member>
+        <member name="T:Sudoku.Bot.Communication.Models.ApiPermissionDemand">
+            <summary>
+            接口权限需求对象
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Models.ApiPermissionDemand.GuildId">
+            <summary>
+            申请接口权限的频道 id
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Models.ApiPermissionDemand.ChannelId">
+            <summary>
+            接口权限需求授权链接发送的子频道 id
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Models.ApiPermissionDemand.Title">
+            <summary>
+            接口权限链接中的接口权限描述信息
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Models.ApiPermissionDemand.Desc">
+            <summary>
+            接口权限链接中的机器人可使用功能的描述信息
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Models.ApiPermissionDemand.ApiIdentify">
+            <summary>
+            权限接口唯一标识
+            </summary>
+        </member>
+        <member name="T:Sudoku.Bot.Communication.Models.ApiPermissionDemandIdentify">
+            <summary>
+            接口权限需求标识对象
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Models.ApiPermissionDemandIdentify.Path">
+            <summary>
+            接口地址
+            <para>
+            例：/guilds/{guild_id}/members/{user_id}
+            </para>
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Models.ApiPermissionDemandIdentify.Method">
+            <summary>
+            请求方法，例：GET
+            </summary>
+        </member>
+        <member name="T:Sudoku.Bot.Communication.Models.ApiPermissions">
+            <summary>
+            接口权限列表对象
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Models.ApiPermissions.List">
+            <summary>
+            接口权限列表
+            </summary>
+        </member>
+        <member name="T:Sudoku.Bot.Communication.Models.AudioAction">
+            <summary>
+            语音Action
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Models.AudioAction.GuildId">
+            <summary>
+            频道id
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Models.AudioAction.ChannelId">
+            <summary>
+            子频道id
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Models.AudioAction.AudioUrl">
+            <summary>
+            音频数据的url status为0时传
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Models.AudioAction.Text">
+            <summary>
+            状态文本（比如：简单爱-周杰伦），可选，status为0时传，其他操作不传
+            </summary>
+        </member>
+        <member name="T:Sudoku.Bot.Communication.Models.AudioControl">
+            <summary>
+            音频对象
+            </summary>
+        </member>
+        <member name="M:Sudoku.Bot.Communication.Models.AudioControl.#ctor(Sudoku.Bot.Communication.Models.PlayingStatus,System.String,System.String)">
+            <summary>
+            构建音频消息
+            </summary>
+            <param name="status">播放状态</param>
+            <param name="audioUrl">音频数据URL</param>
+            <param name="text">状态文本</param>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Models.AudioControl.AudioUrl">
+            <summary>
+            音频数据的url status为0时传
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Models.AudioControl.Text">
+            <summary>
+            状态文本（比如：简单爱-周杰伦），可选，status为0时传，其他操作不传
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Models.AudioControl.Status">
+            <summary>
+            播放状态，参考 <see cref="T:Sudoku.Bot.Communication.Models.PlayingStatus"/>
+            </summary>
+        </member>
+        <member name="T:Sudoku.Bot.Communication.Models.Channel">
+            <summary>
+            子频道对象
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Models.Channel.Id">
+            <summary>
+            子频道id
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Models.Channel.GuildId">
+            <summary>
+            频道id
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Models.Channel.Name">
+            <summary>
+            子频道名称
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Models.Channel.Type">
+            <summary>
+            子频道类型
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Models.Channel.SubType">
+            <summary>
+            子频道子类型
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Models.Channel.Possition">
+            <summary>
+            频道位置排序，非必填，但不能够和其他子频道的值重复
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Models.Channel.ParentId">
+            <summary>
+            分组Id
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Models.Channel.OwerId">
+            <summary>
+            创建人Id
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Models.Channel.PrivateType">
+            <summary>
+            子频道私密类型
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Models.Channel.PrivateUserIds">
+            <summary>
+            子频道私密类型成员Id
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Models.Channel.SpeakPermission">
+            <summary>
+            子频道发言权限
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Models.Channel.ApplicationId">
+            <summary>
+            用于标识应用子频道应用类型，仅应用子频道时会使用该字段
+            <para>具体定义请参考 <see href="https://bot.q.qq.com/wiki/develop/api/openapi/channel/model.html#应用子频道的应用类型">应用子频道的应用类型</see></para>
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Models.Channel.AppType">
+            <summary>
+            应用子频道类型列表
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Models.Channel.Tag">
+            <summary>
+            #频道名 标签
+            <para>数据内容为：&lt;#ChannelId&gt;</para>
+            </summary>
+        </member>
+        <member name="T:Sudoku.Bot.Communication.Models.ChannelPermissions">
+            <summary>
+            子频道权限对象
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Models.ChannelPermissions.ChaannelId">
+            <summary>
+            子频道Id
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Models.ChannelPermissions.UserId">
+            <summary>
+            用户Id
+            <para><em>此属性和RoleId只会同时存在一个</em></para>
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Models.ChannelPermissions.RoleId">
+            <summary>
+            身份组Id
+            <para><em>此属性和UserId只会同时存在一个</em></para>
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Models.ChannelPermissions.Permissions">
+            <summary>
+            用户拥有的子频道权限
+            <para>
+            "1" - 查看 <br/>
+            "2" - 管理 <br/>
+            "4" - 发言
+            </para>
+            </summary>
+        </member>
+        <member name="T:Sudoku.Bot.Communication.Models.ChannelPrivateType">
+            <summary>
+            子频道私密类型
+            </summary>
+        </member>
+        <member name="F:Sudoku.Bot.Communication.Models.ChannelPrivateType.Public">
+            <summary>
+            公开频道
+            </summary>
+        </member>
+        <member name="F:Sudoku.Bot.Communication.Models.ChannelPrivateType.Admin">
+            <summary>
+            群主和管理员可见
+            </summary>
+        </member>
+        <member name="F:Sudoku.Bot.Communication.Models.ChannelPrivateType.Members">
+            <summary>
+            群主和管理员+指定成员可见
+            </summary>
+        </member>
+        <member name="T:Sudoku.Bot.Communication.Models.ChannelSpeakPermission">
+            <summary>
+            子频道发言权限
+            </summary>
+        </member>
+        <member name="F:Sudoku.Bot.Communication.Models.ChannelSpeakPermission.Null">
+            <summary>
+            无效类型
+            </summary>
+        </member>
+        <member name="F:Sudoku.Bot.Communication.Models.ChannelSpeakPermission.Everyone">
+            <summary>
+            所有人
+            </summary>
+        </member>
+        <member name="F:Sudoku.Bot.Communication.Models.ChannelSpeakPermission.Members">
+            <summary>
+            群主和管理员+指定成员
+            </summary>
+        </member>
+        <member name="T:Sudoku.Bot.Communication.Models.ChannelSubtype">
+            <summary>
+            子频道子类型(目前只有文字子频道有)
+            </summary>
+        </member>
+        <member name="F:Sudoku.Bot.Communication.Models.ChannelSubtype.闲聊">
+            <summary>
+            闲聊
+            </summary>
+        </member>
+        <member name="F:Sudoku.Bot.Communication.Models.ChannelSubtype.公告">
+            <summary>
+            公告
+            </summary>
+        </member>
+        <member name="F:Sudoku.Bot.Communication.Models.ChannelSubtype.攻略">
+            <summary>
+            攻略
+            </summary>
+        </member>
+        <member name="F:Sudoku.Bot.Communication.Models.ChannelSubtype.开黑">
+            <summary>
+            开黑
+            </summary>
+        </member>
+        <member name="T:Sudoku.Bot.Communication.Models.ChannelType">
+            <summary>
+            子频道类型
+            </summary>
+        </member>
+        <member name="F:Sudoku.Bot.Communication.Models.ChannelType.文字">
+            <summary>
+            文字子频道
+            </summary>
+        </member>
+        <member name="F:Sudoku.Bot.Communication.Models.ChannelType.Reserve1">
+            <summary>
+            保留，不可用
+            </summary>
+        </member>
+        <member name="F:Sudoku.Bot.Communication.Models.ChannelType.语音">
+            <summary>
+            语音子频道
+            </summary>
+        </member>
+        <member name="F:Sudoku.Bot.Communication.Models.ChannelType.Reserve2">
+            <summary>
+            保留，不可用
+            </summary>
+        </member>
+        <member name="F:Sudoku.Bot.Communication.Models.ChannelType.分组">
+            <summary>
+            子频道分组
+            </summary>
+        </member>
+        <member name="F:Sudoku.Bot.Communication.Models.ChannelType.直播">
+            <summary>
+            直播子频道
+            </summary>
+        </member>
+        <member name="F:Sudoku.Bot.Communication.Models.ChannelType.应用">
+            <summary>
+            应用子频道
+            </summary>
+        </member>
+        <member name="F:Sudoku.Bot.Communication.Models.ChannelType.论坛">
+            <summary>
+            论坛子频道
+            </summary>
+        </member>
+        <member name="T:Sudoku.Bot.Communication.Models.CreateRoleRes">
+            <summary>
+            新建频道身份组的返回值
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Models.CreateRoleRes.RoleId">
+            <summary>
+            身份组ID
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Models.CreateRoleRes.Role">
+            <summary>
+            新创建的频道身份组对象
+            </summary>
+        </member>
+        <member name="T:Sudoku.Bot.Communication.Models.DefaultRoles">
+            <summary>
+            系统默认身份组
+            </summary>
+        </member>
+        <member name="M:Sudoku.Bot.Communication.Models.DefaultRoles.Get(System.String)">
+            <summary>
+            获取系统默认身份组名称
+            </summary>
+            <param name="roleId"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Sudoku.Bot.Communication.Models.DirectMessageSource">
+            <summary>
+            私信会话对象（DMS）
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Models.DirectMessageSource.GuildId">
+            <summary>
+            私信会话关联的频道Id
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Models.DirectMessageSource.ChannelId">
+            <summary>
+            私信会话关联的子频道Id
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Models.DirectMessageSource.CreateTime">
+            <summary>
+            创建私信会话时间戳
+            </summary>
+        </member>
+        <member name="T:Sudoku.Bot.Communication.Models.Emoji">
+            <summary>
+            表情对象
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Models.Emoji.Id">
+            <summary>
+            表情ID
+            <para>
+            系统表情使用数字为ID，emoji使用emoji本身为id，参考 EmojiType 列表
+            </para>
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Models.Emoji.Type">
+            <summary>
+            表情类型
+            </summary>
+        </member>
+        <member name="T:Sudoku.Bot.Communication.Models.EmojiType">
+            <summary>
+            表情类型
+            </summary>
+        </member>
+        <member name="F:Sudoku.Bot.Communication.Models.EmojiType.System">
+            <summary>
+            系统表情
+            </summary>
+        </member>
+        <member name="F:Sudoku.Bot.Communication.Models.EmojiType.Emoji">
+            <summary>
+            emoji表情
+            </summary>
+        </member>
+        <member name="T:Sudoku.Bot.Communication.Models.Filter">
+            <summary>
+            标识需要设置哪些字段
+            </summary>
+        </member>
+        <member name="M:Sudoku.Bot.Communication.Models.Filter.#ctor(System.Boolean,System.Boolean,System.Boolean)">
+            <summary>
+            配置筛选器
+            </summary>
+            <param name="setName">设置名称</param>
+            <param name="setColor">设置颜色</param>
+            <param name="setHoist">设置在成员列表中单独展示</param>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Models.Filter.Name">
+            <summary>
+            是否设置名称
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Models.Filter.Color">
+            <summary>
+            是否设置颜色
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Models.Filter.Hoist">
+            <summary>
+            是否设置在成员列表中单独展示
+            </summary>
+        </member>
+        <member name="T:Sudoku.Bot.Communication.Models.GetMsgTypesEnum">
+            <summary>
+            拉取消息的操作类型
+            </summary>
+        </member>
+        <member name="F:Sudoku.Bot.Communication.Models.GetMsgTypesEnum.around">
+            <summary>
+            获取目标id前后的消息
+            </summary>
+        </member>
+        <member name="F:Sudoku.Bot.Communication.Models.GetMsgTypesEnum.before">
+            <summary>
+            获取目标id之前的消息
+            </summary>
+        </member>
+        <member name="F:Sudoku.Bot.Communication.Models.GetMsgTypesEnum.after">
+            <summary>
+            获取目标id之后的消息
+            </summary>
+        </member>
+        <member name="F:Sudoku.Bot.Communication.Models.GetMsgTypesEnum.latest">
+            <summary>
+            最新limit的消息
+            </summary>
+        </member>
+        <member name="T:Sudoku.Bot.Communication.Models.Guild">
+            <summary>
+            频道对象
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Models.Guild.Id">
+            <summary>
+            频道ID
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Models.Guild.Name">
+            <summary>
+            频道名称
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Models.Guild.Icon">
+            <summary>
+            频道头像地址
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Models.Guild.OwnerId">
+            <summary>
+            频道创建人用户ID
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Models.Guild.Owner">
+            <summary>
+            当前人是否是频道创建人
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Models.Guild.MemberCount">
+            <summary>
+            成员数
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Models.Guild.MaxMembers">
+            <summary>
+            最大成员数
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Models.Guild.Description">
+            <summary>
+            频道描述
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Models.Guild.JoinedAt">
+            <summary>
+            频道创建时间
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Models.Guild.APIPermissions">
+            <summary>
+            机器人在本频道内拥有的权限的列表
+            </summary>
+        </member>
+        <member name="T:Sudoku.Bot.Communication.Models.GuildInfo">
+            <summary>
+            频道信息
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Models.GuildInfo.Channels">
+            <summary>
+            子频道列表
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Models.GuildInfo.Roles">
+            <summary>
+            角色列表
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Models.GuildInfo.Members">
+            <summary>
+            成员列表
+            </summary>
+        </member>
+        <member name="T:Sudoku.Bot.Communication.Models.GuildRoles">
+            <summary>
+            频道身份组列表
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Models.GuildRoles.GuildId">
+            <summary>
+            频道Id
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Models.GuildRoles.Roles">
+            <summary>
+            身份组
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Models.GuildRoles.RoleNumLimit">
+            <summary>
+            默认分组上限
+            </summary>
+        </member>
+        <member name="T:Sudoku.Bot.Communication.Models.Info">
+            <summary>
+            携带需要设置的字段内容
+            </summary>
+        </member>
+        <member name="M:Sudoku.Bot.Communication.Models.Info.#ctor(System.String,System.Nullable{System.Drawing.Color},System.Nullable{System.Boolean})">
+            <summary>
+            构造身份组信息
+            </summary>
+            <param name="name">名称</param>
+            <param name="color">颜色</param>
+            <param name="hoist">在成员列表中单独展示</param>
+        </member>
+        <member name="M:Sudoku.Bot.Communication.Models.Info.#ctor(System.String,System.String,System.Nullable{System.Boolean})">
+            <summary>
+            构造身份组信息
+            </summary>
+            <param name="name">名称</param>
+            <param name="colorHtml">ARGB颜色值的HTML表现形式（如：#FFFFFFFF）</param>
+            <param name="hoist">在成员列表中单独展示</param>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Models.Info.Name">
+            <summary>
+            名称
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Models.Info.Color">
+            <summary>
+            颜色
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Models.Info.ColorHtml">
+            <summary>
+            ARGB的HTML十六进制颜色值
+            <para>
+            支持这些格式(忽略大小写和前后空白字符)：<br/>
+            #FFFFFFFF #FFFFFF #FFFF #FFF
+            </para>
+            <para><em>注: 因官方API有BUG，框架暂时强制Alpha通道固定为1.0，对功能无影响。 [2021-12-21]</em></para>
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Models.Info.Hoist">
+            <summary>
+            在成员列表中单独展示
+            </summary>
+        </member>
+        <member name="T:Sudoku.Bot.Communication.Models.JinxMaker">
+            <summary>
+            根据时间字符串构建禁言时间
+            </summary>
+        </member>
+        <member name="M:Sudoku.Bot.Communication.Models.JinxMaker.#ctor(System.String)">
+            <summary>
+            构造禁言时间
+            <para>
+            支持以下正则匹配的格式 (优先使用时间戳模式)：<br/>
+            时间戳模式 - "^(\d{4})[-年](\d\d)[-月](\d\d)[\s日]*(\d\d)[:点时](\d\d)[:分](\d\d)秒?\s*$"<br/>
+            倒计时模式 - "^(\d+)\s*(年|星期|周|日|天|小?时|分钟?|秒钟?)?\s*$"
+            </para>
+            </summary>
+        </member>
+        <member name="T:Sudoku.Bot.Communication.Models.JinxTime">
+            <summary>
+            禁言时间
+            </summary>
+        </member>
+        <member name="M:Sudoku.Bot.Communication.Models.JinxTime.#ctor">
+            <summary>
+            禁言时间（默认1分钟）
+            </summary>
+        </member>
+        <member name="M:Sudoku.Bot.Communication.Models.JinxTime.#ctor(System.Int32)">
+            <summary>
+            禁言指定的时长
+            </summary>
+            <param name="seconds">禁言多少秒</param>
+        </member>
+        <member name="M:Sudoku.Bot.Communication.Models.JinxTime.#ctor(System.String)">
+            <summary>
+            禁言到指定时间
+            </summary>
+            <param name="timestamp">解禁时间戳
+            <para>
+            格式："yyyy-MM-dd HH:mm:ss"<br/>
+            示例："2077-01-01 08:00:00"
+            </para></param>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Models.JinxTime.JinxEndTimestamp">
+            <summary>
+            禁言到期时间戳，绝对时间戳，单位：秒
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Models.JinxTime.JinxSeconds">
+            <summary>
+            禁言多少秒
+            </summary>
+        </member>
+        <member name="T:Sudoku.Bot.Communication.Models.Message">
+            <summary>
+            消息对象
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Models.Message.Id">
+            <summary>
+            消息id
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Models.Message.ChannelId">
+            <summary>
+            子频道 id
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Models.Message.GuildId">
+            <summary>
+            频道 id
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Models.Message.Content">
+            <summary>
+            消息内容
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Models.Message.DirectMessage">
+            <summary>
+            是否 私聊消息
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Models.Message.MentionEveryone">
+            <summary>
+            是否 @全员消息
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Models.Message.CreateTime">
+            <summary>
+            消息创建时间
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Models.Message.EditedTime">
+            <summary>
+            消息编辑时间
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Models.Message.Author">
+            <summary>
+            消息创建者
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Models.Message.Attachments">
+            <summary>
+            附件(可多个)
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Models.Message.Embeds">
+            <summary>
+            embed
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Models.Message.Mentions">
+            <summary>
+            消息中@的人
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Models.Message.Member">
+            <summary>
+            消息创建者的member信息
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Models.Message.Ark">
+            <summary>
+            ark消息
+            </summary>
+        </member>
+        <member name="T:Sudoku.Bot.Communication.Models.MessageArk">
+            <summary>
+            ark消息
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Models.MessageArk.TemplateId">
+            <summary>
+            ark模板id（需要先申请）
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Models.MessageArk.Kv">
+            <summary>
+            kv值列表
+            </summary>
+        </member>
+        <member name="T:Sudoku.Bot.Communication.Models.MessageArkKv">
+            <summary>
+            ark的键值对
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Models.MessageArkKv.Key">
+            <summary>
+            键
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Models.MessageArkKv.Value">
+            <summary>
+            值
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Models.MessageArkKv.Obj">
+            <summary>
+            ark obj类型的列表
+            </summary>
+        </member>
+        <member name="T:Sudoku.Bot.Communication.Models.MessageArkObj">
+            <summary>
+            ark obj类型
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Models.MessageArkObj.ObjKv">
+            <summary>
+            ark objkv列表
+            </summary>
+        </member>
+        <member name="T:Sudoku.Bot.Communication.Models.MessageArkObjKv">
+            <summary>
+            ark obj键值对
+            </summary>
+        </member>
+        <member name="M:Sudoku.Bot.Communication.Models.MessageArkObjKv.#ctor">
+            <summary>
+            构造函数
+            </summary>
+        </member>
+        <member name="M:Sudoku.Bot.Communication.Models.MessageArkObjKv.#ctor(System.String,System.String)">
+            <summary>
+            ark obj键值对构造函数
+            </summary>
+            <param name="key"></param>
+            <param name="value"></param>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Models.MessageArkObjKv.Key">
+            <summary>
+            键
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Models.MessageArkObjKv.Value">
+            <summary>
+            值
+            </summary>
+        </member>
+        <member name="T:Sudoku.Bot.Communication.Models.MessageAttachment">
+            <summary>
+            附件对象
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Models.MessageAttachment.Id">
+            <summary>
+            附件Id
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Models.MessageAttachment.ContentType">
+            <summary>
+            附件类型
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Models.MessageAttachment.Url">
+            <summary>
+            下载地址
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Models.MessageAttachment.FileName">
+            <summary>
+            文件名
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Models.MessageAttachment.Size">
+            <summary>
+            附件大小
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Models.MessageAttachment.Width">
+            <summary>
+            图片宽度
+            <para>仅附件为图片时才有</para>
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Models.MessageAttachment.Height">
+            <summary>
+            图片高度
+            <para>仅附件为图片时才有</para>
+            </summary>
+        </member>
+        <member name="T:Sudoku.Bot.Communication.Models.MessageAudited">
+            <summary>
+            消息审核对象
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Models.MessageAudited.AuditId">
+            <summary>
+            消息审核Id
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Models.MessageAudited.MessageId">
+            <summary>
+            被审核的消息Id
+            <para>只有审核通过事件才会有值</para>
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Models.MessageAudited.GuildId">
+            <summary>
+            频道Id
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Models.MessageAudited.ChannelId">
+            <summary>
+            子频道Id
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Models.MessageAudited.AuditTime">
+            <summary>
+            消息审核时间
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Models.MessageAudited.CreateTime">
+            <summary>
+            消息创建时间
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Models.MessageAudited.IsPassed">
+            <summary>
+            扩展属性，用于标注审核是否通过
+            </summary>
+        </member>
+        <member name="T:Sudoku.Bot.Communication.Models.MessageEmbed">
+            <summary>
+            embed消息
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Models.MessageEmbed.Title">
+            <summary>
+            标题
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Models.MessageEmbed.Description">
+            <summary>
+            描述 (见NodeSDK文档)
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Models.MessageEmbed.Prompt">
+            <summary>
+            消息弹窗内容
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Models.MessageEmbed.Thumbnail">
+            <summary>
+            缩略图
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Models.MessageEmbed.Fields">
+            <summary>
+            消息列表
+            </summary>
+        </member>
+        <member name="T:Sudoku.Bot.Communication.Models.MessageEmbedField">
+            <summary>
+            Embed行内容
+            </summary>
+        </member>
+        <member name="M:Sudoku.Bot.Communication.Models.MessageEmbedField.#ctor(System.String)">
+            <summary>
+            构造函数
+            </summary>
+            <param name="name"></param>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Models.MessageEmbedField.Name">
+            <summary>
+            字段名
+            </summary>
+        </member>
+        <member name="T:Sudoku.Bot.Communication.Models.MessageEmbedThumbnail">
+            <summary>
+            缩略图对象
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Models.MessageEmbedThumbnail.Url">
+            <summary>
+            图片地址
+            </summary>
+        </member>
+        <member name="T:Sudoku.Bot.Communication.Models.MessageReaction">
+            <summary>
+            表情表态
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Models.MessageReaction.UserId">
+            <summary>
+            用户Id
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Models.MessageReaction.GuildId">
+            <summary>
+            频道Id
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Models.MessageReaction.ChannelId">
+            <summary>
+            子频道Id
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Models.MessageReaction.Target">
+            <summary>
+            表态对象
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Models.MessageReaction.Emoji">
+            <summary>
+            表态所用表情
+            </summary>
+        </member>
+        <member name="T:Sudoku.Bot.Communication.Models.MessageReference">
+            <summary>
+            引用消息
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Models.MessageReference.MessageId">
+            <summary>
+            需要引用回复的消息 id
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Models.MessageReference.IgnoreGetMessageError">
+            <summary>
+            是否忽略获取引用消息详情错误，默认否
+            </summary>
+        </member>
+        <member name="T:Sudoku.Bot.Communication.Models.MessageToCreate">
+            <summary>
+            消息体结构
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Models.MessageToCreate.Content">
+            <summary>
+            消息内容，文本内容，支持内嵌格式
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Models.MessageToCreate.Embed">
+            <summary>
+            embed 消息，一种特殊的 ark
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Models.MessageToCreate.Ark">
+            <summary>
+            ark 消息
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Models.MessageToCreate.Reference">
+            <summary>
+            引用消息（需要传递被引用的消息Id）
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Models.MessageToCreate.Image">
+            <summary>
+            图片 url 地址
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Models.MessageToCreate.Id">
+            <summary>
+            要回复的目标消息Id
+            <para>带了 id 视为被动回复消息，否则视为主动推送消息</para>
+            </summary>
+        </member>
+        <member name="T:Sudoku.Bot.Communication.Models.MessageType">
+            <summary>
+            消息类型枚举
+            </summary>
+        </member>
+        <member name="F:Sudoku.Bot.Communication.Models.MessageType.Public">
+            <summary>
+            公共
+            </summary>
+        </member>
+        <member name="F:Sudoku.Bot.Communication.Models.MessageType.AtMe">
+            <summary>
+            @机器人
+            </summary>
+        </member>
+        <member name="F:Sudoku.Bot.Communication.Models.MessageType.AtAll">
+            <summary>
+            @全员
+            </summary>
+        </member>
+        <member name="F:Sudoku.Bot.Communication.Models.MessageType.Private">
+            <summary>
+            私聊
+            </summary>
+        </member>
+        <member name="T:Sudoku.Bot.Communication.Models.ModifyRolesRes">
+            <summary>
+            修改频道身份组的返回值
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Models.ModifyRolesRes.GuildId">
+            <summary>
+            身份组ID
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Models.ModifyRolesRes.RoleId">
+            <summary>
+            身份组ID
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Models.ModifyRolesRes.Role">
+            <summary>
+            新创建的频道身份组对象
+            </summary>
+        </member>
+        <member name="T:Sudoku.Bot.Communication.Models.MsgArk23">
+            <summary>
+            模板消息 id=23
+            <para>链接+文本列表模板</para>
+            </summary>
+        </member>
+        <member name="M:Sudoku.Bot.Communication.Models.MsgArk23.#ctor(System.String,System.String,System.Collections.Generic.List{Sudoku.Bot.Communication.Models.MessageArkObj},System.String)">
+            <summary>
+            构造模板消息
+            </summary>
+            <param name="desc">描述</param>
+            <param name="prompt">提示</param>
+            <param name="msgLines">多行内容</param>
+            <param name="replyMsgId">要回复的消息id</param>
+        </member>
+        <member name="M:Sudoku.Bot.Communication.Models.MsgArk23.SetReplyMsgId(System.String)">
+            <summary>
+            设置要回复的目标消息
+            </summary>
+            <param name="msgId">目标消息的Id</param>
+            <returns></returns>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Models.MsgArk23.Desc">
+            <summary>
+            描述
+            </summary>
+        </member>
+        <member name="M:Sudoku.Bot.Communication.Models.MsgArk23.SetDesc(System.String)">
+            <summary>
+            设置描述
+            </summary>
+            <param name="desc">描述内容</param>
+            <returns></returns>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Models.MsgArk23.Prompt">
+            <summary>
+            提示消息
+            </summary>
+        </member>
+        <member name="M:Sudoku.Bot.Communication.Models.MsgArk23.SetPrompt(System.String)">
+            <summary>
+            设置提示
+            </summary>
+            <param name="prompt">提示内容</param>
+            <returns></returns>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Models.MsgArk23.MsgLines">
+            <summary>
+            内容列表
+            </summary>
+        </member>
+        <member name="M:Sudoku.Bot.Communication.Models.MsgArk23.AddLine(System.String,System.String)">
+            <summary>
+            添加一行内容
+            <para>
+            content - 本行要显示的文字<br/>
+            link - 本行文字绑定的超链接(URL需要审核通过才能用)
+            </para>
+            </summary>
+            <param name="content">内容描述</param>
+            <param name="link">内容链接 [可选]</param>
+            <returns></returns>
+        </member>
+        <member name="T:Sudoku.Bot.Communication.Models.MsgArk24">
+            <summary>
+            模板消息 id=24
+            <para>文本、缩略图模板</para>
+            </summary>
+        </member>
+        <member name="M:Sudoku.Bot.Communication.Models.MsgArk24.#ctor(System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String)">
+            <summary>
+            构造模板消息
+            </summary>
+            <param name="desc">描述</param>
+            <param name="prompt">提示</param>
+            <param name="title">标题</param>
+            <param name="metaDesc">详情</param>
+            <param name="image">图片URL</param>
+            <param name="link">跳转链接</param>
+            <param name="subTitle">子标题</param>
+            <param name="replyMsgId">要回复的消息id</param>
+        </member>
+        <member name="M:Sudoku.Bot.Communication.Models.MsgArk24.SetReplyMsgId(System.String)">
+            <summary>
+            设置要回复的目标消息
+            </summary>
+            <param name="msgId">目标消息的Id</param>
+            <returns></returns>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Models.MsgArk24.Desc">
+            <summary>
+            描述
+            </summary>
+        </member>
+        <member name="M:Sudoku.Bot.Communication.Models.MsgArk24.SetDesc(System.String)">
+            <summary>
+            设置描述
+            </summary>
+            <param name="desc">描述内容</param>
+            <returns></returns>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Models.MsgArk24.Prompt">
+            <summary>
+            提示
+            </summary>
+        </member>
+        <member name="M:Sudoku.Bot.Communication.Models.MsgArk24.SetPrompt(System.String)">
+            <summary>
+            设置提示
+            </summary>
+            <param name="prompt">提示内容</param>
+            <returns></returns>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Models.MsgArk24.Title">
+            <summary>
+            标题
+            </summary>
+        </member>
+        <member name="M:Sudoku.Bot.Communication.Models.MsgArk24.SetTitle(System.String)">
+            <summary>
+            设置标题
+            </summary>
+            <param name="title">标题内容</param>
+            <returns></returns>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Models.MsgArk24.MetaDesc">
+            <summary>
+            详情
+            </summary>
+        </member>
+        <member name="M:Sudoku.Bot.Communication.Models.MsgArk24.SetMetaDesc(System.String)">
+            <summary>
+            设置详情
+            </summary>
+            <param name="metaDesc">详情内容</param>
+            <returns></returns>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Models.MsgArk24.Img">
+            <summary>
+            图片URL
+            </summary>
+        </member>
+        <member name="M:Sudoku.Bot.Communication.Models.MsgArk24.SetImage(System.String)">
+            <summary>
+            设置图片
+            </summary>
+            <param name="imgLink">图片URL</param>
+            <returns></returns>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Models.MsgArk24.Link">
+            <summary>
+            跳转链接
+            </summary>
+        </member>
+        <member name="M:Sudoku.Bot.Communication.Models.MsgArk24.SetLink(System.String)">
+            <summary>
+            设置链接
+            </summary>
+            <param name="link">跳转链接</param>
+            <returns></returns>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Models.MsgArk24.SubTitle">
+            <summary>
+            子标题
+            <para><em>子标题显示在模板消息底部</em></para>
+            </summary>
+        </member>
+        <member name="M:Sudoku.Bot.Communication.Models.MsgArk24.SetSubTitle(System.String)">
+            <summary>
+            设置子标题
+            </summary>
+            <param name="subTitle">子标题内容</param>
+            <returns></returns>
+        </member>
+        <member name="T:Sudoku.Bot.Communication.Models.MsgArk34">
+            <summary>
+            模板消息 id=34
+            <para>大图模板</para>
+            </summary>
+        </member>
+        <member name="M:Sudoku.Bot.Communication.Models.MsgArk34.#ctor(System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String)">
+            <summary>
+            构造模板消息
+            </summary>
+            <param name="desc">描述</param>
+            <param name="prompt">提示</param>
+            <param name="metaTitle">标题</param>
+            <param name="metaDesc">详情</param>
+            <param name="metaIcon">小图标URL</param>
+            <param name="metaPreview">大图URL</param>
+            <param name="metaUrl">跳转链接</param>
+            <param name="replyMsgId">要回复的消息id</param>
+        </member>
+        <member name="M:Sudoku.Bot.Communication.Models.MsgArk34.SetReplyMsgId(System.String)">
+            <summary>
+            设置要回复的目标消息
+            </summary>
+            <param name="msgId">目标消息的Id</param>
+            <returns></returns>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Models.MsgArk34.Desc">
+            <summary>
+            描述
+            </summary>
+        </member>
+        <member name="M:Sudoku.Bot.Communication.Models.MsgArk34.SetDesc(System.String)">
+            <summary>
+            设置描述
+            </summary>
+            <param name="desc">描述内容</param>
+            <returns></returns>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Models.MsgArk34.Prompt">
+            <summary>
+            提示
+            </summary>
+        </member>
+        <member name="M:Sudoku.Bot.Communication.Models.MsgArk34.SetPrompt(System.String)">
+            <summary>
+            设置提示
+            </summary>
+            <param name="prompt">提示内容</param>
+            <returns></returns>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Models.MsgArk34.MetaTitle">
+            <summary>
+            标题
+            </summary>
+        </member>
+        <member name="M:Sudoku.Bot.Communication.Models.MsgArk34.SetMetaTitle(System.String)">
+            <summary>
+            设置标题
+            </summary>
+            <param name="metaTitle">标题内容</param>
+            <returns></returns>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Models.MsgArk34.MetaDesc">
+            <summary>
+            详情
+            </summary>
+        </member>
+        <member name="M:Sudoku.Bot.Communication.Models.MsgArk34.SetMetaDesc(System.String)">
+            <summary>
+            设置详情
+            </summary>
+            <param name="metaDesc">详情内容</param>
+            <returns></returns>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Models.MsgArk34.MetaIcon">
+            <summary>
+            小图标URL
+            </summary>
+        </member>
+        <member name="M:Sudoku.Bot.Communication.Models.MsgArk34.SetMetaIcon(System.String)">
+            <summary>
+            设置小图标
+            </summary>
+            <param name="iconLink">小图标URL</param>
+            <returns></returns>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Models.MsgArk34.MetaPreview">
+            <summary>
+            大图URL
+            </summary>
+        </member>
+        <member name="M:Sudoku.Bot.Communication.Models.MsgArk34.SetMetaPreview(System.String)">
+            <summary>
+            设置大图
+            </summary>
+            <param name="metaPreview">大图URL</param>
+            <returns></returns>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Models.MsgArk34.MetaUrl">
+            <summary>
+            跳转链接
+            </summary>
+        </member>
+        <member name="M:Sudoku.Bot.Communication.Models.MsgArk34.SetMetaUrl(System.String)">
+            <summary>
+            设置跳转链接
+            </summary>
+            <param name="metaUrl">跳转链接</param>
+            <returns></returns>
+        </member>
+        <member name="T:Sudoku.Bot.Communication.Models.MsgArk37">
+            <summary>
+            模板消息 id=37
+            <para>
+            大图模板<br/>
+            <em>尺寸为 975*540</em>
+            </para>
+            </summary>
+        </member>
+        <member name="M:Sudoku.Bot.Communication.Models.MsgArk37.#ctor(System.String,System.String,System.String,System.String,System.String,System.String)">
+            <summary>
+            构造模板消息
+            </summary>
+            <param name="prompt">描述</param>
+            <param name="metaTitle">标题</param>
+            <param name="metaSubTitle">子标题</param>
+            <param name="metaCover">大图URL</param>
+            <param name="metaUrl">跳转链接</param>
+            <param name="replyMsgId">要回复的消息id</param>
+        </member>
+        <member name="M:Sudoku.Bot.Communication.Models.MsgArk37.SetReplyMsgId(System.String)">
+            <summary>
+            设置要回复的目标消息
+            </summary>
+            <param name="msgId">目标消息的Id</param>
+            <returns></returns>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Models.MsgArk37.Prompt">
+            <summary>
+            提示
+            </summary>
+        </member>
+        <member name="M:Sudoku.Bot.Communication.Models.MsgArk37.SetPrompt(System.String)">
+            <summary>
+            设置提示
+            </summary>
+            <param name="prompt">提示内容</param>
+            <returns></returns>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Models.MsgArk37.MetaTitle">
+            <summary>
+            标题
+            </summary>
+        </member>
+        <member name="M:Sudoku.Bot.Communication.Models.MsgArk37.SetMetaTitle(System.String)">
+            <summary>
+            设置标题
+            </summary>
+            <param name="metaTitle">标题内容</param>
+            <returns></returns>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Models.MsgArk37.MetaSubTitle">
+            <summary>
+            子标题
+            </summary>
+        </member>
+        <member name="M:Sudoku.Bot.Communication.Models.MsgArk37.SetMetaSubTitle(System.String)">
+            <summary>
+            设置子标题
+            </summary>
+            <param name="subTitle">子标题内容</param>
+            <returns></returns>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Models.MsgArk37.MetaCover">
+            <summary>
+            大图URL
+            </summary>
+        </member>
+        <member name="M:Sudoku.Bot.Communication.Models.MsgArk37.SetMetaCover(System.String)">
+            <summary>
+            设置大图
+            </summary>
+            <param name="cover">大图URL</param>
+            <returns></returns>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Models.MsgArk37.MetaUrl">
+            <summary>
+            跳转链接
+            </summary>
+        </member>
+        <member name="M:Sudoku.Bot.Communication.Models.MsgArk37.SetMetaUrl(System.String)">
+            <summary>
+            设置跳转链接
+            </summary>
+            <param name="metaUrl">跳转链接</param>
+            <returns></returns>
+        </member>
+        <member name="T:Sudoku.Bot.Communication.Models.MsgDescImg">
+            <summary>
+            图片消息对象
+            </summary>
+        </member>
+        <member name="M:Sudoku.Bot.Communication.Models.MsgDescImg.#ctor(System.String,System.String,System.String)">
+            <summary>
+            构建文字和图片同时存在的消息
+            </summary>
+            <param name="content">消息内容</param>
+            <param name="image">图片URL</param>
+            <param name="replyMsgId">要回复的消息id</param>
+        </member>
+        <member name="M:Sudoku.Bot.Communication.Models.MsgDescImg.SetReplyMsgId(System.String)">
+            <summary>
+            设置要回复的目标消息
+            </summary>
+            <param name="msgId">目标消息的Id</param>
+            <returns></returns>
+        </member>
+        <member name="M:Sudoku.Bot.Communication.Models.MsgDescImg.SetContent(System.String)">
+            <summary>
+            设置消息内容
+            </summary>
+            <param name="content">文字内容</param>
+            <returns></returns>
+        </member>
+        <member name="M:Sudoku.Bot.Communication.Models.MsgDescImg.SetImage(System.String)">
+            <summary>
+            设置图片URL
+            </summary>
+            <param name="image">图片URL</param>
+            <returns></returns>
+        </member>
+        <member name="T:Sudoku.Bot.Communication.Models.MsgEmbed">
+            <summary>
+            Embed消息对象
+            </summary>
+        </member>
+        <member name="M:Sudoku.Bot.Communication.Models.MsgEmbed.#ctor(System.String,System.String,System.String,System.Collections.Generic.List{Sudoku.Bot.Communication.Models.MessageEmbedField},System.String)">
+            <summary>
+            构建Embed消息
+            <para>详情查阅QQ机器人文档 <see href="https://bot.q.qq.com/wiki/develop/api/openapi/message/template/embed_message.html">embed消息</see></para>
+            </summary>
+            <param name="title">标题</param>
+            <param name="prompt">提示</param>
+            <param name="thumbnail">缩略图URL</param>
+            <param name="embedFields">内容列表</param>
+            <param name="replyMsgId">要回复的消息id</param>
+        </member>
+        <member name="M:Sudoku.Bot.Communication.Models.MsgEmbed.SetReplyMsgId(System.String)">
+            <summary>
+            设置要回复的目标消息
+            </summary>
+            <param name="msgId">目标消息的Id</param>
+            <returns></returns>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Models.MsgEmbed.Title">
+            <summary>
+            标题
+            </summary>
+        </member>
+        <member name="M:Sudoku.Bot.Communication.Models.MsgEmbed.SetTitle(System.String)">
+            <summary>
+            设置标题
+            </summary>
+            <param name="title">标题内容</param>
+            <returns></returns>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Models.MsgEmbed.Prompt">
+            <summary>
+            提示
+            </summary>
+        </member>
+        <member name="M:Sudoku.Bot.Communication.Models.MsgEmbed.SetPrompt(System.String)">
+            <summary>
+            设置提示
+            </summary>
+            <param name="prompt">提示内容</param>
+            <returns></returns>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Models.MsgEmbed.Thumbnail">
+            <summary>
+            缩略图URL
+            </summary>
+        </member>
+        <member name="M:Sudoku.Bot.Communication.Models.MsgEmbed.SetThumbnail(System.String)">
+            <summary>
+            设置缩略图
+            </summary>
+            <param name="thumbnail">缩略图URL</param>
+            <returns></returns>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Models.MsgEmbed.EmbedFields">
+            <summary>
+            消息列表
+            </summary>
+        </member>
+        <member name="M:Sudoku.Bot.Communication.Models.MsgEmbed.AddLine(System.String)">
+            <summary>
+            添加一行内容
+            </summary>
+            <param name="content">行内容</param>
+            <returns></returns>
+        </member>
+        <member name="T:Sudoku.Bot.Communication.Models.MsgImage">
+            <summary>
+            图片消息
+            </summary>
+        </member>
+        <member name="M:Sudoku.Bot.Communication.Models.MsgImage.#ctor(System.String,System.String)">
+            <summary>
+            构建图片消息
+            </summary>
+            <param name="image">图片URL</param>
+            <param name="replyMsgId">要回复的消息id</param>
+        </member>
+        <member name="M:Sudoku.Bot.Communication.Models.MsgImage.SetReplyMsgId(System.String)">
+            <summary>
+            设置要回复的目标消息
+            </summary>
+            <param name="msgId">目标消息的Id</param>
+            <returns></returns>
+        </member>
+        <member name="M:Sudoku.Bot.Communication.Models.MsgImage.SetImage(System.String)">
+            <summary>
+            设置图片网址
+            </summary>
+            <param name="image">图片URL</param>
+            <returns></returns>
+        </member>
+        <member name="T:Sudoku.Bot.Communication.Models.MsgTag">
+            <summary>
+            消息内嵌标签
+            <para>仅作用于content中</para>
+            </summary>
+        </member>
+        <member name="M:Sudoku.Bot.Communication.Models.MsgTag.User(System.String)">
+            <summary>
+            创建 @用户 标签
+            </summary>
+            <param name="userId">用户id</param>
+            <returns></returns>
+        </member>
+        <member name="M:Sudoku.Bot.Communication.Models.MsgTag.Channel(System.String)">
+            <summary>
+            创建 #子频道 标签
+            </summary>
+            <param name="channelId">子频道id</param>
+            <returns></returns>
+        </member>
+        <member name="M:Sudoku.Bot.Communication.Models.MsgTag.Tag(Sudoku.Bot.Communication.Models.User)">
+            <summary>
+            创建 @用户 标签
+            </summary>
+            <param name="user">用户对象</param>
+            <returns></returns>
+        </member>
+        <member name="M:Sudoku.Bot.Communication.Models.MsgTag.Tag(Sudoku.Bot.Communication.Models.Channel)">
+            <summary>
+            创建 #子频道 标签
+            </summary>
+            <param name="channel">子频道对象</param>
+            <returns></returns>
+        </member>
+        <member name="T:Sudoku.Bot.Communication.Models.MsgText">
+            <summary>
+            文字消息
+            </summary>
+        </member>
+        <member name="M:Sudoku.Bot.Communication.Models.MsgText.#ctor(System.String,System.String)">
+            <summary>
+            构建文字消息
+            </summary>
+            <param name="content">消息内容</param>
+            <param name="replyMsgId">要回复的消息Id</param>
+        </member>
+        <member name="M:Sudoku.Bot.Communication.Models.MsgText.SetReplyMsgId(System.String)">
+            <summary>
+            设置要回复的目标消息
+            </summary>
+            <param name="msgId">目标消息的Id</param>
+            <returns></returns>
+        </member>
+        <member name="M:Sudoku.Bot.Communication.Models.MsgText.SetContent(System.String)">
+            <summary>
+            设置消息内容
+            </summary>
+            <param name="content">文字内容</param>
+            <returns></returns>
+        </member>
+        <member name="T:Sudoku.Bot.Communication.Models.PlayingStatus">
+            <summary>
+            枚举播放状态
+            </summary>
+        </member>
+        <member name="F:Sudoku.Bot.Communication.Models.PlayingStatus.START">
+            <summary>
+            开始播放操作
+            </summary>
+        </member>
+        <member name="F:Sudoku.Bot.Communication.Models.PlayingStatus.PAUSE">
+            <summary>
+            暂停播放操作
+            </summary>
+        </member>
+        <member name="F:Sudoku.Bot.Communication.Models.PlayingStatus.RESUME">
+            <summary>
+            继续播放操作
+            </summary>
+        </member>
+        <member name="F:Sudoku.Bot.Communication.Models.PlayingStatus.STOP">
+            <summary>
+            停止播放操作
+            </summary>
+        </member>
+        <member name="T:Sudoku.Bot.Communication.Models.PrivacyType">
+            <summary>
+            子频道私密权限
+            </summary>
+        </member>
+        <member name="F:Sudoku.Bot.Communication.Models.PrivacyType.隐藏">
+            <summary>
+            没有任何权限
+            </summary>
+        </member>
+        <member name="F:Sudoku.Bot.Communication.Models.PrivacyType.查看">
+            <summary>
+            可查看子频道	
+            </summary>
+        </member>
+        <member name="F:Sudoku.Bot.Communication.Models.PrivacyType.管理">
+            <summary>
+            可管理子频道
+            </summary>
+        </member>
+        <member name="F:Sudoku.Bot.Communication.Models.PrivacyType.发言">
+            <summary>
+            可发言子频道
+            </summary>
+        </member>
+        <member name="T:Sudoku.Bot.Communication.Models.ReactionTarget">
+            <summary>
+            表态对象
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Models.ReactionTarget.Id">
+            <summary>
+            表态对象ID
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Models.ReactionTarget.Type">
+            <summary>
+            表态对象类型
+            </summary>
+        </member>
+        <member name="T:Sudoku.Bot.Communication.Models.ReactionTargetType">
+            <summary>
+            表态对象类型
+            </summary>
+        </member>
+        <member name="F:Sudoku.Bot.Communication.Models.ReactionTargetType.消息">
+            <summary>
+            消息
+            </summary>
+        </member>
+        <member name="F:Sudoku.Bot.Communication.Models.ReactionTargetType.帖子">
+            <summary>
+            帖子
+            </summary>
+        </member>
+        <member name="F:Sudoku.Bot.Communication.Models.ReactionTargetType.评论">
+            <summary>
+            评论
+            </summary>
+        </member>
+        <member name="F:Sudoku.Bot.Communication.Models.ReactionTargetType.回复">
+            <summary>
+            回复
+            </summary>
+        </member>
+        <member name="T:Sudoku.Bot.Communication.Models.RemindType">
+            <summary>
+            日程提醒方式
+            </summary>
+        </member>
+        <member name="F:Sudoku.Bot.Communication.Models.RemindType.Never">
+            <summary>
+            不提醒
+            </summary>
+        </member>
+        <member name="F:Sudoku.Bot.Communication.Models.RemindType.OnStart">
+            <summary>
+            开始时提醒
+            </summary>
+        </member>
+        <member name="F:Sudoku.Bot.Communication.Models.RemindType.Early5Min">
+            <summary>
+            开始前5分钟提醒
+            </summary>
+        </member>
+        <member name="F:Sudoku.Bot.Communication.Models.RemindType.Early15Min">
+            <summary>
+            开始前15分钟提醒
+            </summary>
+        </member>
+        <member name="F:Sudoku.Bot.Communication.Models.RemindType.Early30Min">
+            <summary>
+            开始前30分钟提醒
+            </summary>
+        </member>
+        <member name="F:Sudoku.Bot.Communication.Models.RemindType.Early60Min">
+            <summary>
+            开始前60分钟提醒
+            </summary>
+        </member>
+        <member name="T:Sudoku.Bot.Communication.Models.Role">
+            <summary>
+            身分组对象
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Models.Role.Id">
+            <summary>
+            身份组ID, 默认值可参考 <see cref="T:Sudoku.Bot.Communication.Models.DefaultRoles"/>
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Models.Role.Name">
+            <summary>
+            身分组名称
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Models.Role.Color">
+            <summary>
+            身份组颜色
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Models.Role.ColorHtml">
+            <summary>
+            ARGB颜色值的HTML表现形式（如：#FFFFFFFF）
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Models.Role.Hoist">
+            <summary>
+            该身分组是否在成员列表中单独展示
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Models.Role.Number">
+            <summary>
+            该身分组的人数
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Models.Role.MemberLimit">
+            <summary>
+            成员上限
+            </summary>
+        </member>
+        <member name="T:Sudoku.Bot.Communication.Models.Schedule">
+            <summary>
+            日程对象
+            </summary>
+        </member>
+        <member name="M:Sudoku.Bot.Communication.Models.Schedule.#ctor">
+            <summary>
+            构造日程
+            </summary>
+        </member>
+        <member name="M:Sudoku.Bot.Communication.Models.Schedule.#ctor(System.String,System.String,System.Nullable{System.DateTime},System.Nullable{System.DateTime},Sudoku.Bot.Communication.Models.Channel,Sudoku.Bot.Communication.Models.RemindType)">
+            <summary>
+            新建日程
+            <para>
+            注1：开始时间必须大于当前时间<br/>
+            注2：结束时间必须大于开始时间<br/>
+            注3：调用API每日创建日程数量有限
+            </para>
+            </summary>
+            <param name="name">日程名称</param>
+            <param name="desc">日程描述</param>
+            <param name="startTime">开始时间（默认五分钟后）</param>
+            <param name="endTime">结束时间（默认持续一小时）</param>
+            <param name="jumpChannel">日程开始时跳转的频道</param>
+            <param name="remindType">日程时间即将到达时的提醒方式</param>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Models.Schedule.Id">
+            <summary>
+            日程 id
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Models.Schedule.Name">
+            <summary>
+            日程名称
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Models.Schedule.Description">
+            <summary>
+            日程描述
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Models.Schedule.StartTimestamp">
+            <summary>
+            日程开始时间戳(ms)
+            <para>必须大于当前时间</para>
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Models.Schedule.StartTime">
+            <summary>
+            日程开始时间
+            <para>必须大于当前时间</para>
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Models.Schedule.EndTimestamp">
+            <summary>
+            日程结束时间戳(ms)
+            <para>必须大于开始时间</para>
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Models.Schedule.EndTime">
+            <summary>
+            日程结束时间
+            <para>必须大于开始时间</para>
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Models.Schedule.Creator">
+            <summary>
+            创建者
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Models.Schedule.JumpChannelId">
+            <summary>
+            日程开始时跳转到的子频道 id
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Models.Schedule.RemindType">
+            <summary>
+            日程提醒类型
+            </summary>
+        </member>
+        <member name="T:Sudoku.Bot.Communication.Models.SessionStartLimit">
+            <summary>
+            Session开始限制
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Models.SessionStartLimit.Total">
+            <summary>
+            每 24 小时可创建 Session 数
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Models.SessionStartLimit.Remaining">
+            <summary>
+            目前还可以创建的 Session 数
+            <para>每个机器人创建的连接数不能超过 remaining 剩余连接数</para>
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Models.SessionStartLimit.ResetAfter">
+            <summary>
+            重置计数的剩余时间(ms)
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Models.SessionStartLimit.MaxConcurrency">
+            <summary>
+            每 5s 可以创建的 Session 数
+            </summary>
+        </member>
+        <member name="T:Sudoku.Bot.Communication.Models.User">
+            <summary>
+            用户
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Models.User.Id">
+            <summary>
+            用户 id
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Models.User.UserName">
+            <summary>
+            用户名
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Models.User.Avatar">
+            <summary>
+            用户头像地址
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Models.User.Bot">
+            <summary>
+            是否机器人
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Models.User.UnionOpenid">
+            <summary>
+            特殊关联应用的 openid，需要特殊申请并配置后才会返回。如需申请，请联系平台运营人员。
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Models.User.UnionUserAccount">
+            <summary>
+            机器人关联的互联应用的用户信息，与 UnionOpenid 关联的应用是同一个。如需申请，请联系平台运营人员。
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Models.User.Tag">
+            <summary>
+            @用户 标签
+            <para>数据内容为：&lt;@!UserId&gt;</para>
+            </summary>
+        </member>
+        <member name="T:Sudoku.Bot.Communication.Models.WebSocketLimit">
+            <summary>
+            WebSocket连接分片信息
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Models.WebSocketLimit.Url">
+            <summary>
+            WebSocket 的连接地址
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Models.WebSocketLimit.Shards">
+            <summary>
+            建议的 shard 数
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Models.WebSocketLimit.SessionLimit">
+            <summary>
+            创建Session限制信息
+            </summary>
+        </member>
+        <member name="T:Sudoku.Bot.Communication.Opcode">
+            <summary>
+            枚举操作码
+            </summary>
+        </member>
+        <member name="F:Sudoku.Bot.Communication.Opcode.Dispatch">
+            <summary>
+            服务端进行消息推送
+            <para>客户端操作：Receive</para>
+            </summary>
+        </member>
+        <member name="F:Sudoku.Bot.Communication.Opcode.Heartbeat">
+            <summary>
+            客户端或服务端发送心跳
+            <para>客户端操作：Send/Receive</para>
+            </summary>
+        </member>
+        <member name="F:Sudoku.Bot.Communication.Opcode.Identify">
+            <summary>
+            客户端发送鉴权
+            <para>客户端操作：Send</para>
+            </summary>
+        </member>
+        <member name="F:Sudoku.Bot.Communication.Opcode.Resume">
+            <summary>
+            客户端恢复连接
+            <para>客户端操作：Send</para>
+            </summary>
+        </member>
+        <member name="F:Sudoku.Bot.Communication.Opcode.Reconnect">
+            <summary>
+            服务端通知客户端重新连接
+            <para>客户端操作：Receive</para>
+            </summary>
+        </member>
+        <member name="F:Sudoku.Bot.Communication.Opcode.InvalidSession">
+            <summary>
+            当identify或resume的时候，如果参数有错，服务端会返回该消息
+            <para>客户端操作：Receive</para>
+            </summary>
+        </member>
+        <member name="F:Sudoku.Bot.Communication.Opcode.Hello">
+            <summary>
+            当客户端与网关建立ws连接之后，网关下发的第一条消息
+            <para>客户端操作：Receive</para>
+            </summary>
+        </member>
+        <member name="F:Sudoku.Bot.Communication.Opcode.HeartbeatACK">
+            <summary>
+            当发送心跳成功之后，就会收到该消息
+            <para>客户端操作：Receive</para>
+            </summary>
+        </member>
+        <member name="T:Sudoku.Bot.Communication.Sender">
+            <summary>
+            发件人对象
+            </summary>
+        </member>
+        <member name="M:Sudoku.Bot.Communication.Sender.#ctor(Sudoku.Bot.Communication.Models.Message,Sudoku.Bot.Communication.BotClient)">
+            <summary>
+            Sender构造器
+            </summary>
+            <param name="message">收到的消息对象</param>
+            <param name="bot">收到消息的机器人</param>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Sender.Bot">
+            <summary>
+            收到消息的机器人
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Sender.Message">
+            <summary>
+            收到的消息对象
+            <para>若没有执行对象，可为空</para>
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Sender.MessageType">
+            <summary>
+            消息类型
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Sender.AtMe">
+            <summary>
+            是否 @机器人
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Sender.ReportError">
+            <summary>
+            向发件人报告API调用失败的错误信息
+            <para>默认值为 <see cref="P:Sudoku.Bot.Communication.BotClient.ReportApiError"/></para>
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Sender.Content">
+            <summary>
+            发件人的消息内容
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Sender.GuildId">
+            <summary>
+            发件人所在的频道
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Sender.ChannelId">
+            <summary>
+            发件人所在的子频道
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Sender.Author">
+            <summary>
+            发件人的用户信息
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Sender.Member">
+            <summary>
+            发件人的成员信息
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Sender.Mentions">
+            <summary>
+            发件人提到的用户
+            </summary>
+        </member>
+        <member name="M:Sudoku.Bot.Communication.Sender.ReplyAsync(Sudoku.Bot.Communication.Models.MessageToCreate,System.Boolean)">
+            <summary>
+            回复发件人
+            <para>自动填充被动消息参数</para>
+            </summary>
+            <param name="message">MessageToCreate消息构造对象(或其扩展对象)</param>
+            <param name="isQuote">是否引用发件人消息</param>
+            <returns></returns>
+        </member>
+        <member name="M:Sudoku.Bot.Communication.Sender.ReplyAsync(System.String,System.Boolean)">
+            <summary>
+            回复发件人
+            <para>自动填充被动消息参数</para>
+            </summary>
+            <param name="message">文字消息内容</param>
+            <param name="isQuote">是否引用发件人消息</param>
+            <returns></returns>
+        </member>
+        <member name="M:Sudoku.Bot.Communication.Sender.GetMeAsync">
+            <summary>
+            获取当前用户(机器人)信息
+            <para>此API无需任何权限</para>
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Sudoku.Bot.Communication.Sender.GetMeGuildsAsync(System.String,System.Boolean,System.Int32)">
+            <summary>
+            获取当前用户(机器人)已加入频道列表
+            <para>此API无需任何权限</para>
+            </summary>
+            <param name="guild_id">频道Id（作为拉取下一次列表的分页坐标使用）</param>
+            <param name="route">数据拉取方向（true-向前查找 | false-向后查找）</param>
+            <param name="limit">数据分页（默认每次拉取100条）</param>
+            <returns></returns>
+        </member>
+        <member name="M:Sudoku.Bot.Communication.Sender.GetGuildAsync">
+            <summary>
+            获取频道详情
+            </summary>
+            <returns>Guild?</returns>
+        </member>
+        <member name="M:Sudoku.Bot.Communication.Sender.GetChannelsAsync(System.Nullable{Sudoku.Bot.Communication.Models.ChannelType},System.Nullable{Sudoku.Bot.Communication.Models.ChannelSubtype})">
+            <summary>
+            获取子频道列表
+            <para>目标子频道为发件人当前子频道</para>
+            </summary>
+            <param name="type">筛选子频道类型</param>
+            <param name="subtype">筛选子频道子类型</param>
+            <returns></returns>
+        </member>
+        <member name="M:Sudoku.Bot.Communication.Sender.GetChannelAsync(System.String)">
+            <summary>
+            获取子频道详情
+            <para>目标子频道为发件人当前子频道</para>
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Sudoku.Bot.Communication.Sender.CreateChannelAsync(Sudoku.Bot.Communication.Models.Channel)">
+            <summary>
+            创建子频道（仅私域可用）
+            <para>
+            以下字段必填：<br/>
+            Channel.Name - 子频道名称<br/>
+            Channel.Type - 子频道类型<br/>
+            </para>
+            </summary>
+            <param name="channel">用于创建子频道的对象</param>
+            <returns></returns>
+        </member>
+        <member name="M:Sudoku.Bot.Communication.Sender.EditChannelAsync(Sudoku.Bot.Communication.Models.Channel)">
+            <summary>
+            修改子频道（仅私域可用）
+            </summary>
+            <param name="channel">修改属性后的子频道对象</param>
+            <returns></returns>
+        </member>
+        <member name="M:Sudoku.Bot.Communication.Sender.DeleteChannelAsync(Sudoku.Bot.Communication.Models.Channel)">
+            <summary>
+            删除子频道（仅私域可用）
+            </summary>
+            <param name="channel">指定要删除的子频道</param>
+            <returns></returns>
+        </member>
+        <member name="M:Sudoku.Bot.Communication.Sender.GetGuildMembersAsync(System.Int32,System.String)">
+            <summary>
+            获取频道成员列表（仅私域可用）
+            <para>目标频道为发件人当前频道</para>
+            </summary>
+            <param name="limit">分页大小1-1000（默认值100）</param>
+            <param name="after">上次回包中最后一个Member的用户ID，首次请求填"0"</param>
+            <returns></returns>
+        </member>
+        <member name="M:Sudoku.Bot.Communication.Sender.GetMemberAsync(Sudoku.Bot.Communication.Models.User)">
+            <summary>
+            获取频道成员详情
+            <para>目标频道为发件人当前频道</para>
+            </summary>
+            <param name="user">成员用户对象</param>
+            <returns></returns>
+        </member>
+        <member name="M:Sudoku.Bot.Communication.Sender.DeleteGuildMemberAsync(Sudoku.Bot.Communication.Models.User)">
+            <summary>
+            删除频道成员（仅私域可用）
+            <para>目标频道为发件人当前频道</para>
+            </summary>
+            <param name="user">成员用户对象</param>
+            <returns></returns>
+        </member>
+        <member name="M:Sudoku.Bot.Communication.Sender.GetRolesAsync">
+            <summary>
+            获取频道身份组列表
+            </summary>
+        </member>
+        <member name="M:Sudoku.Bot.Communication.Sender.CreateRoleAsync(Sudoku.Bot.Communication.Models.Info)">
+            <summary>
+            创建频道身份组
+            </summary>
+            <param name="info">携带需要设置的字段内容</param>
+            <returns></returns>
+        </member>
+        <member name="M:Sudoku.Bot.Communication.Sender.EditRoleAsync(System.String,Sudoku.Bot.Communication.Models.Info)">
+            <summary>
+            修改频道身份组
+            </summary>
+            <param name="role_id">角色Id</param>
+            <param name="info">携带需要修改的字段内容</param>
+            <returns></returns>
+        </member>
+        <member name="M:Sudoku.Bot.Communication.Sender.DeleteRoleAsync(System.String)">
+            <summary>
+            删除频道身份组
+            </summary>
+            <param name="role_id">角色Id</param>
+            <returns></returns>
+        </member>
+        <member name="M:Sudoku.Bot.Communication.Sender.AddRoleMemberAsync(Sudoku.Bot.Communication.Models.User,System.String,System.String)">
+            <summary>
+            创建频道身份组成员
+            <para>
+            如果要增加的身份组ID是(5-子频道管理员)，需要设置 channel_id 来指定目标子频道。
+            </para>
+            </summary>
+            <param name="user">要加入身份组的用户</param>
+            <param name="role_id">身份组Id</param>
+            <param name="channel_id">子频道Id</param>
+            <returns></returns>
+        </member>
+        <member name="M:Sudoku.Bot.Communication.Sender.DeleteRoleMemberAsync(Sudoku.Bot.Communication.Models.User,System.String,System.String)">
+            <summary>
+            删除频道身份组成员
+            <para>
+            如果要移除的身份组ID是(5-子频道管理员)，需要设置 channel_id 来指定目标子频道。
+            </para>
+            </summary>
+            <param name="user">要移除身份组的用户Id</param>
+            <param name="role_id">身份组Id</param>
+            <param name="channel_id">子频道Id</param>
+            <returns></returns>
+        </member>
+        <member name="M:Sudoku.Bot.Communication.Sender.GetChannelPermissionsAsync(Sudoku.Bot.Communication.Models.User,System.String)">
+            <summary>
+            获取子频道权限
+            </summary>
+            <param name="user">目标用户（默认为发件人）</param>
+            <param name="channel_id">目标子频道Id（默认为发件人当前频道）</param>
+            <returns></returns>
+        </member>
+        <member name="M:Sudoku.Bot.Communication.Sender.EditChannelPermissionsAsync(Sudoku.Bot.Communication.Models.PrivacyType,Sudoku.Bot.Communication.Models.User,System.String)">
+            <summary>
+            修改子频道权限
+            </summary>
+            <param name="permission">修改后的权限</param>
+            <param name="user">目标用户</param>
+            <param name="channel_id">目标子频道Id（默认为发件人当前子频道）</param>
+            <returns></returns>
+        </member>
+        <member name="M:Sudoku.Bot.Communication.Sender.GetMemberChannelPermissionsAsync(System.String,System.String)">
+            <summary>
+            获取子频道身份组权限
+            </summary>
+            <param name="role_id">目标身份组Id</param>
+            <param name="channel_id">目标子频道Id（默认为发件人当前子频道）</param>
+            <returns></returns>
+        </member>
+        <member name="M:Sudoku.Bot.Communication.Sender.EditMemberChannelPermissionsAsync(Sudoku.Bot.Communication.Models.PrivacyType,System.String,System.String)">
+            <summary>
+            修改子频道身份组权限
+            <para>注：本接口不支持修改 "可管理子频道" 权限</para>
+            </summary>
+            <param name="permission">修改后的权限</param>
+            <param name="role_id">目标身份组Id</param>
+            <param name="channel_id">目标子频道Id（默认为发件人当前子频道）</param>
+            <returns></returns>
+        </member>
+        <member name="M:Sudoku.Bot.Communication.Sender.GetMessagesAsync(Sudoku.Bot.Communication.Models.Message,System.Int32,System.Nullable{Sudoku.Bot.Communication.Models.GetMsgTypesEnum})">
+            <summary>
+            获取消息列表（待验证）
+            </summary>
+            <param name="message">作为坐标的消息（需要消息Id和子频道Id）
+            <para>默认使用发件人消息</para>
+            </param>
+            <param name="limit">分页大小（1-20）</param>
+            <param name="typesEnum">拉取类型（默认拉取最新消息）</param>
+            <returns></returns>
+        </member>
+        <member name="M:Sudoku.Bot.Communication.Sender.GetMessageAsync(Sudoku.Bot.Communication.Models.Message)">
+            <summary>
+            获取指定消息
+            </summary>
+            <param name="message">目标消息对象（可使用消息id和子频道id构造）</param>
+            <returns></returns>
+        </member>
+        <member name="M:Sudoku.Bot.Communication.Sender.SendMessageAsync(Sudoku.Bot.Communication.Models.MessageToCreate,System.String)">
+            <summary>
+            发送消息
+            <para>
+            不传递要回复的MsgId则视为主动消息
+            </para>
+            </summary>
+            <param name="message">准备要发送的消息对象</param>
+            <param name="channel_id">目标子频道Id（默认为发件人当前子频道）</param>
+            <returns></returns>
+        </member>
+        <member name="M:Sudoku.Bot.Communication.Sender.DeleteMessageAsync(Sudoku.Bot.Communication.Models.Message)">
+            <summary>
+            撤回消息
+            </summary>
+            <param name="message">目标消息对象</param>
+            <returns></returns>
+        </member>
+        <member name="M:Sudoku.Bot.Communication.Sender.DeleteLastMessageAsync(Sudoku.Bot.Communication.Models.User)">
+            <summary>
+            撤回目标用户（默认机器人）在当前子频道发出的最后一条消息
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Sudoku.Bot.Communication.Sender.CreateDMSAsync(Sudoku.Bot.Communication.Models.User)">
+            <summary>
+            创建私信会话
+            </summary>
+            <param name="user">私信用户对象</param>
+            <returns></returns>
+        </member>
+        <member name="M:Sudoku.Bot.Communication.Sender.SendPMAsync(Sudoku.Bot.Communication.Models.MessageToCreate,System.String)">
+            <summary>
+            发送私信
+            </summary>
+            <param name="message">准备要发送的消息对象</param>
+            <param name="guild_id">私信会话频道Id</param>
+            <returns></returns>
+        </member>
+        <member name="M:Sudoku.Bot.Communication.Sender.MuteGuildAsync(Sudoku.Bot.Communication.Models.JinxTime)">
+            <summary>
+            禁言全员
+            </summary>
+            <param name="muteTime"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Sudoku.Bot.Communication.Sender.MuteMemberAsync(Sudoku.Bot.Communication.Models.User,Sudoku.Bot.Communication.Models.JinxTime)">
+            <summary>
+            禁言指定成员
+            </summary>
+            <param name="user">目标成员用户</param>
+            <param name="muteTime">禁言时间</param>
+            <returns></returns>
+        </member>
+        <member name="M:Sudoku.Bot.Communication.Sender.CreateAnnouncesGlobalAsync(Sudoku.Bot.Communication.Models.Message)">
+            <summary>
+            创建频道全局公告
+            <para>默认目标为发件人当前频道</para>
+            </summary>
+            <param name="message">作为公告的消息</param>
+            <returns></returns>
+        </member>
+        <member name="M:Sudoku.Bot.Communication.Sender.DeleteAnnouncesGlobalAsync">
+            <summary>
+            删除频道全局公告
+            <para>默认目标为发件人当前频道</para>
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Sudoku.Bot.Communication.Sender.CreateAnnouncesAsync(Sudoku.Bot.Communication.Models.Message,System.String)">
+            <summary>
+            创建子频道公告
+            <para>默认目标为发件人当前子频道</para>
+            </summary>
+            <param name="message">作为公告的消息</param>
+            <param name="channel_id">公告的子频道Id（默认使用公告消息发送的子频道）</param>
+            <returns></returns>
+        </member>
+        <member name="M:Sudoku.Bot.Communication.Sender.DeleteAnnouncesAsync(System.String)">
+            <summary>
+            删除子频道公告
+            <para>默认目标为发件人当前子频道</para>
+            </summary>
+            <param name="channel_id">公告的子频道Id（默认使用发件人当前所在的子频道）</param>
+            <returns></returns>
+        </member>
+        <member name="M:Sudoku.Bot.Communication.Sender.GetSchedulesAsync(System.String,System.Nullable{System.DateTime})">
+            <summary>
+            获取日程列表
+            </summary>
+            <param name="channel_id">日程子频道Id</param>
+            <param name="since">筛选日程开始时间（默认为当日全天）</param>
+            <returns></returns>
+        </member>
+        <member name="M:Sudoku.Bot.Communication.Sender.GetScheduleAsync(System.String,System.String)">
+            <summary>
+            获取日程详情
+            </summary>
+            <param name="channel_id">日程子频道Id</param>
+            <param name="schedule_id">日程Id</param>
+            <returns></returns>
+        </member>
+        <member name="M:Sudoku.Bot.Communication.Sender.CreateScheduleAsync(System.String,Sudoku.Bot.Communication.Models.Schedule)">
+            <summary>
+            创建日程
+            <para>
+            日程开始时间必须大于当前时间。
+            </para>
+            </summary>
+            <param name="channel_id">日程子频道Id</param>
+            <param name="schedule">新的日程对象，不需要带Id</param>
+            <returns></returns>
+        </member>
+        <member name="M:Sudoku.Bot.Communication.Sender.EditScheduleAsync(System.String,Sudoku.Bot.Communication.Models.Schedule)">
+            <summary>
+            修改日程
+            </summary>
+            <param name="channel_id">日程子频道Id</param>
+            <param name="schedule">修改后的日程对象</param>
+            <returns></returns>
+        </member>
+        <member name="M:Sudoku.Bot.Communication.Sender.DeleteScheduleAsync(System.String,Sudoku.Bot.Communication.Models.Schedule)">
+            <summary>
+            删除日程
+            </summary>
+            <param name="channel_id">日程子频道Id</param>
+            <param name="schedule">日程对象（主要需要Id）</param>
+            <returns></returns>
+        </member>
+        <member name="M:Sudoku.Bot.Communication.Sender.AudioControlAsync(Sudoku.Bot.Communication.Models.AudioControl,System.String)">
+            <summary>
+            音频控制
+            </summary>
+            <param name="audioControl">音频对象</param>
+            <param name="channel_id">子频道Id（默认为发件人当前子频道）</param>
+            <returns></returns>
+        </member>
+        <member name="M:Sudoku.Bot.Communication.Sender.GetGuildPermissionsAsync">
+            <summary>
+            获取频道可用权限列表
+            <para>此API无需任何权限</para>
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Sudoku.Bot.Communication.Sender.SendPermissionDemandAsync(Sudoku.Bot.Communication.Models.ApiPermissionDemandIdentify,System.String)">
+            <summary>
+            创建频道 API 接口权限授权链接
+            <para>此API无需任何权限，但限制：3次/日/频道</para>
+            </summary>
+            <param name="api_identify">权限需求标识对象</param>
+            <param name="desc">机器人申请对应的 API 接口权限后可以使用功能的描述</param>
+            <returns></returns>
+        </member>
+        <member name="T:Sudoku.Bot.Communication.StatusCodes">
+            <summary>
+            The table of status codes.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Bot.Communication.StatusCodes.OpenapiCode">
+            <summary>
+            The status code referencing table.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Bot.Communication.Unicoder">
+            <summary>
+            Unicode编解码器
+            </summary>
+        </member>
+        <member name="F:Sudoku.Bot.Communication.Unicoder.ReUnicode">
+            <summary>
+            Indicates the inner unicode regular expression pattern.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Bot.Communication.Unicoder.Decode(System.String)">
+            <summary>
+            Unicode编码(\uxxxx)序列转字符串
+            </summary>
+            <param name="s"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Sudoku.Bot.Communication.Unicoder.Encode(System.String)">
+            <summary>
+            字符串转Unicode编码(\uxxxx)序列
+            </summary>
+            <param name="s"></param>
+            <returns></returns>
+        </member>
+        <member name="T:System.Text.Json.JsonElementExtensions">
+            <summary>
+            Provides with extension methods on <see cref="T:System.Text.Json.JsonElement"/>.
+            </summary>
+            <seealso cref="T:System.Text.Json.JsonElement"/>
+        </member>
+        <member name="M:System.Text.Json.JsonElementExtensions.Get(System.Text.Json.JsonElement,System.String)">
+            <summary>
+            查找JSON对象
+            </summary>
+            <param name="element"></param>
+            <param name="name">json的key</param>
+            <returns></returns>
+        </member>
+        <member name="M:System.Text.Json.JsonElementExtensions.Get(System.Text.Json.JsonElement,System.Int32)">
+            <summary>
+            索引JSON数组
+            </summary>
+            <param name="element"></param>
+            <param name="index">json的index</param>
+            <returns></returns>
+        </member>
+        <member name="T:System.StringExtensions">
+            <summary>
+            Provides with extension methods on <see cref="T:System.String"/>.
+            </summary>
+            <seealso cref="T:System.String"/>
+        </member>
+        <member name="M:System.StringExtensions.TrimStart(System.String,System.String,System.String,System.Boolean)">
+            <summary>
+            替换字符串开始位置的字符串
+            </summary>
+            <param name="input">源字符串</param>
+            <param name="oldValue">查找的串</param>
+            <param name="newValue">替换的串</param>
+            <param name="ignoreCase">查找字符串时忽略大小写</param>
+            <returns></returns>
+        </member>
+        <member name="M:System.StringExtensions.TrimEnd(System.String,System.String,System.String,System.Boolean)">
+            <summary>
+            替换字符串末尾位置的字符串
+            </summary>
+            <param name="input">源字符串</param>
+            <param name="oldValue">查找的串</param>
+            <param name="newValue">替换的串</param>
+            <param name="ignoreCase">查找字符串时忽略大小写</param>
+            <returns></returns>
+        </member>
+        <member name="M:System.StringExtensions.Trim(System.String,System.String,System.String,System.Boolean)">
+            <summary>
+            替换字符串开始和末尾位置的字符串
+            </summary>
+            <param name="input">源字符串</param>
+            <param name="oldValue">查找的串</param>
+            <param name="newValue">替换的串</param>
+            <param name="ignoreCase">查找字符串时忽略大小写</param>
+            <returns></returns>
+        </member>
+        <member name="M:System.StringExtensions.IsBlank(System.String)">
+            <summary>
+            判断字符串是否为空白
+            <para>效果等同于string.IsNullOrWhiteSpace()</para>
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

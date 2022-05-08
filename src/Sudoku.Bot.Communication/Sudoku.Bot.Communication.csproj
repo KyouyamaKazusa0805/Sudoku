@@ -1,0 +1,10 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>net7.0</TargetFramework>
+		<GenerateDocumentationFile>True</GenerateDocumentationFile>
+		<DocumentationFile>..\docxml\Sudoku.Bot.Communication.xml</DocumentationFile>
+		<Description>The project that makes commnication with QQ bot server.</Description>
+	</PropertyGroup>
+
+</Project>
