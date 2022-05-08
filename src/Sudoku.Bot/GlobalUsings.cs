@@ -12,4 +12,4 @@ global using System.Runtime.CompilerServices;
 global using System.Text.Json;
 global using System.Threading.Tasks;
 global using Sudoku.Bot.Communication;
-global using Sudoku.Bot.Communication.Models;
+global using Sudoku.Bot.Communication.Resources;

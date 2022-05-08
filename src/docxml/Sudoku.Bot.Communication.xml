@@ -4324,6 +4324,25 @@
               resource lookups using this strongly typed resource class.
             </summary>
         </member>
+        <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.__LocalBotConfigPath">
+            <summary>
+              Looks up a localized string similar to P:\Bot\bot.json.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.AboutInfo_Segment1">
+             <summary>
+               Looks up a localized string similar to 向向的游戏机器人
+            作者：SunnieShine（小向）
+            版本：.
+             </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.AboutInfo_Segment2">
+             <summary>
+               Looks up a localized string similar to 玩法：请通过艾特本机器人，并带上斜杠符号。支持的指令有：
+            💡 /复读：把你发的消息复读一次。
+            💡 /关于：提示程序介绍文字相关内容（即本消息）。.
+             </summary>
+        </member>
         <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.Command_About">
             <summary>
               Looks up a localized string similar to 关于.

@@ -117,6 +117,16 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AboutInfo_Segment1" xml:space="preserve">
+    <value>向向的游戏机器人
+作者：SunnieShine（小向）
+版本：</value>
+  </data>
+  <data name="AboutInfo_Segment2" xml:space="preserve">
+    <value>玩法：请通过艾特本机器人，并带上斜杠符号。支持的指令有：
+💡 /复读：把你发的消息复读一次。
+💡 /关于：提示程序介绍文字相关内容（即本消息）。</value>
+  </data>
   <data name="Command_About" xml:space="preserve">
     <value>关于</value>
   </data>
@@ -167,5 +177,8 @@
   </data>
   <data name="Name_NormalMember" xml:space="preserve">
     <value>普通成员</value>
+  </data>
+  <data name="__LocalBotConfigPath" xml:space="preserve">
+    <value>P:\Bot\bot.json</value>
   </data>
 </root>

@@ -61,6 +61,37 @@ namespace Sudoku.Bot.Communication.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to P:\Bot\bot.json.
+        /// </summary>
+        internal static string @__LocalBotConfigPath {
+            get {
+                return ResourceManager.GetString("__LocalBotConfigPath", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 向向的游戏机器人
+        ///作者：SunnieShine（小向）
+        ///版本：.
+        /// </summary>
+        internal static string AboutInfo_Segment1 {
+            get {
+                return ResourceManager.GetString("AboutInfo_Segment1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 玩法：请通过艾特本机器人，并带上斜杠符号。支持的指令有：
+        ///💡 /复读：把你发的消息复读一次。
+        ///💡 /关于：提示程序介绍文字相关内容（即本消息）。.
+        /// </summary>
+        internal static string AboutInfo_Segment2 {
+            get {
+                return ResourceManager.GetString("AboutInfo_Segment2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 关于.
         /// </summary>
         internal static string Command_About {
