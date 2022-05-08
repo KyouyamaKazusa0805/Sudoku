@@ -1906,22 +1906,22 @@
             Defines a level that controls the output message limited to it.
             </summary>
         </member>
-        <member name="F:Sudoku.Bot.Communication.LogLevel.DEBUG">
+        <member name="F:Sudoku.Bot.Communication.LogLevel.Debug">
             <summary>
             Indicates the log level is limited to debugging.
             </summary>
         </member>
-        <member name="F:Sudoku.Bot.Communication.LogLevel.INFO">
+        <member name="F:Sudoku.Bot.Communication.LogLevel.Info">
             <summary>
             Indicates the log level is limited to information.
             </summary>
         </member>
-        <member name="F:Sudoku.Bot.Communication.LogLevel.WARRNING">
+        <member name="F:Sudoku.Bot.Communication.LogLevel.Warning">
             <summary>
             Indicates the log level is limited to warning.
             </summary>
         </member>
-        <member name="F:Sudoku.Bot.Communication.LogLevel.ERROR">
+        <member name="F:Sudoku.Bot.Communication.LogLevel.Error">
             <summary>
             Indicates the log level is limited to error.
             </summary>
@@ -4085,6 +4085,121 @@
             <summary>
             当发送心跳成功之后，就会收到该消息
             <para>客户端操作：Receive</para>
+            </summary>
+        </member>
+        <member name="T:Sudoku.Bot.Communication.RawMessageTypes">
+            <summary>
+            Provides with the constants for the usages of the message types.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Bot.Communication.RawMessageTypes.DirectMessageCreated">
+            <summary>
+            Indicates the bot has received the private message.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Bot.Communication.RawMessageTypes.MentionMessageCreated">
+            <summary>
+            Indicates the bot has received the message that has been mentioned itself.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Bot.Communication.RawMessageTypes.NormalMessageCreated">
+            <summary>
+            Indicates the channel has received a normal message.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Bot.Communication.RawMessageTypes.GuildCreated">
+            <summary>
+            Indicates a GUILD is created.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Bot.Communication.RawMessageTypes.GuildUpdated">
+            <summary>
+            Indicates a GUILD is updated.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Bot.Communication.RawMessageTypes.GuildDeleted">
+            <summary>
+            Indicates a GUILD is removed.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Bot.Communication.RawMessageTypes.ChannelCreated">
+            <summary>
+            Indicates a channel is created.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Bot.Communication.RawMessageTypes.ChannelUpdated">
+            <summary>
+            Indicates a channel is updated.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Bot.Communication.RawMessageTypes.ChannelDeleted">
+            <summary>
+            Indicates a channel is removed.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Bot.Communication.RawMessageTypes.GuildMemberAdded">
+            <summary>
+            Indicates a member is added into a GUILD.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Bot.Communication.RawMessageTypes.GuildMemberUpdated">
+            <summary>
+            Indicates the status of a member in a GUILD is updated.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Bot.Communication.RawMessageTypes.GuildMemberRemoved">
+            <summary>
+            Indicates a member is reomved from a GUILD.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Bot.Communication.RawMessageTypes.MessageReactionAdded">
+            <summary>
+            Indicates a message reaction is added.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Bot.Communication.RawMessageTypes.MessageReactionRemoved">
+            <summary>
+            Indicates a message reaction is removed.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Bot.Communication.RawMessageTypes.MessageAuditPassed">
+            <summary>
+            Indiactes a message is passed after an audition.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Bot.Communication.RawMessageTypes.MessageAuditRejected">
+            <summary>
+            Indicates a message is rejected from an audition.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Bot.Communication.RawMessageTypes.AudioStarted">
+            <summary>
+            Indicates an audio instance is started playing.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Bot.Communication.RawMessageTypes.AudioFinished">
+            <summary>
+            Indicates an audio instance is finished playing.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Bot.Communication.RawMessageTypes.AudioOnMic">
+            <summary>
+            Indicates an audio instance is on mic.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Bot.Communication.RawMessageTypes.AudioOffMic">
+            <summary>
+            Indicates an audio instance is off mic.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Bot.Communication.RawMessageTypes.Resumed">
+            <summary>
+            Indicates a connection is resumed.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Bot.Communication.RawMessageTypes.Ready">
+            <summary>
+            Indicates a connection is ready for receiving messages.
             </summary>
         </member>
         <member name="T:Sudoku.Bot.Communication.Sender">

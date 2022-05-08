@@ -1,5 +1,5 @@
 ﻿// Configures the log level.
-Log.LogLevel = LogLevel.DEBUG;
+Log.LogLevel = LogLevel.Debug;
 
 // Initializes an identity instance.
 // Please note that the token and secret code corresponds to the info for the bot.

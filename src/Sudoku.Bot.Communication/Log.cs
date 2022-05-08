@@ -26,7 +26,7 @@ public static class Log
 	/// <summary>
 	/// 日志记录级别
 	/// </summary>
-	public static LogLevel LogLevel { get; set; } = LogLevel.INFO;
+	public static LogLevel LogLevel { get; set; } = LogLevel.Info;
 
 	/// <summary>
 	/// 获取格式化的日期标签
@@ -65,10 +65,10 @@ public static class Log
 					Console.Write($"{entry.TimeStamp}[{entry.Level.ToString()[0]}]");
 					Console.ForegroundColor = entry.Level switch
 					{
-						LogLevel.DEBUG => ConsoleColor.Gray,
-						LogLevel.INFO => ConsoleColor.DarkGreen,
-						LogLevel.WARRNING => ConsoleColor.DarkYellow,
-						LogLevel.ERROR => ConsoleColor.DarkRed,
+						LogLevel.Debug => ConsoleColor.Gray,
+						LogLevel.Info => ConsoleColor.DarkGreen,
+						LogLevel.Warning => ConsoleColor.DarkYellow,
+						LogLevel.Error => ConsoleColor.DarkRed,
 						_ => ConsoleColor.Magenta,
 					};
 
@@ -86,23 +86,23 @@ public static class Log
 	/// 打印调试
 	/// </summary>
 	/// <param name="message"></param>
-	public static void Debug(string message) => Print(new(LogLevel.DEBUG, message, TimeStamp));
+	public static void Debug(string message) => Print(new(LogLevel.Debug, message, TimeStamp));
 
 	/// <summary>
 	/// 打印日志
 	/// </summary>
 	/// <param name="message"></param>
-	public static void Info(string message) => Print(new(LogLevel.INFO, message, TimeStamp));
+	public static void Info(string message) => Print(new(LogLevel.Info, message, TimeStamp));
 
 	/// <summary>
 	/// 打印警告
 	/// </summary>
 	/// <param name="message"></param>
-	public static void Warn(string message) => Print(new(LogLevel.WARRNING, message, TimeStamp));
+	public static void Warn(string message) => Print(new(LogLevel.Warning, message, TimeStamp));
 
 	/// <summary>
 	/// 打印错误
 	/// </summary>
 	/// <param name="message"></param>
-	public static void Error(string message) => Print(new(LogLevel.ERROR, message, TimeStamp));
+	public static void Error(string message) => Print(new(LogLevel.Error, message, TimeStamp));
 }

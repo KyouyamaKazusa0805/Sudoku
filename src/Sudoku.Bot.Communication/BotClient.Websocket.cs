@@ -214,111 +214,129 @@ partial class BotClient
 	{
 		switch ((Opcode)wssJson.GetProperty("op").GetInt32())
 		{
-			case Opcode.Dispatch: // Receive 服务端进行消息推送
+			case Opcode.Dispatch: // Do the message pushing.
 			{
 				OnDispatch?.Invoke(this, wssJson);
+
 				WebSocketLastSeq = wssJson.GetProperty("s").GetInt32();
 				if (!wssJson.TryGetProperty("t", out var t) || !wssJson.TryGetProperty("d", out var d))
 				{
 					Log.Warn($"[WebSocket][Op00][Dispatch] {wssJson.GetRawText()}");
 					break;
 				}
-				string data = d.GetRawText();
-				string? type = t.GetString();
+
+				string? data = d.GetRawText(), type = t.GetString();
 				switch (type)
 				{
-					case "DIRECT_MESSAGE_CREATE":   // 机器人收到私信事件
-					case "AT_MESSAGE_CREATE":       // 收到 @机器人 消息事件
-					case "MESSAGE_CREATE":          // 频道内有人发言(仅私域)
+					case RawMessageTypes.DirectMessageCreated:
+					case RawMessageTypes.MentionMessageCreated:
+					case RawMessageTypes.NormalMessageCreated:
 					{
-						var message = d.Deserialize<Message>();
-						if (message == null)
+						if (d.Deserialize<Message>() is not { } message)
 						{
 							Log.Warn($"[WebSocket][{type}] {data}");
 							return;
 						}
+
 						Log.Debug($"[WebSocket][{type}] {data}");
-						_ = MessageCenterAsync(message, type); // 处理消息，不需要等待结果
+						_ = MessageCenterAsync(message, type);
+
 						break;
 					}
-					case "GUILD_CREATE":
-					case "GUILD_UPDATE":
-					case "GUILD_DELETE":
+
+					case RawMessageTypes.GuildCreated:
+					case RawMessageTypes.GuildUpdated:
+					case RawMessageTypes.GuildDeleted:
 					{
-						/*频道事件*/
 						Log.Debug($"[WebSocket][{type}] {data}");
 						var guild = d.Deserialize<Guild>()!;
 						switch (type)
 						{
-							case "GUILD_CREATE":
-							case "GUILD_UPDATE":
+							case RawMessageTypes.GuildCreated:
+							case RawMessageTypes.GuildUpdated:
+							{
 								guild.APIPermissions = await GetGuildPermissionsAsync(guild.Id);
 								Guilds[guild.Id] = guild;
+
 								break;
-							case "GUILD_DELETE":
+							}
+							case RawMessageTypes.GuildDeleted:
+							{
 								Guilds.Remove(guild.Id, out _);
+
 								break;
+							}
 						}
+
 						OnGuildMsg?.Invoke(this, guild, type);
+
 						break;
 					}
-					case "CHANNEL_CREATE":
-					case "CHANNEL_UPDATE":
-					case "CHANNEL_DELETE":
+
+					case RawMessageTypes.ChannelCreated:
+					case RawMessageTypes.ChannelUpdated:
+					case RawMessageTypes.ChannelDeleted:
 					{
-						/*子频道事件*/
 						Log.Debug($"[WebSocket][{type}] {data}");
 						var channel = d.Deserialize<Channel>()!;
 						OnChannelMsg?.Invoke(this, channel, type);
+
 						break;
 					}
-					case "GUILD_MEMBER_ADD":
-					case "GUILD_MEMBER_UPDATE":
-					case "GUILD_MEMBER_REMOVE":
+
+					case RawMessageTypes.GuildMemberAdded:
+					case RawMessageTypes.GuildMemberUpdated:
+					case RawMessageTypes.GuildMemberRemoved:
 					{
-						/*频道成员事件*/
 						Log.Debug($"[WebSocket][{type}] {data}");
 						var memberWithGuild = d.Deserialize<MemberWithGuildID>()!;
 						OnGuildMemberMsg?.Invoke(this, memberWithGuild, type);
+
 						break;
 					}
-					case "MESSAGE_REACTION_ADD":
-					case "MESSAGE_REACTION_REMOVE":
+
+					case RawMessageTypes.MessageReactionAdded:
+					case RawMessageTypes.MessageReactionRemoved:
 					{
-						/*表情表态事件*/
 						Log.Debug($"[WebSocket][{type}] {data}");
 						var messageReaction = d.Deserialize<MessageReaction>()!;
 						OnMessageReaction?.Invoke(this, messageReaction, type);
+
 						break;
 					}
-					case "MESSAGE_AUDIT_PASS":
-					case "MESSAGE_AUDIT_REJECT":
+
+					case RawMessageTypes.MessageAuditPassed:
+					case RawMessageTypes.MessageAuditRejected:
 					{
-						/*消息审核事件*/
 						Log.Info($"[WebSocket][{type}] {data}");
 						var messageAudited = d.Deserialize<MessageAudited>()!;
-						messageAudited.IsPassed = type == "MESSAGE_AUDIT_PASS";
+						messageAudited.IsPassed = type == RawMessageTypes.MessageAuditPassed;
 						OnMessageAudit?.Invoke(this, messageAudited);
+
 						break;
 					}
-					case "AUDIO_START":
-					case "AUDIO_FINISH":
-					case "AUDIO_ON_MIC":
-					case "AUDIO_OFF_MIC":
+
+					case RawMessageTypes.AudioStarted:
+					case RawMessageTypes.AudioFinished:
+					case RawMessageTypes.AudioOnMic:
+					case RawMessageTypes.AudioOffMic:
 					{
-						/*音频事件*/
 						Log.Info($"[WebSocket][{type}] {data}");
 						OnAudioMsg?.Invoke(this, wssJson);
+
 						break;
 					}
-					case "RESUMED":
+
+					case RawMessageTypes.Resumed:
 					{
 						Log.Info($"[WebSocket][Op00][RESUMED] 已恢复与服务器的连接");
 						await ExcuteCommandAsync(JsonDocument.Parse($$"""{"op":{{(int)Opcode.Heartbeat}}}""").RootElement);
 						OnResumed?.Invoke(this, d);
+
 						break;
 					}
-					case "READY":
+
+					case RawMessageTypes.Ready:
 					{
 						Log.Debug($"[WebSocket][READY] {data}");
 						Log.Info($"[WebSocket][Op00] 服务端 鉴权成功");
@@ -330,16 +348,18 @@ partial class BotClient
 						for (int page = 1; ; ++page)
 						{
 							var guilds = await GetMeGuildsAsync(guildNext);
-							if (guilds == null)
+							if (guilds is null)
 							{
 								Log.Info($"[WebSocket][GetGuilds] 获取已加入的频道列表，第 {page:00} 页失败");
 								break;
 							}
+
 							if (guilds.Count == 0)
 							{
 								Log.Info($"[WebSocket][GetGuilds] 获取已加入的频道列表，第 {page:00} 页为空，操作结束");
 								break;
 							}
+
 							Log.Info($"[WebSocket][GetGuilds] 获取已加入的频道列表，第 {page:00} 页成功，数量：{guilds.Count}");
 							Parallel.ForEach(guilds, (guild, state, i) =>
 							{
@@ -353,8 +373,10 @@ partial class BotClient
 						Info = d.GetProperty("user").Deserialize<User>()!;
 						Info.Avatar = (await GetMeAsync())?.Avatar;
 						OnReady?.Invoke(Info);
+
 						break;
 					}
+
 					default:
 					{
 						Log.Warn($"[WebSocket][{type}] 未知事件");
@@ -370,6 +392,7 @@ partial class BotClient
 				OnHeartbeat?.Invoke(this, wssJson);
 				await SendHeartBeatAsync();
 				HeartBeatTimer.Enabled = true;
+
 				break;
 			}
 			case Opcode.Identify: // Send 客户端发送鉴权
@@ -377,6 +400,7 @@ partial class BotClient
 				Log.Info($"[WebSocket][Op02] 客户端 发起鉴权");
 				OnIdentify?.Invoke(this, wssJson);
 				await SendIdentifyAsync();
+
 				break;
 			}
 			case Opcode.Resume: // Send 客户端恢复连接
@@ -385,18 +409,21 @@ partial class BotClient
 				IsResume = false;
 				OnResume?.Invoke(this, wssJson);
 				await SendResumeAsync();
+
 				break;
 			}
 			case Opcode.Reconnect: // Receive 服务端通知客户端重新连接
 			{
 				Log.Info($"[WebSocket][Op07] 服务器 要求客户端重连");
 				OnReconnect?.Invoke(this, wssJson);
+
 				break;
 			}
 			case Opcode.InvalidSession: // Receive 当identify或resume的时候，如果参数有错，服务端会返回该消息
 			{
 				Log.Warn($"[WebSocket][Op09] 客户端鉴权信息错误");
 				OnInvalidSession?.Invoke(this, wssJson);
+
 				break;
 			}
 			case Opcode.Hello: // Receive 当客户端与网关建立ws连接之后，网关下发的第一条消息
@@ -406,17 +433,20 @@ partial class BotClient
 				int heartbeat_interval = wssJson.Get("d")?.Get("heartbeat_interval")?.GetInt32() ?? 30000;
 				HeartBeatTimer.Interval = heartbeat_interval < 30000 ? heartbeat_interval : 30000;  // 设置心跳时间为30s
 				await ExcuteCommandAsync(JsonDocument.Parse("{\"op\":" + (int)(IsResume ? Opcode.Resume : Opcode.Identify) + "}").RootElement);
+				
 				break;
 			}
 			case Opcode.HeartbeatACK: // Receive 当发送心跳成功之后，就会收到该消息
 			{
 				Log.Debug($"[WebSocket][Op11] 服务器 收到心跳包");
 				OnHeartbeatACK?.Invoke(this, wssJson);
+
 				break;
 			}
 			case var opCode:
 			{
 				Log.Warn($"[WebSocket][OpNC] 未知操作码: {opCode}");
+
 				break;
 			}
 		}

@@ -148,7 +148,7 @@ partial class BotClient
 		}
 
 		// 调用消息拦截器
-		if (MessageFilter?.Invoke(sender) == true)
+		if (MessageFilter?.Invoke(sender) is true)
 		{
 			return;
 		}

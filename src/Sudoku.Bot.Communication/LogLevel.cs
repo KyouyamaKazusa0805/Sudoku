@@ -8,20 +8,20 @@ public enum LogLevel
 	/// <summary>
 	/// Indicates the log level is limited to debugging.
 	/// </summary>
-	DEBUG,
+	Debug,
 
 	/// <summary>
 	/// Indicates the log level is limited to information.
 	/// </summary>
-	INFO,
+	Info,
 
 	/// <summary>
 	/// Indicates the log level is limited to warning.
 	/// </summary>
-	WARRNING,
+	Warning,
 
 	/// <summary>
 	/// Indicates the log level is limited to error.
 	/// </summary>
-	ERROR
+	Error
 }
