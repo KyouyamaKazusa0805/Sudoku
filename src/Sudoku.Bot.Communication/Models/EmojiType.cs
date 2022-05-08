@@ -1,16 +1,21 @@
 ﻿namespace Sudoku.Bot.Communication.Models;
 
 /// <summary>
-/// 表情类型
+/// Defines an emoticon type.
 /// </summary>
+/// <remarks>
+/// The data type is referenced from
+/// <see href="https://bot.q.qq.com/wiki/develop/api/openapi/emoji/model.html#emojitype">this link</see>.
+/// </remarks>
 public enum EmojiType
 {
 	/// <summary>
-	/// 系统表情
+	/// Indicates the emoji type is system-defined.
 	/// </summary>
 	System = 1,
+
 	/// <summary>
-	/// emoji表情
+	/// Indicates the type is real emoji.
 	/// </summary>
-	Emoji = 2,
+	Emoji = 2
 }

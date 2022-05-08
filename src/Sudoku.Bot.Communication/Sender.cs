@@ -314,12 +314,12 @@ public class Sender
 	/// <para>默认使用发件人消息</para>
 	/// </param>
 	/// <param name="limit">分页大小（1-20）</param>
-	/// <param name="typesEnum">拉取类型（默认拉取最新消息）</param>
+	/// <param name="type">拉取类型（默认拉取最新消息）</param>
 	/// <returns></returns>
 	public async Task<List<Message>?> GetMessagesAsync(
-		Message? message = null, int limit = 20, GetMsgTypesEnum? typesEnum = null)
-		=> await Bot.GetMessagesAsync(message ?? Message, limit, typesEnum, this);
-	
+		Message? message = null, int limit = 20, GetMessageType? type = null)
+		=> await Bot.GetMessagesAsync(message ?? Message, limit, type, this);
+
 	/// <summary>
 	/// 获取指定消息
 	/// </summary>
@@ -366,7 +366,7 @@ public class Sender
 	/// <returns></returns>
 	public async Task<DirectMessageSource?> CreateDMSAsync(User user)
 		=> await Bot.CreateDMSAsync(user.Id, GuildId, this);
-	
+
 	/// <summary>
 	/// 发送私信
 	/// </summary>
@@ -391,7 +391,7 @@ public class Sender
 	/// <returns></returns>
 	public async Task<bool> MuteMemberAsync(User user, JinxTime muteTime)
 		=> await Bot.MuteMemberAsync(GuildId, user.Id, muteTime, this);
-	
+
 	/// <summary>
 	/// 创建频道全局公告
 	/// <para>默认目标为发件人当前频道</para>
@@ -408,7 +408,7 @@ public class Sender
 	/// <returns></returns>
 	public async Task<bool> DeleteAnnouncesGlobalAsync()
 		=> await Bot.DeleteAnnouncesGlobalAsync(GuildId, "all", this);
-	
+
 	/// <summary>
 	/// 创建子频道公告
 	/// <para>默认目标为发件人当前子频道</para>
@@ -445,7 +445,7 @@ public class Sender
 	/// <returns></returns>
 	public async Task<Schedule?> GetScheduleAsync(string channel_id, string schedule_id)
 		=> await Bot.GetScheduleAsync(channel_id, schedule_id, this);
-	
+
 	/// <summary>
 	/// 创建日程
 	/// <para>
@@ -492,7 +492,7 @@ public class Sender
 	/// <returns></returns>
 	public async Task<List<ApiPermission>?> GetGuildPermissionsAsync()
 		=> await Bot.GetGuildPermissionsAsync(GuildId, this);
-	
+
 	/// <summary>
 	/// 创建频道 API 接口权限授权链接
 	/// <para>此API无需任何权限，但限制：3次/日/频道</para>

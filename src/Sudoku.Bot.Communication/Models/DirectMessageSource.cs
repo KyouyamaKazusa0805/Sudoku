@@ -1,23 +1,16 @@
 ﻿namespace Sudoku.Bot.Communication.Models;
 
 /// <summary>
-/// 私信会话对象（DMS）
+/// Indicates the private message source instance.
 /// </summary>
-public record struct DirectMessageSource
-{
-	/// <summary>
-	/// 私信会话关联的频道Id
-	/// </summary>
-	[JsonPropertyName("guild_id")]
-	public string GuildId { get; init; }
-	/// <summary>
-	/// 私信会话关联的子频道Id
-	/// </summary>
-	[JsonPropertyName("channel_id")]
-	public string ChannelId { get; init; }
-	/// <summary>
-	/// 创建私信会话时间戳
-	/// </summary>
-	[JsonPropertyName("create_time"), JsonConverter(typeof(DateTimeToStringTimestampConverter))]
-	public DateTime CreateTime { get; init; }
-}
+/// <param name="GuildId">Indicates the GUILD ID value.</param>
+/// <param name="ChannelId">Indicates the channel ID.</param>
+/// <param name="Time">Indicates the time that the message created.</param>
+/// <remarks>
+/// The data type is referenced from
+/// <see href="https://bot.q.qq.com/wiki/develop/api/openapi/dms/model.html">this link</see>.
+/// </remarks>
+public sealed record class DirectMessageSource(
+	[property: JsonPropertyName("guild_id")] string GuildId,
+	[property: JsonPropertyName("channel_id")] string ChannelId,
+	[property: JsonPropertyName("create_time"), JsonConverter(typeof(DateTimeToStringTimestampConverter))] DateTime Time);

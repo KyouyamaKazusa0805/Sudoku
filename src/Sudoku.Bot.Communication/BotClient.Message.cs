@@ -27,16 +27,16 @@ partial class BotClient
 	/// </summary>
 	/// <param name="message">作为坐标的消息（需要消息Id和子频道Id）</param>
 	/// <param name="limit">分页大小（1-20）</param>
-	/// <param name="typesEnum">拉取类型（默认拉取最新消息）</param>
+	/// <param name="type">拉取类型（默认拉取最新消息）</param>
 	/// <param name="sender"></param>
 	/// <returns></returns>
 	public async Task<List<Message>?> GetMessagesAsync(
-		Message message, int limit = 20, GetMsgTypesEnum? typesEnum = GetMsgTypesEnum.latest, Sender? sender = null)
+		Message message, int limit = 20, GetMessageType? type = GetMessageType.Latest, Sender? sender = null)
 	{
 		var api = BotApis.获取消息列表;
-		string type = typesEnum is null ? string.Empty : $"&type={typesEnum}";
+		string typeStr = type is null ? string.Empty : $"&type={type?.ToString().ToLower()}";
 		var response = await HttpSendAsync(
-			$"{api.Path.Replace("{channel_id}", message.ChannelId)}?limit={limit}&id={message.Id}{type}",
+			$"{api.Path.Replace("{channel_id}", message.ChannelId)}?limit={limit}&id={message.Id}{typeStr}",
 			api.Method,
 			null,
 			sender

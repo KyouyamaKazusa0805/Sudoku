@@ -1119,13 +1119,13 @@
             <param name="sender"></param>
             <returns></returns>
         </member>
-        <member name="M:Sudoku.Bot.Communication.BotClient.GetMessagesAsync(Sudoku.Bot.Communication.Models.Message,System.Int32,System.Nullable{Sudoku.Bot.Communication.Models.GetMsgTypesEnum},Sudoku.Bot.Communication.Sender)">
+        <member name="M:Sudoku.Bot.Communication.BotClient.GetMessagesAsync(Sudoku.Bot.Communication.Models.Message,System.Int32,System.Nullable{Sudoku.Bot.Communication.Models.GetMessageType},Sudoku.Bot.Communication.Sender)">
             <summary>
             获取消息列表（2022年1月29日暂未开通）
             </summary>
             <param name="message">作为坐标的消息（需要消息Id和子频道Id）</param>
             <param name="limit">分页大小（1-20）</param>
-            <param name="typesEnum">拉取类型（默认拉取最新消息）</param>
+            <param name="type">拉取类型（默认拉取最新消息）</param>
             <param name="sender"></param>
             <returns></returns>
         </member>
@@ -2445,108 +2445,127 @@
         </member>
         <member name="T:Sudoku.Bot.Communication.Models.DirectMessageSource">
             <summary>
-            私信会话对象（DMS）
+            Indicates the private message source instance.
             </summary>
+            <param name="GuildId">Indicates the GUILD ID value.</param>
+            <param name="ChannelId">Indicates the channel ID.</param>
+            <param name="Time">Indicates the time that the message created.</param>
+            <remarks>
+            The data type is referenced from
+            <see href="https://bot.q.qq.com/wiki/develop/api/openapi/dms/model.html">this link</see>.
+            </remarks>
+        </member>
+        <member name="M:Sudoku.Bot.Communication.Models.DirectMessageSource.#ctor(System.String,System.String,System.DateTime)">
+            <summary>
+            Indicates the private message source instance.
+            </summary>
+            <param name="GuildId">Indicates the GUILD ID value.</param>
+            <param name="ChannelId">Indicates the channel ID.</param>
+            <param name="Time">Indicates the time that the message created.</param>
+            <remarks>
+            The data type is referenced from
+            <see href="https://bot.q.qq.com/wiki/develop/api/openapi/dms/model.html">this link</see>.
+            </remarks>
         </member>
         <member name="P:Sudoku.Bot.Communication.Models.DirectMessageSource.GuildId">
-            <summary>
-            私信会话关联的频道Id
-            </summary>
+            <summary>Indicates the GUILD ID value.</summary>
         </member>
         <member name="P:Sudoku.Bot.Communication.Models.DirectMessageSource.ChannelId">
-            <summary>
-            私信会话关联的子频道Id
-            </summary>
+            <summary>Indicates the channel ID.</summary>
         </member>
-        <member name="P:Sudoku.Bot.Communication.Models.DirectMessageSource.CreateTime">
-            <summary>
-            创建私信会话时间戳
-            </summary>
+        <member name="P:Sudoku.Bot.Communication.Models.DirectMessageSource.Time">
+            <summary>Indicates the time that the message created.</summary>
         </member>
         <member name="T:Sudoku.Bot.Communication.Models.Emoji">
             <summary>
-            表情对象
+            Indicates an emoticon.
             </summary>
+            <remarks>
+            The data type is referenced from
+            <see href="https://bot.q.qq.com/wiki/develop/api/openapi/emoji/model.html#emoji">this link</see>.
+            </remarks>
         </member>
         <member name="P:Sudoku.Bot.Communication.Models.Emoji.Id">
             <summary>
-            表情ID
-            <para>
-            系统表情使用数字为ID，emoji使用emoji本身为id，参考 EmojiType 列表
-            </para>
+            Indicates the ID of the emoji. The ID strictly satisfies the table given by the section in
+            <see href="https://bot.q.qq.com/wiki/develop/api/openapi/emoji/model.html#emoji-%E5%88%97%E8%A1%A8">this link</see>.
             </summary>
         </member>
         <member name="P:Sudoku.Bot.Communication.Models.Emoji.Type">
             <summary>
-            表情类型
+            Indicates the emoji type.
             </summary>
         </member>
         <member name="T:Sudoku.Bot.Communication.Models.EmojiType">
             <summary>
-            表情类型
+            Defines an emoticon type.
             </summary>
+            <remarks>
+            The data type is referenced from
+            <see href="https://bot.q.qq.com/wiki/develop/api/openapi/emoji/model.html#emojitype">this link</see>.
+            </remarks>
         </member>
         <member name="F:Sudoku.Bot.Communication.Models.EmojiType.System">
             <summary>
-            系统表情
+            Indicates the emoji type is system-defined.
             </summary>
         </member>
         <member name="F:Sudoku.Bot.Communication.Models.EmojiType.Emoji">
             <summary>
-            emoji表情
+            Indicates the type is real emoji.
             </summary>
         </member>
         <member name="T:Sudoku.Bot.Communication.Models.Filter">
             <summary>
-            标识需要设置哪些字段
+            Indicates which fields will be required to set. The filter will be used for creating a role for inferring the values.
             </summary>
         </member>
         <member name="M:Sudoku.Bot.Communication.Models.Filter.#ctor(System.Boolean,System.Boolean,System.Boolean)">
             <summary>
-            配置筛选器
+            Initializes a <see cref="T:Sudoku.Bot.Communication.Models.Filter"/> instance.
             </summary>
-            <param name="setName">设置名称</param>
-            <param name="setColor">设置颜色</param>
-            <param name="setHoist">设置在成员列表中单独展示</param>
+            <param name="setName">Indicates the name.</param>
+            <param name="setColor">Indicates the color.</param>
+            <param name="setHoist">Indicates whether the current role is displayed alone.</param>
         </member>
         <member name="P:Sudoku.Bot.Communication.Models.Filter.Name">
             <summary>
-            是否设置名称
+            Indicates whether the creation will set the name.
             </summary>
         </member>
         <member name="P:Sudoku.Bot.Communication.Models.Filter.Color">
             <summary>
-            是否设置颜色
+            Indicates whether the creation will set the color.
             </summary>
         </member>
         <member name="P:Sudoku.Bot.Communication.Models.Filter.Hoist">
             <summary>
-            是否设置在成员列表中单独展示
+            Indicates whether the creation will set the hoist value.
             </summary>
         </member>
-        <member name="T:Sudoku.Bot.Communication.Models.GetMsgTypesEnum">
+        <member name="T:Sudoku.Bot.Communication.Models.GetMessageType">
             <summary>
-            拉取消息的操作类型
+            Indicates the type for defining the message getting. The field names in this type cannot be modified.
             </summary>
         </member>
-        <member name="F:Sudoku.Bot.Communication.Models.GetMsgTypesEnum.around">
+        <member name="F:Sudoku.Bot.Communication.Models.GetMessageType.Around">
             <summary>
-            获取目标id前后的消息
+            Indicates getting messages before and after the specified ID value.
             </summary>
         </member>
-        <member name="F:Sudoku.Bot.Communication.Models.GetMsgTypesEnum.before">
+        <member name="F:Sudoku.Bot.Communication.Models.GetMessageType.Before">
             <summary>
-            获取目标id之前的消息
+            Indicates getting messages before the specified ID value.
             </summary>
         </member>
-        <member name="F:Sudoku.Bot.Communication.Models.GetMsgTypesEnum.after">
+        <member name="F:Sudoku.Bot.Communication.Models.GetMessageType.After">
             <summary>
-            获取目标id之后的消息
+            Indicates getting messages after the specified ID value.
             </summary>
         </member>
-        <member name="F:Sudoku.Bot.Communication.Models.GetMsgTypesEnum.latest">
+        <member name="F:Sudoku.Bot.Communication.Models.GetMessageType.Latest">
             <summary>
-            最新limit的消息
+            Indicates getting messages at latest.
             </summary>
         </member>
         <member name="T:Sudoku.Bot.Communication.Models.Guild">
@@ -4589,7 +4608,7 @@
             <param name="channel_id">目标子频道Id（默认为发件人当前子频道）</param>
             <returns></returns>
         </member>
-        <member name="M:Sudoku.Bot.Communication.Sender.GetMessagesAsync(Sudoku.Bot.Communication.Models.Message,System.Int32,System.Nullable{Sudoku.Bot.Communication.Models.GetMsgTypesEnum})">
+        <member name="M:Sudoku.Bot.Communication.Sender.GetMessagesAsync(Sudoku.Bot.Communication.Models.Message,System.Int32,System.Nullable{Sudoku.Bot.Communication.Models.GetMessageType})">
             <summary>
             获取消息列表（待验证）
             </summary>
@@ -4597,7 +4616,7 @@
             <para>默认使用发件人消息</para>
             </param>
             <param name="limit">分页大小（1-20）</param>
-            <param name="typesEnum">拉取类型（默认拉取最新消息）</param>
+            <param name="type">拉取类型（默认拉取最新消息）</param>
             <returns></returns>
         </member>
         <member name="M:Sudoku.Bot.Communication.Sender.GetMessageAsync(Sudoku.Bot.Communication.Models.Message)">

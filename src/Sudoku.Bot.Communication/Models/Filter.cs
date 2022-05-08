@@ -1,34 +1,34 @@
 ﻿namespace Sudoku.Bot.Communication.Models;
 
 /// <summary>
-/// 标识需要设置哪些字段
+/// Indicates which fields will be required to set. The filter will be used for creating a role for inferring the values.
 /// </summary>
-public class Filter
+public sealed class Filter
 {
 	/// <summary>
-	/// 配置筛选器
+	/// Initializes a <see cref="Filter"/> instance.
 	/// </summary>
-	/// <param name="setName">设置名称</param>
-	/// <param name="setColor">设置颜色</param>
-	/// <param name="setHoist">设置在成员列表中单独展示</param>
+	/// <param name="setName">Indicates the name.</param>
+	/// <param name="setColor">Indicates the color.</param>
+	/// <param name="setHoist">Indicates whether the current role is displayed alone.</param>
 	public Filter(bool setName = false, bool setColor = false, bool setHoist = false)
-	{
-		Name = setName;
-		Color = setColor;
-		Hoist = setHoist;
-	}
+		=> (Name, Color, Hoist) = (setName, setColor, setHoist);
+
+
 	/// <summary>
-	/// 是否设置名称
+	/// Indicates whether the creation will set the name.
 	/// </summary>
 	[JsonPropertyName("name"), JsonConverter(typeof(BoolToInt32Converter))]
 	public bool Name { get; set; }
+
 	/// <summary>
-	/// 是否设置颜色
+	/// Indicates whether the creation will set the color.
 	/// </summary>
 	[JsonPropertyName("color"), JsonConverter(typeof(BoolToInt32Converter))]
 	public bool Color { get; set; }
+
 	/// <summary>
-	/// 是否设置在成员列表中单独展示
+	/// Indicates whether the creation will set the hoist value.
 	/// </summary>
 	[JsonPropertyName("hoist"), JsonConverter(typeof(BoolToInt32Converter))]
 	public bool Hoist { get; set; }
