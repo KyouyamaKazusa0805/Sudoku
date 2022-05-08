@@ -27,5 +27,6 @@ global using System.Threading;
 global using System.Threading.Tasks;
 global using Sudoku.Bot.Communication.JsonConverters;
 global using Sudoku.Bot.Communication.Models;
+global using Sudoku.Bot.Communication.Models.Returning;
 global using Sudoku.Bot.Communication.Resources;
 global using Timer = System.Timers.Timer;

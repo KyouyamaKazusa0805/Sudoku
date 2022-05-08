@@ -2431,25 +2431,6 @@
             Indicates the BBS channel.
             </summary>
         </member>
-        <member name="T:Sudoku.Bot.Communication.Models.CreateRoleRes">
-            <summary>
-            Indicates the returning value that describes the operation for creating a GUILD.
-            </summary>
-            <remarks>
-            The data type is referenced from
-            <see href="https://bot.q.qq.com/wiki/develop/api/openapi/guild/post_guild_role.html#%E8%BF%94%E5%9B%9E">this link</see>.
-            </remarks>
-        </member>
-        <member name="P:Sudoku.Bot.Communication.Models.CreateRoleRes.RoleId">
-            <summary>
-            Indicates the role ID.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Bot.Communication.Models.CreateRoleRes.Role">
-            <summary>
-            Indicates the role instance that creates the GUILD.
-            </summary>
-        </member>
         <member name="T:Sudoku.Bot.Communication.Models.DefaultRoles">
             <summary>
             Indicates the default roles.
@@ -3150,26 +3131,6 @@
         <member name="F:Sudoku.Bot.Communication.Models.MessageType.Private">
             <summary>
             私聊
-            </summary>
-        </member>
-        <member name="T:Sudoku.Bot.Communication.Models.ModifyRolesRes">
-            <summary>
-            修改频道身份组的返回值
-            </summary>
-        </member>
-        <member name="P:Sudoku.Bot.Communication.Models.ModifyRolesRes.GuildId">
-            <summary>
-            身份组ID
-            </summary>
-        </member>
-        <member name="P:Sudoku.Bot.Communication.Models.ModifyRolesRes.RoleId">
-            <summary>
-            身份组ID
-            </summary>
-        </member>
-        <member name="P:Sudoku.Bot.Communication.Models.ModifyRolesRes.Role">
-            <summary>
-            新创建的频道身份组对象
             </summary>
         </member>
         <member name="T:Sudoku.Bot.Communication.Models.MsgArk23">
@@ -3894,6 +3855,49 @@
         <member name="F:Sudoku.Bot.Communication.Models.RemindType.Early60Min">
             <summary>
             开始前60分钟提醒
+            </summary>
+        </member>
+        <member name="T:Sudoku.Bot.Communication.Models.Returning.RoleCreatedResult">
+            <summary>
+            Indicates the returning value that describes the operation for being created a GUILD.
+            </summary>
+            <remarks>
+            The data type is referenced from
+            <see href="https://bot.q.qq.com/wiki/develop/api/openapi/guild/post_guild_role.html#%E8%BF%94%E5%9B%9E">this link</see>.
+            </remarks>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Models.Returning.RoleCreatedResult.RoleId">
+            <summary>
+            Indicates the role ID.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Models.Returning.RoleCreatedResult.Role">
+            <summary>
+            Indicates the role instance that creates the GUILD.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Bot.Communication.Models.Returning.RoleModifiedResult">
+            <summary>
+            Indicates the result that describes the operation that modified a role.
+            </summary>
+            <remarks>
+            The data type is referenced from
+            <see href="https://bot.q.qq.com/wiki/develop/api/openapi/guild/patch_guild_role.html#%E8%BF%94%E5%9B%9E">this link</see>.
+            </remarks>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Models.Returning.RoleModifiedResult.GuildId">
+            <summary>
+            Indicates the GUILD ID.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Models.Returning.RoleModifiedResult.RoleId">
+            <summary>
+            Indicates the role ID.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Models.Returning.RoleModifiedResult.Role">
+            <summary>
+            Indicates the modified role values.
             </summary>
         </member>
         <member name="T:Sudoku.Bot.Communication.Models.Role">

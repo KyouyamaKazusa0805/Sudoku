@@ -35,7 +35,7 @@ partial class BotClient
 			sender
 		);
 
-		var result = response is null ? null : await response.Content.ReadFromJsonAsync<CreateRoleRes?>();
+		var result = response is null ? null : await response.Content.ReadFromJsonAsync<RoleCreatedResult?>();
 		return result?.Role;
 	}
 
@@ -59,7 +59,7 @@ partial class BotClient
 			sender
 		);
 
-		var result = response is null ? null : await response.Content.ReadFromJsonAsync<ModifyRolesRes?>();
+		var result = response is null ? null : await response.Content.ReadFromJsonAsync<RoleModifiedResult?>();
 		return result?.Role;
 	}
 
