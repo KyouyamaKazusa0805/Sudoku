@@ -18,6 +18,6 @@ public record struct DirectMessageSource
 	/// <summary>
 	/// 创建私信会话时间戳
 	/// </summary>
-	[JsonPropertyName("create_time"), JsonConverter(typeof(DateTimeToStringTimestamp))]
+	[JsonPropertyName("create_time"), JsonConverter(typeof(DateTimeToStringTimestampConverter))]
 	public DateTime CreateTime { get; init; }
 }

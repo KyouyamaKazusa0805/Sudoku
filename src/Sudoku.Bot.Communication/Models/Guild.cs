@@ -56,7 +56,7 @@ public class Guild
 	/// <summary>
 	/// 频道创建时间
 	/// </summary>
-	[JsonPropertyName("joined_at"), JsonConverter(typeof(DateTimeToStringTimestamp))]
+	[JsonPropertyName("joined_at"), JsonConverter(typeof(DateTimeToStringTimestampConverter))]
 	public DateTime JoinedAt { get; set; }
 
 	/// <summary>

@@ -44,13 +44,13 @@ public class Message
 	/// <summary>
 	/// 消息创建时间
 	/// </summary>
-	[JsonPropertyName("timestamp"), JsonConverter(typeof(DateTimeToStringTimestamp))]
+	[JsonPropertyName("timestamp"), JsonConverter(typeof(DateTimeToStringTimestampConverter))]
 	public DateTime CreateTime { get; set; }
 
 	/// <summary>
 	/// 消息编辑时间
 	/// </summary>
-	[JsonPropertyName("edited_timestamp"), JsonConverter(typeof(DateTimeToStringTimestamp))]
+	[JsonPropertyName("edited_timestamp"), JsonConverter(typeof(DateTimeToStringTimestampConverter))]
 	public DateTime EditedTime { get; set; }
 
 	/// <summary>

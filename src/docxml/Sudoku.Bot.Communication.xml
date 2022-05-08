@@ -1767,15 +1767,15 @@
         <member name="M:Sudoku.Bot.Communication.JsonConverters.ColorToUint32Converter.Write(System.Text.Json.Utf8JsonWriter,System.Drawing.Color,System.Text.Json.JsonSerializerOptions)">
             <inheritdoc/>
         </member>
-        <member name="T:Sudoku.Bot.Communication.JsonConverters.DateTimeToStringTimestamp">
+        <member name="T:Sudoku.Bot.Communication.JsonConverters.DateTimeToStringTimestampConverter">
             <summary>
             Defines a JSON converter that allows the conversion between <see cref="T:System.DateTime"/> and <c>Timestamp</c>.
             </summary>
         </member>
-        <member name="M:Sudoku.Bot.Communication.JsonConverters.DateTimeToStringTimestamp.Read(System.Text.Json.Utf8JsonReader@,System.Type,System.Text.Json.JsonSerializerOptions)">
+        <member name="M:Sudoku.Bot.Communication.JsonConverters.DateTimeToStringTimestampConverter.Read(System.Text.Json.Utf8JsonReader@,System.Type,System.Text.Json.JsonSerializerOptions)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Bot.Communication.JsonConverters.DateTimeToStringTimestamp.Write(System.Text.Json.Utf8JsonWriter,System.DateTime,System.Text.Json.JsonSerializerOptions)">
+        <member name="M:Sudoku.Bot.Communication.JsonConverters.DateTimeToStringTimestampConverter.Write(System.Text.Json.Utf8JsonWriter,System.DateTime,System.Text.Json.JsonSerializerOptions)">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Bot.Communication.JsonConverters.IntentToStringArrayConverter">

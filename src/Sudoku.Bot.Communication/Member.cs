@@ -26,7 +26,7 @@ public class Member
 	/// <summary>
 	/// 用户加入频道的时间 ISO8601 timestamp
 	/// </summary>
-	[JsonPropertyName("joined_at"), JsonConverter(typeof(DateTimeToStringTimestamp))]
+	[JsonPropertyName("joined_at"), JsonConverter(typeof(DateTimeToStringTimestampConverter))]
 	public DateTime? JoinedAt { get; set; }
 
 	/// <summary>

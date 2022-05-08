@@ -29,12 +29,12 @@ public class MessageAudited
 	/// <summary>
 	/// 消息审核时间
 	/// </summary>
-	[JsonPropertyName("audit_time"), JsonConverter(typeof(DateTimeToStringTimestamp))]
+	[JsonPropertyName("audit_time"), JsonConverter(typeof(DateTimeToStringTimestampConverter))]
 	public DateTime AuditTime { get; set; }
 	/// <summary>
 	/// 消息创建时间
 	/// </summary>
-	[JsonPropertyName("create_time"), JsonConverter(typeof(DateTimeToStringTimestamp))]
+	[JsonPropertyName("create_time"), JsonConverter(typeof(DateTimeToStringTimestampConverter))]
 	public DateTime CreateTime { get; set; }
 	/// <summary>
 	/// 扩展属性，用于标注审核是否通过
