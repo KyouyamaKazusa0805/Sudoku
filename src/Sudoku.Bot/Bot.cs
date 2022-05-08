@@ -1,5 +1,5 @@
 ﻿// Configures the log level.
-Log.LogLevel = LogLevel.INFO;
+Log.LogLevel = LogLevel.DEBUG;
 
 // Initializes an identity instance.
 // Please note that the token and secret code corresponds to the info for the bot.
@@ -29,6 +29,13 @@ bot.AddCommand(repeatCommand);
 
 // Starts the bot.
 bot.Start();
+
+// Here we should use an infinite loop to make the console don't exit fast.
+// Issue: https://github.com/Antecer/QQChannelBot/issues/1
+while (true)
+{
+	await Task.Delay(1000);
+}
 
 
 static void ready(User user)
