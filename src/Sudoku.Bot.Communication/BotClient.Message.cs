@@ -157,11 +157,11 @@ partial class BotClient
 		LastMessage(message, true);
 
 		// 预判收到的消息
-		string content = message.Content.Trim().TrimStart(Info.Tag).TrimStart();
+		string content = message.Content.Trim().ReplaceStart(Info.Tag).TrimStart();
 
 		// 识别指令
 		bool hasCommand = content.StartsWith(CommandPrefix);
-		content = content.TrimStart(CommandPrefix).TrimStart();
+		content = content.ReplaceStart(CommandPrefix).TrimStart();
 		if ((hasCommand || sender.MessageType == MessageType.AtMe || sender.MessageType == MessageType.Private)
 			&& content.Length > 0)
 		{
@@ -199,7 +199,7 @@ partial class BotClient
 				return;
 			}
 
-			content = content.TrimStart(cmdMatch.Groups[0].Value).TrimStart();
+			content = content.ReplaceStart(cmdMatch.Groups[0].Value).TrimStart();
 			if (
 				cmd.NeedAdmin && !(
 					message.Member.Roles.Any(static r => "24".Contains(r)) || message.Author.Id.Equals(GodId)

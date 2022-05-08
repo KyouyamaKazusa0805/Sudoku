@@ -1,25 +1,41 @@
 ﻿namespace Sudoku.Bot.Communication.Models;
 
 /// <summary>
-/// 公告对象
+/// Indicates the instance that describes an announce.
 /// </summary>
-public class Announces
+/// <remarks>
+/// The data type is referenced from
+/// <see href="https://bot.q.qq.com/wiki/develop/api/openapi/announces/model.html">this link</see>.
+/// </remarks>
+public sealed class Announces
 {
 	/// <summary>
-	/// 频道 id
+	/// Indicates the GUILD ID.
 	/// </summary>
 	[JsonPropertyName("guild_id")]
 	public string? GuildId { get; set; }
 
 	/// <summary>
-	/// 子频道 id
+	/// Indicates the channel ID.
 	/// </summary>
 	[JsonPropertyName("channel_id")]
 	public string? ChannelId { get; set; }
 
 	/// <summary>
-	/// 消息 id
+	/// Indicates the message ID.
 	/// </summary>
 	[JsonPropertyName("message_id")]
 	public string? MessageId { get; set; }
+
+	/// <summary>
+	/// Indicates the announce type.
+	/// </summary>
+	[JsonPropertyName("announces_type")]
+	public uint AnnounceType { get; set; }
+
+	/// <summary>
+	/// Indicates the recommend channels.
+	/// </summary>
+	[JsonPropertyName("recommend_channels")]
+	public RecommendChannel[]? RecommendChannels { get; set; }
 }

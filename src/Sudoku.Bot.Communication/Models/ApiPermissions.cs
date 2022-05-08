@@ -1,12 +1,12 @@
 ﻿namespace Sudoku.Bot.Communication.Models;
 
 /// <summary>
-/// 接口权限列表对象
+/// The API permissions.
 /// </summary>
-public class ApiPermissions
+public sealed class ApiPermissions
 {
 	/// <summary>
-	/// 接口权限列表
+	/// The API permissions.
 	/// </summary>
 	[JsonPropertyName("apis")]
 	public List<ApiPermission>? List { get; set; }

@@ -1,36 +1,40 @@
 ﻿namespace Sudoku.Bot.Communication.Models;
 
 /// <summary>
-/// 接口权限需求对象
+/// Indicates the instance that describes the API permission demand.
 /// </summary>
-public class ApiPermissionDemand
+/// <remarks>
+/// The data type is referenced from
+/// <see href="https://bot.q.qq.com/wiki/develop/api/openapi/api_permissions/model.html#%E6%8E%A5%E5%8F%A3%E6%9D%83%E9%99%90%E9%9C%80%E6%B1%82%E5%AF%B9%E8%B1%A1-apipermissiondemand">this link</see>.
+/// </remarks>
+public sealed class ApiPermissionDemand
 {
 	/// <summary>
-	/// 申请接口权限的频道 id
+	/// The GUILD ID that tries to request permssions.
 	/// </summary>
 	[JsonPropertyName("guild_id")]
 	public string? GuildId { get; set; }
 
 	/// <summary>
-	/// 接口权限需求授权链接发送的子频道 id
+	/// The channel ID whose containing GUILD tries to request permissions.
 	/// </summary>
 	[JsonPropertyName("channel_id")]
 	public string? ChannelId { get; set; }
 
 	/// <summary>
-	/// 接口权限链接中的接口权限描述信息
+	/// The title of the demand.
 	/// </summary>
 	[JsonPropertyName("title")]
 	public string Title { get; set; } = string.Empty;
 
 	/// <summary>
-	/// 接口权限链接中的机器人可使用功能的描述信息
+	/// The description of the demand.
 	/// </summary>
 	[JsonPropertyName("desc")]
 	public string Desc { get; set; } = string.Empty;
 
 	/// <summary>
-	/// 权限接口唯一标识
+	/// The permission identity.
 	/// </summary>
 	[JsonPropertyName("api_identify")]
 	public ApiPermissionDemandIdentify ApiIdentify { get; set; }

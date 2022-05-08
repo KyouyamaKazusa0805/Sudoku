@@ -1747,141 +1747,69 @@
         </member>
         <member name="T:Sudoku.Bot.Communication.JsonConverters.BoolToInt32Converter">
             <summary>
-            JSON序列化时将 bool 转换为 int<br/>
-            JSON反序列化时将 int 转换为 bool
+            Defines a JSON converter that allows the conversions between <see cref="T:System.Boolean"/> and <see cref="T:System.Int32"/>.
             </summary>
-        </member>
-        <member name="M:Sudoku.Bot.Communication.JsonConverters.BoolToInt32Converter.Write(System.Text.Json.Utf8JsonWriter,System.Boolean,System.Text.Json.JsonSerializerOptions)">
-            <summary>
-            序列化JSON时 bool 转 int
-            </summary>
-            <param name="writer"></param>
-            <param name="value"></param>
-            <param name="options"></param>
         </member>
         <member name="M:Sudoku.Bot.Communication.JsonConverters.BoolToInt32Converter.Read(System.Text.Json.Utf8JsonReader@,System.Type,System.Text.Json.JsonSerializerOptions)">
-            <summary>
-            反序列化JSON时 int 转 bool
-            </summary>
-            <param name="reader"></param>
-            <param name="typeToConvert"></param>
-            <param name="options"></param>
-            <returns></returns>
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Bot.Communication.JsonConverters.BoolToInt32Converter.Write(System.Text.Json.Utf8JsonWriter,System.Boolean,System.Text.Json.JsonSerializerOptions)">
+            <inheritdoc/>
         </member>
         <member name="T:Sudoku.Bot.Communication.JsonConverters.ColorToUint32Converter">
             <summary>
-            JSON序列化时将 Color 转换为 UInt32<br/>
-            JSON反序列化时将 UInt32 转换为 Color
+            Defines a JSON converter that allows the conversion between <see cref="T:System.Drawing.Color"/> and <see cref="T:System.UInt32"/>.
             </summary>
-        </member>
-        <member name="M:Sudoku.Bot.Communication.JsonConverters.ColorToUint32Converter.Write(System.Text.Json.Utf8JsonWriter,System.Drawing.Color,System.Text.Json.JsonSerializerOptions)">
-            <summary>
-            序列化JSON时 Color 转 int
-            </summary>
-            <param name="writer"></param>
-            <param name="value"></param>
-            <param name="options"></param>
         </member>
         <member name="M:Sudoku.Bot.Communication.JsonConverters.ColorToUint32Converter.Read(System.Text.Json.Utf8JsonReader@,System.Type,System.Text.Json.JsonSerializerOptions)">
-            <summary>
-            反序列化JSON时 int 转 Color
-            </summary>
-            <param name="reader"></param>
-            <param name="typeToConvert"></param>
-            <param name="options"></param>
-            <returns></returns>
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Bot.Communication.JsonConverters.ColorToUint32Converter.Write(System.Text.Json.Utf8JsonWriter,System.Drawing.Color,System.Text.Json.JsonSerializerOptions)">
+            <inheritdoc/>
         </member>
         <member name="T:Sudoku.Bot.Communication.JsonConverters.DateTimeToStringTimestamp">
             <summary>
-            JSON序列化JSON时将 DateTime 转换为 Timestamp<br/>
-            JSON反序列化JSON时将 Timestamp 转换为 DateTime
+            Defines a JSON converter that allows the conversion between <see cref="T:System.DateTime"/> and <c>Timestamp</c>.
             </summary>
-        </member>
-        <member name="M:Sudoku.Bot.Communication.JsonConverters.DateTimeToStringTimestamp.Write(System.Text.Json.Utf8JsonWriter,System.DateTime,System.Text.Json.JsonSerializerOptions)">
-            <summary>
-            序列化JSON时 DateTime 转 Timestamp
-            </summary>
-            <param name="writer"></param>
-            <param name="value"></param>
-            <param name="options"></param>
         </member>
         <member name="M:Sudoku.Bot.Communication.JsonConverters.DateTimeToStringTimestamp.Read(System.Text.Json.Utf8JsonReader@,System.Type,System.Text.Json.JsonSerializerOptions)">
-            <summary>
-            反序列化JSON时 Timestamp 转 DateTime
-            </summary>
-            <param name="reader"></param>
-            <param name="typeToConvert"></param>
-            <param name="options"></param>
-            <returns></returns>
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Bot.Communication.JsonConverters.DateTimeToStringTimestamp.Write(System.Text.Json.Utf8JsonWriter,System.DateTime,System.Text.Json.JsonSerializerOptions)">
+            <inheritdoc/>
         </member>
         <member name="T:Sudoku.Bot.Communication.JsonConverters.IntentToStringArrayConverter">
             <summary>
-            JSON序列化时将 Intent 转换为 StringArray<br/>
-            JSON反序列化时将 StringArray 转换为 Intent
+            Defines a JSON converter that allows the conversion between <see cref="T:Sudoku.Bot.Communication.Intent"/> and <see cref="T:System.String"/>[].
             </summary>
-        </member>
-        <member name="M:Sudoku.Bot.Communication.JsonConverters.IntentToStringArrayConverter.Write(System.Text.Json.Utf8JsonWriter,Sudoku.Bot.Communication.Intent,System.Text.Json.JsonSerializerOptions)">
-            <summary>
-            JSON序列化时将 RemindType 转 StringNumber
-            </summary>
-            <param name="writer"></param>
-            <param name="value"></param>
-            <param name="options"></param>
         </member>
         <member name="M:Sudoku.Bot.Communication.JsonConverters.IntentToStringArrayConverter.Read(System.Text.Json.Utf8JsonReader@,System.Type,System.Text.Json.JsonSerializerOptions)">
-            <summary>
-            JSON反序列化时将 StringNumber 转 RemindType
-            </summary>
-            <param name="reader"></param>
-            <param name="typeToConvert"></param>
-            <param name="options"></param>
-            <returns></returns>
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Bot.Communication.JsonConverters.IntentToStringArrayConverter.Write(System.Text.Json.Utf8JsonWriter,Sudoku.Bot.Communication.Intent,System.Text.Json.JsonSerializerOptions)">
+            <inheritdoc/>
         </member>
         <member name="T:Sudoku.Bot.Communication.JsonConverters.PrivacyTypeToStringNumberConverter">
             <summary>
-            JSON序列化时将 PrivacyType 转换为 StringNumber<br/>
-            JSON反序列化时将 StringNumber 转换为 PrivacyType
+            Defines a JSON converter that allows the conversion between <see cref="T:Sudoku.Bot.Communication.Models.PrivacyType"/> and <see cref="T:System.String"/>.
             </summary>
-        </member>
-        <member name="M:Sudoku.Bot.Communication.JsonConverters.PrivacyTypeToStringNumberConverter.Write(System.Text.Json.Utf8JsonWriter,Sudoku.Bot.Communication.Models.PrivacyType,System.Text.Json.JsonSerializerOptions)">
-            <summary>
-            JSON序列化时将 PrivacyType 转 StringNumber
-            </summary>
-            <param name="writer"></param>
-            <param name="value"></param>
-            <param name="options"></param>
         </member>
         <member name="M:Sudoku.Bot.Communication.JsonConverters.PrivacyTypeToStringNumberConverter.Read(System.Text.Json.Utf8JsonReader@,System.Type,System.Text.Json.JsonSerializerOptions)">
-            <summary>
-            JSON反序列化时将 StringNumber 转 PrivacyType
-            </summary>
-            <param name="reader"></param>
-            <param name="typeToConvert"></param>
-            <param name="options"></param>
-            <returns></returns>
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Bot.Communication.JsonConverters.PrivacyTypeToStringNumberConverter.Write(System.Text.Json.Utf8JsonWriter,Sudoku.Bot.Communication.Models.PrivacyType,System.Text.Json.JsonSerializerOptions)">
+            <inheritdoc/>
         </member>
         <member name="T:Sudoku.Bot.Communication.JsonConverters.RemindTypeToStringNumberConverter">
             <summary>
-            JSON序列化时将 RemindType 转换为 StringNumber<br/>
-            JSON反序列化时将 StringNumber 转换为 RemindType
+            Defines a JSON converter that allows the conversion between <see cref="T:Sudoku.Bot.Communication.Models.RemindType"/> and <see cref="T:System.String"/>.
             </summary>
-        </member>
-        <member name="M:Sudoku.Bot.Communication.JsonConverters.RemindTypeToStringNumberConverter.Write(System.Text.Json.Utf8JsonWriter,Sudoku.Bot.Communication.Models.RemindType,System.Text.Json.JsonSerializerOptions)">
-            <summary>
-            JSON序列化时将 RemindType 转 StringNumber
-            </summary>
-            <param name="writer"></param>
-            <param name="value"></param>
-            <param name="options"></param>
         </member>
         <member name="M:Sudoku.Bot.Communication.JsonConverters.RemindTypeToStringNumberConverter.Read(System.Text.Json.Utf8JsonReader@,System.Type,System.Text.Json.JsonSerializerOptions)">
-            <summary>
-            JSON反序列化时将 StringNumber 转 RemindType
-            </summary>
-            <param name="reader"></param>
-            <param name="typeToConvert"></param>
-            <param name="options"></param>
-            <returns></returns>
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Bot.Communication.JsonConverters.RemindTypeToStringNumberConverter.Write(System.Text.Json.Utf8JsonWriter,Sudoku.Bot.Communication.Models.RemindType,System.Text.Json.JsonSerializerOptions)">
+            <inheritdoc/>
         </member>
         <member name="T:Sudoku.Bot.Communication.Log">
             <summary>
@@ -2050,112 +1978,129 @@
         </member>
         <member name="T:Sudoku.Bot.Communication.Models.Announces">
             <summary>
-            公告对象
+            Indicates the instance that describes an announce.
             </summary>
+            <remarks>
+            The data type is referenced from
+            <see href="https://bot.q.qq.com/wiki/develop/api/openapi/announces/model.html">this link</see>.
+            </remarks>
         </member>
         <member name="P:Sudoku.Bot.Communication.Models.Announces.GuildId">
             <summary>
-            频道 id
+            Indicates the GUILD ID.
             </summary>
         </member>
         <member name="P:Sudoku.Bot.Communication.Models.Announces.ChannelId">
             <summary>
-            子频道 id
+            Indicates the channel ID.
             </summary>
         </member>
         <member name="P:Sudoku.Bot.Communication.Models.Announces.MessageId">
             <summary>
-            消息 id
+            Indicates the message ID.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Models.Announces.AnnounceType">
+            <summary>
+            Indicates the announce type.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Models.Announces.RecommendChannels">
+            <summary>
+            Indicates the recommend channels.
             </summary>
         </member>
         <member name="T:Sudoku.Bot.Communication.Models.ApiPermission">
             <summary>
-            接口权限对象
+            Indicates the instance that describes the API permission.
             </summary>
+            <remarks>
+            The data type is referenced from
+            <see href="https://bot.q.qq.com/wiki/develop/api/openapi/api_permissions/model.html#%E6%8E%A5%E5%8F%A3%E6%9D%83%E9%99%90%E5%AF%B9%E8%B1%A1-apipermission">this link</see>.
+            </remarks>
         </member>
         <member name="P:Sudoku.Bot.Communication.Models.ApiPermission.Path">
             <summary>
-            接口地址
-            <para>
-            例：/guilds/{guild_id}/members/{user_id}
-            </para>
+            Indicates the interface address. For exmaple, <c>/guilds/{guild_id}/members/{user_id}</c>.
             </summary>
         </member>
         <member name="P:Sudoku.Bot.Communication.Models.ApiPermission.Method">
             <summary>
-            请求方法，例：GET
+            Indicates the method. For example, <c>GET</c>.
             </summary>
         </member>
         <member name="P:Sudoku.Bot.Communication.Models.ApiPermission.Desc">
             <summary>
-            API 接口名称，例：获取频道信息
+            Indicates the name of the API.
             </summary>
         </member>
         <member name="P:Sudoku.Bot.Communication.Models.ApiPermission.AuthStatus">
             <summary>
-            授权状态
-            <para>
-            0 - 未授权<br/>
-            1 - 已授权
-            </para>
+            Indicates the permission status. 1 is for succeed.
             </summary>
         </member>
         <member name="T:Sudoku.Bot.Communication.Models.ApiPermissionDemand">
             <summary>
-            接口权限需求对象
+            Indicates the instance that describes the API permission demand.
             </summary>
+            <remarks>
+            The data type is referenced from
+            <see href="https://bot.q.qq.com/wiki/develop/api/openapi/api_permissions/model.html#%E6%8E%A5%E5%8F%A3%E6%9D%83%E9%99%90%E9%9C%80%E6%B1%82%E5%AF%B9%E8%B1%A1-apipermissiondemand">this link</see>.
+            </remarks>
         </member>
         <member name="P:Sudoku.Bot.Communication.Models.ApiPermissionDemand.GuildId">
             <summary>
-            申请接口权限的频道 id
+            The GUILD ID that tries to request permssions.
             </summary>
         </member>
         <member name="P:Sudoku.Bot.Communication.Models.ApiPermissionDemand.ChannelId">
             <summary>
-            接口权限需求授权链接发送的子频道 id
+            The channel ID whose containing GUILD tries to request permissions.
             </summary>
         </member>
         <member name="P:Sudoku.Bot.Communication.Models.ApiPermissionDemand.Title">
             <summary>
-            接口权限链接中的接口权限描述信息
+            The title of the demand.
             </summary>
         </member>
         <member name="P:Sudoku.Bot.Communication.Models.ApiPermissionDemand.Desc">
             <summary>
-            接口权限链接中的机器人可使用功能的描述信息
+            The description of the demand.
             </summary>
         </member>
         <member name="P:Sudoku.Bot.Communication.Models.ApiPermissionDemand.ApiIdentify">
             <summary>
-            权限接口唯一标识
+            The permission identity.
             </summary>
         </member>
         <member name="T:Sudoku.Bot.Communication.Models.ApiPermissionDemandIdentify">
             <summary>
             接口权限需求标识对象
             </summary>
+            <param name="Path">The path of the interface. For example, <c>/guilds/{guild_id}/members/{user_id}</c>.</param>
+            <param name="Method">The method. For example, <c>GET</c>.</param>
+        </member>
+        <member name="M:Sudoku.Bot.Communication.Models.ApiPermissionDemandIdentify.#ctor(System.String,System.String)">
+            <summary>
+            接口权限需求标识对象
+            </summary>
+            <param name="Path">The path of the interface. For example, <c>/guilds/{guild_id}/members/{user_id}</c>.</param>
+            <param name="Method">The method. For example, <c>GET</c>.</param>
         </member>
         <member name="P:Sudoku.Bot.Communication.Models.ApiPermissionDemandIdentify.Path">
-            <summary>
-            接口地址
-            <para>
-            例：/guilds/{guild_id}/members/{user_id}
-            </para>
-            </summary>
+            <summary>The path of the interface. For example, <c>/guilds/{guild_id}/members/{user_id}</c>.</summary>
         </member>
         <member name="P:Sudoku.Bot.Communication.Models.ApiPermissionDemandIdentify.Method">
-            <summary>
-            请求方法，例：GET
-            </summary>
+            <summary>The method. For example, <c>GET</c>.</summary>
         </member>
         <member name="T:Sudoku.Bot.Communication.Models.ApiPermissions">
             <summary>
-            接口权限列表对象
+            The API permissions.
             </summary>
         </member>
         <member name="P:Sudoku.Bot.Communication.Models.ApiPermissions.List">
             <summary>
-            接口权限列表
+            The API permissions.
             </summary>
         </member>
         <member name="T:Sudoku.Bot.Communication.Models.AudioAction">
@@ -3819,6 +3764,34 @@
             回复
             </summary>
         </member>
+        <member name="T:Sudoku.Bot.Communication.Models.RecommendChannel">
+            <summary>
+            Indicates the instance that describes the recommend channel.
+            </summary>
+            <param name="ChannelId">Indicates the channel ID.</param>
+            <param name="Introduce">Indicates the introducing text.</param>
+            <remarks>
+            The data type is referenced from
+            <see href="https://bot.q.qq.com/wiki/develop/api/openapi/announces/model.html#RecommendChannel">this link</see>.
+            </remarks>
+        </member>
+        <member name="M:Sudoku.Bot.Communication.Models.RecommendChannel.#ctor(System.String,System.String)">
+            <summary>
+            Indicates the instance that describes the recommend channel.
+            </summary>
+            <param name="ChannelId">Indicates the channel ID.</param>
+            <param name="Introduce">Indicates the introducing text.</param>
+            <remarks>
+            The data type is referenced from
+            <see href="https://bot.q.qq.com/wiki/develop/api/openapi/announces/model.html#RecommendChannel">this link</see>.
+            </remarks>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Models.RecommendChannel.ChannelId">
+            <summary>Indicates the channel ID.</summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Models.RecommendChannel.Introduce">
+            <summary>Indicates the introducing text.</summary>
+        </member>
         <member name="T:Sudoku.Bot.Communication.Models.RemindType">
             <summary>
             日程提醒方式
@@ -4590,19 +4563,21 @@
         </member>
         <member name="M:System.Text.Json.JsonElementExtensions.Get(System.Text.Json.JsonElement,System.String)">
             <summary>
-            查找JSON对象
+            Try to find the JSON object via the name.
             </summary>
-            <param name="element"></param>
-            <param name="name">json的key</param>
-            <returns></returns>
+            <param name="this">The current instance.</param>
+            <param name="name">The key that corresponds to the value you want to find.</param>
+            <returns>The <see cref="T:System.Text.Json.JsonElement"/> instance found. If failed to find, <see langword="null"/>.</returns>
         </member>
         <member name="M:System.Text.Json.JsonElementExtensions.Get(System.Text.Json.JsonElement,System.Int32)">
             <summary>
-            索引JSON数组
+            Try to index the JSON array instance via the index.
             </summary>
-            <param name="element"></param>
-            <param name="index">json的index</param>
-            <returns></returns>
+            <param name="element">The current instance.</param>
+            <param name="index">The index you want to find.</param>
+            <returns>
+            The <see cref="T:System.Text.Json.JsonElement"/> instance at the specified index. If failed to index, <see langword="null"/>.
+            </returns>
         </member>
         <member name="T:System.StringExtensions">
             <summary>
@@ -4610,43 +4585,41 @@
             </summary>
             <seealso cref="T:System.String"/>
         </member>
-        <member name="M:System.StringExtensions.TrimStart(System.String,System.String,System.String,System.Boolean)">
+        <member name="M:System.StringExtensions.ReplaceStart(System.String,System.String,System.String,System.Boolean)">
             <summary>
-            替换字符串开始位置的字符串
+            Replace several characters beginning with the <see cref="T:System.String"/> instance
+            with the newer <see cref="T:System.String"/> value, via the specified <see cref="T:System.Boolean"/> value
+            indicating whether the comparison ignores the casing.
             </summary>
-            <param name="input">源字符串</param>
-            <param name="oldValue">查找的串</param>
-            <param name="newValue">替换的串</param>
-            <param name="ignoreCase">查找字符串时忽略大小写</param>
-            <returns></returns>
+            <param name="this">The source string instance.</param>
+            <param name="oldValue">The value you want to search for.</param>
+            <param name="newValue">The new value you want to replace with.</param>
+            <param name="ignoreCase">Indicates whether the comparison ignores the casing.</param>
+            <returns>The string value after replaced.</returns>
         </member>
-        <member name="M:System.StringExtensions.TrimEnd(System.String,System.String,System.String,System.Boolean)">
+        <member name="M:System.StringExtensions.ReplaceEnd(System.String,System.String,System.String,System.Boolean)">
             <summary>
-            替换字符串末尾位置的字符串
+            Replace several characters ending with the <see cref="T:System.String"/> instance
+            with the newer <see cref="T:System.String"/> value, via the specified <see cref="T:System.Boolean"/> value
+            indicating whether the comparison ignores the casing.
             </summary>
-            <param name="input">源字符串</param>
-            <param name="oldValue">查找的串</param>
-            <param name="newValue">替换的串</param>
-            <param name="ignoreCase">查找字符串时忽略大小写</param>
-            <returns></returns>
+            <param name="this">The source string instance.</param>
+            <param name="oldValue">The value you want to search for.</param>
+            <param name="newValue">The new value you want to replace with.</param>
+            <param name="ignoreCase">Indicates whether the comparison ignores the casing.</param>
+            <returns>The string value after replaced.</returns>
         </member>
-        <member name="M:System.StringExtensions.Trim(System.String,System.String,System.String,System.Boolean)">
+        <member name="M:System.StringExtensions.Replace(System.String,System.String,System.String,System.Boolean)">
             <summary>
-            替换字符串开始和末尾位置的字符串
+            Replace several characters both beginning and ending with the <see cref="T:System.String"/> instance
+            with the newer <see cref="T:System.String"/> value, via the specified <see cref="T:System.Boolean"/> value
+            indicating whether the comparison ignores the casing.
             </summary>
-            <param name="input">源字符串</param>
-            <param name="oldValue">查找的串</param>
-            <param name="newValue">替换的串</param>
-            <param name="ignoreCase">查找字符串时忽略大小写</param>
-            <returns></returns>
-        </member>
-        <member name="M:System.StringExtensions.IsBlank(System.String)">
-            <summary>
-            判断字符串是否为空白
-            <para>效果等同于string.IsNullOrWhiteSpace()</para>
-            </summary>
-            <param name="input"></param>
-            <returns></returns>
+            <param name="this">The source string instance.</param>
+            <param name="oldValue">The value you want to search for.</param>
+            <param name="newValue">The new value you want to replace with.</param>
+            <param name="ignoreCase">Indicates whether the comparison ignores the casing.</param>
+            <returns>The string value after replaced.</returns>
         </member>
     </members>
 </doc>

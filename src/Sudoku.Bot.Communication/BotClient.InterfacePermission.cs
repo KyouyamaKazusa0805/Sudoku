@@ -15,8 +15,8 @@ partial class BotClient
 	{
 		var api = BotApis.获取频道可用权限列表;
 		var response = await HttpSendAsync(api.Path.Replace("{guild_id}", guild_id), api.Method, null, sender);
-		var Permissions = response is null ? null : await response.Content.ReadFromJsonAsync<ApiPermissions?>();
-		return Permissions?.List;
+		var permissions = response is null ? null : await response.Content.ReadFromJsonAsync<ApiPermissions?>();
+		return permissions?.List;
 	}
 
 	/// <summary>

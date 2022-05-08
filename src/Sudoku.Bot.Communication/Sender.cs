@@ -157,7 +157,7 @@ public class Sender
 	/// <returns></returns>
 	public async Task<Channel?> CreateChannelAsync(Channel channel)
 	{
-		if (channel.GuildId.IsBlank())
+		if (string.IsNullOrWhiteSpace(channel.GuildId))
 		{
 			channel.GuildId = GuildId;
 		}

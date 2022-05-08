@@ -1,27 +1,11 @@
 ﻿namespace Sudoku.Bot.Communication.JsonConverters;
 
 /// <summary>
-/// JSON序列化JSON时将 DateTime 转换为 Timestamp<br/>
-/// JSON反序列化JSON时将 Timestamp 转换为 DateTime
+/// Defines a JSON converter that allows the conversion between <see cref="DateTime"/> and <c>Timestamp</c>.
 /// </summary>
-public class DateTimeToStringTimestamp : JsonConverter<DateTime>
+public sealed class DateTimeToStringTimestamp : JsonConverter<DateTime>
 {
-	/// <summary>
-	/// 序列化JSON时 DateTime 转 Timestamp
-	/// </summary>
-	/// <param name="writer"></param>
-	/// <param name="value"></param>
-	/// <param name="options"></param>
-	public override void Write(Utf8JsonWriter writer, DateTime value, JsonSerializerOptions options)
-		=> writer.WriteStringValue($"{value:yyyy-MM-ddTHH:mm:sszzz}");
-
-	/// <summary>
-	/// 反序列化JSON时 Timestamp 转 DateTime
-	/// </summary>
-	/// <param name="reader"></param>
-	/// <param name="typeToConvert"></param>
-	/// <param name="options"></param>
-	/// <returns></returns>
+	/// <inheritdoc/>
 	public override DateTime Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
 		=> reader.TokenType switch
 		{
@@ -39,4 +23,8 @@ public class DateTimeToStringTimestamp : JsonConverter<DateTime>
 				},
 			_ => DateTime.MinValue
 		};
+
+	/// <inheritdoc/>
+	public override void Write(Utf8JsonWriter writer, DateTime value, JsonSerializerOptions options)
+		=> writer.WriteStringValue(value.ToString("yyyy-MM-ddTHH:mm:sszzz"));
 }

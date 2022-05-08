@@ -344,7 +344,7 @@ public partial class BotClient
 		async void f(HttpResponseMessage response, FreezeTime freezeTime)
 		{
 			var errInfo = new ApiErrorInfo(
-				url.TrimStart(ApiOrigin),
+				url.ReplaceStart(ApiOrigin),
 				method.Method,
 				response.StatusCode.GetHashCode(),
 				"此错误类型未收录!",

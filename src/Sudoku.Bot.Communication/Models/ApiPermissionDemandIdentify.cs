@@ -3,20 +3,8 @@
 /// <summary>
 /// 接口权限需求标识对象
 /// </summary>
-public record struct ApiPermissionDemandIdentify
-{
-	/// <summary>
-	/// 接口地址
-	/// <para>
-	/// 例：/guilds/{guild_id}/members/{user_id}
-	/// </para>
-	/// </summary>
-	[JsonPropertyName("path")]
-	public string Path { get; init; }
-
-	/// <summary>
-	/// 请求方法，例：GET
-	/// </summary>
-	[JsonPropertyName("method")]
-	public string Method { get; init; }
-}
+/// <param name="Path">The path of the interface. For example, <c>/guilds/{guild_id}/members/{user_id}</c>.</param>
+/// <param name="Method">The method. For example, <c>GET</c>.</param>
+public readonly record struct ApiPermissionDemandIdentify(
+	[property: JsonPropertyName("path")] string Path,
+	[property: JsonPropertyName("method")] string Method);

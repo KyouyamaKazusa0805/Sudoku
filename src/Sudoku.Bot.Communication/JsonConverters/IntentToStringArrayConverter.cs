@@ -1,30 +1,19 @@
 ﻿namespace Sudoku.Bot.Communication.JsonConverters;
 
 /// <summary>
-/// JSON序列化时将 Intent 转换为 StringArray<br/>
-/// JSON反序列化时将 StringArray 转换为 Intent
+/// Defines a JSON converter that allows the conversion between <see cref="Intent"/> and <see cref="string"/>[].
 /// </summary>
-public class IntentToStringArrayConverter : JsonConverter<Intent>
+public sealed class IntentToStringArrayConverter : JsonConverter<Intent>
 {
-	/// <summary>
-	/// JSON序列化时将 RemindType 转 StringNumber
-	/// </summary>
-	/// <param name="writer"></param>
-	/// <param name="value"></param>
-	/// <param name="options"></param>
-	public override void Write(Utf8JsonWriter writer, Intent value, JsonSerializerOptions options)
-		=> JsonSerializer.Serialize(writer, value.ToString().Split(',').Select(f => f.Trim()), options);
-
-	/// <summary>
-	/// JSON反序列化时将 StringNumber 转 RemindType
-	/// </summary>
-	/// <param name="reader"></param>
-	/// <param name="typeToConvert"></param>
-	/// <param name="options"></param>
-	/// <returns></returns>
+	/// <inheritdoc/>
 	public override Intent Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
-	{
-		var intents = JsonSerializer.Deserialize<List<string>>(ref reader, options)?.Select(Enum.Parse<Intent>);
-		return intents?.Aggregate((a, b) => a | b) ?? Intents.PublicDomain;
-	}
+		=> (
+			JsonSerializer.Deserialize<List<string>>(ref reader, options) is { } collection
+				? from element in collection select Enum.Parse<Intent>(element)
+				: null
+		)?.Aggregate(static (interim, value) => interim | value) ?? Intents.PublicDomain;
+
+	/// <inheritdoc/>
+	public override void Write(Utf8JsonWriter writer, Intent value, JsonSerializerOptions options)
+		=> JsonSerializer.Serialize(writer, from f in value.ToString().Split(',') select f.Trim(), options);
 }
