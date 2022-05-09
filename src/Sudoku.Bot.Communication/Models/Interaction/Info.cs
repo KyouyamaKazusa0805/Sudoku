@@ -35,7 +35,7 @@ public sealed class Info
 	/// <summary>
 	/// Indicates the color of the user being displayed.
 	/// </summary>
-	[JsonPropertyName("color"), JsonConverter(typeof(ColorToUint32Converter))]
+	[JsonPropertyName("color"), JsonConverter(typeof(ColorUInt32Converter))]
 	public Color? Color { get; set; }
 
 	/// <summary>
@@ -78,6 +78,6 @@ public sealed class Info
 	/// <summary>
 	/// Indicates whether the user is hoisted.
 	/// </summary>
-	[JsonPropertyName("hoist"), JsonConverter(typeof(BoolToInt32Converter))]
+	[JsonPropertyName("hoist"), JsonConverter(typeof(BoolInt32Converter))]
 	public bool? Hoist { get; set; }
 }

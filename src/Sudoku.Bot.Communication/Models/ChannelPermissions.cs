@@ -34,6 +34,6 @@ public sealed class ChannelPermissions
 	/// <summary>
 	/// Indicates the privacy type that the user is allowed doing in the current channel.
 	/// </summary>
-	[JsonPropertyName("permissions"), JsonConverter(typeof(PrivacyTypeToStringNumberConverter))]
+	[JsonPropertyName("permissions"), JsonConverter(typeof(PrivacyTypeNumberConverter))]
 	public PrivacyType Permissions { get; set; }
 }

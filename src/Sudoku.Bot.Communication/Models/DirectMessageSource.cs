@@ -13,4 +13,4 @@
 public sealed record class DirectMessageSource(
 	[property: JsonPropertyName("guild_id")] string GuildId,
 	[property: JsonPropertyName("channel_id")] string ChannelId,
-	[property: JsonPropertyName("create_time"), JsonConverter(typeof(DateTimeToStringTimestampConverter))] DateTime Time);
+	[property: JsonPropertyName("create_time"), JsonConverter(typeof(DateTimeTimestampConverter))] DateTime Time);

@@ -3,7 +3,7 @@
 /// <summary>
 /// Defines a JSON converter that allows the conversion between <see cref="PrivacyType"/> and <see cref="string"/>.
 /// </summary>
-public sealed class PrivacyTypeToStringNumberConverter : JsonConverter<PrivacyType>
+public sealed class PrivacyTypeNumberConverter : JsonConverter<PrivacyType>
 {
 	/// <inheritdoc/>
 	public override PrivacyType Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)

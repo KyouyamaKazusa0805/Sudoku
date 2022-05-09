@@ -18,18 +18,18 @@ public sealed class Filter
 	/// <summary>
 	/// Indicates whether the creation will set the name.
 	/// </summary>
-	[JsonPropertyName("name"), JsonConverter(typeof(BoolToInt32Converter))]
+	[JsonPropertyName("name"), JsonConverter(typeof(BoolInt32Converter))]
 	public bool Name { get; set; }
 
 	/// <summary>
 	/// Indicates whether the creation will set the color.
 	/// </summary>
-	[JsonPropertyName("color"), JsonConverter(typeof(BoolToInt32Converter))]
+	[JsonPropertyName("color"), JsonConverter(typeof(BoolInt32Converter))]
 	public bool Color { get; set; }
 
 	/// <summary>
 	/// Indicates whether the creation will set the hoist value.
 	/// </summary>
-	[JsonPropertyName("hoist"), JsonConverter(typeof(BoolToInt32Converter))]
+	[JsonPropertyName("hoist"), JsonConverter(typeof(BoolInt32Converter))]
 	public bool Hoist { get; set; }
 }

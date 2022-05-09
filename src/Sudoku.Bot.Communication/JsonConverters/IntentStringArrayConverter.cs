@@ -3,7 +3,7 @@
 /// <summary>
 /// Defines a JSON converter that allows the conversion between <see cref="Intent"/> and <see cref="string"/>[].
 /// </summary>
-public sealed class IntentToStringArrayConverter : JsonConverter<Intent>
+public sealed class IntentStringArrayConverter : JsonConverter<Intent>
 {
 	/// <inheritdoc/>
 	public override Intent Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)

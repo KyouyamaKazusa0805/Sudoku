@@ -21,14 +21,14 @@ public sealed class Role
 	/// <summary>
 	/// Indicates the color of the role.
 	/// </summary>
-	[JsonPropertyName("color"), JsonConverter(typeof(ColorToUint32Converter))]
+	[JsonPropertyName("color"), JsonConverter(typeof(ColorUInt32Converter))]
 	public Color Color { get; set; }
 
 	/// <summary>
 	/// Indicates whether the role is displayed alone. <see langword="true"/> means
 	/// that the role will be displayed alone.
 	/// </summary>
-	[JsonPropertyName("hoist"), JsonConverter(typeof(BoolToInt32Converter))]
+	[JsonPropertyName("hoist"), JsonConverter(typeof(BoolInt32Converter))]
 	public bool Hoist { get; set; }
 
 	/// <summary>

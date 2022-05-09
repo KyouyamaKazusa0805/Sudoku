@@ -3,7 +3,7 @@
 /// <summary>
 /// Defines a JSON converter that allows the conversions between <see cref="bool"/> and <see cref="int"/>.
 /// </summary>
-public sealed class BoolToInt32Converter : JsonConverter<bool>
+public sealed class BoolInt32Converter : JsonConverter<bool>
 {
 	/// <inheritdoc/>
 	public override bool Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)

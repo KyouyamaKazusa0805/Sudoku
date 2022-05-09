@@ -60,7 +60,7 @@ public sealed class Guild
 	/// <summary>
 	/// Indicates the date time describes when the GUILD is joined.
 	/// </summary>
-	[JsonPropertyName("joined_at"), JsonConverter(typeof(DateTimeToStringTimestampConverter))]
+	[JsonPropertyName("joined_at"), JsonConverter(typeof(DateTimeTimestampConverter))]
 	public DateTime JoinedAt { get; set; }
 
 	/// <summary>

@@ -3,7 +3,7 @@
 /// <summary>
 /// Defines a JSON converter that allows the conversion between <see cref="Color"/> and <see cref="uint"/>.
 /// </summary>
-public sealed class ColorToUint32Converter : JsonConverter<Color>
+public sealed class ColorUInt32Converter : JsonConverter<Color>
 {
 	/// <inheritdoc/>
 	public override Color Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)

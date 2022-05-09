@@ -99,6 +99,6 @@ public class Schedule
 	/// <summary>
 	/// 日程提醒类型
 	/// </summary>
-	[JsonPropertyName("remind_type"), JsonConverter(typeof(RemindTypeToStringNumberConverter))]
+	[JsonPropertyName("remind_type"), JsonConverter(typeof(RemindTypeNumberConverter))]
 	public RemindType RemindType { get; set; }
 }

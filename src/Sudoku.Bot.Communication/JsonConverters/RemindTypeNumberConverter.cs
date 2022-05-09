@@ -3,7 +3,7 @@
 /// <summary>
 /// Defines a JSON converter that allows the conversion between <see cref="RemindType"/> and <see cref="string"/>.
 /// </summary>
-public sealed class RemindTypeToStringNumberConverter : JsonConverter<RemindType>
+public sealed class RemindTypeNumberConverter : JsonConverter<RemindType>
 {
 	/// <inheritdoc/>
 	public override RemindType Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)

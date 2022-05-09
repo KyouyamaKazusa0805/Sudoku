@@ -3,7 +3,7 @@
 /// <summary>
 /// Defines a JSON converter that allows the conversion between <see cref="DateTime"/> and <c>Timestamp</c>.
 /// </summary>
-public sealed class DateTimeToStringTimestampConverter : JsonConverter<DateTime>
+public sealed class DateTimeTimestampConverter : JsonConverter<DateTime>
 {
 	/// <inheritdoc/>
 	public override DateTime Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)

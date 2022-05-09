@@ -1745,70 +1745,70 @@
             Indicates the events being able to be used in private domain.
             </summary>
         </member>
-        <member name="T:Sudoku.Bot.Communication.JsonConverters.BoolToInt32Converter">
+        <member name="T:Sudoku.Bot.Communication.JsonConverters.BoolInt32Converter">
             <summary>
             Defines a JSON converter that allows the conversions between <see cref="T:System.Boolean"/> and <see cref="T:System.Int32"/>.
             </summary>
         </member>
-        <member name="M:Sudoku.Bot.Communication.JsonConverters.BoolToInt32Converter.Read(System.Text.Json.Utf8JsonReader@,System.Type,System.Text.Json.JsonSerializerOptions)">
+        <member name="M:Sudoku.Bot.Communication.JsonConverters.BoolInt32Converter.Read(System.Text.Json.Utf8JsonReader@,System.Type,System.Text.Json.JsonSerializerOptions)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Bot.Communication.JsonConverters.BoolToInt32Converter.Write(System.Text.Json.Utf8JsonWriter,System.Boolean,System.Text.Json.JsonSerializerOptions)">
+        <member name="M:Sudoku.Bot.Communication.JsonConverters.BoolInt32Converter.Write(System.Text.Json.Utf8JsonWriter,System.Boolean,System.Text.Json.JsonSerializerOptions)">
             <inheritdoc/>
         </member>
-        <member name="T:Sudoku.Bot.Communication.JsonConverters.ColorToUint32Converter">
+        <member name="T:Sudoku.Bot.Communication.JsonConverters.ColorUInt32Converter">
             <summary>
             Defines a JSON converter that allows the conversion between <see cref="T:System.Drawing.Color"/> and <see cref="T:System.UInt32"/>.
             </summary>
         </member>
-        <member name="M:Sudoku.Bot.Communication.JsonConverters.ColorToUint32Converter.Read(System.Text.Json.Utf8JsonReader@,System.Type,System.Text.Json.JsonSerializerOptions)">
+        <member name="M:Sudoku.Bot.Communication.JsonConverters.ColorUInt32Converter.Read(System.Text.Json.Utf8JsonReader@,System.Type,System.Text.Json.JsonSerializerOptions)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Bot.Communication.JsonConverters.ColorToUint32Converter.Write(System.Text.Json.Utf8JsonWriter,System.Drawing.Color,System.Text.Json.JsonSerializerOptions)">
+        <member name="M:Sudoku.Bot.Communication.JsonConverters.ColorUInt32Converter.Write(System.Text.Json.Utf8JsonWriter,System.Drawing.Color,System.Text.Json.JsonSerializerOptions)">
             <inheritdoc/>
         </member>
-        <member name="T:Sudoku.Bot.Communication.JsonConverters.DateTimeToStringTimestampConverter">
+        <member name="T:Sudoku.Bot.Communication.JsonConverters.DateTimeTimestampConverter">
             <summary>
             Defines a JSON converter that allows the conversion between <see cref="T:System.DateTime"/> and <c>Timestamp</c>.
             </summary>
         </member>
-        <member name="M:Sudoku.Bot.Communication.JsonConverters.DateTimeToStringTimestampConverter.Read(System.Text.Json.Utf8JsonReader@,System.Type,System.Text.Json.JsonSerializerOptions)">
+        <member name="M:Sudoku.Bot.Communication.JsonConverters.DateTimeTimestampConverter.Read(System.Text.Json.Utf8JsonReader@,System.Type,System.Text.Json.JsonSerializerOptions)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Bot.Communication.JsonConverters.DateTimeToStringTimestampConverter.Write(System.Text.Json.Utf8JsonWriter,System.DateTime,System.Text.Json.JsonSerializerOptions)">
+        <member name="M:Sudoku.Bot.Communication.JsonConverters.DateTimeTimestampConverter.Write(System.Text.Json.Utf8JsonWriter,System.DateTime,System.Text.Json.JsonSerializerOptions)">
             <inheritdoc/>
         </member>
-        <member name="T:Sudoku.Bot.Communication.JsonConverters.IntentToStringArrayConverter">
+        <member name="T:Sudoku.Bot.Communication.JsonConverters.IntentStringArrayConverter">
             <summary>
             Defines a JSON converter that allows the conversion between <see cref="T:Sudoku.Bot.Communication.Intent"/> and <see cref="T:System.String"/>[].
             </summary>
         </member>
-        <member name="M:Sudoku.Bot.Communication.JsonConverters.IntentToStringArrayConverter.Read(System.Text.Json.Utf8JsonReader@,System.Type,System.Text.Json.JsonSerializerOptions)">
+        <member name="M:Sudoku.Bot.Communication.JsonConverters.IntentStringArrayConverter.Read(System.Text.Json.Utf8JsonReader@,System.Type,System.Text.Json.JsonSerializerOptions)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Bot.Communication.JsonConverters.IntentToStringArrayConverter.Write(System.Text.Json.Utf8JsonWriter,Sudoku.Bot.Communication.Intent,System.Text.Json.JsonSerializerOptions)">
+        <member name="M:Sudoku.Bot.Communication.JsonConverters.IntentStringArrayConverter.Write(System.Text.Json.Utf8JsonWriter,Sudoku.Bot.Communication.Intent,System.Text.Json.JsonSerializerOptions)">
             <inheritdoc/>
         </member>
-        <member name="T:Sudoku.Bot.Communication.JsonConverters.PrivacyTypeToStringNumberConverter">
+        <member name="T:Sudoku.Bot.Communication.JsonConverters.PrivacyTypeNumberConverter">
             <summary>
             Defines a JSON converter that allows the conversion between <see cref="T:Sudoku.Bot.Communication.Models.PrivacyType"/> and <see cref="T:System.String"/>.
             </summary>
         </member>
-        <member name="M:Sudoku.Bot.Communication.JsonConverters.PrivacyTypeToStringNumberConverter.Read(System.Text.Json.Utf8JsonReader@,System.Type,System.Text.Json.JsonSerializerOptions)">
+        <member name="M:Sudoku.Bot.Communication.JsonConverters.PrivacyTypeNumberConverter.Read(System.Text.Json.Utf8JsonReader@,System.Type,System.Text.Json.JsonSerializerOptions)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Bot.Communication.JsonConverters.PrivacyTypeToStringNumberConverter.Write(System.Text.Json.Utf8JsonWriter,Sudoku.Bot.Communication.Models.PrivacyType,System.Text.Json.JsonSerializerOptions)">
+        <member name="M:Sudoku.Bot.Communication.JsonConverters.PrivacyTypeNumberConverter.Write(System.Text.Json.Utf8JsonWriter,Sudoku.Bot.Communication.Models.PrivacyType,System.Text.Json.JsonSerializerOptions)">
             <inheritdoc/>
         </member>
-        <member name="T:Sudoku.Bot.Communication.JsonConverters.RemindTypeToStringNumberConverter">
+        <member name="T:Sudoku.Bot.Communication.JsonConverters.RemindTypeNumberConverter">
             <summary>
             Defines a JSON converter that allows the conversion between <see cref="T:Sudoku.Bot.Communication.Models.RemindType"/> and <see cref="T:System.String"/>.
             </summary>
         </member>
-        <member name="M:Sudoku.Bot.Communication.JsonConverters.RemindTypeToStringNumberConverter.Read(System.Text.Json.Utf8JsonReader@,System.Type,System.Text.Json.JsonSerializerOptions)">
+        <member name="M:Sudoku.Bot.Communication.JsonConverters.RemindTypeNumberConverter.Read(System.Text.Json.Utf8JsonReader@,System.Type,System.Text.Json.JsonSerializerOptions)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Bot.Communication.JsonConverters.RemindTypeToStringNumberConverter.Write(System.Text.Json.Utf8JsonWriter,Sudoku.Bot.Communication.Models.RemindType,System.Text.Json.JsonSerializerOptions)">
+        <member name="M:Sudoku.Bot.Communication.JsonConverters.RemindTypeNumberConverter.Write(System.Text.Json.Utf8JsonWriter,Sudoku.Bot.Communication.Models.RemindType,System.Text.Json.JsonSerializerOptions)">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Bot.Communication.Log">
