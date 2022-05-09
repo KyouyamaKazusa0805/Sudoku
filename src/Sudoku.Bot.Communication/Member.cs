@@ -1,48 +1,59 @@
 ﻿namespace Sudoku.Bot.Communication;
 
 /// <summary>
-/// 成员
+/// Indicates a member info.
 /// </summary>
+/// <remarks>
+/// The data type is referenced from
+/// <see href="https://bot.q.qq.com/wiki/develop/api/openapi/member/model.html#member">this link</see>.
+/// </remarks>
 public class Member
 {
 	/// <summary>
-	/// 用户基础信息，来自QQ资料，只有成员相关接口中会填充此信息
+	/// Indicates the user info. The information is from QQ profile.
 	/// </summary>
+	/// <remarks>
+	/// The property will be filled if the member-related interfaces are used.
+	/// </remarks>
 	[JsonPropertyName("user")]
 	public User? User { get; set; }
 
 	/// <summary>
-	/// 用户在频道内的昵称(默认为空)
+	/// Indicates the nickname of the user, in the GUILD.
 	/// </summary>
 	[JsonPropertyName("nick")]
-	public string? Nick { get; set; }
+	public string? Nickname { get; set; }
 
 	/// <summary>
-	/// 用户在频道内的身份组ID, 默认值可参考DefaultRoles
+	/// Indicates the roles that the member related.
 	/// </summary>
+	/// <remarks>
+	/// You can visit the type <see cref="DefaultRoles"/> to get all possible roles.
+	/// </remarks>
 	[JsonPropertyName("roles")]
 	public List<string> Roles { get; set; } = new() { "1" };
 
 	/// <summary>
-	/// 用户加入频道的时间 ISO8601 timestamp
+	/// Indicates the time that the user has been joined in this GUILD. The value satisfies the standard
+	/// ISO8601 timestamp.
 	/// </summary>
 	[JsonPropertyName("joined_at"), JsonConverter(typeof(DateTimeTimestampConverter))]
 	public DateTime? JoinedAt { get; set; }
 
 	/// <summary>
-	/// 该字段作用未知，等待官方文档更新
+	/// <i><b>The property is not used. Author doesn't know the usage of the property.</b></i>
 	/// </summary>
 	[JsonPropertyName("deaf")]
-	public bool? Deaf { get; set; }
+	public bool? IsDeaf { get; set; }
 
 	/// <summary>
-	/// 该成员是否被禁言
+	/// Indicates whether the user has been jinxed.
 	/// </summary>
 	[JsonPropertyName("mute")]
-	public bool? Mute { get; set; }
+	public bool? IsJinxed { get; set; }
 
 	/// <summary>
-	/// 该字段作用未知，等待官方文档更新
+	/// <i><b>The property is not used. Author doesn't know the usage of the property.</b></i>
 	/// </summary>
 	[JsonPropertyName("pending")]
 	public bool? Pending { get; set; }

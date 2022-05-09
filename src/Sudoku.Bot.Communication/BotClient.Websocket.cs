@@ -289,7 +289,7 @@ partial class BotClient
 					case RawMessageTypes.GuildMemberRemoved:
 					{
 						Log.Debug($"[WebSocket][{type}] {data}");
-						var memberWithGuild = d.Deserialize<MemberWithGuildID>()!;
+						var memberWithGuild = d.Deserialize<MemberWithGuildId>()!;
 						OnGuildMemberMsg?.Invoke(this, memberWithGuild, type);
 
 						break;

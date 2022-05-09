@@ -129,8 +129,8 @@ partial class BotClient
 		// 识别消息类型（私聊，AT全员，AT机器人）
 		_ = message switch
 		{
-			{ DirectMessage: true } => sender.MessageType = MessageType.Private,
-			{ MentionEveryone: true } => sender.MessageType = MessageType.AtAll,
+			{ IsDirectMessage: true } => sender.MessageType = MessageType.Private,
+			{ IsAllMentioned: true } => sender.MessageType = MessageType.AtAll,
 			{ Mentions: var list } when list?.Any(u => u.Id == Info.Id) is true => sender.MessageType = MessageType.AtMe,
 			_ => default
 		};
@@ -188,7 +188,7 @@ partial class BotClient
 			string msgContent = Regex.Replace(message.Content, """<@!\d+>""", f);
 			string senderMaster = (sender.Bot.Guilds.TryGetValue(sender.GuildId, out var guild) ? guild.Name : null)
 				?? sender.Author.UserName;
-			Log.Info($"[{senderMaster}][{message.Author.UserName}] {msgContent.Replace("\xA0", " ")}");
+			Log.Info($"[{senderMaster}][{message.MessageCreator.UserName}] {msgContent.Replace("\xA0", " ")}");
 		}
 
 		void forEachLoopHandler(Command cmd, ParallelLoopState state, long i)
@@ -202,13 +202,13 @@ partial class BotClient
 			content = content.ReplaceStart(cmdMatch.Groups[0].Value).TrimStart();
 			if (
 				cmd.NeedAdmin && !(
-					message.Member.Roles.Any(static r => "24".Contains(r)) || message.Author.Id.Equals(GodId)
+					message.Member.Roles.Any(static r => "24".Contains(r)) || message.MessageCreator.Id.Equals(GodId)
 				)
 			)
 			{
 				if (sender.MessageType == MessageType.AtMe)
 				{
-					_ = sender.ReplyAsync($"{message.Author.Tag} 你无权使用该命令！");
+					_ = sender.ReplyAsync($"{message.MessageCreator.Tag} 你无权使用该命令！");
 				}
 				else
 				{

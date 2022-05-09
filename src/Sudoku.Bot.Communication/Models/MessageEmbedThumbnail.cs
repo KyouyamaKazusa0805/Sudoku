@@ -1,12 +1,16 @@
 ﻿namespace Sudoku.Bot.Communication.Models;
 
 /// <summary>
-/// 缩略图对象
+/// Indicates the thumbnail of the embedded message.
 /// </summary>
-public class MessageEmbedThumbnail
+/// <remarks>
+/// The data type is referenced from
+/// <see href="https://bot.q.qq.com/wiki/develop/api/openapi/message/model.html#messageembedthumbnail">this link</see>.
+/// </remarks>
+public sealed class MessageEmbedThumbnail
 {
 	/// <summary>
-	/// 图片地址
+	/// Indicates the URL of the thumbnail.
 	/// </summary>
 	[JsonPropertyName("url")]
 	public string? Url { get; set; }

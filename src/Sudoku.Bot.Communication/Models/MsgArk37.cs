@@ -9,15 +9,15 @@
 /// </summary>
 public class MsgArk37 : MessageToCreate
 {
-	private readonly MessageArkKv _arkPrompt = new() { Key = "#PROMPT#", Value = null };
+	private readonly MessageArkKeyValuePair _arkPrompt = new() { Key = "#PROMPT#", Value = null };
 
-	private readonly MessageArkKv _arkMetaTitle = new() { Key = "#METATITLE#", Value = null };
+	private readonly MessageArkKeyValuePair _arkMetaTitle = new() { Key = "#METATITLE#", Value = null };
 
-	private readonly MessageArkKv _arkMetaSubTitle = new() { Key = "#METASUBTITLE#", Value = null };
+	private readonly MessageArkKeyValuePair _arkMetaSubTitle = new() { Key = "#METASUBTITLE#", Value = null };
 
-	private readonly MessageArkKv _arkMetaCover = new() { Key = "#METACOVER#", Value = null };
+	private readonly MessageArkKeyValuePair _arkMetaCover = new() { Key = "#METACOVER#", Value = null };
 
-	private readonly MessageArkKv _arkMetaUrl = new() { Key = "#METAURL#", Value = null };
+	private readonly MessageArkKeyValuePair _arkMetaUrl = new() { Key = "#METAURL#", Value = null };
 
 
 	/// <summary>

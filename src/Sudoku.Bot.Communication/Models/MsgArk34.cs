@@ -6,19 +6,19 @@
 /// </summary>
 public class MsgArk34 : MessageToCreate
 {
-	private readonly MessageArkKv _arkDesc = new() { Key = "#DESC#", Value = null };
+	private readonly MessageArkKeyValuePair _arkDesc = new() { Key = "#DESC#", Value = null };
 
-	private readonly MessageArkKv _arkPrompt = new() { Key = "#PROMPT#", Value = null };
+	private readonly MessageArkKeyValuePair _arkPrompt = new() { Key = "#PROMPT#", Value = null };
 
-	private readonly MessageArkKv _arkMetaTitle = new() { Key = "#METATITLE#", Value = null };
+	private readonly MessageArkKeyValuePair _arkMetaTitle = new() { Key = "#METATITLE#", Value = null };
 
-	private readonly MessageArkKv _arkMetaDesc = new() { Key = "#METADESC#", Value = null };
+	private readonly MessageArkKeyValuePair _arkMetaDesc = new() { Key = "#METADESC#", Value = null };
 
-	private readonly MessageArkKv _arkMetaIcon = new() { Key = "#METAICON#", Value = null };
+	private readonly MessageArkKeyValuePair _arkMetaIcon = new() { Key = "#METAICON#", Value = null };
 
-	private readonly MessageArkKv _arkMetaPreview = new() { Key = "#METAPREVIEW#", Value = null };
+	private readonly MessageArkKeyValuePair _arkMetaPreview = new() { Key = "#METAPREVIEW#", Value = null };
 
-	private readonly MessageArkKv _arkMetaUrl = new() { Key = "#METAURL#", Value = null };
+	private readonly MessageArkKeyValuePair _arkMetaUrl = new() { Key = "#METAURL#", Value = null };
 
 
 	/// <summary>

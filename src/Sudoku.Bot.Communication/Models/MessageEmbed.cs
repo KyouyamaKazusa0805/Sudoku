@@ -1,32 +1,41 @@
 ﻿namespace Sudoku.Bot.Communication.Models;
 
 /// <summary>
-/// embed消息
+/// Indicates the embedded message.
 /// </summary>
-public class MessageEmbed
+/// <remarks>
+/// The data type is referenced from
+/// <see href="https://bot.q.qq.com/wiki/develop/api/openapi/message/model.html#messageembed">this link</see>.
+/// </remarks>
+public sealed class MessageEmbed
 {
 	/// <summary>
-	/// 标题
+	/// Indicates the title of the embedded message.
 	/// </summary>
 	[JsonPropertyName("title")]
 	public string? Title { get; set; }
+
 	/// <summary>
+	/// Indicates the description of the embedded message.
 	/// 描述 (见NodeSDK文档)
 	/// </summary>
 	[JsonPropertyName("description")]
 	public string? Description { get; set; }
+
 	/// <summary>
-	/// 消息弹窗内容
+	/// Indicates the message popped-up.
 	/// </summary>
 	[JsonPropertyName("prompt")]
 	public string? Prompt { get; set; }
+
 	/// <summary>
-	/// 缩略图
+	/// Indicates the thumbnail of the message.
 	/// </summary>
 	[JsonPropertyName("thumbnail")]
 	public MessageEmbedThumbnail? Thumbnail { get; set; }
+
 	/// <summary>
-	/// 消息列表
+	/// Indicates the fields of the message.
 	/// </summary>
 	[JsonPropertyName("fields")]
 	public List<MessageEmbedField>? Fields { get; set; }

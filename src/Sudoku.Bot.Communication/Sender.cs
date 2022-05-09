@@ -58,7 +58,7 @@ public class Sender
 	/// <summary>
 	/// 发件人的用户信息
 	/// </summary>
-	public User Author => Message.Author;
+	public User Author => Message.MessageCreator;
 
 	/// <summary>
 	/// 发件人的成员信息
@@ -355,7 +355,7 @@ public class Sender
 	public async Task<bool?> DeleteLastMessageAsync(User? user = null)
 	{
 		var msg = Message;
-		msg.Author = user ?? Bot.Info;
+		msg.MessageCreator = user ?? Bot.Info;
 		return await Bot.DeleteLastMessageAsync(msg, this);
 	}
 

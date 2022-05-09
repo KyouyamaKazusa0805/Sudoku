@@ -1,18 +1,23 @@
 ﻿namespace Sudoku.Bot.Communication.Models;
 
 /// <summary>
-/// ark消息
+/// Indicates an ARK message unit encapsulation.
 /// </summary>
-public class MessageArk
+/// <remarks>
+/// The data type is referenced from
+/// <see href="https://bot.q.qq.com/wiki/develop/api/openapi/message/model.html#messageark">this link</see>.
+/// </remarks>
+public sealed class MessageArk
 {
 	/// <summary>
-	/// ark模板id（需要先申请）
+	/// Indicates the templated ID of the ARK message. The templated ID should be requested to be registered firstly.
 	/// </summary>
 	[JsonPropertyName("template_id")]
 	public int TemplateId { get; set; }
+
 	/// <summary>
-	/// kv值列表
+	/// Indicates the extra info that is displayed as a list of key-value pairs.
 	/// </summary>
 	[JsonPropertyName("kv")]
-	public List<MessageArkKv> Kv { get; set; } = new();
+	public List<MessageArkKeyValuePair> Kv { get; set; } = new();
 }

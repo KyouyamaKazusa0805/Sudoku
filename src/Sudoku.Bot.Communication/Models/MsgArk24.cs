@@ -6,19 +6,19 @@
 /// </summary>
 public class MsgArk24 : MessageToCreate
 {
-	private readonly MessageArkKv _arkDesc = new() { Key = "#DESC#", Value = null };
+	private readonly MessageArkKeyValuePair _arkDesc = new() { Key = "#DESC#", Value = null };
 
-	private readonly MessageArkKv _arkPrompt = new() { Key = "#PROMPT#", Value = null };
+	private readonly MessageArkKeyValuePair _arkPrompt = new() { Key = "#PROMPT#", Value = null };
 
-	private readonly MessageArkKv _arkTitle = new() { Key = "#TITLE#", Value = null };
+	private readonly MessageArkKeyValuePair _arkTitle = new() { Key = "#TITLE#", Value = null };
 
-	private readonly MessageArkKv _arkMetaDesc = new() { Key = "#METADESC#", Value = null };
+	private readonly MessageArkKeyValuePair _arkMetaDesc = new() { Key = "#METADESC#", Value = null };
 
-	private readonly MessageArkKv _arkImage = new() { Key = "#IMG#", Value = null };
+	private readonly MessageArkKeyValuePair _arkImage = new() { Key = "#IMG#", Value = null };
 
-	private readonly MessageArkKv _arkLink = new() { Key = "#LINK#", Value = null };
+	private readonly MessageArkKeyValuePair _arkLink = new() { Key = "#LINK#", Value = null };
 
-	private readonly MessageArkKv _arkSubTitle = new() { Key = "#SUBTITLE#", Value = null };
+	private readonly MessageArkKeyValuePair _arkSubTitle = new() { Key = "#SUBTITLE#", Value = null };
 
 
 	/// <summary>

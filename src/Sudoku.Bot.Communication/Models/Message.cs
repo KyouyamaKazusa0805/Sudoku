@@ -1,90 +1,94 @@
 ﻿namespace Sudoku.Bot.Communication.Models;
 
 /// <summary>
-/// 消息对象
+/// Indicates the message instance.
 /// </summary>
-public class Message
+/// <remarks>
+/// The data type is referenced from
+/// <see href="https://bot.q.qq.com/wiki/develop/api/openapi/message/model.html#message">this link</see>.
+/// </remarks>
+public sealed class Message
 {
 	/// <summary>
-	/// 消息id
+	/// Indicates the ID value of the message.
 	/// </summary>
 	[JsonPropertyName("id")]
 	public string Id { get; set; } = string.Empty;
 
 	/// <summary>
-	/// 子频道 id
+	/// Indicates the channel ID where this message is from.
 	/// </summary>
 	[JsonPropertyName("channel_id")]
 	public string ChannelId { get; set; } = string.Empty;
 
 	/// <summary>
-	/// 频道 id
+	/// Indicates the GUILD ID where this message is from.
 	/// </summary>
 	[JsonPropertyName("guild_id")]
 	public string GuildId { get; set; } = string.Empty;
 
 	/// <summary>
-	/// 消息内容
+	/// Indicates the content of the message.
 	/// </summary>
 	[JsonPropertyName("content")]
 	public string Content { get; set; } = string.Empty;
 
 	/// <summary>
-	/// 是否 私聊消息
+	/// Indicates whether the current message is the private message.
 	/// </summary>
 	[JsonPropertyName("direct_message")]
-	public bool DirectMessage { get; set; }
+	public bool IsDirectMessage { get; set; }
 
 	/// <summary>
-	/// 是否 @全员消息
+	/// Indicates whether the message mentions all members.
 	/// </summary>
 	[JsonPropertyName("mention_everyone")]
-	public bool MentionEveryone { get; set; }
+	public bool IsAllMentioned { get; set; }
 
 	/// <summary>
-	/// 消息创建时间
+	/// Indicates the time when the message created.
 	/// </summary>
 	[JsonPropertyName("timestamp"), JsonConverter(typeof(DateTimeTimestampConverter))]
-	public DateTime CreateTime { get; set; }
+	public DateTime CreatedTime { get; set; }
 
 	/// <summary>
-	/// 消息编辑时间
+	/// Indicates the time when the message edited.
 	/// </summary>
 	[JsonPropertyName("edited_timestamp"), JsonConverter(typeof(DateTimeTimestampConverter))]
 	public DateTime EditedTime { get; set; }
 
 	/// <summary>
-	/// 消息创建者
+	/// Indicates the member who created the message.
 	/// </summary>
 	[JsonPropertyName("author")]
-	public User Author { get; set; } = new();
+	public User MessageCreator { get; set; } = new();
 
 	/// <summary>
-	/// 附件(可多个)
+	/// Indicates the attachments.
 	/// </summary>
 	[JsonPropertyName("attachments")]
 	public List<MessageAttachment>? Attachments { get; set; }
 
 	/// <summary>
-	/// embed
+	/// Indicates the embedded items.
 	/// </summary>
 	[JsonPropertyName("embeds")]
 	public List<MessageEmbed>? Embeds { get; set; }
 
 	/// <summary>
-	/// 消息中@的人
+	/// Indicates the members the message has mentioned.
 	/// </summary>
 	[JsonPropertyName("mentions")]
 	public List<User>? Mentions { get; set; }
 
 	/// <summary>
-	/// 消息创建者的member信息
+	/// Indicates the member info.
 	/// </summary>
 	[JsonPropertyName("member")]
 	public Member Member { get; set; } = new();
 
 	/// <summary>
-	/// ark消息
+	/// Indicates the ARK info.
 	/// </summary>
 	[JsonPropertyName("ark")]
 	public MessageArk? Ark { get; set; }

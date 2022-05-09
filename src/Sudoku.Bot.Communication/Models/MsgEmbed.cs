@@ -81,7 +81,7 @@ public class MsgEmbed : MessageToCreate
 	/// </summary>
 	/// <param name="content">行内容</param>
 	/// <returns></returns>
-	public MsgEmbed AddLine(string? content) { EmbedFields.Add(new(content)); return this; }
+	public MsgEmbed AddLine(string? content) { EmbedFields.Add(new() { Name = content }); return this; }
 
 	private MessageEmbedThumbnail EmbedThumbnail { get; set; } = new();
 

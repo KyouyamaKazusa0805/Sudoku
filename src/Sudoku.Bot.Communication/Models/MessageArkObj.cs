@@ -1,13 +1,17 @@
 ﻿namespace Sudoku.Bot.Communication.Models;
 
 /// <summary>
-/// ark obj类型
+/// Indicates the ARK message instance.
 /// </summary>
-public class MessageArkObj
+/// <remarks>
+/// The data type is referenced from
+/// <see href="https://bot.q.qq.com/wiki/develop/api/openapi/message/model.html#messagearkobj">this link</see>.
+/// </remarks>
+public sealed class MessageArkObj
 {
 	/// <summary>
-	/// ark objkv列表
+	/// Indicates the list of ARK message key-value pair extra info.
 	/// </summary>
 	[JsonPropertyName("obj_kv")]
-	public List<MessageArkObjKv>? ObjKv { get; set; }
+	public List<MessageArkObjKeyValuePair>? ObjKv { get; set; }
 }

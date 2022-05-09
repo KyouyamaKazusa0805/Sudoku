@@ -1928,52 +1928,63 @@
         </member>
         <member name="T:Sudoku.Bot.Communication.Member">
             <summary>
-            成员
+            Indicates a member info.
             </summary>
+            <remarks>
+            The data type is referenced from
+            <see href="https://bot.q.qq.com/wiki/develop/api/openapi/member/model.html#member">this link</see>.
+            </remarks>
         </member>
         <member name="P:Sudoku.Bot.Communication.Member.User">
             <summary>
-            用户基础信息，来自QQ资料，只有成员相关接口中会填充此信息
+            Indicates the user info. The information is from QQ profile.
             </summary>
+            <remarks>
+            The property will be filled if the member-related interfaces are used.
+            </remarks>
         </member>
-        <member name="P:Sudoku.Bot.Communication.Member.Nick">
+        <member name="P:Sudoku.Bot.Communication.Member.Nickname">
             <summary>
-            用户在频道内的昵称(默认为空)
+            Indicates the nickname of the user, in the GUILD.
             </summary>
         </member>
         <member name="P:Sudoku.Bot.Communication.Member.Roles">
             <summary>
-            用户在频道内的身份组ID, 默认值可参考DefaultRoles
+            Indicates the roles that the member related.
             </summary>
+            <remarks>
+            You can visit the type <see cref="T:Sudoku.Bot.Communication.Models.DefaultRoles"/> to get all possible roles.
+            </remarks>
         </member>
         <member name="P:Sudoku.Bot.Communication.Member.JoinedAt">
             <summary>
-            用户加入频道的时间 ISO8601 timestamp
+            Indicates the time that the user has been joined in this GUILD. The value satisfies the standard
+            ISO8601 timestamp.
             </summary>
         </member>
-        <member name="P:Sudoku.Bot.Communication.Member.Deaf">
+        <member name="P:Sudoku.Bot.Communication.Member.IsDeaf">
             <summary>
-            该字段作用未知，等待官方文档更新
+            <i><b>The property is not used. Author doesn't know the usage of the property.</b></i>
             </summary>
         </member>
-        <member name="P:Sudoku.Bot.Communication.Member.Mute">
+        <member name="P:Sudoku.Bot.Communication.Member.IsJinxed">
             <summary>
-            该成员是否被禁言
+            Indicates whether the user has been jinxed.
             </summary>
         </member>
         <member name="P:Sudoku.Bot.Communication.Member.Pending">
             <summary>
-            该字段作用未知，等待官方文档更新
+            <i><b>The property is not used. Author doesn't know the usage of the property.</b></i>
             </summary>
         </member>
-        <member name="T:Sudoku.Bot.Communication.MemberWithGuildID">
+        <member name="T:Sudoku.Bot.Communication.MemberWithGuildId">
             <summary>
-            有频道ID的成员
+            Indicates the member with GUILD ID value.
             </summary>
         </member>
-        <member name="P:Sudoku.Bot.Communication.MemberWithGuildID.GuildId">
+        <member name="P:Sudoku.Bot.Communication.MemberWithGuildId.GuildId">
             <summary>
-            频道id
+            Indicates the GUILD ID value.
             </summary>
         </member>
         <member name="T:Sudoku.Bot.Communication.Models.Announces">
@@ -2773,274 +2784,291 @@
         </member>
         <member name="T:Sudoku.Bot.Communication.Models.Message">
             <summary>
-            消息对象
+            Indicates the message instance.
             </summary>
+            <remarks>
+            The data type is referenced from
+            <see href="https://bot.q.qq.com/wiki/develop/api/openapi/message/model.html#message">this link</see>.
+            </remarks>
         </member>
         <member name="P:Sudoku.Bot.Communication.Models.Message.Id">
             <summary>
-            消息id
+            Indicates the ID value of the message.
             </summary>
         </member>
         <member name="P:Sudoku.Bot.Communication.Models.Message.ChannelId">
             <summary>
-            子频道 id
+            Indicates the channel ID where this message is from.
             </summary>
         </member>
         <member name="P:Sudoku.Bot.Communication.Models.Message.GuildId">
             <summary>
-            频道 id
+            Indicates the GUILD ID where this message is from.
             </summary>
         </member>
         <member name="P:Sudoku.Bot.Communication.Models.Message.Content">
             <summary>
-            消息内容
+            Indicates the content of the message.
             </summary>
         </member>
-        <member name="P:Sudoku.Bot.Communication.Models.Message.DirectMessage">
+        <member name="P:Sudoku.Bot.Communication.Models.Message.IsDirectMessage">
             <summary>
-            是否 私聊消息
+            Indicates whether the current message is the private message.
             </summary>
         </member>
-        <member name="P:Sudoku.Bot.Communication.Models.Message.MentionEveryone">
+        <member name="P:Sudoku.Bot.Communication.Models.Message.IsAllMentioned">
             <summary>
-            是否 @全员消息
+            Indicates whether the message mentions all members.
             </summary>
         </member>
-        <member name="P:Sudoku.Bot.Communication.Models.Message.CreateTime">
+        <member name="P:Sudoku.Bot.Communication.Models.Message.CreatedTime">
             <summary>
-            消息创建时间
+            Indicates the time when the message created.
             </summary>
         </member>
         <member name="P:Sudoku.Bot.Communication.Models.Message.EditedTime">
             <summary>
-            消息编辑时间
+            Indicates the time when the message edited.
             </summary>
         </member>
-        <member name="P:Sudoku.Bot.Communication.Models.Message.Author">
+        <member name="P:Sudoku.Bot.Communication.Models.Message.MessageCreator">
             <summary>
-            消息创建者
+            Indicates the member who created the message.
             </summary>
         </member>
         <member name="P:Sudoku.Bot.Communication.Models.Message.Attachments">
             <summary>
-            附件(可多个)
+            Indicates the attachments.
             </summary>
         </member>
         <member name="P:Sudoku.Bot.Communication.Models.Message.Embeds">
             <summary>
-            embed
+            Indicates the embedded items.
             </summary>
         </member>
         <member name="P:Sudoku.Bot.Communication.Models.Message.Mentions">
             <summary>
-            消息中@的人
+            Indicates the members the message has mentioned.
             </summary>
         </member>
         <member name="P:Sudoku.Bot.Communication.Models.Message.Member">
             <summary>
-            消息创建者的member信息
+            Indicates the member info.
             </summary>
         </member>
         <member name="P:Sudoku.Bot.Communication.Models.Message.Ark">
             <summary>
-            ark消息
+            Indicates the ARK info.
             </summary>
         </member>
         <member name="T:Sudoku.Bot.Communication.Models.MessageArk">
             <summary>
-            ark消息
+            Indicates an ARK message unit encapsulation.
             </summary>
+            <remarks>
+            The data type is referenced from
+            <see href="https://bot.q.qq.com/wiki/develop/api/openapi/message/model.html#messageark">this link</see>.
+            </remarks>
         </member>
         <member name="P:Sudoku.Bot.Communication.Models.MessageArk.TemplateId">
             <summary>
-            ark模板id（需要先申请）
+            Indicates the templated ID of the ARK message. The templated ID should be requested to be registered firstly.
             </summary>
         </member>
         <member name="P:Sudoku.Bot.Communication.Models.MessageArk.Kv">
             <summary>
-            kv值列表
+            Indicates the extra info that is displayed as a list of key-value pairs.
             </summary>
         </member>
-        <member name="T:Sudoku.Bot.Communication.Models.MessageArkKv">
+        <member name="T:Sudoku.Bot.Communication.Models.MessageArkKeyValuePair">
             <summary>
-            ark的键值对
+            Defines a key-value pair that stores the extra info being used by <see cref="T:Sudoku.Bot.Communication.Models.MessageArk"/> instance.
+            </summary>
+            <remarks>
+            The data type is referenced from
+            <see href="https://bot.q.qq.com/wiki/develop/api/openapi/message/model.html#messagearkkv">this link</see>.
+            </remarks>
+            <seealso cref="T:Sudoku.Bot.Communication.Models.MessageArk"/>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Models.MessageArkKeyValuePair.Key">
+            <summary>
+            Indicates the key of the instance.
             </summary>
         </member>
-        <member name="P:Sudoku.Bot.Communication.Models.MessageArkKv.Key">
+        <member name="P:Sudoku.Bot.Communication.Models.MessageArkKeyValuePair.Value">
             <summary>
-            键
+            Indicates the value of the instance.
             </summary>
         </member>
-        <member name="P:Sudoku.Bot.Communication.Models.MessageArkKv.Value">
+        <member name="P:Sudoku.Bot.Communication.Models.MessageArkKeyValuePair.Obj">
             <summary>
-            值
-            </summary>
-        </member>
-        <member name="P:Sudoku.Bot.Communication.Models.MessageArkKv.Obj">
-            <summary>
-            ark obj类型的列表
+            Indicates the inner objects used.
             </summary>
         </member>
         <member name="T:Sudoku.Bot.Communication.Models.MessageArkObj">
             <summary>
-            ark obj类型
+            Indicates the ARK message instance.
             </summary>
+            <remarks>
+            The data type is referenced from
+            <see href="https://bot.q.qq.com/wiki/develop/api/openapi/message/model.html#messagearkobj">this link</see>.
+            </remarks>
         </member>
         <member name="P:Sudoku.Bot.Communication.Models.MessageArkObj.ObjKv">
             <summary>
-            ark objkv列表
+            Indicates the list of ARK message key-value pair extra info.
             </summary>
         </member>
-        <member name="T:Sudoku.Bot.Communication.Models.MessageArkObjKv">
+        <member name="T:Sudoku.Bot.Communication.Models.MessageArkObjKeyValuePair">
             <summary>
-            ark obj键值对
+            Indicates the key-value pair that displays for a ARK message extra info.
+            </summary>
+            <remarks>
+            The data type is referenced from
+            <see href="https://bot.q.qq.com/wiki/develop/api/openapi/message/model.html#messagearkobjkv">this link</see>.
+            </remarks>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Models.MessageArkObjKeyValuePair.Key">
+            <summary>
+            Indicates the key.
             </summary>
         </member>
-        <member name="M:Sudoku.Bot.Communication.Models.MessageArkObjKv.#ctor">
+        <member name="P:Sudoku.Bot.Communication.Models.MessageArkObjKeyValuePair.Value">
             <summary>
-            构造函数
-            </summary>
-        </member>
-        <member name="M:Sudoku.Bot.Communication.Models.MessageArkObjKv.#ctor(System.String,System.String)">
-            <summary>
-            ark obj键值对构造函数
-            </summary>
-            <param name="key"></param>
-            <param name="value"></param>
-        </member>
-        <member name="P:Sudoku.Bot.Communication.Models.MessageArkObjKv.Key">
-            <summary>
-            键
-            </summary>
-        </member>
-        <member name="P:Sudoku.Bot.Communication.Models.MessageArkObjKv.Value">
-            <summary>
-            值
+            Indicates the value.
             </summary>
         </member>
         <member name="T:Sudoku.Bot.Communication.Models.MessageAttachment">
             <summary>
-            附件对象
+            Indicates the message attachment instance.
             </summary>
+            <remarks>
+            The data type is referenced from
+            <see href="https://bot.q.qq.com/wiki/develop/api/openapi/message/model.html#messageattachment">this link</see>.
+            </remarks>
         </member>
         <member name="P:Sudoku.Bot.Communication.Models.MessageAttachment.Id">
             <summary>
-            附件Id
+            Indicates the ID of the attachment.
             </summary>
         </member>
         <member name="P:Sudoku.Bot.Communication.Models.MessageAttachment.ContentType">
             <summary>
-            附件类型
+            Indicates the content type of the attachment.
             </summary>
         </member>
         <member name="P:Sudoku.Bot.Communication.Models.MessageAttachment.Url">
             <summary>
-            下载地址
+            Indicates the download URL link of the attachment.
             </summary>
         </member>
         <member name="P:Sudoku.Bot.Communication.Models.MessageAttachment.FileName">
             <summary>
-            文件名
+            Indicates the file name of the attachment.
             </summary>
         </member>
         <member name="P:Sudoku.Bot.Communication.Models.MessageAttachment.Size">
             <summary>
-            附件大小
+            Indicates the size of the attachment.
             </summary>
         </member>
         <member name="P:Sudoku.Bot.Communication.Models.MessageAttachment.Width">
             <summary>
-            图片宽度
-            <para>仅附件为图片时才有</para>
+            Indicates the width of the attachment if the file is a picture.
             </summary>
         </member>
         <member name="P:Sudoku.Bot.Communication.Models.MessageAttachment.Height">
             <summary>
-            图片高度
-            <para>仅附件为图片时才有</para>
+            Indicates the height of the attachment if the file is a picture.
             </summary>
         </member>
         <member name="T:Sudoku.Bot.Communication.Models.MessageAudited">
             <summary>
-            消息审核对象
+            Indicates the audited message instance.
             </summary>
+            <remarks>
+            The data type is referenced from
+            <see href="https://bot.q.qq.com/wiki/develop/api/openapi/message/model.html#messageaudited">this link</see>.
+            </remarks>
         </member>
         <member name="P:Sudoku.Bot.Communication.Models.MessageAudited.AuditId">
             <summary>
-            消息审核Id
+            Indicates the ID of the audit.
             </summary>
         </member>
         <member name="P:Sudoku.Bot.Communication.Models.MessageAudited.MessageId">
             <summary>
-            被审核的消息Id
-            <para>只有审核通过事件才会有值</para>
+            Indicates the message to be audited. The property has value if and only if the audit is passed.
             </summary>
         </member>
         <member name="P:Sudoku.Bot.Communication.Models.MessageAudited.GuildId">
             <summary>
-            频道Id
+            Indicates the GUILD ID.
             </summary>
         </member>
         <member name="P:Sudoku.Bot.Communication.Models.MessageAudited.ChannelId">
             <summary>
-            子频道Id
+            Indicates the channel ID.
             </summary>
         </member>
-        <member name="P:Sudoku.Bot.Communication.Models.MessageAudited.AuditTime">
+        <member name="P:Sudoku.Bot.Communication.Models.MessageAudited.AuditedTime">
             <summary>
-            消息审核时间
+            Indicates the time when the audit operated.
             </summary>
         </member>
-        <member name="P:Sudoku.Bot.Communication.Models.MessageAudited.CreateTime">
+        <member name="P:Sudoku.Bot.Communication.Models.MessageAudited.CreatedTime">
             <summary>
-            消息创建时间
+            Indicates the time when the message created.
             </summary>
         </member>
         <member name="P:Sudoku.Bot.Communication.Models.MessageAudited.IsPassed">
             <summary>
-            扩展属性，用于标注审核是否通过
+            Indicates whether the message has passed the audit.
             </summary>
         </member>
         <member name="T:Sudoku.Bot.Communication.Models.MessageEmbed">
             <summary>
-            embed消息
+            Indicates the embedded message.
             </summary>
+            <remarks>
+            The data type is referenced from
+            <see href="https://bot.q.qq.com/wiki/develop/api/openapi/message/model.html#messageembed">this link</see>.
+            </remarks>
         </member>
         <member name="P:Sudoku.Bot.Communication.Models.MessageEmbed.Title">
             <summary>
-            标题
+            Indicates the title of the embedded message.
             </summary>
         </member>
         <member name="P:Sudoku.Bot.Communication.Models.MessageEmbed.Description">
             <summary>
+            Indicates the description of the embedded message.
             描述 (见NodeSDK文档)
             </summary>
         </member>
         <member name="P:Sudoku.Bot.Communication.Models.MessageEmbed.Prompt">
             <summary>
-            消息弹窗内容
+            Indicates the message popped-up.
             </summary>
         </member>
         <member name="P:Sudoku.Bot.Communication.Models.MessageEmbed.Thumbnail">
             <summary>
-            缩略图
+            Indicates the thumbnail of the message.
             </summary>
         </member>
         <member name="P:Sudoku.Bot.Communication.Models.MessageEmbed.Fields">
             <summary>
-            消息列表
+            Indicates the fields of the message.
             </summary>
         </member>
         <member name="T:Sudoku.Bot.Communication.Models.MessageEmbedField">
             <summary>
-            Embed行内容
+            Indicates the field of the embedded message.
             </summary>
-        </member>
-        <member name="M:Sudoku.Bot.Communication.Models.MessageEmbedField.#ctor(System.String)">
-            <summary>
-            构造函数
-            </summary>
-            <param name="name"></param>
+            <remarks>
+            The data type is referenced from
+            <see href="https://bot.q.qq.com/wiki/develop/api/openapi/message/model.html#messageembedfield">this link</see>.
+            </remarks>
         </member>
         <member name="P:Sudoku.Bot.Communication.Models.MessageEmbedField.Name">
             <summary>
@@ -3049,12 +3077,16 @@
         </member>
         <member name="T:Sudoku.Bot.Communication.Models.MessageEmbedThumbnail">
             <summary>
-            缩略图对象
+            Indicates the thumbnail of the embedded message.
             </summary>
+            <remarks>
+            The data type is referenced from
+            <see href="https://bot.q.qq.com/wiki/develop/api/openapi/message/model.html#messageembedthumbnail">this link</see>.
+            </remarks>
         </member>
         <member name="P:Sudoku.Bot.Communication.Models.MessageEmbedThumbnail.Url">
             <summary>
-            图片地址
+            Indicates the URL of the thumbnail.
             </summary>
         </member>
         <member name="T:Sudoku.Bot.Communication.Models.MessageReaction">
@@ -4081,44 +4113,57 @@
         </member>
         <member name="T:Sudoku.Bot.Communication.Models.User">
             <summary>
-            用户
+            Indicates a user info.
             </summary>
+            <remarks>
+            The data type is referenced from
+            <see href="https://bot.q.qq.com/wiki/develop/api/openapi/user/model.html#user">this link</see>.
+            </remarks>
         </member>
         <member name="P:Sudoku.Bot.Communication.Models.User.Id">
             <summary>
-            用户 id
+            Indicates the ID of the user.
             </summary>
         </member>
         <member name="P:Sudoku.Bot.Communication.Models.User.UserName">
             <summary>
-            用户名
+            Indicates the name of the user.
             </summary>
         </member>
         <member name="P:Sudoku.Bot.Communication.Models.User.Avatar">
             <summary>
-            用户头像地址
+            Indicates the URL address that corresponds to the user's avatar.
             </summary>
         </member>
-        <member name="P:Sudoku.Bot.Communication.Models.User.Bot">
+        <member name="P:Sudoku.Bot.Communication.Models.User.IsBot">
             <summary>
-            是否机器人
+            Indicates whether the current user is a bot.
             </summary>
         </member>
-        <member name="P:Sudoku.Bot.Communication.Models.User.UnionOpenid">
+        <member name="P:Sudoku.Bot.Communication.Models.User.UnionOpenId">
             <summary>
-            特殊关联应用的 openid，需要特殊申请并配置后才会返回。如需申请，请联系平台运营人员。
+            Indicates the open ID value that connects applications.
             </summary>
+            <remarks>
+            The value is special: you should connect platform operators to get the value;
+            otherwise, keep the value be <see langword="null"/>.
+            </remarks>
         </member>
         <member name="P:Sudoku.Bot.Communication.Models.User.UnionUserAccount">
             <summary>
-            机器人关联的互联应用的用户信息，与 UnionOpenid 关联的应用是同一个。如需申请，请联系平台运营人员。
+            Indicates the accounter info for the application connected,
+            which connects the same application as the property <see cref="P:Sudoku.Bot.Communication.Models.User.UnionOpenId"/>.
             </summary>
+            <remarks>
+            The value is special: you should connect platform operators to get the value;
+            otherwise, keep the value be <see langword="null"/>.
+            </remarks>
         </member>
         <member name="P:Sudoku.Bot.Communication.Models.User.Tag">
             <summary>
-            @用户 标签
-            <para>数据内容为：&lt;@!UserId&gt;</para>
+            Indicates the user tag. The format is <c><![CDATA[<@!Id>]]></c>
             </summary>
+            <seealso cref="P:Sudoku.Bot.Communication.Models.User.Id"/>
         </member>
         <member name="T:Sudoku.Bot.Communication.Models.WebSocketLimit">
             <summary>

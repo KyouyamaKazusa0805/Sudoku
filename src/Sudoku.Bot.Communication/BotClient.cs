@@ -274,7 +274,7 @@ public partial class BotClient
 	/// string - 事件类型（GUILD_MEMBER_ADD | GUILD_MEMBER_UPDATE | GUILD_MEMBER_REMOVE）
 	/// </para>
 	/// </summary>
-	public event Action<BotClient, MemberWithGuildID, string>? OnGuildMemberMsg;
+	public event Action<BotClient, MemberWithGuildId, string>? OnGuildMemberMsg;
 
 	/// <summary>
 	/// 修改表情表态后触发
@@ -381,7 +381,7 @@ public partial class BotClient
 				{
 					Log.Info($"[接口访问失败] 机器人配置ReportError!=true，取消推送给发件人");
 				}
-				else if (sender.Message.CreateTime.AddMinutes(5) < DateTime.Now)
+				else if (sender.Message.CreatedTime.AddMinutes(5) < DateTime.Now)
 				{
 					Log.Info($"[接口访问失败] 被动可回复时间已超时，取消推送给发件人");
 				}
@@ -430,12 +430,12 @@ public partial class BotClient
 		}
 
 		var outTime = DateTime.Now.AddMinutes(-10);
-		string userId = msg.Author.Id;
+		string userId = msg.MessageCreator.Id;
 		StackMessage.TryGetValue(userId, out var messages);
 
 		if (push)
 		{
-			messages?.RemoveAll(m => m.CreateTime < outTime);
+			messages?.RemoveAll(m => m.CreatedTime < outTime);
 			messages ??= new();
 			messages.Add(msg);
 			StackMessage[userId] = messages;

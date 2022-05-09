@@ -1,50 +1,52 @@
 ﻿namespace Sudoku.Bot.Communication.Models;
 
 /// <summary>
-/// 附件对象
+/// Indicates the message attachment instance.
 /// </summary>
-public class MessageAttachment
+/// <remarks>
+/// The data type is referenced from
+/// <see href="https://bot.q.qq.com/wiki/develop/api/openapi/message/model.html#messageattachment">this link</see>.
+/// </remarks>
+public sealed class MessageAttachment
 {
 	/// <summary>
-	/// 附件Id
+	/// Indicates the ID of the attachment.
 	/// </summary>
 	[JsonPropertyName("id")]
 	public string? Id { get; set; }
 
 	/// <summary>
-	/// 附件类型
+	/// Indicates the content type of the attachment.
 	/// </summary>
 	[JsonPropertyName("content_type")]
 	public string? ContentType { get; set; }
 
 	/// <summary>
-	/// 下载地址
+	/// Indicates the download URL link of the attachment.
 	/// </summary>
 	[JsonPropertyName("url")]
 	public string Url { set; get; } = string.Empty;
 
 	/// <summary>
-	/// 文件名
+	/// Indicates the file name of the attachment.
 	/// </summary>
 	[JsonPropertyName("filename")]
 	public string? FileName { get; set; }
 
 	/// <summary>
-	/// 附件大小
+	/// Indicates the size of the attachment.
 	/// </summary>
 	[JsonPropertyName("size")]
 	public long? Size { get; set; }
 
 	/// <summary>
-	/// 图片宽度
-	/// <para>仅附件为图片时才有</para>
+	/// Indicates the width of the attachment if the file is a picture.
 	/// </summary>
 	[JsonPropertyName("width")]
 	public int? Width { get; set; }
 
 	/// <summary>
-	/// 图片高度
-	/// <para>仅附件为图片时才有</para>
+	/// Indicates the height of the attachment if the file is a picture.
 	/// </summary>
 	[JsonPropertyName("height")]
 	public int? Height { get; set; }

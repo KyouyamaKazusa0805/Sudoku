@@ -1,12 +1,12 @@
 ﻿namespace Sudoku.Bot.Communication;
 
 /// <summary>
-/// 有频道ID的成员
+/// Indicates the member with GUILD ID value.
 /// </summary>
-public class MemberWithGuildID : Member
+public sealed class MemberWithGuildId : Member
 {
 	/// <summary>
-	/// 频道id
+	/// Indicates the GUILD ID value.
 	/// </summary>
 	[JsonPropertyName("guild_id")]
 	public string GuildId { get; set; } = string.Empty;

@@ -1,43 +1,52 @@
 ﻿namespace Sudoku.Bot.Communication.Models;
 
 /// <summary>
-/// 消息审核对象
+/// Indicates the audited message instance.
 /// </summary>
-public class MessageAudited
+/// <remarks>
+/// The data type is referenced from
+/// <see href="https://bot.q.qq.com/wiki/develop/api/openapi/message/model.html#messageaudited">this link</see>.
+/// </remarks>
+public sealed class MessageAudited
 {
 	/// <summary>
-	/// 消息审核Id
+	/// Indicates the ID of the audit.
 	/// </summary>
 	[JsonPropertyName("audit_id")]
 	public string AuditId { get; set; } = string.Empty;
+
 	/// <summary>
-	/// 被审核的消息Id
-	/// <para>只有审核通过事件才会有值</para>
+	/// Indicates the message to be audited. The property has value if and only if the audit is passed.
 	/// </summary>
 	[JsonPropertyName("message_id")]
 	public string? MessageId { get; set; }
+
 	/// <summary>
-	/// 频道Id
+	/// Indicates the GUILD ID.
 	/// </summary>
 	[JsonPropertyName("guild_id")]
 	public string GuildId { get; set; } = string.Empty;
+
 	/// <summary>
-	/// 子频道Id
+	/// Indicates the channel ID.
 	/// </summary>
 	[JsonPropertyName("channel_id")]
 	public string ChannelId { get; set; } = string.Empty;
+
 	/// <summary>
-	/// 消息审核时间
+	/// Indicates the time when the audit operated.
 	/// </summary>
 	[JsonPropertyName("audit_time"), JsonConverter(typeof(DateTimeTimestampConverter))]
-	public DateTime AuditTime { get; set; }
+	public DateTime AuditedTime { get; set; }
+
 	/// <summary>
-	/// 消息创建时间
+	/// Indicates the time when the message created.
 	/// </summary>
 	[JsonPropertyName("create_time"), JsonConverter(typeof(DateTimeTimestampConverter))]
-	public DateTime CreateTime { get; set; }
+	public DateTime CreatedTime { get; set; }
+
 	/// <summary>
-	/// 扩展属性，用于标注审核是否通过
+	/// Indicates whether the message has passed the audit.
 	/// </summary>
 	[JsonIgnore]
 	public bool IsPassed { get; set; } = false;

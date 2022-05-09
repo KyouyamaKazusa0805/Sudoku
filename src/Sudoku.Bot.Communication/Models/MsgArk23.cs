@@ -6,9 +6,9 @@
 /// </summary>
 public class MsgArk23 : MessageToCreate
 {
-	private readonly MessageArkKv _arkDesc = new() { Key = "#DESC#", Value = null };
+	private readonly MessageArkKeyValuePair _arkDesc = new() { Key = "#DESC#", Value = null };
 
-	private readonly MessageArkKv _arkPrompt = new() { Key = "#PROMPT#", Value = null };
+	private readonly MessageArkKeyValuePair _arkPrompt = new() { Key = "#PROMPT#", Value = null };
 
 
 	/// <summary>
@@ -87,7 +87,7 @@ public class MsgArk23 : MessageToCreate
 	/// <returns></returns>
 	public MsgArk23 AddLine(string? content, string? link = null)
 	{
-		var ojbk = new List<MessageArkObjKv> { new() { Key = "desc", Value = content } };
+		var ojbk = new List<MessageArkObjKeyValuePair> { new() { Key = "desc", Value = content } };
 		if (link is not null)
 		{
 			ojbk.Add(new() { Key = "link", Value = link });

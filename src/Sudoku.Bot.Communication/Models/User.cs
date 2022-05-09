@@ -1,50 +1,63 @@
 ﻿namespace Sudoku.Bot.Communication.Models;
 
 /// <summary>
-/// 用户
+/// Indicates a user info.
 /// </summary>
-public class User
+/// <remarks>
+/// The data type is referenced from
+/// <see href="https://bot.q.qq.com/wiki/develop/api/openapi/user/model.html#user">this link</see>.
+/// </remarks>
+public sealed class User
 {
 	/// <summary>
-	/// 用户 id
+	/// Indicates the ID of the user.
 	/// </summary>
 	[JsonPropertyName("id")]
 	public string Id { get; set; } = string.Empty;
 
 	/// <summary>
-	/// 用户名
+	/// Indicates the name of the user.
 	/// </summary>
 	[JsonPropertyName("username")]
 	public string UserName { get; set; } = string.Empty;
 
 	/// <summary>
-	/// 用户头像地址
+	/// Indicates the URL address that corresponds to the user's avatar.
 	/// </summary>
 	[JsonPropertyName("avatar")]
 	public string? Avatar { get; set; }
 
 	/// <summary>
-	/// 是否机器人
+	/// Indicates whether the current user is a bot.
 	/// </summary>
 	[JsonPropertyName("bot")]
-	public bool Bot { get; set; } = true;
+	public bool IsBot { get; set; } = true;
 
 	/// <summary>
-	/// 特殊关联应用的 openid，需要特殊申请并配置后才会返回。如需申请，请联系平台运营人员。
+	/// Indicates the open ID value that connects applications.
 	/// </summary>
+	/// <remarks>
+	/// The value is special: you should connect platform operators to get the value;
+	/// otherwise, keep the value be <see langword="null"/>.
+	/// </remarks>
 	[JsonPropertyName("union_openid")]
-	public string? UnionOpenid { get; set; }
+	public string? UnionOpenId { get; set; }
 
 	/// <summary>
-	/// 机器人关联的互联应用的用户信息，与 UnionOpenid 关联的应用是同一个。如需申请，请联系平台运营人员。
+	/// Indicates the accounter info for the application connected,
+	/// which connects the same application as the property <see cref="UnionOpenId"/>.
 	/// </summary>
+	/// <remarks>
+	/// The value is special: you should connect platform operators to get the value;
+	/// otherwise, keep the value be <see langword="null"/>.
+	/// </remarks>
 	[JsonPropertyName("union_user_account")]
 	public string? UnionUserAccount { get; set; }
 
 	/// <summary>
-	/// @用户 标签
-	/// <para>数据内容为：&lt;@!UserId&gt;</para>
+	/// Indicates the user tag. The format is <c><![CDATA[<@!Id>]]></c>
 	/// </summary>
+	/// <seealso cref="Id"/>
 	[JsonIgnore]
 	public string Tag => $"<@!{Id}>";
 }
