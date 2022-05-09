@@ -1,6 +1,6 @@
 ﻿#pragma warning disable CS1591
 
-namespace Sudoku.Bot.Communication.Models;
+namespace Sudoku.Bot.Communication.Models.MessageTemplates;
 
 /// <summary>
 /// Indicates the templated message whose ID is 37, which contains a line of plain text, a subtitle

@@ -3172,6 +3172,43 @@
             Indicates whether the operation ignores the wrong case that fetched the message reference.
             </summary>
         </member>
+        <member name="T:Sudoku.Bot.Communication.Models.MessageTemplates.MsgArk23">
+            <summary>
+            Indicates the templated message whose ID is 23, which contains plain text with links.
+            </summary>
+            <remarks>
+            The data type is referenced from
+            <see href="https://bot.q.qq.com/wiki/develop/gosdk/api/message/message_template.html#%E6%A0%B7%E5%BC%8F-id-23">this link</see>.
+            </remarks>
+        </member>
+        <member name="T:Sudoku.Bot.Communication.Models.MessageTemplates.MsgArk24">
+            <summary>
+            Indicates the templated message whose ID is 24, which contains a paragraph of plain text, a link and a thumbnail.
+            </summary>
+            <remarks>
+            The data type is referenced from
+            <see href="https://bot.q.qq.com/wiki/develop/gosdk/api/message/message_template.html#%E6%A0%B7%E5%BC%8F-id-24">this link</see>.
+            </remarks>
+        </member>
+        <member name="T:Sudoku.Bot.Communication.Models.MessageTemplates.MsgArk34">
+            <summary>
+            Indicates the templated message whose ID is 34, which contains a line of plain text, a big-sized picture.
+            </summary>
+            <remarks>
+            The data type is referenced from
+            <see href="https://bot.q.qq.com/wiki/develop/gosdk/api/message/message_template.html#%E6%A0%B7%E5%BC%8F-id-34">this link</see>.
+            </remarks>
+        </member>
+        <member name="T:Sudoku.Bot.Communication.Models.MessageTemplates.MsgArk37">
+            <summary>
+            Indicates the templated message whose ID is 37, which contains a line of plain text, a subtitle
+            and a big-sized picture.
+            </summary>
+            <remarks>
+            The data type is referenced from
+            <see href="https://bot.q.qq.com/wiki/develop/gosdk/api/message/message_template.html#%E6%A0%B7%E5%BC%8F-id-37">this link</see>.
+            </remarks>
+        </member>
         <member name="T:Sudoku.Bot.Communication.Models.MessageToCreate">
             <summary>
             Indicates a message to be created.
@@ -3210,43 +3247,6 @@
             <summary>
             Indicates the message ID that the message is replied.
             </summary>
-        </member>
-        <member name="T:Sudoku.Bot.Communication.Models.MsgArk23">
-            <summary>
-            Indicates the templated message whose ID is 23, which contains plain text with links.
-            </summary>
-            <remarks>
-            The data type is referenced from
-            <see href="https://bot.q.qq.com/wiki/develop/gosdk/api/message/message_template.html#%E6%A0%B7%E5%BC%8F-id-23">this link</see>.
-            </remarks>
-        </member>
-        <member name="T:Sudoku.Bot.Communication.Models.MsgArk24">
-            <summary>
-            Indicates the templated message whose ID is 24, which contains a paragraph of plain text, a link and a thumbnail.
-            </summary>
-            <remarks>
-            The data type is referenced from
-            <see href="https://bot.q.qq.com/wiki/develop/gosdk/api/message/message_template.html#%E6%A0%B7%E5%BC%8F-id-24">this link</see>.
-            </remarks>
-        </member>
-        <member name="T:Sudoku.Bot.Communication.Models.MsgArk34">
-            <summary>
-            Indicates the templated message whose ID is 34, which contains a line of plain text, a big-sized picture.
-            </summary>
-            <remarks>
-            The data type is referenced from
-            <see href="https://bot.q.qq.com/wiki/develop/gosdk/api/message/message_template.html#%E6%A0%B7%E5%BC%8F-id-34">this link</see>.
-            </remarks>
-        </member>
-        <member name="T:Sudoku.Bot.Communication.Models.MsgArk37">
-            <summary>
-            Indicates the templated message whose ID is 37, which contains a line of plain text, a subtitle
-            and a big-sized picture.
-            </summary>
-            <remarks>
-            The data type is referenced from
-            <see href="https://bot.q.qq.com/wiki/develop/gosdk/api/message/message_template.html#%E6%A0%B7%E5%BC%8F-id-37">this link</see>.
-            </remarks>
         </member>
         <member name="T:Sudoku.Bot.Communication.Models.MsgDescImg">
             <summary>
