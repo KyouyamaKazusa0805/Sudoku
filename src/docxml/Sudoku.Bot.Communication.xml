@@ -3252,91 +3252,24 @@
             <see href="https://bot.q.qq.com/wiki/develop/gosdk/api/message/message_template.html#%E6%A0%B7%E5%BC%8F-id-37">this link</see>.
             </remarks>
         </member>
-        <member name="T:Sudoku.Bot.Communication.Models.MsgImage">
+        <member name="T:Sudoku.Bot.Communication.Models.MessageTemplates.TagCreator">
             <summary>
-            图片消息
+            Provides a creator that can create tags for mentioning.
             </summary>
         </member>
-        <member name="M:Sudoku.Bot.Communication.Models.MsgImage.#ctor(System.String,System.String)">
+        <member name="M:Sudoku.Bot.Communication.Models.MessageTemplates.TagCreator.Tag(Sudoku.Bot.Communication.Models.User)">
             <summary>
-            构建图片消息
+            Creates a tag message that mentions the specified user.
             </summary>
-            <param name="image">图片URL</param>
-            <param name="replyMsgId">要回复的消息id</param>
+            <param name="user">The user instance.</param>
+            <returns>The string representation of the tag.</returns>
         </member>
-        <member name="M:Sudoku.Bot.Communication.Models.MsgImage.SetReplyMsgId(System.String)">
+        <member name="M:Sudoku.Bot.Communication.Models.MessageTemplates.TagCreator.Tag(Sudoku.Bot.Communication.Models.Channel)">
             <summary>
-            设置要回复的目标消息
+            Creates a tag message that mentions the channel.
             </summary>
-            <param name="msgId">目标消息的Id</param>
-            <returns></returns>
-        </member>
-        <member name="M:Sudoku.Bot.Communication.Models.MsgImage.SetImage(System.String)">
-            <summary>
-            设置图片网址
-            </summary>
-            <param name="image">图片URL</param>
-            <returns></returns>
-        </member>
-        <member name="T:Sudoku.Bot.Communication.Models.MsgTag">
-            <summary>
-            消息内嵌标签
-            <para>仅作用于content中</para>
-            </summary>
-        </member>
-        <member name="M:Sudoku.Bot.Communication.Models.MsgTag.User(System.String)">
-            <summary>
-            创建 @用户 标签
-            </summary>
-            <param name="userId">用户id</param>
-            <returns></returns>
-        </member>
-        <member name="M:Sudoku.Bot.Communication.Models.MsgTag.Channel(System.String)">
-            <summary>
-            创建 #子频道 标签
-            </summary>
-            <param name="channelId">子频道id</param>
-            <returns></returns>
-        </member>
-        <member name="M:Sudoku.Bot.Communication.Models.MsgTag.Tag(Sudoku.Bot.Communication.Models.User)">
-            <summary>
-            创建 @用户 标签
-            </summary>
-            <param name="user">用户对象</param>
-            <returns></returns>
-        </member>
-        <member name="M:Sudoku.Bot.Communication.Models.MsgTag.Tag(Sudoku.Bot.Communication.Models.Channel)">
-            <summary>
-            创建 #子频道 标签
-            </summary>
-            <param name="channel">子频道对象</param>
-            <returns></returns>
-        </member>
-        <member name="T:Sudoku.Bot.Communication.Models.MsgText">
-            <summary>
-            文字消息
-            </summary>
-        </member>
-        <member name="M:Sudoku.Bot.Communication.Models.MsgText.#ctor(System.String,System.String)">
-            <summary>
-            构建文字消息
-            </summary>
-            <param name="content">消息内容</param>
-            <param name="replyMsgId">要回复的消息Id</param>
-        </member>
-        <member name="M:Sudoku.Bot.Communication.Models.MsgText.SetReplyMsgId(System.String)">
-            <summary>
-            设置要回复的目标消息
-            </summary>
-            <param name="msgId">目标消息的Id</param>
-            <returns></returns>
-        </member>
-        <member name="M:Sudoku.Bot.Communication.Models.MsgText.SetContent(System.String)">
-            <summary>
-            设置消息内容
-            </summary>
-            <param name="content">文字内容</param>
-            <returns></returns>
+            <param name="channel">The channel instance.</param>
+            <returns>The string representation of the channel.</returns>
         </member>
         <member name="T:Sudoku.Bot.Communication.Models.MessageToCreate">
             <summary>
