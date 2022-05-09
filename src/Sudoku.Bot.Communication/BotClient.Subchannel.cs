@@ -10,8 +10,8 @@ partial class BotClient
 	/// <returns>Channel?</returns>
 	public async Task<Channel?> GetChannelAsync(string channel_id, Sender? sender = null)
 	{
-		var api = BotApis.获取子频道详情;
-		var response = await HttpSendAsync(api.Path.Replace("{channel_id}", channel_id), api.Method, null, sender);
+		_ = BotApis.GetChannelDetail is { Path: var path, Method: var method };
+		var response = await HttpSendAsync(path.Replace("{channel_id}", channel_id), method, null, sender);
 		return response is null ? null : await response.Content.ReadFromJsonAsync<Channel?>();
 	}
 
@@ -26,8 +26,8 @@ partial class BotClient
 	public async Task<List<Channel>?> GetChannelsAsync(
 		string guild_id, ChannelType? channelType = null, ChannelSubtype? channelSubType = null, Sender? sender = null)
 	{
-		var api = BotApis.获取子频道列表;
-		var response = await HttpSendAsync(api.Path.Replace("{guild_id}", guild_id), api.Method, null, sender);
+		_ = BotApis.GetChannelsInGuild is { Path: var path, Method: var method };
+		var response = await HttpSendAsync(path.Replace("{guild_id}", guild_id), method, null, sender);
 		var channels = response is null ? null : await response.Content.ReadFromJsonAsync<List<Channel>?>();
 		if (channels is not null)
 		{
@@ -61,13 +61,14 @@ partial class BotClient
 	/// <returns></returns>
 	public async Task<Channel?> CreateChannelAsync(Channel channel, Sender? sender = null)
 	{
-		var api = BotApis.创建子频道;
+		_ = BotApis.CreateChannel is { Path: var path, Method: var method };
 		var response = await HttpSendAsync(
-			api.Path.Replace("{guild_id}", channel.GuildId),
-			api.Method,
+			path.Replace("{guild_id}", channel.GuildId),
+			method,
 			JsonContent.Create(channel),
 			sender
 		);
+
 		return response is null ? null : await response.Content.ReadFromJsonAsync<Channel?>();
 	}
 
@@ -79,10 +80,10 @@ partial class BotClient
 	/// <returns></returns>
 	public async Task<Channel?> EditChannelAsync(Channel channel, Sender? sender = null)
 	{
-		var api = BotApis.修改子频道;
+		_ = BotApis.ModifyChannel is { Path: var path, Method: var method };
 		var response = await HttpSendAsync(
-			api.Path.Replace("{channel_id}", channel.Id),
-			api.Method,
+			path.Replace("{channel_id}", channel.Id),
+			method,
 			JsonContent.Create(channel),
 			sender
 		);
@@ -98,8 +99,8 @@ partial class BotClient
 	/// <returns></returns>
 	public async Task<bool> DeleteChannelAsync(string channel_id, Sender? sender = null)
 	{
-		var api = BotApis.删除子频道;
-		var response = await HttpSendAsync(api.Path.Replace("{channel_id}", channel_id), api.Method, null, sender);
+		_ = BotApis.DeleteChannel is { Path: var path, Method: var method };
+		var response = await HttpSendAsync(path.Replace("{channel_id}", channel_id), method, null, sender);
 		return response?.IsSuccessStatusCode ?? false;
 	}
 }

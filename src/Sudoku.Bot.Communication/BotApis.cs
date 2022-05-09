@@ -3,7 +3,7 @@
 /// <summary>
 /// Provides with a set of APIs.
 /// </summary>
-public static class BotApis
+internal static class BotApis
 {
 	/// <summary>
 	/// Gets the details of the bot.
@@ -13,77 +13,77 @@ public static class BotApis
 	/// <item>Need authorization: false</item>
 	/// </list>
 	/// </summary>
-	public static BotApi 获取用户详情 => new(ApiType.Both, HttpMethod.Get, """/users/@me""");
+	public static BotApi GetUserDetail => new(ApiType.Both, HttpMethod.Get, """/users/@me""");
 
 	/// <summary>
-	/// 获取当前用户（机器人）所加入的频道列表
-	/// <para>
-	/// <see href="https://bot.q.qq.com/wiki/develop/api/openapi/user/guilds.html">接口文档</see><br/>
-	/// 无需鉴权<br/>
-	/// GET /users/@me/guilds
-	/// </para>
+	/// Gets the list of GUILDs where the current user has joined.
+	/// <list type="bullet">
+	/// <item>Documentation: <see href="https://bot.q.qq.com/wiki/develop/api/openapi/user/guilds.html">here</see>.</item>
+	/// <item>Corresponding: <c>GET /users/@me/guilds</c></item>
+	/// <item>Need authorization: false</item>
+	/// </list>
 	/// </summary>
-	public static BotApi 获取用户频道列表 => new(ApiType.Both, HttpMethod.Get, """/users/@me/guilds""");
+	public static BotApi GetUserJoinedGuilds => new(ApiType.Both, HttpMethod.Get, """/users/@me/guilds""");
 
 	/// <summary>
-	/// 获取 guild_id 指定的频道的详情
-	/// <para>
-	/// <see href="https://bot.q.qq.com/wiki/develop/api/openapi/guild/get_guild.html">接口文档</see><br/>
-	/// 公域鉴权<br/>
-	/// GET /guilds/{guild_id}
-	/// </para>
+	/// Gets the details of the specified GUILD.
+	/// <list type="bullet">
+	/// <item>Documentation: <see href="https://bot.q.qq.com/wiki/develop/api/openapi/guild/get_guild.html">here</see>.</item>
+	/// <item>Corresponding: <c>GET /guilds/{guild_id}</c></item>
+	/// <item>Need authorization: true if <see cref="ApiType.PublicDomain"/>; otherwise false</item>
+	/// </list>
 	/// </summary>
-	public static BotApi 获取频道详情 => new(ApiType.PublicDomain, HttpMethod.Get, @"/guilds/{guild_id}");
+	public static BotApi GetGuildDetail => new(ApiType.PublicDomain, HttpMethod.Get, """/guilds/{guild_id}""");
 
 	/// <summary>
-	/// 获取 guild_id 指定的频道下的子频道列表
-	/// <para>
-	/// <see href="https://bot.q.qq.com/wiki/develop/api/openapi/channel/get_channels.html">接口文档</see><br/>
-	/// 公域鉴权<br/>
-	/// GET /guilds/{guild_id}/channels
-	/// </para>
+	/// Gets the list of channels in the specified GUILD.
+	/// <list type="bullet">
+	/// <item>Documentation: <see href="https://bot.q.qq.com/wiki/develop/api/openapi/channel/get_channels.html">here</see>.</item>
+	/// <item>Corresponding: <c>GET /guilds/{guild_id}/channels</c></item>
+	/// <item>Need authorization: true if <see cref="ApiType.PublicDomain"/>; otherwise false</item>
+	/// </list>
 	/// </summary>
-	public static BotApi 获取子频道列表 => new(ApiType.PublicDomain, HttpMethod.Get, @"/guilds/{guild_id}/channels");
+	public static BotApi GetChannelsInGuild => new(ApiType.PublicDomain, HttpMethod.Get, """/guilds/{guild_id}/channels""");
 
 	/// <summary>
-	/// 获取 channel_id 指定的子频道的详情
-	/// <para>
-	/// <see href="https://bot.q.qq.com/wiki/develop/api/openapi/channel/get_channel.html">接口文档</see><br/>
-	/// 公域鉴权<br/>
-	/// GET /channels/{channel_id}
-	/// </para>
+	/// Gets the detail of a channel.
+	/// <list type="bullet">
+	/// <item>Documentation: <see href="https://bot.q.qq.com/wiki/develop/api/openapi/channel/get_channel.html">here</see>.</item>
+	/// <item>Corresponding: <c>GET /guilds/{guild_id}/channels</c></item>
+	/// <item>Need authorization: true if <see cref="ApiType.PublicDomain"/>; otherwise false</item>
+	/// </list>
 	/// </summary>
-	public static BotApi 获取子频道详情 => new(ApiType.PublicDomain, HttpMethod.Get, @"/channels/{channel_id}");
+	public static BotApi GetChannelDetail => new(ApiType.PublicDomain, HttpMethod.Get, """/channels/{channel_id}""");
 
 	/// <summary>
-	/// 在 guild_id 指定的频道下创建一个子频道
-	/// <para>
-	/// <see href="https://bot.q.qq.com/wiki/develop/api/openapi/channel/post_channels.html">接口文档</see><br/>
-	/// 私域鉴权<br/>
-	/// POST /guilds/{guild_id}/channels
-	/// </para>
+	/// Creates a channel in the specified GUILD.
+	/// <list type="bullet">
+	/// <item>Documentation: <see href="https://bot.q.qq.com/wiki/develop/api/openapi/channel/post_channels.html">here</see>.</item>
+	/// <item>Corresponding: <c>POST /guilds/{guild_id}/channels</c></item>
+	/// <item>Need authorization: true if <see cref="ApiType.PrivateDomain"/>; otherwise false</item>
+	/// </list>
 	/// </summary>
-	public static BotApi 创建子频道 => new(ApiType.PrivateDomain, HttpMethod.Post, @"/guilds/{guild_id}/channels");
+	public static BotApi CreateChannel => new(ApiType.PrivateDomain, HttpMethod.Post, """/guilds/{guild_id}/channels""");
 
 	/// <summary>
-	/// 修改 channel_id 指定的子频道的信息
-	/// <para>
-	/// <see href="https://bot.q.qq.com/wiki/develop/api/openapi/channel/patch_channel.html">接口文档</see><br/>
-	/// 私域鉴权<br/>
-	/// PATCH /channels/{channel_id}
-	/// </para>
+	/// Modify a channel.
+	/// <list type="bullet">
+	/// <item>Documentation: <see href="https://bot.q.qq.com/wiki/develop/api/openapi/channel/patch_channel.html">here</see>.</item>
+	/// <item>Corresponding: <c>PATCH /channels/{channel_id}</c></item>
+	/// <item>Need authorization: true if <see cref="ApiType.PrivateDomain"/>; otherwise false</item>
+	/// </list>
 	/// </summary>
-	public static BotApi 修改子频道 => new(ApiType.PrivateDomain, HttpMethod.Patch, @"/channels/{channel_id}");
+	public static BotApi ModifyChannel => new(ApiType.PrivateDomain, HttpMethod.Patch, """/channels/{channel_id}""");
 
 	/// <summary>
-	/// 删除 channel_id 指定的子频道
-	/// <para>
-	/// <see href="https://bot.q.qq.com/wiki/develop/api/openapi/channel/delete_channel.html">接口文档</see><br/>
-	/// 私域鉴权<br/>
-	/// DELETE /channels/{channel_id}
-	/// </para>
+	/// Delete a channel.
+	/// <list type="bullet">
+	/// <item>Documentation: <see href="https://bot.q.qq.com/wiki/develop/api/openapi/channel/delete_channel.html">here</see>.</item>
+	/// <item>Corresponding: <c>DELETE /channels/{channel_id}</c></item>
+	/// <item>Need authorization: true if <see cref="ApiType.PrivateDomain"/>; otherwise false</item>
+	/// </list>
 	/// </summary>
-	public static BotApi 删除子频道 => new(ApiType.PrivateDomain, HttpMethod.Delete, @"/channels/{channel_id}");
+	public static BotApi DeleteChannel => new(ApiType.PrivateDomain, HttpMethod.Delete, """/channels/{channel_id}""");
 
 	/// <summary>
 	/// 获取 guild_id 指定的频道中所有成员的详情列表
@@ -94,6 +94,7 @@ public static class BotApis
 	/// </para>
 	/// </summary>
 	public static BotApi 获取频道成员列表 => new(ApiType.PrivateDomain, HttpMethod.Get, @"/guilds/{guild_id}/members");
+
 	/// <summary>
 	/// 获取 guild_id 指定的频道中 user_id 对应成员的详细信息
 	/// <para>
@@ -103,6 +104,7 @@ public static class BotApis
 	/// </para>
 	/// </summary>
 	public static BotApi 获取成员详情 => new(ApiType.PublicDomain, HttpMethod.Get, @"/guilds/{guild_id}/members/{user_id}");
+
 	/// <summary>
 	/// 删除 guild_id 指定的频道中 user_id 对应的成员
 	/// <para>

@@ -10,8 +10,8 @@ partial class BotClient
 	/// <returns>Guild?</returns>
 	public async Task<Guild?> GetGuildAsync(string guild_id, Sender? sender = null)
 	{
-		var api = BotApis.获取频道详情;
-		var response = await HttpSendAsync(api.Path.Replace("{guild_id}", guild_id), api.Method, null, sender);
+		_ = BotApis.GetGuildDetail is { Path: var path, Method: var method };
+		var response = await HttpSendAsync(path.Replace("{guild_id}", guild_id), method, null, sender);
 		return response == null ? null : await response.Content.ReadFromJsonAsync<Guild?>();
 	}
 }

@@ -10,8 +10,8 @@ partial class BotClient
 	/// <returns>当前用户对象</returns>
 	public async Task<User?> GetMeAsync(Sender? sender = null)
 	{
-		var api = BotApis.获取用户详情;
-		var response = await HttpSendAsync(api.Path, api.Method, null, sender);
+		_ = BotApis.GetUserDetail is { Path: var path, Method: var method };
+		var response = await HttpSendAsync(path, method, null, sender);
 		return response is null ? null : await response.Content.ReadFromJsonAsync<User?>();
 	}
 
@@ -27,9 +27,9 @@ partial class BotClient
 	public async Task<List<Guild>?> GetMeGuildsAsync(
 		string? guild_id = null, bool route = false, int limit = 100, Sender? sender = null)
 	{
-		var api = BotApis.获取用户频道列表;
-		guild_id = string.IsNullOrWhiteSpace(guild_id) ? "" : $"&{(route ? "before" : "after")}={guild_id}";
-		var response = await HttpSendAsync($"{api.Path}?limit={limit}{guild_id}", api.Method, null, sender);
+		_ = BotApis.GetUserJoinedGuilds is { Path: var path, Method: var method };
+		guild_id = string.IsNullOrWhiteSpace(guild_id) ? string.Empty : $"&{(route ? "before" : "after")}={guild_id}";
+		var response = await HttpSendAsync($"{path}?limit={limit}{guild_id}", method, null, sender);
 		return response is null ? null : await response.Content.ReadFromJsonAsync<List<Guild>?>();
 	}
 }
