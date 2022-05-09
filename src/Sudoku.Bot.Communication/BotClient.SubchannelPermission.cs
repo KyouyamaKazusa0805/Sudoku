@@ -12,10 +12,10 @@ partial class BotClient
 	public async Task<ChannelPermissions?> GetChannelPermissionsAsync(
 		string channel_id, string user_id, Sender? sender = null)
 	{
-		var api = BotApis.获取子频道用户权限;
+		_ = BotApis.GetUserPermissionInChannel is { Path: var path, Method: var method };
 		var response = await HttpSendAsync(
-			api.Path.Replace("{channel_id}", channel_id).Replace("{user_id}", user_id),
-			api.Method,
+			path.Replace("{channel_id}", channel_id).Replace("{user_id}", user_id),
+			method,
 			null,
 			sender
 		);
@@ -35,10 +35,10 @@ partial class BotClient
 	public async Task<bool> EditChannelPermissionsAsync(
 		string channel_id, string user_id, string add = "0", string remove = "0", Sender? sender = null)
 	{
-		var api = BotApis.修改子频道用户权限;
+		_ = BotApis.ModifyUserPermissionInChannel is { Path: var path, Method: var method };
 		var response = await HttpSendAsync(
-			api.Path.Replace("{channel_id}", channel_id).Replace("{user_id}", user_id),
-			api.Method,
+			path.Replace("{channel_id}", channel_id).Replace("{user_id}", user_id),
+			method,
 			JsonContent.Create(new { add, remove }),
 			sender
 		);
@@ -56,10 +56,10 @@ partial class BotClient
 	public async Task<ChannelPermissions?> GetMemberChannelPermissionsAsync(
 		string channel_id, string role_id, Sender? sender = null)
 	{
-		var api = BotApis.获取子频道身份组权限;
+		_ = BotApis.GetRolePermissionInChannel is { Path: var path, Method: var method };
 		var response = await HttpSendAsync(
-			api.Path.Replace("{channel_id}", channel_id).Replace("{role_id}", role_id),
-			api.Method,
+			path.Replace("{channel_id}", channel_id).Replace("{role_id}", role_id),
+			method,
 			null,
 			sender
 		);
@@ -79,10 +79,10 @@ partial class BotClient
 	public async Task<bool> EditMemberChannelPermissionsAsync(
 		string channel_id, string role_id, string add = "0", string remove = "0", Sender? sender = null)
 	{
-		var api = BotApis.修改子频道身份组权限;
+		_ = BotApis.ModifyRolePermissionInChannel is { Path: var path, Method: var method };
 		var response = await HttpSendAsync(
-			api.Path.Replace("{channel_id}", channel_id).Replace("{role_id}", role_id),
-			api.Method,
+			path.Replace("{channel_id}", channel_id).Replace("{role_id}", role_id),
+			method,
 			JsonContent.Create(new { add, remove }),
 			sender
 		);

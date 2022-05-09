@@ -281,44 +281,44 @@
             </list>
             </summary>
         </member>
-        <member name="P:Sudoku.Bot.Communication.BotApis.获取子频道用户权限">
+        <member name="P:Sudoku.Bot.Communication.BotApis.GetUserPermissionInChannel">
             <summary>
-            获取子频道 channel_id 下用户 user_id 的权限
-            <para>
-            <see href="https://bot.q.qq.com/wiki/develop/api/openapi/channel_permissions/get_channel_permissions.html">接口文档</see><br/>
-            公域鉴权<br/>
-            GET /channels/{channel_id}/members/{user_id}/permissions
-            </para>
+            Get permissions for the specified user in the specified channel.
+            <list type="bullet">
+            <item>Documentation: <see href="https://bot.q.qq.com/wiki/develop/api/openapi/channel_permissions/get_channel_permissions.html">here</see>.</item>
+            <item>Corresponding: <c>GET /channels/{channel_id}/members/{user_id}/permissions</c></item>
+            <item>Need authorization: true if <see cref="F:Sudoku.Bot.Communication.ApiType.PublicDomain"/>; otherwise false</item>
+            </list>
             </summary>
         </member>
-        <member name="P:Sudoku.Bot.Communication.BotApis.修改子频道用户权限">
+        <member name="P:Sudoku.Bot.Communication.BotApis.ModifyUserPermissionInChannel">
             <summary>
-            修改子频道 channel_id 下用户 user_id 的权限
-            <para>
-            <see href="https://bot.q.qq.com/wiki/develop/api/openapi/channel_permissions/put_channel_permissions.html">接口文档</see><br/>
-            公域鉴权<br/>
-            PUT /channels/{channel_id}/members/{user_id}/permissions
-            </para>
+            Modify permissions for the specified user in the specified channel.
+            <list type="bullet">
+            <item>Documentation: <see href="https://bot.q.qq.com/wiki/develop/api/openapi/channel_permissions/put_channel_permissions.html">here</see>.</item>
+            <item>Corresponding: <c>PUT /channels/{channel_id}/members/{user_id}/permissions</c></item>
+            <item>Need authorization: true if <see cref="F:Sudoku.Bot.Communication.ApiType.PublicDomain"/>; otherwise false</item>
+            </list>
             </summary>
         </member>
-        <member name="P:Sudoku.Bot.Communication.BotApis.获取子频道身份组权限">
+        <member name="P:Sudoku.Bot.Communication.BotApis.GetRolePermissionInChannel">
             <summary>
-            获取子频道 channel_id 下身份组 role_id 的权限
-            <para>
-            <see href="https://bot.q.qq.com/wiki/develop/api/openapi/channel_permissions/get_channel_roles_permissions.html">接口文档</see><br/>
-            公域鉴权<br/>
-            GET /channels/{channel_id}/roles/{role_id}/permissions
-            </para>
+            Get permissions for the specified role in the specified channel.
+            <list type="bullet">
+            <item>Documentation: <see href="https://bot.q.qq.com/wiki/develop/api/openapi/channel_permissions/get_channel_roles_permissions.html">here</see>.</item>
+            <item>Corresponding: <c>GET /channels/{channel_id}/roles/{role_id}/permissions</c></item>
+            <item>Need authorization: true if <see cref="F:Sudoku.Bot.Communication.ApiType.PublicDomain"/>; otherwise false</item>
+            </list>
             </summary>
         </member>
-        <member name="P:Sudoku.Bot.Communication.BotApis.修改子频道身份组权限">
+        <member name="P:Sudoku.Bot.Communication.BotApis.ModifyRolePermissionInChannel">
             <summary>
-            修改子频道 channel_id 下身份组 role_id 的权限
-            <para>
-            <see href="https://bot.q.qq.com/wiki/develop/api/openapi/channel_permissions/put_channel_roles_permissions.html">接口文档</see><br/>
-            公域鉴权<br/>
-            PUT /channels/{channel_id}/roles/{role_id}/permissions
-            </para>
+            Modify permissions for the specified role in the specified channel.
+            <list type="bullet">
+            <item>Documentation: <see href="https://bot.q.qq.com/wiki/develop/api/openapi/channel_permissions/put_channel_roles_permissions.html">here</see>.</item>
+            <item>Corresponding: <c>PUT /channels/{channel_id}/roles/{role_id}/permissions</c></item>
+            <item>Need authorization: true if <see cref="F:Sudoku.Bot.Communication.ApiType.PublicDomain"/>; otherwise false</item>
+            </list>
             </summary>
         </member>
         <member name="P:Sudoku.Bot.Communication.BotApis.获取指定消息">

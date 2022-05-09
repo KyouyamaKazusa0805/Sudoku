@@ -184,44 +184,48 @@ internal static class BotApis
 		=> new(ApiType.PublicDomain, HttpMethod.Delete, """/guilds/{guild_id}/members/{user_id}/roles/{role_id}""");
 
 	/// <summary>
-	/// 获取子频道 channel_id 下用户 user_id 的权限
-	/// <para>
-	/// <see href="https://bot.q.qq.com/wiki/develop/api/openapi/channel_permissions/get_channel_permissions.html">接口文档</see><br/>
-	/// 公域鉴权<br/>
-	/// GET /channels/{channel_id}/members/{user_id}/permissions
-	/// </para>
+	/// Get permissions for the specified user in the specified channel.
+	/// <list type="bullet">
+	/// <item>Documentation: <see href="https://bot.q.qq.com/wiki/develop/api/openapi/channel_permissions/get_channel_permissions.html">here</see>.</item>
+	/// <item>Corresponding: <c>GET /channels/{channel_id}/members/{user_id}/permissions</c></item>
+	/// <item>Need authorization: true if <see cref="ApiType.PublicDomain"/>; otherwise false</item>
+	/// </list>
 	/// </summary>
-	public static BotApi 获取子频道用户权限 => new(ApiType.PublicDomain, HttpMethod.Get, @"/channels/{channel_id}/members/{user_id}/permissions");
+	public static BotApi GetUserPermissionInChannel
+		=> new(ApiType.PublicDomain, HttpMethod.Get, """/channels/{channel_id}/members/{user_id}/permissions""");
 
 	/// <summary>
-	/// 修改子频道 channel_id 下用户 user_id 的权限
-	/// <para>
-	/// <see href="https://bot.q.qq.com/wiki/develop/api/openapi/channel_permissions/put_channel_permissions.html">接口文档</see><br/>
-	/// 公域鉴权<br/>
-	/// PUT /channels/{channel_id}/members/{user_id}/permissions
-	/// </para>
+	/// Modify permissions for the specified user in the specified channel.
+	/// <list type="bullet">
+	/// <item>Documentation: <see href="https://bot.q.qq.com/wiki/develop/api/openapi/channel_permissions/put_channel_permissions.html">here</see>.</item>
+	/// <item>Corresponding: <c>PUT /channels/{channel_id}/members/{user_id}/permissions</c></item>
+	/// <item>Need authorization: true if <see cref="ApiType.PublicDomain"/>; otherwise false</item>
+	/// </list>
 	/// </summary>
-	public static BotApi 修改子频道用户权限 => new(ApiType.PublicDomain, HttpMethod.Put, @"/channels/{channel_id}/members/{user_id}/permissions");
+	public static BotApi ModifyUserPermissionInChannel
+		=> new(ApiType.PublicDomain, HttpMethod.Put, """/channels/{channel_id}/members/{user_id}/permissions""");
 
 	/// <summary>
-	/// 获取子频道 channel_id 下身份组 role_id 的权限
-	/// <para>
-	/// <see href="https://bot.q.qq.com/wiki/develop/api/openapi/channel_permissions/get_channel_roles_permissions.html">接口文档</see><br/>
-	/// 公域鉴权<br/>
-	/// GET /channels/{channel_id}/roles/{role_id}/permissions
-	/// </para>
+	/// Get permissions for the specified role in the specified channel.
+	/// <list type="bullet">
+	/// <item>Documentation: <see href="https://bot.q.qq.com/wiki/develop/api/openapi/channel_permissions/get_channel_roles_permissions.html">here</see>.</item>
+	/// <item>Corresponding: <c>GET /channels/{channel_id}/roles/{role_id}/permissions</c></item>
+	/// <item>Need authorization: true if <see cref="ApiType.PublicDomain"/>; otherwise false</item>
+	/// </list>
 	/// </summary>
-	public static BotApi 获取子频道身份组权限 => new(ApiType.PublicDomain, HttpMethod.Get, @"/channels/{channel_id}/roles/{role_id}/permissions");
+	public static BotApi GetRolePermissionInChannel
+		=> new(ApiType.PublicDomain, HttpMethod.Get, """/channels/{channel_id}/roles/{role_id}/permissions""");
 
 	/// <summary>
-	/// 修改子频道 channel_id 下身份组 role_id 的权限
-	/// <para>
-	/// <see href="https://bot.q.qq.com/wiki/develop/api/openapi/channel_permissions/put_channel_roles_permissions.html">接口文档</see><br/>
-	/// 公域鉴权<br/>
-	/// PUT /channels/{channel_id}/roles/{role_id}/permissions
-	/// </para>
+	/// Modify permissions for the specified role in the specified channel.
+	/// <list type="bullet">
+	/// <item>Documentation: <see href="https://bot.q.qq.com/wiki/develop/api/openapi/channel_permissions/put_channel_roles_permissions.html">here</see>.</item>
+	/// <item>Corresponding: <c>PUT /channels/{channel_id}/roles/{role_id}/permissions</c></item>
+	/// <item>Need authorization: true if <see cref="ApiType.PublicDomain"/>; otherwise false</item>
+	/// </list>
 	/// </summary>
-	public static BotApi 修改子频道身份组权限 => new(ApiType.PublicDomain, HttpMethod.Put, @"/channels/{channel_id}/roles/{role_id}/permissions");
+	public static BotApi ModifyRolePermissionInChannel
+		=> new(ApiType.PublicDomain, HttpMethod.Put, """/channels/{channel_id}/roles/{role_id}/permissions""");
 
 	/// <summary>
 	/// 获取子频道 channel_id 下的消息 message_id 的详情
