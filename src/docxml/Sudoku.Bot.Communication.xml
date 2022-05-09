@@ -605,7 +605,7 @@
             <param name="sender"></param>
             <returns></returns>
         </member>
-        <member name="M:Sudoku.Bot.Communication.BotClient.CreateRoleAsync(System.String,Sudoku.Bot.Communication.Models.Info,Sudoku.Bot.Communication.Models.Filter,Sudoku.Bot.Communication.Sender)">
+        <member name="M:Sudoku.Bot.Communication.BotClient.CreateRoleAsync(System.String,Sudoku.Bot.Communication.Models.Interaction.Info,Sudoku.Bot.Communication.Models.Interaction.Filter,Sudoku.Bot.Communication.Sender)">
             <summary>
             创建频道身份组
             </summary>
@@ -615,7 +615,7 @@
             <param name="sender"></param>
             <returns></returns>
         </member>
-        <member name="M:Sudoku.Bot.Communication.BotClient.EditRoleAsync(System.String,System.String,Sudoku.Bot.Communication.Models.Info,Sudoku.Bot.Communication.Models.Filter,Sudoku.Bot.Communication.Sender)">
+        <member name="M:Sudoku.Bot.Communication.BotClient.EditRoleAsync(System.String,System.String,Sudoku.Bot.Communication.Models.Interaction.Info,Sudoku.Bot.Communication.Models.Interaction.Filter,Sudoku.Bot.Communication.Sender)">
             <summary>
             修改频道身份组
             </summary>
@@ -1048,7 +1048,7 @@
             <param name="sender"></param>
             <returns></returns>
         </member>
-        <member name="M:Sudoku.Bot.Communication.BotClient.MuteGuildAsync(System.String,Sudoku.Bot.Communication.Models.JinxTimeSpan,Sudoku.Bot.Communication.Sender)">
+        <member name="M:Sudoku.Bot.Communication.BotClient.MuteGuildAsync(System.String,Sudoku.Bot.Communication.Models.Interaction.JinxTimeSpan,Sudoku.Bot.Communication.Sender)">
             <summary>
             频道全局禁言
             <para>
@@ -1062,7 +1062,7 @@
             <param name="sender"></param>
             <returns></returns>
         </member>
-        <member name="M:Sudoku.Bot.Communication.BotClient.MuteMemberAsync(System.String,System.String,Sudoku.Bot.Communication.Models.JinxTimeSpan,Sudoku.Bot.Communication.Sender)">
+        <member name="M:Sudoku.Bot.Communication.BotClient.MuteMemberAsync(System.String,System.String,Sudoku.Bot.Communication.Models.Interaction.JinxTimeSpan,Sudoku.Bot.Communication.Sender)">
             <summary>
             频道指定成员禁言
             <para>
@@ -2515,59 +2515,6 @@
             Indicates the type is real emoji.
             </summary>
         </member>
-        <member name="T:Sudoku.Bot.Communication.Models.Filter">
-            <summary>
-            Indicates which fields will be required to set. The filter will be used for creating a role for inferring the values.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Bot.Communication.Models.Filter.#ctor(System.Boolean,System.Boolean,System.Boolean)">
-            <summary>
-            Initializes a <see cref="T:Sudoku.Bot.Communication.Models.Filter"/> instance.
-            </summary>
-            <param name="setName">Indicates the name.</param>
-            <param name="setColor">Indicates the color.</param>
-            <param name="setHoist">Indicates whether the current role is displayed alone.</param>
-        </member>
-        <member name="P:Sudoku.Bot.Communication.Models.Filter.Name">
-            <summary>
-            Indicates whether the creation will set the name.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Bot.Communication.Models.Filter.Color">
-            <summary>
-            Indicates whether the creation will set the color.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Bot.Communication.Models.Filter.Hoist">
-            <summary>
-            Indicates whether the creation will set the hoist value.
-            </summary>
-        </member>
-        <member name="T:Sudoku.Bot.Communication.Models.GetMessageType">
-            <summary>
-            Indicates the type for defining the message getting. The field names in this type cannot be modified.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Bot.Communication.Models.GetMessageType.Around">
-            <summary>
-            Indicates getting messages before and after the specified ID value.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Bot.Communication.Models.GetMessageType.Before">
-            <summary>
-            Indicates getting messages before the specified ID value.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Bot.Communication.Models.GetMessageType.After">
-            <summary>
-            Indicates getting messages after the specified ID value.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Bot.Communication.Models.GetMessageType.Latest">
-            <summary>
-            Indicates getting messages at latest.
-            </summary>
-        </member>
         <member name="T:Sudoku.Bot.Communication.Models.Guild">
             <summary>
             Indicates the GUILD instance.
@@ -2647,40 +2594,68 @@
             Indicates the maximum value of the possible roles in this GUILD.
             </summary>
         </member>
-        <member name="T:Sudoku.Bot.Communication.Models.Info">
+        <member name="T:Sudoku.Bot.Communication.Models.Interaction.Filter">
+            <summary>
+            Indicates which fields will be required to set. The filter will be used for creating a role for inferring the values.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Bot.Communication.Models.Interaction.Filter.#ctor(System.Boolean,System.Boolean,System.Boolean)">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Bot.Communication.Models.Interaction.Filter"/> instance.
+            </summary>
+            <param name="setName">Indicates the name.</param>
+            <param name="setColor">Indicates the color.</param>
+            <param name="setHoist">Indicates whether the current role is displayed alone.</param>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Models.Interaction.Filter.Name">
+            <summary>
+            Indicates whether the creation will set the name.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Models.Interaction.Filter.Color">
+            <summary>
+            Indicates whether the creation will set the color.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Models.Interaction.Filter.Hoist">
+            <summary>
+            Indicates whether the creation will set the hoist value.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Bot.Communication.Models.Interaction.Info">
             <summary>
             Defines a type that stores the data that can be taken by the message.
             </summary>
         </member>
-        <member name="M:Sudoku.Bot.Communication.Models.Info.#ctor(System.String,System.Nullable{System.Drawing.Color},System.Nullable{System.Boolean})">
+        <member name="M:Sudoku.Bot.Communication.Models.Interaction.Info.#ctor(System.String,System.Nullable{System.Drawing.Color},System.Nullable{System.Boolean})">
             <summary>
-            Initializes a <see cref="T:Sudoku.Bot.Communication.Models.Info"/> instance via the specified name, color and a <see cref="T:System.Boolean"/>
+            Initializes a <see cref="T:Sudoku.Bot.Communication.Models.Interaction.Info"/> instance via the specified name, color and a <see cref="T:System.Boolean"/>
             value indicating whether the user is hoisted.
             </summary>
             <param name="name">The name.</param>
             <param name="color">The color.</param>
             <param name="isHoisted">Indicates whether the user is hoisted.</param>
         </member>
-        <member name="M:Sudoku.Bot.Communication.Models.Info.#ctor(System.String,System.String,System.Nullable{System.Boolean})">
+        <member name="M:Sudoku.Bot.Communication.Models.Interaction.Info.#ctor(System.String,System.String,System.Nullable{System.Boolean})">
             <summary>
-            Initializes a <see cref="T:Sudoku.Bot.Communication.Models.Info"/> instance via the specified name, color and a <see cref="T:System.Boolean"/>
+            Initializes a <see cref="T:Sudoku.Bot.Communication.Models.Interaction.Info"/> instance via the specified name, color and a <see cref="T:System.Boolean"/>
             value indicating whether the user is hoisted.
             </summary>
             <param name="name">The name.</param>
             <param name="colorHtml">The color, as hex string representation.</param>
             <param name="isHoisted">Indicates whether the user is hoisted.</param>
         </member>
-        <member name="P:Sudoku.Bot.Communication.Models.Info.Name">
+        <member name="P:Sudoku.Bot.Communication.Models.Interaction.Info.Name">
             <summary>
             Indicates the name of the user.
             </summary>
         </member>
-        <member name="P:Sudoku.Bot.Communication.Models.Info.Color">
+        <member name="P:Sudoku.Bot.Communication.Models.Interaction.Info.Color">
             <summary>
             Indicates the color of the user being displayed.
             </summary>
         </member>
-        <member name="P:Sudoku.Bot.Communication.Models.Info.ColorHtml">
+        <member name="P:Sudoku.Bot.Communication.Models.Interaction.Info.ColorHtml">
             <summary>
             Indicates the color of the user being displayed, as hex string representation.
             All possible formats are:
@@ -2699,77 +2674,102 @@
             (note date: 2021/12/21)
             </remarks>
         </member>
-        <member name="P:Sudoku.Bot.Communication.Models.Info.Hoist">
+        <member name="P:Sudoku.Bot.Communication.Models.Interaction.Info.Hoist">
             <summary>
             Indicates whether the user is hoisted.
             </summary>
         </member>
-        <member name="T:Sudoku.Bot.Communication.Models.JinxTimeSpan">
+        <member name="T:Sudoku.Bot.Communication.Models.Interaction.JinxTimeSpan">
             <summary>
             Indicates the jinx time span.
             </summary>
         </member>
-        <member name="F:Sudoku.Bot.Communication.Models.JinxTimeSpan.Default">
+        <member name="F:Sudoku.Bot.Communication.Models.Interaction.JinxTimeSpan.Default">
             <summary>
             Indicates the default instance.
             </summary>
         </member>
-        <member name="F:Sudoku.Bot.Communication.Models.JinxTimeSpan.TimeStampPattern">
+        <member name="F:Sudoku.Bot.Communication.Models.Interaction.JinxTimeSpan.TimeStampPattern">
             <summary>
             Indicates the timestamp pattern.
             </summary>
         </member>
-        <member name="F:Sudoku.Bot.Communication.Models.JinxTimeSpan.CountdownPattern">
+        <member name="F:Sudoku.Bot.Communication.Models.Interaction.JinxTimeSpan.CountdownPattern">
             <summary>
             Indicates the time-countdown pattern.
             </summary>
         </member>
-        <member name="F:Sudoku.Bot.Communication.Models.JinxTimeSpan.SecondsTable">
+        <member name="F:Sudoku.Bot.Communication.Models.Interaction.JinxTimeSpan.SecondsTable">
             <summary>
             The table of all possible date time units, and the representing number of seconds.
             </summary>
         </member>
-        <member name="M:Sudoku.Bot.Communication.Models.JinxTimeSpan.#ctor">
+        <member name="M:Sudoku.Bot.Communication.Models.Interaction.JinxTimeSpan.#ctor">
             <summary>
-            Initializes a <see cref="T:Sudoku.Bot.Communication.Models.JinxTimeSpan"/> instance via the default time span (60 seconds).
+            Initializes a <see cref="T:Sudoku.Bot.Communication.Models.Interaction.JinxTimeSpan"/> instance via the default time span (60 seconds).
             </summary>
         </member>
-        <member name="M:Sudoku.Bot.Communication.Models.JinxTimeSpan.#ctor(System.Int32)">
+        <member name="M:Sudoku.Bot.Communication.Models.Interaction.JinxTimeSpan.#ctor(System.Int32)">
             <summary>
-            Initializes a <see cref="T:Sudoku.Bot.Communication.Models.JinxTimeSpan"/> instance via the specified seconds.
+            Initializes a <see cref="T:Sudoku.Bot.Communication.Models.Interaction.JinxTimeSpan"/> instance via the specified seconds.
             </summary>
             <param name="seconds">The specified seconds you want to jinx someone.</param>
         </member>
-        <member name="M:Sudoku.Bot.Communication.Models.JinxTimeSpan.#ctor(System.String)">
+        <member name="M:Sudoku.Bot.Communication.Models.Interaction.JinxTimeSpan.#ctor(System.String)">
             <summary>
-            Initializes a <see cref="T:Sudoku.Bot.Communication.Models.JinxTimeSpan"/> instance via the specified timestamp value, as string representation.
+            Initializes a <see cref="T:Sudoku.Bot.Communication.Models.Interaction.JinxTimeSpan"/> instance via the specified timestamp value, as string representation.
             </summary>
             <param name="timestamp">
             The timestamp value that defines the time span. The format is <c>"yyyy-MM-dd HH:mm:ss"</c>.
             For example: <c>"2077-01-01 08:00:00"</c>.
             </param>
         </member>
-        <member name="P:Sudoku.Bot.Communication.Models.JinxTimeSpan.JinxEndTimestamp">
+        <member name="P:Sudoku.Bot.Communication.Models.Interaction.JinxTimeSpan.JinxEndTimestamp">
             <summary>
             Indicates the time that ends the jinx. The value is absolute.
             </summary>
         </member>
-        <member name="P:Sudoku.Bot.Communication.Models.JinxTimeSpan.JinxSeconds">
+        <member name="P:Sudoku.Bot.Communication.Models.Interaction.JinxTimeSpan.JinxSeconds">
             <summary>
             Indicates the jinx time span. In seconds.
             </summary>
         </member>
-        <member name="P:Sudoku.Bot.Communication.Models.JinxTimeSpan.OneMinute">
+        <member name="P:Sudoku.Bot.Communication.Models.Interaction.JinxTimeSpan.OneMinute">
             <summary>
-            Indicates the <see cref="T:Sudoku.Bot.Communication.Models.JinxTimeSpan"/> instance with one-minute time span.
+            Indicates the <see cref="T:Sudoku.Bot.Communication.Models.Interaction.JinxTimeSpan"/> instance with one-minute time span.
             </summary>
         </member>
-        <member name="M:Sudoku.Bot.Communication.Models.JinxTimeSpan.FromTimeSpanString(System.String)">
+        <member name="M:Sudoku.Bot.Communication.Models.Interaction.JinxTimeSpan.FromTimeSpanString(System.String)">
             <summary>
-            Creates a <see cref="T:Sudoku.Bot.Communication.Models.JinxTimeSpan"/> instance via the specified time span, as the string representation.
+            Creates a <see cref="T:Sudoku.Bot.Communication.Models.Interaction.JinxTimeSpan"/> instance via the specified time span, as the string representation.
             </summary>
             <param name="timeString">The time-span string.</param>
-            <returns>The <see cref="T:Sudoku.Bot.Communication.Models.JinxTimeSpan"/> instance.</returns>
+            <returns>The <see cref="T:Sudoku.Bot.Communication.Models.Interaction.JinxTimeSpan"/> instance.</returns>
+        </member>
+        <member name="T:Sudoku.Bot.Communication.Models.GetMessageType">
+            <summary>
+            Indicates the type for defining the message getting. The field names in this type cannot be modified.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Bot.Communication.Models.GetMessageType.Around">
+            <summary>
+            Indicates getting messages before and after the specified ID value.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Bot.Communication.Models.GetMessageType.Before">
+            <summary>
+            Indicates getting messages before the specified ID value.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Bot.Communication.Models.GetMessageType.After">
+            <summary>
+            Indicates getting messages after the specified ID value.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Bot.Communication.Models.GetMessageType.Latest">
+            <summary>
+            Indicates getting messages at latest.
+            </summary>
         </member>
         <member name="T:Sudoku.Bot.Communication.Models.Message">
             <summary>
@@ -4622,14 +4622,14 @@
             获取频道身份组列表
             </summary>
         </member>
-        <member name="M:Sudoku.Bot.Communication.Sender.CreateRoleAsync(Sudoku.Bot.Communication.Models.Info)">
+        <member name="M:Sudoku.Bot.Communication.Sender.CreateRoleAsync(Sudoku.Bot.Communication.Models.Interaction.Info)">
             <summary>
             创建频道身份组
             </summary>
             <param name="info">携带需要设置的字段内容</param>
             <returns></returns>
         </member>
-        <member name="M:Sudoku.Bot.Communication.Sender.EditRoleAsync(System.String,Sudoku.Bot.Communication.Models.Info)">
+        <member name="M:Sudoku.Bot.Communication.Sender.EditRoleAsync(System.String,Sudoku.Bot.Communication.Models.Interaction.Info)">
             <summary>
             修改频道身份组
             </summary>
@@ -4760,14 +4760,14 @@
             <param name="guild_id">私信会话频道Id</param>
             <returns></returns>
         </member>
-        <member name="M:Sudoku.Bot.Communication.Sender.MuteGuildAsync(Sudoku.Bot.Communication.Models.JinxTimeSpan)">
+        <member name="M:Sudoku.Bot.Communication.Sender.MuteGuildAsync(Sudoku.Bot.Communication.Models.Interaction.JinxTimeSpan)">
             <summary>
             禁言全员
             </summary>
             <param name="muteTime"></param>
             <returns></returns>
         </member>
-        <member name="M:Sudoku.Bot.Communication.Sender.MuteMemberAsync(Sudoku.Bot.Communication.Models.User,Sudoku.Bot.Communication.Models.JinxTimeSpan)">
+        <member name="M:Sudoku.Bot.Communication.Sender.MuteMemberAsync(Sudoku.Bot.Communication.Models.User,Sudoku.Bot.Communication.Models.Interaction.JinxTimeSpan)">
             <summary>
             禁言指定成员
             </summary>

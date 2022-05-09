@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Bot.Communication.Models;
+﻿namespace Sudoku.Bot.Communication.Models.Interaction;
 
 /// <summary>
 /// Indicates the jinx time span.

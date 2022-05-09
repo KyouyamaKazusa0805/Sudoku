@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Bot.Communication.Models;
+﻿namespace Sudoku.Bot.Communication.Models.Interaction;
 
 /// <summary>
 /// Defines a type that stores the data that can be taken by the message.

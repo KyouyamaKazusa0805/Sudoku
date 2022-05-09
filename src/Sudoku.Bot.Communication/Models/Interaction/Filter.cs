@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Bot.Communication.Models;
+﻿namespace Sudoku.Bot.Communication.Models.Interaction;
 
 /// <summary>
 /// Indicates which fields will be required to set. The filter will be used for creating a role for inferring the values.
