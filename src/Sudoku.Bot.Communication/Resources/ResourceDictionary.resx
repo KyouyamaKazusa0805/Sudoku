@@ -160,6 +160,12 @@
   <data name="DateTimeUnit_Year" xml:space="preserve">
     <value>年</value>
   </data>
+  <data name="DefaultScheduleDescription" xml:space="preserve">
+    <value>新的日程</value>
+  </data>
+  <data name="DefaultScheduleName" xml:space="preserve">
+    <value>新建日程</value>
+  </data>
   <data name="JinxTimeCountdownPattern" xml:space="preserve">
     <value>(\d+)\s*(年|星期|周|日|天|小?时|分钟?|秒钟?)</value>
   </data>

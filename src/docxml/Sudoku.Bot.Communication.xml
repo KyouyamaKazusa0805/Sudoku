@@ -3418,37 +3418,41 @@
         </member>
         <member name="T:Sudoku.Bot.Communication.Models.RemindType">
             <summary>
-            日程提醒方式
+            Defines a remind type. The enumeration type is used for the scheduling.
             </summary>
+            <remarks>
+            The data type is referenced from
+            <see href="https://bot.q.qq.com/wiki/develop/api/openapi/schedule/model.html#remindtype">this link</see>.
+            </remarks>
         </member>
         <member name="F:Sudoku.Bot.Communication.Models.RemindType.Never">
             <summary>
-            不提醒
+            Indicates the schedule never reminds me.
             </summary>
         </member>
         <member name="F:Sudoku.Bot.Communication.Models.RemindType.OnStart">
             <summary>
-            开始时提醒
+            Indicates the schedule reminds me on starting.
             </summary>
         </member>
         <member name="F:Sudoku.Bot.Communication.Models.RemindType.Early5Min">
             <summary>
-            开始前5分钟提醒
+            Indicates the schedule reminds me before starting the activity 5 minutes.
             </summary>
         </member>
         <member name="F:Sudoku.Bot.Communication.Models.RemindType.Early15Min">
             <summary>
-            开始前15分钟提醒
+            Indicates the schedule reminds me before starting the activity 15 minutes.
             </summary>
         </member>
         <member name="F:Sudoku.Bot.Communication.Models.RemindType.Early30Min">
             <summary>
-            开始前30分钟提醒
+            Indicates the schedule reminds me before starting the activity 30 minutes.
             </summary>
         </member>
         <member name="F:Sudoku.Bot.Communication.Models.RemindType.Early60Min">
             <summary>
-            开始前60分钟提醒
+            Indicates the schedule reminds me before starting the activity 60 minutes.
             </summary>
         </member>
         <member name="T:Sudoku.Bot.Communication.Models.Returning.RoleCreatedResult">
@@ -3539,108 +3543,110 @@
         </member>
         <member name="T:Sudoku.Bot.Communication.Models.Schedule">
             <summary>
-            日程对象
+            Defines a schedule instance.
             </summary>
+            <remarks>
+            The data type is referenced from
+            <see href="https://bot.q.qq.com/wiki/develop/api/openapi/schedule/model.html#schedule">this link</see>.
+            </remarks>
         </member>
         <member name="M:Sudoku.Bot.Communication.Models.Schedule.#ctor">
             <summary>
-            构造日程
+            Initializes a <see cref="T:Sudoku.Bot.Communication.Models.Schedule"/> instance.
             </summary>
         </member>
         <member name="M:Sudoku.Bot.Communication.Models.Schedule.#ctor(System.String,System.String,System.Nullable{System.DateTime},System.Nullable{System.DateTime},Sudoku.Bot.Communication.Models.Channel,Sudoku.Bot.Communication.Models.RemindType)">
             <summary>
-            新建日程
-            <para>
-            注1：开始时间必须大于当前时间<br/>
-            注2：结束时间必须大于开始时间<br/>
-            注3：调用API每日创建日程数量有限
-            </para>
+            Initializes a <see cref="T:Sudoku.Bot.Communication.Models.Schedule"/> instance, with the specified data.
             </summary>
-            <param name="name">日程名称</param>
-            <param name="desc">日程描述</param>
-            <param name="startTime">开始时间（默认五分钟后）</param>
-            <param name="endTime">结束时间（默认持续一小时）</param>
-            <param name="jumpChannel">日程开始时跳转的频道</param>
-            <param name="remindType">日程时间即将到达时的提醒方式</param>
+            <param name="name">The name of the schedule.</param>
+            <param name="description">The description of the schedule.</param>
+            <param name="startTime">The start time.</param>
+            <param name="endTime">
+            The end time. The end time is defaultly later than <paramref name="startTime"/> 1 hour.
+            </param>
+            <param name="jumpChannel">The channel that jumped when starting.</param>
+            <param name="remindType">The remind type.</param>
         </member>
         <member name="P:Sudoku.Bot.Communication.Models.Schedule.Id">
             <summary>
-            日程 id
+            Indicates the ID of the schedule.
             </summary>
         </member>
         <member name="P:Sudoku.Bot.Communication.Models.Schedule.Name">
             <summary>
-            日程名称
+            Indicates the name of the schedule.
             </summary>
         </member>
         <member name="P:Sudoku.Bot.Communication.Models.Schedule.Description">
             <summary>
-            日程描述
+            Indicates the description of the schedule.
             </summary>
         </member>
         <member name="P:Sudoku.Bot.Communication.Models.Schedule.StartTimestamp">
             <summary>
-            日程开始时间戳(ms)
-            <para>必须大于当前时间</para>
+            Indicates the start time, as the timestamp representation, in milliseconds.
+            The value must be greater than the current time.
             </summary>
         </member>
         <member name="P:Sudoku.Bot.Communication.Models.Schedule.StartTime">
             <summary>
-            日程开始时间
-            <para>必须大于当前时间</para>
+            Indicates the start time. The value must be greater than the current time.
             </summary>
         </member>
         <member name="P:Sudoku.Bot.Communication.Models.Schedule.EndTimestamp">
             <summary>
-            日程结束时间戳(ms)
-            <para>必须大于开始时间</para>
+            Indicates the end time, as the timestamp representation, in milliseconds.
+            The value must be greater than the start time.
             </summary>
         </member>
         <member name="P:Sudoku.Bot.Communication.Models.Schedule.EndTime">
             <summary>
-            日程结束时间
-            <para>必须大于开始时间</para>
+            Indicates the end time. The value must be greater than the start time.
             </summary>
         </member>
         <member name="P:Sudoku.Bot.Communication.Models.Schedule.Creator">
             <summary>
-            创建者
+            Indicates the member who creates the schedule.
             </summary>
         </member>
         <member name="P:Sudoku.Bot.Communication.Models.Schedule.JumpChannelId">
             <summary>
-            日程开始时跳转到的子频道 id
+            Indicates the channel ID that the schedule jumped when starting.
             </summary>
         </member>
         <member name="P:Sudoku.Bot.Communication.Models.Schedule.RemindType">
             <summary>
-            日程提醒类型
+            Indicates the remind type.
             </summary>
         </member>
         <member name="T:Sudoku.Bot.Communication.Models.SessionStartLimit">
             <summary>
-            Session开始限制
+            Indicates the limitation data that controls and limits the session connection.
             </summary>
+            <remarks>
+            The data type is referenced from
+            <see href="https://bot.q.qq.com/wiki/develop/api/openapi/wss/shard_url_get.html#sessionstartlimit">this link</see>.
+            </remarks>
         </member>
         <member name="P:Sudoku.Bot.Communication.Models.SessionStartLimit.Total">
             <summary>
-            每 24 小时可创建 Session 数
+            Indicates the number of sessions that can be created.
             </summary>
         </member>
         <member name="P:Sudoku.Bot.Communication.Models.SessionStartLimit.Remaining">
             <summary>
-            目前还可以创建的 Session 数
-            <para>每个机器人创建的连接数不能超过 remaining 剩余连接数</para>
+            Indicates the last number of sessions that can be created.
             </summary>
         </member>
         <member name="P:Sudoku.Bot.Communication.Models.SessionStartLimit.ResetAfter">
             <summary>
-            重置计数的剩余时间(ms)
+            Indicates the time lasting before resetting the next counting, in milliseconds.
             </summary>
         </member>
         <member name="P:Sudoku.Bot.Communication.Models.SessionStartLimit.MaxConcurrency">
             <summary>
-            每 5s 可以创建的 Session 数
+            Indicates the maximum number of sessions can be created in every 5 seconds.
             </summary>
         </member>
         <member name="T:Sudoku.Bot.Communication.Models.User">
@@ -3699,22 +3705,26 @@
         </member>
         <member name="T:Sudoku.Bot.Communication.Models.WebSocketLimit">
             <summary>
-            WebSocket连接分片信息
+            Indicates the data in the web socket.
             </summary>
         </member>
         <member name="P:Sudoku.Bot.Communication.Models.WebSocketLimit.Url">
             <summary>
-            WebSocket 的连接地址
+            Indicates the URL link of the connection.
             </summary>
         </member>
         <member name="P:Sudoku.Bot.Communication.Models.WebSocketLimit.Shards">
             <summary>
-            建议的 shard 数
+            Indicates the recommend number of possible shards.
             </summary>
+            <remarks>
+            The value is referenced from
+            <see href="https://bot.q.qq.com/wiki/develop/api/gateway/shard.html#%E8%8E%B7%E5%BE%97%E5%90%88%E9%80%82%E7%9A%84%E5%88%86%E7%89%87%E6%95%B0">this link</see>.
+            </remarks>
         </member>
         <member name="P:Sudoku.Bot.Communication.Models.WebSocketLimit.SessionLimit">
             <summary>
-            创建Session限制信息
+            Indicates the session limit.
             </summary>
         </member>
         <member name="T:Sudoku.Bot.Communication.Opcode">
@@ -3973,6 +3983,16 @@
         <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.DateTimeUnit_Year">
             <summary>
               Looks up a localized string similar to 年.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.DefaultScheduleDescription">
+            <summary>
+              Looks up a localized string similar to 新的日程.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.DefaultScheduleName">
+            <summary>
+              Looks up a localized string similar to 新建日程.
             </summary>
         </member>
         <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.JinxTimeCountdownPattern">

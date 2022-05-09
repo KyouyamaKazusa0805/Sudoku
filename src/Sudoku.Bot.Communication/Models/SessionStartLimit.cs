@@ -1,28 +1,34 @@
 ﻿namespace Sudoku.Bot.Communication.Models;
 
 /// <summary>
-/// Session开始限制
+/// Indicates the limitation data that controls and limits the session connection.
 /// </summary>
-public class SessionStartLimit
+/// <remarks>
+/// The data type is referenced from
+/// <see href="https://bot.q.qq.com/wiki/develop/api/openapi/wss/shard_url_get.html#sessionstartlimit">this link</see>.
+/// </remarks>
+public sealed class SessionStartLimit
 {
 	/// <summary>
-	/// 每 24 小时可创建 Session 数
+	/// Indicates the number of sessions that can be created.
 	/// </summary>
 	[JsonPropertyName("total")]
 	public int Total { get; set; }
+
 	/// <summary>
-	/// 目前还可以创建的 Session 数
-	/// <para>每个机器人创建的连接数不能超过 remaining 剩余连接数</para>
+	/// Indicates the last number of sessions that can be created.
 	/// </summary>
 	[JsonPropertyName("remaining")]
 	public int Remaining { get; set; }
+
 	/// <summary>
-	/// 重置计数的剩余时间(ms)
+	/// Indicates the time lasting before resetting the next counting, in milliseconds.
 	/// </summary>
 	[JsonPropertyName("reset_after")]
 	public int ResetAfter { get; set; }
+
 	/// <summary>
-	/// 每 5s 可以创建的 Session 数
+	/// Indicates the maximum number of sessions can be created in every 5 seconds.
 	/// </summary>
 	[JsonPropertyName("max_concurrency")]
 	public int MaxConcurrency { get; set; }

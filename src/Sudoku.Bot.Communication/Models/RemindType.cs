@@ -1,32 +1,41 @@
 ﻿namespace Sudoku.Bot.Communication.Models;
 
 /// <summary>
-/// 日程提醒方式
+/// Defines a remind type. The enumeration type is used for the scheduling.
 /// </summary>
+/// <remarks>
+/// The data type is referenced from
+/// <see href="https://bot.q.qq.com/wiki/develop/api/openapi/schedule/model.html#remindtype">this link</see>.
+/// </remarks>
 public enum RemindType
 {
 	/// <summary>
-	/// 不提醒
+	/// Indicates the schedule never reminds me.
 	/// </summary>
 	Never,
+
 	/// <summary>
-	/// 开始时提醒
+	/// Indicates the schedule reminds me on starting.
 	/// </summary>
 	OnStart,
+
 	/// <summary>
-	/// 开始前5分钟提醒
+	/// Indicates the schedule reminds me before starting the activity 5 minutes.
 	/// </summary>
 	Early5Min,
+
 	/// <summary>
-	/// 开始前15分钟提醒
+	/// Indicates the schedule reminds me before starting the activity 15 minutes.
 	/// </summary>
 	Early15Min,
+
 	/// <summary>
-	/// 开始前30分钟提醒
+	/// Indicates the schedule reminds me before starting the activity 30 minutes.
 	/// </summary>
 	Early30Min,
+
 	/// <summary>
-	/// 开始前60分钟提醒
+	/// Indicates the schedule reminds me before starting the activity 60 minutes.
 	/// </summary>
 	Early60Min
 }

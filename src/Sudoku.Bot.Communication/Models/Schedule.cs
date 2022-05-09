@@ -1,35 +1,36 @@
 ﻿namespace Sudoku.Bot.Communication.Models;
 
 /// <summary>
-/// 日程对象
+/// Defines a schedule instance.
 /// </summary>
-public class Schedule
+/// <remarks>
+/// The data type is referenced from
+/// <see href="https://bot.q.qq.com/wiki/develop/api/openapi/schedule/model.html#schedule">this link</see>.
+/// </remarks>
+public sealed class Schedule
 {
 	/// <summary>
-	/// 构造日程
+	/// Initializes a <see cref="Schedule"/> instance.
 	/// </summary>
 	public Schedule() => (StartTime, EndTime) = (DateTime.Now.AddMinutes(10), StartTime.AddHours(1));
 
 	/// <summary>
-	/// 新建日程
-	/// <para>
-	/// 注1：开始时间必须大于当前时间<br/>
-	/// 注2：结束时间必须大于开始时间<br/>
-	/// 注3：调用API每日创建日程数量有限
-	/// </para>
+	/// Initializes a <see cref="Schedule"/> instance, with the specified data.
 	/// </summary>
-	/// <param name="name">日程名称</param>
-	/// <param name="desc">日程描述</param>
-	/// <param name="startTime">开始时间（默认五分钟后）</param>
-	/// <param name="endTime">结束时间（默认持续一小时）</param>
-	/// <param name="jumpChannel">日程开始时跳转的频道</param>
-	/// <param name="remindType">日程时间即将到达时的提醒方式</param>
+	/// <param name="name">The name of the schedule.</param>
+	/// <param name="description">The description of the schedule.</param>
+	/// <param name="startTime">The start time.</param>
+	/// <param name="endTime">
+	/// The end time. The end time is defaultly later than <paramref name="startTime"/> 1 hour.
+	/// </param>
+	/// <param name="jumpChannel">The channel that jumped when starting.</param>
+	/// <param name="remindType">The remind type.</param>
 	public Schedule(
-		string name = "新建日程", string desc = "新的日程", DateTime? startTime = null, DateTime? endTime = null,
-		Channel? jumpChannel = null, RemindType remindType = RemindType.Never)
+		string? name = null, string? description = null, DateTime? startTime = null,
+		DateTime? endTime = null, Channel? jumpChannel = null, RemindType remindType = RemindType.Never)
 		=> (Name, Description, StartTime, EndTime, JumpChannelId, RemindType) = (
-			name,
-			desc,
+			name ?? StringResource.Get("DefaultScheduleName"),
+			description ?? StringResource.Get("DefaultScheduleDescription"),
 			startTime ?? DateTime.Now.AddMinutes(10),
 			endTime ?? StartTime.AddHours(1),
 			jumpChannel?.Id,
@@ -38,23 +39,26 @@ public class Schedule
 
 
 	/// <summary>
-	/// 日程 id
+	/// Indicates the ID of the schedule.
 	/// </summary>
 	[JsonPropertyName("id")]
 	public string? Id { get; set; }
+
 	/// <summary>
-	/// 日程名称
+	/// Indicates the name of the schedule.
 	/// </summary>
 	[JsonPropertyName("name")]
 	public string? Name { get; set; }
+
 	/// <summary>
-	/// 日程描述
+	/// Indicates the description of the schedule.
 	/// </summary>
 	[JsonPropertyName("description")]
 	public string? Description { get; set; }
+
 	/// <summary>
-	/// 日程开始时间戳(ms)
-	/// <para>必须大于当前时间</para>
+	/// Indicates the start time, as the timestamp representation, in milliseconds.
+	/// The value must be greater than the current time.
 	/// </summary>
 	[JsonPropertyName("start_timestamp")]
 	public string StartTimestamp
@@ -63,15 +67,16 @@ public class Schedule
 
 		set => StartTime = DateTimeOffset.FromUnixTimeMilliseconds(long.Parse(value)).DateTime;
 	}
+
 	/// <summary>
-	/// 日程开始时间
-	/// <para>必须大于当前时间</para>
+	/// Indicates the start time. The value must be greater than the current time.
 	/// </summary>
 	[JsonIgnore]
 	public DateTime StartTime { get; set; }
+
 	/// <summary>
-	/// 日程结束时间戳(ms)
-	/// <para>必须大于开始时间</para>
+	/// Indicates the end time, as the timestamp representation, in milliseconds.
+	/// The value must be greater than the start time.
 	/// </summary>
 	[JsonPropertyName("end_timestamp")]
 	public string EndTimestamp
@@ -80,24 +85,27 @@ public class Schedule
 
 		set => EndTime = DateTimeOffset.FromUnixTimeMilliseconds(long.Parse(value)).DateTime;
 	}
+
 	/// <summary>
-	/// 日程结束时间
-	/// <para>必须大于开始时间</para>
+	/// Indicates the end time. The value must be greater than the start time.
 	/// </summary>
 	[JsonIgnore]
 	public DateTime EndTime { get; set; }
+
 	/// <summary>
-	/// 创建者
+	/// Indicates the member who creates the schedule.
 	/// </summary>
 	[JsonPropertyName("creator")]
 	public Member? Creator { get; set; }
+
 	/// <summary>
-	/// 日程开始时跳转到的子频道 id
+	/// Indicates the channel ID that the schedule jumped when starting.
 	/// </summary>
 	[JsonPropertyName("jump_channel_id")]
 	public string? JumpChannelId { get; set; }
+
 	/// <summary>
-	/// 日程提醒类型
+	/// Indicates the remind type.
 	/// </summary>
 	[JsonPropertyName("remind_type"), JsonConverter(typeof(RemindTypeNumberConverter))]
 	public RemindType RemindType { get; set; }

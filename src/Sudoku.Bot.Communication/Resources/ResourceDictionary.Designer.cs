@@ -191,6 +191,24 @@ namespace Sudoku.Bot.Communication.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 新的日程.
+        /// </summary>
+        internal static string DefaultScheduleDescription {
+            get {
+                return ResourceManager.GetString("DefaultScheduleDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 新建日程.
+        /// </summary>
+        internal static string DefaultScheduleName {
+            get {
+                return ResourceManager.GetString("DefaultScheduleName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to (\d+)\s*(年|星期|周|日|天|小?时|分钟?|秒钟?).
         /// </summary>
         internal static string JinxTimeCountdownPattern {
