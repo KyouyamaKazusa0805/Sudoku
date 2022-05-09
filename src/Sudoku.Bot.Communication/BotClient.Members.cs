@@ -18,10 +18,10 @@ partial class BotClient
 	public async Task<List<Member>?> GetGuildMembersAsync(
 		string guild_id, int limit = 10, string? after = null, Sender? sender = null)
 	{
-		var api = BotApis.获取频道成员列表;
+		_ = BotApis.GetMembersInGuild is { Path: var path, Method: var method };
 		var response = await HttpSendAsync(
-			$"{api.Path.Replace("{guild_id}", guild_id)}?limit={limit}&after={after ?? "0"}",
-			api.Method,
+			$"{path.Replace("{guild_id}", guild_id)}?limit={limit}&after={after ?? "0"}",
+			method,
 			null,
 			sender
 		);
@@ -38,10 +38,10 @@ partial class BotClient
 	/// <returns></returns>
 	public async Task<Member?> GetMemberAsync(string guild_id, string user_id, Sender? sender = null)
 	{
-		var api = BotApis.获取成员详情;
+		_ = BotApis.GetMemberDetailInGuild is { Path: var path, Method: var method };
 		var response = await HttpSendAsync(
-			api.Path.Replace("{guild_id}", guild_id).Replace("{user_id}", user_id),
-			api.Method,
+			path.Replace("{guild_id}", guild_id).Replace("{user_id}", user_id),
+			method,
 			null,
 			sender
 		);
@@ -58,10 +58,10 @@ partial class BotClient
 	/// <returns></returns>
 	public async Task<bool> DeleteGuildMemberAsync(string guild_id, string user_id, Sender? sender = null)
 	{
-		var api = BotApis.删除频道成员;
+		_ = BotApis.DeleteMemberInGuild is { Path: var path, Method: var method };
 		var response = await HttpSendAsync(
-			api.Path.Replace("{guild_id}", guild_id).Replace("{user_id}", user_id),
-			api.Method,
+			path.Replace("{guild_id}", guild_id).Replace("{user_id}", user_id),
+			method,
 			null,
 			sender
 		);

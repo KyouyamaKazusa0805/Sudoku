@@ -191,74 +191,74 @@
             </list>
             </summary>
         </member>
-        <member name="P:Sudoku.Bot.Communication.BotApis.获取频道成员列表">
+        <member name="P:Sudoku.Bot.Communication.BotApis.GetMembersInGuild">
             <summary>
-            获取 guild_id 指定的频道中所有成员的详情列表
-            <para>
-            <see href="https://bot.q.qq.com/wiki/develop/api/openapi/member/get_members.html">接口文档</see><br/>
-            私域鉴权<br/>
-            GET /guilds/{guild_id}/members
-            </para>
+            Get members joined in the specified GUILD.
+            <list type="bullet">
+            <item>Documentation: <see href="https://bot.q.qq.com/wiki/develop/api/openapi/member/get_members.html">here</see>.</item>
+            <item>Corresponding: <c>GET /guilds/{guild_id}/members</c></item>
+            <item>Need authorization: true if <see cref="F:Sudoku.Bot.Communication.ApiType.PrivateDomain"/>; otherwise false</item>
+            </list>
             </summary>
         </member>
-        <member name="P:Sudoku.Bot.Communication.BotApis.获取成员详情">
+        <member name="P:Sudoku.Bot.Communication.BotApis.GetMemberDetailInGuild">
             <summary>
-            获取 guild_id 指定的频道中 user_id 对应成员的详细信息
-            <para>
-            <see href="https://bot.q.qq.com/wiki/develop/api/openapi/member/get_member.html">接口文档</see><br/>
-            公域鉴权<br/>
-            GET /guilds/{guild_id}/members/{user_id}
-            </para>
+            Get detail of the specified member in the specified GUILD.
+            <list type="bullet">
+            <item>Documentation: <see href="https://bot.q.qq.com/wiki/develop/api/openapi/member/get_member.html">here</see>.</item>
+            <item>Corresponding: <c>GET /guilds/{guild_id}/members/{user_id}</c></item>
+            <item>Need authorization: true if <see cref="F:Sudoku.Bot.Communication.ApiType.PublicDomain"/>; otherwise false</item>
+            </list>
             </summary>
         </member>
-        <member name="P:Sudoku.Bot.Communication.BotApis.删除频道成员">
+        <member name="P:Sudoku.Bot.Communication.BotApis.DeleteMemberInGuild">
             <summary>
-            删除 guild_id 指定的频道中 user_id 对应的成员
-            <para>
-            <see href="https://bot.q.qq.com/wiki/develop/api/openapi/member/delete_member.html">接口文档</see><br/>
-            私域鉴权<br/>
-            DELETE /guilds/{guild_id}/members/{user_id}
-            </para>
+            Delete the specified member from the specified GUILD.
+            <list type="bullet">
+            <item>Documentation: <see href="https://bot.q.qq.com/wiki/develop/api/openapi/member/delete_member.html">here</see>.</item>
+            <item>Corresponding: <c>DELETE /guilds/{guild_id}/members/{user_id}</c></item>
+            <item>Need authorization: true if <see cref="F:Sudoku.Bot.Communication.ApiType.PrivateDomain"/>; otherwise false</item>
+            </list>
             </summary>
         </member>
-        <member name="P:Sudoku.Bot.Communication.BotApis.获取频道身份组列表">
+        <member name="P:Sudoku.Bot.Communication.BotApis.GetRolesInGuild">
             <summary>
-            获取 guild_id 指定的频道下的身份组列表
-            <para>
-            <see href="https://bot.q.qq.com/wiki/develop/api/openapi/guild/get_guild_roles.html">接口文档</see><br/>
-            公域鉴权<br/>
-            GET /guilds/{guild_id}/roles
-            </para>
+            Get the list of roles existed in the specified GUILD.
+            <list type="bullet">
+            <item>Documentation: <see href="https://bot.q.qq.com/wiki/develop/api/openapi/guild/get_guild_roles.html">here</see>.</item>
+            <item>Corresponding: <c>GET /guilds/{guild_id}/roles</c></item>
+            <item>Need authorization: true if <see cref="F:Sudoku.Bot.Communication.ApiType.PublicDomain"/>; otherwise false</item>
+            </list>
             </summary>
         </member>
-        <member name="P:Sudoku.Bot.Communication.BotApis.创建频道身份组">
+        <member name="P:Sudoku.Bot.Communication.BotApis.CreateRoleInGuild">
             <summary>
-            在 guild_id 指定的频道下创建一个身份组
-            <para>
-            <see href="https://bot.q.qq.com/wiki/develop/api/openapi/guild/post_guild_role.html">接口文档</see><br/>
-            公域鉴权<br/>
-            POST /guilds/{guild_id}/roles
-            </para>
+            Create a role in the specified GUILD.
+            <list type="bullet">
+            <item>Documentation: <see href="https://bot.q.qq.com/wiki/develop/api/openapi/guild/post_guild_role.html">here</see>.</item>
+            <item>Corresponding: <c>POST /guilds/{guild_id}/roles</c></item>
+            <item>Need authorization: true if <see cref="F:Sudoku.Bot.Communication.ApiType.PublicDomain"/>; otherwise false</item>
+            </list>
             </summary>
         </member>
-        <member name="P:Sudoku.Bot.Communication.BotApis.修改频道身份组">
+        <member name="P:Sudoku.Bot.Communication.BotApis.ModifyRoleInGuild">
             <summary>
-            修改频道 guild_id 下 role_id 指定的身份组
-            <para>
-            <see href="https://bot.q.qq.com/wiki/develop/api/openapi/guild/patch_guild_role.html">接口文档</see><br/>
-            公域鉴权<br/>
-            PATCH /guilds/{guild_id}/roles/{role_id}
-            </para>
+            Modify the specified role in the specified GUILD.
+            <list type="bullet">
+            <item>Documentation: <see href="https://bot.q.qq.com/wiki/develop/api/openapi/guild/patch_guild_role.html">here</see>.</item>
+            <item>Corresponding: <c>PATCH /guilds/{guild_id}/roles/{role_id}</c></item>
+            <item>Need authorization: true if <see cref="F:Sudoku.Bot.Communication.ApiType.PublicDomain"/>; otherwise false</item>
+            </list>
             </summary>
         </member>
-        <member name="P:Sudoku.Bot.Communication.BotApis.删除频道身份组">
+        <member name="P:Sudoku.Bot.Communication.BotApis.DeleteRoleInGuild">
             <summary>
-            删除频道 guild_id 下 role_id 指定的身份组
-            <para>
-            <see href="https://bot.q.qq.com/wiki/develop/api/openapi/guild/delete_guild_role.html">接口文档</see><br/>
-            公域鉴权<br/>
-            DELETE /guilds/{guild_id}/roles/{role_id}
-            </para>
+            Delete the specified role from the specified GUILD.
+            <list type="bullet">
+            <item>Documentation: <see href="https://bot.q.qq.com/wiki/develop/api/openapi/guild/delete_guild_role.html">here</see>.</item>
+            <item>Corresponding: <c>DELETE /guilds/{guild_id}/roles/{role_id}</c></item>
+            <item>Need authorization: true if <see cref="F:Sudoku.Bot.Communication.ApiType.PublicDomain"/>; otherwise false</item>
+            </list>
             </summary>
         </member>
         <member name="P:Sudoku.Bot.Communication.BotApis.添加频道身份组成员">

@@ -10,8 +10,8 @@ partial class BotClient
 	/// <returns></returns>
 	public async Task<List<Role>?> GetRolesAsync(string guild_id, Sender? sender = null)
 	{
-		var api = BotApis.获取频道身份组列表;
-		var response = await HttpSendAsync(api.Path.Replace("{guild_id}", guild_id), api.Method, null, sender);
+		_ = BotApis.GetRolesInGuild is { Path: var path, Method: var method };
+		var response = await HttpSendAsync(path.Replace("{guild_id}", guild_id), method, null, sender);
 		var result = response is null ? null : await response.Content.ReadFromJsonAsync<GuildRoles?>();
 		return result?.Roles;
 	}
@@ -26,11 +26,11 @@ partial class BotClient
 	/// <returns></returns>
 	public async Task<Role?> CreateRoleAsync(string guild_id, Info info, Filter? filter = null, Sender? sender = null)
 	{
-		var api = BotApis.创建频道身份组;
-		filter ??= new(!string.IsNullOrWhiteSpace(info.Name), info.Color != null, info.Hoist ?? false);
+		_ = BotApis.CreateRoleInGuild is { Path: var path, Method: var method };
+		filter ??= new(!string.IsNullOrWhiteSpace(info.Name), info.Color is not null, info.Hoist ?? false);
 		var response = await HttpSendAsync(
-			api.Path.Replace("{guild_id}", guild_id),
-			api.Method,
+			path.Replace("{guild_id}", guild_id),
+			method,
 			JsonContent.Create(new { filter, info }),
 			sender
 		);
@@ -51,11 +51,11 @@ partial class BotClient
 	public async Task<Role?> EditRoleAsync(
 		string guild_id, string role_id, Info info, Filter? filter = null, Sender? sender = null)
 	{
-		var api = BotApis.修改频道身份组;
-		filter ??= new(!string.IsNullOrWhiteSpace(info.Name), info.Color != null, info.Hoist ?? false);
+		_ = BotApis.ModifyRoleInGuild is { Path: var path, Method: var method };
+		filter ??= new(!string.IsNullOrWhiteSpace(info.Name), info.Color is not null, info.Hoist ?? false);
 		var response = await HttpSendAsync(
-			api.Path.Replace("{guild_id}", guild_id).Replace("{role_id}", role_id),
-			api.Method,
+			path.Replace("{guild_id}", guild_id).Replace("{role_id}", role_id),
+			method,
 			JsonContent.Create(new { filter, info }),
 			sender
 		);
@@ -74,10 +74,10 @@ partial class BotClient
 	/// <returns></returns>
 	public async Task<bool> DeleteRoleAsync(string guild_id, string role_id, Sender? sender = null)
 	{
-		var api = BotApis.删除频道身份组;
+		_ = BotApis.DeleteRoleInGuild is { Path: var path, Method: var method };
 		var response = await HttpSendAsync(
-			api.Path.Replace("{guild_id}", guild_id).Replace("{role_id}", role_id),
-			api.Method,
+			path.Replace("{guild_id}", guild_id).Replace("{role_id}", role_id),
+			method,
 			null,
 			sender
 		);
