@@ -261,24 +261,24 @@
             </list>
             </summary>
         </member>
-        <member name="P:Sudoku.Bot.Communication.BotApis.添加频道身份组成员">
+        <member name="P:Sudoku.Bot.Communication.BotApis.AddUserRoleInGuild">
             <summary>
-            将频道 guild_id 下的用户 user_id 添加到身份组 role_id
-            <para>
-            <see href="https://bot.q.qq.com/wiki/develop/api/openapi/guild/put_guild_member_role.html">接口文档</see><br/>
-            公域鉴权<br/>
-            PUT /guilds/{guild_id}/members/{user_id}/roles/{role_id}
-            </para>
+            Adds the specified user into the specified role in the specified GUILD.
+            <list type="bullet">
+            <item>Documentation: <see href="https://bot.q.qq.com/wiki/develop/api/openapi/guild/put_guild_member_role.html">here</see>.</item>
+            <item>Corresponding: <c>PUT /guilds/{guild_id}/members/{user_id}/roles/{role_id}</c></item>
+            <item>Need authorization: true if <see cref="F:Sudoku.Bot.Communication.ApiType.PublicDomain"/>; otherwise false</item>
+            </list>
             </summary>
         </member>
-        <member name="P:Sudoku.Bot.Communication.BotApis.删除频道身份组成员">
+        <member name="P:Sudoku.Bot.Communication.BotApis.DeleteUserRoleInGuild">
             <summary>
-            将用户 user_id 从频道 guild_id 的 role_id 身份组中移除
-            <para>
-            <see href="https://bot.q.qq.com/wiki/develop/api/openapi/guild/delete_guild_member_role.html">接口文档</see><br/>
-            公域鉴权<br/>
-            DELETE /guilds/{guild_id}/members/{user_id}/roles/{role_id}
-            </para>
+            Delete the specified user from the specified role in the specified GUILD.
+            <list type="bullet">
+            <item>Documentation: <see href="https://bot.q.qq.com/wiki/develop/api/openapi/guild/delete_guild_member_role.html">here</see>.</item>
+            <item>Corresponding: <c>DELETE /guilds/{guild_id}/members/{user_id}/roles/{role_id}</c></item>
+            <item>Need authorization: true if <see cref="F:Sudoku.Bot.Communication.ApiType.PublicDomain"/>; otherwise false</item>
+            </list>
             </summary>
         </member>
         <member name="P:Sudoku.Bot.Communication.BotApis.获取子频道用户权限">

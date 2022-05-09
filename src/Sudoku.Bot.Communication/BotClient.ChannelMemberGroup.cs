@@ -101,13 +101,13 @@ partial class BotClient
 	public async Task<bool> AddRoleMemberAsync(
 		string guild_id, string user_id, string role_id, string? channel_id = null, Sender? sender = null)
 	{
-		var api = BotApis.添加频道身份组成员;
-		HttpContent? httpContent = channel_id == null
+		_ = BotApis.AddUserRoleInGuild is { Path: var path, Method: var method };
+		HttpContent? httpContent = channel_id is null
 			? null
 			: JsonContent.Create(new { channel = new Channel { Id = channel_id } });
 		var response = await HttpSendAsync(
-			api.Path.Replace("{guild_id}", guild_id).Replace("{user_id}", user_id).Replace("{role_id}", role_id),
-			api.Method,
+			path.Replace("{guild_id}", guild_id).Replace("{user_id}", user_id).Replace("{role_id}", role_id),
+			method,
 			httpContent,
 			sender
 		);
@@ -132,13 +132,13 @@ partial class BotClient
 	public async Task<bool> DeleteRoleMemberAsync(
 		string guild_id, string user_id, string role_id, string? channel_id = null, Sender? sender = null)
 	{
-		var api = BotApis.删除频道身份组成员;
+		_ = BotApis.DeleteUserRoleInGuild is { Path: var path, Method: var method };
 		HttpContent? httpContent = channel_id is null
 			? null
 			: JsonContent.Create(new { channel = new Channel { Id = channel_id } });
 		var response = await HttpSendAsync(
-			api.Path.Replace("{guild_id}", guild_id).Replace("{user_id}", user_id).Replace("{role_id}", role_id),
-			api.Method,
+			path.Replace("{guild_id}", guild_id).Replace("{user_id}", user_id).Replace("{role_id}", role_id),
+			method,
 			httpContent,
 			sender
 		);

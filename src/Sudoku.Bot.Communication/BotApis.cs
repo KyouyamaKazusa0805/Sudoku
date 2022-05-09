@@ -43,7 +43,8 @@ internal static class BotApis
 	/// <item>Need authorization: true if <see cref="ApiType.PublicDomain"/>; otherwise false</item>
 	/// </list>
 	/// </summary>
-	public static BotApi GetChannelsInGuild => new(ApiType.PublicDomain, HttpMethod.Get, """/guilds/{guild_id}/channels""");
+	public static BotApi GetChannelsInGuild
+		=> new(ApiType.PublicDomain, HttpMethod.Get, """/guilds/{guild_id}/channels""");
 
 	/// <summary>
 	/// Gets the detail of a channel.
@@ -93,7 +94,8 @@ internal static class BotApis
 	/// <item>Need authorization: true if <see cref="ApiType.PrivateDomain"/>; otherwise false</item>
 	/// </list>
 	/// </summary>
-	public static BotApi GetMembersInGuild => new(ApiType.PrivateDomain, HttpMethod.Get, """/guilds/{guild_id}/members""");
+	public static BotApi GetMembersInGuild
+		=> new(ApiType.PrivateDomain, HttpMethod.Get, """/guilds/{guild_id}/members""");
 
 	/// <summary>
 	/// Get detail of the specified member in the specified GUILD.
@@ -103,7 +105,8 @@ internal static class BotApis
 	/// <item>Need authorization: true if <see cref="ApiType.PublicDomain"/>; otherwise false</item>
 	/// </list>
 	/// </summary>
-	public static BotApi GetMemberDetailInGuild => new(ApiType.PublicDomain, HttpMethod.Get, """/guilds/{guild_id}/members/{user_id}""");
+	public static BotApi GetMemberDetailInGuild
+		=> new(ApiType.PublicDomain, HttpMethod.Get, """/guilds/{guild_id}/members/{user_id}""");
 
 	/// <summary>
 	/// Delete the specified member from the specified GUILD.
@@ -113,7 +116,8 @@ internal static class BotApis
 	/// <item>Need authorization: true if <see cref="ApiType.PrivateDomain"/>; otherwise false</item>
 	/// </list>
 	/// </summary>
-	public static BotApi DeleteMemberInGuild => new(ApiType.PrivateDomain, HttpMethod.Delete, """/guilds/{guild_id}/members/{user_id}""");
+	public static BotApi DeleteMemberInGuild
+		=> new(ApiType.PrivateDomain, HttpMethod.Delete, """/guilds/{guild_id}/members/{user_id}""");
 
 	/// <summary>
 	/// Get the list of roles existed in the specified GUILD.
@@ -143,7 +147,8 @@ internal static class BotApis
 	/// <item>Need authorization: true if <see cref="ApiType.PublicDomain"/>; otherwise false</item>
 	/// </list>
 	/// </summary>
-	public static BotApi ModifyRoleInGuild => new(ApiType.PublicDomain, HttpMethod.Patch, """/guilds/{guild_id}/roles/{role_id}""");
+	public static BotApi ModifyRoleInGuild
+		=> new(ApiType.PublicDomain, HttpMethod.Patch, """/guilds/{guild_id}/roles/{role_id}""");
 
 	/// <summary>
 	/// Delete the specified role from the specified GUILD.
@@ -153,27 +158,30 @@ internal static class BotApis
 	/// <item>Need authorization: true if <see cref="ApiType.PublicDomain"/>; otherwise false</item>
 	/// </list>
 	/// </summary>
-	public static BotApi DeleteRoleInGuild => new(ApiType.PublicDomain, HttpMethod.Delete, """/guilds/{guild_id}/roles/{role_id}""");
+	public static BotApi DeleteRoleInGuild
+		=> new(ApiType.PublicDomain, HttpMethod.Delete, """/guilds/{guild_id}/roles/{role_id}""");
 
 	/// <summary>
-	/// 将频道 guild_id 下的用户 user_id 添加到身份组 role_id
-	/// <para>
-	/// <see href="https://bot.q.qq.com/wiki/develop/api/openapi/guild/put_guild_member_role.html">接口文档</see><br/>
-	/// 公域鉴权<br/>
-	/// PUT /guilds/{guild_id}/members/{user_id}/roles/{role_id}
-	/// </para>
+	/// Adds the specified user into the specified role in the specified GUILD.
+	/// <list type="bullet">
+	/// <item>Documentation: <see href="https://bot.q.qq.com/wiki/develop/api/openapi/guild/put_guild_member_role.html">here</see>.</item>
+	/// <item>Corresponding: <c>PUT /guilds/{guild_id}/members/{user_id}/roles/{role_id}</c></item>
+	/// <item>Need authorization: true if <see cref="ApiType.PublicDomain"/>; otherwise false</item>
+	/// </list>
 	/// </summary>
-	public static BotApi 添加频道身份组成员 => new(ApiType.PublicDomain, HttpMethod.Put, @"/guilds/{guild_id}/members/{user_id}/roles/{role_id}");
+	public static BotApi AddUserRoleInGuild
+		=> new(ApiType.PublicDomain, HttpMethod.Put, """/guilds/{guild_id}/members/{user_id}/roles/{role_id}""");
 
 	/// <summary>
-	/// 将用户 user_id 从频道 guild_id 的 role_id 身份组中移除
-	/// <para>
-	/// <see href="https://bot.q.qq.com/wiki/develop/api/openapi/guild/delete_guild_member_role.html">接口文档</see><br/>
-	/// 公域鉴权<br/>
-	/// DELETE /guilds/{guild_id}/members/{user_id}/roles/{role_id}
-	/// </para>
+	/// Delete the specified user from the specified role in the specified GUILD.
+	/// <list type="bullet">
+	/// <item>Documentation: <see href="https://bot.q.qq.com/wiki/develop/api/openapi/guild/delete_guild_member_role.html">here</see>.</item>
+	/// <item>Corresponding: <c>DELETE /guilds/{guild_id}/members/{user_id}/roles/{role_id}</c></item>
+	/// <item>Need authorization: true if <see cref="ApiType.PublicDomain"/>; otherwise false</item>
+	/// </list>
 	/// </summary>
-	public static BotApi 删除频道身份组成员 => new(ApiType.PublicDomain, HttpMethod.Delete, @"/guilds/{guild_id}/members/{user_id}/roles/{role_id}");
+	public static BotApi DeleteUserRoleInGuild
+		=> new(ApiType.PublicDomain, HttpMethod.Delete, """/guilds/{guild_id}/members/{user_id}/roles/{role_id}""");
 
 	/// <summary>
 	/// 获取子频道 channel_id 下用户 user_id 的权限
