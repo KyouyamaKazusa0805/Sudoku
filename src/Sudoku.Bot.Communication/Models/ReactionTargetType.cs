@@ -1,24 +1,31 @@
 ﻿namespace Sudoku.Bot.Communication.Models;
 
 /// <summary>
-/// 表态对象类型
+/// Indicates the type of the reaction.
 /// </summary>
+/// <remarks>
+/// The data type is referenced from
+/// <see href="https://bot.q.qq.com/wiki/develop/api/openapi/reaction/model.html#reactiontargettype">this link</see>.
+/// </remarks>
 public enum ReactionTargetType
 {
 	/// <summary>
-	/// 消息
+	/// Indicates the reaction is applied to a message.
 	/// </summary>
-	消息,
+	Message,
+
 	/// <summary>
-	/// 帖子
+	/// Indicates the reaction is applied to a post.
 	/// </summary>
-	帖子,
+	Post,
+
 	/// <summary>
-	/// 评论
+	/// Indicates the reaction is applied to a comment.
 	/// </summary>
-	评论,
+	Comment,
+
 	/// <summary>
-	/// 回复
+	/// Indicates the reaction is applied to a reply.
 	/// </summary>
-	回复,
+	Reply
 }

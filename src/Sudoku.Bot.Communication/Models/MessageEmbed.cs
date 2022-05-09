@@ -5,7 +5,9 @@
 /// </summary>
 /// <remarks>
 /// The data type is referenced from
-/// <see href="https://bot.q.qq.com/wiki/develop/api/openapi/message/model.html#messageembed">this link</see>.
+/// <see href="https://bot.q.qq.com/wiki/develop/api/openapi/message/model.html#messageembed">this link</see>
+/// and <see href="https://bot.q.qq.com/wiki/develop/gosdk/api/message/message_format.html#embed">this link</see>
+/// (<c>Embed</c> type in <see cref="MessageToCreate"/>).
 /// </remarks>
 public sealed class MessageEmbed
 {

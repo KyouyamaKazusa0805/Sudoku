@@ -1,90 +1,112 @@
 ﻿namespace Sudoku.Bot.Communication.Models;
 
 /// <summary>
-/// 模板消息 id=23
-/// <para>链接+文本列表模板</para>
+/// Indicates the templated message whose ID is 23, which contains plain text with links.
 /// </summary>
-public class MsgArk23 : MessageToCreate
+/// <remarks>
+/// The data type is referenced from
+/// <see href="https://bot.q.qq.com/wiki/develop/gosdk/api/message/message_template.html#%E6%A0%B7%E5%BC%8F-id-23">this link</see>.
+/// </remarks>
+public sealed class MsgArk23 : MessageToCreate
 {
-	private readonly MessageArkKeyValuePair _arkDesc = new() { Key = "#DESC#", Value = null };
+	/// <summary>
+	/// Indciates the description of the ARK message.
+	/// </summary>
+	private readonly MessageArkKeyValuePair _arkDescription = new() { Key = "#DESC#", Value = null };
 
+	/// <summary>
+	/// Indicates the prompt of the ARK message.
+	/// </summary>
 	private readonly MessageArkKeyValuePair _arkPrompt = new() { Key = "#PROMPT#", Value = null };
 
 
 	/// <summary>
-	/// 构造模板消息
+	/// Initializes a <see cref="MsgArk23"/> instance via the specified info.
 	/// </summary>
-	/// <param name="desc">描述</param>
-	/// <param name="prompt">提示</param>
-	/// <param name="msgLines">多行内容</param>
-	/// <param name="replyMsgId">要回复的消息id</param>
+	/// <param name="desc">The description.</param>
+	/// <param name="prompt">The prompt.</param>
+	/// <param name="msgLines">The lines of the message.</param>
+	/// <param name="replyMsgId">The message ID that the message is replied to.</param>
 	public MsgArk23(
 		string? desc = null, string? prompt = null, List<MessageArkObj>? msgLines = null, string? replyMsgId = null)
-	{
-		Id = replyMsgId;
-		Desc = desc;
-		Prompt = prompt;
-		MsgLines = msgLines ?? new();
-		Ark = new()
-		{
-			TemplateId = 23,
-			Kv = new()
+		=> (Id, Description, Prompt, MessageLines, Ark) = (
+			replyMsgId, desc, prompt, msgLines ?? new(),
+			new()
 			{
-				_arkDesc,
-				_arkPrompt,
-				new() { Key = "#LIST#", Obj = MsgLines }
+				TemplateId = 23,
+				Kv = new() { _arkDescription, _arkPrompt, new() { Key = "#LIST#", Obj = MessageLines } }
 			}
-		};
+		);
+
+
+	/// <summary>
+	/// Indicates the description of the message.
+	/// </summary>
+	public string? Description
+	{
+		get => _arkDescription.Value;
+
+		set => _arkDescription.Value = value;
 	}
 
+	/// <summary>
+	/// Indicates the propmt value of the message.
+	/// </summary>
+	public string? Prompt
+	{
+		get => _arkPrompt.Value;
+
+		set => _arkPrompt.Value = value;
+	}
 
 	/// <summary>
-	/// 设置要回复的目标消息
+	/// Indicates the lines of the message.
 	/// </summary>
-	/// <param name="msgId">目标消息的Id</param>
-	/// <returns></returns>
-	public MsgArk23 SetReplyMsgId(string? msgId) { Id = msgId; return this; }
-
-	/// <summary>
-	/// 描述
-	/// </summary>
-	public string? Desc { get => _arkDesc.Value; set => _arkDesc.Value = value; }
-
-	/// <summary>
-	/// 设置描述
-	/// </summary>
-	/// <param name="desc">描述内容</param>
-	/// <returns></returns>
-	public MsgArk23 SetDesc(string? desc) { Desc = desc; return this; }
-
-	/// <summary>
-	/// 提示消息
-	/// </summary>
-	public string? Prompt { get => _arkPrompt.Value; set => _arkPrompt.Value = value; }
-
-	/// <summary>
-	/// 设置提示
-	/// </summary>
-	/// <param name="prompt">提示内容</param>
-	/// <returns></returns>
-	public MsgArk23 SetPrompt(string? prompt) { Prompt = prompt; return this; }
-
-	/// <summary>
-	/// 内容列表
-	/// </summary>
-	public List<MessageArkObj> MsgLines { get; set; }
+	public List<MessageArkObj> MessageLines { get; set; }
 
 
 	/// <summary>
-	/// 添加一行内容
-	/// <para>
-	/// content - 本行要显示的文字<br/>
-	/// link - 本行文字绑定的超链接(URL需要审核通过才能用)
-	/// </para>
+	/// Sets the reply message ID.
 	/// </summary>
-	/// <param name="content">内容描述</param>
-	/// <param name="link">内容链接 [可选]</param>
-	/// <returns></returns>
+	/// <param name="msgId">The ID to be replied.</param>
+	/// <returns>The current instance.</returns>
+	public MsgArk23 WithReplyMessageId(string? msgId)
+	{
+		Id = msgId;
+
+		return this;
+	}
+
+	/// <summary>
+	/// Sets the description of the message.
+	/// </summary>
+	/// <param name="desc">The description of the message.</param>
+	/// <returns>The current instance.</returns>
+	public MsgArk23 WithDescription(string? desc)
+	{
+		Description = desc;
+
+		return this;
+	}
+
+	/// <summary>
+	/// Sets the prompt of the message.
+	/// </summary>
+	/// <param name="prompt">The prompt of the message.</param>
+	/// <returns>The current instance.</returns>
+	public MsgArk23 WithPrompt(string? prompt)
+	{
+		Prompt = prompt;
+		
+		return this;
+	}
+
+	/// <summary>
+	/// Add a new line.
+	/// </summary>
+	/// <param name="content">The plain text to be displayed, as the introduction of the link.</param>
+	/// <param name="link">The link. The URL link is available after passed the audit.</param>
+	/// <returns>The current instance.</returns>
 	public MsgArk23 AddLine(string? content, string? link = null)
 	{
 		var ojbk = new List<MessageArkObjKeyValuePair> { new() { Key = "desc", Value = content } };
@@ -93,7 +115,7 @@ public class MsgArk23 : MessageToCreate
 			ojbk.Add(new() { Key = "link", Value = link });
 		}
 
-		MsgLines.Add(new() { ObjKv = ojbk });
+		MessageLines.Add(new() { ObjKv = ojbk });
 		return this;
 	}
 }

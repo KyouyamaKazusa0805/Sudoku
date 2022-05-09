@@ -32,7 +32,7 @@ public class Sender
 	/// <summary>
 	/// 是否 @机器人
 	/// </summary>
-	public bool AtMe => MessageType == MessageType.AtMe;
+	public bool AtMe => MessageType == MessageType.BotMentioned;
 
 	/// <summary>
 	/// 向发件人报告API调用失败的错误信息

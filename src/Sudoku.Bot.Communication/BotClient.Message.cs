@@ -127,11 +127,12 @@ partial class BotClient
 		Sender sender = new(message, this);
 
 		// 识别消息类型（私聊，AT全员，AT机器人）
+		bool userPredicate(User u) => u.Id == Info.Id;
 		_ = message switch
 		{
 			{ IsDirectMessage: true } => sender.MessageType = MessageType.Private,
-			{ IsAllMentioned: true } => sender.MessageType = MessageType.AtAll,
-			{ Mentions: var list } when list?.Any(u => u.Id == Info.Id) is true => sender.MessageType = MessageType.AtMe,
+			{ IsAllMentioned: true } => sender.MessageType = MessageType.MentionAll,
+			{ Mentions: var list } when list?.Any(userPredicate) is true => sender.MessageType = MessageType.BotMentioned,
 			_ => default
 		};
 
@@ -162,8 +163,7 @@ partial class BotClient
 		// 识别指令
 		bool hasCommand = content.StartsWith(CommandPrefix);
 		content = content.ReplaceStart(CommandPrefix).TrimStart();
-		if ((hasCommand || sender.MessageType == MessageType.AtMe || sender.MessageType == MessageType.Private)
-			&& content.Length > 0)
+		if ((hasCommand || sender.MessageType is MessageType.BotMentioned or MessageType.Private) && content.Length > 0)
 		{
 			// 在新的线程上输出日志信息
 			_ = Task.Run(logHandler);
@@ -206,7 +206,7 @@ partial class BotClient
 				)
 			)
 			{
-				if (sender.MessageType == MessageType.AtMe)
+				if (sender.MessageType == MessageType.BotMentioned)
 				{
 					_ = sender.ReplyAsync($"{message.MessageCreator.Tag} 你无权使用该命令！");
 				}

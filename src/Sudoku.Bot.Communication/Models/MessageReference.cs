@@ -1,17 +1,25 @@
 ﻿namespace Sudoku.Bot.Communication.Models;
 
 /// <summary>
-/// 引用消息
+/// Indicates the reference message instance.
 /// </summary>
-public class MessageReference
+/// <remarks>
+/// The data type is referenced from
+/// <see href="https://bot.q.qq.com/wiki/develop/gosdk/api/message/post_message.html#messagereference">this link</see>
+/// (Original link) and
+/// <see href="https://bot.q.qq.com/wiki/develop/gosdk/api/message/message_reference.html#%E5%8F%91%E9%80%81%E5%BC%95%E7%94%A8%E6%B6%88%E6%81%AF">this link</see>
+/// (Example that use the message reference).
+/// </remarks>
+public sealed class MessageReference
 {
 	/// <summary>
-	/// 需要引用回复的消息 id
+	/// Indicates the message ID referenced.
 	/// </summary>
 	[JsonPropertyName("message_id")]
 	public string? MessageId { get; set; }
+
 	/// <summary>
-	/// 是否忽略获取引用消息详情错误，默认否
+	/// Indicates whether the operation ignores the wrong case that fetched the message reference.
 	/// </summary>
 	[JsonPropertyName("ignore_get_message_error")]
 	public bool IgnoreGetMessageError { get; set; } = false;

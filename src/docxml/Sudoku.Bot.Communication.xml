@@ -2757,6 +2757,31 @@
             <param name="timeString">The time-span string.</param>
             <returns>The <see cref="T:Sudoku.Bot.Communication.Models.Interaction.JinxTimeSpan"/> instance.</returns>
         </member>
+        <member name="T:Sudoku.Bot.Communication.Models.Interaction.MessageType">
+            <summary>
+            Indicates a message type.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Bot.Communication.Models.Interaction.MessageType.Public">
+            <summary>
+            Indicates the message is public.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Bot.Communication.Models.Interaction.MessageType.BotMentioned">
+            <summary>
+            Indicates the message is mentioned.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Bot.Communication.Models.Interaction.MessageType.MentionAll">
+            <summary>
+            Indicates the message mentions all members.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Bot.Communication.Models.Interaction.MessageType.Private">
+            <summary>
+            Indicates the message is private.
+            </summary>
+        </member>
         <member name="T:Sudoku.Bot.Communication.Models.GetMessageType">
             <summary>
             Indicates the type for defining the message getting. The field names in this type cannot be modified.
@@ -3032,7 +3057,9 @@
             </summary>
             <remarks>
             The data type is referenced from
-            <see href="https://bot.q.qq.com/wiki/develop/api/openapi/message/model.html#messageembed">this link</see>.
+            <see href="https://bot.q.qq.com/wiki/develop/api/openapi/message/model.html#messageembed">this link</see>
+            and <see href="https://bot.q.qq.com/wiki/develop/gosdk/api/message/message_format.html#embed">this link</see>
+            (<c>Embed</c> type in <see cref="T:Sudoku.Bot.Communication.Models.MessageToCreate"/>).
             </remarks>
         </member>
         <member name="P:Sudoku.Bot.Communication.Models.MessageEmbed.Title">
@@ -3091,172 +3118,170 @@
         </member>
         <member name="T:Sudoku.Bot.Communication.Models.MessageReaction">
             <summary>
-            表情表态
+            Indicates the reaction to a message.
             </summary>
+            <remarks>
+            The data type is referenced from
+            <see href="https://bot.q.qq.com/wiki/develop/api/openapi/reaction/model.html#messagereaction">this link</see>.
+            </remarks>
         </member>
         <member name="P:Sudoku.Bot.Communication.Models.MessageReaction.UserId">
             <summary>
-            用户Id
+            Indicates the ID of the user who created the reaction.
             </summary>
         </member>
         <member name="P:Sudoku.Bot.Communication.Models.MessageReaction.GuildId">
             <summary>
-            频道Id
+            Indicates the GUILD ID.
             </summary>
         </member>
         <member name="P:Sudoku.Bot.Communication.Models.MessageReaction.ChannelId">
             <summary>
-            子频道Id
+            Indicates the channel ID.
             </summary>
         </member>
         <member name="P:Sudoku.Bot.Communication.Models.MessageReaction.Target">
             <summary>
-            表态对象
+            Indicates the reaction instance.
             </summary>
         </member>
         <member name="P:Sudoku.Bot.Communication.Models.MessageReaction.Emoji">
             <summary>
-            表态所用表情
+            Indicates the emoji that is used by a reaction instance.
             </summary>
         </member>
         <member name="T:Sudoku.Bot.Communication.Models.MessageReference">
             <summary>
-            引用消息
+            Indicates the reference message instance.
             </summary>
+            <remarks>
+            The data type is referenced from
+            <see href="https://bot.q.qq.com/wiki/develop/gosdk/api/message/post_message.html#messagereference">this link</see>
+            (Original link) and
+            <see href="https://bot.q.qq.com/wiki/develop/gosdk/api/message/message_reference.html#%E5%8F%91%E9%80%81%E5%BC%95%E7%94%A8%E6%B6%88%E6%81%AF">this link</see>
+            (Example that use the message reference).
+            </remarks>
         </member>
         <member name="P:Sudoku.Bot.Communication.Models.MessageReference.MessageId">
             <summary>
-            需要引用回复的消息 id
+            Indicates the message ID referenced.
             </summary>
         </member>
         <member name="P:Sudoku.Bot.Communication.Models.MessageReference.IgnoreGetMessageError">
             <summary>
-            是否忽略获取引用消息详情错误，默认否
+            Indicates whether the operation ignores the wrong case that fetched the message reference.
             </summary>
         </member>
         <member name="T:Sudoku.Bot.Communication.Models.MessageToCreate">
             <summary>
-            消息体结构
+            Indicates a message to be created.
             </summary>
+            <remarks>
+            The data type is referenced from
+            <see href="https://bot.q.qq.com/wiki/develop/gosdk/api/message/message_format.html#messagetocreate">this link</see>.
+            </remarks>
         </member>
         <member name="P:Sudoku.Bot.Communication.Models.MessageToCreate.Content">
             <summary>
-            消息内容，文本内容，支持内嵌格式
+            Indicates the content of the message.
             </summary>
         </member>
         <member name="P:Sudoku.Bot.Communication.Models.MessageToCreate.Embed">
             <summary>
-            embed 消息，一种特殊的 ark
+            Indicates the embedded message instance.
             </summary>
         </member>
         <member name="P:Sudoku.Bot.Communication.Models.MessageToCreate.Ark">
             <summary>
-            ark 消息
+            Indicates the ARK message.
             </summary>
         </member>
         <member name="P:Sudoku.Bot.Communication.Models.MessageToCreate.Reference">
             <summary>
-            引用消息（需要传递被引用的消息Id）
+            Indicates the message referenced.
             </summary>
         </member>
         <member name="P:Sudoku.Bot.Communication.Models.MessageToCreate.Image">
             <summary>
-            图片 url 地址
+            Indicates the URL of the image.
             </summary>
         </member>
         <member name="P:Sudoku.Bot.Communication.Models.MessageToCreate.Id">
             <summary>
-            要回复的目标消息Id
-            <para>带了 id 视为被动回复消息，否则视为主动推送消息</para>
-            </summary>
-        </member>
-        <member name="T:Sudoku.Bot.Communication.Models.MessageType">
-            <summary>
-            消息类型枚举
-            </summary>
-        </member>
-        <member name="F:Sudoku.Bot.Communication.Models.MessageType.Public">
-            <summary>
-            公共
-            </summary>
-        </member>
-        <member name="F:Sudoku.Bot.Communication.Models.MessageType.AtMe">
-            <summary>
-            @机器人
-            </summary>
-        </member>
-        <member name="F:Sudoku.Bot.Communication.Models.MessageType.AtAll">
-            <summary>
-            @全员
-            </summary>
-        </member>
-        <member name="F:Sudoku.Bot.Communication.Models.MessageType.Private">
-            <summary>
-            私聊
+            Indicates the message ID that the message is replied.
             </summary>
         </member>
         <member name="T:Sudoku.Bot.Communication.Models.MsgArk23">
             <summary>
-            模板消息 id=23
-            <para>链接+文本列表模板</para>
+            Indicates the templated message whose ID is 23, which contains plain text with links.
+            </summary>
+            <remarks>
+            The data type is referenced from
+            <see href="https://bot.q.qq.com/wiki/develop/gosdk/api/message/message_template.html#%E6%A0%B7%E5%BC%8F-id-23">this link</see>.
+            </remarks>
+        </member>
+        <member name="F:Sudoku.Bot.Communication.Models.MsgArk23._arkDescription">
+            <summary>
+            Indciates the description of the ARK message.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Bot.Communication.Models.MsgArk23._arkPrompt">
+            <summary>
+            Indicates the prompt of the ARK message.
             </summary>
         </member>
         <member name="M:Sudoku.Bot.Communication.Models.MsgArk23.#ctor(System.String,System.String,System.Collections.Generic.List{Sudoku.Bot.Communication.Models.MessageArkObj},System.String)">
             <summary>
-            构造模板消息
+            Initializes a <see cref="T:Sudoku.Bot.Communication.Models.MsgArk23"/> instance via the specified info.
             </summary>
-            <param name="desc">描述</param>
-            <param name="prompt">提示</param>
-            <param name="msgLines">多行内容</param>
-            <param name="replyMsgId">要回复的消息id</param>
+            <param name="desc">The description.</param>
+            <param name="prompt">The prompt.</param>
+            <param name="msgLines">The lines of the message.</param>
+            <param name="replyMsgId">The message ID that the message is replied to.</param>
         </member>
-        <member name="M:Sudoku.Bot.Communication.Models.MsgArk23.SetReplyMsgId(System.String)">
+        <member name="P:Sudoku.Bot.Communication.Models.MsgArk23.Description">
             <summary>
-            设置要回复的目标消息
+            Indicates the description of the message.
             </summary>
-            <param name="msgId">目标消息的Id</param>
-            <returns></returns>
-        </member>
-        <member name="P:Sudoku.Bot.Communication.Models.MsgArk23.Desc">
-            <summary>
-            描述
-            </summary>
-        </member>
-        <member name="M:Sudoku.Bot.Communication.Models.MsgArk23.SetDesc(System.String)">
-            <summary>
-            设置描述
-            </summary>
-            <param name="desc">描述内容</param>
-            <returns></returns>
         </member>
         <member name="P:Sudoku.Bot.Communication.Models.MsgArk23.Prompt">
             <summary>
-            提示消息
+            Indicates the propmt value of the message.
             </summary>
         </member>
-        <member name="M:Sudoku.Bot.Communication.Models.MsgArk23.SetPrompt(System.String)">
+        <member name="P:Sudoku.Bot.Communication.Models.MsgArk23.MessageLines">
             <summary>
-            设置提示
+            Indicates the lines of the message.
             </summary>
-            <param name="prompt">提示内容</param>
-            <returns></returns>
         </member>
-        <member name="P:Sudoku.Bot.Communication.Models.MsgArk23.MsgLines">
+        <member name="M:Sudoku.Bot.Communication.Models.MsgArk23.WithReplyMessageId(System.String)">
             <summary>
-            内容列表
+            Sets the reply message ID.
             </summary>
+            <param name="msgId">The ID to be replied.</param>
+            <returns>The current instance.</returns>
+        </member>
+        <member name="M:Sudoku.Bot.Communication.Models.MsgArk23.WithDescription(System.String)">
+            <summary>
+            Sets the description of the message.
+            </summary>
+            <param name="desc">The description of the message.</param>
+            <returns>The current instance.</returns>
+        </member>
+        <member name="M:Sudoku.Bot.Communication.Models.MsgArk23.WithPrompt(System.String)">
+            <summary>
+            Sets the prompt of the message.
+            </summary>
+            <param name="prompt">The prompt of the message.</param>
+            <returns>The current instance.</returns>
         </member>
         <member name="M:Sudoku.Bot.Communication.Models.MsgArk23.AddLine(System.String,System.String)">
             <summary>
-            添加一行内容
-            <para>
-            content - 本行要显示的文字<br/>
-            link - 本行文字绑定的超链接(URL需要审核通过才能用)
-            </para>
+            Add a new line.
             </summary>
-            <param name="content">内容描述</param>
-            <param name="link">内容链接 [可选]</param>
-            <returns></returns>
+            <param name="content">The plain text to be displayed, as the introduction of the link.</param>
+            <param name="link">The link. The URL link is available after passed the audit.</param>
+            <returns>The current instance.</returns>
         </member>
         <member name="T:Sudoku.Bot.Communication.Models.MsgArk24">
             <summary>
@@ -3818,42 +3843,50 @@
         </member>
         <member name="T:Sudoku.Bot.Communication.Models.ReactionTarget">
             <summary>
-            表态对象
+            Indicates a real reaction target instance, which means what target the reaction is applied to.
             </summary>
+            <remarks>
+            The data type is referenced from
+            <see href="https://bot.q.qq.com/wiki/develop/api/openapi/reaction/model.html#reactiontarget">this link</see>.
+            </remarks>
         </member>
         <member name="P:Sudoku.Bot.Communication.Models.ReactionTarget.Id">
             <summary>
-            表态对象ID
+            Indicates the ID of the reaction instance.
             </summary>
         </member>
         <member name="P:Sudoku.Bot.Communication.Models.ReactionTarget.Type">
             <summary>
-            表态对象类型
+            Indicates the type of the reaction.
             </summary>
         </member>
         <member name="T:Sudoku.Bot.Communication.Models.ReactionTargetType">
             <summary>
-            表态对象类型
+            Indicates the type of the reaction.
+            </summary>
+            <remarks>
+            The data type is referenced from
+            <see href="https://bot.q.qq.com/wiki/develop/api/openapi/reaction/model.html#reactiontargettype">this link</see>.
+            </remarks>
+        </member>
+        <member name="F:Sudoku.Bot.Communication.Models.ReactionTargetType.Message">
+            <summary>
+            Indicates the reaction is applied to a message.
             </summary>
         </member>
-        <member name="F:Sudoku.Bot.Communication.Models.ReactionTargetType.消息">
+        <member name="F:Sudoku.Bot.Communication.Models.ReactionTargetType.Post">
             <summary>
-            消息
+            Indicates the reaction is applied to a post.
             </summary>
         </member>
-        <member name="F:Sudoku.Bot.Communication.Models.ReactionTargetType.帖子">
+        <member name="F:Sudoku.Bot.Communication.Models.ReactionTargetType.Comment">
             <summary>
-            帖子
+            Indicates the reaction is applied to a comment.
             </summary>
         </member>
-        <member name="F:Sudoku.Bot.Communication.Models.ReactionTargetType.评论">
+        <member name="F:Sudoku.Bot.Communication.Models.ReactionTargetType.Reply">
             <summary>
-            评论
-            </summary>
-        </member>
-        <member name="F:Sudoku.Bot.Communication.Models.ReactionTargetType.回复">
-            <summary>
-            回复
+            Indicates the reaction is applied to a reply.
             </summary>
         </member>
         <member name="T:Sudoku.Bot.Communication.Models.RecommendChannel">
