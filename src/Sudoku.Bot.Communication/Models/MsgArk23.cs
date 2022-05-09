@@ -1,4 +1,6 @@
-﻿namespace Sudoku.Bot.Communication.Models;
+﻿#pragma warning disable CS1591
+
+namespace Sudoku.Bot.Communication.Models;
 
 /// <summary>
 /// Indicates the templated message whose ID is 23, which contains plain text with links.
@@ -9,28 +11,19 @@
 /// </remarks>
 public sealed class MsgArk23 : MessageToCreate
 {
-	/// <summary>
-	/// Indciates the description of the ARK message.
-	/// </summary>
 	private readonly MessageArkKeyValuePair _arkDescription = new() { Key = "#DESC#", Value = null };
 
-	/// <summary>
-	/// Indicates the prompt of the ARK message.
-	/// </summary>
 	private readonly MessageArkKeyValuePair _arkPrompt = new() { Key = "#PROMPT#", Value = null };
 
 
-	/// <summary>
-	/// Initializes a <see cref="MsgArk23"/> instance via the specified info.
-	/// </summary>
-	/// <param name="desc">The description.</param>
-	/// <param name="prompt">The prompt.</param>
-	/// <param name="msgLines">The lines of the message.</param>
-	/// <param name="replyMsgId">The message ID that the message is replied to.</param>
 	public MsgArk23(
-		string? desc = null, string? prompt = null, List<MessageArkObj>? msgLines = null, string? replyMsgId = null)
+		string? description = null, string? prompt = null,
+		List<MessageArkObj>? messageLines = null, string? replyMessageId = null)
 		=> (Id, Description, Prompt, MessageLines, Ark) = (
-			replyMsgId, desc, prompt, msgLines ?? new(),
+			replyMessageId,
+			description,
+			prompt,
+			messageLines ?? new(),
 			new()
 			{
 				TemplateId = 23,
@@ -39,9 +32,6 @@ public sealed class MsgArk23 : MessageToCreate
 		);
 
 
-	/// <summary>
-	/// Indicates the description of the message.
-	/// </summary>
 	public string? Description
 	{
 		get => _arkDescription.Value;
@@ -49,9 +39,6 @@ public sealed class MsgArk23 : MessageToCreate
 		set => _arkDescription.Value = value;
 	}
 
-	/// <summary>
-	/// Indicates the propmt value of the message.
-	/// </summary>
 	public string? Prompt
 	{
 		get => _arkPrompt.Value;
@@ -59,17 +46,9 @@ public sealed class MsgArk23 : MessageToCreate
 		set => _arkPrompt.Value = value;
 	}
 
-	/// <summary>
-	/// Indicates the lines of the message.
-	/// </summary>
 	public List<MessageArkObj> MessageLines { get; set; }
 
 
-	/// <summary>
-	/// Sets the reply message ID.
-	/// </summary>
-	/// <param name="msgId">The ID to be replied.</param>
-	/// <returns>The current instance.</returns>
 	public MsgArk23 WithReplyMessageId(string? msgId)
 	{
 		Id = msgId;
@@ -77,11 +56,6 @@ public sealed class MsgArk23 : MessageToCreate
 		return this;
 	}
 
-	/// <summary>
-	/// Sets the description of the message.
-	/// </summary>
-	/// <param name="desc">The description of the message.</param>
-	/// <returns>The current instance.</returns>
 	public MsgArk23 WithDescription(string? desc)
 	{
 		Description = desc;
@@ -89,11 +63,6 @@ public sealed class MsgArk23 : MessageToCreate
 		return this;
 	}
 
-	/// <summary>
-	/// Sets the prompt of the message.
-	/// </summary>
-	/// <param name="prompt">The prompt of the message.</param>
-	/// <returns>The current instance.</returns>
 	public MsgArk23 WithPrompt(string? prompt)
 	{
 		Prompt = prompt;
@@ -101,12 +70,6 @@ public sealed class MsgArk23 : MessageToCreate
 		return this;
 	}
 
-	/// <summary>
-	/// Add a new line.
-	/// </summary>
-	/// <param name="content">The plain text to be displayed, as the introduction of the link.</param>
-	/// <param name="link">The link. The URL link is available after passed the audit.</param>
-	/// <returns>The current instance.</returns>
 	public MsgArk23 AddLine(string? content, string? link = null)
 	{
 		var ojbk = new List<MessageArkObjKeyValuePair> { new() { Key = "desc", Value = content } };
