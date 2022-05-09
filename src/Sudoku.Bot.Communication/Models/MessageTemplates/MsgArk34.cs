@@ -106,9 +106,9 @@ public class MsgArk34 : MessageToCreate
 	}
 
 
-	public MsgArk34 WithRepliedMessageId(string? messageId)
+	public MsgArk34 WithRepliedMessageId(string? repliedMessageId)
 	{
-		Id = messageId;
+		Id = repliedMessageId;
 
 		return this;
 	}

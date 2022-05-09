@@ -84,9 +84,9 @@ public sealed class MsgArk37 : MessageToCreate
 	}
 
 
-	public MsgArk37 WithRepliedMessageId(string? msgId)
+	public MsgArk37 WithRepliedMessageId(string? repliedMessageId)
 	{
-		Id = msgId;
+		Id = repliedMessageId;
 
 		return this;
 	}
@@ -105,9 +105,9 @@ public sealed class MsgArk37 : MessageToCreate
 		return this;
 	}
 
-	public MsgArk37 WithMetaSubtitle(string? subTitle)
+	public MsgArk37 WithMetaSubtitle(string? metaSubtitle)
 	{
-		MetaSubTitle = subTitle;
+		MetaSubTitle = metaSubtitle;
 
 		return this;
 	}

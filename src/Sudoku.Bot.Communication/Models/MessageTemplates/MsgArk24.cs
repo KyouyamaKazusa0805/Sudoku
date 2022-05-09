@@ -106,16 +106,16 @@ public sealed class MsgArk24 : MessageToCreate
 	}
 
 
-	public MsgArk24 WithReplyMessageId(string? msgId)
+	public MsgArk24 WithRepliedMessageId(string? repliedMessageId)
 	{
-		Id = msgId;
+		Id = repliedMessageId;
 
 		return this;
 	}
 
-	public MsgArk24 WithDescription(string? desc)
+	public MsgArk24 WithDescription(string? description)
 	{
-		Description = desc;
+		Description = description;
 
 		return this;
 	}
@@ -134,16 +134,16 @@ public sealed class MsgArk24 : MessageToCreate
 		return this;
 	}
 
-	public MsgArk24 WithMetaDesc(string? metaDescription)
+	public MsgArk24 WithMetaDescription(string? metaDescription)
 	{
 		MetaDescription = metaDescription;
 
 		return this;
 	}
 
-	public MsgArk24 WithImage(string? imgLink)
+	public MsgArk24 WithImage(string? imageUrlLink)
 	{
-		Thumbnail = imgLink;
+		Thumbnail = imageUrlLink;
 
 		return this;
 	}
@@ -155,9 +155,9 @@ public sealed class MsgArk24 : MessageToCreate
 		return this;
 	}
 
-	public MsgArk24 WithSubTitle(string? subTitle)
+	public MsgArk24 WithSubtitle(string? subtitle)
 	{
-		Subtitle = subTitle;
+		Subtitle = subtitle;
 		
 		return this;
 	}

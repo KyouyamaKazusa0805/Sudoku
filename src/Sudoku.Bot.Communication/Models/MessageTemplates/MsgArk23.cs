@@ -49,16 +49,16 @@ public sealed class MsgArk23 : MessageToCreate
 	public List<MessageArkObj> MessageLines { get; set; }
 
 
-	public MsgArk23 WithReplyMessageId(string? msgId)
+	public MsgArk23 WithRepliedMessageId(string? repliedMessageId)
 	{
-		Id = msgId;
+		Id = repliedMessageId;
 
 		return this;
 	}
 
-	public MsgArk23 WithDescription(string? desc)
+	public MsgArk23 WithDescription(string? description)
 	{
-		Description = desc;
+		Description = description;
 
 		return this;
 	}
@@ -70,7 +70,7 @@ public sealed class MsgArk23 : MessageToCreate
 		return this;
 	}
 
-	public MsgArk23 AddLine(string? content, string? link = null)
+	public MsgArk23 AppendLine(string? content, string? link = null)
 	{
 		var ojbk = new List<MessageArkObjKeyValuePair> { new() { Key = "desc", Value = content } };
 		if (link is not null)

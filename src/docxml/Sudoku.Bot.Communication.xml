@@ -2175,6 +2175,35 @@
             Indicates the playing status for an audio instance.
             </summary>
         </member>
+        <member name="T:Sudoku.Bot.Communication.Models.AudioPlayingStatus">
+            <summary>
+            Indicates the playing status for an <see cref="T:Sudoku.Bot.Communication.Models.AudioControl"/> instance.
+            </summary>
+            <remarks>
+            The data type is referenced from
+            <see href="https://bot.q.qq.com/wiki/develop/api/openapi/audio/model.html#status">this link</see>.
+            </remarks>
+        </member>
+        <member name="F:Sudoku.Bot.Communication.Models.AudioPlayingStatus.Start">
+            <summary>
+            Indicates the audio is started playing.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Bot.Communication.Models.AudioPlayingStatus.Pause">
+            <summary>
+            Indicates the audio is paused.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Bot.Communication.Models.AudioPlayingStatus.Resume">
+            <summary>
+            Indicates the audio is resumed.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Bot.Communication.Models.AudioPlayingStatus.Stop">
+            <summary>
+            Indicates the audio is stopped.
+            </summary>
+        </member>
         <member name="T:Sudoku.Bot.Communication.Models.Channel">
             <summary>
             Defines a channel instance. Please note that the channel is different with a GUILD instance.
@@ -3172,6 +3201,20 @@
             Indicates whether the operation ignores the wrong case that fetched the message reference.
             </summary>
         </member>
+        <member name="T:Sudoku.Bot.Communication.Models.MessageTemplates.EmbeddedMessageToCreate">
+            <summary>
+            Defines a embedded message.
+            </summary>
+            <remarks>
+            For more information about embedded message, please visit
+            <see href="https://bot.q.qq.com/wiki/develop/api/openapi/message/template/embed_message.html">this link</see>.
+            </remarks>
+        </member>
+        <member name="T:Sudoku.Bot.Communication.Models.MessageTemplates.ImageMessageToCreate">
+            <summary>
+            Indicates the message that is a picture. The picture message can also take plain text.
+            </summary>
+        </member>
         <member name="T:Sudoku.Bot.Communication.Models.MessageTemplates.MsgArk23">
             <summary>
             Indicates the templated message whose ID is 23, which contains plain text with links.
@@ -3208,150 +3251,6 @@
             The data type is referenced from
             <see href="https://bot.q.qq.com/wiki/develop/gosdk/api/message/message_template.html#%E6%A0%B7%E5%BC%8F-id-37">this link</see>.
             </remarks>
-        </member>
-        <member name="T:Sudoku.Bot.Communication.Models.MessageToCreate">
-            <summary>
-            Indicates a message to be created.
-            </summary>
-            <remarks>
-            The data type is referenced from
-            <see href="https://bot.q.qq.com/wiki/develop/gosdk/api/message/message_format.html#messagetocreate">this link</see>.
-            </remarks>
-        </member>
-        <member name="P:Sudoku.Bot.Communication.Models.MessageToCreate.Content">
-            <summary>
-            Indicates the content of the message.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Bot.Communication.Models.MessageToCreate.Embed">
-            <summary>
-            Indicates the embedded message instance.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Bot.Communication.Models.MessageToCreate.Ark">
-            <summary>
-            Indicates the ARK message.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Bot.Communication.Models.MessageToCreate.Reference">
-            <summary>
-            Indicates the message referenced.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Bot.Communication.Models.MessageToCreate.Image">
-            <summary>
-            Indicates the URL of the image.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Bot.Communication.Models.MessageToCreate.Id">
-            <summary>
-            Indicates the message ID that the message is replied.
-            </summary>
-        </member>
-        <member name="T:Sudoku.Bot.Communication.Models.MsgDescImg">
-            <summary>
-            图片消息对象
-            </summary>
-        </member>
-        <member name="M:Sudoku.Bot.Communication.Models.MsgDescImg.#ctor(System.String,System.String,System.String)">
-            <summary>
-            构建文字和图片同时存在的消息
-            </summary>
-            <param name="content">消息内容</param>
-            <param name="image">图片URL</param>
-            <param name="replyMsgId">要回复的消息id</param>
-        </member>
-        <member name="M:Sudoku.Bot.Communication.Models.MsgDescImg.SetReplyMsgId(System.String)">
-            <summary>
-            设置要回复的目标消息
-            </summary>
-            <param name="msgId">目标消息的Id</param>
-            <returns></returns>
-        </member>
-        <member name="M:Sudoku.Bot.Communication.Models.MsgDescImg.SetContent(System.String)">
-            <summary>
-            设置消息内容
-            </summary>
-            <param name="content">文字内容</param>
-            <returns></returns>
-        </member>
-        <member name="M:Sudoku.Bot.Communication.Models.MsgDescImg.SetImage(System.String)">
-            <summary>
-            设置图片URL
-            </summary>
-            <param name="image">图片URL</param>
-            <returns></returns>
-        </member>
-        <member name="T:Sudoku.Bot.Communication.Models.MsgEmbed">
-            <summary>
-            Embed消息对象
-            </summary>
-        </member>
-        <member name="M:Sudoku.Bot.Communication.Models.MsgEmbed.#ctor(System.String,System.String,System.String,System.Collections.Generic.List{Sudoku.Bot.Communication.Models.MessageEmbedField},System.String)">
-            <summary>
-            构建Embed消息
-            <para>详情查阅QQ机器人文档 <see href="https://bot.q.qq.com/wiki/develop/api/openapi/message/template/embed_message.html">embed消息</see></para>
-            </summary>
-            <param name="title">标题</param>
-            <param name="prompt">提示</param>
-            <param name="thumbnail">缩略图URL</param>
-            <param name="embedFields">内容列表</param>
-            <param name="replyMsgId">要回复的消息id</param>
-        </member>
-        <member name="M:Sudoku.Bot.Communication.Models.MsgEmbed.SetReplyMsgId(System.String)">
-            <summary>
-            设置要回复的目标消息
-            </summary>
-            <param name="msgId">目标消息的Id</param>
-            <returns></returns>
-        </member>
-        <member name="P:Sudoku.Bot.Communication.Models.MsgEmbed.Title">
-            <summary>
-            标题
-            </summary>
-        </member>
-        <member name="M:Sudoku.Bot.Communication.Models.MsgEmbed.SetTitle(System.String)">
-            <summary>
-            设置标题
-            </summary>
-            <param name="title">标题内容</param>
-            <returns></returns>
-        </member>
-        <member name="P:Sudoku.Bot.Communication.Models.MsgEmbed.Prompt">
-            <summary>
-            提示
-            </summary>
-        </member>
-        <member name="M:Sudoku.Bot.Communication.Models.MsgEmbed.SetPrompt(System.String)">
-            <summary>
-            设置提示
-            </summary>
-            <param name="prompt">提示内容</param>
-            <returns></returns>
-        </member>
-        <member name="P:Sudoku.Bot.Communication.Models.MsgEmbed.Thumbnail">
-            <summary>
-            缩略图URL
-            </summary>
-        </member>
-        <member name="M:Sudoku.Bot.Communication.Models.MsgEmbed.SetThumbnail(System.String)">
-            <summary>
-            设置缩略图
-            </summary>
-            <param name="thumbnail">缩略图URL</param>
-            <returns></returns>
-        </member>
-        <member name="P:Sudoku.Bot.Communication.Models.MsgEmbed.EmbedFields">
-            <summary>
-            消息列表
-            </summary>
-        </member>
-        <member name="M:Sudoku.Bot.Communication.Models.MsgEmbed.AddLine(System.String)">
-            <summary>
-            添加一行内容
-            </summary>
-            <param name="content">行内容</param>
-            <returns></returns>
         </member>
         <member name="T:Sudoku.Bot.Communication.Models.MsgImage">
             <summary>
@@ -3439,33 +3338,43 @@
             <param name="content">文字内容</param>
             <returns></returns>
         </member>
-        <member name="T:Sudoku.Bot.Communication.Models.AudioPlayingStatus">
+        <member name="T:Sudoku.Bot.Communication.Models.MessageToCreate">
             <summary>
-            Indicates the playing status for an <see cref="T:Sudoku.Bot.Communication.Models.AudioControl"/> instance.
+            Indicates a message to be created.
             </summary>
             <remarks>
             The data type is referenced from
-            <see href="https://bot.q.qq.com/wiki/develop/api/openapi/audio/model.html#status">this link</see>.
+            <see href="https://bot.q.qq.com/wiki/develop/gosdk/api/message/message_format.html#messagetocreate">this link</see>.
             </remarks>
         </member>
-        <member name="F:Sudoku.Bot.Communication.Models.AudioPlayingStatus.Start">
+        <member name="P:Sudoku.Bot.Communication.Models.MessageToCreate.Content">
             <summary>
-            Indicates the audio is started playing.
+            Indicates the content of the message.
             </summary>
         </member>
-        <member name="F:Sudoku.Bot.Communication.Models.AudioPlayingStatus.Pause">
+        <member name="P:Sudoku.Bot.Communication.Models.MessageToCreate.Embed">
             <summary>
-            Indicates the audio is paused.
+            Indicates the embedded message instance.
             </summary>
         </member>
-        <member name="F:Sudoku.Bot.Communication.Models.AudioPlayingStatus.Resume">
+        <member name="P:Sudoku.Bot.Communication.Models.MessageToCreate.Ark">
             <summary>
-            Indicates the audio is resumed.
+            Indicates the ARK message.
             </summary>
         </member>
-        <member name="F:Sudoku.Bot.Communication.Models.AudioPlayingStatus.Stop">
+        <member name="P:Sudoku.Bot.Communication.Models.MessageToCreate.Reference">
             <summary>
-            Indicates the audio is stopped.
+            Indicates the message referenced.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Models.MessageToCreate.Image">
+            <summary>
+            Indicates the URL of the image.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Models.MessageToCreate.Id">
+            <summary>
+            Indicates the message ID that the message is replied.
             </summary>
         </member>
         <member name="T:Sudoku.Bot.Communication.Models.PrivacyType">
