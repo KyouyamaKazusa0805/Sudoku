@@ -1,18 +1,18 @@
 ﻿namespace Sudoku.Bot.Communication;
 
 /// <summary>
-/// API请求状态
+/// Indicates the status of the API.
 /// </summary>
-public class ApiStatus
+public sealed class ApiStatus
 {
 	/// <summary>
-	/// 代码
+	/// Indicates the code.
 	/// </summary>
 	[JsonPropertyName("code")]
 	public int Code { get; set; }
 
 	/// <summary>
-	/// 原因
+	/// Indicates the message.
 	/// </summary>
 	[JsonPropertyName("message")]
 	public string? Message { get; set; }

@@ -1,50 +1,44 @@
 ﻿namespace Sudoku.Bot.Communication;
 
 /// <summary>
-/// API请求出错的关键信息
+/// Indicates the important info data on error encountered in APIs.
 /// </summary>
-public class ApiErrorInfo
+public sealed class ApiErrorInfo
 {
 	/// <summary>
-	/// API请求出错的关键信息
+	/// Initializes an <see cref="ApiErrorInfo"/> instance via the specified data.
 	/// </summary>
-	/// <param name="path">接口地址</param>
-	/// <param name="method">请求方式</param>
-	/// <param name="code">错误代码</param>
-	/// <param name="detail">错误详情</param>
-	/// <param name="freezeTime">接口被暂时停用的时间</param>
+	/// <param name="path">The URL link that makes the request on API.</param>
+	/// <param name="method">The request method.</param>
+	/// <param name="code">The error code.</param>
+	/// <param name="detail">The details for the error.</param>
+	/// <param name="freezeTime">The freeze time instance.</param>
 	public ApiErrorInfo(string path, string method, int code, string detail, FreezeTime freezeTime)
-	{
-		Path = path;
-		Method = method;
-		Code = code;
-		Detail = detail;
-		FreezeTime = freezeTime;
-	}
+		=> (Path, Method, Code, Detail, FreezeTime) = (path, method, code, detail, freezeTime);
 
 
 	/// <summary>
-	/// 接口地址
+	/// The URL link that makes the request on API.
 	/// </summary>
 	public string Path { get; init; }
 
 	/// <summary>
-	/// 请求方式
+	/// The request method.
 	/// </summary>
 	public string Method { get; init; }
 
 	/// <summary>
-	/// 错误代码
+	/// The error code.
 	/// </summary>
 	public int Code { get; set; }
 
 	/// <summary>
-	/// 错误信息
+	/// The details for the error.
 	/// </summary>
 	public string Detail { get; set; }
 
 	/// <summary>
-	/// 接口被暂时停用的时间
+	/// The freeze time instance.
 	/// </summary>
 	public FreezeTime FreezeTime { get; init; }
 }

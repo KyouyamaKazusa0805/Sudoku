@@ -6,57 +6,57 @@
     <members>
         <member name="T:Sudoku.Bot.Communication.ApiErrorInfo">
             <summary>
-            API请求出错的关键信息
+            Indicates the important info data on error encountered in APIs.
             </summary>
         </member>
         <member name="M:Sudoku.Bot.Communication.ApiErrorInfo.#ctor(System.String,System.String,System.Int32,System.String,Sudoku.Bot.Communication.FreezeTime)">
             <summary>
-            API请求出错的关键信息
+            Initializes an <see cref="T:Sudoku.Bot.Communication.ApiErrorInfo"/> instance via the specified data.
             </summary>
-            <param name="path">接口地址</param>
-            <param name="method">请求方式</param>
-            <param name="code">错误代码</param>
-            <param name="detail">错误详情</param>
-            <param name="freezeTime">接口被暂时停用的时间</param>
+            <param name="path">The URL link that makes the request on API.</param>
+            <param name="method">The request method.</param>
+            <param name="code">The error code.</param>
+            <param name="detail">The details for the error.</param>
+            <param name="freezeTime">The freeze time instance.</param>
         </member>
         <member name="P:Sudoku.Bot.Communication.ApiErrorInfo.Path">
             <summary>
-            接口地址
+            The URL link that makes the request on API.
             </summary>
         </member>
         <member name="P:Sudoku.Bot.Communication.ApiErrorInfo.Method">
             <summary>
-            请求方式
+            The request method.
             </summary>
         </member>
         <member name="P:Sudoku.Bot.Communication.ApiErrorInfo.Code">
             <summary>
-            错误代码
+            The error code.
             </summary>
         </member>
         <member name="P:Sudoku.Bot.Communication.ApiErrorInfo.Detail">
             <summary>
-            错误信息
+            The details for the error.
             </summary>
         </member>
         <member name="P:Sudoku.Bot.Communication.ApiErrorInfo.FreezeTime">
             <summary>
-            接口被暂时停用的时间
+            The freeze time instance.
             </summary>
         </member>
         <member name="T:Sudoku.Bot.Communication.ApiStatus">
             <summary>
-            API请求状态
+            Indicates the status of the API.
             </summary>
         </member>
         <member name="P:Sudoku.Bot.Communication.ApiStatus.Code">
             <summary>
-            代码
+            Indicates the code.
             </summary>
         </member>
         <member name="P:Sudoku.Bot.Communication.ApiStatus.Message">
             <summary>
-            原因
+            Indicates the message.
             </summary>
         </member>
         <member name="T:Sudoku.Bot.Communication.ApiType">
@@ -1026,6 +1026,25 @@
             <para>仅用于测试,方便机器人开发者验证功能</para>
             </summary>
         </member>
+        <member name="M:Sudoku.Bot.Communication.BotClient.CreateDMSAsync(System.String,System.String,Sudoku.Bot.Communication.Sender)">
+            <summary>
+            创建私信会话
+            </summary>
+            <param name="recipient_id">接收者Id</param>
+            <param name="source_guild_id">源频道Id</param>
+            <param name="sender"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Sudoku.Bot.Communication.BotClient.SendPMAsync(System.String,Sudoku.Bot.Communication.Models.MessageToCreate,Sudoku.Bot.Communication.Sender)">
+            <summary>
+            发送私信
+            <para>用于发送私信消息，前提是已经创建了私信会话。</para>
+            </summary>
+            <param name="guild_id">私信频道Id</param>
+            <param name="message">消息对象</param>
+            <param name="sender"></param>
+            <returns></returns>
+        </member>
         <member name="M:Sudoku.Bot.Communication.BotClient.GetGuildPermissionsAsync(System.String,Sudoku.Bot.Communication.Sender)">
             <summary>
             获取频道可用权限列表
@@ -1408,25 +1427,6 @@
             根据收到的数据分析用途
             </summary>
             <param name="wssJson">Wss接收的数据</param>
-            <returns></returns>
-        </member>
-        <member name="M:Sudoku.Bot.Communication.BotClient.CreateDMSAsync(System.String,System.String,Sudoku.Bot.Communication.Sender)">
-            <summary>
-            创建私信会话
-            </summary>
-            <param name="recipient_id">接收者Id</param>
-            <param name="source_guild_id">源频道Id</param>
-            <param name="sender"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Sudoku.Bot.Communication.BotClient.SendPMAsync(System.String,Sudoku.Bot.Communication.Models.MessageToCreate,Sudoku.Bot.Communication.Sender)">
-            <summary>
-            发送私信
-            <para>用于发送私信消息，前提是已经创建了私信会话。</para>
-            </summary>
-            <param name="guild_id">私信频道Id</param>
-            <param name="message">消息对象</param>
-            <param name="sender"></param>
             <returns></returns>
         </member>
         <member name="T:Sudoku.Bot.Communication.BotHttpClient">
