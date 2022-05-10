@@ -107,8 +107,6 @@ static async void clockInAsync(Sender sender, string message)
 	// If the user is the new, we should create a file to store it;
 	// otherwise, check the user data file, and get the latest time that he/she clocked in.
 	// If the 'yyyyMMdd' is same, we should disallow the user re-clocking in.
-	const string propertyName = "lastTimeCheckedIn";
-
 	if (sender is not { Author.Id: var userId, AtMe: true })
 	{
 		return;
@@ -133,7 +131,7 @@ static async void clockInAsync(Sender sender, string message)
 	{
 		string originalJson = await File.ReadAllTextAsync(userPath);
 		var rootElement = JsonSerializer.Deserialize<JsonElement>(originalJson);
-		if (rootElement.TryGetProperty(propertyName, out var element))
+		if (rootElement.TryGetProperty(ConfigurationPaths.LastTimeCheckedIn, out var element))
 		{
 			try
 			{
@@ -149,11 +147,11 @@ static async void clockInAsync(Sender sender, string message)
 				string updatedJson = JsonSerializer.Serialize(
 					new Dictionary<string, string>(
 						from subelement in element.EnumerateObject()
-						where subelement.Name != propertyName
+						where subelement.Name != ConfigurationPaths.LastTimeCheckedIn
 						select new KeyValuePair<string, string>(subelement.Name, subelement.Value.ToString())
 					)
 					{
-						{ propertyName, DateTime.Today.ToString() }
+						{ ConfigurationPaths.LastTimeCheckedIn, DateTime.Today.ToString() }
 					},
 					generalSerializerOptions
 				);
@@ -182,7 +180,7 @@ static async void clockInAsync(Sender sender, string message)
 					select new KeyValuePair<string, string>(subelement.Name, subelement.Value.ToString())
 				)
 				{
-					{ propertyName, DateTime.Today.ToString() }
+					{ ConfigurationPaths.LastTimeCheckedIn, DateTime.Today.ToString() }
 				},
 				generalSerializerOptions
 			);
@@ -200,7 +198,7 @@ static async void clockInAsync(Sender sender, string message)
 			userPath,
 			$$"""
 			{
-			{{indenting}}"{{propertyName}}": "{{DateTime.Today}}"
+			{{indenting}}"{{ConfigurationPaths.LastTimeCheckedIn}}": "{{DateTime.Today}}"
 			}
 			"""
 		);
