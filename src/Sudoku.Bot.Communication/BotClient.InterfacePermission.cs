@@ -13,8 +13,8 @@ partial class BotClient
 	/// <returns></returns>
 	public async Task<List<ApiPermission>?> GetGuildPermissionsAsync(string guild_id, Sender? sender = null)
 	{
-		var api = BotApis.获取频道可用权限列表;
-		var response = await HttpSendAsync(api.Path.Replace("{guild_id}", guild_id), api.Method, null, sender);
+		_ = BotApis.GetAvailablePermissionsInGuild is { Path: var path, Method: var method };
+		var response = await HttpSendAsync(path.Replace("{guild_id}", guild_id), method, null, sender);
 		var permissions = response is null ? null : await response.Content.ReadFromJsonAsync<ApiPermissions?>();
 		return permissions?.List;
 	}
@@ -32,18 +32,11 @@ partial class BotClient
 		string guild_id, string channel_id, ApiPermissionDemandIdentify api_identify,
 		string desc = "", Sender? sender = null)
 	{
-		var api = BotApis.创建频道接口授权链接;
+		_ = BotApis.CreatePermissionsAuthorizationLinkInGuild is { Path: var path, Method: var method };
 		var response = await HttpSendAsync(
-			api.Path.Replace("{guild_id}", guild_id),
-			api.Method,
-			JsonContent.Create(
-				new
-				{
-					channel_id,
-					api_identify,
-					desc
-				}
-			),
+			path.Replace("{guild_id}", guild_id),
+			method,
+			JsonContent.Create(new { channel_id, api_identify, desc }),
 			sender
 		);
 

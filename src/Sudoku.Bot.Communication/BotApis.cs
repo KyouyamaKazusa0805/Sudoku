@@ -414,32 +414,35 @@ internal static class BotApis
 		=> new(ApiType.PublicDomain, HttpMethod.Delete, """/channels/{channel_id}/schedules/{schedule_id}""");
 
 	/// <summary>
-	/// 控制子频道 channel_id 下的音频
-	/// <para>
-	/// <see href="https://bot.q.qq.com/wiki/develop/api/openapi/audio/audio_control.html">接口文档</see><br/>
-	/// 公域鉴权<br/>
-	/// POST /channels/{channel_id}/audio
-	/// </para>
+	/// To control the specified audio instance in the specified channel.
+	/// <list type="bullet">
+	/// <item>Documentation: <see href="https://bot.q.qq.com/wiki/develop/api/openapi/audio/audio_control.html">here</see>.</item>
+	/// <item>Corresponding: <c>POST /channels/{channel_id}/audio</c></item>
+	/// <item>Need authorization: true if <see cref="ApiType.PublicDomain"/>; otherwise false</item>
+	/// </list>
 	/// </summary>
-	public static BotApi 音频控制 => new(ApiType.PublicDomain, HttpMethod.Post, @"/channels/{channel_id}/audio");
+	public static BotApi ControlAudioInChannel
+		=> new(ApiType.PublicDomain, HttpMethod.Post, """/channels/{channel_id}/audio""");
 
 	/// <summary>
-	/// 获取机器人在频道 guild_id 内可以使用的权限列表
-	/// <para>
-	/// <see href="https://bot.q.qq.com/wiki/develop/api/openapi/api_permissions/get_guild_api_permission.html">接口文档</see><br/>
-	/// 无需鉴权<br/>
-	/// GET /guilds/{guild_id}/api_permission
-	/// </para>
+	/// Gets all available permissions in the specified GUILD.
+	/// <list type="bullet">
+	/// <item>Documentation: <see href="https://bot.q.qq.com/wiki/develop/api/openapi/api_permissions/get_guild_api_permission.html">here</see>.</item>
+	/// <item>Corresponding: <c>/guilds/{guild_id}/api_permission</c></item>
+	/// <item>Need authorization: false</item>
+	/// </list>
 	/// </summary>
-	public static BotApi 获取频道可用权限列表 => new(ApiType.Both, HttpMethod.Get, @"/guilds/{guild_id}/api_permission");
+	public static BotApi GetAvailablePermissionsInGuild
+		=> new(ApiType.Both, HttpMethod.Get, """/guilds/{guild_id}/api_permission""");
 
 	/// <summary>
-	/// 创建 API 接口权限授权链接，该链接指向 guild_id 对应的频道
-	/// <para>
-	/// <see href="https://bot.q.qq.com/wiki/develop/api/openapi/api_permissions/post_api_permission_demand.html">接口文档</see><br/>
-	/// 无需鉴权<br/>
-	/// POST /guilds/{guild_id}/api_permission/demand
-	/// </para>
+	/// Creates API permission authorization link, linking to the specified GUILD.
+	/// <list type="bullet">
+	/// <item>Documentation: <see href="https://bot.q.qq.com/wiki/develop/api/openapi/api_permissions/post_api_permission_demand.html">here</see>.</item>
+	/// <item>Corresponding: <c>POST /guilds/{guild_id}/api_permission/demand</c></item>
+	/// <item>Need authorization: false</item>
+	/// </list>
 	/// </summary>
-	public static BotApi 创建频道接口授权链接 => new(ApiType.Both, HttpMethod.Post, @"/guilds/{guild_id}/api_permission/demand");
+	public static BotApi CreatePermissionsAuthorizationLinkInGuild
+		=> new(ApiType.Both, HttpMethod.Post, """/guilds/{guild_id}/api_permission/demand""");
 }

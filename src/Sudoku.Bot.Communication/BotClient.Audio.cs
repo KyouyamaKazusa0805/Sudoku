@@ -11,10 +11,10 @@ partial class BotClient
 	/// <returns></returns>
 	public async Task<Message?> AudioControlAsync(string channel_id, AudioControl audioControl, Sender? sender = null)
 	{
-		var api = BotApis.音频控制;
+		_ = BotApis.ControlAudioInChannel is { Path: var path, Method: var method };
 		var response = await HttpSendAsync(
-			api.Path.Replace("{channel_id}", channel_id),
-			api.Method,
+			path.Replace("{channel_id}", channel_id),
+			method,
 			JsonContent.Create(audioControl),
 			sender
 		);

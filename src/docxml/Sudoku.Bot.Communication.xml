@@ -491,34 +491,34 @@
             </list>
             </summary>
         </member>
-        <member name="P:Sudoku.Bot.Communication.BotApis.音频控制">
+        <member name="P:Sudoku.Bot.Communication.BotApis.ControlAudioInChannel">
             <summary>
-            控制子频道 channel_id 下的音频
-            <para>
-            <see href="https://bot.q.qq.com/wiki/develop/api/openapi/audio/audio_control.html">接口文档</see><br/>
-            公域鉴权<br/>
-            POST /channels/{channel_id}/audio
-            </para>
+            To control the specified audio instance in the specified channel.
+            <list type="bullet">
+            <item>Documentation: <see href="https://bot.q.qq.com/wiki/develop/api/openapi/audio/audio_control.html">here</see>.</item>
+            <item>Corresponding: <c>POST /channels/{channel_id}/audio</c></item>
+            <item>Need authorization: true if <see cref="F:Sudoku.Bot.Communication.ApiType.PublicDomain"/>; otherwise false</item>
+            </list>
             </summary>
         </member>
-        <member name="P:Sudoku.Bot.Communication.BotApis.获取频道可用权限列表">
+        <member name="P:Sudoku.Bot.Communication.BotApis.GetAvailablePermissionsInGuild">
             <summary>
-            获取机器人在频道 guild_id 内可以使用的权限列表
-            <para>
-            <see href="https://bot.q.qq.com/wiki/develop/api/openapi/api_permissions/get_guild_api_permission.html">接口文档</see><br/>
-            无需鉴权<br/>
-            GET /guilds/{guild_id}/api_permission
-            </para>
+            Gets all available permissions in the specified GUILD.
+            <list type="bullet">
+            <item>Documentation: <see href="https://bot.q.qq.com/wiki/develop/api/openapi/api_permissions/get_guild_api_permission.html">here</see>.</item>
+            <item>Corresponding: <c>/guilds/{guild_id}/api_permission</c></item>
+            <item>Need authorization: false</item>
+            </list>
             </summary>
         </member>
-        <member name="P:Sudoku.Bot.Communication.BotApis.创建频道接口授权链接">
+        <member name="P:Sudoku.Bot.Communication.BotApis.CreatePermissionsAuthorizationLinkInGuild">
             <summary>
-            创建 API 接口权限授权链接，该链接指向 guild_id 对应的频道
-            <para>
-            <see href="https://bot.q.qq.com/wiki/develop/api/openapi/api_permissions/post_api_permission_demand.html">接口文档</see><br/>
-            无需鉴权<br/>
-            POST /guilds/{guild_id}/api_permission/demand
-            </para>
+            Creates API permission authorization link, linking to the specified GUILD.
+            <list type="bullet">
+            <item>Documentation: <see href="https://bot.q.qq.com/wiki/develop/api/openapi/api_permissions/post_api_permission_demand.html">here</see>.</item>
+            <item>Corresponding: <c>POST /guilds/{guild_id}/api_permission/demand</c></item>
+            <item>Need authorization: false</item>
+            </list>
             </summary>
         </member>
         <member name="T:Sudoku.Bot.Communication.BotClient">
