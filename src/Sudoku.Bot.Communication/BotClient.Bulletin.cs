@@ -13,10 +13,10 @@ partial class BotClient
 	public async Task<Announces?> CreateAnnouncesGlobalAsync(
 		string guild_id, string channel_id, string message_id, Sender? sender = null)
 	{
-		var api = BotApis.创建频道公告;
+		_ = BotApis.CreateAnnouncementInGuild is { Path: var path, Method: var method };
 		var response = await HttpSendAsync(
-			api.Path.Replace("{guild_id}", guild_id),
-			api.Method,
+			path.Replace("{guild_id}", guild_id),
+			method,
 			JsonContent.Create(new { channel_id, message_id }), sender
 		);
 
@@ -32,13 +32,14 @@ partial class BotClient
 	/// <returns></returns>
 	public async Task<bool> DeleteAnnouncesGlobalAsync(string guild_id, string message_id = "all", Sender? sender = null)
 	{
-		var api = BotApis.删除频道公告;
+		_ = BotApis.DeleteAnnouncementInGuild is { Path: var path, Method: var method };
 		var response = await HttpSendAsync(
-			api.Path.Replace("{guild_id}", guild_id).Replace("{message_id}", message_id),
-			api.Method,
+			path.Replace("{guild_id}", guild_id).Replace("{message_id}", message_id),
+			method,
 			null,
 			sender
 		);
+
 		return response?.IsSuccessStatusCode ?? false;
 	}
 
@@ -51,13 +52,14 @@ partial class BotClient
 	/// <returns></returns>
 	public async Task<Announces?> CreateAnnouncesAsync(string channel_id, string message_id, Sender? sender = null)
 	{
-		var api = BotApis.创建子频道公告;
+		_ = BotApis.CreateAnnouncementInChannel is { Path: var path, Method: var method };
 		var response = await HttpSendAsync(
-			api.Path.Replace("{channel_id}", channel_id),
-			api.Method,
+			path.Replace("{channel_id}", channel_id),
+			method,
 			channel_id is null ? null : JsonContent.Create(new { message_id }),
 			sender
 		);
+
 		return response is null ? null : await response.Content.ReadFromJsonAsync<Announces?>();
 	}
 
@@ -70,13 +72,14 @@ partial class BotClient
 	/// <returns></returns>
 	public async Task<bool> DeleteAnnouncesAsync(string channel_id, string message_id = "all", Sender? sender = null)
 	{
-		var api = BotApis.删除子频道公告;
+		_ = BotApis.DeleteAnnouncementInChannel is { Path: var path, Method: var method };
 		var response = await HttpSendAsync(
-			api.Path.Replace("{channel_id}", channel_id).Replace("{message_id}", message_id),
-			api.Method,
+			path.Replace("{channel_id}", channel_id).Replace("{message_id}", message_id),
+			method,
 			null,
 			sender
 		);
+
 		return response?.IsSuccessStatusCode ?? false;
 	}
 }

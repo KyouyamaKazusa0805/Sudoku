@@ -315,94 +315,103 @@ internal static class BotApis
 		=> new(ApiType.PublicDomain, HttpMethod.Patch, """/guilds/{guild_id}/members/{user_id}/mute""");
 
 	/// <summary>
-	/// 将频道 guild_id 内的某条消息设置为频道全局公告
-	/// <para>
-	/// <see href="https://bot.q.qq.com/wiki/develop/api/openapi/announces/post_guild_announces.html">接口文档</see><br/>
-	/// 公域鉴权<br/>
-	/// POST /guilds/{guild_id}/announces
-	/// </para>
+	/// Creates an announcement in the specified GUILD.
+	/// <list type="bullet">
+	/// <item>Documentation: <see href="https://bot.q.qq.com/wiki/develop/api/openapi/announces/post_guild_announces.html">here</see>.</item>
+	/// <item>Corresponding: <c>POST /guilds/{guild_id}/announces</c></item>
+	/// <item>Need authorization: true if <see cref="ApiType.PublicDomain"/>; otherwise false</item>
+	/// </list>
 	/// </summary>
-	public static BotApi 创建频道公告 => new(ApiType.PublicDomain, HttpMethod.Post, @"/guilds/{guild_id}/announces");
+	public static BotApi CreateAnnouncementInGuild
+		=> new(ApiType.PublicDomain, HttpMethod.Post, """/guilds/{guild_id}/announces""");
 
 	/// <summary>
-	/// 删除频道 guild_id 下 message_id 指定的全局公告
-	/// <para>
-	/// <see href="https://bot.q.qq.com/wiki/develop/api/openapi/announces/delete_guild_announces.html">接口文档</see><br/>
-	/// 公域鉴权<br/>
-	/// DELETE /guilds/{guild_id}/announces/{message_id}
-	/// </para>
+	/// Delete the specified announcement in the specified GUILD.
+	/// <list type="bullet">
+	/// <item>Documentation: <see href="https://bot.q.qq.com/wiki/develop/api/openapi/announces/delete_guild_announces.html">here</see>.</item>
+	/// <item>Corresponding: <c>DELETE /guilds/{guild_id}/announces/{message_id}</c></item>
+	/// <item>Need authorization: true if <see cref="ApiType.PublicDomain"/>; otherwise false</item>
+	/// </list>
 	/// </summary>
-	public static BotApi 删除频道公告 => new(ApiType.PublicDomain, HttpMethod.Delete, @"/guilds/{guild_id}/announces/{message_id}");
+	public static BotApi DeleteAnnouncementInGuild
+		=> new(ApiType.PublicDomain, HttpMethod.Delete, """/guilds/{guild_id}/announces/{message_id}""");
 
 	/// <summary>
-	/// 将子频道 channel_id 内的某条消息设置为子频道公告
-	/// <para>
-	/// <see href="https://bot.q.qq.com/wiki/develop/api/openapi/announces/post_channel_announces.html">接口文档</see><br/>
-	/// 公域鉴权<br/>
-	/// POST /channels/{channel_id}/announces
-	/// </para>
+	/// Creates an announcement in the specified channel.
+	/// <list type="bullet">
+	/// <item>Documentation: <see href="https://bot.q.qq.com/wiki/develop/api/openapi/announces/post_channel_announces.html">here</see>.</item>
+	/// <item>Corresponding: <c>POST /channels/{channel_id}/announces</c></item>
+	/// <item>Need authorization: true if <see cref="ApiType.PublicDomain"/>; otherwise false</item>
+	/// </list>
 	/// </summary>
-	public static BotApi 创建子频道公告 => new(ApiType.PublicDomain, HttpMethod.Post, @"/channels/{channel_id}/announces");
+	public static BotApi CreateAnnouncementInChannel
+		=> new(ApiType.PublicDomain, HttpMethod.Post, """/channels/{channel_id}/announces""");
 
 	/// <summary>
-	/// 删除子频道 channel_id 下 message_id 指定的子频道公告
-	/// <para>
-	/// <see href="https://bot.q.qq.com/wiki/develop/api/openapi/announces/delete_channel_announces.html">接口文档</see><br/>
-	/// 公域鉴权<br/>
-	/// DELETE /channels/{channel_id}/announces/{message_id}
-	/// </para>
+	/// Delete the specified announcement in the specified channel.
+	/// <list type="bullet">
+	/// <item>Documentation: <see href="https://bot.q.qq.com/wiki/develop/api/openapi/announces/delete_channel_announces.html">here</see>.</item>
+	/// <item>Corresponding: <c>DELETE /channels/{channel_id}/announces/{message_id}</c></item>
+	/// <item>Need authorization: true if <see cref="ApiType.PublicDomain"/>; otherwise false</item>
+	/// </list>
 	/// </summary>
-	public static BotApi 删除子频道公告 => new(ApiType.PublicDomain, HttpMethod.Delete, @"/channels/{channel_id}/announces/{message_id}");
+	public static BotApi DeleteAnnouncementInChannel
+		=> new(ApiType.PublicDomain, HttpMethod.Delete, """/channels/{channel_id}/announces/{message_id}""");
 
 	/// <summary>
-	/// 获取 channel_id 指定的子频道中当天的日程列表
-	/// <para>
-	/// <see href="https://bot.q.qq.com/wiki/develop/api/openapi/schedule/get_schedules.html">接口文档</see><br/>
-	/// 公域鉴权<br/>
-	/// GET /channels/{channel_id}/schedules
-	/// </para>
+	/// Gets the schedule list in the specified channel.
+	/// <list type="bullet">
+	/// <item>Documentation: <see href="https://bot.q.qq.com/wiki/develop/api/openapi/schedule/get_schedules.html">here</see>.</item>
+	/// <item>Corresponding: <c>GET /channels/{channel_id}/schedules</c></item>
+	/// <item>Need authorization: true if <see cref="ApiType.PublicDomain"/>; otherwise false</item>
+	/// </list>
 	/// </summary>
-	public static BotApi 获取频道日程列表 => new(ApiType.PublicDomain, HttpMethod.Get, @"/channels/{channel_id}/schedules");
+	public static BotApi GetSchedulesInChannel
+		=> new(ApiType.PublicDomain, HttpMethod.Get, """/channels/{channel_id}/schedules""");
 
 	/// <summary>
-	/// 获取日程子频道 channel_id 下 schedule_id 指定的的日程的详情
-	/// <para>
-	/// <see href="https://bot.q.qq.com/wiki/develop/api/openapi/schedule/get_schedule.html">接口文档</see><br/>
-	/// 公域鉴权<br/>
-	/// GET /channels/{channel_id}/schedules/{schedule_id}
-	/// </para>
+	/// Gte the details of the specified schedule in the specified channel.
+	/// <list type="bullet">
+	/// <item>Documentation: <see href="https://bot.q.qq.com/wiki/develop/api/openapi/schedule/get_schedule.html">here</see>.</item>
+	/// <item>Corresponding: <c>GET /channels/{channel_id}/schedules/{schedule_id}</c></item>
+	/// <item>Need authorization: true if <see cref="ApiType.PublicDomain"/>; otherwise false</item>
+	/// </list>
 	/// </summary>
-	public static BotApi 获取日程详情 => new(ApiType.PublicDomain, HttpMethod.Get, @"/channels/{channel_id}/schedules/{schedule_id}");
+	public static BotApi GetScheduleInChannel
+		=> new(ApiType.PublicDomain, HttpMethod.Get, """/channels/{channel_id}/schedules/{schedule_id}""");
 
 	/// <summary>
-	/// 在 channel_id 指定的日程子频道下创建一个日程
-	/// <para>
-	/// <see href="https://bot.q.qq.com/wiki/develop/api/openapi/schedule/post_schedule.html">接口文档</see><br/>
-	/// 公域鉴权<br/>
-	/// POST /channels/{channel_id}/schedules
-	/// </para>
+	/// Creates a schedule instance in the specified channel.
+	/// <list type="bullet">
+	/// <item>Documentation: <see href="https://bot.q.qq.com/wiki/develop/api/openapi/schedule/post_schedule.html">here</see>.</item>
+	/// <item>Corresponding: <c>POST /channels/{channel_id}/schedules</c></item>
+	/// <item>Need authorization: true if <see cref="ApiType.PublicDomain"/>; otherwise false</item>
+	/// </list>
 	/// </summary>
-	public static BotApi 创建日程 => new(ApiType.PublicDomain, HttpMethod.Post, @"/channels/{channel_id}/schedules");
+	public static BotApi CreateScheduleInChannel
+		=> new(ApiType.PublicDomain, HttpMethod.Post, """/channels/{channel_id}/schedules""");
 
 	/// <summary>
-	/// 修改日程子频道 channel_id 下 schedule_id 指定的日程的详情
-	/// <para>
-	/// <see href="https://bot.q.qq.com/wiki/develop/api/openapi/schedule/patch_schedule.html">接口文档</see><br/>
-	/// 公域鉴权<br/>
-	/// PATCH /channels/{channel_id}/schedules/{schedule_id}
-	/// </para>
+	/// Modify the specified schedule instance in the specified channel.
+	/// <list type="bullet">
+	/// <item>Documentation: <see href="https://bot.q.qq.com/wiki/develop/api/openapi/schedule/patch_schedule.html">here</see>.</item>
+	/// <item>Corresponding: <c>PATCH /channels/{channel_id}/schedules/{schedule_id}</c></item>
+	/// <item>Need authorization: true if <see cref="ApiType.PublicDomain"/>; otherwise false</item>
+	/// </list>
 	/// </summary>
-	public static BotApi 修改日程 => new(ApiType.PublicDomain, HttpMethod.Patch, @"/channels/{channel_id}/schedules/{schedule_id}");
+	public static BotApi ModifyScheduleInChannel
+		=> new(ApiType.PublicDomain, HttpMethod.Patch, """/channels/{channel_id}/schedules/{schedule_id}""");
 
 	/// <summary>
-	/// 删除日程子频道 channel_id 下 schedule_id 指定的日程
-	/// <para>
-	/// <see href="https://bot.q.qq.com/wiki/develop/api/openapi/schedule/delete_schedule.html">接口文档</see><br/>
-	/// 公域鉴权<br/>
-	/// DELETE /channels/{channel_id}/schedules/{schedule_id}
-	/// </para>
+	/// Delete the specified schedule in the specified channel.
+	/// <list type="bullet">
+	/// <item>Documentation: <see href="https://bot.q.qq.com/wiki/develop/api/openapi/schedule/delete_schedule.html">here</see>.</item>
+	/// <item>Corresponding: <c>DELETE /channels/{channel_id}/schedules/{schedule_id}</c></item>
+	/// <item>Need authorization: true if <see cref="ApiType.PublicDomain"/>; otherwise false</item>
+	/// </list>
 	/// </summary>
-	public static BotApi 删除日程 => new(ApiType.PublicDomain, HttpMethod.Delete, @"/channels/{channel_id}/schedules/{schedule_id}");
+	public static BotApi DeleteScheduleInChannel
+		=> new(ApiType.PublicDomain, HttpMethod.Delete, """/channels/{channel_id}/schedules/{schedule_id}""");
 
 	/// <summary>
 	/// 控制子频道 channel_id 下的音频

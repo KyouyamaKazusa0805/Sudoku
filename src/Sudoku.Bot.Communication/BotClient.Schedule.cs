@@ -16,11 +16,11 @@ partial class BotClient
 	/// <returns>List&lt;Schedule&gt;?</returns>
 	public async Task<List<Schedule>?> GetSchedulesAsync(string channel_id, DateTime? since = null, Sender? sender = null)
 	{
-		var api = BotApis.获取频道日程列表;
+		_ = BotApis.GetSchedulesInChannel is { Path: var path, Method: var method };
 		string param = since is null ? string.Empty : $"?since={new DateTimeOffset(since.Value).ToUnixTimeMilliseconds()}";
 		var response = await HttpSendAsync(
-			$"{api.Path.Replace("{channel_id}", channel_id)}{param}",
-			api.Method,
+			$"{path.Replace("{channel_id}", channel_id)}{param}",
+			method,
 			null,
 			sender
 		);
@@ -37,10 +37,10 @@ partial class BotClient
 	/// <returns>目标 Schedule 对象</returns>
 	public async Task<Schedule?> GetScheduleAsync(string channel_id, string schedule_id, Sender? sender = null)
 	{
-		var api = BotApis.获取日程详情;
+		_ = BotApis.GetScheduleInChannel is { Path: var path, Method: var method };
 		var response = await HttpSendAsync(
-			api.Path.Replace("{channel_id}", channel_id).Replace("{schedule_id}", schedule_id),
-			api.Method,
+			path.Replace("{channel_id}", channel_id).Replace("{schedule_id}", schedule_id),
+			method,
 			null,
 			sender
 		);
@@ -62,10 +62,10 @@ partial class BotClient
 	/// <returns>新创建的 Schedule 对象</returns>
 	public async Task<Schedule?> CreateScheduleAsync(string channel_id, Schedule schedule, Sender? sender = null)
 	{
-		var api = BotApis.创建日程;
+		_ = BotApis.CreateScheduleInChannel is { Path: var path, Method: var method };
 		var response = await HttpSendAsync(
-			api.Path.Replace("{channel_id}", channel_id),
-			api.Method,
+			path.Replace("{channel_id}", channel_id),
+			method,
 			JsonContent.Create(new { schedule }),
 			sender
 		);
@@ -86,10 +86,10 @@ partial class BotClient
 	/// <returns>修改后的 Schedule 对象</returns>
 	public async Task<Schedule?> EditScheduleAsync(string channel_id, Schedule schedule, Sender? sender = null)
 	{
-		var api = BotApis.修改日程;
+		_ = BotApis.ModifyScheduleInChannel is { Path: var path, Method: var method };
 		var response = await HttpSendAsync(
-			api.Path.Replace("{channel_id}", channel_id).Replace("{schedule_id}", schedule.Id),
-			api.Method,
+			path.Replace("{channel_id}", channel_id).Replace("{schedule_id}", schedule.Id),
+			method,
 			JsonContent.Create(new { schedule }),
 			sender
 		);
@@ -110,10 +110,10 @@ partial class BotClient
 	/// <returns>HTTP 状态码 204</returns>
 	public async Task<bool> DeleteScheduleAsync(string channel_id, Schedule schedule, Sender? sender = null)
 	{
-		var api = BotApis.删除日程;
+		_ = BotApis.DeleteScheduleInChannel is { Path: var path, Method: var method };
 		var response = await HttpSendAsync(
-			api.Path.Replace("{channel_id}", channel_id).Replace("{schedule_id}", schedule.Id),
-			api.Method,
+			path.Replace("{channel_id}", channel_id).Replace("{schedule_id}", schedule.Id),
+			method,
 			null,
 			sender
 		);
