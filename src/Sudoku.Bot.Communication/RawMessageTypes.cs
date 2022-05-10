@@ -11,14 +11,29 @@ internal static class RawMessageTypes
 	public const string DirectMessageCreated = "DIRECT_MESSAGE_CREATE";
 
 	/// <summary>
+	/// Indicates the a direct message has been removed or recalled.
+	/// </summary>
+	public const string DirectMessageDeletedOrRecalled = "DIRECT_MESSAGE_DELETE";
+
+	/// <summary>
 	/// Indicates the bot has received the message that has been mentioned itself.
 	/// </summary>
 	public const string MentionMessageCreated = "AT_MESSAGE_CREATE";
 
 	/// <summary>
+	/// Indicates a message from GUILD has been deleted.
+	/// </summary>
+	public const string PublicMessageDeleted = "PUBLIC_MESSAGE_DELETE";
+
+	/// <summary>
 	/// Indicates the channel has received a normal message.
 	/// </summary>
 	public const string NormalMessageCreated = "MESSAGE_CREATE";
+
+	/// <summary>
+	/// Indicates a message is recalled or deleted.
+	/// </summary>
+	public const string NormalMessageDeletedOrRecalled = "MESSAGE_DELETE";
 
 	/// <summary>
 	/// Indicates a GUILD is created.
@@ -86,6 +101,11 @@ internal static class RawMessageTypes
 	public const string MessageAuditRejected = "MESSAGE_AUDIT_REJECT";
 
 	/// <summary>
+	/// Indicates an interaction is created.
+	/// </summary>
+	public const string InteractionCreated = "INTERACTION_CREATE";
+
+	/// <summary>
 	/// Indicates an audio instance is started playing.
 	/// </summary>
 	public const string AudioStarted = "AUDIO_START";
@@ -96,14 +116,30 @@ internal static class RawMessageTypes
 	public const string AudioFinished = "AUDIO_FINISH";
 
 	/// <summary>
-	/// Indicates an audio instance is on mic.
+	/// Indicates an audio instance has detected the microphone has been plugged-in.
 	/// </summary>
 	public const string AudioOnMic = "AUDIO_ON_MIC";
 
 	/// <summary>
-	/// Indicates an audio instance is off mic.
+	/// Indicates an audio instance has detected the microphone has been plugged-out.
 	/// </summary>
 	public const string AudioOffMic = "AUDIO_OFF_MIC";
+
+	public const string ThreadCreated = "FORUM_THREAD_CREATE";
+
+	public const string ThreadUpdated = "FORUM_THREAD_UPDATE";
+
+	public const string ThreadDeleted = "FORUM_THREAD_DELETE";
+
+	public const string PostCreated = "FORUM_POST_CREATE";
+
+	public const string PostDeleted = "FORUM_POST_DELETE";
+
+	public const string ReplyCreated = "FORUM_REPLY_CREATE";
+
+	public const string ReplyDeleted = "FORUM_REPLY_DELETE";
+
+	public const string ForumPublishedAuditResult = "FORUM_PUBLISH_AUDIT_RESULT";
 
 	/// <summary>
 	/// Indicates a connection is resumed.

@@ -1601,85 +1601,126 @@
         </member>
         <member name="T:Sudoku.Bot.Communication.Intent">
             <summary>
-            事件订阅权限
-            <para>
-            基础事件(默认有订阅权限)：GUILDS, GUILD_MEMBERS, AT_MESSAGES, GUILD_MESSAGE_REACTIONS<br/>
-            详见：<see href="https://bot.q.qq.com/wiki/develop/api/gateway/intents.html">官方文档</see>
-            </para>
+            Indicates the intents on events triggering.
             </summary>
+            <remarks>
+            For more information please visit
+            <see href="https://bot.q.qq.com/wiki/develop/api/gateway/intents.html">this link</see>.
+            You can visit the link given above to get the idea and the usage of the concept "intent".
+            </remarks>
             <completionlist cref="T:Sudoku.Bot.Communication.Intents"/>
         </member>
         <member name="F:Sudoku.Bot.Communication.Intent.GUILDS">
             <summary>
-            <para>
-            GUILD_CREATE - 当机器人加入新guild时 <br/>
-            GUILD_UPDATE - 当guild资料发生变更时 <br/>
-            GUILD_DELETE - 当机器人退出guild时 <br/>
-            CHANNEL_CREATE - 当channel被创建时 <br/>
-            CHANNEL_UPDATE - 当channel被更新时 <br/>
-            CHANNEL_DELETE - 当channel被删除时
-            </para>
+            Indicates the events to be triggered are on GUILD-related ones.
+            The field contains the following events:
+            <list type="bullet">
+            <item><see cref="F:Sudoku.Bot.Communication.RawMessageTypes.GuildCreated"/></item>
+            <item><see cref="F:Sudoku.Bot.Communication.RawMessageTypes.GuildUpdated"/></item>
+            <item><see cref="F:Sudoku.Bot.Communication.RawMessageTypes.GuildDeleted"/></item>
+            <item><see cref="F:Sudoku.Bot.Communication.RawMessageTypes.ChannelCreated"/></item>
+            <item><see cref="F:Sudoku.Bot.Communication.RawMessageTypes.ChannelUpdated"/></item>
+            <item><see cref="F:Sudoku.Bot.Communication.RawMessageTypes.ChannelDeleted"/></item>
+            </list>
             </summary>
         </member>
         <member name="F:Sudoku.Bot.Communication.Intent.GUILD_MEMBERS">
             <summary>
-            <para>
-            GUILD_MEMBER_ADD - 当成员加入时 <br/>
-            GUILD_MEMBER_UPDATE - 当成员资料变更时 <br/>
-            GUILD_MEMBER_REMOVE - 当成员被移除时
-            </para>
+            Indicates the events to be triggered are on GUILD-member-related ones.
+            The field contains the following events:
+            <list type="bullet">
+            <item><see cref="F:Sudoku.Bot.Communication.RawMessageTypes.GuildMemberAdded"/></item>
+            <item><see cref="F:Sudoku.Bot.Communication.RawMessageTypes.GuildMemberUpdated"/></item>
+            <item><see cref="F:Sudoku.Bot.Communication.RawMessageTypes.GuildMemberRemoved"/></item>
+            </list>
             </summary>
         </member>
         <member name="F:Sudoku.Bot.Communication.Intent.MESSAGE_CREATE">
             <summary>
-            MESSAGE_CREATE - 频道内发送的所有消息的事件（仅私域可用）
+            Indicates the events to be triggered are on message-creation-related ones.
+            The field is only used for private-domained bots.
+            The field contains the following events:
+            <list type="bullet">
+            <item><see cref="F:Sudoku.Bot.Communication.RawMessageTypes.NormalMessageCreated"/></item>
+            <item><see cref="F:Sudoku.Bot.Communication.RawMessageTypes.NormalMessageDeletedOrRecalled"/></item>
+            </list>
             </summary>
         </member>
         <member name="F:Sudoku.Bot.Communication.Intent.GUILD_MESSAGE_REACTIONS">
             <summary>
-            <para>
-            MESSAGE_REACTION_ADD - 为消息添加表情表态 <br/>
-            MESSAGE_REACTION_REMOVE - 为消息删除表情表态
-            </para>
+            Indicates the events to be triggered are on message-reaction-related ones.
+            The field contains the following events:
+            <list type="bullet">
+            <item><see cref="F:Sudoku.Bot.Communication.RawMessageTypes.MessageReactionAdded"/></item>
+            <item><see cref="F:Sudoku.Bot.Communication.RawMessageTypes.MessageReactionRemoved"/></item>
+            </list>
             </summary>
         </member>
         <member name="F:Sudoku.Bot.Communication.Intent.DIRECT_MESSAGE_CREATE">
             <summary>
-            DIRECT_MESSAGE_CREATE - 当收到用户发给机器人的私信消息时
+            Indicates the events to be triggered are on direct-message-related ones.
+            The field contains the following events:
+            <list type="bullet">
+            <item><see cref="F:Sudoku.Bot.Communication.RawMessageTypes.DirectMessageCreated"/></item>
+            <item><see cref="F:Sudoku.Bot.Communication.RawMessageTypes.DirectMessageDeletedOrRecalled"/></item>
+            </list>
+            </summary>
+        </member>
+        <member name="F:Sudoku.Bot.Communication.Intent.Interaction">
+            <summary>
+            Indicates the events to be triggered are on interaction-related ones.
+            The field contains the following events:
+            <list type="bullet">
+            <item><see cref="F:Sudoku.Bot.Communication.RawMessageTypes.InteractionCreated"/></item>
+            </list>
             </summary>
         </member>
         <member name="F:Sudoku.Bot.Communication.Intent.MESSAGE_AUDIT">
             <summary>
-            MESSAGE_AUDIT_PASS - 消息审核通过
-            MESSAGE_AUDIT_REJECT - 消息审核被拒绝
+            Indicates the events to be triggered are on message-audition-related ones.
+            The field contains the following events:
+            <list type="bullet">
+            <item><see cref="F:Sudoku.Bot.Communication.RawMessageTypes.MessageAuditPassed"/></item>
+            <item><see cref="F:Sudoku.Bot.Communication.RawMessageTypes.MessageAuditRejected"/></item>
+            </list>
             </summary>
         </member>
         <member name="F:Sudoku.Bot.Communication.Intent.FORUM_EVENT">
             <summary>
-            <para>
-            THREAD_CREATE - 当用户创建主题时 <br/>
-            THREAD_UPDATE - 当用户更新主题时 <br/>
-            THREAD_DELETE - 当用户删除主题时 <br/>
-            POST_CREATE - 当用户创建帖子时 <br/>
-            POST_DELETE - 当用户删除帖子时 <br/>
-            REPLY_CREATE - 当用户回复评论时 <br/>
-            REPLY_DELETE - 当用户删除评论时
-            </para>
+            Indicates the events to be triggered are on forum-related ones.
+            The field is only used for private-domained bots.
+            The field contains the following events:
+            <list type="bullet">
+            <item><see cref="F:Sudoku.Bot.Communication.RawMessageTypes.ThreadCreated"/></item>
+            <item><see cref="F:Sudoku.Bot.Communication.RawMessageTypes.ThreadUpdated"/></item>
+            <item><see cref="F:Sudoku.Bot.Communication.RawMessageTypes.ThreadDeleted"/></item>
+            <item><see cref="F:Sudoku.Bot.Communication.RawMessageTypes.PostCreated"/></item>
+            <item><see cref="F:Sudoku.Bot.Communication.RawMessageTypes.PostDeleted"/></item>
+            <item><see cref="F:Sudoku.Bot.Communication.RawMessageTypes.ReplyCreated"/></item>
+            <item><see cref="F:Sudoku.Bot.Communication.RawMessageTypes.ReplyDeleted"/></item>
+            <item><see cref="F:Sudoku.Bot.Communication.RawMessageTypes.ForumPublishedAuditResult"/></item>
+            </list>
             </summary>
         </member>
         <member name="F:Sudoku.Bot.Communication.Intent.AUDIO_ACTION">
             <summary>
-            <para>
-            AUDIO_START - 音频播放开始时 <br/>
-            AUDIO_FINISH - 音频播放结束时 <br/>
-            AUDIO_ON_MIC - 上麦时 <br/>
-            AUDIO_OFF_MIC - 下麦时
-            </para>
+            Indicates the events to be triggered are on audio-related ones.
+            The field contains the following events:
+            <list type="bullet">
+            <item><see cref="F:Sudoku.Bot.Communication.RawMessageTypes.AudioStarted"/></item>
+            <item><see cref="F:Sudoku.Bot.Communication.RawMessageTypes.AudioFinished"/></item>
+            <item><see cref="F:Sudoku.Bot.Communication.RawMessageTypes.AudioOnMic"/></item>
+            <item><see cref="F:Sudoku.Bot.Communication.RawMessageTypes.AudioOffMic"/></item>
+            </list>
             </summary>
         </member>
-        <member name="F:Sudoku.Bot.Communication.Intent.AT_MESSAGE_CREATE">
+        <member name="F:Sudoku.Bot.Communication.Intent.PUBLIC_GUILD_MESSAGES">
             <summary>
-            AT_MESSAGE_CREATE - 当收到@机器人的消息时
+            Indicates the events to be triggered are on mentioning-message-related ones.
+            <list type="bullet">
+            <item><see cref="F:Sudoku.Bot.Communication.RawMessageTypes.MentionMessageCreated"/></item>
+            <item><see cref="F:Sudoku.Bot.Communication.RawMessageTypes.PublicMessageDeleted"/></item>
+            </list>
             </summary>
         </member>
         <member name="T:Sudoku.Bot.Communication.Intents">
@@ -3742,14 +3783,29 @@
             Indicates the bot has received the private message.
             </summary>
         </member>
+        <member name="F:Sudoku.Bot.Communication.RawMessageTypes.DirectMessageDeletedOrRecalled">
+            <summary>
+            Indicates the a direct message has been removed or recalled.
+            </summary>
+        </member>
         <member name="F:Sudoku.Bot.Communication.RawMessageTypes.MentionMessageCreated">
             <summary>
             Indicates the bot has received the message that has been mentioned itself.
             </summary>
         </member>
+        <member name="F:Sudoku.Bot.Communication.RawMessageTypes.PublicMessageDeleted">
+            <summary>
+            Indicates a message from GUILD has been deleted.
+            </summary>
+        </member>
         <member name="F:Sudoku.Bot.Communication.RawMessageTypes.NormalMessageCreated">
             <summary>
             Indicates the channel has received a normal message.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Bot.Communication.RawMessageTypes.NormalMessageDeletedOrRecalled">
+            <summary>
+            Indicates a message is recalled or deleted.
             </summary>
         </member>
         <member name="F:Sudoku.Bot.Communication.RawMessageTypes.GuildCreated">
@@ -3817,6 +3873,11 @@
             Indicates a message is rejected from an audition.
             </summary>
         </member>
+        <member name="F:Sudoku.Bot.Communication.RawMessageTypes.InteractionCreated">
+            <summary>
+            Indicates an interaction is created.
+            </summary>
+        </member>
         <member name="F:Sudoku.Bot.Communication.RawMessageTypes.AudioStarted">
             <summary>
             Indicates an audio instance is started playing.
@@ -3829,12 +3890,12 @@
         </member>
         <member name="F:Sudoku.Bot.Communication.RawMessageTypes.AudioOnMic">
             <summary>
-            Indicates an audio instance is on mic.
+            Indicates an audio instance has detected the microphone has been plugged-in.
             </summary>
         </member>
         <member name="F:Sudoku.Bot.Communication.RawMessageTypes.AudioOffMic">
             <summary>
-            Indicates an audio instance is off mic.
+            Indicates an audio instance has detected the microphone has been plugged-out.
             </summary>
         </member>
         <member name="F:Sudoku.Bot.Communication.RawMessageTypes.Resumed">

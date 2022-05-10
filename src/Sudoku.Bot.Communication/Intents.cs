@@ -11,7 +11,7 @@ public static class Intents
 	public const Intent PublicDomain
 		= Intent.GUILDS | Intent.GUILD_MEMBERS | Intent.GUILD_MESSAGE_REACTIONS
 		| Intent.DIRECT_MESSAGE_CREATE | Intent.MESSAGE_AUDIT | Intent.AUDIO_ACTION
-		| Intent.AT_MESSAGE_CREATE;
+		| Intent.PUBLIC_GUILD_MESSAGES;
 
 	/// <summary>
 	/// Indicates the events being able to be used in private domain.

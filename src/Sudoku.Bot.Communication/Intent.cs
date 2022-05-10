@@ -1,86 +1,127 @@
 ﻿namespace Sudoku.Bot.Communication;
 
 /// <summary>
-/// 事件订阅权限
-/// <para>
-/// 基础事件(默认有订阅权限)：GUILDS, GUILD_MEMBERS, AT_MESSAGES, GUILD_MESSAGE_REACTIONS<br/>
-/// 详见：<see href="https://bot.q.qq.com/wiki/develop/api/gateway/intents.html">官方文档</see>
-/// </para>
+/// Indicates the intents on events triggering.
 /// </summary>
+/// <remarks>
+/// For more information please visit
+/// <see href="https://bot.q.qq.com/wiki/develop/api/gateway/intents.html">this link</see>.
+/// You can visit the link given above to get the idea and the usage of the concept "intent".
+/// </remarks>
 /// <completionlist cref="Intents"/>
 [Flags]
 public enum Intent
 {
 	/// <summary>
-	/// <para>
-	/// GUILD_CREATE - 当机器人加入新guild时 <br/>
-	/// GUILD_UPDATE - 当guild资料发生变更时 <br/>
-	/// GUILD_DELETE - 当机器人退出guild时 <br/>
-	/// CHANNEL_CREATE - 当channel被创建时 <br/>
-	/// CHANNEL_UPDATE - 当channel被更新时 <br/>
-	/// CHANNEL_DELETE - 当channel被删除时
-	/// </para>
+	/// Indicates the events to be triggered are on GUILD-related ones.
+	/// The field contains the following events:
+	/// <list type="bullet">
+	/// <item><see cref="RawMessageTypes.GuildCreated"/></item>
+	/// <item><see cref="RawMessageTypes.GuildUpdated"/></item>
+	/// <item><see cref="RawMessageTypes.GuildDeleted"/></item>
+	/// <item><see cref="RawMessageTypes.ChannelCreated"/></item>
+	/// <item><see cref="RawMessageTypes.ChannelUpdated"/></item>
+	/// <item><see cref="RawMessageTypes.ChannelDeleted"/></item>
+	/// </list>
 	/// </summary>
 	GUILDS = 1,
 
 	/// <summary>
-	/// <para>
-	/// GUILD_MEMBER_ADD - 当成员加入时 <br/>
-	/// GUILD_MEMBER_UPDATE - 当成员资料变更时 <br/>
-	/// GUILD_MEMBER_REMOVE - 当成员被移除时
-	/// </para>
+	/// Indicates the events to be triggered are on GUILD-member-related ones.
+	/// The field contains the following events:
+	/// <list type="bullet">
+	/// <item><see cref="RawMessageTypes.GuildMemberAdded"/></item>
+	/// <item><see cref="RawMessageTypes.GuildMemberUpdated"/></item>
+	/// <item><see cref="RawMessageTypes.GuildMemberRemoved"/></item>
+	/// </list>
 	/// </summary>
 	GUILD_MEMBERS = 1 << 1,
 
 	/// <summary>
-	/// MESSAGE_CREATE - 频道内发送的所有消息的事件（仅私域可用）
+	/// Indicates the events to be triggered are on message-creation-related ones.
+	/// The field is only used for private-domained bots.
+	/// The field contains the following events:
+	/// <list type="bullet">
+	/// <item><see cref="RawMessageTypes.NormalMessageCreated"/></item>
+	/// <item><see cref="RawMessageTypes.NormalMessageDeletedOrRecalled"/></item>
+	/// </list>
 	/// </summary>
 	MESSAGE_CREATE = 1 << 9,
 
 	/// <summary>
-	/// <para>
-	/// MESSAGE_REACTION_ADD - 为消息添加表情表态 <br/>
-	/// MESSAGE_REACTION_REMOVE - 为消息删除表情表态
-	/// </para>
+	/// Indicates the events to be triggered are on message-reaction-related ones.
+	/// The field contains the following events:
+	/// <list type="bullet">
+	/// <item><see cref="RawMessageTypes.MessageReactionAdded"/></item>
+	/// <item><see cref="RawMessageTypes.MessageReactionRemoved"/></item>
+	/// </list>
 	/// </summary>
 	GUILD_MESSAGE_REACTIONS = 1 << 10,
 
 	/// <summary>
-	/// DIRECT_MESSAGE_CREATE - 当收到用户发给机器人的私信消息时
+	/// Indicates the events to be triggered are on direct-message-related ones.
+	/// The field contains the following events:
+	/// <list type="bullet">
+	/// <item><see cref="RawMessageTypes.DirectMessageCreated"/></item>
+	/// <item><see cref="RawMessageTypes.DirectMessageDeletedOrRecalled"/></item>
+	/// </list>
 	/// </summary>
 	DIRECT_MESSAGE_CREATE = 1 << 12,
 
 	/// <summary>
-	/// MESSAGE_AUDIT_PASS - 消息审核通过
-	/// MESSAGE_AUDIT_REJECT - 消息审核被拒绝
+	/// Indicates the events to be triggered are on interaction-related ones.
+	/// The field contains the following events:
+	/// <list type="bullet">
+	/// <item><see cref="RawMessageTypes.InteractionCreated"/></item>
+	/// </list>
+	/// </summary>
+	Interaction = 1 << 26,
+
+	/// <summary>
+	/// Indicates the events to be triggered are on message-audition-related ones.
+	/// The field contains the following events:
+	/// <list type="bullet">
+	/// <item><see cref="RawMessageTypes.MessageAuditPassed"/></item>
+	/// <item><see cref="RawMessageTypes.MessageAuditRejected"/></item>
+	/// </list>
 	/// </summary>
 	MESSAGE_AUDIT = 1 << 27,
 
 	/// <summary>
-	/// <para>
-	/// THREAD_CREATE - 当用户创建主题时 <br/>
-	/// THREAD_UPDATE - 当用户更新主题时 <br/>
-	/// THREAD_DELETE - 当用户删除主题时 <br/>
-	/// POST_CREATE - 当用户创建帖子时 <br/>
-	/// POST_DELETE - 当用户删除帖子时 <br/>
-	/// REPLY_CREATE - 当用户回复评论时 <br/>
-	/// REPLY_DELETE - 当用户删除评论时
-	/// </para>
+	/// Indicates the events to be triggered are on forum-related ones.
+	/// The field is only used for private-domained bots.
+	/// The field contains the following events:
+	/// <list type="bullet">
+	/// <item><see cref="RawMessageTypes.ThreadCreated"/></item>
+	/// <item><see cref="RawMessageTypes.ThreadUpdated"/></item>
+	/// <item><see cref="RawMessageTypes.ThreadDeleted"/></item>
+	/// <item><see cref="RawMessageTypes.PostCreated"/></item>
+	/// <item><see cref="RawMessageTypes.PostDeleted"/></item>
+	/// <item><see cref="RawMessageTypes.ReplyCreated"/></item>
+	/// <item><see cref="RawMessageTypes.ReplyDeleted"/></item>
+	/// <item><see cref="RawMessageTypes.ForumPublishedAuditResult"/></item>
+	/// </list>
 	/// </summary>
 	FORUM_EVENT = 1 << 28,
 
 	/// <summary>
-	/// <para>
-	/// AUDIO_START - 音频播放开始时 <br/>
-	/// AUDIO_FINISH - 音频播放结束时 <br/>
-	/// AUDIO_ON_MIC - 上麦时 <br/>
-	/// AUDIO_OFF_MIC - 下麦时
-	/// </para>
+	/// Indicates the events to be triggered are on audio-related ones.
+	/// The field contains the following events:
+	/// <list type="bullet">
+	/// <item><see cref="RawMessageTypes.AudioStarted"/></item>
+	/// <item><see cref="RawMessageTypes.AudioFinished"/></item>
+	/// <item><see cref="RawMessageTypes.AudioOnMic"/></item>
+	/// <item><see cref="RawMessageTypes.AudioOffMic"/></item>
+	/// </list>
 	/// </summary>
 	AUDIO_ACTION = 1 << 29,
 
 	/// <summary>
-	/// AT_MESSAGE_CREATE - 当收到@机器人的消息时
+	/// Indicates the events to be triggered are on mentioning-message-related ones.
+	/// <list type="bullet">
+	/// <item><see cref="RawMessageTypes.MentionMessageCreated"/></item>
+	/// <item><see cref="RawMessageTypes.PublicMessageDeleted"/></item>
+	/// </list>
 	/// </summary>
-	AT_MESSAGE_CREATE = 1 << 30,
+	PUBLIC_GUILD_MESSAGES = 1 << 30
 }
