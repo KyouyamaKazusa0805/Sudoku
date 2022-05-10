@@ -7,10 +7,14 @@
 // Copyright (c) 2021-2022 Antecer. All rights reserved.
 
 global using System;
+global using System.Collections.Generic;
 global using System.IO;
+global using System.Linq;
 global using System.Runtime.CompilerServices;
 global using System.Text.Json;
+global using System.Text.Json.Serialization;
 global using System.Threading.Tasks;
 global using Sudoku.Bot.Communication;
 global using Sudoku.Bot.Communication.Resources;
 global using Sudoku.Bot.Communication.Triggering;
+global using Sudoku.Bot.JsonConverters;

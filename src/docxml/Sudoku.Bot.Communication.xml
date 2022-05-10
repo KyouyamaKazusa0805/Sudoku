@@ -3928,6 +3928,11 @@
               Looks up a localized string similar to P:\Bot\bot.json.
             </summary>
         </member>
+        <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.__LocalPlayerConfigPath">
+            <summary>
+              Looks up a localized string similar to P:\Bot\Players.
+            </summary>
+        </member>
         <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.AboutInfo_Segment1">
              <summary>
                Looks up a localized string similar to 向向的游戏机器人
@@ -3943,6 +3948,48 @@
             💡 /复读：把你发的消息复读一次。.
              </summary>
         </member>
+        <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.ClockInError_DateStringIsNull">
+             <summary>
+               Looks up a localized string similar to 签到失败。原因：
+            用户存档文件里的此数据为 null 值。机器人设计者，你看看你都干了些什么好事！.
+             </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.ClockInError_InvalidDateValue">
+             <summary>
+               Looks up a localized string similar to 对不起，机器人出了点问题。原因：
+            机器人尝试在读取用户的存档的时候，“日期”一行的文字并不是真的日期的字符串数据，而是别的什么东西。可能在录入数据的时候就出现了问题。请联系机器人设计者修复此问题。.
+             </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.ClockInError_ResourceNotFound">
+             <summary>
+               Looks up a localized string similar to 对不起，机器人出了点问题。原因：
+            机器人尚未配置用户存档数据的本地路径。该路径对于机器人识别用户的数据来说非常重要。如果没有此数据的话，机器人就相当于直接不知道怎么读写你们的“存档”了。这是很可怕的，对吧。.
+             </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.ClockInSuccess_FileCreated">
+             <summary>
+               Looks up a localized string similar to 签到成功。这是你第一次使用机器人哦~ 恭喜你获得 0 经验值~
+            （非常抱歉，由于是测试功能，所以暂时没有经验值系统。）.
+             </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.ClockInSuccess_ValueCreated">
+             <summary>
+               Looks up a localized string similar to 签到成功。这是你第一次签到哦~ 恭喜你获得 0 经验值~
+            （非常抱歉，由于是测试功能，所以暂时没有经验值系统。）.
+             </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.ClockInSuccess_ValueUpdated">
+             <summary>
+               Looks up a localized string similar to 签到成功。数据已更新~ 恭喜你获得 0 经验值~
+            （非常抱歉，由于是测试功能，所以暂时没有经验值系统。）.
+             </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.ClockInWarning_CannotClockInInSameDay">
+             <summary>
+               Looks up a localized string similar to 签到失败，原因：
+            本地记录的数据里，你签到的上一回时间就是今天。不能在同一天签到多次。.
+             </summary>
+        </member>
         <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.Colon">
             <summary>
               Looks up a localized string similar to ：.
@@ -3951,6 +3998,11 @@
         <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.Command_About">
             <summary>
               Looks up a localized string similar to 关于.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.Command_ClockIn">
+            <summary>
+              Looks up a localized string similar to 签到.
             </summary>
         </member>
         <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.Command_Repeat">

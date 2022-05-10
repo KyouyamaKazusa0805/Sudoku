@@ -65,22 +65,26 @@ static void initializeCommands(BotClient bot)
 	//     @bot /repeat 123
 	// Then the bot will reply:
 	//     @user 123
-	var repeatCommand = new Command(StringResource.Get("Command_Repeat")!, repeatAsync);
-	bot.AddCommand(repeatCommand);
+	// Empty content won't be repeated by bot.
+	bot.AddCommand(new(StringResource.Get("Command_Repeat")!, repeatAsync));
 
 	// Prints the information about the author of the bot, and the bot itself.
-	var aboutCommand = new Command(StringResource.Get("Command_About")!, printAboutInfoAsync);
-	bot.AddCommand(aboutCommand);
+	// e.g. User sends the message:
+	//     @bot /about
+	bot.AddCommand(new(StringResource.Get("Command_About")!, printAboutInfoAsync));
+
+	// Clock in.
+	// e.g. User sends the message:
+	//     @bot /clockIn
+	bot.AddCommand(new(StringResource.Get("Command_ClockIn")!, clockInAsync));
 }
 
 static async void repeatAsync(Sender sender, string message)
 {
-	if (string.IsNullOrWhiteSpace(message))
+	if (!string.IsNullOrWhiteSpace(message))
 	{
-		return;
+		await sender.ReplyAsync($"{sender.Author.Tag} {message}");
 	}
-
-	await sender.ReplyAsync($"{sender.Author.Tag} {message}");
 }
 
 static async void printAboutInfoAsync(Sender sender, string message)
@@ -91,6 +95,114 @@ static async void printAboutInfoAsync(Sender sender, string message)
 		{StringResource.Get("AboutInfo_Segment2")!}
 		"""
 	);
+
+static async void clockInAsync(Sender sender, string message)
+{
+	// Checks the user data.
+	// If the user is the new, we should create a file to store it;
+	// otherwise, check the user data file, and get the latest time that he/she clocked in.
+	// If the 'yyyyMMdd' is same, we should disallow the user re-clocking in.
+	const string propertyName = "lastTimeCheckedIn";
+
+	string? path = StringResource.Get("__LocalPlayerConfigPath");
+	if (path is null)
+	{
+		await sender.ReplyAsync(StringResource.Get("ClockInError_ResourceNotFound")!);
+		return;
+	}
+
+	if (!Directory.Exists(path))
+	{
+		// If the local path doesn't exist, create it.
+		Directory.CreateDirectory(path);
+	}
+
+	if (sender is not { Author.Id: var userId })
+	{
+		return;
+	}
+
+	string userPath = $"""{path}\{userId}.json""";
+	var generalSerializerOptions = new JsonSerializerOptions { WriteIndented = true }.AddConverter<DictionaryConverter>();
+	if (File.Exists(userPath))
+	{
+		string originalJson = await File.ReadAllTextAsync(userPath);
+		var rootElement = JsonSerializer.Deserialize<JsonElement>(originalJson);
+		if (rootElement.TryGetProperty(propertyName, out var element))
+		{
+			try
+			{
+				var date = DateTime.Parse(element.GetString()!).Date;
+				if (date == DateTime.Today)
+				{
+					// A same day. Notice the user that he/she cannot clock in again.
+					await sender.ReplyAsync(StringResource.Get("ClockInWarning_CannotClockInInSameDay")!);
+					return;
+				}
+
+				// Valid. Now clock in and update the value.
+				string updatedJson = JsonSerializer.Serialize(
+					new Dictionary<string, string>(
+						from subelement in element.EnumerateObject()
+						where subelement.Name != propertyName
+						select new KeyValuePair<string, string>(subelement.Name, subelement.Value.ToString())
+					)
+					{
+						{ propertyName, DateTime.Today.ToString() }
+					},
+					generalSerializerOptions
+				);
+
+				await File.WriteAllTextAsync(userPath, updatedJson);
+
+				await sender.ReplyAsync(StringResource.Get("ClockInSuccess_ValueUpdated")!);
+			}
+			catch (ArgumentNullException)
+			{
+				await sender.ReplyAsync(StringResource.Get("ClockInError_DateStringIsNull")!);
+			}
+			catch (Exception ex) when (ex is FormatException or InvalidOperationException)
+			{
+				// Invalid date value parsed.
+				await sender.ReplyAsync(StringResource.Get("ClockInError_InvalidDateValue")!, true);
+			}
+		}
+		else
+		{
+			// The file exists but the current property doesn't.
+			// We should create the property with the current value and update the file.
+			string updatedJson = JsonSerializer.Serialize(
+				new Dictionary<string, string>(
+					from subelement in element.EnumerateObject()
+					select new KeyValuePair<string, string>(subelement.Name, subelement.Value.ToString())
+				)
+				{
+					{ propertyName, DateTime.Today.ToString() }
+				},
+				generalSerializerOptions
+			);
+
+			await File.WriteAllTextAsync(userPath, updatedJson);
+
+			await sender.ReplyAsync(StringResource.Get("ClockInSuccess_ValueCreated")!, true);
+		}
+	}
+	else
+	{
+		// The file doesn't exist. Just create a file that contains the data.
+		string indenting = new(' ', 2);
+		await File.WriteAllTextAsync(
+			userPath,
+			$$"""
+			{
+			{{indenting}}"{{propertyName}}": "{{DateTime.Today}}"
+			}
+			"""
+		);
+
+		await sender.ReplyAsync(StringResource.Get("ClockInSuccess_FileCreated")!, true);
+	}
+}
 
 static Identity loadBotConfiguration(string localFilePath, out string testChannelId)
 {
