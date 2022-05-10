@@ -152,9 +152,12 @@ partial class BotClient
 	/// <param name="endOfMsg">表示数据已发送结束</param>
 	/// <param name="cancelToken">用于传播应取消此操作的通知的取消令牌。</param>
 	/// <returns></returns>
-	private async Task WebSocketSendAsync(string data, WebSocketMessageType msgType = WebSocketMessageType.Text, bool endOfMsg = true, CancellationToken? cancelToken = null)
+	private async Task WebSocketSendAsync(
+		string data, WebSocketMessageType msgType = WebSocketMessageType.Text,
+		bool endOfMsg = true, CancellationToken? cancelToken = null)
 	{
-		OnWebSoketSending?.Invoke(this, data);
+		OnWebSoketSending?.Invoke(this, new(data));
+
 		await WebSocketClient.SendAsync(Encoding.UTF8.GetBytes(data), msgType, endOfMsg, cancelToken ?? CancellationToken.None);
 	}
 
@@ -173,7 +176,7 @@ partial class BotClient
 				if (result.MessageType == WebSocketMessageType.Text)
 				{
 					var json = JsonDocument.Parse(memory.Memory[..result.Count]).RootElement;
-					OnWebSocketReceived?.Invoke(this, json.GetRawText());
+					OnWebSocketReceived?.Invoke(this, new(json.GetRawText()));
 					await ExcuteCommandAsync(json);
 					continue;
 				}
@@ -372,7 +375,10 @@ partial class BotClient
 
 						Info = d.GetProperty("user").Deserialize<User>()!;
 						Info.Avatar = (await GetMeAsync())?.Avatar;
-						OnReady?.Invoke(Info);
+
+						// Triggers the event.
+						// Here 'this' can be replaced with 'null' because the first argument is useless.
+						OnAuthorizationPassed?.Invoke(this, new(Info));
 
 						break;
 					}
@@ -398,7 +404,7 @@ partial class BotClient
 			case Opcode.Identify: // Send 客户端发送鉴权
 			{
 				Log.Info($"[WebSocket][Op02] 客户端 发起鉴权");
-				OnIdentify?.Invoke(this, wssJson);
+				OnIdentifying?.Invoke(this, wssJson);
 				await SendIdentifyAsync();
 
 				break;
@@ -407,7 +413,7 @@ partial class BotClient
 			{
 				Log.Info($"[WebSocket][Op06] 客户端 尝试恢复连接..");
 				IsResume = false;
-				OnResume?.Invoke(this, wssJson);
+				OnResuming?.Invoke(this, wssJson);
 				await SendResumeAsync();
 
 				break;

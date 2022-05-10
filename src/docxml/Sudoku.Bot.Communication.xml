@@ -829,74 +829,81 @@
         </member>
         <member name="E:Sudoku.Bot.Communication.BotClient.OnWebSocketConnected">
             <summary>
-            WebSocketClient连接后触发
-            <para>等同于 WebSocket.OnOpen 事件</para>
+            Indicates the event triggered when the web socket has been connected.
             </summary>
         </member>
         <member name="E:Sudoku.Bot.Communication.BotClient.OnWebSocketClosed">
             <summary>
-            WebSocketClient关闭后触发
+            Indicates the event triggered when the web socket client has closed the connection.
             </summary>
         </member>
         <member name="E:Sudoku.Bot.Communication.BotClient.OnWebSoketSending">
             <summary>
-            WebSocketClient发送数据前触发
+            Indicates the event triggered before sending the message.
             </summary>
         </member>
         <member name="E:Sudoku.Bot.Communication.BotClient.OnWebSocketReceived">
             <summary>
-            WebSocketClient收到数据后触发
+            Indicates the event triggered after being received the message.
             </summary>
         </member>
         <member name="E:Sudoku.Bot.Communication.BotClient.OnDispatch">
             <summary>
-            收到服务端推送的消息时触发
+            Indicates the event triggered when a message is dispatched from the server.
             </summary>
         </member>
         <member name="E:Sudoku.Bot.Communication.BotClient.OnHeartbeat">
             <summary>
-            客户端发送心跳或收到服务端推送心跳时触发
+            Indicates the event triggered when a heartbeat message is received from the server,
+            or sent from the current client.
             </summary>
         </member>
-        <member name="E:Sudoku.Bot.Communication.BotClient.OnIdentify">
+        <member name="E:Sudoku.Bot.Communication.BotClient.OnIdentifying">
             <summary>
-            客户端发送鉴权时触发
+            Indicates the event triggered when an authorization message is sent from the server.
             </summary>
         </member>
-        <member name="E:Sudoku.Bot.Communication.BotClient.OnResume">
+        <member name="E:Sudoku.Bot.Communication.BotClient.OnResuming">
             <summary>
-            客户端恢复连接时触发
-            </summary>
-        </member>
-        <member name="E:Sudoku.Bot.Communication.BotClient.OnReconnect">
-            <summary>
-            服务端通知客户端重新连接时触发
-            </summary>
-        </member>
-        <member name="E:Sudoku.Bot.Communication.BotClient.OnInvalidSession">
-            <summary>
-            当identify或resume的时候，参数错误的时候触发
-            </summary>
-        </member>
-        <member name="E:Sudoku.Bot.Communication.BotClient.OnHello">
-            <summary>
-            当客户端与网关建立ws连接的时候触发
-            </summary>
-        </member>
-        <member name="E:Sudoku.Bot.Communication.BotClient.OnHeartbeatACK">
-            <summary>
-            客户端发送心跳被服务端接收后触发
-            </summary>
-        </member>
-        <member name="E:Sudoku.Bot.Communication.BotClient.OnReady">
-            <summary>
-            鉴权连接成功后触发
-            <para>注:此时获取的User对象只有3个属性 {id,username,bot}</para>
+            Indicates the event triggered when the connection is being resumed.
             </summary>
         </member>
         <member name="E:Sudoku.Bot.Communication.BotClient.OnResumed">
             <summary>
-            恢复连接成功后触发
+            Indicates the event triggered when the connection is resumed.
+            </summary>
+        </member>
+        <member name="E:Sudoku.Bot.Communication.BotClient.OnReconnect">
+            <summary>
+            Indicates the event triggered when the server noticed the user that connection is reconnected.
+            </summary>
+        </member>
+        <member name="E:Sudoku.Bot.Communication.BotClient.OnInvalidSession">
+            <summary>
+            Indicates the event triggered when the invalid cast has been encountered while triggering
+            <see cref="E:Sudoku.Bot.Communication.BotClient.OnIdentifying"/> or <see cref="E:Sudoku.Bot.Communication.BotClient.OnResuming"/>.
+            </summary>
+            <seealso cref="E:Sudoku.Bot.Communication.BotClient.OnIdentifying"/>
+            <seealso cref="E:Sudoku.Bot.Communication.BotClient.OnResuming"/>
+        </member>
+        <member name="E:Sudoku.Bot.Communication.BotClient.OnHello">
+            <summary>
+            Indicates the event triggered when created the connection between client and the gateway.
+            </summary>
+        </member>
+        <member name="E:Sudoku.Bot.Communication.BotClient.OnHeartbeatACK">
+            <summary>
+            Indicates the event triggered when the server has received the heartbeat message.
+            </summary>
+        </member>
+        <member name="E:Sudoku.Bot.Communication.BotClient.OnAudioMsg">
+            <summary>
+            Indicates the event triggered when an audio instance has been changed its status.
+            </summary>
+        </member>
+        <member name="E:Sudoku.Bot.Communication.BotClient.OnAuthorizationPassed">
+            <summary>
+            Indicates the event triggered when the authorization on bot data is passed.
             </summary>
         </member>
         <member name="E:Sudoku.Bot.Communication.BotClient.OnGuildMsg">
@@ -952,11 +959,6 @@
             MessageAudited - 消息审核对象<br/>
             MessageAudited.IsPassed - 消息审核是否通过
             </para>
-            </summary>
-        </member>
-        <member name="E:Sudoku.Bot.Communication.BotClient.OnAudioMsg">
-            <summary>
-            音频状态变更后触发
             </summary>
         </member>
         <member name="E:Sudoku.Bot.Communication.BotClient.OnMsgCreate">
@@ -4528,6 +4530,112 @@
             <summary>
             The status code referencing table.
             </summary>
+        </member>
+        <member name="T:Sudoku.Bot.Communication.Triggering.AuthoizationPassedEventArgs">
+            <summary>
+            Provides with the event data for <see cref="T:Sudoku.Bot.Communication.Triggering.AuthoizationPassedEventHandler"/>.
+            </summary>
+            <seealso cref="T:Sudoku.Bot.Communication.Triggering.AuthoizationPassedEventHandler"/>
+        </member>
+        <member name="M:Sudoku.Bot.Communication.Triggering.AuthoizationPassedEventArgs.#ctor(Sudoku.Bot.Communication.Models.User)">
+            <summary>
+            Initializes an <see cref="T:Sudoku.Bot.Communication.Triggering.AuthoizationPassedEventArgs"/> instance via the user instance.
+            </summary>
+            <param name="user">The user instance.</param>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Triggering.AuthoizationPassedEventArgs.User">
+            <summary>
+            Indicates the data of the bot. Currently the instance will only be assigned
+            properties <see cref="P:Sudoku.Bot.Communication.Models.User.Id"/>, <see cref="P:Sudoku.Bot.Communication.Models.User.UserName"/> and <see cref="P:Sudoku.Bot.Communication.Models.User.IsBot"/>.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Bot.Communication.Triggering.AuthoizationPassedEventHandler">
+            <summary>
+            Indicates the event handler that describes the case that the bot client instance has connected the web socket.
+            </summary>
+            <param name="sender">The object that has triggered the event. The argument may be useless.</param>
+            <param name="e">The event data provided.</param>
+        </member>
+        <member name="T:Sudoku.Bot.Communication.Triggering.JsonElementRelatedEventHandler">
+            <summary>
+            Indicates the event handler that describes the events using <see cref="T:System.Text.Json.JsonElement"/> instance as the event arguments.
+            </summary>
+            <param name="sender">The object that has triggered the event.</param>
+            <param name="e">The JSON element as the extra event data.</param>
+        </member>
+        <member name="T:Sudoku.Bot.Communication.Triggering.MessageCreatedEventHandler">
+            <summary>
+            Indicates the event handler that describes the case that a message is created.
+            </summary>
+            <param name="sender">The object that has triggered the event.</param>
+        </member>
+        <member name="T:Sudoku.Bot.Communication.Triggering.NullableJsonElementRelatedEventHandler">
+            <summary>
+            Indicates the event handler that describes the events using <see cref="T:System.Text.Json.JsonElement"/> instance
+            or <see langword="null"/> as the event arguments.
+            </summary>
+            <param name="sender">The object that has triggered the event.</param>
+            <param name="e">The JSON element or <see langword="null"/> as the extra event data.</param>
+        </member>
+        <member name="T:Sudoku.Bot.Communication.Triggering.WebSocketClosedEventHandler">
+            <summary>
+            Indicates the event handler that describes the case that the bot client has closed the connection.
+            </summary>
+            <param name="sender">The object that has triggered the event.</param>
+        </member>
+        <member name="T:Sudoku.Bot.Communication.Triggering.WebSocketConnectedEventHandler">
+            <summary>
+            Indicates the event handler that describes the case that the bot client instance has connected the web socket.
+            </summary>
+            <param name="sender">The object that has triggered the event.</param>
+        </member>
+        <member name="T:Sudoku.Bot.Communication.Triggering.WebSocketReceivedEventArgs">
+            <summary>
+            Provides with the event data for <see cref="T:Sudoku.Bot.Communication.Triggering.WebSocketReceivedEventHandler"/>.
+            </summary>
+            <seealso cref="T:Sudoku.Bot.Communication.Triggering.WebSocketReceivedEventHandler"/>
+        </member>
+        <member name="M:Sudoku.Bot.Communication.Triggering.WebSocketReceivedEventArgs.#ctor(System.String)">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Bot.Communication.Triggering.WebSocketReceivedEventArgs"/> instance via the specified data.
+            </summary>
+            <param name="data">The data.</param>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Triggering.WebSocketReceivedEventArgs.Data">
+            <summary>
+            Indicates the data received.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Bot.Communication.Triggering.WebSocketReceivedEventHandler">
+            <summary>
+            Indicates the event handler that describes the case that triggered after being received a message.
+            </summary>
+            <param name="sender">The object that has triggered the event.</param>
+            <param name="e">The event data provided.</param>
+        </member>
+        <member name="T:Sudoku.Bot.Communication.Triggering.WebSocketSendingEventArgs">
+            <summary>
+            Provides with data used by <see cref="T:Sudoku.Bot.Communication.Triggering.WebSocketSendingEventHandler"/>.
+            </summary>
+            <seealso cref="T:Sudoku.Bot.Communication.Triggering.WebSocketSendingEventHandler"/>
+        </member>
+        <member name="M:Sudoku.Bot.Communication.Triggering.WebSocketSendingEventArgs.#ctor(System.String)">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Bot.Communication.Triggering.WebSocketSendingEventArgs"/> instance via the data.
+            </summary>
+            <param name="data">The data.</param>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Triggering.WebSocketSendingEventArgs.Data">
+            <summary>
+            Indicates the data sending.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Bot.Communication.Triggering.WebSocketSendingEventHandler">
+            <summary>
+            Indicates the event handler that describes the case that triggered before sending a message.
+            </summary>
+            <param name="sender">The object that has triggered the event.</param>
+            <param name="e">The event data provided.</param>
         </member>
         <member name="T:Sudoku.Bot.Communication.Unicoder">
             <summary>

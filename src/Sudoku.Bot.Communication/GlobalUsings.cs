@@ -31,4 +31,5 @@ global using Sudoku.Bot.Communication.Models.Interaction;
 global using Sudoku.Bot.Communication.Models.MessageTemplates;
 global using Sudoku.Bot.Communication.Models.Returning;
 global using Sudoku.Bot.Communication.Resources;
+global using Sudoku.Bot.Communication.Triggering;
 global using Timer = System.Timers.Timer;

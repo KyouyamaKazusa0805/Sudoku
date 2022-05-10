@@ -33,7 +33,7 @@ while (true)
 
 static void initializeEvents(BotClient bot)
 {
-	bot.OnReady += static user =>
+	bot.OnAuthorizationPassed += static user =>
 	{
 		var sdk = typeof(BotClient).Assembly.GetName();
 		Console.Title = $"{user.UserName}_Private <{user.Id}> - SDK Version: {sdk.Name}_{sdk.Version}; connetion state:";

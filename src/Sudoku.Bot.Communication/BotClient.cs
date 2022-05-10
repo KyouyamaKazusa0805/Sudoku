@@ -161,76 +161,83 @@ public partial class BotClient
 
 
 	/// <summary>
-	/// WebSocketClient连接后触发
-	/// <para>等同于 WebSocket.OnOpen 事件</para>
+	/// Indicates the event triggered when the web socket has been connected.
 	/// </summary>
-	public event Action<BotClient>? OnWebSocketConnected;
+	public event WebSocketConnectedEventHandler? OnWebSocketConnected;
 
 	/// <summary>
-	/// WebSocketClient关闭后触发
+	/// Indicates the event triggered when the web socket client has closed the connection.
 	/// </summary>
-	public event Action<BotClient>? OnWebSocketClosed;
+	public event WebSocketClosedEventHandler? OnWebSocketClosed;
 
 	/// <summary>
-	/// WebSocketClient发送数据前触发
+	/// Indicates the event triggered before sending the message.
 	/// </summary>
-	public event Action<BotClient, string>? OnWebSoketSending;
+	public event WebSocketSendingEventHandler? OnWebSoketSending;
 
 	/// <summary>
-	/// WebSocketClient收到数据后触发
+	/// Indicates the event triggered after being received the message.
 	/// </summary>
-	public event Action<BotClient, string>? OnWebSocketReceived;
+	public event WebSocketReceivedEventHandler? OnWebSocketReceived;
 
 	/// <summary>
-	/// 收到服务端推送的消息时触发
+	/// Indicates the event triggered when a message is dispatched from the server.
 	/// </summary>
-	public event Action<BotClient, JsonElement>? OnDispatch;
+	public event JsonElementRelatedEventHandler? OnDispatch;
 
 	/// <summary>
-	/// 客户端发送心跳或收到服务端推送心跳时触发
+	/// Indicates the event triggered when a heartbeat message is received from the server,
+	/// or sent from the current client.
 	/// </summary>
-	public event Action<BotClient, JsonElement>? OnHeartbeat;
+	public event JsonElementRelatedEventHandler? OnHeartbeat;
 
 	/// <summary>
-	/// 客户端发送鉴权时触发
+	/// Indicates the event triggered when an authorization message is sent from the server.
 	/// </summary>
-	public event Action<BotClient, JsonElement>? OnIdentify;
+	public event JsonElementRelatedEventHandler? OnIdentifying;
 
 	/// <summary>
-	/// 客户端恢复连接时触发
+	/// Indicates the event triggered when the connection is being resumed.
 	/// </summary>
-	public event Action<BotClient, JsonElement>? OnResume;
+	public event JsonElementRelatedEventHandler? OnResuming;
 
 	/// <summary>
-	/// 服务端通知客户端重新连接时触发
+	/// Indicates the event triggered when the connection is resumed.
 	/// </summary>
-	public event Action<BotClient, JsonElement>? OnReconnect;
+	public event JsonElementRelatedEventHandler? OnResumed;
 
 	/// <summary>
-	/// 当identify或resume的时候，参数错误的时候触发
+	/// Indicates the event triggered when the server noticed the user that connection is reconnected.
 	/// </summary>
-	public event Action<BotClient, JsonElement>? OnInvalidSession;
+	public event JsonElementRelatedEventHandler? OnReconnect;
 
 	/// <summary>
-	/// 当客户端与网关建立ws连接的时候触发
+	/// Indicates the event triggered when the invalid cast has been encountered while triggering
+	/// <see cref="OnIdentifying"/> or <see cref="OnResuming"/>.
 	/// </summary>
-	public event Action<BotClient, JsonElement>? OnHello;
+	/// <seealso cref="OnIdentifying"/>
+	/// <seealso cref="OnResuming"/>
+	public event JsonElementRelatedEventHandler? OnInvalidSession;
 
 	/// <summary>
-	/// 客户端发送心跳被服务端接收后触发
+	/// Indicates the event triggered when created the connection between client and the gateway.
 	/// </summary>
-	public event Action<BotClient, JsonElement>? OnHeartbeatACK;
+	public event JsonElementRelatedEventHandler? OnHello;
 
 	/// <summary>
-	/// 鉴权连接成功后触发
-	/// <para>注:此时获取的User对象只有3个属性 {id,username,bot}</para>
+	/// Indicates the event triggered when the server has received the heartbeat message.
 	/// </summary>
-	public event Action<User>? OnReady;
+	public event JsonElementRelatedEventHandler? OnHeartbeatACK;
 
 	/// <summary>
-	/// 恢复连接成功后触发
+	/// Indicates the event triggered when an audio instance has been changed its status.
 	/// </summary>
-	public event Action<BotClient, JsonElement>? OnResumed;
+	public event NullableJsonElementRelatedEventHandler? OnAudioMsg;
+
+	/// <summary>
+	/// Indicates the event triggered when the authorization on bot data is passed.
+	/// </summary>
+	public event AuthoizationPassedEventHandler? OnAuthorizationPassed;
 
 	/// <summary>
 	/// 频道信息变更后触发
@@ -288,18 +295,13 @@ public partial class BotClient
 	public event Action<BotClient, MessageAudited?>? OnMessageAudit;
 
 	/// <summary>
-	/// 音频状态变更后触发
-	/// </summary>
-	public event Action<BotClient, JsonElement?>? OnAudioMsg;
-
-	/// <summary>
 	/// 频道内有人发消息就触发 (包含 @机器人 消息)
 	/// <para>
 	/// Sender - 发件人对象<br/>
 	/// <see cref="Sender.MessageType"/> 包含消息类别（公开，AT机器人，AT全员，私聊）
 	/// </para>
 	/// </summary>
-	public event Action<Sender>? OnMsgCreate;
+	public event MessageCreatedEventHandler? OnMsgCreate;
 
 	/// <summary>
 	/// API调用出错时触发
