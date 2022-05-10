@@ -162,7 +162,7 @@ namespace Sudoku.Bot.Communication.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 签到失败，原因：
+        ///   Looks up a localized string similar to 签到失败。原因：
         ///本地记录的数据里，你签到的上一回时间就是今天。不能在同一天签到多次。.
         /// </summary>
         internal static string ClockInWarning_CannotClockInInSameDay {

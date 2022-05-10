@@ -153,7 +153,7 @@
 （非常抱歉，由于是测试功能，所以暂时没有经验值系统。）</value>
   </data>
   <data name="ClockInWarning_CannotClockInInSameDay" xml:space="preserve">
-    <value>签到失败，原因：
+    <value>签到失败。原因：
 本地记录的数据里，你签到的上一回时间就是今天。不能在同一天签到多次。</value>
   </data>
   <data name="Colon" xml:space="preserve">
