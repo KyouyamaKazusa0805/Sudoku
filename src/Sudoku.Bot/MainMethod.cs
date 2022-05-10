@@ -81,20 +81,25 @@ static void initializeCommands(BotClient bot)
 
 static async void repeatAsync(Sender sender, string message)
 {
-	if (!string.IsNullOrWhiteSpace(message))
+	if (!string.IsNullOrWhiteSpace(message) && sender.AtMe)
 	{
 		await sender.ReplyAsync($"{sender.Author.Tag} {message}");
 	}
 }
 
 static async void printAboutInfoAsync(Sender sender, string message)
-	=> await sender.ReplyAsync(
-		$"""
-		{StringResource.Get("AboutInfo_Segment1")!}{AssemblyVersion}
-		---
-		{StringResource.Get("AboutInfo_Segment2")!}
-		"""
-	);
+{
+	if (sender.AtMe)
+	{
+		await sender.ReplyAsync(
+			$"""
+			{StringResource.Get("AboutInfo_Segment1")!}{AssemblyVersion}
+			---
+			{StringResource.Get("AboutInfo_Segment2")!}
+			"""
+		);
+	}
+}
 
 static async void clockInAsync(Sender sender, string message)
 {
@@ -104,9 +109,14 @@ static async void clockInAsync(Sender sender, string message)
 	// If the 'yyyyMMdd' is same, we should disallow the user re-clocking in.
 	const string propertyName = "lastTimeCheckedIn";
 
-	string? path = StringResource.Get("__LocalPlayerConfigPath");
-	if (path is null)
+	if (sender is not { Author.Id: var userId, AtMe: true })
 	{
+		return;
+	}
+
+	if (StringResource.Get("__LocalPlayerConfigPath") is not { } path)
+	{
+		// The configuration path is not found.
 		await sender.ReplyAsync(StringResource.Get("ClockInError_ResourceNotFound")!);
 		return;
 	}
@@ -115,11 +125,6 @@ static async void clockInAsync(Sender sender, string message)
 	{
 		// If the local path doesn't exist, create it.
 		Directory.CreateDirectory(path);
-	}
-
-	if (sender is not { Author.Id: var userId })
-	{
-		return;
 	}
 
 	string userPath = $"""{path}\{userId}.json""";
