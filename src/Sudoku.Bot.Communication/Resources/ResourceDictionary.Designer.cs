@@ -82,12 +82,22 @@ namespace Sudoku.Bot.Communication.Resources {
         
         /// <summary>
         ///   Looks up a localized string similar to 玩法：请通过艾特本机器人，并带上斜杠符号。支持的指令有：
-        ///💡 /复读：把你发的消息复读一次。
-        ///💡 /关于：提示程序介绍文字相关内容（即本消息）。.
+        ///💡 /签到（测试功能）：允许玩家每日参与一次签到。
+        ///💡 /关于：提示程序介绍文字相关内容（即本消息）。
+        ///💡 /复读：把你发的消息复读一次。.
         /// </summary>
         internal static string AboutInfo_Segment2 {
             get {
                 return ResourceManager.GetString("AboutInfo_Segment2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ：.
+        /// </summary>
+        internal static string Colon {
+            get {
+                return ResourceManager.GetString("Colon", resourceCulture);
             }
         }
         
@@ -259,6 +269,33 @@ namespace Sudoku.Bot.Communication.Resources {
         internal static string Name_NormalMember {
             get {
                 return ResourceManager.GetString("Name_NormalMember", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 私域机器人.
+        /// </summary>
+        internal static string PrivateDomainBotSuffix {
+            get {
+                return ResourceManager.GetString("PrivateDomainBotSuffix", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 公域机器人.
+        /// </summary>
+        internal static string PublicDomainBotSuffix {
+            get {
+                return ResourceManager.GetString("PublicDomainBotSuffix", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to SDK 版本.
+        /// </summary>
+        internal static string SdkVersionName {
+            get {
+                return ResourceManager.GetString("SdkVersionName", resourceCulture);
             }
         }
     }

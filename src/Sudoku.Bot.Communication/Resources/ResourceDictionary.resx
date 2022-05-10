@@ -124,8 +124,12 @@
   </data>
   <data name="AboutInfo_Segment2" xml:space="preserve">
     <value>玩法：请通过艾特本机器人，并带上斜杠符号。支持的指令有：
-💡 /复读：把你发的消息复读一次。
-💡 /关于：提示程序介绍文字相关内容（即本消息）。</value>
+💡 /签到（测试功能）：允许玩家每日参与一次签到。
+💡 /关于：提示程序介绍文字相关内容（即本消息）。
+💡 /复读：把你发的消息复读一次。</value>
+  </data>
+  <data name="Colon" xml:space="preserve">
+    <value>：</value>
   </data>
   <data name="Command_About" xml:space="preserve">
     <value>关于</value>
@@ -183,6 +187,15 @@
   </data>
   <data name="Name_NormalMember" xml:space="preserve">
     <value>普通成员</value>
+  </data>
+  <data name="PrivateDomainBotSuffix" xml:space="preserve">
+    <value>私域机器人</value>
+  </data>
+  <data name="PublicDomainBotSuffix" xml:space="preserve">
+    <value>公域机器人</value>
+  </data>
+  <data name="SdkVersionName" xml:space="preserve">
+    <value>SDK 版本</value>
   </data>
   <data name="__LocalBotConfigPath" xml:space="preserve">
     <value>P:\Bot\bot.json</value>

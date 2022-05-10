@@ -180,7 +180,7 @@ partial class BotClient
 		}
 
 		// 触发Message到达事件
-		OnMsgCreate?.Invoke(sender);
+		OnMessageCreated?.Invoke(this, new(sender));
 
 
 		void logHandler()

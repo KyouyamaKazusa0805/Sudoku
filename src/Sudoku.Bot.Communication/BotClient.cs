@@ -240,6 +240,12 @@ public partial class BotClient
 	public event AuthoizationPassedEventHandler? OnAuthorizationPassed;
 
 	/// <summary>
+	/// Indicates the event triggered when a message is created.
+	/// This event will also contain the case that the bot is mentioned.
+	/// </summary>
+	public event MessageCreatedEventHandler? OnMessageCreated;
+
+	/// <summary>
 	/// 频道信息变更后触发
 	/// <para>
 	/// 机器人加入频道, 频道资料变更, 机器人退出频道<br/>
@@ -293,15 +299,6 @@ public partial class BotClient
 	/// </para>
 	/// </summary>
 	public event Action<BotClient, MessageAudited?>? OnMessageAudit;
-
-	/// <summary>
-	/// 频道内有人发消息就触发 (包含 @机器人 消息)
-	/// <para>
-	/// Sender - 发件人对象<br/>
-	/// <see cref="Sender.MessageType"/> 包含消息类别（公开，AT机器人，AT全员，私聊）
-	/// </para>
-	/// </summary>
-	public event MessageCreatedEventHandler? OnMsgCreate;
 
 	/// <summary>
 	/// API调用出错时触发

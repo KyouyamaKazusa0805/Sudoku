@@ -1,5 +1,5 @@
 ﻿// Configures the log level.
-Log.LogLevel = LogLevel.Debug;
+Log.LogLevel = LogLevel.Info;
 
 // Initializes an identity instance.
 // Please note that the token and secret code corresponds to the info for the bot.
@@ -33,20 +33,29 @@ while (true)
 
 static void initializeEvents(BotClient bot)
 {
-	bot.OnAuthorizationPassed += static user =>
-	{
-		var sdk = typeof(BotClient).Assembly.GetName();
-		Console.Title = $"{user.UserName}_Private <{user.Id}> - SDK Version: {sdk.Name}_{sdk.Version}; connetion state:";
-	};
-	bot.OnMsgCreate += static async sender =>
-	{
-		if (sender is not { AtMe: true, Content: var content, Bot.Info.Tag: var botInfoTag, Author.Tag: var authorTag })
-		{
-			return;
-		}
+	bot.OnAuthorizationPassed += onAuthorizationPassed;
+	bot.OnMessageCreated += onMessageCreated;
+}
 
+static void onAuthorizationPassed(BotClient? _, AuthoizationPassedEventArgs e)
+{
+	if (e is { User: { UserName: var userName, Id: var id } user }
+		&& typeof(BotClient).Assembly.GetName() is { Name: var sdkName, Version: var sdkVersion })
+	{
+		string suffix = StringResource.Get("PrivateDomainBotSuffix")!;
+		string sdkVersionName = StringResource.Get("SdkVersionName")!;
+		string colon = StringResource.Get("Colon")!;
+
+		Console.Title = $"{userName}{suffix} <{id}> - {sdkVersionName}{colon}{sdkName}_{sdkVersion}";
+	}
+}
+
+static async void onMessageCreated(BotClient? _, MessageCreatedEventArgs e)
+{
+	if (e.Sender is { AtMe: true, Content: var content, Bot.Info.Tag: var botInfoTag, Author.Tag: var authorTag } sender)
+	{
 		await sender.ReplyAsync(content.Replace(botInfoTag, authorTag));
-	};
+	}
 }
 
 static void initializeCommands(BotClient bot)

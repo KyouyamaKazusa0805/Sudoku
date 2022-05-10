@@ -906,6 +906,12 @@
             Indicates the event triggered when the authorization on bot data is passed.
             </summary>
         </member>
+        <member name="E:Sudoku.Bot.Communication.BotClient.OnMessageCreated">
+            <summary>
+            Indicates the event triggered when a message is created.
+            This event will also contain the case that the bot is mentioned.
+            </summary>
+        </member>
         <member name="E:Sudoku.Bot.Communication.BotClient.OnGuildMsg">
             <summary>
             频道信息变更后触发
@@ -958,15 +964,6 @@
             BotClient - 机器人对象<br/>
             MessageAudited - 消息审核对象<br/>
             MessageAudited.IsPassed - 消息审核是否通过
-            </para>
-            </summary>
-        </member>
-        <member name="E:Sudoku.Bot.Communication.BotClient.OnMsgCreate">
-            <summary>
-            频道内有人发消息就触发 (包含 @机器人 消息)
-            <para>
-            Sender - 发件人对象<br/>
-            <see cref="P:Sudoku.Bot.Communication.Sender.MessageType"/> 包含消息类别（公开，AT机器人，AT全员，私聊）
             </para>
             </summary>
         </member>
@@ -3941,9 +3938,15 @@
         <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.AboutInfo_Segment2">
              <summary>
                Looks up a localized string similar to 玩法：请通过艾特本机器人，并带上斜杠符号。支持的指令有：
-            💡 /复读：把你发的消息复读一次。
-            💡 /关于：提示程序介绍文字相关内容（即本消息）。.
+            💡 /签到（测试功能）：允许玩家每日参与一次签到。
+            💡 /关于：提示程序介绍文字相关内容（即本消息）。
+            💡 /复读：把你发的消息复读一次。.
              </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.Colon">
+            <summary>
+              Looks up a localized string similar to ：.
+            </summary>
         </member>
         <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.Command_About">
             <summary>
@@ -4038,6 +4041,21 @@
         <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.Name_NormalMember">
             <summary>
               Looks up a localized string similar to 普通成员.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.PrivateDomainBotSuffix">
+            <summary>
+              Looks up a localized string similar to 私域机器人.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.PublicDomainBotSuffix">
+            <summary>
+              Looks up a localized string similar to 公域机器人.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.SdkVersionName">
+            <summary>
+              Looks up a localized string similar to SDK 版本.
             </summary>
         </member>
         <member name="T:Sudoku.Bot.Communication.Resources.StringResource">
@@ -4563,11 +4581,29 @@
             <param name="sender">The object that has triggered the event.</param>
             <param name="e">The JSON element as the extra event data.</param>
         </member>
+        <member name="T:Sudoku.Bot.Communication.Triggering.MessageCreatedEventArgs">
+            <summary>
+            Provides with the event data for <see cref="T:Sudoku.Bot.Communication.Triggering.MessageCreatedEventHandler"/>.
+            </summary>
+            <seealso cref="T:Sudoku.Bot.Communication.Triggering.MessageCreatedEventHandler"/>
+        </member>
+        <member name="M:Sudoku.Bot.Communication.Triggering.MessageCreatedEventArgs.#ctor(Sudoku.Bot.Communication.Sender)">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Bot.Communication.Triggering.MessageCreatedEventArgs"/> instance via the specified sender.
+            </summary>
+            <param name="sender">The real sender instance.</param>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Triggering.MessageCreatedEventArgs.Sender">
+            <summary>
+            Indicates the real sender.
+            </summary>
+        </member>
         <member name="T:Sudoku.Bot.Communication.Triggering.MessageCreatedEventHandler">
             <summary>
             Indicates the event handler that describes the case that a message is created.
             </summary>
             <param name="sender">The object that has triggered the event.</param>
+            <param name="e">The event data provided.</param>
         </member>
         <member name="T:Sudoku.Bot.Communication.Triggering.NullableJsonElementRelatedEventHandler">
             <summary>
