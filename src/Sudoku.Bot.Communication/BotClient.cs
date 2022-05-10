@@ -3,27 +3,21 @@
 namespace Sudoku.Bot.Communication;
 
 /// <summary>
-/// <para>Defines a bot client instance.</para>
-/// <para>
-/// The optional properties are:
-/// <list type="bullet">
-/// <item>BotAccessInfo - 机器人鉴权登陆信息,见<see cref="Identity"/></item>
-/// <item>SadboxGuildId - 指定用于调试机器人的沙箱频道(DebugBot=true时有效)</item>
-/// <item>DebugBot - 指定机器人运行的模式[true:测试; false:正式]；默认值=false</item>
-/// <item>Info - 机器人的 <see cref="User"/> 信息(在机器人鉴权通过后更新)；默认值=null</item>
-/// <item>Members - 自动记录机器人在各频道内的身份组信息</item>
-/// <item>ReportApiError - 向前端消息发出者报告API错误[true:报告;false:静默]；默认值=false</item>
-/// <item>SandBox - 机器人调用API的模式[true:沙箱;false:正式]；默认值=false</item>
-/// <item>ApiOrigin - (只读) 获取机器人当前使用的ApiUrl</item>
-/// <item>
-/// Intents - 订阅频道事件,详见:<see cref="Intent"/>；默认值=(GUILDS|GUILD_MEMBERS|AT_MESSAGES|GUILD_MESSAGE_REACTIONS)
-/// </item>
-/// <item>Guilds - 机器人已加入的频道列表</item>
-/// </list>
-/// </para>
+/// Defines a bot client instance.
 /// </summary>
 public partial class BotClient
 {
+	/// <summary>
+	/// Indicates the API link that corresponds to the release APIs.
+	/// </summary>
+	private const string ReleaseApi = "https://api.sgroup.qq.com";
+
+	/// <summary>
+	/// Indicates the API link that corresponds to the sandbox APIs.
+	/// </summary>
+	private const string SandboxApi = "https://sandbox.api.sgroup.qq.com";
+
+
 	/// <summary>
 	/// Initializes a <see cref="BotClient"/> instance via the identity instance and two <see cref="bool"/>
 	/// values indicating whether the API is based on sandbox, and whether the client will report errors on APIs
@@ -45,130 +39,125 @@ public partial class BotClient
 
 
 	/// <summary>
-	/// 向前端指令发出者报告API错误
-	/// <para>注：该属性作为 <see cref="Sender.ReportError"/> 的默认值使用</para>
+	/// Indicates whether the client raises the API errors to the foreground commands.
+	/// The default value is <see langword="false"/>.
 	/// </summary>
 	public bool ReportApiError { get; set; }
 
 	/// <summary>
-	/// 会话分片id
-	/// <para>
-	/// 分片是按照频道id进行哈希的，同一个频道的信息会固定从同一个链接推送。<br/>
-	/// 详见 <see href="https://bot.q.qq.com/wiki/develop/api/gateway/shard.html">Shard机制</see>
-	/// </para>
+	/// Indicates the shard ID. The default value is 0.
 	/// </summary>
+	/// <remarks>
+	/// For more information please visit
+	/// <see href="https://bot.q.qq.com/wiki/develop/api/gateway/shard.html">this link</see>.
+	/// </remarks>
 	public int ShardId { get; set; } = 0;
 
 	/// <summary>
-	/// 机器人接口域名
+	/// Indicates the URL link corresponding to the bot API.
 	/// </summary>
 	public string ApiOrigin { get; init; }
 
 	/// <summary>
-	/// 鉴权信息
-	/// <para>可在这里查询 <see href="https://bot.q.qq.com/#/developer/developer-setting">QQ机器人开发设置</see></para>
+	/// Indicates the identity of the bot access information, used for authorization.
 	/// </summary>
+	/// <remarks>
+	/// You can found those information from
+	/// <see href="https://bot.q.qq.com/#/developer/developer-setting">this link</see>.
+	/// </remarks>
 	public Identity BotAccessInfo { get; set; }
 
 	/// <summary>
-	/// 此次连接所需要接收的事件
-	/// <para>具体可参考 <see href="https://bot.q.qq.com/wiki/develop/api/gateway/intents.html">事件订阅</see></para>
+	/// The events that the current connection will be received.
+	/// You can use <see cref="CommunicationIntents"/> enumeration to get the default settings
+	/// of event intents.
 	/// </summary>
+	/// <remarks>
+	/// For more information please visit the description about
+	/// <see href="https://bot.q.qq.com/wiki/develop/api/gateway/intents.html">intents for the events</see>.
+	/// </remarks>
+	/// <completionlist cref="CommunicationIntents"/>
 	public Intent Intents { get; set; } = CommunicationIntents.PublicDomain;
 
 	/// <summary>
-	/// 机器人用户信息
+	/// The bot information.
 	/// </summary>
 	public User Info { get; private set; } = new();
 
 	/// <summary>
-	/// 缓存机器人已加入的频道
+	/// Indicates the cached data that describes all GUILDs that the current bot has joined or has been joined.
 	/// </summary>
 	public ConcurrentDictionary<string, Guild> Guilds { get; private set; } = new();
 
 	/// <summary>
-	/// 保存机器人在各频道内的角色信息
-	/// <para>
-	/// string - GUILD_ID<br/>
-	/// Member - 角色信息
-	/// </para>
+	/// Indicates the cached data that describes all possible members in each GUILD that the bot has joined
+	/// or has been joined.
+	/// The dictionary stores key-value pairs to store the data. The key is the GUILD ID value, and the value
+	/// is the member data that corresponds the current GUILD.
 	/// </summary>
 	public ConcurrentDictionary<string, Member?> Members { get; private set; } = new();
 
 	/// <summary>
-	/// 消息过滤器
-	/// <para>当返回值为True时，该消息将被拦截并丢弃</para>
+	/// Indicates the filtering predicate instance that can discard messages if the predicate
+	/// returns <see langword="true"/>.
 	/// </summary>
-	public Func<Sender, bool>? MessageFilter { get; set; }
+	public Predicate<Sender>? MessageFilter { get; set; }
 
 	/// <summary>
-	/// 断线重连状态标志
+	/// Indicates the boolean value that describes whether the current status is resumed.
+	/// The default value is <see langword="false"/>.
 	/// </summary>
 	private bool IsResume { get; set; } = false;
 
 	/// <summary>
-	/// Socket客户端收到的最新的消息的s，如果是第一次连接，传null
+	/// Indicates the sequence label of the last message. The default value is 1.
 	/// </summary>
 	private int WebSocketLastSeq { get; set; } = 1;
 
 	/// <summary>
-	/// Socket客户端存储的SessionId
+	/// Indicates the session ID of the current web socket client.
 	/// </summary>
 	private string? WebSoketSessionId { get; set; }
 
 	/// <summary>
-	/// Socket客户端
+	/// Indicates the inner web socket client.
 	/// </summary>
 	private ClientWebSocket WebSocketClient { get; set; } = new();
 
 	/// <summary>
-	/// Socket心跳定时器
+	/// Indicates the timer that records the heartbeats.
 	/// </summary>
 	private Timer HeartBeatTimer { get; set; } = new();
 
 	/// <summary>
-	/// 会话分片信息
+	/// Indicates the data of the shards.
 	/// </summary>
 	private WebSocketLimit? GateLimit { get; set; }
 
 	/// <summary>
-	/// 缓存消息
-	/// <para>
-	/// string - UserId<br/>
-	/// List&lt;Message&gt; - 用户消息列表
-	/// </para>
+	/// Indiactes the cached data that stores the messages.
+	/// The dictionary stores key-value pairs. The key value is the user ID, and the value is the messages
+	/// that emitted from the current user.
 	/// </summary>
 	private ConcurrentDictionary<string, List<Message>> StackMessage { get; set; } = new();
 
 
 	/// <summary>
-	/// 返回SDK相关信息
-	/// <para>
-	/// 框架名称_版本号<br/>
-	/// 代码仓库地址<br/>
-	/// 版权信息<br/>
-	/// <em>作者夹带的一点私货</em>
-	/// </para>
+	/// Indicates the SDK information. The return value is a <see cref="string"/>
+	/// that is combined by the name, version, GitHub page and the copyright of the author.
 	/// </summary>
-	public static string SDK => $"{InfoSdk.Name}_{InfoSdk.Version}\n{InfoSdk.GitHTTPS}\n{InfoSdk.Copyright}";
+	/// <remarks><b>
+	/// The SDK idea and the framework is copied from
+	/// <see href="https://github.com/Antecer/QQChannelBot">this repository</see> (Antecer/QQChannelBot),
+	/// so the original value corresponds to the original author instead of me.
+	/// </b></remarks>
+	public static string SdkIdentifier
+		=> $"{SdkData.SdkName}_{SdkData.SdkVersion}\n{SdkData.RepoLink_Github}\n{SdkData.Copyright}";
 
 	/// <summary>
 	/// Indicates the time that records the bot being running.
 	/// </summary>
 	public static DateTime StartTime { get; private set; } = DateTime.Now;
-
-	/// <summary>
-	/// 正式环境
-	/// </summary>
-	private static string ReleaseApi => "https://api.sgroup.qq.com";
-
-	/// <summary>
-	/// 沙箱环境
-	/// <para>
-	/// 沙箱环境只会收到测试频道的事件，且调用openapi仅能操作测试频道
-	/// </para>
-	/// </summary>
-	private static string SandboxApi => "https://sandbox.api.sgroup.qq.com";
 
 
 	/// <summary>

@@ -523,24 +523,7 @@
         </member>
         <member name="T:Sudoku.Bot.Communication.BotClient">
             <summary>
-            <para>Defines a bot client instance.</para>
-            <para>
-            The optional properties are:
-            <list type="bullet">
-            <item>BotAccessInfo - 机器人鉴权登陆信息,见<see cref="T:Sudoku.Bot.Communication.Identity"/></item>
-            <item>SadboxGuildId - 指定用于调试机器人的沙箱频道(DebugBot=true时有效)</item>
-            <item>DebugBot - 指定机器人运行的模式[true:测试; false:正式]；默认值=false</item>
-            <item>Info - 机器人的 <see cref="T:Sudoku.Bot.Communication.Models.User"/> 信息(在机器人鉴权通过后更新)；默认值=null</item>
-            <item>Members - 自动记录机器人在各频道内的身份组信息</item>
-            <item>ReportApiError - 向前端消息发出者报告API错误[true:报告;false:静默]；默认值=false</item>
-            <item>SandBox - 机器人调用API的模式[true:沙箱;false:正式]；默认值=false</item>
-            <item>ApiOrigin - (只读) 获取机器人当前使用的ApiUrl</item>
-            <item>
-            Intents - 订阅频道事件,详见:<see cref="T:Sudoku.Bot.Communication.Intent"/>；默认值=(GUILDS|GUILD_MEMBERS|AT_MESSAGES|GUILD_MESSAGE_REACTIONS)
-            </item>
-            <item>Guilds - 机器人已加入的频道列表</item>
-            </list>
-            </para>
+            Defines a bot client instance.
             </summary>
         </member>
         <member name="M:Sudoku.Bot.Communication.BotClient.AudioControlAsync(System.String,Sudoku.Bot.Communication.Models.AudioControl,Sudoku.Bot.Communication.Sender)">
@@ -705,6 +688,16 @@
             获取所有已注册的指令
             </summary>
         </member>
+        <member name="F:Sudoku.Bot.Communication.BotClient.ReleaseApi">
+            <summary>
+            Indicates the API link that corresponds to the release APIs.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Bot.Communication.BotClient.SandboxApi">
+            <summary>
+            Indicates the API link that corresponds to the sandbox APIs.
+            </summary>
+        </member>
         <member name="M:Sudoku.Bot.Communication.BotClient.#ctor(Sudoku.Bot.Communication.Identity,System.Boolean,System.Boolean)">
             <summary>
             Initializes a <see cref="T:Sudoku.Bot.Communication.BotClient"/> instance via the identity instance and two <see cref="T:System.Boolean"/>
@@ -717,127 +710,121 @@
         </member>
         <member name="P:Sudoku.Bot.Communication.BotClient.ReportApiError">
             <summary>
-            向前端指令发出者报告API错误
-            <para>注：该属性作为 <see cref="P:Sudoku.Bot.Communication.Sender.ReportError"/> 的默认值使用</para>
+            Indicates whether the client raises the API errors to the foreground commands.
+            The default value is <see langword="false"/>.
             </summary>
         </member>
         <member name="P:Sudoku.Bot.Communication.BotClient.ShardId">
             <summary>
-            会话分片id
-            <para>
-            分片是按照频道id进行哈希的，同一个频道的信息会固定从同一个链接推送。<br/>
-            详见 <see href="https://bot.q.qq.com/wiki/develop/api/gateway/shard.html">Shard机制</see>
-            </para>
+            Indicates the shard ID. The default value is 0.
             </summary>
+            <remarks>
+            For more information please visit
+            <see href="https://bot.q.qq.com/wiki/develop/api/gateway/shard.html">this link</see>.
+            </remarks>
         </member>
         <member name="P:Sudoku.Bot.Communication.BotClient.ApiOrigin">
             <summary>
-            机器人接口域名
+            Indicates the URL link corresponding to the bot API.
             </summary>
         </member>
         <member name="P:Sudoku.Bot.Communication.BotClient.BotAccessInfo">
             <summary>
-            鉴权信息
-            <para>可在这里查询 <see href="https://bot.q.qq.com/#/developer/developer-setting">QQ机器人开发设置</see></para>
+            Indicates the identity of the bot access information, used for authorization.
             </summary>
+            <remarks>
+            You can found those information from
+            <see href="https://bot.q.qq.com/#/developer/developer-setting">this link</see>.
+            </remarks>
         </member>
         <member name="P:Sudoku.Bot.Communication.BotClient.Intents">
             <summary>
-            此次连接所需要接收的事件
-            <para>具体可参考 <see href="https://bot.q.qq.com/wiki/develop/api/gateway/intents.html">事件订阅</see></para>
+            The events that the current connection will be received.
+            You can use <see cref="T:Sudoku.Bot.Communication.Intents"/> enumeration to get the default settings
+            of event intents.
             </summary>
+            <remarks>
+            For more information please visit the description about
+            <see href="https://bot.q.qq.com/wiki/develop/api/gateway/intents.html">intents for the events</see>.
+            </remarks>
+            <completionlist cref="T:Sudoku.Bot.Communication.Intents"/>
         </member>
         <member name="P:Sudoku.Bot.Communication.BotClient.Info">
             <summary>
-            机器人用户信息
+            The bot information.
             </summary>
         </member>
         <member name="P:Sudoku.Bot.Communication.BotClient.Guilds">
             <summary>
-            缓存机器人已加入的频道
+            Indicates the cached data that describes all GUILDs that the current bot has joined or has been joined.
             </summary>
         </member>
         <member name="P:Sudoku.Bot.Communication.BotClient.Members">
             <summary>
-            保存机器人在各频道内的角色信息
-            <para>
-            string - GUILD_ID<br/>
-            Member - 角色信息
-            </para>
+            Indicates the cached data that describes all possible members in each GUILD that the bot has joined
+            or has been joined.
+            The dictionary stores key-value pairs to store the data. The key is the GUILD ID value, and the value
+            is the member data that corresponds the current GUILD.
             </summary>
         </member>
         <member name="P:Sudoku.Bot.Communication.BotClient.MessageFilter">
             <summary>
-            消息过滤器
-            <para>当返回值为True时，该消息将被拦截并丢弃</para>
+            Indicates the filtering predicate instance that can discard messages if the predicate
+            returns <see langword="true"/>.
             </summary>
         </member>
         <member name="P:Sudoku.Bot.Communication.BotClient.IsResume">
             <summary>
-            断线重连状态标志
+            Indicates the boolean value that describes whether the current status is resumed.
+            The default value is <see langword="false"/>.
             </summary>
         </member>
         <member name="P:Sudoku.Bot.Communication.BotClient.WebSocketLastSeq">
             <summary>
-            Socket客户端收到的最新的消息的s，如果是第一次连接，传null
+            Indicates the sequence label of the last message. The default value is 1.
             </summary>
         </member>
         <member name="P:Sudoku.Bot.Communication.BotClient.WebSoketSessionId">
             <summary>
-            Socket客户端存储的SessionId
+            Indicates the session ID of the current web socket client.
             </summary>
         </member>
         <member name="P:Sudoku.Bot.Communication.BotClient.WebSocketClient">
             <summary>
-            Socket客户端
+            Indicates the inner web socket client.
             </summary>
         </member>
         <member name="P:Sudoku.Bot.Communication.BotClient.HeartBeatTimer">
             <summary>
-            Socket心跳定时器
+            Indicates the timer that records the heartbeats.
             </summary>
         </member>
         <member name="P:Sudoku.Bot.Communication.BotClient.GateLimit">
             <summary>
-            会话分片信息
+            Indicates the data of the shards.
             </summary>
         </member>
         <member name="P:Sudoku.Bot.Communication.BotClient.StackMessage">
             <summary>
-            缓存消息
-            <para>
-            string - UserId<br/>
-            List&lt;Message&gt; - 用户消息列表
-            </para>
+            Indiactes the cached data that stores the messages.
+            The dictionary stores key-value pairs. The key value is the user ID, and the value is the messages
+            that emitted from the current user.
             </summary>
         </member>
-        <member name="P:Sudoku.Bot.Communication.BotClient.SDK">
+        <member name="P:Sudoku.Bot.Communication.BotClient.SdkIdentifier">
             <summary>
-            返回SDK相关信息
-            <para>
-            框架名称_版本号<br/>
-            代码仓库地址<br/>
-            版权信息<br/>
-            <em>作者夹带的一点私货</em>
-            </para>
+            Indicates the SDK information. The return value is a <see cref="T:System.String"/>
+            that is combined by the name, version, GitHub page and the copyright of the author.
             </summary>
+            <remarks><b>
+            The SDK idea and the framework is copied from
+            <see href="https://github.com/Antecer/QQChannelBot">this repository</see> (Antecer/QQChannelBot),
+            so the original value corresponds to the original author instead of me.
+            </b></remarks>
         </member>
         <member name="P:Sudoku.Bot.Communication.BotClient.StartTime">
             <summary>
             Indicates the time that records the bot being running.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Bot.Communication.BotClient.ReleaseApi">
-            <summary>
-            正式环境
-            </summary>
-        </member>
-        <member name="P:Sudoku.Bot.Communication.BotClient.SandboxApi">
-            <summary>
-            沙箱环境
-            <para>
-            沙箱环境只会收到测试频道的事件，且调用openapi仅能操作测试频道
-            </para>
             </summary>
         </member>
         <member name="E:Sudoku.Bot.Communication.BotClient.OnWebSocketConnected">
@@ -1610,41 +1597,6 @@
         <member name="P:Sudoku.Bot.Communication.Identity.BotSecret">
             <summary>
             The secret key of the bot.
-            </summary>
-        </member>
-        <member name="T:Sudoku.Bot.Communication.InfoSdk">
-            <summary>
-            SDK信息
-            </summary>
-        </member>
-        <member name="F:Sudoku.Bot.Communication.InfoSdk.Sdk">
-            <summary>
-            Indicates the SDK assembly name.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Bot.Communication.InfoSdk.GitHTTPS">
-            <summary>
-            The open-source HTTPS link.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Bot.Communication.InfoSdk.GitSSH">
-            <summary>
-            The open-source SSH link.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Bot.Communication.InfoSdk.Copyright">
-            <summary>
-            The copyright.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Bot.Communication.InfoSdk.Name">
-            <summary>
-            SDK name.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Bot.Communication.InfoSdk.Version">
-            <summary>
-            SDK version.
             </summary>
         </member>
         <member name="T:Sudoku.Bot.Communication.Intent">
@@ -4036,6 +3988,41 @@
             </summary>
             <param name="key">The key.</param>
             <returns>The value.</returns>
+        </member>
+        <member name="T:Sudoku.Bot.Communication.SdkData">
+            <summary>
+            Indicates the encapsulation of the SDK information, corresponds to the original author.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Bot.Communication.SdkData.RepoLink_Github">
+            <summary>
+            The repository of the current open-source product.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Bot.Communication.SdkData.Copyright">
+            <summary>
+            The copyright.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Bot.Communication.SdkData.GitSshLink">
+            <summary>
+            The open-source SSH link.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Bot.Communication.SdkData.Sdk">
+            <summary>
+            Indicates the SDK assembly name.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.SdkData.SdkName">
+            <summary>
+            SDK name.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.SdkData.SdkVersion">
+            <summary>
+            SDK version.
+            </summary>
         </member>
         <member name="T:Sudoku.Bot.Communication.Sender">
             <summary>
