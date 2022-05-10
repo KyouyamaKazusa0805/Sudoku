@@ -11,8 +11,8 @@ partial class BotClient
 	/// <returns></returns>
 	public async Task<DirectMessageSource?> CreateDMSAsync(string recipient_id, string source_guild_id, Sender sender)
 	{
-		var api = BotApis.创建私信会话;
-		var response = await HttpSendAsync(api.Path, api.Method, JsonContent.Create(new { recipient_id, source_guild_id }), sender);
+		_ = BotApis.CreateDirectMessageInGuild is { Path: var path, Method: var method };
+		var response = await HttpSendAsync(path, method, JsonContent.Create(new { recipient_id, source_guild_id }), sender);
 		return response is null ? null : await response.Content.ReadFromJsonAsync<DirectMessageSource?>();
 	}
 
@@ -26,10 +26,10 @@ partial class BotClient
 	/// <returns></returns>
 	public async Task<Message?> SendPMAsync(string guild_id, MessageToCreate message, Sender? sender = null)
 	{
-		var api = BotApis.发送私信;
+		_ = BotApis.SendDirectMessageInGuild is { Path: var path, Method: var method };
 		var response = await HttpSendAsync(
-			api.Path.Replace("{guild_id}", guild_id),
-			api.Method,
+			path.Replace("{guild_id}", guild_id),
+			method,
 			JsonContent.Create(message),
 			sender
 		);

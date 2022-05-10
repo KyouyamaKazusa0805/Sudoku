@@ -11,10 +11,10 @@ partial class BotClient
 	/// <returns></returns>
 	public async Task<Message?> GetMessageAsync(string channel_id, string message_id, Sender? sender = null)
 	{
-		var api = BotApis.获取指定消息;
+		_ = BotApis.GetMessageInChannel is { Path: var path, Method: var method };
 		var response = await HttpSendAsync(
-			api.Path.Replace("{channel_id}", channel_id).Replace("{message_id}", message_id),
-			api.Method,
+			path.Replace("{channel_id}", channel_id).Replace("{message_id}", message_id),
+			method,
 			null,
 			sender
 		);
@@ -33,11 +33,11 @@ partial class BotClient
 	public async Task<List<Message>?> GetMessagesAsync(
 		Message message, int limit = 20, GetMessageType? type = GetMessageType.Latest, Sender? sender = null)
 	{
-		var api = BotApis.获取消息列表;
+		_ = BotApis.GetMessagesInChannel is { Path: var path, Method: var method };
 		string typeStr = type is null ? string.Empty : $"&type={type?.ToString().ToLower()}";
 		var response = await HttpSendAsync(
-			$"{api.Path.Replace("{channel_id}", message.ChannelId)}?limit={limit}&id={message.Id}{typeStr}",
-			api.Method,
+			$"{path.Replace("{channel_id}", message.ChannelId)}?limit={limit}&id={message.Id}{typeStr}",
+			method,
 			null,
 			sender
 		);
@@ -61,13 +61,14 @@ partial class BotClient
 	/// <returns></returns>
 	public async Task<Message?> SendMessageAsync(string channel_id, MessageToCreate message, Sender? sender = null)
 	{
-		var api = BotApis.发送消息;
+		_ = BotApis.SendMessageToChannel is { Path: var path, Method: var method };
 		var response = await HttpSendAsync(
-			api.Path.Replace("{channel_id}", channel_id),
-			api.Method,
+			path.Replace("{channel_id}", channel_id),
+			method,
 			JsonContent.Create(message),
 			sender
 		);
+
 		var result = response is null ? null : await response.Content.ReadFromJsonAsync<Message?>();
 		return LastMessage(result, true);
 	}
@@ -81,13 +82,14 @@ partial class BotClient
 	/// <returns></returns>
 	public async Task<bool> DeleteMessageAsync(string channel_id, string message_id, Sender? sender = null)
 	{
-		var api = BotApis.撤回消息;
+		_ = BotApis.RecallMessageInChannel is { Path: var path, Method: var method };
 		var response = await HttpSendAsync(
-			api.Path.Replace("{channel_id}", channel_id).Replace("{message_id}", message_id),
-			api.Method,
+			path.Replace("{channel_id}", channel_id).Replace("{message_id}", message_id),
+			method,
 			null,
 			sender
 		);
+
 		return response?.IsSuccessStatusCode ?? false;
 	}
 

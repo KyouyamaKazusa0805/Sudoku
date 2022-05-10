@@ -16,10 +16,10 @@ partial class BotClient
 	/// <returns></returns>
 	public async Task<bool> MuteGuildAsync(string guild_id, JinxTimeSpan muteTime, Sender? sender = null)
 	{
-		var api = BotApis.禁言全员;
+		_ = BotApis.JinxAllMembersInGuild is { Path: var path, Method: var method };
 		var response = await HttpSendAsync(
-			api.Path.Replace("{guild_id}", guild_id),
-			api.Method,
+			path.Replace("{guild_id}", guild_id),
+			method,
 			JsonContent.Create(muteTime),
 			sender
 		);
@@ -42,10 +42,10 @@ partial class BotClient
 	/// <returns></returns>
 	public async Task<bool> MuteMemberAsync(string guild_id, string user_id, JinxTimeSpan muteTime, Sender? sender = null)
 	{
-		var api = BotApis.禁言指定成员;
+		_ = BotApis.JinxMemberInGuild is { Path: var path, Method: var method };
 		var response = await HttpSendAsync(
-			api.Path.Replace("{guild_id}", guild_id).Replace("{user_id}", user_id),
-			api.Method,
+			path.Replace("{guild_id}", guild_id).Replace("{user_id}", user_id),
+			method,
 			JsonContent.Create(muteTime),
 			sender
 		);

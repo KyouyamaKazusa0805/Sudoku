@@ -228,84 +228,91 @@ internal static class BotApis
 		=> new(ApiType.PublicDomain, HttpMethod.Put, """/channels/{channel_id}/roles/{role_id}/permissions""");
 
 	/// <summary>
-	/// 获取子频道 channel_id 下的消息 message_id 的详情
-	/// <para>
-	/// <see href="https://bot.q.qq.com/wiki/develop/api/openapi/message/get_message_of_id.html">接口文档</see><br/>
-	/// 公域鉴权<br/>
-	/// GET /channels/{channel_id}/messages/{message_id}
-	/// </para>
+	/// Gets the specified message via its ID, in the specified channel.
+	/// <list type="bullet">
+	/// <item>Documentation: <see href="https://bot.q.qq.com/wiki/develop/api/openapi/message/get_message_of_id.html">here</see>.</item>
+	/// <item>Corresponding: <c>GET /channels/{channel_id}/messages/{message_id}</c></item>
+	/// <item>Need authorization: true if <see cref="ApiType.PublicDomain"/>; otherwise false</item>
+	/// </list>
 	/// </summary>
-	public static BotApi 获取指定消息 => new(ApiType.PublicDomain, HttpMethod.Get, @"/channels/{channel_id}/messages/{message_id}");
+	public static BotApi GetMessageInChannel
+		=> new(ApiType.PublicDomain, HttpMethod.Get, """/channels/{channel_id}/messages/{message_id}""");
 
 	/// <summary>
-	/// 获取子频道 channel_id 下的消息列表
-	/// <para>
-	/// <see href="https://bot.q.qq.com/wiki/develop/pythonsdk/api/message/get_messages.html">接口文档</see><br/>
-	/// 私域鉴权<br/>
-	/// GET /channels/{channel_id}/messages
-	/// </para>
+	/// Gets the message list in the specified channel.
+	/// <list type="bullet">
+	/// <item>Documentation: <see href="https://bot.q.qq.com/wiki/develop/pythonsdk/api/message/get_messages.html">here</see>.</item>
+	/// <item>Corresponding: <c>GET /channels/{channel_id}/messages</c></item>
+	/// <item>Need authorization: true if <see cref="ApiType.PrivateDomain"/>; otherwise false</item>
+	/// </list>
 	/// </summary>
-	public static BotApi 获取消息列表 => new(ApiType.PrivateDomain, HttpMethod.Get, @"/channels/{channel_id}/messages");
+	public static BotApi GetMessagesInChannel
+		=> new(ApiType.PrivateDomain, HttpMethod.Get, """/channels/{channel_id}/messages""");
 
 	/// <summary>
-	/// 向 channel_id 指定的子频道发送消息
-	/// <para>
-	/// <see href="https://bot.q.qq.com/wiki/develop/api/openapi/message/post_messages.html">接口文档</see><br/>
-	/// 公域鉴权<br/>
-	/// POST /channels/{channel_id}/messages
-	/// </para>
+	/// Send the message to the specified channel.
+	/// <list type="bullet">
+	/// <item>Documentation: <see href="https://bot.q.qq.com/wiki/develop/api/openapi/message/post_messages.html">here</see>.</item>
+	/// <item>Corresponding: <c>POST /channels/{channel_id}/messages</c></item>
+	/// <item>Need authorization: true if <see cref="ApiType.PublicDomain"/>; otherwise false</item>
+	/// </list>
 	/// </summary>
-	public static BotApi 发送消息 => new(ApiType.PublicDomain, HttpMethod.Post, @"/channels/{channel_id}/messages");
+	public static BotApi SendMessageToChannel
+		=> new(ApiType.PublicDomain, HttpMethod.Post, """/channels/{channel_id}/messages""");
 
 	/// <summary>
-	/// 撤回 message_id 指定的消息
-	/// <para>
-	/// <see href="https://bot.q.qq.com/wiki/develop/nodesdk/message/delete_message.html">接口文档</see><br/>
-	/// 私域鉴权<br/>
-	/// DELETE /channels/{channel_id}/messages/{message_id}
-	/// </para>
+	/// Recall the specified message in the specified channel.
+	/// <list type="bullet">
+	/// <item>Documentation: <see href="https://bot.q.qq.com/wiki/develop/nodesdk/message/delete_message.html">here</see>.</item>
+	/// <item>Corresponding: <c>DELETE /channels/{channel_id}/messages/{message_id}</c></item>
+	/// <item>Need authorization: true if <see cref="ApiType.PrivateDomain"/>; otherwise false</item>
+	/// </list>
 	/// </summary>
-	public static BotApi 撤回消息 => new(ApiType.PrivateDomain, HttpMethod.Delete, @"/channels/{channel_id}/messages/{message_id}");
+	public static BotApi RecallMessageInChannel
+		=> new(ApiType.PrivateDomain, HttpMethod.Delete, """/channels/{channel_id}/messages/{message_id}""");
 
 	/// <summary>
-	/// 机器人和在同一个频道内的成员创建私信会话
-	/// <para>
-	/// <see href="https://bot.q.qq.com/wiki/develop/api/openapi/dms/post_dms.html">接口文档</see><br/>
-	/// 公域鉴权<br/>
-	/// POST /users/@me/dms
-	/// </para>
+	/// Creates a direct message with a member in the same GUILD with the bot.
+	/// <list type="bullet">
+	/// <item>Documentation: <see href="https://bot.q.qq.com/wiki/develop/api/openapi/dms/post_dms.html">here</see>.</item>
+	/// <item>Corresponding: <c>POST /users/@me/dms</c></item>
+	/// <item>Need authorization: true if <see cref="ApiType.PublicDomain"/>; otherwise false</item>
+	/// </list>
 	/// </summary>
-	public static BotApi 创建私信会话 => new(ApiType.PublicDomain, HttpMethod.Post, @"/users/@me/dms");
+	public static BotApi CreateDirectMessageInGuild => new(ApiType.PublicDomain, HttpMethod.Post, """/users/@me/dms""");
 
 	/// <summary>
-	/// 发送私信消息（已经创建私信会话后）
-	/// <para>
-	/// <see href="https://bot.q.qq.com/wiki/develop/api/openapi/dms/post_dms_messages.html">接口文档</see><br/>
-	/// 公域鉴权<br/>
-	/// POST /dms/{guild_id}/messages
-	/// </para>
+	/// Sends a direct message in the specified GUILD if the environment (direct message room) has been created.
+	/// <list type="bullet">
+	/// <item>Documentation: <see href="https://bot.q.qq.com/wiki/develop/api/openapi/dms/post_dms_messages.html">here</see>.</item>
+	/// <item>Corresponding: <c>POST /dms/{guild_id}/messages</c></item>
+	/// <item>Need authorization: true if <see cref="ApiType.PublicDomain"/>; otherwise false</item>
+	/// </list>
 	/// </summary>
-	public static BotApi 发送私信 => new(ApiType.PublicDomain, HttpMethod.Post, @"/dms/{guild_id}/messages");
+	public static BotApi SendDirectMessageInGuild =>
+		new(ApiType.PublicDomain, HttpMethod.Post, """/dms/{guild_id}/messages""");
 
 	/// <summary>
-	/// 将频道的全体成员（非管理员）禁言
-	/// <para>
-	/// <see href="https://bot.q.qq.com/wiki/develop/api/openapi/guild/patch_guild_mute.html">接口文档</see><br/>
-	/// 公域鉴权<br/>
-	/// PATCH /guilds/{guild_id}/mute
-	/// </para>
+	/// Jinx all members in the specified GUILD.
+	/// <list type="bullet">
+	/// <item>Documentation: <see href="https://bot.q.qq.com/wiki/develop/api/openapi/guild/patch_guild_mute.html">here</see>.</item>
+	/// <item>Corresponding: <c>PATCH /guilds/{guild_id}/mute</c></item>
+	/// <item>Need authorization: true if <see cref="ApiType.PublicDomain"/>; otherwise false</item>
+	/// </list>
 	/// </summary>
-	public static BotApi 禁言全员 => new(ApiType.PublicDomain, HttpMethod.Patch, @"/guilds/{guild_id}/mute");
+	public static BotApi JinxAllMembersInGuild
+		=> new(ApiType.PublicDomain, HttpMethod.Patch, """/guilds/{guild_id}/mute""");
 
 	/// <summary>
-	/// 禁言频道 guild_id 下的成员 user_id
-	/// <para>
-	/// <see href="https://bot.q.qq.com/wiki/develop/api/openapi/guild/patch_guild_member_mute.html">接口文档</see><br/>
-	/// 公域鉴权<br/>
-	/// PATCH /guilds/{guild_id}/members/{user_id}/mute
-	/// </para>
+	/// Jinx the specified member in the specified GUILD.
+	/// <list type="bullet">
+	/// <item>Documentation: <see href="https://bot.q.qq.com/wiki/develop/api/openapi/guild/patch_guild_member_mute.html">here</see>.</item>
+	/// <item>Corresponding: <c>PATCH /guilds/{guild_id}/members/{user_id}/mute</c></item>
+	/// <item>Need authorization: true if <see cref="ApiType.PublicDomain"/>; otherwise false</item>
+	/// </list>
 	/// </summary>
-	public static BotApi 禁言指定成员 => new(ApiType.PublicDomain, HttpMethod.Patch, @"/guilds/{guild_id}/members/{user_id}/mute");
+	public static BotApi JinxMemberInGuild
+		=> new(ApiType.PublicDomain, HttpMethod.Patch, """/guilds/{guild_id}/members/{user_id}/mute""");
 
 	/// <summary>
 	/// 将频道 guild_id 内的某条消息设置为频道全局公告
