@@ -10,7 +10,7 @@
 ![](https://img.shields.io/badge/Programming%20Language-C%23%2011%20Preview-%23178600)
 ![](https://img.shields.io/badge/Framework-.NET%207-blueviolet)
 ![](https://img.shields.io/badge/Indenting-Tabs-lightgrey)
-![](https://img.shields.io/badge/IDE-Visual%20Studio%202022%20v17.2%20Preview-%23cf98fb?logo=Visual%20Studio)
+![](https://img.shields.io/badge/IDE-Visual%20Studio%202022%20v17.3%20Preview-%23cf98fb?logo=Visual%20Studio)
 ![](https://img.shields.io/badge/Language-English%2C%20Simplified%20Chinese-success)
 [![](https://img.shields.io/badge/UI%20Project-Nano%20(Sudoku.UI)-%230d1117)](https://github.com/SunnieShine/Sudoku/tree/main/src/Sudoku.UI)
 
