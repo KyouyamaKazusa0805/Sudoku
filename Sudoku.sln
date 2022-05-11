@@ -38,9 +38,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Project - End-point Solutio
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sudoku.Bot", "src\Sudoku.Bot\Sudoku.Bot.csproj", "{97E923EF-D540-4691-85BB-161F2EF1F74B}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Project - Bot-related Projects", "Project - Bot-related Projects", "{EFD23184-C13C-48FD-960F-15424895E65F}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sudoku.Bot.Communication", "src\Sudoku.Bot.Communication\Sudoku.Bot.Communication.csproj", "{B0591229-7138-4300-A8C2-18B84CB59592}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sudoku.Bot.Communication", "src\Sudoku.Bot.Communication\Sudoku.Bot.Communication.csproj", "{B0591229-7138-4300-A8C2-18B84CB59592}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -414,12 +412,11 @@ Global
 		{C77EC482-143E-47C1-9524-BC3BAE815838} = {0D732DB7-E4C8-482F-AFBB-8F674305AE6A}
 		{83F2352B-69B1-44F4-BD9B-B98DBF07562D} = {51C5B3CD-2CD9-4AA0-82F4-FF783669BAE4}
 		{53AA4AE8-2517-4D85-9215-9ABB53FC751E} = {0D732DB7-E4C8-482F-AFBB-8F674305AE6A}
-		{97E923EF-D540-4691-85BB-161F2EF1F74B} = {EFD23184-C13C-48FD-960F-15424895E65F}
-		{B0591229-7138-4300-A8C2-18B84CB59592} = {EFD23184-C13C-48FD-960F-15424895E65F}
+		{97E923EF-D540-4691-85BB-161F2EF1F74B} = {0D732DB7-E4C8-482F-AFBB-8F674305AE6A}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {E2B6A644-F820-4AB3-8508-C3C59838C955}
-		RESX_Rules = {"EnabledRules":["StringFormat"]}
 		RESX_ShowErrorsInErrorList = False
+		RESX_Rules = {"EnabledRules":["StringFormat"]}
+		SolutionGuid = {E2B6A644-F820-4AB3-8508-C3C59838C955}
 	EndGlobalSection
 EndGlobal
