@@ -102,6 +102,24 @@ namespace Sudoku.Bot.Communication.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 连接服务器失败，重试次数已经用光。请重新调试代码，联系 QQ 客服以尽快定位错误发生以及 bug 触发情况。.
+        /// </summary>
+        internal static string BotConnectedCallbackOutput_Fail {
+            get {
+                return ResourceManager.GetString("BotConnectedCallbackOutput_Fail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 连接服务器成功！请尝试使用 Ctrl + C 组合按键来终止程序运行。.
+        /// </summary>
+        internal static string BotConnectedCallbackOutput_Success {
+            get {
+                return ResourceManager.GetString("BotConnectedCallbackOutput_Success", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 签到失败。原因：
         ///用户存档文件里的此数据为 null 值。机器人设计者，你看看你都干了些什么好事！.
         /// </summary>
@@ -262,6 +280,24 @@ namespace Sudoku.Bot.Communication.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 秒钟.
+        /// </summary>
+        internal static string DateTimeUnit_Second1 {
+            get {
+                return ResourceManager.GetString("DateTimeUnit_Second1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 秒.
+        /// </summary>
+        internal static string DateTimeUnit_Second2 {
+            get {
+                return ResourceManager.GetString("DateTimeUnit_Second2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 星期.
         /// </summary>
         internal static string DateTimeUnit_Week1 {
@@ -307,6 +343,15 @@ namespace Sudoku.Bot.Communication.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to ❌.
+        /// </summary>
+        internal static string Emoji_Cross {
+            get {
+                return ResourceManager.GetString("Emoji_Cross", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to (\d+)\s*(年|星期|周|日|天|小?时|分钟?|秒钟?).
         /// </summary>
         internal static string JinxTimeCountdownPattern {
@@ -321,6 +366,132 @@ namespace Sudoku.Bot.Communication.Resources {
         internal static string JinxTimestampPattern {
             get {
                 return ResourceManager.GetString("JinxTimestampPattern", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ，详情：.
+        /// </summary>
+        internal static string LogContent_Details {
+            get {
+                return ResourceManager.GetString("LogContent_Details", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 代码：.
+        /// </summary>
+        internal static string LogContent_ErrorCode {
+            get {
+                return ResourceManager.GetString("LogContent_ErrorCode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 异常代码：.
+        /// </summary>
+        internal static string LogContent_ErrorCodeText {
+            get {
+                return ResourceManager.GetString("LogContent_ErrorCodeText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 异常详情：.
+        /// </summary>
+        internal static string LogContent_ErrorDetails {
+            get {
+                return ResourceManager.GetString("LogContent_ErrorDetails", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 访问接口的主体不是.
+        /// </summary>
+        internal static string LogContent_InterfaceMainBodyNotSenderSegment1 {
+            get {
+                return ResourceManager.GetString("LogContent_InterfaceMainBodyNotSenderSegment1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ，取消推送给发件人。.
+        /// </summary>
+        internal static string LogContent_InterfaceMainBodyNotSenderSegment2 {
+            get {
+                return ResourceManager.GetString("LogContent_InterfaceMainBodyNotSenderSegment2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 被动可回复时间已超时，取消推送给发件人。.
+        /// </summary>
+        internal static string LogContent_MessageTimeout {
+            get {
+                return ResourceManager.GetString("LogContent_MessageTimeout", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 机器人配置.
+        /// </summary>
+        internal static string LogContent_ReportFalseSegment1 {
+            get {
+                return ResourceManager.GetString("LogContent_ReportFalseSegment1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 属性为 false，不报告错误。已经自动取消推送给发件人。.
+        /// </summary>
+        internal static string LogContent_ReportFalseSegment2 {
+            get {
+                return ResourceManager.GetString("LogContent_ReportFalseSegment2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 请求方式：.
+        /// </summary>
+        internal static string LogContent_RequestMethod {
+            get {
+                return ResourceManager.GetString("LogContent_RequestMethod", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 请求地址：.
+        /// </summary>
+        internal static string LogContent_RequestUrl {
+            get {
+                return ResourceManager.GetString("LogContent_RequestUrl", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 解冻时间：.
+        /// </summary>
+        internal static string LogContent_UnfrozenTimeLast {
+            get {
+                return ResourceManager.GetString("LogContent_UnfrozenTimeLast", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 接口冻结：暂停使用此接口.
+        /// </summary>
+        internal static string LogContent_WindowIsFrozen {
+            get {
+                return ResourceManager.GetString("LogContent_WindowIsFrozen", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 接口访问失败.
+        /// </summary>
+        internal static string LogHeader_InterfaceAccessFailed {
+            get {
+                return ResourceManager.GetString("LogHeader_InterfaceAccessFailed", resourceCulture);
             }
         }
         
@@ -384,6 +555,15 @@ namespace Sudoku.Bot.Communication.Resources {
         internal static string SdkVersionName {
             get {
                 return ResourceManager.GetString("SdkVersionName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 此错误类型未被收录。.
+        /// </summary>
+        internal static string WebSocketError_SuchApiErrorNotFound {
+            get {
+                return ResourceManager.GetString("WebSocketError_SuchApiErrorNotFound", resourceCulture);
             }
         }
     }

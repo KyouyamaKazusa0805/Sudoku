@@ -59,6 +59,11 @@ public partial class BotClient
 	public string ApiOrigin { get; init; }
 
 	/// <summary>
+	/// Indicates the God ID value. The ID is only used for testing the robustness of the bot functions.
+	/// </summary>
+	public string GodId { get; set; } = "15524401336961673551";
+
+	/// <summary>
 	/// Indicates the identity of the bot access information, used for authorization.
 	/// </summary>
 	/// <remarks>
@@ -139,7 +144,7 @@ public partial class BotClient
 	/// The dictionary stores key-value pairs. The key value is the user ID, and the value is the messages
 	/// that emitted from the current user.
 	/// </summary>
-	private ConcurrentDictionary<string, List<Message>> StackMessage { get; set; } = new();
+	private ConcurrentDictionary<string, List<Message>> MessageStack { get; set; } = new();
 
 
 	/// <summary>
@@ -277,18 +282,31 @@ public partial class BotClient
 
 
 	/// <summary>
-	/// 集中处理机器人的HTTP请求
+	/// The core method to handle the HTTP requests about a bot.
 	/// </summary>
-	/// <param name="url">请求网址</param>
-	/// <param name="method">请求类型(默认GET)</param>
-	/// <param name="content">请求数据</param>
-	/// <param name="sender">指示本次请求由谁发起的</param>
-	/// <returns></returns>
+	/// <param name="url">The URL link for the API for requesting.</param>
+	/// <param name="method">
+	/// <para>The HTTP method. The default value is <see cref="HttpMethod.Get"/>.</para>
+	/// <para>
+	/// Due to the limitation of the C# syntax (cannot assign non-constant expression
+	/// to the argument as the default value), the default value will be created inside the method.
+	/// </para>
+	/// </param>
+	/// <param name="content">Indicates the content data to request.</param>
+	/// <param name="sender">Indicates the sender who emits the request.</param>
+	/// <returns>A task that encapsulates a result of the HTTP response message.</returns>
 	public async Task<HttpResponseMessage?> HttpSendAsync(
 		string url, HttpMethod? method = null, HttpContent? content = null, Sender? sender = null)
 	{
 		method ??= HttpMethod.Get;
-		var request = new HttpRequestMessage { RequestUri = new(new(ApiOrigin), url), Content = content, Method = method };
+
+		var request = new HttpRequestMessage
+		{
+			RequestUri = new(new(ApiOrigin), url),
+			Content = content,
+			Method = method
+		};
+
 		request.Headers.Authorization = new("Bot", $"{BotAccessInfo.BotAppId}.{BotAccessInfo.BotToken}");
 
 		return await BotHttpClient.SendAsync(request, f);
@@ -300,7 +318,7 @@ public partial class BotClient
 				url.ReplaceStart(ApiOrigin),
 				method.Method,
 				response.StatusCode.GetHashCode(),
-				"此错误类型未收录!",
+				StringResource.Get("WebSocketError_SuchApiErrorNotFound")!,
 				freezeTime
 			);
 
@@ -326,113 +344,158 @@ public partial class BotClient
 					?? sender?.Author.UserName
 					?? string.Empty;
 
-			Log.Error($"[接口访问失败]{senderAuthorName} 代码：{errInfo.Code}，详情：{errInfo.Detail}");
+			string accessFailedHeader = StringResource.Get("LogHeader_InterfaceAccessFailed")!;
+			string errorCodeText = StringResource.Get("LogContent_ErrorCode")!;
+			string detailsText = StringResource.Get("LogContent_Details")!;
+			Log.Error(
+				$"""
+				[{accessFailedHeader}]{senderAuthorName} {errorCodeText}{errInfo.Code}{detailsText}{errInfo.Detail}
+				"""
+			);
 
 			ApiErrorEncountered?.Invoke(this, new(sender, errInfo));
-			if (sender is not null)
+			switch (sender)
 			{
-				if (!sender.ReportError)
+				case { ReportError: false }:
 				{
-					Log.Info($"[接口访问失败] 机器人配置ReportError!=true，取消推送给发件人");
+					string seg1 = StringResource.Get("LogContent_ReportFalseSegment1")!;
+					string seg2 = StringResource.Get("LogContent_ReportFalseSegment2")!;
+					Log.Info($"[{accessFailedHeader}] {seg1} {nameof(Sender.ReportError)} {seg2}");
+
+					break;
 				}
-				else if (sender.Message.CreatedTime.AddMinutes(5) < DateTime.Now)
+				case { Message.CreatedTime: var createdTime } when createdTime.AddMinutes(5) < DateTime.Now:
 				{
-					Log.Info($"[接口访问失败] 被动可回复时间已超时，取消推送给发件人");
+					string messageTimeout = StringResource.Get("LogContent_MessageTimeout")!;
+					Log.Info($"[{accessFailedHeader}] {messageTimeout}");
+
+					break;
 				}
-				else
+				case null:
 				{
-					_ = Task.Run(f);
+					string seg1 = StringResource.Get("LogContent_InterfaceMainBodyNotSenderSegment1")!;
+					string seg2 = StringResource.Get("LogContent_InterfaceMainBodyNotSenderSegment2")!;
+					Log.Info($"[{accessFailedHeader}] {seg1} {nameof(Sender)}{seg2}");
+
+					break;
+				}
+				default:
+				{
+					if (
+						errInfo is
+						{
+							FreezeTime:
+							{
+								AddTime: { Minutes: var extraMinutes, Seconds: var extraSeconds },
+								EndTime: var endTime
+							},
+							Path: var path,
+							Method: var method,
+							Code: var errorCode,
+							Detail: var details
+						}
+					)
+					{
+						_ = Task.Run(f);
+					}
+
+					break;
 
 
 					async void f()
 					{
 						sender.ReportError = false;
+
+						string windowFrozen = StringResource.Get("LogContent_WindowIsFrozen")!;
+						string minutes = StringResource.Get("DateTimeUnit_Minute2")!;
+						string seconds = StringResource.Get("DateTimeUnit_Second2")!;
+						string unfrozenLast = StringResource.Get("LogContent_UnfrozenTimeLast")!;
 						await sender.ReplyAsync(
 							string.Join(
 								'\n',
-								"❌接口访问失败",
-								$"接口地址：{errInfo.Path}",
-								$"请求方式：{errInfo.Method}",
-								$"异常代码：{errInfo.Code}",
-								$"异常详情：{errInfo.Detail}",
-								errInfo.FreezeTime.EndTime > DateTime.Now
-									? $"接口冻结：暂停使用此接口 {errInfo.FreezeTime.AddTime.Minutes}分{errInfo.FreezeTime.AddTime.Seconds}秒\n解冻时间：{errInfo.FreezeTime.EndTime:yyyy-MM-dd HH:mm:ss}"
+								$"{StringResource.Get("Emoji_Cross")}{accessFailedHeader}",
+								$"{StringResource.Get("LogContent_RequestUrl")}{path}",
+								$"{StringResource.Get("LogContent_RequestMethod")}{method}",
+								$"{StringResource.Get("LogContent_ErrorCodeText")}{errorCode}",
+								$"{StringResource.Get("LogContent_ErrorDetails")}{details}",
+								endTime > DateTime.Now
+									? $"{windowFrozen} {extraMinutes} {minutes} {extraSeconds} {seconds}\n{unfrozenLast}{endTime:yyyy-MM-dd HH:mm:ss}"
 									: null
 							)
 						);
 					}
 				}
 			}
-			else
-			{
-				Log.Info($"[接口访问失败] 访问接口的主体不是Sender，取消推送给发件人");
-			}
 		}
 	}
 
 	/// <summary>
-	/// 存取最后一次发送的消息
-	/// <para>注：目的是为了用于撤回消息（自动删除已过5分钟的记录）</para>
+	/// Push or pop the last message sent. The method is used for the recalling.
 	/// </summary>
-	/// <param name="msg">需要存储的msg，或者用于检索同频道的msg</param>
-	/// <param name="push">fase-出栈；true-入栈</param>
-	private Message? LastMessage(Message? msg, bool push = false)
+	/// <param name="message">The message need pushing or popping.</param>
+	/// <param name="isPushing">
+	/// Indicates whether the operation is pushing. <see langword="true"/> is for pushing,
+	/// and <see langword="false"/> is for popping.
+	/// </param>
+	[return: NotNullIfNotNull("message")]
+	private Message? LastMessage(Message? message, bool isPushing = false)
 	{
-		if (msg is null)
+		if (message is null)
 		{
 			return null;
 		}
 
-		var outTime = DateTime.Now.AddMinutes(-10);
-		string userId = msg.MessageCreator.Id;
-		StackMessage.TryGetValue(userId, out var messages);
+		var timeout = DateTime.Now.AddMinutes(-10);
+		string userId = message.MessageCreator.Id;
+		MessageStack.TryGetValue(userId, out var messages);
 
-		if (push)
+		if (isPushing)
 		{
-			messages?.RemoveAll(m => m.CreatedTime < outTime);
-			messages ??= new();
-			messages.Add(msg);
-			StackMessage[userId] = messages;
+			bool predicate(Message m) => m.CreatedTime < timeout;
+			messages?.RemoveAll(predicate);
+			(messages ??= new()).Add(message);
+
+			MessageStack[userId] = messages;
 		}
 		else
 		{
-			bool predicate(Message m) => m.GuildId.Equals(msg.GuildId) && m.ChannelId.Equals(msg.ChannelId);
-			int stackIndex = messages?.FindLastIndex(predicate) ?? -1;
-			if (stackIndex != -1)
+			bool predicate(Message m) => m.GuildId == message.GuildId && m.ChannelId == message.ChannelId;
+			if (messages?.FindLastIndex(predicate) is { } stackIndex and not -1)
 			{
-				msg = messages![stackIndex];
+				message = messages[stackIndex];
 				messages.RemoveAt(stackIndex);
 			}
 			else
 			{
-				msg = null;
+				message = null;
 			}
 		}
 
-		return msg;
+		return message;
 	}
 
 	/// <summary>
-	/// 关闭机器人并释放所有占用的资源
+	/// Closes the bot and release the memory used or allocated in the bot.
 	/// </summary>
 	public void Close() => WebSocketClient.Abort();
-
 
 	/// <summary>
 	/// Starts the bot, with the specified number of retrying times.
 	/// </summary>
 	/// <param name="retryCount">The specified number of retrying times. The default value is 3.</param>
-	[SuppressMessage("Style", "IDE1006:Naming Styles", Justification = "<Pending>")]
-	public async void Start(int retryCount = 3)
+	/// <param name="connectionSucceedCallback">
+	/// Indicates the callback method that will be invoked when succeeded to connect to server.
+	/// The value can be <see langword="null"/> if you don't want to define the customized callback method.
+	/// </param>
+	/// <param name="connectionFailCallback">
+	/// Indicates the callback method that will be invoked when failed to connect to server,
+	/// run out of the specified times of retrying.
+	/// The value can be <see langword="null"/> if you don't want to define the customized callback method.
+	/// </param>
+	public async void StartAsync(int retryCount, Action? connectionSucceedCallback, Action? connectionFailCallback)
 	{
 		StartTime = DateTime.Now;
 
-		await ConnectAsync(retryCount);
+		(await ConnectAsync(retryCount) ? connectionSucceedCallback : connectionFailCallback)?.Invoke();
 	}
-
-	/// <summary>
-	/// 上帝ID
-	/// <para>仅用于测试,方便机器人开发者验证功能</para>
-	/// </summary>
-	public string GodId { get; set; } = "15524401336961673551";
 }

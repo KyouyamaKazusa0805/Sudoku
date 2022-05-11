@@ -1,5 +1,8 @@
 ﻿namespace Sudoku.Bot.JsonConverters;
 
+/// <summary>
+/// Defines a dictionary JSON converter that can convert a list of key value pairs into a JSON string.
+/// </summary>
 internal sealed class DictionaryConverter : JsonConverter<Dictionary<string, string>>
 {
 	/// <inheritdoc/>

@@ -128,6 +128,12 @@
 💡 /关于：提示程序介绍文字相关内容（即本消息）。
 💡 /复读：把你发的消息复读一次。</value>
   </data>
+  <data name="BotConnectedCallbackOutput_Fail" xml:space="preserve">
+    <value>连接服务器失败，重试次数已经用光。请重新调试代码，联系 QQ 客服以尽快定位错误发生以及 bug 触发情况。</value>
+  </data>
+  <data name="BotConnectedCallbackOutput_Success" xml:space="preserve">
+    <value>连接服务器成功！请尝试使用 Ctrl + C 组合按键来终止程序运行。</value>
+  </data>
   <data name="ClockInError_DateStringIsNull" xml:space="preserve">
     <value>签到失败。原因：
 用户存档文件里的此数据为 null 值。机器人设计者，你看看你都干了些什么好事！</value>
@@ -186,6 +192,12 @@
   <data name="DateTimeUnit_Minute2" xml:space="preserve">
     <value>分</value>
   </data>
+  <data name="DateTimeUnit_Second1" xml:space="preserve">
+    <value>秒钟</value>
+  </data>
+  <data name="DateTimeUnit_Second2" xml:space="preserve">
+    <value>秒</value>
+  </data>
   <data name="DateTimeUnit_Week1" xml:space="preserve">
     <value>星期</value>
   </data>
@@ -201,11 +213,56 @@
   <data name="DefaultScheduleName" xml:space="preserve">
     <value>新建日程</value>
   </data>
+  <data name="Emoji_Cross" xml:space="preserve">
+    <value>❌</value>
+  </data>
   <data name="JinxTimeCountdownPattern" xml:space="preserve">
     <value>(\d+)\s*(年|星期|周|日|天|小?时|分钟?|秒钟?)</value>
   </data>
   <data name="JinxTimestampPattern" xml:space="preserve">
     <value>(\d{4})[-年](\d\d)[-月](\d\d)[\s日]*(\d\d)[:点时](\d\d)[:分](\d\d)秒?</value>
+  </data>
+  <data name="LogContent_Details" xml:space="preserve">
+    <value>，详情：</value>
+  </data>
+  <data name="LogContent_ErrorCode" xml:space="preserve">
+    <value>代码：</value>
+  </data>
+  <data name="LogContent_ErrorCodeText" xml:space="preserve">
+    <value>异常代码：</value>
+  </data>
+  <data name="LogContent_ErrorDetails" xml:space="preserve">
+    <value>异常详情：</value>
+  </data>
+  <data name="LogContent_InterfaceMainBodyNotSenderSegment1" xml:space="preserve">
+    <value>访问接口的主体不是</value>
+  </data>
+  <data name="LogContent_InterfaceMainBodyNotSenderSegment2" xml:space="preserve">
+    <value>，取消推送给发件人。</value>
+  </data>
+  <data name="LogContent_MessageTimeout" xml:space="preserve">
+    <value>被动可回复时间已超时，取消推送给发件人。</value>
+  </data>
+  <data name="LogContent_ReportFalseSegment1" xml:space="preserve">
+    <value>机器人配置</value>
+  </data>
+  <data name="LogContent_ReportFalseSegment2" xml:space="preserve">
+    <value>属性为 false，不报告错误。已经自动取消推送给发件人。</value>
+  </data>
+  <data name="LogContent_RequestMethod" xml:space="preserve">
+    <value>请求方式：</value>
+  </data>
+  <data name="LogContent_RequestUrl" xml:space="preserve">
+    <value>请求地址：</value>
+  </data>
+  <data name="LogContent_UnfrozenTimeLast" xml:space="preserve">
+    <value>解冻时间：</value>
+  </data>
+  <data name="LogContent_WindowIsFrozen" xml:space="preserve">
+    <value>接口冻结：暂停使用此接口</value>
+  </data>
+  <data name="LogHeader_InterfaceAccessFailed" xml:space="preserve">
+    <value>接口访问失败</value>
   </data>
   <data name="Name_Administrator" xml:space="preserve">
     <value>管理员</value>
@@ -227,6 +284,9 @@
   </data>
   <data name="SdkVersionName" xml:space="preserve">
     <value>SDK 版本</value>
+  </data>
+  <data name="WebSocketError_SuchApiErrorNotFound" xml:space="preserve">
+    <value>此错误类型未被收录。</value>
   </data>
   <data name="__LocalBotConfigPath" xml:space="preserve">
     <value>P:\Bot\bot.json</value>

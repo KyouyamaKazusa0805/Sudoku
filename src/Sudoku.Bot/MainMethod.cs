@@ -20,8 +20,8 @@ initializeEvents(bot);
 // Add commands.
 initializeCommands(bot);
 
-// Starts the bot.
-bot.Start();
+// Starts the bot with the specified number of trial times and callback functions.
+bot.StartAsync(3, onSuccessfullyConnected, onFailedConnected);
 
 // Here we should use an infinite loop to make the console don't exit fast.
 // Issue: https://github.com/Antecer/QQChannelBot/issues/1
@@ -31,8 +31,20 @@ while (true)
 }
 
 
+static void onSuccessfullyConnected() => Console.WriteLine(StringResource.Get("BotConnectedCallbackOutput_Success")!);
+
+static void onFailedConnected() => Console.WriteLine(StringResource.Get("BotConnectedCallbackOutput_Fail")!);
+
+static void fastExitOnBot(BotClient bot)
+{
+	bot.Close();
+	Environment.Exit(0);
+}
+
 static void initializeEvents(BotClient bot)
 {
+	Console.CancelKeyPress += (_, _) => fastExitOnBot(bot);
+
 	bot.AuthorizationPassed += onAuthorizationPassed;
 	bot.MessageCreated += onMessageCreated;
 }
@@ -146,7 +158,7 @@ static async void clockInAsync(Sender sender, string message)
 				// Valid. Now clock in and update the value.
 				string updatedJson = JsonSerializer.Serialize(
 					new Dictionary<string, string>(
-						from subelement in element.EnumerateObject()
+						from subelement in rootElement.EnumerateObject()
 						where subelement.Name != ConfigurationPaths.LastTimeCheckedIn
 						select new KeyValuePair<string, string>(subelement.Name, subelement.Value.ToString())
 					)

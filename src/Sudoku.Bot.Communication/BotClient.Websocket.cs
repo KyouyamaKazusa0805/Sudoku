@@ -31,8 +31,8 @@ partial class BotClient
 	/// <para><em>RetryCount</em> 连接失败后允许的重试次数</para>
 	/// </summary>
 	/// <param name="retryCount">连接失败后允许的重试次数</param>
-	/// <returns></returns>
-	public async Task ConnectAsync(int retryCount)
+	/// <returns>表示是否连接成功。如果提前退出，返回值为 false。</returns>
+	public async Task<bool> ConnectAsync(int retryCount)
 	{
 		int retryEndTime = 10, retryAddTime = 10;
 		while (retryCount-- > 0)
@@ -59,21 +59,23 @@ partial class BotClient
 				Log.Error($"[WebSocket][Connect] {ex.Message} | Status：{WebSocketClient.CloseStatus} | Description：{WebSocketClient.CloseStatusDescription}");
 			}
 
-			if (retryCount > 0)
-			{
-				for (int i = retryEndTime; 0 < i; --i)
-				{
-					Log.Info($"[WebSocket] {i} 秒后再次尝试连接（剩余重试次数：${retryCount}）...");
-					await Task.Delay(TimeSpan.FromSeconds(1));
-				}
-
-				retryEndTime += retryAddTime;
-			}
-			else
+			if (retryCount <= 0)
 			{
 				Log.Error($"[WebSocket] 重连次数已耗尽，无法与频道服务器建立连接！");
+
+				return false;
 			}
+
+			for (int i = retryEndTime; 0 < i; --i)
+			{
+				Log.Info($"[WebSocket] {i} 秒后再次尝试连接（剩余重试次数：${retryCount}）...");
+				await Task.Delay(TimeSpan.FromSeconds(1));
+			}
+
+			retryEndTime += retryAddTime;
 		}
+
+		return true;
 	}
 
 	/// <summary>
