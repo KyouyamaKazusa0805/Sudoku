@@ -45,7 +45,7 @@ partial class BotClient
 					if (WebSocketClient.State is not (WebSocketState.Open or WebSocketState.Connecting))
 					{
 						await WebSocketClient.ConnectAsync(webSocketUri, CancellationToken.None);
-						OnWebSocketConnected?.Invoke(this);
+						WebSocketConnected?.Invoke(this);
 						_ = ReceiveAsync();
 					}
 
@@ -156,7 +156,7 @@ partial class BotClient
 		string data, WebSocketMessageType msgType = WebSocketMessageType.Text,
 		bool endOfMsg = true, CancellationToken? cancelToken = null)
 	{
-		OnWebSoketSending?.Invoke(this, new(data));
+		WebSocketSending?.Invoke(this, new(data));
 
 		await WebSocketClient.SendAsync(Encoding.UTF8.GetBytes(data), msgType, endOfMsg, cancelToken ?? CancellationToken.None);
 	}
@@ -176,7 +176,7 @@ partial class BotClient
 				if (result.MessageType == WebSocketMessageType.Text)
 				{
 					var json = JsonDocument.Parse(memory.Memory[..result.Count]).RootElement;
-					OnWebSocketReceived?.Invoke(this, new(json.GetRawText()));
+					WebSocketReceived?.Invoke(this, new(json.GetRawText()));
 					await ExcuteCommandAsync(json);
 					continue;
 				}
@@ -201,7 +201,7 @@ partial class BotClient
 		{
 			HeartBeatTimer.Enabled = false;
 		}
-		OnWebSocketClosed?.Invoke(this);
+		WebSocketClosed?.Invoke(this);
 		Log.Warn($"[WebSocket] 重新建立到服务器的连接...");
 		await Task.Delay(TimeSpan.FromSeconds(1));
 		WebSocketClient = new();
@@ -219,7 +219,7 @@ partial class BotClient
 		{
 			case Opcode.Dispatch: // Do the message pushing.
 			{
-				OnDispatch?.Invoke(this, wssJson);
+				MessageDispatched?.Invoke(this, wssJson);
 
 				WebSocketLastSeq = wssJson.GetProperty("s").GetInt32();
 				if (!wssJson.TryGetProperty("t", out var t) || !wssJson.TryGetProperty("d", out var d))
@@ -271,7 +271,7 @@ partial class BotClient
 							}
 						}
 
-						OnGuildMsg?.Invoke(this, new(guild, type));
+						GuildEventSetTriggered?.Invoke(this, new(guild, type));
 
 						break;
 					}
@@ -282,7 +282,7 @@ partial class BotClient
 					{
 						Log.Debug($"[WebSocket][{type}] {data}");
 						var channel = d.Deserialize<Channel>()!;
-						OnChannelMsg?.Invoke(this, new(channel, type));
+						ChannelEventSetTriggered?.Invoke(this, new(channel, type));
 
 						break;
 					}
@@ -293,7 +293,7 @@ partial class BotClient
 					{
 						Log.Debug($"[WebSocket][{type}] {data}");
 						var memberWithGuild = d.Deserialize<MemberWithGuildId>()!;
-						OnGuildMemberMsg?.Invoke(this, new(memberWithGuild, type));
+						GuildMemberEventSetTriggered?.Invoke(this, new(memberWithGuild, type));
 
 						break;
 					}
@@ -303,7 +303,7 @@ partial class BotClient
 					{
 						Log.Debug($"[WebSocket][{type}] {data}");
 						var messageReaction = d.Deserialize<MessageReaction>()!;
-						OnMessageReaction?.Invoke(this, new(messageReaction, type));
+						MessageReactionEventSetTriggered?.Invoke(this, new(messageReaction, type));
 
 						break;
 					}
@@ -314,7 +314,7 @@ partial class BotClient
 						Log.Info($"[WebSocket][{type}] {data}");
 						var messageAudited = d.Deserialize<MessageAudited>()!;
 						messageAudited.IsPassed = type == RawMessageTypes.MessageAuditPassed;
-						OnMessageAudit?.Invoke(this, new(messageAudited));
+						MessageAudited?.Invoke(this, new(messageAudited));
 
 						break;
 					}
@@ -325,7 +325,7 @@ partial class BotClient
 					case RawMessageTypes.AudioOffMic:
 					{
 						Log.Info($"[WebSocket][{type}] {data}");
-						OnAudioMsg?.Invoke(this, wssJson);
+						AudioEventSetTriggered?.Invoke(this, wssJson);
 
 						break;
 					}
@@ -334,7 +334,7 @@ partial class BotClient
 					{
 						Log.Info($"[WebSocket][Op00][RESUMED] 已恢复与服务器的连接");
 						await ExcuteCommandAsync(JsonDocument.Parse($$"""{"op":{{(int)Opcode.Heartbeat}}}""").RootElement);
-						OnResumed?.Invoke(this, d);
+						ConnectionResumed?.Invoke(this, d);
 
 						break;
 					}
@@ -378,7 +378,7 @@ partial class BotClient
 
 						// Triggers the event.
 						// Here 'this' can be replaced with 'null' because the first argument is useless.
-						OnAuthorizationPassed?.Invoke(this, new(Info));
+						AuthorizationPassed?.Invoke(this, new(Info));
 
 						break;
 					}
@@ -395,7 +395,7 @@ partial class BotClient
 			case Opcode.Heartbeat: // Send & Receive 客户端或服务端发送心跳
 			{
 				Log.Debug($"[WebSocket][Op01] {(wssJson.Get("d") == null ? "客户端" : "服务器")} 发送心跳包");
-				OnHeartbeat?.Invoke(this, wssJson);
+				HeartbeatMessageReceived?.Invoke(this, wssJson);
 				await SendHeartBeatAsync();
 				HeartBeatTimer.Enabled = true;
 
@@ -404,7 +404,7 @@ partial class BotClient
 			case Opcode.Identify: // Send 客户端发送鉴权
 			{
 				Log.Info($"[WebSocket][Op02] 客户端 发起鉴权");
-				OnIdentifying?.Invoke(this, wssJson);
+				Identifying?.Invoke(this, wssJson);
 				await SendIdentifyAsync();
 
 				break;
@@ -413,7 +413,7 @@ partial class BotClient
 			{
 				Log.Info($"[WebSocket][Op06] 客户端 尝试恢复连接..");
 				IsResume = false;
-				OnResuming?.Invoke(this, wssJson);
+				ConnectionResuming?.Invoke(this, wssJson);
 				await SendResumeAsync();
 
 				break;
@@ -421,21 +421,21 @@ partial class BotClient
 			case Opcode.Reconnect: // Receive 服务端通知客户端重新连接
 			{
 				Log.Info($"[WebSocket][Op07] 服务器 要求客户端重连");
-				OnReconnect?.Invoke(this, wssJson);
+				ConnectionReconnected?.Invoke(this, wssJson);
 
 				break;
 			}
 			case Opcode.InvalidSession: // Receive 当identify或resume的时候，如果参数有错，服务端会返回该消息
 			{
 				Log.Warn($"[WebSocket][Op09] 客户端鉴权信息错误");
-				OnInvalidSession?.Invoke(this, wssJson);
+				SessionInvalid?.Invoke(this, wssJson);
 
 				break;
 			}
 			case Opcode.Hello: // Receive 当客户端与网关建立ws连接之后，网关下发的第一条消息
 			{
 				Log.Info($"[WebSocket][Op10][成功与网关建立连接] {wssJson.GetRawText()}");
-				OnHello?.Invoke(this, wssJson);
+				Helloing?.Invoke(this, wssJson);
 				int heartbeat_interval = wssJson.Get("d")?.Get("heartbeat_interval")?.GetInt32() ?? 30000;
 				HeartBeatTimer.Interval = heartbeat_interval < 30000 ? heartbeat_interval : 30000;  // 设置心跳时间为30s
 				await ExcuteCommandAsync(JsonDocument.Parse("{\"op\":" + (int)(IsResume ? Opcode.Resume : Opcode.Identify) + "}").RootElement);
@@ -445,7 +445,7 @@ partial class BotClient
 			case Opcode.HeartbeatACK: // Receive 当发送心跳成功之后，就会收到该消息
 			{
 				Log.Debug($"[WebSocket][Op11] 服务器 收到心跳包");
-				OnHeartbeatACK?.Invoke(this, wssJson);
+				HeartbeatMessageAcknowledged?.Invoke(this, wssJson);
 
 				break;
 			}

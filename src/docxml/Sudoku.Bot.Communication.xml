@@ -827,117 +827,117 @@
             Indicates the time that records the bot being running.
             </summary>
         </member>
-        <member name="E:Sudoku.Bot.Communication.BotClient.OnWebSocketConnected">
+        <member name="E:Sudoku.Bot.Communication.BotClient.WebSocketConnected">
             <summary>
             Indicates the event triggered when the web socket has been connected.
             </summary>
         </member>
-        <member name="E:Sudoku.Bot.Communication.BotClient.OnWebSocketClosed">
+        <member name="E:Sudoku.Bot.Communication.BotClient.WebSocketClosed">
             <summary>
             Indicates the event triggered when the web socket client has closed the connection.
             </summary>
         </member>
-        <member name="E:Sudoku.Bot.Communication.BotClient.OnWebSoketSending">
+        <member name="E:Sudoku.Bot.Communication.BotClient.WebSocketSending">
             <summary>
             Indicates the event triggered before sending the message.
             </summary>
         </member>
-        <member name="E:Sudoku.Bot.Communication.BotClient.OnWebSocketReceived">
+        <member name="E:Sudoku.Bot.Communication.BotClient.WebSocketReceived">
             <summary>
             Indicates the event triggered after being received the message.
             </summary>
         </member>
-        <member name="E:Sudoku.Bot.Communication.BotClient.OnDispatch">
+        <member name="E:Sudoku.Bot.Communication.BotClient.MessageDispatched">
             <summary>
             Indicates the event triggered when a message is dispatched from the server.
             </summary>
         </member>
-        <member name="E:Sudoku.Bot.Communication.BotClient.OnHeartbeat">
+        <member name="E:Sudoku.Bot.Communication.BotClient.HeartbeatMessageReceived">
             <summary>
             Indicates the event triggered when a heartbeat message is received from the server,
             or sent from the current client.
             </summary>
         </member>
-        <member name="E:Sudoku.Bot.Communication.BotClient.OnIdentifying">
+        <member name="E:Sudoku.Bot.Communication.BotClient.Identifying">
             <summary>
             Indicates the event triggered when an authorization message is sent from the server.
             </summary>
         </member>
-        <member name="E:Sudoku.Bot.Communication.BotClient.OnResuming">
+        <member name="E:Sudoku.Bot.Communication.BotClient.ConnectionResuming">
             <summary>
             Indicates the event triggered when the connection is being resumed.
             </summary>
         </member>
-        <member name="E:Sudoku.Bot.Communication.BotClient.OnResumed">
+        <member name="E:Sudoku.Bot.Communication.BotClient.ConnectionResumed">
             <summary>
             Indicates the event triggered when the connection is resumed.
             </summary>
         </member>
-        <member name="E:Sudoku.Bot.Communication.BotClient.OnReconnect">
+        <member name="E:Sudoku.Bot.Communication.BotClient.ConnectionReconnected">
             <summary>
             Indicates the event triggered when the server noticed the user that connection is reconnected.
             </summary>
         </member>
-        <member name="E:Sudoku.Bot.Communication.BotClient.OnInvalidSession">
+        <member name="E:Sudoku.Bot.Communication.BotClient.SessionInvalid">
             <summary>
             Indicates the event triggered when the invalid cast has been encountered while triggering
-            <see cref="E:Sudoku.Bot.Communication.BotClient.OnIdentifying"/> or <see cref="E:Sudoku.Bot.Communication.BotClient.OnResuming"/>.
+            <see cref="E:Sudoku.Bot.Communication.BotClient.Identifying"/> or <see cref="E:Sudoku.Bot.Communication.BotClient.ConnectionResuming"/>.
             </summary>
-            <seealso cref="E:Sudoku.Bot.Communication.BotClient.OnIdentifying"/>
-            <seealso cref="E:Sudoku.Bot.Communication.BotClient.OnResuming"/>
+            <seealso cref="E:Sudoku.Bot.Communication.BotClient.Identifying"/>
+            <seealso cref="E:Sudoku.Bot.Communication.BotClient.ConnectionResuming"/>
         </member>
-        <member name="E:Sudoku.Bot.Communication.BotClient.OnHello">
+        <member name="E:Sudoku.Bot.Communication.BotClient.Helloing">
             <summary>
             Indicates the event triggered when created the connection between client and the gateway.
             </summary>
         </member>
-        <member name="E:Sudoku.Bot.Communication.BotClient.OnHeartbeatACK">
+        <member name="E:Sudoku.Bot.Communication.BotClient.HeartbeatMessageAcknowledged">
             <summary>
             Indicates the event triggered when the server has received the heartbeat message.
             </summary>
         </member>
-        <member name="E:Sudoku.Bot.Communication.BotClient.OnAudioMsg">
+        <member name="E:Sudoku.Bot.Communication.BotClient.AudioEventSetTriggered">
             <summary>
             Indicates the event triggered when an audio instance has been changed its status.
             </summary>
         </member>
-        <member name="E:Sudoku.Bot.Communication.BotClient.OnAuthorizationPassed">
+        <member name="E:Sudoku.Bot.Communication.BotClient.AuthorizationPassed">
             <summary>
             Indicates the event triggered when the authorization on bot data is passed.
             </summary>
         </member>
-        <member name="E:Sudoku.Bot.Communication.BotClient.OnMessageCreated">
+        <member name="E:Sudoku.Bot.Communication.BotClient.MessageCreated">
             <summary>
             Indicates the event triggered when a message is created.
             This event will also contain the case that the bot is mentioned.
             </summary>
         </member>
-        <member name="E:Sudoku.Bot.Communication.BotClient.OnGuildMsg">
+        <member name="E:Sudoku.Bot.Communication.BotClient.GuildEventSetTriggered">
             <summary>
-            Indicates the event triggered when an event in the specified GUILD is triggered.
+            Indicates the event triggered when an event related to the specified GUILD is triggered.
             </summary>
         </member>
-        <member name="E:Sudoku.Bot.Communication.BotClient.OnChannelMsg">
-            <summary>
-            Indicates the event triggered when an event in the specified channel is triggered.
-            </summary>
-        </member>
-        <member name="E:Sudoku.Bot.Communication.BotClient.OnGuildMemberMsg">
+        <member name="E:Sudoku.Bot.Communication.BotClient.GuildMemberEventSetTriggered">
             <summary>
             Indicates the event triggered when an event related to GUILD-levelled member is triggered.
             </summary>
         </member>
-        <member name="E:Sudoku.Bot.Communication.BotClient.OnMessageReaction">
+        <member name="E:Sudoku.Bot.Communication.BotClient.ChannelEventSetTriggered">
+            <summary>
+            Indicates the event triggered when an event related to the specified channel is triggered.
+            </summary>
+        </member>
+        <member name="E:Sudoku.Bot.Communication.BotClient.MessageReactionEventSetTriggered">
             <summary>
             Indicates the event triggered when an event related to a message reaction is triggered.
             </summary>
         </member>
-        <member name="E:Sudoku.Bot.Communication.BotClient.OnMessageAudit">
+        <member name="E:Sudoku.Bot.Communication.BotClient.MessageAudited">
             <summary>
             Indicates the event triggered when a message is audited.
             </summary>
         </member>
-        <member name="E:Sudoku.Bot.Communication.BotClient.OnApiError">
+        <member name="E:Sudoku.Bot.Communication.BotClient.ApiErrorEncountered">
             <summary>
             Indicates the event triggered when an error has been encountered when called an API.
             </summary>

@@ -163,117 +163,117 @@ public partial class BotClient
 	/// <summary>
 	/// Indicates the event triggered when the web socket has been connected.
 	/// </summary>
-	public event WebSocketConnectedEventHandler? OnWebSocketConnected;
+	public event WebSocketConnectedEventHandler? WebSocketConnected;
 
 	/// <summary>
 	/// Indicates the event triggered when the web socket client has closed the connection.
 	/// </summary>
-	public event WebSocketClosedEventHandler? OnWebSocketClosed;
+	public event WebSocketClosedEventHandler? WebSocketClosed;
 
 	/// <summary>
 	/// Indicates the event triggered before sending the message.
 	/// </summary>
-	public event WebSocketSendingEventHandler? OnWebSoketSending;
+	public event WebSocketSendingEventHandler? WebSocketSending;
 
 	/// <summary>
 	/// Indicates the event triggered after being received the message.
 	/// </summary>
-	public event WebSocketReceivedEventHandler? OnWebSocketReceived;
+	public event WebSocketReceivedEventHandler? WebSocketReceived;
 
 	/// <summary>
 	/// Indicates the event triggered when a message is dispatched from the server.
 	/// </summary>
-	public event JsonElementRelatedEventHandler? OnDispatch;
+	public event JsonElementRelatedEventHandler? MessageDispatched;
 
 	/// <summary>
 	/// Indicates the event triggered when a heartbeat message is received from the server,
 	/// or sent from the current client.
 	/// </summary>
-	public event JsonElementRelatedEventHandler? OnHeartbeat;
+	public event JsonElementRelatedEventHandler? HeartbeatMessageReceived;
 
 	/// <summary>
 	/// Indicates the event triggered when an authorization message is sent from the server.
 	/// </summary>
-	public event JsonElementRelatedEventHandler? OnIdentifying;
+	public event JsonElementRelatedEventHandler? Identifying;
 
 	/// <summary>
 	/// Indicates the event triggered when the connection is being resumed.
 	/// </summary>
-	public event JsonElementRelatedEventHandler? OnResuming;
+	public event JsonElementRelatedEventHandler? ConnectionResuming;
 
 	/// <summary>
 	/// Indicates the event triggered when the connection is resumed.
 	/// </summary>
-	public event JsonElementRelatedEventHandler? OnResumed;
+	public event JsonElementRelatedEventHandler? ConnectionResumed;
 
 	/// <summary>
 	/// Indicates the event triggered when the server noticed the user that connection is reconnected.
 	/// </summary>
-	public event JsonElementRelatedEventHandler? OnReconnect;
+	public event JsonElementRelatedEventHandler? ConnectionReconnected;
 
 	/// <summary>
 	/// Indicates the event triggered when the invalid cast has been encountered while triggering
-	/// <see cref="OnIdentifying"/> or <see cref="OnResuming"/>.
+	/// <see cref="Identifying"/> or <see cref="ConnectionResuming"/>.
 	/// </summary>
-	/// <seealso cref="OnIdentifying"/>
-	/// <seealso cref="OnResuming"/>
-	public event JsonElementRelatedEventHandler? OnInvalidSession;
+	/// <seealso cref="Identifying"/>
+	/// <seealso cref="ConnectionResuming"/>
+	public event JsonElementRelatedEventHandler? SessionInvalid;
 
 	/// <summary>
 	/// Indicates the event triggered when created the connection between client and the gateway.
 	/// </summary>
-	public event JsonElementRelatedEventHandler? OnHello;
+	public event JsonElementRelatedEventHandler? Helloing;
 
 	/// <summary>
 	/// Indicates the event triggered when the server has received the heartbeat message.
 	/// </summary>
-	public event JsonElementRelatedEventHandler? OnHeartbeatACK;
+	public event JsonElementRelatedEventHandler? HeartbeatMessageAcknowledged;
 
 	/// <summary>
 	/// Indicates the event triggered when an audio instance has been changed its status.
 	/// </summary>
-	public event NullableJsonElementRelatedEventHandler? OnAudioMsg;
+	public event NullableJsonElementRelatedEventHandler? AudioEventSetTriggered;
 
 	/// <summary>
 	/// Indicates the event triggered when the authorization on bot data is passed.
 	/// </summary>
-	public event AuthoizationPassedEventHandler? OnAuthorizationPassed;
+	public event AuthoizationPassedEventHandler? AuthorizationPassed;
 
 	/// <summary>
 	/// Indicates the event triggered when a message is created.
 	/// This event will also contain the case that the bot is mentioned.
 	/// </summary>
-	public event MessageCreatedEventHandler? OnMessageCreated;
+	public event MessageCreatedEventHandler? MessageCreated;
 
 	/// <summary>
-	/// Indicates the event triggered when an event in the specified GUILD is triggered.
+	/// Indicates the event triggered when an event related to the specified GUILD is triggered.
 	/// </summary>
-	public event GuildRelatedEventHandler? OnGuildMsg;
-
-	/// <summary>
-	/// Indicates the event triggered when an event in the specified channel is triggered.
-	/// </summary>
-	public event ChannelRelatedEventHandler? OnChannelMsg;
+	public event GuildRelatedEventHandler? GuildEventSetTriggered;
 
 	/// <summary>
 	/// Indicates the event triggered when an event related to GUILD-levelled member is triggered.
 	/// </summary>
-	public event GuildMemberRelatedEventHandler? OnGuildMemberMsg;
+	public event GuildMemberRelatedEventHandler? GuildMemberEventSetTriggered;
+
+	/// <summary>
+	/// Indicates the event triggered when an event related to the specified channel is triggered.
+	/// </summary>
+	public event ChannelRelatedEventHandler? ChannelEventSetTriggered;
 
 	/// <summary>
 	/// Indicates the event triggered when an event related to a message reaction is triggered.
 	/// </summary>
-	public event MessageReactionRelatedEventHandler? OnMessageReaction;
+	public event MessageReactionRelatedEventHandler? MessageReactionEventSetTriggered;
 
 	/// <summary>
 	/// Indicates the event triggered when a message is audited.
 	/// </summary>
-	public event MessageAuditedEventHandler? OnMessageAudit;
+	public event MessageAuditedEventHandler? MessageAudited;
 
 	/// <summary>
 	/// Indicates the event triggered when an error has been encountered when called an API.
 	/// </summary>
-	public event ApiEncounteredErrorEventHandler? OnApiError;
+	public event ApiEncounteredErrorEventHandler? ApiErrorEncountered;
 
 
 	/// <summary>
@@ -328,7 +328,7 @@ public partial class BotClient
 
 			Log.Error($"[接口访问失败]{senderAuthorName} 代码：{errInfo.Code}，详情：{errInfo.Detail}");
 
-			OnApiError?.Invoke(this, new(sender, errInfo));
+			ApiErrorEncountered?.Invoke(this, new(sender, errInfo));
 			if (sender is not null)
 			{
 				if (!sender.ReportError)

@@ -33,8 +33,8 @@ while (true)
 
 static void initializeEvents(BotClient bot)
 {
-	bot.OnAuthorizationPassed += onAuthorizationPassed;
-	bot.OnMessageCreated += onMessageCreated;
+	bot.AuthorizationPassed += onAuthorizationPassed;
+	bot.MessageCreated += onMessageCreated;
 }
 
 static void onAuthorizationPassed(BotClient? _, AuthoizationPassedEventArgs e)
