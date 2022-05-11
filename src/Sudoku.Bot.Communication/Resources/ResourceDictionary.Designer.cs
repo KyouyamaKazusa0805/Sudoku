@@ -150,32 +150,74 @@ namespace Sudoku.Bot.Communication.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 签到成功。这是你第一次使用机器人哦~ 恭喜你获得 0 经验值~
-        ///（非常抱歉，由于是测试功能，所以暂时没有经验值系统。）.
+        ///   Looks up a localized string similar to 签到成功。这是你第一次使用机器人哦~ 恭喜你获得.
         /// </summary>
-        internal static string ClockInSuccess_FileCreated {
+        internal static string ClockInSuccess_FileCreatedSegment1 {
             get {
-                return ResourceManager.GetString("ClockInSuccess_FileCreated", resourceCulture);
+                return ResourceManager.GetString("ClockInSuccess_FileCreatedSegment1", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 签到成功。这是你第一次签到哦~ 恭喜你获得 0 经验值~
-        ///（非常抱歉，由于是测试功能，所以暂时没有经验值系统。）.
+        ///   Looks up a localized string similar to 经验值~.
         /// </summary>
-        internal static string ClockInSuccess_ValueCreated {
+        internal static string ClockInSuccess_FileCreatedSegment2 {
             get {
-                return ResourceManager.GetString("ClockInSuccess_ValueCreated", resourceCulture);
+                return ResourceManager.GetString("ClockInSuccess_FileCreatedSegment2", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 签到成功。数据已更新~ 恭喜你获得 0 经验值~
-        ///（非常抱歉，由于是测试功能，所以暂时没有经验值系统。）.
+        ///   Looks up a localized string similar to 签到成功。这是你第一次签到哦~ 恭喜你获得.
         /// </summary>
-        internal static string ClockInSuccess_ValueUpdated {
+        internal static string ClockInSuccess_ValueCreatedSegment1 {
             get {
-                return ResourceManager.GetString("ClockInSuccess_ValueUpdated", resourceCulture);
+                return ResourceManager.GetString("ClockInSuccess_ValueCreatedSegment1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 经验值~ 你现在拥有.
+        /// </summary>
+        internal static string ClockInSuccess_ValueCreatedSegment2 {
+            get {
+                return ResourceManager.GetString("ClockInSuccess_ValueCreatedSegment2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 经验值~.
+        /// </summary>
+        internal static string ClockInSuccess_ValueCreatedSegment3 {
+            get {
+                return ResourceManager.GetString("ClockInSuccess_ValueCreatedSegment3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 签到成功。数据已更新~ 恭喜你获得.
+        /// </summary>
+        internal static string ClockInSuccess_ValueUpdatedSegment1 {
+            get {
+                return ResourceManager.GetString("ClockInSuccess_ValueUpdatedSegment1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 经验值~ 你现在拥有.
+        /// </summary>
+        internal static string ClockInSuccess_ValueUpdatedSegment2 {
+            get {
+                return ResourceManager.GetString("ClockInSuccess_ValueUpdatedSegment2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 经验值~.
+        /// </summary>
+        internal static string ClockInSuccess_ValueUpdatedSegment3 {
+            get {
+                return ResourceManager.GetString("ClockInSuccess_ValueUpdatedSegment3", resourceCulture);
             }
         }
         

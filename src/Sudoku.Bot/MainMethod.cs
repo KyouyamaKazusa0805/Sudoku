@@ -143,79 +143,126 @@ static async void clockInAsync(Sender sender, string message)
 	{
 		string originalJson = await File.ReadAllTextAsync(userPath);
 		var rootElement = JsonSerializer.Deserialize<JsonElement>(originalJson);
-		if (rootElement.TryGetProperty(ConfigurationPaths.LastTimeCheckedIn, out var element))
-		{
-			try
-			{
-				var date = DateTime.Parse(element.GetString()!).Date;
-				if (date == DateTime.Today)
-				{
-					// A same day. Notice the user that he/she cannot clock in again.
-					await sender.ReplyAsync(StringResource.Get("ClockInWarning_CannotClockInInSameDay")!);
-					return;
-				}
+		var foundPairs = rootElement.TryGetPropertyValues(ConfigurationPaths.LastTimeCheckedIn, ConfigurationPaths.ExperiencePoint);
 
-				// Valid. Now clock in and update the value.
-				string updatedJson = JsonSerializer.Serialize(
-					new Dictionary<string, string>(
-						from subelement in rootElement.EnumerateObject()
-						where subelement.Name != ConfigurationPaths.LastTimeCheckedIn
-						select new KeyValuePair<string, string>(subelement.Name, subelement.Value.ToString())
-					)
+		static bool checkInPredicate((string Name, string?) e) => e.Name == ConfigurationPaths.LastTimeCheckedIn;
+		static bool expPredicate((string Name, string?) e) => e.Name == ConfigurationPaths.ExperiencePoint;
+		if (foundPairs is not null)
+		{
+			if (Array.FindIndex(foundPairs, checkInPredicate) is var checkInIndex and not -1)
+			{
+				try
+				{
+					var date = DateTime.Parse(foundPairs[checkInIndex].CorrespondingValue!).Date;
+					if (date == DateTime.Today)
 					{
-						{ ConfigurationPaths.LastTimeCheckedIn, DateTime.Today.ToString() }
-					},
-					generalSerializerOptions
-				);
+						// A same day. Notice the user that he/she cannot clock in again.
+						await sender.ReplyAsync(StringResource.Get("ClockInWarning_CannotClockInInSameDay")!);
+						return;
+					}
+
+					// Valid. Now clock in and update the value.
+					int extraExp = Random.Shared.Next() % 10 + 1;
+					var tempDic = rootElement
+						.ToDictionaryOfStringElements()
+						.AppendOrCover(ConfigurationPaths.LastTimeCheckedIn, DateTime.Today.ToString());
+					var (realFinalValue, dictionary) = expPropertyExists(extraExp, out int finalValue) switch
+					{
+						true => (
+							finalValue,
+							tempDic.AppendOrCover(ConfigurationPaths.ExperiencePoint, finalValue.ToString())
+						),
+						_ => (
+							extraExp,
+							tempDic.AppendOrCover(ConfigurationPaths.ExperiencePoint, extraExp.ToString())
+						)
+					};
+					string updatedJson = JsonSerializer.Serialize(dictionary, generalSerializerOptions);
+
+					await File.WriteAllTextAsync(userPath, updatedJson);
+
+					string a = StringResource.Get("ClockInSuccess_ValueUpdatedSegment1")!;
+					string b = StringResource.Get("ClockInSuccess_ValueUpdatedSegment2")!;
+					string c = StringResource.Get("ClockInSuccess_ValueUpdatedSegment3")!;
+					await sender.ReplyAsync($"{a} {extraExp} {b} {realFinalValue} {c}");
+				}
+				catch (ArgumentNullException)
+				{
+					await sender.ReplyAsync(StringResource.Get("ClockInError_DateStringIsNull")!);
+				}
+				catch (Exception ex) when (ex is FormatException or InvalidOperationException)
+				{
+					// Invalid date value parsed.
+					await sender.ReplyAsync(StringResource.Get("ClockInError_InvalidDateValue")!, true);
+				}
+			}
+			else
+			{
+				// The file exists but the current property doesn't.
+				// We should create the property with the current value and update the file.
+				int extraExp = Random.Shared.Next() % 10 + 1;
+
+				var tempDic = rootElement
+					.ToDictionaryOfStringElements()
+					.AppendOrCover(ConfigurationPaths.LastTimeCheckedIn, DateTime.Today.ToString());
+				var (realFinalValue, dictionary) = expPropertyExists(extraExp, out int finalValue) switch
+				{
+					true => (
+						finalValue,
+						tempDic.AppendOrCover(ConfigurationPaths.ExperiencePoint, finalValue.ToString())
+					),
+					_ => (
+						extraExp,
+						tempDic.AppendOrCover(ConfigurationPaths.ExperiencePoint, extraExp.ToString())
+					)
+				};
+				string updatedJson = JsonSerializer.Serialize(dictionary, generalSerializerOptions);
 
 				await File.WriteAllTextAsync(userPath, updatedJson);
 
-				await sender.ReplyAsync(StringResource.Get("ClockInSuccess_ValueUpdated")!);
-			}
-			catch (ArgumentNullException)
-			{
-				await sender.ReplyAsync(StringResource.Get("ClockInError_DateStringIsNull")!);
-			}
-			catch (Exception ex) when (ex is FormatException or InvalidOperationException)
-			{
-				// Invalid date value parsed.
-				await sender.ReplyAsync(StringResource.Get("ClockInError_InvalidDateValue")!, true);
+				string a = StringResource.Get("ClockInSuccess_ValueCreatedSegment1")!;
+				string b = StringResource.Get("ClockInSuccess_ValueCreatedSegment2")!;
+				string c = StringResource.Get("ClockInSuccess_ValueCreatedSegment3")!;
+				await sender.ReplyAsync($"{a} {extraExp} {b} {realFinalValue} {c}", true);
 			}
 		}
-		else
+
+
+		bool expPropertyExists(int extraExp, out int finalValue)
 		{
-			// The file exists but the current property doesn't.
-			// We should create the property with the current value and update the file.
-			string updatedJson = JsonSerializer.Serialize(
-				new Dictionary<string, string>(
-					from subelement in element.EnumerateObject()
-					select new KeyValuePair<string, string>(subelement.Name, subelement.Value.ToString())
-				)
-				{
-					{ ConfigurationPaths.LastTimeCheckedIn, DateTime.Today.ToString() }
-				},
-				generalSerializerOptions
-			);
+			Unsafe.SkipInit(out finalValue);
 
-			await File.WriteAllTextAsync(userPath, updatedJson);
-
-			await sender.ReplyAsync(StringResource.Get("ClockInSuccess_ValueCreated")!, true);
+			if (Array.FindIndex(foundPairs, expPredicate) is var expIndex and not -1
+				&& int.Parse(foundPairs[expIndex].CorrespondingValue!) + extraExp is var f)
+			{
+				finalValue = f;
+				return true;
+			}
+			else
+			{
+				return false;
+			}
 		}
 	}
 	else
 	{
 		// The file doesn't exist. Just create a file that contains the data.
+		int extraExp = Random.Shared.Next() % 10 + 1;
+
 		string indenting = new(' ', 2);
 		await File.WriteAllTextAsync(
 			userPath,
 			$$"""
 			{
-			{{indenting}}"{{ConfigurationPaths.LastTimeCheckedIn}}": "{{DateTime.Today}}"
+			{{indenting}}"{{ConfigurationPaths.LastTimeCheckedIn}}": "{{DateTime.Today}}",
+			{{indenting}}"{{ConfigurationPaths.ExperiencePoint}}": "{{extraExp}}"
 			}
 			"""
 		);
 
-		await sender.ReplyAsync(StringResource.Get("ClockInSuccess_FileCreated")!, true);
+		string a = StringResource.Get("ClockInSuccess_FileCreatedSegment1")!;
+		string b = StringResource.Get("ClockInSuccess_FileCreatedSegment2")!;
+		await sender.ReplyAsync($"{a} {extraExp} {b}", true);
 	}
 }
 

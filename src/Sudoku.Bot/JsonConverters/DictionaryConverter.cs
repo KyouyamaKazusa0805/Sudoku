@@ -9,6 +9,11 @@ internal sealed class DictionaryConverter : JsonConverter<Dictionary<string, str
 	public override Dictionary<string, string> Read(
 		ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
 	{
+		if (!reader.Read() || reader.TokenType != JsonTokenType.StartObject)
+		{
+			return new();
+		}
+
 		var result = new Dictionary<string, string>();
 		var jsonElement = JsonSerializer.Deserialize<JsonElement>(ref reader, options);
 		foreach (var element in jsonElement.EnumerateObject())
@@ -16,15 +21,17 @@ internal sealed class DictionaryConverter : JsonConverter<Dictionary<string, str
 			result.Add(element.Name, element.Value.ToString());
 		}
 
-		return result;
+		return reader.Read() && reader.TokenType == JsonTokenType.EndObject ? result : throw new JsonException();
 	}
 
 	/// <inheritdoc/>
 	public override void Write(Utf8JsonWriter writer, Dictionary<string, string> value, JsonSerializerOptions options)
 	{
+		writer.WriteStartObject();
 		foreach (var (name, correspondingValue) in value)
 		{
 			writer.WriteString(name, correspondingValue);
 		}
+		writer.WriteEndObject();
 	}
 }

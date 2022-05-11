@@ -146,17 +146,29 @@
     <value>对不起，机器人出了点问题。原因：
 机器人尚未配置用户存档数据的本地路径。该路径对于机器人识别用户的数据来说非常重要。如果没有此数据的话，机器人就相当于直接不知道怎么读写你们的“存档”了。这是很可怕的，对吧。</value>
   </data>
-  <data name="ClockInSuccess_FileCreated" xml:space="preserve">
-    <value>签到成功。这是你第一次使用机器人哦~ 恭喜你获得 0 经验值~
-（非常抱歉，由于是测试功能，所以暂时没有经验值系统。）</value>
+  <data name="ClockInSuccess_FileCreatedSegment1" xml:space="preserve">
+    <value>签到成功。这是你第一次使用机器人哦~ 恭喜你获得</value>
   </data>
-  <data name="ClockInSuccess_ValueCreated" xml:space="preserve">
-    <value>签到成功。这是你第一次签到哦~ 恭喜你获得 0 经验值~
-（非常抱歉，由于是测试功能，所以暂时没有经验值系统。）</value>
+  <data name="ClockInSuccess_FileCreatedSegment2" xml:space="preserve">
+    <value>经验值~</value>
   </data>
-  <data name="ClockInSuccess_ValueUpdated" xml:space="preserve">
-    <value>签到成功。数据已更新~ 恭喜你获得 0 经验值~
-（非常抱歉，由于是测试功能，所以暂时没有经验值系统。）</value>
+  <data name="ClockInSuccess_ValueCreatedSegment1" xml:space="preserve">
+    <value>签到成功。这是你第一次签到哦~ 恭喜你获得</value>
+  </data>
+  <data name="ClockInSuccess_ValueCreatedSegment2" xml:space="preserve">
+    <value>经验值~ 你现在拥有</value>
+  </data>
+  <data name="ClockInSuccess_ValueCreatedSegment3" xml:space="preserve">
+    <value>经验值~</value>
+  </data>
+  <data name="ClockInSuccess_ValueUpdatedSegment1" xml:space="preserve">
+    <value>签到成功。数据已更新~ 恭喜你获得</value>
+  </data>
+  <data name="ClockInSuccess_ValueUpdatedSegment2" xml:space="preserve">
+    <value>经验值~ 你现在拥有</value>
+  </data>
+  <data name="ClockInSuccess_ValueUpdatedSegment3" xml:space="preserve">
+    <value>经验值~</value>
   </data>
   <data name="ClockInWarning_CannotClockInInSameDay" xml:space="preserve">
     <value>签到失败。原因：
