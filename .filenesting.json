@@ -13,7 +13,8 @@
       // the "pathSegment" rule will hide the file 'a.Impl.cs' and toggle it to the file 'a.cs'.
       "pathSegment": {
         "add": {
-          ".cs": [ ".cs" ]
+          ".cs": [ ".cs" ],
+          "addedExtension": {}
         }
       }
       
