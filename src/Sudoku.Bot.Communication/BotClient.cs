@@ -246,69 +246,34 @@ public partial class BotClient
 	public event MessageCreatedEventHandler? OnMessageCreated;
 
 	/// <summary>
-	/// 频道信息变更后触发
-	/// <para>
-	/// 机器人加入频道, 频道资料变更, 机器人退出频道<br/>
-	/// BotClient - 机器人对象<br/>
-	/// Guild - 频道对象<br/>
-	/// string - 事件类型（GUILD_ADD | GUILD_UPDATE | GUILD_REMOVE）
-	/// </para>
+	/// Indicates the event triggered when an event in the specified GUILD is triggered.
 	/// </summary>
-	public event Action<BotClient, Guild, string>? OnGuildMsg;
+	public event GuildRelatedEventHandler? OnGuildMsg;
 
 	/// <summary>
-	/// 子频道被修改后触发
-	/// <para>
-	/// 子频道被创建, 子频道资料变更, 子频道被删除<br/>
-	/// BotClient - 机器人对象<br/>
-	/// Channel - 频道对象（没有分组Id和排序位置属性）<br/>
-	/// string - 事件类型（CHANNEL_CREATE|CHANNEL_UPDATE|CHANNEL_DELETE）
-	/// </para>
+	/// Indicates the event triggered when an event in the specified channel is triggered.
 	/// </summary>
-	public event Action<BotClient, Channel, string>? OnChannelMsg;
+	public event ChannelRelatedEventHandler? OnChannelMsg;
 
 	/// <summary>
-	/// 成员信息变更后触发
-	/// <para>
-	/// 成员加入, 资料变更, 移除成员<br/>
-	/// BotClient - 机器人对象<br/>
-	/// MemberWithGuildID - 成员对象<br/>
-	/// string - 事件类型（GUILD_MEMBER_ADD | GUILD_MEMBER_UPDATE | GUILD_MEMBER_REMOVE）
-	/// </para>
+	/// Indicates the event triggered when an event related to GUILD-levelled member is triggered.
 	/// </summary>
-	public event Action<BotClient, MemberWithGuildId, string>? OnGuildMemberMsg;
+	public event GuildMemberRelatedEventHandler? OnGuildMemberMsg;
 
 	/// <summary>
-	/// 修改表情表态后触发
-	/// <para>
-	/// 添加表情表态, 删除表情表态<br/>
-	/// BotClient - 机器人对象<br/>
-	/// MessageReaction - 表情表态对象<br/>
-	/// string - 事件类型（MESSAGE_REACTION_ADD|MESSAGE_REACTION_REMOVE）
-	/// </para>
+	/// Indicates the event triggered when an event related to a message reaction is triggered.
 	/// </summary>
-	public event Action<BotClient, MessageReaction, string>? OnMessageReaction;
+	public event MessageReactionRelatedEventHandler? OnMessageReaction;
 
 	/// <summary>
-	/// 消息审核出结果后触发
-	/// <para>
-	/// 消息审核通过才有MessageId属性<br/>
-	/// BotClient - 机器人对象<br/>
-	/// MessageAudited - 消息审核对象<br/>
-	/// MessageAudited.IsPassed - 消息审核是否通过
-	/// </para>
+	/// Indicates the event triggered when a message is audited.
 	/// </summary>
-	public event Action<BotClient, MessageAudited?>? OnMessageAudit;
+	public event MessageAuditedEventHandler? OnMessageAudit;
 
 	/// <summary>
-	/// API调用出错时触发
-	/// <para>
-	/// Sender - 发件人对象（仅当调用API的主体为Sender时才有）<br/>
-	/// List&lt;string&gt; - API错误信息{接口地址，请求方式，异常代码，异常原因}<br/>
-	/// FreezeTime - 对访问出错的接口，暂停使用的时间
-	/// </para>
+	/// Indicates the event triggered when an error has been encountered when called an API.
 	/// </summary>
-	public event Action<Sender?, ApiErrorInfo>? OnApiError;
+	public event ApiEncounteredErrorEventHandler? OnApiError;
 
 
 	/// <summary>
@@ -356,13 +321,14 @@ public partial class BotClient
 				errInfo.Detail = value;
 			}
 
-			string senderAuthorName = (sender?.Bot.Guilds.TryGetValue(sender.GuildId, out var guild) is true ? guild.Name : null)
-				?? sender?.Author.UserName
-				?? string.Empty;
+			string senderAuthorName =
+				(sender?.Bot.Guilds.TryGetValue(sender.GuildId, out var guild) is true ? guild.Name : null)
+					?? sender?.Author.UserName
+					?? string.Empty;
 
 			Log.Error($"[接口访问失败]{senderAuthorName} 代码：{errInfo.Code}，详情：{errInfo.Detail}");
 
-			OnApiError?.Invoke(sender, errInfo);
+			OnApiError?.Invoke(this, new(sender, errInfo));
 			if (sender is not null)
 			{
 				if (!sender.ReportError)

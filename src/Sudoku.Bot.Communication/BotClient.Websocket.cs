@@ -271,7 +271,7 @@ partial class BotClient
 							}
 						}
 
-						OnGuildMsg?.Invoke(this, guild, type);
+						OnGuildMsg?.Invoke(this, new(guild, type));
 
 						break;
 					}
@@ -282,7 +282,7 @@ partial class BotClient
 					{
 						Log.Debug($"[WebSocket][{type}] {data}");
 						var channel = d.Deserialize<Channel>()!;
-						OnChannelMsg?.Invoke(this, channel, type);
+						OnChannelMsg?.Invoke(this, new(channel, type));
 
 						break;
 					}
@@ -293,7 +293,7 @@ partial class BotClient
 					{
 						Log.Debug($"[WebSocket][{type}] {data}");
 						var memberWithGuild = d.Deserialize<MemberWithGuildId>()!;
-						OnGuildMemberMsg?.Invoke(this, memberWithGuild, type);
+						OnGuildMemberMsg?.Invoke(this, new(memberWithGuild, type));
 
 						break;
 					}
@@ -303,7 +303,7 @@ partial class BotClient
 					{
 						Log.Debug($"[WebSocket][{type}] {data}");
 						var messageReaction = d.Deserialize<MessageReaction>()!;
-						OnMessageReaction?.Invoke(this, messageReaction, type);
+						OnMessageReaction?.Invoke(this, new(messageReaction, type));
 
 						break;
 					}
@@ -314,7 +314,7 @@ partial class BotClient
 						Log.Info($"[WebSocket][{type}] {data}");
 						var messageAudited = d.Deserialize<MessageAudited>()!;
 						messageAudited.IsPassed = type == RawMessageTypes.MessageAuditPassed;
-						OnMessageAudit?.Invoke(this, messageAudited);
+						OnMessageAudit?.Invoke(this, new(messageAudited));
 
 						break;
 					}
@@ -439,7 +439,7 @@ partial class BotClient
 				int heartbeat_interval = wssJson.Get("d")?.Get("heartbeat_interval")?.GetInt32() ?? 30000;
 				HeartBeatTimer.Interval = heartbeat_interval < 30000 ? heartbeat_interval : 30000;  // 设置心跳时间为30s
 				await ExcuteCommandAsync(JsonDocument.Parse("{\"op\":" + (int)(IsResume ? Opcode.Resume : Opcode.Identify) + "}").RootElement);
-				
+
 				break;
 			}
 			case Opcode.HeartbeatACK: // Receive 当发送心跳成功之后，就会收到该消息
