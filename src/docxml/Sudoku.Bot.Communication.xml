@@ -589,45 +589,48 @@
         </member>
         <member name="M:Sudoku.Bot.Communication.BotClient.GetChannelAsync(System.String,Sudoku.Bot.Communication.Sender)">
             <summary>
-            获取子频道详情
+            Gets the details for a channel.
             </summary>
-            <param name="channel_id">子频道Id</param>
-            <param name="sender"></param>
-            <returns>Channel?</returns>
+            <param name="channel_id">The channel ID. <b>The argument cannot be renamed.</b></param>
+            <param name="sender">The sender who sends the message.</param>
+            <returns>A task encapsulates the channel instance as the result value.</returns>
         </member>
         <member name="M:Sudoku.Bot.Communication.BotClient.GetChannelsAsync(System.String,System.Nullable{Sudoku.Bot.Communication.Models.ChannelType},System.Nullable{Sudoku.Bot.Communication.Models.ChannelSubtype},Sudoku.Bot.Communication.Sender)">
             <summary>
-            获取频道下的子频道列表
+            Gets a list of channels in the specified GUILD.
             </summary>
-            <param name="guild_id">频道Id</param>
-            <param name="channelType">筛选子频道类型</param>
-            <param name="channelSubType">筛选子频道子类型</param>
-            <param name="sender"></param>
-            <returns></returns>
+            <param name="guild_id">The GUILD ID. <b>The argument cannot be renamed.</b></param>
+            <param name="type">The type of the channel.</param>
+            <param name="subtype">The sub type of the channel.</param>
+            <param name="sender">The sender who sends the message.</param>
+            <returns>A task instance encapsulates the channel list as the result value.</returns>
         </member>
         <member name="M:Sudoku.Bot.Communication.BotClient.CreateChannelAsync(Sudoku.Bot.Communication.Models.Channel,Sudoku.Bot.Communication.Sender)">
             <summary>
-            创建子频道（仅私域可用）
+            Creates a channel. <b>The method can only be used for the private domain.</b>
             </summary>
-            <param name="channel">用于创建子频道的对象（需提前填充必要字段）</param>
-            <param name="sender"></param>
-            <returns></returns>
+            <param name="channel">Indicates the channel instance that is filled with the data you want to create.</param>
+            <param name="sender">The sender who sends the message.</param>
+            <returns>A task instance encapsulates the channel instance as the result.</returns>
         </member>
         <member name="M:Sudoku.Bot.Communication.BotClient.EditChannelAsync(Sudoku.Bot.Communication.Models.Channel,Sudoku.Bot.Communication.Sender)">
             <summary>
-            修改子频道（仅私域可用）
+            Edits a channel. <b>The method can only be used for the private domain.</b>
             </summary>
-            <param name="channel">修改属性后的子频道对象</param>
-            <param name="sender"></param>
-            <returns></returns>
+            <param name="channel">The channel you want to edit.</param>
+            <param name="sender">The sender who sends the message.</param>
+            <returns>A task instance encapsulates the channel instance as the result.</returns>
         </member>
         <member name="M:Sudoku.Bot.Communication.BotClient.DeleteChannelAsync(System.String,Sudoku.Bot.Communication.Sender)">
             <summary>
-            删除指定子频道（仅私域可用）
+            Deletes a channel. <b>The method can only be used for the private domain.</b>
             </summary>
-            <param name="channel_id">要删除的子频道Id</param>
-            <param name="sender"></param>
-            <returns></returns>
+            <param name="channel_id">The channel you want to delete. <b>The argument cannot be renamed.</b></param>
+            <param name="sender">The sender who sends the message.</param>
+            <returns>
+            A task instance encapsulates the <see cref="T:System.Boolean"/> value indicating
+            whether the deletion operation is successful.
+            </returns>
         </member>
         <member name="M:Sudoku.Bot.Communication.BotClient.GetChannelPermissionsAsync(System.String,System.String,Sudoku.Bot.Communication.Sender)">
             <summary>
