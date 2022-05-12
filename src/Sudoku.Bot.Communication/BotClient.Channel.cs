@@ -3,15 +3,15 @@
 partial class BotClient
 {
 	/// <summary>
-	/// 获取频道详情
+	/// Gets the details for a GUILD.
 	/// </summary>
-	/// <param name="guild_id">频道Id</param>
-	/// <param name="sender"></param>
-	/// <returns>Guild?</returns>
-	public async Task<Guild?> GetGuildAsync(string guild_id, Sender? sender = null)
-	{
-		_ = BotApis.GetGuildDetail is { Path: var path, Method: var method };
-		var response = await HttpSendAsync(path.Replace("{guild_id}", guild_id), method, null, sender);
-		return response == null ? null : await response.Content.ReadFromJsonAsync<Guild?>();
-	}
+	/// <param name="guild_id">The GUILD ID. <b>The argument cannot be renamed.</b></param>
+	/// <param name="sender">The sender who sends the message.</param>
+	/// <returns>A task encapsulates a <see cref="Guild"/> instance as the result value.</returns>
+	public async Task<Guild?> GetGuildAsync(string guild_id, Sender? sender)
+		=> BotApis.GetGuildDetail is { Path: var path, Method: var method }
+		&& path.ReplaceArgument(guild_id) is var replacedPath
+		&& await HttpSendAsync(replacedPath, method, null, sender) is { Content: var responseContent }
+			? await responseContent.ReadFromJsonAsync<Guild?>()
+			: null;
 }

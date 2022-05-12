@@ -589,11 +589,11 @@
         </member>
         <member name="M:Sudoku.Bot.Communication.BotClient.GetGuildAsync(System.String,Sudoku.Bot.Communication.Sender)">
             <summary>
-            获取频道详情
+            Gets the details for a GUILD.
             </summary>
-            <param name="guild_id">频道Id</param>
-            <param name="sender"></param>
-            <returns>Guild?</returns>
+            <param name="guild_id">The GUILD ID. <b>The argument cannot be renamed.</b></param>
+            <param name="sender">The sender who sends the message.</param>
+            <returns>A task encapsulates a <see cref="T:Sudoku.Bot.Communication.Models.Guild"/> instance as the result value.</returns>
         </member>
         <member name="M:Sudoku.Bot.Communication.BotClient.GetRolesAsync(System.String,Sudoku.Bot.Communication.Sender)">
             <summary>
@@ -1049,34 +1049,30 @@
             <param name="sender"></param>
             <returns></returns>
         </member>
-        <member name="M:Sudoku.Bot.Communication.BotClient.MuteGuildAsync(System.String,Sudoku.Bot.Communication.Models.Interaction.JinxTimeSpan,Sudoku.Bot.Communication.Sender)">
+        <member name="M:Sudoku.Bot.Communication.BotClient.JinxGuildAsync(System.String,Sudoku.Bot.Communication.Models.Interaction.JinxTimeSpan,Sudoku.Bot.Communication.Sender)">
             <summary>
-            频道全局禁言
-            <para>
-            muteTime - 禁言时间：<br/>
-            mute_end_timestamp 禁言到期时间戳，绝对时间戳，单位：秒<br/>
-            mute_seconds 禁言多少秒
-            </para>
+            Jinxes the specified GUILD, to make all members in this GUILD be mute.
             </summary>
-            <param name="guild_id">频道Id</param>
-            <param name="muteTime">禁言模式</param>
-            <param name="sender"></param>
-            <returns></returns>
+            <param name="guild_id">The GUILD ID. <b>The argument cannot be renamed.</b></param>
+            <param name="muteTimeSpan">Indicates the time span that describes the time duration of the jinx operation.</param>
+            <param name="sender">The sender who sends the message.</param>
+            <returns>
+            A task instance encapsulates the <see cref="T:System.Boolean"/> value indicating whether the operation is successful,
+            as the result value.
+            </returns>
         </member>
-        <member name="M:Sudoku.Bot.Communication.BotClient.MuteMemberAsync(System.String,System.String,Sudoku.Bot.Communication.Models.Interaction.JinxTimeSpan,Sudoku.Bot.Communication.Sender)">
+        <member name="M:Sudoku.Bot.Communication.BotClient.JinxMemberAsync(System.String,System.String,Sudoku.Bot.Communication.Models.Interaction.JinxTimeSpan,Sudoku.Bot.Communication.Sender)">
             <summary>
-            频道指定成员禁言
-            <para>
-            muteTime - 禁言时间：<br/>
-            mute_end_timestamp 禁言到期时间戳，绝对时间戳，单位：秒<br/>
-            mute_seconds 禁言多少秒
-            </para>
+            Jinxes the specified member in the specified GUILD.
             </summary>
-            <param name="guild_id">频道Id</param>
-            <param name="user_id">成员Id</param>
-            <param name="muteTime">禁言时间</param>
-            <param name="sender"></param>
-            <returns></returns>
+            <param name="guild_id">The GUILD ID. <b>The argument cannot be renamed.</b></param>
+            <param name="user_id">The user ID. <b>The argument cannot be renamed.</b></param>
+            <param name="muteTimeSpan">Indicates the time span that describes the time duration of the jinx operation.</param>
+            <param name="sender">The sender who sends the message.</param>
+            <returns>
+            A task instance encapsulates the <see cref="T:System.Boolean"/> value indicating whether the operation is successful,
+            as the result value.
+            </returns>
         </member>
         <member name="M:Sudoku.Bot.Communication.BotClient.GetGuildMembersAsync(System.String,System.Int32,System.String,Sudoku.Bot.Communication.Sender)">
             <summary>
