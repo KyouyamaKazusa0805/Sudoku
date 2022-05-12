@@ -52,4 +52,31 @@ public static class StringExtensions
 	/// <returns>The string value after replaced.</returns>
 	public static string Replace(this string @this, string oldValue, string newValue = "", bool ignoreCase = false)
 		=> @this.ReplaceStart(oldValue, newValue, ignoreCase).ReplaceEnd(oldValue, newValue, ignoreCase);
+
+	/// <summary>
+	/// <para>
+	/// Treats the string value as the API path, and replace the variant arguments
+	/// (surrounded by a pair of curly brackets) with the specified one.
+	/// </para>
+	/// <para>
+	/// For example, if the path is <c>"POST /channels/{channel_id}/audio"</c>
+	/// and the argument <paramref name="replaceExpression"/> is <c>"3000"</c>,
+	/// the final result string will be <c>"POST /channels/3000/audio"</c>.
+	/// </para>
+	/// </summary>
+	/// <param name="this">The path.</param>
+	/// <param name="replaceExpression">The expression you want to replace with.</param>
+	/// <param name="argumentExpression">
+	/// <para>The original argument expression.</para>
+	/// <para>
+	/// You shouldn't use this argument to assign any values. In contrast, the argument is OK
+	/// for just keeping with <see langword="null"/> value.
+	/// </para>
+	/// </param>
+	/// <returns>The replaced value.</returns>
+	internal static string ReplaceArgument(
+		this string @this,
+		string replaceExpression,
+		[CallerArgumentExpression("replaceExpression")] string? argumentExpression = null)
+		=> @this.Replace($"{{{argumentExpression}}}", replaceExpression);
 }
