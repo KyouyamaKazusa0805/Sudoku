@@ -26,7 +26,7 @@ public partial class BotClient
 	/// <param name="identity">The identity instance.</param>
 	/// <param name="sandBoxApi">Indicates whetehr the API is based on sandbox.</param>
 	/// <param name="reportApiError">Indicates whether the client will report errors to foreground.</param>
-	public BotClient(Identity identity, bool sandBoxApi = false, bool reportApiError = false)
+	public BotClient(BotIdentity identity, bool sandBoxApi = false, bool reportApiError = false)
 	{
 		(BotAccessInfo, ApiOrigin, ReportApiError) = (identity, sandBoxApi ? SandboxApi : ReleaseApi, reportApiError);
 
@@ -70,7 +70,7 @@ public partial class BotClient
 	/// You can found those information from
 	/// <see href="https://bot.q.qq.com/#/developer/developer-setting">this link</see>.
 	/// </remarks>
-	public Identity BotAccessInfo { get; set; }
+	public BotIdentity BotAccessInfo { get; set; }
 
 	/// <summary>
 	/// The events that the current connection will be received.
@@ -307,7 +307,7 @@ public partial class BotClient
 			Method = method
 		};
 
-		request.Headers.Authorization = new("Bot", $"{BotAccessInfo.BotAppId}.{BotAccessInfo.BotToken}");
+		request.Headers.Authorization = new("Bot", $"{BotAccessInfo.AppId}.{BotAccessInfo.Token}");
 
 		return await BotHttpClient.SendAsync(request, f);
 

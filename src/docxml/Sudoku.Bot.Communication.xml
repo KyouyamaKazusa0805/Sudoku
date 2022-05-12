@@ -713,7 +713,7 @@
             Indicates the API link that corresponds to the sandbox APIs.
             </summary>
         </member>
-        <member name="M:Sudoku.Bot.Communication.BotClient.#ctor(Sudoku.Bot.Communication.Identity,System.Boolean,System.Boolean)">
+        <member name="M:Sudoku.Bot.Communication.BotClient.#ctor(Sudoku.Bot.Communication.BotIdentity,System.Boolean,System.Boolean)">
             <summary>
             Initializes a <see cref="T:Sudoku.Bot.Communication.BotClient"/> instance via the identity instance and two <see cref="T:System.Boolean"/>
             values indicating whether the API is based on sandbox, and whether the client will report errors on APIs
@@ -1482,6 +1482,31 @@
             <param name="content">请求内容</param>
             <returns></returns>
         </member>
+        <member name="T:Sudoku.Bot.Communication.BotIdentity">
+            <summary>
+            The identity instance.
+            </summary>
+            <param name="AppId">The ID of the bot. The value corresponds to the AppID.</param>
+            <param name="Token">The token of the bot.</param>
+            <param name="Secret">The secret key of the bot.</param>
+        </member>
+        <member name="M:Sudoku.Bot.Communication.BotIdentity.#ctor(System.String,System.String,System.String)">
+            <summary>
+            The identity instance.
+            </summary>
+            <param name="AppId">The ID of the bot. The value corresponds to the AppID.</param>
+            <param name="Token">The token of the bot.</param>
+            <param name="Secret">The secret key of the bot.</param>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.BotIdentity.AppId">
+            <summary>The ID of the bot. The value corresponds to the AppID.</summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.BotIdentity.Token">
+            <summary>The token of the bot.</summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.BotIdentity.Secret">
+            <summary>The secret key of the bot.</summary>
+        </member>
         <member name="T:Sudoku.Bot.Communication.Command">
             <summary>
             指令对象
@@ -1573,26 +1598,6 @@
             <param name="request"></param>
             <param name="cancellationToken"></param>
             <returns></returns>
-        </member>
-        <member name="T:Sudoku.Bot.Communication.Identity">
-            <summary>
-            The identity instance.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Bot.Communication.Identity.BotAppId">
-            <summary>
-            The ID of the bot. The value corresponds to the AppID.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Bot.Communication.Identity.BotToken">
-            <summary>
-            The token of the bot.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Bot.Communication.Identity.BotSecret">
-            <summary>
-            The secret key of the bot.
-            </summary>
         </member>
         <member name="T:Sudoku.Bot.Communication.Intent">
             <summary>

@@ -89,7 +89,7 @@ partial class BotClient
 			op = Opcode.Identify,
 			d = new
 			{
-				token = $"Bot {BotAccessInfo.BotAppId}.{BotAccessInfo.BotToken}",
+				token = $"Bot {BotAccessInfo.AppId}.{BotAccessInfo.Token}",
 				intents = Intents.GetHashCode(),
 				shared = new[] { ShardId % (GateLimit?.Shards ?? 1), GateLimit?.Shards ?? 1 }
 			}
@@ -131,7 +131,7 @@ partial class BotClient
 				op = Opcode.Resume,
 				d = new
 				{
-					token = $"Bot {BotAccessInfo.BotAppId}.{BotAccessInfo.BotToken}",
+					token = $"Bot {BotAccessInfo.AppId}.{BotAccessInfo.Token}",
 					session_id = WebSoketSessionId,
 					seq = WebSocketLastSeq
 				}

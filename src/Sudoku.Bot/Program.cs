@@ -102,8 +102,8 @@
 	/// </summary>
 	/// <param name="localFilePath">The local path storing the configuration of the bot.</param>
 	/// <param name="testChannelId">Indicates the test channel ID used.</param>
-	/// <returns>The <see cref="Identity"/> instance.</returns>
-	private static Identity LoadBotConfiguration(string localFilePath, out string testChannelId)
+	/// <returns>The <see cref="BotIdentity"/> instance.</returns>
+	private static BotIdentity LoadBotConfiguration(string localFilePath, out string testChannelId)
 	{
 		Unsafe.SkipInit(out testChannelId);
 
@@ -118,14 +118,14 @@
 			string realValue = element.Value.ToString();
 			_ = element.Name switch
 			{
-				"appid" => appid = realValue,
-				"token" => token = realValue,
-				"secret" => secret = realValue,
-				"testChannelId" => testChannelId = realValue,
+				nameof(appid) => appid = realValue,
+				nameof(token) => token = realValue,
+				nameof(secret) => secret = realValue,
+				nameof(testChannelId) => testChannelId = realValue,
 				_ => default
 			};
 		}
 
-		return new() { BotAppId = appid, BotToken = token, BotSecret = secret };
+		return new(appid, token, secret);
 	}
 }
