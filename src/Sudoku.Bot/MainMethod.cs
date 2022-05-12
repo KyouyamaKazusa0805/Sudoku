@@ -296,7 +296,7 @@ static async void printRankResultAsync(Sender sender, string message)
 		await sender.ReplyAsync(StringResource.Get("RankExpFailed_NoConfigFileFound")!);
 	}
 
-	var rankingPairs =
+	var rankingPairs = (
 		from filePath in filePaths
 		let jsonString = File.ReadAllText(filePath)
 		let rootElement = JsonSerializer.Deserialize<JsonElement>(jsonString)
@@ -309,12 +309,15 @@ static async void printRankResultAsync(Sender sender, string message)
 		).FirstOrDefault()
 		let id = Path.GetFileNameWithoutExtension(filePath)
 		orderby exp descending, id
-		select (Id: id, ExperiencePoint: exp);
+		select (Id: id, ExperiencePoint: exp)
+	).ToArray();
 
-	int rankingOrder = 1;
+	(string Id, int ExperiencePoint)? pair = null;
 	var sb = new StringBuilder();
-	foreach (var (id, exp) in rankingPairs)
+	for (int rankingOrder = 0, i = 0, rankingPairsLength = rankingPairs.Length; i < rankingPairsLength; i++)
 	{
+		var (id, exp) = rankingPairs[i];
+
 		var member = await sender.GetMemberAsync(new() { Id = id });
 		string nickname = member?.Nickname ?? $"<{id}>";
 		string expText = StringResource.Get("ExperiencePointText")!;
@@ -322,9 +325,13 @@ static async void printRankResultAsync(Sender sender, string message)
 		string colon = StringResource.Get("Colon")!;
 		string di = StringResource.Get("Di")!;
 		string ming = StringResource.Get("Ming")!;
-		sb.AppendLine($"{di} {rankingOrder} {ming}{colon}{nickname}{comma}{exp} {expText}");
 
-		rankingOrder++;
+		// Special case: if the current user has a same experience point value with the former one,
+		// we should treat him/her as same ranking value as the former one.
+		int finalRankingOrder = pair is (_, var formerExp) && formerExp == exp ? rankingOrder : ++rankingOrder;
+		sb.AppendLine($"{di} {finalRankingOrder} {ming}{colon}{nickname}{comma}{exp} {expText}");
+
+		pair = (id, exp);
 	}
 
 	await sender.ReplyAsync(
