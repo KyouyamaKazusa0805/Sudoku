@@ -92,6 +92,7 @@ namespace Sudoku.Bot.Communication.Resources {
         /// <summary>
         ///   Looks up a localized string similar to 玩法：请通过艾特本机器人，并带上斜杠符号。支持的指令有：
         ///💡 /签到（测试功能）：允许玩家每日参与一次签到。
+        ///💡 /排名（测试功能）：对玩家的经验值获得情况进行排名。
         ///💡 /关于：提示程序介绍文字相关内容（即本消息）。
         ///💡 /复读：把你发的消息复读一次。.
         /// </summary>
@@ -111,7 +112,7 @@ namespace Sudoku.Bot.Communication.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 连接服务器成功！请尝试使用 Ctrl + C 组合按键来终止程序运行。.
+        ///   Looks up a localized string similar to 连接服务器成功！请使用 Ctrl + C 组合按键来终止程序运行。.
         /// </summary>
         internal static string BotConnectedCallbackOutput_Success {
             get {
@@ -222,8 +223,7 @@ namespace Sudoku.Bot.Communication.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 签到失败。原因：
-        ///本地记录的数据里，你签到的上一回时间就是今天。不能在同一天签到多次。.
+        ///   Looks up a localized string similar to 签到失败。原因：不能在同一天签到多次。.
         /// </summary>
         internal static string ClockInWarning_CannotClockInInSameDay {
             get {
@@ -237,6 +237,15 @@ namespace Sudoku.Bot.Communication.Resources {
         internal static string Colon {
             get {
                 return ResourceManager.GetString("Colon", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ，.
+        /// </summary>
+        internal static string Comma {
+            get {
+                return ResourceManager.GetString("Comma", resourceCulture);
             }
         }
         
@@ -255,6 +264,15 @@ namespace Sudoku.Bot.Communication.Resources {
         internal static string Command_ClockIn {
             get {
                 return ResourceManager.GetString("Command_ClockIn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 排名.
+        /// </summary>
+        internal static string Command_Rank {
+            get {
+                return ResourceManager.GetString("Command_Rank", resourceCulture);
             }
         }
         
@@ -385,11 +403,29 @@ namespace Sudoku.Bot.Communication.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 第.
+        /// </summary>
+        internal static string Di {
+            get {
+                return ResourceManager.GetString("Di", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to ❌.
         /// </summary>
         internal static string Emoji_Cross {
             get {
                 return ResourceManager.GetString("Emoji_Cross", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 经验值.
+        /// </summary>
+        internal static string ExperiencePointText {
+            get {
+                return ResourceManager.GetString("ExperiencePointText", resourceCulture);
             }
         }
         
@@ -538,6 +574,15 @@ namespace Sudoku.Bot.Communication.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 名.
+        /// </summary>
+        internal static string Ming {
+            get {
+                return ResourceManager.GetString("Ming", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 管理员.
         /// </summary>
         internal static string Name_Administrator {
@@ -588,6 +633,24 @@ namespace Sudoku.Bot.Communication.Resources {
         internal static string PublicDomainBotSuffix {
             get {
                 return ResourceManager.GetString("PublicDomainBotSuffix", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 本地路径尚未存储任何用户的数据，无法排名。.
+        /// </summary>
+        internal static string RankExpFailed_NoConfigFileFound {
+            get {
+                return ResourceManager.GetString("RankExpFailed_NoConfigFileFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 我们来看一下经验值排名吧！.
+        /// </summary>
+        internal static string RankExpSuccessful_Segment1 {
+            get {
+                return ResourceManager.GetString("RankExpSuccessful_Segment1", resourceCulture);
             }
         }
         

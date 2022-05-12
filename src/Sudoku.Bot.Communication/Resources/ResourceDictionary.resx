@@ -125,6 +125,7 @@
   <data name="AboutInfo_Segment2" xml:space="preserve">
     <value>玩法：请通过艾特本机器人，并带上斜杠符号。支持的指令有：
 💡 /签到（测试功能）：允许玩家每日参与一次签到。
+💡 /排名（测试功能）：对玩家的经验值获得情况进行排名。
 💡 /关于：提示程序介绍文字相关内容（即本消息）。
 💡 /复读：把你发的消息复读一次。</value>
   </data>
@@ -132,7 +133,7 @@
     <value>连接服务器失败，重试次数已经用光。请重新调试代码，联系 QQ 客服以尽快定位错误发生以及 bug 触发情况。</value>
   </data>
   <data name="BotConnectedCallbackOutput_Success" xml:space="preserve">
-    <value>连接服务器成功！请尝试使用 Ctrl + C 组合按键来终止程序运行。</value>
+    <value>连接服务器成功！请使用 Ctrl + C 组合按键来终止程序运行。</value>
   </data>
   <data name="ClockInError_DateStringIsNull" xml:space="preserve">
     <value>签到失败。原因：
@@ -171,17 +172,22 @@
     <value>经验值~</value>
   </data>
   <data name="ClockInWarning_CannotClockInInSameDay" xml:space="preserve">
-    <value>签到失败。原因：
-本地记录的数据里，你签到的上一回时间就是今天。不能在同一天签到多次。</value>
+    <value>签到失败。原因：不能在同一天签到多次。</value>
   </data>
   <data name="Colon" xml:space="preserve">
     <value>：</value>
+  </data>
+  <data name="Comma" xml:space="preserve">
+    <value>，</value>
   </data>
   <data name="Command_About" xml:space="preserve">
     <value>关于</value>
   </data>
   <data name="Command_ClockIn" xml:space="preserve">
     <value>签到</value>
+  </data>
+  <data name="Command_Rank" xml:space="preserve">
+    <value>排名</value>
   </data>
   <data name="Command_Repeat" xml:space="preserve">
     <value>复读</value>
@@ -225,8 +231,14 @@
   <data name="DefaultScheduleName" xml:space="preserve">
     <value>新建日程</value>
   </data>
+  <data name="Di" xml:space="preserve">
+    <value>第</value>
+  </data>
   <data name="Emoji_Cross" xml:space="preserve">
     <value>❌</value>
+  </data>
+  <data name="ExperiencePointText" xml:space="preserve">
+    <value>经验值</value>
   </data>
   <data name="JinxTimeCountdownPattern" xml:space="preserve">
     <value>(\d+)\s*(年|星期|周|日|天|小?时|分钟?|秒钟?)</value>
@@ -276,6 +288,9 @@
   <data name="LogHeader_InterfaceAccessFailed" xml:space="preserve">
     <value>接口访问失败</value>
   </data>
+  <data name="Ming" xml:space="preserve">
+    <value>名</value>
+  </data>
   <data name="Name_Administrator" xml:space="preserve">
     <value>管理员</value>
   </data>
@@ -293,6 +308,12 @@
   </data>
   <data name="PublicDomainBotSuffix" xml:space="preserve">
     <value>公域机器人</value>
+  </data>
+  <data name="RankExpFailed_NoConfigFileFound" xml:space="preserve">
+    <value>本地路径尚未存储任何用户的数据，无法排名。</value>
+  </data>
+  <data name="RankExpSuccessful_Segment1" xml:space="preserve">
+    <value>我们来看一下经验值排名吧！</value>
   </data>
   <data name="SdkVersionName" xml:space="preserve">
     <value>SDK 版本</value>

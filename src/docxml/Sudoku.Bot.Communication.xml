@@ -3940,6 +3940,7 @@
              <summary>
                Looks up a localized string similar to 玩法：请通过艾特本机器人，并带上斜杠符号。支持的指令有：
             💡 /签到（测试功能）：允许玩家每日参与一次签到。
+            💡 /排名（测试功能）：对玩家的经验值获得情况进行排名。
             💡 /关于：提示程序介绍文字相关内容（即本消息）。
             💡 /复读：把你发的消息复读一次。.
              </summary>
@@ -3951,7 +3952,7 @@
         </member>
         <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.BotConnectedCallbackOutput_Success">
             <summary>
-              Looks up a localized string similar to 连接服务器成功！请尝试使用 Ctrl + C 组合按键来终止程序运行。.
+              Looks up a localized string similar to 连接服务器成功！请使用 Ctrl + C 组合按键来终止程序运行。.
             </summary>
         </member>
         <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.ClockInError_DateStringIsNull">
@@ -4013,14 +4014,18 @@
             </summary>
         </member>
         <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.ClockInWarning_CannotClockInInSameDay">
-             <summary>
-               Looks up a localized string similar to 签到失败。原因：
-            本地记录的数据里，你签到的上一回时间就是今天。不能在同一天签到多次。.
-             </summary>
+            <summary>
+              Looks up a localized string similar to 签到失败。原因：不能在同一天签到多次。.
+            </summary>
         </member>
         <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.Colon">
             <summary>
               Looks up a localized string similar to ：.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.Comma">
+            <summary>
+              Looks up a localized string similar to ，.
             </summary>
         </member>
         <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.Command_About">
@@ -4031,6 +4036,11 @@
         <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.Command_ClockIn">
             <summary>
               Looks up a localized string similar to 签到.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.Command_Rank">
+            <summary>
+              Looks up a localized string similar to 排名.
             </summary>
         </member>
         <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.Command_Repeat">
@@ -4103,9 +4113,19 @@
               Looks up a localized string similar to 新建日程.
             </summary>
         </member>
+        <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.Di">
+            <summary>
+              Looks up a localized string similar to 第.
+            </summary>
+        </member>
         <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.Emoji_Cross">
             <summary>
               Looks up a localized string similar to ❌.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.ExperiencePointText">
+            <summary>
+              Looks up a localized string similar to 经验值.
             </summary>
         </member>
         <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.JinxTimeCountdownPattern">
@@ -4188,6 +4208,11 @@
               Looks up a localized string similar to 接口访问失败.
             </summary>
         </member>
+        <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.Ming">
+            <summary>
+              Looks up a localized string similar to 名.
+            </summary>
+        </member>
         <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.Name_Administrator">
             <summary>
               Looks up a localized string similar to 管理员.
@@ -4216,6 +4241,16 @@
         <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.PublicDomainBotSuffix">
             <summary>
               Looks up a localized string similar to 公域机器人.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.RankExpFailed_NoConfigFileFound">
+            <summary>
+              Looks up a localized string similar to 本地路径尚未存储任何用户的数据，无法排名。.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.RankExpSuccessful_Segment1">
+            <summary>
+              Looks up a localized string similar to 我们来看一下经验值排名吧！.
             </summary>
         </member>
         <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.SdkVersionName">

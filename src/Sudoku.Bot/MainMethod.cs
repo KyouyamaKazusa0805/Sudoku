@@ -72,6 +72,21 @@ static async void onMessageCreated(BotClient? _, MessageCreatedEventArgs e)
 
 static void initializeCommands(BotClient bot)
 {
+	// Clock in.
+	// e.g. User sends the message:
+	//     @bot /clockIn
+	bot.AddCommand(new(StringResource.Get("Command_ClockIn")!, clockInAsync));
+
+	// Rank the experience point.
+	// e.g. User sends the message:
+	//     @bot /rank
+	bot.AddCommand(new(StringResource.Get("Command_Rank")!, printRankResultAsync));
+
+	// Prints the information about the author of the bot, and the bot itself.
+	// e.g. User sends the message:
+	//     @bot /about
+	bot.AddCommand(new(StringResource.Get("Command_About")!, printAboutInfoAsync));
+
 	// Repeats the message.
 	// e.g. User sends the message:
 	//     @bot /repeat 123
@@ -79,16 +94,6 @@ static void initializeCommands(BotClient bot)
 	//     @user 123
 	// Empty content won't be repeated by bot.
 	bot.AddCommand(new(StringResource.Get("Command_Repeat")!, repeatAsync));
-
-	// Prints the information about the author of the bot, and the bot itself.
-	// e.g. User sends the message:
-	//     @bot /about
-	bot.AddCommand(new(StringResource.Get("Command_About")!, printAboutInfoAsync));
-
-	// Clock in.
-	// e.g. User sends the message:
-	//     @bot /clockIn
-	bot.AddCommand(new(StringResource.Get("Command_ClockIn")!, clockInAsync));
 }
 
 static async void repeatAsync(Sender sender, string message)
@@ -264,6 +269,71 @@ static async void clockInAsync(Sender sender, string message)
 		string b = StringResource.Get("ClockInSuccess_FileCreatedSegment2")!;
 		await sender.ReplyAsync($"{a} {extraExp} {b}", true);
 	}
+}
+
+static async void printRankResultAsync(Sender sender, string message)
+{
+	if (sender is not { Author.Id: var userId, AtMe: true })
+	{
+		return;
+	}
+
+	if (StringResource.Get("__LocalPlayerConfigPath") is not { } path)
+	{
+		// The configuration path is not found.
+		await sender.ReplyAsync(StringResource.Get("ClockInError_ResourceNotFound")!);
+		return;
+	}
+
+	string[] filePaths = (
+		from fileInfo in new DirectoryInfo(path).GetFiles()
+		where fileInfo.Extension == ".json"
+		select fileInfo.FullName
+	).ToArray();
+	if (filePaths.Length == 0)
+	{
+		// No configuration files found.
+		await sender.ReplyAsync(StringResource.Get("RankExpFailed_NoConfigFileFound")!);
+	}
+
+	var rankingPairs =
+		from filePath in filePaths
+		let jsonString = File.ReadAllText(filePath)
+		let rootElement = JsonSerializer.Deserialize<JsonElement>(jsonString)
+		let exp = (
+			from jsonElement in rootElement.EnumerateObject()
+			where jsonElement.Name == ConfigurationPaths.ExperiencePoint
+			let expStr = jsonElement.Value.ToString()
+			where int.TryParse(expStr, out _)
+			select int.Parse(expStr)
+		).FirstOrDefault()
+		let id = Path.GetFileNameWithoutExtension(filePath)
+		orderby exp descending, id
+		select (Id: id, ExperiencePoint: exp);
+
+	int rankingOrder = 1;
+	var sb = new StringBuilder();
+	foreach (var (id, exp) in rankingPairs)
+	{
+		var member = await sender.GetMemberAsync(new() { Id = id });
+		string nickname = member?.Nickname ?? $"<{id}>";
+		string expText = StringResource.Get("ExperiencePointText")!;
+		string comma = StringResource.Get("Comma")!;
+		string colon = StringResource.Get("Colon")!;
+		string di = StringResource.Get("Di")!;
+		string ming = StringResource.Get("Ming")!;
+		sb.AppendLine($"{di} {rankingOrder} {ming}{colon}{nickname}{comma}{exp} {expText}");
+
+		rankingOrder++;
+	}
+
+	await sender.ReplyAsync(
+		$"""
+		{StringResource.Get("RankExpSuccessful_Segment1")!}
+		---
+		{sb}
+		"""
+	);
 }
 
 static Identity loadBotConfiguration(string localFilePath, out string testChannelId)
