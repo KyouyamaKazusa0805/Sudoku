@@ -587,81 +587,85 @@
             after being <see langword="await"/>ed.
             </returns>
         </member>
-        <member name="M:Sudoku.Bot.Communication.BotClient.GetGuildAsync(System.String,Sudoku.Bot.Communication.Sender)">
+        <member name="M:Sudoku.Bot.Communication.BotClient.GetChannelAsync(System.String,Sudoku.Bot.Communication.Sender)">
             <summary>
-            Gets the details for a GUILD.
+            获取子频道详情
             </summary>
-            <param name="guild_id">The GUILD ID. <b>The argument cannot be renamed.</b></param>
-            <param name="sender">The sender who sends the message.</param>
-            <returns>A task encapsulates a <see cref="T:Sudoku.Bot.Communication.Models.Guild"/> instance as the result value.</returns>
+            <param name="channel_id">子频道Id</param>
+            <param name="sender"></param>
+            <returns>Channel?</returns>
         </member>
-        <member name="M:Sudoku.Bot.Communication.BotClient.GetRolesAsync(System.String,Sudoku.Bot.Communication.Sender)">
+        <member name="M:Sudoku.Bot.Communication.BotClient.GetChannelsAsync(System.String,System.Nullable{Sudoku.Bot.Communication.Models.ChannelType},System.Nullable{Sudoku.Bot.Communication.Models.ChannelSubtype},Sudoku.Bot.Communication.Sender)">
             <summary>
-            获取频道身份组列表
+            获取频道下的子频道列表
             </summary>
             <param name="guild_id">频道Id</param>
+            <param name="channelType">筛选子频道类型</param>
+            <param name="channelSubType">筛选子频道子类型</param>
             <param name="sender"></param>
             <returns></returns>
         </member>
-        <member name="M:Sudoku.Bot.Communication.BotClient.CreateRoleAsync(System.String,Sudoku.Bot.Communication.Models.Interaction.Info,Sudoku.Bot.Communication.Models.Interaction.Filter,Sudoku.Bot.Communication.Sender)">
+        <member name="M:Sudoku.Bot.Communication.BotClient.CreateChannelAsync(Sudoku.Bot.Communication.Models.Channel,Sudoku.Bot.Communication.Sender)">
             <summary>
-            创建频道身份组
+            创建子频道（仅私域可用）
             </summary>
-            <param name="guild_id">频道Id</param>
-            <param name="info">携带需要设置的字段内容</param>
-            <param name="filter">标识需要设置哪些字段,若不填则根据Info自动推测</param>
+            <param name="channel">用于创建子频道的对象（需提前填充必要字段）</param>
             <param name="sender"></param>
             <returns></returns>
         </member>
-        <member name="M:Sudoku.Bot.Communication.BotClient.EditRoleAsync(System.String,System.String,Sudoku.Bot.Communication.Models.Interaction.Info,Sudoku.Bot.Communication.Models.Interaction.Filter,Sudoku.Bot.Communication.Sender)">
+        <member name="M:Sudoku.Bot.Communication.BotClient.EditChannelAsync(Sudoku.Bot.Communication.Models.Channel,Sudoku.Bot.Communication.Sender)">
             <summary>
-            修改频道身份组
+            修改子频道（仅私域可用）
             </summary>
-            <param name="guild_id">频道Id</param>
-            <param name="role_id">角色Id</param>
-            <param name="info">携带需要修改的字段内容</param>
-            <param name="filter">标识需要设置哪些字段,若不填则根据Info自动推测</param>
+            <param name="channel">修改属性后的子频道对象</param>
             <param name="sender"></param>
             <returns></returns>
         </member>
-        <member name="M:Sudoku.Bot.Communication.BotClient.DeleteRoleAsync(System.String,System.String,Sudoku.Bot.Communication.Sender)">
+        <member name="M:Sudoku.Bot.Communication.BotClient.DeleteChannelAsync(System.String,Sudoku.Bot.Communication.Sender)">
             <summary>
-            删除频道身份组
-            <para><em>HTTP状态码 204 表示成功</em></para>
+            删除指定子频道（仅私域可用）
             </summary>
-            <param name="guild_id">频道Id</param>
-            <param name="role_id">身份Id</param>
+            <param name="channel_id">要删除的子频道Id</param>
             <param name="sender"></param>
             <returns></returns>
         </member>
-        <member name="M:Sudoku.Bot.Communication.BotClient.AddRoleMemberAsync(System.String,System.String,System.String,System.String,Sudoku.Bot.Communication.Sender)">
+        <member name="M:Sudoku.Bot.Communication.BotClient.GetChannelPermissionsAsync(System.String,System.String,Sudoku.Bot.Communication.Sender)">
             <summary>
-            增加频道身份组成员
-            <para>
-            需要使用的 token 对应的用户具备增加身份组成员权限。如果是机器人，要求被添加为管理员。 <br/>
-            如果要增加的身份组ID是(5-子频道管理员)，需要增加 channel_id 来指定具体是哪个子频道。
-            </para>
+            获取用户在指定子频道的权限
             </summary>
-            <param name="guild_id">频道Id</param>
+            <param name="channel_id">子频道Id</param>
             <param name="user_id">用户Id</param>
-            <param name="role_id">身份组Id</param>
-            <param name="channel_id">子频道Id</param>
             <param name="sender"></param>
             <returns></returns>
         </member>
-        <member name="M:Sudoku.Bot.Communication.BotClient.DeleteRoleMemberAsync(System.String,System.String,System.String,System.String,Sudoku.Bot.Communication.Sender)">
+        <member name="M:Sudoku.Bot.Communication.BotClient.EditChannelPermissionsAsync(System.String,System.String,System.String,System.String,Sudoku.Bot.Communication.Sender)">
             <summary>
-            删除频道身份组成员
-            <para>
-            需要使用的 token 对应的用户具备删除身份组成员权限。如果是机器人，要求被添加为管理员。 <br/>
-            如果要删除的身份组ID是(5-子频道管理员)，需要设置 channel_id 来指定具体是哪个子频道。 <br/>
-            详情查阅 <see href="https://bot.q.qq.com/wiki/develop/api/openapi/guild/delete_guild_member_role.html">QQ机器人文档</see>
-            </para>
+            修改用户在指定子频道的权限
             </summary>
-            <param name="guild_id">频道Id</param>
-            <param name="user_id">要加入身份组的用户Id</param>
-            <param name="role_id">身份组Id</param>
             <param name="channel_id">子频道Id</param>
+            <param name="user_id">用户Id</param>
+            <param name="add">添加的权限</param>
+            <param name="remove">删除的权限</param>
+            <param name="sender"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Sudoku.Bot.Communication.BotClient.GetMemberChannelPermissionsAsync(System.String,System.String,Sudoku.Bot.Communication.Sender)">
+            <summary>
+            获取指定身份组在指定子频道的权限
+            </summary>
+            <param name="channel_id">子频道Id</param>
+            <param name="role_id">身份组Id</param>
+            <param name="sender"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Sudoku.Bot.Communication.BotClient.EditMemberChannelPermissionsAsync(System.String,System.String,System.String,System.String,Sudoku.Bot.Communication.Sender)">
+            <summary>
+            修改指定身份组在指定子频道的权限
+            </summary>
+            <param name="channel_id">子频道Id</param>
+            <param name="role_id">身份组Id</param>
+            <param name="add">添加的权限</param>
+            <param name="remove">删除的权限</param>
             <param name="sender"></param>
             <returns></returns>
         </member>
@@ -679,7 +683,7 @@
             缓存动态注册的消息指令事件
             </summary>
         </member>
-        <member name="M:Sudoku.Bot.Communication.BotClient.AddCommand(Sudoku.Bot.Communication.Command,System.Boolean)">
+        <member name="M:Sudoku.Bot.Communication.BotClient.RegisterCommand(Sudoku.Bot.Communication.Command,System.Boolean)">
             <summary>
             添加消息指令
             <para>
@@ -1027,6 +1031,84 @@
             <param name="sender"></param>
             <returns></returns>
         </member>
+        <member name="M:Sudoku.Bot.Communication.BotClient.GetGuildAsync(System.String,Sudoku.Bot.Communication.Sender)">
+            <summary>
+            Gets the details for a GUILD.
+            </summary>
+            <param name="guild_id">The GUILD ID. <b>The argument cannot be renamed.</b></param>
+            <param name="sender">The sender who sends the message.</param>
+            <returns>A task encapsulates a <see cref="T:Sudoku.Bot.Communication.Models.Guild"/> instance as the result value.</returns>
+        </member>
+        <member name="M:Sudoku.Bot.Communication.BotClient.GetRolesAsync(System.String,Sudoku.Bot.Communication.Sender)">
+            <summary>
+            获取频道身份组列表
+            </summary>
+            <param name="guild_id">频道Id</param>
+            <param name="sender"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Sudoku.Bot.Communication.BotClient.CreateRoleAsync(System.String,Sudoku.Bot.Communication.Models.Interaction.Info,Sudoku.Bot.Communication.Models.Interaction.Filter,Sudoku.Bot.Communication.Sender)">
+            <summary>
+            创建频道身份组
+            </summary>
+            <param name="guild_id">频道Id</param>
+            <param name="info">携带需要设置的字段内容</param>
+            <param name="filter">标识需要设置哪些字段,若不填则根据Info自动推测</param>
+            <param name="sender"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Sudoku.Bot.Communication.BotClient.EditRoleAsync(System.String,System.String,Sudoku.Bot.Communication.Models.Interaction.Info,Sudoku.Bot.Communication.Models.Interaction.Filter,Sudoku.Bot.Communication.Sender)">
+            <summary>
+            修改频道身份组
+            </summary>
+            <param name="guild_id">频道Id</param>
+            <param name="role_id">角色Id</param>
+            <param name="info">携带需要修改的字段内容</param>
+            <param name="filter">标识需要设置哪些字段,若不填则根据Info自动推测</param>
+            <param name="sender"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Sudoku.Bot.Communication.BotClient.DeleteRoleAsync(System.String,System.String,Sudoku.Bot.Communication.Sender)">
+            <summary>
+            删除频道身份组
+            <para><em>HTTP状态码 204 表示成功</em></para>
+            </summary>
+            <param name="guild_id">频道Id</param>
+            <param name="role_id">身份Id</param>
+            <param name="sender"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Sudoku.Bot.Communication.BotClient.AddRoleMemberAsync(System.String,System.String,System.String,System.String,Sudoku.Bot.Communication.Sender)">
+            <summary>
+            增加频道身份组成员
+            <para>
+            需要使用的 token 对应的用户具备增加身份组成员权限。如果是机器人，要求被添加为管理员。 <br/>
+            如果要增加的身份组ID是(5-子频道管理员)，需要增加 channel_id 来指定具体是哪个子频道。
+            </para>
+            </summary>
+            <param name="guild_id">频道Id</param>
+            <param name="user_id">用户Id</param>
+            <param name="role_id">身份组Id</param>
+            <param name="channel_id">子频道Id</param>
+            <param name="sender"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Sudoku.Bot.Communication.BotClient.DeleteRoleMemberAsync(System.String,System.String,System.String,System.String,Sudoku.Bot.Communication.Sender)">
+            <summary>
+            删除频道身份组成员
+            <para>
+            需要使用的 token 对应的用户具备删除身份组成员权限。如果是机器人，要求被添加为管理员。 <br/>
+            如果要删除的身份组ID是(5-子频道管理员)，需要设置 channel_id 来指定具体是哪个子频道。 <br/>
+            详情查阅 <see href="https://bot.q.qq.com/wiki/develop/api/openapi/guild/delete_guild_member_role.html">QQ机器人文档</see>
+            </para>
+            </summary>
+            <param name="guild_id">频道Id</param>
+            <param name="user_id">要加入身份组的用户Id</param>
+            <param name="role_id">身份组Id</param>
+            <param name="channel_id">子频道Id</param>
+            <param name="sender"></param>
+            <returns></returns>
+        </member>
         <member name="M:Sudoku.Bot.Communication.BotClient.GetGuildPermissionsAsync(System.String,Sudoku.Bot.Communication.Sender)">
             <summary>
             获取频道可用权限列表
@@ -1242,88 +1324,6 @@
             <param name="sender"></param>
             <returns>HTTP 状态码 204</returns>
         </member>
-        <member name="M:Sudoku.Bot.Communication.BotClient.GetChannelAsync(System.String,Sudoku.Bot.Communication.Sender)">
-            <summary>
-            获取子频道详情
-            </summary>
-            <param name="channel_id">子频道Id</param>
-            <param name="sender"></param>
-            <returns>Channel?</returns>
-        </member>
-        <member name="M:Sudoku.Bot.Communication.BotClient.GetChannelsAsync(System.String,System.Nullable{Sudoku.Bot.Communication.Models.ChannelType},System.Nullable{Sudoku.Bot.Communication.Models.ChannelSubtype},Sudoku.Bot.Communication.Sender)">
-            <summary>
-            获取频道下的子频道列表
-            </summary>
-            <param name="guild_id">频道Id</param>
-            <param name="channelType">筛选子频道类型</param>
-            <param name="channelSubType">筛选子频道子类型</param>
-            <param name="sender"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Sudoku.Bot.Communication.BotClient.CreateChannelAsync(Sudoku.Bot.Communication.Models.Channel,Sudoku.Bot.Communication.Sender)">
-            <summary>
-            创建子频道（仅私域可用）
-            </summary>
-            <param name="channel">用于创建子频道的对象（需提前填充必要字段）</param>
-            <param name="sender"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Sudoku.Bot.Communication.BotClient.EditChannelAsync(Sudoku.Bot.Communication.Models.Channel,Sudoku.Bot.Communication.Sender)">
-            <summary>
-            修改子频道（仅私域可用）
-            </summary>
-            <param name="channel">修改属性后的子频道对象</param>
-            <param name="sender"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Sudoku.Bot.Communication.BotClient.DeleteChannelAsync(System.String,Sudoku.Bot.Communication.Sender)">
-            <summary>
-            删除指定子频道（仅私域可用）
-            </summary>
-            <param name="channel_id">要删除的子频道Id</param>
-            <param name="sender"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Sudoku.Bot.Communication.BotClient.GetChannelPermissionsAsync(System.String,System.String,Sudoku.Bot.Communication.Sender)">
-            <summary>
-            获取用户在指定子频道的权限
-            </summary>
-            <param name="channel_id">子频道Id</param>
-            <param name="user_id">用户Id</param>
-            <param name="sender"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Sudoku.Bot.Communication.BotClient.EditChannelPermissionsAsync(System.String,System.String,System.String,System.String,Sudoku.Bot.Communication.Sender)">
-            <summary>
-            修改用户在指定子频道的权限
-            </summary>
-            <param name="channel_id">子频道Id</param>
-            <param name="user_id">用户Id</param>
-            <param name="add">添加的权限</param>
-            <param name="remove">删除的权限</param>
-            <param name="sender"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Sudoku.Bot.Communication.BotClient.GetMemberChannelPermissionsAsync(System.String,System.String,Sudoku.Bot.Communication.Sender)">
-            <summary>
-            获取指定身份组在指定子频道的权限
-            </summary>
-            <param name="channel_id">子频道Id</param>
-            <param name="role_id">身份组Id</param>
-            <param name="sender"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Sudoku.Bot.Communication.BotClient.EditMemberChannelPermissionsAsync(System.String,System.String,System.String,System.String,Sudoku.Bot.Communication.Sender)">
-            <summary>
-            修改指定身份组在指定子频道的权限
-            </summary>
-            <param name="channel_id">子频道Id</param>
-            <param name="role_id">身份组Id</param>
-            <param name="add">添加的权限</param>
-            <param name="remove">删除的权限</param>
-            <param name="sender"></param>
-            <returns></returns>
-        </member>
         <member name="M:Sudoku.Bot.Communication.BotClient.GetMeAsync(Sudoku.Bot.Communication.Sender)">
             <summary>
             获取当前用户(机器人)信息
@@ -1505,56 +1505,119 @@
         </member>
         <member name="T:Sudoku.Bot.Communication.Command">
             <summary>
-            指令对象
-            <para>提前封装的指令类，用于方便的处理指令</para>
+            Defines a command that is used for the handling by a bot.
+            The type is an abstraction on bot operation.
             </summary>
-        </member>
-        <member name="M:Sudoku.Bot.Communication.Command.#ctor(System.String,System.Action{Sudoku.Bot.Communication.Sender,System.String},System.Text.RegularExpressions.Regex,System.Boolean,System.String)">
-            <summary>
-            构造指令对象
+            <param name="Name">Indicates the name of the command.</param>
+            <param name="Callback">
+            Indicates the callback function to handle the message around this commmand.
+            For example:
+            <code><![CDATA[
+            // A lambda that repeats the message asynchronously.
+            async (sender, message) =>
+            {
+                if (!string.IsNullOrWritespace(message))
+                    await sender.ReplyAsync(message);
+            }
+            ]]></code>
+            </param>
+            <param name="Rule">Indicates the message matching rule.</param>
+            <param name="RequiresAdministratorPermission">
+            <para>Indicates whether the command requires administrators using it.</para>
+            <para>The default value is <see langword="false"/>.</para>
+            </param>
+            <param name="Tag">
             <para>
-            匹配指令将调用 Rule 属性进行正则匹配<br/>
-            若rule未赋值，默认为 "^name(?=\s|\n|&lt;@!\d+&gt;|$)"
+            Indicates the extra information to describes the command.
+            The property is an extra value that won't be used by the framework
+            but helpful for you to define your extra rules for the handling.
             </para>
+            <para>The default value is <see langword="null"/>.</para>
+            </param>
+        </member>
+        <member name="M:Sudoku.Bot.Communication.Command.#ctor(System.String,Sudoku.Bot.Communication.CommandCallback,System.Text.RegularExpressions.Regex,System.Boolean,System.Object)">
+            <summary>
+            Defines a command that is used for the handling by a bot.
+            The type is an abstraction on bot operation.
             </summary>
-            <param name="name">指令名称</param>
-            <param name="callBack">回调函数</param>
-            <param name="rule">匹配指令用的正则表达式<para>默认值：Regex("^name(?=\s|\n|&lt;@!\d+&gt;|$)")</para></param>
-            <param name="needAdmin">需要管理员权限</param>
-            <param name="note">备注,用户自定义属性功能用途</param>
+            <param name="Name">Indicates the name of the command.</param>
+            <param name="Callback">
+            Indicates the callback function to handle the message around this commmand.
+            For example:
+            <code><![CDATA[
+            // A lambda that repeats the message asynchronously.
+            async (sender, message) =>
+            {
+                if (!string.IsNullOrWritespace(message))
+                    await sender.ReplyAsync(message);
+            }
+            ]]></code>
+            </param>
+            <param name="Rule">Indicates the message matching rule.</param>
+            <param name="RequiresAdministratorPermission">
+            <para>Indicates whether the command requires administrators using it.</para>
+            <para>The default value is <see langword="false"/>.</para>
+            </param>
+            <param name="Tag">
+            <para>
+            Indicates the extra information to describes the command.
+            The property is an extra value that won't be used by the framework
+            but helpful for you to define your extra rules for the handling.
+            </para>
+            <para>The default value is <see langword="null"/>.</para>
+            </param>
         </member>
         <member name="P:Sudoku.Bot.Communication.Command.Name">
-            <summary>
-            指令名称
-            </summary>
+            <summary>Indicates the name of the command.</summary>
         </member>
-        <member name="P:Sudoku.Bot.Communication.Command.CallBack">
+        <member name="P:Sudoku.Bot.Communication.Command.Callback">
             <summary>
-            指令命中后的回调函数
-            <para>例：(sender, args)=>{}</para>
-            </summary>
-        </member>
-        <member name="P:Sudoku.Bot.Communication.Command.CompiledRule">
-            <summary>
-            编译为程序集的正则表达式（可加快正则匹配速度）
+            Indicates the callback function to handle the message around this commmand.
+            For example:
+            <code><![CDATA[
+            // A lambda that repeats the message asynchronously.
+            async (sender, message) =>
+            {
+                if (!string.IsNullOrWritespace(message))
+                    await sender.ReplyAsync(message);
+            }
+            ]]></code>
             </summary>
         </member>
         <member name="P:Sudoku.Bot.Communication.Command.Rule">
+            <summary>Indicates the message matching rule.</summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Command.RequiresAdministratorPermission">
             <summary>
-            匹配规则
+            <para>Indicates whether the command requires administrators using it.</para>
+            <para>The default value is <see langword="false"/>.</para>
             </summary>
         </member>
-        <member name="P:Sudoku.Bot.Communication.Command.NeedAdmin">
+        <member name="P:Sudoku.Bot.Communication.Command.Tag">
             <summary>
-            管理员权限
-            <para>若设定为true，将只有管理员才能触发该指令</para>
+            <para>
+            Indicates the extra information to describes the command.
+            The property is an extra value that won't be used by the framework
+            but helpful for you to define your extra rules for the handling.
+            </para>
+            <para>The default value is <see langword="null"/>.</para>
             </summary>
         </member>
-        <member name="P:Sudoku.Bot.Communication.Command.Note">
+        <member name="M:Sudoku.Bot.Communication.Command.#ctor(System.String,Sudoku.Bot.Communication.CommandCallback)">
             <summary>
-            备注
-            <para>用户自定义属性功能用途</para>
+            Initializes a <see cref="T:Sudoku.Bot.Communication.Command"/> instance with the specified data.
             </summary>
+            <param name="name">
+            Indicates the name of the command. The name should match with the configuration on QQ bot official site.
+            </param>
+            <param name="callback">Indicates the callback method.</param>
+        </member>
+        <member name="T:Sudoku.Bot.Communication.CommandCallback">
+            <summary>
+            Indicates the callback delegate type that is used for handling on a command.
+            </summary>
+            <param name="sender">The sender instance who sends the message.</param>
+            <param name="message">The message content. Here the argument will remove the extra whitespaces.</param>
         </member>
         <member name="T:Sudoku.Bot.Communication.FreezeTime">
             <summary>

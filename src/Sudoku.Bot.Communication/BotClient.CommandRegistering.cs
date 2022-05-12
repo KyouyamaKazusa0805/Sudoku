@@ -27,7 +27,7 @@ partial class BotClient
 	/// <param name="command">指令对象</param>
 	/// <param name="overwrite">指令名称重复的处理办法<para>true:替换, false:忽略</para></param>
 	/// <returns></returns>
-	public BotClient AddCommand(Command command, bool overwrite = false)
+	public BotClient RegisterCommand(Command command, bool overwrite = false)
 	{
 		string cmdName = command.Name;
 		if (Commands.ContainsKey(cmdName))

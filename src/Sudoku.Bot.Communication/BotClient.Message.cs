@@ -203,7 +203,7 @@ partial class BotClient
 
 			content = content.ReplaceStart(cmdMatch.Groups[0].Value).TrimStart();
 			if (
-				cmd.NeedAdmin && !(
+				cmd.RequiresAdministratorPermission && !(
 					message.Member.Roles.Any(static r => "24".Contains(r)) || message.MessageCreator.Id.Equals(GodId)
 				)
 			)
@@ -219,7 +219,7 @@ partial class BotClient
 			}
 			else
 			{
-				cmd.CallBack?.Invoke(sender, content);
+				cmd.Callback(sender, content);
 			}
 
 			state.Break();

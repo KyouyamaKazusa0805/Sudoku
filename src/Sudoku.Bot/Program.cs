@@ -68,25 +68,25 @@
 	}
 
 	/// <summary>
-	/// Initializes the commands.
+	/// Registers the commands to be invoked.
 	/// </summary>
 	/// <param name="bot">The bot instance.</param>
-	private static void InitializeCommands(BotClient bot)
+	private static void RegisterCommands(BotClient bot)
 	{
 		// Clock in.
 		// e.g. User sends the message:
 		//     @bot /clockIn
-		bot.AddCommand(new(StringResource.Get("Command_ClockIn")!, ClockInAsync));
+		bot.RegisterCommand(new(StringResource.Get("Command_ClockIn")!, ClockInAsync));
 
 		// Rank the experience point.
 		// e.g. User sends the message:
 		//     @bot /rank
-		bot.AddCommand(new(StringResource.Get("Command_Rank")!, PrintRankResultAsync));
+		bot.RegisterCommand(new(StringResource.Get("Command_Rank")!, PrintRankResultAsync));
 
 		// Prints the information about the author of the bot, and the bot itself.
 		// e.g. User sends the message:
 		//     @bot /about
-		bot.AddCommand(new(StringResource.Get("Command_About")!, PrintAboutInfoAsync));
+		bot.RegisterCommand(new(StringResource.Get("Command_About")!, PrintAboutInfoAsync));
 
 		// Repeats the message.
 		// e.g. User sends the message:
@@ -94,7 +94,7 @@
 		// Then the bot will reply:
 		//     @user 123
 		// Empty content won't be repeated by bot.
-		bot.AddCommand(new(StringResource.Get("Command_Repeat")!, RepeatAsync));
+		bot.RegisterCommand(new(StringResource.Get("Command_Repeat")!, RepeatAsync));
 	}
 
 	/// <summary>

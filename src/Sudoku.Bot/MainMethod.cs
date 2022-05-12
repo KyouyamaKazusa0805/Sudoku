@@ -17,8 +17,8 @@ var bot = new BotClient(identity, sandBoxApi: true, reportApiError: true)
 // Sets the elementary event handlers.
 InitializeEvents(bot);
 
-// Add commands.
-InitializeCommands(bot);
+// Registers commands.
+RegisterCommands(bot);
 
 // Starts the bot with the specified number of trial times and callback functions.
 bot.StartAsync(3, OnSuccessfullyConnected, OnFailedConnected);
