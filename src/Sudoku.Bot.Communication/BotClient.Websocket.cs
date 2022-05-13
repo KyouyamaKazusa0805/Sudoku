@@ -260,7 +260,7 @@ partial class BotClient
 							case RawMessageTypes.GuildCreated:
 							case RawMessageTypes.GuildUpdated:
 							{
-								guild.APIPermissions = await GetGuildPermissionsAsync(guild.Id);
+								guild.APIPermissions = await GetGuildPermissionsAsync(guild.Id, null);
 								Guilds[guild.Id] = guild;
 
 								break;
@@ -368,7 +368,7 @@ partial class BotClient
 							Log.Info($"[WebSocket][GetGuilds] 获取已加入的频道列表，第 {page:00} 页成功，数量：{guilds.Count}");
 							Parallel.ForEach(guilds, (guild, state, i) =>
 							{
-								guild.APIPermissions = GetGuildPermissionsAsync(guild.Id).Result;
+								guild.APIPermissions = GetGuildPermissionsAsync(guild.Id, null).Result;
 								Guilds[guild.Id] = guild;
 							});
 							guildNext = guilds.Last().Id;

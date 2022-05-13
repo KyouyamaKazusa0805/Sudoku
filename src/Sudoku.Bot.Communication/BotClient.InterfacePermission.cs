@@ -3,43 +3,40 @@
 partial class BotClient
 {
 	/// <summary>
-	/// 获取频道可用权限列表
-	/// <para>
-	/// 获取机器人在频道 guild_id 内可以使用的权限列表
-	/// </para>
+	/// Gets the permissions available in the current GUILD.
 	/// </summary>
-	/// <param name="guild_id">频道Id</param>
-	/// <param name="sender"></param>
-	/// <returns></returns>
-	public async Task<List<ApiPermission>?> GetGuildPermissionsAsync(string guild_id, Sender? sender = null)
-	{
-		_ = BotApis.GetAvailablePermissionsInGuild is { Path: var path, Method: var method };
-		var response = await HttpSendAsync(path.Replace("{guild_id}", guild_id), method, null, sender);
-		var permissions = response is null ? null : await response.Content.ReadFromJsonAsync<ApiPermissions?>();
-		return permissions?.List;
-	}
+	/// <param name="guild_id">The GUILD. <b>The argument cannoe be renamed.</b></param>
+	/// <param name="sender">The sender who sends the message.</param>
+	/// <returns>
+	/// A task instance encapsulates a list of <see cref="ApiPermission"/> instances as the result value.
+	/// </returns>
+	public async Task<List<ApiPermission>?> GetGuildPermissionsAsync(string guild_id, Sender? sender)
+		=> (
+			BotApis.GetAvailablePermissionsInGuild is { Path: var path, Method: var method }
+			&& path.ReplaceArgument(guild_id) is var replacedPath
+			&& await HttpSendAsync(replacedPath, method, null, sender) is { Content: var responseContent }
+				? await responseContent.ReadFromJsonAsync<ApiPermissions?>()
+				: null
+		)?.List;
 
 	/// <summary>
-	/// 创建频道 API 接口权限授权链接
+	/// Creates the API permission authorization link.
 	/// </summary>
-	/// <param name="guild_id">频道Id</param>
-	/// <param name="channel_id">子频道Id</param>
-	/// <param name="api_identify">权限需求标识对象</param>
-	/// <param name="desc">机器人申请对应的 API 接口权限后可以使用功能的描述</param>
-	/// <param name="sender"></param>
-	/// <returns></returns>
+	/// <param name="guild_id">The GUILD. <b>The argument cannot be renamed.</b></param>
+	/// <param name="channel_id">The channel. <b>The argument cannot be renamed.</b></param>
+	/// <param name="api_identify">The API identify. <b>The argument cannot be renamed.</b></param>
+	/// <param name="description">The description for the API demand.</param>
+	/// <param name="sender">The sender who sends the message.</param>
+	/// <returns>
+	/// A task instance that encapsulates the <see cref="ApiPermissionDemand"/> instance as the result value.
+	/// </returns>
 	public async Task<ApiPermissionDemand?> SendPermissionDemandAsync(
 		string guild_id, string channel_id, ApiPermissionDemandIdentify api_identify,
-		string desc = "", Sender? sender = null)
-	{
-		_ = BotApis.CreatePermissionsAuthorizationLinkInGuild is { Path: var path, Method: var method };
-		var response = await HttpSendAsync(
-			path.Replace("{guild_id}", guild_id),
-			method,
-			JsonContent.Create(new { channel_id, api_identify, desc }),
-			sender
-		);
-
-		return response is null ? null : await response.Content.ReadFromJsonAsync<ApiPermissionDemand?>();
-	}
+		string description, Sender? sender)
+		=> BotApis.CreatePermissionsAuthorizationLinkInGuild is { Path: var path, Method: var method }
+		&& path.ReplaceArgument(guild_id) is var replacedPath
+		&& JsonContent.Create(new { channel_id, api_identify, desc = description }) is var jsonContent
+		&& await HttpSendAsync(replacedPath, method, jsonContent, sender) is { Content: var responseContent }
+			? await responseContent.ReadFromJsonAsync<ApiPermissionDemand?>()
+			: null;
 }

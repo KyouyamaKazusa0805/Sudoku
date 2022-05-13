@@ -1132,25 +1132,26 @@
         </member>
         <member name="M:Sudoku.Bot.Communication.BotClient.GetGuildPermissionsAsync(System.String,Sudoku.Bot.Communication.Sender)">
             <summary>
-            获取频道可用权限列表
-            <para>
-            获取机器人在频道 guild_id 内可以使用的权限列表
-            </para>
+            Gets the permissions available in the current GUILD.
             </summary>
-            <param name="guild_id">频道Id</param>
-            <param name="sender"></param>
-            <returns></returns>
+            <param name="guild_id">The GUILD. <b>The argument cannoe be renamed.</b></param>
+            <param name="sender">The sender who sends the message.</param>
+            <returns>
+            A task instance encapsulates a list of <see cref="T:Sudoku.Bot.Communication.Models.ApiPermission"/> instances as the result value.
+            </returns>
         </member>
         <member name="M:Sudoku.Bot.Communication.BotClient.SendPermissionDemandAsync(System.String,System.String,Sudoku.Bot.Communication.Models.ApiPermissionDemandIdentify,System.String,Sudoku.Bot.Communication.Sender)">
             <summary>
-            创建频道 API 接口权限授权链接
+            Creates the API permission authorization link.
             </summary>
-            <param name="guild_id">频道Id</param>
-            <param name="channel_id">子频道Id</param>
-            <param name="api_identify">权限需求标识对象</param>
-            <param name="desc">机器人申请对应的 API 接口权限后可以使用功能的描述</param>
-            <param name="sender"></param>
-            <returns></returns>
+            <param name="guild_id">The GUILD. <b>The argument cannot be renamed.</b></param>
+            <param name="channel_id">The channel. <b>The argument cannot be renamed.</b></param>
+            <param name="api_identify">The API identify. <b>The argument cannot be renamed.</b></param>
+            <param name="description">The description for the API demand.</param>
+            <param name="sender">The sender who sends the message.</param>
+            <returns>
+            A task instance that encapsulates the <see cref="T:Sudoku.Bot.Communication.Models.ApiPermissionDemand"/> instance as the result value.
+            </returns>
         </member>
         <member name="M:Sudoku.Bot.Communication.BotClient.JinxGuildAsync(System.String,Sudoku.Bot.Communication.Models.Interaction.JinxTimeSpan,Sudoku.Bot.Communication.Sender)">
             <summary>
