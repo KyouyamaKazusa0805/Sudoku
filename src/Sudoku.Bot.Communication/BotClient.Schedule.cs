@@ -3,121 +3,97 @@
 partial class BotClient
 {
 	/// <summary>
-	/// 获取频道日程列表
-	/// <para>
-	/// 获取某个日程子频道里中当天的日程列表; <br/>
-	/// 若带了参数 since，则返回结束时间在 since 之后的日程列表; <br/>
-	/// 若未带参数 since，则默认返回当天的日程列表。
-	/// </para>
+	/// Gets the schedules in the specified channel.
 	/// </summary>
-	/// <param name="channel_id">日程子频道Id</param>
-	/// <param name="since">筛选日程开始时间（默认为当日全天）</param>
-	/// <param name="sender"></param>
-	/// <returns>List&lt;Schedule&gt;?</returns>
-	public async Task<List<Schedule>?> GetSchedulesAsync(string channel_id, DateTime? since = null, Sender? sender = null)
-	{
-		_ = BotApis.GetSchedulesInChannel is { Path: var path, Method: var method };
-		string param = since is null ? string.Empty : $"?since={new DateTimeOffset(since.Value).ToUnixTimeMilliseconds()}";
-		var response = await HttpSendAsync(
-			$"{path.Replace("{channel_id}", channel_id)}{param}",
-			method,
-			null,
-			sender
-		);
-
-		return response is null ? null : await response.Content.ReadFromJsonAsync<List<Schedule>?>();
-	}
+	/// <param name="channel_id">The channel. <b>The argument cannot be renamed.</b></param>
+	/// <param name="since">
+	/// Indicates the date time with wich the returned schedules should start.
+	/// If the value is <see langword="null"/>, the method will return all schedules in <see cref="DateTime.Today"/>.
+	/// </param>
+	/// <param name="sender">The sender who sends the message.</param>
+	/// <returns>
+	/// A task instance encapsulates a list of schedules beginning with the specified time, as the result value.
+	/// </returns>
+	public async Task<List<Schedule>?> GetSchedulesAsync(string channel_id, DateTime? since, Sender? sender)
+		=> BotApis.GetSchedulesInChannel is { Path: var path, Method: var method }
+		&& since switch
+		{
+			{ } value => $"?since={new DateTimeOffset(value).ToUnixTimeMilliseconds()}",
+			_ => string.Empty
+		} is var param
+		&& $"{path.ReplaceArgument(channel_id)}{param}" is var replacedPath
+		&& await HttpSendAsync(replacedPath, method, null, sender) is { Content: var responseContent }
+			? await responseContent.ReadFromJsonAsync<List<Schedule>?>()
+			: null;
 
 	/// <summary>
-	/// 获取日程详情
+	/// Gets the details of the specified schedule in the specified channel.
 	/// </summary>
-	/// <param name="channel_id">日程子频道Id</param>
-	/// <param name="schedule_id">日程Id</param>
-	/// <param name="sender"></param>
-	/// <returns>目标 Schedule 对象</returns>
-	public async Task<Schedule?> GetScheduleAsync(string channel_id, string schedule_id, Sender? sender = null)
-	{
-		_ = BotApis.GetScheduleInChannel is { Path: var path, Method: var method };
-		var response = await HttpSendAsync(
-			path.Replace("{channel_id}", channel_id).Replace("{schedule_id}", schedule_id),
-			method,
-			null,
-			sender
-		);
-
-		return response is null ? null : await response.Content.ReadFromJsonAsync<Schedule?>();
-	}
+	/// <param name="channel_id">The channel. <b>The argument cannot be renamed.</b></param>
+	/// <param name="schedule_id">The schedule. <b>The argument cannot be renamed.</b></param>
+	/// <param name="sender">The sender who sends the message.</param>
+	/// <returns>A task instance encapsulates the schedule instance as the result value.</returns>
+	public async Task<Schedule?> GetScheduleAsync(string channel_id, string schedule_id, Sender? sender)
+		=> BotApis.GetScheduleInChannel is { Path: var path, Method: var method }
+		&& path.ReplaceArgument(channel_id).ReplaceArgument(schedule_id) is var replacedPath
+		&& await HttpSendAsync(replacedPath, method, null, sender) is { Content: var responseContent }
+			? await responseContent.ReadFromJsonAsync<Schedule?>()
+			: null;
 
 	/// <summary>
-	/// 创建日程
-	/// <para>
-	/// 要求操作人具有"管理频道"的权限，如果是机器人，则需要将机器人设置为管理员。<br/>
-	/// 创建成功后，返回创建成功的日程对象。<br/>
-	/// 日程开始时间必须大于当前时间。
-	/// </para>
+	/// Creates a schedule instance in the specified channel. The member emitting the message
+	/// must be required with the permission being able to create such schedule.
 	/// </summary>
-	/// <param name="channel_id">日程子频道Id</param>
-	/// <param name="schedule">新的日程对象，不需要带Id</param>
-	/// <param name="sender"></param>
-	/// <returns>新创建的 Schedule 对象</returns>
-	public async Task<Schedule?> CreateScheduleAsync(string channel_id, Schedule schedule, Sender? sender = null)
-	{
-		_ = BotApis.CreateScheduleInChannel is { Path: var path, Method: var method };
-		var response = await HttpSendAsync(
-			path.Replace("{channel_id}", channel_id),
-			method,
-			JsonContent.Create(new { schedule }),
-			sender
-		);
-
-		return response is null ? null : await response.Content.ReadFromJsonAsync<Schedule?>();
-	}
+	/// <param name="channel_id">The channel. <b>The argument cannot be renamed.</b></param>
+	/// <param name="schedule">
+	/// The schedule instance. The <see cref="Schedule.Id"/> isn't needed being assigned;
+	/// in addition, the property value <see cref="Schedule.StartTime"/> must be greater than
+	/// <see cref="DateTime.Now"/>.
+	/// </param>
+	/// <param name="sender">The sender who sends the message.</param>
+	/// <returns>A task instance encapsulates the result schedule instance.</returns>
+	/// <seealso cref="Schedule.Id"/>
+	/// <seealso cref="Schedule.StartTime"/>
+	/// <seealso cref="DateTime.Now"/>
+	public async Task<Schedule?> CreateScheduleAsync(string channel_id, Schedule schedule, Sender? sender)
+		=> BotApis.CreateScheduleInChannel is { Path: var path, Method: var method }
+		&& path.ReplaceArgument(channel_id) is var replacedPath
+		&& JsonContent.Create(new { schedule }) is var jsonContent
+		&& await HttpSendAsync(replacedPath, method, jsonContent, sender) is { Content: var responseContent }
+			? await responseContent.ReadFromJsonAsync<Schedule?>()
+			: null;
 
 	/// <summary>
-	/// 修改日程
-	/// <para>
-	/// 要求操作人具有"管理频道"的权限，如果是机器人，则需要将机器人设置为管理员。<br/>
-	/// 修改成功后，返回修改后的日程对象。
-	/// </para>
+	/// Modify the specified schedule. The member emitting the message
+	/// must be required with the permission being able to create such schedule.
 	/// </summary>
-	/// <param name="channel_id">日程子频道Id</param>
-	/// <param name="schedule">修改后的日程对象</param>
-	/// <param name="sender"></param>
-	/// <returns>修改后的 Schedule 对象</returns>
-	public async Task<Schedule?> EditScheduleAsync(string channel_id, Schedule schedule, Sender? sender = null)
-	{
-		_ = BotApis.ModifyScheduleInChannel is { Path: var path, Method: var method };
-		var response = await HttpSendAsync(
-			path.Replace("{channel_id}", channel_id).Replace("{schedule_id}", schedule.Id),
-			method,
-			JsonContent.Create(new { schedule }),
-			sender
-		);
-
-		return response is null ? null : await response.Content.ReadFromJsonAsync<Schedule?>();
-	}
+	/// <param name="channel_id">The channel. <b>The argument cannot be renamed.</b></param>
+	/// <param name="schedule">The schedule instance having been modified.</param>
+	/// <param name="sender">The sender who sends the message.</param>
+	/// <returns>A task instance encapsulates the modified schedule instance.</returns>
+	public async Task<Schedule?> EditScheduleAsync(string channel_id, Schedule schedule, Sender? sender)
+		=> BotApis.ModifyScheduleInChannel is { Path: var path, Method: var method }
+		&& path.ReplaceArgument(channel_id).Replace("{schedule_id}", schedule.Id) is var replacedPath
+		&& JsonContent.Create(new { schedule }) is var jsonContent
+		&& await HttpSendAsync(replacedPath, method, jsonContent, sender) is { Content: var responseContent }
+			? await responseContent.ReadFromJsonAsync<Schedule?>()
+			: null;
 
 	/// <summary>
-	/// 删除日程
-	/// <para>
-	/// 要求操作人具有"管理频道"的权限，如果是机器人，则需要将机器人设置为管理员。
-	/// </para>
+	/// Deletes the specified schedule from the specified channel. The member emitting the message
+	/// must be required with the permission being able to create such schedule.
 	/// </summary>
-	/// <param name="channel_id">日程子频道Id</param>
-	/// <param name="schedule">日程对象
-	/// <para>这里是为了获取日程Id，为了防错设计为传递日程对象</para></param>
-	/// <param name="sender"></param>
-	/// <returns>HTTP 状态码 204</returns>
-	public async Task<bool> DeleteScheduleAsync(string channel_id, Schedule schedule, Sender? sender = null)
-	{
-		_ = BotApis.DeleteScheduleInChannel is { Path: var path, Method: var method };
-		var response = await HttpSendAsync(
-			path.Replace("{channel_id}", channel_id).Replace("{schedule_id}", schedule.Id),
-			method,
-			null,
-			sender
-		);
-
-		return response?.IsSuccessStatusCode ?? false;
-	}
+	/// <param name="channel_id">The channel. <b>The argument cannot be renamed.</b></param>
+	/// <param name="schedule">
+	/// The schedule instance. In fact here we only use the property <see cref="Schedule.Id"/>.
+	/// </param>
+	/// <param name="sender">The sender who sends the message.</param>
+	/// <returns>
+	/// A task instance encapsulates the <see cref="bool"/> value indicating whether the HTTP response code is 204,
+	/// as the result value.
+	/// </returns>
+	public async Task<bool> DeleteScheduleAsync(string channel_id, Schedule schedule, Sender? sender)
+		=> BotApis.DeleteScheduleInChannel is { Path: var path, Method: var method }
+		&& path.ReplaceArgument(channel_id).Replace("{schedule_id}", schedule.Id) is var replacedPath
+		&& ((await HttpSendAsync(replacedPath, method, null, sender))?.IsSuccessStatusCode ?? false);
 }
