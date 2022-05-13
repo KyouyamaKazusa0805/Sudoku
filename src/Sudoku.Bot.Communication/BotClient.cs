@@ -19,6 +19,46 @@ public partial class BotClient
 
 
 	/// <summary>
+	/// Indiactes the cached data that stores the messages.
+	/// The dictionary stores key-value pairs. The key value is the user ID, and the value is the messages
+	/// that emitted from the current user.
+	/// </summary>
+	private readonly ConcurrentDictionary<string, List<Message>> _messageStack = new();
+
+
+	/// <summary>
+	/// Indicates the boolean value that describes whether the current status should be resumed.
+	/// The default value is <see langword="false"/>.
+	/// </summary>
+	private bool _shouldBeResumed = false;
+
+	/// <summary>
+	/// Indicates the sequence label of the last message. The default value is 1.
+	/// </summary>
+	private int _webSocketLastSequence = 1;
+
+	/// <summary>
+	/// Indicates the session ID of the current web socket client.
+	/// </summary>
+	private string? _webSoketSessionId;
+
+	/// <summary>
+	/// Indicates the inner web socket client.
+	/// </summary>
+	private ClientWebSocket _webSocketClient = new();
+
+	/// <summary>
+	/// Indicates the timer that records the heartbeats.
+	/// </summary>
+	private Timer _heartBeatTimer = new();
+
+	/// <summary>
+	/// Indicates the data of the shards.
+	/// </summary>
+	private WebSocketLimit? _gateLimit;
+
+	
+	/// <summary>
 	/// Initializes a <see cref="BotClient"/> instance via the identity instance and two <see cref="bool"/>
 	/// values indicating whether the API is based on sandbox, and whether the client will report errors on APIs
 	/// during running respectively.
@@ -30,10 +70,10 @@ public partial class BotClient
 	{
 		(BotAccessInfo, ApiOrigin, ReportApiError) = (identity, sandBoxApi ? SandboxApi : ReleaseApi, reportApiError);
 
-		HeartBeatTimer.Elapsed += async (_, _) =>
+		_heartBeatTimer.Elapsed += async (_, _) =>
 		{
 			var rootElement = JsonDocument.Parse($$"""{"op":{{(int)Opcode.Heartbeat}}}""").RootElement;
-			await ExcuteCommandAsync(rootElement);
+			await ExecuteCommandAsync(rootElement);
 		};
 	}
 
@@ -107,44 +147,6 @@ public partial class BotClient
 	/// returns <see langword="true"/>.
 	/// </summary>
 	public Predicate<Sender>? MessageFilter { get; set; }
-
-	/// <summary>
-	/// Indicates the boolean value that describes whether the current status is resumed.
-	/// The default value is <see langword="false"/>.
-	/// </summary>
-	private bool IsResume { get; set; } = false;
-
-	/// <summary>
-	/// Indicates the sequence label of the last message. The default value is 1.
-	/// </summary>
-	private int WebSocketLastSeq { get; set; } = 1;
-
-	/// <summary>
-	/// Indicates the session ID of the current web socket client.
-	/// </summary>
-	private string? WebSoketSessionId { get; set; }
-
-	/// <summary>
-	/// Indicates the inner web socket client.
-	/// </summary>
-	private ClientWebSocket WebSocketClient { get; set; } = new();
-
-	/// <summary>
-	/// Indicates the timer that records the heartbeats.
-	/// </summary>
-	private Timer HeartBeatTimer { get; set; } = new();
-
-	/// <summary>
-	/// Indicates the data of the shards.
-	/// </summary>
-	private WebSocketLimit? GateLimit { get; set; }
-
-	/// <summary>
-	/// Indiactes the cached data that stores the messages.
-	/// The dictionary stores key-value pairs. The key value is the user ID, and the value is the messages
-	/// that emitted from the current user.
-	/// </summary>
-	private ConcurrentDictionary<string, List<Message>> MessageStack { get; set; } = new();
 
 
 	/// <summary>
@@ -447,7 +449,7 @@ public partial class BotClient
 
 		var timeout = DateTime.Now.AddMinutes(-10);
 		string userId = message.MessageCreator.Id;
-		MessageStack.TryGetValue(userId, out var messages);
+		_messageStack.TryGetValue(userId, out var messages);
 
 		if (isPushing)
 		{
@@ -455,7 +457,7 @@ public partial class BotClient
 			messages?.RemoveAll(predicate);
 			(messages ??= new()).Add(message);
 
-			MessageStack[userId] = messages;
+			_messageStack[userId] = messages;
 		}
 		else
 		{
@@ -477,7 +479,7 @@ public partial class BotClient
 	/// <summary>
 	/// Closes the bot and release the memory used or allocated in the bot.
 	/// </summary>
-	public void Close() => WebSocketClient.Abort();
+	public void Close() => _webSocketClient.Abort();
 
 	/// <summary>
 	/// Starts the bot, with the specified number of retrying times.

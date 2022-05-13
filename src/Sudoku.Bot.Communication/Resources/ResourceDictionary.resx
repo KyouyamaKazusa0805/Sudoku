@@ -129,11 +129,20 @@
 💡 /关于：提示程序介绍文字相关内容（即本消息）。
 💡 /复读：把你发的消息复读一次。</value>
   </data>
+  <data name="AuthorizationSuccessful" xml:space="preserve">
+    <value>服务端鉴权成功</value>
+  </data>
   <data name="BotConnectedCallbackOutput_Fail" xml:space="preserve">
     <value>连接服务器失败，重试次数已经用光。请重新调试代码，联系 QQ 客服以尽快定位错误发生以及 bug 触发情况。</value>
   </data>
   <data name="BotConnectedCallbackOutput_Success" xml:space="preserve">
     <value>连接服务器成功！请使用 Ctrl + C 组合按键来终止程序运行。</value>
+  </data>
+  <data name="BotHasJoined" xml:space="preserve">
+    <value>机器人已加入</value>
+  </data>
+  <data name="Client" xml:space="preserve">
+    <value>客户端</value>
   </data>
   <data name="ClockInError_DateStringIsNull" xml:space="preserve">
     <value>签到失败。原因：
@@ -174,6 +183,9 @@
   <data name="ClockInWarning_CannotClockInInSameDay" xml:space="preserve">
     <value>签到失败。原因：不能在同一天签到多次。</value>
   </data>
+  <data name="CloseBrace" xml:space="preserve">
+    <value>）</value>
+  </data>
   <data name="Colon" xml:space="preserve">
     <value>：</value>
   </data>
@@ -209,6 +221,18 @@
   </data>
   <data name="Command_Repeat" xml:space="preserve">
     <value>复读</value>
+  </data>
+  <data name="ConnectFailed_MaxRetryCountReached" xml:space="preserve">
+    <value>重连次数已耗尽，无法与频道服务器建立连接！</value>
+  </data>
+  <data name="ConnectionIsResumed" xml:space="preserve">
+    <value>已恢复与服务器的连接</value>
+  </data>
+  <data name="ConnectionNotHavingBeenCreated" xml:space="preserve">
+    <value>未建立连接！</value>
+  </data>
+  <data name="ConnectToServerFailed" xml:space="preserve">
+    <value>建立连接失败！</value>
   </data>
   <data name="DateTimeUnit_Day1" xml:space="preserve">
     <value>日</value>
@@ -249,6 +273,9 @@
   <data name="DefaultScheduleName" xml:space="preserve">
     <value>新建日程</value>
   </data>
+  <data name="Description" xml:space="preserve">
+    <value>描述：</value>
+  </data>
   <data name="Di" xml:space="preserve">
     <value>第</value>
   </data>
@@ -257,6 +284,24 @@
   </data>
   <data name="ExperiencePointText" xml:space="preserve">
     <value>经验值</value>
+  </data>
+  <data name="GetGuildJoined" xml:space="preserve">
+    <value>获取已加入的频道列表，第</value>
+  </data>
+  <data name="GetGuildJoinedEmpty" xml:space="preserve">
+    <value>页为空，操作结束</value>
+  </data>
+  <data name="GetGuildJoinedFailed" xml:space="preserve">
+    <value>页失败</value>
+  </data>
+  <data name="GetGuildJoinedSuccessful" xml:space="preserve">
+    <value>页成功，数量</value>
+  </data>
+  <data name="GetGuildListWithLimit100" xml:space="preserve">
+    <value>获取已加入的频道列表，分页大小：100</value>
+  </data>
+  <data name="GuildCountText" xml:space="preserve">
+    <value>个频道</value>
   </data>
   <data name="JinxTimeCountdownPattern" xml:space="preserve">
     <value>(\d+)\s*(年|星期|周|日|天|小?时|分钟?|秒钟?)</value>
@@ -333,11 +378,59 @@
   <data name="RankExpSuccessful_Segment1" xml:space="preserve">
     <value>我们来看一下经验值排名吧！</value>
   </data>
+  <data name="ReceiveAuthorizationErrorMessage" xml:space="preserve">
+    <value>客户端鉴权信息错误</value>
+  </data>
+  <data name="ReceiveHeartbeatAcknowledgementMessage" xml:space="preserve">
+    <value>服务器收到心跳包</value>
+  </data>
+  <data name="ReceiveHelloMessage" xml:space="preserve">
+    <value>成功与网关建立连接</value>
+  </data>
+  <data name="ReceiveReconnectMessage" xml:space="preserve">
+    <value>服务器要求客户端重连</value>
+  </data>
+  <data name="ResumeError" xml:space="preserve">
+    <value>恢复连接失败：</value>
+  </data>
   <data name="SdkVersionName" xml:space="preserve">
     <value>SDK 版本</value>
   </data>
+  <data name="SecondsLastToRetry" xml:space="preserve">
+    <value>秒后再次尝试连接（剩余重试次数：</value>
+  </data>
+  <data name="SendAuthorization" xml:space="preserve">
+    <value>客户端发起鉴权</value>
+  </data>
+  <data name="SendHeartbeat" xml:space="preserve">
+    <value>发送心跳包</value>
+  </data>
+  <data name="SendResumeMessage" xml:space="preserve">
+    <value>客户端尝试恢复连接...</value>
+  </data>
+  <data name="Server" xml:space="preserve">
+    <value>服务器</value>
+  </data>
+  <data name="Status" xml:space="preserve">
+    <value>状态：</value>
+  </data>
+  <data name="TryReconnectToServer" xml:space="preserve">
+    <value>重新建立到服务器的连接...</value>
+  </data>
+  <data name="UnknownEvent" xml:space="preserve">
+    <value>未知事件</value>
+  </data>
+  <data name="UnkownOperationCode" xml:space="preserve">
+    <value>未知操作码：</value>
+  </data>
+  <data name="UseGatewayAddress" xml:space="preserve">
+    <value>使用网关地址</value>
+  </data>
   <data name="WebSocketError_SuchApiErrorNotFound" xml:space="preserve">
     <value>此错误类型未被收录。</value>
+  </data>
+  <data name="WebSocketMessageTypeIs" xml:space="preserve">
+    <value>WebSocket 消息类型：</value>
   </data>
   <data name="__LocalBotConfigPath" xml:space="preserve">
     <value>P:\Bot\bot.json</value>

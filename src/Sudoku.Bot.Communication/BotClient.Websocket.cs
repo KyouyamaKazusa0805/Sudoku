@@ -7,44 +7,55 @@ partial class BotClient
 	/// </summary>
 	/// <returns>An address that is used for the web socket.</returns>
 	public async Task<string?> GetWssUrlAsync()
-	{
-		var response = await HttpSendAsync($"{ApiOrigin}/gateway/");
-		var res = response is null ? null : await response.Content.ReadFromJsonAsync<JsonElement?>();
-		return res?.GetProperty("url").GetString();
-	}
+		=> (
+			await HttpSendAsync($"{ApiOrigin}/gateway/") switch
+			{
+				{ Content: var responseContent } => await responseContent.ReadFromJsonAsync<JsonElement?>(),
+				_ => null
+			}
+		)?.GetProperty("url").GetString();
 
 	/// <summary>
-	/// 获取带分片 WSS 接入点
-	/// <para>
-	/// 详情查阅: <see href="https://bot.q.qq.com/wiki/develop/api/openapi/wss/shard_url_get.html">QQ机器人文档</see>
-	/// </para>
+	/// Gets the WSS URL with shards.
+	/// For more information please visit
+	/// <see href="https://bot.q.qq.com/wiki/develop/api/openapi/wss/shard_url_get.html">this link</see>.
 	/// </summary>
-	/// <returns>一个用于连接 websocket 的地址。<br/>同时返回建议的分片数，以及目前连接数使用情况。</returns>
+	/// <returns>
+	/// An address that is used for the web socket.
+	/// In addition, the method will also return the recommended number of shards, and the usage data on the connection.
+	/// </returns>
 	public async Task<WebSocketLimit?> GetWssUrlWithSharedAsync()
-	{
-		var response = await HttpSendAsync($"{ApiOrigin}/gateway/bot");
-		return response is null ? null : await response.Content.ReadFromJsonAsync<WebSocketLimit?>();
-	}
+		=> await HttpSendAsync($"{ApiOrigin}/gateway/bot") is { Content: var responseContent }
+			? await responseContent.ReadFromJsonAsync<WebSocketLimit?>()
+			: null;
 
 	/// <summary>
-	/// 建立到服务器的连接
-	/// <para><em>RetryCount</em> 连接失败后允许的重试次数</para>
+	/// Try to connect to server.
 	/// </summary>
-	/// <param name="retryCount">连接失败后允许的重试次数</param>
-	/// <returns>表示是否连接成功。如果提前退出，返回值为 false。</returns>
+	/// <param name="retryCount">Indicates the number of the trial times if failed to connect.</param>
+	/// <returns>
+	/// A task instance that encapsulates the <see cref="bool"/> value indicating whether the operation is successful,
+	/// as the real result value. If <see langword="false"/>, the maximum trial times
+	/// (i.e. <paramref name="retryCount"/>) has been reached, but still not be able to connect server.
+	/// </returns>
 	public async Task<bool> ConnectAsync(int retryCount)
 	{
 		int retryEndTime = 10, retryAddTime = 10;
 		while (retryCount-- > 0)
 		{
+			if (_webSocketClient is not { State: var state, CloseStatus: var s, CloseStatusDescription: var d })
+			{
+				throw new("Property-styled deconstruction failed.");
+			}
+
 			try
 			{
-				GateLimit = await GetWssUrlWithSharedAsync();
-				if (Uri.TryCreate(GateLimit?.Url, UriKind.Absolute, out var webSocketUri))
+				_gateLimit = await GetWssUrlWithSharedAsync();
+				if (Uri.TryCreate(_gateLimit?.Url, UriKind.Absolute, out var webSocketUri))
 				{
-					if (WebSocketClient.State is not (WebSocketState.Open or WebSocketState.Connecting))
+					if (state is not (WebSocketState.Open or WebSocketState.Connecting))
 					{
-						await WebSocketClient.ConnectAsync(webSocketUri, CancellationToken.None);
+						await _webSocketClient.ConnectAsync(webSocketUri, CancellationToken.None);
 						WebSocketConnected?.Invoke(this);
 						_ = ReceiveAsync();
 					}
@@ -52,23 +63,30 @@ partial class BotClient
 					break;
 				}
 
-				Log.Error($"[WebSocket][Connect] 使用网关地址<{GateLimit?.Url}> 建立连接失败！");
+				string useGatewayAddress = StringResource.Get("UseGatewayAddress")!;
+				string failedToConnect = StringResource.Get("ConnectToServerFailed")!;
+				Log.Error($"[WebSocket][Connect] {useGatewayAddress}<{_gateLimit?.Url}> {failedToConnect}");
 			}
 			catch (Exception ex)
 			{
-				Log.Error($"[WebSocket][Connect] {ex.Message} | Status：{WebSocketClient.CloseStatus} | Description：{WebSocketClient.CloseStatusDescription}");
+				string statusText = StringResource.Get("Status")!;
+				string descriptionText = StringResource.Get("Description")!;
+				Log.Error($"[WebSocket][Connect] {ex.Message} | {statusText}：{s} | {descriptionText}{d}");
 			}
 
 			if (retryCount <= 0)
 			{
-				Log.Error($"[WebSocket] 重连次数已耗尽，无法与频道服务器建立连接！");
+				string reason = StringResource.Get("ConnectFailed_MaxRetryCountReached")!;
+				Log.Error($"[WebSocket] {reason}");
 
 				return false;
 			}
 
 			for (int i = retryEndTime; 0 < i; --i)
 			{
-				Log.Info($"[WebSocket] {i} 秒后再次尝试连接（剩余重试次数：${retryCount}）...");
+				string retryText = StringResource.Get("SecondsLastToRetry")!;
+				string closeBrace = StringResource.Get("CloseBrace")!;
+				Log.Info($"[WebSocket] {i} {retryText}${retryCount}{closeBrace} ...");
 				await Task.Delay(TimeSpan.FromSeconds(1));
 			}
 
@@ -79,9 +97,9 @@ partial class BotClient
 	}
 
 	/// <summary>
-	/// 鉴权连接
+	/// Sends the identity information and try to authorize the bot.
 	/// </summary>
-	/// <returns></returns>
+	/// <returns>A task will be returned, which contains the <see langword="await"/>ing information.</returns>
 	private async Task SendIdentifyAsync()
 	{
 		var data = new
@@ -91,37 +109,40 @@ partial class BotClient
 			{
 				token = $"Bot {BotAccessInfo.AppId}.{BotAccessInfo.Token}",
 				intents = Intents.GetHashCode(),
-				shared = new[] { ShardId % (GateLimit?.Shards ?? 1), GateLimit?.Shards ?? 1 }
+				shared = new[] { ShardId % (_gateLimit?.Shards ?? 1), _gateLimit?.Shards ?? 1 }
 			}
 		};
 
+		static string f(Match m) => Regex.Replace(m.Groups[0].Value, """[^\.]""", "*");
 		string sendMsg = JsonSerializer.Serialize(data);
-		Log.Debug("[WebSocket][SendIdentify] " + Regex.Replace(sendMsg, @"(?<=Bot\s+)[^""]+", static m => Regex.Replace(m.Groups[0].Value, @"[^\.]", "*"))); // 敏感信息脱敏处理
+		string unsensi = Regex.Replace(sendMsg, """(?<=Bot\s+)[^"]+""", f);
+		Log.Debug($"[WebSocket][SendIdentify] {unsensi}");
 		await WebSocketSendAsync(sendMsg, WebSocketMessageType.Text, true);
 	}
 
 	/// <summary>
-	/// 发送心跳
+	/// Sends the heartbeat.
 	/// </summary>
-	/// <returns></returns>
+	/// <returns>A task will be returned, which contains the <see langword="await"/>ing information.</returns>
 	private async Task SendHeartBeatAsync()
 	{
-		if (WebSocketClient.State == WebSocketState.Open)
+		if (_webSocketClient.State == WebSocketState.Open)
 		{
-			string sendMsg = "{\"op\": 1, \"d\":" + WebSocketLastSeq + "}";
+			string sendMsg = $$"""{"p": 1, "d": {{_webSocketLastSequence}}}""";
 			Log.Debug($"[WebSocket][SendHeartbeat] {sendMsg}");
 			await WebSocketSendAsync(sendMsg, WebSocketMessageType.Text, true);
 		}
 		else
 		{
-			Log.Error($"[WebSocket][Heartbeat] 未建立连接！");
+			string connectionNotFound = StringResource.Get("ConnectionNotHavingBeenCreated")!;
+			Log.Error($"[WebSocket][Heartbeat] {connectionNotFound}");
 		}
 	}
 
 	/// <summary>
-	/// 恢复连接
+	/// To resume the connection.
 	/// </summary>
-	/// <returns></returns>
+	/// <returns>A task will be returned, which contains the <see langword="await"/>ing information.</returns>
 	private async Task SendResumeAsync()
 	{
 		try
@@ -132,98 +153,117 @@ partial class BotClient
 				d = new
 				{
 					token = $"Bot {BotAccessInfo.AppId}.{BotAccessInfo.Token}",
-					session_id = WebSoketSessionId,
-					seq = WebSocketLastSeq
+					session_id = _webSoketSessionId,
+					seq = _webSocketLastSequence
 				}
 			};
+
 			string sendMsg = JsonSerializer.Serialize(data);
 			Log.Debug($"[WebSocket][SendResume] {sendMsg}");
 			await WebSocketSendAsync(sendMsg, WebSocketMessageType.Text, true);
 		}
 		catch (Exception e)
 		{
-			Log.Error($"[WebSocket] Resume Error: {e.Message}");
+			string resumeErrorText = StringResource.Get("ResumeError")!;
+			Log.Error($"[WebSocket] {resumeErrorText}{e.Message}");
 		}
 	}
 
 	/// <summary>
-	/// WebScoket发送数据到服务端
+	/// Sends the WebSocket data to server.
 	/// </summary>
-	/// <param name="data">要发送的数据</param>
-	/// <param name="msgType">WebSocket消息类型</param>
-	/// <param name="endOfMsg">表示数据已发送结束</param>
-	/// <param name="cancelToken">用于传播应取消此操作的通知的取消令牌。</param>
-	/// <returns></returns>
+	/// <param name="data">The desired data to be sent.</param>
+	/// <param name="messageType">
+	/// The message type of the web socket. The default value is <see cref="WebSocketMessageType.Text"/>.
+	/// </param>
+	/// <param name="endOfMessaging">
+	/// Indicates whether the message ends the messaging. The default value is <see langword="true"/>.
+	/// </param>
+	/// <param name="cancelToken">The cancellation token to cancel the operation.</param>
+	/// <returns>A task will be returned, which contains the <see langword="await"/>ing information.</returns>
 	private async Task WebSocketSendAsync(
-		string data, WebSocketMessageType msgType = WebSocketMessageType.Text,
-		bool endOfMsg = true, CancellationToken? cancelToken = null)
+		string data, WebSocketMessageType messageType = WebSocketMessageType.Text,
+		bool endOfMessaging = true, CancellationToken cancelToken = default)
 	{
 		WebSocketSending?.Invoke(this, new(data));
 
-		await WebSocketClient.SendAsync(Encoding.UTF8.GetBytes(data), msgType, endOfMsg, cancelToken ?? CancellationToken.None);
+		await _webSocketClient.SendAsync(Encoding.UTF8.GetBytes(data), messageType, endOfMessaging, cancelToken);
 	}
 
 	/// <summary>
-	/// WebSocket接收服务端数据
+	/// Receives the data from server.
 	/// </summary>
-	/// <returns></returns>
+	/// <returns>A task will be returned, which contains the <see langword="await"/>ing information.</returns>
 	private async Task ReceiveAsync()
 	{
-		while (WebSocketClient.State == WebSocketState.Open)
+		while (_webSocketClient.State == WebSocketState.Open)
 		{
 			try
 			{
 				using var memory = MemoryPool<byte>.Shared.Rent(1024 * 64);
-				var result = await WebSocketClient.ReceiveAsync(memory.Memory, CancellationToken.None);
-				if (result.MessageType == WebSocketMessageType.Text)
+				var result = await _webSocketClient.ReceiveAsync(memory.Memory, default);
+
+				_ = result is { MessageType: var messageType, Count: var count };
+				if (messageType == WebSocketMessageType.Text)
 				{
-					var json = JsonDocument.Parse(memory.Memory[..result.Count]).RootElement;
+					var json = JsonDocument.Parse(memory.Memory[..count]).RootElement;
 					WebSocketReceived?.Invoke(this, new(json.GetRawText()));
-					await ExcuteCommandAsync(json);
+					await ExecuteCommandAsync(json);
 					continue;
 				}
 
-				Log.Info($"[WebSocket][Receive] SocketType：{result.MessageType} | Status：{WebSocketClient.CloseStatus}");
+				string webSocketMessageTypeText = StringResource.Get("WebSocketMessageTypeIs")!;
+				string statusText = StringResource.Get("Status")!;
+				Log.Info($"[WebSocket][Receive] {webSocketMessageTypeText}{messageType} | {statusText}{_webSocketClient.CloseStatus}");
 			}
-			catch (Exception e)
+			catch (Exception ex)
 			{
-				Log.Error($"[WebSocket][Receive] {e.Message} | Status：{WebSocketClient.CloseStatus}{Environment.NewLine}");
+				string statusText = StringResource.Get("Status")!;
+				string newLine = Environment.NewLine;
+				Log.Error($"[WebSocket][Receive] {ex.Message} | {statusText}{_webSocketClient.CloseStatus}{newLine}");
 			}
 
-			// 关闭代码4009表示频道服务器要求的重连，可以进行Resume
-			if (WebSocketClient.CloseStatus.GetHashCode() == 4009)
+			// If the value is 4009, the server will require a re-connection.
+			// Now we should set the property 'IsResume' to true.
+			if ((int?)_webSocketClient.CloseStatus is 4009)
 			{
-				IsResume = true;
+				_shouldBeResumed = true;
 			}
 
-			WebSocketClient.Abort();
+			_webSocketClient.Abort();
+
 			break;
 		}
-		if (HeartBeatTimer.Enabled)
+
+		if (_heartBeatTimer.Enabled)
 		{
-			HeartBeatTimer.Enabled = false;
+			_heartBeatTimer.Enabled = false;
 		}
+
 		WebSocketClosed?.Invoke(this);
-		Log.Warn($"[WebSocket] 重新建立到服务器的连接...");
+
+		string tryReconnectToServerText = StringResource.Get("TryReconnectToServer")!;
+		Log.Warn($"[WebSocket] {tryReconnectToServerText}");
+
 		await Task.Delay(TimeSpan.FromSeconds(1));
-		WebSocketClient = new();
+		_webSocketClient = new();
 		await ConnectAsync(30);
 	}
 
 	/// <summary>
-	/// 根据收到的数据分析用途
+	/// Parses the message received.
 	/// </summary>
-	/// <param name="wssJson">Wss接收的数据</param>
-	/// <returns></returns>
-	private async Task ExcuteCommandAsync(JsonElement wssJson)
+	/// <param name="wssJson">The JSON element received via WSS.</param>
+	/// <returns>A task will be returned, which contains the <see langword="await"/>ing information.</returns>
+	private async Task ExecuteCommandAsync(JsonElement wssJson)
 	{
 		switch ((Opcode)wssJson.GetProperty("op").GetInt32())
 		{
-			case Opcode.Dispatch: // Do the message pushing.
+			case Opcode.Dispatch: // Do the message dispatching.
 			{
 				MessageDispatched?.Invoke(this, wssJson);
 
-				WebSocketLastSeq = wssJson.GetProperty("s").GetInt32();
+				_webSocketLastSequence = wssJson.GetProperty("s").GetInt32();
 				if (!wssJson.TryGetProperty("t", out var t) || !wssJson.TryGetProperty("d", out var d))
 				{
 					Log.Warn($"[WebSocket][Op00][Dispatch] {wssJson.GetRawText()}");
@@ -334,8 +374,10 @@ partial class BotClient
 
 					case RawMessageTypes.Resumed:
 					{
-						Log.Info($"[WebSocket][Op00][RESUMED] 已恢复与服务器的连接");
-						await ExcuteCommandAsync(JsonDocument.Parse($$"""{"op":{{(int)Opcode.Heartbeat}}}""").RootElement);
+						string connectionIsResumedText = StringResource.Get("ConnectionIsResumed")!;
+						Log.Info($"[WebSocket][Op00][RESUMED] {connectionIsResumedText}");
+						await ExecuteCommandAsync(JsonDocument.Parse($$"""{"op":{{(int)Opcode.Heartbeat}}}""").RootElement);
+
 						ConnectionResumed?.Invoke(this, d);
 
 						break;
@@ -344,36 +386,53 @@ partial class BotClient
 					case RawMessageTypes.Ready:
 					{
 						Log.Debug($"[WebSocket][READY] {data}");
-						Log.Info($"[WebSocket][Op00] 服务端 鉴权成功");
-						await ExcuteCommandAsync(JsonDocument.Parse($$"""{"op":{{(int)Opcode.Heartbeat}}}""").RootElement);
-						WebSoketSessionId = d.GetProperty("session_id").GetString();
 
-						Log.Info($"[WebSocket][GetGuilds] 获取已加入的频道列表，分页大小：100");
+						string authorizationSuccessfulText = StringResource.Get("AuthorizationSuccessful")!;
+						Log.Info($"[WebSocket][Op00] {authorizationSuccessfulText}");
+						await ExecuteCommandAsync(JsonDocument.Parse($$"""{"op":{{(int)Opcode.Heartbeat}}}""").RootElement);
+						_webSoketSessionId = d.GetProperty("session_id").GetString();
+
+						string getGuildListWithLimit100Text = StringResource.Get("GetGuildListWithLimit100")!;
+						Log.Info($"[WebSocket][GetGuilds] {getGuildListWithLimit100Text}");
 						string? guildNext = null;
 						for (int page = 1; ; ++page)
 						{
+							string getGuildJoinedText = StringResource.Get("GetGuildJoined")!;
+
 							var guilds = await GetMeGuildsAsync(guildNext, false, 100, null);
 							if (guilds is null)
 							{
-								Log.Info($"[WebSocket][GetGuilds] 获取已加入的频道列表，第 {page:00} 页失败");
+								string getGuildJoinedFailedText = StringResource.Get("GetGuildJoinedFailed")!;
+
+								Log.Info($"[WebSocket][GetGuilds] {getGuildJoinedText} {page:00} {getGuildJoinedFailedText}");
 								break;
 							}
 
 							if (guilds.Count == 0)
 							{
-								Log.Info($"[WebSocket][GetGuilds] 获取已加入的频道列表，第 {page:00} 页为空，操作结束");
+								string getGuildJoinedEmptyText = StringResource.Get("GetGuildJoinedEmpty")!;
+
+								Log.Info($"[WebSocket][GetGuilds] {getGuildJoinedText} {page:00} {getGuildJoinedEmptyText}");
 								break;
 							}
 
-							Log.Info($"[WebSocket][GetGuilds] 获取已加入的频道列表，第 {page:00} 页成功，数量：{guilds.Count}");
-							Parallel.ForEach(guilds, (guild, state, i) =>
+							string getGuildJoinedSuccessfulText = StringResource.Get("GetGuildJoinedSuccessful")!;
+							Log.Info($"[WebSocket][GetGuilds] {getGuildJoinedText} {page:00} {getGuildJoinedSuccessfulText} {guilds.Count}");
+
+							Parallel.ForEach(guilds, loop);
+							guildNext = guilds.Last().Id;
+
+
+							void loop(Guild guild, ParallelLoopState state, long i)
 							{
 								guild.APIPermissions = GetGuildPermissionsAsync(guild.Id, null).Result;
 								Guilds[guild.Id] = guild;
-							});
-							guildNext = guilds.Last().Id;
+							}
 						}
-						Log.Info($"[WebSocket][GetGuilds] 机器人已加入 {Guilds.Count} 个频道");
+
+						string botHasJoinedText = StringResource.Get("BotHasJoined")!;
+						string guildCountText = StringResource.Get("GuildCountText")!;
+						Log.Info($"[WebSocket][GetGuilds] {botHasJoinedText} {Guilds.Count} {guildCountText}");
 
 						Info = d.GetProperty("user").Deserialize<User>()!;
 						Info.Avatar = (await GetMeAsync(null))?.Avatar;
@@ -387,73 +446,102 @@ partial class BotClient
 
 					default:
 					{
-						Log.Warn($"[WebSocket][{type}] 未知事件");
+						string unknownEventText = StringResource.Get("UnknownEvent")!;
+						Log.Warn($"[WebSocket][{type}] {unknownEventText}");
 						break;
 					}
 				}
 
 				break;
 			}
-			case Opcode.Heartbeat: // Send & Receive 客户端或服务端发送心跳
+			case Opcode.Heartbeat: // Send or receive heartbeat.
 			{
-				Log.Debug($"[WebSocket][Op01] {(wssJson.Get("d") == null ? "客户端" : "服务器")} 发送心跳包");
+				string endpoint = StringResource.Get(wssJson.Get("d") == null ? "Client" : "Server")!;
+				string sendHeartbeatText = StringResource.Get("SendHeartbeat")!;
+				Log.Debug($"[WebSocket][Op01] {endpoint}{sendHeartbeatText}");
+
 				HeartbeatMessageReceived?.Invoke(this, wssJson);
+
 				await SendHeartBeatAsync();
-				HeartBeatTimer.Enabled = true;
+				_heartBeatTimer.Enabled = true;
 
 				break;
 			}
-			case Opcode.Identify: // Send 客户端发送鉴权
+			case Opcode.Identify: // Send authorization.
 			{
-				Log.Info($"[WebSocket][Op02] 客户端 发起鉴权");
+				string sendAuthorizationText = StringResource.Get("SendAuthorization")!;
+				Log.Info($"[WebSocket][Op02] {sendAuthorizationText}");
+
 				Identifying?.Invoke(this, wssJson);
+
 				await SendIdentifyAsync();
 
 				break;
 			}
-			case Opcode.Resume: // Send 客户端恢复连接
+			case Opcode.Resume: // Resume the connection.
 			{
-				Log.Info($"[WebSocket][Op06] 客户端 尝试恢复连接..");
-				IsResume = false;
+				string sendReconnect = StringResource.Get("SendResumeMessage")!;
+				Log.Info($"[WebSocket][Op06] {sendReconnect}");
+				_shouldBeResumed = false;
+
 				ConnectionResuming?.Invoke(this, wssJson);
+
 				await SendResumeAsync();
 
 				break;
 			}
-			case Opcode.Reconnect: // Receive 服务端通知客户端重新连接
+			case Opcode.Reconnect: // Receive the message that requires client reconnecting.
 			{
-				Log.Info($"[WebSocket][Op07] 服务器 要求客户端重连");
+				string receiveReconnect = StringResource.Get("ReceiveReconnectMessage")!;
+				Log.Info($"[WebSocket][Op07] {receiveReconnect}");
+
 				ConnectionReconnected?.Invoke(this, wssJson);
 
 				break;
 			}
-			case Opcode.InvalidSession: // Receive 当identify或resume的时候，如果参数有错，服务端会返回该消息
+			case Opcode.InvalidSession: // Receive error message when identifying or resuming.
 			{
-				Log.Warn($"[WebSocket][Op09] 客户端鉴权信息错误");
+				string receiveAuthorizationErrorMessage = StringResource.Get("ReceiveAuthorizationErrorMessage")!;
+				Log.Warn($"[WebSocket][Op09] {receiveAuthorizationErrorMessage}");
+
 				SessionInvalid?.Invoke(this, wssJson);
 
 				break;
 			}
-			case Opcode.Hello: // Receive 当客户端与网关建立ws连接之后，网关下发的第一条消息
+			case Opcode.Hello: // Receive helloing message.
 			{
-				Log.Info($"[WebSocket][Op10][成功与网关建立连接] {wssJson.GetRawText()}");
+				const int defaultHeartbeatInterval = 30000;
+
+				string receiveHelloMessage = StringResource.Get("ReceiveHelloMessage")!;
+				Log.Info($"[WebSocket][Op10][{receiveHelloMessage}] {wssJson.GetRawText()}");
+
 				Helloing?.Invoke(this, wssJson);
-				int heartbeat_interval = wssJson.Get("d")?.Get("heartbeat_interval")?.GetInt32() ?? 30000;
-				HeartBeatTimer.Interval = heartbeat_interval < 30000 ? heartbeat_interval : 30000;  // 设置心跳时间为30s
-				await ExcuteCommandAsync(JsonDocument.Parse("{\"op\":" + (int)(IsResume ? Opcode.Resume : Opcode.Identify) + "}").RootElement);
+
+				int heartbeatIntervalValue = wssJson.Get("d")?.Get("heartbeat_interval")?.GetInt32() ?? defaultHeartbeatInterval;
+				_heartBeatTimer.Interval = Math.Min(heartbeatIntervalValue, defaultHeartbeatInterval);
+				await ExecuteCommandAsync(
+					JsonDocument.Parse(
+						$$"""
+						{"op":{{(int)(_shouldBeResumed ? Opcode.Resume : Opcode.Identify)}}}
+						"""
+					).RootElement
+				);
 
 				break;
 			}
-			case Opcode.HeartbeatACK: // Receive 当发送心跳成功之后，就会收到该消息
+			case Opcode.HeartbeatACK: // Receive acknowledge of heartbeat.
 			{
-				Log.Debug($"[WebSocket][Op11] 服务器 收到心跳包");
+				string receiveHeartbeatAck = StringResource.Get("ReceiveHeartbeatAcknowledgementMessage")!;
+				Log.Debug($"[WebSocket][Op11] {receiveHeartbeatAck}");
+
 				HeartbeatMessageAcknowledged?.Invoke(this, wssJson);
 
 				break;
 			}
 			case var opCode:
 			{
-				Log.Warn($"[WebSocket][OpNC] 未知操作码: {opCode}");
+				string unknownOpCode = StringResource.Get("UnkownOperationCode")!;
+				Log.Warn($"[WebSocket][OpNC] {unknownOpCode}{opCode}");
 
 				break;
 			}

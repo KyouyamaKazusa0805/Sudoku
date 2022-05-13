@@ -103,6 +103,15 @@ namespace Sudoku.Bot.Communication.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 服务端鉴权成功.
+        /// </summary>
+        internal static string AuthorizationSuccessful {
+            get {
+                return ResourceManager.GetString("AuthorizationSuccessful", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 连接服务器失败，重试次数已经用光。请重新调试代码，联系 QQ 客服以尽快定位错误发生以及 bug 触发情况。.
         /// </summary>
         internal static string BotConnectedCallbackOutput_Fail {
@@ -117,6 +126,24 @@ namespace Sudoku.Bot.Communication.Resources {
         internal static string BotConnectedCallbackOutput_Success {
             get {
                 return ResourceManager.GetString("BotConnectedCallbackOutput_Success", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 机器人已加入.
+        /// </summary>
+        internal static string BotHasJoined {
+            get {
+                return ResourceManager.GetString("BotHasJoined", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 客户端.
+        /// </summary>
+        internal static string Client {
+            get {
+                return ResourceManager.GetString("Client", resourceCulture);
             }
         }
         
@@ -232,6 +259,15 @@ namespace Sudoku.Bot.Communication.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to ）.
+        /// </summary>
+        internal static string CloseBrace {
+            get {
+                return ResourceManager.GetString("CloseBrace", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to ：.
         /// </summary>
         internal static string Colon {
@@ -336,6 +372,42 @@ namespace Sudoku.Bot.Communication.Resources {
         internal static string CommandText {
             get {
                 return ResourceManager.GetString("CommandText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 重连次数已耗尽，无法与频道服务器建立连接！.
+        /// </summary>
+        internal static string ConnectFailed_MaxRetryCountReached {
+            get {
+                return ResourceManager.GetString("ConnectFailed_MaxRetryCountReached", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 已恢复与服务器的连接.
+        /// </summary>
+        internal static string ConnectionIsResumed {
+            get {
+                return ResourceManager.GetString("ConnectionIsResumed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 未建立连接！.
+        /// </summary>
+        internal static string ConnectionNotHavingBeenCreated {
+            get {
+                return ResourceManager.GetString("ConnectionNotHavingBeenCreated", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 建立连接失败！.
+        /// </summary>
+        internal static string ConnectToServerFailed {
+            get {
+                return ResourceManager.GetString("ConnectToServerFailed", resourceCulture);
             }
         }
         
@@ -457,6 +529,15 @@ namespace Sudoku.Bot.Communication.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 描述：.
+        /// </summary>
+        internal static string Description {
+            get {
+                return ResourceManager.GetString("Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 第.
         /// </summary>
         internal static string Di {
@@ -480,6 +561,60 @@ namespace Sudoku.Bot.Communication.Resources {
         internal static string ExperiencePointText {
             get {
                 return ResourceManager.GetString("ExperiencePointText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 获取已加入的频道列表，第.
+        /// </summary>
+        internal static string GetGuildJoined {
+            get {
+                return ResourceManager.GetString("GetGuildJoined", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 页为空，操作结束.
+        /// </summary>
+        internal static string GetGuildJoinedEmpty {
+            get {
+                return ResourceManager.GetString("GetGuildJoinedEmpty", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 页失败.
+        /// </summary>
+        internal static string GetGuildJoinedFailed {
+            get {
+                return ResourceManager.GetString("GetGuildJoinedFailed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 页成功，数量.
+        /// </summary>
+        internal static string GetGuildJoinedSuccessful {
+            get {
+                return ResourceManager.GetString("GetGuildJoinedSuccessful", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 获取已加入的频道列表，分页大小：100.
+        /// </summary>
+        internal static string GetGuildListWithLimit100 {
+            get {
+                return ResourceManager.GetString("GetGuildListWithLimit100", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 个频道.
+        /// </summary>
+        internal static string GuildCountText {
+            get {
+                return ResourceManager.GetString("GuildCountText", resourceCulture);
             }
         }
         
@@ -709,6 +844,51 @@ namespace Sudoku.Bot.Communication.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 客户端鉴权信息错误.
+        /// </summary>
+        internal static string ReceiveAuthorizationErrorMessage {
+            get {
+                return ResourceManager.GetString("ReceiveAuthorizationErrorMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 服务器收到心跳包.
+        /// </summary>
+        internal static string ReceiveHeartbeatAcknowledgementMessage {
+            get {
+                return ResourceManager.GetString("ReceiveHeartbeatAcknowledgementMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 成功与网关建立连接.
+        /// </summary>
+        internal static string ReceiveHelloMessage {
+            get {
+                return ResourceManager.GetString("ReceiveHelloMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 服务器要求客户端重连.
+        /// </summary>
+        internal static string ReceiveReconnectMessage {
+            get {
+                return ResourceManager.GetString("ReceiveReconnectMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 恢复连接失败：.
+        /// </summary>
+        internal static string ResumeError {
+            get {
+                return ResourceManager.GetString("ResumeError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to SDK 版本.
         /// </summary>
         internal static string SdkVersionName {
@@ -718,11 +898,110 @@ namespace Sudoku.Bot.Communication.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 秒后再次尝试连接（剩余重试次数：.
+        /// </summary>
+        internal static string SecondsLastToRetry {
+            get {
+                return ResourceManager.GetString("SecondsLastToRetry", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 客户端发起鉴权.
+        /// </summary>
+        internal static string SendAuthorization {
+            get {
+                return ResourceManager.GetString("SendAuthorization", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 发送心跳包.
+        /// </summary>
+        internal static string SendHeartbeat {
+            get {
+                return ResourceManager.GetString("SendHeartbeat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 客户端尝试恢复连接....
+        /// </summary>
+        internal static string SendResumeMessage {
+            get {
+                return ResourceManager.GetString("SendResumeMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 服务器.
+        /// </summary>
+        internal static string Server {
+            get {
+                return ResourceManager.GetString("Server", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 状态：.
+        /// </summary>
+        internal static string Status {
+            get {
+                return ResourceManager.GetString("Status", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 重新建立到服务器的连接....
+        /// </summary>
+        internal static string TryReconnectToServer {
+            get {
+                return ResourceManager.GetString("TryReconnectToServer", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 未知事件.
+        /// </summary>
+        internal static string UnknownEvent {
+            get {
+                return ResourceManager.GetString("UnknownEvent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 未知操作码：.
+        /// </summary>
+        internal static string UnkownOperationCode {
+            get {
+                return ResourceManager.GetString("UnkownOperationCode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 使用网关地址.
+        /// </summary>
+        internal static string UseGatewayAddress {
+            get {
+                return ResourceManager.GetString("UseGatewayAddress", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 此错误类型未被收录。.
         /// </summary>
         internal static string WebSocketError_SuchApiErrorNotFound {
             get {
                 return ResourceManager.GetString("WebSocketError_SuchApiErrorNotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to WebSocket 消息类型：.
+        /// </summary>
+        internal static string WebSocketMessageTypeIs {
+            get {
+                return ResourceManager.GetString("WebSocketMessageTypeIs", resourceCulture);
             }
         }
     }

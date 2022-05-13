@@ -733,6 +733,44 @@
             Indicates the API link that corresponds to the sandbox APIs.
             </summary>
         </member>
+        <member name="F:Sudoku.Bot.Communication.BotClient._messageStack">
+            <summary>
+            Indiactes the cached data that stores the messages.
+            The dictionary stores key-value pairs. The key value is the user ID, and the value is the messages
+            that emitted from the current user.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Bot.Communication.BotClient._shouldBeResumed">
+            <summary>
+            Indicates the boolean value that describes whether the current status should be resumed.
+            The default value is <see langword="false"/>.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Bot.Communication.BotClient._webSocketLastSequence">
+            <summary>
+            Indicates the sequence label of the last message. The default value is 1.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Bot.Communication.BotClient._webSoketSessionId">
+            <summary>
+            Indicates the session ID of the current web socket client.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Bot.Communication.BotClient._webSocketClient">
+            <summary>
+            Indicates the inner web socket client.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Bot.Communication.BotClient._heartBeatTimer">
+            <summary>
+            Indicates the timer that records the heartbeats.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Bot.Communication.BotClient._gateLimit">
+            <summary>
+            Indicates the data of the shards.
+            </summary>
+        </member>
         <member name="M:Sudoku.Bot.Communication.BotClient.#ctor(Sudoku.Bot.Communication.BotIdentity,System.Boolean,System.Boolean)">
             <summary>
             Initializes a <see cref="T:Sudoku.Bot.Communication.BotClient"/> instance via the identity instance and two <see cref="T:System.Boolean"/>
@@ -811,44 +849,6 @@
             <summary>
             Indicates the filtering predicate instance that can discard messages if the predicate
             returns <see langword="true"/>.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Bot.Communication.BotClient.IsResume">
-            <summary>
-            Indicates the boolean value that describes whether the current status is resumed.
-            The default value is <see langword="false"/>.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Bot.Communication.BotClient.WebSocketLastSeq">
-            <summary>
-            Indicates the sequence label of the last message. The default value is 1.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Bot.Communication.BotClient.WebSoketSessionId">
-            <summary>
-            Indicates the session ID of the current web socket client.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Bot.Communication.BotClient.WebSocketClient">
-            <summary>
-            Indicates the inner web socket client.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Bot.Communication.BotClient.HeartBeatTimer">
-            <summary>
-            Indicates the timer that records the heartbeats.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Bot.Communication.BotClient.GateLimit">
-            <summary>
-            Indicates the data of the shards.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Bot.Communication.BotClient.MessageStack">
-            <summary>
-            Indiactes the cached data that stores the messages.
-            The dictionary stores key-value pairs. The key value is the user ID, and the value is the messages
-            that emitted from the current user.
             </summary>
         </member>
         <member name="P:Sudoku.Bot.Communication.BotClient.SdkIdentifier">
@@ -1379,61 +1379,70 @@
         </member>
         <member name="M:Sudoku.Bot.Communication.BotClient.GetWssUrlWithSharedAsync">
             <summary>
-            获取带分片 WSS 接入点
-            <para>
-            详情查阅: <see href="https://bot.q.qq.com/wiki/develop/api/openapi/wss/shard_url_get.html">QQ机器人文档</see>
-            </para>
+            Gets the WSS URL with shards.
+            For more information please visit
+            <see href="https://bot.q.qq.com/wiki/develop/api/openapi/wss/shard_url_get.html">this link</see>.
             </summary>
-            <returns>一个用于连接 websocket 的地址。<br/>同时返回建议的分片数，以及目前连接数使用情况。</returns>
+            <returns>
+            An address that is used for the web socket.
+            In addition, the method will also return the recommended number of shards, and the usage data on the connection.
+            </returns>
         </member>
         <member name="M:Sudoku.Bot.Communication.BotClient.ConnectAsync(System.Int32)">
             <summary>
-            建立到服务器的连接
-            <para><em>RetryCount</em> 连接失败后允许的重试次数</para>
+            Try to connect to server.
             </summary>
-            <param name="retryCount">连接失败后允许的重试次数</param>
-            <returns>表示是否连接成功。如果提前退出，返回值为 false。</returns>
+            <param name="retryCount">Indicates the number of the trial times if failed to connect.</param>
+            <returns>
+            A task instance that encapsulates the <see cref="T:System.Boolean"/> value indicating whether the operation is successful,
+            as the real result value. If <see langword="false"/>, the maximum trial times
+            (i.e. <paramref name="retryCount"/>) has been reached, but still not be able to connect server.
+            </returns>
         </member>
         <member name="M:Sudoku.Bot.Communication.BotClient.SendIdentifyAsync">
             <summary>
-            鉴权连接
+            Sends the identity information and try to authorize the bot.
             </summary>
-            <returns></returns>
+            <returns>A task will be returned, which contains the <see langword="await"/>ing information.</returns>
         </member>
         <member name="M:Sudoku.Bot.Communication.BotClient.SendHeartBeatAsync">
             <summary>
-            发送心跳
+            Sends the heartbeat.
             </summary>
-            <returns></returns>
+            <returns>A task will be returned, which contains the <see langword="await"/>ing information.</returns>
         </member>
         <member name="M:Sudoku.Bot.Communication.BotClient.SendResumeAsync">
             <summary>
-            恢复连接
+            To resume the connection.
             </summary>
-            <returns></returns>
+            <returns>A task will be returned, which contains the <see langword="await"/>ing information.</returns>
         </member>
-        <member name="M:Sudoku.Bot.Communication.BotClient.WebSocketSendAsync(System.String,System.Net.WebSockets.WebSocketMessageType,System.Boolean,System.Nullable{System.Threading.CancellationToken})">
+        <member name="M:Sudoku.Bot.Communication.BotClient.WebSocketSendAsync(System.String,System.Net.WebSockets.WebSocketMessageType,System.Boolean,System.Threading.CancellationToken)">
             <summary>
-            WebScoket发送数据到服务端
+            Sends the WebSocket data to server.
             </summary>
-            <param name="data">要发送的数据</param>
-            <param name="msgType">WebSocket消息类型</param>
-            <param name="endOfMsg">表示数据已发送结束</param>
-            <param name="cancelToken">用于传播应取消此操作的通知的取消令牌。</param>
-            <returns></returns>
+            <param name="data">The desired data to be sent.</param>
+            <param name="messageType">
+            The message type of the web socket. The default value is <see cref="F:System.Net.WebSockets.WebSocketMessageType.Text"/>.
+            </param>
+            <param name="endOfMessaging">
+            Indicates whether the message ends the messaging. The default value is <see langword="true"/>.
+            </param>
+            <param name="cancelToken">The cancellation token to cancel the operation.</param>
+            <returns>A task will be returned, which contains the <see langword="await"/>ing information.</returns>
         </member>
         <member name="M:Sudoku.Bot.Communication.BotClient.ReceiveAsync">
             <summary>
-            WebSocket接收服务端数据
+            Receives the data from server.
             </summary>
-            <returns></returns>
+            <returns>A task will be returned, which contains the <see langword="await"/>ing information.</returns>
         </member>
-        <member name="M:Sudoku.Bot.Communication.BotClient.ExcuteCommandAsync(System.Text.Json.JsonElement)">
+        <member name="M:Sudoku.Bot.Communication.BotClient.ExecuteCommandAsync(System.Text.Json.JsonElement)">
             <summary>
-            根据收到的数据分析用途
+            Parses the message received.
             </summary>
-            <param name="wssJson">Wss接收的数据</param>
-            <returns></returns>
+            <param name="wssJson">The JSON element received via WSS.</param>
+            <returns>A task will be returned, which contains the <see langword="await"/>ing information.</returns>
         </member>
         <member name="T:Sudoku.Bot.Communication.BotHttpClient">
             <summary>
@@ -4037,6 +4046,11 @@
             💡 /复读：把你发的消息复读一次。.
              </summary>
         </member>
+        <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.AuthorizationSuccessful">
+            <summary>
+              Looks up a localized string similar to 服务端鉴权成功.
+            </summary>
+        </member>
         <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.BotConnectedCallbackOutput_Fail">
             <summary>
               Looks up a localized string similar to 连接服务器失败，重试次数已经用光。请重新调试代码，联系 QQ 客服以尽快定位错误发生以及 bug 触发情况。.
@@ -4045,6 +4059,16 @@
         <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.BotConnectedCallbackOutput_Success">
             <summary>
               Looks up a localized string similar to 连接服务器成功！请使用 Ctrl + C 组合按键来终止程序运行。.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.BotHasJoined">
+            <summary>
+              Looks up a localized string similar to 机器人已加入.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.Client">
+            <summary>
+              Looks up a localized string similar to 客户端.
             </summary>
         </member>
         <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.ClockInError_DateStringIsNull">
@@ -4110,6 +4134,11 @@
               Looks up a localized string similar to 签到失败。原因：不能在同一天签到多次。.
             </summary>
         </member>
+        <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.CloseBrace">
+            <summary>
+              Looks up a localized string similar to ）.
+            </summary>
+        </member>
         <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.Colon">
             <summary>
               Looks up a localized string similar to ：.
@@ -4168,6 +4197,26 @@
         <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.CommandText">
             <summary>
               Looks up a localized string similar to 指令.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.ConnectFailed_MaxRetryCountReached">
+            <summary>
+              Looks up a localized string similar to 重连次数已耗尽，无法与频道服务器建立连接！.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.ConnectionIsResumed">
+            <summary>
+              Looks up a localized string similar to 已恢复与服务器的连接.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.ConnectionNotHavingBeenCreated">
+            <summary>
+              Looks up a localized string similar to 未建立连接！.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.ConnectToServerFailed">
+            <summary>
+              Looks up a localized string similar to 建立连接失败！.
             </summary>
         </member>
         <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.DateTimeUnit_Day1">
@@ -4235,6 +4284,11 @@
               Looks up a localized string similar to 新建日程.
             </summary>
         </member>
+        <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.Description">
+            <summary>
+              Looks up a localized string similar to 描述：.
+            </summary>
+        </member>
         <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.Di">
             <summary>
               Looks up a localized string similar to 第.
@@ -4248,6 +4302,36 @@
         <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.ExperiencePointText">
             <summary>
               Looks up a localized string similar to 经验值.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.GetGuildJoined">
+            <summary>
+              Looks up a localized string similar to 获取已加入的频道列表，第.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.GetGuildJoinedEmpty">
+            <summary>
+              Looks up a localized string similar to 页为空，操作结束.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.GetGuildJoinedFailed">
+            <summary>
+              Looks up a localized string similar to 页失败.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.GetGuildJoinedSuccessful">
+            <summary>
+              Looks up a localized string similar to 页成功，数量.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.GetGuildListWithLimit100">
+            <summary>
+              Looks up a localized string similar to 获取已加入的频道列表，分页大小：100.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.GuildCountText">
+            <summary>
+              Looks up a localized string similar to 个频道.
             </summary>
         </member>
         <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.JinxTimeCountdownPattern">
@@ -4375,14 +4459,94 @@
               Looks up a localized string similar to 我们来看一下经验值排名吧！.
             </summary>
         </member>
+        <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.ReceiveAuthorizationErrorMessage">
+            <summary>
+              Looks up a localized string similar to 客户端鉴权信息错误.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.ReceiveHeartbeatAcknowledgementMessage">
+            <summary>
+              Looks up a localized string similar to 服务器收到心跳包.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.ReceiveHelloMessage">
+            <summary>
+              Looks up a localized string similar to 成功与网关建立连接.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.ReceiveReconnectMessage">
+            <summary>
+              Looks up a localized string similar to 服务器要求客户端重连.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.ResumeError">
+            <summary>
+              Looks up a localized string similar to 恢复连接失败：.
+            </summary>
+        </member>
         <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.SdkVersionName">
             <summary>
               Looks up a localized string similar to SDK 版本.
             </summary>
         </member>
+        <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.SecondsLastToRetry">
+            <summary>
+              Looks up a localized string similar to 秒后再次尝试连接（剩余重试次数：.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.SendAuthorization">
+            <summary>
+              Looks up a localized string similar to 客户端发起鉴权.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.SendHeartbeat">
+            <summary>
+              Looks up a localized string similar to 发送心跳包.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.SendResumeMessage">
+            <summary>
+              Looks up a localized string similar to 客户端尝试恢复连接....
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.Server">
+            <summary>
+              Looks up a localized string similar to 服务器.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.Status">
+            <summary>
+              Looks up a localized string similar to 状态：.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.TryReconnectToServer">
+            <summary>
+              Looks up a localized string similar to 重新建立到服务器的连接....
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.UnknownEvent">
+            <summary>
+              Looks up a localized string similar to 未知事件.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.UnkownOperationCode">
+            <summary>
+              Looks up a localized string similar to 未知操作码：.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.UseGatewayAddress">
+            <summary>
+              Looks up a localized string similar to 使用网关地址.
+            </summary>
+        </member>
         <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.WebSocketError_SuchApiErrorNotFound">
             <summary>
               Looks up a localized string similar to 此错误类型未被收录。.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.WebSocketMessageTypeIs">
+            <summary>
+              Looks up a localized string similar to WebSocket 消息类型：.
             </summary>
         </member>
         <member name="T:Sudoku.Bot.Communication.Resources.StringResource">
