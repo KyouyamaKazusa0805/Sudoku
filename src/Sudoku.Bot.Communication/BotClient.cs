@@ -25,6 +25,11 @@ public partial class BotClient
 	/// </summary>
 	private readonly ConcurrentDictionary<string, List<Message>> _messageStack = new();
 
+	/// <summary>
+	/// Indicates the timer that records the heartbeats.
+	/// </summary>
+	private readonly Timer _heartBeatTimer = new();
+
 
 	/// <summary>
 	/// Indicates the boolean value that describes whether the current status should be resumed.
@@ -46,11 +51,6 @@ public partial class BotClient
 	/// Indicates the inner web socket client.
 	/// </summary>
 	private ClientWebSocket _webSocketClient = new();
-
-	/// <summary>
-	/// Indicates the timer that records the heartbeats.
-	/// </summary>
-	private Timer _heartBeatTimer = new();
 
 	/// <summary>
 	/// Indicates the data of the shards.
