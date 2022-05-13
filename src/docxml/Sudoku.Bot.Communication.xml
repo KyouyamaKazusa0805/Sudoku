@@ -1057,73 +1057,78 @@
         </member>
         <member name="M:Sudoku.Bot.Communication.BotClient.GetRolesAsync(System.String,Sudoku.Bot.Communication.Sender)">
             <summary>
-            获取频道身份组列表
+            Gets all roles in the specified GUILD.
             </summary>
-            <param name="guild_id">频道Id</param>
-            <param name="sender"></param>
-            <returns></returns>
+            <param name="guild_id">The GUILD. <b>The argument cannot be renamed.</b></param>
+            <param name="sender">The sender who sends the message.</param>
+            <returns>A task instance encapsulates the list of roles as the result value.</returns>
         </member>
         <member name="M:Sudoku.Bot.Communication.BotClient.CreateRoleAsync(System.String,Sudoku.Bot.Communication.Models.Interaction.Info,Sudoku.Bot.Communication.Models.Interaction.Filter,Sudoku.Bot.Communication.Sender)">
             <summary>
-            创建频道身份组
+            Creates a role in the specified GUILD.
             </summary>
-            <param name="guild_id">频道Id</param>
-            <param name="info">携带需要设置的字段内容</param>
-            <param name="filter">标识需要设置哪些字段,若不填则根据Info自动推测</param>
-            <param name="sender"></param>
-            <returns></returns>
+            <param name="guild_id">The GUILD. <b>The argument cannot be renamed.</b></param>
+            <param name="info">Indicates the instance that is used for providing with extra data.</param>
+            <param name="filter">
+            Indicates a filter instance that ignores or allows which fields will be inferred automatically.
+            </param>
+            <param name="sender">The sender who sends the message.</param>
+            <returns>A task instance encapsulates the role instance created.</returns>
         </member>
         <member name="M:Sudoku.Bot.Communication.BotClient.EditRoleAsync(System.String,System.String,Sudoku.Bot.Communication.Models.Interaction.Info,Sudoku.Bot.Communication.Models.Interaction.Filter,Sudoku.Bot.Communication.Sender)">
             <summary>
-            修改频道身份组
+            Modify the specified role in the specified GUILD.
             </summary>
-            <param name="guild_id">频道Id</param>
-            <param name="role_id">角色Id</param>
-            <param name="info">携带需要修改的字段内容</param>
-            <param name="filter">标识需要设置哪些字段,若不填则根据Info自动推测</param>
-            <param name="sender"></param>
-            <returns></returns>
+            <param name="guild_id">The GUILD. <b>The argument cannot be renamed.</b></param>
+            <param name="role_id">The role. <b>The argument cannot be renamed.</b></param>
+            <param name="info">Indicates the instance that is used for providing with extra data.</param>
+            <param name="filter">
+            Indicates a filter instance that ignores or allows which fields will be inferred automatically.
+            </param>
+            <param name="sender">The sender who sends the message.</param>
+            <returns>A task instance encapsulates the role instance modified.</returns>
         </member>
         <member name="M:Sudoku.Bot.Communication.BotClient.DeleteRoleAsync(System.String,System.String,Sudoku.Bot.Communication.Sender)">
             <summary>
-            删除频道身份组
-            <para><em>HTTP状态码 204 表示成功</em></para>
+            Deletes a role in the specified GUILD.
             </summary>
-            <param name="guild_id">频道Id</param>
-            <param name="role_id">身份Id</param>
-            <param name="sender"></param>
-            <returns></returns>
+            <param name="guild_id">The GUILD. <b>The argument cannot be renamed.</b></param>
+            <param name="role_id">The role. <b>The argument cannot be renamed.</b></param>
+            <param name="sender">The sender who sends the message.</param>
+            <returns>
+            A task instance encapsulates a <see cref="T:System.Boolean"/> value indicating whether the operation is successful.
+            </returns>
         </member>
         <member name="M:Sudoku.Bot.Communication.BotClient.AddRoleMemberAsync(System.String,System.String,System.String,System.String,Sudoku.Bot.Communication.Sender)">
             <summary>
-            增加频道身份组成员
-            <para>
-            需要使用的 token 对应的用户具备增加身份组成员权限。如果是机器人，要求被添加为管理员。 <br/>
-            如果要增加的身份组ID是(5-子频道管理员)，需要增加 channel_id 来指定具体是哪个子频道。
-            </para>
+            Joins a user into the specified role in the specified channel of the specified GUILD.
             </summary>
-            <param name="guild_id">频道Id</param>
-            <param name="user_id">用户Id</param>
-            <param name="role_id">身份组Id</param>
-            <param name="channel_id">子频道Id</param>
-            <param name="sender"></param>
-            <returns></returns>
+            <param name="guild_id">The GUILD. <b>The argument cannot be renamed.</b></param>
+            <param name="user_id">The user. <b>The argument cannot be renamed.</b></param>
+            <param name="role_id">The role. <b>The argument cannot be renamed.</b></param>
+            <param name="channelId">
+            The channel. If the argument <paramref name="role_id"/> is <c>"5"</c>
+            (i.e. a channel administrator), this argument shouldn't be <see langword="null"/>.
+            </param>
+            <param name="sender">The sender who sends the message.</param>
+            <returns>
+            A task instance encapsulates a <see cref="T:System.Boolean"/> value indicating whether the operation is successful.
+            </returns>
         </member>
         <member name="M:Sudoku.Bot.Communication.BotClient.DeleteRoleMemberAsync(System.String,System.String,System.String,System.String,Sudoku.Bot.Communication.Sender)">
             <summary>
-            删除频道身份组成员
-            <para>
-            需要使用的 token 对应的用户具备删除身份组成员权限。如果是机器人，要求被添加为管理员。 <br/>
-            如果要删除的身份组ID是(5-子频道管理员)，需要设置 channel_id 来指定具体是哪个子频道。 <br/>
-            详情查阅 <see href="https://bot.q.qq.com/wiki/develop/api/openapi/guild/delete_guild_member_role.html">QQ机器人文档</see>
-            </para>
+            Deletes a user from the specified role, in the specified channel in the specified GUILD.
+            Due to the complexity of the handling, for more information please visit
+            <see href="https://bot.q.qq.com/wiki/develop/api/openapi/guild/delete_guild_member_role.html">this link</see>.
             </summary>
-            <param name="guild_id">频道Id</param>
-            <param name="user_id">要加入身份组的用户Id</param>
-            <param name="role_id">身份组Id</param>
-            <param name="channel_id">子频道Id</param>
-            <param name="sender"></param>
-            <returns></returns>
+            <param name="guild_id">The GUILD. <b>The argument cannot be renamed.</b></param>
+            <param name="user_id">The user. <b>The argument cannot be renamed.</b></param>
+            <param name="role_id">The role. <b>The argument cannot be renamed.</b></param>
+            <param name="channelId">The channel ID.</param>
+            <param name="sender">The sender who sends the message.</param>
+            <returns>
+            A task instance encapsulates a <see cref="T:System.Boolean"/> value indicating whether the operation is successful.
+            </returns>
         </member>
         <member name="M:Sudoku.Bot.Communication.BotClient.GetGuildPermissionsAsync(System.String,Sudoku.Bot.Communication.Sender)">
             <summary>

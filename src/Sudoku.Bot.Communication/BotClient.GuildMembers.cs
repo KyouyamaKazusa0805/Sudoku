@@ -3,146 +3,127 @@
 partial class BotClient
 {
 	/// <summary>
-	/// 获取频道身份组列表
+	/// Gets all roles in the specified GUILD.
 	/// </summary>
-	/// <param name="guild_id">频道Id</param>
-	/// <param name="sender"></param>
-	/// <returns></returns>
-	public async Task<List<Role>?> GetRolesAsync(string guild_id, Sender? sender = null)
-	{
-		_ = BotApis.GetRolesInGuild is { Path: var path, Method: var method };
-		var response = await HttpSendAsync(path.Replace("{guild_id}", guild_id), method, null, sender);
-		var result = response is null ? null : await response.Content.ReadFromJsonAsync<GuildRoles?>();
-		return result?.Roles;
-	}
+	/// <param name="guild_id">The GUILD. <b>The argument cannot be renamed.</b></param>
+	/// <param name="sender">The sender who sends the message.</param>
+	/// <returns>A task instance encapsulates the list of roles as the result value.</returns>
+	public async Task<List<Role>?> GetRolesAsync(string guild_id, Sender? sender)
+		=> (
+			BotApis.GetRolesInGuild is { Path: var path, Method: var method }
+			&& path.ReplaceArgument(guild_id) is var replacedPath
+			&& await HttpSendAsync(replacedPath, method, null, sender) is { Content: var responseContent }
+				? await responseContent.ReadFromJsonAsync<GuildRoles?>()
+				: null
+		)?.Roles;
 
 	/// <summary>
-	/// 创建频道身份组
+	/// Creates a role in the specified GUILD.
 	/// </summary>
-	/// <param name="guild_id">频道Id</param>
-	/// <param name="info">携带需要设置的字段内容</param>
-	/// <param name="filter">标识需要设置哪些字段,若不填则根据Info自动推测</param>
-	/// <param name="sender"></param>
-	/// <returns></returns>
-	public async Task<Role?> CreateRoleAsync(string guild_id, Info info, Filter? filter = null, Sender? sender = null)
-	{
-		_ = BotApis.CreateRoleInGuild is { Path: var path, Method: var method };
-		filter ??= new(!string.IsNullOrWhiteSpace(info.Name), info.Color is not null, info.Hoist ?? false);
-		var response = await HttpSendAsync(
-			path.Replace("{guild_id}", guild_id),
-			method,
-			JsonContent.Create(new { filter, info }),
-			sender
-		);
-
-		var result = response is null ? null : await response.Content.ReadFromJsonAsync<RoleCreatedResult?>();
-		return result?.Role;
-	}
+	/// <param name="guild_id">The GUILD. <b>The argument cannot be renamed.</b></param>
+	/// <param name="info">Indicates the instance that is used for providing with extra data.</param>
+	/// <param name="filter">
+	/// Indicates a filter instance that ignores or allows which fields will be inferred automatically.
+	/// </param>
+	/// <param name="sender">The sender who sends the message.</param>
+	/// <returns>A task instance encapsulates the role instance created.</returns>
+	public async Task<Role?> CreateRoleAsync(string guild_id, Info info, Filter? filter, Sender? sender)
+		=> (
+			BotApis.CreateRoleInGuild is { Path: var path, Method: var method }
+			&& path.ReplaceArgument(guild_id) is var replacedPath
+			&& info is { Name: var name, Color: var color, Hoist: var hoist }
+			&& (filter ?? new(!string.IsNullOrWhiteSpace(name), color is not null, hoist ?? false)) is var filterFinal
+			&& new { filter = filterFinal, info } is var anon
+			&& JsonContent.Create(anon) is var jsonContent
+			&& await HttpSendAsync(replacedPath, method, jsonContent, sender) is { Content: var responseContent }
+				? await responseContent.ReadFromJsonAsync<RoleCreatedResult?>()
+				: null
+		)?.Role;
 
 	/// <summary>
-	/// 修改频道身份组
+	/// Modify the specified role in the specified GUILD.
 	/// </summary>
-	/// <param name="guild_id">频道Id</param>
-	/// <param name="role_id">角色Id</param>
-	/// <param name="info">携带需要修改的字段内容</param>
-	/// <param name="filter">标识需要设置哪些字段,若不填则根据Info自动推测</param>
-	/// <param name="sender"></param>
-	/// <returns></returns>
-	public async Task<Role?> EditRoleAsync(
-		string guild_id, string role_id, Info info, Filter? filter = null, Sender? sender = null)
-	{
-		_ = BotApis.ModifyRoleInGuild is { Path: var path, Method: var method };
-		filter ??= new(!string.IsNullOrWhiteSpace(info.Name), info.Color is not null, info.Hoist ?? false);
-		var response = await HttpSendAsync(
-			path.Replace("{guild_id}", guild_id).Replace("{role_id}", role_id),
-			method,
-			JsonContent.Create(new { filter, info }),
-			sender
-		);
-
-		var result = response is null ? null : await response.Content.ReadFromJsonAsync<RoleModifiedResult?>();
-		return result?.Role;
-	}
+	/// <param name="guild_id">The GUILD. <b>The argument cannot be renamed.</b></param>
+	/// <param name="role_id">The role. <b>The argument cannot be renamed.</b></param>
+	/// <param name="info">Indicates the instance that is used for providing with extra data.</param>
+	/// <param name="filter">
+	/// Indicates a filter instance that ignores or allows which fields will be inferred automatically.
+	/// </param>
+	/// <param name="sender">The sender who sends the message.</param>
+	/// <returns>A task instance encapsulates the role instance modified.</returns>
+	public async Task<Role?> EditRoleAsync(string guild_id, string role_id, Info info, Filter? filter, Sender? sender)
+		=> (
+			BotApis.ModifyRoleInGuild is { Path: var path, Method: var method }
+			&& path.ReplaceArgument(guild_id).ReplaceArgument(role_id) is var replacedPath
+			&& info is { Name: var name, Color: var color, Hoist: var hoist }
+			&& (filter ?? new(!string.IsNullOrWhiteSpace(name), color is not null, hoist ?? false)) is var filterFinal
+			&& new { filter = filterFinal, info } is var anon
+			&& JsonContent.Create(anon) is var jsonContent
+			&& await HttpSendAsync(replacedPath, method, jsonContent, sender) is { Content: var responseContent }
+				? await responseContent.ReadFromJsonAsync<RoleModifiedResult?>()
+				: null
+		)?.Role;
 
 	/// <summary>
-	/// 删除频道身份组
-	/// <para><em>HTTP状态码 204 表示成功</em></para>
+	/// Deletes a role in the specified GUILD.
 	/// </summary>
-	/// <param name="guild_id">频道Id</param>
-	/// <param name="role_id">身份Id</param>
-	/// <param name="sender"></param>
-	/// <returns></returns>
-	public async Task<bool> DeleteRoleAsync(string guild_id, string role_id, Sender? sender = null)
-	{
-		_ = BotApis.DeleteRoleInGuild is { Path: var path, Method: var method };
-		var response = await HttpSendAsync(
-			path.Replace("{guild_id}", guild_id).Replace("{role_id}", role_id),
-			method,
-			null,
-			sender
-		);
-
-		return response?.IsSuccessStatusCode ?? false;
-	}
+	/// <param name="guild_id">The GUILD. <b>The argument cannot be renamed.</b></param>
+	/// <param name="role_id">The role. <b>The argument cannot be renamed.</b></param>
+	/// <param name="sender">The sender who sends the message.</param>
+	/// <returns>
+	/// A task instance encapsulates a <see cref="bool"/> value indicating whether the operation is successful.
+	/// </returns>
+	public async Task<bool> DeleteRoleAsync(string guild_id, string role_id, Sender? sender)
+		=> BotApis.DeleteRoleInGuild is { Path: var path, Method: var method }
+		&& path.ReplaceArgument(guild_id).ReplaceArgument(role_id) is var replacedPath
+		&& ((await HttpSendAsync(replacedPath, method, null, sender))?.IsSuccessStatusCode ?? false);
 
 	/// <summary>
-	/// 增加频道身份组成员
-	/// <para>
-	/// 需要使用的 token 对应的用户具备增加身份组成员权限。如果是机器人，要求被添加为管理员。 <br/>
-	/// 如果要增加的身份组ID是(5-子频道管理员)，需要增加 channel_id 来指定具体是哪个子频道。
-	/// </para>
+	/// Joins a user into the specified role in the specified channel of the specified GUILD.
 	/// </summary>
-	/// <param name="guild_id">频道Id</param>
-	/// <param name="user_id">用户Id</param>
-	/// <param name="role_id">身份组Id</param>
-	/// <param name="channel_id">子频道Id</param>
-	/// <param name="sender"></param>
-	/// <returns></returns>
+	/// <param name="guild_id">The GUILD. <b>The argument cannot be renamed.</b></param>
+	/// <param name="user_id">The user. <b>The argument cannot be renamed.</b></param>
+	/// <param name="role_id">The role. <b>The argument cannot be renamed.</b></param>
+	/// <param name="channelId">
+	/// The channel. If the argument <paramref name="role_id"/> is <c>"5"</c>
+	/// (i.e. a channel administrator), this argument shouldn't be <see langword="null"/>.
+	/// </param>
+	/// <param name="sender">The sender who sends the message.</param>
+	/// <returns>
+	/// A task instance encapsulates a <see cref="bool"/> value indicating whether the operation is successful.
+	/// </returns>
 	public async Task<bool> AddRoleMemberAsync(
-		string guild_id, string user_id, string role_id, string? channel_id = null, Sender? sender = null)
-	{
-		_ = BotApis.AddUserRoleInGuild is { Path: var path, Method: var method };
-		HttpContent? httpContent = channel_id is null
-			? null
-			: JsonContent.Create(new { channel = new Channel { Id = channel_id } });
-		var response = await HttpSendAsync(
-			path.Replace("{guild_id}", guild_id).Replace("{user_id}", user_id).Replace("{role_id}", role_id),
-			method,
-			httpContent,
-			sender
-		);
-
-		return response?.IsSuccessStatusCode ?? false;
-	}
+		string guild_id, string user_id, string role_id, string? channelId, Sender? sender)
+		=> BotApis.AddUserRoleInGuild is { Path: var path, Method: var method }
+		&& channelId switch
+		{
+			not null when new { channel = new Channel { Id = channelId } } is var anon => JsonContent.Create(anon),
+			_ => null
+		} is var jsonContent
+		&& path.ReplaceArgument(guild_id).ReplaceArgument(user_id).ReplaceArgument(role_id) is var replacedPath
+		&& ((await HttpSendAsync(replacedPath, method, jsonContent, sender))?.IsSuccessStatusCode ?? false);
 
 	/// <summary>
-	/// 删除频道身份组成员
-	/// <para>
-	/// 需要使用的 token 对应的用户具备删除身份组成员权限。如果是机器人，要求被添加为管理员。 <br/>
-	/// 如果要删除的身份组ID是(5-子频道管理员)，需要设置 channel_id 来指定具体是哪个子频道。 <br/>
-	/// 详情查阅 <see href="https://bot.q.qq.com/wiki/develop/api/openapi/guild/delete_guild_member_role.html">QQ机器人文档</see>
-	/// </para>
+	/// Deletes a user from the specified role, in the specified channel in the specified GUILD.
+	/// Due to the complexity of the handling, for more information please visit
+	/// <see href="https://bot.q.qq.com/wiki/develop/api/openapi/guild/delete_guild_member_role.html">this link</see>.
 	/// </summary>
-	/// <param name="guild_id">频道Id</param>
-	/// <param name="user_id">要加入身份组的用户Id</param>
-	/// <param name="role_id">身份组Id</param>
-	/// <param name="channel_id">子频道Id</param>
-	/// <param name="sender"></param>
-	/// <returns></returns>
+	/// <param name="guild_id">The GUILD. <b>The argument cannot be renamed.</b></param>
+	/// <param name="user_id">The user. <b>The argument cannot be renamed.</b></param>
+	/// <param name="role_id">The role. <b>The argument cannot be renamed.</b></param>
+	/// <param name="channelId">The channel ID.</param>
+	/// <param name="sender">The sender who sends the message.</param>
+	/// <returns>
+	/// A task instance encapsulates a <see cref="bool"/> value indicating whether the operation is successful.
+	/// </returns>
 	public async Task<bool> DeleteRoleMemberAsync(
-		string guild_id, string user_id, string role_id, string? channel_id = null, Sender? sender = null)
-	{
-		_ = BotApis.DeleteUserRoleInGuild is { Path: var path, Method: var method };
-		HttpContent? httpContent = channel_id is null
-			? null
-			: JsonContent.Create(new { channel = new Channel { Id = channel_id } });
-		var response = await HttpSendAsync(
-			path.Replace("{guild_id}", guild_id).Replace("{user_id}", user_id).Replace("{role_id}", role_id),
-			method,
-			httpContent,
-			sender
-		);
-
-		return response?.IsSuccessStatusCode ?? false;
-	}
+		string guild_id, string user_id, string role_id, string? channelId, Sender? sender)
+		=> BotApis.DeleteUserRoleInGuild is { Path: var path, Method: var method }
+		&& channelId switch
+		{
+			not null when new { channel = new Channel { Id = channelId } } is var anon => JsonContent.Create(anon),
+			_ => null
+		} is var jsonContent
+		&& path.ReplaceArgument(guild_id).ReplaceArgument(user_id).ReplaceArgument(role_id) is var replacedPath
+		&& ((await HttpSendAsync(replacedPath, method, jsonContent, sender))?.IsSuccessStatusCode ?? false);
 }
