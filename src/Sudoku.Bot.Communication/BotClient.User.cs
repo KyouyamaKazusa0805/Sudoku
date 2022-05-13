@@ -3,33 +3,37 @@
 partial class BotClient
 {
 	/// <summary>
-	/// 获取当前用户(机器人)信息
-	/// <para>此API无需任何权限</para>
+	/// Gets the bot information.
 	/// </summary>
-	/// <param name="sender"></param>
-	/// <returns>当前用户对象</returns>
-	public async Task<User?> GetMeAsync(Sender? sender = null)
-	{
-		_ = BotApis.GetUserDetail is { Path: var path, Method: var method };
-		var response = await HttpSendAsync(path, method, null, sender);
-		return response is null ? null : await response.Content.ReadFromJsonAsync<User?>();
-	}
+	/// <param name="sender">The sender who sends the message.</param>
+	/// <returns>
+	/// A task instance encapsulates the bot information that is encapsulated by a <see cref="User"/> instance.
+	/// </returns>
+	public async Task<User?> GetMeAsync(Sender? sender)
+		=> BotApis.GetUserDetail is { Path: var path, Method: var method }
+		&& await HttpSendAsync(path, method, null, sender) is { Content: var responseContent }
+			? await responseContent.ReadFromJsonAsync<User?>()
+			: null;
 
 	/// <summary>
-	/// 获取当前用户(机器人)已加入频道列表
-	/// <para>此API无需任何权限</para>
+	/// Gets all GUILDs in which the current bot has joined.
 	/// </summary>
-	/// <param name="guild_id">频道Id（作为拉取下一次列表的分页坐标使用）</param>
-	/// <param name="route">数据拉取方向（true-向前查找 | false-向后查找）</param>
-	/// <param name="limit">数据分页（默认每次拉取100条）</param>
-	/// <param name="sender"></param>
-	/// <returns></returns>
-	public async Task<List<Guild>?> GetMeGuildsAsync(
-		string? guild_id = null, bool route = false, int limit = 100, Sender? sender = null)
+	/// <param name="guild_id">The GUILD. <b>The argument cannot be renamed.</b></param>
+	/// <param name="route">
+	/// Indicates the direction indicating whether the data dragging is forwarding or backwarding.
+	/// <see langword="true"/> is for forwarding and <see langword="false"/> is for backwarding.
+	/// </param>
+	/// <param name="limit">Indicates the number of records to be displayed. The general case is 100.</param>
+	/// <param name="sender">The sender who sends the message.</param>
+	/// <returns>A task instance encapsulates a list of <see cref="Guild"/>s as the result value.</returns>
+	public async Task<List<Guild>?> GetMeGuildsAsync(string? guild_id, bool route, int limit, Sender? sender)
 	{
-		_ = BotApis.GetUserJoinedGuilds is { Path: var path, Method: var method };
 		guild_id = string.IsNullOrWhiteSpace(guild_id) ? string.Empty : $"&{(route ? "before" : "after")}={guild_id}";
-		var response = await HttpSendAsync($"{path}?limit={limit}{guild_id}", method, null, sender);
-		return response is null ? null : await response.Content.ReadFromJsonAsync<List<Guild>?>();
+		return
+			BotApis.GetUserJoinedGuilds is { Path: var path, Method: var method }
+			&& $"{path}?limit={limit}{guild_id}" is var resultPath
+			&& await HttpSendAsync(resultPath, method, null, sender) is { Content: var responseContent }
+				? await responseContent.ReadFromJsonAsync<List<Guild>?>()
+				: null;
 	}
 }

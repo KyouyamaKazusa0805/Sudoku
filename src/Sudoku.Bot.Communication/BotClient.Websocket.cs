@@ -352,7 +352,7 @@ partial class BotClient
 						string? guildNext = null;
 						for (int page = 1; ; ++page)
 						{
-							var guilds = await GetMeGuildsAsync(guildNext);
+							var guilds = await GetMeGuildsAsync(guildNext, false, 100, null);
 							if (guilds is null)
 							{
 								Log.Info($"[WebSocket][GetGuilds] 获取已加入的频道列表，第 {page:00} 页失败");
@@ -376,7 +376,7 @@ partial class BotClient
 						Log.Info($"[WebSocket][GetGuilds] 机器人已加入 {Guilds.Count} 个频道");
 
 						Info = d.GetProperty("user").Deserialize<User>()!;
-						Info.Avatar = (await GetMeAsync())?.Avatar;
+						Info.Avatar = (await GetMeAsync(null))?.Avatar;
 
 						// Triggers the event.
 						// Here 'this' can be replaced with 'null' because the first argument is useless.
