@@ -740,6 +740,11 @@
             that emitted from the current user.
             </summary>
         </member>
+        <member name="F:Sudoku.Bot.Communication.BotClient._heartBeatTimer">
+            <summary>
+            Indicates the timer that records the heartbeats.
+            </summary>
+        </member>
         <member name="F:Sudoku.Bot.Communication.BotClient._shouldBeResumed">
             <summary>
             Indicates the boolean value that describes whether the current status should be resumed.
@@ -759,11 +764,6 @@
         <member name="F:Sudoku.Bot.Communication.BotClient._webSocketClient">
             <summary>
             Indicates the inner web socket client.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Bot.Communication.BotClient._heartBeatTimer">
-            <summary>
-            Indicates the timer that records the heartbeats.
             </summary>
         </member>
         <member name="F:Sudoku.Bot.Communication.BotClient._gateLimit">

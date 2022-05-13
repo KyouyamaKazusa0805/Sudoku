@@ -101,7 +101,7 @@ public partial class BotClient
 	/// <summary>
 	/// Indicates the God ID value. The ID is only used for testing the robustness of the bot functions.
 	/// </summary>
-	public string GodId { get; set; } = "15524401336961673551";
+	public string GodId { get; set; } = "15640902785096785230";
 
 	/// <summary>
 	/// Indicates the identity of the bot access information, used for authorization.
