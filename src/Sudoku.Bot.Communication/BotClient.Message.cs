@@ -141,7 +141,7 @@ partial class BotClient
 		// 记录机器人在当前频道下的身份组信息
 		if (sender.MessageType != MessageType.Private && !Members.ContainsKey(message.GuildId))
 		{
-			Members[message.GuildId] = await GetMemberAsync(message.GuildId, Info.Id);
+			Members[message.GuildId] = await GetMemberAsync(message.GuildId, Info.Id, null);
 		}
 
 		// 若已经启用全局消息接收，将不单独响应 AT_MESSAGES 事件，否则会造成重复响应。
