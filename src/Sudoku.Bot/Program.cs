@@ -73,27 +73,9 @@
 	/// <param name="bot">The bot instance.</param>
 	private static void RegisterCommands(BotClient bot)
 	{
-		// Clock in.
-		// e.g. User sends the message:
-		//     @bot /clockIn
 		bot.RegisterCommand(new(StringResource.Get("Command_ClockIn")!, ClockInAsync));
-
-		// Rank the experience point.
-		// e.g. User sends the message:
-		//     @bot /rank
 		bot.RegisterCommand(new(StringResource.Get("Command_Rank")!, PrintRankResultAsync));
-
-		// Prints the information about the author of the bot, and the bot itself.
-		// e.g. User sends the message:
-		//     @bot /about
 		bot.RegisterCommand(new(StringResource.Get("Command_About")!, PrintAboutInfoAsync));
-
-		// Repeats the message.
-		// e.g. User sends the message:
-		//     @bot /repeat 123
-		// Then the bot will reply:
-		//     @user 123
-		// Empty content won't be repeated by bot.
 		bot.RegisterCommand(new(StringResource.Get("Command_Repeat")!, RepeatAsync));
 	}
 

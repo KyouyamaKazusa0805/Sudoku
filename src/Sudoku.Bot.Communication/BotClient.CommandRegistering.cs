@@ -3,82 +3,75 @@
 partial class BotClient
 {
 	/// <summary>
-	/// 自定义指令前缀
-	/// <para>
-	/// 当机器人识别到消息的头部包含指令前缀时触发指令识别功能<br/>
-	/// 默认值："/"
-	/// </para>
+	/// <para>Indicates the command prefix. The prefix is used for the recorgnization for the bot commands.</para>
+	/// <para>The default value is <c>"/"</c>.</para>
 	/// </summary>
 	public string CommandPrefix { get; set; } = "/";
 
 	/// <summary>
-	/// 缓存动态注册的消息指令事件
+	/// Gets all registered commands.
+	/// </summary>
+	public Command[] RegisteredCommands => Commands.Values.ToArray();
+
+	/// <summary>
+	/// Indicates the commands registered.
 	/// </summary>
 	private ConcurrentDictionary<string, Command> Commands { get; } = new();
 
 
 	/// <summary>
-	/// 添加消息指令
-	/// <para>
-	/// 注1：指令匹配忽略消息前的 @机器人 标签，并移除所有前导和尾随空白字符。<br/>
-	/// 注2：被指令命中的消息不会再触发 OnAtMessage 和 OnMsgCreate 事件
-	/// </para>
+	/// Registers a command into the bot client, to make the client support this command.
 	/// </summary>
-	/// <param name="command">指令对象</param>
-	/// <param name="overwrite">指令名称重复的处理办法<para>true:替换, false:忽略</para></param>
-	/// <returns></returns>
-	public BotClient RegisterCommand(Command command, bool overwrite = false)
+	/// <param name="command">The command to be registered.</param>
+	/// <remarks>
+	/// Please note that the command will match the whole message with the part <c>@bot</c>,
+	/// and remove the leading and trailing whitespaces.
+	/// In addition, if the command is triggered, the event <see cref="MessageCreated"/> won't be triggered.
+	/// </remarks>
+	public void RegisterCommand(Command command)
 	{
-		string cmdName = command.Name;
-		if (Commands.ContainsKey(cmdName))
+		string commandText = StringResource.Get("CommandNameText")!;
+
+		string commandName = command.Name;
+		if (Commands.ContainsKey(commandName))
 		{
-			if (overwrite)
+			string existsText = StringResource.Get("CommandAlreadyExists")!;
+			Log.Warn($"[CommandManager] {commandText} {commandName} {existsText}");
+		}
+		else
+		{
+			Commands[commandName] = command;
+
+			string registeredSuccessfully = StringResource.Get("CommandRegisteredSuccessfully")!;
+			Log.Info($"[CommandManager] {commandText} {commandName} {registeredSuccessfully}");
+		}
+	}
+
+	/// <summary>
+	/// Unregisters a command from the bot client, to make the client support this command.
+	/// </summary>
+	/// <param name="commandName">The command name whose corresponding command should be unregistered.</param>
+	public void UnregisterCommand(string commandName)
+	{
+		string commandText = StringResource.Get("CommandNameText")!;
+
+		if (Commands.ContainsKey(commandName))
+		{
+			if (Commands.Remove(commandName, out _))
 			{
-				Log.Warn($"[CommandManager] 指令 {cmdName} 已存在,已替换新注册的功能!");
-				Commands[cmdName] = command;
+				string removedSuccessfully = StringResource.Get("CommandRemovedSuccessfully")!;
+				Log.Info($"[CommandManager] {commandText} {commandName} {removedSuccessfully}");
 			}
 			else
 			{
-				Log.Warn($"[CommandManager] 指令 {cmdName} 已存在,已忽略新功能的注册!");
+				string removedFailed = StringResource.Get("CommandRemovedFailed")!;
+				Log.Warn($"[CommandManager] {commandText} {commandName} {removedFailed}");
 			}
 		}
 		else
 		{
-			Log.Info($"[CommandManager] 指令 {cmdName} 已注册.");
-			Commands[cmdName] = command;
+			string notExistsText = StringResource.Get("CommandNotExist")!;
+			Log.Warn($"[CommandManager] {commandText} {commandName} {notExistsText}");
 		}
-
-		return this;
 	}
-
-	/// <summary>
-	/// 删除消息指令
-	/// </summary>
-	/// <param name="cmdName">指令名称</param>
-	/// <returns></returns>
-	public BotClient DelCommand(string cmdName)
-	{
-		if (Commands.ContainsKey(cmdName))
-		{
-			if (Commands.Remove(cmdName, out _))
-			{
-				Log.Info($"[CommandManager] 指令 {cmdName} 已删除.");
-			}
-			else
-			{
-				Log.Warn($"[CommandManager] 指令 {cmdName} 删除失败.");
-			}
-		}
-		else
-		{
-			Log.Warn($"[CommandManager] 指令 {cmdName} 不存在!");
-		}
-
-		return this;
-	}
-
-	/// <summary>
-	/// 获取所有已注册的指令
-	/// </summary>
-	public List<Command> GetCommands => Commands.Values.ToList();
 }

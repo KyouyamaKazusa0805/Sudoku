@@ -286,6 +286,60 @@ namespace Sudoku.Bot.Communication.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 已存在。该指令将会被忽略掉。.
+        /// </summary>
+        internal static string CommandAlreadyExists {
+            get {
+                return ResourceManager.GetString("CommandAlreadyExists", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 不存在。.
+        /// </summary>
+        internal static string CommandNotExist {
+            get {
+                return ResourceManager.GetString("CommandNotExist", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 已注册。.
+        /// </summary>
+        internal static string CommandRegisteredSuccessfully {
+            get {
+                return ResourceManager.GetString("CommandRegisteredSuccessfully", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 删除失败。.
+        /// </summary>
+        internal static string CommandRemovedFailed {
+            get {
+                return ResourceManager.GetString("CommandRemovedFailed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 已删除。.
+        /// </summary>
+        internal static string CommandRemovedSuccessfully {
+            get {
+                return ResourceManager.GetString("CommandRemovedSuccessfully", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 指令.
+        /// </summary>
+        internal static string CommandText {
+            get {
+                return ResourceManager.GetString("CommandText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 日.
         /// </summary>
         internal static string DateTimeUnit_Day1 {

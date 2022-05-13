@@ -88,7 +88,7 @@ public class Sender
 
 		return await (
 			MessageType == MessageType.Private
-				? Bot.SendPMAsync(GuildId, message)
+				? Bot.SendPrivateMessageAsync(GuildId, message, null)
 				: Bot.SendMessageAsync(ChannelId, message, this)
 		);
 	}
@@ -278,9 +278,9 @@ public class Sender
 	/// <returns></returns>
 	public async Task<bool> EditChannelPermissionsAsync(PrivacyType permission, User user, string? channel_id = null)
 	{
-		string AddPermissions = permission.GetHashCode().ToString();
-		string DelPermissions = (0x07 ^ permission.GetHashCode()).ToString();
-		return await Bot.EditChannelPermissionsAsync(channel_id ?? ChannelId, user.Id, AddPermissions, DelPermissions, this);
+		string permissionToBeAdded = ((int)permission).ToString();
+		string permissionToBeRemoved = (0x7 ^ (int)permission).ToString();
+		return await Bot.EditChannelPermissionsAsync(channel_id ?? ChannelId, user.Id, permissionToBeAdded, permissionToBeRemoved, this);
 	}
 
 	/// <summary>
@@ -290,7 +290,7 @@ public class Sender
 	/// <param name="channel_id">目标子频道Id（默认为发件人当前子频道）</param>
 	/// <returns></returns>
 	public async Task<ChannelPermissions?> GetMemberChannelPermissionsAsync(string role_id, string? channel_id = null)
-		=> await Bot.GetMemberChannelPermissionsAsync(channel_id ?? ChannelId, role_id, this);
+		=> await Bot.GetRolePermissionsInChannelAsync(channel_id ?? ChannelId, role_id, this);
 
 	/// <summary>
 	/// 修改子频道身份组权限
@@ -302,9 +302,9 @@ public class Sender
 	/// <returns></returns>
 	public async Task<bool> EditMemberChannelPermissionsAsync(PrivacyType permission, string role_id, string? channel_id = null)
 	{
-		string AddPermissions = permission.GetHashCode().ToString();
-		string DelPermissions = (0x07 ^ permission.GetHashCode()).ToString();
-		return await Bot.EditMemberChannelPermissionsAsync(channel_id ?? ChannelId, role_id, AddPermissions, DelPermissions, this);
+		string permissionsToBeAdded = ((int)permission).ToString();
+		string permissionsToBeRemoved = (0x07 ^ (int)permission).ToString();
+		return await Bot.EditRolePermissionsInChannelAsync(channel_id ?? ChannelId, role_id, permissionsToBeAdded, permissionsToBeRemoved, this);
 	}
 
 	/// <summary>
@@ -364,8 +364,8 @@ public class Sender
 	/// </summary>
 	/// <param name="user">私信用户对象</param>
 	/// <returns></returns>
-	public async Task<DirectMessageSource?> CreateDMSAsync(User user)
-		=> await Bot.CreateDMSAsync(user.Id, GuildId, this);
+	public async Task<DirectMessageSource?> CreateDirectMessageCommunicationAsync(User user)
+		=> await Bot.CreateDirectMessageAsync(user.Id, GuildId, this);
 
 	/// <summary>
 	/// 发送私信
@@ -373,8 +373,8 @@ public class Sender
 	/// <param name="message">准备要发送的消息对象</param>
 	/// <param name="guild_id">私信会话频道Id</param>
 	/// <returns></returns>
-	public async Task<Message?> SendPMAsync(MessageToCreate message, string? guild_id = null)
-		=> await Bot.SendPMAsync(guild_id ?? GuildId, message, this);
+	public async Task<Message?> SendPrivateMessageAsync(MessageToCreate message, string? guild_id = null)
+		=> await Bot.SendPrivateMessageAsync(guild_id ?? GuildId, message, this);
 
 	/// <summary>
 	/// 禁言全员

@@ -3,10 +3,12 @@
 	<PropertyGroup>
 		<TargetFramework>net7.0</TargetFramework>
 		<OutputType>exe</OutputType>
+		<DocumentationFile>..\docxml\Sudoku.Bot.xml</DocumentationFile>
+		<Description>The terminal that provides an entry point to handle communication on bot.</Description>
 	</PropertyGroup>
 
 	<ItemGroup>
-	  <ProjectReference Include="..\Sudoku.Bot.Communication\Sudoku.Bot.Communication.csproj" />
+		<ProjectReference Include="..\Sudoku.Bot.Communication\Sudoku.Bot.Communication.csproj" />
 	</ItemGroup>
 
 </Project>

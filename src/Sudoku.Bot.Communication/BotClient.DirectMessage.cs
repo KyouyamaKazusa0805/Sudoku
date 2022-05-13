@@ -3,38 +3,35 @@
 partial class BotClient
 {
 	/// <summary>
-	/// 创建私信会话
+	/// Creates a direct message communication.
 	/// </summary>
-	/// <param name="recipient_id">接收者Id</param>
-	/// <param name="source_guild_id">源频道Id</param>
-	/// <param name="sender"></param>
-	/// <returns></returns>
-	public async Task<DirectMessageSource?> CreateDMSAsync(string recipient_id, string source_guild_id, Sender sender)
-	{
-		_ = BotApis.CreateDirectMessageInGuild is { Path: var path, Method: var method };
-		var response = await HttpSendAsync(path, method, JsonContent.Create(new { recipient_id, source_guild_id }), sender);
-		return response is null ? null : await response.Content.ReadFromJsonAsync<DirectMessageSource?>();
-	}
+	/// <param name="recipientId">Indicates the recipient user ID.</param>
+	/// <param name="sourceGuildId">The source GUILD ID.</param>
+	/// <param name="sender">The sender who sends the message.</param>
+	/// <returns>A task instance encapsulates the direct message source instance as the result value.</returns>
+	public async Task<DirectMessageSource?> CreateDirectMessageAsync(string recipientId, string sourceGuildId, Sender sender)
+		=> BotApis.CreateDirectMessageInGuild is { Path: var path, Method: var method }
+		&& JsonContent.Create(new { recipient_id = recipientId, source_guild_id = sourceGuildId }) is var jsonContent
+		&& await HttpSendAsync(path, method, jsonContent, sender) is { Content: var responseContent }
+			? await responseContent.ReadFromJsonAsync<DirectMessageSource?>()
+			: null;
 
 	/// <summary>
-	/// 发送私信
-	/// <para>用于发送私信消息，前提是已经创建了私信会话。</para>
+	/// Sends the direct message. The method can only be called if the direct message communication
+	/// has already been created.
 	/// </summary>
-	/// <param name="guild_id">私信频道Id</param>
-	/// <param name="message">消息对象</param>
-	/// <param name="sender"></param>
-	/// <returns></returns>
-	public async Task<Message?> SendPMAsync(string guild_id, MessageToCreate message, Sender? sender = null)
-	{
-		_ = BotApis.SendDirectMessageInGuild is { Path: var path, Method: var method };
-		var response = await HttpSendAsync(
-			path.Replace("{guild_id}", guild_id),
-			method,
-			JsonContent.Create(message),
-			sender
+	/// <param name="guild_id">The GUILD ID. <b>The argument cannot be renamed.</b></param>
+	/// <param name="message">The message to be sent.</param>
+	/// <param name="sender">The sender who sends the message.</param>
+	/// <returns>A task instance encapsulates the message instance as the result value.</returns>
+	public async Task<Message?> SendPrivateMessageAsync(string guild_id, MessageToCreate message, Sender? sender)
+		=> LastMessage(
+			BotApis.SendDirectMessageInGuild is { Path: var path, Method: var method }
+				&& path.ReplaceArgument(guild_id) is var replacedPath
+				&& JsonContent.Create(message) is var jsonContent
+				&& await HttpSendAsync(replacedPath, method, jsonContent, sender) is { Content: var responseContent }
+				? await responseContent.ReadFromJsonAsync<Message?>()
+				: null,
+			true
 		);
-
-		var result = response is null ? null : await response.Content.ReadFromJsonAsync<Message?>();
-		return LastMessage(result, true);
-	}
 }

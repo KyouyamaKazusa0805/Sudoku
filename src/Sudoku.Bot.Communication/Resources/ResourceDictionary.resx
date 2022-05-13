@@ -180,6 +180,24 @@
   <data name="Comma" xml:space="preserve">
     <value>，</value>
   </data>
+  <data name="CommandAlreadyExists" xml:space="preserve">
+    <value>已存在。该指令将会被忽略掉。</value>
+  </data>
+  <data name="CommandNotExist" xml:space="preserve">
+    <value>不存在。</value>
+  </data>
+  <data name="CommandRegisteredSuccessfully" xml:space="preserve">
+    <value>已注册。</value>
+  </data>
+  <data name="CommandRemovedFailed" xml:space="preserve">
+    <value>删除失败。</value>
+  </data>
+  <data name="CommandRemovedSuccessfully" xml:space="preserve">
+    <value>已删除。</value>
+  </data>
+  <data name="CommandText" xml:space="preserve">
+    <value>指令</value>
+  </data>
   <data name="Command_About" xml:space="preserve">
     <value>关于</value>
   </data>

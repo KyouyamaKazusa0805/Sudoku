@@ -634,81 +634,94 @@
         </member>
         <member name="M:Sudoku.Bot.Communication.BotClient.GetChannelPermissionsAsync(System.String,System.String,Sudoku.Bot.Communication.Sender)">
             <summary>
-            获取用户在指定子频道的权限
+            Gets all permissions for the specified user in the specified channel.
             </summary>
-            <param name="channel_id">子频道Id</param>
-            <param name="user_id">用户Id</param>
-            <param name="sender"></param>
-            <returns></returns>
+            <param name="channel_id">The channel ID. <b>The argument cannot be renamed.</b></param>
+            <param name="user_id">The user ID. <b>The argument cannot be renamed.</b></param>
+            <param name="sender">The sender who sends the message.</param>
+            <returns>A task instance encapsulates the <see cref="T:Sudoku.Bot.Communication.Models.ChannelPermissions"/> instance as the result value.</returns>
         </member>
         <member name="M:Sudoku.Bot.Communication.BotClient.EditChannelPermissionsAsync(System.String,System.String,System.String,System.String,Sudoku.Bot.Communication.Sender)">
             <summary>
-            修改用户在指定子频道的权限
+            Modify (add or remove) the permission that is for the specified user in the specified channel.
             </summary>
-            <param name="channel_id">子频道Id</param>
-            <param name="user_id">用户Id</param>
-            <param name="add">添加的权限</param>
-            <param name="remove">删除的权限</param>
-            <param name="sender"></param>
-            <returns></returns>
+            <param name="channel_id">The channel ID. <b>The argument cannot be renamed.</b></param>
+            <param name="user_id">The user ID. <b>The argument cannot be renamed.</b></param>
+            <param name="permissionsToBeAdded">
+            Indicates the permissions you want to be added. The value is the string representation of an integer,
+            as the eigenvalue for the enumeration type <see cref="T:Sudoku.Bot.Communication.Models.PrivacyType"/>.
+            </param>
+            <param name="permissionsToBeRemoved">
+            Indicates the permissions you want to be removed. The value is the string representation of an integer,
+            as the eigenvalue for the enumeration type <see cref="T:Sudoku.Bot.Communication.Models.PrivacyType"/>.
+            </param>
+            <param name="sender">The sender who sends the message.</param>
+            <returns>
+            A task instance encapsulates a <see cref="T:System.Boolean"/> value indicating whether the operation is successful.
+            </returns>
+            <seealso cref="T:Sudoku.Bot.Communication.Models.PrivacyType"/>
         </member>
-        <member name="M:Sudoku.Bot.Communication.BotClient.GetMemberChannelPermissionsAsync(System.String,System.String,Sudoku.Bot.Communication.Sender)">
+        <member name="M:Sudoku.Bot.Communication.BotClient.GetRolePermissionsInChannelAsync(System.String,System.String,Sudoku.Bot.Communication.Sender)">
             <summary>
-            获取指定身份组在指定子频道的权限
+            Gets all permissions being allowed for the specified role in the specified channel.
             </summary>
-            <param name="channel_id">子频道Id</param>
-            <param name="role_id">身份组Id</param>
-            <param name="sender"></param>
-            <returns></returns>
+            <param name="channel_id">The channel ID. <b>The argument cannot be renamed.</b></param>
+            <param name="role_id">The role ID. <b>The argument cannot be renamed.</b></param>
+            <param name="sender">The sender who sends the message.</param>
+            <returns>A task instance encapsulates the <see cref="T:Sudoku.Bot.Communication.Models.ChannelPermissions"/> instance as the result value.</returns>
         </member>
-        <member name="M:Sudoku.Bot.Communication.BotClient.EditMemberChannelPermissionsAsync(System.String,System.String,System.String,System.String,Sudoku.Bot.Communication.Sender)">
+        <member name="M:Sudoku.Bot.Communication.BotClient.EditRolePermissionsInChannelAsync(System.String,System.String,System.String,System.String,Sudoku.Bot.Communication.Sender)">
             <summary>
-            修改指定身份组在指定子频道的权限
+            Modify (add or remove) the permission that is for the specified role in the specified channel.
             </summary>
-            <param name="channel_id">子频道Id</param>
-            <param name="role_id">身份组Id</param>
-            <param name="add">添加的权限</param>
-            <param name="remove">删除的权限</param>
-            <param name="sender"></param>
-            <returns></returns>
+            <param name="channel_id">The channel ID. <b>The argument cannot be renamed.</b></param>
+            <param name="role_id">The role ID. <b>The argument cannot be renamed.</b></param>
+            <param name="permissionsToBeAdded">
+            Indicates the permissions you want to be added. The value is the string representation of an integer,
+            as the eigenvalue for the enumeration type <see cref="T:Sudoku.Bot.Communication.Models.PrivacyType"/>.
+            </param>
+            <param name="permissionsToBeRemoved">
+            Indicates the permissions you want to be removed. The value is the string representation of an integer,
+            as the eigenvalue for the enumeration type <see cref="T:Sudoku.Bot.Communication.Models.PrivacyType"/>.
+            </param>
+            <param name="sender">The sender who sends the message.</param>
+            <returns>
+            A task instance encapsulates a <see cref="T:System.Boolean"/> value indicating whether the operation is successful.
+            </returns>
+            <seealso cref="T:Sudoku.Bot.Communication.Models.PrivacyType"/>
         </member>
         <member name="P:Sudoku.Bot.Communication.BotClient.CommandPrefix">
             <summary>
-            自定义指令前缀
-            <para>
-            当机器人识别到消息的头部包含指令前缀时触发指令识别功能<br/>
-            默认值："/"
-            </para>
+            <para>Indicates the command prefix. The prefix is used for the recorgnization for the bot commands.</para>
+            <para>The default value is <c>"/"</c>.</para>
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.BotClient.RegisteredCommands">
+            <summary>
+            Gets all registered commands.
             </summary>
         </member>
         <member name="P:Sudoku.Bot.Communication.BotClient.Commands">
             <summary>
-            缓存动态注册的消息指令事件
+            Indicates the commands registered.
             </summary>
         </member>
-        <member name="M:Sudoku.Bot.Communication.BotClient.RegisterCommand(Sudoku.Bot.Communication.Command,System.Boolean)">
+        <member name="M:Sudoku.Bot.Communication.BotClient.RegisterCommand(Sudoku.Bot.Communication.Command)">
             <summary>
-            添加消息指令
-            <para>
-            注1：指令匹配忽略消息前的 @机器人 标签，并移除所有前导和尾随空白字符。<br/>
-            注2：被指令命中的消息不会再触发 OnAtMessage 和 OnMsgCreate 事件
-            </para>
+            Registers a command into the bot client, to make the client support this command.
             </summary>
-            <param name="command">指令对象</param>
-            <param name="overwrite">指令名称重复的处理办法<para>true:替换, false:忽略</para></param>
-            <returns></returns>
+            <param name="command">The command to be registered.</param>
+            <remarks>
+            Please note that the command will match the whole message with the part <c>@bot</c>,
+            and remove the leading and trailing whitespaces.
+            In addition, if the command is triggered, the event <see cref="E:Sudoku.Bot.Communication.BotClient.MessageCreated"/> won't be triggered.
+            </remarks>
         </member>
-        <member name="M:Sudoku.Bot.Communication.BotClient.DelCommand(System.String)">
+        <member name="M:Sudoku.Bot.Communication.BotClient.UnregisterCommand(System.String)">
             <summary>
-            删除消息指令
+            Unregisters a command from the bot client, to make the client support this command.
             </summary>
-            <param name="cmdName">指令名称</param>
-            <returns></returns>
-        </member>
-        <member name="P:Sudoku.Bot.Communication.BotClient.GetCommands">
-            <summary>
-            获取所有已注册的指令
-            </summary>
+            <param name="commandName">The command name whose corresponding command should be unregistered.</param>
         </member>
         <member name="F:Sudoku.Bot.Communication.BotClient.ReleaseApi">
             <summary>
@@ -1015,24 +1028,24 @@
             The value can be <see langword="null"/> if you don't want to define the customized callback method.
             </param>
         </member>
-        <member name="M:Sudoku.Bot.Communication.BotClient.CreateDMSAsync(System.String,System.String,Sudoku.Bot.Communication.Sender)">
+        <member name="M:Sudoku.Bot.Communication.BotClient.CreateDirectMessageAsync(System.String,System.String,Sudoku.Bot.Communication.Sender)">
             <summary>
-            创建私信会话
+            Creates a direct message communication.
             </summary>
-            <param name="recipient_id">接收者Id</param>
-            <param name="source_guild_id">源频道Id</param>
-            <param name="sender"></param>
-            <returns></returns>
+            <param name="recipientId">Indicates the recipient user ID.</param>
+            <param name="sourceGuildId">The source GUILD ID.</param>
+            <param name="sender">The sender who sends the message.</param>
+            <returns>A task instance encapsulates the direct message source instance as the result value.</returns>
         </member>
-        <member name="M:Sudoku.Bot.Communication.BotClient.SendPMAsync(System.String,Sudoku.Bot.Communication.Models.MessageToCreate,Sudoku.Bot.Communication.Sender)">
+        <member name="M:Sudoku.Bot.Communication.BotClient.SendPrivateMessageAsync(System.String,Sudoku.Bot.Communication.Models.MessageToCreate,Sudoku.Bot.Communication.Sender)">
             <summary>
-            发送私信
-            <para>用于发送私信消息，前提是已经创建了私信会话。</para>
+            Sends the direct message. The method can only be called if the direct message communication
+            has already been created.
             </summary>
-            <param name="guild_id">私信频道Id</param>
-            <param name="message">消息对象</param>
-            <param name="sender"></param>
-            <returns></returns>
+            <param name="guild_id">The GUILD ID. <b>The argument cannot be renamed.</b></param>
+            <param name="message">The message to be sent.</param>
+            <param name="sender">The sender who sends the message.</param>
+            <returns>A task instance encapsulates the message instance as the result value.</returns>
         </member>
         <member name="M:Sudoku.Bot.Communication.BotClient.GetGuildAsync(System.String,Sudoku.Bot.Communication.Sender)">
             <summary>
@@ -4115,6 +4128,36 @@
               Looks up a localized string similar to 复读.
             </summary>
         </member>
+        <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.CommandAlreadyExists">
+            <summary>
+              Looks up a localized string similar to 已存在。该指令将会被忽略掉。.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.CommandNotExist">
+            <summary>
+              Looks up a localized string similar to 不存在。.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.CommandRegisteredSuccessfully">
+            <summary>
+              Looks up a localized string similar to 已注册。.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.CommandRemovedFailed">
+            <summary>
+              Looks up a localized string similar to 删除失败。.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.CommandRemovedSuccessfully">
+            <summary>
+              Looks up a localized string similar to 已删除。.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.CommandText">
+            <summary>
+              Looks up a localized string similar to 指令.
+            </summary>
+        </member>
         <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.DateTimeUnit_Day1">
             <summary>
               Looks up a localized string similar to 日.
@@ -4682,14 +4725,14 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="M:Sudoku.Bot.Communication.Sender.CreateDMSAsync(Sudoku.Bot.Communication.Models.User)">
+        <member name="M:Sudoku.Bot.Communication.Sender.CreateDirectMessageCommunicationAsync(Sudoku.Bot.Communication.Models.User)">
             <summary>
             创建私信会话
             </summary>
             <param name="user">私信用户对象</param>
             <returns></returns>
         </member>
-        <member name="M:Sudoku.Bot.Communication.Sender.SendPMAsync(Sudoku.Bot.Communication.Models.MessageToCreate,System.String)">
+        <member name="M:Sudoku.Bot.Communication.Sender.SendPrivateMessageAsync(Sudoku.Bot.Communication.Models.MessageToCreate,System.String)">
             <summary>
             发送私信
             </summary>
