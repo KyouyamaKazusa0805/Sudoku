@@ -124,10 +124,10 @@
   </data>
   <data name="AboutInfo_Segment2" xml:space="preserve">
     <value>玩法：请通过艾特本机器人，并带上斜杠符号。支持的指令有：
-💡 /签到（测试功能）：允许玩家每日参与一次签到。
-💡 /排名（测试功能）：对玩家的经验值获得情况进行排名。
-💡 /关于：提示程序介绍文字相关内容（即本消息）。
-💡 /复读：把你发的消息复读一次。</value>
+💡 /数独：快来和朋友们一起 PK 数独吧！
+💡 /签到：允许玩家每日参与一次签到~
+💡 /排名：对玩家的经验值获得情况进行排名~
+💡 /关于：显示各个指令的介绍信息~</value>
   </data>
   <data name="AuthorizationSuccessful" xml:space="preserve">
     <value>服务端鉴权成功</value>
@@ -198,6 +198,9 @@
   <data name="CommandNotExist" xml:space="preserve">
     <value>不存在。</value>
   </data>
+  <data name="CommandParserError_CommandNotRequireParameter" xml:space="preserve">
+    <value>该指令不需要后面跟上别的东西。为了规避错误处理而导致的不可解决的问题，请删去它们并重试一次。</value>
+  </data>
   <data name="CommandRegisteredSuccessfully" xml:space="preserve">
     <value>已注册。</value>
   </data>
@@ -219,8 +222,8 @@
   <data name="Command_Rank" xml:space="preserve">
     <value>排名</value>
   </data>
-  <data name="Command_Repeat" xml:space="preserve">
-    <value>复读</value>
+  <data name="Command_Sudoku" xml:space="preserve">
+    <value>数独</value>
   </data>
   <data name="ConnectFailed_MaxRetryCountReached" xml:space="preserve">
     <value>重连次数已耗尽，无法与频道服务器建立连接！</value>

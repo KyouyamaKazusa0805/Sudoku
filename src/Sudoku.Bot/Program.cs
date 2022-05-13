@@ -73,10 +73,10 @@
 	/// <param name="bot">The bot instance.</param>
 	private static void RegisterCommands(BotClient bot)
 	{
+		bot.RegisterCommand(new(StringResource.Get("Command_Sudoku")!, PlaySudokuAsync));
 		bot.RegisterCommand(new(StringResource.Get("Command_ClockIn")!, ClockInAsync));
 		bot.RegisterCommand(new(StringResource.Get("Command_Rank")!, PrintRankResultAsync));
 		bot.RegisterCommand(new(StringResource.Get("Command_About")!, PrintAboutInfoAsync));
-		bot.RegisterCommand(new(StringResource.Get("Command_Repeat")!, RepeatAsync));
 	}
 
 	/// <summary>

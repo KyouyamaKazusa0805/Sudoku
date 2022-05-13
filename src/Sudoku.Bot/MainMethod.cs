@@ -36,26 +36,14 @@ while (true)
 /// </summary>
 internal static partial class Program
 {
-	private static async void RepeatAsync(Sender sender, string message)
+	private static async void PlaySudokuAsync(Sender sender, string message)
 	{
-		if (!string.IsNullOrWhiteSpace(message) && sender.AtMe)
+		if (!string.IsNullOrWhiteSpace(message) || !sender.AtMe)
 		{
-			await sender.ReplyAsync($"{sender.Author.Tag} {message}");
+			return;
 		}
-	}
 
-	private static async void PrintAboutInfoAsync(Sender sender, string message)
-	{
-		if (sender.AtMe)
-		{
-			await sender.ReplyAsync(
-				$"""
-				{StringResource.Get("AboutInfo_Segment1")!}{AssemblyVersion}
-				---
-				{StringResource.Get("AboutInfo_Segment2")!}
-				"""
-			);
-		}
+
 	}
 
 	private static async void ClockInAsync(Sender sender, string message)
@@ -66,6 +54,12 @@ internal static partial class Program
 		// If the 'yyyyMMdd' is same, we should disallow the user re-clocking in.
 		if (sender is not { Author.Id: var userId, AtMe: true })
 		{
+			return;
+		}
+
+		if (!string.IsNullOrWhiteSpace(message))
+		{
+			await sender.ReplyAsync(StringResource.Get("CommandParserError_CommandNotRequireParameter")!);
 			return;
 		}
 
@@ -220,6 +214,12 @@ internal static partial class Program
 			return;
 		}
 
+		if (!string.IsNullOrWhiteSpace(message))
+		{
+			await sender.ReplyAsync(StringResource.Get("CommandParserError_CommandNotRequireParameter")!);
+			return;
+		}
+
 		if (StringResource.Get("__LocalPlayerConfigPath") is not { } path)
 		{
 			// The configuration path is not found.
@@ -281,6 +281,28 @@ internal static partial class Program
 			{StringResource.Get("RankExpSuccessful_Segment1")!}
 			---
 			{sb}
+			"""
+		);
+	}
+	
+	private static async void PrintAboutInfoAsync(Sender sender, string message)
+	{
+		if (!sender.AtMe)
+		{
+			return;
+		}
+
+		if (!string.IsNullOrWhiteSpace(message))
+		{
+			await sender.ReplyAsync(StringResource.Get("CommandParserError_CommandNotRequireParameter")!);
+			return;
+		}
+
+		await sender.ReplyAsync(
+			$"""
+			{StringResource.Get("AboutInfo_Segment1")!}{AssemblyVersion}
+			---
+			{StringResource.Get("AboutInfo_Segment2")!}
 			"""
 		);
 	}

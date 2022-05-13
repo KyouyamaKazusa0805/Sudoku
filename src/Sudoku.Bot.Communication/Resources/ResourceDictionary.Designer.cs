@@ -91,10 +91,10 @@ namespace Sudoku.Bot.Communication.Resources {
         
         /// <summary>
         ///   Looks up a localized string similar to 玩法：请通过艾特本机器人，并带上斜杠符号。支持的指令有：
-        ///💡 /签到（测试功能）：允许玩家每日参与一次签到。
-        ///💡 /排名（测试功能）：对玩家的经验值获得情况进行排名。
-        ///💡 /关于：提示程序介绍文字相关内容（即本消息）。
-        ///💡 /复读：把你发的消息复读一次。.
+        ///💡 /数独：快来和朋友们一起 PK 数独吧！
+        ///💡 /签到：允许玩家每日参与一次签到~
+        ///💡 /排名：对玩家的经验值获得情况进行排名~
+        ///💡 /关于：显示各个指令的介绍信息~.
         /// </summary>
         internal static string AboutInfo_Segment2 {
             get {
@@ -313,11 +313,11 @@ namespace Sudoku.Bot.Communication.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 复读.
+        ///   Looks up a localized string similar to 数独.
         /// </summary>
-        internal static string Command_Repeat {
+        internal static string Command_Sudoku {
             get {
-                return ResourceManager.GetString("Command_Repeat", resourceCulture);
+                return ResourceManager.GetString("Command_Sudoku", resourceCulture);
             }
         }
         
@@ -336,6 +336,15 @@ namespace Sudoku.Bot.Communication.Resources {
         internal static string CommandNotExist {
             get {
                 return ResourceManager.GetString("CommandNotExist", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 该指令不需要后面跟上别的东西。为了规避错误处理而导致的不可解决的问题，请删去它们并重试一次。.
+        /// </summary>
+        internal static string CommandParserError_CommandNotRequireParameter {
+            get {
+                return ResourceManager.GetString("CommandParserError_CommandNotRequireParameter", resourceCulture);
             }
         }
         
