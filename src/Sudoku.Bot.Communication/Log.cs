@@ -1,12 +1,12 @@
 ﻿namespace Sudoku.Bot.Communication;
 
 /// <summary>
-/// 集中处理日志信息
+/// Defines a <see langword="static class"/> type that holds the <see langword="static"/> operations on logging.
 /// </summary>
 public static class Log
 {
 	/// <summary>
-	/// 日志输出队列
+	/// Indicates the output queue.
 	/// </summary>
 	private static readonly ConcurrentQueue<LogEntry> LogQueue = new();
 
@@ -18,31 +18,56 @@ public static class Log
 
 
 	/// <summary>
-	/// 时间格式化器
-	/// <para>定义日志输出的时间戳格式 (默认值 HH:mm:ss.fff)</para>
+	/// Indicates the formatter for the formatting on a date time.
+	/// The default value is <c>"HH:mm:ss.f"</c>, where:
+	/// <list type="table">
+	/// <listheader>
+	/// <term>Formatting character</term>
+	/// <description>Description</description>
+	/// </listheader>
+	/// <item>
+	/// <term>h</term>
+	/// <description>Introduces the hour.</description>
+	/// </item>
+	/// <item>
+	/// <term>m</term>
+	/// <description>
+	/// Introduces the minute. Please note that <c>M</c> is for month, and <c>m</c> is for minute.
+	/// </description>
+	/// </item>
+	/// <item>
+	/// <term>s</term>
+	/// <description>Introduces the second.</description>
+	/// </item>
+	/// <item>
+	/// <term>f</term>
+	/// <description>Introduces the millisecond, nanosecond and so on.</description>
+	/// </item>
+	/// </list>
 	/// </summary>
 	public static string TimeFormatter { get; set; } = "HH:mm:ss.f";
 
 	/// <summary>
-	/// 日志记录级别
+	/// Indicates which level the log is will be displayed.
 	/// </summary>
 	public static LogLevel LogLevel { get; set; } = LogLevel.Info;
 
 	/// <summary>
-	/// 获取格式化的日期标签
+	/// Indicates the timestamp.
 	/// </summary>
 	private static string TimeStamp => $"[{DateTime.Now.ToString(TimeFormatter)}]";
 
 
 	/// <summary>
-	/// 自定义日志输出
+	/// Indicates the event that is triggered when a log is going to be output.
 	/// </summary>
 	public static event Action<LogEntry>? LogTo;
 
 
 	/// <summary>
-	/// 打印日志
+	/// To print the log.
 	/// </summary>
+	/// <param name="logItem">The item to log.</param>
 	private static void Print(LogEntry logItem)
 	{
 		_ = Task.Run(handler);
@@ -74,6 +99,7 @@ public static class Log
 
 					Console.WriteLine(Unicoder.Decode(entry.Message));
 					Console.ResetColor();
+
 					LogTo?.Invoke(entry);
 				}
 			}
@@ -83,26 +109,26 @@ public static class Log
 	}
 
 	/// <summary>
-	/// 打印调试
+	/// To print the debug information.
 	/// </summary>
-	/// <param name="message"></param>
+	/// <param name="message">The message.</param>
 	public static void Debug(string message) => Print(new(LogLevel.Debug, message, TimeStamp));
 
 	/// <summary>
-	/// 打印日志
+	/// To print the normal information.
 	/// </summary>
-	/// <param name="message"></param>
+	/// <param name="message">The message.</param>
 	public static void Info(string message) => Print(new(LogLevel.Info, message, TimeStamp));
 
 	/// <summary>
-	/// 打印警告
+	/// To print the warning information.
 	/// </summary>
-	/// <param name="message"></param>
+	/// <param name="message">The message.</param>
 	public static void Warn(string message) => Print(new(LogLevel.Warning, message, TimeStamp));
 
 	/// <summary>
-	/// 打印错误
+	/// To print the error information.
 	/// </summary>
-	/// <param name="message"></param>
+	/// <param name="message">The message.</param>
 	public static void Error(string message) => Print(new(LogLevel.Error, message, TimeStamp));
 }
