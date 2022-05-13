@@ -22,6 +22,17 @@
             with the bot.
             </summary>
         </member>
+        <member name="T:Sudoku.Bot.EqualityComparers.IgnoreCasingStringEqualityComparer">
+            <summary>
+            Compares two strings without casing.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Bot.EqualityComparers.IgnoreCasingStringEqualityComparer.Equals(System.String,System.String)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Bot.EqualityComparers.IgnoreCasingStringEqualityComparer.GetHashCode(System.String)">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Bot.JsonConverters.DictionaryConverter">
             <summary>
             Defines a dictionary JSON converter that can convert a list of key value pairs into a JSON string.
@@ -84,6 +95,24 @@
             Indicates the entry point of the program.
             </summary>
         </member>
+        <member name="F:Program._currentLockCommand">
+            <summary>
+            Indicates the current locked command.
+            This field is reserved by author to define the long-term command. If the field is not <see langword="null"/>,
+            what the method executed, what name the field will store.
+            </summary>
+        </member>
+        <member name="F:Program._timeLast">
+            <summary>
+            Indicates the time last.
+            This field is used by controlling the time span that group-mates can join in the game.
+            </summary>
+        </member>
+        <member name="F:Program._playersJoined">
+            <summary>
+            Indicates the players having been joined into the game.
+            </summary>
+        </member>
         <member name="P:Program.AssemblyVersion">
             <summary>
             Indicates the assembly version.
@@ -112,12 +141,6 @@
             Initializes the events.
             </summary>
             <param name="bot">The bot client.</param>
-        </member>
-        <member name="M:Program.RegisterCommands(Sudoku.Bot.Communication.BotClient)">
-            <summary>
-            Registers the commands to be invoked.
-            </summary>
-            <param name="bot">The bot instance.</param>
         </member>
         <member name="M:Program.LoadBotConfiguration(System.String,System.String@)">
             <summary>

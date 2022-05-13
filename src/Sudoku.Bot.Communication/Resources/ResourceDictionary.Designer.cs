@@ -322,11 +322,66 @@ namespace Sudoku.Bot.Communication.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to PK.
+        /// </summary>
+        internal static string Command_Sudoku_PkMode1 {
+            get {
+                return ResourceManager.GetString("Command_Sudoku_PkMode1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 对战.
+        /// </summary>
+        internal static string Command_Sudoku_PkMode2 {
+            get {
+                return ResourceManager.GetString("Command_Sudoku_PkMode2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 已存在。该指令将会被忽略掉。.
         /// </summary>
         internal static string CommandAlreadyExists {
             get {
                 return ResourceManager.GetString("CommandAlreadyExists", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 当前某群友正在执行某项耗时较长的指令（例如参与 PK 竞赛等）。该指令需要等待完成后，才可继续使用别的指令。.
+        /// </summary>
+        internal static string CommandExecutionFailed_LockedCommandIsNotEmpty {
+            get {
+                return ResourceManager.GetString("CommandExecutionFailed_LockedCommandIsNotEmpty", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 游戏结束~
+        ///该功能后面的部分还没实现，先调试使用一下前面的功能~.
+        /// </summary>
+        internal static string CommandGameEnd_Test {
+            get {
+                return ResourceManager.GetString("CommandGameEnd_Test", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 游戏启动失败，原因是人数不够~ 参赛人员至少应有 2 人~.
+        /// </summary>
+        internal static string CommandGamePlayFailed {
+            get {
+                return ResourceManager.GetString("CommandGamePlayFailed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 报名成功~ 请稍候~.
+        /// </summary>
+        internal static string CommandJoinGameSuccess {
+            get {
+                return ResourceManager.GetString("CommandJoinGameSuccess", resourceCulture);
             }
         }
         
@@ -372,6 +427,16 @@ namespace Sudoku.Bot.Communication.Resources {
         internal static string CommandRemovedSuccessfully {
             get {
                 return ResourceManager.GetString("CommandRemovedSuccessfully", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 游戏启动~ 请稍等大约 40 秒时间，留出这段时间是为了等待玩家加入并参与比赛。请艾特我来报名参赛~
+        ///游戏规则：给出一个题目，并固定一个格子作为答案格，请玩家在完成题目期间给出此格的填数。正确的人得分；另外时间越短，分数越高~.
+        /// </summary>
+        internal static string CommandStartWaitingPlayers {
+            get {
+                return ResourceManager.GetString("CommandStartWaitingPlayers", resourceCulture);
             }
         }
         

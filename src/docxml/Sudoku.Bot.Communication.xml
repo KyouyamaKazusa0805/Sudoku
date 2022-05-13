@@ -819,7 +819,7 @@
             <summary>
             The events that the current connection will be received.
             You can use <see cref="T:Sudoku.Bot.Communication.Intents"/> enumeration to get the default settings
-            of event intents.
+            of event intents. The default value is <see cref="F:Sudoku.Bot.Communication.Intents.PublicDomain"/>.
             </summary>
             <remarks>
             For more information please visit the description about
@@ -4196,9 +4196,40 @@
               Looks up a localized string similar to 数独.
             </summary>
         </member>
+        <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.Command_Sudoku_PkMode1">
+            <summary>
+              Looks up a localized string similar to PK.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.Command_Sudoku_PkMode2">
+            <summary>
+              Looks up a localized string similar to 对战.
+            </summary>
+        </member>
         <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.CommandAlreadyExists">
             <summary>
               Looks up a localized string similar to 已存在。该指令将会被忽略掉。.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.CommandExecutionFailed_LockedCommandIsNotEmpty">
+            <summary>
+              Looks up a localized string similar to 当前某群友正在执行某项耗时较长的指令（例如参与 PK 竞赛等）。该指令需要等待完成后，才可继续使用别的指令。.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.CommandGameEnd_Test">
+             <summary>
+               Looks up a localized string similar to 游戏结束~
+            该功能后面的部分还没实现，先调试使用一下前面的功能~.
+             </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.CommandGamePlayFailed">
+            <summary>
+              Looks up a localized string similar to 游戏启动失败，原因是人数不够~ 参赛人员至少应有 2 人~.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.CommandJoinGameSuccess">
+            <summary>
+              Looks up a localized string similar to 报名成功~ 请稍候~.
             </summary>
         </member>
         <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.CommandNotExist">
@@ -4225,6 +4256,12 @@
             <summary>
               Looks up a localized string similar to 已删除。.
             </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.CommandStartWaitingPlayers">
+             <summary>
+               Looks up a localized string similar to 游戏启动~ 请稍等大约 40 秒时间，留出这段时间是为了等待玩家加入并参与比赛。请艾特我来报名参赛~
+            游戏规则：给出一个题目，并固定一个格子作为答案格，请玩家在完成题目期间给出此格的填数。正确的人得分；另外时间越短，分数越高~.
+             </summary>
         </member>
         <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.CommandText">
             <summary>
@@ -5435,6 +5472,15 @@
             Provides with extension methods on <see cref="T:System.String"/>.
             </summary>
             <seealso cref="T:System.String"/>
+        </member>
+        <member name="M:System.StringExtensions.Deconstruct(System.String,System.Boolean@,System.Boolean@,System.Boolean@)">
+            <summary>
+            Deconstruct the instance to multiple values.
+            </summary>
+            <param name="this">The string value to be checked.</param>
+            <param name="isNull">Indicates whether the string is <see langword="null"/></param>
+            <param name="isEmpty">Indicates whether the string is <see cref="F:System.String.Empty"/>.</param>
+            <param name="isWritespaces">Indicates whether the string only contains whitespaces.</param>
         </member>
         <member name="M:System.StringExtensions.ReplaceStart(System.String,System.String,System.String,System.Boolean)">
             <summary>

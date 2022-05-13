@@ -195,6 +195,19 @@
   <data name="CommandAlreadyExists" xml:space="preserve">
     <value>已存在。该指令将会被忽略掉。</value>
   </data>
+  <data name="CommandExecutionFailed_LockedCommandIsNotEmpty" xml:space="preserve">
+    <value>当前某群友正在执行某项耗时较长的指令（例如参与 PK 竞赛等）。该指令需要等待完成后，才可继续使用别的指令。</value>
+  </data>
+  <data name="CommandGameEnd_Test" xml:space="preserve">
+    <value>游戏结束~
+该功能后面的部分还没实现，先调试使用一下前面的功能~</value>
+  </data>
+  <data name="CommandGamePlayFailed" xml:space="preserve">
+    <value>游戏启动失败，原因是人数不够~ 参赛人员至少应有 2 人~</value>
+  </data>
+  <data name="CommandJoinGameSuccess" xml:space="preserve">
+    <value>报名成功~ 请稍候~</value>
+  </data>
   <data name="CommandNotExist" xml:space="preserve">
     <value>不存在。</value>
   </data>
@@ -210,6 +223,10 @@
   <data name="CommandRemovedSuccessfully" xml:space="preserve">
     <value>已删除。</value>
   </data>
+  <data name="CommandStartWaitingPlayers" xml:space="preserve">
+    <value>游戏启动~ 请稍等大约 40 秒时间，留出这段时间是为了等待玩家加入并参与比赛。请艾特我来报名参赛~
+游戏规则：给出一个题目，并固定一个格子作为答案格，请玩家在完成题目期间给出此格的填数。正确的人得分；另外时间越短，分数越高~</value>
+  </data>
   <data name="CommandText" xml:space="preserve">
     <value>指令</value>
   </data>
@@ -224,6 +241,12 @@
   </data>
   <data name="Command_Sudoku" xml:space="preserve">
     <value>数独</value>
+  </data>
+  <data name="Command_Sudoku_PkMode1" xml:space="preserve">
+    <value>PK</value>
+  </data>
+  <data name="Command_Sudoku_PkMode2" xml:space="preserve">
+    <value>对战</value>
   </data>
   <data name="ConnectFailed_MaxRetryCountReached" xml:space="preserve">
     <value>重连次数已耗尽，无法与频道服务器建立连接！</value>

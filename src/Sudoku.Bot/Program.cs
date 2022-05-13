@@ -1,5 +1,29 @@
-﻿partial class Program
+﻿/// <summary>
+/// Indicates the entry point of the program.
+/// </summary>
+internal static partial class Program
 {
+#pragma warning disable IDE0044
+	/// <summary>
+	/// Indicates the current locked command.
+	/// This field is reserved by author to define the long-term command. If the field is not <see langword="null"/>,
+	/// what the method executed, what name the field will store.
+	/// </summary>
+	private static volatile string? _currentLockCommand;
+
+	/// <summary>
+	/// Indicates the time last.
+	/// This field is used by controlling the time span that group-mates can join in the game.
+	/// </summary>
+	private static volatile int _timeLast;
+
+	/// <summary>
+	/// Indicates the players having been joined into the game.
+	/// </summary>
+	private static volatile List<string> _playersJoined = new(4);
+#pragma warning restore IDE0044
+
+
 	/// <summary>
 	/// Indicates the assembly version.
 	/// </summary>
@@ -52,31 +76,26 @@
 		};
 		bot.MessageCreated += static async (_, e) =>
 		{
-			if (
-				e.Sender is
-				{
-					AtMe: true,
-					Content: var content,
-					Bot.Info.Tag: var botInfoTag,
-					Author.Tag: var authorTag
-				} sender
-			)
+			if (_currentLockCommand != StringResource.Get("Command_Sudoku"))
 			{
-				await sender.ReplyAsync(content.Replace(botInfoTag, authorTag));
+				return;
 			}
-		};
-	}
 
-	/// <summary>
-	/// Registers the commands to be invoked.
-	/// </summary>
-	/// <param name="bot">The bot instance.</param>
-	private static void RegisterCommands(BotClient bot)
-	{
-		bot.RegisterCommand(new(StringResource.Get("Command_Sudoku")!, PlaySudokuAsync));
-		bot.RegisterCommand(new(StringResource.Get("Command_ClockIn")!, ClockInAsync));
-		bot.RegisterCommand(new(StringResource.Get("Command_Rank")!, PrintRankResultAsync));
-		bot.RegisterCommand(new(StringResource.Get("Command_About")!, PrintAboutInfoAsync));
+			if (e.Sender is not { Bot.Info.Tag: var t, AtMe: true, Content: var m, Author.Id: var authorId } sender)
+			{
+				return;
+			}
+
+			// Filters the message to remove the mentioning message part.
+			if (!string.IsNullOrWhiteSpace(m.Trim().ReplaceStart(t).TrimStart()))
+			{
+				return;
+			}
+
+			// Here we should register the joining operation.
+			_playersJoined.Add(authorId);
+			await sender.ReplyAsync(StringResource.Get("CommandJoinGameSuccess")!);
+		};
 	}
 
 	/// <summary>

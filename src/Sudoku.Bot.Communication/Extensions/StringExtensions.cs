@@ -7,6 +7,20 @@
 public static class StringExtensions
 {
 	/// <summary>
+	/// Deconstruct the instance to multiple values.
+	/// </summary>
+	/// <param name="this">The string value to be checked.</param>
+	/// <param name="isNull">Indicates whether the string is <see langword="null"/></param>
+	/// <param name="isEmpty">Indicates whether the string is <see cref="string.Empty"/>.</param>
+	/// <param name="isWritespaces">Indicates whether the string only contains whitespaces.</param>
+	public static void Deconstruct(this string? @this, out bool isNull, out bool isEmpty, out bool isWritespaces)
+	{
+		isNull = @this is null;
+		isEmpty = @this == "";
+		isWritespaces = string.IsNullOrWhiteSpace(@this) && !isNull;
+	}
+
+	/// <summary>
 	/// Replace several characters beginning with the <see cref="string"/> instance
 	/// with the newer <see cref="string"/> value, via the specified <see cref="bool"/> value
 	/// indicating whether the comparison ignores the casing.

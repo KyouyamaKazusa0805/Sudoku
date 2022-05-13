@@ -115,7 +115,7 @@ public partial class BotClient
 	/// <summary>
 	/// The events that the current connection will be received.
 	/// You can use <see cref="CommunicationIntents"/> enumeration to get the default settings
-	/// of event intents.
+	/// of event intents. The default value is <see cref="CommunicationIntents.PublicDomain"/>.
 	/// </summary>
 	/// <remarks>
 	/// For more information please visit the description about
