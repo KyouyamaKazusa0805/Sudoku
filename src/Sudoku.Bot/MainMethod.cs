@@ -50,10 +50,10 @@ internal static partial class Program
 		{
 			await sender.ReplyAsync(
 				$"""
-			{StringResource.Get("AboutInfo_Segment1")!}{AssemblyVersion}
-			---
-			{StringResource.Get("AboutInfo_Segment2")!}
-			"""
+				{StringResource.Get("AboutInfo_Segment1")!}{AssemblyVersion}
+				---
+				{StringResource.Get("AboutInfo_Segment2")!}
+				"""
 			);
 		}
 	}
@@ -84,6 +84,8 @@ internal static partial class Program
 
 		string userPath = $"""{path}\{userId}.json""";
 		var generalSerializerOptions = new JsonSerializerOptions { WriteIndented = true }.AddConverter<DictionaryConverter>();
+		static bool isWeekend() => DateTime.Today.DayOfWeek is DayOfWeek.Saturday or DayOfWeek.Sunday;
+		static int getRandomScore() => Random.Shared.Next() % (isWeekend() ? 20 : 10) + 1;
 		if (File.Exists(userPath))
 		{
 			string originalJson = await File.ReadAllTextAsync(userPath);
@@ -107,7 +109,7 @@ internal static partial class Program
 						}
 
 						// Valid. Now clock in and update the value.
-						int extraExp = Random.Shared.Next() % 10 + 1;
+						int extraExp = getRandomScore();
 						var tempDic = rootElement
 							.ToDictionaryOfStringElements()
 							.AppendOrCover(ConfigurationPaths.LastTimeCheckedIn, DateTime.Today.ToString());
@@ -145,7 +147,7 @@ internal static partial class Program
 				{
 					// The file exists but the current property doesn't.
 					// We should create the property with the current value and update the file.
-					int extraExp = Random.Shared.Next() % 10 + 1;
+					int extraExp = getRandomScore();
 
 					var tempDic = rootElement
 						.ToDictionaryOfStringElements()
@@ -192,17 +194,17 @@ internal static partial class Program
 		else
 		{
 			// The file doesn't exist. Just create a file that contains the data.
-			int extraExp = Random.Shared.Next() % 10 + 1;
+			int extraExp = getRandomScore();
 
 			string indenting = new(' ', 2);
 			await File.WriteAllTextAsync(
 				userPath,
 				$$"""
-			{
-			{{indenting}}"{{ConfigurationPaths.LastTimeCheckedIn}}": "{{DateTime.Today}}",
-			{{indenting}}"{{ConfigurationPaths.ExperiencePoint}}": "{{extraExp}}"
-			}
-			"""
+				{
+				{{indenting}}"{{ConfigurationPaths.LastTimeCheckedIn}}": "{{DateTime.Today}}",
+				{{indenting}}"{{ConfigurationPaths.ExperiencePoint}}": "{{extraExp}}"
+				}
+				"""
 			);
 
 			string a = StringResource.Get("ClockInSuccess_FileCreatedSegment1")!;
@@ -276,10 +278,10 @@ internal static partial class Program
 
 		await sender.ReplyAsync(
 			$"""
-		{StringResource.Get("RankExpSuccessful_Segment1")!}
-		---
-		{sb}
-		"""
+			{StringResource.Get("RankExpSuccessful_Segment1")!}
+			---
+			{sb}
+			"""
 		);
 	}
 }
