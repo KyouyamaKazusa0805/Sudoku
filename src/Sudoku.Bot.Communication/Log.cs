@@ -97,7 +97,7 @@ public static class Log
 						_ => ConsoleColor.Magenta,
 					};
 
-					Console.WriteLine(Unicoder.Decode(entry.Message));
+					Console.WriteLine(UnicodeEncodingDecoding.Decode(entry.Message));
 					Console.ResetColor();
 
 					LogTo?.Invoke(entry);

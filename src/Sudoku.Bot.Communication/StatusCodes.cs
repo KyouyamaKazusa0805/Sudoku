@@ -8,7 +8,7 @@ public static class StatusCodes
 	/// <summary>
 	/// The status code referencing table.
 	/// </summary>
-	public static readonly Dictionary<int, string> OpenapiCode = new()
+	public static readonly IReadOnlyDictionary<int, string> OpenapiCode = new Dictionary<int, string>
 	{
         //{ 100, "Continue 指示客户端可能继续其请求" },
         //{ 101, "SwitchingProtocols 指示正在更改协议版本或协议" },

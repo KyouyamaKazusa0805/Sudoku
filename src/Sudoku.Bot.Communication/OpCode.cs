@@ -1,55 +1,50 @@
 ﻿namespace Sudoku.Bot.Communication;
 
 /// <summary>
-/// 枚举操作码
+/// Defines an enumeration type that holds the basic operations for the whole messaging.
 /// </summary>
 public enum Opcode
 {
 	/// <summary>
-	/// 服务端进行消息推送
-	/// <para>客户端操作：Receive</para>
+	/// Indicates the operation that the server dispatches the message.
 	/// </summary>
 	Dispatch = 0,
 
 	/// <summary>
-	/// 客户端或服务端发送心跳
-	/// <para>客户端操作：Send/Receive</para>
+	/// Indicates the operation that the server/client sends/receives the heartbeat.
 	/// </summary>
 	Heartbeat = 1,
 
 	/// <summary>
-	/// 客户端发送鉴权
-	/// <para>客户端操作：Send</para>
+	/// Indicates the operation that the client sends the authorization message to the server.
 	/// </summary>
 	Identify = 2,
 
 	/// <summary>
-	/// 客户端恢复连接
-	/// <para>客户端操作：Send</para>
+	/// Indicates the operation that the client resumes the connection.
 	/// </summary>
 	Resume = 6,
 
 	/// <summary>
-	/// 服务端通知客户端重新连接
-	/// <para>客户端操作：Receive</para>
+	/// Indicates the operation that the server requires the client reconnecting.
 	/// </summary>
 	Reconnect = 7,
 
 	/// <summary>
-	/// 当identify或resume的时候，如果参数有错，服务端会返回该消息
-	/// <para>客户端操作：Receive</para>
+	/// Indicates the operation that the session is invalid when <see cref="Identify"/>ing or <see cref="Resume"/>ing.
 	/// </summary>
 	InvalidSession = 9,
 
 	/// <summary>
-	/// 当客户端与网关建立ws连接之后，网关下发的第一条消息
-	/// <para>客户端操作：Receive</para>
+	/// Indicates the operation that the helloing message sending by gateway.
 	/// </summary>
+	/// <remarks>
+	/// A "hello" message is the first message when connection is successfully created.
+	/// </remarks>
 	Hello = 10,
 
 	/// <summary>
-	/// 当发送心跳成功之后，就会收到该消息
-	/// <para>客户端操作：Receive</para>
+	/// Indicates the operation that report the acknowledgement message the client successfully sends the heartbeat.
 	/// </summary>
-	HeartbeatACK = 11,
+	HeartbeatACK = 11
 }

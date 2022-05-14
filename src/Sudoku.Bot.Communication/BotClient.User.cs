@@ -9,7 +9,7 @@ partial class BotClient
 	/// <returns>
 	/// A task instance encapsulates the bot information that is encapsulated by a <see cref="User"/> instance.
 	/// </returns>
-	public async Task<User?> GetMeAsync(Sender? sender)
+	public async Task<User?> GetInfoAsync(Sender? sender)
 		=> BotApis.GetUserDetail is { Path: var path, Method: var method }
 		&& await HttpSendAsync(path, method, null, sender) is { Content: var responseContent }
 			? await responseContent.ReadFromJsonAsync<User?>()

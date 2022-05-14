@@ -1,23 +1,20 @@
 ﻿namespace Sudoku.Bot.Communication;
 
 /// <summary>
-/// Unicode编解码器
+/// Encodes or decodes the character values to/from a <c>\uxxxx</c> representation.
 /// </summary>
-public static class Unicoder
+internal static class UnicodeEncodingDecoding
 {
-	/// <summary>
-	/// Indicates the inner unicode regular expression pattern.
-	/// </summary>
-	private static readonly Regex ReUnicode = new("""\\u([0-9a-fA-F]{4})""", RegexOptions.Compiled);
-
-	private static readonly Regex ReUnicodeChar = new("""[^\u0000-\u00ff]""", RegexOptions.Compiled);
+	private static readonly Regex
+		ReUnicode = new("""\\u([0-9a-fA-F]{4})""", RegexOptions.Compiled),
+		ReUnicodeChar = new("""[^\u0000-\u00ff]""", RegexOptions.Compiled);
 
 
 	/// <summary>
-	/// Unicode编码(\uxxxx)序列转字符串
+	/// Decodes a string from <c>\uXXXX</c> sequence.
 	/// </summary>
-	/// <param name="s"></param>
-	/// <returns></returns>
+	/// <param name="s">The string.</param>
+	/// <returns>The decoded string.</returns>
 	public static string Decode(string s)
 	{
 		return ReUnicode.Replace(
@@ -33,9 +30,9 @@ public static class Unicoder
 	}
 
 	/// <summary>
-	/// 字符串转Unicode编码(\uxxxx)序列
+	/// Encodes a string to <c>\uXXXX</c> sequence.
 	/// </summary>
-	/// <param name="s"></param>
-	/// <returns></returns>
+	/// <param name="s">The string.</param>
+	/// <returns>The encoded string.</returns>
 	public static string Encode(string s) => ReUnicodeChar.Replace(s, static m => $"""\u{(short)m.Value[0]:x4}""");
 }

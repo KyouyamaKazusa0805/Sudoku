@@ -10,7 +10,7 @@ var identity = LoadBotConfiguration(StringResource.Get("__LocalBotConfigPath")!,
 var bot = new BotClient(identity, sandBoxApi: true, reportApiError: true)
 {
 	Intents = Intents.PrivateDomain,
-	MessageFilter = sender => !(sender.ChannelId == testChannelId && sender.AtMe)
+	MessageFilter = sender => !(sender.ChannelId == testChannelId && sender.IsMentioned)
 };
 
 // Sets the elementary event handlers.
@@ -40,7 +40,7 @@ static void registerCommands(BotClient bot)
 
 static async void PlaySudokuAsync(Sender sender, string message)
 {
-	if ((sender, message) is not ({ AtMe: true }, (false, false, false)))
+	if ((sender, message) is not ({ IsMentioned: true }, (false, false, false)))
 	{
 		return;
 	}
@@ -108,7 +108,7 @@ static async void ClockInAsync(Sender sender, string message)
 	// If the user is the new, we should create a file to store it;
 	// otherwise, check the user data file, and get the latest time that he/she clocked in.
 	// If the 'yyyyMMdd' is same, we should disallow the user re-clocking in.
-	if (sender is not { Author.Id: var userId, AtMe: true })
+	if (sender is not { MessageCreator.Id: var userId, IsMentioned: true })
 	{
 		return;
 	}
@@ -275,7 +275,7 @@ static async void ClockInAsync(Sender sender, string message)
 static async void PrintRankResultAsync(Sender sender, string message)
 {
 
-	if (sender is not { Author.Id: var userId, AtMe: true })
+	if (sender is not { MessageCreator.Id: var userId, IsMentioned: true })
 	{
 		return;
 	}
@@ -359,7 +359,7 @@ static async void PrintRankResultAsync(Sender sender, string message)
 
 static async void PrintAboutInfoAsync(Sender sender, string message)
 {
-	if (!sender.AtMe)
+	if (!sender.IsMentioned)
 	{
 		return;
 	}

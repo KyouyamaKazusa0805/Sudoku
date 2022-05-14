@@ -179,15 +179,15 @@ partial class BotClient
 	/// <param name="endOfMessaging">
 	/// Indicates whether the message ends the messaging. The default value is <see langword="true"/>.
 	/// </param>
-	/// <param name="cancelToken">The cancellation token to cancel the operation.</param>
+	/// <param name="cancellationToken">The cancellation token to cancel the operation.</param>
 	/// <returns>A task will be returned, which contains the <see langword="await"/>ing information.</returns>
 	private async Task WebSocketSendAsync(
 		string data, WebSocketMessageType messageType = WebSocketMessageType.Text,
-		bool endOfMessaging = true, CancellationToken cancelToken = default)
+		bool endOfMessaging = true, CancellationToken cancellationToken = default)
 	{
 		WebSocketSending?.Invoke(this, new(data));
 
-		await _webSocketClient.SendAsync(Encoding.UTF8.GetBytes(data), messageType, endOfMessaging, cancelToken);
+		await _webSocketClient.SendAsync(Encoding.UTF8.GetBytes(data), messageType, endOfMessaging, cancellationToken);
 	}
 
 	/// <summary>
@@ -436,7 +436,7 @@ partial class BotClient
 						Log.Info($"[WebSocket][GetGuilds] {botHasJoinedText} {Guilds.Count} {guildCountText}");
 
 						Info = d.GetProperty("user").Deserialize<User>()!;
-						Info.Avatar = (await GetMeAsync(null))?.Avatar;
+						Info.Avatar = (await GetInfoAsync(null))?.Avatar;
 
 						// Triggers the event.
 						// Here 'this' can be replaced with 'null' because the first argument is useless.

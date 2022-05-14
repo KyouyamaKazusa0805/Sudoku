@@ -476,6 +476,15 @@ namespace Sudoku.Bot.Communication.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to （内容无法解码）.
+        /// </summary>
+        internal static string ContentCannotBeDecoded {
+            get {
+                return ResourceManager.GetString("ContentCannotBeDecoded", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 日.
         /// </summary>
         internal static string DateTimeUnit_Day1 {
@@ -881,6 +890,24 @@ namespace Sudoku.Bot.Communication.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to （没有内容）.
+        /// </summary>
+        internal static string NoContent {
+            get {
+                return ResourceManager.GetString("NoContent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 项目原作者：.
+        /// </summary>
+        internal static string OriginalAuthor {
+            get {
+                return ResourceManager.GetString("OriginalAuthor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 私域机器人.
         /// </summary>
         internal static string PrivateDomainBotSuffix {
@@ -949,6 +976,24 @@ namespace Sudoku.Bot.Communication.Resources {
         internal static string ReceiveReconnectMessage {
             get {
                 return ResourceManager.GetString("ReceiveReconnectMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 请求已取消！.
+        /// </summary>
+        internal static string RequestCancelled {
+            get {
+                return ResourceManager.GetString("RequestCancelled", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 目标接口处于冻结状态，暂时无法访问：.
+        /// </summary>
+        internal static string RequestUrlFailedDueToBeingFrozen {
+            get {
+                return ResourceManager.GetString("RequestUrlFailedDueToBeingFrozen", resourceCulture);
             }
         }
         

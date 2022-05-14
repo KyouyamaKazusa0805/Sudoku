@@ -51,6 +51,8 @@ internal static partial class Program
 	private static void FastExitOnBot(BotClient bot)
 	{
 		bot.Close();
+		BotHttpClient.HttpClient.Dispose();
+
 		Environment.Exit(0);
 	}
 
@@ -81,7 +83,7 @@ internal static partial class Program
 				return;
 			}
 
-			if (e.Sender is not { Bot.Info.Tag: var t, AtMe: true, Content: var m, Author.Id: var authorId } sender)
+			if (e.Sender is not { Bot.Info.Tag: var t, IsMentioned: true, Content: var m, MessageCreator.Id: var authorId } sender)
 			{
 				return;
 			}

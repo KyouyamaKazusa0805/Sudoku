@@ -159,7 +159,17 @@ public partial class BotClient
 	/// so the original value corresponds to the original author instead of me.
 	/// </b></remarks>
 	public static string SdkIdentifier
-		=> $"{SdkData.SdkName}_{SdkData.SdkVersion}\n{SdkData.RepoLink_Github}\n{SdkData.Copyright}";
+	{
+		get
+		{
+			string a = SdkData.SdkName!;
+			var b = SdkData.SdkVersion!;
+			string c = StringResource.Get("OriginalAuthor")!;
+			string d = SdkData.RepoLink_Github;
+			string e = SdkData.Copyright;
+			return $"{a}_{b}\n{c}{d}\n{e}";
+		}
+	}
 
 	/// <summary>
 	/// Indicates the time that records the bot being running.
@@ -343,7 +353,7 @@ public partial class BotClient
 
 			string senderAuthorName =
 				(sender?.Bot.Guilds.TryGetValue(sender.GuildId, out var guild) is true ? guild.Name : null)
-					?? sender?.Author.UserName
+					?? sender?.MessageCreator.UserName
 					?? string.Empty;
 
 			string accessFailedHeader = StringResource.Get("LogHeader_InterfaceAccessFailed")!;

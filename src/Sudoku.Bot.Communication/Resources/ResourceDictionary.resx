@@ -256,6 +256,9 @@
   <data name="ConnectToServerFailed" xml:space="preserve">
     <value>建立连接失败！</value>
   </data>
+  <data name="ContentCannotBeDecoded" xml:space="preserve">
+    <value>（内容无法解码）</value>
+  </data>
   <data name="DateTimeUnit_Day1" xml:space="preserve">
     <value>日</value>
   </data>
@@ -391,6 +394,12 @@
   <data name="Name_NormalMember" xml:space="preserve">
     <value>普通成员</value>
   </data>
+  <data name="NoContent" xml:space="preserve">
+    <value>（没有内容）</value>
+  </data>
+  <data name="OriginalAuthor" xml:space="preserve">
+    <value>项目原作者：</value>
+  </data>
   <data name="PrivateDomainBotSuffix" xml:space="preserve">
     <value>私域机器人</value>
   </data>
@@ -414,6 +423,12 @@
   </data>
   <data name="ReceiveReconnectMessage" xml:space="preserve">
     <value>服务器要求客户端重连</value>
+  </data>
+  <data name="RequestCancelled" xml:space="preserve">
+    <value>请求已取消！</value>
+  </data>
+  <data name="RequestUrlFailedDueToBeingFrozen" xml:space="preserve">
+    <value>目标接口处于冻结状态，暂时无法访问：</value>
   </data>
   <data name="ResumeError" xml:space="preserve">
     <value>恢复连接失败：</value>
