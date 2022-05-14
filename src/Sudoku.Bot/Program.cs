@@ -83,7 +83,7 @@ internal static partial class Program
 				return;
 			}
 
-			if (e.Sender is not { Bot.Info: var botInfo, IsMentioned: true, Content: var m, MessageCreator.Id: var authorId } sender)
+			if (e.Sender is not { Bot.Info: var botInfo, IsMentioned: true, Content: var m, MessageCreator.Id: var creatorId } sender)
 			{
 				return;
 			}
@@ -95,7 +95,7 @@ internal static partial class Program
 			}
 
 			// Here we should register the joining operation.
-			_playersJoined.Add(authorId);
+			_playersJoined.Add(creatorId);
 			await sender.ReplyAsync(StringResource.Get("CommandJoinGameSuccess")!);
 		};
 	}
