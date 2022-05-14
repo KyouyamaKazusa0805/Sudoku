@@ -98,7 +98,7 @@ In addition, this repo may update **frequently** (At least 1 commit in a day).
     * [ ] MAUI
   * [ ] Platform Bots
     * [ ] Bilibili
-    * [ ] QQ
+    * [x] QQ
     * [ ] WeChat
 * Miscellaneous
   * [ ] ~~Nuget packages~~ (Don't consider due to large modifications on APIs)
