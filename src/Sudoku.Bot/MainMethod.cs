@@ -186,7 +186,8 @@ static async void ClockInAsync(Sender sender, string message)
 					string a = StringResource.Get("ClockInSuccess_ValueUpdatedSegment1")!;
 					string b = StringResource.Get("ClockInSuccess_ValueUpdatedSegment2")!;
 					string c = StringResource.Get("ClockInSuccess_ValueUpdatedSegment3")!;
-					await sender.ReplyAsync($"{a} {extraExp} {b} {realFinalValue} {c}");
+					string d = isWeekend() ? $" {StringResource.Get("HopeYouHappyWeekend")!}" : string.Empty;
+					await sender.ReplyAsync($"{a} {extraExp} {b} {realFinalValue} {c}{d}", true);
 				}
 				catch (ArgumentNullException)
 				{
@@ -225,7 +226,8 @@ static async void ClockInAsync(Sender sender, string message)
 				string a = StringResource.Get("ClockInSuccess_ValueCreatedSegment1")!;
 				string b = StringResource.Get("ClockInSuccess_ValueCreatedSegment2")!;
 				string c = StringResource.Get("ClockInSuccess_ValueCreatedSegment3")!;
-				await sender.ReplyAsync($"{a} {extraExp} {b} {realFinalValue} {c}", true);
+				string d = isWeekend() ? $" {StringResource.Get("HopeYouHappyWeekend")!}" : string.Empty;
+				await sender.ReplyAsync($"{a} {extraExp} {b} {realFinalValue} {c}{d}", true);
 			}
 		}
 
@@ -264,7 +266,8 @@ static async void ClockInAsync(Sender sender, string message)
 
 		string a = StringResource.Get("ClockInSuccess_FileCreatedSegment1")!;
 		string b = StringResource.Get("ClockInSuccess_FileCreatedSegment2")!;
-		await sender.ReplyAsync($"{a} {extraExp} {b}", true);
+		string c = isWeekend() ? $" {StringResource.Get("HopeYouHappyWeekend")!}" : string.Empty;
+		await sender.ReplyAsync($"{a} {extraExp} {b}{c}", true);
 	}
 }
 

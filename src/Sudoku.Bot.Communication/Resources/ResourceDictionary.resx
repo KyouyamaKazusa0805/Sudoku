@@ -329,6 +329,9 @@
   <data name="GuildCountText" xml:space="preserve">
     <value>个频道</value>
   </data>
+  <data name="HopeYouHappyWeekend" xml:space="preserve">
+    <value>祝你周末愉快~</value>
+  </data>
   <data name="JinxTimeCountdownPattern" xml:space="preserve">
     <value>(\d+)\s*(年|星期|周|日|天|小?时|分钟?|秒钟?)</value>
   </data>

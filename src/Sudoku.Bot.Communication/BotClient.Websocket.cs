@@ -209,6 +209,7 @@ partial class BotClient
 					var json = JsonDocument.Parse(memory.Memory[..count]).RootElement;
 					WebSocketReceived?.Invoke(this, new(json.GetRawText()));
 					await ExecuteCommandAsync(json);
+
 					continue;
 				}
 

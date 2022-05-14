@@ -693,6 +693,15 @@ namespace Sudoku.Bot.Communication.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 祝你周末愉快~.
+        /// </summary>
+        internal static string HopeYouHappyWeekend {
+            get {
+                return ResourceManager.GetString("HopeYouHappyWeekend", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to (\d+)\s*(年|星期|周|日|天|小?时|分钟?|秒钟?).
         /// </summary>
         internal static string JinxTimeCountdownPattern {

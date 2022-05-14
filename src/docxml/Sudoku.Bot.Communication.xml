@@ -4403,6 +4403,11 @@
               Looks up a localized string similar to 个频道.
             </summary>
         </member>
+        <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.HopeYouHappyWeekend">
+            <summary>
+              Looks up a localized string similar to 祝你周末愉快~.
+            </summary>
+        </member>
         <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.JinxTimeCountdownPattern">
             <summary>
               Looks up a localized string similar to (\d+)\s*(年|星期|周|日|天|小?时|分钟?|秒钟?).
