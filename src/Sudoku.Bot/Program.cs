@@ -20,7 +20,7 @@ internal static partial class Program
 	/// <summary>
 	/// Indicates the players having been joined into the game.
 	/// </summary>
-	private static volatile List<string> _playersJoined = new(4);
+	private static volatile List<string> _playersJoined = new();
 #pragma warning restore IDE0044
 
 

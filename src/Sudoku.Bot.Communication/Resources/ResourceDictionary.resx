@@ -198,10 +198,6 @@
   <data name="CommandExecutionFailed_LockedCommandIsNotEmpty" xml:space="preserve">
     <value>当前某群友正在执行某项耗时较长的指令（例如参与 PK 竞赛等）。该指令需要等待完成后，才可继续使用别的指令。</value>
   </data>
-  <data name="CommandGameEnd_Test" xml:space="preserve">
-    <value>游戏结束~
-该功能后面的部分还没实现，先调试使用一下前面的功能~</value>
-  </data>
   <data name="CommandGamePlayFailed" xml:space="preserve">
     <value>游戏启动失败，原因是人数不够~ 参赛人员至少应有 2 人~</value>
   </data>

@@ -358,16 +358,6 @@ namespace Sudoku.Bot.Communication.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 游戏结束~
-        ///该功能后面的部分还没实现，先调试使用一下前面的功能~.
-        /// </summary>
-        internal static string CommandGameEnd_Test {
-            get {
-                return ResourceManager.GetString("CommandGameEnd_Test", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to 游戏启动失败，原因是人数不够~ 参赛人员至少应有 2 人~.
         /// </summary>
         internal static string CommandGamePlayFailed {

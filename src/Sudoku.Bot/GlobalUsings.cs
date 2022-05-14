@@ -21,3 +21,4 @@ global using Sudoku.Bot.Communication;
 global using Sudoku.Bot.Communication.Resources;
 global using Sudoku.Bot.EqualityComparers;
 global using Sudoku.Bot.JsonConverters;
+global using Sudoku.Generating;

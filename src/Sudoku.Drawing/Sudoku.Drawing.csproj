@@ -1,0 +1,9 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>net7.0</TargetFramework>
+		<DocumentationFile>..\docxml\Sudoku.Drawing.xml</DocumentationFile>
+		<Description>The project that provides a basic way to draw a sudoku grid.</Description>
+	</PropertyGroup>
+
+</Project>

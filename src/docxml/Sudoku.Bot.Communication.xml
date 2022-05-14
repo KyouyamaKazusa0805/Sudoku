@@ -4216,12 +4216,6 @@
               Looks up a localized string similar to 当前某群友正在执行某项耗时较长的指令（例如参与 PK 竞赛等）。该指令需要等待完成后，才可继续使用别的指令。.
             </summary>
         </member>
-        <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.CommandGameEnd_Test">
-             <summary>
-               Looks up a localized string similar to 游戏结束~
-            该功能后面的部分还没实现，先调试使用一下前面的功能~.
-             </summary>
-        </member>
         <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.CommandGamePlayFailed">
             <summary>
               Looks up a localized string similar to 游戏启动失败，原因是人数不够~ 参赛人员至少应有 2 人~.

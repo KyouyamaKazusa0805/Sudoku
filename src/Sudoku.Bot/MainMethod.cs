@@ -86,9 +86,7 @@ static async void PlaySudokuAsync(Sender sender, string message)
 		case (_, { Count: >= 2 }):
 		{
 			// Game start.
-			// TODO: Implement logic to create game.
-			await sender.ReplyAsync(StringResource.Get("CommandGameEnd_Test")!);
-			goto default;
+			break;
 		}
 		default:
 		{
@@ -96,9 +94,12 @@ static async void PlaySudokuAsync(Sender sender, string message)
 			_currentLockCommand = null;
 			_playersJoined.Clear();
 
-			break;
+			return;
 		}
 	}
+
+	// Create game.
+	var generator = new HardPatternPuzzleGenerator();
 }
 
 static async void ClockInAsync(Sender sender, string message)
