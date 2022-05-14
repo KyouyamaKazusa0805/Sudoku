@@ -1070,6 +1070,1806 @@ namespace Sudoku.Bot.Communication.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Continue 指示客户端可能继续其请求.
+        /// </summary>
+        internal static string Status100 {
+            get {
+                return ResourceManager.GetString("Status100", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 发消息错误.
+        /// </summary>
+        internal static string Status1000000 {
+            get {
+                return ResourceManager.GetString("Status1000000", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to UnknownAccount 账号异常.
+        /// </summary>
+        internal static string Status10001 {
+            get {
+                return ResourceManager.GetString("Status10001", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to UnknownChannel 子频道异常.
+        /// </summary>
+        internal static string Status10003 {
+            get {
+                return ResourceManager.GetString("Status10003", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to UnknownGuild 频道异常.
+        /// </summary>
+        internal static string Status10004 {
+            get {
+                return ResourceManager.GetString("Status10004", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to SwitchingProtocols 指示正在更改协议版本或协议.
+        /// </summary>
+        internal static string Status101 {
+            get {
+                return ResourceManager.GetString("Status101", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 安全打击：消息被限频.
+        /// </summary>
+        internal static string Status1100100 {
+            get {
+                return ResourceManager.GetString("Status1100100", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 安全打击：内容涉及敏感，请返回修改.
+        /// </summary>
+        internal static string Status1100101 {
+            get {
+                return ResourceManager.GetString("Status1100101", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 安全打击：抱歉，暂未获得新功能体验资格.
+        /// </summary>
+        internal static string Status1100102 {
+            get {
+                return ResourceManager.GetString("Status1100102", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 安全打击.
+        /// </summary>
+        internal static string Status1100103 {
+            get {
+                return ResourceManager.GetString("Status1100103", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 安全打击：该群已失效或当前群已不存在.
+        /// </summary>
+        internal static string Status1100104 {
+            get {
+                return ResourceManager.GetString("Status1100104", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 系统内部错误.
+        /// </summary>
+        internal static string Status1100300 {
+            get {
+                return ResourceManager.GetString("Status1100300", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 调用方不是群成员.
+        /// </summary>
+        internal static string Status1100301 {
+            get {
+                return ResourceManager.GetString("Status1100301", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 获取指定频道名称失败.
+        /// </summary>
+        internal static string Status1100302 {
+            get {
+                return ResourceManager.GetString("Status1100302", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 主页频道非管理员不允许发消息.
+        /// </summary>
+        internal static string Status1100303 {
+            get {
+                return ResourceManager.GetString("Status1100303", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to @次数鉴权失败.
+        /// </summary>
+        internal static string Status1100304 {
+            get {
+                return ResourceManager.GetString("Status1100304", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to TinyId 转换 Uin 失败.
+        /// </summary>
+        internal static string Status1100305 {
+            get {
+                return ResourceManager.GetString("Status1100305", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 非私有频道成员.
+        /// </summary>
+        internal static string Status1100306 {
+            get {
+                return ResourceManager.GetString("Status1100306", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 非白名单应用子频道.
+        /// </summary>
+        internal static string Status1100307 {
+            get {
+                return ResourceManager.GetString("Status1100307", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 触发频道内限频.
+        /// </summary>
+        internal static string Status1100308 {
+            get {
+                return ResourceManager.GetString("Status1100308", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 其他错误.
+        /// </summary>
+        internal static string Status1100499 {
+            get {
+                return ResourceManager.GetString("Status1100499", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ErrorWrongToken 参数中缺少 token.
+        /// </summary>
+        internal static string Status11241 {
+            get {
+                return ResourceManager.GetString("Status11241", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ErrorCheckTokenFailed 校验 token 失败，系统错误，一般重试一次会好，最多只能重试一次.
+        /// </summary>
+        internal static string Status11242 {
+            get {
+                return ResourceManager.GetString("Status11242", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ErrorCheckTokenNotPass 校验 token 未通过，用户填充的 token 错误，需要开发者进行检查.
+        /// </summary>
+        internal static string Status11243 {
+            get {
+                return ResourceManager.GetString("Status11243", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ErrorWrongAppid 参数中的 appid 错误，开发者填的 token 错误，appid 无法识别.
+        /// </summary>
+        internal static string Status11251 {
+            get {
+                return ResourceManager.GetString("Status11251", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ErrorCheckAppPrivilegeFailed 检查应用权限失败，系统错误，一般重试一次会好，最多只能重试一次.
+        /// </summary>
+        internal static string Status11252 {
+            get {
+                return ResourceManager.GetString("Status11252", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ErrorCheckAppPrivilegeNotPass 检查应用权限不通过，该机器人应用未获得调用该接口的权限，需要向平台申请.
+        /// </summary>
+        internal static string Status11253 {
+            get {
+                return ResourceManager.GetString("Status11253", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ErrorInterfaceForbidden 应用接口被封禁，该机器人虽然获得了该接口权限，但是被封禁了。.
+        /// </summary>
+        internal static string Status11254 {
+            get {
+                return ResourceManager.GetString("Status11254", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ErrorWrongAppid 参数中缺少 appid，同 11251.
+        /// </summary>
+        internal static string Status11261 {
+            get {
+                return ResourceManager.GetString("Status11261", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ErrorCheckRobot 当前接口不支持使用机器人 Bot Token 调用.
+        /// </summary>
+        internal static string Status11262 {
+            get {
+                return ResourceManager.GetString("Status11262", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ErrorCheckGuildAuth 检查频道权限失败，系统错误，一般重试一次会好，最多只能重试一次.
+        /// </summary>
+        internal static string Status11263 {
+            get {
+                return ResourceManager.GetString("Status11263", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ErrorGuildAuthNotPass 检查小站权限未通过，管理员添加机器人的时候未授予该接口权限，属于逻辑错误，可提示用户进行授权.
+        /// </summary>
+        internal static string Status11264 {
+            get {
+                return ResourceManager.GetString("Status11264", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ErrorRobotHasBaned 机器人已经被封禁.
+        /// </summary>
+        internal static string Status11265 {
+            get {
+                return ResourceManager.GetString("Status11265", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ErrorCheckUserAuth 检查用户权限失败，当前接口不支持使用 Bearer Token 调用.
+        /// </summary>
+        internal static string Status11273 {
+            get {
+                return ResourceManager.GetString("Status11273", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ErrorUserAuthNotPass 检查用户权限未通过，用户 OAuth 授权时未给与该接口权限，可提示用户重新进行授权.
+        /// </summary>
+        internal static string Status11274 {
+            get {
+                return ResourceManager.GetString("Status11274", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ErrorWrongAppid 无 appid ，同 11251.
+        /// </summary>
+        internal static string Status11275 {
+            get {
+                return ResourceManager.GetString("Status11275", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ErrorCheckAdminFailed 检查是否是管理员失败，系统错误，一般重试一次会好，最多只能重试一次.
+        /// </summary>
+        internal static string Status11281 {
+            get {
+                return ResourceManager.GetString("Status11281", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ErrorCheckAdminNotPass 检查是否是管理员未通过，该接口需要管理员权限，但是用户在添加机器人的时候并未授予该权限，属于逻辑错误，可以提示用户进行授权.
+        /// </summary>
+        internal static string Status11282 {
+            get {
+                return ResourceManager.GetString("Status11282", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ReplaceIDFailed 替换 id 失败.
+        /// </summary>
+        internal static string Status12001 {
+            get {
+                return ResourceManager.GetString("Status12001", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to RequestInvalid 请求体错误.
+        /// </summary>
+        internal static string Status12002 {
+            get {
+                return ResourceManager.GetString("Status12002", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ResponseInvalid 回包错误.
+        /// </summary>
+        internal static string Status12003 {
+            get {
+                return ResourceManager.GetString("Status12003", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to OK 请求成功，且请求的信息包含在响应中。.
+        /// </summary>
+        internal static string Status200 {
+            get {
+                return ResourceManager.GetString("Status200", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ChannelHitWriteRateLimit 子频道消息触发限频.
+        /// </summary>
+        internal static string Status20028 {
+            get {
+                return ResourceManager.GetString("Status20028", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Created 请求成功并且服务器创建了新的资源。.
+        /// </summary>
+        internal static string Status201 {
+            get {
+                return ResourceManager.GetString("Status201", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Accepted 服务器已接受请求，但尚未处理。.
+        /// </summary>
+        internal static string Status202 {
+            get {
+                return ResourceManager.GetString("Status202", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to NonAuthoritativeInformation 返回的元信息来自缓存副本而不是原始服务器，因此可能不正确。.
+        /// </summary>
+        internal static string Status203 {
+            get {
+                return ResourceManager.GetString("Status203", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to NoContent 服务器成功处理了请求，但没有返回任何内容。.
+        /// </summary>
+        internal static string Status204 {
+            get {
+                return ResourceManager.GetString("Status204", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ResetContent 客户端应重置（或重新加载）当前资源。.
+        /// </summary>
+        internal static string Status205 {
+            get {
+                return ResourceManager.GetString("Status205", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to PartialContent 已部分下载了一个文件，可以续传损坏的下载。.
+        /// </summary>
+        internal static string Status206 {
+            get {
+                return ResourceManager.GetString("Status206", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to MultipleChoices 请求的信息有多种表示形式。.
+        /// </summary>
+        internal static string Status300 {
+            get {
+                return ResourceManager.GetString("Status300", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to MovedPermanently 请求的信息已永久移动到 Location 头中指定的 URI。.
+        /// </summary>
+        internal static string Status301 {
+            get {
+                return ResourceManager.GetString("Status301", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 参数错误.
+        /// </summary>
+        internal static string Status301000 {
+            get {
+                return ResourceManager.GetString("Status301000", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 查询频道信息错误.
+        /// </summary>
+        internal static string Status301001 {
+            get {
+                return ResourceManager.GetString("Status301001", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 查询子频道权限错误.
+        /// </summary>
+        internal static string Status301002 {
+            get {
+                return ResourceManager.GetString("Status301002", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 修改子频道权限错误.
+        /// </summary>
+        internal static string Status301003 {
+            get {
+                return ResourceManager.GetString("Status301003", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 私密子频道关联的人数到达上限.
+        /// </summary>
+        internal static string Status301004 {
+            get {
+                return ResourceManager.GetString("Status301004", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 调用 Rpc 服务失败.
+        /// </summary>
+        internal static string Status301005 {
+            get {
+                return ResourceManager.GetString("Status301005", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 非群成员没有查询权限.
+        /// </summary>
+        internal static string Status301006 {
+            get {
+                return ResourceManager.GetString("Status301006", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 参数超过数量限制.
+        /// </summary>
+        internal static string Status301007 {
+            get {
+                return ResourceManager.GetString("Status301007", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Redirect 服务器目前使用其它位置的网页响应请求，但请求者应继续使用原有位置来进行以后的请求。.
+        /// </summary>
+        internal static string Status302 {
+            get {
+                return ResourceManager.GetString("Status302", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 参数错误.
+        /// </summary>
+        internal static string Status302000 {
+            get {
+                return ResourceManager.GetString("Status302000", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 查询频道信息错误.
+        /// </summary>
+        internal static string Status302001 {
+            get {
+                return ResourceManager.GetString("Status302001", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 查询日程列表失败.
+        /// </summary>
+        internal static string Status302002 {
+            get {
+                return ResourceManager.GetString("Status302002", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 查询日程失败.
+        /// </summary>
+        internal static string Status302003 {
+            get {
+                return ResourceManager.GetString("Status302003", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 修改日程失败.
+        /// </summary>
+        internal static string Status302004 {
+            get {
+                return ResourceManager.GetString("Status302004", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 删除日程失败.
+        /// </summary>
+        internal static string Status302005 {
+            get {
+                return ResourceManager.GetString("Status302005", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 创建日程失败.
+        /// </summary>
+        internal static string Status302006 {
+            get {
+                return ResourceManager.GetString("Status302006", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 获取创建者信息失败.
+        /// </summary>
+        internal static string Status302007 {
+            get {
+                return ResourceManager.GetString("Status302007", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 子频道 ID 不能为空.
+        /// </summary>
+        internal static string Status302008 {
+            get {
+                return ResourceManager.GetString("Status302008", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 频道系统错误，请联系客服.
+        /// </summary>
+        internal static string Status302009 {
+            get {
+                return ResourceManager.GetString("Status302009", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 暂无修改日程权限.
+        /// </summary>
+        internal static string Status302010 {
+            get {
+                return ResourceManager.GetString("Status302010", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 日程活动已被删除.
+        /// </summary>
+        internal static string Status302011 {
+            get {
+                return ResourceManager.GetString("Status302011", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 每天只能创建 10 个日程，明天再来吧！.
+        /// </summary>
+        internal static string Status302012 {
+            get {
+                return ResourceManager.GetString("Status302012", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 创建日程触发安全打击.
+        /// </summary>
+        internal static string Status302013 {
+            get {
+                return ResourceManager.GetString("Status302013", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 日程持续时间超过 7 天，请重新选择.
+        /// </summary>
+        internal static string Status302014 {
+            get {
+                return ResourceManager.GetString("Status302014", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 开始时间不能早于当前时间.
+        /// </summary>
+        internal static string Status302015 {
+            get {
+                return ResourceManager.GetString("Status302015", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 结束时间不能早于开始时间.
+        /// </summary>
+        internal static string Status302016 {
+            get {
+                return ResourceManager.GetString("Status302016", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Schedule 对象为空.
+        /// </summary>
+        internal static string Status302017 {
+            get {
+                return ResourceManager.GetString("Status302017", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 参数类型转换失败.
+        /// </summary>
+        internal static string Status302018 {
+            get {
+                return ResourceManager.GetString("Status302018", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 调用下游失败，请联系客服.
+        /// </summary>
+        internal static string Status302019 {
+            get {
+                return ResourceManager.GetString("Status302019", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 日程内容违规、账号违规.
+        /// </summary>
+        internal static string Status302020 {
+            get {
+                return ResourceManager.GetString("Status302020", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 频道内当日新增活动达上限.
+        /// </summary>
+        internal static string Status302021 {
+            get {
+                return ResourceManager.GetString("Status302021", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 不能绑定非当前频道的子频道.
+        /// </summary>
+        internal static string Status302022 {
+            get {
+                return ResourceManager.GetString("Status302022", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 开始时跳转不可绑定日程子频道.
+        /// </summary>
+        internal static string Status302023 {
+            get {
+                return ResourceManager.GetString("Status302023", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 绑定的子频道不存在.
+        /// </summary>
+        internal static string Status302024 {
+            get {
+                return ResourceManager.GetString("Status302024", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to SeeOther 将客户端自动重定向到 Location 头中指定的 URI。.
+        /// </summary>
+        internal static string Status303 {
+            get {
+                return ResourceManager.GetString("Status303", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to NotModified 客户端的缓存副本是最新的。 未传输此资源的内容。.
+        /// </summary>
+        internal static string Status304 {
+            get {
+                return ResourceManager.GetString("Status304", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to URL_NOT_ALLOWED url 未报备.
+        /// </summary>
+        internal static string Status304003 {
+            get {
+                return ResourceManager.GetString("Status304003", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ARK_NOT_ALLOWED 没有发 ark 消息权限.
+        /// </summary>
+        internal static string Status304004 {
+            get {
+                return ResourceManager.GetString("Status304004", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to EMBED_LIMIT embed 长度超限.
+        /// </summary>
+        internal static string Status304005 {
+            get {
+                return ResourceManager.GetString("Status304005", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to SERVER_CONFIG 后台配置错误.
+        /// </summary>
+        internal static string Status304006 {
+            get {
+                return ResourceManager.GetString("Status304006", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to GET_GUILD 查询频道异常.
+        /// </summary>
+        internal static string Status304007 {
+            get {
+                return ResourceManager.GetString("Status304007", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to GET_BOT 查询机器人异常.
+        /// </summary>
+        internal static string Status304008 {
+            get {
+                return ResourceManager.GetString("Status304008", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to GET_CHENNAL 查询子频道异常.
+        /// </summary>
+        internal static string Status304009 {
+            get {
+                return ResourceManager.GetString("Status304009", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to CHANGE_IMAGE_URL 图片转存错误.
+        /// </summary>
+        internal static string Status304010 {
+            get {
+                return ResourceManager.GetString("Status304010", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to NO_TEMPLATE 模板不存在.
+        /// </summary>
+        internal static string Status304011 {
+            get {
+                return ResourceManager.GetString("Status304011", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to GET_TEMPLATE 取模板错误.
+        /// </summary>
+        internal static string Status304012 {
+            get {
+                return ResourceManager.GetString("Status304012", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to TEMPLATE_PRIVILEGE 没有模板权限.
+        /// </summary>
+        internal static string Status304014 {
+            get {
+                return ResourceManager.GetString("Status304014", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to SEND_ERROR 发消息错误.
+        /// </summary>
+        internal static string Status304016 {
+            get {
+                return ResourceManager.GetString("Status304016", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to UPLOAD_IMAGE 图片上传错误.
+        /// </summary>
+        internal static string Status304017 {
+            get {
+                return ResourceManager.GetString("Status304017", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to SESSION_NOT_EXIST 机器人没连上 gateway.
+        /// </summary>
+        internal static string Status304018 {
+            get {
+                return ResourceManager.GetString("Status304018", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to AT_EVERYONE_TIMES @全体成员 次数超限.
+        /// </summary>
+        internal static string Status304019 {
+            get {
+                return ResourceManager.GetString("Status304019", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to FILE_SIZE 文件大小超限.
+        /// </summary>
+        internal static string Status304020 {
+            get {
+                return ResourceManager.GetString("Status304020", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to GET_FILE 下载文件错误.
+        /// </summary>
+        internal static string Status304021 {
+            get {
+                return ResourceManager.GetString("Status304021", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to PUSH_TIME 推送消息时间限制.
+        /// </summary>
+        internal static string Status304022 {
+            get {
+                return ResourceManager.GetString("Status304022", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to PUSH_MSG_ASYNC_OK 推送消息异步调用成功, 等待人工审核.
+        /// </summary>
+        internal static string Status304023 {
+            get {
+                return ResourceManager.GetString("Status304023", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to REPLY_MSG_ASYNC_OK 回复消息异步调用成功, 等待人工审核.
+        /// </summary>
+        internal static string Status304024 {
+            get {
+                return ResourceManager.GetString("Status304024", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to BEAT 消息被打击.
+        /// </summary>
+        internal static string Status304025 {
+            get {
+                return ResourceManager.GetString("Status304025", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to MSG_ID 回复的消息 id 错误.
+        /// </summary>
+        internal static string Status304026 {
+            get {
+                return ResourceManager.GetString("Status304026", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to MSG_EXPIRE 回复的消息过期.
+        /// </summary>
+        internal static string Status304027 {
+            get {
+                return ResourceManager.GetString("Status304027", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to MSG_PROTECT 非 At 当前用户的消息不允许回复.
+        /// </summary>
+        internal static string Status304028 {
+            get {
+                return ResourceManager.GetString("Status304028", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to CORPUS_ERROR 调语料服务错误.
+        /// </summary>
+        internal static string Status304029 {
+            get {
+                return ResourceManager.GetString("Status304029", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to CORPUS_NOT_MATCH 语料不匹配.
+        /// </summary>
+        internal static string Status304030 {
+            get {
+                return ResourceManager.GetString("Status304030", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to UseProxy 请求应使用位于 Location 头中指定的 URI 的代理服务器进行访问。.
+        /// </summary>
+        internal static string Status305 {
+            get {
+                return ResourceManager.GetString("Status305", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to param invalid 撤回消息参数错误.
+        /// </summary>
+        internal static string Status306001 {
+            get {
+                return ResourceManager.GetString("Status306001", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to msgid error 消息 id 错误.
+        /// </summary>
+        internal static string Status306002 {
+            get {
+                return ResourceManager.GetString("Status306002", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to fail to get message 获取消息错误(可重试).
+        /// </summary>
+        internal static string Status306003 {
+            get {
+                return ResourceManager.GetString("Status306003", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to no permission to delete message 没有撤回此消息的权限.
+        /// </summary>
+        internal static string Status306004 {
+            get {
+                return ResourceManager.GetString("Status306004", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to retract message error 消息撤回失败(可重试).
+        /// </summary>
+        internal static string Status306005 {
+            get {
+                return ResourceManager.GetString("Status306005", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to fail to get channel 获取子频道失败(可重试).
+        /// </summary>
+        internal static string Status306006 {
+            get {
+                return ResourceManager.GetString("Status306006", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to TemporaryRedirect 服务器目前使用其它位置的网页响应请求，但请求者应继续使用原有位置来进行以后的请求。.
+        /// </summary>
+        internal static string Status307 {
+            get {
+                return ResourceManager.GetString("Status307", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to BadRequest 服务器未能识别请求。.
+        /// </summary>
+        internal static string Status400 {
+            get {
+                return ResourceManager.GetString("Status400", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 无效的 opcode.
+        /// </summary>
+        internal static string Status4001 {
+            get {
+                return ResourceManager.GetString("Status4001", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 无效的 payload.
+        /// </summary>
+        internal static string Status4002 {
+            get {
+                return ResourceManager.GetString("Status4002", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 无效的 session_id，无法继续 resume，请重新发起 identify.
+        /// </summary>
+        internal static string Status4006 {
+            get {
+                return ResourceManager.GetString("Status4006", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to seq 错误.
+        /// </summary>
+        internal static string Status4007 {
+            get {
+                return ResourceManager.GetString("Status4007", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 发送 payload 过快，请重新连接，并遵守连接后返回的频控信息.
+        /// </summary>
+        internal static string Status4008 {
+            get {
+                return ResourceManager.GetString("Status4008", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 连接过期，请重连.
+        /// </summary>
+        internal static string Status4009 {
+            get {
+                return ResourceManager.GetString("Status4009", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unauthorized 请求的资源要求身份验证。.
+        /// </summary>
+        internal static string Status401 {
+            get {
+                return ResourceManager.GetString("Status401", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 无效的 shard.
+        /// </summary>
+        internal static string Status4010 {
+            get {
+                return ResourceManager.GetString("Status4010", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 连接需要处理的 guild 过多，请进行合理的分片.
+        /// </summary>
+        internal static string Status4011 {
+            get {
+                return ResourceManager.GetString("Status4011", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 无效的 version.
+        /// </summary>
+        internal static string Status4012 {
+            get {
+                return ResourceManager.GetString("Status4012", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 无效的 intent.
+        /// </summary>
+        internal static string Status4013 {
+            get {
+                return ResourceManager.GetString("Status4013", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to intent 无权限.
+        /// </summary>
+        internal static string Status4014 {
+            get {
+                return ResourceManager.GetString("Status4014", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Forbidden 服务器拒绝请求。.
+        /// </summary>
+        internal static string Status403 {
+            get {
+                return ResourceManager.GetString("Status403", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to NotFound 服务器找不到请求的资源。.
+        /// </summary>
+        internal static string Status404 {
+            get {
+                return ResourceManager.GetString("Status404", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to MethodNotAllowed 禁止使用当前指定的方法进行请求。.
+        /// </summary>
+        internal static string Status405 {
+            get {
+                return ResourceManager.GetString("Status405", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to NotAcceptable 无法使用请求的内容特性响应请求。.
+        /// </summary>
+        internal static string Status406 {
+            get {
+                return ResourceManager.GetString("Status406", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ProxyAuthenticationRequired 表示请求的代理要求身份验证。.
+        /// </summary>
+        internal static string Status407 {
+            get {
+                return ResourceManager.GetString("Status407", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to RequestTimeout 服务器等候请求时发生超时。.
+        /// </summary>
+        internal static string Status408 {
+            get {
+                return ResourceManager.GetString("Status408", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Conflict 服务器在完成请求时发生冲突。 服务器必须在响应中包含有关冲突的信息。.
+        /// </summary>
+        internal static string Status409 {
+            get {
+                return ResourceManager.GetString("Status409", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Gone 请求的资源已永久删除。.
+        /// </summary>
+        internal static string Status410 {
+            get {
+                return ResourceManager.GetString("Status410", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to LengthRequired 缺少必需的 Content-length 头。.
+        /// </summary>
+        internal static string Status411 {
+            get {
+                return ResourceManager.GetString("Status411", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 频率限制.
+        /// </summary>
+        internal static string Status429 {
+            get {
+                return ResourceManager.GetString("Status429", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 4900~4913 内部错误，请重连.
+        /// </summary>
+        internal static string Status4900 {
+            get {
+                return ResourceManager.GetString("Status4900", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 机器人已下架,只允许连接沙箱环境,请断开连接,检验当前连接环境.
+        /// </summary>
+        internal static string Status4914 {
+            get {
+                return ResourceManager.GetString("Status4914", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 机器人已封禁,不允许连接,请断开连接,申请解封后再连接.
+        /// </summary>
+        internal static string Status4915 {
+            get {
+                return ResourceManager.GetString("Status4915", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to InternalServerError 服务器遇到错误，无法完成请求。.
+        /// </summary>
+        internal static string Status500 {
+            get {
+                return ResourceManager.GetString("Status500", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 公告错误.
+        /// </summary>
+        internal static string Status500000 {
+            get {
+                return ResourceManager.GetString("Status500000", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to CannotSendEmptyMessage 消息为空.
+        /// </summary>
+        internal static string Status50006 {
+            get {
+                return ResourceManager.GetString("Status50006", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to InvalidFormBody form-data 内容异常.
+        /// </summary>
+        internal static string Status50035 {
+            get {
+                return ResourceManager.GetString("Status50035", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 只能发送 markdown 消息.
+        /// </summary>
+        internal static string Status50037 {
+            get {
+                return ResourceManager.GetString("Status50037", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 非同频道同子频道.
+        /// </summary>
+        internal static string Status50038 {
+            get {
+                return ResourceManager.GetString("Status50038", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 获取消息失败.
+        /// </summary>
+        internal static string Status50039 {
+            get {
+                return ResourceManager.GetString("Status50039", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 消息模版类型错误.
+        /// </summary>
+        internal static string Status50040 {
+            get {
+                return ResourceManager.GetString("Status50040", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to markdown 有空值.
+        /// </summary>
+        internal static string Status50041 {
+            get {
+                return ResourceManager.GetString("Status50041", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to markdown 列表长达最大值.
+        /// </summary>
+        internal static string Status50042 {
+            get {
+                return ResourceManager.GetString("Status50042", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to guild_id 转换失败.
+        /// </summary>
+        internal static string Status50043 {
+            get {
+                return ResourceManager.GetString("Status50043", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 不能回复机器人自己产生的消息.
+        /// </summary>
+        internal static string Status50045 {
+            get {
+                return ResourceManager.GetString("Status50045", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 非 at 机器人消息.
+        /// </summary>
+        internal static string Status50046 {
+            get {
+                return ResourceManager.GetString("Status50046", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 非机器人产生的消息 或者 at 机器人消息.
+        /// </summary>
+        internal static string Status50047 {
+            get {
+                return ResourceManager.GetString("Status50047", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to NotImplemented 服务器不支持请求的函数方法。.
+        /// </summary>
+        internal static string Status501 {
+            get {
+                return ResourceManager.GetString("Status501", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 参数校验失败.
+        /// </summary>
+        internal static string Status501001 {
+            get {
+                return ResourceManager.GetString("Status501001", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 创建子频道公告失败(可重试).
+        /// </summary>
+        internal static string Status501002 {
+            get {
+                return ResourceManager.GetString("Status501002", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 删除子频道公告失败(可重试).
+        /// </summary>
+        internal static string Status501003 {
+            get {
+                return ResourceManager.GetString("Status501003", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 获取频道信息失败(可重试).
+        /// </summary>
+        internal static string Status501004 {
+            get {
+                return ResourceManager.GetString("Status501004", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to MessageID 错误.
+        /// </summary>
+        internal static string Status501005 {
+            get {
+                return ResourceManager.GetString("Status501005", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 创建频道全局公告失败(可重试).
+        /// </summary>
+        internal static string Status501006 {
+            get {
+                return ResourceManager.GetString("Status501006", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 删除频道全局公告失败(可重试).
+        /// </summary>
+        internal static string Status501007 {
+            get {
+                return ResourceManager.GetString("Status501007", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to MessageID 不存在.
+        /// </summary>
+        internal static string Status501008 {
+            get {
+                return ResourceManager.GetString("Status501008", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to BadGateway 服务器作为网关或代理，从上游服务器收到无效响应。.
+        /// </summary>
+        internal static string Status502 {
+            get {
+                return ResourceManager.GetString("Status502", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 禁言相关错误.
+        /// </summary>
+        internal static string Status502000 {
+            get {
+                return ResourceManager.GetString("Status502000", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 频道 id 无效.
+        /// </summary>
+        internal static string Status502001 {
+            get {
+                return ResourceManager.GetString("Status502001", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 频道 id 为空.
+        /// </summary>
+        internal static string Status502002 {
+            get {
+                return ResourceManager.GetString("Status502002", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 用户 id 无效.
+        /// </summary>
+        internal static string Status502003 {
+            get {
+                return ResourceManager.GetString("Status502003", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 用户 id 为空.
+        /// </summary>
+        internal static string Status502004 {
+            get {
+                return ResourceManager.GetString("Status502004", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to timestamp 不合法.
+        /// </summary>
+        internal static string Status502005 {
+            get {
+                return ResourceManager.GetString("Status502005", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to timestamp 无效.
+        /// </summary>
+        internal static string Status502006 {
+            get {
+                return ResourceManager.GetString("Status502006", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 参数转换错误.
+        /// </summary>
+        internal static string Status502007 {
+            get {
+                return ResourceManager.GetString("Status502007", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to rpc 调用失败.
+        /// </summary>
+        internal static string Status502008 {
+            get {
+                return ResourceManager.GetString("Status502008", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 安全打击.
+        /// </summary>
+        internal static string Status502009 {
+            get {
+                return ResourceManager.GetString("Status502009", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 请求头错误.
+        /// </summary>
+        internal static string Status502010 {
+            get {
+                return ResourceManager.GetString("Status502010", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ServiceUnavailable 服务器暂时不可用，通常是由于过载或维护。.
+        /// </summary>
+        internal static string Status503 {
+            get {
+                return ResourceManager.GetString("Status503", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to GatewayTimeout 服务器作为网关或代理，但是没有及时从上游服务器收到请求。.
+        /// </summary>
+        internal static string Status504 {
+            get {
+                return ResourceManager.GetString("Status504", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to HttpVersionNotSupported 服务器不支持请求的HTTP 版本。.
+        /// </summary>
+        internal static string Status505 {
+            get {
+                return ResourceManager.GetString("Status505", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 频道权限错误.
+        /// </summary>
+        internal static string Status610000 {
+            get {
+                return ResourceManager.GetString("Status610000", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 获取频道 ID 失败.
+        /// </summary>
+        internal static string Status610001 {
+            get {
+                return ResourceManager.GetString("Status610001", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 获取 HTTP 头失败.
+        /// </summary>
+        internal static string Status610002 {
+            get {
+                return ResourceManager.GetString("Status610002", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 获取机器人号码失败.
+        /// </summary>
+        internal static string Status610003 {
+            get {
+                return ResourceManager.GetString("Status610003", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 获取机器人角色失败.
+        /// </summary>
+        internal static string Status610004 {
+            get {
+                return ResourceManager.GetString("Status610004", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 获取机器人角色内部错误.
+        /// </summary>
+        internal static string Status610005 {
+            get {
+                return ResourceManager.GetString("Status610005", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 拉取机器人权限列表失败.
+        /// </summary>
+        internal static string Status610006 {
+            get {
+                return ResourceManager.GetString("Status610006", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 机器人不在频道内.
+        /// </summary>
+        internal static string Status610007 {
+            get {
+                return ResourceManager.GetString("Status610007", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 无效参数.
+        /// </summary>
+        internal static string Status610008 {
+            get {
+                return ResourceManager.GetString("Status610008", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 获取 API 接口详情失败.
+        /// </summary>
+        internal static string Status610009 {
+            get {
+                return ResourceManager.GetString("Status610009", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to API 接口已授权.
+        /// </summary>
+        internal static string Status610010 {
+            get {
+                return ResourceManager.GetString("Status610010", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 获取机器人信息失败.
+        /// </summary>
+        internal static string Status610011 {
+            get {
+                return ResourceManager.GetString("Status610011", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 限频失败.
+        /// </summary>
+        internal static string Status610012 {
+            get {
+                return ResourceManager.GetString("Status610012", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 已限频.
+        /// </summary>
+        internal static string Status610013 {
+            get {
+                return ResourceManager.GetString("Status610013", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to api 授权链接发送失败.
+        /// </summary>
+        internal static string Status610014 {
+            get {
+                return ResourceManager.GetString("Status610014", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 重新建立到服务器的连接....
         /// </summary>
         internal static string TryReconnectToServer {
@@ -1120,6 +2920,15 @@ namespace Sudoku.Bot.Communication.Resources {
         internal static string WebSocketMessageTypeIs {
             get {
                 return ResourceManager.GetString("WebSocketMessageTypeIs", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 你无权使用该命令！.
+        /// </summary>
+        internal static string YouCannotUseThisCommand {
+            get {
+                return ResourceManager.GetString("YouCannotUseThisCommand", resourceCulture);
             }
         }
     }

@@ -1216,75 +1216,72 @@
         </member>
         <member name="M:Sudoku.Bot.Communication.BotClient.GetMessageAsync(System.String,System.String,Sudoku.Bot.Communication.Sender)">
             <summary>
-            获取指定消息
+            Gets the specified message.
             </summary>
-            <param name="channel_id">子频道Id</param>
-            <param name="message_id">消息Id</param>
-            <param name="sender"></param>
-            <returns></returns>
+            <param name="channel_id">The channel. <b>The argument cannot be renamed.</b></param>
+            <param name="message_id">The message. <b>The argument cannot be renamed.</b></param>
+            <param name="sender">The sender who sends the message.</param>
+            <returns>A task instance encapsulates the message instance as the result value.</returns>
         </member>
         <member name="M:Sudoku.Bot.Communication.BotClient.GetMessagesAsync(Sudoku.Bot.Communication.Models.Message,System.Int32,System.Nullable{Sudoku.Bot.Communication.Models.GetMessageType},Sudoku.Bot.Communication.Sender)">
             <summary>
-            获取消息列表（2022年1月29日暂未开通）
+            Gets the message list.
             </summary>
-            <param name="message">作为坐标的消息（需要消息Id和子频道Id）</param>
-            <param name="limit">分页大小（1-20）</param>
-            <param name="type">拉取类型（默认拉取最新消息）</param>
-            <param name="sender"></param>
-            <returns></returns>
+            <param name="message">The message instance. This argument must require the GUILD and channel ID.</param>
+            <param name="limit">The limit number of messages in a page. The value can only be between 1 and 20.</param>
+            <param name="type">The type to get the message list.</param>
+            <param name="sender">The sender who sends the message.</param>
+            <returns>A task instance encapsulates the message list as the result value.</returns>
         </member>
         <member name="M:Sudoku.Bot.Communication.BotClient.SendMessageAsync(System.String,Sudoku.Bot.Communication.Models.MessageToCreate,Sudoku.Bot.Communication.Sender)">
             <summary>
-            发送消息
-            <para>
-            要求操作人在该子频道具有"发送消息"的权限 <br/>
-            发送成功之后，会触发一个创建消息的事件 <br/>
-            被动回复消息有效期为 5 分钟 <br/>
-            主动推送消息每个子频道限 2 条/天 <br/>
-            发送消息接口要求机器人接口需要链接到websocket gateway 上保持在线状态
-            </para>
+            Sends the message.
             </summary>
-            <param name="channel_id">子频道Id</param>
-            <param name="message">消息对象</param>
-            <param name="sender"></param>
-            <returns></returns>
+            <param name="channel_id">The channel. <b>The argument cannot be renamed.</b></param>
+            <param name="message">The message instance.</param>
+            <param name="sender">The sender who sends the message.</param>
+            <returns>A task instance encapsulates the message instance as the result value.</returns>
         </member>
         <member name="M:Sudoku.Bot.Communication.BotClient.DeleteMessageAsync(System.String,System.String,Sudoku.Bot.Communication.Sender)">
             <summary>
-            撤回消息
+            Recalls a message.
             </summary>
-            <param name="channel_id">子频道Id</param>
-            <param name="message_id">消息Id</param>
-            <param name="sender"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Sudoku.Bot.Communication.BotClient.DeleteLastMessageAsync(Sudoku.Bot.Communication.Models.Message,Sudoku.Bot.Communication.Sender)">
-            <summary>
-            撤回目标用户在当前子频道发出的最后一条消息
-            <para>
-            需要传入指令发出者的消息对象<br/>
-            用于检索指令发出者所在频道信息
-            </para>
-            </summary>
-            <param name="masterMessage">
-            被撤回消息的目标用户信息<br/>
-            需要：message.GuildId、message.ChannelId、message.Author.Id
-            </param>
-            <param name="sender"></param>
-            <returns></returns>
+            <param name="channel_id">The channel. <b>The argument cannot be renamed.</b></param>
+            <param name="message_id">The message. <b>The argument cannot be renamed.</b></param>
+            <param name="sender">The sender who sends the message.</param>
+            <returns>
+            A task instance encapsulates the <see cref="T:System.Boolean"/> value indicating whether the operation is successful.
+            </returns>
         </member>
         <member name="M:Sudoku.Bot.Communication.BotClient.MessageCenterAsync(Sudoku.Bot.Communication.Models.Message,System.String)">
             <summary>
-            集中处理聊天消息
+            This method is core one used for handling the message.
             </summary>
-            <param name="message">消息对象</param>
-            <param name="type">消息类型
-            <para>
-            DIRECT_MESSAGE_CREATE - 私信<br/>
-            AT_MESSAGE_CREATE - 频道内 @机器人<br/>
-            MESSAGE_CREATE - 频道内任意消息(仅私域支持)<br/>
-            </para></param>
-            <returns></returns>
+            <param name="message">The message.</param>
+            <param name="type">
+            Indicates the type of the message. All possible types are:
+            <list type="table">
+            <listheader>
+            <term>Type string</term>
+            <description>Description</description>
+            </listheader>
+            <item>
+            <term><see cref="F:Sudoku.Bot.Communication.RawMessageTypes.DirectMessageCreated"/> (i.e. <c>DIRECT_MESSAGE_CREATE</c>)</term>
+            <description>Indicates the message is a direct message.</description>
+            </item>
+            <item>
+            <term><see cref="F:Sudoku.Bot.Communication.RawMessageTypes.MentionMessageCreated"/> (i.e. <c>AT_MESSAGE_CREATE</c>)</term>
+            <description>Indicates the message mentions the bot in a direct message.</description>
+            </item>
+            <item>
+            <term><see cref="F:Sudoku.Bot.Communication.RawMessageTypes.NormalMessageCreated"/> (i.e. <c>MESSAGE_CREATE</c>)</term>
+            <description>
+            Indicates the message is in a channel. <b>The type is only used for <see cref="F:Sudoku.Bot.Communication.Intents.PrivateDomain"/>.
+            </b></description>
+            </item>
+            </list>
+            </param>
+            <returns>A task instance handling the current operation.</returns>
         </member>
         <member name="M:Sudoku.Bot.Communication.BotClient.GetSchedulesAsync(System.String,System.Nullable{System.DateTime},Sudoku.Bot.Communication.Sender)">
             <summary>
@@ -2063,6 +2060,19 @@
             <summary>
             Indicates the GUILD ID value.
             </summary>
+        </member>
+        <member name="T:Sudoku.Bot.Communication.MessageContent">
+            <summary>
+            Provides with extension methods on <see cref="T:System.String"/>, represents the message content.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Bot.Communication.MessageContent.RemoveTag(System.String,Sudoku.Bot.Communication.Models.User)">
+            <summary>
+            Removes the tag in the message content.
+            </summary>
+            <param name="messageContent">The message content.</param>
+            <param name="user">The user information to get the tag.</param>
+            <returns>The removed value.</returns>
         </member>
         <member name="T:Sudoku.Bot.Communication.Models.Announces">
             <summary>
@@ -4568,6 +4578,1006 @@
               Looks up a localized string similar to 状态：.
             </summary>
         </member>
+        <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.Status100">
+            <summary>
+              Looks up a localized string similar to Continue 指示客户端可能继续其请求.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.Status1000000">
+            <summary>
+              Looks up a localized string similar to 发消息错误.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.Status10001">
+            <summary>
+              Looks up a localized string similar to UnknownAccount 账号异常.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.Status10003">
+            <summary>
+              Looks up a localized string similar to UnknownChannel 子频道异常.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.Status10004">
+            <summary>
+              Looks up a localized string similar to UnknownGuild 频道异常.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.Status101">
+            <summary>
+              Looks up a localized string similar to SwitchingProtocols 指示正在更改协议版本或协议.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.Status1100100">
+            <summary>
+              Looks up a localized string similar to 安全打击：消息被限频.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.Status1100101">
+            <summary>
+              Looks up a localized string similar to 安全打击：内容涉及敏感，请返回修改.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.Status1100102">
+            <summary>
+              Looks up a localized string similar to 安全打击：抱歉，暂未获得新功能体验资格.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.Status1100103">
+            <summary>
+              Looks up a localized string similar to 安全打击.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.Status1100104">
+            <summary>
+              Looks up a localized string similar to 安全打击：该群已失效或当前群已不存在.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.Status1100300">
+            <summary>
+              Looks up a localized string similar to 系统内部错误.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.Status1100301">
+            <summary>
+              Looks up a localized string similar to 调用方不是群成员.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.Status1100302">
+            <summary>
+              Looks up a localized string similar to 获取指定频道名称失败.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.Status1100303">
+            <summary>
+              Looks up a localized string similar to 主页频道非管理员不允许发消息.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.Status1100304">
+            <summary>
+              Looks up a localized string similar to @次数鉴权失败.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.Status1100305">
+            <summary>
+              Looks up a localized string similar to TinyId 转换 Uin 失败.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.Status1100306">
+            <summary>
+              Looks up a localized string similar to 非私有频道成员.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.Status1100307">
+            <summary>
+              Looks up a localized string similar to 非白名单应用子频道.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.Status1100308">
+            <summary>
+              Looks up a localized string similar to 触发频道内限频.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.Status1100499">
+            <summary>
+              Looks up a localized string similar to 其他错误.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.Status11241">
+            <summary>
+              Looks up a localized string similar to ErrorWrongToken 参数中缺少 token.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.Status11242">
+            <summary>
+              Looks up a localized string similar to ErrorCheckTokenFailed 校验 token 失败，系统错误，一般重试一次会好，最多只能重试一次.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.Status11243">
+            <summary>
+              Looks up a localized string similar to ErrorCheckTokenNotPass 校验 token 未通过，用户填充的 token 错误，需要开发者进行检查.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.Status11251">
+            <summary>
+              Looks up a localized string similar to ErrorWrongAppid 参数中的 appid 错误，开发者填的 token 错误，appid 无法识别.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.Status11252">
+            <summary>
+              Looks up a localized string similar to ErrorCheckAppPrivilegeFailed 检查应用权限失败，系统错误，一般重试一次会好，最多只能重试一次.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.Status11253">
+            <summary>
+              Looks up a localized string similar to ErrorCheckAppPrivilegeNotPass 检查应用权限不通过，该机器人应用未获得调用该接口的权限，需要向平台申请.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.Status11254">
+            <summary>
+              Looks up a localized string similar to ErrorInterfaceForbidden 应用接口被封禁，该机器人虽然获得了该接口权限，但是被封禁了。.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.Status11261">
+            <summary>
+              Looks up a localized string similar to ErrorWrongAppid 参数中缺少 appid，同 11251.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.Status11262">
+            <summary>
+              Looks up a localized string similar to ErrorCheckRobot 当前接口不支持使用机器人 Bot Token 调用.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.Status11263">
+            <summary>
+              Looks up a localized string similar to ErrorCheckGuildAuth 检查频道权限失败，系统错误，一般重试一次会好，最多只能重试一次.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.Status11264">
+            <summary>
+              Looks up a localized string similar to ErrorGuildAuthNotPass 检查小站权限未通过，管理员添加机器人的时候未授予该接口权限，属于逻辑错误，可提示用户进行授权.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.Status11265">
+            <summary>
+              Looks up a localized string similar to ErrorRobotHasBaned 机器人已经被封禁.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.Status11273">
+            <summary>
+              Looks up a localized string similar to ErrorCheckUserAuth 检查用户权限失败，当前接口不支持使用 Bearer Token 调用.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.Status11274">
+            <summary>
+              Looks up a localized string similar to ErrorUserAuthNotPass 检查用户权限未通过，用户 OAuth 授权时未给与该接口权限，可提示用户重新进行授权.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.Status11275">
+            <summary>
+              Looks up a localized string similar to ErrorWrongAppid 无 appid ，同 11251.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.Status11281">
+            <summary>
+              Looks up a localized string similar to ErrorCheckAdminFailed 检查是否是管理员失败，系统错误，一般重试一次会好，最多只能重试一次.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.Status11282">
+            <summary>
+              Looks up a localized string similar to ErrorCheckAdminNotPass 检查是否是管理员未通过，该接口需要管理员权限，但是用户在添加机器人的时候并未授予该权限，属于逻辑错误，可以提示用户进行授权.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.Status12001">
+            <summary>
+              Looks up a localized string similar to ReplaceIDFailed 替换 id 失败.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.Status12002">
+            <summary>
+              Looks up a localized string similar to RequestInvalid 请求体错误.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.Status12003">
+            <summary>
+              Looks up a localized string similar to ResponseInvalid 回包错误.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.Status200">
+            <summary>
+              Looks up a localized string similar to OK 请求成功，且请求的信息包含在响应中。.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.Status20028">
+            <summary>
+              Looks up a localized string similar to ChannelHitWriteRateLimit 子频道消息触发限频.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.Status201">
+            <summary>
+              Looks up a localized string similar to Created 请求成功并且服务器创建了新的资源。.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.Status202">
+            <summary>
+              Looks up a localized string similar to Accepted 服务器已接受请求，但尚未处理。.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.Status203">
+            <summary>
+              Looks up a localized string similar to NonAuthoritativeInformation 返回的元信息来自缓存副本而不是原始服务器，因此可能不正确。.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.Status204">
+            <summary>
+              Looks up a localized string similar to NoContent 服务器成功处理了请求，但没有返回任何内容。.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.Status205">
+            <summary>
+              Looks up a localized string similar to ResetContent 客户端应重置（或重新加载）当前资源。.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.Status206">
+            <summary>
+              Looks up a localized string similar to PartialContent 已部分下载了一个文件，可以续传损坏的下载。.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.Status300">
+            <summary>
+              Looks up a localized string similar to MultipleChoices 请求的信息有多种表示形式。.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.Status301">
+            <summary>
+              Looks up a localized string similar to MovedPermanently 请求的信息已永久移动到 Location 头中指定的 URI。.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.Status301000">
+            <summary>
+              Looks up a localized string similar to 参数错误.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.Status301001">
+            <summary>
+              Looks up a localized string similar to 查询频道信息错误.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.Status301002">
+            <summary>
+              Looks up a localized string similar to 查询子频道权限错误.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.Status301003">
+            <summary>
+              Looks up a localized string similar to 修改子频道权限错误.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.Status301004">
+            <summary>
+              Looks up a localized string similar to 私密子频道关联的人数到达上限.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.Status301005">
+            <summary>
+              Looks up a localized string similar to 调用 Rpc 服务失败.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.Status301006">
+            <summary>
+              Looks up a localized string similar to 非群成员没有查询权限.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.Status301007">
+            <summary>
+              Looks up a localized string similar to 参数超过数量限制.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.Status302">
+            <summary>
+              Looks up a localized string similar to Redirect 服务器目前使用其它位置的网页响应请求，但请求者应继续使用原有位置来进行以后的请求。.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.Status302000">
+            <summary>
+              Looks up a localized string similar to 参数错误.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.Status302001">
+            <summary>
+              Looks up a localized string similar to 查询频道信息错误.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.Status302002">
+            <summary>
+              Looks up a localized string similar to 查询日程列表失败.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.Status302003">
+            <summary>
+              Looks up a localized string similar to 查询日程失败.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.Status302004">
+            <summary>
+              Looks up a localized string similar to 修改日程失败.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.Status302005">
+            <summary>
+              Looks up a localized string similar to 删除日程失败.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.Status302006">
+            <summary>
+              Looks up a localized string similar to 创建日程失败.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.Status302007">
+            <summary>
+              Looks up a localized string similar to 获取创建者信息失败.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.Status302008">
+            <summary>
+              Looks up a localized string similar to 子频道 ID 不能为空.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.Status302009">
+            <summary>
+              Looks up a localized string similar to 频道系统错误，请联系客服.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.Status302010">
+            <summary>
+              Looks up a localized string similar to 暂无修改日程权限.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.Status302011">
+            <summary>
+              Looks up a localized string similar to 日程活动已被删除.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.Status302012">
+            <summary>
+              Looks up a localized string similar to 每天只能创建 10 个日程，明天再来吧！.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.Status302013">
+            <summary>
+              Looks up a localized string similar to 创建日程触发安全打击.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.Status302014">
+            <summary>
+              Looks up a localized string similar to 日程持续时间超过 7 天，请重新选择.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.Status302015">
+            <summary>
+              Looks up a localized string similar to 开始时间不能早于当前时间.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.Status302016">
+            <summary>
+              Looks up a localized string similar to 结束时间不能早于开始时间.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.Status302017">
+            <summary>
+              Looks up a localized string similar to Schedule 对象为空.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.Status302018">
+            <summary>
+              Looks up a localized string similar to 参数类型转换失败.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.Status302019">
+            <summary>
+              Looks up a localized string similar to 调用下游失败，请联系客服.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.Status302020">
+            <summary>
+              Looks up a localized string similar to 日程内容违规、账号违规.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.Status302021">
+            <summary>
+              Looks up a localized string similar to 频道内当日新增活动达上限.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.Status302022">
+            <summary>
+              Looks up a localized string similar to 不能绑定非当前频道的子频道.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.Status302023">
+            <summary>
+              Looks up a localized string similar to 开始时跳转不可绑定日程子频道.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.Status302024">
+            <summary>
+              Looks up a localized string similar to 绑定的子频道不存在.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.Status303">
+            <summary>
+              Looks up a localized string similar to SeeOther 将客户端自动重定向到 Location 头中指定的 URI。.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.Status304">
+            <summary>
+              Looks up a localized string similar to NotModified 客户端的缓存副本是最新的。 未传输此资源的内容。.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.Status304003">
+            <summary>
+              Looks up a localized string similar to URL_NOT_ALLOWED url 未报备.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.Status304004">
+            <summary>
+              Looks up a localized string similar to ARK_NOT_ALLOWED 没有发 ark 消息权限.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.Status304005">
+            <summary>
+              Looks up a localized string similar to EMBED_LIMIT embed 长度超限.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.Status304006">
+            <summary>
+              Looks up a localized string similar to SERVER_CONFIG 后台配置错误.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.Status304007">
+            <summary>
+              Looks up a localized string similar to GET_GUILD 查询频道异常.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.Status304008">
+            <summary>
+              Looks up a localized string similar to GET_BOT 查询机器人异常.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.Status304009">
+            <summary>
+              Looks up a localized string similar to GET_CHENNAL 查询子频道异常.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.Status304010">
+            <summary>
+              Looks up a localized string similar to CHANGE_IMAGE_URL 图片转存错误.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.Status304011">
+            <summary>
+              Looks up a localized string similar to NO_TEMPLATE 模板不存在.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.Status304012">
+            <summary>
+              Looks up a localized string similar to GET_TEMPLATE 取模板错误.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.Status304014">
+            <summary>
+              Looks up a localized string similar to TEMPLATE_PRIVILEGE 没有模板权限.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.Status304016">
+            <summary>
+              Looks up a localized string similar to SEND_ERROR 发消息错误.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.Status304017">
+            <summary>
+              Looks up a localized string similar to UPLOAD_IMAGE 图片上传错误.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.Status304018">
+            <summary>
+              Looks up a localized string similar to SESSION_NOT_EXIST 机器人没连上 gateway.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.Status304019">
+            <summary>
+              Looks up a localized string similar to AT_EVERYONE_TIMES @全体成员 次数超限.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.Status304020">
+            <summary>
+              Looks up a localized string similar to FILE_SIZE 文件大小超限.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.Status304021">
+            <summary>
+              Looks up a localized string similar to GET_FILE 下载文件错误.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.Status304022">
+            <summary>
+              Looks up a localized string similar to PUSH_TIME 推送消息时间限制.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.Status304023">
+            <summary>
+              Looks up a localized string similar to PUSH_MSG_ASYNC_OK 推送消息异步调用成功, 等待人工审核.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.Status304024">
+            <summary>
+              Looks up a localized string similar to REPLY_MSG_ASYNC_OK 回复消息异步调用成功, 等待人工审核.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.Status304025">
+            <summary>
+              Looks up a localized string similar to BEAT 消息被打击.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.Status304026">
+            <summary>
+              Looks up a localized string similar to MSG_ID 回复的消息 id 错误.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.Status304027">
+            <summary>
+              Looks up a localized string similar to MSG_EXPIRE 回复的消息过期.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.Status304028">
+            <summary>
+              Looks up a localized string similar to MSG_PROTECT 非 At 当前用户的消息不允许回复.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.Status304029">
+            <summary>
+              Looks up a localized string similar to CORPUS_ERROR 调语料服务错误.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.Status304030">
+            <summary>
+              Looks up a localized string similar to CORPUS_NOT_MATCH 语料不匹配.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.Status305">
+            <summary>
+              Looks up a localized string similar to UseProxy 请求应使用位于 Location 头中指定的 URI 的代理服务器进行访问。.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.Status306001">
+            <summary>
+              Looks up a localized string similar to param invalid 撤回消息参数错误.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.Status306002">
+            <summary>
+              Looks up a localized string similar to msgid error 消息 id 错误.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.Status306003">
+            <summary>
+              Looks up a localized string similar to fail to get message 获取消息错误(可重试).
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.Status306004">
+            <summary>
+              Looks up a localized string similar to no permission to delete message 没有撤回此消息的权限.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.Status306005">
+            <summary>
+              Looks up a localized string similar to retract message error 消息撤回失败(可重试).
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.Status306006">
+            <summary>
+              Looks up a localized string similar to fail to get channel 获取子频道失败(可重试).
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.Status307">
+            <summary>
+              Looks up a localized string similar to TemporaryRedirect 服务器目前使用其它位置的网页响应请求，但请求者应继续使用原有位置来进行以后的请求。.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.Status400">
+            <summary>
+              Looks up a localized string similar to BadRequest 服务器未能识别请求。.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.Status4001">
+            <summary>
+              Looks up a localized string similar to 无效的 opcode.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.Status4002">
+            <summary>
+              Looks up a localized string similar to 无效的 payload.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.Status4006">
+            <summary>
+              Looks up a localized string similar to 无效的 session_id，无法继续 resume，请重新发起 identify.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.Status4007">
+            <summary>
+              Looks up a localized string similar to seq 错误.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.Status4008">
+            <summary>
+              Looks up a localized string similar to 发送 payload 过快，请重新连接，并遵守连接后返回的频控信息.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.Status4009">
+            <summary>
+              Looks up a localized string similar to 连接过期，请重连.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.Status401">
+            <summary>
+              Looks up a localized string similar to Unauthorized 请求的资源要求身份验证。.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.Status4010">
+            <summary>
+              Looks up a localized string similar to 无效的 shard.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.Status4011">
+            <summary>
+              Looks up a localized string similar to 连接需要处理的 guild 过多，请进行合理的分片.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.Status4012">
+            <summary>
+              Looks up a localized string similar to 无效的 version.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.Status4013">
+            <summary>
+              Looks up a localized string similar to 无效的 intent.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.Status4014">
+            <summary>
+              Looks up a localized string similar to intent 无权限.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.Status403">
+            <summary>
+              Looks up a localized string similar to Forbidden 服务器拒绝请求。.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.Status404">
+            <summary>
+              Looks up a localized string similar to NotFound 服务器找不到请求的资源。.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.Status405">
+            <summary>
+              Looks up a localized string similar to MethodNotAllowed 禁止使用当前指定的方法进行请求。.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.Status406">
+            <summary>
+              Looks up a localized string similar to NotAcceptable 无法使用请求的内容特性响应请求。.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.Status407">
+            <summary>
+              Looks up a localized string similar to ProxyAuthenticationRequired 表示请求的代理要求身份验证。.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.Status408">
+            <summary>
+              Looks up a localized string similar to RequestTimeout 服务器等候请求时发生超时。.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.Status409">
+            <summary>
+              Looks up a localized string similar to Conflict 服务器在完成请求时发生冲突。 服务器必须在响应中包含有关冲突的信息。.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.Status410">
+            <summary>
+              Looks up a localized string similar to Gone 请求的资源已永久删除。.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.Status411">
+            <summary>
+              Looks up a localized string similar to LengthRequired 缺少必需的 Content-length 头。.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.Status429">
+            <summary>
+              Looks up a localized string similar to 频率限制.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.Status4900">
+            <summary>
+              Looks up a localized string similar to 4900~4913 内部错误，请重连.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.Status4914">
+            <summary>
+              Looks up a localized string similar to 机器人已下架,只允许连接沙箱环境,请断开连接,检验当前连接环境.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.Status4915">
+            <summary>
+              Looks up a localized string similar to 机器人已封禁,不允许连接,请断开连接,申请解封后再连接.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.Status500">
+            <summary>
+              Looks up a localized string similar to InternalServerError 服务器遇到错误，无法完成请求。.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.Status500000">
+            <summary>
+              Looks up a localized string similar to 公告错误.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.Status50006">
+            <summary>
+              Looks up a localized string similar to CannotSendEmptyMessage 消息为空.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.Status50035">
+            <summary>
+              Looks up a localized string similar to InvalidFormBody form-data 内容异常.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.Status50037">
+            <summary>
+              Looks up a localized string similar to 只能发送 markdown 消息.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.Status50038">
+            <summary>
+              Looks up a localized string similar to 非同频道同子频道.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.Status50039">
+            <summary>
+              Looks up a localized string similar to 获取消息失败.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.Status50040">
+            <summary>
+              Looks up a localized string similar to 消息模版类型错误.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.Status50041">
+            <summary>
+              Looks up a localized string similar to markdown 有空值.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.Status50042">
+            <summary>
+              Looks up a localized string similar to markdown 列表长达最大值.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.Status50043">
+            <summary>
+              Looks up a localized string similar to guild_id 转换失败.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.Status50045">
+            <summary>
+              Looks up a localized string similar to 不能回复机器人自己产生的消息.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.Status50046">
+            <summary>
+              Looks up a localized string similar to 非 at 机器人消息.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.Status50047">
+            <summary>
+              Looks up a localized string similar to 非机器人产生的消息 或者 at 机器人消息.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.Status501">
+            <summary>
+              Looks up a localized string similar to NotImplemented 服务器不支持请求的函数方法。.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.Status501001">
+            <summary>
+              Looks up a localized string similar to 参数校验失败.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.Status501002">
+            <summary>
+              Looks up a localized string similar to 创建子频道公告失败(可重试).
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.Status501003">
+            <summary>
+              Looks up a localized string similar to 删除子频道公告失败(可重试).
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.Status501004">
+            <summary>
+              Looks up a localized string similar to 获取频道信息失败(可重试).
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.Status501005">
+            <summary>
+              Looks up a localized string similar to MessageID 错误.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.Status501006">
+            <summary>
+              Looks up a localized string similar to 创建频道全局公告失败(可重试).
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.Status501007">
+            <summary>
+              Looks up a localized string similar to 删除频道全局公告失败(可重试).
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.Status501008">
+            <summary>
+              Looks up a localized string similar to MessageID 不存在.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.Status502">
+            <summary>
+              Looks up a localized string similar to BadGateway 服务器作为网关或代理，从上游服务器收到无效响应。.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.Status502000">
+            <summary>
+              Looks up a localized string similar to 禁言相关错误.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.Status502001">
+            <summary>
+              Looks up a localized string similar to 频道 id 无效.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.Status502002">
+            <summary>
+              Looks up a localized string similar to 频道 id 为空.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.Status502003">
+            <summary>
+              Looks up a localized string similar to 用户 id 无效.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.Status502004">
+            <summary>
+              Looks up a localized string similar to 用户 id 为空.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.Status502005">
+            <summary>
+              Looks up a localized string similar to timestamp 不合法.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.Status502006">
+            <summary>
+              Looks up a localized string similar to timestamp 无效.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.Status502007">
+            <summary>
+              Looks up a localized string similar to 参数转换错误.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.Status502008">
+            <summary>
+              Looks up a localized string similar to rpc 调用失败.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.Status502009">
+            <summary>
+              Looks up a localized string similar to 安全打击.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.Status502010">
+            <summary>
+              Looks up a localized string similar to 请求头错误.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.Status503">
+            <summary>
+              Looks up a localized string similar to ServiceUnavailable 服务器暂时不可用，通常是由于过载或维护。.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.Status504">
+            <summary>
+              Looks up a localized string similar to GatewayTimeout 服务器作为网关或代理，但是没有及时从上游服务器收到请求。.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.Status505">
+            <summary>
+              Looks up a localized string similar to HttpVersionNotSupported 服务器不支持请求的HTTP 版本。.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.Status610000">
+            <summary>
+              Looks up a localized string similar to 频道权限错误.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.Status610001">
+            <summary>
+              Looks up a localized string similar to 获取频道 ID 失败.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.Status610002">
+            <summary>
+              Looks up a localized string similar to 获取 HTTP 头失败.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.Status610003">
+            <summary>
+              Looks up a localized string similar to 获取机器人号码失败.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.Status610004">
+            <summary>
+              Looks up a localized string similar to 获取机器人角色失败.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.Status610005">
+            <summary>
+              Looks up a localized string similar to 获取机器人角色内部错误.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.Status610006">
+            <summary>
+              Looks up a localized string similar to 拉取机器人权限列表失败.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.Status610007">
+            <summary>
+              Looks up a localized string similar to 机器人不在频道内.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.Status610008">
+            <summary>
+              Looks up a localized string similar to 无效参数.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.Status610009">
+            <summary>
+              Looks up a localized string similar to 获取 API 接口详情失败.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.Status610010">
+            <summary>
+              Looks up a localized string similar to API 接口已授权.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.Status610011">
+            <summary>
+              Looks up a localized string similar to 获取机器人信息失败.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.Status610012">
+            <summary>
+              Looks up a localized string similar to 限频失败.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.Status610013">
+            <summary>
+              Looks up a localized string similar to 已限频.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.Status610014">
+            <summary>
+              Looks up a localized string similar to api 授权链接发送失败.
+            </summary>
+        </member>
         <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.TryReconnectToServer">
             <summary>
               Looks up a localized string similar to 重新建立到服务器的连接....
@@ -4596,6 +5606,11 @@
         <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.WebSocketMessageTypeIs">
             <summary>
               Looks up a localized string similar to WebSocket 消息类型：.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.YouCannotUseThisCommand">
+            <summary>
+              Looks up a localized string similar to 你无权使用该命令！.
             </summary>
         </member>
         <member name="T:Sudoku.Bot.Communication.Resources.StringResource">
@@ -4669,7 +5684,7 @@
         </member>
         <member name="P:Sudoku.Bot.Communication.Sender.MessageType">
             <summary>
-            Indicates the message type.
+            Indicates the message type. The default value is <see cref="F:Sudoku.Bot.Communication.Models.Interaction.MessageType.Public"/>.
             </summary>
         </member>
         <member name="P:Sudoku.Bot.Communication.Sender.IsMentioned">
@@ -4802,9 +5817,6 @@
         </member>
         <member name="M:Sudoku.Bot.Communication.Sender.DeleteMessageAsync(Sudoku.Bot.Communication.Models.Message)">
             <inheritdoc cref="M:Sudoku.Bot.Communication.BotClient.DeleteMessageAsync(System.String,System.String,Sudoku.Bot.Communication.Sender)"/>
-        </member>
-        <member name="M:Sudoku.Bot.Communication.Sender.DeleteLastMessageAsync(Sudoku.Bot.Communication.Models.User)">
-            <inheritdoc cref="M:Sudoku.Bot.Communication.BotClient.DeleteLastMessageAsync(Sudoku.Bot.Communication.Models.Message,Sudoku.Bot.Communication.Sender)"/>
         </member>
         <member name="M:Sudoku.Bot.Communication.Sender.CreateDirectMessageCommunicationAsync(Sudoku.Bot.Communication.Models.User)">
             <inheritdoc cref="M:Sudoku.Bot.Communication.BotClient.CreateDirectMessageAsync(System.String,System.String,Sudoku.Bot.Communication.Sender)"/>

@@ -454,6 +454,606 @@
   <data name="Status" xml:space="preserve">
     <value>状态：</value>
   </data>
+  <data name="Status100" xml:space="preserve">
+    <value>Continue 指示客户端可能继续其请求</value>
+  </data>
+  <data name="Status1000000" xml:space="preserve">
+    <value>发消息错误</value>
+  </data>
+  <data name="Status10001" xml:space="preserve">
+    <value>UnknownAccount 账号异常</value>
+  </data>
+  <data name="Status10003" xml:space="preserve">
+    <value>UnknownChannel 子频道异常</value>
+  </data>
+  <data name="Status10004" xml:space="preserve">
+    <value>UnknownGuild 频道异常</value>
+  </data>
+  <data name="Status101" xml:space="preserve">
+    <value>SwitchingProtocols 指示正在更改协议版本或协议</value>
+  </data>
+  <data name="Status1100100" xml:space="preserve">
+    <value>安全打击：消息被限频</value>
+  </data>
+  <data name="Status1100101" xml:space="preserve">
+    <value>安全打击：内容涉及敏感，请返回修改</value>
+  </data>
+  <data name="Status1100102" xml:space="preserve">
+    <value>安全打击：抱歉，暂未获得新功能体验资格</value>
+  </data>
+  <data name="Status1100103" xml:space="preserve">
+    <value>安全打击</value>
+  </data>
+  <data name="Status1100104" xml:space="preserve">
+    <value>安全打击：该群已失效或当前群已不存在</value>
+  </data>
+  <data name="Status1100300" xml:space="preserve">
+    <value>系统内部错误</value>
+  </data>
+  <data name="Status1100301" xml:space="preserve">
+    <value>调用方不是群成员</value>
+  </data>
+  <data name="Status1100302" xml:space="preserve">
+    <value>获取指定频道名称失败</value>
+  </data>
+  <data name="Status1100303" xml:space="preserve">
+    <value>主页频道非管理员不允许发消息</value>
+  </data>
+  <data name="Status1100304" xml:space="preserve">
+    <value>@次数鉴权失败</value>
+  </data>
+  <data name="Status1100305" xml:space="preserve">
+    <value>TinyId 转换 Uin 失败</value>
+  </data>
+  <data name="Status1100306" xml:space="preserve">
+    <value>非私有频道成员</value>
+  </data>
+  <data name="Status1100307" xml:space="preserve">
+    <value>非白名单应用子频道</value>
+  </data>
+  <data name="Status1100308" xml:space="preserve">
+    <value>触发频道内限频</value>
+  </data>
+  <data name="Status1100499" xml:space="preserve">
+    <value>其他错误</value>
+  </data>
+  <data name="Status11241" xml:space="preserve">
+    <value>ErrorWrongToken 参数中缺少 token</value>
+  </data>
+  <data name="Status11242" xml:space="preserve">
+    <value>ErrorCheckTokenFailed 校验 token 失败，系统错误，一般重试一次会好，最多只能重试一次</value>
+  </data>
+  <data name="Status11243" xml:space="preserve">
+    <value>ErrorCheckTokenNotPass 校验 token 未通过，用户填充的 token 错误，需要开发者进行检查</value>
+  </data>
+  <data name="Status11251" xml:space="preserve">
+    <value>ErrorWrongAppid 参数中的 appid 错误，开发者填的 token 错误，appid 无法识别</value>
+  </data>
+  <data name="Status11252" xml:space="preserve">
+    <value>ErrorCheckAppPrivilegeFailed 检查应用权限失败，系统错误，一般重试一次会好，最多只能重试一次</value>
+  </data>
+  <data name="Status11253" xml:space="preserve">
+    <value>ErrorCheckAppPrivilegeNotPass 检查应用权限不通过，该机器人应用未获得调用该接口的权限，需要向平台申请</value>
+  </data>
+  <data name="Status11254" xml:space="preserve">
+    <value>ErrorInterfaceForbidden 应用接口被封禁，该机器人虽然获得了该接口权限，但是被封禁了。</value>
+  </data>
+  <data name="Status11261" xml:space="preserve">
+    <value>ErrorWrongAppid 参数中缺少 appid，同 11251</value>
+  </data>
+  <data name="Status11262" xml:space="preserve">
+    <value>ErrorCheckRobot 当前接口不支持使用机器人 Bot Token 调用</value>
+  </data>
+  <data name="Status11263" xml:space="preserve">
+    <value>ErrorCheckGuildAuth 检查频道权限失败，系统错误，一般重试一次会好，最多只能重试一次</value>
+  </data>
+  <data name="Status11264" xml:space="preserve">
+    <value>ErrorGuildAuthNotPass 检查小站权限未通过，管理员添加机器人的时候未授予该接口权限，属于逻辑错误，可提示用户进行授权</value>
+  </data>
+  <data name="Status11265" xml:space="preserve">
+    <value>ErrorRobotHasBaned 机器人已经被封禁</value>
+  </data>
+  <data name="Status11273" xml:space="preserve">
+    <value>ErrorCheckUserAuth 检查用户权限失败，当前接口不支持使用 Bearer Token 调用</value>
+  </data>
+  <data name="Status11274" xml:space="preserve">
+    <value>ErrorUserAuthNotPass 检查用户权限未通过，用户 OAuth 授权时未给与该接口权限，可提示用户重新进行授权</value>
+  </data>
+  <data name="Status11275" xml:space="preserve">
+    <value>ErrorWrongAppid 无 appid ，同 11251</value>
+  </data>
+  <data name="Status11281" xml:space="preserve">
+    <value>ErrorCheckAdminFailed 检查是否是管理员失败，系统错误，一般重试一次会好，最多只能重试一次</value>
+  </data>
+  <data name="Status11282" xml:space="preserve">
+    <value>ErrorCheckAdminNotPass 检查是否是管理员未通过，该接口需要管理员权限，但是用户在添加机器人的时候并未授予该权限，属于逻辑错误，可以提示用户进行授权</value>
+  </data>
+  <data name="Status12001" xml:space="preserve">
+    <value>ReplaceIDFailed 替换 id 失败</value>
+  </data>
+  <data name="Status12002" xml:space="preserve">
+    <value>RequestInvalid 请求体错误</value>
+  </data>
+  <data name="Status12003" xml:space="preserve">
+    <value>ResponseInvalid 回包错误</value>
+  </data>
+  <data name="Status200" xml:space="preserve">
+    <value>OK 请求成功，且请求的信息包含在响应中。</value>
+  </data>
+  <data name="Status20028" xml:space="preserve">
+    <value>ChannelHitWriteRateLimit 子频道消息触发限频</value>
+  </data>
+  <data name="Status201" xml:space="preserve">
+    <value>Created 请求成功并且服务器创建了新的资源。</value>
+  </data>
+  <data name="Status202" xml:space="preserve">
+    <value>Accepted 服务器已接受请求，但尚未处理。</value>
+  </data>
+  <data name="Status203" xml:space="preserve">
+    <value>NonAuthoritativeInformation 返回的元信息来自缓存副本而不是原始服务器，因此可能不正确。</value>
+  </data>
+  <data name="Status204" xml:space="preserve">
+    <value>NoContent 服务器成功处理了请求，但没有返回任何内容。</value>
+  </data>
+  <data name="Status205" xml:space="preserve">
+    <value>ResetContent 客户端应重置（或重新加载）当前资源。</value>
+  </data>
+  <data name="Status206" xml:space="preserve">
+    <value>PartialContent 已部分下载了一个文件，可以续传损坏的下载。</value>
+  </data>
+  <data name="Status300" xml:space="preserve">
+    <value>MultipleChoices 请求的信息有多种表示形式。</value>
+  </data>
+  <data name="Status301" xml:space="preserve">
+    <value>MovedPermanently 请求的信息已永久移动到 Location 头中指定的 URI。</value>
+  </data>
+  <data name="Status301000" xml:space="preserve">
+    <value>参数错误</value>
+  </data>
+  <data name="Status301001" xml:space="preserve">
+    <value>查询频道信息错误</value>
+  </data>
+  <data name="Status301002" xml:space="preserve">
+    <value>查询子频道权限错误</value>
+  </data>
+  <data name="Status301003" xml:space="preserve">
+    <value>修改子频道权限错误</value>
+  </data>
+  <data name="Status301004" xml:space="preserve">
+    <value>私密子频道关联的人数到达上限</value>
+  </data>
+  <data name="Status301005" xml:space="preserve">
+    <value>调用 Rpc 服务失败</value>
+  </data>
+  <data name="Status301006" xml:space="preserve">
+    <value>非群成员没有查询权限</value>
+  </data>
+  <data name="Status301007" xml:space="preserve">
+    <value>参数超过数量限制</value>
+  </data>
+  <data name="Status302" xml:space="preserve">
+    <value>Redirect 服务器目前使用其它位置的网页响应请求，但请求者应继续使用原有位置来进行以后的请求。</value>
+  </data>
+  <data name="Status302000" xml:space="preserve">
+    <value>参数错误</value>
+  </data>
+  <data name="Status302001" xml:space="preserve">
+    <value>查询频道信息错误</value>
+  </data>
+  <data name="Status302002" xml:space="preserve">
+    <value>查询日程列表失败</value>
+  </data>
+  <data name="Status302003" xml:space="preserve">
+    <value>查询日程失败</value>
+  </data>
+  <data name="Status302004" xml:space="preserve">
+    <value>修改日程失败</value>
+  </data>
+  <data name="Status302005" xml:space="preserve">
+    <value>删除日程失败</value>
+  </data>
+  <data name="Status302006" xml:space="preserve">
+    <value>创建日程失败</value>
+  </data>
+  <data name="Status302007" xml:space="preserve">
+    <value>获取创建者信息失败</value>
+  </data>
+  <data name="Status302008" xml:space="preserve">
+    <value>子频道 ID 不能为空</value>
+  </data>
+  <data name="Status302009" xml:space="preserve">
+    <value>频道系统错误，请联系客服</value>
+  </data>
+  <data name="Status302010" xml:space="preserve">
+    <value>暂无修改日程权限</value>
+  </data>
+  <data name="Status302011" xml:space="preserve">
+    <value>日程活动已被删除</value>
+  </data>
+  <data name="Status302012" xml:space="preserve">
+    <value>每天只能创建 10 个日程，明天再来吧！</value>
+  </data>
+  <data name="Status302013" xml:space="preserve">
+    <value>创建日程触发安全打击</value>
+  </data>
+  <data name="Status302014" xml:space="preserve">
+    <value>日程持续时间超过 7 天，请重新选择</value>
+  </data>
+  <data name="Status302015" xml:space="preserve">
+    <value>开始时间不能早于当前时间</value>
+  </data>
+  <data name="Status302016" xml:space="preserve">
+    <value>结束时间不能早于开始时间</value>
+  </data>
+  <data name="Status302017" xml:space="preserve">
+    <value>Schedule 对象为空</value>
+  </data>
+  <data name="Status302018" xml:space="preserve">
+    <value>参数类型转换失败</value>
+  </data>
+  <data name="Status302019" xml:space="preserve">
+    <value>调用下游失败，请联系客服</value>
+  </data>
+  <data name="Status302020" xml:space="preserve">
+    <value>日程内容违规、账号违规</value>
+  </data>
+  <data name="Status302021" xml:space="preserve">
+    <value>频道内当日新增活动达上限</value>
+  </data>
+  <data name="Status302022" xml:space="preserve">
+    <value>不能绑定非当前频道的子频道</value>
+  </data>
+  <data name="Status302023" xml:space="preserve">
+    <value>开始时跳转不可绑定日程子频道</value>
+  </data>
+  <data name="Status302024" xml:space="preserve">
+    <value>绑定的子频道不存在</value>
+  </data>
+  <data name="Status303" xml:space="preserve">
+    <value>SeeOther 将客户端自动重定向到 Location 头中指定的 URI。</value>
+  </data>
+  <data name="Status304" xml:space="preserve">
+    <value>NotModified 客户端的缓存副本是最新的。 未传输此资源的内容。</value>
+  </data>
+  <data name="Status304003" xml:space="preserve">
+    <value>URL_NOT_ALLOWED url 未报备</value>
+  </data>
+  <data name="Status304004" xml:space="preserve">
+    <value>ARK_NOT_ALLOWED 没有发 ark 消息权限</value>
+  </data>
+  <data name="Status304005" xml:space="preserve">
+    <value>EMBED_LIMIT embed 长度超限</value>
+  </data>
+  <data name="Status304006" xml:space="preserve">
+    <value>SERVER_CONFIG 后台配置错误</value>
+  </data>
+  <data name="Status304007" xml:space="preserve">
+    <value>GET_GUILD 查询频道异常</value>
+  </data>
+  <data name="Status304008" xml:space="preserve">
+    <value>GET_BOT 查询机器人异常</value>
+  </data>
+  <data name="Status304009" xml:space="preserve">
+    <value>GET_CHENNAL 查询子频道异常</value>
+  </data>
+  <data name="Status304010" xml:space="preserve">
+    <value>CHANGE_IMAGE_URL 图片转存错误</value>
+  </data>
+  <data name="Status304011" xml:space="preserve">
+    <value>NO_TEMPLATE 模板不存在</value>
+  </data>
+  <data name="Status304012" xml:space="preserve">
+    <value>GET_TEMPLATE 取模板错误</value>
+  </data>
+  <data name="Status304014" xml:space="preserve">
+    <value>TEMPLATE_PRIVILEGE 没有模板权限</value>
+  </data>
+  <data name="Status304016" xml:space="preserve">
+    <value>SEND_ERROR 发消息错误</value>
+  </data>
+  <data name="Status304017" xml:space="preserve">
+    <value>UPLOAD_IMAGE 图片上传错误</value>
+  </data>
+  <data name="Status304018" xml:space="preserve">
+    <value>SESSION_NOT_EXIST 机器人没连上 gateway</value>
+  </data>
+  <data name="Status304019" xml:space="preserve">
+    <value>AT_EVERYONE_TIMES @全体成员 次数超限</value>
+  </data>
+  <data name="Status304020" xml:space="preserve">
+    <value>FILE_SIZE 文件大小超限</value>
+  </data>
+  <data name="Status304021" xml:space="preserve">
+    <value>GET_FILE 下载文件错误</value>
+  </data>
+  <data name="Status304022" xml:space="preserve">
+    <value>PUSH_TIME 推送消息时间限制</value>
+  </data>
+  <data name="Status304023" xml:space="preserve">
+    <value>PUSH_MSG_ASYNC_OK 推送消息异步调用成功, 等待人工审核</value>
+  </data>
+  <data name="Status304024" xml:space="preserve">
+    <value>REPLY_MSG_ASYNC_OK 回复消息异步调用成功, 等待人工审核</value>
+  </data>
+  <data name="Status304025" xml:space="preserve">
+    <value>BEAT 消息被打击</value>
+  </data>
+  <data name="Status304026" xml:space="preserve">
+    <value>MSG_ID 回复的消息 id 错误</value>
+  </data>
+  <data name="Status304027" xml:space="preserve">
+    <value>MSG_EXPIRE 回复的消息过期</value>
+  </data>
+  <data name="Status304028" xml:space="preserve">
+    <value>MSG_PROTECT 非 At 当前用户的消息不允许回复</value>
+  </data>
+  <data name="Status304029" xml:space="preserve">
+    <value>CORPUS_ERROR 调语料服务错误</value>
+  </data>
+  <data name="Status304030" xml:space="preserve">
+    <value>CORPUS_NOT_MATCH 语料不匹配</value>
+  </data>
+  <data name="Status305" xml:space="preserve">
+    <value>UseProxy 请求应使用位于 Location 头中指定的 URI 的代理服务器进行访问。</value>
+  </data>
+  <data name="Status306001" xml:space="preserve">
+    <value>param invalid 撤回消息参数错误</value>
+  </data>
+  <data name="Status306002" xml:space="preserve">
+    <value>msgid error 消息 id 错误</value>
+  </data>
+  <data name="Status306003" xml:space="preserve">
+    <value>fail to get message 获取消息错误(可重试)</value>
+  </data>
+  <data name="Status306004" xml:space="preserve">
+    <value>no permission to delete message 没有撤回此消息的权限</value>
+  </data>
+  <data name="Status306005" xml:space="preserve">
+    <value>retract message error 消息撤回失败(可重试)</value>
+  </data>
+  <data name="Status306006" xml:space="preserve">
+    <value>fail to get channel 获取子频道失败(可重试)</value>
+  </data>
+  <data name="Status307" xml:space="preserve">
+    <value>TemporaryRedirect 服务器目前使用其它位置的网页响应请求，但请求者应继续使用原有位置来进行以后的请求。</value>
+  </data>
+  <data name="Status400" xml:space="preserve">
+    <value>BadRequest 服务器未能识别请求。</value>
+  </data>
+  <data name="Status4001" xml:space="preserve">
+    <value>无效的 opcode</value>
+  </data>
+  <data name="Status4002" xml:space="preserve">
+    <value>无效的 payload</value>
+  </data>
+  <data name="Status4006" xml:space="preserve">
+    <value>无效的 session_id，无法继续 resume，请重新发起 identify</value>
+  </data>
+  <data name="Status4007" xml:space="preserve">
+    <value>seq 错误</value>
+  </data>
+  <data name="Status4008" xml:space="preserve">
+    <value>发送 payload 过快，请重新连接，并遵守连接后返回的频控信息</value>
+  </data>
+  <data name="Status4009" xml:space="preserve">
+    <value>连接过期，请重连</value>
+  </data>
+  <data name="Status401" xml:space="preserve">
+    <value>Unauthorized 请求的资源要求身份验证。</value>
+  </data>
+  <data name="Status4010" xml:space="preserve">
+    <value>无效的 shard</value>
+  </data>
+  <data name="Status4011" xml:space="preserve">
+    <value>连接需要处理的 guild 过多，请进行合理的分片</value>
+  </data>
+  <data name="Status4012" xml:space="preserve">
+    <value>无效的 version</value>
+  </data>
+  <data name="Status4013" xml:space="preserve">
+    <value>无效的 intent</value>
+  </data>
+  <data name="Status4014" xml:space="preserve">
+    <value>intent 无权限</value>
+  </data>
+  <data name="Status403" xml:space="preserve">
+    <value>Forbidden 服务器拒绝请求。</value>
+  </data>
+  <data name="Status404" xml:space="preserve">
+    <value>NotFound 服务器找不到请求的资源。</value>
+  </data>
+  <data name="Status405" xml:space="preserve">
+    <value>MethodNotAllowed 禁止使用当前指定的方法进行请求。</value>
+  </data>
+  <data name="Status406" xml:space="preserve">
+    <value>NotAcceptable 无法使用请求的内容特性响应请求。</value>
+  </data>
+  <data name="Status407" xml:space="preserve">
+    <value>ProxyAuthenticationRequired 表示请求的代理要求身份验证。</value>
+  </data>
+  <data name="Status408" xml:space="preserve">
+    <value>RequestTimeout 服务器等候请求时发生超时。</value>
+  </data>
+  <data name="Status409" xml:space="preserve">
+    <value>Conflict 服务器在完成请求时发生冲突。 服务器必须在响应中包含有关冲突的信息。</value>
+  </data>
+  <data name="Status410" xml:space="preserve">
+    <value>Gone 请求的资源已永久删除。</value>
+  </data>
+  <data name="Status411" xml:space="preserve">
+    <value>LengthRequired 缺少必需的 Content-length 头。</value>
+  </data>
+  <data name="Status429" xml:space="preserve">
+    <value>频率限制</value>
+  </data>
+  <data name="Status4900" xml:space="preserve">
+    <value>4900~4913 内部错误，请重连</value>
+  </data>
+  <data name="Status4914" xml:space="preserve">
+    <value>机器人已下架,只允许连接沙箱环境,请断开连接,检验当前连接环境</value>
+  </data>
+  <data name="Status4915" xml:space="preserve">
+    <value>机器人已封禁,不允许连接,请断开连接,申请解封后再连接</value>
+  </data>
+  <data name="Status500" xml:space="preserve">
+    <value>InternalServerError 服务器遇到错误，无法完成请求。</value>
+  </data>
+  <data name="Status500000" xml:space="preserve">
+    <value>公告错误</value>
+  </data>
+  <data name="Status50006" xml:space="preserve">
+    <value>CannotSendEmptyMessage 消息为空</value>
+  </data>
+  <data name="Status50035" xml:space="preserve">
+    <value>InvalidFormBody form-data 内容异常</value>
+  </data>
+  <data name="Status50037" xml:space="preserve">
+    <value>只能发送 markdown 消息</value>
+  </data>
+  <data name="Status50038" xml:space="preserve">
+    <value>非同频道同子频道</value>
+  </data>
+  <data name="Status50039" xml:space="preserve">
+    <value>获取消息失败</value>
+  </data>
+  <data name="Status50040" xml:space="preserve">
+    <value>消息模版类型错误</value>
+  </data>
+  <data name="Status50041" xml:space="preserve">
+    <value>markdown 有空值</value>
+  </data>
+  <data name="Status50042" xml:space="preserve">
+    <value>markdown 列表长达最大值</value>
+  </data>
+  <data name="Status50043" xml:space="preserve">
+    <value>guild_id 转换失败</value>
+  </data>
+  <data name="Status50045" xml:space="preserve">
+    <value>不能回复机器人自己产生的消息</value>
+  </data>
+  <data name="Status50046" xml:space="preserve">
+    <value>非 at 机器人消息</value>
+  </data>
+  <data name="Status50047" xml:space="preserve">
+    <value>非机器人产生的消息 或者 at 机器人消息</value>
+  </data>
+  <data name="Status501" xml:space="preserve">
+    <value>NotImplemented 服务器不支持请求的函数方法。</value>
+  </data>
+  <data name="Status501001" xml:space="preserve">
+    <value>参数校验失败</value>
+  </data>
+  <data name="Status501002" xml:space="preserve">
+    <value>创建子频道公告失败(可重试)</value>
+  </data>
+  <data name="Status501003" xml:space="preserve">
+    <value>删除子频道公告失败(可重试)</value>
+  </data>
+  <data name="Status501004" xml:space="preserve">
+    <value>获取频道信息失败(可重试)</value>
+  </data>
+  <data name="Status501005" xml:space="preserve">
+    <value>MessageID 错误</value>
+  </data>
+  <data name="Status501006" xml:space="preserve">
+    <value>创建频道全局公告失败(可重试)</value>
+  </data>
+  <data name="Status501007" xml:space="preserve">
+    <value>删除频道全局公告失败(可重试)</value>
+  </data>
+  <data name="Status501008" xml:space="preserve">
+    <value>MessageID 不存在</value>
+  </data>
+  <data name="Status502" xml:space="preserve">
+    <value>BadGateway 服务器作为网关或代理，从上游服务器收到无效响应。</value>
+  </data>
+  <data name="Status502000" xml:space="preserve">
+    <value>禁言相关错误</value>
+  </data>
+  <data name="Status502001" xml:space="preserve">
+    <value>频道 id 无效</value>
+  </data>
+  <data name="Status502002" xml:space="preserve">
+    <value>频道 id 为空</value>
+  </data>
+  <data name="Status502003" xml:space="preserve">
+    <value>用户 id 无效</value>
+  </data>
+  <data name="Status502004" xml:space="preserve">
+    <value>用户 id 为空</value>
+  </data>
+  <data name="Status502005" xml:space="preserve">
+    <value>timestamp 不合法</value>
+  </data>
+  <data name="Status502006" xml:space="preserve">
+    <value>timestamp 无效</value>
+  </data>
+  <data name="Status502007" xml:space="preserve">
+    <value>参数转换错误</value>
+  </data>
+  <data name="Status502008" xml:space="preserve">
+    <value>rpc 调用失败</value>
+  </data>
+  <data name="Status502009" xml:space="preserve">
+    <value>安全打击</value>
+  </data>
+  <data name="Status502010" xml:space="preserve">
+    <value>请求头错误</value>
+  </data>
+  <data name="Status503" xml:space="preserve">
+    <value>ServiceUnavailable 服务器暂时不可用，通常是由于过载或维护。</value>
+  </data>
+  <data name="Status504" xml:space="preserve">
+    <value>GatewayTimeout 服务器作为网关或代理，但是没有及时从上游服务器收到请求。</value>
+  </data>
+  <data name="Status505" xml:space="preserve">
+    <value>HttpVersionNotSupported 服务器不支持请求的HTTP 版本。</value>
+  </data>
+  <data name="Status610000" xml:space="preserve">
+    <value>频道权限错误</value>
+  </data>
+  <data name="Status610001" xml:space="preserve">
+    <value>获取频道 ID 失败</value>
+  </data>
+  <data name="Status610002" xml:space="preserve">
+    <value>获取 HTTP 头失败</value>
+  </data>
+  <data name="Status610003" xml:space="preserve">
+    <value>获取机器人号码失败</value>
+  </data>
+  <data name="Status610004" xml:space="preserve">
+    <value>获取机器人角色失败</value>
+  </data>
+  <data name="Status610005" xml:space="preserve">
+    <value>获取机器人角色内部错误</value>
+  </data>
+  <data name="Status610006" xml:space="preserve">
+    <value>拉取机器人权限列表失败</value>
+  </data>
+  <data name="Status610007" xml:space="preserve">
+    <value>机器人不在频道内</value>
+  </data>
+  <data name="Status610008" xml:space="preserve">
+    <value>无效参数</value>
+  </data>
+  <data name="Status610009" xml:space="preserve">
+    <value>获取 API 接口详情失败</value>
+  </data>
+  <data name="Status610010" xml:space="preserve">
+    <value>API 接口已授权</value>
+  </data>
+  <data name="Status610011" xml:space="preserve">
+    <value>获取机器人信息失败</value>
+  </data>
+  <data name="Status610012" xml:space="preserve">
+    <value>限频失败</value>
+  </data>
+  <data name="Status610013" xml:space="preserve">
+    <value>已限频</value>
+  </data>
+  <data name="Status610014" xml:space="preserve">
+    <value>api 授权链接发送失败</value>
+  </data>
   <data name="TryReconnectToServer" xml:space="preserve">
     <value>重新建立到服务器的连接...</value>
   </data>
@@ -471,6 +1071,9 @@
   </data>
   <data name="WebSocketMessageTypeIs" xml:space="preserve">
     <value>WebSocket 消息类型：</value>
+  </data>
+  <data name="YouCannotUseThisCommand" xml:space="preserve">
+    <value>你无权使用该命令！</value>
   </data>
   <data name="__LocalBotConfigPath" xml:space="preserve">
     <value>P:\Bot\bot.json</value>

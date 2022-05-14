@@ -8,6 +8,10 @@
 	</PropertyGroup>
 
 	<ItemGroup>
+		<ProjectReference Include="..\System\SystemExtensions.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
 		<Compile Update="Resources\ResourceDictionary.Designer.cs">
 			<DesignTime>True</DesignTime>
 			<AutoGen>True</AutoGen>

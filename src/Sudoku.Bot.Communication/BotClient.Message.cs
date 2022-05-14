@@ -3,219 +3,213 @@
 partial class BotClient
 {
 	/// <summary>
-	/// 获取指定消息
+	/// Gets the specified message.
 	/// </summary>
-	/// <param name="channel_id">子频道Id</param>
-	/// <param name="message_id">消息Id</param>
-	/// <param name="sender"></param>
-	/// <returns></returns>
-	public async Task<Message?> GetMessageAsync(string channel_id, string message_id, Sender? sender = null)
-	{
-		_ = BotApis.GetMessageInChannel is { Path: var path, Method: var method };
-		var response = await HttpSendAsync(
-			path.Replace("{channel_id}", channel_id).Replace("{message_id}", message_id),
-			method,
-			null,
-			sender
-		);
-
-		return response is null ? null : await response.Content.ReadFromJsonAsync<Message?>();
-	}
+	/// <param name="channel_id">The channel. <b>The argument cannot be renamed.</b></param>
+	/// <param name="message_id">The message. <b>The argument cannot be renamed.</b></param>
+	/// <param name="sender">The sender who sends the message.</param>
+	/// <returns>A task instance encapsulates the message instance as the result value.</returns>
+	public async Task<Message?> GetMessageAsync(string channel_id, string message_id, Sender? sender)
+		=> BotApis.GetMessageInChannel is { Path: var path, Method: var method }
+		&& path.ReplaceArgument(channel_id).ReplaceArgument(message_id) is var replacedPath
+		&& await HttpSendAsync(replacedPath, method, null, sender) is { Content: var responseContent }
+			? await responseContent.ReadFromJsonAsync<Message?>()
+			: null;
 
 	/// <summary>
-	/// 获取消息列表（2022年1月29日暂未开通）
+	/// Gets the message list.
 	/// </summary>
-	/// <param name="message">作为坐标的消息（需要消息Id和子频道Id）</param>
-	/// <param name="limit">分页大小（1-20）</param>
-	/// <param name="type">拉取类型（默认拉取最新消息）</param>
-	/// <param name="sender"></param>
-	/// <returns></returns>
-	public async Task<List<Message>?> GetMessagesAsync(
-		Message message, int limit = 20, GetMessageType? type = GetMessageType.Latest, Sender? sender = null)
-	{
-		_ = BotApis.GetMessagesInChannel is { Path: var path, Method: var method };
-		string typeStr = type is null ? string.Empty : $"&type={type?.ToString().ToLower()}";
-		var response = await HttpSendAsync(
-			$"{path.Replace("{channel_id}", message.ChannelId)}?limit={limit}&id={message.Id}{typeStr}",
-			method,
-			null,
-			sender
-		);
-
-		return response is null ? null : await response.Content.ReadFromJsonAsync<List<Message>?>();
-	}
+	/// <param name="message">The message instance. This argument must require the GUILD and channel ID.</param>
+	/// <param name="limit">The limit number of messages in a page. The value can only be between 1 and 20.</param>
+	/// <param name="type">The type to get the message list.</param>
+	/// <param name="sender">The sender who sends the message.</param>
+	/// <returns>A task instance encapsulates the message list as the result value.</returns>
+	public async Task<List<Message>?> GetMessagesAsync(Message message, int limit, GetMessageType? type, Sender? sender)
+		=> BotApis.GetMessagesInChannel is { Path: var path, Method: var method }
+		&& (type is null ? string.Empty : $"&type={type?.ToString().ToLower()}") is var typeStr
+		&& $"{path.Replace("{channel_id}", message.ChannelId)}?limit={limit}&id={message.Id}{typeStr}" is var replacedPath
+		&& await HttpSendAsync(replacedPath, method, null, sender) is { Content: var responseContent }
+			? await responseContent.ReadFromJsonAsync<List<Message>?>()
+			: null;
 
 	/// <summary>
-	/// 发送消息
-	/// <para>
-	/// 要求操作人在该子频道具有"发送消息"的权限 <br/>
-	/// 发送成功之后，会触发一个创建消息的事件 <br/>
-	/// 被动回复消息有效期为 5 分钟 <br/>
-	/// 主动推送消息每个子频道限 2 条/天 <br/>
-	/// 发送消息接口要求机器人接口需要链接到websocket gateway 上保持在线状态
-	/// </para>
+	/// Sends the message.
 	/// </summary>
-	/// <param name="channel_id">子频道Id</param>
-	/// <param name="message">消息对象</param>
-	/// <param name="sender"></param>
-	/// <returns></returns>
-	public async Task<Message?> SendMessageAsync(string channel_id, MessageToCreate message, Sender? sender = null)
-	{
-		_ = BotApis.SendMessageToChannel is { Path: var path, Method: var method };
-		var response = await HttpSendAsync(
-			path.Replace("{channel_id}", channel_id),
-			method,
-			JsonContent.Create(message),
-			sender
+	/// <param name="channel_id">The channel. <b>The argument cannot be renamed.</b></param>
+	/// <param name="message">The message instance.</param>
+	/// <param name="sender">The sender who sends the message.</param>
+	/// <returns>A task instance encapsulates the message instance as the result value.</returns>
+	public async Task<Message?> SendMessageAsync(string channel_id, MessageToCreate message, Sender? sender)
+		=> LastMessage(
+			BotApis.SendMessageToChannel is { Path: var path, Method: var method }
+			&& path.ReplaceArgument(channel_id) is var replacedPath
+			&& JsonContent.Create(message) is var jsonContent
+			&& await HttpSendAsync(replacedPath, method, jsonContent, sender) is var response
+			&& response is { Content: var responseContent }
+				? await responseContent.ReadFromJsonAsync<Message?>()
+				: null,
+			true
 		);
 
-		var result = response is null ? null : await response.Content.ReadFromJsonAsync<Message?>();
-		return LastMessage(result, true);
-	}
+	/// <summary>
+	/// Recalls a message.
+	/// </summary>
+	/// <param name="channel_id">The channel. <b>The argument cannot be renamed.</b></param>
+	/// <param name="message_id">The message. <b>The argument cannot be renamed.</b></param>
+	/// <param name="sender">The sender who sends the message.</param>
+	/// <returns>
+	/// A task instance encapsulates the <see cref="bool"/> value indicating whether the operation is successful.
+	/// </returns>
+	public async Task<bool> DeleteMessageAsync(string channel_id, string message_id, Sender? sender)
+		=> BotApis.RecallMessageInChannel is { Path: var path, Method: var method }
+		&& path.ReplaceArgument(channel_id).ReplaceArgument(message_id) is var replacedPath
+		&& ((await HttpSendAsync(replacedPath, method, null, sender))?.IsSuccessStatusCode ?? false);
 
 	/// <summary>
-	/// 撤回消息
+	/// This method is core one used for handling the message.
 	/// </summary>
-	/// <param name="channel_id">子频道Id</param>
-	/// <param name="message_id">消息Id</param>
-	/// <param name="sender"></param>
-	/// <returns></returns>
-	public async Task<bool> DeleteMessageAsync(string channel_id, string message_id, Sender? sender = null)
-	{
-		_ = BotApis.RecallMessageInChannel is { Path: var path, Method: var method };
-		var response = await HttpSendAsync(
-			path.Replace("{channel_id}", channel_id).Replace("{message_id}", message_id),
-			method,
-			null,
-			sender
-		);
-
-		return response?.IsSuccessStatusCode ?? false;
-	}
-
-	/// <summary>
-	/// 撤回目标用户在当前子频道发出的最后一条消息
-	/// <para>
-	/// 需要传入指令发出者的消息对象<br/>
-	/// 用于检索指令发出者所在频道信息
-	/// </para>
-	/// </summary>
-	/// <param name="masterMessage">
-	/// 被撤回消息的目标用户信息<br/>
-	/// 需要：message.GuildId、message.ChannelId、message.Author.Id
+	/// <param name="message">The message.</param>
+	/// <param name="type">
+	/// Indicates the type of the message. All possible types are:
+	/// <list type="table">
+	/// <listheader>
+	/// <term>Type string</term>
+	/// <description>Description</description>
+	/// </listheader>
+	/// <item>
+	/// <term><see cref="RawMessageTypes.DirectMessageCreated"/> (i.e. <c>DIRECT_MESSAGE_CREATE</c>)</term>
+	/// <description>Indicates the message is a direct message.</description>
+	/// </item>
+	/// <item>
+	/// <term><see cref="RawMessageTypes.MentionMessageCreated"/> (i.e. <c>AT_MESSAGE_CREATE</c>)</term>
+	/// <description>Indicates the message mentions the bot in a direct message.</description>
+	/// </item>
+	/// <item>
+	/// <term><see cref="RawMessageTypes.NormalMessageCreated"/> (i.e. <c>MESSAGE_CREATE</c>)</term>
+	/// <description>
+	/// Indicates the message is in a channel. <b>The type is only used for <see cref="Intents.PrivateDomain"/>.
+	/// </b></description>
+	/// </item>
+	/// </list>
 	/// </param>
-	/// <param name="sender"></param>
-	/// <returns></returns>
-	public async Task<bool?> DeleteLastMessageAsync(Message? masterMessage, Sender? sender = null)
-	{
-		var lastMessage = LastMessage(masterMessage);
-		return lastMessage is null ? null : await DeleteMessageAsync(lastMessage.ChannelId, lastMessage.Id, sender);
-	}
-
-	/// <summary>
-	/// 集中处理聊天消息
-	/// </summary>
-	/// <param name="message">消息对象</param>
-	/// <param name="type">消息类型
-	/// <para>
-	/// DIRECT_MESSAGE_CREATE - 私信<br/>
-	/// AT_MESSAGE_CREATE - 频道内 @机器人<br/>
-	/// MESSAGE_CREATE - 频道内任意消息(仅私域支持)<br/>
-	/// </para></param>
-	/// <returns></returns>
+	/// <returns>A task instance handling the current operation.</returns>
 	private async Task MessageCenterAsync(Message message, string type)
 	{
-		// 记录Sender信息
-		Sender sender = new(message, this);
-
-		// 识别消息类型（私聊，AT全员，AT机器人）
+		// Defines a sender instance.
+		// Now checks the type of the message, to get the details to assign to the property 'sender.MessageType'.
 		bool userPredicate(User u) => u.Id == Info.Id;
-		_ = message switch
+		var sender = new Sender(message, this)
 		{
-			{ IsDirectMessage: true } => sender.MessageType = MessageType.Private,
-			{ IsAllMentioned: true } => sender.MessageType = MessageType.MentionAll,
-			{ Mentions: var list } when list?.Any(userPredicate) is true => sender.MessageType = MessageType.BotMentioned,
-			_ => default
+			MessageType = message switch
+			{
+				{ IsDirectMessage: true } => MessageType.Private,
+				{ IsAllMentioned: true } => MessageType.MentionAll,
+				{ Mentions: var list } when list?.Any(userPredicate) is true => MessageType.BotMentioned,
+				_ => MessageType.Public // The default value.
+			}
 		};
 
-		// 记录机器人在当前频道下的身份组信息
+		// Now gets the info for the bot in the specified GUILD.
 		if (sender.MessageType != MessageType.Private && !Members.ContainsKey(message.GuildId))
 		{
 			Members[message.GuildId] = await GetMemberAsync(message.GuildId, Info.Id, null);
 		}
 
-		// 若已经启用全局消息接收，将不单独响应 AT_MESSAGES 事件，否则会造成重复响应。
-		if (Intents.HasFlag(Intent.MESSAGE_CREATE) && type.StartsWith("A"))
+		// If the message is received globally, the message won't trigger event AT_MESSAGES,
+		// otherwise, duplicated triggering.
+		if (Intents.Flags(Intent.MESSAGE_CREATE) && type[0] == 'A')
 		{
 			return;
 		}
 
-		// 调用消息拦截器
-		if (MessageFilter?.Invoke(sender) is true)
+		// Checks whether the message is passed for the filtering property.
+		// Please note that if the filter returns false (rather than not true), the message won't be triggered.
+		// In other words, if the property is null, or the property holds a delegate instance, but returning true
+		// after being invoked, the message will be passed.
+		if (MessageFilter is not null && !MessageFilter(sender))
 		{
 			return;
 		}
 
-		// 记录收到的消息
+		// Pushes it into the stack.
 		LastMessage(message, true);
 
-		// 预判收到的消息
-		string content = message.Content.Trim().ReplaceStart(Info.Tag).TrimStart();
+		if (
+#pragma warning disable IDE0055
+			(message, sender) is not (
+				{
+					Content: var messageContent,
+					Mentions: var messageMentions,
+					MessageCreator: { Id: var messageCreatorId } messageCreator,
+					Member.Roles: var memberRoles
+				},
+				{
+					MessageType: var messageType,
+					Bot: var bot,
+					GuildId: var guildId,
+					MessageCreator.UserName: var creatorUserName
+				}
+			)
+#pragma warning restore IDE0055
+		)
+		{
+			return;
+		}
 
-		// 识别指令
+		// Gets the content of the message. Here we use a trick to get the normal content.
+		// The mentioning message will contain the tag "<@!idvalue>", where the value 'idvalue'
+		// means who you want to mention. We just remove it to get the last message content.
+		string content = MessageContent.RemoveTag(messageContent, Info);
+
+		// Try to recorgnize the command.
 		bool hasCommand = content.StartsWith(CommandPrefix);
 		content = content.ReplaceStart(CommandPrefix).TrimStart();
-		if ((hasCommand || sender.MessageType is MessageType.BotMentioned or MessageType.Private) && content.Length > 0)
+		if ((hasCommand || messageType is MessageType.BotMentioned or MessageType.Private) && content.Length > 0)
 		{
-			// 在新的线程上输出日志信息
+			// Runs the logger to get the log message output the command line.
 			_ = Task.Run(logHandler);
 
-			// 并行遍历指令列表，提升效率
+			// Use parallel iteration to get all possible commands to run.
+			// Therefore, you should note that you had better not to reference different commands.
 			var result = Parallel.ForEach(Commands.Values, forEachLoopHandler);
-
 			if (!result.IsCompleted)
 			{
 				return;
 			}
 		}
 
-		// 触发Message到达事件
+		// Triggers the event 'MessageCreated'.
 		MessageCreated?.Invoke(this, new(sender));
 
 
 		void logHandler()
 		{
 			static bool predicate(User user, Match m) => user.Tag == m.Groups[0].Value;
-			string f(Match m) => message.Mentions?.Find(u => predicate(u, m))?.UserName.Insert(0, "@") ?? m.Value;
-			string msgContent = Regex.Replace(message.Content, """<@!\d+>""", f);
-			string senderMaster = (sender.Bot.Guilds.TryGetValue(sender.GuildId, out var guild) ? guild.Name : null)
-				?? sender.MessageCreator.UserName;
-			Log.Info($"[{senderMaster}][{message.MessageCreator.UserName}] {msgContent.Replace("\xA0", " ")}");
+			string f(Match m) => messageMentions?.Find(u => predicate(u, m))?.UserName.Insert(0, "@") ?? m.Value;
+			string msgContent = Regex.Replace(messageContent, """<@!\d+>""", f);
+			string senderMaster = (bot.Guilds.TryGetValue(guildId, out var guild) ? guild.Name : null) ?? creatorUserName;
+			Log.Info($"[{senderMaster}][{messageCreator.UserName}] {msgContent.Replace("\xA0", " ")}");
 		}
 
 		void forEachLoopHandler(Command cmd, ParallelLoopState state, long i)
 		{
-			var cmdMatch = cmd.Rule.Match(content);
-			if (!cmdMatch.Success)
+			if (cmd.Rule.Match(content) is not { Success: true, Groups: [{ Value: var firstGroupValue }, ..] })
 			{
 				return;
 			}
 
-			content = content.ReplaceStart(cmdMatch.Groups[0].Value).TrimStart();
-			if (
-				cmd.RequiresAdministratorPermission && !(
-					message.Member.Roles.Any(static r => "24".Contains(r)) || message.MessageCreator.Id.Equals(GodId)
-				)
-			)
+			bool rolePredicate(string r) => "24".Contains(r);
+
+			content = content.ReplaceStart(firstGroupValue).TrimStart();
+			if (cmd.RequiresAdministratorPermission && !(memberRoles.Any(rolePredicate) || messageCreatorId.Equals(GodId)))
 			{
-				if (sender.MessageType == MessageType.BotMentioned)
-				{
-					_ = sender.ReplyAsync($"{message.MessageCreator.Tag} 你无权使用该命令！");
-				}
-				else
+				if (messageType != MessageType.BotMentioned)
 				{
 					return;
 				}
+
+				string youCannotUseThisCommandText = StringResource.Get("YouCannotUseThisCommand")!;
+				_ = sender.ReplyAsync($"{messageCreator.Tag} {youCannotUseThisCommandText}");
 			}
 			else
 			{

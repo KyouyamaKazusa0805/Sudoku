@@ -10,7 +10,7 @@ var identity = LoadBotConfiguration(StringResource.Get("__LocalBotConfigPath")!,
 var bot = new BotClient(identity, sandBoxApi: true, reportApiError: true)
 {
 	Intents = Intents.PrivateDomain,
-	MessageFilter = sender => !(sender.ChannelId == testChannelId && sender.IsMentioned)
+	MessageFilter = sender => sender.ChannelId == testChannelId && sender.IsMentioned
 };
 
 // Sets the elementary event handlers.

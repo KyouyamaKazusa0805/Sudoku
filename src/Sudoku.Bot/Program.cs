@@ -83,13 +83,13 @@ internal static partial class Program
 				return;
 			}
 
-			if (e.Sender is not { Bot.Info.Tag: var t, IsMentioned: true, Content: var m, MessageCreator.Id: var authorId } sender)
+			if (e.Sender is not { Bot.Info: var botInfo, IsMentioned: true, Content: var m, MessageCreator.Id: var authorId } sender)
 			{
 				return;
 			}
 
 			// Filters the message to remove the mentioning message part.
-			if (!string.IsNullOrWhiteSpace(m.Trim().ReplaceStart(t).TrimStart()))
+			if (!string.IsNullOrWhiteSpace(MessageContent.RemoveTag(m, botInfo)))
 			{
 				return;
 			}

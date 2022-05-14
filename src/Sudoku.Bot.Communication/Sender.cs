@@ -9,7 +9,7 @@
 public sealed record class Sender(Message Message, BotClient Bot)
 {
 	/// <summary>
-	/// Indicates the message type.
+	/// Indicates the message type. The default value is <see cref="MessageType.Public"/>.
 	/// </summary>
 	public MessageType MessageType { get; set; } = MessageType.Public;
 
@@ -190,14 +190,6 @@ public sealed record class Sender(Message Message, BotClient Bot)
 	/// <inheritdoc cref="BotClient.DeleteMessageAsync(string, string, Sender?)"/>
 	public async Task<bool> DeleteMessageAsync(Message message)
 		=> await Bot.DeleteMessageAsync(message.ChannelId, message.Id, this);
-
-	/// <inheritdoc cref="BotClient.DeleteLastMessageAsync(Message?, Sender?)"/>
-	public async Task<bool?> DeleteLastMessageAsync(User? user = null)
-	{
-		var msg = Message;
-		msg.MessageCreator = user ?? Bot.Info;
-		return await Bot.DeleteLastMessageAsync(msg, this);
-	}
 
 	/// <inheritdoc cref="BotClient.CreateDirectMessageAsync(string, string, Sender)"/>
 	public async Task<DirectMessageSource?> CreateDirectMessageCommunicationAsync(User user)
