@@ -276,7 +276,6 @@ static async void ClockInAsync(Sender sender, string message)
 
 static async void PrintRankResultAsync(Sender sender, string message)
 {
-
 	if (sender is not { MessageCreator.Id: var userId, IsMentioned: true })
 	{
 		return;
