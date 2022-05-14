@@ -79,6 +79,20 @@ namespace Sudoku.Bot.Communication.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 本项目作者：SunnieShine
+        ///原项目作者：Antecer
+        ///开源协议：MIT
+        ///版权 (c) 2021-2022 Antecer。作者保留全部权利。
+        ///
+        ///该项目从仓库 https://github.com/Antecer/QQChannelBot 获取源代码。所有注释文字和命名均按整个此解决方案的规范改动过，并带有部分删改。源代码设计架构和设计思路全部没有改动。.
+        /// </summary>
+        internal static string @__ProjectCopyrightStatement {
+            get {
+                return ResourceManager.GetString("__ProjectCopyrightStatement", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 向向的游戏机器人
         ///作者：SunnieShine（小向）
         ///版本：.

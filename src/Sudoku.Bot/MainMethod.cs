@@ -1,4 +1,9 @@
-﻿// Configures the log level.
+﻿// Outputs the copyright information.
+Console.WriteLine(StringResource.Get("ProjectCopyrightStatement")!);
+Console.WriteLine();
+Console.WriteLine();
+
+// Configures the log level.
 Log.LogLevel = LogLevel.Info;
 
 // Initializes an identity instance.

@@ -1,11 +1,4 @@
-﻿// The project is copied from https://github.com/Antecer/QQChannelBot
-// Some of codes has been modified by me for unifying the namespace naming and coding styles, after copied.
-//
-// Original author: Antecer
-// License: MIT license
-// Copyright (c) 2021-2022 Antecer. All rights reserved.
-
-global using System;
+﻿global using System;
 global using System.Buffers;
 global using System.Collections.Concurrent;
 global using System.Collections.Generic;
