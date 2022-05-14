@@ -310,6 +310,7 @@ static async void PrintRankResultAsync(Sender sender, string message)
 	{
 		// No configuration files found.
 		await sender.ReplyAsync(StringResource.Get("RankExpFailed_NoConfigFileFound")!);
+		return;
 	}
 
 	var rankingPairs = (
