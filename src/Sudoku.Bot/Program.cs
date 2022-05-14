@@ -34,15 +34,13 @@ internal static partial class Program
 	/// Indicates callback method that will be invoked when the bot has successfully connected to the server,
 	/// and successfully passed the authorization.
 	/// </summary>
-	private static void OnSuccessfullyConnected()
-		=> Console.WriteLine(StringResource.Get("BotConnectedCallbackOutput_Success")!);
+	private static void OnSuccessfullyConnected() => Log.Info(StringResource.Get("BotConnectedCallbackOutput_Success")!);
 
 	/// <summary>
 	/// Indicates callback method that will be invoked when the bot has failed connected to the server,
 	/// or failed passed the authorization.
 	/// </summary>
-	private static void OnFailedConnected()
-		=> Console.WriteLine(StringResource.Get("BotConnectedCallbackOutput_Fail")!);
+	private static void OnFailedConnected() => Log.Warn(StringResource.Get("BotConnectedCallbackOutput_Fail")!);
 
 	/// <summary>
 	/// Exits the program fast.

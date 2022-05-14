@@ -1,10 +1,14 @@
-﻿// Outputs the copyright information.
-Console.WriteLine(StringResource.Get("ProjectCopyrightStatement")!);
-Console.WriteLine();
-Console.WriteLine();
-
-// Configures the log level.
+﻿// Configures the log level.
 Log.LogLevel = LogLevel.Info;
+
+// Outputs the copyright information.
+Log.Info(
+	$"""
+	{StringResource.Get("__ProjectCopyrightStatement")!}
+	
+	
+	"""
+);
 
 // Initializes an identity instance.
 // Please note that the token and secret code corresponds to the info for the bot.
@@ -82,7 +86,7 @@ static async void PlaySudokuAsync(Sender sender, string message)
 	// Checks the result.
 	switch ((_timeLast, _playersJoined))
 	{
-		case (<= 0, { Count: < 2 }):
+		case ( <= 0, { Count: < 2 }):
 		{
 			// Players not enough.
 			await sender.ReplyAsync(StringResource.Get("CommandGamePlayFailed")!);
