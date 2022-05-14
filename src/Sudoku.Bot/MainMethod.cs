@@ -100,6 +100,8 @@ static async void PlaySudokuAsync(Sender sender, string message)
 
 	// Create game.
 	var generator = new HardPatternPuzzleGenerator();
+
+	// TODO: Implement the game. Here we should implement the drawing items.
 }
 
 static async void ClockInAsync(Sender sender, string message)
