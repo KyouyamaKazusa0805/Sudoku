@@ -42,7 +42,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sudoku.Bot.Communication", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sudoku.Drawing", "src\Sudoku.Drawing\Sudoku.Drawing.csproj", "{9ABD05D7-A129-4B53-B91B-721F57F640F0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sudoku.Recognition", "src\Sudoku.Recognition\Sudoku.Recognition.csproj", "{0AB3C138-AA2D-47FC-95C5-90C09876F783}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sudoku.Recognition", "src\Sudoku.Recognition\Sudoku.Recognition.csproj", "{0AB3C138-AA2D-47FC-95C5-90C09876F783}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -479,8 +479,8 @@ Global
 		{97E923EF-D540-4691-85BB-161F2EF1F74B} = {0D732DB7-E4C8-482F-AFBB-8F674305AE6A}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		RESX_ShowErrorsInErrorList = False
-		RESX_Rules = {"EnabledRules":["StringFormat"]}
 		SolutionGuid = {E2B6A644-F820-4AB3-8508-C3C59838C955}
+		RESX_Rules = {"EnabledRules":["StringFormat"]}
+		RESX_ShowErrorsInErrorList = False
 	EndGlobalSection
 EndGlobal
