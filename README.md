@@ -20,6 +20,8 @@
 
 [![bilibili](https://img.shields.io/badge/dynamic/json?color=%23fb7299&label=bilibili&logo=bilibili&query=%24.data.follower&suffix=%20followers&url=https%3A%2F%2Fapi.bilibili.com%2Fx%2Frelation%2Fstat%3Fvmid%3D23736703)](https://space.bilibili.com/23736703)
 
+> Most of codes in this repo obeys MIT license, but except `Sudoku.Recognition`: that project is copied and modified from another repo using LGPLv2.1 open source license. For more information please visit that project to check the open-source license.
+
 ## Introduction
 
 A sudoku handling SDK using brute forces and logical techniques. Now this solution supports generating puzzles, solving puzzles (with logical & illogical techniques) and some attribute checking (for example, to determine whether the specified grid is a minimal puzzle, which will become multiple solutions when any a digit is missing).

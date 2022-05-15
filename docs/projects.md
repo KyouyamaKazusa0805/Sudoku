@@ -11,6 +11,7 @@
 | [`Sudoku.Core`](https://github.com/SunnieShine/Sudoku/tree/main/src/Sudoku.Core) | 类库         | 提供基本的数独相关的数据结构的实现，如数独盘面的实现 [`Grid`](https://github.com/SunnieShine/Sudoku/blob/main/src/Sudoku.Core/Collections/Grid.cs) 类型等。 |
 | [`Sudoku.Diagnostics.CodeGen`](https://github.com/SunnieShine/Sudoku/tree/main/src/Sudoku.Diagnostics.CodeGen) | 源生成器     | 为解决方案提供一些基本的、不必手写的源代码的功能性扩展。     |
 | [`Sudoku.Drawing`](https://github.com/SunnieShine/Sudoku/tree/main/src/Sudoku.Drawing) | 类库         | 提供一种简单、轻量级的数独绘图 API。                         |
+| [`Sudoku.Recognition`](https://github.com/SunnieShine/Sudoku/tree/main/src/Sudoku.Recognition) | 类库         | 提供一个基本的、数独图片识别功能的 API。                     |
 | [`Sudoku.Solving.Manual`](https://github.com/SunnieShine/Sudoku/tree/main/src/Sudoku.Solving.Manual) | 类库         | 提供数独关于解题操作和技巧搜寻功能的 API。                   |
 | [`Sudoku.Solving.Manual.CodeGen`](https://github.com/SunnieShine/Sudoku/tree/main/src/Sudoku.Solving.Manual.CodeGen) | 源生成器     | 生成解题技巧搜索器对象的选项设置的自动生成。                 |
 | [`Sudoku.UI`](https://github.com/SunnieShine/Sudoku/tree/main/src/Sudoku.UI) | Windows UI   | 用于呈现和使用 API 提供一个具体的 UI 级别实现。**正在更新中。** |

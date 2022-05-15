@@ -20,6 +20,8 @@
 
 [![哔哩哔哩](https://img.shields.io/badge/dynamic/json?color=%23fb7299&label=%E5%93%94%E5%93%A9%E5%93%94%E5%93%A9&logo=bilibili&query=%24.data.follower&suffix=%20%E5%85%B3%E6%B3%A8&url=https%3A%2F%2Fapi.bilibili.com%2Fx%2Frelation%2Fstat%3Fvmid%3D23736703)](https://space.bilibili.com/23736703)
 
+> 本仓库里的绝大多数代码都遵守 MIT 开源协议，不过 `Sudoku.Recognition` 除外。那个项目是从别的仓库里复制并修改得到的，项目遵守的是 LGPLv2.1 的开源协议。详情请查看那个项目的代码。
+
 ## 简介
 
 一个使用暴力破解和普通逻辑算法解题的数独分析解题 SDK。目前该解决方案支持对数独的题目生成、使用逻辑技巧或无逻辑技巧解题和一些常见数独特性的验证（例如，验证是否一个指定的盘面是一个最小题目。所谓的最小题目指的是，盘面任意一个数字消失后，都会使得题目多解的题）。
