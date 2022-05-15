@@ -5,7 +5,7 @@ namespace Sudoku.Drawing;
 /// <summary>
 /// Defines a point calculator that interacts with the UI projects.
 /// </summary>
-internal sealed class PointCalculator : IPointCalculator
+public sealed class PointCalculator : IPointCalculator
 {
 	/// <summary>
 	/// Initializes a <see cref="PointCalculator"/> instance with

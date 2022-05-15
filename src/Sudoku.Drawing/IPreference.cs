@@ -66,9 +66,9 @@ public interface IPreference : ICloneable
 	FontStyle CandidateFontStyle { get; set; }
 
 	/// <summary>
-	/// Indicates the font style of an unknown identifier.
+	/// Indicates the font style of an unknown.
 	/// </summary>
-	FontStyle UnknownIdentfierFontStyle { get; set; }
+	FontStyle UnknownFontStyle { get; set; }
 
 	/// <summary>
 	/// Indicates the given digits to render.

@@ -71,7 +71,7 @@ static async void PlaySudokuAsync(Sender sender, string message)
 
 	// Defines a timer to wait for 40 seconds.
 	var timer = new Timer(1000);
-	timer.Elapsed += (_, _) => _timeLast--;
+	timer.Elapsed += static (_, _) => _timeLast--;
 	timer.Start();
 
 	// Wait for players joining in the game.
@@ -95,7 +95,8 @@ static async void PlaySudokuAsync(Sender sender, string message)
 		case (_, { Count: >= 2 }):
 		{
 			// Game start.
-			break;
+			//break;
+			goto default;
 		}
 		default:
 		{
@@ -107,10 +108,32 @@ static async void PlaySudokuAsync(Sender sender, string message)
 		}
 	}
 
+	// TODO: Implement the game. Here we should implement the drawing items.
+	// TODO: Official APIs doesn't support about uploading pictures from local path.
+	/*
 	// Create game.
 	var generator = new HardPatternPuzzleGenerator();
+	var solver = new ManualSolver();
 
-	// TODO: Implement the game. Here we should implement the drawing items.
+	Grid puzzle;
+	do
+	{
+		puzzle = generator.Generate();
+	} while (solver.Solve(puzzle) is not { IsSolved: true, MaxDifficulty: <= 2.3M });
+
+	// Now display the grid.
+	const int picSize = 540;
+	var gig = new GridImageGenerator(PointCalculator.CreateConverter(picSize), Perference.Default, puzzle);
+	var gridPic = gig.DrawManually();
+
+	// Saves the picture to the local path.
+	string desktopPath = $"""{GetFolderPath(SpecialFolder.Desktop)}\output.png""";
+	gridPic.Save(desktopPath);
+
+	// Loads the picture.
+	var pictureMessage = new ImageMessageToCreate(null, $"file:///{desktopPath}", null);
+	await sender.SendMessageAsync(pictureMessage, sender.ChannelId);
+	*/
 }
 
 static async void ClockInAsync(Sender sender, string message)

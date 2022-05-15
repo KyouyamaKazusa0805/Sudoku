@@ -1,0 +1,1 @@
+﻿[assembly: SupportedOSPlatform("windows")]

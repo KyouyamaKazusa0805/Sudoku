@@ -638,7 +638,7 @@ partial record class GridImageGenerator
 		float halfWidth = cellWidth / 2F;
 
 		using var brush = new SolidBrush(Preferences.UnknownIdentifierColor);
-		using var font = GetFont(defaultFontName, halfWidth, Preferences.ValueScale, Preferences.UnknownIdentfierFontStyle);
+		using var font = GetFont(defaultFontName, halfWidth, Preferences.ValueScale, Preferences.UnknownFontStyle);
 
 		foreach (var unknownNode in unknownNodes)
 		{

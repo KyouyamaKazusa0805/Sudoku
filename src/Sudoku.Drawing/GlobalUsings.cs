@@ -7,6 +7,7 @@ global using System.Drawing.Drawing2D;
 global using System.Drawing.Text;
 global using System.Linq;
 global using System.Numerics;
+global using System.Reflection;
 global using System.Runtime.CompilerServices;
 global using System.Runtime.Versioning;
 global using Sudoku.Concepts;

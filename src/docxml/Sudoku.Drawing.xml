@@ -971,9 +971,9 @@
             Indicates the font style of the candidates.
             </summary>
         </member>
-        <member name="P:Sudoku.Drawing.IPreference.UnknownIdentfierFontStyle">
+        <member name="P:Sudoku.Drawing.IPreference.UnknownFontStyle">
             <summary>
-            Indicates the font style of an unknown identifier.
+            Indicates the font style of an unknown.
             </summary>
         </member>
         <member name="P:Sudoku.Drawing.IPreference.GivenColor">
@@ -1135,6 +1135,153 @@
             <param name="result">The result color got.</param>
             <returns>The <see cref="T:System.Boolean"/> result.</returns>
             <exception cref="T:System.InvalidOperationException">Throws when the ID is invalid.</exception>
+        </member>
+        <member name="T:Sudoku.Drawing.Perference">
+            <summary>
+            Indicates a perference instance.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Drawing.Perference.#ctor">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Drawing.Perference"/> instance.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Drawing.Perference.ShowCandidates">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Drawing.Perference.ShowLightRegion">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Drawing.Perference.ValueScale">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Drawing.Perference.CandidateScale">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Drawing.Perference.GridLineWidth">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Drawing.Perference.BlockLineWidth">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Drawing.Perference.GivenFontName">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Drawing.Perference.ModifiableFontName">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Drawing.Perference.CandidateFontName">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Drawing.Perference.GivenFontStyle">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Drawing.Perference.ModifiableFontStyle">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Drawing.Perference.CandidateFontStyle">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Drawing.Perference.UnknownFontStyle">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Drawing.Perference.GivenColor">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Drawing.Perference.ModifiableColor">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Drawing.Perference.CandidateColor">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Drawing.Perference.FocusedCellColor">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Drawing.Perference.EliminationColor">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Drawing.Perference.CannibalismColor">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Drawing.Perference.ChainColor">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Drawing.Perference.BackgroundColor">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Drawing.Perference.GridLineColor">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Drawing.Perference.BlockLineColor">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Drawing.Perference.CrosshatchingOutlineColor">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Drawing.Perference.CrosshatchingInnerColor">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Drawing.Perference.UnknownIdentifierColor">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Drawing.Perference.CrossSignColor">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Drawing.Perference.Color1">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Drawing.Perference.Color2">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Drawing.Perference.Color3">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Drawing.Perference.Color4">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Drawing.Perference.Color5">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Drawing.Perference.Color6">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Drawing.Perference.Color7">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Drawing.Perference.Color8">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Drawing.Perference.Color9">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Drawing.Perference.Color10">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Drawing.Perference.Color11">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Drawing.Perference.Color12">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Drawing.Perference.Color13">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Drawing.Perference.Color14">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Drawing.Perference.Color15">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Drawing.Perference.Default">
+            <summary>
+            Indicates the default instance.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Drawing.Perference.Clone">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Drawing.Perference.CoverBy(Sudoku.Drawing.IPreference)">
+            <inheritdoc/>
         </member>
         <member name="T:Sudoku.Drawing.PointCalculator">
             <summary>
