@@ -161,7 +161,7 @@ partial class BotClient
 		// means who you want to mention. We just remove it to get the last message content.
 		string content = MessageContent.RemoveTag(messageContent, Info);
 
-		// Try to recorgnize the command.
+		// Try to recognize the command.
 		bool hasCommand = content.StartsWith(CommandPrefix);
 		content = content.ReplaceStart(CommandPrefix).TrimStart();
 		if ((hasCommand || messageType is MessageType.BotMentioned or MessageType.Private) && content.Length > 0)

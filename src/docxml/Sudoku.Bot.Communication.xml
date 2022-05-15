@@ -692,7 +692,7 @@
         </member>
         <member name="P:Sudoku.Bot.Communication.BotClient.CommandPrefix">
             <summary>
-            <para>Indicates the command prefix. The prefix is used for the recorgnization for the bot commands.</para>
+            <para>Indicates the command prefix. The prefix is used for the recognization for the bot commands.</para>
             <para>The default value is <c>"/"</c>.</para>
             </summary>
         </member>
