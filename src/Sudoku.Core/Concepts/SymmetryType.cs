@@ -4,9 +4,7 @@
 /// Define a symmetry type.
 /// </summary>
 [Flags]
-[EnumSwitchExpressionRoot(
-	"GetName", MethodDescription = "Get the name of the current symmetry type.",
-	ThisParameterDescription = "The type.", ReturnValueDescription = "The name.")]
+[EnumSwitchExpressionRoot("GetName", MethodDescription = "Get the name of the current symmetry type.", ThisParameterDescription = "The type.", ReturnValueDescription = "The name.")]
 public enum SymmetryType : byte
 {
 	/// <summary>

@@ -4,9 +4,7 @@
 /// Defines an inference.
 /// </summary>
 [JsonConverter(typeof(InferenceJsonConverter))]
-[EnumSwitchExpressionRoot(
-	"GetIdentifier", MethodDescription = "Gets the identifier of the inference.",
-	ThisParameterDescription = "The inference.", ReturnValueDescription = "The identifier value.")]
+[EnumSwitchExpressionRoot("GetIdentifier", MethodDescription = "Gets the identifier of the inference.", ThisParameterDescription = "The inference.", ReturnValueDescription = "The identifier value.")]
 public enum Inference : byte
 {
 	/// <summary>

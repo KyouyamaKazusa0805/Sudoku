@@ -6,16 +6,9 @@
 [AutoOverridesEquals]
 [AutoOverloadsComparisonOperators]
 [AutoOverloadsEqualityOperators]
-[AutoImplementsEnumerable(
-	typeof(Utf8Char), nameof(_value),
-	UseExplicitImplementation = true, Pattern = "((IEnumerable<!>)@).*")]
-[AutoBePinnable(
-	typeof(Utf8Char), "global::System.Runtime.InteropServices.MemoryMarshal.GetArrayDataReference(_value)",
-	ReturnsReadOnlyReference = false)]
-[AutoImplementsDefaultable(
-	"Empty", IsDefaultExpression = "CompareTo(Empty) == 0",
-	Pattern = "new(global::System.Array.Empty<global::System.Utf8Char>())",
-	DefaultFieldDescription = "Indicates the default instance.")]
+[AutoImplementsEnumerable(typeof(Utf8Char), nameof(_value), UseExplicitImplementation = true, Pattern = "((IEnumerable<!>)@).*")]
+[AutoBePinnable(typeof(Utf8Char), "global::System.Runtime.InteropServices.MemoryMarshal.GetArrayDataReference(_value)", ReturnsReadOnlyReference = false)]
+[AutoImplementsDefaultable("Empty", IsDefaultExpression = "CompareTo(Empty) == 0", Pattern = "new(global::System.Array.Empty<global::System.Utf8Char>())", DefaultFieldDescription = "Indicates the default instance.")]
 public readonly partial struct Utf8String :
 	IAdditionOperators<Utf8String, Utf8String, Utf8String>,
 	IComparable<Utf8String>,

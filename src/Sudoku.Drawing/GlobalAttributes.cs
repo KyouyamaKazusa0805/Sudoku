@@ -4,6 +4,4 @@
 [assembly: AutoExtensionDeconstruction(typeof(PointF), nameof(PointF.X), nameof(PointF.Y))]
 [assembly: AutoExtensionDeconstruction(typeof(Size), nameof(Size.Width), nameof(Size.Height))]
 [assembly: AutoExtensionDeconstruction(typeof(SizeF), nameof(SizeF.Width), nameof(SizeF.Height))]
-[assembly: AutoExtensionDeconstruction(
-	typeof(RectangleF), nameof(RectangleF.X), nameof(RectangleF.Y),
-	nameof(RectangleF.Width), nameof(RectangleF.Height))]
+[assembly: AutoExtensionDeconstruction(typeof(RectangleF), nameof(RectangleF.X), nameof(RectangleF.Y), nameof(RectangleF.Width), nameof(RectangleF.Height))]

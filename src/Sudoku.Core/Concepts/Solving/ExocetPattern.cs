@@ -44,15 +44,8 @@
 /// <param name="MirrorR1">Indicates the first mirror cell in the R part.</param>
 /// <param name="MirrorR2">Indicates the second mirror cell in the R part.</param>
 /// <param name="CrossLine">Indicates the cross-line cells.</param>
-[AutoOverridesGetHashCode(
-	nameof(Base1), nameof(Base2), nameof(TargetQ1), nameof(TargetQ2),
-	nameof(TargetR1), nameof(TargetR2), nameof(MirrorQ1), nameof(MirrorQ2),
-	nameof(MirrorR1), nameof(MirrorR2), nameof(BaseCellsMap), nameof(TargetCellsMap))]
-[AutoOverridesEquals(
-	nameof(Base1), nameof(Base2), nameof(TargetQ1), nameof(TargetQ2),
-	nameof(TargetR1), nameof(TargetR2), nameof(MirrorQ1), nameof(MirrorQ2),
-	nameof(MirrorR1), nameof(MirrorR2), nameof(BaseCellsMap), nameof(TargetCellsMap), nameof(CrossLine),
-	EmitsInKeyword = true)]
+[AutoOverridesGetHashCode(nameof(Base1), nameof(Base2), nameof(TargetQ1), nameof(TargetQ2), nameof(TargetR1), nameof(TargetR2), nameof(MirrorQ1), nameof(MirrorQ2), nameof(MirrorR1), nameof(MirrorR2), nameof(BaseCellsMap), nameof(TargetCellsMap))]
+[AutoOverridesEquals(nameof(Base1), nameof(Base2), nameof(TargetQ1), nameof(TargetQ2), nameof(TargetR1), nameof(TargetR2), nameof(MirrorQ1), nameof(MirrorQ2), nameof(MirrorR1), nameof(MirrorR2), nameof(BaseCellsMap), nameof(TargetCellsMap), nameof(CrossLine), EmitsInKeyword = true)]
 public readonly partial record struct ExocetPattern(
 	int Base1, int Base2, int TargetQ1, int TargetQ2, int TargetR1, int TargetR2, in Cells CrossLine,
 	in Cells MirrorQ1, in Cells MirrorQ2, in Cells MirrorR1, in Cells MirrorR2) :

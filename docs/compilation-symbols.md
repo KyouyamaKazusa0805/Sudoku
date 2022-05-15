@@ -11,7 +11,6 @@
 | `DISCARD_INTERPOLATION_INFO`                                 | 表示 `StringHandler` 字符串拼接器对象是否在初始化的时候，忽略掉基本初始化信息（比如字符串内插元素数量以及总长度）。 |
 | `USE_NEWER_CONSTANT_VALUES`                                  | 表示 `StringHandler` 字符串拼接器对象假设内插字符串只有 8 个内插部分（如果不设置此符号的话，则是 11）。 |
 | `CLEAR_STATE_STACK_FOR_EACH_CHECK_VALIDITY_AND_SOLVE_INVOKES` | 表示是否在每一次解题和验证题目之前都刷新一下底层字段的内存空间，以获得最佳效果。如果没有这一步，程序可以运行并且仍然会表现得很好，不过时而也会导致一些 bug，比如问题 [#229](https://github.com/SunnieShine/Sudoku/issues/229)。 |
-| `USE_TO_MASK_STRING_METHOD`                                  | 表示 `Grid` 数据结构是否以底层掩码表作为输出文字显示在调试工具上。 |
 | `SOLUTION_DISPLAY_MODIFIABLES`                               | 表示是否显示出终盘里自己填入的数据信息。如果没有该符号的话，所有数字都会被当作提示数显示。 |
 | `GRID_SERIALIZE_STRINGS`                                     | 表示序列化数独盘面信息是按照字符串输出的格式进行序列化的方式。 |
 | `GRID_SERIALIZE_RAW_DATA`                                    | 表示序列化数独盘面信息是按照底层的原始掩码表进行序列化的方式。 |
@@ -63,7 +62,6 @@ graph LR
         click G "https://github.com/SunnieShine/Sudoku/blob/main/src/System/Text/StringHandler.cs" _blank
         click H "https://github.com/SunnieShine/Sudoku/blob/main/src/Sudoku.Solving/Solving/Manual/Searchers/DeadlyPatterns/Rectangles/UniqueRectangleStepSearcher.cs" _blank
 
-        A -->|符号| S1(USE_TO_MASK_STRING_METHOD)
         A -->|符号| S2(SOLUTION_DISPLAY_MODIFIABLES)
         A -->|嵌套类文件| B(Grid.JsonConverter.cs)
         B -->|符号| S3(GRID_SERIALIZE_STRINGS)
@@ -76,7 +74,6 @@ graph LR
         G -->|符号| S9(DISCARD_INTERPOLATION_INFO)
         G -->|符号| S10(USE_NEWER_CONSTANT_VALUES)
         H -->|符号| S11(IMPLEMENTED)
-        style S1 fill:#CCC
         style S2 fill:#EEE
         style S3 fill:#CCC
         style S4 fill:#EEE

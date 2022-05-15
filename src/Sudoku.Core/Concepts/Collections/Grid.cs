@@ -1,29 +1,18 @@
-﻿#undef USE_TO_MASK_STRING_METHOD
-#define SOLUTION_DISPLAY_MODIFIABLES
+﻿#define SOLUTION_DISPLAY_MODIFIABLES
 
 namespace Sudoku.Concepts.Collections;
 
 /// <summary>
 /// Represents a sudoku grid that uses the mask list to construct the data structure.
 /// </summary>
-#if DEBUG
-#if USE_TO_MASK_STRING_METHOD
-[DebuggerDisplay($$"""{{{nameof(ToMaskString)}}()}""")]
-#else
 [DebuggerDisplay($$"""{{{nameof(ToString)}}("#")}""")]
-#endif // !USE_TO_MASK_STRING_METHOD
-#endif // !DEBUG
 [JsonConverter(typeof(JsonConverter))]
 [DisableParameterlessConstructor(SuggestedMemberName = nameof(Empty))]
 [AutoOverridesEquals(UseExplicitImplementation = true)]
 [AutoOverloadsEqualityOperators(EmitsInKeyword = true)]
-[AutoOverridesGetHashCode(
-	nameof(IsUndefined), nameof(IsEmpty),
-	Pattern = """this switch { { [0]: true } => 0, { [1]: true } => 1, _ => ToString("#").* }""")]
+[AutoOverridesGetHashCode(nameof(IsUndefined), nameof(IsEmpty), Pattern = """this switch { { [0]: true } => 0, { [1]: true } => 1, _ => ToString("#").* }""")]
 [AutoBePinnable(typeof(short), "_values[0]")]
-[AutoImplementsDefaultable(
-	"Undefined", IsDefaultExpression = "IsUndefined",
-	DefaultFieldDescription = "Indicates the default grid that all values are initialized 0.")]
+[AutoImplementsDefaultable("Undefined", IsDefaultExpression = "IsUndefined", DefaultFieldDescription = "Indicates the default grid that all values are initialized 0.")]
 public unsafe partial struct Grid :
 	IDefaultable<Grid>,
 	ISimpleFormattable,
