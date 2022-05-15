@@ -16,8 +16,8 @@ public sealed partial class UnknownViewNode : ViewNode
 	/// <param name="unknownValueChar">The character that represents the range of the unknown.</param>
 	/// <param name="digitsMask">The mask representing digits used.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public UnknownViewNode(Identifier identifier, int cell, byte unknownValueChar, short digitsMask) : base(identifier)
-		=> (Cell, UnknownValueChar, DigitsMask) = (cell, unknownValueChar, digitsMask);
+	public UnknownViewNode(Identifier identifier, int cell, Utf8Char unknownValueChar, short digitsMask) :
+		base(identifier) => (Cell, UnknownValueChar, DigitsMask) = (cell, unknownValueChar, digitsMask);
 
 
 	/// <summary>
@@ -26,14 +26,14 @@ public sealed partial class UnknownViewNode : ViewNode
 	public int Cell { get; }
 
 	/// <summary>
-	/// Indicates the character that represents the unknown range.
-	/// </summary>
-	public byte UnknownValueChar { get; }
-
-	/// <summary>
 	/// Indicates the digits used.
 	/// </summary>
 	public short DigitsMask { get; }
+
+	/// <summary>
+	/// Indicates the character that represents the unknown range.
+	/// </summary>
+	public Utf8Char UnknownValueChar { get; }
 
 	/// <inheritdoc/>
 	protected override string TypeIdentifier => nameof(UnknownViewNode);

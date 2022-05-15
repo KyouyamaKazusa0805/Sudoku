@@ -8284,7 +8284,7 @@
             Defines a view node that highlights for a unknown.
             </summary>
         </member>
-        <member name="M:Sudoku.Presentation.Nodes.UnknownViewNode.#ctor(Sudoku.Presentation.Identifier,System.Int32,System.Byte,System.Int16)">
+        <member name="M:Sudoku.Presentation.Nodes.UnknownViewNode.#ctor(Sudoku.Presentation.Identifier,System.Int32,System.Utf8Char,System.Int16)">
             <summary>
             Initializes an <see cref="T:Sudoku.Presentation.Nodes.UnknownViewNode"/> instance via the specified identifier,
             the cell used, the unknown value character and the mask representing the digits used.
@@ -8299,14 +8299,14 @@
             Indicates the cell used.
             </summary>
         </member>
-        <member name="P:Sudoku.Presentation.Nodes.UnknownViewNode.UnknownValueChar">
-            <summary>
-            Indicates the character that represents the unknown range.
-            </summary>
-        </member>
         <member name="P:Sudoku.Presentation.Nodes.UnknownViewNode.DigitsMask">
             <summary>
             Indicates the digits used.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Presentation.Nodes.UnknownViewNode.UnknownValueChar">
+            <summary>
+            Indicates the character that represents the unknown range.
             </summary>
         </member>
         <member name="P:Sudoku.Presentation.Nodes.UnknownViewNode.TypeIdentifier">

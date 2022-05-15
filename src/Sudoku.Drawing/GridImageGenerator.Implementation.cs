@@ -643,11 +643,11 @@ partial record class GridImageGenerator
 		foreach (var unknownNode in unknownNodes)
 		{
 			int cell = unknownNode.Cell;
-			char character = (char)unknownNode.UnknownValueChar;
+			var character = unknownNode.UnknownValueChar;
 
 			// Draw values.
 			var point = Calculator.GetMousePointInCenter(cell).WithY(vOffsetValue);
-			g.DrawValue(character, font, brush, point, DefaultStringFormat);
+			g.DrawString(character.ToString(), font, brush, point, DefaultStringFormat);
 		}
 	}
 }
