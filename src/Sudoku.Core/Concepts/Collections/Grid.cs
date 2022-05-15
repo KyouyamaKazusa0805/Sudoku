@@ -889,7 +889,6 @@ public unsafe partial struct Grid :
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public readonly bool? Exists(int cell, int digit) => GetStatus(cell) == CellStatus.Empty ? this[cell, digit] : null;
 
-
 	/// <summary>
 	/// Serializes this instance to an array, where all digit value will be stored.
 	/// </summary>
