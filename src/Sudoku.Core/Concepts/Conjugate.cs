@@ -9,9 +9,7 @@
 /// </remarks>
 [AutoOverridesGetHashCode(nameof(Map), nameof(Digit))]
 [AutoOverridesEquals(nameof(Map), nameof(Digit))]
-[AutoOverridesToString(
-	nameof(From), nameof(To), nameof(Digit),
-	Pattern = "{Sudoku.Concepts.Collections.Cells.Empty + [0]} == {Sudoku.Concepts.Collections.Cells.Empty + [1]}({[2] + 1})")]
+[AutoOverridesToString(nameof(From), nameof(To), nameof(Digit), Pattern = "{Sudoku.Concepts.Collections.Cells.Empty + [0]} == {Sudoku.Concepts.Collections.Cells.Empty + [1]}({[2] + 1})")]
 [AutoOverloadsEqualityOperators]
 [AutoImplementsDefaultable("Default", Pattern = "new(-1, -1, -1)")]
 public readonly partial struct Conjugate :
