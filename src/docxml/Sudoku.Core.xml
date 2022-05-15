@@ -8409,6 +8409,36 @@
             Indicates the number of elements stored in the current collection.
             </summary>
         </member>
+        <member name="P:Sudoku.Presentation.View.CellNodes">
+            <summary>
+            Indicates the cell nodes that the current data type stored.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Presentation.View.CandidateNodes">
+            <summary>
+            Indicates the candidate nodes that the current data type stores.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Presentation.View.HouseNodes">
+            <summary>
+            Indicates the house nodes that the current data type stores.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Presentation.View.LinkNodes">
+            <summary>
+            Indicates the link nodes that the current data type stores.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Presentation.View.CrosshatchNodes">
+            <summary>
+            Indicates the crosshatch nodes that the current data type stores.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Presentation.View.UnknownNodes">
+            <summary>
+            Indicates the unknown nodes that the current data type stores.
+            </summary>
+        </member>
         <member name="P:Sudoku.Presentation.View.Empty">
             <summary>
             Indicates the empty instance.
@@ -8478,6 +8508,21 @@
         </member>
         <member name="M:Sudoku.Presentation.View.System#Collections#Generic#IEnumerable{Sudoku#Presentation#Nodes#ViewNode}#GetEnumerator">
             <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Presentation.ViewExtensions">
+            <summary>
+            Provides with extension methods on <see cref="T:Sudoku.Presentation.View"/>.
+            </summary>
+            <seealso cref="T:Sudoku.Presentation.View"/>
+        </member>
+        <member name="M:Sudoku.Presentation.ViewExtensions.UnknownOverlaps(Sudoku.Presentation.View,System.Int32)">
+            <summary>
+            Determines whether the specified <see cref="T:Sudoku.Presentation.View"/> stores several <see cref="T:Sudoku.Presentation.Nodes.UnknownViewNode"/>s,
+            and at least one of it overlaps the specified cell.
+            </summary>
+            <param name="this">The view instance.</param>
+            <param name="cell">The cell.</param>
+            <returns>A <see cref="T:System.Boolean"/> value indicating whether being overlapped.</returns>
         </member>
         <member name="T:Sudoku.Resources.MergedResources">
             <summary>

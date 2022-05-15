@@ -33,6 +33,36 @@ public sealed partial class View : ICloneable, IEnumerable<ViewNode>
 	/// </summary>
 	public int Count => _nodes.Count;
 
+	/// <summary>
+	/// Indicates the cell nodes that the current data type stored.
+	/// </summary>
+	public IEnumerable<CellViewNode> CellNodes => _nodes.OfType<CellViewNode>();
+
+	/// <summary>
+	/// Indicates the candidate nodes that the current data type stores.
+	/// </summary>
+	public IEnumerable<CandidateViewNode> CandidateNodes => _nodes.OfType<CandidateViewNode>();
+
+	/// <summary>
+	/// Indicates the house nodes that the current data type stores.
+	/// </summary>
+	public IEnumerable<HouseViewNode> HouseNodes => _nodes.OfType<HouseViewNode>();
+
+	/// <summary>
+	/// Indicates the link nodes that the current data type stores.
+	/// </summary>
+	public IEnumerable<LinkViewNode> LinkNodes => _nodes.OfType<LinkViewNode>();
+
+	/// <summary>
+	/// Indicates the crosshatch nodes that the current data type stores.
+	/// </summary>
+	public IEnumerable<CrosshatchViewNode> CrosshatchNodes => _nodes.OfType<CrosshatchViewNode>();
+
+	/// <summary>
+	/// Indicates the unknown nodes that the current data type stores.
+	/// </summary>
+	public IEnumerable<UnknownViewNode> UnknownNodes => _nodes.OfType<UnknownViewNode>();
+
 
 	/// <summary>
 	/// Indicates the empty instance.
