@@ -106,7 +106,7 @@ public sealed partial class SudokuPage : Page
 				}
 				case VirtualKey.H when controlKeyIsDown:
 				{
-					await GenerateAsync(_cButtonGenerate);
+					GenerateAsync(_cButtonGenerate);
 					break;
 				}
 			}
@@ -397,7 +397,7 @@ public sealed partial class SudokuPage : Page
 	/// </summary>
 	/// <param name="button">The button.</param>
 	/// <returns>The typical awaitable instance that holds the task to generate the puzzle.</returns>
-	private async Task GenerateAsync(AppBarButton button)
+	private void GenerateAsync(AppBarButton button)
 	{
 		// Disable the control to prevent re-invocation.
 		button.IsEnabled = false;
@@ -405,7 +405,7 @@ public sealed partial class SudokuPage : Page
 		// Generate the puzzle.
 		// The generation may be slow, so we should use asynchronous invocation instead of the synchronous one.
 		// TODO: May allow the user cancelling the puzzle-generating operation.
-		var grid = await Task.Run(static () => Generator.Generate());
+		var grid = Generator.Generate();
 
 		// Enable the control.
 		button.IsEnabled = true;
@@ -455,7 +455,7 @@ public sealed partial class SudokuPage : Page
 		button.IsEnabled = false;
 
 		// Solve the puzzle using the manual solver.
-		var analysisResult = await Task.Run(() => (ManualSolverResult)Solver.Solve(_cPane.GridByReference()));
+		var analysisResult = await Task.Run(() => Solver.Solve(_cPane.GridByReference()));
 
 		// Enable the control.
 		button.IsEnabled = true;
@@ -524,8 +524,7 @@ public sealed partial class SudokuPage : Page
 	/// copying the snapshot of the sudoku grid control.
 	/// </summary>
 #if true
-	private void CommandCopyControlSnapshot_ExecuteRequestedAsync(
-		XamlUICommand sender, ExecuteRequestedEventArgs args)
+	private void CommandCopyControlSnapshot_ExecuteRequestedAsync(XamlUICommand sender, ExecuteRequestedEventArgs args)
 	{
 	}
 #else
@@ -594,8 +593,8 @@ public sealed partial class SudokuPage : Page
 	/// <summary>
 	/// Indicates the event trigger callback method that executes generating a puzzle.
 	/// </summary>
-	private async void CommandGenerate_ExecuteRequestedAsync(XamlUICommand sender, ExecuteRequestedEventArgs args)
-		=> await GenerateAsync(_cButtonGenerate);
+	private void CommandGenerate_ExecuteRequestedAsync(XamlUICommand sender, ExecuteRequestedEventArgs args)
+		=> GenerateAsync(_cButtonGenerate);
 
 	/// <summary>
 	/// Indicates the event trigger callback method that gets the solution of the puzzle.
