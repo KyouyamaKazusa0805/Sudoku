@@ -8,8 +8,6 @@
 
 **所属项目**：`Sudoku.Diagnostics.CodeGen`
 
-**实现接口**：[`ISourceGenerator`](https://docs.microsoft.com/en-us/dotnet/api/microsoft.codeanalysis.isourcegenerator)
-
 **生成的源代码的编程语言**：C#
 
 ## 用法
