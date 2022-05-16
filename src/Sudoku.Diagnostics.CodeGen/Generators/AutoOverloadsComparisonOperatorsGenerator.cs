@@ -5,25 +5,79 @@
 /// <c><![CDATA[>]]></c>, <c><![CDATA[<]]></c>, <c><![CDATA[>=]]></c> and <c><![CDATA[<=]]></c>.
 /// </summary>
 [Generator(LanguageNames.CSharp)]
-public sealed partial class AutoOverloadsComparisonOperatorsGenerator : ISourceGenerator
+public sealed class AutoOverloadsComparisonOperatorsGenerator : IIncrementalGenerator
 {
+	private const string AttributeFullName = "System.Diagnostics.CodeGen.AutoOverloadsComparisonOperatorsAttribute";
+
+
 	/// <inheritdoc/>
-	public void Execute(GeneratorExecutionContext context)
+	public void Initialize(IncrementalGeneratorInitializationContext context)
+		=> context.RegisterSourceOutput(
+			context.SyntaxProvider
+				.CreateSyntaxProvider(NodePredicate, GetValuesProvider)
+				.Where(static element => element is not null)
+				.Collect(),
+			OutputSource
+		);
+
+
+	private static bool NodePredicate(SyntaxNode node, CancellationToken _)
+		=> node is TypeDeclarationSyntax { Modifiers: var modifiers, AttributeLists.Count: > 0 }
+			&& modifiers.Any(SyntaxKind.PartialKeyword);
+
+	private static (INamedTypeSymbol, AttributeData)? GetValuesProvider(GeneratorSyntaxContext gsc, CancellationToken ct)
 	{
-		if (context is not { SyntaxContextReceiver: Receiver { Collection: var collection } })
+		if (gsc is not { Node: TypeDeclarationSyntax n, SemanticModel: { Compilation: { } compilation } semanticModel })
 		{
-			return;
+			return null;
 		}
 
-		foreach (var (type, attributeData) in collection)
+		if (semanticModel.GetDeclaredSymbol(n, ct) is not { ContainingType: null } typeSymbol)
 		{
+			return null;
+		}
+
+		var attributeTypeSymbol = compilation.GetTypeByMetadataName(AttributeFullName);
+		var attributeData = (
+			from a in typeSymbol.GetAttributes()
+			where SymbolEqualityComparer.Default.Equals(a.AttributeClass, attributeTypeSymbol)
+			select a
+		).FirstOrDefault();
+		if (attributeData is null)
+		{
+			return null;
+		}
+
+		var methods = typeSymbol.GetMembers().OfType<IMethodSymbol>();
+		if (methods.Any(static m => m.Name is "op_GreaterThan" or "op_GreaterThanOrEqual" or "op_LessThan" or "op_LessThanOrEqual"))
+		{
+			return null;
+		}
+
+		return (typeSymbol, attributeData);
+	}
+
+	private static void OutputSource(SourceProductionContext spc, ImmutableArray<(INamedTypeSymbol, AttributeData)?> list)
+	{
+		var recordedList = new List<INamedTypeSymbol>();
+		foreach (var v in list)
+		{
+			if (v is not var (type, attributeData))
+			{
+				continue;
+			}
+
+			if (recordedList.FindIndex(e => SymbolEqualityComparer.Default.Equals(e, type)) != -1)
+			{
+				continue;
+			}
+
 			var (_, _, namespaceName, genericParameterList, _, _, _, _, _, _) = SymbolOutputInfo.FromSymbol(type);
 
 			string inKeyword = attributeData.GetNamedArgument<bool>("EmitsInKeyword") ? "in " : string.Empty;
 			string fullName = type.ToDisplayString(TypeFormats.FullName);
-			context.AddSource(
-				type.ToFileName(),
-				Shortcuts.AutoOverloadsComparisonOperators,
+			spc.AddSource(
+				$"{type.ToFileName()}.g.{Shortcuts.AutoOverloadsComparisonOperators}.cs",
 				$$"""
 				#nullable enable
 				
@@ -39,7 +93,7 @@ public sealed partial class AutoOverloadsComparisonOperatorsGenerator : ISourceG
 					/// <param name="right">The right-side instance to be compared.</param>
 					/// <returns>A <see cref="bool"/> result indicating that.</returns>
 					[global::System.Runtime.CompilerServices.CompilerGenerated]
-					[global::System.CodeDom.Compiler.GeneratedCode("{{GetType().FullName}}", "{{VersionValue}}")]
+					[global::System.CodeDom.Compiler.GeneratedCode("{{typeof(AutoOverloadsComparisonOperatorsGenerator).FullName}}", "{{VersionValue}}")]
 					[global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 					public static bool operator <({{inKeyword}}{{fullName}} left, {{inKeyword}}{{fullName}} right)
 						=> left.CompareTo(right) < 0;
@@ -52,7 +106,7 @@ public sealed partial class AutoOverloadsComparisonOperatorsGenerator : ISourceG
 					/// <param name="right">The right-side instance to be compared.</param>
 					/// <returns>A <see cref="bool"/> result indicating that.</returns>
 					[global::System.Runtime.CompilerServices.CompilerGenerated]
-					[global::System.CodeDom.Compiler.GeneratedCode("{{GetType().FullName}}", "{{VersionValue}}")]
+					[global::System.CodeDom.Compiler.GeneratedCode("{{typeof(AutoOverloadsComparisonOperatorsGenerator).FullName}}", "{{VersionValue}}")]
 					[global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 					public static bool operator <=({{inKeyword}}{{fullName}} left, {{inKeyword}}{{fullName}} right)
 						=> left.CompareTo(right) <= 0;
@@ -65,7 +119,7 @@ public sealed partial class AutoOverloadsComparisonOperatorsGenerator : ISourceG
 					/// <param name="right">The right-side instance to be compared.</param>
 					/// <returns>A <see cref="bool"/> result indicating that.</returns>
 					[global::System.Runtime.CompilerServices.CompilerGenerated]
-					[global::System.CodeDom.Compiler.GeneratedCode("{{GetType().FullName}}", "{{VersionValue}}")]
+					[global::System.CodeDom.Compiler.GeneratedCode("{{typeof(AutoOverloadsComparisonOperatorsGenerator).FullName}}", "{{VersionValue}}")]
 					[global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 					public static bool operator >({{inKeyword}}{{fullName}} left, {{inKeyword}}{{fullName}} right)
 						=> left.CompareTo(right) > 0;
@@ -78,7 +132,7 @@ public sealed partial class AutoOverloadsComparisonOperatorsGenerator : ISourceG
 					/// <param name="right">The right-side instance to be compared.</param>
 					/// <returns>A <see cref="bool"/> result indicating that.</returns>
 					[global::System.Runtime.CompilerServices.CompilerGenerated]
-					[global::System.CodeDom.Compiler.GeneratedCode("{{GetType().FullName}}", "{{VersionValue}}")]
+					[global::System.CodeDom.Compiler.GeneratedCode("{{typeof(AutoOverloadsComparisonOperatorsGenerator).FullName}}", "{{VersionValue}}")]
 					[global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 					public static bool operator >=({{inKeyword}}{{fullName}} left, {{inKeyword}}{{fullName}} right)
 						=> left.CompareTo(right) >= 0;
@@ -87,8 +141,4 @@ public sealed partial class AutoOverloadsComparisonOperatorsGenerator : ISourceG
 			);
 		}
 	}
-
-	/// <inheritdoc/>
-	public void Initialize(GeneratorInitializationContext context)
-		=> context.RegisterForSyntaxNotifications(() => new Receiver(context.CancellationToken));
 }

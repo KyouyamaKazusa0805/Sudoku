@@ -5,18 +5,67 @@
 /// </summary>
 /// <seealso cref="IComparable{T}"/>
 [Generator(LanguageNames.CSharp)]
-public sealed partial class AutoImplementsComparableGenerator : ISourceGenerator
+public sealed class AutoImplementsComparableGenerator : IIncrementalGenerator
 {
+	private const string AttributeFullName = "System.Diagnostics.CodeGen.AutoImplementsComparableAttribute";
+
 	/// <inheritdoc/>
-	public void Execute(GeneratorExecutionContext context)
+	public void Initialize(IncrementalGeneratorInitializationContext context)
+		=> context.RegisterSourceOutput(
+			context.SyntaxProvider
+				.CreateSyntaxProvider(NodePredicate, GetValuesProvider)
+				.Where(static element => element is not null)
+				.Collect(),
+			OutputSource
+		);
+
+
+	private static bool NodePredicate(SyntaxNode node, CancellationToken _)
+		=> node is TypeDeclarationSyntax { Modifiers: var modifiers, AttributeLists.Count: > 0 }
+			&& modifiers.Any(SyntaxKind.PartialKeyword);
+
+	private static (INamedTypeSymbol, AttributeData)? GetValuesProvider(GeneratorSyntaxContext gsc, CancellationToken ct)
 	{
-		if (context is not { SyntaxContextReceiver: Receiver { Collection: var collection } })
+		if (
+			gsc is not
+			{
+				Node: TypeDeclarationSyntax { Modifiers: var modifiers } n,
+				SemanticModel: { Compilation: { } compilation } semanticModel
+			}
+		)
 		{
-			return;
+			return null;
 		}
 
-		foreach (var (type, attributeData) in collection)
+		if (semanticModel.GetDeclaredSymbol(n, ct) is not { ContainingType: null } typeSymbol)
 		{
+			return null;
+		}
+
+		var attributeTypeSymbol = compilation.GetTypeByMetadataName(AttributeFullName);
+		var attributeData = (
+			from a in typeSymbol.GetAttributes()
+			where SymbolEqualityComparer.Default.Equals(a.AttributeClass, attributeTypeSymbol)
+			select a
+		).FirstOrDefault();
+		return attributeData is null ? null : (typeSymbol, attributeData);
+	}
+
+	private static void OutputSource(SourceProductionContext spc, ImmutableArray<(INamedTypeSymbol, AttributeData)?> list)
+	{
+		var recordedList = new List<INamedTypeSymbol>();
+		foreach (var v in list)
+		{
+			if (v is not var (type, attributeData))
+			{
+				continue;
+			}
+
+			if (recordedList.FindIndex(e => SymbolEqualityComparer.Default.Equals(e, type)) != -1)
+			{
+				continue;
+			}
+
 			var (_, _, namespaceName, genericParameterList, _, _, readOnlyKeyword, _, _, _) =
 				SymbolOutputInfo.FromSymbol(type);
 
@@ -26,65 +75,56 @@ public sealed partial class AutoImplementsComparableGenerator : ISourceGenerator
 			bool isStruct = type.TypeKind == TypeKind.Struct;
 			string method = (@explicit, isStruct, memberName) switch
 			{
-				(false, true, not null)
-					=> $"""
-						public {readOnlyKeyword}int CompareTo({fullName} other) => {memberName}.CompareTo({memberName});
-					""",
-				(false, true, null)
-					=> $"""
-						public {readOnlyKeyword}int CompareTo({fullName} other) => CompareTo(other);
-					""",
-				(false, false, not null)
-					=> $$"""
-						public {{readOnlyKeyword}}int CompareTo([global::System.Diagnostic.CodeAnalysis.DisallowNull] {{fullName}}? other)
-						{
-							global::System.ArgumentNullException.ThrowIfNull(other);
+				(false, true, not null) => $"""
+					public {readOnlyKeyword}int CompareTo({fullName} other) => {memberName}.CompareTo({memberName});
+				""",
+				(false, true, null) => $"""
+					public {readOnlyKeyword}int CompareTo({fullName} other) => CompareTo(other);
+				""",
+				(false, false, not null) => $$"""
+					public {{readOnlyKeyword}}int CompareTo([global::System.Diagnostic.CodeAnalysis.DisallowNull] {{fullName}}? other)
+					{
+						global::System.ArgumentNullException.ThrowIfNull(other);
 						
-							return {{memberName}}.CompareTo({{memberName}});
-						}
-					""",
-				(false, false, null)
-					=> $$"""
-						public {{readOnlyKeyword}}int CompareTo([global::System.Diagnostic.CodeAnalysis.DisallowNull] {{fullName}}? other)
-						{
-							global::System.ArgumentNullException.ThrowIfNull(other);
+						return {{memberName}}.CompareTo({{memberName}});
+					}
+				""",
+				(false, false, null) => $$"""
+					public {{readOnlyKeyword}}int CompareTo([global::System.Diagnostic.CodeAnalysis.DisallowNull] {{fullName}}? other)
+					{
+						global::System.ArgumentNullException.ThrowIfNull(other);
 						
-							return CompareTo(other);
-						}
-					""",
-				(true, true, not null)
-					=> $$"""
-						{{readOnlyKeyword}}int global::System.IComparable<{{fullName}}>.CompareTo({{fullName}} other)
-							=> {{memberName}}.CompareTo({{memberName}});
-					""",
-				(true, true, null)
-					=> $$"""
-						{{readOnlyKeyword}}int global::System.IComparable<{{fullName}}>.CompareTo({{fullName}} other)
-							=> CompareTo(other);
-					""",
-				(true, false, not null)
-					=> $$"""
-						{{readOnlyKeyword}}int global::System.IComparable<{{fullName}}>.CompareTo({{fullName}}? other)
-						{
-							global::System.ArgumentNullException.ThrowIfNull(other);
+						return CompareTo(other);
+					}
+				""",
+				(true, true, not null) => $$"""
+					{{readOnlyKeyword}}int global::System.IComparable<{{fullName}}>.CompareTo({{fullName}} other)
+						=> {{memberName}}.CompareTo({{memberName}});
+				""",
+				(true, true, null) => $$"""
+					{{readOnlyKeyword}}int global::System.IComparable<{{fullName}}>.CompareTo({{fullName}} other)
+						=> CompareTo(other);
+				""",
+				(true, false, not null) => $$"""
+					{{readOnlyKeyword}}int global::System.IComparable<{{fullName}}>.CompareTo({{fullName}}? other)
+					{
+						global::System.ArgumentNullException.ThrowIfNull(other);
 						
-							return {{memberName}}.CompareTo({{memberName}});
-						}
-					""",
-				(true, false, null)
-					=> $$"""
-						{{readOnlyKeyword}}int global::System.IComparable<{{fullName}}>.CompareTo({{fullName}}? other)
-						{
-							global::System.ArgumentNullException.ThrowIfNull(other);
+						return {{memberName}}.CompareTo({{memberName}});
+					}
+				""",
+				(true, false, null) => $$"""
+					{{readOnlyKeyword}}int global::System.IComparable<{{fullName}}>.CompareTo({{fullName}}? other)
+					{
+						global::System.ArgumentNullException.ThrowIfNull(other);
 						
-							return CompareTo(other);
-						}
-					"""
+						return CompareTo(other);
+					}
+				"""
 			};
 
-			context.AddSource(
-				type.ToFileName(),
-				Shortcuts.AutoImplementsComparable,
+			spc.AddSource(
+				$"{type.ToFileName()}.g.{Shortcuts.AutoImplementsComparable}.cs",
 				$$"""
 				#nullable enable
 				
@@ -123,7 +163,7 @@ public sealed partial class AutoImplementsComparableGenerator : ISourceGenerator
 					/// </list>
 					/// </returns>
 					[global::System.Runtime.CompilerServices.CompilerGenerated]
-					[global::System.CodeDom.Compiler.GeneratedCode("{{GetType().FullName}}", "{{VersionValue}}")]
+					[global::System.CodeDom.Compiler.GeneratedCode("{{typeof(AutoImplementsComparableGenerator).FullName}}", "{{VersionValue}}")]
 					[global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 				{{method}}
 				}
@@ -131,8 +171,4 @@ public sealed partial class AutoImplementsComparableGenerator : ISourceGenerator
 			);
 		}
 	}
-
-	/// <inheritdoc/>
-	public void Initialize(GeneratorInitializationContext context)
-		=> context.RegisterForSyntaxNotifications(() => new Receiver(context.CancellationToken));
 }

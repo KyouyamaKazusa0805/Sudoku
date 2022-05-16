@@ -5,19 +5,58 @@
 /// that implements the interface type <c><![CDATA[IDefaultable<T>]]></c>.
 /// </summary>
 [Generator(LanguageNames.CSharp)]
-public sealed partial class AutoImplementsDefaultableGenerator : ISourceGenerator
+public sealed class AutoImplementsDefaultableGenerator : IIncrementalGenerator
 {
+	private const string AttributeFullName = "System.Diagnostics.CodeGen.AutoImplementsDefaultableAttribute";
+
+
 	/// <inheritdoc/>
-	public void Execute(GeneratorExecutionContext context)
+	public void Initialize(IncrementalGeneratorInitializationContext context)
+		=> context.RegisterSourceOutput(
+			context.SyntaxProvider
+				.CreateSyntaxProvider(NodePredicate, GetValuesProvider)
+				.Where(static element => element is not null)
+				.Collect(),
+			OutputSource
+		);
+
+
+	private static bool NodePredicate(SyntaxNode node, CancellationToken _)
+		=> node is TypeDeclarationSyntax { Modifiers: var modifiers, AttributeLists.Count: > 0 }
+			&& modifiers.Any(SyntaxKind.PartialKeyword);
+
+	private static (INamedTypeSymbol, AttributeData)? GetValuesProvider(GeneratorSyntaxContext gsc, CancellationToken ct)
 	{
-		if (context is not { SyntaxContextReceiver: Receiver { Collection: var collection } })
+		if (gsc is not { Node: TypeDeclarationSyntax n, SemanticModel: { Compilation: { } compilation } semanticModel })
 		{
-			return;
+			return null;
 		}
 
-		foreach (var (type, attributeData) in collection)
+		if (semanticModel.GetDeclaredSymbol(n, ct) is not { ContainingType: null } typeSymbol)
 		{
-			if (attributeData is not { ConstructorArguments: [{ Value: string defaultFieldName }] })
+			return null;
+		}
+
+		var attributeTypeSymbol = compilation.GetTypeByMetadataName(AttributeFullName);
+		var attributeData = (
+			from a in typeSymbol.GetAttributes()
+			where SymbolEqualityComparer.Default.Equals(a.AttributeClass, attributeTypeSymbol)
+			select a
+		).FirstOrDefault();
+		return attributeData is null ? null : (typeSymbol, attributeData);
+	}
+
+	private static void OutputSource(SourceProductionContext spc, ImmutableArray<(INamedTypeSymbol, AttributeData)?> list)
+	{
+		var recordedList = new List<INamedTypeSymbol>();
+		foreach (var v in list)
+		{
+			if (v is not (var type, { ConstructorArguments: [{ Value: string defaultFieldName }] } attributeData))
+			{
+				continue;
+			}
+
+			if (recordedList.FindIndex(e => SymbolEqualityComparer.Default.Equals(e, type)) != -1)
 			{
 				continue;
 			}
@@ -34,9 +73,8 @@ public sealed partial class AutoImplementsDefaultableGenerator : ISourceGenerato
 			string defaultFieldDescription = attributeData.GetNamedArgument<string>("DefaultFieldDescription")
 				?? """<inheritdoc cref="global::System.IDefaultable{T}.Default" />""";
 
-			context.AddSource(
-				type.ToFileName(),
-				Shortcuts.AutoImplementsDefaultable,
+			spc.AddSource(
+				$"{type.ToFileName()}.g.{Shortcuts.AutoImplementsDefaultable}.cs",
 				$$"""
 				#nullable enable
 				
@@ -60,8 +98,4 @@ public sealed partial class AutoImplementsDefaultableGenerator : ISourceGenerato
 			);
 		}
 	}
-
-	/// <inheritdoc/>
-	public void Initialize(GeneratorInitializationContext context)
-		=> context.RegisterForSyntaxNotifications(() => new Receiver(context.CancellationToken));
 }

@@ -5,18 +5,71 @@
 /// or <c><see langword="operator"/> !=</c>.
 /// </summary>
 [Generator(LanguageNames.CSharp)]
-public sealed partial class AutoOverloadsEqualityOperatorsGenerator : ISourceGenerator
+public sealed class AutoOverloadsEqualityOperatorsGenerator : IIncrementalGenerator
 {
+	private const string AttributeFullName = "System.Diagnostics.CodeGen.AutoOverloadsEqualityOperatorsAttribute";
+
+
 	/// <inheritdoc/>
-	public void Execute(GeneratorExecutionContext context)
+	public void Initialize(IncrementalGeneratorInitializationContext context)
+		=> context.RegisterSourceOutput(
+			context.SyntaxProvider
+				.CreateSyntaxProvider(NodePredicate, GetValuesProvider)
+				.Where(static element => element is not null)
+				.Collect(),
+			OutputSource
+		);
+
+	private static bool NodePredicate(SyntaxNode node, CancellationToken _)
+		=> node is TypeDeclarationSyntax { Modifiers: var modifiers, AttributeLists.Count: > 0 }
+			&& modifiers.Any(SyntaxKind.PartialKeyword);
+
+	private static (INamedTypeSymbol, AttributeData)? GetValuesProvider(GeneratorSyntaxContext gsc, CancellationToken ct)
 	{
-		if (context is not { SyntaxContextReceiver: Receiver { Collection: var collection } })
+		if (gsc is not { Node: TypeDeclarationSyntax n, SemanticModel: { Compilation: { } compilation } semanticModel })
 		{
-			return;
+			return null;
 		}
 
-		foreach (var (type, attributeData) in collection)
+		if (semanticModel.GetDeclaredSymbol(n, ct) is not { ContainingType: null } typeSymbol)
 		{
+			return null;
+		}
+
+		var attributeTypeSymbol = compilation.GetTypeByMetadataName(AttributeFullName);
+		var attributeData = (
+			from a in typeSymbol.GetAttributes()
+			where SymbolEqualityComparer.Default.Equals(a.AttributeClass, attributeTypeSymbol)
+			select a
+		).FirstOrDefault();
+		if (attributeData is null)
+		{
+			return null;
+		}
+
+		if (typeSymbol.GetMembers().OfType<IMethodSymbol>().Any(static m => m.Name is "op_Equality" or "op_Inequality"))
+		{
+			return null;
+		}
+
+		return (typeSymbol, attributeData);
+	}
+
+	private static void OutputSource(SourceProductionContext spc, ImmutableArray<(INamedTypeSymbol, AttributeData)?> list)
+	{
+		var recordedList = new List<INamedTypeSymbol>();
+		foreach (var v in list)
+		{
+			if (v is not var (type, attributeData))
+			{
+				continue;
+			}
+
+			if (recordedList.FindIndex(e => SymbolEqualityComparer.Default.Equals(e, type)) != -1)
+			{
+				continue;
+			}
+
 			var (_, _, namespaceName, genericParameterList, _, _, _, _, _, _) = SymbolOutputInfo.FromSymbol(type);
 
 			string inKeyword = attributeData.GetNamedArgument<bool>("EmitsInKeyword") ? "in " : string.Empty;
@@ -31,9 +84,8 @@ public sealed partial class AutoOverloadsEqualityOperatorsGenerator : ISourceGen
 					);
 
 			string fullName = type.ToDisplayString(TypeFormats.FullName);
-			context.AddSource(
-				type.ToFileName(),
-				Shortcuts.AutoOverloadsEqualityOperators,
+			spc.AddSource(
+				$"{type.ToFileName()}.g.{Shortcuts.AutoOverloadsEqualityOperators}.cs",
 				$$"""
 				#nullable enable
 				
@@ -48,7 +100,7 @@ public sealed partial class AutoOverloadsEqualityOperatorsGenerator : ISourceGen
 					/// <param name="right">The right-side instance to take part in the comparison operation.</param>
 					/// <returns>A <see cref="bool"/> value indicating that.</returns>
 					[global::System.Runtime.CompilerServices.CompilerGenerated]
-					[global::System.CodeDom.Compiler.GeneratedCode("{{GetType().FullName}}", "{{VersionValue}}")]
+					[global::System.CodeDom.Compiler.GeneratedCode("{{typeof(AutoOverloadsEqualityOperatorsGenerator).FullName}}", "{{VersionValue}}")]
 					[global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 					public static bool operator ==({{inKeyword}}{{fullName}}{{nullableAnnotation}} left, {{inKeyword}}{{fullName}}{{nullableAnnotation}} right)
 						=> {{realComparisonExpression}};
@@ -60,7 +112,7 @@ public sealed partial class AutoOverloadsEqualityOperatorsGenerator : ISourceGen
 					/// <param name="right">The right-side instance to take part in the comparison operation.</param>
 					/// <returns>A <see cref="bool"/> value indicating that.</returns>
 					[global::System.Runtime.CompilerServices.CompilerGenerated]
-					[global::System.CodeDom.Compiler.GeneratedCode("{{GetType().FullName}}", "{{VersionValue}}")]
+					[global::System.CodeDom.Compiler.GeneratedCode("{{typeof(AutoOverloadsEqualityOperatorsGenerator).FullName}}", "{{VersionValue}}")]
 					[global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 					public static bool operator !=({{inKeyword}}{{fullName}}{{nullableAnnotation}} left, {{inKeyword}}{{fullName}}{{nullableAnnotation}} right)
 						=> !(left == right);
@@ -69,8 +121,4 @@ public sealed partial class AutoOverloadsEqualityOperatorsGenerator : ISourceGen
 			);
 		}
 	}
-
-	/// <inheritdoc/>
-	public void Initialize(GeneratorInitializationContext context)
-		=> context.RegisterForSyntaxNotifications(() => new Receiver(context.CancellationToken));
 }

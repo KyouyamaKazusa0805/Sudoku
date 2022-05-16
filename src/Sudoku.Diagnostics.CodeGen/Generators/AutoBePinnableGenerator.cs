@@ -37,15 +37,12 @@ public sealed class AutoBePinnableGenerator : IIncrementalGenerator
 		}
 
 		var attributeTypeSymbol = compilation.GetTypeByMetadataName(AttributeFullName);
-		var attributesData =
+		var attributeData = (
 			from a in typeSymbol.GetAttributes()
 			where SymbolEqualityComparer.Default.Equals(a.AttributeClass, attributeTypeSymbol)
-			select a;
-		return attributesData.FirstOrDefault() switch
-		{
-			{ } attributeData => (typeSymbol, attributeData),
-			_ => null
-		};
+			select a
+		).FirstOrDefault();
+		return attributeData is null ? null : (typeSymbol, attributeData);
 	}
 
 	private static void OutputSource(SourceProductionContext spc, ImmutableArray<(INamedTypeSymbol, AttributeData)?> list)
@@ -75,7 +72,7 @@ public sealed class AutoBePinnableGenerator : IIncrementalGenerator
 			string refReadOnlyModifier = returnByReadOnlyRef ? "ref readonly" : "ref";
 			string returnTypeFullName = returnType.ToDisplayString(TypeFormats.FullName);
 			spc.AddSource(
-				$"{type.ToFileName()}.{Shortcuts.AutoBePinnable}.cs",
+				$"{type.ToFileName()}.g.{Shortcuts.AutoBePinnable}.cs",
 				$$"""
 				#nullable enable
 				
