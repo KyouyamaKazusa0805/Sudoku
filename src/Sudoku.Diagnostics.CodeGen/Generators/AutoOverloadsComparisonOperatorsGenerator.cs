@@ -139,6 +139,8 @@ public sealed class AutoOverloadsComparisonOperatorsGenerator : IIncrementalGene
 				}
 				"""
 			);
+
+			recordedList.Add(type);
 		}
 	}
 }

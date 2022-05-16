@@ -4,27 +4,58 @@
 /// Defines a source generator that generates for the code that is for the overriden of a type.
 /// </summary>
 [Generator(LanguageNames.CSharp)]
-public sealed partial class AutoOverridesGetHashCodeGenerator : ISourceGenerator
+public sealed class AutoOverridesGetHashCodeGenerator : IIncrementalGenerator
 {
+	private const string AttributeFullName = "System.Diagnostics.CodeGen.AutoOverridesGetHashCodeAttribute";
+
+
 	/// <inheritdoc/>
-	public void Execute(GeneratorExecutionContext context)
+	public void Initialize(IncrementalGeneratorInitializationContext context)
+		=> context.RegisterSourceOutput(
+			context.SyntaxProvider
+				.CreateSyntaxProvider(NodePredicate, GetValuesProvider)
+				.Where(static element => element is not null)
+				.Collect(),
+			OutputSource
+		);
+
+
+	private static bool NodePredicate(SyntaxNode node, CancellationToken _)
+		=> node is TypeDeclarationSyntax { Modifiers: var modifiers, AttributeLists.Count: > 0 }
+			&& modifiers.Any(SyntaxKind.PartialKeyword);
+
+	private static (INamedTypeSymbol, AttributeData)? GetValuesProvider(GeneratorSyntaxContext gsc, CancellationToken ct)
 	{
-		// Check values.
-		if (
-			context is not
-			{
-				SyntaxContextReceiver: Receiver { Collection: var collection } receiver,
-				Compilation: { Assembly: var assembly } compilation
-			}
-		)
+		if (gsc is not { Node: TypeDeclarationSyntax n, SemanticModel: { Compilation: { } compilation } semanticModel })
 		{
-			return;
+			return null;
 		}
 
-		// Iterates on each pair in the collection.
-		foreach (var (type, attributeData) in collection)
+		if (semanticModel.GetDeclaredSymbol(n, ct) is not { ContainingType: null } typeSymbol)
 		{
-			if (attributeData.ApplicationSyntaxReference is not { Span: var textSpan, SyntaxTree: var syntaxTree })
+			return null;
+		}
+
+		var attributeTypeSymbol = compilation.GetTypeByMetadataName(AttributeFullName);
+		var attributeData = (
+			from a in typeSymbol.GetAttributes()
+			where SymbolEqualityComparer.Default.Equals(a.AttributeClass, attributeTypeSymbol)
+			select a
+		).FirstOrDefault();
+		return attributeData is not { ConstructorArguments: [{ Values: not [] }] } ? null : (typeSymbol, attributeData);
+	}
+
+	private static void OutputSource(SourceProductionContext spc, ImmutableArray<(INamedTypeSymbol, AttributeData)?> list)
+	{
+		var recordedList = new List<INamedTypeSymbol>();
+		foreach (var v in list)
+		{
+			if (v is not var (type, attributeData))
+			{
+				continue;
+			}
+
+			if (recordedList.FindIndex(e => SymbolEqualityComparer.Default.Equals(e, type)) != -1)
 			{
 				continue;
 			}
@@ -55,7 +86,6 @@ public sealed partial class AutoOverridesGetHashCodeGenerator : ISourceGenerator
 
 			var targetSymbolsRawString = new List<string>();
 			var symbolsRawValue = new List<string>();
-			var location = Location.Create(syntaxTree, textSpan);
 			foreach (var typedConstant in attributeData.ConstructorArguments[0].Values)
 			{
 				string memberName = (string)typedConstant.Value!;
@@ -110,9 +140,8 @@ public sealed partial class AutoOverridesGetHashCodeGenerator : ISourceGenerator
 				"""
 			};
 
-			context.AddSource(
-				type.ToFileName(),
-				Shortcuts.AutoOverridesGetHashCode,
+			spc.AddSource(
+				$"{type.ToFileName()}.g.{Shortcuts.AutoOverridesGetHashCode}.cs",
 				$$"""
 				#nullable enable
 				
@@ -122,13 +151,15 @@ public sealed partial class AutoOverridesGetHashCodeGenerator : ISourceGenerator
 				{
 					/// <inheritdoc cref="object.GetHashCode"/>
 					[global::System.Runtime.CompilerServices.CompilerGenerated]
-					[global::System.CodeDom.Compiler.GeneratedCode("{{GetType().FullName}}", "{{VersionValue}}")]
+					[global::System.CodeDom.Compiler.GeneratedCode("{{typeof(AutoOverridesGetHashCodeGenerator).FullName}}", "{{VersionValue}}")]
 					[global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 					public {{sealedKeyword}}override {{readOnlyKeyword}}int GetHashCode()
 				{{methodBody}}
 				}
 				"""
 			);
+
+			recordedList.Add(type);
 
 
 			string convert(string pattern)
@@ -137,8 +168,4 @@ public sealed partial class AutoOverridesGetHashCodeGenerator : ISourceGenerator
 					.Replace("*", $"{nameof(GetHashCode)}()");
 		}
 	}
-
-	/// <inheritdoc/>
-	public void Initialize(GeneratorInitializationContext context)
-		=> context.RegisterForSyntaxNotifications(() => new Receiver(context.CancellationToken));
 }

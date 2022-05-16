@@ -4,26 +4,62 @@
 /// Defines a source generator that generates for the code that is for the overriden of a type.
 /// </summary>
 [Generator(LanguageNames.CSharp)]
-public sealed partial class AutoOverridesToStringGenerator : ISourceGenerator
+public sealed class AutoOverridesToStringGenerator : IIncrementalGenerator
 {
+	private const string AttributeFullName = "System.Diagnostics.CodeGen.AutoOverridesToStringAttribute";
+
+
 	/// <inheritdoc/>
-	public void Execute(GeneratorExecutionContext context)
+	public void Initialize(IncrementalGeneratorInitializationContext context)
+		=> context.RegisterSourceOutput(
+			context.SyntaxProvider
+				.CreateSyntaxProvider(NodePredicate, GetValuesProvider)
+				.Where(static element => element is not null)
+				.Collect(),
+			OutputSource
+		);
+
+
+	private static bool NodePredicate(SyntaxNode node, CancellationToken _)
+		=> node is TypeDeclarationSyntax { Modifiers: var modifiers, AttributeLists.Count: > 0 }
+			&& modifiers.Any(SyntaxKind.PartialKeyword);
+
+	private static (INamedTypeSymbol, AttributeData)? GetValuesProvider(GeneratorSyntaxContext gsc, CancellationToken ct)
 	{
-		// Check values.
-		if (
-			context is not
-			{
-				SyntaxContextReceiver: Receiver { Collection: var collection } receiver,
-				Compilation: { Assembly: var assembly } compilation
-			}
-		)
+		if (gsc is not { Node: TypeDeclarationSyntax n, SemanticModel: { Compilation: { } compilation } semanticModel })
 		{
-			return;
+			return null;
 		}
 
-		// Iterates on each pair in the collection.
-		foreach (var (type, attributeData) in collection)
+		if (semanticModel.GetDeclaredSymbol(n, ct) is not { ContainingType: null } typeSymbol)
 		{
+			return null;
+		}
+
+		var attributeTypeSymbol = compilation.GetTypeByMetadataName(AttributeFullName);
+		var attributeData = (
+			from a in typeSymbol.GetAttributes()
+			where SymbolEqualityComparer.Default.Equals(a.AttributeClass, attributeTypeSymbol)
+			select a
+		).FirstOrDefault();
+		return attributeData is null ? null : (typeSymbol, attributeData);
+	}
+
+	private static void OutputSource(SourceProductionContext spc, ImmutableArray<(INamedTypeSymbol, AttributeData)?> list)
+	{
+		var recordedList = new List<INamedTypeSymbol>();
+		foreach (var v in list)
+		{
+			if (v is not (var type, { ConstructorArguments: [{ Values: var typedConstants }] } attributeData))
+			{
+				continue;
+			}
+
+			if (recordedList.FindIndex(e => SymbolEqualityComparer.Default.Equals(e, type)) != -1)
+			{
+				continue;
+			}
+
 			var members = type.GetAllMembers();
 			var methods = members.OfType<IMethodSymbol>().ToArray();
 			if (
@@ -55,7 +91,7 @@ public sealed partial class AutoOverridesToStringGenerator : ISourceGenerator
 			// while 'symbolsRawValue' is a list that stores all valid member names.
 			var targetSymbolsRawString = new List<string>();
 			var symbolsRawValue = new List<string>();
-			foreach (var typedConstant in attributeData.ConstructorArguments[0].Values)
+			foreach (var typedConstant in typedConstants)
 			{
 				// Gets the member name via the constructor arguments.
 				string memberName = (string)typedConstant.Value!;
@@ -102,20 +138,26 @@ public sealed partial class AutoOverridesToStringGenerator : ISourceGenerator
 			// 
 			// Which put the type name at the first side, and list all property names and their own values,
 			// separated by commas.
-			string outputStringExpression = attributeData.GetNamedArgument<string>("Pattern") is { } pattern
-				? convert(pattern) is var convertedPattern && isSimpleInterpolatedPattern(pattern)
-					? convertedPattern[1..^1]
-					: $"""
-					{interpolatedStringSuffix(pattern)}"{convertedPattern}"
-					"""
-				: $$""""
+			string outputStringExpression = attributeData.GetNamedArgument<string>("Pattern") switch
+			{
+				{ } pattern => convert(pattern) switch
+				{
+					var convertedPattern => isSimpleInterpolatedPattern(pattern) switch
+					{
+						true => convertedPattern[1..^1],
+						_ => $"""
+						{interpolatedStringSuffix(pattern)}"{convertedPattern}"
+						"""
+					}
+				},
+				_ => $$""""
 				$$"""{{type.Name}} { {{string.Join(", ", targetSymbolsRawString)}} }"""
-				"""";
+				""""
+			};
 
 			// Emits the source code.
-			context.AddSource(
-				type.ToFileName(),
-				Shortcuts.AutoOverridesToString,
+			spc.AddSource(
+				$"{type.ToFileName()}.g.{Shortcuts.AutoOverridesToString}.cs",
 				$$"""
 				#nullable enable
 				
@@ -125,13 +167,15 @@ public sealed partial class AutoOverridesToStringGenerator : ISourceGenerator
 				{
 					/// <inheritdoc cref="object.ToString"/>
 					[global::System.Runtime.CompilerServices.CompilerGenerated]
-					[global::System.CodeDom.Compiler.GeneratedCode("{{GetType().FullName}}", "{{VersionValue}}")]
+					[global::System.CodeDom.Compiler.GeneratedCode("{{typeof(AutoOverridesToStringGenerator).FullName}}", "{{VersionValue}}")]
 					[global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 					public override {{readOnlyKeyword}}string ToString()
 						=> {{outputStringExpression}};
 				}
 				"""
 			);
+
+			recordedList.Add(type);
 
 
 			static bool isSimpleInterpolatedPattern(string pattern)
@@ -146,8 +190,4 @@ public sealed partial class AutoOverridesToStringGenerator : ISourceGenerator
 				=> Regex.IsMatch(pattern, """(?<={).+?(?=})""") ? "$" : string.Empty;
 		}
 	}
-
-	/// <inheritdoc/>
-	public void Initialize(GeneratorInitializationContext context)
-		=> context.RegisterForSyntaxNotifications(() => new Receiver(context.CancellationToken));
 }

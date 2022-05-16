@@ -169,6 +169,8 @@ public sealed class AutoImplementsComparableGenerator : IIncrementalGenerator
 				}
 				"""
 			);
+
+			recordedList.Add(type);
 		}
 	}
 }

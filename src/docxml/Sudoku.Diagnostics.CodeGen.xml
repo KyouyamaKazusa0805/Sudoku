@@ -280,33 +280,7 @@
             Defines a source generator that generates for the code that is for the overriden of a type.
             </summary>
         </member>
-        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.AutoOverridesEqualsGenerator.Execute(Microsoft.CodeAnalysis.GeneratorExecutionContext)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.AutoOverridesEqualsGenerator.Initialize(Microsoft.CodeAnalysis.GeneratorInitializationContext)">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Diagnostics.CodeGen.Generators.AutoOverridesEqualsGenerator.Receiver">
-            <summary>
-            The inner syntax context receiver instance.
-            </summary>
-            <param name="CancellationToken">The cancellation token to cancel the operation.</param>
-        </member>
-        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.AutoOverridesEqualsGenerator.Receiver.#ctor(System.Threading.CancellationToken)">
-            <summary>
-            The inner syntax context receiver instance.
-            </summary>
-            <param name="CancellationToken">The cancellation token to cancel the operation.</param>
-        </member>
-        <member name="P:Sudoku.Diagnostics.CodeGen.Generators.AutoOverridesEqualsGenerator.Receiver.CancellationToken">
-            <summary>The cancellation token to cancel the operation.</summary>
-        </member>
-        <member name="P:Sudoku.Diagnostics.CodeGen.Generators.AutoOverridesEqualsGenerator.Receiver.Collection">
-            <summary>
-            Indicates the result collection.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.AutoOverridesEqualsGenerator.Receiver.OnVisitSyntaxNode(Microsoft.CodeAnalysis.GeneratorSyntaxContext)">
+        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.AutoOverridesEqualsGenerator.Initialize(Microsoft.CodeAnalysis.IncrementalGeneratorInitializationContext)">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Diagnostics.CodeGen.Generators.AutoOverridesGetHashCodeGenerator">
@@ -314,33 +288,7 @@
             Defines a source generator that generates for the code that is for the overriden of a type.
             </summary>
         </member>
-        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.AutoOverridesGetHashCodeGenerator.Execute(Microsoft.CodeAnalysis.GeneratorExecutionContext)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.AutoOverridesGetHashCodeGenerator.Initialize(Microsoft.CodeAnalysis.GeneratorInitializationContext)">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Diagnostics.CodeGen.Generators.AutoOverridesGetHashCodeGenerator.Receiver">
-            <summary>
-            The inner syntax context receiver instance.
-            </summary>
-            <param name="CancellationToken">The cancellation token to cancel the operation.</param>
-        </member>
-        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.AutoOverridesGetHashCodeGenerator.Receiver.#ctor(System.Threading.CancellationToken)">
-            <summary>
-            The inner syntax context receiver instance.
-            </summary>
-            <param name="CancellationToken">The cancellation token to cancel the operation.</param>
-        </member>
-        <member name="P:Sudoku.Diagnostics.CodeGen.Generators.AutoOverridesGetHashCodeGenerator.Receiver.CancellationToken">
-            <summary>The cancellation token to cancel the operation.</summary>
-        </member>
-        <member name="P:Sudoku.Diagnostics.CodeGen.Generators.AutoOverridesGetHashCodeGenerator.Receiver.Collection">
-            <summary>
-            Indicates the result collection.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.AutoOverridesGetHashCodeGenerator.Receiver.OnVisitSyntaxNode(Microsoft.CodeAnalysis.GeneratorSyntaxContext)">
+        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.AutoOverridesGetHashCodeGenerator.Initialize(Microsoft.CodeAnalysis.IncrementalGeneratorInitializationContext)">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Diagnostics.CodeGen.Generators.AutoOverridesToStringGenerator">
@@ -348,33 +296,7 @@
             Defines a source generator that generates for the code that is for the overriden of a type.
             </summary>
         </member>
-        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.AutoOverridesToStringGenerator.Execute(Microsoft.CodeAnalysis.GeneratorExecutionContext)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.AutoOverridesToStringGenerator.Initialize(Microsoft.CodeAnalysis.GeneratorInitializationContext)">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Diagnostics.CodeGen.Generators.AutoOverridesToStringGenerator.Receiver">
-            <summary>
-            The inner syntax context receiver instance.
-            </summary>
-            <param name="CancellationToken">The cancellation token to cancel the operation.</param>
-        </member>
-        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.AutoOverridesToStringGenerator.Receiver.#ctor(System.Threading.CancellationToken)">
-            <summary>
-            The inner syntax context receiver instance.
-            </summary>
-            <param name="CancellationToken">The cancellation token to cancel the operation.</param>
-        </member>
-        <member name="P:Sudoku.Diagnostics.CodeGen.Generators.AutoOverridesToStringGenerator.Receiver.CancellationToken">
-            <summary>The cancellation token to cancel the operation.</summary>
-        </member>
-        <member name="P:Sudoku.Diagnostics.CodeGen.Generators.AutoOverridesToStringGenerator.Receiver.Collection">
-            <summary>
-            Indicates the result collection.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.AutoOverridesToStringGenerator.Receiver.OnVisitSyntaxNode(Microsoft.CodeAnalysis.GeneratorSyntaxContext)">
+        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.AutoOverridesToStringGenerator.Initialize(Microsoft.CodeAnalysis.IncrementalGeneratorInitializationContext)">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Diagnostics.CodeGen.Generators.DisableParameterlessConstructorGenerator">

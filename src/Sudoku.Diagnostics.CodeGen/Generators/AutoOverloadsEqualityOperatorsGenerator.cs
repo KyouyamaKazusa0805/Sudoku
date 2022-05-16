@@ -119,6 +119,8 @@ public sealed class AutoOverloadsEqualityOperatorsGenerator : IIncrementalGenera
 				}
 				"""
 			);
+
+			recordedList.Add(type);
 		}
 	}
 }

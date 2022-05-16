@@ -119,6 +119,8 @@ public sealed class AutoImplementsEnumerableGenerator : IIncrementalGenerator
 				"""
 			);
 
+			recordedList.Add(type);
+
 
 			void convert(ref string conversionExpr)
 				=> conversionExpr = conversionExpr

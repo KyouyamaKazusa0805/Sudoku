@@ -96,6 +96,8 @@ public sealed class AutoImplementsDefaultableGenerator : IIncrementalGenerator
 				}
 				"""
 			);
+
+			recordedList.Add(type);
 		}
 	}
 }
