@@ -57,12 +57,7 @@ public sealed class AutoBePinnableGenerator : IIncrementalGenerator
 #pragma warning disable IDE0055
 				v is not (
 					var type,
-					{
-						ConstructorArguments: [
-							{ Value: ITypeSymbol returnType },
-							{ Value: string pattern }
-						]
-					} attributeData
+					{ ConstructorArguments: [{ Value: ITypeSymbol returnType }, { Value: string pattern }] } attributeData
 				)
 #pragma warning restore IDE0055
 			)
