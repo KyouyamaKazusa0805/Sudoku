@@ -20,10 +20,6 @@ public sealed class AutoBePinnableGenerator : IIncrementalGenerator
 			OutputSource
 		);
 
-	private static bool NodePredicate(SyntaxNode node, CancellationToken _)
-		=> node is TypeDeclarationSyntax { Modifiers: var modifiers, AttributeLists.Count: > 0 }
-			&& modifiers.Any(SyntaxKind.PartialKeyword);
-
 	private static (INamedTypeSymbol, AttributeData)? GetValuesProvider(GeneratorSyntaxContext gsc, CancellationToken ct)
 	{
 		if (gsc is not { Node: TypeDeclarationSyntax node, SemanticModel: { Compilation: var compilation } semanticModel })
