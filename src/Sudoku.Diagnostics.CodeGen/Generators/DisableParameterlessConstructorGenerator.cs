@@ -5,23 +5,70 @@
 /// to disallow any invokes for them from user.
 /// </summary>
 [Generator(LanguageNames.CSharp)]
-public sealed partial class DisableParameterlessConstructorGenerator : ISourceGenerator
+public sealed class DisableParameterlessConstructorGenerator : IIncrementalGenerator
 {
+	private const string AttributeFullName = "System.Diagnostics.CodeGen.DisableParameterlessConstructorAttribute";
+
+
 	/// <inheritdoc/>
-	public void Execute(GeneratorExecutionContext context)
+	public void Initialize(IncrementalGeneratorInitializationContext context)
+		=> context.RegisterSourceOutput(
+			context.SyntaxProvider
+				.CreateSyntaxProvider(NodePredicate, GetValuesProvider)
+				.Where(static element => element is not null)
+				.Collect(),
+			OutputSource
+		);
+
+
+	private static bool NodePredicate(SyntaxNode node, CancellationToken _)
+		=> node is TypeDeclarationSyntax { Modifiers: var modifiers, AttributeLists.Count: > 0 }
+			&& modifiers.Any(SyntaxKind.PartialKeyword);
+
+	private static (INamedTypeSymbol, AttributeData)? GetValuesProvider(GeneratorSyntaxContext gsc, CancellationToken ct)
 	{
-		if (
-			context is not
-			{
-				SyntaxContextReceiver: Receiver { Collection: var typeSymbols } receiver
-			}
-		)
+		if (gsc is not { Node: StructDeclarationSyntax n, SemanticModel: { Compilation: { } compilation } semanticModel })
 		{
-			return;
+			return null;
 		}
 
-		foreach (var (type, attributeData) in typeSymbols)
+		var typeSymbol = semanticModel.GetDeclaredSymbol(n, ct);
+		if (typeSymbol is not { ContainingType: null, InstanceConstructors: var instanceConstructors })
 		{
+			return null;
+		}
+
+		var attributeTypeSymbol = compilation.GetTypeByMetadataName(AttributeFullName);
+		bool predicate(AttributeData e) => SymbolEqualityComparer.Default.Equals(e.AttributeClass, attributeTypeSymbol);
+		if (typeSymbol.GetAttributes().FirstOrDefault(predicate) is not { } attributeData)
+		{
+			return null;
+		}
+
+		// Check whether the type contains a user-defined parameterless constructor.
+		if (instanceConstructors.Any(static e => e is { Parameters: [], IsImplicitlyDeclared: false }))
+		{
+			return null;
+		}
+
+		return (typeSymbol, attributeData);
+	}
+
+	private static void OutputSource(SourceProductionContext spc, ImmutableArray<(INamedTypeSymbol, AttributeData)?> list)
+	{
+		var recordedList = new List<INamedTypeSymbol>();
+		foreach (var v in list)
+		{
+			if (v is not var (type, attributeData))
+			{
+				continue;
+			}
+
+			if (recordedList.FindIndex(e => SymbolEqualityComparer.Default.Equals(e, type)) != -1)
+			{
+				continue;
+			}
+
 			var (_, _, namespaceName, genericParameterList, _, _, _, _, _, _) = SymbolOutputInfo.FromSymbol(type);
 
 			string? rawMessage = attributeData.GetNamedArgument<string>("Message");
@@ -39,9 +86,8 @@ public sealed partial class DisableParameterlessConstructorGenerator : ISourceGe
 				continue;
 			}
 
-			context.AddSource(
-				type.ToFileName(),
-				Shortcuts.DisableParametelessConstructor,
+			spc.AddSource(
+				$"{type.ToFileName()}.g.{Shortcuts.DisableParametelessConstructor}.cs",
 				$$"""
 				#nullable enable
 				
@@ -63,17 +109,15 @@ public sealed partial class DisableParameterlessConstructorGenerator : ISourceGe
 					/// no matter what kind of invocation, reflection or strongly reference.
 					/// </remarks>
 					[global::System.Runtime.CompilerServices.CompilerGenerated]
-					[global::System.CodeDom.Compiler.GeneratedCode("{{GetType().FullName}}", "{{VersionValue}}")]
+					[global::System.CodeDom.Compiler.GeneratedCode("{{typeof(DisableParameterlessConstructorGenerator).FullName}}", "{{VersionValue}}")]
 					[global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
 					[global::System.Obsolete("{{message}}", true)]
 					public {{type.Name}}() => throw new global::System.NotSupportedException();
 				}
 				"""
 			);
+
+			recordedList.Add(type);
 		}
 	}
-
-	/// <inheritdoc/>
-	public void Initialize(GeneratorInitializationContext context)
-		=> context.RegisterForSyntaxNotifications(() => new Receiver(context.CancellationToken));
 }

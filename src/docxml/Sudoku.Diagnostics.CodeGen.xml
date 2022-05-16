@@ -305,33 +305,7 @@
             to disallow any invokes for them from user.
             </summary>
         </member>
-        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.DisableParameterlessConstructorGenerator.Execute(Microsoft.CodeAnalysis.GeneratorExecutionContext)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.DisableParameterlessConstructorGenerator.Initialize(Microsoft.CodeAnalysis.GeneratorInitializationContext)">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Diagnostics.CodeGen.Generators.DisableParameterlessConstructorGenerator.Receiver">
-            <summary>
-            The inner syntax context receiver instance.
-            </summary>
-            <param name="CancellationToken">The cancellation token to cancel the operation.</param>
-        </member>
-        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.DisableParameterlessConstructorGenerator.Receiver.#ctor(System.Threading.CancellationToken)">
-            <summary>
-            The inner syntax context receiver instance.
-            </summary>
-            <param name="CancellationToken">The cancellation token to cancel the operation.</param>
-        </member>
-        <member name="P:Sudoku.Diagnostics.CodeGen.Generators.DisableParameterlessConstructorGenerator.Receiver.CancellationToken">
-            <summary>The cancellation token to cancel the operation.</summary>
-        </member>
-        <member name="P:Sudoku.Diagnostics.CodeGen.Generators.DisableParameterlessConstructorGenerator.Receiver.Collection">
-            <summary>
-            Indicates the result collection.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.DisableParameterlessConstructorGenerator.Receiver.OnVisitSyntaxNode(Microsoft.CodeAnalysis.GeneratorSyntaxContext)">
+        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.DisableParameterlessConstructorGenerator.Initialize(Microsoft.CodeAnalysis.IncrementalGeneratorInitializationContext)">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Diagnostics.CodeGen.Generators.EnumSwitchExpressionGenerator">
