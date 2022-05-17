@@ -1,16 +1,10 @@
-﻿namespace Sudoku.Generating;
+﻿namespace Sudoku.Generating.Puzzlers;
 
 /// <summary>
-/// Defines a puzzle generator.
+/// Defines a type that can create a new sudoku puzzle game.
 /// </summary>
-public interface IPuzzleGenerator
+public interface IPuzzler
 {
-	/// <summary>
-	/// Provides a default fast solver to solve the puzzle.
-	/// </summary>
-	protected internal static readonly BitwiseSolver Solver = new();
-
-
 	/// <summary>
 	/// Creates a sudoku grid puzzle.
 	/// </summary>

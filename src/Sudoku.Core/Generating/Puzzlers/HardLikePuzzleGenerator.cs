@@ -1,10 +1,10 @@
-﻿namespace Sudoku.Generating;
+﻿namespace Sudoku.Generating.Puzzlers;
 
 /// <summary>
-/// Defines a puzzle generator that makes the given pattern as a hard one. However,
-/// a <b>hard pattern</b> doesn't mean the puzzle will be hard or fiendish.
+/// Defines a puzzle generator that makes the given pattern as a hard one.
+/// A <b>hard pattern</b> doesn't mean the puzzle will be hard or fiendish.
 /// </summary>
-public sealed unsafe class HardPatternPuzzleGenerator : IPuzzleGenerator
+public sealed unsafe class HardLikePuzzleGenerator : IPuzzler
 {
 	/// <summary>
 	/// Indicates the block factor.
@@ -20,18 +20,17 @@ public sealed unsafe class HardPatternPuzzleGenerator : IPuzzleGenerator
 		{ 1, 2, 0 }, { 2, 0, 1 }, { 2, 1, 0 }
 	};
 
+	/// <summary>
+	/// Indicates the inner solver that can fast solve a sudoku puzzle, to check the validity
+	/// of a puzzle being generated.
+	/// </summary>
+	private static readonly BitwiseSolver Solver = new();
+
 
 	/// <summary>
 	/// Indicates the random number generator.
 	/// </summary>
-	private readonly Random _random;
-
-
-	/// <summary>
-	/// Initializes a <see cref="HardPatternPuzzleGenerator"/> instance.
-	/// </summary>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public HardPatternPuzzleGenerator() => _random = Random.Shared;
+	private readonly Random _random = new();
 
 
 	/// <inheritdoc/>
@@ -61,14 +60,14 @@ public sealed unsafe class HardPatternPuzzleGenerator : IPuzzleGenerator
 					char temp = solution[p];
 					solution[p] = '0';
 
-					if (!IPuzzleGenerator.Solver.CheckValidity(solution))
+					if (!Solver.CheckValidity(solution))
 					{
 						// Reset the value.
 						solution[p] = temp;
 					}
 				}
 
-				if (IPuzzleGenerator.Solver.CheckValidity(solution) && Grid.Parse(solution) is var grid)
+				if (Solver.CheckValidity(solution) && Grid.Parse(solution) is var grid)
 				{
 					return grid;
 				}
@@ -115,7 +114,7 @@ public sealed unsafe class HardPatternPuzzleGenerator : IPuzzleGenerator
 					pPuzzle[cell] = (char)(_random.Next(1, 9) + '0');
 				} while (CheckDuplicate(pPuzzle, cell));
 			}
-		} while (IPuzzleGenerator.Solver.Solve(pPuzzle, pSolution, 2) == 0);
+		} while (Solver.Solve(pPuzzle, pSolution, 2) == 0);
 	}
 
 	/// <summary>

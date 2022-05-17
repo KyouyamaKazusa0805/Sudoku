@@ -7669,36 +7669,37 @@
             <param name="unit">The unit.</param>
             <returns>The value of the specified size unit.</returns>
         </member>
-        <member name="T:Sudoku.Generating.HardPatternPuzzleGenerator">
+        <member name="T:Sudoku.Generating.Puzzlers.HardLikePuzzleGenerator">
             <summary>
-            Defines a puzzle generator that makes the given pattern as a hard one. However,
-            a <b>hard pattern</b> doesn't mean the puzzle will be hard or fiendish.
+            Defines a puzzle generator that makes the given pattern as a hard one.
+            A <b>hard pattern</b> doesn't mean the puzzle will be hard or fiendish.
             </summary>
         </member>
-        <member name="F:Sudoku.Generating.HardPatternPuzzleGenerator.BlockFactor">
+        <member name="F:Sudoku.Generating.Puzzlers.HardLikePuzzleGenerator.BlockFactor">
             <summary>
             Indicates the block factor.
             </summary>
         </member>
-        <member name="F:Sudoku.Generating.HardPatternPuzzleGenerator.SwappingFactor">
+        <member name="F:Sudoku.Generating.Puzzlers.HardLikePuzzleGenerator.SwappingFactor">
             <summary>
             Indicates the swapping factor.
             </summary>
         </member>
-        <member name="F:Sudoku.Generating.HardPatternPuzzleGenerator._random">
+        <member name="F:Sudoku.Generating.Puzzlers.HardLikePuzzleGenerator.Solver">
+            <summary>
+            Indicates the inner solver that can fast solve a sudoku puzzle, to check the validity
+            of a puzzle being generated.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Generating.Puzzlers.HardLikePuzzleGenerator._random">
             <summary>
             Indicates the random number generator.
             </summary>
         </member>
-        <member name="M:Sudoku.Generating.HardPatternPuzzleGenerator.#ctor">
-            <summary>
-            Initializes a <see cref="T:Sudoku.Generating.HardPatternPuzzleGenerator"/> instance.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Generating.HardPatternPuzzleGenerator.Generate(System.Threading.CancellationToken)">
+        <member name="M:Sudoku.Generating.Puzzlers.HardLikePuzzleGenerator.Generate(System.Threading.CancellationToken)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Generating.HardPatternPuzzleGenerator.GenerateAnswerGrid(System.Char*,System.Char*)">
+        <member name="M:Sudoku.Generating.Puzzlers.HardLikePuzzleGenerator.GenerateAnswerGrid(System.Char*,System.Char*)">
             <summary>
             Generates the answer sudoku grid via the specified puzzle and the solution variable pointer.
             </summary>
@@ -7707,19 +7708,19 @@
             The pointer that points to the solution. The result value will be changed here.
             </param>
         </member>
-        <member name="M:Sudoku.Generating.HardPatternPuzzleGenerator.CreatePattern(System.Int32*)">
+        <member name="M:Sudoku.Generating.Puzzlers.HardLikePuzzleGenerator.CreatePattern(System.Int32*)">
             <summary>
             Creates a start pattern based on a base pattern.
             </summary>
             <param name="pattern">The base pattern.</param>
         </member>
-        <member name="M:Sudoku.Generating.HardPatternPuzzleGenerator.RecreatePattern(System.Int32*)">
+        <member name="M:Sudoku.Generating.Puzzlers.HardLikePuzzleGenerator.RecreatePattern(System.Int32*)">
             <summary>
             To re-create the pattern.
             </summary>
             <param name="pattern">The pointer that points to an array of the pattern values.</param>
         </member>
-        <member name="M:Sudoku.Generating.HardPatternPuzzleGenerator.CheckDuplicate(System.Char*,System.Int32)">
+        <member name="M:Sudoku.Generating.Puzzlers.HardLikePuzzleGenerator.CheckDuplicate(System.Char*,System.Int32)">
             <summary>
             Check whether the digit in its peer cells has duplicate ones.
             </summary>
@@ -7727,17 +7728,12 @@
             <param name="cell">The cell.</param>
             <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
         </member>
-        <member name="T:Sudoku.Generating.IPuzzleGenerator">
+        <member name="T:Sudoku.Generating.Puzzlers.IPuzzler">
             <summary>
-            Defines a puzzle generator.
+            Defines a type that can create a new sudoku puzzle game.
             </summary>
         </member>
-        <member name="F:Sudoku.Generating.IPuzzleGenerator.Solver">
-            <summary>
-            Provides a default fast solver to solve the puzzle.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Generating.IPuzzleGenerator.Generate(System.Threading.CancellationToken)">
+        <member name="M:Sudoku.Generating.Puzzlers.IPuzzler.Generate(System.Threading.CancellationToken)">
             <summary>
             Creates a sudoku grid puzzle.
             </summary>
@@ -7746,27 +7742,19 @@
             The result puzzle generated. If cancelled, the return value will be <see cref="F:Sudoku.Concepts.Collections.Grid.Undefined"/>.
             </returns>
         </member>
-        <member name="T:Sudoku.Generating.SymmetricPuzzleGenerator">
+        <member name="T:Sudoku.Generating.Puzzlers.SymmetricPatternPuzzleGenerator">
             <summary>
             Defines a symmetric puzzle generator, that is, a generator than can include the symmetrical placement
             of all givens while generating puzzles.
             </summary>
         </member>
-        <member name="F:Sudoku.Generating.SymmetricPuzzleGenerator.Shared">
-            <summary>
-            Indicates the shared <see cref="T:Sudoku.Generating.SymmetricPuzzleGenerator"/> instance
-            that allows the user generating the puzzles with symmetrical-placed givens.
-            </summary>
+        <member name="F:Sudoku.Generating.Puzzlers.SymmetricPatternPuzzleGenerator.Solver">
+            <inheritdoc cref="F:Sudoku.Generating.Puzzlers.HardLikePuzzleGenerator.Solver"/>
         </member>
-        <member name="M:Sudoku.Generating.SymmetricPuzzleGenerator.#ctor">
-            <summary>
-            Initializes a <see cref="T:Sudoku.Generating.SymmetricPuzzleGenerator"/> instance.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Generating.SymmetricPuzzleGenerator.Generate(System.Threading.CancellationToken)">
+        <member name="M:Sudoku.Generating.Puzzlers.SymmetricPatternPuzzleGenerator.Generate(System.Threading.CancellationToken)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Generating.SymmetricPuzzleGenerator.Generate(System.Int32,Sudoku.Concepts.SymmetryType,System.Threading.CancellationToken)">
+        <member name="M:Sudoku.Generating.Puzzlers.SymmetricPatternPuzzleGenerator.Generate(System.Int32,Sudoku.Concepts.SymmetryType,System.Threading.CancellationToken)">
             <summary>
             Generates a sudoku puzzle, via the specified number of givens used, the symmetry type, and
             a cancellation token to cancel the operation.
@@ -7776,7 +7764,7 @@
             <param name="cancellationToken">The cancellation token to cancel the operation.</param>
             <returns>The result sudoku puzzle.</returns>
         </member>
-        <member name="M:Sudoku.Generating.SymmetricPuzzleGenerator.GenerateAnswerGrid(System.Char*,System.Char*)">
+        <member name="M:Sudoku.Generating.Puzzlers.SymmetricPatternPuzzleGenerator.GenerateAnswerGrid(System.Char*,System.Char*)">
             <summary>
             Generates the answer sudoku grid via the specified puzzle and the solution variable pointer.
             </summary>
@@ -7785,7 +7773,7 @@
             The pointer that points to the solution. The result value will be changed here.
             </param>
         </member>
-        <member name="M:Sudoku.Generating.SymmetricPuzzleGenerator.GetCells(Sudoku.Concepts.SymmetryType,System.Int32,System.Int32)">
+        <member name="M:Sudoku.Generating.Puzzlers.SymmetricPatternPuzzleGenerator.GetCells(Sudoku.Concepts.SymmetryType,System.Int32,System.Int32)">
             <summary>
             Get the cells that is used for swapping via the specified symmetry type, and the specified row
             and column value.
@@ -7795,7 +7783,7 @@
             <param name="column">The column value.</param>
             <returns>The cells.</returns>
         </member>
-        <member name="M:Sudoku.Generating.SymmetricPuzzleGenerator.CheckDuplicate(System.Char*,System.Int32)">
+        <member name="M:Sudoku.Generating.Puzzlers.SymmetricPatternPuzzleGenerator.CheckDuplicate(System.Char*,System.Int32)">
             <summary>
             Check whether the digit in its peer cells has duplicate ones.
             </summary>

@@ -10,7 +10,7 @@ using Microsoft.UI.Input;
 using Microsoft.UI.Xaml.Controls.Primitives;
 using Microsoft.UI.Xaml.Input;
 using Microsoft.UI.Xaml.Media.Imaging;
-using Sudoku.Generating;
+using Sudoku.Generating.Puzzlers;
 using Sudoku.Solving.Manual;
 using Windows.ApplicationModel.DataTransfer;
 using Windows.Graphics.Imaging;
@@ -37,7 +37,7 @@ public sealed partial class SudokuPage : Page
 	/// <summary>
 	/// Indicates the internal puzzle generator.
 	/// </summary>
-	private static readonly HardPatternPuzzleGenerator Generator = new();
+	private static readonly HardLikePuzzleGenerator Generator = new();
 
 
 	/// <summary>

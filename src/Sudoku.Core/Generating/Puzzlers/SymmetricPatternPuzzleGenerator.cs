@@ -1,24 +1,13 @@
-﻿namespace Sudoku.Generating;
+﻿namespace Sudoku.Generating.Puzzlers;
 
 /// <summary>
 /// Defines a symmetric puzzle generator, that is, a generator than can include the symmetrical placement
 /// of all givens while generating puzzles.
 /// </summary>
-public sealed unsafe class SymmetricPuzzleGenerator : IPuzzleGenerator
+public sealed unsafe class SymmetricPatternPuzzleGenerator : IPuzzler
 {
-	/// <summary>
-	/// Indicates the shared <see cref="SymmetricPuzzleGenerator"/> instance
-	/// that allows the user generating the puzzles with symmetrical-placed givens.
-	/// </summary>
-	public static readonly SymmetricPuzzleGenerator Shared = new();
-
-
-	/// <summary>
-	/// Initializes a <see cref="SymmetricPuzzleGenerator"/> instance.
-	/// </summary>
-	private SymmetricPuzzleGenerator()
-	{
-	}
+	/// <inheritdoc cref="HardLikePuzzleGenerator.Solver"/>
+	private static readonly BitwiseSolver Solver = new();
 
 
 	/// <inheritdoc/>
@@ -87,7 +76,7 @@ public sealed unsafe class SymmetricPuzzleGenerator : IPuzzleGenerator
 						throw new OperationCanceledException();
 					}
 				} while (81 - totalMap.Count > max);
-			} while (!IPuzzleGenerator.Solver.CheckValidity(result = solution));
+			} while (!Solver.CheckValidity(result = solution));
 
 			return Grid.Parse(result);
 		}
@@ -130,7 +119,7 @@ public sealed unsafe class SymmetricPuzzleGenerator : IPuzzleGenerator
 					pPuzzle[cell] = (char)(Random.Shared.Next(1, 9) + '0');
 				} while (CheckDuplicate(pPuzzle, cell));
 			}
-		} while (IPuzzleGenerator.Solver.Solve(pPuzzle, pSolution, 2) == 0);
+		} while (Solver.Solve(pPuzzle, pSolution, 2) == 0);
 	}
 
 
