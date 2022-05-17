@@ -1402,6 +1402,25 @@ public unsafe partial struct Grid :
 	internal static partial Regex ExtendedSusserEliminationsRegex();
 
 
+	/// <summary>
+	/// Gets a sudoku grid, removing all digits filled in the cells
+	/// that doesn't appear in the specified <paramref name="pattern"/>.
+	/// </summary>
+	/// <param name="grid">The grid.</param>
+	/// <param name="pattern">The pattern.</param>
+	/// <returns>The result grid.</returns>
+	public static Grid operator &(in Grid grid, in Cells pattern)
+	{
+		var result = grid;
+		foreach (int cell in ~pattern)
+		{
+			result[cell] = -1;
+		}
+
+		return result;
+	}
+
+
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	static bool IEqualityOperators<Grid, Grid>.operator ==(Grid left, Grid right) => left == right;
