@@ -71,6 +71,17 @@ public unsafe ref partial struct ValueList<TUnmanaged> where TUnmanaged : unmana
 		get => _length;
 	}
 
+	/// <summary>
+	/// Indicates the length of the list. The property is same as <see cref="Count"/>, but the property is used
+	/// by slicing and list patterns.
+	/// </summary>
+	/// <seealso cref="Count"/>
+	public readonly int Length
+	{
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		get => _length;
+	}
+
 
 	/// <summary>
 	/// Gets the element from the current list, or sets the element to the current list,
@@ -128,6 +139,26 @@ public unsafe ref partial struct ValueList<TUnmanaged> where TUnmanaged : unmana
 	{
 		NativeMemory.Free(_startPtr);
 		_startPtr = null;
+	}
+
+	/// <summary>
+	/// Determines whether the specified element is in the current collection
+	/// using the specified equality comparing method to define whether two instances are considered equal.
+	/// </summary>
+	/// <param name="instance">The instance to be determined.</param>
+	/// <param name="predicate">A method that defines whether two instances are considered equal.</param>
+	/// <returns>A <see cref="bool"/> value indicating that.</returns>
+	public unsafe bool Contains(TUnmanaged instance, delegate*<TUnmanaged, TUnmanaged, bool> predicate)
+	{
+		foreach (var element in this)
+		{
+			if (predicate(element, instance))
+			{
+				return true;
+			}
+		}
+
+		return false;
 	}
 
 	/// <inheritdoc cref="object.ToString"/>

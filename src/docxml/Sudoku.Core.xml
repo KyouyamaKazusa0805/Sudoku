@@ -560,6 +560,9 @@
         <member name="M:Sudoku.Concepts.Collections.Candidates.Equals(System.Object)">
             <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
         </member>
+        <member name="M:Sudoku.Concepts.Collections.Candidates.Equals(Sudoku.Concepts.Collections.Candidates@)">
+            <inheritdoc cref="M:System.IEquatable`1.Equals(`0)"/>
+        </member>
         <member name="M:Sudoku.Concepts.Collections.Candidates.System#IEquatable{Sudoku#Concepts#Collections#Candidates}#Equals(Sudoku.Concepts.Collections.Candidates)">
             <inheritdoc/>
         </member>
@@ -1249,6 +1252,9 @@
         </member>
         <member name="M:Sudoku.Concepts.Collections.Cells.Equals(System.Object)">
             <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.Collections.Cells.Equals(Sudoku.Concepts.Collections.Cells@)">
+            <inheritdoc cref="M:System.IEquatable`1.Equals(`0)"/>
         </member>
         <member name="M:Sudoku.Concepts.Collections.Cells.System#IEquatable{Sudoku#Concepts#Collections#Cells}#Equals(Sudoku.Concepts.Collections.Cells)">
             <inheritdoc/>
@@ -5300,6 +5306,9 @@
             Throws when two instances contains different eliminated reason.
             </exception>
         </member>
+        <member name="M:Sudoku.Concepts.Solving.ExocetElimination.Equals(Sudoku.Concepts.Solving.ExocetElimination@)">
+            <inheritdoc cref="M:System.IEquatable`1.Equals(`0)"/>
+        </member>
         <member name="M:Sudoku.Concepts.Solving.ExocetElimination.System#IEquatable{Sudoku#Concepts#Solving#ExocetElimination}#Equals(Sudoku.Concepts.Solving.ExocetElimination)">
             <inheritdoc/>
         </member>
@@ -7742,6 +7751,131 @@
             The result puzzle generated. If cancelled, the return value will be <see cref="F:Sudoku.Concepts.Collections.Grid.Undefined"/>.
             </returns>
         </member>
+        <member name="T:Sudoku.Generating.Puzzlers.PatternBasedPuzzleGenerator">
+            <summary>
+            Indicates a puzzle generator that uses the pattern-based sudoku generation algorithm.
+            </summary>
+            <remarks>
+            The main idea can be in short via those steps:
+            <list type="number">
+            <item>Randomize to generate a pattern which contains about 24 cells.</item>
+            <item>
+            Randomize to get some numbers (Just about 3 digits is okay).
+            These digits should guarantee the validity of the pattern.
+            </item>
+            <item>Try to solve this as the multiple solution puzzle. Our aim in this step is to get a valid solution.</item>
+            <item>Remove digits not filled in the pattern.</item>
+            <item>
+            Check validity of the removed puzzle. If the puzzle is unique, generated successfully, and return this puzzle;
+            otherwise, adjust pattern slightly and try again. If failed after having tried 10000 times, we will re-generate
+            a sudoku puzzle.
+            </item>
+            </list>
+            </remarks>
+        </member>
+        <member name="F:Sudoku.Generating.Puzzlers.PatternBasedPuzzleGenerator.RetrialTimes">
+            <summary>
+            Indicates the times that can retry a new pattern without updating sudoku solution template.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Generating.Puzzlers.PatternBasedPuzzleGenerator.MinPatternCellsCount">
+            <summary>
+            Indicates the number of pattern cells used that can be used in the generation for a pattern.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Generating.Puzzlers.PatternBasedPuzzleGenerator.MaxPatternCellsCount">
+            <summary>
+            Indicates the number of pattern cells used that can be used in the generation for a pattern.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Generating.Puzzlers.PatternBasedPuzzleGenerator.EmptyGridCharArray">
+            <summary>
+            Indicates the empty grid characters.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Generating.Puzzlers.PatternBasedPuzzleGenerator.Solver">
+            <inheritdoc cref="F:Sudoku.Generating.Puzzlers.HardLikePuzzleGenerator.Solver"/>
+        </member>
+        <member name="F:Sudoku.Generating.Puzzlers.PatternBasedPuzzleGenerator.SolverWithSolution">
+            <summary>
+            Indicates the solver with solution grid can be used.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Generating.Puzzlers.PatternBasedPuzzleGenerator._baseCandidates">
+            <summary>
+            Indicates the base candidates.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Generating.Puzzlers.PatternBasedPuzzleGenerator._pattern">
+            <summary>
+            Indicates the pattern.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Generating.Puzzlers.PatternBasedPuzzleGenerator._random">
+            <inheritdoc cref="F:Sudoku.Generating.Puzzlers.HardLikePuzzleGenerator._random"/>
+        </member>
+        <member name="M:Sudoku.Generating.Puzzlers.PatternBasedPuzzleGenerator.#ctor">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Generating.Puzzlers.PatternBasedPuzzleGenerator"/> instance.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Generating.Puzzlers.PatternBasedPuzzleGenerator.#ctor(Sudoku.Concepts.Collections.Cells@)">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Generating.Puzzlers.PatternBasedPuzzleGenerator"/> instance via the specified pattern.
+            </summary>
+            <param name="pattern">The pattern.</param>
+        </member>
+        <member name="M:Sudoku.Generating.Puzzlers.PatternBasedPuzzleGenerator.#ctor(Sudoku.Concepts.Collections.Cells@,System.Int32[])">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Generating.Puzzlers.PatternBasedPuzzleGenerator"/> instance via the specified pattern
+            and the initial candidates as the pattern.
+            </summary>
+            <param name="pattern">The pattern.</param>
+            <param name="baseCandidates">The base candidates.</param>
+        </member>
+        <member name="M:Sudoku.Generating.Puzzlers.PatternBasedPuzzleGenerator.Generate(System.Threading.CancellationToken)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Generating.Puzzlers.PatternBasedPuzzleGenerator.Generate(System.Int32,System.Threading.CancellationToken)">
+            <summary>
+            Creates a sudoku puzzle via the specified trial times.
+            </summary>
+            <param name="times">The trial times.</param>
+            <param name="cancellationToken">The cancellation token that can cancel the operation.</param>
+            <returns>
+            If user has cancelled the operation or the maximum trial times has been reached, <see cref="F:Sudoku.Concepts.Collections.Grid.Undefined"/>;
+            otherwise, the valid grid.
+            </returns>
+            <exception cref="T:System.InvalidOperationException">Throws when the field <c>_baseCandidates</c> is invalid.</exception>
+        </member>
+        <member name="M:Sudoku.Generating.Puzzlers.PatternBasedPuzzleGenerator.AdjustPattern(Sudoku.Concepts.Collections.Cells@)">
+            <summary>
+            Adjust a pattern slightly.
+            </summary>
+            <param name="cells">The cells.</param>
+        </member>
+        <member name="M:Sudoku.Generating.Puzzlers.PatternBasedPuzzleGenerator.GeneratePattern">
+            <summary>
+            Randomize to generate a pattern.
+            </summary>
+            <returns>A pattern result.</returns>
+        </member>
+        <member name="M:Sudoku.Generating.Puzzlers.PatternBasedPuzzleGenerator.RandomizeThreeDigits">
+            <summary>
+            Randomize to generate three candidates at different places.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Sudoku.Generating.Puzzlers.PatternBasedPuzzleGenerator.GetCells(System.Int32,System.Int32)">
+            <summary>
+            Get the cells that is used for swapping via <see cref="F:Sudoku.Concepts.SymmetryType.Central"/>,
+            and the specified row and column value.
+            </summary>
+            <param name="row">The row value.</param>
+            <param name="column">The column value.</param>
+            <returns>The cells.</returns>
+            <seealso cref="F:Sudoku.Concepts.SymmetryType.Central"/>
+        </member>
         <member name="T:Sudoku.Generating.Puzzlers.SymmetricPatternPuzzleGenerator">
             <summary>
             Defines a symmetric puzzle generator, that is, a generator than can include the symmetrical placement
@@ -8071,6 +8205,9 @@
         </member>
         <member name="M:Sudoku.Presentation.LockedTarget.Equals(System.Object)">
             <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
+        </member>
+        <member name="M:Sudoku.Presentation.LockedTarget.Equals(Sudoku.Presentation.LockedTarget)">
+            <inheritdoc cref="M:System.IEquatable`1.Equals(`0)"/>
         </member>
         <member name="M:Sudoku.Presentation.LockedTarget.System#IEquatable{Sudoku#Presentation#LockedTarget}#Equals(Sudoku.Presentation.LockedTarget)">
             <inheritdoc/>
@@ -10916,7 +11053,35 @@
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Solving.BacktrackingSolver.Solve(Sudoku.Concepts.Collections.Grid@,Sudoku.Concepts.Collections.Grid@)">
-            <inheritdoc/>
+            <summary>
+            To solve the specified grid.
+            </summary>
+            <param name="grid">The grid to be solved.</param>
+            <param name="result">
+            <para>The result of the grid.</para>
+            <para>
+            Different with other methods whose containing type is <see cref="T:Sudoku.Solving.ISimpleSolver"/>,
+            this argument can be used no matter what the result value will be.
+            </para>
+            </param>
+            <returns>
+            A <see cref="T:System.Boolean"/>? value indicating whether the grid can be solved, i.e. has a unique solution.
+            Please note that the method will return three possible values:
+            <list type="table">
+            <item>
+            <term><see langword="true"/></term>
+            <description>The puzzle has a unique solution.</description>
+            </item>
+            <item>
+            <term><see langword="false"/></term>
+            <description>The puzzle has multiple solutions.</description>
+            </item>
+            <item>
+            <term><see langword="null"/></term>
+            <description>The puzzle has no solution.</description>
+            </item>
+            </list>
+            </returns>
         </member>
         <member name="T:Sudoku.Solving.BitwiseSolver">
             <summary>

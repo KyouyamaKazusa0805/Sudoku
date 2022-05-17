@@ -1,0 +1,274 @@
+﻿namespace Sudoku.Generating.Puzzlers;
+
+/// <summary>
+/// Indicates a puzzle generator that uses the pattern-based sudoku generation algorithm.
+/// </summary>
+/// <remarks>
+/// The main idea can be in short via those steps:
+/// <list type="number">
+/// <item>Randomize to generate a pattern which contains about 24 cells.</item>
+/// <item>
+/// Randomize to get some numbers (Just about 3 digits is okay).
+/// These digits should guarantee the validity of the pattern.
+/// </item>
+/// <item>Try to solve this as the multiple solution puzzle. Our aim in this step is to get a valid solution.</item>
+/// <item>Remove digits not filled in the pattern.</item>
+/// <item>
+/// Check validity of the removed puzzle. If the puzzle is unique, generated successfully, and return this puzzle;
+/// otherwise, adjust pattern slightly and try again. If failed after having tried 10000 times, we will re-generate
+/// a sudoku puzzle.
+/// </item>
+/// </list>
+/// </remarks>
+public sealed unsafe class PatternBasedPuzzleGenerator : IPuzzler
+{
+	/// <summary>
+	/// Indicates the times that can retry a new pattern without updating sudoku solution template.
+	/// </summary>
+	private const int RetrialTimes = 1000;
+
+	/// <summary>
+	/// Indicates the number of pattern cells used that can be used in the generation for a pattern.
+	/// </summary>
+	private const int MinPatternCellsCount = 20, MaxPatternCellsCount = 28;
+
+
+	/// <summary>
+	/// Indicates the empty grid characters.
+	/// </summary>
+	private static readonly char[] EmptyGridCharArray = Grid.EmptyString.ToCharArray();
+
+	/// <inheritdoc cref="HardLikePuzzleGenerator.Solver"/>
+	private static readonly BitwiseSolver Solver = new();
+
+	/// <summary>
+	/// Indicates the solver with solution grid can be used.
+	/// </summary>
+	private static readonly BacktrackingSolver SolverWithSolution = new();
+
+
+	/// <summary>
+	/// Indicates the base candidates.
+	/// </summary>
+	private readonly int[]? _baseCandidates;
+
+	/// <summary>
+	/// Indicates the pattern.
+	/// </summary>
+	private readonly Cells? _pattern;
+
+	/// <inheritdoc cref="HardLikePuzzleGenerator._random"/>
+	private readonly Random _random = new();
+
+
+	/// <summary>
+	/// Initializes a <see cref="PatternBasedPuzzleGenerator"/> instance.
+	/// </summary>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public PatternBasedPuzzleGenerator()
+	{
+	}
+
+	/// <summary>
+	/// Initializes a <see cref="PatternBasedPuzzleGenerator"/> instance via the specified pattern.
+	/// </summary>
+	/// <param name="pattern">The pattern.</param>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public PatternBasedPuzzleGenerator(in Cells pattern) => _pattern = pattern;
+
+	/// <summary>
+	/// Initializes a <see cref="PatternBasedPuzzleGenerator"/> instance via the specified pattern
+	/// and the initial candidates as the pattern.
+	/// </summary>
+	/// <param name="pattern">The pattern.</param>
+	/// <param name="baseCandidates">The base candidates.</param>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public PatternBasedPuzzleGenerator(in Cells pattern, int[] baseCandidates)
+		=> (_pattern, _baseCandidates) = (pattern, baseCandidates);
+
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public Grid Generate(CancellationToken cancellationToken = default) => Generate(int.MaxValue, cancellationToken);
+
+	/// <summary>
+	/// Creates a sudoku puzzle via the specified trial times.
+	/// </summary>
+	/// <param name="times">The trial times.</param>
+	/// <param name="cancellationToken">The cancellation token that can cancel the operation.</param>
+	/// <returns>
+	/// If user has cancelled the operation or the maximum trial times has been reached, <see cref="Grid.Undefined"/>;
+	/// otherwise, the valid grid.
+	/// </returns>
+	/// <exception cref="InvalidOperationException">Throws when the field <c>_baseCandidates</c> is invalid.</exception>
+	public Grid Generate(int times, CancellationToken cancellationToken = default)
+	{
+		for (int trialTimeIndex = 0; trialTimeIndex < times; trialTimeIndex++)
+		{
+			while (!cancellationToken.IsCancellationRequested)
+			{
+				// Generate a pattern.
+				var pattern = _pattern is { } p ? p : GeneratePattern();
+
+				char[] emptyChars = new char[BitwiseSolver.BufferLength];
+				char[] solutionBuffer = new char[BitwiseSolver.BufferLength];
+				emptyChars[81] = '\0';
+				solutionBuffer[81] = '\0';
+
+				// Randomize a multiple-solution grid.
+				fixed (char* ptr = emptyChars, clonedPtr = solutionBuffer, fixedEmptyGridCharsPtr = EmptyGridCharArray)
+				{
+					Unsafe.CopyBlock(ptr, fixedEmptyGridCharsPtr, sizeof(char) * 81);
+
+					if (_baseCandidates is null)
+					{
+						var (c1, c2, c3) = RandomizeThreeDigits();
+						ptr[c1 / 9] = (char)(c1 % 9 + '1');
+						ptr[c2 / 9] = (char)(c2 % 9 + '1');
+						ptr[c3 / 9] = (char)(c3 % 9 + '1');
+					}
+					else
+					{
+						foreach (int baseCandidate in _baseCandidates)
+						{
+							ptr[baseCandidate / 9] = (char)(baseCandidate % 9 + '1');
+						}
+					}
+
+					if (SolverWithSolution.Solve(Grid.Parse(ptr), out var solution) is null)
+					{
+						if (_baseCandidates is not null)
+						{
+							throw new InvalidOperationException(
+								$"The field {nameof(_baseCandidates)} is invalid to be set as the initial case.");
+						}
+
+						continue;
+					}
+
+					for (int retrialTimeIndex = 0; retrialTimeIndex < RetrialTimes; retrialTimeIndex++)
+					{
+						fixed (char* solutionPtr = solution.ToString("!"))
+						{
+							Unsafe.CopyBlock(clonedPtr, solutionPtr, sizeof(char) * 81);
+						}
+
+						// Remove digits not being filled in the pattern.
+						for (int index = 0; index < 81; index++)
+						{
+							if (!pattern.Contains(index))
+							{
+								clonedPtr[index] = '0';
+							}
+						}
+
+						// Checks the validity.
+						if (Solver.Solve(clonedPtr, null, 2) == 1)
+						{
+							// Unique puzzle. Return the value.
+							return Grid.Parse(clonedPtr);
+						}
+
+						// If the puzzle is invalid, we can adjust the pattern and try again.
+						AdjustPattern(ref pattern);
+
+						// Check whether user has cancelled the operation.
+						if (cancellationToken.IsCancellationRequested)
+						{
+							goto ReturnDefault;
+						}
+					}
+				}
+			}
+		}
+
+	ReturnDefault:
+		return Grid.Undefined;
+	}
+
+	/// <summary>
+	/// Adjust a pattern slightly.
+	/// </summary>
+	/// <param name="cells">The cells.</param>
+	private void AdjustPattern(ref Cells cells)
+	{
+		int index = _random.Next(0, cells.Count);
+		int cellToBeDeleted = cells[index];
+		int[] tempCells = GetCells(cellToBeDeleted / 9, cellToBeDeleted % 9);
+		cells -= tempCells;
+
+		int newCell;
+		while (true)
+		{
+			newCell = _random.Next(0, 81);
+			if (!cells.Contains(newCell) && newCell != 40)
+			{
+				break;
+			}
+		}
+
+		cells |= GetCells(newCell / 9, newCell % 9);
+	}
+
+	/// <summary>
+	/// Randomize to generate a pattern.
+	/// </summary>
+	/// <returns>A pattern result.</returns>
+	private Cells GeneratePattern()
+	{
+		var result = Cells.Empty;
+		int resultCellsCount = _random.Next(MinPatternCellsCount, MaxPatternCellsCount);
+		if ((resultCellsCount & 1) != 0)
+		{
+			result.Add(40);
+		}
+
+		while (true)
+		{
+			int cell = _random.Next(0, 81);
+			result |= GetCells(cell / 9, cell % 9);
+			if (result.Count - resultCellsCount is 1 or 0 or -1)
+			{
+				return result;
+			}
+		}
+	}
+
+	/// <summary>
+	/// Randomize to generate three candidates at different places.
+	/// </summary>
+	/// <returns></returns>
+	private (int, int, int) RandomizeThreeDigits()
+	{
+		using var list = new ValueList<int>(3);
+		while (true)
+		{
+			int candidate = _random.Next(0, 728);
+			if (!list.Contains(candidate, &predicate))
+			{
+				list.Add(candidate);
+				if (list is [var a, var b, var c])
+				{
+					return (a, b, c);
+				}
+			}
+		}
+
+
+		static bool predicate(int a, int b)
+			=> a / 9 == b / 9 // Cannot in a same cell.
+			|| PeerMaps[a / 9] + b / 9 == PeerMaps[a / 9] && a % 9 == b % 9; // Cannot be a same digit in a same house.
+	}
+
+
+	/// <summary>
+	/// Get the cells that is used for swapping via <see cref="SymmetryType.Central"/>,
+	/// and the specified row and column value.
+	/// </summary>
+	/// <param name="row">The row value.</param>
+	/// <param name="column">The column value.</param>
+	/// <returns>The cells.</returns>
+	/// <seealso cref="SymmetryType.Central"/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	private static int[] GetCells(int row, int column) => new[] { row * 9 + column, (8 - row) * 9 + 8 - column };
+}

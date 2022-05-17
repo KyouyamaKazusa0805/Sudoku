@@ -8,7 +8,7 @@ namespace Sudoku.Concepts.Collections;
 [DebuggerDisplay($$"""{{{nameof(ToString)}}("#")}""")]
 [JsonConverter(typeof(JsonConverter))]
 [DisableParameterlessConstructor(SuggestedMemberName = nameof(Empty))]
-[AutoOverridesEquals(UseExplicitImplementation = true)]
+[AutoOverridesEquals(UseExplicitImplementation = true, EmitsInKeyword = true)]
 [AutoOverloadsEqualityOperators(EmitsInKeyword = true)]
 [AutoOverridesGetHashCode(nameof(IsUndefined), nameof(IsEmpty), Pattern = """this switch { { [0]: true } => 0, { [1]: true } => 1, _ => ToString("#").* }""")]
 [AutoBePinnable(typeof(short), "_values[0]")]

@@ -140,15 +140,27 @@ public sealed class AutoOverridesEqualsGenerator : IIncrementalGenerator
 				=> method is
 				{
 					Name: nameof(object.Equals),
-					Parameters: [{ Type: var parameterType }],
+					Parameters: [{ Type: var parameterType, RefKind: var refKind }],
 					ReturnType.SpecialType: SpecialType.System_Boolean
-				} && SymbolEqualityComparer.Default.Equals(parameterType, type) && !isRecord;
+				} && SymbolEqualityComparer.Default.Equals(parameterType, type) && !isRecord
+				&& refKind == (string.IsNullOrEmpty(inKeyword) ? RefKind.None : RefKind.In);
 			string nullableAnnotation = typeKind == TypeKind.Class ? "?" : string.Empty;
 			bool containsGenericEquals = type.GetMembers().OfType<IMethodSymbol>().Any(methodPredicate);
-			string genericEquals = (containsGenericEquals, isExplicitImpl) switch
+			string genericEqualsMethod = containsGenericEquals
+				? "// The method already exists."
+				: $$"""
+					/// <inheritdoc cref="IEquatable{T}.Equals(T)"/>
+					[global::System.Runtime.CompilerServices.CompilerGenerated]
+					[global::System.CodeDom.Compiler.GeneratedCode("{{typeof(AutoOverridesEqualsGenerator).FullName}}", "{{VersionValue}}")]
+					[global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
+					public {{readOnlyKeyword}}bool {{nameof(Equals)}}({{nullableAttribute}}{{inKeyword}}{{fullTypeName}}{{nullableAnnotation}} other)
+						=> {{string.Join(" && ", targetSymbolsRawString)}};
+				""";
+			string genericEquals = isExplicitImpl switch
 			{
-				(true, false) => $"\t// The method '{nameof(Equals)}({fullTypeName}{nullableAnnotation})' exists.",
-				(_, true) => $$"""
+				true => $$"""
+					{{genericEqualsMethod}}
+					
 					/// <inheritdoc/>
 					[global::System.Runtime.CompilerServices.CompilerGenerated]
 					[global::System.CodeDom.Compiler.GeneratedCode("{{typeof(AutoOverridesEqualsGenerator).FullName}}", "{{VersionValue}}")]
@@ -156,14 +168,7 @@ public sealed class AutoOverridesEqualsGenerator : IIncrementalGenerator
 					{{readOnlyKeyword}}bool global::System.IEquatable<{{fullTypeName}}>.{{nameof(Equals)}}({{nullableAttribute}}{{fullTypeName}}{{nullableAnnotation}} other)
 						=> {{nameof(Equals)}}(other);
 				""",
-				_ => $$"""
-					/// <inheritdoc cref="IEquatable{T}.Equals(T)"/>
-					[global::System.Runtime.CompilerServices.CompilerGenerated]
-					[global::System.CodeDom.Compiler.GeneratedCode("{{typeof(AutoOverridesEqualsGenerator).FullName}}", "{{VersionValue}}")]
-					[global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
-					public {{readOnlyKeyword}}bool {{nameof(Equals)}}({{nullableAttribute}}{{inKeyword}}{{fullTypeName}}{{nullableAnnotation}} other)
-						=> {{string.Join(" && ", targetSymbolsRawString)}};
-				"""
+				_ => genericEqualsMethod
 			};
 
 			spc.AddSource(

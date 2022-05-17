@@ -11,7 +11,7 @@ global using Sudoku.CommandLine.RootCommands;
 global using Sudoku.CommandLine.ValueConverters;
 global using Sudoku.Concepts.Collections;
 global using Sudoku.Concepts.Parsing;
-global using Sudoku.Generating;
+global using Sudoku.Generating.Puzzlers;
 global using Sudoku.Solving;
 global using Sudoku.Solving.Manual;
 global using static System.Math;

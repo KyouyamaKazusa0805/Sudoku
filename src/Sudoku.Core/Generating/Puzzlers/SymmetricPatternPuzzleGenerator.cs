@@ -140,31 +140,34 @@ public sealed unsafe class SymmetricPatternPuzzleGenerator : IPuzzler
 			SymmetryType.AntiDiagonal => new[] { row * 9 + column, (8 - column) * 9 + 8 - row },
 			SymmetryType.XAxis => new[] { row * 9 + column, (8 - row) * 9 + column },
 			SymmetryType.YAxis => new[] { row * 9 + column, row * 9 + 8 - column },
-			SymmetryType.DiagonalBoth => new[]
-			{
-				row * 9 + column,
-				column * 9 + row,
-				(8 - column) * 9 + 8 - row,
-				(8 - row) * 9 + 8 - column
-			},
-			SymmetryType.AxisBoth => new[]
-			{
-				row * 9 + column,
-				(8 - row) * 9 + column,
-				row * 9 + 8 - column,
-				(8 - row) * 9 + 8 - column
-			},
-			SymmetryType.All => new[]
-			{
-				row * 9 + column,
-				row * 9 + (8 - column),
-				(8 - row) * 9 + column,
-				(8 - row) * 9 + (8 - column),
-				column * 9 + row,
-				column * 9 + (8 - row),
-				(8 - column) * 9 + row,
-				(8 - column) * 9 + (8 - row)
-			},
+			SymmetryType.DiagonalBoth
+				=> new[]
+				{
+					row * 9 + column,
+					column * 9 + row,
+					(8 - column) * 9 + 8 - row,
+					(8 - row) * 9 + 8 - column
+				},
+			SymmetryType.AxisBoth
+				=> new[]
+				{
+					row * 9 + column,
+					(8 - row) * 9 + column,
+					row * 9 + 8 - column,
+					(8 - row) * 9 + 8 - column
+				},
+			SymmetryType.All
+				=> new[]
+				{
+					row * 9 + column,
+					row * 9 + (8 - column),
+					(8 - row) * 9 + column,
+					(8 - row) * 9 + (8 - column),
+					column * 9 + row,
+					column * 9 + (8 - row),
+					(8 - column) * 9 + row,
+					(8 - column) * 9 + (8 - row)
+				},
 			SymmetryType.None => new[] { row * 9 + column },
 			_ => Array.Empty<int>()
 		};

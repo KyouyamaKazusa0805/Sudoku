@@ -31,7 +31,7 @@ public sealed class Generate : IExecutable
 		{
 			case GenerateType.HardPatternLike:
 			{
-				var generator = new HardPatternPuzzleGenerator();
+				var generator = new HardLikePuzzleGenerator();
 				while (true)
 				{
 					var targetPuzzle = generator.Generate();

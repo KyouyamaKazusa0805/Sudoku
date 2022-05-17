@@ -324,6 +324,7 @@ Global
 		{53AA4AE8-2517-4D85-9215-9ABB53FC751E}.Build|x86.ActiveCfg = Release|Any CPU
 		{53AA4AE8-2517-4D85-9215-9ABB53FC751E}.Build|x86.Build.0 = Release|Any CPU
 		{53AA4AE8-2517-4D85-9215-9ABB53FC751E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{53AA4AE8-2517-4D85-9215-9ABB53FC751E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{53AA4AE8-2517-4D85-9215-9ABB53FC751E}.Debug|ARM.ActiveCfg = Debug|Any CPU
 		{53AA4AE8-2517-4D85-9215-9ABB53FC751E}.Debug|ARM.Build.0 = Debug|Any CPU
 		{53AA4AE8-2517-4D85-9215-9ABB53FC751E}.Debug|ARM64.ActiveCfg = Debug|Any CPU
@@ -476,8 +477,8 @@ Global
 		{97E923EF-D540-4691-85BB-161F2EF1F74B} = {0D732DB7-E4C8-482F-AFBB-8F674305AE6A}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		RESX_ShowErrorsInErrorList = False
-		RESX_Rules = {"EnabledRules":["StringFormat"]}
 		SolutionGuid = {E2B6A644-F820-4AB3-8508-C3C59838C955}
+		RESX_Rules = {"EnabledRules":["StringFormat"]}
+		RESX_ShowErrorsInErrorList = False
 	EndGlobalSection
 EndGlobal

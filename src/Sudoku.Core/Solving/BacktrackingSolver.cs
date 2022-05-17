@@ -26,15 +26,42 @@ public sealed class BacktrackingSolver : ISimpleSolver
 	public static string UriLink => "https://simple.wikipedia.org/wiki/Backtracking";
 
 
-	/// <inheritdoc/>
+	/// <summary>
+	/// To solve the specified grid.
+	/// </summary>
+	/// <param name="grid">The grid to be solved.</param>
+	/// <param name="result">
+	/// <para>The result of the grid.</para>
+	/// <para>
+	/// Different with other methods whose containing type is <see cref="ISimpleSolver"/>,
+	/// this argument can be used no matter what the result value will be.
+	/// </para>
+	/// </param>
+	/// <returns>
+	/// A <see cref="bool"/>? value indicating whether the grid can be solved, i.e. has a unique solution.
+	/// Please note that the method will return three possible values:
+	/// <list type="table">
+	/// <item>
+	/// <term><see langword="true"/></term>
+	/// <description>The puzzle has a unique solution.</description>
+	/// </item>
+	/// <item>
+	/// <term><see langword="false"/></term>
+	/// <description>The puzzle has multiple solutions.</description>
+	/// </item>
+	/// <item>
+	/// <term><see langword="null"/></term>
+	/// <description>The puzzle has no solution.</description>
+	/// </item>
+	/// </list>
+	/// </returns>
 	public bool? Solve(in Grid grid, out Grid result)
 	{
-		Unsafe.SkipInit(out result);
-
+		int[]? resultArray = null;
 		try
 		{
 			int solutionsCount = 0;
-			int[]? resultArray = null, gridArray = grid.ToArray();
+			int[]? gridArray = grid.ToArray();
 			solve(ref solutionsCount, ref resultArray, gridArray, 0);
 
 			if (resultArray is null)
@@ -47,6 +74,7 @@ public sealed class BacktrackingSolver : ISimpleSolver
 		}
 		catch (InvalidOperationException ex) when (ex.Message == "The grid contains multiple solutions.")
 		{
+			result = new(resultArray!, GridCreatingOption.MinusOne);
 			return false;
 		}
 
