@@ -270,5 +270,8 @@ public sealed unsafe class PatternBasedPuzzleGenerator : IPuzzler
 	/// <returns>The cells.</returns>
 	/// <seealso cref="SymmetryType.Central"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	private static int[] GetCells(int row, int column) => new[] { row * 9 + column, (8 - row) * 9 + 8 - column };
+	private static int[] GetCells(int row, int column)
+		=> row == 4 && column == 4
+			? new[] { 40 }
+			: new[] { row * 9 + column, (8 - row) * 9 + 8 - column };
 }
