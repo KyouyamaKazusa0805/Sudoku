@@ -147,7 +147,7 @@ public sealed class AutoOverridesEqualsGenerator : IIncrementalGenerator
 			string nullableAnnotation = typeKind == TypeKind.Class ? "?" : string.Empty;
 			bool containsGenericEquals = type.GetMembers().OfType<IMethodSymbol>().Any(methodPredicate);
 			string genericEqualsMethod = containsGenericEquals
-				? "// The method already exists."
+				? "\t// The method already exists."
 				: $$"""
 					/// <inheritdoc cref="IEquatable{T}.Equals(T)"/>
 					[global::System.Runtime.CompilerServices.CompilerGenerated]
