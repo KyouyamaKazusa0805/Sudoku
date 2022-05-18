@@ -11175,22 +11175,6 @@
         <member name="M:Sudoku.Runtime.AnalysisServices.CommonReadOnlies.ValueTupleComparer.GetHashCode(System.ValueTuple{System.Byte,System.Byte})">
             <inheritdoc/>
         </member>
-        <member name="T:Sudoku.Runtime.Reflection.EnumFieldNameAttribute">
-            <summary>
-            Defines the name of a field in an enumeration type.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Runtime.Reflection.EnumFieldNameAttribute.#ctor(System.String)">
-            <summary>
-            Initializes an <see cref="T:Sudoku.Runtime.Reflection.EnumFieldNameAttribute"/> instance via the specified name.
-            </summary>
-            <param name="name">The name.</param>
-        </member>
-        <member name="P:Sudoku.Runtime.Reflection.EnumFieldNameAttribute.Name">
-            <summary>
-            Indicates the name of the field.
-            </summary>
-        </member>
         <member name="T:Sudoku.Runtime.Reflection.FormatItemAttribute">
             <summary>
             Marks on a property to tell the user the property is only used for the formatting.
