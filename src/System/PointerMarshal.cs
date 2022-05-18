@@ -45,7 +45,6 @@ public static unsafe class PointerMarshal
 	{
 		Argument.ThrowIfNull(ptr);
 
-#if true
 		int result = 0;
 		for (char* p = ptr; *p != '\0'; p++)
 		{
@@ -53,10 +52,34 @@ public static unsafe class PointerMarshal
 		}
 
 		return result;
-#else
-		// This expression works but also causes extra memory allocations.
-		return new string(ptr).Length;
-#endif
+	}
+
+	/// <summary>
+	/// Get the length of the specified string which is represented by a <see cref="Utf8Char"/>*.
+	/// </summary>
+	/// <param name="ptr">The pointer.</param>
+	/// <returns>The total length.</returns>
+	/// <exception cref="ArgumentNullException">
+	/// Throws when the argument <paramref name="ptr"/> is <see langword="null"/>.
+	/// </exception>
+	/// <remarks>
+	/// In C#, this function is unsafe because the implementation of
+	/// <see cref="Utf8String"/> types between C and C# is totally different.
+	/// In C, <see cref="Utf8String"/> is like a <see cref="Utf8Char"/>* or a
+	/// <see cref="Utf8Char"/>[], they ends with the terminator symbol <c>'\0'</c>.
+	/// However, C# not.
+	/// </remarks>
+	public static int StringLengthOf(Utf8Char* ptr)
+	{
+		Argument.ThrowIfNull(ptr);
+
+		int result = 0;
+		for (var p = ptr; *p != (Utf8Char)'\0'; p++)
+		{
+			result++;
+		}
+
+		return result;
 	}
 
 	/// <summary>

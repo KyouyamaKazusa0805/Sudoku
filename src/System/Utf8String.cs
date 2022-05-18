@@ -39,6 +39,18 @@ public readonly partial struct Utf8String :
 		Array.Fill(_value, c);
 	}
 
+	/// <inheritdoc cref="string(char*)"/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public unsafe Utf8String(Utf8Char* value)
+	{
+		int length = PointerMarshal.StringLengthOf(value);
+		_value = new Utf8Char[length];
+		fixed (Utf8Char* ptrValue = _value)
+		{
+			Unsafe.CopyBlock(ptrValue, value, (uint)(sizeof(Utf8Char) * length));
+		}
+	}
+
 	/// <summary>
 	/// Initializes a <see cref="Utf8String"/> instance via the specified array of <see cref="Utf8Char"/>s
 	/// as the underlying array.
@@ -78,7 +90,7 @@ public readonly partial struct Utf8String :
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => _value;
 	}
-	
+
 	/// <inheritdoc/>
 	int IReadOnlyCollection<Utf8Char>.Count
 	{
@@ -155,6 +167,14 @@ public readonly partial struct Utf8String :
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public bool Contains(Utf8Char c) => IndexOf(c) != -1;
 
+	/// <summary>
+	/// Determines whether the current string contains the specified UTF-8 string.
+	/// </summary>
+	/// <param name="s">The string.</param>
+	/// <returns>A <see cref="bool"/> value indicating that.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public bool Contains(Utf8String s) => IndexOf(s) != -1;
+
 	/// <inheritdoc/>
 	public override unsafe int GetHashCode()
 	{
@@ -201,6 +221,56 @@ public readonly partial struct Utf8String :
 	/// </returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public int IndexOf(Utf8Char c) => Array.IndexOf(_value, c);
+
+	/// <summary>
+	/// Reports the zero-based index of the first occurrence of the specified UTF-8 string in this string.
+	/// </summary>
+	/// <param name="s">The character.</param>
+	/// <returns>
+	/// The zero-based index position of <paramref name="s"/> if that character is found, or -1 if it is not.
+	/// </returns>
+	public int IndexOf(Utf8String s)
+	{
+		int[] next = getNext(s);
+		int i = 0, j = 0;
+
+		while (i < Length && j < s.Length)
+		{
+			if (j == -1 || this[i] == s[j])
+			{
+				i++;
+				j++;
+			}
+			else
+			{
+				j = next[j];
+			}
+		}
+
+		return j == s.Length ? i - j : -1;
+
+
+		static int[] getNext(Utf8String s)
+		{
+			int i = 0, j = -1;
+			int[] next = new int[s.Length];
+			next[0] = -1;
+
+			while (i < next.Length - 1)
+			{
+				if (j == -1 || s[i] == s[j])
+				{
+					next[++i] = ++j;
+				}
+				else
+				{
+					j = next[j];
+				}
+			}
+
+			return next;
+		}
+	}
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -297,13 +367,6 @@ public readonly partial struct Utf8String :
 
 
 	/// <summary>
-	/// Explicitly cast from <see cref="Utf8String"/> to <see cref="string"/>.
-	/// </summary>
-	/// <param name="s">The string.</param>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static explicit operator string(Utf8String s) => s.ToString();
-
-	/// <summary>
 	/// Explicitly cast from <see cref="Utf8String"/> to <see cref="Utf8Char"/>[].
 	/// </summary>
 	/// <param name="s">The string.</param>
@@ -318,9 +381,24 @@ public readonly partial struct Utf8String :
 	public static explicit operator Utf8String(string s) => new(Encoding.Default.GetBytes(s));
 
 	/// <summary>
+	/// Implicitly cast from <see cref="Utf8String"/> to <see cref="string"/>.
+	/// </summary>
+	/// <param name="s">The string.</param>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static implicit operator string(Utf8String s) => s.ToString();
+
+	/// <summary>
 	/// Implicitly cast from <see cref="Utf8Char"/>[] to <see cref="Utf8String"/>.
 	/// </summary>
 	/// <param name="underlyingArray">The underlying array.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static implicit operator Utf8String(Utf8Char[] underlyingArray) => new(underlyingArray);
+
+	/// <summary>
+	/// Implicitly cast from <see cref="byte"/>[] to <see cref="Utf8String"/>.
+	/// </summary>
+	/// <param name="underlyingArray">The underlying array.</param>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static implicit operator Utf8String(byte[] underlyingArray)
+		=> (Utf8String)Encoding.UTF8.GetString(underlyingArray);
 }

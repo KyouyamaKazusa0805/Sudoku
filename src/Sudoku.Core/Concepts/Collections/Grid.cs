@@ -1279,19 +1279,6 @@ public unsafe partial struct Grid :
 	}
 
 	/// <summary>
-	/// <para>Parses a string value and converts to this type.</para>
-	/// <para>
-	/// If you want to parse a PM grid, we recommend you use the method
-	/// <see cref="Parse(string, GridParsingOption)"/> instead of this method.
-	/// </para>
-	/// </summary>
-	/// <param name="str">The string.</param>
-	/// <returns>The result instance had converted.</returns>
-	/// <seealso cref="Parse(string, GridParsingOption)"/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static Grid Parse(ReadOnlySpan<char> str) => new GridParser(str.ToString()).Parse();
-
-	/// <summary>
 	/// Parses a pointer that points to a string value and converts to this type.
 	/// </summary>
 	/// <param name="ptrStr">The pointer that points to string.</param>
@@ -1346,6 +1333,61 @@ public unsafe partial struct Grid :
 	public static Grid Parse([InterpolatedStringHandlerArgument] ref StringHandler handler)
 		=> Parse(handler.ToStringAndClear());
 
+	/// <summary>
+	/// Parses a pointer that points to a <see cref="Utf8String"/> value and converts to this type.
+	/// </summary>
+	/// <param name="ptrStr">The pointer that points to string.</param>
+	/// <returns>The result instance.</returns>
+	/// <exception cref="ArgumentNullException">
+	/// Throws when the only argument is <see langword="null"/>.
+	/// </exception>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static Grid Parse(Utf8Char* ptrStr)
+	{
+		Argument.ThrowIfNull(ptrStr);
+
+		return Parse(new Utf8String(ptrStr));
+	}
+
+	/// <inheritdoc cref="Parse(string)"/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static Grid Parse(Utf8String str) => new Utf8GridParser(str).Parse();
+
+	/// <inheritdoc cref="Parse(string, bool)"/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static Grid Parse(Utf8String str, bool compatibleFirst) => new Utf8GridParser(str, compatibleFirst).Parse();
+
+	/// <inheritdoc cref="Parse(string, GridParsingOption)"/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static Grid Parse(Utf8String str, GridParsingOption gridParsingOption)
+		=> new Utf8GridParser(str).Parse(gridParsingOption);
+
+	/// <summary>
+	/// <para>Parses a string value and converts to this type.</para>
+	/// <para>
+	/// If you want to parse a PM grid, we recommend you use the method
+	/// <see cref="Parse(Utf8String, GridParsingOption)"/> instead of this method.
+	/// </para>
+	/// </summary>
+	/// <param name="str">The string.</param>
+	/// <returns>The result instance had converted.</returns>
+	/// <seealso cref="Parse(Utf8String, GridParsingOption)"/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static Grid Parse(ReadOnlySpan<byte> str) => new Utf8GridParser(str.ToArray()).Parse();
+
+	/// <summary>
+	/// <para>Parses a string value and converts to this type.</para>
+	/// <para>
+	/// If you want to parse a PM grid, we recommend you use the method
+	/// <see cref="Parse(string, GridParsingOption)"/> instead of this method.
+	/// </para>
+	/// </summary>
+	/// <param name="str">The string.</param>
+	/// <returns>The result instance had converted.</returns>
+	/// <seealso cref="Parse(string, GridParsingOption)"/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static Grid Parse(ReadOnlySpan<char> str) => new GridParser(str.ToString()).Parse();
+
 	/// <inheritdoc/>
 	public static bool TryParse(string str, out Grid result)
 	{
@@ -1374,6 +1416,36 @@ public unsafe partial struct Grid :
 	/// <returns>A <see cref="bool"/> value indicating that.</returns>
 	/// <seealso cref="Undefined"/>
 	public static bool TryParse(string str, GridParsingOption option, out Grid result)
+	{
+		try
+		{
+			result = Parse(str, option);
+			return true;
+		}
+		catch (FormatException)
+		{
+			result = Undefined;
+			return false;
+		}
+	}
+
+	/// <inheritdoc cref="TryParse(string, out Grid)"/>
+	public static bool TryParse(Utf8String str, out Grid result)
+	{
+		try
+		{
+			result = Parse(str);
+			return !result.IsUndefined;
+		}
+		catch (FormatException)
+		{
+			result = Undefined;
+			return false;
+		}
+	}
+
+	/// <inheritdoc cref="TryParse(string, GridParsingOption, out Grid)"/>
+	public static bool TryParse(Utf8String str, GridParsingOption option, out Grid result)
 	{
 		try
 		{

@@ -1,15 +1,15 @@
 ﻿namespace Sudoku.Concepts.Parsing;
 
-partial struct GridParser
+partial struct Utf8GridParser
 {
 	/// <summary>
 	/// Parse the value using multi-line simple grid (without any candidates).
 	/// </summary>
 	/// <param name="parser">The parser.</param>
 	/// <returns>The result.</returns>
-	private static partial Grid OnParsingSimpleMultilineGrid(ref GridParser parser)
+	private static partial Grid OnParsingSimpleMultilineGrid(ref Utf8GridParser parser)
 	{
-		string[] matches = parser.ParsingValue.MatchAll("""(\+?\d|\.)""");
+		string[] matches = parser.ParsingValue.MatchAll("""(\+?\d|\.)"""U8);
 		int length = matches.Length;
 		if (length is not (81 or 85))
 		{
@@ -66,15 +66,15 @@ partial struct GridParser
 	/// </summary>
 	/// <param name="parser">The parser.</param>
 	/// <returns>The result.</returns>
-	private static partial Grid OnParsingExcel(ref GridParser parser)
+	private static partial Grid OnParsingExcel(ref Utf8GridParser parser)
 	{
-		string parsingValue = parser.ParsingValue;
-		if (!parsingValue.Contains('\t'))
+		var parsingValue = parser.ParsingValue;
+		if (!parsingValue.Contains((Utf8Char)'\t'))
 		{
 			return Grid.Undefined;
 		}
 
-		string[] values = parsingValue.Split(new[] { '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries);
+		string[] values = ((string)parsingValue).Split(new[] { '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries);
 		if (values.Length != 9)
 		{
 			return Grid.Undefined;
@@ -97,9 +97,9 @@ partial struct GridParser
 	/// </summary>
 	/// <param name="parser">The parser.</param>
 	/// <returns>The result.</returns>
-	private static partial Grid OnParsingOpenSudoku(ref GridParser parser)
+	private static partial Grid OnParsingOpenSudoku(ref Utf8GridParser parser)
 	{
-		if (parser.ParsingValue.Match("""\d(\|\d){242}""") is not { } match)
+		if (parser.ParsingValue.Match("""\d(\|\d){242}"""U8) is not { } match)
 		{
 			return Grid.Undefined;
 		}
@@ -141,10 +141,10 @@ partial struct GridParser
 	/// </summary>
 	/// <param name="parser">The parser.</param>
 	/// <returns>The result.</returns>
-	private static partial Grid OnParsingPencilMarked(ref GridParser parser)
+	private static partial Grid OnParsingPencilMarked(ref Utf8GridParser parser)
 	{
 		// Older regular expression pattern:
-		if (parser.ParsingValue.MatchAll("""(\<\d\>|\*\d\*|\d*[\+\-]?\d+)""") is not { Length: 81 } matches)
+		if (parser.ParsingValue.MatchAll("""(\<\d\>|\*\d\*|\d*[\+\-]?\d+)"""U8) is not { Length: 81 } matches)
 		{
 			return Grid.Undefined;
 		}
@@ -249,9 +249,9 @@ partial struct GridParser
 	/// </summary>
 	/// <param name="parser">The parser.</param>
 	/// <returns>The grid.</returns>
-	private static partial Grid OnParsingSimpleTable(ref GridParser parser)
+	private static partial Grid OnParsingSimpleTable(ref Utf8GridParser parser)
 	{
-		if (parser.ParsingValue.Match("""([\d\.\+]{9}(\r|\n|\r\n)){8}[\d\.\+]{9}""") is not { } match)
+		if (parser.ParsingValue.Match("""([\d\.\+]{9}(\r|\n|\r\n)){8}[\d\.\+]{9}"""U8) is not { } match)
 		{
 			return Grid.Undefined;
 		}
@@ -259,7 +259,7 @@ partial struct GridParser
 		// Remove all '\r's and '\n's.
 		var sb = new StringHandler(81 + (9 << 1));
 		sb.AppendCharacters(from @char in match where @char is not ('\r' or '\n') select @char);
-		parser.ParsingValue = sb.ToStringAndClear();
+		parser.ParsingValue = (Utf8String)sb.ToStringAndClear();
 		return OnParsingSusser(ref parser, false);
 	}
 
@@ -269,11 +269,11 @@ partial struct GridParser
 	/// <param name="parser">The parser.</param>
 	/// <param name="shortenSusser">Indicates whether the parser will shorten the susser format.</param>
 	/// <returns>The result.</returns>
-	private static partial Grid OnParsingSusser(ref GridParser parser, bool shortenSusser)
+	private static partial Grid OnParsingSusser(ref Utf8GridParser parser, bool shortenSusser)
 	{
 		string? match = shortenSusser
-			? parser.ParsingValue.Match("""[\d\.\*]{1,9}(,[\d\.\*]{1,9}){8}""")
-			: parser.ParsingValue.Match("""[\d\.\+]{80,}(\:(\d{3}\s+)*\d{3})?""");
+			? parser.ParsingValue.Match("""[\d\.\*]{1,9}(,[\d\.\*]{1,9}){8}"""U8)
+			: parser.ParsingValue.Match("""[\d\.\+]{80,}(\:(\d{3}\s+)*\d{3})?"""U8);
 
 		switch (shortenSusser)
 		{
@@ -458,12 +458,12 @@ partial struct GridParser
 	/// Indicates whether the algorithm uses compatibility mode to check and parse sudoku grid.
 	/// </param>
 	/// <returns>The result.</returns>
-	private static partial Grid OnParsingSukaku(ref GridParser parser, bool compatibleFirst)
+	private static partial Grid OnParsingSukaku(ref Utf8GridParser parser, bool compatibleFirst)
 	{
 		const int candidatesCount = 729;
 		if (compatibleFirst)
 		{
-			string parsingValue = parser.ParsingValue;
+			var parsingValue = parser.ParsingValue;
 			if (parsingValue.Length < candidatesCount)
 			{
 				return Grid.Undefined;
@@ -488,7 +488,7 @@ partial struct GridParser
 		}
 		else
 		{
-			string[] matches = parser.ParsingValue.MatchAll("""\d*[\-\+]?\d+""");
+			string[] matches = parser.ParsingValue.MatchAll("""\d*[\-\+]?\d+"""U8);
 			if (matches is { Length: not 81 })
 			{
 				return Grid.Undefined;
