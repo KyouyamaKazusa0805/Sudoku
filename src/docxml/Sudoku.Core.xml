@@ -11426,6 +11426,12 @@
             <returns>The solution. If failed to solve, <see cref="F:Sudoku.Concepts.Collections.Grid.Undefined"/>.</returns>
             <seealso cref="F:Sudoku.Concepts.Collections.Grid.Undefined"/>
         </member>
+        <member name="M:Sudoku.Solving.BitwiseSolver.ClearStack">
+            <summary>
+            To clear the field <see cref="F:Sudoku.Solving.BitwiseSolver._stack"/>.
+            </summary>
+            <seealso cref="F:Sudoku.Solving.BitwiseSolver._stack"/>
+        </member>
         <member name="M:Sudoku.Solving.BitwiseSolver.SetSolvedDigit(System.Int32,System.Int32)">
             <summary>
             Set a cell as solved - used in <see cref="M:Sudoku.Solving.BitwiseSolver.InitSudoku(System.Char*)"/>.

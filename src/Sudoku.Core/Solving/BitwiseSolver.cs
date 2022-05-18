@@ -73,9 +73,7 @@ public sealed unsafe partial class BitwiseSolver : ISimpleSolver
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public bool? Solve(in Grid grid, out Grid result)
 	{
-#if CLEAR_STATE_STACK_FOR_EACH_CHECK_VALIDITY_AND_SOLVE_INVOKES
-		Array.Clear(_stack);
-#endif
+		ClearStack();
 
 		string puzzleStr = grid.ToString("0");
 		char* solutionStr = stackalloc char[BufferLength];
@@ -119,9 +117,7 @@ public sealed unsafe partial class BitwiseSolver : ISimpleSolver
 	{
 		Argument.ThrowIfNull(puzzle);
 
-#if CLEAR_STATE_STACK_FOR_EACH_CHECK_VALIDITY_AND_SOLVE_INVOKES
-		Array.Clear(_stack);
-#endif
+		ClearStack();
 
 		char* solutionStr = stackalloc char[BufferLength];
 		long solutionsCount = InternalSolve(puzzle, solutionStr, limit);
@@ -142,9 +138,7 @@ public sealed unsafe partial class BitwiseSolver : ISimpleSolver
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public long Solve(string puzzle, char* solution, int limit)
 	{
-#if CLEAR_STATE_STACK_FOR_EACH_CHECK_VALIDITY_AND_SOLVE_INVOKES
-		Array.Clear(_stack);
-#endif
+		ClearStack();
 
 		fixed (char* p = puzzle)
 		{
@@ -170,9 +164,7 @@ public sealed unsafe partial class BitwiseSolver : ISimpleSolver
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public long Solve(string puzzle, out string solution, int limit)
 	{
-#if CLEAR_STATE_STACK_FOR_EACH_CHECK_VALIDITY_AND_SOLVE_INVOKES
-		Array.Clear(_stack);
-#endif
+		ClearStack();
 
 		fixed (char* p = puzzle)
 		{
@@ -224,7 +216,7 @@ public sealed unsafe partial class BitwiseSolver : ISimpleSolver
 #if CLEAR_STATE_STACK_FOR_EACH_CHECK_VALIDITY_AND_SOLVE_INVOKES
 		if (clearFirst)
 		{
-			Array.Clear(_stack);
+			ClearStack();
 		}
 #endif
 
@@ -241,9 +233,7 @@ public sealed unsafe partial class BitwiseSolver : ISimpleSolver
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public bool CheckValidity(string grid)
 	{
-#if CLEAR_STATE_STACK_FOR_EACH_CHECK_VALIDITY_AND_SOLVE_INVOKES
-		Array.Clear(_stack);
-#endif
+		ClearStack();
 
 		fixed (char* puzzle = grid)
 		{
@@ -259,9 +249,7 @@ public sealed unsafe partial class BitwiseSolver : ISimpleSolver
 	/// <returns>The <see cref="bool"/> result. <see langword="true"/> for unique solution.</returns>
 	public bool CheckValidity(string grid, [NotNullWhen(true)] out string? solutionIfUnique)
 	{
-#if CLEAR_STATE_STACK_FOR_EACH_CHECK_VALIDITY_AND_SOLVE_INVOKES
-		Array.Clear(_stack);
-#endif
+		ClearStack();
 
 		fixed (char* puzzle = grid)
 		{
@@ -287,6 +275,19 @@ public sealed unsafe partial class BitwiseSolver : ISimpleSolver
 	/// <seealso cref="Grid.Undefined"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public Grid Solve(in Grid puzzle) => Solve(puzzle, out var result) is true ? result : Grid.Undefined;
+
+	/// <summary>
+	/// To clear the field <see cref="_stack"/>.
+	/// </summary>
+	/// <seealso cref="_stack"/>
+	[Conditional("CLEAR_STATE_STACK_FOR_EACH_CHECK_VALIDITY_AND_SOLVE_INVOKES")]
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	private void ClearStack()
+#if true
+		=> Array.Clear(_stack);
+#else
+		=> Unsafe.InitBlock(Unsafe.AsPointer(ref _stack[0]), 0, (uint)(sizeof(State) * 50));
+#endif
 
 	/// <summary>
 	/// Set a cell as solved - used in <see cref="InitSudoku"/>.
