@@ -68,10 +68,7 @@ public readonly partial struct Utf8String :
 	private Utf8String(byte[] array)
 	{
 		_value = new Utf8Char[array.Length];
-		Unsafe.CopyBlock(
-			ref Unsafe.As<Utf8Char, byte>(ref _value[0]),
-			ref array[0],
-			(uint)(sizeof(byte) * array.Length));
+		Unsafe.CopyBlock(ref Unsafe.As<Utf8Char, byte>(ref _value[0]), ref array[0], (uint)(sizeof(byte) * array.Length));
 	}
 
 
@@ -279,10 +276,7 @@ public readonly partial struct Utf8String :
 		byte[] array = new byte[_value.Length];
 		fixed (Utf8Char* a = _value)
 		{
-			Unsafe.CopyBlock(
-				ref array[0],
-				ref Unsafe.As<Utf8Char, byte>(ref *a),
-				(uint)(sizeof(byte) * _value.Length));
+			Unsafe.CopyBlock(ref array[0], ref Unsafe.As<Utf8Char, byte>(ref *a), (uint)(sizeof(byte) * _value.Length));
 		}
 
 		return Encoding.UTF8.GetString(array);
@@ -350,10 +344,7 @@ public readonly partial struct Utf8String :
 
 				fixed (Utf8Char* src = right._value)
 				{
-					Unsafe.CopyBlock(
-						destination + left._value.Length,
-						src,
-						(uint)(sizeof(byte) * right._value.Length));
+					Unsafe.CopyBlock(destination + left._value.Length, src, (uint)(sizeof(byte) * right._value.Length));
 				}
 			}
 
