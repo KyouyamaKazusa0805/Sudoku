@@ -5396,19 +5396,6 @@
             Indicates the conclusion is a candidate being remove from a cell.
             </summary>
         </member>
-        <member name="T:Sudoku.Concepts.Solving.ConclusionTypeExtensions">
-            <summary>
-            Provides extension methods on <see cref="T:Sudoku.Concepts.Solving.ConclusionType"/>.
-            </summary>
-            <seealso cref="T:Sudoku.Concepts.Solving.ConclusionType"/>
-        </member>
-        <member name="M:Sudoku.Concepts.Solving.ConclusionTypeExtensions.GetNotation(Sudoku.Concepts.Solving.ConclusionType)">
-            <summary>
-            Gets the notation of the conclusion type.
-            </summary>
-            <param name="this">The conclusion type.</param>
-            <returns>The notation of the conclusion type.</returns>
-        </member>
         <member name="T:Sudoku.Concepts.Solving.ExocetEliminatedReason">
             <summary>
             Encapsulates a type that represents the reason why the exocet eliminations can be removed.
@@ -7591,6 +7578,18 @@
         </member>
         <member name="M:Sudoku.Concepts.Solving.UniquePolygonPattern.ToString">
             <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
+        <member name="T:Sudoku.Concepts.Solving.ConclusionType_EnumSwitchExpressionExtensions">
+            <summary>
+            Provides with extension methods for switching on the current type.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Concepts.Solving.ConclusionType_EnumSwitchExpressionExtensions.GetNotation(Sudoku.Concepts.Solving.ConclusionType)">
+            <summary>
+            Gets the notation of the conclusion type.
+            </summary>
+            <param name="this">The conclusion type.</param>
+            <returns>The notation of the conclusion type.</returns>
         </member>
         <member name="T:Sudoku.Concepts.SymmetryType">
             <summary>
