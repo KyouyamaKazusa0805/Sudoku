@@ -4,53 +4,54 @@
 /// Encapsulates a type that represents the reason why the exocet eliminations can be removed.
 /// </summary>
 [Flags]
+[EnumSwitchExpressionRoot("GetName", MethodDescription = "Gets the name of the current eliminated reason field.", ThisParameterDescription = "The field.", ReturnValueDescription = "The name of the field.")]
 public enum ExocetEliminatedReason : byte
 {
 	/// <summary>
 	/// Indicates the elimination is the basic elimination (Target eliminations).
 	/// </summary>
-	[EnumFieldName("Base")]
+	[EnumSwitchExpressionArm("GetName", "Base")]
 	Basic = 1,
 
 	/// <summary>
 	/// Indicates the target inference eliminations (that is eliminated via mirror cells).
 	/// </summary>
-	[EnumFieldName("Target inference")]
+	[EnumSwitchExpressionArm("GetName", "Target inference")]
 	TargetInference = 1 << 1,
 
 	/// <summary>
 	/// Indicates the mirror eliminations.
 	/// </summary>
-	[EnumFieldName("Mirror")]
+	[EnumSwitchExpressionArm("GetName", "Mirror")]
 	Mirror = 1 << 2,
 
 	/// <summary>
 	/// Indicates the bi-bi pattern.
 	/// </summary>
-	[EnumFieldName("Bi-bi pattern")]
+	[EnumSwitchExpressionArm("GetName", "Bi-bi pattern")]
 	BiBiPattern = 1 << 3,
 
 	/// <summary>
 	/// Indicates the target pair eliminations.
 	/// </summary>
-	[EnumFieldName("Target pair")]
+	[EnumSwitchExpressionArm("GetName", "Target pair")]
 	TargetPair = 1 << 4,
 
 	/// <summary>
 	/// Indicates the generalized swordfish eliminations.
 	/// </summary>
-	[EnumFieldName("Generalized swordfish")]
+	[EnumSwitchExpressionArm("GetName", "Generalized swordfish")]
 	GeneralizedSwordfish = 1 << 5,
 
 	/// <summary>
 	/// Indicates the true base eliminations.
 	/// </summary>
-	[EnumFieldName("True base")]
+	[EnumSwitchExpressionArm("GetName", "True base")]
 	TrueBase = 1 << 6,
 
 	/// <summary>
 	/// Indicates the compatibility test eliminations.
 	/// </summary>
-	[EnumFieldName("Compatibility test")]
+	[EnumSwitchExpressionArm("GetName", "Compatibility test")]
 	CompatibilityTest = 1 << 7
 }

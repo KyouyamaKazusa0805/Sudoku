@@ -34,10 +34,7 @@ public readonly partial record struct ExocetElimination(in Candidates Eliminatio
 		return $"* {header}{snippet}{elim}";
 #else
 		// Use attribute to get the result.
-		string header = typeof(ExocetEliminatedReason)
-			.GetField(Reason.ToString())!
-			.GetCustomAttribute<EnumFieldNameAttribute>()!
-			.Name;
+		string header = Reason.GetName();
 
 		return $"* {header}eliminations: {new ConclusionCollection(ToArray()).ToString()}";
 #endif

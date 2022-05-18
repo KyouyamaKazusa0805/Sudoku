@@ -7591,6 +7591,18 @@
             <param name="this">The conclusion type.</param>
             <returns>The notation of the conclusion type.</returns>
         </member>
+        <member name="T:Sudoku.Concepts.Solving.ExocetEliminatedReason_EnumSwitchExpressionExtensions">
+            <summary>
+            Provides with extension methods for switching on the current type.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Concepts.Solving.ExocetEliminatedReason_EnumSwitchExpressionExtensions.GetName(Sudoku.Concepts.Solving.ExocetEliminatedReason)">
+            <summary>
+            Gets the name of the current eliminated reason field.
+            </summary>
+            <param name="this">The field.</param>
+            <returns>The name of the field.</returns>
+        </member>
         <member name="T:Sudoku.Concepts.SymmetryType">
             <summary>
             Define a symmetry type.
