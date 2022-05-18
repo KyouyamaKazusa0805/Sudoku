@@ -37,7 +37,7 @@ public sealed partial class SudokuPage : Page
 	/// <summary>
 	/// Indicates the internal puzzle generator.
 	/// </summary>
-	private static readonly HardLikePuzzleGenerator Generator = new();
+	private static readonly PatternBasedPuzzleGenerator Generator = new();
 
 
 	/// <summary>
