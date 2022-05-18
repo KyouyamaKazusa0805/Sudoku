@@ -5,13 +5,13 @@
 /// </summary>
 /// <remarks>
 /// <para>
-/// Please note that the solve has no optimization on solving sudokus, sometimes the puzzle will be
-/// extremely slowly to be solved although it is not very hard. One of the examples described above
-/// is this:
+/// Please note that the current type has no optimization on solving. Therefore sometimes the puzzle will be
+/// extremely slowly to be solved although it is not very hard by manually solved.
+/// One of the examples satisfying the above condition is:
 /// <code>
 /// ..............3.85..1.2.......5.7.....4...1...9.......5......73..2.1........4...9
 /// </code>
-/// The solver will spend about 4.5 min on solving this puzzle.
+/// The current solver may spend about 4.5 min on solving this puzzle.
 /// </para>
 /// <para>
 /// For more information, please visit
