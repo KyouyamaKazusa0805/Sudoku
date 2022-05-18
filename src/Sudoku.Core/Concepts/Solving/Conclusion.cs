@@ -14,9 +14,7 @@
 [AutoDeconstruction(nameof(ConclusionType), nameof(Cell), nameof(Digit))]
 [AutoOverridesGetHashCode(nameof(_mask))]
 [AutoOverridesEquals(nameof(_mask))]
-[AutoOverridesToString(
-	nameof(Cell), nameof(ConclusionType), nameof(Digit),
-	Pattern = "{Sudoku.Concepts.Collections.Cells.Empty + [0]}{[1].GetNotation()}{[2] + 1}")]
+[AutoOverridesToString(nameof(Cell), nameof(ConclusionType), nameof(Digit), Pattern = "{Sudoku.Concepts.Collections.Cells.Empty + [0]}{[1].GetNotation()}{[2] + 1}")]
 [AutoOverloadsComparisonOperators]
 [AutoOverloadsEqualityOperators]
 [AutoImplementsComparable(nameof(_mask))]
