@@ -11839,6 +11839,32 @@
             </list>
             </returns>
         </member>
+        <member name="T:Sudoku.Solving.IttouryuSolver">
+            <summary>
+            Indicates an ittouryu solver that can solve a sudoku grid using ittouryu mode.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.IttouryuSolver._grid">
+            <summary>
+            The grid to be solved.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.IttouryuSolver.#ctor(Sudoku.Concepts.Collections.Grid@)">
+            <summary>
+            Initializes an <see cref="T:Sudoku.Solving.IttouryuSolver"/> using a sudoku grid to be solved.
+            </summary>
+            <param name="grid">The pointer to the grid.</param>
+        </member>
+        <member name="M:Sudoku.Solving.IttouryuSolver.IsIttouryu(System.ValueTuple{System.Int32,System.Boolean}[]@)">
+            <summary>
+            Determine whether the specified sudoku grid is ittouryu.
+            </summary>
+            <param name="solvingPath">The solving path.</param>
+            <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
+            <remarks>
+            An <b>ittouryu puzzle</b> is a puzzle that be finished using digits 1 to 9 one by one.
+            </remarks>
+        </member>
         <member name="T:Sudoku.Solving.LinqSolver">
             <summary>
             Defines a solver that can solve a sudoku puzzle, using LINQ.
