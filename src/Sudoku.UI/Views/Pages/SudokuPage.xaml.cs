@@ -10,6 +10,7 @@ using Microsoft.UI.Input;
 using Microsoft.UI.Xaml.Controls.Primitives;
 using Microsoft.UI.Xaml.Input;
 using Microsoft.UI.Xaml.Media.Imaging;
+using Sudoku.Concepts.Solving;
 using Sudoku.Generating.Puzzlers;
 using Sudoku.Solving.Manual;
 using Windows.ApplicationModel.DataTransfer;

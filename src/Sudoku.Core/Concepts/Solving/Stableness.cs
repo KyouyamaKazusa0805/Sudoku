@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Solving.Manual;
+﻿namespace Sudoku.Concepts.Solving;
 
 /// <summary>
 /// Defines a stableness of a technique.

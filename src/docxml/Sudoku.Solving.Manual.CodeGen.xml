@@ -10,23 +10,17 @@
             on a step searcher.
             </summary>
         </member>
-        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.StepSearcherOptionsGenerator.Execute(Microsoft.CodeAnalysis.GeneratorExecutionContext)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.StepSearcherOptionsGenerator.Initialize(Microsoft.CodeAnalysis.GeneratorInitializationContext)">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Diagnostics.CodeGen.Generators.StepSearcherOptionsGenerator.Receiver.EnabledAreasFields">
+        <member name="F:Sudoku.Diagnostics.CodeGen.Generators.StepSearcherOptionsGenerator._enabledAreasFields">
             <summary>
             Defines a dictionary that stores the lookup table for fields in the enumeration type <c>EnabledArea</c>.
             </summary>
         </member>
-        <member name="P:Sudoku.Diagnostics.CodeGen.Generators.StepSearcherOptionsGenerator.Receiver.DisabledReasonFields">
+        <member name="F:Sudoku.Diagnostics.CodeGen.Generators.StepSearcherOptionsGenerator._disabledReasonFields">
             <summary>
             Defines a dictionary that stores the lookup table for fields in the enumeration type <c>DisabledReason</c>.
             </summary>
         </member>
-        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.StepSearcherOptionsGenerator.Receiver.OnVisitSyntaxNode(Microsoft.CodeAnalysis.GeneratorSyntaxContext)">
+        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.StepSearcherOptionsGenerator.Initialize(Microsoft.CodeAnalysis.IncrementalGeneratorInitializationContext)">
             <inheritdoc/>
         </member>
         <member name="F:Sudoku.Diagnostics.CodeGen.Constants.VersionValue">

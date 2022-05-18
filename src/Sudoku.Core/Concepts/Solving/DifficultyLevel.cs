@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Solving.Manual;
+﻿namespace Sudoku.Concepts.Solving;
 
 /// <summary>
 /// Provides a difficulty kind for a puzzle.

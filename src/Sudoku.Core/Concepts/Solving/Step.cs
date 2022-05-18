@@ -1,11 +1,11 @@
-﻿namespace Sudoku.Solving.Manual.Steps;
+﻿namespace Sudoku.Concepts.Solving;
 
 /// <summary>
 /// Provides with a manual solving step that is a technique usage, and contains the conclusions.
 /// </summary>
 /// <param name="Conclusions"><inheritdoc/></param>
 /// <param name="Views"><inheritdoc/></param>
-public abstract record class Step(ConclusionList Conclusions, ViewList Views) : IStep
+public abstract record class Step(ImmutableArray<Conclusion> Conclusions, ImmutableArray<View> Views) : IStep
 {
 	/// <inheritdoc/>
 	public virtual bool ShowDifficulty => true;
@@ -23,11 +23,10 @@ public abstract record class Step(ConclusionList Conclusions, ViewList Views) : 
 	/// Wings
 	/// <list type="bullet">
 	/// <item>
-	/// <see cref="IRegularWingStepSearcher">Regular wings</see> (XY-Wing, XYZ-Wing, WXYZ-Wing, etc.)
+	/// Regular wings (XY-Wing, XYZ-Wing, WXYZ-Wing, etc.)
 	/// </item>
 	/// <item>
-	/// <see cref="IIregularWingStepSearcher">Irregular wings</see>
-	/// (W-Wing, M-Wing, Split-Wing, Local-Wing, Hybrid-Wing)
+	/// Irregular wings (W-Wing, M-Wing, Split-Wing, Local-Wing, Hybrid-Wing)
 	/// </item>
 	/// </list>
 	/// </item>
@@ -35,26 +34,25 @@ public abstract record class Step(ConclusionList Conclusions, ViewList Views) : 
 	/// Short chains
 	/// <list type="bullet">
 	/// <item>
-	/// <see cref="ITwoStrongLinksStepSearcher">Two strong links</see>
-	/// (Skyscraper, Two-string kite, Turbot fish)
+	/// Two strong links (Skyscraper, Two-string kite, Turbot fish)
 	/// </item>
 	/// <item>
 	/// ALS chaining-like techniques
 	/// <list type="bullet">
-	/// <item><see cref="IAlmostLockedSetsXzStepSearcher">ALS-XZ</see></item>
-	/// <item><see cref="IAlmostLockedSetsXyWingStepSearcher">ALS-XY-Wing</see></item>
-	/// <item><see cref="IAlmostLockedSetsWWingStepSearcher">ALS-W-Wing</see></item>
+	/// <item>ALS-XZ</item>
+	/// <item>ALS-XY-Wing</item>
+	/// <item>ALS-W-Wing</item>
 	/// </list>
 	/// </item>
-	/// <item><see cref="IEmptyRectangleStepSearcher">Empty rectangle</see></item>
+	/// <item>Empty rectangle</item>
 	/// </list>
 	/// </item>
 	/// <!--
 	/// <item>
 	/// Long chains
 	/// <list type="bullet">
-	/// <item><see cref="IForcingChainStepSearcher">Forcing chains</see></item>
-	/// <item><see cref="IDynamicForcingChainStepSearcher">Dynamic forcing chains</see></item>
+	/// <item>Forcing chains</item>
+	/// <item>Dynamic forcing chains</item>
 	/// </list>
 	/// </item>
 	/// -->
@@ -69,27 +67,25 @@ public abstract record class Step(ConclusionList Conclusions, ViewList Views) : 
 	/// <item>
 	/// Bi-value patterns
 	/// <list type="bullet">
-	/// <item><see cref="IUniqueRectangleStepSearcher">Unique rectangle</see> (i.e. Uniqueness test)</item>
-	/// <item><see cref="IUniqueLoopStepSearcher">Unique loop</see></item>
-	/// <item><see cref="IBivalueUniversalGraveStepSearcher">Bi-value universal grave</see></item>
+	/// <item>Unique rectangle (i.e. Uniqueness test)</item>
+	/// <item>Unique loop</item>
+	/// <item>Bi-value universal grave</item>
 	/// </list>
 	/// </item>
 	/// <item>
 	/// Multi-value patterns
 	/// <list type="bullet">
-	/// <item><see cref="IExtendedRectangleStepSearcher">Extended rectangle</see></item>
-	/// <item><see cref="IUniqueSquareStepSearcher">Unique square</see></item>
-	/// <item>
-	/// <see cref="IUniquePolygonStepSearcher">Unique polygon</see> (Borescoper's deadly pattern as its alias)
-	/// </item>
-	/// <item><see cref="IQiuDeadlyPatternStepSearcher">Qiu's deadly pattern</see></item>
+	/// <item>Extended rectangle</item>
+	/// <item>Unique square</item>
+	/// <item>Unique polygon (Borescoper's deadly pattern as its alias)</item>
+	/// <item>Qiu's deadly pattern</item>
 	/// </list>
 	/// </item>
 	/// <!--
 	/// <item>
 	/// Other deadly patterns
 	/// <list type="bullet">
-	/// <item><see cref="#">Reverse bi-value universal grave</see></item>
+	/// <item>Reverse bi-value universal grave</item>
 	/// </list>
 	/// </item>
 	/// -->

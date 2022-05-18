@@ -1,9 +1,8 @@
-﻿namespace Sudoku.Solving.Manual;
+﻿namespace Sudoku.Concepts.Solving;
 
 /// <summary>
-/// Defines a reason why the <see cref="ManualSolverResult"/> is failed to solve a puzzle.
+/// Defines a reason why the puzzle is failed to be solved.
 /// </summary>
-/// <seealso cref="ManualSolverResult"/>
 public enum FailedReason : byte
 {
 	/// <summary>

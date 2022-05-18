@@ -5396,6 +5396,147 @@
             Indicates the conclusion is a candidate being remove from a cell.
             </summary>
         </member>
+        <member name="T:Sudoku.Concepts.Solving.DifficultyLevel">
+            <summary>
+            Provides a difficulty kind for a puzzle.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Concepts.Solving.DifficultyLevel.Unknown">
+            <summary>
+            Indicates the difficulty level is unknown.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Concepts.Solving.DifficultyLevel.Easy">
+            <summary>
+            Indicates the difficulty is easy.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Concepts.Solving.DifficultyLevel.Moderate">
+            <summary>
+            Indicates the difficulty is moderate.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Concepts.Solving.DifficultyLevel.Hard">
+            <summary>
+            Indicates the difficulty is hard.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Concepts.Solving.DifficultyLevel.Fiendish">
+            <summary>
+            Indicates the difficulty is fiendish.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Concepts.Solving.DifficultyLevel.Nightmare">
+            <summary>
+            Indicates the difficulty is nightmare.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Concepts.Solving.DifficultyLevel.LastResort">
+            <summary>
+            Indicates the puzzle can't be solved
+            unless using last resort methods.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Concepts.Solving.DisabledReason">
+            <summary>
+            Indicates a reason why the searcher is disabled.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Concepts.Solving.DisabledReason.None">
+            <summary>
+            Indicates the searcher is normal one and isn't disabled.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Concepts.Solving.DisabledReason.LastResort">
+            <summary>
+            Indicates the searcher searches for last resorts, which don't need to show.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Concepts.Solving.DisabledReason.HasBugs">
+            <summary>
+            Indicates the searcher has bugs while searching.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Concepts.Solving.DisabledReason.TooSlow">
+            <summary>
+            Indicates the searcher runs so slowly that the author himself can't stand to use it.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Concepts.Solving.DisabledReason.DeprecatedOrNotImplemented">
+            <summary>
+            Indicates the searcher has not been implemented, or has been deprecated.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Concepts.Solving.DisplayingLevel">
+            <summary>
+            Indicates the difficulty level of the step.
+            This enumeration type is used for the displaying of the step information list.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Concepts.Solving.DisplayingLevel.None">
+            <summary>
+            Indicates the level is none.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Concepts.Solving.DisplayingLevel.A">
+            <summary>
+            Indicates the level is the elementary searchers, which means the techniques found
+            in the current step searcher is the elementary ones.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Concepts.Solving.DisplayingLevel.B">
+            <summary>
+            Indicates the level is the moderate searchers, which means the techniques found
+            in the current step searcher is more difficult than the elementary ones,
+            but they aren't very difficult to comprehend the backing logic.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Concepts.Solving.DisplayingLevel.C">
+            <summary>
+            Indicates the level is the hard searchers, which means the techniques found
+            in the current step searcher is more difficult than the moderate ones.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Concepts.Solving.DisplayingLevel.D">
+            <summary>
+            Indicates the level is the fiendish searchers, which means the techniques found
+            in the current step searcher is more difficult than the hard ones.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Concepts.Solving.DisplayingLevel.E">
+            <summary>
+            <para>
+            Indicates the level is the hidden searchers, which means the techniques found
+            in the current step searcher should be hidden no matter how easy the technique is.
+            </para>
+            <para>The well-known technique searcher of this level is Brute Force.</para>
+            </summary>
+        </member>
+        <member name="T:Sudoku.Concepts.Solving.EnabledArea">
+            <summary>
+            Represents the data about where a step searcher can be enabled and used.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Concepts.Solving.EnabledArea.None">
+            <summary>
+            Indicates all modes are disabled.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Concepts.Solving.EnabledArea.Default">
+            <summary>
+            Indicates the default mode (Sudoku Explainer or Hodoku mode).
+            </summary>
+        </member>
+        <member name="F:Sudoku.Concepts.Solving.EnabledArea.Gathering">
+            <summary>
+            Indicates the gathering mode (All steps will be found here).
+            </summary>
+        </member>
+        <member name="F:Sudoku.Concepts.Solving.EnabledArea.Experimental">
+            <summary>
+            Indicates the experimental function can use the step searcher.
+            </summary>
+        </member>
         <member name="T:Sudoku.Concepts.Solving.ExocetEliminatedReason">
             <summary>
             Encapsulates a type that represents the reason why the exocet eliminations can be removed.
@@ -5660,6 +5801,262 @@
         <member name="M:Sudoku.Concepts.Solving.ExocetPattern.GetHashCode">
             <inheritdoc cref="M:System.Object.GetHashCode"/>
         </member>
+        <member name="T:Sudoku.Concepts.Solving.FailedReason">
+            <summary>
+            Defines a reason why the puzzle is failed to be solved.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Concepts.Solving.FailedReason.Nothing">
+            <summary>
+            Indicates nothing goes wrong.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Concepts.Solving.FailedReason.PuzzleIsInvalid">
+            <summary>
+            Indicates the failed reason is that the puzzle doesn't contain a valid unique solution.
+            Different with <see cref="F:Sudoku.Concepts.Solving.FailedReason.PuzzleHasMultipleSolutions"/> and <see cref="F:Sudoku.Concepts.Solving.FailedReason.PuzzleHasNoSolution"/>,
+            this field will include more generic cases. If the puzzle doesn't pass the pre-process operation
+            before solving, we should use this field.
+            </summary>
+            <seealso cref="F:Sudoku.Concepts.Solving.FailedReason.PuzzleHasNoSolution"/>
+            <seealso cref="F:Sudoku.Concepts.Solving.FailedReason.PuzzleHasMultipleSolutions"/>
+        </member>
+        <member name="F:Sudoku.Concepts.Solving.FailedReason.PuzzleHasNoSolution">
+            <summary>
+            Indicates the failed reason is that the puzzle doesn't contain a valid solution.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Concepts.Solving.FailedReason.PuzzleHasMultipleSolutions">
+            <summary>
+            Indicates the failed reason is that the puzzle contains multiple valid solutions.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Concepts.Solving.FailedReason.UserCancelled">
+            <summary>
+            Indicates the failed reason is that the user has cancelled the task.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Concepts.Solving.FailedReason.NotImplemented">
+            <summary>
+            Indicates the failed reason is that the solver doesn't implemented some function
+            that causes the operation can't be finished.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Concepts.Solving.FailedReason.ExceptionThrown">
+            <summary>
+            Indicates the failed reason is that the solver has encountered an error and couldn't solve,
+            then an exception thrown.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Concepts.Solving.FailedReason.WrongStep">
+            <summary>
+            Indicates the failed reason is that the solver has found a wrong step that cause the grid become invalid.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Concepts.Solving.FailedReason.PuzzleIsTooHard">
+            <summary>
+            Indicates the failed reason is that the puzzle is too hard to solve. The solver gave up.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Concepts.Solving.FailedReason.Unknown">
+            <summary>
+            Indicates the other reason to cause the error.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Concepts.Solving.IStep">
+            <summary>
+            Provides a basic manual solving step.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.Solving.IStep.ShowDifficulty">
+            <summary>
+            <para>
+            Indicates whether the difficulty rating of this technique should be
+            shown in the output screen. Some techniques such as <b>Gurth's symmetrical placement</b>
+            doesn't need to show the difficulty (because the difficulty of this technique
+            is unstable).
+            </para>
+            <para>
+            If the value is <see langword="true"/>, the analysis result won't show the difficulty
+            of this instance.
+            </para>
+            <para>The default value is <see langword="true"/>.</para>
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.Solving.IStep.Name">
+            <summary>
+            Indicates the technique name. The technique name are all stored in the resource dictionary,
+            you can find them in the <c>Resources</c> folder (Type <see cref="T:Sudoku.Resources.MergedResources"/>).
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.Solving.IStep.Format">
+            <summary>
+            Gets the format of the current instance.
+            </summary>
+            <returns>
+            Returns a <see cref="T:System.String"/> result. If the resource dictionary doesn't contain
+            any valid formats here, the result value will be <see langword="null"/>.
+            </returns>
+            <remarks>
+            <para>
+            A <b>format</b> is the better way to format the result text of this technique information instance.
+            It'll be represented by the normal characters and the placeholders, e.g.
+            <code><![CDATA["{Name}: Cells {CellsStr} => {ElimsStr}"]]></code>
+            Here the string result <b>shouldn't</b> be with the leading <c>'$'</c> character, because this is a
+            format string instead of an interpolated one.
+            </para>
+            <para>
+            Here the property <c>Name</c>, <c>CellsStr</c> and <c>ElimsStr</c> must have been implemented before
+            the property invoked. You should create 3 properties whose names are <c>Name</c>, <c>CellsStr</c>
+            and <c>ElimsStr</c>, and return the corresponding correct string result,
+            making them non-<see langword="public"/> (suggested keyword is <see langword="internal"/>)
+            and applying attribute <see cref="T:Sudoku.Runtime.Reflection.FormatItemAttribute"/> to it.
+            </para>
+            <para>
+            The recommended implementation pattern is:
+            <code><![CDATA[
+            [FormatItem]
+            internal string CellsStr
+            {
+                [MethodImpl(MethodImplOptions.AggressiveInlining)]
+                get => Cells.ToString();
+            }
+            ]]></code>
+            You can use the code snippet <c>fitem</c> to create the pattern, whose corresponding file is added
+            into the <c>optional/vssnippets</c> folder. For more information, please open the markdown file
+            <see href="https://github.com/SunnieShine/Sudoku/blob/main/optional/README.md">README.md</see>
+            (in the <c>optional</c> folder) for more information.
+            </para>
+            <para>
+            Because this property will get the value from the resource dictionary, the property supports
+            multiple language switching, which is better than the normal methods <c>ToString</c>
+            and <c>ToFullString</c>. Therefore, this property is the substitution of those two methods.
+            </para>
+            <para>
+            If you want to use the values in the resource documents,
+            just use the <see langword="static readonly"/> field <see cref="F:Sudoku.Resources.MergedResources.R"/> is okay:
+            <code>
+            using static Sudoku.Resources.MergedResources;
+            
+            public override string Format => R["TheKeyYouWantToSearch"];
+            </code>
+            </para>
+            </remarks>
+            <seealso cref="M:Sudoku.Concepts.Solving.IStep.ToFullString"/>
+            <seealso cref="T:Sudoku.Runtime.Reflection.FormatItemAttribute"/>
+            <seealso cref="F:Sudoku.Resources.MergedResources.R"/>
+        </member>
+        <member name="P:Sudoku.Concepts.Solving.IStep.Difficulty">
+            <summary>
+            The difficulty or this step.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.Solving.IStep.TechniqueCode">
+            <summary>
+            The technique code of this instance used for comparison
+            (e.g. search for specified puzzle that contains this technique).
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.Solving.IStep.TechniqueTags">
+            <summary>
+            The technique tags of this instance.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.Solving.IStep.TechniqueGroup">
+            <summary>
+            The technique group that this technique instance belongs to.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.Solving.IStep.DifficultyLevel">
+            <summary>
+            The difficulty level of this step.
+            </summary>
+            <remarks>
+            Although the type of this property is marked <see cref="T:System.FlagsAttribute"/>,
+            we still can't set multiple flag values into the result. The flags are filtered
+            during generting puzzles.
+            </remarks>
+            <seealso cref="T:System.FlagsAttribute"/>
+        </member>
+        <member name="P:Sudoku.Concepts.Solving.IStep.Stableness">
+            <summary>
+            Indicates the stableness of this technique. The default value is <see cref="F:Sudoku.Concepts.Solving.Stableness.Stable"/>.
+            </summary>
+            <remarks>
+            Although the type of this property is marked <see cref="T:System.FlagsAttribute"/>,
+            we still can't set multiple flag values into the result. The flags are filtered
+            during generting puzzles.
+            </remarks>
+            <seealso cref="F:Sudoku.Concepts.Solving.Stableness.Stable"/>
+            <seealso cref="T:System.FlagsAttribute"/>
+        </member>
+        <member name="P:Sudoku.Concepts.Solving.IStep.Rarity">
+            <summary>
+            Indicates the rarity of this technique appears.
+            </summary>
+            <remarks>
+            Although the type of this property is marked <see cref="T:System.FlagsAttribute"/>,
+            we still can't set multiple flag values into the result. The flags are filtered
+            during generting puzzles.
+            </remarks>
+            <seealso cref="T:System.FlagsAttribute"/>
+        </member>
+        <member name="P:Sudoku.Concepts.Solving.IStep.Conclusions">
+            <summary>
+            Indicates the conclusions that the step can be eliminated or assigned to.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.Solving.IStep.Views">
+            <summary>
+            Indicates the views of the step that may be displayed onto the screen using pictures.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.Solving.IStep.ElimStr">
+            <summary>
+            Indicates the string representation of the conclusions.
+            </summary>
+            <remarks>
+            Most of techniques uses eliminations
+            so this property is named <c>ElimStr</c>. In other words, if the conclusion is an assignment one,
+            the property will still use this name rather than <c>AssignmentStr</c>.
+            </remarks>
+        </member>
+        <member name="M:Sudoku.Concepts.Solving.IStep.ApplyTo(Sudoku.Concepts.Collections.Grid@)">
+            <summary>
+            Put this instance into the specified grid.
+            </summary>
+            <param name="grid">The grid.</param>
+        </member>
+        <member name="M:Sudoku.Concepts.Solving.IStep.ToSimpleString">
+            <summary>
+            Returns a string that only contains the name and the conclusions.
+            </summary>
+            <returns>The string instance.</returns>
+        </member>
+        <member name="M:Sudoku.Concepts.Solving.IStep.ToFullString">
+            <summary>
+            Returns a string that contains the name, the conclusions and its all details.
+            This method is used for displaying details in text box control.
+            </summary>
+            <returns>The string instance.</returns>
+        </member>
+        <member name="M:Sudoku.Concepts.Solving.IStep.Formatize(System.Boolean)">
+            <summary>
+            Formatizes the <see cref="P:Sudoku.Concepts.Solving.IStep.Format"/> property string and output the result.
+            </summary>
+            <param name="handleEscaping">Indicates whether the method will handle the escaping characters.</param>
+            <returns>The result string.</returns>
+            <exception cref="T:System.InvalidOperationException">
+            Throws when the format is invalid. The possible cases are:
+            <list type="bullet">
+            <item>The format is <see langword="null"/>.</item>
+            <item>The interpolation part contains the empty value.</item>
+            <item>Missing the closed brace character <c>'}'</c>.</item>
+            <item>The number of interpolations failed to match.</item>
+            </list>
+            </exception>
+            <seealso cref="P:Sudoku.Concepts.Solving.IStep.Format"/>
+        </member>
         <member name="T:Sudoku.Concepts.Solving.ITechniquePattern`1">
             <summary>
             Defines a pattern that is a technique.
@@ -5749,6 +6146,370 @@
         </member>
         <member name="M:Sudoku.Concepts.Solving.QiuDeadlyPattern.ToString">
             <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
+        <member name="T:Sudoku.Concepts.Solving.Rarity">
+            <summary>
+            Indicates the rarity of the technique.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Concepts.Solving.Rarity.Unknown">
+            <summary>
+            Indicates the technique can't be confirmed for its rarity.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Concepts.Solving.Rarity.Always">
+            <summary>
+            Indicates the technique always appears, such as <b>Hidden Single</b>.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Concepts.Solving.Rarity.Often">
+            <summary>
+            Indicates the rarity is often appears.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Concepts.Solving.Rarity.Sometimes">
+            <summary>
+            Indicates the rarity is sometimes appears.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Concepts.Solving.Rarity.Seldom">
+            <summary>
+            Indicates the rarity is seldom appears.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Concepts.Solving.Rarity.HardlyEver">
+            <summary>
+            Indicates the rarity is hardly ever appears.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Concepts.Solving.Rarity.OnlyForSpecialPuzzles">
+            <summary>
+            Indicates the technique only appears in the special puzzles designed on purpose.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Concepts.Solving.Rarity.ReplacedByOtherTechniques">
+            <summary>
+            Indicates the technique can't appear because the technique will be replaced with another technique.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Concepts.Solving.SearchingOptions">
+            <summary>
+            Indicates the options for a step searcher used while searching.
+            </summary>
+            <param name="Priority">Indicates the priority of this technique.</param>
+            <param name="EnabledArea">
+            Indicates which areas the step searcher is enabled and works well.
+            The default value is both <see cref="F:Sudoku.Concepts.Solving.EnabledArea.Default"/> and <see cref="F:Sudoku.Concepts.Solving.EnabledArea.Gathering"/>.
+            </param>
+            <param name="DisplayingLevel">
+            <para>Indicates the displaying level of this technique.</para>
+            <para>
+            The display level means the which level the technique is at. All higher leveled techniques
+            won't display on the screen when the searchers at the current level have found technique
+            instances.
+            </para>
+            <para>
+            In order to enhance the performance, this attribute is used on a step gatherer.
+            For example, if Alternating Inference Chain (AIC) is at the level <see cref="F:Sudoku.Concepts.Solving.DisplayingLevel.D"/>
+            but Forcing Chains (FC) is at the level <see cref="F:Sudoku.Concepts.Solving.DisplayingLevel.E"/>,
+            when we find any AIC technique instances, FC won't be checked at the same time.
+            </para>
+            <para>
+            This attribute is also used for grouping those the searchers, especially in Sudoku Explainer mode.
+            </para>
+            </param>
+            <param name="DisabledReason">
+            <para>
+            Indicates whether the current searcher has bug to fix, or something else to describe why
+            the searcher is (or should be) disabled.
+            </para>
+            <para>
+            The property <b>must</b> contain a value that differs with <see cref="F:Sudoku.Concepts.Solving.DisabledReason.None"/>
+            when the property <see cref="P:Sudoku.Concepts.Solving.SearchingOptions.EnabledArea"/> isn't <see cref="F:Sudoku.Concepts.Solving.EnabledArea.Default"/>.
+            </para>
+            </param>
+        </member>
+        <member name="M:Sudoku.Concepts.Solving.SearchingOptions.#ctor(System.Int32,Sudoku.Concepts.Solving.DisplayingLevel,Sudoku.Concepts.Solving.EnabledArea,Sudoku.Concepts.Solving.DisabledReason)">
+            <summary>
+            Indicates the options for a step searcher used while searching.
+            </summary>
+            <param name="Priority">Indicates the priority of this technique.</param>
+            <param name="EnabledArea">
+            Indicates which areas the step searcher is enabled and works well.
+            The default value is both <see cref="F:Sudoku.Concepts.Solving.EnabledArea.Default"/> and <see cref="F:Sudoku.Concepts.Solving.EnabledArea.Gathering"/>.
+            </param>
+            <param name="DisplayingLevel">
+            <para>Indicates the displaying level of this technique.</para>
+            <para>
+            The display level means the which level the technique is at. All higher leveled techniques
+            won't display on the screen when the searchers at the current level have found technique
+            instances.
+            </para>
+            <para>
+            In order to enhance the performance, this attribute is used on a step gatherer.
+            For example, if Alternating Inference Chain (AIC) is at the level <see cref="F:Sudoku.Concepts.Solving.DisplayingLevel.D"/>
+            but Forcing Chains (FC) is at the level <see cref="F:Sudoku.Concepts.Solving.DisplayingLevel.E"/>,
+            when we find any AIC technique instances, FC won't be checked at the same time.
+            </para>
+            <para>
+            This attribute is also used for grouping those the searchers, especially in Sudoku Explainer mode.
+            </para>
+            </param>
+            <param name="DisabledReason">
+            <para>
+            Indicates whether the current searcher has bug to fix, or something else to describe why
+            the searcher is (or should be) disabled.
+            </para>
+            <para>
+            The property <b>must</b> contain a value that differs with <see cref="F:Sudoku.Concepts.Solving.DisabledReason.None"/>
+            when the property <see cref="P:Sudoku.Concepts.Solving.SearchingOptions.EnabledArea"/> isn't <see cref="F:Sudoku.Concepts.Solving.EnabledArea.Default"/>.
+            </para>
+            </param>
+        </member>
+        <member name="P:Sudoku.Concepts.Solving.SearchingOptions.Priority">
+            <summary>Indicates the priority of this technique.</summary>
+        </member>
+        <member name="P:Sudoku.Concepts.Solving.SearchingOptions.DisplayingLevel">
+            <summary>
+            <para>Indicates the displaying level of this technique.</para>
+            <para>
+            The display level means the which level the technique is at. All higher leveled techniques
+            won't display on the screen when the searchers at the current level have found technique
+            instances.
+            </para>
+            <para>
+            In order to enhance the performance, this attribute is used on a step gatherer.
+            For example, if Alternating Inference Chain (AIC) is at the level <see cref="F:Sudoku.Concepts.Solving.DisplayingLevel.D"/>
+            but Forcing Chains (FC) is at the level <see cref="F:Sudoku.Concepts.Solving.DisplayingLevel.E"/>,
+            when we find any AIC technique instances, FC won't be checked at the same time.
+            </para>
+            <para>
+            This attribute is also used for grouping those the searchers, especially in Sudoku Explainer mode.
+            </para>
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.Solving.SearchingOptions.EnabledArea">
+            <summary>
+            Indicates which areas the step searcher is enabled and works well.
+            The default value is both <see cref="F:Sudoku.Concepts.Solving.EnabledArea.Default"/> and <see cref="F:Sudoku.Concepts.Solving.EnabledArea.Gathering"/>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.Solving.SearchingOptions.DisabledReason">
+            <summary>
+            <para>
+            Indicates whether the current searcher has bug to fix, or something else to describe why
+            the searcher is (or should be) disabled.
+            </para>
+            <para>
+            The property <b>must</b> contain a value that differs with <see cref="F:Sudoku.Concepts.Solving.DisabledReason.None"/>
+            when the property <see cref="P:Sudoku.Concepts.Solving.SearchingOptions.EnabledArea"/> isn't <see cref="F:Sudoku.Concepts.Solving.EnabledArea.Default"/>.
+            </para>
+            </summary>
+        </member>
+        <member name="T:Sudoku.Concepts.Solving.Stableness">
+            <summary>
+            Defines a stableness of a technique.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Concepts.Solving.Stableness.Unknown">
+            <summary>
+            Indicates the stableness is unknown.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Concepts.Solving.Stableness.Stable">
+            <summary>
+            Indicates the stableness is stable.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Concepts.Solving.Stableness.LessUnstable">
+            <summary>
+            Indicates the stableness is less unstable.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Concepts.Solving.Stableness.Unstable">
+            <summary>
+            Indicates the stableness is unstable.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Concepts.Solving.Stableness.ExtremelyUnstable">
+            <summary>
+            Indicates the stableness is expremely unstable.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Concepts.Solving.Step">
+            <summary>
+            Provides with a manual solving step that is a technique usage, and contains the conclusions.
+            </summary>
+            <param name="Conclusions"><inheritdoc/></param>
+            <param name="Views"><inheritdoc/></param>
+        </member>
+        <member name="M:Sudoku.Concepts.Solving.Step.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Concepts.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View})">
+            <summary>
+            Provides with a manual solving step that is a technique usage, and contains the conclusions.
+            </summary>
+            <param name="Conclusions"><inheritdoc/></param>
+            <param name="Views"><inheritdoc/></param>
+        </member>
+        <member name="P:Sudoku.Concepts.Solving.Step.Conclusions">
+            <summary><inheritdoc/></summary>
+        </member>
+        <member name="P:Sudoku.Concepts.Solving.Step.Views">
+            <summary><inheritdoc/></summary>
+        </member>
+        <member name="P:Sudoku.Concepts.Solving.Step.ShowDifficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Concepts.Solving.Step.IsAlmostLockedSets">
+            <summary>
+            Indicates whether the corresponding technique of the current step is an Almost Locked Sets
+            (ALS in abbreviation).
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.Solving.Step.IsChaining">
+            <summary>
+            Indicates whether the corresponding technique of the current step is a chain. The chain techiques are:
+            <list type="bullet">
+            <item>
+            Wings
+            <list type="bullet">
+            <item>
+            Regular wings (XY-Wing, XYZ-Wing, WXYZ-Wing, etc.)
+            </item>
+            <item>
+            Irregular wings (W-Wing, M-Wing, Split-Wing, Local-Wing, Hybrid-Wing)
+            </item>
+            </list>
+            </item>
+            <item>
+            Short chains
+            <list type="bullet">
+            <item>
+            Two strong links (Skyscraper, Two-string kite, Turbot fish)
+            </item>
+            <item>
+            ALS chaining-like techniques
+            <list type="bullet">
+            <item>ALS-XZ</item>
+            <item>ALS-XY-Wing</item>
+            <item>ALS-W-Wing</item>
+            </list>
+            </item>
+            <item>Empty rectangle</item>
+            </list>
+            </item>
+            <!--
+            <item>
+            Long chains
+            <list type="bullet">
+            <item>Forcing chains</item>
+            <item>Dynamic forcing chains</item>
+            </list>
+            </item>
+            -->
+            </list>
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.Solving.Step.IsDeadlyPattern">
+            <summary>
+            Indicates whether the corresponding technique of the current step is a deadly pattern.
+            The deadly pattern techniques are:
+            <list type="bullet">
+            <item>
+            Bi-value patterns
+            <list type="bullet">
+            <item>Unique rectangle (i.e. Uniqueness test)</item>
+            <item>Unique loop</item>
+            <item>Bi-value universal grave</item>
+            </list>
+            </item>
+            <item>
+            Multi-value patterns
+            <list type="bullet">
+            <item>Extended rectangle</item>
+            <item>Unique square</item>
+            <item>Unique polygon (Borescoper's deadly pattern as its alias)</item>
+            <item>Qiu's deadly pattern</item>
+            </list>
+            </item>
+            <!--
+            <item>
+            Other deadly patterns
+            <list type="bullet">
+            <item>Reverse bi-value universal grave</item>
+            </list>
+            </item>
+            -->
+            </list>
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.Solving.Step.Name">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Concepts.Solving.Step.Format">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Concepts.Solving.Step.Difficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Concepts.Solving.Step.TechniqueCode">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Concepts.Solving.Step.TechniqueTags">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Concepts.Solving.Step.TechniqueGroup">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Concepts.Solving.Step.DifficultyLevel">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Concepts.Solving.Step.Stableness">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Concepts.Solving.Step.Rarity">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Concepts.Solving.Step.ElimStr">
+            <inheritdoc cref="P:Sudoku.Concepts.Solving.IStep.ElimStr"/>
+        </member>
+        <member name="P:Sudoku.Concepts.Solving.Step.Sudoku#Concepts#Solving#IStep#ElimStr">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.Solving.Step.ApplyTo(Sudoku.Concepts.Collections.Grid@)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.Solving.Step.HasTag(Sudoku.Concepts.Solving.TechniqueTags)">
+            <summary>
+            Determine whether the current step information instance with the specified flags.
+            </summary>
+            <param name="flags">
+            The flags. If the argument contains more than one set bit, all flags will be checked
+            one by one.
+            </param>
+            <returns>A <see cref="T:System.Boolean"/> result.</returns>
+        </member>
+        <member name="M:Sudoku.Concepts.Solving.Step.ToString">
+            <summary>
+            Returns a string that only contains the name and the basic information.
+            </summary>
+            <returns>The string instance.</returns>
+            <remarks>
+            <para>
+            This method uses <see langword="sealed"/> and <see langword="override"/> modifiers
+            to prevent the compiler overriding the method.
+            </para>
+            <para>The behavior is same as the method <see cref="M:Sudoku.Concepts.Solving.Step.Formatize(System.Boolean)"/> invoking.</para>
+            </remarks>
+            <seealso cref="M:Sudoku.Concepts.Solving.Step.Formatize(System.Boolean)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.Solving.Step.ToSimpleString">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.Solving.Step.ToFullString">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.Solving.Step.Formatize(System.Boolean)">
+            <inheritdoc/>
         </member>
         <member name="T:Sudoku.Concepts.Solving.Technique">
             <summary>
