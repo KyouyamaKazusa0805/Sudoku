@@ -50,19 +50,20 @@ partial struct Grid
 		/// <inheritdoc/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public override void Write(Utf8JsonWriter writer, Grid value, JsonSerializerOptions options)
-		{
 #if GRID_SERIALIZE_STRINGS
-			writer.WriteStringValue($"{value:#}");
+			=> writer.WriteStringValue($"{value:#}");
 #elif GRID_SERIALIZE_RAW_DATA
+		{
 			writer.WriteStartArray();
 			foreach (short mask in value.EnumerateMasks())
 			{
 				writer.WriteNumberValue(mask);
 			}
 			writer.WriteEndArray();
+		}
 #else
+			=> throw new NotImplementedException();
 #error You must set the symbol either 'GRID_SERIALIZE_STRINGS' or 'GRID_SERIALIZE_RAW_DATA'.
 #endif
-		}
 	}
 }
