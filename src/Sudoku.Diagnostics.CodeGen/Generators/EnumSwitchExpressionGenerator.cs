@@ -1,4 +1,13 @@
-﻿namespace Sudoku.Diagnostics.CodeGen.Generators;
+﻿using DataTuple = System.ValueTuple<
+	/*TypeSymbol*/ Microsoft.CodeAnalysis.INamedTypeSymbol,
+	/*MethodName*/ string,
+	/*RootAttributeData*/ Microsoft.CodeAnalysis.AttributeData,
+	System.Collections.Generic.IEnumerable<
+		System.ValueTuple<
+			/*FieldSymbol*/ Microsoft.CodeAnalysis.IFieldSymbol,
+			/*FieldAttributeData*/ Microsoft.CodeAnalysis.AttributeData>>>;
+
+namespace Sudoku.Diagnostics.CodeGen.Generators;
 
 /// <summary>
 /// Defines a source generator that generates the method and the corresponding values,
@@ -6,20 +15,93 @@
 /// </summary>
 /// <remarks>This source generator does not support generic types.</remarks>
 [Generator(LanguageNames.CSharp)]
-public sealed partial class EnumSwitchExpressionGenerator : ISourceGenerator
+public sealed class EnumSwitchExpressionGenerator : IIncrementalGenerator
 {
+	private const string
+		SwitchExprRootFullName = "System.Diagnostics.CodeGen.EnumSwitchExpressionRootAttribute",
+		SwitchExprArmFullName = "System.Diagnostics.CodeGen.EnumSwitchExpressionArmAttribute";
+
+
 	/// <inheritdoc/>
-	public void Execute(GeneratorExecutionContext context)
+	public void Initialize(IncrementalGeneratorInitializationContext context)
+		=> context.RegisterSourceOutput(
+			context.SyntaxProvider
+				.CreateSyntaxProvider(NodePredicate, Transform)
+				.Where(static pair => pair is not null)
+				.Collect(),
+			GenerateSource
+		);
+
+	private (INamedTypeSymbol, DataTuple[])? Transform(GeneratorSyntaxContext gsc, CancellationToken ct)
 	{
-		if (context is not { SyntaxContextReceiver: Receiver { Collection: var collection } })
+		if (
+			gsc is not
+			{
+				Node: EnumDeclarationSyntax enumDeclarationSyntaxNode,
+				SemanticModel: { Compilation: var compilation } semanticModel
+			}
+		)
 		{
-			return;
+			return null;
 		}
 
+		var rawTypeSymbol = semanticModel.GetDeclaredSymbol(enumDeclarationSyntaxNode, ct);
+		if (rawTypeSymbol is not INamedTypeSymbol typeSymbol)
+		{
+			return null;
+		}
+
+		var switchExprRoot = compilation.GetTypeByMetadataName(SwitchExprRootFullName);
+		var typeAttributesData = (
+			from attributeData in typeSymbol.GetAttributes()
+			where SymbolEqualityComparer.Default.Equals(attributeData.AttributeClass, switchExprRoot)
+			select attributeData
+		).Distinct(new AttributeDataComparerDistinctByKey()).ToArray();
+		if (typeAttributesData.Length == 0)
+		{
+			return null;
+		}
+
+		var result = new List<DataTuple>();
+		var switchExprArm = compilation.GetTypeByMetadataName(SwitchExprArmFullName);
+		var fieldAndItsCorrespondingAttributeData = new List<(IFieldSymbol, AttributeData)>();
+		foreach (var attributeData in typeAttributesData)
+		{
+			string key = (string)attributeData.ConstructorArguments[0].Value!;
+			foreach (var field in typeSymbol.GetMembers().OfType<IFieldSymbol>())
+			{
+				var fieldAttributeData = (
+					from fad in field.GetAttributes()
+					where SymbolEqualityComparer.Default.Equals(fad.AttributeClass, switchExprArm)
+					let construtorArgs = fad.ConstructorArguments
+					where construtorArgs.Length >= 1
+					let firstConstructorArg = (string)construtorArgs[0].Value!
+					where firstConstructorArg == key
+					select fad
+				).FirstOrDefault();
+
+				fieldAndItsCorrespondingAttributeData.Add((field, fieldAttributeData));
+			}
+
+			result.Add(new(typeSymbol, key, attributeData, fieldAndItsCorrespondingAttributeData.ToArray()));
+			fieldAndItsCorrespondingAttributeData.Clear();
+		}
+
+		return (typeSymbol, result.ToArray());
+	}
+
+	/// <inheritdoc/>
+	public void GenerateSource(SourceProductionContext spc, ImmutableArray<(INamedTypeSymbol, DataTuple[])?> collection)
+	{
 		// Iterates on each tuple array.
 		// An array of tuples is a group, storing a set of tuples whose key and type are same.
-		foreach (var (type, tuples) in collection)
+		foreach (var pair in collection)
 		{
+			if (pair is not var (type, tuples))
+			{
+				continue;
+			}
+
 			string fullName = type.ToDisplayString(TypeFormats.FullName);
 
 			var emittedMethods = new List<string>();
@@ -76,9 +158,8 @@ public sealed partial class EnumSwitchExpressionGenerator : ISourceGenerator
 				);
 			}
 
-			context.AddSource(
-				type.ToFileName(),
-				Shortcuts.EnumSwitchExpression,
+			spc.AddSource(
+				$"{type.ToFileName()}.g.{Shortcuts.EnumSwitchExpression}.cs",
 				$$"""
 				#nullable enable
 				
@@ -98,7 +179,28 @@ public sealed partial class EnumSwitchExpressionGenerator : ISourceGenerator
 		}
 	}
 
-	/// <inheritdoc/>
-	public void Initialize(GeneratorInitializationContext context)
-		=> context.RegisterForSyntaxNotifications(() => new Receiver(context.CancellationToken));
+	private static bool NodePredicate(SyntaxNode node, CancellationToken _) => node is EnumDeclarationSyntax;
+
+
+	/// <summary>
+	/// Defines a comparer that compares for the inner key.
+	/// </summary>
+	private sealed class AttributeDataComparerDistinctByKey : IEqualityComparer<AttributeData>
+	{
+		/// <inheritdoc/>
+		public bool Equals(AttributeData x, AttributeData y)
+		{
+			if (!SymbolEqualityComparer.Default.Equals(x.AttributeClass, y.AttributeClass))
+			{
+				return false;
+			}
+
+			string? key = (string?)x.ConstructorArguments[0].Value;
+			string? another = (string?)y.ConstructorArguments[0].Value;
+			return key == another;
+		}
+
+		/// <inheritdoc/>
+		public int GetHashCode(AttributeData obj) => SymbolEqualityComparer.Default.GetHashCode(obj.AttributeClass);
+	}
 }

@@ -387,75 +387,22 @@
             </summary>
             <remarks>This source generator does not support generic types.</remarks>
         </member>
-        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.EnumSwitchExpressionGenerator.Execute(Microsoft.CodeAnalysis.GeneratorExecutionContext)">
+        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.EnumSwitchExpressionGenerator.Initialize(Microsoft.CodeAnalysis.IncrementalGeneratorInitializationContext)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.EnumSwitchExpressionGenerator.Initialize(Microsoft.CodeAnalysis.GeneratorInitializationContext)">
+        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.EnumSwitchExpressionGenerator.GenerateSource(Microsoft.CodeAnalysis.SourceProductionContext,System.Collections.Immutable.ImmutableArray{System.Nullable{System.ValueTuple{Microsoft.CodeAnalysis.INamedTypeSymbol,System.ValueTuple{Microsoft.CodeAnalysis.INamedTypeSymbol,System.String,Microsoft.CodeAnalysis.AttributeData,System.Collections.Generic.IEnumerable{System.ValueTuple{Microsoft.CodeAnalysis.IFieldSymbol,Microsoft.CodeAnalysis.AttributeData}}}[]}}})">
             <inheritdoc/>
         </member>
-        <member name="T:Sudoku.Diagnostics.CodeGen.Generators.EnumSwitchExpressionGenerator.Receiver">
-            <summary>
-            The inner syntax context receiver instance.
-            </summary>
-            <param name="CancellationToken">The cancellation token to cancel the operation.</param>
-        </member>
-        <member name="T:Sudoku.Diagnostics.CodeGen.Generators.EnumSwitchExpressionGenerator.Receiver.AttributeDataComparerDistinctByKey">
+        <member name="T:Sudoku.Diagnostics.CodeGen.Generators.EnumSwitchExpressionGenerator.AttributeDataComparerDistinctByKey">
             <summary>
             Defines a comparer that compares for the inner key.
             </summary>
         </member>
-        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.EnumSwitchExpressionGenerator.Receiver.AttributeDataComparerDistinctByKey.Equals(Microsoft.CodeAnalysis.AttributeData,Microsoft.CodeAnalysis.AttributeData)">
+        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.EnumSwitchExpressionGenerator.AttributeDataComparerDistinctByKey.Equals(Microsoft.CodeAnalysis.AttributeData,Microsoft.CodeAnalysis.AttributeData)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.EnumSwitchExpressionGenerator.Receiver.AttributeDataComparerDistinctByKey.GetHashCode(Microsoft.CodeAnalysis.AttributeData)">
+        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.EnumSwitchExpressionGenerator.AttributeDataComparerDistinctByKey.GetHashCode(Microsoft.CodeAnalysis.AttributeData)">
             <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.EnumSwitchExpressionGenerator.Receiver.#ctor(System.Threading.CancellationToken)">
-            <summary>
-            The inner syntax context receiver instance.
-            </summary>
-            <param name="CancellationToken">The cancellation token to cancel the operation.</param>
-        </member>
-        <member name="P:Sudoku.Diagnostics.CodeGen.Generators.EnumSwitchExpressionGenerator.Receiver.CancellationToken">
-            <summary>The cancellation token to cancel the operation.</summary>
-        </member>
-        <member name="P:Sudoku.Diagnostics.CodeGen.Generators.EnumSwitchExpressionGenerator.Receiver.Collection">
-            <summary>
-            Indicates the result collection.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.EnumSwitchExpressionGenerator.Receiver.OnVisitSyntaxNode(Microsoft.CodeAnalysis.GeneratorSyntaxContext)">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Diagnostics.CodeGen.Generators.EnumSwitchExpressionGenerator.Tuple">
-            <summary>
-            Defines a tuple that stores the basic information for a generation operation unit.
-            </summary>
-            <param name="TypeSymbol">Indicates a type symbol.</param>
-            <param name="Key">Indicates a key of the generation.</param>
-            <param name="RootAttributeData">The attribute data for the type.</param>
-            <param name="ListOfFieldAttributesData">Indicates a list of field attributes data.</param>
-        </member>
-        <member name="M:Sudoku.Diagnostics.CodeGen.Generators.EnumSwitchExpressionGenerator.Tuple.#ctor(Microsoft.CodeAnalysis.INamedTypeSymbol,System.String,Microsoft.CodeAnalysis.AttributeData,System.Collections.Generic.IEnumerable{System.ValueTuple{Microsoft.CodeAnalysis.IFieldSymbol,Microsoft.CodeAnalysis.AttributeData}})">
-            <summary>
-            Defines a tuple that stores the basic information for a generation operation unit.
-            </summary>
-            <param name="TypeSymbol">Indicates a type symbol.</param>
-            <param name="Key">Indicates a key of the generation.</param>
-            <param name="RootAttributeData">The attribute data for the type.</param>
-            <param name="ListOfFieldAttributesData">Indicates a list of field attributes data.</param>
-        </member>
-        <member name="P:Sudoku.Diagnostics.CodeGen.Generators.EnumSwitchExpressionGenerator.Tuple.TypeSymbol">
-            <summary>Indicates a type symbol.</summary>
-        </member>
-        <member name="P:Sudoku.Diagnostics.CodeGen.Generators.EnumSwitchExpressionGenerator.Tuple.Key">
-            <summary>Indicates a key of the generation.</summary>
-        </member>
-        <member name="P:Sudoku.Diagnostics.CodeGen.Generators.EnumSwitchExpressionGenerator.Tuple.RootAttributeData">
-            <summary>The attribute data for the type.</summary>
-        </member>
-        <member name="P:Sudoku.Diagnostics.CodeGen.Generators.EnumSwitchExpressionGenerator.Tuple.ListOfFieldAttributesData">
-            <summary>Indicates a list of field attributes data.</summary>
         </member>
         <member name="T:Sudoku.Diagnostics.CodeGen.Generators.JsonSerializerBitOperationsGenerator">
             <summary>
