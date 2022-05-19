@@ -4,22 +4,25 @@
 /// Indicates the generator that generates the code about extended methods of type <c>BitOperations</c>.
 /// </summary>
 [Generator(LanguageNames.CSharp)]
-public sealed class BitOperationsGenerator : ISourceGenerator
+public sealed class BitOperationsGenerator : IIncrementalGenerator
 {
 	/// <summary>
 	/// Indicates the leading text.
 	/// </summary>
-	private const string LeadingText = @"#pragma warning disable CS1591
+	private const string LeadingText =
+		"""
+		#pragma warning disable CS1591
 
-using static System.Numerics.BitOperations;
+		using static System.Numerics.BitOperations;
 
-#nullable enable
+		#nullable enable
 
-namespace System.Numerics;
+		namespace System.Numerics;
 
-partial class BitOperationsExensions
-{
-	";
+		partial class BitOperationsExensions
+		{
+			
+		""";
 
 
 	private static readonly string[]
@@ -34,11 +37,26 @@ partial class BitOperationsExensions
 
 
 	/// <inheritdoc/>
-	public void Execute(GeneratorExecutionContext context)
+	public void Initialize(IncrementalGeneratorInitializationContext context)
+		=> context.RegisterSourceOutput(context.CompilationProvider, GenerateSource);
+
+	/// <summary>
+	/// Try to generate source.
+	/// </summary>
+	/// <param name="spc">The <see cref="SourceProductionContext"/> instance that can generate files.</param>
+	/// <param name="compilation">
+	/// The compilation to check whether the current compilation should generate the files.
+	/// </param>
+	private void GenerateSource(SourceProductionContext spc, Compilation compilation)
 	{
+		if (compilation.Assembly.Name != "SystemExtensions")
+		{
+			return;
+		}
+
 		const string typeName = "System.Numerics.BitOperationsExtensions";
 
-		context.AddSource($"{typeName}.g.cs", G_GlobalFile());
+		spc.AddSource($"{typeName}.g.cs", G_GlobalFile());
 
 		var sb = new StringBuilder();
 		(new Action(a) + b + c + d + e + f)();
@@ -46,82 +64,40 @@ partial class BitOperationsExensions
 
 		void a()
 		{
-			string code = string.Join(
-				"\r\n\r\n\t",
-				from name in GetAllSetsTypes select G_GetAllSets(name)
-			);
-			context.AddSource(
-				typeName,
-				GeneratedFileShortcuts.BitOperations_GetAllSets,
-				$"{LeadingText}{code}\r\n}}\r\n"
-			);
+			string code = string.Join("\r\n\r\n\t", from name in GetAllSetsTypes select G_GetAllSets(name));
+			spc.AddSource($"{typeName}.g.{Shortcuts.BitOperations_GetAllSets}.cs", $"{LeadingText}{code}\r\n}}\r\n");
 		}
 
 		void b()
 		{
-			string code = string.Join(
-				"\r\n\r\n\t",
-				from name in GetEnumeratorTypes select G_GetEnumerator(name)
-			);
-			context.AddSource(
-				typeName,
-				GeneratedFileShortcuts.BitOperations_GetEnumerator,
-				$"{LeadingText}{code}\r\n}}\r\n"
-			);
+			string code = string.Join("\r\n\r\n\t", from name in GetEnumeratorTypes select G_GetEnumerator(name));
+			spc.AddSource($"{typeName}.g.{Shortcuts.BitOperations_GetEnumerator}.cs", $"{LeadingText}{code}\r\n}}\r\n");
 		}
 
 		void c()
 		{
-			string code = string.Join(
-				"\r\n\r\n\t",
-				from pair in GetNextSetTypes select G_GetNextSet(pair.TypeName, pair.Size)
-			);
-			context.AddSource(
-				typeName,
-				GeneratedFileShortcuts.BitOperations_GetNextSet,
-				$"{LeadingText}{code}\r\n}}\r\n"
-			);
+			string code = string.Join("\r\n\r\n\t", from pair in GetNextSetTypes select G_GetNextSet(pair.TypeName, pair.Size));
+			spc.AddSource($"{typeName}.g.{Shortcuts.BitOperations_GetNextSet}.cs", $"{LeadingText}{code}\r\n}}\r\n");
 		}
 
 		void d()
 		{
-			string code = string.Join(
-				"\r\n\r\n\t",
-				from pair in ReverseBitsTypes select G_ReverseBits(pair.TypeName, pair.Size)
-			);
-			context.AddSource(
-				typeName,
-				GeneratedFileShortcuts.BitOperations_ReverseBits,
-				$"{LeadingText}{code}\r\n}}\r\n"
-			);
+			string code = string.Join("\r\n\r\n\t", from pair in ReverseBitsTypes select G_ReverseBits(pair.TypeName, pair.Size));
+			spc.AddSource($"{typeName}.g.{Shortcuts.BitOperations_ReverseBits}.cs", $"{LeadingText}{code}\r\n}}\r\n");
 		}
 
 		void e()
 		{
 			string code = string.Join("\r\n\r\n\t", from name in SetAtTypes select G_SetAt(name));
-			context.AddSource(
-				typeName,
-				GeneratedFileShortcuts.BitOperations_SetAt,
-				$"{LeadingText}{code}\r\n}}\r\n"
-			);
+			spc.AddSource($"{typeName}.g.{Shortcuts.BitOperations_SetAt}.cs", $"{LeadingText}{code}\r\n}}\r\n");
 		}
 
 		void f()
 		{
 			string code = string.Join("\r\n\r\n\t", from name in SkipSetBitTypes select G_SkipSetBit(name));
-			context.AddSource(
-				typeName,
-				GeneratedFileShortcuts.BitOperations_SkipSetBit,
-				$"{LeadingText}{code}\r\n}}\r\n"
-			);
+			spc.AddSource($"{typeName}.g.{Shortcuts.BitOperations_SkipSetBit}.cs", $"{LeadingText}{code}\r\n}}\r\n");
 		}
 	}
-
-	/// <inheritdoc/>
-	public void Initialize(GeneratorInitializationContext context)
-	{
-	}
-
 
 	/// <summary>
 	/// Generates the global file.
@@ -130,18 +106,21 @@ partial class BitOperationsExensions
 	private string G_GlobalFile()
 	{
 		var sb = new StringBuilder();
-		sb.AppendLine($@"#pragma warning disable CS1591
-
-namespace System.Numerics;
-
-/// <summary>
-/// Provides extension methods on <see cref=""BitOperations""/>.
-/// </summary>
-/// <seealso cref=""BitOperations""/>
-[global::System.CodeDom.Compiler.GeneratedCode(""{GetType().FullName}"", ""{VersionValue}"")]
-[global::System.Runtime.CompilerServices.CompilerGenerated]
-public static partial class BitOperationsExensions
-{{"
+		sb.AppendLine(
+			$$"""
+			#pragma warning disable CS1591
+			
+			namespace System.Numerics;
+			
+			/// <summary>
+			/// Provides extension methods on <see cref="BitOperations"/>.
+			/// </summary>
+			/// <seealso cref="BitOperations"/>
+			[global::System.CodeDom.Compiler.GeneratedCode("{{GetType().FullName}}", "{{VersionValue}}")]
+			[global::System.Runtime.CompilerServices.CompilerGenerated]
+			public static partial class BitOperationsExensions
+			{
+			"""
 		);
 
 		foreach (string name in GetAllSetsTypes)
@@ -191,32 +170,34 @@ public static partial class BitOperationsExensions
 			_ => throw new()
 		};
 
-		return $@"/// <summary>
-	/// Find all offsets of set bits of the binary representation of a specified value.
-	/// </summary>
-	/// <param name=""this"">The value.</param>
-	/// <returns>All offsets.</returns>
-	[global::System.CodeDom.Compiler.GeneratedCode(""{GetType().FullName}"", ""{VersionValue}"")]
-	[global::System.Runtime.CompilerServices.CompilerGenerated]
-	public static partial ReadOnlySpan<int> GetAllSets(this {typeName} @this)
-	{{
-		if (@this == 0)
-		{{
-			return ReadOnlySpan<int>.Empty;
-		}}
-
-		int length = PopCount({popCountStr});
-		int[] result = new int[length];
-		for (byte i = 0, p = 0; i < sizeof({typeName}) << 3; i++, @this >>= 1)
-		{{
-			if ((@this & 1) != 0)
-			{{
-				result[p++] = i;
-			}}
-		}}
-
-		return result;
-	}}";
+		return $$"""
+			/// <summary>
+			/// Find all offsets of set bits of the binary representation of a specified value.
+			/// </summary>
+			/// <param name="this">The value.</param>
+			/// <returns>All offsets.</returns>
+			[global::System.CodeDom.Compiler.GeneratedCode("{{GetType().FullName}}", "{{VersionValue}}")]
+			[global::System.Runtime.CompilerServices.CompilerGenerated]
+			public static partial ReadOnlySpan<int> GetAllSets(this {{typeName}} @this)
+			{
+				if (@this == 0)
+				{
+					return ReadOnlySpan<int>.Empty;
+				}
+				
+				int length = PopCount({{popCountStr}});
+				int[] result = new int[length];
+				for (byte i = 0, p = 0; i < sizeof({{typeName}}) << 3; i++, @this >>= 1)
+				{
+					if ((@this & 1) != 0)
+					{
+						result[p++] = i;
+					}
+				}
+				
+				return result;
+			}
+		""";
 	}
 
 	/// <summary>
@@ -225,29 +206,31 @@ public static partial class BitOperationsExensions
 	/// <param name="typeName">The type name.</param>
 	/// <returns>The code.</returns>
 	private string G_GetEnumerator(string typeName)
-		=> $@"/// <summary>
-	/// <para>Extension get enumerator of the type <see cref=""{typeName}""/>.</para>
-	/// <para>
-	/// This method will allow you to use <see langword=""foreach""/> loop to iterate on
-	/// all indices of set bits.
-	/// </para>
-	/// </summary>
-	/// <param name=""this"">The value.</param>
-	/// <returns>All indices of set bits.</returns>
-	/// <remarks>
-	/// This implementation will allow you use <see langword=""foreach""/> loop:
-	/// <code><![CDATA[
-	/// foreach (int setIndex in 17)
-	/// {{
-	///     // Do something...
-	/// }}
-	/// ]]></code>
-	/// </remarks>
-	[global::System.CodeDom.Compiler.GeneratedCode(""{GetType().FullName}"", ""{VersionValue}"")]
-	[global::System.Runtime.CompilerServices.CompilerGenerated]
-	[global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
-	public static partial ReadOnlySpan<int>.Enumerator GetEnumerator(this {typeName} @this)
-		=> @this.GetAllSets().GetEnumerator();";
+		=> $$"""
+			/// <summary>
+			/// <para>Extension get enumerator of the type <see cref="{{typeName}}"/>.</para>
+			/// <para>
+			/// This method will allow you to use <see langword="foreach"/> loop to iterate on
+			/// all indices of set bits.
+			/// </para>
+			/// </summary>
+			/// <param name="this">The value.</param>
+			/// <returns>All indices of set bits.</returns>
+			/// <remarks>
+			/// This implementation will allow you use <see langword="foreach"/> loop:
+			/// <code><![CDATA[
+			/// foreach (int setIndex in 17)
+			/// {
+			///     // Do something...
+			/// }
+			/// ]]></code>
+			/// </remarks>
+			[global::System.CodeDom.Compiler.GeneratedCode("{{GetType().FullName}}", "{{VersionValue}}")]
+			[global::System.Runtime.CompilerServices.CompilerGenerated]
+			[global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
+			public static partial ReadOnlySpan<int>.Enumerator GetEnumerator(this {{typeName}} @this)
+				=> @this.GetAllSets().GetEnumerator();
+		""";
 
 	/// <summary>
 	/// Generates the file of the method <c>GetNextSet</c>.
@@ -256,27 +239,29 @@ public static partial class BitOperationsExensions
 	/// <param name="size">The size of the type.</param>
 	/// <returns>The code.</returns>
 	private string G_GetNextSet(string typeName, int size)
-		=> $@"/// <summary>
-	/// Find a index of the binary representation of a value after the specified index,
-	/// whose bit is set <see langword=""true""/>.
-	/// </summary>
-	/// <param name=""this"">The value.</param>
-	/// <param name=""index"">The index.</param>
-	/// <returns>The index.</returns>
-	[global::System.CodeDom.Compiler.GeneratedCode(""{GetType().FullName}"", ""{VersionValue}"")]
-	[global::System.Runtime.CompilerServices.CompilerGenerated]
-	public static partial int GetNextSet(this {typeName} @this, int index)
-	{{
-		for (int i = index + 1; i < {size}; i++)
-		{{
-			if ((@this >> i & 1) != 0)
-			{{
-				return i;
-			}}
-		}}
-
-		return -1;
-	}}";
+		=> $$"""
+			/// <summary>
+			/// Find a index of the binary representation of a value after the specified index,
+			/// whose bit is set <see langword="true"/>.
+			/// </summary>
+			/// <param name="this">The value.</param>
+			/// <param name="index">The index.</param>
+			/// <returns>The index.</returns>
+			[global::System.CodeDom.Compiler.GeneratedCode("{{GetType().FullName}}", "{{VersionValue}}")]
+			[global::System.Runtime.CompilerServices.CompilerGenerated]
+			public static partial int GetNextSet(this {{typeName}} @this, int index)
+			{
+				for (int i = index + 1; i < {{size}}; i++)
+				{
+					if ((@this >> i & 1) != 0)
+					{
+						return i;
+					}
+				}
+				
+				return -1;
+			}
+		""";
 
 	/// <summary>
 	/// Generates the file of the method <c>ReverseBits</c>.
@@ -296,19 +281,21 @@ public static partial class BitOperationsExensions
 
 		var sb = new StringBuilder()
 			.AppendLine(
-				$@"/// <summary>
-	/// <para>Reverse all bits in a specified value.</para>
-	/// <para>
-	/// Note that the value is passed by <b>reference</b> though the
-	/// method is an extension method, and returns nothing.
-	/// </para>
-	/// </summary>
-	/// <param name=""this"">The value.</param>
-	[global::System.CodeDom.Compiler.GeneratedCode(""{GetType().FullName}"", ""{VersionValue}"")]
-	[global::System.Runtime.CompilerServices.CompilerGenerated]
-	[global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
-	public static partial void ReverseBits(this ref {typeName} @this)
-	{{"
+				$$"""
+					/// <summary>
+					/// <para>Reverse all bits in a specified value.</para>
+					/// <para>
+					/// Note that the value is passed by <b>reference</b> though the
+					/// method is an extension method, and returns nothing.
+					/// </para>
+					/// </summary>
+					/// <param name="this">The value.</param>
+					[global::System.CodeDom.Compiler.GeneratedCode("{{GetType().FullName}}", "{{VersionValue}}")]
+					[global::System.Runtime.CompilerServices.CompilerGenerated]
+					[global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
+					public static partial void ReverseBits(this ref {{typeName}} @this)
+					{
+				"""
 			);
 
 		string conversion = typeName switch { "byte" => "(byte)", "short" => "(short)", _ => string.Empty };
@@ -330,27 +317,29 @@ public static partial class BitOperationsExensions
 	/// <param name="typeName">The type name.</param>
 	/// <returns>The code.</returns>
 	private string G_SetAt(string typeName)
-		=> $@"/// <summary>
-	/// Get an <see cref=""int""/> value, indicating that the absolute position of
-	/// all set bits with the specified set bit order.
-	/// </summary>
-	/// <param name=""this"">The value.</param>
-	/// <param name=""order"">The number of the order of set bits.</param>
-	/// <returns>The position.</returns>
-	[global::System.CodeDom.Compiler.GeneratedCode(""{GetType().FullName}"", ""{VersionValue}"")]
-	[global::System.Runtime.CompilerServices.CompilerGenerated]
-	public static partial int SetAt(this {typeName} @this, int order)
-	{{
-		for (int i = 0, count = -1; i < sizeof({typeName}) << 3; i++, @this >>= 1)
-		{{
-			if ((@this & 1) != 0 && ++count == order)
-			{{
-				return i;
-			}}
-		}}
-
-		return -1;
-	}}";
+		=> $$"""
+			/// <summary>
+			/// Get an <see cref="int"/> value, indicating that the absolute position of
+			/// all set bits with the specified set bit order.
+			/// </summary>
+			/// <param name="this">The value.</param>
+			/// <param name="order">The number of the order of set bits.</param>
+			/// <returns>The position.</returns>
+			[global::System.CodeDom.Compiler.GeneratedCode("{{GetType().FullName}}", "{{VersionValue}}")]
+			[global::System.Runtime.CompilerServices.CompilerGenerated]
+			public static partial int SetAt(this {{typeName}} @this, int order)
+			{
+				for (int i = 0, count = -1; i < sizeof({{typeName}}) << 3; i++, @this >>= 1)
+				{
+					if ((@this & 1) != 0 && ++count == order)
+					{
+						return i;
+					}
+				}
+				
+				return -1;
+			}
+		""";
 
 	/// <summary>
 	/// Generates the file of the method <c>SkipSetBit</c>.
@@ -361,43 +350,45 @@ public static partial class BitOperationsExensions
 	{
 		string conversion = typeName switch { "byte" => "(byte)", "short" => "(short)", _ => string.Empty };
 		int size = typeName switch { "byte" => 8, "short" => 16, "int" => 32, "long" => 64, _ => throw new() };
-		return $@"/// <summary>
-	/// Skip the specified number of set bits and iterate on the integer with other set bits.
-	/// </summary>
-	/// <param name=""this"">The integer to iterate.</param>
-	/// <param name=""setBitPosCount"">Indicates how many set bits you want to skip to iterate.</param>
-	/// <returns>The {typeName} value that only contains the other set bits.</returns>
-	/// <remarks>
-	/// For example:
-	/// <code><![CDATA[
-	/// byte value = 0b00010111;
-	/// foreach (int bitPos in value.SkipSetBit(2))
-	/// {{
-	///     yield return bitPos + 1;
-	/// }}
-	/// ]]></code>
-	/// You will get 3 and 5, because all set bit positions are 0, 1, 2 and 4, and we have skipped
-	/// two of them, so the result set bit positions to iterate on are only 2 and 4.
-	/// </remarks>
-	[global::System.CodeDom.Compiler.GeneratedCode(""{GetType().FullName}"", ""{VersionValue}"")]
-	[global::System.Runtime.CompilerServices.CompilerGenerated]
-	public static partial {typeName} SkipSetBit(this {typeName} @this, int setBitPosCount)
-	{{
-		{typeName} result = @this;
-		for (int i = 0, count = 0; i < {size}; i++)
-		{{
-			if ((@this >> i & 1) != 0)
-			{{
-				result &= {conversion}~(1 << i);
-
-				if (++count == setBitPosCount)
-				{{
-					break;
-				}}
-			}}
-		}}
-
-		return result;
-	}}";
+		return $$"""
+				/// <summary>
+				/// Skip the specified number of set bits and iterate on the integer with other set bits.
+				/// </summary>
+				/// <param name="this">The integer to iterate.</param>
+				/// <param name="setBitPosCount">Indicates how many set bits you want to skip to iterate.</param>
+				/// <returns>The {{typeName}} value that only contains the other set bits.</returns>
+				/// <remarks>
+				/// For example:
+				/// <code><![CDATA[
+				/// byte value = 0b00010111;
+				/// foreach (int bitPos in value.SkipSetBit(2))
+				/// {
+				///     yield return bitPos + 1;
+				/// }
+				/// ]]></code>
+				/// You will get 3 and 5, because all set bit positions are 0, 1, 2 and 4, and we have skipped
+				/// two of them, so the result set bit positions to iterate on are only 2 and 4.
+				/// </remarks>
+				[global::System.CodeDom.Compiler.GeneratedCode("{{GetType().FullName}}", "{{VersionValue}}")]
+				[global::System.Runtime.CompilerServices.CompilerGenerated]
+				public static partial {{typeName}} SkipSetBit(this {{typeName}} @this, int setBitPosCount)
+				{
+					{{typeName}} result = @this;
+					for (int i = 0, count = 0; i < {{size}}; i++)
+					{
+						if ((@this >> i & 1) != 0)
+						{
+							result &= {{conversion}}~(1 << i);
+							
+							if (++count == setBitPosCount)
+							{
+								break;
+							}
+						}
+					}
+					
+					return result;
+				}
+			""";
 	}
 }
