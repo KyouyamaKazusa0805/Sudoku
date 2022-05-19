@@ -5333,24 +5333,6 @@
             Indicates the node type is an almost locked sets.
             </summary>
         </member>
-        <member name="T:Sudoku.Concepts.Solving.NodeTypeNameAttribute">
-            <summary>
-            Defines an attribute that can be applied to a field in the type <see cref="T:Sudoku.Concepts.Solving.NodeType"/>,
-            to tell the runtime that the name is bound with the field, in order to display in the console or UI.
-            </summary>
-            <seealso cref="T:Sudoku.Concepts.Solving.NodeType"/>
-        </member>
-        <member name="M:Sudoku.Concepts.Solving.NodeTypeNameAttribute.#ctor(System.String)">
-            <summary>
-            Initializes a <see cref="T:Sudoku.Concepts.Solving.NodeTypeNameAttribute"/> instance via the name.
-            </summary>
-            <param name="name">The name.</param>
-        </member>
-        <member name="P:Sudoku.Concepts.Solving.NodeTypeNameAttribute.Name">
-            <summary>
-            Indicates the name.
-            </summary>
-        </member>
         <member name="T:Sudoku.Concepts.Solving.Rarity">
             <summary>
             Indicates the rarity of the technique.
@@ -8398,6 +8380,18 @@
             </summary>
             <param name="this">The field.</param>
             <returns>The name of the field.</returns>
+        </member>
+        <member name="T:Sudoku.Concepts.Solving.NodeType_EnumSwitchExpressionExtensions">
+            <summary>
+            Provides with extension methods for switching on the current type.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Concepts.Solving.NodeType_EnumSwitchExpressionExtensions.GetName(Sudoku.Concepts.Solving.NodeType)">
+            <summary>
+            Gets the name of the field of the current type.
+            </summary>
+            <param name="this">A node type instance.</param>
+            <returns>The name of the node type.</returns>
         </member>
         <member name="T:Sudoku.Concepts.SymmetryType">
             <summary>

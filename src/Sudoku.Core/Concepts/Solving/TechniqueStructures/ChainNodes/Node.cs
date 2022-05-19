@@ -122,14 +122,7 @@ public abstract partial class Node : IEquatable<Node>, IEqualityOperators<Node, 
 	{
 		const string defaultName = "<Unnamed>";
 
-		string nodeTypeName = defaultName;
-		if (typeof(NodeType).GetField(Type.ToString()) is { } fieldInfo)
-		{
-			nodeTypeName = fieldInfo.GetCustomAttribute<NodeTypeNameAttribute>() is { Name: var name }
-				? name
-				: GetType().FullName ?? defaultName;
-		}
-
+		string nodeTypeName = Type.GetName() ?? defaultName;
 		return $"{nodeTypeName}: {ToSimpleString()}";
 	}
 }

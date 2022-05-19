@@ -3,23 +3,24 @@
 /// <summary>
 /// Defines a node type.
 /// </summary>
+[EnumSwitchExpressionRoot("GetName", DefaultBehavior = EnumSwitchExpressionDefaultBehavior.ReturnByCorrespondingIntegerValue, MethodDescription = "Gets the name of the field of the current type.", ThisParameterDescription = "A node type instance.", ReturnValueDescription = "The name of the node type.")]
 public enum NodeType
 {
 	/// <summary>
 	/// Indicates the node type is a sole candidate.
 	/// </summary>
-	[NodeTypeName("Sole candidate")]
+	[EnumSwitchExpressionArm("GetName", "Sole candidate")]
 	Sole,
 
 	/// <summary>
 	/// Indicates the node type is a locked candidates.
 	/// </summary>
-	[NodeTypeName("Locked candidates")]
+	[EnumSwitchExpressionArm("GetName", "Locked candidates")]
 	LockedCandidates,
 
 	/// <summary>
 	/// Indicates the node type is an almost locked sets.
 	/// </summary>
-	[NodeTypeName("Almost locked set")]
+	[EnumSwitchExpressionArm("GetName", "Almost locked set")]
 	AlmostLockedSets,
 }
