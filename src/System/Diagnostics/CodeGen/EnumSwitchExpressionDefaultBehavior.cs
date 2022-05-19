@@ -9,7 +9,12 @@ public enum EnumSwitchExpressionDefaultBehavior : byte
 	/// Indicates the result behavior is to return the string representation of the integer value
 	/// corrsponding to the current enumeration field.
 	/// </summary>
-	ReturnByCorrespondingIntegerValue,
+	ReturnIntegerValue,
+
+	/// <summary>
+	/// Indicates the result behavior is to return <see langword="null"/>.
+	/// </summary>
+	ReturnNull,
 
 	/// <summary>
 	/// Indicates the result behavior is to throw an <see cref="ArgumentOutOfRangeException"/> to report it.

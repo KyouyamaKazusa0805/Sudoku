@@ -3,7 +3,7 @@
 /// <summary>
 /// Defines a node type.
 /// </summary>
-[EnumSwitchExpressionRoot("GetName", DefaultBehavior = EnumSwitchExpressionDefaultBehavior.ReturnByCorrespondingIntegerValue, MethodDescription = "Gets the name of the field of the current type.", ThisParameterDescription = "A node type instance.", ReturnValueDescription = "The name of the node type.")]
+[EnumSwitchExpressionRoot("GetName", DefaultBehavior = EnumSwitchExpressionDefaultBehavior.ReturnNull, MethodDescription = "Gets the name of the field of the current type.", ThisParameterDescription = "A node type instance.", ReturnValueDescription = "The name of the node type.")]
 public enum NodeType
 {
 	/// <summary>

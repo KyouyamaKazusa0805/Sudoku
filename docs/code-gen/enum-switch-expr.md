@@ -98,9 +98,10 @@ public static string GetName(this SymmetryType @this)
 
 ### `NotDefinedBehavior` 属性
 
-该属性是枚举类型的数值，表示的是对于如果没有标记 `EnumSwitchExpressionArmAttribute` 的字段，生成了方法会自动路由到默认情况上（即 `switch` 表达式里的弃元符号 `_` 对应的返回表达式）到底返回什么。该属性包含两种可能：
+该属性是枚举类型的数值，表示的是对于如果没有标记 `EnumSwitchExpressionArmAttribute` 的字段，生成了方法会自动路由到默认情况上（即 `switch` 表达式里的弃元符号 `_` 对应的返回表达式）到底返回什么。该属性包含如下的一些可能：
 
 1. 默认返回对象的对应整数数值的字符串表示；
-2. 抛 `ArgumentOutOfRangeException` 异常。（默认值）
+2. 返回 `null`；
+3. 抛 `ArgumentOutOfRangeException` 异常。（默认值）
 
-如果不设置该属性的话，默认会抛出异常，就像前文的代码里一样；如果设置为前者的话，那么生成的代码会变为 `@this.ToString()`，而不是 `throw 异常` 的表达式了。
+如果不设置该属性的话，默认会抛出异常，就像前文的代码里一样；如果设置为第一项的话，那么生成的代码会变为 `@this.ToString()`，而不是 `throw 异常` 的表达式了；如果设置为第二项，那么该方法的返回值会被自动生成为 `string?` 而不是 `string`，并且在不包含此数值的时候返回 `null`，即 `switch` 表达式的分支为 `_ => null`。

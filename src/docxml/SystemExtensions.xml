@@ -1825,10 +1825,15 @@
             Defines a case that the specified attribute is not found.
             </summary>
         </member>
-        <member name="F:System.Diagnostics.CodeGen.EnumSwitchExpressionDefaultBehavior.ReturnByCorrespondingIntegerValue">
+        <member name="F:System.Diagnostics.CodeGen.EnumSwitchExpressionDefaultBehavior.ReturnIntegerValue">
             <summary>
             Indicates the result behavior is to return the string representation of the integer value
             corrsponding to the current enumeration field.
+            </summary>
+        </member>
+        <member name="F:System.Diagnostics.CodeGen.EnumSwitchExpressionDefaultBehavior.ReturnNull">
+            <summary>
+            Indicates the result behavior is to return <see langword="null"/>.
             </summary>
         </member>
         <member name="F:System.Diagnostics.CodeGen.EnumSwitchExpressionDefaultBehavior.Throw">

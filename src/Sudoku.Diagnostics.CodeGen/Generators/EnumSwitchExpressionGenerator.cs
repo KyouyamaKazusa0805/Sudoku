@@ -35,10 +35,14 @@ public sealed partial class EnumSwitchExpressionGenerator : ISourceGenerator
 					innerParts.Add($"""{fullName}.{fieldSymbol.Name} => "{value}",""");
 				}
 
-				string notFoundBehaviorStr = typeAttributeData.GetNamedArgument<byte>("DefaultBehavior", 1) switch
+				int notDefinedBehavior = typeAttributeData.GetNamedArgument<byte>("DefaultBehavior", 2);
+				string notFoundBehaviorStr = notDefinedBehavior switch
 				{
-					// ReturnByCorrespondingIntegerValue
+					// ReturnIntegerValue
 					0 => "@this.ToString()",
+
+					// ReturnNull
+					1 => "null",
 
 					// ThrowForNotDefined
 					_ => "throw new global::System.ArgumentOutOfRangeException(nameof(@this))"
@@ -50,6 +54,7 @@ public sealed partial class EnumSwitchExpressionGenerator : ISourceGenerator
 					?? "The current instance.";
 				string returnValueDescription = typeAttributeData.GetNamedArgument<string>("ReturnValueDescription")
 					?? "The result value.";
+				string returnType = notDefinedBehavior == 1 ? "string?" : "string";
 
 				emittedMethods.Add(
 					$$"""
@@ -61,7 +66,7 @@ public sealed partial class EnumSwitchExpressionGenerator : ISourceGenerator
 						[global::System.Runtime.CompilerServices.CompilerGenerated]
 						[global::System.CodeDom.Compiler.GeneratedCode("{{GetType().FullName}}", "{{VersionValue}}")]
 						[global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
-						public static string {{key}}(this {{fullName}} @this)
+						public static {{returnType}} {{key}}(this {{fullName}} @this)
 							=> @this switch
 							{
 								{{string.Join("\r\n\t\t\t", innerParts)}}
