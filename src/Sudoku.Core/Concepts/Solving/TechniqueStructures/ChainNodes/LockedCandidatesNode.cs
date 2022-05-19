@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Concepts.Solving.ChainNodes;
+﻿namespace Sudoku.Concepts.Solving.TechniqueStructures.ChainNodes;
 
 /// <summary>
 /// Defines a chain node that provides with the data for a locked candidates.

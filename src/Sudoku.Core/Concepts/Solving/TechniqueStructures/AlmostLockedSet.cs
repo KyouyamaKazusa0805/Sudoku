@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Concepts.Solving;
+﻿namespace Sudoku.Concepts.Solving.TechniqueStructures;
 
 /// <summary>
 /// Defines a data structure that describes an ALS.

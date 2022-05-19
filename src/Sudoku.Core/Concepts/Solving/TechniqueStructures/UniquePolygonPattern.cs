@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Concepts.Solving;
+﻿namespace Sudoku.Concepts.Solving.TechniqueStructures;
 
 /// <summary>
 /// Defines a pattern that is a unique polygon technique structure in theory. The sketch is like:

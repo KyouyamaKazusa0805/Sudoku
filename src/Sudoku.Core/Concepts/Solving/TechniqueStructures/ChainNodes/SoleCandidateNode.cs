@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Concepts.Solving.ChainNodes;
+﻿namespace Sudoku.Concepts.Solving.TechniqueStructures.ChainNodes;
 
 /// <summary>
 /// Provides with the node that stores a sole candidate.
