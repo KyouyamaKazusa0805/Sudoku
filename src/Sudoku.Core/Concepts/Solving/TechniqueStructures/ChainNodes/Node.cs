@@ -120,9 +120,7 @@ public abstract partial class Node : IEquatable<Node>, IEqualityOperators<Node, 
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public sealed override string ToString()
 	{
-		const string defaultName = "<Unnamed>";
-
-		string nodeTypeName = Type.GetName() ?? defaultName;
+		string nodeTypeName = Type.GetName() ?? "<Unnamed>";
 		return $"{nodeTypeName}: {ToSimpleString()}";
 	}
 }
