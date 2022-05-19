@@ -741,18 +741,18 @@
         </member>
         <member name="M:Sudoku.Solving.Manual.Searchers.IAlmostLockedSetsStepSearcher.Gather(Sudoku.Concepts.Collections.Grid@)">
             <summary>
-            Gathers all possible <see cref="T:Sudoku.Concepts.Solving.AlmostLockedSet"/>s in the specified grid.
+            Gathers all possible <see cref="T:Sudoku.Concepts.Solving.TechniqueStructures.AlmostLockedSet"/>s in the specified grid.
             </summary>
             <param name="grid">The grid.</param>
-            <returns>All possible found <see cref="T:Sudoku.Concepts.Solving.AlmostLockedSet"/>.</returns>
+            <returns>All possible found <see cref="T:Sudoku.Concepts.Solving.TechniqueStructures.AlmostLockedSet"/>.</returns>
             <remarks>
-            Different with the original method <see cref="M:Sudoku.Concepts.Solving.AlmostLockedSet.Gather(Sudoku.Concepts.Collections.Grid@)"/>,
+            Different with the original method <see cref="M:Sudoku.Concepts.Solving.TechniqueStructures.AlmostLockedSet.Gather(Sudoku.Concepts.Collections.Grid@)"/>,
             this method will only uses the buffer to determine the info, which is unsafe
             when calling the method without having initialized those maps in the buffer type,
             <see cref="T:Sudoku.Solving.Manual.Buffers.FastProperties"/>.
             </remarks>
-            <seealso cref="T:Sudoku.Concepts.Solving.AlmostLockedSet"/>
-            <seealso cref="M:Sudoku.Concepts.Solving.AlmostLockedSet.Gather(Sudoku.Concepts.Collections.Grid@)"/>
+            <seealso cref="T:Sudoku.Concepts.Solving.TechniqueStructures.AlmostLockedSet"/>
+            <seealso cref="M:Sudoku.Concepts.Solving.TechniqueStructures.AlmostLockedSet.Gather(Sudoku.Concepts.Collections.Grid@)"/>
             <seealso cref="T:Sudoku.Solving.Manual.Buffers.FastProperties"/>
         </member>
         <member name="T:Sudoku.Solving.Manual.Searchers.IAlmostLockedSetsWWingStepSearcher">
@@ -876,9 +876,9 @@
         <member name="F:Sudoku.Solving.Manual.Searchers.AlternatingInferenceChainStepSearcher._idLookup">
             <summary>
             Indicates the lookup table that can get the target ID value
-            via the corresponding <see cref="T:Sudoku.Concepts.Solving.ChainNodes.Node"/> instance.
+            via the corresponding <see cref="T:Sudoku.Concepts.Solving.TechniqueStructures.ChainNodes.Node"/> instance.
             </summary>
-            <seealso cref="T:Sudoku.Concepts.Solving.ChainNodes.Node"/>
+            <seealso cref="T:Sudoku.Concepts.Solving.TechniqueStructures.ChainNodes.Node"/>
         </member>
         <member name="F:Sudoku.Solving.Manual.Searchers.AlternatingInferenceChainStepSearcher._foundChains">
             <summary>
@@ -892,7 +892,7 @@
         </member>
         <member name="F:Sudoku.Solving.Manual.Searchers.AlternatingInferenceChainStepSearcher._nodeLookup">
             <summary>
-            Indicates the lookup table that can get the target <see cref="T:Sudoku.Concepts.Solving.ChainNodes.Node"/> instance
+            Indicates the lookup table that can get the target <see cref="T:Sudoku.Concepts.Solving.TechniqueStructures.ChainNodes.Node"/> instance
             via the corresponding ID value specified as the index.
             </summary>
         </member>
@@ -918,22 +918,22 @@
             <inheritdoc/>
             <remarks>
             The default value is <c>
-            <see cref="F:Sudoku.Concepts.Solving.ChainNodes.SearcherNodeTypes.SoleCell"/> | <see cref="F:Sudoku.Concepts.Solving.ChainNodes.SearcherNodeTypes.SoleDigit"/>
-            | <see cref="F:Sudoku.Concepts.Solving.ChainNodes.SearcherNodeTypes.LockedCandidates"/>
+            <see cref="F:Sudoku.Concepts.Solving.SearcherNodeTypes.SoleCell"/> | <see cref="F:Sudoku.Concepts.Solving.SearcherNodeTypes.SoleDigit"/>
+            | <see cref="F:Sudoku.Concepts.Solving.SearcherNodeTypes.LockedCandidates"/>
             </c>.
             </remarks>
         </member>
         <member name="M:Sudoku.Solving.Manual.Searchers.AlternatingInferenceChainStepSearcher.GetAll(System.Collections.Generic.ICollection{Sudoku.Concepts.Solving.Step},Sudoku.Concepts.Collections.Grid@,System.Boolean)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Searchers.AlternatingInferenceChainStepSearcher.AddNode(Sudoku.Concepts.Solving.ChainNodes.Node,System.Collections.Generic.HashSet{System.Int32}@)">
+        <member name="M:Sudoku.Solving.Manual.Searchers.AlternatingInferenceChainStepSearcher.AddNode(Sudoku.Concepts.Solving.TechniqueStructures.ChainNodes.Node,System.Collections.Generic.HashSet{System.Int32}@)">
             <summary>
             Adds the specified node into the collection, or just get the ID value.
             </summary>
             <param name="nextNode">The next node.</param>
             <param name="list">The list.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Searchers.AlternatingInferenceChainStepSearcher.UpdateInferenceTable(System.Collections.Generic.HashSet{System.Int32},Sudoku.Concepts.Solving.ChainNodes.Node,System.Collections.Generic.Dictionary{System.Int32,System.Collections.Generic.HashSet{System.Int32}})">
+        <member name="M:Sudoku.Solving.Manual.Searchers.AlternatingInferenceChainStepSearcher.UpdateInferenceTable(System.Collections.Generic.HashSet{System.Int32},Sudoku.Concepts.Solving.TechniqueStructures.ChainNodes.Node,System.Collections.Generic.Dictionary{System.Int32,System.Collections.Generic.HashSet{System.Int32}})">
             <summary>
             To assign the recorded IDs into the dictionary.
             </summary>
@@ -1051,46 +1051,46 @@
             <description>Description (What kind of nodes can be searched)</description>
             </listheader>
             <item>
-            <term><see cref="F:Sudoku.Concepts.Solving.ChainNodes.SearcherNodeTypes.SoleDigit"/></term>
+            <term><see cref="F:Sudoku.Concepts.Solving.SearcherNodeTypes.SoleDigit"/></term>
             <description>
             The strong and weak inferences between 2 sole candidate nodes of a same digit
             (i.e. X-Chain).
             </description>
             </item>
             <item>
-            <term><see cref="F:Sudoku.Concepts.Solving.ChainNodes.SearcherNodeTypes.SoleCell"/></term>
+            <term><see cref="F:Sudoku.Concepts.Solving.SearcherNodeTypes.SoleCell"/></term>
             <description>
             The strong and weak inferences between 2 sole candidate nodes of a same cell
             (i.e. Y-Chain).
             </description>
             </item>
             <item>
-            <term><see cref="F:Sudoku.Concepts.Solving.ChainNodes.SearcherNodeTypes.LockedCandidates"/></term>
+            <term><see cref="F:Sudoku.Concepts.Solving.SearcherNodeTypes.LockedCandidates"/></term>
             <description>
             The strong and weak inferences between 2 nodes, where at least one node is a locked candidates node.
             </description>
             </item>
             <item>
-            <term><see cref="F:Sudoku.Concepts.Solving.ChainNodes.SearcherNodeTypes.LockedSet"/></term>
+            <term><see cref="F:Sudoku.Concepts.Solving.SearcherNodeTypes.LockedSet"/></term>
             <description>
             The strong inferences between 2 nodes, where at least one node is an almost locked set node.
             </description>
             </item>
             <item>
-            <term><see cref="F:Sudoku.Concepts.Solving.ChainNodes.SearcherNodeTypes.HiddenSet"/></term>
+            <term><see cref="F:Sudoku.Concepts.Solving.SearcherNodeTypes.HiddenSet"/></term>
             <description>
             The weak inferences between 2 nodes, where at least one node is an almost hidden set node.
             </description>
             </item>
             <item>
-            <term><see cref="F:Sudoku.Concepts.Solving.ChainNodes.SearcherNodeTypes.UniqueRectangle"/></term>
+            <term><see cref="F:Sudoku.Concepts.Solving.SearcherNodeTypes.UniqueRectangle"/></term>
             <description>
             The strong and weak inferences between 2 nodes, where at least one node
             is an almost unique rectangle node.
             </description>
             </item>
             <item>
-            <term><see cref="F:Sudoku.Concepts.Solving.ChainNodes.SearcherNodeTypes.Kraken"/></term>
+            <term><see cref="F:Sudoku.Concepts.Solving.SearcherNodeTypes.Kraken"/></term>
             <description>
             The strong and weak inferences between 2 nodes, where at least one node
             is a kraken fish node.
@@ -1106,18 +1106,18 @@
             Defines a step searcher that searches for chain steps.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Searchers.IChainStepSearcher.GetViewOnCandidates(Sudoku.Concepts.Solving.AlternatingInferenceChain)">
+        <member name="M:Sudoku.Solving.Manual.Searchers.IChainStepSearcher.GetViewOnCandidates(Sudoku.Concepts.Solving.TechniqueStructures.AlternatingInferenceChain)">
             <summary>
             Creates an array of presentation data of candidates
-            via the specified instance of type <see cref="T:Sudoku.Concepts.Solving.AlternatingInferenceChain"/>.
+            via the specified instance of type <see cref="T:Sudoku.Concepts.Solving.TechniqueStructures.AlternatingInferenceChain"/>.
             </summary>
             <param name="chain">The chain.</param>
             <returns>An array of presentation data of candidates.</returns>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Searchers.IChainStepSearcher.GetViewOnLinks(Sudoku.Concepts.Solving.AlternatingInferenceChain)">
+        <member name="M:Sudoku.Solving.Manual.Searchers.IChainStepSearcher.GetViewOnLinks(Sudoku.Concepts.Solving.TechniqueStructures.AlternatingInferenceChain)">
             <summary>
             Creates an array of the presentation data of links
-            via the specified instance of type <see cref="T:Sudoku.Concepts.Solving.AlternatingInferenceChain"/>.
+            via the specified instance of type <see cref="T:Sudoku.Concepts.Solving.TechniqueStructures.AlternatingInferenceChain"/>.
             </summary>
             <param name="chain">The chain.</param>
             <returns>An array of presentation data of links.</returns>
@@ -3599,7 +3599,7 @@
             <param name="WDigitsMask">Indicates the mask that holds the W digit.</param>
             <param name="X">Indicates the X digit.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Steps.AlmostLockedSetsWWingStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Concepts.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},Sudoku.Concepts.Solving.AlmostLockedSet,Sudoku.Concepts.Solving.AlmostLockedSet,Sudoku.Concepts.Conjugate@,System.Int16,System.Int32)">
+        <member name="M:Sudoku.Solving.Manual.Steps.AlmostLockedSetsWWingStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Concepts.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},Sudoku.Concepts.Solving.TechniqueStructures.AlmostLockedSet,Sudoku.Concepts.Solving.TechniqueStructures.AlmostLockedSet,Sudoku.Concepts.Conjugate@,System.Int16,System.Int32)">
             <summary>
             Provides with a step that is an <b>Almost Locked Sets W-Wing</b> technique.
             </summary>
@@ -3657,7 +3657,7 @@
             <param name="YDigitsMask">Indicates the mask that holds the digits for the Y value.</param>
             <param name="ZDigitsMask">Indicates the mask that holds the digits for the Z value.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Steps.AlmostLockedSetsXyWingStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Concepts.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},Sudoku.Concepts.Solving.AlmostLockedSet,Sudoku.Concepts.Solving.AlmostLockedSet,Sudoku.Concepts.Solving.AlmostLockedSet,System.Int16,System.Int16,System.Int16)">
+        <member name="M:Sudoku.Solving.Manual.Steps.AlmostLockedSetsXyWingStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Concepts.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},Sudoku.Concepts.Solving.TechniqueStructures.AlmostLockedSet,Sudoku.Concepts.Solving.TechniqueStructures.AlmostLockedSet,Sudoku.Concepts.Solving.TechniqueStructures.AlmostLockedSet,System.Int16,System.Int16,System.Int16)">
             <summary>
             Provides with a step that is an <b>Almost Locked Sets XY-Wing</b> technique.
             </summary>
@@ -3718,7 +3718,7 @@
             <param name="ZDigitsMask">Indicates the Z digit used in this ALS-XZ pattern.</param>
             <param name="IsDoublyLinked">Indicates whether the ALS-XZ is doubly-linked.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Steps.AlmostLockedSetsXzStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Concepts.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},Sudoku.Concepts.Solving.AlmostLockedSet,Sudoku.Concepts.Solving.AlmostLockedSet,System.Int16,System.Int16,System.Nullable{System.Boolean})">
+        <member name="M:Sudoku.Solving.Manual.Steps.AlmostLockedSetsXzStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Concepts.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},Sudoku.Concepts.Solving.TechniqueStructures.AlmostLockedSet,Sudoku.Concepts.Solving.TechniqueStructures.AlmostLockedSet,System.Int16,System.Int16,System.Nullable{System.Boolean})">
             <summary>
             Provides with a step that is an <b>Almost Locked Sets XZ</b> technique.
             </summary>
@@ -3827,7 +3827,7 @@
             <param name="XEnabled"><inheritdoc cref="P:Sudoku.Solving.Manual.Searchers.AlternatingInferenceChainStepSearcher.XEnabled"/></param>
             <param name="YEnabled"><inheritdoc cref="P:Sudoku.Solving.Manual.Searchers.AlternatingInferenceChainStepSearcher.YEnabled"/></param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Steps.AlternatingInferenceChainStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Concepts.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},Sudoku.Concepts.Solving.AlternatingInferenceChain,System.Boolean,System.Boolean)">
+        <member name="M:Sudoku.Solving.Manual.Steps.AlternatingInferenceChainStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Concepts.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},Sudoku.Concepts.Solving.TechniqueStructures.AlternatingInferenceChain,System.Boolean,System.Boolean)">
             <summary>
             Provides with a step that is a <b>Alternating Inference Chain</b> technique.
             </summary>
@@ -4678,7 +4678,7 @@
             <param name="Pattern"><inheritdoc/></param>
             <param name="Candidates">Indicates the candidates used.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Steps.QiuDeadlyPatternLockedTypeStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Concepts.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},Sudoku.Concepts.Solving.QiuDeadlyPattern@,System.Collections.Generic.IReadOnlyList{System.Int32})">
+        <member name="M:Sudoku.Solving.Manual.Steps.QiuDeadlyPatternLockedTypeStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Concepts.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},Sudoku.Concepts.Solving.TechniqueStructures.QiuDeadlyPattern@,System.Collections.Generic.IReadOnlyList{System.Int32})">
             <summary>
             Provides with a step that is a <b>Qiu's Deadly Pattern Locked Type</b> technique.
             </summary>
@@ -4710,7 +4710,7 @@
             <param name="Views"><inheritdoc/></param>
             <param name="Pattern">Indicates the pattern used.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Steps.QiuDeadlyPatternStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Concepts.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},Sudoku.Concepts.Solving.QiuDeadlyPattern@)">
+        <member name="M:Sudoku.Solving.Manual.Steps.QiuDeadlyPatternStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Concepts.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},Sudoku.Concepts.Solving.TechniqueStructures.QiuDeadlyPattern@)">
             <summary>
             Provides with a step that is a <b>Qiu's Deadly Pattern</b> technique.
             </summary>
@@ -4758,7 +4758,7 @@
             <param name="Pattern"><inheritdoc/></param>
             <param name="Candidate">Indicates the extra candidate used.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Steps.QiuDeadlyPatternType1Step.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Concepts.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},Sudoku.Concepts.Solving.QiuDeadlyPattern@,System.Int32)">
+        <member name="M:Sudoku.Solving.Manual.Steps.QiuDeadlyPatternType1Step.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Concepts.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},Sudoku.Concepts.Solving.TechniqueStructures.QiuDeadlyPattern@,System.Int32)">
             <summary>
             Provides with a step that is a <b>Qiu's Deadly Pattern Type 1</b> technique.
             </summary>
@@ -4782,7 +4782,7 @@
             <param name="Pattern"><inheritdoc/></param>
             <param name="ExtraDigit">Indicates the extra digit used.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Steps.QiuDeadlyPatternType2Step.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Concepts.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},Sudoku.Concepts.Solving.QiuDeadlyPattern@,System.Int32)">
+        <member name="M:Sudoku.Solving.Manual.Steps.QiuDeadlyPatternType2Step.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Concepts.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},Sudoku.Concepts.Solving.TechniqueStructures.QiuDeadlyPattern@,System.Int32)">
             <summary>
             Provides with a step that is a <b>Qiu's Deadly Pattern Type 2</b> technique.
             </summary>
@@ -4817,7 +4817,7 @@
             <param name="ExtraCells">Indicates the extra cells used.</param>
             <param name="IsNaked">Indicates whether the subset is a naked subset.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Steps.QiuDeadlyPatternType3Step.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Concepts.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},Sudoku.Concepts.Solving.QiuDeadlyPattern@,System.Int16,Sudoku.Concepts.Collections.Cells@,System.Boolean)">
+        <member name="M:Sudoku.Solving.Manual.Steps.QiuDeadlyPatternType3Step.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Concepts.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},Sudoku.Concepts.Solving.TechniqueStructures.QiuDeadlyPattern@,System.Int16,Sudoku.Concepts.Collections.Cells@,System.Boolean)">
             <summary>
             Provides with a step that is a <b>Qiu's Deadly Pattern Type 3</b> technique.
             </summary>
@@ -4858,7 +4858,7 @@
             <param name="Pattern"><inheritdoc/></param>
             <param name="ConjugatePair">Indicates the conjugate pair used.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Steps.QiuDeadlyPatternType4Step.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Concepts.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},Sudoku.Concepts.Solving.QiuDeadlyPattern@,Sudoku.Concepts.Conjugate@)">
+        <member name="M:Sudoku.Solving.Manual.Steps.QiuDeadlyPatternType4Step.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Concepts.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},Sudoku.Concepts.Solving.TechniqueStructures.QiuDeadlyPattern@,Sudoku.Concepts.Conjugate@)">
             <summary>
             Provides with a step that is a <b>Qiu's Deadly Pattern Type 4</b> technique.
             </summary>
@@ -6139,7 +6139,7 @@
             <param name="DigitsMask">Indicates the mask that holds all possible digits used.</param>
             <param name="Eliminations">Indicates all possible eliminations.</param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Steps.ExocetStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},Sudoku.Concepts.Solving.ExocetPattern@,System.Int16,System.Collections.Immutable.ImmutableArray{Sudoku.Concepts.Solving.ExocetElimination})">
+        <member name="M:Sudoku.Solving.Manual.Steps.ExocetStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},Sudoku.Concepts.Solving.TechniqueStructures.ExocetPattern@,System.Int16,System.Collections.Immutable.ImmutableArray{Sudoku.Concepts.Solving.ExocetElimination})">
             <summary>
             Provides with a step that is an <b>Exocet</b> technique.
             </summary>
@@ -6229,7 +6229,7 @@
             <param name="LockedMemberR">Indicates the locked member bound with R cells.</param>
             <param name="Eliminations"><inheritdoc/></param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Steps.JuniorExocetStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},Sudoku.Concepts.Solving.ExocetPattern@,System.Int16,System.Int16,System.Int16,System.Collections.Immutable.ImmutableArray{Sudoku.Concepts.Solving.ExocetElimination})">
+        <member name="M:Sudoku.Solving.Manual.Steps.JuniorExocetStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},Sudoku.Concepts.Solving.TechniqueStructures.ExocetPattern@,System.Int16,System.Int16,System.Int16,System.Collections.Immutable.ImmutableArray{Sudoku.Concepts.Solving.ExocetElimination})">
             <summary>
             Provides with a step that is a <b>Junior Exocet</b> technique.
             </summary>
@@ -6279,7 +6279,7 @@
             <param name="ExtraHousesMask">Indicates the mask tnat holds the extra houses used.</param>
             <param name="Eliminations"><inheritdoc/></param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Steps.SeniorExocetStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},Sudoku.Concepts.Solving.ExocetPattern@,System.Int16,System.Int32,System.Int32[],System.Collections.Immutable.ImmutableArray{Sudoku.Concepts.Solving.ExocetElimination})">
+        <member name="M:Sudoku.Solving.Manual.Steps.SeniorExocetStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},Sudoku.Concepts.Solving.TechniqueStructures.ExocetPattern@,System.Int16,System.Int32,System.Int32[],System.Collections.Immutable.ImmutableArray{Sudoku.Concepts.Solving.ExocetElimination})">
             <summary>
             Provides with a step that is a <b>Senior Exocet</b> technique.
             </summary>
