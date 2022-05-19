@@ -162,7 +162,7 @@ public sealed class StepSearcherOptionsGenerator : IIncrementalGenerator
 
 			// Output the generated code.
 			spc.AddSource(
-				$"{name}.g.sso.cs",
+				$"{name}.g.{Shortcuts.StepSearcherOptions}.cs",
 				$$"""
 				namespace {{@namespace.ToDisplayString(TypeFormats.FullName)}};
 				

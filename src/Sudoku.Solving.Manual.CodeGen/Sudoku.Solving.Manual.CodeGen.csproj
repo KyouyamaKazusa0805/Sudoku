@@ -6,4 +6,8 @@
 		<DocumentationFile>..\docxml\Sudoku.Solving.Manual.CodeGen.xml</DocumentationFile>
 	</PropertyGroup>
 
+	<ItemGroup>
+	  <Folder Include="Generators\" />
+	</ItemGroup>
+
 </Project>
