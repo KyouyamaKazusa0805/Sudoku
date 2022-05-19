@@ -516,6 +516,10 @@ dotnet_diagnostic.CA2249.severity = silent
 dotnet_diagnostic.CA2255.severity = none
 
 
+# SYSLIB1045: RegexGenerator limitation reached.
+dotnet_diagnostic.SYSLIB1045.severity = silent
+
+
 #
 #
 # JSON and Config files

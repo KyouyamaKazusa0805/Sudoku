@@ -1062,11 +1062,11 @@ public unsafe partial struct Grid :
 			_ when GridFormatterFactory.Create(format) is var f
 				=> format switch
 				{
-					":" => ExtendedSusserEliminationsRegex().Match(f.ToString(this)) is
+					":" => ExtendedSusserEliminationsRegex().Match(f.ToString(this)) switch
 					{
-						Success: true,
-						Value: var value
-					} ? value : string.Empty,
+						{ Success: true, Value: var value } => value,
+						_ => string.Empty
+					},
 					"!" => f.ToString(this).RemoveAll('+'),
 					".!" or "!." or "0!" or "!0" => f.ToString(this).RemoveAll('+'),
 					".!:" or "!.:" or "0!:" => f.ToString(this).RemoveAll('+'),
@@ -1187,8 +1187,7 @@ public unsafe partial struct Grid :
 		short copied = mask;
 		mask = (short)((int)status << 9 | mask & MaxCandidatesMask);
 
-		var f = (delegate*<ref Grid, int, short, short, int, void>)ValueChanged;
-		f(ref this, cell, copied, mask, -1);
+		((delegate*<ref Grid, int, short, short, int, void>)ValueChanged)(ref this, cell, copied, mask, -1);
 	}
 
 	/// <summary>
@@ -1203,8 +1202,7 @@ public unsafe partial struct Grid :
 		short copied = m;
 		m = mask;
 
-		var f = (delegate*<ref Grid, int, short, short, int, void>)ValueChanged;
-		f(ref this, cell, copied, m, -1);
+		((delegate*<ref Grid, int, short, short, int, void>)ValueChanged)(ref this, cell, copied, m, -1);
 	}
 
 	/// <summary>
