@@ -1003,13 +1003,31 @@
             and returns the added result.
             </summary>
             <param name="collection">The collection.</param>
-            <param name="offset">The offset to be removed.</param>
+            <param name="offset">The offset to be added.</param>
+            <returns>The result collection.</returns>
+        </member>
+        <member name="M:Sudoku.Concepts.Collections.Cells.op_CheckedAddition(Sudoku.Concepts.Collections.Cells@,System.Int32)">
+            <summary>
+            Adds the specified <paramref name="offset"/> to the <paramref name="collection"/>,
+            and returns the added result. This operator will check the validity of the argument <paramref name="offset"/>.
+            </summary>
+            <param name="collection">The collection.</param>
+            <param name="offset">The offset to be added.</param>
             <returns>The result collection.</returns>
         </member>
         <member name="M:Sudoku.Concepts.Collections.Cells.op_Subtraction(Sudoku.Concepts.Collections.Cells@,System.Int32)">
             <summary>
             Removes the specified <paramref name="offset"/> from the <paramref name="collection"/>,
             and returns the removed result.
+            </summary>
+            <param name="collection">The collection.</param>
+            <param name="offset">The offset to be removed.</param>
+            <returns>The result collection.</returns>
+        </member>
+        <member name="M:Sudoku.Concepts.Collections.Cells.op_CheckedSubtraction(Sudoku.Concepts.Collections.Cells@,System.Int32)">
+            <summary>
+            Removes the specified <paramref name="offset"/> from the <paramref name="collection"/>,
+            and returns the removed result. This operator will check the validity of the argument <paramref name="offset"/>.
             </summary>
             <param name="collection">The collection.</param>
             <param name="offset">The offset to be removed.</param>
@@ -1097,9 +1115,26 @@
             <param name="digit">The digit.</param>
             <returns>The result instance.</returns>
         </member>
+        <member name="M:Sudoku.Concepts.Collections.Cells.op_CheckedMultiply(Sudoku.Concepts.Collections.Cells@,System.Int32)">
+            <summary>
+            Expands via the specified digit. This operator will check the validity of the argument <paramref name="digit"/>.
+            </summary>
+            <param name="base">The base map.</param>
+            <param name="digit">The digit.</param>
+            <returns>The result instance.</returns>
+        </member>
         <member name="M:Sudoku.Concepts.Collections.Cells.op_Division(Sudoku.Concepts.Collections.Cells@,System.Int32)">
             <summary>
             Get the subview mask of this map.
+            </summary>
+            <param name="map">The map.</param>
+            <param name="houseIndex">The house index.</param>
+            <returns>The mask.</returns>
+        </member>
+        <member name="M:Sudoku.Concepts.Collections.Cells.op_CheckedDivision(Sudoku.Concepts.Collections.Cells@,System.Int32)">
+            <summary>
+            Get the subview mask of this map. This operator will check the validity
+            of the argument <paramref name="houseIndex"/>.
             </summary>
             <param name="map">The map.</param>
             <param name="houseIndex">The house index.</param>

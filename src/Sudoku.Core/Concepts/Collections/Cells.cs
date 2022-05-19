@@ -938,7 +938,7 @@ public unsafe partial struct Cells :
 	/// and returns the added result.
 	/// </summary>
 	/// <param name="collection">The collection.</param>
-	/// <param name="offset">The offset to be removed.</param>
+	/// <param name="offset">The offset to be added.</param>
 	/// <returns>The result collection.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static Cells operator +(in Cells collection, int offset)
@@ -952,6 +952,21 @@ public unsafe partial struct Cells :
 		(offset / Shifting == 0 ? ref result._low : ref result._high) |= 1L << offset % Shifting;
 		result.Count++;
 		return result;
+	}
+
+	/// <summary>
+	/// Adds the specified <paramref name="offset"/> to the <paramref name="collection"/>,
+	/// and returns the added result. This operator will check the validity of the argument <paramref name="offset"/>.
+	/// </summary>
+	/// <param name="collection">The collection.</param>
+	/// <param name="offset">The offset to be added.</param>
+	/// <returns>The result collection.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static Cells operator checked +(in Cells collection, int offset)
+	{
+		Argument.ThrowIfInvalid(offset is >= 0 and < 81, "The offset is invalid.");
+
+		return collection + offset;
 	}
 
 	/// <summary>
@@ -973,6 +988,21 @@ public unsafe partial struct Cells :
 		(offset / Shifting == 0 ? ref result._low : ref result._high) &= ~(1L << offset % Shifting);
 		result.Count--;
 		return result;
+	}
+
+	/// <summary>
+	/// Removes the specified <paramref name="offset"/> from the <paramref name="collection"/>,
+	/// and returns the removed result. This operator will check the validity of the argument <paramref name="offset"/>.
+	/// </summary>
+	/// <param name="collection">The collection.</param>
+	/// <param name="offset">The offset to be removed.</param>
+	/// <returns>The result collection.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static Cells operator checked -(in Cells collection, int offset)
+	{
+		Argument.ThrowIfInvalid(offset is >= 0 and < 81, "The offset is invalid.");
+
+		return collection - offset;
 	}
 
 	/// <summary>
@@ -1113,6 +1143,19 @@ public unsafe partial struct Cells :
 	}
 
 	/// <summary>
+	/// Expands via the specified digit. This operator will check the validity of the argument <paramref name="digit"/>.
+	/// </summary>
+	/// <param name="base">The base map.</param>
+	/// <param name="digit">The digit.</param>
+	/// <returns>The result instance.</returns>
+	public static Candidates operator checked *(in Cells @base, int digit)
+	{
+		Argument.ThrowIfFalse(digit is >= 0 and < 9, "The argument is invalid.");
+
+		return @base * digit;
+	}
+
+	/// <summary>
 	/// Get the subview mask of this map.
 	/// </summary>
 	/// <param name="map">The map.</param>
@@ -1132,6 +1175,20 @@ public unsafe partial struct Cells :
 		}
 
 		return p;
+	}
+
+	/// <summary>
+	/// Get the subview mask of this map. This operator will check the validity
+	/// of the argument <paramref name="houseIndex"/>.
+	/// </summary>
+	/// <param name="map">The map.</param>
+	/// <param name="houseIndex">The house index.</param>
+	/// <returns>The mask.</returns>
+	public static short operator checked /(in Cells map, int houseIndex)
+	{
+		Argument.ThrowIfFalse(houseIndex is >= 0 and < 27);
+
+		return map / houseIndex;
 	}
 
 	/// <inheritdoc/>
