@@ -144,7 +144,7 @@ public partial class BotClient
 
 	/// <summary>
 	/// Indicates the filtering predicate instance that can discard messages if the predicate
-	/// returns <see langword="true"/>.
+	/// returns <see langword="false"/>.
 	/// </summary>
 	public Predicate<Sender>? MessageFilter { get; set; }
 
