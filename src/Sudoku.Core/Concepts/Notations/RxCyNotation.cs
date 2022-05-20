@@ -143,7 +143,7 @@ public sealed partial class RxCyNotation : INotationHandler, ICellNotation<RxCyN
 		var result = Cells.Empty;
 
 		// Iterate on each match instance.
-		foreach (Match match in matches)
+		foreach (var match in matches.Cast<Match>())
 		{
 			string value = match.Value;
 			char* anchorR, anchorC;

@@ -147,7 +147,7 @@ public sealed partial class K9Notation : INotationHandler, ICellNotation<K9Notat
 		var result = Cells.Empty;
 
 		// Iterate on each match instance.
-		foreach (Match match in matches)
+		foreach (var match in matches.Cast<Match>())
 		{
 			string value = match.Value;
 			char* anchorR, anchorC;

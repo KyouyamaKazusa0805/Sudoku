@@ -617,7 +617,7 @@ public unsafe partial struct Candidates :
 
 		// Iterate on each match item.
 		int* bufferDigits = stackalloc int[9];
-		foreach (Match match in matches)
+		foreach (var match in matches.Cast<Match>())
 		{
 			string value = match.Value;
 			if (options.Flags(CandidatesParsingOptions.ShortForm)
