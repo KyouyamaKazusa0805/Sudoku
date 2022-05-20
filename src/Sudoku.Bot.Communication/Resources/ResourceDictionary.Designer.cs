@@ -79,7 +79,9 @@ namespace Sudoku.Bot.Communication.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 本项目作者：SunnieShine
+        ///   Looks up a localized string similar to QQ 群数独机器人项目（Sudoku.Bot）
+        ///
+        ///本项目作者：SunnieShine
         ///原项目作者：Antecer
         ///开源协议：MIT
         ///版权 (c) 2021-2022 Antecer。作者保留全部权利。
@@ -93,7 +95,7 @@ namespace Sudoku.Bot.Communication.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 向向的游戏机器人
+        ///   Looks up a localized string similar to 数独机器人
         ///作者：SunnieShine（小向）
         ///版本：.
         /// </summary>
@@ -105,10 +107,10 @@ namespace Sudoku.Bot.Communication.Resources {
         
         /// <summary>
         ///   Looks up a localized string similar to 玩法：请通过艾特本机器人，并带上斜杠符号。支持的指令有：
-        ///💡 /数独：快来和朋友们一起 PK 数独吧！
-        ///💡 /签到：允许玩家每日参与一次签到~
-        ///💡 /排名：对玩家的经验值获得情况进行排名~
-        ///💡 /关于：显示各个指令的介绍信息~.
+        ///💡 /数独（尚未完成）：快来和朋友们一起 PK 数独吧！
+        ///💡 /签到（尚未完成）：允许玩家每日参与一次签到~
+        ///💡 /排名（尚未完成）：对玩家的经验值获得情况进行排名~
+        ///💡 /帮助（尚未完成）：显示各个指令的介绍信息~.
         /// </summary>
         internal static string AboutInfo_Segment2 {
             get {
@@ -300,20 +302,20 @@ namespace Sudoku.Bot.Communication.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 关于.
-        /// </summary>
-        internal static string Command_About {
-            get {
-                return ResourceManager.GetString("Command_About", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to 签到.
         /// </summary>
         internal static string Command_ClockIn {
             get {
                 return ResourceManager.GetString("Command_ClockIn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 帮助.
+        /// </summary>
+        internal static string Command_Help {
+            get {
+                return ResourceManager.GetString("Command_Help", resourceCulture);
             }
         }
         

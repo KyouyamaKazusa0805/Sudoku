@@ -118,16 +118,16 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AboutInfo_Segment1" xml:space="preserve">
-    <value>向向的游戏机器人
+    <value>数独机器人
 作者：SunnieShine（小向）
 版本：</value>
   </data>
   <data name="AboutInfo_Segment2" xml:space="preserve">
     <value>玩法：请通过艾特本机器人，并带上斜杠符号。支持的指令有：
-💡 /数独：快来和朋友们一起 PK 数独吧！
-💡 /签到：允许玩家每日参与一次签到~
-💡 /排名：对玩家的经验值获得情况进行排名~
-💡 /关于：显示各个指令的介绍信息~</value>
+💡 /数独（尚未完成）：快来和朋友们一起 PK 数独吧！
+💡 /签到（尚未完成）：允许玩家每日参与一次签到~
+💡 /排名（尚未完成）：对玩家的经验值获得情况进行排名~
+💡 /帮助（尚未完成）：显示各个指令的介绍信息~</value>
   </data>
   <data name="AuthorizationSuccessful" xml:space="preserve">
     <value>服务端鉴权成功</value>
@@ -226,11 +226,11 @@
   <data name="CommandText" xml:space="preserve">
     <value>指令</value>
   </data>
-  <data name="Command_About" xml:space="preserve">
-    <value>关于</value>
-  </data>
   <data name="Command_ClockIn" xml:space="preserve">
     <value>签到</value>
+  </data>
+  <data name="Command_Help" xml:space="preserve">
+    <value>帮助</value>
   </data>
   <data name="Command_Rank" xml:space="preserve">
     <value>排名</value>
@@ -1082,7 +1082,9 @@
     <value>P:\Bot\Players</value>
   </data>
   <data name="__ProjectCopyrightStatement" xml:space="preserve">
-    <value>本项目作者：SunnieShine
+    <value>QQ 群数独机器人项目（Sudoku.Bot）
+
+本项目作者：SunnieShine
 原项目作者：Antecer
 开源协议：MIT
 版权 (c) 2021-2022 Antecer。作者保留全部权利。

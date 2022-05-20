@@ -4025,7 +4025,9 @@
         </member>
         <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.__ProjectCopyrightStatement">
              <summary>
-               Looks up a localized string similar to 本项目作者：SunnieShine
+               Looks up a localized string similar to QQ 群数独机器人项目（Sudoku.Bot）
+            
+            本项目作者：SunnieShine
             原项目作者：Antecer
             开源协议：MIT
             版权 (c) 2021-2022 Antecer。作者保留全部权利。
@@ -4035,7 +4037,7 @@
         </member>
         <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.AboutInfo_Segment1">
              <summary>
-               Looks up a localized string similar to 向向的游戏机器人
+               Looks up a localized string similar to 数独机器人
             作者：SunnieShine（小向）
             版本：.
              </summary>
@@ -4043,10 +4045,10 @@
         <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.AboutInfo_Segment2">
              <summary>
                Looks up a localized string similar to 玩法：请通过艾特本机器人，并带上斜杠符号。支持的指令有：
-            💡 /数独：快来和朋友们一起 PK 数独吧！
-            💡 /签到：允许玩家每日参与一次签到~
-            💡 /排名：对玩家的经验值获得情况进行排名~
-            💡 /关于：显示各个指令的介绍信息~.
+            💡 /数独（尚未完成）：快来和朋友们一起 PK 数独吧！
+            💡 /签到（尚未完成）：允许玩家每日参与一次签到~
+            💡 /排名（尚未完成）：对玩家的经验值获得情况进行排名~
+            💡 /帮助（尚未完成）：显示各个指令的介绍信息~.
              </summary>
         </member>
         <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.AuthorizationSuccessful">
@@ -4152,14 +4154,14 @@
               Looks up a localized string similar to ，.
             </summary>
         </member>
-        <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.Command_About">
-            <summary>
-              Looks up a localized string similar to 关于.
-            </summary>
-        </member>
         <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.Command_ClockIn">
             <summary>
               Looks up a localized string similar to 签到.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.Command_Help">
+            <summary>
+              Looks up a localized string similar to 帮助.
             </summary>
         </member>
         <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.Command_Rank">

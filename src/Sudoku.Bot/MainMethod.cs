@@ -2,13 +2,7 @@
 Log.LogLevel = LogLevel.Info;
 
 // Outputs the copyright information.
-Log.Info(
-	$"""
-	{StringResource.Get("__ProjectCopyrightStatement")!}
-	
-	
-	"""
-);
+Console.WriteLine($"{StringResource.Get("__ProjectCopyrightStatement")!}\r\n");
 
 // Initializes an identity instance.
 // Please note that the token and secret code corresponds to the info for the bot.
@@ -44,12 +38,12 @@ static void registerCommands(BotClient bot)
 	bot.RegisterCommand(new(StringResource.Get("Command_Sudoku")!, PlaySudokuAsync));
 	bot.RegisterCommand(new(StringResource.Get("Command_ClockIn")!, ClockInAsync));
 	bot.RegisterCommand(new(StringResource.Get("Command_Rank")!, PrintRankResultAsync));
-	bot.RegisterCommand(new(StringResource.Get("Command_About")!, PrintAboutInfoAsync));
+	bot.RegisterCommand(new(StringResource.Get("Command_Help")!, PrintHelperTextAsync));
 }
 
 static async void PlaySudokuAsync(Sender sender, string message)
 {
-	if ((sender, message) is not ({ IsMentioned: true }, (false, false, false)))
+	if (message is not (false, false, false))
 	{
 		return;
 	}
@@ -142,7 +136,7 @@ static async void ClockInAsync(Sender sender, string message)
 	// If the user is the new, we should create a file to store it;
 	// otherwise, check the user data file, and get the latest time that he/she clocked in.
 	// If the 'yyyyMMdd' is same, we should disallow the user re-clocking in.
-	if (sender is not { MessageCreator.Id: var userId, IsMentioned: true })
+	if (sender is not { MessageCreator.Id: var userId })
 	{
 		return;
 	}
@@ -308,7 +302,7 @@ static async void ClockInAsync(Sender sender, string message)
 
 static async void PrintRankResultAsync(Sender sender, string message)
 {
-	if (sender is not { MessageCreator.Id: var userId, IsMentioned: true })
+	if (sender is not { MessageCreator.Id: var userId })
 	{
 		return;
 	}
@@ -391,13 +385,8 @@ static async void PrintRankResultAsync(Sender sender, string message)
 	);
 }
 
-static async void PrintAboutInfoAsync(Sender sender, string message)
+static async void PrintHelperTextAsync(Sender sender, string message)
 {
-	if (!sender.IsMentioned)
-	{
-		return;
-	}
-
 	if (!string.IsNullOrWhiteSpace(message))
 	{
 		await sender.ReplyAsync(StringResource.Get("CommandParserError_CommandNotRequireParameter")!);
