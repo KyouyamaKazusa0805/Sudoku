@@ -11,9 +11,11 @@ public sealed unsafe class TrueCandidatesSearcher
 	/// <param name="grid">The current puzzle grid.</param>
 	/// <exception cref="InvalidOperationException">Throws when the puzzle is invalid.</exception>
 	public TrueCandidatesSearcher(in Grid grid)
-		=> Puzzle = grid.IsValid
-			? grid
-			: throw new InvalidOperationException("The puzzle must contain unique solution before checking.");
+	{
+		Argument.ThrowIfInvalid(grid.IsValid, "The puzzle must contain unique solution before checking.");
+
+		Puzzle = grid;
+	}
 
 
 	/// <summary>

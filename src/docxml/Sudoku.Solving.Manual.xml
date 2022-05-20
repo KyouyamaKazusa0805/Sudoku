@@ -3470,6 +3470,105 @@
             Indicates the analysis result will show the steps.
             </summary>
         </member>
+        <member name="T:Sudoku.Solving.Manual.StepExtensions">
+            <summary>
+            Provides with extension methods on <see cref="T:Sudoku.Concepts.Solving.IStep"/> and <see cref="T:Sudoku.Concepts.Solving.Step"/>.
+            </summary>
+            <seealso cref="T:Sudoku.Concepts.Solving.IStep"/>
+            <seealso cref="T:Sudoku.Concepts.Solving.Step"/>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.StepExtensions.IsAlmostLockedSets``1(``0)">
+            <summary>
+            Indicates whether the corresponding technique of the current step is an Almost Locked Sets
+            (ALS in abbreviation).
+            </summary>
+            <typeparam name="TStep">The type of the step.</typeparam>
+            <param name="this">The <see cref="T:Sudoku.Concepts.Solving.IStep"/> instance.</param>
+            <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.StepExtensions.IsChaining``1(``0)">
+            <summary>
+            Indicates whether the corresponding technique of the current step is a chain. The chain techiques are:
+            <list type="bullet">
+            <item>
+            Wings
+            <list type="bullet">
+            <item>
+            Regular wings (XY-Wing, XYZ-Wing, WXYZ-Wing, etc.)
+            </item>
+            <item>
+            Irregular wings (W-Wing, M-Wing, Split-Wing, Local-Wing, Hybrid-Wing)
+            </item>
+            </list>
+            </item>
+            <item>
+            Short chains
+            <list type="bullet">
+            <item>
+            Two strong links (Skyscraper, Two-string kite, Turbot fish)
+            </item>
+            <item>
+            ALS chaining-like techniques
+            <list type="bullet">
+            <item>ALS-XZ</item>
+            <item>ALS-XY-Wing</item>
+            <item>ALS-W-Wing</item>
+            </list>
+            </item>
+            <item>Empty rectangle</item>
+            </list>
+            </item>
+            <!--
+            <item>
+            Long chains
+            <list type="bullet">
+            <item>Forcing chains</item>
+            <item>Dynamic forcing chains</item>
+            </list>
+            </item>
+            -->
+            </list>
+            </summary>
+            <typeparam name="TStep">The type of the step.</typeparam>
+            <param name="this">The <see cref="T:Sudoku.Concepts.Solving.IStep"/> instance.</param>
+            <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.Manual.StepExtensions.IsDeadlyPattern``1(``0)">
+            <summary>
+            Indicates whether the corresponding technique of the current step is a deadly pattern.
+            The deadly pattern techniques are:
+            <list type="bullet">
+            <item>
+            Bi-value patterns
+            <list type="bullet">
+            <item>Unique rectangle (i.e. Uniqueness test)</item>
+            <item>Unique loop</item>
+            <item>Bi-value universal grave</item>
+            </list>
+            </item>
+            <item>
+            Multi-value patterns
+            <list type="bullet">
+            <item>Extended rectangle</item>
+            <item>Unique square</item>
+            <item>Unique polygon (Borescoper's deadly pattern as its alias)</item>
+            <item>Qiu's deadly pattern</item>
+            </list>
+            </item>
+            <!--
+            <item>
+            Other deadly patterns
+            <list type="bullet">
+            <item>Reverse bi-value universal grave</item>
+            </list>
+            </item>
+            -->
+            </list>
+            </summary>
+            <typeparam name="TStep">The type of the step.</typeparam>
+            <param name="this">The <see cref="T:Sudoku.Concepts.Solving.IStep"/> instance.</param>
+            <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
+        </member>
         <member name="T:Sudoku.Solving.Manual.StepSearcherAttribute">
             <summary>
             To mark onto a step searcher, to tell the runtime and the compiler that the type is a step searcher.
