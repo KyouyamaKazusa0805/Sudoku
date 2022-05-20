@@ -46,6 +46,23 @@ public sealed class Generate : IExecutable
 					return;
 				}
 			}
+			case GenerateType.PatternBased:
+			{
+				var generator = new PatternBasedPuzzleGenerator();
+				while (true)
+				{
+					var targetPuzzle = generator.Generate();
+					int c = targetPuzzle.GivensCount;
+					if (c < Range.Min || c >= Range.Max)
+					{
+						continue;
+					}
+
+					Terminal.WriteLine($"""The puzzle generated: '{targetPuzzle:0}'""");
+
+					return;
+				}
+			}
 			default:
 			{
 				throw new CommandLineRuntimeException((int)ErrorCode.MethodIsInvalid);
