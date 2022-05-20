@@ -196,7 +196,7 @@
             <para>
             <b>Hodoku mode</b> is a mode that imitates a sudoku-solving program called <i>Hodoku</i>
             to solve a puzzle. In this case, all enabled step searchers will be in ascending order via their's own
-            priority, i.e. the value of the property <see cref="P:Sudoku.Concepts.Solving.SearchingOptions.Priority"/>. On the other hand,
+            priority, i.e. the value of the property <see cref="P:Sudoku.Concepts.Solving.SearcherProperties.SearchingOptions.Priority"/>. On the other hand,
             this option provides a basic and normal processing behavior of a <see cref="T:Sudoku.Solving.Manual.ManualSolver"/> instance.
             </para>
             <para>
@@ -214,7 +214,7 @@
             <see langword="true"/> value.
             </para>
             </remarks>
-            <seealso cref="P:Sudoku.Concepts.Solving.SearchingOptions.Priority"/>
+            <seealso cref="P:Sudoku.Concepts.Solving.SearcherProperties.SearchingOptions.Priority"/>
         </member>
         <member name="P:Sudoku.Solving.Manual.IManualSolverOptions.IsFastSearching">
             <summary>
@@ -484,10 +484,10 @@
         <member name="P:Sudoku.Solving.Manual.ManualSolverResult.UnhandledException">
             <summary>
             Indicates the unhandled exception thrown. You can visit the property value
-            if the property <see cref="P:Sudoku.Solving.Manual.ManualSolverResult.FailedReason"/> is <see cref="F:Sudoku.Concepts.Solving.FailedReason.ExceptionThrown"/>.
+            if the property <see cref="P:Sudoku.Solving.Manual.ManualSolverResult.FailedReason"/> is <see cref="F:Sudoku.Concepts.Solving.SearcherProperties.FailedReason.ExceptionThrown"/>.
             </summary>
             <seealso cref="P:Sudoku.Solving.Manual.ManualSolverResult.FailedReason"/>
-            <seealso cref="F:Sudoku.Concepts.Solving.FailedReason.ExceptionThrown"/>
+            <seealso cref="F:Sudoku.Concepts.Solving.SearcherProperties.FailedReason.ExceptionThrown"/>
         </member>
         <member name="P:Sudoku.Solving.Manual.ManualSolverResult.Item(System.Int32)">
             <summary>
@@ -632,7 +632,7 @@
             </summary>
             <typeparam name="TStepSearcher">The type of the step searcher.</typeparam>
         </member>
-        <member name="M:Sudoku.Solving.Manual.SearcherConfigurationAttribute`1.#ctor(System.Int32,Sudoku.Concepts.Solving.DisplayingLevel)">
+        <member name="M:Sudoku.Solving.Manual.SearcherConfigurationAttribute`1.#ctor(System.Int32,Sudoku.Concepts.Solving.SearcherProperties.DisplayingLevel)">
             <summary>
             Initializes a <see cref="T:Sudoku.Solving.Manual.SearcherConfigurationAttribute`1"/> instance
             via the specified priority.
@@ -659,9 +659,9 @@
         <member name="P:Sudoku.Solving.Manual.SearcherConfigurationAttribute`1.DisabledReason">
             <summary>
             Indicates why the step searcher is disabled, which means the property <see cref="P:Sudoku.Solving.Manual.SearcherConfigurationAttribute`1.EnabledArea"/>
-            is <see cref="F:Sudoku.Concepts.Solving.EnabledArea.None"/>.
+            is <see cref="F:Sudoku.Concepts.Solving.SearcherProperties.EnabledArea.None"/>.
             </summary>
-            <seealso cref="F:Sudoku.Concepts.Solving.EnabledArea.None"/>
+            <seealso cref="F:Sudoku.Concepts.Solving.SearcherProperties.EnabledArea.None"/>
         </member>
         <member name="T:Sudoku.Solving.Manual.Searchers.AlmostLockedSetsWWingStepSearcher">
             <summary>
@@ -918,8 +918,8 @@
             <inheritdoc/>
             <remarks>
             The default value is <c>
-            <see cref="F:Sudoku.Concepts.Solving.SearcherNodeTypes.SoleCell"/> | <see cref="F:Sudoku.Concepts.Solving.SearcherNodeTypes.SoleDigit"/>
-            | <see cref="F:Sudoku.Concepts.Solving.SearcherNodeTypes.LockedCandidates"/>
+            <see cref="F:Sudoku.Concepts.Solving.SearcherProperties.SearcherNodeTypes.SoleCell"/> | <see cref="F:Sudoku.Concepts.Solving.SearcherProperties.SearcherNodeTypes.SoleDigit"/>
+            | <see cref="F:Sudoku.Concepts.Solving.SearcherProperties.SearcherNodeTypes.LockedCandidates"/>
             </c>.
             </remarks>
         </member>
@@ -1051,46 +1051,46 @@
             <description>Description (What kind of nodes can be searched)</description>
             </listheader>
             <item>
-            <term><see cref="F:Sudoku.Concepts.Solving.SearcherNodeTypes.SoleDigit"/></term>
+            <term><see cref="F:Sudoku.Concepts.Solving.SearcherProperties.SearcherNodeTypes.SoleDigit"/></term>
             <description>
             The strong and weak inferences between 2 sole candidate nodes of a same digit
             (i.e. X-Chain).
             </description>
             </item>
             <item>
-            <term><see cref="F:Sudoku.Concepts.Solving.SearcherNodeTypes.SoleCell"/></term>
+            <term><see cref="F:Sudoku.Concepts.Solving.SearcherProperties.SearcherNodeTypes.SoleCell"/></term>
             <description>
             The strong and weak inferences between 2 sole candidate nodes of a same cell
             (i.e. Y-Chain).
             </description>
             </item>
             <item>
-            <term><see cref="F:Sudoku.Concepts.Solving.SearcherNodeTypes.LockedCandidates"/></term>
+            <term><see cref="F:Sudoku.Concepts.Solving.SearcherProperties.SearcherNodeTypes.LockedCandidates"/></term>
             <description>
             The strong and weak inferences between 2 nodes, where at least one node is a locked candidates node.
             </description>
             </item>
             <item>
-            <term><see cref="F:Sudoku.Concepts.Solving.SearcherNodeTypes.LockedSet"/></term>
+            <term><see cref="F:Sudoku.Concepts.Solving.SearcherProperties.SearcherNodeTypes.LockedSet"/></term>
             <description>
             The strong inferences between 2 nodes, where at least one node is an almost locked set node.
             </description>
             </item>
             <item>
-            <term><see cref="F:Sudoku.Concepts.Solving.SearcherNodeTypes.HiddenSet"/></term>
+            <term><see cref="F:Sudoku.Concepts.Solving.SearcherProperties.SearcherNodeTypes.HiddenSet"/></term>
             <description>
             The weak inferences between 2 nodes, where at least one node is an almost hidden set node.
             </description>
             </item>
             <item>
-            <term><see cref="F:Sudoku.Concepts.Solving.SearcherNodeTypes.UniqueRectangle"/></term>
+            <term><see cref="F:Sudoku.Concepts.Solving.SearcherProperties.SearcherNodeTypes.UniqueRectangle"/></term>
             <description>
             The strong and weak inferences between 2 nodes, where at least one node
             is an almost unique rectangle node.
             </description>
             </item>
             <item>
-            <term><see cref="F:Sudoku.Concepts.Solving.SearcherNodeTypes.Kraken"/></term>
+            <term><see cref="F:Sudoku.Concepts.Solving.SearcherProperties.SearcherNodeTypes.Kraken"/></term>
             <description>
             The strong and weak inferences between 2 nodes, where at least one node
             is a kraken fish node.

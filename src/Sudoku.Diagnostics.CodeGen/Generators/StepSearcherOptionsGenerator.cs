@@ -35,8 +35,8 @@ public sealed class StepSearcherOptionsGenerator : IIncrementalGenerator
 			return;
 		}
 
-		var enabledAreaTypeSymbol = compilation.GetTypeByMetadataName("Sudoku.Concepts.Solving.EnabledArea")!;
-		var disabledReasonTypeSymbol = compilation.GetTypeByMetadataName("Sudoku.Concepts.Solving.DisabledReason")!;
+		var enabledAreaTypeSymbol = compilation.GetTypeByMetadataName("Sudoku.Concepts.Solving.SearcherProperties.EnabledArea")!;
+		var disabledReasonTypeSymbol = compilation.GetTypeByMetadataName("Sudoku.Concepts.Solving.SearcherProperties.DisabledReason")!;
 
 		foreach (var fieldSymbol in enabledAreaTypeSymbol.GetMembers().OfType<IFieldSymbol>())
 		{
@@ -171,8 +171,8 @@ public sealed class StepSearcherOptionsGenerator : IIncrementalGenerator
 					/// <inheritdoc/>
 					[global::{{typeof(GeneratedCodeAttribute).FullName}}("{{typeof(StepSearcherOptionsGenerator).FullName}}", "{{VersionValue}}")]
 					[global::{{typeof(CompilerGeneratedAttribute).FullName}}]
-					public global::Sudoku.Concepts.Solving.SearchingOptions Options { get; set; } =
-						new({{priority}}, global::Sudoku.Concepts.Solving.DisplayingLevel.{{(char)(level + 'A' - 1)}}{{sb}});
+					public global::Sudoku.Concepts.Solving.SearcherProperties.SearchingOptions Options { get; set; } =
+						new({{priority}}, global::Sudoku.Concepts.Solving.SearcherProperties.DisplayingLevel.{{(char)(level + 'A' - 1)}}{{sb}});
 				}
 				"""
 			);
@@ -192,7 +192,7 @@ public sealed class StepSearcherOptionsGenerator : IIncrementalGenerator
 		// or just get the expression '(T)0' as the emitted code.
 		if (l == 0)
 		{
-			return $"(global::Sudoku.Concepts.Solving.{typeName})0";
+			return $"(global::Sudoku.Concepts.Solving.SearcherProperties.{typeName})0";
 		}
 
 		var targetList = new List<string>();
@@ -207,13 +207,13 @@ public sealed class StepSearcherOptionsGenerator : IIncrementalGenerator
 			{
 				case "EnabledArea" when _enabledAreasFields[(byte)(1 << i)] is var fieldValue:
 				{
-					targetList.Add($"global::Sudoku.Concepts.Solving.EnabledArea.{fieldValue}");
+					targetList.Add($"global::Sudoku.Concepts.Solving.SearcherProperties.EnabledArea.{fieldValue}");
 
 					break;
 				}
 				case "DisabledReason" when _disabledReasonFields[(short)(1 << i)] is var fieldValue:
 				{
-					targetList.Add($"global::Sudoku.Concepts.Solving.DisabledReason.{fieldValue}");
+					targetList.Add($"global::Sudoku.Concepts.Solving.SearcherProperties.DisabledReason.{fieldValue}");
 
 					break;
 				}

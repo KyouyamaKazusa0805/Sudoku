@@ -4746,106 +4746,6 @@
             Indicates the conclusion is a candidate being remove from a cell.
             </summary>
         </member>
-        <member name="T:Sudoku.Concepts.Solving.DisabledReason">
-            <summary>
-            Indicates a reason why the searcher is disabled.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Concepts.Solving.DisabledReason.None">
-            <summary>
-            Indicates the searcher is normal one and isn't disabled.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Concepts.Solving.DisabledReason.LastResort">
-            <summary>
-            Indicates the searcher searches for last resorts, which don't need to show.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Concepts.Solving.DisabledReason.HasBugs">
-            <summary>
-            Indicates the searcher has bugs while searching.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Concepts.Solving.DisabledReason.TooSlow">
-            <summary>
-            Indicates the searcher runs so slowly that the author himself can't stand to use it.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Concepts.Solving.DisabledReason.DeprecatedOrNotImplemented">
-            <summary>
-            Indicates the searcher has not been implemented, or has been deprecated.
-            </summary>
-        </member>
-        <member name="T:Sudoku.Concepts.Solving.DisplayingLevel">
-            <summary>
-            Indicates the difficulty level of the step.
-            This enumeration type is used for the displaying of the step information list.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Concepts.Solving.DisplayingLevel.None">
-            <summary>
-            Indicates the level is none.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Concepts.Solving.DisplayingLevel.A">
-            <summary>
-            Indicates the level is the elementary searchers, which means the techniques found
-            in the current step searcher is the elementary ones.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Concepts.Solving.DisplayingLevel.B">
-            <summary>
-            Indicates the level is the moderate searchers, which means the techniques found
-            in the current step searcher is more difficult than the elementary ones,
-            but they aren't very difficult to comprehend the backing logic.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Concepts.Solving.DisplayingLevel.C">
-            <summary>
-            Indicates the level is the hard searchers, which means the techniques found
-            in the current step searcher is more difficult than the moderate ones.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Concepts.Solving.DisplayingLevel.D">
-            <summary>
-            Indicates the level is the fiendish searchers, which means the techniques found
-            in the current step searcher is more difficult than the hard ones.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Concepts.Solving.DisplayingLevel.E">
-            <summary>
-            <para>
-            Indicates the level is the hidden searchers, which means the techniques found
-            in the current step searcher should be hidden no matter how easy the technique is.
-            </para>
-            <para>The well-known technique searcher of this level is Brute Force.</para>
-            </summary>
-        </member>
-        <member name="T:Sudoku.Concepts.Solving.EnabledArea">
-            <summary>
-            Represents the data about where a step searcher can be enabled and used.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Concepts.Solving.EnabledArea.None">
-            <summary>
-            Indicates all modes are disabled.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Concepts.Solving.EnabledArea.Default">
-            <summary>
-            Indicates the default mode (Sudoku Explainer or Hodoku mode).
-            </summary>
-        </member>
-        <member name="F:Sudoku.Concepts.Solving.EnabledArea.Gathering">
-            <summary>
-            Indicates the gathering mode (All steps will be found here).
-            </summary>
-        </member>
-        <member name="F:Sudoku.Concepts.Solving.EnabledArea.Experimental">
-            <summary>
-            Indicates the experimental function can use the step searcher.
-            </summary>
-        </member>
         <member name="T:Sudoku.Concepts.Solving.ExocetElimination">
             <summary>
             Represents a data structure that describes the eliminations that are created and proved
@@ -4912,68 +4812,6 @@
         </member>
         <member name="M:Sudoku.Concepts.Solving.ExocetElimination.GetHashCode">
             <inheritdoc cref="M:System.Object.GetHashCode"/>
-        </member>
-        <member name="T:Sudoku.Concepts.Solving.FailedReason">
-            <summary>
-            Defines a reason why the puzzle is failed to be solved.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Concepts.Solving.FailedReason.Nothing">
-            <summary>
-            Indicates nothing goes wrong.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Concepts.Solving.FailedReason.PuzzleIsInvalid">
-            <summary>
-            Indicates the failed reason is that the puzzle doesn't contain a valid unique solution.
-            Different with <see cref="F:Sudoku.Concepts.Solving.FailedReason.PuzzleHasMultipleSolutions"/> and <see cref="F:Sudoku.Concepts.Solving.FailedReason.PuzzleHasNoSolution"/>,
-            this field will include more generic cases. If the puzzle doesn't pass the pre-process operation
-            before solving, we should use this field.
-            </summary>
-            <seealso cref="F:Sudoku.Concepts.Solving.FailedReason.PuzzleHasNoSolution"/>
-            <seealso cref="F:Sudoku.Concepts.Solving.FailedReason.PuzzleHasMultipleSolutions"/>
-        </member>
-        <member name="F:Sudoku.Concepts.Solving.FailedReason.PuzzleHasNoSolution">
-            <summary>
-            Indicates the failed reason is that the puzzle doesn't contain a valid solution.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Concepts.Solving.FailedReason.PuzzleHasMultipleSolutions">
-            <summary>
-            Indicates the failed reason is that the puzzle contains multiple valid solutions.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Concepts.Solving.FailedReason.UserCancelled">
-            <summary>
-            Indicates the failed reason is that the user has cancelled the task.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Concepts.Solving.FailedReason.NotImplemented">
-            <summary>
-            Indicates the failed reason is that the solver doesn't implemented some function
-            that causes the operation can't be finished.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Concepts.Solving.FailedReason.ExceptionThrown">
-            <summary>
-            Indicates the failed reason is that the solver has encountered an error and couldn't solve,
-            then an exception thrown.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Concepts.Solving.FailedReason.WrongStep">
-            <summary>
-            Indicates the failed reason is that the solver has found a wrong step that cause the grid become invalid.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Concepts.Solving.FailedReason.PuzzleIsTooHard">
-            <summary>
-            Indicates the failed reason is that the puzzle is too hard to solve. The solver gave up.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Concepts.Solving.FailedReason.Unknown">
-            <summary>
-            Indicates the other reason to cause the error.
-            </summary>
         </member>
         <member name="T:Sudoku.Concepts.Solving.IStep">
             <summary>
@@ -5178,59 +5016,221 @@
             </exception>
             <seealso cref="P:Sudoku.Concepts.Solving.IStep.Format"/>
         </member>
-        <member name="T:Sudoku.Concepts.Solving.SearcherNodeTypes">
+        <member name="T:Sudoku.Concepts.Solving.SearcherProperties.DisabledReason">
+            <summary>
+            Indicates a reason why the searcher is disabled.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Concepts.Solving.SearcherProperties.DisabledReason.None">
+            <summary>
+            Indicates the searcher is normal one and isn't disabled.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Concepts.Solving.SearcherProperties.DisabledReason.LastResort">
+            <summary>
+            Indicates the searcher searches for last resorts, which don't need to show.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Concepts.Solving.SearcherProperties.DisabledReason.HasBugs">
+            <summary>
+            Indicates the searcher has bugs while searching.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Concepts.Solving.SearcherProperties.DisabledReason.TooSlow">
+            <summary>
+            Indicates the searcher runs so slowly that the author himself can't stand to use it.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Concepts.Solving.SearcherProperties.DisabledReason.DeprecatedOrNotImplemented">
+            <summary>
+            Indicates the searcher has not been implemented, or has been deprecated.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Concepts.Solving.SearcherProperties.DisplayingLevel">
+            <summary>
+            Indicates the difficulty level of the step.
+            This enumeration type is used for the displaying of the step information list.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Concepts.Solving.SearcherProperties.DisplayingLevel.None">
+            <summary>
+            Indicates the level is none.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Concepts.Solving.SearcherProperties.DisplayingLevel.A">
+            <summary>
+            Indicates the level is the elementary searchers, which means the techniques found
+            in the current step searcher is the elementary ones.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Concepts.Solving.SearcherProperties.DisplayingLevel.B">
+            <summary>
+            Indicates the level is the moderate searchers, which means the techniques found
+            in the current step searcher is more difficult than the elementary ones,
+            but they aren't very difficult to comprehend the backing logic.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Concepts.Solving.SearcherProperties.DisplayingLevel.C">
+            <summary>
+            Indicates the level is the hard searchers, which means the techniques found
+            in the current step searcher is more difficult than the moderate ones.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Concepts.Solving.SearcherProperties.DisplayingLevel.D">
+            <summary>
+            Indicates the level is the fiendish searchers, which means the techniques found
+            in the current step searcher is more difficult than the hard ones.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Concepts.Solving.SearcherProperties.DisplayingLevel.E">
+            <summary>
+            <para>
+            Indicates the level is the hidden searchers, which means the techniques found
+            in the current step searcher should be hidden no matter how easy the technique is.
+            </para>
+            <para>The well-known technique searcher of this level is Brute Force.</para>
+            </summary>
+        </member>
+        <member name="T:Sudoku.Concepts.Solving.SearcherProperties.EnabledArea">
+            <summary>
+            Represents the data about where a step searcher can be enabled and used.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Concepts.Solving.SearcherProperties.EnabledArea.None">
+            <summary>
+            Indicates all modes are disabled.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Concepts.Solving.SearcherProperties.EnabledArea.Default">
+            <summary>
+            Indicates the default mode (Sudoku Explainer or Hodoku mode).
+            </summary>
+        </member>
+        <member name="F:Sudoku.Concepts.Solving.SearcherProperties.EnabledArea.Gathering">
+            <summary>
+            Indicates the gathering mode (All steps will be found here).
+            </summary>
+        </member>
+        <member name="F:Sudoku.Concepts.Solving.SearcherProperties.EnabledArea.Experimental">
+            <summary>
+            Indicates the experimental function can use the step searcher.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Concepts.Solving.SearcherProperties.FailedReason">
+            <summary>
+            Defines a reason why the puzzle is failed to be solved.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Concepts.Solving.SearcherProperties.FailedReason.Nothing">
+            <summary>
+            Indicates nothing goes wrong.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Concepts.Solving.SearcherProperties.FailedReason.PuzzleIsInvalid">
+            <summary>
+            Indicates the failed reason is that the puzzle doesn't contain a valid unique solution.
+            Different with <see cref="F:Sudoku.Concepts.Solving.SearcherProperties.FailedReason.PuzzleHasMultipleSolutions"/> and <see cref="F:Sudoku.Concepts.Solving.SearcherProperties.FailedReason.PuzzleHasNoSolution"/>,
+            this field will include more generic cases. If the puzzle doesn't pass the pre-process operation
+            before solving, we should use this field.
+            </summary>
+            <seealso cref="F:Sudoku.Concepts.Solving.SearcherProperties.FailedReason.PuzzleHasNoSolution"/>
+            <seealso cref="F:Sudoku.Concepts.Solving.SearcherProperties.FailedReason.PuzzleHasMultipleSolutions"/>
+        </member>
+        <member name="F:Sudoku.Concepts.Solving.SearcherProperties.FailedReason.PuzzleHasNoSolution">
+            <summary>
+            Indicates the failed reason is that the puzzle doesn't contain a valid solution.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Concepts.Solving.SearcherProperties.FailedReason.PuzzleHasMultipleSolutions">
+            <summary>
+            Indicates the failed reason is that the puzzle contains multiple valid solutions.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Concepts.Solving.SearcherProperties.FailedReason.UserCancelled">
+            <summary>
+            Indicates the failed reason is that the user has cancelled the task.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Concepts.Solving.SearcherProperties.FailedReason.NotImplemented">
+            <summary>
+            Indicates the failed reason is that the solver doesn't implemented some function
+            that causes the operation can't be finished.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Concepts.Solving.SearcherProperties.FailedReason.ExceptionThrown">
+            <summary>
+            Indicates the failed reason is that the solver has encountered an error and couldn't solve,
+            then an exception thrown.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Concepts.Solving.SearcherProperties.FailedReason.WrongStep">
+            <summary>
+            Indicates the failed reason is that the solver has found a wrong step that cause the grid become invalid.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Concepts.Solving.SearcherProperties.FailedReason.PuzzleIsTooHard">
+            <summary>
+            Indicates the failed reason is that the puzzle is too hard to solve. The solver gave up.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Concepts.Solving.SearcherProperties.FailedReason.Unknown">
+            <summary>
+            Indicates the other reason to cause the error.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Concepts.Solving.SearcherProperties.SearcherNodeTypes">
             <summary>
             Defines a node type that provides with the choices for the chain node types.
             </summary>
         </member>
-        <member name="F:Sudoku.Concepts.Solving.SearcherNodeTypes.None">
+        <member name="F:Sudoku.Concepts.Solving.SearcherProperties.SearcherNodeTypes.None">
             <summary>
             Indicates the searcher doesn't search for any extended-typed nodes.
             </summary>
         </member>
-        <member name="F:Sudoku.Concepts.Solving.SearcherNodeTypes.SoleDigit">
+        <member name="F:Sudoku.Concepts.Solving.SearcherProperties.SearcherNodeTypes.SoleDigit">
             <summary>
             Indicates the searcher can search on sole digit in the same house.
             </summary>
         </member>
-        <member name="F:Sudoku.Concepts.Solving.SearcherNodeTypes.SoleCell">
+        <member name="F:Sudoku.Concepts.Solving.SearcherProperties.SearcherNodeTypes.SoleCell">
             <summary>
             Indicates the searcher can search on candidates in a same cell.
             </summary>
         </member>
-        <member name="F:Sudoku.Concepts.Solving.SearcherNodeTypes.LockedCandidates">
+        <member name="F:Sudoku.Concepts.Solving.SearcherProperties.SearcherNodeTypes.LockedCandidates">
             <summary>
             Indicates the searcher can search for locked candidate nodes.
             </summary>
         </member>
-        <member name="F:Sudoku.Concepts.Solving.SearcherNodeTypes.LockedSet">
+        <member name="F:Sudoku.Concepts.Solving.SearcherProperties.SearcherNodeTypes.LockedSet">
             <summary>
             Indicates the searcher can search for locked set nodes.
             </summary>
         </member>
-        <member name="F:Sudoku.Concepts.Solving.SearcherNodeTypes.HiddenSet">
+        <member name="F:Sudoku.Concepts.Solving.SearcherProperties.SearcherNodeTypes.HiddenSet">
             <summary>
             Indicates the searcher can search for hidden set nodes.
             </summary>
         </member>
-        <member name="F:Sudoku.Concepts.Solving.SearcherNodeTypes.UniqueRectangle">
+        <member name="F:Sudoku.Concepts.Solving.SearcherProperties.SearcherNodeTypes.UniqueRectangle">
             <summary>
             Indicates the searcher can search for almost rectangle nodes.
             </summary>
         </member>
-        <member name="F:Sudoku.Concepts.Solving.SearcherNodeTypes.Kraken">
+        <member name="F:Sudoku.Concepts.Solving.SearcherProperties.SearcherNodeTypes.Kraken">
             <summary>
             Indicates the searcher can search for kraken fish nodes.
             </summary>
         </member>
-        <member name="T:Sudoku.Concepts.Solving.SearchingOptions">
+        <member name="T:Sudoku.Concepts.Solving.SearcherProperties.SearchingOptions">
             <summary>
             Indicates the options for a step searcher used while searching.
             </summary>
             <param name="Priority">Indicates the priority of this technique.</param>
             <param name="EnabledArea">
             Indicates which areas the step searcher is enabled and works well.
-            The default value is both <see cref="F:Sudoku.Concepts.Solving.EnabledArea.Default"/> and <see cref="F:Sudoku.Concepts.Solving.EnabledArea.Gathering"/>.
+            The default value is both <see cref="F:Sudoku.Concepts.Solving.SearcherProperties.EnabledArea.Default"/> and <see cref="F:Sudoku.Concepts.Solving.SearcherProperties.EnabledArea.Gathering"/>.
             </param>
             <param name="DisplayingLevel">
             <para>Indicates the displaying level of this technique.</para>
@@ -5241,8 +5241,8 @@
             </para>
             <para>
             In order to enhance the performance, this attribute is used on a step gatherer.
-            For example, if Alternating Inference Chain (AIC) is at the level <see cref="F:Sudoku.Concepts.Solving.DisplayingLevel.D"/>
-            but Forcing Chains (FC) is at the level <see cref="F:Sudoku.Concepts.Solving.DisplayingLevel.E"/>,
+            For example, if Alternating Inference Chain (AIC) is at the level <see cref="F:Sudoku.Concepts.Solving.SearcherProperties.DisplayingLevel.D"/>
+            but Forcing Chains (FC) is at the level <see cref="F:Sudoku.Concepts.Solving.SearcherProperties.DisplayingLevel.E"/>,
             when we find any AIC technique instances, FC won't be checked at the same time.
             </para>
             <para>
@@ -5255,19 +5255,19 @@
             the searcher is (or should be) disabled.
             </para>
             <para>
-            The property <b>must</b> contain a value that differs with <see cref="F:Sudoku.Concepts.Solving.DisabledReason.None"/>
-            when the property <see cref="P:Sudoku.Concepts.Solving.SearchingOptions.EnabledArea"/> isn't <see cref="F:Sudoku.Concepts.Solving.EnabledArea.Default"/>.
+            The property <b>must</b> contain a value that differs with <see cref="F:Sudoku.Concepts.Solving.SearcherProperties.DisabledReason.None"/>
+            when the property <see cref="P:Sudoku.Concepts.Solving.SearcherProperties.SearchingOptions.EnabledArea"/> isn't <see cref="F:Sudoku.Concepts.Solving.SearcherProperties.EnabledArea.Default"/>.
             </para>
             </param>
         </member>
-        <member name="M:Sudoku.Concepts.Solving.SearchingOptions.#ctor(System.Int32,Sudoku.Concepts.Solving.DisplayingLevel,Sudoku.Concepts.Solving.EnabledArea,Sudoku.Concepts.Solving.DisabledReason)">
+        <member name="M:Sudoku.Concepts.Solving.SearcherProperties.SearchingOptions.#ctor(System.Int32,Sudoku.Concepts.Solving.SearcherProperties.DisplayingLevel,Sudoku.Concepts.Solving.SearcherProperties.EnabledArea,Sudoku.Concepts.Solving.SearcherProperties.DisabledReason)">
             <summary>
             Indicates the options for a step searcher used while searching.
             </summary>
             <param name="Priority">Indicates the priority of this technique.</param>
             <param name="EnabledArea">
             Indicates which areas the step searcher is enabled and works well.
-            The default value is both <see cref="F:Sudoku.Concepts.Solving.EnabledArea.Default"/> and <see cref="F:Sudoku.Concepts.Solving.EnabledArea.Gathering"/>.
+            The default value is both <see cref="F:Sudoku.Concepts.Solving.SearcherProperties.EnabledArea.Default"/> and <see cref="F:Sudoku.Concepts.Solving.SearcherProperties.EnabledArea.Gathering"/>.
             </param>
             <param name="DisplayingLevel">
             <para>Indicates the displaying level of this technique.</para>
@@ -5278,8 +5278,8 @@
             </para>
             <para>
             In order to enhance the performance, this attribute is used on a step gatherer.
-            For example, if Alternating Inference Chain (AIC) is at the level <see cref="F:Sudoku.Concepts.Solving.DisplayingLevel.D"/>
-            but Forcing Chains (FC) is at the level <see cref="F:Sudoku.Concepts.Solving.DisplayingLevel.E"/>,
+            For example, if Alternating Inference Chain (AIC) is at the level <see cref="F:Sudoku.Concepts.Solving.SearcherProperties.DisplayingLevel.D"/>
+            but Forcing Chains (FC) is at the level <see cref="F:Sudoku.Concepts.Solving.SearcherProperties.DisplayingLevel.E"/>,
             when we find any AIC technique instances, FC won't be checked at the same time.
             </para>
             <para>
@@ -5292,15 +5292,15 @@
             the searcher is (or should be) disabled.
             </para>
             <para>
-            The property <b>must</b> contain a value that differs with <see cref="F:Sudoku.Concepts.Solving.DisabledReason.None"/>
-            when the property <see cref="P:Sudoku.Concepts.Solving.SearchingOptions.EnabledArea"/> isn't <see cref="F:Sudoku.Concepts.Solving.EnabledArea.Default"/>.
+            The property <b>must</b> contain a value that differs with <see cref="F:Sudoku.Concepts.Solving.SearcherProperties.DisabledReason.None"/>
+            when the property <see cref="P:Sudoku.Concepts.Solving.SearcherProperties.SearchingOptions.EnabledArea"/> isn't <see cref="F:Sudoku.Concepts.Solving.SearcherProperties.EnabledArea.Default"/>.
             </para>
             </param>
         </member>
-        <member name="P:Sudoku.Concepts.Solving.SearchingOptions.Priority">
+        <member name="P:Sudoku.Concepts.Solving.SearcherProperties.SearchingOptions.Priority">
             <summary>Indicates the priority of this technique.</summary>
         </member>
-        <member name="P:Sudoku.Concepts.Solving.SearchingOptions.DisplayingLevel">
+        <member name="P:Sudoku.Concepts.Solving.SearcherProperties.SearchingOptions.DisplayingLevel">
             <summary>
             <para>Indicates the displaying level of this technique.</para>
             <para>
@@ -5310,8 +5310,8 @@
             </para>
             <para>
             In order to enhance the performance, this attribute is used on a step gatherer.
-            For example, if Alternating Inference Chain (AIC) is at the level <see cref="F:Sudoku.Concepts.Solving.DisplayingLevel.D"/>
-            but Forcing Chains (FC) is at the level <see cref="F:Sudoku.Concepts.Solving.DisplayingLevel.E"/>,
+            For example, if Alternating Inference Chain (AIC) is at the level <see cref="F:Sudoku.Concepts.Solving.SearcherProperties.DisplayingLevel.D"/>
+            but Forcing Chains (FC) is at the level <see cref="F:Sudoku.Concepts.Solving.SearcherProperties.DisplayingLevel.E"/>,
             when we find any AIC technique instances, FC won't be checked at the same time.
             </para>
             <para>
@@ -5319,21 +5319,21 @@
             </para>
             </summary>
         </member>
-        <member name="P:Sudoku.Concepts.Solving.SearchingOptions.EnabledArea">
+        <member name="P:Sudoku.Concepts.Solving.SearcherProperties.SearchingOptions.EnabledArea">
             <summary>
             Indicates which areas the step searcher is enabled and works well.
-            The default value is both <see cref="F:Sudoku.Concepts.Solving.EnabledArea.Default"/> and <see cref="F:Sudoku.Concepts.Solving.EnabledArea.Gathering"/>.
+            The default value is both <see cref="F:Sudoku.Concepts.Solving.SearcherProperties.EnabledArea.Default"/> and <see cref="F:Sudoku.Concepts.Solving.SearcherProperties.EnabledArea.Gathering"/>.
             </summary>
         </member>
-        <member name="P:Sudoku.Concepts.Solving.SearchingOptions.DisabledReason">
+        <member name="P:Sudoku.Concepts.Solving.SearcherProperties.SearchingOptions.DisabledReason">
             <summary>
             <para>
             Indicates whether the current searcher has bug to fix, or something else to describe why
             the searcher is (or should be) disabled.
             </para>
             <para>
-            The property <b>must</b> contain a value that differs with <see cref="F:Sudoku.Concepts.Solving.DisabledReason.None"/>
-            when the property <see cref="P:Sudoku.Concepts.Solving.SearchingOptions.EnabledArea"/> isn't <see cref="F:Sudoku.Concepts.Solving.EnabledArea.Default"/>.
+            The property <b>must</b> contain a value that differs with <see cref="F:Sudoku.Concepts.Solving.SearcherProperties.DisabledReason.None"/>
+            when the property <see cref="P:Sudoku.Concepts.Solving.SearcherProperties.SearchingOptions.EnabledArea"/> isn't <see cref="F:Sudoku.Concepts.Solving.SearcherProperties.EnabledArea.Default"/>.
             </para>
             </summary>
         </member>

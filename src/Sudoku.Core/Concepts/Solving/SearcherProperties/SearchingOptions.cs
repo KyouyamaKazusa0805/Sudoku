@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Concepts.Solving;
+﻿namespace Sudoku.Concepts.Solving.SearcherProperties;
 
 /// <summary>
 /// Indicates the options for a step searcher used while searching.

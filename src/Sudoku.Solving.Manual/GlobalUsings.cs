@@ -18,6 +18,7 @@ global using Sudoku.Concepts.Collections;
 global using Sudoku.Concepts.Collections.Handlers;
 global using Sudoku.Concepts.Enumerators;
 global using Sudoku.Concepts.Solving;
+global using Sudoku.Concepts.Solving.SearcherProperties;
 global using Sudoku.Concepts.Solving.TechniqueProperties;
 global using Sudoku.Concepts.Solving.TechniqueStructures;
 global using Sudoku.Concepts.Solving.TechniqueStructures.ChainNodes;
