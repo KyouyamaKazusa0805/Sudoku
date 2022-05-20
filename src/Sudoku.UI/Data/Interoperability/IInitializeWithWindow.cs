@@ -42,5 +42,5 @@ internal interface IInitializeWithWindow
 	/// this link
 	/// </see>.
 	/// </remarks>
-	void Initialize([In] IntPtr hwnd);
+	void Initialize([In] nint hwnd);
 }

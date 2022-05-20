@@ -246,7 +246,7 @@ public static class ImageHandler
 				int v = 0;
 				for (int i = 0; i < rows; i++, srcAddress += data.Stride)
 				{
-					Marshal.Copy((IntPtr)srcAddress, row, 0, row.Length);
+					Marshal.Copy((nint)srcAddress, row, 0, row.Length);
 
 					for (int j = 0; j < cols; j++, v <<= 1)
 					{
@@ -340,7 +340,7 @@ public static class ImageHandler
 	{
 		var data = bmp.LockBits(new(Point.Empty, bmp.Size), ImageLockMode.ReadOnly, bmp.PixelFormat);
 		using var mat = new Matrix<TDepth>(bmp.Height, bmp.Width, image.NumberOfChannels, data.Scan0, data.Stride);
-		Cv.cvCopy(mat.Ptr, image.Ptr, IntPtr.Zero);
+		Cv.cvCopy(mat.Ptr, image.Ptr, (nint)0);
 		bmp.UnlockBits(data);
 	}
 }

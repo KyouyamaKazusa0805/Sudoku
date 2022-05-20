@@ -1,5 +1,4 @@
-﻿using System;
-using System.Runtime.CompilerServices;
+﻿using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using Sudoku.UI.Data.Interoperability;
 using WinRT;
@@ -22,12 +21,12 @@ internal static class FileOpenPickerExtensions
 		if (Window.Current is null)
 		{
 			var initializeWithWindowWrapper = @this.As<IInitializeWithWindow>();
-			var hwnd = getActiveWindow();
+			nint hwnd = getActiveWindow();
 			initializeWithWindowWrapper.Initialize(hwnd);
 		}
 
 
 		[DllImport("user32", EntryPoint = "GetActiveWindow", ExactSpelling = true, CharSet = CharSet.Auto, PreserveSig = true)]
-		static extern IntPtr getActiveWindow();
+		static extern nint getActiveWindow();
 	}
 }
