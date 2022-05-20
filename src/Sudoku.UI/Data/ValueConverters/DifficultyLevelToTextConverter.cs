@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Diagnostics.CodeAnalysis;
 using Microsoft.UI.Xaml.Data;
-using Sudoku.Concepts.Solving;
+using Sudoku.Concepts.Solving.TechniqueProperties;
 
 namespace Sudoku.UI.Data.ValueConverters;
 

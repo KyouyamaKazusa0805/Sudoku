@@ -10,7 +10,7 @@ using Microsoft.UI.Input;
 using Microsoft.UI.Xaml.Controls.Primitives;
 using Microsoft.UI.Xaml.Input;
 using Microsoft.UI.Xaml.Media.Imaging;
-using Sudoku.Concepts.Solving;
+using Sudoku.Concepts.Solving.SearcherProperties;
 using Sudoku.Generating.Puzzlers;
 using Sudoku.Solving.Manual;
 using Windows.ApplicationModel.DataTransfer;
@@ -398,7 +398,7 @@ public sealed partial class SudokuPage : Page
 	/// </summary>
 	/// <param name="button">The button.</param>
 	/// <returns>The typical awaitable instance that holds the task to generate the puzzle.</returns>
-	private void GenerateAsync(AppBarButton button)
+	private async void GenerateAsync(AppBarButton button)
 	{
 		// Disable the control to prevent re-invocation.
 		button.IsEnabled = false;
@@ -406,7 +406,7 @@ public sealed partial class SudokuPage : Page
 		// Generate the puzzle.
 		// The generation may be slow, so we should use asynchronous invocation instead of the synchronous one.
 		// TODO: May allow the user cancelling the puzzle-generating operation.
-		var grid = Generator.Generate();
+		var grid = await Task.Run(static () => Generator.Generate());
 
 		// Enable the control.
 		button.IsEnabled = true;

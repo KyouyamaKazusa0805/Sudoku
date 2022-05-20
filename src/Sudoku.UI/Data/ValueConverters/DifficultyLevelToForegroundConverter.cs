@@ -3,7 +3,7 @@ using System.Diagnostics.CodeAnalysis;
 using Microsoft.UI;
 using Microsoft.UI.Xaml.Data;
 using Microsoft.UI.Xaml.Media;
-using Sudoku.Concepts.Solving;
+using Sudoku.Concepts.Solving.TechniqueProperties;
 using Windows.UI;
 using static System.Numerics.BitOperations;
 

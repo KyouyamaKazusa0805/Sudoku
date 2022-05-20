@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Sudoku.Concepts.Solving;
+using Sudoku.Concepts.Solving.TechniqueProperties;
 using Sudoku.Solving.Manual;
 
 namespace Sudoku.UI.Data;
