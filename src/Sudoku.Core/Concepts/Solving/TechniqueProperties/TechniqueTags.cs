@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Concepts.Solving;
+﻿namespace Sudoku.Concepts.Solving.TechniqueProperties;
 
 /// <summary>
 /// Provides a series of tags to mark on a technique.

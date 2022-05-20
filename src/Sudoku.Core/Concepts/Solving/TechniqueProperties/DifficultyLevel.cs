@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Concepts.Solving;
+﻿namespace Sudoku.Concepts.Solving.TechniqueProperties;
 
 /// <summary>
 /// Provides a difficulty kind for a puzzle.

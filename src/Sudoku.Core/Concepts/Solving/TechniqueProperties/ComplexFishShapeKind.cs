@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Concepts.Solving;
+﻿namespace Sudoku.Concepts.Solving.TechniqueProperties;
 
 /// <summary>
 /// Indicates the shape modifiers.

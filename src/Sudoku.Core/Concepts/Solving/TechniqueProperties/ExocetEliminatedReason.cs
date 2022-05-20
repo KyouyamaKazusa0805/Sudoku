@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Concepts.Solving;
+﻿namespace Sudoku.Concepts.Solving.TechniqueProperties;
 
 /// <summary>
 /// Encapsulates a type that represents the reason why the exocet eliminations can be removed.
