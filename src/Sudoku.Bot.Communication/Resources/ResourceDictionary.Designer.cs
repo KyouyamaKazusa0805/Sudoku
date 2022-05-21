@@ -320,11 +320,11 @@ namespace Sudoku.Bot.Communication.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 排名.
+        ///   Looks up a localized string similar to 查询.
         /// </summary>
-        internal static string Command_Rank {
+        internal static string Command_Query {
             get {
-                return ResourceManager.GetString("Command_Rank", resourceCulture);
+                return ResourceManager.GetString("Command_Query", resourceCulture);
             }
         }
         

@@ -4164,9 +4164,9 @@
               Looks up a localized string similar to 帮助.
             </summary>
         </member>
-        <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.Command_Rank">
+        <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.Command_Query">
             <summary>
-              Looks up a localized string similar to 排名.
+              Looks up a localized string similar to 查询.
             </summary>
         </member>
         <member name="P:Sudoku.Bot.Communication.Resources.ResourceDictionary.Command_Sudoku">

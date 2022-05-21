@@ -232,8 +232,8 @@
   <data name="Command_Help" xml:space="preserve">
     <value>帮助</value>
   </data>
-  <data name="Command_Rank" xml:space="preserve">
-    <value>排名</value>
+  <data name="Command_Query" xml:space="preserve">
+    <value>查询</value>
   </data>
   <data name="Command_Sudoku" xml:space="preserve">
     <value>数独</value>

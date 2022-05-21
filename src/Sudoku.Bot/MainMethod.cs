@@ -37,7 +37,7 @@ static void registerCommands(BotClient bot)
 {
 	bot.RegisterCommand(new(StringResource.Get("Command_Sudoku")!, PlaySudokuAsync));
 	bot.RegisterCommand(new(StringResource.Get("Command_ClockIn")!, ClockInAsync));
-	bot.RegisterCommand(new(StringResource.Get("Command_Rank")!, PrintRankResultAsync));
+	bot.RegisterCommand(new(StringResource.Get("Command_Query")!, PrintQueryAsync));
 	bot.RegisterCommand(new(StringResource.Get("Command_Help")!, PrintHelperTextAsync));
 }
 
@@ -300,7 +300,7 @@ static async void ClockInAsync(Sender sender, string message)
 	}
 }
 
-static async void PrintRankResultAsync(Sender sender, string message)
+static async void PrintQueryAsync(Sender sender, string message)
 {
 	if (sender is not { MessageCreator.Id: var userId })
 	{
