@@ -7,17 +7,6 @@
 [Generator(LanguageNames.CSharp)]
 public sealed class StepSearcherOptionsGenerator : IIncrementalGenerator
 {
-	/// <summary>
-	/// Defines a dictionary that stores the lookup table for fields in the enumeration type <c>EnabledArea</c>.
-	/// </summary>
-	private readonly IDictionary<byte, string> _enabledAreasFields = new Dictionary<byte, string>();
-
-	/// <summary>
-	/// Defines a dictionary that stores the lookup table for fields in the enumeration type <c>DisabledReason</c>.
-	/// </summary>
-	private readonly IDictionary<short, string> _disabledReasonFields = new Dictionary<short, string>();
-
-
 	/// <inheritdoc/>
 	public void Initialize(IncrementalGeneratorInitializationContext context)
 		=> context.RegisterSourceOutput(context.CompilationProvider, CreateSourceGeneration);
@@ -38,13 +27,15 @@ public sealed class StepSearcherOptionsGenerator : IIncrementalGenerator
 		var enabledAreaTypeSymbol = compilation.GetTypeByMetadataName("Sudoku.Concepts.Solving.SearcherProperties.EnabledArea")!;
 		var disabledReasonTypeSymbol = compilation.GetTypeByMetadataName("Sudoku.Concepts.Solving.SearcherProperties.DisabledReason")!;
 
+		var enabledAreasFields = new Dictionary<byte, string>();
+		var disabledReasonFields = new Dictionary<short, string>();
 		foreach (var fieldSymbol in enabledAreaTypeSymbol.GetMembers().OfType<IFieldSymbol>())
 		{
-			_enabledAreasFields.Add((byte)fieldSymbol.ConstantValue!, fieldSymbol.Name);
+			enabledAreasFields.Add((byte)fieldSymbol.ConstantValue!, fieldSymbol.Name);
 		}
 		foreach (var fieldSymbol in disabledReasonTypeSymbol.GetMembers().OfType<IFieldSymbol>())
 		{
-			_disabledReasonFields.Add((short)fieldSymbol.ConstantValue!, fieldSymbol.Name);
+			disabledReasonFields.Add((short)fieldSymbol.ConstantValue!, fieldSymbol.Name);
 		}
 
 		// Gather the valid attributes data.
@@ -148,12 +139,12 @@ public sealed class StepSearcherOptionsGenerator : IIncrementalGenerator
 				sb = new StringBuilder().Append(comma);
 				if (enabledArea is { } ea)
 				{
-					string targetStr = CreateExpression(ea, "EnabledArea");
+					string targetStr = CreateExpression(ea, "EnabledArea", enabledAreasFields, disabledReasonFields);
 					sb.Append($"EnabledArea: {targetStr}{comma}");
 				}
 				if (disabledReason is { } dr)
 				{
-					string targetStr = CreateExpression(dr, "DisabledReason");
+					string targetStr = CreateExpression(dr, "DisabledReason", enabledAreasFields, disabledReasonFields);
 					sb.Append($"DisabledReason: {targetStr}{comma}");
 				}
 
@@ -179,7 +170,10 @@ public sealed class StepSearcherOptionsGenerator : IIncrementalGenerator
 		}
 	}
 
-	private unsafe string CreateExpression<T>(T field, string typeName) where T : unmanaged
+	private unsafe string CreateExpression<T>(
+		T field, string typeName, IDictionary<byte, string> enabledAreasFields,
+		IDictionary<short, string> disabledReasonFields)
+		where T : unmanaged
 	{
 		long l = sizeof(T) switch
 		{
@@ -205,13 +199,13 @@ public sealed class StepSearcherOptionsGenerator : IIncrementalGenerator
 
 			switch (typeName)
 			{
-				case "EnabledArea" when _enabledAreasFields[(byte)(1 << i)] is var fieldValue:
+				case "EnabledArea" when enabledAreasFields[(byte)(1 << i)] is var fieldValue:
 				{
 					targetList.Add($"global::Sudoku.Concepts.Solving.SearcherProperties.EnabledArea.{fieldValue}");
 
 					break;
 				}
-				case "DisabledReason" when _disabledReasonFields[(short)(1 << i)] is var fieldValue:
+				case "DisabledReason" when disabledReasonFields[(short)(1 << i)] is var fieldValue:
 				{
 					targetList.Add($"global::Sudoku.Concepts.Solving.SearcherProperties.DisabledReason.{fieldValue}");
 
