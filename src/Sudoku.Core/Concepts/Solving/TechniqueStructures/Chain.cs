@@ -117,7 +117,8 @@ public abstract partial class Chain :
 	/// </summary>
 	/// <returns>An array that stores the values with each element of a pair.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public (Node Node, bool IsOn)[] ToRawArray()
+	public (Node Node, bool IsOn)[] ToArray()
+#if true
 	{
 		var result = new (Node, bool)[_nodes.Length];
 		for (int i = 0, length = _nodes.Length; i < length; i++)
@@ -127,4 +128,7 @@ public abstract partial class Chain :
 
 		return result;
 	}
+#else
+		=> return _nodes.Zip(_nodesStatus).ToArray();
+#endif
 }

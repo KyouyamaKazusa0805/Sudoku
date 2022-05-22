@@ -5405,7 +5405,7 @@
             </para>
             </remarks>
         </member>
-        <member name="M:Sudoku.Concepts.Solving.TechniqueStructures.Chain.ToRawArray">
+        <member name="M:Sudoku.Concepts.Solving.TechniqueStructures.Chain.ToArray">
             <summary>
             Creates an array that stores the values with each element of a pair, where:
             <list type="table">
