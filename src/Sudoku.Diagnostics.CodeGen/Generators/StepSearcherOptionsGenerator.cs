@@ -52,7 +52,8 @@ public sealed class StepSearcherOptionsGenerator : IIncrementalGenerator
 					AttributeClass:
 					{
 						IsGenericType: true,
-						TypeArguments: [
+						TypeArguments:
+						[
 							INamedTypeSymbol
 							{
 								IsRecord: false,
@@ -61,7 +62,8 @@ public sealed class StepSearcherOptionsGenerator : IIncrementalGenerator
 							} stepSearcherTypeSymbol
 						]
 					} attributeClassSymbol,
-					ConstructorArguments: [
+					ConstructorArguments:
+					[
 						{ Type.SpecialType: SpecialType.System_Int32, Value: int priority },
 						{ Type.TypeKind: TypeKind.Enum, Value: byte dl }
 					],

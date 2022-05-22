@@ -98,7 +98,8 @@ public sealed class JinxTimeSpan
 			TimeStampPattern.Match(timeString) is
 			{
 				Success: true,
-				Groups: [
+				Groups:
+				[
 					_,
 					{ Value: var a },
 					{ Value: var b },

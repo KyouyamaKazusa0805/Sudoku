@@ -220,7 +220,8 @@ public sealed partial class AutoDeconstructionGenerator : ISourceGenerator
 #pragma warning disable IDE0055
 				attributeData is not
 				{
-					ConstructorArguments: [
+					ConstructorArguments:
+					[
 						{ Value: INamedTypeSymbol typeOfResult },
 						{ Values: var typedConstants and not [] }
 					],

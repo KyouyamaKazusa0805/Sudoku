@@ -52,7 +52,8 @@ public sealed class AutoImplementsEnumerableGenerator : IIncrementalGenerator
 				v is not (
 					var type,
 					{
-						ConstructorArguments: [
+						ConstructorArguments:
+						[
 							{ Value: INamedTypeSymbol elementType },
 							{ Value: var memberName }
 						]
