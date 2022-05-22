@@ -1,7 +1,7 @@
 ﻿namespace Sudoku.Runtime.AnalysisServices;
 
 /// <summary>
-/// Indicates the shape modifiers.
+/// Indicates a shape modifier that is used for a complex fish structure.
 /// </summary>
 [Flags]
 public enum ComplexFishShapeKind

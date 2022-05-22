@@ -9682,7 +9682,7 @@
         </member>
         <member name="T:Sudoku.Runtime.AnalysisServices.ComplexFishFinKind">
             <summary>
-            Indicates the fin modifiers.
+            Indicates a fin modifier that is used for a complex fish structure.
             </summary>
         </member>
         <member name="F:Sudoku.Runtime.AnalysisServices.ComplexFishFinKind.Normal">
@@ -9709,7 +9709,7 @@
         </member>
         <member name="T:Sudoku.Runtime.AnalysisServices.ComplexFishShapeKind">
             <summary>
-            Indicates the shape modifiers.
+            Indicates a shape modifier that is used for a complex fish structure.
             </summary>
         </member>
         <member name="F:Sudoku.Runtime.AnalysisServices.ComplexFishShapeKind.Basic">
