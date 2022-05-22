@@ -196,7 +196,7 @@
             <para>
             <b>Hodoku mode</b> is a mode that imitates a sudoku-solving program called <i>Hodoku</i>
             to solve a puzzle. In this case, all enabled step searchers will be in ascending order via their's own
-            priority, i.e. the value of the property <see cref="P:Sudoku.Concepts.Solving.SearcherProperties.SearchingOptions.Priority"/>. On the other hand,
+            priority, i.e. the value of the property <see cref="P:Sudoku.Runtime.AnalysisServices.SearchingOptions.Priority"/>. On the other hand,
             this option provides a basic and normal processing behavior of a <see cref="T:Sudoku.Solving.Manual.ManualSolver"/> instance.
             </para>
             <para>
@@ -214,7 +214,7 @@
             <see langword="true"/> value.
             </para>
             </remarks>
-            <seealso cref="P:Sudoku.Concepts.Solving.SearcherProperties.SearchingOptions.Priority"/>
+            <seealso cref="P:Sudoku.Runtime.AnalysisServices.SearchingOptions.Priority"/>
         </member>
         <member name="P:Sudoku.Solving.Manual.IManualSolverOptions.IsFastSearching">
             <summary>
@@ -398,7 +398,7 @@
             <summary>
             Indicates the difficulty level of the puzzle.
             If the puzzle has not solved or solved by other solvers,
-            this value will be <see cref="F:Sudoku.Concepts.Solving.TechniqueProperties.DifficultyLevel.Unknown"/>.
+            this value will be <see cref="F:Sudoku.Runtime.AnalysisServices.DifficultyLevel.Unknown"/>.
             </summary>
         </member>
         <member name="P:Sudoku.Solving.Manual.ManualSolverResult.Solution">
@@ -484,10 +484,10 @@
         <member name="P:Sudoku.Solving.Manual.ManualSolverResult.UnhandledException">
             <summary>
             Indicates the unhandled exception thrown. You can visit the property value
-            if the property <see cref="P:Sudoku.Solving.Manual.ManualSolverResult.FailedReason"/> is <see cref="F:Sudoku.Concepts.Solving.SearcherProperties.FailedReason.ExceptionThrown"/>.
+            if the property <see cref="P:Sudoku.Solving.Manual.ManualSolverResult.FailedReason"/> is <see cref="F:Sudoku.Runtime.AnalysisServices.FailedReason.ExceptionThrown"/>.
             </summary>
             <seealso cref="P:Sudoku.Solving.Manual.ManualSolverResult.FailedReason"/>
-            <seealso cref="F:Sudoku.Concepts.Solving.SearcherProperties.FailedReason.ExceptionThrown"/>
+            <seealso cref="F:Sudoku.Runtime.AnalysisServices.FailedReason.ExceptionThrown"/>
         </member>
         <member name="P:Sudoku.Solving.Manual.ManualSolverResult.Item(System.Int32)">
             <summary>
@@ -501,7 +501,7 @@
             <exception cref="T:System.IndexOutOfRangeException">Throws when the index is out of range.</exception>
             <seealso cref="P:Sudoku.Solving.Manual.ManualSolverResult.Steps"/>
         </member>
-        <member name="P:Sudoku.Solving.Manual.ManualSolverResult.Item(Sudoku.Concepts.Solving.TechniqueProperties.Technique)">
+        <member name="P:Sudoku.Solving.Manual.ManualSolverResult.Item(Sudoku.Runtime.AnalysisServices.Technique)">
             <summary>
             Gets the first <see cref="T:Sudoku.Concepts.Solving.Step"/> instance that matches the specified technique.
             </summary>
@@ -632,7 +632,7 @@
             </summary>
             <typeparam name="TStepSearcher">The type of the step searcher.</typeparam>
         </member>
-        <member name="M:Sudoku.Solving.Manual.SearcherConfigurationAttribute`1.#ctor(System.Int32,Sudoku.Concepts.Solving.SearcherProperties.DisplayingLevel)">
+        <member name="M:Sudoku.Solving.Manual.SearcherConfigurationAttribute`1.#ctor(System.Int32,Sudoku.Runtime.AnalysisServices.DisplayingLevel)">
             <summary>
             Initializes a <see cref="T:Sudoku.Solving.Manual.SearcherConfigurationAttribute`1"/> instance
             via the specified priority.
@@ -659,9 +659,9 @@
         <member name="P:Sudoku.Solving.Manual.SearcherConfigurationAttribute`1.DisabledReason">
             <summary>
             Indicates why the step searcher is disabled, which means the property <see cref="P:Sudoku.Solving.Manual.SearcherConfigurationAttribute`1.EnabledArea"/>
-            is <see cref="F:Sudoku.Concepts.Solving.SearcherProperties.EnabledArea.None"/>.
+            is <see cref="F:Sudoku.Runtime.AnalysisServices.EnabledArea.None"/>.
             </summary>
-            <seealso cref="F:Sudoku.Concepts.Solving.SearcherProperties.EnabledArea.None"/>
+            <seealso cref="F:Sudoku.Runtime.AnalysisServices.EnabledArea.None"/>
         </member>
         <member name="T:Sudoku.Solving.Manual.Searchers.AlmostLockedSetsWWingStepSearcher">
             <summary>
@@ -918,8 +918,8 @@
             <inheritdoc/>
             <remarks>
             The default value is <c>
-            <see cref="F:Sudoku.Concepts.Solving.SearcherProperties.SearcherNodeTypes.SoleCell"/> | <see cref="F:Sudoku.Concepts.Solving.SearcherProperties.SearcherNodeTypes.SoleDigit"/>
-            | <see cref="F:Sudoku.Concepts.Solving.SearcherProperties.SearcherNodeTypes.LockedCandidates"/>
+            <see cref="F:Sudoku.Runtime.AnalysisServices.SearcherNodeTypes.SoleCell"/> | <see cref="F:Sudoku.Runtime.AnalysisServices.SearcherNodeTypes.SoleDigit"/>
+            | <see cref="F:Sudoku.Runtime.AnalysisServices.SearcherNodeTypes.LockedCandidates"/>
             </c>.
             </remarks>
         </member>
@@ -1051,46 +1051,46 @@
             <description>Description (What kind of nodes can be searched)</description>
             </listheader>
             <item>
-            <term><see cref="F:Sudoku.Concepts.Solving.SearcherProperties.SearcherNodeTypes.SoleDigit"/></term>
+            <term><see cref="F:Sudoku.Runtime.AnalysisServices.SearcherNodeTypes.SoleDigit"/></term>
             <description>
             The strong and weak inferences between 2 sole candidate nodes of a same digit
             (i.e. X-Chain).
             </description>
             </item>
             <item>
-            <term><see cref="F:Sudoku.Concepts.Solving.SearcherProperties.SearcherNodeTypes.SoleCell"/></term>
+            <term><see cref="F:Sudoku.Runtime.AnalysisServices.SearcherNodeTypes.SoleCell"/></term>
             <description>
             The strong and weak inferences between 2 sole candidate nodes of a same cell
             (i.e. Y-Chain).
             </description>
             </item>
             <item>
-            <term><see cref="F:Sudoku.Concepts.Solving.SearcherProperties.SearcherNodeTypes.LockedCandidates"/></term>
+            <term><see cref="F:Sudoku.Runtime.AnalysisServices.SearcherNodeTypes.LockedCandidates"/></term>
             <description>
             The strong and weak inferences between 2 nodes, where at least one node is a locked candidates node.
             </description>
             </item>
             <item>
-            <term><see cref="F:Sudoku.Concepts.Solving.SearcherProperties.SearcherNodeTypes.LockedSet"/></term>
+            <term><see cref="F:Sudoku.Runtime.AnalysisServices.SearcherNodeTypes.LockedSet"/></term>
             <description>
             The strong inferences between 2 nodes, where at least one node is an almost locked set node.
             </description>
             </item>
             <item>
-            <term><see cref="F:Sudoku.Concepts.Solving.SearcherProperties.SearcherNodeTypes.HiddenSet"/></term>
+            <term><see cref="F:Sudoku.Runtime.AnalysisServices.SearcherNodeTypes.HiddenSet"/></term>
             <description>
             The weak inferences between 2 nodes, where at least one node is an almost hidden set node.
             </description>
             </item>
             <item>
-            <term><see cref="F:Sudoku.Concepts.Solving.SearcherProperties.SearcherNodeTypes.UniqueRectangle"/></term>
+            <term><see cref="F:Sudoku.Runtime.AnalysisServices.SearcherNodeTypes.UniqueRectangle"/></term>
             <description>
             The strong and weak inferences between 2 nodes, where at least one node
             is an almost unique rectangle node.
             </description>
             </item>
             <item>
-            <term><see cref="F:Sudoku.Concepts.Solving.SearcherProperties.SearcherNodeTypes.Kraken"/></term>
+            <term><see cref="F:Sudoku.Runtime.AnalysisServices.SearcherNodeTypes.Kraken"/></term>
             <description>
             The strong and weak inferences between 2 nodes, where at least one node
             is a kraken fish node.
@@ -5072,7 +5072,7 @@
             <param name="XyCell">Indicates the cell XY.</param>
             <param name="AbsoluteOffset"><inheritdoc/></param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Steps.UniqueRectangle2DOr3XStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Concepts.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},Sudoku.Concepts.Solving.TechniqueProperties.Technique,System.Int32,System.Int32,Sudoku.Concepts.Collections.Cells@,System.Boolean,System.Int32,System.Int32,System.Int32,System.Int32)">
+        <member name="M:Sudoku.Solving.Manual.Steps.UniqueRectangle2DOr3XStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Concepts.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},Sudoku.Runtime.AnalysisServices.Technique,System.Int32,System.Int32,Sudoku.Concepts.Collections.Cells@,System.Boolean,System.Int32,System.Int32,System.Int32,System.Int32)">
             <summary>
             Provides with a step that is a <b>Unique Rectangle 2D (or 3X)</b> technique.
             </summary>
@@ -5146,7 +5146,7 @@
             </param>
             <seealso cref="P:Sudoku.Concepts.Solving.Step.TechniqueCode"/>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Steps.UniqueRectangleStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Concepts.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},Sudoku.Concepts.Solving.TechniqueProperties.Technique,System.Int32,System.Int32,Sudoku.Concepts.Collections.Cells@,System.Boolean,System.Int32)">
+        <member name="M:Sudoku.Solving.Manual.Steps.UniqueRectangleStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Concepts.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},Sudoku.Runtime.AnalysisServices.Technique,System.Int32,System.Int32,Sudoku.Concepts.Collections.Cells@,System.Boolean,System.Int32)">
             <summary>
             Provides with a step that is a <b>Unique Rectangle</b> technique.
             </summary>
@@ -5295,7 +5295,7 @@
             <param name="ExtraDigit">Indicates the extra digit used.</param>
             <param name="AbsoluteOffset"><inheritdoc/></param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Steps.UniqueRectangleType2Step.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Concepts.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},System.Int32,System.Int32,Sudoku.Concepts.Solving.TechniqueProperties.Technique,Sudoku.Concepts.Collections.Cells@,System.Boolean,System.Int32,System.Int32)">
+        <member name="M:Sudoku.Solving.Manual.Steps.UniqueRectangleType2Step.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Concepts.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},System.Int32,System.Int32,Sudoku.Runtime.AnalysisServices.Technique,Sudoku.Concepts.Collections.Cells@,System.Boolean,System.Int32,System.Int32)">
             <summary>
             Provides with a step that is a <b>Unique Rectangle Type 2</b> technique.
             </summary>
@@ -5448,7 +5448,7 @@
             <param name="ConjugatePairs">Indicates the conjugate pairs used.</param>
             <param name="AbsoluteOffset"><inheritdoc/></param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Steps.UniqueRectangleWithConjugatePairStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Concepts.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},Sudoku.Concepts.Solving.TechniqueProperties.Technique,System.Int32,System.Int32,Sudoku.Concepts.Collections.Cells@,System.Boolean,Sudoku.Concepts.Conjugate[],System.Int32)">
+        <member name="M:Sudoku.Solving.Manual.Steps.UniqueRectangleWithConjugatePairStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Concepts.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},Sudoku.Runtime.AnalysisServices.Technique,System.Int32,System.Int32,Sudoku.Concepts.Collections.Cells@,System.Boolean,Sudoku.Concepts.Conjugate[],System.Int32)">
             <summary>
             Provides with a step that is a <b>Unique Rectangle with Conjugate Pair(s)</b> technique.
             </summary>
@@ -5722,7 +5722,7 @@
             <param name="ExtraDigitsMask">Indicates the mask that contains all extra digits.</param>
             <param name="AbsoluteOffset"><inheritdoc/></param>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Steps.UniqueRectangleWithWingStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Concepts.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},Sudoku.Concepts.Solving.TechniqueProperties.Technique,System.Int32,System.Int32,Sudoku.Concepts.Collections.Cells@,System.Boolean,Sudoku.Concepts.Collections.Cells@,Sudoku.Concepts.Collections.Cells@,System.Int16,System.Int32)">
+        <member name="M:Sudoku.Solving.Manual.Steps.UniqueRectangleWithWingStep.#ctor(System.Collections.Immutable.ImmutableArray{Sudoku.Concepts.Solving.Conclusion},System.Collections.Immutable.ImmutableArray{Sudoku.Presentation.View},Sudoku.Runtime.AnalysisServices.Technique,System.Int32,System.Int32,Sudoku.Concepts.Collections.Cells@,System.Boolean,Sudoku.Concepts.Collections.Cells@,Sudoku.Concepts.Collections.Cells@,System.Int16,System.Int32)">
             <summary>
             Provides with a step that is a <b>Unique Rectangle with Wing</b> technique.
             </summary>
@@ -6562,12 +6562,12 @@
         </member>
         <member name="M:Sudoku.Solving.Manual.Steps.FishStep.GetComplexFishTechniqueCodeFromName(System.String)">
             <summary>
-            Try to get the <see cref="T:Sudoku.Concepts.Solving.TechniqueProperties.Technique"/> code instance from the specified name, where the name belongs
+            Try to get the <see cref="T:Sudoku.Runtime.AnalysisServices.Technique"/> code instance from the specified name, where the name belongs
             to a complex fish name, such as "Finned Franken Swordfish".
             </summary>
             <param name="name">The name.</param>
-            <returns>The <see cref="T:Sudoku.Concepts.Solving.TechniqueProperties.Technique"/> code instance.</returns>
-            <seealso cref="T:Sudoku.Concepts.Solving.TechniqueProperties.Technique"/>
+            <returns>The <see cref="T:Sudoku.Runtime.AnalysisServices.Technique"/> code instance.</returns>
+            <seealso cref="T:Sudoku.Runtime.AnalysisServices.Technique"/>
         </member>
         <member name="T:Sudoku.Solving.Manual.Steps.NormalFishStep">
             <summary>

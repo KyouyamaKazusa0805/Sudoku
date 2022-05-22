@@ -1,4 +1,6 @@
-﻿namespace Sudoku.Concepts.Solving;
+﻿using Sudoku.Runtime.AnalysisServices;
+
+namespace Sudoku.Concepts.Solving;
 
 /// <summary>
 /// Provides a basic manual solving step.

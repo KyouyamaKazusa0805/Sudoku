@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Concepts.Solving.SearcherProperties;
+﻿namespace Sudoku.Runtime.AnalysisServices;
 
 /// <summary>
 /// Defines a node type that provides with the choices for the chain node types.

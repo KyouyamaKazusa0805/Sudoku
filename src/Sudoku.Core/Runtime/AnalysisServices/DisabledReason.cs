@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Concepts.Solving.SearcherProperties;
+﻿namespace Sudoku.Runtime.AnalysisServices;
 
 /// <summary>
 /// Indicates a reason why the searcher is disabled.

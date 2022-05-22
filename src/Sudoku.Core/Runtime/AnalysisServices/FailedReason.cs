@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Concepts.Solving.SearcherProperties;
+﻿namespace Sudoku.Runtime.AnalysisServices;
 
 /// <summary>
 /// Defines a reason why the puzzle is failed to be solved.

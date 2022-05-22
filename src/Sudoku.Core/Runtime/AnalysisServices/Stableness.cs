@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Concepts.Solving.TechniqueProperties;
+﻿namespace Sudoku.Runtime.AnalysisServices;
 
 /// <summary>
 /// Defines a stableness of a technique.

@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Concepts.Solving.SearcherProperties;
+﻿namespace Sudoku.Runtime.AnalysisServices;
 
 /// <summary>
 /// Represents the data about where a step searcher can be enabled and used.

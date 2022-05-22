@@ -24,8 +24,8 @@ public sealed class StepSearcherOptionsGenerator : IIncrementalGenerator
 			return;
 		}
 
-		var enabledAreaTypeSymbol = compilation.GetTypeByMetadataName("Sudoku.Concepts.Solving.SearcherProperties.EnabledArea")!;
-		var disabledReasonTypeSymbol = compilation.GetTypeByMetadataName("Sudoku.Concepts.Solving.SearcherProperties.DisabledReason")!;
+		var enabledAreaTypeSymbol = compilation.GetTypeByMetadataName("Sudoku.Runtime.AnalysisServices.EnabledArea")!;
+		var disabledReasonTypeSymbol = compilation.GetTypeByMetadataName("Sudoku.Runtime.AnalysisServices.DisabledReason")!;
 
 		var enabledAreasFields = new Dictionary<byte, string>();
 		var disabledReasonFields = new Dictionary<short, string>();
@@ -39,10 +39,7 @@ public sealed class StepSearcherOptionsGenerator : IIncrementalGenerator
 		}
 
 		// Gather the valid attributes data.
-		var foundAttributesData = new List<(
-			INamedTypeSymbol StepSearcherSymbol, INamespaceSymbol ContainingNamespace,
-			int Priority, byte DisplayingLevel, string StepSearcherName,
-			ImmutableArray<KeyValuePair<string, TypedConstant>> NamedArguments)>();
+		var foundAttributesData = new List<(INamedTypeSymbol, INamespaceSymbol, int, byte, string, ImmutableArray<KeyValuePair<string, TypedConstant>>)>();
 		const string comma = ", ";
 		const string attributeTypeName = "Sudoku.Solving.Manual.SearcherConfigurationAttribute<>";
 		foreach (var attributeData in attributesData)
@@ -162,8 +159,8 @@ public sealed class StepSearcherOptionsGenerator : IIncrementalGenerator
 					/// <inheritdoc/>
 					[global::{{typeof(GeneratedCodeAttribute).FullName}}("{{typeof(StepSearcherOptionsGenerator).FullName}}", "{{VersionValue}}")]
 					[global::{{typeof(CompilerGeneratedAttribute).FullName}}]
-					public global::Sudoku.Concepts.Solving.SearcherProperties.SearchingOptions Options { get; set; } =
-						new({{priority}}, global::Sudoku.Concepts.Solving.SearcherProperties.DisplayingLevel.{{(char)(level + 'A' - 1)}}{{sb}});
+					public global::Sudoku.Runtime.AnalysisServices.SearchingOptions Options { get; set; } =
+						new({{priority}}, global::Sudoku.Runtime.AnalysisServices.DisplayingLevel.{{(char)(level + 'A' - 1)}}{{sb}});
 				}
 				"""
 			);
@@ -186,7 +183,7 @@ public sealed class StepSearcherOptionsGenerator : IIncrementalGenerator
 		// or just get the expression '(T)0' as the emitted code.
 		if (l == 0)
 		{
-			return $"(global::Sudoku.Concepts.Solving.SearcherProperties.{typeName})0";
+			return $"(global::Sudoku.Runtime.AnalysisServices.{typeName})0";
 		}
 
 		var targetList = new List<string>();
@@ -201,13 +198,13 @@ public sealed class StepSearcherOptionsGenerator : IIncrementalGenerator
 			{
 				case "EnabledArea" when enabledAreasFields[(byte)(1 << i)] is var fieldValue:
 				{
-					targetList.Add($"global::Sudoku.Concepts.Solving.SearcherProperties.EnabledArea.{fieldValue}");
+					targetList.Add($"global::Sudoku.Runtime.AnalysisServices.EnabledArea.{fieldValue}");
 
 					break;
 				}
 				case "DisabledReason" when disabledReasonFields[(short)(1 << i)] is var fieldValue:
 				{
-					targetList.Add($"global::Sudoku.Concepts.Solving.SearcherProperties.DisabledReason.{fieldValue}");
+					targetList.Add($"global::Sudoku.Runtime.AnalysisServices.DisabledReason.{fieldValue}");
 
 					break;
 				}

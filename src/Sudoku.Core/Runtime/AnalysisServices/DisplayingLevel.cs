@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Concepts.Solving.SearcherProperties;
+﻿namespace Sudoku.Runtime.AnalysisServices;
 
 /// <summary>
 /// Indicates the difficulty level of the step.

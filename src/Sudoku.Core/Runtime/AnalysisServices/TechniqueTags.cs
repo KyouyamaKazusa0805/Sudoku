@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Concepts.Solving.TechniqueProperties;
+﻿namespace Sudoku.Runtime.AnalysisServices;
 
 /// <summary>
 /// Provides a series of tags to mark on a technique.
@@ -30,7 +30,7 @@ public enum TechniqueTags
 	/// <summary>
 	/// Indicates the subset technique. Please note that all ALS techniques shouldn't be with this flag.
 	/// </summary>
-	Subsets = 1<< 2,
+	Subsets = 1 << 2,
 
 	/// <summary>
 	/// Indicates the fish technique.
@@ -40,7 +40,7 @@ public enum TechniqueTags
 	/// <summary>
 	/// Indicates the wing technique.
 	/// </summary>
-	Wings = 1<< 4,
+	Wings = 1 << 4,
 
 	/// <summary>
 	/// Indicates the single digit pattern technique.
