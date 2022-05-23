@@ -966,6 +966,14 @@
             </code>
             </param>
         </member>
+        <member name="M:Sudoku.Solving.Manual.Searchers.AlternatingInferenceChainStepSearcher.ConstructInference(Sudoku.Concepts.Solving.TechniqueStructures.ChainNodes.Node,Sudoku.Concepts.Solving.TechniqueStructures.ChainNodes.Node,System.Collections.Generic.Dictionary{System.Int32,System.Collections.Generic.HashSet{System.Int32}})">
+            <summary>
+            To construct a strong or weak inference from node <paramref name="a"/> to <paramref name="b"/>.
+            </summary>
+            <param name="a">The first node to be constructed as a strong inference.</param>
+            <param name="b">The second node to be constructed as a strong inference.</param>
+            <param name="inferences">The inferences list you want to add.</param>
+        </member>
         <member name="M:Sudoku.Solving.Manual.Searchers.AlternatingInferenceChainStepSearcher.PrintChainData(System.Int32[])">
             <summary>
             To print the whole chain via the ID. The method is only used for calling by the debugger.
@@ -989,15 +997,9 @@
             with the strong inference as the beginning node.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Manual.Searchers.AlternatingInferenceChainStepSearcher.GatherInferences_SoleCandidate(Sudoku.Concepts.Collections.Grid@)">
+        <member name="M:Sudoku.Solving.Manual.Searchers.AlternatingInferenceChainStepSearcher.GatherInferences_SoleAndLocked(Sudoku.Concepts.Collections.Grid@)">
             <summary>
-            Gather the strong and weak inferences on sole candidate nodes.
-            </summary>
-            <param name="grid">The grid.</param>
-        </member>
-        <member name="M:Sudoku.Solving.Manual.Searchers.AlternatingInferenceChainStepSearcher.GatherInferences_LockedCandidates(Sudoku.Concepts.Collections.Grid@)">
-            <summary>
-            Gather the strong and weak inferences on locked candidates nodes.
+            Gather the strong and weak inferences on sole candidate nodes and locked candidates nodes.
             </summary>
             <param name="grid">The grid.</param>
         </member>

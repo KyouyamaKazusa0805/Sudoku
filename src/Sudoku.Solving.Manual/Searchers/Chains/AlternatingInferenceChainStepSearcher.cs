@@ -906,9 +906,111 @@ public sealed partial class AlternatingInferenceChainStepSearcher : IAlternating
 			}
 		}
 
-		for (int house = 0; house < 9; house++)
+		for (byte house = 0; house < 9; house++)
 		{
+			for (byte digit = 0; digit < 9; digit++)
+			{
+				if ((ValueMaps[digit] & HouseMaps[house]) is not [])
+				{
+					// The current house contains the current digit,
+					// which is not allowed in searching for strong and weak inferences.
+					continue;
+				}
 
+				var emptyCells = HouseMaps[house] & CandMaps[digit];
+				int houseMask = emptyCells.RowMask << 9 | emptyCells.ColumnMask << 18;
+				switch (PopCount((uint)houseMask))
+				{
+					case 2: // Both strong and weak inferences.
+					{
+						int h1 = TrailingZeroCount(houseMask);
+						int h2 = houseMask.GetNextSet(h1);
+						var node1Cells = emptyCells & HouseMaps[h1];
+						var node2Cells = emptyCells & HouseMaps[h2];
+						var node1 = (Node)(
+							node1Cells is [var node1Cell]
+								? new SoleCandidateNode((byte)node1Cell, digit)
+								: new LockedCandidatesNode(digit, node1Cells)
+						);
+						var node2 = (Node)(
+							node2Cells is [var node2Cell]
+								? new SoleCandidateNode((byte)node2Cell, digit)
+								: new LockedCandidatesNode(digit, node2Cells)
+						);
+
+						switch (node1, node2)
+						{
+							case (SoleCandidateNode a, SoleCandidateNode b)
+							when NodeTypes.Flags(SearcherNodeTypes.SoleDigit):
+							{
+								ConstructInference(a, b, _strongInferences);
+								ConstructInference(b, a, _strongInferences);
+								ConstructInference(a, b, _weakInferences);
+								ConstructInference(b, a, _weakInferences);
+
+								break;
+							}
+							case var _ when NodeTypes.Flags(SearcherNodeTypes.LockedCandidates):
+							{
+								ConstructInference(node1, node2, _strongInferences);
+								ConstructInference(node2, node1, _strongInferences);
+
+								// TODO: Separate and enumerate all combinations on a locked candidates node.
+								ConstructInference(node1, node2, _weakInferences);
+								ConstructInference(node2, node1, _weakInferences);
+
+								break;
+							}
+						}
+
+						break;
+					}
+					case >= 3: // Weak inferences.
+					{
+						var houses = houseMask.GetAllSets();
+						for (int i = 0, length = houses.Length; i < length - 1; i++)
+						{
+							for (int j = i + 1; j < length; j++)
+							{
+								var node1Cells = emptyCells & HouseMaps[houses[i]];
+								var node2Cells = emptyCells & HouseMaps[houses[j]];
+								var node1 = (Node)(
+									node1Cells is [var node1Cell]
+										? new SoleCandidateNode((byte)node1Cell, digit)
+										: new LockedCandidatesNode(digit, node1Cells)
+								);
+								var node2 = (Node)(
+									node2Cells is [var node2Cell]
+										? new SoleCandidateNode((byte)node2Cell, digit)
+										: new LockedCandidatesNode(digit, node2Cells)
+								);
+
+								switch (node1, node2)
+								{
+									case (SoleCandidateNode a, SoleCandidateNode b)
+									when NodeTypes.Flags(SearcherNodeTypes.SoleDigit):
+									{
+										ConstructInference(a, b, _weakInferences);
+										ConstructInference(b, a, _weakInferences);
+
+										break;
+									}
+									case var _ when NodeTypes.Flags(SearcherNodeTypes.LockedCandidates):
+									{
+										// TODO: Separate and enumerate all combinations on a locked candidates node.
+										ConstructInference(node1, node2, _weakInferences);
+										ConstructInference(node2, node1, _weakInferences);
+
+										break;
+									}
+								}
+							}
+						}
+
+						break;
+					}
+				}
+			}
 		}
 
 		// Iterate on each cell, to get all strong relations.
