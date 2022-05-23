@@ -27,19 +27,20 @@ public static class MissingCandidateSearcher
 	public static unsafe int GetMissingCandidate(in Grid grid)
 	{
 		// Optimization: Check the symmetry. User-created sudoku puzzles often contain patterns with symmetry.
-		return Solver.Solve(grid.ToString("0"), null, 2) is 0 or 1
-			? throw new InvalidOperationException($"The {nameof(grid)} must contain more than one solution.")
-			: (
-				testSymmetry(grid, &GridTransformations.RotatePi)
-					?? testSymmetry(grid, &GridTransformations.MirrorLeftRight)
-					?? testSymmetry(grid, &GridTransformations.MirrorTopBottom)
-					?? testSymmetry(grid, &GridTransformations.MirrorDiagonal)
-					?? testSymmetry(grid, &GridTransformations.MirrorAntidiagonal)
-					?? testSymmetry(grid, &GridTransformations.RotateClockwise)
-					?? testSymmetry(grid, &GridTransformations.RotateCounterclockwise)
-					?? testNoSymmetry(grid)
-					?? -1
-			);
+		return Solver.Solve(grid.ToString("0"), null, 2) switch
+		{
+			0 or 1 => throw new InvalidOperationException($"The {nameof(grid)} must contain more than one solution."),
+			_
+				=> testSymmetry(grid, &GridTransformations.RotatePi)
+				?? testSymmetry(grid, &GridTransformations.MirrorLeftRight)
+				?? testSymmetry(grid, &GridTransformations.MirrorTopBottom)
+				?? testSymmetry(grid, &GridTransformations.MirrorDiagonal)
+				?? testSymmetry(grid, &GridTransformations.MirrorAntidiagonal)
+				?? testSymmetry(grid, &GridTransformations.RotateClockwise)
+				?? testSymmetry(grid, &GridTransformations.RotateCounterclockwise)
+				?? testNoSymmetry(grid)
+				?? -1
+		};
 
 
 		static int? testSymmetry(in Grid grid, delegate*<in Grid, Grid> transform)
