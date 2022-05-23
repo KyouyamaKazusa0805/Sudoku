@@ -152,8 +152,9 @@ public sealed partial class AlternatingInferenceChainStepSearcher : IAlternating
 			_foundChains.Clear();
 
 			// Gather strong and weak links.
-			GatherInferences_SoleCandidate(grid);
-			GatherInferences_LockedCandidates(grid);
+			GatherInferences_SoleAndLocked();
+			//GatherInferences_SoleCandidate(grid);
+			//GatherInferences_LockedCandidates(grid);
 			GatherInferences_AlmostLockedSet(grid);
 			//GatherInferences_AlmostHiddenSet(grid);
 			//GatherInferences_UniqueRectangle(grid);
@@ -339,6 +340,79 @@ public sealed partial class AlternatingInferenceChainStepSearcher : IAlternating
 		}
 
 		outputHandler(sb.ToStringAndClear());
+	}
+
+	/// <summary>
+	/// To construct a strong or weak inference from node <paramref name="a"/> to <paramref name="b"/>.
+	/// </summary>
+	/// <param name="a">The first node to be constructed as a strong inference.</param>
+	/// <param name="b">The second node to be constructed as a strong inference.</param>
+	/// <param name="inferences">The inferences list you want to add.</param>
+	private void ConstructInference(Node a, Node b, Dictionary<int, HashSet<int>?> inferences)
+	{
+		int bId;
+		if (_idLookup.TryGetValue(a, out int aId))
+		{
+			if (_idLookup.TryGetValue(b, out bId))
+			{
+				if (inferences.ContainsKey(aId))
+				{
+					(inferences[aId] ??= new()).Add(bId);
+				}
+				else
+				{
+					inferences.Add(aId, new() { bId });
+				}
+			}
+			else
+			{
+				bId = ++_globalId;
+				_nodeLookup[bId] = b;
+				_idLookup.Add(b, bId);
+
+				if (inferences.ContainsKey(aId))
+				{
+					(inferences[aId] ??= new()).Add(bId);
+				}
+				else
+				{
+					inferences.Add(aId, new() { bId });
+				}
+			}
+		}
+		else
+		{
+			aId = ++_globalId;
+			_nodeLookup[_globalId] = a;
+			_idLookup.Add(a, _globalId);
+
+			if (_idLookup.TryGetValue(b, out bId))
+			{
+				if (inferences.ContainsKey(aId))
+				{
+					(inferences[aId] ??= new()).Add(bId);
+				}
+				else
+				{
+					inferences.Add(aId, new() { bId });
+				}
+			}
+			else
+			{
+				bId = ++_globalId;
+				_nodeLookup[bId] = b;
+				_idLookup.Add(b, bId);
+
+				if (inferences.ContainsKey(aId))
+				{
+					(inferences[aId] ??= new()).Add(bId);
+				}
+				else
+				{
+					inferences.Add(aId, new() { bId });
+				}
+			}
+		}
 	}
 
 	/// <summary>
@@ -710,6 +784,144 @@ public sealed partial class AlternatingInferenceChainStepSearcher : IAlternating
 	#endregion
 
 	#region Inference-searching methods
+	/// <summary>
+	/// Gather the strong and weak inferences on sole candidate nodes and locked candidates nodes.
+	/// </summary>
+	private void GatherInferences_SoleAndLocked()
+	{
+		// Iterate on each region, to get all possible links.
+		for (byte house = 9; house < 27; house++)
+		{
+			for (byte digit = 0; digit < 9; digit++)
+			{
+				if ((ValueMaps[digit] & HouseMaps[house]) is not [])
+				{
+					// The current house contains the current digit,
+					// which is not allowed in searching for strong and weak inferences.
+					continue;
+				}
+
+				var emptyCells = HouseMaps[house] & CandMaps[digit];
+				short blockMask = emptyCells.BlockMask;
+				switch (PopCount((uint)blockMask))
+				{
+					case 2: // Both strong and weak inferences.
+					{
+						int h1 = TrailingZeroCount(blockMask);
+						int h2 = blockMask.GetNextSet(h1);
+						var node1Cells = emptyCells & HouseMaps[h1];
+						var node2Cells = emptyCells & HouseMaps[h2];
+						var node1 = (Node)(
+							node1Cells is [var node1Cell]
+								? new SoleCandidateNode((byte)node1Cell, digit)
+								: new LockedCandidatesNode(digit, node1Cells)
+						);
+						var node2 = (Node)(
+							node2Cells is [var node2Cell]
+								? new SoleCandidateNode((byte)node2Cell, digit)
+								: new LockedCandidatesNode(digit, node2Cells)
+						);
+
+						switch ((node1, node2))
+						{
+							case (SoleCandidateNode a, SoleCandidateNode b)
+							when NodeTypes.Flags(SearcherNodeTypes.SoleDigit):
+							{
+								ConstructInference(a, b, _strongInferences);
+								ConstructInference(b, a, _strongInferences);
+								ConstructInference(a, b, _weakInferences);
+								ConstructInference(b, a, _weakInferences);
+
+								break;
+							}
+							case var _ when NodeTypes.Flags(SearcherNodeTypes.LockedCandidates):
+							{
+								ConstructInference(node1, node2, _strongInferences);
+								ConstructInference(node2, node1, _strongInferences);
+
+								// TODO: Separate and enumerate all combinations on a locked candidates node.
+								ConstructInference(node1, node2, _weakInferences);
+								ConstructInference(node2, node1, _weakInferences);
+
+								break;
+							}
+						}
+
+						break;
+					}
+					case 3: // Weak inferences.
+					{
+						int h1 = TrailingZeroCount(blockMask);
+						int h2 = blockMask.GetNextSet(h1);
+						int h3 = blockMask.GetNextSet(h2);
+						var node1Cells = emptyCells & HouseMaps[h1];
+						var node2Cells = emptyCells & HouseMaps[h2];
+						var node3Cells = emptyCells & HouseMaps[h3];
+						var node1 = (Node)(
+							node1Cells is [var node1Cell]
+								? new SoleCandidateNode((byte)node1Cell, digit)
+								: new LockedCandidatesNode(digit, node1Cells)
+						);
+						var node2 = (Node)(
+							node2Cells is [var node2Cell]
+								? new SoleCandidateNode((byte)node2Cell, digit)
+								: new LockedCandidatesNode(digit, node2Cells)
+						);
+						var node3 = (Node)(
+							node3Cells is [var node3Cell]
+								? new SoleCandidateNode((byte)node3Cell, digit)
+								: new LockedCandidatesNode(digit, node3Cells)
+						);
+
+						internalAdd(node1, node2);
+						internalAdd(node1, node3);
+						internalAdd(node2, node3);
+
+						break;
+
+						
+						void internalAdd(Node node1, Node node2)
+						{
+							switch ((node1, node2))
+							{
+								case (SoleCandidateNode a, SoleCandidateNode b)
+								when NodeTypes.Flags(SearcherNodeTypes.SoleDigit):
+								{
+									ConstructInference(a, b, _weakInferences);
+									ConstructInference(b, a, _weakInferences);
+
+									break;
+								}
+								case var _ when NodeTypes.Flags(SearcherNodeTypes.LockedCandidates):
+								{
+									// TODO: Separate and enumerate all combinations on a locked candidates node.
+									ConstructInference(node1, node2, _weakInferences);
+									ConstructInference(node2, node1, _weakInferences);
+
+									break;
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+
+		for (int house = 0; house < 9; house++)
+		{
+
+		}
+
+		// Iterate on each cell, to get all strong relations.
+		if (NodeTypes.Flags(SearcherNodeTypes.SoleCell))
+		{
+			for (int cell = 0; cell < 81; cell++)
+			{
+
+			}
+		}
+	}
+
 	/// <summary>
 	/// Gather the strong and weak inferences on sole candidate nodes.
 	/// </summary>
