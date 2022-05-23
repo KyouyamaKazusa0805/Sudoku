@@ -105,9 +105,9 @@ public sealed class AlternatingInferenceChain : Chain
 	/// <inheritdoc/>
 	public override bool Equals([NotNullWhen(true)] Chain? other)
 		=> other is AlternatingInferenceChain comparer
-			&& IsStrong == comparer.IsStrong
-			&& RealChainNodes is [var a1, .., var b1] && comparer.RealChainNodes is [var a2, .., var b2]
-			&& (a1 == a2 && b1 == b2 || a1 == b2 && a2 == b1);
+		&& IsStrong == comparer.IsStrong
+		&& RealChainNodes is [var a1, .., var b1] && comparer.RealChainNodes is [var a2, .., var b2]
+		&& (a1 == a2 && b1 == b2 || a1 == b2 && a2 == b1);
 
 	/// <inheritdoc/>
 	public override string ToString()
@@ -149,14 +149,12 @@ public sealed class AlternatingInferenceChain : Chain
 						},
 						_ => (c1, c2) switch
 						{
-#pragma warning disable IDE0055
 							([var oc1], [var oc2]) => GetEliminationsMultipleDigits(grid, oc1, oc2, d1, d2),
 							([var oc], { Count: > 1 }) => grid.Exists(oc, d2) switch
 							{
 								true => new Conclusion[] { new(ConclusionType.Elimination, oc, d2) },
 								_ => null
 							},
-#pragma warning restore IDE0055
 							({ Count: > 1 }, [var oc]) => grid.Exists(oc, d1) switch
 							{
 								true => new Conclusion[] { new(ConclusionType.Elimination, oc, d1) },
