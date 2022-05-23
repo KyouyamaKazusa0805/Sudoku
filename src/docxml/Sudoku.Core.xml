@@ -4,6 +4,67 @@
         <name>Sudoku.Core</name>
     </assembly>
     <members>
+        <member name="T:Sudoku.Checking.MissingCandidateSearcher">
+            <summary>
+            Provides a searcher that checks the missing candidate for a sudoku grid.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Checking.MissingCandidateSearcher.Solver">
+            <summary>
+            Indicates the inner solver.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Checking.MissingCandidateSearcher.GetMissingCandidate(Sudoku.Concepts.Collections.Grid@)">
+            <summary>
+            Gets the missing candidate that makes the grid have unique solution when it's restored.
+            Returns <c>-1</c> when this metohd doesn't find out any possible missing candidates.
+            </summary>
+            <param name="grid">The grid to be checked.</param>
+            <returns>
+            The candidate found and confirmed being missing, whose valid range is from 0 to 728.
+            <c>-1</c> will be returned if no possible missing candidate found. For example,
+            at least two missing candidates should be checked.
+            </returns>
+            <exception cref="T:System.InvalidOperationException">
+            Throws when the puzzle contain no solution or a unique solution.
+            </exception>
+        </member>
+        <member name="T:Sudoku.Checking.TrueCandidatesSearcher">
+            <summary>
+            Defines a searcher that searches for the true candidates of the current sudoku grid.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Checking.TrueCandidatesSearcher.#ctor(Sudoku.Concepts.Collections.Grid@)">
+            <summary>
+            Initializes an instance with the specified grid.
+            </summary>
+            <param name="grid">The current puzzle grid.</param>
+            <exception cref="T:System.InvalidOperationException">Throws when the puzzle is invalid.</exception>
+        </member>
+        <member name="P:Sudoku.Checking.TrueCandidatesSearcher.IsBugPattern">
+            <summary>
+            Indicates the current grid is a BUG+n pattern.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Checking.TrueCandidatesSearcher.Puzzle">
+            <summary>
+            The grid.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Checking.TrueCandidatesSearcher.TrueCandidates">
+            <summary>
+            Indicates all true candidates (non-BUG candidates).
+            </summary>
+        </member>
+        <member name="M:Sudoku.Checking.TrueCandidatesSearcher.GetAllTrueCandidates(System.Int32,System.Threading.CancellationToken)">
+            <summary>
+            Get all true candidates when the number of empty cells
+            is below than the argument.
+            </summary>
+            <param name="maximumEmptyCells">The maximum number of the empty cells.</param>
+            <param name="cancellationToken">The cancellation token to cancel the operation.</param>
+            <returns>All true candidates.</returns>
+        </member>
         <member name="T:Sudoku.Concepts.CellStatus">
             <summary>
             Represents a cell status.
@@ -12782,6 +12843,26 @@
             <summary>
             Eliminate d from <c>values[s]</c>; propagate when values or places <![CDATA[<=]]> 2.
             </summary>
+        </member>
+        <member name="T:Sudoku.Solving.MaskMarshal">
+            <summary>
+            Provides with a serial of methods that handles with masks.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.MaskMarshal.GetMaskSubsets(System.Int16)">
+            <summary>
+            Get all mask combinations.
+            </summary>
+            <param name="value">The mask.</param>
+            <returns>The result list.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.MaskMarshal.GetMaskSubsets(System.Int16,System.Int32)">
+            <summary>
+            Get all mask combinations.
+            </summary>
+            <param name="value">The mask.</param>
+            <param name="size">The size.</param>
+            <returns>The result list.</returns>
         </member>
     </members>
 </doc>

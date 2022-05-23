@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Solving.Manual.Checkers;
+﻿namespace Sudoku.Checking;
 
 /// <summary>
 /// Provides a searcher that checks the missing candidate for a sudoku grid.

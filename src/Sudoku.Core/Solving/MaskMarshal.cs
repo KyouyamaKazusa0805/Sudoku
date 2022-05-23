@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Solving.Manual;
+﻿namespace Sudoku.Solving;
 
 /// <summary>
 /// Provides with a serial of methods that handles with masks.

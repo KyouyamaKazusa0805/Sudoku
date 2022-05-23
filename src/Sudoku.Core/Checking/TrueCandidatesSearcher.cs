@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Solving.Manual.Checkers;
+﻿namespace Sudoku.Checking;
 
 /// <summary>
 /// Defines a searcher that searches for the true candidates of the current sudoku grid.
@@ -43,13 +43,11 @@ public sealed unsafe class TrueCandidatesSearcher
 	/// <returns>All true candidates.</returns>
 	public Candidates GetAllTrueCandidates(int maximumEmptyCells, CancellationToken cancellationToken = default)
 	{
-		InitializeMaps(Puzzle);
-
 		// Get the number of multivalue cells.
 		// If the number of that is greater than the specified number,
 		// here will return the default list directly.
 		int multivalueCellsCount = 0;
-		foreach (int value in EmptyCells)
+		foreach (int value in Puzzle.EmptyCells)
 		{
 			switch (PopCount((uint)Puzzle.GetCandidates(value)))
 			{
@@ -64,7 +62,7 @@ public sealed unsafe class TrueCandidatesSearcher
 		// Store all bivalue cells and construct the relations.
 		int* peerHouses = stackalloc int[3];
 		var stack = new Cells[multivalueCellsCount + 1, 9];
-		foreach (int cell in BivalueCells)
+		foreach (int cell in Puzzle.BivalueCells)
 		{
 			foreach (int digit in Puzzle.GetCandidates(cell))
 			{
@@ -89,7 +87,7 @@ public sealed unsafe class TrueCandidatesSearcher
 		// The comments will help you to understand the processing.
 		Unsafe.SkipInit(out short mask);
 		short[,] pairs = new short[multivalueCellsCount, 37]; // 37 == (1 + 8) * 8 / 2 + 1
-		int[] multivalueCells = (EmptyCells - BivalueCells).ToArray();
+		int[] multivalueCells = (Puzzle.EmptyCells - Puzzle.BivalueCells).ToArray();
 		for (int i = 0, length = multivalueCells.Length; i < length; i++)
 		{
 			// eg. { 2, 4, 6 } (42)
@@ -167,7 +165,7 @@ public sealed unsafe class TrueCandidatesSearcher
 						// Take the cell that doesn't contain in the map above.
 						// Here, the cell is the "true candidate cell".
 						ref var map = ref resultMap[digit];
-						map = CandidatesMap[digit] - stack[currentIndex, digit];
+						map = Puzzle.CandidatesMap[digit] - stack[currentIndex, digit];
 						foreach (int cell in map)
 						{
 							result.AddAnyway(cell * 9 + digit);
